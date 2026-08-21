@@ -231,3 +231,8 @@ non-contracting itineraries was found. Counterexample search for a
 
 CLI: `itinerary`, `realizer`, `enumerate-itineraries`, `fixed-budget`,
 `permutations`, `exceptional-search`.
+
+Milestone 5 strengthens the nested-minimum proposition to the exact
+three-way zero-lift dichotomy, proves uniqueness of every zero-lift
+extension, and treats periodic itineraries. See
+[collatz_zero_lift.md](collatz_zero_lift.md).

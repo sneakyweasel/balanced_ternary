@@ -55,7 +55,24 @@ not pursued.
    solved. No finite certificate of \(R_m\to\infty\) for all
    non-contracting itineraries was found.
 
-## Still open
+## Answered in Milestone 5
+
+1. An infinite itinerary has a positive integer realizer iff its nested
+   minima \(R_m\) eventually stabilize iff its exact lift coefficients
+   \(J_m\) are eventually zero. **PROVED**.
+2. Every finite prefix has exactly one zero-lift extension. It is
+   \(v_2(3T^m(R_m)+1)\). **PROVED**.
+3. The deterministic zero-lift successor is the accelerated Collatz
+   orbit of the canonical realizer. **PROVED**. This identifies the
+   limitation rather than solving it.
+4. Purely periodic and eventually periodic valuation itineraries have
+   exact affine compatibility candidates and exact cylinder checks.
+   **PROVED**. The bounded cycle census is **VERIFIED COMPUTATIONALLY**.
+5. Finite precision in the canonical current state certifies many
+   immediate \(J>0\) extensions; unbounded valuations leave some cases
+   unresolved at every fixed precision. **PROVED**.
+
+## Other still-open questions
 
 1. Closed form for minimized `/2^k` state complexity \(N_k\). The pattern
    \(N_k=2^k+1\) is a **CONJECTURE** with counterexample search
@@ -78,5 +95,14 @@ The research question of the module is now:
 > trajectories from arbitrary finite 2-adically admissible valuation
 > itineraries?
 
-See [docs/collatz_itinerary_compatibility.md](collatz_itinerary_compatibility.md).
-Milestone 4 does not answer the question by solving Collatz.
+## Milestone 5 open questions
+
+1. Can a finite abstraction certify infinitely many positive lifts for
+   a nontrivial infinite class of future valuation patterns?
+2. Does sustained low \(K_m/m\) force infinitely many \(J_m>0\)?
+   **CONJECTURE**; no implication is assumed.
+3. Can periodic-pattern compatibility be classified beyond the exact
+   candidate calculation without repackaging the positive-cycle problem?
+
+See [docs/collatz_zero_lift.md](collatz_zero_lift.md). Nothing in
+Milestone 5 proves or disproves the Collatz conjecture.

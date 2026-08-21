@@ -148,3 +148,31 @@ def test_collatz_fixed_budget():
     out = _run("collatz", "fixed-budget", "--length", "3", "--sum-k", "5")
     assert "Fixed (m,K)" in out
     assert "order changes R" in out
+
+
+def test_collatz_zero_lift():
+    out = _run("collatz", "zero-lift", "--ks", "1", "--steps", "2")
+    assert "J_m=" in out
+    assert "Deterministic zero-lift successor trace" in out
+    assert "accelerated Collatz orbit of R" in out
+
+
+def test_collatz_periodic_itinerary():
+    out = _run("collatz", "periodic-itinerary", "2")
+    assert "compatible=true" in out
+    assert "n=1" in out
+
+
+def test_collatz_zero_lift_census():
+    out = _run(
+        "collatz",
+        "zero-lift-census",
+        "--max-length",
+        "2",
+        "--max-k",
+        "3",
+        "--precision",
+        "3",
+    )
+    assert "mismatches=0" in out
+    assert "OBSERVATION" in out

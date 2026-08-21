@@ -665,3 +665,22 @@ Lyapunov / drift search, machine learning, unconstrained suffix statistics
 as theorems, product with the prime sieve, and any claim of a route to
 solving the Collatz conjecture.
 
+## 23. Milestone 5 — zero-lift dynamics (pointer)
+
+For nested minima \(R_m\), define the exact nonnegative lift
+
+\[
+J_m=(R_{m+1}-R_m)/2^{K_m+1}.
+\]
+
+Positive-integer realization of an infinite itinerary, eventual
+stabilization of \(R_m\), and eventual vanishing of \(J_m\) are
+equivalent. Every prefix has one unique zero-lift successor. Periodic
+and eventually periodic words have exact affine compatibility tests.
+These statements are **PROVED** in
+[collatz_zero_lift.md](collatz_zero_lift.md).
+
+Finite canonical-state residues provide exact immediate certificates
+for many \(J_m>0\) extensions. No theorem connects sustained low
+\(K_m/m\) to infinitely many positive lifts.
+

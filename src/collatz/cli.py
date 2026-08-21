@@ -173,6 +173,31 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_ex.add_argument("--max-k", type=int, default=2, dest="max_k")
     p_ex.add_argument("--epsilon", type=float, default=0.1)
 
+    p_zl = c.add_parser(
+        "zero-lift",
+        help="Milestone 5: exact J coefficients and zero-lift successor",
+    )
+    p_zl.add_argument(
+        "--ks",
+        default="",
+        help="comma-separated starting prefix (default: empty)",
+    )
+    p_zl.add_argument("--steps", type=int, default=8)
+
+    p_pi = c.add_parser(
+        "periodic-itinerary",
+        help="Milestone 5: exact compatibility of a periodic valuation word",
+    )
+    p_pi.add_argument("ks", help="comma-separated period")
+
+    p_zc = c.add_parser(
+        "zero-lift-census",
+        help="Milestone 5: bounded regressions and finite-state collision search",
+    )
+    p_zc.add_argument("--max-length", type=int, default=4, dest="max_length")
+    p_zc.add_argument("--max-k", type=int, default=4, dest="max_k")
+    p_zc.add_argument("--precision", type=int, default=4)
+
     c.add_parser("ui", help="open the Streamlit research explorer")
 
 
@@ -226,6 +251,12 @@ def run_collatz(args: argparse.Namespace) -> int:
         return _permutations(args.ks, args.write)
     if cmd == "exceptional-search":
         return _exceptional_search(args.length, args.max_k, args.epsilon)
+    if cmd == "zero-lift":
+        return _zero_lift(args.ks, args.steps)
+    if cmd == "periodic-itinerary":
+        return _periodic_itinerary(args.ks)
+    if cmd == "zero-lift-census":
+        return _zero_lift_census(args.max_length, args.max_k, args.precision)
     if cmd == "ui":
         from visualization.app import launch
 
@@ -583,4 +614,59 @@ def _exceptional_search(length: int, max_k: int, epsilon: float) -> int:
     print(payload["status"])
     for row in payload["sample"][:12]:
         print(f"  ks={row['ks']} K={row['K']} R={row['R']} C={row['C']}")
+    return 0
+
+
+def _zero_lift(ks: str, steps: int) -> int:
+    from collatz.zero_lift import dichotomy_report, zero_lift_trace
+
+    print(dichotomy_report(ks).format(), end="")
+    print("Deterministic zero-lift successor trace  [EXACT]")
+    for state in zero_lift_trace(ks, steps):
+        print(
+            f"  m={state.m} K={state.K} R={state.R} x={state.x} "
+            f"next_k={state.successor_k()} prefix={state.prefix}"
+        )
+    print("The successor trace is the accelerated Collatz orbit of R. [PROVED]")
+    return 0
+
+
+def _periodic_itinerary(ks: str) -> int:
+    from collatz.periodic_itineraries import periodic_candidate
+
+    print(periodic_candidate(ks).format(), end="")
+    print(
+        "Classification uses n(2^K-3^p)=C and an exact cylinder check. "
+        "[PROVED]"
+    )
+    return 0
+
+
+def _zero_lift_census(max_length: int, max_k: int, precision: int) -> int:
+    from collatz.experiments.zero_lift_census import (
+        expanding_positive_J_census,
+        next_k_by_R_mod,
+        uniqueness_census,
+    )
+
+    unique = uniqueness_census(max_length, max_k)
+    expanding = expanding_positive_J_census(max_length, max_k)
+    abstraction = next_k_by_R_mod(max_length, max_k, precision)
+    print("Zero-lift census")
+    print(
+        f"unique-zero regression: checked={unique['checked_prefixes']} "
+        f"mismatches={unique['mismatches']} "
+        f"k beyond range={unique['true_k_exceeds_k_max']}"
+    )
+    print(f"  {unique['status']}")
+    print(
+        f"expanding words={expanding['expanding_words']} "
+        f"failures={len(expanding['failures'])}"
+    )
+    print(f"  {expanding['status']}")
+    print(
+        f"R mod 2^{precision} next-k collisions="
+        f"{abstraction['collision_count']}"
+    )
+    print(f"  {abstraction['status']}")
     return 0
