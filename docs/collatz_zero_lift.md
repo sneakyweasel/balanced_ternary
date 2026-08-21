@@ -16,16 +16,16 @@ R_m=R(k_0,\ldots,k_{m-1}),
 and define the exact lift coefficient
 
 \[
-J_m=\frac{R_{m+1}-R_m}{2^{K_m+1}}.
+t_m=\frac{R_{m+1}-R_m}{2^{K_m+1}}.
 \]
 
 Nested-cylinder compatibility gives
 
 \[
-R_{m+1}=R_m+J_m2^{K_m+1},\qquad J_m\in\mathbb Z_{\ge0}.
+R_{m+1}=R_m+t_m2^{K_m+1},\qquad t_m\in\mathbb Z_{\ge0}.
 \]
 
-This is **PROVED**. The implementation is `lift_J` and `J_along` in
+This is **PROVED**. The implementation is `lift_digit` and `lift_digits` in
 `src/collatz/zero_lift.py`.
 
 ## A. Exact infinite-itinerary dichotomy
@@ -34,7 +34,7 @@ For every infinite valuation itinerary, the following are equivalent:
 
 1. a positive odd integer realizes every finite prefix;
 2. \(R_m\) is eventually constant;
-3. \(J_m=0\) eventually.
+3. \(t_m=0\) eventually.
 
 This equivalence is **PROVED**.
 
@@ -60,21 +60,20 @@ Finally,
 \[
 R_{m+1}=R_m
 \quad\Longleftrightarrow\quad
-J_m2^{K_m+1}=0
+t_m2^{K_m+1}=0
 \quad\Longleftrightarrow\quad
-J_m=0,
+t_m=0,
 \]
 
 because \(2^{K_m+1}>0\). Therefore eventual stabilization and eventual
 zero lift are equivalent.
 
-`lean/ZeroLiftDichotomy.lean` is a Lean 4 target for the abstract
-sequence-level equivalence. It isolates the concrete cylinder bridge
-(`realizer iff stabilization`) and proves the equivalence with eventual
-zero lift. There is no Lake project in this Python repository, and Lean
-was not available in the development environment, so this target has
-not been compiler-verified. That status is **OBSERVATION**, not
-**VERIFIED COMPUTATIONALLY**.
+The Mathlib-backed project under `formal/` compiles these statements with
+Lean 4. `NestedCylinderSystem` records self-realization, nesting,
+uniqueness below the modulus, positivity, and eventual modulus growth;
+`LiftSystem` records the exact lift equation and digit bound. The
+realizer/stabilization/zero-lift equivalences compile without `sorry`.
+These results are **EXACT — LEAN VERIFIED**.
 
 ## B. Unique zero-lift extension
 
@@ -92,12 +91,12 @@ k_0=v_2(3x+1).
 
 Then \(R\) realizes \(u\mathbin{\cdot}(k_0)\), so the minimum realizer of
 that child is at most \(R\). Nested monotonicity makes it at least \(R\).
-Thus it equals \(R\), and \(J(u,k_0)=0\).
+Thus it equals \(R\), and \(t(u,k_0)=0\).
 
 For \(j\ne k_0\), the integer \(R\) does not have next valuation \(j\),
 so it does not belong to the child cylinder \(u\mathbin{\cdot}(j)\).
 That child's minimum cannot equal \(R\). Nested monotonicity then gives
-\(R(u\mathbin{\cdot}(j))>R\), hence \(J(u,j)>0\).
+\(R(u\mathbin{\cdot}(j))>R\), hence \(t(u,j)>0\).
 
 Therefore every prefix has exactly one zero-lift extension. This is
 **PROVED** and implemented by `zero_lift_k`.
@@ -177,7 +176,7 @@ The bounded search currently finds only repetitions of the known
 COMPUTATIONALLY** only; excluding all other positive cycles is the
 Collatz cycle problem.
 
-## E. Finite certificates for \(J>0\)
+## E. Finite certificates for positive lift
 
 For a canonical prefix state, retain only
 
@@ -186,15 +185,15 @@ x=T^m(R)\pmod {2^P}.
 \]
 
 If \(3x+1\not\equiv0\pmod {2^P}\), its valuation below \(P\) is exact.
-The proposed extension \(j\) has \(J=0\) exactly when it equals that
-valuation; every other \(j\) has \(J>0\).
+The proposed extension \(j\) has zero lift exactly when it equals that
+valuation; every other \(j\) has positive lift.
 
 If \(3x+1\equiv0\pmod {2^P}\), the finite state proves only that the true
-valuation is at least \(P\). It still certifies \(J>0\) for every
+valuation is at least \(P\). It still certifies positive lift for every
 proposed \(j<P\), while proposals \(j\ge P\) remain unresolved.
 
 This finite abstraction and its certificates are **PROVED**. It is
-implemented by `finite_J_certificate`. It abstracts the immediate lift
+implemented by `finite_lift_certificate`. It abstracts the immediate lift
 decision, not the whole Collatz map. A fixed precision does not resolve
 all extensions, because valuations are unbounded.
 
@@ -204,20 +203,20 @@ state alone does not determine the next valuation.
 
 ## F. Budget connection remains open
 
-The only all-zero-\(J\) finite words starting from the empty prefix are
+The only all-zero-lift finite words starting from the empty prefix are
 \((2)^m\). Therefore every expanding finite word has at least one
 positive lift. This is **PROVED**, but it is weak: the same early lift
 can witness the statement for arbitrarily many later prefixes.
 
 No theorem here says that sustained low \(K_m/m\) forces infinitely many
-positive \(J_m\). That implication remains a **CONJECTURE**. It must not
+positive \(t_m\). That implication remains a **CONJECTURE**. It must not
 be inferred from finite expanding-word censuses or from the homogeneous
 comparison \(2^{K_m}\) versus \(3^m\).
 
 ## Commands
 
 ```powershell
-btprime collatz zero-lift --ks 1,2 --steps 8
+btprime collatz zero-lift --ks 1,2 --steps 8 --candidate-k 3 --precision 4
 btprime collatz periodic-itinerary 2
 btprime collatz zero-lift-census --max-length 4 --max-k 4 --precision 4
 ```

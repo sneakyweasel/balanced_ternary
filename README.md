@@ -12,10 +12,10 @@ proofs.
 **Prime core: Milestone A** — canonical encode/decode, digit statistics,
 verified arithmetic invariants, a modular residue automaton, and a CLI.
 
-**Collatz module: Milestone 5** — exact affine itineraries, minimum
-realizers \(R_m\), lift coefficients \(J_m\), deterministic zero-lift
-successors, and periodic-itinerary compatibility. Lyapunov search is not
-included.
+**Collatz module: Milestone 6** — exact affine itineraries, minimum
+realizers \(R_m\), lift digits \(t_m\), mixed-radix dual coding,
+deterministic zero-lift successors, and periodic-itinerary compatibility.
+Lyapunov search is not included.
 
 ## Installation
 
@@ -59,6 +59,10 @@ btprime collatz exceptional-search --length 6 --max-k 2 --epsilon 0.1
 btprime collatz zero-lift --ks 1,2 --steps 8
 btprime collatz periodic-itinerary 2
 btprime collatz zero-lift-census --max-length 4 --max-k 4 --precision 4
+btprime collatz dual-code 1,4,2
+btprime collatz lift-tree --max-depth 3 --max-k 3
+btprime collatz periodic-dual 1,2 --repeats 8
+btprime collatz suffix-test --max-length 4 --max-k 4 --suffix-max 8
 ```
 
 `analyze` always prints `encode(n)`; it does not hard-code example words.
@@ -93,7 +97,7 @@ decreases; finite graphs are samples.
 ```text
 src/balanced_ternary/   representation, features, invariants, CLI
 src/automata/           ModularAutomaton(q)
-src/collatz/            accelerated Collatz research module (Milestones 1–5)
+src/collatz/            accelerated Collatz research module (Milestones 1–6)
 src/sieve/              stub (Phase 3+)
 src/research/           stub (Phase 6+)
 src/visualization/      Streamlit explorer (`btprime collatz ui`)
@@ -102,6 +106,8 @@ docs/collatz_mathematics.md
 docs/collatz_research_questions.md
 docs/collatz_itinerary_compatibility.md
 docs/collatz_zero_lift.md
+docs/collatz_dual_coding.md
+formal/                 Lean 4 + Mathlib proofs (`lake build`)
 ```
 
 The Collatz package reuses `balanced_ternary` and `ModularAutomaton`. It

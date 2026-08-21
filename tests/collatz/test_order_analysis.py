@@ -10,7 +10,7 @@ from collatz.order_analysis import (
     ascending_ks,
     descending_ks,
     extremal_orders,
-    order_changes_R_for_same_K,
+    permutations_change_R,
     swap_adjacent,
     verify_swap_formula,
 )
@@ -35,7 +35,7 @@ def test_descending_maximises_C():
 
 def test_order_can_change_R():
     # Same (m,K)=(2,3): (1,2) vs (2,1)
-    assert order_changes_R_for_same_K((1, 2))
+    assert permutations_change_R((1, 2))
     assert min_realizer_pair()
 
 

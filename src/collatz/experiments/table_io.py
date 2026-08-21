@@ -7,6 +7,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Sequence
 
+from collatz.experiments.schema import ExperimentManifest
+
 
 def timestamp() -> str:
     return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -37,4 +39,39 @@ def write_rows(
         paths["parquet"] = str(parquet_path)
     except ImportError:
         paths["parquet"] = ""
+    return paths
+
+
+def read_jsonl(path: Path | str) -> list[dict[str, Any]]:
+    """Read rows written by ``write_rows``."""
+    rows: list[dict[str, Any]] = []
+    with Path(path).open("r", encoding="utf-8") as fh:
+        for line in fh:
+            if line.strip():
+                rows.append(json.loads(line))
+    return rows
+
+
+def write_experiment(
+    rows: Sequence[dict[str, Any]],
+    output_dir: Path | str,
+    stem: str,
+    manifest: ExperimentManifest,
+) -> dict[str, str]:
+    """Write data artifacts plus a reproducibility manifest."""
+    if manifest.row_count != len(rows):
+        raise ValueError("manifest row_count does not match rows")
+    paths = write_rows(rows, output_dir, stem)
+    jsonl_path = Path(paths["jsonl"])
+    manifest_path = jsonl_path.with_name(
+        jsonl_path.name.removesuffix(".jsonl") + "_manifest.json"
+    )
+    manifest_payload = manifest.as_dict()
+    manifest_payload["created_utc"] = datetime.now(timezone.utc).isoformat()
+    manifest_payload["artifacts"] = paths
+    manifest_path.write_text(
+        json.dumps(manifest_payload, indent=2, sort_keys=True),
+        encoding="utf-8",
+    )
+    paths["manifest"] = str(manifest_path)
     return paths

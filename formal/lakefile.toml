@@ -1,0 +1,11 @@
+name = "collatz-dual-formal"
+version = "0.1.0"
+defaultTargets = ["CollatzDual"]
+
+[[lean_lib]]
+name = "CollatzDual"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.19.0"

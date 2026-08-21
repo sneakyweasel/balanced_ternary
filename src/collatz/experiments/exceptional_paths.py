@@ -11,11 +11,12 @@ This does not claim that expansionary prefixes are unrealisable.
 
 from __future__ import annotations
 
-from itertools import product
 from math import floor, log2
 
 from collatz.automata.valuation_shift import growth_budget
+from collatz.experiments.fixed_budget import compositions_of
 from collatz.min_realizer import itinerary_signature
+from collatz.zero_lift import lift_digits
 
 
 LOG2_3 = log2(3)
@@ -26,12 +27,11 @@ def is_expanding(ks: tuple[int, ...]) -> bool:
 
 
 def k_cut(m: int, epsilon: float) -> int:
-    """Largest integer K with K/m <= log2(3) - epsilon, at least m (all ones)."""
+    """Largest integer K with ``K/m <= log2(3) - epsilon``."""
     if epsilon < 0:
         raise ValueError("epsilon must be >= 0")
     raw = (LOG2_3 - epsilon) * m
-    cut = int(floor(raw))
-    return max(m, cut) if cut >= m else m
+    return int(floor(raw))
 
 
 def run_exceptional_search(
@@ -45,25 +45,26 @@ def run_exceptional_search(
         raise ValueError(f"k_max must be an integer >= 1, got {k_max!r}")
     cut = k_cut(length, epsilon)
     rows = []
-    for ks in product(range(1, k_max + 1), repeat=length):
-        k_sum = sum(ks)
-        if k_sum > cut:
-            continue
-        if not is_expanding(ks):
-            continue
-        sig = itinerary_signature(ks)
-        rows.append(
-            {
-                "ks": list(ks),
-                "K": k_sum,
-                "R": sig.R,
-                "C": sig.C,
-                "BT(R)": sig.bt_word,
-                "length_BT": sig.features.length,
-                "weight": sig.features.weight,
-                "status": "EXACT signature; membership in B_m(eps) is a float cut (OBSERVATION selector)",
-            }
-        )
+    for k_sum in range(length, cut + 1):
+        for ks in compositions_of(k_sum, length, k_max):
+            if not is_expanding(ks):
+                continue
+            sig = itinerary_signature(ks)
+            digits = lift_digits(ks)
+            rows.append(
+                {
+                    "ks": list(ks),
+                    "K": k_sum,
+                    "R": sig.R,
+                    "C": sig.C,
+                    "lift_digits": list(digits),
+                    "zero_lift_count": sum(t == 0 for t in digits),
+                    "BT(R)": sig.bt_word,
+                    "length_BT": sig.features.length,
+                    "weight": sig.features.weight,
+                    "status": "EXACT signature; membership in B_m(eps) is a float cut (OBSERVATION selector)",
+                }
+            )
     rs = [row["R"] for row in rows]
     return {
         "length": length,

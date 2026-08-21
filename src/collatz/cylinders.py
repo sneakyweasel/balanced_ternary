@@ -184,7 +184,7 @@ class ValuationCylinder:
             if self.density_denominator
             else "undefined"
         )
-        haar = "2^{-K}" if self.leftover_q == 1 else f"2^{{Q-1-K}} with Q={self.leftover_q}"
+        haar = "2^{-K}"
         lines = [
             f"Valuation cylinder  ks={self.ks}  leftover_Q={self.leftover_q}",
             f"K=sum k={sum(self.ks)}  P=Q+K={self.precision}  "

@@ -45,15 +45,12 @@ class RealizabilityClass(str, Enum):
     )
 
 
-def r_unbounded_excludes_positive_integer(r_seq: tuple[int, ...]) -> bool:
-    """Finite check of the hypothesis ``R_m`` unbounded on a prefix sequence.
+def observed_nonconstant_monotone(r_seq: tuple[int, ...]) -> bool:
+    """Whether a finite sample is monotone and has at least one increase.
 
-    Returns True if the observed prefix of ``R_m`` is strictly eventually
-    increasing without a bound visible in the sample. This is **not** a
-    proof that the infinite sequence is unbounded; it is the finite
-    observation used by searches. The implication
-    ``R_m -> inf => no positive integer realises the itinerary`` is
-    **PROVED** and does not depend on this helper.
+    This finite observation is not evidence that the infinite sequence is
+    unbounded. The implication ``R_m -> inf => no positive integer realizer``
+    is **PROVED** independently.
     """
     if len(r_seq) < 2:
         return False
@@ -72,8 +69,8 @@ class NestedCylinderReport:
     ks: tuple[int, ...]
     realizers: tuple[int, ...]
     monotone: bool
-    strictly_increasing: bool
-    bounded_in_sample: bool
+    strictly_increasing_in_sample: bool
+    constant_in_sample: bool
     class_labels: tuple[str, ...]
     status: str
 
@@ -83,9 +80,10 @@ class NestedCylinderReport:
             f"R_m={self.realizers}\n"
             f"monotone={str(self.monotone).lower()}  "
             f"[PROVED for leftover Q=1]\n"
-            f"strictly_increasing={str(self.strictly_increasing).lower()}  "
+            f"strictly_increasing_in_sample="
+            f"{str(self.strictly_increasing_in_sample).lower()}  "
             f"[COMPUTATIONAL on this prefix]\n"
-            f"bounded_in_sample={str(self.bounded_in_sample).lower()}\n"
+            f"constant_in_sample={str(self.constant_in_sample).lower()}\n"
             f"classes: {', '.join(self.class_labels)}\n"
             f"status: {self.status}\n"
             "If R_m -> infinity, no finite positive integer realises the "
@@ -98,7 +96,7 @@ def nested_cylinder_report(ks: tuple[int, ...] | str | list[int]) -> NestedCylin
     rs = nested_realizers(ks)
     monotone = all(rs[i] <= rs[i + 1] for i in range(len(rs) - 1))
     strict = all(rs[i] < rs[i + 1] for i in range(len(rs) - 1)) if len(rs) > 1 else False
-    bounded = len(rs) >= 2 and rs[-1] == rs[0]
+    constant = all(r == rs[0] for r in rs)
     labels = (
         RealizabilityClass.FINITELY_TWO_ADICALLY_REALIZABLE.value,
         RealizabilityClass.TWO_ADICALLY_REALIZABLE.value,
@@ -107,10 +105,10 @@ def nested_cylinder_report(ks: tuple[int, ...] | str | list[int]) -> NestedCylin
         ks=ks,
         realizers=rs,
         monotone=monotone,
-        strictly_increasing=strict,
-        bounded_in_sample=bounded,
+        strictly_increasing_in_sample=strict,
+        constant_in_sample=constant,
         class_labels=labels,
-        status="EXACT residues; COMPUTATIONAL boundedness on this finite prefix",
+        status="EXACT residues; finite constancy is COMPUTATIONAL",
     )
 
 

@@ -5,13 +5,19 @@ from collatz.automata.symbolic_graph import SymbolicJointGraph, build_symbolic_g
 from collatz.automata.two_adic import TwoAdicDigitAutomaton
 from collatz.automata.valuation_shift import AdmissibleValuationAutomaton
 from collatz.cylinders import ValuationCylinder, precision_cost, valuation_cylinder
+from collatz.dual_code import (
+    CollatzDualCode,
+    canonical_realizer_formula,
+    reconstruct_realizer,
+)
 from collatz.itinerary import ValuationItinerary
+from collatz.lift_tree import LiftTree, build_lift_tree
 from collatz.periodic_itineraries import periodic_candidate
 from collatz.zero_lift import (
-    J_along,
     ZeroLiftState,
-    finite_J_certificate,
-    lift_J,
+    finite_lift_certificate,
+    lift_digit,
+    lift_digits,
     zero_lift_k,
 )
 from collatz.bt_arithmetic import add, add_one, multiply_by_three, three_n_plus_one_word
@@ -35,8 +41,9 @@ __all__ = [
     "AdmissibleValuationAutomaton",
     "BalancedTernaryFeatures",
     "CollatzFeatureTransition",
+    "CollatzDualCode",
     "JointGraph",
-    "J_along",
+    "LiftTree",
     "SymbolicJointGraph",
     "TwoAdicDigitAutomaton",
     "ValuationCylinder",
@@ -48,7 +55,9 @@ __all__ = [
     "apply_even",
     "build_inverse_tree",
     "build_joint_graph",
+    "build_lift_tree",
     "build_symbolic_graph",
+    "canonical_realizer_formula",
     "classify_collatz_valuation",
     "collatz_predecessors",
     "collatz_step",
@@ -57,8 +66,9 @@ __all__ = [
     "collatz_trajectory",
     "extract_features",
     "feature_transition",
-    "finite_J_certificate",
-    "lift_J",
+    "finite_lift_certificate",
+    "lift_digit",
+    "lift_digits",
     "multiply_by_three",
     "odd_part_word",
     "precision_cost",
@@ -66,6 +76,7 @@ __all__ = [
     "predicted_features_after_append_plus",
     "valuation_cylinder",
     "run_exhaustive_experiment",
+    "reconstruct_realizer",
     "standard_collatz_step",
     "three_n_plus_one",
     "three_n_plus_one_word",

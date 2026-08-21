@@ -161,6 +161,49 @@ This is a statement about a *prescribed* itinerary. It says nothing about
 whether some other itinerary is realised by a given Collatz orbit, and it
 is not a proof of Collatz.
 
+### Full stabilization equivalence
+
+For an infinite itinerary \(\mathbf{k}=(k_0,k_1,\ldots)\), “realized by
+one positive integer” means
+
+\[
+\exists n\in\mathbb Z_{>0}\text{ odd}\quad
+\forall m\ge0,\quad
+n\equiv R_m\pmod {2^{K_m+1}}.
+\]
+
+**PROVED.** The following are equivalent:
+
+1. one positive odd integer realizes every prefix;
+2. \(R_m\) is bounded;
+3. \(R_m\) is eventually constant;
+4. the lift digits \(t_m\) are eventually zero.
+
+The sequence \(R_m\) is nondecreasing by the nested lift equation. Every
+bounded nondecreasing sequence of natural numbers is eventually constant:
+it can make only finitely many strict increases below an integer bound.
+Conversely, an eventually constant sequence is bounded.
+
+If \(n\) realizes every prefix, then \(R_m\le n\), so \(R_m\) is bounded.
+More precisely, \(K_m\ge m\), hence \(2^{K_m+1}\to\infty\). Once the
+modulus exceeds \(n\), the unique representative of \(n\)'s class in
+\((0,2^{K_m+1})\) is \(n\), so \(R_m=n\).
+
+If \(R_m=r\) for all \(m\ge N\), then \(r=R_N\) realizes prefix \(N\).
+Nesting gives all earlier prefixes, while \(r=R_m\) directly realizes
+every later prefix. Thus \(r\) realizes the entire itinerary.
+
+Finally,
+
+\[
+R_{m+1}-R_m=t_m2^{K_m+1}
+\]
+
+and the power of two is positive, so \(R_{m+1}=R_m\) iff \(t_m=0\).
+This proves the full equivalence, not only the one-way unboundedness
+criterion. The abstract cylinder/lift theorem is also
+**EXACT — LEAN VERIFIED** in `formal/CollatzDual/`.
+
 **PROVED.** For the all-ones word of length \(m\),
 
 \[

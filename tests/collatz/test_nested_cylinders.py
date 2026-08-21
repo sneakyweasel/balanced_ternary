@@ -8,7 +8,8 @@ from collatz.compatibility import (
     positive_integer_would_bound_R,
 )
 from collatz.experiments.nested_cylinders import all_ones_prefix, run_nested_trace
-from collatz.lower_bounds import certificate_attempts, lift_t, log2_R_upper_bound_exponent
+from collatz.lower_bounds import certificate_attempts, log2_R_upper_bound_exponent
+from collatz.zero_lift import lift_digit
 from collatz.min_realizer import min_realizer
 
 
@@ -28,7 +29,7 @@ def test_no_smaller_child():
     for j in range(1, 6):
         r_c = min_realizer(parent + (j,))
         assert r_c >= r_p
-        t = lift_t(parent, j)
+        t = lift_digit(parent, j)
         assert t >= 0
 
 

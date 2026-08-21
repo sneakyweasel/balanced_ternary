@@ -147,12 +147,24 @@ def test_collatz_permutations():
 def test_collatz_fixed_budget():
     out = _run("collatz", "fixed-budget", "--length", "3", "--sum-k", "5")
     assert "Fixed (m,K)" in out
-    assert "order changes R" in out
+    assert "R varies across compositions" in out
 
 
 def test_collatz_zero_lift():
-    out = _run("collatz", "zero-lift", "--ks", "1", "--steps", "2")
-    assert "J_m=" in out
+    out = _run(
+        "collatz",
+        "zero-lift",
+        "--ks",
+        "1",
+        "--steps",
+        "2",
+        "--candidate-k",
+        "2",
+        "--precision",
+        "3",
+    )
+    assert "lift_digits=" in out
+    assert "finite lift certificate" in out
     assert "Deterministic zero-lift successor trace" in out
     assert "accelerated Collatz orbit of R" in out
 
@@ -176,3 +188,58 @@ def test_collatz_zero_lift_census():
     )
     assert "mismatches=0" in out
     assert "OBSERVATION" in out
+
+
+def test_collatz_dual_code():
+    out = _run("collatz", "dual-code", "1,4,2")
+    assert "Collatz dual code" in out
+    assert "lift_digits=" in out
+    assert "reconstruction=" in out
+
+
+def test_collatz_lift_tree():
+    out = _run(
+        "collatz",
+        "lift-tree",
+        "--max-depth",
+        "2",
+        "--max-k",
+        "3",
+    )
+    assert "Cylinder lift tree" in out
+    assert "ZERO_LIFT" in out
+    assert "valid finite extensions" in out
+
+
+def test_collatz_periodic_dual():
+    out = _run("collatz", "periodic-dual", "2", "--repeats", "3")
+    assert "Periodic dual-code trace" in out
+    assert "infinite compatibility=True" in out
+
+
+def test_collatz_suffix_test():
+    out = _run(
+        "collatz",
+        "suffix-test",
+        "--max-length",
+        "2",
+        "--max-k",
+        "3",
+        "--suffix-max",
+        "3",
+    )
+    assert "suffix determination" in out
+    assert "EXACT COUNTEREXAMPLE" in out
+
+
+def test_collatz_dual_dataset_no_write():
+    out = _run(
+        "collatz",
+        "dual-dataset",
+        "--length",
+        "2",
+        "--max-k",
+        "3",
+    )
+    assert "rows=9" in out
+    assert "no files written" in out

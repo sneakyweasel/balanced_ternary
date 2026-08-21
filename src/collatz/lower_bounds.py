@@ -17,21 +17,15 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from collatz.compatibility import child_realizer_delta
 from collatz.cylinders import parse_ks
 from collatz.min_realizer import min_realizer
+from collatz.zero_lift import lift_digit
 
 
 def log2_R_upper_bound_exponent(ks: tuple[int, ...]) -> int:
     """``K+1``. **PROVED:** ``R < 2^{K+1}``."""
     ks = parse_ks(ks)
     return sum(ks) + 1
-
-
-def lift_t(parent: tuple[int, ...], j: int) -> int:
-    """The integer ``t`` in ``R_child = R_parent + t * 2^{K_parent+1}``."""
-    _rp, _rc, t = child_realizer_delta(parent, j)
-    return t
 
 
 def search_zero_lifts(
@@ -44,7 +38,7 @@ def search_zero_lifts(
         nxt: list[tuple[int, ...]] = []
         for parent in prefixes:
             for j in range(1, k_max + 1):
-                t = lift_t(parent, j)
+                t = lift_digit(parent, j)
                 if t == 0:
                     found.append((parent, j))
                 nxt.append(parent + (j,))

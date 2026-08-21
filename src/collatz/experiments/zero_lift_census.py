@@ -1,9 +1,9 @@
-"""Census of J, unique zero-lift k, and expanding words.
+"""Census of lift digits, unique zero-lift k, and expanding words.
 
 Uniqueness of the zero-lift extension is **PROVED**. The loops below are
-regression checks and a search for a finite invariant that would certify
-``J>0`` without computing ``T^m(R)``. No such invariant, independent of
-``R`` and ``m``, was found. That is an **OBSERVATION**.
+regression checks and a search for whether the coarse state
+``R mod 2^P`` determines the zero-lift extension. Collisions show that it
+does not. That is an **OBSERVATION** about this abstraction only.
 """
 
 from __future__ import annotations
@@ -11,12 +11,15 @@ from __future__ import annotations
 from itertools import product
 
 from collatz.automata.valuation_shift import growth_budget
-from collatz.lower_bounds import lift_t
-from collatz.zero_lift import expanding_word_has_positive_J, zero_lift_k
+from collatz.zero_lift import (
+    expanding_word_has_positive_lift,
+    lift_digit,
+    zero_lift_k,
+)
 
 
 def uniqueness_census(max_length: int, k_max: int) -> dict[str, object]:
-    """For every prefix, exactly one ``j`` in ``1..k_max`` with ``J=0``,
+    """For every prefix, exactly one ``j`` in ``1..k_max`` with zero lift,
     unless the true zero-lift ``k`` exceeds ``k_max``.
     """
     mismatches = 0
@@ -27,7 +30,7 @@ def uniqueness_census(max_length: int, k_max: int) -> dict[str, object]:
         nxt: list[tuple[int, ...]] = []
         for parent in prefixes:
             true_k = zero_lift_k(parent)
-            zeros = [j for j in range(1, k_max + 1) if lift_t(parent, j) == 0]
+            zeros = [j for j in range(1, k_max + 1) if lift_digit(parent, j) == 0]
             checked += 1
             if true_k <= k_max:
                 if zeros != [true_k]:
@@ -48,7 +51,7 @@ def uniqueness_census(max_length: int, k_max: int) -> dict[str, object]:
     }
 
 
-def expanding_positive_J_census(max_length: int, k_max: int) -> dict[str, object]:
+def expanding_positive_lift_census(max_length: int, k_max: int) -> dict[str, object]:
     """Every expanding word should have some ``J_i > 0`` (**PROVED**)."""
     failures = []
     expanding = 0
@@ -57,7 +60,7 @@ def expanding_positive_J_census(max_length: int, k_max: int) -> dict[str, object
             if growth_budget(ks).kind != "expanding":
                 continue
             expanding += 1
-            if not expanding_word_has_positive_J(ks):
+            if not expanding_word_has_positive_lift(ks):
                 failures.append(ks)
     return {
         "expanding_words": expanding,
@@ -88,6 +91,6 @@ def next_k_by_R_mod(max_length: int, k_max: int, precision: int) -> dict[str, ob
         "sample_collisions": dict(list(collisions.items())[:12]),
         "status": (
             "OBSERVATION: collisions mean R mod 2^P does not determine next k. "
-            "No finite-state certificate of J>0 independent of the orbit was found."
+            "This does not rule out richer finite abstractions."
         ),
     }

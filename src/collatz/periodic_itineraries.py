@@ -34,7 +34,7 @@ from itertools import product
 
 from collatz.core import collatz_step
 from collatz.cylinders import belongs_to_cylinder, parse_ks
-from collatz.itinerary import ValuationItinerary, affine_constant
+from collatz.itinerary import ValuationItinerary
 
 
 @dataclass(frozen=True)
@@ -69,6 +69,38 @@ class PeriodicCandidate:
             f"compatible={str(self.compatible).lower()}  {self.reason}\n"
             f"status: {self.status}\n"
         )
+
+
+@dataclass(frozen=True)
+class EventuallyPeriodicCandidate:
+    prefix: tuple[int, ...]
+    cycle: tuple[int, ...]
+    prefix_K: int
+    prefix_C: int
+    cycle_K: int
+    cycle_C: int
+    cycle_gap: int
+    cycle_point: int | None
+    n: int | None
+    compatible: bool
+    reason: str
+    status: str = "EXACT"
+
+    def as_dict(self) -> dict[str, object]:
+        return {
+            "prefix": list(self.prefix),
+            "cycle": list(self.cycle),
+            "prefix_K": self.prefix_K,
+            "prefix_C": self.prefix_C,
+            "cycle_K": self.cycle_K,
+            "cycle_C": self.cycle_C,
+            "cycle_gap": self.cycle_gap,
+            "cycle_point": self.cycle_point,
+            "n": self.n,
+            "compatible": self.compatible,
+            "reason": self.reason,
+            "status": self.status,
+        }
 
 
 def periodic_candidate(ks: tuple[int, ...] | str | list[int]) -> PeriodicCandidate:
@@ -160,45 +192,53 @@ def preimage_along(
 
 def eventually_periodic_realizer(
     prefix: tuple[int, ...], cycle: tuple[int, ...]
-) -> PeriodicCandidate:
+) -> EventuallyPeriodicCandidate:
     """Realizer of ``prefix + cycle^ω``, if the cycle has a positive point."""
+    prefix = parse_ks(prefix)
+    cycle = parse_ks(cycle)
+    prefix_it = ValuationItinerary.from_ks(prefix)
     cyc = periodic_candidate(cycle)
     if not cyc.compatible or cyc.n is None:
-        return PeriodicCandidate(
-            ks=parse_ks(prefix) + parse_ks(cycle),
-            K=sum(parse_ks(prefix)) + sum(parse_ks(cycle)),
-            p=len(parse_ks(cycle)),
-            C=affine_constant(parse_ks(prefix) + parse_ks(cycle)),
-            gap=cyc.gap,
+        return EventuallyPeriodicCandidate(
+            prefix=prefix,
+            cycle=cycle,
+            prefix_K=prefix_it.K,
+            prefix_C=prefix_it.C,
+            cycle_K=cyc.K,
+            cycle_C=cyc.C,
+            cycle_gap=cyc.gap,
+            cycle_point=cyc.n,
             n=None,
             compatible=False,
             reason=f"cycle not compatible: {cyc.reason}",
-            status="EXACT",
         )
-    prefix = parse_ks(prefix)
     n = preimage_along(prefix, cyc.n)
     if n is None:
-        return PeriodicCandidate(
-            ks=prefix + parse_ks(cycle),
-            K=sum(prefix) + sum(parse_ks(cycle)),
-            p=len(parse_ks(cycle)),
-            C=affine_constant(prefix + parse_ks(cycle)),
-            gap=cyc.gap,
+        return EventuallyPeriodicCandidate(
+            prefix=prefix,
+            cycle=cycle,
+            prefix_K=prefix_it.K,
+            prefix_C=prefix_it.C,
+            cycle_K=cyc.K,
+            cycle_C=cyc.C,
+            cycle_gap=cyc.gap,
+            cycle_point=cyc.n,
             n=None,
             compatible=False,
             reason="no positive odd preimage of the cycle point along the prefix",
-            status="EXACT",
         )
-    return PeriodicCandidate(
-        ks=prefix + parse_ks(cycle),
-        K=sum(prefix) + cyc.K,
-        p=cyc.p,
-        C=affine_constant(prefix + parse_ks(cycle)),
-        gap=cyc.gap,
+    return EventuallyPeriodicCandidate(
+        prefix=prefix,
+        cycle=cycle,
+        prefix_K=prefix_it.K,
+        prefix_C=prefix_it.C,
+        cycle_K=cyc.K,
+        cycle_C=cyc.C,
+        cycle_gap=cyc.gap,
+        cycle_point=cyc.n,
         n=n,
         compatible=True,
         reason=f"preimage of cycle point {cyc.n} along prefix",
-        status="EXACT",
     )
 
 

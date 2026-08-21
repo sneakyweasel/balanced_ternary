@@ -1,11 +1,11 @@
-"""Zero-lift coefficient ``J`` and infinite-itinerary compatibility.
+"""Lift digits and infinite-itinerary compatibility.
 
 Along a valuation word ``k_0, k_1, ...`` let ``R_m = R(k_0,...,k_{m-1})``
 and ``K_m = k_0+...+k_{m-1}``. The **lift coefficient** is the integer
 
-    J_m = (R_{m+1} - R_m) / 2^{K_m + 1}.
+    t_m = (R_{m+1} - R_m) / 2^{K_m + 1}.
 
-It is a nonnegative integer (**PROVED**, nested cylinders). ``J_m = 0``
+It is a nonnegative integer (**PROVED**, nested cylinders). ``t_m = 0``
 iff ``R`` does not lift at that step.
 
 **Dichotomy (PROVED).** For an infinite valuation itinerary the following
@@ -13,12 +13,12 @@ are equivalent:
 
 1. some positive odd integer realises every finite prefix;
 2. ``R_m`` is eventually constant;
-3. ``J_m = 0`` for all sufficiently large ``m``.
+3. ``t_m = 0`` for all sufficiently large ``m``.
 
 The zero-lift continuation of a prefix is unique: it is the next
 accelerated valuation of ``T^m(R)``. That path is the Collatz orbit of
 ``R``, so a complete characterisation of zero-lift paths repackages
-Collatz. This module records the exact algebra of ``J``, not a Collatz
+Collatz. This module records the exact algebra of lift digits, not a Collatz
 proof.
 
 A Lean 4 target for the abstract sequence dichotomy lives in
@@ -29,7 +29,6 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from collatz.compatibility import child_realizer_delta
 from collatz.core import collatz_step, collatz_valuation
 from collatz.cylinders import parse_ks
 from collatz.itinerary import ValuationItinerary
@@ -37,26 +36,28 @@ from collatz.min_realizer import min_realizer, nested_realizers
 from collatz.valuation import v2
 
 
-def lift_J(parent: tuple[int, ...], j: int) -> int:
-    """``J`` for the extension ``parent`` then ``j``. Exact nonnegative int."""
-    return child_realizer_delta(parent, j)[2]
+def lift_digit(parent: tuple[int, ...], j: int) -> int:
+    """Lift digit for ``parent`` extended by ``j``. Exact nonnegative int."""
+    from collatz.dual_code import lift_digit_formula
+
+    return lift_digit_formula(parent, j)
 
 
-def J_along(ks: tuple[int, ...]) -> tuple[int, ...]:
-    """``(J_0, ..., J_{m-1})`` along ``ks``, starting from the empty prefix."""
+def lift_digits(ks: tuple[int, ...]) -> tuple[int, ...]:
+    """Lift digits along ``ks``, starting from the empty prefix."""
     ks = parse_ks(ks)
-    return tuple(lift_J(ks[:i], ks[i]) for i in range(len(ks)))
+    return tuple(lift_digit(ks[:i], ks[i]) for i in range(len(ks)))
 
 
 def zero_lift_k(ks: tuple[int, ...] | str | list[int]) -> int:
-    """The unique ``j >= 1`` with ``J(ks, j) = 0``.
+    """The unique ``j >= 1`` with zero lift digit.
 
     **PROVED:** ``R = R(ks)`` realises ``ks``, so ``x = T^m(R)`` is a
     positive odd integer and ``j = v2(3x+1)`` is the unique next
     valuation of that orbit. Then ``R`` realises ``ks+(j,)``, hence
     ``R_child <= R``. Nested monotonicity gives ``R_child = R``, so
-    ``J = 0``. Any other ``j'`` is not the next valuation of ``R``, so
-    ``R`` is not in the child cylinder and ``J >= 1``.
+    the lift digit is zero. Any other ``j'`` is not the next valuation of
+    ``R``, so it is not in the child cylinder and the lift digit is positive.
     """
     ks = parse_ks(ks)
     r = min_realizer(ks)
@@ -139,60 +140,60 @@ def zero_lift_trace(
 class DichotomyReport:
     ks: tuple[int, ...]
     R: tuple[int, ...]
-    J: tuple[int, ...]
+    lift_digits: tuple[int, ...]
     trailing_zero_lifts: int
-    all_J_zero: bool
+    all_lifts_zero: bool
     status: str
 
     def format(self) -> str:
         return (
             f"Zero-lift dichotomy on finite prefix  ks={self.ks}\n"
             f"R_m={self.R}\n"
-            f"J_m={self.J}\n"
-            f"all J=0: {str(self.all_J_zero).lower()}  "
+            f"lift_digits={self.lift_digits}\n"
+            f"all lift digits zero: {str(self.all_lifts_zero).lower()}  "
             f"observed trailing zero-lifts={self.trailing_zero_lifts}\n"
             f"status: {self.status}\n"
             "Infinite itinerary has a positive integer realizer iff "
-            "R_m eventually constant iff J_m=0 eventually. [PROVED]\n"
+            "R_m eventually constant iff lift_digit_m=0 eventually. [PROVED]\n"
         )
 
 
 def dichotomy_report(ks: tuple[int, ...] | str | list[int]) -> DichotomyReport:
     ks = parse_ks(ks)
     rs = nested_realizers(ks)
-    js = J_along(ks)
-    all_zero = all(j == 0 for j in js)
+    digits = lift_digits(ks)
+    all_zero = all(t == 0 for t in digits)
     trailing = 0
-    for j in reversed(js):
-        if j != 0:
+    for t in reversed(digits):
+        if t != 0:
             break
         trailing += 1
     return DichotomyReport(
         ks=ks,
         R=rs,
-        J=js,
+        lift_digits=digits,
         trailing_zero_lifts=trailing,
-        all_J_zero=all_zero,
+        all_lifts_zero=all_zero,
         status=(
-            "EXACT J and R on this finite prefix. "
+            "EXACT lift digits and R on this finite prefix. "
             "The infinite dichotomy is PROVED; this sample does not prove Collatz."
         ),
     )
 
 
-def all_zero_J_words_are_twos(ks: tuple[int, ...]) -> bool:
-    """``J ≡ 0`` along a word starting from empty iff the word is ``(2,...,2)``.
+def all_zero_lift_words_are_twos(ks: tuple[int, ...]) -> bool:
+    """All lifts are zero iff the word is ``(2,...,2)``.
 
     **PROVED:** unique zero-lift from ``()`` is ``k=2`` because ``R=1`` and
     ``T(1)=1`` with valuation 2. Inductively the unique zero-lift tail is
     the 1-cycle.
     """
     ks = parse_ks(ks)
-    return all(j == 0 for j in J_along(ks)) == all(k == 2 for k in ks)
+    return all(t == 0 for t in lift_digits(ks)) == all(k == 2 for k in ks)
 
 
 @dataclass(frozen=True)
-class FiniteJCertificate:
+class FiniteLiftCertificate:
     """A finite-state decision about one proposed extension.
 
     The state is ``x = T^m(R(parent)) mod 2^precision``. If
@@ -210,12 +211,12 @@ class FiniteJCertificate:
     result: str
 
 
-def finite_J_certificate(
+def finite_lift_certificate(
     parent: tuple[int, ...] | str | list[int],
     j: int,
     precision: int,
-) -> FiniteJCertificate:
-    """Certify ``J=0`` or ``J>0`` from finite canonical-state information.
+) -> FiniteLiftCertificate:
+    """Certify zero or positive lift from finite canonical-state information.
 
     Results are ``CERTIFIED_ZERO``, ``CERTIFIED_POSITIVE``, or
     ``UNRESOLVED``. Every certificate is **PROVED** by arithmetic modulo
@@ -238,7 +239,7 @@ def finite_J_certificate(
     y_residue = (3 * residue + 1) % modulus
     if y_residue == 0:
         result = "CERTIFIED_POSITIVE" if j < precision else "UNRESOLVED"
-        return FiniteJCertificate(
+        return FiniteLiftCertificate(
             parent=parent,
             j=j,
             precision=precision,
@@ -250,7 +251,7 @@ def finite_J_certificate(
     valuation = v2(y_residue)
     if valuation is None or valuation >= precision:
         raise ArithmeticError("nonzero residue must have valuation below precision")
-    return FiniteJCertificate(
+    return FiniteLiftCertificate(
         parent=parent,
         j=j,
         precision=precision,
@@ -261,10 +262,10 @@ def finite_J_certificate(
     )
 
 
-def expanding_word_has_positive_J(ks: tuple[int, ...]) -> bool:
-    """Every expanding finite word (from empty) has some ``J_i > 0``. **PROVED.**
+def expanding_word_has_positive_lift(ks: tuple[int, ...]) -> bool:
+    """Every expanding finite word has some positive lift. **PROVED.**
 
-    The only all-zero-``J`` words are ``(2)^m``, which are contracting.
+    The only all-zero-lift words are ``(2)^m``, which are contracting.
     """
     from collatz.automata.valuation_shift import growth_budget
 
@@ -273,4 +274,4 @@ def expanding_word_has_positive_J(ks: tuple[int, ...]) -> bool:
         return False
     if growth_budget(ks).kind != "expanding":
         return False
-    return any(j > 0 for j in J_along(ks))
+    return any(t > 0 for t in lift_digits(ks))

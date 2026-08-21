@@ -42,7 +42,7 @@ class FixedBudgetResult:
             f"C min={s.get('C_min')} max={s.get('C_max')}\n"
             f"R min={s.get('R_min')} max={s.get('R_max')}\n"
             f"median log2 R (OBSERVATION)={s.get('median_log2_R')}\n"
-            f"order changes R: {s.get('order_changes_R')}\n"
+            f"R varies across compositions: {s.get('R_varies_across_compositions')}\n"
             f"outputs: {self.paths}\n"
         )
 
@@ -87,8 +87,8 @@ def run_fixed_budget(
         "R_min": min(rs) if rs else None,
         "R_max": max(rs) if rs else None,
         "median_log2_R": _median(logs),
-        "order_changes_R": len(set(rs)) > 1,
-        "order_changes_C": len(set(cs)) > 1,
+        "R_varies_across_compositions": len(set(rs)) > 1,
+        "C_varies_across_compositions": len(set(cs)) > 1,
         "status": "EXACT C,R; median log2 R is OBSERVATION",
     }
     paths: dict[str, str] = {}

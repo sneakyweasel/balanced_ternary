@@ -20,8 +20,10 @@ computational and labelled as such.
 from __future__ import annotations
 
 from itertools import permutations
+from math import sqrt
 
 from collatz.cylinders import parse_ks
+from collatz.dual_code import CollatzDualCode
 from collatz.itinerary import affine_constant, partial_sums_K
 from collatz.min_realizer import itinerary_signature, min_realizer
 
@@ -53,6 +55,25 @@ def verify_swap_formula(ks: tuple[int, ...], t: int) -> bool:
     return affine_constant(nxt) - affine_constant(ks) == adjacent_swap_delta_C(ks, t)
 
 
+def adjacent_swap_delta_R_residue(ks: tuple[int, ...], t: int) -> int:
+    """``R_swapped-R`` modulo ``2^(K+1)``. **PROVED**.
+
+    The value is ``-3^(-m) * delta_C`` modulo the common cylinder modulus.
+    """
+    ks = parse_ks(ks)
+    delta_c = adjacent_swap_delta_C(ks, t)
+    modulus = 1 << (sum(ks) + 1)
+    inv_three_m = pow(pow(3, len(ks), modulus), -1, modulus)
+    return (-inv_three_m * delta_c) % modulus
+
+
+def verify_swap_R_residue_formula(ks: tuple[int, ...], t: int) -> bool:
+    swapped = swap_adjacent(ks, t)
+    modulus = 1 << (sum(ks) + 1)
+    actual = (min_realizer(swapped) - min_realizer(ks)) % modulus
+    return actual == adjacent_swap_delta_R_residue(ks, t)
+
+
 def descending_ks(ks: tuple[int, ...]) -> tuple[int, ...]:
     return tuple(sorted(parse_ks(ks), reverse=True))
 
@@ -72,6 +93,7 @@ def permutation_table(ks: tuple[int, ...] | str | list[int]) -> tuple[dict[str, 
     rows: list[dict[str, object]] = []
     for word in unique_permutations(ks):
         sig = itinerary_signature(word)
+        dual = CollatzDualCode.from_valuations(word)
         rows.append(
             {
                 "ks": list(word),
@@ -79,6 +101,8 @@ def permutation_table(ks: tuple[int, ...] | str | list[int]) -> tuple[dict[str, 
                 "R": sig.R,
                 "residue": sig.residue,
                 "BT(R)": sig.bt_word,
+                "lift_digits": list(dual.lift_digits),
+                "zero_lift_count": sum(t == 0 for t in dual.lift_digits),
                 "budget_kind": sig.budget_kind,
                 "status": "EXACT",
             }
@@ -101,9 +125,24 @@ def extremal_orders(ks: tuple[int, ...] | str | list[int]) -> dict[str, object]:
     c_desc = affine_constant(tuple(desc))
     r_asc = min_realizer(tuple(asc))
     r_desc = min_realizer(tuple(desc))
-    same_order_extremizes_r = (
-        by_r[0]["ks"] == asc and by_r[-1]["ks"] == desc
-    ) or (by_r[0]["ks"] == desc and by_r[-1]["ks"] == asc)
+    r_min = by_r[0]["R"]
+    r_max = by_r[-1]["R"]
+    sorted_r_values_are_extremal = {r_asc, r_desc} == {r_min, r_max}
+    c_min = by_c[0]["C"]
+    c_max = by_c[-1]["C"]
+    n = len(rows)
+    sum_c = sum(int(row["C"]) for row in rows)
+    sum_r = sum(int(row["R"]) for row in rows)
+    covariance_numerator = n * sum(
+        int(row["C"]) * int(row["R"]) for row in rows
+    ) - sum_c * sum_r
+    c_centered = n * sum(int(row["C"]) ** 2 for row in rows) - sum_c**2
+    r_centered = n * sum(int(row["R"]) ** 2 for row in rows) - sum_r**2
+    correlation = (
+        covariance_numerator / sqrt(c_centered * r_centered)
+        if c_centered and r_centered
+        else None
+    )
     return {
         "multiset": list(ks),
         "C_min": by_c[0],
@@ -112,14 +151,26 @@ def extremal_orders(ks: tuple[int, ...] | str | list[int]) -> dict[str, object]:
         "R_max": by_r[-1],
         "ascending": {"ks": asc, "C": c_asc, "R": r_asc},
         "descending": {"ks": desc, "C": c_desc, "R": r_desc},
-        "C_extremal_are_sorted": by_c[0]["ks"] == asc and by_c[-1]["ks"] == desc,
-        "R_extremal_are_sorted": same_order_extremizes_r,
+        "C_extremal_are_sorted": c_asc == c_min and c_desc == c_max,
+        "R_extremal_are_sorted": sorted_r_values_are_extremal,
+        "ascending_is_R_min": r_asc == r_min,
+        "ascending_is_R_max": r_asc == r_max,
+        "descending_is_R_min": r_desc == r_min,
+        "descending_is_R_max": r_desc == r_max,
+        "C_R_covariance_numerator": covariance_numerator,
+        "C_R_correlation": correlation,
+        "lift_patterns": sorted(
+            {
+                tuple(int(t) for t in row["lift_digits"])
+                for row in rows
+            }
+        ),
         "status": "EXACT for C theorem; COMPUTATIONAL for R on this multiset",
         "permutation_count": len(rows),
     }
 
 
-def order_changes_R_for_same_K(ks: tuple[int, ...]) -> bool:
+def permutations_change_R(ks: tuple[int, ...]) -> bool:
     """True if some permutation of ``ks`` has a different ``R``."""
     values = {row["R"] for row in permutation_table(ks)}
     return len(values) > 1

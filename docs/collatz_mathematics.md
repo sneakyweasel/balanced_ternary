@@ -670,17 +670,28 @@ solving the Collatz conjecture.
 For nested minima \(R_m\), define the exact nonnegative lift
 
 \[
-J_m=(R_{m+1}-R_m)/2^{K_m+1}.
+t_m=(R_{m+1}-R_m)/2^{K_m+1}.
 \]
 
 Positive-integer realization of an infinite itinerary, eventual
-stabilization of \(R_m\), and eventual vanishing of \(J_m\) are
+stabilization of \(R_m\), and eventual vanishing of \(t_m\) are
 equivalent. Every prefix has one unique zero-lift successor. Periodic
 and eventually periodic words have exact affine compatibility tests.
 These statements are **PROVED** in
 [collatz_zero_lift.md](collatz_zero_lift.md).
 
 Finite canonical-state residues provide exact immediate certificates
-for many \(J_m>0\) extensions. No theorem connects sustained low
+for many positive-lift extensions. No theorem connects sustained low
 \(K_m/m\) to infinitely many positive lifts.
+
+## 24. Milestone 6 — dual coding (pointer)
+
+The exact direct realizer formula, closed lift-digit congruence,
+mixed-radix reconstruction, bounded paired precision model, balanced-
+ternary counterexample, permutation residue law, periodic traces, and
+non-contracting censuses are recorded in
+[collatz_dual_coding.md](collatz_dual_coding.md).
+
+The stabilization, lift, mixed-radix, and abstract residue arithmetic
+theorems compile under Lean 4 + Mathlib in `formal/`.
 

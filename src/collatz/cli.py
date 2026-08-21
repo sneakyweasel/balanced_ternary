@@ -175,7 +175,7 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
 
     p_zl = c.add_parser(
         "zero-lift",
-        help="Milestone 5: exact J coefficients and zero-lift successor",
+        help="Milestone 5: exact lift digits and zero-lift successor",
     )
     p_zl.add_argument(
         "--ks",
@@ -183,6 +183,14 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
         help="comma-separated starting prefix (default: empty)",
     )
     p_zl.add_argument("--steps", type=int, default=8)
+    p_zl.add_argument(
+        "--candidate-k",
+        type=int,
+        default=None,
+        dest="candidate_k",
+        help="optional extension to classify from finite state",
+    )
+    p_zl.add_argument("--precision", type=int, default=4)
 
     p_pi = c.add_parser(
         "periodic-itinerary",
@@ -197,6 +205,43 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_zc.add_argument("--max-length", type=int, default=4, dest="max_length")
     p_zc.add_argument("--max-k", type=int, default=4, dest="max_k")
     p_zc.add_argument("--precision", type=int, default=4)
+
+    p_dc = c.add_parser(
+        "dual-code",
+        help="Milestone 6: exact valuation/lift mixed-radix coding",
+    )
+    p_dc.add_argument("ks", help="comma-separated valuations")
+
+    p_lt = c.add_parser(
+        "lift-tree",
+        help="Milestone 6: bounded cylinder lift tree",
+    )
+    p_lt.add_argument("--max-depth", type=int, default=3, dest="max_depth")
+    p_lt.add_argument("--max-k", type=int, default=3, dest="max_k")
+    p_lt.add_argument("--max-nodes", type=int, default=100_000, dest="max_nodes")
+
+    p_pd = c.add_parser(
+        "periodic-dual",
+        help="Milestone 6: dual-code trace of a repeated valuation period",
+    )
+    p_pd.add_argument("ks", help="comma-separated nonempty period")
+    p_pd.add_argument("--repeats", type=int, default=8)
+
+    p_st = c.add_parser(
+        "suffix-test",
+        help="Milestone 6: bounded BT(R) suffix determination census",
+    )
+    p_st.add_argument("--max-length", type=int, default=4, dest="max_length")
+    p_st.add_argument("--max-k", type=int, default=4, dest="max_k")
+    p_st.add_argument("--suffix-max", type=int, default=8, dest="suffix_max")
+
+    p_dd = c.add_parser(
+        "dual-dataset",
+        help="Milestone 6: reproducible finite dual-code dataset",
+    )
+    p_dd.add_argument("--length", type=int, default=4)
+    p_dd.add_argument("--max-k", type=int, default=3, dest="max_k")
+    p_dd.add_argument("--write", action="store_true")
 
     c.add_parser("ui", help="open the Streamlit research explorer")
 
@@ -252,11 +297,21 @@ def run_collatz(args: argparse.Namespace) -> int:
     if cmd == "exceptional-search":
         return _exceptional_search(args.length, args.max_k, args.epsilon)
     if cmd == "zero-lift":
-        return _zero_lift(args.ks, args.steps)
+        return _zero_lift(args.ks, args.steps, args.candidate_k, args.precision)
     if cmd == "periodic-itinerary":
         return _periodic_itinerary(args.ks)
     if cmd == "zero-lift-census":
         return _zero_lift_census(args.max_length, args.max_k, args.precision)
+    if cmd == "dual-code":
+        return _dual_code(args.ks)
+    if cmd == "lift-tree":
+        return _lift_tree(args.max_depth, args.max_k, args.max_nodes)
+    if cmd == "periodic-dual":
+        return _periodic_dual(args.ks, args.repeats)
+    if cmd == "suffix-test":
+        return _suffix_test(args.max_length, args.max_k, args.suffix_max)
+    if cmd == "dual-dataset":
+        return _dual_dataset(args.length, args.max_k, args.write)
     if cmd == "ui":
         from visualization.app import launch
 
@@ -617,10 +672,31 @@ def _exceptional_search(length: int, max_k: int, epsilon: float) -> int:
     return 0
 
 
-def _zero_lift(ks: str, steps: int) -> int:
-    from collatz.zero_lift import dichotomy_report, zero_lift_trace
+def _zero_lift(
+    ks: str,
+    steps: int,
+    candidate_k: int | None,
+    precision: int,
+) -> int:
+    from collatz.zero_lift import (
+        dichotomy_report,
+        finite_lift_certificate,
+        zero_lift_trace,
+    )
 
     print(dichotomy_report(ks).format(), end="")
+    if candidate_k is not None:
+        cert = finite_lift_certificate(ks, candidate_k, precision)
+        valuation = (
+            str(cert.valuation)
+            if cert.valuation is not None
+            else f">={cert.valuation_at_least}"
+        )
+        print(
+            f"finite lift certificate: candidate_k={candidate_k} "
+            f"precision={precision} x_residue={cert.state_residue} "
+            f"next valuation={valuation} result={cert.result}  [PROVED]"
+        )
     print("Deterministic zero-lift successor trace  [EXACT]")
     for state in zero_lift_trace(ks, steps):
         print(
@@ -644,13 +720,13 @@ def _periodic_itinerary(ks: str) -> int:
 
 def _zero_lift_census(max_length: int, max_k: int, precision: int) -> int:
     from collatz.experiments.zero_lift_census import (
-        expanding_positive_J_census,
+        expanding_positive_lift_census,
         next_k_by_R_mod,
         uniqueness_census,
     )
 
     unique = uniqueness_census(max_length, max_k)
-    expanding = expanding_positive_J_census(max_length, max_k)
+    expanding = expanding_positive_lift_census(max_length, max_k)
     abstraction = next_k_by_R_mod(max_length, max_k, precision)
     print("Zero-lift census")
     print(
@@ -669,4 +745,125 @@ def _zero_lift_census(max_length: int, max_k: int, precision: int) -> int:
         f"{abstraction['collision_count']}"
     )
     print(f"  {abstraction['status']}")
+    return 0
+
+
+def _dual_code(ks: str) -> int:
+    from collatz.dual_code import CollatzDualCode
+
+    dual = CollatzDualCode.from_valuations(ks)
+    print("Collatz dual code  [EXACT]")
+    print(f"valuations={dual.valuations}")
+    print(f"cumulative_K={dual.cumulative_K}")
+    print(f"lift_digits={dual.lift_digits}")
+    print(f"R_prefixes={dual.realizers}")
+    print(f"R={dual.R}  modulus={dual.modulus}  BT(R)={dual.balanced_ternary_R}")
+    print(f"reconstruction={dual.reconstruct_R()}  valid={dual.validates()}")
+    for step in dual.steps:
+        print(
+            f"  i={step.index} k={step.valuation} t={step.lift_digit} "
+            f"R:{step.R_before}->{step.R_after} "
+            f"x:{step.endpoint_before}->{step.endpoint_after} "
+            f"{step.edge_class}"
+        )
+    return 0
+
+
+def _lift_tree(max_depth: int, max_k: int, max_nodes: int) -> int:
+    from collatz.lift_tree import build_lift_tree
+
+    tree = build_lift_tree(max_depth, max_k, max_nodes)
+    print("Cylinder lift tree  [EXACT bounded tree]")
+    print(
+        f"depth={max_depth} k_max={max_k} nodes={len(tree.nodes)} "
+        f"edges={len(tree.edges)} truncated={str(tree.truncated).lower()}"
+    )
+    print(
+        f"zero_lift_edges={len(tree.zero_lift_edges())} "
+        f"positive_lift_edges={len(tree.positive_lift_edges())}"
+    )
+    for edge in tree.edges[:20]:
+        print(
+            f"  {edge.parent} --k={edge.next_k},t={edge.lift_digit}--> "
+            f"{edge.child} R={edge.child_R} {edge.edge_class.value}"
+        )
+    print("POSITIVE_LIFT edges are valid finite extensions, never forbidden.")
+    return 0
+
+
+def _periodic_dual(ks: str, repeats: int) -> int:
+    from collatz.cylinders import parse_ks
+    from collatz.experiments.periodic_dual import periodic_dual_trace
+
+    trace = periodic_dual_trace(parse_ks(ks), repeats)
+    print("Periodic dual-code trace  [EXACT finite rows]")
+    print(
+        f"period={tuple(trace['period'])} primitive={tuple(trace['primitive_period'])} "
+        f"repeats={repeats}"
+    )
+    for row in trace["rows"]:
+        print(
+            f"  m={row['m']} K={row['K']} t={row['lift_digit']} "
+            f"R={row['R']} BT(R)={row['BT(R)']} "
+            f"budget={row['budget_comparison']}"
+        )
+    candidate = trace["periodic_candidate"]
+    print(
+        f"infinite compatibility={candidate['compatible']} "
+        f"candidate_n={candidate['n']} reason={candidate['reason']}"
+    )
+    return 0
+
+
+def _suffix_test(max_length: int, max_k: int, suffix_max: int) -> int:
+    from collatz.experiments.suffix_determination import (
+        suffix_determination_census,
+    )
+
+    result = suffix_determination_census(max_length, max_k, suffix_max)
+    print("BT(R) suffix determination  [COMPUTATIONAL]")
+    print(f"prefixes={result['prefix_count']}")
+    for row in result["rows"]:
+        print(
+            f"  L={row['suffix_length']} next_determined="
+            f"{row['next_value_determined']} lift_determined="
+            f"{row['lift_digit_determined_given_k']} "
+            f"ambiguous_next={row['ambiguous_next_suffixes']} "
+            f"ambiguous_lift={row['ambiguous_lift_states']}"
+        )
+    print(result["exact_full_R_counterexample"])
+    return 0
+
+
+def _dual_dataset(length: int, max_k: int, write: bool) -> int:
+    from itertools import product
+
+    from collatz.dual_code import CollatzDualCode
+    from collatz.experiments.schema import ExperimentManifest, validate_dual_row
+    from collatz.experiments.table_io import write_experiment
+
+    if length < 0 or max_k < 1:
+        raise ValueError("length must be >= 0 and max_k >= 1")
+    words = ((),) if length == 0 else product(range(1, max_k + 1), repeat=length)
+    rows = [CollatzDualCode.from_valuations(tuple(ks)).as_dict() for ks in words]
+    for row in rows:
+        validate_dual_row(row)
+    print(
+        f"Dual-code dataset length={length} k_max={max_k} rows={len(rows)} "
+        "[EXACT finite rows]"
+    )
+    if write:
+        output = Path("experiments") / "collatz"
+        manifest = ExperimentManifest(
+            experiment_name="dual_code",
+            parameters={"length": length, "max_k": max_k},
+            row_count=len(rows),
+            claim_status="EXACT finite rows",
+        )
+        paths = write_experiment(
+            rows, output, f"dual_code_m{length}_k{max_k}", manifest
+        )
+        print(f"outputs: {paths}")
+    else:
+        print("no files written; pass --write to persist ignored artifacts")
     return 0

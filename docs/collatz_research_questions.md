@@ -59,7 +59,7 @@ not pursued.
 
 1. An infinite itinerary has a positive integer realizer iff its nested
    minima \(R_m\) eventually stabilize iff its exact lift coefficients
-   \(J_m\) are eventually zero. **PROVED**.
+   lift digits \(t_m\) are eventually zero. **PROVED**.
 2. Every finite prefix has exactly one zero-lift extension. It is
    \(v_2(3T^m(R_m)+1)\). **PROVED**.
 3. The deterministic zero-lift successor is the accelerated Collatz
@@ -69,7 +69,7 @@ not pursued.
    exact affine compatibility candidates and exact cylinder checks.
    **PROVED**. The bounded cycle census is **VERIFIED COMPUTATIONALLY**.
 5. Finite precision in the canonical current state certifies many
-   immediate \(J>0\) extensions; unbounded valuations leave some cases
+   immediate positive-lift extensions; unbounded valuations leave some cases
    unresolved at every fixed precision. **PROVED**.
 
 ## Other still-open questions
@@ -99,10 +99,27 @@ The research question of the module is now:
 
 1. Can a finite abstraction certify infinitely many positive lifts for
    a nontrivial infinite class of future valuation patterns?
-2. Does sustained low \(K_m/m\) force infinitely many \(J_m>0\)?
+2. Does sustained low \(K_m/m\) force infinitely many \(t_m>0\)?
    **CONJECTURE**; no implication is assumed.
 3. Can periodic-pattern compatibility be classified beyond the exact
    candidate calculation without repackaging the positive-cycle problem?
 
 See [docs/collatz_zero_lift.md](collatz_zero_lift.md). Nothing in
 Milestone 5 proves or disproves the Collatz conjecture.
+
+## Answered in Milestone 6
+
+1. \(R\) has the direct residue formula
+   \(R\equiv(2^K-C)3^{-m}\pmod {2^{K+1}}\). **PROVED**.
+2. The lift digit has an exact modular formula from the state
+   \((m,T^m(R))\), and the endpoint has a closed successor recurrence.
+   **PROVED**.
+3. For fixed valuations, lift digits form a unique mixed-radix expansion
+   of \((R-1)/2\). **PROVED** and **EXACT — LEAN VERIFIED**.
+4. Even the complete \(\operatorname{BT}(R)\) does not determine the next
+   zero-lift valuation or a proposed lift digit. **EXACT COUNTEREXAMPLE**.
+5. Adjacent swaps satisfy an exact residue law for \(R\), but modular
+   wraparound prevents the sorted \(C\) order from inducing a sorted
+   \(R\) order. **PROVED**.
+
+See [docs/collatz_dual_coding.md](collatz_dual_coding.md).
