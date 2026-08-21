@@ -83,5 +83,5 @@ def validate_compatibility_row(row: dict[str, Any]) -> None:
     if row["m"] == 0:
         if row["C"] != 0:
             raise ValueError("empty valuation word must have C=0")
-    elif not 1 <= row["M"] < pow(3, row["m"]):
+    elif not 1 <= row["M"] <= pow(3, row["m"]):
         raise ValueError("nonempty row M must be the least positive residue modulo 3^m")

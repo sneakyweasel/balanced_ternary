@@ -34,6 +34,16 @@ theorem endpoint_congruence_zmod
   rw [hq]
   simp
 
+/-- The affine endpoint equation gives Kramer's exact 3-adic endpoint
+congruence `2^K * x = C (mod 3^m)`. -/
+theorem kramer_endpoint_congruence_zmod
+    (m K R C x : ℕ)
+    (hEndpoint : 3 ^ m * R + C = 2 ^ K * x) :
+    ((2 ^ K * x : ℕ) : ZMod (3 ^ m)) =
+      ((C : ℕ) : ZMod (3 ^ m)) := by
+  rw [← hEndpoint]
+  simp
+
 /-- Refining `R` by one lift block changes the canonical endpoint by the
 exact amount `2 * 3^m * t`. -/
 theorem refined_endpoint_reduction

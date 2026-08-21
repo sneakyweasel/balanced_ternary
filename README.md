@@ -68,7 +68,7 @@ btprime collatz compatibility 1,4,2
 btprime collatz compatibility-graph --max-depth 3 --max-k 3
 btprime collatz information-test --max-length 4 --max-k 4
 btprime collatz rational-base 27
-btprime collatz near-critical --length 8 --max-k 3 --radius 1
+btprime collatz near-critical --max-length 4 --max-k 4 --seed 17
 ```
 
 `analyze` always prints `encode(n)`; it does not hard-code example words.

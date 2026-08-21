@@ -123,3 +123,40 @@ Milestone 5 proves or disproves the Collatz conjecture.
    \(R\) order. **PROVED**.
 
 See [docs/collatz_dual_coding.md](collatz_dual_coding.md).
+
+## Answered in the four-coordinate compatibility milestone
+
+1. Kramer's affine constant is exactly this repository's \(C\), his
+   2-adic representative is \(r=R\bmod2^K\), and his least-positive
+   endpoint representative is \(M\equiv C2^{-K}\pmod{3^m}\).
+   **PROVED** by direct congruence reduction and exhaustive regression.
+2. The canonical endpoint always satisfies \(x_m\equiv M\pmod{3^m}\).
+   This adds an exact 3-adic compatibility view, but it is still a
+   deterministic function of the exponent code. **PROVED; LEAN VERIFIED**
+   at the endpoint-congruence interface.
+3. \(\operatorname{BT}(R)\) is not an information-theoretically independent
+   coordinate once exact \(R\), or the complete exponent code, is retained.
+   **PROVED** by determinism of canonical encoding.
+4. Even the complete word \(\operatorname{BT}(R)\) does not determine the
+   next zero-lift valuation or proposed lift behavior. The exact witness
+   \((1)\) versus \((1,4)\), both with \(R=3\), is preserved in the
+   information-content experiment. **EXACT COUNTEREXAMPLE**.
+5. Rational base \(3/2\) makes the odd parity-map branch
+   \(n\mapsto(3n+1)/2\) an append-\(1\) operation. Balanced ternary makes
+   \(n\mapsto3n+1\) append-\(+\). Neither identity alone localizes all
+   halvings of the accelerated map. **PROVED identities; no superiority
+   claim**.
+6. Lift digits are unique mixed-radix blocks of the refined 2-adic
+   representative, so they expose existing exact 2-adic information rather
+   than add an independent coordinate. **PROVED; LEAN VERIFIED**.
+7. Fixed-depth and fixed-valuation observables retain finite-state models.
+   Dhiman--Pandey's undefinability result applies to the full arbitrary-step
+   relation in \(BA_2\), not these bounded objects. No unrestricted finite
+   compatibility automaton was obtained.
+
+The strong candidate hypothesis \(H_{\mathrm{BT}}\), interpreted as an
+additional exact obstruction not implied by the code and exact \(R\), is
+**REFUTED EXACTLY**. Balanced ternary remains useful as an exposed
+representation and as a partition of deliberately lossy finite states.
+See [literature_comparison.md](literature_comparison.md) and
+[balanced_ternary_vs_collatz_literature.md](balanced_ternary_vs_collatz_literature.md).

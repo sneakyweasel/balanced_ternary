@@ -20,6 +20,7 @@ Compiled theorem groups:
 - unique zero-lift child from the exact zero-lift law;
 - direct residue and lift-digit algebra from an explicit modular inverse;
 - odd-endpoint congruence modulo `2^(K+1)`, including a `ZMod` form;
+- Kramer's endpoint congruence `2^K x = C` in `ZMod (3^m)`;
 - exact endpoint change under refinement and signed successor drift;
 - lift blocks as the mixed-radix expansion of `(R_m - 1) / 2`;
 - boundedness iff the mixed-radix lift blocks are eventually zero.

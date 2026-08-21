@@ -270,3 +270,38 @@ def test_collatz_rational_base():
     out = _run("collatz", "rational-base", "7")
     assert "base_3/2=2122" in out
     assert "odd (3n+1)/2 appends 1: True" in out
+
+
+def test_collatz_information_content():
+    out = _run(
+        "collatz",
+        "information-test",
+        "--max-length",
+        "2",
+        "--max-k",
+        "4",
+        "--precision-max",
+        "2",
+    )
+    assert "S1 determines BT(R)=True" in out
+    assert "H_BT strong independence: REFUTED EXACTLY" in out
+
+
+def test_collatz_near_critical():
+    out = _run(
+        "collatz",
+        "near-critical",
+        "--max-length",
+        "2",
+        "--max-k",
+        "3",
+        "--random-length",
+        "8",
+        "--random-count",
+        "3",
+        "--seed",
+        "17",
+    )
+    assert "Near-critical four-coordinate dataset" in out
+    assert "seed=17" in out
+    assert "OBSERVATIONS" in out
