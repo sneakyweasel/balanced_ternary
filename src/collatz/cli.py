@@ -139,6 +139,40 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_sg.add_argument("--k-max", type=int, default=5, dest="k_max")
     p_sg.add_argument("--leftover", type=int, default=1, dest="leftover")
 
+    p_it = c.add_parser("itinerary", help="Milestone 4: exact affine T^m formula")
+    p_it.add_argument("ks", help="comma-separated valuations, e.g. 1,1,2,3")
+
+    p_rz = c.add_parser("realizer", help="Milestone 4: minimum positive realizer R(k)")
+    p_rz.add_argument("ks", help="comma-separated valuations")
+
+    p_en = c.add_parser(
+        "enumerate-itineraries",
+        help="Milestone 4: exhaust signatures of length-m words",
+    )
+    p_en.add_argument("--length", type=int, default=4)
+    p_en.add_argument("--max-k", type=int, default=3, dest="max_k")
+    p_en.add_argument("--write", action="store_true")
+
+    p_fb = c.add_parser(
+        "fixed-budget",
+        help="Milestone 4: all compositions of K into m parts",
+    )
+    p_fb.add_argument("--length", type=int, default=5)
+    p_fb.add_argument("--sum-k", type=int, default=8, dest="sum_k")
+    p_fb.add_argument("--write", action="store_true")
+
+    p_pm = c.add_parser("permutations", help="Milestone 4: order dependence of C and R")
+    p_pm.add_argument("ks", help="comma-separated multiset, e.g. 1,1,2,3")
+    p_pm.add_argument("--write", action="store_true")
+
+    p_ex = c.add_parser(
+        "exceptional-search",
+        help="Milestone 4: census of expanding valuation words",
+    )
+    p_ex.add_argument("--length", type=int, default=6)
+    p_ex.add_argument("--max-k", type=int, default=2, dest="max_k")
+    p_ex.add_argument("--epsilon", type=float, default=0.1)
+
     c.add_parser("ui", help="open the Streamlit research explorer")
 
 
@@ -180,6 +214,18 @@ def run_collatz(args: argparse.Namespace) -> int:
         return _complexity(args.k_max, args.write)
     if cmd == "symbolic-graph":
         return _symbolic_graph(args.max_length, args.k_max, args.leftover)
+    if cmd == "itinerary":
+        return _itinerary(args.ks)
+    if cmd == "realizer":
+        return _realizer(args.ks)
+    if cmd == "enumerate-itineraries":
+        return _enumerate_itineraries(args.length, args.max_k, args.write)
+    if cmd == "fixed-budget":
+        return _fixed_budget(args.length, args.sum_k, args.write)
+    if cmd == "permutations":
+        return _permutations(args.ks, args.write)
+    if cmd == "exceptional-search":
+        return _exceptional_search(args.length, args.max_k, args.epsilon)
     if cmd == "ui":
         from visualization.app import launch
 
@@ -460,4 +506,81 @@ def _symbolic_graph(max_length: int, k_max: int, leftover: int) -> int:
         max_length=max_length, k_max=k_max, leftover_q=leftover
     )
     print(graph.format(), end="")
+    return 0
+
+
+def _itinerary(ks: str) -> int:
+    from collatz.itinerary import ValuationItinerary
+
+    it = ValuationItinerary.from_ks(ks)
+    print(it.format(), end="")
+    return 0
+
+
+def _realizer(ks: str) -> int:
+    from collatz.compatibility import nested_cylinder_report
+    from collatz.min_realizer import count_cylinder_up_to, itinerary_signature
+
+    sig = itinerary_signature(ks)
+    print(sig.format(), end="")
+    print(nested_cylinder_report(ks).format(), end="")
+    print(f"count in [1, 1000]: {count_cylinder_up_to(ks, 1000)}  [EXACT]")
+    return 0
+
+
+def _enumerate_itineraries(length: int, max_k: int, write: bool) -> int:
+    from collatz.experiments.itinerary_enumeration import run_itinerary_enumeration
+
+    out = Path("experiments") / "collatz" if write else None
+    result = run_itinerary_enumeration(length, max_k, output_dir=out)
+    print(result.format(), end="")
+    if result.rows:
+        sample = result.rows[0]
+        print(
+            f"sample ks={sample['ks']} C={sample['C']} R={sample['R']}  [EXACT]"
+        )
+    return 0
+
+
+def _fixed_budget(length: int, sum_k: int, write: bool) -> int:
+    from collatz.experiments.fixed_budget import run_fixed_budget
+
+    out = Path("experiments") / "collatz" if write else None
+    result = run_fixed_budget(length, sum_k, output_dir=out)
+    print(result.format(), end="")
+    return 0
+
+
+def _permutations(ks: str, write: bool) -> int:
+    from collatz.experiments.permutation_analysis import run_permutation_analysis
+
+    out = Path("experiments") / "collatz" if write else None
+    payload = run_permutation_analysis(ks, output_dir=out)
+    summary = payload["summary"]
+    print("Permutation analysis  [EXACT C; R compared computationally on this multiset]")
+    print(f"C_min ks={summary['C_min']['ks']} C={summary['C_min']['C']}")
+    print(f"C_max ks={summary['C_max']['ks']} C={summary['C_max']['C']}")
+    print(f"R_min ks={summary['R_min']['ks']} R={summary['R_min']['R']}")
+    print(f"R_max ks={summary['R_max']['ks']} R={summary['R_max']['R']}")
+    print(f"C extremal are sorted: {summary['C_extremal_are_sorted']}")
+    print(f"R extremal are sorted: {summary['R_extremal_are_sorted']}")
+    print(f"status: {summary['status']}")
+    if payload["paths"]:
+        print(f"outputs: {payload['paths']}")
+    return 0
+
+
+def _exceptional_search(length: int, max_k: int, epsilon: float) -> int:
+    from collatz.experiments.exceptional_paths import run_exceptional_search
+
+    payload = run_exceptional_search(length, k_max=max_k, epsilon=epsilon)
+    print("Exceptional / expansionary census  [COMPUTATIONAL]")
+    print(
+        f"length={payload['length']} k_max={payload['k_max']} "
+        f"epsilon={payload['epsilon']} K_cut={payload['K_cut']}"
+    )
+    print(f"count={payload['count']} R_min={payload['R_min']} R_max={payload['R_max']}")
+    print(payload["status"])
+    for row in payload["sample"][:12]:
+        print(f"  ks={row['ks']} K={row['K']} R={row['R']} C={row['C']}")
     return 0

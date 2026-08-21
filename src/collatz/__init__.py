@@ -1,10 +1,11 @@
-"""Public API of the Collatz research module (Milestones 1–3)."""
+"""Public API of the Collatz research module (Milestones 1–4)."""
 
 from collatz.automata.joint_graph import JointGraph, build_joint_graph
 from collatz.automata.symbolic_graph import SymbolicJointGraph, build_symbolic_graph
 from collatz.automata.two_adic import TwoAdicDigitAutomaton
 from collatz.automata.valuation_shift import AdmissibleValuationAutomaton
 from collatz.cylinders import ValuationCylinder, precision_cost, valuation_cylinder
+from collatz.itinerary import ValuationItinerary
 from collatz.bt_arithmetic import add, add_one, multiply_by_three, three_n_plus_one_word
 from collatz.core import collatz_step, standard_collatz_step, three_n_plus_one
 from collatz.experiments.exhaustive import run_exhaustive_experiment
@@ -30,6 +31,7 @@ __all__ = [
     "SymbolicJointGraph",
     "TwoAdicDigitAutomaton",
     "ValuationCylinder",
+    "ValuationItinerary",
     "add",
     "add_one",
     "append_plus",

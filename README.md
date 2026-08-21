@@ -12,9 +12,9 @@ proofs.
 **Prime core: Milestone A** — canonical encode/decode, digit statistics,
 verified arithmetic invariants, a modular residue automaton, and a CLI.
 
-**Collatz module: Milestone 3** — valuation cylinders of density \(2^{-K}\),
-cylinder languages and \(H_L\), `/2^k` complexity spectrum, and a symbolic
-futures graph. Lyapunov search is not included.
+**Collatz module: Milestone 4** — exact affine itineraries \(T^m(n)=(3^m n+C)/2^K\),
+minimum realizers \(R(\mathbf{k})\), order-sensitive \(C\), and the
+exceptional-itinerary compatibility problem. Lyapunov search is not included.
 
 ## Installation
 
@@ -49,6 +49,12 @@ btprime collatz cylinder --ks 1,2,1
 btprime collatz entropy --ks 1 --length 6
 btprime collatz complexity --k-max 6
 btprime collatz symbolic-graph --max-length 4 --k-max 5
+btprime collatz itinerary 1,1,2,3
+btprime collatz realizer 1,1,2,3
+btprime collatz enumerate-itineraries --length 4 --max-k 3
+btprime collatz fixed-budget --length 5 --sum-k 8
+btprime collatz permutations 1,1,2,3
+btprime collatz exceptional-search --length 6 --max-k 2 --epsilon 0.1
 ```
 
 `analyze` always prints `encode(n)`; it does not hard-code example words.
@@ -83,13 +89,14 @@ decreases; finite graphs are samples.
 ```text
 src/balanced_ternary/   representation, features, invariants, CLI
 src/automata/           ModularAutomaton(q)
-src/collatz/            accelerated Collatz research module (Milestones 1–3)
+src/collatz/            accelerated Collatz research module (Milestones 1–4)
 src/sieve/              stub (Phase 3+)
 src/research/           stub (Phase 6+)
 src/visualization/      Streamlit explorer (`btprime collatz ui`)
 docs/mathematics.md     theorems implemented in Milestone A
 docs/collatz_mathematics.md
 docs/collatz_research_questions.md
+docs/collatz_itinerary_compatibility.md
 ```
 
 The Collatz package reuses `balanced_ternary` and `ModularAutomaton`. It
@@ -116,5 +123,9 @@ See [docs/collatz_mathematics.md](docs/collatz_mathematics.md). In brief:
   (**PROVED**). Layer C drops precision to \(2^{K-k}\).
 - Finite valuation cylinders are unique residue classes of density
   \(2^{-K}\) among odds (**PROVED**).
+- \(T^m(n)=(3^m n+C)/2^K\) with an explicit recurrence and closed form
+  for \(C\) (**PROVED**). \(R(\mathbf{k})\) is the unique residue in
+  \((0,2^{K+1})\). If \(R_m\to\infty\) along an infinite itinerary, no
+  finite positive integer realises that whole itinerary (**PROVED**).
 - Growth budget compares \(2^{\sum k}\) to \(3^m\) exactly. Contraction is
   not a Lyapunov function.

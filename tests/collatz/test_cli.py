@@ -123,3 +123,28 @@ def test_collatz_symbolic_graph():
     )
     assert "Symbolic Collatz futures" in out
     assert "nodes=" in out
+
+
+def test_collatz_itinerary():
+    out = _run("collatz", "itinerary", "1,2")
+    assert "Valuation itinerary" in out
+    assert "EXACT" in out
+    assert "C=" in out
+
+
+def test_collatz_realizer():
+    out = _run("collatz", "realizer", "1,1")
+    assert "R=7" in out or "R=7 " in out
+    assert "Nested cylinders" in out
+
+
+def test_collatz_permutations():
+    out = _run("collatz", "permutations", "1,2")
+    assert "C_min" in out
+    assert "C extremal are sorted" in out
+
+
+def test_collatz_fixed_budget():
+    out = _run("collatz", "fixed-budget", "--length", "3", "--sum-k", "5")
+    assert "Fixed (m,K)" in out
+    assert "order changes R" in out

@@ -37,6 +37,24 @@ not pursued.
 4. The graph of nodes \((\mathbf{k}, r \bmod 2^P, P)\) is a graph of
    symbolic futures, distinct from the sampled integer graph.
 
+## Answered in Milestone 4
+
+1. Exact affine formula \(T^m(n)=(3^m n+C)/2^K\) with
+   \(C_{\mathrm{append}\,k}=3C+2^{K}\) and closed form
+   \(\sum_j 3^{m-1-j}2^{K_j}\). **PROVED**.
+2. Positivity of intermediates for positive odd \(n\) is automatic
+   (\(C\ge 0\)). **PROVED**.
+3. \(R(\mathbf{k})\) is the unique residue modulo \(2^{K+1}\); nested
+   \(R\) is nondecreasing; \(R_m\to\infty\) excludes a positive integer
+   realizer of that entire infinite itinerary. **PROVED**.
+   \(R((1)^m)=2^{m+1}-1\). **PROVED**.
+4. Adjacent swap formula for \(C\); descending order maximises \(C\).
+   **PROVED**. \(R\) can change at equal \((m,K)\). **VERIFIED
+   COMPUTATIONALLY**.
+5. The exceptional itinerary compatibility problem is formulated, not
+   solved. No finite certificate of \(R_m\to\infty\) for all
+   non-contracting itineraries was found.
+
 ## Still open
 
 1. Closed form for minimized `/2^k` state complexity \(N_k\). The pattern
@@ -54,11 +72,11 @@ not pursued.
    exploratory. They must not be described as constraining or solving
    Collatz.
 
-The research question of the module remains:
+The research question of the module is now:
 
-> Which balanced ternary languages correspond to prescribed future
-> Collatz valuation paths?
+> What distinguishes infinite or arbitrarily long positive integer
+> trajectories from arbitrary finite 2-adically admissible valuation
+> itineraries?
 
-Milestone 3 answers that question for every *finite* valuation prefix by
-an exact residue class and a residue DFA. It does not answer the question
-by solving Collatz.
+See [docs/collatz_itinerary_compatibility.md](collatz_itinerary_compatibility.md).
+Milestone 4 does not answer the question by solving Collatz.

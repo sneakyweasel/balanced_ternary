@@ -649,7 +649,17 @@ rational-function boundary for unbounded odd-part.
 CLI: `theorems`, `odd-part`, `transducer`, `valuation-shift`, `joint`,
 `cylinder`, `entropy`, `complexity`, `symbolic-graph`.
 
-## 20. Explicitly not implemented
+## 21. Milestone 4 — Affine itineraries (pointer)
+
+Exact \(T^m(n)=(3^m n+C)/2^K\), minimum realizers, order-sensitive \(C\),
+and nested-cylinder versus integer realizability are recorded in
+[collatz_itinerary_compatibility.md](collatz_itinerary_compatibility.md).
+Residue moduli are unchanged: leftover \(Q=1\), class modulo \(2^{K+1}\).
+
+CLI: `itinerary`, `realizer`, `enumerate-itineraries`, `fixed-budget`,
+`permutations`, `exceptional-search`.
+
+## 22. Explicitly not implemented
 
 Lyapunov / drift search, machine learning, unconstrained suffix statistics
 as theorems, product with the prime sieve, and any claim of a route to
