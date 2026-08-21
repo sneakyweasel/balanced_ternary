@@ -243,3 +243,30 @@ def test_collatz_dual_dataset_no_write():
     )
     assert "rows=9" in out
     assert "no files written" in out
+
+
+def test_collatz_four_coordinate_compatibility():
+    out = _run("collatz", "compatibility", "1,4,2")
+    assert "Four-coordinate exponent-code diagnostic" in out
+    assert "Kramer r=" in out
+    assert "Kramer M=" in out
+    assert "[EXACT]" in out
+
+
+def test_collatz_compatibility_graph():
+    out = _run(
+        "collatz",
+        "compatibility-graph",
+        "--max-depth",
+        "2",
+        "--max-k",
+        "2",
+    )
+    assert "nodes=7 edges=6" in out
+    assert "valid=True" in out
+
+
+def test_collatz_rational_base():
+    out = _run("collatz", "rational-base", "7")
+    assert "base_3/2=2122" in out
+    assert "odd (3n+1)/2 appends 1: True" in out

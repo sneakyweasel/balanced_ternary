@@ -43,7 +43,7 @@ theorem monotone_eventuallyConstant_bounded
   by_cases hm : m ≤ N
   · exact hmono hm
   · have hNm : N ≤ m := Nat.le_of_lt (Nat.lt_of_not_ge hm)
-    simpa [hN m hNm]
+    simp [hN m hNm]
 
 theorem monotone_bounded_iff_eventuallyConstant
     (R : ℕ → ℕ) (hmono : Monotone R) :

@@ -285,3 +285,30 @@ representatives must stop acquiring nonzero mixed-radix blocks.
 The dual code provides useful structural understanding and concrete exact
 theorems. It does not currently provide a plausible route to excluding
 all exceptional non-contracting integer trajectories.
+
+## 14. Four-coordinate compatibility milestone
+
+The literature-facing state exposes the refined start \(R\), Kramer's
+endpoint \(M\), \(\operatorname{BT}(R)\), and exact drift
+\((3^m,2^K)\). With this document's affine constant,
+
+\[
+B=C,\qquad r=R\bmod2^K,\qquad
+M\equiv C\,2^{-K}\pmod {3^m}
+\]
+
+where \(r\) is least nonnegative and \(M\) least positive. Kramer's
+\(d,\rho_r,\rho_M\) use natural logarithms.
+
+**PROVED.** Every displayed coordinate and every lift digit is
+deterministic from the exponent code. In particular,
+\(\operatorname{BT}(R)\) contains no information-theoretically independent
+coordinate beyond \(R\). Its lossy suffixes and features can still expose
+useful finite partitions; any benefit of that kind is
+**VERIFIED COMPUTATIONALLY** or an **OBSERVATION**.
+
+See [literature_comparison.md](literature_comparison.md),
+[balanced_ternary_vs_collatz_literature.md](balanced_ternary_vs_collatz_literature.md),
+and [cerda_comparison.md](cerda_comparison.md). These comparisons use the
+Milestone 6 verified baseline and do not adopt unproved global
+non-reuse/convergence claims from preprints.

@@ -279,3 +279,25 @@ Milestone 5 strengthens the nested-minimum proposition to the exact
 three-way zero-lift dichotomy, proves uniqueness of every zero-lift
 extension, and treats periodic itineraries. See
 [collatz_zero_lift.md](collatz_zero_lift.md).
+
+## Literature-facing coordinate conventions
+
+For this document's affine constant \(C\), Kramer writes \(B=C\). His
+coarser start representative is \(r=R\bmod2^K\), while his least-positive
+endpoint representative is
+
+\[
+M\equiv C\,2^{-K}\pmod {3^m},\qquad1\le M\le3^m.
+\]
+
+Thus \(R\), \(r\), \(M\), \(\operatorname{BT}(R)\), and the real drift are
+all deterministic functions of the exponent code. Balanced ternary is an
+exact representation of \(R\), not an independent information channel;
+lossy features may nevertheless remain useful computationally.
+
+See [literature_comparison.md](literature_comparison.md) for the
+primary-source formulas and theorem/computation/conjecture boundaries, and
+[cerda_comparison.md](cerda_comparison.md) for why Cerdá's local affine
+branch formulas are comparable but the posted global non-reuse and
+convergence reductions are not adopted. The exact statements above remain
+on the Milestone 6 verified baseline.

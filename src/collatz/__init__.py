@@ -1,18 +1,30 @@
-"""Public API of the Collatz research module (Milestones 1–5)."""
+"""Public API of the Collatz research and compatibility module."""
 
 from collatz.automata.joint_graph import JointGraph, build_joint_graph
 from collatz.automata.symbolic_graph import SymbolicJointGraph, build_symbolic_graph
 from collatz.automata.two_adic import TwoAdicDigitAutomaton
 from collatz.automata.valuation_shift import AdmissibleValuationAutomaton
 from collatz.cylinders import ValuationCylinder, precision_cost, valuation_cylinder
+from collatz.compatibility import (
+    CompatibilityGraph,
+    CompatibilityState,
+    ExponentCodeDiagnostic,
+    build_compatibility_graph,
+)
 from collatz.dual_code import (
     CollatzDualCode,
     canonical_realizer_formula,
     reconstruct_realizer,
 )
 from collatz.itinerary import ValuationItinerary
+from collatz.endpoint_3adic import KramerEndpoint, kramer_endpoint_residue
 from collatz.lift_tree import LiftTree, build_lift_tree
 from collatz.periodic_itineraries import periodic_candidate
+from collatz.rational_base import (
+    RationalBaseThreeHalves,
+    decode_base_3_2,
+    encode_base_3_2,
+)
 from collatz.zero_lift import (
     ZeroLiftState,
     finite_lift_certificate,
@@ -42,10 +54,15 @@ __all__ = [
     "BalancedTernaryFeatures",
     "CollatzFeatureTransition",
     "CollatzDualCode",
+    "CompatibilityGraph",
+    "CompatibilityState",
+    "ExponentCodeDiagnostic",
     "JointGraph",
+    "KramerEndpoint",
     "LiftTree",
     "SymbolicJointGraph",
     "TwoAdicDigitAutomaton",
+    "RationalBaseThreeHalves",
     "ValuationCylinder",
     "ValuationItinerary",
     "ZeroLiftState",
@@ -56,6 +73,7 @@ __all__ = [
     "build_inverse_tree",
     "build_joint_graph",
     "build_lift_tree",
+    "build_compatibility_graph",
     "build_symbolic_graph",
     "canonical_realizer_formula",
     "classify_collatz_valuation",
@@ -65,10 +83,13 @@ __all__ = [
     "collatz_total_stopping_time",
     "collatz_trajectory",
     "extract_features",
+    "encode_base_3_2",
+    "decode_base_3_2",
     "feature_transition",
     "finite_lift_certificate",
     "lift_digit",
     "lift_digits",
+    "kramer_endpoint_residue",
     "multiply_by_three",
     "odd_part_word",
     "precision_cost",

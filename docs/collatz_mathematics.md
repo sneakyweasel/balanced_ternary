@@ -695,3 +695,30 @@ non-contracting censuses are recorded in
 The stabilization, lift, mixed-radix, and abstract residue arithmetic
 theorems compile under Lean 4 + Mathlib in `formal/`.
 
+## 25. Four-coordinate compatibility and literature
+
+For a finite exponent code, \(B=C\) in Kramer's notation,
+\(r=R\bmod2^K\), and the least-positive endpoint representative is
+
+\[
+M\equiv C\,2^{-K}\pmod {3^m},\qquad1\le M\le3^m.
+\]
+
+The real diagnostic rates use natural logarithms. The exact state exposes
+\(R\), \(M\), \(\operatorname{BT}(R)\), and \((3^m,2^K)\), but these are
+coupled functions of the code: in particular, \(\operatorname{BT}(R)\) is
+deterministic from \(R\), so it is not an information-theoretically
+independent coordinate. Lossy balanced-ternary features can still be
+useful finite search partitions. **PROVED** at the exact interface;
+empirical utility is **COMPUTATIONAL**.
+
+The comparison with Kramer, rational base \(3/2\), Dhiman--Pandey, and
+Rozier--Terracol is in
+[literature_comparison.md](literature_comparison.md). The balanced-ternary
+scope is in
+[balanced_ternary_vs_collatz_literature.md](balanced_ternary_vs_collatz_literature.md).
+Cerdá's local formulas and the apparent defects in the preprints' global
+non-reuse/convergence arguments are audited in
+[cerda_comparison.md](cerda_comparison.md). All repository claims retain
+the Milestone 6 verified baseline and do not depend on those global claims.
+

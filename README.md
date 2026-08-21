@@ -12,10 +12,11 @@ proofs.
 **Prime core: Milestone A** — canonical encode/decode, digit statistics,
 verified arithmetic invariants, a modular residue automaton, and a CLI.
 
-**Collatz module: Milestone 6** — exact affine itineraries, minimum
-realizers \(R_m\), lift digits \(t_m\), mixed-radix dual coding,
-deterministic zero-lift successors, and periodic-itinerary compatibility.
-Lyapunov search is not included.
+**Collatz module: Four-coordinate compatibility** — exact exponent codes,
+refined 2-adic start representatives \(R_m\), Kramer's 3-adic endpoint
+representatives \(M_m\), balanced ternary, lift digits, and real drift.
+Balanced ternary is tested as a representation of \(R_m\), not asserted
+to be an independent arithmetic coordinate. Lyapunov search is not included.
 
 ## Installation
 
@@ -63,6 +64,11 @@ btprime collatz dual-code 1,4,2
 btprime collatz lift-tree --max-depth 3 --max-k 3
 btprime collatz periodic-dual 1,2 --repeats 8
 btprime collatz suffix-test --max-length 4 --max-k 4 --suffix-max 8
+btprime collatz compatibility 1,4,2
+btprime collatz compatibility-graph --max-depth 3 --max-k 3
+btprime collatz information-test --max-length 4 --max-k 4
+btprime collatz rational-base 27
+btprime collatz near-critical --length 8 --max-k 3 --radius 1
 ```
 
 `analyze` always prints `encode(n)`; it does not hard-code example words.
@@ -97,7 +103,7 @@ decreases; finite graphs are samples.
 ```text
 src/balanced_ternary/   representation, features, invariants, CLI
 src/automata/           ModularAutomaton(q)
-src/collatz/            accelerated Collatz research module (Milestones 1–6)
+src/collatz/            accelerated Collatz research and compatibility module
 src/sieve/              stub (Phase 3+)
 src/research/           stub (Phase 6+)
 src/visualization/      Streamlit explorer (`btprime collatz ui`)
@@ -107,6 +113,9 @@ docs/collatz_research_questions.md
 docs/collatz_itinerary_compatibility.md
 docs/collatz_zero_lift.md
 docs/collatz_dual_coding.md
+docs/literature_comparison.md
+docs/balanced_ternary_vs_collatz_literature.md
+docs/cerda_comparison.md
 formal/                 Lean 4 + Mathlib proofs (`lake build`)
 ```
 
@@ -138,5 +147,11 @@ See [docs/collatz_mathematics.md](docs/collatz_mathematics.md). In brief:
   for \(C\) (**PROVED**). \(R(\mathbf{k})\) is the unique residue in
   \((0,2^{K+1})\). If \(R_m\to\infty\) along an infinite itinerary, no
   finite positive integer realises that whole itinerary (**PROVED**).
+- \(R_m=1+\sum_{j<m}t_j2^{K_j+1}\), and the lift digits are unique
+  mixed-radix blocks of the refined 2-adic representative (**PROVED;
+  LEAN VERIFIED at the exact-cylinder interface**).
+- A finite positive integer realizes an infinite prescribed itinerary
+  exactly when \(R_m\) eventually stabilizes, equivalently when its lift
+  digits are eventually zero (**PROVED; LEAN VERIFIED**).
 - Growth budget compares \(2^{\sum k}\) to \(3^m\) exactly. Contraction is
   not a Lyapunov function.

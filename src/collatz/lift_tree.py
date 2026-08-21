@@ -16,7 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from enum import Enum
 
-from collatz.dual_code import CollatzDualCode, lift_digit_from_state
+from collatz.dual_code import CollatzDualCode
 
 
 class LiftEdgeClass(str, Enum):

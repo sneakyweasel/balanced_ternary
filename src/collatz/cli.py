@@ -243,6 +243,46 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_dd.add_argument("--max-k", type=int, default=3, dest="max_k")
     p_dd.add_argument("--write", action="store_true")
 
+    p_fc = c.add_parser(
+        "compatibility",
+        help="exact 2-adic/3-adic/BT/drift diagnostic for an exponent code",
+    )
+    p_fc.add_argument("ks", help="comma-separated valuations")
+
+    p_cg = c.add_parser(
+        "compatibility-graph",
+        help="bounded exact four-coordinate prefix graph",
+    )
+    p_cg.add_argument("--max-depth", type=int, default=3, dest="max_depth")
+    p_cg.add_argument("--max-k", type=int, default=3, dest="max_k")
+    p_cg.add_argument("--root", default="", help="optional comma-separated root prefix")
+
+    p_rb = c.add_parser(
+        "rational-base",
+        help="compare balanced ternary with canonical rational base 3/2",
+    )
+    p_rb.add_argument("n", type=int)
+
+    p_ic = c.add_parser(
+        "information-test",
+        help="test BT observables against exact and truncated compatibility states",
+    )
+    p_ic.add_argument("--max-length", type=int, default=4, dest="max_length")
+    p_ic.add_argument("--max-k", type=int, default=4, dest="max_k")
+    p_ic.add_argument("--precision-max", type=int, default=4, dest="precision_max")
+    p_ic.add_argument("--write", action="store_true")
+
+    p_nc = c.add_parser(
+        "near-critical",
+        help="generate reproducible exact-drift compatibility datasets",
+    )
+    p_nc.add_argument("--max-length", type=int, default=4, dest="max_length")
+    p_nc.add_argument("--max-k", type=int, default=4, dest="max_k")
+    p_nc.add_argument("--random-length", type=int, default=16, dest="random_length")
+    p_nc.add_argument("--random-count", type=int, default=32, dest="random_count")
+    p_nc.add_argument("--seed", type=int, default=0)
+    p_nc.add_argument("--write", action="store_true")
+
     c.add_parser("ui", help="open the Streamlit research explorer")
 
 
@@ -312,6 +352,25 @@ def run_collatz(args: argparse.Namespace) -> int:
         return _suffix_test(args.max_length, args.max_k, args.suffix_max)
     if cmd == "dual-dataset":
         return _dual_dataset(args.length, args.max_k, args.write)
+    if cmd == "compatibility":
+        return _compatibility(args.ks)
+    if cmd == "compatibility-graph":
+        return _compatibility_graph(args.max_depth, args.max_k, args.root)
+    if cmd == "rational-base":
+        return _rational_base(args.n)
+    if cmd == "information-test":
+        return _information_test(
+            args.max_length, args.max_k, args.precision_max, args.write
+        )
+    if cmd == "near-critical":
+        return _near_critical(
+            args.max_length,
+            args.max_k,
+            args.random_length,
+            args.random_count,
+            args.seed,
+            args.write,
+        )
     if cmd == "ui":
         from visualization.app import launch
 
@@ -866,4 +925,146 @@ def _dual_dataset(length: int, max_k: int, write: bool) -> int:
         print(f"outputs: {paths}")
     else:
         print("no files written; pass --write to persist ignored artifacts")
+    return 0
+
+
+def _compatibility(ks: str) -> int:
+    from collatz.compatibility import ExponentCodeDiagnostic
+
+    diagnostic = ExponentCodeDiagnostic.from_valuations(ks)
+    print("Four-coordinate exponent-code diagnostic")
+    print(f"valuations={diagnostic.valuations}  m={diagnostic.m}  K={diagnostic.K}")
+    print(f"C={diagnostic.C}")
+    print(
+        f"refined R={diagnostic.R}  Kramer r={diagnostic.r}  "
+        f"BT(R)={diagnostic.balanced_ternary_R}"
+    )
+    print(
+        f"Kramer M={diagnostic.M}  endpoint={diagnostic.canonical_endpoint}  "
+        f"modulus_3={diagnostic.three_power}"
+    )
+    print(f"lift_digits={diagnostic.lift_digits}")
+    print(
+        f"exact drift=3^{diagnostic.m}/2^{diagnostic.K}="
+        f"{diagnostic.three_power}/{diagnostic.two_power}"
+    )
+    print(
+        f"estimated d={diagnostic.d:.12g}  rho_r={diagnostic.rho_r:.12g}  "
+        f"rho_M={diagnostic.rho_M:.12g}  [NATURAL-LOG ESTIMATES]"
+    )
+    print("R, r, M, endpoint, lifts, and drift powers: [EXACT]")
+    return 0
+
+
+def _compatibility_graph(max_depth: int, max_k: int, root: str) -> int:
+    from collatz.compatibility import build_compatibility_graph
+
+    graph = build_compatibility_graph(max_depth, max_k, root=root)
+    print("Four-coordinate compatibility graph  [EXACT BOUNDED TREE]")
+    print(
+        f"root={graph.root.valuations} depth={graph.max_depth} k_max={graph.k_max} "
+        f"nodes={len(graph.nodes)} edges={len(graph.edges)} valid={graph.validates()}"
+    )
+    for edge in graph.edges[:20]:
+        print(
+            f"  {edge.source} --k={edge.valuation},t={edge.lift_digit}--> "
+            f"{edge.target}"
+        )
+    return 0
+
+
+def _rational_base(n: int) -> int:
+    from collatz.rational_base import RationalBaseThreeHalves
+
+    representation = RationalBaseThreeHalves.from_int(n)
+    display = representation.word or "epsilon"
+    print("Rational-base 3/2 comparison  [EXACT]")
+    print(f"n={n}")
+    print(f"base_3/2={display}")
+    print(f"BT(n)={encode(n).word()}")
+    print(f"round_trip={representation.validates()}")
+    if n % 2:
+        child = representation.odd_step()
+        print(
+            f"odd (3n+1)/2 appends 1: {child.word == representation.word + '1'}  "
+            f"child={child.value} word={child.word}"
+        )
+    else:
+        print("odd append-1 identity not applicable; even division locality is open")
+    return 0
+
+
+def _information_test(
+    max_length: int,
+    max_k: int,
+    precision_max: int,
+    write: bool,
+) -> int:
+    from collatz.experiments.information_content import run_information_content
+
+    if precision_max < 1:
+        raise ValueError("precision_max must be >= 1")
+    output = Path("experiments") / "collatz" if write else None
+    result = run_information_content(
+        max_length,
+        max_k,
+        precisions=tuple(range(1, precision_max + 1)),
+        output_dir=output,
+    )
+    print("Balanced-ternary information-content test")
+    print(f"rows={len(result.rows)} schema={result.schema_version}")
+    bt_report = result.reports["BT(R)"]
+    for state, report in bt_report["states"].items():
+        print(
+            f"  {state} determines BT(R)={report['determines_on_sample']}  "
+            f"{report['status']}"
+        )
+    for observable, witness in result.balanced_ternary_collisions.items():
+        if witness is None:
+            print(f"  BT(R) collision for {observable}: none in bounded sample")
+        else:
+            print(
+                f"  BT(R) does not determine {observable}: "
+                f"{witness['row_a']['valuations']} vs "
+                f"{witness['row_b']['valuations']}  [EXACT WITNESS]"
+            )
+    print(
+        "H_BT strong independence: REFUTED EXACTLY because R determines BT(R); "
+        "lossy-state results remain bounded observations."
+    )
+    if result.paths:
+        print(f"outputs: {result.paths}")
+    return 0
+
+
+def _near_critical(
+    max_length: int,
+    max_k: int,
+    random_length: int,
+    random_count: int,
+    seed: int,
+    write: bool,
+) -> int:
+    from collatz.experiments.near_critical import run_near_critical
+
+    output = Path("experiments") / "collatz" if write else None
+    result = run_near_critical(
+        exhaustive_max_length=max_length,
+        exhaustive_max_k=max_k,
+        random_length=random_length,
+        random_count=random_count,
+        seed=seed,
+        output_dir=output,
+    )
+    families: dict[str, int] = {}
+    for row in result.rows:
+        family = str(row["family"])
+        families[family] = families.get(family, 0) + 1
+    print("Near-critical four-coordinate dataset  [EXACT SELECTION]")
+    print(f"rows={len(result.rows)} seed={result.seed} schema={result.schema_version}")
+    print(f"families={families}")
+    print(f"Rozier-Terracol comparison fixtures={len(result.fixtures)}")
+    print("Dataset patterns are OBSERVATIONS, not Collatz obstructions.")
+    if result.paths:
+        print(f"outputs: {result.paths}")
     return 0
