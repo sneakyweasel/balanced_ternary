@@ -1,4 +1,4 @@
-# Collatz module — mathematics (Milestones 1–3)
+# Collatz module — consolidated mathematics
 
 This document records **exactly** what the Collatz research module implements
 and how each claim is classified. It does **not** claim progress on solving
@@ -632,7 +632,7 @@ The truncated word graph of Layer D remains a sample.
 Nodes with nonempty prefix are classified by \(2^K\) vs \(3^m\)
 (contracting / expanding). Equality is impossible for \(m>0\).
 
-## 19. Implemented in Milestones 1–3
+## 19. Implemented foundations
 
 Milestone 1: exact \(T\), inverse tree, feature rows, weight parity,
 `TwoAdicDigitAutomaton(K)`, experiment A.

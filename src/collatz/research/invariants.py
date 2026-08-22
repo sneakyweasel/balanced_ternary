@@ -1,4 +1,4 @@
-"""Executable Collatz / balanced ternary identities (Milestone 1).
+"""Executable Collatz / balanced ternary identities.
 
 Every check is a verification of a claimed identity. Finite-range success
 is recorded as VERIFIED COMPUTATIONALLY unless a proof is given in

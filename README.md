@@ -1,162 +1,176 @@
-# Balanced Ternary Prime Language Explorer
+# Balanced ternary and Collatz research
 
-Research prototype for studying prime numbers in **balanced ternary**
-(`-` / `0` / `+`). This is **not** a primality-testing library and does not
-replace modern primality tests.
+An exact-arithmetic research platform with two connected components:
 
-A second, separate research module studies the **accelerated Collatz map**
-in balanced ternary and finite 2-adic arithmetic. It does **not** claim
-progress on the Collatz conjecture and does not treat finite checks as
-proofs.
+- canonical balanced-ternary representation, arithmetic, features, invariants,
+  and modular residue automata;
+- the accelerated odd-only Collatz map studied through exponent codes,
+  2-adic cylinders, lift digits, 3-adic endpoints, balanced ternary, and
+  affine-center geometry.
 
-**Prime core: Milestone A** — canonical encode/decode, digit statistics,
-verified arithmetic invariants, a modular residue automaton, and a CLI.
+This is not a primality-testing library and does not claim a proof or
+disproof of the Collatz conjecture. Claims are labelled **PROVED**,
+**VERIFIED COMPUTATIONALLY**, **CONJECTURE**, or **OBSERVATION**. Finite
+checks are never presented as proofs.
 
-**Collatz module: Four-coordinate compatibility** — exact exponent codes,
-refined 2-adic start representatives \(R_m\), Kramer's 3-adic endpoint
-representatives \(M_m\), balanced ternary, lift digits, and real drift.
-Balanced ternary is tested as a representation of \(R_m\), not asserted
-to be an independent arithmetic coordinate. The affine-center milestone
-adds the exact fixed point \(n_*=C/(2^K-3^m)\) and centered inequalities.
-Lyapunov search is not included.
+## Current research surface
 
-## Installation
+For a finite valuation code \(\mathbf{k}=(k_0,\ldots,k_{m-1})\), the
+project computes
 
-Python 3.11 or newer. From this directory:
+\[
+T^m(n)=\frac{3^m n+C}{2^K},\qquad K=\sum_i k_i,
+\]
+
+together with:
+
+- the refined 2-adic start representative \(R\);
+- Kramer's 2-adic representative \(r\) and 3-adic endpoint representative
+  \(M\);
+- the canonical endpoint \(X=T^m(R)\);
+- the balanced-ternary word \(\operatorname{BT}(R)\);
+- mixed-radix lift digits \(t_i\);
+- exact drift \(3^m/2^K\);
+- the affine center \(n_*=C/(2^K-3^m)\) and centered inequalities.
+
+Balanced ternary is tested as a representation of \(R\), not asserted to be
+an independent arithmetic coordinate. The current exact result is that
+\(\operatorname{BT}(R)\) is determined by \(R\); lossy balanced-ternary
+features can still be useful observables.
+
+## Quick start
+
+Python 3.11 or newer:
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
-python -m pip install -e ".[dev]"
-```
-
-## CLI
-
-```powershell
-btprime encode 42
-btprime decode "+-0+"
-btprime analyze 42
-btprime residue "+-0+" --mod 7
-btprime test-invariants --limit 100000
-
-btprime collatz analyze 27
-btprime collatz trajectory 27
-btprime collatz inverse 1 --depth 5 --k-max 20
-btprime collatz test-invariants --limit 100000
-btprime collatz automaton --precision 8
-btprime collatz theorems 27
-btprime collatz odd-part 82
-btprime collatz transducer --k 3 --limit 5000
-btprime collatz valuation-shift --precision 12 --k-max 6 --length 5
-btprime collatz joint --limit 500 --k-max 8
-btprime collatz cylinder --ks 1,2,1
-btprime collatz entropy --ks 1 --length 6
-btprime collatz complexity --k-max 6
-btprime collatz symbolic-graph --max-length 4 --k-max 5
-btprime collatz itinerary 1,1,2,3
-btprime collatz realizer 1,1,2,3
-btprime collatz enumerate-itineraries --length 4 --max-k 3
-btprime collatz fixed-budget --length 5 --sum-k 8
-btprime collatz permutations 1,1,2,3
-btprime collatz exceptional-search --length 6 --max-k 2 --epsilon 0.1
-btprime collatz zero-lift --ks 1,2 --steps 8
-btprime collatz periodic-itinerary 2
-btprime collatz zero-lift-census --max-length 4 --max-k 4 --precision 4
-btprime collatz dual-code 1,4,2
-btprime collatz lift-tree --max-depth 3 --max-k 3
-btprime collatz periodic-dual 1,2 --repeats 8
-btprime collatz suffix-test --max-length 4 --max-k 4 --suffix-max 8
-btprime collatz compatibility 1,4,2
-btprime collatz compatibility-graph --max-depth 3 --max-k 3
-btprime collatz information-test --max-length 4 --max-k 4
-btprime collatz rational-base 27
-btprime collatz near-critical --max-length 4 --max-k 4 --seed 17
-btprime collatz affine-center 1,4,2
-btprime collatz affine-center-census --max-length 6 --max-k 4 --critical-gap 10
-```
-
-`analyze` always prints `encode(n)`; it does not hard-code example words.
-Collatz commands use the accelerated odd-only map
-\(T(n)=(3n+1)/2^{v_2(3n+1)}\) on positive odd integers.
-
-## Tests
-
-```powershell
+python -m pip install -e ".[dev,ui]"
 pytest
 ```
 
-The suite includes an exhaustive round-trip, parity, and \(v_3\) check on
-\([-10^6, 10^6]\). That loop is the slowest test (typically tens of seconds).
+The slowest Python test exhaustively checks balanced-ternary identities on
+\([-10^6,10^6]\).
+
+## Representative CLI workflows
+
+The stable command is `btprime`. Use `--help` on either command group for
+the complete research surface.
+
+```powershell
+# Balanced ternary
+btprime encode 42
+btprime analyze 42
+btprime residue "+-0+" --mod 7
+
+# Accelerated Collatz dynamics
+btprime collatz analyze 27
+btprime collatz trajectory 27
+btprime collatz inverse 1 --depth 5 --k-max 20
+
+# Exponent codes and exact geometry
+btprime collatz dual-code 1,4,2
+btprime collatz compatibility 1,4,2
+btprime collatz affine-center 1,4,2
+
+# Bounded experiments
+btprime collatz information-test --max-length 4 --max-k 4
+btprime collatz near-critical --max-length 4 --max-k 4 --seed 17
+btprime collatz affine-center-census --max-length 6 --max-k 4 --critical-gap 10
+```
+
+Collatz commands use
+\(T(n)=(3n+1)/2^{v_2(3n+1)}\) on positive odd integers.
+
+## Python API
+
+The package roots expose commonly used exact objects:
+
+```python
+from balanced_ternary import decode, encode
+from collatz import AffineCenterState, CompatibilityState, collatz_step
+
+word = encode(42)
+assert decode(word) == 42
+
+state = CompatibilityState.from_valuations((1, 4, 2))
+center = AffineCenterState.from_valuations((1, 4, 2))
+assert state.R == center.R
+```
+
+The root imports are the supported convenience façade. Experiment runners,
+schemas, and specialized automata remain research APIs in their submodules.
 
 ## Research UI
 
-Interactive explorer (Streamlit). Optional extra:
+Install the optional UI dependencies and launch the Streamlit explorer:
 
 ```powershell
 python -m pip install -e ".[ui]"
 btprime collatz ui
 ```
 
-Views: number explorer, trajectory, inverse tree, 2-adic automaton,
-odd-part transducer, valuation prefixes, joint graph, valuation languages.
-Mathematical clarity over decoration. Feature deltas are not Lyapunov
-decreases; finite graphs are samples.
+The UI covers integer dynamics, finite-state models, exponent-code
+compatibility, lift coding, and affine-center geometry. Expensive bounded
+searches run only after explicit submission and are labelled as computational
+experiments.
 
-## Layout
+## Reproducible experiments
 
-```text
-src/balanced_ternary/   representation, features, invariants, CLI
-src/automata/           ModularAutomaton(q)
-src/collatz/            accelerated Collatz research and compatibility module
-src/sieve/              stub (Phase 3+)
-src/research/           stub (Phase 6+)
-src/visualization/      Streamlit explorer (`btprime collatz ui`)
-docs/mathematics.md     theorems implemented in Milestone A
-docs/collatz_mathematics.md
-docs/collatz_research_questions.md
-docs/collatz_itinerary_compatibility.md
-docs/collatz_zero_lift.md
-docs/collatz_dual_coding.md
-docs/literature_comparison.md
-docs/balanced_ternary_vs_collatz_literature.md
-docs/cerda_comparison.md
-docs/collatz_affine_center.md
-formal/                 Lean 4 + Mathlib proofs (`lake build`)
+Experiment runners use exact integer/rational records and versioned manifests
+where supported. Generated JSONL, Parquet, CSV, and report artifacts live
+under `experiments/` and are intentionally ignored by Git.
+
+For example:
+
+```powershell
+btprime collatz affine-center-census `
+  --max-length 6 --max-k 4 --critical-gap 10 `
+  --output-dir experiments/collatz/raw/affine-center
 ```
 
-The Collatz package reuses `balanced_ternary` and `ModularAutomaton`. It
-does not change the prime-language core.
+Parquet output is optional; JSONL plus a manifest is the portable baseline.
 
-## Position convention
+## Formal verification
 
-Displayed words are **most-significant digit first**. Every mathematical
-index (weight, \(v_3\), position-class sums) counts from the
-**least-significant digit** \(a_0\). See [docs/mathematics.md](docs/mathematics.md).
+Lean 4 + Mathlib proofs live under `formal/`.
 
-## Collatz claim status
+```powershell
+cd formal
+lake build
+```
 
-See [docs/collatz_mathematics.md](docs/collatz_mathematics.md). In brief:
+The formal layer includes the affine exponent-code formula, cylinders,
+lift/stabilization statements, 3-adic endpoint congruences, and affine-center
+numerator identities. See [formal/README.md](formal/README.md).
 
-- \(n \equiv w(\mathrm{BT}(n))\pmod{2}\) is **PROVED**; odd Collatz states
-  have odd weight, and \(3n+1\) has even weight.
-- `TwoAdicDigitAutomaton(K)` residues equal \(n \bmod 2^K\) (**PROVED**).
-- Valuation of \(3n+1\) from a residue modulo \(2^K\) is exact only when
-  \(v_2(3n+1)<K\); otherwise the label is `AT_LEAST_K`.
-- \(\mathrm{BT}(3n+1)=\mathrm{BT}(n)+\) for \(n\neq 0\) (**PROVED**).
-- Division by \(2^k\) is sequential LSD-first on each valuation class
-  \(L_k\); unrestricted odd-part is not a single rational transduction
-  (**PROVED**). Layer C drops precision to \(2^{K-k}\).
-- Finite valuation cylinders are unique residue classes of density
-  \(2^{-K}\) among odds (**PROVED**).
-- \(T^m(n)=(3^m n+C)/2^K\) with an explicit recurrence and closed form
-  for \(C\) (**PROVED**). \(R(\mathbf{k})\) is the unique residue in
-  \((0,2^{K+1})\). If \(R_m\to\infty\) along an infinite itinerary, no
-  finite positive integer realises that whole itinerary (**PROVED**).
-- \(R_m=1+\sum_{j<m}t_j2^{K_j+1}\), and the lift digits are unique
-  mixed-radix blocks of the refined 2-adic representative (**PROVED;
-  LEAN VERIFIED at the exact-cylinder interface**).
-- A finite positive integer realizes an infinite prescribed itinerary
-  exactly when \(R_m\) eventually stabilizes, equivalently when its lift
-  digits are eventually zero (**PROVED; LEAN VERIFIED**).
-- Growth budget compares \(2^{\sum k}\) to \(3^m\) exactly. Contraction is
-  not a Lyapunov function.
+## Repository layout
+
+```text
+src/balanced_ternary/       canonical representation, arithmetic, features
+src/automata/               shared modular residue automaton
+src/collatz/
+  automata/                 2-adic and symbolic finite-state models
+  languages/                cylinder languages and DFA minimization
+  transducers/              division and odd-part transducers
+  experiments/              reproducible bounded computations
+  research/                 executable Collatz invariant checks
+src/visualization/          Streamlit research explorer
+tests/                      balanced-ternary, Collatz, CLI, and UI tests
+docs/                       mathematics, milestones, literature, open questions
+formal/                     Lean 4 formalization
+experiments/                ignored generated artifacts
+```
+
+## Documentation
+
+Start with [docs/README.md](docs/README.md). The main records are:
+
+- [Collatz mathematics](docs/collatz_mathematics.md)
+- [Research questions and claim status](docs/collatz_research_questions.md)
+- [Dual coding and lift digits](docs/collatz_dual_coding.md)
+- [Four-coordinate literature comparison](docs/literature_comparison.md)
+- [Affine-center geometry](docs/collatz_affine_center.md)
+
+Displayed balanced-ternary words are most-significant digit first.
+Mathematical positions are indexed from the least-significant digit \(a_0\).

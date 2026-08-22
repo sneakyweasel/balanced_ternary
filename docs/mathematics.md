@@ -1,4 +1,4 @@
-# Mathematics (Milestone A)
+# Balanced-ternary mathematics
 
 Units of the representation are ordinary integers. Balanced ternary is a
 numeral system, not a change of physical units.

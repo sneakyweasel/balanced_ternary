@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "balanced-ternary-prime"
 version = "0.1.0"
-description = "Research platform for balanced ternary primes and a Collatz representation module"
+description = "Exact balanced-ternary arithmetic and Collatz exponent-code research"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
@@ -13,7 +13,7 @@ authors = [{ name = "Balanced Ternary Prime Language Explorer" }]
 
 [project.optional-dependencies]
 dev = ["pytest>=8"]
-ui = ["streamlit>=1.32"]
+ui = ["streamlit>=1.62", "pandas>=2"]
 
 [project.scripts]
 btprime = "balanced_ternary.cli:main"

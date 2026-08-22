@@ -1,8 +1,4 @@
-"""Command-line interface: ``btprime``.
-
-This is an inspection tool for Milestone A. It is not a primality-testing
-library.
-"""
+"""Command-line interface for balanced ternary and Collatz research tools."""
 
 from __future__ import annotations
 
@@ -25,9 +21,8 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
         prog="btprime",
         description=(
-            "Balanced Ternary Prime Language Explorer. "
-            "Inspect canonical balanced ternary words, modular residues, "
-            "and the Collatz research module."
+            "Balanced ternary arithmetic and Collatz exponent-code research. "
+            "Inspect canonical words, modular residues, and exact Collatz models."
         ),
     )
     sub = parser.add_subparsers(dest="cmd", required=True)
@@ -49,7 +44,7 @@ def main(argv: list[str] | None = None) -> int:
 
     p_inv = sub.add_parser(
         "test-invariants",
-        help="exhaustively verify Milestone A identities on [-limit, limit]",
+        help="exhaustively verify balanced-ternary identities on [-limit, limit]",
     )
     p_inv.add_argument("--limit", type=int, default=100_000)
 

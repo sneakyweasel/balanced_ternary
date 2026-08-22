@@ -1,4 +1,4 @@
-"""Milestone A public API for balanced ternary representation and invariants."""
+"""Public API for balanced ternary representation, arithmetic, and invariants."""
 
 from balanced_ternary.arithmetic import factorize, format_factorization, is_prime
 from balanced_ternary.features import (

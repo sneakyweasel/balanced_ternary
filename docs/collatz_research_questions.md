@@ -5,6 +5,10 @@ OBSERVATION. A conjecture requires automated counterexample search.
 Statistical drift is not deterministic descent. Lyapunov functions are
 not pursued.
 
+This file is the active claim register. Separate placeholder result and
+hypothesis logs were retired; experimental tables live under
+`experiments/` when a runner writes them.
+
 ## Answered in Milestone 2 (with the stated status)
 
 1. \(\mathrm{BT}(3n+1)=\mathrm{BT}(n)+\) for \(n\neq 0\), with closed-form

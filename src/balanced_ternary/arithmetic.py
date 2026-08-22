@@ -1,7 +1,7 @@
 """Integer helpers used by analysis (not a primality library).
 
-Trial division is sufficient for Milestone A inspection of individual
-values. It is not a replacement for modern primality tests.
+Trial division is sufficient for inspection of individual values. It is
+not a replacement for modern primality tests.
 """
 
 from __future__ import annotations

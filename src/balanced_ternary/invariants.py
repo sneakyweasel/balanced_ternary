@@ -92,7 +92,7 @@ def verify_invariants(
     limit: int,
     moduli: tuple[int, ...] = (2, 3, 5, 7, 11),
 ) -> InvariantReport:
-    """Check all Milestone A identities for every ``n`` with ``|n| <= limit``."""
+    """Check balanced-ternary identities for every ``n`` with ``|n| <= limit``."""
     if limit < 0:
         raise ValueError("limit must be >= 0")
     report = InvariantReport(limit=limit, checked=0)

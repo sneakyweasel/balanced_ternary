@@ -23,6 +23,7 @@ htmlcov/
 # Editors
 .idea/
 .vscode/
+.agents/
 *.swp
 
 # Experiment outputs (keep directory structure)

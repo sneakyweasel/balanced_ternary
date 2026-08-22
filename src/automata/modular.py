@@ -69,6 +69,6 @@ class ModularAutomaton:
 
     def minimize(self) -> None:
         raise NotImplementedError(
-            "DFA minimization is deferred to Phase 2; Milestone A only "
-            "requires residue correctness."
+            "The generic residue automaton does not provide minimization; "
+            "use a domain-specific DFA implementation when needed."
         )

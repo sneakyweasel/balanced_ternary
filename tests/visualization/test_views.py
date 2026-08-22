@@ -3,14 +3,21 @@
 from __future__ import annotations
 
 from visualization.views import (
+    affine_center_census_view,
     automaton_partition_rows,
+    automaton_view,
     complexity_spectrum_rows,
     cylinder_view,
     entropy_comparison_rows,
+    exponent_code_view,
+    fraction_text,
+    inverse_tree_view,
+    joint_graph_view,
     number_view,
     odd_part_trace,
     symbolic_graph_rows,
     trajectory_rows,
+    trajectory_view,
     transducer_complexity_rows,
 )
 
@@ -80,3 +87,67 @@ def test_symbolic_graph_rows():
     rows = symbolic_graph_rows(1, 3)
     assert any(r["ks"] == "()" for r in rows)
     assert any("(1,)" in r["ks"] for r in rows)
+
+
+def test_trajectory_view_reuses_rows():
+    view = trajectory_view(5, 10)
+    assert view.reached_one
+    assert view.rows[0]["n"] == 5
+    assert trajectory_rows(5, 10) == list(view.rows)
+
+
+def test_inverse_and_automaton_payloads():
+    tree = inverse_tree_view(1, 1, 4)
+    assert tree["node_count"] >= 1
+    auto = automaton_view(4, 27)
+    assert auto["modulus"] == 16
+    assert auto["odd_states"] == 8
+    assert auto["rows"]
+
+
+def test_joint_graph_view_sample():
+    payload = joint_graph_view(20)
+    assert payload["edge_count"] > 0
+    assert payload["images_divisible_by_three"] == 0
+    assert payload["sample"][0]["n"] == 1
+
+
+def test_fraction_text():
+    from fractions import Fraction
+
+    assert fraction_text(Fraction(4, 2)) == "2"
+    assert fraction_text((5, 2)) == "5/2"
+    assert fraction_text([-3, 1]) == "-3"
+
+
+def test_exponent_code_view_142():
+    view = exponent_code_view("1,4,2")
+    coords = dict(view.coordinates)
+    assert view.valuations == (1, 4, 2)
+    assert coords["m"] == 3
+    assert coords["K"] == 7
+    assert coords["R"] == coords["r"] or coords["r"] == coords["R"] % (1 << coords["K"])
+    assert view.balanced_ternary_R
+    assert view.exact_drift == "27/128"
+    assert view.regime in {"contracting", "expanding"}
+    assert all(holds for _, holds in view.inequalities)
+
+
+def test_exponent_code_view_rejects_empty():
+    import pytest
+
+    with pytest.raises(ValueError):
+        exponent_code_view(())
+
+
+def test_affine_center_census_view_small():
+    view = affine_center_census_view(2, 2, critical_gap=1, closest_count=5)
+    assert view.row_count == 6
+    partitions = dict(view.partition_counts)
+    assert sum(partitions.values()) == 6
+    assert view.closest_rows
+    assert all(row["failures"] == 0 for row in view.inequality_rows)
+    orders = {row["relation"]: row for row in view.coordinate_order_rows}
+    assert "n_star_le_R" in orders
+    assert orders["R_le_M"]["false"] >= 1 or orders["M_le_R"]["false"] >= 1
+

@@ -1,8 +1,4 @@
-"""Finite automata over balanced ternary digits.
-
-Milestone A implements the single-modulus residue automaton. Product
-automata, minimization, and graph analysis are later phases.
-"""
+"""Finite automata over balanced ternary digits."""
 
 from automata.modular import ModularAutomaton
 
