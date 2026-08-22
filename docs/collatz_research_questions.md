@@ -228,3 +228,20 @@ See [collatz_bt_warp.md](collatz_bt_warp.md).
    fixed positive integer was found. **OBSERVATION**.
 
 See [collatz_fixed_integer_asymptotics.md](collatz_fixed_integer_asymptotics.md).
+
+## Answered in Milestone 11
+
+1. Primitive exponent codes, lex-min rotations, and exact cycle tests
+   (affine candidate versus valuation match) are implemented. **PROVED**
+   as definitions; Lean verifies primitivity lemmas and \(D\mid C\).
+2. Expanding periods cannot be positive cycles. **PROVED; LEAN VERIFIED**.
+3. Additive amplitude of odd states is even. **PROVED; LEAN VERIFIED**.
+4. Rotation of an exact affine block sends the next state to the rotated
+   candidate. **PROVED; LEAN VERIFIED**.
+5. The only primitive exact cycle among \(p\le 6\), \(k_i\le 4\) is
+   \((2)\) at \(n=1\). **VERIFIED COMPUTATIONALLY**. This is not a Collatz
+   proof.
+6. 2026 cycle preprints are compared, not assumed. See
+   [cycle_literature_comparison.md](cycle_literature_comparison.md).
+
+See [collatz_cycle_languages.md](collatz_cycle_languages.md).

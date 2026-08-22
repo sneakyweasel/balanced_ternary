@@ -307,6 +307,35 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     )
     p_pc.add_argument("ks", help="comma-separated period, e.g. 2 or 1,1")
 
+    p_cy = c.add_parser(
+        "cycle",
+        help="Milestone 11: exact periodic exponent-code cycle test",
+    )
+    p_cy.add_argument("ks", help="comma-separated exponent word")
+
+    p_cyc = c.add_parser(
+        "cycle-census",
+        help="Milestone 11: prune exponent words for exact cycles",
+    )
+    p_cyc.add_argument("--max-p", type=int, default=5, dest="max_p")
+    p_cyc.add_argument("--k-max", type=int, default=4, dest="k_max")
+    p_cyc.add_argument(
+        "--additive-bound",
+        type=int,
+        default=-1,
+        dest="additive_bound",
+        help="keep amplitude <= bound; negative means unbounded",
+    )
+    p_cyc.add_argument("--write", action="store_true")
+
+    p_cylang = c.add_parser(
+        "cycle-language",
+        help="Milestone 11: L_A for a fixed additive amplitude bound",
+    )
+    p_cylang.add_argument("--additive", type=int, default=0)
+    p_cylang.add_argument("--max-p", type=int, default=4, dest="max_p")
+    p_cylang.add_argument("--k-max", type=int, default=3, dest="k_max")
+
     p_wp = c.add_parser(
         "warp",
         help="Milestone 9: W, T, and the domain-aware commutator at n",

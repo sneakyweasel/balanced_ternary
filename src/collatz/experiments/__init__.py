@@ -5,6 +5,7 @@ from collatz.experiments.complexity_spectrum import (
     ComplexitySpectrumResult,
     run_complexity_spectrum,
 )
+from collatz.experiments.cycle_census import run_cycle_census
 from collatz.experiments.affine_center import run_affine_center_census
 from collatz.experiments.exhaustive import ExhaustiveExperimentResult, run_exhaustive_experiment
 from collatz.experiments.noncontracting_dual import run_noncontracting_dual
@@ -23,6 +24,7 @@ __all__ = [
     "run_affine_center_census",
     "run_bt_warp_census",
     "run_complexity_spectrum",
+    "run_cycle_census",
     "run_exhaustive_experiment",
     "run_fixed_integer_census",
     "run_information_content",

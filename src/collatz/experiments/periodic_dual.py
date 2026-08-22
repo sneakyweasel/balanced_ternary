@@ -4,20 +4,14 @@ from __future__ import annotations
 
 from itertools import product
 
+from collatz.cycle_codes import exponent_root
 from collatz.dual_code import CollatzDualCode
 from collatz.periodic_itineraries import periodic_candidate
 
 
 def primitive_period(period: tuple[int, ...]) -> tuple[int, ...]:
     """Shortest word whose repetition equals ``period``."""
-    if not period:
-        return ()
-    for length in range(1, len(period) + 1):
-        if len(period) % length == 0:
-            candidate = period[:length]
-            if candidate * (len(period) // length) == period:
-                return candidate
-    return period
+    return exponent_root(period)
 
 
 def periodic_dual_trace(period: tuple[int, ...], repeats: int) -> dict[str, object]:

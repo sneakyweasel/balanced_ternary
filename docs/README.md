@@ -30,6 +30,8 @@ meaning throughout:
   contracting/expanding regimes, and coordinate inequalities.
 - [Fixed-integer asymptotics](collatz_fixed_integer_asymptotics.md): affine
   gap \(G_m\) of one actual start, and the refutation of \(n_*\le n\).
+- [Cycle languages](collatz_cycle_languages.md): primitive exponent codes,
+  amplitude, and exact cycle pruning.
 - [BT word maps](collatz_bt_warp.md): OEIS reversal \(W\), commutators with
   \(T\), palindromes, and realizer warps.
 
@@ -39,8 +41,10 @@ meaning throughout:
   against 2-adic/3-adic exponent-code literature.
 - [Balanced ternary versus Collatz literature](balanced_ternary_vs_collatz_literature.md):
   what balanced ternary does and does not add.
-- [Cerdá Bennassar comparison](cerda_comparison.md): local correspondences and
-  the audit boundary around unestablished global claims.
+- [Cycle literature comparison](cycle_literature_comparison.md): 2026 cycle
+  preprints versus the exponent-code dictionary.
+- [Cycle literature replication](cycle_literature_replication.md): independent
+  finite checks, with preprint claims not assumed.
 
 ## Formal verification
 
@@ -57,8 +61,9 @@ For the current research frontier, read:
 3. [Literature comparison](literature_comparison.md)
 4. [Affine-center geometry](collatz_affine_center.md)
 5. [Fixed-integer asymptotics](collatz_fixed_integer_asymptotics.md)
-6. [BT word maps](collatz_bt_warp.md)
-7. [Research questions](collatz_research_questions.md)
+6. [Cycle languages](collatz_cycle_languages.md)
+7. [BT word maps](collatz_bt_warp.md)
+8. [Research questions](collatz_research_questions.md)
 
 For the balanced-ternary foundation, begin with
 [Balanced-ternary mathematics](mathematics.md), then continue to the Collatz

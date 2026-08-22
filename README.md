@@ -80,6 +80,8 @@ btprime collatz warp 27
 btprime collatz warp-census --limit 20000
 btprime collatz fixed-integer 165 --max-steps 20
 btprime collatz periodic-code 2
+btprime collatz cycle 2
+btprime collatz cycle-census --max-p 6 --k-max 4
 
 # Bounded experiments
 btprime collatz information-test --max-length 4 --max-k 4
@@ -181,6 +183,7 @@ Start with [docs/README.md](docs/README.md). The main records are:
 - [Four-coordinate literature comparison](docs/literature_comparison.md)
 - [Affine-center geometry](docs/collatz_affine_center.md)
 - [Fixed-integer asymptotics](docs/collatz_fixed_integer_asymptotics.md)
+- [Cycle languages](docs/collatz_cycle_languages.md)
 - [BT word maps and Collatz commutators](docs/collatz_bt_warp.md)
 
 Displayed balanced-ternary words are most-significant digit first.

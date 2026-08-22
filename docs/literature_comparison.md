@@ -283,3 +283,13 @@ the contracting regime, not a positivity law, and it fails at \(n=165\).
 The normalized series \(A_m=C_m/3^m\) is Kramer's affine constant in
 homogeneous units. Required start residues are the existing cylinder.
 See [collatz_fixed_integer_asymptotics.md](collatz_fixed_integer_asymptotics.md).
+
+## Periodic exponent codes
+
+Milestone 11 enumerates primitive accelerated words rather than integers.
+The affine cycle equation is the existing identity. Recent 2026 cycle
+preprints are compared in
+[cycle_literature_comparison.md](cycle_literature_comparison.md)
+and independently sampled in
+[cycle_literature_replication.md](cycle_literature_replication.md).
+They are not treated as peer-reviewed exclusions.

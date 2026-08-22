@@ -6,6 +6,7 @@ from collatz.automata.two_adic import TwoAdicDigitAutomaton
 from collatz.automata.valuation_shift import AdmissibleValuationAutomaton
 from collatz.affine_center import AffineCenterState, AffineRegime
 from collatz.affine_gap import affine_gap
+from collatz.cycles import PeriodicExponentCode, candidate_cycle
 from collatz.cylinders import ValuationCylinder, precision_cost, valuation_cylinder
 from collatz.compatibility import (
     CompatibilityGraph,
@@ -64,6 +65,7 @@ __all__ = [
     "CompatibilityState",
     "ExponentCodeDiagnostic",
     "InfiniteTrajectoryAffineState",
+    "PeriodicExponentCode",
     "JointGraph",
     "KramerEndpoint",
     "LiftTree",
@@ -84,6 +86,7 @@ __all__ = [
     "build_compatibility_graph",
     "build_symbolic_graph",
     "canonical_realizer_formula",
+    "candidate_cycle",
     "classify_collatz_valuation",
     "collatz_predecessors",
     "collatz_step",

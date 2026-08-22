@@ -1,6 +1,7 @@
 import CollatzDual.Arithmetic
 import CollatzDual.Basic
 import CollatzDual.Center
+import CollatzDual.Cycles
 import CollatzDual.Cylinder
 import CollatzDual.Endpoint
 import CollatzDual.FixedInteger

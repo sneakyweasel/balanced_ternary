@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from balanced_ternary import decode, encode
-from collatz import AffineCenterState, CompatibilityState, InfiniteTrajectoryAffineState, collatz_step
+from collatz import AffineCenterState, CompatibilityState, InfiniteTrajectoryAffineState, candidate_cycle, collatz_step
 
 
 def test_balanced_ternary_root_round_trip():
@@ -21,3 +21,5 @@ def test_collatz_root_exact_objects():
     fixed = InfiniteTrajectoryAffineState.prefix(27, 3)
     assert fixed.validates()
     assert fixed.n == 27
+    rec = candidate_cycle((2,))
+    assert rec.is_exact_cycle

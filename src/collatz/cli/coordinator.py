@@ -52,6 +52,11 @@ from .fixed_integer import (
     _fixed_integer_census,
     _periodic_code,
 )
+from .cycles import (
+    _cycle,
+    _cycle_census,
+    _cycle_language,
+)
 from .warp import (
     _warp,
     _warp_census,
@@ -168,6 +173,13 @@ def run_collatz(args: argparse.Namespace) -> int:
         return _affine_gap(args.n, args.max_steps)
     if cmd == "periodic-code":
         return _periodic_code(args.ks)
+    if cmd == "cycle":
+        return _cycle(args.ks)
+    if cmd == "cycle-census":
+        bound = None if args.additive_bound < 0 else args.additive_bound
+        return _cycle_census(args.max_p, args.k_max, bound, args.write)
+    if cmd == "cycle-language":
+        return _cycle_language(args.additive, args.max_p, args.k_max)
     if cmd == "warp":
         return _warp(args.n)
     if cmd == "warp-census":

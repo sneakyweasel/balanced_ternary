@@ -367,6 +367,27 @@ def test_collatz_periodic_code():
     assert "does not prove Collatz" in out
 
 
+def test_collatz_cycle():
+    out = _run("collatz", "cycle", "2")
+    assert "exact_cycle=True" in out
+    assert "candidate=1" in out or "candidate=1/1" in out
+
+
+def test_collatz_cycle_language():
+    out = _run(
+        "collatz",
+        "cycle-language",
+        "--additive",
+        "0",
+        "--max-p",
+        "2",
+        "--k-max",
+        "2",
+    )
+    assert "L_A additive A=0" in out
+    assert "exact cycles=" in out
+
+
 def test_collatz_warp_one():
     out = _run("collatz", "warp", "1")
     assert "W(n)=1" in out

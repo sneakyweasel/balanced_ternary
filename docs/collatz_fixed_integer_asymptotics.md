@@ -171,6 +171,12 @@ at \(m\le8\).
 
 The first few further actual-orbit witnesses include \(171,231,257,259\).
 
+A complete scan of odd \(n\le 10^6\) through at most \(250\) accelerated
+steps found **148** contracting prefixes with \(x_m>n\). The smallest
+start remains \(165\). A \(10^7\) scan was not recorded: the \(10^6\)
+run already takes about two minutes in CPython, and the smallest witness
+is independent of that bound.
+
 ## 2-adic compatibility
 
 `required_start_residue` is the existing cylinder residue
@@ -268,6 +274,11 @@ btprime collatz fixed-integer-census --limit 1000000 --max-steps 400 --write
 
 Schema: `collatz-fixed-integer/v1`. Lean: `CollatzDual.FixedInteger`.
 
+Recorded census (odd \(n\le 10^6\), `max_steps=250`, `critical_gap=1`):
+\(500000\) odds, \(20275920\) contracting prefixes, \(2220471\) expanding
+prefixes, \(148\) failures of \(n_*\le n\). Minimum contracting \(G\) in
+the bound occurred at \(n=3035\), \(m=46\), \(x=3077\).
+
 ## Assessment
 
 **Structural leverage, plus one concrete refutation, and no new
@@ -280,7 +291,8 @@ non-contracting obstruction.**
    and the positivity-versus-gap distinction.
 3. Recurrences for \(C\), \(A\), \(n_*\), and \(G\) are exact as above.
 4. \(n_*\le n\) does **not** survive exhaustive search. Smallest
-   counterexample: \(n=165\), \(m=17\).
+   counterexample: \(n=165\), \(m=17\). Among odd \(n\le 10^6\) there are
+   \(148\) contracting prefixes with \(x>n\).
 5. \(G\) has a useful exact sign-transparent recurrence, but it does not
    prove \(G\ge0\).
 6. \(A_m\) provides no information beyond the exponent code.

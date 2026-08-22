@@ -769,3 +769,12 @@ is equivalent to \(T^m(n)\le n\) when \(2^{K_m}>3^m\), and is
 for a single fixed \(n\) was found. See
 [collatz_fixed_integer_asymptotics.md](collatz_fixed_integer_asymptotics.md).
 
+## 29. Periodic exponent-code languages
+
+Primitive accelerated words are tested as cycle candidates. Expanding
+periods are excluded. In the recorded enumeration \(1\le p\le 6\),
+\(1\le k_i\le 4\), the only primitive exact cycle is \((2)\) at \(n=1\).
+Additive amplitude of odd states is even. See
+[collatz_cycle_languages.md](collatz_cycle_languages.md) and
+[cycle_literature_replication.md](cycle_literature_replication.md).
+
