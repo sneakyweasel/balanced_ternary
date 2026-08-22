@@ -283,6 +283,23 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_nc.add_argument("--seed", type=int, default=0)
     p_nc.add_argument("--write", action="store_true")
 
+    p_ac = c.add_parser(
+        "affine-center",
+        help="exact fixed-center geometry for one exponent code",
+    )
+    p_ac.add_argument("ks", help="comma-separated nonempty valuations")
+    p_ac.add_argument("--critical-gap", type=int, default=1, dest="critical_gap")
+
+    p_acc = c.add_parser(
+        "affine-center-census",
+        help="exhaust exact center inequalities across bounded exponent codes",
+    )
+    p_acc.add_argument("--max-length", type=int, default=4, dest="max_length")
+    p_acc.add_argument("--max-k", type=int, default=4, dest="max_k")
+    p_acc.add_argument("--critical-gap", type=int, default=1, dest="critical_gap")
+    p_acc.add_argument("--closest-count", type=int, default=10, dest="closest_count")
+    p_acc.add_argument("--write", action="store_true")
+
     c.add_parser("ui", help="open the Streamlit research explorer")
 
 
@@ -369,6 +386,16 @@ def run_collatz(args: argparse.Namespace) -> int:
             args.random_length,
             args.random_count,
             args.seed,
+            args.write,
+        )
+    if cmd == "affine-center":
+        return _affine_center(args.ks, args.critical_gap)
+    if cmd == "affine-center-census":
+        return _affine_center_census(
+            args.max_length,
+            args.max_k,
+            args.critical_gap,
+            args.closest_count,
             args.write,
         )
     if cmd == "ui":
@@ -1065,6 +1092,82 @@ def _near_critical(
     print(f"families={families}")
     print(f"Rozier-Terracol comparison fixtures={len(result.fixtures)}")
     print("Dataset patterns are OBSERVATIONS, not Collatz obstructions.")
+    if result.paths:
+        print(f"outputs: {result.paths}")
+    return 0
+
+
+def _format_fraction_pair(pair: tuple[int, int] | list[int]) -> str:
+    return f"{pair[0]}/{pair[1]}"
+
+
+def _affine_center(ks: str, critical_gap: int) -> int:
+    from collatz.affine_center import AffineCenterState
+
+    state = AffineCenterState.from_valuations(ks)
+    print("Affine-center geometry  [EXACT]")
+    print(f"valuations={state.valuations}  m={state.m}  K={state.K}")
+    print(f"C={state.C}  R={state.R}  X={state.X}  M={state.M}")
+    print(
+        f"2^K-3^m={state.gap}  regime={state.regime.value}  "
+        f"partition={state.partition(critical_gap)}"
+    )
+    print(
+        f"n*={_format_fraction_pair((state.n_star.numerator, state.n_star.denominator))}"
+    )
+    print(
+        f"R-n* raw={_format_fraction_pair(state.R_difference_raw)}  "
+        f"reduced={_format_fraction_pair(state.R_difference_reduced)}"
+    )
+    print(
+        f"X-n* raw={_format_fraction_pair(state.X_difference_raw)}  "
+        f"reduced={_format_fraction_pair(state.X_difference_reduced)}"
+    )
+    print(
+        f"center scaling=(3^{state.m}/2^{state.K})="
+        f"{_format_fraction_pair([state.three_power, state.two_power])}"
+    )
+    print(
+        f"X=M+q*3^m with q={state.endpoint_lift_quotient}; "
+        f"all exact inequalities={all(state.exact_inequalities().values())}"
+    )
+    return 0
+
+
+def _affine_center_census(
+    max_length: int,
+    max_k: int,
+    critical_gap: int,
+    closest_count: int,
+    write: bool,
+) -> int:
+    from collatz.experiments.affine_center import run_affine_center_census
+
+    output = Path("experiments") / "collatz" if write else None
+    result = run_affine_center_census(
+        max_length,
+        max_k,
+        critical_gap=critical_gap,
+        closest_count=closest_count,
+        output_dir=output,
+    )
+    print("Affine-center census  [EXACT ROWS; BOUNDED ORDER TESTS]")
+    print(f"rows={len(result.rows)} schema={result.schema_version}")
+    print(f"partitions={result.partition_counts}")
+    failures = sum(
+        int(record["failure_count"])
+        for record in result.exact_inequalities.values()
+    )
+    print(f"theorem-backed inequality failures={failures}")
+    for name, record in result.coordinate_orders.items():
+        if record["smallest_true"] is not None and record["smallest_false"] is not None:
+            print(f"  {name}: both directions witnessed; not universal")
+    if result.closest_to_critical:
+        nearest = result.closest_to_critical[0]
+        print(
+            f"closest gap={nearest['gap']} code={nearest['valuations']} "
+            f"n*={_format_fraction_pair(nearest['n_star'])}"
+        )
     if result.paths:
         print(f"outputs: {result.paths}")
     return 0

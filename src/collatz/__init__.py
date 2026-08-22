@@ -4,6 +4,7 @@ from collatz.automata.joint_graph import JointGraph, build_joint_graph
 from collatz.automata.symbolic_graph import SymbolicJointGraph, build_symbolic_graph
 from collatz.automata.two_adic import TwoAdicDigitAutomaton
 from collatz.automata.valuation_shift import AdmissibleValuationAutomaton
+from collatz.affine_center import AffineCenterState, AffineRegime
 from collatz.cylinders import ValuationCylinder, precision_cost, valuation_cylinder
 from collatz.compatibility import (
     CompatibilityGraph,
@@ -51,6 +52,8 @@ from collatz.valuation import AT_LEAST_K, classify_collatz_valuation, v2
 __all__ = [
     "AT_LEAST_K",
     "AdmissibleValuationAutomaton",
+    "AffineCenterState",
+    "AffineRegime",
     "BalancedTernaryFeatures",
     "CollatzFeatureTransition",
     "CollatzDualCode",

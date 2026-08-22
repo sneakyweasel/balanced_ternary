@@ -160,3 +160,24 @@ additional exact obstruction not implied by the code and exact \(R\), is
 representation and as a partition of deliberately lossy finite states.
 See [literature_comparison.md](literature_comparison.md) and
 [balanced_ternary_vs_collatz_literature.md](balanced_ternary_vs_collatz_literature.md).
+
+## Affine-center milestone
+
+1. Every nonempty code has the exact rational affine center
+   \(n_*=C/(2^K-3^m)\). **PROVED**.
+2. The centered start and endpoint satisfy
+   \(X-n_*=(3^m/2^K)(R-n_*)\), with explicit unreduced and reduced
+   numerator/denominator pairs. **PROVED; LEAN VERIFIED** in
+   cross-multiplied form.
+3. Expanding codes satisfy \(n_*<0<M,R<X\). Contracting codes move toward
+   a positive center, with equality only at a fixed point. **PROVED**.
+4. The 3-adic coordinate obeys \(X=M+q3^m\), \(q\ge0\), hence \(M\le X\).
+   **PROVED; LEAN VERIFIED**.
+5. No universal total order was found between \(R\) and \(M\), or between
+   \(C\) and \(R\); exact bounded witnesses occur in both directions.
+   **VERIFIED COMPUTATIONALLY**.
+6. The candidate inequality \(n_*\le R\) survived 5,460 recorded rows and
+   a separate 2,015,539-prefix streamed search. It remains a
+   **CONJECTURE**; in the contracting regime it is equivalent to \(X\le R\).
+
+See [collatz_affine_center.md](collatz_affine_center.md).

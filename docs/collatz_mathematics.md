@@ -722,3 +722,29 @@ non-reuse/convergence arguments are audited in
 [cerda_comparison.md](cerda_comparison.md). All repository claims retain
 the Milestone 6 verified baseline and do not depend on those global claims.
 
+## 26. Affine-center geometry
+
+For every nonempty exponent code, let
+
+\[
+D=2^K-3^m,\qquad n_*=\frac{C}{D}.
+\]
+
+Then \(D\ne0\), \(n_*\) is the rational fixed point of the code's affine
+map, and the canonical start/end pair obeys
+
+\[
+DR-C=2^K(R-X),\qquad DX-C=3^m(R-X),
+\]
+
+\[
+X-n_*=\frac{3^m}{2^K}(R-n_*).
+\]
+
+These are **PROVED** and **LEAN VERIFIED** in cross-multiplied form.
+Expanding codes have \(n_*<0<M,R<X\); contracting codes move toward their
+positive center. Kramer's representative satisfies \(X=M+q3^m\) for
+\(q\ge0\), hence \(M\le X\). Simple total orders among \(R,M,C,n_*\) fail
+in bounded exact censuses. See
+[collatz_affine_center.md](collatz_affine_center.md).
+

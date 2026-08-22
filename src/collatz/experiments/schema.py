@@ -8,6 +8,7 @@ from typing import Any
 
 SCHEMA_VERSION = "collatz-dual-code/v1"
 COMPATIBILITY_SCHEMA_VERSION = "collatz-compatibility/v1"
+AFFINE_CENTER_SCHEMA_VERSION = "collatz-affine-center/v1"
 
 
 @dataclass(frozen=True)
@@ -85,3 +86,53 @@ def validate_compatibility_row(row: dict[str, Any]) -> None:
             raise ValueError("empty valuation word must have C=0")
     elif not 1 <= row["M"] <= pow(3, row["m"]):
         raise ValueError("nonempty row M must be the least positive residue modulo 3^m")
+
+
+REQUIRED_AFFINE_CENTER_FIELDS = frozenset(
+    {
+        "valuations",
+        "m",
+        "K",
+        "C",
+        "R",
+        "X",
+        "M",
+        "two_power",
+        "three_power",
+        "gap",
+        "n_star",
+        "R_minus_n_star_raw",
+        "X_minus_n_star_raw",
+        "regime",
+        "partition",
+    }
+)
+
+
+def validate_affine_center_row(row: dict[str, Any]) -> None:
+    """Validate exact integral and rational data in an affine-center row."""
+    missing = REQUIRED_AFFINE_CENTER_FIELDS.difference(row)
+    if missing:
+        raise ValueError(f"affine-center row missing fields: {sorted(missing)}")
+    validate_compatibility_row(row)
+    if row["m"] < 1:
+        raise ValueError("affine-center rows require a nonempty code")
+    if row["two_power"] != 1 << row["K"]:
+        raise ValueError("row two_power does not equal 2^K")
+    if row["three_power"] != pow(3, row["m"]):
+        raise ValueError("row three_power does not equal 3^m")
+    if row["gap"] != row["two_power"] - row["three_power"] or row["gap"] == 0:
+        raise ValueError("row gap must equal the nonzero value 2^K-3^m")
+    if row["regime"] not in {"contracting", "expanding"}:
+        raise ValueError("row regime must be contracting or expanding")
+    if row["partition"] not in {"contracting", "critical-near", "expanding"}:
+        raise ValueError("invalid affine-center partition")
+    for field in ("n_star", "R_minus_n_star_raw", "X_minus_n_star_raw"):
+        pair = row[field]
+        if (
+            not isinstance(pair, (list, tuple))
+            or len(pair) != 2
+            or any(isinstance(value, bool) or not isinstance(value, int) for value in pair)
+            or pair[1] == 0
+        ):
+            raise ValueError(f"row {field} must be an integer numerator/denominator pair")

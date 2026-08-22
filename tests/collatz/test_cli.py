@@ -305,3 +305,30 @@ def test_collatz_near_critical():
     assert "Near-critical four-coordinate dataset" in out
     assert "seed=17" in out
     assert "OBSERVATIONS" in out
+
+
+def test_collatz_affine_center():
+    out = _run("collatz", "affine-center", "1", "--critical-gap", "1")
+    assert "Affine-center geometry" in out
+    assert "C=1  R=3  X=5  M=2" in out
+    assert "2^K-3^m=-1" in out
+    assert "n*=-1/1" in out
+    assert "all exact inequalities=True" in out
+
+
+def test_collatz_affine_center_census():
+    out = _run(
+        "collatz",
+        "affine-center-census",
+        "--max-length",
+        "2",
+        "--max-k",
+        "3",
+        "--critical-gap",
+        "1",
+        "--closest-count",
+        "3",
+    )
+    assert "Affine-center census" in out
+    assert "rows=12" in out
+    assert "theorem-backed inequality failures=0" in out

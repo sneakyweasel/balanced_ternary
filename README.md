@@ -16,7 +16,9 @@ verified arithmetic invariants, a modular residue automaton, and a CLI.
 refined 2-adic start representatives \(R_m\), Kramer's 3-adic endpoint
 representatives \(M_m\), balanced ternary, lift digits, and real drift.
 Balanced ternary is tested as a representation of \(R_m\), not asserted
-to be an independent arithmetic coordinate. Lyapunov search is not included.
+to be an independent arithmetic coordinate. The affine-center milestone
+adds the exact fixed point \(n_*=C/(2^K-3^m)\) and centered inequalities.
+Lyapunov search is not included.
 
 ## Installation
 
@@ -69,6 +71,8 @@ btprime collatz compatibility-graph --max-depth 3 --max-k 3
 btprime collatz information-test --max-length 4 --max-k 4
 btprime collatz rational-base 27
 btprime collatz near-critical --max-length 4 --max-k 4 --seed 17
+btprime collatz affine-center 1,4,2
+btprime collatz affine-center-census --max-length 6 --max-k 4 --critical-gap 10
 ```
 
 `analyze` always prints `encode(n)`; it does not hard-code example words.
@@ -116,6 +120,7 @@ docs/collatz_dual_coding.md
 docs/literature_comparison.md
 docs/balanced_ternary_vs_collatz_literature.md
 docs/cerda_comparison.md
+docs/collatz_affine_center.md
 formal/                 Lean 4 + Mathlib proofs (`lake build`)
 ```
 
