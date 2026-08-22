@@ -277,6 +277,36 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_acc.add_argument("--closest-count", type=int, default=10, dest="closest_count")
     p_acc.add_argument("--write", action="store_true")
 
+    p_fi = c.add_parser(
+        "fixed-integer",
+        help="Milestone 10: exact affine-center ledger of one odd start",
+    )
+    p_fi.add_argument("n", type=int)
+    p_fi.add_argument("--max-steps", type=int, default=40)
+    p_fi.add_argument("--critical-gap", type=int, default=1, dest="critical_gap")
+
+    p_fic = c.add_parser(
+        "fixed-integer-census",
+        help="Milestone 10: n_* <= n search on actual odd trajectories",
+    )
+    p_fic.add_argument("--limit", type=int, default=1000)
+    p_fic.add_argument("--max-steps", type=int, default=80)
+    p_fic.add_argument("--critical-gap", type=int, default=1, dest="critical_gap")
+    p_fic.add_argument("--write", action="store_true")
+
+    p_ag = c.add_parser(
+        "affine-gap",
+        help="Milestone 10: integer affine gap G along an actual orbit",
+    )
+    p_ag.add_argument("n", type=int)
+    p_ag.add_argument("--max-steps", type=int, default=40)
+
+    p_pc = c.add_parser(
+        "periodic-code",
+        help="Milestone 10: periodic-code fixed-point identity",
+    )
+    p_pc.add_argument("ks", help="comma-separated period, e.g. 2 or 1,1")
+
     p_wp = c.add_parser(
         "warp",
         help="Milestone 9: W, T, and the domain-aware commutator at n",

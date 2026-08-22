@@ -181,10 +181,13 @@ See [literature_comparison.md](literature_comparison.md) and
    \(C\) and \(R\); exact bounded witnesses occur in both directions.
    **VERIFIED COMPUTATIONALLY**.
 6. The candidate inequality \(n_*\le R\) survived 5,460 recorded rows and
-   a separate 2,015,539-prefix streamed search. It remains a
-   **CONJECTURE**; in the contracting regime it is equivalent to \(X\le R\).
+   a separate 2,015,539-prefix streamed search with \(m\le8\). It is
+   **REFUTED EXACTLY** at the length-\(17\) itinerary of \(n=165\).
+   In the contracting regime it is equivalent to \(X\le R\), which fails
+   whenever the orbit is still above the start.
 
-See [collatz_affine_center.md](collatz_affine_center.md).
+See [collatz_affine_center.md](collatz_affine_center.md) and
+[collatz_fixed_integer_asymptotics.md](collatz_fixed_integer_asymptotics.md).
 
 ## Answered in Milestone 9
 
@@ -204,3 +207,24 @@ See [collatz_affine_center.md](collatz_affine_center.md).
    **OBSERVATION**.
 
 See [collatz_bt_warp.md](collatz_bt_warp.md).
+
+## Answered in Milestone 10
+
+1. For a fixed actual start, \(2^{K_m}x_m=3^m n+C_m\) has the integer gap
+   \(G_m=2^{K_m}(n-x_m)\) and the recurrence
+   \(G_{m+1}=3G_m+2^{K_m}(n(2^{k_m}-3)-1)\). **PROVED; LEAN VERIFIED**.
+2. \(A_m=C_m/3^m\) equals the valuation series
+   \(\sum_j 2^{K_j}/3^{j+1}\). **PROVED**. This is not a new coordinate.
+3. Expanding prefixes have \(x_m>n\) and \(n_{*m}<0\). Contracting
+   \(n_{*m}\le n\) is exactly \(x_m\le n\). **PROVED**.
+4. \(n_{*m}\le n\) (and \(n_*\le R\) as a general finite-code statement)
+   is **REFUTED EXACTLY** at \(n=165\), \(m=17\).
+5. Required start residues reproduce the existing cylinder.
+   **PROVED**.
+6. A periodic code is a positive cycle only if \(n(2^K-3^p)=C\) and the
+   candidate actually realizes the period. Expanding periods are excluded.
+   **PROVED; LEAN VERIFIED**. This does not prove Collatz.
+7. No exact obstruction to \(\liminf K_m/m\le\log_2 3\) for a single
+   fixed positive integer was found. **OBSERVATION**.
+
+See [collatz_fixed_integer_asymptotics.md](collatz_fixed_integer_asymptotics.md).

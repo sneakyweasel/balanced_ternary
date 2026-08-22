@@ -145,16 +145,47 @@ Thus none is a universal inequality. It also finds counterexamples to both
 comparisons established here are the regime-dependent center inequalities
 and \(M\le X\), not a total ordering of \(R,M,C,n_*\).
 
-One stronger pattern survived:
+One stronger pattern survived every prefix with \(m\le8\) and \(k_i\le6\):
 
 \[
-\boxed{n_*\le R.}
+n_*\le R.
 \]
 
-It had no failure in the 5,460-row recorded census or in a separate streamed
-search of 2,015,539 prefixes with \(m\le8\) and \(k_i\le6\). This is a
-**CONJECTURE**, not a theorem. In the contracting regime it is equivalent
-to \(X\le R\); a proof or counterexample is the main follow-up question.
+That bounded census is **not** a theorem. Milestone 10 **REFUTES** the
+statement for general finite codes and for actual trajectories. The
+smallest witness is the length-\(17\) itinerary of \(n=165\):
+
+\[
+\mathbf{k}=(4,1,1,1,1,2,2,1,2,1,1,2,1,1,1,2,3),
+\]
+
+which is contracting, has \(R=165\), \(T^{17}(165)=167\), and \(n_*>165\).
+The \(m\le8\) search never reached this word. Details are in
+[collatz_fixed_integer_asymptotics.md](collatz_fixed_integer_asymptotics.md).
+
+## Fixed-integer asymptotic viewpoint
+
+Finite-code diagnostics vary \(R_m\) over all valuation words of a given
+length. The fixed-integer viewpoint does the opposite: one positive odd
+start \(n\) is held fixed, its actual itinerary generates every prefix,
+and the affine identities are rewritten around that constant.
+
+The exact integer gap
+
+\[
+G_m=n(2^{K_m}-3^m)-C_m=2^{K_m}\bigl(n-T^m(n)\bigr)
+\]
+
+makes \(n_{*m}\le n\) equivalent to \(T^m(n)\le n\) in the contracting
+regime, and automatic in the expanding regime. It is therefore not a
+positivity constraint, and it is not universal. The 2-adic residue test
+against the same fixed \(n\) reproduces the existing cylinder. The
+normalized series \(A_m=C_m/3^m\) is the exponent-code constant in another
+unit.
+
+This viewpoint yields exact recurrences and one refutation. It does not
+yield a new obstruction to \(\liminf K_m/m\le\log_2 3\). See
+[collatz_fixed_integer_asymptotics.md](collatz_fixed_integer_asymptotics.md).
 
 ## Reproducibility
 

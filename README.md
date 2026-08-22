@@ -32,6 +32,7 @@ together with:
 - mixed-radix lift digits \(t_i\);
 - exact drift \(3^m/2^K\);
 - the affine center \(n_*=C/(2^K-3^m)\) and centered inequalities;
+- the integer affine gap \(G_m=2^{K_m}(n-T^m(n))\) of one fixed start;
 - OEIS balanced-ternary word maps, especially reversal \(W\), composed
   with \(T\) on an explicit domain.
 
@@ -77,6 +78,8 @@ btprime collatz affine-center 1,4,2
 btprime reverse 21
 btprime collatz warp 27
 btprime collatz warp-census --limit 20000
+btprime collatz fixed-integer 165 --max-steps 20
+btprime collatz periodic-code 2
 
 # Bounded experiments
 btprime collatz information-test --max-length 4 --max-k 4
@@ -146,8 +149,9 @@ lake build
 ```
 
 The formal layer includes the affine exponent-code formula, cylinders,
-lift/stabilization statements, 3-adic endpoint congruences, and affine-center
-numerator identities. See [formal/README.md](formal/README.md).
+lift/stabilization statements, 3-adic endpoint congruences, affine-center
+numerator identities, and the fixed-integer affine-gap recurrence. See
+[formal/README.md](formal/README.md).
 
 ## Repository layout
 
@@ -176,6 +180,7 @@ Start with [docs/README.md](docs/README.md). The main records are:
 - [Dual coding and lift digits](docs/collatz_dual_coding.md)
 - [Four-coordinate literature comparison](docs/literature_comparison.md)
 - [Affine-center geometry](docs/collatz_affine_center.md)
+- [Fixed-integer asymptotics](docs/collatz_fixed_integer_asymptotics.md)
 - [BT word maps and Collatz commutators](docs/collatz_bt_warp.md)
 
 Displayed balanced-ternary words are most-significant digit first.

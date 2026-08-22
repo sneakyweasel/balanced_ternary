@@ -264,3 +264,22 @@ No exact identity identifying \(W(n)\) or \(W(R(\mathbf{k}))\) with those
 coordinates was found. The comparison is therefore a dictionary of
 different word operations, not a novelty claim. See
 [collatz_bt_warp.md](collatz_bt_warp.md).
+
+## Fixed-integer affine-center geometry
+
+Milestone 10 does not add a new 2-adic start representative, a new 3-adic
+endpoint, or a new critical-slope calculation. Kramer already uses the
+affine constant, the pair \((3^m,2^K)\), and the representatives \(r\) and
+\(M\). The intended narrower object is the coupled exact state of **one
+fixed integer**
+
+\[
+(C_m,\,K_m,\,n_m,\,n_{*m},\,G_m),\qquad
+G_m=2^{K_m}(n-n_m).
+\]
+
+That rewriting shows \(n_{*m}\le n\) is the stopping-time comparison in
+the contracting regime, not a positivity law, and it fails at \(n=165\).
+The normalized series \(A_m=C_m/3^m\) is Kramer's affine constant in
+homogeneous units. Required start residues are the existing cylinder.
+See [collatz_fixed_integer_asymptotics.md](collatz_fixed_integer_asymptotics.md).

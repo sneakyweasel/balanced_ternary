@@ -23,6 +23,8 @@ Compiled theorem groups:
 - Kramer's endpoint congruence `2^K x = C` in `ZMod (3^m)`;
 - affine-center start/endpoint numerators and cross-multiplied scaling;
 - `M ≤ X` from the nonnegative `3^m` endpoint lift;
+- the fixed-integer affine gap `G = 2^K (n - x)`, its exact recurrence,
+  the periodic-code identity `n(2^K - 3^p) = C`, and `2^K ≠ 3^m` for `m ≥ 1`;
 - exact endpoint change under refinement and signed successor drift;
 - lift blocks as the mixed-radix expansion of `(R_m - 1) / 2`;
 - boundedness iff the mixed-radix lift blocks are eventually zero;

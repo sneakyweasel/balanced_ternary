@@ -10,6 +10,7 @@ SCHEMA_VERSION = "collatz-dual-code/v1"
 COMPATIBILITY_SCHEMA_VERSION = "collatz-compatibility/v1"
 AFFINE_CENTER_SCHEMA_VERSION = "collatz-affine-center/v1"
 BT_WARP_SCHEMA_VERSION = "collatz-bt-warp/v1"
+FIXED_INTEGER_SCHEMA_VERSION = "collatz-fixed-integer/v1"
 
 
 @dataclass(frozen=True)

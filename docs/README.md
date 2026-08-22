@@ -28,6 +28,8 @@ meaning throughout:
   mixed-radix reconstruction.
 - [Affine-center geometry](collatz_affine_center.md): exact fixed centers,
   contracting/expanding regimes, and coordinate inequalities.
+- [Fixed-integer asymptotics](collatz_fixed_integer_asymptotics.md): affine
+  gap \(G_m\) of one actual start, and the refutation of \(n_*\le n\).
 - [BT word maps](collatz_bt_warp.md): OEIS reversal \(W\), commutators with
   \(T\), palindromes, and realizer warps.
 
@@ -54,8 +56,9 @@ For the current research frontier, read:
 2. [Dual coding](collatz_dual_coding.md)
 3. [Literature comparison](literature_comparison.md)
 4. [Affine-center geometry](collatz_affine_center.md)
-5. [BT word maps](collatz_bt_warp.md)
-6. [Research questions](collatz_research_questions.md)
+5. [Fixed-integer asymptotics](collatz_fixed_integer_asymptotics.md)
+6. [BT word maps](collatz_bt_warp.md)
+7. [Research questions](collatz_research_questions.md)
 
 For the balanced-ternary foundation, begin with
 [Balanced-ternary mathematics](mathematics.md), then continue to the Collatz

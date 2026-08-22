@@ -758,3 +758,14 @@ The commutator \(W(T(n))-T(W(n))\) is defined only when both \(n\) and
 transition laws beyond append-plus were not obtained. Details, censuses,
 and Q1–Q7 are in [collatz_bt_warp.md](collatz_bt_warp.md).
 
+## 28. Fixed-integer affine-center geometry
+
+For an actual trajectory the start is constant. The integer gap
+\(G_m=2^{K_m}(n-T^m(n))\) is **PROVED**, as is the recurrence
+\(G_{m+1}=3G_m+2^{K_m}(n(2^{k_m}-3)-1)\). The inequality \(n_{*m}\le n\)
+is equivalent to \(T^m(n)\le n\) when \(2^{K_m}>3^m\), and is
+**REFUTED EXACTLY** at \(n=165\), \(m=17\). The normalized series
+\(A_m=C_m/3^m\) is not a new coordinate. No non-contracting obstruction
+for a single fixed \(n\) was found. See
+[collatz_fixed_integer_asymptotics.md](collatz_fixed_integer_asymptotics.md).
+

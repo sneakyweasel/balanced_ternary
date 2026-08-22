@@ -334,6 +334,39 @@ def test_collatz_affine_center_census():
     assert "theorem-backed inequality failures=0" in out
 
 
+def test_collatz_fixed_integer():
+    out = _run("collatz", "fixed-integer", "7", "--max-steps", "4")
+    assert "Fixed-integer affine geometry of n=7" in out
+    assert "G=" in out
+    assert "regime=" in out
+
+
+def test_collatz_fixed_integer_census():
+    out = _run(
+        "collatz",
+        "fixed-integer-census",
+        "--limit",
+        "20",
+        "--max-steps",
+        "10",
+    )
+    assert "Fixed-integer affine census" in out
+    assert "n_*<=n failure count=" in out
+
+
+def test_collatz_affine_gap():
+    out = _run("collatz", "affine-gap", "7", "--max-steps", "3")
+    assert "Integer affine gap G of n=7" in out
+    assert "G = n(2^K - 3^m) - C" in out
+
+
+def test_collatz_periodic_code():
+    out = _run("collatz", "periodic-code", "2")
+    assert "Periodic-code fixed-point identity" in out
+    assert "positive affine candidate=1" in out
+    assert "does not prove Collatz" in out
+
+
 def test_collatz_warp_one():
     out = _run("collatz", "warp", "1")
     assert "W(n)=1" in out

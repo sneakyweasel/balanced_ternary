@@ -5,6 +5,7 @@ from collatz.automata.symbolic_graph import SymbolicJointGraph, build_symbolic_g
 from collatz.automata.two_adic import TwoAdicDigitAutomaton
 from collatz.automata.valuation_shift import AdmissibleValuationAutomaton
 from collatz.affine_center import AffineCenterState, AffineRegime
+from collatz.affine_gap import affine_gap
 from collatz.cylinders import ValuationCylinder, precision_cost, valuation_cylinder
 from collatz.compatibility import (
     CompatibilityGraph,
@@ -17,6 +18,7 @@ from collatz.dual_code import (
     canonical_realizer_formula,
     reconstruct_realizer,
 )
+from collatz.fixed_integer import InfiniteTrajectoryAffineState
 from collatz.itinerary import ValuationItinerary
 from collatz.endpoint_3adic import KramerEndpoint, kramer_endpoint_residue
 from collatz.lift_tree import LiftTree, build_lift_tree
@@ -61,6 +63,7 @@ __all__ = [
     "CompatibilityGraph",
     "CompatibilityState",
     "ExponentCodeDiagnostic",
+    "InfiniteTrajectoryAffineState",
     "JointGraph",
     "KramerEndpoint",
     "LiftTree",
@@ -92,6 +95,7 @@ __all__ = [
     "decode_base_3_2",
     "feature_transition",
     "finite_lift_certificate",
+    "affine_gap",
     "lift_digit",
     "lift_digits",
     "kramer_endpoint_residue",

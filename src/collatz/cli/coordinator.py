@@ -46,6 +46,12 @@ from .compatibility import (
     _affine_center,
     _affine_center_census,
 )
+from .fixed_integer import (
+    _affine_gap,
+    _fixed_integer,
+    _fixed_integer_census,
+    _periodic_code,
+)
 from .warp import (
     _warp,
     _warp_census,
@@ -152,6 +158,16 @@ def run_collatz(args: argparse.Namespace) -> int:
             args.closest_count,
             args.write,
         )
+    if cmd == "fixed-integer":
+        return _fixed_integer(args.n, args.max_steps, args.critical_gap)
+    if cmd == "fixed-integer-census":
+        return _fixed_integer_census(
+            args.limit, args.max_steps, args.critical_gap, args.write
+        )
+    if cmd == "affine-gap":
+        return _affine_gap(args.n, args.max_steps)
+    if cmd == "periodic-code":
+        return _periodic_code(args.ks)
     if cmd == "warp":
         return _warp(args.n)
     if cmd == "warp-census":
