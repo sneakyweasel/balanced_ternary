@@ -39,9 +39,10 @@ def test_router_starts_on_overview():
 
 
 def test_exponent_code_page_loads():
-    at = AppTest.from_file(str(APP), default_timeout=20)
-    at.switch_page("app_pages/exponent_code.py")
+    page = APP.parent / "app_pages" / "exponent_code.py"
+    at = AppTest.from_file(str(page), default_timeout=20)
     at.run()
     assert not at.exception
-    assert any("Exponent-code" in str(value) for value in [h.value for h in at.header])
+    captions = [element.value for element in at.caption]
+    assert any("valuation code" in str(value).lower() for value in captions)
     assert any("valuation" in str(box.label).lower() for box in at.text_input)

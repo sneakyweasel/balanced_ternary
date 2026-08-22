@@ -27,7 +27,7 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
 
     p_invar = c.add_parser(
         "test-invariants",
-        help="verify Milestone 1 identities on odd n in [1, limit]",
+        help="verify Collatz identities on odd n in [1, limit]",
     )
     p_invar.add_argument("--limit", type=int, default=100_000)
 
@@ -116,15 +116,15 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_sg.add_argument("--k-max", type=int, default=5, dest="k_max")
     p_sg.add_argument("--leftover", type=int, default=1, dest="leftover")
 
-    p_it = c.add_parser("itinerary", help="Milestone 4: exact affine T^m formula")
+    p_it = c.add_parser("itinerary", help="exact affine T^m formula")
     p_it.add_argument("ks", help="comma-separated valuations, e.g. 1,1,2,3")
 
-    p_rz = c.add_parser("realizer", help="Milestone 4: minimum positive realizer R(k)")
+    p_rz = c.add_parser("realizer", help="minimum positive realizer R(k)")
     p_rz.add_argument("ks", help="comma-separated valuations")
 
     p_en = c.add_parser(
         "enumerate-itineraries",
-        help="Milestone 4: exhaust signatures of length-m words",
+        help="exhaust signatures of length-m words",
     )
     p_en.add_argument("--length", type=int, default=4)
     p_en.add_argument("--max-k", type=int, default=3, dest="max_k")
@@ -132,19 +132,19 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
 
     p_fb = c.add_parser(
         "fixed-budget",
-        help="Milestone 4: all compositions of K into m parts",
+        help="all compositions of K into m parts",
     )
     p_fb.add_argument("--length", type=int, default=5)
     p_fb.add_argument("--sum-k", type=int, default=8, dest="sum_k")
     p_fb.add_argument("--write", action="store_true")
 
-    p_pm = c.add_parser("permutations", help="Milestone 4: order dependence of C and R")
+    p_pm = c.add_parser("permutations", help="order dependence of C and R")
     p_pm.add_argument("ks", help="comma-separated multiset, e.g. 1,1,2,3")
     p_pm.add_argument("--write", action="store_true")
 
     p_ex = c.add_parser(
         "exceptional-search",
-        help="Milestone 4: census of expanding valuation words",
+        help="census of expanding valuation words",
     )
     p_ex.add_argument("--length", type=int, default=6)
     p_ex.add_argument("--max-k", type=int, default=2, dest="max_k")

@@ -37,7 +37,6 @@ def _odd_input(label: str, *, key: str) -> int:
 
 
 def number_page() -> None:
-    st.header("Number explorer")
     n = _odd_input("Positive odd integer", key="number_n")
     if n % 2 == 0:
         st.error("The accelerated map requires an odd integer.")

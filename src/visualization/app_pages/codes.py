@@ -31,7 +31,6 @@ def _cached_census(
 
 
 def exponent_code_page() -> None:
-    st.header("Exponent-code geometry")
     st.caption(
         "One finite valuation code viewed through exact 2-adic, 3-adic, "
         "balanced-ternary, drift, lift, and affine-center coordinates."
@@ -131,7 +130,6 @@ def exponent_code_page() -> None:
 
 
 def affine_census_page() -> None:
-    st.header("Affine-center census")
     st.caption(
         "Exhaustive finite products of valuation codes. Rows use exact integers "
         "and rationals; universality labels apply only to the submitted census."
