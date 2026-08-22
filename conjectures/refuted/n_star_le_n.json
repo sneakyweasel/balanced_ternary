@@ -1,0 +1,17 @@
+{
+  "counterexamples": [
+    "n=165, m=17: n* > n"
+  ],
+  "first_seen": "Milestone 10 / affine-center work",
+  "id": "n_star_le_n",
+  "lean_reference": "Problems.Collatz.FixedInteger / CollatzDual.FixedInteger",
+  "literature": [],
+  "mathematical_domain": "Collatz affine geometry",
+  "notes": "n* \u2264 R as a general finite-code inequality is also refuted by the same witness.",
+  "origin": "docs/collatz_fixed_integer_asymptotics.md",
+  "proof_reference": "docs/collatz_fixed_integer_asymptotics.md",
+  "statement": "The affine center satisfies n* \u2264 n (and n* \u2264 R) for finite valuation codes.",
+  "status": "REFUTED",
+  "tested_range": "smallest witness n=165, m=17",
+  "title": "n* \u2264 n along contracting prefixes"
+}

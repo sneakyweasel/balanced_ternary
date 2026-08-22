@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "Cerd\u00e1 Bennassar"
+  ],
+  "id": "cerda-zenodo",
+  "identifiers": {
+    "doi": "10.5281/zenodo.18831439"
+  },
+  "notes": "docs/cerda_comparison.md",
+  "problem_area": "collatz",
+  "project_relationship": "independent",
+  "relevant_concepts": [
+    "global claims"
+  ],
+  "status": "audited; global claims not adopted",
+  "title": "Cerd\u00e1 Bennassar Collatz notes",
+  "url": {
+    "doi": "10.5281/zenodo.18831439"
+  },
+  "year": null
+}

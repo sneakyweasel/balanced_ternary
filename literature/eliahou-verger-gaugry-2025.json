@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "Shalom Eliahou",
+    "Jean-Louis Verger-Gaugry"
+  ],
+  "id": "eliahou-verger-gaugry-2025",
+  "identifiers": {
+    "doi": "10.5802/crmath.662"
+  },
+  "notes": "docs/literature_comparison.md",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "rational base 3/2"
+  ],
+  "status": "compared",
+  "title": "Rational base 3/2 and the 3x+1 problem",
+  "url": {
+    "doi": "10.5802/crmath.662"
+  },
+  "year": 2025
+}

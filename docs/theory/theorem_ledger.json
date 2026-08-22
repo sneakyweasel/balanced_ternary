@@ -1,0 +1,101 @@
+[
+  {
+    "id": "BT-encode-unique",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Every integer has a unique canonical balanced ternary word.",
+    "source": "docs/mathematics.md",
+    "lean": "Representation/Words.lean",
+    "tests": ["tests/test_representation.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BT-D-S",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D ∘ S = id",
+    "source": "docs/balanced_ternary_operators.md",
+    "lean": "Operators/DigitDerivative.lean",
+    "tests": ["tests/test_operators.py"],
+    "related_conjectures": ["S_circ_D_id"]
+  },
+  {
+    "id": "BT-W-not-involution",
+    "tag": "REFUTED",
+    "statement": "W is an involution on Z",
+    "source": "docs/operator_algebra.md",
+    "lean": "Operators/Algebra.lean",
+    "tests": ["tests/test_operators.py"],
+    "related_conjectures": ["W_not_involution"]
+  },
+  {
+    "id": "BT-Pn3",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "P_n(3) = n",
+    "source": "docs/balanced_ternary_polynomials.md",
+    "lean": "Operators/Polynomial.lean",
+    "tests": ["tests/test_operator_branch.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "C-T-welldefined",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Accelerated T is well-defined on positive odd integers.",
+    "source": "docs/collatz_mathematics.md",
+    "lean": "",
+    "tests": ["tests/collatz/test_core.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "C-append-plus",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "BT(3n+1)=BT(n)+ for n≠0",
+    "source": "docs/collatz_mathematics.md",
+    "lean": "Representation/Words.lean",
+    "tests": ["tests/collatz/test_theorems.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "C-odd-part-not-one-fst",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Unrestricted odd-part is not one rational transduction.",
+    "source": "docs/collatz_mathematics.md",
+    "lean": "",
+    "tests": ["tests/collatz/test_transducers.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "C-affine-formula",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "T^m(n)=(3^m n+C)/2^K",
+    "source": "docs/collatz_itinerary_compatibility.md",
+    "lean": "Problems/Collatz/",
+    "tests": ["tests/collatz/test_affine_formula.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "C-lift-zero",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Positive integer realizer iff eventual zero lift.",
+    "source": "docs/collatz_zero_lift.md",
+    "lean": "Problems/Collatz/Lift.lean",
+    "tests": ["tests/collatz/test_zero_lift.py"],
+    "related_conjectures": ["low_Km_m_infinite_lifts"]
+  },
+  {
+    "id": "C-nstar-le-n",
+    "tag": "REFUTED",
+    "statement": "n* ≤ n for finite valuation codes",
+    "source": "docs/collatz_fixed_integer_asymptotics.md",
+    "lean": "Problems/Collatz/FixedInteger.lean",
+    "tests": ["tests/collatz/test_fixed_integer.py"],
+    "related_conjectures": ["n_star_le_n"]
+  },
+  {
+    "id": "C-Nk",
+    "tag": "CONJECTURE",
+    "statement": "N_k = 2^k+1",
+    "source": "docs/collatz_research_questions.md",
+    "lean": "",
+    "tests": ["tests/collatz/test_complexity_spectrum.py"],
+    "related_conjectures": ["Nk_state_count"]
+  }
+]

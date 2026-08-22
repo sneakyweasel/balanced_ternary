@@ -1,25 +1,10 @@
 """Public API for balanced ternary representation, arithmetic, and invariants."""
 
-from balanced_ternary.arithmetic import factorize, format_factorization, is_prime
-from balanced_ternary.features import (
-    ZeroGapStatistics,
+from bt import (
+    BalancedTernary,
     RunStatistics,
-    negative_digit_count,
-    position_class_sums,
-    positive_digit_count,
-    run_statistics,
-    signed_digit_sum,
-    weight,
-    zero_count,
-    zero_gap_statistics,
-)
-from balanced_ternary.invariants import (
+    ZeroGapStatistics,
     automaton_residue,
-    lsd_nonzero_index,
-    v3,
-    verify_invariants,
-)
-from balanced_ternary.oeis_maps import (
     bt_alternating_digit_sum,
     bt_digit_sum,
     bt_is_palindrome,
@@ -27,14 +12,28 @@ from balanced_ternary.oeis_maps import (
     bt_reverse,
     bt_reverse_tail,
     bt_reverse_zeros,
-)
-from balanced_ternary.representation import (
-    BalancedTernary,
     decode,
+    digit_derivative,
     digits,
     encode,
+    factorize,
+    format_factorization,
     is_canonical,
+    is_prime,
+    lsd_digit,
+    lsd_nonzero_index,
+    negative_digit_count,
     normalize,
+    polynomial,
+    position_class_sums,
+    positive_digit_count,
+    run_statistics,
+    signed_digit_sum,
+    v3,
+    verify_invariants,
+    weight,
+    zero_count,
+    zero_gap_statistics,
 )
 
 __all__ = [
@@ -50,15 +49,18 @@ __all__ = [
     "bt_reverse_tail",
     "bt_reverse_zeros",
     "decode",
+    "digit_derivative",
     "digits",
     "encode",
     "factorize",
     "format_factorization",
     "is_canonical",
     "is_prime",
+    "lsd_digit",
     "lsd_nonzero_index",
     "negative_digit_count",
     "normalize",
+    "polynomial",
     "position_class_sums",
     "positive_digit_count",
     "run_statistics",

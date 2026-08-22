@@ -1,0 +1,19 @@
+{
+  "counterexamples": [
+    "n=3: W\u2218T \u2260 T\u2218W"
+  ],
+  "first_seen": "Milestone 9",
+  "id": "W_commutes_T",
+  "lean_reference": "",
+  "literature": [
+    "oeis-A134028"
+  ],
+  "mathematical_domain": "Collatz / BT warp",
+  "notes": "Domain-aware commutator is the remaining object of study.",
+  "origin": "docs/collatz_bt_warp.md",
+  "proof_reference": "docs/collatz_bt_warp.md",
+  "statement": "W\u2218T=T\u2218W on positive odd integers.",
+  "status": "REFUTED",
+  "tested_range": "exact; witness n=3",
+  "title": "W commutes with accelerated T"
+}

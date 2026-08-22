@@ -1,5 +1,5 @@
 """Finite automata over balanced ternary digits."""
 
-from automata.modular import ModularAutomaton
+from bt.automata import ModularAutomaton
 
 __all__ = ["ModularAutomaton"]

@@ -1,0 +1,17 @@
+{
+  "counterexamples": [
+    "word (1,2,1,1,1,1,2,2,1,2) with early lifts then zeros"
+  ],
+  "first_seen": "Milestone 6",
+  "id": "expanding_extension_must_lift",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "Collatz dual coding",
+  "notes": "Exact finite counterexample to the local strong form only.",
+  "origin": "docs/collatz_dual_coding.md",
+  "proof_reference": "docs/collatz_dual_coding.md",
+  "statement": "Every expanding extension of a valuation word has a positive lift digit.",
+  "status": "REFUTED",
+  "tested_range": "finite local witness; not an infinite statement",
+  "title": "Every expanding extension must lift"
+}

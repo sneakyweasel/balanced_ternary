@@ -1,0 +1,15 @@
+{
+  "counterexamples": [],
+  "first_seen": "Milestone 5",
+  "id": "low_Km_m_infinite_lifts",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "Collatz zero-lift",
+  "notes": "No implication is assumed. Lyapunov questions are deferred.",
+  "origin": "docs/collatz_zero_lift.md",
+  "proof_reference": "",
+  "statement": "If K_m/m stays below a fixed threshold, then infinitely many lift digits t_m are positive.",
+  "status": "ACTIVE",
+  "tested_range": "no exhaustive search mandated yet",
+  "title": "Sustained low K_m/m forces infinitely many positive lifts"
+}

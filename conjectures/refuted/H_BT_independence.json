@@ -1,0 +1,20 @@
+{
+  "counterexamples": [
+    "information-content partition: H_BT strong independence fails"
+  ],
+  "first_seen": "four-coordinate compatibility milestone",
+  "id": "H_BT_independence",
+  "lean_reference": "",
+  "literature": [
+    "kramer-2026",
+    "eliahou-verger-gaugry-2025"
+  ],
+  "mathematical_domain": "Collatz four-coordinate compatibility",
+  "notes": "BT(R) is a deterministic function of R.",
+  "origin": "docs/literature_comparison.md; information-content experiment",
+  "proof_reference": "docs/literature_comparison.md",
+  "statement": "Balanced-ternary features of R add an independent exact obstruction not already present in the exponent code and R.",
+  "status": "REFUTED",
+  "tested_range": "information-content experiment",
+  "title": "H_BT: BT adds an exact obstruction beyond code+R"
+}

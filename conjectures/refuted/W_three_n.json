@@ -1,0 +1,19 @@
+{
+  "counterexamples": [
+    "n=1: W(3)=1 \u2260 3W(1)"
+  ],
+  "first_seen": "Milestone 9",
+  "id": "W_three_n",
+  "lean_reference": "",
+  "literature": [
+    "oeis-A134028"
+  ],
+  "mathematical_domain": "balanced ternary operators",
+  "notes": "Preserved naive counterexample.",
+  "origin": "docs/collatz_bt_warp.md; tests/test_oeis_maps.py",
+  "proof_reference": "docs/collatz_bt_warp.md",
+  "statement": "W(3n)=3W(n) for all n.",
+  "status": "REFUTED",
+  "tested_range": "exact; witness n=1",
+  "title": "W(3n)=3W(n)"
+}

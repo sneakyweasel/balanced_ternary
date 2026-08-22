@@ -1,0 +1,39 @@
+# Research modules
+
+Research problems are applications of the `bt` core. Each area is
+independent and may import `bt.*` plus shared experiment/registry
+utilities.
+
+## Status labels
+
+| Status | Meaning |
+|--------|---------|
+| `EXPLORATORY` | early computational or structural work |
+| `STRUCTURAL` | exact theorems or a stable exact dictionary, no solution claim |
+| `THEOREM` | a named exact result is the centre of the module |
+| `PAPER_CANDIDATE` | at least one exact theorem or genuinely nontrivial computational result with a clear literature distinction |
+| `ARCHIVED` | retained for history, not an active programme |
+
+Do not mark a module `PAPER_CANDIDATE` merely because a census is large.
+
+## Seeded modules
+
+| Module | Status | Contents |
+|--------|--------|----------|
+| `research.collatz` | `STRUCTURAL` | accelerated `T`, cylinders, dual codes, affine geometry, cycles, warp |
+| `research.additive_combinatorics` | `EXPLORATORY` | `A_k`, `B_k`, `C_k`, sumsets |
+| `research.perfect_powers` | `EXPLORATORY` | sparse squares and cubes |
+| `research.primes` | `EXPLORATORY` | sparse-prime helpers already in the repo |
+| `research.sparse_polynomials` | `EXPLORATORY` | Mahler / factor scans |
+| `research.operator_dynamics` | `EXPLORATORY` | composition census, dossiers |
+| `research.open_problems` | registry | pointers, not a dumping ground |
+
+Each module exposes a lightweight `problem.py` descriptor
+(`id`, `title`, `status`, `statement`, `bt_relevance`, `docs`, `lean`,
+`conjectures`). Collatz keeps its existing modules; they are not forced
+into a deep framework.
+
+## Adding a problem
+
+See [docs/problems/TEMPLATE.md](../problems/TEMPLATE.md). A new problem
+must not edit core arithmetic.

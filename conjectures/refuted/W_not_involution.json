@@ -1,0 +1,19 @@
+{
+  "counterexamples": [
+    "W(3)=1 and W(W(3))=1 \u2260 3"
+  ],
+  "first_seen": "Milestone 9 / operator algebra",
+  "id": "W_not_involution",
+  "lean_reference": "Operators.Algebra / CollatzDual.OperatorAlgebra W_not_involution_on_three",
+  "literature": [
+    "oeis-A134028"
+  ],
+  "mathematical_domain": "balanced ternary operators",
+  "notes": "Rejected hypothesis preserved. Not upgraded.",
+  "origin": "docs/operator_algebra.md; docs/collatz_bt_warp.md",
+  "proof_reference": "docs/operator_algebra.md",
+  "statement": "W(W(n))=n for every integer n.",
+  "status": "REFUTED",
+  "tested_range": "exact identity; witness n=3",
+  "title": "W is an involution on Z"
+}

@@ -3,7 +3,11 @@ import CollatzDual.Basic
 import CollatzDual.Center
 import CollatzDual.Cycles
 import CollatzDual.Cylinder
+import CollatzDual.DigitDerivative
 import CollatzDual.Endpoint
 import CollatzDual.FixedInteger
 import CollatzDual.Lift
+import CollatzDual.OperatorAlgebra
+import CollatzDual.Operators
+import CollatzDual.Polynomial
 import CollatzDual.Warp

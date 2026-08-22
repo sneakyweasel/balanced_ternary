@@ -1,0 +1,17 @@
+{
+  "counterexamples": [
+    "k=(1): W(R) \u2260 R(reverse itinerary)"
+  ],
+  "first_seen": "Milestone 9",
+  "id": "W_R_reverse_itinerary",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "Collatz dual coding",
+  "notes": "",
+  "origin": "docs/collatz_bt_warp.md",
+  "proof_reference": "docs/collatz_bt_warp.md",
+  "statement": "The realizer of a reversed itinerary is the word-reversal of R(k).",
+  "status": "REFUTED",
+  "tested_range": "exact; witness k=(1)",
+  "title": "W(R(k))=R(reverse k)"
+}

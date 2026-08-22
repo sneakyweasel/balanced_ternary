@@ -1,6 +1,3 @@
-"""CLI subcommands for ``btprime collatz ...``."""
+"""Compatibility shim. Canonical implementation: :mod:`research.collatz.cli`."""
 
-from .coordinator import run_collatz
-from .parsers import add_collatz_subparser
-
-__all__ = ["add_collatz_subparser", "run_collatz"]
+from research.collatz.cli import *  # noqa: F403

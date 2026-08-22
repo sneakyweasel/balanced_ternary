@@ -1,45 +1,88 @@
-# Balanced ternary and Collatz research
+# Balanced Ternary Mathematical Laboratory
 
-An exact-arithmetic research platform with two connected components:
+An exact-arithmetic **research platform**. Balanced ternary mathematics is
+the core. Research problems — Collatz, sparse powers, additive
+combinatorics, operator dynamics — are independent applications.
 
-- canonical balanced-ternary representation, arithmetic, features, invariants,
-  and modular residue automata;
-- the accelerated odd-only Collatz map studied through exponent codes,
-  2-adic cylinders, lift digits, 3-adic endpoints, balanced ternary, and
-  affine-center geometry.
+This repository does **not** claim a solution of the Collatz conjecture or
+of any other open problem. Finite checks are never presented as proofs.
+Claims are labelled **PROVED**, **VERIFIED COMPUTATIONALLY**,
+**CONJECTURE**, **OBSERVATION**, or **REFUTED**.
 
-This is not a primality-testing library and does not claim a proof or
-disproof of the Collatz conjecture. Claims are labelled **PROVED**,
-**VERIFIED COMPUTATIONALLY**, **CONJECTURE**, or **OBSERVATION**. Finite
-checks are never presented as proofs.
+## What balanced ternary is
 
-## Current research surface
-
-For a finite valuation code \(\mathbf{k}=(k_0,\ldots,k_{m-1})\), the
-project computes
+Every integer has a unique canonical expansion
 
 \[
-T^m(n)=\frac{3^m n+C}{2^K},\qquad K=\sum_i k_i,
+n = \sum_i a_i 3^i,\qquad a_i \in \{-1,0,+1\}
 \]
 
-together with:
+with no leading zeros (except \(n=0\)). Display uses `-`, `0`, `+`
+(most-significant digit first). Mathematical positions are indexed from
+the least-significant digit \(a_0\).
 
-- the refined 2-adic start representative \(R\);
-- Kramer's 2-adic representative \(r\) and 3-adic endpoint representative
-  \(M\);
-- the canonical endpoint \(X=T^m(R)\);
-- the balanced-ternary word \(\operatorname{BT}(R)\);
-- mixed-radix lift digits \(t_i\);
-- exact drift \(3^m/2^K\);
-- the affine center \(n_*=C/(2^K-3^m)\) and centered inequalities;
-- the integer affine gap \(G_m=2^{K_m}(n-T^m(n))\) of one fixed start;
-- OEIS balanced-ternary word maps, especially reversal \(W\), composed
-  with \(T\) on an explicit domain.
+## Why this repository exists
 
-Balanced ternary is tested as a representation of \(R\), not asserted to be
-an independent arithmetic coordinate. The current exact result is that
-\(\operatorname{BT}(R)\) is determined by \(R\); lossy balanced-ternary
-features can still be useful observables.
+To keep a **problem-independent** encoder, arithmetic, operators,
+polynomials, automata, and transducers, and to attach new open problems
+as modules that import `bt` but never the reverse.
+
+## Core (`bt`)
+
+Representation, arithmetic, normalization, operators (`S`, `N`, `D`,
+`W`, `M2`, `H2`, …), metrics, support, polynomials \(P_n\) with
+\(P_n(3)=n\), generic automata, and generic transducers.
+
+```python
+from bt import decode, encode
+
+word = encode(42)
+assert decode(word) == 42
+```
+
+The compatibility façade `from balanced_ternary import encode` remains
+supported.
+
+## Research applications (`research`)
+
+| Module | Status |
+|--------|--------|
+| `research.collatz` | STRUCTURAL |
+| `research.additive_combinatorics` | EXPLORATORY |
+| `research.perfect_powers` | EXPLORATORY |
+| `research.primes` | EXPLORATORY |
+| `research.sparse_polynomials` | EXPLORATORY |
+| `research.operator_dynamics` | EXPLORATORY |
+
+```python
+from collatz import AffineCenterState, CompatibilityState, collatz_step
+```
+
+still works; the implementation lives under `research.collatz`.
+
+## Formal verification
+
+Lean 4 + Mathlib under `formal/`. No `sorry` or `admit`.
+
+```powershell
+cd formal
+lake build
+```
+
+See [formal/README.md](formal/README.md) and
+[docs/architecture/formalization.md](docs/architecture/formalization.md).
+
+## Current open problems and conjectures
+
+Active / computationally supported registry entries include `N_k=2^k+1`,
+low-\(K_m/m\) lift conjectures, and non-contraction compatibility.
+Refuted hypotheses (including `W(3)=1` and `n_*=165` at step 17) are
+kept under `conjectures/refuted/`.
+
+```powershell
+btprime conjectures list
+btprime status
+```
 
 ## Quick start
 
@@ -52,139 +95,48 @@ python -m pip install -e ".[dev,ui]"
 pytest
 ```
 
-The slowest Python test exhaustively checks balanced-ternary identities on
-\([-10^6,10^6]\).
+Optional Parquet experiment I/O: `pip install -e ".[experiments]"`.
 
-## Representative CLI workflows
+## CLI
 
-The stable command is `btprime`. Use `--help` on either command group for
-the complete research surface.
+The command is `btprime`. Existing commands are aliases; namespaces are
+also available.
 
 ```powershell
-# Balanced ternary
 btprime encode 42
-btprime analyze 42
-btprime residue "+-0+" --mod 7
-
-# Accelerated Collatz dynamics
+btprime bt encode 42
+btprime operators apply S 42
 btprime collatz analyze 27
-btprime collatz trajectory 27
-btprime collatz inverse 1 --depth 5 --k-max 20
-
-# Exponent codes and exact geometry
-btprime collatz dual-code 1,4,2
-btprime collatz compatibility 1,4,2
-btprime collatz affine-center 1,4,2
-btprime reverse 21
-btprime collatz warp 27
-btprime collatz warp-census --limit 20000
-btprime collatz fixed-integer 165 --max-steps 20
-btprime collatz periodic-code 2
-btprime collatz cycle 2
-btprime collatz cycle-census --max-p 6 --k-max 4
-
-# Bounded experiments
-btprime collatz information-test --max-length 4 --max-k 4
-btprime collatz near-critical --max-length 4 --max-k 4 --seed 17
-btprime collatz affine-center-census --max-length 6 --max-k 4 --critical-gap 10
+btprime status
 ```
 
-Collatz commands use
-\(T(n)=(3n+1)/2^{v_2(3n+1)}\) on positive odd integers.
-
-## Python API
-
-The package roots expose commonly used exact objects:
-
-```python
-from balanced_ternary import decode, encode
-from collatz import AffineCenterState, CompatibilityState, collatz_step
-
-word = encode(42)
-assert decode(word) == 42
-
-state = CompatibilityState.from_valuations((1, 4, 2))
-center = AffineCenterState.from_valuations((1, 4, 2))
-assert state.R == center.R
-```
-
-The root imports are the supported convenience façade. Experiment runners,
-schemas, and specialized automata remain research APIs in their submodules.
-
-## Research UI
-
-Install the optional UI dependencies and launch the Streamlit explorer:
+Research UI (optional):
 
 ```powershell
-python -m pip install -e ".[ui]"
 btprime collatz ui
 ```
 
-The UI covers integer dynamics, finite-state models, exponent-code
-compatibility, lift coding, affine-center geometry, and BT word maps. Expensive bounded
-searches run only after explicit submission and are labelled as computational
-experiments.
-
-## Reproducible experiments
-
-Experiment runners use exact integer/rational records and versioned manifests
-where supported. Generated JSONL, Parquet, CSV, and report artifacts live
-under `experiments/` and are intentionally ignored by Git.
-
-For example:
+## Tests and Lean
 
 ```powershell
-btprime collatz affine-center-census `
-  --max-length 6 --max-k 4 --critical-gap 10 `
-  --output-dir experiments/collatz/raw/affine-center
-```
-
-Parquet output is optional; JSONL plus a manifest is the portable baseline.
-
-## Formal verification
-
-Lean 4 + Mathlib proofs live under `formal/`.
-
-```powershell
+pytest
 cd formal
 lake build
 ```
 
-The formal layer includes the affine exponent-code formula, cylinders,
-lift/stabilization statements, 3-adic endpoint congruences, affine-center
-numerator identities, and the fixed-integer affine-gap recurrence. See
-[formal/README.md](formal/README.md).
+The slowest Python test exhaustively checks identities on \([-10^6,10^6]\).
 
-## Repository layout
+## How to add a new research problem
 
-```text
-src/balanced_ternary/       canonical representation, arithmetic, features
-src/automata/               shared modular residue automaton
-src/collatz/
-  automata/                 2-adic and symbolic finite-state models
-  languages/                cylinder languages and DFA minimization
-  transducers/              division and odd-part transducers
-  experiments/              reproducible bounded computations
-  research/                 executable Collatz invariant checks
-src/visualization/          Streamlit research explorer
-tests/                      balanced-ternary, Collatz, CLI, and UI tests
-docs/                       mathematics, milestones, literature, open questions
-formal/                     Lean 4 formalization
-experiments/                ignored generated artifacts
-```
+1. Copy [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md) to
+   `docs/problems/<id>.md`.
+2. Copy `src/research/template/` to `src/research/<id>/` and fill
+   `problem.py`.
+3. Import only `bt.*` plus shared experiment/registry utilities.
+4. Register conjectures in `conjectures/` and literature in `literature/`.
+5. Add tests under `tests/research/` and witnesses under `tests/regression/`.
+6. Do not edit core arithmetic to introduce the problem.
 
-## Documentation
-
-Start with [docs/README.md](docs/README.md). The main records are:
-
-- [Collatz mathematics](docs/collatz_mathematics.md)
-- [Research questions and claim status](docs/collatz_research_questions.md)
-- [Dual coding and lift digits](docs/collatz_dual_coding.md)
-- [Four-coordinate literature comparison](docs/literature_comparison.md)
-- [Affine-center geometry](docs/collatz_affine_center.md)
-- [Fixed-integer asymptotics](docs/collatz_fixed_integer_asymptotics.md)
-- [Cycle languages](docs/collatz_cycle_languages.md)
-- [BT word maps and Collatz commutators](docs/collatz_bt_warp.md)
-
-Displayed balanced-ternary words are most-significant digit first.
-Mathematical positions are indexed from the least-significant digit \(a_0\).
+Architecture: [docs/architecture/overview.md](docs/architecture/overview.md).
+Documentation map: [docs/README.md](docs/README.md).
+Journal: [docs/research_journal.md](docs/research_journal.md).

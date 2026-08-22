@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "Elias De Jesus"
+  ],
+  "id": "de-jesus-2026",
+  "identifiers": {
+    "doi": "10.5281/zenodo.20465930"
+  },
+  "notes": "docs/cycle_literature_comparison.md",
+  "problem_area": "collatz cycles",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "no-go diagnostic"
+  ],
+  "status": "preprint compared",
+  "title": "Modular No-Go Diagnostic",
+  "url": {
+    "doi": "10.5281/zenodo.20465930"
+  },
+  "year": 2026
+}

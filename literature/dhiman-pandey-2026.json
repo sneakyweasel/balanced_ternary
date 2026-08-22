@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "Dhiman",
+    "Pandey"
+  ],
+  "id": "dhiman-pandey-2026",
+  "identifiers": {
+    "arxiv": "2601.12772"
+  },
+  "notes": "docs/literature_comparison.md",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "logical undefinability"
+  ],
+  "status": "compared",
+  "title": "Logical Undefinability in BA2",
+  "url": {
+    "arxiv": "2601.12772"
+  },
+  "year": 2026
+}

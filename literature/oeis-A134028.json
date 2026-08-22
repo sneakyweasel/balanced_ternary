@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "OEIS contributors"
+  ],
+  "id": "oeis-A134028",
+  "identifiers": {
+    "oeis": "A134028"
+  },
+  "notes": "Also A160652, A351702, A065363, A065364, A134021, A134027.",
+  "problem_area": "balanced ternary operators",
+  "project_relationship": "reproduced",
+  "relevant_concepts": [
+    "W"
+  ],
+  "status": "used as definition of W",
+  "title": "OEIS A134028 balanced ternary reversal",
+  "url": {
+    "oeis": "A134028"
+  },
+  "year": null
+}

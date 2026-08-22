@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "Marc Lebel"
+  ],
+  "id": "lebel-2026",
+  "identifiers": {
+    "doi": "10.5281/zenodo.19070798"
+  },
+  "notes": "docs/cycle_literature_comparison.md",
+  "problem_area": "collatz cycles",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "modular sieving"
+  ],
+  "status": "preprint compared",
+  "title": "Christoffel modular sieving",
+  "url": {
+    "doi": "10.5281/zenodo.19070798"
+  },
+  "year": 2026
+}

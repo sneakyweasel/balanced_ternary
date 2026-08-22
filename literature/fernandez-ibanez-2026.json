@@ -1,0 +1,22 @@
+{
+  "authors": [
+    "Fern\u00e1ndez",
+    "Ib\u00e1\u00f1ez"
+  ],
+  "id": "fernandez-ibanez-2026",
+  "identifiers": {
+    "arxiv": "2607.24844"
+  },
+  "notes": "docs/cycle_literature_comparison.md",
+  "problem_area": "collatz cycles",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "Christoffel words"
+  ],
+  "status": "preprint compared, not adopted as theorem",
+  "title": "Christoffel Words and Collatz cycles",
+  "url": {
+    "arxiv": "2607.24844"
+  },
+  "year": 2026
+}

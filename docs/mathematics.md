@@ -106,3 +106,11 @@ Finite sieve languages \(\mathcal S_B\), forbidden patterns, growth rates
 \(\lambda_B\), and statistical feature comparisons are **not** implemented
 in Milestone A and must not be described as theorems until proved or
 refuted with an explicit counterexample search.
+
+## Operator algebra
+
+The first-class maps \(S,N,D,W\) and their compositions are recorded in
+[balanced_ternary_operators.md](balanced_ternary_operators.md) and
+[operator_algebra.md](operator_algebra.md). The digit derivative identity
+\(n=a_0+3D(n)\) is the LSD form of uniqueness. Collatz is an application
+of this algebra, not a source of operator identities.

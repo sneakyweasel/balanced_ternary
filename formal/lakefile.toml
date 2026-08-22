@@ -3,6 +3,18 @@ version = "0.1.0"
 defaultTargets = ["CollatzDual"]
 
 [[lean_lib]]
+name = "Core"
+
+[[lean_lib]]
+name = "Representation"
+
+[[lean_lib]]
+name = "Operators"
+
+[[lean_lib]]
+name = "Problems"
+
+[[lean_lib]]
 name = "CollatzDual"
 
 [[require]]

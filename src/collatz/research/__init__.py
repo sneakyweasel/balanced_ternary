@@ -1,8 +1,3 @@
-"""Collatz research helpers. Milestone 1 implements invariant checks only."""
+"""Compatibility shim. Canonical implementation: :mod:`research.collatz.research`."""
 
-from collatz.research.invariants import (
-    CollatzInvariantReport,
-    verify_collatz_invariants,
-)
-
-__all__ = ["CollatzInvariantReport", "verify_collatz_invariants"]
+from research.collatz.research import *  # noqa: F403

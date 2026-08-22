@@ -1,0 +1,21 @@
+{
+  "authors": [
+    "Ross"
+  ],
+  "id": "ross-2026",
+  "identifiers": {
+    "url": "https://zenodo.org/records/21049703"
+  },
+  "notes": "docs/cycle_literature_comparison.md",
+  "problem_area": "collatz cycles",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "bounded-exponent cycle exclusion"
+  ],
+  "status": "conjecture in paper; not upgraded here",
+  "title": "Spike Structures",
+  "url": {
+    "url": "https://zenodo.org/records/21049703"
+  },
+  "year": 2026
+}

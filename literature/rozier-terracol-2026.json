@@ -1,0 +1,24 @@
+{
+  "authors": [
+    "Rozier",
+    "Terracol"
+  ],
+  "id": "rozier-terracol-2026",
+  "identifiers": {
+    "arxiv": "2502.00948",
+    "doi": "10.1016/j.disc.2026.115167"
+  },
+  "notes": "No paradoxical sequence above n=4614 is a conjecture in the paper.",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "paradoxical sequences"
+  ],
+  "status": "external conjecture cited, not adopted",
+  "title": "Paradoxical behavior of the 3x+1 function",
+  "url": {
+    "arxiv": "2502.00948",
+    "doi": "10.1016/j.disc.2026.115167"
+  },
+  "year": 2026
+}

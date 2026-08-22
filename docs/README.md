@@ -13,6 +13,15 @@ meaning throughout:
 
 - [Balanced-ternary mathematics](mathematics.md): canonical representation,
   arithmetic, features, and residue invariants.
+- [Operators](balanced_ternary_operators.md): shift, negation, digit
+  derivative, reversal, and the integer/word interface.
+- [Operator algebra](operator_algebra.md): compositions and commutators.
+- [Finite-state maps](balanced_ternary_automata.md): which arithmetic maps
+  are sequential transductions.
+- [Additive combinatorics](balanced_ternary_additive_combinatorics.md):
+  digit-restricted sumsets and carry defect.
+- [Polynomials](balanced_ternary_polynomials.md): \(P_n(x)\) with
+  \(P_n(3)=n\).
 - [Collatz mathematics](collatz_mathematics.md): the consolidated exact record
   for the accelerated odd-only map.
 - [Research questions](collatz_research_questions.md): answered questions,
@@ -46,6 +55,32 @@ meaning throughout:
 - [Cycle literature replication](cycle_literature_replication.md): independent
   finite checks, with preprint claims not assumed.
 
+## Problems and journal
+
+- [Problem template](problems/TEMPLATE.md)
+- [Collatz](problems/collatz.md)
+- [Additive combinatorics](problems/additive_combinatorics.md)
+- [Perfect powers](problems/perfect_powers.md)
+- [Primes](problems/primes.md)
+- [Sparse polynomials](problems/sparse_polynomials.md)
+- [Operator dynamics](problems/operator_dynamics.md)
+- [Research journal](research_journal.md)
+- [Theorem ledger](theory/theorem_ledger.md)
+
+## Architecture
+
+The laboratory layout (core vs research, experiments, conjectures,
+formalization, literature) is recorded under
+[docs/architecture/](architecture/overview.md):
+
+- [Overview](architecture/overview.md)
+- [Core](architecture/core.md)
+- [Research modules](architecture/research_modules.md)
+- [Experiments](architecture/experiments.md)
+- [Conjectures](architecture/conjectures.md)
+- [Formalization](architecture/formalization.md)
+- [Literature](architecture/literature.md)
+
 ## Formal verification
 
 See [the Lean project](../formal/README.md) for theorem names, build
@@ -66,5 +101,6 @@ For the current research frontier, read:
 8. [Research questions](collatz_research_questions.md)
 
 For the balanced-ternary foundation, begin with
-[Balanced-ternary mathematics](mathematics.md), then continue to the Collatz
-mathematical record.
+[Balanced-ternary mathematics](mathematics.md), then
+[operators](balanced_ternary_operators.md). For Collatz, continue to the
+Collatz mathematical record.

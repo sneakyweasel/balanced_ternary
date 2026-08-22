@@ -1,0 +1,15 @@
+{
+  "counterexamples": [],
+  "first_seen": "Milestone 6",
+  "id": "noncontracting_infinite_positive_lifts",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "Collatz dual coding",
+  "notes": "Related to, but not identified with, low_Km_m_infinite_lifts.",
+  "origin": "docs/collatz_dual_coding.md \u00a710",
+  "proof_reference": "",
+  "statement": "Every asymptotically non-contracting itinerary has infinitely many t_m>0.",
+  "status": "ACTIVE",
+  "tested_range": "finite census only",
+  "title": "Non-contracting itineraries have infinitely many positive lifts"
+}

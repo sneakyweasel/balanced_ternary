@@ -1,0 +1,17 @@
+{
+  "counterexamples": [
+    "R((1))=R((1,4))=3 with BT='+0' but different endpoints/lifts"
+  ],
+  "first_seen": "Milestone 6",
+  "id": "BT_R_suffix_determines_next_valuation",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "Collatz dual coding",
+  "notes": "BT(R) is determined by R; it is not an independent information channel.",
+  "origin": "docs/collatz_dual_coding.md",
+  "proof_reference": "docs/collatz_dual_coding.md",
+  "statement": "The complete balanced-ternary word of R determines the successor valuation and lift digit.",
+  "status": "REFUTED",
+  "tested_range": "exact; R=3",
+  "title": "BT(R) determines the next Collatz valuation or lift digit"
+}

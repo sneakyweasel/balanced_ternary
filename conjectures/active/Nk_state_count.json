@@ -1,0 +1,15 @@
+{
+  "counterexamples": [],
+  "first_seen": "Milestone 3",
+  "id": "Nk_state_count",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "balanced ternary transducers",
+  "notes": "Paired with counterexample search. Not a theorem.",
+  "origin": "docs/collatz_mathematics.md; docs/collatz_research_questions.md",
+  "proof_reference": "",
+  "statement": "The minimized state count N_k of the /2^k transducer equals 2^k+1 for every k\u22651.",
+  "status": "COMPUTATIONALLY_SUPPORTED",
+  "tested_range": "held for k\u22644 in tests; searchable via btprime collatz complexity",
+  "title": "Minimized /2^k state count is 2^k+1"
+}

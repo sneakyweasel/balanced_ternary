@@ -1,0 +1,15 @@
+{
+  "counterexamples": [],
+  "first_seen": "Milestone 4",
+  "id": "noncontraction_R_to_infinity",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "Collatz itinerary compatibility",
+  "notes": "Exceptional itinerary compatibility remains open.",
+  "origin": "docs/collatz_itinerary_compatibility.md",
+  "proof_reference": "",
+  "statement": "Every asymptotically non-contracting itinerary has nested minima R_m unbounded.",
+  "status": "ACTIVE",
+  "tested_range": "open compatibility problem; finite censuses only",
+  "title": "Non-contraction implies R_m \u2192 \u221e"
+}
