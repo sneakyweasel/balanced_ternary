@@ -66,6 +66,12 @@ meaning throughout:
 - [Operator dynamics](problems/operator_dynamics.md)
 - [Research journal](research_journal.md)
 - [Theorem ledger](theory/theorem_ledger.md)
+- [Balanced-ternary calculus](theory/balanced_ternary_calculus.md)
+- [Trit algebra](theory/trit_algebra.md)
+- [Digit derivative](theory/digit_derivative.md)
+- [Rewrite calculus](theory/rewrite_calculus.md)
+- [Trit control](theory/trit_control.md)
+- [Setun connection](theory/setun_connection.md)
 
 ## Architecture
 

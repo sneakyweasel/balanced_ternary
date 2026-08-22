@@ -5,7 +5,26 @@ from __future__ import annotations
 from dataclasses import dataclass
 from fractions import Fraction
 
-from balanced_ternary.representation import encode
+from balanced_ternary.representation import decode, encode, is_canonical, normalize
+from bt.arithmetic import (
+    add,
+    add_one,
+    divide_by_2_on_domain,
+    divide_by_3_on_domain,
+    format_factorization,
+    is_prime,
+    multiply_by_2,
+    multiply_by_three,
+    negate,
+    subtract,
+)
+from bt.metrics import lsd_nonzero_index
+from bt.metrics import signed_digit_sum as bt_signed_digit_sum
+from bt.metrics import v2 as bt_v2
+from bt.metrics import v3 as bt_v3
+from bt.metrics import weight as bt_weight
+from bt.operators import OPERATORS, OperatorDomainError, get_operator
+from bt.transducers.divide_by_two import LeftoverCarryError
 from collatz.affine_center import AffineCenterState
 from collatz.automata.joint_graph import (
     build_joint_graph,
@@ -493,4 +512,240 @@ def warp_view(n: int) -> WarpView:
         delta_L=state.delta_L,
         s3_n=state.s3_n,
         L3_n=state.L3_n,
+    )
+
+
+BINARY_CALCULATOR_OPS: frozenset[str] = frozenset({"add", "subtract"})
+UNARY_CALCULATOR_OPS: dict[str, object] = {
+    "negate": negate,
+    "add_one": add_one,
+    "multiply_by_2": multiply_by_2,
+    "multiply_by_3": multiply_by_three,
+    "divide_by_2": divide_by_2_on_domain,
+    "divide_by_3": divide_by_3_on_domain,
+}
+CALCULATOR_OPERATIONS: tuple[str, ...] = (
+    "add",
+    "subtract",
+    *UNARY_CALCULATOR_OPS,
+    *OPERATORS,
+)
+
+
+@dataclass(frozen=True)
+class ParsedValue:
+    ok: bool
+    error: str | None
+    n: int | None
+    word: str | None
+    was_canonical: bool | None
+
+
+@dataclass(frozen=True)
+class CalculatorView:
+    ok: bool
+    error: str | None
+    operation: str
+    left: ParsedValue | None
+    right: ParsedValue | None
+    result_n: int | None
+    result_word: str | None
+    metric_rows: tuple[tuple[str, object], ...]
+
+
+@dataclass(frozen=True)
+class AnalyzeView:
+    n: int
+    word: str
+    canonical: bool
+    metric_rows: tuple[tuple[str, object], ...]
+    residue_rows: tuple[tuple[int, int], ...]
+
+
+@dataclass(frozen=True)
+class OperatorApplyView:
+    ok: bool
+    error: str | None
+    symbol: str
+    n: int
+    word: str
+    result_n: int | None
+    result_word: str | None
+    consistent: bool
+    metadata: tuple[tuple[str, object], ...]
+
+
+def parse_value(
+    *,
+    source: str,
+    integer: int = 0,
+    word: str = "",
+) -> ParsedValue:
+    """Parse an integer or a display word into a canonical pair."""
+    if source == "integer":
+        if isinstance(integer, bool) or not isinstance(integer, int):
+            return ParsedValue(False, "integer must be an int", None, None, None)
+        encoded = encode(integer)
+        return ParsedValue(True, None, integer, encoded.word(), True)
+    if source != "word":
+        return ParsedValue(False, f"unknown source {source!r}", None, None, None)
+    text = "".join(ch for ch in word if not ch.isspace())
+    if not text:
+        return ParsedValue(False, "empty word is not a valid balanced ternary string", None, None, None)
+    try:
+        canonical = normalize(text)
+    except (TypeError, ValueError) as exc:
+        return ParsedValue(False, str(exc), None, None, None)
+    return ParsedValue(
+        True,
+        None,
+        decode(canonical),
+        canonical.word(),
+        is_canonical(text),
+    )
+
+
+def _valuation_text(value: int | None) -> str:
+    return "∞" if value is None else str(value)
+
+
+def value_metric_rows(n: int, word: str) -> tuple[tuple[str, object], ...]:
+    encoded = normalize(word)
+    lsd = lsd_nonzero_index(encoded)
+    return (
+        ("length", len(encoded)),
+        ("weight", bt_weight(encoded)),
+        ("weight parity", bt_weight(encoded) % 2),
+        ("signed digit sum", bt_signed_digit_sum(encoded)),
+        ("v2", _valuation_text(bt_v2(n))),
+        ("v3", _valuation_text(bt_v3(n))),
+        ("least-significant nonzero position", "none" if lsd is None else lsd),
+        ("prime", is_prime(n)),
+        ("factorization", format_factorization(n)),
+    )
+
+
+def analyze_view(n: int) -> AnalyzeView:
+    if isinstance(n, bool) or not isinstance(n, int):
+        raise TypeError(f"n must be int, got {type(n).__name__}")
+    encoded = encode(n)
+    word = encoded.word()
+    return AnalyzeView(
+        n=n,
+        word=word,
+        canonical=is_canonical(word),
+        metric_rows=value_metric_rows(n, word),
+        residue_rows=tuple((q, n % q) for q in (2, 3, 5, 7)),
+    )
+
+
+def operator_catalog_rows() -> list[dict[str, object]]:
+    return [op.metadata().as_dict() for op in OPERATORS.values()]
+
+
+def apply_operator_view(symbol: str, n: int) -> OperatorApplyView:
+    parsed = parse_value(source="integer", integer=n)
+    if not parsed.ok:
+        return OperatorApplyView(
+            False, parsed.error, symbol, n, "", None, None, False, ()
+        )
+    try:
+        op = get_operator(symbol)
+    except KeyError as exc:
+        return OperatorApplyView(
+            False, str(exc), symbol, n, parsed.word or "", None, None, False, ()
+        )
+    metadata = tuple(op.metadata().as_dict().items())
+    try:
+        result_n = op.apply(n)
+        result_word = op.apply_word(encode(n)).word()
+    except (OperatorDomainError, LeftoverCarryError, ValueError, TypeError) as exc:
+        return OperatorApplyView(
+            False,
+            str(exc),
+            symbol,
+            n,
+            parsed.word or "",
+            None,
+            None,
+            False,
+            metadata,
+        )
+    consistent = decode(result_word) == result_n
+    return OperatorApplyView(
+        True,
+        None if consistent else "integer and word results disagree",
+        symbol,
+        n,
+        parsed.word or "",
+        result_n,
+        result_word,
+        consistent,
+        metadata,
+    )
+
+
+def calculator_view(
+    *,
+    left_source: str,
+    left_integer: int,
+    left_word: str,
+    operation: str,
+    right_source: str = "integer",
+    right_integer: int = 0,
+    right_word: str = "",
+) -> CalculatorView:
+    """Exact calculator over canonical words. Domain errors become ``ok=False``."""
+    left = parse_value(source=left_source, integer=left_integer, word=left_word)
+    if not left.ok:
+        return CalculatorView(False, left.error, operation, left, None, None, None, ())
+    right: ParsedValue | None = None
+    try:
+        if operation in BINARY_CALCULATOR_OPS:
+            right = parse_value(
+                source=right_source, integer=right_integer, word=right_word
+            )
+            if not right.ok:
+                return CalculatorView(
+                    False, right.error, operation, left, right, None, None, ()
+                )
+            fn = add if operation == "add" else subtract
+            result = fn(left.word, right.word)
+            result_n = decode(result)
+            result_word = result.word()
+        elif operation in UNARY_CALCULATOR_OPS:
+            result = UNARY_CALCULATOR_OPS[operation](left.word)
+            result_n = decode(result)
+            result_word = result.word()
+        elif operation in OPERATORS:
+            applied = apply_operator_view(operation, left.n)
+            if not applied.ok:
+                return CalculatorView(
+                    False, applied.error, operation, left, None, None, None, ()
+                )
+            result_n = applied.result_n
+            result_word = applied.result_word
+        else:
+            known = ", ".join(CALCULATOR_OPERATIONS)
+            return CalculatorView(
+                False,
+                f"unknown operation {operation!r}; known: {known}",
+                operation,
+                left,
+                None,
+                None,
+                None,
+                (),
+            )
+    except (OperatorDomainError, LeftoverCarryError, ValueError, TypeError) as exc:
+        return CalculatorView(False, str(exc), operation, left, right, None, None, ())
+    return CalculatorView(
+        True,
+        None,
+        operation,
+        left,
+        right,
+        result_n,
+        result_word,
+        value_metric_rows(result_n, result_word),
     )

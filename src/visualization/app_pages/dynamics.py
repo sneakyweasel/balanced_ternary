@@ -5,6 +5,7 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
+from bt.representation import encode
 from visualization.views import (
     NumberView,
     TrajectoryView,
@@ -40,6 +41,8 @@ def _odd_input(label: str, *, key: str) -> int:
     default = int(st.session_state.get("shared_odd_n", 27))
     value = int(st.number_input(label, min_value=1, value=default, step=2, key=key))
     st.session_state.shared_odd_n = value
+    st.session_state.shared_integer = value
+    st.session_state.shared_word = encode(value).word()
     return value
 
 

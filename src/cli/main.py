@@ -10,6 +10,7 @@ from bt.arithmetic import format_factorization, is_prime
 from bt.metrics import automaton_residue, lsd_nonzero_index, signed_digit_sum, v3, verify_invariants, weight
 from bt.representation import decode, encode, is_canonical
 from bt.sequences import bt_reverse, bt_reverse_tail
+from cli.calculus import add_calculus_subparser, run_calculus
 from cli.operators import add_operators_subparser, run_operators
 from research.collatz.cli import add_collatz_subparser, run_collatz
 
@@ -29,6 +30,7 @@ def main(argv: list[str] | None = None) -> int:
     _add_bt_leaf_commands(sub)
     add_collatz_subparser(sub)
     add_operators_subparser(sub)
+    add_calculus_subparser(sub)
     _add_bt_namespace(sub)
     _add_research_namespaces(sub)
     _add_lab_namespaces(sub)
@@ -133,6 +135,8 @@ def _dispatch(parser: argparse.ArgumentParser, args: argparse.Namespace) -> int:
         return run_collatz(args)
     if cmd == "operators":
         return run_operators(args)
+    if cmd == "calculus":
+        return run_calculus(args)
     if cmd == "primes":
         from research.primes import sparse_primes
 

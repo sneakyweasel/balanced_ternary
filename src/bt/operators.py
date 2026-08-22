@@ -637,6 +637,7 @@ OPERATORS: dict[str, BTOperator] = {
     "H3": DIVIDE_BY_THREE,
     "K3": KERNEL3,
     "Im": INTEGRAL_MINUS,
+    "I0": SHIFT,
     "Ip": INTEGRAL_PLUS,
 }
 

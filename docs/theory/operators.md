@@ -4,4 +4,6 @@
 
 Primary records: [balanced_ternary_operators.md](../balanced_ternary_operators.md),
 [operator_algebra.md](../operator_algebra.md).
-Package: `bt.operators`. Dynamics experiments: `research.operator_dynamics`.
+Package: `bt.operators`. Calculus language: `bt.calculus`
+([balanced_ternary_calculus.md](balanced_ternary_calculus.md)).
+Dynamics experiments: `research.operator_dynamics`.

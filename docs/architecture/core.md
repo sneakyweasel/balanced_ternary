@@ -22,6 +22,7 @@ This is enforced by `tests/unit/test_core_import_graph.py`.
 | `bt.automata` | generic residue automata and DFA minimization |
 | `bt.transducers` | generic sequential transducers and the transducer zoo |
 | `bt.sequences` | canonical reusable sequences (digit sum, length, palindrome) |
+| `bt.calculus` | trit algebra, `D`/`I_a`/`P_a`, `cmp3`/`select3`, rewrite, VM, information profiles |
 
 ## What does not belong here
 

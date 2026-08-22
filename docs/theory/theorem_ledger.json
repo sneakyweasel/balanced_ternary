@@ -97,5 +97,77 @@
     "lean": "",
     "tests": ["tests/collatz/test_complexity_spectrum.py"],
     "related_conjectures": ["Nk_state_count"]
+  },
+  {
+    "id": "BTC-decomp",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "n = lsd(n) + 3 D(n)",
+    "source": "docs/theory/digit_derivative.md",
+    "lean": "BTCalculus/Derivative.lean",
+    "tests": ["tests/unit/test_calculus_identities.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTC-D-I",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D ∘ I_a = id",
+    "source": "docs/theory/digit_derivative.md",
+    "lean": "BTCalculus/Integral.lean",
+    "tests": ["tests/unit/test_calculus_identities.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTC-P-band",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "P_a ∘ P_b = P_a",
+    "source": "docs/theory/digit_derivative.md",
+    "lean": "BTCalculus/Integral.lean",
+    "tests": ["tests/unit/test_calculus_identities.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTC-D-mul",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D(xy) = lsd(x)D(y)+lsd(y)D(x)+3 D(x)D(y)",
+    "source": "docs/theory/digit_derivative.md",
+    "lean": "BTCalculus/Algebra.lean",
+    "tests": ["tests/unit/test_calculus_identities.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTC-D-add",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D(x+y)=D(x)+D(y)+carry(lsd(x),lsd(y))",
+    "source": "docs/theory/digit_derivative.md",
+    "lean": "BTCalculus/Algebra.lean",
+    "tests": ["tests/unit/test_calculus_identities.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTC-trit-kleene",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Trit is a 3-element Kleene algebra and not a Boolean algebra",
+    "source": "docs/theory/trit_algebra.md",
+    "lean": "BTCalculus/Trit.lean",
+    "tests": ["tests/unit/test_calculus_trit.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTC-cmp3",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "cmp3 translation, negation, and antisymmetry",
+    "source": "docs/theory/trit_control.md",
+    "lean": "BTCalculus/Comparison.lean",
+    "tests": ["tests/unit/test_calculus_trit.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTC-select3",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "select3 represents every Trit→ℤ map; abs/min/max",
+    "source": "docs/theory/trit_control.md",
+    "lean": "BTCalculus/Select.lean",
+    "tests": ["tests/unit/test_calculus_select.py"],
+    "related_conjectures": []
   }
 ]

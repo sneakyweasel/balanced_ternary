@@ -1,4 +1,4 @@
-"""Orientation page for the Streamlit explorer."""
+"""Orientation page for the Streamlit laboratory."""
 
 from __future__ import annotations
 
@@ -6,47 +6,56 @@ import streamlit as st
 
 
 def overview_page() -> None:
-    st.header("Research map")
+    st.header("Laboratory map")
     st.caption(
-        "Exact arithmetic first. Bounded computations are labelled and are not proofs."
+        "Balanced ternary is the core. Exact arithmetic first. Bounded "
+        "computations are labelled and are not proofs."
     )
 
     with st.container(horizontal=True):
-        st.metric("Primary map", "Accelerated odd-only T", border=True)
-        st.metric("Exact code state", "(m, K, C, R, M, X)", border=True)
-        st.metric("Current geometry", "Affine center n*", border=True)
+        st.metric("Core object", "Canonical BT word", border=True)
+        st.metric("Alphabet", "+, 0, −", border=True)
+        st.metric("Primary tool", "Calculator", border=True)
 
     left, right = st.columns(2)
     with left:
         with st.container(border=True):
-            st.subheader("From integers to exponent codes")
+            st.subheader("What balanced ternary is")
             st.markdown(
-                """
-1. Balanced ternary gives an exact canonical word for every integer.
-2. The accelerated map records `k = v2(3n+1)` at each odd step.
-3. A finite valuation word defines one 2-adic cylinder and affine iterate.
-4. The canonical realizer `R` has unique mixed-radix lift digits.
+                r"""
+Every integer has a unique canonical expansion
+
+$$n = \sum_i a_i 3^i,\qquad a_i \in \{-1,0,+1\}$$
+
+with no leading zeros (except $n=0$). Display uses `+`, `0`, `-`
+(most-significant digit first). Mathematical positions are indexed from
+the least-significant digit $a_0$.
                 """
             )
     with right:
         with st.container(border=True):
-            st.subheader("Four coordinates and a center")
+            st.subheader("What to open first")
             st.markdown(
                 """
-- `R` is the refined 2-adic start representative.
-- `M` is Kramer's least-positive 3-adic endpoint representative.
-- `BT(R)` is an exact representation of `R`, not an independent coordinate.
-- `n* = C/(2^K-3^m)` centers the affine iterate exactly.
+1. **Calculator** — add, subtract, scale by 2 or 3, and apply `S`, `N`, `D`, `W`, `M2`, `H2`, …
+2. **Encode / analyze** — integer ↔ word round-trip and digit metrics.
+3. **Operators** — domain, involution, and integer/word agreement for each map.
+4. Collatz pages stay available as one application of the same words.
                 """
             )
 
-    st.subheader("Implemented research layers")
+    st.subheader("Implemented layers")
     st.dataframe(
         [
             {
                 "layer": "Balanced ternary",
                 "object": "Canonical words, arithmetic, features, residue automata",
                 "status": "PROVED / exact implementation",
+            },
+            {
+                "layer": "Operators",
+                "object": "S, N, D, W, Wz, Wt, M2, H2, H3, K3, Im, Ip",
+                "status": "PROVED on the stated domains",
             },
             {
                 "layer": "Finite-state Collatz",
@@ -79,7 +88,7 @@ def overview_page() -> None:
     )
 
     st.info(
-        "Nothing in this explorer proves convergence of Collatz trajectories. "
+        "Nothing in this laboratory proves convergence of Collatz trajectories. "
         "Contraction of the homogeneous factor is not a Lyapunov function.",
         icon=":material/info:",
     )

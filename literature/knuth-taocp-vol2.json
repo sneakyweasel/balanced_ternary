@@ -1,0 +1,16 @@
+{
+  "id": "knuth-taocp-vol2",
+  "title": "The Art of Computer Programming, Volume 2: Seminumerical Algorithms",
+  "authors": ["Donald E. Knuth"],
+  "year": 1997,
+  "identifiers": {},
+  "url": {},
+  "problem_area": "balanced-ternary",
+  "relevant_concepts": [
+    "balanced ternary",
+    "positional number systems"
+  ],
+  "project_relationship": "known",
+  "status": "historical-source",
+  "notes": "Standard reference for balanced ternary as a positional system. Used only as historical/background citation for Milestone 13."
+}

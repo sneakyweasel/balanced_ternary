@@ -32,3 +32,11 @@ This ledger does not rewrite history.
 | C-nstar-le-n | REFUTED | n*≤n | docs/collatz_fixed_integer_asymptotics.md | | test_fixed_integer n=165 |
 | C-cycles | EXACT — LEAN VERIFIED | Expanding periods excluded; D\|C; even amplitude | docs/collatz_cycle_languages.md | Problems/Collatz/Cycles | test_cycles |
 | C-Nk | CONJECTURE | N_k=2^k+1 | docs/collatz_research_questions.md | | complexity tests k≤4 |
+| BTC-decomp | EXACT — LEAN VERIFIED | n = lsd + 3 D(n) | docs/theory/digit_derivative.md | BTCalculus/Derivative | test_calculus_identities |
+| BTC-D-I | EXACT — LEAN VERIFIED | D ∘ I_a = id | docs/theory/digit_derivative.md | BTCalculus/Integral | test_calculus_identities |
+| BTC-P-band | EXACT — LEAN VERIFIED | P_a ∘ P_b = P_a | docs/theory/digit_derivative.md | BTCalculus/Integral | test_calculus_identities |
+| BTC-D-mul | EXACT — LEAN VERIFIED | twisted Leibniz rule for D(xy) | docs/theory/digit_derivative.md | BTCalculus/Algebra | test_calculus_identities |
+| BTC-D-add | EXACT — LEAN VERIFIED | D(x+y)=D(x)+D(y)+carry | docs/theory/digit_derivative.md | BTCalculus/Algebra | test_calculus_identities |
+| BTC-trit-kleene | EXACT — LEAN VERIFIED | Trit is a 3-element Kleene algebra, not Boolean | docs/theory/trit_algebra.md | BTCalculus/Trit | test_calculus_trit |
+| BTC-cmp3 | EXACT — LEAN VERIFIED | cmp3 translation / negation / antisymmetry | docs/theory/trit_control.md | BTCalculus/Comparison | test_calculus_trit |
+| BTC-select3 | EXACT — LEAN VERIFIED | select3 represents Trit→ℤ; abs/min/max | docs/theory/trit_control.md | BTCalculus/Select | test_calculus_select |

@@ -13,6 +13,9 @@ from streamlit.testing.v1 import AppTest  # noqa: E402
 APP = Path(__file__).resolve().parents[2] / "src" / "visualization" / "streamlit_app.py"
 REGISTERED_TITLES = (
     "Overview",
+    "Calculator",
+    "Encode / analyze",
+    "Operators",
     "Number explorer",
     "Trajectory",
     "Inverse tree",
@@ -38,6 +41,15 @@ def test_router_starts_on_overview():
         assert title in source
     assert "url_path=\"exponent-code\"" in source
     assert "url_path=\"bt-warp\"" in source
+
+
+def test_calculator_page_loads():
+    page = APP.parent / "app_pages" / "calculator.py"
+    at = AppTest.from_file(str(page), default_timeout=20)
+    at.run()
+    assert not at.exception
+    labels = [box.label for box in at.selectbox]
+    assert any("Operation" in str(label) for label in labels)
 
 
 def test_exponent_code_page_loads():

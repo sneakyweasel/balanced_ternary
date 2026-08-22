@@ -1,6 +1,6 @@
 name = "collatz-dual-formal"
 version = "0.1.0"
-defaultTargets = ["CollatzDual"]
+defaultTargets = ["CollatzDual", "BTCalculus"]
 
 [[lean_lib]]
 name = "Core"
@@ -16,6 +16,9 @@ name = "Problems"
 
 [[lean_lib]]
 name = "CollatzDual"
+
+[[lean_lib]]
+name = "BTCalculus"
 
 [[require]]
 name = "mathlib"

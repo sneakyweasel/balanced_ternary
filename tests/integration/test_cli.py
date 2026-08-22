@@ -76,3 +76,17 @@ def test_operators_apply_and_derivative_cli():
     assert "a0 = -1" in der
     assert "D(n) = 2" in der
     assert "n = a0 + 3 D(n): True" in der
+
+
+def test_calculus_cli():
+    ev = _run("calculus", "eval", "5")
+    assert "lsd = -1" in ev
+    assert "D(n) = 2" in ev
+    assert _run("calculus", "cmp3", "1", "4").strip() == "-1"
+    assert _run("calculus", "select3", "-1", "10", "20", "30").strip() == "10"
+    vm = _run("calculus", "vm", "2", "3", "ADD", "D")
+    assert "value = 2" in vm
+    rw = _run("calculus", "rewrite", "7")
+    assert "normal form" in rw
+    prof = _run("calculus", "profile", "D")
+    assert "sequential" in prof

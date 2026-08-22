@@ -30,7 +30,8 @@ as modules that import `bt` but never the reverse.
 ## Core (`bt`)
 
 Representation, arithmetic, normalization, operators (`S`, `N`, `D`,
-`W`, `M2`, `H2`, …), metrics, support, polynomials \(P_n\) with
+`W`, `M2`, `H2`, …), the trit calculus (`D`, `I_a`, `cmp3`, `select3`,
+rewrite), metrics, support, polynomials \(P_n\) with
 \(P_n(3)=n\), generic automata, and generic transducers.
 
 ```python
@@ -106,11 +107,14 @@ also available.
 btprime encode 42
 btprime bt encode 42
 btprime operators apply S 42
+btprime calculus eval 42
 btprime collatz analyze 27
 btprime status
 ```
 
-Research UI (optional):
+Research UI (optional). The Streamlit app is centered on balanced ternary,
+with a calculator, encode/analyze, and operators; Collatz pages remain as
+one application:
 
 ```powershell
 btprime collatz ui

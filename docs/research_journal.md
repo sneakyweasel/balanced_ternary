@@ -91,3 +91,13 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** Expanding periods excluded; `D|C`; bounded census `p≤6`, `k_i≤4` finds only `(2)`
 - **Literature:** 2026 cycle preprints compared, not adopted as theorems
 - **Next question:** exceptional non-contracting compatibility; `N_k`; cycles beyond the census
+
+## Milestone 13
+
+- **Date:** 2026-08-22
+- **Objective:** Problem-independent balanced-ternary calculus (`D`, `I_a`, trit algebra, rewrite, `cmp3`/`select3`)
+- **Hypotheses:** the trit and digit decomposition might generate more than a notation for unique expansions
+- **Major results:** Lean-verified decomposition, sections, left-zero projection band, twisted product rule, addition carry as a `D`-law, `cmp3`/`select3` identities; innermost terminating rewrite strategy on `{D,I_a,S,N}`; information profiles reused from existing transducers
+- **Refuted ideas:** ordinary Leibniz rule for `D`; Boolean algebra of trits; `S∘D = id` (already refuted, restated)
+- **Literature:** Hayes 2001, Knuth vol. 2, Malinovsky — historical Setun only
+- **Next question:** not started; do not auto-open a new milestone. Open rewrite question: unique NF for open operator-fragment terms

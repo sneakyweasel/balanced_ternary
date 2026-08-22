@@ -3,6 +3,10 @@
 from __future__ import annotations
 
 from visualization.views import (
+    analyze_view,
+    apply_operator_view,
+    calculator_view,
+    parse_value,
     affine_center_census_view,
     automaton_partition_rows,
     automaton_view,
@@ -161,4 +165,102 @@ def test_warp_view_21():
     assert view.t_of_W_defined
     assert view.Comm_WT == view.W_T - view.T_W
     assert not view.palindrome_n
+
+
+def test_parse_value_integer_and_word():
+    from balanced_ternary.representation import encode
+
+    parsed = parse_value(source="integer", integer=27)
+    assert parsed.ok
+    assert parsed.n == 27
+    assert parsed.word == "+000"
+    assert parsed.was_canonical
+    worded = parse_value(source="word", word="+000")
+    assert worded.ok
+    assert worded.n == 27
+    assert worded.word == encode(27).word()
+    spaced = parse_value(source="word", word=" + 0 0 0 ")
+    assert spaced.ok
+    assert spaced.n == 27
+
+
+def test_parse_value_rejects_invalid_word():
+    empty = parse_value(source="word", word="   ")
+    assert not empty.ok
+    invalid = parse_value(source="word", word="2")
+    assert not invalid.ok
+    unknown = parse_value(source="hex", integer=1)
+    assert not unknown.ok
+
+
+def test_calculator_add_and_shift():
+    added = calculator_view(
+        left_source="integer",
+        left_integer=5,
+        left_word="",
+        operation="add",
+        right_source="integer",
+        right_integer=7,
+        right_word="",
+    )
+    assert added.ok
+    assert added.result_n == 12
+    assert added.result_word == "++0"
+    shifted = calculator_view(
+        left_source="word",
+        left_integer=0,
+        left_word="+000",
+        operation="S",
+    )
+    assert shifted.ok
+    assert shifted.result_n == 81
+    assert shifted.result_word.endswith("0")
+
+
+def test_calculator_domain_errors():
+    odd_half = calculator_view(
+        left_source="integer",
+        left_integer=27,
+        left_word="",
+        operation="H2",
+    )
+    assert not odd_half.ok
+    assert odd_half.error
+    not_div3 = calculator_view(
+        left_source="integer",
+        left_integer=5,
+        left_word="",
+        operation="divide_by_3",
+    )
+    assert not not_div3.ok
+    unknown = calculator_view(
+        left_source="integer",
+        left_integer=1,
+        left_word="",
+        operation="not-an-op",
+    )
+    assert not unknown.ok
+
+
+def test_analyze_view_27():
+    view = analyze_view(27)
+    assert view.n == 27
+    assert view.word == "+000"
+    assert view.canonical
+    metrics = dict(view.metric_rows)
+    assert metrics["weight"] == 1
+    assert metrics["v3"] == "3"
+    residues = dict(view.residue_rows)
+    assert residues[2] == 1
+    assert residues[3] == 0
+
+
+def test_apply_operator_h2_and_m2():
+    doubled = apply_operator_view("M2", 21)
+    assert doubled.ok
+    assert doubled.result_n == 42
+    assert doubled.consistent
+    failed = apply_operator_view("H2", 21)
+    assert not failed.ok
+    assert failed.error
 

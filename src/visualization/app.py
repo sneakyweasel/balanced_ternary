@@ -1,11 +1,12 @@
-"""Launcher for the Streamlit research explorer.
+"""Launcher for the Streamlit balanced-ternary laboratory.
 
 Launch:
 
     python -m pip install -e ".[ui]"
     btprime collatz ui
 
-This UI inspects exact identities already implemented. It does not claim
+The app is centered on exact balanced-ternary words and a calculator.
+Collatz pages remain as one research application. The UI does not claim
 progress on the Collatz conjecture. Feature deltas are not Lyapunov
 decreases. Finite graphs are samples, not the dynamics.
 """

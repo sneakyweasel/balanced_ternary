@@ -1,7 +1,7 @@
 # Collatz dual-code formalization
 
 Lean 4.19 + Mathlib. Sources are grouped under `Core/`,
-`Representation/`, `Operators/`, and `Problems/Collatz/`. The historical
+`Representation/`, `Operators/`, `BTCalculus/`, and `Problems/Collatz/`. The historical
 `CollatzDual.*` modules remain as re-exports. Build from this directory:
 
 ```powershell
@@ -39,6 +39,13 @@ Compiled theorem groups:
   involution commuting with `S`, `D ∘ S = id` on words, `n = lsd + 3 D(n)`
   on nonempty words, `W ∘ S = W`, the witness `W(3)=1`, and
   `P(3)=evalMSD` for the LSD polynomial of an MSD word.
+
+The `BTCalculus` library (built with the same `lake build`) adds trit
+Kleene laws, integer `lsdZ`/`DZ` decomposition, `D ∘ I_a = id`, the
+projection band `P_a ∘ P_b = P_a`, the twisted product rule, the
+LSD-carry sum rule, `cmp3`/`select3` identities, rewrite soundness for
+the operator fragment, and word/integer semantic agreement for `D` and
+`I_a`.
 
 These are labelled **EXACT — LEAN VERIFIED**. The Python cylinder
 implementation remains the executable instantiation; this Lean project

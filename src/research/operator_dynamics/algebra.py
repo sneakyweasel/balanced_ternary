@@ -9,48 +9,13 @@ from __future__ import annotations
 from dataclasses import dataclass
 from itertools import product
 
+from bt.calculus.rewrite import REWRITE_RULES
 from bt.operators import (
     ALGEBRA_GENERATORS,
     OperatorDomainError,
     get_operator,
 )
 from bt.representation import encode
-
-
-# Rewrite rules on generator words (left = applied last). Each rule is
-# exact as an integer identity on the intersection of domains.
-REWRITE_RULES: tuple[tuple[tuple[str, ...], tuple[str, ...], str], ...] = (
-    (("N", "N"), (), "N∘N = id"),
-    (("D", "S"), (), "D∘S = id"),
-    (("D", "Ip"), (), "D∘Ip = id"),
-    (("D", "Im"), (), "D∘Im = id"),
-    (("Wz", "Wz"), (), "Wz∘Wz = id"),
-    (("Wt", "Wt"), (), "Wt∘Wt = id"),
-    (("H2", "M2"), (), "H2∘M2 = id"),
-    (("H3", "S"), (), "H3∘S = id"),
-    (("K3", "K3"), ("K3",), "K3 is a projection"),
-    (("W", "W"), ("K3",), "W∘W = K3 (strip factors of 3)"),
-    (("W", "S"), ("W",), "W∘S = W  (appending zeros does not change W)"),
-    (("K3", "S"), ("K3",), "K3∘S = K3"),
-    (("K3", "W"), ("W",), "K3∘W = W  (W(n) is never divisible by 3 unless 0)"),
-    (("W", "K3"), ("W",), "W∘K3 = W"),
-    (("N", "S"), ("S", "N"), "N∘S = S∘N"),
-    (("S", "N"), ("N", "S"), "S∘N = N∘S"),
-    (("N", "D"), ("D", "N"), "N∘D = D∘N"),
-    (("D", "N"), ("N", "D"), "D∘N = N∘D"),
-    (("N", "W"), ("W", "N"), "N∘W = W∘N"),
-    (("W", "N"), ("N", "W"), "W∘N = N∘W"),
-    (("N", "M2"), ("M2", "N"), "N∘M2 = M2∘N"),
-    (("M2", "N"), ("N", "M2"), "M2∘N = N∘M2"),
-    (("N", "Wz"), ("Wz", "N"), "N∘Wz = Wz∘N"),
-    (("Wz", "N"), ("N", "Wz"), "Wz∘N = N∘Wz"),
-    (("N", "Wt"), ("Wt", "N"), "N∘Wt = Wt∘N"),
-    (("Wt", "N"), ("N", "Wt"), "Wt∘N = N∘Wt"),
-    (("S", "M2"), ("M2", "S"), "S∘M2 = M2∘S"),
-    (("M2", "S"), ("S", "M2"), "M2∘S = S∘M2"),
-    (("Wz", "S"), ("S", "Wz"), "Wz∘S = S∘Wz"),
-    (("S", "Wz"), ("Wz", "S"), "S∘Wz = Wz∘S"),
-)
 
 
 @dataclass(frozen=True)
