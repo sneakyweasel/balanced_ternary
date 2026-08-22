@@ -248,3 +248,19 @@ external preprint claims into theorems.
 
 Balanced ternary's narrower literature position is documented in
 [balanced_ternary_vs_collatz_literature.md](balanced_ternary_vs_collatz_literature.md).
+
+## Balanced-ternary word permutations
+
+Milestone 9 treats OEIS reversal \(W\) as a permutation of canonical
+balanced-ternary words, not as a fifth numerical coordinate of an exponent
+code. This is a different object from:
+
+- the 2-adic cylinder of a valuation word;
+- Kramer's 3-adic endpoint representative \(M\);
+- canonical rational base \(3/2\), whose odd step appends a trailing `1`
+  rather than reversing a balanced-ternary word.
+
+No exact identity identifying \(W(n)\) or \(W(R(\mathbf{k}))\) with those
+coordinates was found. The comparison is therefore a dictionary of
+different word operations, not a novelty claim. See
+[collatz_bt_warp.md](collatz_bt_warp.md).

@@ -25,9 +25,13 @@ Compiled theorem groups:
 - `M ≤ X` from the nonnegative `3^m` endpoint lift;
 - exact endpoint change under refinement and signed successor drift;
 - lift blocks as the mixed-radix expansion of `(R_m - 1) / 2`;
-- boundedness iff the mixed-radix lift blocks are eventually zero.
+- boundedness iff the mixed-radix lift blocks are eventually zero;
+- balanced-ternary digit lists: MSD evaluation, digit-sum after append-plus,
+  `W(-n) = -W(n)`, `W(3^m n) = W(n)` after canonicalization, and
+  `W(W(n)) = n` when the LSD is nonzero.
 
 These are labelled **EXACT — LEAN VERIFIED**. The Python cylinder
 implementation remains the executable instantiation; this Lean project
 formalizes the exact abstract cylinder and lift interfaces and their
-arithmetic consequences.
+arithmetic consequences, together with the digit-list algebra of OEIS
+reversal. Orbit statistics of `W` and `T` are not formalized.

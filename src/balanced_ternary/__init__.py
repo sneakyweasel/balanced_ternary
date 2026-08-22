@@ -19,6 +19,15 @@ from balanced_ternary.invariants import (
     v3,
     verify_invariants,
 )
+from balanced_ternary.oeis_maps import (
+    bt_alternating_digit_sum,
+    bt_digit_sum,
+    bt_is_palindrome,
+    bt_length,
+    bt_reverse,
+    bt_reverse_tail,
+    bt_reverse_zeros,
+)
 from balanced_ternary.representation import (
     BalancedTernary,
     decode,
@@ -33,6 +42,13 @@ __all__ = [
     "RunStatistics",
     "ZeroGapStatistics",
     "automaton_residue",
+    "bt_alternating_digit_sum",
+    "bt_digit_sum",
+    "bt_is_palindrome",
+    "bt_length",
+    "bt_reverse",
+    "bt_reverse_tail",
+    "bt_reverse_zeros",
     "decode",
     "digits",
     "encode",

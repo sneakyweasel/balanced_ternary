@@ -332,3 +332,35 @@ def test_collatz_affine_center_census():
     assert "Affine-center census" in out
     assert "rows=12" in out
     assert "theorem-backed inequality failures=0" in out
+
+
+def test_collatz_warp_one():
+    out = _run("collatz", "warp", "1")
+    assert "W(n)=1" in out
+    assert "Comm_WT=0" in out
+    assert "T defined=true" in out
+
+
+def test_collatz_warp_census():
+    out = _run("collatz", "warp-census", "--limit", "40", "--identity-length", "2")
+    assert "BT warp commutator census" in out
+    assert "smallest zero=1" in out
+    assert "W W = id" in out
+
+
+def test_collatz_warp_realizer():
+    out = _run("collatz", "warp-realizer", "1")
+    assert "R=3" in out
+    assert "W(R)=" in out
+
+
+def test_collatz_warp_semigroup():
+    out = _run("collatz", "warp-semigroup", "--length", "2", "--sample-limit", "20")
+    assert "Composition semigroup" in out
+    assert "W W vs id counterexample=3" in out
+
+
+def test_collatz_warp_counterexamples():
+    out = _run("collatz", "warp-counterexamples")
+    assert "W_W_equals_id" in out
+    assert "counterexample': 3" in out or "counterexample\": 3" in out or "3" in out

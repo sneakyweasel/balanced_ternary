@@ -19,6 +19,7 @@ from visualization.views import (
     trajectory_rows,
     trajectory_view,
     transducer_complexity_rows,
+    warp_view,
 )
 
 
@@ -150,4 +151,14 @@ def test_affine_center_census_view_small():
     orders = {row["relation"]: row for row in view.coordinate_order_rows}
     assert "n_star_le_R" in orders
     assert orders["R_le_M"]["false"] >= 1 or orders["M_le_R"]["false"] >= 1
+
+
+def test_warp_view_21():
+    view = warp_view(21)
+    assert view.n == 21
+    assert view.W_n == 7
+    assert view.t_defined
+    assert view.t_of_W_defined
+    assert view.Comm_WT == view.W_T - view.T_W
+    assert not view.palindrome_n
 

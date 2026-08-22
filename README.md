@@ -31,7 +31,9 @@ together with:
 - the balanced-ternary word \(\operatorname{BT}(R)\);
 - mixed-radix lift digits \(t_i\);
 - exact drift \(3^m/2^K\);
-- the affine center \(n_*=C/(2^K-3^m)\) and centered inequalities.
+- the affine center \(n_*=C/(2^K-3^m)\) and centered inequalities;
+- OEIS balanced-ternary word maps, especially reversal \(W\), composed
+  with \(T\) on an explicit domain.
 
 Balanced ternary is tested as a representation of \(R\), not asserted to be
 an independent arithmetic coordinate. The current exact result is that
@@ -72,6 +74,9 @@ btprime collatz inverse 1 --depth 5 --k-max 20
 btprime collatz dual-code 1,4,2
 btprime collatz compatibility 1,4,2
 btprime collatz affine-center 1,4,2
+btprime reverse 21
+btprime collatz warp 27
+btprime collatz warp-census --limit 20000
 
 # Bounded experiments
 btprime collatz information-test --max-length 4 --max-k 4
@@ -111,7 +116,7 @@ btprime collatz ui
 ```
 
 The UI covers integer dynamics, finite-state models, exponent-code
-compatibility, lift coding, and affine-center geometry. Expensive bounded
+compatibility, lift coding, affine-center geometry, and BT word maps. Expensive bounded
 searches run only after explicit submission and are labelled as computational
 experiments.
 
@@ -171,6 +176,7 @@ Start with [docs/README.md](docs/README.md). The main records are:
 - [Dual coding and lift digits](docs/collatz_dual_coding.md)
 - [Four-coordinate literature comparison](docs/literature_comparison.md)
 - [Affine-center geometry](docs/collatz_affine_center.md)
+- [BT word maps and Collatz commutators](docs/collatz_bt_warp.md)
 
 Displayed balanced-ternary words are most-significant digit first.
 Mathematical positions are indexed from the least-significant digit \(a_0\).

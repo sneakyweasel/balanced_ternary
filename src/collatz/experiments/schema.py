@@ -9,6 +9,7 @@ from typing import Any
 SCHEMA_VERSION = "collatz-dual-code/v1"
 COMPATIBILITY_SCHEMA_VERSION = "collatz-compatibility/v1"
 AFFINE_CENTER_SCHEMA_VERSION = "collatz-affine-center/v1"
+BT_WARP_SCHEMA_VERSION = "collatz-bt-warp/v1"
 
 
 @dataclass(frozen=True)
@@ -136,3 +137,48 @@ def validate_affine_center_row(row: dict[str, Any]) -> None:
             or pair[1] == 0
         ):
             raise ValueError(f"row {field} must be an integer numerator/denominator pair")
+
+
+REQUIRED_BT_WARP_FIELDS = frozenset(
+    {
+        "n",
+        "BT(n)",
+        "W(n)",
+        "BT(W(n))",
+        "T(n)",
+        "W(T(n))",
+        "T(W(n))",
+        "Comm_WT",
+        "s3(n)",
+        "s3(T(n))",
+        "s3_alt(n)",
+        "L3(n)",
+        "L3(T(n))",
+        "palindrome(n)",
+        "palindrome(T(n))",
+    }
+)
+
+REQUIRED_BT_WARP_CYLINDER_FIELDS = REQUIRED_BT_WARP_FIELDS | frozenset(
+    {"itinerary", "R", "BT(R)", "W(R)", "next_k", "lift_digit"}
+)
+
+
+def validate_bt_warp_row(row: dict[str, Any], *, cylinder: bool = False) -> None:
+    """Validate a collatz-bt-warp/v1 integer or cylinder row."""
+    required = REQUIRED_BT_WARP_CYLINDER_FIELDS if cylinder else REQUIRED_BT_WARP_FIELDS
+    missing = required.difference(row)
+    if missing:
+        raise ValueError(f"bt-warp row missing fields: {sorted(missing)}")
+    if isinstance(row["n"], bool) or not isinstance(row["n"], int):
+        raise ValueError("row n must be an integer")
+    if row["T(n)"] is None:
+        if row["W(T(n))"] is not None or row["palindrome(T(n))"] is not None:
+            raise ValueError("undefined T(n) cannot have T-derived fields")
+    elif isinstance(row["T(n)"], bool) or not isinstance(row["T(n)"], int):
+        raise ValueError("row T(n) must be an integer or null")
+    if row["T(W(n))"] is None:
+        if row["Comm_WT"] is not None:
+            raise ValueError("undefined T(W(n)) cannot have a commutator")
+    elif row["Comm_WT"] != row["W(T(n))"] - row["T(W(n))"]:
+        raise ValueError("row Comm_WT does not equal W(T(n))-T(W(n))")

@@ -46,6 +46,16 @@ from .compatibility import (
     _affine_center,
     _affine_center_census,
 )
+from .warp import (
+    _warp,
+    _warp_census,
+    _warp_counterexamples,
+    _warp_palindrome,
+    _warp_realizer,
+    _warp_realizer_census,
+    _warp_semigroup,
+    _warp_trajectory,
+)
 
 def run_collatz(args: argparse.Namespace) -> int:
     cmd = args.collatz_cmd
@@ -142,6 +152,22 @@ def run_collatz(args: argparse.Namespace) -> int:
             args.closest_count,
             args.write,
         )
+    if cmd == "warp":
+        return _warp(args.n)
+    if cmd == "warp-census":
+        return _warp_census(args.limit, args.write, args.identity_length)
+    if cmd == "warp-realizer":
+        return _warp_realizer(args.ks)
+    if cmd == "warp-realizer-census":
+        return _warp_realizer_census(args.max_length, args.max_k, args.write)
+    if cmd == "warp-semigroup":
+        return _warp_semigroup(args.length, args.sample_limit)
+    if cmd == "warp-palindrome":
+        return _warp_palindrome(args.n, args.max_steps)
+    if cmd == "warp-trajectory":
+        return _warp_trajectory(args.n, args.max_steps)
+    if cmd == "warp-counterexamples":
+        return _warp_counterexamples()
     if cmd == "ui":
         from visualization.app import launch
 

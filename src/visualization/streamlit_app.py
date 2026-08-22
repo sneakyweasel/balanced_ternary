@@ -51,6 +51,12 @@ pages = {
             icon=":material/account_tree:",
             url_path="inverse-tree",
         ),
+        st.Page(
+            str(_PAGES / "bt_warp.py"),
+            title="BT warp",
+            icon=":material/swap_horiz:",
+            url_path="bt-warp",
+        ),
     ],
     "Exponent codes": [
         st.Page(

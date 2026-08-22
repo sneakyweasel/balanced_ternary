@@ -8,9 +8,11 @@ import streamlit as st
 from visualization.views import (
     NumberView,
     TrajectoryView,
+    WarpView,
     inverse_tree_view,
     number_view,
     trajectory_view,
+    warp_view,
 )
 
 
@@ -24,9 +26,14 @@ def _cached_trajectory(n: int, max_steps: int) -> TrajectoryView:
     return trajectory_view(n, max_steps)
 
 
-@st.cache_data(max_entries=64, show_spinner=False)
+@st.cache_data(max_entries=128, show_spinner=False)
 def _cached_inverse(root: int, depth: int, k_max: int) -> dict[str, object]:
     return inverse_tree_view(root, depth, k_max)
+
+
+@st.cache_data(max_entries=128, show_spinner=False)
+def _cached_warp(n: int) -> WarpView:
+    return warp_view(n)
 
 
 def _odd_input(label: str, *, key: str) -> int:
@@ -155,3 +162,61 @@ def inverse_tree_page() -> None:
         st.metric("Truncated", str(payload["truncated"]).lower(), border=True)
     st.code(str(payload["formatted"]), language="text")
     st.caption("The self-map 1 -> 1 (k=2) is recorded as a cycle and not expanded.")
+
+
+def warp_page() -> None:
+    st.caption(
+        "W is OEIS A134028: reverse the canonical balanced-ternary word, then "
+        "decode. T is defined only on positive odd integers."
+    )
+    default = int(st.session_state.get("shared_odd_n", 27))
+    n = int(st.number_input("Integer n", value=default, step=1, key="warp_n"))
+    if n % 2 == 1 and n > 0:
+        st.session_state.shared_odd_n = n
+    view = _cached_warp(n)
+
+    with st.container(horizontal=True):
+        st.metric("n", view.n, border=True)
+        st.metric("W(n)", view.W_n, border=True)
+        st.metric("T(n)", "undefined" if view.T_n is None else view.T_n, border=True)
+        st.metric(
+            "Comm_WT",
+            "undefined" if view.Comm_WT is None else view.Comm_WT,
+            border=True,
+        )
+
+    left, right = st.columns(2)
+    with left:
+        st.subheader("Words")
+        st.code(
+            "\n".join(
+                (
+                    f"BT(n)      {view.bt_n}",
+                    f"BT(W(n))   {view.bt_W}",
+                    f"palindrome {str(view.palindrome_n).lower()}",
+                    f"s3(n)      {view.s3_n}",
+                    f"L3(n)      {view.L3_n}",
+                )
+            ),
+            language="text",
+        )
+    with right:
+        st.subheader("Domain")
+        if view.t_defined:
+            st.badge("T(n) defined", icon=":material/check:", color="green")
+        else:
+            st.badge("T(n) undefined", icon=":material/block:", color="orange")
+        if view.t_of_W_defined:
+            st.badge("T(W(n)) defined", icon=":material/check:", color="green")
+        else:
+            st.badge("T(W(n)) undefined", icon=":material/block:", color="orange")
+        st.caption(
+            f"W(T(n)) = {view.W_T}  ·  T(W(n)) = {view.T_W}  ·  "
+            f"delta_s = {view.delta_s}  ·  delta_L = {view.delta_L}"
+        )
+
+    st.info(
+        "W is not an involution when 3 divides n ≠ 0. Commutation with T is "
+        "not a theorem; the smallest counterexample is n = 3.",
+        icon=":material/info:",
+    )

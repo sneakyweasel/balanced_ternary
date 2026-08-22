@@ -450,3 +450,47 @@ def affine_center_census_view(
         inequality_rows=inequalities,
         coordinate_order_rows=tuple(coordinate_orders),
     )
+
+
+@dataclass(frozen=True)
+class WarpView:
+    n: int
+    bt_n: str
+    W_n: int
+    bt_W: str
+    T_n: int | None
+    W_T: int | None
+    T_W: int | None
+    Comm_WT: int | None
+    palindrome_n: bool
+    palindrome_T: bool | None
+    t_defined: bool
+    t_of_W_defined: bool
+    delta_s: int | None
+    delta_L: int | None
+    s3_n: int
+    L3_n: int
+
+
+def warp_view(n: int) -> WarpView:
+    from collatz.warp import warp_state
+
+    state = warp_state(n)
+    return WarpView(
+        n=state.n,
+        bt_n=state.bt_n,
+        W_n=state.W_n,
+        bt_W=state.bt_W,
+        T_n=state.T_n,
+        W_T=state.W_T,
+        T_W=state.T_W,
+        Comm_WT=state.Comm_WT,
+        palindrome_n=state.palindrome_n,
+        palindrome_T=state.palindrome_T,
+        t_defined=state.t_defined,
+        t_of_W_defined=state.t_of_W_defined,
+        delta_s=state.delta_s,
+        delta_L=state.delta_L,
+        s3_n=state.s3_n,
+        L3_n=state.L3_n,
+    )

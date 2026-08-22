@@ -277,4 +277,58 @@ def add_collatz_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_acc.add_argument("--closest-count", type=int, default=10, dest="closest_count")
     p_acc.add_argument("--write", action="store_true")
 
+    p_wp = c.add_parser(
+        "warp",
+        help="Milestone 9: W, T, and the domain-aware commutator at n",
+    )
+    p_wp.add_argument("n", type=int)
+
+    p_wpc = c.add_parser(
+        "warp-census",
+        help="Milestone 9: commutator census on odd n in [1, limit]",
+    )
+    p_wpc.add_argument("--limit", type=int, default=10_000)
+    p_wpc.add_argument("--identity-length", type=int, default=6, dest="identity_length")
+    p_wpc.add_argument("--write", action="store_true")
+
+    p_wpr = c.add_parser(
+        "warp-realizer",
+        help="Milestone 9: W(R) versus R of a transformed itinerary",
+    )
+    p_wpr.add_argument("ks", help="comma-separated valuations")
+
+    p_wprc = c.add_parser(
+        "warp-realizer-census",
+        help="Milestone 9: bounded W(R) versus reverse/tail itineraries",
+    )
+    p_wprc.add_argument("--max-length", type=int, default=3, dest="max_length")
+    p_wprc.add_argument("--max-k", type=int, default=3, dest="max_k")
+    p_wprc.add_argument("--write", action="store_true")
+
+    p_wps = c.add_parser(
+        "warp-semigroup",
+        help="Milestone 9: T, W, Wt words up to a given length",
+    )
+    p_wps.add_argument("--length", type=int, default=6)
+    p_wps.add_argument("--sample-limit", type=int, default=80, dest="sample_limit")
+
+    p_wpp = c.add_parser(
+        "warp-palindrome",
+        help="Milestone 9: palindrome flags along an accelerated orbit",
+    )
+    p_wpp.add_argument("n", type=int)
+    p_wpp.add_argument("--max-steps", type=int, default=40)
+
+    p_wpt = c.add_parser(
+        "warp-trajectory",
+        help="Milestone 9: n -> W(n) -> T(W(n)) -> ...",
+    )
+    p_wpt.add_argument("n", type=int)
+    p_wpt.add_argument("--max-steps", type=int, default=40)
+
+    c.add_parser(
+        "warp-counterexamples",
+        help="Milestone 9: preserved counterexamples to naive W identities",
+    )
+
     c.add_parser("ui", help="open the Streamlit research explorer")

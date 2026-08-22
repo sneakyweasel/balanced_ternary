@@ -13,6 +13,7 @@ from balanced_ternary.invariants import (
     v3,
     verify_invariants,
 )
+from balanced_ternary.oeis_maps import bt_reverse, bt_reverse_tail
 from balanced_ternary.representation import decode, encode, is_canonical
 from collatz.cli import add_collatz_subparser, run_collatz
 
@@ -48,6 +49,18 @@ def main(argv: list[str] | None = None) -> int:
     )
     p_inv.add_argument("--limit", type=int, default=100_000)
 
+    p_rev = sub.add_parser(
+        "reverse",
+        help="A134028: reverse canonical balanced ternary digits (W)",
+    )
+    p_rev.add_argument("n", type=int)
+
+    p_revt = sub.add_parser(
+        "reverse-tail",
+        help="A351702: reverse all balanced ternary digits except the MSD",
+    )
+    p_revt.add_argument("n", type=int)
+
     add_collatz_subparser(sub)
 
     args = parser.parse_args(argv)
@@ -66,6 +79,12 @@ def main(argv: list[str] | None = None) -> int:
         return 0
     if args.cmd == "test-invariants":
         return _run_invariants(args.limit)
+    if args.cmd == "reverse":
+        print(bt_reverse(args.n))
+        return 0
+    if args.cmd == "reverse-tail":
+        print(bt_reverse_tail(args.n))
+        return 0
     if args.cmd == "collatz":
         return run_collatz(args)
     parser.error(f"unknown command {args.cmd!r}")

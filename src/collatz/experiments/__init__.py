@@ -1,5 +1,6 @@
 """Reproducible Collatz experiments."""
 
+from collatz.experiments.bt_warp import run_bt_warp_census
 from collatz.experiments.complexity_spectrum import (
     ComplexitySpectrumResult,
     run_complexity_spectrum,
@@ -19,6 +20,7 @@ __all__ = [
     "ExperimentManifest",
     "periodic_dual_trace",
     "run_affine_center_census",
+    "run_bt_warp_census",
     "run_complexity_spectrum",
     "run_exhaustive_experiment",
     "run_information_content",

@@ -185,3 +185,22 @@ See [literature_comparison.md](literature_comparison.md) and
    **CONJECTURE**; in the contracting regime it is equivalent to \(X\le R\).
 
 See [collatz_affine_center.md](collatz_affine_center.md).
+
+## Answered in Milestone 9
+
+1. Canonical BT reversal \(W\) is OEIS A134028. It is an involution if and
+   only if \(n=0\) or \(3\nmid n\). **PROVED; LEAN VERIFIED** at the
+   digit-list level. \(W(3n)=3W(n)\) is **REFUTED EXACTLY** at \(n=1\).
+2. \(T(W(n))\) is defined, for odd \(n\) not divisible by 3, iff
+   \(n\equiv 1\pmod 3\). **PROVED**.
+3. \(W\circ T=T\circ W\) on that domain is **REFUTED EXACTLY** at \(n=3\).
+   Zero commutators through odd \(n\le 20000\) are
+   \(\{1,121,5461,9841\}\). **VERIFIED COMPUTATIONALLY**.
+4. \(s_3(3n+1)=s_3(n)+1\) remains the only exact digit-sum Collatz
+   transition; \(\Delta_s\) isolates the odd-part step. **PROVED**.
+5. \(W(R(\mathbf{k}))\) is not \(R\) of the reversed or tail-reversed
+   itinerary. Smallest witness \(\mathbf{k}=(1)\). **REFUTED EXACTLY**.
+6. No constraint on near-critical exponent codes was found.
+   **OBSERVATION**.
+
+See [collatz_bt_warp.md](collatz_bt_warp.md).

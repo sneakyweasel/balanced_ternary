@@ -23,6 +23,7 @@ REGISTERED_TITLES = (
     "Valuation prefixes",
     "Valuation languages",
     "Joint graph",
+    "BT warp",
 )
 
 
@@ -36,6 +37,7 @@ def test_router_starts_on_overview():
     for title in REGISTERED_TITLES:
         assert title in source
     assert "url_path=\"exponent-code\"" in source
+    assert "url_path=\"bt-warp\"" in source
 
 
 def test_exponent_code_page_loads():

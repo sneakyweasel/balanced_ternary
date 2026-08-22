@@ -748,3 +748,13 @@ positive center. Kramer's representative satisfies \(X=M+q3^m\) for
 in bounded exact censuses. See
 [collatz_affine_center.md](collatz_affine_center.md).
 
+## 27. Balanced-ternary word maps
+
+Canonical reversal \(W\) is OEIS A134028, not an involution:
+\(W(W(n))=n\) if and only if \(n=0\) or \(3\nmid n\). Companion maps
+\(W_z\) (A160652) and \(W_{\mathrm{tail}}\) (A351702) are involutions.
+The commutator \(W(T(n))-T(W(n))\) is defined only when both \(n\) and
+\(W(n)\) are positive odd, and fails already at \(n=3\). Digit-sum
+transition laws beyond append-plus were not obtained. Details, censuses,
+and Q1–Q7 are in [collatz_bt_warp.md](collatz_bt_warp.md).
+

@@ -68,6 +68,11 @@ def overview_page() -> None:
                 "object": "Fixed center, centered scaling, regime inequalities",
                 "status": "Exact identities plus bounded censuses",
             },
+            {
+                "layer": "BT word maps",
+                "object": "OEIS reversal W, tail-reverse, commutator with T",
+                "status": "Exact word algebra; W/T commutation refuted",
+            },
         ],
         hide_index=True,
         width="stretch",

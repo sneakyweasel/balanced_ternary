@@ -48,6 +48,7 @@ from collatz.trajectory import (
 from collatz.transducers import apply_even, odd_part_word
 from collatz.transitions import CollatzFeatureTransition, feature_transition
 from collatz.valuation import AT_LEAST_K, classify_collatz_valuation, v2
+from collatz.warp import WarpState, warp_state
 
 __all__ = [
     "AT_LEAST_K",
@@ -68,6 +69,7 @@ __all__ = [
     "RationalBaseThreeHalves",
     "ValuationCylinder",
     "ValuationItinerary",
+    "WarpState",
     "ZeroLiftState",
     "add",
     "add_one",
@@ -106,5 +108,6 @@ __all__ = [
     "three_n_plus_one_word",
     "v2",
     "verify_collatz_invariants",
+    "warp_state",
     "zero_lift_k",
 ]

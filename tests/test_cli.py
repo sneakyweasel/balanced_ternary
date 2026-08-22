@@ -60,3 +60,9 @@ def test_test_invariants_cli():
     out = _run("test-invariants", "--limit", "200")
     assert "All invariants passed." in out
     assert "Checked 401 integers." in out
+
+
+def test_reverse_cli_matches_a134028():
+    assert _run("reverse", "21").strip() == "7"
+    assert _run("reverse", "20").strip() == "-20"
+    assert _run("reverse-tail", "224").strip() == "168"
