@@ -16,11 +16,15 @@ from research.lifting.state_complexity import (
     behaviour_shapes_seen,
     deep_state_report,
     minimality_witness,
+    normal_form,
     quotient_chain,
     realising_poly,
     row_structure,
     scaling_invariance,
     shallow_census,
+    shift_law,
+    shifted_family_injectivity,
+    strata,
     truncated_tree_rows,
     valuation_rows,
 )
@@ -175,5 +179,50 @@ def test_deep_state_report_verdict():
     assert verdict["attained"]
     assert not verdict["phi_minimal"]
     assert not verdict["orbits_minimal"]
+    assert verdict["shift_is_the_balanced_value"]
+    assert verdict["shift_is_not_the_digit_sum"]
+    assert verdict["shifted_family_separates"]
+    assert verdict["normal_form_is_complete"]
+    assert verdict["dominated_collapses_to_valuation"]
+    assert verdict["undominated_is_the_unit_orbit"]
     assert len(report["chain"]) == 3
     assert report["witness"]["found"]
+
+
+# --------------------------------------------------- shift and separation
+
+def test_shift_law_selects_the_balanced_value_over_the_digit_sum():
+    row = shift_law(e_max=3)
+    assert row["cases"] > 0
+    assert row["packed_holds"]
+    assert row["packed_failures"] == 0
+    assert row["digit_sum_refuted"]
+    assert all(row["window_is_complete_residue_system"].values())
+
+
+def test_shifted_family_separates_every_residue():
+    row = shifted_family_injectivity(e_max=3, budget=5)
+    assert row["injective"]
+    assert row["deepest_leaf_identified"]
+    for entry in row["rows"]:
+        assert entry["distinct"] == entry["states"]
+        assert entry["collisions"] == []
+
+
+def test_normal_form_is_a_complete_invariant():
+    row = normal_form(r_max=3)
+    assert row["bijective"]
+    for entry in row["rows"]:
+        assert entry["clashes"] == 0
+        assert entry["dominated_not_a_tree"] == 0
+        assert entry["keys"] == entry["behaviours"] == entry["formula"]
+        assert entry["dominated"] + entry["undominated"] == entry["formula"]
+
+
+def test_strata_split_into_valuation_collapse_and_orbit_rigidity():
+    row = strata(r_max=3)
+    assert row["dominated_collapses_to_valuation"]
+    assert row["undominated_is_exactly_the_unit_orbit"]
+    for entry in row["rows"]:
+        assert entry["orbit_clashes"] == 0
+        assert entry["undominated_orbits"] == entry["undominated_behaviours"]

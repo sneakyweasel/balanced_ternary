@@ -31,6 +31,13 @@ The quotient chain under study, in the deep regime `k ≥ r`:
 
 Both surjections are strict from `r = 2` on.
 
+The last row is now closed, and closing it produced a normal form rather
+than only a count: after unit-scaling `b` to a power of `3`, the behaviour
+is `v_3(c)` alone where the constant dominates the derivative, and the full
+unit orbit everywhere else. See
+[the normal form](#the-minimal-state-as-a-normal-form), which is also why
+the branch closes as a reparameterization.
+
 ## Unit scaling collapses the jet
 
 **PROVED.** Let `λ` be coprime to `3`. If the trit `a` survives at `g`,
@@ -155,24 +162,39 @@ in `c mod 3^r`. Write `T_j` for the behaviour "fully ternary to depth
   behaviour is `T_m`. This contributes the `e` behaviours
   `T_0, …, T_{e-1}`.
 - **`m ≥ e`.** Write `c = 3^e d`. After `j ≤ e` steps the constant is
-  `3^{e-j}(d + a_1 + … + a_j)`, so survival is automatic for `j < e` and
-  the first `e` levels are fully ternary with `3^e` leaves. The leaf
-  reached by a word is the state `(d + s, 3^e)` at remaining depth
-  `r - e`, where `s` is the trit sum of the word. The whole behaviour is
-  therefore the function `word ↦ (depth-(r-e) behaviour of d + s)`, which
-  depends only on `d mod 3^{r-e}`, giving at most `3^{r-e}` behaviours.
+  `3^{e-j}(d + a_1 + 3a_2 + … + 3^{j-1}a_j)`, so survival is automatic for
+  `j < e` and the first `e` levels are fully ternary with `3^e` leaves.
+  The leaf reached by a word `w` is the state `(d + packWord(w), 3^e)` at
+  remaining depth `r - e`. The whole behaviour is therefore the function
+  `w ↦ (depth-(r-e) behaviour of d + packWord(w))`, which depends only on
+  `d mod 3^{r-e}`, giving at most `3^{r-e}` behaviours.
 
-*Proof of the `m ≥ e` recursion.* `c/3 + a3^{e-1} = 3^{e-1}(d + a)` when
-`c = 3^e d`; induct, using `b`-invariance to keep `3^e` fixed. ∎
+*Proof of the `m ≥ e` recursion.* Generalise to
+`𝔇_w (3^j d + 3^{j+i} x) = (d + 3^i·packWord(w)) + 3^{j+i} x` for
+`|w| = j`, which is an induction on `w`: one section step sends
+`(3^{j+1}d, 3^{j+1+i})` to `(3^j(d + 3^i a), 3^{j+(i+1)})`, and
+`packWord(a::w) = a + 3·packWord(w)` matches the shift. Set `i = 0`,
+`j = e`. ∎ (Lean: `residualAlong_linState_pow`,
+`residualAlong_linState_leaf`, `outputAlong_linState_pow`.)
 
-**COMPUTATIONALLY VERIFIED.** The row count is exactly
+**The shift is the balanced value of the word, not its digit sum.** An
+earlier draft of this file recorded the digit sum, and the error was not
+cosmetic: it changes the set of shifts from the `2e+1` values `|s| ≤ e` to
+all `3^e` values, and the separation argument below needs a complete
+residue system modulo `3^e`. With the digit sum the separation is false —
+for `e = 2` every `d ≡ 3` and `d ≡ 6 (mod 9)` would give the identical
+tuple `(∅,∅,T_1,∅,∅)` — which is why the row count looked unreachable.
+`shift_law` in `research.lifting.state_complexity` keeps both candidates
+in the record and refutes the digit sum.
+
+**PROVED.** The row count is exactly
 
 \[
 N(r,e) = 3^{\,r-e} + e ,
 \]
 
-verified exhaustively for `1 ≤ r ≤ 6` and every `0 ≤ e ≤ r`. The rows for
-`r = 1..6`:
+also verified exhaustively for `1 ≤ r ≤ 6` and every `0 ≤ e ≤ r`. The rows
+for `r = 1..6`:
 
 | `e` | 1 | 2 | 3 | 4 | 5 | 6 |
 |---|---|---|---|---|---|---|
@@ -197,19 +219,51 @@ theorem with no gap:
   continues. The behaviour is the sequence of continuing positions at
   levels `1, …, r-1`, giving `3^{r-1}` behaviours.
 
-**OPEN — the gap.** For `1 < e < r` the structure theorem bounds the
-`m ≥ e` part by `3^{r-e}` but does not prove that bound is attained. What
-is missing is injectivity of
+### Separation: the middle rows
+
+For `1 < e < r` the structure theorem bounds the `m ≥ e` part by `3^{r-e}`.
+Attainment needs injectivity of the *shifted family*
 
 \[
-d \bmod 3^{\,r-e} \;\longmapsto\; \bigl(B_{r-e}(d+s)\bigr)_{|s| \le e},
+\Phi_R : d \bmod 3^{R} \;\longmapsto\; \bigl(B_{R}(d+t)\bigr)_{t \in W_e},
+\qquad R = r-e,
 \]
 
-where `B_{r-e}` is the depth-`(r-e)` behaviour map of the same row.
-Injectivity fails for `B_{r-e}` alone — all `d` with `3 ∤ d` give the dead
-behaviour — so the argument has to use the whole shifted family, and no
-proof is recorded. This is the one gap in the closed form, and it is why
-this branch is parked rather than promoted.
+where `B_R` is the depth-`R` behaviour map of the same row and
+`W_e = [-(3^e-1)/2, (3^e-1)/2]` is the window of shifts from the block
+shift law. The family is needed because `B_R` alone is far from injective:
+every `d` with `3 ∤ d` gives the dead behaviour.
+
+**PROVED.** `Φ_R` is injective for every `e ≥ 1` and every `R ≥ 0`.
+
+*Proof.* Induction on `R`. For `R = 0` the domain is trivial.
+
+`W_e` has `3^e` consecutive integers, so it is a complete residue system
+modulo `3^e`; write `t_0` for its unique element with `3^e | d + t_0`.
+
+If `R ≤ e`, then `B_R(x) = T_{min(v_3(x),R)}` for every `x`: either the
+valuation is below `e` and the structure theorem gives `T`, or it is at
+least `e ≥ R` and the block is fully ternary to depth `R`, which is `T_R`.
+So the tuple records `min(v_3(d+t), R)` for all `t ∈ W_e`. For each
+`j ≤ R ≤ e` the set `{t ∈ W_e : 3^j | d+t}` is nonempty and equals
+`{t ∈ W_e : t ≡ -d}` modulo `3^j`, which pins `d mod 3^j`; take `j = R`.
+
+If `R > e`, then every `t ≠ t_0` has `v_3(d+t) < e`, so its entry is
+`T_{v_3(d+t)}`, of depth `< e`. The entry at `t_0` is fully ternary to
+depth `e` and at least one of its leaves survives another step, since the
+leaf shifts again cover every class modulo 3. So `t_0` is the unique index
+whose entry has depth `≥ e`; reading it off gives `d mod 3^e`. Writing
+`d + t_0 = 3^e d'`, the block shift law makes that entry the depth-`e`
+ternary block carrying `Φ_{R-e}(d')`, so induction gives
+`d' mod 3^{R-e}`, hence `d + t_0 mod 3^R`, hence `d mod 3^R`. ∎
+
+The proof is exactly why the digit-sum error mattered: with a window of
+`2e+1 < 3^e` shifts there is no `t_0` at all for most `d`, and the
+induction has nothing to descend into.
+
+Tests: `test_shifted_family_separates_residues` and
+`test_the_recursing_leaf_is_the_unique_tall_one`, with the reproducible
+experiment in `shifted_family_injectivity`.
 
 ## The total, and the overlap
 
@@ -230,11 +284,10 @@ L_r \;=\; \sum_{e=0}^{r}\bigl(3^{\,r-e} + e\bigr) - \binom{r}{2}
  \;=\; \frac{3^{\,r+1} - 1}{2} + r .
 \]
 
-∎ modulo the open row identity above. Values: 5, 15, 43, 125, 369, 1099.
+∎ Values: 5, 15, 43, 125, 369, 1099.
 
-`L_r` inherits the classification of the rows it is summed from:
-**COMPUTATIONALLY VERIFIED** to `r = 6`, with the reduction of the total
-to the rows and the overlap both proved.
+`L_r` inherits the classification of the rows it is summed from, which are
+now **PROVED**; the count is also verified exhaustively to `r = 6`.
 
 ## Attainment
 
@@ -255,6 +308,42 @@ The realisation is not an artefact of degree 1: adding `3^r x^2`
 contributes `3^{2r} x^2` to the residual, invisible modulo `3^r`, and the
 quadratic family attains `L_r` as well. Both checked in
 `research.lifting.state_complexity.attainment`.
+
+## The minimal state as a normal form
+
+The count is a corollary of something more informative. Scale by a unit so
+that `b ≡ 3^e` with `e = min(v_3(b), r)`, and split on whether the constant
+or the derivative has the smaller valuation.
+
+**PROVED.** The depth-`r` behaviour of `(c, b)` is
+
+- **dominated**, `v_3(c) < e`: the fully ternary tree truncated at depth
+  `v_3(c)`. The behaviour depends on `v_3(c)` and on nothing else — not on
+  `e`, not on the rest of `c`. There are `r` such classes, `T_0, …, T_{r-1}`.
+- **undominated**, `v_3(c) ≥ e`: exactly the unit-scaling orbit of
+  `(c, b)` modulo `3^r`, with no further collapse. There are
+  `(3^{r+1}-1)/2` such classes.
+
+So the minimal state is *the unit orbit, degenerated to `v_3(c)` wherever
+the constant dominates*, and
+
+\[
+L_r = \underbrace{r}_{\text{dominated}} + \underbrace{\frac{3^{r+1}-1}{2}}_{\text{undominated}} .
+\]
+
+The dominated case is the first bullet of the structure theorem; the
+undominated case is the separation theorem, since on that stratum the
+normalised pair `(e, c mod 3^r)` is precisely the orbit. Both halves are
+verified as a bijection with the behaviour classes for `r ≤ 4`
+(`normal_form`, `strata`, and `test_minimal_state_key_is_a_complete_invariant`).
+
+This is also the sharpest statement of what the branch found, and of its
+limits. The undominated half says unit scaling is the *only* collapse
+there — the earlier "orbits are not minimal" result is entirely an artefact
+of the dominated stratum. And both halves are recognisable classical
+content: dominance is the Newton-polygon observation that a branch dies at
+depth `v_3(c)` when the constant term wins, and orbit rigidity on the rest
+is Hensel/Newton uniqueness. `minimal_state_key` is the invariant in code.
 
 ## The shallow regime
 
@@ -286,21 +375,35 @@ classical. Against that:
   in this form — but they are also a two-line consequence of the
   definition, so the honest description is "a correction to our own
   earlier sufficiency claim", not a contribution.
+- The block shift law and the separation theorem are exact and were the
+  real content of the singular rows. The separation proof is a page.
 - The closed form `L_r` is a genuine exact count of a finite quotient,
-  attained, with one identified gap in its proof. It is a statement about
-  a state space and has no counting or complexity consequence.
+  attained and now fully proved. It is a statement about a state space and
+  has no counting or complexity consequence.
 
-The plausible published home for a minimal-state statement is automata
-minimisation applied to `p`-adic root lifting; the quotient here is small
-and its nonsingular half is classical, so the burden of showing it is not
-bookkeeping about Newton's method has not been discharged.
+The normal form is what settles the novelty question, and it settles it
+against us. Once the quotient is written as "the unit-scaling orbit,
+degenerated to `v_3(c)` on the dominated stratum", both ingredients are
+standard: dominance in the Newton polygon, and Hensel rigidity. The
+`3^{r-e} + e` rows and the `binom(r,2)` overlap are then arithmetic
+bookkeeping over that description. The exact count is new as a number; the
+object it counts is not new as an object.
+
+The plausible published home for a minimal-state statement would be
+automata minimisation applied to `p`-adic root lifting. The burden was to
+show the minimal quotient is not bookkeeping about Newton's method, and
+the normal form shows that it is. Branch decision: **CLOSE —
+REPARAMETERIZATION**, with the exact statements retained as platform
+machinery.
 
 ## Where the code is
 
 - Core: `bt.calculus.lifting_state` (`behaviour_class`, `linear_step`,
   `newton_path`, `behaviour_count`,
-  `behaviours_by_derivative_valuation`, `truncated_tree`).
-- Experiments: `research.lifting.state_complexity`.
+  `behaviours_by_derivative_valuation`, `truncated_tree`,
+  `block_shift`, `shift_window`, `minimal_state_key`, `is_dominated`).
+- Experiments: `research.lifting.state_complexity` (`shift_law`,
+  `shifted_family_injectivity`, `normal_form`, `strata`).
 - Lean: `formal/BTCalculus/PadicLiftingState.lean`.
 - CLI: `btprime congruence state | distinguish`.
 - Explorer: the minimal-state panel of the "Congruence / lifting" view.

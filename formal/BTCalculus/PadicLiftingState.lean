@@ -24,9 +24,17 @@ lifting tree actually see.
    digit of the Newton correction `-c/b`, since `b` is its own inverse
    modulo 3.
 
+4. **The block shift.** A branch whose derivative valuation is at least
+   `|w|` is fully ternary along `w`, and the state it reaches is shifted by
+   `packWord w`, the balanced value of the word — not by its digit sum.
+   Since `packWord` is injective on words of a fixed length `e`, those
+   shifts form a complete residue system modulo `3 ^ e`, so exactly one
+   leaf of the block continues into the next one. That is the algebraic
+   fact the singular count rests on.
+
 The counting classification built on these is not formalised: it is a
-finite exhaustive computation, recorded in
-`docs/theory/lifting_state_complexity.md`.
+finite exhaustive computation together with an induction on the horizon,
+recorded in `docs/theory/lifting_state_complexity.md`.
 -/
 
 noncomputable section
@@ -252,5 +260,79 @@ theorem henselTrit_eq_newton {b c v : ℤ} (hb : ¬ (3 : ℤ) ∣ b)
     exact ((Int.ModEq.refl c).mul hvb.symm).neg
   unfold henselTrit
   exact lsdZ_unique (lsdZ_is_trit _) hmod
+
+/-! ## The singular block shift -/
+
+theorem DZ_three_mul (n : ℤ) : DZ (3 * n) = n := by
+  have hzero : DZ 0 = 0 := by decide
+  have h : DZ (0 + 3 * n) = DZ 0 + n := DZ_add_mul3 0 n
+  rw [hzero] at h
+  simpa using h
+
+/-- The reindexing that drives the block shift: dividing the state of a
+singular branch by 3 turns the exponent `i` into `i + 1`. -/
+theorem linState_block_step (j i : ℕ) (d a : ℤ) :
+    sectionDeriv a (linState (3 ^ (j + 1) * d) (3 ^ (j + 1 + i)))
+      = linState (3 ^ j * (d + 3 ^ i * a)) (3 ^ (j + (i + 1))) := by
+  rw [sectionDeriv_linState]
+  have hexp : j + 1 + i = j + (i + 1) := by omega
+  have harg : 3 ^ (j + 1) * d + a * 3 ^ (j + 1 + i)
+      = 3 * (3 ^ j * (d + 3 ^ i * a)) := by
+    rw [hexp]
+    ring
+  rw [harg, DZ_three_mul, hexp]
+
+/-- **Target 4.** The block shift law. A singular branch with derivative
+valuation at least `w.length` is fully ternary along `w`, and the state it
+reaches is shifted by the *balanced value* of the word, scaled by the
+excess `3 ^ i`:
+
+    𝔇_w (3^j d + 3^(j+i) x) = (d + 3^i · packWord w) + 3^(j+i) x,  j = |w|.
+
+At `i = 0` this is the leaf law: the `3 ^ e` words of length `e` reach the
+states `d + packWord w`, and `packWord` is injective on words of a fixed
+length, so those shifts run over a complete residue system modulo `3 ^ e`.
+That is what makes the shifted family separate residues; note the shift is
+the balanced value of the word and not its digit sum. -/
+theorem residualAlong_linState_pow :
+    ∀ (w : List ℤ) (i : ℕ) (d : ℤ),
+      residualAlong w (linState (3 ^ w.length * d) (3 ^ (w.length + i)))
+        = linState (d + 3 ^ i * packWord w) (3 ^ (w.length + i))
+  | [], i, d => by simp [residualAlong, packWord_nil]
+  | a :: w, i, d => by
+    have hlen : (a :: w).length = w.length + 1 := rfl
+    rw [hlen, residualAlong_cons, linState_block_step,
+      residualAlong_linState_pow w (i + 1) (d + 3 ^ i * a)]
+    have hexp : w.length + 1 + i = w.length + (i + 1) := by omega
+    have hshift : d + 3 ^ i * a + 3 ^ (i + 1) * packWord w
+        = d + 3 ^ i * packWord (a :: w) := by
+      rw [packWord_cons, pow_succ]
+      ring
+    rw [hexp, hshift]
+
+/-- The leaf law at `i = 0`, the case the counting argument uses. -/
+theorem residualAlong_linState_leaf (w : List ℤ) (d : ℤ) :
+    residualAlong w (linState (3 ^ w.length * d) (3 ^ w.length))
+      = linState (d + packWord w) (3 ^ w.length) := by
+  have h := residualAlong_linState_pow w 0 d
+  simpa using h
+
+/-- **Target 4b.** Every word of length at most the derivative valuation
+survives, so the first `e` levels of a singular branch are fully ternary
+and the block really does have `3 ^ e` leaves. -/
+theorem outputAlong_linState_pow :
+    ∀ (w : List ℤ) (i : ℕ) (d : ℤ),
+      outputAlong w (linState (3 ^ w.length * d) (3 ^ (w.length + i)))
+        = List.replicate w.length 0
+  | [], _, _ => rfl
+  | a :: w, i, d => by
+    have hlen : (a :: w).length = w.length + 1 := rfl
+    rw [hlen, outputAlong_cons, List.replicate_succ, linState_block_step]
+    refine List.cons_eq_cons.mpr ⟨?_, ?_⟩
+    · refine (linState_root_iff _ _ a).mpr ?_
+      exact ⟨3 ^ w.length * d + a * 3 ^ (w.length + i), by rw [pow_succ, pow_add]; ring⟩
+    · have hexp : w.length + (i + 1) = w.length + 1 + i := by omega
+      have h := outputAlong_linState_pow w (i + 1) (d + 3 ^ i * a)
+      simpa [hexp] using h
 
 end BTCalculus

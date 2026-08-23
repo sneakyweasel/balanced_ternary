@@ -197,6 +197,11 @@ stated — they are all sufficiency claims — but none of them is a
 minimality claim. See
 [lifting_state_complexity.md](lifting_state_complexity.md).
 
+The minimal state is now known exactly, and it stays inside the
+Newton-polygon picture: after scaling `b` to a power of 3, the behaviour is
+`v_3(c)` alone where `v_3(c) < v_3(b)`, and the full unit-scaling orbit
+elsewhere.
+
 ## Valuations are not enough
 
 **PROVED.** The candidate "lifting behaviour at level `k` is determined

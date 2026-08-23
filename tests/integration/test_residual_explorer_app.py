@@ -117,8 +117,13 @@ def test_minimal_state_panel_compares_the_three_descriptions():
     assert minimal and str(minimal[0].value) == "43"
     orbits = [m for m in at.metric if "Unit-scaling orbits" in str(m.label)]
     assert orbits and str(orbits[0].value) == "53"
+    dominated = [m for m in at.metric if "Dominated classes" in str(m.label)]
+    assert dominated and str(dominated[0].value) == "3"
+    undominated = [m for m in at.metric if "Orbit classes" in str(m.label)]
+    assert undominated and str(undominated[0].value) == "40"
     body = _page_text(at)
     assert "unit scaling" in body.lower()
+    assert "Newton polygon" in body
 
 
 def test_minimal_state_panel_reports_a_jet_redundant_witness():
