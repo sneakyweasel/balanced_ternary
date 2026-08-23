@@ -509,3 +509,10 @@ structure (visibility, valuation injectivity, two-regime \(N_0\),
 mismatched \(Q\), joint-image reduction) is the paper-worthy record.
 The sequence \(M_k\) is a computational appendix, not a closed-form
 theorem. Do not start another \(x^3\) counting milestone.
+
+Among polynomials of degree at most \(3\), deficit-\(1\) residue
+visibility is exactly \(v_3(a_3)=0\). **EXACT — HUMAN PROOF** as
+scaling of the \(N_2\) law; **COMPUTATIONALLY VERIFIED** on the
+coefficient box \(\{-2,\ldots,2\}\) at \(k\in\{4,5\}\). That is the
+visibility class of the cubic stratum, not a licence to open
+degree \(4\) or \(5\).

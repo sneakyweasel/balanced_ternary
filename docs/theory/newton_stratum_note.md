@@ -22,7 +22,9 @@ classifier independent of the width parameters.
 
 These fibre laws are Lean-verified. They are not a closed formula for
 the Myhill–Nerode count \(M_k(x^3)\), not a Collatz statement, and not
-a template claimed for every degree.
+a template claimed for every degree. In degree at most 3, residue
+visibility at deficit \(1\) is exactly the condition that the cubic
+coefficient is a unit modulo \(3\).
 
 ## 1. Introduction
 
@@ -210,7 +212,14 @@ theorem, and it is not an invitation to a further \(Q\)-taxonomy.
 | \(Q\) has no compact residue / valuation / \(B_t\) classifier | `PROJECT-SPECIFIC` obstruction | family \(1+3^tb\) |
 
 The fibre laws are not a Collatz theorem. They are also not claimed
-for a general degree.
+for a general degree. For \(\deg f\le 3\) at deficit \(r=1\), some
+Newton coordinate sees \(p\bmod 3\) if and only if \(v_3(a_3)=0\).
+That is a corollary of \(N_2\) scaling by the cubic coefficient
+(**EXACT — HUMAN PROOF**; the coefficient box
+\(\{-2,\ldots,2\}\) at \(k\in\{4,5\}\) is
+**COMPUTATIONALLY VERIFIED**). Degree \(4\) and \(5\) break the same
+line: \(x^3+x^4\) is a same-valuation \(p^2\) contamination, and
+\(x^5\) sees residues via \(p^3\equiv p\pmod 3\).
 
 ## 6. What is not claimed
 
@@ -219,7 +228,9 @@ for a general degree.
 - That stripped \(N_0\) is a standard residual at horizon \(k-2r\).
 - A Newton-stratum template for \(x^4\) or for an arbitrary family.
   Phase 0 on \(x^4\) is `CLOSE`d: the linear-in-\(p\) coordinate
-  vanishes, and \(N_2\) is only a square filter
+  vanishes, and \(N_2\) is only a square filter.
+  The degree-\(\le 3\) visibility class is the one-line corollary
+  \(v_3(a_3)=0\), not a general-\(f\) classifier
   ([residuals.md](../problems/residuals.md)).
 - A solution of the Collatz conjecture, or that balanced ternary is
   an independent solving coordinate for the accelerated map \(T\).

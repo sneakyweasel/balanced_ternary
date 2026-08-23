@@ -180,6 +180,16 @@ TRS is already a CAS” stays an archived human claim, not a paper or
 Lean theorem. Do not open another rewrite milestone or add production
 rules.
 
+`PROMOTE` the lattice side lemma, `CLOSE` the operation-classifier.
+On all of \(\mathbb Z\), \(D(\max(x,y))=\max(D(x),D(y))\) and
+\(D(\min(x,y))=\min(D(x),D(y))\), so \(D\circ\max\) and \(D\circ\min\)
+are `DLocal`. Addition is not a unique bilinear obstruction: in the
+affine box \(axy+bx+cy+d\) with coefficients in \(\{-2,\ldots,2\}\),
+\(D\circ H\) is D-local only for constants and the unary maps \(\pm x\),
+\(\pm y\). Prefix \(k\)-jets that include both \(\operatorname{lsd}\)
+and \(D\) reconstruct the inputs, so they do not define a locality
+class. Do not add this lemma to the publication draft.
+
 Best next question: does external mathematical review find any gap in
 the definition, proof, or interpretation of the exact theorem that
 `D(x+y)` does not factor through `(D(x),D(y))`?

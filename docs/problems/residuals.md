@@ -99,9 +99,40 @@ width-\(3\) accident. Not a degree increment of the cubic tower
 (\(N_2\mapsto N_3\), \(3r\mapsto 4r\) would have kept \(N_3\) visible).
 Do not open \(x^5\), a quartic count, or a fibre taxonomy.
 
-Best next question: none on monomial strata. The cubic tower is
-degree-\(3\) specific because only then is the linear residual
-coefficient of valuation \(m\).
+`PROMOTE` the degree-\(\le 3\) visibility class, `CLOSE` the
+general-\(f\) classifier. At deficit \(r=1\) and \(k\in\{4,5\}\), a
+polynomial of degree at most 3 has a Newton coordinate that sees
+\(p\bmod 3\) if and only if \(v_3(a_3)=0\). The same one-line law
+fails in degree 4 and 5: \(x^3+x^4\) is a same-valuation \(p^2\)
+contamination, and \(x^5\) sees residues via \(p^3\equiv p\pmod 3\).
+Do not start a degree-\(5\) fibre taxonomy.
+
+`CLOSE` the residual-of-addition candidate. Along any word,
+\(\mathrm{residual}(f+g)-\mathrm{residual}(f)-\mathrm{residual}(g)\)
+is a constant, equal to the iterated trit carry
+\((\rho(f)+\rho(g)-\rho(f+g))/3\). That is the rewrite-calculus carry,
+not a new polynomial state.
+
+`CLOSE` the Eisenstein dictionary. \(3\sim(1-\omega)^2\) and the Pólya
+property of \(\mathbb Q(\omega)\) are **KNOWN**; translating \(N_2\)
+into \((1-\omega)\)-adic language is a **REPARAMETERIZATION** of the
+cubic law. See [residual_vs_classical.md](../theory/residual_vs_classical.md).
+
+`PROMOTE` the one-state realization lemma, `CLOSE` the Mealy census.
+The only residual machines with one state are the machines of
+\(ax\) for \(a\in\{-1,0,+1\}\). There are \(3^6=729\) abstract
+one-state trit/trit tables; three are realized. Two-state residual
+graphs in the degree-\(\le 2\) coefficient box \(\{-2,\ldots,2\}\)
+number 12. A general Mealy table with independent \(\rho\) and
+\(\delta\) is not a residual machine: output is
+\([f(a)]_3\) and the next state is \(\mathfrak D_a f\). That is the
+definition of `residual_along`, not a new class. Do not enumerate
+nine-state machines.
+
+Best next question: none on monomial strata, Eisenstein rewrites, or
+Mealy realization. The cubic tower is degree-\(3\) specific because
+only then is the linear residual coefficient of valuation \(m\), and
+the degree-\(\le 3\) class is exactly “cubic coefficient a unit.”
 
 ## Publication assessment
 
