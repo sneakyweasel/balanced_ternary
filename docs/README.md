@@ -101,6 +101,7 @@ both axes. See [methodology.md](methodology.md).
 - [Quadratic residual complexity](theory/quadratic_residual_complexity.md)
 - [Polynomial function congruence](theory/polynomial_function_congruence.md)
 - [3-adic lifting trees](theory/padic_lifting_trees.md)
+- [Minimal lifting state](theory/lifting_state_complexity.md)
 - [Cubic Newton stratum](theory/cubic_newton_stratum.md)
 - [Residual versus classical](theory/residual_vs_classical.md)
 - [Cubic residual image](theory/cubic_residual_image.md)

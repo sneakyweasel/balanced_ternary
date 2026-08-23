@@ -14,13 +14,15 @@ Use exactly one:
 
 - `EXACT — HUMAN PROOF`
 - `EXACT — LEAN VERIFIED`
-- `VERIFIED COMPUTATIONALLY`
+- `COMPUTATIONALLY VERIFIED`
 - `CONJECTURE`
 - `OBSERVATION`
 - `REFUTED`
 - `REPARAMETERIZATION`
 
-Do not write `PROVED` in the JSON. Docs may say `PROVED` / `PROVED — LEAN`; those map to the two `EXACT` tags.
+Do not write `PROVED` in the JSON. Docs may say `PROVED` / `PROVED — LEAN`; those map to the two `EXACT` tags, and prose `VERIFIED COMPUTATIONALLY` maps to `COMPUTATIONALLY VERIFIED`. `tools/render_theorem_ledger.py` rejects anything outside this list.
+
+`KNOWN`, `PROJECT-SPECIFIC`, and `OPEN` are novelty annotations for prose, never ledger tags.
 
 Empty `lean` is allowed only when the tag is **not** `EXACT — LEAN VERIFIED`.
 Every `source`, `tests[]`, and nonempty `lean` path must exist (Lean paths are relative to `formal/`).

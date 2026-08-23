@@ -14,6 +14,7 @@ from visualization.residual_explorer import (
     PRESETS,
     CompareView,
     LiftingView,
+    MinimalStateView,
     NodeInspection,
     TreeNode,
     census_view,
@@ -30,6 +31,7 @@ from visualization.residual_explorer import (
     lift_table_rows,
     lift_tree_svg,
     lifting_view,
+    minimal_state_view,
     node_table_rows,
     quotient_compare_view,
     quotient_invariant_view,
@@ -62,6 +64,7 @@ def _init_state() -> None:
         "re_lift_levels": 4,
         "re_lift_r": 2,
         "re_lift_selected": "none",
+        "re_lift_witness": False,
         "re_ready": True,
     }
     for key, value in defaults.items():
@@ -107,6 +110,14 @@ def _cached_dual(k: int, allow: bool):
 def _cached_lifting(poly_text: str, custom: str, levels: int, r: int) -> LiftingView:
     f = resolve_polynomial(poly_text, custom)
     return lifting_view(f, levels, r)
+
+
+@st.cache_data(max_entries=32, show_spinner="Comparing state descriptions…")
+def _cached_minimal_state(
+    poly_text: str, custom: str, levels: int, r: int
+) -> MinimalStateView:
+    f = resolve_polynomial(poly_text, custom)
+    return minimal_state_view(f, levels, r)
 
 
 def _poly() -> IntPoly:
@@ -631,6 +642,57 @@ def _lifting_card() -> None:
             st.write(line)
     else:
         for line in view.notes:
+            st.caption(line)
+    _minimal_state_panel(int(levels), int(depth))
+
+
+def _minimal_state_panel(levels: int, depth: int) -> None:
+    with st.expander("Minimal state: valuation vs Newton jet vs behaviour"):
+        state = _cached_minimal_state(
+            st.session_state.re_poly,
+            st.session_state.re_custom,
+            levels,
+            depth,
+        )
+        counts = st.container(horizontal=True)
+        with counts:
+            st.metric(
+                "Valuation classes",
+                state.valuation_classes,
+                border=True,
+                help="the capped pair of 3-adic valuations; determines nothing",
+            )
+            st.metric(
+                f"Phi_{state.r} classes",
+                state.phi_classes,
+                border=True,
+                help="sufficient for the depth-r subtree, but not minimal",
+            )
+            st.metric(
+                "Behaviour classes",
+                state.behaviour_classes,
+                border=True,
+                help="the ordered trit-labelled depth-r subtree, minimal by definition",
+            )
+        deep = st.container(horizontal=True)
+        with deep:
+            st.metric("Deep Phi_r states", state.deep_phi_states, border=True)
+            st.metric("Unit-scaling orbits", state.deep_orbits, border=True)
+            st.metric("Deep minimal L_r", state.deep_minimal, border=True)
+        if st.button("Find two live nodes with different jets and identical futures"):
+            st.session_state.re_lift_witness = True
+        if st.session_state.get("re_lift_witness"):
+            if state.witness is None:
+                st.info(
+                    "No live jet-redundant pair in this tree at this horizon. Try "
+                    "x^2-9 at k = 4, or compare x against -x directly."
+                )
+            else:
+                left, right, shared = state.witness
+                st.success(f"{left}  and  {right}")
+                st.code(f"shared depth-{state.r} behaviour: {shared}", language="text")
+        st.dataframe(pd.DataFrame(list(state.rows)), hide_index=True)
+        for line in state.notes:
             st.caption(line)
 
 

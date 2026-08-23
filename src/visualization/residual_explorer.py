@@ -1328,6 +1328,119 @@ def lift_table_rows(nodes: tuple[LiftTreeNode, ...]) -> list[dict[str, object]]:
     return rows
 
 
+@dataclass(frozen=True)
+class MinimalStateView:
+    """Valuation, Newton-jet, and behaviour classes of one lifting tree.
+
+    The three columns are the quotient chain: valuations are too coarse to
+    determine anything, ``Phi_r`` is sufficient but not minimal, and the
+    behaviour class is minimal by definition.
+    """
+
+    poly: str
+    k: int
+    r: int
+    rows: tuple[dict[str, object], ...]
+    valuation_classes: int
+    phi_classes: int
+    behaviour_classes: int
+    deep_phi_states: int
+    deep_orbits: int
+    deep_minimal: int
+    witness: tuple[str, str, str] | None
+    notes: tuple[str, ...]
+
+
+def minimal_state_view(f: IntPoly, k: int, r: int = 3) -> MinimalStateView:
+    """Per-node minimal-state data, with a jet-redundant witness if one exists."""
+    from bt.calculus.lifting_state import (
+        behaviour_class,
+        behaviour_count,
+        behaviour_count_formula,
+        behaviour_depth,
+        is_dead,
+        unit_orbit_count,
+    )
+    from bt.calculus.lifting import lift_tree
+
+    k = max(int(k), 0)
+    r = max(int(r), 1)
+    nodes = lift_tree(f, k)[:MAX_LIFT_NODES]
+    valuations: set[tuple[int, int]] = set()
+    phis: set[tuple[int, ...]] = set()
+    shapes: set[tuple] = set()
+    rows: list[dict[str, object]] = []
+    for node in nodes:
+        val = (
+            r if node.v3_f is None else min(node.v3_f, r),
+            r if node.v3_f_prime is None else min(node.v3_f_prime, r),
+        )
+        phi = phi_k(node.residual, r)
+        shape = behaviour_class(node.residual, r)
+        valuations.add(val)
+        phis.add(phi)
+        shapes.add(shape)
+        rows.append(
+            {
+                "word": node.digits or "e",
+                "level": node.level,
+                "x": node.residue,
+                "regime": "deep" if node.level >= r else "shallow",
+                "valuation": f"{val[0]}, {val[1]}",
+                "phi": list(phi),
+                "behaviour depth": behaviour_depth(node.residual, r),
+                "dead": is_dead(node.residual),
+                "behaviour": repr(shape),
+            }
+        )
+    witness = _jet_redundant_witness(nodes, r)
+    notes = (
+        f"Phi_{r} determines the depth-{r} subtree, so the behaviour column is "
+        f"never finer than the Phi_{r} column. It is often strictly coarser, "
+        "which is what non-minimality means.",
+        "The cause is unit scaling: on a surviving branch the section "
+        "derivative satisfies D_a(lambda g) = lambda D_a g, so the whole "
+        "ordered subtree is invariant while the Newton jet is not.",
+        "Two dead states always share the empty behaviour whatever their "
+        "jets, so a witness only means something if both states are live.",
+        "No counting or complexity claim: deterministic poly(deg f, k log 3) "
+        "root counting is already known.",
+    )
+    return MinimalStateView(
+        poly=f.render(),
+        k=k,
+        r=r,
+        rows=tuple(rows),
+        valuation_classes=len(valuations),
+        phi_classes=len(phis),
+        behaviour_classes=len(shapes),
+        deep_phi_states=3 ** (2 * r),
+        deep_orbits=unit_orbit_count(r),
+        deep_minimal=behaviour_count(r) if r <= 4 else behaviour_count_formula(r),
+        witness=witness,
+        notes=notes,
+    )
+
+
+def _jet_redundant_witness(nodes, r: int) -> tuple[str, str, str] | None:
+    """Two live nodes with different Newton jets and identical futures."""
+    from bt.calculus.lifting_state import behaviour_class, is_dead
+
+    live = [n for n in nodes if not is_dead(n.residual)]
+    for i, left in enumerate(live):
+        for right in live[i + 1 :]:
+            if phi_k(left.residual, r) == phi_k(right.residual, r):
+                continue
+            if behaviour_class(left.residual, r) != behaviour_class(right.residual, r):
+                continue
+            return (
+                f"{left.digits or 'e'}: {left.residual.render()}",
+                f"{right.digits or 'e'}: {right.residual.render()}",
+                repr(behaviour_class(left.residual, r)),
+            )
+    return None
+
+
 def node_table_rows(nodes: tuple[TreeNode, ...]) -> list[dict[str, object]]:
     rows = []
     for node in nodes:

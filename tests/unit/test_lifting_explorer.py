@@ -9,6 +9,7 @@ from visualization.residual_explorer import (
     lift_table_rows,
     lift_tree_svg,
     lifting_view,
+    minimal_state_view,
 )
 
 
@@ -93,3 +94,47 @@ def test_lift_table_rows_expose_the_state():
         "lifts",
     }
     assert all(row["lift type"] in LIFT_KIND_LABEL for row in rows)
+
+
+def test_minimal_state_view_orders_the_quotient_chain():
+    view = minimal_state_view(parse_poly("x^2-9"), 4, 3)
+    assert view.poly == "-9 + x^2"
+    assert view.r == 3
+    assert view.deep_phi_states == 729
+    assert view.deep_orbits == 53
+    assert view.deep_minimal == 43
+    assert view.behaviour_classes <= view.phi_classes
+    assert view.valuation_classes < view.phi_classes
+
+
+def test_minimal_state_rows_label_the_regime():
+    view = minimal_state_view(parse_poly("x^2-9"), 4, 2)
+    assert view.rows
+    for row in view.rows:
+        assert row["regime"] == ("deep" if row["level"] >= 2 else "shallow")
+        assert isinstance(row["dead"], bool)
+        assert row["behaviour depth"] <= 2
+    assert {row["word"] for row in view.rows} >= {"e", "0"}
+
+
+def test_minimal_state_witness_is_a_live_unit_pair():
+    view = minimal_state_view(parse_poly("x^2-9"), 4, 3)
+    assert view.witness is not None
+    left, right, shared = view.witness
+    assert "9x^2" in left and "9x^2" in right
+    assert left != right
+    assert shared.startswith("((")
+
+
+def test_minimal_state_reports_no_witness_when_phi_is_already_tight():
+    view = minimal_state_view(parse_poly("x^2-7"), 4, 3)
+    assert view.phi_classes == view.behaviour_classes
+    assert view.witness is None
+
+
+def test_minimal_state_notes_disclaim_complexity():
+    view = minimal_state_view(parse_poly("x^3-x"), 3, 2)
+    joined = " ".join(view.notes)
+    assert "unit scaling" in joined
+    assert "dead states" in joined or "dead" in joined
+    assert "No counting or complexity claim" in joined

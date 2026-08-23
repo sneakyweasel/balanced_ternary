@@ -62,6 +62,32 @@ def add_congruence_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_tri.add_argument("--r", type=int, default=2)
     p_tri.add_argument("--json", action="store_true")
 
+    p_state = c.add_parser(
+        "state",
+        help="valuation, Phi_r, and minimal behaviour classes of a lifting tree",
+    )
+    p_state.add_argument("--poly", required=True)
+    p_state.add_argument("--k", type=int, default=4)
+    p_state.add_argument("--r", type=int, default=3)
+    p_state.add_argument(
+        "--allow-expensive",
+        action="store_true",
+        help="permit r >= 6, which enumerates 3^(2r) linear states",
+    )
+    p_state.add_argument("--json", action="store_true")
+
+    p_dist = c.add_parser(
+        "distinguish",
+        help="compare two residual states: valuations, Phi_(r-1), Phi_r, behaviour",
+        epilog=(
+            "A polynomial starting with a minus sign looks like an option, so put "
+            "it after a bare --, as in: distinguish --r 4 -- x -x"
+        ),
+    )
+    p_dist.add_argument("left")
+    p_dist.add_argument("right")
+    p_dist.add_argument("--r", type=int, default=3)
+
 
 def run_congruence(args: argparse.Namespace) -> int:
     cmd = args.cong_cmd
@@ -75,6 +101,10 @@ def run_congruence(args: argparse.Namespace) -> int:
         return _run_classify(args)
     if cmd == "triage":
         return _run_triage(args)
+    if cmd == "state":
+        return _run_state(args)
+    if cmd == "distinguish":
+        return _run_distinguish(args)
     raise ValueError(f"unknown congruence command {cmd!r}")
 
 
@@ -201,6 +231,125 @@ def _run_triage(args: argparse.Namespace) -> int:
     print(f"verdict: {'proceed' if report['proceed'] else 'stop'}")
     print("No complexity claim: deterministic poly(deg f, k log 3) counting is known.")
     return 0
+
+
+def _run_state(args: argparse.Namespace) -> int:
+    from bt.calculus.lifting_state import (
+        behaviour_class,
+        behaviour_count_formula,
+        is_dead,
+    )
+    from research.lifting.state_complexity import quotient_chain
+
+    f = parse_poly(args.poly)
+    r = max(int(args.r), 1)
+    nodes = lift_tree(f, args.k)
+    rows = []
+    for level in range(args.k + 1):
+        layer = level_nodes(nodes, level)
+        if not layer:
+            continue
+        rows.append(
+            {
+                "level": level,
+                "nodes": len(layer),
+                "valuation_classes": len(
+                    {(_cap(n.v3_f, r), _cap(n.v3_f_prime, r)) for n in layer}
+                ),
+                "phi_classes": len({phi_k(n.residual, r) for n in layer}),
+                "behaviours": len({behaviour_class(n.residual, r) for n in layer}),
+                "deep": level >= r,
+            }
+        )
+    try:
+        chain = quotient_chain(r, allow_expensive=args.allow_expensive)
+    except ValueError as exc:
+        chain = {"error": str(exc)}
+    payload = {
+        "poly": f.render(),
+        "k": args.k,
+        "r": r,
+        "levels": rows,
+        "deep_regime": chain,
+        "deep_bound": behaviour_count_formula(r),
+        "dead_nodes": sum(1 for n in nodes if is_dead(n.residual)),
+    }
+    if args.json:
+        print(json.dumps(payload, indent=2))
+        return 0
+    print(f"f = {f.render()}")
+    print(f"horizon r = {r}, levels k = 0..{args.k}")
+    print("level  nodes  valuation  Phi_r  behaviour  regime")
+    for row in rows:
+        print(
+            f"{row['level']:>5}  {row['nodes']:>5}  {row['valuation_classes']:>9}  "
+            f"{row['phi_classes']:>5}  {row['behaviours']:>9}  "
+            f"{'deep' if row['deep'] else 'shallow'}"
+        )
+    print(f"dead nodes (no surviving branch) = {payload['dead_nodes']}")
+    if "error" in chain:
+        print(f"deep regime: {chain['error']}")
+    else:
+        print(
+            f"deep regime at r = {r}: Phi_r has {chain['phi_states']} states, "
+            f"unit orbits {chain['unit_orbits']}, minimal L_r = {chain['behaviours']}"
+        )
+        print(f"closed form (3^(r+1)-1)/2 + r holds = {str(chain['formula_holds']).lower()}")
+    print("Phi_r is sufficient but not minimal: unit scaling moves it and not the subtree.")
+    return 0
+
+
+def _run_distinguish(args: argparse.Namespace) -> int:
+    from bt.calculus.lifting_state import (
+        behaviour_class,
+        behaviour_depth,
+        is_dead,
+        unit_scale,
+    )
+    from bt.calculus.poly_congruence import phi_equal
+
+    left, right = parse_poly(args.left), parse_poly(args.right)
+    r = max(int(args.r), 1)
+    print(f"left  = {left.render()}")
+    print(f"right = {right.render()}")
+    for name, g in (("left", left), ("right", right)):
+        print(
+            f"{name}: dead={str(is_dead(g)).lower()} "
+            f"depth={behaviour_depth(g, r)} "
+            f"phi_{r}={list(phi_k(g, r))}"
+        )
+    for horizon in range(1, r + 1):
+        print(
+            f"r = {horizon}: phi equal = {str(phi_equal(left, right, horizon)).lower()}, "
+            f"behaviour equal = "
+            f"{str(behaviour_class(left, horizon) == behaviour_class(right, horizon)).lower()}"
+        )
+    first = next(
+        (
+            d
+            for d in range(1, r + 1)
+            if behaviour_class(left, d) != behaviour_class(right, d)
+        ),
+        None,
+    )
+    print(f"first distinguishing depth = {'none' if first is None else first}")
+    scalar = next(
+        (
+            lam
+            for lam in (-1, 2, -2, 4, -4, 5, -5, 7, -7, 8, -8)
+            if unit_scale(left, lam).coeffs == right.coeffs
+        ),
+        None,
+    )
+    if scalar is not None:
+        print(f"right = {scalar} * left, a unit multiple, so the behaviours must agree")
+    if is_dead(left) and is_dead(right):
+        print("both states are dead, so agreement is vacuous and proves nothing")
+    return 0
+
+
+def _cap(val: int | None, r: int) -> int:
+    return r if val is None else min(val, r)
 
 
 def _word_of(residue: int, k: int) -> tuple[int, ...]:

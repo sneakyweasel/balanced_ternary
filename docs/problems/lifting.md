@@ -163,6 +163,68 @@ What was *not* obtained, and is not claimed:
 - no new theorem about singular `p`-adic root finding;
 - nothing about multivariate systems.
 
+## Minimal-state phase
+
+Phase 0 asked whether `Φ_r` suffices. It does. The follow-up asks
+whether it is *minimal*: is the `Φ_r`-class the smallest local datum
+that determines the next `r` lifting levels?
+
+### Triage
+
+```text
+Mathematical target        the exact minimal finite state for r-step lifting, and how far below Φ_r it sits
+Novelty hypothesis         L_r = Σ_{j≤r} 3^j + r is the exact deep-regime state complexity, refined to 3^{r-e} + e by v_3(f')
+Falsifier                  the closed form fails at r = 6, or the quotient is a standard classical object, or no family attains L_r
+Existing machinery         depth_r_shape(mode="digits") is the behavioural invariant; myhill_nerode has finite-horizon minimisation
+Maximum scope              three theorems plus verification to r = 6; no CLI, explorer, or Lean until they land
+Promotion criterion        all three proved, count attained by an explicit family, quotient not a standard object
+Stop criterion             no proof beyond exhaustion, or the quotient is classical, forcing CLOSE as REPARAMETERIZATION
+```
+
+### Settled before implementation
+
+Three facts were established by computation and short proof *before*
+any module was written, and they redirected the phase:
+
+- **`Φ_r` is not minimal.** On a surviving branch `ρ_a(g) = 0`, so
+  `𝔇_a(λg) = λ 𝔇_a g` and survival is unchanged for `λ` coprime to 3.
+  The whole ordered depth-`r` subtree is therefore invariant under
+  `g ↦ λg` while `Φ_r` is not. Verified on 52 800 state/scalar/horizon
+  combinations with zero failures; `Φ_r` differed in 40 121 of them.
+- **The two-residue deep state is not minimal either.** For linear
+  states `Φ_r` *is* the pair `(c, b)` modulo `3^r`, so the candidate
+  "deep-regime minimal-state theorem" `S_r(A) = S_r(B) ⟺ A ∼_r B` is
+  false. The behavioural counts are `5, 15, 43, 125, 369` for
+  `r = 1,…,5` against `3^{2r} = 9, 81, 729, 6561, 59049`.
+- **The exact deep count.** `L_r = (3^{r+1}-1)/2 + r = Σ_{j≤r} 3^j + r`,
+  refining to `3^{r-e} + e` behaviours at `e = min(v_3(f'(n)), r)`. The
+  unit-scaling quotient alone gives `2·3^r - 1 = 5, 17, 53, 161`, which
+  is strictly larger from `r = 2`, so scaling is a proper intermediate
+  quotient and not the whole answer.
+
+The nonsingular half is Newton's method in balanced digits: the
+behaviour depends only on `u = (f(n)/3^k)/f'(n) mod 3^r`, the surviving
+path is the balanced expansion of `-u`, and the transition is `u ↦ 𝔇(u)`
+emitting `-ρ(u)`. That identification is a `REPARAMETERIZATION`; the
+count around it is exact.
+
+### Outcome
+
+The extreme rows, the row structure theorem, the `C(r,2)` overlap, the
+attainment, and the reduction of the total to the rows are proved. The
+general row `3^{r-e} + e` for `1 < e < r` rests on exhaustion to `r = 6`;
+the missing step is injectivity of
+`d mod 3^{r-e} ↦ (B_{r-e}(d+s))_{|s| ≤ e}`. That is the plan's own PARK
+criterion, so **PARK**. `CLOSE — REPARAMETERIZATION` stays live, because
+the nonsingular half already is Newton's method and the burden of showing
+the quotient is more than bookkeeping about it has not been discharged.
+
+Best next question: does the shifted-family injectivity hold, i.e. does
+`d mod 3^{r-e}` really separate behaviours for `1 < e < r`?
+
+Full statements: [docs/theory/lifting_state_complexity.md](../theory/lifting_state_complexity.md).
+Experiments: `research.lifting.state_complexity`.
+
 ## Open questions
 
 - Is deep-regime valuation determinacy of the unordered shape a theorem?
@@ -170,6 +232,9 @@ What was *not* obtained, and is not claimed:
   `k0 = O(d²(log C + log d))` does not?
 - Is there a class of `f` where the `Φ_r` state count is small enough to
   matter, as opposed to merely bounded?
+- What is the minimal state in the shallow regime `k < r`, where the
+  higher jet coefficients survive and the state space is unbounded in
+  degree?
 
 ## Decision
 

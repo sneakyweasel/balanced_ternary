@@ -99,6 +99,43 @@ def test_congruence_lifting_view_renders():
     assert "Horizon r" in sliders
 
 
+def test_minimal_state_panel_compares_the_three_descriptions():
+    at = AppTest.from_file(str(PAGE), default_timeout=90)
+    at.run()
+    assert not at.exception
+    at.session_state.re_secondary = "Congruence / lifting"
+    at.session_state.re_poly = "x^2"
+    at.session_state.re_lift_levels = 4
+    at.session_state.re_lift_r = 3
+    at.run()
+    assert not at.exception
+    labels = " ".join(str(m.label) for m in at.metric)
+    assert "Valuation classes" in labels
+    assert "Behaviour classes" in labels
+    assert "Deep minimal L_r" in labels
+    minimal = [m for m in at.metric if "Deep minimal L_r" in str(m.label)]
+    assert minimal and str(minimal[0].value) == "43"
+    orbits = [m for m in at.metric if "Unit-scaling orbits" in str(m.label)]
+    assert orbits and str(orbits[0].value) == "53"
+    body = _page_text(at)
+    assert "unit scaling" in body.lower()
+
+
+def test_minimal_state_panel_reports_a_jet_redundant_witness():
+    at = AppTest.from_file(str(PAGE), default_timeout=90)
+    at.run()
+    assert not at.exception
+    at.session_state.re_secondary = "Congruence / lifting"
+    at.session_state.re_poly = "x^2"
+    at.session_state.re_lift_levels = 4
+    at.session_state.re_lift_r = 3
+    at.session_state.re_lift_witness = True
+    at.run()
+    assert not at.exception
+    body = _page_text(at)
+    assert "shared depth-3 behaviour" in body or "No live jet-redundant pair" in body
+
+
 def test_scenario_d_x2_vs_x3():
     at = AppTest.from_file(str(PAGE), default_timeout=40)
     at.run()

@@ -153,7 +153,11 @@ as functions modulo `3`, but at depth `2` all three grandchildren of the
 root survive for `x^2` while none survive for `x^2 - 3`.
 
 So the answer to "can residual state predict the lifting tree from
-finite local data" is yes, with `Φ_r` the exact horizon for depth `r`.
+finite local data" is yes, with `Φ_r` a sufficient horizon for depth `r`
+and `r` the sharp *depth* at which a horizon is needed. Sharpness of the
+horizon is not minimality of the state: `Φ_r` is strictly larger than
+needed, quantified in
+[lifting_state_complexity.md](lifting_state_complexity.md).
 Since `Φ_r` ranges over a finite set depending only on `r` and
 `deg f`, the number of distinct depth-`r` subtrees is bounded
 independently of `k`, while the number of residues modulo `3^k` is
@@ -179,8 +183,19 @@ the depth-`r` subtree is determined by the two residues
 \bigl(f(n_w)/3^k \bmod 3^r,\ f'(n_w) \bmod 3^r\bigr).
 \]
 
-This is the minimal state in the deep regime, and it is the classical
+This is a *sufficient* state in the deep regime, and it is the classical
 Newton-polygon picture in residual coordinates.
+
+**Sufficiency only.** An earlier version of this section called the two
+residues "the minimal state". That is false. On a surviving branch
+`𝔇_a(λg) = λ 𝔇_a g` for every `λ` coprime to 3, so the whole ordered
+depth-`r` subtree is invariant under unit scaling while `Φ_r` is not; the
+smallest live witness is `x` against `-x`. The deep-regime state count
+collapses from `3^{2r}` to `(3^{r+1}-1)/2 + r`, that is from 9, 81, 729 to
+5, 15, 43. Every determinacy statement in this file remains true as
+stated — they are all sufficiency claims — but none of them is a
+minimality claim. See
+[lifting_state_complexity.md](lifting_state_complexity.md).
 
 ## Valuations are not enough
 
@@ -241,6 +256,8 @@ form does not already give is open and is not claimed.
 
 - Core objects: `bt.calculus.lifting` (`LiftNode`, `lift_tree`,
   `depth_r_shape`, `shape_widths`).
+- Minimal state: `bt.calculus.lifting_state` and
+  [lifting_state_complexity.md](lifting_state_complexity.md).
 - Classification experiments: `research.lifting.triage`.
 - Test polynomials: `research.lifting.families`.
 - Lean: `formal/BTCalculus/PadicLifting.lean`.

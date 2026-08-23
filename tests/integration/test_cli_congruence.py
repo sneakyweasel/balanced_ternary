@@ -80,3 +80,48 @@ def test_triage_verdict_is_proceed():
     assert "H1: ok=true" in out
     assert "valuations, shallow k<r:  false" in out
     assert "No complexity claim" in out
+
+
+def test_state_shows_the_quotient_chain():
+    out = _run("congruence", "state", "--poly", "x^2-9", "--k", "4", "--r", "3")
+    assert "Phi_r has 729 states" in out
+    assert "unit orbits 53" in out
+    assert "minimal L_r = 43" in out
+    assert "closed form (3^(r+1)-1)/2 + r holds = true" in out
+    assert "not minimal" in out
+
+
+def test_state_json_carries_per_level_classes():
+    out = _run("congruence", "state", "--poly", "x^2-9", "--k", "3", "--r", "2", "--json")
+    payload = json.loads(out)
+    assert payload["r"] == 2
+    assert payload["deep_bound"] == 15
+    for row in payload["levels"]:
+        assert row["behaviours"] <= row["phi_classes"]
+
+
+def test_state_refuses_an_expensive_horizon_without_the_flag():
+    out = _run("congruence", "state", "--poly", "x^3-x", "--k", "2", "--r", "6")
+    assert "needs allow_expensive=True" in out
+
+
+def test_distinguish_finds_the_canonical_live_witness():
+    out = _run("congruence", "distinguish", "--r", "3", "--", "x", "-x")
+    assert "left  = x" in out
+    assert "right = -x" in out
+    assert "phi equal = false, behaviour equal = true" in out
+    assert "first distinguishing depth = none" in out
+    assert "a unit multiple" in out
+    assert "both states are dead" not in out
+
+
+def test_distinguish_flags_the_vacuous_dead_pair():
+    out = _run("congruence", "distinguish", "--r", "2", "--", "1", "-1")
+    assert "both states are dead" in out
+    assert "proves nothing" in out
+
+
+def test_distinguish_reports_a_genuine_separation():
+    out = _run("congruence", "distinguish", "--r", "2", "x^2", "x^2-3")
+    assert "r = 1: phi equal = true, behaviour equal = true" in out
+    assert "first distinguishing depth = 2" in out

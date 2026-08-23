@@ -14,4 +14,4 @@ alwaysApply: false
 - `C-T-welldefined` is Lean-verified in `formal/Problems/Collatz/Accelerated.lean` (`acceleratedT`).
 - Compatibility import `from collatz import ...` must keep working.
 
-Finite certificates, cycle searches, and range tables are `VERIFIED COMPUTATIONALLY` or `REFUTED`, never proofs of the conjecture.
+Finite certificates, cycle searches, and range tables are `COMPUTATIONALLY VERIFIED` or `REFUTED`, never proofs of the conjecture.
