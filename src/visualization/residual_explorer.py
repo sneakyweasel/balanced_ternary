@@ -1347,6 +1347,8 @@ class MinimalStateView:
     deep_phi_states: int
     deep_orbits: int
     deep_minimal: int
+    deep_dominated: int
+    deep_undominated: int
     witness: tuple[str, str, str] | None
     notes: tuple[str, ...]
 
@@ -1358,7 +1360,10 @@ def minimal_state_view(f: IntPoly, k: int, r: int = 3) -> MinimalStateView:
         behaviour_count,
         behaviour_count_formula,
         behaviour_depth,
+        dominated_count,
         is_dead,
+        is_dominated,
+        undominated_count,
         unit_orbit_count,
     )
     from bt.calculus.lifting import lift_tree
@@ -1380,16 +1385,23 @@ def minimal_state_view(f: IntPoly, k: int, r: int = 3) -> MinimalStateView:
         valuations.add(val)
         phis.add(phi)
         shapes.add(shape)
+        deep = node.level >= r
         rows.append(
             {
                 "word": node.digits or "e",
                 "level": node.level,
                 "x": node.residue,
-                "regime": "deep" if node.level >= r else "shallow",
+                "regime": "deep" if deep else "shallow",
                 "valuation": f"{val[0]}, {val[1]}",
                 "phi": list(phi),
                 "behaviour depth": behaviour_depth(node.residual, r),
                 "dead": is_dead(node.residual),
+                "stratum": (
+                    ("dominated" if is_dominated(node.scaled_value, node.f_prime, r)
+                     else "orbit")
+                    if deep
+                    else "-"
+                ),
                 "behaviour": repr(shape),
             }
         )
@@ -1403,6 +1415,14 @@ def minimal_state_view(f: IntPoly, k: int, r: int = 3) -> MinimalStateView:
         "ordered subtree is invariant while the Newton jet is not.",
         "Two dead states always share the empty behaviour whatever their "
         "jets, so a witness only means something if both states are live.",
+        f"The minimal state is known exactly. Scale b to 3^e; where the "
+        f"constant dominates, v3(c) < e, the behaviour is the truncated tree "
+        f"of depth v3(c) and nothing else survives ({dominated_count(r)} "
+        f"classes); everywhere else it is exactly the unit-scaling orbit "
+        f"({undominated_count(r)} classes). The stratum column says which.",
+        "That normal form is also why the branch closes: dominance is the "
+        "Newton polygon and orbit rigidity is Hensel, so the quotient is a "
+        "classical object in residual coordinates.",
         "No counting or complexity claim: deterministic poly(deg f, k log 3) "
         "root counting is already known.",
     )
@@ -1417,6 +1437,8 @@ def minimal_state_view(f: IntPoly, k: int, r: int = 3) -> MinimalStateView:
         deep_phi_states=3 ** (2 * r),
         deep_orbits=unit_orbit_count(r),
         deep_minimal=behaviour_count(r) if r <= 4 else behaviour_count_formula(r),
+        deep_dominated=dominated_count(r),
+        deep_undominated=undominated_count(r),
         witness=witness,
         notes=notes,
     )

@@ -111,10 +111,28 @@ def test_minimal_state_rows_label_the_regime():
     view = minimal_state_view(parse_poly("x^2-9"), 4, 2)
     assert view.rows
     for row in view.rows:
-        assert row["regime"] == ("deep" if row["level"] >= 2 else "shallow")
+        deep = row["level"] >= 2
+        assert row["regime"] == ("deep" if deep else "shallow")
         assert isinstance(row["dead"], bool)
         assert row["behaviour depth"] <= 2
+        assert row["stratum"] in ({"dominated", "orbit"} if deep else {"-"})
     assert {row["word"] for row in view.rows} >= {"e", "0"}
+
+
+def test_minimal_state_reports_the_strata_split():
+    view = minimal_state_view(parse_poly("x^2-9"), 4, 3)
+    assert view.deep_dominated == 3
+    assert view.deep_undominated == 40
+    assert view.deep_dominated + view.deep_undominated == view.deep_minimal
+
+
+def test_minimal_state_dominated_rows_are_truncated_trees():
+    # The stratum label has to agree with the behaviour it predicts.
+    view = minimal_state_view(parse_poly("x^2-9"), 5, 2)
+    dominated = [row for row in view.rows if row["stratum"] == "dominated"]
+    assert dominated
+    for row in dominated:
+        assert row["behaviour depth"] < 2
 
 
 def test_minimal_state_witness_is_a_live_unit_pair():
@@ -138,3 +156,11 @@ def test_minimal_state_notes_disclaim_complexity():
     assert "unit scaling" in joined
     assert "dead states" in joined or "dead" in joined
     assert "No counting or complexity claim" in joined
+
+
+def test_minimal_state_notes_state_the_normal_form():
+    view = minimal_state_view(parse_poly("x^3-x"), 3, 2)
+    joined = " ".join(view.notes)
+    assert "Newton polygon" in joined
+    assert "truncated tree" in joined
+    assert "unit-scaling orbit" in joined

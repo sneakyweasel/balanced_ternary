@@ -208,19 +208,52 @@ path is the balanced expansion of `-u`, and the transition is `u ↦ 𝔇(u)`
 emitting `-ρ(u)`. That identification is a `REPARAMETERIZATION`; the
 count around it is exact.
 
+### Interim outcome, superseded
+
+The phase first parked with one gap: the general row `3^{r-e} + e` for
+`1 < e < r` rested on exhaustion to `r = 6`, missing injectivity of
+`d mod 3^{r-e} ↦ (B_{r-e}(d+s))_s`. That gap was an artefact of an
+arithmetic error of ours, recorded here because the error is instructive.
+
+### The shifted family, settled
+
+The shift a word applies inside a ternary block is the **balanced value**
+`packWord(w)`, not the digit sum: the constant after `j` steps is
+`3^{e-j}(d + a_1 + 3a_2 + … + 3^{j-1}a_j)`. The earlier draft recorded the
+digit sum, which shrinks the shift window from `3^e` values to the `2e+1`
+values `|s| ≤ e`. That is the whole difficulty: with the digit sum the
+separation is genuinely **false** — at `e = 2` every `d ≡ 3` and `d ≡ 6`
+modulo 9 gives the same tuple `(∅,∅,T_1,∅,∅)` — whereas the true window is
+a complete residue system modulo `3^e`, so exactly one leaf of each block
+continues, and the induction on the horizon closes in a page.
+
+With that fixed:
+
+- **Separation holds** for every `e ≥ 1` and every `R ≥ 0`, by induction on
+  `R` (`BTL-shift-separation`).
+- **The rows are exact**: `3^{r-e} + e`, so `L_r = (3^{r+1}-1)/2 + r` is
+  proved, not merely verified (`BTL-state-count`).
+- **The minimal state has a normal form.** Scale `b` to `3^e`. Where the
+  constant dominates, `v_3(c) < e`, the behaviour is the truncated tree
+  `T_{v_3(c)}` and depends on `v_3(c)` alone: `r` classes. Everywhere else
+  it is exactly the unit-scaling orbit, no further collapse:
+  `(3^{r+1}-1)/2` classes (`BTL-minimal-normal-form`).
+
 ### Outcome
 
-The extreme rows, the row structure theorem, the `C(r,2)` overlap, the
-attainment, and the reduction of the total to the rows are proved. The
-general row `3^{r-e} + e` for `1 < e < r` rests on exhaustion to `r = 6`;
-the missing step is injectivity of
-`d mod 3^{r-e} ↦ (B_{r-e}(d+s))_{|s| ≤ e}`. That is the plan's own PARK
-criterion, so **PARK**. `CLOSE — REPARAMETERIZATION` stays live, because
-the nonsingular half already is Newton's method and the burden of showing
-the quotient is more than bookkeeping about it has not been discharged.
+**CLOSE — REPARAMETERIZATION.** All four plan targets are proved and the
+count is attained, so the PARK criterion is gone; but the promotion
+criterion required the quotient *not* to be a standard classical object,
+and the normal form shows it is one. "The unit-scaling orbit, degenerated
+to `v_3(c)` where the constant dominates" is Newton-polygon dominance plus
+Hensel rigidity in residual coordinates. The `3^{r-e} + e` rows and the
+`C(r,2)` overlap are arithmetic bookkeeping over that description. The
+exact count is new as a number; the object it counts is not new as an
+object.
 
-Best next question: does the shifted-family injectivity hold, i.e. does
-`d mod 3^{r-e}` really separate behaviours for `1 < e < r`?
+What survives as platform machinery: the block shift law (Lean), the
+separation theorem, the normal form and `minimal_state_key`, and the
+correction of our own earlier sufficiency-as-minimality claim.
 
 Full statements: [docs/theory/lifting_state_complexity.md](../theory/lifting_state_complexity.md).
 Experiments: `research.lifting.state_complexity`.
@@ -236,15 +269,20 @@ Experiments: `research.lifting.state_complexity`.
   higher jet coefficients survive and the state space is unbounded in
   degree?
 
+Answered and retired: whether `Φ_r` is minimal (no), the exact deep count
+(`L_r`, proved), and whether the shifted family separates residues (yes).
+
 ## Decision
 
-`PARK`, with the multivariate sub-branch `CLOSE`d. The identification
-theorem and the sharp `Φ_r` determinacy are exact and Lean-backed, so
-the line is not dead, but the core translation is a
-**REPARAMETERIZATION** of known lifting theory and the one
-`PROJECT-SPECIFIC` ingredient — sharp finite-horizon determinacy — has
-no known consequence. Multivariate systems stay closed:
-`dwivedi-saxena-2024-systems-non-fields` already covers `n + k`
+`PARK` for the dossier as a whole, with the multivariate and minimal-state
+sub-branches `CLOSE`d. The identification theorem and the sharp `Φ_r`
+determinacy are exact and Lean-backed, so the line is not dead, but the
+core translation is a **REPARAMETERIZATION** of known lifting theory and
+the one `PROJECT-SPECIFIC` ingredient — sharp finite-horizon determinacy —
+has no known consequence. The minimal-state sub-branch closes for the same
+reason, now demonstrated rather than suspected: its normal form is
+Newton-polygon dominance plus Hensel rigidity. Multivariate systems stay
+closed: `dwivedi-saxena-2024-systems-non-fields` already covers `n + k`
 constant, and there is no univariate theorem here strong enough to
 justify a general solver. Do not open a numbered milestone for this line.
 

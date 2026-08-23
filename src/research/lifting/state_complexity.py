@@ -12,6 +12,12 @@ not minimal and unit scaling is only part of the collapse. The exact
 minimal count and its refinement by `e = v_3(f'(n))` are the results of
 this module; the experiments here are the falsification tests behind them.
 
+The last arrow is now closed. `shift_law` pins the leaf shift inside a
+ternary block to the balanced value of the word, `shifted_family_injectivity`
+shows the resulting shifted family separates residues, and `normal_form`
+and `strata` exhibit the minimal state as the unit-scaling orbit
+degenerated to `v_3(c)` wherever the constant dominates the derivative.
+
 Nothing is claimed about root counting. Deterministic
 `poly(deg f, k log 3)` counting is known (`dwivedi-mittal-saxena-2019`).
 """
@@ -27,16 +33,24 @@ from bt.calculus.lifting_state import (
     behaviour_count_formula,
     behaviour_depth,
     behaviours_by_derivative_valuation,
+    block_shift,
+    capped_valuation,
     deep_behaviours,
+    dominated_count,
     is_dead,
+    is_dominated,
     is_truncated_tree,
     linear_state,
+    minimal_state_key,
     row_overlap,
+    shift_window,
     truncated_tree,
+    undominated_count,
     unit_orbit_count,
     unit_scale,
     valuation_row_formula,
 )
+from bt.calculus.residual import TRITS
 from bt.calculus.poly_congruence import phi_equal, phi_k
 from bt.calculus.section import IntPoly
 from bt.metrics import v3
@@ -152,6 +166,198 @@ def row_structure(r: int, e: int) -> dict[str, object]:
         "high_predicted": 3 ** (r - e),
         "total": len(low_seen | high_seen),
         "total_predicted": valuation_row_formula(r, e),
+    }
+
+
+def shift_law(e_max: int = 4, span: int = 6) -> dict[str, object]:
+    """The exact leaf shift inside a ternary block.
+
+    The candidate shifts are the digit sum and the balanced value of the
+    word. Only the second is correct, and the distinction is decisive: the
+    digit sum ranges over ``2e+1`` values while the balanced value ranges
+    over all ``3^e``, and the separation argument needs a complete residue
+    system modulo ``3^e``.
+    """
+    from itertools import product
+
+    from bt.calculus.residual import residual_along
+
+    digit_sum_failures = 0
+    packed_failures = 0
+    total = 0
+    for e in range(1, _require_nat(e_max, "e_max") + 1):
+        for d in range(-span, span + 1):
+            state = linear_state(3**e * d, 3**e)
+            for word in product(TRITS, repeat=e):
+                total += 1
+                got = residual_along(state, word).coeffs
+                if got != linear_state(d + sum(word), 3**e).coeffs:
+                    digit_sum_failures += 1
+                if got != linear_state(d + block_shift(word), 3**e).coeffs:
+                    packed_failures += 1
+    windows = {
+        e: tuple(sorted(block_shift(w) for w in product(TRITS, repeat=e)))
+        == shift_window(e)
+        for e in range(1, e_max + 1)
+    }
+    return {
+        "cases": total,
+        "digit_sum_failures": digit_sum_failures,
+        "packed_failures": packed_failures,
+        "packed_holds": packed_failures == 0,
+        "digit_sum_refuted": digit_sum_failures > 0,
+        "window_is_complete_residue_system": windows,
+    }
+
+
+def shifted_family_injectivity(e_max: int = 4, budget: int = 6) -> dict[str, object]:
+    """The separation question, settled.
+
+    For a fixed ``e``, is ``d mod 3^R`` recovered from the tuple of
+    depth-``R`` behaviours of the shifted states ``d + t``, ``t`` in the
+    window? Yes: the window contains exactly one ``t`` with ``3^e | d+t``,
+    that leaf is the unique one of depth at least ``min(e, R)``, and it
+    recurses at horizon ``R - e``.
+    """
+    rows: list[dict[str, object]] = []
+    for e in range(1, _require_nat(e_max, "e_max") + 1):
+        for horizon in range(0, max(budget - e, 1)):
+            mod = 3**horizon
+            window = shift_window(e)
+            seen: dict[tuple, int] = {}
+            collisions: list[tuple[int, int]] = []
+            for d in range(mod):
+                key = tuple(
+                    behaviour_class(linear_state(d + t, 3**e), horizon) for t in window
+                )
+                if key in seen:
+                    collisions.append((seen[key], d))
+                else:
+                    seen[key] = d
+            rows.append(
+                {
+                    "e": e,
+                    "R": horizon,
+                    "states": mod,
+                    "distinct": len(seen),
+                    "injective": len(seen) == mod,
+                    "collisions": collisions[:3],
+                }
+            )
+    return {
+        "rows": rows,
+        "injective": all(row["injective"] for row in rows),
+        "deepest_leaf_identified": _deep_leaf_identification(e_max, budget),
+    }
+
+
+def _deep_leaf_identification(e_max: int, budget: int) -> bool:
+    """The recursing leaf is the unique window entry of depth >= min(e, R)."""
+    for e in range(1, e_max + 1):
+        for horizon in range(1, max(budget - e, 1)):
+            for d in range(3**horizon):
+                window = shift_window(e)
+                deep = [t for t in window if (d + t) % 3**e == 0]
+                if len(deep) != 1:
+                    return False
+                if horizon <= e:
+                    continue
+                tall = [
+                    t
+                    for t in window
+                    if behaviour_depth(linear_state(d + t, 3**e), horizon) >= min(e, horizon)
+                ]
+                if tall != deep:
+                    return False
+    return True
+
+
+def normal_form(r_max: int = 4) -> dict[str, object]:
+    """The minimal state as a normal form, not merely a count.
+
+    The key is a complete invariant: dominated states are labelled by
+    ``v_3(c)`` alone, undominated ones by their unit-scaling orbit.
+    """
+    rows: list[dict[str, object]] = []
+    for r in range(1, _require_nat(r_max, "r_max") + 1):
+        mod = 3**r
+        key_to_behaviour: dict[tuple, tuple] = {}
+        behaviour_to_key: dict[tuple, tuple] = {}
+        clashes = 0
+        dominated_bad = 0
+        for b in range(mod):
+            for c in range(mod):
+                key = minimal_state_key(c, b, r)
+                shape = behaviour_class(linear_state(c, b), r)
+                if key_to_behaviour.setdefault(key, shape) != shape:
+                    clashes += 1
+                behaviour_to_key.setdefault(shape, key)
+                if key[0] == "dominated" and shape != truncated_tree(key[1], r):
+                    dominated_bad += 1
+        rows.append(
+            {
+                "r": r,
+                "keys": len(key_to_behaviour),
+                "behaviours": len(behaviour_to_key),
+                "formula": behaviour_count_formula(r),
+                "clashes": clashes,
+                "bijective": (
+                    clashes == 0
+                    and len(key_to_behaviour) == len(behaviour_to_key)
+                    == behaviour_count_formula(r)
+                ),
+                "dominated_not_a_tree": dominated_bad,
+                "dominated": dominated_count(r),
+                "undominated": undominated_count(r),
+            }
+        )
+    return {"rows": rows, "bijective": all(row["bijective"] for row in rows)}
+
+
+def strata(r_max: int = 4) -> dict[str, object]:
+    """The two strata: valuation collapse against unit-orbit rigidity."""
+    rows: list[dict[str, object]] = []
+    for r in range(1, _require_nat(r_max, "r_max") + 1):
+        mod = 3**r
+        units = [u for u in range(mod) if u % 3]
+        tree_bad = 0
+        orbit_to_behaviour: dict[tuple[int, int], tuple] = {}
+        behaviour_to_orbit: dict[tuple, tuple[int, int]] = {}
+        orbit_clashes = 0
+        for b in range(mod):
+            for c in range(mod):
+                shape = behaviour_class(linear_state(c, b), r)
+                if is_dominated(c, b, r):
+                    # v_3 is unit-scaling invariant, so c needs no normalising.
+                    if shape != truncated_tree(capped_valuation(c, r), r):
+                        tree_bad += 1
+                    continue
+                orbit = min(((c * u) % mod, (b * u) % mod) for u in units)
+                if orbit_to_behaviour.setdefault(orbit, shape) != shape:
+                    orbit_clashes += 1
+                behaviour_to_orbit.setdefault(shape, orbit)
+        rows.append(
+            {
+                "r": r,
+                "dominated_not_a_tree": tree_bad,
+                "undominated_orbits": len(orbit_to_behaviour),
+                "undominated_behaviours": len(behaviour_to_orbit),
+                "orbit_clashes": orbit_clashes,
+                "orbit_is_minimal_here": (
+                    orbit_clashes == 0
+                    and len(orbit_to_behaviour) == len(behaviour_to_orbit)
+                    == undominated_count(r)
+                ),
+            }
+        )
+    return {
+        "rows": rows,
+        "dominated_collapses_to_valuation": all(
+            row["dominated_not_a_tree"] == 0 for row in rows
+        ),
+        "undominated_is_exactly_the_unit_orbit": all(
+            row["orbit_is_minimal_here"] for row in rows
+        ),
     }
 
 
@@ -428,6 +634,10 @@ def deep_state_report(r_max: int = 4, *, allow_expensive: bool = False) -> dict[
         raise ValueError(f"r_max >= {EXPENSIVE_R} needs allow_expensive=True")
     chain = [quotient_chain(r, allow_expensive=allow_expensive) for r in range(1, r_max + 1)]
     rows = [valuation_rows(r, allow_expensive=allow_expensive) for r in range(1, r_max + 1)]
+    shift = shift_law(e_max=min(r_max, 3))
+    separation = shifted_family_injectivity(e_max=min(r_max, 3), budget=min(r_max + 2, 6))
+    form = normal_form(r_max=min(r_max, 4))
+    layers = strata(r_max=min(r_max, 4))
     verdict = {
         "phi_minimal": any(row["phi_is_minimal"] for row in chain),
         "orbits_minimal": all(row["orbits_are_minimal"] for row in chain),
@@ -436,6 +646,12 @@ def deep_state_report(r_max: int = 4, *, allow_expensive: bool = False) -> dict[
         "overlap_closed_form": all(row["overlap_holds"] for row in rows),
         "scaling_invariant": scaling_invariance(k_max=3, r_max=2)["ok"],
         "attained": all(attainment(r)["attained"] for r in range(1, min(r_max, 3) + 1)),
+        "shift_is_the_balanced_value": shift["packed_holds"],
+        "shift_is_not_the_digit_sum": shift["digit_sum_refuted"],
+        "shifted_family_separates": separation["injective"],
+        "normal_form_is_complete": form["bijective"],
+        "dominated_collapses_to_valuation": layers["dominated_collapses_to_valuation"],
+        "undominated_is_the_unit_orbit": layers["undominated_is_exactly_the_unit_orbit"],
     }
     return {
         "r_max": r_max,
@@ -444,5 +660,9 @@ def deep_state_report(r_max: int = 4, *, allow_expensive: bool = False) -> dict[
         "structure": [row_structure(r_max, e) for e in range(r_max + 1)],
         "witness": minimality_witness(bound=6, r=3),
         "shallow": shallow_census(k_max=4, r_max=min(r_max, 3)),
+        "shift_law": shift,
+        "separation": separation,
+        "normal_form": form,
+        "strata": layers,
         "verdict": verdict,
     }

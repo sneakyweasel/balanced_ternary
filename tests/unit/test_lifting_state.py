@@ -14,24 +14,34 @@ from bt.calculus.lifting_state import (
     behaviour_depth,
     behaviour_equivalent,
     behaviours_by_derivative_valuation,
+    block_shift,
+    capped_valuation,
     deep_behaviours,
+    deep_leaf,
+    dominated_count,
     drop_lsd,
     is_dead,
+    is_dominated,
     linear_children,
     linear_state,
     linear_step,
     linear_survives,
+    minimal_state_key,
     newton_path,
     newton_quotient,
     row_overlap,
+    shift_window,
+    truncated_tree,
+    undominated_count,
     unit_normal_form,
+    unit_normal_pair,
     unit_orbit_count,
     unit_scale,
     units_mod,
     valuation_row_formula,
 )
 from bt.calculus.poly_congruence import function_equiv, phi_equal, phi_k
-from bt.calculus.residual import TRITS, delta
+from bt.calculus.residual import TRITS, delta, residual_along
 from bt.calculus.section import IntPoly, parse_poly, rho_int
 
 STATES = [
@@ -352,3 +362,165 @@ def test_phi_r_still_determines_the_behaviour():
             key = (r, phi_k(g, r) + (0,) * (8 - len(phi_k(g, r))))
             shape = behaviour_class(g, r)
             assert seen.setdefault(key, shape) == shape
+
+
+# ------------------------------------------------------- block shift law
+
+
+@pytest.mark.parametrize("e", [1, 2, 3])
+def test_leaf_shift_is_the_balanced_value_of_the_word(e):
+    for d in range(-5, 6):
+        state = linear_state(3**e * d, 3**e)
+        for word in itertools.product(TRITS, repeat=e):
+            leaf = residual_along(state, word)
+            assert leaf.coeffs == linear_state(d + block_shift(word), 3**e).coeffs
+
+
+@pytest.mark.parametrize("e", [2, 3])
+def test_leaf_shift_is_not_the_digit_sum(e):
+    # The digit sum was the plausible guess and it is wrong; the distinction
+    # matters because it changes the shift window from 2e+1 to 3^e values.
+    mismatches = 0
+    for d in range(-5, 6):
+        state = linear_state(3**e * d, 3**e)
+        for word in itertools.product(TRITS, repeat=e):
+            leaf = residual_along(state, word)
+            if leaf.coeffs != linear_state(d + sum(word), 3**e).coeffs:
+                mismatches += 1
+    assert mismatches > 0
+
+
+@pytest.mark.parametrize("e", [1, 2, 3, 4])
+def test_shift_window_is_a_complete_residue_system_mod_three_to_the_e(e):
+    window = shift_window(e)
+    assert len(window) == 3**e
+    assert window == tuple(sorted(window))
+    assert sorted(block_shift(w) for w in itertools.product(TRITS, repeat=e)) == list(window)
+    assert sorted(t % 3**e for t in window) == list(range(3**e))
+
+
+@pytest.mark.parametrize("e", [1, 2, 3])
+def test_exactly_one_window_shift_reaches_the_next_block(e):
+    for d in range(3 ** (e + 1)):
+        deep = [t for t in shift_window(e) if deep_leaf(d + t, e)]
+        assert len(deep) == 1
+
+
+@pytest.mark.parametrize("e", [1, 2, 3])
+def test_intermediate_block_shift_law(e):
+    # The induction that proves the leaf law needs the (j, i) generalisation.
+    for j in range(1, e + 1):
+        i = e - j
+        for d in range(-4, 5):
+            state = linear_state(3**j * d, 3 ** (j + i))
+            for word in itertools.product(TRITS, repeat=j):
+                leaf = residual_along(state, word)
+                want = linear_state(d + 3**i * block_shift(word), 3 ** (j + i))
+                assert leaf.coeffs == want.coeffs
+
+
+# ------------------------------------------------------- separation
+
+
+@pytest.mark.parametrize(("e", "horizon"), [(1, 3), (1, 4), (2, 2), (2, 3), (3, 2)])
+def test_shifted_family_separates_residues(e, horizon):
+    window = shift_window(e)
+    seen: dict[tuple, int] = {}
+    for d in range(3**horizon):
+        key = tuple(behaviour_class(linear_state(d + t, 3**e), horizon) for t in window)
+        assert key not in seen, f"d={d} collides with d={seen.get(key)}"
+        seen[key] = d
+    assert len(seen) == 3**horizon
+
+
+@pytest.mark.parametrize(("e", "horizon"), [(1, 3), (2, 3), (2, 4), (3, 4)])
+def test_the_recursing_leaf_is_the_unique_tall_one(e, horizon):
+    for d in range(3 ** min(horizon, 3)):
+        window = shift_window(e)
+        deep = [t for t in window if deep_leaf(d + t, e)]
+        tall = [
+            t
+            for t in window
+            if behaviour_depth(linear_state(d + t, 3**e), horizon) >= min(e, horizon)
+        ]
+        assert tall == deep
+
+
+# ------------------------------------------------------- minimal state
+
+
+def test_capped_valuation_saturates_at_the_horizon():
+    assert capped_valuation(0, 3) == 3
+    assert capped_valuation(27, 3) == 3
+    assert capped_valuation(9, 3) == 2
+    assert capped_valuation(5, 3) == 0
+    assert capped_valuation(-3, 3) == 1
+
+
+@pytest.mark.parametrize("r", [1, 2, 3])
+def test_unit_normal_pair_scales_the_derivative_to_a_power_of_three(r):
+    mod = 3**r
+    for b in range(mod):
+        e, _ = unit_normal_pair(0, b, r)
+        assert e == capped_valuation(b, r)
+        for c in range(mod):
+            e2, cn = unit_normal_pair(c, b, r)
+            assert e2 == e
+            if e < r:
+                beta = (b % mod) // 3**e
+                assert (b * pow(beta, -1, mod)) % mod == 3**e % mod
+                assert (c * pow(beta, -1, mod)) % mod == cn
+
+
+@pytest.mark.parametrize("r", [1, 2, 3])
+def test_minimal_state_key_is_a_complete_invariant(r):
+    mod = 3**r
+    key_to_shape: dict[tuple, tuple] = {}
+    shape_to_key: dict[tuple, tuple] = {}
+    for b in range(mod):
+        for c in range(mod):
+            key = minimal_state_key(c, b, r)
+            shape = behaviour_class(linear_state(c, b), r)
+            assert key_to_shape.setdefault(key, shape) == shape
+            shape_to_key.setdefault(shape, key)
+    assert len(key_to_shape) == len(shape_to_key) == behaviour_count_formula(r)
+
+
+@pytest.mark.parametrize("r", [1, 2, 3])
+def test_dominated_stratum_collapses_to_the_valuation(r):
+    mod = 3**r
+    for b in range(mod):
+        for c in range(mod):
+            if not is_dominated(c, b, r):
+                continue
+            m = capped_valuation(c, r)
+            assert m < capped_valuation(b, r)
+            assert behaviour_class(linear_state(c, b), r) == truncated_tree(m, r)
+
+
+@pytest.mark.parametrize("r", [1, 2, 3])
+def test_undominated_stratum_is_exactly_the_unit_orbit(r):
+    mod = 3**r
+    units = [u for u in range(mod) if u % 3]
+    orbit_to_shape: dict[tuple[int, int], tuple] = {}
+    shape_to_orbit: dict[tuple, tuple[int, int]] = {}
+    for b in range(mod):
+        for c in range(mod):
+            if is_dominated(c, b, r):
+                continue
+            orbit = min(((c * u) % mod, (b * u) % mod) for u in units)
+            shape = behaviour_class(linear_state(c, b), r)
+            assert orbit_to_shape.setdefault(orbit, shape) == shape
+            shape_to_orbit.setdefault(shape, orbit)
+    assert len(orbit_to_shape) == len(shape_to_orbit) == undominated_count(r)
+
+
+@pytest.mark.parametrize("r", [0, 1, 2, 3, 4, 5])
+def test_strata_counts_add_up_to_the_minimal_count(r):
+    assert dominated_count(r) + undominated_count(r) == behaviour_count_formula(r)
+
+
+def test_dominated_states_are_insensitive_to_the_derivative():
+    # The point of the collapse: c = 3 dies at depth 1 whatever b is.
+    shapes = {behaviour_class(linear_state(3, b), 3) for b in (9, 18, 27, 45, 81)}
+    assert shapes == {truncated_tree(1, 3)}
