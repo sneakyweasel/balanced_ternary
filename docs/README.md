@@ -79,6 +79,8 @@ both axes. See [methodology.md](methodology.md).
 - [Lifting trees](problems/lifting.md)
 - [3-adic polynomial dynamics](problems/padic_dynamics.md)
 - [Local vs global root-count bounds](problems/stabilization.md)
+- [Černý residual-quotient gate](problems/cerny_bt.md)
+- [Misere-quotient finite-context gate](problems/misere_quotients.md)
 - [Additive combinatorics](problems/additive_combinatorics.md)
 - [Perfect powers](problems/perfect_powers.md)
 - [Primes](problems/primes.md)

@@ -29,6 +29,8 @@ Do not mark a module `PAPER_CANDIDATE` merely because a census is large.
 | `research.operator_dynamics` | `EXPLORATORY` | composition census, dossiers |
 | `research.stabilization` | `ARCHIVED` | local \(\Phi_r\) versus global \(k_0\); literature close |
 | `research.padic_dynamics` | `ARCHIVED` | cycle-lift residual quotient; classical return-map close |
+| `research.cerny_bt` | `ARCHIVED` | transition-closed residual quotient; linear/nonlinear close |
+| `research.misere_quotients` | `ARCHIVED` | finite-context misere signatures; Plambeck–Siegel close |
 | `research.open_problems` | registry | pointers, not a dumping ground |
 
 Each module exposes a lightweight `problem.py` descriptor

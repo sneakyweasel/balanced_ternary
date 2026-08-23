@@ -10,6 +10,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.cerny_bt.problem import PROBLEM as CERNY_BT
     from research.collatz.problem import PROBLEM as COLLATZ
     from research.lifting.problem import PROBLEM as LIFTING
+    from research.misere_quotients.problem import PROBLEM as MISERE_QUOTIENTS
     from research.operator_dynamics.problem import PROBLEM as OPERATOR_DYNAMICS
     from research.padic_dynamics.problem import PROBLEM as PADIC_DYNAMICS
     from research.perfect_powers.problem import PROBLEM as PERFECT_POWERS
@@ -30,6 +31,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         OPERATOR_DYNAMICS,
         STABILIZATION,
         CERNY_BT,
+        MISERE_QUOTIENTS,
     )
 
 
