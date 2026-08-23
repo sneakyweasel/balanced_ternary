@@ -7,6 +7,9 @@ __all__ = ["ProblemDefinition", "STATUSES", "get_problem", "list_problems"]
 
 def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.additive_combinatorics.problem import PROBLEM as ADDITIVE
+    from research.balanced_digit_sum_polynomials.problem import (
+        PROBLEM as BALANCED_DIGIT_SUM_POLYNOMIALS,
+    )
     from research.cerny_bt.problem import PROBLEM as CERNY_BT
     from research.collatz.problem import PROBLEM as COLLATZ
     from research.lifting.problem import PROBLEM as LIFTING
@@ -38,6 +41,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         REGULAR_OUTPUT_PREIMAGES,
         MONNA_ENDPOINT_SPECTRA,
         REWRITE_CALCULUS,
+        BALANCED_DIGIT_SUM_POLYNOMIALS,
     )
 
 

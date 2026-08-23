@@ -19,6 +19,7 @@ PROBLEM = ProblemDefinition(
     docs=(
         "docs/problems/residuals.md",
         "docs/theory/cubic_newton_stratum.md",
+        "docs/theory/newton_stratum_note.md",
     ),
     lean=(
         "formal/BTCalculus/NewtonStratum.lean",

@@ -596,3 +596,14 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Open:** external review of the D-locality definition, minimal witness, unary semantic canonicity, and named peak
 - **Decision:** PROMOTE the tightened paper centered on `add_not_DLocal`. CLOSE the restricted maximality attempt as artificial or metatheoretically bloated. Add no maximality file or ledger row. Stop the rewrite branch after verification.
 
+## Newton-stratum note packaging (not a numbered milestone)
+
+- **Date:** 2026-08-24
+- **Objective:** Extract the already-proved Newton-stratum fibre laws into a short sendable note, without new mathematics
+- **Hypotheses:** none; this is editorial packaging of existing theorems
+- **Major results:** `docs/theory/newton_stratum_note.md` states the unified \(N_2\) / \(N_1\) / \(N_0\) theorem, the \(Q\) boundary on the family \(1+3^tb\), the novelty table against Cahen–Chabert / Kempner / Ahmed–Savchuk, and the Lean source map. Status stays `STRUCTURAL`. No Lean, ledger row, CLI, or count
+- **Refuted ideas:** none new
+- **Literature:** unchanged from [residual_vs_classical.md](theory/residual_vs_classical.md)
+- **Open:** none on this packaging line. The residuals dossier still asks whether the stratum says anything exact about a family other than \(x^3\); that question is not opened here
+- **Decision:** PROMOTE the extract. CLOSE further Newton-stratum documentation in this pass. Do not open a numbered milestone. Do not reopen \(Q\) or \(M_k(x^3)\).
+

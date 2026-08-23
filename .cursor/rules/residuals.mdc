@@ -24,4 +24,5 @@ from research.residuals.stratum import newton_stratum, newton_stratum_n2
 from bt.calculus.cubic import F_k
 ```
 
-Canonical math: `docs/theory/cubic_newton_stratum.md`. Ledger id `BTA-x3-stratum`.
+Canonical math: `docs/theory/cubic_newton_stratum.md`. Short extract:
+`docs/theory/newton_stratum_note.md`. Ledger id `BTA-x3-stratum`.

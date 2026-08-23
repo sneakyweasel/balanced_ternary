@@ -113,6 +113,7 @@ both axes. See [methodology.md](methodology.md).
 - [Minimal lifting state](theory/lifting_state_complexity.md)
 - [Local vs global root-count bounds](theory/local_vs_global_stabilization.md)
 - [Cubic Newton stratum](theory/cubic_newton_stratum.md)
+- [Newton-stratum note](theory/newton_stratum_note.md)
 - [Residual versus classical](theory/residual_vs_classical.md)
 - [Cubic residual image](theory/cubic_residual_image.md)
 - [Cubic residual fibres](theory/cubic_residual_fibres.md)

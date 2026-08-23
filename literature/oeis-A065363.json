@@ -1,0 +1,21 @@
+{
+  "id": "oeis-A065363",
+  "title": "Sum of balanced ternary digits of n",
+  "authors": ["OEIS contributors"],
+  "year": 2001,
+  "identifiers": {
+    "oeis": "A065363"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A065363"
+  },
+  "problem_area": "balanced-ternary digit sums",
+  "relevant_concepts": [
+    "balanced ternary",
+    "signed digit sum",
+    "q-additive function"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "The sequence s_bal(n). Recurrences a(3n-1)=a(n)-1, a(3n)=a(n), a(3n+1)=a(n)+1 (König). Xie records a(n)=A053735(2n)-A053735(n) for n>=0, the ordinary-ternary translation used as the Phase-0 falsifier. The digital-root iteration of s_bal is not the target of docs/problems/balanced_digit_sum_polynomials.md."
+}

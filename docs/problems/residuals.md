@@ -25,6 +25,7 @@ prefixes are balanced-ternary words of length \(m\).
 ## Existing record
 
 Canonical mathematics: [cubic_newton_stratum.md](../theory/cubic_newton_stratum.md).
+Sendable extract: [newton_stratum_note.md](../theory/newton_stratum_note.md).
 Literature distinction: [residual_vs_classical.md](../theory/residual_vs_classical.md).
 
 ## Lean
@@ -73,4 +74,7 @@ about a polynomial family other than \(x^3\)?
 ## Publication assessment
 
 Status: `STRUCTURAL`. The stratum theory is paper-worthy; the counting
-line is not, and its obstruction is recorded rather than retried.
+line is not, and its obstruction is recorded rather than retried. The
+short extract [newton_stratum_note.md](../theory/newton_stratum_note.md)
+packages the unified theorem and the \(Q\) boundary. It is not a
+`PAPER_CANDIDATE` elevation.

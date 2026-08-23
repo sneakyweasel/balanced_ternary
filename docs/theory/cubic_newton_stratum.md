@@ -2,7 +2,10 @@
 
 Canonical record for the same-depth fibres of the Newton image \(F_k\) of
 \(x^3\). Layer notes from Milestones 19–26 are corollaries. This page records the exact same-depth count \(C_{k,m}\) and `CLOSE`s the
-dedicated \(x^3\) counting line (§8).
+dedicated \(x^3\) counting line (§8). The sendable extract of the
+unified stratum theorem is
+[newton_stratum_note.md](newton_stratum_note.md); this page remains
+the laboratory monograph.
 
 Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **REFUTED**,

@@ -1,0 +1,22 @@
+{
+  "id": "allouche-shallit-2003-automatic-sequences",
+  "title": "Automatic Sequences: Theory, Applications, Generalizations",
+  "authors": ["Jean-Paul Allouche", "Jeffrey Shallit"],
+  "year": 2003,
+  "identifiers": {
+    "doi": "10.1017/CBO9780511546563"
+  },
+  "url": {
+    "publisher": "https://doi.org/10.1017/CBO9780511546563"
+  },
+  "problem_area": "automatic sequences",
+  "relevant_concepts": [
+    "q-automatic sequences",
+    "q-kernel",
+    "q-additive functions",
+    "regular languages"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Standard reference for q-automatic sequences and q-additive functions. A sequence is q-automatic iff its q-kernel is finite. Exact level sets {n : s(n)=0} of an unbounded q-additive function are the typical non-automatic example, as opposed to s(n) mod m. Used as the literature baseline for finite-state claims about s_bal(P(n))=0."
+}

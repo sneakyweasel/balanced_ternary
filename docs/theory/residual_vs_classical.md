@@ -29,7 +29,8 @@ all \(n\)” is this dictionary plus prefix locality. Ledger tag:
 3. The Newton-stratum fibre laws for \(x^3\): \(N_2\) visibility
    \(p\equiv q\pmod{3^r}\), the \(N_1\) valuation filter, and the mismatched
    quotient \(Q_{t,K,W}\) for the surviving \(N_0\) term.
-   See [cubic_newton_stratum.md](cubic_newton_stratum.md).
+   See [cubic_newton_stratum.md](cubic_newton_stratum.md) and the short
+   extract [newton_stratum_note.md](newton_stratum_note.md).
 
 Those fibre laws are not in Cahen–Chabert or Kempner. They are also not a
 Collatz theorem. No closed formula for \(M_k(x^3)\) is claimed.
