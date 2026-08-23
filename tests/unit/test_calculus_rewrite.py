@@ -48,6 +48,7 @@ def test_rewrite_sound_on_small_integers():
             (ENeg(EShift3(x)), EShift3(ENeg(x))),
             (ENeg(EIm(x)), EIp(ENeg(x))),
             (ENeg(EIp(x)), EIm(ENeg(x))),
+            (ENeg(ED(x)), ED(ENeg(x))),
             (EI0(x), EShift3(x)),
         ]
         for left, right in pairs:

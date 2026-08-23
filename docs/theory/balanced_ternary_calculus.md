@@ -35,8 +35,9 @@ name. The milestone is a success if those facts become one language
 - left-zero band of projections `P_a ∘ P_b = P_a`
 - trit-valued `cmp3` laws and `select3` as a control algebra
 - classified rewrite fragment `{D,I_a,S,N}` with a terminating
-  confluent tree TRS and an explicit NF grammar; `N(D(x))` and
-  `D(N(x))` remain distinct irreducibles
+  confluent tree TRS, including `N(D(x)) → D(N(x))`, and an
+  explicit NF grammar whose irreducibles are unique integer
+  operator functions
 - information profiles (delay / precision / state) as a thin layer
   over existing `OperatorMetadata`
 
