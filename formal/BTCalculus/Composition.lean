@@ -92,4 +92,28 @@ theorem section_comp (f g : ℤ[X]) (a : ℤ) :
   refine Polynomial.funext (fun x => ?_)
   simpa [eval_comp] using section_comp_eval f g a x
 
+theorem rho_comp (f g : ℤ[X]) (a : ℤ) :
+    lsdZ (eval a (f.comp g)) = lsdZ (eval (lsdZ (eval a g)) f) := by
+  have hg0 := section_reconstruction_eval g a 0
+  have hga : eval a g = lsdZ (eval a g) + 3 * eval 0 (sectionDeriv a g) := by
+    simpa using hg0
+  have hfga :=
+    section_reconstruction_eval f (lsdZ (eval a g)) (eval 0 (sectionDeriv a g))
+  have hfeval : eval (eval a g) f =
+      lsdZ (eval (lsdZ (eval a g)) f) +
+        3 * eval (eval 0 (sectionDeriv a g))
+          (sectionDeriv (lsdZ (eval a g)) f) := by
+    simpa [← hga] using hfga
+  have hmod :
+      eval (eval a g) f ≡ lsdZ (eval (lsdZ (eval a g)) f) [ZMOD 3] := by
+    change eval (eval a g) f % 3 = lsdZ (eval (lsdZ (eval a g)) f) % 3
+    rw [hfeval, Int.add_emod]
+    have h0 :
+        (3 * eval (eval 0 (sectionDeriv a g))
+            (sectionDeriv (lsdZ (eval a g)) f)) % 3 = 0 :=
+      Int.mul_emod_right 3 _
+    rw [h0, add_zero, Int.emod_emod]
+  have hlsd := lsdZ_unique (lsdZ_is_trit (eval (lsdZ (eval a g)) f)) hmod
+  simpa [eval_comp] using hlsd
+
 end BTCalculus

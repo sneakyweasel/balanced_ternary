@@ -51,4 +51,5 @@ value is a trit.
 path of residuals plus the integer jet*. It is **not** a jet space in
 the sense of differential geometry. Literature overlap: 3-kernels of
 polynomial sequences / section operators. See
-[polynomial_jet_calculus.md](polynomial_jet_calculus.md).
+[polynomial_jet_calculus.md](polynomial_jet_calculus.md) and
+[residual_state_complexity.md](residual_state_complexity.md).

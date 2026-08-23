@@ -9,6 +9,10 @@ import BTCalculus.Semantics
 import BTCalculus.Transducer
 import BTCalculus.Normalization
 import BTCalculus.NormalizedDerivative
+import BTCalculus.Confluence
 import BTCalculus.Polynomial
 import BTCalculus.Composition
 import BTCalculus.Jet
+import BTCalculus.Residual
+import BTCalculus.MyhillNerode
+import BTCalculus.TransducerComposition

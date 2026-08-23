@@ -45,9 +45,18 @@ This ledger does not rewrite history.
 | BTN-nf | EXACT — LEAN VERIFIED | normalize_LSD(P) = encodeZ(value(P)); all trits | docs/theory/balanced_ternary_normalization.md | BTCalculus/Normalization | test_normtheory_rewrite |
 | BTN-lex | EXACT — LEAN VERIFIED | LSD step strictly decreases abs-lex rank | docs/theory/normalization_rewrite_system.md | BTCalculus/Normalization | test_normtheory_rewrite |
 | BTN-carry-bound | EXACT — LEAN VERIFIED | `3\|DZ n\| ≤ \|n\|+1`; `|q| ≤ (B+1)/3` on `[-B,B]` | docs/theory/normalization_complexity.md | BTCalculus/Normalization | test_normtheory_strategies |
+| BTN-confluence | EXACT — LEAN VERIFIED | stripped rewrite is locally and globally confluent; `[-5,2]` joins after `stripHigh` | docs/theory/normalization_rewrite_system.md | BTCalculus/Confluence | test_normtheory_rewrite |
 | BTJ-hatD | EXACT — LEAN VERIFIED | value(hatD_raw(P))=D(value(P)); `[2]` naive drop fails | docs/theory/polynomial_jet_calculus.md | BTCalculus/NormalizedDerivative | test_hatd, test_m14_regressions |
 | BTJ-section | EXACT — LEAN VERIFIED | f(a+3x)=ρ_a(f)+3 𝔇_a f(x) | docs/theory/polynomial_jet_calculus.md | BTCalculus/Polynomial | test_section |
 | BTJ-product | EXACT — LEAN VERIFIED | twisted Leibniz for 𝔇_a(fg) | docs/theory/polynomial_jet_calculus.md | BTCalculus/Composition | test_section |
 | BTJ-comp | EXACT — LEAN VERIFIED | 𝔇_a(f∘g)=𝔇_{ρ_a(g)}f ∘ 𝔇_a g | docs/theory/polynomial_jet_calculus.md | BTCalculus/Composition | test_section |
 | BTJ-jet | EXACT — LEAN VERIFIED | finite-depth function-jet reconstruction | docs/theory/balanced_ternary_jets.md | BTCalculus/Jet | test_jets |
 | BTJ-degree | EXACT — HUMAN PROOF | deg 𝔇_a f = deg f (d≥1); LC = 3^{d-1} LC(f) | docs/theory/polynomial_jet_calculus.md | | test_section |
+| BTA-equiv | EXACT — LEAN VERIFIED | finite-horizon ≡_k is an equivalence; recursive iff outputs | docs/theory/residual_state_complexity.md | BTCalculus/Residual | test_myhill_nerode |
+| BTA-x2-raw | EXACT — HUMAN PROOF | R_k(x^2)=(3^k-1)/2 | docs/theory/residual_state_complexity.md | | test_myhill_nerode |
+| BTA-x2-mn | CONJECTURE | M_k(x^2)=R_k(x^2) for all k (verified k≤7) | docs/theory/residual_state_complexity.md | BTCalculus/MyhillNerode x_sq_not_equiv_one_three | test_myhill_nerode |
+| BTA-sample | REFUTED | sample LSD min = M_k; witness x^2 k=3 (7 vs 13) | docs/theory/residual_state_complexity.md | | test_myhill_nerode |
+| BTA-cascade | EXACT — LEAN VERIFIED | outputAlong(w,f∘g)=outputAlong(outputAlong(w,g),f) | docs/theory/residual_state_complexity.md | BTCalculus/TransducerComposition | test_myhill_nerode |
+| BTA-product | EXACT — HUMAN PROOF | M_k(f∘g)≤M_k(f)M_k(g) | docs/theory/residual_state_complexity.md | | test_myhill_nerode |
+| BTA-locality-small | REFUTED | prefix locality ⇒ small automaton | docs/theory/residual_state_complexity.md | | test_myhill_nerode |
+| BTA-hatD-B | EXACT — HUMAN PROOF | bounded-B hat D is N_B then drop; not FST on Z | docs/theory/residual_state_complexity.md | | test_myhill_nerode |

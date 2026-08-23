@@ -58,8 +58,10 @@ normalize_A(P)  =  digits of encode(value(P))
 value(normalize(P)) = value(P)
 ```
 
-Lean does **not** claim global confluence. Newman’s lemma would need
-the formalized local-confluence argument for the `i` / `i+1` overlap.
+Lean proves global confluence **modulo high-zero stripping**
+(`BTCalculus/Confluence.lean`): unique stripped trit NF, Strategy A
+reaches it, overlapping sites `i` / `i+1` join. Raw `[1,0]` vs
+`[1,0,0]` is the `[-5,2]` witness that stripping is required.
 
 ## Pointers
 
@@ -68,5 +70,5 @@ the formalized local-confluence argument for the `i` / `i+1` overlap.
 - [Setun subset](setun_normalization.md)
 - [Calculus](balanced_ternary_calculus.md)
 - Package: `src/bt/normtheory/`
-- Lean: `formal/BTCalculus/Normalization.lean`
+- Lean: `formal/BTCalculus/Normalization.lean`, `formal/BTCalculus/Confluence.lean`
 - CLI: `btprime normalize …`

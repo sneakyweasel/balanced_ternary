@@ -79,6 +79,7 @@ meaning throughout:
 - [Balanced-ternary jets](theory/balanced_ternary_jets.md)
 - [Polynomial jet calculus](theory/polynomial_jet_calculus.md)
 - [Jet transducers](theory/jet_transducers.md)
+- [Residual-state complexity](theory/residual_state_complexity.md)
 
 ## Architecture
 

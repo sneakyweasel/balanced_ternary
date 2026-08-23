@@ -42,8 +42,12 @@ writes `c_{i+1}`. Disjoint sites `|i-j| ≥ 2` commute.
 `a,b ∈ [-8,8]` joins, and every word in the box `width ≤ 3`, `|c| ≤ 2`
 is locally confluent (bounded descendant search).
 
-If the system is terminating and locally confluent, Newman’s lemma
-gives global confluence. Lean does **not** claim that conjunction.
+**PROVED** (Lean, modulo high-zero stripping, matching Python
+`CoeffWord`). Unique stripped trit form is `encodeZ(value(P))`.
+Strategy A is a rewrite path to that form, so every fork joins there.
+Raw lists may differ by trailing zeros (`[-5,2]` → `[1,0]` vs
+`[1,0,0]`); after `stripHigh` they are the same word.
+
 Expected unique irreducible form: the canonical balanced word of
 `value(P)`. Python Strategy A/B/C/D agree on that word on the
 enumerated boxes.

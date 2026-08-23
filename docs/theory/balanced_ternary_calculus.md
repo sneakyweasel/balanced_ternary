@@ -55,6 +55,7 @@ analysis”.
 - CLI: `btprime calculus …`
 - Coefficient-vector NF (Milestone 14): [balanced_ternary_normalization.md](balanced_ternary_normalization.md). Different object from expression-tree NF.
 - Section/jet calculus (Milestone 15): [polynomial_jet_calculus.md](polynomial_jet_calculus.md). `D_coeff` is not `D`.
+- Residual automata (Milestone 16): [residual_state_complexity.md](residual_state_complexity.md). Sample minimization is not `M_k`.
 
 ## Finite-state locality (reused, not re-proved)
 

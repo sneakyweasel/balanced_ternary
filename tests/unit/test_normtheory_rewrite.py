@@ -10,6 +10,7 @@ from bt.normtheory.rewrite import (
     balanced_divmod,
     critical_pair_join,
     irreducible,
+    joinable,
     legal_sites,
     lex_decreases,
     locally_confluent,
@@ -94,3 +95,14 @@ def test_critical_pairs_join_on_box():
             assert critical_pair_join(a, b)
     for word in enumerate_words(3, 2):
         assert locally_confluent(word)
+
+
+def test_overlap_minus5_two_joins_after_strip():
+    """Raw Lean lists [1,0] vs [1,0,0]; Python CoeffWord strips both to (1,)."""
+    word = CoeffWord((-5, 2))
+    via0 = normalize_step(word, 0)
+    via1 = normalize_step(word, 1)
+    assert via0.coeffs == (1,)
+    assert via0.value() == via1.value() == word.value()
+    assert joinable(via0, via1)
+    assert locally_confluent(word)

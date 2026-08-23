@@ -110,3 +110,8 @@ bundle.
 
 Normalization theory and jet calculus are **two interacting layers**,
 not one theory.
+
+Milestone 16: residual Myhill–Nerode complexity lives in
+[residual_state_complexity.md](residual_state_complexity.md). Sample
+minimization is **not** `M_k`. `x^2` does not collapse at finite
+horizon (`M_k=R_k` through `k=7`).

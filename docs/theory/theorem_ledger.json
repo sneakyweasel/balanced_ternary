@@ -216,6 +216,15 @@
     "related_conjectures": []
   },
   {
+    "id": "BTN-confluence",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "stripped coefficient rewrite is locally and globally confluent; unique NF is encodeZ(value); [-5,2] joins after stripHigh",
+    "source": "docs/theory/normalization_rewrite_system.md",
+    "lean": "BTCalculus/Confluence.lean",
+    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "related_conjectures": []
+  },
+  {
     "id": "BTJ-hatD",
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "value(hatD_raw(P))=D(value(P)); naive D_coeff fails on [2]",
@@ -267,6 +276,78 @@
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "",
     "tests": ["tests/unit/test_section.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-equiv",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "finite-horizon equiv_k is an equivalence; recursive iff output words",
+    "source": "docs/theory/residual_state_complexity.md",
+    "lean": "BTCalculus/Residual.lean",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x2-raw",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "R_k(x^2)=(3^k-1)/2",
+    "source": "docs/theory/residual_state_complexity.md",
+    "lean": "",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": ["BTA-x2-mn"]
+  },
+  {
+    "id": "BTA-x2-mn",
+    "tag": "CONJECTURE",
+    "statement": "M_k(x^2)=R_k(x^2) for all k (verified k<=7)",
+    "source": "docs/theory/residual_state_complexity.md",
+    "lean": "BTCalculus/MyhillNerode.lean",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-sample",
+    "tag": "REFUTED",
+    "statement": "sample LSD minimization equals M_k",
+    "source": "docs/theory/residual_state_complexity.md",
+    "lean": "",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-cascade",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "outputAlong(w, f.comp g)=outputAlong(outputAlong(w,g), f)",
+    "source": "docs/theory/residual_state_complexity.md",
+    "lean": "BTCalculus/TransducerComposition.lean",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-product",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "M_k(f circ g) <= M_k(f) M_k(g)",
+    "source": "docs/theory/residual_state_complexity.md",
+    "lean": "",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-locality-small",
+    "tag": "REFUTED",
+    "statement": "prefix locality implies small automaton",
+    "source": "docs/theory/residual_state_complexity.md",
+    "lean": "",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-hatD-B",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "bounded-B hat D is N_B then drop; not one FST on Z",
+    "source": "docs/theory/residual_state_complexity.md",
+    "lean": "",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
     "related_conjectures": []
   }
 ]

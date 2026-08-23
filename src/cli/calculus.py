@@ -79,9 +79,31 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_pj.add_argument("--depth", type=int, default=3)
     p_pj.add_argument("--json", action="store_true")
 
-    p_st = c.add_parser("states", help="raw vs minimized residual-state counts")
+    p_st = c.add_parser("states", help="raw / semantic / Myhill–Nerode residual counts")
     p_st.add_argument("polynomial")
     p_st.add_argument("--depth", type=int, default=3)
+
+    p_min = c.add_parser("minimize", help="exact finite-horizon Myhill–Nerode count")
+    p_min.add_argument("polynomial")
+    p_min.add_argument("--depth", type=int, default=3)
+
+    p_dist = c.add_parser("distinguish", help="separating words for residual classes")
+    p_dist.add_argument("polynomial")
+    p_dist.add_argument("--depth", type=int, default=3)
+
+    p_co = c.add_parser("compose", help="cascade complexity of f ∘ g")
+    p_co.add_argument("f")
+    p_co.add_argument("g")
+    p_co.add_argument("--depth", type=int, default=3)
+
+    p_cn = c.add_parser("compose-normalizer", help="residual machine vs bounded normalizer")
+    p_cn.add_argument("polynomial")
+    p_cn.add_argument("--depth", type=int, default=3)
+    p_cn.add_argument("--bound", type=int, default=5)
+
+    p_ps = c.add_parser("profile-states", help="R_k / M_k table up to a max depth")
+    p_ps.add_argument("polynomial")
+    p_ps.add_argument("--max-depth", type=int, default=5)
 
 
 def run_calculus(args: argparse.Namespace) -> int:
@@ -209,13 +231,81 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(rec)
         return 0
     if cmd == "states":
-        from bt.calculus.jet_locality import profile_jet
+        from bt.calculus.automata import profile_states
         from bt.calculus.section import parse_poly
 
         f = parse_poly(args.polynomial)
-        rec = profile_jet(f, args.depth)
-        print(f"raw = {rec.raw_states}")
-        print(f"minimized = {rec.minimized_states}")
+        rec = profile_states(f, args.depth)
+        print(f"raw = {rec.raw}")
+        print(f"semantic = {rec.semantic}")
+        print(f"Myhill-Nerode = {rec.myhill_nerode}")
+        print(f"sample = {rec.sample}")
+        print(f"levelled_mealy = {rec.levelled_mealy}")
+        print(f"trie = {rec.trie}")
+        print(f"compression = {rec.compression}")
         print(f"max_coeff = {rec.max_coeff}")
+        return 0
+    if cmd == "minimize":
+        from bt.calculus.automata import profile_states
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        rec = profile_states(f, args.depth)
+        print(f"raw = {rec.raw}")
+        print(f"semantic = {rec.semantic}")
+        print(f"Myhill-Nerode = {rec.myhill_nerode}")
+        print(f"sample = {rec.sample}")
+        print("sample is not Myhill-Nerode")
+        return 0
+    if cmd == "distinguish":
+        from bt.calculus.myhill_nerode import distinguishing_pairs
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        pairs = distinguishing_pairs(f, args.depth, limit=8)
+        if not pairs:
+            print("no separating pair in range")
+            return 0
+        for row in pairs:
+            print(f"r={row['remaining']}  {row['p']}  vs  {row['q']}  word={row['word']}")
+        return 0
+    if cmd == "compose":
+        from bt.calculus.composition import profile_composition
+        from bt.calculus.section import parse_poly
+
+        rec = profile_composition(parse_poly(args.f), parse_poly(args.g), args.depth)
+        print(f"f = {rec.f}")
+        print(f"g = {rec.g}")
+        print(f"f∘g = {rec.fog}")
+        print(f"M_f = {rec.M_f}")
+        print(f"M_g = {rec.M_g}")
+        print(f"M_fog = {rec.M_fog}")
+        print(f"naive_product = {rec.naive_product}")
+        return 0
+    if cmd == "compose-normalizer":
+        from bt.calculus.normalizer_compose import profile_compose_normalizer
+        from bt.calculus.section import parse_poly
+
+        rec = profile_compose_normalizer(parse_poly(args.polynomial), args.depth, args.bound)
+        print(f"M = {rec.M}")
+        print(f"normalizer_states = {rec.normalizer_states}")
+        print(f"composed_upper = {rec.composed_upper}")
+        print(f"max_coeff = {rec.max_coeff}")
+        print(f"representable = {rec.representable}")
+        if rec.obstruction:
+            print(f"obstruction = {rec.obstruction}")
+        return 0
+    if cmd == "profile-states":
+        from bt.calculus.automata import profile_states
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        print("k raw semantic Myhill-Nerode sample trie compression")
+        for k in range(0, args.max_depth + 1):
+            rec = profile_states(f, k)
+            print(
+                f"{k} {rec.raw} {rec.semantic} {rec.myhill_nerode} "
+                f"{rec.sample} {rec.trie} {rec.compression}"
+            )
         return 0
     raise ValueError(f"unknown calculus command {cmd}")

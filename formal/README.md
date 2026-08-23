@@ -48,8 +48,9 @@ the operator fragment, word/integer semantic agreement for `D` and
 `I_a`, coefficient-vector normalization (value preservation, LSD
 normal form, lex rank, carry bound), the normalized coefficient
 derivative `hatDRaw`, the `ℤ[X]` section derivative with product and
-composition laws, and finite-depth function-jet reconstruction. Global
-confluence of the abstract rewrite is not claimed in Lean.
+composition laws, finite-depth function-jet reconstruction, finite-horizon
+residual equivalence `≡_k`, cascade `outputAlong` for polynomial composition,
+and global confluence of the stripped coefficient rewrite.
 
 These are labelled **EXACT — LEAN VERIFIED**. The Python cylinder
 implementation remains the executable instantiation; this Lean project

@@ -5,9 +5,8 @@ namespace BTCalculus
 /-!
 Coefficient-vector normalization. Unique balanced expansion is standard;
 this file packages the local carry rewrite, value preservation, the LSD
-normal form, and a lexicographic termination rank. Global confluence is
-*not* claimed here: Newman’s lemma needs termination plus local confluence,
-and the overlapping critical pair is not formalized.
+normal form, and a lexicographic termination rank. Global confluence of
+the stripped rewrite is proved in `BTCalculus.Confluence`.
 -/
 
 def isTrit (c : ℤ) : Prop := c = -1 ∨ c = 0 ∨ c = 1

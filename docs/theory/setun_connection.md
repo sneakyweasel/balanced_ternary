@@ -71,6 +71,9 @@ Answers so far (see [balanced_ternary_calculus.md](balanced_ternary_calculus.md)
   [polynomial_jet_calculus.md](polynomial_jet_calculus.md). No Setun
   attribution: the 3-section operator is standard algebra; `hat D` and
   the `[2]` normalization boundary are this repository’s packaging.
+- Residual automata (Milestone 16) are recorded in
+  [residual_state_complexity.md](residual_state_complexity.md). No Setun
+  attribution for Myhill–Nerode counts or `hat D` transducers.
 
 If a later source is found that already states `D(xy)` in this form,
 the ledger should be updated to **KNOWN** rather than presented as

@@ -37,6 +37,10 @@ Two residuals are identified when they produce the same LSD stream on a
 finite sample of residual arguments. Minimized counts are
 computational proxies, not Myhill–Nerode proofs.
 
+**REFUTED** as a substitute for `M_k`. Witness `x^2`, depth `3`: sample
+`7`, exact `M_3=13=R_3`. See
+[residual_state_complexity.md](residual_state_complexity.md).
+
 ## Locality
 
 **PROVED** for `f ∈ Z[x]`: `f(n) ≡ f(m) (mod 3^k)` whenever
