@@ -1609,10 +1609,10 @@
   },
   {
     "id": "BTC-op-fragment-nd-nf",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "the operator-fragment tree TRS {D, I_a, S, N} including N(D(x))→D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
-    "lean": "",
+    "lean": "BTCalculus/OpFragNewman.lean",
     "tests": [
       "tests/unit/test_operator_fragment_nf.py"
     ],

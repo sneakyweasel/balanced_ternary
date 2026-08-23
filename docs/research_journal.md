@@ -354,3 +354,13 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Next question:** does the same one-way `N`–`D` orientation remain locally confluent on any larger signature (`Add`, `Mul`, or `W`), or is this fragment the maximal complete unary algebra?
 - **Decision:** PROMOTE termination, confluence, and semantic canonicity of the enlarged TRS to the ledger as **EXACT — HUMAN PROOF**. Do not open a numbered milestone. Lean Newman remains deferred (no `sorry`); do not touch `BTCalculus/Confluence.lean`.
 
+## Operator-fragment Lean Newman (not a numbered milestone)
+
+- **Date:** 2026-08-23
+- **Objective:** Package the human Newman argument for the enlarged operator-fragment tree TRS as a Lean rewrite-relation proof
+- **Hypotheses:** termination + local confluence of `{D, I_a, S, N}` including `N(D)→D(N)` formalize without changing the mathematics
+- **Major results:** `OpFrag` inductive; `Step` with congruence; lex rank `(I0-count, N-inversion, size)` decreases on every rule; local confluence by the documented critical pairs and left-linear disjoint redexes; Newman ⇒ confluence and unique syntactic NF; NF grammar `I±`/`S` spine over `D^d(x)` or `D^d(N(x))`. Ledger `BTC-op-fragment-nd-nf` retagged **EXACT — LEAN VERIFIED**
+- **Refuted ideas:** none. Integer soundness in `Rewrite.lean` is a different claim; coefficient-word `Confluence.lean` was not touched
+- **Deferred:** semantic canonicity of distinct irreducibles (`BTC-op-fragment-nd-semantic`) stays **EXACT — HUMAN PROOF**; the smaller system without the commute stays a human proof
+- **Decision:** PROMOTE the Lean Newman package. Do not open a numbered milestone. Do not auto-extend to `Add`/`Mul`/`W`.
+

@@ -3,8 +3,9 @@
 **Status of this page:** a sound, classified rewrite system. The
 operator fragment `{D, I_a, S, N}` under the tree rules below —
 including `N(D(x)) → D(N(x))` — is terminating, locally confluent, and
-has a unique syntactic normal form that is also a unique representative
-of the integer operator function (**PROVED**). Global confluence of the
+has a unique syntactic normal form (**PROVED — LEAN**) that is also a
+unique representative of the integer operator function (**PROVED**).
+Global confluence of the
 full expression language (`Add` / `Mul` / `W` / the large word table)
 is **not** claimed. Coefficient-word confluence
 ([BTN-confluence](theorem_ledger.md), `BTCalculus/Confluence.lean`) is
@@ -116,13 +117,13 @@ cancels `D(I_{-a})`, reaching `N(x)`. Join of `N(N(D(x)))`:
 
 Local confluence plus termination gives confluence (Newman). Every
 term of the fragment therefore has a unique syntactic normal form.
-This is **PROVED** as a term-rewriting argument
-([BTC-op-fragment-nd-nf](theorem_ledger.md)). The smaller system
-without the commute remains [BTC-op-fragment-nf](theorem_ledger.md).
-Neither claim is Lean-verified: `formal/BTCalculus/Rewrite.lean`
-contains the integer soundness identities, not a rewrite-relation
-Newman proof, and `BTCalculus/Confluence.lean` is the
-coefficient-word system.
+This is **PROVED — LEAN** as a rewrite-relation Newman argument
+([BTC-op-fragment-nd-nf](theorem_ledger.md),
+`BTCalculus/OpFragNewman.lean`). The smaller system without the
+commute remains [BTC-op-fragment-nf](theorem_ledger.md) and is still
+only a human proof. `formal/BTCalculus/Rewrite.lean` contains the
+integer soundness identities. `BTCalculus/Confluence.lean` is the
+coefficient-word system and is a different object.
 
 ## Normal-form grammar
 
@@ -199,5 +200,8 @@ are closed (**PROVED**). Extending the same one-way `N`–`D`
 orientation to `Add` / `Mul` / `W` is a different signature and is
 not assumed.
 
-Lean packaging of the Newman argument for this fragment only is
-deferred; do not write `sorry`.
+Lean Newman for the enlarged fragment is packaged in
+`BTCalculus/OpFragNewman.lean` (termination, local confluence,
+confluence, unique syntactic NF, and the NF grammar). Semantic
+canonicity of distinct irreducibles remains a human proof
+([BTC-op-fragment-nd-semantic](theorem_ledger.md)).
