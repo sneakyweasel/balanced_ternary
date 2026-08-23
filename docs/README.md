@@ -77,6 +77,11 @@ both axes. See [methodology.md](methodology.md).
 - [Collatz](problems/collatz.md)
 - [Residuals](problems/residuals.md)
 - [Lifting trees](problems/lifting.md)
+- [3-adic polynomial dynamics](problems/padic_dynamics.md)
+- [Local vs global root-count bounds](problems/stabilization.md)
+- [Černý residual-quotient gate](problems/cerny_bt.md)
+- [Misere-quotient finite-context gate](problems/misere_quotients.md)
+- [Monna endpoint spectra](problems/monna_endpoint_spectra.md)
 - [Additive combinatorics](problems/additive_combinatorics.md)
 - [Perfect powers](problems/perfect_powers.md)
 - [Primes](problems/primes.md)
@@ -102,6 +107,7 @@ both axes. See [methodology.md](methodology.md).
 - [Polynomial function congruence](theory/polynomial_function_congruence.md)
 - [3-adic lifting trees](theory/padic_lifting_trees.md)
 - [Minimal lifting state](theory/lifting_state_complexity.md)
+- [Local vs global root-count bounds](theory/local_vs_global_stabilization.md)
 - [Cubic Newton stratum](theory/cubic_newton_stratum.md)
 - [Residual versus classical](theory/residual_vs_classical.md)
 - [Cubic residual image](theory/cubic_residual_image.md)
@@ -112,6 +118,7 @@ both axes. See [methodology.md](methodology.md).
 - [Cubic N1 valuation strata](theory/cubic_n1_valuation.md)
 - [Cubic N0 reduction](theory/cubic_n0_reduction.md)
 - [Mismatched cubic quotient](theory/mismatched_cubic_quotient.md)
+- [Balanced-Monna endpoint spectra](theory/monna_endpoint_spectra.md)
 - [Residual explorer](tools/residual_explorer.md)
 
 ## Architecture

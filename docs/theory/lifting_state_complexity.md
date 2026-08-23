@@ -345,6 +345,12 @@ content: dominance is the Newton-polygon observation that a branch dies at
 depth `v_3(c)` when the constant term wins, and orbit rigidity on the rest
 is Hensel/Newton uniqueness. `minimal_state_key` is the invariant in code.
 
+Forgetting the branch trits is a strictly coarser quotient, and that
+quotient *is* valuation-determined: `U_r = T_m` if `m < e` and
+`S(e, r)` otherwise. Proof and closed form live in
+[padic_lifting_trees.md](padic_lifting_trees.md#valuations-are-not-enough).
+That line is closed; do not reopen it from this file.
+
 ## The shallow regime
 
 **OBSERVATION, no theorem claimed.** For `k < r` the higher jet
@@ -401,7 +407,8 @@ machinery.
 - Core: `bt.calculus.lifting_state` (`behaviour_class`, `linear_step`,
   `newton_path`, `behaviour_count`,
   `behaviours_by_derivative_valuation`, `truncated_tree`,
-  `block_shift`, `shift_window`, `minimal_state_key`, `is_dominated`).
+  `block_shift`, `shift_window`, `minimal_state_key`, `is_dominated`,
+  `valuation_unordered_shape`).
 - Experiments: `research.lifting.state_complexity` (`shift_law`,
   `shifted_family_injectivity`, `normal_form`, `strata`).
 - Lean: `formal/BTCalculus/PadicLiftingState.lean`.

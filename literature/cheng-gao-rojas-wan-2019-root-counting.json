@@ -18,5 +18,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "docs/theory/padic_lifting_trees.md. Builds a tree of ideals to count roots in Z/(p^t), partitioning by multiplicity so that singular branches are handled explicitly. Establishes that separating singular from nonsingular lifting and bounding tree size are known; the project makes no counting or complexity claim against this."
+  "notes": "Tree of ideals, partitioned by multiplicity; a branch terminates when the local count becomes trivial. Already a local adaptive counting procedure, not a closed k0. The Phi_r triage does not improve it. docs/theory/local_vs_global_stabilization.md."
 }

@@ -1438,12 +1438,14 @@
   },
   {
     "id": "BTL-deep-valuation-shape",
-    "tag": "COMPUTATIONALLY VERIFIED",
-    "statement": "in the deep regime k >= r the capped pair (min(v_3(f(n)/3^k), r), min(v_3(f'(n)), r)) does determine the unordered depth-r subtree for r <= 4, exhaustively over all linear states with |c| <= 121 and |b| <= 40 and over every node of the 53 test polynomials to level 6; whether this is a theorem is open",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "in the deep regime the residual is c + b x with c = f(n)/3^k and b = f'(n); writing m = min(v_3(c), r) and e = min(v_3(b), r), the unlabeled depth-r shape U_r is T_m if m < e and S(e, r) if m >= e, where T_j is the fully ternary tree of depth j and S(0, r) is a path of length r, S(e, r) = T_r for e >= r, and S(e, r) is two copies of T_{e-1} plus one S(e, r-1) for 1 <= e < r; so the capped valuation pair is a complete invariant of U_r; this is the Newton-polygon ramification of a linear residual, not a new Hensel theorem, and it is also verified on the complete residue system (Z/3^r)^2 for r <= 4",
     "source": "docs/theory/padic_lifting_trees.md",
     "lean": "",
     "tests": [
-      "tests/research/lifting/test_triage.py"
+      "tests/research/lifting/test_triage.py",
+      "tests/unit/test_lifting_state.py",
+      "tests/unit/test_lifting.py"
     ],
     "related_conjectures": []
   },
@@ -1862,5 +1864,49 @@
       "word_wn_nf",
       "word_simp_nd_lc"
     ]
+  },
+  {
+    "id": "BTM-balanced-monna",
+    "tag": "REPARAMETERIZATION",
+    "statement": "the balanced Monna map B(sum a_i 3^i)=sum a_i 3^{-i-1} with a_i in {-1,0,+1} is an affine conjugate of Monna's 1952 digit-reversal map; the residual graph recursion Gamma_F is the existing residual Mealy machine, not a new dynamical invariant",
+    "source": "docs/theory/monna_endpoint_spectra.md",
+    "lean": "",
+    "tests": [
+      "tests/research/monna_endpoint_spectra/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTM-x3-depth",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "for every balanced-Monna endpoint pair u=zeta+2*3^n, v=zeta-2*3^n one has u^3-v^3=4*3^n(3 zeta^2+4*3^{2n}) and therefore t=v_3(u^3-v^3)=n+min(1+2 v_3(zeta), 2n), or t=3n when zeta=0; the two arguments of the minimum have opposite parity whenever zeta is nonzero",
+    "source": "docs/theory/monna_endpoint_spectra.md",
+    "lean": "",
+    "tests": [
+      "tests/research/monna_endpoint_spectra/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTM-x3-spectrum",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the cubic divergence-depth spectrum at level n=0 is two pairs of depth 0; for n>=1, depth 3n occurs twice and depth n+1+2s occurs 4*3^{n-s-1} times for each 0<=s<n",
+    "source": "docs/theory/monna_endpoint_spectra.md",
+    "lean": "",
+    "tests": [
+      "tests/research/monna_endpoint_spectra/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTM-x3-no-preserve",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "cubing never sends a balanced-Monna endpoint pair to an endpoint pair: 3 zeta^2+4*3^{2n} is never +/- 3^k, so u^3-v^3 is never +/- 4*3^k and B(u^3)=B(v^3) never holds",
+    "source": "docs/theory/monna_endpoint_spectra.md",
+    "lean": "",
+    "tests": [
+      "tests/research/monna_endpoint_spectra/test_triage.py"
+    ],
+    "related_conjectures": []
   }
 ]

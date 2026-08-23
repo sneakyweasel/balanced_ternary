@@ -26,6 +26,7 @@ from bt.calculus.lifting_state import (
     linear_state,
     linear_step,
     linear_survives,
+    linear_unordered_shape,
     minimal_state_key,
     newton_path,
     newton_quotient,
@@ -33,6 +34,9 @@ from bt.calculus.lifting_state import (
     shift_window,
     truncated_tree,
     undominated_count,
+    undominated_unordered_shape,
+    unordered_truncated_tree,
+    valuation_unordered_shape,
     unit_normal_form,
     unit_normal_pair,
     unit_orbit_count,
@@ -524,3 +528,56 @@ def test_dominated_states_are_insensitive_to_the_derivative():
     # The point of the collapse: c = 3 dies at depth 1 whatever b is.
     shapes = {behaviour_class(linear_state(3, b), 3) for b in (9, 18, 27, 45, 81)}
     assert shapes == {truncated_tree(1, 3)}
+
+
+# ------------------------------------------- unordered valuation shape
+
+
+def test_unordered_truncated_tree_is_fully_ternary():
+    assert unordered_truncated_tree(0, 3) == ()
+    assert unordered_truncated_tree(1, 3) == ((), (), ())
+    assert unordered_truncated_tree(2, 2) == (
+        ((), (), ()),
+        ((), (), ()),
+        ((), (), ()),
+    )
+
+
+def test_undominated_shape_recursion():
+    assert undominated_unordered_shape(0, 2) == (((),),)
+    assert undominated_unordered_shape(2, 2) == unordered_truncated_tree(2, 2)
+    assert undominated_unordered_shape(2, 4) == tuple(
+        sorted(
+            (
+                unordered_truncated_tree(1, 3),
+                unordered_truncated_tree(1, 3),
+                undominated_unordered_shape(2, 3),
+            )
+        )
+    )
+
+
+@pytest.mark.parametrize("r", [1, 2, 3, 4])
+def test_valuation_determines_unordered_shape_on_the_complete_state_space(r):
+    mod = 3**r
+    by_val: dict[tuple[int, int], set[tuple]] = {}
+    for b in range(mod):
+        for c in range(mod):
+            got = linear_unordered_shape(c, b, r)
+            assert got == valuation_unordered_shape(c, b, r)
+            by_val.setdefault((capped_valuation(c, r), capped_valuation(b, r)), set()).add(got)
+    assert all(len(bucket) == 1 for bucket in by_val.values())
+
+
+def test_outside_the_balanced_window_still_matches_the_formula():
+    # The pair that looks like a counterexample if the shift is misread:
+    # (9, 9) has d' = 0 after the first block, (45, 9) has d' = 1.
+    # Unordered, both are S(2, 4).
+    assert linear_unordered_shape(9, 9, 4) == linear_unordered_shape(45, 9, 4)
+    assert linear_unordered_shape(9, 9, 4) == undominated_unordered_shape(2, 4)
+    assert linear_unordered_shape(81, 9, 4) == undominated_unordered_shape(2, 4)
+
+
+def test_dominated_unordered_shape_is_the_truncated_tree():
+    assert linear_unordered_shape(3, 9, 3) == unordered_truncated_tree(1, 3)
+    assert linear_unordered_shape(1, 9, 3) == ()

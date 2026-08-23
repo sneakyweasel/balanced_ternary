@@ -71,6 +71,7 @@ analysis”.
 - Quadratic MN count (Milestone 17): [quadratic_residual_complexity.md](quadratic_residual_complexity.md). `M_k(x^2)=(3^k−1)/2`.
 - Cubic Newton stratum (canonical): [cubic_newton_stratum.md](cubic_newton_stratum.md).
 - Residual versus classical sources: [residual_vs_classical.md](residual_vs_classical.md).
+- Balanced-Monna endpoint spectra: [monna_endpoint_spectra.md](monna_endpoint_spectra.md). Not \(M_k(x^3)\).
 - Layer notes (corollaries): [cubic_residual_image.md](cubic_residual_image.md),
   [cubic_residual_fibres.md](cubic_residual_fibres.md),
   [cubic_deepest_layer.md](cubic_deepest_layer.md),

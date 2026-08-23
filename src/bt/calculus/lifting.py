@@ -286,10 +286,24 @@ def depth_r_shape(residual: IntPoly, r: int, *, mode: str = "digits") -> tuple:
     keeps each branch in its slot. ``unordered`` sorts sibling subtrees,
     so it retains only the bare tree shape; a separation witnessed under
     ``unordered`` is therefore the strongest kind.
+
+    The unordered encoding is the canonical ``U_r``: ``()`` is a node
+    with no surviving children (a leaf at this remaining depth), and a
+    node with children is the sorted tuple of their unordered shapes.
+    Multiplicity of identical children is the number of equal entries.
     """
     if mode not in SHAPE_MODES:
         raise ValueError(f"mode must be one of {SHAPE_MODES}, got {mode!r}")
     return _shape(residual.coeffs, _require_nat(r, "r"), mode)
+
+
+def unordered_shape(residual: IntPoly, r: int) -> tuple:
+    """The unlabeled depth-``r`` lifting shape ``U_r``.
+
+    Recursively: forget the trit on each surviving edge, keep the
+    multiset of child shapes. Equal to ``depth_r_shape(..., mode="unordered")``.
+    """
+    return depth_r_shape(residual, r, mode="unordered")
 
 
 def shape_widths(residual: IntPoly, r: int) -> tuple[int, ...]:

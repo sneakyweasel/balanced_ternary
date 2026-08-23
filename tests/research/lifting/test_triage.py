@@ -19,6 +19,7 @@ from research.lifting.triage import (
     h2_taylor_jet,
     h3_trichotomy,
     linear_state_determinacy,
+    unordered_shape_census,
     linearization,
     pair_determinacy,
     phi_determinacy,
@@ -143,6 +144,15 @@ def test_linear_states_are_not_digit_determined_by_valuations():
     rec = linear_state_determinacy(3, c_bound=40, b_bound=27, mode="digits")
     assert not rec["determined"]
     assert rec["witness"] is not None
+
+
+@pytest.mark.parametrize("r", (1, 2, 3, 4))
+def test_unordered_shape_formula_on_complete_residues(r):
+    rec = unordered_shape_census(r)
+    assert rec["formula_holds"]
+    assert rec["determined"]
+    assert rec["formula_mismatches"] == 0
+    assert rec["states"] == 3 ** (2 * r)
 
 
 def test_state_census_is_bounded_in_k():

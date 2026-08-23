@@ -19,5 +19,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "docs/theory/padic_lifting_trees.md. Elementary proof of rationality for univariate f, with a closed form for N_k(f) once k >= k0 = O(d^2 (log C + log d)); N_k is constant beyond k0 when the discriminant is nonzero. The project's finite-horizon determinacy is a local, per-node statement and does not improve this global bound."
+  "notes": "Verified from arXiv:2006.08926 / OBS 4 (2020). Delta := v_p(D(rad(f))); k0 := d(Delta+1)+1 <= d(2d-1)(log_p C + log_p d)+1. For k > d(Delta+1), N_k(f) = sum_i p^{k - ceil((k-nu_i)/e_i)} (Thm 19). N_k is constant iff D(f) != 0 (squarefree, every e_i=1). The O(d^2(log C+log d)) figure is the Sylvester envelope of k0, not a separate bound. This is a closed form for the global count, not a per-branch lift threshold. docs/theory/local_vs_global_stabilization.md."
 }

@@ -89,7 +89,8 @@ sub-object of a machine the project already had.
   **PROVED**.
 - Deep minimal state: the two residues modulo `3^r` — **PROVED**.
 - Valuation-only determinacy of the unordered deep shape —
-  **VERIFIED COMPUTATIONALLY** for `r ≤ 4`, **OPEN** as a theorem.
+  **PROVED** (`U_r = T_m` if `m < e`, else `S(e, r)`). This is the
+  Newton-polygon ramification of `c + b x`, not a new Hensel theorem.
 - Valuation-only determinacy in general — **REFUTED**, with the smallest
   witness recorded.
 
@@ -114,6 +115,8 @@ Ledger rows: `BTL-*` in
 - `linearization` — the deep congruence to the linear surrogate;
 - `linear_state_determinacy` — exhaustive over linear states
   `|c| ≤ 121`, `|b| ≤ 40`;
+- `unordered_shape_census` — `U_r` against the valuation formula on
+  the complete residue system `(ℤ/3^r)^2`;
 - `state_census` — distinct `Φ_r` classes and distinct depth-`r`
   subtrees per level;
 - `triage_report` — the whole payload plus the verdict.
@@ -122,11 +125,9 @@ CLI: `btprime congruence roots | lift | tree | classify | triage`.
 
 ## Conjectures
 
-None registered. The one open statement — whether valuation data alone
-determines the unordered deep-regime subtree — is recorded as OPEN in
-the theory file rather than promoted to a conjecture, because the
-supporting evidence is a bounded exhaustive check and a computational
-observation is not a conjecture.
+None registered. The former open statement — whether valuation data
+alone determines the unordered deep-regime subtree — is now a theorem
+(`BTL-deep-valuation-shape`) and is not a conjecture.
 
 ## Counterexamples
 
@@ -260,9 +261,6 @@ Experiments: `research.lifting.state_complexity`.
 
 ## Open questions
 
-- Is deep-regime valuation determinacy of the unordered shape a theorem?
-- Does the local determinacy horizon give anything the global bound
-  `k0 = O(d²(log C + log d))` does not?
 - Is there a class of `f` where the `Φ_r` state count is small enough to
   matter, as opposed to merely bounded?
 - What is the minimal state in the shallow regime `k < r`, where the
@@ -270,12 +268,16 @@ Experiments: `research.lifting.state_complexity`.
   degree?
 
 Answered and retired: whether `Φ_r` is minimal (no), the exact deep count
-(`L_r`, proved), and whether the shifted family separates residues (yes).
+(`L_r`, proved), whether the shifted family separates residues (yes),
+whether deep-regime valuations determine the unordered shape (yes), and
+whether `Φ_r` improves the global `k0` (no: `k0` is a closed form for
+`N_k(f)`, local uniqueness is Hensel; see
+[stabilization.md](stabilization.md)).
 
 ## Decision
 
-`PARK` for the dossier as a whole, with the multivariate and minimal-state
-sub-branches `CLOSE`d. The identification theorem and the sharp `Φ_r`
+`PARK` for the dossier as a whole, with the multivariate, minimal-state,
+and unordered-shape sub-branches `CLOSE`d. The identification theorem and the sharp `Φ_r`
 determinacy are exact and Lean-backed, so the line is not dead, but the
 core translation is a **REPARAMETERIZATION** of known lifting theory and
 the one `PROJECT-SPECIFIC` ingredient — sharp finite-horizon determinacy —
@@ -286,8 +288,8 @@ closed: `dwivedi-saxena-2024-systems-non-fields` already covers `n + k`
 constant, and there is no univariate theorem here strong enough to
 justify a general solver. Do not open a numbered milestone for this line.
 
-Best next question: is deep-regime valuation determinacy of the
-unordered subtree shape a theorem?
+Best next question: none on the lifting-state or `k0` lines. Both are
+closed. Do not reopen them.
 
 ## Publication assessment
 

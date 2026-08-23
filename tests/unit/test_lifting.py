@@ -22,6 +22,7 @@ from bt.calculus.lifting import (
     node_at,
     shape_widths,
     taylor_coeff,
+    unordered_shape,
     tree_roots,
     word_digits,
     word_value,
@@ -234,6 +235,7 @@ def test_shape_modes_are_ordered_by_strength():
     f = IntPoly((3, 3))
     g = IntPoly((12, 3))
     assert depth_r_shape(f, 3, mode="unordered") == depth_r_shape(g, 3, mode="unordered")
+    assert unordered_shape(f, 3) == depth_r_shape(f, 3, mode="unordered")
     assert depth_r_shape(f, 3, mode="positional") != depth_r_shape(g, 3, mode="positional")
 
 
