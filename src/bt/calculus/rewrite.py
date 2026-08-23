@@ -195,6 +195,9 @@ def rewrite_expr(expr: Expr, *, max_steps: int = 10_000) -> tuple[Expr, tuple[st
     descendant)`` and pushable means ``S``, ``I±``, ``I0``, or ``D``.
     ``N(D(x)) → D(N(x))`` drops the inversion coordinate by one. Global
     confluence of the full expression language is not claimed.
+    Exact push-in ``S``-distributivity through ``Add`` or ``Mul``
+    overlaps ``D∘S = id`` in a non-joining peak; those rules stay out
+    of ``_step`` (see ``docs/theory/rewrite_calculus.md``).
     """
     used: list[str] = []
     steps = 0
