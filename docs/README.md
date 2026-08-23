@@ -81,6 +81,7 @@ both axes. See [methodology.md](methodology.md).
 - [Local vs global root-count bounds](problems/stabilization.md)
 - [Černý residual-quotient gate](problems/cerny_bt.md)
 - [Misere-quotient finite-context gate](problems/misere_quotients.md)
+- [Monna endpoint spectra](problems/monna_endpoint_spectra.md)
 - [Additive combinatorics](problems/additive_combinatorics.md)
 - [Perfect powers](problems/perfect_powers.md)
 - [Primes](problems/primes.md)
@@ -117,6 +118,7 @@ both axes. See [methodology.md](methodology.md).
 - [Cubic N1 valuation strata](theory/cubic_n1_valuation.md)
 - [Cubic N0 reduction](theory/cubic_n0_reduction.md)
 - [Mismatched cubic quotient](theory/mismatched_cubic_quotient.md)
+- [Balanced-Monna endpoint spectra](theory/monna_endpoint_spectra.md)
 - [Residual explorer](tools/residual_explorer.md)
 
 ## Architecture
