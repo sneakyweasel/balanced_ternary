@@ -4,7 +4,8 @@
 operator fragment `{D, I_a, S, N}` under the tree rules below —
 including `N(D(x)) → D(N(x))` — is terminating, locally confluent, and
 has a unique syntactic normal form (**PROVED — LEAN**) that is also a
-unique representative of the integer operator function (**PROVED**).
+unique representative of the integer operator function
+(**PROVED — LEAN**).
 Global confluence of the
 full expression language (`Add` / `Mul` / `W` / the large word table)
 is **not** claimed. Coefficient-word confluence
@@ -163,7 +164,7 @@ using `D(-n) = -D(n)` (`rewrite_N_D`). These agree as functions of
   power of `3` cannot equal a negative power of `3`.
 
 So distinct irreducibles are distinct integer operator functions
-([BTC-op-fragment-nd-semantic](theorem_ledger.md), **PROVED**).
+([BTC-op-fragment-nd-semantic](theorem_ledger.md), **PROVED — LEAN**).
 Together with soundness of the rules, the enlarged TRS is a complete
 canonical form for the integer operator algebra on this fragment:
 semantically equal terms have the same NF.
@@ -203,5 +204,6 @@ not assumed.
 Lean Newman for the enlarged fragment is packaged in
 `BTCalculus/OpFragNewman.lean` (termination, local confluence,
 confluence, unique syntactic NF, and the NF grammar). Semantic
-canonicity of distinct irreducibles remains a human proof
-([BTC-op-fragment-nd-semantic](theorem_ledger.md)).
+canonicity of distinct irreducibles is `OpFrag.irreducible_eval_injective`
+in `BTCalculus/OpFragSemantic.lean`
+([BTC-op-fragment-nd-semantic](theorem_ledger.md), **PROVED — LEAN**).
