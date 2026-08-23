@@ -40,8 +40,9 @@ the least-significant digit $a_0$.
 1. **Calculator** — add, subtract, scale by 2 or 3, and apply `S`, `N`, `D`, `W`, `M2`, `H2`, …
 2. **Encode / analyze** — integer ↔ word round-trip and digit metrics.
 3. **Operators** — domain, involution, and integer/word agreement for each map.
-4. **Residual explorer** — prefix tree, Newton classes, and depth-deficit visibility.
-5. Collatz pages stay available as one application of the same words.
+4. **Rewrite calculus** — unary stepper and Add/carry witnesses from the paper candidate.
+5. **Residual explorer** — prefix tree, Newton classes, and depth-deficit visibility.
+6. Collatz pages stay available as one application of the same words.
                 """
             )
 
@@ -57,6 +58,11 @@ the least-significant digit $a_0$.
                 "layer": "Operators",
                 "object": "S, N, D, W, Wz, Wt, M2, H2, H3, K3, Im, Ip",
                 "status": "PROVED on the stated domains",
+            },
+            {
+                "layer": "Rewrite calculus",
+                "object": "Unary {D, I_a, S, N} stepper and Add/carry witnesses",
+                "status": "Paper companion; Lean remains the proof authority",
             },
             {
                 "layer": "Residual calculus",

@@ -575,3 +575,13 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Open:** none on this line. External review is the next stage
 - **Decision:** PROMOTE the packet as the sendable unit with the publication draft. CLOSE further rewrite documentation. Do not open another rewrite milestone. Cubic residuals remain the frontier.
 
+## Rewrite-calculus companion UI (not a numbered milestone)
+
+- **Date:** 2026-08-23
+- **Objective:** Instantiate the paper witnesses in the existing Streamlit laboratory, for local play, without a second app or repo
+- **Hypotheses:** none; presentation of existing theorems
+- **Major results:** one page under Calculus research with views Claim map, Unary, Carry, Constructor sums, Push-in peak. View-model `visualization.rewrite_explorer` calls `rewrite_once` / `D` / `I_a` only. Add is not installed in `_step`. Word tables stay closed
+- **Refuted ideas:** none new
+- **Open:** none. Isolated reviewer deploy remains deferred
+- **Decision:** PROMOTE the companion page as laboratory infrastructure. CLOSE further rewrite UI (no rule editor, no word-fragment view, no second remote). Cubic residuals remain the frontier.
+
