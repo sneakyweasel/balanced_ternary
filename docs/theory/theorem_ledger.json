@@ -1622,10 +1622,10 @@
   },
   {
     "id": "BTC-op-fragment-nd-semantic",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "irreducibles of the enlarged operator-fragment TRS (tree rules plus N(D(x))→D(N(x))) are unique representatives of integer operator functions on {D, I_a, S, N}",
     "source": "docs/theory/rewrite_calculus.md",
-    "lean": "BTCalculus/Rewrite.lean",
+    "lean": "BTCalculus/OpFragSemantic.lean",
     "tests": [
       "tests/unit/test_operator_fragment_nf.py"
     ],

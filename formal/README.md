@@ -52,7 +52,8 @@ composition laws, finite-depth function-jet reconstruction, finite-horizon
 residual equivalence `≡_k`, cascade `outputAlong` for polynomial composition,
 global confluence of the stripped coefficient rewrite, Newman confluence
 of the enlarged operator-fragment tree TRS `{D, I_a, S, N}`
-(including `N(D)→D(N)`), and polynomial
+(including `N(D)→D(N)`), semantic canonicity of that NF grammar
+as integer operator functions, and polynomial
 function congruence modulo `3^k` (the Myhill–Nerode bridge, the degree-`≤2`
 and cubic vanishing criteria, and the first `x^3`/`x^4` residual merges),
 and the cubic residual closed form with Newton-coordinate equivalence,

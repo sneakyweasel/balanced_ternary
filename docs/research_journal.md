@@ -364,3 +364,12 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Deferred:** semantic canonicity of distinct irreducibles (`BTC-op-fragment-nd-semantic`) stays **EXACT — HUMAN PROOF**; the smaller system without the commute stays a human proof
 - **Decision:** PROMOTE the Lean Newman package. Do not open a numbered milestone. Do not auto-extend to `Add`/`Mul`/`W`.
 
+## Operator-fragment Lean semantic canonicity (not a numbered milestone)
+
+- **Date:** 2026-08-23
+- **Objective:** Lean-prove that distinct irreducibles of the enlarged NF grammar denote distinct maps `ℤ → ℤ`
+- **Hypotheses:** the human argument (fixed-length unique BT words + `D(-n)=-D(n)` + probes at `0` and `3^k`) packages on top of `OpFrag` / `OpFragNewman` without a heavy unique-expansion library
+- **Major results:** `eval : OpFrag → ℤ → ℤ`; NF reconstruction as `(w, sign, d)`; closed form `sign · 3^{|w|} D^d(n) + c(w)`; pairwise disagreement of distinct triples; tree-rule soundness lifts to `eval`. Ledger `BTC-op-fragment-nd-semantic` retagged **EXACT — LEAN VERIFIED**
+- **Refuted ideas:** none new. The system without `N(D)→D(N)` remains semantically incomplete
+- **Decision:** PROMOTE the Lean semantic-canonicity package. Do not open a numbered milestone. Do not auto-extend to `Add`/`Mul`/`W`.
+
