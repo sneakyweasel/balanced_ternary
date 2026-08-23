@@ -1791,5 +1791,32 @@
       "add_s_push_lc",
       "add_n_push_semantic"
     ]
+  },
+  {
+    "id": "BTC-word-full-lc",
+    "tag": "REFUTED",
+    "statement": "the production WORD_REWRITE_RULES table is locally confluent",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_full_lc",
+      "w_nd_word_lc"
+    ]
+  },
+  {
+    "id": "BTC-word-simp-nf",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the simplifying-only fragment of WORD_REWRITE_RULES (the sixteen rules with simplifying=True: cancellations, the W/K3 stock, and I0→S) is terminating and locally confluent; every word has a unique syntactic normal form",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_simp_nf"
+    ]
   }
 ]

@@ -18,7 +18,8 @@ This file records:
 * a bounded one-way word check for ``W``: the stock ``W``/``K3`` rules
   plus one-way ``N``–``D`` fail to join at ``N∘W∘W``, and the exact
   companion ``N∘K3 → K3∘N`` makes the bounded critical-pair list join.
-  The full ``WORD_REWRITE_RULES`` table is still not claimed confluent.
+  The full ``WORD_REWRITE_RULES`` table is not locally confluent;
+  that production peak is recorded in ``test_rewrite_word_fragments.py``.
 """
 
 from __future__ import annotations
@@ -515,7 +516,7 @@ def test_one_way_w_without_nk3_fails_at_nww():
 def test_one_way_w_with_nk3_bounded_cps_join():
     """Companion N∘K3 → K3∘N is exact; the bounded one-way CP list then joins.
 
-    This is not a confluence claim for WORD_REWRITE_RULES.
+    This is not a reason to install N∘K3 in WORD_REWRITE_RULES.
     """
     rules = ONE_WAY_W_RULES + [N_K3]
     failures: list[str] = []
