@@ -52,7 +52,7 @@ theorem toInt_is_trit (ℓ : SpineLetter) :
 
 theorem toInt_injective {ℓ ℓ' : SpineLetter} (h : ℓ.toInt = ℓ'.toInt) :
     ℓ = ℓ' := by
-  cases ℓ <;> cases ℓ' <;> simp [toInt] at h
+  cases ℓ <;> cases ℓ' <;> simp [toInt] at h <;> rfl
 
 end SpineLetter
 
@@ -139,12 +139,11 @@ theorem mkCore_succ (neg : Bool) (d : ℕ) :
 theorem mkCore_of_isCore {t : OpFrag} (h : IsCore t) :
     t = mkCore (isNegCore t) (depthD t) := by
   induction h with
-  | hole =>
-    simp [mkCore, nestD, isNegCore, depthD]
-  | nHole =>
-    simp [mkCore, nestD, isNegCore, depthD]
+  | hole => rfl
+  | nHole => rfl
   | d _hx ih =>
-    simp [isNegCore, depthD, mkCore_succ, ih]
+    simp only [isNegCore, depthD, mkCore_succ]
+    exact congrArg OpFrag.D ih
 
 theorem mkNF_of_isNF {t : OpFrag} (h : IsNF t) :
     t = mkNF (spine t) (isNegCore (peel t)) (depthD (peel t)) := by
@@ -229,7 +228,7 @@ theorem DZ_three_mul (n : ℤ) : DZ (3 * n) = n :=
 
 theorem DZ_three_zpow_succ (k : ℕ) :
     DZ ((3 : ℤ) ^ (k + 1)) = (3 : ℤ) ^ k := by
-  rw [pow_succ]
+  rw [pow_succ, mul_comm]
   exact DZ_three_mul _
 
 theorem Dpow_three_zpow (d m : ℕ) :
@@ -300,7 +299,7 @@ theorem three_zpow_eq_one {k : ℕ} (h : (3 : ℤ) ^ k = 1) : k = 0 := by
   cases k with
   | zero => rfl
   | succ k =>
-    have hpow : (3 : ℤ) ^ (k + 1) = 3 * (3 : ℤ) ^ k := pow_succ _ _
+    have hpow : (3 : ℤ) ^ (k + 1) = (3 : ℤ) ^ k * 3 := pow_succ _ _
     have hk : (0 : ℤ) < (3 : ℤ) ^ k := pow_pos (by decide : (0 : ℤ) < 3) k
     have hge : (3 : ℤ) ≤ (3 : ℤ) ^ (k + 1) := by
       rw [hpow]
@@ -372,9 +371,8 @@ theorem scaled_eq_of_eval {w w' : List SpineLetter} {neg neg' : Bool} {d d' : �
     (h : ∀ n, eval (mkNF w neg d) n = eval (mkNF w' neg' d') n) (n : ℤ) :
     signFactor neg * (3 : ℤ) ^ w.length * Dpow d n =
       signFactor neg' * (3 : ℤ) ^ w'.length * Dpow d' n := by
-  have hc := coeff_eq_of_eval h
   have hn := h n
-  simp only [eval_mkNF] at hn
+  simp only [eval_mkNF, coeff_eq_of_eval h] at hn
   linarith
 
 theorem Dpow_three_zpow_self (d : ℕ) : Dpow d ((3 : ℤ) ^ d) = 1 := by
@@ -407,12 +405,12 @@ theorem eval_mkNF_inj {w w' : List SpineLetter} {neg neg' : Bool} {d d' : ℕ}
         rw [Dpow_three_zpow_self, Dpow_three_zpow_of_lt hlt] at hprobe
         have : signFactor neg * (3 : ℤ) ^ w.length = 0 := by
           simpa using hprobe
-        exact (mul_ne_zero (signFactor_ne_zero neg) (three_zpow_ne_zero _)).elim this
+        exact absurd this (mul_ne_zero (signFactor_ne_zero neg) (three_zpow_ne_zero _))
       · have hprobe := scaled_eq_of_eval h ((3 : ℤ) ^ d')
         rw [Dpow_three_zpow_of_lt hgt, Dpow_three_zpow_self] at hprobe
         have : signFactor neg * (3 : ℤ) ^ w'.length = 0 := by
           simpa using hprobe
-        exact (mul_ne_zero (signFactor_ne_zero neg) (three_zpow_ne_zero _)).elim this
+        exact absurd this (mul_ne_zero (signFactor_ne_zero neg) (three_zpow_ne_zero _))
   · let M := max d d'
     have hprobe := scaled_eq_of_eval h ((3 : ℤ) ^ M)
     rw [Dpow_three_zpow_of_le (le_max_left d d'),
@@ -427,37 +425,37 @@ theorem eval_mkNF_inj {w w' : List SpineLetter} {neg neg' : Bool} {d d' : ℕ}
       rw [mul_assoc, ← pow_add]
     rw [hL, hR] at hprobe
     cases neg <;> cases neg' <;> simp [signFactor] at hsign hprobe
-    · exact (three_zpow_ne_neg _ _ hprobe).elim
-    · exact (three_zpow_ne_neg _ _ hprobe.symm).elim
+    · exact absurd hprobe (three_zpow_ne_neg _ _)
+    · exact absurd hprobe.symm (three_zpow_ne_neg _ _)
 
 /-! ### Soundness of the tree rules -/
 
 theorem eval_step {t u : OpFrag} (h : Step t u) (n : ℤ) :
     eval t n = eval u n := by
   induction h generalizing n with
-  | i0 x =>
-    simpa [eval] using rewrite_I0_S (eval x n)
-  | d_im x =>
-    simpa [eval] using rewrite_D_I Trit.minus (eval x n)
-  | d_ip x =>
-    simpa [eval] using rewrite_D_I Trit.plus (eval x n)
-  | d_i0 x =>
-    simpa [eval] using rewrite_D_I Trit.zero (eval x n)
-  | d_s x =>
-    simpa [eval] using rewrite_D_S (eval x n)
-  | n_n x =>
+  | i0 =>
+    simpa [eval] using rewrite_I0_S _
+  | d_im =>
+    simpa [eval] using rewrite_D_I Trit.minus _
+  | d_ip =>
+    simpa [eval] using rewrite_D_I Trit.plus _
+  | d_i0 =>
+    simpa [eval] using rewrite_D_I Trit.zero _
+  | d_s =>
+    simpa [eval] using rewrite_D_S _
+  | n_n =>
     simp [eval]
-  | n_s x =>
-    simpa [eval] using rewrite_N_S (eval x n)
-  | n_i0 x =>
-    have hy : IZ Trit.zero (eval x n) = SZ (eval x n) := rewrite_I0_S _
-    simpa [eval, hy] using rewrite_N_S (eval x n)
-  | n_im x =>
-    simpa [eval] using rewrite_N_Im (eval x n)
-  | n_ip x =>
-    simpa [eval] using rewrite_N_Ip (eval x n)
-  | n_d x =>
-    simpa [eval] using rewrite_N_D (eval x n)
+  | n_s =>
+    simpa [eval] using rewrite_N_S _
+  | n_i0 =>
+    simp [eval, rewrite_I0_S]
+    exact rewrite_N_S _
+  | n_im =>
+    simpa [eval] using rewrite_N_Im _
+  | n_ip =>
+    simpa [eval] using rewrite_N_Ip _
+  | n_d =>
+    simpa [eval] using (rewrite_N_D _).symm
   | cong_D _hstep ih =>
     simp [eval, ih]
   | cong_Im _hstep ih =>
