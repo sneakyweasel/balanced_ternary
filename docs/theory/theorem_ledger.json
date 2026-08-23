@@ -1333,7 +1333,7 @@
   {
     "id": "BTA-x3-M-obstruct",
     "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Outcome C: after the Newton-stratum reductions, exact M_k(x^3) still requires hashing Q-vanishing / deep images on width-Theta(k) intervals; no substantially simpler closed arithmetic count exists in this framework",
+    "statement": "CLOSE: after the Newton-stratum reductions, exact M_k(x^3) still requires hashing Q-vanishing / deep images on width-Theta(k) intervals; no substantially simpler closed arithmetic count exists in this framework",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
     "tests": [

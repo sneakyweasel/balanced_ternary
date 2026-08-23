@@ -7,7 +7,7 @@ PROBLEM = ProblemDefinition(
     title="Cubic residual Newton stratum",
     status="STRUCTURAL",
     statement=(
-        "Dedicated x^3 counting is closed at Outcome C: after the exact "
+        "Dedicated x^3 counting is CLOSEd: after the exact "
         "Newton-stratum reductions, M_k(x^3) is the N3-gated deep-image "
         "union. No substantially simpler closed arithmetic formula exists "
         "inside this framework. No single closed term for M_k is claimed."

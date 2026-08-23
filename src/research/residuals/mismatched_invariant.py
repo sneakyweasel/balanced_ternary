@@ -286,7 +286,7 @@ def invariant_report(t: int, K: int, W: int) -> dict[str, object]:
         "one_family": obst,
         "high_val_zero": f"Q=0 when 3s-t ≥ K",
         "verdict": (
-            "Outcome C: residue/valuation/B_t invariants require growing width; "
+            "CLOSE: residue/valuation/B_t invariants require growing width; "
             "the extra 2r high trits remain visible through 3a^2 b"
         ),
     }

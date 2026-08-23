@@ -7,6 +7,10 @@ import subprocess
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "tools"))
+
+from render_theorem_ledger import HEADER, TAGS, check_tags  # noqa: E402
+
 ROOT = Path(__file__).resolve().parents[2]
 JSON_PATH = ROOT / "docs" / "theory" / "theorem_ledger.json"
 LEAN_VERIFIED = "EXACT — LEAN VERIFIED"
@@ -52,6 +56,18 @@ def test_ledger_lean_paths_exist_when_required():
         assert path.exists(), f"{row['id']}: missing lean {lean}"
         if row["tag"] == LEAN_VERIFIED:
             assert path.is_file() or path.is_dir(), f"{row['id']}: lean path is not a file or dir"
+
+
+def test_ledger_tags_are_in_the_fixed_vocabulary():
+    assert check_tags(_entries()) == []
+
+
+def test_documented_tags_match_the_whitelist():
+    for tag in TAGS:
+        assert f"`{tag}`" in HEADER, f"{tag} is missing from the rendered tag list"
+    readme = (ROOT / "docs" / "README.md").read_text(encoding="utf-8")
+    for tag in TAGS:
+        assert tag in readme, f"{tag} is missing from docs/README.md"
 
 
 def test_ledger_markdown_is_generated():

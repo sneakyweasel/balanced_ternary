@@ -1,8 +1,8 @@
 # Cubic Newton stratum
 
 Canonical record for the same-depth fibres of the Newton image \(F_k\) of
-\(x^3\). Layer notes from Milestones 19–26 are corollaries. This page records the exact same-depth count \(C_{k,m}\) and closes the
-dedicated \(x^3\) counting line at Outcome C (§8).
+\(x^3\). Layer notes from Milestones 19–26 are corollaries. This page records the exact same-depth count \(C_{k,m}\) and `CLOSE`s the
+dedicated \(x^3\) counting line (§8).
 
 Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **REFUTED**,
@@ -112,7 +112,7 @@ These remain on the ledger. They are not revived by the unified statement.
 
 ## 5. Dedicated counting line
 
-Closed in §8 at **Outcome C**. Do not open another numbered
+**CLOSE**d in §8. Do not open another numbered
 \(x^3\) counting milestone. The \(Q\)-taxonomy is already closed in §6.
 
 ---
@@ -161,7 +161,7 @@ Threshold \(3s=t\) reduces to a cube \(w^3\bmod 3^K\).
 **REFUTED**: a bounded residue / valuation / sign / \(B_t\) invariant
 classifies \(Q\)-fibres independently of \(t,K,W\).
 
-**Outcome C**, with a partial high-valuation invariant. The
+**CLOSE**, with a partial high-valuation invariant. The
 \(Q\)-classification line should not continue by inventing further
 fibre types. Counting proceeds in §7 by image cardinality, not by a
 new invariant. The counting line itself closes in §8.
@@ -330,13 +330,13 @@ and `btprime calculus x3-overlaps --k <k>`.
 The commands `newton-class`, `cubic-layer`, and `cubic-quotient` are
 unchanged.
 
-The dedicated counting line is closed in §8 at **Outcome C**. There is
+The dedicated counting line is **CLOSE**d in §8. There is
 no single closed term \(M_k=F(k)\). The exact algorithm remains the
 \(N_3\)-gated deep-image union.
 
 ---
 
-## 8. Outcome C — counting obstruction
+## 8. CLOSE — counting obstruction
 
 This is the last dedicated \(x^3\) counting record. Do not open another
 numbered counting milestone.
@@ -397,7 +397,7 @@ where \(S^\times_{k,r}\) is the number of positive units
 \(S^\times\) is the vanishing locus of \(Q\) on \(P_W^\times\). That
 locus has no compact residue / valuation / \(B_t\) classifier
 independent of the parameters (§6). **EXACT — HUMAN PROOF** as a
-citation of the Milestone 27 Outcome C.
+citation of the Milestone 27 CLOSE.
 
 ### Valuation strata
 
@@ -475,7 +475,7 @@ tree. It is not polynomial and not subexponential.
 
 ### Decision
 
-**Outcome C.** After the exact Newton-hierarchy reductions, the
+**CLOSE.** After the exact Newton-hierarchy reductions, the
 remaining objects are image cardinalities of cubic maps on balanced
 intervals of width \(\Theta(k)\). Counting them is equivalent to
 enumerating the vanishing locus of the mismatched quotient \(Q\) on

@@ -14,6 +14,16 @@ ROOT = Path(__file__).resolve().parents[1]
 JSON_PATH = ROOT / "docs" / "theory" / "theorem_ledger.json"
 MD_PATH = ROOT / "docs" / "theory" / "theorem_ledger.md"
 
+TAGS = (
+    "EXACT — LEAN VERIFIED",
+    "EXACT — HUMAN PROOF",
+    "COMPUTATIONALLY VERIFIED",
+    "CONJECTURE",
+    "OBSERVATION",
+    "REFUTED",
+    "REPARAMETERIZATION",
+)
+
 HEADER = """# Theorem ledger
 
 Machine-readable sibling: [theorem_ledger.json](theorem_ledger.json).
@@ -51,7 +61,21 @@ def _short_tests(paths: list[str]) -> str:
     return ", ".join(names)
 
 
+def check_tags(entries: list[dict]) -> list[str]:
+    """Return one message per row whose tag is outside the fixed vocabulary."""
+    return [
+        f"{row.get('id')}: unknown tag {row.get('tag')!r}"
+        for row in entries
+        if row.get("tag") not in TAGS
+    ]
+
+
 def render(entries: list[dict]) -> str:
+    bad = check_tags(entries)
+    if bad:
+        raise ValueError(
+            "theorem_ledger.json uses tags outside docs/README.md:\n  " + "\n  ".join(bad)
+        )
     lines = [HEADER]
     for row in entries:
         tests = _short_tests(list(row.get("tests") or []))

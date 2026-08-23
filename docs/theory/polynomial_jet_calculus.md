@@ -99,10 +99,10 @@ Canonical `hat D(I_a(P)) = normalize(P)`. Raw `hatD_raw(I_a(P)) = P`.
 
 ## Classification
 
-**Outcome B**, with an operational **C-layer**: the section algebra is
-known 3-section calculus; the project-specific theorem is the
-normalization boundary and `hat D` as the coefficient-level semantic
-derivative.
+**PARK**: the section algebra is **KNOWN** 3-section calculus, and the
+**PROJECT-SPECIFIC** theorem is the normalization boundary with `hat D`
+as the coefficient-level semantic derivative. The known core is what
+bounds the payoff of continuing.
 
 “Balanced-ternary jet calculus” names the residual-path object plus
 trit residues. It is not a claim of a new differential-geometric jet
