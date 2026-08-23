@@ -16,6 +16,19 @@ The mathematical question, with quantifiers.
 Known results and how this project relates (`known` / `reproduced` /
 `extended` / `independent` / `refuted`). Cite `literature/` ids.
 
+## Branch budget
+
+Written before substantial implementation. See
+[methodology.md](../methodology.md).
+
+- **Target:** one precise question.
+- **Novelty hypothesis:** what could possibly be new.
+- **Falsifier:** the observation that kills the idea.
+- **Existing machinery:** what the platform already provides.
+- **Maximum Phase-0 scope:** the smallest experiment that answers the target.
+- **Promotion criterion:** what would justify PROMOTE.
+- **Stop criterion:** what forces PARK or CLOSE.
+
 ## Balanced-ternary formulation
 
 How the objects are written in canonical balanced ternary.
@@ -51,6 +64,13 @@ Exact theorems and computational verifications.
 ## Open questions
 
 What remains.
+
+## Decision
+
+`PROMOTE` | `PARK` | `CLOSE`, one short paragraph of justification, and
+exactly one best next question. A branch whose statements are all
+`KNOWN` or `REPARAMETERIZATION` is a `CLOSE`. Do not continue a branch
+automatically.
 
 ## Publication assessment
 

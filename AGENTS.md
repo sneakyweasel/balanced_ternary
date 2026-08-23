@@ -22,6 +22,41 @@ bt.*                        problem-independent BT mathematics
 
 Collatz is one application: [docs/collatz_mathematics.md](docs/collatz_mathematics.md).
 Claim labels: [docs/README.md](docs/README.md).
+Research method: [docs/methodology.md](docs/methodology.md).
+
+## How a direction runs
+
+`explore → distill → prove/refute → decide`. Before substantial
+implementation, output a triage block:
+
+```text
+Mathematical target     one precise question
+Novelty hypothesis      what could possibly be new
+Falsifier               the observation that kills the idea
+Existing machinery      what the platform already provides
+Maximum Phase-0 scope   the smallest experiment that answers the target
+Promotion criterion     what would justify PROMOTE
+Stop criterion          what forces PARK or CLOSE
+```
+
+Then implement only that scope. Search `conjectures/refuted/` and the
+`REFUTED` ledger rows before re-testing a hypothesis.
+
+At the end of a phase, report:
+
+```text
+What was learned      3–7 concise points
+Strongest theorem     one statement
+Strongest refutation  one false hypothesis or counterexample, if any
+Reusable machinery    what enters the platform
+Branch status         PROMOTE | PARK | CLOSE
+Why                   one short paragraph
+Best next question    exactly one
+```
+
+Then stop. Machinery gravity — new structure, new CLI, new
+visualization, no new mathematical consequence — means stop
+implementing, find the invariant or obstruction, and decide.
 
 ## Where new math goes
 
@@ -35,7 +70,8 @@ Claim labels: [docs/README.md](docs/README.md).
 | New research area | [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md) + `src/research/<id>/` |
 
 Do not add `bt.calculus` shims that re-export residual research.
-Do not auto-open a numbered milestone.
+Do not auto-open a numbered milestone; every branch ends in `PROMOTE`,
+`PARK`, or `CLOSE`.
 Do not claim a Collatz solution.
 
 ## Commands

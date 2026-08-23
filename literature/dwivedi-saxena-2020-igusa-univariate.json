@@ -1,0 +1,23 @@
+{
+  "id": "dwivedi-saxena-2020-igusa-univariate",
+  "title": "Computing Igusa's local zeta function of univariates in deterministic polynomial-time",
+  "authors": ["Ashish Dwivedi", "Nitin Saxena"],
+  "year": 2020,
+  "identifiers": {
+    "arxiv": "2006.08926",
+    "doi": "10.2140/obs.2020.4.197"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/2006.08926"
+  },
+  "problem_area": "p-adic lifting",
+  "relevant_concepts": [
+    "Igusa local zeta function",
+    "closed form for the number of roots mod p^k",
+    "eventual stabilization of root counts",
+    "Poincare series rationality"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/theory/padic_lifting_trees.md. Elementary proof of rationality for univariate f, with a closed form for N_k(f) once k >= k0 = O(d^2 (log C + log d)); N_k is constant beyond k0 when the discriminant is nonzero. The project's finite-horizon determinacy is a local, per-node statement and does not improve this global bound."
+}

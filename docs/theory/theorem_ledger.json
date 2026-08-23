@@ -1340,5 +1340,122 @@
       "tests/research/residuals/test_x3_state_complexity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "BTL-reconstruct",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "iterated reconstruction: f(n_w + 3^k x) = sum_{i<k} rho_i 3^i + 3^k (D_w f)(x) for every word w of length k",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "BTCalculus/PadicLifting.lean",
+    "tests": [
+      "tests/unit/test_lifting.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTL-zero-output",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "3^k divides f(n_w) iff every output trit of the residual machine along w is 0, so the solution tree of f(x) = 0 mod 3^k is the zero-output subtree; balanced digits are what force the partial sum below the modulus",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "BTCalculus/PadicLifting.lean",
+    "tests": [
+      "tests/unit/test_lifting.py",
+      "tests/research/lifting/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTL-taylor-jet",
+    "tag": "REPARAMETERIZATION",
+    "statement": "the coefficient of x^j in D_w f is 3^{k(j-1)} f^{(j)}(n_w)/j!, so the linear coefficient is exactly f'(n_w) and, on the tree, the constant is f(n_w)/3^k; the residual state carries no information beyond the classical Taylor data",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_lifting.py",
+      "tests/research/lifting/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTL-trichotomy",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "KNOWN, restated: for k >= 1 a level-k node has 1 child if 3 does not divide f'(n), 3 children if 3 divides f'(n) and v_3(f(n)) >= k+1, and none otherwise; the hypothesis k >= 1 is needed, since x^2 + x has two children at the root with a unit derivative",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "BTCalculus/PadicLifting.lean",
+    "tests": [
+      "tests/unit/test_lifting.py",
+      "tests/research/lifting/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTL-phi-determinacy",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "if two residual states are congruent as functions modulo 3^r then their depth-r subtrees agree including branch trits, so Phi_r determines the depth-r subtree",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_lifting.py",
+      "tests/research/lifting/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTL-phi-sharp",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "the horizon is sharp: Phi_{r-1} does not determine the depth-r subtree; smallest witness at r = 2 is x^2 against x^2 - 3, equal modulo 3 as functions, three surviving grandchildren against none",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_lifting.py",
+      "tests/research/lifting/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTL-deep-linear",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "for k >= r the residual is congruent modulo 3^r to the linear state f(n_w)/3^k + f'(n_w) x, linear states are closed under the section operators with b invariant, and so the depth-r subtree is determined by the two residues (f(n_w)/3^k mod 3^r, f'(n_w) mod 3^r)",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_lifting.py",
+      "tests/research/lifting/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTL-valuations-insufficient",
+    "tag": "REFUTED",
+    "statement": "lifting behaviour is NOT determined by v_3(f(n)) and v_3(f'(n)); the level-1 node 0 of x^2 + 9 and of x^2 - 9 has identical valuation data and residual states 3 + 3x^2 against -3 + 3x^2, with no surviving grandchildren against six",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_lifting.py",
+      "tests/research/lifting/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTL-deep-valuation-shape",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "in the deep regime k >= r the capped pair (min(v_3(f(n)/3^k), r), min(v_3(f'(n)), r)) does determine the unordered depth-r subtree for r <= 4, exhaustively over all linear states with |c| <= 121 and |b| <= 40 and over every node of the 53 test polynomials to level 6; whether this is a theorem is open",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "",
+    "tests": [
+      "tests/research/lifting/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTL-compression",
+    "tag": "OBSERVATION",
+    "statement": "the number of distinct depth-r subtrees at level k is bounded by the number of Phi_r classes, which depends only on r and deg f and not on k, while the residues modulo 3^k number 3^k; this is a compression statement about the tree and NOT a complexity claim, since deterministic poly(deg f, k log 3) root counting is already known",
+    "source": "docs/theory/padic_lifting_trees.md",
+    "lean": "",
+    "tests": [
+      "tests/research/lifting/test_triage.py"
+    ],
+    "related_conjectures": []
   }
 ]

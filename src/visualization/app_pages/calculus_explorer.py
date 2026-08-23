@@ -10,8 +10,10 @@ from visualization.residual_explorer import (
     DEFAULT_DEFICIT,
     DEFAULT_K,
     DEFAULT_POLY,
+    LIFT_KIND_LABEL,
     PRESETS,
     CompareView,
+    LiftingView,
     NodeInspection,
     TreeNode,
     census_view,
@@ -25,6 +27,9 @@ from visualization.residual_explorer import (
     format_word,
     inspect_node,
     is_x3,
+    lift_table_rows,
+    lift_tree_svg,
+    lifting_view,
     node_table_rows,
     quotient_compare_view,
     quotient_invariant_view,
@@ -54,6 +59,9 @@ def _init_state() -> None:
         "re_filter": "all",
         "re_class_filter": "all",
         "re_secondary": "Fibre",
+        "re_lift_levels": 4,
+        "re_lift_r": 2,
+        "re_lift_selected": "none",
         "re_ready": True,
     }
     for key, value in defaults.items():
@@ -93,6 +101,12 @@ def _cached_census(poly_text: str, custom: str, k: int, allow: bool):
 @st.cache_data(max_entries=8, show_spinner="Comparing x^2 and x^3…")
 def _cached_dual(k: int, allow: bool):
     return dual_census(k, allow_expensive=allow)
+
+
+@st.cache_data(max_entries=32, show_spinner="Building lifting tree…")
+def _cached_lifting(poly_text: str, custom: str, levels: int, r: int) -> LiftingView:
+    f = resolve_polynomial(poly_text, custom)
+    return lifting_view(f, levels, r)
 
 
 def _poly() -> IntPoly:
@@ -559,15 +573,65 @@ def _layer_strip(k: int) -> None:
 def _secondary(f: IntPoly, k: int, nodes: tuple[TreeNode, ...]) -> None:
     choice = st.segmented_control(
         "Secondary view",
-        ["Fibre", "Compare", "x^2 vs x^3"],
+        ["Fibre", "Compare", "x^2 vs x^3", "Congruence / lifting"],
         key="re_secondary",
     )
     if choice == "Fibre":
         _fibre_card(f, k, nodes)
     elif choice == "Compare":
         _compare_card(f, k)
+    elif choice == "Congruence / lifting":
+        _lifting_card()
     else:
         _dual_card(k)
+
+
+def _lifting_card() -> None:
+    controls = st.container(horizontal=True)
+    with controls:
+        levels = st.slider("Levels k", min_value=1, max_value=7, key="re_lift_levels")
+        depth = st.slider("Horizon r", min_value=1, max_value=4, key="re_lift_r")
+    view = _cached_lifting(
+        st.session_state.re_poly,
+        st.session_state.re_custom,
+        int(levels),
+        int(depth),
+    )
+    st.markdown(f"**Lifting tree** of `{view.poly}` for `f(x) = 0 mod 3^k`")
+    counts = st.container(horizontal=True)
+    with counts:
+        st.metric(f"Roots mod 3^{view.k}", view.level_counts[-1], border=True)
+        st.metric("Brute force agrees", "YES" if view.brute_force_agrees else "NO", border=True)
+        st.metric("Nodes shown", len(view.nodes), border=True)
+    if view.truncated:
+        st.warning("Tree is larger than the display budget; deeper nodes are omitted.")
+    options = ["none"] + [node.id for node in view.nodes]
+    if st.session_state.re_lift_selected not in options:
+        st.session_state.re_lift_selected = "none"
+    selected = st.selectbox("Highlight node", options, key="re_lift_selected")
+    st.html(lift_tree_svg(view.nodes, selected_id=None if selected == "none" else selected))
+    st.caption(
+        "Colour encodes lift type: green unique, orange singular with three "
+        "lifts, blue several children below the root, grey no lift. The "
+        "balanced residue is under each node and the number of lifts inside it."
+    )
+    legend = st.container(horizontal=True)
+    with legend:
+        for kind, count in view.kind_census:
+            st.metric(kind, count, border=True, help=LIFT_KIND_LABEL[kind])
+    st.write(f"Level counts N_0 … N_{view.k}: {list(view.level_counts)}")
+    st.write(
+        "Distinct depth-"
+        f"{view.r} subtrees per level: "
+        f"{[f'level {lvl}: {n}' for lvl, n in view.distinct_subtrees]}"
+    )
+    st.dataframe(pd.DataFrame(lift_table_rows(view.nodes)), hide_index=True)
+    if st.session_state.re_explain == "Explain":
+        for line in view.notes:
+            st.write(line)
+    else:
+        for line in view.notes:
+            st.caption(line)
 
 
 def _fibre_card(f: IntPoly, k: int, nodes: tuple[TreeNode, ...]) -> None:

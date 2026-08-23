@@ -8,6 +8,8 @@ alwaysApply: false
 
 Claim vocabulary lives in `docs/README.md`. Do not invent a parallel scheme.
 
+Two axes. Evidence strength is the ledger tag. Novelty — `KNOWN`, `REPARAMETERIZATION`, `PROJECT-SPECIFIC`, `OPEN` — is prose annotation and never a ledger tag.
+
 Reading path (frontier, not Collatz-first):
 
 1. `docs/theory/balanced_ternary_calculus.md`
@@ -24,3 +26,5 @@ Collatz is one application: `docs/collatz_mathematics.md`. Do **not** mechanical
 `docs/research_journal.md` records work; do not auto-open Milestone *N+1*.
 
 New problems copy `docs/problems/TEMPLATE.md`. Cite `literature/` ids. Do not write “we solved Collatz.”
+
+Every `docs/problems/*.md` keeps all template headings, including `## Branch budget`, `## Decision`, and `## Publication assessment`. `tests/integration/test_problem_dossiers.py` enforces this. Method: `docs/methodology.md`.

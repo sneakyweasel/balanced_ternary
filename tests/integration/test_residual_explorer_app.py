@@ -79,6 +79,26 @@ def test_scenario_b_and_c_delayed_pair_compare():
     assert "DIFFERENT" in body or "τ" in body or "tau" in body.lower()
 
 
+def test_congruence_lifting_view_renders():
+    at = AppTest.from_file(str(PAGE), default_timeout=60)
+    at.run()
+    assert not at.exception
+    at.session_state.re_secondary = "Congruence / lifting"
+    at.session_state.re_poly = "x^2"
+    at.run()
+    assert not at.exception
+    body = _page_text(at)
+    assert "Lifting tree" in body
+    assert "zero-output subtree" in body
+    labels = " ".join(str(m.label) for m in at.metric)
+    assert "Brute force agrees" in labels
+    agrees = [m for m in at.metric if "Brute force agrees" in str(m.label)]
+    assert agrees and str(agrees[0].value) == "YES"
+    sliders = " ".join(str(s.label) for s in at.slider)
+    assert "Levels k" in sliders
+    assert "Horizon r" in sliders
+
+
 def test_scenario_d_x2_vs_x3():
     at = AppTest.from_file(str(PAGE), default_timeout=40)
     at.run()

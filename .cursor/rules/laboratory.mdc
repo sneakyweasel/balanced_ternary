@@ -18,9 +18,11 @@ No Collatz-solution language. Finite checks are not proofs. Do not inflate tags.
 
 - `PROVED` = `EXACT — HUMAN PROOF`
 - `PROVED — LEAN` = `EXACT — LEAN VERIFIED`
-- Keep `VERIFIED COMPUTATIONALLY`, `CONJECTURE`, `OBSERVATION`, `REFUTED`, `REPARAMETERIZATION`
+- Keep `COMPUTATIONALLY VERIFIED`, `CONJECTURE`, `OBSERVATION`, `REFUTED`, `REPARAMETERIZATION`
 
-Do not auto-open a numbered milestone. Journal entries may be consolidations.
+Those seven are the whole ledger vocabulary. `KNOWN` / `PROJECT-SPECIFIC` / `OPEN` are novelty annotations for prose, not tags.
+
+Do not auto-open a numbered milestone. Journal entries may be consolidations. Every branch ends in `PROMOTE` | `PARK` | `CLOSE` — see `.cursor/rules/methodology.mdc` and `docs/methodology.md`.
 
 ## Ledger and gates
 

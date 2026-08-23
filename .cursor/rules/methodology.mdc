@@ -1,0 +1,40 @@
+---
+description: Always-on research method — triage, budgets, PROMOTE/PARK/CLOSE
+alwaysApply: true
+---
+
+# Research method
+
+`explore → distill → prove/refute → decide`. Canonical record: `docs/methodology.md`.
+
+Before substantial implementation on a new direction, emit a triage block:
+
+```text
+Mathematical target     one precise question
+Novelty hypothesis      what could possibly be new
+Falsifier               the observation that kills the idea
+Existing machinery      what the platform already provides
+Maximum Phase-0 scope   the smallest experiment that answers the target
+Promotion criterion     what would justify PROMOTE
+Stop criterion          what forces PARK or CLOSE
+```
+
+Implement only that scope. Do not silently expand it.
+
+## Decide
+
+Every branch ends in exactly one of `PROMOTE` | `PARK` | `CLOSE`. Record it in the dossier `docs/problems/<id>.md` and in the journal entry. Legacy *Outcome A/B/C* is retired: C was `CLOSE`, B was `PARK`, A was `PROMOTE`.
+
+A theorem does not imply another milestone. A refutation does not imply a rescue attempt. Do not auto-continue.
+
+## Stop signals
+
+Machinery gravity — new structure, new CLI, new visualization, another edge case, no new mathematical consequence. Stop implementing, name the question, look for a unifying invariant or obstruction, then decide.
+
+Infrastructure (CLI, visualization, Lean packaging, benchmarks) comes after the theorem survives, not alongside an unvalidated idea. Tiny exploratory visualizations are the exception.
+
+## Negative knowledge
+
+Search `conjectures/refuted/`, `REFUTED` ledger rows, journal **Refuted ideas**, and dossier **Counterexamples** before re-testing a hypothesis. Record counterexamples permanently; they are results, not failures.
+
+A branch whose statements are all `KNOWN` or `REPARAMETERIZATION` is a `CLOSE`, however much machinery it produced.

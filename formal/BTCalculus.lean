@@ -17,6 +17,7 @@ import BTCalculus.Residual
 import BTCalculus.MyhillNerode
 import BTCalculus.TransducerComposition
 import BTCalculus.Quadratic
+import BTCalculus.PadicLifting
 import BTCalculus.PolynomialFunctionsMod
 import BTCalculus.CubicResidual
 import BTCalculus.CubicFibres

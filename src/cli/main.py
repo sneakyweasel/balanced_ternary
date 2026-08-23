@@ -18,6 +18,7 @@ from bt.metrics import (
 from bt.representation import decode, encode, is_canonical
 from bt.sequences import bt_reverse, bt_reverse_tail
 from cli.calculus import add_calculus_subparser, run_calculus
+from cli.congruence import add_congruence_subparser, run_congruence
 from cli.normalize import add_normalize_subparser, run_normalize
 from cli.operators import add_operators_subparser, run_operators
 from research.collatz.cli import add_collatz_subparser, run_collatz
@@ -39,6 +40,7 @@ def main(argv: list[str] | None = None) -> int:
     add_collatz_subparser(sub)
     add_operators_subparser(sub)
     add_calculus_subparser(sub)
+    add_congruence_subparser(sub)
     add_normalize_subparser(sub)
     _add_bt_namespace(sub)
     _add_research_namespaces(sub)
@@ -147,6 +149,8 @@ def _dispatch(parser: argparse.ArgumentParser, args: argparse.Namespace) -> int:
         return run_operators(args)
     if cmd == "calculus":
         return run_calculus(args)
+    if cmd == "congruence":
+        return run_congruence(args)
     if cmd == "normalize":
         return run_normalize(args)
     if cmd == "primes":

@@ -6,13 +6,22 @@ meaning throughout:
 
 - **PROVED** = **EXACT — HUMAN PROOF**: supported by an argument in the mathematical record;
 - **PROVED — LEAN** = **EXACT — LEAN VERIFIED**: the same statement has a compiled Lean proof;
-- **VERIFIED COMPUTATIONALLY**: checked on a stated finite domain;
+- **COMPUTATIONALLY VERIFIED**: checked on a stated finite domain;
 - **CONJECTURE**: open and paired with counterexample search;
 - **OBSERVATION**: empirical, without necessity or universality;
 - **REFUTED**: a counterexample is recorded;
 - **REPARAMETERIZATION**: a classical construction under a local name.
 
-Collatz notes may still write **PROVED**; that is **EXACT — HUMAN PROOF**.
+These seven are the only tags allowed in
+[theory/theorem_ledger.json](theory/theorem_ledger.json). Collatz notes
+may still write **PROVED**; that is **EXACT — HUMAN PROOF**. Prose that
+writes **VERIFIED COMPUTATIONALLY** means **COMPUTATIONALLY VERIFIED**.
+
+Novelty is a separate axis, used in dossiers and theory pages and never
+as a ledger tag: **KNOWN** (in the literature, cite a `literature/` id),
+**PROJECT-SPECIFIC** (what this project measures or refines), and
+**OPEN** (no proof and no refutation yet). **REPARAMETERIZATION** sits on
+both axes. See [methodology.md](methodology.md).
 
 ## Foundations
 
@@ -62,9 +71,12 @@ Collatz notes may still write **PROVED**; that is **EXACT — HUMAN PROOF**.
 
 ## Problems and journal
 
+- [Discovery methodology](methodology.md): the research loop, branch
+  budgets, and the `PROMOTE` / `PARK` / `CLOSE` decision.
 - [Problem template](problems/TEMPLATE.md)
 - [Collatz](problems/collatz.md)
 - [Residuals](problems/residuals.md)
+- [Lifting trees](problems/lifting.md)
 - [Additive combinatorics](problems/additive_combinatorics.md)
 - [Perfect powers](problems/perfect_powers.md)
 - [Primes](problems/primes.md)
@@ -88,6 +100,7 @@ Collatz notes may still write **PROVED**; that is **EXACT — HUMAN PROOF**.
 - [Residual-state complexity](theory/residual_state_complexity.md)
 - [Quadratic residual complexity](theory/quadratic_residual_complexity.md)
 - [Polynomial function congruence](theory/polynomial_function_congruence.md)
+- [3-adic lifting trees](theory/padic_lifting_trees.md)
 - [Cubic Newton stratum](theory/cubic_newton_stratum.md)
 - [Residual versus classical](theory/residual_vs_classical.md)
 - [Cubic residual image](theory/cubic_residual_image.md)

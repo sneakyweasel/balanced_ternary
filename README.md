@@ -7,7 +7,7 @@ combinatorics, operator dynamics — are independent applications.
 This repository does **not** claim a solution of the Collatz conjecture or
 of any other open problem. Finite checks are never presented as proofs.
 Claims are labelled **PROVED** (human), **PROVED — LEAN**,
-**VERIFIED COMPUTATIONALLY**, **CONJECTURE**, **OBSERVATION**,
+**COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **OBSERVATION**,
 **REFUTED**, or **REPARAMETERIZATION**. See
 [docs/README.md](docs/README.md) for the mapping to ledger tags.
 
@@ -28,6 +28,18 @@ the least-significant digit \(a_0\).
 To keep a **problem-independent** encoder, arithmetic, operators,
 polynomials, automata, and transducers, and to attach new open problems
 as modules that import `bt` but never the reverse.
+
+## How research is done here
+
+Each direction runs the loop **explore → distill → prove/refute →
+decide**, under a written budget that fixes the target, the novelty
+hypothesis, and the falsifier before implementation starts. Every branch
+ends in exactly one decision — `PROMOTE`, `PARK`, or `CLOSE` — and a
+closed branch stays documented so it is not rediscovered. Machinery is a
+means: reusable primitives are welcome, taxonomies without a
+theorem-level payoff are not.
+
+See [docs/methodology.md](docs/methodology.md).
 
 ## Core (`bt`)
 
@@ -52,6 +64,7 @@ supported.
 |--------|--------|
 | `research.collatz` | STRUCTURAL |
 | `research.residuals` | STRUCTURAL |
+| `research.lifting` | EXPLORATORY |
 | `research.additive_combinatorics` | EXPLORATORY |
 | `research.perfect_powers` | EXPLORATORY |
 | `research.primes` | EXPLORATORY |
@@ -145,6 +158,9 @@ The slowest Python test exhaustively checks identities on \([-10^6,10^6]\).
 4. Register conjectures in `conjectures/` and literature in `literature/`.
 5. Add tests under `tests/research/` and witnesses under `tests/regression/`.
 6. Do not edit core arithmetic to introduce the problem.
+
+Every new problem starts from a branch budget and ends in a decision:
+[docs/methodology.md](docs/methodology.md).
 
 Architecture: [docs/architecture/overview.md](docs/architecture/overview.md).
 Documentation map: [docs/README.md](docs/README.md).

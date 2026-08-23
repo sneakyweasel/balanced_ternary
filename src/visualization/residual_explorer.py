@@ -1057,6 +1057,277 @@ def quotient_compare_view(u: int, v: int, t: int, K: int, W: int) -> QuotientCom
     )
 
 
+LIFT_KIND_COLORS: dict[str, str] = {
+    "unique": "#59a14f",
+    "splitting": "#4e79a7",
+    "singular-persistent": "#f28e2b",
+    "terminal": "#bab0ac",
+}
+LIFT_KIND_LABEL: dict[str, str] = {
+    "unique": "unique lift (3 does not divide f')",
+    "splitting": "several children below the root",
+    "singular-persistent": "singular, three lifts",
+    "terminal": "no lift",
+}
+MAX_LIFT_NODES = 160
+
+
+@dataclass(frozen=True)
+class LiftTreeNode:
+    id: str
+    word: tuple[int, ...]
+    depth: int
+    residue: int
+    digits: str
+    residual: str
+    f_value: int
+    f_prime: int
+    v3_f: int | None
+    v3_f_prime: int | None
+    newton: tuple[int, ...]
+    phi: tuple[int, ...]
+    kind: str
+    lift_trits: tuple[int, ...]
+    children_ids: tuple[str, ...]
+    parent_id: str | None
+    shape_widths: tuple[int, ...]
+
+
+@dataclass(frozen=True)
+class LiftingView:
+    poly: str
+    k: int
+    r: int
+    nodes: tuple[LiftTreeNode, ...]
+    level_counts: tuple[int, ...]
+    kind_census: tuple[tuple[str, int], ...]
+    brute_force_agrees: bool
+    distinct_subtrees: tuple[tuple[int, int], ...]
+    truncated: bool
+    notes: tuple[str, ...]
+
+
+def _lift_node_id(word: tuple[int, ...]) -> str:
+    return format_word(word) if word else "e"
+
+
+def lifting_view(f: IntPoly, k: int, r: int = 2) -> LiftingView:
+    """Lifting tree of ``f(x) = 0 mod 3^k`` with per-node residual state."""
+    from bt.calculus.lifting import (
+        brute_force_roots,
+        depth_r_shape,
+        level_nodes,
+        lift_tree,
+    )
+    from bt.calculus.lifting import shape_widths as _widths
+
+    k = max(int(k), 0)
+    r = max(int(r), 1)
+    raw = lift_tree(f, k)
+    truncated = len(raw) > MAX_LIFT_NODES
+    kept = raw[:MAX_LIFT_NODES]
+    kept_words = {node.word for node in kept}
+    nodes = tuple(
+        LiftTreeNode(
+            id=_lift_node_id(node.word),
+            word=node.word,
+            depth=node.level,
+            residue=node.residue,
+            digits=node.digits or "e",
+            residual=node.residual.render(),
+            f_value=node.f_value,
+            f_prime=node.f_prime,
+            v3_f=node.v3_f,
+            v3_f_prime=node.v3_f_prime,
+            newton=node.newton,
+            phi=phi_k(node.residual, r),
+            kind=node.kind,
+            lift_trits=node.children,
+            children_ids=tuple(
+                _lift_node_id(node.word + (a,))
+                for a in node.children
+                if node.word + (a,) in kept_words
+            ),
+            parent_id=None if not node.word else _lift_node_id(node.word[:-1]),
+            shape_widths=_widths(node.residual, r),
+        )
+        for node in kept
+    )
+    census: dict[str, int] = {}
+    for node in nodes:
+        census[node.kind] = census.get(node.kind, 0) + 1
+    counts = tuple(len(level_nodes(raw, level)) for level in range(k + 1))
+    top = tuple(sorted(node.residue for node in level_nodes(raw, k)))
+    distinct = tuple(
+        (
+            level,
+            len({depth_r_shape(node.residual, r) for node in level_nodes(raw, level)}),
+        )
+        for level in range(k + 1)
+        if level_nodes(raw, level)
+    )
+    notes = (
+        "A node is a solution of f(x) = 0 mod 3^k exactly when every output "
+        "trit of the residual machine along its word vanishes, so this tree "
+        "is the zero-output subtree.",
+        "The residual state is the scaled Taylor jet: its linear coefficient "
+        "is f'(n) and, on the tree, its constant coefficient is f(n)/3^k.",
+        f"Phi_{r} determines the depth-{r} subtree; the pair of valuations "
+        "does not, as x^2 + 9 and x^2 - 9 show at the level-1 node 0.",
+        "Lifting trees and root counting modulo 3^k are classical. No "
+        "counting or complexity improvement is claimed here.",
+    )
+    return LiftingView(
+        poly=f.render(),
+        k=k,
+        r=r,
+        nodes=nodes,
+        level_counts=counts,
+        kind_census=tuple(sorted(census.items())),
+        brute_force_agrees=top == brute_force_roots(f, k),
+        distinct_subtrees=distinct,
+        truncated=truncated,
+        notes=notes,
+    )
+
+
+def _lift_node_title(node: LiftTreeNode) -> str:
+    v_f = "inf" if node.v3_f is None else str(node.v3_f)
+    v_fp = "inf" if node.v3_f_prime is None else str(node.v3_f_prime)
+    lifts = "".join(f"{a:+d}" for a in node.lift_trits) or "none"
+    return (
+        f"w={node.digits} x={node.residue} f(x)={node.f_value} "
+        f"v3(f)={v_f} v3(f')={v_fp} residual={node.residual} "
+        f"{LIFT_KIND_LABEL[node.kind]} lifts={lifts}"
+    )
+
+
+def lift_tree_svg(
+    nodes: tuple[LiftTreeNode, ...],
+    *,
+    selected_id: str | None = None,
+    width: int = 640,
+    row_h: int = 56,
+) -> str:
+    """SVG of a lifting tree. Colour encodes lift type, not residual class."""
+    if not nodes:
+        return (
+            '<svg xmlns="http://www.w3.org/2000/svg" width="640" height="80">'
+            '<text x="16" y="44" font-size="12" font-family="ui-monospace, monospace" '
+            'fill="#666">no solutions at this level</text></svg>'
+        )
+    by_id = {n.id: n for n in nodes}
+    children: dict[str, list[str]] = {n.id: list(n.children_ids) for n in nodes}
+    widths: dict[str, float] = {}
+
+    def width_of(nid: str) -> float:
+        if nid in widths:
+            return widths[nid]
+        kids = [c for c in children.get(nid, []) if c in by_id]
+        widths[nid] = 1.0 if not kids else sum(width_of(c) for c in kids)
+        return widths[nid]
+
+    pos: dict[str, tuple[float, float]] = {}
+
+    def place(nid: str, x0: float) -> None:
+        node = by_id[nid]
+        cursor = x0
+        pos[nid] = (x0 + width_of(nid) / 2.0, float(node.depth))
+        for child in [c for c in children.get(nid, []) if c in by_id]:
+            place(child, cursor)
+            cursor += width_of(child)
+
+    roots = [n.id for n in nodes if n.parent_id not in by_id]
+    cursor = 0.0
+    for nid in roots or [nodes[0].id]:
+        width_of(nid)
+        place(nid, cursor)
+        cursor += width_of(nid)
+
+    xs = [xy[0] for xy in pos.values()]
+    min_x, max_x = min(xs), max(xs)
+    span = max(max_x - min_x, 1.0)
+    pad_x, pad_y = 36, 28
+    max_depth = max(n.depth for n in nodes)
+    height = pad_y * 2 + row_h * (max_depth + 1)
+
+    def px(nid: str) -> tuple[float, float]:
+        x, y = pos[nid]
+        return pad_x + (x - min_x) / span * (width - 2 * pad_x), pad_y + y * row_h
+
+    parts = [
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+        f'role="img" aria-label="Lifting tree of a polynomial congruence">'
+    ]
+    for node in nodes:
+        if node.parent_id and node.parent_id in by_id:
+            x1, y1 = px(node.parent_id)
+            x2, y2 = px(node.id)
+            colour = LIFT_KIND_COLORS[by_id[node.parent_id].kind]
+            parts.append(
+                f'<line x1="{x1:.1f}" y1="{y1:.1f}" x2="{x2:.1f}" y2="{y2:.1f}" '
+                f'stroke="{colour}" stroke-width="2"/>'
+            )
+            trit = node.word[-1] if node.word else 0
+            mx, my = (x1 + x2) / 2, (y1 + y2) / 2
+            parts.append(
+                f'<text x="{mx:.1f}" y="{my - 4:.1f}" font-size="10" '
+                f'font-family="ui-monospace, monospace" fill="#666" '
+                f'text-anchor="middle">{trit:+d}</text>'
+            )
+    for node in nodes:
+        x, y = px(node.id)
+        colour = LIFT_KIND_COLORS[node.kind]
+        selected = node.id == selected_id
+        stroke = "#f5d76e" if selected else "#222"
+        sw = 3.5 if selected else 1.2
+        r = 12
+        if node.kind == "terminal":
+            parts.append(
+                f'<rect x="{x - r:.1f}" y="{y - r:.1f}" width="{2 * r}" height="{2 * r}" '
+                f'fill="{colour}" stroke="{stroke}" stroke-width="{sw}" rx="2">'
+                f"<title>{_lift_node_title(node)}</title></rect>"
+            )
+        else:
+            parts.append(
+                f'<circle cx="{x:.1f}" cy="{y:.1f}" r="{r}" fill="{colour}" '
+                f'stroke="{stroke}" stroke-width="{sw}">'
+                f"<title>{_lift_node_title(node)}</title></circle>"
+            )
+        parts.append(
+            f'<text x="{x:.1f}" y="{y + 24:.1f}" font-size="10" '
+            f'font-family="ui-monospace, monospace" text-anchor="middle" '
+            f'fill="#333">{node.residue}</text>'
+        )
+        parts.append(
+            f'<text x="{x:.1f}" y="{y + 4:.1f}" font-size="9" '
+            f'font-family="ui-monospace, monospace" text-anchor="middle" '
+            f'fill="#111">{len(node.lift_trits)}</text>'
+        )
+    parts.append("</svg>")
+    return "".join(parts)
+
+
+def lift_table_rows(nodes: tuple[LiftTreeNode, ...]) -> list[dict[str, object]]:
+    rows = []
+    for node in nodes:
+        rows.append(
+            {
+                "word": node.digits,
+                "level": node.depth,
+                "x": node.residue,
+                "f(x)": node.f_value,
+                "v3(f)": "inf" if node.v3_f is None else node.v3_f,
+                "v3(f')": "inf" if node.v3_f_prime is None else node.v3_f_prime,
+                "residual": node.residual,
+                "newton": list(node.newton),
+                "lift type": node.kind,
+                "lifts": len(node.lift_trits),
+            }
+        )
+    return rows
+
+
 def node_table_rows(nodes: tuple[TreeNode, ...]) -> list[dict[str, object]]:
     rows = []
     for node in nodes:

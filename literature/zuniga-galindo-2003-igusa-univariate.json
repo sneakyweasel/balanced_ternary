@@ -1,0 +1,22 @@
+{
+  "id": "zuniga-galindo-2003-igusa-univariate",
+  "title": "Computing Igusa's local zeta functions of univariate polynomials, and linear feedback shift registers",
+  "authors": ["W. A. Zuniga-Galindo"],
+  "year": 2003,
+  "identifiers": {
+    "arxiv": "math/0204360"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/math/0204360"
+  },
+  "problem_area": "p-adic lifting",
+  "relevant_concepts": [
+    "tree of lifts",
+    "Igusa local zeta function",
+    "root counting modulo prime powers",
+    "generating function of a tree"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/theory/padic_lifting_trees.md. Attaches a tree T(f, l_f) of p-adic root approximations to a univariate f and computes the local zeta function from its generating function. The lifting tree is therefore a known object; the project contribution is its identification with the zero-output subtree of the residual Mealy machine, not the tree itself."
+}

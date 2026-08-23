@@ -5,6 +5,12 @@ Milestone completion calendar dates are **not** present in the docs and
 are not invented here. Local experiment manifests are timestamped
 2026-08-21. Milestones 7 and 8 were never numbered.
 
+Every entry ends in a decision: `PROMOTE`, `PARK`, or `CLOSE`
+([methodology.md](methodology.md)). Entries that predate the vocabulary
+carry a decision derived from their own recorded next question — nothing
+is restated or upgraded. The retired *Outcome A / B / C* labels map to
+`PROMOTE` / `PARK` / `CLOSE`.
+
 ## Milestone 1
 
 - **Date:** not recorded
@@ -14,6 +20,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** none recorded at this layer
 - **Literature:** later compared in four-coordinate work
 - **Next question:** word-level Collatz structure
+- **Decision:** PROMOTE (taken up by Milestone 2)
 
 ## Milestone 2
 
@@ -22,6 +29,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** `BT(3n+1)=BT(n)+`; LSD `/2` and `/2^k`; unrestricted odd-part is not one rational transduction
 - **Refuted ideas:** “odd-part is a single FST”
 - **Next question:** cylinders and complexity
+- **Decision:** PROMOTE (taken up by Milestone 3)
 
 ## Milestone 3
 
@@ -30,6 +38,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** Unique cylinders of density `2^{-K}`; DFA/entropy computational
 - **Conjecture:** `N_k=2^k+1` (held for small `k`)
 - **Next question:** affine itineraries
+- **Decision:** PROMOTE (taken up by Milestone 4)
 
 ## Milestone 4
 
@@ -38,6 +47,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** Exact `T^m` formula; unique `R`; nested `R` monotone; `C` order law
 - **Open:** exceptional itinerary compatibility
 - **Next question:** zero-lift
+- **Decision:** PROMOTE (taken up by Milestone 5)
 
 ## Milestone 5
 
@@ -46,6 +56,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** Realizer iff stabilization iff eventual zero lifts; unique zero-lift successor
 - **Conjecture:** sustained low `K_m/m` forces infinitely many positive lifts
 - **Next question:** dual coding
+- **Decision:** PROMOTE (taken up by Milestone 6)
 
 ## Milestone 6
 
@@ -54,6 +65,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** Direct `R` formula; lift-digit formula; BT(R) suffix counterexample at `R=3`
 - **Refuted ideas:** complete `BT(R)` determines next lift/valuation
 - **Next question:** literature interface
+- **Decision:** PROMOTE (taken up by the four-coordinate comparison)
 
 ## Unnamed (between 6 and 9): four-coordinate compatibility
 
@@ -62,6 +74,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** Kramer `B_m=C`, `r ≡ R (mod 2^K)`; BT not an independent entropy
 - **Refuted ideas:** `H_BT` strong independence
 - **Literature:** Kramer, Eliahou–Verger-Gaugry, Rozier–Terracol, Cerdá
+- **Decision:** CLOSE (BT as an independent solving coordinate is refuted)
 
 ## Unnamed (between 6 and 9): affine-center geometry
 
@@ -69,6 +82,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Objective:** Exact affine center `n_*`
 - **Major results:** `n_*=C/D`, centered scaling identities
 - **Refuted ideas:** `n_* ≤ R` as a general finite-code inequality (witness later pinned at 165)
+- **Decision:** PROMOTE (taken up by Milestone 10)
 
 ## Milestone 9
 
@@ -76,6 +90,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Objective:** OEIS `W` maps and commutators with `T`
 - **Major results:** `W(3)=1`; `W` not globally involutive; `W∘T ≠ T∘W` at `n=3`
 - **Refuted ideas:** `W` involution; `W(3n)=3W(n)`; realizer-reverse identities
+- **Decision:** CLOSE (the `W` identities are refuted; no further `W` census)
 
 ## Milestone 10
 
@@ -83,6 +98,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Objective:** Fixed-integer affine gap `G_m`
 - **Major results:** `G` recurrence (Lean); **`n_* ≤ n` refuted at `n=165`, `m=17`**
 - **Refuted ideas:** `n_* ≤ n` on contracting prefixes
+- **Decision:** CLOSE (the inequality is refuted at `n=165`, `m=17`)
 
 ## Milestone 11
 
@@ -91,6 +107,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** Expanding periods excluded; `D|C`; bounded census `p≤6`, `k_i≤4` finds only `(2)`
 - **Literature:** 2026 cycle preprints compared, not adopted as theorems
 - **Next question:** exceptional non-contracting compatibility; `N_k`; cycles beyond the census
+- **Decision:** PARK (the three questions are registered conjectures; none was taken up)
 
 ## Milestone 13
 
@@ -101,6 +118,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** ordinary Leibniz rule for `D`; Boolean algebra of trits; `S∘D = id` (already refuted, restated)
 - **Literature:** Hayes 2001, Knuth vol. 2, Malinovsky — historical Setun only
 - **Next question:** not started; do not auto-open a new milestone. Open rewrite question: unique NF for open operator-fragment terms
+- **Decision:** PARK
 
 ## Milestone 14
 
@@ -111,6 +129,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** weighted `Σ |c_i|(3/2)^i` as a rank (`[2] → [-1,1]`); `D(normalize(P)) = normalize(D_coeff(P))` without a trit LSD; Strategy A/B rewrite-count equality on a small box
 - **Literature:** Hayes, Knuth, Malinovsky remain the Setun fact sources; ISA normalize/FMA details stay sketches
 - **Next question:** closed. Local confluence of the `i`/`i+1` critical pair is Lean-proved modulo `stripHigh` (`BTCalculus/Confluence.lean`). Do not auto-open a new milestone.
+- **Decision:** CLOSE
 
 ## Milestone 15
 
@@ -119,8 +138,9 @@ are not invented here. Local experiment manifests are timestamped
 - **Hypotheses:** naive `D_coeff` is `D`; `𝔇_a` lowers degree and obeys classical Leibniz/chain; same-index locality
 - **Major results:** `hat D` (drop plus carry) is the total semantic coefficient derivative; `𝔇_a` closes on `Z[x]` with twisted Leibniz and branch-selecting composition; function-jet reconstruction; prefix locality for polynomials
 - **Refuted ideas:** `D ∘ normalize = normalize ∘ D_coeff` (`[2]`); degree-lowering; classical Leibniz; classical chain; same-index output locality
-- **Literature:** 3-section / Cartier / p-kernel **REPARAMETERIZATION**; balanced residue and normalization boundary are the project-specific layer. Outcome B with a C-layer.
+- **Literature:** 3-section / Cartier / p-kernel **REPARAMETERIZATION**; balanced residue and normalization boundary are the PROJECT-SPECIFIC layer
 - **Next question:** not started; do not auto-open a new milestone. Open question: minimized residual-state growth of `x^d` as a function of `k`
+- **Decision:** PARK (KNOWN section algebra with a PROJECT-SPECIFIC normalization boundary)
 
 ## Milestone 16
 
@@ -131,6 +151,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** sample = Myhill–Nerode; locality ⇒ small automaton; bounded-`B` FST for unbounded residual coefficients
 - **Literature:** residual 3-section transducers are standard automata on p-sections; the exact `M_k(x^d)` table and the sample-min counterexample are the project-specific measurements
 - **Next question:** closed. Proved in Milestone 17: `M_k(x^2)=(3^k-1)/2`.
+- **Decision:** PROMOTE (taken up by Milestone 17)
 
 ## Milestone 17
 
@@ -141,6 +162,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** last-layer `ρ`-triples as a complete invariant of `x^2`; `M_k(x^d)=R_k(x^d)` for `d≥3`; finite-horizon merge as infinite-state equality
 - **Literature:** 3-section / Cartier residual automata remain the ambient language. The quadratic MN count and the explicit delayed-distinction pairs are project-specific.
 - **Next question:** closed. Milestone 18: finite-horizon polynomial equivalence is function congruence modulo `3^k`, classified by Newton residues.
+- **Decision:** PROMOTE (taken up by Milestone 18)
 
 ## Milestone 18
 
@@ -151,6 +173,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** coefficientwise divisibility as a necessary vanishing condition for `deg≥3`; `τ=1+min v_3(c_j)`
 - **Literature:** Kempner 1921 / integer-valued polynomials are **REPARAMETERIZATION**. Project-specific layer: MN bridge, residual families, delayed-distinction formula
 - **Next question:** closed. Milestone 19: image of the residual tree of `x^3` under `Φ_k` is the arithmetic map `F_k`; `M_k(x^3)=|Im F_k|`.
+- **Decision:** PROMOTE (taken up by Milestone 19)
 
 ## Milestone 19
 
@@ -161,6 +184,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** Newton classes are congruence classes of `p(w)`; `M_{k+1}=3M_k+1`
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION. Project-specific layer: residual image of `x^3` under `Φ_k`
 - **Next question:** closed. Milestone 20: fibres of `F_k` classified by the Newton hierarchy; no closed `M_k`.
+- **Decision:** PROMOTE (taken up by Milestone 20)
 
 ## Milestone 20
 
@@ -171,6 +195,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** `N2 ⇒ N1`; `N2+N1 ⇒ N0`; every collision is `p ↔ -p`; `M_{k+1}=3M_k+1`
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
 - **Next question:** closed. Milestone 21: deepest-layer fibres classified; stratified `C_{k,k-1}`; no single-term formula.
+- **Decision:** PROMOTE (taken up by Milestone 21)
 
 ## Milestone 21
 
@@ -181,6 +206,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** every deepest fibre is a full residue class (`{720,738}` at `k=8`); `p^3≡q^3 (mod 3^{2k-1})` is equivalent to the `N0` condition
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
 - **Next question:** closed. Milestone 22: first intermediate layer `m=k-2`; fibre criterion; horizon surplus; no single-term `C_{k,k-2}`.
+- **Decision:** PROMOTE (taken up by Milestone 22)
 
 ## Milestone 22
 
@@ -191,6 +217,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** `C_{k,k-2}=C_{k-1,k-2}`; `C_{k,k-2}=3 C_{k-1,k-3}`; `N2+N1 ⇒ N0`; `N2` alone explains `Δ_k`; literal renormalization onto `F_{k'}(k'-1,u)`
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
 - **Next question:** closed. Milestone 23: general `N2` visibility `p mod 3^r`; `r=2` fibre criterion; `N1` is not the next trit.
+- **Decision:** PROMOTE (taken up by Milestone 23)
 
 ## Milestone 23
 
@@ -201,6 +228,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** `N2+N1 ⇒ N0`; `N1` reveals the next trit uniformly; `r=2` is only a digit increment of the whole Newton tower
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
 - **Next question:** closed. Milestone 24: after `N2`, `N1` separates every `v3(p)<r`; nontrivial fibres lie in `3^r Z`.
+- **Decision:** PROMOTE (taken up by Milestone 24)
 
 ## Milestone 24
 
@@ -211,6 +239,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** unit injectivity at `r=0`; that `3^r|p` is sufficient for a merge; that the remaining locus is a full recursive copy of the original deficit-`r` problem
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
 - **Next question:** closed. Milestone 25: two-regime `N0` scaling; not a standard smaller residual.
+- **Decision:** PROMOTE (taken up by Milestone 25)
 
 ## Milestone 25
 
@@ -221,6 +250,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** stripped `N0` is a standard residual instance; `N0` and scaled `N1` share the deepest problem at horizon `k-2r`; width `k-1-2r` equals remaining depth `k-1-4r` for `r≥1`
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
 - **Next question:** closed. Milestone 26: mismatched-width cubic quotient `Q_{t,K,W}`; exact reconstruction criterion; extra `2r` trits visible through cubic carry.
+- **Decision:** PROMOTE (taken up by Milestone 26)
 
 ## Milestone 26
 
@@ -231,6 +261,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** `Q` is an ordinary residual; extra width is invisible; `Q`-equality is a pure residue relation `u ≡ v (mod 3^s)`
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
 - **Next question:** closed. Milestone 27: no compact residue/valuation/`B_t` invariant; family `1+3^t b` forces `W-t` extra trits.
+- **Decision:** PROMOTE (taken up by Milestone 27)
 
 ## Milestone 27
 
@@ -240,7 +271,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** two-scale expansion is the working equation; `B_t` is determined by `u mod 3^{max(1,t-1)}`; on `1+3^t b`, `Q`-equality is `b ≡ c (mod 3^{K-1})`; any `Ψ` constant on that family needs `≥ W-t` extra trits; high valuation still collapses to `0`; CLI `cubic-quotient-invariant` / `cubic-quotient-compare`; Lean `MismatchedCubicInvariant.lean`; Residual Explorer Q card
 - **Refuted ideas:** bounded `Ψ1`–`Ψ4` classify `Q`; `B_t` is an incompressible independent jet; `Ψ5` with `β < K-1` is sufficient on units
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
-- **Decision:** Outcome C. Stop the Q-classification line; do not invent further fibre types. Next mathematical direction is not a new Q-taxonomy.
+- **Decision:** CLOSE. Stop the Q-classification line; do not invent further fibre types. Next mathematical direction is not a new Q-taxonomy.
 
 ## Consolidation (not a numbered milestone)
 
@@ -249,6 +280,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** package split; `NewtonStratum.lean`; `acceleratedT` well-defined; quadratic `M_k(x^2)` ledger rows retagged to Lean; docs reading path no longer Collatz-first
 - **Deferred:** `BTA-product` (`M_k` cardinality is not a Lean object); Lake package rename; `formal/Automata/` placeholder. `BTJ-degree` was later compiled (see Lean recovery note).
 - **Next question:** closed by Milestone 27. Do not auto-open a further Q-taxonomy milestone.
+- **Decision:** CLOSE
 
 ## Milestone 28
 
@@ -258,7 +290,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** master identity \(M_k=|\cup_m\mathrm{Im}\,F_k|\); easy count \(3^m-3^{m-r}\); core domain \(u\in P_W\); \(C=E+|\mathrm{core}|\); unexhausted formula \(C=3^m-Z+1\); unit \(G_a\) law \(b\equiv c\pmod{3^{K-1}}\); \(N_3\)-gated algorithm for \(M_k\); zero spine is not the only overlap; exact table through \(k=14\) (\(M_{14}=2390443\)); CLI `x3-states` / `x3-layer-count`; Lean `XCubeStateComplexity.lean`
 - **Refuted ideas:** that \(\sum C\) minus the zero-spine overcount equals \(M_k\); that \(N_0\) determines \(N_1\) on the exhausted core; that the exact count is polynomial in \(k\) by this arithmetic (deepest layer is still \(P_{k-1}\))
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
-- **Decision:** not closed. Remaining obstruction: exhausted joint image \(|(N_1,Q)(P_W)|\) and the exact nonzero cross-depth families.
+- **Decision:** PROMOTE (taken up by Milestone 29). Remaining obstruction: exhausted joint image \(|(N_1,Q)(P_W)|\) and the exact nonzero cross-depth families.
 
 ## Milestone 29
 
@@ -268,7 +300,7 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** \(N_1\) on the core is the square coordinate \(A_{k,r}(u)=u^2\bmod 3^W\); units with the same square are \(\pm\); \(N_0(u)=N_0(-u)\) iff \(N_0(u)=0\); unit joint image is \(2\cdot 3^{W-1}\) minus the unit \(Q\)-zeros; non-units contribute zero-\(A\) merges and twins; cross-depth families are the zero spine, shared signs, valuation translates, one-to-cosets, high-valuation cubes, and twin translates; exact table through \(k=14\) reproduced; CLI `x3-overlaps` / `x3-image-count`
 - **Refuted ideas:** that \(|\mathrm{Im}\,Q|\) determines \(|\mathrm{Im}\,H|\); that units plus the zero spine exhaust all collisions; that every nonzero overlap is a shared sign pair; that the reduced arithmetic is polynomial in \(k\)
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
-- **Decision:** Outcome C. Close the dedicated \(x^3\) counting line. The obstruction is the vanishing locus of \(Q\) on \(P_W\) (sign surplus, twins, large unit cubes) together with classified but non-closed-form nonzero deep overlaps. Structural Newton-stratum theory is paper-worthy; the \(M_k\) table is a computational appendix. Do not open Milestone 30.
+- **Decision:** CLOSE the dedicated \(x^3\) counting line. The obstruction is the vanishing locus of \(Q\) on \(P_W\) (sign surplus, twins, large unit cubes) together with classified but non-closed-form nonzero deep overlaps. Structural Newton-stratum theory is paper-worthy; the \(M_k\) table is a computational appendix. Do not open Milestone 30.
 
 ## Lean recovery (not a numbered milestone)
 
@@ -276,5 +308,16 @@ are not invented here. Local experiment manifests are timestamped
 - **Objective:** Wrap the deferred section-derivative degree law from existing `powShift` reconstruction
 - **Major results:** `sectionDeriv_natDegree` and `sectionDeriv_leadingCoeff` in `BTCalculus/Polynomial.lean`; ledger `BTJ-degree` retagged **EXACT — LEAN VERIFIED**
 - **Deferred:** `BTA-Ik-newton` (Newton coefficients of \(I_k\)); `BT-encode-unique`; `M_k` as a Lean cardinality
-- **Decision:** not a new residual programme. Do not open Milestone 30.
+- **Decision:** CLOSE. Not a new residual programme. Do not open Milestone 30.
+
+## Lifting-tree triage (not a numbered milestone)
+
+- **Date:** 2026-08-23
+- **Objective:** Decide whether the residual-state machinery says anything about 3-adic lifting of `f(x) ≡ 0 (mod 3^k)` beyond classical Hensel and Newton-polygon theory
+- **Hypotheses:** the lifting tree might be an exact sub-object of the residual Mealy machine; the residual state might carry more than the Taylor jet; the depth-`r` subtree might be determined by `v_3(f)` and `v_3(f')`; state compression might give a complexity statement
+- **Major results:** iterated reconstruction `f(n_w + 3^k x) = Σ ρ_i 3^i + 3^k 𝔇_w f(x)`; balanced digits force `3^k | f(n_w)` iff every output trit vanishes, so the lifting tree **is** the zero-output subtree; residual state equals the scaled Taylor jet with linear coefficient exactly `f'(n_w)`; classical `0/1/3` trichotomy as a corollary for `k ≥ 1`; `Φ_r` determines the depth-`r` subtree and the horizon is sharp; deep linearization `𝔇_w f ≡_r f(n_w)/3^k + f'(n_w)x` for `k ≥ r` with the two residues as minimal state; `bt.calculus.lifting`; `research.lifting`; `PadicLifting.lean`; CLI `congruence`; explorer lifting view
+- **Refuted ideas:** that `v_3(f(n))` and `v_3(f'(n))` determine lifting behaviour — smallest witness is the level-1 node `0` of `x^2 ± 9`, identical valuations, six surviving grandchildren versus none; that the trichotomy holds at the root — `x^2 + x` has two children with a unit derivative; that state compression is a complexity result
+- **Literature:** lifting trees, singular separation, root counting, and Igusa rationality are all KNOWN (`zuniga-galindo-2003`, `cheng-gao-rojas-wan-2019`, `dwivedi-mittal-saxena-2019`, `dwivedi-saxena-2020`); the core translation is a REPARAMETERIZATION and is tagged as one
+- **Open:** whether deep-regime valuation determinacy of the unordered shape is a theorem
+- **Decision:** PARK, with the multivariate sub-branch CLOSEd; status `EXPLORATORY`, not a paper candidate. Multivariate systems stay closed: `dwivedi-saxena-2024-systems-non-fields` already covers `n + k` constant. Do not open a numbered milestone for this line.
 
