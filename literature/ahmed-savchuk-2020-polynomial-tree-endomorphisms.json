@@ -20,5 +20,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "Shows that an integer polynomial acting on Z_d induces an endomorphism of the rooted d-ary tree and that its sections are again induced by integer polynomials of the same degree. For d=3 this gives established tree-theoretic machinery for finite residue levels; it does not imply that the set of sections or lifting states is finite."
+  "notes": "Shows that an integer polynomial acting on Z_d induces an endomorphism of the rooted d-ary tree and that its sections are again induced by integer polynomials of the same degree. Proposition 3.4: the endomorphism is finite-state if and only if the polynomial is linear. For d=3 this is the classical classification of finite residual closures of Z[x] section systems; nonlinear polynomials have infinitely many distinct sections."
 }

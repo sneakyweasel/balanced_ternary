@@ -7,6 +7,7 @@ __all__ = ["ProblemDefinition", "STATUSES", "get_problem", "list_problems"]
 
 def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.additive_combinatorics.problem import PROBLEM as ADDITIVE
+    from research.cerny_bt.problem import PROBLEM as CERNY_BT
     from research.collatz.problem import PROBLEM as COLLATZ
     from research.lifting.problem import PROBLEM as LIFTING
     from research.operator_dynamics.problem import PROBLEM as OPERATOR_DYNAMICS
@@ -28,6 +29,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         SPARSE_POLYNOMIALS,
         OPERATOR_DYNAMICS,
         STABILIZATION,
+        CERNY_BT,
     )
 
 

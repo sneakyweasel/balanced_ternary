@@ -28,6 +28,7 @@ Do not mark a module `PAPER_CANDIDATE` merely because a census is large.
 | `research.sparse_polynomials` | `EXPLORATORY` | Mahler / factor scans |
 | `research.operator_dynamics` | `EXPLORATORY` | composition census, dossiers |
 | `research.stabilization` | `ARCHIVED` | local \(\Phi_r\) versus global \(k_0\); literature close |
+| `research.padic_dynamics` | `ARCHIVED` | cycle-lift residual quotient; classical return-map close |
 | `research.open_problems` | registry | pointers, not a dumping ground |
 
 Each module exposes a lightweight `problem.py` descriptor

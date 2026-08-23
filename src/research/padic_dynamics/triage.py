@@ -427,5 +427,6 @@ def triage_report(
         "residual_classes": len(residuals),
         "behaviour_classes": len(behaviours),
         "comparisons": comparison,
-        "gate": "UNDECIDED",
+        "gate": "CLOSE",
+        "classification": "REPARAMETERIZATION",
     }

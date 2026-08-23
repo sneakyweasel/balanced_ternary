@@ -17,6 +17,7 @@ from research.padic_dynamics.triage import (
     reduce_cycle,
     residual_signature,
     state_records,
+    triage_report,
 )
 
 
@@ -110,3 +111,9 @@ def test_bounded_behaviour_strictly_compresses_residual_states():
     cycle = (0, 2)
     assert behaviour_signature(left, cycle, 1, 2) == behaviour_signature(right, cycle, 1, 2)
     assert residual_signature(left, cycle, 1, 2) != residual_signature(right, cycle, 1, 2)
+
+
+def test_gate_closes_as_reparameterization():
+    report = triage_report(k_max=2, r=2)
+    assert report["gate"] == "CLOSE"
+    assert report["classification"] == "REPARAMETERIZATION"
