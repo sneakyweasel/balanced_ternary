@@ -25,7 +25,8 @@ Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 
 Related: [cubic_deficit_two.md](cubic_deficit_two.md),
 [cubic_intermediate_layer.md](cubic_intermediate_layer.md),
-[cubic_deepest_layer.md](cubic_deepest_layer.md).
+[cubic_deepest_layer.md](cubic_deepest_layer.md),
+[cubic_n0_reduction.md](cubic_n0_reduction.md).
 
 ---
 
@@ -334,9 +335,8 @@ valuation-stratified refinement law is project-specific.
 
 ## 14. Strongest next question
 
-After \(N_2+N_1\) confine fibres to \(3^r\mathbb Z\), does
-\(N_0=D^{k-1-r}(p^3)\) on \(p=3^ru\) reduce to a deepest-layer
-cubic-quotient problem at horizon \(k-2r\), or is that the next
-obstruction?
-
-Do not start that work automatically.
+Closed by Milestone 25. \(N_0=D^m((3^ru)^3)\) strips as
+\(3^{3r-m}u^3\) or \(D^{m-3r}(u^3)\), but this is not a standard
+smaller residual: width \(k-1-2r\) versus depth \(k-1-4r\), and
+the \(N_1\) horizon \(k-2r\) does not match. See
+[cubic_n0_reduction.md](cubic_n0_reduction.md).

@@ -808,5 +808,41 @@
     "lean": "BTCalculus/CubicN1Valuation.lean",
     "tests": ["tests/unit/test_cubic_n1_valuation.py"],
     "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n0-scale",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D^m((3^r u)^3) is 3^{3r-m} u^3 if m≤3r, else D^{m-3r}(u^3)",
+    "source": "docs/theory/cubic_n0_reduction.md",
+    "lean": "BTCalculus/CubicN0Reduction.lean",
+    "tests": ["tests/unit/test_cubic_n0_reduction.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n0-sign",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "N0(p)≡N0(-p) iff 3^k | N0(p)",
+    "source": "docs/theory/cubic_n0_reduction.md",
+    "lean": "BTCalculus/CubicN0Reduction.lean",
+    "tests": ["tests/unit/test_cubic_n0_reduction.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n0-vis",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)}",
+    "source": "docs/theory/cubic_n0_reduction.md",
+    "lean": "BTCalculus/CubicN0Reduction.lean",
+    "tests": ["tests/unit/test_cubic_n0_reduction.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n0-recur",
+    "tag": "REFUTED",
+    "statement": "stripped N0 is a standard residual at the N1 horizon k-2r",
+    "source": "docs/theory/cubic_n0_reduction.md",
+    "lean": "BTCalculus/CubicN0Reduction.lean",
+    "tests": ["tests/unit/test_cubic_n0_reduction.py"],
+    "related_conjectures": []
   }
 ]

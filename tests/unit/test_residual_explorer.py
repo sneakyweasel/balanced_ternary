@@ -14,6 +14,7 @@ from visualization.residual_explorer import (
     demo_delayed_pair,
     depth_from_mode,
     dual_census,
+    expand_subtree_words,
     fibre_view,
     filter_nodes,
     format_word,
@@ -183,6 +184,13 @@ def test_tree_is_lazy_and_svg_marks_selection():
     assert "Residual prefix tree" in svg
     merged = filter_nodes(nodes, merged_only=True)
     assert all(n.merged_visible for n in merged)
+
+
+def test_expand_subtree_is_capped():
+    words = expand_subtree_words((), 10, cap=20)
+    assert () in words
+    assert len(words) <= 20
+    assert all(len(w) < 10 for w in words)
 
 
 def test_word_format_roundtrip():

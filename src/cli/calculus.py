@@ -210,6 +210,21 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_nf.add_argument("--k", type=int, required=True)
     p_nf.add_argument("--deficit", type=int, required=True)
 
+    p_nr = c.add_parser(
+        "n0-reduction",
+        help="N0 scaling on the 3^r-divisible locus after N2+N1",
+    )
+    p_nr.add_argument("--k", type=int, required=True)
+    p_nr.add_argument("--deficit", type=int, required=True)
+
+    p_n0f = c.add_parser(
+        "n0-fibre",
+        help="N0 fibre of one prefix after the N2+N1 filter",
+    )
+    p_n0f.add_argument("p", type=int)
+    p_n0f.add_argument("--k", type=int, required=True)
+    p_n0f.add_argument("--deficit", type=int, required=True)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -686,6 +701,48 @@ def run_calculus(args: argparse.Namespace) -> int:
         print(f"depth m = {m}")
         print(f"fibre_size = {len(members)}")
         print(f"in 3^{args.deficit} Z = {all(q % step == 0 for q in members)}")
+        for q in members:
+            print(f"  {q}")
+        return 0
+    if cmd == "n0-reduction":
+        from bt.calculus.cubic_n0_reduction import n0_reduction_report
+
+        rec = n0_reduction_report(args.k, args.deficit)
+        print(f"k = {rec['k']}")
+        print(f"deficit r = {rec['r']}")
+        print(f"depth m = {rec['m']}")
+        print(f"p = 3^{rec['r']} u")
+        print(f"regime = {rec['regime']}")
+        if rec["unexhausted"]:
+            print(f"m <= 3r : N0 = 3^{rec['exponent']} u^3")
+        else:
+            print(f"m > 3r : N0 = D^{rec['t']}(u^3)")
+        print(f"reduced depth t = {rec['t']}")
+        print(f"u width = {rec['u_width']}")
+        print(f"formula ok = {rec['formula_ok']}")
+        print(f"N1 reduced horizon = {rec['n1_horizon']}")
+        print(f"N1 deepest depth = {rec['n1_deepest_depth']}")
+        print(f"N0 depth vs N1 deepest mismatch = {rec['depth_mismatch']}")
+        print(f"visibility s bound = {rec['visibility_s']}")
+        print(f"mismatches vs N1-horizon N0 = {rec['mismatches_vs_n1_horizon']}")
+        print(f"nontrivial N2+N1 fibres on locus = {rec['n21_nontrivial_on_locus']}")
+        print(f"those still nontrivial after N0 = {rec['n21_n0_nontrivial']}")
+        print("samples")
+        for s in rec["samples"]:
+            print(f"  u={s['u']} p={s['p']} N0={s['N0']} stripped={s['stripped']}")
+        return 0
+    if cmd == "n0-fibre":
+        from bt.calculus.cubic_n0_reduction import n0_fibre_after_n21
+        from bt.calculus.cubic_n1_valuation import deficit_depth, n21_fibre_of
+
+        m = deficit_depth(args.k, args.deficit)
+        n21 = n21_fibre_of(args.p, args.k, args.deficit)
+        members = n0_fibre_after_n21(args.p, args.k, args.deficit)
+        print(f"p = {args.p}  k = {args.k}  deficit r = {args.deficit}")
+        print(f"depth m = {m}")
+        print(f"N2+N1 fibre_size = {len(n21)}")
+        print(f"N0 fibre_size = {len(members)}")
+        print(f"in 3^{args.deficit} Z = {all(q % (3 ** args.deficit) == 0 for q in members)}")
         for q in members:
             print(f"  {q}")
         return 0

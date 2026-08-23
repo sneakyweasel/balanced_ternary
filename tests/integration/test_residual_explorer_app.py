@@ -50,3 +50,45 @@ def test_residual_explorer_compare_and_dual_controls():
     assert "Set A" in buttons
     assert "Set B" in buttons
     assert "r=2 two above" in buttons
+    assert "Expand subtree" in buttons
+
+
+def test_scenario_b_and_c_delayed_pair_compare():
+    at = AppTest.from_file(str(PAGE), default_timeout=40)
+    at.run()
+    assert not at.exception
+    at.session_state.re_secondary = "Compare"
+    at.run()
+    demo = next(btn for btn in at.button if "delayed" in str(btn.label).lower())
+    demo.click().run()
+    assert not at.exception
+    body = _page_text(at)
+    assert "State A" in body
+    assert "State B" in body
+    assert at.session_state.re_k == 2
+    same = [m for m in at.metric if "Same class" in str(m.label)]
+    assert same
+    assert str(same[0].value) == "YES"
+    at.session_state.re_k = 3
+    at.run()
+    assert not at.exception
+    same = [m for m in at.metric if "Same class" in str(m.label)]
+    assert same
+    assert str(same[0].value) == "NO"
+    body = _page_text(at)
+    assert "DIFFERENT" in body or "τ" in body or "tau" in body.lower()
+
+
+def test_scenario_d_x2_vs_x3():
+    at = AppTest.from_file(str(PAGE), default_timeout=40)
+    at.run()
+    assert not at.exception
+    at.session_state.re_secondary = "x^2 vs x^3"
+    at.run()
+    assert not at.exception
+    body = _page_text(at)
+    assert "residual tree preserved" in body
+    assert "compressed" in body
+    merged = [m for m in at.metric if str(m.label) == "Merged"]
+    assert merged
+    assert any(str(m.value) == "0" for m in merged)

@@ -19,7 +19,8 @@ Related: [cubic_residual_image.md](cubic_residual_image.md),
 [cubic_deepest_layer.md](cubic_deepest_layer.md),
 [cubic_intermediate_layer.md](cubic_intermediate_layer.md),
 [cubic_deficit_two.md](cubic_deficit_two.md),
-[cubic_n1_valuation.md](cubic_n1_valuation.md).
+[cubic_n1_valuation.md](cubic_n1_valuation.md),
+[cubic_n0_reduction.md](cubic_n0_reduction.md).
 
 ---
 

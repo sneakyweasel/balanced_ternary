@@ -210,5 +210,15 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** exact post-`N2` law `3^{k-1-r}|δ(p+q+3^m)`; unit injectivity for every `r≥1`; valuation-stratification theorem on `P_m`; sign pairs iff `3^r|p`; partial recursion `N1(3^r u)` reduces to deepest `N1` at horizon `k-2r` when `k≥2r+2`; CLI `n1-strata` / `n1-fibre`; Lean `CubicN1Valuation.lean`
 - **Refuted ideas:** unit injectivity at `r=0`; that `3^r|p` is sufficient for a merge; that the remaining locus is a full recursive copy of the original deficit-`r` problem
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
-- **Next question:** not started; do not auto-open a new milestone. Candidate: after restriction to `3^r|p`, does `N0=D^{k-1-r}(p^3)` reduce to a deepest-layer cubic quotient at horizon `k-2r`?
+- **Next question:** closed. Milestone 25: two-regime `N0` scaling; not a standard smaller residual.
+
+## Milestone 25
+
+- **Date:** 2026-08-23
+- **Objective:** Determine the exact recursive structure of `D^m((3^r u)^3)` after the `N2+N1` locus `3^r|p`
+- **Hypotheses:** `D` strips `3^{3r}`; the remainder might be a smaller cubic residual, perhaps at the Milestone-24 `N1` horizon `k-2r`
+- **Major results:** two-regime identity `3^{3r-m} u^3` vs `D^{m-3r}(u^3)`; equivalent to `k≤4r+1` vs `k≥4r+1`; sign pairs survive `N0` iff `3^k|N0`; valuation threshold `3 v3(p)=m`; visibility bound `s=max(1,t+k-1)`; CLI `n0-reduction` / `n0-fibre`; Lean `CubicN0Reduction.lean`
+- **Refuted ideas:** stripped `N0` is a standard residual instance; `N0` and scaled `N1` share the deepest problem at horizon `k-2r`; width `k-1-2r` equals remaining depth `k-1-4r` for `r≥1`
+- **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
+- **Next question:** not started; do not auto-open a new milestone. Candidate: is the remaining pair (scaled `N1`, stripped `N0`) on `P_{k-1-2r}` a useful mismatched-width cubic quotient, or is `N0` an independent `D^t(u^3) mod 3^k` constraint?
 

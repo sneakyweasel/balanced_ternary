@@ -406,6 +406,36 @@ def _children(word: tuple[int, ...]) -> tuple[tuple[int, ...], ...]:
     return tuple(word + (a,) for a in TRITS)
 
 
+def expand_subtree_words(
+    word: tuple[int, ...],
+    k: int,
+    *,
+    cap: int = 80,
+) -> tuple[tuple[int, ...], ...]:
+    """Ancestors of ``word`` plus a breadth-first subtree, capped."""
+    out: list[tuple[int, ...]] = []
+    seen: set[tuple[int, ...]] = set()
+    for i in range(len(word) + 1):
+        prefix = word[:i]
+        if prefix not in seen and len(prefix) < k:
+            seen.add(prefix)
+            out.append(prefix)
+    frontier = [word]
+    while frontier and len(out) < cap:
+        cur = frontier.pop(0)
+        if len(cur) >= k - 1:
+            continue
+        for child in _children(cur):
+            if child in seen or len(child) >= k:
+                continue
+            seen.add(child)
+            out.append(child)
+            frontier.append(child)
+            if len(out) >= cap:
+                break
+    return tuple(out)
+
+
 def visible_words(
     k: int,
     *,

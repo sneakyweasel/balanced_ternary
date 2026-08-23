@@ -63,6 +63,7 @@ analysis”.
 - Cubic intermediate layer (Milestone 22): [cubic_intermediate_layer.md](cubic_intermediate_layer.md). `m=k-2`; `N2` sees `p mod 3`; horizon surplus `Δ_k`.
 - Cubic depth-deficit 2 (Milestone 23): [cubic_deficit_two.md](cubic_deficit_two.md). General `N2` visibility `p mod 3^r`; `r=2` fibre criterion.
 - Cubic N1 valuation strata (Milestone 24): [cubic_n1_valuation.md](cubic_n1_valuation.md). After `N2`, `N1` kills `v3(p)<r`; surviving fibres lie in `3^r Z`.
+- Cubic N0 reduction (Milestone 25): [cubic_n0_reduction.md](cubic_n0_reduction.md). Two-regime stripping of `D^m((3^r u)^3)`; not a standard smaller residual.
 
 ## Finite-state locality (reused, not re-proved)
 

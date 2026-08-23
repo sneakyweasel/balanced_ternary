@@ -88,6 +88,7 @@ meaning throughout:
 - [Cubic intermediate layer](theory/cubic_intermediate_layer.md)
 - [Cubic depth-deficit 2](theory/cubic_deficit_two.md)
 - [Cubic N1 valuation strata](theory/cubic_n1_valuation.md)
+- [Cubic N0 reduction](theory/cubic_n0_reduction.md)
 - [Residual explorer](tools/residual_explorer.md)
 
 ## Architecture

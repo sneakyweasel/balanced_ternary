@@ -18,6 +18,7 @@ from visualization.residual_explorer import (
     compare_states,
     demo_delayed_pair,
     depth_from_mode,
+    expand_subtree_words,
     dual_census,
     fibre_view,
     filter_nodes,
@@ -103,6 +104,74 @@ def _selected_word() -> tuple[int, ...]:
         return ()
 
 
+def _step_cb(trit: int) -> None:
+    word = _selected_word()
+    k = int(st.session_state.re_k)
+    if len(word) >= k - 1:
+        return
+    nxt = word + (trit,)
+    st.session_state.re_selected = format_word(nxt)
+    cur = [tuple(w) for w in st.session_state.re_expanded]
+    if word not in cur:
+        cur.append(word)
+        st.session_state.re_expanded = cur
+
+
+def _expand_selected_cb() -> None:
+    word = _selected_word()
+    cur = [tuple(w) for w in st.session_state.re_expanded]
+    if word not in cur:
+        cur.append(word)
+        st.session_state.re_expanded = cur
+
+
+def _expand_subtree_cb() -> None:
+    extra = expand_subtree_words(_selected_word(), int(st.session_state.re_k), cap=80)
+    cur = [tuple(w) for w in st.session_state.re_expanded]
+    for word in extra:
+        if word not in cur:
+            cur.append(word)
+    st.session_state.re_expanded = cur
+
+
+def _set_a_cb() -> None:
+    st.session_state.re_a = st.session_state.re_selected
+
+
+def _set_b_cb() -> None:
+    st.session_state.re_b = st.session_state.re_selected
+
+
+def _highlight_merged_cb() -> None:
+    st.session_state.re_filter = "merged"
+
+
+def _focus_layer_cb(r: int) -> None:
+    k = int(st.session_state.re_k)
+    st.session_state.re_mode = "deficit"
+    st.session_state.re_mode_label = "deficit r"
+    st.session_state.re_r = r
+    st.session_state.re_m = k - 1 - r
+    st.session_state.re_focus_depth = k - 1 - r
+    st.session_state.re_selected = format_word(tuple([0] * (k - 1 - r)))
+
+
+def _load_delayed_pair_cb() -> None:
+    _f, wa, wb = demo_delayed_pair()
+    st.session_state.re_poly = "x^3"
+    st.session_state.re_custom = ""
+    st.session_state.re_k = 2
+    st.session_state.re_mode = "explicit"
+    st.session_state.re_mode_label = "explicit m"
+    st.session_state.re_m = 1
+    st.session_state.re_r = 0
+    st.session_state.re_focus_depth = 1
+    st.session_state.re_a = format_word(wa)
+    st.session_state.re_b = format_word(wb)
+    st.session_state.re_selected = format_word(wa)
+    st.session_state.re_secondary = "Compare"
+
+
 def _badge(payload: dict[str, str] | None) -> None:
     if not payload:
         return
@@ -151,7 +220,7 @@ def residual_explorer_page() -> None:
                 placeholder="parse_poly syntax, e.g. x^3+x",
             )
             k = st.slider("Horizon k", min_value=1, max_value=14, key="re_k")
-        mode = st.segmented_control(
+        st.segmented_control(
             "Depth mode",
             ["explicit m", "deficit r"],
             key="re_mode_label",
@@ -270,38 +339,14 @@ def _tree_panel(nodes: tuple[TreeNode, ...], k: int) -> None:
     st.selectbox("Selected residual", options, key="re_selected")
     nav = st.container(horizontal=True)
     with nav:
-        if st.button("Step −1", key="re_step_m"):
-            _step(-1, k)
-        if st.button("Step 0", key="re_step_z"):
-            _step(0, k)
-        if st.button("Step +1", key="re_step_p"):
-            _step(1, k)
-        if st.button("Expand selected", key="re_expand"):
-            word = _selected_word()
-            cur = [tuple(w) for w in st.session_state.re_expanded]
-            if word not in cur:
-                cur.append(word)
-                st.session_state.re_expanded = cur
-                st.rerun()
-        if st.button("Set A", key="re_set_a"):
-            st.session_state.re_a = st.session_state.re_selected
-        if st.button("Set B", key="re_set_b"):
-            st.session_state.re_b = st.session_state.re_selected
+        st.button("Step −1", key="re_step_m", on_click=_step_cb, args=(-1,))
+        st.button("Step 0", key="re_step_z", on_click=_step_cb, args=(0,))
+        st.button("Step +1", key="re_step_p", on_click=_step_cb, args=(1,))
+        st.button("Expand selected", key="re_expand", on_click=_expand_selected_cb)
+        st.button("Expand subtree", key="re_expand_sub", on_click=_expand_subtree_cb)
+        st.button("Set A", key="re_set_a", on_click=_set_a_cb)
+        st.button("Set B", key="re_set_b", on_click=_set_b_cb)
     st.dataframe(pd.DataFrame(node_table_rows(shown if shown else nodes)), hide_index=True)
-
-
-def _step(trit: int, k: int) -> None:
-    word = _selected_word()
-    if len(word) >= k - 1:
-        st.warning("Cannot extend past |w| < k.")
-        return
-    nxt = word + (trit,)
-    st.session_state.re_selected = format_word(nxt)
-    cur = [tuple(w) for w in st.session_state.re_expanded]
-    if word not in cur:
-        cur.append(word)
-        st.session_state.re_expanded = cur
-    st.rerun()
 
 
 def _state_panel(f: IntPoly, k: int) -> None:
@@ -428,13 +473,13 @@ def _precision_strip(f: IntPoly, k: int) -> None:
         st.warning(census.warning)
     if st.session_state.re_explain == "Research":
         _badge(census.badge)
-    if census.merged not in (None, 0) and st.button(
-        "Highlight merged states",
-        key="re_highlight_merged",
-        icon=":material/filter_alt:",
-    ):
-        st.session_state.re_filter = "merged"
-        st.rerun()
+    if census.merged not in (None, 0):
+        st.button(
+            "Highlight merged states",
+            key="re_highlight_merged",
+            icon=":material/filter_alt:",
+            on_click=_highlight_merged_cb,
+        )
 
 
 def _layer_strip(k: int) -> None:
@@ -448,12 +493,12 @@ def _layer_strip(k: int) -> None:
         ):
             if k - 1 - r < 0:
                 continue
-            if st.button(f"{label} · {sees}", key=f"re_layer_{r}"):
-                st.session_state.re_mode = "deficit"
-                st.session_state.re_r = r
-                st.session_state.re_focus_depth = k - 1 - r
-                st.session_state.re_selected = format_word(tuple([0] * (k - 1 - r)))
-                st.rerun()
+            st.button(
+                f"{label} · {sees}",
+                key=f"re_layer_{r}",
+                on_click=_focus_layer_cb,
+                args=(r,),
+            )
 
 
 def _secondary(f: IntPoly, k: int, nodes: tuple[TreeNode, ...]) -> None:
@@ -513,14 +558,12 @@ def _fibre_card(f: IntPoly, k: int, nodes: tuple[TreeNode, ...]) -> None:
 def _compare_card(f: IntPoly, k: int) -> None:
     row = st.container(horizontal=True)
     with row:
-        if st.button("Load delayed-distinction pair", key="re_demo_pair", icon=":material/science:"):
-            _f, wa, wb = demo_delayed_pair()
-            st.session_state.re_poly = "x^3"
-            st.session_state.re_custom = ""
-            st.session_state.re_a = format_word(wa)
-            st.session_state.re_b = format_word(wb)
-            st.session_state.re_selected = format_word(wa)
-            st.rerun()
+        st.button(
+            "Load delayed-distinction pair",
+            key="re_demo_pair",
+            icon=":material/science:",
+            on_click=_load_delayed_pair_cb,
+        )
         st.caption(f"A = {st.session_state.re_a or '—'}    B = {st.session_state.re_b or '—'}")
     if not st.session_state.re_a or not st.session_state.re_b:
         st.caption("Set A and Set B on two residuals, then compare.")

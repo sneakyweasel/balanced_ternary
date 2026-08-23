@@ -56,9 +56,13 @@ or valuations. Those come from existing Python modules:
 - **Explain / Research.** Explain uses short sentences derived from the
   same adapter output. Research shows raw integers, residues, Lean names,
   and ledger tags.
-- **Tree navigation.** Trit-step buttons, expand selected, class / merge
-  filters, Set A / Set B. Colour is class among **loaded** nodes; squares
-  are visible merges; class id is written on the node.
+- **Tree navigation.** Trit-step buttons, expand selected, expand subtree
+  (capped at 80 nodes), class / merge filters, Set A / Set B. Colour is
+  class among **loaded** nodes; squares are visible merges; class id is
+  written on the node.
+- **Delayed pair.** Compare → Load delayed-distinction pair jumps to the
+  first `x^3` merge at `k=2`. Raising `k` to 3 and pressing Run splits
+  the class.
 
 ## Mathematical meaning of each visual
 

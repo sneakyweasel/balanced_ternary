@@ -111,3 +111,7 @@ This ledger does not rewrite history.
 | BTA-x3-n1-fibre | EXACT — LEAN VERIFIED | every nontrivial N2+N1 fibre on P_m lies in 3^r Z | docs/theory/cubic_n1_valuation.md | n21_fibre_in_pow | test_cubic_n1_valuation |
 | BTA-x3-n1-sign | EXACT — LEAN VERIFIED | p ~ -p after N2+N1 iff 3^r | p | docs/theory/cubic_n1_valuation.md | n21_sign_iff | test_cubic_n1_valuation |
 | BTA-x3-n1-scale | EXACT — LEAN VERIFIED | on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k≥2r+2 | docs/theory/cubic_n1_valuation.md | n1_high_val_scaled | test_cubic_n1_valuation |
+| BTA-x3-n0-scale | EXACT — LEAN VERIFIED | D^m((3^r u)^3) is 3^{3r-m} u^3 if m≤3r, else D^{m-3r}(u^3) | docs/theory/cubic_n0_reduction.md | n0_scaled_of_le, n0_scaled_of_ge | test_cubic_n0_reduction |
+| BTA-x3-n0-sign | EXACT — LEAN VERIFIED | N0(p)≡N0(-p) iff 3^k | N0(p) | docs/theory/cubic_n0_reduction.md | n0_sign_survives | test_cubic_n0_reduction |
+| BTA-x3-n0-vis | EXACT — LEAN VERIFIED | D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)} | docs/theory/cubic_n0_reduction.md | n0_visible_mod | test_cubic_n0_reduction |
+| BTA-x3-n0-recur | REFUTED | stripped N0 is a standard residual at the N1 horizon k-2r | docs/theory/cubic_n0_reduction.md | n0_depth_eq_n1_deepest | test_cubic_n0_reduction |
