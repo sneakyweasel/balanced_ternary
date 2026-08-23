@@ -1734,5 +1734,46 @@
       "add_s_push_lc",
       "mul_s_push_lc"
     ]
+  },
+  {
+    "id": "BTC-add-factor-binary-semantic",
+    "tag": "REFUTED",
+    "statement": "irreducibles of the unary tree TRS plus finite binary factor-out Add (S(x)+S(y)→S(x+y) and the exact I_a analogues) are unique representatives of integer functions even after identifying AC twins",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_factor_out_add.py"
+    ],
+    "related_conjectures": [
+      "add_factor_binary_semantic"
+    ]
+  },
+  {
+    "id": "BTC-add-factor-ac-semantic",
+    "tag": "REFUTED",
+    "statement": "irreducibles of the unary tree TRS plus finite factor-out Add under AC-matching are unique representatives of integer functions",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_factor_out_add.py"
+    ],
+    "related_conjectures": [
+      "add_factor_ac_semantic"
+    ]
+  },
+  {
+    "id": "BTC-add-factor-cas-obstruction",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "any finite exact-on-ℤ factor-out Add extension of the unary tree core either matches only adjacent binary summands, leaving S(x)+(S(y)+z) versus S(x+y)+z (not AC-equivalent), or, once AC-matching is granted, cannot join I+(x+y)+I+(z) versus I+(x)+I+(y+z) because I_a(x)+I_a(y) is not I_b(x+y) for any trit b; a complete form therefore requires an AC engine with constants or carry (already a CAS), so {D, I_a, S, N} remains the maximal complete tree core",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_factor_out_add.py"
+    ],
+    "related_conjectures": [
+      "add_factor_binary_semantic",
+      "add_factor_ac_semantic",
+      "add_factor_cas_obstruction"
+    ]
   }
 ]

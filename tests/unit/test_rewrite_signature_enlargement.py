@@ -12,8 +12,9 @@ This file records:
   non-joining overlap with ``D(S(z)) → z``;
 * that ``N``-through-Add alone is locally confluent on the named
   overlaps but not semantically complete;
-* that a size-decreasing factor-out orientation repairs that Add peak
-  and is not pursued as a computer-algebra engine;
+* that a size-decreasing factor-out orientation repairs that Add peak;
+  the finite exact Add factor-out set (including ``I+``/``I-``) is
+  decided in ``test_rewrite_factor_out_add.py`` and is not a CAS;
 * a bounded one-way word check for ``W``: the stock ``W``/``K3`` rules
   plus one-way ``N``–``D`` fail to join at ``N∘W∘W``, and the exact
   companion ``N∘K3 → K3∘N`` makes the bounded critical-pair list join.
@@ -90,22 +91,42 @@ def extra_s_through_mul(expr: Expr) -> tuple[Expr, str | None]:
     return expr, None
 
 
+def _is_s(expr: Expr) -> bool:
+    """``I0 = S`` as integer maps; both are exact factor-out left-hand sides."""
+    return isinstance(expr, (EShift3, EI0))
+
+
+def factor_add_pair(left: Expr, right: Expr) -> tuple[Expr, str] | None:
+    """Exact size-decreasing factor-out of one Add pair, or ``None``.
+
+    Same-sign ``I_a(x)+I_a(y)`` is deliberately absent: it equals
+    ``3(x+y)±2``, which is not ``I_b(x+y)`` for any trit ``b``.
+    """
+    if isinstance(left, ENeg) and isinstance(right, ENeg):
+        return ENeg(EAdd(left.arg, right.arg)), "N(x)+N(y) → N(x+y)"
+    if _is_s(left) and _is_s(right):
+        return EShift3(EAdd(left.arg, right.arg)), "S(x)+S(y) → S(x+y)"
+    if isinstance(left, EIp) and _is_s(right):
+        return EIp(EAdd(left.arg, right.arg)), "I+(x)+S(y) → I+(x+y)"
+    if _is_s(left) and isinstance(right, EIp):
+        return EIp(EAdd(left.arg, right.arg)), "S(x)+I+(y) → I+(x+y)"
+    if isinstance(left, EIm) and _is_s(right):
+        return EIm(EAdd(left.arg, right.arg)), "I-(x)+S(y) → I-(x+y)"
+    if _is_s(left) and isinstance(right, EIm):
+        return EIm(EAdd(left.arg, right.arg)), "S(x)+I-(y) → I-(x+y)"
+    if isinstance(left, EIp) and isinstance(right, EIm):
+        return EShift3(EAdd(left.arg, right.arg)), "I+(x)+I-(y) → S(x+y)"
+    if isinstance(left, EIm) and isinstance(right, EIp):
+        return EShift3(EAdd(left.arg, right.arg)), "I-(x)+I+(y) → S(x+y)"
+    return None
+
+
 def extra_add_factor(expr: Expr) -> tuple[Expr, str | None]:
     """Size-decreasing opposite orientation. Documented, not a production core."""
     if isinstance(expr, EAdd):
-        left, right = expr.left, expr.right
-        if isinstance(left, ENeg) and isinstance(right, ENeg):
-            return ENeg(EAdd(left.arg, right.arg)), "N(x)+N(y) → N(x+y)"
-        if isinstance(left, EShift3) and isinstance(right, EShift3):
-            return EShift3(EAdd(left.arg, right.arg)), "S(x)+S(y) → S(x+y)"
-        if isinstance(left, EIp) and isinstance(right, EShift3):
-            return EIp(EAdd(left.arg, right.arg)), "I+(x)+S(y) → I+(x+y)"
-        if isinstance(left, EShift3) and isinstance(right, EIp):
-            return EIp(EAdd(left.arg, right.arg)), "S(x)+I+(y) → I+(x+y)"
-        if isinstance(left, EIm) and isinstance(right, EShift3):
-            return EIm(EAdd(left.arg, right.arg)), "I-(x)+S(y) → I-(x+y)"
-        if isinstance(left, EShift3) and isinstance(right, EIm):
-            return EIm(EAdd(left.arg, right.arg)), "S(x)+I-(y) → I-(x+y)"
+        pair = factor_add_pair(expr.left, expr.right)
+        if pair is not None:
+            return pair
     return expr, None
 
 

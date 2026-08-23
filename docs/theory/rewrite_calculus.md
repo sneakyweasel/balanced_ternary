@@ -6,10 +6,13 @@ including `N(D(x)) → D(N(x))` — is terminating, locally confluent, and
 has a unique syntactic normal form (**PROVED — LEAN**) that is also a
 unique representative of the integer operator function
 (**PROVED — LEAN**). That fragment is **maximal** as a complete
-tree-level canonical core among exact push-in extensions by `Add` or
-`Mul`: `S`-distributivity overlaps `D∘S = id` in a non-joining peak
+tree-level canonical core among exact push-in *or* factor-out
+extensions by `Add` or `Mul`: push-in `S`-distributivity overlaps
+`D∘S = id` in a non-joining peak
 ([BTC-add-s-push-lc](theorem_ledger.md),
-[BTC-mul-s-push-lc](theorem_ledger.md), **REFUTED**). Global confluence
+[BTC-mul-s-push-lc](theorem_ledger.md), **REFUTED**); finite
+factor-out Add is already AC-engine / CAS territory
+([BTC-add-factor-cas-obstruction](theorem_ledger.md)). Global confluence
 of the full expression language and of the large word table is **not**
 claimed. Coefficient-word confluence
 ([BTN-confluence](theorem_ledger.md), `BTCalculus/Confluence.lean`) is
@@ -265,12 +268,65 @@ separate system.
 
 ### Factor-out (opposite orientation)
 
-The size-decreasing rules `S(x)+S(y) → S(x+y)` and
-`N(x)+N(y) → N(x+y)` repair `D(S(x)+S(y))` (it joins to `x+y`).
-Associativity/commutativity twins remain (`(x+y)+z` versus
-`x+(y+z)`); that gap is **KNOWN**. This orientation is recorded as a
-negative-knowledge boundary, not installed, and not expanded into an
-AC rewrite engine.
+The finite exact-on-ℤ pair table is size-decreasing:
+
+```text
+S(x)+S(y) → S(x+y)          (I0 counts as S)
+N(x)+N(y) → N(x+y)
+I_a(x)+S(y) → I_a(x+y)
+S(x)+I_a(y) → I_a(x+y)
+I+(x)+I-(y) → S(x+y)
+I-(x)+I+(y) → S(x+y)
+```
+
+Same-sign `I_a(x)+I_a(y)` is **not** a rule: `I+(x)+I+(y) = 3(x+y)+2`
+and `I-(x)+I-(y) = 3(x+y)-2`, and `±2` is not a trit, so the sum is
+not `I_b(x+y)` for any trit `b`.
+
+**Binary matching** (redexes only at a node `u+v`). The `D∘S` peak
+is repaired: `D(S(x)+S(y)) → D(S(x+y)) → x+y`. Named unary overlaps
+(`N(S(x))+N(S(y))`, `D(I+(x)+S(y))`) join. Every Add of two small
+unary atoms has a unique syntactic NF
+(`tests/unit/test_rewrite_factor_out_add.py`). Semantic canonicity
+fails even after identifying AC twins
+([BTC-add-factor-binary-semantic](theorem_ledger.md), **REFUTED**):
+
+```text
+S(x)+(S(y)+z)     irreducible, atoms {S(x), S(y), z}
+S(x+y)+z          irreducible, atoms {S(x+y), z}
+```
+
+These are not AC-equivalent and agree under `evaluate`. The same
+shape is `I+(x+y)+I+(z)` versus `I+(x)+I+(y+z)` (both
+`3(x+y+z)+2`). If integer constants are allowed as summands,
+`I+(x)+I+(y)` twins `S(x+y)+2`.
+
+**AC-matching** of the same finite table (flatten the Add spine;
+contract any pair). Non-adjacent `S` summands collect, and three
+`S` join to `S(x+y+z)` modulo AC. Opposite-sign
+`I+(x)+S(y)+I-(z)` joins to `S(x+y+z)`. Same-sign does **not**
+([BTC-add-factor-ac-semantic](theorem_ledger.md), **REFUTED**):
+
+```text
+I+(x)+S(y)+I+(z)  →  I+(x+y)+I+(z)
+I+(x)+S(y)+I+(z)  →  I+(x)+I+(y+z)
+```
+
+Both descendants are irreducible and not AC-equivalent. The
+`I-` residue `-2` is the same peak. Collecting non-adjacent
+summands is already AC-matching; joining the same-sign peak needs
+constants, an explicit carry, or a polynomial normal form.
+
+[BTC-add-factor-cas-obstruction](theorem_ledger.md) (**PROVED**):
+any finite exact-on-ℤ factor-out Add extension of the unary tree
+core either matches only adjacent binary summands, leaving
+`S(x)+(S(y)+z)` versus `S(x+y)+z` (not AC-equivalent), or, once
+AC-matching is granted, cannot join `I+(x+y)+I+(z)` versus
+`I+(x)+I+(y+z)` because `I_a(x)+I_a(y)` is not `I_b(x+y)` for any
+trit `b`. A complete form is therefore an AC engine with constants
+or carry — already a computer-algebra engine. The rules stay out of
+`rewrite._step`. This is the same balanced-trit carry of `1+1` that
+made `D`-through-Add unsound and that blocked push-in at `D∘S`.
 
 ### `W` (bounded word fragment only)
 
@@ -307,14 +363,19 @@ unsound `D`-through-binary rule, that peak does not join. So
 `{D, I_a, S, N}` is the maximal complete *tree* core among those
 extensions. `W` is a word-level question and was only bounded-checked.
 
+Factor-out does not escape that maximality: see
+[BTC-add-factor-cas-obstruction](theorem_ledger.md). The two
+orientations fail for the same carry. `Add` is evaluation-only.
+
 ## Conjectures
 
 The unary-fragment questions — termination, local confluence, unique
 syntactic NF, and semantic canonicity on `{D, I_a, S, N}` — are
 closed (**PROVED**). The Phase-0 enlargement questions for push-in
-`Add` / `Mul` and for one-way `W` without `N∘K3` are closed
-(**REFUTED**). No finite exact push-in binary extension of that kind
-is assumed, and the full word table is still not assumed confluent.
+`Add` / `Mul`, for one-way `W` without `N∘K3`, and for finite
+factor-out Add (binary or AC-matching) are closed (**REFUTED**). No
+finite exact Add/Mul tree extension of that kind is assumed, and the
+full word table is still not assumed confluent.
 
 Lean Newman for the enlarged fragment is packaged in
 `BTCalculus/OpFragNewman.lean` (termination, local confluence,
