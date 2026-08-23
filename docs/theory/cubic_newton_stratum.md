@@ -1,8 +1,8 @@
 # Cubic Newton stratum
 
 Canonical record for the same-depth fibres of the Newton image \(F_k\) of
-\(x^3\). Layer notes from Milestones 19–26 are corollaries. This page records the exact same-depth count \(C_{k,m}\) and the
-remaining arithmetic obstruction to a closed formula for \(M_k(x^3)\).
+\(x^3\). Layer notes from Milestones 19–26 are corollaries. This page records the exact same-depth count \(C_{k,m}\) and closes the
+dedicated \(x^3\) counting line at Outcome C (§8).
 
 Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **REFUTED**,
@@ -110,14 +110,10 @@ These remain on the ledger. They are not revived by the unified statement.
 
 ---
 
-## 5. What remains open
+## 5. Dedicated counting line
 
-A single closed term for \(M_k(x^3)\). Same-depth counts are finished
-in §7 except the exhausted core image
-\(\lvert\{(N_1,N_0)(3^ru):u\in P_W\}\rvert\), which is an explicit
-polynomial image. Cross-depth overlap is reduced to the \(N_3\)-deep
-layers; the zero spine is exact, but nonzero families remain. Do not
-open a numbered milestone for a further \(Q\)-taxonomy.
+Closed in §8 at **Outcome C**. Do not open another numbered
+\(x^3\) counting milestone. The \(Q\)-taxonomy is already closed in §6.
 
 ---
 
@@ -168,7 +164,7 @@ classifies \(Q\)-fibres independently of \(t,K,W\).
 **Outcome C**, with a partial high-valuation invariant. The
 \(Q\)-classification line should not continue by inventing further
 fibre types. Counting proceeds in §7 by image cardinality, not by a
-new invariant.
+new invariant. The counting line itself closes in §8.
 
 ---
 
@@ -327,12 +323,186 @@ Per-depth \(C_{k,m}\) for \(m=0,\ldots,k-1\):
 | 13 | 1, 3, 9, 27, 81, 243, 729, 2187, 6559, 19677, 59022, 177057, 531141 |
 | 14 | 1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19681, 59028, 177083, 531230, 1593644 |
 
-CLI: `btprime calculus x3-states --k <k>` and
-`btprime calculus x3-layer-count --k <k> --deficit <r>`.
+CLI: `btprime calculus x3-states --k <k>`,
+`btprime calculus x3-layer-count --k <k> --deficit <r>`,
+`btprime calculus x3-image-count --k <k> --deficit <r>`,
+and `btprime calculus x3-overlaps --k <k>`.
 The commands `newton-class`, `cubic-layer`, and `cubic-quotient` are
 unchanged.
 
-The \(x^3\) state-complexity problem is **not closed**. The remaining
-obstruction is the exhausted joint image
-\(\lvert(N_1,Q)(P_W)\rvert\) together with the exact nonzero
-cross-depth families after the zero spine is removed.
+The dedicated counting line is closed in §8 at **Outcome C**. There is
+no single closed term \(M_k=F(k)\). The exact algorithm remains the
+\(N_3\)-gated deep-image union.
+
+---
+
+## 8. Outcome C — counting obstruction
+
+This is the last dedicated \(x^3\) counting record. Do not open another
+numbered counting milestone.
+
+### Reduced core
+
+On the exhausted core \(p=3^ru\) with \(k\ge 2r+2\),
+
+\[
+N_1\equiv 3^{2r+1}u^2\pmod{3^k}
+\qquad\Longleftrightarrow\qquad
+A_{k,r}(u)=u^2\bmod 3^{k-2r-1}.
+\]
+
+**EXACT — LEAN VERIFIED** (`n1_on_core_mod`, `n1_core_square_iff`,
+`newtonStratum_n1_square`). The observable square exponent equals the
+core width: \(k-2r-1=W\). **EXACT — LEAN VERIFIED**
+(`square_exp_eq_width`). The joint core map is therefore
+
+\[
+H_{k,r}(u)=\bigl(u^2\bmod 3^W,\; Q_{t,k,W}(u)\bigr),
+\qquad
+t=k-1-4r,
+\]
+
+and
+
+\[
+C_{k,k-1-r}=E_{k,r}+\lvert\operatorname{Im} H_{k,r}\rvert
+\]
+
+in the exhausted regime. **EXACT — HUMAN PROOF.** The \(Q\)-image,
+the \(N_1\)-image, and the joint image are three different sets.
+**COMPUTATIONALLY VERIFIED**: at \((k,r)=(6,1)\) one has
+\(\lvert\operatorname{Im} H\rvert=26\), \(\lvert\operatorname{Im} Q\rvert=23\),
+\(\lvert\operatorname{Im} A\rvert=11\).
+
+### Unit contribution
+
+If \(3\nmid u,v\) and \(u,v\in P_W\), then
+\(u^2\equiv v^2\pmod{3^W}\) if and only if \(u=\pm v\).
+**EXACT — LEAN VERIFIED** (`unit_square_pm`,
+`newtonStratum_unit_square`). Next,
+\(N_0(u)\equiv N_0(-u)\pmod{3^k}\) if and only if
+\(N_0(u)\equiv 0\pmod{3^k}\). **EXACT — LEAN VERIFIED**
+(`n0_eq_of_neg`, `newtonStratum_n0_neg`). Hence two units collide in
+\(H\) if and only if they are a sign pair with vanishing \(Q\). For
+\(W\ge 1\),
+
+\[
+U_{k,r}
+=
+2\cdot 3^{W-1}-S^\times_{k,r},
+\]
+
+where \(S^\times_{k,r}\) is the number of positive units
+\(u\in P_W\) with \(Q(u)=0\). **EXACT — HUMAN PROOF.** The count
+\(S^\times\) is the vanishing locus of \(Q\) on \(P_W^\times\). That
+locus has no compact residue / valuation / \(B_t\) classifier
+independent of the parameters (§6). **EXACT — HUMAN PROOF** as a
+citation of the Milestone 27 Outcome C.
+
+### Valuation strata
+
+Write \(u=3^sw\) with \(3\nmid w\).
+
+- Low \(3s<t\): \(Q\) is a genuine mismatched cubic. Units in this
+  range contribute to \(U_{k,r}\).
+- Threshold \(3s=t\): \(Q\) is a cube residue \(w^3\bmod 3^k\).
+- High \(3s>t\): \(Q=0\). **EXACT — LEAN VERIFIED** (`q_high_zero`).
+
+When \(2s\ge W\), the square coordinate collapses: \(A(u)=0\). Distinct
+high-valuation prefixes may then share \(A=0\) with distinct or
+identical \(Q\). These zero-\(A\) merges are an exact correction to
+\(\lvert P_W\rvert\), not a new invariant. **COMPUTATIONALLY VERIFIED**
+through \(k=12\).
+
+Non-units can also share a nonzero square without being a sign pair
+(twins). At the deepest layer \(k=8\) the pairs
+\(\{720,738\}\) and \(\{-738,-720\}\) are distinct twin fibres
+(\(A=81\), distinct \(Q\)). At \((k,r)=(12,1)\) the same pattern
+reappears. **COMPUTATIONALLY VERIFIED.** No compact arithmetic law
+enumerating all twins was found; they sit on the same vanishing /
+near-square locus as the unit \(Q\)-zeros.
+
+Therefore
+
+\[
+\lvert\operatorname{Im} H_{k,r}\rvert
+=
+3^W-S_{k,r}-\text{(zero-\(A\) merges)}-\text{(twin surplus)},
+\]
+
+where every correction term is a \(Q\)-vanishing or square-collision
+count on \(P_W\). This is an exact bookkeeping identity, not a closed
+formula. **EXACT — HUMAN PROOF.**
+
+### Cross-depth families
+
+Collisions across depths require \(m\in D_k=\{m:2m+1\ge k\}\).
+**EXACT — LEAN VERIFIED** (`n3_dvd_iff`). The observed nonzero
+families, after the zero spine, are:
+
+| family | typical witness | status |
+|--------|-----------------|--------|
+| shared-sign | \(\{\pm 3\}\) at \(k=6\); \(\{\pm 9\},\{\pm 18\}\) at \(k=12\) | **COMPUTATIONALLY VERIFIED** |
+| valuation translate | \(117\leftrightarrow 1089\) | **COMPUTATIONALLY VERIFIED** |
+| one-to-coset | depth \(10\) vs \(11\) at \(k=10\) | **COMPUTATIONALLY VERIFIED** |
+| high-valuation cubes | \(3\)-to-\(27\) fibres at \(k=12\), depths \(8,11\) | **COMPUTATIONALLY VERIFIED** |
+| twin translates | \(\{\pm 19656,\pm 19710\}\) vs \(\{\pm 59022,\pm 59076\}\) at \(k=12\) | **COMPUTATIONALLY VERIFIED** |
+
+**REFUTED**: every nonzero overlap is the zero spine or a shared sign
+pair. **REFUTED** as a closed taxonomy: the heuristic buckets
+`shared-sign` / `translate` / `one-to-coset` do not exhaust the
+\(k=12\) sample (the remainder is high-valuation cubes and twin
+translates). No theorem was obtained that every future overlap lies
+in a finite list of closed arithmetic families independent of \(k\).
+
+Triple (or longer) intersections occur. The zero spine is one such
+class. Nonzero triples through \(k=12\) are shared-sign prefixes
+\(\{\pm 9\}\) and \(\{\pm 18\}\). **COMPUTATIONALLY VERIFIED.**
+Inclusion-exclusion over all deep layers is therefore unnecessary
+once the spine is removed, but the remaining pairwise families still
+have no closed count.
+
+### Complexity
+
+The exact algorithm hashes \(F_k(m,\cdot)\) on
+\(m\ge\lfloor k/2\rfloor\). The deepest layer is \(P_{k-1}\), so the
+cost is \(\Theta(3^{k-1})\) residual evaluations. Unexhausted same-depth
+counts are closed form, and exhausted cores hash \(P_W\) rather than
+\(P_m\), but the leading term remains the deepest layer. This is still
+exponential in \(k\), of the same order as enumerating the residual
+tree. It is not polynomial and not subexponential.
+**EXACT — HUMAN PROOF.**
+
+### Decision
+
+**Outcome C.** After the exact Newton-hierarchy reductions, the
+remaining objects are image cardinalities of cubic maps on balanced
+intervals of width \(\Theta(k)\). Counting them is equivalent to
+enumerating the vanishing locus of the mismatched quotient \(Q\) on
+\(P_W\), together with a short list of classified but non-closed-form
+cross-depth families. Milestone 27 proved that this locus has no
+compact residue classifier. Therefore there is no substantially
+simpler exact counting representation within the natural \(3\)-adic
+arithmetic of \((N_1,Q)\) than hashing those domains.
+
+The strongest exact theorem remains
+
+\[
+M_k(x^3)
+=
+\frac{3^{\lfloor k/2\rfloor}-1}{2}
++
+\Bigl\lvert
+\bigcup_{m\ge\lfloor k/2\rfloor}
+\operatorname{Im} F_k(m,\cdot)
+\Bigr\rvert.
+\]
+
+**EXACT — HUMAN PROOF**, with the union evaluated by hashing through
+\(k=14\) (**COMPUTATIONALLY VERIFIED**; \(M_{14}=2390443\)).
+
+The dedicated \(x^3\) counting line is closed. The Newton-stratum
+structure (visibility, valuation injectivity, two-regime \(N_0\),
+mismatched \(Q\), joint-image reduction) is the paper-worthy record.
+The sequence \(M_k\) is a computational appendix, not a closed-form
+theorem. Do not start another \(x^3\) counting milestone.

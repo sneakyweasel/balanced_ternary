@@ -229,4 +229,124 @@ theorem x3_crossDepth_n3 {k m n : Nat} (hmn : m ≤ n) :
       k ≤ 2 * m + 1 ∨ m = n :=
   n3_dvd_iff hmn
 
+theorem square_exp_eq_width {k r : Nat} :
+    k - 2 * r - 1 = k - 1 - 2 * r := by
+  omega
+
+lemma not_three_dvd_two_mul {a : Int} (ha : ¬ (3 : Int) ∣ a) :
+    ¬ (3 : Int) ∣ (2 : Int) * a := by
+  intro h
+  rcases Int.prime_three.dvd_or_dvd h with h2 | ha'
+  · exact (by decide : ¬ (3 : Int) ∣ 2) h2
+  · exact ha ha'
+
+theorem n1_core_square_iff {k r : Nat} (h2 : 2 * r + 2 ≤ k) (u v : Int) :
+    (3 : Int) ^ k ∣ n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+        n1Resid (k - 1 - r) ((3 : Int) ^ r * v) ↔
+      (3 : Int) ^ (k - 2 * r - 1) ∣ u ^ 2 - v ^ 2 := by
+  have hr : r + 1 ≤ k := by omega
+  have hu := n1_on_core_mod hr h2 u
+  have hv := n1_on_core_mod hr h2 v
+  have hshape : (3 : Int) ^ k =
+      (3 : Int) ^ (2 * r + 1) * (3 : Int) ^ (k - 2 * r - 1) := by
+    have : 2 * r + 1 ≤ k := by omega
+    exact pow3_split this
+  have hnu : (3 : Int) ^ (2 * r + 1) ≠ 0 := pow_ne_zero _ (by decide)
+  constructor
+  · intro h
+    have hdiff :
+        n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+            n1Resid (k - 1 - r) ((3 : Int) ^ r * v) -
+          (3 : Int) ^ (2 * r + 1) * (u ^ 2 - v ^ 2) =
+          (n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+            (3 : Int) ^ (2 * r + 1) * u ^ 2) -
+          (n1Resid (k - 1 - r) ((3 : Int) ^ r * v) -
+            (3 : Int) ^ (2 * r + 1) * v ^ 2) := by
+      ring
+    have hA := hu.sub hv
+    have : (3 : Int) ^ k ∣ (3 : Int) ^ (2 * r + 1) * (u ^ 2 - v ^ 2) := by
+      have hleft : (3 : Int) ^ k ∣
+          n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+            n1Resid (k - 1 - r) ((3 : Int) ^ r * v) := h
+      have : (3 : Int) ^ k ∣
+          (n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+            n1Resid (k - 1 - r) ((3 : Int) ^ r * v)) -
+          (n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+            n1Resid (k - 1 - r) ((3 : Int) ^ r * v) -
+            (3 : Int) ^ (2 * r + 1) * (u ^ 2 - v ^ 2)) :=
+        hleft.sub (by simpa [hdiff] using hA)
+      convert this using 1
+      ring
+    rw [hshape] at this
+    exact (mul_dvd_mul_iff_left hnu).mp (by simpa [mul_comm] using this)
+  · intro h
+    have hpow : (3 : Int) ^ k ∣ (3 : Int) ^ (2 * r + 1) * (u ^ 2 - v ^ 2) := by
+      rw [hshape]
+      exact mul_dvd_mul_left _ h
+    have hA := hu.sub hv
+    have hdiff :
+        n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+            n1Resid (k - 1 - r) ((3 : Int) ^ r * v) =
+          (n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+            (3 : Int) ^ (2 * r + 1) * u ^ 2) -
+          (n1Resid (k - 1 - r) ((3 : Int) ^ r * v) -
+            (3 : Int) ^ (2 * r + 1) * v ^ 2) +
+          (3 : Int) ^ (2 * r + 1) * (u ^ 2 - v ^ 2) := by
+      ring
+    rw [hdiff]
+    exact hA.add hpow
+
+theorem unit_square_pm {W : Nat} {u v : Int}
+    (hu : balWidth W u) (hv : balWidth W v)
+    (hnu : ¬ (3 : Int) ∣ u) (_hnv : ¬ (3 : Int) ∣ v)
+    (h : (3 : Int) ^ W ∣ u ^ 2 - v ^ 2) :
+    u = v ∨ u = -v := by
+  have hfac : (3 : Int) ^ W ∣ (u - v) * (u + v) := by
+    simpa [sq_factor] using h
+  have hW : 1 ≤ W := by
+    by_contra h0
+    have : W = 0 := by omega
+    have hu0 : u = 0 := by
+      have : balWidth 0 u := by simpa [this] using hu
+      unfold balWidth at this
+      have : |u| ≤ 0 := by linarith
+      exact abs_eq_zero.mp (le_antisymm this (abs_nonneg _))
+    exact hnu (by simp [hu0])
+  have h3prod : (3 : Int) ∣ (u - v) * (u + v) :=
+    dvd_trans (dvd_pow_self (3 : Int) (by omega)) hfac
+  by_cases hminus : (3 : Int) ∣ u - v
+  · have hplus : ¬ (3 : Int) ∣ u + v := by
+      intro hp
+      have hsum : (3 : Int) ∣ (u - v) + (u + v) := hminus.add hp
+      have h2u : (u - v) + (u + v) = (2 : Int) * u := by ring
+      rw [h2u] at hsum
+      exact not_three_dvd_two_mul hnu hsum
+    have : (3 : Int) ^ W ∣ u - v := (three_pow_dvd_mul_iff W hplus).mp hfac
+    exact Or.inl (balWidth_dvd_sub hu hv this)
+  · have hplus : (3 : Int) ∣ u + v := by
+      rcases Int.prime_three.dvd_or_dvd h3prod with hL | hR
+      · exact (hminus hL).elim
+      · exact hR
+    have hL : ¬ (3 : Int) ∣ u - v := hminus
+    have hswap : (3 : Int) ^ W ∣ (u + v) * (u - v) := by
+      simpa [mul_comm] using hfac
+    have : (3 : Int) ^ W ∣ u + v := (three_pow_dvd_mul_iff W hL).mp hswap
+    exact Or.inr (balWidth_dvd_add hu hv this)
+
+theorem n0_eq_of_neg {k m : Nat} {u : Int} :
+    (3 : Int) ^ k ∣ n0Resid m u - n0Resid m (-u) ↔
+      (3 : Int) ^ k ∣ n0Resid m u := by
+  have h2 : ¬ (3 : Int) ∣ (2 : Int) := by decide
+  have hshape : n0Resid m u - n0Resid m (-u) = (2 : Int) * n0Resid m u := by
+    rw [n0Resid_neg]; ring
+  constructor
+  · intro h
+    have : (3 : Int) ^ k ∣ n0Resid m u * (2 : Int) := by
+      simpa [hshape, mul_comm] using h
+    exact (three_pow_dvd_mul_iff k h2).mp this
+  · intro h
+    have : (3 : Int) ^ k ∣ n0Resid m u * (2 : Int) :=
+      (three_pow_dvd_mul_iff k h2).mpr h
+    simpa [hshape, mul_comm] using this
+
 end BTCalculus

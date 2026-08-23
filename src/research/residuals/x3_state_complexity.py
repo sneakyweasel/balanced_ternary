@@ -98,6 +98,80 @@ def g_poly(t: int, a: int, b: int) -> int:
     return q_split_high(t, a, b)
 
 
+def square_modulus_exp(k: int, r: int) -> int:
+    """Observable square exponent ``k-2r-1``, equal to the core width ``W``."""
+    return k - 2 * r - 1
+
+
+def A_coord(u: int, k: int, r: int) -> int:
+    """Reduced quadratic coordinate ``u^2 mod 3^{k-2r-1}``."""
+    exp = square_modulus_exp(k, r)
+    if exp <= 0:
+        return 0
+    return (u * u) % (3**exp)
+
+
+def H_coord(u: int, k: int, r: int) -> tuple[int, int]:
+    """Joint core observable ``(A_{k,r}(u), Q(u))``."""
+    return (A_coord(u, k, r), core_n0(u, k, r))
+
+
+def H_image(k: int, r: int) -> dict[tuple[int, int], list[int]]:
+    """Fibre map of the joint core image ``H_{k,r}``."""
+    buckets: dict[tuple[int, int], list[int]] = defaultdict(list)
+    for u in core_u_range(k, r):
+        buckets[H_coord(u, k, r)].append(u)
+    return buckets
+
+
+def joint_image_size(k: int, r: int) -> int:
+    """``|Im H_{k,r}|``. Distinct from the ``Q``-image and from the ``N1``-image."""
+    return len(H_image(k, r))
+
+
+def _fibre_kind(us: list[int], k: int, r: int) -> str:
+    xs = sorted(us)
+    if len(xs) == 1:
+        return "singleton"
+    if len(xs) == 2 and xs[0] == -xs[1]:
+        return "sign"
+    if A_coord(xs[0], k, r) == 0:
+        return "zero-A"
+    return "twin"
+
+
+def sign_q_zero_count(k: int, r: int) -> int:
+    """Positive ``u`` with ``H(u)=H(-u)`` and ``A(u) ≠ 0`` (sign surplus ``S``)."""
+    n = 0
+    for u in core_u_range(k, r):
+        if u <= 0:
+            continue
+        if A_coord(u, k, r) == 0:
+            continue
+        if in_core_domain(-u, k, r) and H_coord(u, k, r) == H_coord(-u, k, r):
+            n += 1
+    return n
+
+
+def unit_joint_count(k: int, r: int) -> int:
+    """``|H(P_W^×)|``: units collide only as sign pairs with vanishing ``Q``."""
+    return len({H_coord(u, k, r) for u in core_u_range(k, r) if u % 3 != 0})
+
+
+def valuation_H_images(k: int, r: int) -> dict[int | None, int]:
+    """Joint-image size by ``v_3(u)`` (``None`` is ``u = 0``)."""
+    buckets: dict[int | None, set[tuple[int, int]]] = defaultdict(set)
+    for u in core_u_range(k, r):
+        key = None if u == 0 else v3(u)
+        buckets[key].add(H_coord(u, k, r))
+    return {
+        key: len(vals)
+        for key, vals in sorted(
+            buckets.items(), key=lambda kv: (-1 if kv[0] is None else kv[0])
+        )
+    }
+
+
 def core_image(k: int, r: int) -> set[tuple[int, int, int, int]]:
     """Observable Newton classes on the ``3^r``-divisible core."""
     return {core_phi(u, k, r) for u in core_u_range(k, r)}
@@ -271,6 +345,93 @@ def cross_depth_overlap(k: int) -> int:
     return same_depth_total(k) - M_k_count(k)
 
 
+def _overlap_kind(ps: list[int], qs: list[int], phi, zero) -> str:
+    if zero is not None and phi == zero:
+        return "zero-spine"
+    shared = set(ps) & set(qs)
+    if shared and 0 not in shared:
+        if all(x == -y or x == y for x in shared for y in shared):
+            return "shared-sign"
+        return "shared-p"
+    if len(ps) == 1 and len(qs) == 1:
+        return "translate"
+    if len(ps) == 1 or len(qs) == 1:
+        return "one-to-coset"
+    return "other"
+
+
+def overlaps_report(k: int) -> dict[str, object]:
+    """Cross-depth overlap families on the deep block ``2m+1 ≥ k``."""
+    k = _require_nat(k, "k")
+    start = deep_start(k)
+    images = [layer_phis(k, m) if m >= start else set() for m in range(k)]
+    members: list[dict[tuple, list[int]]] = []
+    for m in range(k):
+        buckets: dict[tuple, list[int]] = defaultdict(list)
+        if m >= start:
+            for p in prefixes_at(m):
+                buckets[F_k(m, p, k)].append(p)
+        members.append(buckets)
+    zero = F_k(max(start, 0), 0, k) if k else (0, 0, 0, 0)
+    pair_kinds: dict[str, int] = defaultdict(int)
+    pair_rows: list[tuple] = []
+    deep_phi_depths: dict[tuple, list[int]] = defaultdict(list)
+    for m in range(start, k):
+        for phi in images[m]:
+            deep_phi_depths[phi].append(m)
+    for m in range(start, k):
+        for n in range(m + 1, k):
+            inter = images[m] & images[n]
+            for phi in inter:
+                kind = _overlap_kind(members[m][phi], members[n][phi], phi, zero)
+                pair_kinds[kind] += 1
+                pair_rows.append((m, n, kind, len(members[m][phi]), len(members[n][phi])))
+    triples = sum(1 for depths in deep_phi_depths.values() if len(depths) >= 3)
+    spine = zero_spine_depths(k)
+    return {
+        "k": k,
+        "zero_spine": spine,
+        "zero_spine_overcount": max(len(spine) - 1, 0),
+        "nonzero_families": {key: n for key, n in sorted(pair_kinds.items()) if key != "zero-spine"},
+        "pair_counts": dict(sorted(pair_kinds.items())),
+        "triple_or_more_classes": triples,
+        "total_overcount": same_depth_total(k) - M_k_count(k),
+        "pairs": pair_rows[:24],
+    }
+
+
+def image_count_report(k: int, r: int) -> dict[str, object]:
+    """Joint-image breakdown of ``C_{k,k-1-r}``."""
+    rec = layer_count_report(k, r)
+    if r > layer_depth(k, r):
+        rec.update(
+            {
+                "joint_image": 0,
+                "n1_image": 0,
+                "unit_joint": 0,
+                "sign_surplus": 0,
+                "valuation_H": {},
+                "fibre_kinds": {},
+            }
+        )
+        return rec
+    image = H_image(k, r)
+    kinds: dict[str, int] = defaultdict(int)
+    for us in image.values():
+        kinds[_fibre_kind(us, k, r)] += 1
+    rec.update(
+        {
+            "joint_image": len(image),
+            "n1_image": len({A_coord(u, k, r) for u in core_u_range(k, r)}),
+            "unit_joint": unit_joint_count(k, r),
+            "sign_surplus": sign_q_zero_count(k, r),
+            "valuation_H": valuation_H_images(k, r),
+            "fibre_kinds": dict(kinds),
+        }
+    )
+    return rec
+
+
 def layer_count_report(k: int, r: int) -> dict[str, object]:
     """CLI payload for ``x3-layer-count``."""
     k = _require_nat(k, "k")
@@ -322,18 +483,23 @@ def states_report(k: int) -> dict[str, object]:
     Cs = [row["C"] for row in layers]
     sum_C = sum(Cs)
     M = M_k_count(k)
-    q_contrib = [row["q_image"] for row in layers]
+    start = deep_start(k)
+    shallow = sum(Cs[:start])
+    deep = sum(Cs[start:])
     return {
         "k": k,
         "R": R,
+        "shallow_states": shallow,
+        "deep_same_depth": deep,
         "same_depth_totals": Cs,
         "sum_C": sum_C,
-        "q_image_contributions": q_contrib,
+        "q_image_contributions": [row["q_image"] for row in layers],
         "cross_depth_overlap": sum_C - M,
         "zero_spine": zero_spine_depths(k),
         "zero_spine_overcount": zero_spine_overcount(k),
         "cross_depth_pairs": cross_depth_pairs(k),
         "M": M,
+        "R_minus_M": R - M,
         "compression": (R - M),
         "ratio": (M / R) if R else None,
         "source": "shallow-sum + deep-image union",

@@ -78,3 +78,29 @@ def newton_stratum_q_unit_family(t: int, K: int, a: int, b: int, c: int) -> bool
     from research.residuals.x3_state_complexity import unit_g_injective_mod
 
     return unit_g_injective_mod(t, K, a, b, c)
+
+
+def newton_stratum_unit_square(W: int, u: int, v: int) -> bool:
+    """``newtonStratum_unit_square``: units with the same square mod ``3^W`` are ``±``."""
+    if u % 3 == 0 or v % 3 == 0:
+        return False
+    return (u * u - v * v) % (3**W if W else 1) == 0 and (u == v or u == -v)
+
+
+def newton_stratum_n1_square(k: int, r: int, u: int, v: int) -> bool:
+    """``newtonStratum_n1_square``: core ``N1`` agreement is square agreement."""
+    from research.residuals.x3_state_complexity import A_coord, core_n1
+
+    return (core_n1(u, k, r) == core_n1(v, k, r)) == (
+        A_coord(u, k, r) == A_coord(v, k, r)
+    )
+
+
+def newton_stratum_n0_neg(k: int, m: int, u: int) -> bool:
+    """``newtonStratum_n0_neg``: ``N0(u)=N0(-u)`` iff ``N0(u)=0``."""
+    from bt.calculus.quadratic import iter_dz
+
+    mod = 3**k if k else 1
+    n0 = iter_dz(u**3, m) % mod
+    n0n = iter_dz((-u) ** 3, m) % mod
+    return (n0 == n0n) == (n0 == 0)

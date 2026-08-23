@@ -69,8 +69,8 @@ Branch-selecting chain rule. **REFUTED:** ordinary
 
 ## Degree
 
-**EXACT — HUMAN PROOF** / **VERIFIED COMPUTATIONALLY**. For
-`deg f = d ≥ 1`,
+**EXACT — LEAN VERIFIED** (`sectionDeriv_natDegree`,
+`sectionDeriv_leadingCoeff`). For `deg f = d ≥ 1`,
 
 ```text
 deg(𝔇_a f) = d

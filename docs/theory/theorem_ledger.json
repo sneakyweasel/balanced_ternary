@@ -397,10 +397,10 @@
   },
   {
     "id": "BTJ-degree",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "deg sectionDeriv f = deg f for d>=1; LC = 3^{d-1} LC(f)",
     "source": "docs/theory/polynomial_jet_calculus.md",
-    "lean": "",
+    "lean": "BTCalculus/Polynomial.lean",
     "tests": [
       "tests/unit/test_section.py"
     ],
@@ -1279,6 +1279,61 @@
     "id": "BTA-x3-M-overlap",
     "tag": "COMPUTATIONALLY VERIFIED",
     "statement": "zero spine is not the only cross-depth overlap; M_k table through k=14",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-H-A",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "on the core, N1 agrees iff u^2 agrees modulo 3^{k-2r-1}, and that exponent equals the core width W",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-H-unit",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "units in P_W with the same square modulo 3^W are a sign pair",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-H-n0neg",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "N0(u) agrees with N0(-u) modulo 3^k iff N0(u) vanishes modulo 3^k",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-H-joint",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "the joint image |Im H| is not determined by the Q-image or the N1-image; at (k,r)=(6,1) the sizes are 26, 23, and 11",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-M-obstruct",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "Outcome C: after the Newton-stratum reductions, exact M_k(x^3) still requires hashing Q-vanishing / deep images on width-Theta(k) intervals; no substantially simpler closed arithmetic count exists in this framework",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
     "tests": [

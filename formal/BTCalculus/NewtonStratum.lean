@@ -84,4 +84,22 @@ theorem newtonStratum_zero_spine_n1 {k m : Nat} (h : k ≤ 2 * m) :
     (3 : Int) ^ k ∣ n1Resid m 0 :=
   zero_spine_n1 h
 
+theorem newtonStratum_n1_square {k r : Nat} (h2 : 2 * r + 2 ≤ k) (u v : Int) :
+    (3 : Int) ^ k ∣ n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+        n1Resid (k - 1 - r) ((3 : Int) ^ r * v) ↔
+      (3 : Int) ^ (k - 2 * r - 1) ∣ u ^ 2 - v ^ 2 :=
+  n1_core_square_iff h2 u v
+
+theorem newtonStratum_unit_square {W : Nat} {u v : Int}
+    (hu : balWidth W u) (hv : balWidth W v)
+    (hnu : ¬ (3 : Int) ∣ u) (hnv : ¬ (3 : Int) ∣ v)
+    (h : (3 : Int) ^ W ∣ u ^ 2 - v ^ 2) :
+    u = v ∨ u = -v :=
+  unit_square_pm hu hv hnu hnv h
+
+theorem newtonStratum_n0_neg {k m : Nat} {u : Int} :
+    (3 : Int) ^ k ∣ n0Resid m u - n0Resid m (-u) ↔
+      (3 : Int) ^ k ∣ n0Resid m u :=
+  n0_eq_of_neg
+
 end BTCalculus

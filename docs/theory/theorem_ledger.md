@@ -54,7 +54,7 @@ This ledger does not rewrite history.
 | BTJ-product | EXACT — LEAN VERIFIED | twisted Leibniz for sectionDeriv of a product | docs/theory/polynomial_jet_calculus.md | BTCalculus/Composition | test_section |
 | BTJ-comp | EXACT — LEAN VERIFIED | sectionDeriv_a(f.comp g)=sectionDeriv_{rho_a g} f compose sectionDeriv_a g | docs/theory/polynomial_jet_calculus.md | BTCalculus/Composition | test_section |
 | BTJ-jet | EXACT — LEAN VERIFIED | finite-depth function-jet reconstruction along integer digits | docs/theory/balanced_ternary_jets.md | BTCalculus/Jet | test_jets |
-| BTJ-degree | EXACT — HUMAN PROOF | deg sectionDeriv f = deg f for d>=1; LC = 3^{d-1} LC(f) | docs/theory/polynomial_jet_calculus.md |  | test_section |
+| BTJ-degree | EXACT — LEAN VERIFIED | deg sectionDeriv f = deg f for d>=1; LC = 3^{d-1} LC(f) | docs/theory/polynomial_jet_calculus.md | BTCalculus/Polynomial | test_section |
 | BTA-equiv | EXACT — LEAN VERIFIED | finite-horizon equiv_k is an equivalence; recursive iff output words | docs/theory/residual_state_complexity.md | BTCalculus/Residual | test_myhill_nerode |
 | BTA-x2-raw | EXACT — LEAN VERIFIED | R_k(x^2)=(3^k-1)/2 | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic | test_myhill_nerode |
 | BTA-x2-mn | EXACT — LEAN VERIFIED | M_k(x^2)=R_k(x^2)=(3^k-1)/2 for all k>=1 | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic | test_myhill_nerode |
@@ -135,3 +135,8 @@ This ledger does not rewrite history.
 | BTA-x3-Q-unit-im | EXACT — LEAN VERIFIED | for 3 not dividing a and t>=1, G_a(b)=G_a(c) iff 3^{K-1} divides b-c | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
 | BTA-x3-M-spine | EXACT — LEAN VERIFIED | p=0 at depths 2m>=k is a single Newton class (the zero spine) | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
 | BTA-x3-M-overlap | COMPUTATIONALLY VERIFIED | zero spine is not the only cross-depth overlap; M_k table through k=14 | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-H-A | EXACT — LEAN VERIFIED | on the core, N1 agrees iff u^2 agrees modulo 3^{k-2r-1}, and that exponent equals the core width W | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-H-unit | EXACT — LEAN VERIFIED | units in P_W with the same square modulo 3^W are a sign pair | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-H-n0neg | EXACT — LEAN VERIFIED | N0(u) agrees with N0(-u) modulo 3^k iff N0(u) vanishes modulo 3^k | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-H-joint | COMPUTATIONALLY VERIFIED | the joint image \|Im H\| is not determined by the Q-image or the N1-image; at (k,r)=(6,1) the sizes are 26, 23, and 11 | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-M-obstruct | EXACT — HUMAN PROOF | Outcome C: after the Newton-stratum reductions, exact M_k(x^3) still requires hashing Q-vanishing / deep images on width-Theta(k) intervals; no substantially simpler closed arithmetic count exists in this framework | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |

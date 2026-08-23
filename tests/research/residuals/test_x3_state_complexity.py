@@ -11,15 +11,21 @@ from research.residuals.cubic_fibres import C_km, balanced_bound
 from research.residuals.cubic_deepest import deepest_class_count
 from research.residuals.cubic_layer import inter_class_count
 from research.residuals.x3_state_complexity import (
+    A_coord,
     C_km_count,
     C_layer,
     C_unexhausted_formula,
+    core_u_range,
     easy_count,
     g_poly,
+    image_count_report,
     in_core_domain,
+    joint_image_size,
     layer_count_report,
     M_k_count,
+    overlaps_report,
     same_depth_total,
+    square_modulus_exp,
     states_report,
     unit_g_injective_mod,
     unexhausted_zero_size,
@@ -27,7 +33,10 @@ from research.residuals.x3_state_complexity import (
 )
 from research.residuals.stratum import (
     newton_stratum_core_width,
+    newton_stratum_n0_neg,
+    newton_stratum_n1_square,
     newton_stratum_q_unit_family,
+    newton_stratum_unit_square,
 )
 
 
@@ -164,3 +173,56 @@ def test_cli_x3_commands():
     assert "class_id" in still
     cubic = _run("cubic-layer", "--k", "5", "--depth-deficit", "1")
     assert "C(k,k-2)" in cubic
+    assert "shallow states" in out
+    assert "R_k - M_k" in out
+    ov = _run("x3-overlaps", "--k", "6")
+    assert "zero spine" in ov
+    assert "nonzero overlap families" in ov
+    assert "total overcount = 3" in ov
+    img = _run("x3-image-count", "--k", "6", "--deficit", "1")
+    assert "N1/Q joint image = 26" in img
+    assert "easy contribution = 54" in img
+    assert "C(k,m) = 80" in img
+
+
+def test_reduced_square_is_width():
+    for k, r in ((6, 1), (8, 0), (9, 2), (10, 1)):
+        assert square_modulus_exp(k, r) == k - 1 - 2 * r
+
+
+def test_unit_square_is_plus_minus():
+    k, r = 8, 1
+    W = square_modulus_exp(k, r)
+    units = [u for u in core_u_range(k, r) if u % 3 != 0]
+    for u in units:
+        for v in units:
+            if A_coord(u, k, r) == A_coord(v, k, r):
+                assert u == v or u == -v
+
+
+def test_joint_image_is_not_q_image():
+    rec = image_count_report(6, 1)
+    assert rec["joint_image"] == 26
+    assert rec["q_image"] == 23
+    assert rec["joint_image"] != rec["q_image"]
+    assert rec["C"] == easy_count(4, 1) + rec["joint_image"]
+    assert joint_image_size(6, 1) == rec["core_image"]
+
+
+def test_overlaps_zero_spine_not_all():
+    rec = overlaps_report(6)
+    assert rec["zero_spine_overcount"] == 2
+    assert rec["total_overcount"] == 3
+    assert rec["nonzero_families"]
+    assert "shared-sign" in rec["nonzero_families"] or "shared-sign" in rec["pair_counts"]
+
+
+def test_n1_square_and_n0_neg_faces():
+    k, r = 8, 1
+    for u in (-5, -1, 1, 4, 9):
+        for v in (-4, 1, 4, 9):
+            assert newton_stratum_n1_square(k, r, u, v)
+        assert newton_stratum_n0_neg(k, 6, u)
+    W = square_modulus_exp(k, r)
+    assert newton_stratum_unit_square(W, 4, -4)
+    assert not newton_stratum_unit_square(W, 4, 5)

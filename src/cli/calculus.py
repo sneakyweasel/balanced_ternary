@@ -283,6 +283,18 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_x3l.add_argument("--k", type=int, required=True)
     p_x3l.add_argument("--deficit", type=int, required=True)
 
+    c.add_parser(
+        "x3-overlaps",
+        help="cross-depth overlap families of x^3 on the deep block",
+    ).add_argument("--k", type=int, required=True)
+
+    p_x3i = c.add_parser(
+        "x3-image-count",
+        help="joint N1/Q image count of the x^3 core at one deficit",
+    )
+    p_x3i.add_argument("--k", type=int, required=True)
+    p_x3i.add_argument("--deficit", type=int, required=True)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -925,6 +937,8 @@ def run_calculus(args: argparse.Namespace) -> int:
         rec = states_report(args.k)
         print(f"k = {rec['k']}")
         print(f"R_k = {rec['R']}")
+        print(f"shallow states = {rec['shallow_states']}")
+        print(f"deep same-depth states = {rec['deep_same_depth']}")
         print(f"same-depth totals = {rec['same_depth_totals']}")
         print(f"sum_C = {rec['sum_C']}")
         print(f"Q-image contributions = {rec['q_image_contributions']}")
@@ -932,8 +946,39 @@ def run_calculus(args: argparse.Namespace) -> int:
         print(f"zero_spine = {rec['zero_spine']}")
         print(f"zero_spine_overcount = {rec['zero_spine_overcount']}")
         print(f"M_k = {rec['M']}")
+        print(f"R_k - M_k = {rec['R_minus_M']}")
         print(f"compression = {rec['compression']}")
         print(f"ratio = {rec['ratio']}")
+        return 0
+    if cmd == "x3-overlaps":
+        from research.residuals.x3_state_complexity import overlaps_report
+
+        rec = overlaps_report(args.k)
+        print(f"k = {rec['k']}")
+        print(f"zero spine = {rec['zero_spine']}")
+        print(f"zero_spine_overcount = {rec['zero_spine_overcount']}")
+        print(f"nonzero overlap families = {rec['nonzero_families']}")
+        print(f"pair counts = {rec['pair_counts']}")
+        print(f"triple counts = {rec['triple_or_more_classes']}")
+        print(f"total overcount = {rec['total_overcount']}")
+        return 0
+    if cmd == "x3-image-count":
+        from research.residuals.x3_state_complexity import image_count_report
+
+        rec = image_count_report(args.k, args.deficit)
+        print(f"k = {rec['k']}")
+        print(f"deficit r = {rec['r']}")
+        print(f"m = {rec['m']}")
+        print(f"easy contribution = {rec['injective']}")
+        print(f"N1/Q joint image = {rec['joint_image']}")
+        print(f"N1 image = {rec['n1_image']}")
+        print(f"Q-image contribution = {rec['q_image']}")
+        print(f"unit joint = {rec['unit_joint']}")
+        print(f"valuation strata = {rec['valuation_H']}")
+        print(f"fibre kinds = {rec['fibre_kinds']}")
+        print(f"sign surplus = {rec['sign_surplus']}")
+        print(f"image overlaps = {rec['overlap']}")
+        print(f"C(k,m) = {rec['C']}")
         return 0
     if cmd == "x3-layer-count":
         from research.residuals.x3_state_complexity import layer_count_report
