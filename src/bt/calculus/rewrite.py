@@ -46,8 +46,11 @@ class WordRewriteRule:
 # two-way commutes are not terminating. The simplifying-only fragment
 # ``WORD_SIMP_RULES`` is terminating and locally confluent. The opt-in
 # fragment ``WORD_WN_RULES`` adds one-way N∘S, N∘W, and N∘K3; it is
-# also terminating and locally confluent. Default production rules are
-# not widened: N∘K3 is not installed here.
+# also terminating and locally confluent. The opt-in fragment
+# ``WORD_WND_RULES`` further adds one-way N∘D and the exact I±
+# sign-flips N∘Ip→Im∘N, N∘Im→Ip∘N; it is terminating and locally
+# confluent. Default production rules are not widened: N∘K3 and the
+# I± sign-flips are not installed here.
 WORD_REWRITE_RULES: tuple[WordRewriteRule, ...] = (
     WordRewriteRule(("N", "N"), (), "N∘N = id", reversible=True),
     WordRewriteRule(("D", "S"), (), "D∘S = id"),
@@ -113,11 +116,39 @@ WORD_N_K3_RULE = WordRewriteRule(
 
 
 # Opt-in W+N fragment: SIMP plus one-way N∘S, N∘W, and N∘K3.
-# Does not include N∘D (peak N∘D∘I±) or any reverse commute.
+# Does not include N∘D (peak N∘D∘I± without word I± sign-flips)
+# or any reverse commute. The W+N+D enlargement is WORD_WND_RULES.
 WORD_WN_RULES: tuple[WordRewriteRule, ...] = WORD_SIMP_RULES + (
     _production_rule(("N", "S")),
     _production_rule(("N", "W")),
     WORD_N_K3_RULE,
+)
+
+
+# Exact on ℤ: I_a(x)=a+3x, so N(I+(n))=I-(-n) and N(I-(n))=I+(-n).
+# Tree rules N(I+(x))→I-(N(x)) and N(I-(x))→I+(N(x)). Not production rows.
+WORD_N_IP_RULE = WordRewriteRule(
+    ("N", "Ip"),
+    ("Im", "N"),
+    "N∘Ip = Im∘N",
+    simplifying=False,
+    reversible=True,
+)
+WORD_N_IM_RULE = WordRewriteRule(
+    ("N", "Im"),
+    ("Ip", "N"),
+    "N∘Im = Ip∘N",
+    simplifying=False,
+    reversible=True,
+)
+
+
+# Opt-in W+N+D fragment: WN plus one-way N∘D and the I± sign-flips.
+# Reverse N∘D and reverse sign-flips are length-preserving cycles.
+WORD_WND_RULES: tuple[WordRewriteRule, ...] = WORD_WN_RULES + (
+    _production_rule(("N", "D")),
+    WORD_N_IP_RULE,
+    WORD_N_IM_RULE,
 )
 
 
@@ -136,8 +167,9 @@ def rewrite_word(
     """Left-to-right word rewrite until stable.
 
     The full table is not locally confluent. Pass
-    ``simplifying_only=True`` for ``WORD_SIMP_RULES``, or
-    ``rules=WORD_WN_RULES`` for the opt-in W+N fragment. Default
+    ``simplifying_only=True`` for ``WORD_SIMP_RULES``,
+    ``rules=WORD_WN_RULES`` for the opt-in W+N fragment, or
+    ``rules=WORD_WND_RULES`` for the opt-in W+N+D fragment. Default
     production ``WORD_REWRITE_RULES`` is unchanged.
     """
     if rules is not None:
