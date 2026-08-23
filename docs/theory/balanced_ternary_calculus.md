@@ -59,6 +59,7 @@ analysis”.
 - Quadratic MN count (Milestone 17): [quadratic_residual_complexity.md](quadratic_residual_complexity.md). `M_k(x^2)=(3^k−1)/2`.
 - Cubic Newton image (Milestone 19): [cubic_residual_image.md](cubic_residual_image.md). `M_k(x^3)=|Im F_k|`.
 - Cubic fibres (Milestone 20): [cubic_residual_fibres.md](cubic_residual_fibres.md). Same-depth `(N2,N1,N0)`; no closed `M_k`.
+- Cubic deepest layer (Milestone 21): [cubic_deepest_layer.md](cubic_deepest_layer.md). `N1≡3p^2`; stratified `C_{k,k-1}`.
 
 ## Finite-state locality (reused, not re-proved)
 

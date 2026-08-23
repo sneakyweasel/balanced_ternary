@@ -610,5 +610,50 @@
     "lean": "",
     "tests": ["tests/unit/test_cubic_fibres.py"],
     "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-deep-N",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "deepest layer: N3=N2=0, N1≡3p^2 (k≥2)",
+    "source": "docs/theory/cubic_deepest_layer.md",
+    "lean": "BTCalculus/CubicDeepestLayer.lean",
+    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-deep-crit",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "deepest fibres iff p^2≡q^2 (mod 3^{k-1}) and N0 agrees",
+    "source": "docs/theory/cubic_deepest_layer.md",
+    "lean": "BTCalculus/CubicDeepestLayer.lean",
+    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-deep-zero",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "deepest 0-fibre is 3^{ceil((2k-1)/3)}|p",
+    "source": "docs/theory/cubic_deepest_layer.md",
+    "lean": "BTCalculus/CubicDeepestLayer.lean",
+    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-deep-coset",
+    "tag": "REFUTED",
+    "statement": "every deepest fibre is a full 3-adic coset",
+    "source": "docs/theory/cubic_deepest_layer.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Ckk-1",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "C_{k,k-1}=1+Σ_s I_{k,s} with closed high-stratum J(k,s)",
+    "source": "docs/theory/cubic_deepest_layer.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "related_conjectures": []
   }
 ]

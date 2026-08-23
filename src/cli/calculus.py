@@ -165,6 +165,19 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_cfo.add_argument("p", type=int)
     p_cfo.add_argument("--k", type=int, required=True)
 
+    p_cd = c.add_parser(
+        "cubic-deepest",
+        help="deepest-layer fibre profile of x^3 at horizon k",
+    )
+    p_cd.add_argument("--k", type=int, required=True)
+
+    p_cdf = c.add_parser(
+        "cubic-deepest-fibre",
+        help="deepest-layer fibre of one prefix p at horizon k",
+    )
+    p_cdf.add_argument("p", type=int)
+    p_cdf.add_argument("--k", type=int, required=True)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -530,5 +543,31 @@ def run_calculus(args: argparse.Namespace) -> int:
         print(f"fibre_size = {len(members)}")
         for m, p in members:
             print(f"  ({m}, {p})")
+        return 0
+    if cmd == "cubic-deepest":
+        from bt.calculus.cubic_deepest import deepest_report
+
+        rec = deepest_report(args.k)
+        print(f"k = {rec['k']}")
+        print(f"raw prefixes = {rec['raw']}")
+        print(f"C(k,k-1) = {rec['C']}")
+        print(f"n_fibres = {rec['n_fibres']}")
+        print(f"histogram = {rec['histogram']}")
+        print(f"zero_fibre_size = {rec['zero_fibre_size']}")
+        print(f"largest_fibre = {rec['largest_fibre']}")
+        print(f"unit_sign_surplus = {rec['unit_sign_surplus']}")
+        print("representatives")
+        for fib in rec["examples"]:
+            print(f"  {fib}")
+        return 0
+    if cmd == "cubic-deepest-fibre":
+        from bt.calculus.cubic_deepest import deepest_fibre_of, deepest_phi
+
+        members = deepest_fibre_of(args.p, args.k)
+        print(f"p = {args.p}  k = {args.k}")
+        print(f"phi = {deepest_phi(args.p, args.k)}")
+        print(f"fibre_size = {len(members)}")
+        for q in members:
+            print(f"  {q}")
         return 0
     raise ValueError(f"unknown calculus command {cmd}")

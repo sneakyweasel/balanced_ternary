@@ -89,3 +89,8 @@ This ledger does not rewrite history.
 | BTA-x3-sign | EXACT — LEAN VERIFIED | odd pair: N2 iff N1; N0 iff 3^k\|D^m(p^3) | docs/theory/cubic_residual_fibres.md | BTCalculus/CubicFibres sign_n0 | test_cubic_fibres |
 | BTA-x3-Ckm | EXACT — HUMAN PROOF | C_{k,m}=3^m whenever 2m+1≤k | docs/theory/cubic_residual_fibres.md | sameDepth_n2_injective | test_cubic_fibres |
 | BTA-x3-allsign | REFUTED | every cubic fibre is a sign pair | docs/theory/cubic_residual_fibres.md | | test_cubic_fibres |
+| BTA-x3-deep-N | EXACT — LEAN VERIFIED | deepest layer: N3=N2=0, N1≡3p^2 (k≥2) | docs/theory/cubic_deepest_layer.md | BTCalculus/CubicDeepestLayer deepest_n1_mod | test_cubic_deepest |
+| BTA-x3-deep-crit | EXACT — LEAN VERIFIED | deepest fibres iff p^2≡q^2 (mod 3^{k-1}) and N0 agrees | docs/theory/cubic_deepest_layer.md | BTCalculus/CubicDeepestLayer deepest_equiv_iff | test_cubic_deepest |
+| BTA-x3-deep-zero | EXACT — LEAN VERIFIED | deepest 0-fibre is 3^{ceil((2k-1)/3)}|p | docs/theory/cubic_deepest_layer.md | BTCalculus/CubicDeepestLayer zero_fibre_imp | test_cubic_deepest |
+| BTA-x3-deep-coset | REFUTED | every deepest fibre is a full 3-adic coset | docs/theory/cubic_deepest_layer.md | | test_cubic_deepest |
+| BTA-x3-Ckk-1 | EXACT — HUMAN PROOF | C_{k,k-1}=1+Σ_s I_{k,s} with closed high-stratum J(k,s) | docs/theory/cubic_deepest_layer.md | | test_cubic_deepest |

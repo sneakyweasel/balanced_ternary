@@ -15,7 +15,8 @@ Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **REFUTED**,
 **REPARAMETERIZATION**.
 
-Related: [cubic_residual_image.md](cubic_residual_image.md).
+Related: [cubic_residual_image.md](cubic_residual_image.md),
+[cubic_deepest_layer.md](cubic_deepest_layer.md).
 
 ---
 
@@ -368,16 +369,8 @@ project-specific.
 
 ## 16. Strongest next question
 
-Give a closed formula for \(C_{k,k-1}\) (the deepest layer), by
-counting solutions of
-
-\[
-p^2\equiv q^2\pmod{3^{k-1}},
-\qquad
-D^{k-1}(p^3)\equiv D^{k-1}(q^3)\pmod{3^k}
-\]
-
-inside \(P_{k-1}\). That single count, plus the zero-spine
-correction, is the remaining obstruction to an exact \(M_k\).
+Closed by Milestone 21. See [cubic_deepest_layer.md](cubic_deepest_layer.md).
+The remaining obstruction to a single-term \(C_{k,k-1}\) is the
+family of intermediate surpluses \(S_{k,s}\).
 
 Do not start that work automatically.
