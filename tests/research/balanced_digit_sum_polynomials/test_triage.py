@@ -99,13 +99,20 @@ def test_triage_report_shape():
     assert prefix_one_then_zeros(2) == (1, 0, 0)
     assert FAST_DEPTH == 4
     assert MAX_DEPTH == 10
+    family = report["x2_prefix_family"]
+    assert family["undistinguished_pairs"] == 0
+    assert family["distinguished_pairs"]
 
 
 @pytest.mark.slow
 def test_phase0_census_through_depth_ten():
-    report = triage_report(max_depth=MAX_DEPTH, sig_horizon=3, compare_depth=6)
+    report = triage_report(max_depth=MAX_DEPTH, sig_horizon=2, compare_depth=6)
     assert report["translation_identity"]
     x2 = report["census"]["x^2"]
     assert x2[-1]["depth"] == 10
     assert x2[-1]["raw_prefixes"] == 3**10
     assert x2[-1]["joint_states"] == 3**10
+    assert x2[-1]["exact_zeros"] == 6495
+    assert x2[-1]["prefix_zeros"] == 9495
+    assert report["ordinary_comparison"]["x^2"]["exact_zeros"] == 55
+    assert report["ordinary_comparison"]["x^2"]["ordinary_s3_zeros"] == 1

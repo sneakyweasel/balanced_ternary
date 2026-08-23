@@ -27,6 +27,7 @@ prefixes are balanced-ternary words of length \(m\).
 Canonical mathematics: [cubic_newton_stratum.md](../theory/cubic_newton_stratum.md).
 Sendable extract: [newton_stratum_note.md](../theory/newton_stratum_note.md).
 Literature distinction: [residual_vs_classical.md](../theory/residual_vs_classical.md).
+Quartic gate: `src/research/residuals/x4_stratum.py`.
 
 ## Lean
 
@@ -36,7 +37,9 @@ Literature distinction: [residual_vs_classical.md](../theory/residual_vs_classic
 ## Conjectures / refutations
 
 No new conjecture. Layer-by-layer hypotheses that failed are recorded on
-the theorem ledger (`BTA-x3-*` REFUTED rows).
+the theorem ledger (`BTA-x3-*` REFUTED rows). The \(x^4\) visibility
+hypothesis (some \(N_j\) sees \(p\bmod 3^r\)) is refuted at
+\((k,r)=(4,1)\).
 
 ## Branch budget
 
@@ -58,6 +61,19 @@ The falsifier fired twice: \(Q\) has no bounded residue / valuation /
 \(B_t\) classifier, and the deep-image union still requires hashing
 width-\(\Theta(k)\) intervals (`BTA-x3-M-obstruct`).
 
+## \(x^4\) Phase 0
+
+Range recorded separately from the verdict: same-depth fibres of
+\(F_k\) for \(x^4\) at \(2\le k\le 7\) and \(r\in\{0,1\}\),
+\(m=k-1-r\). Code: `research.residuals.x4_stratum`. Tests pin the
+closed form against `residual_along` and the visibility verdict at
+\(k\le 5\); the \(k\le 7\) scan is marked slow.
+
+Counterexample to residue visibility: at \((k,r)=(4,1)\), every
+\(N_j\) fails \(N_j(p)\equiv N_j(q)\iff p\equiv q\pmod 3\). The
+would-be visible coordinate is \(N_3=6B+36A\) with
+\(B=4p\,3^{2m}\), already \(0\bmod 3^k\).
+
 ## Decision
 
 `CLOSE` for the dedicated counting line, `PROMOTE` for the structural
@@ -68,8 +84,24 @@ reconstruction criterion — are exact and largely Lean-verified. The
 \(M_k\) table is a computational appendix, not a theorem. Do not invent
 further fibre types and do not open another \(x^3\) counting milestone.
 
-Best next question: does the Newton-stratum machinery say anything exact
-about a polynomial family other than \(x^3\)?
+`CLOSE` for the \(x^4\) visibility gate (Phase 0, \(k\le 7\), deficits
+\(r\in\{0,1\}\)). The linear-in-\(p\) monomial of
+\(D^m((p+3^m x)^4)\) is \(4p\,3^{2m}x^3\), valuation \(2m\) on units.
+At \(m=k-1-r\) this is already \(\ge k\) for \(r\le 1\) and \(k\ge 3\),
+so \(N_3\) and \(N_4\) vanish. No \(N_j\) satisfies
+\(N_j(p)\equiv N_j(q)\iff p\equiv q\pmod{3^r}\) once \(|P_m|>3\)
+(\(k\ge 4\) at \(r=1\)). The surviving coordinate is the square filter
+\(N_2\equiv 4p^2 3^{k-1}\pmod{3^k}\), which is the cubic \(N_1\)
+pattern, not residue visibility. The leftover on \(p=3^ru\) is the
+two-regime \(D^{m-4r}(u^4)\) / \(3^{4r-m}u^4\) image — another unmatched
+fourth-power quotient. \(N_1\) visibility at \((k,r)=(3,1)\) is a
+width-\(3\) accident. Not a degree increment of the cubic tower
+(\(N_2\mapsto N_3\), \(3r\mapsto 4r\) would have kept \(N_3\) visible).
+Do not open \(x^5\), a quartic count, or a fibre taxonomy.
+
+Best next question: none on monomial strata. The cubic tower is
+degree-\(3\) specific because only then is the linear residual
+coefficient of valuation \(m\).
 
 ## Publication assessment
 
@@ -77,4 +109,5 @@ Status: `STRUCTURAL`. The stratum theory is paper-worthy; the counting
 line is not, and its obstruction is recorded rather than retried. The
 short extract [newton_stratum_note.md](../theory/newton_stratum_note.md)
 packages the unified theorem and the \(Q\) boundary. It is not a
-`PAPER_CANDIDATE` elevation.
+`PAPER_CANDIDATE` elevation. The \(x^4\) gate adds a named obstruction,
+not a new theorem to elevate.

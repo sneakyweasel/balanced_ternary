@@ -218,6 +218,9 @@ for a general degree.
 - That \(Q\)-equality is a single residue \(u\equiv v\pmod{3^s}\).
 - That stripped \(N_0\) is a standard residual at horizon \(k-2r\).
 - A Newton-stratum template for \(x^4\) or for an arbitrary family.
+  Phase 0 on \(x^4\) is `CLOSE`d: the linear-in-\(p\) coordinate
+  vanishes, and \(N_2\) is only a square filter
+  ([residuals.md](../problems/residuals.md)).
 - A solution of the Collatz conjecture, or that balanced ternary is
   an independent solving coordinate for the accelerated map \(T\).
 

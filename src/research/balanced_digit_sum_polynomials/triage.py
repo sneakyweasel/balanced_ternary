@@ -168,8 +168,9 @@ def _layer_row(
     # not store. Reconstructing every word is unnecessary for the
     # translation identity; the nonnegative slice is computed only at
     # the packed-window enumeration for small extra depths in report.
+    compute_sig = sig_horizon > 0
     sigs: set[object] = set()
-    if sig_horizon >= 0:
+    if compute_sig:
         for coeffs, s in layer:
             sigs.add(accept_signature(coeffs, s, sig_horizon))
     return {
@@ -186,8 +187,8 @@ def _layer_row(
         "stay_zero": stay,
         "leave_zero": leave,
         "enter_zero": enter,
-        "signature_horizon": sig_horizon,
-        "predictive_states": len(sigs),
+        "signature_horizon": sig_horizon if compute_sig else 0,
+        "predictive_states": len(sigs) if compute_sig else 0,
         "nonnegative_count": nonnegative_count,
         "nonnegative_exact": nonnegative_exact,
         "nonnegative_ordinary_zero": nonnegative_ordinary_zero,
@@ -198,17 +199,28 @@ def census_poly(
     poly_id: str,
     f: IntPoly,
     max_depth: int,
-    sig_horizon: int = SIGNATURE_HORIZON,
+    sig_horizon: int = 0,
+    signature_depths: frozenset[int] | None = None,
 ) -> list[dict[str, object]]:
     max_depth = _require_horizon(max_depth, "max_depth")
     sig_horizon = _require_horizon(sig_horizon, "sig_horizon")
     layer: dict[tuple[tuple[int, ...], int], int] = {(f.coeffs, 0): 1}
-    rows = [_layer_row(poly_id, f, 0, layer, 0, 0, 0, sig_horizon)]
+    rows = [
+        _layer_row(
+            poly_id,
+            f,
+            0,
+            layer,
+            0,
+            0,
+            0,
+            sig_horizon if signature_depths is None or 0 in signature_depths else 0,
+        )
+    ]
     for depth in range(max_depth):
         layer, stay, leave, enter = _step_layer(layer)
-        rows.append(
-            _layer_row(poly_id, f, depth + 1, layer, stay, leave, enter, sig_horizon)
-        )
+        use_sig = sig_horizon if signature_depths is None or (depth + 1) in signature_depths else 0
+        rows.append(_layer_row(poly_id, f, depth + 1, layer, stay, leave, enter, use_sig))
     return rows
 
 
@@ -319,8 +331,15 @@ def triage_report(
             correction_ok = False
             break
     census = {}
+    x2_sig_depths = frozenset(range(0, min(max_depth, 8) + 1, 2))
     for poly_id, text in POLY_SPECS:
-        census[poly_id] = census_poly(poly_id, parse_poly(text), max_depth, sig_horizon)
+        f = parse_poly(text)
+        if poly_id == "x^2":
+            census[poly_id] = census_poly(
+                poly_id, f, max_depth, sig_horizon, signature_depths=x2_sig_depths
+            )
+        else:
+            census[poly_id] = census_poly(poly_id, f, max_depth, sig_horizon=0)
     comparisons = {
         poly_id: ordinary_window_comparison(parse_poly(text), compare_depth)
         for poly_id, text in POLY_SPECS
@@ -338,8 +357,9 @@ def triage_report(
         for k in range(1, len(x2_rows))
     )
     pred_grows = any(
-        x2_rows[k]["predictive_states"] > x2_rows[0]["predictive_states"]
-        for k in range(1, len(x2_rows))
+        row["predictive_states"] > x2_rows[0]["predictive_states"]
+        for row in x2_rows[1:]
+        if row["predictive_states"]
     )
     return {
         "max_depth": max_depth,

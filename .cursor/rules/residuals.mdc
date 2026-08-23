@@ -26,3 +26,6 @@ from bt.calculus.cubic import F_k
 
 Canonical math: `docs/theory/cubic_newton_stratum.md`. Short extract:
 `docs/theory/newton_stratum_note.md`. Ledger id `BTA-x3-stratum`.
+
+The `x^4` visibility gate is `CLOSE`d in `x4_stratum.py`. Do not open
+`x^5`, a quartic count, or a fibre taxonomy.
