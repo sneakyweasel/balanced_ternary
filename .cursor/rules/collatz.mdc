@@ -1,0 +1,17 @@
+---
+description: Collatz is one application — no solution claims, no record rewrite
+globs: src/research/collatz/**/*.py,docs/collatz_*.md,docs/problems/collatz.md
+alwaysApply: false
+---
+
+# Collatz application
+
+`research.collatz` is a **STRUCTURAL** application of `bt`, not the laboratory frontier.
+
+- Do not claim a solution of the Collatz conjecture.
+- Do not rewrite `docs/collatz_mathematics.md` to “modernize” claim tags. `PROVED` there means `EXACT — HUMAN PROOF`.
+- New exact facts get a ledger row and a targeted note or test. Do not append a new numbered milestone by default.
+- `C-T-welldefined` is Lean-verified in `formal/Problems/Collatz/Accelerated.lean` (`acceleratedT`).
+- Compatibility import `from collatz import ...` must keep working.
+
+Finite certificates, cycle searches, and range tables are `VERIFIED COMPUTATIONALLY` or `REFUTED`, never proofs of the conjecture.

@@ -1,0 +1,29 @@
+---
+description: Always-on laboratory contract — claims, import graph, ledger, gates
+alwaysApply: true
+---
+
+# Laboratory contract
+
+Balanced ternary is the **core**. Research problems are **applications**.
+
+- `bt.*` imports only `bt.*` (and the stdlib). Never `research`, `collatz`, or `visualization`.
+- After a split, do **not** add shims in `bt.calculus` that re-export residual research. Callers import `research.residuals`.
+- Compatibility packages `balanced_ternary`, `collatz`, and `automata` stay. Do not rename the Lake package `collatz-dual-formal`.
+- Parked exploratory modules stay; do not delete them or treat them as a second frontier.
+
+## Claims
+
+No Collatz-solution language. Finite checks are not proofs. Do not inflate tags.
+
+- `PROVED` = `EXACT — HUMAN PROOF`
+- `PROVED — LEAN` = `EXACT — LEAN VERIFIED`
+- Keep `VERIFIED COMPUTATIONALLY`, `CONJECTURE`, `OBSERVATION`, `REFUTED`, `REPARAMETERIZATION`
+
+Do not auto-open a numbered milestone. Journal entries may be consolidations.
+
+## Ledger and gates
+
+Edit `docs/theory/theorem_ledger.json`, then `python tools/render_theorem_ledger.py`. Never hand-edit `theorem_ledger.md`.
+
+Verification: `pytest` and `cd formal && lake build` (Lake is `$env:USERPROFILE\.elan\bin\lake` if it is not on PATH). No `sorry` or `admit`.

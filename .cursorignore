@@ -1,0 +1,19 @@
+# Lake / Mathlib build artifacts
+formal/.lake/
+.lake/
+
+# Python / tool caches
+.venv/
+venv/
+__pycache__/
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+htmlcov/
+
+# Experiment dumps (keep source; skip generated tables)
+experiments/**/*.json
+experiments/**/*.jsonl
+experiments/**/*.parquet
+experiments/**/*.csv

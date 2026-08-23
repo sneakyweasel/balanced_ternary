@@ -1,0 +1,25 @@
+---
+description: Problem-independent bt core — no research imports
+globs: src/bt/**/*.py
+alwaysApply: false
+---
+
+# `bt` core
+
+`bt` is problem-independent balanced-ternary mathematics.
+
+```python
+# BAD
+from research.residuals.cubic_fibres import fibre_of
+
+# GOOD — closed form stays in core
+from bt.calculus.cubic import F_k, cubic_residual_formula, prefixes_at
+```
+
+Stay in `bt.calculus`: trit, `D` / `I_a`, rewrite, VM, section, jets, residual `≡_k`, `poly_congruence`, quadratic, and the **entire** `cubic.py` (`F_k`, prefix helpers).
+
+Leave `bt.calculus.__init__` as the general façade (trit, `D`/`I`, jets, `hatD`). Do not re-export fibres, layers, `N1`/`N0`, or `Q`.
+
+`is_prime` / `factorize` live on `bt.arithmetic`, not the `bt` package façade.
+
+A new core fact needs a unit test under `tests/unit/` and a ledger row when it is a named theorem.

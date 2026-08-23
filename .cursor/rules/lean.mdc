@@ -1,0 +1,17 @@
+---
+description: Lean 4 + Mathlib — no sorry, package existing lemmas
+globs: formal/**/*.lean
+alwaysApply: false
+---
+
+# Lean formalization
+
+The project contains no `sorry` or `admit`. If a proof is not short, leave the ledger tag and say so in the journal.
+
+- Lake package name stays `collatz-dual-formal`.
+- `formal/Automata/` is a placeholder. Do not invent proofs there.
+- Generic theorems live in `BTCalculus/` or `Core/` / `Representation/` / `Operators/`. Collatz-only theorems live under `Problems/Collatz/` with a `CollatzDual.*` re-export when needed.
+- Prefer packaging lemmas that already compile (`newtonStratum_n2` wraps `depthDeficit_n2_visibility`) over rebuilding layer-by-layer.
+- Empty `lean` in the ledger is allowed only when the tag is **not** `EXACT — LEAN VERIFIED`.
+- Retag to Lean verified only when the Lean statement covers the English statement.
+- Build from `formal/` with `lake build` (add `$env:USERPROFILE\.elan\bin` on Windows if needed).
