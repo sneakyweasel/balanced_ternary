@@ -7,6 +7,8 @@ and a hard architectural boundary: integer sums stay outside the tree
 TRS. Canonical mathematics:
 [rewrite_calculus.md](../theory/rewrite_calculus.md). Publication draft:
 [rewrite_calculus_note.md](../theory/rewrite_calculus_note.md).
+Reviewer packet:
+[rewrite_calculus_reviewer_packet.md](../theory/rewrite_calculus_reviewer_packet.md).
 This is **not** a Collatz problem and not the cubic-residual frontier.
 
 ## Problem
@@ -179,6 +181,8 @@ CLI, visualization, or production `Add` rules.
 
 Best next question: does external mathematical review find any gap in
 the hypotheses or interpretation of the restricted carry-state theorem?
+Send the [reviewer packet](../theory/rewrite_calculus_reviewer_packet.md)
+with the [publication draft](../theory/rewrite_calculus_note.md).
 
 ## Publication assessment
 
@@ -190,5 +194,7 @@ crosses a representational boundary because it is not D-local. The
 central Lean theorem is `add_requires_carry_state`. Remaining
 non-formal: the unrestricted “any TRS / already a CAS” wording. Further
 implementation should stop. The publication draft is **READY FOR
-EXTERNAL REVIEW**; the next step is mathematical/editorial review, not
-more rules.
+EXTERNAL REVIEW**. The sendable unit is the
+[reviewer packet](../theory/rewrite_calculus_reviewer_packet.md) plus
+the draft. The next step is mathematical/editorial review, not more
+rules.

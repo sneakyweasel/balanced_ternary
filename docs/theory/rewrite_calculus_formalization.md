@@ -7,6 +7,10 @@ fragments stay closed. There is no AC-matching library.
 Canonical informal record:
 [rewrite_calculus.md](rewrite_calculus.md). Dossier:
 [rewrite_calculus.md](../problems/rewrite_calculus.md).
+Publication draft:
+[rewrite_calculus_note.md](rewrite_calculus_note.md).
+Reviewer packet:
+[rewrite_calculus_reviewer_packet.md](rewrite_calculus_reviewer_packet.md).
 
 ## 1. Claim A — unary canonical calculus
 

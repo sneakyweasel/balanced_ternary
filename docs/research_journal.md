@@ -564,3 +564,14 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Open:** none on this gate. Drafting the note is editorial, not a rewrite milestone
 - **Decision:** PROMOTE the restricted formalization. CLOSE further rewrite enlargement. Do not open another rewrite milestone.
 
+## Rewrite-calculus reviewer packet (not a numbered milestone)
+
+- **Date:** 2026-08-23
+- **Objective:** Make the paper-candidate artifact sendable: one page that separates Lean from human claims and KNOWN method from PROJECT-SPECIFIC classification
+- **Hypotheses:** none; this is editorial packaging of existing theorems
+- **Major results:** `docs/theory/rewrite_calculus_reviewer_packet.md` states the single review question, the restricted carry-state theorem, the claim map, the five suggested falsifiers, and the files not to review
+- **Refuted ideas:** none new
+- **Literature:** unchanged from the formalization gate
+- **Open:** none on this line. External review is the next stage
+- **Decision:** PROMOTE the packet as the sendable unit with the publication draft. CLOSE further rewrite documentation. Do not open another rewrite milestone. Cubic residuals remain the frontier.
+

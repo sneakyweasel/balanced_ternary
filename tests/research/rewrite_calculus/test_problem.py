@@ -9,6 +9,7 @@ def test_rewrite_calculus_is_a_paper_candidate():
     assert PROBLEM.status == "PAPER_CANDIDATE"
     assert get_problem("rewrite_calculus") is PROBLEM
     assert "docs/problems/rewrite_calculus.md" in PROBLEM.docs
+    assert "docs/theory/rewrite_calculus_reviewer_packet.md" in PROBLEM.docs
     assert PROBLEM.lean
 
 

@@ -21,6 +21,8 @@ PROBLEM = ProblemDefinition(
     docs=(
         "docs/problems/rewrite_calculus.md",
         "docs/theory/rewrite_calculus.md",
+        "docs/theory/rewrite_calculus_note.md",
+        "docs/theory/rewrite_calculus_reviewer_packet.md",
     ),
     lean=(
         "formal/BTCalculus/OpFrag.lean",

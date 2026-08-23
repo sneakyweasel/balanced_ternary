@@ -1,6 +1,7 @@
 # A Canonical Unary Rewrite Calculus for Balanced Ternary and the Carry Boundary
 
 **Status:** publication draft — **READY FOR EXTERNAL REVIEW**.
+Reviewer packet: [rewrite_calculus_reviewer_packet.md](rewrite_calculus_reviewer_packet.md).
 
 ## Abstract
 
@@ -585,6 +586,7 @@ Repository source of truth:
 - `docs/problems/rewrite_calculus.md`;
 - `docs/theory/rewrite_calculus.md`;
 - `docs/theory/rewrite_calculus_formalization.md`;
+- `docs/theory/rewrite_calculus_reviewer_packet.md`;
 - ledger rows `BTC-add-not-D-local`,
   `BTC-constructor-sum-class`, `BTC-push-in-S-peak`,
   `BTC-add-requires-carry-state`.
