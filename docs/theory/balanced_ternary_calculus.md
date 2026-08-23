@@ -67,6 +67,7 @@ analysis”.
   [cubic_n1_valuation.md](cubic_n1_valuation.md),
   [cubic_n0_reduction.md](cubic_n0_reduction.md),
   [mismatched_cubic_quotient.md](mismatched_cubic_quotient.md).
+  Invariant decision: [cubic_newton_stratum.md](cubic_newton_stratum.md) §6.
 
 ## Finite-state locality (reused, not re-proved)
 

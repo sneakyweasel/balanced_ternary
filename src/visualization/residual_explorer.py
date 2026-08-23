@@ -968,6 +968,95 @@ def _node_title(node: TreeNode) -> str:
     )
 
 
+@dataclass(frozen=True)
+class QuotientInvariantView:
+    t: int
+    K: int
+    W: int
+    r: int
+    on_locus: bool
+    u: int | None
+    a: int | None
+    b: int | None
+    B_t: int | None
+    Q: int | None
+    expansion: int | None
+    psi_lines: tuple[str, ...]
+    note: str
+
+
+@dataclass(frozen=True)
+class QuotientCompareView:
+    same_psi4: bool
+    same_Q: bool
+    missing: tuple[str, ...]
+    block: str
+
+
+def quotient_invariant_view(p: int, k: int, r: int) -> QuotientInvariantView:
+    """Two-scale Q card for a packed prefix, when the node is on ``3^r Z``."""
+    from research.residuals.mismatched_cubic import q_mod, q_params
+    from research.residuals.mismatched_invariant import B_t, q_expansion, split_two_scale
+
+    if k < 4 * r + 1:
+        return QuotientInvariantView(
+            t=-1, K=k, W=-1, r=r, on_locus=False,
+            u=None, a=None, b=None, B_t=None, Q=None, expansion=None,
+            psi_lines=(),
+            note="unexhausted N0: scaled cube, not a Q-instance",
+        )
+    t, K, W = q_params(k, r)
+    if r and p % (3**r) != 0:
+        return QuotientInvariantView(
+            t=t, K=K, W=W, r=r, on_locus=False,
+            u=None, a=None, b=None, B_t=None, Q=None, expansion=None,
+            psi_lines=(),
+            note="N1 has already separated this prefix: 3^r does not divide p",
+        )
+    u = p // (3**r if r else 1)
+    a, b = split_two_scale(t, u)
+    return QuotientInvariantView(
+        t=t,
+        K=K,
+        W=W,
+        r=r,
+        on_locus=True,
+        u=u,
+        a=a,
+        b=b,
+        B_t=B_t(t, u),
+        Q=q_mod(t, K, u),
+        expansion=q_expansion(t, a, b),
+        psi_lines=(
+            f"v3(u) = {v3(u)}",
+            f"u mod 3^{t} = {u % (3**t if t else 1)}",
+            f"B_t(u) = {B_t(t, u)}",
+        ),
+        note="Ψ4 is (v3, u mod 3^t, B_t); it does not classify Q-fibres",
+    )
+
+
+def quotient_compare_view(u: int, v: int, t: int, K: int, W: int) -> QuotientCompareView:
+    from research.residuals.mismatched_invariant import invariant_compare
+
+    rec = invariant_compare(t, K, W, u, v)
+    same_psi4 = bool(rec["psi"]["psi4"]["same"])
+    lines = [
+        f"u = {rec['a_u']} + 3^{t}*{rec['b_u']}",
+        f"v = {rec['a_v']} + 3^{t}*{rec['b_v']}",
+        f"Q(u) = {rec['Q_u']}   Q(v) = {rec['Q_v']}",
+        f"same Q = {rec['same_Q']}",
+        f"same Ψ4 = {same_psi4}",
+        *rec["missing"],
+    ]
+    return QuotientCompareView(
+        same_psi4=same_psi4,
+        same_Q=bool(rec["same_Q"]),
+        missing=tuple(rec["missing"]),
+        block="\n".join(lines),
+    )
+
+
 def node_table_rows(nodes: tuple[TreeNode, ...]) -> list[dict[str, object]]:
     rows = []
     for node in nodes:

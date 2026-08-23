@@ -125,3 +125,6 @@ This ledger does not rewrite history.
 | BTA-x3-Q-visible | EXACT — LEAN VERIFIED | D^t(u^3) mod 3^K is determined by u mod 3^{max(1,t+K-1)} | docs/theory/mismatched_cubic_quotient.md | BTCalculus/MismatchedCubicQuotient | test_mismatched_cubic |
 | BTA-x3-Q-scale | EXACT — LEAN VERIFIED | Q_t(3^s w) is 3^{3s-t} w^3 if t<=3s, else Q_{t-3s}(w) | docs/theory/mismatched_cubic_quotient.md | BTCalculus/MismatchedCubicQuotient | test_mismatched_cubic |
 | BTA-x3-stratum | EXACT — LEAN VERIFIED | At deficit r, N2 iff p = q (mod 3^r); N1 after N2 is the delta law; N0 is the mismatched Q on the 3^r locus | docs/theory/cubic_newton_stratum.md | BTCalculus/NewtonStratum | test_stratum |
+| BTA-x3-Q-inv-one | EXACT — LEAN VERIFIED | for t>=1, Q(1+3^t b)=Q(1+3^t c) iff 3^{K-1} divides b-c | docs/theory/cubic_newton_stratum.md | BTCalculus/MismatchedCubicInvariant | test_mismatched_invariant |
+| BTA-x3-Q-inv-bal | EXACT — LEAN VERIFIED | B_t(u)=bal_t(u^3) is determined by u mod 3^s when s>=1 and t<=s+1 | docs/theory/cubic_newton_stratum.md | BTCalculus/MismatchedCubicInvariant | test_mismatched_invariant |
+| BTA-x3-Q-inv-psi | REFUTED | a bounded residue/valuation/sign/B_t invariant classifies Q-fibres independently of t,K,W | docs/theory/cubic_newton_stratum.md | BTCalculus/MismatchedCubicInvariant | test_mismatched_invariant |

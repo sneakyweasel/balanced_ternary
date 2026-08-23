@@ -1,4 +1,5 @@
 import BTCalculus.MismatchedCubicQuotient
+import BTCalculus.MismatchedCubicInvariant
 
 noncomputable section
 
@@ -53,5 +54,12 @@ theorem newtonStratum_q {k r : Nat}
     (hr : r + 1 ≤ k) (hk : 4 * r + 1 ≤ k) (u : Int) :
     n0Resid (k - 1 - r) ((3 : Int) ^ r * u) = qCubic (k - 1 - 4 * r) u :=
   q_from_exhausted hr hk u
+
+theorem newtonStratum_q_one_family {t K : Nat}
+    (ht : 1 ≤ t) (hK : 1 ≤ K) (b c : Int) :
+    (3 : Int) ^ K ∣ qCubic t (1 + (3 : Int) ^ t * b) -
+        qCubic t (1 + (3 : Int) ^ t * c) ↔
+      (3 : Int) ^ (K - 1) ∣ b - c :=
+  q_one_family_dvd ht hK b c
 
 end BTCalculus

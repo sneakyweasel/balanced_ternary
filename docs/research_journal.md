@@ -230,7 +230,17 @@ are not invented here. Local experiment manifests are timestamped
 - **Major results:** reconstruction criterion `Q(u)=Q(v)` iff `3^{t+K}` divides `u^3-v^3-Δbal_t`; cube-mod sufficient not necessary unless discarded digits agree; two-regime entry `k ≶ 4r+1`; unit opposite-residue branch has no extra `3` in `v3(u^3-v^3)`; high-trit identity `D^t((a+3^t b)^3)=D^t(a^3)+3a^2b+…`; on cubic parameters `t+K-1=2W`; CLI `cubic-quotient` / `cubic-quotient-fibre` / `compare-cubic-quotient`; Lean `MismatchedCubicQuotient.lean`
 - **Refuted ideas:** `Q` is an ordinary residual; extra width is invisible; `Q`-equality is a pure residue relation `u ≡ v (mod 3^s)`
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
-- **Next question:** not started; do not auto-open a new milestone. Candidate: is there a small invariant `Ψ_{t,K,W}` classifying `Q`-fibres, or is the discarded low-`t` cubic jet an essential obstruction?
+- **Next question:** closed. Milestone 27: no compact residue/valuation/`B_t` invariant; family `1+3^t b` forces `W-t` extra trits.
+
+## Milestone 27
+
+- **Date:** 2026-08-23
+- **Objective:** Decide whether `Q_{t,K,W}` admits a compact exact invariant
+- **Hypotheses:** a residue/valuation/sign/`B_t` or two-scale `(a,b)` summary might classify fibres; `B_t` itself might be the growing obstruction
+- **Major results:** two-scale expansion is the working equation; `B_t` is determined by `u mod 3^{max(1,t-1)}`; on `1+3^t b`, `Q`-equality is `b ≡ c (mod 3^{K-1})`; any `Ψ` constant on that family needs `≥ W-t` extra trits; high valuation still collapses to `0`; CLI `cubic-quotient-invariant` / `cubic-quotient-compare`; Lean `MismatchedCubicInvariant.lean`; Residual Explorer Q card
+- **Refuted ideas:** bounded `Ψ1`–`Ψ4` classify `Q`; `B_t` is an incompressible independent jet; `Ψ5` with `β < K-1` is sufficient on units
+- **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
+- **Decision:** Outcome C. Stop the Q-classification line; do not invent further fibre types. Next mathematical direction is not a new Q-taxonomy.
 
 ## Consolidation (not a numbered milestone)
 
@@ -238,5 +248,5 @@ are not invented here. Local experiment manifests are timestamped
 - **Objective:** Make the laboratory match its actual frontier: general `bt.calculus`, cubic fibres in `research.residuals`, one Newton-stratum theorem, generated ledger, CI
 - **Major results:** package split; `NewtonStratum.lean`; `acceleratedT` well-defined; quadratic `M_k(x^2)` ledger rows retagged to Lean; docs reading path no longer Collatz-first
 - **Deferred:** `BTA-product` (`M_k` cardinality is not a Lean object); `BTJ-degree` (Mathlib 4.19 degree lemmas were not a short proof); Lake package rename; `formal/Automata/` placeholder
-- **Next question:** unchanged from Milestone 26; do not auto-open Milestone 27
+- **Next question:** closed by Milestone 27. Do not auto-open a further Q-taxonomy milestone.
 

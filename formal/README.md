@@ -65,6 +65,7 @@ and the general `N1` valuation-stratification theorem
 and the two-regime `N0` scaling `D^m((3^r u)^3)`,
 and the mismatched-width cubic quotient
 `Q_{t,K,W}=D^t(u^3) mod 3^K` with exact reconstruction criterion,
+the one-family obstruction `Q(1+3^t b)=Q(1+3^t c)` iff `3^{K-1}|b-c`,
 the packaged Newton-stratum theorems, and well-definedness of the
 accelerated map `T` on positive odd naturals. The section-derivative
 degree law remains a human proof.

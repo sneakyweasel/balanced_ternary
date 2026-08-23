@@ -27,3 +27,4 @@ import BTCalculus.CubicN1Valuation
 import BTCalculus.CubicN0Reduction
 import BTCalculus.MismatchedCubicQuotient
 import BTCalculus.NewtonStratum
+import BTCalculus.MismatchedCubicInvariant

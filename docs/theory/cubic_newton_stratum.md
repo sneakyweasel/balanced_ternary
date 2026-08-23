@@ -70,7 +70,7 @@ Fix a horizon \(k\) and a deficit \(r\) with \(r+1\le k\). Set
    `newtonStratum_q`).
 
 There is no closed cardinality for the remaining \(Q\)-fibres.
-**OBSERVATION.**
+The invariant decision is recorded in §6.
 
 ---
 
@@ -105,11 +105,66 @@ These remain on the ledger. They are not revived by the unified statement.
 - Every fibre is a sign pair or a full \(3\)-adic coset.
 - Stripped \(N_0\) is a standard residual at horizon \(k-2r\).
 - \(Q\)-equality is a single residue \(u\equiv v\pmod{3^s}\).
+- A bounded residue / valuation / sign / \(B_t\) invariant classifies
+  \(Q\)-fibres independently of the parameters.
 
 ---
 
 ## 5. What remains open
 
-A closed formula for \(M_k(x^3)\), or a small invariant classifying
-\(Q\)-fibres. Do not open a numbered milestone for either until a precise
-statement exists.
+A closed formula for \(M_k(x^3)\). The \(Q\)-invariant question is
+closed in §6: no compact residue/valuation/\(B_t\) classifier exists,
+and the obstruction is the high-trit carry. Do not open a numbered
+milestone for a further \(Q\)-taxonomy.
+
+---
+
+## 6. Invariant decision for \(Q\)
+
+Write \(u=a+3^tb\) with \(a=\mathrm{bal}_t(u)\). The exact expansion
+**EXACT — LEAN VERIFIED** (`q_split_high`, `q_one_shift`) is
+
+\[
+Q(u)\equiv D^t(a^3)+3a^2b+3^{t+1}ab^2+3^{2t}b^3\pmod{3^K}.
+\]
+
+The linear carry has valuation \(1\). Sufficient information exponents
+are \(\alpha=t\) and \(\beta=K-1\) on units
+**EXACT — HUMAN PROOF**. On the cubic domain \(W-t=2r<K-1\), that
+means the whole high word \(b\).
+
+The discarded digits \(B_t(u)=\mathrm{bal}_t(u^3)\) *are* compressible:
+if \(s\ge 1\) and \(t\le s+1\), then \(u\equiv v\pmod{3^s}\) implies
+\(B_t(u)=B_t(v)\). **EXACT — LEAN VERIFIED** (`balCubic_of_mod`).
+So \(B_t\) is not an independent growing jet.
+
+They are nevertheless not enough to classify \(Q\). For \(t\ge 1\),
+
+\[
+Q(1+3^tb)\equiv Q(1+3^tc)\pmod{3^K}
+\iff
+b\equiv c\pmod{3^{K-1}}.
+\]
+
+**EXACT — LEAN VERIFIED** (`q_one_family_dvd`,
+`newtonStratum_q_one_family`). Every such prefix shares
+\(v_3=0\), the residue \(1\bmod 3^t\), and the same \(B_t\). On
+\(P_W\) one therefore obtains \(3^{W-t}\) distinct \(Q\)-classes
+with identical \(\Psi_4=(v_3,u\bmod 3^t,B_t)\).
+**COMPUTATIONALLY VERIFIED** at the exhausted samples
+\((r,k)=(1,6),(1,7),(1,8)\). Any invariant constant on that family
+must carry at least \(W-t\) extra trits. On cubic parameters this is
+exactly the width excess \(2r\).
+
+High valuation remains compact: if \(t\le 3s\) and \(K\le 3s-t\), then
+\(Q(3^sw)=0\). **EXACT — LEAN VERIFIED** (`q_high_zero`).
+Threshold \(3s=t\) reduces to a cube \(w^3\bmod 3^K\).
+
+**REFUTED**: a bounded residue / valuation / sign / \(B_t\) invariant
+classifies \(Q\)-fibres independently of \(t,K,W\).
+
+**Outcome C**, with a partial high-valuation invariant. Counting
+\(\lvert\mathrm{im}\,Q\rvert\) is not reduced to an elementary formula
+for \(M_k(x^3)\). The \(Q\)-classification line should not continue by
+inventing further fibre types. The remaining complexity is the cubic
+carry on the extra \(2r\) trits.

@@ -252,6 +252,24 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_cqc.add_argument("--t", type=int, required=True)
     p_cqc.add_argument("--modulus", type=int, required=True)
 
+    p_cqi = c.add_parser(
+        "cubic-quotient-invariant",
+        help="score residue/valuation candidates for Q(t,K,W)",
+    )
+    p_cqi.add_argument("--t", type=int, required=True)
+    p_cqi.add_argument("--modulus", type=int, required=True)
+    p_cqi.add_argument("--width", type=int, required=True)
+
+    p_cqcmp = c.add_parser(
+        "cubic-quotient-compare",
+        help="compare Q and candidate Ψ for two prefixes",
+    )
+    p_cqcmp.add_argument("u", type=int)
+    p_cqcmp.add_argument("v", type=int)
+    p_cqcmp.add_argument("--t", type=int, required=True)
+    p_cqcmp.add_argument("--modulus", type=int, required=True)
+    p_cqcmp.add_argument("--width", type=int, required=True)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -841,5 +859,51 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"v3(D^t(u^3)) = {rec['v3_Dt_u']}")
             if i + 2 < len(values):
                 print("---")
+        return 0
+    if cmd == "cubic-quotient-invariant":
+        from research.residuals.mismatched_invariant import invariant_report
+
+        rec = invariant_report(args.t, args.modulus, args.width)
+        print(f"t = {rec['t']}")
+        print(f"K = {rec['K']}")
+        print(f"W = {rec['W']}")
+        print(f"raw domain size = {rec['raw']}")
+        print(f"exact Q-image size = {rec['q_classes']}")
+        print(f"sufficient (alpha, beta) = {rec['alpha_beta']}")
+        print(f"surviving terms = {rec['surviving']}")
+        print(f"verdict = {rec['verdict']}")
+        print("candidate  s  psi_classes  false_merges  false_splits  exact")
+        for row in rec["candidates"]:
+            print(
+                f"  {row['candidate']:5}  {row['s']:2}  {row['psi_classes']:4}  "
+                f"{row['false_merges']:4}  {row['false_splits']:4}  {row['exact']}"
+            )
+        obst = rec["one_family"]
+        if obst is not None:
+            print(
+                f"one-family |fam| = {obst['family_size']}  "
+                f"Q-classes = {obst['q_classes']}  "
+                f"lower-bound trits = {obst['lower_bound_trits']}"
+            )
+        return 0
+    if cmd == "cubic-quotient-compare":
+        from research.residuals.mismatched_invariant import invariant_compare
+
+        rec = invariant_compare(args.t, args.modulus, args.width, args.u, args.v)
+        print(f"t = {rec['t']}  K = {rec['K']}  W = {rec['W']}")
+        print(f"u = {rec['u']} = {rec['a_u']} + 3^{rec['t']}*{rec['b_u']}")
+        print(f"v = {rec['v']} = {rec['a_v']} + 3^{rec['t']}*{rec['b_v']}")
+        print(f"v3(u) = {rec['v3_u']}  v3(v) = {rec['v3_v']}")
+        print(f"B_t(u) = {rec['B_t_u']}  B_t(v) = {rec['B_t_v']}")
+        print(f"Q(u) = {rec['Q_u']}  Q(v) = {rec['Q_v']}")
+        print(f"same Q = {rec['same_Q']}")
+        for name, block in rec["psi"].items():
+            print(f"same {name} = {block['same']}  u={block['u']}  v={block['v']}")
+        if rec["missing"]:
+            print("missing information")
+            for line in rec["missing"]:
+                print(f"  {line}")
+        else:
+            print("missing information: none (candidates agree with Q on this pair)")
         return 0
     raise ValueError(f"unknown calculus command {cmd}")

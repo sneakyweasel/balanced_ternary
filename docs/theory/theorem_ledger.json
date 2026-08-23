@@ -1,7 +1,7 @@
 [
   {
     "id": "BT-encode-unique",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "Every integer has a unique canonical balanced ternary word.",
     "source": "docs/mathematics.md",
     "lean": "Representation/Words.lean",
@@ -12,8 +12,8 @@
   },
   {
     "id": "BT-D-S",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "D ∘ S = id",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "D \u2218 S = id",
     "source": "docs/balanced_ternary_operators.md",
     "lean": "Operators/DigitDerivative.lean",
     "tests": [
@@ -38,7 +38,7 @@
   },
   {
     "id": "BT-Pn3",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "P_n(3) = n",
     "source": "docs/balanced_ternary_polynomials.md",
     "lean": "Operators/Polynomial.lean",
@@ -49,7 +49,7 @@
   },
   {
     "id": "C-T-welldefined",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Accelerated T is well-defined on positive odd integers.",
     "source": "docs/collatz_mathematics.md",
     "lean": "Problems/Collatz/Accelerated.lean",
@@ -60,8 +60,8 @@
   },
   {
     "id": "C-append-plus",
-    "tag": "EXACT — HUMAN PROOF",
-    "statement": "BT(3n+1)=BT(n)+ for n≠0",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "BT(3n+1)=BT(n)+ for n\u22600",
     "source": "docs/collatz_mathematics.md",
     "lean": "Representation/Words.lean",
     "tests": [
@@ -71,7 +71,7 @@
   },
   {
     "id": "C-odd-part-not-one-fst",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "Unrestricted odd-part is not one rational transduction.",
     "source": "docs/collatz_mathematics.md",
     "lean": "",
@@ -82,7 +82,7 @@
   },
   {
     "id": "C-affine-formula",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "T^m(n)=(3^m n+C)/2^K",
     "source": "docs/collatz_itinerary_compatibility.md",
     "lean": "Problems/Collatz/",
@@ -93,7 +93,7 @@
   },
   {
     "id": "C-lift-zero",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Positive integer realizer iff eventual zero lift.",
     "source": "docs/collatz_zero_lift.md",
     "lean": "Problems/Collatz/Lift.lean",
@@ -106,7 +106,7 @@
   },
   {
     "id": "C-R-direct",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Direct residue formula for R",
     "source": "docs/collatz_dual_coding.md",
     "lean": "Problems/Collatz/Arithmetic.lean",
@@ -117,7 +117,7 @@
   },
   {
     "id": "C-endpoint",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Kramer endpoint / 2-adic endpoint congruences",
     "source": "docs/literature_comparison.md",
     "lean": "Problems/Collatz/Endpoint.lean",
@@ -128,7 +128,7 @@
   },
   {
     "id": "C-center",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Affine-center numerator identities",
     "source": "docs/collatz_affine_center.md",
     "lean": "Problems/Collatz/Center.lean",
@@ -139,7 +139,7 @@
   },
   {
     "id": "C-gap",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Affine gap recurrence",
     "source": "docs/collatz_fixed_integer_asymptotics.md",
     "lean": "Problems/Collatz/FixedInteger.lean",
@@ -150,7 +150,7 @@
   },
   {
     "id": "C-cycles",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Expanding periods excluded; D divides C; even amplitude",
     "source": "docs/collatz_cycle_languages.md",
     "lean": "Problems/Collatz/Cycles.lean",
@@ -162,7 +162,7 @@
   {
     "id": "C-nstar-le-n",
     "tag": "REFUTED",
-    "statement": "n* ≤ n for finite valuation codes",
+    "statement": "n* \u2264 n for finite valuation codes",
     "source": "docs/collatz_fixed_integer_asymptotics.md",
     "lean": "Problems/Collatz/FixedInteger.lean",
     "tests": [
@@ -187,7 +187,7 @@
   },
   {
     "id": "BTC-decomp",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "n = lsd(n) + 3 D(n)",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Derivative.lean",
@@ -198,8 +198,8 @@
   },
   {
     "id": "BTC-D-I",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "D ∘ I_a = id",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "D \u2218 I_a = id",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Integral.lean",
     "tests": [
@@ -209,8 +209,8 @@
   },
   {
     "id": "BTC-P-band",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "P_a ∘ P_b = P_a",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "P_a \u2218 P_b = P_a",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Integral.lean",
     "tests": [
@@ -220,7 +220,7 @@
   },
   {
     "id": "BTC-D-mul",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "D(xy) = lsd(x)D(y)+lsd(y)D(x)+3 D(x)D(y)",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Algebra.lean",
@@ -231,7 +231,7 @@
   },
   {
     "id": "BTC-D-add",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "D(x+y)=D(x)+D(y)+carry(lsd(x),lsd(y))",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Algebra.lean",
@@ -242,7 +242,7 @@
   },
   {
     "id": "BTC-trit-kleene",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Trit is a 3-element Kleene algebra and not a Boolean algebra",
     "source": "docs/theory/trit_algebra.md",
     "lean": "BTCalculus/Trit.lean",
@@ -253,7 +253,7 @@
   },
   {
     "id": "BTC-cmp3",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "cmp3 translation, negation, and antisymmetry",
     "source": "docs/theory/trit_control.md",
     "lean": "BTCalculus/Comparison.lean",
@@ -264,8 +264,8 @@
   },
   {
     "id": "BTC-select3",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "select3 represents every Trit→ℤ map; abs/min/max",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "select3 represents every Trit\u2192\u2124 map; abs/min/max",
     "source": "docs/theory/trit_control.md",
     "lean": "BTCalculus/Select.lean",
     "tests": [
@@ -275,7 +275,7 @@
   },
   {
     "id": "BTN-divmod",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "unique trit residue c = 3q + r",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Normalization.lean",
@@ -286,8 +286,8 @@
   },
   {
     "id": "BTN-step-value",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "value(P → P') = value(P)",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "value(P \u2192 P') = value(P)",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Normalization.lean",
     "tests": [
@@ -297,7 +297,7 @@
   },
   {
     "id": "BTN-nf",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "normalize_LSD(P) = encodeZ(value(P)); result is all trits",
     "source": "docs/theory/balanced_ternary_normalization.md",
     "lean": "BTCalculus/Normalization.lean",
@@ -308,7 +308,7 @@
   },
   {
     "id": "BTN-lex",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "LSD step strictly decreases the abs-lex rank",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Normalization.lean",
@@ -319,8 +319,8 @@
   },
   {
     "id": "BTN-carry-bound",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "3|DZ n| ≤ |n|+1 and |q| ≤ (B+1)/3 on |c|≤B",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "3|DZ n| \u2264 |n|+1 and |q| \u2264 (B+1)/3 on |c|\u2264B",
     "source": "docs/theory/normalization_complexity.md",
     "lean": "BTCalculus/Normalization.lean",
     "tests": [
@@ -330,7 +330,7 @@
   },
   {
     "id": "BTN-confluence",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "stripped coefficient rewrite is locally and globally confluent; unique NF is encodeZ(value); [-5,2] joins after stripHigh",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Confluence.lean",
@@ -341,7 +341,7 @@
   },
   {
     "id": "BTJ-hatD",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "value(hatD_raw(P))=D(value(P)); naive D_coeff fails on [2]",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/NormalizedDerivative.lean",
@@ -353,7 +353,7 @@
   },
   {
     "id": "BTJ-section",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "f(a+3x)=rho_a(f)+3 sectionDeriv_a f(x)",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Polynomial.lean",
@@ -364,7 +364,7 @@
   },
   {
     "id": "BTJ-product",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "twisted Leibniz for sectionDeriv of a product",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Composition.lean",
@@ -375,7 +375,7 @@
   },
   {
     "id": "BTJ-comp",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "sectionDeriv_a(f.comp g)=sectionDeriv_{rho_a g} f compose sectionDeriv_a g",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Composition.lean",
@@ -386,7 +386,7 @@
   },
   {
     "id": "BTJ-jet",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "finite-depth function-jet reconstruction along integer digits",
     "source": "docs/theory/balanced_ternary_jets.md",
     "lean": "BTCalculus/Jet.lean",
@@ -397,7 +397,7 @@
   },
   {
     "id": "BTJ-degree",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "deg sectionDeriv f = deg f for d>=1; LC = 3^{d-1} LC(f)",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "",
@@ -408,7 +408,7 @@
   },
   {
     "id": "BTA-equiv",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "finite-horizon equiv_k is an equivalence; recursive iff output words",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "BTCalculus/Residual.lean",
@@ -419,7 +419,7 @@
   },
   {
     "id": "BTA-x2-raw",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "R_k(x^2)=(3^k-1)/2",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -430,7 +430,7 @@
   },
   {
     "id": "BTA-x2-mn",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "M_k(x^2)=R_k(x^2)=(3^k-1)/2 for all k>=1",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -441,7 +441,7 @@
   },
   {
     "id": "BTA-x2-quad-form",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "residual of x^2 along w is 3^|w| x^2 + 2 p(w) x + DZ^|w|(p(w)^2)",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -452,7 +452,7 @@
   },
   {
     "id": "BTA-quad-mod",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "degree <= 2 polynomials are equiv_k iff coefficients agree mod 3^k",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -463,7 +463,7 @@
   },
   {
     "id": "BTA-x3-merge",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "first x^3 residual merge at k=2 is delayed distinction: equiv_2 and not equiv_3",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -474,7 +474,7 @@
   },
   {
     "id": "BTA-x4-merge",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "first x^4 residual merge at k=3 is delayed distinction: equiv_3 and not equiv_4",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -485,7 +485,7 @@
   },
   {
     "id": "BTA-fn-congr",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "f equiv_k g iff 3^k divides (f-g)(n) for every integer n",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -496,7 +496,7 @@
   },
   {
     "id": "BTA-Ik-newton",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "I_k is the set of Z[x] polynomials whose Newton coefficients are divisible by 3^k",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -507,7 +507,7 @@
   },
   {
     "id": "BTA-quad-vanish",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "degree <= 2 polynomials vanish as functions modulo 3^k iff all coefficients are divisible by 3^k",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -518,7 +518,7 @@
   },
   {
     "id": "BTA-cubic-vanish",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Ax^3+Bx^2+Cx+D vanishes modulo 3^k iff 3^k divides D, A+B+C, 3A+B, and 6A",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -529,7 +529,7 @@
   },
   {
     "id": "BTA-x3-x",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "x^3-x vanishes modulo 3 and its leading coefficient is not divisible by 3",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -540,7 +540,7 @@
   },
   {
     "id": "BTA-tau",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "tau(f,g)=1+min v_3(Delta^j (f-g)(0)) for distinct ordinary polynomials",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "",
@@ -584,7 +584,7 @@
   },
   {
     "id": "BTA-cascade",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "outputAlong(w, f.comp g)=outputAlong(outputAlong(w,g), f)",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "BTCalculus/TransducerComposition.lean",
@@ -595,7 +595,7 @@
   },
   {
     "id": "BTA-product",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "M_k(f circ g) <= M_k(f) M_k(g)",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "",
@@ -617,7 +617,7 @@
   },
   {
     "id": "BTA-hatD-B",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "bounded-B hat D is N_B then drop; not one FST on Z",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "",
@@ -628,7 +628,7 @@
   },
   {
     "id": "BTA-x3-form",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "f_w(x)=3^{2m}x^3+3^{m+1}p x^2+3p^2 x+DZ^m(p^3)",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -639,7 +639,7 @@
   },
   {
     "id": "BTA-x3-raw",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "R_k(x^3)=(3^k-1)/2",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -650,7 +650,7 @@
   },
   {
     "id": "BTA-x3-newton",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Newton coordinates of a cubic and of the residual family of x^3",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -661,7 +661,7 @@
   },
   {
     "id": "BTA-x3-section",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "cubic Newton section step N3'=9 N3, N2'=3 N2+3(a+2)N3",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -672,7 +672,7 @@
   },
   {
     "id": "BTA-x3-equiv-N",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "cubics are finite-horizon equivalent iff their Newton residues agree modulo 3^k",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -683,7 +683,7 @@
   },
   {
     "id": "BTA-x3-Fk",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "M_k(x^3)=|Im F_k| for F_k(m,p)=Phi_k(f_(m,p))",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -694,8 +694,8 @@
   },
   {
     "id": "BTA-x3-shallow",
-    "tag": "EXACT — HUMAN PROOF",
-    "statement": "residuals of x^3 with 2m+1<k are ≡_k-separated",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "residuals of x^3 with 2m+1<k are \u2261_k-separated",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "",
     "tests": [
@@ -727,7 +727,7 @@
   },
   {
     "id": "BTA-x3-n2",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -738,7 +738,7 @@
   },
   {
     "id": "BTA-x3-n1fac",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "N1(p)-N1(q)=3(p-q)(p+q+3^m)",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -771,7 +771,7 @@
   },
   {
     "id": "BTA-x3-n3gate",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "cross-depth N3 agrees iff k<=2 min(m,n)+1 or m=n",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -782,7 +782,7 @@
   },
   {
     "id": "BTA-x3-sign",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "odd pair: N2 iff N1; N0 iff 3^k divides D^m(p^3)",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -793,7 +793,7 @@
   },
   {
     "id": "BTA-x3-Ckm",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "C_{k,m}=3^m whenever 2m+1<=k",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -815,8 +815,8 @@
   },
   {
     "id": "BTA-x3-deep-N",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "deepest layer: N3=N2=0, N1≡3p^2 (k≥2)",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "deepest layer: N3=N2=0, N1\u22613p^2 (k\u22652)",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "BTCalculus/CubicDeepestLayer.lean",
     "tests": [
@@ -826,8 +826,8 @@
   },
   {
     "id": "BTA-x3-deep-crit",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "deepest fibres iff p^2≡q^2 (mod 3^{k-1}) and N0 agrees",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "deepest fibres iff p^2\u2261q^2 (mod 3^{k-1}) and N0 agrees",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "BTCalculus/CubicDeepestLayer.lean",
     "tests": [
@@ -837,7 +837,7 @@
   },
   {
     "id": "BTA-x3-deep-zero",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "deepest 0-fibre is 3^{ceil((2k-1)/3)}|p",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "BTCalculus/CubicDeepestLayer.lean",
@@ -859,8 +859,8 @@
   },
   {
     "id": "BTA-x3-Ckk-1",
-    "tag": "EXACT — HUMAN PROOF",
-    "statement": "C_{k,k-1}=1+Σ_s I_{k,s} with closed high-stratum J(k,s)",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "C_{k,k-1}=1+\u03a3_s I_{k,s} with closed high-stratum J(k,s)",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "",
     "tests": [
@@ -870,8 +870,8 @@
   },
   {
     "id": "BTA-x3-inter-N",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "m=k-2: N3=0, N2≡2·3^{k-1}p (k≥3), N1≡3p^2+3^{k-1}p (k≥4)",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "m=k-2: N3=0, N2\u22612\u00b73^{k-1}p (k\u22653), N1\u22613p^2+3^{k-1}p (k\u22654)",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "BTCalculus/CubicIntermediateLayer.lean",
     "tests": [
@@ -881,8 +881,8 @@
   },
   {
     "id": "BTA-x3-inter-crit",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "m=k-2 fibres iff p≡q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "m=k-2 fibres iff p\u2261q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "BTCalculus/CubicIntermediateLayer.lean",
     "tests": [
@@ -892,7 +892,7 @@
   },
   {
     "id": "BTA-x3-inter-lift",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "horizon k refines k-1 at depth k-2; unit signs split",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "BTCalculus/CubicIntermediateLayer.lean",
@@ -936,8 +936,8 @@
   },
   {
     "id": "BTA-x3-vis",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "at m=k-1-r, N2 equality iff p≡q (mod 3^r) whenever r+1≤k",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "at m=k-1-r, N2 equality iff p\u2261q (mod 3^r) whenever r+1\u2264k",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "BTCalculus/CubicDeficitTwo.lean",
     "tests": [
@@ -947,8 +947,8 @@
   },
   {
     "id": "BTA-x3-def2-N",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "m=k-3: N3=0 (k≥5), N2≡2·3^{k-2}p (k≥5), N1≡3p^2+3^{k-2}p (k≥6)",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "m=k-3: N3=0 (k\u22655), N2\u22612\u00b73^{k-2}p (k\u22655), N1\u22613p^2+3^{k-2}p (k\u22656)",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "BTCalculus/CubicDeficitTwo.lean",
     "tests": [
@@ -958,8 +958,8 @@
   },
   {
     "id": "BTA-x3-def2-crit",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "m=k-3 fibres iff p≡q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "m=k-3 fibres iff p\u2261q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "BTCalculus/CubicDeficitTwo.lean",
     "tests": [
@@ -991,8 +991,8 @@
   },
   {
     "id": "BTA-x3-n1-diff",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "after N2, N1 agrees iff 3^{k-1-r} | δ(p+q+3^m)",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "after N2, N1 agrees iff 3^{k-1-r} | \u03b4(p+q+3^m)",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
     "tests": [
@@ -1002,8 +1002,8 @@
   },
   {
     "id": "BTA-x3-n1-val",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "after N2, v3(p)<r and N1 agree imply p=q on P_m (r≥1, r+1≤k)",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "after N2, v3(p)<r and N1 agree imply p=q on P_m (r\u22651, r+1\u2264k)",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
     "tests": [
@@ -1013,8 +1013,8 @@
   },
   {
     "id": "BTA-x3-n1-unit",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "N2+N1 is injective on units of P_m for every r≥1",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "N2+N1 is injective on units of P_m for every r\u22651",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
     "tests": [
@@ -1024,7 +1024,7 @@
   },
   {
     "id": "BTA-x3-n1-fibre",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "every nontrivial N2+N1 fibre on P_m lies in 3^r Z",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
@@ -1035,7 +1035,7 @@
   },
   {
     "id": "BTA-x3-n1-sign",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "p ~ -p after N2+N1 iff 3^r | p",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
@@ -1046,8 +1046,8 @@
   },
   {
     "id": "BTA-x3-n1-scale",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k≥2r+2",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k\u22652r+2",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
     "tests": [
@@ -1057,8 +1057,8 @@
   },
   {
     "id": "BTA-x3-n0-scale",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "D^m((3^r u)^3) is 3^{3r-m} u^3 if m≤3r, else D^{m-3r}(u^3)",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "D^m((3^r u)^3) is 3^{3r-m} u^3 if m\u22643r, else D^{m-3r}(u^3)",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
     "tests": [
@@ -1068,8 +1068,8 @@
   },
   {
     "id": "BTA-x3-n0-sign",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "N0(p)≡N0(-p) iff 3^k | N0(p)",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "N0(p)\u2261N0(-p) iff 3^k | N0(p)",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
     "tests": [
@@ -1079,7 +1079,7 @@
   },
   {
     "id": "BTA-x3-n0-vis",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)}",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
@@ -1101,8 +1101,8 @@
   },
   {
     "id": "BTA-x3-Q-def",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "Q_{t,K,W}(u)=D^t(u^3) mod 3^K on u∈P_W",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "Q_{t,K,W}(u)=D^t(u^3) mod 3^K on u\u2208P_W",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
     "tests": [
@@ -1112,8 +1112,8 @@
   },
   {
     "id": "BTA-x3-Q-eq",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "Q(u)=Q(v) iff 3^{t+K} divides u^3-v^3-Δbal_t",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "Q(u)=Q(v) iff 3^{t+K} divides u^3-v^3-\u0394bal_t",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
     "tests": [
@@ -1123,8 +1123,8 @@
   },
   {
     "id": "BTA-x3-Q-shift",
-    "tag": "EXACT — LEAN VERIFIED",
-    "statement": "D^t((a+3^s x)^3) expands by cubic carry when t≤s+1 and t≤3s",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "D^t((a+3^s x)^3) expands by cubic carry when t\u2264s+1 and t\u22643s",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
     "tests": [
@@ -1135,7 +1135,7 @@
   {
     "id": "BTA-x3-Q-vis",
     "tag": "REFUTED",
-    "statement": "Q-equality is u≡v (mod 3^s) for a fixed residue modulus",
+    "statement": "Q-equality is u\u2261v (mod 3^s) for a fixed residue modulus",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
     "tests": [
@@ -1145,7 +1145,7 @@
   },
   {
     "id": "BTA-x3-Q-visible",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "D^t(u^3) mod 3^K is determined by u mod 3^{max(1,t+K-1)}",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
@@ -1156,7 +1156,7 @@
   },
   {
     "id": "BTA-x3-Q-scale",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Q_t(3^s w) is 3^{3s-t} w^3 if t<=3s, else Q_{t-3s}(w)",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
@@ -1167,12 +1167,45 @@
   },
   {
     "id": "BTA-x3-stratum",
-    "tag": "EXACT — LEAN VERIFIED",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "At deficit r, N2 iff p = q (mod 3^r); N1 after N2 is the delta law; N0 is the mismatched Q on the 3^r locus",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/NewtonStratum.lean",
     "tests": [
       "tests/research/residuals/test_stratum.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-inv-one",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "for t>=1, Q(1+3^t b)=Q(1+3^t c) iff 3^{K-1} divides b-c",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/MismatchedCubicInvariant.lean",
+    "tests": [
+      "tests/research/residuals/test_mismatched_invariant.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-inv-bal",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "B_t(u)=bal_t(u^3) is determined by u mod 3^s when s>=1 and t<=s+1",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/MismatchedCubicInvariant.lean",
+    "tests": [
+      "tests/research/residuals/test_mismatched_invariant.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-inv-psi",
+    "tag": "REFUTED",
+    "statement": "a bounded residue/valuation/sign/B_t invariant classifies Q-fibres independently of t,K,W",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/MismatchedCubicInvariant.lean",
+    "tests": [
+      "tests/research/residuals/test_mismatched_invariant.py"
     ],
     "related_conjectures": []
   }

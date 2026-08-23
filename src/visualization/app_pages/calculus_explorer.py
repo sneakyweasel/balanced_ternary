@@ -26,6 +26,8 @@ from visualization.residual_explorer import (
     inspect_node,
     is_x3,
     node_table_rows,
+    quotient_compare_view,
+    quotient_invariant_view,
     parse_word,
     resolve_polynomial,
     tree_svg,
@@ -304,6 +306,8 @@ def residual_explorer_page() -> None:
         _explain_panel(f, k)
 
     _precision_strip(f, k)
+    if is_x3(f):
+        _q_invariant_panel(f, k)
     _layer_strip(k)
     _secondary(f, k, nodes)
 
@@ -480,6 +484,57 @@ def _precision_strip(f: IntPoly, k: int) -> None:
             icon=":material/filter_alt:",
             on_click=_highlight_merged_cb,
         )
+
+
+def _q_invariant_panel(_f: IntPoly, k: int) -> None:
+    view = _cached_inspect(
+        st.session_state.re_poly,
+        st.session_state.re_custom,
+        st.session_state.re_selected,
+        k,
+    )
+    r = view.visibility.r
+    card = quotient_invariant_view(view.state.p, k, r)
+    with st.expander("Mismatched quotient invariant", expanded=False):
+        st.caption("Two-scale reading of Q on the surviving 3^r locus.")
+        if not card.on_locus:
+            st.write(card.note)
+            return
+        st.code(
+            "\n".join(
+                (
+                    f"u = {card.u} = {card.a} + 3^{card.t}*{card.b}",
+                    f"low part a = {card.a}",
+                    f"high part b = {card.b}",
+                    f"a^3 low t digits B_t(u) = {card.B_t}",
+                    f"Q(u) = {card.Q}",
+                    f"expansion D^t(a^3)+3a^2 b+… = {card.expansion}",
+                    *card.psi_lines,
+                    card.note,
+                )
+            ),
+            language="text",
+        )
+        left, right = st.columns(2)
+        with left:
+            u_in = st.number_input("Compare u", value=int(card.u), key="re_q_u")
+        with right:
+            v_in = st.number_input("Compare v", value=int(card.u), key="re_q_v")
+        if st.button("Compare Q and Ψ", key="re_q_cmp", icon=":material/compare_arrows:"):
+            try:
+                cmp_view = quotient_compare_view(
+                    int(u_in), int(v_in), card.t, card.K, card.W
+                )
+            except ValueError as exc:
+                st.error(str(exc))
+                return
+            st.metric("Same candidate Ψ4", "YES" if cmp_view.same_psi4 else "NO", border=True)
+            st.metric("Same Q", "YES" if cmp_view.same_Q else "NO", border=True)
+            st.code(cmp_view.block, language="text")
+            if cmp_view.missing:
+                st.write("Missing information")
+                for line in cmp_view.missing:
+                    st.write(line)
 
 
 def _layer_strip(k: int) -> None:

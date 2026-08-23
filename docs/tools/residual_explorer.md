@@ -84,6 +84,9 @@ or valuations. Those come from existing Python modules:
 - **Compare / microscope.** `h = f-g`, Newton coefficients of `h`,
   valuations, `τ`, and a shortest distinguishing word from
   `distinguish_pair`.
+- **Q invariant.** For `x^3` on the exhausted `3^r` locus, the two-scale
+  split `u=a+3^t b`, `B_t(u)`, and `Q(u)`, plus a pair comparison that
+  shows when `Ψ4` merges distinct `Q`-classes.
 
 ## Performance limitations
 
