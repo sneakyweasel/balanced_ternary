@@ -3,12 +3,27 @@
 **Status of this page:** a sound, classified rewrite system. The
 operator fragment `{D, I_a, S, N}` under the tree rules below —
 including `N(D(x)) → D(N(x))` — is terminating, locally confluent, and
-has a unique syntactic normal form that is also a unique representative
-of the integer operator function (**PROVED**). Global confluence of the
-full expression language (`Add` / `Mul` / `W` / the large word table)
-is **not** claimed. Coefficient-word confluence
+has a unique syntactic normal form (**PROVED — LEAN**) that is also a
+unique representative of the integer operator function
+(**PROVED — LEAN**). That fragment is **maximal** as a complete
+tree-level canonical core among exact push-in *or* factor-out
+extensions by `Add` or `Mul`: push-in `S`-distributivity overlaps
+`D∘S = id` in a non-joining peak
+([BTC-add-s-push-lc](theorem_ledger.md),
+[BTC-mul-s-push-lc](theorem_ledger.md), **REFUTED**); finite
+factor-out Add is already AC-engine / CAS territory
+([BTC-add-factor-cas-obstruction](theorem_ledger.md)). Integer sums of
+unary constructor terms are canonicalized only as affine maps /
+coefficient words, never by a tree TRS on `Add`
+([BTC-add-affine-only](theorem_ledger.md)). Global confluence
+of the full expression language is **not** claimed. The production word
+table is **not** locally confluent
+([BTC-word-full-lc](theorem_ledger.md), **REFUTED**); its
+simplifying-only fragment is terminating and locally confluent
+([BTC-word-simp-nf](theorem_ledger.md)). Coefficient-word confluence
 ([BTN-confluence](theorem_ledger.md), `BTCalculus/Confluence.lean`) is
-a different object.
+a different object — and is the complete finite canonicalizer for
+those sums after evaluation.
 
 ## Historical inspiration
 
@@ -116,13 +131,13 @@ cancels `D(I_{-a})`, reaching `N(x)`. Join of `N(N(D(x)))`:
 
 Local confluence plus termination gives confluence (Newman). Every
 term of the fragment therefore has a unique syntactic normal form.
-This is **PROVED** as a term-rewriting argument
-([BTC-op-fragment-nd-nf](theorem_ledger.md)). The smaller system
-without the commute remains [BTC-op-fragment-nf](theorem_ledger.md).
-Neither claim is Lean-verified: `formal/BTCalculus/Rewrite.lean`
-contains the integer soundness identities, not a rewrite-relation
-Newman proof, and `BTCalculus/Confluence.lean` is the
-coefficient-word system.
+This is **PROVED — LEAN** as a rewrite-relation Newman argument
+([BTC-op-fragment-nd-nf](theorem_ledger.md),
+`BTCalculus/OpFragNewman.lean`). The smaller system without the
+commute remains [BTC-op-fragment-nf](theorem_ledger.md) and is still
+only a human proof. `formal/BTCalculus/Rewrite.lean` contains the
+integer soundness identities. `BTCalculus/Confluence.lean` is the
+coefficient-word system and is a different object.
 
 ## Normal-form grammar
 
@@ -162,7 +177,7 @@ using `D(-n) = -D(n)` (`rewrite_N_D`). These agree as functions of
   power of `3` cannot equal a negative power of `3`.
 
 So distinct irreducibles are distinct integer operator functions
-([BTC-op-fragment-nd-semantic](theorem_ledger.md), **PROVED**).
+([BTC-op-fragment-nd-semantic](theorem_ledger.md), **PROVED — LEAN**).
 Together with soundness of the rules, the enlarged TRS is a complete
 canonical form for the integer operator algebra on this fragment:
 semantically equal terms have the same NF.
@@ -189,15 +204,337 @@ irreducibles agree on a probe set that includes `±3^k` through
 **Word rules** remain sound on the intersection of domains. Two-way
 commutation rules (`N∘S = S∘N` and converse, and the word-level
 `N∘D = D∘N` pair) are marked `simplifying=False` and
-`reversible=True`. The full word table is **not** claimed confluent.
+`reversible=True`. The full word table is **not** locally confluent
+([BTC-word-full-lc](theorem_ledger.md)); see
+[Word-table fragments](#word-table-fragments-excluding-add).
+
+## Signature enlargement (`Add` / `Mul` / `W`)
+
+Phase-0 asked whether the same one-way tree orientation remains a
+rewrite core after adding `Add`, `Mul`, or `W`. Candidate rules were
+kept out of `rewrite._step`; they are exact on ℤ only when stated
+below. Tests: `tests/unit/test_rewrite_signature_enlargement.py`.
+
+### Rejected as unsound
+
+These fail on ℤ by balanced-trit carry. They are **not** tree rules.
+
+| Candidate | Witness |
+|-----------|---------|
+| `D(x+y) → D(x)+D(y)` | `x = y = 1`: `D(2) = 1`, `D(1)+D(1) = 0` |
+| `D(x*y) → D(x)*D(y)` | `x = 2`, `y = 4`: `D(8) = 3`, `D(2)*D(4) = 1` |
+| `I_a(x*y) → I_a(x)*y` | `a = +1`, `x = 1`, `y = 2`: `7` versus `8` |
+| `I_a(x)+I_b(y) → I_{a+b}(x+y)` | `a = b = +1`: `I+(1)+I+(1) = 8`, `I+(2) = 7` |
+
+`D` through a binary constructor is therefore not an exact closed
+tree rule. Repairing it needs the carry trit, which is the start of a
+computer-algebra engine and is out of Phase-0 scope.
+
+### `Add`, push-in (matches unary “`N` moves inward”)
+
+Exact candidates:
+
+```text
+N(x+y) → N(x)+N(y)
+S(x+y) → S(x)+S(y)
+I_a(x+y) → I_a(x)+S(y)    (left orientation)
+```
+
+`N(N(x+y))` and `N(S(x+y))` join. The overlap of `D(S(z)) → z` with
+`S`-distributivity does **not**:
+
+```text
+D(S(x+y))  →  x+y
+D(S(x+y))  →  D(S(x)+S(y))
+```
+
+Both descendants are irreducible and `evaluate` agrees
+([BTC-add-s-push-lc](theorem_ledger.md), **REFUTED**). The same shape
+appears for `D(I+(x+y))`. Choosing both left and right `I_a`
+orientations is a second non-join (`I_a(x)+S(y)` versus
+`S(x)+I_a(y)`).
+
+`N(x+y) → N(x)+N(y)` alone is locally confluent on the named overlaps
+and on every size-`≤ 5` unary-plus-one-`Add` open term, but
+`S(x+y)` and `S(x)+S(y)` are distinct irreducibles with equal
+`evaluate` ([BTC-add-n-push-semantic](theorem_ledger.md), **REFUTED**).
+
+### `Mul`, push-in
+
+Exact candidates `N(x*y) → N(x)*y` and `S(x*y) → S(x)*y`. Again
+`N`-overlaps join and `D∘S` does not:
+
+```text
+D(S(x*y))  →  x*y
+D(S(x*y))  →  D(S(x)*y)
+```
+
+([BTC-mul-s-push-lc](theorem_ledger.md), **REFUTED**). Left-only
+`N`-through-`Mul` leaves the semantic twins `N(x)*y` and `x*N(y)`.
+
+`Add+Mul` together still contains the `Add` peak; it was not a
+separate system.
+
+### Factor-out (opposite orientation)
+
+The finite exact-on-ℤ pair table is size-decreasing:
+
+```text
+S(x)+S(y) → S(x+y)          (I0 counts as S)
+N(x)+N(y) → N(x+y)
+I_a(x)+S(y) → I_a(x+y)
+S(x)+I_a(y) → I_a(x+y)
+I+(x)+I-(y) → S(x+y)
+I-(x)+I+(y) → S(x+y)
+```
+
+Same-sign `I_a(x)+I_a(y)` is **not** a rule: `I+(x)+I+(y) = 3(x+y)+2`
+and `I-(x)+I-(y) = 3(x+y)-2`, and `±2` is not a trit, so the sum is
+not `I_b(x+y)` for any trit `b`.
+
+**Binary matching** (redexes only at a node `u+v`). The `D∘S` peak
+is repaired: `D(S(x)+S(y)) → D(S(x+y)) → x+y`. Named unary overlaps
+(`N(S(x))+N(S(y))`, `D(I+(x)+S(y))`) join. Every Add of two small
+unary atoms has a unique syntactic NF
+(`tests/unit/test_rewrite_factor_out_add.py`). Semantic canonicity
+fails even after identifying AC twins
+([BTC-add-factor-binary-semantic](theorem_ledger.md), **REFUTED**):
+
+```text
+S(x)+(S(y)+z)     irreducible, atoms {S(x), S(y), z}
+S(x+y)+z          irreducible, atoms {S(x+y), z}
+```
+
+These are not AC-equivalent and agree under `evaluate`. The same
+shape is `I+(x+y)+I+(z)` versus `I+(x)+I+(y+z)` (both
+`3(x+y+z)+2`). If integer constants are allowed as summands,
+`I+(x)+I+(y)` twins `S(x+y)+2`.
+
+**AC-matching** of the same finite table (flatten the Add spine;
+contract any pair). Non-adjacent `S` summands collect, and three
+`S` join to `S(x+y+z)` modulo AC. Opposite-sign
+`I+(x)+S(y)+I-(z)` joins to `S(x+y+z)`. Same-sign does **not**
+([BTC-add-factor-ac-semantic](theorem_ledger.md), **REFUTED**):
+
+```text
+I+(x)+S(y)+I+(z)  →  I+(x+y)+I+(z)
+I+(x)+S(y)+I+(z)  →  I+(x)+I+(y+z)
+```
+
+Both descendants are irreducible and not AC-equivalent. The
+`I-` residue `-2` is the same peak. Collecting non-adjacent
+summands is already AC-matching; joining the same-sign peak needs
+constants, an explicit carry, or a polynomial normal form.
+
+[BTC-add-factor-cas-obstruction](theorem_ledger.md) (**PROVED**):
+any finite exact-on-ℤ factor-out Add extension of the unary tree
+core either matches only adjacent binary summands, leaving
+`S(x)+(S(y)+z)` versus `S(x+y)+z` (not AC-equivalent), or, once
+AC-matching is granted, cannot join `I+(x+y)+I+(z)` versus
+`I+(x)+I+(y+z)` because `I_a(x)+I_a(y)` is not `I_b(x+y)` for any
+trit `b`. A complete form is therefore an AC engine with constants
+or carry — already a computer-algebra engine. The rules stay out of
+`rewrite._step`. This is the same balanced-trit carry of `1+1` that
+made `D`-through-Add unsound and that blocked push-in at `D∘S`.
+
+### `W` (bounded word fragment only)
+
+`W` is not a tree constructor and is not one-way sequential. The
+production word table keeps two-way `N∘D` and `N∘W` and is **not**
+locally confluent ([BTC-word-full-lc](theorem_ledger.md)).
+
+On the *one-way* subset that matches the tree orientation
+(`N∘D → D∘N`, `N∘W → W∘N`, plus the existing simplifying `W`/`K3`
+rules), the peak `N∘W∘W` does not join:
+
+```text
+N∘W∘W  →  W∘N∘W  →  W∘W∘N  →  K3∘N
+N∘W∘W  →  N∘K3
+```
+
+`N∘K3` and `K3∘N` are distinct irreducibles
+([BTC-w-nd-word-lc](theorem_ledger.md), **REFUTED**). The same peak
+is present in the *production* table: two-way `N∘W` does not join it,
+because `N∘K3` is not a production rule. The missing commute
+`N∘K3 → K3∘N` is exact (`K3` strips factors of `3`). Adding it makes
+every critical pair of that bounded one-way list join
+(**COMPUTATIONALLY VERIFIED** on that list, not a Newman certificate
+and not a reason to install `N∘K3` in `WORD_REWRITE_RULES`). Enlarging
+the unary signature by `W` immediately introduces `K3` and a new
+`N`-commute — the same species of gap that `N(D)`/`D(N)` was before
+the commute became a tree rule.
+
+### Obstruction
+
+[BTC-unary-s-distrib-obstruction](theorem_ledger.md) (**PROVED**):
+any exact push-in rule that copies `S` (or `I_a`) through `Add` or
+`Mul` overlaps `D∘S = id` (resp. `D∘I_a = id`) in a peak whose other
+descendant is `D` of a sum or product of `S`/`I` terms. Without an
+unsound `D`-through-binary rule, that peak does not join. So
+`{D, I_a, S, N}` is the maximal complete *tree* core among those
+extensions. `W` is a word-level question, decided in
+[Word-table fragments](#word-table-fragments-excluding-add).
+
+Factor-out does not escape that maximality: see
+[BTC-add-factor-cas-obstruction](theorem_ledger.md). The two
+orientations fail for the same carry.
+
+### Architectural theorem (Add is affine-only)
+
+[BTC-add-affine-only](theorem_ledger.md) (**PROVED**). Let
+`U, V, W ∈ {S, I+, I-, N}` (and `I0 = S`). The identity
+`U(x)+V(y) = W(x+y)` holds on `ℤ` if and only if `(U,V,W)` is one of
+
+```text
+(S, S, S)     (N, N, N)
+(I_a, S, I_a) (S, I_a, I_a)
+(I+, I-, S)   (I-, I+, S)
+```
+
+Proof of the classification: `W(x+y)` depends only on `x+y`, so the
+coefficients of `x` and `y` in `U(x)+V(y)` must be equal. Those
+coefficients are `3` for `S`/`I_a` and `-1` for `N`. Hence both
+constructors are in `{S, I_a}` or both are `N`. The constant term
+is then the sum of trits `a+b`, which is itself a trit precisely on
+the six rows above. Same-sign `I_a(x)+I_a(y) = 3(x+y)±2` is a
+function of `x+y`, but `±2` is not a trit, so any tree rule for it
+introduces a constant. Mixed `N` with `S`/`I_a` has unequal
+coefficients `-1` and `3`. `D(x)+D(y)=D(x+y)` is unsound
+(`x=y=1`: `D(2)=1` and `D(1)+D(1)=0` — the carry of `1+1`,
+[BTC-D-add](theorem_ledger.md)).
+
+Those identities *are* the push-in and factor-out tables, plus
+`N`-distrib. Each orientation is already incomplete without
+AC-matching and constants or carry:
+
+- push-in `S` / `I_a` — [BTC-unary-s-distrib-obstruction](theorem_ledger.md);
+- `N`-through-Add alone — [BTC-add-n-push-semantic](theorem_ledger.md);
+- finite factor-out — [BTC-add-factor-cas-obstruction](theorem_ledger.md).
+
+There is no third exact-on-`ℤ` tree orientation. Therefore every
+finite exact tree TRS on `Add` either fails semantic canonicity or is
+already a CAS. The unique complete finite representatives of such
+sums are their affine maps: a sum of constructor terms is a
+multi-linear form with integer coefficients (a single unary
+*composition* remains `±3^{|w|} D^d(n)+c(w)`,
+[BTC-op-fragment-nd-semantic](theorem_ledger.md)). Closed instances
+are integers; their unique representative is the balanced-ternary
+word ([BT-encode-unique](theorem_ledger.md)), obtained by
+`evaluate` then the coefficient-word NF
+(`bt.normtheory.arithmetic.add_coeff` /
+`bt.normtheory.strategies.normal_form`;
+[BTN-nf](theorem_ledger.md), [BTN-confluence](theorem_ledger.md)).
+
+`Add` is therefore evaluation / affine / coefficient-word only.
+The rules stay out of `rewrite._step`. Tests:
+`tests/unit/test_rewrite_add_affine_only.py`.
+Independent of `Add`, the production word table is decided below.
+
+## Word-table fragments (excluding Add)
+
+`WORD_REWRITE_RULES` is a string-rewriting table, not the OpFrag tree
+TRS and not coefficient-word `Confluence.lean`. `Add` is not a letter.
+
+### Full table — permanent non-claim
+
+[BTC-word-full-lc](theorem_ledger.md) (**REFUTED**). The production
+peak is the same shape as the one-way `W` peak:
+
+```text
+N∘W∘W  →  W∘N∘W  →*  {N∘K3, K3∘N}
+N∘W∘W  →  N∘K3
+```
+
+Both `N∘K3` and `K3∘N` are irreducible: the table has two-way `N∘W`
+and `W∘W → K3`, but no `N∘K3` rule. The opposite overlap `W∘W∘N`
+has the same two irreducibles. Two-way commutation does not repair
+the peak.
+
+The two-way rows `N∘D ↔ D∘N` (and the other reversible commutes) are
+also non-terminating as a TRS — a KNOWN fact about inverse
+length-preserving rules, not a ledger theorem. Newman therefore
+cannot apply to the full table even if the `N∘W∘W` peak were joined.
+
+Any production fragment that keeps both `W∘W → K3` and an `N∘W`
+commute (one-way or two-way) fails at this peak, unless the missing
+exact commute `N∘K3` is added, and that rule is **not** in
+`WORD_REWRITE_RULES`. Full-table confluence is therefore a permanent
+non-claim inside the production table.
+
+### Named fragment `WORD_SIMP_RULES`
+
+[BTC-word-simp-nf](theorem_ledger.md) (**PROVED**). The sixteen
+`simplifying=True` rows — cancellations `N∘N`, `D∘S`, `D∘I±`,
+`D∘I0`, `Wz∘Wz`, `Wt∘Wt`, `H2∘M2`, `H3∘S`; the `W`/`K3` stock
+`W∘W → K3`, `W∘S → W`, `K3∘S → K3`, `K3∘W → W`, `W∘K3 → W`,
+`K3∘K3 → K3`; and `I0 → S` — form a terminating, locally confluent
+string TRS. Every word has a unique syntactic normal form.
+
+**Termination.** Rank `(I0-count, length)` on `ℕ²`. `I0 → S` drops
+the first coordinate. Every other simplifying rule has source length
+2 and destination length at most 1, so drops length, and never
+introduces `I0`.
+
+**Local confluence.** The system is left-linear. The complete list of
+prefix/suffix overlaps and inclusions joins:
+
+| Peak | Contractions | Join |
+|------|----------------|------|
+| `N∘N∘N` | both `→ N` | `N` |
+| `D∘I0` | `→ ε` and `→ D∘S` | `ε` |
+| `Wz∘Wz∘Wz` | both `→ Wz` | `Wz` |
+| `Wt∘Wt∘Wt` | both `→ Wt` | `Wt` |
+| `K3∘K3∘K3` | both `→ K3∘K3` | `K3` |
+| `K3∘K3∘S` | `→ K3∘S` and `→ K3∘K3` | `K3` |
+| `K3∘K3∘W` | both `→ K3∘W` | `W` |
+| `W∘W∘W` | `→ K3∘W` and `→ W∘K3` | `W` |
+| `W∘W∘S` | `→ K3∘S` and `→ W∘W` | `K3` |
+| `W∘W∘K3` | `→ K3∘K3` and `→ W∘W` | `K3` |
+| `K3∘W∘W` | `→ W∘W` and `→ K3∘K3` | `K3` |
+| `K3∘W∘S` | `→ W∘S` and `→ K3∘W` | `W` |
+| `K3∘W∘K3` | `→ W∘K3` and `→ K3∘W` | `W` |
+| `W∘K3∘K3` | both `→ W∘K3` | `W` |
+| `W∘K3∘S` | `→ W∘S` and `→ W∘K3` | `W` |
+| `W∘K3∘W` | both `→ W∘W` | `K3` |
+
+The `W`/`K3` stock (six rules, twelve of the rows above) is the
+interesting kernel. The remaining simplifying rules are disjoint
+involutions and cancellations except for the inclusion `I0 ⊂ D∘I0`.
+Newman gives unique syntactic NF. Semantic canonicity of those
+irreducibles is **not** claimed.
+
+`rewrite_word(..., simplifying_only=True)` is this fragment. The
+production table is not widened: `N∘K3` stays out, and the two-way
+commutes stay in the full table as identities, not as a confluent
+TRS.
+
+Adding a production commute to this fragment is not uniformly safe
+(`N∘W` recreates `N∘W∘W`; `N∘D` fails at `N∘D∘I±` because the word
+table has no `I±` sign-flip). Those enlargements are a different
+question.
+
+Tests: `tests/unit/test_rewrite_word_fragments.py`.
 
 ## Conjectures
 
-The enlarged-fragment questions — termination, local confluence,
-unique syntactic NF, and semantic canonicity on `{D, I_a, S, N}` —
-are closed (**PROVED**). Extending the same one-way `N`–`D`
-orientation to `Add` / `Mul` / `W` is a different signature and is
-not assumed.
+The unary-fragment questions — termination, local confluence, unique
+syntactic NF, and semantic canonicity on `{D, I_a, S, N}` — are
+closed (**PROVED**). The Phase-0 enlargement questions for push-in
+`Add` / `Mul`, for one-way `W` without `N∘K3`, and for finite
+factor-out Add (binary or AC-matching) are closed (**REFUTED**). The
+architectural question — whether a tree TRS on `Add` can still be a
+complete finite canonicalizer — is closed (**PROVED**): it cannot,
+and the complete forms are affine / coefficient-word
+([BTC-add-affine-only](theorem_ledger.md)). No finite exact Add/Mul
+tree extension of that kind is assumed. The
+production word table is **not** locally confluent
+([BTC-word-full-lc](theorem_ledger.md)); the named simplifying
+fragment is ([BTC-word-simp-nf](theorem_ledger.md)).
 
-Lean packaging of the Newman argument for this fragment only is
-deferred; do not write `sorry`.
+Lean Newman for the enlarged fragment is packaged in
+`BTCalculus/OpFragNewman.lean` (termination, local confluence,
+confluence, unique syntactic NF, and the NF grammar). Semantic
+canonicity of distinct irreducibles is `OpFrag.irreducible_eval_injective`
+in `BTCalculus/OpFragSemantic.lean`
+([BTC-op-fragment-nd-semantic](theorem_ledger.md), **PROVED — LEAN**).
+Do not edit `BTCalculus/Confluence.lean`.

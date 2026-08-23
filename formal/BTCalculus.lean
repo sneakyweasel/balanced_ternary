@@ -3,6 +3,9 @@ import BTCalculus.Derivative
 import BTCalculus.Integral
 import BTCalculus.Algebra
 import BTCalculus.Rewrite
+import BTCalculus.OpFrag
+import BTCalculus.OpFragNewman
+import BTCalculus.OpFragSemantic
 import BTCalculus.Comparison
 import BTCalculus.Select
 import BTCalculus.Semantics

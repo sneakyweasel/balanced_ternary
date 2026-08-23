@@ -1647,10 +1647,10 @@
   },
   {
     "id": "BTC-op-fragment-nd-nf",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "the operator-fragment tree TRS {D, I_a, S, N} including N(D(x))→D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
-    "lean": "",
+    "lean": "BTCalculus/OpFragNewman.lean",
     "tests": [
       "tests/unit/test_operator_fragment_nf.py"
     ],
@@ -1660,15 +1660,165 @@
   },
   {
     "id": "BTC-op-fragment-nd-semantic",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "irreducibles of the enlarged operator-fragment TRS (tree rules plus N(D(x))→D(N(x))) are unique representatives of integer operator functions on {D, I_a, S, N}",
     "source": "docs/theory/rewrite_calculus.md",
-    "lean": "BTCalculus/Rewrite.lean",
+    "lean": "BTCalculus/OpFragSemantic.lean",
     "tests": [
       "tests/unit/test_operator_fragment_nf.py"
     ],
     "related_conjectures": [
       "op_fragment_nd_semantic"
+    ]
+  },
+  {
+    "id": "BTC-add-s-push-lc",
+    "tag": "REFUTED",
+    "statement": "the unary tree TRS plus exact push-in S(x+y)→S(x)+S(y) (and N through Add) is locally confluent",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_signature_enlargement.py"
+    ],
+    "related_conjectures": [
+      "add_s_push_lc"
+    ]
+  },
+  {
+    "id": "BTC-mul-s-push-lc",
+    "tag": "REFUTED",
+    "statement": "the unary tree TRS plus exact push-in S(x*y)→S(x)*y (and N through Mul) is locally confluent",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_signature_enlargement.py"
+    ],
+    "related_conjectures": [
+      "mul_s_push_lc"
+    ]
+  },
+  {
+    "id": "BTC-add-n-push-semantic",
+    "tag": "REFUTED",
+    "statement": "irreducibles of the unary tree TRS plus only N(x+y)→N(x)+N(y) are unique representatives of integer functions",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_signature_enlargement.py"
+    ],
+    "related_conjectures": [
+      "add_n_push_semantic"
+    ]
+  },
+  {
+    "id": "BTC-w-nd-word-lc",
+    "tag": "REFUTED",
+    "statement": "the one-way word orientation N∘D→D∘N together with the stock simplifying W/K3 rules (and N∘W→W∘N) is locally confluent",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_signature_enlargement.py"
+    ],
+    "related_conjectures": [
+      "w_nd_word_lc"
+    ]
+  },
+  {
+    "id": "BTC-unary-s-distrib-obstruction",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "any exact push-in rule that copies S or I_a through Add or Mul overlaps D∘S=id (resp. D∘I_a=id) in a peak whose other descendant is D of a sum or product of S/I terms; without an unsound D-through-binary rule that peak does not join, so {D, I_a, S, N} is maximal among complete tree cores obtained by those extensions",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_signature_enlargement.py"
+    ],
+    "related_conjectures": [
+      "add_s_push_lc",
+      "mul_s_push_lc"
+    ]
+  },
+  {
+    "id": "BTC-add-factor-binary-semantic",
+    "tag": "REFUTED",
+    "statement": "irreducibles of the unary tree TRS plus finite binary factor-out Add (S(x)+S(y)→S(x+y) and the exact I_a analogues) are unique representatives of integer functions even after identifying AC twins",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_factor_out_add.py"
+    ],
+    "related_conjectures": [
+      "add_factor_binary_semantic"
+    ]
+  },
+  {
+    "id": "BTC-add-factor-ac-semantic",
+    "tag": "REFUTED",
+    "statement": "irreducibles of the unary tree TRS plus finite factor-out Add under AC-matching are unique representatives of integer functions",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_factor_out_add.py"
+    ],
+    "related_conjectures": [
+      "add_factor_ac_semantic"
+    ]
+  },
+  {
+    "id": "BTC-add-factor-cas-obstruction",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "any finite exact-on-ℤ factor-out Add extension of the unary tree core either matches only adjacent binary summands, leaving S(x)+(S(y)+z) versus S(x+y)+z (not AC-equivalent), or, once AC-matching is granted, cannot join I+(x+y)+I+(z) versus I+(x)+I+(y+z) because I_a(x)+I_a(y) is not I_b(x+y) for any trit b; a complete form therefore requires an AC engine with constants or carry (already a CAS), so {D, I_a, S, N} remains the maximal complete tree core",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_factor_out_add.py"
+    ],
+    "related_conjectures": [
+      "add_factor_binary_semantic",
+      "add_factor_ac_semantic",
+      "add_factor_cas_obstruction"
+    ]
+  },
+  {
+    "id": "BTC-add-affine-only",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the only exact-on-ℤ identities U(x)+V(y)=W(x+y) for unary constructors {S, I_a, N} are the six push-in / factor-out pairs (I0 = S); every finite exact tree TRS on Add is therefore one of the already-incomplete push-in, factor-out, or N-distrib orientations, or else introduces a non-trit constant (a CAS); the unique complete finite representatives of those sums are their affine maps, equivalently evaluation then the unique BT coefficient-word NF, so Add stays out of the tree TRS",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_add_affine_only.py"
+    ],
+    "related_conjectures": [
+      "add_affine_only",
+      "add_factor_cas_obstruction",
+      "add_s_push_lc",
+      "add_n_push_semantic"
+    ]
+  },
+  {
+    "id": "BTC-word-full-lc",
+    "tag": "REFUTED",
+    "statement": "the production WORD_REWRITE_RULES table is locally confluent",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_full_lc",
+      "w_nd_word_lc"
+    ]
+  },
+  {
+    "id": "BTC-word-simp-nf",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the simplifying-only fragment of WORD_REWRITE_RULES (the sixteen rules with simplifying=True: cancellations, the W/K3 stock, and I0→S) is terminating and locally confluent; every word has a unique syntactic normal form",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_simp_nf"
     ]
   }
 ]

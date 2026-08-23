@@ -41,8 +41,10 @@ class WordRewriteRule:
 
 
 # Exact identities on the intersection of domains. Classification is
-# local: each rule is sound and size-nonincreasing on words. Global
-# confluence of the whole table is not claimed.
+# local: each rule is sound and size-nonincreasing on words. The whole
+# table is not locally confluent (peak N∘W∘W → N∘K3 | K3∘N) and the
+# two-way commutes are not terminating. The simplifying-only fragment
+# ``WORD_SIMP_RULES`` is terminating and locally confluent.
 WORD_REWRITE_RULES: tuple[WordRewriteRule, ...] = (
     WordRewriteRule(("N", "N"), (), "N∘N = id", reversible=True),
     WordRewriteRule(("D", "S"), (), "D∘S = id"),
@@ -83,6 +85,13 @@ WORD_REWRITE_RULES: tuple[WordRewriteRule, ...] = (
 )
 
 
+# Named production fragment: every ``simplifying=True`` row. No Add,
+# no two-way commutes, no ``N∘K3`` (that commute is not in the table).
+WORD_SIMP_RULES: tuple[WordRewriteRule, ...] = tuple(
+    rule for rule in WORD_REWRITE_RULES if rule.simplifying
+)
+
+
 # Compatibility tuple used by research.operator_dynamics.algebra.
 REWRITE_RULES: tuple[tuple[tuple[str, ...], tuple[str, ...], str], ...] = tuple(
     (rule.src, rule.dst, rule.reason) for rule in WORD_REWRITE_RULES
@@ -94,15 +103,19 @@ def rewrite_word(
     *,
     simplifying_only: bool = False,
 ) -> tuple[tuple[str, ...], tuple[str, ...]]:
-    """Left-to-right word rewrite until stable. Not claimed confluent."""
+    """Left-to-right word rewrite until stable.
+
+    The full table is not locally confluent. Pass
+    ``simplifying_only=True`` to use the named fragment
+    ``WORD_SIMP_RULES``, which is terminating and locally confluent.
+    """
     word = list(factors)
     used: list[str] = []
     changed = True
     while changed:
         changed = False
-        for rule in WORD_REWRITE_RULES:
-            if simplifying_only and not rule.simplifying:
-                continue
+        table = WORD_SIMP_RULES if simplifying_only else WORD_REWRITE_RULES
+        for rule in table:
             k = len(rule.src)
             if k == 0:
                 continue
@@ -195,6 +208,12 @@ def rewrite_expr(expr: Expr, *, max_steps: int = 10_000) -> tuple[Expr, tuple[st
     descendant)`` and pushable means ``S``, ``I±``, ``I0``, or ``D``.
     ``N(D(x)) → D(N(x))`` drops the inversion coordinate by one. Global
     confluence of the full expression language is not claimed.
+    Exact push-in ``S``-distributivity through ``Add`` or ``Mul``
+    overlaps ``D∘S = id`` in a non-joining peak; finite factor-out
+    Add is already AC-engine / CAS territory. Integer sums of
+    constructor terms are affine / coefficient-word objects, not a
+    tree TRS on ``Add``. Those rules stay out of ``_step`` (see
+    ``docs/theory/rewrite_calculus.md``).
     """
     used: list[str] = []
     steps = 0
