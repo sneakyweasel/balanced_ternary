@@ -50,7 +50,9 @@ class WordRewriteRule:
 # ``WORD_WND_RULES`` further adds one-way N∘D and the exact I±
 # sign-flips N∘Ip→Im∘N, N∘Im→Ip∘N; it is terminating and locally
 # confluent. Default production rules are not widened: N∘K3 and the
-# I± sign-flips are not installed here.
+# I± sign-flips are not installed here. Further one-way production
+# commutes (N∘M2, N∘Wz, N∘Wt) are a closed enlargement programme,
+# not a research target.
 WORD_REWRITE_RULES: tuple[WordRewriteRule, ...] = (
     WordRewriteRule(("N", "N"), (), "N∘N = id", reversible=True),
     WordRewriteRule(("D", "S"), (), "D∘S = id"),

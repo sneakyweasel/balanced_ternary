@@ -51,9 +51,11 @@ name. The milestone is a success if those facts become one language
 - information profiles (delay / precision / state) as a thin layer
   over existing `OperatorMetadata`
 
-Whether this is enough for a standalone paper is a later editorial
-question. The mathematics is specified; it is not automatically “new
-analysis”.
+The rewrite classification is now a
+[paper-candidate artifact](../problems/rewrite_calculus.md): Newman
+and unique expansion are KNOWN; the surviving distinction is the
+maximal unary tree core plus the Add/carry exclusion. Word-table
+enlargement is closed. Cubic residuals remain the frontier.
 
 ## Pointers
 

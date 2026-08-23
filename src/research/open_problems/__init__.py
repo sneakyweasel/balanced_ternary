@@ -18,6 +18,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.perfect_powers.problem import PROBLEM as PERFECT_POWERS
     from research.primes.problem import PROBLEM as PRIMES
     from research.residuals.problem import PROBLEM as RESIDUALS
+    from research.rewrite_calculus.problem import PROBLEM as REWRITE_CALCULUS
     from research.sparse_polynomials.problem import PROBLEM as SPARSE_POLYNOMIALS
     from research.stabilization.problem import PROBLEM as STABILIZATION
 
@@ -36,6 +37,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         MISERE_QUOTIENTS,
         REGULAR_OUTPUT_PREIMAGES,
         MONNA_ENDPOINT_SPECTRA,
+        REWRITE_CALCULUS,
     )
 
 

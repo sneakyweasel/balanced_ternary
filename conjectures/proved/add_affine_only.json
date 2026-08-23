@@ -3,7 +3,11 @@
   "first_seen": "Add affine-only Phase-0",
   "id": "add_affine_only",
   "lean_reference": "",
-  "literature": [],
+  "literature": [
+    "knuth-taocp-vol2",
+    "avizienis-1961-signed-digit",
+    "peterson-stickel-1981-unification-ac"
+  ],
   "mathematical_domain": "balanced ternary calculus",
   "notes": "Classification: U(x)+V(y)=W(x+y) holds on Z iff (U,V,W) is one of the six factor-out / push-in rows. Same-sign I_a needs a constant ±2; mixed N has the wrong slope; D+D is the 1+1 carry. Those identities are exactly the orientations already incomplete (BTC-unary-s-distrib-obstruction, BTC-add-n-push-semantic, BTC-add-factor-cas-obstruction). Complete finite forms are affine maps / evaluate-then-BTN-nf. Production TREE_RULES stay unary. Not a Collatz claim. Do not edit BTCalculus/Confluence.lean.",
   "origin": "docs/theory/rewrite_calculus.md",

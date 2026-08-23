@@ -1,0 +1,20 @@
+{
+  "id": "baader-nipkow-1998-term-rewriting",
+  "title": "Term Rewriting and All That",
+  "authors": ["Franz Baader", "Tobias Nipkow"],
+  "year": 1998,
+  "identifiers": {},
+  "url": {
+    "publisher": "https://www.cambridge.org/core/books/term-rewriting-and-all-that/A6C34003895322F41DA04198F485A3CD"
+  },
+  "problem_area": "term-rewriting",
+  "relevant_concepts": [
+    "term rewriting",
+    "Knuth-Bendix",
+    "critical pairs",
+    "termination orders"
+  ],
+  "project_relationship": "known",
+  "status": "method-source",
+  "notes": "docs/problems/rewrite_calculus.md. Standard textbook for critical-pair / Knuth-Bendix arguments. Used to tag Newman-on-a-small-fragment as KNOWN method, not as a project-specific discovery."
+}

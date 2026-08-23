@@ -27,6 +27,7 @@ Do not mark a module `PAPER_CANDIDATE` merely because a census is large.
 | `research.primes` | `EXPLORATORY` | sparse-prime helpers already in the repo |
 | `research.sparse_polynomials` | `EXPLORATORY` | Mahler / factor scans |
 | `research.operator_dynamics` | `EXPLORATORY` | composition census, dossiers |
+| `research.rewrite_calculus` | `PAPER_CANDIDATE` | maximal unary TRS; Add/carry exclusion; dossier only |
 | `research.stabilization` | `ARCHIVED` | local \(\Phi_r\) versus global \(k_0\); literature close |
 | `research.padic_dynamics` | `ARCHIVED` | cycle-lift residual quotient; classical return-map close |
 | `research.cerny_bt` | `ARCHIVED` | transition-closed residual quotient; linear/nonlinear close |

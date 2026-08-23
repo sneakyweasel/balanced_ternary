@@ -1,12 +1,36 @@
 # Rewrite calculus
 
-**Status of this page:** a sound, classified rewrite system. The
-operator fragment `{D, I_a, S, N}` under the tree rules below —
+**Status of this page:** a classified rewrite system and a
+[paper-candidate artifact](../problems/rewrite_calculus.md). The
+publication spine is the Lean-verified unary core
+`{D, I_a, S, N}` plus the human Add/carry maximality theorem.
+Word-table fragments are a closed appendix. Cubic residuals remain
+the laboratory frontier; this page is not a Collatz claim.
+
+## Three canonicalizers
+
+These are three different objects. Do not merge them.
+
+| Object | What it canonicalizes | Home |
+|--------|----------------------|------|
+| OpFrag tree TRS | Open unary terms in `{D, I_a, S, N}` | `rewrite_expr`, `formal/BTCalculus/OpFrag*.lean` |
+| Coefficient-word TRS | Integer sums / affine forms after evaluation | `bt.normtheory`, `BTCalculus/Confluence.lean` |
+| Word-string fragments | Operator words; named opt-in tables only | `rewrite_word`, `WORD_SIMP_RULES` / `WORD_WN_RULES` / `WORD_WND_RULES` |
+
+## Canonicalization decision guide
+
+- Unary constructor term in `{D, I_a, S, N}` → `rewrite_expr` / OpFrag NF. Unique syntactic *and* semantic representative (**PROVED — LEAN**: [BTC-op-fragment-nd-nf](theorem_ledger.md), [BTC-op-fragment-nd-semantic](theorem_ledger.md)).
+- Integer sum of constructor terms → evaluate, then coefficient-word NF. Never a tree rule on `Add` ([BTC-add-affine-only](theorem_ledger.md)).
+- Operator word → `rewrite_word(..., simplifying_only=True)` for the production-safe fragment, or pass `rules=WORD_WN_RULES` / `WORD_WND_RULES` for the named opt-in enlargements. Do **not** treat the full `WORD_REWRITE_RULES` table as a confluent TRS ([BTC-word-full-lc](theorem_ledger.md), **REFUTED**).
+- There is no unified `canonicalize(Expr)` that includes `Add`/`Mul` as tree constructors.
+
+## Classification theorem (the artifact)
+
+The operator fragment `{D, I_a, S, N}` under the tree rules below —
 including `N(D(x)) → D(N(x))` — is terminating, locally confluent, and
-has a unique syntactic normal form (**PROVED — LEAN**) that is also a
-unique representative of the integer operator function
-(**PROVED — LEAN**). That fragment is **maximal** as a complete
-tree-level canonical core among exact push-in *or* factor-out
+has a unique syntactic normal form that is also a unique representative
+of the integer operator function. That fragment is **maximal** as a
+complete tree-level canonical core among exact push-in *or* factor-out
 extensions by `Add` or `Mul`: push-in `S`-distributivity overlaps
 `D∘S = id` in a non-joining peak
 ([BTC-add-s-push-lc](theorem_ledger.md),
@@ -16,23 +40,72 @@ factor-out Add is already AC-engine / CAS territory
 unary constructor terms are canonicalized only as affine maps /
 coefficient words, never by a tree TRS on `Add`
 ([BTC-add-affine-only](theorem_ledger.md)). Global confluence
-of the full expression language is **not** claimed. The production word
-table is **not** locally confluent
+of the full expression language is **not** claimed.
+
+The production word table is **not** locally confluent
 ([BTC-word-full-lc](theorem_ledger.md), **REFUTED**); its
 simplifying-only fragment is terminating and locally confluent
-([BTC-word-simp-nf](theorem_ledger.md)). The opt-in fragment
-`WORD_WN_RULES` (SIMP plus one-way `N∘S`, `N∘W`, and `N∘K3`) is also
-terminating and locally confluent
-([BTC-word-wn-nf](theorem_ledger.md)). Adding one-way `N∘D` to that
-enlargement without word-level `I±` sign-flips fails at `N∘D∘I±`
-([BTC-word-simp-nd-lc](theorem_ledger.md), **REFUTED**). The opt-in
-fragment `WORD_WND_RULES` (WN plus one-way `N∘D` and the exact
-sign-flips `N∘Ip → Im∘N`, `N∘Im → Ip∘N`) is terminating and locally
-confluent ([BTC-word-wnd-nf](theorem_ledger.md)). Coefficient-word
-confluence
+([BTC-word-simp-nf](theorem_ledger.md)). The opt-in fragments
+`WORD_WN_RULES` and `WORD_WND_RULES` are also terminating and
+locally confluent ([BTC-word-wn-nf](theorem_ledger.md),
+[BTC-word-wnd-nf](theorem_ledger.md)). Adding one-way `N∘D` without
+word-level `I±` sign-flips fails at `N∘D∘I±`
+([BTC-word-simp-nd-lc](theorem_ledger.md), **REFUTED**). Further
+word-table enlargement is **closed**. Coefficient-word confluence
 ([BTN-confluence](theorem_ledger.md), `BTCalculus/Confluence.lean`) is
-a different object — and is the complete finite canonicalizer for
-those sums after evaluation.
+the complete finite canonicalizer for those sums after evaluation.
+
+## Novelty after literature
+
+Method is KNOWN. The classification of *this* operator algebra is
+the candidate distinction. See the
+[dossier](../problems/rewrite_calculus.md) for the full audit.
+
+| Claim | Novelty | Why |
+|-------|---------|-----|
+| Newman / Knuth–Bendix on a finite left-linear TRS | `KNOWN` | `newman-1942-confluence`, `baader-nipkow-1998-term-rewriting` |
+| Unique balanced-ternary expansion; `D`/`I_a` as drop/prepend | `KNOWN` / `REPARAMETERIZATION` | `knuth-taocp-vol2`, `hayes-2001-third-base` |
+| Signed-digit carry-free addition as an *arithmetic* algorithm | `KNOWN` | `avizienis-1961-signed-digit` |
+| Completion / rewriting modulo AC | `KNOWN` | `peterson-stickel-1981-unification-ac` |
+| OpFrag confluence + semantic injectivity of the NF grammar | `PROJECT-SPECIFIC` (method KNOWN) | Oriented `N(D)→D(N)` is necessary; without it `N(D)`/`D(N)` are semantic twins |
+| Maximality: exact `S`/`I_a` push-in through Add/Mul dies at `D∘S` | `PROJECT-SPECIFIC` | Avizienis does not state a TRS maximality theorem for `{D,I_a,S,N}` |
+| Finite exact factor-out Add is already a CAS | `PROJECT-SPECIFIC` (AC engine KNOWN) | Same-sign `I_a` residue `±2` is the trit carry of `1+1` |
+| Six exact identities `U(x)+V(y)=W(x+y)` on `{S,I_a,N}`; Add is affine-only | `PROJECT-SPECIFIC` | Exhaustive constructor classification, not just unique expansion |
+| Named word fragments `SIMP` / `WN` / `WND` | `PROJECT-SPECIFIC` appendix | Same Newman method; not the publication spine |
+
+The falsifier for the package — prior work already proving the same
+maximal tree core and Add-exclusion for this operator algebra — did
+not fire. Two central claims remain `PROJECT-SPECIFIC` and form one
+coherent theorem: **maximal unary tree core + Add/carry exclusion**.
+
+## Word-table enlargement is closed
+
+PRs #8–#10 answered the word-table question: the production table is
+a permanent non-claim; `WORD_SIMP_RULES`, `WORD_WN_RULES`, and
+`WORD_WND_RULES` are named opt-in fragments with Newman certificates;
+`N∘K3` and the `I±` sign-flips stay out of `WORD_REWRITE_RULES`.
+Further one-way production commutes (`N∘M2`, `N∘Wz`, `N∘Wt`) would
+be more named fragments of the same species, not a new mathematical
+consequence. That programme is **CLOSE**. Do not install those
+commutes. Do not open another word-fragment Phase-0.
+
+## Note outline
+
+A 5–8 page note, if written, should use this spine — not a rewrite
+engine travelogue:
+
+1. Definitions: `D`, `I_a`, `S=I_0`, `N`; tree terms versus words versus coefficient words.
+2. OpFrag TRS including `N(D)→D(N)`: termination, local confluence, unique NF (**LEAN**).
+3. Semantic injectivity of the NF grammar (**LEAN**); necessity of the oriented commute.
+4. Push-in Add/Mul obstruction: the `D∘S` peak (human).
+5. Exhaustive Add classification: six identities; same-sign `I_a` needs `±2` (human).
+6. Architectural conclusion: sums are affine / coefficient-word; Add stays out of the tree TRS.
+7. Optional appendix: production word table fails at `N∘W∘W`; named fragments.
+
+Do not package census tooling, CLI, identity-discovery, or
+`Confluence.lean` (Milestone 14, a different object).
+
+## Historical inspiration
 
 ## Historical inspiration
 
@@ -684,6 +757,10 @@ word rule, so W+N+D is the same species of object as `WORD_WN_RULES`,
 not a different encoding. Production `WORD_REWRITE_RULES` is not
 widened.
 
+Further one-way production commutes (`N∘M2`, `N∘Wz`, `N∘Wt`) are
+**not** opened. They would be more named fragments of the same
+species; see [Word-table enlargement is closed](#word-table-enlargement-is-closed).
+
 Tests: `tests/unit/test_rewrite_word_fragments.py`.
 
 ## Conjectures
@@ -704,7 +781,8 @@ fragment is ([BTC-word-simp-nf](theorem_ledger.md)); the opt-in
 W+N fragment is ([BTC-word-wn-nf](theorem_ledger.md)); SIMP plus
 one-way `N∘D` without word `I±` sign-flips is not
 ([BTC-word-simp-nd-lc](theorem_ledger.md)); the opt-in W+N+D
-fragment is ([BTC-word-wnd-nf](theorem_ledger.md)).
+fragment is ([BTC-word-wnd-nf](theorem_ledger.md)). Word-table
+enlargement beyond those named fragments is **closed**.
 
 Lean Newman for the enlarged fragment is packaged in
 `BTCalculus/OpFragNewman.lean` (termination, local confluence,
