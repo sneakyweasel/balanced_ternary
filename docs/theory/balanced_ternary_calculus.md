@@ -41,8 +41,10 @@ name. The milestone is a success if those facts become one language
   are not a tiny tree core — they are trit-carry / AC-engine territory,
   and sums of constructor terms are canonicalized only as affine maps
   / coefficient words; the production word table is not locally
-  confluent (`N∘W∘W`), while its simplifying-only fragment is
-  ([rewrite_calculus.md](rewrite_calculus.md))
+  confluent (`N∘W∘W`), while its simplifying-only fragment is, and
+  the opt-in W+N fragment (`WORD_WN_RULES`: SIMP plus one-way
+  `N∘S`, `N∘W`, `N∘K3`) is too; one-way `N∘D` still fails at
+  `N∘D∘I±` ([rewrite_calculus.md](rewrite_calculus.md))
 - information profiles (delay / precision / state) as a thin layer
   over existing `OperatorMetadata`
 
