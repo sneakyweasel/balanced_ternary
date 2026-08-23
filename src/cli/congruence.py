@@ -237,7 +237,11 @@ def _run_state(args: argparse.Namespace) -> int:
     from bt.calculus.lifting_state import (
         behaviour_class,
         behaviour_count_formula,
+        dominated_count,
         is_dead,
+        is_dominated,
+        minimal_state_key,
+        undominated_count,
     )
     from research.lifting.state_complexity import quotient_chain
 
@@ -249,18 +253,23 @@ def _run_state(args: argparse.Namespace) -> int:
         layer = level_nodes(nodes, level)
         if not layer:
             continue
-        rows.append(
-            {
-                "level": level,
-                "nodes": len(layer),
-                "valuation_classes": len(
-                    {(_cap(n.v3_f, r), _cap(n.v3_f_prime, r)) for n in layer}
-                ),
-                "phi_classes": len({phi_k(n.residual, r) for n in layer}),
-                "behaviours": len({behaviour_class(n.residual, r) for n in layer}),
-                "deep": level >= r,
-            }
-        )
+        row = {
+            "level": level,
+            "nodes": len(layer),
+            "valuation_classes": len(
+                {(_cap(n.v3_f, r), _cap(n.v3_f_prime, r)) for n in layer}
+            ),
+            "phi_classes": len({phi_k(n.residual, r) for n in layer}),
+            "behaviours": len({behaviour_class(n.residual, r) for n in layer}),
+            "deep": level >= r,
+        }
+        if level >= r:
+            # In the deep regime the node is its linear surrogate modulo 3^r,
+            # so the normal form applies verbatim.
+            pairs = [(n.scaled_value, n.f_prime) for n in layer]
+            row["dominated_nodes"] = sum(1 for c, b in pairs if is_dominated(c, b, r))
+            row["normal_forms"] = len({minimal_state_key(c, b, r) for c, b in pairs})
+        rows.append(row)
     try:
         chain = quotient_chain(r, allow_expensive=args.allow_expensive)
     except ValueError as exc:
@@ -272,6 +281,10 @@ def _run_state(args: argparse.Namespace) -> int:
         "levels": rows,
         "deep_regime": chain,
         "deep_bound": behaviour_count_formula(r),
+        "strata": {
+            "dominated": dominated_count(r),
+            "undominated": undominated_count(r),
+        },
         "dead_nodes": sum(1 for n in nodes if is_dead(n.residual)),
     }
     if args.json:
@@ -279,11 +292,13 @@ def _run_state(args: argparse.Namespace) -> int:
         return 0
     print(f"f = {f.render()}")
     print(f"horizon r = {r}, levels k = 0..{args.k}")
-    print("level  nodes  valuation  Phi_r  behaviour  regime")
+    print("level  nodes  valuation  Phi_r  behaviour  dominated  regime")
     for row in rows:
+        dominated = row.get("dominated_nodes")
         print(
             f"{row['level']:>5}  {row['nodes']:>5}  {row['valuation_classes']:>9}  "
             f"{row['phi_classes']:>5}  {row['behaviours']:>9}  "
+            f"{'-' if dominated is None else dominated:>9}  "
             f"{'deep' if row['deep'] else 'shallow'}"
         )
     print(f"dead nodes (no surviving branch) = {payload['dead_nodes']}")
@@ -295,6 +310,11 @@ def _run_state(args: argparse.Namespace) -> int:
             f"unit orbits {chain['unit_orbits']}, minimal L_r = {chain['behaviours']}"
         )
         print(f"closed form (3^(r+1)-1)/2 + r holds = {str(chain['formula_holds']).lower()}")
+    print(
+        f"L_r splits as {dominated_count(r)} dominated (v3(c) < v3(b), behaviour is the "
+        f"truncated tree of depth v3(c)) + {undominated_count(r)} undominated "
+        "(behaviour is exactly the unit-scaling orbit)."
+    )
     print("Phi_r is sufficient but not minimal: unit scaling moves it and not the subtree.")
     return 0
 

@@ -679,6 +679,22 @@ def _minimal_state_panel(levels: int, depth: int) -> None:
             st.metric("Deep Phi_r states", state.deep_phi_states, border=True)
             st.metric("Unit-scaling orbits", state.deep_orbits, border=True)
             st.metric("Deep minimal L_r", state.deep_minimal, border=True)
+        split = st.container(horizontal=True)
+        with split:
+            st.metric(
+                "Dominated classes",
+                state.deep_dominated,
+                border=True,
+                help="v3(c) < v3(b): the branch dies at depth v3(c) and the "
+                "derivative is invisible, so only v3(c) survives",
+            )
+            st.metric(
+                "Orbit classes",
+                state.deep_undominated,
+                border=True,
+                help="v3(c) >= v3(b): the behaviour is exactly the unit-scaling "
+                "orbit, with no further collapse",
+            )
         if st.button("Find two live nodes with different jets and identical futures"):
             st.session_state.re_lift_witness = True
         if st.session_state.get("re_lift_witness"):

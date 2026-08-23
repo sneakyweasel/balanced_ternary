@@ -6,6 +6,8 @@ import io
 import json
 from contextlib import redirect_stdout
 
+import pytest
+
 from cli.main import main
 
 
@@ -96,8 +98,26 @@ def test_state_json_carries_per_level_classes():
     payload = json.loads(out)
     assert payload["r"] == 2
     assert payload["deep_bound"] == 15
+    assert payload["strata"] == {"dominated": 2, "undominated": 13}
     for row in payload["levels"]:
         assert row["behaviours"] <= row["phi_classes"]
+
+
+@pytest.mark.parametrize("poly", ["x^2-9", "x^3-x", "x^2-7", "x^4-1"])
+def test_state_normal_form_matches_the_behaviour_count_on_real_nodes(poly):
+    # The normal-form theorem, exercised on genuine lifting nodes.
+    out = _run("congruence", "state", "--poly", poly, "--k", "4", "--r", "2", "--json")
+    for row in json.loads(out)["levels"]:
+        if row["deep"]:
+            assert row["normal_forms"] == row["behaviours"]
+            assert 0 <= row["dominated_nodes"] <= row["nodes"]
+
+
+def test_state_reports_the_strata_split():
+    out = _run("congruence", "state", "--poly", "x^2-9", "--k", "3", "--r", "3")
+    assert "L_r splits as 3 dominated" in out
+    assert "40 undominated" in out
+    assert "unit-scaling orbit" in out
 
 
 def test_state_refuses_an_expensive_horizon_without_the_flag():

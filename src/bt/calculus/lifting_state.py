@@ -51,6 +51,43 @@ both exact:
 Counting these gives ``3^{r-e} + e`` behaviours at ``e = min(v_3(b), r)``
 and ``L_r = Σ_{j≤r} 3^j + r`` in total.
 
+The block shift law
+-------------------
+
+The singular count turns on one exact identity. Scaling so that
+``b = 3^e``, a trit word ``w`` of length ``j ≤ e`` sends the state
+``(3^j d, 3^{j+i})`` to ``(d + 3^i · packWord(w), 3^{j+i})``. At
+``i = 0``, ``j = e`` the leaf reached by ``w`` is
+
+    (d + packWord(w), 3^e),
+
+so the shift is the *balanced value* of the word, not its digit sum, and
+``packWord`` is a bijection from length-``e`` trit words onto the window
+
+    W_e = [-(3^e-1)/2, (3^e-1)/2]
+
+of ``3^e`` consecutive integers. That window is a complete residue system
+modulo ``3^e``, so it contains exactly one ``t`` with ``3^e | d + t``, and
+that single deep leaf drives the whole recursion.
+
+Minimal state
+-------------
+
+The upshot is a normal form rather than only a count. Scale so that
+``b ≡ 3^e`` with ``e = min(v_3(b), r)``, and split by whether the constant
+or the derivative dominates:
+
+* ``v_3(c) < e`` — *dominated*. The behaviour is the fully ternary tree
+  truncated at depth ``v_3(c)``, and nothing else about the state
+  survives. ``r`` classes.
+* ``v_3(c) ≥ e`` — *undominated*. The behaviour is exactly the
+  unit-scaling orbit of ``(c, b)`` modulo ``3^r``, with no further
+  collapse. ``(3^{r+1}-1)/2`` classes.
+
+So the minimal state is the unit orbit, degenerated to ``v_3(c)`` where
+the constant dominates. Both halves are classical valuation data —
+Newton-polygon dominance and Hensel rigidity — in residual coordinates.
+
 Nothing here counts roots or lifts faster than the classical algorithms;
 the object of study is the state space, not the count.
 """
@@ -60,7 +97,7 @@ from __future__ import annotations
 from functools import cache
 
 from bt.calculus.lifting import depth_r_shape
-from bt.calculus.residual import TRITS
+from bt.calculus.residual import TRITS, pack_trits
 from bt.calculus.section import IntPoly, rho_int
 from bt.metrics import v3
 
@@ -296,6 +333,118 @@ def valuation_row_formula(r: int, e: int) -> int:
     if e > r:
         raise ValueError("e must not exceed r")
     return 3 ** (r - e) + e
+
+
+# ------------------------------------------------------- block shift law
+
+
+def block_shift(word: tuple[int, ...]) -> int:
+    """The constant shift a surviving word applies inside a ternary block.
+
+    Scaled to ``b = 3^e``, the word ``w`` of length ``e`` carries the state
+    ``(3^e d, 3^e)`` to ``(d + packWord(w), 3^e)``. The shift is the
+    *balanced value* of the word, not its digit sum: at step ``j`` the
+    constant is ``3^{e-j}(d + a_1 + 3a_2 + … + 3^{j-1}a_j)``.
+    """
+    for a in word:
+        if a not in TRITS:
+            raise ValueError(f"word must consist of trits, got {a}")
+    return pack_trits(tuple(word))
+
+
+def shift_window(e: int) -> tuple[int, ...]:
+    """``W_e``, the balanced window of ``3^e`` consecutive integers.
+
+    ``block_shift`` is a bijection from length-``e`` trit words onto this
+    window, so ``W_e`` is a complete residue system modulo ``3^e`` and
+    contains exactly one multiple of ``3^e``. That is what makes the
+    shifted family separate residues.
+    """
+    e = _require_nat(e, "e")
+    half = (3**e - 1) // 2
+    return tuple(range(-half, half + 1))
+
+
+def deep_leaf(t: int, e: int) -> bool:
+    """Whether the leaf at shift ``t`` is the one that recurses.
+
+    Exactly one ``t`` in ``shift_window(e)`` satisfies this for a given
+    residue, since the window is a complete residue system.
+    """
+    return t % 3 ** _require_nat(e, "e") == 0
+
+
+# ------------------------------------------------------- minimal state
+
+
+def capped_valuation(n: int, r: int) -> int:
+    """``min(v_3(n), r)``, with ``v_3(0) = ∞`` read as ``r``.
+
+    Nothing below the horizon is observable, so the horizon is where every
+    valuation saturates.
+    """
+    r = _require_nat(r, "r")
+    val = v3(n % 3**r if r else 0)
+    return r if val is None else min(val, r)
+
+
+def derivative_valuation(b: int, r: int) -> int:
+    """``e = min(v_3(b), r)``, the conserved quantity of a deep branch."""
+    return capped_valuation(b, r)
+
+
+def unit_normal_pair(c: int, b: int, r: int) -> tuple[int, int]:
+    """Scale by a unit so that ``b ≡ 3^e``, returning ``(e, c)`` modulo ``3^r``.
+
+    Unit scaling preserves the behaviour, so this is a canonical
+    representative to reason about, and it turns each valuation row into a
+    one-parameter family.
+    """
+    r = _require_pos(r, "r")
+    mod = 3**r
+    e = derivative_valuation(b, r)
+    if e >= r:
+        return r, c % mod
+    beta = (b % mod) // 3**e
+    return e, (c * pow(beta, -1, mod)) % mod
+
+
+def is_dominated(c: int, b: int, r: int) -> bool:
+    """Whether the constant dominates, ``v_3(c) < min(v_3(b), r)``.
+
+    On this stratum the branch dies at depth ``v_3(c)`` whatever the
+    derivative is, which is the Newton-polygon reason the state collapses.
+    """
+    r = _require_pos(r, "r")
+    e, cn = unit_normal_pair(c, b, r)
+    return capped_valuation(cn, r) < e
+
+
+def minimal_state_key(c: int, b: int, r: int) -> tuple:
+    """A complete invariant of the depth-``r`` lifting behaviour.
+
+    Two deep-regime states have the same depth-``r`` behaviour exactly when
+    these keys agree. On the dominated stratum the key is the valuation of
+    the constant alone; otherwise it is the unit-scaling orbit, here
+    represented by the normalised pair.
+    """
+    r = _require_pos(r, "r")
+    e, cn = unit_normal_pair(c, b, r)
+    m = capped_valuation(cn, r)
+    if m < e:
+        return ("dominated", m)
+    return ("orbit", e, cn)
+
+
+def dominated_count(r: int) -> int:
+    """``r``: the truncated trees ``T_0, …, T_{r-1}``."""
+    return _require_nat(r, "r")
+
+
+def undominated_count(r: int) -> int:
+    """``(3^{r+1}-1)/2 = Σ_{j≤r} 3^j``: one class per unit orbit."""
+    r = _require_nat(r, "r")
+    return (3 ** (r + 1) - 1) // 2
 
 
 def row_overlap(r: int) -> int:
