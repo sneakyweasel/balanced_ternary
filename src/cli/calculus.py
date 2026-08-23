@@ -151,6 +151,20 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_cc.add_argument("polynomial")
     p_cc.add_argument("--k", type=int, required=True)
 
+    p_cf = c.add_parser(
+        "cubic-fibres",
+        help="fibre profile of the x^3 Newton image map F_k",
+    )
+    p_cf.add_argument("--k", type=int, required=True)
+
+    p_cfo = c.add_parser(
+        "cubic-fibre",
+        help="complete ~_k class of one cubic residual parameter (m, p)",
+    )
+    p_cfo.add_argument("m", type=int)
+    p_cfo.add_argument("p", type=int)
+    p_cfo.add_argument("--k", type=int, required=True)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -490,5 +504,31 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"class {i} size={rec['size']} phi={rec['phi']}")
             for member in rec["members"]:
                 print(f"  {member['word']} p={member['p']} {member['poly']}")
+        return 0
+    if cmd == "cubic-fibres":
+        from bt.calculus.cubic_fibres import fibre_report
+
+        rec = fibre_report(args.k)
+        print(f"k = {rec['k']}")
+        print(f"R_k = {rec['R']}")
+        print(f"M_k = {rec['M']}")
+        print(f"per_depth = {rec['per_depth']}")
+        print(f"sum_C = {rec['sum_C']}")
+        print(f"cross_depth = {rec['cross_depth']}")
+        print(f"largest_fibre = {rec['largest_fibre']}")
+        print(f"histogram = {rec['histogram']}")
+        print(f"zero_spine = {rec['zero_spine']}")
+        print("examples")
+        for fib in rec["examples"]:
+            print(f"  {fib}")
+        return 0
+    if cmd == "cubic-fibre":
+        from bt.calculus.cubic_fibres import fibre_of
+
+        members = fibre_of(args.m, args.p, args.k)
+        print(f"m = {args.m}  p = {args.p}  k = {args.k}")
+        print(f"fibre_size = {len(members)}")
+        for m, p in members:
+            print(f"  ({m}, {p})")
         return 0
     raise ValueError(f"unknown calculus command {cmd}")

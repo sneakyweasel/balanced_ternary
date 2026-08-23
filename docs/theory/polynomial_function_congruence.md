@@ -17,7 +17,8 @@ Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 
 Related: [quadratic_residual_complexity.md](quadratic_residual_complexity.md),
 [residual_state_complexity.md](residual_state_complexity.md),
-[cubic_residual_image.md](cubic_residual_image.md).
+[cubic_residual_image.md](cubic_residual_image.md),
+[cubic_residual_fibres.md](cubic_residual_fibres.md).
 
 ---
 

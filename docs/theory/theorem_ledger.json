@@ -538,5 +538,77 @@
     "lean": "",
     "tests": ["tests/unit/test_cubic_residual.py"],
     "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n2",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k",
+    "source": "docs/theory/cubic_residual_fibres.md",
+    "lean": "BTCalculus/CubicFibres.lean",
+    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n1fac",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "N1(p)-N1(q)=3(p-q)(p+q+3^m)",
+    "source": "docs/theory/cubic_residual_fibres.md",
+    "lean": "BTCalculus/CubicFibres.lean",
+    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n2n1",
+    "tag": "REFUTED",
+    "statement": "same-depth N2 implies N1",
+    "source": "docs/theory/cubic_residual_fibres.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n21n0",
+    "tag": "REFUTED",
+    "statement": "same-depth N2+N1 imply N0",
+    "source": "docs/theory/cubic_residual_fibres.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n3gate",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "cross-depth N3 agrees iff k<=2 min(m,n)+1 or m=n",
+    "source": "docs/theory/cubic_residual_fibres.md",
+    "lean": "BTCalculus/CubicFibres.lean",
+    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-sign",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "odd pair: N2 iff N1; N0 iff 3^k divides D^m(p^3)",
+    "source": "docs/theory/cubic_residual_fibres.md",
+    "lean": "BTCalculus/CubicFibres.lean",
+    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Ckm",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "C_{k,m}=3^m whenever 2m+1<=k",
+    "source": "docs/theory/cubic_residual_fibres.md",
+    "lean": "BTCalculus/CubicFibres.lean",
+    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-allsign",
+    "tag": "REFUTED",
+    "statement": "every cubic fibre is a sign pair",
+    "source": "docs/theory/cubic_residual_fibres.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "related_conjectures": []
   }
 ]

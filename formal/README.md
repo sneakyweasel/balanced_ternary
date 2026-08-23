@@ -53,7 +53,8 @@ residual equivalence `≡_k`, cascade `outputAlong` for polynomial composition,
 global confluence of the stripped coefficient rewrite, and polynomial
 function congruence modulo `3^k` (the Myhill–Nerode bridge, the degree-`≤2`
 and cubic vanishing criteria, and the first `x^3`/`x^4` residual merges),
-and the cubic residual closed form with Newton-coordinate equivalence.
+and the cubic residual closed form with Newton-coordinate equivalence
+and the fibre criteria for `F_k`.
 
 These are labelled **EXACT — LEAN VERIFIED**. The Python cylinder
 implementation remains the executable instantiation; this Lean project

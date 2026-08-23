@@ -83,6 +83,7 @@ meaning throughout:
 - [Quadratic residual complexity](theory/quadratic_residual_complexity.md)
 - [Polynomial function congruence](theory/polynomial_function_congruence.md)
 - [Cubic residual image](theory/cubic_residual_image.md)
+- [Cubic residual fibres](theory/cubic_residual_fibres.md)
 
 ## Architecture
 

@@ -447,11 +447,9 @@ standard kernel or interpolation theorem.
 
 ## 16. Strongest next question
 
-The image is an explicit arithmetic map. The remaining count is:
+Closed by Milestone 20: the fibres of \(F_k\) are classified by the
+Newton hierarchy \(N_3\to N_2\to N_1\to N_0\). See
+[cubic_residual_fibres.md](cubic_residual_fibres.md).
 
-> For each depth \(m<k\), how many balanced width-\(m\) prefixes share
-> a common \(F_k\)-value, and how do those fibres lift from
-> \(k\) to \(k+1\)?
-
-A closed fibre description of \(F_k\) would give \(M_k(x^3)\) exactly.
-Do not start that work automatically.
+The remaining count is a closed formula for the deep-layer class
+counts \(C_{k,m}\). Do not start that work automatically.

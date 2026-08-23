@@ -81,3 +81,11 @@ This ledger does not rewrite history.
 | BTA-x3-shallow | EXACT — HUMAN PROOF | residuals with 2m+1<k are ≡_k-separated | docs/theory/cubic_residual_image.md | | test_cubic_residual |
 | BTA-x3-prefix | REFUTED | Newton classes of x^3 are congruence classes of p(w) | docs/theory/cubic_residual_image.md | | test_cubic_residual |
 | BTA-x3-lift | REFUTED | M_{k+1}(x^3)=3 M_k(x^3)+1 | docs/theory/cubic_residual_image.md | | test_cubic_residual |
+| BTA-x3-n2 | EXACT — LEAN VERIFIED | same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1≤k | docs/theory/cubic_residual_fibres.md | BTCalculus/CubicFibres sameDepth_n2_injective | test_cubic_fibres |
+| BTA-x3-n1fac | EXACT — LEAN VERIFIED | N1(p)-N1(q)=3(p-q)(p+q+3^m) | docs/theory/cubic_residual_fibres.md | BTCalculus/CubicFibres n1Resid_diff | test_cubic_fibres |
+| BTA-x3-n2n1 | REFUTED | same-depth N2 implies N1 | docs/theory/cubic_residual_fibres.md | | test_cubic_fibres |
+| BTA-x3-n21n0 | REFUTED | same-depth N2+N1 imply N0 | docs/theory/cubic_residual_fibres.md | | test_cubic_fibres |
+| BTA-x3-n3gate | EXACT — LEAN VERIFIED | cross-depth N3 agrees iff k≤2 min(m,n)+1 or m=n | docs/theory/cubic_residual_fibres.md | BTCalculus/CubicFibres n3_dvd_iff | test_cubic_fibres |
+| BTA-x3-sign | EXACT — LEAN VERIFIED | odd pair: N2 iff N1; N0 iff 3^k\|D^m(p^3) | docs/theory/cubic_residual_fibres.md | BTCalculus/CubicFibres sign_n0 | test_cubic_fibres |
+| BTA-x3-Ckm | EXACT — HUMAN PROOF | C_{k,m}=3^m whenever 2m+1≤k | docs/theory/cubic_residual_fibres.md | sameDepth_n2_injective | test_cubic_fibres |
+| BTA-x3-allsign | REFUTED | every cubic fibre is a sign pair | docs/theory/cubic_residual_fibres.md | | test_cubic_fibres |
