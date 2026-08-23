@@ -113,11 +113,12 @@ btprime status
 ```
 
 Research UI (optional). The Streamlit app is centered on balanced ternary,
-with a calculator, encode/analyze, and operators; Collatz pages remain as
-one application:
+with a calculator, encode/analyze, operators, and the Residual explorer;
+Collatz pages remain as one application:
 
 ```powershell
 btprime collatz ui
+btprime calculus explorer
 ```
 
 ## Tests and Lean

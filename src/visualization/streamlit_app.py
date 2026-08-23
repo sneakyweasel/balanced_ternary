@@ -56,6 +56,14 @@ pages = {
             url_path="operators",
         ),
     ],
+    "Calculus research": [
+        st.Page(
+            str(_PAGES / "residual_explorer.py"),
+            title="Residual explorer",
+            icon=":material/account_tree:",
+            url_path="residual-explorer",
+        ),
+    ],
     "Collatz research": [
         st.Page(
             str(_PAGES / "number.py"),

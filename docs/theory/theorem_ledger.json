@@ -754,5 +754,59 @@
     "lean": "",
     "tests": ["tests/unit/test_cubic_deficit_two.py"],
     "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n1-diff",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "after N2, N1 agrees iff 3^{k-1-r} | δ(p+q+3^m)",
+    "source": "docs/theory/cubic_n1_valuation.md",
+    "lean": "BTCalculus/CubicN1Valuation.lean",
+    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n1-val",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "after N2, v3(p)<r and N1 agree imply p=q on P_m (r≥1, r+1≤k)",
+    "source": "docs/theory/cubic_n1_valuation.md",
+    "lean": "BTCalculus/CubicN1Valuation.lean",
+    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n1-unit",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "N2+N1 is injective on units of P_m for every r≥1",
+    "source": "docs/theory/cubic_n1_valuation.md",
+    "lean": "BTCalculus/CubicN1Valuation.lean",
+    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n1-fibre",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "every nontrivial N2+N1 fibre on P_m lies in 3^r Z",
+    "source": "docs/theory/cubic_n1_valuation.md",
+    "lean": "BTCalculus/CubicN1Valuation.lean",
+    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n1-sign",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "p ~ -p after N2+N1 iff 3^r | p",
+    "source": "docs/theory/cubic_n1_valuation.md",
+    "lean": "BTCalculus/CubicN1Valuation.lean",
+    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-n1-scale",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k≥2r+2",
+    "source": "docs/theory/cubic_n1_valuation.md",
+    "lean": "BTCalculus/CubicN1Valuation.lean",
+    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "related_conjectures": []
   }
 ]

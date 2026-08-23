@@ -105,3 +105,9 @@ This ledger does not rewrite history.
 | BTA-x3-def2-crit | EXACT — LEAN VERIFIED | m=k-3 fibres iff p≡q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees | docs/theory/cubic_deficit_two.md | deficitTwo_equiv_iff | test_cubic_deficit_two |
 | BTA-x3-def2-n21n0 | REFUTED | at m=k-3, N2+N1 imply N0 | docs/theory/cubic_deficit_two.md | | test_cubic_deficit_two |
 | BTA-x3-def2-nextdigit | REFUTED | after N2 shows p mod 9, N1 reveals the next trit | docs/theory/cubic_deficit_two.md | | test_cubic_deficit_two |
+| BTA-x3-n1-diff | EXACT — LEAN VERIFIED | after N2, N1 agrees iff 3^{k-1-r} | δ(p+q+3^m) | docs/theory/cubic_n1_valuation.md | BTCalculus/CubicN1Valuation n1_after_n2_iff | test_cubic_n1_valuation |
+| BTA-x3-n1-val | EXACT — LEAN VERIFIED | after N2, v3(p)<r and N1 agree imply p=q on P_m (r≥1, r+1≤k) | docs/theory/cubic_n1_valuation.md | n1_val_lt_injective | test_cubic_n1_valuation |
+| BTA-x3-n1-unit | EXACT — LEAN VERIFIED | N2+N1 is injective on units of P_m for every r≥1 | docs/theory/cubic_n1_valuation.md | n1_unit_injective | test_cubic_n1_valuation |
+| BTA-x3-n1-fibre | EXACT — LEAN VERIFIED | every nontrivial N2+N1 fibre on P_m lies in 3^r Z | docs/theory/cubic_n1_valuation.md | n21_fibre_in_pow | test_cubic_n1_valuation |
+| BTA-x3-n1-sign | EXACT — LEAN VERIFIED | p ~ -p after N2+N1 iff 3^r | p | docs/theory/cubic_n1_valuation.md | n21_sign_iff | test_cubic_n1_valuation |
+| BTA-x3-n1-scale | EXACT — LEAN VERIFIED | on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k≥2r+2 | docs/theory/cubic_n1_valuation.md | n1_high_val_scaled | test_cubic_n1_valuation |

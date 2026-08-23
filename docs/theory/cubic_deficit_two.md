@@ -25,7 +25,8 @@ Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 
 Related: [cubic_intermediate_layer.md](cubic_intermediate_layer.md),
 [cubic_deepest_layer.md](cubic_deepest_layer.md),
-[cubic_residual_fibres.md](cubic_residual_fibres.md).
+[cubic_residual_fibres.md](cubic_residual_fibres.md),
+[cubic_n1_valuation.md](cubic_n1_valuation.md).
 
 ---
 
@@ -351,11 +352,6 @@ are project-specific.
 
 ## 15. Strongest next question
 
-Does \(N_1\) after a general \(N_2\) filter \(p\equiv q\pmod{3^r}\)
-always force singletons on residues coprime to \(3\), with all
-surviving fibres confined to \(3\mid p\)? If yes, the residual
-geometry of \(x^3\) would split into a visibility law plus a
-uniform unit-killing lemma, and only the \(3\)-divisible locus
-would need a recursive theory.
-
-Do not start that work automatically.
+Closed by Milestone 24. After the \(N_2\) filter, \(N_1\) separates
+every residual with \(v_3(p)<r\). Nontrivial \(N_2+N_1\) fibres lie
+in \(3^r\mathbb Z\). See [cubic_n1_valuation.md](cubic_n1_valuation.md).

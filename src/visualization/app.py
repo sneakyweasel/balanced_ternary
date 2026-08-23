@@ -4,8 +4,10 @@ Launch:
 
     python -m pip install -e ".[ui]"
     btprime collatz ui
+    btprime calculus explorer
 
 The app is centered on exact balanced-ternary words and a calculator.
+The Residual explorer lives under Calculus research.
 Collatz pages remain as one research application. The UI does not claim
 progress on the Collatz conjecture. Feature deltas are not Lyapunov
 decreases. Finite graphs are samples, not the dynamics.

@@ -59,7 +59,9 @@ simplification, square/cubic fibre criterion, and zero-fibre theorem,
 the first intermediate layer `m=k-2` (Newton simplification,
 `N2`/`N1` criteria, complete fibre criterion, horizon refinement),
 and the depth-deficit visibility law
-`N2` iff `p ≡ q (mod 3^r)` together with the `r=2` fibre criterion.
+`N2` iff `p ≡ q (mod 3^r)` together with the `r=2` fibre criterion,
+and the general `N1` valuation-stratification theorem
+(`v3(p)<r` is separated after `N2`).
 
 These are labelled **EXACT — LEAN VERIFIED**. The Python cylinder
 implementation remains the executable instantiation; this Lean project

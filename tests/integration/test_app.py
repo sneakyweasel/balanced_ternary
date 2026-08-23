@@ -16,6 +16,7 @@ REGISTERED_TITLES = (
     "Calculator",
     "Encode / analyze",
     "Operators",
+    "Residual explorer",
     "Number explorer",
     "Trajectory",
     "Inverse tree",
@@ -41,6 +42,7 @@ def test_router_starts_on_overview():
         assert title in source
     assert "url_path=\"exponent-code\"" in source
     assert "url_path=\"bt-warp\"" in source
+    assert "url_path=\"residual-explorer\"" in source
 
 
 def test_calculator_page_loads():

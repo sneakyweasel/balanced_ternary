@@ -25,6 +25,8 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     )
     c = p.add_subparsers(dest="cal_cmd", required=True)
 
+    c.add_parser("explorer", help="launch Residual Explorer Streamlit page")
+
     p_ev = c.add_parser("eval", help="evaluate D / lsd of an integer")
     p_ev.add_argument("n", type=int)
 
@@ -193,9 +195,28 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_clf.add_argument("--k", type=int, required=True)
     p_clf.add_argument("--depth-deficit", type=int, default=1)
 
+    p_ns = c.add_parser(
+        "n1-strata",
+        help="N1 valuation strata after the N2 depth-deficit filter",
+    )
+    p_ns.add_argument("--k", type=int, required=True)
+    p_ns.add_argument("--deficit", type=int, required=True)
+
+    p_nf = c.add_parser(
+        "n1-fibre",
+        help="N2+N1 fibre of one prefix at a fixed depth deficit",
+    )
+    p_nf.add_argument("p", type=int)
+    p_nf.add_argument("--k", type=int, required=True)
+    p_nf.add_argument("--deficit", type=int, required=True)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
+    if cmd == "explorer":
+        from visualization.app import launch
+
+        return launch()
     if cmd == "eval":
         n = args.n
         print(f"n = {n}")
@@ -627,6 +648,44 @@ def run_calculus(args: argparse.Namespace) -> int:
             raise ValueError("only depth-deficit 1 or 2 is implemented")
         print(f"p = {args.p}  k = {args.k}  m = {m}")
         print(f"fibre_size = {len(members)}")
+        for q in members:
+            print(f"  {q}")
+        return 0
+    if cmd == "n1-strata":
+        from bt.calculus.cubic_n1_valuation import n1_strata_report
+
+        rec = n1_strata_report(args.k, args.deficit)
+        print(f"k = {rec['k']}")
+        print(f"depth m = {rec['m']}")
+        print(f"deficit r = {rec['r']}")
+        print(f"raw prefixes = {rec['raw']}")
+        print(f"N2 classes = {rec['N2']}")
+        print(f"N2+N1 classes = {rec['N21']}")
+        print(f"unit prefixes = {rec['unit_prefixes']}")
+        print(f"unit classes = {rec['unit_classes']}")
+        print(f"nonunit prefixes = {rec['raw'] - rec['unit_prefixes']}")
+        print(f"prefixes with 3^{rec['r']} | p = {rec['n_div_r']}")
+        print(f"valuation strata = {rec['stratum_sizes']}")
+        print(f"surviving nontrivial fibres = {rec['n21_nontrivial']}")
+        print(f"surviving in 3^{rec['r']} Z = {rec['surviving_in_3r']}")
+        print(f"nontrivial by min v3 = {rec['nontrivial_by_min_v']}")
+        print(f"histogram = {rec['histogram']}")
+        print(f"min nontrivial = {rec['min_nontrivial']}")
+        print(f"max fibre = {rec['max_fibre']}")
+        print("fibre types")
+        for fib in rec["examples"]:
+            print(f"  {fib}")
+        return 0
+    if cmd == "n1-fibre":
+        from bt.calculus.cubic_n1_valuation import deficit_depth, n21_fibre_of
+
+        m = deficit_depth(args.k, args.deficit)
+        members = n21_fibre_of(args.p, args.k, args.deficit)
+        step = 3 ** args.deficit
+        print(f"p = {args.p}  k = {args.k}  deficit r = {args.deficit}")
+        print(f"depth m = {m}")
+        print(f"fibre_size = {len(members)}")
+        print(f"in 3^{args.deficit} Z = {all(q % step == 0 for q in members)}")
         for q in members:
             print(f"  {q}")
         return 0

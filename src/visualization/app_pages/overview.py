@@ -40,7 +40,8 @@ the least-significant digit $a_0$.
 1. **Calculator** — add, subtract, scale by 2 or 3, and apply `S`, `N`, `D`, `W`, `M2`, `H2`, …
 2. **Encode / analyze** — integer ↔ word round-trip and digit metrics.
 3. **Operators** — domain, involution, and integer/word agreement for each map.
-4. Collatz pages stay available as one application of the same words.
+4. **Residual explorer** — prefix tree, Newton classes, and depth-deficit visibility.
+5. Collatz pages stay available as one application of the same words.
                 """
             )
 
@@ -56,6 +57,11 @@ the least-significant digit $a_0$.
                 "layer": "Operators",
                 "object": "S, N, D, W, Wz, Wt, M2, H2, H3, K3, Im, Ip",
                 "status": "PROVED on the stated domains",
+            },
+            {
+                "layer": "Residual calculus",
+                "object": "Prefix residuals, Newton classes, fibres, depth deficit",
+                "status": "Visualized; Lean remains the proof authority",
             },
             {
                 "layer": "Finite-state Collatz",
