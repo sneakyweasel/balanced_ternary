@@ -3,7 +3,8 @@
 **Status of this page:** a classified rewrite system and a
 [paper-candidate artifact](../problems/rewrite_calculus.md). The
 publication spine is the Lean-verified unary core
-`{D, I_a, S, N}` plus the restricted Add/carry exclusion
+`{D, I_a, S, N}` plus the exact theorem that `D(x+y)` does not
+factor through `(D(x),D(y))`
 ([formalization note](rewrite_calculus_formalization.md);
 [publication draft](rewrite_calculus_note.md);
 [reviewer packet](rewrite_calculus_reviewer_packet.md);
@@ -28,23 +29,24 @@ These are three different objects. Do not merge them.
 - Operator word → `rewrite_word(..., simplifying_only=True)` for the production-safe fragment, or pass `rules=WORD_WN_RULES` / `WORD_WND_RULES` for the named opt-in enlargements. Do **not** treat the full `WORD_REWRITE_RULES` table as a confluent TRS ([BTC-word-full-lc](theorem_ledger.md), **REFUTED**).
 - There is no unified `canonicalize(Expr)` that includes `Add`/`Mul` as tree constructors.
 
-## Classification theorem (the artifact)
+## Paper theorem package
 
 The operator fragment `{D, I_a, S, N}` under the tree rules below —
 including `N(D(x)) → D(N(x))` — is terminating, locally confluent, and
 has a unique syntactic normal form that is also a unique representative
-of the integer operator function. That fragment is **maximal** as a
-complete tree-level canonical core among exact push-in *or* factor-out
-extensions by `Add` or `Mul`: push-in `S`-distributivity overlaps
-`D∘S = id` in a non-joining peak
-([BTC-add-s-push-lc](theorem_ledger.md),
-[BTC-mul-s-push-lc](theorem_ledger.md), **REFUTED**); finite
-factor-out Add is already AC-engine / CAS territory
-([BTC-add-factor-cas-obstruction](theorem_ledger.md)). Integer sums of
-unary constructor terms are canonicalized only as affine maps /
-coefficient words, never by a tree TRS on `Add`
-([BTC-add-affine-only](theorem_ledger.md)). Global confluence
-of the full expression language is **not** claimed.
+of the integer operator function. For the output
+`H(x,y)=D(x+y)`, no function `G` satisfies
+`H(x,y)=G(D(x),D(y))` for every `x,y`
+([BTC-add-not-D-local](theorem_ledger.md)). The exact carry identity
+explains the missing least-significant-trit state. The named push-in
+system for `S` through `Add` exhibits the same boundary in a
+non-joining peak at `D∘S`
+([BTC-push-in-S-peak](theorem_ledger.md)).
+
+Universal maximality among Add-tree systems is not a paper theorem.
+The older push-in, factor-out, and affine-only records remain human
+research claims and counterexamples. Global confluence of the full
+expression language is not claimed.
 
 The production word table is **not** locally confluent
 ([BTC-word-full-lc](theorem_ledger.md), **REFUTED**); its

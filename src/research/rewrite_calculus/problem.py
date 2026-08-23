@@ -8,15 +8,15 @@ PROBLEM = ProblemDefinition(
     status="PAPER_CANDIDATE",
     statement=(
         "The unary tree TRS on {D, I_a, S, N} including N(D)→D(N) is a "
-        "complete canonical form, and it is maximal among exact "
-        "push-in or factor-out extensions by Add or Mul. Integer sums "
-        "of constructor terms canonicalize as affine maps / coefficient "
-        "words, never as a tree TRS on Add."
+        "complete canonical form. The next-state output D(x+y) does not "
+        "factor through (D(x), D(y)); the exact carry identity explains "
+        "the missing state, and the named carry-free push-in extension "
+        "fails local confluence."
     ),
     bt_relevance=(
         "The constructors are the balanced-ternary drop/prepend maps "
-        "and negation. The trit carry of 1+1 is what excludes Add from "
-        "the tree engine."
+        "and negation. The trit carry of 1+1 is the minimal witness that "
+        "D(x+y) is not determined by the operand D-states."
     ),
     docs=(
         "docs/problems/rewrite_calculus.md",

@@ -1912,7 +1912,7 @@
   {
     "id": "BTC-add-not-D-local",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "exact integer addition is not D-local: there is no G such that D(x+y)=G(D(x),D(y)) for all x,y; witness D(0+0)=0 and D(1+1)=1 while D(0)=D(1)=0",
+    "statement": "the next-state output D(x+y) is not D-local: there is no G such that D(x+y)=G(D(x),D(y)) for all x,y; witness D(0+0)=0 and D(1+1)=1 while D(0)=D(1)=0",
     "source": "docs/theory/rewrite_calculus_formalization.md",
     "lean": "BTCalculus/RewriteAddBoundary.lean",
     "tests": [
@@ -1952,7 +1952,7 @@
   {
     "id": "BTC-add-requires-carry-state",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "exact Add requires carry state as a strict extension of the unary tree calculus: Add is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence",
+    "statement": "the packaged Add boundary combines three exact statements: D(x+y) is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence",
     "source": "docs/theory/rewrite_calculus_formalization.md",
     "lean": "BTCalculus/RewriteAddBoundary.lean",
     "tests": [

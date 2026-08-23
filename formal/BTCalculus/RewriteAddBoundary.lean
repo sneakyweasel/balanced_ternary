@@ -30,16 +30,16 @@ theorem DZ_two : DZ 2 = 1 := by
 theorem D_add_unsound : DZ ((1 : ℤ) + 1) ≠ DZ 1 + DZ 1 := by
   simp [DZ_two, DZ_one]
 
-/-! ### B2. Add is not D-local -/
+/-! ### B2. The next state of Add is not local through D -/
 
-/-- A binary integer map is D-local when `D ∘ F` depends only on
-`D`-images of the arguments. -/
-def DLocal (F : ℤ → ℤ → ℤ) : Prop :=
-  ∃ G : ℤ → ℤ → ℤ, ∀ x y, DZ (F x y) = G (DZ x) (DZ y)
+/-- A binary integer output is D-local when it factors through the
+`D`-images of its arguments. -/
+def DLocal (H : ℤ → ℤ → ℤ) : Prop :=
+  ∃ G : ℤ → ℤ → ℤ, ∀ x y, H x y = G (DZ x) (DZ y)
 
-/-- Exact addition is not D-local: `D(0+0)=0` and `D(1+1)=1` while
-`D(0)=D(1)=0`. -/
-theorem add_not_DLocal : ¬ DLocal fun x y => x + y := by
+/-- The next state `D(x+y)` is not D-local: `D(0+0)=0` and
+`D(1+1)=1` while `D(0)=D(1)=0`. -/
+theorem add_not_DLocal : ¬ DLocal fun x y => DZ (x + y) := by
   rintro ⟨G, hG⟩
   have h00 := hG 0 0
   have h11 := hG 1 1
@@ -231,11 +231,11 @@ theorem pushIn_peak_semantic (x y : ℤ) :
 
 /-! ### Restricted exclusion -/
 
-/-- Exact Add requires carry state: it is not D-local, same-sign `I_a`
+/-- Packaged Add boundary: `D ∘ Add` is not D-local, same-sign `I_a`
 is not a constructor identity, and the named carry-free push-in
 extension fails local confluence. -/
 theorem add_requires_carry_state :
-    ¬ DLocal (fun x y => x + y) ∧
+    ¬ DLocal (fun x y => DZ (x + y)) ∧
       (∀ W, ¬ AffineCtor.exactTriple .Ip .Ip W) ∧
       (∀ W, ¬ AffineCtor.exactTriple .Im .Im W) ∧
       PushInStep pushInPeak (.add .X .Y) ∧

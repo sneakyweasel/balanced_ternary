@@ -83,13 +83,14 @@ D(x+y) = D(x) + D(y) + carry(lsd(x), lsd(y))
 
 where `carry = (addDigit (lsd x) (lsd y)).2 ∈ {−1,0,+1}`.
 
-**D-local binary map.** A map `F : ℤ×ℤ → ℤ` is *D-local* if there
-exists `G : ℤ×ℤ → ℤ` such that `D(F(x,y)) = G(D(x), D(y))` for all
-`x,y`. Equivalently: `D ∘ F` depends only on the `D`-images of the
-arguments, not on their least-significant trits.
+**D-local binary output.** A map `H : ℤ×ℤ → ℤ` is *D-local* if there
+exists `G : ℤ×ℤ → ℤ` such that
+`H(x,y) = G(D(x), D(y))` for all `x,y`. The theorem applies this
+definition to the next-state output `H(x,y)=D(x+y)`: that output does
+not factor through the `D`-images of the arguments.
 
 **Carry-free Add extension.** A rewrite system on a signature
-containing `Add` is *carry-free* if it treats `Add` as D-local: it
+containing `Add` is *carry-free* at the first-digit boundary if it
 may use rules whose integer soundness would require
 `D(x+y) = H(D(x), D(y))` for some `H` independent of `lsd`.
 
@@ -110,7 +111,7 @@ formal category.
 addition.” That is false (coefficient words do). The claim is only
 about *carry-free tree extensions of the unary core*.
 
-## 3. Claim B — restricted Add/carry exclusion
+## 3. Claim B — exact locality boundary for Add
 
 **Theorem candidate B1 (carry identity).** Already `D_add` /
 `BTC-D-add`. Add requires a trit of extra state:
@@ -119,7 +120,7 @@ about *carry-free tree extensions of the unary core*.
 D(x+y) − D(x) − D(y) = carry(lsd x, lsd y)
 ```
 
-**Theorem candidate B2 (Add is not D-local).**
+**Theorem candidate B2 (`D ∘ Add` is not D-local).**
 
 ```text
 ¬ ∃ G, ∀ x y, D(x+y) = G(D(x), D(y))
@@ -147,29 +148,49 @@ system, `D(S(Add(X,Y)))` has two distinct irreducibles
 `Add(X,Y)` and `D(Add(S(X),S(Y)))`. So that system is not locally
 confluent. Both descendants evaluate to `X+Y` as integers.
 
-**Restricted exclusion (the paper theorem).**
+**Principal paper theorem.**
 
-> Exact integer addition is not D-local. Every exact constructor-sum
-> identity on `{S, I_a, N}` is one of the six rows. The named carry-free
-> push-in extension of the unary core by `S`-through-`Add` fails local
-> confluence at `D∘S`. Same-sign `I_a` is not a constructor identity.
-> Therefore a complete exact treatment of `Add` requires carry state
-> (or a coefficient-word / constant), which is a strict extension of
-> the unary tree calculus.
+> The next-state output `D(x+y)` is not D-local: it does not factor
+> through `(D(x),D(y))`.
 
-This is **not** “no rewrite system can add.” It is “no *carry-free
-D-local tree* extension of `{D,I_a,S,N}` is complete for Add.”
+The carry identity is the structural explanation. The constructor-sum
+classification is a supporting result, and the named push-in system is
+a concrete non-confluent extension. Lean packages these statements in
+the secondary conjunction `add_requires_carry_state`.
 
-**Assumptions.** Affine constructors as above; D-locality as above;
-the named push-in rule set. No quantification over arbitrary TRS
-engines, AC-matching, or infinite signatures.
+This is **not** “no rewrite system can add.” The formal theorem is
+only that the next-state output `D(x+y)` is not determined by
+`(D(x),D(y))`, together with the named push-in obstruction.
+
+**Assumptions.** Exact integer semantics; D-locality as output
+factorization above; the finite affine constructor class; and the named
+push-in rule set. No quantification over arbitrary TRS engines,
+AC-matching, or infinite signatures.
 
 **Difficulty.** B1–B4 are elementary integer algebra (Lean-short).
 B5 is a finite inversion argument on a five-constructor inductive
 (short, no Newman library). The English “any push-in rule…” and
-“already a CAS” remain human, not Lean.
+“already a CAS” remain outside the paper theorem.
 
-## 4. Examples and non-examples
+## 4. Restricted maximality gate
+
+Outcome: **CLOSE**.
+
+A natural maximality theorem would require an independently defined
+class of carry-free tree systems and a proof that completeness forces
+the output `D(x+y)` to be D-local. The bounded candidates failed that
+gate:
+
+- defining carry-free by D-locality assumes the conclusion needed for
+  `add_not_DLocal`;
+- assuming the two named descendants remain irreducible proves only
+  persistence of the existing peak.
+
+Deriving locality from a general completeness predicate would require
+generic TRS metatheory beyond this gate. No `CarryFreeTreeExtension`,
+maximality theorem, or maximality ledger row is added.
+
+## 5. Examples and non-examples
 
 | Object | Status |
 |--------|--------|
@@ -183,7 +204,7 @@ B5 is a finite inversion argument on a five-constructor inductive
 | Coefficient-word NF of `x+y` | complete, *outside* the unary tree TRS |
 | Full `WORD_REWRITE_RULES` confluence | closed non-claim |
 
-## 5. Literature
+## 6. Literature
 
 | Piece | Novelty |
 |-------|---------|
@@ -194,7 +215,7 @@ B5 is a finite inversion argument on a five-constructor inductive
 | Unary OpFrag package | `PROJECT-SPECIFIC` (method KNOWN) |
 | D-locality failure of Add + six-row classification + named peak | `PROJECT-SPECIFIC` |
 
-## 6. Lean map
+## 7. Lean map
 
 | File | Role |
 |------|------|
