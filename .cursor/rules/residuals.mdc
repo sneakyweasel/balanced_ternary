@@ -6,7 +6,7 @@ alwaysApply: false
 
 # `research.residuals`
 
-This is the current research application. Status `STRUCTURAL`. It does **not** claim a formula for `M_k(x^3)`.
+Last promoted mathematical theory. Status `STRUCTURAL`. It does **not** claim a formula for `M_k(x^3)`. The live publication task is the rewrite note, not a new residual census.
 
 Python names must match `formal/BTCalculus/NewtonStratum.lean`:
 

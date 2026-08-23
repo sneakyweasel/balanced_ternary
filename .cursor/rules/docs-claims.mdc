@@ -10,12 +10,15 @@ Claim vocabulary lives in `docs/README.md`. Do not invent a parallel scheme.
 
 Two axes. Evidence strength is the ledger tag. Novelty — `KNOWN`, `REPARAMETERIZATION`, `PROJECT-SPECIFIC`, `OPEN` — is prose annotation and never a ledger tag.
 
-Reading path (frontier, not Collatz-first):
+Live task: send the rewrite note. Last mathematical theory: cubic Newton
+stratum (not a new-math frontier; not Collatz-first).
 
-1. `docs/theory/balanced_ternary_calculus.md`
-2. `docs/theory/cubic_newton_stratum.md`
-3. `docs/theory/residual_vs_classical.md`
-4. `docs/theory/theorem_ledger.md`
+1. `docs/theory/rewrite_calculus_note.md`
+2. `docs/theory/rewrite_calculus_reviewer_packet.md`
+3. `docs/theory/balanced_ternary_calculus.md`
+4. `docs/theory/cubic_newton_stratum.md`
+5. `docs/theory/residual_vs_classical.md`
+6. `docs/theory/theorem_ledger.md`
 
 Collatz is one application: `docs/collatz_mathematics.md`. Do **not** mechanically rewrite that file.
 

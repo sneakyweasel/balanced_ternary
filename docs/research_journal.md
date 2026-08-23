@@ -629,3 +629,13 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Open:** none. Do not open \(x^5\), a quartic count, a fibre taxonomy, CLI, Lean, or a ledger row
 - **Decision:** CLOSE. The first obstruction is immediate: only degree 3 has a linear residual coefficient of valuation \(m\). The leftover is another unmatched \(D^t(u^4)\) image. Not PARK — there is no sharp linear law at \(r=0,1\) waiting for general \(r\).
 
+## Documentation index tidy (not a numbered milestone)
+
+- **Date:** 2026-08-24
+- **Objective:** Align the module table and reading path with the recorded decisions, without a package move
+- **Hypotheses:** none; editorial
+- **Major results:** `docs/architecture/research_modules.md` and the root README now list every registered module; missing dossiers (`regular_output_preimages`, `balanced_digit_sum_polynomials`) are on the documentation map; the live task is the rewrite note, and the cubic stratum is labelled as the last mathematical theory rather than a new-math frontier
+- **Refuted ideas:** none
+- **Open:** none. No reorganization, no deletion of parked modules, no UI change
+- **Decision:** PROMOTE the index text. CLOSE further tidy work on this pass.
+

@@ -76,7 +76,9 @@ both axes. See [methodology.md](methodology.md).
 - [Problem template](problems/TEMPLATE.md)
 - [Collatz](problems/collatz.md)
 - [Residuals](problems/residuals.md)
+- [Balanced digit sums of nonlinear polynomial values](problems/balanced_digit_sum_polynomials.md)
 - [Lifting trees](problems/lifting.md)
+- [Regular-output preimages](problems/regular_output_preimages.md)
 - [3-adic polynomial dynamics](problems/padic_dynamics.md)
 - [Local vs global root-count bounds](problems/stabilization.md)
 - [Černý residual-quotient gate](problems/cerny_bt.md)
@@ -148,14 +150,19 @@ implementations.
 
 ## Reading paths
 
-For the current research frontier, read:
+The live publication task is the rewrite-calculus note. Send the
+[reviewer packet](theory/rewrite_calculus_reviewer_packet.md) with the
+[draft](theory/rewrite_calculus_note.md).
+
+The last promoted mathematical theory (STRUCTURAL; no new monomial
+strata) is the cubic Newton stratum:
 
 1. [Balanced-ternary calculus](theory/balanced_ternary_calculus.md)
 2. [Cubic Newton stratum](theory/cubic_newton_stratum.md)
 3. [Residual versus classical sources](theory/residual_vs_classical.md)
 4. [Theorem ledger](theory/theorem_ledger.md)
 
-Collatz is one application, not the frontier. Its record starts at
+Collatz is one application, not the live task. Its record starts at
 [collatz_mathematics.md](collatz_mathematics.md).
 
 For the balanced-ternary foundation, begin with

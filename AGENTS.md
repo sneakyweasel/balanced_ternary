@@ -15,8 +15,15 @@ bt.*                        problem-independent BT mathematics
 
 ## Reading path
 
+Live task: send the rewrite note for external review.
+
+1. [docs/theory/rewrite_calculus_note.md](docs/theory/rewrite_calculus_note.md)
+2. [docs/theory/rewrite_calculus_reviewer_packet.md](docs/theory/rewrite_calculus_reviewer_packet.md)
+
+Last mathematical theory (STRUCTURAL; no new monomial strata):
+
 1. [docs/theory/balanced_ternary_calculus.md](docs/theory/balanced_ternary_calculus.md)
-2. [docs/theory/cubic_newton_stratum.md](docs/theory/cubic_newton_stratum.md) — current frontier
+2. [docs/theory/cubic_newton_stratum.md](docs/theory/cubic_newton_stratum.md)
 3. [docs/theory/residual_vs_classical.md](docs/theory/residual_vs_classical.md)
 4. [docs/theory/theorem_ledger.md](docs/theory/theorem_ledger.md) (generated from JSON)
 

@@ -60,16 +60,30 @@ supported.
 
 ## Research applications (`research`)
 
+The live publication task is the rewrite-calculus note
+([draft](docs/theory/rewrite_calculus_note.md),
+[reviewer packet](docs/theory/rewrite_calculus_reviewer_packet.md)).
+The cubic Newton stratum is the last promoted mathematical theory.
+Full table: [docs/architecture/research_modules.md](docs/architecture/research_modules.md).
+
 | Module | Status |
 |--------|--------|
-| `research.collatz` | STRUCTURAL |
+| `research.rewrite_calculus` | PAPER_CANDIDATE |
 | `research.residuals` | STRUCTURAL |
+| `research.collatz` | STRUCTURAL |
+| `research.regular_output_preimages` | STRUCTURAL |
+| `research.monna_endpoint_spectra` | STRUCTURAL |
 | `research.lifting` | EXPLORATORY |
 | `research.additive_combinatorics` | EXPLORATORY |
 | `research.perfect_powers` | EXPLORATORY |
 | `research.primes` | EXPLORATORY |
 | `research.sparse_polynomials` | EXPLORATORY |
 | `research.operator_dynamics` | EXPLORATORY |
+| `research.balanced_digit_sum_polynomials` | EXPLORATORY |
+| `research.stabilization` | ARCHIVED |
+| `research.padic_dynamics` | ARCHIVED |
+| `research.cerny_bt` | ARCHIVED |
+| `research.misere_quotients` | ARCHIVED |
 
 ```python
 from collatz import AffineCenterState, CompatibilityState, collatz_step
