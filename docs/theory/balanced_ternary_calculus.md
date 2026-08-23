@@ -40,7 +40,9 @@ name. The milestone is a success if those facts become one language
   operator functions; exact `Add` extensions (push-in or factor-out)
   are not a tiny tree core — they are trit-carry / AC-engine territory,
   and sums of constructor terms are canonicalized only as affine maps
-  / coefficient words ([rewrite_calculus.md](rewrite_calculus.md))
+  / coefficient words; the production word table is not locally
+  confluent (`N∘W∘W`), while its simplifying-only fragment is
+  ([rewrite_calculus.md](rewrite_calculus.md))
 - information profiles (delay / precision / state) as a thin layer
   over existing `OperatorMetadata`
 

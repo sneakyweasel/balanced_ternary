@@ -1,0 +1,17 @@
+{
+  "counterexamples": [
+    "N∘W∘W contracts to N∘K3 and to K3∘N; both are irreducible under the production WORD_REWRITE_RULES table"
+  ],
+  "first_seen": "word-fragment confluence Phase-0",
+  "id": "word_full_lc",
+  "lean_reference": "",
+  "literature": [],
+  "mathematical_domain": "balanced ternary calculus",
+  "notes": "The production table keeps two-way N∘W and W∘W→K3 but has no N∘K3 rule. Two-way N∘W does not join the peak. Two-way N∘D↔D∘N is a separate KNOWN termination obstruction. Full-table confluence is a permanent non-claim inside the production table. Not a Collatz claim. Do not edit BTCalculus/Confluence.lean.",
+  "origin": "docs/theory/rewrite_calculus.md",
+  "proof_reference": "docs/theory/rewrite_calculus.md",
+  "statement": "The production WORD_REWRITE_RULES table is locally confluent.",
+  "status": "REFUTED",
+  "tested_range": "string-rewriting critical pairs of WORD_REWRITE_RULES in tests/unit/test_rewrite_word_fragments.py",
+  "title": "Production word table is locally confluent"
+}
