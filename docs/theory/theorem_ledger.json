@@ -1582,5 +1582,29 @@
       "tests/unit/test_lifting_state_complexity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "BTC-op-fragment-nf",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "the operator-fragment tree TRS {D, I_a, S, N} is terminating and locally confluent; every term has a unique syntactic normal form",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_operator_fragment_nf.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTC-op-fragment-semantic-nf",
+    "tag": "REFUTED",
+    "statement": "tree-rule irreducibles of the operator fragment are unique representatives of integer functions",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "BTCalculus/Rewrite.lean",
+    "tests": [
+      "tests/unit/test_operator_fragment_nf.py"
+    ],
+    "related_conjectures": [
+      "op_fragment_semantic_nf"
+    ]
   }
 ]
