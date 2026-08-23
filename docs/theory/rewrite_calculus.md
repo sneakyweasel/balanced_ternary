@@ -12,11 +12,15 @@ extensions by `Add` or `Mul`: push-in `S`-distributivity overlaps
 ([BTC-add-s-push-lc](theorem_ledger.md),
 [BTC-mul-s-push-lc](theorem_ledger.md), **REFUTED**); finite
 factor-out Add is already AC-engine / CAS territory
-([BTC-add-factor-cas-obstruction](theorem_ledger.md)). Global confluence
+([BTC-add-factor-cas-obstruction](theorem_ledger.md)). Integer sums of
+unary constructor terms are canonicalized only as affine maps /
+coefficient words, never by a tree TRS on `Add`
+([BTC-add-affine-only](theorem_ledger.md)). Global confluence
 of the full expression language and of the large word table is **not**
 claimed. Coefficient-word confluence
 ([BTN-confluence](theorem_ledger.md), `BTCalculus/Confluence.lean`) is
-a different object.
+a different object — and is the complete finite canonicalizer for
+those sums after evaluation.
 
 ## Historical inspiration
 
@@ -365,7 +369,56 @@ extensions. `W` is a word-level question and was only bounded-checked.
 
 Factor-out does not escape that maximality: see
 [BTC-add-factor-cas-obstruction](theorem_ledger.md). The two
-orientations fail for the same carry. `Add` is evaluation-only.
+orientations fail for the same carry.
+
+### Architectural theorem (Add is affine-only)
+
+[BTC-add-affine-only](theorem_ledger.md) (**PROVED**). Let
+`U, V, W ∈ {S, I+, I-, N}` (and `I0 = S`). The identity
+`U(x)+V(y) = W(x+y)` holds on `ℤ` if and only if `(U,V,W)` is one of
+
+```text
+(S, S, S)     (N, N, N)
+(I_a, S, I_a) (S, I_a, I_a)
+(I+, I-, S)   (I-, I+, S)
+```
+
+Proof of the classification: `S` and `I_a` have slope `3`, `N` has
+slope `-1`, and `W(x+y)` has slope `3` or `-1` in the sum `x+y`.
+Matching slopes forces `{U,V} ⊂ {S, I_a}` with `W ∈ {S, I_a}`, or
+`U = V = W = N`. The constant term is then the sum of trits
+`a+b`, which is itself a trit precisely on the six rows above.
+Same-sign `I_a(x)+I_a(y) = 3(x+y)±2` is exact, but `±2` is not a
+trit, so any tree rule for it introduces a constant. Mixed `N` with
+`S`/`I_a` has slope `2` or `-4`. `D(x)+D(y)=D(x+y)` is unsound
+(`x=y=1`: `D(2)=1` and `D(1)+D(1)=0` — the carry of `1+1`,
+[BTC-D-add](theorem_ledger.md)).
+
+Those identities *are* the push-in and factor-out tables, plus
+`N`-distrib. Each orientation is already incomplete without
+AC-matching and constants or carry:
+
+- push-in `S` / `I_a` — [BTC-unary-s-distrib-obstruction](theorem_ledger.md);
+- `N`-through-Add alone — [BTC-add-n-push-semantic](theorem_ledger.md);
+- finite factor-out — [BTC-add-factor-cas-obstruction](theorem_ledger.md).
+
+There is no third exact-on-`ℤ` tree orientation. Therefore every
+finite exact tree TRS on `Add` either fails semantic canonicity or is
+already a CAS. The unique complete finite representatives of such
+sums are their affine maps: a sum of constructor terms is a
+multi-linear form with integer coefficients (a single unary
+*composition* remains `±3^{|w|} D^d(n)+c(w)`,
+[BTC-op-fragment-nd-semantic](theorem_ledger.md)). Closed instances
+are integers; their unique representative is the balanced-ternary
+word ([BT-encode-unique](theorem_ledger.md)), obtained by
+`evaluate` then the coefficient-word NF
+(`bt.normtheory.arithmetic.add_coeff` /
+`bt.normtheory.strategies.normal_form`;
+[BTN-nf](theorem_ledger.md), [BTN-confluence](theorem_ledger.md)).
+
+`Add` is therefore evaluation / affine / coefficient-word only.
+The rules stay out of `rewrite._step`. Tests:
+`tests/unit/test_rewrite_add_affine_only.py`.
 
 ## Conjectures
 
@@ -373,9 +426,13 @@ The unary-fragment questions — termination, local confluence, unique
 syntactic NF, and semantic canonicity on `{D, I_a, S, N}` — are
 closed (**PROVED**). The Phase-0 enlargement questions for push-in
 `Add` / `Mul`, for one-way `W` without `N∘K3`, and for finite
-factor-out Add (binary or AC-matching) are closed (**REFUTED**). No
-finite exact Add/Mul tree extension of that kind is assumed, and the
-full word table is still not assumed confluent.
+factor-out Add (binary or AC-matching) are closed (**REFUTED**). The
+architectural question — whether a tree TRS on `Add` can still be a
+complete finite canonicalizer — is closed (**PROVED**): it cannot,
+and the complete forms are affine / coefficient-word
+([BTC-add-affine-only](theorem_ledger.md)). No finite exact Add/Mul
+tree extension of that kind is assumed, and the full word table is
+still not assumed confluent.
 
 Lean Newman for the enlarged fragment is packaged in
 `BTCalculus/OpFragNewman.lean` (termination, local confluence,

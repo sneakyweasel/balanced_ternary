@@ -197,8 +197,10 @@ def rewrite_expr(expr: Expr, *, max_steps: int = 10_000) -> tuple[Expr, tuple[st
     confluence of the full expression language is not claimed.
     Exact push-in ``S``-distributivity through ``Add`` or ``Mul``
     overlaps ``D∘S = id`` in a non-joining peak; finite factor-out
-    Add is already AC-engine / CAS territory. Those rules stay out
-    of ``_step`` (see ``docs/theory/rewrite_calculus.md``).
+    Add is already AC-engine / CAS territory. Integer sums of
+    constructor terms are affine / coefficient-word objects, not a
+    tree TRS on ``Add``. Those rules stay out of ``_step`` (see
+    ``docs/theory/rewrite_calculus.md``).
     """
     used: list[str] = []
     steps = 0

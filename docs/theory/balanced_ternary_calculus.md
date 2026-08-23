@@ -38,7 +38,9 @@ name. The milestone is a success if those facts become one language
   confluent tree TRS, including `N(D(x)) → D(N(x))`, and an
   explicit NF grammar whose irreducibles are unique integer
   operator functions; exact `Add` extensions (push-in or factor-out)
-  are not a tiny tree core — they are trit-carry / AC-engine territory
+  are not a tiny tree core — they are trit-carry / AC-engine territory,
+  and sums of constructor terms are canonicalized only as affine maps
+  / coefficient words ([rewrite_calculus.md](rewrite_calculus.md))
 - information profiles (delay / precision / state) as a thin layer
   over existing `OperatorMetadata`
 
