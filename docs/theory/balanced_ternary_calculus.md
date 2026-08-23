@@ -60,6 +60,8 @@ analysis”.
 - Cubic Newton image (Milestone 19): [cubic_residual_image.md](cubic_residual_image.md). `M_k(x^3)=|Im F_k|`.
 - Cubic fibres (Milestone 20): [cubic_residual_fibres.md](cubic_residual_fibres.md). Same-depth `(N2,N1,N0)`; no closed `M_k`.
 - Cubic deepest layer (Milestone 21): [cubic_deepest_layer.md](cubic_deepest_layer.md). `N1≡3p^2`; stratified `C_{k,k-1}`.
+- Cubic intermediate layer (Milestone 22): [cubic_intermediate_layer.md](cubic_intermediate_layer.md). `m=k-2`; `N2` sees `p mod 3`; horizon surplus `Δ_k`.
+- Cubic depth-deficit 2 (Milestone 23): [cubic_deficit_two.md](cubic_deficit_two.md). General `N2` visibility `p mod 3^r`; `r=2` fibre criterion.
 
 ## Finite-state locality (reused, not re-proved)
 

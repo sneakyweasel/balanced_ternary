@@ -21,7 +21,7 @@ The project contains no `sorry` or `admit`.
 | `Operators/Algebra.lean` | composed identities, `W(3)=1` | `CollatzDual.OperatorAlgebra` |
 | `Operators/Polynomial.lean` | `P(3)=evalMSD` | `CollatzDual.Polynomial` |
 | `Problems/Collatz/*` | lift, cylinders, endpoint, center, cycles, … | matching `CollatzDual.*` |
-| `BTCalculus/` | trit algebra, `D`/`I_a`, product/sum rules, `cmp3`/`select3`, rewrite soundness, coefficient normalization, section derivative, jets, residual `≡_k`, cascade composition, polynomial function congruence modulo `3^k`, cubic residual Newton image, fibres, and deepest-layer criteria | none |
+| `BTCalculus/` | trit algebra, `D`/`I_a`, product/sum rules, `cmp3`/`select3`, rewrite soundness, coefficient normalization, section derivative, jets, residual `≡_k`, cascade composition, polynomial function congruence modulo `3^k`, cubic residual Newton image, fibres, deepest-layer criteria, the first intermediate layer `m=k-2`, and the depth-deficit `N2` visibility law | none |
 | `Automata/` | placeholder only | no invented proofs |
 
 [`formal/CollatzDual.lean`](../../formal/CollatzDual.lean) remains the

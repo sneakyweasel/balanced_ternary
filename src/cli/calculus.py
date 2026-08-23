@@ -178,6 +178,21 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_cdf.add_argument("p", type=int)
     p_cdf.add_argument("--k", type=int, required=True)
 
+    p_cl = c.add_parser(
+        "cubic-layer",
+        help="x^3 residual layer at depth deficit 1 (m=k-2) or 2 (m=k-3)",
+    )
+    p_cl.add_argument("--k", type=int, required=True)
+    p_cl.add_argument("--depth-deficit", type=int, default=1)
+
+    p_clf = c.add_parser(
+        "cubic-layer-fibre",
+        help="fibre of one prefix p at depth deficit 1 or 2",
+    )
+    p_clf.add_argument("p", type=int)
+    p_clf.add_argument("--k", type=int, required=True)
+    p_clf.add_argument("--depth-deficit", type=int, default=1)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -566,6 +581,51 @@ def run_calculus(args: argparse.Namespace) -> int:
         members = deepest_fibre_of(args.p, args.k)
         print(f"p = {args.p}  k = {args.k}")
         print(f"phi = {deepest_phi(args.p, args.k)}")
+        print(f"fibre_size = {len(members)}")
+        for q in members:
+            print(f"  {q}")
+        return 0
+    if cmd == "cubic-layer":
+        if args.depth_deficit == 1:
+            from bt.calculus.cubic_layer import layer_report
+
+            rec = layer_report(args.k, 1)
+            clabel = "C(k,k-2)"
+        elif args.depth_deficit == 2:
+            from bt.calculus.cubic_deficit_two import def2_report
+
+            rec = def2_report(args.k)
+            clabel = "C(k,k-3)"
+        else:
+            raise ValueError("only depth-deficit 1 or 2 is implemented")
+        print(f"k = {rec['k']}")
+        print(f"m = {rec['m']}")
+        print(f"raw prefixes = {rec['raw']}")
+        print(f"N2 classes = {rec['N2']}")
+        print(f"N2+N1 classes = {rec['N21']}")
+        print(f"full Newton classes = {rec['C']}")
+        print(f"{clabel} = {rec['C']}")
+        print(f"Delta = {rec['Delta']}")
+        print(f"histogram = {rec['histogram']}")
+        print(f"kinds = {rec['kinds']}")
+        print("fibre types")
+        for fib in rec["examples"]:
+            print(f"  {fib}")
+        return 0
+    if cmd == "cubic-layer-fibre":
+        if args.depth_deficit == 1:
+            from bt.calculus.cubic_layer import inter_fibre_of
+
+            members = inter_fibre_of(args.p, args.k)
+            m = args.k - 2
+        elif args.depth_deficit == 2:
+            from bt.calculus.cubic_deficit_two import def2_fibre_of
+
+            members = def2_fibre_of(args.p, args.k)
+            m = args.k - 3
+        else:
+            raise ValueError("only depth-deficit 1 or 2 is implemented")
+        print(f"p = {args.p}  k = {args.k}  m = {m}")
         print(f"fibre_size = {len(members)}")
         for q in members:
             print(f"  {q}")

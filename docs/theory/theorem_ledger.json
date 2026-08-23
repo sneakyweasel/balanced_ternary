@@ -655,5 +655,104 @@
     "lean": "",
     "tests": ["tests/unit/test_cubic_deepest.py"],
     "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-inter-N",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "m=k-2: N3=0, N2≡2·3^{k-1}p (k≥3), N1≡3p^2+3^{k-1}p (k≥4)",
+    "source": "docs/theory/cubic_intermediate_layer.md",
+    "lean": "BTCalculus/CubicIntermediateLayer.lean",
+    "tests": ["tests/unit/test_cubic_layer.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-inter-crit",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "m=k-2 fibres iff p≡q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees",
+    "source": "docs/theory/cubic_intermediate_layer.md",
+    "lean": "BTCalculus/CubicIntermediateLayer.lean",
+    "tests": ["tests/unit/test_cubic_layer.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-inter-lift",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "horizon k refines k-1 at depth k-2; unit signs split",
+    "source": "docs/theory/cubic_intermediate_layer.md",
+    "lean": "BTCalculus/CubicIntermediateLayer.lean",
+    "tests": ["tests/unit/test_cubic_layer.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-inter-n21n0",
+    "tag": "REFUTED",
+    "statement": "at m=k-2, N2+N1 imply N0",
+    "source": "docs/theory/cubic_intermediate_layer.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_layer.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-inter-eqprev",
+    "tag": "REFUTED",
+    "statement": "C_{k,k-2}=C_{k-1,k-2}",
+    "source": "docs/theory/cubic_intermediate_layer.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_layer.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-inter-renorm",
+    "tag": "REFUTED",
+    "statement": "F_k(k-2,p) renormalizes onto a deepest-layer F_{k'}(k'-1,u)",
+    "source": "docs/theory/cubic_intermediate_layer.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_layer.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-vis",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "at m=k-1-r, N2 equality iff p≡q (mod 3^r) whenever r+1≤k",
+    "source": "docs/theory/cubic_deficit_two.md",
+    "lean": "BTCalculus/CubicDeficitTwo.lean",
+    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-def2-N",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "m=k-3: N3=0 (k≥5), N2≡2·3^{k-2}p (k≥5), N1≡3p^2+3^{k-2}p (k≥6)",
+    "source": "docs/theory/cubic_deficit_two.md",
+    "lean": "BTCalculus/CubicDeficitTwo.lean",
+    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-def2-crit",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "m=k-3 fibres iff p≡q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees",
+    "source": "docs/theory/cubic_deficit_two.md",
+    "lean": "BTCalculus/CubicDeficitTwo.lean",
+    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-def2-n21n0",
+    "tag": "REFUTED",
+    "statement": "at m=k-3, N2+N1 imply N0",
+    "source": "docs/theory/cubic_deficit_two.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-def2-nextdigit",
+    "tag": "REFUTED",
+    "statement": "after N2 shows p mod 9, N1 reveals the next trit",
+    "source": "docs/theory/cubic_deficit_two.md",
+    "lean": "",
+    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "related_conjectures": []
   }
 ]

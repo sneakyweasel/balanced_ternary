@@ -85,6 +85,8 @@ meaning throughout:
 - [Cubic residual image](theory/cubic_residual_image.md)
 - [Cubic residual fibres](theory/cubic_residual_fibres.md)
 - [Cubic deepest layer](theory/cubic_deepest_layer.md)
+- [Cubic intermediate layer](theory/cubic_intermediate_layer.md)
+- [Cubic depth-deficit 2](theory/cubic_deficit_two.md)
 
 ## Architecture
 

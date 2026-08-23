@@ -54,8 +54,12 @@ global confluence of the stripped coefficient rewrite, and polynomial
 function congruence modulo `3^k` (the Myhill–Nerode bridge, the degree-`≤2`
 and cubic vanishing criteria, and the first `x^3`/`x^4` residual merges),
 and the cubic residual closed form with Newton-coordinate equivalence,
-the fibre criteria for `F_k`, and the deepest-layer Newton
-simplification, square/cubic fibre criterion, and zero-fibre theorem.
+the fibre criteria for `F_k`, the deepest-layer Newton
+simplification, square/cubic fibre criterion, and zero-fibre theorem,
+the first intermediate layer `m=k-2` (Newton simplification,
+`N2`/`N1` criteria, complete fibre criterion, horizon refinement),
+and the depth-deficit visibility law
+`N2` iff `p ≡ q (mod 3^r)` together with the `r=2` fibre criterion.
 
 These are labelled **EXACT — LEAN VERIFIED**. The Python cylinder
 implementation remains the executable instantiation; this Lean project

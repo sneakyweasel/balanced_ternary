@@ -11,7 +11,8 @@ Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **REFUTED**,
 **REPARAMETERIZATION**.
 
-Related: [cubic_residual_fibres.md](cubic_residual_fibres.md).
+Related: [cubic_residual_fibres.md](cubic_residual_fibres.md),
+[cubic_intermediate_layer.md](cubic_intermediate_layer.md).
 
 ---
 
@@ -356,9 +357,7 @@ sporadic twins) is project-specific.
 
 ## 15. Strongest next question
 
-Derive a closed formula for the intermediate surpluses \(S_{k,s}\)
-(\(1\le s<s_0(k)\)), or prove that they are given by the small-unit
-count of a scaled horizon. That would turn the stratified sum into
-an explicit arithmetic formula for \(C_{k,k-1}\).
-
-Do not start that work automatically.
+Closed by Milestone 22. See
+[cubic_intermediate_layer.md](cubic_intermediate_layer.md). The
+intermediate-surplus formula for the deepest layer itself remains
+open and is not the M22 target.

@@ -94,3 +94,14 @@ This ledger does not rewrite history.
 | BTA-x3-deep-zero | EXACT — LEAN VERIFIED | deepest 0-fibre is 3^{ceil((2k-1)/3)}|p | docs/theory/cubic_deepest_layer.md | BTCalculus/CubicDeepestLayer zero_fibre_imp | test_cubic_deepest |
 | BTA-x3-deep-coset | REFUTED | every deepest fibre is a full 3-adic coset | docs/theory/cubic_deepest_layer.md | | test_cubic_deepest |
 | BTA-x3-Ckk-1 | EXACT — HUMAN PROOF | C_{k,k-1}=1+Σ_s I_{k,s} with closed high-stratum J(k,s) | docs/theory/cubic_deepest_layer.md | | test_cubic_deepest |
+| BTA-x3-inter-N | EXACT — LEAN VERIFIED | m=k-2: N3=0, N2≡2·3^{k-1}p (k≥3), N1≡3p^2+3^{k-1}p (k≥4) | docs/theory/cubic_intermediate_layer.md | BTCalculus/CubicIntermediateLayer inter_n2_mod | test_cubic_layer |
+| BTA-x3-inter-crit | EXACT — LEAN VERIFIED | m=k-2 fibres iff p≡q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees | docs/theory/cubic_intermediate_layer.md | BTCalculus/CubicIntermediateLayer inter_equiv_iff | test_cubic_layer |
+| BTA-x3-inter-lift | EXACT — LEAN VERIFIED | horizon k refines k-1 at depth k-2; unit signs split | docs/theory/cubic_intermediate_layer.md | inter_horizon_refines, unit_sign_n2_splits | test_cubic_layer |
+| BTA-x3-inter-n21n0 | REFUTED | at m=k-2, N2+N1 imply N0 | docs/theory/cubic_intermediate_layer.md | | test_cubic_layer |
+| BTA-x3-inter-eqprev | REFUTED | C_{k,k-2}=C_{k-1,k-2} | docs/theory/cubic_intermediate_layer.md | | test_cubic_layer |
+| BTA-x3-inter-renorm | REFUTED | F_k(k-2,p) renormalizes onto a deepest-layer F_{k'}(k'-1,u) | docs/theory/cubic_intermediate_layer.md | | test_cubic_layer |
+| BTA-x3-vis | EXACT — LEAN VERIFIED | at m=k-1-r, N2 equality iff p≡q (mod 3^r) whenever r+1≤k | docs/theory/cubic_deficit_two.md | BTCalculus/CubicDeficitTwo depthDeficit_n2_visibility | test_cubic_deficit_two |
+| BTA-x3-def2-N | EXACT — LEAN VERIFIED | m=k-3: N3=0 (k≥5), N2≡2·3^{k-2}p (k≥5), N1≡3p^2+3^{k-2}p (k≥6) | docs/theory/cubic_deficit_two.md | deficitTwo_n2_mod | test_cubic_deficit_two |
+| BTA-x3-def2-crit | EXACT — LEAN VERIFIED | m=k-3 fibres iff p≡q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees | docs/theory/cubic_deficit_two.md | deficitTwo_equiv_iff | test_cubic_deficit_two |
+| BTA-x3-def2-n21n0 | REFUTED | at m=k-3, N2+N1 imply N0 | docs/theory/cubic_deficit_two.md | | test_cubic_deficit_two |
+| BTA-x3-def2-nextdigit | REFUTED | after N2 shows p mod 9, N1 reveals the next trit | docs/theory/cubic_deficit_two.md | | test_cubic_deficit_two |

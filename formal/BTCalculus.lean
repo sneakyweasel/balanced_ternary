@@ -21,3 +21,5 @@ import BTCalculus.PolynomialFunctionsMod
 import BTCalculus.CubicResidual
 import BTCalculus.CubicFibres
 import BTCalculus.CubicDeepestLayer
+import BTCalculus.CubicIntermediateLayer
+import BTCalculus.CubicDeficitTwo
