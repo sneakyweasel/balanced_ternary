@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from balanced_ternary.oeis_maps import bt_digit_sum, bt_is_palindrome, bt_reverse
 from balanced_ternary.representation import encode
 from collatz.core import collatz_step
@@ -168,6 +170,7 @@ def test_lsd_msd_swap_does_not_predict_valuation():
     assert any(k != kw for k, kw in pairs)
 
 
+@pytest.mark.slow
 def test_exhaustive_odd_warp_identities_to_one_million():
     """Exact local identities on every positive odd n <= 10^6.
 

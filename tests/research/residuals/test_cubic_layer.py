@@ -5,6 +5,8 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
+import pytest
+
 from balanced_ternary.cli import main
 from bt.calculus.cubic import F_k
 from research.residuals.cubic_deepest import deepest_class_count
@@ -74,6 +76,15 @@ def test_known_intermediate_counts():
         8: 721,
         9: 2178,
         10: 6537,
+    }
+    for k, C in table.items():
+        assert inter_class_count(k) == C
+        assert C_km(k, k - 2) == C
+
+
+@pytest.mark.slow
+def test_known_intermediate_counts_high_k():
+    table = {
         11: 19652,
         12: 58977,
         13: 177057,
@@ -93,6 +104,14 @@ def test_surplus_table():
         8: 5,
         9: 25,
         10: 16,
+    }
+    for k, d in deltas.items():
+        assert one_layer_surplus(k) == d
+
+
+@pytest.mark.slow
+def test_surplus_table_high_k():
+    deltas = {
         11: 55,
         12: 38,
         13: 149,
@@ -100,7 +119,6 @@ def test_surplus_table():
     }
     for k, d in deltas.items():
         assert one_layer_surplus(k) == d
-        assert inter_class_count(k) - deepest_class_count(k - 1) == d
 
 
 def test_unit_sign_pairs_split():

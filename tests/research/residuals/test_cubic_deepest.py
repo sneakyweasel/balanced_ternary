@@ -5,6 +5,8 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
+import pytest
+
 from balanced_ternary.cli import main
 from bt.calculus.cubic import F_k
 from research.residuals.cubic_deepest import (
@@ -118,6 +120,15 @@ def test_known_deepest_counts():
         8: 2153,
         9: 6521,
         10: 19597,
+    }
+    for k, C in table.items():
+        assert deepest_class_count(k) == C
+        assert C_km(k, k - 1) == C
+
+
+@pytest.mark.slow
+def test_known_deepest_counts_high_k():
+    table = {
         11: 58939,
         12: 176908,
         13: 531141,

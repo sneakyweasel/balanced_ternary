@@ -98,6 +98,7 @@ def test_balanced_ternary_rejects_empty_and_bad_digits():
         BalancedTernary((2,))
 
 
+@pytest.mark.slow
 def test_round_trip_million():
     """decode(encode(n)) == n for all n in [-10^6, 10^6]."""
     for n in range(-1_000_000, 1_000_001):

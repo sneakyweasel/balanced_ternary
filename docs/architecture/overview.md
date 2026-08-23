@@ -72,7 +72,7 @@ Compatibility shims keep the old import paths working.
 
 After each refactor phase:
 
-1. `pytest`
+1. `pytest` (fast suite; `pytest --runslow` before a release)
 2. `cd formal && lake build`
 
 Do not continue past a red gate. Mathematical behaviour must not change.

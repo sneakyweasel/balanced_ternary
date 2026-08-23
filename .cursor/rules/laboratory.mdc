@@ -28,4 +28,4 @@ Do not auto-open a numbered milestone. Journal entries may be consolidations. Ev
 
 Edit `docs/theory/theorem_ledger.json`, then `python tools/render_theorem_ledger.py`. Never hand-edit `theorem_ledger.md`.
 
-Verification: `pytest` and `cd formal && lake build` (Lake is `$env:USERPROFILE\.elan\bin\lake` if it is not on PATH). No `sorry` or `admit`.
+Verification: `pytest` (fast suite) and `cd formal && lake build` (Lake is `$env:USERPROFILE\.elan\bin\lake` if it is not on PATH). Full Python suite: `pytest --runslow`. No `sorry` or `admit`.

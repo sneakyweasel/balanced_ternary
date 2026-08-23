@@ -79,6 +79,7 @@ Do not claim a Collatz solution.
 ```powershell
 python -m pip install -e ".[dev,ui]"
 pytest
+pytest --runslow
 python tools/render_theorem_ledger.py --check
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 cd formal; lake build

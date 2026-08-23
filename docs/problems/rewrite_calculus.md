@@ -5,8 +5,9 @@ Status: **PAPER_CANDIDATE**
 A classified rewrite system for the unary constructors `{D, I_a, S, N}`
 and a hard architectural boundary: integer sums stay outside the tree
 TRS. Canonical mathematics:
-[rewrite_calculus.md](../theory/rewrite_calculus.md). This is **not** a
-Collatz problem and not the cubic-residual frontier.
+[rewrite_calculus.md](../theory/rewrite_calculus.md). Publication draft:
+[rewrite_calculus_note.md](../theory/rewrite_calculus_note.md).
+This is **not** a Collatz problem and not the cubic-residual frontier.
 
 ## Problem
 
@@ -162,8 +163,9 @@ stay human. Do not edit `formal/BTCalculus/Confluence.lean`.
 
 ## Open questions
 
-Nothing on the enlargement programme. The remaining question is
-editorial / formalization, recorded in the decision.
+Nothing on the enlargement or formalization programmes. The restricted
+theorem package is complete. External mathematical review of the
+publication draft is the next stage.
 
 ## Decision
 
@@ -175,8 +177,8 @@ finite exact Add-tree TRS is already a CAS” stays a human corollary,
 not a Lean theorem. Do not open another rewrite milestone. Do not add
 CLI, visualization, or production `Add` rules.
 
-Best next question: is the short note ready to draft with Add-exclusion
-as spine and OpFrag as supporting lemma?
+Best next question: does external mathematical review find any gap in
+the hypotheses or interpretation of the restricted carry-state theorem?
 
 ## Publication assessment
 
@@ -187,4 +189,6 @@ The coherent paper is a classification theorem: the unary fragment
 crosses a representational boundary because it is not D-local. The
 central Lean theorem is `add_requires_carry_state`. Remaining
 non-formal: the unrestricted “any TRS / already a CAS” wording. Further
-implementation should stop; the next step is writing, not more rules.
+implementation should stop. The publication draft is **READY FOR
+EXTERNAL REVIEW**; the next step is mathematical/editorial review, not
+more rules.

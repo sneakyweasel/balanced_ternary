@@ -142,11 +142,12 @@ btprime calculus explorer
 
 ```powershell
 pytest
+pytest --runslow
 cd formal
 lake build
 ```
 
-The slowest Python test exhaustively checks identities on \([-10^6,10^6]\).
+`pytest` skips the slow marker: k>10 residual censuses, million-range identities, and Streamlit AppTests. CI runs `pytest --runslow`. Parallel full suite: `pytest --runslow -n auto --dist loadfile`.
 
 ## How to add a new research problem
 

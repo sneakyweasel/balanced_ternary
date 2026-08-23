@@ -95,6 +95,7 @@ both axes. See [methodology.md](methodology.md).
 - [Digit derivative](theory/digit_derivative.md)
 - [Rewrite calculus](theory/rewrite_calculus.md)
 - [Rewrite-calculus formalization gate](theory/rewrite_calculus_formalization.md)
+- [Rewrite-calculus paper note](theory/rewrite_calculus_note.md)
 - [Trit control](theory/trit_control.md)
 - [Setun connection](theory/setun_connection.md)
 - [Balanced-ternary normalization](theory/balanced_ternary_normalization.md)

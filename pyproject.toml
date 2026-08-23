@@ -12,7 +12,7 @@ license = { text = "MIT" }
 authors = [{ name = "Balanced Ternary Prime Language Explorer" }]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.6"]
+dev = ["pytest>=8", "pytest-xdist>=3", "ruff>=0.6"]
 ui = ["streamlit>=1.62", "pandas>=2"]
 experiments = ["pyarrow>=14"]
 
@@ -25,6 +25,9 @@ where = ["src"]
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 addopts = "-q --import-mode=importlib"
+markers = [
+    "slow: exhaustive census, million-range identity, or Streamlit AppTest",
+]
 
 [tool.ruff]
 line-length = 100
