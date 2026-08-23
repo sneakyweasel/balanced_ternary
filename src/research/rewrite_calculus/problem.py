@@ -26,6 +26,8 @@ PROBLEM = ProblemDefinition(
         "formal/BTCalculus/OpFrag.lean",
         "formal/BTCalculus/OpFragNewman.lean",
         "formal/BTCalculus/OpFragSemantic.lean",
+        "formal/BTCalculus/RewriteCore.lean",
+        "formal/BTCalculus/RewriteAddBoundary.lean",
     ),
     conjectures=(
         "op_fragment_nd_semantic",

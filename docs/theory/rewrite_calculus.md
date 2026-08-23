@@ -3,7 +3,8 @@
 **Status of this page:** a classified rewrite system and a
 [paper-candidate artifact](../problems/rewrite_calculus.md). The
 publication spine is the Lean-verified unary core
-`{D, I_a, S, N}` plus the human Add/carry maximality theorem.
+`{D, I_a, S, N}` plus the restricted Add/carry exclusion
+([formalization note](rewrite_calculus_formalization.md)).
 Word-table fragments are a closed appendix. Cubic residuals remain
 the laboratory frontier; this page is not a Collatz claim.
 

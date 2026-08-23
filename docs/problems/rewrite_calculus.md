@@ -131,26 +131,31 @@ Named peaks, recorded in the tests above and on the ledger:
 
 ## Formalization
 
+Gate note: [rewrite_calculus_formalization.md](../theory/rewrite_calculus_formalization.md).
 Lean, no `sorry`:
 
 - `formal/BTCalculus/OpFrag.lean`
 - `formal/BTCalculus/OpFragNewman.lean` — `BTC-op-fragment-nd-nf`
 - `formal/BTCalculus/OpFragSemantic.lean` — `BTC-op-fragment-nd-semantic`
 - `formal/BTCalculus/Rewrite.lean` — integer soundness of the tree rules
+- `formal/BTCalculus/RewriteCore.lean` — Claim A façade
+- `formal/BTCalculus/RewriteAddBoundary.lean` — restricted Claim B
+  (`BTC-add-not-D-local`, `BTC-constructor-sum-class`,
+  `BTC-push-in-S-peak`, `BTC-add-requires-carry-state`)
 
-Human-only, not Lean-packaged in this pass:
-`BTC-unary-s-distrib-obstruction`, `BTC-add-factor-cas-obstruction`,
-`BTC-add-affine-only`, and the word-fragment Newman certificates.
-
-Do not edit `formal/BTCalculus/Confluence.lean` (coefficient-word
-object).
+The English “any finite exact Add-tree TRS is a CAS” remains human
+(`BTC-add-affine-only`, `BTC-add-factor-cas-obstruction`,
+`BTC-unary-s-distrib-obstruction`). Word-fragment Newman certificates
+stay human. Do not edit `formal/BTCalculus/Confluence.lean`.
 
 ## Results
 
 - Enlarged OpFrag TRS is a complete canonical form (**PROVED — LEAN**).
-- That fragment is maximal among exact push-in/factor-out Add/Mul
-  extensions (**PROVED**).
-- Add is affine / coefficient-word only (**PROVED**).
+- Exact Add is not D-local; constructor-sum identities are the six
+  parameterized rows; the named carry-free push-in system fails local
+  confluence (**PROVED — LEAN**).
+- The unrestricted “any Add-tree TRS is a CAS” wording remains human
+  (**PROVED**).
 - Production word table is not locally confluent; three named opt-in
   fragments are (**PROVED** / **REFUTED** as tagged).
 - Word-table enlargement beyond `WORD_WND_RULES` is closed.
@@ -162,26 +167,24 @@ editorial / formalization, recorded in the decision.
 
 ## Decision
 
-`PROMOTE` the classification package (maximal unary core + Add/carry
-exclusion) as the research artifact. `CLOSE` further word-table
-enlargement and any tree-`Add` installation. The literature falsifier
-did not collapse the two distinctive human theorems, so the branch is
-not a `CLOSE — REPARAMETERIZATION`. Do not open a numbered milestone.
-Do not add CLI, visualization, or a unified `Expr` canonicalizer.
+`PROMOTE` the formalization gate: Claim A and the *restricted* Add/carry
+exclusion (not D-local; six-row constructor classification; named
+push-in peak) are Lean-verified without an AC-matching library.
+`CLOSE` further word-table enlargement. The broader English “every
+finite exact Add-tree TRS is already a CAS” stays a human corollary,
+not a Lean theorem. Do not open another rewrite milestone. Do not add
+CLI, visualization, or production `Add` rules.
 
-Best next question: can `BTC-unary-s-distrib-obstruction` and
-`BTC-add-affine-only` be Lean-verified without introducing an
-AC-matching library?
+Best next question: is the short note ready to draft with Add-exclusion
+as spine and OpFrag as supporting lemma?
 
 ## Publication assessment
 
 Status: `PAPER_CANDIDATE`.
 
-The note, if written, is a classification theorem — “a maximal
-confluent tree fragment for balanced-ternary operator terms, and why
-addition stays outside the TRS” — not an engine paper. Audience:
-computer arithmetic / term rewriting, not Collatz. Risks: reviewers
-may read OpFrag confluence as routine Newman plus unique expansion;
-the spine must be the Add-exclusion / six-identity classification,
-with Lean OpFrag as the supporting lemma. The word fragments are an
-appendix.
+The coherent paper is a classification theorem: the unary fragment
+`{D,I_a,S,N}` has a closed local canonical theory, and exact addition
+crosses a representational boundary because it is not D-local. The
+central Lean theorem is `add_requires_carry_state`. Remaining
+non-formal: the unrestricted “any TRS / already a CAS” wording. Further
+implementation should stop; the next step is writing, not more rules.
