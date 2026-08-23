@@ -40,3 +40,14 @@ This ledger does not rewrite history.
 | BTC-trit-kleene | EXACT — LEAN VERIFIED | Trit is a 3-element Kleene algebra, not Boolean | docs/theory/trit_algebra.md | BTCalculus/Trit | test_calculus_trit |
 | BTC-cmp3 | EXACT — LEAN VERIFIED | cmp3 translation / negation / antisymmetry | docs/theory/trit_control.md | BTCalculus/Comparison | test_calculus_trit |
 | BTC-select3 | EXACT — LEAN VERIFIED | select3 represents Trit→ℤ; abs/min/max | docs/theory/trit_control.md | BTCalculus/Select | test_calculus_select |
+| BTN-divmod | EXACT — LEAN VERIFIED | unique trit residue `c = 3q + r` | docs/theory/normalization_rewrite_system.md | BTCalculus/Normalization | test_normtheory_rewrite |
+| BTN-step-value | EXACT — LEAN VERIFIED | value(P → P') = value(P) | docs/theory/normalization_rewrite_system.md | BTCalculus/Normalization | test_normtheory_rewrite |
+| BTN-nf | EXACT — LEAN VERIFIED | normalize_LSD(P) = encodeZ(value(P)); all trits | docs/theory/balanced_ternary_normalization.md | BTCalculus/Normalization | test_normtheory_rewrite |
+| BTN-lex | EXACT — LEAN VERIFIED | LSD step strictly decreases abs-lex rank | docs/theory/normalization_rewrite_system.md | BTCalculus/Normalization | test_normtheory_rewrite |
+| BTN-carry-bound | EXACT — LEAN VERIFIED | `3\|DZ n\| ≤ \|n\|+1`; `|q| ≤ (B+1)/3` on `[-B,B]` | docs/theory/normalization_complexity.md | BTCalculus/Normalization | test_normtheory_strategies |
+| BTJ-hatD | EXACT — LEAN VERIFIED | value(hatD_raw(P))=D(value(P)); `[2]` naive drop fails | docs/theory/polynomial_jet_calculus.md | BTCalculus/NormalizedDerivative | test_hatd, test_m14_regressions |
+| BTJ-section | EXACT — LEAN VERIFIED | f(a+3x)=ρ_a(f)+3 𝔇_a f(x) | docs/theory/polynomial_jet_calculus.md | BTCalculus/Polynomial | test_section |
+| BTJ-product | EXACT — LEAN VERIFIED | twisted Leibniz for 𝔇_a(fg) | docs/theory/polynomial_jet_calculus.md | BTCalculus/Composition | test_section |
+| BTJ-comp | EXACT — LEAN VERIFIED | 𝔇_a(f∘g)=𝔇_{ρ_a(g)}f ∘ 𝔇_a g | docs/theory/polynomial_jet_calculus.md | BTCalculus/Composition | test_section |
+| BTJ-jet | EXACT — LEAN VERIFIED | finite-depth function-jet reconstruction | docs/theory/balanced_ternary_jets.md | BTCalculus/Jet | test_jets |
+| BTJ-degree | EXACT — HUMAN PROOF | deg 𝔇_a f = deg f (d≥1); LC = 3^{d-1} LC(f) | docs/theory/polynomial_jet_calculus.md | | test_section |

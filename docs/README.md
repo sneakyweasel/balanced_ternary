@@ -72,6 +72,13 @@ meaning throughout:
 - [Rewrite calculus](theory/rewrite_calculus.md)
 - [Trit control](theory/trit_control.md)
 - [Setun connection](theory/setun_connection.md)
+- [Balanced-ternary normalization](theory/balanced_ternary_normalization.md)
+- [Normalization rewrite system](theory/normalization_rewrite_system.md)
+- [Normalization complexity](theory/normalization_complexity.md)
+- [Setun normalization](theory/setun_normalization.md)
+- [Balanced-ternary jets](theory/balanced_ternary_jets.md)
+- [Polynomial jet calculus](theory/polynomial_jet_calculus.md)
+- [Jet transducers](theory/jet_transducers.md)
 
 ## Architecture
 

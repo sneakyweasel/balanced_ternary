@@ -64,6 +64,13 @@ Answers so far (see [balanced_ternary_calculus.md](balanced_ternary_calculus.md)
   and Lean-verified. They are calculus *language*, not new number
   theory.
 - The postfix VM is an evaluator, not Setun-70.
+- Coefficient-vector normalization (Milestone 14) is recorded in
+  [setun_normalization.md](setun_normalization.md). ISA normalize/FMA
+  details stay sketches unless a cited source is added.
+- Section/jet calculus (Milestone 15) is recorded in
+  [polynomial_jet_calculus.md](polynomial_jet_calculus.md). No Setun
+  attribution: the 3-section operator is standard algebra; `hat D` and
+  the `[2]` normalization boundary are this repository’s packaging.
 
 If a later source is found that already states `D(xy)` in this form,
 the ledger should be updated to **KNOWN** rather than presented as

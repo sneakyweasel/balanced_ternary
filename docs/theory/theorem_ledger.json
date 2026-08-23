@@ -169,5 +169,104 @@
     "lean": "BTCalculus/Select.lean",
     "tests": ["tests/unit/test_calculus_select.py"],
     "related_conjectures": []
+  },
+  {
+    "id": "BTN-divmod",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "unique trit residue c = 3q + r",
+    "source": "docs/theory/normalization_rewrite_system.md",
+    "lean": "BTCalculus/Normalization.lean",
+    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-step-value",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "value(P → P') = value(P)",
+    "source": "docs/theory/normalization_rewrite_system.md",
+    "lean": "BTCalculus/Normalization.lean",
+    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-nf",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "normalize_LSD(P) = encodeZ(value(P)); result is all trits",
+    "source": "docs/theory/balanced_ternary_normalization.md",
+    "lean": "BTCalculus/Normalization.lean",
+    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-lex",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "LSD step strictly decreases the abs-lex rank",
+    "source": "docs/theory/normalization_rewrite_system.md",
+    "lean": "BTCalculus/Normalization.lean",
+    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-carry-bound",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "3|DZ n| ≤ |n|+1 and |q| ≤ (B+1)/3 on |c|≤B",
+    "source": "docs/theory/normalization_complexity.md",
+    "lean": "BTCalculus/Normalization.lean",
+    "tests": ["tests/unit/test_normtheory_strategies.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTJ-hatD",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "value(hatD_raw(P))=D(value(P)); naive D_coeff fails on [2]",
+    "source": "docs/theory/polynomial_jet_calculus.md",
+    "lean": "BTCalculus/NormalizedDerivative.lean",
+    "tests": ["tests/unit/test_hatd.py", "tests/unit/test_m14_regressions.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTJ-section",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "f(a+3x)=rho_a(f)+3 sectionDeriv_a f(x)",
+    "source": "docs/theory/polynomial_jet_calculus.md",
+    "lean": "BTCalculus/Polynomial.lean",
+    "tests": ["tests/unit/test_section.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTJ-product",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "twisted Leibniz for sectionDeriv of a product",
+    "source": "docs/theory/polynomial_jet_calculus.md",
+    "lean": "BTCalculus/Composition.lean",
+    "tests": ["tests/unit/test_section.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTJ-comp",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "sectionDeriv_a(f.comp g)=sectionDeriv_{rho_a g} f compose sectionDeriv_a g",
+    "source": "docs/theory/polynomial_jet_calculus.md",
+    "lean": "BTCalculus/Composition.lean",
+    "tests": ["tests/unit/test_section.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTJ-jet",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "finite-depth function-jet reconstruction along integer digits",
+    "source": "docs/theory/balanced_ternary_jets.md",
+    "lean": "BTCalculus/Jet.lean",
+    "tests": ["tests/unit/test_jets.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTJ-degree",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "deg sectionDeriv f = deg f for d>=1; LC = 3^{d-1} LC(f)",
+    "source": "docs/theory/polynomial_jet_calculus.md",
+    "lean": "",
+    "tests": ["tests/unit/test_section.py"],
+    "related_conjectures": []
   }
 ]

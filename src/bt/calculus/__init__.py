@@ -18,6 +18,9 @@ from bt.calculus.select import abs_z, clamp_z, max_z, median_z, min_z, select3, 
 from bt.calculus.semantics import evaluate
 from bt.calculus.trit import Trit, algebraic_name, as_trit, neg, trit_max, trit_min
 from bt.calculus.vm import VMResult, evaluate_direct, run_postfix
+from bt.calculus.section import IntPoly
+from bt.calculus.jets import FunctionJet, integer_jet
+from bt.normtheory.hatd import hatD, hatD_raw
 
 __all__ = [
     "Complexity",
@@ -26,12 +29,14 @@ __all__ = [
     "D_of_product",
     "D_of_sum",
     "Expr",
+    "FunctionJet",
     "I",
     "I_minus",
     "I_plus",
     "I_zero",
     "IdentityCandidate",
     "InformationProfile",
+    "IntPoly",
     "P",
     "REWRITE_RULES",
     "S",
@@ -50,6 +55,9 @@ __all__ = [
     "e_trit",
     "evaluate",
     "evaluate_direct",
+    "hatD",
+    "hatD_raw",
+    "integer_jet",
     "lsd",
     "max_z",
     "measure",

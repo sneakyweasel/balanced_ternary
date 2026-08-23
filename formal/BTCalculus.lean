@@ -7,3 +7,8 @@ import BTCalculus.Comparison
 import BTCalculus.Select
 import BTCalculus.Semantics
 import BTCalculus.Transducer
+import BTCalculus.Normalization
+import BTCalculus.NormalizedDerivative
+import BTCalculus.Polynomial
+import BTCalculus.Composition
+import BTCalculus.Jet

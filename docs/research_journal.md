@@ -101,3 +101,24 @@ are not invented here. Local experiment manifests are timestamped
 - **Refuted ideas:** ordinary Leibniz rule for `D`; Boolean algebra of trits; `S∘D = id` (already refuted, restated)
 - **Literature:** Hayes 2001, Knuth vol. 2, Malinovsky — historical Setun only
 - **Next question:** not started; do not auto-open a new milestone. Open rewrite question: unique NF for open operator-fragment terms
+
+## Milestone 14
+
+- **Date:** 2026-08-22
+- **Objective:** Problem-independent balanced-ternary normalization theory on arbitrary integer coefficient vectors
+- **Hypotheses:** the local carry `c = 3q + r` generates a terminating confluent rewrite whose NF is the canonical word; weighted L1 might be a rank; fused FMA is always cheaper; `D` commutes with normalize
+- **Major results:** `CoeffWord` + abstract `→`; lex termination on `(|c_i|)`; Strategy A ≡ `encode(value)`; Lean value/step/NF and carry bound; FST classification by alphabet; add/mul/FMA value identities
+- **Refuted ideas:** weighted `Σ |c_i|(3/2)^i` as a rank (`[2] → [-1,1]`); `D(normalize(P)) = normalize(D_coeff(P))` without a trit LSD; Strategy A/B rewrite-count equality on a small box
+- **Literature:** Hayes, Knuth, Malinovsky remain the Setun fact sources; ISA normalize/FMA details stay sketches
+- **Next question:** not started; do not auto-open a new milestone. Open formal question: local confluence of the `i`/`i+1` critical pair in Lean
+
+## Milestone 15
+
+- **Date:** 2026-08-22
+- **Objective:** Normalization-aware section differential calculus on `Z[x]` and coefficient words
+- **Hypotheses:** naive `D_coeff` is `D`; `𝔇_a` lowers degree and obeys classical Leibniz/chain; same-index locality
+- **Major results:** `hat D` (drop plus carry) is the total semantic coefficient derivative; `𝔇_a` closes on `Z[x]` with twisted Leibniz and branch-selecting composition; function-jet reconstruction; prefix locality for polynomials
+- **Refuted ideas:** `D ∘ normalize = normalize ∘ D_coeff` (`[2]`); degree-lowering; classical Leibniz; classical chain; same-index output locality
+- **Literature:** 3-section / Cartier / p-kernel **REPARAMETERIZATION**; balanced residue and normalization boundary are the project-specific layer. Outcome B with a C-layer.
+- **Next question:** not started; do not auto-open a new milestone. Open question: minimized residual-state growth of `x^d` as a function of `k`
+

@@ -2,6 +2,7 @@
 
 Bounded computations write versioned records under `experiments/<problem>/`.
 Generated JSONL, Parquet, CSV, and report artifacts are gitignored.
+Normalization theory dumps belong under `experiments/normalization/`.
 
 ## Shared infrastructure
 

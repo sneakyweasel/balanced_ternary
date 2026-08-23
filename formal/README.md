@@ -44,8 +44,12 @@ The `BTCalculus` library (built with the same `lake build`) adds trit
 Kleene laws, integer `lsdZ`/`DZ` decomposition, `D ∘ I_a = id`, the
 projection band `P_a ∘ P_b = P_a`, the twisted product rule, the
 LSD-carry sum rule, `cmp3`/`select3` identities, rewrite soundness for
-the operator fragment, and word/integer semantic agreement for `D` and
-`I_a`.
+the operator fragment, word/integer semantic agreement for `D` and
+`I_a`, coefficient-vector normalization (value preservation, LSD
+normal form, lex rank, carry bound), the normalized coefficient
+derivative `hatDRaw`, the `ℤ[X]` section derivative with product and
+composition laws, and finite-depth function-jet reconstruction. Global
+confluence of the abstract rewrite is not claimed in Lean.
 
 These are labelled **EXACT — LEAN VERIFIED**. The Python cylinder
 implementation remains the executable instantiation; this Lean project

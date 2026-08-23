@@ -53,6 +53,8 @@ analysis”.
 - Package: `src/bt/calculus/`
 - Lean: `formal/BTCalculus/`
 - CLI: `btprime calculus …`
+- Coefficient-vector NF (Milestone 14): [balanced_ternary_normalization.md](balanced_ternary_normalization.md). Different object from expression-tree NF.
+- Section/jet calculus (Milestone 15): [polynomial_jet_calculus.md](polynomial_jet_calculus.md). `D_coeff` is not `D`.
 
 ## Finite-state locality (reused, not re-proved)
 

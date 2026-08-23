@@ -52,6 +52,37 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_pr.add_argument("symbol", nargs="?", default="")
     p_pr.add_argument("--json", action="store_true")
 
+    p_sd = c.add_parser("section-deriv", help="section derivative 𝔇_a of a Z[x] polynomial")
+    p_sd.add_argument("polynomial")
+    p_sd.add_argument("--section", type=int, default=0)
+
+    p_nd = c.add_parser("normalized-deriv", help="hat D of a raw coefficient word")
+    p_nd.add_argument("coeffs", help="comma-separated LSD-first integers")
+
+    p_jet = c.add_parser("jet", help="integer jet J_k(n)")
+    p_jet.add_argument("n", type=int)
+    p_jet.add_argument("--depth", type=int, default=4)
+
+    p_fj = c.add_parser("function-jet", help="residual section jet of a polynomial along n")
+    p_fj.add_argument("polynomial")
+    p_fj.add_argument("n", type=int)
+    p_fj.add_argument("--depth", type=int, default=3)
+
+    p_cj = c.add_parser("compare-jets", help="compare function jets of two polynomials")
+    p_cj.add_argument("f")
+    p_cj.add_argument("g")
+    p_cj.add_argument("--depth", type=int, default=3)
+    p_cj.add_argument("--n", type=int, default=5)
+
+    p_pj = c.add_parser("profile-jet", help="residual-state profile of a polynomial")
+    p_pj.add_argument("polynomial")
+    p_pj.add_argument("--depth", type=int, default=3)
+    p_pj.add_argument("--json", action="store_true")
+
+    p_st = c.add_parser("states", help="raw vs minimized residual-state counts")
+    p_st.add_argument("polynomial")
+    p_st.add_argument("--depth", type=int, default=3)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -110,5 +141,81 @@ def run_calculus(args: argparse.Namespace) -> int:
                 f"{rec.operator}: {rec.locality_class} "
                 f"(states={rec.state_complexity}, delay={rec.delay})"
             )
+        return 0
+    if cmd == "section-deriv":
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        a = args.section
+        df = f.section_deriv(a)
+        print(f"f = {f.render()}")
+        print(f"a = {a}")
+        print(f"rho = {f.rho(a)}")
+        print(f"D_a f = {df.render()}")
+        print(f"degree f = {f.degree} degree D_a = {df.degree}")
+        print(f"reconstruction at x=0: {f.eval(a) == f.rho(a) + 3 * df.eval(0)}")
+        return 0
+    if cmd == "normalized-deriv":
+        from bt.normtheory.coeffword import CoeffWord
+        from bt.normtheory.calculus_link import D_coeff
+        from bt.normtheory.hatd import hatD, hatD_raw
+
+        parts = [p.strip() for p in args.coeffs.split(",") if p.strip() != ""]
+        word = CoeffWord(tuple(int(p) for p in parts))
+        print(f"P = {list(word.coeffs)} value = {word.value()}")
+        print(f"D_coeff = {list(D_coeff(word).coeffs)} value = {D_coeff(word).value()}")
+        print(f"hatD_raw = {list(hatD_raw(word).coeffs)} value = {hatD_raw(word).value()}")
+        print(f"hatD = {list(hatD(word).coeffs)} value = {hatD(word).value()}")
+        return 0
+    if cmd == "jet":
+        from bt.calculus.jets import integer_jet, residual_argument
+
+        print(f"J_{args.depth}({args.n}) = {list(integer_jet(args.n, args.depth))}")
+        print(f"D^{args.depth}({args.n}) = {residual_argument(args.n, args.depth)}")
+        return 0
+    if cmd == "function-jet":
+        from bt.calculus.jets import function_jet_of_integer, reconstruction_holds
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        jet = function_jet_of_integer(f, args.n, args.depth)
+        print(f"f = {f.render()}")
+        print(f"word = {list(jet.word)}")
+        print(f"output trits = {list(jet.output_trits)}")
+        print(f"residual = {jet.residual().render()}")
+        print(f"reconstruction = {reconstruction_holds(f, args.n, args.depth)}")
+        return 0
+    if cmd == "compare-jets":
+        from bt.calculus.jets import function_jet_of_integer
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.f)
+        g = parse_poly(args.g)
+        jf = function_jet_of_integer(f, args.n, args.depth)
+        jg = function_jet_of_integer(g, args.n, args.depth)
+        print(f"f output = {list(jf.output_trits)}")
+        print(f"g output = {list(jg.output_trits)}")
+        print(f"same path = {jf.word == jg.word}")
+        return 0
+    if cmd == "profile-jet":
+        from bt.calculus.jet_locality import profile_jet
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        rec = profile_jet(f, args.depth)
+        if args.json:
+            print(json.dumps(rec.as_dict(), indent=2))
+        else:
+            print(rec)
+        return 0
+    if cmd == "states":
+        from bt.calculus.jet_locality import profile_jet
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        rec = profile_jet(f, args.depth)
+        print(f"raw = {rec.raw_states}")
+        print(f"minimized = {rec.minimized_states}")
+        print(f"max_coeff = {rec.max_coeff}")
         return 0
     raise ValueError(f"unknown calculus command {cmd}")
