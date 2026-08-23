@@ -62,3 +62,19 @@ def newton_stratum_q(u: int, k: int, r: int) -> int:
         return n0_scaled(u, k, r)
     t, _K, _W = q_params(k, r)
     return q_int(t, u)
+
+
+def newton_stratum_core_width(m: int, r: int, u: int) -> bool:
+    """``newtonStratum_core_width``: ``u ∈ P_{m-r}`` (equivalently ``3^r u ∈ P_m``)."""
+    from research.residuals.cubic_fibres import balanced_bound
+
+    if r > m:
+        return u == 0
+    return abs(u) <= balanced_bound(m - r)
+
+
+def newton_stratum_q_unit_family(t: int, K: int, a: int, b: int, c: int) -> bool:
+    """``newtonStratum_q_unit_family``: unit ``G_a`` equality is ``b ≡ c (mod 3^{K-1})``."""
+    from research.residuals.x3_state_complexity import unit_g_injective_mod
+
+    return unit_g_injective_mod(t, K, a, b, c)

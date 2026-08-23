@@ -28,3 +28,4 @@ import BTCalculus.CubicN0Reduction
 import BTCalculus.MismatchedCubicQuotient
 import BTCalculus.NewtonStratum
 import BTCalculus.MismatchedCubicInvariant
+import BTCalculus.XCubeStateComplexity

@@ -1,5 +1,6 @@
 import BTCalculus.MismatchedCubicQuotient
 import BTCalculus.MismatchedCubicInvariant
+import BTCalculus.XCubeStateComplexity
 
 noncomputable section
 
@@ -61,5 +62,26 @@ theorem newtonStratum_q_one_family {t K : Nat}
         qCubic t (1 + (3 : Int) ^ t * c) ↔
       (3 : Int) ^ (K - 1) ∣ b - c :=
   q_one_family_dvd ht hK b c
+
+theorem newtonStratum_core_width {m r : Nat} (hr : r ≤ m) (u : Int) :
+    balWidth m ((3 : Int) ^ r * u) ↔ balWidth (m - r) u :=
+  balWidth_pow_iff hr u
+
+theorem newtonStratum_n1_core {k r : Nat} (hr : r + 1 ≤ k)
+    (h2 : 2 * r + 2 ≤ k) (u : Int) :
+    (3 : Int) ^ k ∣ n1Resid (k - 1 - r) ((3 : Int) ^ r * u) -
+      (3 : Int) ^ (2 * r + 1) * u ^ 2 :=
+  n1_on_core_mod hr h2 u
+
+theorem newtonStratum_q_unit_family {t K : Nat} (ht : 1 ≤ t) (hK : 1 ≤ K)
+    {a : Int} (ha : ¬ (3 : Int) ∣ a) (b c : Int) :
+    (3 : Int) ^ K ∣ qCubic t (a + (3 : Int) ^ t * b) -
+        qCubic t (a + (3 : Int) ^ t * c) ↔
+      (3 : Int) ^ (K - 1) ∣ b - c :=
+  q_unit_family_dvd ht hK ha b c
+
+theorem newtonStratum_zero_spine_n1 {k m : Nat} (h : k ≤ 2 * m) :
+    (3 : Int) ^ k ∣ n1Resid m 0 :=
+  zero_spine_n1 h
 
 end BTCalculus

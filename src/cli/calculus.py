@@ -270,6 +270,19 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_cqcmp.add_argument("--modulus", type=int, required=True)
     p_cqcmp.add_argument("--width", type=int, required=True)
 
+    p_x3s = c.add_parser(
+        "x3-states",
+        help="exact M_k(x^3) count from same-depth images and deep overlaps",
+    )
+    p_x3s.add_argument("--k", type=int, required=True)
+
+    p_x3l = c.add_parser(
+        "x3-layer-count",
+        help="exact same-depth count C(k, k-1-r) by the easy/core split",
+    )
+    p_x3l.add_argument("--k", type=int, required=True)
+    p_x3l.add_argument("--deficit", type=int, required=True)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -905,5 +918,37 @@ def run_calculus(args: argparse.Namespace) -> int:
                 print(f"  {line}")
         else:
             print("missing information: none (candidates agree with Q on this pair)")
+        return 0
+    if cmd == "x3-states":
+        from research.residuals.x3_state_complexity import states_report
+
+        rec = states_report(args.k)
+        print(f"k = {rec['k']}")
+        print(f"R_k = {rec['R']}")
+        print(f"same-depth totals = {rec['same_depth_totals']}")
+        print(f"sum_C = {rec['sum_C']}")
+        print(f"Q-image contributions = {rec['q_image_contributions']}")
+        print(f"cross-depth overlap = {rec['cross_depth_overlap']}")
+        print(f"zero_spine = {rec['zero_spine']}")
+        print(f"zero_spine_overcount = {rec['zero_spine_overcount']}")
+        print(f"M_k = {rec['M']}")
+        print(f"compression = {rec['compression']}")
+        print(f"ratio = {rec['ratio']}")
+        return 0
+    if cmd == "x3-layer-count":
+        from research.residuals.x3_state_complexity import layer_count_report
+
+        rec = layer_count_report(args.k, args.deficit)
+        print(f"k = {rec['k']}")
+        print(f"deficit r = {rec['r']}")
+        print(f"m = {rec['m']}")
+        print(f"C(k,k-1-r) = {rec['C']}")
+        print(f"raw layer size = {rec['raw']}")
+        print(f"injective contribution = {rec['injective']}")
+        print(f"Q-image contribution = {rec['q_image']}")
+        print(f"core image = {rec['core_image']}")
+        print(f"overlap corrections = {rec['overlap']}")
+        print(f"source = {rec['source']}")
+        print(f"regime = {rec['regime']}")
         return 0
     raise ValueError(f"unknown calculus command {cmd}")

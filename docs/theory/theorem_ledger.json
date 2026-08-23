@@ -1208,5 +1208,82 @@
       "tests/research/residuals/test_mismatched_invariant.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-C-easy",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "at deficit r, #{p in P_m : v3(p)<r} is 3^m-3^{m-r} (r<=m) or 3^m (r>m)",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-C-core",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "3^r u in P_m iff u in P_{m-r} when r<=m; r>m forces u=0",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-C-decomp",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "C_{k,k-1-r} = easy count + |Im F_k on the 3^r-core|",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-C-unex",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "if k<4r+1 then C_{k,k-1-r}=3^{k-1-r}-Z+1 with Z the core zero fibre",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-unit-im",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "for 3 not dividing a and t>=1, G_a(b)=G_a(c) iff 3^{K-1} divides b-c",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-M-spine",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "p=0 at depths 2m>=k is a single Newton class (the zero spine)",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-M-overlap",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "zero spine is not the only cross-depth overlap; M_k table through k=14",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/XCubeStateComplexity.lean",
+    "tests": [
+      "tests/research/residuals/test_x3_state_complexity.py"
+    ],
+    "related_conjectures": []
   }
 ]

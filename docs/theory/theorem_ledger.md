@@ -128,3 +128,10 @@ This ledger does not rewrite history.
 | BTA-x3-Q-inv-one | EXACT — LEAN VERIFIED | for t>=1, Q(1+3^t b)=Q(1+3^t c) iff 3^{K-1} divides b-c | docs/theory/cubic_newton_stratum.md | BTCalculus/MismatchedCubicInvariant | test_mismatched_invariant |
 | BTA-x3-Q-inv-bal | EXACT — LEAN VERIFIED | B_t(u)=bal_t(u^3) is determined by u mod 3^s when s>=1 and t<=s+1 | docs/theory/cubic_newton_stratum.md | BTCalculus/MismatchedCubicInvariant | test_mismatched_invariant |
 | BTA-x3-Q-inv-psi | REFUTED | a bounded residue/valuation/sign/B_t invariant classifies Q-fibres independently of t,K,W | docs/theory/cubic_newton_stratum.md | BTCalculus/MismatchedCubicInvariant | test_mismatched_invariant |
+| BTA-x3-C-easy | EXACT — HUMAN PROOF | at deficit r, #{p in P_m : v3(p)<r} is 3^m-3^{m-r} (r<=m) or 3^m (r>m) | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-C-core | EXACT — LEAN VERIFIED | 3^r u in P_m iff u in P_{m-r} when r<=m; r>m forces u=0 | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-C-decomp | EXACT — HUMAN PROOF | C_{k,k-1-r} = easy count + \|Im F_k on the 3^r-core\| | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-C-unex | EXACT — HUMAN PROOF | if k<4r+1 then C_{k,k-1-r}=3^{k-1-r}-Z+1 with Z the core zero fibre | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-Q-unit-im | EXACT — LEAN VERIFIED | for 3 not dividing a and t>=1, G_a(b)=G_a(c) iff 3^{K-1} divides b-c | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-M-spine | EXACT — LEAN VERIFIED | p=0 at depths 2m>=k is a single Newton class (the zero spine) | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |
+| BTA-x3-M-overlap | COMPUTATIONALLY VERIFIED | zero spine is not the only cross-depth overlap; M_k table through k=14 | docs/theory/cubic_newton_stratum.md | BTCalculus/XCubeStateComplexity | test_x3_state_complexity |

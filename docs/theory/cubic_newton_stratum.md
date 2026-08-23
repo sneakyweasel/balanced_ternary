@@ -1,8 +1,8 @@
 # Cubic Newton stratum
 
 Canonical record for the same-depth fibres of the Newton image \(F_k\) of
-\(x^3\). Layer notes from Milestones 19–26 are corollaries. This page does
-**not** give a closed formula for \(M_k(x^3)\).
+\(x^3\). Layer notes from Milestones 19–26 are corollaries. This page records the exact same-depth count \(C_{k,m}\) and the
+remaining arithmetic obstruction to a closed formula for \(M_k(x^3)\).
 
 Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **REFUTED**,
@@ -69,8 +69,8 @@ Fix a horizon \(k\) and a deficit \(r\) with \(r+1\le k\). Set
    **EXACT — LEAN VERIFIED** (`newtonStratum_n0_le`, `newtonStratum_n0_ge`,
    `newtonStratum_q`).
 
-There is no closed cardinality for the remaining \(Q\)-fibres.
-The invariant decision is recorded in §6.
+The remaining \(Q\)-fibres have no compact classifier (§6). Their
+contribution to \(C_{k,m}\) is the image count in §7.
 
 ---
 
@@ -112,10 +112,12 @@ These remain on the ledger. They are not revived by the unified statement.
 
 ## 5. What remains open
 
-A closed formula for \(M_k(x^3)\). The \(Q\)-invariant question is
-closed in §6: no compact residue/valuation/\(B_t\) classifier exists,
-and the obstruction is the high-trit carry. Do not open a numbered
-milestone for a further \(Q\)-taxonomy.
+A single closed term for \(M_k(x^3)\). Same-depth counts are finished
+in §7 except the exhausted core image
+\(\lvert\{(N_1,N_0)(3^ru):u\in P_W\}\rvert\), which is an explicit
+polynomial image. Cross-depth overlap is reduced to the \(N_3\)-deep
+layers; the zero spine is exact, but nonzero families remain. Do not
+open a numbered milestone for a further \(Q\)-taxonomy.
 
 ---
 
@@ -163,8 +165,174 @@ Threshold \(3s=t\) reduces to a cube \(w^3\bmod 3^K\).
 **REFUTED**: a bounded residue / valuation / sign / \(B_t\) invariant
 classifies \(Q\)-fibres independently of \(t,K,W\).
 
-**Outcome C**, with a partial high-valuation invariant. Counting
-\(\lvert\mathrm{im}\,Q\rvert\) is not reduced to an elementary formula
-for \(M_k(x^3)\). The \(Q\)-classification line should not continue by
-inventing further fibre types. The remaining complexity is the cubic
-carry on the extra \(2r\) trits.
+**Outcome C**, with a partial high-valuation invariant. The
+\(Q\)-classification line should not continue by inventing further
+fibre types. Counting proceeds in §7 by image cardinality, not by a
+new invariant.
+
+---
+
+## 7. Exact state complexity
+
+Master identity **EXACT — HUMAN PROOF** (`BTA-x3-Fk`):
+
+\[
+M_k(x^3)
+=
+\Bigl\lvert
+\bigcup_{m=0}^{k-1}
+\operatorname{Im} F_k(m,\cdot)
+\Bigr\rvert.
+\]
+
+Write \(r=k-1-m\) and \(W=k-1-2r\). The balanced interval satisfies
+\(3^ru\in P_m\) if and only if \(u\in P_W\) when \(r\le m\), and forces
+\(u=0\) when \(r>m\). **EXACT — LEAN VERIFIED**
+(`balWidth_pow_iff`, `newtonStratum_core_width`).
+
+On \(P_m\), the prefixes with \(v_3(p)<r\) are first-nonzero-digit
+words of length \(m\). Their count is
+
+\[
+E_{k,r}
+=
+\begin{cases}
+0,& r=0,\\
+3^m-3^{m-r},& 1\le r\le m,\\
+3^m,& r>m.
+\end{cases}
+\]
+
+**EXACT — HUMAN PROOF.** After \(N_2\), each such prefix is a singleton
+(`n1_val_lt_injective`). The complementary core is hashed as
+\(\{(N_1,N_0)\}\) on \(P_W\) only. Therefore
+
+\[
+C_{k,k-1-r}
+=
+E_{k,r}
++
+\bigl\lvert
+\{F_k(k-1-r,\,3^ru):u\in P_W\}
+\bigr\rvert
+\]
+
+when \(r\le m\), and \(C_{k,m}=3^m\) when \(r>m\).
+**EXACT — HUMAN PROOF** (`BTA-x3-C-decomp`). On the core, once
+\(k\ge 2r+2\),
+
+\[
+N_1\equiv 3^{2r+1}u^2\pmod{3^k}.
+\]
+
+**EXACT — LEAN VERIFIED** (`n1_on_core_mod`).
+
+In the strict unexhausted regime \(k<4r+1\), \(N_1\) sees \(u^2\)
+completely on \(P_W\), so collisions are only sign pairs, and a
+surviving sign pair already forces the zero class. Hence
+
+\[
+C_{k,k-1-r}
+=
+3^{k-1-r}-Z_{k,r}+1,
+\qquad
+Z_{k,r}=3^{\max(W-s,0)},
+\quad
+s=\Bigl\lceil\frac{2k-4r-1}{3}\Bigr\rceil
+\]
+
+(with \(Z=1\) if \(s>W\)). **EXACT — HUMAN PROOF**, and
+**COMPUTATIONALLY VERIFIED** through \(k=14\).
+
+On units \(3\nmid a\) and \(t\ge 1\),
+
+\[
+G_a(b)\equiv G_a(c)\pmod{3^K}
+\iff
+b\equiv c\pmod{3^{K-1}}.
+\]
+
+**EXACT — LEAN VERIFIED** (`q_unit_family_dvd`). This is the unit
+stratum image law: each fixed unit low part contributes
+\(3^{\min(W-t,K-1)}\) distinct \(Q\)-values. Different \(a\) may still
+overlap, and \(N_1\) is not a function of \(N_0\) on the exhausted
+core, so the same-depth count uses the joint image
+\(\lvert(N_1,N_0)\rvert\), not \(\lvert N_0\rvert\) alone.
+
+Cross-depth collisions require \(k\le 2\min(m,n)+1\)
+**EXACT — LEAN VERIFIED** (`n3_dvd_iff`). All shallow layers
+\(2m+1<k\) are therefore disjoint from each other and from the deep
+block, which gives the exact algorithm
+
+\[
+M_k
+=
+\frac{3^{\lfloor k/2\rfloor}-1}{2}
++
+\Bigl\lvert
+\bigcup_{m\ge\lfloor k/2\rfloor}
+\operatorname{Im} F_k(m,\cdot)
+\Bigr\rvert.
+\]
+
+The zero spine \(p=0\) at depths \(2m\ge k\) is a single Newton class
+**EXACT — LEAN VERIFIED** (`zero_spine_n1`, `zero_spine_n2`,
+`zero_spine_n0`, `zero_spine_n3`). It is **not** the only overlap:
+already at \(k=6\) the sign pair \(\{\pm 3\}\) is shared by depths
+\(4\) and \(5\). **COMPUTATIONALLY VERIFIED** through \(k=14\). The
+nonzero families are small-prefix sign pairs with vanishing \(N_0\),
+valuation translates, and high-valuation cube residues.
+
+The counting method enumerates \(P_W\) for each deficit and the deep
+layers for the union. The deepest layer still has width \(k-1\), so
+the exact algorithm is exponential in \(k\), not polynomial.
+
+Verification table. \(R_k=(3^k-1)/2\). Every \(C_{k,m}\) and \(M_k\)
+is an exact arithmetic image count (unexhausted \(C\) by the formula
+above; exhausted \(C\) and all \(M_k\) by hashing \(F_k\)). Through
+\(k=9\), \(M_k\) also matches the full Myhill–Nerode image
+`M_k_x3`. \(M_{12}=265352\) matches the Milestone 20 value.
+
+| \(k\) | \(R_k\) | \(M_k\) | \(R_k-M_k\) | \(M_k/R_k\) | source |
+|------:|--------:|--------:|------------:|------------:|:-------|
+| 2 | 4 | 3 | 1 | 0.750 | MN + arithmetic |
+| 3 | 13 | 12 | 1 | 0.923 | MN + arithmetic |
+| 4 | 40 | 36 | 4 | 0.900 | MN + arithmetic |
+| 5 | 121 | 115 | 6 | 0.950 | MN + arithmetic |
+| 6 | 364 | 349 | 15 | 0.959 | MN + arithmetic |
+| 7 | 1093 | 1074 | 19 | 0.983 | MN + arithmetic |
+| 8 | 3280 | 3231 | 49 | 0.985 | MN + arithmetic |
+| 9 | 9841 | 9780 | 61 | 0.994 | MN + arithmetic |
+| 10 | 29524 | 29394 | 130 | 0.996 | arithmetic |
+| 11 | 88573 | 88399 | 174 | 0.998 | arithmetic |
+| 12 | 265720 | 265352 | 368 | 0.999 | arithmetic |
+| 13 | 797161 | 796678 | 483 | 0.999 | arithmetic |
+| 14 | 2391484 | 2390443 | 1041 | 0.999 | arithmetic |
+
+Per-depth \(C_{k,m}\) for \(m=0,\ldots,k-1\):
+
+| \(k\) | \(C_{k,m}\) |
+|------:|:------------|
+| 2 | 1, 2 |
+| 3 | 1, 3, 8 |
+| 4 | 1, 3, 9, 24 |
+| 5 | 1, 3, 9, 27, 76 |
+| 6 | 1, 3, 9, 27, 80, 232 |
+| 7 | 1, 3, 9, 27, 81, 240, 716 |
+| 8 | 1, 3, 9, 27, 81, 243, 721, 2153 |
+| 9 | 1, 3, 9, 27, 81, 243, 727, 2178, 6521 |
+| 10 | 1, 3, 9, 27, 81, 243, 729, 2180, 6537, 19597 |
+| 11 | 1, 3, 9, 27, 81, 243, 729, 2185, 6554, 19652, 58939 |
+| 12 | 1, 3, 9, 27, 81, 243, 729, 2187, 6559, 19661, 58977, 176908 |
+| 13 | 1, 3, 9, 27, 81, 243, 729, 2187, 6559, 19677, 59022, 177057, 531141 |
+| 14 | 1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19681, 59028, 177083, 531230, 1593644 |
+
+CLI: `btprime calculus x3-states --k <k>` and
+`btprime calculus x3-layer-count --k <k> --deficit <r>`.
+The commands `newton-class`, `cubic-layer`, and `cubic-quotient` are
+unchanged.
+
+The \(x^3\) state-complexity problem is **not closed**. The remaining
+obstruction is the exhausted joint image
+\(\lvert(N_1,Q)(P_W)\rvert\) together with the exact nonzero
+cross-depth families after the zero spine is removed.

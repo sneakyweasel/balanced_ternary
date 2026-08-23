@@ -7,10 +7,10 @@ PROBLEM = ProblemDefinition(
     title="Cubic residual Newton stratum",
     status="STRUCTURAL",
     statement=(
-        "At horizon k and deficit r with r+1 ≤ k, classify same-depth fibres "
-        "of F_k at m = k-1-r by N2 visibility, N1 valuation, and the "
-        "mismatched N0 quotient Q_{t,K,W}. This module does not claim a "
-        "closed formula for M_k(x^3)."
+        "At horizon k and deficit r with r+1 ≤ k, count same-depth Newton "
+        "classes C_{k,k-1-r} by the easy/core split and the unexhausted "
+        "zero-fibre formula. M_k(x^3) is the N3-gated union of those "
+        "images. No single closed term for M_k is claimed."
     ),
     bt_relevance=(
         "Residuals are the section-calculus Mealy machine of bt.calculus. "
@@ -20,5 +20,8 @@ PROBLEM = ProblemDefinition(
         "docs/problems/residuals.md",
         "docs/theory/cubic_newton_stratum.md",
     ),
-    lean=("formal/BTCalculus/NewtonStratum.lean",),
+    lean=(
+        "formal/BTCalculus/NewtonStratum.lean",
+        "formal/BTCalculus/XCubeStateComplexity.lean",
+    ),
 )
