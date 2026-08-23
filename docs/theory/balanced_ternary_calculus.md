@@ -43,8 +43,11 @@ name. The milestone is a success if those facts become one language
   / coefficient words; the production word table is not locally
   confluent (`N∘W∘W`), while its simplifying-only fragment is, and
   the opt-in W+N fragment (`WORD_WN_RULES`: SIMP plus one-way
-  `N∘S`, `N∘W`, `N∘K3`) is too; one-way `N∘D` still fails at
-  `N∘D∘I±` ([rewrite_calculus.md](rewrite_calculus.md))
+  `N∘S`, `N∘W`, `N∘K3`) is too; one-way `N∘D` without word `I±`
+  sign-flips fails at `N∘D∘I±`, while the opt-in W+N+D fragment
+  (`WORD_WND_RULES`: WN plus one-way `N∘D` and `N∘Ip → Im∘N`,
+  `N∘Im → Ip∘N`) is terminating and locally confluent
+  ([rewrite_calculus.md](rewrite_calculus.md))
 - information profiles (delay / precision / state) as a thin layer
   over existing `OperatorMetadata`
 

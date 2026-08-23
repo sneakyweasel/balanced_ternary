@@ -1847,5 +1847,20 @@
       "word_simp_nd_lc",
       "w_nd_word_lc"
     ]
+  },
+  {
+    "id": "BTC-word-wnd-nf",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the opt-in fragment WORD_WND_RULES (WORD_WN_RULES plus one-way N∘D→D∘N and the exact sign-flips N∘Ip→Im∘N, N∘Im→Ip∘N) is terminating and locally confluent; every word has a unique syntactic normal form",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_wnd_nf",
+      "word_wn_nf",
+      "word_simp_nd_lc"
+    ]
   }
 ]

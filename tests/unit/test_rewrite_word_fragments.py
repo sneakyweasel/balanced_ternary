@@ -9,7 +9,10 @@ The production table stays unchanged. This file records:
 * the W/K3 stock is the interesting kernel of that fragment;
 * the opt-in fragment WORD_WN_RULES (SIMP + one-way N∘S, N∘W, N∘K3)
   is terminating and every critical pair joins;
-* SIMP + one-way N∘D fails at N∘D∘I± even after N∘K3 is added.
+* SIMP + one-way N∘D fails at N∘D∘I± even after N∘K3 is added;
+* the opt-in fragment WORD_WND_RULES (WN + one-way N∘D and the
+  exact word I± sign-flips) is terminating and every critical pair
+  joins, including the old N∘D∘I± peaks.
 
 This is not the OpFrag tree TRS and not coefficient-word
 ``BTCalculus/Confluence.lean``.
@@ -20,9 +23,12 @@ from __future__ import annotations
 from itertools import product
 
 from bt.calculus.rewrite import (
+    WORD_N_IM_RULE,
+    WORD_N_IP_RULE,
     WORD_N_K3_RULE,
     WORD_REWRITE_RULES,
     WORD_SIMP_RULES,
+    WORD_WND_RULES,
     WORD_WN_RULES,
     WordRewriteRule,
     rewrite_word,
@@ -107,6 +113,7 @@ def _nonjoining(
 FULL = _triples(WORD_REWRITE_RULES)
 SIMP = _triples(WORD_SIMP_RULES)
 WN = _triples(WORD_WN_RULES)
+WND = _triples(WORD_WND_RULES)
 WK3_REASONS = {
     "K3 is a projection",
     "W∘W = K3 (strip factors of 3)",
@@ -142,6 +149,10 @@ def test_production_table_has_two_way_nd_and_nw_but_no_nk3():
     assert WORD_N_K3_RULE.src == ("N", "K3")
     assert WORD_N_K3_RULE not in WORD_REWRITE_RULES
     assert WORD_N_K3_RULE in WORD_WN_RULES
+    assert WORD_N_IP_RULE not in WORD_REWRITE_RULES
+    assert WORD_N_IM_RULE not in WORD_REWRITE_RULES
+    assert WORD_N_IP_RULE in WORD_WND_RULES
+    assert WORD_N_IM_RULE in WORD_WND_RULES
 
 
 # ---------------------------------------------------------------------------
@@ -417,3 +428,140 @@ def test_simp_plus_nd_fails_at_nd_ip_even_with_nk3():
     failures = _nonjoining(nd_fragment)
     peaks = {peak for _name, peak, _l, _r in failures}
     assert peaks == {("N", "D", "Ip"), ("N", "D", "Im")}
+
+
+# ---------------------------------------------------------------------------
+# WORD_WND_RULES: WN + one-way N∘D + I± sign-flips
+# ---------------------------------------------------------------------------
+
+_WND_PUSHABLE = frozenset({"S", "W", "K3", "D", "Ip", "Im"})
+
+
+def _wnd_inversion(word: tuple[str, ...]) -> int:
+    count = 0
+    for i, letter in enumerate(word):
+        if letter != "N":
+            continue
+        count += sum(1 for later in word[i + 1 :] if later in _WND_PUSHABLE)
+    return count
+
+
+def _wnd_rank(word: tuple[str, ...]) -> tuple[int, int, int]:
+    return (word.count("I0"), _wnd_inversion(word), len(word))
+
+
+def test_word_wnd_is_wn_plus_one_way_nd_and_ipm_flips():
+    assert len(WORD_WND_RULES) == 22
+    assert WORD_WND_RULES[:19] == WORD_WN_RULES
+    extras = WORD_WND_RULES[19:]
+    assert [rule.src for rule in extras] == [("N", "D"), ("N", "Ip"), ("N", "Im")]
+    assert extras[0] is _production(("N", "D"))
+    assert extras[1] is WORD_N_IP_RULE
+    assert extras[2] is WORD_N_IM_RULE
+    assert extras[1].dst == ("Im", "N")
+    assert extras[2].dst == ("Ip", "N")
+    assert ("D", "N") not in {rule.src for rule in WORD_WND_RULES}
+    assert ("Im", "N") not in {rule.src for rule in WORD_WND_RULES}
+    assert ("Ip", "N") not in {rule.src for rule in WORD_WND_RULES}
+    assert WORD_WND_RULES != WORD_REWRITE_RULES
+
+
+def test_ipm_sign_flips_are_exact_on_small_integers():
+    """N∘I+ = I-∘N and N∘I- = I+∘N because I_a(x)=a+3x."""
+    from bt.operators import get_operator
+
+    neg = get_operator("N")
+    ip = get_operator("Ip")
+    im = get_operator("Im")
+    for n in range(-80, 81):
+        assert neg.apply(ip.apply(n)) == im.apply(neg.apply(n))
+        assert neg.apply(im.apply(n)) == ip.apply(neg.apply(n))
+
+
+def test_wnd_every_rule_drops_the_termination_rank():
+    """Rank (I0-count, N-inversion, length); N moves inward past {S,W,K3,D,I±}."""
+    for rule in WORD_WND_RULES:
+        assert _wnd_rank(rule.dst) < _wnd_rank(rule.src)
+
+
+def test_wnd_one_step_drops_rank_on_words_of_length_at_most_4():
+    alphabet = ("W", "K3", "S", "N", "D", "I0", "Ip", "Im")
+    bad: list[tuple[tuple[str, ...], tuple[str, ...]]] = []
+    for n in range(5):
+        for word in product(alphabet, repeat=n):
+            start = _wnd_rank(word)
+            for nxt in _word_steps(word, WND):
+                if _wnd_rank(nxt) >= start:
+                    bad.append((word, nxt))
+                    if len(bad) >= 4:
+                        break
+            if bad:
+                break
+        if bad:
+            break
+    assert bad == []
+
+
+def test_wnd_critical_pairs_join():
+    assert _nonjoining(WND) == []
+
+
+def test_wnd_named_peaks_join():
+    """N∘D∘I± joins after the sign-flips; WN peaks are unchanged."""
+    expected = {
+        ("N", "D", "Ip"): {("N",)},
+        ("N", "D", "Im"): {("N",)},
+        ("N", "D", "I0"): {("N",)},
+        ("N", "D", "S"): {("N",)},
+        ("N", "N", "Ip"): {("Ip",)},
+        ("N", "N", "Im"): {("Im",)},
+        ("N", "N", "D"): {("D",)},
+        ("N", "W", "W"): {("K3", "N")},
+        ("N", "W", "S"): {("W", "N")},
+        ("N", "K3", "W"): {("W", "N")},
+        ("D", "I0"): {()},
+        ("W", "W", "W"): {("W",)},
+    }
+    for peak, nfs in expected.items():
+        assert _word_nfs(peak, WND) == nfs
+
+
+def test_wnd_unique_nf_on_mixed_words_of_length_at_most_4():
+    alphabet = ("W", "K3", "S", "N", "D", "I0", "Ip", "Im")
+    conflicts: list[tuple[str, ...]] = []
+    for n in range(5):
+        for word in product(alphabet, repeat=n):
+            if len(_word_nfs(word, WND)) != 1:
+                conflicts.append(word)
+                if len(conflicts) >= 4:
+                    break
+        if conflicts:
+            break
+    assert conflicts == []
+
+
+def test_rewrite_word_accepts_opt_in_wnd_rules():
+    """The old irreducible D∘N∘I± joins to N only after the sign-flips."""
+    word, used = rewrite_word(("D", "N", "Ip"), rules=WORD_WND_RULES)
+    assert word == ("N",)
+    assert "N∘Ip = Im∘N" in used
+    assert "D∘Im = id" in used
+    wn, _ = rewrite_word(("D", "N", "Ip"), rules=WORD_WN_RULES)
+    assert wn == ("D", "N", "Ip")
+    peak, _ = rewrite_word(("N", "D", "Ip"), rules=WORD_WND_RULES)
+    assert peak == ("N",)
+
+
+def test_two_way_nd_and_reverse_ipm_are_cycles():
+    """Reverse N∘D and reverse I± flips are reduction cycles; not installed."""
+    two_way = WND + [
+        (("D", "N"), ("N", "D"), "D∘N = N∘D"),
+        (("Im", "N"), ("N", "Ip"), "Im∘N = N∘Ip"),
+        (("Ip", "N"), ("N", "Im"), "Ip∘N = N∘Im"),
+    ]
+    assert _word_steps(("N", "D"), two_way) == [("D", "N")]
+    assert _word_steps(("D", "N"), two_way) == [("N", "D")]
+    assert _word_steps(("N", "Ip"), two_way) == [("Im", "N")]
+    assert _word_steps(("Im", "N"), two_way) == [("N", "Ip")]
+    assert _word_steps(("N", "Im"), two_way) == [("Ip", "N")]
+    assert _word_steps(("Ip", "N"), two_way) == [("N", "Im")]
