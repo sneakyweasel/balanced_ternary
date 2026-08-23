@@ -1586,7 +1586,7 @@
   {
     "id": "BTC-op-fragment-nf",
     "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "the operator-fragment tree TRS {D, I_a, S, N} is terminating and locally confluent; every term has a unique syntactic normal form",
+    "statement": "the operator-fragment tree TRS {D, I_a, S, N} without N(D(x))→D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1597,7 +1597,7 @@
   {
     "id": "BTC-op-fragment-semantic-nf",
     "tag": "REFUTED",
-    "statement": "tree-rule irreducibles of the operator fragment are unique representatives of integer functions",
+    "statement": "without N(D(x))→D(N(x)) as a tree rule, irreducibles of the operator fragment are unique representatives of integer functions",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "BTCalculus/Rewrite.lean",
     "tests": [
@@ -1605,6 +1605,32 @@
     ],
     "related_conjectures": [
       "op_fragment_semantic_nf"
+    ]
+  },
+  {
+    "id": "BTC-op-fragment-nd-nf",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "the operator-fragment tree TRS {D, I_a, S, N} including N(D(x))→D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_operator_fragment_nf.py"
+    ],
+    "related_conjectures": [
+      "op_fragment_nd_semantic"
+    ]
+  },
+  {
+    "id": "BTC-op-fragment-nd-semantic",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "irreducibles of the enlarged operator-fragment TRS (tree rules plus N(D(x))→D(N(x))) are unique representatives of integer operator functions on {D, I_a, S, N}",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "BTCalculus/Rewrite.lean",
+    "tests": [
+      "tests/unit/test_operator_fragment_nf.py"
+    ],
+    "related_conjectures": [
+      "op_fragment_nd_semantic"
     ]
   }
 ]

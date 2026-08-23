@@ -36,6 +36,11 @@ theorem rewrite_N_Ip (x : ℤ) : -(IZ Trit.plus x) = IZ Trit.minus (-x) := by
   simp [IZ, Trit.toInt]
   ring
 
+/-- Soundness of the tree rule ``N(D(x)) → D(N(x))``.
+
+Newman confluence of the enlarged operator-fragment TRS is a
+term-rewriting argument in ``docs/theory/rewrite_calculus.md``, not a
+Lean rewrite-relation proof. Do not add ``sorry``. -/
 theorem rewrite_N_D (x : ℤ) : DZ (-x) = -(DZ x) := by
   have hx := decomp x
   have hnx := decomp (-x)
