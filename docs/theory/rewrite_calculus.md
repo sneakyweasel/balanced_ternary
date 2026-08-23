@@ -383,14 +383,15 @@ orientations fail for the same carry.
 (I+, I-, S)   (I-, I+, S)
 ```
 
-Proof of the classification: `S` and `I_a` have slope `3`, `N` has
-slope `-1`, and `W(x+y)` has slope `3` or `-1` in the sum `x+y`.
-Matching slopes forces `{U,V} ⊂ {S, I_a}` with `W ∈ {S, I_a}`, or
-`U = V = W = N`. The constant term is then the sum of trits
-`a+b`, which is itself a trit precisely on the six rows above.
-Same-sign `I_a(x)+I_a(y) = 3(x+y)±2` is exact, but `±2` is not a
-trit, so any tree rule for it introduces a constant. Mixed `N` with
-`S`/`I_a` has slope `2` or `-4`. `D(x)+D(y)=D(x+y)` is unsound
+Proof of the classification: `W(x+y)` depends only on `x+y`, so the
+coefficients of `x` and `y` in `U(x)+V(y)` must be equal. Those
+coefficients are `3` for `S`/`I_a` and `-1` for `N`. Hence both
+constructors are in `{S, I_a}` or both are `N`. The constant term
+is then the sum of trits `a+b`, which is itself a trit precisely on
+the six rows above. Same-sign `I_a(x)+I_a(y) = 3(x+y)±2` is a
+function of `x+y`, but `±2` is not a trit, so any tree rule for it
+introduces a constant. Mixed `N` with `S`/`I_a` has unequal
+coefficients `-1` and `3`. `D(x)+D(y)=D(x+y)` is unsound
 (`x=y=1`: `D(2)=1` and `D(1)+D(1)=0` — the carry of `1+1`,
 [BTC-D-add](theorem_ledger.md)).
 

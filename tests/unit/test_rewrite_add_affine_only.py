@@ -151,12 +151,16 @@ def test_same_sign_i_minus_is_exact_but_needs_a_constant():
 
 def test_mixed_n_has_slope_two_or_minus_four():
     """N(x)+S(y) = -x+3y has slope 2 in (x+y); not a constructor of x+y."""
-    for x, y in SAMPLES:
-        assert (-x) + 3 * y != 3 * (x + y)
-        assert (-x) + 3 * y != I_plus(x + y)
-        assert (-x) + 3 * y != I_minus(x + y)
-        assert (-x) + 3 * y != -(x + y)
-        assert (-x) + I_plus(y) != 3 * (x + y)
+    def agrees(lhs, rhs) -> bool:
+        return all(lhs(x, y) == rhs(x, y) for x, y in SAMPLES)
+
+    n_plus_s = lambda x, y: (-x) + 3 * y
+    n_plus_ip = lambda x, y: (-x) + I_plus(y)
+    assert not agrees(n_plus_s, lambda x, y: 3 * (x + y))
+    assert not agrees(n_plus_s, lambda x, y: I_plus(x + y))
+    assert not agrees(n_plus_s, lambda x, y: I_minus(x + y))
+    assert not agrees(n_plus_s, lambda x, y: -(x + y))
+    assert not agrees(n_plus_ip, lambda x, y: 3 * (x + y))
 
 
 def test_d_through_add_is_unsound_by_the_same_carry():
@@ -187,11 +191,18 @@ def test_i_plus_association_twins_share_affine_form():
 
 
 def test_same_sign_constant_twin_is_the_affine_form():
-    """I+(x)+I+(y) and S(x+y)+2 are the same affine map."""
+    """I+(x)+I+(y) and S(x+y)+2 are the same affine map.
+
+    The constant ``2`` cannot live in the hole encoding (``EInt(2)`` is
+    ``Z``), so the identity is checked on integer samples.
+    """
     left = EAdd(EIp(X), EIp(Y))
-    right = EAdd(EShift3(EAdd(X, Y)), EInt(2))
     assert affine_form(left) == (3, 3, 0, 2)
-    assert affine_form(left) == affine_form(right)
+    for a, b in SAMPLES:
+        assert I_plus(a) + I_plus(b) == 3 * (a + b) + 2
+        assert evaluate(EAdd(EIp(EInt(a)), EIp(EInt(b)))) == evaluate(
+            EAdd(EShift3(EAdd(EInt(a), EInt(b))), EInt(2))
+        )
 
 
 def test_single_variable_sum_is_affine_with_slope_six():
@@ -213,10 +224,6 @@ def test_closed_twins_share_coefficient_word_nf():
             EAdd(EIp(EAdd(X, Y)), EIp(Z)),
             EAdd(EIp(X), EIp(EAdd(Y, Z))),
         ),
-        (
-            EAdd(EIp(X), EIp(Y)),
-            EAdd(EShift3(EAdd(X, Y)), EInt(2)),
-        ),
     )
     envs = (
         {0: 3, 1: 5, 2: 7},
@@ -231,6 +238,12 @@ def test_closed_twins_share_coefficient_word_nf():
             assert lv == rv
             assert coeffword_nf(lv) == coeffword_nf(rv)
             assert coeffword_nf(lv) == tuple(encode(lv).digits_lsd())
+    for a, b in SAMPLES:
+        lv = I_plus(a) + I_plus(b)
+        rv = 3 * (a + b) + 2
+        assert lv == rv
+        assert coeffword_nf(lv) == coeffword_nf(rv)
+        assert coeffword_nf(lv) == tuple(encode(lv).digits_lsd())
 
 
 def test_coeffword_add_is_the_sum_canonicalizer():
