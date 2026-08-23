@@ -384,8 +384,8 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Hypotheses:** termination + local confluence of `{D, I_a, S, N}` including `N(D)→D(N)` formalize without changing the mathematics
 - **Major results:** `OpFrag` inductive; `Step` with congruence; lex rank `(I0-count, N-inversion, size)` decreases on every rule; local confluence by the documented critical pairs and left-linear disjoint redexes; Newman ⇒ confluence and unique syntactic NF; NF grammar `I±`/`S` spine over `D^d(x)` or `D^d(N(x))`. Ledger `BTC-op-fragment-nd-nf` retagged **EXACT — LEAN VERIFIED**
 - **Refuted ideas:** none. Integer soundness in `Rewrite.lean` is a different claim; coefficient-word `Confluence.lean` was not touched
-- **Deferred:** semantic canonicity of distinct irreducibles (`BTC-op-fragment-nd-semantic`) stays **EXACT — HUMAN PROOF**; the smaller system without the commute stays a human proof
-- **Decision:** PROMOTE the Lean Newman package. Do not open a numbered milestone. Do not auto-extend to `Add`/`Mul`/`W`.
+- **Deferred:** the smaller system without the commute stays a human proof. Semantic canonicity was taken up immediately below and is now **EXACT — LEAN VERIFIED**
+- **Decision:** PROMOTE the Lean Newman package. Do not open a numbered milestone. Signature enlargement (`Add`/`Mul`/`W`) is the CLOSE entry above.
 
 ## Operator-fragment Lean semantic canonicity (not a numbered milestone)
 
