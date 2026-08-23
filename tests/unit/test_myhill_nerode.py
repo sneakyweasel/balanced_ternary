@@ -16,12 +16,22 @@ from bt.calculus.composition import (
 )
 from bt.calculus.jet_locality import minimized_count
 from bt.calculus.myhill_nerode import (
+    distinguish_pair,
     equiv_by_outputs,
     equiv_recursive,
+    merge_examples,
     myhill_nerode_count,
     raw_count,
     semantic_count,
 )
+from bt.calculus.quadratic import (
+    canonical_distinguishing_word,
+    coeff_triple,
+    quadratic_residual_formula,
+    residual_formula_table,
+    section_coeff_step,
+)
+from bt.calculus.residual import residual_along
 from bt.calculus.normalizer_compose import (
     hatD_is_normalize_then_drop,
     hatD_state_upper_bound,
@@ -54,6 +64,28 @@ def test_affine_mn_stabilizes():
     assert myhill_nerode_count(parse_poly("x+1"), 6) == 2
     assert myhill_nerode_count(parse_poly("2x+1"), 6) == 3
     assert myhill_nerode_count(parse_poly("3x+1"), 6) == 3
+
+
+def test_quadratic_closed_form():
+    from bt.calculus.section import parse_poly
+
+    f = parse_poly("x^2")
+    for word in product((-1, 0, 1), repeat=3):
+        got = residual_along(f, word)
+        closed = quadratic_residual_formula(word)
+        assert got.coeffs == closed.coeffs
+        A, B, C = coeff_triple(got)
+        a = word[-1]
+        prefix = quadratic_residual_formula(word[:-1])
+        pA, pB, pC = coeff_triple(prefix)
+        assert section_coeff_step(pA, pB, pC, a) == (A, B, C)
+    rows = residual_formula_table(f, 3)
+    assert all(row["closed_x2"] for row in rows)
+    rec = distinguish_pair(parse_poly("x^2"), parse_poly("3x^2"), 2)
+    assert rec["equiv"] is False
+    assert rec["canonical"] is not None
+    assert canonical_distinguishing_word(parse_poly("x^2"), parse_poly("3x^2"), 1) == (1,)
+    assert merge_examples(f, 4) == []
 
 
 def test_x2_no_finite_horizon_collapse():
@@ -150,3 +182,15 @@ def test_calculus_mn_cli():
     assert "representable =" in cn
     ps = _run("profile-states", "x", "--max-depth", "3")
     assert "Myhill-Nerode" in ps
+    pair = _run("distinguish-pair", "x^2", "3x^2", "--depth", "2")
+    assert "shortest =" in pair
+    assert "canonical =" in pair
+    rf = _run("residual-formula", "x^2", "--depth", "3")
+    assert "closed_x2" in rf
+    assert "rho_triples =" in rf
+    wit = _run("witness", "x^2", "--depth", "2")
+    assert "canonical=" in wit
+    mg = _run("merge-examples", "x^2", "--depth", "3")
+    assert "no merge pair" in mg
+    mg3 = _run("merge-examples", "x^3", "--depth", "2")
+    assert "split_next=" in mg3

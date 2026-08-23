@@ -113,5 +113,8 @@ not one theory.
 
 Milestone 16: residual Myhill–Nerode complexity lives in
 [residual_state_complexity.md](residual_state_complexity.md). Sample
-minimization is **not** `M_k`. `x^2` does not collapse at finite
-horizon (`M_k=R_k` through `k=7`).
+minimization is **not** `M_k`.
+
+Milestone 17: `M_k(x^2)=R_k(x^2)=(3^k−1)/2` is proved.
+[quadratic_residual_complexity.md](quadratic_residual_complexity.md).
+Do **not** extend that equality to `x^3` or `x^4`.

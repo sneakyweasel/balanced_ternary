@@ -53,8 +53,20 @@ This ledger does not rewrite history.
 | BTJ-jet | EXACT — LEAN VERIFIED | finite-depth function-jet reconstruction | docs/theory/balanced_ternary_jets.md | BTCalculus/Jet | test_jets |
 | BTJ-degree | EXACT — HUMAN PROOF | deg 𝔇_a f = deg f (d≥1); LC = 3^{d-1} LC(f) | docs/theory/polynomial_jet_calculus.md | | test_section |
 | BTA-equiv | EXACT — LEAN VERIFIED | finite-horizon ≡_k is an equivalence; recursive iff outputs | docs/theory/residual_state_complexity.md | BTCalculus/Residual | test_myhill_nerode |
-| BTA-x2-raw | EXACT — HUMAN PROOF | R_k(x^2)=(3^k-1)/2 | docs/theory/residual_state_complexity.md | | test_myhill_nerode |
-| BTA-x2-mn | CONJECTURE | M_k(x^2)=R_k(x^2) for all k (verified k≤7) | docs/theory/residual_state_complexity.md | BTCalculus/MyhillNerode x_sq_not_equiv_one_three | test_myhill_nerode |
+| BTA-x2-raw | EXACT — HUMAN PROOF | R_k(x^2)=(3^k-1)/2 | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic residualAlong_Xsq_injective | test_myhill_nerode |
+| BTA-x2-mn | EXACT — HUMAN PROOF | M_k(x^2)=R_k(x^2)=(3^k-1)/2 | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic equivK_quad, xsq_equivK_iff_eq | test_myhill_nerode |
+| BTA-x2-quad-form | EXACT — LEAN VERIFIED | f_w(x)=3^{\|w\|}x^2+2p(w)x+DZ^{\|w\|}(p(w)^2) | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic residualAlong_Xsq | test_myhill_nerode |
+| BTA-quad-mod | EXACT — LEAN VERIFIED | deg≤2: f≡_k g iff coeffs agree mod 3^k | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic equivK_quad | test_myhill_nerode |
+| BTA-x3-merge | EXACT — LEAN VERIFIED | first x^3 merge at k=2, delayed distinction | docs/theory/polynomial_function_congruence.md | BTCalculus/PolynomialFunctionsMod x3_first_merge_equiv_two | test_poly_congruence |
+| BTA-x4-merge | EXACT — LEAN VERIFIED | first x^4 merge at k=3, delayed distinction | docs/theory/polynomial_function_congruence.md | BTCalculus/PolynomialFunctionsMod x4_first_merge_equiv_three | test_poly_congruence |
+| BTA-fn-congr | EXACT — LEAN VERIFIED | f≡_k g iff 3^k divides (f-g)(n) for all n | docs/theory/polynomial_function_congruence.md | BTCalculus/PolynomialFunctionsMod equivK_iff_functionCongr | test_poly_congruence |
+| BTA-Ik-newton | EXACT — HUMAN PROOF | I_k is Newton residues divisible by 3^k | docs/theory/polynomial_function_congruence.md | cubic case vanishesMod_cubic_iff | test_poly_congruence |
+| BTA-quad-vanish | EXACT — LEAN VERIFIED | deg≤2: vanishes as a function iff coeffs divisible by 3^k | docs/theory/polynomial_function_congruence.md | BTCalculus/PolynomialFunctionsMod vanishesMod_quad_iff | test_poly_congruence |
+| BTA-cubic-vanish | EXACT — LEAN VERIFIED | cubic vanishing iff 3^k divides D, A+B+C, 3A+B, 6A | docs/theory/polynomial_function_congruence.md | BTCalculus/PolynomialFunctionsMod vanishesMod_cubic_iff | test_poly_congruence |
+| BTA-x3-x | EXACT — LEAN VERIFIED | x^3-x vanishes mod 3, leading coeff not divisible by 3 | docs/theory/polynomial_function_congruence.md | BTCalculus/PolynomialFunctionsMod X_pow_three_sub_X_vanishes_one | test_poly_congruence |
+| BTA-tau | EXACT — HUMAN PROOF | τ(f,g)=1+min v_3(Δ^j (f-g)(0)) for f≠g | docs/theory/polynomial_function_congruence.md | | test_poly_congruence |
+| BTA-coeffwise-nec | REFUTED | 3^k must divide every monomial coefficient for function vanishing | docs/theory/polynomial_function_congruence.md | not_three_dvd_coeff_X_pow_three_sub_X | test_poly_congruence |
+| BTA-tau-minc | REFUTED | τ=1+min v_3(c_j) | docs/theory/polynomial_function_congruence.md | | test_poly_congruence |
 | BTA-sample | REFUTED | sample LSD min = M_k; witness x^2 k=3 (7 vs 13) | docs/theory/residual_state_complexity.md | | test_myhill_nerode |
 | BTA-cascade | EXACT — LEAN VERIFIED | outputAlong(w,f∘g)=outputAlong(outputAlong(w,g),f) | docs/theory/residual_state_complexity.md | BTCalculus/TransducerComposition | test_myhill_nerode |
 | BTA-product | EXACT — HUMAN PROOF | M_k(f∘g)≤M_k(f)M_k(g) | docs/theory/residual_state_complexity.md | | test_myhill_nerode |

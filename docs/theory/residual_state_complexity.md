@@ -61,18 +61,31 @@ The recursive characterization is the minimizer. Signatures are memoized
 
 **EXACT — HUMAN PROOF.** Residuals of `x^2` along distinct words are
 distinct polynomials: `R_k(x^2) = (3^k − 1)/2` for `k ≥ 1` (`A=3^{|w|}`,
-linear coefficient encodes the packed prefix).
+linear coefficient encodes the packed prefix). Lean:
+`residualAlong_Xsq`, `residualAlong_Xsq_injective`.
 
-**COMPUTATIONALLY VERIFIED** (`M_k = R_k` through `k=7`):
+**EXACT — HUMAN PROOF.** Finite-horizon classes of degree `≤ 2` are
+coefficient triples modulo `3^k`. Distinct residuals of `x^2` in `U_k`
+are therefore `≡_k`-separated, and
+
+```text
+M_k(x^2) = R_k(x^2) = (3^k − 1)/2    (k ≥ 1).
+```
+
+Lean supplies the separation theorem (`equivK_quad`, `xsq_equivK_iff_eq`);
+the cardinal identity combines that with the prefix-tree count and the
+existing upper bound. Details:
+[quadratic_residual_complexity.md](quadratic_residual_complexity.md).
+
+**COMPUTATIONALLY VERIFIED** through `k=7`:
 
 ```text
 k     0  1  2   3   4    5    6     7
 R=M   1  1  4  13  40  121  364  1093
 ```
 
-So `M_k(x^2) = (3^k − 1)/2` is a **CONJECTURE** for all `k`, verified
-through `k=7`. Polynomial structure does **not** collapse the residual
-tree of `x^2` at finite horizon `k`.
+Polynomial structure does **not** collapse the residual tree of `x^2`
+at finite horizon `k`. Do **not** extend this to `x^d` for `d ≥ 3`.
 
 **COMPUTATIONALLY VERIFIED** (through `k=6`):
 
@@ -101,8 +114,9 @@ Upper: `M_k(f) ≤ R_k(f) ≤ (3^k − 1)/2 ≤ 3^k`.
 Lower, `x^2`: `M_k(x^2) ≥ k` from distinct leading coefficients along
 `0^m`, and `M_1` separates `x^2` from `3x^2`.
 **EXACT — LEAN VERIFIED** (`x_sq_not_equiv_one_three`).
-The matching upper `M_k(x^2) ≤ (3^k − 1)/2` with empirical equality is
-the conjecture above.
+The matching lower bound `M_k(x^2) ≥ (3^k − 1)/2` is the coefficient
+invariant of
+[quadratic_residual_complexity.md](quadratic_residual_complexity.md).
 
 Last-layer `ρ`-vectors of `x^2` are **not** unique (`k=7`: 729 polys,
 9 triples), so `≡_1` does not separate the last layer. Full `≡_k` still
@@ -121,8 +135,9 @@ outputAlong(w, f ∘ g) = outputAlong(outputAlong(w, g), f)
 
 Hence `M_k(f ∘ g) ≤ M_k(f) M_k(g)`.
 **EXACT — HUMAN PROOF** (cascade of classes). Strict inequality:
-`M_5(x^2 ∘ x^2) = M_5(x^4) = 110 < 121²`.
-**COMPUTATIONALLY VERIFIED.**
+`M_5(x^2 ∘ x^2) = M_5(x^4) = 110 < 121 · 121`.
+**COMPUTATIONALLY VERIFIED.** The quadratic machine does not remain
+uncompressed after composition: `x^4` is degree 4.
 
 Negation: `ρ_a(f ∘ N) = ρ_{-a}(f)` and
 `𝔇_a(f ∘ N) = (𝔇_{-a} f) ∘ N`.
@@ -157,10 +172,14 @@ the overlapping `(i, i+1)` pair joins. Raw `[1,0]` vs `[1,0,0]` from
 
 ## Open problems
 
-1. Prove `M_k(x^2) = (3^k − 1)/2` for all `k`.
-2. Closed form for `M_k(x^d)`, `d ≥ 3`.
-3. Myhill–Nerode join of the overlapping normalization pair.
-4. Tight cascade bound (when equality holds).
+1. Closed form for `M_k(x^d)`, `d ≥ 3`.
+2. Myhill–Nerode join of the overlapping normalization pair.
+3. Tight cascade bound (when equality holds).
+4. Lean cardinality of trit words, to make `M_k(x^2)=(3^k−1)/2` a
+   single Lean theorem rather than a human combination.
+
+`M_k(x^2)=(3^k−1)/2` is no longer open: see
+[quadratic_residual_complexity.md](quadratic_residual_complexity.md).
 
 ## Framing
 

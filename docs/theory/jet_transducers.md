@@ -38,8 +38,10 @@ finite sample of residual arguments. Minimized counts are
 computational proxies, not Myhill–Nerode proofs.
 
 **REFUTED** as a substitute for `M_k`. Witness `x^2`, depth `3`: sample
-`7`, exact `M_3=13=R_3`. See
-[residual_state_complexity.md](residual_state_complexity.md).
+`7`, exact `M_3=13=R_3`. The equality `M_k(x^2)=R_k(x^2)=(3^k−1)/2` is
+now a theorem:
+[quadratic_residual_complexity.md](quadratic_residual_complexity.md).
+See also [residual_state_complexity.md](residual_state_complexity.md).
 
 ## Locality
 

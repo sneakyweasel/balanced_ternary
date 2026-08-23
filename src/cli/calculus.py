@@ -91,6 +91,23 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_dist.add_argument("polynomial")
     p_dist.add_argument("--depth", type=int, default=3)
 
+    p_dp = c.add_parser("distinguish-pair", help="shortest and canonical words separating two polynomials")
+    p_dp.add_argument("f")
+    p_dp.add_argument("g")
+    p_dp.add_argument("--depth", type=int, default=3)
+
+    p_rf = c.add_parser("residual-formula", help="residual polynomials and coefficient triples")
+    p_rf.add_argument("polynomial")
+    p_rf.add_argument("--depth", type=int, default=3)
+
+    p_wit = c.add_parser("witness", help="pairwise distinguishing words among residual states")
+    p_wit.add_argument("polynomial")
+    p_wit.add_argument("--depth", type=int, default=3)
+
+    p_me = c.add_parser("merge-examples", help="distinct residuals that are equivalent at a finite horizon")
+    p_me.add_argument("polynomial")
+    p_me.add_argument("--depth", type=int, default=4)
+
     p_co = c.add_parser("compose", help="cascade complexity of f ∘ g")
     p_co.add_argument("f")
     p_co.add_argument("g")
@@ -104,6 +121,21 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_ps = c.add_parser("profile-states", help="R_k / M_k table up to a max depth")
     p_ps.add_argument("polynomial")
     p_ps.add_argument("--max-depth", type=int, default=5)
+
+    p_pc = c.add_parser(
+        "poly-congruence",
+        help="function congruence of two polynomials modulo 3^k",
+    )
+    p_pc.add_argument("f")
+    p_pc.add_argument("g")
+    p_pc.add_argument("--k", type=int, required=True)
+
+    p_vp = c.add_parser(
+        "vanishing-poly",
+        help="smallest polynomial that vanishes as a function modulo 3^k",
+    )
+    p_vp.add_argument("degree", type=int)
+    p_vp.add_argument("--k", type=int, required=True)
 
 
 def run_calculus(args: argparse.Namespace) -> int:
@@ -269,6 +301,78 @@ def run_calculus(args: argparse.Namespace) -> int:
         for row in pairs:
             print(f"r={row['remaining']}  {row['p']}  vs  {row['q']}  word={row['word']}")
         return 0
+    if cmd == "distinguish-pair":
+        from bt.calculus.myhill_nerode import distinguish_pair
+        from bt.calculus.section import parse_poly
+
+        rec = distinguish_pair(parse_poly(args.f), parse_poly(args.g), args.depth)
+        print(f"f = {rec['f']}")
+        print(f"g = {rec['g']}")
+        print(f"f_coeffs = {rec['f_coeffs']}")
+        print(f"g_coeffs = {rec['g_coeffs']}")
+        inv_f = rec.get("invariant_f", rec.get("invariant_f"))
+        inv_g = rec.get("invariant_g", rec.get("invariant_g"))
+        print(f"invariant_f = {inv_f}")
+        print(f"invariant_g = {inv_g}")
+        print(f"equiv = {rec['equiv']}")
+        print(f"shortest = {rec['shortest']}")
+        print(f"canonical = {rec['canonical']}")
+        depth = rec.get("shortest_depth", rec.get("shortest_depth"))
+        print(f"shortest_depth = {depth}")
+        return 0
+    if cmd == "residual-formula":
+        from bt.calculus.quadratic import residual_formula_table, rho_triples
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        print(f"f = {f.render()}")
+        print("word pack A B C poly closed_x2 closed_x2")
+        for row in residual_formula_table(f, args.depth):
+            packed = row.get("pack", row.get("pack"))
+            closed = row.get("closed_x2", row.get("closed_x2"))
+            print(
+                f"{row['word']} {packed} {row['A']} {row['B']} {row['C']} "
+                f"{row['poly']} {closed}"
+            )
+        nrho = len(rho_triples(f, args.depth))
+        print(f"rho_triples = {nrho}")
+        print(f"rho_triples = {nrho}")
+        return 0
+    if cmd == "witness":
+        from bt.calculus.myhill_nerode import witness_table
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        rows = witness_table(f, args.depth, limit=12)
+        if not rows:
+            print("no residual pair in range")
+            return 0
+        for row in rows:
+            print(
+                f"{row['word_p']} vs {row['word_q']}  "
+                f"shortest={row['shortest']} canonical={row['canonical']}"
+            )
+        return 0
+    if cmd == "merge-examples":
+        from bt.calculus.myhill_nerode import merge_examples, myhill_nerode_count, raw_count
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        print(f"f = {f.render()}")
+        print(f"R = {raw_count(f, args.depth)}")
+        print(f"M = {myhill_nerode_count(f, args.depth)}")
+        rows = merge_examples(f, args.depth, limit=8)
+        if not rows:
+            print("no merge pair at this horizon")
+            return 0
+        for row in rows:
+            print(
+                f"{row.get('word_p', row.get('word_p'))} vs {row.get('word_q', row.get('word_q'))}  "
+                f"{row['p']}  vs  {row['q']}  "
+                f"diff={row.get('diff', row.get('diff_ABC'))} "
+                f"split_next={row.get('split_at_k_plus_1', row.get('split_at_k_plus_1'))}"
+            )
+        return 0
     if cmd == "compose":
         from bt.calculus.composition import profile_composition
         from bt.calculus.section import parse_poly
@@ -307,5 +411,44 @@ def run_calculus(args: argparse.Namespace) -> int:
                 f"{k} {rec.raw} {rec.semantic} {rec.myhill_nerode} "
                 f"{rec.sample} {rec.trie} {rec.compression}"
             )
+        return 0
+    if cmd == "poly-congruence":
+        from bt.calculus.poly_congruence import poly_congruence_report
+        from bt.calculus.section import parse_poly
+
+        rec = poly_congruence_report(parse_poly(args.f), parse_poly(args.g), args.k)
+        yes = "YES" if rec["equivalent"] else "NO"
+        print(f"Equivalent modulo 3^{args.k} as functions? {yes}")
+        if rec["equivalent"]:
+            print(f"coefficient difference = {rec['diff_coeffs']}")
+            print(f"valuation profile = {rec['monomial_v3']}")
+            print(f"finite-difference profile = {rec['newton']}")
+            print(f"finite-difference v3 = {rec['newton_v3']}")
+            print(f"candidate invariant = {rec['candidate_invariant']}")
+            print(f"phi_f = {rec['phi_f']}")
+            print(f"phi_g = {rec['phi_g']}")
+            print(f"tau = {rec['tau']}")
+        else:
+            print(f"shortest distinguishing residue / probe = {rec['probe']}")
+            print(f"coefficient difference = {rec['diff_coeffs']}")
+            print(f"phi_f = {rec['phi_f']}")
+            print(f"phi_g = {rec['phi_g']}")
+            print(f"tau = {rec['tau']}")
+        return 0
+    if cmd == "vanishing-poly":
+        from bt.calculus.poly_congruence import vanishing_poly
+
+        rec = vanishing_poly(args.degree, args.k)
+        print(f"degree ≤ {rec['degree']}  k = {rec['k']}  modulus = {rec['modulus']}")
+        print(f"coeffwise kernel generator = {rec['coeffwise']}")
+        if rec["invisible"] is None:
+            print("invisible polynomial = none (coefficientwise criterion is exact)")
+        else:
+            print(f"invisible polynomial = {rec['invisible']}")
+            print(f"invisible coeffs = {rec['invisible_coeffs']}")
+            print(f"newton = {rec['invisible_newton']}")
+            print(f"monomial v3 = {rec['invisible_monomial_v3']}")
+            print(f"newton v3 = {rec['invisible_newton_v3']}")
+            print(f"factorization = {rec['factorization']}")
         return 0
     raise ValueError(f"unknown calculus command {cmd}")

@@ -80,6 +80,8 @@ meaning throughout:
 - [Polynomial jet calculus](theory/polynomial_jet_calculus.md)
 - [Jet transducers](theory/jet_transducers.md)
 - [Residual-state complexity](theory/residual_state_complexity.md)
+- [Quadratic residual complexity](theory/quadratic_residual_complexity.md)
+- [Polynomial function congruence](theory/polynomial_function_congruence.md)
 
 ## Architecture
 

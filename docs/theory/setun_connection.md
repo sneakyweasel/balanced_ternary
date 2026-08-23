@@ -74,6 +74,9 @@ Answers so far (see [balanced_ternary_calculus.md](balanced_ternary_calculus.md)
 - Residual automata (Milestone 16) are recorded in
   [residual_state_complexity.md](residual_state_complexity.md). No Setun
   attribution for Myhill–Nerode counts or `hat D` transducers.
+- Quadratic MN count (Milestone 17):
+  [quadratic_residual_complexity.md](quadratic_residual_complexity.md).
+  No Setun attribution.
 
 If a later source is found that already states `D(xy)` in this form,
 the ledger should be updated to **KNOWN** rather than presented as

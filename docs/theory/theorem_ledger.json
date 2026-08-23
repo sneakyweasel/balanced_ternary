@@ -291,18 +291,126 @@
     "id": "BTA-x2-raw",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "R_k(x^2)=(3^k-1)/2",
-    "source": "docs/theory/residual_state_complexity.md",
-    "lean": "",
+    "source": "docs/theory/quadratic_residual_complexity.md",
+    "lean": "BTCalculus/Quadratic.lean",
     "tests": ["tests/unit/test_myhill_nerode.py"],
-    "related_conjectures": ["BTA-x2-mn"]
+    "related_conjectures": []
   },
   {
     "id": "BTA-x2-mn",
-    "tag": "CONJECTURE",
-    "statement": "M_k(x^2)=R_k(x^2) for all k (verified k<=7)",
-    "source": "docs/theory/residual_state_complexity.md",
-    "lean": "BTCalculus/MyhillNerode.lean",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "M_k(x^2)=R_k(x^2)=(3^k-1)/2 for all k>=1",
+    "source": "docs/theory/quadratic_residual_complexity.md",
+    "lean": "BTCalculus/Quadratic.lean",
     "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x2-quad-form",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "residual of x^2 along w is 3^|w| x^2 + 2 p(w) x + DZ^|w|(p(w)^2)",
+    "source": "docs/theory/quadratic_residual_complexity.md",
+    "lean": "BTCalculus/Quadratic.lean",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-quad-mod",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "degree <= 2 polynomials are equiv_k iff coefficients agree mod 3^k",
+    "source": "docs/theory/quadratic_residual_complexity.md",
+    "lean": "BTCalculus/Quadratic.lean",
+    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-merge",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "first x^3 residual merge at k=2 is delayed distinction: equiv_2 and not equiv_3",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "tests": ["tests/unit/test_poly_congruence.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x4-merge",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "first x^4 residual merge at k=3 is delayed distinction: equiv_3 and not equiv_4",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "tests": ["tests/unit/test_poly_congruence.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-fn-congr",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "f equiv_k g iff 3^k divides (f-g)(n) for every integer n",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "tests": ["tests/unit/test_poly_congruence.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-Ik-newton",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "I_k is the set of Z[x] polynomials whose Newton coefficients are divisible by 3^k",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "tests": ["tests/unit/test_poly_congruence.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-quad-vanish",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "degree <= 2 polynomials vanish as functions modulo 3^k iff all coefficients are divisible by 3^k",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "tests": ["tests/unit/test_poly_congruence.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-cubic-vanish",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Ax^3+Bx^2+Cx+D vanishes modulo 3^k iff 3^k divides D, A+B+C, 3A+B, and 6A",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "tests": ["tests/unit/test_poly_congruence.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-x",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "x^3-x vanishes modulo 3 and its leading coefficient is not divisible by 3",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "tests": ["tests/unit/test_poly_congruence.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-tau",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "tau(f,g)=1+min v_3(Delta^j (f-g)(0)) for distinct ordinary polynomials",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "",
+    "tests": ["tests/unit/test_poly_congruence.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-coeffwise-nec",
+    "tag": "REFUTED",
+    "statement": "3^k must divide every monomial coefficient for a polynomial to vanish as a function modulo 3^k",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "tests": ["tests/unit/test_poly_congruence.py"],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-tau-minc",
+    "tag": "REFUTED",
+    "statement": "tau(f,g)=1+min v_3 of monomial coefficients of f-g",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "",
+    "tests": ["tests/unit/test_poly_congruence.py"],
     "related_conjectures": []
   },
   {

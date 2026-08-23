@@ -56,6 +56,7 @@ analysis”.
 - Coefficient-vector NF (Milestone 14): [balanced_ternary_normalization.md](balanced_ternary_normalization.md). Different object from expression-tree NF.
 - Section/jet calculus (Milestone 15): [polynomial_jet_calculus.md](polynomial_jet_calculus.md). `D_coeff` is not `D`.
 - Residual automata (Milestone 16): [residual_state_complexity.md](residual_state_complexity.md). Sample minimization is not `M_k`.
+- Quadratic MN count (Milestone 17): [quadratic_residual_complexity.md](quadratic_residual_complexity.md). `M_k(x^2)=(3^k−1)/2`.
 
 ## Finite-state locality (reused, not re-proved)
 
