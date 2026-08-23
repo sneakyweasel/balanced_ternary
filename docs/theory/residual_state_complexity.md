@@ -172,7 +172,9 @@ the overlapping `(i, i+1)` pair joins. Raw `[1,0]` vs `[1,0,0]` from
 
 ## Open problems
 
-1. Closed form for `M_k(x^d)`, `d ≥ 3`.
+1. Closed form for `M_k(x^d)`, `d ≥ 3`. For `d=3` the count is the
+   image of an explicit map `F_k`; see
+   [cubic_residual_image.md](cubic_residual_image.md).
 2. Myhill–Nerode join of the overlapping normalization pair.
 3. Tight cascade bound (when equality holds).
 4. Lean cardinality of trit words, to make `M_k(x^2)=(3^k−1)/2` a

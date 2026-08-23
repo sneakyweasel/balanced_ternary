@@ -283,6 +283,8 @@ number-theory problem.
   \(M_k=(3^k-1)/2\) from human combination to a single Lean theorem).
 - A general degree-\(d\) distinguishability criterion — treated in
   [polynomial_function_congruence.md](polynomial_function_congruence.md).
+  The image of \(x^3\) is in
+  [cubic_residual_image.md](cubic_residual_image.md).
 - Which cascade pairs of \(x^2\circ x^2\) collapse at a given horizon.
 
 Do not start a further milestone automatically.

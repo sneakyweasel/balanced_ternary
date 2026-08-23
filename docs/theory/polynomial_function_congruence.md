@@ -16,7 +16,8 @@ Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 **REPARAMETERIZATION**.
 
 Related: [quadratic_residual_complexity.md](quadratic_residual_complexity.md),
-[residual_state_complexity.md](residual_state_complexity.md).
+[residual_state_complexity.md](residual_state_complexity.md),
+[cubic_residual_image.md](cubic_residual_image.md).
 
 ---
 
@@ -518,13 +519,10 @@ that \(\Phi_k\) classifies all of \(\mathbb Z[x]\), not just degrees
 
 ## 17. Next mathematical question
 
-The invariant is now arithmetic. The next question is **not** another
-kernel theorem. It is:
+Closed by Milestone 19 for \(f=x^3\): the residual tree maps to Newton
+space through the explicit arithmetic map \(F_k\), and
+\(M_k(x^3)=|\operatorname{Im} F_k|\). See
+[cubic_residual_image.md](cubic_residual_image.md).
 
-> Which Newton classes actually occur among the residuals of a fixed
-> \(x^d\), and what is the resulting \(M_k(x^d)\)?
-
-That is a question about the image of the residual map
-\(w\mapsto\Phi_k(f_w)\), not about \(I_k\).
-
-Do not start that milestone automatically.
+The remaining count is the fibre geometry of \(F_k\), not another
+kernel theorem. Do not start that work automatically.

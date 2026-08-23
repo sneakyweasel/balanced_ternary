@@ -72,3 +72,12 @@ This ledger does not rewrite history.
 | BTA-product | EXACT — HUMAN PROOF | M_k(f∘g)≤M_k(f)M_k(g) | docs/theory/residual_state_complexity.md | | test_myhill_nerode |
 | BTA-locality-small | REFUTED | prefix locality ⇒ small automaton | docs/theory/residual_state_complexity.md | | test_myhill_nerode |
 | BTA-hatD-B | EXACT — HUMAN PROOF | bounded-B hat D is N_B then drop; not FST on Z | docs/theory/residual_state_complexity.md | | test_myhill_nerode |
+| BTA-x3-form | EXACT — LEAN VERIFIED | f_w(x)=3^{2m}x^3+3^{m+1}p x^2+3p^2 x+DZ^m(p^3) | docs/theory/cubic_residual_image.md | BTCalculus/CubicResidual residualAlong_Xcube | test_cubic_residual |
+| BTA-x3-raw | EXACT — LEAN VERIFIED | R_k(x^3)=(3^k-1)/2 | docs/theory/cubic_residual_image.md | BTCalculus/CubicResidual residualAlong_Xcube_injective | test_cubic_residual |
+| BTA-x3-newton | EXACT — LEAN VERIFIED | Newton coords of a cubic and of the residual family | docs/theory/cubic_residual_image.md | BTCalculus/CubicResidual newton_cubicResid | test_cubic_residual |
+| BTA-x3-section | EXACT — LEAN VERIFIED | cubic Newton section step N3'=9 N3, N2'=3 N2+3(a+2)N3 | docs/theory/cubic_residual_image.md | BTCalculus/CubicResidual sectionDeriv_cubic | test_cubic_residual |
+| BTA-x3-equiv-N | EXACT — LEAN VERIFIED | cubics: ≡_k iff Newton residues agree mod 3^k | docs/theory/cubic_residual_image.md | BTCalculus/CubicResidual equivK_cubic_newton | test_cubic_residual |
+| BTA-x3-Fk | EXACT — HUMAN PROOF | M_k(x^3)=|Im F_k| for F_k(m,p)=Φ_k(f_{(m,p)}) | docs/theory/cubic_residual_image.md | equivK_cubic_newton | test_cubic_residual |
+| BTA-x3-shallow | EXACT — HUMAN PROOF | residuals with 2m+1<k are ≡_k-separated | docs/theory/cubic_residual_image.md | | test_cubic_residual |
+| BTA-x3-prefix | REFUTED | Newton classes of x^3 are congruence classes of p(w) | docs/theory/cubic_residual_image.md | | test_cubic_residual |
+| BTA-x3-lift | REFUTED | M_{k+1}(x^3)=3 M_k(x^3)+1 | docs/theory/cubic_residual_image.md | | test_cubic_residual |

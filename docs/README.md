@@ -82,6 +82,7 @@ meaning throughout:
 - [Residual-state complexity](theory/residual_state_complexity.md)
 - [Quadratic residual complexity](theory/quadratic_residual_complexity.md)
 - [Polynomial function congruence](theory/polynomial_function_congruence.md)
+- [Cubic residual image](theory/cubic_residual_image.md)
 
 ## Architecture
 

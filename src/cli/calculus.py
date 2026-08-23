@@ -137,6 +137,20 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_vp.add_argument("degree", type=int)
     p_vp.add_argument("--k", type=int, required=True)
 
+    p_nc = c.add_parser(
+        "newton-class",
+        help="residual words of a polynomial with Newton class IDs modulo 3^k",
+    )
+    p_nc.add_argument("polynomial")
+    p_nc.add_argument("--k", type=int, required=True)
+
+    p_cc = c.add_parser(
+        "class-collisions",
+        help="Newton-class collisions among residual words modulo 3^k",
+    )
+    p_cc.add_argument("polynomial")
+    p_cc.add_argument("--k", type=int, required=True)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -450,5 +464,31 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"monomial v3 = {rec['invisible_monomial_v3']}")
             print(f"newton v3 = {rec['invisible_newton_v3']}")
             print(f"factorization = {rec['factorization']}")
+        return 0
+    if cmd == "newton-class":
+        from bt.calculus.cubic import newton_class_table
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        print(f"f = {f.render()}  k = {args.k}")
+        print("word poly newton newton_mod_3^k class_id")
+        for row in newton_class_table(f, args.k):
+            print(
+                f"{row['word']} {row['poly']} {row['newton']} "
+                f"{row['phi']} {row['class_id']}"
+            )
+        return 0
+    if cmd == "class-collisions":
+        from bt.calculus.cubic import collision_table
+        from bt.calculus.section import parse_poly
+
+        f = parse_poly(args.polynomial)
+        classes = collision_table(f, args.k)
+        print(f"f = {f.render()}  k = {args.k}")
+        print(f"collision_classes = {len(classes)}")
+        for i, rec in enumerate(classes):
+            print(f"class {i} size={rec['size']} phi={rec['phi']}")
+            for member in rec["members"]:
+                print(f"  {member['word']} p={member['p']} {member['poly']}")
         return 0
     raise ValueError(f"unknown calculus command {cmd}")

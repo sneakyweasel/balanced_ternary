@@ -18,3 +18,4 @@ import BTCalculus.MyhillNerode
 import BTCalculus.TransducerComposition
 import BTCalculus.Quadratic
 import BTCalculus.PolynomialFunctionsMod
+import BTCalculus.CubicResidual
