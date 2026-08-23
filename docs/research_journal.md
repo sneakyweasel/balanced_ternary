@@ -338,8 +338,9 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Objective:** Does every open term of `{D, I_a, S, N}` under the tree rules have a unique syntactic normal form?
 - **Hypotheses:** unique NF for open terms, not just closed integer seeds; perhaps the NF is also a unique representative of the integer function
 - **Major results:** all-strategy termination on the lex rank `(I0-count, N-inversion, size)`; complete critical-pair list joins; Newman gives unique syntactic NF and an explicit grammar (`N` pushed past `I±`/`S`, then an `I`/`S` spine over a `D`-safe core); size-`≤ 6` census (9331 terms) agrees with innermost `rewrite_expr`
-- **Refuted ideas:** that a tree-rule irreducible is a unique representative of the integer operator — `N(D(x))` and `D(N(x))` are distinct irreducibles and agree under `evaluate` (`rewrite_N_D` is not a tree rule)
-- **Literature:** Knuth–Bendix / Newman is the method. The fragment and the missing `N`–`D` commute are project-specific.
-- **Next question:** does adding `N(D(x)) → D(N(x))` as a tree rule stay confluent and become a complete canonical form? Not started.
-- **Decision:** PROMOTE the unique-syntactic-NF theorem to the ledger as **EXACT — HUMAN PROOF**. Do not open a numbered milestone. Lean Newman for this fragment is deferred (no `sorry`); do not touch `BTCalculus/Confluence.lean`.
+- **Refuted ideas:** that the *smaller* tree-rule set (without `N(D)→D(N)`) has irreducibles unique as integer functions — `N(D(x))` and `D(N(x))` were distinct irreducibles and agree under `evaluate`
+- **Literature:** Knuth–Bendix / Newman is the method. The fragment is project-specific. The word table already had `N∘D=D∘N` as a reversible non-simplifying rule.
+- **Follow-up (same entry, not a new milestone):** the oriented tree rule `N(D(x))→D(N(x))` preserves termination and local confluence; new peaks `N(N(D(x)))` and `N(D(I_a/S(x)))` join; irreducibles are `Pref_{a_1…a_m} ∘ D^k ∘ N^ε` and inject into `ℤ→ℤ` by the closed form `A + 3^m (−1)^ε D^k(x)`. Size-`≤ 6` fingerprints are unique.
+- **Next question:** Lean Newman for this fragment only? Not started. Do not open a numbered milestone.
+- **Decision:** PROMOTE the unique-syntactic-NF theorem and the completeness theorem after `N(D)→D(N)`. Lean Newman remains deferred (no `sorry`); do not touch `BTCalculus/Confluence.lean`.
 

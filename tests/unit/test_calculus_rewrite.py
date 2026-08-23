@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from bt.calculus.expressions import ED, EI0, EIm, EInt, EIp, ENeg, EShift3
 from bt.calculus.normalization import normal_form, normalize_expr
-from bt.calculus.rewrite import REWRITE_RULES, rewrite_expr, rewrite_word
+from bt.calculus.rewrite import REWRITE_RULES, TREE_RULES, rewrite_expr, rewrite_word
 from bt.calculus.semantics import evaluate
 
 
@@ -18,6 +18,10 @@ def test_word_rules_include_legacy_identities():
     assert ds == ()
     i0, _ = rewrite_word(("I0",))
     assert i0 == ("S",)
+
+
+def test_tree_rules_include_oriented_n_d_commute():
+    assert ("N(D(x))", "D(N(x))") in TREE_RULES
 
 
 def test_tree_rewrite_operator_fragment():
@@ -48,6 +52,7 @@ def test_rewrite_sound_on_small_integers():
             (ENeg(EShift3(x)), EShift3(ENeg(x))),
             (ENeg(EIm(x)), EIp(ENeg(x))),
             (ENeg(EIp(x)), EIm(ENeg(x))),
+            (ENeg(ED(x)), ED(ENeg(x))),
             (EI0(x), EShift3(x)),
         ]
         for left, right in pairs:

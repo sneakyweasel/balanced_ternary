@@ -174,6 +174,8 @@ def _step(expr: Expr) -> tuple[Expr, str | None]:
             return EIp(ENeg(inner.arg)), "N(I-(x)) → I+(N(x))"
         if isinstance(inner, EIp):
             return EIm(ENeg(inner.arg)), "N(I+(x)) → I-(N(x))"
+        if isinstance(inner, ED):
+            return ED(ENeg(inner.arg)), "N(D(x)) → D(N(x))"
     return expr, None
 
 
@@ -189,9 +191,9 @@ def rewrite_expr(expr: Expr, *, max_steps: int = 10_000) -> tuple[Expr, tuple[st
 
     Termination holds for the operator fragment ``{D, I_a, S, N}`` because
     each rule either deletes a constructor or moves ``N`` inward past a
-    constructor while preserving a finite measure (constructor-above-N
-    count, then size). Global confluence of the full expression language
-    is not claimed.
+    constructor (including ``D``) while preserving a finite measure
+    (constructor-above-N count, then size). Global confluence of the
+    full expression language is not claimed.
     """
     used: list[str] = []
     steps = 0
@@ -220,5 +222,6 @@ TREE_RULES: tuple[tuple[str, str], ...] = (
     ("N(S(x))", "S(N(x))"),
     ("N(I-(x))", "I+(N(x))"),
     ("N(I+(x))", "I-(N(x))"),
+    ("N(D(x))", "D(N(x))"),
     ("Nrm(x)", "x"),
 )

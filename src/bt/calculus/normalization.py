@@ -30,7 +30,7 @@ def is_operator_fragment(expr: Expr) -> bool:
 
 
 def normalize_expr(expr: Expr) -> tuple[Expr, tuple[str, ...], int]:
-    """Innermost normalizer. Unique NF is claimed only after confluence checks."""
+    """Innermost normalizer. Unique NF on ``{D, I_a, S, N}`` is proved."""
     return rewrite_expr(expr)
 
 

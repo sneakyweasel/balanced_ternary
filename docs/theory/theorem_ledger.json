@@ -1586,7 +1586,7 @@
   {
     "id": "BTC-op-fragment-nf",
     "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "the operator-fragment tree TRS {D, I_a, S, N} is terminating and locally confluent; every term has a unique syntactic normal form",
+    "statement": "the operator-fragment tree TRS {D, I_a, S, N}, including N(D(x))→D(N(x)), is terminating and locally confluent; every term has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1597,9 +1597,22 @@
   {
     "id": "BTC-op-fragment-semantic-nf",
     "tag": "REFUTED",
-    "statement": "tree-rule irreducibles of the operator fragment are unique representatives of integer functions",
+    "statement": "without N(D(x))→D(N(x)), tree-rule irreducibles of the operator fragment are unique representatives of integer functions",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "BTCalculus/Rewrite.lean",
+    "tests": [
+      "tests/unit/test_operator_fragment_nf.py"
+    ],
+    "related_conjectures": [
+      "op_fragment_semantic_nf"
+    ]
+  },
+  {
+    "id": "BTC-op-fragment-complete",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "with N(D(x))→D(N(x)), every irreducible is Pref∘D^k∘N^ε and these inject into maps Z→Z via A + 3^m (−1)^ε D^k(x)",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
     "tests": [
       "tests/unit/test_operator_fragment_nf.py"
     ],

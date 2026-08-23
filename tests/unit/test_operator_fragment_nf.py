@@ -4,14 +4,11 @@ Fragment ``{D, I_a, S, N}`` under the tree rules in
 ``bt.calculus.rewrite`` (not the coefficient-word system, not
 ``WORD_REWRITE_RULES``). Open terms are unary trees with one hole.
 
-This file records two facts:
-
-* every critical pair joins, and every size-``≤ 6`` open term has a
-  unique irreducible descendant under *all* redex orders
-  (``COMPUTATIONALLY VERIFIED``);
-* ``N(D(x))`` and ``D(N(x))`` are distinct irreducibles that agree on
-  integer probes — the tree rules are not a complete equational
-  canonical form for the integer operator algebra.
+This file records the fragment with the oriented commute
+``N(D(x)) → D(N(x))`` (Lean ``rewrite_N_D``). Without that rule the
+irreducibles ``N(D(x))`` and ``D(N(x))`` were a semantic pair; with it
+they join, every critical pair still joins, and irreducibles inject
+into integer functions on the size-``≤ 6`` box.
 """
 
 from __future__ import annotations
@@ -40,7 +37,8 @@ UNARY = (ED, EIm, EI0, EIp, EShift3, ENeg)
 # Primitive tree rules of the fragment, matching TREE_RULES minus Nrm.
 # The engine also contracts N(I0(x)) → S(N(x)); that is a derived
 # shortcut of I0 → S followed by N(S) → S(N), included as a one-step.
-PUSHABLE = (EShift3, EIm, EIp, EI0)
+# D is pushable once N(D) → D(N) is a tree rule.
+PUSHABLE = (EShift3, EIm, EIp, EI0, ED)
 
 
 def _rebuild(expr: Expr, new_arg: Expr) -> Expr:
@@ -165,6 +163,20 @@ def critical_pairs() -> list[tuple[str, Expr, Expr, Expr]]:
     peak = ENeg(ENeg(EI0(x)))
     pairs.append(("N(N(I0(x)))", peak, EI0(x), ENeg(EShift3(ENeg(x)))))
 
+    # N(N(D(x))): outer N(N) vs inner N(D)
+    peak = ENeg(ENeg(ED(x)))
+    pairs.append(("N(N(D(x)))", peak, ED(x), ENeg(ED(ENeg(x)))))
+
+    # N(D(I_a(x))) / N(D(S(x))): inner D-section vs outer N(D)
+    peak = ENeg(ED(EIm(x)))
+    pairs.append(("N(D(I-(x)))", peak, ENeg(x), ED(ENeg(EIm(x)))))
+    peak = ENeg(ED(EIp(x)))
+    pairs.append(("N(D(I+(x)))", peak, ENeg(x), ED(ENeg(EIp(x)))))
+    peak = ENeg(ED(EI0(x)))
+    pairs.append(("N(D(I0(x)))", peak, ENeg(x), ED(ENeg(EI0(x)))))
+    peak = ENeg(ED(EShift3(x)))
+    pairs.append(("N(D(S(x)))", peak, ENeg(x), ED(ENeg(EShift3(x)))))
+
     return pairs
 
 
@@ -220,28 +232,22 @@ def test_innermost_agrees_with_all_strategy_nf():
         assert innermost == next(iter(nfs))
 
 
-def _is_safe(expr: Expr) -> bool:
-    """Legal argument of D in an irreducible: x, D(Safe), or N(Safe)."""
+def _is_depth_core(expr: Expr) -> bool:
+    """D^k(x) or D^k(N(x))."""
     if isinstance(expr, EInt):
         return True
-    if isinstance(expr, ED):
-        return _is_safe(expr.arg)
     if isinstance(expr, ENeg):
-        return _is_safe(expr.arg) and not isinstance(expr.arg, (ENeg, *PUSHABLE))
+        return isinstance(expr.arg, EInt)
+    if isinstance(expr, ED):
+        return _is_depth_core(expr.arg)
     return False
 
 
 def matches_nf_grammar(expr: Expr) -> bool:
-    """N pushed past I±/S/I0; then I/S-spine; D only over a D-safe argument."""
-    if isinstance(expr, EInt):
-        return True
+    """{I-, I+, S}* then D^k then optional N at the hole."""
     if isinstance(expr, (EIm, EIp, EShift3)):
         return matches_nf_grammar(expr.arg)
-    if isinstance(expr, ED):
-        return _is_safe(expr.arg)
-    if isinstance(expr, ENeg):
-        return _is_safe(expr.arg) and not isinstance(expr.arg, (ENeg, *PUSHABLE))
-    return False
+    return _is_depth_core(expr)
 
 
 def test_nf_grammar_matches_irreducibles():
@@ -252,26 +258,47 @@ def test_nf_grammar_matches_irreducibles():
             raise AssertionError(f"grammar accepted a redex: {render(expr)}")
 
 
-def test_nd_dn_are_distinct_irreducibles_with_equal_evaluate():
-    """Semantic incompleteness, not a confluence failure.
-
-    N(D(n)) and D(N(n)) are both irreducible under the tree rules and
-    agree as integer functions. The Lean identity rewrite_N_D is not a
-    tree rule. Unique *syntactic* NF can hold while the NF is not a
-    unique representative of the integer operator algebra.
-    """
+def test_nd_joins_to_dn():
+    """The former semantic pair is now a one-step redex."""
     probes = list(range(-30, 31))
     for n in probes:
         t_nd = ENeg(ED(EInt(n)))
         t_dn = ED(ENeg(EInt(n)))
         assert t_nd != t_dn
-        assert is_irreducible(t_nd)
+        assert t_dn in one_steps(t_nd)
         assert is_irreducible(t_dn)
+        assert not is_irreducible(t_nd)
         assert evaluate(t_nd) == evaluate(t_dn)
         nf_nd, _, _ = rewrite_expr(t_nd)
         nf_dn, _, _ = rewrite_expr(t_dn)
-        assert nf_nd == t_nd
-        assert nf_dn == t_dn
+        assert nf_nd == nf_dn == t_dn
+
+
+def _subst_hole(expr: Expr, n: int) -> Expr:
+    if isinstance(expr, EInt):
+        return EInt(n)
+    return type(expr)(_subst_hole(expr.arg, n))
+
+
+def _fingerprint(expr: Expr) -> tuple[int, ...]:
+    probes = tuple(range(-20, 21)) + tuple(3**k for k in range(1, 6)) + tuple(
+        (3**k - 1) // 2 for k in range(1, 6)
+    )
+    return tuple(evaluate(_subst_hole(expr, n)) for n in probes)
+
+
+def test_irreducibles_have_unique_evaluate_fingerprints_size_le_6():
+    """No two distinct NFs of size ≤ 6 agree on the probe set."""
+    seen: dict[tuple[int, ...], Expr] = {}
+    for expr in open_terms(6):
+        if not is_irreducible(expr):
+            continue
+        key = _fingerprint(expr)
+        prior = seen.get(key)
+        assert prior is None or prior == expr, (
+            f"{render(expr)} and {render(prior)} agree on probes"
+        )
+        seen[key] = expr
 
 
 def test_nrm_is_a_destructor_and_does_not_create_a_new_overlap():
@@ -293,3 +320,5 @@ def test_documented_peaks_from_rewrite_calculus_join():
     assert irreducible_descendants(d_i0) == {x}
     nns = ENeg(ENeg(EShift3(x)))
     assert irreducible_descendants(nns) == {EShift3(x)}
+    nd = ENeg(ED(x))
+    assert irreducible_descendants(nd) == {ED(ENeg(x))}
