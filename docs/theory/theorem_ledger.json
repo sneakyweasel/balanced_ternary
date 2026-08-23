@@ -1438,12 +1438,14 @@
   },
   {
     "id": "BTL-deep-valuation-shape",
-    "tag": "COMPUTATIONALLY VERIFIED",
-    "statement": "in the deep regime k >= r the capped pair (min(v_3(f(n)/3^k), r), min(v_3(f'(n)), r)) does determine the unordered depth-r subtree for r <= 4, exhaustively over all linear states with |c| <= 121 and |b| <= 40 and over every node of the 53 test polynomials to level 6; whether this is a theorem is open",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "in the deep regime the residual is c + b x with c = f(n)/3^k and b = f'(n); writing m = min(v_3(c), r) and e = min(v_3(b), r), the unlabeled depth-r shape U_r is T_m if m < e and S(e, r) if m >= e, where T_j is the fully ternary tree of depth j and S(0, r) is a path of length r, S(e, r) = T_r for e >= r, and S(e, r) is two copies of T_{e-1} plus one S(e, r-1) for 1 <= e < r; so the capped valuation pair is a complete invariant of U_r; this is the Newton-polygon ramification of a linear residual, not a new Hensel theorem, and it is also verified on the complete residue system (Z/3^r)^2 for r <= 4",
     "source": "docs/theory/padic_lifting_trees.md",
     "lean": "",
     "tests": [
-      "tests/research/lifting/test_triage.py"
+      "tests/research/lifting/test_triage.py",
+      "tests/unit/test_lifting_state.py",
+      "tests/unit/test_lifting.py"
     ],
     "related_conjectures": []
   },

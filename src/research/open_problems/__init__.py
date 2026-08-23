@@ -10,20 +10,24 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.collatz.problem import PROBLEM as COLLATZ
     from research.lifting.problem import PROBLEM as LIFTING
     from research.operator_dynamics.problem import PROBLEM as OPERATOR_DYNAMICS
+    from research.padic_dynamics.problem import PROBLEM as PADIC_DYNAMICS
     from research.perfect_powers.problem import PROBLEM as PERFECT_POWERS
     from research.primes.problem import PROBLEM as PRIMES
     from research.residuals.problem import PROBLEM as RESIDUALS
     from research.sparse_polynomials.problem import PROBLEM as SPARSE_POLYNOMIALS
+    from research.stabilization.problem import PROBLEM as STABILIZATION
 
     return (
         COLLATZ,
         RESIDUALS,
         LIFTING,
+        PADIC_DYNAMICS,
         ADDITIVE,
         PERFECT_POWERS,
         PRIMES,
         SPARSE_POLYNOMIALS,
         OPERATOR_DYNAMICS,
+        STABILIZATION,
     )
 
 

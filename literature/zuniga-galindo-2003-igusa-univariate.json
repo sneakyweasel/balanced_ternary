@@ -18,5 +18,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "docs/theory/padic_lifting_trees.md. Attaches a tree T(f, l_f) of p-adic root approximations to a univariate f and computes the local zeta function from its generating function. The lifting tree is therefore a known object; the project contribution is its identification with the zero-output subtree of the residual Mealy machine, not the tree itself."
+  "notes": "Attaches a tree T(f, l_f) of p-adic root approximations to a univariate f and computes the local zeta function from its generating function. The lifting tree is a known object. The local-vs-global triage uses this as the generating-function side of Igusa, not as a new bound. docs/theory/local_vs_global_stabilization.md."
 }

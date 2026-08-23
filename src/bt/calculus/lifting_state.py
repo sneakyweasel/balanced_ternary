@@ -96,7 +96,7 @@ from __future__ import annotations
 
 from functools import cache
 
-from bt.calculus.lifting import depth_r_shape
+from bt.calculus.lifting import depth_r_shape, unordered_shape
 from bt.calculus.residual import TRITS, pack_trits
 from bt.calculus.section import IntPoly, rho_int
 from bt.metrics import v3
@@ -324,6 +324,69 @@ def is_truncated_tree(shape: tuple) -> bool:
     if len(shape) != 3:
         return False
     return all(is_truncated_tree(sub) for _a, sub in shape)
+
+
+def unordered_truncated_tree(j: int, r: int) -> tuple:
+    """The unlabeled fully ternary tree of depth ``min(j, r)``.
+
+    ``()`` if ``j = 0`` or ``r = 0``; otherwise three identical copies of
+    the depth-``j-1`` tree at remaining horizon ``r-1``.
+    """
+    j = _require_nat(j, "j")
+    r = _require_nat(r, "r")
+    if j == 0 or r == 0:
+        return ()
+    child = unordered_truncated_tree(j - 1, r - 1)
+    return (child, child, child)
+
+
+def undominated_unordered_shape(e: int, r: int) -> tuple:
+    """``S(e, r)``: unlabeled shape of every undominated state of valuation ``e``.
+
+    A deep-regime state is undominated when ``v_3(c) ≥ e = min(v_3(b), r)``.
+    All such states share one unlabeled shape, given by
+
+    * ``e = 0``: a single path of length ``r``;
+    * ``e ≥ r``: the fully ternary tree of depth ``r``;
+    * ``1 ≤ e < r``: two copies of the truncated tree of depth ``e-1``
+      together with one recursive copy of ``S(e, r-1)``.
+
+    That is the Newton-polygon ramification of the linear residual
+    ``c + b x``: the generic perturbation dies after ``e-1`` further
+    steps, and exactly one child continues along the slope.
+    """
+    e = _require_nat(e, "e")
+    r = _require_nat(r, "r")
+    if r == 0:
+        return ()
+    if e == 0:
+        return (undominated_unordered_shape(0, r - 1),)
+    if e >= r:
+        return unordered_truncated_tree(r, r)
+    side = unordered_truncated_tree(e - 1, r - 1)
+    cont = undominated_unordered_shape(e, r - 1)
+    return tuple(sorted((side, side, cont)))
+
+
+def valuation_unordered_shape(c: int, b: int, r: int) -> tuple:
+    """The unlabeled depth-``r`` shape predicted by ``(v_3(c), v_3(b))``.
+
+    Write ``m = min(v_3(c), r)`` and ``e = min(v_3(b), r)``. If the
+    constant dominates (``m < e``) the branch is the truncated tree of
+    depth ``m``; otherwise it is ``S(e, r)``. So the pair of capped
+    valuations is a complete invariant of ``U_r`` in the deep regime.
+    """
+    r = _require_nat(r, "r")
+    m = capped_valuation(c, r)
+    e = capped_valuation(b, r)
+    if m < e:
+        return unordered_truncated_tree(m, r)
+    return undominated_unordered_shape(e, r)
+
+
+def linear_unordered_shape(c: int, b: int, r: int) -> tuple:
+    """``U_r`` of the deep-regime state ``c + b x``."""
+    return unordered_shape(linear_state(c, b), _require_nat(r, "r"))
 
 
 def valuation_row_formula(r: int, e: int) -> int:

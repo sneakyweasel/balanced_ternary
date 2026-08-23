@@ -219,21 +219,58 @@ At the root the witness is smaller still and purely about existence:
 `x^2 + 1` has no children, `x^2 - 1` has two, and both have the same
 capped valuation pair.
 
-**VERIFIED COMPUTATIONALLY.** In the deep regime `k ≥ r` the capped pair
-`(min(v_3(f(n)/3^k), r), min(v_3(f'(n)), r))` does determine the
-*unordered* depth-`r` subtree, i.e. the shape with sibling order
-discarded, for `r ≤ 4`. Checked exhaustively over all linear states
-`c + bx` with `|c| ≤ 121` and `|b| ≤ 40` — which by linearization is the
-complete deep-regime state space up to `≡_r` — and over every node of the
-53 test polynomials of `research.lifting.families` up to level 6. What
-valuations do not fix is *which* branches survive; that needs the
-residues.
+**PROVED.** In the deep regime `k ≥ r` the residual is `≡_r` the linear
+state `c + b x` with `c = f(n)/3^k` and `b = f'(n)`. Write
+`m = min(v_3(c), r)` and `e = min(v_3(b), r)`, and write `U_r` for the
+unlabeled depth-`r` lifting shape: `()` if the node has no surviving
+children, otherwise the sorted tuple of the child shapes. Then `U_r` is
+exactly the function of `(m, e)` given below. In particular the capped
+valuation pair is a complete invariant of `U_r`. What valuations do not
+fix is *which* branches survive; that needs the residues, and is the
+ordered-state story.
 
-**OPEN.** Is that a theorem? A proof would have to control the multiset
-of `v_3` of the three children `c/3 + a·3^{e-1}u` of a linear state, and
-the special child where cancellation occurs has unbounded valuation, so
-the capping is doing real work. No proof and no counterexample is
-recorded.
+Write `T_j` for the fully ternary tree of depth `j` (three copies of
+`T_{j-1}`, with `T_0 = ()`), and write `S(e, r)` for the undominated
+shape of derivative valuation `e`:
+
+- `S(0, r)` is a single path of length `r`;
+- `S(e, r) = T_r` if `e ≥ r`;
+- `S(e, r)` is two copies of `T_{e-1}` together with one `S(e, r-1)`
+  if `1 ≤ e < r`.
+
+Then `U_r(c + b x) = T_m` if `m < e`, and `S(e, r)` if `m ≥ e`.
+
+*Proof.* The dominated case `m < e` is the first bullet of the row
+structure theorem: every trit survives or none does, the valuation drops
+by one per level, and the branch dies at depth `m`. For the undominated
+case proceed by induction on `r`. If `r = 0` both sides are empty. If
+`e = 0` the state is nonsingular and the trichotomy gives a unique child
+of the same kind, so `U_r` is a path. If `e ≥ r` then `m ≥ e ≥ r`, so
+the first `r` levels are fully ternary and `U_r = T_r`. If `1 ≤ e < r`
+the three child constants are `c/3 + a·3^{e-1}`. Exactly one of
+`a ∈ {-1,0,+1}` produces a child that remains undominated (when `m = e`
+this is the unique cancellation `3 | (c/3^e + a)`; when `m > e` it is
+the unperturbed child `a = 0`, whose perturbation `a·3^{e-1}` has
+strictly smaller valuation than `c/3` for `a ≠ 0` and therefore *drops*
+the other two children to valuation `e-1`). The other two children are
+dominated of valuation `e-1`, hence contribute `T_{e-1}` at remaining
+horizon `r-1`. The special child is undominated of the same `e`, so
+contributes `S(e, r-1)` by induction. Sorting the three subtrees gives
+`S(e, r)`. ∎
+
+The special child's exact valuation is *not* determined by `(m, e)` —
+`(9, 9)` continues to a zero constant and `(45, 9)` to a unit constant —
+but that difference is invisible to `U_r`, because `S(e, r-1)` does not
+depend on `m`. An earlier census with `|c| ≤ 40` never left the
+balanced window `|d| ≤ (3^e-1)/2` and so never saw this; the identity
+still holds there, and it holds on the complete residue system
+`(ℤ/3^r)^2` for `r ≤ 4` (`unordered_shape_census`).
+
+This is the Newton-polygon ramification of a linear residual, not a new
+Hensel theorem: the generic perturbation dies after `e-1` further steps,
+and exactly one child continues along the slope. The ordered lifting
+tree remembers the branch trits and is a strictly finer object; that
+line is closed as a reparameterization.
 
 ## Literature position
 
@@ -244,10 +281,13 @@ recorded.
   `cheng-gao-rojas-wan-2019-root-counting`.
 - Deterministic `poly(deg f, k log p)` root counting, including the lifts
   of a repeated root, is `dwivedi-mittal-saxena-2019-root-count`.
-- A closed form for `N_k(f)` once `k ≥ k0 = O(d^2(\log C + \log d))`, and
-  an elementary proof of Igusa rationality, is
-  `dwivedi-saxena-2020-igusa-univariate`. Igusa rationality itself dates
-  to 1974.
+- A closed form for `N_k(f)` once `k ≥ k0 := d(Δ+1)+1`, where
+  `Δ = v_p(D(rad(f)))`, and an elementary proof of Igusa rationality, is
+  `dwivedi-saxena-2020-igusa-univariate`. The figure
+  `O(d^2(\log C + \log d))` is the Sylvester envelope of `Δ`. `N_k` is
+  constant beyond `k0` only when `D(f) ≠ 0`. Igusa rationality itself
+  dates to 1974. The local `Φ_r` does not improve this; see
+  [local_vs_global_stabilization.md](local_vs_global_stabilization.md).
 - The multivariate singular case being the genuine obstruction is stated
   in `dwivedi-saxena-2024-systems-non-fields`.
 
@@ -260,7 +300,9 @@ form does not already give is open and is not claimed.
 ## Where the code is
 
 - Core objects: `bt.calculus.lifting` (`LiftNode`, `lift_tree`,
-  `depth_r_shape`, `shape_widths`).
+  `depth_r_shape`, `unordered_shape`, `shape_widths`).
+- Unordered valuation formula: `bt.calculus.lifting_state`
+  (`valuation_unordered_shape`, `undominated_unordered_shape`).
 - Minimal state: `bt.calculus.lifting_state` and
   [lifting_state_complexity.md](lifting_state_complexity.md).
 - Classification experiments: `research.lifting.triage`.

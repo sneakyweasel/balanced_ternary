@@ -18,5 +18,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "docs/theory/padic_lifting_trees.md. Counts all roots of f mod p^k in deterministic poly(deg f, k log p) time, including the first deterministic count of the lifts of a repeated root. Any complexity claim in this project must be compared against this bound; state compression is reported as structure, not as a speedup."
+  "notes": "Counts all roots of f mod p^k in deterministic poly(deg f, k log p) time, including the first deterministic count of the lifts of a repeated root. Any complexity claim must be compared against this; the local-vs-global triage makes none. docs/theory/local_vs_global_stabilization.md."
 }

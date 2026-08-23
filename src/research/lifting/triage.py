@@ -486,6 +486,41 @@ def linear_state_determinacy(
     }
 
 
+def unordered_shape_census(r: int = 4) -> dict[str, object]:
+    """Complete deep-regime check of the valuation formula for ``U_r``.
+
+    Every pair ``(c, b)`` modulo ``3^r`` is a deep-regime linear state.
+    The test records whether ``U_r(c + b x)`` equals the closed form
+    built from ``(min(v_3(c), r), min(v_3(b), r))`` alone, and whether
+    each valuation class contains a single unlabeled shape.
+    """
+    from bt.calculus.lifting_state import (
+        linear_unordered_shape,
+        valuation_unordered_shape,
+    )
+
+    r = _require_nat(r, "r")
+    mod = 3**r
+    groups: dict[tuple[int, int], set[tuple]] = {}
+    mismatches = 0
+    for b in range(mod):
+        for c in range(mod):
+            key = (cap_v3(c, r), cap_v3(b, r))
+            got = linear_unordered_shape(c, b, r)
+            groups.setdefault(key, set()).add(got)
+            if got != valuation_unordered_shape(c, b, r):
+                mismatches += 1
+    return {
+        "r": r,
+        "states": mod * mod,
+        "valuation_classes": len(groups),
+        "formula_mismatches": mismatches,
+        "formula_holds": mismatches == 0,
+        "determined": all(len(bucket) == 1 for bucket in groups.values()),
+        "distinct_shapes": len({shape for bucket in groups.values() for shape in bucket}),
+    }
+
+
 # ---------------------------------------------------------- state counts
 
 def state_census(
