@@ -24,7 +24,7 @@ where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q --import-mode=importlib"
+addopts = "-q --import-mode=importlib -n auto --dist loadfile"
 markers = [
     "slow: exhaustive census, million-range identity, or Streamlit AppTest",
 ]

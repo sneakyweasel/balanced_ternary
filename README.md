@@ -147,7 +147,7 @@ cd formal
 lake build
 ```
 
-`pytest` skips the slow marker: k>10 residual censuses, million-range identities, and Streamlit AppTests. CI runs `pytest --runslow`. Parallel full suite: `pytest --runslow -n auto --dist loadfile`.
+`pytest` skips the slow marker (k>10 residual censuses, million-range identities, Streamlit AppTests) and runs in parallel. Full suite: `pytest --runslow`. Serial: `pytest -n 0`.
 
 ## How to add a new research problem
 

@@ -17,7 +17,7 @@ jobs:
       - name: Ledger is generated
         run: python tools/render_theorem_ledger.py --check
       - name: Pytest
-        run: pytest --runslow -n auto --dist loadfile
+        run: pytest --runslow
 
   lean:
     runs-on: ubuntu-latest
