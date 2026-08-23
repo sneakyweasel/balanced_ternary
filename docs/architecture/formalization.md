@@ -1,7 +1,13 @@
 # Formalization architecture
 
 Lean 4 + Mathlib lives under `formal/`. The Lake package name remains
-`collatz-dual-formal`. Build:
+`collatz-dual-formal` in this pass (renaming it would churn the lockfile
+and CI cache). Follow-up: rename to a calculus-neutral package when the
+next Lean/Mathlib bump is done.
+
+`formal/Automata/` is still a placeholder only; do not invent proofs there.
+
+Build:
 
 ```powershell
 cd formal
@@ -21,7 +27,7 @@ The project contains no `sorry` or `admit`.
 | `Operators/Algebra.lean` | composed identities, `W(3)=1` | `CollatzDual.OperatorAlgebra` |
 | `Operators/Polynomial.lean` | `P(3)=evalMSD` | `CollatzDual.Polynomial` |
 | `Problems/Collatz/*` | lift, cylinders, endpoint, center, cycles, … | matching `CollatzDual.*` |
-| `BTCalculus/` | trit algebra, `D`/`I_a`, product/sum rules, `cmp3`/`select3`, rewrite soundness, coefficient normalization, section derivative, jets, residual `≡_k`, cascade composition, polynomial function congruence modulo `3^k`, cubic residual Newton image, fibres, deepest-layer criteria, the first intermediate layer `m=k-2`, the depth-deficit `N2` visibility law, the general `N1` valuation stratification, and the two-regime `N0` scaling | none |
+| `BTCalculus/` | trit algebra, `D`/`I_a`, product/sum rules, `cmp3`/`select3`, rewrite soundness, coefficient normalization, section derivative, jets, residual `≡_k`, cascade composition, polynomial function congruence modulo `3^k`, cubic residual Newton image, fibres, deepest-layer criteria, the first intermediate layer `m=k-2`, the depth-deficit `N2` visibility law, the general `N1` valuation stratification, the two-regime `N0` scaling, and the mismatched-width cubic quotient | none |
 | `Automata/` | placeholder only | no invented proofs |
 
 [`formal/CollatzDual.lean`](../../formal/CollatzDual.lean) remains the

@@ -5,7 +5,9 @@
     "statement": "Every integer has a unique canonical balanced ternary word.",
     "source": "docs/mathematics.md",
     "lean": "Representation/Words.lean",
-    "tests": ["tests/test_representation.py"],
+    "tests": [
+      "tests/unit/test_representation.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -14,8 +16,12 @@
     "statement": "D ∘ S = id",
     "source": "docs/balanced_ternary_operators.md",
     "lean": "Operators/DigitDerivative.lean",
-    "tests": ["tests/test_operators.py"],
-    "related_conjectures": ["S_circ_D_id"]
+    "tests": [
+      "tests/unit/test_operators.py"
+    ],
+    "related_conjectures": [
+      "S_circ_D_id"
+    ]
   },
   {
     "id": "BT-W-not-involution",
@@ -23,8 +29,12 @@
     "statement": "W is an involution on Z",
     "source": "docs/operator_algebra.md",
     "lean": "Operators/Algebra.lean",
-    "tests": ["tests/test_operators.py"],
-    "related_conjectures": ["W_not_involution"]
+    "tests": [
+      "tests/unit/test_operators.py"
+    ],
+    "related_conjectures": [
+      "W_not_involution"
+    ]
   },
   {
     "id": "BT-Pn3",
@@ -32,7 +42,9 @@
     "statement": "P_n(3) = n",
     "source": "docs/balanced_ternary_polynomials.md",
     "lean": "Operators/Polynomial.lean",
-    "tests": ["tests/test_operator_branch.py"],
+    "tests": [
+      "tests/unit/test_operator_branch.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -41,7 +53,9 @@
     "statement": "Accelerated T is well-defined on positive odd integers.",
     "source": "docs/collatz_mathematics.md",
     "lean": "",
-    "tests": ["tests/collatz/test_core.py"],
+    "tests": [
+      "tests/research/collatz/test_core.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -50,7 +64,9 @@
     "statement": "BT(3n+1)=BT(n)+ for n≠0",
     "source": "docs/collatz_mathematics.md",
     "lean": "Representation/Words.lean",
-    "tests": ["tests/collatz/test_theorems.py"],
+    "tests": [
+      "tests/research/collatz/test_theorems.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -59,7 +75,9 @@
     "statement": "Unrestricted odd-part is not one rational transduction.",
     "source": "docs/collatz_mathematics.md",
     "lean": "",
-    "tests": ["tests/collatz/test_transducers.py"],
+    "tests": [
+      "tests/research/collatz/test_transducers.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -68,7 +86,9 @@
     "statement": "T^m(n)=(3^m n+C)/2^K",
     "source": "docs/collatz_itinerary_compatibility.md",
     "lean": "Problems/Collatz/",
-    "tests": ["tests/collatz/test_affine_formula.py"],
+    "tests": [
+      "tests/research/collatz/test_affine_formula.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -77,8 +97,67 @@
     "statement": "Positive integer realizer iff eventual zero lift.",
     "source": "docs/collatz_zero_lift.md",
     "lean": "Problems/Collatz/Lift.lean",
-    "tests": ["tests/collatz/test_zero_lift.py"],
-    "related_conjectures": ["low_Km_m_infinite_lifts"]
+    "tests": [
+      "tests/research/collatz/test_zero_lift.py"
+    ],
+    "related_conjectures": [
+      "low_Km_m_infinite_lifts"
+    ]
+  },
+  {
+    "id": "C-R-direct",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Direct residue formula for R",
+    "source": "docs/collatz_dual_coding.md",
+    "lean": "Problems/Collatz/Arithmetic.lean",
+    "tests": [
+      "tests/research/collatz/test_dual_code.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "C-endpoint",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Kramer endpoint / 2-adic endpoint congruences",
+    "source": "docs/literature_comparison.md",
+    "lean": "Problems/Collatz/Endpoint.lean",
+    "tests": [
+      "tests/research/collatz/test_four_coordinate_core.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "C-center",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Affine-center numerator identities",
+    "source": "docs/collatz_affine_center.md",
+    "lean": "Problems/Collatz/Center.lean",
+    "tests": [
+      "tests/research/collatz/test_affine_center.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "C-gap",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Affine gap recurrence",
+    "source": "docs/collatz_fixed_integer_asymptotics.md",
+    "lean": "Problems/Collatz/FixedInteger.lean",
+    "tests": [
+      "tests/research/collatz/test_fixed_integer.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "C-cycles",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Expanding periods excluded; D divides C; even amplitude",
+    "source": "docs/collatz_cycle_languages.md",
+    "lean": "Problems/Collatz/Cycles.lean",
+    "tests": [
+      "tests/research/collatz/test_cycles.py"
+    ],
+    "related_conjectures": []
   },
   {
     "id": "C-nstar-le-n",
@@ -86,8 +165,12 @@
     "statement": "n* ≤ n for finite valuation codes",
     "source": "docs/collatz_fixed_integer_asymptotics.md",
     "lean": "Problems/Collatz/FixedInteger.lean",
-    "tests": ["tests/collatz/test_fixed_integer.py"],
-    "related_conjectures": ["n_star_le_n"]
+    "tests": [
+      "tests/research/collatz/test_fixed_integer.py"
+    ],
+    "related_conjectures": [
+      "n_star_le_n"
+    ]
   },
   {
     "id": "C-Nk",
@@ -95,8 +178,12 @@
     "statement": "N_k = 2^k+1",
     "source": "docs/collatz_research_questions.md",
     "lean": "",
-    "tests": ["tests/collatz/test_complexity_spectrum.py"],
-    "related_conjectures": ["Nk_state_count"]
+    "tests": [
+      "tests/research/collatz/test_complexity_spectrum.py"
+    ],
+    "related_conjectures": [
+      "Nk_state_count"
+    ]
   },
   {
     "id": "BTC-decomp",
@@ -104,7 +191,9 @@
     "statement": "n = lsd(n) + 3 D(n)",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Derivative.lean",
-    "tests": ["tests/unit/test_calculus_identities.py"],
+    "tests": [
+      "tests/unit/test_calculus_identities.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -113,7 +202,9 @@
     "statement": "D ∘ I_a = id",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Integral.lean",
-    "tests": ["tests/unit/test_calculus_identities.py"],
+    "tests": [
+      "tests/unit/test_calculus_identities.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -122,7 +213,9 @@
     "statement": "P_a ∘ P_b = P_a",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Integral.lean",
-    "tests": ["tests/unit/test_calculus_identities.py"],
+    "tests": [
+      "tests/unit/test_calculus_identities.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -131,7 +224,9 @@
     "statement": "D(xy) = lsd(x)D(y)+lsd(y)D(x)+3 D(x)D(y)",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Algebra.lean",
-    "tests": ["tests/unit/test_calculus_identities.py"],
+    "tests": [
+      "tests/unit/test_calculus_identities.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -140,7 +235,9 @@
     "statement": "D(x+y)=D(x)+D(y)+carry(lsd(x),lsd(y))",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Algebra.lean",
-    "tests": ["tests/unit/test_calculus_identities.py"],
+    "tests": [
+      "tests/unit/test_calculus_identities.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -149,7 +246,9 @@
     "statement": "Trit is a 3-element Kleene algebra and not a Boolean algebra",
     "source": "docs/theory/trit_algebra.md",
     "lean": "BTCalculus/Trit.lean",
-    "tests": ["tests/unit/test_calculus_trit.py"],
+    "tests": [
+      "tests/unit/test_calculus_trit.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -158,7 +257,9 @@
     "statement": "cmp3 translation, negation, and antisymmetry",
     "source": "docs/theory/trit_control.md",
     "lean": "BTCalculus/Comparison.lean",
-    "tests": ["tests/unit/test_calculus_trit.py"],
+    "tests": [
+      "tests/unit/test_calculus_trit.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -167,7 +268,9 @@
     "statement": "select3 represents every Trit→ℤ map; abs/min/max",
     "source": "docs/theory/trit_control.md",
     "lean": "BTCalculus/Select.lean",
-    "tests": ["tests/unit/test_calculus_select.py"],
+    "tests": [
+      "tests/unit/test_calculus_select.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -176,7 +279,9 @@
     "statement": "unique trit residue c = 3q + r",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Normalization.lean",
-    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "tests": [
+      "tests/unit/test_normtheory_rewrite.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -185,7 +290,9 @@
     "statement": "value(P → P') = value(P)",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Normalization.lean",
-    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "tests": [
+      "tests/unit/test_normtheory_rewrite.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -194,7 +301,9 @@
     "statement": "normalize_LSD(P) = encodeZ(value(P)); result is all trits",
     "source": "docs/theory/balanced_ternary_normalization.md",
     "lean": "BTCalculus/Normalization.lean",
-    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "tests": [
+      "tests/unit/test_normtheory_rewrite.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -203,7 +312,9 @@
     "statement": "LSD step strictly decreases the abs-lex rank",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Normalization.lean",
-    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "tests": [
+      "tests/unit/test_normtheory_rewrite.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -212,7 +323,9 @@
     "statement": "3|DZ n| ≤ |n|+1 and |q| ≤ (B+1)/3 on |c|≤B",
     "source": "docs/theory/normalization_complexity.md",
     "lean": "BTCalculus/Normalization.lean",
-    "tests": ["tests/unit/test_normtheory_strategies.py"],
+    "tests": [
+      "tests/unit/test_normtheory_strategies.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -221,7 +334,9 @@
     "statement": "stripped coefficient rewrite is locally and globally confluent; unique NF is encodeZ(value); [-5,2] joins after stripHigh",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Confluence.lean",
-    "tests": ["tests/unit/test_normtheory_rewrite.py"],
+    "tests": [
+      "tests/unit/test_normtheory_rewrite.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -230,7 +345,10 @@
     "statement": "value(hatD_raw(P))=D(value(P)); naive D_coeff fails on [2]",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/NormalizedDerivative.lean",
-    "tests": ["tests/unit/test_hatd.py", "tests/unit/test_m14_regressions.py"],
+    "tests": [
+      "tests/unit/test_hatd.py",
+      "tests/unit/test_m14_regressions.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -239,7 +357,9 @@
     "statement": "f(a+3x)=rho_a(f)+3 sectionDeriv_a f(x)",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Polynomial.lean",
-    "tests": ["tests/unit/test_section.py"],
+    "tests": [
+      "tests/unit/test_section.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -248,7 +368,9 @@
     "statement": "twisted Leibniz for sectionDeriv of a product",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Composition.lean",
-    "tests": ["tests/unit/test_section.py"],
+    "tests": [
+      "tests/unit/test_section.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -257,7 +379,9 @@
     "statement": "sectionDeriv_a(f.comp g)=sectionDeriv_{rho_a g} f compose sectionDeriv_a g",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Composition.lean",
-    "tests": ["tests/unit/test_section.py"],
+    "tests": [
+      "tests/unit/test_section.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -266,7 +390,9 @@
     "statement": "finite-depth function-jet reconstruction along integer digits",
     "source": "docs/theory/balanced_ternary_jets.md",
     "lean": "BTCalculus/Jet.lean",
-    "tests": ["tests/unit/test_jets.py"],
+    "tests": [
+      "tests/unit/test_jets.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -275,7 +401,9 @@
     "statement": "deg sectionDeriv f = deg f for d>=1; LC = 3^{d-1} LC(f)",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "",
-    "tests": ["tests/unit/test_section.py"],
+    "tests": [
+      "tests/unit/test_section.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -284,7 +412,9 @@
     "statement": "finite-horizon equiv_k is an equivalence; recursive iff output words",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "BTCalculus/Residual.lean",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -293,7 +423,9 @@
     "statement": "R_k(x^2)=(3^k-1)/2",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -302,7 +434,9 @@
     "statement": "M_k(x^2)=R_k(x^2)=(3^k-1)/2 for all k>=1",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -311,7 +445,9 @@
     "statement": "residual of x^2 along w is 3^|w| x^2 + 2 p(w) x + DZ^|w|(p(w)^2)",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -320,7 +456,9 @@
     "statement": "degree <= 2 polynomials are equiv_k iff coefficients agree mod 3^k",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -329,7 +467,9 @@
     "statement": "first x^3 residual merge at k=2 is delayed distinction: equiv_2 and not equiv_3",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -338,7 +478,9 @@
     "statement": "first x^4 residual merge at k=3 is delayed distinction: equiv_3 and not equiv_4",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -347,7 +489,9 @@
     "statement": "f equiv_k g iff 3^k divides (f-g)(n) for every integer n",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -356,7 +500,9 @@
     "statement": "I_k is the set of Z[x] polynomials whose Newton coefficients are divisible by 3^k",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -365,7 +511,9 @@
     "statement": "degree <= 2 polynomials vanish as functions modulo 3^k iff all coefficients are divisible by 3^k",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -374,7 +522,9 @@
     "statement": "Ax^3+Bx^2+Cx+D vanishes modulo 3^k iff 3^k divides D, A+B+C, 3A+B, and 6A",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -383,7 +533,9 @@
     "statement": "x^3-x vanishes modulo 3 and its leading coefficient is not divisible by 3",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -392,7 +544,9 @@
     "statement": "tau(f,g)=1+min v_3(Delta^j (f-g)(0)) for distinct ordinary polynomials",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -401,7 +555,9 @@
     "statement": "3^k must divide every monomial coefficient for a polynomial to vanish as a function modulo 3^k",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -410,7 +566,9 @@
     "statement": "tau(f,g)=1+min v_3 of monomial coefficients of f-g",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "",
-    "tests": ["tests/unit/test_poly_congruence.py"],
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -419,7 +577,9 @@
     "statement": "sample LSD minimization equals M_k",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -428,7 +588,9 @@
     "statement": "outputAlong(w, f.comp g)=outputAlong(outputAlong(w,g), f)",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "BTCalculus/TransducerComposition.lean",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -437,7 +599,9 @@
     "statement": "M_k(f circ g) <= M_k(f) M_k(g)",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -446,7 +610,9 @@
     "statement": "prefix locality implies small automaton",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -455,7 +621,9 @@
     "statement": "bounded-B hat D is N_B then drop; not one FST on Z",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "",
-    "tests": ["tests/unit/test_myhill_nerode.py"],
+    "tests": [
+      "tests/unit/test_myhill_nerode.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -464,7 +632,9 @@
     "statement": "f_w(x)=3^{2m}x^3+3^{m+1}p x^2+3p^2 x+DZ^m(p^3)",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
-    "tests": ["tests/unit/test_cubic_residual.py"],
+    "tests": [
+      "tests/unit/test_cubic_residual.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -473,7 +643,9 @@
     "statement": "R_k(x^3)=(3^k-1)/2",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
-    "tests": ["tests/unit/test_cubic_residual.py"],
+    "tests": [
+      "tests/unit/test_cubic_residual.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -482,7 +654,9 @@
     "statement": "Newton coordinates of a cubic and of the residual family of x^3",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
-    "tests": ["tests/unit/test_cubic_residual.py"],
+    "tests": [
+      "tests/unit/test_cubic_residual.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -491,7 +665,9 @@
     "statement": "cubic Newton section step N3'=9 N3, N2'=3 N2+3(a+2)N3",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
-    "tests": ["tests/unit/test_cubic_residual.py"],
+    "tests": [
+      "tests/unit/test_cubic_residual.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -500,7 +676,9 @@
     "statement": "cubics are finite-horizon equivalent iff their Newton residues agree modulo 3^k",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
-    "tests": ["tests/unit/test_cubic_residual.py"],
+    "tests": [
+      "tests/unit/test_cubic_residual.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -509,7 +687,9 @@
     "statement": "M_k(x^3)=|Im F_k| for F_k(m,p)=Phi_k(f_(m,p))",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
-    "tests": ["tests/unit/test_cubic_residual.py"],
+    "tests": [
+      "tests/unit/test_cubic_residual.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -518,7 +698,9 @@
     "statement": "residuals of x^3 with 2m+1<k are ≡_k-separated",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_residual.py"],
+    "tests": [
+      "tests/unit/test_cubic_residual.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -527,7 +709,9 @@
     "statement": "Newton classes of x^3 are congruence classes of the packed prefix",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_residual.py"],
+    "tests": [
+      "tests/unit/test_cubic_residual.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -536,7 +720,9 @@
     "statement": "M_{k+1}(x^3)=3 M_k(x^3)+1",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_residual.py"],
+    "tests": [
+      "tests/unit/test_cubic_residual.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -545,7 +731,9 @@
     "statement": "same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
-    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_fibres.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -554,7 +742,9 @@
     "statement": "N1(p)-N1(q)=3(p-q)(p+q+3^m)",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
-    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_fibres.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -563,7 +753,9 @@
     "statement": "same-depth N2 implies N1",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_fibres.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -572,7 +764,9 @@
     "statement": "same-depth N2+N1 imply N0",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_fibres.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -581,7 +775,9 @@
     "statement": "cross-depth N3 agrees iff k<=2 min(m,n)+1 or m=n",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
-    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_fibres.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -590,7 +786,9 @@
     "statement": "odd pair: N2 iff N1; N0 iff 3^k divides D^m(p^3)",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
-    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_fibres.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -599,7 +797,9 @@
     "statement": "C_{k,m}=3^m whenever 2m+1<=k",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
-    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_fibres.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -608,7 +808,9 @@
     "statement": "every cubic fibre is a sign pair",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_fibres.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_fibres.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -617,7 +819,9 @@
     "statement": "deepest layer: N3=N2=0, N1≡3p^2 (k≥2)",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "BTCalculus/CubicDeepestLayer.lean",
-    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deepest.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -626,7 +830,9 @@
     "statement": "deepest fibres iff p^2≡q^2 (mod 3^{k-1}) and N0 agrees",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "BTCalculus/CubicDeepestLayer.lean",
-    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deepest.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -635,7 +841,9 @@
     "statement": "deepest 0-fibre is 3^{ceil((2k-1)/3)}|p",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "BTCalculus/CubicDeepestLayer.lean",
-    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deepest.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -644,7 +852,9 @@
     "statement": "every deepest fibre is a full 3-adic coset",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deepest.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -653,7 +863,9 @@
     "statement": "C_{k,k-1}=1+Σ_s I_{k,s} with closed high-stratum J(k,s)",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_deepest.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deepest.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -662,7 +874,9 @@
     "statement": "m=k-2: N3=0, N2≡2·3^{k-1}p (k≥3), N1≡3p^2+3^{k-1}p (k≥4)",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "BTCalculus/CubicIntermediateLayer.lean",
-    "tests": ["tests/unit/test_cubic_layer.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_layer.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -671,7 +885,9 @@
     "statement": "m=k-2 fibres iff p≡q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "BTCalculus/CubicIntermediateLayer.lean",
-    "tests": ["tests/unit/test_cubic_layer.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_layer.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -680,7 +896,9 @@
     "statement": "horizon k refines k-1 at depth k-2; unit signs split",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "BTCalculus/CubicIntermediateLayer.lean",
-    "tests": ["tests/unit/test_cubic_layer.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_layer.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -689,7 +907,9 @@
     "statement": "at m=k-2, N2+N1 imply N0",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_layer.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_layer.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -698,7 +918,9 @@
     "statement": "C_{k,k-2}=C_{k-1,k-2}",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_layer.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_layer.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -707,7 +929,9 @@
     "statement": "F_k(k-2,p) renormalizes onto a deepest-layer F_{k'}(k'-1,u)",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_layer.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_layer.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -716,7 +940,9 @@
     "statement": "at m=k-1-r, N2 equality iff p≡q (mod 3^r) whenever r+1≤k",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "BTCalculus/CubicDeficitTwo.lean",
-    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deficit_two.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -725,7 +951,9 @@
     "statement": "m=k-3: N3=0 (k≥5), N2≡2·3^{k-2}p (k≥5), N1≡3p^2+3^{k-2}p (k≥6)",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "BTCalculus/CubicDeficitTwo.lean",
-    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deficit_two.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -734,7 +962,9 @@
     "statement": "m=k-3 fibres iff p≡q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "BTCalculus/CubicDeficitTwo.lean",
-    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deficit_two.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -743,7 +973,9 @@
     "statement": "at m=k-3, N2+N1 imply N0",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deficit_two.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -752,7 +984,9 @@
     "statement": "after N2 shows p mod 9, N1 reveals the next trit",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "",
-    "tests": ["tests/unit/test_cubic_deficit_two.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_deficit_two.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -761,7 +995,9 @@
     "statement": "after N2, N1 agrees iff 3^{k-1-r} | δ(p+q+3^m)",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
-    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n1_valuation.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -770,7 +1006,9 @@
     "statement": "after N2, v3(p)<r and N1 agree imply p=q on P_m (r≥1, r+1≤k)",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
-    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n1_valuation.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -779,7 +1017,9 @@
     "statement": "N2+N1 is injective on units of P_m for every r≥1",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
-    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n1_valuation.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -788,7 +1028,9 @@
     "statement": "every nontrivial N2+N1 fibre on P_m lies in 3^r Z",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
-    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n1_valuation.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -797,7 +1039,9 @@
     "statement": "p ~ -p after N2+N1 iff 3^r | p",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
-    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n1_valuation.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -806,7 +1050,9 @@
     "statement": "on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k≥2r+2",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
-    "tests": ["tests/unit/test_cubic_n1_valuation.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n1_valuation.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -815,7 +1061,9 @@
     "statement": "D^m((3^r u)^3) is 3^{3r-m} u^3 if m≤3r, else D^{m-3r}(u^3)",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
-    "tests": ["tests/unit/test_cubic_n0_reduction.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n0_reduction.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -824,7 +1072,9 @@
     "statement": "N0(p)≡N0(-p) iff 3^k | N0(p)",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
-    "tests": ["tests/unit/test_cubic_n0_reduction.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n0_reduction.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -833,7 +1083,9 @@
     "statement": "D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)}",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
-    "tests": ["tests/unit/test_cubic_n0_reduction.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n0_reduction.py"
+    ],
     "related_conjectures": []
   },
   {
@@ -842,7 +1094,75 @@
     "statement": "stripped N0 is a standard residual at the N1 horizon k-2r",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
-    "tests": ["tests/unit/test_cubic_n0_reduction.py"],
+    "tests": [
+      "tests/research/residuals/test_cubic_n0_reduction.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-def",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Q_{t,K,W}(u)=D^t(u^3) mod 3^K on u∈P_W",
+    "source": "docs/theory/mismatched_cubic_quotient.md",
+    "lean": "BTCalculus/MismatchedCubicQuotient.lean",
+    "tests": [
+      "tests/research/residuals/test_mismatched_cubic.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-eq",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Q(u)=Q(v) iff 3^{t+K} divides u^3-v^3-Δbal_t",
+    "source": "docs/theory/mismatched_cubic_quotient.md",
+    "lean": "BTCalculus/MismatchedCubicQuotient.lean",
+    "tests": [
+      "tests/research/residuals/test_mismatched_cubic.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-shift",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D^t((a+3^s x)^3) expands by cubic carry when t≤s+1 and t≤3s",
+    "source": "docs/theory/mismatched_cubic_quotient.md",
+    "lean": "BTCalculus/MismatchedCubicQuotient.lean",
+    "tests": [
+      "tests/research/residuals/test_mismatched_cubic.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-vis",
+    "tag": "REFUTED",
+    "statement": "Q-equality is u≡v (mod 3^s) for a fixed residue modulus",
+    "source": "docs/theory/mismatched_cubic_quotient.md",
+    "lean": "BTCalculus/MismatchedCubicQuotient.lean",
+    "tests": [
+      "tests/research/residuals/test_mismatched_cubic.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-visible",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D^t(u^3) mod 3^K is determined by u mod 3^{max(1,t+K-1)}",
+    "source": "docs/theory/mismatched_cubic_quotient.md",
+    "lean": "BTCalculus/MismatchedCubicQuotient.lean",
+    "tests": [
+      "tests/research/residuals/test_mismatched_cubic.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-Q-scale",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Q_t(3^s w) is 3^{3s-t} w^3 if t<=3s, else Q_{t-3s}(w)",
+    "source": "docs/theory/mismatched_cubic_quotient.md",
+    "lean": "BTCalculus/MismatchedCubicQuotient.lean",
+    "tests": [
+      "tests/research/residuals/test_mismatched_cubic.py"
+    ],
     "related_conjectures": []
   }
 ]

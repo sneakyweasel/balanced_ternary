@@ -16,7 +16,8 @@ Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 
 Related: [cubic_n1_valuation.md](cubic_n1_valuation.md),
 [cubic_deficit_two.md](cubic_deficit_two.md),
-[cubic_deepest_layer.md](cubic_deepest_layer.md).
+[cubic_deepest_layer.md](cubic_deepest_layer.md),
+[mismatched_cubic_quotient.md](mismatched_cubic_quotient.md).
 
 ---
 
@@ -304,10 +305,7 @@ project-specific.
 
 ## 15. Strongest next question
 
-The remaining same-depth problem on the locus is the pair
-\((N_1^\mathrm{scaled},N_0^\mathrm{stripped})\) on \(u\in P_{k-1-2r}\).
-Is there a useful calculus of that pair as a *cubic quotient of
-mismatched width*, or must \(N_0\) be treated as an independent
-\(D^t(u^3)\bmod 3^k\) constraint?
-
-Do not start that work automatically.
+Closed by Milestone 26. The stripped map is the mismatched-width
+cubic quotient \(Q_{t,k,W}\) with exact reconstruction criterion;
+it is not a standard residual. See
+[mismatched_cubic_quotient.md](mismatched_cubic_quotient.md).

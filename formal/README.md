@@ -62,7 +62,9 @@ and the depth-deficit visibility law
 `N2` iff `p ≡ q (mod 3^r)` together with the `r=2` fibre criterion,
 and the general `N1` valuation-stratification theorem
 (`v3(p)<r` is separated after `N2`),
-and the two-regime `N0` scaling `D^m((3^r u)^3)`.
+and the two-regime `N0` scaling `D^m((3^r u)^3)`,
+and the mismatched-width cubic quotient
+`Q_{t,K,W}=D^t(u^3) mod 3^K` with exact reconstruction criterion.
 
 These are labelled **EXACT — LEAN VERIFIED**. The Python cylinder
 implementation remains the executable instantiation; this Lean project

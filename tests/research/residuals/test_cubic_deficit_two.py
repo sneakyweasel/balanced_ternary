@@ -7,7 +7,7 @@ from contextlib import redirect_stdout
 
 from balanced_ternary.cli import main
 from bt.calculus.cubic import F_k
-from bt.calculus.cubic_deficit_two import (
+from research.residuals.cubic_deficit_two import (
     def2_class_count,
     def2_equiv,
     def2_fibre_of,
@@ -20,7 +20,7 @@ from bt.calculus.cubic_deficit_two import (
     n21_image,
     n2_image,
 )
-from bt.calculus.cubic_fibres import C_km, prefixes_at, same_depth_n2
+from research.residuals.cubic_fibres import C_km, prefixes_at, same_depth_n2
 from bt.calculus.quadratic import iter_dz
 
 
@@ -149,7 +149,7 @@ def test_report_and_cli():
 def test_depth_rejects_other_deficits():
     assert deficit_two_depth(8) == 5
     try:
-        from bt.calculus.cubic_layer import layer_depth
+        from research.residuals.cubic_layer import layer_depth
 
         layer_depth(8, 2)
     except ValueError:

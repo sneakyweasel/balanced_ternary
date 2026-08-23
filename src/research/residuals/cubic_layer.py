@@ -17,8 +17,8 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 
 from bt.calculus.cubic import F_k
-from bt.calculus.cubic_deepest import deepest_class_count, fibre_kind
-from bt.calculus.cubic_fibres import (
+from research.residuals.cubic_deepest import deepest_class_count, fibre_kind
+from research.residuals.cubic_fibres import (
     balanced_bound,
     prefixes_at,
     same_depth_equiv,

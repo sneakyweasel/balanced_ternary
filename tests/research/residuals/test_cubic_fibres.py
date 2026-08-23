@@ -7,7 +7,7 @@ from contextlib import redirect_stdout
 
 from balanced_ternary.cli import main
 from bt.calculus.cubic import F_k, M_k_x3, raw_count_x3
-from bt.calculus.cubic_fibres import (
+from research.residuals.cubic_fibres import (
     C_km,
     balanced_bound,
     cross_depth_n3,

@@ -11,10 +11,12 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.operator_dynamics.problem import PROBLEM as OPERATOR_DYNAMICS
     from research.perfect_powers.problem import PROBLEM as PERFECT_POWERS
     from research.primes.problem import PROBLEM as PRIMES
+    from research.residuals.problem import PROBLEM as RESIDUALS
     from research.sparse_polynomials.problem import PROBLEM as SPARSE_POLYNOMIALS
 
     return (
         COLLATZ,
+        RESIDUALS,
         ADDITIVE,
         PERFECT_POWERS,
         PRIMES,

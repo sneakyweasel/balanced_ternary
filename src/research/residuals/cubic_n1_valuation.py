@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from collections import Counter, defaultdict
 
-from bt.calculus.cubic_fibres import balanced_bound, prefixes_at, same_depth_n1, same_depth_n2
+from research.residuals.cubic_fibres import balanced_bound, prefixes_at, same_depth_n1, same_depth_n2
 from bt.metrics import v3
 
 

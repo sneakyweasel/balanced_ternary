@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from collections import Counter, defaultdict
 
-from bt.calculus.cubic import F_k, raw_count_x3
+from bt.calculus.cubic import F_k, balanced_bound, is_balanced_width, prefixes_at, raw_count_x3
 from bt.calculus.quadratic import iter_dz
 from bt.metrics import v3
 
@@ -20,22 +20,6 @@ def _require_nat(n: int, name: str) -> int:
         raise ValueError(f"{name} must be a natural number")
     return n
 
-
-def balanced_bound(m: int) -> int:
-    """Half-width of ``P_m``: ``(3^m-1)/2``."""
-    m = _require_nat(m, "m")
-    return (3**m - 1) // 2
-
-
-def is_balanced_width(m: int, p: int) -> bool:
-    """``p`` is a packed prefix of some length-``m`` trit word."""
-    return abs(p) <= balanced_bound(m)
-
-
-def prefixes_at(m: int) -> range:
-    """Integers ``P_m`` as a contiguous symmetric interval."""
-    w = balanced_bound(m)
-    return range(-w, w + 1)
 
 
 def n2_divisor(m: int, k: int) -> int:

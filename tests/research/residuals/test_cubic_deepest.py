@@ -7,7 +7,7 @@ from contextlib import redirect_stdout
 
 from balanced_ternary.cli import main
 from bt.calculus.cubic import F_k
-from bt.calculus.cubic_deepest import (
+from research.residuals.cubic_deepest import (
     C_km_neighbors,
     balanced_residue,
     cube_root_bound,
@@ -32,7 +32,7 @@ from bt.calculus.cubic_deepest import (
     zero_fibre,
     zero_fibre_size,
 )
-from bt.calculus.cubic_fibres import C_km, balanced_bound, prefixes_at, zero_fibre_exponent
+from research.residuals.cubic_fibres import C_km, balanced_bound, prefixes_at, zero_fibre_exponent
 from bt.calculus.quadratic import iter_dz
 
 

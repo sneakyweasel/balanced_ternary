@@ -6,8 +6,8 @@ import io
 from contextlib import redirect_stdout
 
 from balanced_ternary.cli import main
-from bt.calculus.cubic_fibres import prefixes_at, same_depth_n0
-from bt.calculus.cubic_n0_reduction import (
+from research.residuals.cubic_fibres import prefixes_at, same_depth_n0
+from research.residuals.cubic_n0_reduction import (
     n0_candidate_deepest,
     n0_fibre_after_n21,
     n0_mod,
@@ -21,7 +21,7 @@ from bt.calculus.cubic_n0_reduction import (
     reduced_depth,
     u_prefixes,
 )
-from bt.calculus.cubic_n1_valuation import deficit_depth, n21_agree
+from research.residuals.cubic_n1_valuation import deficit_depth, n21_agree
 from bt.calculus.quadratic import iter_dz
 
 

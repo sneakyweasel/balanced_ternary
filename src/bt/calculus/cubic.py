@@ -32,6 +32,23 @@ def _require_nat(n: int, name: str) -> int:
     return n
 
 
+def balanced_bound(m: int) -> int:
+    """Half-width of ``P_m``: ``(3^m-1)/2``."""
+    m = _require_nat(m, "m")
+    return (3**m - 1) // 2
+
+
+def is_balanced_width(m: int, p: int) -> bool:
+    """``p`` is a packed prefix of some length-``m`` trit word."""
+    return abs(p) <= balanced_bound(m)
+
+
+def prefixes_at(m: int) -> range:
+    """Integers ``P_m`` as a contiguous symmetric interval."""
+    w = balanced_bound(m)
+    return range(-w, w + 1)
+
+
 def cubic_coeffs(m: int, p: int) -> tuple[int, int, int, int]:
     """Monomial ``(A, B, C, D)`` of the residual of ``x^3`` at depth ``m``."""
     m = _require_nat(m, "m")

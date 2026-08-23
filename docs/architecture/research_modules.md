@@ -21,6 +21,7 @@ Do not mark a module `PAPER_CANDIDATE` merely because a census is large.
 | Module | Status | Contents |
 |--------|--------|----------|
 | `research.collatz` | `STRUCTURAL` | accelerated `T`, cylinders, dual codes, affine geometry, cycles, warp |
+| `research.residuals` | `STRUCTURAL` | cubic Newton-stratum fibres, \(N_1\)/\(N_0\), mismatched \(Q\) |
 | `research.additive_combinatorics` | `EXPLORATORY` | `A_k`, `B_k`, `C_k`, sumsets |
 | `research.perfect_powers` | `EXPLORATORY` | sparse squares and cubes |
 | `research.primes` | `EXPLORATORY` | sparse-prime helpers already in the repo |
@@ -32,6 +33,9 @@ Each module exposes a lightweight `problem.py` descriptor
 (`id`, `title`, `status`, `statement`, `bt_relevance`, `docs`, `lean`,
 `conjectures`). Collatz keeps its existing modules; they are not forced
 into a deep framework.
+
+The exploratory modules above are parked. They are not a second frontier
+and are not developed in the laboratory consolidation. Do not delete them.
 
 ## Adding a problem
 

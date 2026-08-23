@@ -11,10 +11,10 @@ from functools import lru_cache
 from itertools import product
 
 from bt.calculus.cubic import F_k, cubic_residual_formula, image_profile, raw_count_x3
-from bt.calculus.cubic_deficit_two import def2_fibre_of
-from bt.calculus.cubic_deepest import deepest_fibre_of
-from bt.calculus.cubic_fibres import depth_image, fibre_of
-from bt.calculus.cubic_layer import inter_fibre_of
+from research.residuals.cubic_deficit_two import def2_fibre_of
+from research.residuals.cubic_deepest import deepest_fibre_of
+from research.residuals.cubic_fibres import depth_image, fibre_of
+from research.residuals.cubic_layer import inter_fibre_of
 from bt.calculus.myhill_nerode import distinguish_pair, myhill_nerode_count, raw_count
 from bt.calculus.poly_congruence import (
     first_distinction_horizon,

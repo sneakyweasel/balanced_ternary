@@ -225,6 +225,33 @@ def add_calculus_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_n0f.add_argument("--k", type=int, required=True)
     p_n0f.add_argument("--deficit", type=int, required=True)
 
+    p_cq = c.add_parser(
+        "cubic-quotient",
+        help="mismatched-width cubic quotient Q(t,K,W)",
+    )
+    p_cq.add_argument("--t", type=int, required=True)
+    p_cq.add_argument("--modulus", type=int, required=True)
+    p_cq.add_argument("--width", type=int, required=True)
+
+    p_cqf = c.add_parser(
+        "cubic-quotient-fibre",
+        help="Q-fibre of one u in P_W",
+    )
+    p_cqf.add_argument("u", type=int)
+    p_cqf.add_argument("--t", type=int, required=True)
+    p_cqf.add_argument("--modulus", type=int, required=True)
+    p_cqf.add_argument("--width", type=int, required=True)
+
+    p_cqc = c.add_parser(
+        "compare-cubic-quotient",
+        help="exact reconstruction comparison of Q(u) and Q(v)",
+    )
+    p_cqc.add_argument("u", type=int)
+    p_cqc.add_argument("v", type=int)
+    p_cqc.add_argument("more", nargs="*", type=int)
+    p_cqc.add_argument("--t", type=int, required=True)
+    p_cqc.add_argument("--modulus", type=int, required=True)
+
 
 def run_calculus(args: argparse.Namespace) -> int:
     cmd = args.cal_cmd
@@ -570,7 +597,7 @@ def run_calculus(args: argparse.Namespace) -> int:
                 print(f"  {member['word']} p={member['p']} {member['poly']}")
         return 0
     if cmd == "cubic-fibres":
-        from bt.calculus.cubic_fibres import fibre_report
+        from research.residuals.cubic_fibres import fibre_report
 
         rec = fibre_report(args.k)
         print(f"k = {rec['k']}")
@@ -587,7 +614,7 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"  {fib}")
         return 0
     if cmd == "cubic-fibre":
-        from bt.calculus.cubic_fibres import fibre_of
+        from research.residuals.cubic_fibres import fibre_of
 
         members = fibre_of(args.m, args.p, args.k)
         print(f"m = {args.m}  p = {args.p}  k = {args.k}")
@@ -596,7 +623,7 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"  ({m}, {p})")
         return 0
     if cmd == "cubic-deepest":
-        from bt.calculus.cubic_deepest import deepest_report
+        from research.residuals.cubic_deepest import deepest_report
 
         rec = deepest_report(args.k)
         print(f"k = {rec['k']}")
@@ -612,7 +639,7 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"  {fib}")
         return 0
     if cmd == "cubic-deepest-fibre":
-        from bt.calculus.cubic_deepest import deepest_fibre_of, deepest_phi
+        from research.residuals.cubic_deepest import deepest_fibre_of, deepest_phi
 
         members = deepest_fibre_of(args.p, args.k)
         print(f"p = {args.p}  k = {args.k}")
@@ -623,12 +650,12 @@ def run_calculus(args: argparse.Namespace) -> int:
         return 0
     if cmd == "cubic-layer":
         if args.depth_deficit == 1:
-            from bt.calculus.cubic_layer import layer_report
+            from research.residuals.cubic_layer import layer_report
 
             rec = layer_report(args.k, 1)
             clabel = "C(k,k-2)"
         elif args.depth_deficit == 2:
-            from bt.calculus.cubic_deficit_two import def2_report
+            from research.residuals.cubic_deficit_two import def2_report
 
             rec = def2_report(args.k)
             clabel = "C(k,k-3)"
@@ -650,12 +677,12 @@ def run_calculus(args: argparse.Namespace) -> int:
         return 0
     if cmd == "cubic-layer-fibre":
         if args.depth_deficit == 1:
-            from bt.calculus.cubic_layer import inter_fibre_of
+            from research.residuals.cubic_layer import inter_fibre_of
 
             members = inter_fibre_of(args.p, args.k)
             m = args.k - 2
         elif args.depth_deficit == 2:
-            from bt.calculus.cubic_deficit_two import def2_fibre_of
+            from research.residuals.cubic_deficit_two import def2_fibre_of
 
             members = def2_fibre_of(args.p, args.k)
             m = args.k - 3
@@ -667,7 +694,7 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"  {q}")
         return 0
     if cmd == "n1-strata":
-        from bt.calculus.cubic_n1_valuation import n1_strata_report
+        from research.residuals.cubic_n1_valuation import n1_strata_report
 
         rec = n1_strata_report(args.k, args.deficit)
         print(f"k = {rec['k']}")
@@ -692,7 +719,7 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"  {fib}")
         return 0
     if cmd == "n1-fibre":
-        from bt.calculus.cubic_n1_valuation import deficit_depth, n21_fibre_of
+        from research.residuals.cubic_n1_valuation import deficit_depth, n21_fibre_of
 
         m = deficit_depth(args.k, args.deficit)
         members = n21_fibre_of(args.p, args.k, args.deficit)
@@ -705,7 +732,7 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"  {q}")
         return 0
     if cmd == "n0-reduction":
-        from bt.calculus.cubic_n0_reduction import n0_reduction_report
+        from research.residuals.cubic_n0_reduction import n0_reduction_report
 
         rec = n0_reduction_report(args.k, args.deficit)
         print(f"k = {rec['k']}")
@@ -732,8 +759,8 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"  u={s['u']} p={s['p']} N0={s['N0']} stripped={s['stripped']}")
         return 0
     if cmd == "n0-fibre":
-        from bt.calculus.cubic_n0_reduction import n0_fibre_after_n21
-        from bt.calculus.cubic_n1_valuation import deficit_depth, n21_fibre_of
+        from research.residuals.cubic_n0_reduction import n0_fibre_after_n21
+        from research.residuals.cubic_n1_valuation import deficit_depth, n21_fibre_of
 
         m = deficit_depth(args.k, args.deficit)
         n21 = n21_fibre_of(args.p, args.k, args.deficit)
@@ -745,5 +772,74 @@ def run_calculus(args: argparse.Namespace) -> int:
         print(f"in 3^{args.deficit} Z = {all(q % (3 ** args.deficit) == 0 for q in members)}")
         for q in members:
             print(f"  {q}")
+        return 0
+    if cmd == "cubic-quotient":
+        from research.residuals.mismatched_cubic import q_report
+
+        rec = q_report(args.t, args.modulus, args.width)
+        print(f"t = {rec['t']}")
+        print(f"K = {rec['K']}")
+        print(f"W = {rec['W']}")
+        print(f"raw prefixes = {rec['raw']}")
+        print(f"Q classes = {rec['classes']}")
+        print(f"unit prefixes = {rec['unit_prefixes']}")
+        print(f"unit classes = {rec['unit_classes']}")
+        print(f"width excess W-t = {rec['width_excess']}")
+        print(f"visibility s bound = {rec['visibility_s']}")
+        print(f"surviving nontrivial fibres = {rec['nontrivial']}")
+        print(f"histogram = {rec['histogram']}")
+        print(f"max fibre = {rec['max_fibre']}")
+        print(f"valuation strata = {rec['stratum_sizes']}")
+        print("fibre types")
+        for fib in rec["examples"]:
+            print(f"  {fib}")
+        return 0
+    if cmd == "cubic-quotient-fibre":
+        from research.residuals.mismatched_cubic import q_int, q_mod, q_visibility
+        from bt.metrics import v3
+
+        vis = q_visibility(args.t, args.modulus, args.width, args.u)
+        du = q_int(args.t, args.u)
+        print(f"t = {vis['t']}")
+        print(f"K = {vis['K']}")
+        print(f"W = {vis['W']}")
+        print(f"u = {args.u}")
+        print(f"u^3 = {args.u ** 3}")
+        print(f"D^t(u^3) = {du}")
+        print(f"mod 3^K = {q_mod(args.t, args.modulus, args.u)}")
+        print(f"v3(u) = {v3(args.u)}")
+        print(f"v3(D^t(u^3)) = {v3(du)}")
+        print(f"fibre_size = {vis['fibre_size']}")
+        print(f"width excess W-t = {vis['width_excess']}")
+        print(f"visibility s bound = {vis['visibility_s']}")
+        print(f"fibre agrees mod 3^s = {vis['agrees_mod_s']}")
+        print(f"common residue exponent = {vis['common_mod_exp']}")
+        print(f"discarded bal_t values = {vis['bal_values']}")
+        print(f"valuations = {vis['valuations']}")
+        print(f"same discarded digits => cube-mod law = {vis['cube_mod_necessary_on_fibre']}")
+        for x in vis["fibre"]:
+            print(f"  {x}")
+        return 0
+    if cmd == "compare-cubic-quotient":
+        from research.residuals.mismatched_cubic import q_compare
+
+        values = [args.u, args.v, *args.more]
+        for i in range(len(values) - 1):
+            rec = q_compare(args.t, args.modulus, values[i], values[i + 1])
+            print(f"t = {rec['t']}")
+            print(f"K = {rec['K']}")
+            print(f"u = {rec['u']}  v = {rec['v']}")
+            print(f"u^3 = {rec['u3']}  v^3 = {rec['v3']}")
+            print(f"bal_t(u^3) = {rec['bal_u3']}  bal_t(v^3) = {rec['bal_v3']}")
+            print(f"D^t(u^3) = {rec['Dt_u3']}  D^t(v^3) = {rec['Dt_v3']}")
+            print(f"Q(u) = {rec['Q_u']}  Q(v) = {rec['Q_v']}")
+            print(f"equal = {rec['equal']}")
+            print(f"recon_delta = {rec['recon_delta']}")
+            print(f"recon criterion = {rec['recon_ok']}")
+            print(f"cube-mod sufficient = {rec['cube_mod_sufficient']}")
+            print(f"v3(u) = {rec['v3_u']}  v3(v) = {rec['v3_v']}")
+            print(f"v3(D^t(u^3)) = {rec['v3_Dt_u']}")
+            if i + 2 < len(values):
+                print("---")
         return 0
     raise ValueError(f"unknown calculus command {cmd}")

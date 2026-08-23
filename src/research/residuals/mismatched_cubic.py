@@ -12,7 +12,7 @@ from __future__ import annotations
 
 from collections import Counter, defaultdict
 
-from bt.calculus.cubic_fibres import balanced_bound, prefixes_at
+from research.residuals.cubic_fibres import balanced_bound, prefixes_at
 from bt.calculus.jets import integer_jet
 from bt.calculus.quadratic import iter_dz, pack_word
 from bt.metrics import v3
@@ -190,3 +190,60 @@ def unit_extra_collisions(t: int, K: int, W: int) -> list[tuple[int, int]]:
             if q_eq(t, K, u, v) and (u - v) % (3**s) != 0:
                 hits.append((u, v))
     return hits
+
+
+def common_modulus_exp(members: list[int], cap: int = 32) -> int:
+    """Largest ``e ≤ cap`` such that all members agree modulo ``3^e``."""
+    if len(members) <= 1:
+        return cap
+    e = 0
+    while e < cap:
+        mod = 3 ** (e + 1)
+        residue = members[0] % mod
+        if any(x % mod != residue for x in members[1:]):
+            return e
+        e += 1
+    return cap
+
+
+def q_visibility(t: int, K: int, W: int, u: int) -> dict[str, object]:
+    """What the fibre of ``u`` exposes about residues and discarded digits."""
+    require_width(W, u)
+    members = q_fibre(t, K, W, u)
+    s = visibility_bound(t, K)
+    bals = sorted({bal_digits(x**3, t) for x in members})
+    vals = sorted({("inf" if v3(x) is None else v3(x)) for x in members}, key=lambda x: (x == "inf", x if x != "inf" else 0))
+    return {
+        "t": t,
+        "K": K,
+        "W": W,
+        "u": u,
+        "fibre": members,
+        "fibre_size": len(members),
+        "visibility_s": s,
+        "agrees_mod_s": all((x - u) % (3**s) == 0 for x in members),
+        "common_mod_exp": common_modulus_exp(members),
+        "bal_values": bals,
+        "valuations": vals,
+        "width_excess": W - t,
+        "cube_mod_necessary_on_fibre": len(bals) == 1,
+    }
+
+
+def q_prefix_state_counts(t: int, K: int, W: int) -> list[int]:
+    """Exploratory MN class counts by LSD prefix length, not a theorem."""
+    W = _require_nat(W, "W")
+    prefixes = prefixes_at(W)
+    values = {u: q_mod(t, K, u) for u in prefixes}
+    counts: list[int] = []
+    for j in range(W + 1):
+        mod = 3**j if j else 1
+        buckets: dict[int, dict[int, int]] = defaultdict(dict)
+        for u in prefixes:
+            buckets[u % mod][u] = values[u]
+        signatures: set[tuple[tuple[int, int], ...]] = set()
+        for table in buckets.values():
+            high_map = tuple(sorted(((u - (u % mod)) // mod, q) for u, q in table.items()))
+            signatures.add(high_map)
+        counts.append(len(signatures))
+    return counts

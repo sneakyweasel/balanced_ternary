@@ -20,7 +20,7 @@ from __future__ import annotations
 from collections import Counter, defaultdict
 
 from bt.calculus.cubic import F_k
-from bt.calculus.cubic_fibres import balanced_bound, prefixes_at, zero_fibre_exponent
+from research.residuals.cubic_fibres import balanced_bound, prefixes_at, zero_fibre_exponent
 from bt.calculus.quadratic import iter_dz
 from bt.metrics import v3
 
@@ -252,7 +252,7 @@ def deepest_fibres(k: int) -> list[list[int]]:
 
 def C_km_neighbors(k: int) -> dict[str, int]:
     """Diagnostic: ``C_{k,k-1}``, ``C_{k,k-2}``, ``C_{k,k-3}`` via ``F_k``."""
-    from bt.calculus.cubic_fibres import C_km
+    from research.residuals.cubic_fibres import C_km
 
     out = {"C_k_k-1": deepest_class_count(k)}
     if k >= 2:

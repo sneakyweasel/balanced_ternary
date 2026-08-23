@@ -26,7 +26,8 @@ Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 Related: [cubic_deficit_two.md](cubic_deficit_two.md),
 [cubic_intermediate_layer.md](cubic_intermediate_layer.md),
 [cubic_deepest_layer.md](cubic_deepest_layer.md),
-[cubic_n0_reduction.md](cubic_n0_reduction.md).
+[cubic_n0_reduction.md](cubic_n0_reduction.md),
+[mismatched_cubic_quotient.md](mismatched_cubic_quotient.md).
 
 ---
 
@@ -339,4 +340,5 @@ Closed by Milestone 25. \(N_0=D^m((3^ru)^3)\) strips as
 \(3^{3r-m}u^3\) or \(D^{m-3r}(u^3)\), but this is not a standard
 smaller residual: width \(k-1-2r\) versus depth \(k-1-4r\), and
 the \(N_1\) horizon \(k-2r\) does not match. See
-[cubic_n0_reduction.md](cubic_n0_reduction.md).
+[cubic_n0_reduction.md](cubic_n0_reduction.md) and
+[mismatched_cubic_quotient.md](mismatched_cubic_quotient.md).

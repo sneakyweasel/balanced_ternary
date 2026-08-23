@@ -49,6 +49,7 @@ supported.
 | Module | Status |
 |--------|--------|
 | `research.collatz` | STRUCTURAL |
+| `research.residuals` | STRUCTURAL |
 | `research.additive_combinatorics` | EXPLORATORY |
 | `research.perfect_powers` | EXPLORATORY |
 | `research.primes` | EXPLORATORY |

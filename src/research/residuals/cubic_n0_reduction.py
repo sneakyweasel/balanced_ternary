@@ -17,8 +17,8 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from bt.calculus.cubic_fibres import balanced_bound, prefixes_at, same_depth_n0
-from bt.calculus.cubic_n1_valuation import deficit_depth, n21_agree, n21_fibre_of
+from research.residuals.cubic_fibres import balanced_bound, prefixes_at, same_depth_n0
+from research.residuals.cubic_n1_valuation import deficit_depth, n21_agree, n21_fibre_of
 from bt.calculus.quadratic import iter_dz
 from bt.metrics import v3
 

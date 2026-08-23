@@ -22,12 +22,13 @@ This is enforced by `tests/unit/test_core_import_graph.py`.
 | `bt.automata` | generic residue automata and DFA minimization |
 | `bt.transducers` | generic sequential transducers and the transducer zoo |
 | `bt.sequences` | canonical reusable sequences (digit sum, length, palindrome) |
-| `bt.calculus` | trit algebra, `D`/`I_a`/`P_a`, `cmp3`/`select3`, rewrite, VM, information profiles, `Z[x]` section derivative, jets, residual Myhill–Nerode automata, polynomial function congruence modulo `3^k`, Newton-class image, fibres, deepest and intermediate layers, depth-deficit-2 visibility of `x^3`, the general `N1` valuation stratification, and the two-regime `N0` scaling on `3^r Z` |
+| `bt.calculus` | trit algebra, `D`/`I_a`/`P_a`, `cmp3`/`select3`, rewrite, VM, information profiles, `Z[x]` section derivative, jets, residual Myhill–Nerode automata, polynomial function congruence modulo `3^k`, and the closed Newton image `F_k` of `x^3` |
 | `bt.normtheory` | integer coefficient words, abstract carry rewrite, strategies, FMA, FST-by-bound, `hat D` |
 
 ## What does not belong here
 
 - Collatz valuation, exponent codes, cylinders, affine centers
+- Cubic fibre / layer / `N1` / `N0` / mismatched-quotient censuses (`research.residuals`)
 - Prime-specific or sparse-power searches
 - Mahler-measure experiment scans
 - Operator-composition censuses

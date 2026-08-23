@@ -55,6 +55,7 @@ bt.*                        problem-independent BT mathematics
 | `balanced_ternary.additive_sets` (sparse primes) | `research.primes` |
 | `balanced_ternary.operator_algebra` | `research.operator_dynamics` |
 | — | `bt.calculus` |
+| — | `research.residuals` |
 | `balanced_ternary.sequences` (dossiers) | `research.operator_dynamics` |
 | `balanced_ternary.transducer_zoo` | `bt.transducers` |
 | `automata.modular` | `bt.automata` |

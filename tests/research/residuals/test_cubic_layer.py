@@ -7,9 +7,9 @@ from contextlib import redirect_stdout
 
 from balanced_ternary.cli import main
 from bt.calculus.cubic import F_k
-from bt.calculus.cubic_deepest import deepest_class_count
-from bt.calculus.cubic_fibres import C_km, prefixes_at
-from bt.calculus.cubic_layer import (
+from research.residuals.cubic_deepest import deepest_class_count
+from research.residuals.cubic_fibres import C_km, prefixes_at
+from research.residuals.cubic_layer import (
     inter_class_count,
     inter_equiv,
     inter_n0,
