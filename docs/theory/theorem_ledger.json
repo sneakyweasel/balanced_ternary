@@ -49,10 +49,10 @@
   },
   {
     "id": "C-T-welldefined",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Accelerated T is well-defined on positive odd integers.",
     "source": "docs/collatz_mathematics.md",
-    "lean": "",
+    "lean": "Problems/Collatz/Accelerated.lean",
     "tests": [
       "tests/research/collatz/test_core.py"
     ],
@@ -419,7 +419,7 @@
   },
   {
     "id": "BTA-x2-raw",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "R_k(x^2)=(3^k-1)/2",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -430,7 +430,7 @@
   },
   {
     "id": "BTA-x2-mn",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "M_k(x^2)=R_k(x^2)=(3^k-1)/2 for all k>=1",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -1162,6 +1162,17 @@
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
     "tests": [
       "tests/research/residuals/test_mismatched_cubic.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-x3-stratum",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "At deficit r, N2 iff p = q (mod 3^r); N1 after N2 is the delta law; N0 is the mismatched Q on the 3^r locus",
+    "source": "docs/theory/cubic_newton_stratum.md",
+    "lean": "BTCalculus/NewtonStratum.lean",
+    "tests": [
+      "tests/research/residuals/test_stratum.py"
     ],
     "related_conjectures": []
   }

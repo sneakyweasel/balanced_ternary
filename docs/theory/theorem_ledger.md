@@ -23,7 +23,7 @@ This ledger does not rewrite history.
 | BT-D-S | EXACT — LEAN VERIFIED | D ∘ S = id | docs/balanced_ternary_operators.md | Operators/DigitDerivative | test_operators |
 | BT-W-not-involution | REFUTED | W is an involution on Z | docs/operator_algebra.md | Operators/Algebra | test_operators |
 | BT-Pn3 | EXACT — LEAN VERIFIED | P_n(3) = n | docs/balanced_ternary_polynomials.md | Operators/Polynomial | test_operator_branch |
-| C-T-welldefined | EXACT — HUMAN PROOF | Accelerated T is well-defined on positive odd integers. | docs/collatz_mathematics.md |  | test_core |
+| C-T-welldefined | EXACT — LEAN VERIFIED | Accelerated T is well-defined on positive odd integers. | docs/collatz_mathematics.md | Problems/Collatz/Accelerated | test_core |
 | C-append-plus | EXACT — HUMAN PROOF | BT(3n+1)=BT(n)+ for n≠0 | docs/collatz_mathematics.md | Representation/Words | test_theorems |
 | C-odd-part-not-one-fst | EXACT — HUMAN PROOF | Unrestricted odd-part is not one rational transduction. | docs/collatz_mathematics.md |  | test_transducers |
 | C-affine-formula | EXACT — LEAN VERIFIED | T^m(n)=(3^m n+C)/2^K | docs/collatz_itinerary_compatibility.md | Problems/Collatz/ | test_affine_formula |
@@ -56,8 +56,8 @@ This ledger does not rewrite history.
 | BTJ-jet | EXACT — LEAN VERIFIED | finite-depth function-jet reconstruction along integer digits | docs/theory/balanced_ternary_jets.md | BTCalculus/Jet | test_jets |
 | BTJ-degree | EXACT — HUMAN PROOF | deg sectionDeriv f = deg f for d>=1; LC = 3^{d-1} LC(f) | docs/theory/polynomial_jet_calculus.md |  | test_section |
 | BTA-equiv | EXACT — LEAN VERIFIED | finite-horizon equiv_k is an equivalence; recursive iff output words | docs/theory/residual_state_complexity.md | BTCalculus/Residual | test_myhill_nerode |
-| BTA-x2-raw | EXACT — HUMAN PROOF | R_k(x^2)=(3^k-1)/2 | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic | test_myhill_nerode |
-| BTA-x2-mn | EXACT — HUMAN PROOF | M_k(x^2)=R_k(x^2)=(3^k-1)/2 for all k>=1 | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic | test_myhill_nerode |
+| BTA-x2-raw | EXACT — LEAN VERIFIED | R_k(x^2)=(3^k-1)/2 | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic | test_myhill_nerode |
+| BTA-x2-mn | EXACT — LEAN VERIFIED | M_k(x^2)=R_k(x^2)=(3^k-1)/2 for all k>=1 | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic | test_myhill_nerode |
 | BTA-x2-quad-form | EXACT — LEAN VERIFIED | residual of x^2 along w is 3^\|w\| x^2 + 2 p(w) x + DZ^\|w\|(p(w)^2) | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic | test_myhill_nerode |
 | BTA-quad-mod | EXACT — LEAN VERIFIED | degree <= 2 polynomials are equiv_k iff coefficients agree mod 3^k | docs/theory/quadratic_residual_complexity.md | BTCalculus/Quadratic | test_myhill_nerode |
 | BTA-x3-merge | EXACT — LEAN VERIFIED | first x^3 residual merge at k=2 is delayed distinction: equiv_2 and not equiv_3 | docs/theory/polynomial_function_congruence.md | BTCalculus/PolynomialFunctionsMod | test_poly_congruence |
@@ -124,3 +124,4 @@ This ledger does not rewrite history.
 | BTA-x3-Q-vis | REFUTED | Q-equality is u≡v (mod 3^s) for a fixed residue modulus | docs/theory/mismatched_cubic_quotient.md | BTCalculus/MismatchedCubicQuotient | test_mismatched_cubic |
 | BTA-x3-Q-visible | EXACT — LEAN VERIFIED | D^t(u^3) mod 3^K is determined by u mod 3^{max(1,t+K-1)} | docs/theory/mismatched_cubic_quotient.md | BTCalculus/MismatchedCubicQuotient | test_mismatched_cubic |
 | BTA-x3-Q-scale | EXACT — LEAN VERIFIED | Q_t(3^s w) is 3^{3s-t} w^3 if t<=3s, else Q_{t-3s}(w) | docs/theory/mismatched_cubic_quotient.md | BTCalculus/MismatchedCubicQuotient | test_mismatched_cubic |
+| BTA-x3-stratum | EXACT — LEAN VERIFIED | At deficit r, N2 iff p = q (mod 3^r); N1 after N2 is the delta law; N0 is the mismatched Q on the 3^r locus | docs/theory/cubic_newton_stratum.md | BTCalculus/NewtonStratum | test_stratum |

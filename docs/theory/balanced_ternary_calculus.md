@@ -57,14 +57,16 @@ analysis”.
 - Section/jet calculus (Milestone 15): [polynomial_jet_calculus.md](polynomial_jet_calculus.md). `D_coeff` is not `D`.
 - Residual automata (Milestone 16): [residual_state_complexity.md](residual_state_complexity.md). Sample minimization is not `M_k`.
 - Quadratic MN count (Milestone 17): [quadratic_residual_complexity.md](quadratic_residual_complexity.md). `M_k(x^2)=(3^k−1)/2`.
-- Cubic Newton image (Milestone 19): [cubic_residual_image.md](cubic_residual_image.md). `M_k(x^3)=|Im F_k|`.
-- Cubic fibres (Milestone 20): [cubic_residual_fibres.md](cubic_residual_fibres.md). Same-depth `(N2,N1,N0)`; no closed `M_k`.
-- Cubic deepest layer (Milestone 21): [cubic_deepest_layer.md](cubic_deepest_layer.md). `N1≡3p^2`; stratified `C_{k,k-1}`.
-- Cubic intermediate layer (Milestone 22): [cubic_intermediate_layer.md](cubic_intermediate_layer.md). `m=k-2`; `N2` sees `p mod 3`; horizon surplus `Δ_k`.
-- Cubic depth-deficit 2 (Milestone 23): [cubic_deficit_two.md](cubic_deficit_two.md). General `N2` visibility `p mod 3^r`; `r=2` fibre criterion.
-- Cubic N1 valuation strata (Milestone 24): [cubic_n1_valuation.md](cubic_n1_valuation.md). After `N2`, `N1` kills `v3(p)<r`; surviving fibres lie in `3^r Z`.
-- Cubic N0 reduction (Milestone 25): [cubic_n0_reduction.md](cubic_n0_reduction.md). Two-regime stripping of `D^m((3^r u)^3)`; not a standard smaller residual.
-- Mismatched cubic quotient (Milestone 26): [mismatched_cubic_quotient.md](mismatched_cubic_quotient.md). `Q_{t,K,W}=D^t(u^3) mod 3^K`; exact reconstruction criterion.
+- Cubic Newton stratum (canonical): [cubic_newton_stratum.md](cubic_newton_stratum.md).
+- Residual versus classical sources: [residual_vs_classical.md](residual_vs_classical.md).
+- Layer notes (corollaries): [cubic_residual_image.md](cubic_residual_image.md),
+  [cubic_residual_fibres.md](cubic_residual_fibres.md),
+  [cubic_deepest_layer.md](cubic_deepest_layer.md),
+  [cubic_intermediate_layer.md](cubic_intermediate_layer.md),
+  [cubic_deficit_two.md](cubic_deficit_two.md),
+  [cubic_n1_valuation.md](cubic_n1_valuation.md),
+  [cubic_n0_reduction.md](cubic_n0_reduction.md),
+  [mismatched_cubic_quotient.md](mismatched_cubic_quotient.md).
 
 ## Finite-state locality (reused, not re-proved)
 

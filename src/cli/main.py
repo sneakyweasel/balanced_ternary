@@ -7,7 +7,14 @@ import sys
 from pathlib import Path
 
 from bt.arithmetic import format_factorization, is_prime
-from bt.metrics import automaton_residue, lsd_nonzero_index, signed_digit_sum, v3, verify_invariants, weight
+from bt.metrics import (
+    automaton_residue,
+    lsd_nonzero_index,
+    signed_digit_sum,
+    v3,
+    verify_invariants,
+    weight,
+)
 from bt.representation import decode, encode, is_canonical
 from bt.sequences import bt_reverse, bt_reverse_tail
 from cli.calculus import add_calculus_subparser, run_calculus
@@ -125,6 +132,7 @@ def _add_lab_namespaces(sub: argparse._SubParsersAction) -> None:
 
     sub.add_parser("formal", help="Lean toolchain / build hint")
     sub.add_parser("status", help="laboratory status summary")
+    sub.add_parser("ui", help="launch the Streamlit laboratory (alias of collatz ui)")
 
 
 def _dispatch(parser: argparse.ArgumentParser, args: argparse.Namespace) -> int:
@@ -173,6 +181,10 @@ def _dispatch(parser: argparse.ArgumentParser, args: argparse.Namespace) -> int:
         return _run_formal()
     if cmd == "status":
         return _run_status()
+    if cmd == "ui":
+        from visualization.app import launch
+
+        return launch()
     parser.error(f"unknown command {cmd!r}")
     return 2
 

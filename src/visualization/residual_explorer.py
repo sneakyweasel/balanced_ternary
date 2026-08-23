@@ -11,10 +11,6 @@ from functools import lru_cache
 from itertools import product
 
 from bt.calculus.cubic import F_k, cubic_residual_formula, image_profile, raw_count_x3
-from research.residuals.cubic_deficit_two import def2_fibre_of
-from research.residuals.cubic_deepest import deepest_fibre_of
-from research.residuals.cubic_fibres import depth_image, fibre_of
-from research.residuals.cubic_layer import inter_fibre_of
 from bt.calculus.myhill_nerode import distinguish_pair, myhill_nerode_count, raw_count
 from bt.calculus.poly_congruence import (
     first_distinction_horizon,
@@ -28,6 +24,10 @@ from bt.calculus.residual import TRITS, residual_along
 from bt.calculus.section import IntPoly, parse_poly
 from bt.metrics import v3
 from bt.representation import encode
+from research.residuals.cubic_deepest import deepest_fibre_of
+from research.residuals.cubic_deficit_two import def2_fibre_of
+from research.residuals.cubic_fibres import depth_image, fibre_of
+from research.residuals.cubic_layer import inter_fibre_of
 from visualization.theorem_ledger import badge_payload
 
 PRESETS: tuple[str, ...] = ("x", "x+1", "2x+1", "x^2", "x^3", "x^4")
@@ -907,8 +907,10 @@ def tree_svg(
         return sx, sy
 
     parts = [
-        f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
-        f'role="img" aria-label="Residual prefix tree">'
+        (
+            f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" '
+            f'role="img" aria-label="Residual prefix tree">'
+        )
     ]
     for node in nodes:
         if node.parent_id and node.parent_id in by_id:

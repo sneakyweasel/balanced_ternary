@@ -1,0 +1,1 @@
+import Problems.Collatz.Accelerated

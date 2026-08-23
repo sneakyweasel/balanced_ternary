@@ -6,8 +6,10 @@ combinatorics, operator dynamics — are independent applications.
 
 This repository does **not** claim a solution of the Collatz conjecture or
 of any other open problem. Finite checks are never presented as proofs.
-Claims are labelled **PROVED**, **VERIFIED COMPUTATIONALLY**,
-**CONJECTURE**, **OBSERVATION**, or **REFUTED**.
+Claims are labelled **PROVED** (human), **PROVED — LEAN**,
+**VERIFIED COMPUTATIONALLY**, **CONJECTURE**, **OBSERVATION**,
+**REFUTED**, or **REPARAMETERIZATION**. See
+[docs/README.md](docs/README.md) for the mapping to ledger tags.
 
 ## What balanced ternary is
 
@@ -118,6 +120,7 @@ with a calculator, encode/analyze, operators, and the Residual explorer;
 Collatz pages remain as one application:
 
 ```powershell
+btprime ui
 btprime collatz ui
 btprime calculus explorer
 ```

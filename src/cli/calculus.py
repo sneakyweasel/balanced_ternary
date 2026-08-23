@@ -795,8 +795,8 @@ def run_calculus(args: argparse.Namespace) -> int:
             print(f"  {fib}")
         return 0
     if cmd == "cubic-quotient-fibre":
-        from research.residuals.mismatched_cubic import q_int, q_mod, q_visibility
         from bt.metrics import v3
+        from research.residuals.mismatched_cubic import q_int, q_mod, q_visibility
 
         vis = q_visibility(args.t, args.modulus, args.width, args.u)
         du = q_int(args.t, args.u)

@@ -11,9 +11,9 @@ At horizon ``k`` and deficit ``r`` with ``r+1 ≤ k``, depth ``m = k-1-r``:
 
 from __future__ import annotations
 
+from research.residuals.cubic_fibres import same_depth_n2
 from research.residuals.cubic_n0_reduction import n0_regime, n0_scaled, reduced_depth
 from research.residuals.cubic_n1_valuation import deficit_depth, n1_after_n2, n21_agree
-from research.residuals.cubic_fibres import same_depth_n2
 from research.residuals.mismatched_cubic import q_int, q_params
 
 

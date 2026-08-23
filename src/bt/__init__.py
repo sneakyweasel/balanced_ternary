@@ -1,20 +1,19 @@
 """Problem-independent balanced-ternary core."""
 
-from bt.arithmetic import factorize, format_factorization, is_prime
 from bt.metrics import (
     RunStatistics,
     ZeroGapStatistics,
     automaton_residue,
     lsd_nonzero_index,
+    negative_digit_count,
+    position_class_sums,
+    positive_digit_count,
+    run_statistics,
     signed_digit_sum,
     v3,
     verify_invariants,
     weight,
     zero_count,
-    negative_digit_count,
-    position_class_sums,
-    positive_digit_count,
-    run_statistics,
     zero_gap_statistics,
 )
 from bt.operators import digit_derivative, lsd_digit
@@ -53,10 +52,7 @@ __all__ = [
     "digit_derivative",
     "digits",
     "encode",
-    "factorize",
-    "format_factorization",
     "is_canonical",
-    "is_prime",
     "lsd_digit",
     "lsd_nonzero_index",
     "negative_digit_count",

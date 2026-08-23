@@ -4,10 +4,15 @@ The documentation records exact mathematics, bounded computations, open
 questions, and literature comparisons separately. Claim labels have the same
 meaning throughout:
 
-- **PROVED**: supported by an argument in the mathematical record;
+- **PROVED** = **EXACT — HUMAN PROOF**: supported by an argument in the mathematical record;
+- **PROVED — LEAN** = **EXACT — LEAN VERIFIED**: the same statement has a compiled Lean proof;
 - **VERIFIED COMPUTATIONALLY**: checked on a stated finite domain;
 - **CONJECTURE**: open and paired with counterexample search;
-- **OBSERVATION**: empirical, without necessity or universality.
+- **OBSERVATION**: empirical, without necessity or universality;
+- **REFUTED**: a counterexample is recorded;
+- **REPARAMETERIZATION**: a classical construction under a local name.
+
+Collatz notes may still write **PROVED**; that is **EXACT — HUMAN PROOF**.
 
 ## Foundations
 
@@ -59,6 +64,7 @@ meaning throughout:
 
 - [Problem template](problems/TEMPLATE.md)
 - [Collatz](problems/collatz.md)
+- [Residuals](problems/residuals.md)
 - [Additive combinatorics](problems/additive_combinatorics.md)
 - [Perfect powers](problems/perfect_powers.md)
 - [Primes](problems/primes.md)
@@ -82,6 +88,8 @@ meaning throughout:
 - [Residual-state complexity](theory/residual_state_complexity.md)
 - [Quadratic residual complexity](theory/quadratic_residual_complexity.md)
 - [Polynomial function congruence](theory/polynomial_function_congruence.md)
+- [Cubic Newton stratum](theory/cubic_newton_stratum.md)
+- [Residual versus classical](theory/residual_vs_classical.md)
 - [Cubic residual image](theory/cubic_residual_image.md)
 - [Cubic residual fibres](theory/cubic_residual_fibres.md)
 - [Cubic deepest layer](theory/cubic_deepest_layer.md)
@@ -116,16 +124,14 @@ implementations.
 
 For the current research frontier, read:
 
-1. [Collatz mathematics](collatz_mathematics.md)
-2. [Dual coding](collatz_dual_coding.md)
-3. [Literature comparison](literature_comparison.md)
-4. [Affine-center geometry](collatz_affine_center.md)
-5. [Fixed-integer asymptotics](collatz_fixed_integer_asymptotics.md)
-6. [Cycle languages](collatz_cycle_languages.md)
-7. [BT word maps](collatz_bt_warp.md)
-8. [Research questions](collatz_research_questions.md)
+1. [Balanced-ternary calculus](theory/balanced_ternary_calculus.md)
+2. [Cubic Newton stratum](theory/cubic_newton_stratum.md)
+3. [Residual versus classical sources](theory/residual_vs_classical.md)
+4. [Theorem ledger](theory/theorem_ledger.md)
+
+Collatz is one application, not the frontier. Its record starts at
+[collatz_mathematics.md](collatz_mathematics.md).
 
 For the balanced-ternary foundation, begin with
 [Balanced-ternary mathematics](mathematics.md), then
-[operators](balanced_ternary_operators.md). For Collatz, continue to the
-Collatz mathematical record.
+[operators](balanced_ternary_operators.md).

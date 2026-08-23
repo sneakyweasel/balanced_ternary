@@ -16,10 +16,7 @@ from bt import (
     digit_derivative,
     digits,
     encode,
-    factorize,
-    format_factorization,
     is_canonical,
-    is_prime,
     lsd_digit,
     lsd_nonzero_index,
     negative_digit_count,
@@ -35,6 +32,7 @@ from bt import (
     zero_count,
     zero_gap_statistics,
 )
+from bt.arithmetic import factorize, format_factorization, is_prime
 
 __all__ = [
     "BalancedTernary",

@@ -1,3 +1,4 @@
+import CollatzDual.Accelerated
 import CollatzDual.Arithmetic
 import CollatzDual.Basic
 import CollatzDual.Center

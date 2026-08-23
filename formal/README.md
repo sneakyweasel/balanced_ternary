@@ -64,7 +64,10 @@ and the general `N1` valuation-stratification theorem
 (`v3(p)<r` is separated after `N2`),
 and the two-regime `N0` scaling `D^m((3^r u)^3)`,
 and the mismatched-width cubic quotient
-`Q_{t,K,W}=D^t(u^3) mod 3^K` with exact reconstruction criterion.
+`Q_{t,K,W}=D^t(u^3) mod 3^K` with exact reconstruction criterion,
+the packaged Newton-stratum theorems, and well-definedness of the
+accelerated map `T` on positive odd naturals. The section-derivative
+degree law remains a human proof.
 
 These are labelled **EXACT — LEAN VERIFIED**. The Python cylinder
 implementation remains the executable instantiation; this Lean project

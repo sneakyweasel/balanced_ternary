@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
+from research.residuals.cubic_fibres import prefixes_at, same_depth_n2
 from research.residuals.cubic_n0_reduction import n0_scaled
 from research.residuals.cubic_n1_valuation import n1_after_n2, n21_agree
-from research.residuals.cubic_fibres import prefixes_at, same_depth_n2
 from research.residuals.stratum import (
     newton_stratum,
     newton_stratum_n0,

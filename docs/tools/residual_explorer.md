@@ -20,7 +20,8 @@ Open **Calculus research → Residual explorer**, or start the same app with
 Streamlit page
     visualization/app_pages/calculus_explorer.py
         visualization/residual_explorer.py   (view-models, no Streamlit)
-            bt.calculus.*                    (authoritative mathematics)
+            bt.calculus.*                    (closed forms, F_k)
+            research.residuals.*             (fibres, layers, Q)
             visualization/theorem_ledger.py
                 docs/theory/theorem_ledger.json
 ```

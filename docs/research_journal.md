@@ -232,3 +232,11 @@ are not invented here. Local experiment manifests are timestamped
 - **Literature:** Mahler / Newton basis remains REPARAMETERIZATION
 - **Next question:** not started; do not auto-open a new milestone. Candidate: is there a small invariant `Ψ_{t,K,W}` classifying `Q`-fibres, or is the discarded low-`t` cubic jet an essential obstruction?
 
+## Consolidation (not a numbered milestone)
+
+- **Date:** 2026-08-23
+- **Objective:** Make the laboratory match its actual frontier: general `bt.calculus`, cubic fibres in `research.residuals`, one Newton-stratum theorem, generated ledger, CI
+- **Major results:** package split; `NewtonStratum.lean`; `acceleratedT` well-defined; quadratic `M_k(x^2)` ledger rows retagged to Lean; docs reading path no longer Collatz-first
+- **Deferred:** `BTA-product` (`M_k` cardinality is not a Lean object); `BTJ-degree` (Mathlib 4.19 degree lemmas were not a short proof); Lake package rename; `formal/Automata/` placeholder
+- **Next question:** unchanged from Milestone 26; do not auto-open Milestone 27
+
