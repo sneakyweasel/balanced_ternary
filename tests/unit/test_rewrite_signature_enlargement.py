@@ -517,6 +517,8 @@ def test_one_way_w_with_nk3_bounded_cps_join():
     """Companion N∘K3 → K3∘N is exact; the bounded one-way CP list then joins.
 
     This is not a reason to install N∘K3 in WORD_REWRITE_RULES.
+    The named opt-in fragment that does install it is WORD_WN_RULES
+    (and that fragment omits N∘D because of D∘I±).
     """
     rules = ONE_WAY_W_RULES + [N_K3]
     failures: list[str] = []

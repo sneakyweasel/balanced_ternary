@@ -6,7 +6,10 @@ The production table stays unchanged. This file records:
 * two-way N∘D ↔ D∘N is a reduction cycle;
 * the simplifying-only fragment WORD_SIMP_RULES is terminating and
   every string-rewriting critical pair joins;
-* the W/K3 stock is the interesting kernel of that fragment.
+* the W/K3 stock is the interesting kernel of that fragment;
+* the opt-in fragment WORD_WN_RULES (SIMP + one-way N∘S, N∘W, N∘K3)
+  is terminating and every critical pair joins;
+* SIMP + one-way N∘D fails at N∘D∘I± even after N∘K3 is added.
 
 This is not the OpFrag tree TRS and not coefficient-word
 ``BTCalculus/Confluence.lean``.
@@ -17,8 +20,10 @@ from __future__ import annotations
 from itertools import product
 
 from bt.calculus.rewrite import (
+    WORD_N_K3_RULE,
     WORD_REWRITE_RULES,
     WORD_SIMP_RULES,
+    WORD_WN_RULES,
     WordRewriteRule,
     rewrite_word,
 )
@@ -101,6 +106,7 @@ def _nonjoining(
 
 FULL = _triples(WORD_REWRITE_RULES)
 SIMP = _triples(WORD_SIMP_RULES)
+WN = _triples(WORD_WN_RULES)
 WK3_REASONS = {
     "K3 is a projection",
     "W∘W = K3 (strip factors of 3)",
@@ -133,6 +139,9 @@ def test_production_table_has_two_way_nd_and_nw_but_no_nk3():
     srcs = {rule.src for rule in WORD_REWRITE_RULES}
     assert ("N", "K3") not in srcs
     assert ("K3", "N") not in srcs
+    assert WORD_N_K3_RULE.src == ("N", "K3")
+    assert WORD_N_K3_RULE not in WORD_REWRITE_RULES
+    assert WORD_N_K3_RULE in WORD_WN_RULES
 
 
 # ---------------------------------------------------------------------------
@@ -250,3 +259,161 @@ def test_rewrite_word_simplifying_only_is_the_named_fragment():
     # Left-to-right engine happens to emit one of the two irreducibles;
     # confluence of the full table is still false.
     assert full in {("N", "K3"), ("K3", "N")}
+
+
+# ---------------------------------------------------------------------------
+# WORD_WN_RULES: SIMP + one-way N∘S, N∘W, N∘K3
+# ---------------------------------------------------------------------------
+
+_PUSHABLE = frozenset({"S", "W", "K3"})
+
+
+def _production(src: tuple[str, ...]) -> WordRewriteRule:
+    for rule in WORD_REWRITE_RULES:
+        if rule.src == src:
+            return rule
+    raise KeyError(src)
+
+
+def _n_inversion(word: tuple[str, ...]) -> int:
+    count = 0
+    for i, letter in enumerate(word):
+        if letter != "N":
+            continue
+        count += sum(1 for later in word[i + 1 :] if later in _PUSHABLE)
+    return count
+
+
+def _wn_rank(word: tuple[str, ...]) -> tuple[int, int, int]:
+    return (word.count("I0"), _n_inversion(word), len(word))
+
+
+def test_word_wn_is_simp_plus_one_way_ns_nw_nk3():
+    assert len(WORD_WN_RULES) == 19
+    assert WORD_WN_RULES[:16] == WORD_SIMP_RULES
+    extras = WORD_WN_RULES[16:]
+    assert [rule.src for rule in extras] == [("N", "S"), ("N", "W"), ("N", "K3")]
+    assert extras[0] is _production(("N", "S"))
+    assert extras[1] is _production(("N", "W"))
+    assert extras[2] is WORD_N_K3_RULE
+    assert ("D", "N") not in {rule.src for rule in WORD_WN_RULES}
+    assert ("W", "N") not in {rule.src for rule in WORD_WN_RULES}
+    assert ("K3", "N") not in {rule.src for rule in WORD_WN_RULES}
+
+
+def test_nk3_is_exact_on_small_integers():
+    from bt.operators import get_operator
+
+    neg = get_operator("N")
+    k3 = get_operator("K3")
+    for n in range(-80, 81):
+        assert neg.apply(k3.apply(n)) == k3.apply(neg.apply(n))
+
+
+def test_wn_every_rule_drops_the_termination_rank():
+    """Rank (I0-count, N-inversion, length); N moves inward past {S,W,K3}."""
+    for rule in WORD_WN_RULES:
+        assert _wn_rank(rule.dst) < _wn_rank(rule.src)
+
+
+def test_wn_one_step_drops_rank_on_words_of_length_at_most_4():
+    alphabet = ("W", "K3", "S", "N", "D", "I0")
+    bad: list[tuple[tuple[str, ...], tuple[str, ...]]] = []
+    for n in range(5):
+        for word in product(alphabet, repeat=n):
+            start = _wn_rank(word)
+            for nxt in _word_steps(word, WN):
+                if _wn_rank(nxt) >= start:
+                    bad.append((word, nxt))
+                    if len(bad) >= 4:
+                        break
+            if bad:
+                break
+        if bad:
+            break
+    assert bad == []
+
+
+def test_wn_critical_pairs_join():
+    assert _nonjoining(WN) == []
+
+
+def test_wn_named_peaks_join():
+    """N∘W∘W and the other new N-overlaps join after N∘K3 / N∘S."""
+    expected = {
+        ("N", "W", "W"): {("K3", "N")},
+        ("N", "W", "S"): {("W", "N")},
+        ("N", "W", "K3"): {("W", "N")},
+        ("N", "K3", "K3"): {("K3", "N")},
+        ("N", "K3", "S"): {("K3", "N")},
+        ("N", "K3", "W"): {("W", "N")},
+        ("N", "N", "S"): {("S",)},
+        ("N", "N", "W"): {("W",)},
+        ("N", "N", "K3"): {("K3",)},
+        ("W", "W", "W"): {("W",)},
+        ("D", "I0"): {()},
+    }
+    for peak, nfs in expected.items():
+        assert _word_nfs(peak, WN) == nfs
+
+
+def test_wn_unique_nf_on_mixed_words_of_length_at_most_4():
+    alphabet = ("W", "K3", "S", "N", "D", "I0", "Ip", "Im")
+    conflicts: list[tuple[str, ...]] = []
+    for n in range(5):
+        for word in product(alphabet, repeat=n):
+            if len(_word_nfs(word, WN)) != 1:
+                conflicts.append(word)
+                if len(conflicts) >= 4:
+                    break
+        if conflicts:
+            break
+    assert conflicts == []
+
+
+def test_rewrite_word_accepts_opt_in_wn_rules():
+    word, used = rewrite_word(("N", "W", "W"), rules=WORD_WN_RULES)
+    assert word == ("K3", "N")
+    assert "N∘K3 = K3∘N" in used
+    simp, _ = rewrite_word(("N", "W", "W"), simplifying_only=True)
+    assert simp == ("N", "K3")
+
+
+def test_two_way_nk3_is_a_cycle():
+    """Reverse K3∘N ↔ N∘K3 is a reduction cycle; not installed."""
+    two_way = WN + [(("K3", "N"), ("N", "K3"), "K3∘N = N∘K3")]
+    assert _word_steps(("N", "K3"), two_way) == [("K3", "N")]
+    assert _word_steps(("K3", "N"), two_way) == [("N", "K3")]
+
+
+def test_opposite_k3n_orientation_fails_without_nk3():
+    """K3∘N → N∘K3 without N∘K3 leaves W∘N∘K3 irreducible."""
+    opposite = SIMP + [
+        (_production(("N", "S")).src, _production(("N", "S")).dst, _production(("N", "S")).reason),
+        (_production(("N", "W")).src, _production(("N", "W")).dst, _production(("N", "W")).reason),
+        (("K3", "N"), ("N", "K3"), "K3∘N = N∘K3"),
+    ]
+    failures = _nonjoining(opposite)
+    peaks = {peak for _name, peak, _l, _r in failures}
+    assert ("N", "W", "K3") in peaks
+    assert ("W", "K3", "N") in peaks
+
+
+# ---------------------------------------------------------------------------
+# SIMP + N∘D is not repaired by N∘K3
+# ---------------------------------------------------------------------------
+
+
+def test_simp_plus_nd_fails_at_nd_ip_even_with_nk3():
+    """N∘D∘I±: D∘N∘I± and N are distinct irreducibles. No word I± sign-flip."""
+    nd_fragment = WN + [
+        (_production(("N", "D")).src, _production(("N", "D")).dst, _production(("N", "D")).reason),
+    ]
+    assert _word_nfs(("N", "D", "Ip"), nd_fragment) == {("N",), ("D", "N", "Ip")}
+    assert _word_nfs(("N", "D", "Im"), nd_fragment) == {("N",), ("D", "N", "Im")}
+    # I0 is rewritten to S, so N∘D∘I0 still joins.
+    assert _word_nfs(("N", "D", "I0"), nd_fragment) == {("N",)}
+    assert _word_nfs(("N", "D", "S"), nd_fragment) == {("N",)}
+    failures = _nonjoining(nd_fragment)
+    peaks = {peak for _name, peak, _l, _r in failures}
+    assert peaks == {("N", "D", "Ip"), ("N", "D", "Im")}

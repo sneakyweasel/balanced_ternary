@@ -20,7 +20,13 @@ of the full expression language is **not** claimed. The production word
 table is **not** locally confluent
 ([BTC-word-full-lc](theorem_ledger.md), **REFUTED**); its
 simplifying-only fragment is terminating and locally confluent
-([BTC-word-simp-nf](theorem_ledger.md)). Coefficient-word confluence
+([BTC-word-simp-nf](theorem_ledger.md)). The opt-in fragment
+`WORD_WN_RULES` (SIMP plus one-way `N∘S`, `N∘W`, and `N∘K3`) is also
+terminating and locally confluent
+([BTC-word-wn-nf](theorem_ledger.md)). Adding one-way `N∘D` to that
+enlargement fails at `N∘D∘I±`
+([BTC-word-simp-nd-lc](theorem_ledger.md), **REFUTED**). Coefficient-word
+confluence
 ([BTN-confluence](theorem_ledger.md), `BTCalculus/Confluence.lean`) is
 a different object — and is the complete finite canonicalizer for
 those sums after evaluation.
@@ -356,13 +362,15 @@ N∘W∘W  →  N∘K3
 ([BTC-w-nd-word-lc](theorem_ledger.md), **REFUTED**). The same peak
 is present in the *production* table: two-way `N∘W` does not join it,
 because `N∘K3` is not a production rule. The missing commute
-`N∘K3 → K3∘N` is exact (`K3` strips factors of `3`). Adding it makes
-every critical pair of that bounded one-way list join
-(**COMPUTATIONALLY VERIFIED** on that list, not a Newman certificate
-and not a reason to install `N∘K3` in `WORD_REWRITE_RULES`). Enlarging
-the unary signature by `W` immediately introduces `K3` and a new
-`N`-commute — the same species of gap that `N(D)`/`D(N)` was before
-the commute became a tree rule.
+`N∘K3 → K3∘N` is exact (`K3` strips factors of `3`). On that *bounded*
+one-way list — which does **not** include the production cancellations
+`D∘I±` — adding `N∘K3` makes every critical pair join. That check is
+not a reason to install `N∘K3` in `WORD_REWRITE_RULES`, and it is not
+a Newman certificate for SIMP plus `N∘D`: see
+[Named fragment `WORD_WN_RULES`](#named-fragment-word_wn_rules).
+Enlarging the unary signature by `W` immediately introduces `K3` and a
+new `N`-commute — the same species of gap that `N(D)`/`D(N)` was
+before the commute became a tree rule.
 
 ### Obstruction
 
@@ -504,14 +512,101 @@ Newman gives unique syntactic NF. Semantic canonicity of those
 irreducibles is **not** claimed.
 
 `rewrite_word(..., simplifying_only=True)` is this fragment. The
-production table is not widened: `N∘K3` stays out, and the two-way
-commutes stay in the full table as identities, not as a confluent
-TRS.
+production table is not widened: `N∘K3` stays out of
+`WORD_REWRITE_RULES`, and the two-way commutes stay in the full table
+as identities, not as a confluent TRS.
 
-Adding a production commute to this fragment is not uniformly safe
-(`N∘W` recreates `N∘W∘W`; `N∘D` fails at `N∘D∘I±` because the word
-table has no `I±` sign-flip). Those enlargements are a different
-question.
+Adding a production commute to this fragment is not uniformly safe.
+`N∘W` alone recreates `N∘W∘W` and, without `N∘S`, also `N∘W∘S →
+W∘N∘S | W∘N`. `N∘D` fails at `N∘D∘I±` because the word table has no
+`I±` sign-flip. The safe enlargement that contains both `W` and `N`
+is the named fragment below.
+
+### Named fragment `WORD_WN_RULES`
+
+[BTC-word-wn-nf](theorem_ledger.md) (**PROVED**). The nineteen-rule
+opt-in fragment
+
+```text
+WORD_SIMP_RULES
+N∘S  → S∘N
+N∘W  → W∘N
+N∘K3 → K3∘N
+```
+
+is a terminating, locally confluent string TRS. Every word has a
+unique syntactic normal form. The orientation is the tree convention
+(`N` moves inward). The reverse rows `S∘N`, `W∘N`, `K3∘N` are not
+rules; two-way `N∘K3 ↔ K3∘N` is a length-preserving cycle.
+
+`N∘K3` is exact (`K3(n) = n/3^{v_3(n)}` and `v_3(-n)=v_3(n)`). It is
+**not** installed in `WORD_REWRITE_RULES`. Use
+`rewrite_word(..., rules=WORD_WN_RULES)`.
+
+**Termination.** Rank `(I0-count, N-inversion, length)` on `ℕ³`,
+where `N-inversion` is the number of pairs `(N` at `i`, pushable
+letter at `j>i)` and pushable means `{S, W, K3}`.
+
+- `I0 → S` drops `I0-count`. This may raise `N-inversion` (an `I0`
+  after `N` becomes pushable `S`); the first coordinate still drops.
+- Every remaining SIMP rule has source length 2 and destination
+  length at most 1, never introduces `I0`, and does not raise
+  `N-inversion` (a cancelled or collapsed pushable after `N` can only
+  lose inversions).
+- `N∘S`, `N∘W`, `N∘K3` are length-preserving and each drop
+  `N-inversion` by one.
+
+The rank is well-founded. This is termination of every rewrite order
+on the fragment.
+
+**Local confluence.** The system is left-linear. Every SIMP overlap
+still joins. The new left-hand sides are `N∘S`, `N∘W`, `N∘K3`. The
+only rule that ends in `N` is `N∘N`, so the new prefix/suffix
+overlaps are exactly
+
+| Peak | Contractions | Join |
+|------|----------------|------|
+| `N∘N∘S` | `→ S` and `→ N∘S∘N` | `S` |
+| `N∘N∘W` | `→ W` and `→ N∘W∘N` | `W` |
+| `N∘N∘K3` | `→ K3` and `→ N∘K3∘N` | `K3` |
+| `N∘W∘W` | `→ W∘N∘W` and `→ N∘K3` | `K3∘N` |
+| `N∘W∘S` | `→ W∘N∘S` and `→ N∘W` | `W∘N` |
+| `N∘W∘K3` | `→ W∘N∘K3` and `→ N∘W` | `W∘N` |
+| `N∘K3∘K3` | `→ K3∘N∘K3` and `→ N∘K3` | `K3∘N` |
+| `N∘K3∘S` | `→ K3∘N∘S` and `→ N∘K3` | `K3∘N` |
+| `N∘K3∘W` | `→ K3∘N∘W` and `→ N∘W` | `W∘N` |
+
+`N∘S` has no overlap with a SIMP left-hand side except through
+`N∘N`: no SIMP source begins with `S`. There is no `I0` inside a new
+source. Disjoint redexes commute by left-linearity. Newman gives
+unique syntactic NF. Semantic canonicity of those irreducibles is
+**not** claimed (`N∘D` and `D∘N` remain distinct irreducibles).
+
+The opposite one-way orientation `K3∘N → N∘K3` (without `N∘K3`)
+fails at `N∘W∘K3` / `W∘K3∘N`, leaving `W∘N∘K3` irreducible. So the
+inward `N∘K3 → K3∘N` is the orientation that matches the tree
+convention and joins the `W`/`K3` stock.
+
+### Obstruction: `N∘K3` does not absorb `N∘D`
+
+[BTC-word-simp-nd-lc](theorem_ledger.md) (**REFUTED**). Adding
+one-way `N∘D → D∘N` to `WORD_WN_RULES` (or to SIMP plus `N∘S` and
+`N∘K3`) produces two non-joining peaks:
+
+```text
+N∘D∘Ip  →  D∘N∘Ip  |  N
+N∘D∘Im  →  D∘N∘Im  |  N
+```
+
+`D∘N∘I±` is irreducible: the word table has no `I±` sign-flip
+(`N∘Ip → Im∘N` is a *tree* rule, not a production word rule). The
+same peaks join for `I0` and `S` (`I0 → S` then `N∘S`, then
+`D∘S → ε`). The earlier bounded one-way `{N,D,S,W,K3}` list hid this
+obstruction by omitting `D∘I±`.
+
+`N∘K3` is therefore enough for a confluent W+N production fragment,
+and not enough to include the D-commute while keeping SIMP's `I±`
+cancellations. Two-way `N∘D ↔ D∘N` remains a KNOWN non-termination.
 
 Tests: `tests/unit/test_rewrite_word_fragments.py`.
 
@@ -529,7 +624,9 @@ and the complete forms are affine / coefficient-word
 tree extension of that kind is assumed. The
 production word table is **not** locally confluent
 ([BTC-word-full-lc](theorem_ledger.md)); the named simplifying
-fragment is ([BTC-word-simp-nf](theorem_ledger.md)).
+fragment is ([BTC-word-simp-nf](theorem_ledger.md)); the opt-in
+W+N fragment is ([BTC-word-wn-nf](theorem_ledger.md)); SIMP plus
+one-way `N∘D` is not ([BTC-word-simp-nd-lc](theorem_ledger.md)).
 
 Lean Newman for the enlarged fragment is packaged in
 `BTCalculus/OpFragNewman.lean` (termination, local confluence,

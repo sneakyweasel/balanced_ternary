@@ -1818,5 +1818,34 @@
     "related_conjectures": [
       "word_simp_nf"
     ]
+  },
+  {
+    "id": "BTC-word-wn-nf",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the opt-in fragment WORD_WN_RULES (WORD_SIMP_RULES plus one-way N∘S→S∘N, N∘W→W∘N, and the exact commute N∘K3→K3∘N) is terminating and locally confluent; every word has a unique syntactic normal form",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_wn_nf",
+      "word_simp_nf",
+      "w_nd_word_lc"
+    ]
+  },
+  {
+    "id": "BTC-word-simp-nd-lc",
+    "tag": "REFUTED",
+    "statement": "WORD_SIMP_RULES plus one-way N∘D→D∘N (together with N∘S and N∘K3) is locally confluent",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_simp_nd_lc",
+      "w_nd_word_lc"
+    ]
   }
 ]
