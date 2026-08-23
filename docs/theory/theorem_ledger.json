@@ -1775,5 +1775,21 @@
       "add_factor_ac_semantic",
       "add_factor_cas_obstruction"
     ]
+  },
+  {
+    "id": "BTC-add-affine-only",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the only exact-on-ℤ identities U(x)+V(y)=W(x+y) for unary constructors {S, I_a, N} are the six push-in / factor-out pairs (I0 = S); every finite exact tree TRS on Add is therefore one of the already-incomplete push-in, factor-out, or N-distrib orientations, or else introduces a non-trit constant (a CAS); the unique complete finite representatives of those sums are their affine maps, equivalently evaluation then the unique BT coefficient-word NF, so Add stays out of the tree TRS",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_add_affine_only.py"
+    ],
+    "related_conjectures": [
+      "add_affine_only",
+      "add_factor_cas_obstruction",
+      "add_s_push_lc",
+      "add_n_push_semantic"
+    ]
   }
 ]
