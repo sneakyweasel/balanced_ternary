@@ -1,6 +1,6 @@
 # Generalized Ostrowski order-(m) adder
 
-Status: **EXPLORATORY**
+Status: **STRUCTURAL**
 
 What residual/carry state is required to recognize addition in
 Baranwal’s order-\(m\) \(\Gamma\)-numeration system? The quadratic
@@ -89,8 +89,14 @@ The target: does the unread-tail residual live in a finite
   already impossible. `KNOWN` (negative).
 - `frougny-solomyak-1996-linear-numeration`: constant-coefficient
   Pisot linear systems have finite-state normalization, hence
-  addition. Different hypothesis (constant coefficients, Pisot root),
-  not a solution of §5.3. `KNOWN` under that hypothesis.
+  addition, on any finite integer alphabet. Conversely, for a Perron
+  non-Pisot characteristic root there *exist* alphabets on which
+  normalization is not finite-state. That converse is not a theorem
+  about this \(w\)-alphabet or this live residual. `KNOWN` under the
+  Pisot hypothesis; converse not importable.
+- `hollander-1998-greedy-regularity`: greedy numeration language
+  regularity implies a Parry dominant root. Classifies greedy
+  languages, not Baranwal unread-tail residuals. `KNOWN`.
 - `hieronymi-et-al-2024-sturmian-decidability`: uniform
   \(\omega\)-automatic / Büchi use of the BSS *order-2* 4-input
   adder. `KNOWN`. Does not treat \(m>2\).
@@ -106,8 +112,19 @@ Classification used in this dossier:
 order-2 / quadratic adder              KNOWN
 m-dimensional carry idea               KNOWN as a suggestion; OPEN as a theorem
 general order-m adder existence        OPEN for Baranwal Gamma-systems
-Pisot linear adders                    KNOWN (different hypothesis)
-minimal Box / |Q|                      OPEN
+Pisot linear adders                    KNOWN (FS1996)
+Pisot ⇒ this 55-set                    PROJECT-SPECIFIC (previous phase)
+non-Pisot ⇒ no finite adder            NOT a theorem we may import
+live residual bounded ⇔ Pisot          OPEN (PARK; reverse contraction does not decide it)
+A^{-1} Q-norm contraction              PROVED
+C({0}) finite                          PROVED (9164 states; basin of origin, not the adder)
+adder live set = C({0})                REFUTED
+{s3=0} is a finite seed                REFUTED (infinite plane)
+K_0 = F = {s3=0}                       PROVED (this phase; unbounded)
+K_n = E_n slab                         PROVED (infinite for every n)
+t_n = (q_{n-1}, -q_{n-2}, 0) in K_n∩F  PROVED (Outcome A)
+(30,25,0) live only at remaining 0     PROVED
+L finite for Γ_NP                      OPEN (not implied by unbounded K)
 3-input adder, one non-quadratic α     KNOWN negative
 uniform encoded adder, arbitrary α     KNOWN (order 2 only)
 ```
@@ -160,25 +177,90 @@ role. The systems are not identified.
   \(t_m=s_{m-1}+s_m d_{1,i}-w\) — **PROVED** by substitution
   (human + order-2 regression). Analog of (2.3).
 - Unrestricted reachable \(s\in\mathbb Z^m\) lie in a finite box —
-  **REFUTED** computationally: coordinates grow once
-  \(|t_m|\) is unrestricted.
-- Restricted box \(|t_m|\le 1\) is a sufficient adder — **REFUTED**
-  at length \(5\) (false rejects).
-- Restricted box \(|t_m|\le 2\) is a sufficient adder — **OBSERVATION**
-  / `COMPUTATIONALLY VERIFIED` for \(\mathrm{val}<q_5\). Not a proof.
+  **REFUTED** computationally: coordinates grow once liveness is
+  ignored.
+- Restricted box \(\lvert t_m\rvert\le 1\) is a sufficient adder —
+  **REFUTED**.
+- Restricted box \(\lvert t_m\rvert\le 2\) is the live last-coordinate
+  *projection* — **PROVED** as a consequence of \(B_{\min}\), not as
+  a sufficient invariant by itself.
+- Live reachable set
+  \(B_{\min}\subset\mathbb Z^3\), \(\lvert B_{\min}\rvert=55\), is
+  forward-invariant under every legal live transition —
+  **PROVED** (explicit set + exterior deadness recurrences).
+- Phase-0 85-state \(\lvert s_3\rvert\le 2\) graph equals
+  \(B_{\min}\) plus 30 never-live vectors — **PROVED**.
 - Order-2 specialisation recovers Theorem 2.2 — **PROVED** in the
   source; Phase 0 regresses it.
+- \(\Gamma_{\mathrm{NP}}=([0;\overline{2}],[0;\overline{1}],[0;\overline{3}])\)
+  has irreducible char poly \(x^3-2x^2-x-3\), discriminant \(-439<0\),
+  unique real root in \((2,3)\), conjugate modulus squared \(3/\lambda>1\)
+  — **PROVED** (integer certificate). Perron, not Pisot.
+- Residual matrix \(A\) with first row \((0,0,d_3)\), second
+  \((1,0,d_2)\), third \((0,1,d_1)\), same characteristic polynomial
+  as the place-value recurrence — **PROVED**.
+- Hub \((-3,-1,0)\) is live at every remaining length, and the prefix
+  \((1,-2)\) reaches it at every even remaining length — **PROVED**.
+- Live residual union of \(\Gamma_{\mathrm{NP}}\) is infinite —
+  **OBSERVATION** through length 16 (strictly increasing counts);
+  not a theorem. Finite depth is not infinitude.
+- Exact reverse map
+  \(A^{-1}=\begin{pmatrix}-1/3&1&0\\-2/3&0&1\\1/3&0&0\end{pmatrix}\)
+  over \(\mathbb Q\), with integer preimages iff \(t_1\equiv 0\pmod 3\) —
+  **PROVED**.
+- Rational SPD \(Q=\begin{pmatrix}10&-3&-7\\-3&11&-3\\-7&-3&12\end{pmatrix}\)
+  with Sylvester minors \(10,101,457\), and
+  \(Q-(A^{-1})^{\mathsf T}QA^{-1}\) SPD, hence
+  \(\lvert A^{-1}x\rvert_Q^2\le(49/50)\lvert x\rvert_Q^2\) —
+  **PROVED**. Spectral radius \(\rho(A^{-1})<1\) was already known from
+  the cubic; this is the induced-norm certificate.
+- Accepting slice \(F=\{s_3=0\}\) is an infinite plane, so reverse
+  contraction does not bound \(C(F)\) — **PROVED**.
+- Basin \(C(\{(0,0,0)\})\) is finite, cardinality \(9164\),
+  stabilization depth \(67\), containing the hub \((-3,-1,0)\) and not
+  containing the live accepting terminal \((30,25,0)\) —
+  **PROVED** (backward least fixed point; Checks A and B).
+- \(C(\{(0,0,0)\})\) equals the unread-tail adder live set from
+  \((0,0,0)\) — **REFUTED**: \(\lvert R_{\le 16}\setminus C(\{0\})\rvert=700\).
+- Reverse contraction of \(A^{-1}\) bounds the adder live set —
+  **REFUTED** as a mechanism. It bounds co-reachability of a finite
+  seed, not forward unread-tail images of the origin.
+- Terminal acceptance at remaining \(0\) is \(E_0=s_3=0\), i.e.
+  \(K_0=F=\{s_3=0\}\), an infinite plane — **PROVED**. Canonical
+  digits do not constrain \((s_1,s_2)\) at remaining \(0\).
+- For \(n\ge 1\), \(K_n=\{s:\mathrm{lo}(n)\le E_n(s)\le\mathrm{hi}(n)\}\)
+  with \(E_n=s_1 q_{n-2}+s_2 q_{n-1}+s_3 q_n\) and
+  \(\mathrm{lo}(n)=-4S_{n-1}+2\), \(\mathrm{hi}(n)=2S_{n-1}-1\) —
+  **PROVED**. Infinite slab. Same predicate as unread-tail liveness.
+- Kernel family \(t_n=(q_{n-1},-q_{n-2},0)\in K_n\cap F\) with
+  \(E_n(t_n)=0\) and \(\lvert t_n\rvert\to\infty\) —
+  **PROVED**. Also \((k,0,0)\in K_0\) for every \(k\in\mathbb Z\).
+- \((30,25,0)\in K_0\) and \((30,25,0)\notin K_n\) for all \(n\ge 1\) —
+  **PROVED** (\(E_n\ge 25 q_{n-1}>\mathrm{hi}(n)\)). Not in \(C(\{0\})\).
+- Hub \((-3,-1,0)\) lies in \(\bigcap_n(K_n\cap F)\) —
+  **PROVED** (existing hub liveness). Bounded point of the plane, not
+  a member of the kernel family.
+- Pisot and non-Pisot systems share the same \(K_0=F\). The 55-set
+  meets \(F\) in \(18\) states — **PROVED**. Structural change is the
+  reachable live set, not the terminal predicate.
+- Unbounded \(K\) implies unbounded \(L\) —
+  **not claimed**. \(t_n\) need not lie on a live path from
+  \((0,0,0)\).
 
 ## Experiments
 
 No registered CLI runner. Phase-0 functions in
-`research.ostrowski` and tests in
-`tests/research/ostrowski/test_triage.py`.
-
-Ranges actually run: canonicality \(L\le 7\); unrestricted addition
-at Fibonacci length \(6\) and Phase-0 length \(5\); boxed addition
-at length \(5\). Finite tests are `COMPUTATIONALLY VERIFIED`, not
-proofs.
+`research.ostrowski` and theorem-phase modules
+`transition_extremals`, `residual_closure`, `invariant_search`,
+`counterexample_search`. Spectral comparison:
+`spectral`, `spectral_residual`, `live_growth`, `nonpisot_search`.
+Reverse contraction: `reverse_map`, `contraction_certificate`,
+`exact_closure`. Accepting boundary: `terminal_set`. Tests:
+`tests/research/ostrowski/test_triage.py`,
+`tests/research/ostrowski/test_residual_closure.py`,
+`tests/research/ostrowski/test_spectral.py`,
+`tests/research/ostrowski/test_reverse_closure.py`,
+`tests/research/ostrowski/test_terminal_set.py`.
 
 Recorded fields for each system:
 
@@ -219,68 +301,302 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
 
 ## Formalization
 
-None. No `formal/BTCalculus/OstrowskiAdder.lean` in Phase 0. No
-`sorry`.
+None. The 55-set stays human / unformalized. No terminal-set Lean:
+the identities are integer unread-tail arithmetic, already checked in
+Python. No `sorry`.
 
 ## Results
 
-Phase-0 system
-\(\Gamma=([0;\overline{2}],[0;\overline{1}],[0;\overline{1}])\),
-\(q=(1,2,5,13,33,84,214,\ldots)\). Characteristic polynomial
-\(x^3-2x^2-x-1\) is irreducible over \(\mathbb Q\) (Falsifier B
-fails). Dominant root is Pisot, so existence of *some* adder is
-`KNOWN` (`frougny-solomyak-1996-linear-numeration`).
+### Control \(\Gamma_{\mathrm P}\)
 
-| field | Phase-0 record |
+Same \(\Gamma\) as Phase 0. Specialized transition:
+
+\[
+(s_1,s_2,s_3)\mapsto(s_3,\,s_1+s_3,\,s_2+2s_3-w),
+\]
+
+with \(w\in\{-4,\ldots,2\}\) at places \(i\ge 1\) and
+\(w\in\{-2,\ldots,1\}\) at the LSD. Unread-tail bounds:
+
+\[
+\mathrm{lo}(i)=-4S_{i-1}+2,\qquad
+\mathrm{hi}(i)=2S_{i-1}-1
+\]
+
+(\(S_{n}=\sum_{j=0}^{n}q_j\); \(\mathrm{lo}(0)=\mathrm{hi}(0)=0\)).
+A state at remaining length \(i\) is *live* when
+\(\mathrm{lo}(i)\le E_i\le\mathrm{hi}(i)\).
+
+The live reachable set from \((0,0,0)\) is the explicit 55-element
+\(B_{\min}\) in `research.ostrowski.residual_closure.B_MIN`. It is
+contained in the axis box
+\(\lvert s_1\rvert\le 2\), \(-3\le s_2\le 2\), \(\lvert s_3\rvert\le 2\)
+(175 lattice points; 120 unused). Last-coordinate projection
+\(\lvert s_3\rvert\le 2\) is necessary on live paths and not
+sufficient: the Phase-0 85-state \(\lvert s_3\rvert\le 2\) graph is
+\(B_{\min}\) plus 30 vectors that are never live.
+
+| field | theorem-phase record |
 |---|---|
 | order \(m\) | 3 |
-| parameter definition | \(\Gamma=([0;\overline{2}],[0;\overline{1}],[0;\overline{1}])\) |
-| place-value recurrence | \(q_i=2q_{i-1}+q_{i-2}+q_{i-3}\) |
-| digit constraints | §5.3 proposed rules |
-| canonicality | complete, not unique from length 3 |
-| LSD/MSD direction | MSD unread-tail (LSD with the same formula fails) |
-| raw boxed states | 85 at \(\lvert t_m\rvert\le 2\) |
-| reachable unrestricted | grows with the coordinate cap |
-| minimal live states | 64; some carry vectors merge |
-| maximum carry coordinate | 4 on the \(\lvert t_m\rvert\le 2\) graph |
-| transition count | boxed graph on alphabet \(\{-4,\ldots,2\}\) |
-| final-state condition | \(s_m=0\) |
-| proof status | recurrence exact; box `COMPUTATIONALLY VERIFIED` |
+| \(B_{\mathrm{reach}}\) | \(B_{\min}\), 55 states, stable for length \(9\)–\(16\) |
+| \(B_\square\) | \(\lvert s_1\rvert\le 2,\ \lvert s_2\rvert\le 3,\ \lvert s_3\rvert\le 2\), 175 points |
+| \(B_{\min}\) | the 55-element list |
+| Phase-0 85-set | \(B_{\min}\) plus 30 never-live states |
+| Hopcroft on live graph | 55 live states, no merge |
+| \(\lvert s_3\rvert\ge 3\) escape | none on live paths |
+| proof status | exterior deadness recurrences, **EXACT — HUMAN PROOF** |
 
-The unrestricted 3-input residual machine accepts a padded triple iff
-\(\operatorname{val}(x)+\operatorname{val}(y)=\operatorname{val}(z)\),
-checked exhaustively for Fibonacci Ostrowski words of length \(6\) and
-for Phase-0 proposed-canonical words of length \(5\). Finite checks
-are not a proof of arbitrary-length correctness of the *box*.
+Exterior images of \(B_{\min}\): 108 vectors. Each is overflow
+(\(G_i=E_i-\mathrm{hi}(i)\)) or underflow
+(\(H_i=\mathrm{lo}(i)-E_i\)). For \(i\ge 4\),
 
-Minimality: raw \(85\) states, Hopcroft \(65\) parts including the
-sink (\(64\) live). Minimal states are not in bijection with carry
-vectors.
+\[
+G_i=2G_{i-1}+G_{i-2}+G_{i-3}-5,\qquad
+H_i=2H_{i-1}+H_{i-2}+H_{i-3}-10.
+\]
+
+Initial gaps \(G_0,\ldots,G_3\ge 1\) and \(H_0,\ldots,H_3\ge 2\) on
+every exterior image, so all later gaps stay positive. Therefore
+every legal live image of \(B_{\min}\) stays in \(B_{\min}\).
+
+Genuine addition paths are live at every prefix because
+\(E_i\) equals the unread legal difference tail. The unrestricted
+residual machine still accepts iff \(\sum w_i q_i=0\). Together:
+this \(\Gamma\)-addition relation is recognized by a finite 3-input
+MSD automaton with state set \(B_{\min}\).
+
+Existence of *some* adder remains `KNOWN` by Pisot theory. The
+project-specific object is the explicit Baranwal-coordinate region.
+
+### Test \(\Gamma_{\mathrm{NP}}\)
+
+Same \(d_1=2\), \(d_2=1\), so the memoryless alphabets agree. Only
+\(d_3\) changes:
+
+\[
+\Gamma_{\mathrm{NP}}=([0;\overline{2}],[0;\overline{1}],[0;\overline{3}]),
+\qquad
+q_i=2q_{i-1}+q_{i-2}+3q_{i-3}.
+\]
+
+Char poly \(x^3-2x^2-x-3\). Integer certificate: irreducible (no
+rational root), discriminant \(-439<0\) (one real root, complex
+conjugate pair), sign change \(P(2)<0<P(3)\) so \(\lambda\in(2,3)\),
+product of roots \(3\), hence conjugate modulus squared
+\(3/\lambda>1\). Perron, not Pisot. Not a disguised quadratic.
+
+Transition (same residual semantics):
+
+\[
+(s_1,s_2,s_3)\mapsto(3s_3,\,s_1+s_3,\,s_2+2s_3-w)
+=As-(0,0,w),
+\qquad
+A=\begin{pmatrix}0&0&3\\1&0&1\\0&1&2\end{pmatrix}.
+\]
+
+All eigenvalues of \(A\) have modulus \(>1\). Control \(A\) has one
+expanding eigenvalue and two contracting.
+
+Live BFS from \((0,0,0)\), same alphabets. Control recovers
+\(\lvert B_{\min}\rvert=55\) by length 9. For \(\Gamma_{\mathrm{NP}}\)
+the live union is strictly increasing through length 16 (867 states
+at length 14; 1351 at length 16), with
+\(\max\lvert s_3\rvert\ge 3\) from length 6 and all three coordinates
+growing. Finite depth is not infinitude.
+
+Hub \((-3,-1,0)\): live at remaining \(0,1\) by direct check; for
+\(i\ge 2\), \(E_i=-3q_{i-2}-q_{i-1}<0\le\mathrm{hi}(i)\) and
+\(E_i-\mathrm{lo}(i)=4S_{i-1}-3q_{i-2}-q_{i-1}-2\ge 0\) because
+\(S_{i-1}\ge q_{i-1}+q_{i-2}+1\) for \(i\ge 3\). The prefix
+\((1,-2)\) from remaining \(2m+2\) reaches the hub at remaining
+\(2m\), live throughout. No closed-form word family with
+\(\lvert s\rvert\to\infty\) is written down. Periodic blocks from the
+hub die. Greedy live walks grow but are not a proof.
+
+### Reverse contraction versus the adder live set
+
+Three sets, never mixed:
+
+- \(R_{\le N}\): forward unread-tail live from \((0,0,0)\) in at most
+  \(N\) steps (the 55-set analogue). Depth 16 has \(1351\) states and
+  is still growing.
+- \(C(K)\): backward least fixed point of a seed \(K\).
+- \(F=\{s_3=0\}\): accepting slice. An infinite plane. Reverse
+  contraction does not bound \(C(F)\).
+
+Exact inverse over \(\mathbb Q\):
+
+\[
+A^{-1}=\begin{pmatrix}-1/3&1&0\\-2/3&0&1\\1/3&0&0\end{pmatrix},
+\qquad
+s=A^{-1}\bigl(t+(0,0,w)\bigr).
+\]
+
+Integer reverse: \(t_1\) divisible by \(3\), then
+\(s_3=t_1/3\), \(s_1=t_2-s_3\), \(s_2=t_3+w-2s_3\).
+
+Lyapunov matrix (guessed with floats, proved by integer Sylvester):
+
+\[
+Q=\begin{pmatrix}10&-3&-7\\-3&11&-3\\-7&-3&12\end{pmatrix},
+\qquad
+\lvert A^{-1}x\rvert_Q^2\le\frac{49}{50}\lvert x\rvert_Q^2.
+\]
+
+Leading minors of \(Q\): \(10,101,457\). Decrement minors:
+\(10/9,2/3,5/9\). Crude a priori box for **preimages of the origin**:
+\(\rho<99/100\), \(\lvert(0,0,w)\rvert_Q<14\), hence
+\(\lvert s\rvert_Q<1386\); \(Q-I\) SPD so \(\lvert s_i\rvert\le 1386\).
+The box is not enumerated. It does not bound forward images of
+\((0,0,0)\).
+
+The only honest finite seed is \(\{(0,0,0)\}\). Its basin
+\(C(\{0\})\) is finite:
+
+| field | record |
+|---|---|
+| cardinality | \(9164\) |
+| stabilization depth | \(67\) |
+| extrema | \(s_1\in[-33,32]\), \(s_2\in[-30,29]\), \(s_3\in[-11,10]\) |
+| \(\max\lvert s\rvert_1\) | \(57\) |
+| \(\max s^{\mathsf T}Qs\) | \(14460\) |
+| hub \((-3,-1,0)\) | in the basin |
+| \((30,25,0)\) | not in the basin; live accepting in \(R_{\le 16}\) |
+| fingerprint | `c4487dbeaab216fd340b54fada7be21d4c57a35648328d62a82f5d516366e70f` |
+
+Check A: every non-origin basin state has a legal \(w\) with
+\(T_w(s)\) still in the basin. Check B: no integer preimage leaves
+the basin, and no hull point of the computed box steps into it.
+Do not call \(C(\{0\})\) the 55-set analogue.
+
+Depth-growth paradox (\(R_{\le N}\) is a transient shell of expanding
+\(A\); monotone growth \(\ne\) infinitude):
+
+| \(N\) | \(\lvert R_{\le N}\rvert\) | \(\max\lvert s_i\rvert\) | \(\lvert R\setminus C(\{0\})\rvert\) |
+|---|---|---|---|
+| 8 | 154 | \((15,14,5)\) | 51 |
+| 10 | 310 | \((21,18,7)\) | 120 |
+| 12 | 532 | \((27,24,9)\) | 242 |
+| 14 | 867 | \((30,31,10)\) | 436 |
+| 16 | 1351 | \((36,37,12)\) | 700 |
+
+At depth 14, \(\lvert s_2\rvert=31\) already exits the computed basin
+box. Depth 16 remains inside the crude Lyapunov box \(1386\). Those
+outside states are forward transients, not points of \(C(\{0\})\).
+
+Pisot vs reverse contraction: for \(\Gamma_{\mathrm P}\), the 55-set
+is a **forward** live invariant. For \(\Gamma_{\mathrm{NP}}\),
+\(A^{-1}\) is a \(Q\)-norm contraction, but that is a statement about
+**preimages of a seed**. It is not the adder mechanism and does not
+make Pisot unnecessary for this residual. The control \(B_{\min}\) is
+still \(55\).
+
+### Accepting boundary \(K_n\)
+
+Unread-tail identity, \(q_j=0\) for \(j<0\), \(q_0=1\):
+
+\[
+E_i=s_1 q_{i-2}+s_2 q_{i-1}+s_3 q_i,\qquad E_0=s_3.
+\]
+
+Difference digits remain \(w_j=z_j-(x_j+y_j)\). Four objects:
+
+- \(K_0=F=\{s_3=0\}\). Acceptance after the tape ends. Infinite
+  plane. Length-independent. Canonical digits do not enter.
+- \(K_n=\{s:\mathrm{lo}(n)\le E_n(s)\le\mathrm{hi}(n)\}\) for
+  \(n\ge 1\). Infinite slab. Identical to unread-tail liveness: a
+  legal tail realizing \(E_n\) *is* an accepting suffix.
+- \(R_{\le N}\): forward live-reachable from \((0,0,0)\).
+- \(L\): infinite-horizon live set from the origin. Not established.
+
+LSD last step: \(T_w(s)=(3s_3,\,s_1+s_3,\,s_2+2s_3-w)\) lands in \(F\)
+iff \(w=s_2+2s_3\in\{-2,-1,0,1\}\), which is liveness at remaining
+\(1\) because \(E_1=s_2+2s_3\).
+
+On \(F\), \(E_n(a,b,0)=a q_{n-2}+b q_{n-1}\) (and \(0\) if \(n=0\)).
+The kernel family
+
+\[
+t_n=(q_{n-1},-q_{n-2},0)\qquad(n\ge 1)
+\]
+
+has \(E_n(t_n)=0\). Signed alphabets give \(\mathrm{lo}(n)<0<\mathrm{hi}(n)\),
+so \(t_n\in K_n\cap F\). Place values are strictly increasing, so
+\(\lvert t_n\rvert\to\infty\). Separately, \((k,0,0)\in K_0\) for every
+integer \(k\). Thus \(\bigcup_n(K_n\cap F)\) is unbounded (Outcome A).
+This does **not** prove \(L\) infinite: \(t_n\) need not be reachable
+from \((0,0,0)\) on a live path.
+
+\(\lvert K_n\rvert=\infty\) for every \(n\). The table below records
+that fact together with a boxed window \(\lvert K_n\cap[-4,4]^3\rvert\),
+which is **not** \(\lvert K_n\rvert\). \(K_n\not\subseteq K_{n+1}\).
+
+| \(n\) | \(\lvert K_n\rvert\) | \(\lvert K_n\cap F\rvert\) | \(\mathrm{lo},\mathrm{hi}\) | \(t_n\) | window \(M=4\) |
+|---|---|---|---|---|---|
+| 0 | \(\infty\) | \(\infty\) | \(0,0\) | — | 81 (all in \(F\)) |
+| 1 | \(\infty\) | \(\infty\) | \(-2,1\) | \((1,0,0)\) | 162 |
+| 2 | \(\infty\) | \(\infty\) | \(-10,5\) | \((2,-1,0)\) | 260 |
+| 3 | \(\infty\) | \(\infty\) | \(-30,15\) | \((5,-2,0)\) | 246 |
+| 4 | \(\infty\) | \(\infty\) | \(-90,45\) | \((15,-5,0)\) | 267 |
+| 5 | \(\infty\) | \(\infty\) | \(-254,127\) | \((41,-15,0)\) | 281 |
+| 6 | \(\infty\) | \(\infty\) | \(-702,351\) | \((112,-41,0)\) | 277 |
+
+#### \((30,25,0)\)
+
+In \(K_0\) because \(s_3=0\). For \(n\ge 1\),
+\(E_n=30 q_{n-2}+25 q_{n-1}\ge 25 q_{n-1}\). Place sums satisfy
+\(S_k\le 2 q_k\) (base \(S_0=1\le 2\); \(q_n\ge 2 q_{n-1}\) because
+\(d_1=2\)), so \(\mathrm{hi}(n)=2S_{n-1}-1\le 4 q_{n-1}-1<25 q_{n-1}\).
+Hence not in any \(K_n\) for \(n\ge 1\). It is the LSD image
+\(T_0(15,-20,10)=(30,25,0)\), with the predecessor live at remaining
+\(1\). Not in \(C(\{0\})\): reverse contraction of the origin does not
+reach it. It belongs to the \(K_0\) family of ghost coordinates on
+\(F\), not to the kernel family \(t_n\).
+
+#### Hub \((-3,-1,0)\)
+
+Live at every remaining length (existing integer certificate), so it
+is a bounded point of \(\bigcap_n(K_n\cap F)\). Reached from the origin
+at remaining \(2m\) by the prefix \((1,-2)\). Same plane as \(t_n\),
+different role: reachable live residual versus kernel of \(E_n\).
+
+#### Pisot control
+
+\(\Gamma_{\mathrm P}\) has the same alphabets, hence the same
+\(K_0=F\) and the same \(\mathrm{lo},\mathrm{hi}\). \(B_{\min}\)
+contains \(18\) states with \(s_3=0\). Those are reachable-live
+terminals, a proper subset of \(F\). Non-Pisot versus Pisot changes
+which live states occur on paths from \((0,0,0)\), not the terminal
+predicate.
+
+Reverse contraction around any *fixed* seed cannot imply finite live
+closure, because the accepting boundary itself is unbounded. Whether
+that forces infinitely many distinct *reachable* live residuals is a
+different question and is not answered here.
 
 ## Open questions
 
-Is \(\lvert t_m\rvert\le 2\) (or another explicit \(B_\Gamma\)) closed
-for every length on this \(\Gamma\)? Do not open order 4, Walnut,
-Lean, or a numeration framework to answer that.
+Does the unbounded terminal family \(t_n\) (or unbounded \(K_0\))
+force infinitely many distinct live residuals on paths from
+\((0,0,0)\)? Not taken up. Do not open order 4, Walnut, Lean, or a
+second example.
 
 ## Decision
 
-`PARK`. The unread-tail recurrence is the analog of Theorem 2.2 and
-is exact. A finite \(\lvert t_m\rvert\le 2\) table exists
-computationally and matches addition below \(q_5\). That is not a
-proved finite-state theorem, and existence of some adder is already
-`KNOWN` by Pisot theory. The \(m\)-dimensional state was suggested
-in the source. The proposed §5.3 digit rules are not a unique
-numeration system. Do not `PROMOTE`. Do not `CLOSE`: the uniqueness
-failure, the insufficiency of \(\lvert t_m\rvert\le 1\), and the
-explicit residual recurrence are recorded and would be rediscovered.
-No Phase 1, CLI, Walnut, Lean, or order-4 experiment.
-
-Best next question: prove that the \(\lvert t_m\rvert\le 2\) residual
-box is closed for this \(\Gamma\), or exhibit an accepting path that
-leaves it.
+`PROMOTE` the terminal-set theorem (Outcome A): \(K_0=F\) is the
+true remaining-0 accepting set, \(K_n\) is the \(E_n\)-slab, and
+\(t_n=(q_{n-1},-q_{n-2},0)\) is an unbounded family in \(K_n\cap F\).
+The singleton-zero substitution is removed. Do **not** claim that
+\(L\) is finite or infinite. Reverse contraction remains a theorem
+about co-reachability of a seed, not about \(L\). The 55-set for
+\(\Gamma_{\mathrm P}\) stays. FS1996 sufficiency remains `KNOWN`;
+this residual-coordinate characterization is not a `CLOSE`. No order
+4, CLI, Walnut, or Lean. Stop. Do not automatically continue.
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. No exact finite-state theorem. Not a
-`PAPER_CANDIDATE`.
+Status: `STRUCTURAL`. The 55-set remains an exact theorem for one
+Pisot \(\Gamma\). The accepting boundary of \(\Gamma_{\mathrm{NP}}\)
+is an exact unbounded object. Live-set finiteness from the origin is
+not a theorem. Not `PAPER_CANDIDATE`.

@@ -116,6 +116,19 @@ def phase0_order3() -> OstrowskiSystem:
     )
 
 
+def nonpisot_order3() -> OstrowskiSystem:
+    """Spectral comparison: ``Γ = ([0; 2̄], [0; 1̄], [0; 3̄])``.
+
+    Same ``d_1=2``, ``d_2=1`` as ``phase0_order3``, so the memoryless
+    digit alphabets agree. Only ``d_3`` changes (1 to 3). Characteristic
+    polynomial ``x^3-2x^2-x-3`` is an irreducible Perron non-Pisot cubic.
+    """
+    return OstrowskiSystem(
+        preperiods=((), (), ()),
+        periods=((2,), (1,), (3,)),
+    )
+
+
 def characteristic_poly_coeffs(system: OstrowskiSystem) -> tuple[int, ...] | None:
     """Constant-coefficient characteristic polynomial, or None if not constant.
 

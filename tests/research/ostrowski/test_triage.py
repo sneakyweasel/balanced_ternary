@@ -34,7 +34,7 @@ def test_problem_is_registered():
     from research.open_problems import get_problem
 
     assert get_problem("ostrowski_order_m_adder") is PROBLEM
-    assert PROBLEM.status == "EXPLORATORY"
+    assert PROBLEM.status == "STRUCTURAL"
     assert PROBLEM.docs == ("docs/problems/ostrowski_order_m_adder.md",)
     assert get_reference("baranwal-2020-ostrowski-thesis")["year"] == 2020
     assert get_reference("baranwal-schaeffer-shallit-2021-ostrowski-automatic")["year"] == 2021
