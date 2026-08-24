@@ -338,6 +338,13 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   \(16\) (\(\lVert s\rVert_\infty\) \(15\to 24\); \(166\to 427\)
   states). Complementary \(E_{n-1},E_{n-2}\) also grow. Energy does
   not bound the kernel component.
+- Uniform unnormalized mode bound \(\lvert z_j\rvert\le C\) on
+  origin-live remaining \(0\) fails from start remaining \(12\) to
+  \(16\): Perron \(\lvert z\rvert\) \(79.15\to 114.02\),
+  \(\lVert s\rVert_\infty\) \(27\to 37\), \(\lvert L_0\rvert\)
+  \(165\to 379\). Normalized \(\lvert\lambda\rvert^{-k}\lvert z\rvert\)
+  is not residual boundedness. Maximizer words at these horizons are
+  not a symbolic family.
 
 ## Formalization
 
@@ -388,12 +395,22 @@ are independent: Lean `Ostrowski.NP.adjointDet_eq`,
 invert `s` over `ℚ`. Origin-live `|s_orth|` growth is Python, not an
 `L_0` theorem.
 
+From the origin the residual is the control particular: Lean
+`Ostrowski.NP.origin_particular` (ledger `OST-np-origin-particular`),
+novelty **KNOWN**. `foldSteps ws origin` equals
+`−∑ A^{k-1-j} e₃ w_j`. Companion `z`-recurrence and unnormalized
+mode growth stay Python. Not an `L_0` theorem.
+`kernel_unreachable_of_not_exceptional`, `energy_step`,
+`energy_telescope`, `energy_control_interval`, `adjointDet_eq`, and
+`energy_homogeneous` are unchanged.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-ext-interval`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-homogeneous`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-adjoint-window-det`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-origin-particular`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -1012,22 +1029,67 @@ Short interior words of length \(\le 4\) from the large-kernel seed
 expanders and five \(2\)-repeats that stay live at that horizon.
 None is a symbolic family for all remaining.
 
+### Live control of the unstable convolution
+
+From the origin, `T_w(s)=A s − e₃ w` unfolds by variation of constants
+(Lean `origin_particular`, novelty **KNOWN**):
+
+\[
+s_k = -\sum_{j<k} A^{k-1-j} e_3 w_j.
+\]
+
+MSD order matches `apply_word`: the first letter is the highest
+remaining place. Energy of this particular is already
+`energy_telescope`. Companion embedding
+\(z=s_1+s_2\lambda+s_3\lambda^2\) in
+\(\mathbb Z[\lambda]/(\lambda^3-2\lambda^2-\lambda-3)\) satisfies
+\(z(T_w s)=\lambda z-\lambda^2 w\). All three embeddings have
+\(\lvert\lambda_j\rvert>1\) (non-Pisot). Three expanding modes versus
+one energy slab is a structural imbalance, not a cancellation
+theorem. Normalized \(\lvert\lambda\rvert^{-k}\lvert z\rvert\) bounded
+is tautological for \(\lvert\lambda\rvert>1\) and is not residual
+boundedness.
+
+On origin-reachable remaining \(0\) (start remaining \(12\) and
+\(16\)): \(\lvert L_0\rvert=165\to 379\),
+\(\lVert s\rVert_\infty=27\to 37\), max Perron \(\lvert z\rvert\)
+\(\approx 79.15\to 114.02\), max complex \(\lvert z\rvert\)
+\(\approx 25.83\to 38.61\). Unnormalized \(\lvert z\rvert\) grows, so
+uniform \(\lvert z_j\rvert\le C\) is refuted as an \(L_0\) bound.
+Normalized Perron \(\lvert z\rvert/\lambda^N\) shrinks; the mildly
+expanding complex pair has growing normalized modulus at these
+horizons. Remaining \(0\) has \(s_3=0\). Convolution matched recovered
+maximizer prefixes. Maximizer words share a \((2,-4,-4,\ldots)\)
+prefix and are not constant:
+
+- \(N=12\), \((-27,-6,0)\):
+  \((2,-4,-4,0,0,-4,1,1,-4,1,1,-2)\)
+- \(N=12\), \((-27,-15,0)\):
+  \((2,-4,-4,1,-4,-1,2,1,-3,2,2,-2)\)
+- \(N=16\), \((-3,-37,0)\):
+  \((2,-4,-4,0,0,-4,2,-2,-4,2,2,-4,0,2,-1,-2)\)
+- \(N=16\), \((-12,-37,0)\):
+  \((2,-4,-4,0,0,-4,1,1,-4,0,2,-2,-2,2,-3,-1)\)
+
+No symbolic family at this depth. Finite-horizon growth is not
+\(\lvert L_0\rvert=\infty\).
+
 ## Open questions
 
-Is \(\lvert L_0\rvert=\infty\)? Neighboring energies invert \(s\), but
-liveness constrains only \(E_n\). Origin-live \(\lvert s_{\mathrm{orth}}\rvert\)
-grows with horizon. A global invariant on \(\ker(u_n)\cap R(0)\), or
-one explicit unbounded live-from-0 family, is missing. Do not open
-order 4, Walnut, or a second example.
+Is \(\lvert L_0\rvert=\infty\)? The origin residual is the control
+particular, and unnormalized modes grow on remaining \(0\). A
+contracting functional on \(\ker(u_n)\cap R(0)\), or one explicit
+unbounded live-from-0 family whose particular stays in the slab, is
+missing. Do not open order 4, Walnut, or a second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN identities
-`energy_homogeneous` and `adjointDet_eq`. Complementary coordinates
-are neighboring energies; they are not bounded on origin-live slices.
-Homogeneous \(A^k\) is energy-neutral, so kernel expansion is
-invisible to the slab except through the control particular. No
-symbolic energy-neutral family. `kernel_unreachable_of_not_exceptional`
+`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN convolution
+`origin_particular` only. Three expanding modes versus one slab;
+normalized boundedness is tautological; unnormalized \(\lvert z\rvert\)
+grows \(N=12\to 16\); maximizers are not a family. Complementary
+coordinates, homogeneous energy-neutrality, and the live-Ext interval
+remain as previously promoted. `kernel_unreachable_of_not_exceptional`
 is unchanged. Do not `CLOSE`. No order 4, CLI, or Walnut. Stop. Next
 question (not taken up): a contracting functional on \(\ker(u_n)\),
 or a symbolic family whose particular stays inside the growing slab.

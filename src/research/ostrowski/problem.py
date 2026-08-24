@@ -37,7 +37,12 @@ PROBLEM = ProblemDefinition(
         "only. Neighboring energies invert s (det of consecutive adjoints "
         "is 3^{n-2}, Lean adjointDet_eq); homogeneous A^k is energy-neutral "
         "(Lean energy_homogeneous). Origin-live |s_orth| in ker(u_n) grows "
-        "with horizon; no symbolic energy-neutral family. Every small integer "
+        "with horizon; no symbolic energy-neutral family. From the origin "
+        "the residual is the control particular s_k = -sum A^{k-1-j} e3 w_j "
+        "(Lean origin_particular, KNOWN). Unnormalized companion modes grow "
+        "on remaining-0 live slices from start remaining 12 to 16; "
+        "normalized |lambda|^{-k}|z| bounded is not residual boundedness; "
+        "maximizer words are not a symbolic family. Every small integer "
         "linear form on s grows from start remaining 16 to 20. |L_0| is "
         "not proved infinite. Pisot existence of some adder is known."
     ),

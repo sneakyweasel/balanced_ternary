@@ -25,6 +25,10 @@ Homogeneous residual motion is energy-neutral in the sliding index
 adjoints are independent: `det(u_n,u_{n-1},u_{n-2}) = 3^{n-2}` for
 `n ≥ 2` (`adjointDet_eq`). Neighboring energies invert `s` over `ℚ`.
 That is not a bound on `L₀`.
+
+From the origin the residual is the control particular
+(`origin_particular`): `s_k = −∑ A^{k-1-j} e₃ w_j`. That is
+variation of constants for `T_w`, not a bound on `L₀`.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -302,5 +306,184 @@ theorem adjointDet_eq (n : ℕ) (hn : 2 ≤ n) :
 theorem adjointDet_ne_zero (n : ℕ) (hn : 2 ≤ n) : adjointDet n ≠ 0 := by
   rw [adjointDet_eq n hn]
   exact pow_ne_zero _ (by decide)
+
+def addState (s t : State) : State :=
+  (s.1 + t.1, s.2.1 + t.2.1, s.2.2 + t.2.2)
+
+def subState (s t : State) : State :=
+  (s.1 - t.1, s.2.1 - t.2.1, s.2.2 - t.2.2)
+
+def smulState (k : ℤ) (s : State) : State :=
+  (k * s.1, k * s.2.1, k * s.2.2)
+
+/-- Homogeneous residual matrix `A`. `step 0 = A`. -/
+def applyA (s : State) : State :=
+  step 0 s
+
+def iterateA : ℕ → State → State
+  | 0, s => s
+  | n + 1, s => applyA (iterateA n s)
+
+def e3 : State :=
+  (0, 0, 1)
+
+theorem addState_origin (s : State) : addState s origin = s := by
+  rcases s with ⟨s1, s2, s3⟩
+  simp [addState, origin]
+
+theorem addState_comm (s t : State) : addState s t = addState t s := by
+  rcases s with ⟨_,_,_⟩
+  rcases t with ⟨_,_,_⟩
+  simp [addState, add_comm]
+
+private theorem prod3_eq {a b c a' b' c' : ℤ}
+    (h1 : a = a') (h2 : b = b') (h3 : c = c') :
+    ((a, b, c) : State) = (a', b', c') := by
+  simp [h1, h2, h3]
+
+theorem applyA_add (s t : State) :
+    applyA (addState s t) = addState (applyA s) (applyA t) := by
+  rcases s with ⟨s1, s2, s3⟩
+  rcases t with ⟨t1, t2, t3⟩
+  simp only [applyA, addState, step]
+  apply prod3_eq <;> ring
+
+theorem applyA_smul (k : ℤ) (s : State) :
+    applyA (smulState k s) = smulState k (applyA s) := by
+  rcases s with ⟨s1, s2, s3⟩
+  simp only [applyA, smulState, step]
+  apply prod3_eq <;> ring
+
+theorem applyA_sub (s t : State) :
+    applyA (subState s t) = subState (applyA s) (applyA t) := by
+  rcases s with ⟨s1, s2, s3⟩
+  rcases t with ⟨t1, t2, t3⟩
+  simp only [applyA, subState, step]
+  apply prod3_eq <;> ring
+
+theorem iterateA_add (n : ℕ) (s t : State) :
+    iterateA n (addState s t) = addState (iterateA n s) (iterateA n t) := by
+  induction n generalizing s t with
+  | zero =>
+    simp [iterateA]
+  | succ n ih =>
+    simp [iterateA, ih, applyA_add]
+
+theorem iterateA_smul (n : ℕ) (k : ℤ) (s : State) :
+    iterateA n (smulState k s) = smulState k (iterateA n s) := by
+  induction n generalizing s with
+  | zero =>
+    simp [iterateA]
+  | succ n ih =>
+    simp [iterateA, ih, applyA_smul]
+
+theorem iterateA_sub (n : ℕ) (s t : State) :
+    iterateA n (subState s t) = subState (iterateA n s) (iterateA n t) := by
+  induction n generalizing s t with
+  | zero =>
+    simp [iterateA]
+  | succ n ih =>
+    simp [iterateA, ih, applyA_sub]
+
+theorem iterateA_applyA (n : ℕ) (s : State) :
+    iterateA n (applyA s) = iterateA (n + 1) s := by
+  induction n generalizing s with
+  | zero =>
+    simp [iterateA]
+  | succ n ih =>
+    simp [iterateA, ih]
+
+theorem step_affine (w : ℤ) (s : State) :
+    step w s = subState (applyA s) (smulState w e3) := by
+  rcases s with ⟨s1, s2, s3⟩
+  simp [step, applyA, subState, smulState, e3]
+
+theorem step_origin (w : ℤ) : step w origin = smulState (-w) e3 := by
+  simp [step, origin, smulState, e3]
+
+theorem addState_sub_smul (s : State) (w : ℤ) (t u : State) :
+    addState (subState s (smulState w t)) u =
+      addState s (addState (smulState (-w) t) u) := by
+  rcases s with ⟨_,_,_⟩
+  rcases t with ⟨_,_,_⟩
+  rcases u with ⟨_,_,_⟩
+  simp only [addState, subState, smulState]
+  apply prod3_eq <;> ring
+
+theorem addState_neg_smul (w : ℤ) (t p : State) :
+    addState (smulState (-w) t) p = subState p (smulState w t) := by
+  rcases t with ⟨_,_,_⟩
+  rcases p with ⟨_,_,_⟩
+  simp only [addState, subState, smulState]
+  apply prod3_eq <;> ring
+
+/-- Affine unfolding: `T_ws(s) = A^{|ws|} s + T_ws(0)`. -/
+theorem foldSteps_affine (ws : List ℤ) (s : State) :
+    foldSteps ws s =
+      addState (iterateA ws.length s) (foldSteps ws origin) := by
+  induction ws generalizing s with
+  | nil =>
+    simp [foldSteps, iterateA, addState_origin]
+  | cons w rest ih =>
+    calc
+      foldSteps (w :: rest) s
+          = foldSteps rest (step w s) :=
+            foldSteps_cons w rest s
+      _ = addState (iterateA rest.length (step w s)) (foldSteps rest origin) :=
+            ih (step w s)
+      _ = addState
+            (iterateA rest.length (subState (applyA s) (smulState w e3)))
+            (foldSteps rest origin) := by
+            rw [step_affine]
+      _ = addState
+            (subState (iterateA rest.length (applyA s))
+              (iterateA rest.length (smulState w e3)))
+            (foldSteps rest origin) := by
+            rw [iterateA_sub]
+      _ = addState
+            (subState (iterateA (rest.length + 1) s)
+              (smulState w (iterateA rest.length e3)))
+            (foldSteps rest origin) := by
+            rw [iterateA_applyA, iterateA_smul]
+      _ = addState (iterateA (rest.length + 1) s)
+            (addState (smulState (-w) (iterateA rest.length e3))
+              (foldSteps rest origin)) :=
+            addState_sub_smul _ _ _ _
+      _ = addState (iterateA (w :: rest).length s)
+            (addState (smulState (-w) (iterateA rest.length e3))
+              (foldSteps rest origin)) := by
+            simp [List.length_cons]
+      _ = addState (iterateA (w :: rest).length s)
+            (addState (iterateA rest.length (smulState (-w) e3))
+              (foldSteps rest origin)) := by
+            rw [← iterateA_smul]
+      _ = addState (iterateA (w :: rest).length s)
+            (addState (iterateA rest.length (step w origin))
+              (foldSteps rest origin)) := by
+            rw [← step_origin]
+      _ = addState (iterateA (w :: rest).length s)
+            (foldSteps rest (step w origin)) := by
+            rw [← ih (step w origin)]
+      _ = addState (iterateA (w :: rest).length s)
+            (foldSteps (w :: rest) origin) := by
+            rw [foldSteps_cons]
+
+/-- Control particular from the origin:
+`s = −∑_j A^{k-1-j} e₃ w_j`. KNOWN variation of constants, not `L₀`. -/
+def particularSum : List ℤ → State
+  | [] => origin
+  | w :: rest =>
+      subState (particularSum rest) (smulState w (iterateA rest.length e3))
+
+theorem origin_particular (ws : List ℤ) :
+    foldSteps ws origin = particularSum ws := by
+  induction ws with
+  | nil =>
+    simp [foldSteps, particularSum]
+  | cons w rest ih =>
+    have haff := foldSteps_affine rest (step w origin)
+    rw [foldSteps_cons, haff, step_origin, iterateA_smul, ih]
+    simp only [particularSum]
+    exact addState_neg_smul w (iterateA rest.length e3) (particularSum rest)
 
 end Ostrowski.NP

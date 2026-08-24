@@ -2039,5 +2039,16 @@
       "tests/research/ostrowski/test_energy_kernel.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "OST-np-origin-particular",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, from the origin an MSD word ws unfolds by variation of constants: foldSteps ws origin equals the particular sum −∑ A^{k-1-j} e3 w_j; this is not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_spectral_control.py"
+    ],
+    "related_conjectures": []
   }
 ]
