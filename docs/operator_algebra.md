@@ -68,6 +68,13 @@ No unexpected torsion was found among length-3 words of
 That census is **COMPUTATIONALLY VERIFIED** on a bounded sample, not a
 classification of the free product.
 
+On the fragment \(\{S,N,D,W\}\) alone, every identity of word length
+at most 4 is a consequence of the recorded list above
+(**COMPUTATIONALLY VERIFIED**; 341 words, 77 recorded normal forms, no
+semantic collision). See [operator_dynamics.md](problems/operator_dynamics.md).
+This is not a reason to add production rewrite rules or a fourth named
+word fragment.
+
 ## Dynamics (not Collatz)
 
 - \(D\): unique fixed point \(0\). Every orbit reaches 0. Not a chaotic
