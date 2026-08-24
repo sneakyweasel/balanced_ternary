@@ -5,7 +5,7 @@ Energy, place values, and the recurrence word stay in other Ostrowski modules.
 
 from __future__ import annotations
 
-from research.ostrowski.spec import ostrowski_affine, ostrowski_spec
+from research.ostrowski.spec import ostrowski_spec
 from research.ostrowski.system import OstrowskiSystem
 from research.ostrowski.zero_value_kernel import SHORTEST_NONRESET
 from research_engine.algebra.linear_functionals import LinearFunctional
@@ -14,24 +14,20 @@ from research_engine.attacks.block import BlockDynamicsAttack
 from research_engine.attacks.functional import FunctionalBoundAttack
 from research_engine.attacks.modular import ModularInvariantAttack
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
-from research_engine.attacks.result import AttackContext, AttackResult
+from research_engine.attacks.result import AttackResult
 from research_engine.attacks.reverse import ReverseGeometryAttack
+from research_engine.core.phase import IntPhase
 from research_engine.core.semantics import State
 
 
 def reconnaissance(start_remaining: int, system: OstrowskiSystem | None = None) -> AttackResult:
-    return ReconnaissanceAttack().run(
-        ostrowski_spec(start_remaining, system),
-        AttackContext(live_only=True),
-    )
+    spec = ostrowski_spec(start_remaining, system)
+    return ReconnaissanceAttack().run(spec, spec.attack_context())
 
 
 def modular(system: OstrowskiSystem | None = None) -> AttackResult:
-    affine = ostrowski_affine(system)
-    return ModularInvariantAttack().run(
-        ostrowski_spec(0, system),
-        AttackContext(affine=affine),
-    )
+    spec = ostrowski_spec(0, system)
+    return ModularInvariantAttack().run(spec, spec.attack_context())
 
 
 def affine_region(
@@ -39,12 +35,10 @@ def affine_region(
     remaining: int,
     system: OstrowskiSystem | None = None,
 ) -> AttackResult:
-    from research_engine.core.phase import IntPhase
-
     spec = ostrowski_spec(remaining, system)
     return AffineInvariantAttack().run(
         spec,
-        AttackContext(candidate_region=region, phases=(IntPhase(remaining),)),
+        spec.attack_context(candidate_region=region, phases=(IntPhase(remaining),)),
     )
 
 
@@ -52,7 +46,8 @@ def reverse_origin(max_depth: int | None = 3) -> AttackResult:
     """Bounded reverse basin of the origin for ``Γ_NP``. Not ``L_0``."""
     from research.ostrowski.reverse_map import integer_preimage
 
-    alphabet = ostrowski_affine().controls
+    spec = ostrowski_spec(0)
+    alphabet = spec.affine_system().controls
 
     def predecessors(state: State) -> tuple[State, ...]:
         found: list[State] = []
@@ -63,8 +58,8 @@ def reverse_origin(max_depth: int | None = 3) -> AttackResult:
         return tuple(found)
 
     return ReverseGeometryAttack().run(
-        ostrowski_spec(0),
-        AttackContext(
+        spec,
+        spec.attack_context(
             reverse_seeds=((0, 0, 0),),
             reverse_preimage=predecessors,
             reverse_max_depth=max_depth,
@@ -73,14 +68,16 @@ def reverse_origin(max_depth: int | None = 3) -> AttackResult:
 
 
 def functional_s3(start_remaining: int, system: OstrowskiSystem | None = None) -> AttackResult:
+    spec = ostrowski_spec(start_remaining, system)
     return FunctionalBoundAttack().run(
-        ostrowski_spec(start_remaining, system),
-        AttackContext(functional=LinearFunctional((0, 0, 1)), live_only=True),
+        spec,
+        spec.attack_context(functional=LinearFunctional((0, 0, 1))),
     )
 
 
 def hub_block(system: OstrowskiSystem | None = None) -> AttackResult:
+    spec = ostrowski_spec(2, system)
     return BlockDynamicsAttack().run(
-        ostrowski_spec(2, system),
-        AttackContext(affine=ostrowski_affine(system), word=SHORTEST_NONRESET),
+        spec,
+        spec.attack_context(word=SHORTEST_NONRESET),
     )

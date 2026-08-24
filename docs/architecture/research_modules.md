@@ -37,7 +37,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.operator_dynamics` | `EXPLORATORY` | composition census, dossiers |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |
 | `research.erdos_distinct_subset_sums` | `EXPLORATORY` | Erdős #1 signed-relation gate |
-| `research.ostrowski` | `STRUCTURAL` | order-3 \(B_{\min}\); NP \(K\) unbounded; \(L_0\) PARK; dynamics helpers and planner delegate to `research_engine` |
+| `research.ostrowski` | `STRUCTURAL` | order-3 \(B_{\min}\); NP \(K\) unbounded; \(L_0\) PARK; `OstrowskiSpec` adapter |
 | `research.kabelian_complexity` | `ARCHIVED` | k-abelian residual signatures; block-coding close |
 | `research.stabilization` | `ARCHIVED` | local \(\Phi_r\) versus global \(k_0\); literature close |
 | `research.padic_dynamics` | `ARCHIVED` | cycle-lift residual quotient; classical return-map close |

@@ -1542,9 +1542,12 @@ added an in-memory hypothesis ledger, negative-knowledge schemas, and
 a deterministic planner. `LIVE_SLICE` / `TERMINAL` / `CO_REACHABLE`
 evidence cannot `PROMOTE` the parked exact `LIVE` hypothesis
 \(\lvert L_0\rvert=\infty\). The named theorem ledger is not migrated.
+Engineering R7 made `OstrowskiSpec` the adapter facade (`q`, energy,
+digit legality, affine, recurrence, `attack_context`) without moving
+the package to `problems/ostrowski_np`. Energy stays Ostrowski-side.
 These extractions are infrastructure `PROMOTE`. They do not change the
 mathematical decision above.
-Do not start R7 (full adapter rewrite), spectral attacks, or CLI until a later cycle.
+Do not start R8 (synthetic benchmarks), spectral attacks, or CLI until a later cycle.
 
 ## Publication assessment
 

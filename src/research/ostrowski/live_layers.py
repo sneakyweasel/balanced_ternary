@@ -45,12 +45,9 @@ REVERSE_BOX_NOT_A_PROOF = "finite_reverse_box_is_not_unreachability"
 
 def energy_canonical(system: OstrowskiSystem, state: State3, remaining: int) -> int:
     """``E_i = s1 q_{i-2} + s2 q_{i-1} + s3 q_i``. Identical to ``residual_integer``."""
-    s1, s2, s3 = state
-    return (
-        s1 * system.place_value(remaining - 2)
-        + s2 * system.place_value(remaining - 1)
-        + s3 * system.place_value(remaining)
-    )
+    from research.ostrowski.residual import residual_integer
+
+    return residual_integer(system, state, remaining)
 
 
 def linf(state: State3) -> int:

@@ -3,11 +3,10 @@
 from __future__ import annotations
 
 from research.ostrowski.negative_knowledge import L0_HYPOTHESIS, OSTROWSKI_FORBIDDEN
-from research.ostrowski.spec import ostrowski_affine, ostrowski_spec
+from research.ostrowski.spec import ostrowski_spec
 from research.ostrowski.system import OstrowskiSystem
 from research.ostrowski.zero_value_kernel import SHORTEST_NONRESET
 from research_engine.algebra.linear_functionals import LinearFunctional
-from research_engine.attacks.result import AttackContext
 from research_engine.planner.ledger import ResearchLedger
 from research_engine.planner.negative import NegativeKnowledge
 from research_engine.planner.orchestrator import AttackPlanner, PlannerReport
@@ -26,10 +25,10 @@ def plan_np(
     """Run the six cheap attacks on Γ_NP. Spectral/symbolic are deferred."""
     ledger = ostrowski_ledger()
     spec = ostrowski_spec(remaining, system)
-    context = AttackContext(
-        live_only=True,
-        affine=ostrowski_affine(system),
-        functional=LinearFunctional((0, 0, 1)),
-        word=SHORTEST_NONRESET,
+    return AttackPlanner(ledger).run(
+        spec,
+        spec.attack_context(
+            functional=LinearFunctional((0, 0, 1)),
+            word=SHORTEST_NONRESET,
+        ),
     )
-    return AttackPlanner(ledger).run(spec, context)

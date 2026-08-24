@@ -1,8 +1,8 @@
 """Ostrowski unread-tail system as a ``ProblemSpec``.
 
-Remaining length is the phase. Energy, place values, and the NP inverse
-stay in Ostrowski modules; the engine only sees transition, legality,
-and terminal predicates.
+Remaining length is the phase. Place values, energy, and digit legality
+are adapter methods. The engine sees only the ``ProblemSpec`` protocol
+plus optional affine/recurrence data.
 """
 
 from __future__ import annotations
@@ -75,6 +75,35 @@ class OstrowskiSpec:
 
     def canonicalize(self, state: tuple[int, ...]) -> State3:
         return _as_state3(state)
+
+    def q(self, n: int) -> int:
+        """Place value ``q_n``. Ostrowski-specific; not an engine primitive."""
+        return self.system.place_value(n)
+
+    def energy(self, state: tuple[int, ...], remaining: int) -> int:
+        """Unread-tail energy ``E_remaining(s)``. Stays on the adapter."""
+        from research.ostrowski.residual import residual_integer
+
+        return residual_integer(self.system, _as_state3(state), remaining)
+
+    def digit_realization(self, control: int, phase: IntPhase) -> bool:
+        """Whether difference digit ``control`` is legal at ``phase``."""
+        return control in self.legal_controls(self.initial_state, phase)
+
+    def affine_system(self) -> AffineSystem:
+        return ostrowski_affine(self.system)
+
+    def recurrence(self):
+        from research.ostrowski.recurrence import recurrence_spec
+
+        return recurrence_spec(self.system)
+
+    def attack_context(self, **kwargs):
+        from research_engine.attacks.result import AttackContext
+
+        kwargs.setdefault("live_only", True)
+        kwargs.setdefault("affine", self.affine_system())
+        return AttackContext(**kwargs)
 
 
 def ostrowski_spec(
