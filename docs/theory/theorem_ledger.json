@@ -2061,5 +2061,16 @@
       "tests/research/ostrowski/test_spectral_control.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "OST-np-recurrence-word-zero",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the MSD recurrence word B*=(1,-2,-1,-3) has consumed sum zero at every start remaining n+4: q_{n+3}-2q_{n+2}-q_{n+1}-3q_n=0; this is q_rec, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_recurrence_zero.py"
+    ],
+    "related_conjectures": []
   }
 ]

@@ -45,7 +45,10 @@ PROBLEM = ProblemDefinition(
         "maximizer words are not a symbolic family. The origin impulse is "
         "the place-value vector A^r e3 = (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r) "
         "(Lean iterateA_e3, KNOWN). Large |s| does not force unique Ext. "
-        "Every small integer "
+        "The recurrence word B*=(1,-2,-1,-3) has MSD consumed sum 0 "
+        "(Lean recurrence_word_zero, KNOWN) and is a reset; all 11 "
+        "length-<=6 W-valued shift-combinations are resets, not an "
+        "expanding family. Every small integer "
         "linear form on s grows from start remaining 16 to 20. |L_0| is "
         "not proved infinite. Pisot existence of some adder is known."
     ),

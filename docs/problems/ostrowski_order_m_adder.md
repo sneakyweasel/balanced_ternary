@@ -349,6 +349,12 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   maximizer prefixes: remaining \(5\), state \((12,-2,-1)\),
   \(\lVert s\rVert_\infty=12\), Ext \((-1,0,1)\). Ext is the energy
   slab, not a residual bound.
+- The unique length-4 consecutive place-value relation is a multiple
+  of \((3,1,2,-1)\). The \(W\)-valued sign MSD \(B_\ast=(1,-2,-1,-3)\)
+  has \(\mathrm{val}=0\) but is a reset \(T_{B_\ast}(0)=0\). Last
+  letter \(-3\) is not LSD-legal. All \(11\) length-\(\le 6\)
+  shift-combinations in \(W\) are algebraic zero-sum resets, not an
+  expanding family.
 
 ## Formalization
 
@@ -412,6 +418,13 @@ forcings and the reindexed convolution stay Python. Not an `L_0`
 theorem. `origin_particular` and the earlier Energy lemmas are
 unchanged.
 
+The recurrence word has MSD consumed sum zero: Lean
+`Ostrowski.NP.recurrence_word_zero` (ledger
+`OST-np-recurrence-word-zero`), novelty **KNOWN**.
+`consumedSum (n+4) [1,-2,-1,-3] = 0`. That is `q_rec`. Affine
+iteration and liveness stay Python. Not an `L_0` theorem.
+`iterateA_e3` and `origin_particular` are unchanged.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
@@ -420,6 +433,7 @@ Ledger row `OST-np-energy-homogeneous`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-adjoint-window-det`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-origin-particular`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-impulse-place`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-recurrence-word-zero`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -1114,24 +1128,48 @@ not constrain \(\lvert L_0\rvert\). Large \(\lvert s\rvert\) does not
 force unique Ext: on the \(N=12\) maximizer word, remaining \(5\),
 state \((12,-2,-1)\) has Ext \((-1,0,1)\).
 
+### Recurrence as a zero-sum block
+
+The unique length-4 consecutive identity is a multiple of
+\((3,1,2,-1)\). Coefficients \(3\notin W\). The \(W\)-valued sign
+LSD \((-3,-1,-2,1)\) is MSD
+
+\[
+B_\ast=(1,-2,-1,-3),\qquad
+\mathrm{val}(B_\ast)=q_{n+3}-2q_{n+2}-q_{n+1}-3q_n=0
+\]
+
+(Lean `recurrence_word_zero`, novelty **KNOWN**). Last letter
+\(-3\) is interior-legal and not in the LSD alphabet
+\(\{-2,\ldots,1\}\), so a complete remaining-\(4\) word is
+alphabet-illegal. As an interior block, \(B_\ast\) is prefix-legal
+and live from remaining \(8\), and \(T_{B_\ast}(0)=(0,0,0)\): a
+reset. Iteration \(B_\ast^k\) stays at the origin.
+
+Length \(5\)–\(6\) shift-combinations with digits in \(W\) yield
+\(11\) words, all algebraic zero-sum, all resets. Four of them end
+in \(0\) and are fully live as complete words (LSD-legal resets).
+No non-reset live expander. Algebraic zero-sum is not fully live. A
+reset is not \(\lvert L_0\rvert=\infty\).
+
 ## Open questions
 
 Is \(\lvert L_0\rvert=\infty\)? Origin reachability is the Ostrowski
-convolution of \(w\) against \(q\). Unnormalized modes grow on
-remaining \(0\); Ext does not collapse at large \(\lvert s\rvert\).
-A contracting functional on \(\ker(u_n)\cap R(0)\), or one explicit
-unbounded live-from-0 family, is missing. Do not open order 4,
+convolution of \(w\) against \(q\). The recurrence itself gives only
+reset blocks at length \(\le 6\). A contracting functional on
+\(\ker(u_n)\cap R(0)\), or one explicit unbounded live-from-0 family
+that is not a recurrence reset, is missing. Do not open order 4,
 Walnut, or a second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN dictionary
-`iterateA_e3` only. The particular is the place-value impulse;
-scalar forcings are local; unique Ext at large \(\lvert s\rvert\) is
-refuted. `origin_particular` and the earlier Energy lemmas are
-unchanged. Do not `CLOSE`. No order 4, CLI, or Walnut. Stop. Next
-question (not taken up): a contracting functional on \(\ker(u_n)\),
-or a symbolic family whose particular stays inside the growing slab.
+`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN identity
+`recurrence_word_zero` only. Every short \(W\)-valued recurrence
+combo is a reset (or LSD-illegal as a complete word). `iterateA_e3`
+and `origin_particular` are unchanged. Do not `CLOSE`. No order 4,
+CLI, or Walnut. Stop. Next question (not taken up): a contracting
+functional on \(\ker(u_n)\), or a symbolic family that is not a
+recurrence reset.
 
 ## Publication assessment
 

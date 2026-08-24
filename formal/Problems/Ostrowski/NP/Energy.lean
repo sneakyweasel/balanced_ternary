@@ -31,6 +31,10 @@ From the origin the residual is the control particular
 the place-value vector (`iterateA_e3`):
 `A^r e₃ = (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r)`. That is the
 Ostrowski convolution of `w` against `q`, not a bound on `L₀`.
+
+The recurrence word `B* = [1, -2, -1, -3]` has MSD consumed sum
+zero (`recurrence_word_zero`): `q_{n+3}-2q_{n+2}-q_{n+1}-3q_n = 0`.
+That is `q_rec`, not a live expanding family.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -153,6 +157,21 @@ theorem energy_telescope (n : ℕ) (ws : List ℤ) (s : State) :
     simp [hsub] at hstep ⊢
     rw [hstep]
     ring
+
+/-- MSD recurrence word `B* = (1,-2,-1,-3)`.
+`val(B*) = q_{n+3}-2q_{n+2}-q_{n+1}-3q_n = 0`. KNOWN `q_rec`, not `L₀`. -/
+def recurrenceWord : List ℤ :=
+  [1, -2, -1, -3]
+
+theorem recurrence_word_zero (n : ℕ) :
+    consumedSum (n + 4) recurrenceWord = 0 := by
+  have h4 : n + 4 - 1 = n + 3 := by omega
+  have h3 : n + 3 - 1 = n + 2 := by omega
+  have h2 : n + 2 - 1 = n + 1 := by omega
+  have h1 : n + 1 - 1 = n := Nat.add_sub_cancel n 1
+  simp [consumedSum, recurrenceWord, h4, h3, h2, h1]
+  rw [q_rec]
+  ring
 
 /-- The set of integer controls `w` with `E_{n-1}(T_w s)` in a fixed
 interval `[lo, hi]` is consecutive. This is `energy_step` plus `q > 0`,
