@@ -52,6 +52,8 @@ block transducer API.
 The recurrence word is a reset (`recurrence_word_reset`):
 `particularSum B* = 0`. Powers stay at the origin, so
 `(B*)^k · (1,-2)` has particular the hub (`reset_pow_then_hub`).
+An origin reset does not change the particular of a suffix
+(`reset_prefix`): `T_R(0)=0` implies `T_{RU}(0)=T_U(0)`.
 That is not a bound on `L₀`.
 -/
 
@@ -587,6 +589,12 @@ theorem particular_concat (u v : List ℤ) :
     foldSteps_append]
   exact foldSteps_affine v (foldSteps u origin)
 
+/-- Origin reset prefixes do not change the particular of a suffix.
+KNOWN `particular_concat` at `c_R=0`, not `L₀`. -/
+theorem reset_prefix (r u : List ℤ) (hr : particularSum r = origin) :
+    particularSum (r ++ u) = particularSum u := by
+  rw [particular_concat, hr, iterateA_origin, addState_origin_left]
+
 theorem energy_add (i : ℕ) (s t : State) :
     energy i (addState s t) = energy i s + energy i t := by
   rcases s with ⟨s1, s2, s3⟩
@@ -704,7 +712,7 @@ theorem reset_pow_origin (k : ℕ) :
 theorem reset_pow_then_hub (k : ℕ) :
     particularSum ((List.replicate k recurrenceWord).flatten ++ [1, -2]) =
       (-3, -1, 0) := by
-  rw [particular_concat, reset_pow_origin, iterateA_origin, addState_origin_left]
+  rw [reset_prefix _ _ (reset_pow_origin k)]
   exact hub_nonreset.1
 
 /-- Complete-word zero-value is not a monoid. Witness `(1,-2)(1,-2)`. -/

@@ -2160,5 +2160,38 @@
       "tests/research/ostrowski/test_recurrence_zero.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "OST-np-unique-predecessor",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if T_w(s)=t then s equals the integer reverse (t2-t1/3, t3+w-2 t1/3, t1/3); on F this is (b-a/3, w-2a/3, a/3). This is inversion of step, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/KernelFamily.lean",
+    "tests": [
+      "tests/research/ostrowski/test_reverse_closure.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-extra-terminal-congruence",
+    "tag": "REFUTED",
+    "statement": "origin-reachable remaining-0 terminals of Γ_NP satisfy a congruence on F strictly stronger than 3|a, equivalently 9|a or gcd of b-coordinates >1",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "",
+    "tests": [
+      "tests/research/ostrowski/test_origin_live.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-reset-prefix",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if T_R(0)=0 then T_{RU}(0)=T_U(0); origin-reset prefixes do not create new terminals. This is particular_concat at c_R=0, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_recurrence_zero.py"
+    ],
+    "related_conjectures": []
   }
 ]

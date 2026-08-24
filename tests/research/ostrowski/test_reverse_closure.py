@@ -51,6 +51,10 @@ def test_integer_reverse_inverts_forward():
             assert reverse_matches_forward(sys, state, w)
     assert integer_preimage((1, 0, 0), 0) is None
     assert integer_preimage((3, 1, 0), 0) == (0, -2, 1)
+    # On F: unique predecessor is (b - a/3, w - 2a/3, a/3). Lean predecessor_on_F.
+    for a, b, w in ((-3, -1, 1), (0, 0, 0), (6, 2, -2), (-27, -6, 2)):
+        pred = integer_preimage((a, b, 0), w)
+        assert pred == (b - a // 3, w - 2 * (a // 3), a // 3)
 
 
 def test_q_norm_contraction_certificate_is_exact():

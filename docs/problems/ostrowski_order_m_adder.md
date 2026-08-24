@@ -302,6 +302,19 @@ role. The systems are not identified.
   **KNOWN**). König of the reset tree stays at the origin. The full
   language still grows \(\lvert L_0(N)\rvert\) at finite horizon;
   that is not \(\lvert L_0\rvert=\infty\).
+- Extra terminal congruence on \(F\) beyond \(3\mid a\) — **REFUTED**
+  at start remaining \(12\) (ledger `OST-np-extra-terminal-congruence`).
+  Observed \(L_0(12)\) spans \(3\mathbb Z\times\mathbb Z\):
+  \(\gcd a=3\), \(\gcd b=1\), not all \(9\mid a\), and points off the
+  two-step ray (maximizer \((-27,-6,0)\)). Integer reverse is Lean
+  `unique_predecessor` (ledger `OST-np-unique-predecessor`), novelty
+  **KNOWN**. New terminals \(12\to 16\) are not \(\lvert L_0\rvert=\infty\).
+- Origin-reset prefixes do not create new terminals — **PROVED — LEAN**
+  (`reset_prefix`, novelty **KNOWN**): \(T_R(0)=0\) implies
+  \(T_{RU}(0)=T_U(0)\). Hub first appears at length \(2\), not via
+  \((B_\ast)^k\) padding. Primitive image \(P\) equals \(L_0\) by
+  shortest realizations; that is not a new census. Finite-horizon
+  \(C(N)\) growth is not \(\lvert L_0\rvert=\infty\).
 
 ## Experiments
 
@@ -396,6 +409,18 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   `OST-np-long-words-infinite-L0`). König of \((B_\ast)^\infty\) stays
   at the origin. Full-language \(\lvert L_0(N)\rvert\) growth is not
   this family and not \(\lvert L_0\rvert=\infty\).
+- Extra terminal congruence beyond \(3\mid a\) (equivalently \(9\mid a\)
+  or \(\gcd b>1\)) fails on \(L_0(12)\): \(\gcd a=3\), \(\gcd b=1\),
+  maximizer \((-27,-6,0)\) off the two-step ray (ledger
+  `OST-np-extra-terminal-congruence`). \(L_0(16)\setminus L_0(12)\) is
+  nonempty. Small forms \(\alpha a+\beta b\) all grow \(12\to 16\).
+  Finite-horizon span of \(3\mathbb Z\times\mathbb Z\) is not
+  \(\lvert L_0\rvert=\infty\).
+- Unbounded realization length of a terminal is not a new terminal:
+  \(T_R(0)=0\) implies \(T_{RU}(0)=T_U(0)\) (ledger `OST-np-reset-prefix`).
+  Hub \(\ell_{\min}=2\). \(C(N)\) still grows through remaining \(8\);
+  that is not \(\lvert L_0\rvert=\infty\). Primitive \(P=L_0\) is not a
+  new set.
 - Unique control at large \(\lvert s\rvert\) fails on the \(N=12\)
   maximizer prefixes: remaining \(5\), state \((12,-2,-1)\),
   \(\lVert s\rVert_\infty=12\), Ext \((-1,0,1)\). Ext is the energy
@@ -523,6 +548,21 @@ not force infinitely many terminals (ledger
 `OST-np-long-words-infinite-L0`, `REFUTED`). König is not an
 `L_0` theorem.
 
+Integer reverse of \(T_w\) is Lean `Ostrowski.NP.unique_predecessor`
+(ledger `OST-np-unique-predecessor`), novelty **KNOWN**, with
+`predecessor_on_F` on the plane. Extra congruence on origin-live
+remaining-0 terminals beyond \(3\mid a\) is **REFUTED** at start
+remaining \(12\) (ledger `OST-np-extra-terminal-congruence`).
+Python `terminal_span_report`: \(\gcd a=3\), \(\gcd b=1\), not
+\(9\mid a\). Not an `L_0` theorem.
+
+An origin reset does not change the particular of a suffix: Lean
+`Ostrowski.NP.reset_prefix` (ledger `OST-np-reset-prefix`), novelty
+**KNOWN**. `particularSum R = origin` implies
+`particularSum (R ++ U) = particularSum U`. Hub first appears at
+length 2. Primitive image \(P=L_0\) is shortest-realization
+tautology, not a new census. Not an `L_0` theorem.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
@@ -540,6 +580,9 @@ Ledger row `OST-np-fold-s3`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-unnormalized-mode-bound`: `REFUTED`.
 Ledger row `OST-np-reset-pow-then-hub`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-long-words-infinite-L0`: `REFUTED`.
+Ledger row `OST-np-unique-predecessor`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-extra-terminal-congruence`: `REFUTED`.
+Ledger row `OST-np-reset-prefix`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -1387,6 +1430,36 @@ census still grows \(\lvert L_0(N)\rvert=165\to 379\) from start
 remaining \(12\to 16\). König compactness is not an \(L_0\)
 theorem. No prefix-tree engine, pumping search, or \(N>16\) BFS.
 
+### Observed remaining-0 terminals span \(3\mathbb Z\times\mathbb Z\)
+
+The integer reverse of \(T_w\) is already Lean `unique_predecessor` /
+`predecessor_on_F` (ledger `OST-np-unique-predecessor`, novelty
+**KNOWN**) and Python `integer_preimage`. On \(F\) this is
+\(s=(b-a/3,\,w-2a/3,\,a/3)\). That is inversion of `step`, not a
+new reverse-graph calculus.
+
+At start remaining \(12\), origin-live remaining-0 states span the
+full lattice \(\{3\mid a\}\subset F\): \(\gcd a=3\), \(\gcd b=1\),
+not all \(9\mid a\), and the maximizer \((-27,-6,0)\) is off the
+two-step ray. Extra congruence beyond \(3\mid a\) is **REFUTED**
+(ledger `OST-np-extra-terminal-congruence`). From \(12\to 16\),
+\(\lvert L_0\rvert=165\to 379\) with nonempty difference; every
+small form \(\alpha a+\beta b\) grows. This is not
+\(\lvert L_0\rvert=\infty\) and not a translational pump. No
+seven-module terminal-image stack.
+
+### Origin resets do not create new terminals
+
+Lean `reset_prefix` (ledger `OST-np-reset-prefix`, novelty **KNOWN**):
+if \(T_R(0)=0\) then \(T_{RU}(0)=T_U(0)\). This is `particular_concat`
+at \(c_R=0\). It is not \(T_R(s)=s\) for arbitrary \(s\). Hub
+\(\ell_{\min}=2\) via \((1,-2)\); \((B_\ast)^k\) padding is not first
+appearance. Every terminal has a shortest realization, so the
+primitive image \(P\) equals \(L_0\); that is not a new set.
+Cumulative \(C(N)\) still grows through remaining \(8\). Reset-padded
+length is not primitive terminal growth. No primitive-DP engine or
+pump search.
+
 ## Open questions
 
 Is \(\lvert L_0\rvert=\infty\)? Origin reachability is the Ostrowski
@@ -1399,19 +1472,15 @@ is missing. Do not open order 4, Walnut, or a second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\). `REFUTED`: arbitrarily long
-origin-accepted words force infinitely many distinct terminals.
-`PROMOTE` the KNOWN identity `reset_pow_then_hub` only. `CLOSE`
-König / \(\mathcal T_\infty\) / \(S_\infty\) as a reparameterization
-of the known reset plus standard compactness. Finite-horizon
-\(\lvert L_0(N)\rvert\) growth is Pattern A for the full language
-and is not \(\lvert L_0\rvert=\infty\). The reset-hub core is a
-bounded recurrent sublanguage, not finite terminal closure of all
-of \(L_0\). Spectral cancellation stays parked. Do not `CLOSE` the
-Ostrowski problem. No order 4, CLI, Walnut, or seven-module
-extendability stack. Stop. Next question (not taken up): a
-contracting functional on \(\ker(u_n)\), or a symbolic family that
-is not a recurrence reset and not the bounded \(F\to F\) ray.
+`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN identity
+`reset_prefix` only. `CLOSE` primitive image \(P=L_0\) as
+shortest-realization tautology. Unbounded \(H(t)\) remains
+**REFUTED** as a proxy for infinitude. Finite-horizon \(C(N)\)
+growth is not \(\lvert L_0\rvert=\infty\). Do not `CLOSE` the
+Ostrowski problem. No order 4, CLI, Walnut, or primitive-DP /
+pump stack. Stop. Next question (not taken up): a contracting
+functional on \(\ker(u_n)\), or a symbolic family that is not a
+recurrence reset and not the bounded \(F\to F\) ray.
 
 ## Publication assessment
 

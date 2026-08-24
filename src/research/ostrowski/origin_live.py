@@ -15,9 +15,17 @@ and unbounded. That does not imply ``t_n ∈ R(0)`` or ``|L_0| = ∞``.
 
 Pisot comparison: ``Γ_P`` has ``s_1' = s_3``, so ``s_1 ≡ 0 (mod 3)``
 is not forced. ``B_MIN`` occupies all three residue classes.
+
+Observed remaining-0 terminals span the full lattice ``3Z × Z`` in
+``F``: extra congruence beyond ``3 | a`` fails at finite horizon.
+That is not ``|L_0|=∞``. Reverse on ``F`` is ``integer_preimage``.
 """
 
 from __future__ import annotations
+
+from functools import reduce
+from itertools import product
+from math import gcd
 
 from research.ostrowski.live_growth import legal_w, reachable_live
 from research.ostrowski.nonpisot_search import HUB
@@ -226,4 +234,122 @@ def kernel_family_reachability_report(max_n: int = 24) -> dict[str, object]:
         "open_n": remaining,
         "open_n_are_0_or_12_mod_24": all(n % 24 in (0, 12) for n in remaining),
         "unbounded_K_does_not_imply_unbounded_L0": True,
+    }
+
+
+def remaining_zero_states(start_remaining: int) -> set[State3]:
+    """Origin-live remaining-0 slice ``L_0(N)``. Not infinitude."""
+    from research.ostrowski.live_layers import forward_layers
+
+    report = forward_layers(nonpisot_order3(), start_remaining, live_only=True)
+    return set(report["layers"][0].get("states_L", ()))
+
+
+def on_two_step_ray(state: State3) -> bool:
+    return state[2] == 0 and state[0] == 3 * state[1]
+
+
+def _gcd_all(values: list[int]) -> int:
+    return abs(reduce(gcd, values, 0))
+
+
+EXTRA_CONGRUENCE_REFUTED = "extra_terminal_congruence_beyond_3_divides_a_refuted"
+GROWTH_NOT_INFINITUDE = "finite_depth_is_not_infinitude"
+REVERSE_IS_STEP = "f_predecessor_is_integer_preimage"
+
+
+def terminal_span_report(n_small: int = 12, n_large: int = 16) -> dict[str, object]:
+    """Observed ``L_0(N)`` spans the full ``3Z × Z`` lattice in ``F``.
+
+    Extra modulus on ``b``, or ``9 | a``, fails at these horizons.
+    New terminals at 16 versus 12 are not ``|L_0|=∞``. Reverse on ``F``
+    is ``integer_preimage``, Lean ``unique_predecessor``.
+    """
+    small = remaining_zero_states(n_small)
+    large = remaining_zero_states(n_large)
+    new = large - small
+    gcd_a = _gcd_all([s[0] for s in small])
+    gcd_b = _gcd_all([s[1] for s in small])
+    off_ray_small = {s for s in small if not on_two_step_ray(s)}
+    form_rows = []
+    for alpha, beta in product(range(-3, 4), repeat=2):
+        if alpha == 0 and beta == 0:
+            continue
+        mx_s = max(abs(alpha * s[0] + beta * s[1]) for s in small)
+        mx_l = max(abs(alpha * s[0] + beta * s[1]) for s in large)
+        form_rows.append(
+            {
+                "coeff": (alpha, beta),
+                "max_small": mx_s,
+                "max_large": mx_l,
+                "grows": mx_l > mx_s,
+            }
+        )
+    extra_congruence = gcd_a != 3 or gcd_b != 1 or all(s[0] % 9 == 0 for s in small)
+    from research.ostrowski.live_layers import linf
+
+    max_small = max(linf(s) for s in small) if small else 0
+    max_large = max(linf(s) for s in large) if large else 0
+    return {
+        "n_small": n_small,
+        "n_large": n_large,
+        "L0_small": len(small),
+        "L0_large": len(large),
+        "new_terminals": len(new),
+        "gcd_a": gcd_a,
+        "gcd_b": gcd_b,
+        "spans_3Z_x_Z": gcd_a == 3 and gcd_b == 1,
+        "all_on_F": all(s[2] == 0 for s in small | large),
+        "all_a_div3": all(s[0] % 3 == 0 for s in small | large),
+        "not_all_a_div9": any(s[0] % 9 != 0 for s in small),
+        "off_ray_small": len(off_ray_small),
+        "hub_in_small": HUB in small,
+        "maximizer_small": max(
+            small, key=lambda s: (max(abs(s[0]), abs(s[1]), abs(s[2])), s)
+        ),
+        "max_linf_small": max_small,
+        "max_linf_large": max_large,
+        "f_forms_all_grow": all(row["grows"] for row in form_rows),
+        "f_form_stable_count": sum(1 for row in form_rows if not row["grows"]),
+        EXTRA_CONGRUENCE_REFUTED: not extra_congruence,
+        GROWTH_NOT_INFINITUDE: True,
+        REVERSE_IS_STEP: True,
+    }
+
+
+def cumulative_remaining_zero(max_n: int = 8) -> dict[str, object]:
+    """``C(N)=|∪_{m≤N} L_0(m)|``. Reset padding is not first appearance.
+
+    Finite-horizon growth of ``C(N)`` is not ``|L_0|=∞``. Hub has
+    ``ℓ_min=2``. Primitive image ``P`` equals ``L_0`` by shortest
+    realizations; that is not a new census.
+    """
+    from research.ostrowski.live_layers import linf
+
+    acc: set[State3] = set()
+    rows: list[dict[str, object]] = []
+    hub_first: int | None = None
+    for n in range(max_n + 1):
+        layer = remaining_zero_states(n)
+        new = layer - acc
+        acc |= layer
+        if hub_first is None and HUB in acc:
+            hub_first = n
+        max_linf = max((linf(s) for s in acc), default=0)
+        rows.append(
+            {
+                "N": n,
+                "L0": len(layer),
+                "C": len(acc),
+                "delta": len(new),
+                "M": max_linf,
+            }
+        )
+    return {
+        "max_n": max_n,
+        "rows": rows,
+        "C_final": len(acc),
+        "C_grows": len(acc) > (rows[0]["C"] if rows else 0),
+        "hub_ell_min": hub_first,
+        GROWTH_NOT_INFINITUDE: True,
     }

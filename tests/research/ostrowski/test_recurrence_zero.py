@@ -28,8 +28,10 @@ from research.ostrowski.recurrence_zero import (
     msd_val,
     phase0_recurrence_zero,
     phase0_reset_pow_then_hub,
+    phase0_reset_prefix,
     recurrence_word_val_zero,
     reset_pow_then_hub_word,
+    reset_prefix_holds,
     val_equals_minus_s3,
 )
 from research.ostrowski.system import nonpisot_order3
@@ -118,3 +120,18 @@ def test_reset_pow_then_hub_is_live_one_terminal():
     assert report["all_reset_prefixes_origin"]
     assert report[LONG_WORDS_NOT_INFINITUDE]
     assert len({reset_pow_then_hub_word(k) for k in range(5)}) == 5
+
+
+def test_reset_prefix_does_not_create_new_terminals():
+    """T_R(0)=0 implies T_{RU}(0)=T_U(0). Hub first appears at length 2."""
+    assert reset_prefix_holds(RECURRENCE_WORD_MSD, HUB_WORD)
+    assert reset_prefix_holds((), HUB_WORD)
+    assert apply_word(nonpisot_order3(), ORIGIN, RECURRENCE_WORD_MSD) == ORIGIN
+    report = phase0_reset_prefix()
+    assert report["star_is_reset"]
+    assert report["star_then_hub"]
+    assert report["empty_prefix"]
+    assert report["hub_ell_min_is_two"]
+    assert report[LONG_WORDS_NOT_INFINITUDE]
+    assert report[GROWTH_NOT_INFINITUDE]
+    assert report[KNOWN_PACKAGING]

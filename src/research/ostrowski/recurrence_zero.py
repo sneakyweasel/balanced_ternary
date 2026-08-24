@@ -10,8 +10,9 @@ Last letter ``-3`` is interior-legal and not LSD. Algebraic zero-sum
 is not fully live. A reset is not an expanding family.
 
 The complete words ``U_k = (B*)^k · (1,-2)`` are live at remaining
-``4k+2`` and all land on the hub. Arbitrarily long accepted words
-do not force infinitely many terminals. Finite-horizon iteration is
+``4k+2`` and all land on the hub. An origin reset does not change
+the particular of a suffix: ``T_{RU}(0)=T_U(0)`` when ``T_R(0)=0``.
+That is not a new terminal. Finite-horizon iteration is
 not ``|L_0|=∞``.
 
 Length 5–6 words are shift-combinations of the recurrence (lattice
@@ -342,5 +343,32 @@ def phase0_reset_pow_then_hub(max_k: int = 4) -> dict[str, object]:
         LONG_WORDS_NOT_INFINITUDE: True,
         GROWTH_NOT_INFINITUDE: True,
         RESET_NOT_FAMILY: True,
+        KNOWN_PACKAGING: True,
+    }
+
+
+def reset_prefix_holds(reset: tuple[int, ...], suffix: tuple[int, ...]) -> bool:
+    """``T_R(0)=0`` implies ``T_{RU}(0)=T_U(0)``. Lean ``reset_prefix``."""
+    sys = _sys()
+    if apply_word(sys, ORIGIN, reset) != ORIGIN:
+        return False
+    return apply_word(sys, ORIGIN, reset + suffix) == apply_word(
+        sys, ORIGIN, suffix
+    )
+
+
+def phase0_reset_prefix() -> dict[str, object]:
+    """Origin-reset padding is not a new terminal. Not infinitude of ``L_0``."""
+    from research.ostrowski.origin_live import remaining_zero_states
+
+    star_ok = apply_word(_sys(), ORIGIN, RECURRENCE_WORD_MSD) == ORIGIN
+    l0_two = remaining_zero_states(2)
+    return {
+        "star_is_reset": star_ok,
+        "star_then_hub": reset_prefix_holds(RECURRENCE_WORD_MSD, HUB_WORD),
+        "empty_prefix": reset_prefix_holds((), HUB_WORD),
+        "hub_ell_min_is_two": HUB in l0_two,
+        LONG_WORDS_NOT_INFINITUDE: True,
+        GROWTH_NOT_INFINITUDE: True,
         KNOWN_PACKAGING: True,
     }

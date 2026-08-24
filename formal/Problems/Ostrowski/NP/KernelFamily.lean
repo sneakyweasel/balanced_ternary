@@ -2,6 +2,10 @@
 Kernel family `t_n = (q_{n-1}, -q_{n-2}, 0)` on `F`, with unique integer
 predecessor first coordinate. Unread-tail inequalities `lo(n) ≤ E_n ≤ hi(n)`
 are not formalized here.
+
+The integer reverse of `T_w` is `explicitPredecessor`
+(`unique_predecessor`). On `F` this is `predecessor_on_F`. That is
+inversion of `step`, not a bound on `L₀`.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -77,6 +81,13 @@ theorem predecessor_fst (w : ℤ) (s t : State) (h : step w s = t) :
   rcases t with ⟨_, _, _⟩
   simp [explicitPredecessor] at this
   exact this.1
+
+/-- On `F`, the unique integer predecessor is `(b - a/3, w - 2(a/3), a/3)`.
+KNOWN inversion of `step`, not `L₀`. -/
+theorem predecessor_on_F (a b w : ℤ) (s : State)
+    (h : step w s = (a, b, 0)) :
+    s = (b - a / 3, w - 2 * (a / 3), a / 3) := by
+  simpa [explicitPredecessor] using unique_predecessor w s (a, b, 0) h
 
 /-- Shared first coordinate of every integer preimage of `t_n`. -/
 def kernelPredFst (n : ℕ) (_hn : 0 < n) : ℤ :=

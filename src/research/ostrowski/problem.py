@@ -63,7 +63,12 @@ PROBLEM = ProblemDefinition(
         "companion recurrence is the residual step. The words "
         "(B*)^k(1,-2) are complete live of length 4k+2 and all land "
         "on the hub (Lean reset_pow_then_hub, KNOWN); arbitrarily "
-        "long accepted words do not force |L_0|=∞. Every small integer "
+        "long accepted words do not force |L_0|=∞. Observed remaining-0 "
+        "terminals span 3Z×Z in F (gcd a=3, gcd b=1); extra congruence "
+        "beyond 3|a is REFUTED at N=12. The integer reverse is Lean "
+        "unique_predecessor (KNOWN). Origin-reset prefixes do not "
+        "create new terminals (Lean reset_prefix, KNOWN); hub first "
+        "appears at length 2; P=L_0 is not a new census. Every small integer "
         "linear form on s grows from start remaining 16 to 20. |L_0| is "
         "not proved infinite. Pisot existence of some adder is known."
     ),

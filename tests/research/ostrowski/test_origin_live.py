@@ -5,6 +5,9 @@ from __future__ import annotations
 from research.ostrowski.live_growth import reachable_live
 from research.ostrowski.nonpisot_search import HUB
 from research.ostrowski.origin_live import (
+    EXTRA_CONGRUENCE_REFUTED,
+    GROWTH_NOT_INFINITUDE,
+    REVERSE_IS_STEP,
     forward_forces_s1_divisible_by_3,
     kernel_family_blocked_at_first_reverse,
     kernel_family_compatible_with_s1_mod3,
@@ -17,7 +20,9 @@ from research.ostrowski.origin_live import (
     q_mod9_period,
     q_mod_period,
     reverse_cone_hits_origin,
+    terminal_span_report,
     two_step_f_to_f,
+    cumulative_remaining_zero,
 )
 from research.ostrowski.residual_closure import B_MIN
 from research.ostrowski.system import nonpisot_order3, phase0_order3
@@ -124,3 +129,38 @@ def test_pisot_control_does_not_force_s1_mod3():
     assert set(s[0] % 3 for s in B_MIN) == {0, 1, 2}
     assert reachable_live(phase0_order3(), 12)["states"] == B_MIN
     assert len(B_MIN) == 55
+
+
+def test_remaining_zero_spans_full_3Z_x_Z_lattice():
+    """Extra terminal congruence beyond 3|a fails at N=12,16. Not |L_0|=∞."""
+    report = terminal_span_report(12, 16)
+    assert report["L0_small"] == 165
+    assert report["L0_large"] == 379
+    assert report["new_terminals"] > 0
+    assert report["gcd_a"] == 3
+    assert report["gcd_b"] == 1
+    assert report["spans_3Z_x_Z"]
+    assert report["all_on_F"]
+    assert report["all_a_div3"]
+    assert report["not_all_a_div9"]
+    assert report["off_ray_small"] > 0
+    assert report["hub_in_small"]
+    assert report["maximizer_small"] == (-27, -6, 0)
+    assert report["max_linf_small"] == 27
+    assert report["max_linf_large"] == 37
+    assert report["f_forms_all_grow"]
+    assert report["f_form_stable_count"] == 0
+    assert report[EXTRA_CONGRUENCE_REFUTED]
+    assert report[GROWTH_NOT_INFINITUDE]
+    assert report[REVERSE_IS_STEP]
+
+
+def test_cumulative_remaining_zero_grows_and_hub_min_is_two():
+    """C(N) still grows after removing reset padding. Not |L_0|=∞."""
+    report = cumulative_remaining_zero(8)
+    assert report["hub_ell_min"] == 2
+    assert report["C_grows"]
+    by_n = {row["N"]: row for row in report["rows"]}
+    assert by_n[2]["C"] >= 1
+    assert by_n[8]["C"] > by_n[2]["C"]
+    assert report[GROWTH_NOT_INFINITUDE]
