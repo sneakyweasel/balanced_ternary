@@ -76,7 +76,8 @@ make the distinguishing words exact rather than sampled.
 
 ## Conjectures
 
-None registered.
+`x2_safety_nonsific` (**EXACT — HUMAN PROOF**): ledger
+`BTR-x2-safety-nonsific`.
 
 ## Counterexamples
 
@@ -89,7 +90,8 @@ None registered.
 
 ## Formalization
 
-None. No `sorry`. Lean is not opened on this gate.
+Master record: [regular_output_preimages.md](../theory/regular_output_preimages.md).
+Ledger row `BTR-x2-safety-nonsific`. Lean is deferred. No `sorry`.
 
 ## Results
 
@@ -110,7 +112,7 @@ and is not a remaining-horizon clock: the identity map stays at `1`.
 
 ### Non-regularity theorem
 
-**EXACT — HUMAN PROOF.** For `m ≥ 0` let `g_m(x) = 3^{m+1} x^2 + 2x`
+**EXACT — HUMAN PROOF** (`BTR-x2-safety-nonsific`). For `m ≥ 0` let `g_m(x) = 3^{m+1} x^2 + 2x`
 and `w_m = (-1)^{m+1} 0`. Then `w_m` is accepted by `g_m` and
 rejected by every `g_n` with `n > m`. Consequently the prefixes
 `10^m` are pairwise Myhill–Nerode inequivalent in `L`, so `L` is not
@@ -162,9 +164,9 @@ PENDING IDEA — NOT OPENED (not a decision, not a claim tag):
 falsifier is a theorem: an explicit infinite Myhill–Nerode family
 shows that `F^{-1}({0,+}^ω)` is not sofic. That is the promotion
 criterion. The result is not a restatement of Ahmed–Savchuk, not a
-zero-output lifting fact, and not a bounded census. No CLI, Lean,
-or ledger row is added in this pass; the theorem is recorded here
-and in the journal.
+zero-output lifting fact, and not a bounded census. Ledger row
+`BTR-x2-safety-nonsific` records the surviving theorem. No CLI, Lean,
+or numbered milestone is added.
 
 Best next question: none on this branch; the gate is closed by a
 theorem.

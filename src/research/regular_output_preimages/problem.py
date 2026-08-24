@@ -19,4 +19,5 @@ PROBLEM = ProblemDefinition(
         "alphabet of that machine, not a new coordinate."
     ),
     docs=("docs/problems/regular_output_preimages.md",),
+    conjectures=("x2_safety_nonsific",),
 )

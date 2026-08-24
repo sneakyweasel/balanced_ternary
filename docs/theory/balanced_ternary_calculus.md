@@ -74,6 +74,7 @@ enlargement is closed. Cubic residuals remain the frontier.
 - Cubic Newton stratum (canonical): [cubic_newton_stratum.md](cubic_newton_stratum.md).
 - Residual versus classical sources: [residual_vs_classical.md](residual_vs_classical.md).
 - Balanced-Monna endpoint spectra: [monna_endpoint_spectra.md](monna_endpoint_spectra.md). Not \(M_k(x^3)\).
+- Regular-output safety preimage of \(x^2\): [regular_output_preimages.md](regular_output_preimages.md). Not \(M_k(x^2)\); \(\{0,+\}^\omega\) is not the unrestricted transducer.
 - Layer notes (corollaries): [cubic_residual_image.md](cubic_residual_image.md),
   [cubic_residual_fibres.md](cubic_residual_fibres.md),
   [cubic_deepest_layer.md](cubic_deepest_layer.md),
