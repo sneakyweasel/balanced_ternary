@@ -1530,9 +1530,12 @@ phase, and trajectory primitives into `research_engine`. Ostrowski
 are compatibility wrappers. Engineering R3 extracted forward /
 reverse / live-slice / suffix search with explicit `BOUNDED` vs
 `EXACT` scope. `OstrowskiSpec` is a thin adapter; energy formulas
-stay Ostrowski-specific. Both extractions are infrastructure
+stay Ostrowski-specific. Engineering R4 extracted constant-coefficient
+recurrences, integer-matrix inverses, and linear forms; energy
+\(E_i=s\cdot(q_{i-2},q_{i-1},q_i)\) and the recurrence word \(B^*\)
+stay Ostrowski-specific. These extractions are infrastructure
 `PROMOTE`. They do not change the mathematical decision above.
-Do not start R4 until a later cycle.
+Do not start R5 (attacks), planner, or CLI until a later cycle.
 
 ## Publication assessment
 

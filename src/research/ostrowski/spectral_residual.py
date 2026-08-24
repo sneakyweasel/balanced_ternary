@@ -20,6 +20,7 @@ from __future__ import annotations
 from research.ostrowski.residual import next_state
 from research.ostrowski.spectral import constant_digits, cubic_roots, spectral_data
 from research.ostrowski.system import OstrowskiSystem, characteristic_poly_coeffs
+from research_engine.algebra.lattices import characteristic_polynomial as engine_charpoly
 from research_engine.core.affine_system import affine_step, apply_matrix as engine_apply_matrix
 
 State3 = tuple[int, int, int]
@@ -55,26 +56,10 @@ def transition_matches_next_state(system: OstrowskiSystem, state: State3, w: int
 
 def charpoly_of_matrix(matrix: tuple[tuple[int, int, int], ...]) -> tuple[int, int, int, int]:
     """Characteristic polynomial ``det(xI-A)`` as ``(1, a, b, c)`` for ``x^3+ax^2+bx+c``."""
-    a00, a01, a02 = matrix[0]
-    a10, a11, a12 = matrix[1]
-    a20, a21, a22 = matrix[2]
-    # For this companion orientation the polynomial is x^3 - d1 x^2 - d2 x - d3.
-    # Compute det(xI-A) by the explicit 3x3 formula in the integer ring,
-    # evaluating coefficients via traces of exterior powers.
-    tr = a00 + a11 + a22
-    # sum of principal 2x2 minors
-    m2 = (
-        (a00 * a11 - a01 * a10)
-        + (a00 * a22 - a02 * a20)
-        + (a11 * a22 - a12 * a21)
-    )
-    det = (
-        a00 * (a11 * a22 - a12 * a21)
-        - a01 * (a10 * a22 - a12 * a20)
-        + a02 * (a10 * a21 - a11 * a20)
-    )
-    # det(xI-A) = x^3 - tr x^2 + m2 x - det
-    return (1, -tr, m2, -det)
+    poly = engine_charpoly(matrix)
+    if len(poly) != 4:
+        raise ValueError("charpoly_of_matrix expects a 3x3 matrix")
+    return (poly[0], poly[1], poly[2], poly[3])
 
 
 def spectral_residual_report(system: OstrowskiSystem) -> dict[str, object]:

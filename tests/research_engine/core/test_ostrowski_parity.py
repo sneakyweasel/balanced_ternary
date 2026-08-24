@@ -103,3 +103,43 @@ def test_forward_live_layers_match_ostrowski_remaining_four():
     assert live_extensions(ostrowski_spec(4, system), ORIGIN, IntPhase(4)) == live_ext_by_oracle(
         ORIGIN, 4
     )
+
+
+def test_recurrence_and_lattice_inverse_match_ostrowski():
+    from fractions import Fraction
+
+    from research.ostrowski.energy_geometry import adjoint_u, mat_vec_left
+    from research.ostrowski.recurrence import (
+        companion_matches_residual,
+        recurrence_matches_place_values,
+        recurrence_spec,
+    )
+    from research.ostrowski.reverse_map import integer_preimage, np_inverse_matrix
+    from research.ostrowski.spectral_residual import charpoly_of_matrix
+    from research_engine.algebra.lattices import characteristic_polynomial, integer_affine_preimage
+    from research_engine.algebra.linear_functionals import left_multiply
+
+    for system in (phase0_order3(), nonpisot_order3()):
+        assert recurrence_matches_place_values(system, 8)
+        assert companion_matches_residual(system)
+        spec = recurrence_spec(system)
+        assert spec is not None
+        matrix = residual_matrix(system)
+        assert spec.companion_matrix() == matrix
+        assert charpoly_of_matrix(matrix) == spec.characteristic_polynomial()
+        assert characteristic_polynomial(matrix) == charpoly_of_matrix(matrix)
+        u = adjoint_u(system, 5)
+        assert mat_vec_left(u, matrix) == left_multiply(u, matrix)
+
+    np_sys = nonpisot_order3()
+    matrix = residual_matrix(np_sys)
+    assert integer_preimage((1, 0, 0), 0) is None
+    assert integer_affine_preimage(matrix, (0, 0, 0), (1, 0, 0)) is None
+    assert integer_preimage((3, 1, 0), 0) == integer_affine_preimage(
+        matrix, (0, 0, 0), (3, 1, 0)
+    ) == (0, -2, 1)
+    inv = np_inverse_matrix()
+    assert inv[0][0] == Fraction(-1, 3)
+    np_spec = recurrence_spec(np_sys)
+    assert np_spec is not None
+    assert np_spec.companion_charpoly_matches()

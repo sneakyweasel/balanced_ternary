@@ -73,6 +73,7 @@ implementing, find the invariant or obstruction, and decide.
 | Trit / `D` / `I` / jets / `≡_k` / `F_k` closed form | `src/bt/calculus/` |
 | Cubic fibres, `N1`/`N0`, mismatched `Q`, stratum API | `src/research/residuals/` |
 | Accelerated `T`, cylinders, cycles, warp | `src/research/collatz/` |
+| Integer affine / R/K/L / recurrences | `src/research_engine/` |
 | Lean packaging of existing lemmas | `formal/BTCalculus/` or `formal/Problems/Collatz/` |
 | Named theorem metadata | `docs/theory/theorem_ledger.json` then render |
 | New research area | [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md) + `src/research/<id>/` |

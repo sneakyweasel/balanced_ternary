@@ -16,7 +16,6 @@ from __future__ import annotations
 
 from fractions import Fraction
 from itertools import product
-from math import gcd
 
 from research.ostrowski.energy_geometry import adjoint_u, energy_canonical
 from research.ostrowski.energy_trajectory import apply_word
@@ -25,6 +24,7 @@ from research.ostrowski.live_growth import residual_is_live
 from research.ostrowski.live_layers import forward_layers, linf
 from research.ostrowski.spectral_residual import apply_matrix, residual_matrix, transition_affine
 from research.ostrowski.system import OstrowskiSystem, nonpisot_order3
+from research_engine.algebra.lattices import matrix_det, solve_over_q, vector_gcd
 
 State3 = tuple[int, int, int]
 Vec3 = tuple[int, int, int]
@@ -43,11 +43,7 @@ def _sys() -> OstrowskiSystem:
 
 def triple_det(u: Vec3, v: Vec3, w: Vec3) -> int:
     """Determinant of rows ``u, v, w``."""
-    return (
-        u[0] * (v[1] * w[2] - v[2] * w[1])
-        - u[1] * (v[0] * w[2] - v[2] * w[0])
-        + u[2] * (v[0] * w[1] - v[1] * w[0])
-    )
+    return matrix_det((u, v, w))
 
 
 def adjoint_window(system: OstrowskiSystem, remaining: int) -> tuple[Vec3, Vec3, Vec3]:
@@ -105,19 +101,10 @@ def invert_from_energies(
     if remaining < 2:
         raise ValueError("inversion needs remaining >= 2")
     rows = adjoint_window(system, remaining)
-    det = triple_det(*rows)
-    if det == 0:
+    solved = solve_over_q(rows, energies)
+    if solved is None:
         raise ZeroDivisionError("adjoint window is singular")
-    rhs = energies
-    coords = []
-    for col in range(3):
-        replaced = []
-        for r, row in enumerate(rows):
-            entries = list(row)
-            entries[col] = rhs[r]
-            replaced.append(tuple(entries))
-        coords.append(Fraction(triple_det(*replaced), det))
-    return tuple(coords)
+    return tuple(solved)
 
 
 def neighboring_energies(system: OstrowskiSystem, state: State3, remaining: int) -> tuple[int, int, int]:
@@ -421,8 +408,7 @@ def kernel_targeted_blocks(
 
 
 def gcd_adjoint(system: OstrowskiSystem, remaining: int) -> int:
-    u = adjoint_u(system, remaining)
-    return gcd(u[0], gcd(u[1], u[2]))
+    return vector_gcd(adjoint_u(system, remaining))
 
 
 def phase0_energy_kernel() -> dict[str, object]:

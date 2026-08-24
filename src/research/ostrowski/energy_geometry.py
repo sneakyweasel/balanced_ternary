@@ -32,6 +32,7 @@ from research.ostrowski.live_layers import (
 from research.ostrowski.spectral import cubic_roots
 from research.ostrowski.spectral_residual import residual_matrix, transition_affine
 from research.ostrowski.system import OstrowskiSystem, characteristic_poly_coeffs, nonpisot_order3
+from research_engine.algebra.linear_functionals import left_multiply
 
 State3 = tuple[int, int, int]
 Vec3 = tuple[int, int, int]
@@ -48,10 +49,8 @@ def adjoint_u(system: OstrowskiSystem, remaining: int) -> Vec3:
 
 def mat_vec_left(u: Vec3, matrix: tuple[tuple[int, int, int], ...]) -> Vec3:
     """Row vector ``u`` times ``A``."""
-    return tuple(
-        u[0] * matrix[0][j] + u[1] * matrix[1][j] + u[2] * matrix[2][j]
-        for j in range(3)
-    )
+    out = left_multiply(u, matrix)
+    return (out[0], out[1], out[2])
 
 
 def adjoint_covariance(system: OstrowskiSystem, remaining: int) -> bool:

@@ -2,6 +2,7 @@
 
 R2: exact affine, block, phase, and trajectory primitives.
 R3: reachability, co-reachability, live slices, and suffix feasibility.
+R4: integer recurrences, lattice inverses, and linear forms.
 
 This package must not import ``bt.*`` or ``research.*``. Problem
 adapters live under ``research.*`` and may import this engine.
@@ -18,6 +19,14 @@ from research_engine.acceptance import (
     live_from_spec,
     live_intersection,
 )
+from research_engine.algebra.lattices import (
+    characteristic_polynomial,
+    integer_affine_preimage,
+    inverse_over_q,
+    matrix_det,
+)
+from research_engine.algebra.linear_functionals import LinearFunctional, dot, left_multiply
+from research_engine.algebra.recurrences import RecurrenceSpec
 from research_engine.core.affine_system import (
     AffineSystem,
     affine_step,
@@ -53,8 +62,10 @@ __all__ = [
     "DynamicsResult",
     "IntPhase",
     "LazyTrajectory",
+    "LinearFunctional",
     "Matrix",
     "ProblemSpec",
+    "RecurrenceSpec",
     "SearchScope",
     "State",
     "TerminalSpec",
@@ -63,18 +74,24 @@ __all__ = [
     "affine_step",
     "apply_matrix",
     "block_action",
+    "characteristic_polynomial",
     "co_live_extensions",
     "compose_blocks",
+    "dot",
     "filter_terminal",
     "forward_live_layers",
     "forward_search",
     "identity_matrix",
     "is_co_live",
     "is_suffix_accepted",
+    "integer_affine_preimage",
+    "inverse_over_q",
     "iterate_affine_word",
+    "left_multiply",
     "live_extensions",
     "live_from_spec",
     "live_intersection",
+    "matrix_det",
     "matrix_power",
     "multiply_matrices",
     "reverse_closure",
