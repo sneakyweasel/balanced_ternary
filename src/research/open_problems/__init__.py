@@ -12,6 +12,9 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     )
     from research.cerny_bt.problem import PROBLEM as CERNY_BT
     from research.collatz.problem import PROBLEM as COLLATZ
+    from research.erdos_distinct_subset_sums.problem import (
+        PROBLEM as ERDOS_DISTINCT_SUBSET_SUMS,
+    )
     from research.lifting.problem import PROBLEM as LIFTING
     from research.misere_quotients.problem import PROBLEM as MISERE_QUOTIENTS
     from research.monna_endpoint_spectra.problem import PROBLEM as MONNA_ENDPOINT_SPECTRA
@@ -42,6 +45,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         MONNA_ENDPOINT_SPECTRA,
         REWRITE_CALCULUS,
         BALANCED_DIGIT_SUM_POLYNOMIALS,
+        ERDOS_DISTINCT_SUBSET_SUMS,
     )
 
 

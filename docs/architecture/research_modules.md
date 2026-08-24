@@ -36,6 +36,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.sparse_polynomials` | `EXPLORATORY` | Mahler / factor scans |
 | `research.operator_dynamics` | `EXPLORATORY` | composition census, dossiers |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |
+| `research.erdos_distinct_subset_sums` | `EXPLORATORY` | Erdős #1 signed-relation gate |
 | `research.stabilization` | `ARCHIVED` | local \(\Phi_r\) versus global \(k_0\); literature close |
 | `research.padic_dynamics` | `ARCHIVED` | cycle-lift residual quotient; classical return-map close |
 | `research.cerny_bt` | `ARCHIVED` | transition-closed residual quotient; linear/nonlinear close |

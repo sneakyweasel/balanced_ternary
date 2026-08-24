@@ -77,6 +77,7 @@ both axes. See [methodology.md](methodology.md).
 - [Collatz](problems/collatz.md)
 - [Residuals](problems/residuals.md)
 - [Balanced digit sums of nonlinear polynomial values](problems/balanced_digit_sum_polynomials.md)
+- [Erdős distinct subset sums](problems/erdos_distinct_subset_sums.md)
 - [Lifting trees](problems/lifting.md)
 - [Regular-output preimages](problems/regular_output_preimages.md)
 - [3-adic polynomial dynamics](problems/padic_dynamics.md)
