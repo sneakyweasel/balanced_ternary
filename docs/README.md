@@ -141,6 +141,7 @@ Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 Journal: [research_journal.md](research_journal.md).
 Ledger: [theory/theorem_ledger.md](theory/theorem_ledger.md).
 Monna spectra theory: [theory/monna_endpoint_spectra.md](theory/monna_endpoint_spectra.md).
+Regular-output preimages: [theory/regular_output_preimages.md](theory/regular_output_preimages.md).
 
 ## Architecture
 

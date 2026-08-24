@@ -1,0 +1,19 @@
+{
+  "counterexamples": [],
+  "first_seen": "regular-output preimage Phase-0",
+  "id": "x2_safety_nonsific",
+  "lean_reference": "",
+  "literature": [
+    "ahmed-savchuk-2020-polynomial-tree-endomorphisms",
+    "anashin-2012-automata-finiteness",
+    "grigorchuk-savchuk-2023-solenoidal-maps"
+  ],
+  "mathematical_domain": "3-adic residual automata",
+  "notes": "L is the safety preimage of Y={0,+}^ω under the residual machine of F(x)=x^2. The prefixes 10^m are pairwise Myhill-Nerode inequivalent via residuals g_m(x)=3^{m+1}x^2+2x and words w_m=(-1)^{m+1}0, using pack((-1)^k)=-(3^k-1)/2 and the first k digits of 1-3^k. This is not Ahmed-Savchuk (unrestricted x^2 infinite-state) and not BTL-zero-output (zero-output lifting is a proper subset of L). Not a Collatz claim. Lean is deferred.",
+  "origin": "docs/problems/regular_output_preimages.md",
+  "proof_reference": "docs/theory/regular_output_preimages.md",
+  "statement": "For F(x)=x^2 and Y={0,+}^ω, the language of trit words whose residual output trits all lie in {0,+} is not regular; equivalently the 3-adic preimage is not sofic.",
+  "status": "EXACT — HUMAN PROOF",
+  "tested_range": "exact distinguishing family through m<n≤6 and census m,r≤7 in tests/research/regular_output_preimages/test_triage.py",
+  "title": "Safety preimage of x^2 under {0,+}^ω is not regular"
+}

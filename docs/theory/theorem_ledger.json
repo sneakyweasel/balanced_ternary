@@ -2204,5 +2204,18 @@
       "tests/research/ostrowski/test_ext_feasibility.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "BTR-x2-safety-nonsific",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "for F(x)=x^2 and the infinite output language Y={0,+}^ω that never emits -1, the language L of trit words whose residual outputs of F all lie in {0,+} is not regular; equivalently the 3-adic preimage X=F^{-1}(Y) is not sofic. The prefixes 10^m are pairwise Myhill-Nerode inequivalent because the residual g_m(x)=3^{m+1}x^2+2x accepts w_m=(-1)^{m+1}0 while every g_n with n>m rejects it",
+    "source": "docs/theory/regular_output_preimages.md",
+    "lean": "",
+    "tests": [
+      "tests/research/regular_output_preimages/test_triage.py"
+    ],
+    "related_conjectures": [
+      "x2_safety_nonsific"
+    ]
   }
 ]
