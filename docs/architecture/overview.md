@@ -32,7 +32,7 @@ bt.*                        problem-independent BT mathematics
 | Distribution | `balanced-ternary-prime` | `pip install -e ".[dev,ui]"` |
 | Command | `btprime` | preserved |
 | Core | `bt` | new canonical root |
-| Experimental dynamics | `research_engine` | integer affine/block/trajectory, R/K/L, algebra, attacks, planner, and synthetic benchmarks; R8 |
+| Experimental dynamics | `research_engine` | integer affine/block/trajectory, R/K/L, algebra, attacks, planner, synthetic benchmarks, and theorem targets (not proofs); R9 |
 | Research | `research` | new canonical root |
 | CLI | `cli` | new implementation home |
 | Compatibility | `balanced_ternary`, `collatz`, `automata` | re-export shims |

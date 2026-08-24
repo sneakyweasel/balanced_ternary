@@ -6,6 +6,7 @@ R4: integer recurrences, lattice inverses, and linear forms.
 R5: typed recon/modular/affine/reverse/functional/block attacks.
 R6: hypotheses, negative knowledge, and a deterministic planner.
 R8: five synthetic benchmarks with known exact behavior.
+R9: theorem targets from exact certificates (not proofs, not sorry).
 
 This package must not import ``bt.*`` or ``research.*``. Problem
 adapters live under ``research.*`` and may import this engine.
@@ -77,6 +78,14 @@ from research_engine.reachability import (
     reverse_predecessors_among,
     shortest_word,
 )
+from research_engine.verification import (
+    TheoremTarget,
+    attach_lean,
+    render_lean_comment,
+    render_yaml,
+    target_from_result,
+    targets_from_report,
+)
 
 __all__ = [
     "AffineSystem",
@@ -110,10 +119,12 @@ __all__ = [
     "SearchScope",
     "State",
     "TerminalSpec",
+    "TheoremTarget",
     "Trajectory",
     "Vector",
     "affine_step",
     "apply_matrix",
+    "attach_lean",
     "block_action",
     "characteristic_polynomial",
     "co_live_extensions",
@@ -137,7 +148,11 @@ __all__ = [
     "multiply_matrices",
     "reverse_closure",
     "reverse_co_live_layers",
+    "render_lean_comment",
+    "render_yaml",
     "reverse_predecessors_among",
     "shortest_word",
     "simulate",
+    "target_from_result",
+    "targets_from_report",
 ]

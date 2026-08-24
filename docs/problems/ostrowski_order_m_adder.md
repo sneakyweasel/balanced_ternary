@@ -1549,9 +1549,15 @@ Engineering R8 added five synthetic benchmarks (finite closure,
 infinite translation, reset-loop words, modular tripling, expanding
 escape). The planner default horizon is 16 so sticky-phase systems
 cannot hang; unbounded words do not imply unbounded terminals.
+Engineering R9 emits comment/YAML theorem targets from exact
+`SUPPORTED` certificates and links the NP modular and hub certificates
+to existing Lean `step_fst_dvd_three` / `hub_nonreset`. It does not
+generate proofs, write `formal/` files, auto-add ledger rows, or
+export the parked `|L_0|` hypothesis.
 These extractions are infrastructure `PROMOTE`. They do not change the
 mathematical decision above.
-Do not start R9 (Lean export), spectral attacks, or CLI until a later cycle.
+Do not start R10 (research CLI), spectral attacks, or auto-prove
+until a later cycle.
 
 ## Publication assessment
 
