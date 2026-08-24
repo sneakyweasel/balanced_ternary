@@ -43,7 +43,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 
 from bt.representation import encode
-from research.collatz.bt_arithmetic import lsd_add_one_case, three_n_plus_one_word
+from bt.arithmetic import lsd_add_one_case, three_n_plus_one_word
 from research.collatz.core import collatz_step, collatz_valuation, require_positive_odd, three_n_plus_one
 from research.collatz.features import (
     FEATURE_NAMES,

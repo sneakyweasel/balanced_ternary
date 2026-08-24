@@ -7,16 +7,16 @@ import pytest
 from bt.representation import decode, encode
 from research.collatz.core import collatz_step
 from research.collatz.theorems import append_plus
-from research.collatz.transducers.divide_by_two import (
+from bt.transducers.divide_by_two import (
     DivideByTwoTransducer,
     LeftoverCarryError,
     apply_even,
 )
-from research.collatz.transducers.divide_by_two_power import (
+from bt.transducers.divide_by_two_power import (
     DivideByTwoPowerTransducer,
     apply_divisible,
 )
-from research.collatz.transducers.doubling import apply_double
+from bt.transducers.doubling import apply_double
 from research.collatz.transducers.odd_part import odd_part_word
 from research.collatz.valuation import v2
 

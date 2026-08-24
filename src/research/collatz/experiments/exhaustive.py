@@ -21,7 +21,7 @@ def code_version() -> str | None:
     try:
         from importlib.metadata import version
 
-        return version("balanced-ternary-prime")
+        return version("balanced-ternary")
     except Exception:
         return None
 

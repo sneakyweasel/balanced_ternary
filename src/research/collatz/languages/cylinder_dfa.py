@@ -14,10 +14,10 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-from automata.modular import ALPHABET, ModularAutomaton
+from bt.automata.minimize import MinimizedDFA, minimize_dfa
+from bt.automata.modular import ALPHABET, ModularAutomaton
 from bt.representation import WordLike, decode, msd_digits
 from research.collatz.cylinders import ValuationCylinder, parse_ks, valuation_cylinder
-from research.collatz.languages.dfa_minimize import MinimizedDFA, minimize_dfa
 from research.collatz.valuation import v2
 
 

@@ -11,11 +11,11 @@ from research.collatz.experiments.affine_center import (
     fraction_from_pair,
     run_affine_center_census,
 )
-from research.collatz.experiments.schema import (
+from research.experiments.schema import (
     AFFINE_CENTER_SCHEMA_VERSION,
     validate_affine_center_row,
 )
-from research.collatz.experiments.table_io import read_jsonl
+from research.experiments.table_io import read_jsonl
 
 
 def test_affine_center_census_schema_and_manifest(tmp_path):

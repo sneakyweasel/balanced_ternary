@@ -249,8 +249,8 @@ def _dual_dataset(length: int, max_k: int, write: bool) -> int:
     from itertools import product
 
     from research.collatz.dual_code import CollatzDualCode
-    from research.collatz.experiments.schema import ExperimentManifest, validate_dual_row
-    from research.collatz.experiments.table_io import write_experiment
+    from research.experiments.schema import ExperimentManifest, validate_dual_row
+    from research.experiments.table_io import write_experiment
 
     if length < 0 or max_k < 1:
         raise ValueError("length must be >= 0 and max_k >= 1")

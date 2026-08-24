@@ -1,8 +1,10 @@
 # Refactor report — Balanced Ternary Mathematical Laboratory
 
 Historical record of the package split. The live contract is
-[overview.md](overview.md). Mathematical behaviour was intended to be
-unchanged.
+[overview.md](overview.md). Compatibility façades listed below
+(`src/balanced_ternary/`, `src/collatz/`, `src/automata/`, and
+`formal/CollatzDual/`) were later deleted. Canonical imports are
+`bt.*` and `research.*`; the Lake package is `balanced-ternary-formal`.
 
 ## 1. Final repository tree (source)
 
@@ -70,8 +72,10 @@ Entry point: `cli.main:main` (shim `balanced_ternary.cli:main`).
 
 ## 9. Lean module map
 
-See [formalization.md](formalization.md). `CollatzDual.*` re-exports the
-new paths. Package name remains `collatz-dual-formal`.
+See [formalization.md](formalization.md). At the time of the split,
+`CollatzDual.*` re-exported the new paths and the Lake package was
+`collatz-dual-formal`. Both were later removed; see the note at the
+top of this page.
 
 ## 10. Test counts
 
@@ -86,14 +90,13 @@ Count did not drop.
 
 ## 12. Compatibility shims
 
-`balanced_ternary.*`, `collatz.*`, `automata.*`, and
-`balanced_ternary.cli` / `cli_operators`.
+Present at the split; later deleted. Canonical imports are `bt.*` and
+`research.*`.
 
 ## 13. Intentional debt
 
 - `visualization` remains a sibling package
 - Experiment runners are registered, not rewritten
-- Lake package name unchanged
 - `lower_bounds` and `noncontracting_dual` retained
 - Milestone numbers 7–8 remain missing
 - Trial `is_prime` remains an inspection helper

@@ -4,7 +4,7 @@
   ],
   "first_seen": "Milestone 10 / affine-center work",
   "id": "n_star_le_n",
-  "lean_reference": "Problems.Collatz.FixedInteger / CollatzDual.FixedInteger",
+  "lean_reference": "Problems.Collatz.FixedInteger",
   "literature": [],
   "mathematical_domain": "Collatz affine geometry",
   "notes": "n* \u2264 R as a general finite-code inequality is also refuted by the same witness.",

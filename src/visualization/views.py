@@ -26,7 +26,8 @@ from bt.metrics import (
     weight as bt_weight,
 )
 from bt.operators import OPERATORS, OperatorDomainError, get_operator
-from bt.transducers.divide_by_two import LeftoverCarryError
+from bt.transducers.divide_by_two import DivideByTwoTransducer, LeftoverCarryError
+from bt.transducers.divide_by_two_power import DivideByTwoPowerTransducer
 from research.collatz.affine_center import AffineCenterState
 from research.collatz.automata.joint_graph import (
     build_joint_graph,
@@ -45,8 +46,6 @@ from research.collatz.inverse import build_inverse_tree, format_inverse_tree
 from research.collatz.languages.cylinder_dfa import entropy_report
 from research.collatz.theorems import append_plus
 from research.collatz.trajectory import collatz_trajectory
-from research.collatz.transducers.divide_by_two import DivideByTwoTransducer
-from research.collatz.transducers.divide_by_two_power import DivideByTwoPowerTransducer
 from research.collatz.transducers.odd_part import odd_part_word
 from research.collatz.transitions import feature_transition
 from research.collatz.valuation import v2

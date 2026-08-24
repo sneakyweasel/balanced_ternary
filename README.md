@@ -57,9 +57,6 @@ word = encode(42)
 assert decode(word) == 42
 ```
 
-The compatibility façade `from balanced_ternary import encode` remains
-supported.
-
 ## Research applications (`research`)
 
 The live publication task is the rewrite-calculus note
@@ -91,10 +88,8 @@ Full table: [docs/architecture/research_modules.md](docs/architecture/research_m
 | `research.misere_quotients` | ARCHIVED |
 
 ```python
-from collatz import AffineCenterState, CompatibilityState, collatz_step
+from research.collatz import AffineCenterState, CompatibilityState, collatz_step
 ```
-
-still works; the implementation lives under `research.collatz`.
 
 ## Formal verification
 

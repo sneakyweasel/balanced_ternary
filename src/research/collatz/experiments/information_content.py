@@ -17,12 +17,12 @@ from bt.representation import encode
 from research.collatz.compatibility import ExponentCodeDiagnostic
 from research.collatz.cylinders import parse_ks
 from research.collatz.dual_code import lift_digit_formula
-from research.collatz.experiments.schema import (
+from research.experiments.schema import (
     COMPATIBILITY_SCHEMA_VERSION,
     ExperimentManifest,
     validate_compatibility_row,
 )
-from research.collatz.experiments.table_io import write_experiment
+from research.experiments.table_io import write_experiment
 from research.collatz.features import features_of_int
 from research.collatz.zero_lift import zero_lift_k
 

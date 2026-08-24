@@ -22,7 +22,7 @@ from bt.representation import (
     encode,
     normalize,
 )
-from research.collatz.transducers.divide_by_two_power import apply_divisible
+from bt.transducers.divide_by_two_power import apply_divisible
 from research.collatz.valuation import v2
 
 

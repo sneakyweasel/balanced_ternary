@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from bt.representation import decode, encode
-from research.collatz.bt_arithmetic import three_n_plus_one_word
+from bt.arithmetic import three_n_plus_one_word
 from research.collatz.features import extract_features
 from research.collatz.theorems import (
     append_plus,

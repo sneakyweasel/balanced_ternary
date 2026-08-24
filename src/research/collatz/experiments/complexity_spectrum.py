@@ -22,7 +22,7 @@ from typing import Any
 
 from research.collatz.experiments.exhaustive import code_version
 from research.collatz.languages.cylinder_dfa import valuation_class_minimized_size
-from research.collatz.transducers.divide_by_two_power import DivideByTwoPowerTransducer
+from bt.transducers.divide_by_two_power import DivideByTwoPowerTransducer
 
 
 @dataclass

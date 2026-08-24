@@ -91,5 +91,5 @@
    "inputRev": "main",
    "inherited": true,
    "configFile": "lakefile.toml"}],
- "name": "«collatz-dual-formal»",
+ "name": "«balanced-ternary-formal»",
  "lakeDir": ".lake"}

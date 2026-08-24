@@ -9,8 +9,8 @@ ROOT = Path(__file__).resolve().parents[2]
 RESEARCH = ROOT / "src" / "research"
 CLI = ROOT / "src" / "cli"
 VIS = ROOT / "src" / "visualization"
-FORBIDDEN_IN_RESEARCH = ("visualization", "balanced_ternary", "collatz")
-FORBIDDEN_IN_EDGES = ("balanced_ternary", "collatz")
+FORBIDDEN_IN_RESEARCH = ("visualization", "balanced_ternary", "collatz", "automata")
+FORBIDDEN_IN_EDGES = ("balanced_ternary", "collatz", "automata")
 
 
 def _imported_roots(path: Path) -> set[str]:

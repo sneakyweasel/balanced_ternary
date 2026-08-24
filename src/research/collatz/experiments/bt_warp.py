@@ -6,12 +6,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from research.collatz.experiments.schema import (
+from research.experiments.schema import (
     BT_WARP_SCHEMA_VERSION,
     ExperimentManifest,
     validate_bt_warp_row,
 )
-from research.collatz.experiments.table_io import write_experiment
+from research.experiments.table_io import write_experiment
 from research.collatz.warp import (
     commutator_census,
     enumerate_operator_words,

@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from research.collatz.experiments.complexity_spectrum import complexity_row, run_complexity_spectrum
-from research.collatz.transducers.divide_by_two_power import DivideByTwoPowerTransducer
+from bt.transducers.divide_by_two_power import DivideByTwoPowerTransducer
 
 
 def test_n_k_small_values():

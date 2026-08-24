@@ -202,7 +202,7 @@ R_{m+1}-R_m=t_m2^{K_m+1}
 and the power of two is positive, so \(R_{m+1}=R_m\) iff \(t_m=0\).
 This proves the full equivalence, not only the one-way unboundedness
 criterion. The abstract cylinder/lift theorem is also
-**EXACT — LEAN VERIFIED** in `formal/CollatzDual/`.
+**EXACT — LEAN VERIFIED** in `formal/Problems/Collatz/`.
 
 **PROVED.** For the all-ones word of length \(m\),
 

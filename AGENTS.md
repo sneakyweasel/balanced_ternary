@@ -79,6 +79,7 @@ implementing, find the invariant or obstruction, and decide.
 | New research area | [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md) + `src/research/<id>/` |
 
 Do not add `bt.calculus` shims that re-export residual research.
+Do not add compatibility packages (`balanced_ternary`, `collatz`, `automata`).
 Do not auto-open a numbered milestone; every branch ends in `PROMOTE`,
 `PARK`, or `CLOSE`.
 Do not claim a Collatz solution.

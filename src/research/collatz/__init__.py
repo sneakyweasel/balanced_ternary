@@ -1,4 +1,4 @@
-"""Public API of the Collatz research and compatibility module."""
+"""Public API of the Collatz research module."""
 
 from research.collatz.automata.joint_graph import JointGraph, build_joint_graph
 from research.collatz.automata.symbolic_graph import SymbolicJointGraph, build_symbolic_graph
@@ -36,7 +36,6 @@ from research.collatz.zero_lift import (
     lift_digits,
     zero_lift_k,
 )
-from research.collatz.bt_arithmetic import add, add_one, multiply_by_three, three_n_plus_one_word
 from research.collatz.core import collatz_step, standard_collatz_step, three_n_plus_one
 from research.collatz.experiments.exhaustive import run_exhaustive_experiment
 from research.collatz.features import BalancedTernaryFeatures, extract_features
@@ -48,7 +47,7 @@ from research.collatz.trajectory import (
     collatz_total_stopping_time,
     collatz_trajectory,
 )
-from research.collatz.transducers import apply_even, odd_part_word
+from research.collatz.transducers.odd_part import odd_part_word
 from research.collatz.transitions import CollatzFeatureTransition, feature_transition
 from research.collatz.valuation import AT_LEAST_K, classify_collatz_valuation, v2
 from research.collatz.warp import WarpState, warp_state
@@ -76,10 +75,7 @@ __all__ = [
     "ValuationItinerary",
     "WarpState",
     "ZeroLiftState",
-    "add",
-    "add_one",
     "append_plus",
-    "apply_even",
     "build_inverse_tree",
     "build_joint_graph",
     "build_lift_tree",
@@ -102,7 +98,6 @@ __all__ = [
     "lift_digit",
     "lift_digits",
     "kramer_endpoint_residue",
-    "multiply_by_three",
     "odd_part_word",
     "precision_cost",
     "periodic_candidate",
@@ -112,7 +107,6 @@ __all__ = [
     "reconstruct_realizer",
     "standard_collatz_step",
     "three_n_plus_one",
-    "three_n_plus_one_word",
     "v2",
     "verify_collatz_invariants",
     "warp_state",

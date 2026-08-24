@@ -7,7 +7,7 @@ from itertools import product
 from bt.representation import decode
 from research.collatz.cylinders import valuation_cylinder
 from research.collatz.languages.cylinder_dfa import CylinderDFA, entropy_report
-from research.collatz.languages.dfa_minimize import minimize_dfa
+from bt.automata.minimize import minimize_dfa
 from research.collatz.transducers.valuation_languages import ValuationClassDFA
 
 

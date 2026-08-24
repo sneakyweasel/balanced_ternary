@@ -322,7 +322,7 @@ def _run_literature(args: argparse.Namespace) -> int:
 
 def _run_formal() -> int:
     toolchain = Path(__file__).resolve().parents[2] / "formal" / "lean-toolchain"
-    print("Lake package: collatz-dual-formal")
+    print("Lake package: balanced-ternary-formal")
     if toolchain.exists():
         print(f"toolchain: {toolchain.read_text(encoding='utf-8').strip()}")
     print("Build: cd formal && lake build")
@@ -335,7 +335,7 @@ def _run_status() -> int:
     try:
         from importlib.metadata import version as pkg_version
 
-        version = pkg_version("balanced-ternary-prime")
+        version = pkg_version("balanced-ternary")
     except Exception:
         pass
     print(f"core version: {version}")

@@ -8,7 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from research.collatz.experiments.exhaustive import code_version
-from research.collatz.experiments.table_io import write_rows
+from research.experiments.table_io import write_rows
 from research.collatz.min_realizer import itinerary_signature
 
 

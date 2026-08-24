@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from automata.modular import ALPHABET, ModularAutomaton
+from bt.automata.modular import ALPHABET, ModularAutomaton
 from bt.representation import decode, encode
 
 

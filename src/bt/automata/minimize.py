@@ -1,9 +1,8 @@
-"""Partition-refinement DFA minimization (Collatz package local).
+"""Partition-refinement DFA minimization.
 
-Does not modify ``automata.minimize`` in the prime core. Completeness of
-the input DFA is assumed. Claim status: the algorithm is classical
+Completeness of the input DFA is assumed. The algorithm is classical
 Hopcroft/Moore partition refinement; a concrete state count for a given
-machine is **VERIFIED COMPUTATIONALLY**.
+machine is **COMPUTATIONALLY VERIFIED**.
 """
 
 from __future__ import annotations

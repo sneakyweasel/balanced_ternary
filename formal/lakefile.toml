@@ -1,6 +1,6 @@
-name = "collatz-dual-formal"
+name = "balanced-ternary-formal"
 version = "0.1.0"
-defaultTargets = ["CollatzDual", "BTCalculus"]
+defaultTargets = ["BTCalculus", "Problems"]
 
 [[lean_lib]]
 name = "Core"
@@ -13,9 +13,6 @@ name = "Operators"
 
 [[lean_lib]]
 name = "Problems"
-
-[[lean_lib]]
-name = "CollatzDual"
 
 [[lean_lib]]
 name = "BTCalculus"

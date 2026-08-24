@@ -29,47 +29,35 @@ bt.*                        problem-independent BT mathematics
 
 | Role | Import | Notes |
 |------|--------|-------|
-| Distribution | `balanced-ternary-prime` | `pip install -e ".[dev,ui]"` |
-| Command | `btprime` | preserved |
+| Distribution | `balanced-ternary` | `pip install -e ".[dev,ui]"` |
+| Command | `btprime` | CLI entry |
 | Core | `bt` | problem-independent BT mathematics |
 | Experimental dynamics | `research_engine` | integer affine/block/trajectory, R/K/L, algebra, attacks (including spectral companion classification), planner, synthetic benchmarks, and theorem targets (not proofs); `btprime research` is the CLI wrapper; symbolic deferred |
 | Research | `research` | problem-specific applications |
 | CLI | `cli` | `btprime` implementation |
-| Compatibility | `balanced_ternary`, `collatz`, `automata` | re-export shims for old import paths |
+| Formal | `balanced-ternary-formal` | Lake package under `formal/` |
 | UI | `visualization` | optional extra; not part of the math core |
 
-## Compatibility import map
+## Canonical imports
 
-| Old public import | New canonical import |
-|-------------------|----------------------|
-| `balanced_ternary.representation` | `bt.representation` |
-| `balanced_ternary.features` | `bt.metrics` |
-| `balanced_ternary.metrics` | `bt.metrics` |
-| `balanced_ternary.invariants` | `bt.metrics` / `bt.representation` |
-| `balanced_ternary.arithmetic` (trial helpers) | `bt.arithmetic` |
-| `collatz.bt_arithmetic` | `bt.arithmetic` |
-| `balanced_ternary.operators` | `bt.operators` |
-| `balanced_ternary.oeis_maps` (canonical sequences) | `bt.sequences` / `bt.operators` |
-| `balanced_ternary.polynomials` (core `P_n`) | `bt.polynomials` |
-| `balanced_ternary.polynomials` (Mahler scans) | `research.sparse_polynomials` |
-| `balanced_ternary.additive_sets` (support) | `bt.support` |
-| `balanced_ternary.additive_sets` (A_k/B_k/C_k) | `research.additive_combinatorics` |
-| `balanced_ternary.additive_sets` (sparse powers) | `research.perfect_powers` |
-| `balanced_ternary.additive_sets` (sparse primes) | `research.primes` |
-| `balanced_ternary.operator_algebra` | `research.operator_dynamics` |
-| — | `bt.calculus` |
-| — | `research.residuals` |
-| `balanced_ternary.sequences` (dossiers) | `research.operator_dynamics` |
-| `balanced_ternary.transducer_zoo` | `bt.transducers` |
-| `automata.modular` | `bt.automata` |
-| `collatz.languages.dfa_minimize` | `bt.automata` |
-| `collatz.transducers.doubling` | `bt.transducers.doubling` |
-| `collatz.transducers.divide_by_two` | `bt.transducers.divide_by_two` |
-| `collatz.transducers.divide_by_two_power` | `bt.transducers.divide_by_two_power` |
-| `collatz.*` (problem-specific) | `research.collatz` |
-| `balanced_ternary.cli` | `cli.main` |
+| Import | Role |
+|--------|------|
+| `bt.representation` | encode / decode / words |
+| `bt.metrics` | weight, length, digit sums |
+| `bt.arithmetic` | word arithmetic |
+| `bt.operators` | `S`, `N`, `D`, `W`, … |
+| `bt.sequences` | canonical sequences |
+| `bt.polynomials` | core `P_n` |
+| `bt.support` | support-set operations |
+| `bt.calculus` | trit calculus |
+| `bt.automata` | residue automata, DFA minimization |
+| `bt.transducers` | generic sequential transducers |
+| `research.collatz` | Collatz application |
+| `research.residuals` | cubic fibres / Newton stratum API |
+| `research.experiments` | shared experiment schema and table I/O |
+| `cli.main` | `btprime` |
 
-Compatibility shims keep the old import paths working.
+Do not add top-level compatibility packages (`balanced_ternary`, `collatz`, `automata`).
 
 ## Verification
 

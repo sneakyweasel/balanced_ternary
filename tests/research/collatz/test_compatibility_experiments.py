@@ -25,11 +25,11 @@ from research.collatz.experiments.near_critical import (
     run_near_critical,
     seeded_random_critical_codes,
 )
-from research.collatz.experiments.schema import (
+from research.experiments.schema import (
     COMPATIBILITY_SCHEMA_VERSION,
     validate_compatibility_row,
 )
-from research.collatz.experiments.table_io import read_jsonl
+from research.experiments.table_io import read_jsonl
 
 
 def test_s0_s3_partitions_and_exact_s1_bt_theorem():

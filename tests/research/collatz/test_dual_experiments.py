@@ -10,9 +10,9 @@ from research.collatz.experiments.periodic_dual import (
     periodic_dual_trace,
     primitive_period,
 )
-from research.collatz.experiments.schema import ExperimentManifest, validate_dual_row
+from research.experiments.schema import ExperimentManifest, validate_dual_row
 from research.collatz.experiments.suffix_determination import suffix_determination_census
-from research.collatz.experiments.table_io import read_jsonl, write_experiment
+from research.experiments.table_io import read_jsonl, write_experiment
 from research.collatz.order_analysis import (
     adjacent_swap_delta_R_residue,
     extremal_orders,

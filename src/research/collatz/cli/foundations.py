@@ -13,7 +13,7 @@ from research.collatz.automata.valuation_shift import AdmissibleValuationAutomat
 from research.collatz.cylinders import valuation_cylinder
 from research.collatz.experiments.complexity_spectrum import run_complexity_spectrum
 from research.collatz.languages.cylinder_dfa import entropy_report
-from research.collatz.bt_arithmetic import lsd_add_one_case, multiply_by_three
+from bt.arithmetic import lsd_add_one_case, multiply_by_three
 from research.collatz.core import require_positive_odd
 from research.collatz.experiments.exhaustive import run_exhaustive_experiment
 from research.collatz.features import extract_features
@@ -21,8 +21,8 @@ from research.collatz.inverse import build_inverse_tree, format_inverse_tree
 from research.collatz.invariants import verify_collatz_invariants
 from research.collatz.theorems import append_plus, predicted_features_after_append_plus
 from research.collatz.trajectory import collatz_trajectory
-from research.collatz.transducers.divide_by_two import DivideByTwoTransducer, LeftoverCarryError
-from research.collatz.transducers.divide_by_two_power import DivideByTwoPowerTransducer
+from bt.transducers.divide_by_two import DivideByTwoTransducer, LeftoverCarryError
+from bt.transducers.divide_by_two_power import DivideByTwoPowerTransducer
 from research.collatz.transducers.odd_part import odd_part_word
 from research.collatz.transitions import NUMERIC_FEATURE_NAMES, feature_transition
 from research.collatz.valuation import v2

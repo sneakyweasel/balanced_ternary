@@ -20,8 +20,8 @@ from research.collatz.cycle_language import (
     exponent_stats,
 )
 from research.collatz.cycles import candidate_cycle, rotation_preserves_cycle
-from research.collatz.experiments.schema import CYCLE_LANGUAGE_SCHEMA_VERSION, ExperimentManifest
-from research.collatz.experiments.table_io import write_experiment
+from research.experiments.schema import CYCLE_LANGUAGE_SCHEMA_VERSION, ExperimentManifest
+from research.experiments.table_io import write_experiment
 from research.collatz.itinerary import ValuationItinerary
 
 

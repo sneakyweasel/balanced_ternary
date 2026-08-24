@@ -12,7 +12,7 @@ from dataclasses import dataclass, field
 from bt.metrics import weight
 from bt.representation import decode, encode
 from research.collatz.automata.two_adic import TwoAdicDigitAutomaton
-from research.collatz.bt_arithmetic import add_one, multiply_by_three, three_n_plus_one_word
+from bt.arithmetic import add_one, multiply_by_three, three_n_plus_one_word
 from research.collatz.core import collatz_step, collatz_valuation, three_n_plus_one
 from research.collatz.features import extract_features
 from research.collatz.inverse import collatz_predecessors

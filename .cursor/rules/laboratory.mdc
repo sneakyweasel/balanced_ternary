@@ -9,7 +9,8 @@ Balanced ternary is the **core**. Research problems are **applications**.
 
 - `bt.*` imports only `bt.*` (and the stdlib). Never `research`, `collatz`, or `visualization`.
 - After a split, do **not** add shims in `bt.calculus` that re-export residual research. Callers import `research.residuals`.
-- Compatibility packages `balanced_ternary`, `collatz`, and `automata` stay. Do not rename the Lake package `collatz-dual-formal`.
+- Do not add compatibility packages (`balanced_ternary`, `collatz`, `automata`). Canonical imports are `bt.*` and `research.*`.
+- Lake package name is `balanced-ternary-formal`.
 - Parked exploratory modules stay; do not delete them or treat them as a second frontier.
 
 ## Claims

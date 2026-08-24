@@ -12,7 +12,7 @@ from research.collatz.experiments.bt_warp import (
     run_bt_warp_realizer,
     semigroup_agreement_sample,
 )
-from research.collatz.experiments.schema import (
+from research.experiments.schema import (
     BT_WARP_SCHEMA_VERSION,
     validate_bt_warp_row,
 )

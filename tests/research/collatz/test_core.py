@@ -5,7 +5,7 @@ from __future__ import annotations
 import pytest
 
 from bt.representation import decode, encode
-from research.collatz.bt_arithmetic import (
+from bt.arithmetic import (
     add,
     add_one,
     lsd_add_one_case,

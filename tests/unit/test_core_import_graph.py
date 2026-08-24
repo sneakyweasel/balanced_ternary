@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BT_ROOT = ROOT / "src" / "bt"
-FORBIDDEN = ("research", "collatz", "visualization", "research_engine", "cli")
+FORBIDDEN = ("research", "collatz", "visualization", "research_engine", "cli", "automata", "balanced_ternary")
 
 
 def _imported_roots(path: Path) -> set[str]:
@@ -42,7 +42,7 @@ def test_bt_core_does_not_import_research_layers():
 
 
 ENGINE_ROOT = ROOT / "src" / "research_engine"
-ENGINE_FORBIDDEN = ("research", "bt", "collatz", "visualization", "cli")
+ENGINE_FORBIDDEN = ("research", "bt", "collatz", "visualization", "cli", "automata", "balanced_ternary")
 
 
 def test_research_engine_does_not_import_problem_or_bt_layers():

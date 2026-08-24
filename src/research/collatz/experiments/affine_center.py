@@ -9,12 +9,12 @@ from pathlib import Path
 from typing import Callable, Iterable
 
 from research.collatz.affine_center import AffineCenterState
-from research.collatz.experiments.schema import (
+from research.experiments.schema import (
     AFFINE_CENTER_SCHEMA_VERSION,
     ExperimentManifest,
     validate_affine_center_row,
 )
-from research.collatz.experiments.table_io import write_experiment
+from research.experiments.table_io import write_experiment
 
 
 Relation = Callable[[AffineCenterState], bool]

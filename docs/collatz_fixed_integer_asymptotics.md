@@ -272,7 +272,7 @@ btprime collatz periodic-code 2
 btprime collatz fixed-integer-census --limit 1000000 --max-steps 400 --write
 ```
 
-Schema: `collatz-fixed-integer/v1`. Lean: `CollatzDual.FixedInteger`.
+Schema: `collatz-fixed-integer/v1`. Lean: `Problems.Collatz.FixedInteger`.
 
 Recorded census (odd \(n\le 10^6\), `max_steps=250`, `critical_gap=1`):
 \(500000\) odds, \(20275920\) contracting prefixes, \(2220471\) expanding

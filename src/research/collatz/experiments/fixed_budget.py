@@ -7,7 +7,7 @@ from math import log2
 from pathlib import Path
 from typing import Any
 
-from research.collatz.experiments.table_io import write_rows
+from research.experiments.table_io import write_rows
 from research.collatz.itinerary import affine_constant
 from research.collatz.min_realizer import itinerary_signature, min_realizer
 

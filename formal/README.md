@@ -2,9 +2,8 @@
 
 Lean 4.19 + Mathlib for the Balanced Ternary Mathematical Laboratory.
 Sources live under `BTCalculus/`, `Core/`, `Representation/`,
-`Operators/`, and `Problems/`. The Lake package name remains
-`collatz-dual-formal` until the next Mathlib bump. Historical
-`CollatzDual.*` modules are re-exports.
+`Operators/`, and `Problems/`. The Lake package name is
+`balanced-ternary-formal`.
 
 Build from this directory:
 
@@ -20,7 +19,6 @@ The project contains no `sorry` or `admit`.
 | `Core/`, `Representation/`, `Operators/` | generic BT facts used by several problems |
 | `Problems/Collatz/` | Collatz-only theorems |
 | `Problems/Ostrowski/` | Ostrowski adder theorems |
-| `CollatzDual/` | compatibility re-exports |
 | `Automata/` | placeholder; do not invent proofs |
 
 Compiled theorem groups:

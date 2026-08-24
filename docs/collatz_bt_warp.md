@@ -194,5 +194,5 @@ btprime collatz warp-semigroup --length 6
 btprime collatz warp-counterexamples
 ```
 
-Lean statements live in `formal/CollatzDual/Warp.lean`. Experiment rows
+Lean statements live in `formal/Representation/Words.lean`. Experiment rows
 use schema `collatz-bt-warp/v1`.

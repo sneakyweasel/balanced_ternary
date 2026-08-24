@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from automata.modular import ModularAutomaton
+from bt.automata.modular import ModularAutomaton
 from bt.representation import decode, encode
 from research.collatz.automata.two_adic import TwoAdicDigitAutomaton
 from research.collatz.valuation import v2
