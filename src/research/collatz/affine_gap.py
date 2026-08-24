@@ -2,7 +2,7 @@
 
     G_m = n (2^{K_m} - 3^m) - C_m = 2^{K_m} (n - T^m(n)).
 
-The second form is **PROVED** from the affine identity
+The second form is **EXACT — HUMAN PROOF** from the affine identity
 ``2^K x = 3^m n + C``. Consequently:
 
 - ``G_m > 0`` iff ``T^m(n) < n``

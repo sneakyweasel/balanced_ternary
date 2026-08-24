@@ -1,6 +1,6 @@
 """Census of lift digits, unique zero-lift k, and expanding words.
 
-Uniqueness of the zero-lift extension is **PROVED**. The loops below are
+Uniqueness of the zero-lift extension is **EXACT — HUMAN PROOF**. The loops below are
 regression checks and a search for whether the coarse state
 ``R mod 2^P`` determines the zero-lift extension. Collisions show that it
 does not. That is an **OBSERVATION** about this abstraction only.
@@ -47,12 +47,12 @@ def uniqueness_census(max_length: int, k_max: int) -> dict[str, object]:
         "checked_prefixes": checked,
         "mismatches": mismatches,
         "true_k_exceeds_k_max": true_k_beyond,
-        "status": "VERIFIED COMPUTATIONALLY (uniqueness is PROVED)",
+        "status": "COMPUTATIONALLY VERIFIED (uniqueness is EXACT — HUMAN PROOF)",
     }
 
 
 def expanding_positive_lift_census(max_length: int, k_max: int) -> dict[str, object]:
-    """Every expanding word should have some ``J_i > 0`` (**PROVED**)."""
+    """Every expanding word should have some ``J_i > 0`` (**EXACT — HUMAN PROOF**)."""
     failures = []
     expanding = 0
     for m in range(1, max_length + 1):
@@ -65,7 +65,7 @@ def expanding_positive_lift_census(max_length: int, k_max: int) -> dict[str, obj
     return {
         "expanding_words": expanding,
         "failures": [list(w) for w in failures],
-        "status": "PROVED; census is a regression",
+        "status": "EXACT — HUMAN PROOF; census is a regression",
     }
 
 

@@ -34,8 +34,8 @@ Lyapunov decreases.
 Claim classification for the weight-parity bridge (see
 ``research.collatz.invariants`` and ``docs/collatz_mathematics.md``):
 
-    odd n  =>  weight(BT(n)) odd          PROVED
-    3n+1 even => weight(BT(3n+1)) even    PROVED (same identity)
+    odd n  =>  weight(BT(n)) odd          EXACT — HUMAN PROOF
+    3n+1 even => weight(BT(3n+1)) even    EXACT — HUMAN PROOF (same identity)
 """
 
 from __future__ import annotations

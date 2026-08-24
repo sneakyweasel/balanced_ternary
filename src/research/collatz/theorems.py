@@ -1,6 +1,6 @@
 """Layer A: exact balanced ternary form of ``3n+1``.
 
-**PROVED** for every integer ``n != 0``:
+**EXACT — HUMAN PROOF** for every integer ``n != 0``:
 
     BT(3n+1) = BT(n)  followed by a trailing ``+``.
 
@@ -14,7 +14,7 @@ Collatz states are positive odd, so the exception does not arise.
 The adder in ``bt.arithmetic`` remains an independent check, not the
 definition of this identity.
 
-Closed-form feature map ``n -> 3n+1`` (PROVED, extra LSD ``a_0 = +1`` and
+Closed-form feature map ``n -> 3n+1`` (EXACT — HUMAN PROOF, extra LSD ``a_0 = +1`` and
 index shift ``a'_{i+1} = a_i``):
 
 - length +1

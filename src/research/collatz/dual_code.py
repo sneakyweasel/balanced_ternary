@@ -19,7 +19,7 @@ Then
     R' = R + t 2^(K+1),
     x' = (q + 3^(m+1)t) / 2^(k-1).
 
-These identities are **PROVED** by the exact cylinder congruence.  They
+These identities are **EXACT — HUMAN PROOF** by the exact cylinder congruence.  They
 do not replay the complete trajectory and never divide a residue modulo
 a power of two.
 """
@@ -44,7 +44,7 @@ def _require_k(k: int) -> int:
 def canonical_realizer_formula(
     valuations: tuple[int, ...] | str | list[int],
 ) -> int:
-    """Compute ``R`` directly from ``(m,K,C)``. **PROVED**."""
+    """Compute ``R`` directly from ``(m,K,C)``. **EXACT — HUMAN PROOF**."""
     ks = parse_ks(valuations)
     m = len(ks)
     K = sum(ks)

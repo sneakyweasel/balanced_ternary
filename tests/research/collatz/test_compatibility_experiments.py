@@ -72,7 +72,7 @@ def test_information_rows_manifest_and_truncated_analysis(tmp_path):
     manifest = json.loads(Path(result.paths["manifest"]).read_text(encoding="utf-8"))
     assert manifest["parameters"]["max_length"] == 3
     assert manifest["row_count"] == len(result.rows)
-    assert all(item["status"].startswith("VERIFIED COMPUTATIONALLY") for item in result.truncated)
+    assert all(item["status"].startswith("COMPUTATIONALLY VERIFIED") for item in result.truncated)
     assert result.balanced_ternary_collisions["next_zero_lift_k"] is not None
 
 

@@ -4,8 +4,8 @@ The documentation records exact mathematics, bounded computations, open
 questions, and literature comparisons separately. Claim labels have the same
 meaning throughout:
 
-- **PROVED** = **EXACT — HUMAN PROOF**: supported by an argument in the mathematical record;
-- **PROVED — LEAN** = **EXACT — LEAN VERIFIED**: the same statement has a compiled Lean proof;
+- **EXACT — HUMAN PROOF**: supported by an argument in the mathematical record;
+- **EXACT — LEAN VERIFIED**: the same statement has a compiled Lean proof;
 - **COMPUTATIONALLY VERIFIED**: checked on a stated finite domain;
 - **CONJECTURE**: open and paired with counterexample search;
 - **OBSERVATION**: empirical, without necessity or universality;
@@ -13,9 +13,8 @@ meaning throughout:
 - **REPARAMETERIZATION**: a classical construction under a local name.
 
 These seven are the only tags allowed in
-[theory/theorem_ledger.json](theory/theorem_ledger.json). Collatz notes
-may still write **PROVED**; that is **EXACT — HUMAN PROOF**. Prose that
-writes **VERIFIED COMPUTATIONALLY** means **COMPUTATIONALLY VERIFIED**.
+[theory/theorem_ledger.json](theory/theorem_ledger.json) and in research
+notes. Do not write **PROVED** or **VERIFIED COMPUTATIONALLY**.
 
 Novelty is a separate axis, used in dossiers and theory pages and never
 as a ledger tag: **KNOWN** (in the literature, cite a `literature/` id),

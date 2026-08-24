@@ -52,12 +52,12 @@ the least-significant digit $a_0$.
             {
                 "layer": "Balanced ternary",
                 "object": "Canonical words, arithmetic, metrics, residue automata",
-                "status": "PROVED / exact implementation",
+                "status": "EXACT — HUMAN PROOF / exact implementation",
             },
             {
                 "layer": "Operators",
                 "object": "S, N, D, W, Wz, Wt, M2, H2, H3, K3, Im, Ip",
-                "status": "PROVED on the stated domains",
+                "status": "EXACT — HUMAN PROOF on the stated domains",
             },
             {
                 "layer": "Rewrite calculus",
@@ -72,12 +72,12 @@ the least-significant digit $a_0$.
             {
                 "layer": "Finite-state Collatz",
                 "object": "2-adic valuation classifiers and division transducers",
-                "status": "PROVED with bounded model sizes",
+                "status": "EXACT — HUMAN PROOF with bounded model sizes",
             },
             {
                 "layer": "Exponent codes",
                 "object": "Cylinders, affine formula, canonical realizers, lift digits",
-                "status": "PROVED; key statements Lean verified",
+                "status": "EXACT — LEAN VERIFIED for key statements",
             },
             {
                 "layer": "Compatibility",

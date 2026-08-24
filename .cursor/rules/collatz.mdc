@@ -1,5 +1,5 @@
 ---
-description: Collatz is one application — no solution claims, no record rewrite
+description: Collatz is one application — no solution claims, ledger tags only
 globs: src/research/collatz/**/*.py,docs/collatz_*.md,docs/problems/collatz.md
 alwaysApply: false
 ---
@@ -9,7 +9,7 @@ alwaysApply: false
 `research.collatz` is a **STRUCTURAL** application of `bt`, not the laboratory frontier.
 
 - Do not claim a solution of the Collatz conjecture.
-- Do not rewrite `docs/collatz_mathematics.md` to “modernize” claim tags. `PROVED` there means `EXACT — HUMAN PROOF`.
+- Use the seven ledger tags from `docs/README.md`. Do not write `PROVED` or `VERIFIED COMPUTATIONALLY`.
 - New exact facts get a ledger row and a targeted note or test. Do not append a new numbered milestone by default.
 - `C-T-welldefined` is Lean-verified in `formal/Problems/Collatz/Accelerated.lean` (`acceleratedT`).
 - Import Collatz code from `research.collatz`, never a top-level `collatz` package.

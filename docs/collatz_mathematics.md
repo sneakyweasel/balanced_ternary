@@ -4,14 +4,17 @@ This document records **exactly** what the Collatz research module implements
 and how each claim is classified. It does **not** claim progress on solving
 the Collatz conjecture.
 
-Claim labels:
+Claim labels are the seven ledger tags from [README.md](README.md):
 
 | Label | Meaning |
 | --- | --- |
-| **PROVED** | A complete mathematical argument is given here (or is the standard theorem cited). |
-| **VERIFIED COMPUTATIONALLY** | An identity was checked on a finite set. This is not a proof. |
-| **CONJECTURE** | An explicit unproved statement, required to carry a counterexample search. None are asserted in Milestone 1. |
+| **EXACT — HUMAN PROOF** | A complete mathematical argument is given here (or is the standard theorem cited). |
+| **EXACT — LEAN VERIFIED** | The same English claim has a compiled Lean proof. |
+| **COMPUTATIONALLY VERIFIED** | An identity was checked on a finite set. This is not a proof. |
+| **CONJECTURE** | An explicit unproved statement, required to carry a counterexample search. |
 | **OBSERVATION** | Empirical, with no claim of necessity. |
+| **REFUTED** | A counterexample is recorded. |
+| **REPARAMETERIZATION** | A classical construction under a local name. |
 
 Finite verification is never presented as a proof.
 
@@ -41,7 +44,7 @@ For a positive odd integer \(n\):
 T(n)=\frac{3n+1}{2^{v_2(3n+1)}}.
 \]
 
-**PROVED.** If \(n\) is odd then \(3n\) is odd, so \(3n+1\) is even, hence
+**EXACT — HUMAN PROOF.** If \(n\) is odd then \(3n\) is odd, so \(3n+1\) is even, hence
 \(v_2(3n+1)\ge 1\). Dividing out all factors of \(2\) leaves an odd integer,
 so \(T(n)\) is a positive odd integer.
 
@@ -55,7 +58,7 @@ an exact right shift by \(v_2(3n+1)\).
 `v2(n)` is the largest \(k\) such that \(2^k\) divides \(n\). For \(n=0\)
 the value is \(+\infty\), returned as `None` (same convention as `v3`).
 
-**PROVED.** \(v_2\) is the standard \(2\)-adic valuation on \(\mathbb{Z}\).
+**EXACT — HUMAN PROOF.** \(v_2\) is the standard \(2\)-adic valuation on \(\mathbb{Z}\).
 
 ---
 
@@ -71,7 +74,7 @@ displayed most-significant digit first with `-` / `0` / `+`.
 
 ### Multiplication by 3 is a shift
 
-**PROVED.** \(3n=\sum_i a_i 3^{i+1}\), so the coefficients of \(3n\) are
+**EXACT — HUMAN PROOF.** \(3n=\sum_i a_i 3^{i+1}\), so the coefficients of \(3n\) are
 those of \(n\) with a new least-significant digit \(0\). In display form
 this appends a trailing `0` (except \(n=0\)).
 
@@ -86,7 +89,7 @@ rewritten as \(s = d + 3c\) with \(d\in\{-1,0,+1\}\):
 - \(s\le -2\) \(\Rightarrow\) \(d=s+3\), carry \(-1\) (uses \(-2=-3+1\));
 - otherwise \(d=s\), carry \(0\).
 
-**PROVED** as an identity of integers: the rewrite preserves value. The
+**EXACT — HUMAN PROOF** as an identity of integers: the rewrite preserves value. The
 implementation `add` is therefore exact balanced ternary addition.
 
 ### Local LSD cases of \(+1\)
@@ -99,7 +102,7 @@ Let \(a_0\) be the least-significant digit.
 | `+` | becomes `-` | \(+1\) (may propagate) |
 | `-` | becomes `0` | none |
 
-**PROVED** by the rewrite rule on a single digit. Propagation when the
+**EXACT — HUMAN PROOF** by the rewrite rule on a single digit. Propagation when the
 trailing run is `+` is handled by the full adder, not by the local table.
 
 ### Decomposition used in this module
@@ -119,11 +122,11 @@ is an independent check of the append-plus theorem (Layer A).
 
 The existing theorem (see `docs/mathematics.md`) is:
 
-**PROVED.** \(n \equiv w(n)\pmod{2}\), because \(3^i\equiv 1\pmod{2}\) and
+**EXACT — HUMAN PROOF.** \(n \equiv w(n)\pmod{2}\), because \(3^i\equiv 1\pmod{2}\) and
 \(-1\equiv 1\pmod{2}\). So \(n\) is odd if and only if the balanced ternary
 weight is odd.
 
-Corollaries used here, both **PROVED**:
+Corollaries used here, both **EXACT — HUMAN PROOF**:
 
 1. Every positive odd Collatz state \(n\) has odd weight.
 2. \(3n+1\) is even, so `weight(BT(3n+1))` is even.
@@ -131,7 +134,7 @@ Corollaries used here, both **PROVED**:
 
 These are re-checked exhaustively on configurable odd ranges
 (`btlab collatz test-invariants`). Range success is
-**VERIFIED COMPUTATIONALLY**; the identity itself is **PROVED**.
+**COMPUTATIONALLY VERIFIED**; the identity itself is **EXACT — HUMAN PROOF**.
 
 This is the first exact bridge between balanced ternary combinatorics and
 Collatz parity. It does not constrain orbits beyond parity.
@@ -140,7 +143,7 @@ Collatz parity. It does not constrain orbits beyond parity.
 
 ## 5. Images of \(T\) and inverse exponents
 
-**PROVED.** \(T(n)\not\equiv 0\pmod{3}\) for every positive odd \(n\),
+**EXACT — HUMAN PROOF.** \(T(n)\not\equiv 0\pmod{3}\) for every positive odd \(n\),
 because \(3n+1\equiv 1\pmod{3}\) and \(2^k\) is invertible modulo \(3\).
 
 If \(m=T(n)\) then \(n=(2^k m-1)/3\) with \(k=v_2(3n+1)\ge 1\). Integrality
@@ -150,7 +153,7 @@ is \(2^k m\equiv 1\pmod{3}\). Since \(2\equiv -1\pmod{3}\),
 (-1)^k m \equiv 1\pmod{3}.
 \]
 
-**PROVED** characterization of admissible \(k\):
+**EXACT — HUMAN PROOF** characterization of admissible \(k\):
 
 - \(m\equiv 0\pmod{3}\): no \(k\) (and such \(m\) are not in the image of \(T\));
 - \(m\equiv 1\pmod{3}\): \(k\) even;
@@ -160,18 +163,18 @@ is \(2^k m\equiv 1\pmod{3}\). Since \(2\equiv -1\pmod{3}\),
 returns \(n\). Every generated pair is required to satisfy \(T(n)=m\) and
 \(v_2(3n+1)=k\).
 
-**PROVED.** The only positive odd fixed point of \(T\) is \(T(1)=1\), given
+**EXACT — HUMAN PROOF.** The only positive odd fixed point of \(T\) is \(T(1)=1\), given
 by \(k=2\): \((4\cdot 1-1)/3=1\). Inverse trees record this as a cycle and
 do not expand it (a computational bound against uncontrolled unrolling).
 
-**PROVED.** Odd multiples of 3 can appear as Collatz *states* (for example
+**EXACT — HUMAN PROOF.** Odd multiples of 3 can appear as Collatz *states* (for example
 \(21=(2^6-1)/3\) satisfies \(T(21)=1\)) but never as *values* of \(T\).
 Their predecessor lists are empty. This is not a contradiction: the inverse
 of \(T\) can land on a multiple of 3, after which no further preimage
 exists.
 
 Least-significant balanced ternary digit `0` characterises divisibility by
-\(3\) (**PROVED**, existing \(v_3\) theorem). The numerator \(2^k m-1\)
+\(3\) (**EXACT — HUMAN PROOF**, existing \(v_3\) theorem). The numerator \(2^k m-1\)
 still requires arithmetic before that test; this module does not claim that
 predecessors are visible from a fixed suffix of \(m\) alone.
 
@@ -201,7 +204,7 @@ No claim is made that every orbit reaches \(1\).
 \delta(r,a)=(3r+a)\bmod 2^K.
 \]
 
-**PROVED** (existing modular recurrence / Horner's rule):
+**EXACT — HUMAN PROOF** (existing modular recurrence / Horner's rule):
 
 \[
 \texttt{automaton.residue}(w)=\operatorname{decode}(w)\bmod 2^K.
@@ -215,7 +218,7 @@ Given \(n\equiv r\pmod{2^K}\) let \(y=(3r+1)\bmod 2^K\).
   \(0\le v_2(y)<K\). For odd \(r\), this exact value satisfies \(k\ge 1\).
 - If \(y=0\), then \(v_2(3n+1)\ge K\). Returned as `AT_LEAST_K`.
 
-**PROVED** as a fact about congruences: \(3n+1\equiv y\pmod{2^K}\), so the
+**EXACT — HUMAN PROOF** as a fact about congruences: \(3n+1\equiv y\pmod{2^K}\), so the
 valuation is exact precisely when it is strictly less than \(K\). The cases
 \(v_2=K\) and \(v_2>K\) are indistinguishable modulo \(2^K\). There is
 **no exact-\(K\) class at precision \(K\)**.
@@ -231,7 +234,7 @@ The automaton classifies the **valuation step** of \(T\) from \(n\bmod 2^K\).
 It is **not** a finite-state model of the map \(n\mapsto T(n)\) on residues
 modulo \(2^K\). See the next section.
 
-A few small-\(K\) partitions are standard and **PROVED** from the odd
+A few small-\(K\) partitions are standard and **EXACT — HUMAN PROOF** from the odd
 classes modulo \(4\) and \(8\):
 
 - \(n\equiv 3\pmod{4}\) \(\Rightarrow\) \(v_2(3n+1)=1\);
@@ -293,7 +296,7 @@ for numeric features (length, weight, signed digit sum, run counts, …).
 
 Column names are the schema in `collatz.transitions.ROW_COLUMNS`.
 
-Deltas \(F(T(n))-F(n)\) are the composition of the **PROVED** Layer A map
+Deltas \(F(T(n))-F(n)\) are the composition of the **EXACT — HUMAN PROOF** Layer A map
 \(n\to 3n+1\) and the odd-part step. They are not Lyapunov decreases.
 Milestone 2 does not search for a Lyapunov function.
 
@@ -308,15 +311,15 @@ and the shift-then-add-one / append-plus identities.
 Metadata records experiment name, parameters, integer range, UTC timestamp,
 and package version when available.
 
-Status of that scan: **VERIFIED COMPUTATIONALLY** on the chosen range.
-The weight-parity and append-plus identities remain **PROVED** independently
+Status of that scan: **COMPUTATIONALLY VERIFIED** on the chosen range.
+The weight-parity and append-plus identities remain **EXACT — HUMAN PROOF** independently
 of the scan.
 
 ---
 
 ## 11. Layer A — Append-plus theorem
 
-**PROVED** for every integer \(n\neq 0\):
+**EXACT — HUMAN PROOF** for every integer \(n\neq 0\):
 
 \[
 \mathrm{BT}(3n+1)=\mathrm{BT}(n)\,+.
@@ -335,7 +338,7 @@ zero).
 The adder `add_one(multiply_by_three(w))` is an independent check, not the
 definition.
 
-### Closed-form features \(n\to 3n+1\) (PROVED)
+### Closed-form features \(n\to 3n+1\) (EXACT — HUMAN PROOF)
 
 Write \(y=3n+1\). Then \(a_0(y)=+1\) and \(a_{i+1}(y)=a_i(n)\).
 
@@ -356,12 +359,12 @@ equals `encode(3n+1)`.
 
 Reading direction: **LSD-first**, dual to the MSD Horner automaton.
 
-### Doubling is sequential (PROVED)
+### Doubling is sequential (EXACT — HUMAN PROOF)
 
 LSD doubling is a 3-state Mealy machine with carry in \(\{-1,0,+1\}\):
 \(s=2a+c=d+3c'\). The rewrite alphabet is closed.
 
-### Division by 2 is sequential on \(\mathbb{Z}_3\) (PROVED)
+### Division by 2 is sequential on \(\mathbb{Z}_3\) (EXACT — HUMAN PROOF)
 
 Because \(2\) is a unit in the 3-adics, doubling has a sequential inverse:
 given input digit \(d\) and carry \(c\), there is a unique output \(a\) and
@@ -373,18 +376,18 @@ carry is \(0\). On odd integers \(n/2\) has an infinite 3-adic expansion
 (example: \(1/2=\sum_i(-1)3^i\)). `apply_even` raises `LeftoverCarryError`
 rather than inventing an integer.
 
-### Fixed \(k\) (PROVED as a composition; sizes computational)
+### Fixed \(k\) (EXACT — HUMAN PROOF as a composition; sizes computational)
 
 `/2^k` is the \(k\)-fold product of `/2`. Naive state bound \(3^k\).
-Reachable and minimized sizes are **VERIFIED COMPUTATIONALLY**.
+Reachable and minimized sizes are **COMPUTATIONALLY VERIFIED**.
 
-### Valuation classes \(L_k\) (PROVED regular for each fixed \(k\))
+### Valuation classes \(L_k\) (EXACT — HUMAN PROOF regular for each fixed \(k\))
 
 \(L_k=\{\mathrm{BT}(n):v_2(n)=k\}\) is recognized by
 `ModularAutomaton(2^{k+1})` with accept states those residues of exact
 valuation \(k\). \(L_0\) coincides with odd weight.
 
-### Unrestricted odd-part is not a single rational transduction (PROVED)
+### Unrestricted odd-part is not a single rational transduction (EXACT — HUMAN PROOF)
 
 The machines in `src/bt/transducers/` and `src/research/collatz/transducers/` are deterministic
 letter-to-letter **Mealy** transducers (LSD-first, carry in
@@ -454,7 +457,7 @@ singleton \(\{+\}\) is regular. If unrestricted odd-part were a rational
 function, its preimage of \(\{+\}\) would be regular, contradicting
 step 3.
 
-**Boundary (PROVED).** Each *fixed* valuation branch is finite-state: \(L_k\)
+**Boundary (EXACT — HUMAN PROOF).** Each *fixed* valuation branch is finite-state: \(L_k\)
 is regular and `/2^k` is a 3-adic sequential Mealy machine. Unbounded
 odd-part normalisation is not a single rational transduction. Detecting
 unbounded \(k\) requires unbounded 2-adic precision.
@@ -479,7 +482,7 @@ T(n)\equiv\bigl((3r+1)\bmod 2^P\bigr)/2^k \pmod{2^{P-k}}.
 \]
 
 Next state: \(\bigl(((3r+1)\bmod 2^P)\gg k,\;P-k\bigr)\). Never divide
-modulo \(2^P\). **PROVED** as a congruence. Implemented as
+modulo \(2^P\). **EXACT — HUMAN PROOF** as a congruence. Implemented as
 `exact_collatz_residue_step`.
 
 A word \(k_1\ldots k_m\) at starting precision \(P\):
@@ -490,7 +493,7 @@ A word \(k_1\ldots k_m\) at starting precision \(P\):
 
 Absence from a too-small \(P\) is not a global prohibition.
 
-### Growth budget (PROVED comparison; not a Lyapunov function)
+### Growth budget (EXACT — HUMAN PROOF comparison; not a Lyapunov function)
 
 \[
 \operatorname{sign}\Bigl(\sum k_i-m\log_2 3\Bigr)
@@ -498,7 +501,7 @@ Absence from a too-small \(P\) is not a global prohibition.
 \]
 
 Integer comparison, no floats. Equality is impossible for \(m>0\) because
-\(\log_2 3\) is irrational (**PROVED**). This is the *homogeneous* size
+\(\log_2 3\) is irrational (**EXACT — HUMAN PROOF**). This is the *homogeneous* size
 estimate; the affine \(+1\) terms of \(T\) are omitted. Contraction of the
 budget is **not** a Lyapunov function and **not** a proof of Collatz.
 
@@ -514,12 +517,12 @@ k=v_2(3n+1),\qquad w'=\mathrm{odd\_part}(w\cdot +)=\mathrm{BT}(T(n)).
 
 The graph on odd \(n\le N\) is a **sample**, not the Collatz dynamics.
 
-- Forbidden valuation words: Layer C FORBIDDEN strings (**PROVED** relative
+- Forbidden valuation words: Layer C FORBIDDEN strings (**EXACT — HUMAN PROOF** relative
   to that 2-adic automaton).
 - Synchronizing digit contexts: right-strings sending every odd state of
   `TwoAdicDigitAutomaton(K)` to one valuation class. Finite search:
-  **VERIFIED COMPUTATIONALLY** / **OBSERVATION**.
-- Images are never \(0\bmod 3\): **PROVED** (Milestone 1).
+  **COMPUTATIONALLY VERIFIED** / **OBSERVATION**.
+- Images are never \(0\bmod 3\): **EXACT — HUMAN PROOF** (Milestone 1).
 
 ---
 
@@ -536,7 +539,7 @@ C_{\mathbf{k}}
 Write \(K=\sum k_i\). The *minimum* precision that makes every test exact
 is \(P=1+K\) (leftover \(Q=1\)).
 
-### Unique residue / density \(2^{-K}\) (PROVED)
+### Unique residue / density \(2^{-K}\) (EXACT — HUMAN PROOF)
 
 Work backwards from the unique odd residue \(1\pmod{2}\). If
 \(T(n)\equiv r\pmod{2^P}\), invert with exponent \(k\):
@@ -574,7 +577,7 @@ dictionary between two exact integer quantities, not a descent proof.
 
 Implemented as `valuation_cylinder` / `cylinder_residues`. Cross-checked
 against `follow_path` on every composition with \(K\le 6\)
-(**VERIFIED COMPUTATIONALLY**, redundant with the proof).
+(**COMPUTATIONALLY VERIFIED**, redundant with the proof).
 
 ## 16. Milestone 3 — Cylinder languages and entropy
 
@@ -593,7 +596,7 @@ H_L(\mathbf{k})
 \]
 
 Finite-\(L\) values and minimized state counts \(S(\mathbf{k})\) are
-**VERIFIED COMPUTATIONALLY**. No spectral radius is claimed as a theorem.
+**COMPUTATIONALLY VERIFIED**. No spectral radius is claimed as a theorem.
 
 Conditioning on a longer valuation prefix cannot increase the padded
 word count, because the residue class modulo \(2^{1+K}\) refines the
@@ -605,8 +608,8 @@ surviving strings”: surviving means “prescribed future valuations”.
 For each \(k\ge 1\):
 
 - \(N_k\): minimized state count of the LSD `/2^k` Mealy product
-  (naive bound \(3^k\) **PROVED**; reachable / minimized
-  **VERIFIED COMPUTATIONALLY**);
+  (naive bound \(3^k\) **EXACT — HUMAN PROOF**; reachable / minimized
+  **COMPUTATIONALLY VERIFIED**);
 - \(A_k\): minimized DFA size of \(L_k=\{w:v_2(\mathrm{decode}(w))=k\}\);
 - \(\mathcal{C}_k=(A_k,N_k)\), with product \(A_k N_k\) recorded only as a
   crude bound on “recognise \(k\) then divide by \(2^k\)”.
@@ -615,7 +618,7 @@ On \(k=1,\ldots,4\) one has \(N_k=3,5,9,17=2^k+1\) and
 \(A_k=4,8,16,32=2^{k+1}\) (the unminimised modulus). The statement
 \(N_k=2^k+1\) for all \(k\) is a **CONJECTURE** (counterexample search
 is `btlab collatz complexity`). It is not a theorem. \(A_k=2^{k+1}\)
-on the same range is **VERIFIED COMPUTATIONALLY**, not proved.
+on the same range is **COMPUTATIONALLY VERIFIED**, not proved.
 
 Comparing \(N_k\) to the geometric weight \(2^{-k}\) is an
 **OBSERVATION** only: rare branches may be computationally heavier.
@@ -677,7 +680,7 @@ Positive-integer realization of an infinite itinerary, eventual
 stabilization of \(R_m\), and eventual vanishing of \(t_m\) are
 equivalent. Every prefix has one unique zero-lift successor. Periodic
 and eventually periodic words have exact affine compatibility tests.
-These statements are **PROVED** in
+These statements are **EXACT — HUMAN PROOF** in
 [collatz_zero_lift.md](collatz_zero_lift.md).
 
 Finite canonical-state residues provide exact immediate certificates
@@ -709,7 +712,7 @@ The real diagnostic rates use natural logarithms. The exact state exposes
 coupled functions of the code: in particular, \(\operatorname{BT}(R)\) is
 deterministic from \(R\), so it is not an information-theoretically
 independent coordinate. Lossy balanced-ternary features can still be
-useful finite search partitions. **PROVED** at the exact interface;
+useful finite search partitions. **EXACT — HUMAN PROOF** at the exact interface;
 empirical utility is **COMPUTATIONAL**.
 
 The comparison with Kramer, rational base \(3/2\), Dhiman--Pandey, and
@@ -741,7 +744,7 @@ DR-C=2^K(R-X),\qquad DX-C=3^m(R-X),
 X-n_*=\frac{3^m}{2^K}(R-n_*).
 \]
 
-These are **PROVED** and **LEAN VERIFIED** in cross-multiplied form.
+These are **EXACT — LEAN VERIFIED** in cross-multiplied form.
 Expanding codes have \(n_*<0<M,R<X\); contracting codes move toward their
 positive center. Kramer's representative satisfies \(X=M+q3^m\) for
 \(q\ge0\), hence \(M\le X\). Simple total orders among \(R,M,C,n_*\) fail
@@ -761,7 +764,7 @@ and Q1–Q7 are in [collatz_bt_warp.md](collatz_bt_warp.md).
 ## 28. Fixed-integer affine-center geometry
 
 For an actual trajectory the start is constant. The integer gap
-\(G_m=2^{K_m}(n-T^m(n))\) is **PROVED**, as is the recurrence
+\(G_m=2^{K_m}(n-T^m(n))\) is **EXACT — HUMAN PROOF**, as is the recurrence
 \(G_{m+1}=3G_m+2^{K_m}(n(2^{k_m}-3)-1)\). The inequality \(n_{*m}\le n\)
 is equivalent to \(T^m(n)\le n\) when \(2^{K_m}>3^m\), and is
 **REFUTED EXACTLY** at \(n=165\), \(m=17\). The normalized series

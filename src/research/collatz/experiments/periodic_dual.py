@@ -76,7 +76,7 @@ def periodic_census(
                         t == 0 for t in trace["lift_digits"]
                     ),
                     "lift_digits": trace["lift_digits"],
-                    "status": "VERIFIED COMPUTATIONALLY on finite trace",
+                    "status": "COMPUTATIONALLY VERIFIED on finite trace",
                 }
             )
     return {

@@ -88,7 +88,7 @@ def suffix_determination_census(
                 "ambiguous_next_suffixes": len(next_ambiguous),
                 "ambiguous_lift_states": len(lift_ambiguous),
                 "sample_counterexample": example,
-                "status": "VERIFIED COMPUTATIONALLY on stated finite bounds",
+                "status": "COMPUTATIONALLY VERIFIED on stated finite bounds",
             }
         )
     exact_counterexample = {

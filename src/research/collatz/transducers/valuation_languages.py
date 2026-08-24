@@ -1,6 +1,6 @@
 """Regular languages ``L_k = { BT(n) : v2(n) = k }`` for each fixed k.
 
-**PROVED:** for each fixed k, ``L_k`` is regular. An MSD Horner automaton
+**EXACT — HUMAN PROOF:** for each fixed k, ``L_k`` is regular. An MSD Horner automaton
 modulo ``2^{k+1}`` distinguishes ``v2(n) = k`` from ``v2(n) != k``, because
 the valuation is exact precisely when it is strictly less than the
 modulus exponent.
@@ -47,7 +47,7 @@ class ValuationClassDFA:
         return tuple(out)
 
     def minimized_state_count(self) -> int:
-        """``A_k``: minimized DFA size. **VERIFIED COMPUTATIONALLY**."""
+        """``A_k``: minimized DFA size. **COMPUTATIONALLY VERIFIED**."""
         from bt.automata.modular import ALPHABET
         from bt.automata.minimize import minimize_dfa
 

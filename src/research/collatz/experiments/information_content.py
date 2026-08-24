@@ -34,12 +34,12 @@ STATE_FIELDS: dict[str, tuple[str, ...]] = {
     "S3": ("m", "K", "R", "M", "C"),
 }
 S1_BT_THEOREM = (
-    "PROVED: S1=(m,K,R) determines BT(R) and every deterministic BT(R) feature."
+    "EXACT — HUMAN PROOF: S1=(m,K,R) determines BT(R) and every deterministic BT(R) feature."
 )
 CODE_DETERMINISM_THEOREM = (
-    "PROVED: the full exponent code determines S0-S3 and BT(R)."
+    "EXACT — HUMAN PROOF: the full exponent code determines S0-S3 and BT(R)."
 )
-FINITE_PARTITION_LABEL = "VERIFIED COMPUTATIONALLY on the recorded finite sample"
+FINITE_PARTITION_LABEL = "COMPUTATIONALLY VERIFIED on the recorded finite sample"
 
 
 def _mapping(value: object) -> dict[str, Any]:

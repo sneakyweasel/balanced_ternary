@@ -19,7 +19,7 @@ Hence, writing ``m mod 3``:
 - ``m ≡ 1 (mod 3)``: ``k`` even.
 - ``m ≡ 2 (mod 3)``: ``k`` odd.
 
-**PROVED:** for every positive odd ``n``, ``T(n) ≢ 0 (mod 3)``, because
+**EXACT — HUMAN PROOF:** for every positive odd ``n``, ``T(n) ≢ 0 (mod 3)``, because
 ``3n+1 ≡ 1 (mod 3)`` and ``2^k`` is invertible modulo 3. Images of ``T``
 therefore always have at least one valid exponent parity.
 

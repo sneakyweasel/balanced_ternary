@@ -65,7 +65,7 @@ def run_bt_warp_census(
                 "domain": "positive odd integers",
             },
             row_count=len(rows),
-            claim_status="VERIFIED COMPUTATIONALLY on the stated odd bound",
+            claim_status="COMPUTATIONALLY VERIFIED on the stated odd bound",
             schema_version=BT_WARP_SCHEMA_VERSION,
         )
         paths = write_experiment(list(rows), output_dir, "bt_warp_census", manifest)
@@ -106,7 +106,7 @@ def run_bt_warp_realizer(
             experiment_name="bt-warp-realizer",
             parameters={"max_length": max_length, "max_k": max_k},
             row_count=len(rows),
-            claim_status="VERIFIED COMPUTATIONALLY on the bounded exponent-code sample",
+            claim_status="COMPUTATIONALLY VERIFIED on the bounded exponent-code sample",
             schema_version=BT_WARP_SCHEMA_VERSION,
         )
         paths = write_experiment(list(rows), output_dir, "bt_warp_realizer", manifest)
@@ -162,7 +162,7 @@ def semigroup_agreement_sample(
         ),
         "W_W_counterexample": smallest_disagreement(("W", "W"), (), sample_limit),
         "Wt_Wt_counterexample": smallest_disagreement(("Wt", "Wt"), (), sample_limit),
-        "status": "VERIFIED COMPUTATIONALLY on the stated sample",
+        "status": "COMPUTATIONALLY VERIFIED on the stated sample",
     }
 
 

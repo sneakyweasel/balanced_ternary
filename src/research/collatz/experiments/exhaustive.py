@@ -55,12 +55,12 @@ class ExhaustiveExperimentResult:
             "schema": list(ROW_COLUMNS),
             "claim_status": {
                 "weight_parity_on_this_range": (
-                    "VERIFIED COMPUTATIONALLY"
+                    "COMPUTATIONALLY VERIFIED"
                     if self.weight_parity_failures == 0
                     else "FAILED"
                 ),
                 "theorem_status": (
-                    "The identity n mod 2 = weight(BT(n)) mod 2 is PROVED; "
+                    "The identity n mod 2 = weight(BT(n)) mod 2 is EXACT — HUMAN PROOF; "
                     "this experiment only re-checks it on a finite odd range."
                 ),
             },

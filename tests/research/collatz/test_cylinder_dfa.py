@@ -53,7 +53,7 @@ def test_conditioning_does_not_increase_padded_count():
 
 def test_entropy_report_status():
     report = entropy_report((1,), 4)
-    assert report.status == "VERIFIED COMPUTATIONALLY"
+    assert report.status == "COMPUTATIONALLY VERIFIED"
     assert report.word_count > 0
     assert report.minimized_states >= 1
     assert report.h_base3 is not None

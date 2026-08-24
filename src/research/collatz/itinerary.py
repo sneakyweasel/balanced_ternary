@@ -1,7 +1,7 @@
 """Exact affine form of a finite accelerated Collatz valuation itinerary.
 
 If the first ``m`` valuations of odd ``n`` are ``ks = (k_0, ..., k_{m-1})``,
-then **PROVED**
+then **EXACT — HUMAN PROOF**
 
     T^m(n) = (3^m n + C(ks)) / 2^K
 
@@ -85,7 +85,7 @@ def partial_constants(ks: tuple[int, ...]) -> tuple[int, ...]:
 def positivity_threshold(ks: tuple[int, ...]) -> int:
     """Smallest integer ``n`` with ``3^i n + C_i > 0`` for every prefix ``i``.
 
-    **PROVED:** ``C_i >= 0``, so ``-C_i / 3^i <= 0``. For the positive-odd
+    **EXACT — HUMAN PROOF:** ``C_i >= 0``, so ``-C_i / 3^i <= 0``. For the positive-odd
     Collatz setting the threshold is ``1``. ``T`` sends positive odds to
     positive odds, so every genuine positive trajectory already satisfies
     ``n_i > 0``. The threshold distinguishes that Archimedean fact from
@@ -252,7 +252,7 @@ class ValuationItinerary:
             f"budget 2^K={bgt.two_power} vs 3^m={bgt.three_power}  {bgt.kind}  "
             f"(homogeneous estimate, not a Lyapunov function)",
             f"positivity_threshold={self.positivity_threshold()}  "
-            f"[PROVED: C>=0 so positive odds already have n_i>0]",
+            f"[EXACT — HUMAN PROOF: C>=0 so positive odds already have n_i>0]",
             "",
         ]
         return "\n".join(lines)

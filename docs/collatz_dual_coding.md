@@ -1,7 +1,7 @@
 # Collatz dual coding
 
-Milestone 6. Every statement is labelled **PROVED**, **EXACT — LEAN
-VERIFIED**, **VERIFIED COMPUTATIONALLY**, **CONJECTURE**, or
+Milestone 6. Every statement is labelled **EXACT — HUMAN PROOF**, **EXACT — LEAN
+VERIFIED**, **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, or
 **OBSERVATION**. Finite rarity is never treated as impossibility. Nothing
 here proves or disproves the Collatz conjecture.
 
@@ -27,7 +27,7 @@ cylinder is refined. The pair \((k_m,t_m)\) is the dual code.
 For \(\mathbf{k}=(k_0,\ldots,k_{m-1})\), put
 \(K=\sum_i k_i\). At leftover precision \(Q=1\), its cylinder is one odd
 residue class modulo \(2^{K+1}\), with density \(2^{-K}\) among odd
-residues. Every finite positive word is admissible. **PROVED**.
+residues. Every finite positive word is admissible. **EXACT — HUMAN PROOF**.
 
 Positive-lift children are valid finite extensions. They are never
 “forbidden”; that older label applies only when a fixed precision is too
@@ -56,8 +56,8 @@ R\equiv(2^K-C)\,3^{-m}\pmod {2^{K+1}},
 }
 \]
 
-This direct formula is **PROVED** and independently
-**VERIFIED COMPUTATIONALLY** on 5,461 bounded words during development.
+This direct formula is **EXACT — HUMAN PROOF** and independently
+**COMPUTATIONALLY VERIFIED** on 5,461 bounded words during development.
 
 ## 4. Lift digits \(t\)
 
@@ -87,7 +87,7 @@ t(p,k)=
 }
 \]
 
-It was **VERIFIED COMPUTATIONALLY** on 2,046 bounded cases in addition to
+It was **COMPUTATIONALLY VERIFIED** on 2,046 bounded cases in addition to
 the proof.
 
 The child endpoint has the closed recurrence
@@ -100,7 +100,7 @@ x'=\frac{q+3^{m+1}t}{2^{k-1}}.
 
 Thus the smallest exact unbounded transition state discovered is
 \((m,x)\). It computes \(t\) and \(x'\) without replaying the trajectory
-or recomputing the child cylinder. This is **PROVED**.
+or recomputing the child cylinder. This is **EXACT — HUMAN PROOF**.
 
 ## 5. Stabilization theorem
 
@@ -111,7 +111,7 @@ For an infinite itinerary, the following are equivalent:
 3. \(R_m\) is eventually constant;
 4. \(t_m=0\) eventually.
 
-This is **PROVED** and **EXACT — LEAN VERIFIED**. The detailed
+This is **EXACT — LEAN VERIFIED**. The detailed
 human-readable proof is in
 [collatz_itinerary_compatibility.md](collatz_itinerary_compatibility.md).
 
@@ -130,7 +130,7 @@ k=k_{\rm zero}(p).
 \]
 
 Hence each node has one zero-lift child and every other child has
-positive lift. **PROVED**. The distinguished path follows the accelerated
+positive lift. **EXACT — HUMAN PROOF**. The distinguished path follows the accelerated
 Collatz orbit of \(R(p)\), so a complete classification would repackage
 the original orbit problem.
 
@@ -148,7 +148,7 @@ R_m=1+\sum_{j<m}t_j2^{K_j+1}.
 }
 \]
 
-This reconstruction is **PROVED** and **EXACT — LEAN VERIFIED**.
+This reconstruction is **EXACT — LEAN VERIFIED**.
 For a fixed valuation word, the lift word is unique.
 
 ## 7. Mixed-radix representation
@@ -166,7 +166,7 @@ This is an ordinary mixed-radix expansion with successive radices
 t_j=\left\lfloor\frac{S}{2^{K_j}}\right\rfloor\bmod2^{k_j},
 \]
 
-so the representation is unique. **PROVED**.
+so the representation is unique. **EXACT — HUMAN PROOF**.
 
 Not every sequence satisfying only the digit bounds is valid. For each
 valuation word there is exactly one valid lift word, determined by the
@@ -177,7 +177,7 @@ At finite precision \(P\), the state
 precision remains. A valuation \(k\) consumes \(k\) bits in the
 implemented paired precision model. This gives an exact finite,
 precision-drop recognizer, not one fixed automaton for unbounded
-itineraries. **PROVED**.
+itineraries. **EXACT — HUMAN PROOF**.
 
 ## 8. Balanced ternary representation of \(R\)
 
@@ -197,7 +197,7 @@ digits are \(2\) and \(0\). This is an **EXACT COUNTEREXAMPLE**.
 Consequently no bounded suffix of \(\operatorname{BT}(R)\) can determine
 these quantities in general. A bounded census of 341 prefixes
 (\(m\le4,k\le4\)) found ambiguities for every tested suffix length
-\(1\le L\le8\). That supporting result is **VERIFIED COMPUTATIONALLY**.
+\(1\le L\le8\). That supporting result is **COMPUTATIONALLY VERIFIED**.
 
 ## 9. Periodic itineraries
 
@@ -208,16 +208,16 @@ n(2^K-3^p)=C(v).
 \]
 
 Exact divisibility, positivity, oddness, and cylinder membership classify
-the unique candidate. **PROVED**.
+the unique candidate. **EXACT — HUMAN PROOF**.
 
 Benchmarks:
 
-- \((1)^\infty\): \(t_m=1\) and \(R_m=2^{m+1}-1\). **PROVED**.
+- \((1)^\infty\): \(t_m=1\) and \(R_m=2^{m+1}-1\). **EXACT — HUMAN PROOF**.
 - \((2)^\infty\): \(t_m=0\), \(R_m=1\), and the realizer is \(1\).
-  **PROVED**.
+  **EXACT — HUMAN PROOF**.
 - A census of 316 primitive words with period at most four,
   \(k_i\le4\), repeated eight times found only period \((2)\) compatible
-  with a positive cycle. **VERIFIED COMPUTATIONALLY**; this is not a
+  with a positive cycle. **COMPUTATIONALLY VERIFIED**; this is not a
   global cycle theorem.
 
 Noncompatible periodic words can have complicated finite lift traces;
@@ -235,7 +235,7 @@ remains a **CONJECTURE**.
 
 At length ten with \(k_i\le3\), the exact non-contracting census contains
 2,343 words, zero-lift counts from 0 through 8, and \(R\) from 27 through
-65,531. These are **VERIFIED COMPUTATIONALLY** finite facts only.
+65,531. These are **COMPUTATIONALLY VERIFIED** finite facts only.
 
 The expanding word
 
@@ -300,12 +300,12 @@ M\equiv C\,2^{-K}\pmod {3^m}
 where \(r\) is least nonnegative and \(M\) least positive. Kramer's
 \(d,\rho_r,\rho_M\) use natural logarithms.
 
-**PROVED.** Every displayed coordinate and every lift digit is
+**EXACT — HUMAN PROOF.** Every displayed coordinate and every lift digit is
 deterministic from the exponent code. In particular,
 \(\operatorname{BT}(R)\) contains no information-theoretically independent
 coordinate beyond \(R\). Its lossy suffixes and features can still expose
 useful finite partitions; any benefit of that kind is
-**VERIFIED COMPUTATIONALLY** or an **OBSERVATION**.
+**COMPUTATIONALLY VERIFIED** or an **OBSERVATION**.
 
 See [literature_comparison.md](literature_comparison.md),
 [balanced_ternary_vs_collatz_literature.md](balanced_ternary_vs_collatz_literature.md),

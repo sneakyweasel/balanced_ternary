@@ -113,8 +113,8 @@ def test_language_A0_is_the_one_cycle():
     assert counts.enumerated == 3 + 9 + 27
     restrictions = proposed_restrictions(cycles)
     names = {row["name"]: row["classification"] for row in restrictions}
-    assert names["exact_cycle_implies_contracting"] == "PROVED"
-    assert names["additive_amplitude_even"] == "PROVED"
+    assert names["exact_cycle_implies_contracting"] == "EXACT — LEAN VERIFIED"
+    assert names["additive_amplitude_even"] == "EXACT — LEAN VERIFIED"
 
 
 def test_census_small(tmp_path):

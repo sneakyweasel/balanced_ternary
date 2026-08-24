@@ -20,7 +20,7 @@ stratum (not a new-math frontier; not Collatz-first).
 5. `docs/theory/residual_vs_classical.md`
 6. `docs/theory/theorem_ledger.md`
 
-Collatz is one application: `docs/collatz_mathematics.md`. Do **not** mechanically rewrite that file.
+Collatz is one application: `docs/collatz_mathematics.md`. Use the seven ledger tags; do not write `PROVED`.
 
 `docs/theory/cubic_*.md` and `mismatched_cubic_quotient.md` are **stubs** that point at the Newton-stratum monograph. Put new cubic mathematics there, not in a new milestone note.
 

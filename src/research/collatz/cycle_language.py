@@ -251,31 +251,31 @@ def proposed_restrictions(records: tuple[PeriodicExponentCode, ...]) -> list[dic
     _holds(
         "exact_cycle_implies_contracting",
         lambda rec: rec.is_contracting,
-        "PROVED",
+        "EXACT — LEAN VERIFIED",
         "existing expanding-exclusion of a positive candidate",
     )
     _holds(
         "additive_amplitude_even",
         lambda rec: rec.amplitude is not None and rec.amplitude.additive % 2 == 0,
-        "PROVED",
+        "EXACT — LEAN VERIFIED",
         "difference of odd states",
     )
     _holds(
         "trivial_cycle_is_all_twos",
         lambda rec: rec.candidate_n == 1 and rec.code == (2,) or rec.candidate_n != 1,
-        "PROVED",
+        "EXACT — HUMAN PROOF",
         "n=1 has itinerary (2)",
     )
     _holds(
         "nontrivial_has_positive_lift",
         lambda rec: rec.candidate_n == 1 or any(t > 0 for t in rec.lift_digits),
-        "PROVED",
+        "EXACT — HUMAN PROOF",
         "R_0=1 and R(code)=1 iff code is all twos",
     )
     _holds(
         "no_k_max_1_cycle",
         lambda rec: max(rec.code) >= 2,
-        "PROVED",
+        "EXACT — HUMAN PROOF",
         "all-ones words are expanding",
     )
     _holds(
@@ -283,7 +283,7 @@ def proposed_restrictions(records: tuple[PeriodicExponentCode, ...]) -> list[dic
         lambda rec: rec.amplitude is None
         or rec.amplitude.additive > 0
         or repeated_factor_stats(rec.code)["maximal_repetition_exponent"] >= 1,
-        "PROVED",
+        "EXACT — HUMAN PROOF",
         "vacuous: exponent 1 always; amplitude 0 is the 1-cycle",
     )
     _holds(

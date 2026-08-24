@@ -314,7 +314,7 @@ def identity_table(limit: int, max_length: int = 6) -> dict[str, object]:
                 "smallest_counterexample": witness,
                 "holds_on_bound": witness is None,
                 "status": (
-                    "VERIFIED COMPUTATIONALLY on the bound"
+                    "COMPUTATIONALLY VERIFIED on the bound"
                     if witness is None
                     else "REFUTED; smallest counterexample recorded"
                 ),
@@ -418,7 +418,7 @@ def commutator_census(limit: int) -> dict[str, object]:
         "delta_L_max": max(delta_l_values) if delta_l_values else None,
         "palindrome_defined": palindrome_defined,
         "palindrome_commutator_zero": palindrome_comm_zero,
-        "status": "VERIFIED COMPUTATIONALLY on the stated odd bound",
+        "status": "COMPUTATIONALLY VERIFIED on the stated odd bound",
     }
 
 
@@ -461,7 +461,7 @@ def special_class_report(limit: int) -> dict[str, dict[str, object]]:
             "smallest_zero": smallest_zero,
             "smallest_nonzero": smallest_nonzero,
             "universal_commutation_on_bound": defined > 0 and smallest_nonzero is None,
-            "status": "VERIFIED COMPUTATIONALLY on the stated odd bound",
+            "status": "COMPUTATIONALLY VERIFIED on the stated odd bound",
         }
     return reports
 
@@ -545,7 +545,7 @@ def realizer_warp_census(max_length: int, max_k: int) -> dict[str, object]:
         "smallest_reverse_counterexample": smallest_reverse_fail,
         "smallest_tail_counterexample": smallest_tail_fail,
         "rows": rows,
-        "status": "VERIFIED COMPUTATIONALLY on the bounded exponent-code sample",
+        "status": "COMPUTATIONALLY VERIFIED on the bounded exponent-code sample",
     }
 
 

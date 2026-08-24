@@ -110,7 +110,7 @@ def _periodic_code(ks: str) -> int:
     valuations = tuple(parse_ks(ks))
     theorem = PeriodicFixedPointTheorem.from_valuations(valuations)
     candidate = periodic_candidate(valuations)
-    print("Periodic-code fixed-point identity  [PROVED]")
+    print("Periodic-code fixed-point identity  [EXACT — HUMAN PROOF]")
     print(f"valuations={list(valuations)}  p={theorem.p}  K={theorem.K}  C={theorem.C}")
     print(f"identity: {theorem.identity}")
     print(f"2^K-3^p={theorem.gap}  expanding_excludes_positive={theorem.expanding_excludes_positive}")

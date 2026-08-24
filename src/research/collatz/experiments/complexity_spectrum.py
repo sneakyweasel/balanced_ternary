@@ -7,8 +7,8 @@ For each ``k = 1..K_max`` record:
 - ``C_k``: the pair ``(A_k, N_k)`` and the product ``A_k * N_k`` as a
   crude bound on "recognize valuation k then divide by 2^k"
 
-Naive bound ``3^k`` is **PROVED** as a product construction. Reachable and
-minimized sizes are **VERIFIED COMPUTATIONALLY**. The pattern
+Naive bound ``3^k`` is **EXACT — HUMAN PROOF** as a product construction. Reachable and
+minimized sizes are **COMPUTATIONALLY VERIFIED**. The pattern
 ``N_k = 2^k + 1`` is a **CONJECTURE** until a proof or counterexample.
 """
 
@@ -55,7 +55,7 @@ class ComplexitySpectrumResult:
             )
         lines.append("")
         lines.append(
-            "Naive 3^k is PROVED. N_k and A_k are VERIFIED COMPUTATIONALLY. "
+            "Naive 3^k is EXACT — HUMAN PROOF. N_k and A_k are COMPUTATIONALLY VERIFIED. "
             "N_k = 2^k+1 is a CONJECTURE on this finite range, not a theorem. "
             "Comparing N_k to Pr(k)~2^{-k} is an OBSERVATION only."
         )
@@ -112,8 +112,8 @@ def run_complexity_spectrum(
             "timestamp": timestamp,
             "code_version": result.code_version,
             "claim_status": {
-                "naive_bound": "PROVED (k-fold product of a 3-state machine)",
-                "N_k_A_k": "VERIFIED COMPUTATIONALLY",
+                "naive_bound": "EXACT — HUMAN PROOF (k-fold product of a 3-state machine)",
+                "N_k_A_k": "COMPUTATIONALLY VERIFIED",
                 "N_k_equals_2_k_plus_1": (
                     "CONJECTURE holds on this range"
                     if holds

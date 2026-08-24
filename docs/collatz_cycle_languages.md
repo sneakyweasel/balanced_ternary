@@ -1,7 +1,7 @@
 # Exponent languages and low-amplitude Collatz cycles
 
 This note records Milestone 11. Claim labels are **EXACT — LEAN VERIFIED**,
-**EXACT — HUMAN PROOF** / **PROVED**, **COMPUTATIONALLY VERIFIED**,
+**EXACT — HUMAN PROOF**, **COMPUTATIONALLY VERIFIED**,
 **CONJECTURE**, and **REFUTED**. Nothing here is a proof or disproof of
 the Collatz conjecture. The OEIS / warp branch remains frozen.
 
@@ -40,7 +40,7 @@ A_{\mathrm{add}}=\max n_i-\min n_i,\qquad
 A_{\mathrm{mul}}=\frac{\max n_i}{\min n_i}.
 \]
 
-**PROVED; LEAN VERIFIED:** \(A_{\mathrm{add}}\) is even. These are not
+**EXACT — LEAN VERIFIED:** \(A_{\mathrm{add}}\) is even. These are not
 assumed to match any preprint. Literature adapters:
 
 - Fernández–Ibáñez / Terras: Syracuse parity bits, \(N=K\), \(r=p\);
@@ -74,19 +74,19 @@ All larger additive bounds in the same search contain only that cycle.
 
 ## Theorems
 
-1. Expanding periods have no positive candidate. **PROVED; LEAN VERIFIED**.
-2. \(n(2^K-3^p)=C\) implies \(D\mid C\). **PROVED; LEAN VERIFIED**.
-3. Primitive \(\Leftrightarrow\) not a proper repetition. **PROVED; LEAN VERIFIED**
+1. Expanding periods have no positive candidate. **EXACT — LEAN VERIFIED**.
+2. \(n(2^K-3^p)=C\) implies \(D\mid C\). **EXACT — LEAN VERIFIED**.
+3. Primitive \(\Leftrightarrow\) not a proper repetition. **EXACT — LEAN VERIFIED**
    at the list level (`IsPrimitive`, \(u{+}{+}u\) is not primitive).
 4. Rotation of an exact affine block: if \(2^{k_0}x=3n+1\) and
-   \(2^{k_0}C'=3C+D\), then \(xD=C'\). **PROVED; LEAN VERIFIED**.
-   Amplitude is rotation-invariant on exact cycles. **PROVED**.
-5. Additive amplitude of odd states is even. **PROVED; LEAN VERIFIED**.
+   \(2^{k_0}C'=3C+D\), then \(xD=C'\). **EXACT — LEAN VERIFIED**.
+   Amplitude is rotation-invariant on exact cycles. **EXACT — HUMAN PROOF**.
+5. Additive amplitude of odd states is even. **EXACT — LEAN VERIFIED**.
 6. \(R(\mathbf{k})=1\) iff \(\mathbf{k}=(2)^p\). A nontrivial exact cycle
    therefore has a nested-realizer path with at least one positive lift.
    After the period is realized, further lifts of the repeating word of
-   \(n=1\) are zero. **PROVED**.
-7. All-ones words are expanding, hence not positive cycles. **PROVED**.
+   \(n=1\) are zero. **EXACT — HUMAN PROOF**.
+7. All-ones words are expanding, hence not positive cycles. **EXACT — HUMAN PROOF**.
 
 ## Divisibility
 
@@ -94,7 +94,7 @@ If \(q\mid D\) and \(q\neq 3\), then \(q\mid C\) iff
 \(\sum_{j<p}2^{K_j}3^{-j}=0\) in \(\mathbb F_q\). This is exact and
 divisor-specific. It is not a universal residue pin on \(C\).
 
-**PROVED:** \(D=2^K-3^p\not\equiv 0\pmod 3\) for \(p\ge 1\), so \(3\nmid D\).
+**EXACT — HUMAN PROOF:** \(D=2^K-3^p\not\equiv 0\pmod 3\) for \(p\ge 1\), so \(3\nmid D\).
 A claimed obstruction that needs \(3\mid D\) does not apply to this \(D\).
 
 No word-level condition stronger than \(D\nmid C\) was proved for a
@@ -112,11 +112,11 @@ is **vacuous** on the known cycle and **not a theorem** for unknown cycles.
 
 | statement | status |
 | --- | --- |
-| exact cycle \(\Rightarrow\) contracting | **PROVED** |
-| additive amplitude even | **PROVED** |
-| \(n=1\) iff primitive code \((2)\) | **PROVED** |
-| nontrivial \(\Rightarrow\) some positive lift on the nested path | **PROVED** |
-| no cycle with \(\max k=1\) | **PROVED** |
+| exact cycle \(\Rightarrow\) contracting | **EXACT — LEAN VERIFIED** |
+| additive amplitude even | **EXACT — LEAN VERIFIED** |
+| \(n=1\) iff primitive code \((2)\) | **EXACT — HUMAN PROOF** |
+| nontrivial \(\Rightarrow\) some positive lift on the nested path | **EXACT — HUMAN PROOF** |
+| no cycle with \(\max k=1\) | **EXACT — HUMAN PROOF** |
 | \(K\le 2p\) for exact cycles | **COMPUTATIONALLY VERIFIED** for \(p\le 6\), \(k_i\le 4\); not a proof |
 | Christoffel Syracuse words yield only \((2)^p\) | **COMPUTATIONALLY VERIFIED** in the recorded Christoffel sample |
 

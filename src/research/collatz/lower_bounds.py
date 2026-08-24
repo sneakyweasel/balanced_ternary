@@ -1,6 +1,6 @@
 """Exploratory lower bounds on ``log R`` along valuation itineraries.
 
-**PROVED.** ``1 <= R(ks) < 2^{K+1}``, so ``0 <= log2 R < K+1``. Nested
+**EXACT — HUMAN PROOF.** ``1 <= R(ks) < 2^{K+1}``, so ``0 <= log2 R < K+1``. Nested
 lifts satisfy ``R' = R + t * 2^{K+1}`` with integer ``t >= 0`` and
 ``t < 2^{j}`` when appending valuation ``j``. If ``t >= 1`` for infinitely
 many prefixes of an infinite itinerary, then ``R_m -> infinity``.
@@ -23,7 +23,7 @@ from research.collatz.zero_lift import lift_digit
 
 
 def log2_R_upper_bound_exponent(ks: tuple[int, ...]) -> int:
-    """``K+1``. **PROVED:** ``R < 2^{K+1}``."""
+    """``K+1``. **EXACT — HUMAN PROOF:** ``R < 2^{K+1}``."""
     ks = parse_ks(ks)
     return sum(ks) + 1
 
@@ -87,19 +87,19 @@ def certificate_attempts() -> tuple[CertificateAttempt, ...]:
         CertificateAttempt(
             name="trivial_upper_bound",
             statement="R(ks) < 2^{K+1}, so log2 R < K+1.",
-            status="PROVED",
+            status="EXACT — HUMAN PROOF",
             evidence="R is the unique residue in (0, 2^{K+1}).",
         ),
         CertificateAttempt(
             name="nested_lift",
             statement="R' = R + t 2^{K+1} with t >= 0. Infinitely many t>=1 implies R_m -> inf.",
-            status="PROVED",
+            status="EXACT — HUMAN PROOF",
             evidence="Nested cylinders at leftover Q=1.",
         ),
         CertificateAttempt(
             name="all_ones_R_unbounded",
             statement="R((1,)*m) = 2^{m+1}-1, hence R_m -> infinity.",
-            status="PROVED",
+            status="EXACT — HUMAN PROOF",
             evidence="Induction on the inverse step: if r=2^P-1 then the k=1 preimage is 2^{P+1}-1.",
         ),
         CertificateAttempt(

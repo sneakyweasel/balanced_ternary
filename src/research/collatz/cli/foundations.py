@@ -172,7 +172,7 @@ def _theorems(n: int) -> int:
     pred = predicted_features_after_append_plus(word)
     feat = extract_features(actual)
     lines = [
-        "Layer A: BT(3n+1) = BT(n)+   [PROVED for n != 0]",
+        "Layer A: BT(3n+1) = BT(n)+   [EXACT — HUMAN PROOF for n != 0]",
         f"n = {n}",
         f"BT(n)  = {word.word()}",
         f"BT(n)+ = {plus.word()}",
@@ -232,7 +232,7 @@ def _transducer(k: int, limit: int) -> int:
     print(f"DivideByTwoPowerTransducer k={k}")
     print(
         f"naive_bound={report['naive_bound']}  reachable={report['reachable']}  "
-        f"minimized={report['minimized']}  [reachable/minimized: VERIFIED COMPUTATIONALLY]"
+        f"minimized={report['minimized']}  [reachable/minimized: COMPUTATIONALLY VERIFIED]"
     )
     failures = 0
     checked = 0

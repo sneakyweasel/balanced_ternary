@@ -1,7 +1,7 @@
 """Executable Collatz / balanced ternary identities.
 
 Every check is a verification of a claimed identity. Finite-range success
-is recorded as VERIFIED COMPUTATIONALLY unless a proof is given in
+is recorded as COMPUTATIONALLY VERIFIED unless a proof is given in
 ``docs/collatz_mathematics.md``.
 """
 
@@ -42,7 +42,7 @@ class CollatzInvariantReport:
 
 
 def check_odd_weight(n: int) -> bool:
-    """``n`` odd iff ``weight(BT(n))`` odd. PROVED (existing parity theorem)."""
+    """``n`` odd iff ``weight(BT(n))`` odd. EXACT — HUMAN PROOF (existing parity theorem)."""
     return (n % 2) == (weight(encode(n)) % 2)
 
 

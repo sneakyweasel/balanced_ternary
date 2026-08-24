@@ -5,10 +5,10 @@ and ``K_m = k_0+...+k_{m-1}``. The **lift coefficient** is the integer
 
     t_m = (R_{m+1} - R_m) / 2^{K_m + 1}.
 
-It is a nonnegative integer (**PROVED**, nested cylinders). ``t_m = 0``
+It is a nonnegative integer (**EXACT — HUMAN PROOF**, nested cylinders). ``t_m = 0``
 iff ``R`` does not lift at that step.
 
-**Dichotomy (PROVED).** For an infinite valuation itinerary the following
+**Dichotomy (EXACT — HUMAN PROOF).** For an infinite valuation itinerary the following
 are equivalent:
 
 1. some positive odd integer realises every finite prefix;
@@ -52,7 +52,7 @@ def lift_digits(ks: tuple[int, ...]) -> tuple[int, ...]:
 def zero_lift_k(ks: tuple[int, ...] | str | list[int]) -> int:
     """The unique ``j >= 1`` with zero lift digit.
 
-    **PROVED:** ``R = R(ks)`` realises ``ks``, so ``x = T^m(R)`` is a
+    **EXACT — HUMAN PROOF:** ``R = R(ks)`` realises ``ks``, so ``x = T^m(R)`` is a
     positive odd integer and ``j = v2(3x+1)`` is the unique next
     valuation of that orbit. Then ``R`` realises ``ks+(j,)``, hence
     ``R_child <= R``. Nested monotonicity gives ``R_child = R``, so
@@ -154,7 +154,7 @@ class DichotomyReport:
             f"observed trailing zero-lifts={self.trailing_zero_lifts}\n"
             f"status: {self.status}\n"
             "Infinite itinerary has a positive integer realizer iff "
-            "R_m eventually constant iff lift_digit_m=0 eventually. [PROVED]\n"
+            "R_m eventually constant iff lift_digit_m=0 eventually. [EXACT — HUMAN PROOF]\n"
         )
 
 
@@ -176,7 +176,7 @@ def dichotomy_report(ks: tuple[int, ...] | str | list[int]) -> DichotomyReport:
         all_lifts_zero=all_zero,
         status=(
             "EXACT lift digits and R on this finite prefix. "
-            "The infinite dichotomy is PROVED; this sample does not prove Collatz."
+            "The infinite dichotomy is EXACT — HUMAN PROOF; this sample does not prove Collatz."
         ),
     )
 
@@ -184,7 +184,7 @@ def dichotomy_report(ks: tuple[int, ...] | str | list[int]) -> DichotomyReport:
 def all_zero_lift_words_are_twos(ks: tuple[int, ...]) -> bool:
     """All lifts are zero iff the word is ``(2,...,2)``.
 
-    **PROVED:** unique zero-lift from ``()`` is ``k=2`` because ``R=1`` and
+    **EXACT — HUMAN PROOF:** unique zero-lift from ``()`` is ``k=2`` because ``R=1`` and
     ``T(1)=1`` with valuation 2. Inductively the unique zero-lift tail is
     the 1-cycle.
     """
@@ -219,7 +219,7 @@ def finite_lift_certificate(
     """Certify zero or positive lift from finite canonical-state information.
 
     Results are ``CERTIFIED_ZERO``, ``CERTIFIED_POSITIVE``, or
-    ``UNRESOLVED``. Every certificate is **PROVED** by arithmetic modulo
+    ``UNRESOLVED``. Every certificate is **EXACT — HUMAN PROOF** by arithmetic modulo
     ``2^precision``; ``UNRESOLVED`` makes no claim.
     """
     parent = parse_ks(parent)
@@ -263,7 +263,7 @@ def finite_lift_certificate(
 
 
 def expanding_word_has_positive_lift(ks: tuple[int, ...]) -> bool:
-    """Every expanding finite word has some positive lift. **PROVED.**
+    """Every expanding finite word has some positive lift. **EXACT — HUMAN PROOF.**
 
     The only all-zero-lift words are ``(2)^m``, which are contracting.
     """

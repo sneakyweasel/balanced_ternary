@@ -6,10 +6,10 @@ combinatorics, operator dynamics — are independent applications.
 
 This repository does **not** claim a solution of the Collatz conjecture or
 of any other open problem. Finite checks are never presented as proofs.
-Claims are labelled **PROVED** (human), **PROVED — LEAN**,
+Claims are labelled **EXACT — HUMAN PROOF**, **EXACT — LEAN VERIFIED**,
 **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **OBSERVATION**,
 **REFUTED**, or **REPARAMETERIZATION**. See
-[docs/README.md](docs/README.md) for the mapping to ledger tags.
+[docs/README.md](docs/README.md).
 
 ## What balanced ternary is
 

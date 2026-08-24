@@ -107,7 +107,7 @@ def test_collatz_cylinder():
 def test_collatz_entropy():
     out = _run("collatz", "entropy", "--ks", "1", "--length", "4")
     assert "H_L (base 3)" in out
-    assert "VERIFIED COMPUTATIONALLY" in out
+    assert "COMPUTATIONALLY VERIFIED" in out
 
 
 def test_collatz_complexity():

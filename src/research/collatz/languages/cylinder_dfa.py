@@ -6,7 +6,7 @@ allowed). That is the regular language of the residue DFA
 residues. Canonical (no leading ``0``) counts are a separate column.
 
 ``H_L(ks) = (1/L) log_3 (# accepted length-L words)``. Finite-``L`` values
-are **VERIFIED COMPUTATIONALLY**. A spectral growth rate is not claimed.
+are **COMPUTATIONALLY VERIFIED**. A spectral growth rate is not claimed.
 """
 
 from __future__ import annotations
@@ -186,7 +186,7 @@ def entropy_report(
         h_base3=h3,
         h_bits=h2,
         empty_h_base3=eh3,
-        status="VERIFIED COMPUTATIONALLY",
+        status="COMPUTATIONALLY VERIFIED",
     )
 
 

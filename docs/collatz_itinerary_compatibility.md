@@ -5,7 +5,7 @@ accelerated Collatz valuation words, the minimum-realizer sequence, and
 the exceptional-itinerary compatibility problem. It does **not** claim
 progress on the Collatz conjecture.
 
-Claim labels: **PROVED**, **VERIFIED COMPUTATIONALLY**, **CONJECTURE**,
+Claim labels: **EXACT — HUMAN PROOF**, **COMPUTATIONALLY VERIFIED**, **CONJECTURE**,
 **OBSERVATION**. Finite checks are never proofs. Homogeneous comparison
 of \(2^K\) and \(3^m\) is not a Lyapunov function.
 
@@ -19,7 +19,7 @@ class modulo \(2^{K+1}\), density \(2^{-K}\) among odd residues. Layer C
 
 Let \(T(n)=(3n+1)/2^{v_2(3n+1)}\) on odd integers. If the first \(m\)
 valuations of \(n\) are \(\mathbf{k}=(k_0,\ldots,k_{m-1})\) and
-\(K=\sum k_i\), then **PROVED**
+\(K=\sum k_i\), then **EXACT — HUMAN PROOF**
 
 \[
 T^m(n)=\frac{3^m n+C(\mathbf{k})}{2^K}.
@@ -39,7 +39,7 @@ C_{\mathrm{empty}}=0,\qquad
 C_{\mathrm{append}\,k}=3C+2^{K_{\mathrm{old}}}.
 \]
 
-Unrolling (**PROVED** closed form)
+Unrolling (**EXACT — HUMAN PROOF** closed form)
 
 \[
 C(\mathbf{k})=\sum_{j=0}^{m-1} 3^{m-1-j}\,2^{K_j}.
@@ -50,7 +50,7 @@ words. The formula never divides a residue modulo \(2^P\).
 
 Implemented as `ValuationItinerary` in `src/research/collatz/itinerary.py`.
 Verified against iterating \(T\) on cylinder realizers
-(**VERIFIED COMPUTATIONALLY**, redundant with the proof).
+(**COMPUTATIONALLY VERIFIED**, redundant with the proof).
 
 Partial states: \(n_i=(3^i n+C(\mathbf{k}[:i]))/2^{K_i}\).
 
@@ -70,7 +70,7 @@ the separate constraint.
 Unchanged: \(C_{\mathbf{k}}\) is the unique class \(n\equiv r(\mathbf{k})
 \pmod{2^{K+1}}\) of odd integers. Every finite word over \(\{1,2,\ldots\}\)
 is finitely 2-adically realizable. Density among odd residues is
-\(2^{-K}\). **PROVED** (Milestone 3).
+\(2^{-K}\). **EXACT — HUMAN PROOF** (Milestone 3).
 
 `count_cylinder_up_to(k, X)` is the exact count of positive realizers in
 \([1,X]\):
@@ -90,7 +90,7 @@ approximation.
 \(R(\mathbf{k})\) is the smallest positive odd integer in the cylinder,
 equal to the residue \(r(\mathbf{k})\in(0,2^{K+1})\). Always finite.
 
-**PROVED lift.** If \(\mathbf{k}'=\mathbf{k}\cdot(j)\), then
+**EXACT — HUMAN PROOF lift.** If \(\mathbf{k}'=\mathbf{k}\cdot(j)\), then
 \(R(\mathbf{k}')\equiv R(\mathbf{k})\pmod{2^{K+1}}\) and
 
 \[
@@ -99,9 +99,9 @@ R(\mathbf{k}')=R(\mathbf{k})+t\cdot 2^{K+1}
 
 for an integer \(t\) with \(0\le t<2^{j}\). Hence \(R\) is nondecreasing
 on nested prefixes. A child cannot have smaller \(R\) than its parent.
-(**VERIFIED COMPUTATIONALLY** on short words as a regression of the proof.)
+(**COMPUTATIONALLY VERIFIED** on short words as a regression of the proof.)
 
-**PROVED bound.** \(1\le R(\mathbf{k})<2^{K+1}\), so \(\log_2 R<K+1\).
+**EXACT — HUMAN PROOF bound.** \(1\le R(\mathbf{k})<2^{K+1}\), so \(\log_2 R<K+1\).
 
 At fixed length \(m\), a low-average (expansionary) word has *smaller*
 \(K\), hence a *smaller* cap on \(R\). A naive reading of “expansionary
@@ -114,7 +114,7 @@ false. Along a growing path, \(K_m\to\infty\) still allows \(R_m\to\infty\).
 
 The homogeneous budget depends only on \((m,K)\). \(C\) depends on order.
 
-**PROVED adjacent swap.** For \(a=k_t\), \(b=k_{t+1}\),
+**EXACT — HUMAN PROOF adjacent swap.** For \(a=k_t\), \(b=k_{t+1}\),
 
 \[
 C_{\mathrm{swap}}-C=3^{m-t-2}\,2^{K_t}\,(2^{b}-2^{a}).
@@ -124,7 +124,7 @@ Larger valuations earlier strictly increase \(C\). For a fixed multiset,
 descending order maximises \(C\) and ascending order minimises \(C\).
 
 The same ordering need not extremize \(R\). Distinct permutations of
-\((1,2)\) already have different \(R\) (**VERIFIED COMPUTATIONALLY**), so
+\((1,2)\) already have different \(R\) (**COMPUTATIONALLY VERIFIED**), so
 \(R\) is order-sensitive at equal \((m,K)\) (hypothesis H3, confirmed on
 that pair; not a classification of all extrema).
 
@@ -139,7 +139,7 @@ Do not conflate:
 
 | Label | Meaning |
 | --- | --- |
-| FINITELY 2-ADICALLY REALIZABLE | every finite prefix has a nonempty cylinder (**PROVED** for all finite words) |
+| FINITELY 2-ADICALLY REALIZABLE | every finite prefix has a nonempty cylinder (**EXACT — HUMAN PROOF** for all finite words) |
 | 2-ADICALLY REALIZABLE | nested intersection nonempty in the odd 2-adics (compactness of \(\mathbb{Z}_2\)) |
 | REALIZED BY A POSITIVE INTEGER | some positive odd \(n\) lies in every finite cylinder of an *infinite* itinerary |
 | REALIZED BY A POSITIVE INFINITE COLLATZ TRAJECTORY | the same \(n\), with the usual forward orbit |
@@ -151,7 +151,7 @@ infinite 2-adic trajectory.
 
 ### The \(R_m\to\infty\) proposition
 
-**PROVED.** Let \(k_0,k_1,\ldots\) be an infinite valuation sequence and
+**EXACT — HUMAN PROOF.** Let \(k_0,k_1,\ldots\) be an infinite valuation sequence and
 \(R_m=R(k_0,\ldots,k_{m-1})\). If a positive odd integer \(n\) realises
 every finite prefix, then \(n\ge R_m\) for all \(m\). Therefore, if
 \(R_m\to\infty\), no finite positive integer realises the entire infinite
@@ -172,7 +172,7 @@ one positive integer” means
 n\equiv R_m\pmod {2^{K_m+1}}.
 \]
 
-**PROVED.** The following are equivalent:
+**EXACT — HUMAN PROOF.** The following are equivalent:
 
 1. one positive odd integer realizes every prefix;
 2. \(R_m\) is bounded;
@@ -204,7 +204,7 @@ This proves the full equivalence, not only the one-way unboundedness
 criterion. The abstract cylinder/lift theorem is also
 **EXACT — LEAN VERIFIED** in `formal/Problems/Collatz/`.
 
-**PROVED.** For the all-ones word of length \(m\),
+**EXACT — HUMAN PROOF.** For the all-ones word of length \(m\),
 
 \[
 R((1)^m)=2^{m+1}-1.
@@ -250,9 +250,9 @@ No Lyapunov function is attached.
 
 | Attempt | Status |
 | --- | --- |
-| \(R<2^{K+1}\) | **PROVED** |
-| Nested lift \(R'=R+t 2^{K+1}\); infinitely many \(t\ge 1\) implies \(R_m\to\infty\) | **PROVED** |
-| \(R((1)^m)=2^{m+1}-1\), hence \(R_m\to\infty\) | **PROVED** |
+| \(R<2^{K+1}\) | **EXACT — HUMAN PROOF** |
+| Nested lift \(R'=R+t 2^{K+1}\); infinitely many \(t\ge 1\) implies \(R_m\to\infty\) | **EXACT — HUMAN PROOF** |
+| \(R((1)^m)=2^{m+1}-1\), hence \(R_m\to\infty\) | **EXACT — HUMAN PROOF** |
 | Non-contraction implies \(R_m\to\infty\) | **CONJECTURE** (the compatibility problem) |
 | Weighted automaton producing a diverging lower bound on \(\log R\) | **OBSERVATION**: not constructed; the residue already uses unbounded precision |
 
