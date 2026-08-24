@@ -2,6 +2,8 @@
 
 from research_engine.benchmarks.pipeline import (
     live_infinite_hypothesis,
+    load_benchmark,
+    reproduce_checks,
     run_all_benchmarks,
     run_benchmark,
 )
@@ -20,6 +22,8 @@ __all__ = [
     "ModularTripleSpec",
     "ResetLoopSpec",
     "live_infinite_hypothesis",
+    "load_benchmark",
+    "reproduce_checks",
     "run_all_benchmarks",
     "run_benchmark",
 ]

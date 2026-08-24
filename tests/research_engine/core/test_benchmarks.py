@@ -6,7 +6,7 @@ import pytest
 
 from research_engine.attacks.block import BlockKind
 from research_engine.attacks.result import AttackStatus
-from research_engine.benchmarks.pipeline import live_infinite_hypothesis, run_all_benchmarks, run_benchmark
+from research_engine.benchmarks.pipeline import live_infinite_hypothesis, reproduce_checks, run_all_benchmarks, run_benchmark
 from research_engine.benchmarks.systems import affine_expand, affine_triple
 from research_engine.core.semantics import ClaimKind, SearchScope
 from research_engine.planner.hypothesis import HypothesisStatus
@@ -88,7 +88,7 @@ def test_all_five_benchmarks_run_and_never_support_exact_live():
     reports = run_all_benchmarks()
     assert set(reports) == {"A", "B", "C", "D", "E"}
     for letter, report in reports.items():
-        del letter
+        assert reproduce_checks(letter, report) == ()
         for result in report.results:
             if result.kind is ClaimKind.LIVE:
                 raise AssertionError("benchmark pipeline emitted a LIVE claim")

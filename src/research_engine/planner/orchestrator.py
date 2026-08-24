@@ -9,7 +9,13 @@ from research_engine.attacks.block import BlockDynamicsAttack
 from research_engine.attacks.functional import FunctionalBoundAttack
 from research_engine.attacks.modular import ModularInvariantAttack
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
-from research_engine.attacks.result import Attack, AttackContext, AttackResult, AttackStatus
+from research_engine.attacks.result import (
+    Attack,
+    AttackContext,
+    AttackResult,
+    AttackStatus,
+    inapplicable,
+)
 from research_engine.attacks.reverse import ReverseGeometryAttack
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
@@ -119,6 +125,25 @@ class AttackPlanner:
                 evidence=f"horizon={recon.evidence.get('horizon')}",
             )
         )
+
+
+def run_named_attack(name: str, spec: ProblemSpec, context: AttackContext) -> AttackResult:
+    """Run one cheap attack. Spectral/symbolic stay unimplemented."""
+    if name in DEFERRED_ATTACKS:
+        return inapplicable(
+            name,
+            f"{name} is not implemented in this phase",
+            ClaimKind.REACHABLE,
+        )
+    cls = _ATTACKS.get(name)
+    if cls is None:
+        raise KeyError(f"unknown attack {name!r}")
+    if context.max_steps is None:
+        context = replace(context, max_steps=DEFAULT_PLANNER_HORIZON)
+    attack = cls()
+    if not attack.applicable(spec, context):
+        return inapplicable(name, "inapplicable", ClaimKind.REACHABLE)
+    return attack.run(spec, context)
 
 
 def promote_if_legal(ledger: ResearchLedger, hyp_id: str, result: AttackResult) -> Hypothesis:

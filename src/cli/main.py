@@ -21,6 +21,7 @@ from cli.calculus import add_calculus_subparser, run_calculus
 from cli.congruence import add_congruence_subparser, run_congruence
 from cli.normalize import add_normalize_subparser, run_normalize
 from cli.operators import add_operators_subparser, run_operators
+from cli.research import add_research_subparser, run_research
 from research.collatz.cli import add_collatz_subparser, run_collatz
 
 
@@ -42,6 +43,7 @@ def main(argv: list[str] | None = None) -> int:
     add_calculus_subparser(sub)
     add_congruence_subparser(sub)
     add_normalize_subparser(sub)
+    add_research_subparser(sub)
     _add_bt_namespace(sub)
     _add_research_namespaces(sub)
     _add_lab_namespaces(sub)
@@ -153,6 +155,8 @@ def _dispatch(parser: argparse.ArgumentParser, args: argparse.Namespace) -> int:
         return run_congruence(args)
     if cmd == "normalize":
         return run_normalize(args)
+    if cmd == "research":
+        return run_research(args)
     if cmd == "primes":
         from research.primes import sparse_primes
 

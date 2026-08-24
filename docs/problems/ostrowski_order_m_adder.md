@@ -1554,10 +1554,12 @@ Engineering R9 emits comment/YAML theorem targets from exact
 to existing Lean `step_fst_dvd_three` / `hub_nonreset`. It does not
 generate proofs, write `formal/` files, auto-add ledger rows, or
 export the parked `|L_0|` hypothesis.
+Engineering R10 adds `btprime research analyze|attack|reproduce|report`
+for Ostrowski and the A–E toys. The CLI prints planner statuses and
+exportable targets. It does not decide `|L_0|`, write Lean, or auto-prove.
 These extractions are infrastructure `PROMOTE`. They do not change the
 mathematical decision above.
-Do not start R10 (research CLI), spectral attacks, or auto-prove
-until a later cycle.
+Spectral attacks and auto-prove are not taken up.
 
 ## Publication assessment
 

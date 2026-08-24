@@ -14,6 +14,7 @@ from research_engine.planner.orchestrator import (
     PlannerReport,
     SkipRecord,
     promote_if_legal,
+    run_named_attack,
 )
 
 __all__ = [
@@ -31,4 +32,5 @@ __all__ = [
     "ResearchLedger",
     "SkipRecord",
     "promote_if_legal",
+    "run_named_attack",
 ]

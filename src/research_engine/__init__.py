@@ -7,6 +7,7 @@ R5: typed recon/modular/affine/reverse/functional/block attacks.
 R6: hypotheses, negative knowledge, and a deterministic planner.
 R8: five synthetic benchmarks with known exact behavior.
 R9: theorem targets from exact certificates (not proofs, not sorry).
+R10: text reports for planner sessions (the CLI wraps this; not a prover).
 
 This package must not import ``bt.*`` or ``research.*``. Problem
 adapters live under ``research.*`` and may import this engine.

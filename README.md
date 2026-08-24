@@ -140,6 +140,8 @@ btprime bt encode 42
 btprime operators apply S 42
 btprime calculus eval 42
 btprime collatz analyze 27
+btprime research analyze ostrowski
+btprime research reproduce D
 btprime status
 ```
 
