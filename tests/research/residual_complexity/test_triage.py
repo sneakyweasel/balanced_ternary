@@ -8,6 +8,7 @@ from bt.calculus.residual import residual_along
 from research.regular_output_preimages.triage import census_count as safety_census_count
 from research.residual_complexity.problem import PROBLEM
 from research.residual_complexity.triage import (
+    FIRST_SATURATION,
     MAX_DEPTH,
     SAFETY_HORIZON7,
     X,
@@ -18,15 +19,22 @@ from research.residual_complexity.triage import (
     census_count_quad,
     census_table,
     colliding_pairs_at,
+    dz_pow,
     half_repunit,
+    interior_image_size,
+    interior_type,
     linear_is_constant_one,
+    packed_range,
     residuals_at,
     simple_formula_failures,
+    squares_mod,
     squared_half_repunit_digits,
     superdiagonal_pairs,
     triage_report,
     type_cap,
     x2_proved_count,
+    zero_fibre_values,
+    zero_fibre_witness,
 )
 
 
@@ -139,3 +147,60 @@ def test_triage_report_shape():
     assert len(report["x2_census"]) == 4
     assert MAX_DEPTH == 7
     assert report["ahmed_savchuk_unrestricted_infinite"]
+    assert report["guess_m0_3r_not_sharp"]
+    assert report["zero_fibre_squares_at_2r"]
+    assert report["zero_fibre_full_from_3r"]
+    assert report["first_saturation"][3] == 8
+
+
+def test_interior_image_matches_phi_census_through_five():
+    from bt.calculus.quadratic import iter_dz
+
+    for m in range(6):
+        for r in range(m):
+            assert interior_image_size(m, r) == census_count(X2, m, r)
+    for n in range(-20, 21):
+        for k in range(6):
+            assert dz_pow(n, k) == iter_dz(n, k)
+
+
+def test_zero_fibre_at_double_width_is_exactly_the_squares():
+    for r in range(1, 5):
+        squares = squares_mod(r)
+        assert 1 * 1 % 3**r in squares
+        assert (-1) * (-1) % 3**r in squares
+        assert len(squares) < 3**r
+        assert zero_fibre_values(2 * r, r) == squares
+        assert interior_image_size(2 * r, r) < 3 ** (2 * r)
+        assert interior_image_size(2 * r, r) <= 3 ** (2 * r) - (3**r - len(squares))
+
+
+def test_zero_fibre_construction_fills_from_triple_width():
+    for r in range(1, 6):
+        for extra in (0, 1):
+            m = 3 * r + extra
+            hit = set()
+            for v in packed_range(r):
+                p = zero_fibre_witness(m, r, v)
+                assert abs(p) <= (3**m - 1) // 2
+                a, c = interior_type(p, m, r)
+                assert a == 0
+                assert c == (2 * v) % 3**r
+                hit.add(c)
+            assert hit == set(range(3**r))
+            if m <= 9:
+                assert zero_fibre_values(m, r) == set(range(3**r))
+
+
+def test_m0_equals_3r_is_not_the_first_saturation_time():
+    assert FIRST_SATURATION[1] == 3
+    assert FIRST_SATURATION[2] == 6
+    assert FIRST_SATURATION[3] == 8
+    assert FIRST_SATURATION[3] < 3 * 3
+    assert interior_image_size(7, 3) == 711
+    assert interior_image_size(8, 3) == 729
+    assert interior_image_size(9, 4) == 6271
+    assert interior_image_size(10, 4) == 6561
+    assert x2_proved_count(8, 3) is None
+    assert x2_proved_count(10, 4) is None
+

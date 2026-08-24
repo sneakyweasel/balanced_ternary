@@ -2228,5 +2228,16 @@
       "tests/research/residual_complexity/test_triage.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "BTR-x2-C-interior",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "for F(x)=x^2 and r>=1, unrestricted ≡_r types at depth m>r inject into pairs (p mod 3^r, DZ^m(p^2) mod 3^r) for p in P_m. On the fibre p≡0 (mod 3^r): if m=2r the second coordinate runs exactly over the quadratic residues in Z/3^r Z, hence C_{x^2}(2r,r)<3^{2r}; if m>=3r the second coordinate is all of Z/3^r Z, via p=3^r + v 3^{m-r} for v in P_r. This decides the zero fibre, not C_{x^2}(m,r) for a general fibre. Cf. BTR-x2-C-band",
+    "source": "docs/problems/residual_complexity.md",
+    "lean": "",
+    "tests": [
+      "tests/research/residual_complexity/test_triage.py"
+    ],
+    "related_conjectures": []
   }
 ]
