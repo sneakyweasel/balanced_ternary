@@ -2,15 +2,18 @@
 
 From the origin, ``T_w(s) = A s − e₃ w`` unfolds to
 
-    s_k = −∑_{j<k} A^{k−1−j} e₃ w_j
+    s_k = −∑_{j<k} A^{k−1−j} e₃ w_j = −∑_{r<k} h_r w_{k−1−r}
 
-This is KNOWN variation of constants, not an ``L_0`` bound. Energy of
-the same particular is ``energy_telescope`` / ``consumed_sum``.
+with impulse ``h_r = A^r e₃ = (3 q_{r−1}, 3 q_{r−2}+q_{r−1}, q_r)``.
+This is KNOWN variation of constants / place-value dictionary, not an
+``L_0`` bound. Energy of the same particular is ``energy_telescope`` /
+``consumed_sum``.
 
 The companion embedding ``z = s₁ + s₂ λ + s₃ λ²`` in
 ``Z[λ]/(λ³−2λ²−λ−3)`` satisfies ``z(T_w s) = λ z(s) − λ² w``.
 All three embeddings have ``|λ_j|>1`` (non-Pisot). Normalized
-``|λ|^{-k}|z|`` bounded is not residual boundedness.
+``|λ|^{-k}|z|`` bounded is not residual boundedness. Large ``|s|``
+does not force unique Ext: Ext is the energy slab, not a residual bound.
 """
 
 from __future__ import annotations
@@ -19,6 +22,7 @@ from collections import deque
 
 from research.ostrowski.control_language import matrix_power
 from research.ostrowski.energy_trajectory import apply_word, consumed_sum
+from research.ostrowski.ext_feasibility import live_ext
 from research.ostrowski.live_growth import legal_w, residual_is_live
 from research.ostrowski.live_layers import ORIGIN, energy_canonical, forward_layers, linf
 from research.ostrowski.spectral import cubic_roots
@@ -34,6 +38,13 @@ GROWTH_NOT_INFINITUDE = "finite_depth_is_not_infinitude"
 NORMALIZED_NOT_RESIDUAL = "normalized_mode_bound_is_not_residual_bound"
 KNOWN_PACKAGING = "convolution_is_variation_of_constants"
 THREE_EXPANDING = "three_expanding_modes_versus_one_slab"
+IMPULSE_IS_PLACE = "impulse_is_place_value"
+EXT_NOT_UNIQUE = "large_s_does_not_force_unique_ext"
+SCALAR_FORCING = "scalar_recurrence_has_local_forcing"
+
+# N=12 remaining-0 maximizer. Finite depth, not a family.
+N12_MAXIMIZER_WORD: tuple[int, ...] = (2, -4, -4, 0, 0, -4, 1, 1, -4, 1, 1, -2)
+N12_MAXIMIZER_STATE: State3 = (-27, -6, 0)
 
 
 def _sys():
@@ -48,21 +59,64 @@ def _smul(k: int, s: State3) -> State3:
     return (k * s[0], k * s[1], k * s[2])
 
 
+def q_shift(index: int) -> int:
+    """``q_i`` with value ``0`` for ``i<0``."""
+    return _sys().place_value(index)
+
+
+def place_impulse(r: int) -> State3:
+    """``h_r = (3 q_{r−1}, 3 q_{r−2}+q_{r−1}, q_r)``. Underflow is 0."""
+    if r < 0:
+        raise ValueError("impulse index must be nonnegative")
+    q1 = q_shift(r - 1)
+    q2 = q_shift(r - 2)
+    return (3 * q1, 3 * q2 + q1, q_shift(r))
+
+
+def matrix_impulse(r: int) -> State3:
+    """``h_r = A^r e₃`` by integer matrix power."""
+    sys = _sys()
+    return apply_matrix(matrix_power(residual_matrix(sys), r), E3)
+
+
+def iterate_a(state: State3, r: int) -> State3:
+    """Homogeneous ``A^r s`` as ``r`` steps of ``T_0``."""
+    sys = _sys()
+    out = state
+    for _ in range(r):
+        out = transition_affine(sys, out, 0)
+    return out
+
+
+def impulse_matches_place(r: int) -> bool:
+    return matrix_impulse(r) == place_impulse(r) == iterate_a(E3, r)
+
+
 def control_convolution(word: tuple[int, ...]) -> State3:
     """``s_k = −∑_{j<k} A^{k−1−j} e₃ w_j``. MSD: ``word[0]`` is applied first."""
-    sys = _sys()
-    matrix = residual_matrix(sys)
     acc: State3 = ORIGIN
     k = len(word)
     for j, w in enumerate(word):
-        impulse = apply_matrix(matrix_power(matrix, k - 1 - j), E3)
-        acc = _sub(acc, _smul(w, impulse))
+        acc = _sub(acc, _smul(w, matrix_impulse(k - 1 - j)))
+    return acc
+
+
+def control_convolution_reindexed(word: tuple[int, ...]) -> State3:
+    """``s_k = −∑_{r<k} h_r w_{k−1−r}`` with ``h_r`` the place impulse."""
+    acc: State3 = ORIGIN
+    k = len(word)
+    for r in range(k):
+        acc = _sub(acc, _smul(word[k - 1 - r], place_impulse(r)))
     return acc
 
 
 def convolution_matches_apply_word(word: tuple[int, ...]) -> bool:
     sys = _sys()
-    return control_convolution(word) == apply_word(sys, ORIGIN, word)
+    from_apply = apply_word(sys, ORIGIN, word)
+    return (
+        control_convolution(word) == from_apply
+        and control_convolution_reindexed(word) == from_apply
+    )
 
 
 def energy_of_particular_holds(start_remaining: int, word: tuple[int, ...]) -> bool:
@@ -74,6 +128,104 @@ def energy_of_particular_holds(start_remaining: int, word: tuple[int, ...]) -> b
     left = energy_canonical(sys, state, start_remaining - len(word))
     right = -consumed_sum(sys, start_remaining, word)
     return left == right
+
+
+def ostrowski_s3(word: tuple[int, ...]) -> int:
+    """``s_k^{(3)} = −∑_{r<k} q_r w_{k−1−r}``."""
+    k = len(word)
+    return -sum(q_shift(r) * word[k - 1 - r] for r in range(k))
+
+
+def ostrowski_s1(word: tuple[int, ...]) -> int:
+    """``s_k^{(1)} = −3 ∑_{r<k} q_{r−1} w_{k−1−r}``."""
+    k = len(word)
+    return -3 * sum(q_shift(r - 1) * word[k - 1 - r] for r in range(k))
+
+
+def scalar_forcing(w_k: int, w_k1: int, w_k2: int) -> State3:
+    """Local Cayley–Hamilton forcing ``F = (−3 w_{k+1}, −3 w_k − w_{k+1}, −w_{k+2})``."""
+    return (-3 * w_k1, -3 * w_k - w_k1, -w_k2)
+
+
+def scalar_forcing_holds(word: tuple[int, ...]) -> bool:
+    """Cayley–Hamilton forcing along ``apply_word`` from the origin."""
+    if len(word) < 3:
+        return True
+    sys = _sys()
+    states: list[State3] = [ORIGIN]
+    acc = ORIGIN
+    for w in word:
+        acc = transition_affine(sys, acc, w)
+        states.append(acc)
+    for k in range(len(word) - 2):
+        s0, s1, s2, s3 = states[k], states[k + 1], states[k + 2], states[k + 3]
+        w_k = word[k]
+        w_k1 = word[k + 1]
+        w_k2 = word[k + 2]
+        force = scalar_forcing(w_k, w_k1, w_k2)
+        predicted = (
+            2 * s2[0] + s1[0] + 3 * s0[0] + force[0],
+            2 * s2[1] + s1[1] + 3 * s0[1] + force[1],
+            2 * s2[2] + s1[2] + 3 * s0[2] + force[2],
+        )
+        if predicted != s3:
+            return False
+    return True
+
+
+def impulse_recurrence_holds(r: int) -> bool:
+    """Each coordinate of ``h_r`` obeys the place-value recurrence."""
+    h0 = place_impulse(r)
+    h1 = place_impulse(r + 1)
+    h2 = place_impulse(r + 2)
+    h3 = place_impulse(r + 3)
+    predicted = (
+        2 * h2[0] + h1[0] + 3 * h0[0],
+        2 * h2[1] + h1[1] + 3 * h0[1],
+        2 * h2[2] + h1[2] + 3 * h0[2],
+    )
+    return predicted == h3
+
+
+def large_s_ext_not_unique() -> dict[str, object]:
+    """Ext depends on the energy slab. Large ``|s|`` is not unique control."""
+    sys = _sys()
+    word = N12_MAXIMIZER_WORD
+    start = 12
+    witnesses: list[dict[str, object]] = []
+    acc = ORIGIN
+    remaining = start
+    if live_ext(acc, remaining) and len(live_ext(acc, remaining)) > 1:
+        witnesses.append(
+            {
+                "remaining": remaining,
+                "state": acc,
+                "linf": linf(acc),
+                "ext": live_ext(acc, remaining),
+            }
+        )
+    for w in word:
+        acc = transition_affine(sys, acc, w)
+        remaining -= 1
+        if remaining < 1:
+            break
+        ext = live_ext(acc, remaining)
+        if linf(acc) >= 8 and len(ext) > 1:
+            witnesses.append(
+                {
+                    "remaining": remaining,
+                    "state": acc,
+                    "linf": linf(acc),
+                    "ext": ext,
+                }
+            )
+    return {
+        "word": word,
+        "final": acc,
+        "witnesses": witnesses,
+        "refuted": len(witnesses) > 0,
+        EXT_NOT_UNIQUE: True,
+    }
 
 
 def mul_lambda(z: Triple) -> Triple:
@@ -269,8 +421,17 @@ def phase0_spectral_control() -> dict[str, object]:
         (-4, 2),
         (1, -3, 0, 2),
         (-4, -4, -4, 1, 1),
+        N12_MAXIMIZER_WORD,
     )
     conv_ok = all(convolution_matches_apply_word(w) for w in samples)
+    coords_ok = all(
+        control_convolution(w)[0] == ostrowski_s1(w)
+        and control_convolution(w)[2] == ostrowski_s3(w)
+        for w in samples
+    )
+    impulse_ok = all(impulse_matches_place(r) for r in range(12))
+    rec_ok = all(impulse_recurrence_holds(r) for r in range(8))
+    force_ok = all(scalar_forcing_holds(w) for w in samples)
     z_ok = all(
         z_step_holds(s, w)
         for s, w in (
@@ -282,10 +443,10 @@ def phase0_spectral_control() -> dict[str, object]:
     )
     z_word_ok = all(z_from_word(w) == control_convolution(w) for w in samples)
     energy_ok = all(
-        energy_of_particular_holds(8, w) for w in samples if len(w) <= 8
+        energy_of_particular_holds(16, w) for w in samples if len(w) <= 16
     )
     embeddings = all_embeddings_expanding()
-    cmp = compare_remaining_zero(12, 16)
+    ext_report = large_s_ext_not_unique()
     layers_ok = True
     sys = _sys()
     fwd = forward_layers(sys, 12, live_only=True)
@@ -295,13 +456,20 @@ def phase0_spectral_control() -> dict[str, object]:
         layers_ok = control_convolution(prefix) == s_max
     return {
         "convolution_on_samples": conv_ok,
+        "ostrowski_coordinates": coords_ok,
+        "impulse_is_place": impulse_ok,
+        "impulse_recurrence": rec_ok,
+        "scalar_forcing": force_ok,
         "z_step_on_samples": z_ok,
         "z_word_equals_convolution": z_word_ok,
         "energy_particular": energy_ok,
         "embeddings": embeddings,
-        "horizons": cmp,
+        "ext_not_unique": ext_report,
         "layer_prefix_matches_convolution": layers_ok,
         KNOWN_PACKAGING: True,
+        IMPULSE_IS_PLACE: True,
+        SCALAR_FORCING: True,
+        EXT_NOT_UNIQUE: True,
         NORMALIZED_NOT_RESIDUAL: True,
         GROWTH_NOT_INFINITUDE: True,
         THREE_EXPANDING: True,

@@ -42,7 +42,10 @@ PROBLEM = ProblemDefinition(
         "(Lean origin_particular, KNOWN). Unnormalized companion modes grow "
         "on remaining-0 live slices from start remaining 12 to 16; "
         "normalized |lambda|^{-k}|z| bounded is not residual boundedness; "
-        "maximizer words are not a symbolic family. Every small integer "
+        "maximizer words are not a symbolic family. The origin impulse is "
+        "the place-value vector A^r e3 = (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r) "
+        "(Lean iterateA_e3, KNOWN). Large |s| does not force unique Ext. "
+        "Every small integer "
         "linear form on s grows from start remaining 16 to 20. |L_0| is "
         "not proved infinite. Pisot existence of some adder is known."
     ),

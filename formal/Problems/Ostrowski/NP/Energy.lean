@@ -27,8 +27,10 @@ adjoints are independent: `det(u_n,u_{n-1},u_{n-2}) = 3^{n-2}` for
 That is not a bound on `L₀`.
 
 From the origin the residual is the control particular
-(`origin_particular`): `s_k = −∑ A^{k-1-j} e₃ w_j`. That is
-variation of constants for `T_w`, not a bound on `L₀`.
+(`origin_particular`): `s_k = −∑ A^{k-1-j} e₃ w_j`. The impulse is
+the place-value vector (`iterateA_e3`):
+`A^r e₃ = (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r)`. That is the
+Ostrowski convolution of `w` against `q`, not a bound on `L₀`.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -485,5 +487,48 @@ theorem origin_particular (ws : List ℤ) :
     rw [foldSteps_cons, haff, step_origin, iterateA_smul, ih]
     simp only [particularSum]
     exact addState_neg_smul w (iterateA rest.length e3) (particularSum rest)
+
+/-- Impulse `A^r e₃` as a place-value triple. Underflow of `q` is 0. -/
+def impulsePlace (r : ℕ) : State :=
+  (3 * qShift r 1, 3 * qShift r 2 + qShift r 1, q r)
+
+theorem qShift_succ_one (n : ℕ) : qShift (n + 1) 1 = q n := by
+  have : 1 ≤ n + 1 := Nat.le_add_left 1 n
+  simp [qShift, this]
+
+theorem qShift_succ_two (n : ℕ) : qShift (n + 1) 2 = qShift n 1 := by
+  by_cases h : 1 ≤ n
+  · have h2 : 2 ≤ n + 1 := by omega
+    simp [qShift, h2, h]
+  · have : n = 0 := by omega
+    subst this
+    simp [qShift]
+
+theorem q_succ_impulse (n : ℕ) :
+    q (n + 1) = 3 * qShift n 2 + qShift n 1 + 2 * q n := by
+  match n with
+  | 0 =>
+    simp [qShift, q]
+  | 1 =>
+    simp [qShift, q]
+  | n + 2 =>
+    have h1 : 1 ≤ n + 2 := by omega
+    have h2 : 2 ≤ n + 2 := by omega
+    simp [qShift, h1, h2]
+    rw [q_rec]
+    ring
+
+/-- `A^r e₃ = (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r)`.
+KNOWN place-value dictionary for `origin_particular`, not `L₀`. -/
+theorem iterateA_e3 (r : ℕ) : iterateA r e3 = impulsePlace r := by
+  induction r with
+  | zero =>
+    simp [iterateA, e3, impulsePlace, qShift, q]
+  | succ n ih =>
+    have hA :
+        applyA (impulsePlace n) = impulsePlace (n + 1) := by
+      simp [applyA, step, impulsePlace, qShift_succ_one, qShift_succ_two,
+        q_succ_impulse]
+    simpa [iterateA, ih] using hA
 
 end Ostrowski.NP

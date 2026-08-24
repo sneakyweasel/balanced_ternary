@@ -345,6 +345,10 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   \(165\to 379\). Normalized \(\lvert\lambda\rvert^{-k}\lvert z\rvert\)
   is not residual boundedness. Maximizer words at these horizons are
   not a symbolic family.
+- Unique control at large \(\lvert s\rvert\) fails on the \(N=12\)
+  maximizer prefixes: remaining \(5\), state \((12,-2,-1)\),
+  \(\lVert s\rVert_\infty=12\), Ext \((-1,0,1)\). Ext is the energy
+  slab, not a residual bound.
 
 ## Formalization
 
@@ -400,9 +404,13 @@ From the origin the residual is the control particular: Lean
 novelty **KNOWN**. `foldSteps ws origin` equals
 `−∑ A^{k-1-j} e₃ w_j`. Companion `z`-recurrence and unnormalized
 mode growth stay Python. Not an `L_0` theorem.
-`kernel_unreachable_of_not_exceptional`, `energy_step`,
-`energy_telescope`, `energy_control_interval`, `adjointDet_eq`, and
-`energy_homogeneous` are unchanged.
+
+The origin impulse is the place-value vector: Lean
+`Ostrowski.NP.iterateA_e3` (ledger `OST-np-impulse-place`), novelty
+**KNOWN**. `A^r e₃ = (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r)`. Scalar
+forcings and the reindexed convolution stay Python. Not an `L_0`
+theorem. `origin_particular` and the earlier Energy lemmas are
+unchanged.
 
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
@@ -411,6 +419,7 @@ Ledger row `OST-np-energy-ext-interval`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-homogeneous`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-adjoint-window-det`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-origin-particular`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-impulse-place`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -1074,23 +1083,53 @@ prefix and are not constant:
 No symbolic family at this depth. Finite-horizon growth is not
 \(\lvert L_0\rvert=\infty\).
 
+### Impulse equals place value
+
+The origin impulse is the place-value vector (Lean `iterateA_e3`,
+novelty **KNOWN**):
+
+\[
+h_r=A^r e_3=(3 q_{r-1},\; 3 q_{r-2}+q_{r-1},\; q_r),
+\]
+
+with \(q_j=0\) for \(j<0\). Checks: \(h_0=(0,0,1)\), \(h_1=(3,1,2)\),
+\(h_2=(6,5,5)\). Both convolution orientations match `apply_word`:
+
+\[
+s_k=-\sum_{j<k}A^{k-1-j}e_3 w_j=-\sum_{r<k}h_r w_{k-1-r}.
+\]
+
+Coordinate form: \(s_k^{(3)}=-\sum q_r w_{k-1-r}\) and
+\(s_k^{(1)}=-3\sum q_{r-1}w_{k-1-r}\). Remaining \(0\) is
+\(s_N^{(3)}=0\), already `-consumed_sum`. Each coordinate of \(h_r\)
+obeys the place-value recurrence. Along a forced trajectory the same
+order-3 law holds with local forcing
+
+\[
+F=(-3w_{k+1},\;-3w_k-w_{k+1},\;-w_{k+2}).
+\]
+
+That is the matrix-free description of origin reachability. It does
+not constrain \(\lvert L_0\rvert\). Large \(\lvert s\rvert\) does not
+force unique Ext: on the \(N=12\) maximizer word, remaining \(5\),
+state \((12,-2,-1)\) has Ext \((-1,0,1)\).
+
 ## Open questions
 
-Is \(\lvert L_0\rvert=\infty\)? The origin residual is the control
-particular, and unnormalized modes grow on remaining \(0\). A
-contracting functional on \(\ker(u_n)\cap R(0)\), or one explicit
-unbounded live-from-0 family whose particular stays in the slab, is
-missing. Do not open order 4, Walnut, or a second example.
+Is \(\lvert L_0\rvert=\infty\)? Origin reachability is the Ostrowski
+convolution of \(w\) against \(q\). Unnormalized modes grow on
+remaining \(0\); Ext does not collapse at large \(\lvert s\rvert\).
+A contracting functional on \(\ker(u_n)\cap R(0)\), or one explicit
+unbounded live-from-0 family, is missing. Do not open order 4,
+Walnut, or a second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN convolution
-`origin_particular` only. Three expanding modes versus one slab;
-normalized boundedness is tautological; unnormalized \(\lvert z\rvert\)
-grows \(N=12\to 16\); maximizers are not a family. Complementary
-coordinates, homogeneous energy-neutrality, and the live-Ext interval
-remain as previously promoted. `kernel_unreachable_of_not_exceptional`
-is unchanged. Do not `CLOSE`. No order 4, CLI, or Walnut. Stop. Next
+`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN dictionary
+`iterateA_e3` only. The particular is the place-value impulse;
+scalar forcings are local; unique Ext at large \(\lvert s\rvert\) is
+refuted. `origin_particular` and the earlier Energy lemmas are
+unchanged. Do not `CLOSE`. No order 4, CLI, or Walnut. Stop. Next
 question (not taken up): a contracting functional on \(\ker(u_n)\),
 or a symbolic family whose particular stays inside the growing slab.
 
