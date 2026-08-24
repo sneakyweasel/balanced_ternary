@@ -20,10 +20,14 @@ from research.residual_complexity.triage import (
     census_table,
     colliding_pairs_at,
     dz_pow,
+    fibre_fill_second,
+    fibre_fill_witness,
+    fibre_second_coordinates,
     half_repunit,
     interior_image_size,
     interior_type,
     linear_is_constant_one,
+    packed_bound,
     packed_range,
     residuals_at,
     simple_formula_failures,
@@ -150,6 +154,7 @@ def test_triage_report_shape():
     assert report["guess_m0_3r_not_sharp"]
     assert report["zero_fibre_squares_at_2r"]
     assert report["zero_fibre_full_from_3r"]
+    assert report["every_fibre_full_from_5r"]
     assert report["first_saturation"][3] == 8
 
 
@@ -203,4 +208,70 @@ def test_m0_equals_3r_is_not_the_first_saturation_time():
     assert interior_image_size(10, 4) == 6561
     assert x2_proved_count(8, 3) is None
     assert x2_proved_count(10, 4) is None
+
+
+def test_every_fibre_construction_fills_from_five_r():
+    for r in range(1, 6):
+        for extra in (0, 1):
+            m = 5 * r + extra
+            hit = {a: set() for a in range(3**r)}
+            for alpha in packed_range(r):
+                for u in packed_range(r):
+                    p = fibre_fill_witness(m, r, alpha, u)
+                    assert abs(p) <= packed_bound(m)
+                    a, c = interior_type(p, m, r)
+                    assert a == alpha % 3**r
+                    assert c == fibre_fill_second(r, alpha, u)
+                    hit[a].add(c)
+            for a, values in hit.items():
+                assert values == set(range(3**r))
+            if m <= 10:
+                for alpha in packed_range(r):
+                    assert fibre_second_coordinates(m, r, alpha) == set(range(3**r))
+
+
+def test_five_r_is_not_a_first_saturation_time():
+    assert FIRST_SATURATION[1] < 5
+    assert FIRST_SATURATION[3] < 15
+    assert x2_proved_count(5, 1) is None
+
+
+def test_fixed_v_one_slice_does_not_fill_every_fibre_at_triple_width():
+    r = 2
+    m = 3 * r
+    incomplete = 0
+    for alpha in packed_range(r):
+        hit = set()
+        for u in packed_range(r):
+            p = alpha + u * 3**r + 3 ** (m - r)
+            hit.add(interior_type(p, m, r)[1])
+        if hit != set(range(3**r)):
+            incomplete += 1
+    assert incomplete >= 1
+
+
+def test_every_fibre_is_full_at_triple_width_through_three():
+    for r in range(1, 4):
+        m = 3 * r
+        for alpha in packed_range(r):
+            assert fibre_second_coordinates(m, r, alpha) == set(range(3**r))
+
+
+def test_v_one_family_is_not_full_before_five_r():
+    r, m = 1, 4
+    incomplete = 0
+    for alpha in packed_range(r):
+        hit = set()
+        for u in packed_range(r):
+            p = alpha + u * 3**r + 3 ** (m - r)
+            hit.add(interior_type(p, m, r)[1])
+        if hit != set(range(3**r)):
+            incomplete += 1
+    assert incomplete >= 1
+    try:
+        fibre_fill_witness(4, 1, 0, 0)
+    except ValueError as err:
+        assert "5r" in str(err)
+    else:
+        raise AssertionError("m=5r-1 must be rejected")
 

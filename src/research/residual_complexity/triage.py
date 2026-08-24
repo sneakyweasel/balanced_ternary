@@ -220,6 +220,51 @@ def zero_fibre_witness(m: int, r: int, v: int) -> int:
     return 3**r + v * 3 ** (m - r)
 
 
+def fibre_second_coordinates(m: int, r: int, alpha: int) -> set[int]:
+    """``{ DZ^m(p^2) mod 3^r : p ∈ P_m, p ≡ α (mod 3^r) }``."""
+
+    m = _require_nat(m, "m")
+    r = _require_nat(r, "r")
+    if r == 0:
+        return {0}
+    mod = 3**r
+    residue = alpha % mod
+    return {dz_pow(p * p, m) % mod for p in packed_range(m) if p % mod == residue}
+
+
+def fibre_fill_witness(m: int, r: int, alpha: int, u: int) -> int:
+    """Packed prefix ``p = α + u 3^r + 3^{m-r}`` filling a general fibre.
+
+    For ``m ≥ 5r`` and ``α,u ∈ P_r`` this lies in ``P_m``, is ``α mod 3^r``,
+    and has ``DZ^m(p^2) ≡ 2u + DZ^r(2α) (mod 3^r)``.
+    """
+
+    m = _require_nat(m, "m")
+    r = _require_nat(r, "r")
+    if r < 1:
+        raise ValueError("fibre-fill witnesses start at r≥1")
+    if m < 5 * r:
+        raise ValueError("fibre-fill witnesses start at m=5r")
+    if abs(alpha) > packed_bound(r):
+        raise ValueError("alpha must lie in P_r")
+    if abs(u) > packed_bound(r):
+        raise ValueError("u must lie in P_r")
+    return alpha + u * 3**r + 3 ** (m - r)
+
+
+def fibre_fill_second(r: int, alpha: int, u: int) -> int:
+    """Second coordinate of the ``m≥5r`` fibre-fill witness, in ``[0, 3^r)``."""
+
+    r = _require_nat(r, "r")
+    if r < 1:
+        raise ValueError("r must be positive")
+    if abs(alpha) > packed_bound(r):
+        raise ValueError("alpha must lie in P_r")
+    if abs(u) > packed_bound(r):
+        raise ValueError("u must lie in P_r")
+    return (2 * u + dz_pow(2 * alpha, r)) % (3**r)
+
+
 # First m at which C_{x^2}(m,r)=3^{2r}, for r=1..6. COMPUTATIONALLY VERIFIED.
 # Persistence checked a few steps past each threshold. Not a proved m_0(r).
 FIRST_SATURATION: dict[int, int] = {1: 3, 2: 6, 3: 8, 4: 10, 5: 13, 6: 15}
@@ -363,4 +408,5 @@ def triage_report(max_depth: int = MAX_DEPTH) -> dict[str, object]:
         "guess_m0_3r_not_sharp": FIRST_SATURATION[3] < 9,
         "zero_fibre_squares_at_2r": True,
         "zero_fibre_full_from_3r": True,
+        "every_fibre_full_from_5r": True,
     }
