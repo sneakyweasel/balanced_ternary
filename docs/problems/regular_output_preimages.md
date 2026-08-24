@@ -151,10 +151,13 @@ witness.
 None retained on this branch. In particular, other output languages
 are not opened automatically.
 
-PENDING IDEA — NOT OPENED (not a decision, not a claim tag):
+PENDING IDEA — the unrestricted census is now its own gate
+(`docs/problems/residual_complexity.md`, `research.residual_complexity`).
+Do not reopen this closed PROMOTE gate and do not retag
+`BTR-x2-safety-nonsific`.
 
-- exact laws for the two-parameter full residual complexity `C_F(m,r)`
-  of unrestricted (not safety-constrained) residuals;
+Still not opened (not a decision, not a claim tag):
+
 - section entropy versus dynamical entropy;
 - solenoid / adelic packaging and bi-infinite words.
 

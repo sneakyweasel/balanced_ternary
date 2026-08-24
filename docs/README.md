@@ -123,6 +123,7 @@ Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 - [Collatz](problems/collatz.md)
 - [Ostrowski order-m adder](problems/ostrowski_order_m_adder.md)
 - [Regular-output preimages](problems/regular_output_preimages.md)
+- [Unrestricted residual complexity](problems/residual_complexity.md)
 - [Monna endpoint spectra](problems/monna_endpoint_spectra.md)
 - [Lifting trees](problems/lifting.md)
 - [Additive combinatorics](problems/additive_combinatorics.md)

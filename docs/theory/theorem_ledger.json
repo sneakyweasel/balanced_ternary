@@ -2217,5 +2217,16 @@
     "related_conjectures": [
       "x2_safety_nonsific"
     ]
+  },
+  {
+    "id": "BTR-x2-C-band",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "for F(x)=x^2 write C_F(m,r) for the number of ≡_r classes among the unrestricted residuals of F at input depth m. Then C_F(m,r)=3^m whenever r≥m≥0, and C_F(m,m-1)=3^m-3 for every m≥2. The latter deficit is exactly three doubletons: for each σ in {-1,0,+1}, the two length-m extensions of σ^{m-1} by a trit other than σ are ≡_{m-1}-equivalent, and every other same-depth pair is distinguished",
+    "source": "docs/problems/residual_complexity.md",
+    "lean": "",
+    "tests": [
+      "tests/research/residual_complexity/test_triage.py"
+    ],
+    "related_conjectures": []
   }
 ]

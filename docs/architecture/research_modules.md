@@ -29,6 +29,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.collatz` | `STRUCTURAL` | accelerated `T`, cylinders, dual codes, affine geometry, cycles, warp |
 | `research.ostrowski` | `STRUCTURAL` | order-3 \(B_{\min}\); NP \(K\) unbounded; \(L_0\) PARK; `OstrowskiSpec` adapter |
 | `research.regular_output_preimages` | `STRUCTURAL` | regular output of \(x^2\); sofic obstruction |
+| `research.residual_complexity` | `STRUCTURAL` | unrestricted \(C_F(m,r)\); superdiagonal band |
 | `research.monna_endpoint_spectra` | `STRUCTURAL` | balanced-Monna endpoint spectra; gate closed |
 | `research.lifting` | `EXPLORATORY` | lifting trees; lifting-state / \(k_0\) lines closed |
 | `research.additive_combinatorics` | `EXPLORATORY` | `A_k`, `B_k`, `C_k`, sumsets |

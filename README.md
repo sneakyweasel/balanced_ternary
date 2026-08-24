@@ -72,6 +72,7 @@ Full table: [docs/architecture/research_modules.md](docs/architecture/research_m
 | `research.collatz` | STRUCTURAL |
 | `research.ostrowski` | STRUCTURAL |
 | `research.regular_output_preimages` | STRUCTURAL |
+| `research.residual_complexity` | STRUCTURAL |
 | `research.monna_endpoint_spectra` | STRUCTURAL |
 | `research.lifting` | EXPLORATORY |
 | `research.additive_combinatorics` | EXPLORATORY |

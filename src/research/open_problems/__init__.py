@@ -23,6 +23,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.ostrowski.problem import PROBLEM as OSTROWSKI
     from research.padic_dynamics.problem import PROBLEM as PADIC_DYNAMICS
     from research.regular_output_preimages.problem import PROBLEM as REGULAR_OUTPUT_PREIMAGES
+    from research.residual_complexity.problem import PROBLEM as RESIDUAL_COMPLEXITY
     from research.perfect_powers.problem import PROBLEM as PERFECT_POWERS
     from research.primes.problem import PROBLEM as PRIMES
     from research.residuals.problem import PROBLEM as RESIDUALS
@@ -44,6 +45,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         CERNY_BT,
         MISERE_QUOTIENTS,
         REGULAR_OUTPUT_PREIMAGES,
+        RESIDUAL_COMPLEXITY,
         MONNA_ENDPOINT_SPECTRA,
         REWRITE_CALCULUS,
         BALANCED_DIGIT_SUM_POLYNOMIALS,
