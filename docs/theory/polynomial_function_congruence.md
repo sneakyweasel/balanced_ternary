@@ -454,8 +454,8 @@ lemma is not required for the kernel.
 ## 13. CLI
 
 ```text
-btprime calculus poly-congruence <f> <g> --k <k>
-btprime calculus vanishing-poly <degree> --k <k>
+btlab calculus poly-congruence <f> <g> --k <k>
+btlab calculus vanishing-poly <degree> --k <k>
 ```
 
 The first command reports function equivalence, a distinguishing

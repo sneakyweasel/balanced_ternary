@@ -84,6 +84,6 @@ none was sought.
 ## CLI
 
 ```powershell
-btprime operators commutator D S
-btprime operators algebra --depth 3
+btlab operators commutator D S
+btlab operators algebra --depth 3
 ```

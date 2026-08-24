@@ -3,7 +3,7 @@ import Mathlib.Algebra.Ring.Parity
 import Mathlib.Data.Nat.Prime.Basic
 import Mathlib.NumberTheory.Padics.PadicVal.Basic
 
-namespace CollatzDual
+namespace Problems.Collatz
 
 instance : Fact (Nat.Prime 2) := ⟨Nat.prime_two⟩
 
@@ -54,4 +54,4 @@ theorem acceleratedT_odd {n : ℕ} (_hn : Odd n) (hpos : 0 < n) :
     · exact hmul.symm
   exact (pow_succ_padicValNat_not_dvd hne) this
 
-end CollatzDual
+end Problems.Collatz

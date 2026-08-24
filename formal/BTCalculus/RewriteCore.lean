@@ -12,7 +12,7 @@ import BTCalculus.OpFragSemantic
 
 namespace BTCalculus
 
-open CollatzDual.Warp
+open Representation.Words
 open Relation
 open OpFrag
 

@@ -3,9 +3,9 @@
 Launch:
 
     python -m pip install -e ".[ui]"
-    btprime ui
+    btlab ui
 
-`btprime collatz ui` and `btprime calculus explorer` remain aliases.
+`btlab collatz ui` and `btlab calculus explorer` remain aliases.
 The app is centered on exact balanced-ternary words and a calculator.
 The Residual explorer and rewrite companion live under Calculus research.
 Collatz pages remain as one research application. The UI does not claim
@@ -27,7 +27,7 @@ def launch() -> int:
         print(
             "Streamlit is not installed. From the project directory:\n"
             '  python -m pip install -e ".[ui]"\n'
-            "  btprime ui"
+            "  btlab ui"
         )
         return 1
     import subprocess

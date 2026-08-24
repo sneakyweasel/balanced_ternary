@@ -266,10 +266,10 @@ See [literature_comparison.md](literature_comparison.md).
 ## Reproducibility
 
 ```powershell
-btprime collatz fixed-integer 165 --max-steps 20
-btprime collatz affine-gap 165 --max-steps 20
-btprime collatz periodic-code 2
-btprime collatz fixed-integer-census --limit 1000000 --max-steps 400 --write
+btlab collatz fixed-integer 165 --max-steps 20
+btlab collatz affine-gap 165 --max-steps 20
+btlab collatz periodic-code 2
+btlab collatz fixed-integer-census --limit 1000000 --max-steps 400 --write
 ```
 
 Schema: `collatz-fixed-integer/v1`. Lean: `Problems.Collatz.FixedInteger`.

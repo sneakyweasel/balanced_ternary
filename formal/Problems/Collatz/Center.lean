@@ -1,6 +1,6 @@
 import Problems.Collatz.Endpoint
 
-namespace CollatzDual
+namespace Problems.Collatz
 
 /-- The unreduced numerator of `R - C / (twoPow - threePow)` is exactly
 `twoPow * (R - X)` whenever the affine endpoint equation holds. -/
@@ -40,4 +40,4 @@ theorem endpointRepresentative_le
     M ≤ X := by
   omega
 
-end CollatzDual
+end Problems.Collatz

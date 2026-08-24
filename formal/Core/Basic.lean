@@ -1,6 +1,6 @@
 import Mathlib
 
-namespace CollatzDual
+namespace Core.Basic
 
 def EventuallyConstant (R : ℕ → ℕ) : Prop :=
   ∃ N, ∀ m, N ≤ m → R m = R N
@@ -51,4 +51,4 @@ theorem monotone_bounded_iff_eventuallyConstant
   ⟨monotone_bounded_eventuallyConstant R hmono,
    monotone_eventuallyConstant_bounded R hmono⟩
 
-end CollatzDual
+end Core.Basic

@@ -11,7 +11,7 @@ Historical record of the package split. The live contract is
 ```
 src/bt/                     core BT mathematics
 src/research/               problem modules + registries + experiment I/O
-src/cli/                    btprime implementation
+src/cli/                    btlab implementation
 src/balanced_ternary/       compatibility façade
 src/collatz/                compatibility façade
 src/automata/               compatibility façade

@@ -216,7 +216,7 @@ comparison \(2^{K_m}\) versus \(3^m\).
 ## Commands
 
 ```powershell
-btprime collatz zero-lift --ks 1,2 --steps 8 --candidate-k 3 --precision 4
-btprime collatz periodic-itinerary 2
-btprime collatz zero-lift-census --max-length 4 --max-k 4 --precision 4
+btlab collatz zero-lift --ks 1,2 --steps 8 --candidate-k 3 --precision 4
+btlab collatz periodic-itinerary 2
+btlab collatz zero-lift-census --max-length 4 --max-k 4 --precision 4
 ```

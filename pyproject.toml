@@ -32,7 +32,7 @@ ui = ["streamlit>=1.62", "pandas>=2"]
 experiments = ["pyarrow>=14"]
 
 [project.scripts]
-btprime = "cli.main:main"
+btlab = "cli.main:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

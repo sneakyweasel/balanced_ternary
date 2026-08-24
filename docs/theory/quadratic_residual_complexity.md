@@ -260,10 +260,10 @@ prefix-tree count and the existing upper bound.
 ## 11. CLI (discovery, not theorem labels)
 
 ```text
-btprime calculus distinguish-pair <f> <g> --depth <k>
-btprime calculus residual-formula <polynomial> --depth <k>
-btprime calculus witness <polynomial> --depth <k>
-btprime calculus merge-examples <polynomial> --depth <k>
+btlab calculus distinguish-pair <f> <g> --depth <k>
+btlab calculus residual-formula <polynomial> --depth <k>
+btlab calculus witness <polynomial> --depth <k>
+btlab calculus merge-examples <polynomial> --depth <k>
 ```
 
 ## 12. Literature

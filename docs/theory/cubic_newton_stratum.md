@@ -326,10 +326,10 @@ Per-depth \(C_{k,m}\) for \(m=0,\ldots,k-1\):
 | 13 | 1, 3, 9, 27, 81, 243, 729, 2187, 6559, 19677, 59022, 177057, 531141 |
 | 14 | 1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19681, 59028, 177083, 531230, 1593644 |
 
-CLI: `btprime calculus x3-states --k <k>`,
-`btprime calculus x3-layer-count --k <k> --deficit <r>`,
-`btprime calculus x3-image-count --k <k> --deficit <r>`,
-and `btprime calculus x3-overlaps --k <k>`.
+CLI: `btlab calculus x3-states --k <k>`,
+`btlab calculus x3-layer-count --k <k> --deficit <r>`,
+`btlab calculus x3-image-count --k <k> --deficit <r>`,
+and `btlab calculus x3-overlaps --k <k>`.
 The commands `newton-class`, `cubic-layer`, and `cubic-quotient` are
 unchanged.
 

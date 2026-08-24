@@ -2,7 +2,7 @@ import BTCalculus.Comparison
 
 namespace BTCalculus
 
-open CollatzDual.Warp
+open Representation.Words
 
 def select3 (c : Trit) (xMinus xZero xPlus : ℤ) : ℤ :=
   match c with

@@ -1,8 +1,8 @@
 import Representation.Words
 
-namespace CollatzDual.Operators
+namespace Operators.Shift
 
-open CollatzDual.Warp
+open Representation.Words
 
 /-- Append a trailing zero: the word form of `S(n)=3n` before canonicalizing `0`. -/
 def shiftWord (w : List Trit) : List Trit :=
@@ -37,4 +37,4 @@ theorem W_after_S (w : List Trit) :
     warpWord (shiftWord w) = warpWord w := by
   simpa [shiftWord] using warpWord_append_zeros w 1
 
-end CollatzDual.Operators
+end Operators.Shift

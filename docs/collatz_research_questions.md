@@ -80,7 +80,7 @@ hypothesis logs were retired; experimental tables live under
 
 1. Closed form for minimized `/2^k` state complexity \(N_k\). The pattern
    \(N_k=2^k+1\) is a **CONJECTURE** with counterexample search
-   (`btprime collatz complexity`).
+   (`btlab collatz complexity`).
 2. Closed form for \(A_k\), the minimized DFA size of \(L_k\).
 3. A complete description of the sofic / regular language of *infinite*
    admissible valuation sequences on odd 2-adics (finite prefixes are

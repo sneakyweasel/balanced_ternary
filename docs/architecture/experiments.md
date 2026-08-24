@@ -13,7 +13,7 @@ Normalization theory dumps belong under `experiments/normalization/`.
 - optional Parquet writer (`pyarrow`, extra `experiments`)
 
 Collatz runners stay as functions. The CLI registry
-(`btprime experiments list|run|inspect`) wraps them; it does not rewrite
+(`btlab experiments list|run|inspect`) wraps them; it does not rewrite
 them.
 
 ## Contract
@@ -31,6 +31,5 @@ JSONL plus a manifest is the portable baseline. Parquet is optional.
 
 ## Existing runners
 
-Collatz runners remain under `research.collatz.experiments` (shim:
-`collatz.experiments`). Output paths such as
-`experiments/collatz/raw/...` are unchanged.
+Collatz runners remain under `research.collatz.experiments`. Output
+paths such as `experiments/collatz/raw/...` are unchanged.

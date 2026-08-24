@@ -106,8 +106,8 @@ unrestricted 2-adic odd-part, which is not one finite-state transduction.
 ## CLI
 
 ```powershell
-btprime operators apply S 42
-btprime operators derivative 5
-btprime operators shift 5
-btprime operators id
+btlab operators apply S 42
+btlab operators derivative 5
+btlab operators shift 5
+btlab operators id
 ```

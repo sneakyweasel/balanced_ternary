@@ -93,10 +93,10 @@ pytest --runslow
 python tools/render_theorem_ledger.py --check
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 cd formal; lake build
-btprime ui
-btprime calculus explorer
-btprime research analyze ostrowski
-btprime research reproduce D
+btlab ui
+btlab calculus explorer
+btlab research analyze ostrowski
+btlab research reproduce D
 ```
 
 Persistent policy lives in [.cursor/rules/](.cursor/rules/). Streamlit work uses

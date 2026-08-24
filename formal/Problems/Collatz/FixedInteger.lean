@@ -1,6 +1,6 @@
 import Problems.Collatz.Center
 
-namespace CollatzDual
+namespace Problems.Collatz
 
 /-!
 Fixed-integer affine identities. Every statement is an algebraic identity of
@@ -131,4 +131,4 @@ theorem unique_residue_of_small_start
   have hRR : R % modulus = R := Nat.mod_eq_of_lt hR
   exact hnR.symm.trans (hmod.trans hRR)
 
-end CollatzDual
+end Problems.Collatz

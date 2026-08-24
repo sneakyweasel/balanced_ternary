@@ -130,7 +130,7 @@ Corollaries used here, both **PROVED**:
 3. \(T(n)\) is odd, so `weight(BT(T(n)))` is odd.
 
 These are re-checked exhaustively on configurable odd ranges
-(`btprime collatz test-invariants`). Range success is
+(`btlab collatz test-invariants`). Range success is
 **VERIFIED COMPUTATIONALLY**; the identity itself is **PROVED**.
 
 This is the first exact bridge between balanced ternary combinatorics and
@@ -614,7 +614,7 @@ For each \(k\ge 1\):
 On \(k=1,\ldots,4\) one has \(N_k=3,5,9,17=2^k+1\) and
 \(A_k=4,8,16,32=2^{k+1}\) (the unminimised modulus). The statement
 \(N_k=2^k+1\) for all \(k\) is a **CONJECTURE** (counterexample search
-is `btprime collatz complexity`). It is not a theorem. \(A_k=2^{k+1}\)
+is `btlab collatz complexity`). It is not a theorem. \(A_k=2^{k+1}\)
 on the same range is **VERIFIED COMPUTATIONALLY**, not proved.
 
 Comparing \(N_k\) to the geometric weight \(2^{-k}\) is an

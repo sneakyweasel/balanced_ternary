@@ -15,7 +15,7 @@ import BTCalculus.Rewrite
 namespace BTCalculus
 namespace OpFrag
 
-open CollatzDual.Warp
+open Representation.Words
 open Relation
 
 /-! ### Integer evaluation of an open term -/

@@ -64,6 +64,6 @@ survived the standard of this repository.
 ## CLI
 
 ```powershell
-btprime operators poly 13
-btprime operators sequences
+btlab operators poly 13
+btlab operators sequences
 ```

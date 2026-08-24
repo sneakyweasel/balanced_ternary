@@ -1,6 +1,9 @@
 import Problems.Collatz.Arithmetic
+import Core.Basic
 
-namespace CollatzDual
+namespace Problems.Collatz
+
+open Core.Basic
 
 /-- An odd endpoint turns the exact endpoint equation into the expected
 congruence modulo the next power of two. -/
@@ -117,4 +120,4 @@ theorem bounded_iff_eventuallyZero_liftBlock (S : LiftSystem) :
   rw [eventuallyZero_liftBlock_iff S]
   exact bounded_iff_eventuallyZero S
 
-end CollatzDual
+end Problems.Collatz

@@ -71,4 +71,4 @@ reaches it, overlapping sites `i` / `i+1` join. Raw `[1,0]` vs
 - [Calculus](balanced_ternary_calculus.md)
 - Package: `src/bt/normtheory/`
 - Lean: `formal/BTCalculus/Normalization.lean`, `formal/BTCalculus/Confluence.lean`
-- CLI: `btprime normalize …`
+- CLI: `btlab normalize …`

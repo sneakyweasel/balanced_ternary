@@ -18,20 +18,17 @@ The project contains no `sorry` or `admit`.
 
 | Path | Role | Lean namespace |
 |----------|------|----------------|
-| `Core/Basic.lean` | eventually-constant / bounded | `CollatzDual.Basic` |
-| `Representation/Words.lean` | BT digit-list algebra | `CollatzDual.Warp` |
-| `Operators/Operators.lean` | `S`, `N`, `W∘S=W` | `CollatzDual.Operators` |
-| `Operators/DigitDerivative.lean` | `D∘S=id` | `CollatzDual.DigitDerivative` |
-| `Operators/Algebra.lean` | composed identities, `W(3)=1` | `CollatzDual.OperatorAlgebra` |
-| `Operators/Polynomial.lean` | `P(3)=evalMSD` | `CollatzDual.Polynomial` |
-| `Problems/Collatz/*` | lift, cylinders, endpoint, center, cycles, … | `Problems.Collatz.*` |
+| `Core/Basic.lean` | eventually-constant / bounded | `Core.Basic` |
+| `Representation/Words.lean` | BT digit-list algebra | `Representation.Words` |
+| `Operators/Shift.lean` | `S`, `N`, `W∘S=W` | `Operators.Shift` |
+| `Operators/DigitDerivative.lean` | `D∘S=id` | `Operators.DigitDerivative` |
+| `Operators/Algebra.lean` | composed identities, `W(3)=1` | `Operators.Algebra` |
+| `Operators/Polynomial.lean` | `P(3)=evalMSD` | `Operators.Polynomial` |
+| `Problems/Collatz/*` | lift, cylinders, endpoint, center, cycles, … | `Problems.Collatz` |
 | `BTCalculus/` | trit algebra, `D`/`I_a`, product/sum rules, `cmp3`/`select3`, rewrite soundness, coefficient normalization, section derivative, jets, residual `≡_k`, cascade composition, polynomial function congruence modulo `3^k`, cubic residual Newton image, fibres, deepest-layer criteria, the first intermediate layer `m=k-2`, the depth-deficit `N2` visibility law, the general `N1` valuation stratification, the two-regime `N0` scaling, the mismatched-width cubic quotient, and the `Q` one-family obstruction | `BTCalculus` |
 | `Automata/` | placeholder only | no invented proofs |
 
-Default Lake targets are `BTCalculus` and `Problems`. Some generic BT
-theorems still live in historical `CollatzDual.*` namespaces inside
-`Representation/` and `Operators/`; there is no separate re-export
-library.
+Default Lake targets are `BTCalculus` and `Problems`. Namespaces match their modules.
 
 Generic theorems stay out of problem namespaces. Collatz-only theorems
 stay under `Problems/Collatz`.

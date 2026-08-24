@@ -121,7 +121,7 @@ Ledger rows: `BTL-*` in
   subtrees per level;
 - `triage_report` — the whole payload plus the verdict.
 
-CLI: `btprime congruence roots | lift | tree | classify | triage`.
+CLI: `btlab congruence roots | lift | tree | classify | triage`.
 
 ## Conjectures
 

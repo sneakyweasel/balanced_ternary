@@ -211,7 +211,7 @@ def encode_analyze_page() -> None:
     _init_shared()
     st.caption(
         "Round-trip between integers and canonical words, with the same "
-        "metrics as `btprime analyze`."
+        "metrics as `btlab analyze`."
     )
     _example_buttons()
 

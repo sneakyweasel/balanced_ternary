@@ -1,10 +1,10 @@
 import Operators.DigitDerivative
 
-namespace CollatzDual.OperatorAlgebra
+namespace Operators.Algebra
 
-open CollatzDual.Warp
-open CollatzDual.Operators
-open CollatzDual.DigitDerivative
+open Representation.Words
+open Operators.Shift
+open Operators.DigitDerivative
 
 /-- `D ∘ S = id` on words. -/
 theorem DS_identity (w : List Trit) : dropLSD (shiftWord w) = w :=
@@ -48,4 +48,4 @@ theorem W_not_involution_on_three :
   rw [eval_warp_wordThree, eval_wordThree]
   decide
 
-end CollatzDual.OperatorAlgebra
+end Operators.Algebra

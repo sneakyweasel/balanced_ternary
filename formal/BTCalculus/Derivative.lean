@@ -4,8 +4,8 @@ import BTCalculus.Trit
 
 namespace BTCalculus
 
-open CollatzDual.Warp
-open CollatzDual.DigitDerivative
+open Representation.Words
+open Operators.DigitDerivative
 
 /-- Balanced residue of an integer: ``n % 3`` mapped into ``{-1,0,+1}``. -/
 def lsdZ (n : ℤ) : ℤ :=

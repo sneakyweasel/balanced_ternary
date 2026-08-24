@@ -1,6 +1,8 @@
 import Core.Basic
 
-namespace CollatzDual
+namespace Problems.Collatz
+
+open Core.Basic
 
 structure LiftSystem where
   R : ℕ → ℕ
@@ -69,4 +71,4 @@ theorem mixedRadix_reconstruction
       rw [S.lift_step m, ih]
       simp [Finset.sum_range_succ, Nat.add_assoc, Nat.add_comm, Nat.add_left_comm]
 
-end CollatzDual
+end Problems.Collatz

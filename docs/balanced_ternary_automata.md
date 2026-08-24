@@ -40,8 +40,8 @@ are **VERIFIED COMPUTATIONALLY** by BFS / Mealy partition refinement. They
 are not theorems. CLI:
 
 ```powershell
-btprime operators states --max-k 6
-btprime operators zoo
+btlab operators states --max-k 6
+btlab operators zoo
 ```
 
 If a prefix equals \(3^k\), that is OEIS A000244 (the bound), not a new

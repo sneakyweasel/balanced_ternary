@@ -308,6 +308,6 @@ form does not already give is open and is not claimed.
 - Classification experiments: `research.lifting.triage`.
 - Test polynomials: `research.lifting.families`.
 - Lean: `formal/BTCalculus/PadicLifting.lean`.
-- CLI: `btprime congruence roots | lift | tree | classify`.
+- CLI: `btlab congruence roots | lift | tree | classify`.
 - Explorer: the "Congruence / lifting" secondary view of the Residual
   explorer.

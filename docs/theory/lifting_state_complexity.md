@@ -412,5 +412,5 @@ machinery.
 - Experiments: `research.lifting.state_complexity` (`shift_law`,
   `shifted_family_injectivity`, `normal_form`, `strata`).
 - Lean: `formal/BTCalculus/PadicLiftingState.lean`.
-- CLI: `btprime congruence state | distinguish`.
+- CLI: `btlab congruence state | distinguish`.
 - Explorer: the minimal-state panel of the "Congruence / lifting" view.

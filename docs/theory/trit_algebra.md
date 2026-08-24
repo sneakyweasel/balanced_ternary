@@ -22,8 +22,8 @@ lattice. It is not Boolean: `max(0, neg(0)) = 0 ≠ +1`.
 
 ## Our formalization
 
-Python: `bt.calculus.trit.Trit` (`IntEnum`). Lean: existing
-`CollatzDual.Warp.Trit` plus `BTCalculus.TritAlgebra`.
+Python: `bt.calculus.trit.Trit` (`IntEnum`). Lean: `Representation.Words.Trit`
+plus `BTCalculus.TritAlgebra`.
 
 Exact operations:
 

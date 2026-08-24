@@ -359,7 +359,7 @@ def _factor_hint(poly: IntPoly) -> str:
 
 
 def poly_congruence_report(f: IntPoly, g: IntPoly, k: int) -> dict[str, object]:
-    """CLI payload for ``btprime calculus poly-congruence``."""
+    """CLI payload for ``btlab calculus poly-congruence``."""
     k = _require_nat(k, "k")
     h = f.sub(g)
     equiv = function_equiv(f, g, k)

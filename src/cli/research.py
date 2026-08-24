@@ -1,4 +1,4 @@
-"""``btprime research`` — inspect engine sessions. Not a prover."""
+"""``btlab research`` — inspect engine sessions. Not a prover."""
 
 from __future__ import annotations
 

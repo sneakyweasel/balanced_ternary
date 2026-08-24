@@ -30,11 +30,11 @@ bt.*                        problem-independent BT mathematics
 | Role | Import | Notes |
 |------|--------|-------|
 | Distribution | `balanced-ternary` | `pip install -e ".[dev,ui]"` |
-| Command | `btprime` | CLI entry |
+| Command | `btlab` | CLI entry |
 | Core | `bt` | problem-independent BT mathematics |
-| Experimental dynamics | `research_engine` | integer affine/block/trajectory, R/K/L, algebra, attacks (including spectral companion classification), planner, synthetic benchmarks, and theorem targets (not proofs); `btprime research` is the CLI wrapper; symbolic deferred |
+| Experimental dynamics | `research_engine` | integer affine/block/trajectory, R/K/L, algebra, attacks (including spectral companion classification), planner, synthetic benchmarks, and theorem targets (not proofs); `btlab research` is the CLI wrapper; symbolic deferred |
 | Research | `research` | problem-specific applications |
-| CLI | `cli` | `btprime` implementation |
+| CLI | `cli` | `btlab` implementation |
 | Formal | `balanced-ternary-formal` | Lake package under `formal/` |
 | UI | `visualization` | optional extra; not part of the math core |
 
@@ -55,7 +55,7 @@ bt.*                        problem-independent BT mathematics
 | `research.collatz` | Collatz application |
 | `research.residuals` | cubic fibres / Newton stratum API |
 | `research.experiments` | shared experiment schema and table I/O |
-| `cli.main` | `btprime` |
+| `cli.main` | `btlab` |
 
 Do not add top-level compatibility packages (`balanced_ternary`, `collatz`, `automata`).
 

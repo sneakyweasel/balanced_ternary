@@ -2,7 +2,7 @@ import Representation.Words
 
 namespace BTCalculus
 
-open CollatzDual.Warp
+open Representation.Words
 
 namespace TritAlgebra
 

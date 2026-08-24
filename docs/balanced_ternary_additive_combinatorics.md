@@ -70,7 +70,7 @@ Cubes in \(W_1\): \(0\) and \(3^{3t}\). Primes in \(W_1\): only \(3\).
 
 For \(k=2\), integers of the form \(\varepsilon 3^a+\delta 3^b\). Squares,
 cubes, and primes in this set are a computational search
-(`btprime operators sparse --k 2`). A prefix of squares is an
+(`btlab operators sparse --k 2`). A prefix of squares is an
 **OBSERVATION**, not a classification.
 
 ## Carry defect and \(d_{\mathrm{BT}}\)
@@ -98,7 +98,7 @@ counterexample to the triangle inequality; none was found in that box.
 ## CLI
 
 ```powershell
-btprime operators additive --k 6
-btprime operators sparse --k 1 --bound 10000
-btprime operators metrics --limit 20 1 9
+btlab operators additive --k 6
+btlab operators sparse --k 1 --bound 10000
+btlab operators metrics --limit 20 1 9
 ```

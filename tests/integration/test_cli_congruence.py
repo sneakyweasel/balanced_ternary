@@ -1,4 +1,4 @@
-"""CLI smoke tests for ``btprime congruence``."""
+"""CLI smoke tests for ``btlab congruence``."""
 
 from __future__ import annotations
 

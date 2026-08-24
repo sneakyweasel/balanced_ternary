@@ -185,13 +185,13 @@ found.
 ## Commands
 
 ```powershell
-btprime reverse 21
-btprime reverse-tail 224
-btprime collatz warp 27
-btprime collatz warp-census --limit 20000
-btprime collatz warp-realizer 1,4,2
-btprime collatz warp-semigroup --length 6
-btprime collatz warp-counterexamples
+btlab reverse 21
+btlab reverse-tail 224
+btlab collatz warp 27
+btlab collatz warp-census --limit 20000
+btlab collatz warp-realizer 1,4,2
+btlab collatz warp-semigroup --length 6
+btlab collatz warp-counterexamples
 ```
 
 Lean statements live in `formal/Representation/Words.lean`. Experiment rows

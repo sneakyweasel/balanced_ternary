@@ -111,8 +111,8 @@ Refuted hypotheses (including `W(3)=1` and `n_*=165` at step 17) are
 kept under `conjectures/refuted/`.
 
 ```powershell
-btprime conjectures list
-btprime status
+btlab conjectures list
+btlab status
 ```
 
 ## Quick start
@@ -130,27 +130,27 @@ Optional Parquet experiment I/O: `pip install -e ".[experiments]"`.
 
 ## CLI
 
-The command is `btprime`. Leaf commands stay for encoding and analysis;
+The command is `btlab`. Leaf commands stay for encoding and analysis;
 namespaces group operators, calculus, research, and Collatz.
 
 ```powershell
-btprime encode 42
-btprime bt encode 42
-btprime operators apply S 42
-btprime calculus eval 42
-btprime research analyze ostrowski
-btprime research reproduce D
-btprime collatz analyze 27
-btprime status
+btlab encode 42
+btlab bt encode 42
+btlab operators apply S 42
+btlab calculus eval 42
+btlab research analyze ostrowski
+btlab research reproduce D
+btlab collatz analyze 27
+btlab status
 ```
 
 Research UI (optional extra `ui`). Canonical launcher:
 
 ```powershell
-btprime ui
+btlab ui
 ```
 
-`btprime collatz ui` and `btprime calculus explorer` remain aliases.
+`btlab collatz ui` and `btlab calculus explorer` remain aliases.
 
 ## Tests and Lean
 

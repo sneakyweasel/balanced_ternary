@@ -1,4 +1,4 @@
-"""CLI smoke tests for ``btprime collatz ...``."""
+"""CLI smoke tests for ``btlab collatz ...``."""
 
 from __future__ import annotations
 

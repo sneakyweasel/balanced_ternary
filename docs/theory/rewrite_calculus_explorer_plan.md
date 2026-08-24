@@ -1,7 +1,7 @@
 # Rewrite-calculus explorer — UI/UX plan
 
 Status: **Phase 0 merged into the laboratory Streamlit app**
-(`btprime ui` → Calculus research → Rewrite calculus). Isolated
+(`btlab ui` → Calculus research → Rewrite calculus). Isolated
 reviewer deploy is deferred; this UI is for laboratory use. This is
 infrastructure for a surviving paper candidate, not a new rewrite
 theorem.
@@ -37,7 +37,7 @@ Two users, one implementation.
 | Author | play the four witnesses and the unary stepper | every packet row is one click |
 | Reviewer | check interpretation of `add_requires_carry_state` | they never leave the paper spine |
 
-The existing laboratory UI fails that job. `btprime ui` is a
+The existing laboratory UI fails that job. `btlab ui` is a
 Collatz-and-residuals shell. The packet already says not to send the
 laboratory. Do **not** add this as another page under
 “Calculus research” next to the Residual explorer as the reviewer
@@ -46,7 +46,7 @@ entry point.
 ## 2. Product shape
 
 **One isolated Streamlit app**, launched by a dedicated command
-(`btprime rewrite explorer`), with its own `st.navigation` and **no**
+(`btlab rewrite explorer`), with its own `st.navigation` and **no**
 Residual / Collatz / Calculator pages.
 
 Reuse the current stack: Streamlit, `app_pages/`, native widgets,
@@ -254,9 +254,9 @@ isolated entry.
 | Stage | How the reviewer sees it |
 |-------|--------------------------|
 | Now (no UI) | packet + note |
-| After Phase 0 | `btprime rewrite explorer` on a tagged commit |
+| After Phase 0 | `btlab rewrite explorer` on a tagged commit |
 | After Phase 1 | same command, or Streamlit Community Cloud pointed at the isolated entry file only |
-| Never | `btprime ui` as the review surface |
+| Never | `btlab ui` as the review surface |
 
 A Cloud deploy is optional packaging. It is not a new research
 module. Pin a tag. If Cloud is too coupled to the monorepo, a
@@ -288,7 +288,7 @@ peak descendants). No Streamlit screenshot tests. No new ledger row.
 - isolated entry + three pages: Carry, Constructor sums, Push-in peak
 - claim badges and “not claimed” captions
 - presets only; unary stepper deferred
-- command `btprime rewrite explorer`
+- command `btlab rewrite explorer`
 
 Promotion: a reviewer can replay `add_requires_carry_state` without
 the laboratory shell.

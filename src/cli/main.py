@@ -27,7 +27,7 @@ from research.collatz.cli import add_collatz_subparser, run_collatz
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        prog="btprime",
+        prog="btlab",
         description=(
             "Balanced Ternary Mathematical Laboratory: core BT arithmetic, "
             "operator algebra, and independent research modules. "

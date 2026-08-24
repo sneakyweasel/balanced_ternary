@@ -22,4 +22,4 @@ from research.residuals.stratum import newton_stratum
 from bt.calculus.cubic import F_k
 ```
 
-`btprime ui` is an alias of the Streamlit launcher; keep `btprime collatz ui` and `btprime calculus explorer`.
+`btlab ui` launches the Streamlit app. Keep `btlab collatz ui` and `btlab calculus explorer`.

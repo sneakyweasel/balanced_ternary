@@ -192,8 +192,8 @@ yield a new obstruction to \(\liminf K_m/m\le\log_2 3\). See
 Use:
 
 ```powershell
-btprime collatz affine-center 1,4,2
-btprime collatz affine-center-census --max-length 6 --max-k 4 `
+btlab collatz affine-center 1,4,2
+btlab collatz affine-center-census --max-length 6 --max-k 4 `
   --critical-gap 10 --closest-count 20 --write
 ```
 

@@ -2,7 +2,7 @@ import BTCalculus.Derivative
 
 namespace BTCalculus
 
-open CollatzDual.Warp
+open Representation.Words
 
 def cmp3 (x y : ℤ) : Trit :=
   if x < y then Trit.minus
