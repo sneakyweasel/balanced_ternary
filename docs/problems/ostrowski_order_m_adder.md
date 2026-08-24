@@ -288,6 +288,12 @@ role. The systems are not identified.
   `energy_telescope` at remaining 0, not a new transducer.
   Repeating the hub word from the hub leaves \(F\). Legal two-step
   returns from the hub stay on the bounded ray \((3k,k,0)\).
+- Uniform unnormalized \(\lvert z_j\rvert\le C\) on origin-live
+  remaining \(0\) — **REFUTED** (ledger
+  `OST-np-unnormalized-mode-bound`). Companion \(z'=\lambda z-\lambda^2 w\)
+  is the residual `step` in companion coordinates, not a new
+  eigenfunctional. Finite-horizon maximizers are not a symbolic
+  family. Spectral cancellation as a new track is parked.
 
 ## Experiments
 
@@ -368,7 +374,8 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   not bound the kernel component.
 - Uniform unnormalized mode bound \(\lvert z_j\rvert\le C\) on
   origin-live remaining \(0\) fails from start remaining \(12\) to
-  \(16\): Perron \(\lvert z\rvert\) \(79.15\to 114.02\),
+  \(16\) (ledger `OST-np-unnormalized-mode-bound`): Perron
+  \(\lvert z\rvert\) \(79.15\to 114.02\),
   \(\lVert s\rVert_\infty\) \(27\to 37\), \(\lvert L_0\rvert\)
   \(165\to 379\). Normalized \(\lvert\lambda\rvert^{-k}\lvert z\rvert\)
   is not residual boundedness. Maximizer words at these horizons are
@@ -486,6 +493,12 @@ minus the state-dependent value: Lean `Ostrowski.NP.fold_s3`
 `energy_telescope` at remaining 0. Affine action remains
 `foldSteps_affine`. Not an `L_0` theorem.
 
+Uniform unnormalized companion-mode bound on origin-live remaining
+0 is **REFUTED** (ledger `OST-np-unnormalized-mode-bound`):
+\(\lvert L_0\rvert=165\to 379\), \(\lvert z\rvert\approx 79\to 114\)
+from start remaining \(12\to 16\). The companion recurrence is
+`step` in companion coordinates. No new Lean. Not an `L_0` theorem.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
@@ -500,6 +513,7 @@ Ledger row `OST-np-consumed-sum-append`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-val-concat-energy`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-complete-zero-monoid`: `REFUTED`.
 Ledger row `OST-np-fold-s3`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-unnormalized-mode-bound`: `REFUTED`.
 
 ## Results
 
@@ -1314,6 +1328,22 @@ Interior-legal two-step returns from the hub stay on
 \((3k,k,0)\) with \(k\in\{0,1,2\}\), still bounded, not a family.
 Live complete remaining-\(0\) of length \(N\) remains \(L_0(N)\).
 
+### Spectral cancellation is already parked
+
+The companion embedding \(z=(s_1,s_2,s_3)\) satisfies
+\(z(T_w s)=\lambda z(s)-\lambda^2 w\). That is the residual `step`,
+not a new left eigenfunctional. Uniform unnormalized
+\(\lvert z_j\rvert\le C\) on origin-live remaining \(0\) is
+**REFUTED** (ledger `OST-np-unnormalized-mode-bound`): from start
+remaining \(12\to 16\), \(\lvert L_0\rvert=165\to 379\),
+\(\lVert s\rVert_\infty=27\to 37\), Perron \(\lvert z\rvert\approx 79\to 114\).
+Normalized \(\lvert\lambda\rvert^{-k}\lvert z\rvert\) bounded is not
+residual boundedness. The \(N=12\) maximizer
+\((2,-4,-4,0,0,-4,1,1,-4,1,1,-2)\) is not a symbolic family.
+Large \(\lvert s\rvert\) does not force unique Ext. A new IFS
+attractor, \(N>16\) remaining-0 BFS, or algebraic-number framework
+does not decide \(\lvert L_0\rvert\).
+
 ## Open questions
 
 Is \(\lvert L_0\rvert=\infty\)? Origin reachability is the Ostrowski
@@ -1326,15 +1356,18 @@ is missing. Do not open order 4, Walnut, or a second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN identity `fold_s3`
-only (`energy_telescope` at remaining 0). State-dependent block
-value is \(-(T_B(s))_3\), not a new transducer. Hub iterates stay
-the bounded ray or leave \(F\). Do not promote
-\(\lvert L_0\rvert=\infty\). `val_concat_energy`, `particular_s3`,
-and `foldSteps_affine` are unchanged. Do not `CLOSE`. No order 4,
-CLI, or Walnut. Stop. Next question (not taken up): a contracting
-functional on \(\ker(u_n)\), or a symbolic family that is not a
-recurrence reset and not the bounded \(F\to F\) ray.
+`PARK` \(\lvert L_0\rvert\). `REFUTED`: uniform unnormalized
+\(\lvert z_j\rvert\le C\) on origin-live remaining \(0\). `CLOSE`
+the companion/\(V_\lambda\) recurrence as a reparameterization of
+`step`. Finite-horizon maximizers are not a family and not
+\(\lvert L_0\rvert=\infty\). This spectral-cancellation track is
+the parked convolution branch, not a new one. Do not promote
+\(\lvert L_0(N)\rvert\) or \(\lvert z\rvert\) growth to infinitude.
+`fold_s3`, `origin_particular`, and `iterateA_e3` are unchanged.
+Do not `CLOSE` the Ostrowski problem. No order 4, CLI, or Walnut.
+Stop. Next question (not taken up): a contracting functional on
+\(\ker(u_n)\), or a symbolic family that is not a recurrence reset
+and not the bounded \(F\to F\) ray.
 
 ## Publication assessment
 

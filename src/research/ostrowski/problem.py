@@ -58,7 +58,9 @@ PROBLEM = ProblemDefinition(
         "remaining-0 of length N is L_0(N). From any residual "
         "(T_B(s))_3 = E_|B|(s)-val(B) (Lean fold_s3, KNOWN); that is "
         "energy_telescope at remaining 0. Hub iterates stay on the "
-        "bounded F-to-F ray or leave F. Every small integer "
+        "bounded F-to-F ray or leave F. Uniform unnormalized |z|≤C "
+        "on origin-live remaining 0 is REFUTED (N=12 to 16); the "
+        "companion recurrence is the residual step. Every small integer "
         "linear form on s grows from start remaining 16 to 20. |L_0| is "
         "not proved infinite. Pisot existence of some adder is known."
     ),

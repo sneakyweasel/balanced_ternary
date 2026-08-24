@@ -2127,5 +2127,16 @@
       "tests/research/ostrowski/test_zero_value_kernel.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "OST-np-unnormalized-mode-bound",
+    "tag": "REFUTED",
+    "statement": "on origin-live remaining-0 slices of Γ_NP a uniform unnormalized bound |z_j|≤C holds, equivalently infinite liveness forces all expanding companion modes bounded",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "",
+    "tests": [
+      "tests/research/ostrowski/test_spectral_control.py"
+    ],
+    "related_conjectures": []
   }
 ]
