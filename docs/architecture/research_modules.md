@@ -36,7 +36,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.perfect_powers` | `EXPLORATORY` | sparse squares and cubes |
 | `research.primes` | `EXPLORATORY` | sparse-prime helpers already in the repo |
 | `research.sparse_polynomials` | `EXPLORATORY` | Mahler / factor scans |
-| `research.operator_dynamics` | `EXPLORATORY` | composition census, dossiers |
+| `research.operator_dynamics` | `ARCHIVED` | {S,N,D,W} identities; length-≤4 close |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |
 | `research.erdos_distinct_subset_sums` | `EXPLORATORY` | Erdős #1 signed-relation gate |
 | `research.kabelian_complexity` | `ARCHIVED` | k-abelian residual signatures; block-coding close |
