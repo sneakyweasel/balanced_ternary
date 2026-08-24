@@ -21,18 +21,20 @@ The kernel family ``t_n`` is one probe of ``K_n``, not the whole slab.
 
 from __future__ import annotations
 
-from collections import deque
 from itertools import product
 from math import hypot
 
 from research.ostrowski.exceptional_kernel import GM_MODULI
-from research.ostrowski.live_growth import legal_w, residual_is_live, unread_tail_bounds
+from research.ostrowski.live_growth import legal_w, unread_tail_bounds
 from research.ostrowski.nonpisot_search import HUB
 from research.ostrowski.reverse_map import integer_preimage
 from research.ostrowski.spectral import cubic_roots
 from research.ostrowski.spectral_residual import residual_matrix, transition_affine
+from research.ostrowski.spec import ostrowski_spec
 from research.ostrowski.system import OstrowskiSystem, characteristic_poly_coeffs, nonpisot_order3
 from research.ostrowski.terminal_set import is_terminal, kernel_family_state
+from research_engine.core.phase import IntPhase
+from research_engine.reachability.forward import forward_search
 
 State3 = tuple[int, int, int]
 StatePos = tuple[State3, int]
@@ -62,12 +64,6 @@ def _norm_dir(state: State3) -> tuple[float, float, float] | None:
     return (state[0] / n, state[1] / n, state[2] / n)
 
 
-def _alphabet(system: OstrowskiSystem, remaining: int) -> tuple[int, ...]:
-    if remaining < 1:
-        return ()
-    return legal_w(system, remaining - 1)
-
-
 def forward_layers(
     system: OstrowskiSystem,
     start_remaining: int,
@@ -81,34 +77,21 @@ def forward_layers(
     """
     if start_remaining < 0:
         raise ValueError("start_remaining must be nonnegative")
-    start: State3 = ORIGIN
-    if live_only and not residual_is_live(system, start, start_remaining):
+    spec = ostrowski_spec(start_remaining, system)
+    result = forward_search(spec, live_only=live_only)
+    if not result.live_start:
         return {
             "start_remaining": start_remaining,
             "live_only": live_only,
             "live_start": False,
             "layers": {},
         }
-    seen: set[StatePos] = {(start, start_remaining)}
-    queue: deque[StatePos] = deque([(start, start_remaining)])
     parent: dict[StatePos, tuple[StatePos, int]] = {}
-    by_rem: dict[int, set[State3]] = {start_remaining: {start}}
-    while queue:
-        state, remaining = queue.popleft()
-        if remaining == 0:
-            continue
-        for w in _alphabet(system, remaining):
-            nxt = transition_affine(system, state, w)
-            nxt_rem = remaining - 1
-            if live_only and not residual_is_live(system, nxt, nxt_rem):
-                continue
-            key = (nxt, nxt_rem)
-            if key in seen:
-                continue
-            seen.add(key)
-            parent[key] = ((state, remaining), w)
-            by_rem.setdefault(nxt_rem, set()).add(nxt)
-            queue.append(key)
+    for (state, phase), ((pstate, pphase), w) in result.parents.items():
+        parent[(state, int(phase))] = ((pstate, int(pphase)), w)
+    by_rem: dict[int, set[State3]] = {}
+    for n in range(start_remaining + 1):
+        by_rem[n] = set(result.layer_at(IntPhase(n)))
     layers: dict[int, dict[str, object]] = {}
     for n in range(start_remaining + 1):
         rset = by_rem.get(n, set())
@@ -121,7 +104,7 @@ def forward_layers(
         "start_remaining": start_remaining,
         "live_only": live_only,
         "live_start": True,
-        "raw_pairs": len(seen),
+        "raw_pairs": len(result.configurations),
         "layers": layers,
         "union_is_not_Ln": True,
         "finite_depth_is_not_infinitude": True,

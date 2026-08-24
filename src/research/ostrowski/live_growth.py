@@ -8,13 +8,15 @@ agree. Finite depth is not a proof of infinitude.
 
 from __future__ import annotations
 
-from collections import deque
 from functools import lru_cache
 
 from research.ostrowski.residual import residual_integer
 from research.ostrowski.spectral import constant_digits
 from research.ostrowski.spectral_residual import transition_affine
+from research.ostrowski.spec import ostrowski_spec
 from research.ostrowski.system import OstrowskiSystem
+from research_engine.core.phase import IntPhase
+from research_engine.reachability.forward import forward_search
 
 State3 = tuple[int, int, int]
 StatePos = tuple[State3, int]
@@ -71,42 +73,27 @@ def residual_is_live(system: OstrowskiSystem, state: State3, remaining: int) -> 
 
 def reachable_live(system: OstrowskiSystem, max_length: int) -> dict[str, object]:
     """Live MSD BFS from ``(0,0,0)`` with remaining length ``max_length``."""
-    start: State3 = (0, 0, 0)
-    if not residual_is_live(system, start, max_length):
+    result = forward_search(ostrowski_spec(max_length, system), live_only=True)
+    if not result.live_start:
         return {
             "max_length": max_length,
             "state_count": 0,
             "live_start": False,
         }
-    seen: set[StatePos] = {(start, max_length)}
-    states: set[State3] = {start}
-    queue: deque[StatePos] = deque([(start, max_length)])
-    new_at_depth: dict[int, int] = {max_length: 1}
-    dead_images = 0
+    states = set(result.union)
+    new_at_depth: dict[int, int] = {}
+    seen_states: set[State3] = set()
+    for state, phase in result.visit_order:
+        if state not in seen_states:
+            seen_states.add(state)
+            remaining = phase.value if isinstance(phase, IntPhase) else int(phase)
+            new_at_depth[remaining] = new_at_depth.get(remaining, 0) + 1
     max_abs = [0, 0, 0]
     max_norm = 0
-    accepting = 0
-    while queue:
-        state, i = queue.popleft()
+    for state in states:
         for k in range(3):
             max_abs[k] = max(max_abs[k], abs(state[k]))
         max_norm = max(max_norm, abs(state[0]) + abs(state[1]) + abs(state[2]))
-        if i == 0:
-            if state[2] == 0:
-                accepting += 1
-            continue
-        for w in legal_w(system, i - 1):
-            nxt = transition_affine(system, state, w)
-            if not residual_is_live(system, nxt, i - 1):
-                dead_images += 1
-                continue
-            key = (nxt, i - 1)
-            if key not in seen:
-                seen.add(key)
-                if nxt not in states:
-                    states.add(nxt)
-                    new_at_depth[i - 1] = new_at_depth.get(i - 1, 0) + 1
-                queue.append(key)
     boundary = [
         s
         for s in states
@@ -114,7 +101,7 @@ def reachable_live(system: OstrowskiSystem, max_length: int) -> dict[str, object
     ]
     return {
         "max_length": max_length,
-        "raw_states": len(seen),
+        "raw_states": len(result.configurations),
         "live_states": len(states),
         "new_live_states": new_at_depth,
         "max_abs_s1": max_abs[0],
@@ -122,8 +109,8 @@ def reachable_live(system: OstrowskiSystem, max_length: int) -> dict[str, object
         "max_abs_s3": max_abs[2],
         "max_l1": max_norm,
         "boundary_states": len(boundary),
-        "accepting_states": accepting,
-        "dead_images": dead_images,
+        "accepting_states": len(result.terminal_image),
+        "dead_images": result.rejected_images,
         "states": frozenset(states),
         "live_start": True,
         "digits": constant_digits(system),

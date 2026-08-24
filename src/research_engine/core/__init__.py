@@ -16,12 +16,13 @@ from research_engine.core.block import (
 )
 from research_engine.core.phase import IntPhase
 from research_engine.core.problem_spec import ProblemSpec
-from research_engine.core.semantics import Control, Matrix, SearchScope, State, Vector
+from research_engine.core.semantics import ClaimKind, Control, Matrix, SearchScope, State, Vector
 from research_engine.core.trajectory import LazyTrajectory, Trajectory, simulate
 
 __all__ = [
     "AffineSystem",
     "BlockAction",
+    "ClaimKind",
     "Control",
     "IntPhase",
     "LazyTrajectory",

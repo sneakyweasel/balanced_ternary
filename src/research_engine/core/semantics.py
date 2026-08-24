@@ -25,3 +25,19 @@ class SearchScope(str, Enum):
     EXACT = "EXACT"
     BOUNDED = "BOUNDED"
     APPROXIMATE = "APPROXIMATE"
+
+
+class ClaimKind(str, Enum):
+    """Typed research target. These kinds do not imply one another.
+
+    ``LIVE_SLICE`` is ``R ∩ K`` at the same phase. ``LIVE`` is
+    ``R ∩ C(K)``. ``CO_REACHABLE`` of a seed is not the live set.
+    ``TERMINAL`` geometry is not infinitude of ``LIVE``.
+    """
+
+    REACHABLE = "REACHABLE"
+    CO_REACHABLE = "CO_REACHABLE"
+    TERMINAL = "TERMINAL"
+    LIVE_SLICE = "LIVE_SLICE"
+    LIVE = "LIVE"
+    SUFFIX = "SUFFIX"

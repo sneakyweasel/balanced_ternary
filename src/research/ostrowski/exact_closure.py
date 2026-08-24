@@ -23,6 +23,7 @@ from research.ostrowski.nonpisot_search import HUB, l1
 from research.ostrowski.reverse_map import integer_preimage
 from research.ostrowski.spectral_residual import transition_affine
 from research.ostrowski.system import nonpisot_order3
+from research_engine.reachability.reverse import reverse_closure
 
 State3 = tuple[int, int, int]
 
@@ -76,23 +77,18 @@ def basin_of_zero() -> dict[str, object]:
     ``canonical_basin_states``), not as a 9164-line analogue of ``B_MIN``.
     """
     alphabet = union_alphabet()
-    seed: State3 = (0, 0, 0)
-    seen: set[State3] = {seed}
-    layer: set[State3] = {seed}
-    depth = 0
-    while True:
-        nxt: set[State3] = set()
-        for t in layer:
-            for w in alphabet:
-                pred = integer_preimage(t, w)
-                if pred is not None and pred not in seen:
-                    seen.add(pred)
-                    nxt.add(pred)
-        if not nxt:
-            break
-        depth += 1
-        layer = nxt
-    states = frozenset(seen)
+
+    def predecessors(state: State3) -> tuple[State3, ...]:
+        found: list[State3] = []
+        for w in alphabet:
+            pred = integer_preimage(state, w)
+            if pred is not None:
+                found.append(pred)
+        return tuple(found)
+
+    result = reverse_closure(((0, 0, 0),), predecessors)
+    states = result.union
+    depth = result.horizon if result.horizon is not None else 0
     canonical = tuple(sorted(states))
     extrema = (
         (min(s[0] for s in states), max(s[0] for s in states)),

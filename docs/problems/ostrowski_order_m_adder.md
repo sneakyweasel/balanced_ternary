@@ -1527,9 +1527,12 @@ reset and not the bounded \(F\to F\) ray.
 Engineering R1–R2 (2026-08-24) extracted exact affine, block,
 phase, and trajectory primitives into `research_engine`. Ostrowski
 `transition_affine` / `apply_word` / `matrix_power` / `affine_block`
-are compatibility wrappers. That extraction is infrastructure
-`PROMOTE`. It does not change the mathematical decision above.
-Do not start R3 until a later cycle.
+are compatibility wrappers. Engineering R3 extracted forward /
+reverse / live-slice / suffix search with explicit `BOUNDED` vs
+`EXACT` scope. `OstrowskiSpec` is a thin adapter; energy formulas
+stay Ostrowski-specific. Both extractions are infrastructure
+`PROMOTE`. They do not change the mathematical decision above.
+Do not start R4 until a later cycle.
 
 ## Publication assessment
 

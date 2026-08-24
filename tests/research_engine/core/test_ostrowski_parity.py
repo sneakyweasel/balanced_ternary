@@ -78,3 +78,28 @@ def test_hub_word_uses_affine_composition_not_naive_concat():
     assert naive == (0, 0, 1)
     assert naive != HUB
     assert apply_word(system, (0, 0, 0), SHORTEST_NONRESET) == HUB
+
+
+def test_forward_live_layers_match_ostrowski_remaining_four():
+    from research.ostrowski.ext_feasibility import live_ext, live_ext_by_oracle
+    from research.ostrowski.live_layers import ORIGIN, forward_layers
+    from research.ostrowski.spec import ostrowski_spec
+    from research_engine.acceptance.suffix import live_extensions
+    from research_engine.core.phase import IntPhase
+    from research_engine.core.semantics import ClaimKind, SearchScope
+    from research_engine.reachability.forward import forward_search
+
+    system = nonpisot_order3()
+    report = forward_layers(system, 4, live_only=True)
+    result = forward_search(ostrowski_spec(4, system), live_only=True)
+    assert result.scope == SearchScope.BOUNDED
+    assert result.kind == ClaimKind.LIVE_SLICE
+    assert result.complete
+    assert result.union != result.terminal_image
+    for n in range(5):
+        layer = result.layer_at(IntPhase(n))
+        assert len(layer) == report["layers"][n]["R"] == report["layers"][n]["L"]
+    assert live_ext(ORIGIN, 4) == live_ext_by_oracle(ORIGIN, 4)
+    assert live_extensions(ostrowski_spec(4, system), ORIGIN, IntPhase(4)) == live_ext_by_oracle(
+        ORIGIN, 4
+    )

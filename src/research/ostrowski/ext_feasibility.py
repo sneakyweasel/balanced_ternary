@@ -28,9 +28,12 @@ from research.ostrowski.energy_trajectory import apply_word, remaining_one_form
 from research.ostrowski.exceptional_kernel import W_INTERIOR
 from research.ostrowski.live_growth import legal_w
 from research.ostrowski.live_layers import energy_canonical
+from research.ostrowski.spec import ostrowski_spec
 from research.ostrowski.spectral_residual import transition_affine
 from research.ostrowski.system import OstrowskiSystem, nonpisot_order3
 from research.ostrowski.terminal_set import hi_closed_form, is_terminal, lo_closed_form
+from research_engine.acceptance.suffix import live_extensions
+from research_engine.core.phase import IntPhase
 
 State3 = tuple[int, int, int]
 ORIGIN: State3 = (0, 0, 0)
@@ -126,13 +129,8 @@ def live_ext(state: State3, remaining: int) -> tuple[int, ...]:
 
 
 def live_ext_by_oracle(state: State3, remaining: int) -> tuple[int, ...]:
-    sys = _sys()
-    letters = []
-    for w in alphabet_at_remaining(remaining):
-        nxt = transition_affine(sys, state, w)
-        if is_terminal(sys, nxt, remaining - 1):
-            letters.append(w)
-    return tuple(letters)
+    spec = ostrowski_spec(max(remaining, 0))
+    return live_extensions(spec, state, IntPhase(remaining))
 
 
 def real_width(remaining: int) -> dict[str, object]:
