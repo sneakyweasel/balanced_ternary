@@ -315,6 +315,12 @@ role. The systems are not identified.
   \((B_\ast)^k\) padding. Primitive image \(P\) equals \(L_0\) by
   shortest realizations; that is not a new census. Finite-horizon
   \(C(N)\) growth is not \(\lvert L_0\rvert=\infty\).
+- Length-\(n\) suffix landing on \(F\) is classified by \(E_n\), not
+  by residual \(s\) — **PROVED — LEAN** (`same_energy_same_OnF`,
+  novelty **KNOWN**): equal \(E_{\lvert v\rvert}\) implies the same
+  `OnF`. Myhill–Nerode / Hankel / digit-triple alphabets are not a
+  new census. Finite-horizon Ext collapse (22 windows) is not
+  \(\lvert L_0\rvert=\infty\).
 
 ## Experiments
 
@@ -421,6 +427,14 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   Hub \(\ell_{\min}=2\). \(C(N)\) still grows through remaining \(8\);
   that is not \(\lvert L_0\rvert=\infty\). Primitive \(P=L_0\) is not a
   new set.
+- Length-\(n\) suffix acceptance is classified by \(E_n\), not by
+  residual coordinates (ledger `OST-np-same-energy-same-OnF`).
+  Equal energy implies the same landing on \(F\). Distinct residuals
+  with the same \(E_n\) are not Myhill–Nerode-distinct at remaining
+  \(n\). Co-live states collapse onto finitely many Ext windows
+  (22 types). Finite future quotient does not imply
+  \(\lvert L_0\rvert<\infty\). The 3-input adder for one
+  non-quadratic \(\alpha\) remains literature **KNOWN negative**.
 - Unique control at large \(\lvert s\rvert\) fails on the \(N=12\)
   maximizer prefixes: remaining \(5\), state \((12,-2,-1)\),
   \(\lVert s\rVert_\infty=12\), Ext \((-1,0,1)\). Ext is the energy
@@ -563,6 +577,13 @@ An origin reset does not change the particular of a suffix: Lean
 length 2. Primitive image \(P=L_0\) is shortest-realization
 tautology, not a new census. Not an `L_0` theorem.
 
+Length-`n` suffix landing on `F` is classified by `E_n`: Lean
+`Ostrowski.NP.same_energy_same_OnF` (ledger
+`OST-np-same-energy-same-OnF`), novelty **KNOWN**. Equal
+`E_|v|` implies the same `OnF`. Myhill–Nerode / Hankel is
+reparameterization of the energy slab at fixed remaining, and of
+live union at unbounded length. Not an `L_0` theorem.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
@@ -583,6 +604,7 @@ Ledger row `OST-np-long-words-infinite-L0`: `REFUTED`.
 Ledger row `OST-np-unique-predecessor`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-extra-terminal-congruence`: `REFUTED`.
 Ledger row `OST-np-reset-prefix`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-same-energy-same-OnF`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -1460,6 +1482,24 @@ Cumulative \(C(N)\) still grows through remaining \(8\). Reset-padded
 length is not primitive terminal growth. No primitive-DP engine or
 pump search.
 
+### Suffix futures are classified by energy
+
+Lean `same_energy_same_OnF` (ledger `OST-np-same-energy-same-OnF`,
+novelty **KNOWN**): if \(E_{\lvert v\rvert}(s)=E_{\lvert v\rvert}(t)\)
+then \(T_v(s)\) lands on \(F\) iff \(T_v(t)\) does. This is
+`fold_on_F_iff`. The suffix energy path is `energy_step`, so
+length-\(n\) acceptance injects into the finite slab \(K_n\).
+Claims A \(\lvert L_0\rvert=\infty\), B nonregular 3-input relation,
+and C this residual construction, are distinct. Finite live closure
+implies a finite future quotient (pigeonhole); the converse is
+false at fixed remaining (energy kernel). Unbounded-length Myhill–Nerode
+index tracks live-union cardinality, not \(\lvert L_0\rvert\).
+Python: equal \(E_1\) at the origin and \((0,-2,1)\) share `live_ext`
+and `OnF` after LSD \(0\); that letter separates origin from hub.
+Co-live states at remaining \(4\) in `dag_at(8)` exceed the number
+of Ext windows. No Hankel matrix, digit-triple alphabet, or
+Myhill–Nerode engine.
+
 ## Open questions
 
 Is \(\lvert L_0\rvert=\infty\)? Origin reachability is the Ostrowski
@@ -1473,14 +1513,16 @@ is missing. Do not open order 4, Walnut, or a second example.
 ## Decision
 
 `PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN identity
-`reset_prefix` only. `CLOSE` primitive image \(P=L_0\) as
-shortest-realization tautology. Unbounded \(H(t)\) remains
-**REFUTED** as a proxy for infinitude. Finite-horizon \(C(N)\)
-growth is not \(\lvert L_0\rvert=\infty\). Do not `CLOSE` the
-Ostrowski problem. No order 4, CLI, Walnut, or primitive-DP /
-pump stack. Stop. Next question (not taken up): a contracting
-functional on \(\ker(u_n)\), or a symbolic family that is not a
-recurrence reset and not the bounded \(F\to F\) ray.
+`same_energy_same_OnF` only. `CLOSE` Myhill–Nerode / Hankel /
+triangular families / digit-triple alphabets as new mathematics
+(reparameterization of \(E_n\) at fixed remaining; of live union
+at unbounded length). Finite future quotient does not imply
+finite \(\lvert L_0\rvert\). The 3-input relation remains
+literature **KNOWN negative**. Do not `CLOSE` the Ostrowski
+problem. No order 4, CLI, Walnut, or automata stack. Stop. Next
+question (not taken up): a contracting functional on
+\(\ker(u_n)\), or a symbolic family that is not a recurrence
+reset and not the bounded \(F\to F\) ray.
 
 ## Publication assessment
 

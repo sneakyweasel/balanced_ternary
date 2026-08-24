@@ -2183,7 +2183,7 @@
     ],
     "related_conjectures": []
   },
-  {
+    {
     "id": "OST-np-reset-prefix",
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "for Γ_NP, if T_R(0)=0 then T_{RU}(0)=T_U(0); origin-reset prefixes do not create new terminals. This is particular_concat at c_R=0, not a bound on L_0",
@@ -2191,6 +2191,17 @@
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
       "tests/research/ostrowski/test_recurrence_zero.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-same-energy-same-OnF",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if E_|v|(s)=E_|v|(t) then T_v(s) lands on F iff T_v(t) does; length-n suffix acceptance is classified by E_n, not by residual coordinates. This is fold_on_F_iff, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_ext_feasibility.py"
     ],
     "related_conjectures": []
   }

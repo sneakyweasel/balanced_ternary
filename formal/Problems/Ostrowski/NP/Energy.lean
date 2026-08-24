@@ -54,7 +54,10 @@ The recurrence word is a reset (`recurrence_word_reset`):
 `(B*)^k · (1,-2)` has particular the hub (`reset_pow_then_hub`).
 An origin reset does not change the particular of a suffix
 (`reset_prefix`): `T_R(0)=0` implies `T_{RU}(0)=T_U(0)`.
-That is not a bound on `L₀`.
+Equal unread-tail energy implies the same landing on `F`
+(`same_energy_same_OnF`). Length-`n` suffix acceptance is
+classified by `E_n`, not by the residual coordinates. That is
+not a bound on `L₀`.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -576,6 +579,13 @@ theorem fold_on_F_iff (ws : List ℤ) (s : State) :
     have hs3 := fold_s3 ws s
     simp [OnF]
     linarith
+
+/-- Length-`|ws|` landing on `F` is classified by `E_{|ws|}`, not by `s`.
+KNOWN `fold_on_F_iff`, not a Myhill–Nerode calculus and not `L₀`. -/
+theorem same_energy_same_OnF (ws : List ℤ) (s t : State)
+    (h : energy ws.length s = energy ws.length t) :
+    OnF (foldSteps ws s) ↔ OnF (foldSteps ws t) := by
+  simp [fold_on_F_iff, h]
 
 theorem foldSteps_append (u v : List ℤ) (s : State) :
     foldSteps (u ++ v) s = foldSteps v (foldSteps u s) := by

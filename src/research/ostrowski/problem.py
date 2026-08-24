@@ -68,7 +68,10 @@ PROBLEM = ProblemDefinition(
         "beyond 3|a is REFUTED at N=12. The integer reverse is Lean "
         "unique_predecessor (KNOWN). Origin-reset prefixes do not "
         "create new terminals (Lean reset_prefix, KNOWN); hub first "
-        "appears at length 2; P=L_0 is not a new census. Every small integer "
+        "appears at length 2; P=L_0 is not a new census. Length-n "
+        "suffix landing on F is classified by E_n (Lean "
+        "same_energy_same_OnF, KNOWN), not by residual coordinates; "
+        "Myhill-Nerode/Hankel is not a new census. Every small integer "
         "linear form on s grows from start remaining 16 to 20. |L_0| is "
         "not proved infinite. Pisot existence of some adder is known."
     ),

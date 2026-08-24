@@ -24,7 +24,7 @@ from research.ostrowski.control_language import (
     dag_at,
     ext_is_consecutive_interval,
 )
-from research.ostrowski.energy_trajectory import remaining_one_form
+from research.ostrowski.energy_trajectory import apply_word, remaining_one_form
 from research.ostrowski.exceptional_kernel import W_INTERIOR
 from research.ostrowski.live_growth import legal_w
 from research.ostrowski.live_layers import energy_canonical
@@ -370,4 +370,93 @@ def phase0_ext_feasibility() -> dict[str, object]:
         NORMALIZED_NOT_COORDINATE: True,
         GROWTH_NOT_INFINITUDE: True,
         U_IS_E1: True,
+    }
+
+
+HUB: State3 = (-3, -1, 0)
+SAME_E1_AS_ORIGIN: State3 = (0, -2, 1)
+LSD_ZERO: tuple[int, ...] = (0,)
+
+
+def on_f(state: State3) -> bool:
+    return state[2] == 0
+
+
+def same_energy_same_onf(
+    left: State3, right: State3, suffix: tuple[int, ...]
+) -> bool:
+    """Equal ``E_|v|`` implies the same landing on ``F``. Lean ``same_energy_same_OnF``."""
+    sys = _sys()
+    n = len(suffix)
+    if energy_canonical(sys, left, n) != energy_canonical(sys, right, n):
+        return False
+    return on_f(apply_word(sys, left, suffix)) == on_f(
+        apply_word(sys, right, suffix)
+    )
+
+
+def suffix_separates_onf(
+    left: State3, right: State3, suffix: tuple[int, ...]
+) -> bool:
+    """A legal suffix lands exactly one of the two states on ``F``."""
+    sys = _sys()
+    return on_f(apply_word(sys, left, suffix)) != on_f(
+        apply_word(sys, right, suffix)
+    )
+
+
+def energy_future_collapse(
+    start_remaining: int = 8, remaining: int = 4
+) -> dict[str, object]:
+    """Co-live ``|states|`` vs ``|E_n|`` vs ``|Ext|``. Collapse, not a Hankel rank."""
+    sys = _sys()
+    dag = dag_at(start_remaining)
+    states: set[State3] = set()
+    energies: set[int] = set()
+    exts: set[tuple[int, ...]] = set()
+    for state, rem in dag.colive:
+        if rem != remaining:
+            continue
+        states.add(state)
+        energies.add(energy_canonical(sys, state, remaining))
+        exts.add(dag.ext((state, remaining)))
+    n_states = len(states)
+    n_energy = len(energies)
+    n_ext = len(exts)
+    return {
+        "start_remaining": start_remaining,
+        "remaining": remaining,
+        "n_states": n_states,
+        "n_energy": n_energy,
+        "n_ext": n_ext,
+        "states_exceed_energy": n_states > n_energy,
+        "states_exceed_ext": n_states > n_ext,
+        GROWTH_NOT_INFINITUDE: True,
+        KNOWN_PACKAGING: True,
+    }
+
+
+def phase0_same_energy_same_onf() -> dict[str, object]:
+    """Suffix landing on ``F`` is classified by ``E_n``, not by ``s``. Not ``|L_0|``."""
+    sys = _sys()
+    n = len(LSD_ZERO)
+    same_e = energy_canonical(sys, ORIGIN, n) == energy_canonical(
+        sys, SAME_E1_AS_ORIGIN, n
+    )
+    diff_e = energy_canonical(sys, ORIGIN, n) != energy_canonical(sys, HUB, n)
+    collapse = energy_future_collapse(8, 4)
+    return {
+        "same_energy": same_e,
+        "same_energy_same_live_ext": live_ext(ORIGIN, n)
+        == live_ext(SAME_E1_AS_ORIGIN, n),
+        "same_energy_same_onf": same_energy_same_onf(
+            ORIGIN, SAME_E1_AS_ORIGIN, LSD_ZERO
+        ),
+        "different_energy": diff_e,
+        "zero_separates_origin_hub": suffix_separates_onf(ORIGIN, HUB, LSD_ZERO),
+        "origin_on_f": on_f(apply_word(sys, ORIGIN, LSD_ZERO)),
+        "hub_on_f": on_f(apply_word(sys, HUB, LSD_ZERO)),
+        "collapse": collapse,
+        GROWTH_NOT_INFINITUDE: True,
+        KNOWN_PACKAGING: True,
     }

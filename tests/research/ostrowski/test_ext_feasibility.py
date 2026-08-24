@@ -101,3 +101,38 @@ def test_boxed_colive_no_holes_no_m3():
     assert report["live_ext_singleton_m3_count"] == 0
     assert report["max_live_ext_len"] <= 4
     assert report["live_ne_colive_count"] == 0
+
+
+def test_same_energy_same_onf_and_collapse():
+    from research.ostrowski.energy_trajectory import apply_word
+    from research.ostrowski.ext_feasibility import (
+        HUB,
+        LSD_ZERO,
+        SAME_E1_AS_ORIGIN,
+        energy_future_collapse,
+        on_f,
+        phase0_same_energy_same_onf,
+        same_energy_same_onf,
+        suffix_separates_onf,
+    )
+    from research.ostrowski.live_layers import energy_canonical
+    from research.ostrowski.system import nonpisot_order3
+
+    sys = nonpisot_order3()
+    assert energy_canonical(sys, ORIGIN, 1) == energy_canonical(
+        sys, SAME_E1_AS_ORIGIN, 1
+    )
+    assert live_ext(ORIGIN, 1) == live_ext(SAME_E1_AS_ORIGIN, 1)
+    assert same_energy_same_onf(ORIGIN, SAME_E1_AS_ORIGIN, LSD_ZERO)
+    assert on_f(apply_word(sys, ORIGIN, LSD_ZERO))
+    assert on_f(apply_word(sys, SAME_E1_AS_ORIGIN, LSD_ZERO))
+    assert energy_canonical(sys, ORIGIN, 1) != energy_canonical(sys, HUB, 1)
+    assert suffix_separates_onf(ORIGIN, HUB, LSD_ZERO)
+    assert not on_f(apply_word(sys, HUB, LSD_ZERO))
+    collapse = energy_future_collapse(8, 4)
+    assert collapse["n_states"] > collapse["n_ext"]
+    assert collapse["n_states"] >= collapse["n_energy"]
+    report = phase0_same_energy_same_onf()
+    assert report["same_energy_same_onf"]
+    assert report["zero_separates_origin_hub"]
+    assert report[KNOWN_PACKAGING]
