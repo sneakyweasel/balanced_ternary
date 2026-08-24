@@ -143,3 +143,44 @@ def test_recurrence_and_lattice_inverse_match_ostrowski():
     np_spec = recurrence_spec(np_sys)
     assert np_spec is not None
     assert np_spec.companion_charpoly_matches()
+
+
+def test_typed_attacks_do_not_promote_np_census_to_live_infinitude():
+    from research.ostrowski.attacks import (
+        affine_region,
+        functional_s3,
+        hub_block,
+        modular,
+        reconnaissance,
+        reverse_origin,
+    )
+    from research.ostrowski.live_layers import ORIGIN, forward_layers
+    from research.ostrowski.zero_value_kernel import HUB, SHORTEST_NONRESET
+    from research_engine.attacks.result import AttackStatus
+    from research_engine.core.semantics import ClaimKind, SearchScope
+
+    census = reconnaissance(4)
+    report = forward_layers(nonpisot_order3(), 4, live_only=True)
+    assert census.status == AttackStatus.OBSERVATION
+    assert census.scope == SearchScope.BOUNDED
+    assert census.kind == ClaimKind.LIVE_SLICE
+    for n in range(5):
+        assert census.evidence["layer_sizes"][n] == report["layers"][n]["L"]
+    residue = modular()
+    assert residue.status == AttackStatus.SUPPORTED
+    assert residue.scope == SearchScope.EXACT
+    assert residue.kind == ClaimKind.REACHABLE
+    assert residue.evidence["forcing_gcds"][0] == 3
+    leak = affine_region(frozenset({ORIGIN}), 4)
+    assert leak.status == AttackStatus.REFUTED
+    block = hub_block()
+    assert block.status == AttackStatus.SUPPORTED
+    assert block.evidence["translation"] == HUB
+    assert block.evidence["block_kind"] == "AFFINE"
+    assert SHORTEST_NONRESET == (1, -2)
+    rev = reverse_origin(max_depth=1)
+    assert rev.kind == ClaimKind.CO_REACHABLE
+    assert "not the adder live set" in rev.claim
+    bound = functional_s3(2)
+    assert bound.status != AttackStatus.SUPPORTED
+    assert bound.scope == SearchScope.BOUNDED

@@ -1533,9 +1533,14 @@ reverse / live-slice / suffix search with explicit `BOUNDED` vs
 stay Ostrowski-specific. Engineering R4 extracted constant-coefficient
 recurrences, integer-matrix inverses, and linear forms; energy
 \(E_i=s\cdot(q_{i-2},q_{i-1},q_i)\) and the recurrence word \(B^*\)
-stay Ostrowski-specific. These extractions are infrastructure
-`PROMOTE`. They do not change the mathematical decision above.
-Do not start R5 (attacks), planner, or CLI until a later cycle.
+stay Ostrowski-specific. Engineering R5 extracted typed
+reconnaissance / modular / affine-region / reverse / functional /
+block attacks with explicit `ClaimKind` and `SearchScope`.
+`s_1\equiv 0\pmod 3` is an exact map law, not live infinitude; a
+sample max \(\lvert\ell\rvert\) is never `SUPPORTED`. These
+extractions are infrastructure `PROMOTE`. They do not change the
+mathematical decision above.
+Do not start R6 (planner/ledger), spectral attacks, or CLI until a later cycle.
 
 ## Publication assessment
 

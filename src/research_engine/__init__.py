@@ -3,6 +3,7 @@
 R2: exact affine, block, phase, and trajectory primitives.
 R3: reachability, co-reachability, live slices, and suffix feasibility.
 R4: integer recurrences, lattice inverses, and linear forms.
+R5: typed recon/modular/affine/reverse/functional/block attacks.
 
 This package must not import ``bt.*`` or ``research.*``. Problem
 adapters live under ``research.*`` and may import this engine.
@@ -27,6 +28,18 @@ from research_engine.algebra.lattices import (
 )
 from research_engine.algebra.linear_functionals import LinearFunctional, dot, left_multiply
 from research_engine.algebra.recurrences import RecurrenceSpec
+from research_engine.attacks import (
+    AffineInvariantAttack,
+    AttackContext,
+    AttackResult,
+    AttackStatus,
+    BlockDynamicsAttack,
+    BlockKind,
+    FunctionalBoundAttack,
+    ModularInvariantAttack,
+    ReconnaissanceAttack,
+    ReverseGeometryAttack,
+)
 from research_engine.core.affine_system import (
     AffineSystem,
     affine_step,
@@ -56,16 +69,26 @@ from research_engine.reachability import (
 
 __all__ = [
     "AffineSystem",
+    "AffineInvariantAttack",
+    "AttackContext",
+    "AttackResult",
+    "AttackStatus",
     "BlockAction",
+    "BlockDynamicsAttack",
+    "BlockKind",
     "ClaimKind",
     "Control",
     "DynamicsResult",
+    "FunctionalBoundAttack",
     "IntPhase",
     "LazyTrajectory",
     "LinearFunctional",
     "Matrix",
+    "ModularInvariantAttack",
     "ProblemSpec",
+    "ReconnaissanceAttack",
     "RecurrenceSpec",
+    "ReverseGeometryAttack",
     "SearchScope",
     "State",
     "TerminalSpec",

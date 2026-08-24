@@ -11,6 +11,7 @@ from dataclasses import dataclass
 
 from research.ostrowski.spectral_residual import transition_affine
 from research.ostrowski.system import OstrowskiSystem, nonpisot_order3
+from research_engine.core.affine_system import AffineSystem
 from research_engine.core.phase import IntPhase
 
 State3 = tuple[int, int, int]
@@ -83,4 +84,24 @@ def ostrowski_spec(
     return OstrowskiSpec(
         system=nonpisot_order3() if system is None else system,
         start_remaining=start_remaining,
+    )
+
+
+def ostrowski_affine(
+    system: OstrowskiSystem | None = None,
+    controls: tuple[int, ...] | None = None,
+) -> AffineSystem:
+    """Unread-tail affine system. Alphabet is not a global constant."""
+    from research.ostrowski.spectral_residual import residual_matrix
+
+    sys = nonpisot_order3() if system is None else system
+    if controls is None:
+        from research.ostrowski.live_growth import legal_w
+
+        controls = tuple(sorted(set(legal_w(sys, 0)) | set(legal_w(sys, 1))))
+    matrix = residual_matrix(sys)
+    return AffineSystem(
+        A=matrix,
+        translations={w: (0, 0, -w) for w in controls},
+        controls=controls,
     )
