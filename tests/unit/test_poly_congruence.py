@@ -4,10 +4,12 @@ from __future__ import annotations
 
 import io
 from contextlib import redirect_stdout
+from itertools import product
 
-from balanced_ternary.cli import main
+from cli.main import main
 from bt.calculus.myhill_nerode import equiv_by_outputs, merge_examples
-from bt.calculus.residual import residual_along
+from bt.calculus.quadratic import pack_word
+from bt.calculus.residual import TRITS, residual_along
 from bt.calculus.poly_congruence import (
     cubic_vanishes,
     distinguishing_residue,
@@ -19,6 +21,7 @@ from bt.calculus.poly_congruence import (
     newton_valuation,
     phi_equal,
     poly_congruence_report,
+    residual_shift,
     tau_leading_bound,
     vanishing_poly,
     vanishes_as_function,
@@ -173,3 +176,12 @@ def test_report_fields():
     rec2 = poly_congruence_report(parse_poly("x^3"), parse_poly("x"), 2)
     assert rec2["equivalent"] is False
     assert rec2["probe"] is not None
+
+
+def test_residual_shift_matches_residual_along():
+    for text in ("x^2", "x^3", "x^3-x", "x^4+2x", "x^5-x"):
+        f = parse_poly(text)
+        for m in range(3):
+            for word in product(TRITS, repeat=m):
+                p = pack_word(word)
+                assert residual_shift(f, m, p) == residual_along(f, word)

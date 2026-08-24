@@ -29,10 +29,23 @@ all \(n\)” is this dictionary plus prefix locality. Ledger tag:
 3. The Newton-stratum fibre laws for \(x^3\): \(N_2\) visibility
    \(p\equiv q\pmod{3^r}\), the \(N_1\) valuation filter, and the mismatched
    quotient \(Q_{t,K,W}\) for the surviving \(N_0\) term.
-   See [cubic_newton_stratum.md](cubic_newton_stratum.md).
+   In degree \(\le 3\) at deficit \(1\), residue visibility is exactly
+   \(v_3(a_3)=0\).
+   See [cubic_newton_stratum.md](cubic_newton_stratum.md) and the short
+   extract [newton_stratum_note.md](newton_stratum_note.md).
 
 Those fibre laws are not in Cahen–Chabert or Kempner. They are also not a
 Collatz theorem. No closed formula for \(M_k(x^3)\) is claimed.
+
+The Eisenstein dictionary \(3\sim(1-\omega)^2\) in \(\mathbb Z[\omega]\)
+is **KNOWN**
+([eisenstein-3-ramification](../../literature/eisenstein-3-ramification.json)).
+Rewriting \(N_2\) visibility as \(p\equiv q\pmod{(1-\omega)^{2r}}\) is a
+change of uniformizer: **REPARAMETERIZATION** of the existing cubic law,
+not a theorem about \(\operatorname{Int}(\mathbb Z[\omega])\). That
+\(\mathbb Q(\omega)\) is a Pólya field (cyclotomic;
+[zantema-1982-integer-valued-number-fields](../../literature/zantema-1982-integer-valued-number-fields.json))
+is likewise **KNOWN** and does not mention residual fibres.
 
 ## What is not claimed
 

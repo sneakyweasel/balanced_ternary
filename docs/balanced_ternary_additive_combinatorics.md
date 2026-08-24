@@ -13,10 +13,10 @@ C_k&=\Bigl\{\sum_{i=0}^{k-1}x_i 3^i:x_i\in\{-1,0,+1\}\Bigr\}.
 \end{aligned}
 \]
 
-**PROVED** (uniqueness of balanced ternary): \(C_k=[-M,M]\cap\mathbb{Z}\)
+**EXACT — HUMAN PROOF** (uniqueness of balanced ternary): \(C_k=[-M,M]\cap\mathbb{Z}\)
 and \(\lvert C_k\rvert=3^k\). \(\lvert A_k\rvert=\lvert B_k\rvert=2^k\).
 
-## Sumsets (PROVED)
+## Sumsets (EXACT — HUMAN PROOF)
 
 **\(A_k+A_k\).** Digitwise sums lie in \(\{0,1,2\}\), the complete ordinary
 base-3 alphabet of length \(k\). Therefore
@@ -55,7 +55,7 @@ full integer interval (odds are missing).
 
 **\(A_k+B_k\).** Digit alphabet before carry is \(\{-1,0,1,2\}\). No
 closed interval theorem is claimed. Enumeration for small \(k\) is
-**VERIFIED COMPUTATIONALLY**.
+**COMPUTATIONALLY VERIFIED**.
 
 These identities use uniqueness as a decoding mechanism. They are
 standard digitwise arithmetic, now recorded as exact theorems of the
@@ -63,14 +63,14 @@ repository rather than as numerical sumset scans.
 
 ## Sparse weight \(W_k=\{n:w(n)\le k\}\)
 
-**PROVED.** Squares in \(W_1\): \(w(n)\le 1\) means \(n=0\) or
+**EXACT — HUMAN PROOF.** Squares in \(W_1\): \(w(n)\le 1\) means \(n=0\) or
 \(n=\pm 3^a\). The only squares are \(0\) and \(3^{2t}=(3^t)^2\).
 
 Cubes in \(W_1\): \(0\) and \(3^{3t}\). Primes in \(W_1\): only \(3\).
 
 For \(k=2\), integers of the form \(\varepsilon 3^a+\delta 3^b\). Squares,
 cubes, and primes in this set are a computational search
-(`btprime operators sparse --k 2`). A prefix of squares is an
+(`btlab operators sparse --k 2`). A prefix of squares is an
 **OBSERVATION**, not a classification.
 
 ## Carry defect and \(d_{\mathrm{BT}}\)
@@ -81,16 +81,16 @@ d_{\mathrm{BT}}(a,b)=w(a-b),\qquad
 \mathrm{carry\_defect}(a,b)=w(a)+w(b)-w(a+b).
 \]
 
-**PROVED.** \(d_{\mathrm{BT}}\) is symmetric and definite:
+**EXACT — HUMAN PROOF.** \(d_{\mathrm{BT}}\) is symmetric and definite:
 \(w(-n)=w(n)\), and \(w(n)=0\) iff \(n=0\).
 
-**PROVED.** If \(a\) and \(b\) have disjoint support then addition is
+**EXACT — HUMAN PROOF.** If \(a\) and \(b\) have disjoint support then addition is
 carry-free and \(\mathrm{carry\_defect}(a,b)=0\).
 
 Triangle inequality for \(d_{\mathrm{BT}}\) is equivalent to
 \(\mathrm{carry\_defect}\ge 0\) identically, i.e. subadditivity of \(w\).
 That is **not** assumed. On \(\lvert a\rvert,\lvert b\rvert\le 25\) the
-defect is nonnegative (**VERIFIED COMPUTATIONALLY**). Equality
+defect is nonnegative (**COMPUTATIONALLY VERIFIED**). Equality
 \(1+1=2\) gives defect \(0\) with \(w(2)=2\). No infinite theorem is
 claimed from the box scan. If a negative defect exists it is a
 counterexample to the triangle inequality; none was found in that box.
@@ -98,7 +98,7 @@ counterexample to the triangle inequality; none was found in that box.
 ## CLI
 
 ```powershell
-btprime operators additive --k 6
-btprime operators sparse --k 1 --bound 10000
-btprime operators metrics --limit 20 1 9
+btlab operators additive --k 6
+btlab operators sparse --k 1 --bound 10000
+btlab operators metrics --limit 20 1 9
 ```

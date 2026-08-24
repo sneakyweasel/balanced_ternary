@@ -40,7 +40,7 @@ the branch closes as a reparameterization.
 
 ## Unit scaling collapses the jet
 
-**PROVED.** Let `λ` be coprime to `3`. If the trit `a` survives at `g`,
+**EXACT — HUMAN PROOF.** Let `λ` be coprime to `3`. If the trit `a` survives at `g`,
 that is `ρ_a(g) = 0`, then
 
 \[
@@ -65,7 +65,7 @@ carries its own trits, so invariance of the surviving-word set *is*
 invariance of the ordered trit-labelled subtree; no tree datatype is
 needed.
 
-**PROVED.** `Φ_r` is therefore not minimal. Smallest live witness, at
+**EXACT — HUMAN PROOF.** `Φ_r` is therefore not minimal. Smallest live witness, at
 every `r`:
 
 \[
@@ -83,14 +83,14 @@ whatever their jets, so `1` against `-1` is also jet-redundant and means
 nothing; any search that does not exclude dead states reports noise.
 Recorded in `research.lifting.state_complexity.minimality_witness`.
 
-**PROVED.** Unit scaling is nevertheless not the whole collapse. The
+**EXACT — HUMAN PROOF.** Unit scaling is nevertheless not the whole collapse. The
 orbit count `2·3^r − 1` strictly exceeds `L_r` from `r = 2` on (17 against
 15), so it is a proper intermediate quotient. Scaling explains the cause
 of non-minimality, not its size.
 
 ## The linear transition law
 
-**PROVED.** For a linear state and any `a ∈ ℤ`,
+**EXACT — HUMAN PROOF.** For a linear state and any `a ∈ ℤ`,
 
 \[
 \mathfrak{D}_a(c + bx) = D(c + ab) + b\,x,
@@ -116,7 +116,7 @@ Lean: `BTCalculus.sectionDeriv_linState`, with survival as
 
 ## The nonsingular row is Newton's method
 
-**PROVED.** Let `3 ∤ b` and put `u = c·b^{-1} mod 3^r`. Then:
+**EXACT — HUMAN PROOF.** Let `3 ∤ b` and put `u = c·b^{-1} mod 3^r`. Then:
 
 1. exactly one trit survives at each of the next `r` levels, so the
    depth-`r` behaviour is a single path;
@@ -152,7 +152,7 @@ scaling we may take `b = 3^e` exactly, so a row is a one-parameter family
 in `c mod 3^r`. Write `T_j` for the behaviour "fully ternary to depth
 `min(j, r)`, then dead".
 
-**PROVED (structure).** The row splits by `m`:
+**EXACT — HUMAN PROOF (structure).** The row splits by `m`:
 
 - **`m < e`.** Each child constant is `c/3 + a·3^{e-1}`, and
   `3^{e-1} ≡ 0 (mod 3)` forces all three children into the same class
@@ -187,7 +187,7 @@ tuple `(∅,∅,T_1,∅,∅)` — which is why the row count looked unreachable.
 `shift_law` in `research.lifting.state_complexity` keeps both candidates
 in the record and refutes the digit sum.
 
-**PROVED.** The row count is exactly
+**EXACT — HUMAN PROOF.** The row count is exactly
 
 \[
 N(r,e) = 3^{\,r-e} + e ,
@@ -206,7 +206,7 @@ for `r = 1..6`:
 | 5 | | | | | 6 | 8 |
 | 6 | | | | | | 7 |
 
-**PROVED (two rows exactly).** The extreme rows follow from the structure
+**EXACT — HUMAN PROOF (two rows exactly).** The extreme rows follow from the structure
 theorem with no gap:
 
 - `e = 0` is `3^r`, the nonsingular classification above.
@@ -234,7 +234,7 @@ where `B_R` is the depth-`R` behaviour map of the same row and
 shift law. The family is needed because `B_R` alone is far from injective:
 every `d` with `3 ∤ d` gives the dead behaviour.
 
-**PROVED.** `Φ_R` is injective for every `e ≥ 1` and every `R ≥ 0`.
+**EXACT — HUMAN PROOF.** `Φ_R` is injective for every `e ≥ 1` and every `R ≥ 0`.
 
 *Proof.* Induction on `R`. For `R = 0` the domain is trivial.
 
@@ -267,7 +267,7 @@ experiment in `shifted_family_injectivity`.
 
 ## The total, and the overlap
 
-**PROVED, given the rows.** The rows double-count exactly the truncated
+**EXACT — HUMAN PROOF, given the rows.** The rows double-count exactly the truncated
 trees. `T_j` occurs in row `e` iff `j < e`, together with `T_r` in row
 `r`, so `T_j` occurs in `r - j` rows for `j < r` and once for `j = r`.
 The excess over the `r` distinct truncated trees is
@@ -287,11 +287,11 @@ L_r \;=\; \sum_{e=0}^{r}\bigl(3^{\,r-e} + e\bigr) - \binom{r}{2}
 ∎ Values: 5, 15, 43, 125, 369, 1099.
 
 `L_r` inherits the classification of the rows it is summed from, which are
-now **PROVED**; the count is also verified exhaustively to `r = 6`.
+now **EXACT — HUMAN PROOF**; the count is also verified exhaustively to `r = 6`.
 
 ## Attainment
 
-**PROVED.** `L_r` is attained by genuine lifting nodes, so it is the
+**EXACT — HUMAN PROOF.** `L_r` is attained by genuine lifting nodes, so it is the
 exact number of deep-regime behaviours and not merely an upper bound.
 For any target `(c, b)`,
 
@@ -315,7 +315,7 @@ The count is a corollary of something more informative. Scale by a unit so
 that `b ≡ 3^e` with `e = min(v_3(b), r)`, and split on whether the constant
 or the derivative has the smaller valuation.
 
-**PROVED.** The depth-`r` behaviour of `(c, b)` is
+**EXACT — HUMAN PROOF.** The depth-`r` behaviour of `(c, b)` is
 
 - **dominated**, `v_3(c) < e`: the fully ternary tree truncated at depth
   `v_3(c)`. The behaviour depends on `v_3(c)` and on nothing else — not on
@@ -412,5 +412,5 @@ machinery.
 - Experiments: `research.lifting.state_complexity` (`shift_law`,
   `shifted_family_injectivity`, `normal_form`, `strata`).
 - Lean: `formal/BTCalculus/PadicLiftingState.lean`.
-- CLI: `btprime congruence state | distinguish`.
+- CLI: `btlab congruence state | distinguish`.
 - Explorer: the minimal-state panel of the "Congruence / lifting" view.

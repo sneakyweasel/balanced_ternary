@@ -1,25 +1,29 @@
 # Refactor report — Balanced Ternary Mathematical Laboratory
 
-Architectural move-and-shim. Mathematical behaviour is intended to be
-unchanged.
+Historical record of the package split. The live contract is
+[overview.md](overview.md). Compatibility façades listed below
+(`src/balanced_ternary/`, `src/collatz/`, `src/automata/`, and
+`formal/CollatzDual/`) were later deleted. Canonical imports are
+`bt.*` and `research.*`; the Lake package is `balanced-ternary-formal`.
 
 ## 1. Final repository tree (source)
 
 ```
 src/bt/                     core BT mathematics
 src/research/               problem modules + registries + experiment I/O
-src/cli/                    btprime implementation
-src/balanced_ternary/       compatibility façade
-src/collatz/                compatibility façade
-src/automata/               compatibility façade
+src/research_engine/        problem-independent experimental dynamics
+src/cli/                    btlab implementation
 src/visualization/          optional Streamlit UI
-formal/{Core,Representation,Operators,Problems/Collatz,CollatzDual,Automata}
+formal/{Core,Representation,Operators,Problems,BTCalculus,Automata}
 conjectures/{active,proved,refuted,archived}
 literature/
 docs/{architecture,theory,problems}
 tests/{unit,integration,research,regression}
 experiments/                generated artifacts (gitignored)
 ```
+
+The façades `src/balanced_ternary/`, `src/collatz/`, `src/automata/`, and
+`formal/CollatzDual/` were deleted after the split.
 
 ## 2. Moved / consolidated modules
 
@@ -36,8 +40,7 @@ experiments/                generated artifacts (gitignored)
 
 ## 3. Old → new import map
 
-See [overview.md](overview.md). Shims keep `balanced_ternary`, `collatz`,
-and `automata` importable.
+See [overview.md](overview.md). The compatibility packages were removed.
 
 ## 4–5. Core and research architecture
 
@@ -65,12 +68,14 @@ Preserved: `encode`, `decode`, `analyze`, `residue`, `test-invariants`,
 Added: `bt …`, `primes`, `perfect-powers`, `additive`, `polynomials`,
 `experiments`, `conjectures`, `literature`, `formal`, `status`.
 
-Entry point: `cli.main:main` (shim `balanced_ternary.cli:main`).
+Entry point: `cli.main:main` (`btlab`).
 
 ## 9. Lean module map
 
-See [formalization.md](formalization.md). `CollatzDual.*` re-exports the
-new paths. Package name remains `collatz-dual-formal`.
+See [formalization.md](formalization.md). At the time of the split,
+`CollatzDual.*` re-exported the new paths and the Lake package was
+`collatz-dual-formal`. Both were later removed; see the note at the
+top of this page.
 
 ## 10. Test counts
 
@@ -85,14 +90,13 @@ Count did not drop.
 
 ## 12. Compatibility shims
 
-`balanced_ternary.*`, `collatz.*`, `automata.*`, and
-`balanced_ternary.cli` / `cli_operators`.
+Present at the split; later deleted. Canonical imports are `bt.*` and
+`research.*`.
 
 ## 13. Intentional debt
 
 - `visualization` remains a sibling package
 - Experiment runners are registered, not rewritten
-- Lake package name unchanged
 - `lower_bounds` and `noncontracting_dual` retained
 - Milestone numbers 7–8 remain missing
 - Trial `is_prime` remains an inspection helper

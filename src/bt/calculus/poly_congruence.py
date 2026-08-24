@@ -23,8 +23,9 @@ invisible polynomials such as ``x^3 - x`` modulo ``3``.
 from __future__ import annotations
 
 from itertools import product
-from math import factorial
+from math import comb, factorial
 
+from bt.calculus.quadratic import iter_dz
 from bt.calculus.section import IntPoly
 from bt.metrics import v3
 
@@ -68,6 +69,28 @@ def newton_coeffs(f: IntPoly) -> tuple[int, ...]:
 def finite_difference_profile(f: IntPoly) -> tuple[int, ...]:
     """Alias of :func:`newton_coeffs`."""
     return newton_coeffs(f)
+
+
+def residual_shift(f: IntPoly, m: int, p: int) -> IntPoly:
+    """Binomial closed form of ``D^m(f(p + 3^m x))``.
+
+    Lean name: ``residualShift``. The evaluation identity
+    ``eval x (residualAlong w f) = D^{|w|}(f(packWord w + 3^{|w|} x))``
+    is ``eval_residualAlong``.
+    """
+    m = _require_nat(m, "m")
+    if f.degree < 0:
+        return IntPoly((0,))
+    out = [0] * (f.degree + 1)
+    out[0] = iter_dz(f.eval(p), m)
+    for j in range(1, f.degree + 1):
+        acc = 0
+        for n in range(j, f.degree + 1):
+            a = f.coefficient(n)
+            if a:
+                acc += a * comb(n, j) * (p ** (n - j)) * (3 ** (m * (j - 1)))
+        out[j] = acc
+    return IntPoly(tuple(out))
 
 
 def phi_k(f: IntPoly, k: int) -> tuple[int, ...]:
@@ -336,7 +359,7 @@ def _factor_hint(poly: IntPoly) -> str:
 
 
 def poly_congruence_report(f: IntPoly, g: IntPoly, k: int) -> dict[str, object]:
-    """CLI payload for ``btprime calculus poly-congruence``."""
+    """CLI payload for ``btlab calculus poly-congruence``."""
     k = _require_nat(k, "k")
     h = f.sub(g)
     equiv = function_equiv(f, g, k)
@@ -389,8 +412,8 @@ def residual_distinction_dataset(f: IntPoly, k: int, limit: int = 16) -> list[di
 
     rows = []
     for rec in merge_examples(f, k, limit=limit):
-        p = _parse_or_skip(rec["p"])
-        q = _parse_or_skip(rec["q"])
+        p = _parse_or_skip(str(rec["p"]))
+        q = _parse_or_skip(str(rec["q"]))
         if p is None or q is None:
             continue
         row = distinction_row(p, q, rec.get("word_p"), rec.get("word_q"))

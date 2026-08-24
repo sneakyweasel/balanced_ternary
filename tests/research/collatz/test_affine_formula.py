@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from itertools import product
 
-from collatz.core import collatz_step
-from collatz.cylinders import valuation_cylinder
-from collatz.itinerary import ValuationItinerary, affine_constant, affine_constant_closed_form
+from research.collatz.core import collatz_step
+from research.collatz.cylinders import valuation_cylinder
+from research.collatz.itinerary import ValuationItinerary, affine_constant, affine_constant_closed_form
 
 
 def test_closed_form_on_all_short_words():

@@ -4,7 +4,7 @@
   ],
   "first_seen": "Milestone 9 / operator algebra",
   "id": "W_not_involution",
-  "lean_reference": "Operators.Algebra / CollatzDual.OperatorAlgebra W_not_involution_on_three",
+  "lean_reference": "Operators.Algebra W_not_involution_on_three",
   "literature": [
     "oeis-A134028"
   ],

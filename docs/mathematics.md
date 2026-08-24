@@ -100,11 +100,11 @@ transition collapses to \(r'\equiv a\pmod 3\)).
 Python's remainder for negative integers is in \(\{0,\ldots,q-1\}\), matching
 the automaton states.
 
-## Not theorems (later phases)
+## Out of scope for this note
 
 Finite sieve languages \(\mathcal S_B\), forbidden patterns, growth rates
-\(\lambda_B\), and statistical feature comparisons are **not** implemented
-in Milestone A and must not be described as theorems until proved or
+\(\lambda_B\), and statistical metric comparisons are **not** implemented
+here and must not be described as theorems until proved or
 refuted with an explicit counterexample search.
 
 ## Operator algebra

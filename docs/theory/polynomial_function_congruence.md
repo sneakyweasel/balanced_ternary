@@ -113,8 +113,9 @@ This expansion is unique, and \(\binom{n}{j}\in\mathbb Z\) for every
 integer \(n\). Forward differences of multiples of \(3^k\) remain
 multiples of \(3^k\). Therefore:
 
-**EXACT — HUMAN PROOF** (Newton interpolation; REPARAMETERIZATION of
-the classical theory of polynomial functions on \(\mathbb Z/n\mathbb Z\)):
+**EXACT — LEAN VERIFIED** (`vanishesMod_iff_newtonKernel`; Newton
+interpolation; REPARAMETERIZATION of the classical theory of
+polynomial functions on \(\mathbb Z/n\mathbb Z\)):
 
 \[
 \boxed{
@@ -163,10 +164,11 @@ f\equiv_k g
 }
 \]
 
-**EXACT — HUMAN PROOF** in general. **EXACT — LEAN VERIFIED** for
-degree \(\le 2\) (`vanishesMod_quad_iff`, `equivK_quad`) and degree \(3\)
-(`vanishesMod_cubic_iff`). **COMPUTATIONALLY VERIFIED** for mixed
-degrees in `test_poly_congruence.py`.
+**EXACT — LEAN VERIFIED** (`equivK_iff_newtonCoeff`) for every
+degree. Degree \(\le 2\) and degree \(3\) remain the explicit
+coefficient forms `vanishesMod_quad_iff` and `vanishesMod_cubic_iff`.
+**COMPUTATIONALLY VERIFIED** for mixed degrees in
+`test_poly_congruence.py`.
 
 Equivalent coordinates, all complete for a fixed degree bound \(d\):
 
@@ -424,13 +426,17 @@ the residual orbit of a single \(x^d\). It does **not** compute
 
 ## 12. Lean inventory
 
-File: `formal/BTCalculus/PolynomialFunctionsMod.lean`. No `sorry`.
-No `admit`.
+Files: `formal/BTCalculus/PolynomialFunctionsMod.lean`,
+`formal/BTCalculus/NewtonKernel.lean`,
+`formal/BTCalculus/ResidualShift.lean`. No `sorry`. No `admit`.
 
 | theorem | content |
 |---------|---------|
 | `functionCongr`, `vanishesMod` | function congruence / kernel |
 | `equivK_iff_functionCongr` | MN bridge: \(\equiv_k\) iff agreement on \(\mathbb Z\) |
+| `vanishesMod_iff_newtonKernel` | \(I_k\) is the Newton kernel for every degree |
+| `equivK_iff_newtonCoeff` | \(f\equiv_k g\) iff \(\Delta^j f(0)\equiv\Delta^j g(0)\pmod{3^k}\) |
+| `eval_residualAlong` | \(\mathfrak D_w f(x)=D^{|w|}(f(p(w)+3^{|w|}x))\) |
 | `vanishesMod_quad_iff` | degree \(\le 2\) coefficient criterion |
 | `vanishesMod_cubic_iff` | exact cubic vanishing conditions |
 | `X_pow_three_sub_X_vanishes_one` | \(x^3-x\in I_1\) |
@@ -438,18 +444,18 @@ No `admit`.
 | `x3_first_merge_equiv_two` / `_not_equiv_three` | first \(x^3\) merge |
 | `x4_first_merge_equiv_three` / `_not_equiv_four` | first \(x^4\) merge |
 
-The general Newton classification of \(I_k\) is not formalized as a
-single Lean theorem for arbitrary degree. That is deliberate: the
-needed statement is classical, and the project Lean targets are the
-bridge plus the first two degrees.
+The binomial coefficient polynomial `residualShift` is named in Lean
+and matches `residual_along` in Python. The evaluation identity is the
+compiled theorem; a coefficientwise `residualAlong = residualShift`
+lemma is not required for the kernel.
 
 ---
 
 ## 13. CLI
 
 ```text
-btprime calculus poly-congruence <f> <g> --k <k>
-btprime calculus vanishing-poly <degree> --k <k>
+btlab calculus poly-congruence <f> <g> --k <k>
+btlab calculus vanishing-poly <degree> --k <k>
 ```
 
 The first command reports function equivalence, a distinguishing
@@ -497,10 +503,9 @@ f\equiv_k g
 }
 \]
 
-with \(\Phi_k\) the Newton residue sequence, the left identification
-**EXACT — LEAN VERIFIED**, and the middle identification
-**EXACT — HUMAN PROOF** in general and **EXACT — LEAN VERIFIED**
-through degree \(3\).
+with \(\Phi_k\) the Newton residue sequence. Both identifications are
+**EXACT — LEAN VERIFIED** (`equivK_iff_functionCongr`,
+`equivK_iff_newtonCoeff`).
 
 On residuals this converts \(M_k(f)\) into the number of distinct
 Newton classes in \(U_k\).
@@ -509,12 +514,9 @@ Newton classes in \(U_k\).
 
 ## 16. Remaining conjectures
 
-None introduced. The count \(M_k(x^d)\) for \(d\ge 3\) remains open
-and is **not** a conjecture of this milestone.
-
-Open formalization (not a mathematical gap): a single Lean theorem
-that \(\Phi_k\) classifies all of \(\mathbb Z[x]\), not just degrees
-\(\le 3\).
+None introduced. The general \(\Phi_k\) classification is Lean
+(`equivK_iff_newtonCoeff`). The count \(M_k(x^d)\) for \(d\ge 3\)
+remains open and is **not** a conjecture of this page.
 
 ---
 

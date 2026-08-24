@@ -1,6 +1,6 @@
 """Layer A: exact balanced ternary form of ``3n+1``.
 
-**PROVED** for every integer ``n != 0``:
+**EXACT — HUMAN PROOF** for every integer ``n != 0``:
 
     BT(3n+1) = BT(n)  followed by a trailing ``+``.
 
@@ -11,10 +11,10 @@ of ``n`` are unchanged and a new least-significant digit ``+1`` is attached.
 Exception: ``n = 0``. Then ``3*0+1 = 1`` and ``BT(1) = +``, not ``0+``.
 Collatz states are positive odd, so the exception does not arise.
 
-The adder in ``bt_arithmetic`` remains an independent check, not the
+The adder in ``bt.arithmetic`` remains an independent check, not the
 definition of this identity.
 
-Closed-form feature map ``n -> 3n+1`` (PROVED, extra LSD ``a_0 = +1`` and
+Closed-form feature map ``n -> 3n+1`` (EXACT — HUMAN PROOF, extra LSD ``a_0 = +1`` and
 index shift ``a'_{i+1} = a_i``):
 
 - length +1
@@ -28,14 +28,14 @@ index shift ``a'_{i+1} = a_i``):
 
 from __future__ import annotations
 
-from balanced_ternary.representation import (
+from bt.representation import (
     BalancedTernary,
     WordLike,
     decode,
     encode,
     normalize,
 )
-from research.collatz.bt_arithmetic import three_n_plus_one_word
+from bt.arithmetic import three_n_plus_one_word
 from research.collatz.features import BalancedTernaryFeatures, extract_features
 
 

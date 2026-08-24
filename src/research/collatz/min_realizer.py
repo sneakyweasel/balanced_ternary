@@ -4,7 +4,7 @@ Convention (Milestone 3, leftover ``Q = 1``): ``C_ks`` is the unique
 residue class modulo ``2^{K+1}``. The smallest positive representative
 ``R(ks)`` is that residue, which lies in ``{1, 3, ..., 2^{K+1}-1}``.
 
-**PROVED:** every ``n ≡ R(ks) (mod 2^{K+1})`` realises the prefix.
+**EXACT — HUMAN PROOF:** every ``n ≡ R(ks) (mod 2^{K+1})`` realises the prefix.
 Along a nested prefix, ``R(child) ≡ R(parent) (mod 2^{K_parent+1})`` and
 ``0 < R(child) < 2^{K_child+1}``, hence
 
@@ -20,7 +20,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from balanced_ternary.representation import encode
+from bt.representation import encode
 from research.collatz.cylinders import parse_ks, valuation_cylinder
 from research.collatz.features import BalancedTernaryFeatures, extract_features
 from research.collatz.itinerary import ValuationItinerary, positivity_threshold

@@ -1,4 +1,4 @@
-"""CLI smoke tests for ``btprime congruence``."""
+"""CLI smoke tests for ``btlab congruence``."""
 
 from __future__ import annotations
 
@@ -76,6 +76,7 @@ def test_classify_reports_phi_classes_and_widths():
     assert "widths=" in out
 
 
+@pytest.mark.slow
 def test_triage_verdict_is_proceed():
     out = _run("congruence", "triage", "--k", "3", "--r", "2")
     assert "verdict: proceed" in out

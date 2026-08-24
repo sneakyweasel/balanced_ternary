@@ -22,6 +22,6 @@ PROBLEM = ProblemDefinition(
         "docs/collatz_mathematics.md",
         "docs/collatz_research_questions.md",
     ),
-    lean=("formal/Problems/Collatz/", "formal/CollatzDual/"),
+    lean=("formal/Problems/Collatz/",),
     conjectures=("Nk_state_count", "low_Km_m_infinite_lifts", "noncontraction_R_to_infinity"),
 )

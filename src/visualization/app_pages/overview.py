@@ -40,8 +40,9 @@ the least-significant digit $a_0$.
 1. **Calculator** — add, subtract, scale by 2 or 3, and apply `S`, `N`, `D`, `W`, `M2`, `H2`, …
 2. **Encode / analyze** — integer ↔ word round-trip and digit metrics.
 3. **Operators** — domain, involution, and integer/word agreement for each map.
-4. **Residual explorer** — prefix tree, Newton classes, and depth-deficit visibility.
-5. Collatz pages stay available as one application of the same words.
+4. **Rewrite calculus** — unary stepper and Add/carry witnesses from the paper candidate.
+5. **Residual explorer** — prefix tree, Newton classes, and depth-deficit visibility.
+6. Collatz pages stay available as one application of the same words.
                 """
             )
 
@@ -50,13 +51,18 @@ the least-significant digit $a_0$.
         [
             {
                 "layer": "Balanced ternary",
-                "object": "Canonical words, arithmetic, features, residue automata",
-                "status": "PROVED / exact implementation",
+                "object": "Canonical words, arithmetic, metrics, residue automata",
+                "status": "EXACT — HUMAN PROOF / exact implementation",
             },
             {
                 "layer": "Operators",
                 "object": "S, N, D, W, Wz, Wt, M2, H2, H3, K3, Im, Ip",
-                "status": "PROVED on the stated domains",
+                "status": "EXACT — HUMAN PROOF on the stated domains",
+            },
+            {
+                "layer": "Rewrite calculus",
+                "object": "Unary {D, I_a, S, N} stepper and Add/carry witnesses",
+                "status": "Paper companion; Lean remains the proof authority",
             },
             {
                 "layer": "Residual calculus",
@@ -66,12 +72,12 @@ the least-significant digit $a_0$.
             {
                 "layer": "Finite-state Collatz",
                 "object": "2-adic valuation classifiers and division transducers",
-                "status": "PROVED with bounded model sizes",
+                "status": "EXACT — HUMAN PROOF with bounded model sizes",
             },
             {
                 "layer": "Exponent codes",
                 "object": "Cylinders, affine formula, canonical realizers, lift digits",
-                "status": "PROVED; key statements Lean verified",
+                "status": "EXACT — LEAN VERIFIED for key statements",
             },
             {
                 "layer": "Compatibility",

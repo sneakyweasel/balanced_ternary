@@ -7,7 +7,7 @@ from itertools import product
 
 import pytest
 
-from collatz.affine_center import AffineCenterState, AffineRegime
+from research.collatz.affine_center import AffineCenterState, AffineRegime
 
 
 def test_expanding_singleton_has_exact_negative_center():

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from balanced_ternary.features import (
+from bt.metrics import (
     negative_digit_count,
     position_class_sums,
     positive_digit_count,
@@ -12,7 +12,7 @@ from balanced_ternary.features import (
     zero_count,
     zero_gap_statistics,
 )
-from balanced_ternary.representation import encode
+from bt.representation import encode
 
 
 def test_weight_and_counts_for_five():

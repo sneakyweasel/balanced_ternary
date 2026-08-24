@@ -78,18 +78,18 @@ sub-object of a machine the project already had.
 
 ## Candidate operations / invariants
 
-- Zero-output subtree identification — **PROVED — LEAN**.
-- Residual state as scaled Taylor jet — **PROVED**, and the
+- Zero-output subtree identification — **EXACT — LEAN VERIFIED**.
+- Residual state as scaled Taylor jet — **EXACT — HUMAN PROOF**, and the
   **REPARAMETERIZATION** certificate for the whole translation.
-- One-step trichotomy `0 / 1 / 3` for `k ≥ 1` — **PROVED — LEAN**,
+- One-step trichotomy `0 / 1 / 3` for `k ≥ 1` — **EXACT — LEAN VERIFIED**,
   **KNOWN**.
-- `Φ_r` determines the depth-`r` subtree — **PROVED**.
-- Sharpness: `Φ_{r-1}` does not — **PROVED**.
+- `Φ_r` determines the depth-`r` subtree — **EXACT — HUMAN PROOF**.
+- Sharpness: `Φ_{r-1}` does not — **EXACT — HUMAN PROOF**.
 - Deep linearization `𝔇_w f ≡_r f(n_w)/3^k + f'(n_w)x` for `k ≥ r` —
-  **PROVED**.
-- Deep minimal state: the two residues modulo `3^r` — **PROVED**.
+  **EXACT — HUMAN PROOF**.
+- Deep minimal state: the two residues modulo `3^r` — **EXACT — HUMAN PROOF**.
 - Valuation-only determinacy of the unordered deep shape —
-  **PROVED** (`U_r = T_m` if `m < e`, else `S(e, r)`). This is the
+  **EXACT — HUMAN PROOF** (`U_r = T_m` if `m < e`, else `S(e, r)`). This is the
   Newton-polygon ramification of `c + b x`, not a new Hensel theorem.
 - Valuation-only determinacy in general — **REFUTED**, with the smallest
   witness recorded.
@@ -121,7 +121,7 @@ Ledger rows: `BTL-*` in
   subtrees per level;
 - `triage_report` — the whole payload plus the verdict.
 
-CLI: `btprime congruence roots | lift | tree | classify | triage`.
+CLI: `btlab congruence roots | lift | tree | classify | triage`.
 
 ## Conjectures
 

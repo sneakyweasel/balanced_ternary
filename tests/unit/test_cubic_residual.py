@@ -6,7 +6,7 @@ import io
 from contextlib import redirect_stdout
 from itertools import product
 
-from balanced_ternary.cli import main
+from cli.main import main
 from bt.calculus.cubic import (
     F_k,
     M_k_x3,

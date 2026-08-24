@@ -50,7 +50,7 @@ def cycle_amplitude(states: tuple[int, ...]) -> CycleAmplitude:
 
 
 def additive_amplitude_is_even(states: tuple[int, ...]) -> bool:
-    """Odd minus odd is even. **PROVED** for accelerated states."""
+    """Odd minus odd is even. **EXACT — HUMAN PROOF** for accelerated states."""
     return cycle_amplitude(states).additive % 2 == 0
 
 

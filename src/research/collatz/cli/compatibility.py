@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from balanced_ternary.representation import encode
+from bt.representation import encode
 
 
 def _compatibility(ks: str) -> int:

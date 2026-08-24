@@ -3,9 +3,9 @@ import BTCalculus.Integral
 
 namespace BTCalculus
 
-open CollatzDual.Warp
-open CollatzDual.DigitDerivative
-open CollatzDual.Operators
+open Representation.Words
+open Operators.DigitDerivative
+open Operators.Shift
 
 /-- Algebraic word facts only. No Mealy-machine theory is formalized here. -/
 theorem D_is_dropLSD (w : List Trit) : dropLSD w = w.dropLast := rfl

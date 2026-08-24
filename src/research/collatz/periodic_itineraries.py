@@ -10,7 +10,7 @@ so there is at most one candidate
     n = C / (2^K - 3^p)
 
 when ``2^K > 3^p``. If ``2^K < 3^p`` the candidate is negative
-(**PROVED**: ``C > 0`` for ``p > 0``), so an expanding periodic
+(**EXACT — HUMAN PROOF**: ``C > 0`` for ``p > 0``), so an expanding periodic
 itinerary has no positive integer realizer. Equality is impossible for
 ``p > 0``.
 
@@ -23,7 +23,7 @@ point along ``u``, unique when it exists,
     n = (n_cycle * 2^{K_u} - C_u) / 3^{|u|}.
 
 The 1-cycle ``(2)^ω`` with ``n=1`` is the unique positive cycle found
-in the small search range. That is **VERIFIED COMPUTATIONALLY**, not a
+in the small search range. That is **COMPUTATIONALLY VERIFIED**, not a
 proof that no other cycles exist (the Collatz cycle problem).
 """
 

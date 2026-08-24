@@ -6,6 +6,7 @@ computations, not proofs.
 
 from __future__ import annotations
 
+from collections.abc import Iterator
 from dataclasses import dataclass, field
 
 from bt.automata.modular import ModularAutomaton
@@ -201,12 +202,13 @@ def metric_properties(limit: int) -> dict[str, object]:
             if symmetry_fail is not None:
                 break
     if definite_fail is None and symmetry_fail is None:
+        triple_iter: Iterator[tuple[int, int, int]]
         if limit <= 12:
-            triples = ((a, b, c) for a in values for b in values for c in values)
+            triple_iter = ((a, b, c) for a in values for b in values for c in values)
         else:
             sample = list(values)
 
-            def triples():
+            def sampled_triples() -> Iterator[tuple[int, int, int]]:
                 for a in sample:
                     for b in sample:
                         yield a, b, a
@@ -215,10 +217,14 @@ def metric_properties(limit: int) -> dict[str, object]:
                         yield a, b, -b
                         yield a, -a, b
                 for a in sample:
-                    yield a, a + 1 if a < limit else a - 1, a - 1 if a > -limit else a + 1
+                    yield (
+                        a,
+                        a + 1 if a < limit else a - 1,
+                        a - 1 if a > -limit else a + 1,
+                    )
 
-            triples = triples()
-        for a, b, c in triples:
+            triple_iter = sampled_triples()
+        for a, b, c in triple_iter:
             left = d_bt(a, c)
             right = d_bt(a, b) + d_bt(b, c)
             if left > right:
@@ -277,7 +283,7 @@ def carry_defect_scan(limit: int) -> dict[str, object]:
 def disjoint_support_zero_defect(a: int, b: int) -> bool:
     """True if ``a`` and ``b`` have disjoint BT supports.
 
-    **PROVED:** then there is no digitwise overlap, addition is carry-free,
+    **EXACT — HUMAN PROOF:** then there is no digitwise overlap, addition is carry-free,
     and ``carry_defect(a, b) = 0``.
     """
     from bt.support import support

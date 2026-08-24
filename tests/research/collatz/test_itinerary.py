@@ -2,9 +2,9 @@
 
 from __future__ import annotations
 
-from collatz.core import collatz_step
-from collatz.cylinders import belongs_to_cylinder, valuation_cylinder
-from collatz.itinerary import (
+from research.collatz.core import collatz_step
+from research.collatz.cylinders import belongs_to_cylinder, valuation_cylinder
+from research.collatz.itinerary import (
     ValuationItinerary,
     affine_constant,
     affine_constant_closed_form,

@@ -1,6 +1,6 @@
 import Problems.Collatz.Cylinder
 
-namespace CollatzDual
+namespace Problems.Collatz
 
 theorem direct_realizer_residue
     {A : Type} [CommRing A]
@@ -35,4 +35,4 @@ theorem endpoint_successor_identity
     (h : q + a * t = denominator * child) :
     q + a * t = denominator * child := h
 
-end CollatzDual
+end Problems.Collatz

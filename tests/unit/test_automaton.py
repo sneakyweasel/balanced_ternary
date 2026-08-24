@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from automata.modular import ALPHABET, ModularAutomaton
-from balanced_ternary.representation import decode, encode
+from bt.automata.modular import ALPHABET, ModularAutomaton
+from bt.representation import decode, encode
 
 
 def test_modulus_must_be_at_least_two():

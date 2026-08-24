@@ -3,30 +3,68 @@ requires = ["setuptools>=68", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "balanced-ternary-prime"
+name = "balanced-ternary"
 version = "0.1.0"
 description = "Balanced Ternary Mathematical Laboratory: core BT mathematics and independent research modules"
 readme = "README.md"
 requires-python = ">=3.11"
 license = { text = "MIT" }
-authors = [{ name = "Balanced Ternary Prime Language Explorer" }]
+authors = [{ name = "Balanced Ternary Mathematical Laboratory" }]
+keywords = [
+    "balanced-ternary",
+    "exact-arithmetic",
+    "lean4",
+    "rewrite-calculus",
+    "collatz",
+]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "ruff>=0.6"]
+dev = [
+    "pytest>=8",
+    "pytest-xdist>=3",
+    "ruff>=0.6",
+    "hypothesis>=6.100",
+    "pyright>=1.1",
+]
 ui = ["streamlit>=1.62", "pandas>=2"]
 experiments = ["pyarrow>=14"]
 
 [project.scripts]
-btprime = "cli.main:main"
+btlab = "cli.main:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-addopts = "-q --import-mode=importlib"
+addopts = "-q --import-mode=importlib -n auto --dist loadfile"
+markers = [
+    "slow: exhaustive census, million-range identity, or Streamlit AppTest",
+]
 
 [tool.ruff]
 line-length = 100
 src = ["src", "tests", "tools"]
 target-version = "py311"
+
+[tool.ruff.lint]
+# High-signal runtime / dict-key rules only. Do not enable the full
+# default set: F401 alone is 60+ unused imports, mostly PARKED files.
+select = ["E9", "F63", "F7", "F82", "F601", "F602", "F811", "F841", "B006"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["bt", "research", "research_engine", "cli", "visualization"]
+
+[tool.pyright]
+include = ["src/bt"]
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+reportMissingTypeStubs = false

@@ -64,7 +64,7 @@ make the distinguishing words exact rather than sampled.
 - Remaining-horizon acceptance signatures — exact right languages.
 - Census `C(m,r)` — types at input depth `m` and horizon `r`.
   **COMPUTATIONALLY VERIFIED** through `m,r ≤ 7`.
-- Family `g_m` with words `w_m = (-1)^{m+1} 0` — **PROVED** infinite
+- Family `g_m` with words `w_m = (-1)^{m+1} 0` — **EXACT — HUMAN PROOF** infinite
   Myhill–Nerode family.
 - Zero-output subtree — proper subset, not the target.
 

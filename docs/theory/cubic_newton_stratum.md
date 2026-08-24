@@ -2,7 +2,10 @@
 
 Canonical record for the same-depth fibres of the Newton image \(F_k\) of
 \(x^3\). Layer notes from Milestones 19–26 are corollaries. This page records the exact same-depth count \(C_{k,m}\) and `CLOSE`s the
-dedicated \(x^3\) counting line (§8).
+dedicated \(x^3\) counting line (§8). The sendable extract of the
+unified stratum theorem is
+[newton_stratum_note.md](newton_stratum_note.md); this page remains
+the laboratory monograph.
 
 Claim labels: **EXACT — LEAN VERIFIED**, **EXACT — HUMAN PROOF**,
 **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **REFUTED**,
@@ -323,10 +326,10 @@ Per-depth \(C_{k,m}\) for \(m=0,\ldots,k-1\):
 | 13 | 1, 3, 9, 27, 81, 243, 729, 2187, 6559, 19677, 59022, 177057, 531141 |
 | 14 | 1, 3, 9, 27, 81, 243, 729, 2187, 6561, 19681, 59028, 177083, 531230, 1593644 |
 
-CLI: `btprime calculus x3-states --k <k>`,
-`btprime calculus x3-layer-count --k <k> --deficit <r>`,
-`btprime calculus x3-image-count --k <k> --deficit <r>`,
-and `btprime calculus x3-overlaps --k <k>`.
+CLI: `btlab calculus x3-states --k <k>`,
+`btlab calculus x3-layer-count --k <k> --deficit <r>`,
+`btlab calculus x3-image-count --k <k> --deficit <r>`,
+and `btlab calculus x3-overlaps --k <k>`.
 The commands `newton-class`, `cubic-layer`, and `cubic-quotient` are
 unchanged.
 
@@ -506,3 +509,10 @@ structure (visibility, valuation injectivity, two-regime \(N_0\),
 mismatched \(Q\), joint-image reduction) is the paper-worthy record.
 The sequence \(M_k\) is a computational appendix, not a closed-form
 theorem. Do not start another \(x^3\) counting milestone.
+
+Among polynomials of degree at most \(3\), deficit-\(1\) residue
+visibility is exactly \(v_3(a_3)=0\). **EXACT — HUMAN PROOF** as
+scaling of the \(N_2\) law; **COMPUTATIONALLY VERIFIED** on the
+coefficient box \(\{-2,\ldots,2\}\) at \(k\in\{4,5\}\). That is the
+visibility class of the cubic stratum, not a licence to open
+degree \(4\) or \(5\).

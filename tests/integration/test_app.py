@@ -9,6 +9,8 @@ import pytest
 pytest.importorskip("streamlit")
 from streamlit.testing.v1 import AppTest  # noqa: E402
 
+pytestmark = pytest.mark.slow
+
 
 APP = Path(__file__).resolve().parents[2] / "src" / "visualization" / "streamlit_app.py"
 REGISTERED_TITLES = (
@@ -16,6 +18,7 @@ REGISTERED_TITLES = (
     "Calculator",
     "Encode / analyze",
     "Operators",
+    "Rewrite calculus",
     "Residual explorer",
     "Number explorer",
     "Trajectory",
@@ -42,6 +45,7 @@ def test_router_starts_on_overview():
         assert title in source
     assert "url_path=\"exponent-code\"" in source
     assert "url_path=\"bt-warp\"" in source
+    assert "url_path=\"rewrite-calculus\"" in source
     assert "url_path=\"residual-explorer\"" in source
 
 

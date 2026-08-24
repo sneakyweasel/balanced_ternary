@@ -5,17 +5,17 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from collatz.experiments.affine_center import (
+from research.collatz.experiments.affine_center import (
     coordinate_order_report,
     enumerate_affine_centers,
     fraction_from_pair,
     run_affine_center_census,
 )
-from collatz.experiments.schema import (
+from research.experiments.schema import (
     AFFINE_CENTER_SCHEMA_VERSION,
     validate_affine_center_row,
 )
-from collatz.experiments.table_io import read_jsonl
+from research.experiments.table_io import read_jsonl
 
 
 def test_affine_center_census_schema_and_manifest(tmp_path):

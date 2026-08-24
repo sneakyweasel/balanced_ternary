@@ -10,6 +10,6 @@
   "proof_reference": "",
   "statement": "The minimized state count N_k of the /2^k transducer equals 2^k+1 for every k\u22651.",
   "status": "COMPUTATIONALLY_SUPPORTED",
-  "tested_range": "held for k\u22644 in tests; searchable via btprime collatz complexity",
+  "tested_range": "held for k\u22644 in tests; searchable via btlab collatz complexity",
   "title": "Minimized /2^k state count is 2^k+1"
 }

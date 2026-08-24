@@ -43,7 +43,7 @@ def _doubling_power_complexity(k: int) -> dict[str, int]:
     """Product of ``k`` doubling carries. Computational, not a closed form."""
     from collections import deque
 
-    start = (0,) * k
+    start: tuple[int, ...] = (0,) * k
     alphabet = (-1, 0, 1)
 
     def step(carries: tuple[int, ...], digit: int) -> tuple[tuple[int, ...], int]:
@@ -55,8 +55,8 @@ def _doubling_power_complexity(k: int) -> dict[str, int]:
             current = out
         return tuple(nxt), current
 
-    seen = {start}
-    queue = deque([start])
+    seen: set[tuple[int, ...]] = {start}
+    queue: deque[tuple[int, ...]] = deque([start])
     while queue:
         st = queue.popleft()
         for a in alphabet:
@@ -81,7 +81,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             1,
             1,
             "Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "BT(3n)=BT(n)0 for n≠0; BT(0)=0.",
         ),
         ZooEntry(
@@ -92,7 +92,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             1,
             1,
             "Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Involution.",
         ),
         ZooEntry(
@@ -103,7 +103,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             1,
             1,
             "Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Not floor division. Left inverse of S.",
         ),
         ZooEntry(
@@ -114,7 +114,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             1,
             1,
             "3Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Inverse of S.",
         ),
         ZooEntry(
@@ -125,7 +125,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             2,
             2,
             "Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Trailing zeros are locally visible. Contrast: v2 is not.",
         ),
         ZooEntry(
@@ -136,7 +136,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             1,
             1,
             "Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Append-plus theorem, with the n=0 convention BT(1)=+.",
         ),
         ZooEntry(
@@ -147,7 +147,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             1,
             1,
             "Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Same shift, LSD -1.",
         ),
         ZooEntry(
@@ -158,7 +158,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             3,
             3,
             "Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Existing DoublingTransducer.",
         ),
         ZooEntry(
@@ -169,7 +169,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             3,
             3,
             "2Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Existing DivideByTwoTransducer.",
         ),
         ZooEntry(
@@ -180,7 +180,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             None,
             None,
             "2^k Z",
-            "PROVED existence; state counts VERIFIED COMPUTATIONALLY",
+            "EXACT — HUMAN PROOF existence; state counts COMPUTATIONALLY VERIFIED",
             "Naive bound 3^k. See h2_state_counts().",
         ),
         ZooEntry(
@@ -191,7 +191,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             None,
             None,
             "Z",
-            "PROVED existence; state counts VERIFIED COMPUTATIONALLY",
+            "EXACT — HUMAN PROOF existence; state counts COMPUTATIONALLY VERIFIED",
             "See m2_state_counts().",
         ),
         ZooEntry(
@@ -202,7 +202,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             None,
             None,
             "Z",
-            "PROVED (not sequential); not claimed non-rational in other models",
+            "EXACT — HUMAN PROOF (not sequential); not claimed non-rational in other models",
             "Global reverse plus canonicalize. Finite memory cannot wait for the MSD.",
         ),
         ZooEntry(
@@ -213,7 +213,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             None,
             None,
             "Z",
-            "PROVED (not sequential)",
+            "EXACT — HUMAN PROOF (not sequential)",
             "Same obstruction as W.",
         ),
         ZooEntry(
@@ -224,7 +224,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             None,
             None,
             "Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Existing four-step argument. Each fixed k is finite-state.",
         ),
         ZooEntry(
@@ -235,7 +235,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             None,
             None,
             "positive odd integers",
-            "PROVED as a composition; T itself is not one FST",
+            "EXACT — HUMAN PROOF as a composition; T itself is not one FST",
             "Application of the zoo, not a search for Collatz invariants.",
         ),
         ZooEntry(
@@ -246,7 +246,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             1,
             1,
             "Z",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "k is fixed. Unbounded k is K3 after skipping zeros, still 2-state.",
         ),
         ZooEntry(
@@ -257,7 +257,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             None,
             None,
             "Z",
-            "PROVED (not sequential)",
+            "EXACT — HUMAN PROOF (not sequential)",
             "Composing a non-sequential map with D does not restore sequentiality.",
         ),
         ZooEntry(
@@ -268,7 +268,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             1,
             1,
             "{-1,0,+1}*",
-            "PROVED",
+            "EXACT — HUMAN PROOF",
             "Canonical words are already irreducible. High zeros are display.",
         ),
         ZooEntry(
@@ -279,7 +279,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             None,
             None,
             "words with |c_i|<=B",
-            "PROVED existence; state size algebraic in B",
+            "EXACT — HUMAN PROOF existence; state size algebraic in B",
             "Do not lift to unbounded Z. |q|<=floor((B+1)/3) on one coefficient.",
         ),
         ZooEntry(
@@ -290,7 +290,7 @@ def zoo() -> tuple[ZooEntry, ...]:
             None,
             None,
             "Z*",
-            "PROVED (not sequential as one FST)",
+            "EXACT — HUMAN PROOF (not sequential as one FST)",
             "A single coefficient 3^k forces carry scale 3^{k-1}.",
         ),
     )

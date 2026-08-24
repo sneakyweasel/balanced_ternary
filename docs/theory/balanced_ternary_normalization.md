@@ -36,7 +36,7 @@ transducer to unbounded integer coefficients.
 | `value(P)` | `Σ c_i 3^i` |
 | `balanced_divmod(c)` | unique `(r,q)` with `c = 3q + r`, `r` a trit |
 | `P → P'` | one legal step at some index `i` with `c_i ∉ {-1,0,+1}` |
-| Strategy A | LSD→MSD; **PROVED** equal to `encode(value(P))` |
+| Strategy A | LSD→MSD; **EXACT — HUMAN PROOF** equal to `encode(value(P))` |
 | Strategies B, C | MSD-down and parallel non-adjacent rounds |
 | Strategy D | `encode(value)` with zero rewrite steps |
 
@@ -49,7 +49,7 @@ normalization stays in `bt.calculus.normalization`.
 
 ## Normal-form theorem
 
-**PROVED** (Python + Lean value/step/NF):
+**EXACT — HUMAN PROOF** (Python + Lean value/step/NF):
 
 ```text
 value(P → P') = value(P)
@@ -71,4 +71,4 @@ reaches it, overlapping sites `i` / `i+1` join. Raw `[1,0]` vs
 - [Calculus](balanced_ternary_calculus.md)
 - Package: `src/bt/normtheory/`
 - Lean: `formal/BTCalculus/Normalization.lean`, `formal/BTCalculus/Confluence.lean`
-- CLI: `btprime normalize …`
+- CLI: `btlab normalize …`

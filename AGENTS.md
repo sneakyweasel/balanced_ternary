@@ -7,16 +7,24 @@ problem-independent core (`bt`) plus independent research applications
 ```text
 cli, visualization          application edges
 research.*                  problem-specific mathematics
+research_engine             problem-independent experimental dynamics
 bt.*                        problem-independent BT mathematics
 ```
 
-`bt.*` must never import `research.*`. Architecture:
+`bt.*` must never import `research.*` or `research_engine`. Architecture:
 [docs/architecture/overview.md](docs/architecture/overview.md).
 
 ## Reading path
 
+Live task: send the rewrite note for external review.
+
+1. [docs/theory/rewrite_calculus_note.md](docs/theory/rewrite_calculus_note.md)
+2. [docs/theory/rewrite_calculus_reviewer_packet.md](docs/theory/rewrite_calculus_reviewer_packet.md)
+
+Last mathematical theory (STRUCTURAL; no new monomial strata):
+
 1. [docs/theory/balanced_ternary_calculus.md](docs/theory/balanced_ternary_calculus.md)
-2. [docs/theory/cubic_newton_stratum.md](docs/theory/cubic_newton_stratum.md) — current frontier
+2. [docs/theory/cubic_newton_stratum.md](docs/theory/cubic_newton_stratum.md)
 3. [docs/theory/residual_vs_classical.md](docs/theory/residual_vs_classical.md)
 4. [docs/theory/theorem_ledger.md](docs/theory/theorem_ledger.md) (generated from JSON)
 
@@ -65,11 +73,13 @@ implementing, find the invariant or obstruction, and decide.
 | Trit / `D` / `I` / jets / `≡_k` / `F_k` closed form | `src/bt/calculus/` |
 | Cubic fibres, `N1`/`N0`, mismatched `Q`, stratum API | `src/research/residuals/` |
 | Accelerated `T`, cylinders, cycles, warp | `src/research/collatz/` |
+| Integer affine / R/K/L / recurrences / theorem targets / spectral classification | `src/research_engine/` |
 | Lean packaging of existing lemmas | `formal/BTCalculus/` or `formal/Problems/Collatz/` |
 | Named theorem metadata | `docs/theory/theorem_ledger.json` then render |
 | New research area | [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md) + `src/research/<id>/` |
 
 Do not add `bt.calculus` shims that re-export residual research.
+Do not add compatibility packages (`balanced_ternary`, `collatz`, `automata`).
 Do not auto-open a numbered milestone; every branch ends in `PROMOTE`,
 `PARK`, or `CLOSE`.
 Do not claim a Collatz solution.
@@ -79,11 +89,14 @@ Do not claim a Collatz solution.
 ```powershell
 python -m pip install -e ".[dev,ui]"
 pytest
+pytest --runslow
 python tools/render_theorem_ledger.py --check
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 cd formal; lake build
-btprime ui
-btprime calculus explorer
+btlab ui
+btlab calculus explorer
+btlab research analyze ostrowski
+btlab research reproduce D
 ```
 
 Persistent policy lives in [.cursor/rules/](.cursor/rules/). Streamlit work uses

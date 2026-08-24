@@ -5,6 +5,8 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
+import pytest
+
 from bt.calculus.cubic import M_k_x3, prefixes_at, raw_count_x3
 from cli.main import main
 from research.residuals.cubic_fibres import C_km, balanced_bound
@@ -88,11 +90,15 @@ def test_unexhausted_formula():
 
 
 def test_known_layer_counts():
+    assert deepest_class_count(8) == C_layer(8, 0)
+    assert inter_class_count(8) == C_layer(8, 1)
+
+
+@pytest.mark.slow
+def test_known_layer_counts_high_k():
     assert C_layer(14, 0) == 1593644
     assert C_layer(14, 1) == 531230
     assert C_layer(14, 2) == 177083
-    assert deepest_class_count(8) == C_layer(8, 0)
-    assert inter_class_count(8) == C_layer(8, 1)
 
 
 def test_unit_g_family():
@@ -122,6 +128,7 @@ def test_zero_spine_is_not_the_whole_overlap():
     assert states_report(6)["cross_depth_overlap"] > zero_spine_overcount(6)
 
 
+@pytest.mark.slow
 def test_M_k_arithmetic_table():
     table = {
         10: 29394,
@@ -192,7 +199,6 @@ def test_reduced_square_is_width():
 
 def test_unit_square_is_plus_minus():
     k, r = 8, 1
-    W = square_modulus_exp(k, r)
     units = [u for u in core_u_range(k, r) if u % 3 != 0]
     for u in units:
         for v in units:

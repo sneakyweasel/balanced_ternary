@@ -9,12 +9,12 @@ from pathlib import Path
 from typing import Callable, Iterable
 
 from research.collatz.affine_center import AffineCenterState
-from research.collatz.experiments.schema import (
+from research.experiments.schema import (
     AFFINE_CENTER_SCHEMA_VERSION,
     ExperimentManifest,
     validate_affine_center_row,
 )
-from research.collatz.experiments.table_io import write_experiment
+from research.experiments.table_io import write_experiment
 
 
 Relation = Callable[[AffineCenterState], bool]
@@ -60,7 +60,7 @@ def _relation_record(
             false_states[0].as_dict() if false_states else None
         ),
         "universal_on_sample": not false_states,
-        "status": "VERIFIED COMPUTATIONALLY on the bounded census",
+        "status": "COMPUTATIONALLY VERIFIED on the bounded census",
     }
 
 
@@ -113,7 +113,7 @@ def exact_inequality_report(
             "applicable_count": len(applicable),
             "failure_count": len(failures),
             "smallest_failure": failures[0].as_dict() if failures else None,
-            "status": "PROVED identity/inequality; bounded regression",
+            "status": "EXACT — HUMAN PROOF identity/inequality; bounded regression",
         }
     return report
 

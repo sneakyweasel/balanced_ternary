@@ -319,7 +319,7 @@ SHIFT = BTOperator(
         transducer_type="letter-to-letter morphism (append LSD 0)",
         reading_direction="either (length-preserving after padding)",
         state_count=1,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="S(n)=3n. BT(3n)=BT(n) followed by 0, except BT(0)=0.",
     ),
 )
@@ -345,7 +345,7 @@ NEGATION = BTOperator(
         transducer_type="letter-to-letter (sign flip)",
         reading_direction="either",
         state_count=1,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="N(n)=-n is digitwise negation. N∘N = id.",
     ),
 )
@@ -371,7 +371,7 @@ DERIVATIVE = BTOperator(
         transducer_type="LSD-first: drop first letter, copy the rest",
         reading_direction="LSD-first sequential",
         state_count=1,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="n = a0 + 3 D(n). Not floor-division by 3. Left inverse of S.",
     ),
 )
@@ -397,7 +397,7 @@ REVERSAL = BTOperator(
         transducer_type="not one-way sequential (global reverse + canonicalize)",
         reading_direction="requires both ends",
         state_count=None,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="OEIS A134028. W(W(n))=n iff n=0 or 3 does not divide n. W(3)=1≠3.",
     ),
 )
@@ -423,7 +423,7 @@ REVERSAL_ZEROS = BTOperator(
         transducer_type="reverse leaving trailing zeros",
         reading_direction="requires both ends",
         state_count=None,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="OEIS A160652. Wz(n)=W(n) 3^{v3(n)}. Involutive on Z.",
     ),
 )
@@ -449,7 +449,7 @@ REVERSAL_TAIL = BTOperator(
         transducer_type="reverse all but MSD",
         reading_direction="requires both ends",
         state_count=None,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="OEIS A351702. Involutive on each length block.",
     ),
 )
@@ -498,7 +498,7 @@ DOUBLE = BTOperator(
         transducer_type="LSD Mealy, carry in {-1,0,+1}",
         reading_direction="LSD-first",
         state_count=3,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="Existing DoublingTransducer. Sequential inverse of H2 on 2Z.",
     ),
 )
@@ -524,7 +524,7 @@ HALVE = BTOperator(
         transducer_type="LSD Mealy on even integers; leftover carry on odds",
         reading_direction="LSD-first",
         state_count=3,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="Existing DivideByTwoTransducer. Partial: undefined on odds.",
     ),
 )
@@ -550,7 +550,7 @@ DIVIDE_BY_THREE = BTOperator(
         transducer_type="D restricted to a0=0",
         reading_direction="LSD-first",
         state_count=1,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="On 3Z, H3 = D. Inverse of S.",
     ),
 )
@@ -576,7 +576,7 @@ KERNEL3 = BTOperator(
         transducer_type="LSD-first: skip trailing zeros, then copy",
         reading_direction="LSD-first sequential",
         state_count=2,
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
         notes="n / 3^{v3(n)}. Trailing zeros are locally visible, unlike v2.",
     ),
 )
@@ -615,7 +615,7 @@ def _integral_operator(digit: int, symbol: str) -> BTOperator:
             transducer_type="prepend LSD digit",
             reading_direction="LSD-first",
             state_count=1,
-            proof_status="PROVED",
+            proof_status="EXACT — HUMAN PROOF",
             notes=f"I_{digit}(n)=3n+({digit}). D ∘ I_{digit} = id. I_0 = S.",
         ),
     )

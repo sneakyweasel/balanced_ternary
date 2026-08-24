@@ -1,18 +1,21 @@
-"""Executable checks of the Milestone A theorems."""
+"""Executable checks of core representation identities."""
 
 from __future__ import annotations
 
-from balanced_ternary.arithmetic import is_prime
-from balanced_ternary.features import weight
-from balanced_ternary.invariants import (
+import pytest
+
+from bt.arithmetic import is_prime
+from bt.automata import ModularAutomaton
+from bt.metrics import (
     check_automaton_residue,
     check_parity,
     check_v3_identity,
     lsd_nonzero_index,
     v3,
     verify_invariants,
+    weight,
 )
-from balanced_ternary.representation import digits, encode
+from bt.representation import digits, encode
 
 
 def test_v3_of_zero_is_infinity():
@@ -48,6 +51,7 @@ def test_v3_matches_dividing_out_threes():
         assert lsd_nonzero_index(encode(n)) == expected
 
 
+@pytest.mark.slow
 def test_parity_and_v3_million():
     """n ≡ w(n) (mod 2) and v3 identity on [-10^6, 10^6]."""
     for n in range(-1_000_000, 1_000_001):
@@ -87,8 +91,6 @@ def test_automaton_matches_integer_mod_on_range():
 
 
 def test_automaton_on_noncanonical_words():
-    from automata.modular import ModularAutomaton
-
     assert ModularAutomaton(7).residue("00+") == 1 % 7
     assert ModularAutomaton(7).residue("+") == 1 % 7
     # 19 = "+-0+"

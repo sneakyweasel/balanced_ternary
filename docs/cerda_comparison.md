@@ -37,7 +37,7 @@ e_k=
 \pmod {2^{k+1}}.
 \]
 
-This is **PROVED** directly: \(3e_k+1\) is respectively \(2^k\) or
+This is **EXACT — HUMAN PROOF** directly: \(3e_k+1\) is respectively \(2^k\) or
 \(5\cdot2^k\), so its exact valuation is \(k\). It is the one-step case of
 the repository's exact valuation-cylinder construction.
 
@@ -51,7 +51,7 @@ A_k=\frac{3e_k+1}{2^k}
 =\begin{cases}1,&k\text{ even},\\5,&k\text{ odd},\end{cases}
 \]
 
-gives the **PROVED** local identity
+gives the **EXACT — HUMAN PROOF** local identity
 
 \[
 \boxed{D(p)=A_k+6r.}
@@ -176,7 +176,7 @@ not follow from the posted proof.
 
 On a fixed branch, an affine map with odd slope preserves Haar measure,
 and one additional parity condition halves that branch. This local fact is
-**PROVED**. To sum over all iterated branches, however, one still needs a
+**EXACT — HUMAN PROOF**. To sum over all iterated branches, however, one still needs a
 correct measurable partition and a valid treatment of nested versus
 disjoint cylinders. The false cylinder lemma is used precisely at that
 global step.
@@ -194,7 +194,7 @@ not merely “the Cerdá series.”
 ## Adopted status
 
 - The formulas for \(e_k\), \(A_k\), \(D(p)=A_k+6r\), and
-  \(k'=2+v_2(B_k+9s)\) are **PROVED** local identities.
+  \(k'=2+v_2(B_k+9s)\) are **EXACT — HUMAN PROOF** local identities.
 - Finite numerical censuses in the preprints are **COMPUTATIONAL**.
 - The posted global bit-non-reuse and exact iterated measure law are
   **NOT ESTABLISHED HERE**.

@@ -146,7 +146,7 @@ def compile_postfix(tokens: tuple[str, ...]) -> tuple[Expr, int, int, int]:
             stack.append(EMul(EInt(2), arg))
         elif item == "H2":
             # Partial: recorded as integer division in evaluation via apply.
-            stack.append(EHtwo(arg))
+            stack.append(EHtwo(arg))  # type: ignore[arg-type]
         depth = max(depth, len(stack))
     if len(stack) != 1:
         raise ValueError(f"postfix program left {len(stack)} stack values; expected 1")
@@ -176,7 +176,10 @@ def run_postfix(source: str) -> VMResult:
     value = _eval_vm_expr(expr)
     from bt.calculus.expressions import expr_size
 
-    size = expr_size(expr) if not isinstance(expr, EHtwo) else 1 + expr_size(expr.arg)
+    if isinstance(expr, EHtwo):
+        size = 1 + expr_size(expr.arg)
+    else:
+        size = expr_size(expr)  # type: ignore[arg-type]
     return VMResult(
         value=value,
         expr=expr,  # type: ignore[arg-type]

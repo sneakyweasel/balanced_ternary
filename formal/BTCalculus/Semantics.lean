@@ -2,8 +2,8 @@ import BTCalculus.Integral
 
 namespace BTCalculus
 
-open CollatzDual.Warp
-open CollatzDual.DigitDerivative
+open Representation.Words
+open Operators.DigitDerivative
 
 theorem decode_derivative (w : List Trit) (hw : w ≠ []) :
     evalMSD (dropLSD w) = DZ (evalMSD w) := by

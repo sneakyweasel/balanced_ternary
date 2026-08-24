@@ -2,20 +2,22 @@
 
 from __future__ import annotations
 
-from balanced_ternary.oeis_maps import bt_digit_sum, bt_is_palindrome, bt_reverse
-from balanced_ternary.representation import encode
-from collatz.core import collatz_step
-from collatz.experiments.bt_warp import (
+import pytest
+
+from bt.sequences import bt_digit_sum, bt_is_palindrome, bt_reverse
+from bt.representation import encode
+from research.collatz.core import collatz_step
+from research.collatz.experiments.bt_warp import (
     run_bt_warp_census,
     run_bt_warp_realizer,
     semigroup_agreement_sample,
 )
-from collatz.experiments.schema import (
+from research.experiments.schema import (
     BT_WARP_SCHEMA_VERSION,
     validate_bt_warp_row,
 )
-from collatz.theorems import append_plus
-from collatz.warp import (
+from research.collatz.theorems import append_plus
+from research.collatz.warp import (
     apply_word,
     commutator_census,
     is_positive_odd,
@@ -155,7 +157,7 @@ def test_semigroup_sample_records_involution_split():
 
 def test_lsd_msd_swap_does_not_predict_valuation():
     """W exchanges LSD and MSD; k remains a 2-adic quantity."""
-    from collatz.core import collatz_valuation
+    from research.collatz.core import collatz_valuation
 
     pairs = []
     for n in range(1, 400, 2):
@@ -168,6 +170,7 @@ def test_lsd_msd_swap_does_not_predict_valuation():
     assert any(k != kw for k, kw in pairs)
 
 
+@pytest.mark.slow
 def test_exhaustive_odd_warp_identities_to_one_million():
     """Exact local identities on every positive odd n <= 10^6.
 

@@ -134,7 +134,7 @@ def three_n_plus_one_word(word: WordLike) -> BalancedTernary:
 def lsd_add_one_case(word: WordLike) -> str:
     """Local LSD case of adding ``+1``, before carry propagation.
 
-    Status of the three local rewrites (PROVED, from the digit alphabet):
+    Status of the three local rewrites (EXACT — HUMAN PROOF, from the digit alphabet):
 
     * ``...0`` + 1 = ``...+`` with no carry
     * ``...+`` + 1 = ``...-`` with carry ``+1``

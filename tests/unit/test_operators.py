@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import pytest
 
-from balanced_ternary.metrics import bt_weight, carry_defect, d_bt
-from balanced_ternary.operator_algebra import classify_pair, parse_composition
-from balanced_ternary.operators import (
+from bt.metrics import bt_weight, carry_defect, d_bt
+from research.operator_dynamics.algebra import classify_pair, parse_composition
+from bt.operators import (
     DERIVATIVE,
     DOUBLE,
     HALVE,
@@ -30,7 +30,7 @@ from balanced_ternary.operators import (
     shift_left,
     three_kernel,
 )
-from balanced_ternary.representation import decode, encode
+from bt.representation import decode, encode
 
 
 def test_integer_word_signatures_are_distinct():
@@ -78,7 +78,7 @@ def test_negation_involution_and_features():
         assert NEGATION.apply(NEGATION.apply(n)) == n
         assert NEGATION.consistent_on(n)
         assert bt_weight(-n) == bt_weight(n)
-        from balanced_ternary.features import signed_digit_sum
+        from bt.metrics import signed_digit_sum
 
         assert signed_digit_sum(encode(-n)) == -signed_digit_sum(encode(n))
 
@@ -216,7 +216,7 @@ def test_carry_defect_disjoint_support_is_zero():
 
 
 def test_w_fixed_points_are_palindromes():
-    from balanced_ternary.oeis_maps import bt_is_palindrome
+    from bt.sequences import bt_is_palindrome
 
     pts = fixed_points("W", 200)
     for n in pts:

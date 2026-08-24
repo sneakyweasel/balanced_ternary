@@ -4,10 +4,10 @@ from __future__ import annotations
 
 from itertools import product
 
-from collatz.automata.valuation_shift import growth_budget
-from collatz.core import collatz_valuation
-from collatz.min_realizer import min_realizer
-from collatz.zero_lift import (
+from research.collatz.automata.valuation_shift import growth_budget
+from research.collatz.core import collatz_valuation
+from research.collatz.min_realizer import min_realizer
+from research.collatz.zero_lift import (
     ZeroLiftState,
     all_zero_lift_words_are_twos,
     dichotomy_report,

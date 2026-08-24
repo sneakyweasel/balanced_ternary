@@ -1,4 +1,4 @@
-"""Identity discovery never auto-promotes to PROVED."""
+"""Identity discovery never auto-promotes to EXACT — HUMAN PROOF."""
 
 from __future__ import annotations
 

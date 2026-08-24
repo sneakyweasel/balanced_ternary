@@ -2,7 +2,7 @@
 
 Implemented as the k-fold product of the 3-state ``/2`` machine. Naive
 state bound is ``3^k``. Reachable and minimized sizes are reported as
-**VERIFIED COMPUTATIONALLY**, not as a closed-form theorem.
+**COMPUTATIONALLY VERIFIED**, not as a closed-form theorem.
 
 The map is only applied to integers divisible by ``2^k``.
 """

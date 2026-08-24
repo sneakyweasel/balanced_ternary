@@ -6,7 +6,7 @@ allowed). That is the regular language of the residue DFA
 residues. Canonical (no leading ``0``) counts are a separate column.
 
 ``H_L(ks) = (1/L) log_3 (# accepted length-L words)``. Finite-``L`` values
-are **VERIFIED COMPUTATIONALLY**. A spectral growth rate is not claimed.
+are **COMPUTATIONALLY VERIFIED**. A spectral growth rate is not claimed.
 """
 
 from __future__ import annotations
@@ -14,10 +14,10 @@ from __future__ import annotations
 import math
 from dataclasses import dataclass
 
-from automata.modular import ALPHABET, ModularAutomaton
-from balanced_ternary.representation import WordLike, decode, msd_digits
+from bt.automata.minimize import MinimizedDFA, minimize_dfa
+from bt.automata.modular import ALPHABET, ModularAutomaton
+from bt.representation import WordLike, decode, msd_digits
 from research.collatz.cylinders import ValuationCylinder, parse_ks, valuation_cylinder
-from research.collatz.languages.dfa_minimize import MinimizedDFA, minimize_dfa
 from research.collatz.valuation import v2
 
 
@@ -186,7 +186,7 @@ def entropy_report(
         h_base3=h3,
         h_bits=h2,
         empty_h_base3=eh3,
-        status="VERIFIED COMPUTATIONALLY",
+        status="COMPUTATIONALLY VERIFIED",
     )
 
 

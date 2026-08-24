@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collatz.automata.valuation_shift import (
+from research.collatz.automata.valuation_shift import (
     AdmissibleValuationAutomaton,
     PrecisionState,
     exact_collatz_residue_step,
@@ -10,7 +10,7 @@ from collatz.automata.valuation_shift import (
     growth_budget,
     verify_residue_step_against_T,
 )
-from collatz.core import collatz_step, collatz_valuation
+from research.collatz.core import collatz_step, collatz_valuation
 
 
 def test_growth_budget_exact_comparison():

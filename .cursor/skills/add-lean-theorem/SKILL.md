@@ -13,10 +13,10 @@ The project has no `sorry` or `admit`. If the proof is not short, leave the ledg
 |---------|------|
 | Trit / residual / cubic fibre lemmas | `formal/BTCalculus/` |
 | Packaging of existing cubic laws | `formal/BTCalculus/NewtonStratum.lean` |
-| Collatz-only | `formal/Problems/Collatz/` plus a `CollatzDual.*` re-export |
+| Collatz-only | `formal/Problems/Collatz/` |
 | Automata | Do not invent proofs in `formal/Automata/` |
 
-Do not rename the Lake package `collatz-dual-formal`.
+Lake package name is `balanced-ternary-formal`.
 
 Prefer wrapping a lemma that already compiles:
 
@@ -35,7 +35,7 @@ Python faces in `research.residuals.stratum` must keep the same names (`newton_s
 $env:PATH = "$env:USERPROFILE\.elan\bin;$env:PATH"
 cd formal
 lake build BTCalculus
-# or: lake build CollatzDual
+# or: lake build Problems
 ```
 
 Then update `docs/theory/theorem_ledger.json` (use the `add-ledger-row` skill) only if the Lean statement covers the English claim.

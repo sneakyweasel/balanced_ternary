@@ -18,7 +18,7 @@ n = lsd(n) + 3 D(n),    D(n) = (n - lsd(n))/3.
 ```
 
 `D` is **not** floor division: `D(2)=1`, `D(-1)=0`. These facts were
-already **PROVED** in [balanced_ternary_operators.md](../balanced_ternary_operators.md)
+already **EXACT — HUMAN PROOF** in [balanced_ternary_operators.md](../balanced_ternary_operators.md)
 and Lean `evalMSD_dropLSD`, `D_after_S`.
 
 ## Our formalization
@@ -27,7 +27,7 @@ Wrappers in `bt.calculus.derivative` / `bt.calculus.integral` call
 `bt.operators.digit_derivative`, `lsd_digit`, and `I_a(n)=3n+a`.
 Word maps remain `drop_lsd_word` and `prepend_lsd_word`.
 
-**PROVED / LEAN VERIFIED** (`formal/BTCalculus/`):
+**EXACT — LEAN VERIFIED** (`formal/BTCalculus/`):
 
 1. `n = lsdZ n + 3 * DZ n`
 2. `DZ (IZ a x) = x`
@@ -51,7 +51,7 @@ Using existing `rewrite_sum` on `lsd(x)+lsd(y)`:
 D(x+y) = D(x)+D(y)+carry(lsd(x),lsd(y))
 ```
 
-**PROVED (LEAN VERIFIED)** as `D_add`. This **is** the standard
+**EXACT — LEAN VERIFIED** as `D_add`. This **is** the standard
 balanced-ternary addition carry, written as a D-law.
 
 **Product (twisted Leibniz rule).**
@@ -62,7 +62,7 @@ lsd(xy) = lsd(x) lsd(y)
 D(xy)   = lsd(x) D(y) + lsd(y) D(x) + 3 D(x) D(y)
 ```
 
-**PROVED (LEAN VERIFIED)** as `lsdZ_mul`, `D_mul`. This is not
+**EXACT — LEAN VERIFIED** as `lsdZ_mul`, `D_mul`. This is not
 `x D(y)+y D(x)`. The extra term is `3 D(x) D(y)`, not `6 D(x) D(y)`.
 It follows from the unique decomposition; it is a calculus identity,
 not an independent arithmetic theorem.

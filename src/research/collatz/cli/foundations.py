@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from balanced_ternary.representation import encode
+from bt.representation import encode
 from research.collatz.automata.joint_graph import layer_d_report
 from research.collatz.automata.symbolic_graph import build_symbolic_graph
 from research.collatz.automata.two_adic import TwoAdicDigitAutomaton
@@ -13,16 +13,16 @@ from research.collatz.automata.valuation_shift import AdmissibleValuationAutomat
 from research.collatz.cylinders import valuation_cylinder
 from research.collatz.experiments.complexity_spectrum import run_complexity_spectrum
 from research.collatz.languages.cylinder_dfa import entropy_report
-from research.collatz.bt_arithmetic import lsd_add_one_case, multiply_by_three
+from bt.arithmetic import lsd_add_one_case, multiply_by_three
 from research.collatz.core import require_positive_odd
 from research.collatz.experiments.exhaustive import run_exhaustive_experiment
 from research.collatz.features import extract_features
 from research.collatz.inverse import build_inverse_tree, format_inverse_tree
-from research.collatz.research.invariants import verify_collatz_invariants
+from research.collatz.invariants import verify_collatz_invariants
 from research.collatz.theorems import append_plus, predicted_features_after_append_plus
 from research.collatz.trajectory import collatz_trajectory
-from research.collatz.transducers.divide_by_two import DivideByTwoTransducer, LeftoverCarryError
-from research.collatz.transducers.divide_by_two_power import DivideByTwoPowerTransducer
+from bt.transducers.divide_by_two import DivideByTwoTransducer, LeftoverCarryError
+from bt.transducers.divide_by_two_power import DivideByTwoPowerTransducer
 from research.collatz.transducers.odd_part import odd_part_word
 from research.collatz.transitions import NUMERIC_FEATURE_NAMES, feature_transition
 from research.collatz.valuation import v2
@@ -172,7 +172,7 @@ def _theorems(n: int) -> int:
     pred = predicted_features_after_append_plus(word)
     feat = extract_features(actual)
     lines = [
-        "Layer A: BT(3n+1) = BT(n)+   [PROVED for n != 0]",
+        "Layer A: BT(3n+1) = BT(n)+   [EXACT — HUMAN PROOF for n != 0]",
         f"n = {n}",
         f"BT(n)  = {word.word()}",
         f"BT(n)+ = {plus.word()}",
@@ -232,7 +232,7 @@ def _transducer(k: int, limit: int) -> int:
     print(f"DivideByTwoPowerTransducer k={k}")
     print(
         f"naive_bound={report['naive_bound']}  reachable={report['reachable']}  "
-        f"minimized={report['minimized']}  [reachable/minimized: VERIFIED COMPUTATIONALLY]"
+        f"minimized={report['minimized']}  [reachable/minimized: COMPUTATIONALLY VERIFIED]"
     )
     failures = 0
     checked = 0

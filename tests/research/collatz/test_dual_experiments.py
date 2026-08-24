@@ -2,18 +2,18 @@
 
 from __future__ import annotations
 
-from collatz.experiments.noncontracting_dual import (
+from research.collatz.experiments.noncontracting_dual import (
     largest_noncontracting_K,
     run_noncontracting_dual,
 )
-from collatz.experiments.periodic_dual import (
+from research.collatz.experiments.periodic_dual import (
     periodic_dual_trace,
     primitive_period,
 )
-from collatz.experiments.schema import ExperimentManifest, validate_dual_row
-from collatz.experiments.suffix_determination import suffix_determination_census
-from collatz.experiments.table_io import read_jsonl, write_experiment
-from collatz.order_analysis import (
+from research.experiments.schema import ExperimentManifest, validate_dual_row
+from research.collatz.experiments.suffix_determination import suffix_determination_census
+from research.experiments.table_io import read_jsonl, write_experiment
+from research.collatz.order_analysis import (
     adjacent_swap_delta_R_residue,
     extremal_orders,
     verify_swap_R_residue_formula,
@@ -91,7 +91,7 @@ def test_versioned_experiment_round_trip(tmp_path):
 
 
 def test_dual_row_schema():
-    from collatz.dual_code import CollatzDualCode
+    from research.collatz.dual_code import CollatzDualCode
 
     row = CollatzDualCode.from_valuations((1, 4, 2)).as_dict()
     validate_dual_row(row)

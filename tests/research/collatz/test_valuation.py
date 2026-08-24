@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from collatz.core import collatz_valuation
-from collatz.valuation import (
+from research.collatz.core import collatz_valuation
+from research.collatz.valuation import (
     AT_LEAST_K,
     classify_collatz_valuation,
     v2,

@@ -6,10 +6,10 @@ combinatorics, operator dynamics — are independent applications.
 
 This repository does **not** claim a solution of the Collatz conjecture or
 of any other open problem. Finite checks are never presented as proofs.
-Claims are labelled **PROVED** (human), **PROVED — LEAN**,
+Claims are labelled **EXACT — HUMAN PROOF**, **EXACT — LEAN VERIFIED**,
 **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, **OBSERVATION**,
 **REFUTED**, or **REPARAMETERIZATION**. See
-[docs/README.md](docs/README.md) for the mapping to ledger tags.
+[docs/README.md](docs/README.md).
 
 ## What balanced ternary is
 
@@ -27,7 +27,9 @@ the least-significant digit \(a_0\).
 
 To keep a **problem-independent** encoder, arithmetic, operators,
 polynomials, automata, and transducers, and to attach new open problems
-as modules that import `bt` but never the reverse.
+as modules that import `bt` but never the reverse. Experimental dynamics
+that are not BT-specific live in `research_engine` and are imported by
+problem adapters, not by the core.
 
 ## How research is done here
 
@@ -55,27 +57,39 @@ word = encode(42)
 assert decode(word) == 42
 ```
 
-The compatibility façade `from balanced_ternary import encode` remains
-supported.
-
 ## Research applications (`research`)
+
+The live publication task is the rewrite-calculus note
+([draft](docs/theory/rewrite_calculus_note.md),
+[reviewer packet](docs/theory/rewrite_calculus_reviewer_packet.md)).
+The cubic Newton stratum is the last promoted mathematical theory.
+Full table: [docs/architecture/research_modules.md](docs/architecture/research_modules.md).
 
 | Module | Status |
 |--------|--------|
-| `research.collatz` | STRUCTURAL |
+| `research.rewrite_calculus` | PAPER_CANDIDATE |
 | `research.residuals` | STRUCTURAL |
+| `research.collatz` | STRUCTURAL |
+| `research.ostrowski` | STRUCTURAL |
+| `research.regular_output_preimages` | STRUCTURAL |
+| `research.monna_endpoint_spectra` | STRUCTURAL |
 | `research.lifting` | EXPLORATORY |
 | `research.additive_combinatorics` | EXPLORATORY |
 | `research.perfect_powers` | EXPLORATORY |
 | `research.primes` | EXPLORATORY |
 | `research.sparse_polynomials` | EXPLORATORY |
 | `research.operator_dynamics` | EXPLORATORY |
+| `research.balanced_digit_sum_polynomials` | EXPLORATORY |
+| `research.erdos_distinct_subset_sums` | EXPLORATORY |
+| `research.kabelian_complexity` | ARCHIVED |
+| `research.stabilization` | ARCHIVED |
+| `research.padic_dynamics` | ARCHIVED |
+| `research.cerny_bt` | ARCHIVED |
+| `research.misere_quotients` | ARCHIVED |
 
 ```python
-from collatz import AffineCenterState, CompatibilityState, collatz_step
+from research.collatz import AffineCenterState, CompatibilityState, collatz_step
 ```
-
-still works; the implementation lives under `research.collatz`.
 
 ## Formal verification
 
@@ -97,8 +111,8 @@ Refuted hypotheses (including `W(3)=1` and `n_*=165` at step 17) are
 kept under `conjectures/refuted/`.
 
 ```powershell
-btprime conjectures list
-btprime status
+btlab conjectures list
+btlab status
 ```
 
 ## Quick start
@@ -116,37 +130,38 @@ Optional Parquet experiment I/O: `pip install -e ".[experiments]"`.
 
 ## CLI
 
-The command is `btprime`. Existing commands are aliases; namespaces are
-also available.
+The command is `btlab`. Leaf commands stay for encoding and analysis;
+namespaces group operators, calculus, research, and Collatz.
 
 ```powershell
-btprime encode 42
-btprime bt encode 42
-btprime operators apply S 42
-btprime calculus eval 42
-btprime collatz analyze 27
-btprime status
+btlab encode 42
+btlab bt encode 42
+btlab operators apply S 42
+btlab calculus eval 42
+btlab research analyze ostrowski
+btlab research reproduce D
+btlab collatz analyze 27
+btlab status
 ```
 
-Research UI (optional). The Streamlit app is centered on balanced ternary,
-with a calculator, encode/analyze, operators, and the Residual explorer;
-Collatz pages remain as one application:
+Research UI (optional extra `ui`). Canonical launcher:
 
 ```powershell
-btprime ui
-btprime collatz ui
-btprime calculus explorer
+btlab ui
 ```
+
+`btlab collatz ui` and `btlab calculus explorer` remain aliases.
 
 ## Tests and Lean
 
 ```powershell
 pytest
+pytest --runslow
 cd formal
 lake build
 ```
 
-The slowest Python test exhaustively checks identities on \([-10^6,10^6]\).
+`pytest` skips the slow marker (k>10 residual censuses, million-range identities, Streamlit AppTests) and runs in parallel. Full suite: `pytest --runslow`. Serial: `pytest -n 0`.
 
 ## How to add a new research problem
 

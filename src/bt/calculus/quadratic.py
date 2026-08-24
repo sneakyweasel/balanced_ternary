@@ -105,12 +105,10 @@ def residual_formula_table(f: IntPoly, k: int) -> list[dict[str, object]]:
                 {
                     "word": list(word),
                     "pack": packed,
-                    "pack": packed,
                     "poly": poly.render(),
                     "A": A,
                     "B": B,
                     "C": C,
-                    "closed_x2": closed,
                     "closed_x2": closed,
                 }
             )

@@ -154,7 +154,7 @@ def sumset_A_plus_A(k: int) -> SumsetReport:
         interval_lo=0,
         interval_hi=3**k - 1,
         formula="A_k+A_k=[0,3^k-1], |A+A|=3^k, E=6^k, r(n)=2^{#{i: d_i=1}}",
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
     )
 
 
@@ -178,7 +178,7 @@ def sumset_A_minus_A(k: int) -> SumsetReport:
         interval_lo=-M,
         interval_hi=M,
         formula="A_k-A_k=C_k=[-M,M], |A-A|=3^k, r(n)=2^{#{zero digits in k pads}}",
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
     )
 
 
@@ -203,7 +203,7 @@ def sumset_B_plus_B(k: int) -> SumsetReport:
         interval_lo=-M,
         interval_hi=M,
         formula="B_k+B_k=2 C_k, all even integers in [-(3^k-1), 3^k-1], |B+B|=3^k",
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
     )
 
 
@@ -223,7 +223,7 @@ def sumset_B_minus_B(k: int) -> SumsetReport:
         multiplicity_min=rep.multiplicity_min,
         multiplicity_max=rep.multiplicity_max,
         formula="B-B=B+B because -B_k=B_k (digitwise sign flip)",
-        proof_status="PROVED",
+        proof_status="EXACT — HUMAN PROOF",
     )
 
 
@@ -244,7 +244,7 @@ def sumset_A_plus_B(k: int, *, enumerate_max_k: int = 12) -> SumsetReport:
         interval_lo=keys[0],
         interval_hi=keys[-1],
         formula="enumerated; digits in {-1,0,1,2} before carry",
-        proof_status="VERIFIED COMPUTATIONALLY",
+        proof_status="COMPUTATIONALLY VERIFIED",
     )
 
 
@@ -279,7 +279,7 @@ def rA_minus_sA(k: int, r: int, s: int, *, enumerate_max_k: int = 8) -> SumsetRe
         interval_lo=keys[0] if keys else 0,
         interval_hi=keys[-1] if keys else 0,
         formula="enumerated Minkowski combination",
-        proof_status="VERIFIED COMPUTATIONALLY",
+        proof_status="COMPUTATIONALLY VERIFIED",
     )
 
 

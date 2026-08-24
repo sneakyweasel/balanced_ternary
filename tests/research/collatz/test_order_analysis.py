@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from itertools import product
 
-from collatz.itinerary import affine_constant
-from collatz.order_analysis import (
+from research.collatz.itinerary import affine_constant
+from research.collatz.order_analysis import (
     adjacent_swap_delta_C,
     ascending_ks,
     descending_ks,
@@ -40,6 +40,6 @@ def test_order_can_change_R():
 
 
 def min_realizer_pair() -> bool:
-    from collatz.min_realizer import min_realizer
+    from research.collatz.min_realizer import min_realizer
 
     return min_realizer((1, 2)) != min_realizer((2, 1))

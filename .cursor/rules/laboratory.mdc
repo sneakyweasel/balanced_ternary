@@ -9,18 +9,23 @@ Balanced ternary is the **core**. Research problems are **applications**.
 
 - `bt.*` imports only `bt.*` (and the stdlib). Never `research`, `collatz`, or `visualization`.
 - After a split, do **not** add shims in `bt.calculus` that re-export residual research. Callers import `research.residuals`.
-- Compatibility packages `balanced_ternary`, `collatz`, and `automata` stay. Do not rename the Lake package `collatz-dual-formal`.
+- Do not add compatibility packages (`balanced_ternary`, `collatz`, `automata`). Canonical imports are `bt.*` and `research.*`.
+- Lake package name is `balanced-ternary-formal`.
 - Parked exploratory modules stay; do not delete them or treat them as a second frontier.
 
 ## Claims
 
 No Collatz-solution language. Finite checks are not proofs. Do not inflate tags.
 
-- `PROVED` = `EXACT — HUMAN PROOF`
-- `PROVED — LEAN` = `EXACT — LEAN VERIFIED`
-- Keep `COMPUTATIONALLY VERIFIED`, `CONJECTURE`, `OBSERVATION`, `REFUTED`, `REPARAMETERIZATION`
+- `EXACT — HUMAN PROOF`
+- `EXACT — LEAN VERIFIED`
+- `COMPUTATIONALLY VERIFIED`
+- `CONJECTURE`
+- `OBSERVATION`
+- `REFUTED`
+- `REPARAMETERIZATION`
 
-Those seven are the whole ledger vocabulary. `KNOWN` / `PROJECT-SPECIFIC` / `OPEN` are novelty annotations for prose, not tags.
+Those seven are the whole ledger vocabulary. Do not write `PROVED` or `VERIFIED COMPUTATIONALLY`. `KNOWN` / `PROJECT-SPECIFIC` / `OPEN` are novelty annotations for prose, not tags.
 
 Do not auto-open a numbered milestone. Journal entries may be consolidations. Every branch ends in `PROMOTE` | `PARK` | `CLOSE` — see `.cursor/rules/methodology.mdc` and `docs/methodology.md`.
 
@@ -28,4 +33,4 @@ Do not auto-open a numbered milestone. Journal entries may be consolidations. Ev
 
 Edit `docs/theory/theorem_ledger.json`, then `python tools/render_theorem_ledger.py`. Never hand-edit `theorem_ledger.md`.
 
-Verification: `pytest` and `cd formal && lake build` (Lake is `$env:USERPROFILE\.elan\bin\lake` if it is not on PATH). No `sorry` or `admit`.
+Verification: `pytest` (fast suite) and `cd formal && lake build` (Lake is `$env:USERPROFILE\.elan\bin\lake` if it is not on PATH). Full Python suite: `pytest --runslow`. No `sorry` or `admit`.

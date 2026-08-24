@@ -4,7 +4,7 @@ For a word ``ks = (k_0, ..., k_{m-1})`` with each ``k_i >= 1``,
 
     C_ks = { n odd : v2(3 T^i(n) + 1) = k_i for 0 <= i < m }.
 
-**PROVED:** at leftover precision ``Q = 1``, there is a unique residue class
+**EXACT — HUMAN PROOF:** at leftover precision ``Q = 1``, there is a unique residue class
 modulo ``2^{1+K}`` (``K = sum k_i``). Its density among the ``2^K`` odd
 residues is exactly ``2^{-K}``. Every finite word over ``{1,2,...}`` is
 admissible at this *minimum* precision. Layer C ``FORBIDDEN`` labels are
@@ -198,7 +198,7 @@ class ValuationCylinder:
             f"{self.budget.kind}",
             f"residues: {self.residues if len(self.residues) <= 16 else list(self.residues[:16]) + ['...']}",
             "",
-            "Density 2^{-K} among odds is PROVED for leftover Q=1. "
+            "Density 2^{-K} among odds is EXACT — HUMAN PROOF for leftover Q=1. "
             "Growth budget is the homogeneous estimate, not a Lyapunov function.",
             "",
         ]
@@ -214,7 +214,6 @@ def valuation_cylinder(
     residues = cylinder_residues(ks, leftover_q=leftover_q)
     odd_count = 1 << (p - 1)
     n_cls = len(residues)
-    k_sum = total_valuation(ks)
     expected = 1 << (leftover_q - 1)  # 2^{Q-1} classes; unique when Q=1
     return ValuationCylinder(
         ks=ks,

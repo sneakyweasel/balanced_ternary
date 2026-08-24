@@ -5,7 +5,7 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
+from cli.main import main
 from research.residuals.cubic_fibres import prefixes_at
 from research.residuals.cubic_n0_reduction import n0_fibre_after_n21, n0_scaled
 from research.residuals.mismatched_cubic import (

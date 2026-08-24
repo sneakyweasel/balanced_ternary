@@ -1,6 +1,6 @@
 import Mathlib
 
-namespace CollatzDual.Warp
+namespace Representation.Words
 
 /-- Balanced ternary digits `-1`, `0`, `+1`. -/
 inductive Trit where
@@ -193,4 +193,4 @@ theorem warpWord_involutive_of_last_ne_zero
   unfold warpWord
   rw [hcan, List.reverse_reverse]
 
-end CollatzDual.Warp
+end Representation.Words

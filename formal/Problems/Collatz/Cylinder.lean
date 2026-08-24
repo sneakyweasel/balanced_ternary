@@ -1,6 +1,9 @@
 import Problems.Collatz.Lift
+import Core.Basic
 
-namespace CollatzDual
+namespace Problems.Collatz
+
+open Core.Basic
 
 structure NestedCylinderSystem where
   R : ℕ → ℕ
@@ -59,4 +62,4 @@ theorem unique_zero_lift_child
   intro k hk
   exact (Z.zero_iff p k).mp hk
 
-end CollatzDual
+end Problems.Collatz

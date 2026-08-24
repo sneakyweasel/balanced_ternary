@@ -161,6 +161,7 @@ def test_state_census_is_bounded_in_k():
     assert max(deep) <= 3 * min(deep)
 
 
+@pytest.mark.slow
 def test_triage_report_proceeds():
     rep = triage_report(k_max=4, r_max=2)
     assert rep["proceed"]

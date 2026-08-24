@@ -5,7 +5,7 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
+from cli.main import main
 from bt.calculus.derivative import D
 from bt.normtheory.calculus_link import (
     D_coeff,
@@ -68,7 +68,7 @@ def test_setun_subset_eval():
 def test_discovery_never_proved():
     rows = discover(width=3, bound=2)
     assert rows
-    assert all(r.status != "PROVED" for r in rows)
+    assert all(r.status != "EXACT — HUMAN PROOF" for r in rows)
     names = {r.name for r in rows}
     assert "weighted_l1_alpha_3_2_decreases" in names
     assert "D_normalize_commutes" in names

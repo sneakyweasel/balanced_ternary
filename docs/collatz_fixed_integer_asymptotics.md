@@ -1,7 +1,6 @@
 # Fixed-integer asymptotic affine-center geometry
 
-This note records Milestone 10. Claim labels are **PROVED**, **VERIFIED
-COMPUTATIONALLY**, **CONJECTURE**, and **OBSERVATION**. Nothing here is a
+This note records Milestone 10. Claim labels are **EXACT — HUMAN PROOF**, **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, and **OBSERVATION**. Nothing here is a
 proof or disproof of the Collatz conjecture. The OEIS / warp branch is
 left frozen: no new balanced-ternary maps are introduced.
 
@@ -34,7 +33,7 @@ with every rational in exact `Fraction` arithmetic.
 
 ## Equivalent normal forms
 
-From \(2^{K_m}x_m=3^m n+C_m\) the following are **PROVED** and mutually
+From \(2^{K_m}x_m=3^m n+C_m\) the following are **EXACT — HUMAN PROOF** and mutually
 equivalent:
 
 - (A) \(x_m=\lambda_m n+C_m/2^{K_m}\)
@@ -52,7 +51,7 @@ G_m=n(2^{K_m}-3^m)-C_m=2^{K_m}(n-x_m)
 }
 \]
 
-is **PROVED** and **LEAN VERIFIED**. Consequently
+is **EXACT — LEAN VERIFIED**. Consequently
 
 \[
 G_m>0\iff x_m<n,\qquad
@@ -80,8 +79,7 @@ G_{m+1}=3G_m+2^{K_m}\bigl(n(2^{k_m}-3)-1\bigr).
 \]
 
 The addend is strictly negative for \(k_m=1\) and nonnegative for
-\(k_m\ge2\) when \(n\ge1\). This recurrence is **PROVED** and **LEAN
-VERIFIED**. It does not by itself force \(G_m\ge0\) on actual orbits:
+\(k_m\ge2\) when \(n\ge1\). This recurrence is **EXACT — LEAN VERIFIED**. It does not by itself force \(G_m\ge0\) on actual orbits:
 every \(n\equiv3\pmod4\) begins with \(k_0=1\) and \(G_1=-n-1<0\).
 
 The normalized contribution \(A_m=C_m/3^m\) obeys
@@ -92,7 +90,7 @@ A_{m+1}=A_m+\frac{2^{K_m}}{3^{m+1}},
 A_m=\sum_{j=0}^{m-1}\frac{2^{K_j}}{3^{j+1}}.
 \]
 
-Equality of the closed form with the series is **PROVED** (and checked
+Equality of the closed form with the series is **EXACT — HUMAN PROOF** (and checked
 in the implementation). Finite-\(m\) bounds that do not assume an average
 slope are
 
@@ -114,7 +112,7 @@ whenever the denominator is nonzero.
 
 ## Orbit decomposition
 
-Define \(B_m=(2^{K_m}/3^m)x_m\). Then **PROVED**
+Define \(B_m=(2^{K_m}/3^m)x_m\). Then **EXACT — HUMAN PROOF**
 
 \[
 B_m=n+A_m.
@@ -130,7 +128,7 @@ beyond \(x_m\ge1\).
 ## Regime geometry for a fixed start
 
 Let \(D_m=2^{K_m}-3^m\). Unique factorization gives \(D_m\ne0\) for
-\(m\ge1\) (**PROVED; LEAN VERIFIED**).
+\(m\ge1\) (**EXACT — LEAN VERIFIED**).
 
 - Expanding \(D_m<0\): \(C_m>0\) forces \(G_m<0\), hence \(x_m>n\) and
   \(n_{*m}<0<n\). So \(n_{*m}\le n\) holds automatically.
@@ -182,14 +180,14 @@ is independent of that bound.
 `required_start_residue` is the existing cylinder residue
 \(R(\mathbf{k})\bmod 2^{K+1}\). Comparing it with \(n\bmod 2^{K+1}\)
 reproduces nested-cylinder membership. Once the modulus exceeds \(n\),
-the residue is uniquely \(n\) (**PROVED; LEAN VERIFIED** as unique
+the residue is uniquely \(n\) (**EXACT — LEAN VERIFIED** as unique
 residue of a small start). This is the already-known stabilization /
 zero-lift fact, not a new infinite-\(n\) constraint.
 
 ## Periodic codes
 
 If a period-\(p\) word with data \((C,K)\) is realized by a positive odd
-cycle point, then **PROVED; LEAN VERIFIED**
+cycle point, then **EXACT — LEAN VERIFIED**
 
 \[
 n(2^K-3^p)=C.
@@ -266,13 +264,13 @@ See [literature_comparison.md](literature_comparison.md).
 ## Reproducibility
 
 ```powershell
-btprime collatz fixed-integer 165 --max-steps 20
-btprime collatz affine-gap 165 --max-steps 20
-btprime collatz periodic-code 2
-btprime collatz fixed-integer-census --limit 1000000 --max-steps 400 --write
+btlab collatz fixed-integer 165 --max-steps 20
+btlab collatz affine-gap 165 --max-steps 20
+btlab collatz periodic-code 2
+btlab collatz fixed-integer-census --limit 1000000 --max-steps 400 --write
 ```
 
-Schema: `collatz-fixed-integer/v1`. Lean: `CollatzDual.FixedInteger`.
+Schema: `collatz-fixed-integer/v1`. Lean: `Problems.Collatz.FixedInteger`.
 
 Recorded census (odd \(n\le 10^6\), `max_steps=250`, `critical_gap=1`):
 \(500000\) odds, \(20275920\) contracting prefixes, \(2220471\) expanding

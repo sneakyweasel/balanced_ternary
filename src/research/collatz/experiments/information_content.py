@@ -13,16 +13,16 @@ from itertools import product
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
-from balanced_ternary.representation import encode
+from bt.representation import encode
 from research.collatz.compatibility import ExponentCodeDiagnostic
 from research.collatz.cylinders import parse_ks
 from research.collatz.dual_code import lift_digit_formula
-from research.collatz.experiments.schema import (
+from research.experiments.schema import (
     COMPATIBILITY_SCHEMA_VERSION,
     ExperimentManifest,
     validate_compatibility_row,
 )
-from research.collatz.experiments.table_io import write_experiment
+from research.experiments.table_io import write_experiment
 from research.collatz.features import features_of_int
 from research.collatz.zero_lift import zero_lift_k
 
@@ -34,12 +34,12 @@ STATE_FIELDS: dict[str, tuple[str, ...]] = {
     "S3": ("m", "K", "R", "M", "C"),
 }
 S1_BT_THEOREM = (
-    "PROVED: S1=(m,K,R) determines BT(R) and every deterministic BT(R) feature."
+    "EXACT — HUMAN PROOF: S1=(m,K,R) determines BT(R) and every deterministic BT(R) feature."
 )
 CODE_DETERMINISM_THEOREM = (
-    "PROVED: the full exponent code determines S0-S3 and BT(R)."
+    "EXACT — HUMAN PROOF: the full exponent code determines S0-S3 and BT(R)."
 )
-FINITE_PARTITION_LABEL = "VERIFIED COMPUTATIONALLY on the recorded finite sample"
+FINITE_PARTITION_LABEL = "COMPUTATIONALLY VERIFIED on the recorded finite sample"
 
 
 def _mapping(value: object) -> dict[str, Any]:

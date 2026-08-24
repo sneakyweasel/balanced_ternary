@@ -1,4 +1,4 @@
-"""btprime command-line interface."""
+"""btlab command-line interface."""
 
 from cli.main import main
 

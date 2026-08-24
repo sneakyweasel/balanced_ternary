@@ -8,13 +8,13 @@ from math import log, log1p
 
 import pytest
 
-from collatz.compatibility import (
+from research.collatz.compatibility import (
     CompatibilityState,
     ExponentCodeDiagnostic,
     build_compatibility_graph,
 )
-from collatz.dual_code import CollatzDualCode
-from collatz.endpoint_3adic import (
+from research.collatz.dual_code import CollatzDualCode
+from research.collatz.endpoint_3adic import (
     KramerEndpoint,
     endpoint_residue_rate,
     endpoint_congruence_holds,
@@ -23,7 +23,7 @@ from collatz.endpoint_3adic import (
     real_drift,
     start_residue_rate,
 )
-from collatz.rational_base import (
+from research.collatz.rational_base import (
     RationalBaseThreeHalves,
     append_odd_step,
     decode_base_3_2,

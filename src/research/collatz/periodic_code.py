@@ -65,5 +65,5 @@ class PeriodicFixedPointTheorem:
             identity="n * (2^K - 3^p) = C",
             positive_candidate=candidate,
             expanding_excludes_positive=expanding,
-            status="PROVED as an affine identity; cylinder membership is extra",
+            status="EXACT — HUMAN PROOF as an affine identity; cylinder membership is extra",
         )

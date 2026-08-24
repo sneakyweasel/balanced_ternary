@@ -2,8 +2,8 @@ import BTCalculus.Derivative
 
 namespace BTCalculus
 
-open CollatzDual.Warp
-open CollatzDual.DigitDerivative
+open Representation.Words
+open Operators.DigitDerivative
 
 def IZ (a : Trit) (x : ℤ) : ℤ :=
   a.toInt + 3 * x

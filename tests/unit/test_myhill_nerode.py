@@ -6,7 +6,7 @@ import io
 from contextlib import redirect_stdout
 from itertools import product
 
-from balanced_ternary.cli import main
+from cli.main import main
 from bt.calculus.automata import profile_states, trie_count
 from bt.calculus.composition import (
     cascade_state_bound,

@@ -15,7 +15,7 @@ LEDGER_PATH = (
     Path(__file__).resolve().parents[2] / "docs" / "theory" / "theorem_ledger.json"
 )
 
-PROVED_TAGS = frozenset(
+EXACT_TAGS = frozenset(
     {
         "EXACT — LEAN VERIFIED",
         "EXACT — HUMAN PROOF",
@@ -44,9 +44,9 @@ def theorem_entry(theorem_id: str) -> dict[str, Any] | None:
 
 
 def claim_kind(tag: str) -> str:
-    """Coarse visual family. Conjectures never share the proved family."""
-    if tag in PROVED_TAGS:
-        return "proved"
+    """Coarse visual family. Conjectures never share the exact family."""
+    if tag in EXACT_TAGS:
+        return "exact"
     if tag in COMPUTED_TAGS:
         return "computed"
     if tag in CONJECTURE_TAGS:

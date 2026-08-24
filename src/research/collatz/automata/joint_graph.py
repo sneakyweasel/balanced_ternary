@@ -7,14 +7,14 @@ Exact realization:
 
 The truncated graph on ``odd n <= N`` is a finite sample, not the Collatz
 dynamics. Forbidden valuation patterns come from Layer C (2-adic graph) and
-are **PROVED** absent relative to that automaton, not merely unseen in the
+are **EXACT — HUMAN PROOF** absent relative to that automaton, not merely unseen in the
 sample.
 
 Synchronizing digit contexts: finite strings that send every odd state of
 ``TwoAdicDigitAutomaton(K)`` to one valuation class via the MSD Horner step
 ``r -> 3r+a`` (append a displayed digit on the right / new LSD).
 
-Structural restriction already **PROVED**: ``T(n) not≡ 0 (mod 3)``, so no
+Structural restriction already **EXACT — HUMAN PROOF**: ``T(n) not≡ 0 (mod 3)``, so no
 image vertex is divisible by 3.
 """
 
@@ -24,7 +24,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from itertools import product
 
-from balanced_ternary.representation import decode, encode
+from bt.representation import decode, encode
 from research.collatz.automata.two_adic import TwoAdicDigitAutomaton
 from research.collatz.automata.valuation_shift import (
     AdmissibleValuationAutomaton,
@@ -94,7 +94,7 @@ class JointGraph:
             f"vertices/edges: {len(self.edges)}",
             f"out-count by k: {by_k}",
             f"images ≡ 0 (mod 3): {len(self.images_divisible_by_three())}  "
-            f"(PROVED: must be 0)",
+            f"(EXACT — HUMAN PROOF: must be 0)",
             "",
             "sample edges w --k--> w':",
         ]

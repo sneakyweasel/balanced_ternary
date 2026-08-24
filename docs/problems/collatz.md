@@ -23,7 +23,7 @@ milestone documents indexed from [docs/README.md](../README.md).
 
 ## Lean
 
-`formal/Problems/Collatz/` with compatibility re-exports in `formal/CollatzDual/`.
+`formal/Problems/Collatz/`.
 
 ## Conjectures / refutations
 

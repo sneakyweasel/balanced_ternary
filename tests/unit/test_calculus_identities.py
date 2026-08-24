@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import random
 
+import pytest
+
 from bt.calculus.derivative import D, D_k, S, digit_at, lsd, reconstruct
 from bt.calculus.differential import D_of_product, D_of_sum, lsd_of_product, lsd_of_sum, product_expansion
 from bt.calculus.integral import I, I_minus, I_plus, I_zero, P, section_holds
@@ -19,6 +21,7 @@ from bt.operators import lsd_digit, recovered_digits
 from bt.representation import encode
 
 
+@pytest.mark.slow
 def test_decomposition_million():
     for n in range(-1_000_000, 1_000_001):
         assert reconstruct(n) == n

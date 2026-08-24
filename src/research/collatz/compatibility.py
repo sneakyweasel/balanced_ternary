@@ -324,7 +324,7 @@ def observed_nonconstant_monotone(r_seq: tuple[int, ...]) -> bool:
 
     This finite observation is not evidence that the infinite sequence is
     unbounded. The implication ``R_m -> inf => no positive integer realizer``
-    is **PROVED** independently.
+    is **EXACT — HUMAN PROOF** independently.
     """
     if len(r_seq) < 2:
         return False
@@ -353,7 +353,7 @@ class NestedCylinderReport:
             f"Nested cylinders  ks={self.ks}\n"
             f"R_m={self.realizers}\n"
             f"monotone={str(self.monotone).lower()}  "
-            f"[PROVED for leftover Q=1]\n"
+            f"[EXACT — HUMAN PROOF for leftover Q=1]\n"
             f"strictly_increasing_in_sample="
             f"{str(self.strictly_increasing_in_sample).lower()}  "
             f"[COMPUTATIONAL on this prefix]\n"
@@ -361,7 +361,7 @@ class NestedCylinderReport:
             f"classes: {', '.join(self.class_labels)}\n"
             f"status: {self.status}\n"
             "If R_m -> infinity, no finite positive integer realises the "
-            "entire infinite itinerary. [PROVED]\n"
+            "entire infinite itinerary. [EXACT — HUMAN PROOF]\n"
         )
 
 

@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from itertools import product
 
-from balanced_ternary.representation import decode
-from collatz.cylinders import valuation_cylinder
-from collatz.languages.cylinder_dfa import CylinderDFA, entropy_report
-from collatz.languages.dfa_minimize import minimize_dfa
-from collatz.transducers.valuation_languages import ValuationClassDFA
+from bt.representation import decode
+from research.collatz.cylinders import valuation_cylinder
+from research.collatz.languages.cylinder_dfa import CylinderDFA, entropy_report
+from bt.automata.minimize import minimize_dfa
+from research.collatz.transducers.valuation_languages import ValuationClassDFA
 
 
 def test_minimize_two_state_odd_language():
@@ -53,7 +53,7 @@ def test_conditioning_does_not_increase_padded_count():
 
 def test_entropy_report_status():
     report = entropy_report((1,), 4)
-    assert report.status == "VERIFIED COMPUTATIONALLY"
+    assert report.status == "COMPUTATIONALLY VERIFIED"
     assert report.word_count > 0
     assert report.minimized_states >= 1
     assert report.h_base3 is not None

@@ -166,7 +166,7 @@ def bt_length(n: int) -> int:
 def reverse_is_involution(n: int) -> bool:
     """True iff ``bt_reverse(bt_reverse(n)) == n``.
 
-    **PROVED:** this holds exactly when ``n == 0`` or ``n % 3 != 0``.
+    **EXACT — HUMAN PROOF:** this holds exactly when ``n == 0`` or ``n % 3 != 0``.
     Trailing zeros of a nonzero multiple of 3 become leading zeros after
     reverse and are stripped by canonicalization.
     """

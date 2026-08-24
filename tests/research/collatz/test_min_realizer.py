@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from collatz.compatibility import child_realizer_delta, nested_cylinder_report
-from collatz.core import collatz_valuation
-from collatz.cylinders import belongs_to_cylinder, valuation_cylinder
-from collatz.min_realizer import (
+from research.collatz.compatibility import child_realizer_delta, nested_cylinder_report
+from research.collatz.core import collatz_valuation
+from research.collatz.cylinders import belongs_to_cylinder, valuation_cylinder
+from research.collatz.min_realizer import (
     count_cylinder_up_to,
     itinerary_signature,
     min_realizer,

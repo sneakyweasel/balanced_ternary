@@ -1,7 +1,6 @@
 # Balanced-ternary word maps and accelerated Collatz
 
-This note records Milestone 9. Claim labels are **PROVED**, **VERIFIED
-COMPUTATIONALLY**, **CONJECTURE**, and **OBSERVATION**. Finite checks are
+This note records Milestone 9. Claim labels are **EXACT — HUMAN PROOF**, **COMPUTATIONALLY VERIFIED**, **CONJECTURE**, and **OBSERVATION**. Finite checks are
 not theorems. Nothing here is a Collatz proof.
 
 The objects are OEIS-style transformations of canonical balanced-ternary
@@ -33,12 +32,12 @@ All maps reuse the existing encoder. Display is MSD-first with alphabet
   \(\sum_i a_i(-1)^i\).
 - \(L_3\): OEIS [A134021](https://oeis.org/A134021), canonical length.
 
-Published prefixes are locked in `tests/test_oeis_maps.py`. They are not
+Published prefixes are locked in `tests/unit/test_oeis_maps.py`. They are not
 invented examples.
 
 ## Exact word algebra
 
-**PROVED** (and Lean-verified at the digit-list level):
+**EXACT — LEAN VERIFIED**:
 
 1. Digitwise negation reverses evaluation, and reverse commutes with
    negation, so \(W(-n)=-W(n)\) and \(W(0)=0\).
@@ -51,14 +50,14 @@ invented examples.
    \(W(W(n))=n\). Equivalently, for integers,
    \(W(W(n))=n\) if and only if \(n=0\) or \(3\nmid n\).
 
-**PROVED**, not involutive: \(W\) is A134028, not A160652. Trailing zeros
+**EXACT — HUMAN PROOF**, not involutive: \(W\) is A134028, not A160652. Trailing zeros
 become leading zeros after reverse and are stripped. The smallest
 positive witness is \(W(3)=1\), \(W(W(3))=1\neq 3\). \(W_z\) and
 \(W_{\mathrm{tail}}\) are involutions on \(\mathbb{Z}\).
 
 **REFUTED EXACTLY:** \(W(3n)=3W(n)\). Witness \(n=1\): \(W(3)=1\neq 3\).
 
-**PROVED:** for odd \(n\), weight is odd and reverse preserves weight, so
+**EXACT — HUMAN PROOF:** for odd \(n\), weight is odd and reverse preserves weight, so
 \(W(n)\) is odd. For \(3\nmid n\), the LSD is the sign of \(W(n)\):
 \(n\equiv 1\pmod 3\) implies \(W(n)>0\), and \(n\equiv -1\pmod 3\) implies
 \(W(n)<0\). Therefore \(T(W(n))\) is defined, for odd \(n\) not divisible
@@ -81,7 +80,7 @@ No signed extension of \(T\) is used.
 witness \(n=3\): \(W(3)=1\), \(T(3)=5\), \(W(5)=-11\), \(T(1)=1\), so
 \(\mathrm{Comm}_{WT}(3)=-12\).
 
-On odd \(n\le 20000\) (**VERIFIED COMPUTATIONALLY**):
+On odd \(n\le 20000\) (**COMPUTATIONALLY VERIFIED**):
 
 - the commutator is defined for 5004 of 10000 odds (density \(0.5004\)),
   matching the exact count of odd \(n\equiv 1\pmod 3\) plus four
@@ -96,9 +95,9 @@ On odd \(n\le 20000\) (**VERIFIED COMPUTATIONALLY**):
 
 On every positive odd \(n\le 10^6\), \(\Delta_s(n)=s_3(T(n))-s_3(n)-1\)
 equals \(s_3(T(n))-s_3(3n+1)\), so it measures only the odd-part step
-(**VERIFIED COMPUTATIONALLY**; the identity \(s_3(3n+1)=s_3(n)+1\) is
-**PROVED**). Zero commutators in that range were palindromes
-(**VERIFIED COMPUTATIONALLY**, not a theorem).
+(**COMPUTATIONALLY VERIFIED**; the identity \(s_3(3n+1)=s_3(n)+1\) is
+**EXACT — HUMAN PROOF**). Zero commutators in that range were palindromes
+(**COMPUTATIONALLY VERIFIED**, not a theorem).
 
 ## Special classes and palindromes
 
@@ -125,12 +124,12 @@ On generator words in \(\{T,W,W_{\mathrm{tail}}\}\) of length at most 6,
 with \(T\) undefined off positive odds:
 
 - \(W_{\mathrm{tail}}W_{\mathrm{tail}}=\mathrm{id}\) holds on the scanned
-  integers (**PROVED** as an involution; the scan is a check);
+  integers (**EXACT — HUMAN PROOF** as an involution; the scan is a check);
 - \(WW=\mathrm{id}\) fails at \(n=3\);
 - \(WT=TW\) fails at \(n=3\);
 - \(W_{\mathrm{tail}}T=TW_{\mathrm{tail}}\) fails at \(n=7\).
 
-Sample agreement of longer words is **VERIFIED COMPUTATIONALLY** only.
+Sample agreement of longer words is **COMPUTATIONALLY VERIFIED** only.
 
 ## Classification
 
@@ -185,14 +184,14 @@ found.
 ## Commands
 
 ```powershell
-btprime reverse 21
-btprime reverse-tail 224
-btprime collatz warp 27
-btprime collatz warp-census --limit 20000
-btprime collatz warp-realizer 1,4,2
-btprime collatz warp-semigroup --length 6
-btprime collatz warp-counterexamples
+btlab reverse 21
+btlab reverse-tail 224
+btlab collatz warp 27
+btlab collatz warp-census --limit 20000
+btlab collatz warp-realizer 1,4,2
+btlab collatz warp-semigroup --length 6
+btlab collatz warp-counterexamples
 ```
 
-Lean statements live in `formal/CollatzDual/Warp.lean`. Experiment rows
+Lean statements live in `formal/Representation/Words.lean`. Experiment rows
 use schema `collatz-bt-warp/v1`.

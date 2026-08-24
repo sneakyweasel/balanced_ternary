@@ -165,7 +165,7 @@ upper bound `2(2B+1)`. **EXACT — HUMAN PROOF**. The `[2]` witness remains:
 
 ## Local confluence
 
-**PROVED** modulo high-zero stripping (`BTCalculus/Confluence.lean`).
+**EXACT — HUMAN PROOF** modulo high-zero stripping (`BTCalculus/Confluence.lean`).
 Unique stripped trit NF is `encodeZ(value)`; Strategy A reaches it;
 the overlapping `(i, i+1)` pair joins. Raw `[1,0]` vs `[1,0,0]` from
 `[-5,2]` is the stripping witness, not a confluence failure.

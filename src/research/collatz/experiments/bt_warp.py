@@ -6,12 +6,12 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from research.collatz.experiments.schema import (
+from research.experiments.schema import (
     BT_WARP_SCHEMA_VERSION,
     ExperimentManifest,
     validate_bt_warp_row,
 )
-from research.collatz.experiments.table_io import write_experiment
+from research.experiments.table_io import write_experiment
 from research.collatz.warp import (
     commutator_census,
     enumerate_operator_words,
@@ -65,7 +65,7 @@ def run_bt_warp_census(
                 "domain": "positive odd integers",
             },
             row_count=len(rows),
-            claim_status="VERIFIED COMPUTATIONALLY on the stated odd bound",
+            claim_status="COMPUTATIONALLY VERIFIED on the stated odd bound",
             schema_version=BT_WARP_SCHEMA_VERSION,
         )
         paths = write_experiment(list(rows), output_dir, "bt_warp_census", manifest)
@@ -106,7 +106,7 @@ def run_bt_warp_realizer(
             experiment_name="bt-warp-realizer",
             parameters={"max_length": max_length, "max_k": max_k},
             row_count=len(rows),
-            claim_status="VERIFIED COMPUTATIONALLY on the bounded exponent-code sample",
+            claim_status="COMPUTATIONALLY VERIFIED on the bounded exponent-code sample",
             schema_version=BT_WARP_SCHEMA_VERSION,
         )
         paths = write_experiment(list(rows), output_dir, "bt_warp_realizer", manifest)
@@ -162,7 +162,7 @@ def semigroup_agreement_sample(
         ),
         "W_W_counterexample": smallest_disagreement(("W", "W"), (), sample_limit),
         "Wt_Wt_counterexample": smallest_disagreement(("Wt", "Wt"), (), sample_limit),
-        "status": "VERIFIED COMPUTATIONALLY on the stated sample",
+        "status": "COMPUTATIONALLY VERIFIED on the stated sample",
     }
 
 

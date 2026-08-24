@@ -9,6 +9,8 @@ import pytest
 pytest.importorskip("streamlit")
 from streamlit.testing.v1 import AppTest  # noqa: E402
 
+pytestmark = pytest.mark.slow
+
 PAGE = (
     Path(__file__).resolve().parents[2]
     / "src"

@@ -5,7 +5,7 @@ from __future__ import annotations
 from pathlib import Path
 
 from research.collatz.cylinders import parse_ks
-from research.collatz.experiments.table_io import write_rows
+from research.experiments.table_io import write_rows
 from research.collatz.order_analysis import extremal_orders, permutation_table
 
 

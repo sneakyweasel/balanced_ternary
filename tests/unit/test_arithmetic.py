@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from balanced_ternary.arithmetic import factorize, format_factorization, is_prime
+from bt.arithmetic import factorize, format_factorization, is_prime
 
 
 def test_is_prime_edges():

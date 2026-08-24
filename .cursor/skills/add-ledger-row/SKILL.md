@@ -20,7 +20,7 @@ Use exactly one:
 - `REFUTED`
 - `REPARAMETERIZATION`
 
-Do not write `PROVED` in the JSON. Docs may say `PROVED` / `PROVED — LEAN`; those map to the two `EXACT` tags, and prose `VERIFIED COMPUTATIONALLY` maps to `COMPUTATIONALLY VERIFIED`. `tools/render_theorem_ledger.py` rejects anything outside this list.
+Do not write `PROVED` or `VERIFIED COMPUTATIONALLY` in the JSON or in docs. `tools/render_theorem_ledger.py` rejects anything outside this list.
 
 `KNOWN`, `PROJECT-SPECIFIC`, and `OPEN` are novelty annotations for prose, never ledger tags.
 

@@ -3,13 +3,13 @@
 Launch:
 
     python -m pip install -e ".[ui]"
-    btprime collatz ui
-    btprime calculus explorer
+    btlab ui
 
+`btlab collatz ui` and `btlab calculus explorer` remain aliases.
 The app is centered on exact balanced-ternary words and a calculator.
-The Residual explorer lives under Calculus research.
+The Residual explorer and rewrite companion live under Calculus research.
 Collatz pages remain as one research application. The UI does not claim
-progress on the Collatz conjecture. Feature deltas are not Lyapunov
+progress on the Collatz conjecture. Metric deltas are not Lyapunov
 decreases. Finite graphs are samples, not the dynamics.
 """
 
@@ -27,7 +27,7 @@ def launch() -> int:
         print(
             "Streamlit is not installed. From the project directory:\n"
             '  python -m pip install -e ".[ui]"\n'
-            "  btprime collatz ui"
+            "  btlab ui"
         )
         return 1
     import subprocess

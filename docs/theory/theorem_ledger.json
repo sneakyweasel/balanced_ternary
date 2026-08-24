@@ -496,10 +496,21 @@
   },
   {
     "id": "BTA-Ik-newton",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "I_k is the set of Z[x] polynomials whose Newton coefficients are divisible by 3^k",
     "source": "docs/theory/polynomial_function_congruence.md",
-    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "lean": "BTCalculus/NewtonKernel.lean",
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-eval-residualAlong",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "eval x (residualAlong w f) = D^{|w|}(f(packWord w + 3^{|w|} x)) for every ordinary Z[x] polynomial",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/ResidualShift.lean",
     "tests": [
       "tests/unit/test_poly_congruence.py"
     ],
@@ -1822,6 +1833,50 @@
     ]
   },
   {
+    "id": "BTC-word-wn-nf",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the opt-in fragment WORD_WN_RULES (WORD_SIMP_RULES plus one-way N∘S→S∘N, N∘W→W∘N, and the exact commute N∘K3→K3∘N) is terminating and locally confluent; every word has a unique syntactic normal form",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_wn_nf",
+      "word_simp_nf",
+      "w_nd_word_lc"
+    ]
+  },
+  {
+    "id": "BTC-word-simp-nd-lc",
+    "tag": "REFUTED",
+    "statement": "WORD_SIMP_RULES plus one-way N∘D→D∘N (together with N∘S and N∘K3) is locally confluent",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_simp_nd_lc",
+      "w_nd_word_lc"
+    ]
+  },
+  {
+    "id": "BTC-word-wnd-nf",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the opt-in fragment WORD_WND_RULES (WORD_WN_RULES plus one-way N∘D→D∘N and the exact sign-flips N∘Ip→Im∘N, N∘Im→Ip∘N) is terminating and locally confluent; every word has a unique syntactic normal form",
+    "source": "docs/theory/rewrite_calculus.md",
+    "lean": "",
+    "tests": [
+      "tests/unit/test_rewrite_word_fragments.py"
+    ],
+    "related_conjectures": [
+      "word_wnd_nf",
+      "word_wn_nf",
+      "word_simp_nd_lc"
+    ]
+  },
+  {
     "id": "BTM-balanced-monna",
     "tag": "REPARAMETERIZATION",
     "statement": "the balanced Monna map B(sum a_i 3^i)=sum a_i 3^{-i-1} with a_i in {-1,0,+1} is an affine conjugate of Monna's 1952 digit-reversal map; the residual graph recursion Gamma_F is the existing residual Mealy machine, not a new dynamical invariant",
@@ -1862,6 +1917,291 @@
     "lean": "",
     "tests": [
       "tests/research/monna_endpoint_spectra/test_triage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTC-add-not-D-local",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "the next-state output D(x+y) is not D-local: there is no G such that D(x+y)=G(D(x),D(y)) for all x,y; witness D(0+0)=0 and D(1+1)=1 while D(0)=D(1)=0",
+    "source": "docs/theory/rewrite_calculus_formalization.md",
+    "lean": "BTCalculus/RewriteAddBoundary.lean",
+    "tests": [
+      "tests/unit/test_rewrite_add_boundary.py"
+    ],
+    "related_conjectures": [
+      "add_affine_only"
+    ]
+  },
+  {
+    "id": "BTC-constructor-sum-class",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for U,V,W in {S,I+,I-,N}, the identity U(x)+V(y)=W(x+y) holds for all integers iff it is one of the eight concrete triples (S,S,S), (N,N,N), (I+,S,I+), (S,I+,I+), (I-,S,I-), (S,I-,I-), (I+,I-,S), (I-,I+,S); same-sign I+ or I- and mixed N+S are not constructor identities",
+    "source": "docs/theory/rewrite_calculus_formalization.md",
+    "lean": "BTCalculus/RewriteAddBoundary.lean",
+    "tests": [
+      "tests/unit/test_rewrite_add_boundary.py",
+      "tests/unit/test_rewrite_add_affine_only.py"
+    ],
+    "related_conjectures": [
+      "add_affine_only"
+    ]
+  },
+  {
+    "id": "BTC-push-in-S-peak",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "the named carry-free push-in system (unary D(S(t))→t plus S(Add(t,u))→Add(S(t),S(u)) and congruence, no D-through-Add) is not locally confluent: D(S(Add(X,Y))) has two distinct irreducibles Add(X,Y) and D(Add(S(X),S(Y))); both evaluate to X+Y",
+    "source": "docs/theory/rewrite_calculus_formalization.md",
+    "lean": "BTCalculus/RewriteAddBoundary.lean",
+    "tests": [
+      "tests/unit/test_rewrite_signature_enlargement.py"
+    ],
+    "related_conjectures": [
+      "add_s_push_lc"
+    ]
+  },
+  {
+    "id": "BTC-add-requires-carry-state",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "the packaged Add boundary combines three exact statements: D(x+y) is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence",
+    "source": "docs/theory/rewrite_calculus_formalization.md",
+    "lean": "BTCalculus/RewriteAddBoundary.lean",
+    "tests": [
+      "tests/unit/test_rewrite_add_boundary.py"
+    ],
+    "related_conjectures": [
+      "add_affine_only",
+      "add_s_push_lc"
+    ]
+  },
+  {
+    "id": "OST-np-kernel-unreach",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if n > 0 and n is not 0 or 12 mod 24, then the kernel family state t_n = (q_{n-1}, -q_{n-2}, 0) is not origin-reachable under unrestricted integer steps T_w",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Reachability.lean",
+    "tests": [
+      "tests/research/ostrowski/test_origin_live.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-energy-step",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the unread-tail energy E_i(s) = s1 q_{i-2} + s2 q_{i-1} + s3 q_i (with q_j = 0 for j < 0) satisfies E_{i-1}(T_w s) = E_i(s) - w q_{i-1} for i ≥ 1, equivalently the adjoint covariance u_{i-1} A = u_i",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_energy_geometry.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-energy-telescope",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, after an MSD word w of length k from remaining n+k, the unread-tail energy satisfies E_n(T_w s) = E_{n+k}(s) - sum_j w_j q_{n+k-1-j}; this is the cumulative form of energy_step, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_energy_trajectory.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-energy-ext-interval",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the set of integer controls w such that E_{n-1}(T_w s) lies in a fixed integer interval [lo, hi] is consecutive: if w1 and w2 satisfy the bounds and w1 ≤ w ≤ w2 then w does too; this is energy_step plus q>0, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_ext_feasibility.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-energy-homogeneous",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, homogeneous residual motion is energy-neutral in the sliding index: E_n(A^k s) = E_{n+k}(s), equivalently energy_telescope on the zero word; this is not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_energy_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-adjoint-window-det",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP and n≥2, the determinant of consecutive adjoints (u_n, u_{n-1}, u_{n-2}) equals 3^{n-2}, so neighboring energies invert s over Q; this is not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_energy_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-origin-particular",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, from the origin an MSD word ws unfolds by variation of constants: foldSteps ws origin equals the particular sum −∑ A^{k-1-j} e3 w_j; this is not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_spectral_control.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-impulse-place",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the origin impulse A^r e3 equals (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r) with q_j=0 for j<0; this is the place-value dictionary for origin_particular, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_spectral_control.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-recurrence-word-zero",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the MSD recurrence word B*=(1,-2,-1,-3) has consumed sum zero at every start remaining n+4: q_{n+3}-2q_{n+2}-q_{n+1}-3q_n=0; this is q_rec, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_recurrence_zero.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-particular-s3",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, from the origin the third coordinate of the control particular equals minus the MSD consumed valuation: (particularSum ws)_3 = -consumedSum |ws| ws, so val(B)=0 iff c_B lies on F={s_3=0}; this is energy_telescope at n=0, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-consumed-sum-append",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, MSD consumed sum splits at two starts: consumedSum (n+|U|+|V|)(UV) = consumedSum (n+|U|+|V|)U + consumedSum (n+|V|)V; this is not val(U)+C val(V) and not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-val-concat-energy",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, complete-word concatenation satisfies val(UV)=val(V)-E_|V|(c_U), equivalently val(UV)=0 iff E_|V|(c_U)=val(V); this is particular_concat plus energy_homogeneous, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-complete-zero-monoid",
+    "tag": "REFUTED",
+    "statement": "complete zero-value words form a monoid under concatenation: val(U)=val(V)=0 implies val(UV)=0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-fold-s3",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, after an MSD word B from any residual s, (T_B(s))_3 = E_|B|(s) - val(B), so T_B(s) lies on F iff E_|B|(s)=val(B); this is energy_telescope at remaining 0, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-unnormalized-mode-bound",
+    "tag": "REFUTED",
+    "statement": "on origin-live remaining-0 slices of Γ_NP a uniform unnormalized bound |z_j|≤C holds, equivalently infinite liveness forces all expanding companion modes bounded",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "",
+    "tests": [
+      "tests/research/ostrowski/test_spectral_control.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-reset-pow-then-hub",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the MSD word (B*)^k · (1,-2) has origin particular equal to the hub (-3,-1,0); this is the reset identity plus hub_nonreset, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_recurrence_zero.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-long-words-infinite-L0",
+    "tag": "REFUTED",
+    "statement": "arbitrarily long origin-accepted words of Γ_NP force infinitely many distinct remaining-0 terminals",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "",
+    "tests": [
+      "tests/research/ostrowski/test_recurrence_zero.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-unique-predecessor",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if T_w(s)=t then s equals the integer reverse (t2-t1/3, t3+w-2 t1/3, t1/3); on F this is (b-a/3, w-2a/3, a/3). This is inversion of step, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/KernelFamily.lean",
+    "tests": [
+      "tests/research/ostrowski/test_reverse_closure.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-extra-terminal-congruence",
+    "tag": "REFUTED",
+    "statement": "origin-reachable remaining-0 terminals of Γ_NP satisfy a congruence on F strictly stronger than 3|a, equivalently 9|a or gcd of b-coordinates >1",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "",
+    "tests": [
+      "tests/research/ostrowski/test_origin_live.py"
+    ],
+    "related_conjectures": []
+  },
+    {
+    "id": "OST-np-reset-prefix",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if T_R(0)=0 then T_{RU}(0)=T_U(0); origin-reset prefixes do not create new terminals. This is particular_concat at c_R=0, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_recurrence_zero.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-same-energy-same-OnF",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if E_|v|(s)=E_|v|(t) then T_v(s) lands on F iff T_v(t) does; length-n suffix acceptance is classified by E_n, not by residual coordinates. This is fold_on_F_iff, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_ext_feasibility.py"
     ],
     "related_conjectures": []
   }

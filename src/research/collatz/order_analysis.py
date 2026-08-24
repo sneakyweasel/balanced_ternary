@@ -3,7 +3,7 @@
 The homogeneous budget depends only on ``(m, K)``. The affine constant
 ``C`` depends on the order of the ``k_i``.
 
-**PROVED adjacent-swap formula.** Write ``ks = (..., a, b, ...)`` with
+**EXACT — HUMAN PROOF adjacent-swap formula.** Write ``ks = (..., a, b, ...)`` with
 ``a`` in position ``t`` (0-based) and ``b`` in position ``t+1``. Let
 ``K_t = k_0+...+k_{t-1}``. After swapping ``a`` and ``b``,
 
@@ -56,7 +56,7 @@ def verify_swap_formula(ks: tuple[int, ...], t: int) -> bool:
 
 
 def adjacent_swap_delta_R_residue(ks: tuple[int, ...], t: int) -> int:
-    """``R_swapped-R`` modulo ``2^(K+1)``. **PROVED**.
+    """``R_swapped-R`` modulo ``2^(K+1)``. **EXACT — HUMAN PROOF**.
 
     The value is ``-3^(-m) * delta_C`` modulo the common cylinder modulus.
     """

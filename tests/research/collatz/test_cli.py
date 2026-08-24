@@ -1,13 +1,13 @@
-"""CLI smoke tests for ``btprime collatz ...``."""
+"""CLI smoke tests for ``btlab collatz ...``."""
 
 from __future__ import annotations
 
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
-from balanced_ternary.representation import encode
-from collatz.core import collatz_step
+from cli.main import main
+from bt.representation import encode
+from research.collatz.core import collatz_step
 
 
 def _run(*args: str) -> str:
@@ -107,7 +107,7 @@ def test_collatz_cylinder():
 def test_collatz_entropy():
     out = _run("collatz", "entropy", "--ks", "1", "--length", "4")
     assert "H_L (base 3)" in out
-    assert "VERIFIED COMPUTATIONALLY" in out
+    assert "COMPUTATIONALLY VERIFIED" in out
 
 
 def test_collatz_complexity():
@@ -229,7 +229,7 @@ def test_collatz_suffix_test():
         "3",
     )
     assert "suffix determination" in out
-    assert "EXACT COUNTEREXAMPLE" in out
+    assert "REFUTED" in out
 
 
 def test_collatz_dual_dataset_no_write():

@@ -6,6 +6,8 @@ import BTCalculus.Rewrite
 import BTCalculus.OpFrag
 import BTCalculus.OpFragNewman
 import BTCalculus.OpFragSemantic
+import BTCalculus.RewriteCore
+import BTCalculus.RewriteAddBoundary
 import BTCalculus.Comparison
 import BTCalculus.Select
 import BTCalculus.Semantics
@@ -23,6 +25,8 @@ import BTCalculus.Quadratic
 import BTCalculus.PadicLifting
 import BTCalculus.PadicLiftingState
 import BTCalculus.PolynomialFunctionsMod
+import BTCalculus.NewtonKernel
+import BTCalculus.ResidualShift
 import BTCalculus.CubicResidual
 import BTCalculus.CubicFibres
 import BTCalculus.CubicDeepestLayer

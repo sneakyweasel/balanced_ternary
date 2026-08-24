@@ -43,7 +43,7 @@ def _warp_census(limit: int, write: bool, identity_length: int) -> int:
         limit, identity_length=identity_length, output_dir=output
     )
     census = result.census
-    print("BT warp commutator census  [VERIFIED COMPUTATIONALLY]")
+    print("BT warp commutator census  [COMPUTATIONALLY VERIFIED]")
     print(f"limit={result.limit}  odds={census['odd_count']}  schema={result.schema_version}")
     print(
         f"commutator defined={census['commutator_defined']}  "

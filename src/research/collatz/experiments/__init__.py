@@ -13,7 +13,7 @@ from research.collatz.experiments.information_content import run_information_con
 from research.collatz.experiments.near_critical import run_near_critical
 from research.collatz.asymptotic import run_fixed_integer_census
 from research.collatz.experiments.periodic_dual import periodic_dual_trace
-from research.collatz.experiments.schema import ExperimentManifest
+from research.experiments.schema import ExperimentManifest
 from research.collatz.experiments.suffix_determination import suffix_determination_census
 
 __all__ = [

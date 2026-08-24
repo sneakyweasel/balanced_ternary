@@ -1,6 +1,6 @@
 import Problems.Collatz.FixedInteger
 
-namespace CollatzDual
+namespace Problems.Collatz
 
 /-!
 Periodic exponent codes. Every statement is algebraic. None of them is a
@@ -77,4 +77,4 @@ theorem cycle_closure_of_affine_steps
     n * (twoPow - threePow) = C :=
   periodic_fixed_point twoPow threePow n C x hEndpoint hx
 
-end CollatzDual
+end Problems.Collatz

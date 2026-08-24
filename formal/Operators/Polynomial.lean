@@ -1,8 +1,8 @@
 import Representation.Words
 
-namespace CollatzDual.Polynomial
+namespace Operators.Polynomial
 
-open CollatzDual.Warp
+open Representation.Words
 
 /-- Horner evaluation of an LSD-first coefficient list: `a0 + x (a1 + x (a2 + ⋯))`. -/
 def evalPoly (coeffs : List Trit) (x : ℤ) : ℤ :=
@@ -49,4 +49,4 @@ theorem evalPoly_reverse_one (w : List Trit) :
   simp only [one_mul]
   simpa using foldl_sum_from w 0
 
-end CollatzDual.Polynomial
+end Operators.Polynomial

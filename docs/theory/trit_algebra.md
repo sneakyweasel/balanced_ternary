@@ -22,8 +22,8 @@ lattice. It is not Boolean: `max(0, neg(0)) = 0 ≠ +1`.
 
 ## Our formalization
 
-Python: `bt.calculus.trit.Trit` (`IntEnum`). Lean: existing
-`CollatzDual.Warp.Trit` plus `BTCalculus.TritAlgebra`.
+Python: `bt.calculus.trit.Trit` (`IntEnum`). Lean: `Representation.Words.Trit`
+plus `BTCalculus.TritAlgebra`.
 
 Exact operations:
 
@@ -39,7 +39,7 @@ Verified laws (exhaustive on 3 elements; Lean by cases):
 - Kleene inequality
 - `neg` is an involution and order-reversing
 
-**PROVED (LEAN VERIFIED):** not Boolean, via `not_boolean_zero`.
+**EXACT — LEAN VERIFIED:** not Boolean, via `not_boolean_zero`.
 
 ## Computational observations
 

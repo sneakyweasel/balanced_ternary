@@ -77,7 +77,7 @@ def test_change_depth_deficit():
     assert story2.r == 2
     assert "mod 9" in story2.n2_sees
     assert story2.badge is not None
-    assert story2.badge["kind"] == "proved"
+    assert story2.badge["kind"] == "exact"
     assert story2.badge["id"] == "BTA-x3-vis"
 
 
@@ -213,7 +213,7 @@ def test_theorem_ledger_distinguishes_claim_kinds():
     vis = theorem_entry("BTA-x3-vis")
     assert vis is not None
     assert vis["tag"] == "EXACT — LEAN VERIFIED"
-    assert claim_kind(vis["tag"]) == "proved"
+    assert claim_kind(vis["tag"]) == "exact"
     refuted = badge_payload("BTA-x3-def2-n21n0")
     assert refuted is not None
     assert refuted["kind"] == "refuted"

@@ -61,7 +61,7 @@ X-n_*=\frac{3^m}{2^K}(R-n_*).
 }
 \]
 
-These identities are **PROVED** and **LEAN VERIFIED** in cross-multiplied
+These identities are **EXACT — LEAN VERIFIED** in cross-multiplied
 integer form. They explain the geometry without floating-point logs.
 
 ## Exact regime geometry
@@ -106,7 +106,7 @@ Because \(X,M>0\) and \(M\) is least positive,
 \boxed{X=M+q3^m,\qquad q\in\mathbb N,}
 \]
 
-so \(M\le X\). This is **PROVED** and the inequality is **LEAN VERIFIED**
+so \(M\le X\). This is **EXACT — LEAN VERIFIED**
 from the lift decomposition.
 
 ## Critical-near partition
@@ -192,8 +192,8 @@ yield a new obstruction to \(\liminf K_m/m\le\log_2 3\). See
 Use:
 
 ```powershell
-btprime collatz affine-center 1,4,2
-btprime collatz affine-center-census --max-length 6 --max-k 4 `
+btlab collatz affine-center 1,4,2
+btlab collatz affine-center-census --max-length 6 --max-k 4 `
   --critical-gap 10 --closest-count 20 --write
 ```
 

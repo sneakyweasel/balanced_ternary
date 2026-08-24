@@ -32,18 +32,18 @@ Deltas are empirical differences along one accelerated step. They are not
 Lyapunov decreases.
 
 Claim classification for the weight-parity bridge (see
-``collatz.research.invariants`` and ``docs/collatz_mathematics.md``):
+``research.collatz.invariants`` and ``docs/collatz_mathematics.md``):
 
-    odd n  =>  weight(BT(n)) odd          PROVED
-    3n+1 even => weight(BT(3n+1)) even    PROVED (same identity)
+    odd n  =>  weight(BT(n)) odd          EXACT — HUMAN PROOF
+    3n+1 even => weight(BT(3n+1)) even    EXACT — HUMAN PROOF (same identity)
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
 
-from balanced_ternary.representation import encode
-from research.collatz.bt_arithmetic import lsd_add_one_case, three_n_plus_one_word
+from bt.representation import encode
+from bt.arithmetic import lsd_add_one_case, three_n_plus_one_word
 from research.collatz.core import collatz_step, collatz_valuation, require_positive_odd, three_n_plus_one
 from research.collatz.features import (
     FEATURE_NAMES,

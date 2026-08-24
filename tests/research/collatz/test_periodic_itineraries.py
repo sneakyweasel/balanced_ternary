@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collatz.periodic_itineraries import (
+from research.collatz.periodic_itineraries import (
     eventually_periodic_realizer,
     periodic_candidate,
     preimage_along,

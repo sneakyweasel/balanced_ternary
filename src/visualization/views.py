@@ -5,7 +5,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from fractions import Fraction
 
-from balanced_ternary.representation import decode, encode, is_canonical, normalize
+from bt.representation import decode, encode, is_canonical, normalize
 from bt.arithmetic import (
     add,
     add_one,
@@ -18,36 +18,37 @@ from bt.arithmetic import (
     negate,
     subtract,
 )
-from bt.metrics import lsd_nonzero_index
-from bt.metrics import signed_digit_sum as bt_signed_digit_sum
-from bt.metrics import v2 as bt_v2
-from bt.metrics import v3 as bt_v3
-from bt.metrics import weight as bt_weight
+from bt.metrics import (
+    lsd_nonzero_index,
+    signed_digit_sum as bt_signed_digit_sum,
+    v2 as bt_v2,
+    v3 as bt_v3,
+    weight as bt_weight,
+)
 from bt.operators import OPERATORS, OperatorDomainError, get_operator
-from bt.transducers.divide_by_two import LeftoverCarryError
-from collatz.affine_center import AffineCenterState
-from collatz.automata.joint_graph import (
+from bt.transducers.divide_by_two import DivideByTwoTransducer, LeftoverCarryError
+from bt.transducers.divide_by_two_power import DivideByTwoPowerTransducer
+from research.collatz.affine_center import AffineCenterState
+from research.collatz.automata.joint_graph import (
     build_joint_graph,
     synchronizing_digit_contexts,
 )
-from collatz.automata.symbolic_graph import build_symbolic_graph
-from collatz.automata.two_adic import TwoAdicDigitAutomaton
-from collatz.automata.valuation_shift import AdmissibleValuationAutomaton
-from collatz.compatibility import CompatibilityState
-from collatz.core import require_positive_odd
-from collatz.cylinders import valuation_cylinder
-from collatz.experiments.affine_center import run_affine_center_census
-from collatz.experiments.complexity_spectrum import complexity_row
-from collatz.features import NUMERIC_FEATURE_NAMES
-from collatz.inverse import build_inverse_tree, format_inverse_tree
-from collatz.languages.cylinder_dfa import entropy_report
-from collatz.theorems import append_plus
-from collatz.trajectory import collatz_trajectory
-from collatz.transducers.divide_by_two import DivideByTwoTransducer
-from collatz.transducers.divide_by_two_power import DivideByTwoPowerTransducer
-from collatz.transducers.odd_part import odd_part_word
-from collatz.transitions import feature_transition
-from collatz.valuation import v2
+from research.collatz.automata.symbolic_graph import build_symbolic_graph
+from research.collatz.automata.two_adic import TwoAdicDigitAutomaton
+from research.collatz.automata.valuation_shift import AdmissibleValuationAutomaton
+from research.collatz.compatibility import CompatibilityState
+from research.collatz.core import require_positive_odd
+from research.collatz.cylinders import valuation_cylinder
+from research.collatz.experiments.affine_center import run_affine_center_census
+from research.collatz.experiments.complexity_spectrum import complexity_row
+from research.collatz.features import NUMERIC_FEATURE_NAMES
+from research.collatz.inverse import build_inverse_tree, format_inverse_tree
+from research.collatz.languages.cylinder_dfa import entropy_report
+from research.collatz.theorems import append_plus
+from research.collatz.trajectory import collatz_trajectory
+from research.collatz.transducers.odd_part import odd_part_word
+from research.collatz.transitions import feature_transition
+from research.collatz.valuation import v2
 
 
 @dataclass(frozen=True)
@@ -492,7 +493,7 @@ class WarpView:
 
 
 def warp_view(n: int) -> WarpView:
-    from collatz.warp import warp_state
+    from research.collatz.warp import warp_state
 
     state = warp_state(n)
     return WarpView(

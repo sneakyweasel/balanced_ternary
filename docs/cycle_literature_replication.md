@@ -38,7 +38,7 @@ is an adapter, not Lebel's object.
 
 Source: Zenodo 10.5281/zenodo.20465930.
 
-For \(D=2^K-3^p\), **PROVED** \(3\nmid D\). Sampled \(C\bmod 3\) on
+For \(D=2^K-3^p\), **EXACT — HUMAN PROOF** \(3\nmid D\). Sampled \(C\bmod 3\) on
 \(p\le 4\), \(k_i\le 3\) took values \(\{1,2\}\), never \(0\), and
 `three_divides_D=0`. Classification: **convention mismatch**. The
 divisor-specific walk is **reproduced** as an independent exact lemma:

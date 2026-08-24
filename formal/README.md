@@ -1,14 +1,25 @@
-# Collatz dual-code formalization
+# Formalization
 
-Lean 4.19 + Mathlib. Sources are grouped under `Core/`,
-`Representation/`, `Operators/`, `BTCalculus/`, and `Problems/Collatz/`. The historical
-`CollatzDual.*` modules remain as re-exports. Build from this directory:
+Lean 4.19 + Mathlib for the Balanced Ternary Mathematical Laboratory.
+Sources live under `BTCalculus/`, `Core/`, `Representation/`,
+`Operators/`, and `Problems/`. The Lake package name is
+`balanced-ternary-formal`.
+
+Build from this directory:
 
 ```powershell
 lake build
 ```
 
 The project contains no `sorry` or `admit`.
+
+| Path | Role |
+|------|------|
+| `BTCalculus/` | trit algebra, rewrite, jets, residuals, Newton stratum |
+| `Core/`, `Representation/`, `Operators/` | generic BT facts used by several problems |
+| `Problems/Collatz/` | Collatz-only theorems |
+| `Problems/Ostrowski/` | Ostrowski adder theorems |
+| `Automata/` | placeholder; do not invent proofs |
 
 Compiled theorem groups:
 
@@ -53,7 +64,9 @@ residual equivalence `≡_k`, cascade `outputAlong` for polynomial composition,
 global confluence of the stripped coefficient rewrite, Newman confluence
 of the enlarged operator-fragment tree TRS `{D, I_a, S, N}`
 (including `N(D)→D(N)`), semantic canonicity of that NF grammar
-as integer operator functions, and polynomial
+as integer operator functions, the restricted Add locality boundary
+(`D(x+y)` is not determined by `(D(x),D(y))`; constructor-sum
+classification; named push-in peak), and polynomial
 function congruence modulo `3^k` (the Myhill–Nerode bridge, the degree-`≤2`
 and cubic vanishing criteria, and the first `x^3`/`x^4` residual merges),
 and the cubic residual closed form with Newton-coordinate equivalence,

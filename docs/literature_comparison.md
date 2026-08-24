@@ -1,8 +1,8 @@
 # Four-coordinate compatibility and the Collatz literature
 
 This document positions the repository's four-coordinate compatibility
-milestone against the cited primary sources. Claim labels are **PROVED**,
-**VERIFIED COMPUTATIONALLY**, **CONJECTURE**, and **OBSERVATION**. A theorem
+milestone against the cited primary sources. Claim labels are **EXACT — HUMAN PROOF**,
+**COMPUTATIONALLY VERIFIED**, **CONJECTURE**, and **OBSERVATION**. A theorem
 in a cited paper is described as that paper's theorem unless its proof has
 also been checked here.
 
@@ -15,7 +15,7 @@ T(x)=\frac{3x+1}{2^{v_2(3x+1)}},
 \]
 
 let \(\mathbf{k}=(k_0,\ldots,k_{m-1})\), \(K_j=\sum_{i<j}k_i\), and
-\(K=K_m\). Repeated substitution gives the **PROVED** identity
+\(K=K_m\). Repeated substitution gives the **EXACT — HUMAN PROOF** identity
 
 \[
 T^m(x)=\frac{3^m x+C(\mathbf{k})}{2^K},\qquad
@@ -58,7 +58,7 @@ fifth independent coordinate.
 
 ### Exact dependence, not four independent information channels
 
-**PROVED.** The exponent code determines \(m,K,C\), hence \(R\), \(r\),
+**EXACT — HUMAN PROOF.** The exponent code determines \(m,K,C\), hence \(R\), \(r\),
 \(M\), \(\operatorname{BT}(R)\), the lift digits, and \((3^m,2^K)\).
 In particular,
 
@@ -116,7 +116,7 @@ positive odd integer, then eventually \(r=x_0\), eventually \(M=x_m\), and
 \(\rho_r(m),\rho_M(m)\to0\). The proof uses
 \(x_m+1\le(x_0+1)(3/2)^m\).
 
-Kramer's searches at finite lengths are **VERIFIED COMPUTATIONALLY** in
+Kramer's searches at finite lengths are **COMPUTATIONALLY VERIFIED** in
 that work. Persistent positive rates in those experiments are not a proof
 of incompatibility for every infinite code. This repository implements the
 exact representatives and labels the floating rates as diagnostics.
@@ -212,7 +212,7 @@ and call a length-\(j\) segment paradoxical when, with \(q\) odd steps,
 
 The distinctions are essential:
 
-- **PROVED IN THE PAPER:** if only finitely many paradoxical sequences
+- **Proved in the paper:** if only finitely many paradoxical sequences
   exist, then the Collatz conjecture follows.
 - **COMPUTATIONAL PART OF THE PAPER:** exactly 593 paradoxical sequences
   start at \(n\le4614\), and none further occur in the checked range

@@ -2,7 +2,7 @@ import BTCalculus.Integral
 
 namespace BTCalculus
 
-open CollatzDual.Warp
+open Representation.Words
 
 theorem lsdZ_mul_is_trit (x y : ℤ) :
     lsdZ x * lsdZ y = -1 ∨ lsdZ x * lsdZ y = 0 ∨ lsdZ x * lsdZ y = 1 := by

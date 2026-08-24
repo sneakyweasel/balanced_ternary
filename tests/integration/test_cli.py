@@ -1,12 +1,12 @@
-"""CLI smoke tests for ``btprime``."""
+"""CLI smoke tests for ``btlab``."""
 
 from __future__ import annotations
 
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
-from balanced_ternary.representation import decode, encode
+from cli.main import main
+from bt.representation import decode, encode
 
 
 def _run(*args: str) -> str:

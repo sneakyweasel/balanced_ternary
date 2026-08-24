@@ -3,7 +3,7 @@ import BTCalculus.Algebra
 
 namespace BTCalculus
 
-open CollatzDual.Warp
+open Representation.Words
 
 /-- Soundness of ``D(I_a(x)) → x``. -/
 theorem rewrite_D_I (a : Trit) (x : ℤ) : DZ (IZ a x) = x :=

@@ -8,8 +8,8 @@ from typing import Any
 
 from research.collatz.affine_gap import affine_gap_from_orbit, next_affine_gap, step_addend
 from research.collatz.core import collatz_step, collatz_valuation, require_positive_odd
-from research.collatz.experiments.schema import ExperimentManifest, FIXED_INTEGER_SCHEMA_VERSION
-from research.collatz.experiments.table_io import write_experiment
+from research.experiments.schema import ExperimentManifest, FIXED_INTEGER_SCHEMA_VERSION
+from research.experiments.table_io import write_experiment
 from research.collatz.fixed_integer import (
     InfiniteTrajectoryAffineState,
     exact_partition,

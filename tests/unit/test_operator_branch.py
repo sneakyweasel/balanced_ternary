@@ -2,30 +2,25 @@
 
 from __future__ import annotations
 
-from balanced_ternary.additive_sets import (
+from bt.metrics import carry_defect, carry_defect_scan, metric_properties
+from bt.polynomials import evaluation_identities, factor_small, polynomial
+from bt.representation import encode
+from bt.transducers.zoo import h2_state_counts, m2_state_counts, zoo
+from research.additive_combinatorics import (
     A_set,
     B_set,
     C_set,
     interval_bound,
     smallest_r_covering_nonneg_interval,
-    sparse_squares,
     sumset_A_minus_A,
     sumset_A_plus_A,
     sumset_A_plus_B,
     sumset_B_minus_B,
     sumset_B_plus_B,
-    weight_one_squares,
 )
-from balanced_ternary.metrics import carry_defect, carry_defect_scan, metric_properties
-from balanced_ternary.polynomials import (
-    evaluation_identities,
-    factor_small,
-    polynomial,
-    prime_polynomial_factors,
-)
-from balanced_ternary.representation import encode
-from balanced_ternary.sequences import all_dossiers, dossier_d_stopping, dossier_w_ww
-from balanced_ternary.transducer_zoo import h2_state_counts, m2_state_counts, zoo
+from research.operator_dynamics.dossiers import all_dossiers, dossier_d_stopping, dossier_w_ww
+from research.perfect_powers import sparse_squares, weight_one_squares
+from research.sparse_polynomials import prime_polynomial_factors
 
 
 def test_C_k_is_the_complete_interval():
@@ -71,7 +66,7 @@ def test_A_plus_B_small_k_not_assumed_interval():
     for k in (1, 2, 3, 4):
         rep = sumset_A_plus_B(k)
         assert rep.cardinality >= 1
-        assert rep.proof_status == "VERIFIED COMPUTATIONALLY"
+        assert rep.proof_status == "COMPUTATIONALLY VERIFIED"
 
 
 def test_smallest_r_is_two():
@@ -148,7 +143,7 @@ def test_zoo_contains_odd_part_and_shift():
 
 def test_sequence_dossiers_match_known_identities():
     dstop = dossier_d_stopping()
-    assert dstop.claim_status == "PROVED"
+    assert dstop.claim_status == "EXACT — HUMAN PROOF"
     ww = dossier_w_ww()
-    assert ww.claim_status == "PROVED"
+    assert ww.claim_status == "EXACT — HUMAN PROOF"
     assert len(all_dossiers()) >= 4

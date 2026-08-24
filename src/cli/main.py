@@ -21,12 +21,13 @@ from cli.calculus import add_calculus_subparser, run_calculus
 from cli.congruence import add_congruence_subparser, run_congruence
 from cli.normalize import add_normalize_subparser, run_normalize
 from cli.operators import add_operators_subparser, run_operators
+from cli.research import add_research_subparser, run_research
 from research.collatz.cli import add_collatz_subparser, run_collatz
 
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        prog="btprime",
+        prog="btlab",
         description=(
             "Balanced Ternary Mathematical Laboratory: core BT arithmetic, "
             "operator algebra, and independent research modules. "
@@ -37,11 +38,12 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     _add_bt_leaf_commands(sub)
-    add_collatz_subparser(sub)
     add_operators_subparser(sub)
     add_calculus_subparser(sub)
     add_congruence_subparser(sub)
     add_normalize_subparser(sub)
+    add_research_subparser(sub)
+    add_collatz_subparser(sub)
     _add_bt_namespace(sub)
     _add_research_namespaces(sub)
     _add_lab_namespaces(sub)
@@ -57,7 +59,7 @@ def _add_bt_leaf_commands(sub: argparse._SubParsersAction) -> None:
     p_dec = sub.add_parser("decode", help="balanced ternary word -> integer")
     p_dec.add_argument("word")
 
-    p_an = sub.add_parser("analyze", help="print features of an integer")
+    p_an = sub.add_parser("analyze", help="print digit metrics of an integer")
     p_an.add_argument("n", type=int)
 
     p_res = sub.add_parser("residue", help="automaton residue of a word modulo q")
@@ -134,7 +136,7 @@ def _add_lab_namespaces(sub: argparse._SubParsersAction) -> None:
 
     sub.add_parser("formal", help="Lean toolchain / build hint")
     sub.add_parser("status", help="laboratory status summary")
-    sub.add_parser("ui", help="launch the Streamlit laboratory (alias of collatz ui)")
+    sub.add_parser("ui", help="launch the Streamlit laboratory")
 
 
 def _dispatch(parser: argparse.ArgumentParser, args: argparse.Namespace) -> int:
@@ -153,6 +155,8 @@ def _dispatch(parser: argparse.ArgumentParser, args: argparse.Namespace) -> int:
         return run_congruence(args)
     if cmd == "normalize":
         return run_normalize(args)
+    if cmd == "research":
+        return run_research(args)
     if cmd == "primes":
         from research.primes import sparse_primes
 
@@ -318,7 +322,7 @@ def _run_literature(args: argparse.Namespace) -> int:
 
 def _run_formal() -> int:
     toolchain = Path(__file__).resolve().parents[2] / "formal" / "lean-toolchain"
-    print("Lake package: collatz-dual-formal")
+    print("Lake package: balanced-ternary-formal")
     if toolchain.exists():
         print(f"toolchain: {toolchain.read_text(encoding='utf-8').strip()}")
     print("Build: cd formal && lake build")
@@ -331,7 +335,7 @@ def _run_status() -> int:
     try:
         from importlib.metadata import version as pkg_version
 
-        version = pkg_version("balanced-ternary-prime")
+        version = pkg_version("balanced-ternary")
     except Exception:
         pass
     print(f"core version: {version}")

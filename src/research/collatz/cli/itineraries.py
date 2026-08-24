@@ -105,7 +105,7 @@ def _zero_lift(
         print(
             f"finite lift certificate: candidate_k={candidate_k} "
             f"precision={precision} x_residue={cert.state_residue} "
-            f"next valuation={valuation} result={cert.result}  [PROVED]"
+            f"next valuation={valuation} result={cert.result}  [EXACT — HUMAN PROOF]"
         )
     print("Deterministic zero-lift successor trace  [EXACT]")
     for state in zero_lift_trace(ks, steps):
@@ -113,7 +113,7 @@ def _zero_lift(
             f"  m={state.m} K={state.K} R={state.R} x={state.x} "
             f"next_k={state.successor_k()} prefix={state.prefix}"
         )
-    print("The successor trace is the accelerated Collatz orbit of R. [PROVED]")
+    print("The successor trace is the accelerated Collatz orbit of R. [EXACT — HUMAN PROOF]")
     return 0
 
 
@@ -123,7 +123,7 @@ def _periodic_itinerary(ks: str) -> int:
     print(periodic_candidate(ks).format(), end="")
     print(
         "Classification uses n(2^K-3^p)=C and an exact cylinder check. "
-        "[PROVED]"
+        "[EXACT — HUMAN PROOF]"
     )
     return 0
 
@@ -249,8 +249,8 @@ def _dual_dataset(length: int, max_k: int, write: bool) -> int:
     from itertools import product
 
     from research.collatz.dual_code import CollatzDualCode
-    from research.collatz.experiments.schema import ExperimentManifest, validate_dual_row
-    from research.collatz.experiments.table_io import write_experiment
+    from research.experiments.schema import ExperimentManifest, validate_dual_row
+    from research.experiments.table_io import write_experiment
 
     if length < 0 or max_k < 1:
         raise ValueError("length must be >= 0 and max_k >= 1")

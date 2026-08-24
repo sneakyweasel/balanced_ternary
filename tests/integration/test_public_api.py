@@ -1,15 +1,25 @@
-"""Smoke tests for the documented package façades."""
+"""Smoke tests for the documented package APIs."""
 
 from __future__ import annotations
 
-from balanced_ternary import decode, digit_derivative, encode, lsd_digit, polynomial
-from collatz import AffineCenterState, CompatibilityState, InfiniteTrajectoryAffineState, candidate_cycle, collatz_step
-from collatz import AffineCenterState, CompatibilityState, InfiniteTrajectoryAffineState, candidate_cycle, collatz_step
+from bt import decode, digit_derivative, encode, lsd_digit, polynomial
+from cli.main import main
+from research.collatz import (
+    AffineCenterState,
+    CompatibilityState,
+    InfiniteTrajectoryAffineState,
+    candidate_cycle,
+    collatz_step,
+)
 
 
-def test_balanced_ternary_root_round_trip():
+def test_bt_root_round_trip():
     word = encode(42)
     assert decode(word) == 42
+
+
+def test_cli_entry_is_callable():
+    assert callable(main)
 
 
 def test_collatz_root_exact_objects():

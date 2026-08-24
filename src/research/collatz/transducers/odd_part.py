@@ -15,14 +15,14 @@ bounded-state function of the word.
 
 from __future__ import annotations
 
-from balanced_ternary.representation import (
+from bt.representation import (
     BalancedTernary,
     WordLike,
     decode,
     encode,
     normalize,
 )
-from research.collatz.transducers.divide_by_two_power import apply_divisible
+from bt.transducers.divide_by_two_power import apply_divisible
 from research.collatz.valuation import v2
 
 

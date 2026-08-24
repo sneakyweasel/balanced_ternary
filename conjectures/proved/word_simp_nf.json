@@ -3,13 +3,16 @@
   "first_seen": "word-fragment confluence Phase-0",
   "id": "word_simp_nf",
   "lean_reference": "",
-  "literature": [],
+  "literature": [
+    "newman-1942-confluence",
+    "baader-nipkow-1998-term-rewriting"
+  ],
   "mathematical_domain": "balanced ternary calculus",
-  "notes": "WORD_SIMP_RULES is the sixteen simplifying=True rows. Termination is the lex rank (I0-count, length). Local confluence is the complete finite string-rewriting overlap list (W/K3 stock plus disjoint cancellations and I0⊂D∘I0). Newman gives unique syntactic NF. Semantic canonicity is not claimed. Production rules were not widened. Not a Collatz claim. Do not edit BTCalculus/Confluence.lean.",
+  "notes": "WORD_SIMP_RULES is the sixteen simplifying=True rows. Termination is the lex rank (I0-count, length). Local confluence is the complete finite string-rewriting overlap list (W/K3 stock plus disjoint cancellations and I0\u2282D\u2218I0). Newman gives unique syntactic NF. Semantic canonicity is not claimed. Production rules were not widened. Not a Collatz claim. Do not edit BTCalculus/Confluence.lean.",
   "origin": "docs/theory/rewrite_calculus.md",
   "proof_reference": "docs/theory/rewrite_calculus.md",
   "statement": "The simplifying-only fragment of WORD_REWRITE_RULES is terminating and locally confluent; every word has a unique syntactic normal form.",
-  "status": "PROVED",
+  "status": "EXACT \u2014 HUMAN PROOF",
   "tested_range": "complete critical-pair list and bounded unique-NF census in tests/unit/test_rewrite_word_fragments.py",
   "title": "Simplifying word fragment has unique NF"
 }

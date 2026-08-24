@@ -25,8 +25,8 @@ from __future__ import annotations
 
 from collections import defaultdict
 
-from automata.modular import ModularAutomaton
-from balanced_ternary.representation import WordLike
+from bt.automata.modular import ModularAutomaton
+from bt.representation import WordLike
 from research.collatz.valuation import ValuationClassification, classify_collatz_valuation
 
 

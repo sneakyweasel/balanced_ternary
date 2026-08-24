@@ -1,9 +1,9 @@
-import Operators.Operators
+import Operators.Shift
 
-namespace CollatzDual.DigitDerivative
+namespace Operators.DigitDerivative
 
-open CollatzDual.Warp
-open CollatzDual.Operators
+open Representation.Words
+open Operators.Shift
 
 /-- Drop the least-significant trit. The empty word is left empty. -/
 def dropLSD (w : List Trit) : List Trit :=
@@ -70,4 +70,4 @@ theorem reconstruct_step (d : Trit) (w : List Trit) :
 theorem reverse_reverse (w : List Trit) : w.reverse.reverse = w :=
   List.reverse_reverse w
 
-end CollatzDual.DigitDerivative
+end Operators.DigitDerivative

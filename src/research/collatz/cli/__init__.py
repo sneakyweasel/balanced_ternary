@@ -1,4 +1,4 @@
-"""CLI subcommands for ``btprime collatz ...``."""
+"""CLI subcommands for ``btlab collatz ...``."""
 
 from .coordinator import run_collatz
 from .parsers import add_collatz_subparser

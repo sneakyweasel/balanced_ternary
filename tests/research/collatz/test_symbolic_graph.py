@@ -2,12 +2,12 @@
 
 from __future__ import annotations
 
-from collatz.automata.symbolic_graph import (
+from research.collatz.automata.symbolic_graph import (
     build_symbolic_graph,
     edge_agrees_with_follow_path,
 )
-from collatz.automata.valuation_shift import PrecisionState, follow_path
-from collatz.cylinders import valuation_cylinder
+from research.collatz.automata.valuation_shift import PrecisionState, follow_path
+from research.collatz.cylinders import valuation_cylinder
 
 
 def test_symbolic_graph_empty_start():

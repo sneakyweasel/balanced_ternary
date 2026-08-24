@@ -4,21 +4,21 @@ from __future__ import annotations
 
 import pytest
 
-from balanced_ternary.representation import decode, encode
-from collatz.core import collatz_step
-from collatz.theorems import append_plus
-from collatz.transducers.divide_by_two import (
+from bt.representation import decode, encode
+from research.collatz.core import collatz_step
+from research.collatz.theorems import append_plus
+from bt.transducers.divide_by_two import (
     DivideByTwoTransducer,
     LeftoverCarryError,
     apply_even,
 )
-from collatz.transducers.divide_by_two_power import (
+from bt.transducers.divide_by_two_power import (
     DivideByTwoPowerTransducer,
     apply_divisible,
 )
-from collatz.transducers.doubling import apply_double
-from collatz.transducers.odd_part import odd_part_word
-from collatz.valuation import v2
+from bt.transducers.doubling import apply_double
+from research.collatz.transducers.odd_part import odd_part_word
+from research.collatz.valuation import v2
 
 
 def test_doubling_matches_integer():

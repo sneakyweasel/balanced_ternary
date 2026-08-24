@@ -17,8 +17,8 @@ from typing import Iterable, Iterator, Sequence
 
 from research.collatz.cylinders import parse_ks
 from research.collatz.experiments.information_content import diagnostic_row
-from research.collatz.experiments.schema import COMPATIBILITY_SCHEMA_VERSION, ExperimentManifest
-from research.collatz.experiments.table_io import write_experiment
+from research.experiments.schema import COMPATIBILITY_SCHEMA_VERSION, ExperimentManifest
+from research.experiments.table_io import write_experiment
 
 
 ROZIER_TERRACOL_FIXTURE_PAIRS: tuple[tuple[int, int], ...] = (

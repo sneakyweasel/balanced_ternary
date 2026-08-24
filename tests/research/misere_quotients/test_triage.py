@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from research.misere_quotients.problem import PROBLEM
 from research.misere_quotients.reference import (
     DAWSON_Q_CHECKPOINTS,
@@ -142,6 +144,7 @@ def test_dawson_single_heaps_match_published_q33_phi_outcomes():
     assert DAWSON_Q_CHECKPOINTS[-1] == (33, 638)
 
 
+@pytest.mark.slow
 def test_triage_report_closes_as_reparameterization():
     report = triage_report()
     assert report["gate"] == "CLOSE"

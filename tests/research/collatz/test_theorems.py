@@ -4,10 +4,10 @@ from __future__ import annotations
 
 import pytest
 
-from balanced_ternary.representation import decode, encode
-from collatz.bt_arithmetic import three_n_plus_one_word
-from collatz.features import extract_features
-from collatz.theorems import (
+from bt.representation import decode, encode
+from bt.arithmetic import three_n_plus_one_word
+from research.collatz.features import extract_features
+from research.collatz.theorems import (
     append_plus,
     append_plus_agrees_with_adder,
     append_plus_matches_integer,
@@ -15,7 +15,7 @@ from collatz.theorems import (
     shift_position_class_sums,
     three_n_plus_one_from_word,
 )
-from collatz.transitions import feature_transition
+from research.collatz.transitions import feature_transition
 
 
 def test_append_plus_rejects_zero():

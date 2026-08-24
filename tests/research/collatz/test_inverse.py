@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from collatz.core import collatz_step, collatz_valuation
-from collatz.inverse import (
+from research.collatz.core import collatz_step, collatz_valuation
+from research.collatz.inverse import (
     build_inverse_tree,
     collatz_predecessors,
     predecessor_exponent_parity,
