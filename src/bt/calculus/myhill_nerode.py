@@ -219,13 +219,10 @@ def distinguish_pair(f: IntPoly, g: IntPoly, k: int) -> dict[str, object]:
         "f_coeffs": list(coeff_triple(f)),
         "g_coeffs": list(coeff_triple(g)),
         "invariant_f": list(invariant_mod(f, k)),
-        "invariant_f": list(invariant_mod(f, k)),
-        "invariant_g": list(invariant_mod(g, k)),
         "invariant_g": list(invariant_mod(g, k)),
         "equiv": word is None,
         "shortest": list(word) if word is not None else None,
         "canonical": list(canon) if canon is not None else None,
-        "shortest_depth": len(word) if word is not None else None,
         "shortest_depth": len(word) if word is not None else None,
     }
 
@@ -266,8 +263,6 @@ def merge_examples(f: IntPoly, k: int, limit: int = 8) -> list[dict[str, object]
                     "p": base_poly.render(),
                     "q": poly.render(),
                     "word_p": list(base_word),
-                    "word_p": list(base_word),
-                    "word_q": list(word),
                     "word_q": list(word),
                     "diff": d,
                     "diff_ABC": [
@@ -276,7 +271,6 @@ def merge_examples(f: IntPoly, k: int, limit: int = 8) -> list[dict[str, object]
                         coeff_triple(base_poly)[2] - coeff_triple(poly)[2],
                     ],
                     "equiv_k": True,
-                    "split_at_k_plus_1": delayed,
                     "split_at_k_plus_1": delayed,
                 }
             )

@@ -412,8 +412,8 @@ def residual_distinction_dataset(f: IntPoly, k: int, limit: int = 16) -> list[di
 
     rows = []
     for rec in merge_examples(f, k, limit=limit):
-        p = _parse_or_skip(rec["p"])
-        q = _parse_or_skip(rec["q"])
+        p = _parse_or_skip(str(rec["p"]))
+        q = _parse_or_skip(str(rec["q"]))
         if p is None or q is None:
             continue
         row = distinction_row(p, q, rec.get("word_p"), rec.get("word_q"))

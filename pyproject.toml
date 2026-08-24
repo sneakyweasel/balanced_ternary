@@ -27,7 +27,13 @@ classifiers = [
 ]
 
 [project.optional-dependencies]
-dev = ["pytest>=8", "pytest-xdist>=3", "ruff>=0.6"]
+dev = [
+    "pytest>=8",
+    "pytest-xdist>=3",
+    "ruff>=0.6",
+    "hypothesis>=6.100",
+    "pyright>=1.1",
+]
 ui = ["streamlit>=1.62", "pandas>=2"]
 experiments = ["pyarrow>=14"]
 
@@ -50,7 +56,15 @@ src = ["src", "tests", "tools"]
 target-version = "py311"
 
 [tool.ruff.lint]
-select = ["E9", "F63", "F7", "F82"]
+# High-signal runtime / dict-key rules only. Do not enable the full
+# default set: F401 alone is 60+ unused imports, mostly PARKED files.
+select = ["E9", "F63", "F7", "F82", "F601", "F602", "F811", "F841", "B006"]
 
 [tool.ruff.lint.isort]
 known-first-party = ["bt", "research", "research_engine", "cli", "visualization"]
+
+[tool.pyright]
+include = ["src/bt"]
+pythonVersion = "3.11"
+typeCheckingMode = "basic"
+reportMissingTypeStubs = false

@@ -199,7 +199,6 @@ def test_reduced_square_is_width():
 
 def test_unit_square_is_plus_minus():
     k, r = 8, 1
-    W = square_modulus_exp(k, r)
     units = [u for u in core_u_range(k, r) if u % 3 != 0]
     for u in units:
         for v in units:

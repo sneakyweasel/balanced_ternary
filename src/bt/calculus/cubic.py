@@ -78,7 +78,8 @@ def F_k(m: int, p: int, k: int) -> tuple[int, int, int, int]:
     """Arithmetic image map: Newton residues of the ``(m, p)`` residual."""
     k = _require_nat(k, "k")
     mod = 3**k if k else 1
-    return tuple(n % mod for n in newton_of_residual(m, p))
+    n0, n1, n2, n3 = newton_of_residual(m, p)
+    return (n0 % mod, n1 % mod, n2 % mod, n3 % mod)
 
 
 def section_monomial_step(A: int, B: int, C: int, D: int, a: int) -> tuple[int, int, int, int]:
@@ -202,7 +203,10 @@ def collision_table(f: IntPoly, k: int) -> list[dict[str, object]]:
     """Collision classes of ``f`` at horizon ``k``."""
     groups: dict[tuple[int, ...], list[dict[str, object]]] = defaultdict(list)
     for row in newton_class_table(f, k):
-        groups[tuple(row["phi"])].append(row)
+        phi = row["phi"]
+        if not isinstance(phi, (list, tuple)):
+            raise TypeError("phi must be a sequence of integers")
+        groups[tuple(int(x) for x in phi)].append(row)
     out = []
     for phi, members in groups.items():
         if len(members) < 2:
@@ -224,7 +228,13 @@ def tau_sign_pair(m: int, p: int) -> int | None:
     n0, n1, n2, n3 = newton_of_residual(m, p)
     n0b, n1b, n2b, n3b = newton_of_residual(m, -p)
     diffs = (n0 - n0b, n1 - n1b, n2 - n2b, n3 - n3b)
-    vals = [v3(d) for d in diffs if d != 0]
+    vals: list[int] = []
+    for d in diffs:
+        if d == 0:
+            continue
+        v = v3(d)
+        if v is not None:
+            vals.append(v)
     if not vals:
         return None
     return min(vals) + 1

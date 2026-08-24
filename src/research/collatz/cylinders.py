@@ -214,7 +214,6 @@ def valuation_cylinder(
     residues = cylinder_residues(ks, leftover_q=leftover_q)
     odd_count = 1 << (p - 1)
     n_cls = len(residues)
-    k_sum = total_valuation(ks)
     expected = 1 << (leftover_q - 1)  # 2^{Q-1} classes; unique when Q=1
     return ValuationCylinder(
         ks=ks,

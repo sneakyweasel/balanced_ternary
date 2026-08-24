@@ -159,7 +159,6 @@ def iterate_block(
     remaining = start_remaining
     live_all = residual_is_live(sys, state, remaining)
     max_l = 0
-    grew = False
     for _ in range(repeats):
         if remaining < len(word):
             live_all = False

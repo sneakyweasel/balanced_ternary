@@ -43,7 +43,7 @@ def _doubling_power_complexity(k: int) -> dict[str, int]:
     """Product of ``k`` doubling carries. Computational, not a closed form."""
     from collections import deque
 
-    start = (0,) * k
+    start: tuple[int, ...] = (0,) * k
     alphabet = (-1, 0, 1)
 
     def step(carries: tuple[int, ...], digit: int) -> tuple[tuple[int, ...], int]:
@@ -55,8 +55,8 @@ def _doubling_power_complexity(k: int) -> dict[str, int]:
             current = out
         return tuple(nxt), current
 
-    seen = {start}
-    queue = deque([start])
+    seen: set[tuple[int, ...]] = {start}
+    queue: deque[tuple[int, ...]] = deque([start])
     while queue:
         st = queue.popleft()
         for a in alphabet:
