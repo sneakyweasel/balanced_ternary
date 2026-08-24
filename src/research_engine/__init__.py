@@ -4,6 +4,7 @@ R2: exact affine, block, phase, and trajectory primitives.
 R3: reachability, co-reachability, live slices, and suffix feasibility.
 R4: integer recurrences, lattice inverses, and linear forms.
 R5: typed recon/modular/affine/reverse/functional/block attacks.
+R6: hypotheses, negative knowledge, and a deterministic planner.
 
 This package must not import ``bt.*`` or ``research.*``. Problem
 adapters live under ``research.*`` and may import this engine.
@@ -40,6 +41,15 @@ from research_engine.attacks import (
     ReconnaissanceAttack,
     ReverseGeometryAttack,
 )
+from research_engine.planner import (
+    AttackPlanner,
+    DecisionKind,
+    Hypothesis,
+    HypothesisStatus,
+    LedgerError,
+    NegativeKnowledge,
+    ResearchLedger,
+)
 from research_engine.core.affine_system import (
     AffineSystem,
     affine_step,
@@ -73,21 +83,28 @@ __all__ = [
     "AttackContext",
     "AttackResult",
     "AttackStatus",
+    "AttackPlanner",
     "BlockAction",
     "BlockDynamicsAttack",
     "BlockKind",
     "ClaimKind",
     "Control",
+    "DecisionKind",
     "DynamicsResult",
     "FunctionalBoundAttack",
+    "Hypothesis",
+    "HypothesisStatus",
     "IntPhase",
     "LazyTrajectory",
+    "LedgerError",
     "LinearFunctional",
     "Matrix",
     "ModularInvariantAttack",
+    "NegativeKnowledge",
     "ProblemSpec",
     "ReconnaissanceAttack",
     "RecurrenceSpec",
+    "ResearchLedger",
     "ReverseGeometryAttack",
     "SearchScope",
     "State",

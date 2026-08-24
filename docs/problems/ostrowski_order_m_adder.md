@@ -1537,10 +1537,14 @@ stay Ostrowski-specific. Engineering R5 extracted typed
 reconnaissance / modular / affine-region / reverse / functional /
 block attacks with explicit `ClaimKind` and `SearchScope`.
 `s_1\equiv 0\pmod 3` is an exact map law, not live infinitude; a
-sample max \(\lvert\ell\rvert\) is never `SUPPORTED`. These
-extractions are infrastructure `PROMOTE`. They do not change the
+sample max \(\lvert\ell\rvert\) is never `SUPPORTED`. Engineering R6
+added an in-memory hypothesis ledger, negative-knowledge schemas, and
+a deterministic planner. `LIVE_SLICE` / `TERMINAL` / `CO_REACHABLE`
+evidence cannot `PROMOTE` the parked exact `LIVE` hypothesis
+\(\lvert L_0\rvert=\infty\). The named theorem ledger is not migrated.
+These extractions are infrastructure `PROMOTE`. They do not change the
 mathematical decision above.
-Do not start R6 (planner/ledger), spectral attacks, or CLI until a later cycle.
+Do not start R7 (full adapter rewrite), spectral attacks, or CLI until a later cycle.
 
 ## Publication assessment
 

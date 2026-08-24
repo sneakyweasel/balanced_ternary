@@ -1,4 +1,4 @@
-"""Typed attacks on a ``ProblemSpec``. Spectral and planner attacks are not here."""
+"""Typed attacks on a ``ProblemSpec``. Spectral attacks are not here."""
 
 from research_engine.attacks.affine import AffineInvariantAttack
 from research_engine.attacks.block import BlockDynamicsAttack, BlockKind, classify_block

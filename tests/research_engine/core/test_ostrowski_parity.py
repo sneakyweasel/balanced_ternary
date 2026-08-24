@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import pytest
+
 from research.ostrowski.control_language import affine_block, affine_holds, matrix_power
 from research.ostrowski.energy_trajectory import apply_word
 from research.ostrowski.spectral_residual import (
@@ -184,3 +186,31 @@ def test_typed_attacks_do_not_promote_np_census_to_live_infinitude():
     bound = functional_s3(2)
     assert bound.status != AttackStatus.SUPPORTED
     assert bound.scope == SearchScope.BOUNDED
+
+
+def test_planner_keeps_np_live_hypothesis_parked():
+    from research.ostrowski.negative_knowledge import L0_HYPOTHESIS
+    from research.ostrowski.planner import plan_np
+    from research_engine.core.semantics import ClaimKind, SearchScope
+    from research_engine.planner.hypothesis import HypothesisStatus
+    from research_engine.planner.ledger import LedgerError
+    from research_engine.planner.orchestrator import promote_if_legal
+
+    report = plan_np(4)
+    live = next(item for item in report.hypotheses if item.id == L0_HYPOTHESIS.id)
+    assert live.status is HypothesisStatus.PARKED
+    assert live.kind is ClaimKind.LIVE
+    assert live.intended_scope is SearchScope.EXACT
+    census = next(item for item in report.hypotheses if item.id.endswith("_live_slice_census"))
+    assert census.kind is ClaimKind.LIVE_SLICE
+    recon = next(item for item in report.results if item.name == "reconnaissance")
+    from research.ostrowski.planner import ostrowski_ledger
+
+    ledger = ostrowski_ledger()
+    ledger.hypotheses[live.id] = live
+    with pytest.raises(LedgerError):
+        promote_if_legal(ledger, live.id, recon)
+    assert any(jump.to_kind is ClaimKind.LIVE for jump in report.blocked_jumps)
+    skipped = {item.attack for item in report.skipped}
+    assert "spectral" in skipped
+    assert "symbolic" in skipped
