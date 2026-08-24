@@ -37,7 +37,7 @@ def forward_search(
             kind=ClaimKind.LIVE_SLICE if live_only else ClaimKind.REACHABLE,
             scope=SearchScope.BOUNDED,
             complete=True,
-            horizon=0 if max_steps is None else max_steps,
+            horizon=0,
             live_start=False,
         )
 
@@ -84,8 +84,6 @@ def forward_search(
             terminal_image.add(state)
 
     horizon = max(steps_from_start.values(), default=0)
-    if max_steps is not None:
-        horizon = max_steps
     return DynamicsResult(
         kind=ClaimKind.LIVE_SLICE if live_only else ClaimKind.REACHABLE,
         scope=SearchScope.BOUNDED,

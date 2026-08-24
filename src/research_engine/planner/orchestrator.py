@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 
 from research_engine.attacks.affine import AffineInvariantAttack
 from research_engine.attacks.block import BlockDynamicsAttack
@@ -27,6 +27,7 @@ DEFAULT_ATTACK_ORDER: tuple[str, ...] = (
 )
 
 DEFERRED_ATTACKS: tuple[str, ...] = ("spectral", "symbolic")
+DEFAULT_PLANNER_HORIZON = 16
 
 _ATTACKS: dict[str, type[Attack]] = {
     "reconnaissance": ReconnaissanceAttack,
@@ -65,6 +66,8 @@ class AttackPlanner:
         self.ledger = ledger if ledger is not None else ResearchLedger()
 
     def run(self, spec: ProblemSpec, context: AttackContext) -> PlannerReport:
+        if context.max_steps is None:
+            context = replace(context, max_steps=DEFAULT_PLANNER_HORIZON)
         closed = self.ledger.knowledge.closed_attacks()
         results: list[AttackResult] = []
         skipped: list[SkipRecord] = []
@@ -83,9 +86,10 @@ class AttackPlanner:
                 continue
             self.ledger.record_attack(result)
             results.append(result)
-            jump = self.ledger.knowledge.forbids_kinds(result.kind, ClaimKind.LIVE)
-            if jump is not None:
-                blocked.append(jump)
+            for target in (ClaimKind.LIVE, ClaimKind.TERMINAL):
+                jump = self.ledger.knowledge.forbids_kinds(result.kind, target)
+                if jump is not None:
+                    blocked.append(jump)
         for name in DEFERRED_ATTACKS:
             skipped.append(SkipRecord(name, "not implemented in this phase"))
         self._record_census_hypothesis(spec, results)

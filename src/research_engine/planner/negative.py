@@ -71,6 +71,15 @@ GENERIC_FORBIDDEN: tuple[ForbiddenImplication, ...] = (
         statement="an exact residue law of Ax+b_u is not LIVE infinitude",
         counterexample="forced s_i ≡ 0 (mod g) constrains images, not |L|",
     ),
+    ForbiddenImplication(
+        id="unbounded_words_not_unbounded_terminals",
+        antecedent="unbounded_accepted_words",
+        consequent="unbounded_terminals",
+        from_kind=ClaimKind.LIVE_SLICE,
+        to_kind=ClaimKind.TERMINAL,
+        statement="infinitely many accepted words do not imply infinitely many terminals",
+        counterexample="a reset loop at 0 with accepting set {0}",
+    ),
 )
 
 

@@ -1545,9 +1545,13 @@ evidence cannot `PROMOTE` the parked exact `LIVE` hypothesis
 Engineering R7 made `OstrowskiSpec` the adapter facade (`q`, energy,
 digit legality, affine, recurrence, `attack_context`) without moving
 the package to `problems/ostrowski_np`. Energy stays Ostrowski-side.
+Engineering R8 added five synthetic benchmarks (finite closure,
+infinite translation, reset-loop words, modular tripling, expanding
+escape). The planner default horizon is 16 so sticky-phase systems
+cannot hang; unbounded words do not imply unbounded terminals.
 These extractions are infrastructure `PROMOTE`. They do not change the
 mathematical decision above.
-Do not start R8 (synthetic benchmarks), spectral attacks, or CLI until a later cycle.
+Do not start R9 (Lean export), spectral attacks, or CLI until a later cycle.
 
 ## Publication assessment
 

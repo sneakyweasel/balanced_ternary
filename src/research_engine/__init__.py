@@ -5,6 +5,7 @@ R3: reachability, co-reachability, live slices, and suffix feasibility.
 R4: integer recurrences, lattice inverses, and linear forms.
 R5: typed recon/modular/affine/reverse/functional/block attacks.
 R6: hypotheses, negative knowledge, and a deterministic planner.
+R8: five synthetic benchmarks with known exact behavior.
 
 This package must not import ``bt.*`` or ``research.*``. Problem
 adapters live under ``research.*`` and may import this engine.
