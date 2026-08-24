@@ -8,7 +8,13 @@ with `q_j = 0` for underflow, and
     E_{i-1}(T_w s) = E_i(s) - w q_{i-1}.
 
 This is the covariance of the place-value recurrence with the residual
-matrix `A`, not a bound on the live set `L₀`.
+matrix `A`, not a bound on the live set `L₀`. The multi-step form
+
+    E_n(fold w s) = E_{n+k}(s) - ∑_j w_j q_{n+k-1-j}
+
+is KNOWN packaging of `energy_step`. From the origin, `E_i` is minus
+the consumed prefix valuation. Acceptance at remaining 0 is that the
+full difference word sums to 0.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -89,5 +95,47 @@ theorem energy_step (i : ℕ) (hi : 0 < i) (w s1 s2 s3 : ℤ) :
   simp only [energy, step]
   rw [← h1, ← h2, ← h3]
   ring
+
+theorem energy_step_state (i : ℕ) (hi : 0 < i) (w : ℤ) (s : State) :
+    energy (i - 1) (step w s) = energy i s - w * q (i - 1) := by
+  rcases s with ⟨s1, s2, s3⟩
+  simpa using energy_step i hi w s1 s2 s3
+
+/-- MSD word applied from the left: first control is the highest remaining place. -/
+def foldSteps (ws : List ℤ) (s : State) : State :=
+  ws.foldl (fun acc w => step w acc) s
+
+theorem foldSteps_nil (s : State) : foldSteps [] s = s :=
+  rfl
+
+theorem foldSteps_cons (w : ℤ) (ws : List ℤ) (s : State) :
+    foldSteps (w :: ws) s = foldSteps ws (step w s) :=
+  rfl
+
+/-- `∑_t ws[t] * q (start - 1 - t)`. Matches Python `consumed_sum`. -/
+def consumedSum : ℕ → List ℤ → ℤ
+  | _, [] => 0
+  | start, w :: rest => w * q (start - 1) + consumedSum (start - 1) rest
+
+/-- After an MSD word of length `k` from remaining `n+k`,
+`E_n(fold s) = E_{n+k}(s) - ∑_j w_j q_{n+k-1-j}`.
+
+KNOWN packaging of `energy_step`, not a bound on `L₀`. -/
+theorem energy_telescope (n : ℕ) (ws : List ℤ) (s : State) :
+    energy n (foldSteps ws s) =
+      energy (n + ws.length) s - consumedSum (n + ws.length) ws := by
+  induction ws generalizing n s with
+  | nil =>
+    simp [foldSteps, consumedSum]
+  | cons w rest ih =>
+    have hlen : n + (w :: rest).length = n + rest.length + 1 := by
+      simp [List.length_cons, Nat.add_assoc]
+    rw [foldSteps_cons, hlen, ih, consumedSum]
+    have hsub : n + rest.length + 1 - 1 = n + rest.length :=
+      Nat.add_sub_cancel _ _
+    have hstep := energy_step_state (n + rest.length + 1) (Nat.succ_pos _) w s
+    simp [hsub] at hstep ⊢
+    rw [hstep]
+    ring
 
 end Ostrowski.NP

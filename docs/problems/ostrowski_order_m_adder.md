@@ -316,6 +316,10 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
 - \(|t_m|\le 1\) boxed adder: false rejects at length \(4\) (3 pairs),
   length \(5\) (25 pairs), length \(6\) (185 pairs). The naive copy of
   Theorem 2.2’s \(\{-1,0,1\}\) last coordinate is not sufficient.
+- Repeating interior \(w\equiv-4\) from the origin expands
+  (\(\lVert T_{(-4)}^4(0)\rVert_\infty=96\)) and leaves \(K_n\) at
+  remaining \(8\) after start remaining \(12\). Expanding without
+  \(K_n\) is not a live family.
 
 ## Formalization
 
@@ -342,7 +346,14 @@ Phase-0 on the exceptional classes (`research.ostrowski.exceptional_kernel`)
 did not isolate an alphabet-free invariant or a symbolic bridge. No new
 Lean. `kernel_unreachable_of_not_exceptional` is unchanged.
 
+The cumulative energy identity `energy_telescope` is Lean-verified in
+the same `Energy.lean` file (ledger `OST-np-energy-telescope`), novelty
+**KNOWN**. Defect / `lo`/`hi` recurrences stay Python. Not an `L_0`
+theorem.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -805,26 +816,77 @@ it is not a proper coordinate cone. Method A/B still agree on the
 boxed start-\(6\) remaining-\(0\) slice. None of this is
 \(\lvert L_0\rvert=\infty\).
 
+### Energy trajectory and live-set fork
+
+The one-step law telescopes. After an MSD word
+\(w_{N-1},\ldots,w_i\) from remaining \(N\),
+
+\[
+E_i(s)=E_N(s_{\mathrm{start}})-\sum_{j=i}^{N-1} w_j q_j.
+\]
+
+From the origin, \(E_N(0)=0\), so \(E_i\) is minus the consumed
+prefix valuation. At remaining \(0\), \(E_0=s_3\) and acceptance is
+\(\sum_j w_j q_j=0\). Lean `Ostrowski.NP.energy_telescope` (ledger
+`OST-np-energy-telescope`) proves the cumulative identity by
+induction on `energy_step`. Novelty is **KNOWN**.
+
+Defects \(D_n^+=E_n-\mathrm{hi}(n)\) and \(D_n^-=\mathrm{lo}(n)-E_n\)
+obey
+
+\[
+D_{n-1}^+(T_w s)=D_n^+(s)+(w^{\max}_{n-1}-w)\,q_{n-1},
+\]
+
+and the analogous \(D^-\) identity with \(w-w^{\min}\). Live states
+stay at \(D^\pm\le 0\). This is *normalized* control of \(E_n\)
+(\(\lvert E_n\rvert\le C q_n\)), not coordinate boundedness
+\(\lvert s_i\rvert\le C\) and not a functional bound
+\(\lvert\ell(s)\rvert\le C\). Closed forms
+\(\mathrm{hi}(n)=2S_{n-1}-1\), \(\mathrm{lo}(n)=-4S_{n-1}+2\) plus
+\(S_{n-1}\le 2q_{n-1}\) and \(q_n\ge 2q_{n-1}\) (\(n\ge 2\)) give
+\(-4<\mathrm{lo}(n)/q_n\le\mathrm{hi}(n)/q_n<2\). Frozen table
+\(n=1..6\): \((q_n,S_{n-1},\mathrm{lo},\mathrm{hi})\) equals
+\((2,1,-2,1)\), \((5,3,-10,5)\), \((15,8,-30,15)\),
+\((41,23,-90,45)\), \((112,64,-254,127)\), \((310,176,-702,351)\).
+
+At remaining \(1\), \(E_1=s_2+2s_3\in[-2,1]\) on every live state
+(start remaining \(20\): \(\lvert L_1\rvert=958\)). That is
+length-dependent. It does not bound \(L_0\).
+
+Largest-\(\lvert s_3\rvert\) states on the start-\(20\) slices
+\(L_1,L_2,L_3\) are \((-3,-37,19)\), \((21,22,-15)\),
+\((9,27,-12)\). Ratios \(s_1/s_3\), \(s_2/s_3\) sit \(O(1)\) off
+the expanding eigen-direction of \(A\) (floats only;
+\(\lambda\approx 2.757\), \(s_1/s_3\approx 1.088\),
+\(s_2/s_3\approx 0.757\)). They do not stabilize to a ray.
+
+Interior repeating blocks of length \(\le 3\), four repeats from
+start remaining \(12\): the only energy-compatible orbits are the
+zero words (bounded). Expanding blocks such as \(w\equiv-4\) leave
+\(K_n\). Expanding without \(K_n\) is not a live family. No
+unbounded \(T_B^k(0)\) in \(K\).
+
 ## Open questions
 
-Is \(\lvert L_0\rvert=\infty\)? Time-augmented residues do not
-separate the exceptional kernel phases. Exact remaining-length layers
-grow as remaining drops, and every small integer linear form grows
-with the start remaining, but that is a finite path, not infinitude.
-A global invariant bounding \(K\cap R(0)\), or one explicit unbounded
-live-from-0 family (not necessarily \(t_n\)), is missing. Do not open
-order 4, Walnut, or a second example.
+Is \(\lvert L_0\rvert=\infty\)? The energy telescope and defect
+recurrence restate the unread-tail construction and the slab \(K_n\).
+They do not confine \(L_0\) and do not name an expanding family that
+stays in \(K_n\). A global invariant bounding \(K\cap R(0)\), or one
+explicit unbounded live-from-0 family (not necessarily \(t_n\)), is
+missing. Do not open order 4, Walnut, or a second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\) (outcome D). `PROMOTE` the KNOWN energy
-identity `energy_step` / adjoint covariance only. The Lean kernel
-`kernel_unreachable_of_not_exceptional` is unchanged. No
-length-independent linear form on the observed live set survives
-start remaining \(16\to 20\). No symbolic live family. Do not
+`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN telescope
+`energy_telescope` (and the earlier `energy_step`). Defects restate
+\(K_n\) and are not a live-set theorem. Remaining-1
+\(s_2+2s_3\in[-2,1]\) is length-dependent. Short interior blocks that
+expand leave \(K_n\); only the zero word stays live and bounded.
+`kernel_unreachable_of_not_exceptional` is unchanged. Do not
 `CLOSE`. No order 4, CLI, or Walnut. Stop. Next question (not taken
-up): a nonlinear / piecewise-linear live coordinate, or a symbolic
-control that stays in \(K_n\) at unbounded remaining.
+up): a control constraint, other than a repeating block of length
+\(\le 3\), that stays in \(K_n\) at unbounded remaining.
 
 ## Publication assessment
 

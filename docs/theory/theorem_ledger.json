@@ -1995,5 +1995,16 @@
       "tests/research/ostrowski/test_energy_geometry.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "OST-np-energy-telescope",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, after an MSD word w of length k from remaining n+k, the unread-tail energy satisfies E_n(T_w s) = E_{n+k}(s) - sum_j w_j q_{n+k-1-j}; this is the cumulative form of energy_step, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_energy_trajectory.py"
+    ],
+    "related_conjectures": []
   }
 ]

@@ -25,8 +25,10 @@ PROBLEM = ProblemDefinition(
         "quotients G_m and affine forms on (remaining, s) do not "
         "separate those phases. Exact L_n layers grow along a finite "
         "live path with no symbolic family. The unread-tail energy "
-        "satisfies E_{i-1}(T_w s)=E_i(s)-w q_{i-1} (Lean, KNOWN "
-        "construction). Every small integer linear form on s grows "
+        "satisfies E_{i-1}(T_w s)=E_i(s)-w q_{i-1} and the telescope "
+        "E_n(T_w s)=E_{n+k}(s)-sum_j w_j q_{n+k-1-j} (Lean, KNOWN "
+        "construction). Defects restate K_n. Short expanding interior "
+        "blocks leave K_n. Every small integer linear form on s grows "
         "from start remaining 16 to 20. |L_0| is not proved "
         "infinite. Pisot existence of some adder is known."
     ),
