@@ -5,8 +5,6 @@ from __future__ import annotations
 import ast
 from pathlib import Path
 
-import pytest
-
 ROOT = Path(__file__).resolve().parents[2]
 BT_ROOT = ROOT / "src" / "bt"
 FORBIDDEN = ("research", "collatz", "visualization", "research_engine")
@@ -18,18 +16,15 @@ def _imported_roots(path: Path) -> set[str]:
     for node in ast.walk(tree):
         if isinstance(node, ast.Import):
             for alias in node.names:
-                roots.add(alias.name.split(".")[0])
+                roots.add(alias.name.split(".", 1)[0])
         elif isinstance(node, ast.ImportFrom) and node.module:
-            roots.add(node.module.split(".")[0])
+            roots.add(node.module.split(".", 1)[0])
     return roots
 
 
 def test_bt_core_does_not_import_research_layers():
-    if not BT_ROOT.is_dir():
-        pytest.skip("src/bt/ does not exist yet (Phase 1 placeholder)")
     files = list(BT_ROOT.rglob("*.py"))
-    if not files:
-        pytest.skip("src/bt/ has no Python modules yet")
+    assert files, "src/bt/ has no Python modules"
     violations: list[str] = []
     encode_files: list[str] = []
     for path in files:
@@ -51,11 +46,8 @@ ENGINE_FORBIDDEN = ("research", "bt", "collatz", "visualization", "cli")
 
 
 def test_research_engine_does_not_import_problem_or_bt_layers():
-    if not ENGINE_ROOT.is_dir():
-        pytest.skip("src/research_engine/ does not exist")
     files = list(ENGINE_ROOT.rglob("*.py"))
-    if not files:
-        pytest.skip("src/research_engine/ has no Python modules")
+    assert files, "src/research_engine/ has no Python modules"
     violations: list[str] = []
     for path in files:
         rel = path.relative_to(ROOT)

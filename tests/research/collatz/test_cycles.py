@@ -4,28 +4,28 @@ from __future__ import annotations
 
 from fractions import Fraction
 
-from collatz.amplitude import (
+from research.collatz.amplitude import (
     additive_amplitude_is_even,
     cycle_amplitude,
     exponent_code_from_syracuse,
     fernandez_slope,
     syracuse_parity_word,
 )
-from collatz.cycle_codes import (
+from research.collatz.cycle_codes import (
     exponent_root,
     is_primitive,
     lex_min_rotation,
     rotations,
 )
-from collatz.cycle_divisibility import (
+from research.collatz.cycle_divisibility import (
     christoffel_exponent_code,
     divisibility_report,
     finite_field_walk_sum,
 )
-from collatz.cycle_language import enumerate_cycle_language, proposed_restrictions
-from collatz.cycles import candidate_cycle, rotated_affine_constant, rotation_preserves_cycle
-from collatz.experiments.cycle_census import run_cycle_census
-from collatz.itinerary import affine_constant
+from research.collatz.cycle_language import enumerate_cycle_language, proposed_restrictions
+from research.collatz.cycles import candidate_cycle, rotated_affine_constant, rotation_preserves_cycle
+from research.collatz.experiments.cycle_census import run_cycle_census
+from research.collatz.itinerary import affine_constant
 
 
 def test_primitive_root_not_string_naive():

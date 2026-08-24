@@ -5,7 +5,7 @@ application of the same maps, not the object of search. Claim labels are
 **PROVED**, **VERIFIED COMPUTATIONALLY**, **CONJECTURE**, **OBSERVATION**,
 **KNOWN**, **REFUTED**. Finite checks are not infinite statements.
 
-The implementation lives in `src/balanced_ternary/operators.py`. Integer-level
+The implementation lives in `src/bt/operators.py`. Integer-level
 `apply(n)` and word-level `apply_word(word)` are separate methods. Passing a
 bare integer to `apply_word` is a `TypeError`.
 

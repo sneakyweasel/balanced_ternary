@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import pytest
 
-from balanced_ternary.arithmetic import is_prime
-from balanced_ternary.features import weight
-from balanced_ternary.invariants import (
+from bt.arithmetic import is_prime
+from bt.metrics import weight
+from bt.metrics import (
     check_automaton_residue,
     check_parity,
     check_v3_identity,
@@ -14,7 +14,7 @@ from balanced_ternary.invariants import (
     v3,
     verify_invariants,
 )
-from balanced_ternary.representation import digits, encode
+from bt.representation import digits, encode
 
 
 def test_v3_of_zero_is_infinity():

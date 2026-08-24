@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from collatz.experiments.information_content import (
+from research.collatz.experiments.information_content import (
     S1_BT_THEOREM,
     balanced_ternary_collision_witness,
     determinism_report,
@@ -14,7 +14,7 @@ from collatz.experiments.information_content import (
     smallest_collision_witness,
     state_key,
 )
-from collatz.experiments.near_critical import (
+from research.collatz.experiments.near_critical import (
     ExactDriftBand,
     adversarial_rearrangements,
     critical_K,
@@ -25,11 +25,11 @@ from collatz.experiments.near_critical import (
     run_near_critical,
     seeded_random_critical_codes,
 )
-from collatz.experiments.schema import (
+from research.collatz.experiments.schema import (
     COMPATIBILITY_SCHEMA_VERSION,
     validate_compatibility_row,
 )
-from collatz.experiments.table_io import read_jsonl
+from research.collatz.experiments.table_io import read_jsonl
 
 
 def test_s0_s3_partitions_and_exact_s1_bt_theorem():

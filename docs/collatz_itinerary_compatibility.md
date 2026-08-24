@@ -48,7 +48,7 @@ C(\mathbf{k})=\sum_{j=0}^{m-1} 3^{m-1-j}\,2^{K_j}.
 Each summand is a positive integer for \(m\ge 1\), so \(C>0\) for nonempty
 words. The formula never divides a residue modulo \(2^P\).
 
-Implemented as `ValuationItinerary` in `src/collatz/itinerary.py`.
+Implemented as `ValuationItinerary` in `src/research/collatz/itinerary.py`.
 Verified against iterating \(T\) on cylinder realizers
 (**VERIFIED COMPUTATIONALLY**, redundant with the proof).
 

@@ -15,7 +15,7 @@ language of "exactly-k for some k that the automaton computes".
 from __future__ import annotations
 
 from automata.modular import ModularAutomaton
-from balanced_ternary.representation import WordLike
+from bt.representation import WordLike
 from research.collatz.valuation import v2
 
 

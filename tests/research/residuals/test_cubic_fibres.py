@@ -5,7 +5,7 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
+from cli.main import main
 from bt.calculus.cubic import F_k, M_k_x3, raw_count_x3
 from research.residuals.cubic_fibres import (
     C_km,

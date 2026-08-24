@@ -5,7 +5,7 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
+from cli.main import main
 
 
 def _run(*args: str) -> str:

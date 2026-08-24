@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from itertools import product
 
-from balanced_ternary.representation import decode
-from collatz.cylinders import belongs_to_cylinder
-from collatz.dual_code import (
+from bt.representation import decode
+from research.collatz.cylinders import belongs_to_cylinder
+from research.collatz.dual_code import (
     CollatzDualCode,
     canonical_endpoint_formula,
     canonical_realizer_formula,
@@ -18,8 +18,8 @@ from collatz.dual_code import (
     valid_pair_word,
     verify_dual_exhaustive,
 )
-from collatz.itinerary import ValuationItinerary, verify_affine_against_T
-from collatz.min_realizer import min_realizer
+from research.collatz.itinerary import ValuationItinerary, verify_affine_against_T
+from research.collatz.min_realizer import min_realizer
 
 
 def test_benchmarks():

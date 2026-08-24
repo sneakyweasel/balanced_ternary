@@ -5,7 +5,7 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
+from cli.main import main
 from bt.calculus.derivative import D
 from bt.normtheory.calculus_link import (
     D_coeff,

@@ -15,7 +15,7 @@ bounded-state function of the word.
 
 from __future__ import annotations
 
-from balanced_ternary.representation import (
+from bt.representation import (
     BalancedTernary,
     WordLike,
     decode,

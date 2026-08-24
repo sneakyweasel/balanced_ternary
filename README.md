@@ -71,6 +71,7 @@ Full table: [docs/architecture/research_modules.md](docs/architecture/research_m
 | `research.rewrite_calculus` | PAPER_CANDIDATE |
 | `research.residuals` | STRUCTURAL |
 | `research.collatz` | STRUCTURAL |
+| `research.ostrowski` | STRUCTURAL |
 | `research.regular_output_preimages` | STRUCTURAL |
 | `research.monna_endpoint_spectra` | STRUCTURAL |
 | `research.lifting` | EXPLORATORY |
@@ -81,6 +82,7 @@ Full table: [docs/architecture/research_modules.md](docs/architecture/research_m
 | `research.operator_dynamics` | EXPLORATORY |
 | `research.balanced_digit_sum_polynomials` | EXPLORATORY |
 | `research.erdos_distinct_subset_sums` | EXPLORATORY |
+| `research.kabelian_complexity` | ARCHIVED |
 | `research.stabilization` | ARCHIVED |
 | `research.padic_dynamics` | ARCHIVED |
 | `research.cerny_bt` | ARCHIVED |

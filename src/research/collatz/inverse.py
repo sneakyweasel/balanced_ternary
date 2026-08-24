@@ -31,7 +31,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from balanced_ternary.representation import encode
+from bt.representation import encode
 from research.collatz.core import collatz_step, require_positive_odd
 
 

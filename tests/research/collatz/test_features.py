@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from balanced_ternary.features import weight
-from balanced_ternary.representation import encode
-from collatz.features import FEATURE_NAMES, NUMERIC_FEATURE_NAMES, extract_features
-from collatz.transitions import ROW_COLUMNS, feature_transition
+from bt.metrics import weight
+from bt.representation import encode
+from research.collatz.features import FEATURE_NAMES, NUMERIC_FEATURE_NAMES, extract_features
+from research.collatz.transitions import ROW_COLUMNS, feature_transition
 
 
 def test_feature_vector_matches_existing_extractors():

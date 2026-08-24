@@ -13,7 +13,7 @@ from itertools import product
 from pathlib import Path
 from typing import Any, Callable, Iterable, Mapping, Sequence
 
-from balanced_ternary.representation import encode
+from bt.representation import encode
 from research.collatz.compatibility import ExponentCodeDiagnostic
 from research.collatz.cylinders import parse_ks
 from research.collatz.dual_code import lift_digit_formula

@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
-from balanced_ternary.invariants import v3
-from balanced_ternary.oeis_maps import (
+from bt.metrics import v3
+from bt.sequences import (
     A065363_EXAMPLES,
     A065363_PREFIX,
     A065364_EXAMPLES,
@@ -23,8 +23,8 @@ from balanced_ternary.oeis_maps import (
     bt_reverse_zeros,
     reverse_is_involution,
 )
-from balanced_ternary.representation import encode
-from collatz.theorems import append_plus
+from bt.representation import encode
+from research.collatz.theorems import append_plus
 
 
 def test_a134028_prefix_and_examples():

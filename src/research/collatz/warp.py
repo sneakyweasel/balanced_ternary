@@ -17,7 +17,7 @@ from dataclasses import asdict, dataclass
 from itertools import product
 from typing import Callable
 
-from balanced_ternary.oeis_maps import (
+from bt.sequences import (
     bt_alternating_digit_sum,
     bt_digit_sum,
     bt_is_palindrome,
@@ -25,7 +25,7 @@ from balanced_ternary.oeis_maps import (
     bt_reverse,
     bt_reverse_tail,
 )
-from balanced_ternary.representation import encode
+from bt.representation import encode
 from research.collatz.core import collatz_step, collatz_valuation
 from research.collatz.cylinders import parse_ks
 from research.collatz.dual_code import CollatzDualCode, canonical_realizer_formula

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from itertools import product
 
-from collatz.dual_code import CollatzDualCode
-from collatz.lift_tree import (
+from research.collatz.dual_code import CollatzDualCode
+from research.collatz.lift_tree import (
     DualPrecisionState,
     LiftEdgeClass,
     build_lift_tree,

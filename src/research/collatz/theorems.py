@@ -28,7 +28,7 @@ index shift ``a'_{i+1} = a_i``):
 
 from __future__ import annotations
 
-from balanced_ternary.representation import (
+from bt.representation import (
     BalancedTernary,
     WordLike,
     decode,

@@ -5,7 +5,7 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
+from cli.main import main
 from research.residuals.cubic_fibres import prefixes_at, same_depth_n0
 from research.residuals.cubic_n0_reduction import (
     n0_candidate_deepest,

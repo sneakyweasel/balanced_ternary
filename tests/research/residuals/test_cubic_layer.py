@@ -7,7 +7,7 @@ from contextlib import redirect_stdout
 
 import pytest
 
-from balanced_ternary.cli import main
+from cli.main import main
 from bt.calculus.cubic import F_k
 from research.residuals.cubic_deepest import deepest_class_count
 from research.residuals.cubic_fibres import C_km, prefixes_at

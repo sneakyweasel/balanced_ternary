@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from collatz.compatibility import (
+from research.collatz.compatibility import (
     RealizabilityClass,
     nested_cylinder_report,
     positive_integer_would_bound_R,
 )
-from collatz.experiments.nested_cylinders import all_ones_prefix, run_nested_trace
-from collatz.lower_bounds import certificate_attempts, log2_R_upper_bound_exponent
-from collatz.zero_lift import lift_digit
-from collatz.min_realizer import min_realizer
+from research.collatz.experiments.nested_cylinders import all_ones_prefix, run_nested_trace
+from research.collatz.lower_bounds import certificate_attempts, log2_R_upper_bound_exponent
+from research.collatz.zero_lift import lift_digit
+from research.collatz.min_realizer import min_realizer
 
 
 def test_all_ones_closed_form():

@@ -1,14 +1,14 @@
 """Balanced ternary features of Collatz states.
 
 All position-dependent quantities reuse the existing LSD-first convention
-from ``balanced_ternary.features``. This module does not reimplement them.
+from ``bt.metrics``. This module does not reimplement them.
 """
 
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
 
-from balanced_ternary.features import (
+from bt.metrics import (
     negative_digit_count,
     position_class_sums,
     positive_digit_count,
@@ -18,7 +18,7 @@ from balanced_ternary.features import (
     zero_count,
     zero_gap_statistics,
 )
-from balanced_ternary.representation import WordLike, encode, normalize
+from bt.representation import WordLike, encode, normalize
 
 
 DEFAULT_POSITION_PERIODS: tuple[int, ...] = (2, 3)

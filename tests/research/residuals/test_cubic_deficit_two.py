@@ -5,7 +5,7 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
+from cli.main import main
 from bt.calculus.cubic import F_k
 from research.residuals.cubic_deficit_two import (
     def2_class_count,

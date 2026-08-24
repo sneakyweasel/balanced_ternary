@@ -4,11 +4,11 @@ from __future__ import annotations
 
 from itertools import product
 
-from balanced_ternary.representation import decode
-from collatz.cylinders import valuation_cylinder
-from collatz.languages.cylinder_dfa import CylinderDFA, entropy_report
-from collatz.languages.dfa_minimize import minimize_dfa
-from collatz.transducers.valuation_languages import ValuationClassDFA
+from bt.representation import decode
+from research.collatz.cylinders import valuation_cylinder
+from research.collatz.languages.cylinder_dfa import CylinderDFA, entropy_report
+from research.collatz.languages.dfa_minimize import minimize_dfa
+from research.collatz.transducers.valuation_languages import ValuationClassDFA
 
 
 def test_minimize_two_state_odd_language():

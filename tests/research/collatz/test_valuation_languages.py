@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import pytest
 
-from balanced_ternary.representation import encode
-from collatz.transducers.valuation_languages import ValuationClassDFA
-from collatz.valuation import v2
+from bt.representation import encode
+from research.collatz.transducers.valuation_languages import ValuationClassDFA
+from research.collatz.valuation import v2
 
 
 def test_dfa_rejects_bad_k():

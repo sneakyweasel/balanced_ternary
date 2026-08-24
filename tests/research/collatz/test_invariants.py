@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from balanced_ternary.features import weight
-from balanced_ternary.representation import encode
-from collatz.core import collatz_step
-from collatz.experiments.exhaustive import run_exhaustive_experiment
-from collatz.research.invariants import verify_collatz_invariants
+from bt.metrics import weight
+from bt.representation import encode
+from research.collatz.core import collatz_step
+from research.collatz.experiments.exhaustive import run_exhaustive_experiment
+from research.collatz.invariants import verify_collatz_invariants
 
 
 def test_odd_n_has_odd_weight_and_3n1_even_weight_range():

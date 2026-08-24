@@ -41,7 +41,7 @@ from research.collatz.core import collatz_step, standard_collatz_step, three_n_p
 from research.collatz.experiments.exhaustive import run_exhaustive_experiment
 from research.collatz.features import BalancedTernaryFeatures, extract_features
 from research.collatz.inverse import build_inverse_tree, collatz_predecessors
-from research.collatz.research.invariants import verify_collatz_invariants
+from research.collatz.invariants import verify_collatz_invariants
 from research.collatz.theorems import append_plus, predicted_features_after_append_plus
 from research.collatz.trajectory import (
     collatz_stopping_time,

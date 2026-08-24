@@ -3,8 +3,8 @@
 Classification of integer maps \(f:\mathbb{Z}\to\mathbb{Z}\) (possibly
 partial) according to whether \(\mathrm{BT}(f(n))\) is obtained from
 \(\mathrm{BT}(n)\) by a sequential finite-state transduction. Details:
-`src/balanced_ternary/transducer_zoo.py`. Existing machines in
-`src/collatz/transducers/` are reused.
+`src/bt/transducers/zoo.py`. Existing machines in
+`src/research/collatz/transducers/` are reused.
 
 ## Zoo (summary)
 

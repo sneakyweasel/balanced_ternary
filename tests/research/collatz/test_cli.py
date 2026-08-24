@@ -5,9 +5,9 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
-from balanced_ternary.representation import encode
-from collatz.core import collatz_step
+from cli.main import main
+from bt.representation import encode
+from research.collatz.core import collatz_step
 
 
 def _run(*args: str) -> str:

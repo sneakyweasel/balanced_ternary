@@ -168,7 +168,7 @@ def test_warp_view_21():
 
 
 def test_parse_value_integer_and_word():
-    from balanced_ternary.representation import encode
+    from bt.representation import encode
 
     parsed = parse_value(source="integer", integer=27)
     assert parsed.ok

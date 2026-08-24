@@ -5,7 +5,7 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
+from cli.main import main
 from research.residuals.mismatched_cubic import q_eq, q_mod, q_params
 from research.residuals.mismatched_invariant import (
     B_t,

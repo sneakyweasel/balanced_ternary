@@ -5,7 +5,7 @@ from __future__ import annotations
 import io
 from contextlib import redirect_stdout
 
-from balanced_ternary.cli import main
+from cli.main import main
 from research.residuals.cubic_fibres import prefixes_at, same_depth_n1, same_depth_n2
 from research.residuals.cubic_n1_valuation import (
     deficit_depth,

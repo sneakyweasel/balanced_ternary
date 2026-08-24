@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import pytest
 
-from collatz.core import collatz_step
-from collatz.trajectory import (
+from research.collatz.core import collatz_step
+from research.collatz.trajectory import (
     collatz_stopping_time,
     collatz_total_stopping_time,
     collatz_trajectory,

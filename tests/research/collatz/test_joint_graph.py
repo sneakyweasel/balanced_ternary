@@ -2,15 +2,15 @@
 
 from __future__ import annotations
 
-from balanced_ternary.representation import encode
-from collatz.automata.joint_graph import (
+from bt.representation import encode
+from research.collatz.automata.joint_graph import (
     build_joint_graph,
     collatz_word_step,
     synchronizing_digit_contexts,
 )
-from collatz.core import collatz_step, collatz_valuation
-from collatz.theorems import append_plus
-from collatz.transducers.odd_part import odd_part_word
+from research.collatz.core import collatz_step, collatz_valuation
+from research.collatz.theorems import append_plus
+from research.collatz.transducers.odd_part import odd_part_word
 
 
 def test_word_step_matches_T():

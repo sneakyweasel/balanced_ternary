@@ -4,21 +4,21 @@ from __future__ import annotations
 
 import pytest
 
-from balanced_ternary.representation import decode, encode
-from collatz.bt_arithmetic import (
+from bt.representation import decode, encode
+from research.collatz.bt_arithmetic import (
     add,
     add_one,
     lsd_add_one_case,
     multiply_by_three,
     three_n_plus_one_word,
 )
-from collatz.core import (
+from research.collatz.core import (
     collatz_step,
     collatz_valuation,
     standard_collatz_step,
     three_n_plus_one,
 )
-from collatz.valuation import v2
+from research.collatz.valuation import v2
 
 
 def test_standard_vs_accelerated_distinction():

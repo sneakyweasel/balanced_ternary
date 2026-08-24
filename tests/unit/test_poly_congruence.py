@@ -6,7 +6,7 @@ import io
 from contextlib import redirect_stdout
 from itertools import product
 
-from balanced_ternary.cli import main
+from cli.main import main
 from bt.calculus.myhill_nerode import equiv_by_outputs, merge_examples
 from bt.calculus.quadratic import pack_word
 from bt.calculus.residual import TRITS, residual_along

@@ -5,24 +5,8 @@ from __future__ import annotations
 import argparse
 import json
 
-from balanced_ternary.additive_sets import (
-    smallest_r_covering_nonneg_interval,
-    sparse_cubes,
-    sparse_primes,
-    sparse_squares,
-    sumset_A_minus_A,
-    sumset_A_plus_A,
-    sumset_A_plus_B,
-    sumset_B_plus_B,
-    weight_one_squares,
-)
-from balanced_ternary.metrics import carry_defect, carry_defect_scan, d_bt, metric_properties
-from balanced_ternary.operator_algebra import (
-    census_compositions,
-    classify_pair,
-    parse_composition,
-)
-from balanced_ternary.operators import (
+from bt.metrics import carry_defect, carry_defect_scan, d_bt, metric_properties
+from bt.operators import (
     OPERATORS,
     d_orbit,
     d_steps_to_zero,
@@ -32,10 +16,25 @@ from balanced_ternary.operators import (
     recovered_digits,
     shift_feature_effects,
 )
-from balanced_ternary.polynomials import evaluation_identities, factor_small, mahler_measure, polynomial
-from balanced_ternary.representation import encode
-from balanced_ternary.sequences import all_dossiers
-from balanced_ternary.transducer_zoo import h2_state_counts, m2_state_counts, zoo
+from bt.polynomials import evaluation_identities, factor_small, polynomial
+from bt.representation import encode
+from bt.transducers.zoo import h2_state_counts, m2_state_counts, zoo
+from research.additive_combinatorics import (
+    smallest_r_covering_nonneg_interval,
+    sumset_A_minus_A,
+    sumset_A_plus_A,
+    sumset_A_plus_B,
+    sumset_B_plus_B,
+)
+from research.operator_dynamics.algebra import (
+    census_compositions,
+    classify_pair,
+    parse_composition,
+)
+from research.operator_dynamics.dossiers import all_dossiers
+from research.perfect_powers import sparse_cubes, sparse_squares, weight_one_squares
+from research.primes import sparse_primes
+from research.sparse_polynomials import mahler_measure
 
 
 def add_operators_subparser(subparsers: argparse._SubParsersAction) -> None:

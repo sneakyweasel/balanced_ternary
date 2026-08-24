@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
-from research.collatz.research.invariants import check_odd_weight, check_three_n_plus_one_even_weight
+from research.collatz.invariants import check_odd_weight, check_three_n_plus_one_even_weight
 from research.collatz.transitions import ROW_COLUMNS, feature_transition
 
 

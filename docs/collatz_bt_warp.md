@@ -33,7 +33,7 @@ All maps reuse the existing encoder. Display is MSD-first with alphabet
   \(\sum_i a_i(-1)^i\).
 - \(L_3\): OEIS [A134021](https://oeis.org/A134021), canonical length.
 
-Published prefixes are locked in `tests/test_oeis_maps.py`. They are not
+Published prefixes are locked in `tests/unit/test_oeis_maps.py`. They are not
 invented examples.
 
 ## Exact word algebra

@@ -6,7 +6,7 @@ To the canonical expansion \(n=\sum_i a_i 3^i\) associate
 P_n(x)=\sum_i a_i x^i\in\mathbb{Z}[x],\qquad a_i\in\{-1,0,+1\}.
 \]
 
-Implementation: `src/balanced_ternary/polynomials.py`. Coefficients are
+Implementation: `src/bt/polynomials.py`. Coefficients are
 LSD-first. No general-purpose computer-algebra system is required for
 evaluation, reciprocity, or trial division by \(x\pm 1\) and small
 cyclotomics.

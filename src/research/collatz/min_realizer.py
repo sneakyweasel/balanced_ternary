@@ -20,7 +20,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from balanced_ternary.representation import encode
+from bt.representation import encode
 from research.collatz.cylinders import parse_ks, valuation_cylinder
 from research.collatz.features import BalancedTernaryFeatures, extract_features
 from research.collatz.itinerary import ValuationItinerary, positivity_threshold

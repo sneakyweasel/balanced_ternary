@@ -28,7 +28,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from balanced_ternary.representation import decode, encode
+from bt.representation import decode, encode
 from research.collatz.automata.valuation_shift import growth_budget
 from research.collatz.cylinders import parse_ks
 from research.collatz.features import BalancedTernaryFeatures, extract_features

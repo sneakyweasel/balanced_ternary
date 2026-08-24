@@ -386,7 +386,7 @@ valuation \(k\). \(L_0\) coincides with odd weight.
 
 ### Unrestricted odd-part is not a single rational transduction (PROVED)
 
-The machines in `src/collatz/transducers/` are deterministic
+The machines in `src/bt/transducers/` and `src/research/collatz/transducers/` are deterministic
 letter-to-letter **Mealy** transducers (LSD-first, carry in
 \(\{-1,0,+1\}\)). On a finite word the `/2` machine is **subsequential**:
 it may reject with leftover carry rather than emit a canonical integer.

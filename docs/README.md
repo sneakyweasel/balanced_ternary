@@ -75,6 +75,7 @@ both axes. See [methodology.md](methodology.md).
   budgets, and the `PROMOTE` / `PARK` / `CLOSE` decision.
 - [Problem template](problems/TEMPLATE.md)
 - [Collatz](problems/collatz.md)
+- [Ostrowski order-m adder](problems/ostrowski_order_m_adder.md)
 - [Residuals](problems/residuals.md)
 - [Balanced digit sums of nonlinear polynomial values](problems/balanced_digit_sum_polynomials.md)
 - [Erdős distinct subset sums](problems/erdos_distinct_subset_sums.md)

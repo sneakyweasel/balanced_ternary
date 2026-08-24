@@ -5,7 +5,7 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from balanced_ternary.representation import encode
+from bt.representation import encode
 from research.collatz.automata.joint_graph import layer_d_report
 from research.collatz.automata.symbolic_graph import build_symbolic_graph
 from research.collatz.automata.two_adic import TwoAdicDigitAutomaton
@@ -18,7 +18,7 @@ from research.collatz.core import require_positive_odd
 from research.collatz.experiments.exhaustive import run_exhaustive_experiment
 from research.collatz.features import extract_features
 from research.collatz.inverse import build_inverse_tree, format_inverse_tree
-from research.collatz.research.invariants import verify_collatz_invariants
+from research.collatz.invariants import verify_collatz_invariants
 from research.collatz.theorems import append_plus, predicted_features_after_append_plus
 from research.collatz.trajectory import collatz_trajectory
 from research.collatz.transducers.divide_by_two import DivideByTwoTransducer, LeftoverCarryError

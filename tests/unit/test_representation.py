@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import pytest
 
-from balanced_ternary.representation import (
+from bt.representation import (
     BalancedTernary,
     decode,
     digits,

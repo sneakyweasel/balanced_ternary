@@ -3,13 +3,24 @@
 from __future__ import annotations
 
 from balanced_ternary import decode, digit_derivative, encode, lsd_digit, polynomial
-from collatz import AffineCenterState, CompatibilityState, InfiniteTrajectoryAffineState, candidate_cycle, collatz_step
-from collatz import AffineCenterState, CompatibilityState, InfiniteTrajectoryAffineState, candidate_cycle, collatz_step
+from balanced_ternary.cli import main as shim_main
+from cli.main import main
+from collatz import (
+    AffineCenterState,
+    CompatibilityState,
+    InfiniteTrajectoryAffineState,
+    candidate_cycle,
+    collatz_step,
+)
 
 
 def test_balanced_ternary_root_round_trip():
     word = encode(42)
     assert decode(word) == 42
+
+
+def test_cli_shim_is_canonical_entry():
+    assert shim_main is main
 
 
 def test_collatz_root_exact_objects():

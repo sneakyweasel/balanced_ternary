@@ -16,7 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass
 from fractions import Fraction
 
-from balanced_ternary.representation import encode
+from bt.representation import encode
 from research.collatz.amplitude import CycleAmplitude, cycle_amplitude
 from research.collatz.core import collatz_step, collatz_valuation, require_positive_odd
 from research.collatz.cycle_codes import (

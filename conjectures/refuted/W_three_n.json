@@ -10,7 +10,7 @@
   ],
   "mathematical_domain": "balanced ternary operators",
   "notes": "Preserved naive counterexample.",
-  "origin": "docs/collatz_bt_warp.md; tests/test_oeis_maps.py",
+  "origin": "docs/collatz_bt_warp.md; tests/unit/test_oeis_maps.py",
   "proof_reference": "docs/collatz_bt_warp.md",
   "statement": "W(3n)=3W(n) for all n.",
   "status": "REFUTED",

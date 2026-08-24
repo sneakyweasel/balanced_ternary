@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from fractions import Fraction
 
-from collatz.affine_gap import affine_gap, next_affine_gap, addend_sign_law
-from collatz.asymptotic import (
+from research.collatz.affine_gap import affine_gap, next_affine_gap, addend_sign_law
+from research.collatz.asymptotic import (
     N_STAR_LE_N_SMALLEST_COUNTEREXAMPLE,
     compatibility_ledger,
     positivity_inequalities,
@@ -15,9 +15,9 @@ from collatz.asymptotic import (
     stronger_gap_statements,
     walk_integer_ledger,
 )
-from collatz.affine_center import AffineCenterState
-from collatz.core import collatz_step, collatz_valuation
-from collatz.fixed_integer import (
+from research.collatz.affine_center import AffineCenterState
+from research.collatz.core import collatz_step, collatz_valuation
+from research.collatz.fixed_integer import (
     InfiniteTrajectoryAffineState,
     iterate_states,
     next_C,
@@ -28,8 +28,8 @@ from collatz.fixed_integer import (
     normalized_C_series,
     required_start_residue,
 )
-from collatz.itinerary import affine_constant, partial_sums_K
-from collatz.periodic_code import PeriodicFixedPointTheorem
+from research.collatz.itinerary import affine_constant, partial_sums_K
+from research.collatz.periodic_code import PeriodicFixedPointTheorem
 
 
 def test_empty_prefix_of_27():
@@ -156,7 +156,7 @@ def test_periodic_ones_and_twos():
 
 def test_even_two_is_out_of_domain():
     import pytest
-    from collatz.core import require_positive_odd
+    from research.collatz.core import require_positive_odd
 
     with pytest.raises(ValueError):
         require_positive_odd(2)

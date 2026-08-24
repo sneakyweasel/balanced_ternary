@@ -24,7 +24,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from itertools import product
 
-from balanced_ternary.representation import decode, encode
+from bt.representation import decode, encode
 from research.collatz.automata.two_adic import TwoAdicDigitAutomaton
 from research.collatz.automata.valuation_shift import (
     AdmissibleValuationAutomaton,

@@ -26,7 +26,7 @@ R_{m+1}=R_m+t_m2^{K_m+1},\qquad t_m\in\mathbb Z_{\ge0}.
 \]
 
 This is **PROVED**. The implementation is `lift_digit` and `lift_digits` in
-`src/collatz/zero_lift.py`.
+`src/research/collatz/zero_lift.py`.
 
 ## A. Exact infinite-itinerary dichotomy
 
@@ -169,7 +169,7 @@ n=\frac{n_v2^{K_u}-C(u)}{3^{|u|}},
 \]
 
 followed by exact integrality and cylinder checks. This is **PROVED** and
-implemented in `src/collatz/periodic_itineraries.py`.
+implemented in `src/research/collatz/periodic_itineraries.py`.
 
 The bounded search currently finds only repetitions of the known
 \((2)^\omega\) cycle at \(n=1\). That result is **VERIFIED

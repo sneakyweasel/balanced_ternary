@@ -4,9 +4,9 @@ from __future__ import annotations
 
 import pytest
 
-from collatz.automata.valuation_shift import PrecisionState, follow_path
-from collatz.core import collatz_valuation
-from collatz.cylinders import (
+from research.collatz.automata.valuation_shift import PrecisionState, follow_path
+from research.collatz.core import collatz_valuation
+from research.collatz.cylinders import (
     belongs_to_cylinder,
     cylinder_residues,
     parse_ks,
