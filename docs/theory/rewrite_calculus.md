@@ -553,7 +553,7 @@ non-claim inside the production table.
 
 ### Named fragment `WORD_SIMP_RULES`
 
-[BTC-word-simp-nf](theorem_ledger.md) (**EXACT — HUMAN PROOF**). The sixteen
+[BTC-word-simp-nf](theorem_ledger.md) (**EXACT — LEAN VERIFIED**). The sixteen
 `simplifying=True` rows — cancellations `N∘N`, `D∘S`, `D∘I±`,
 `D∘I0`, `Wz∘Wz`, `Wt∘Wt`, `H2∘M2`, `H3∘S`; the `W`/`K3` stock
 `W∘W → K3`, `W∘S → W`, `K3∘S → K3`, `K3∘W → W`, `W∘K3 → W`,
@@ -796,4 +796,8 @@ confluence, unique syntactic NF, and the NF grammar). Semantic
 canonicity of distinct irreducibles is `OpFrag.irreducible_eval_injective`
 in `BTCalculus/OpFragSemantic.lean`
 ([BTC-op-fragment-nd-semantic](theorem_ledger.md), **EXACT — LEAN VERIFIED**).
+The simplifying word fragment is a separate string TRS:
+`BTCalculus/WordSimpNewman.lean` ([BTC-word-simp-nf](theorem_ledger.md),
+**EXACT — LEAN VERIFIED**). Semantic canonicity of those word
+irreducibles is not claimed. `WORD_WN` / `WORD_WND` stay human.
 Do not edit `BTCalculus/Confluence.lean`.

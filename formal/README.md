@@ -64,7 +64,9 @@ residual equivalence `≡_k`, cascade `outputAlong` for polynomial composition,
 global confluence of the stripped coefficient rewrite, Newman confluence
 of the enlarged operator-fragment tree TRS `{D, I_a, S, N}`
 (including `N(D)→D(N)`), semantic canonicity of that NF grammar
-as integer operator functions, the restricted Add locality boundary
+as integer operator functions, Newman unique syntactic NF of the
+simplifying word fragment `WORD_SIMP_RULES` (no semantic canonicity),
+the restricted Add locality boundary
 (`D(x+y)` is not determined by `(D(x),D(y))`; constructor-sum
 classification; named push-in peak), and polynomial
 function congruence modulo `3^k` (the Myhill–Nerode bridge, the degree-`≤2`

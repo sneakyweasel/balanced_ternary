@@ -6,6 +6,8 @@ import BTCalculus.Rewrite
 import BTCalculus.OpFrag
 import BTCalculus.OpFragNewman
 import BTCalculus.OpFragSemantic
+import BTCalculus.WordSimp
+import BTCalculus.WordSimpNewman
 import BTCalculus.RewriteCore
 import BTCalculus.RewriteAddBoundary
 import BTCalculus.Comparison
