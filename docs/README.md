@@ -91,6 +91,7 @@ both axes. See [methodology.md](methodology.md).
 - [Sparse polynomials](problems/sparse_polynomials.md)
 - [Operator dynamics](problems/operator_dynamics.md)
 - [Rewrite calculus](problems/rewrite_calculus.md)
+- [k-abelian complexity residual signatures](problems/kabelian_complexity.md)
 - [Research journal](research_journal.md)
 - [Theorem ledger](theory/theorem_ledger.md)
 - [Balanced-ternary calculus](theory/balanced_ternary_calculus.md)

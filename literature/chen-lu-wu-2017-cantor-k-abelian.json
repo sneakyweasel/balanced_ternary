@@ -1,0 +1,22 @@
+{
+  "id": "chen-lu-wu-2017-cantor-k-abelian",
+  "title": "On the k-abelian complexity of the Cantor sequence",
+  "authors": ["Jin Chen", "Xiaotao Lü", "Wen Wu"],
+  "year": 2017,
+  "identifiers": {
+    "arxiv": "1703.04063"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/1703.04063"
+  },
+  "problem_area": "k-abelian complexity",
+  "relevant_concepts": [
+    "Cantor sequence",
+    "3-regular sequences",
+    "k-abelian complexity",
+    "3-automatic sequences"
+  ],
+  "project_relationship": "known",
+  "status": "result-source",
+  "notes": "arXiv:1703.04063. The Cantor sequence c=101000101⋯ is the fixed point of 0↦000, 1↦101 starting at 1, equivalently c_{3n}=c_{3n+2}=c_n and c_{3n+1}=0. For every k≥1 the k-abelian complexity of c is 3-regular. Principal base-3 benchmark for the kabelian_complexity gate."
+}

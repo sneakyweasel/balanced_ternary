@@ -19,6 +19,8 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.misere_quotients.problem import PROBLEM as MISERE_QUOTIENTS
     from research.monna_endpoint_spectra.problem import PROBLEM as MONNA_ENDPOINT_SPECTRA
     from research.operator_dynamics.problem import PROBLEM as OPERATOR_DYNAMICS
+    from research.kabelian_complexity.problem import PROBLEM as KABELIAN_COMPLEXITY
+    from research.ostrowski.problem import PROBLEM as OSTROWSKI
     from research.padic_dynamics.problem import PROBLEM as PADIC_DYNAMICS
     from research.regular_output_preimages.problem import PROBLEM as REGULAR_OUTPUT_PREIMAGES
     from research.perfect_powers.problem import PROBLEM as PERFECT_POWERS
@@ -46,6 +48,8 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         REWRITE_CALCULUS,
         BALANCED_DIGIT_SUM_POLYNOMIALS,
         ERDOS_DISTINCT_SUBSET_SUMS,
+        OSTROWSKI,
+        KABELIAN_COMPLEXITY,
     )
 
 
