@@ -134,12 +134,10 @@ def _critical_pairs() -> tuple[tuple[tuple[str, ...], tuple[str, ...]], ...]:
                 continue
             if src1 == src2 and dst1 == dst2:
                 if len(src1) >= 2 and src1[1:] == src1[:-1]:
-                    peak = src1 + src1[-1:]
                     pairs.append((dst1 + src1[-1:], src1[:1] + dst1))
                 continue
             for k in range(1, min(len(src1), len(src2))):
                 if src1[-k:] == src2[:k]:
-                    peak = src1 + src2[k:]
                     pairs.append((dst1 + src2[k:], src1[:-k] + dst2))
             for i in range(len(src1) - len(src2) + 1):
                 if src1[i : i + len(src2)] == src2:
