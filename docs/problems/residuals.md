@@ -33,6 +33,9 @@ Quartic gate: `src/research/residuals/x4_stratum.py`.
 
 `formal/BTCalculus/NewtonStratum.lean` and
 `formal/BTCalculus/XCubeStateComplexity.lean`.
+General residual interface:
+`formal/BTCalculus/NewtonKernel.lean` (`I_k` for every degree) and
+`formal/BTCalculus/ResidualShift.lean` (`eval_residualAlong`).
 
 ## Conjectures / refutations
 

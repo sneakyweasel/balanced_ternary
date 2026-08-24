@@ -9,11 +9,10 @@ from __future__ import annotations
 
 from collections import defaultdict
 from itertools import product
-from math import comb
 
 from bt.calculus.cubic import prefixes_at
-from bt.calculus.poly_congruence import newton_coeffs
-from bt.calculus.quadratic import iter_dz, pack_word
+from bt.calculus.poly_congruence import newton_coeffs, residual_shift
+from bt.calculus.quadratic import pack_word
 from bt.calculus.residual import TRITS, residual_along
 from bt.calculus.section import IntPoly
 from bt.metrics import v3
@@ -31,19 +30,7 @@ def _require_nat(n: int, name: str) -> int:
 def residual_at_prefix(f: IntPoly, m: int, p: int) -> IntPoly:
     """Closed form of ``D^m(f(p + 3^m x))``."""
 
-    m = _require_nat(m, "m")
-    if f.degree < 0:
-        return IntPoly((0,))
-    out = [0] * (f.degree + 1)
-    out[0] = iter_dz(f.eval(p), m)
-    for j in range(1, f.degree + 1):
-        acc = 0
-        for n in range(j, f.degree + 1):
-            a = f.coefficient(n)
-            if a:
-                acc += a * comb(n, j) * (p ** (n - j)) * (3 ** (m * (j - 1)))
-        out[j] = acc
-    return IntPoly(tuple(out))
+    return residual_shift(f, m, p)
 
 
 def min_linear_p_valuation(f: IntPoly, m: int) -> int | None:

@@ -25,6 +25,8 @@ import BTCalculus.Quadratic
 import BTCalculus.PadicLifting
 import BTCalculus.PadicLiftingState
 import BTCalculus.PolynomialFunctionsMod
+import BTCalculus.NewtonKernel
+import BTCalculus.ResidualShift
 import BTCalculus.CubicResidual
 import BTCalculus.CubicFibres
 import BTCalculus.CubicDeepestLayer

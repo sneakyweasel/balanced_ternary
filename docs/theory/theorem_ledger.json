@@ -496,10 +496,21 @@
   },
   {
     "id": "BTA-Ik-newton",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "I_k is the set of Z[x] polynomials whose Newton coefficients are divisible by 3^k",
     "source": "docs/theory/polynomial_function_congruence.md",
-    "lean": "BTCalculus/PolynomialFunctionsMod.lean",
+    "lean": "BTCalculus/NewtonKernel.lean",
+    "tests": [
+      "tests/unit/test_poly_congruence.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTA-eval-residualAlong",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "eval x (residualAlong w f) = D^{|w|}(f(packWord w + 3^{|w|} x)) for every ordinary Z[x] polynomial",
+    "source": "docs/theory/polynomial_function_congruence.md",
+    "lean": "BTCalculus/ResidualShift.lean",
     "tests": [
       "tests/unit/test_poly_congruence.py"
     ],

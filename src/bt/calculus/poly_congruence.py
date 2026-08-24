@@ -23,8 +23,9 @@ invisible polynomials such as ``x^3 - x`` modulo ``3``.
 from __future__ import annotations
 
 from itertools import product
-from math import factorial
+from math import comb, factorial
 
+from bt.calculus.quadratic import iter_dz
 from bt.calculus.section import IntPoly
 from bt.metrics import v3
 
@@ -68,6 +69,28 @@ def newton_coeffs(f: IntPoly) -> tuple[int, ...]:
 def finite_difference_profile(f: IntPoly) -> tuple[int, ...]:
     """Alias of :func:`newton_coeffs`."""
     return newton_coeffs(f)
+
+
+def residual_shift(f: IntPoly, m: int, p: int) -> IntPoly:
+    """Binomial closed form of ``D^m(f(p + 3^m x))``.
+
+    Lean name: ``residualShift``. The evaluation identity
+    ``eval x (residualAlong w f) = D^{|w|}(f(packWord w + 3^{|w|} x))``
+    is ``eval_residualAlong``.
+    """
+    m = _require_nat(m, "m")
+    if f.degree < 0:
+        return IntPoly((0,))
+    out = [0] * (f.degree + 1)
+    out[0] = iter_dz(f.eval(p), m)
+    for j in range(1, f.degree + 1):
+        acc = 0
+        for n in range(j, f.degree + 1):
+            a = f.coefficient(n)
+            if a:
+                acc += a * comb(n, j) * (p ** (n - j)) * (3 ** (m * (j - 1)))
+        out[j] = acc
+    return IntPoly(tuple(out))
 
 
 def phi_k(f: IntPoly, k: int) -> tuple[int, ...]:
