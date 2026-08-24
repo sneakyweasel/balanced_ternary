@@ -408,6 +408,13 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   \(165\to 379\). Normalized \(\lvert\lambda\rvert^{-k}\lvert z\rvert\)
   is not residual boundedness. Maximizer words at these horizons are
   not a symbolic family.
+- The maximizer prefix \(P_m=(2)\cdot(-4)^m\) plus a uniformly bounded
+  tail is not an unbounded origin-live family. At tail length
+  \(\le 6\), live remaining-0 completions exist for \(m=0,1,2\)
+  (65 other terminals; tails unstructured; some hub / two-step-ray
+  landings mixed in). For \(m\ge 3\) the prefix itself dies:
+  \((2,-4,-4,-4)\) lands on \((6,2,2)\), which is not live. No
+  closed-form tail. Finite \(m\) is not \(\lvert L_0\rvert=\infty\).
 - Arbitrarily long origin-accepted words force infinitely many
   distinct remaining-0 terminals: false. The family
   \(U_k=(B_\ast)^k\cdot(1,-2)\) of lengths \(4k+2\) is complete live
@@ -1505,10 +1512,13 @@ Myhill–Nerode engine.
 Is \(\lvert L_0\rvert=\infty\)? Origin reachability is the Ostrowski
 convolution of \(w\) against \(q\). Complete zero-value is not a
 monoid; identically-zero recurrence combos are resets; live complete
-zeros at remaining \(0\) are \(L_0(N)\). A contracting functional on
-\(\ker(u_n)\cap R(0)\), or one explicit unbounded live-from-0 family
-that is not a recurrence reset and not the bounded \(F\to F\) ray,
-is missing. Do not open order 4, Walnut, or a second example.
+zeros at remaining \(0\) are \(L_0(N)\). The maximizer prefix
+\(P_m=(2)\cdot(-4)^m\) plus a uniformly bounded tail is **REFUTED**
+as that family (dies for \(m\ge 3\)). A contracting functional on
+\(\ker(u_n)\cap R(0)\), or a different explicit unbounded
+live-from-0 family that is not a recurrence reset and not the
+bounded \(F\to F\) ray, is missing. Do not open order 4, Walnut,
+or a second example.
 
 ## Decision
 
@@ -1521,8 +1531,8 @@ finite \(\lvert L_0\rvert\). The 3-input relation remains
 literature **KNOWN negative**. Do not `CLOSE` the Ostrowski
 problem. No order 4, CLI, Walnut, or automata stack. Stop. Next
 question (not taken up): a contracting functional on
-\(\ker(u_n)\), or a symbolic family that is not a recurrence
-reset and not the bounded \(F\to F\) ray.
+\(\ker(u_n)\). The prefix \(P_m=(2)\cdot(-4)^m\) plus a uniformly
+bounded tail is **REFUTED** as a family.
 
 Engineering R1–R2 (2026-08-24) extracted exact affine, block,
 phase, and trajectory primitives into `research_engine`. Ostrowski
@@ -1559,9 +1569,14 @@ for Ostrowski and the A–E toys. The CLI prints planner statuses and
 exportable targets. It does not decide `|L_0|`, write Lean, or auto-prove.
 Engineering R11 adds a spectral plug-in: an integer cubic Pisot/Perron
 certificate for the companion of `A`. Float root labels are not status.
-Expansion is not live infinitude. Symbolic-family search stays deferred.
-These extractions are infrastructure `PROMOTE`. They do not change the
-mathematical decision above.
+Expansion is not live infinitude. These extractions are infrastructure
+`PROMOTE`. They do not change the mathematical decision above.
+The Ostrowski prefix-family search (2026-08-24) tests
+\(P_m=(2)\cdot(-4)^m\) plus a uniformly bounded tail. Live remaining-0
+completions exist only for \(m=0,1,2\) at tail length \(\le 6\); the
+prefix dies for \(m\ge 3\). No closed-form tail. The report is
+`OBSERVATION` / `BOUNDED` / `LIVE_SLICE` and does not promote
+`|L_0|`. A generic `SymbolicControlAttack` stays deferred.
 Auto-prove is not taken up.
 
 ## Publication assessment
