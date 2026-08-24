@@ -30,13 +30,14 @@ from research.ostrowski.live_growth import unread_tail_bounds
 from research.ostrowski.live_layers import forward_layers, linf
 from research.ostrowski.residual import difference_word, lsd_to_msd, run_msd
 from research.ostrowski.spectral import cubic_roots
-from research.ostrowski.spectral_residual import transition_affine
+from research.ostrowski.spectral_residual import residual_matrix, transition_affine
 from research.ostrowski.system import OstrowskiSystem, characteristic_poly_coeffs, nonpisot_order3
 from research.ostrowski.terminal_set import (
     hi_closed_form,
     is_terminal,
     lo_closed_form,
 )
+from research_engine.core.affine_system import iterate_affine_word
 
 State3 = tuple[int, int, int]
 ORIGIN: State3 = (0, 0, 0)
@@ -81,10 +82,13 @@ def apply_word(
     start_state: State3,
     word: tuple[int, ...],
 ) -> State3:
-    state = start_state
-    for w in word:
-        state = transition_affine(system, state, w)
-    return state
+    out = iterate_affine_word(
+        residual_matrix(system),
+        start_state,
+        word,
+        lambda w: (0, 0, -w),
+    )
+    return (out[0], out[1], out[2])
 
 
 def energy_after_word(

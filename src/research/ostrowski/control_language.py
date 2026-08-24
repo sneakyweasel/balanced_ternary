@@ -29,6 +29,10 @@ from research.ostrowski.spectral_residual import (
     residual_matrix,
     transition_affine,
 )
+from research_engine.core.affine_system import (
+    matrix_power as engine_matrix_power,
+)
+from research_engine.core.block import block_action_of_word
 from research.ostrowski.system import characteristic_poly_coeffs, nonpisot_order3
 from research.ostrowski.terminal_set import is_terminal
 
@@ -87,32 +91,12 @@ def alphabet_at_remaining(remaining: int) -> tuple[int, ...]:
     return legal_w(nonpisot_order3(), remaining - 1)
 
 
-def _mat_mul(
-    left: tuple[tuple[int, int, int], ...],
-    right: tuple[tuple[int, int, int], ...],
-) -> tuple[tuple[int, int, int], ...]:
-    return tuple(
-        tuple(sum(left[i][k] * right[k][j] for k in range(3)) for j in range(3))
-        for i in range(3)
-    )
-
-
 def matrix_power(
     matrix: tuple[tuple[int, int, int], ...],
     exponent: int,
 ) -> tuple[tuple[int, int, int], ...]:
-    if exponent < 0:
-        raise ValueError("exponent must be nonnegative")
-    ident = ((1, 0, 0), (0, 1, 0), (0, 0, 1))
-    acc = ident
-    base = matrix
-    n = exponent
-    while n:
-        if n & 1:
-            acc = _mat_mul(acc, base)
-        base = _mat_mul(base, base)
-        n >>= 1
-    return acc
+    out = engine_matrix_power(matrix, exponent)
+    return tuple(tuple(row) for row in out)
 
 
 class LiveDag:
@@ -416,13 +400,13 @@ def forbidden_factors(
 def affine_block(block: tuple[int, ...]) -> dict[str, object]:
     sys = nonpisot_order3()
     matrix = residual_matrix(sys)
-    powered = matrix_power(matrix, len(block))
+    action = block_action_of_word(matrix, block, lambda w: (0, 0, -w))
     c_b = apply_word(sys, ORIGIN, block)
     return {
         "block": block,
-        "A_k": powered,
+        "A_k": action.matrix,
         "c_B": c_b,
-        "T_B_eq_Ak_plus_c": True,
+        "T_B_eq_Ak_plus_c": action.translation == c_b,
     }
 
 

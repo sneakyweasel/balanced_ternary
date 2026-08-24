@@ -7,10 +7,11 @@ problem-independent core (`bt`) plus independent research applications
 ```text
 cli, visualization          application edges
 research.*                  problem-specific mathematics
+research_engine             problem-independent experimental dynamics
 bt.*                        problem-independent BT mathematics
 ```
 
-`bt.*` must never import `research.*`. Architecture:
+`bt.*` must never import `research.*` or `research_engine`. Architecture:
 [docs/architecture/overview.md](docs/architecture/overview.md).
 
 ## Reading path

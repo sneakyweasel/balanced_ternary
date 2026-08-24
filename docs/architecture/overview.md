@@ -15,11 +15,13 @@ mathematical definition.
 ```text
 cli, visualization          application edges
 research.*                  problem-specific mathematics
+research_engine             problem-independent experimental dynamics
 bt.*                        problem-independent BT mathematics
 ```
 
-- `bt.*` may import only `bt.*` (and the Python standard library).
-- `research.*` may import `bt.*` and explicitly shared utilities
+- `bt.*` may import only `bt.*` (and the Python standard library). It must not import `research_engine`.
+- `research_engine` may import only the Python standard library. It must not import `bt.*` or `research.*`.
+- `research.*` may import `bt.*`, `research_engine`, and explicitly shared utilities
   (`research.experiments`, conjecture/literature registries).
 - `cli` and `visualization` may import both layers.
 
@@ -30,6 +32,7 @@ bt.*                        problem-independent BT mathematics
 | Distribution | `balanced-ternary-prime` | `pip install -e ".[dev,ui]"` |
 | Command | `btprime` | preserved |
 | Core | `bt` | new canonical root |
+| Experimental dynamics | `research_engine` | integer affine/block/trajectory primitives; R2 |
 | Research | `research` | new canonical root |
 | CLI | `cli` | new implementation home |
 | Compatibility | `balanced_ternary`, `collatz`, `automata` | re-export shims |

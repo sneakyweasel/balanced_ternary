@@ -9,7 +9,7 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 BT_ROOT = ROOT / "src" / "bt"
-FORBIDDEN = ("research", "collatz", "visualization")
+FORBIDDEN = ("research", "collatz", "visualization", "research_engine")
 
 
 def _imported_roots(path: Path) -> set[str]:
@@ -44,3 +44,23 @@ def test_bt_core_does_not_import_research_layers():
     assert violations == []
     if encode_files:
         assert len(encode_files) == 1, f"duplicate encode implementations: {encode_files}"
+
+
+ENGINE_ROOT = ROOT / "src" / "research_engine"
+ENGINE_FORBIDDEN = ("research", "bt", "collatz", "visualization", "cli")
+
+
+def test_research_engine_does_not_import_problem_or_bt_layers():
+    if not ENGINE_ROOT.is_dir():
+        pytest.skip("src/research_engine/ does not exist")
+    files = list(ENGINE_ROOT.rglob("*.py"))
+    if not files:
+        pytest.skip("src/research_engine/ has no Python modules")
+    violations: list[str] = []
+    for path in files:
+        rel = path.relative_to(ROOT)
+        imported = _imported_roots(path)
+        bad = imported.intersection(ENGINE_FORBIDDEN)
+        if bad:
+            violations.append(f"{rel}: {sorted(bad)}")
+    assert violations == []

@@ -20,6 +20,7 @@ from __future__ import annotations
 from research.ostrowski.residual import next_state
 from research.ostrowski.spectral import constant_digits, cubic_roots, spectral_data
 from research.ostrowski.system import OstrowskiSystem, characteristic_poly_coeffs
+from research_engine.core.affine_system import affine_step, apply_matrix as engine_apply_matrix
 
 State3 = tuple[int, int, int]
 
@@ -38,16 +39,14 @@ def residual_matrix(system: OstrowskiSystem) -> tuple[tuple[int, int, int], ...]
 
 
 def apply_matrix(matrix: tuple[tuple[int, int, int], ...], state: State3) -> State3:
-    return tuple(
-        matrix[i][0] * state[0] + matrix[i][1] * state[1] + matrix[i][2] * state[2]
-        for i in range(3)
-    )
+    out = engine_apply_matrix(matrix, state)
+    return (out[0], out[1], out[2])
 
 
 def transition_affine(system: OstrowskiSystem, state: State3, w: int) -> State3:
     """Exact ``T_Γ(s, w)``. Independent of remaining length when ``d`` is constant."""
-    s1, s2, s3 = apply_matrix(residual_matrix(system), state)
-    return (s1, s2, s3 - w)
+    out = affine_step(residual_matrix(system), state, (0, 0, -w))
+    return (out[0], out[1], out[2])
 
 
 def transition_matches_next_state(system: OstrowskiSystem, state: State3, w: int, i: int = 8) -> bool:

@@ -1524,6 +1524,13 @@ question (not taken up): a contracting functional on
 \(\ker(u_n)\), or a symbolic family that is not a recurrence
 reset and not the bounded \(F\to F\) ray.
 
+Engineering R1–R2 (2026-08-24) extracted exact affine, block,
+phase, and trajectory primitives into `research_engine`. Ostrowski
+`transition_affine` / `apply_word` / `matrix_power` / `affine_block`
+are compatibility wrappers. That extraction is infrastructure
+`PROMOTE`. It does not change the mathematical decision above.
+Do not start R3 until a later cycle.
+
 ## Publication assessment
 
 Status: `STRUCTURAL`. The 55-set remains an exact theorem for one
