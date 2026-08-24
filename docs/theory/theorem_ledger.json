@@ -2083,5 +2083,49 @@
       "tests/research/ostrowski/test_zero_value_kernel.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "OST-np-consumed-sum-append",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, MSD consumed sum splits at two starts: consumedSum (n+|U|+|V|)(UV) = consumedSum (n+|U|+|V|)U + consumedSum (n+|V|)V; this is not val(U)+C val(V) and not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-val-concat-energy",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, complete-word concatenation satisfies val(UV)=val(V)-E_|V|(c_U), equivalently val(UV)=0 iff E_|V|(c_U)=val(V); this is particular_concat plus energy_homogeneous, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-complete-zero-monoid",
+    "tag": "REFUTED",
+    "statement": "complete zero-value words form a monoid under concatenation: val(U)=val(V)=0 implies val(UV)=0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-fold-s3",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, after an MSD word B from any residual s, (T_B(s))_3 = E_|B|(s) - val(B), so T_B(s) lies on F iff E_|B|(s)=val(B); this is energy_telescope at remaining 0, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
   }
 ]

@@ -270,6 +270,24 @@ role. The systems are not identified.
   Repeating it stays on the bounded ray. Recurrence combos remain
   the identically-zero reset sublattice. A point of \(F\) is not
   \(\lvert L_0\rvert=\infty\).
+- MSD consumed sum splits at two starts — **PROVED — LEAN**
+  (`consumedSum_append`, novelty **KNOWN**). Complete-word
+  \(\mathrm{val}(UV)=\mathrm{val}(V)-E_{\lvert V\rvert}(c_U)\) —
+  **PROVED — LEAN** (`val_concat_energy`, novelty **KNOWN**).
+- Complete zero-value words form a monoid under concatenation —
+  **REFUTED**. Witness \((1,-2)(1,-2)\) has \(\mathrm{val}=5\),
+  \(c_B=(-6,-2,-5)\notin F\).
+- Live complete remaining-\(0\) of length \(N\) is \(L_0(N)\) —
+  **KNOWN** reparameterization of `particular_s3` plus terminal
+  \(E_0=s_3\). The \(N=12\) maximizer \((-27,-6,0)\) lies on \(F\)
+  off the two-step ray. Finite \(\lvert L_0(N)\rvert\) is not
+  \(\lvert L_0\rvert=\infty\).
+- From any residual, \((T_B(s))_3=E_{\lvert B\rvert}(s)-\mathrm{val}(B)\)
+  — **PROVED — LEAN** (`fold_s3`, novelty **KNOWN**). So
+  \(T_B(s)\in F\) iff \(E_k(s)=\mathrm{val}(B)\). This is
+  `energy_telescope` at remaining 0, not a new transducer.
+  Repeating the hub word from the hub leaves \(F\). Legal two-step
+  returns from the hub stay on the bounded ray \((3k,k,0)\).
 
 ## Experiments
 
@@ -369,6 +387,9 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   \(B=(1,-2)\) has \(\mathrm{val}=0\) and \(c_B=(-3,-1,0)\). The same
   fiber is already visible as the remaining-\(0\) live slice
   \(\lvert L_0(12)\rvert=165\subset F\).
+- Complete zero-value words form a monoid: false. \(U=V=(1,-2)\)
+  have \(\mathrm{val}=0\) but \(\mathrm{val}(UV)=5\) and
+  \(c_{UV}=(-6,-2,-5)\notin F\) (Lean `complete_zero_not_monoid`).
 
 ## Formalization
 
@@ -447,6 +468,24 @@ consumed valuation: Lean `Ostrowski.NP.particular_s3` (ledger
 `foldSteps_affine`. Shortest complete non-reset, \(k^\ast\), and
 \(\lvert L_0\rvert\) stay Python. Not an `L_0` theorem.
 
+MSD consumed sum splits at two starts: Lean
+`Ostrowski.NP.consumedSum_append` (ledger
+`OST-np-consumed-sum-append`), novelty **KNOWN**. Complete-word
+value obeys `val(UV)=val(V)-E_{|V|}(c_U)`: Lean
+`Ostrowski.NP.val_concat_energy` (ledger `OST-np-val-concat-energy`),
+novelty **KNOWN**. Complete zero-value is not a monoid (ledger
+`OST-np-complete-zero-monoid`, `REFUTED`; Lean
+`complete_zero_not_monoid`). Hub regression `hub_nonreset` is not
+infinitude. Not an `L_0` theorem.
+
+From any incoming residual, the third coordinate after a block is
+minus the state-dependent value: Lean `Ostrowski.NP.fold_s3`
+(ledger `OST-np-fold-s3`), novelty **KNOWN**.
+`(foldSteps ws s).2.2 = energy ws.length s - consumedSum ws.length ws`.
+`T_B(s)\in F` iff `E_k(s)=val(B)` (`fold_on_F_iff`). That is
+`energy_telescope` at remaining 0. Affine action remains
+`foldSteps_affine`. Not an `L_0` theorem.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
@@ -457,6 +496,10 @@ Ledger row `OST-np-origin-particular`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-impulse-place`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-recurrence-word-zero`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-particular-s3`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-consumed-sum-append`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-val-concat-energy`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-complete-zero-monoid`: `REFUTED`.
+Ledger row `OST-np-fold-s3`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -1214,24 +1257,82 @@ of this 2-step stays on that ray. \(B_\ast\) remains a reset.
 A non-reset complete word is an accepted point of \(F\), not
 \(\lvert L_0\rvert=\infty\).
 
+### Complete zero-value is not a monoid
+
+MSD `consumedSum` splits at two starts (Lean `consumedSum_append`):
+
+\[
+\mathrm{consumedSum}(n+|U|+|V|)(UV)
+=\mathrm{consumedSum}(n+|U|+|V|)U
++\mathrm{consumedSum}(n+|V|)V.
+\]
+
+This is not \(\mathrm{val}(U)+C_{\lvert U\rvert,\lvert V\rvert}\mathrm{val}(V)\).
+Complete-word concatenation (Lean `val_concat_energy`):
+
+\[
+\mathrm{val}(UV)=\mathrm{val}(V)-E_{\lvert V\rvert}(c_U),
+\]
+
+so \(\mathrm{val}(UV)=0\) iff \(E_{\lvert V\rvert}(c_U)=\mathrm{val}(V)\).
+Both complete zeros do not imply the concat is zero. Witness
+\(U=V=(1,-2)\):
+
+\[
+\mathrm{val}(UV)=5,\qquad c_{UV}=(-6,-2,-5)\notin F.
+\]
+
+A reset followed by the hub stays zero-value
+(\(E_k(0)=0\)). Identically-zero-for-all-alignments (recurrence)
+remains the class that concatenates to zero — already all resets.
+
+Live complete remaining-\(0\) of length \(N\) is \(L_0(N)\), not a
+new fiber. The existing maximizer \((-27,-6,0)\) at \(N=12\) lies on
+\(F\) and off the two-step legal ray \((3k,k,0)\) with
+\(k\in\{-2,-1,0,1\}\). Finite \(\lvert L_0(N)\rvert\) is not
+\(\lvert L_0\rvert=\infty\). A concatenation semigroup of complete
+zero-value words is the wrong object.
+
+### State-dependent block value is \(-s_3\)
+
+For any incoming residual \(s\), Lean `fold_s3` is
+`energy_telescope` at remaining \(0\):
+
+\[
+(T_B(s))_3=E_{\lvert B\rvert}(s)-\mathrm{val}(B).
+\]
+
+So \(\mathrm{Val}_s(B):=\mathrm{val}(B)-E_{\lvert B\rvert}(s)=-(T_B(s))_3\),
+and \(T_B(s)\in F\) iff \(E_k(s)=\mathrm{val}(B)\). At the origin this
+is `particular_s3`. After a prefix \(U\), \(\mathrm{Val}_{c_U}(V)=\mathrm{val}(UV)\)
+is `val_concat_energy`. The affine action \(T_B(s)=A^k s+c_B\) is
+already `foldSteps_affine`.
+
+The hub word from the origin lands on the bounded ray. Repeating
+that same word from the hub leaves \(F\) (the monoid witness).
+Interior-legal two-step returns from the hub stay on
+\((3k,k,0)\) with \(k\in\{0,1,2\}\), still bounded, not a family.
+Live complete remaining-\(0\) of length \(N\) remains \(L_0(N)\).
+
 ## Open questions
 
 Is \(\lvert L_0\rvert=\infty\)? Origin reachability is the Ostrowski
-convolution of \(w\) against \(q\). Zero at one alignment is the
-fiber on \(F\); identically-zero recurrence combos are resets. A
-contracting functional on \(\ker(u_n)\cap R(0)\), or one explicit
-unbounded live-from-0 family that is not a recurrence reset and not
-the bounded \(F\to F\) ray, is missing. Do not open order 4,
-Walnut, or a second example.
+convolution of \(w\) against \(q\). Complete zero-value is not a
+monoid; identically-zero recurrence combos are resets; live complete
+zeros at remaining \(0\) are \(L_0(N)\). A contracting functional on
+\(\ker(u_n)\cap R(0)\), or one explicit unbounded live-from-0 family
+that is not a recurrence reset and not the bounded \(F\to F\) ray,
+is missing. Do not open order 4, Walnut, or a second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN identity
-`particular_s3` only. The shortest complete non-reset is the known
-hub/ray. Do not promote \(\mathrm{val}=0\Rightarrow c_B=0\) (already
-false). `recurrence_word_zero`, `iterateA_e3`, and
-`origin_particular` are unchanged. Do not `CLOSE`. No order 4, CLI,
-or Walnut. Stop. Next question (not taken up): a contracting
+`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN identity `fold_s3`
+only (`energy_telescope` at remaining 0). State-dependent block
+value is \(-(T_B(s))_3\), not a new transducer. Hub iterates stay
+the bounded ray or leave \(F\). Do not promote
+\(\lvert L_0\rvert=\infty\). `val_concat_energy`, `particular_s3`,
+and `foldSteps_affine` are unchanged. Do not `CLOSE`. No order 4,
+CLI, or Walnut. Stop. Next question (not taken up): a contracting
 functional on \(\ker(u_n)\), or a symbolic family that is not a
 recurrence reset and not the bounded \(F\to F\) ray.
 

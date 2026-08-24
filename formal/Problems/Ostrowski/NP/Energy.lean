@@ -40,6 +40,14 @@ From the origin, the third coordinate of the particular is minus
 the consumed valuation (`particular_s3`):
 `(particularSum ws).2.2 = -consumedSum ws.length ws`. So `val=0`
 iff `c_B` lies on `F = {s₃ = 0}`. That does not force `c_B = 0`.
+
+MSD concatenation splits at two starts (`consumedSum_append`).
+Complete-word value is not a monoid:
+`val(UV) = val(V) - E_{|V|}(c_U)` (`val_concat_energy`).
+
+From any incoming residual, `(T_B(s))₃ = E_{|B|}(s) - val(B)`
+(`fold_s3`). That is `energy_telescope` at remaining 0, not a
+block transducer API.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -527,6 +535,28 @@ theorem particular_s3 (ws : List ℤ) :
   simp [energy_origin] at tel
   simpa using tel
 
+/-- From any start state, `(T_B(s))₃ = E_{|B|}(s) - val(B)`.
+KNOWN `energy_telescope` at remaining 0, not `L₀`. -/
+theorem fold_s3 (ws : List ℤ) (s : State) :
+    (foldSteps ws s).2.2 =
+      energy ws.length s - consumedSum ws.length ws := by
+  have tel := energy_telescope 0 ws s
+  rw [energy_zero_state] at tel
+  simpa using tel
+
+theorem fold_on_F_iff (ws : List ℤ) (s : State) :
+    OnF (foldSteps ws s) ↔
+      energy ws.length s = consumedSum ws.length ws := by
+  constructor
+  · intro h
+    have hs3 := fold_s3 ws s
+    simp [OnF] at h
+    linarith
+  · intro h
+    have hs3 := fold_s3 ws s
+    simp [OnF]
+    linarith
+
 theorem foldSteps_append (u v : List ℤ) (s : State) :
     foldSteps (u ++ v) s = foldSteps v (foldSteps u s) := by
   simp [foldSteps, List.foldl_append]
@@ -538,6 +568,115 @@ theorem particular_concat (u v : List ℤ) :
   rw [← origin_particular, ← origin_particular, ← origin_particular,
     foldSteps_append]
   exact foldSteps_affine v (foldSteps u origin)
+
+theorem energy_add (i : ℕ) (s t : State) :
+    energy i (addState s t) = energy i s + energy i t := by
+  rcases s with ⟨s1, s2, s3⟩
+  rcases t with ⟨t1, t2, t3⟩
+  simp only [energy, addState]
+  ring
+
+theorem iterateA_eq_fold_zero (k : ℕ) (s : State) :
+    iterateA k s = foldSteps (List.replicate k 0) s := by
+  induction k generalizing s with
+  | zero =>
+    simp [iterateA, foldSteps]
+  | succ k ih =>
+    rw [List.replicate_succ, foldSteps_cons, ← ih (step 0 s)]
+    simpa [applyA] using (iterateA_applyA k s).symm
+
+theorem energy_iterateA (n k : ℕ) (s : State) :
+    energy n (iterateA k s) = energy (n + k) s := by
+  rw [iterateA_eq_fold_zero]
+  exact energy_homogeneous n k s
+
+/-- Two-start MSD split. Not `val(U) + C val(V)`. KNOWN, not `L₀`. -/
+theorem consumedSum_append (n : ℕ) (u v : List ℤ) :
+    consumedSum (n + u.length + v.length) (u ++ v) =
+      consumedSum (n + u.length + v.length) u +
+        consumedSum (n + v.length) v := by
+  induction u generalizing n with
+  | nil =>
+    simp [consumedSum]
+  | cons w rest ih =>
+    have hidx : n + (w :: rest).length + v.length =
+        n + rest.length + v.length + 1 := by
+      simp [List.length_cons]
+      omega
+    have hsub : n + (w :: rest).length + v.length - 1 =
+        n + rest.length + v.length := by
+      rw [hidx]
+      omega
+    have hL :
+        consumedSum (n + (w :: rest).length + v.length) ((w :: rest) ++ v) =
+          w * q (n + (w :: rest).length + v.length - 1) +
+            consumedSum (n + (w :: rest).length + v.length - 1)
+              (rest ++ v) := by
+      simp [List.cons_append, consumedSum]
+    have hR :
+        consumedSum (n + (w :: rest).length + v.length) (w :: rest) =
+          w * q (n + (w :: rest).length + v.length - 1) +
+            consumedSum (n + (w :: rest).length + v.length - 1) rest :=
+      rfl
+    rw [hL, hR, hsub, ih n]
+    ring
+
+/-- `val(UV) = val(V) - E_{|V|}(c_U)`. KNOWN packaging, not `L₀`. -/
+theorem val_concat_energy (u v : List ℤ) :
+    consumedSum (u ++ v).length (u ++ v) =
+      consumedSum v.length v - energy v.length (particularSum u) := by
+  have hs3 := particular_s3 (u ++ v)
+  have hcat := particular_concat u v
+  have hlin := energy_add 0 (iterateA v.length (particularSum u)) (particularSum v)
+  have hA : energy 0 (iterateA v.length (particularSum u)) =
+      energy v.length (particularSum u) := by
+    simpa using energy_iterateA 0 v.length (particularSum u)
+  have hv := particular_s3 v
+  have hz := energy_zero_state (particularSum (u ++ v))
+  have hzv := energy_zero_state (particularSum v)
+  have hcoord :
+      (particularSum (u ++ v)).2.2 =
+        energy v.length (particularSum u) + (particularSum v).2.2 := by
+    rw [← hz, hcat, hlin, hA, hzv]
+  rw [hs3, hv] at hcoord
+  linarith
+
+theorem val_concat_zero_iff (u v : List ℤ) :
+    consumedSum (u ++ v).length (u ++ v) = 0 ↔
+      energy v.length (particularSum u) = consumedSum v.length v := by
+  have h := val_concat_energy u v
+  constructor <;> intro <;> linarith
+
+theorem val_zero_on_F (ws : List ℤ)
+    (h : consumedSum ws.length ws = 0) : OnF (particularSum ws) := by
+  simp [OnF, particular_s3, h]
+
+theorem reset_val_zero (ws : List ℤ) (h : particularSum ws = origin) :
+    consumedSum ws.length ws = 0 := by
+  have hs3 := particular_s3 ws
+  simp [h, origin] at hs3
+  linarith
+
+/-- Hub `(1,-2) ↦ (-3,-1,0)`. Regression, not infinitude. -/
+theorem hub_nonreset :
+    particularSum [1, -2] = (-3, -1, 0) ∧
+      ((-3 : ℤ), -1, 0) ≠ origin ∧
+      consumedSum 2 [1, -2] = 0 := by
+  refine ⟨?eq, ?ne, ?val⟩
+  · simp [particularSum, iterateA, applyA, step, e3, origin, smulState, subState]
+  · simp [origin]
+  · simp [consumedSum, q]
+
+/-- Complete-word zero-value is not a monoid. Witness `(1,-2)(1,-2)`. -/
+theorem complete_zero_not_monoid :
+    consumedSum 2 [1, -2] = 0 ∧
+      consumedSum 4 ([1, -2] ++ [1, -2]) ≠ 0 := by
+  constructor
+  · simp [consumedSum, q]
+  · have h3 : q 3 = 15 := by
+      rw [show (3 : ℕ) = 0 + 3 from rfl, q_rec]
+      simp [q]
+    simp [consumedSum, q, h3]
 
 /-- Impulse `A^r e₃` as a place-value triple. Underflow of `q` is 0. -/
 def impulsePlace (r : ℕ) : State :=
