@@ -1557,9 +1557,12 @@ export the parked `|L_0|` hypothesis.
 Engineering R10 adds `btprime research analyze|attack|reproduce|report`
 for Ostrowski and the A–E toys. The CLI prints planner statuses and
 exportable targets. It does not decide `|L_0|`, write Lean, or auto-prove.
+Engineering R11 adds a spectral plug-in: an integer cubic Pisot/Perron
+certificate for the companion of `A`. Float root labels are not status.
+Expansion is not live infinitude. Symbolic-family search stays deferred.
 These extractions are infrastructure `PROMOTE`. They do not change the
 mathematical decision above.
-Spectral attacks and auto-prove are not taken up.
+Auto-prove is not taken up.
 
 ## Publication assessment
 

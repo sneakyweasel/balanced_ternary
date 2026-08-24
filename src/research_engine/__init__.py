@@ -8,6 +8,7 @@ R6: hypotheses, negative knowledge, and a deterministic planner.
 R8: five synthetic benchmarks with known exact behavior.
 R9: theorem targets from exact certificates (not proofs, not sorry).
 R10: text reports for planner sessions (the CLI wraps this; not a prover).
+R11: spectral companion classification (not a live-set theorem; symbolic deferred).
 
 This package must not import ``bt.*`` or ``research.*``. Problem
 adapters live under ``research.*`` and may import this engine.
@@ -43,6 +44,7 @@ from research_engine.attacks import (
     ModularInvariantAttack,
     ReconnaissanceAttack,
     ReverseGeometryAttack,
+    SpectralClassificationAttack,
 )
 from research_engine.planner import (
     AttackPlanner,
@@ -118,6 +120,7 @@ __all__ = [
     "ResearchLedger",
     "ReverseGeometryAttack",
     "SearchScope",
+    "SpectralClassificationAttack",
     "State",
     "TerminalSpec",
     "TheoremTarget",

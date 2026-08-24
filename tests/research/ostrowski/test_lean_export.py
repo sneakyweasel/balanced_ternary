@@ -55,3 +55,7 @@ def test_parked_l0_is_not_exported():
     assert all(item.kind is not ClaimKind.LIVE for item in targets)
     recon = _by_attack(targets, "reconnaissance")
     assert recon.exportable is False
+    spectral = _by_attack(targets, "spectral")
+    assert spectral.exportable is True
+    assert spectral.linked is False
+    assert spectral.kind is not ClaimKind.LIVE

@@ -1,4 +1,4 @@
-"""Deterministic attack order. Spectral and symbolic steps are not implemented."""
+"""Deterministic attack order. Symbolic steps are not implemented."""
 
 from __future__ import annotations
 
@@ -17,6 +17,7 @@ from research_engine.attacks.result import (
     inapplicable,
 )
 from research_engine.attacks.reverse import ReverseGeometryAttack
+from research_engine.attacks.spectral import SpectralClassificationAttack
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
 from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus
@@ -30,9 +31,10 @@ DEFAULT_ATTACK_ORDER: tuple[str, ...] = (
     "affine",
     "reverse",
     "block",
+    "spectral",
 )
 
-DEFERRED_ATTACKS: tuple[str, ...] = ("spectral", "symbolic")
+DEFERRED_ATTACKS: tuple[str, ...] = ("symbolic",)
 DEFAULT_PLANNER_HORIZON = 16
 
 _ATTACKS: dict[str, type[Attack]] = {
@@ -42,6 +44,7 @@ _ATTACKS: dict[str, type[Attack]] = {
     "affine": AffineInvariantAttack,
     "reverse": ReverseGeometryAttack,
     "block": BlockDynamicsAttack,
+    "spectral": SpectralClassificationAttack,
 }
 
 
@@ -128,7 +131,7 @@ class AttackPlanner:
 
 
 def run_named_attack(name: str, spec: ProblemSpec, context: AttackContext) -> AttackResult:
-    """Run one cheap attack. Spectral/symbolic stay unimplemented."""
+    """Run one cheap attack. Symbolic stays unimplemented."""
     if name in DEFERRED_ATTACKS:
         return inapplicable(
             name,

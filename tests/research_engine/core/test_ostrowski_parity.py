@@ -191,6 +191,7 @@ def test_typed_attacks_do_not_promote_np_census_to_live_infinitude():
 def test_planner_keeps_np_live_hypothesis_parked():
     from research.ostrowski.negative_knowledge import L0_HYPOTHESIS
     from research.ostrowski.planner import plan_np
+    from research_engine.attacks.result import AttackStatus
     from research_engine.core.semantics import ClaimKind, SearchScope
     from research_engine.planner.hypothesis import HypothesisStatus
     from research_engine.planner.ledger import LedgerError
@@ -212,5 +213,12 @@ def test_planner_keeps_np_live_hypothesis_parked():
         promote_if_legal(ledger, live.id, recon)
     assert any(jump.to_kind is ClaimKind.LIVE for jump in report.blocked_jumps)
     skipped = {item.attack for item in report.skipped}
-    assert "spectral" in skipped
+    assert "spectral" not in skipped
     assert "symbolic" in skipped
+    spectral = next(item for item in report.results if item.name == "spectral")
+    assert spectral.status is AttackStatus.SUPPORTED
+    assert spectral.scope is SearchScope.EXACT
+    assert spectral.kind is ClaimKind.REACHABLE
+    assert spectral.kind is not ClaimKind.LIVE
+    assert spectral.evidence["certificate"]["perron_non_pisot"]
+    assert spectral.evidence["floats_are_labels_only"] is True

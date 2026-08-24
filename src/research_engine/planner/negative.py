@@ -80,6 +80,15 @@ GENERIC_FORBIDDEN: tuple[ForbiddenImplication, ...] = (
         statement="infinitely many accepted words do not imply infinitely many terminals",
         counterexample="a reset loop at 0 with accepting set {0}",
     ),
+    ForbiddenImplication(
+        id="expanding_modes_not_live_unbounded",
+        antecedent="expanding_modes_unbounded",
+        consequent="live_unbounded",
+        from_kind=ClaimKind.REACHABLE,
+        to_kind=ClaimKind.LIVE,
+        statement="expanding companion modes are not LIVE infinitude",
+        counterexample="a uniform unnormalized mode bound can fail on a bounded live slice",
+    ),
 )
 
 

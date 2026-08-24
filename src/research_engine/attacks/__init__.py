@@ -1,4 +1,4 @@
-"""Typed attacks on a ``ProblemSpec``. Spectral attacks are not here."""
+"""Typed attacks on a ``ProblemSpec``. Symbolic attacks are not here."""
 
 from research_engine.attacks.affine import AffineInvariantAttack
 from research_engine.attacks.block import BlockDynamicsAttack, BlockKind, classify_block
@@ -12,6 +12,7 @@ from research_engine.attacks.result import (
     AttackStatus,
 )
 from research_engine.attacks.reverse import ReverseGeometryAttack
+from research_engine.attacks.spectral import SpectralClassificationAttack
 
 __all__ = [
     "AffineInvariantAttack",
@@ -25,6 +26,7 @@ __all__ = [
     "ModularInvariantAttack",
     "ReconnaissanceAttack",
     "ReverseGeometryAttack",
+    "SpectralClassificationAttack",
     "classify_block",
     "coordinate_forcing_gcds",
 ]

@@ -34,9 +34,13 @@ def test_benchmark_d_report_targets_are_exportable_map_laws():
     assert modular.kind is ClaimKind.REACHABLE
 
 
-def test_named_attack_deferred_is_inapplicable():
+def test_named_attack_deferred_symbolic_is_inapplicable():
     spec, context = load_benchmark("D")
-    result = run_named_attack("spectral", spec, context)
+    result = run_named_attack("symbolic", spec, context)
     assert result.status is AttackStatus.INAPPLICABLE
+    spectral = run_named_attack("spectral", spec, AttackContext(affine=context.affine))
+    assert spectral.status is AttackStatus.OBSERVATION
+    assert spectral.kind is ClaimKind.REACHABLE
+    assert spectral.kind is not ClaimKind.LIVE
     modular = run_named_attack("modular", spec, AttackContext(affine=context.affine))
     assert modular.status is AttackStatus.SUPPORTED

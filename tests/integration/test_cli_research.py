@@ -59,8 +59,15 @@ def test_research_reproduce_ostrowski_keeps_l0_parked():
     assert "LIVE infinitude is not decided here" in out
 
 
+def test_research_attack_ostrowski_spectral_is_exact_map_class_not_live():
+    out = _run("research", "attack", "ostrowski", "spectral")
+    assert "attack spectral: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
 def test_research_deferred_attack_is_not_a_proof():
-    code, out = _run_code("research", "attack", "D", "spectral")
+    code, out = _run_code("research", "attack", "D", "symbolic")
     assert code == 2
     assert "not implemented" in out
     unknown, text = _run_code("research", "analyze", "not-a-problem")

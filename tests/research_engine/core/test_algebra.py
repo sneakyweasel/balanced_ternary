@@ -48,3 +48,18 @@ def test_linear_form_observation_is_not_an_invariant():
     assert form((3, 1)) == 1
     assert form.observed_bound(states) == 9
     assert left_multiply((1, 0), ((0, 2), (3, 1))) == (0, 2)
+
+
+def test_exact_pisot_cubic_certificate_does_not_use_floats():
+    from research_engine.algebra.spectral import cubic_roots, exact_pisot_cubic_certificate
+
+    np_cert = exact_pisot_cubic_certificate((1, -2, -1, -3))
+    assert np_cert["perron_non_pisot"]
+    assert np_cert["pisot"] is False
+    assert np_cert["real_root_interval"] == (2, 3)
+    p_cert = exact_pisot_cubic_certificate((1, -2, -1, -1))
+    assert p_cert["pisot"]
+    assert p_cert["perron_non_pisot"] is False
+    labels = cubic_roots((1, -2, -1, -3))
+    assert len(labels) == 3
+

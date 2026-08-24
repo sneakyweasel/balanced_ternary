@@ -9,6 +9,7 @@ from research.ostrowski.recurrence import companion_matches_residual, recurrence
 from research.ostrowski.residual import residual_integer
 from research.ostrowski.spectral_residual import residual_matrix, transition_affine
 from research.ostrowski.system import nonpisot_order3, phase0_order3
+from research_engine.attacks.result import AttackStatus
 from research_engine.core.phase import IntPhase
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
@@ -45,5 +46,12 @@ def test_adapter_plan_does_not_promote_l0():
     assert live.status is HypothesisStatus.PARKED
     assert live.kind is ClaimKind.LIVE
     assert live.intended_scope is SearchScope.EXACT
+    spectral = next(item for item in report.results if item.name == "spectral")
+    assert spectral.status is AttackStatus.SUPPORTED
+    assert spectral.scope is SearchScope.EXACT
+    assert spectral.kind is ClaimKind.REACHABLE
+    assert spectral.kind is not ClaimKind.LIVE
+    assert spectral.evidence["certificate"]["perron_non_pisot"]
+    assert spectral.evidence["floats_are_labels_only"] is True
     assert isinstance(ostrowski_spec(2), OstrowskiSpec)
     assert recurrence_spec(nonpisot_order3()) is not None

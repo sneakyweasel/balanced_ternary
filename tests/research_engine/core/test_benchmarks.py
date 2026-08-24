@@ -95,4 +95,4 @@ def test_all_five_benchmarks_run_and_never_support_exact_live():
             if result.status is AttackStatus.SUPPORTED:
                 assert result.kind is not ClaimKind.LIVE
                 assert result.scope is SearchScope.EXACT
-        assert "spectral" in {item.attack for item in report.skipped}
+        assert "symbolic" in {item.attack for item in report.skipped}

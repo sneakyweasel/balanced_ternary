@@ -58,6 +58,7 @@ def test_negative_knowledge_blocks_terminal_to_live():
     assert blocked is not None
     assert knowledge.forbids_kinds(ClaimKind.LIVE_SLICE, ClaimKind.LIVE) is not None
     assert knowledge.forbids_kinds(ClaimKind.CO_REACHABLE, ClaimKind.LIVE) is not None
+    assert knowledge.forbids("expanding_modes_unbounded", "live_unbounded") is not None
     assert knowledge.forbids_kinds(ClaimKind.LIVE, ClaimKind.LIVE) is None
 
 
@@ -85,7 +86,11 @@ def test_planner_records_bounded_census_not_live_infinitude():
     assert "modular" in names
     skipped = {item.attack: item.reason for item in report.skipped}
     assert skipped["affine"].startswith("inapplicable")
-    assert skipped["spectral"] == "not implemented in this phase"
+    assert skipped["symbolic"] == "not implemented in this phase"
+    assert "spectral" not in skipped
+    spectral = next(item for item in report.results if item.name == "spectral")
+    assert spectral.kind is ClaimKind.REACHABLE
+    assert spectral.kind is not ClaimKind.LIVE
     census = ledger.get("countdown_toy_live_slice_census")
     assert census.kind == ClaimKind.LIVE_SLICE
     assert census.intended_scope == SearchScope.BOUNDED

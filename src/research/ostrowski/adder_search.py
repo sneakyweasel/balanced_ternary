@@ -252,17 +252,11 @@ def verify_addition(
 
 def polynomial_is_irreducible_cubic(coeffs: tuple[int, ...]) -> bool:
     """``x^3 + a x^2 + b x + c`` has no rational root, hence is irreducible over Q."""
-    if len(coeffs) != 4 or coeffs[0] != 1:
-        return False
-    _, a, b, c = coeffs
-    # possible rational roots divide c
-    if c == 0:
-        return False
-    candidates = {1, -1, abs(c), -abs(c)}
-    for r in candidates:
-        if r * r * r + a * r * r + b * r + c == 0:
-            return False
-    return True
+    from research_engine.algebra.spectral import (
+        polynomial_is_irreducible_cubic as engine_irreducible,
+    )
+
+    return engine_irreducible(coeffs)
 
 
 def phase0_report(length: int = 6, box_steps: int = 8, coord_limit: int = 12) -> dict[str, object]:
