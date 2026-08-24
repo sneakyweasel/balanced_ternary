@@ -12,8 +12,9 @@ PROBLEM = ProblemDefinition(
         "residuals of F after input depth m. The identity is constantly 1 "
         "and the x^2 band r>=m-1 is exact. The interior 0<r<m-1 is the "
         "image size of p |-> (p mod 3^r, DZ^m(p^2) mod 3^r); the zero "
-        "fibre is quadratic residues at m=2r and full for m>=3r, while "
-        "a closed m_0(r) for every fibre is not claimed."
+        "fibre is quadratic residues at m=2r and full for m>=3r. Every "
+        "fibre p≡α (mod 3^r) is full for m>=5r via p=α+u 3^r+3^{m-r}. "
+        "A closed first-saturation time m_0(r) is not claimed."
     ),
     bt_relevance=(
         "Types are the existing residual Mealy right languages of "
