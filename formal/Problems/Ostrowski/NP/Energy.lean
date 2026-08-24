@@ -48,6 +48,11 @@ Complete-word value is not a monoid:
 From any incoming residual, `(T_B(s))₃ = E_{|B|}(s) - val(B)`
 (`fold_s3`). That is `energy_telescope` at remaining 0, not a
 block transducer API.
+
+The recurrence word is a reset (`recurrence_word_reset`):
+`particularSum B* = 0`. Powers stay at the origin, so
+`(B*)^k · (1,-2)` has particular the hub (`reset_pow_then_hub`).
+That is not a bound on `L₀`.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -365,6 +370,19 @@ theorem addState_origin (s : State) : addState s origin = s := by
   rcases s with ⟨s1, s2, s3⟩
   simp [addState, origin]
 
+theorem addState_origin_left (s : State) : addState origin s = s := by
+  rcases s with ⟨s1, s2, s3⟩
+  simp [addState, origin]
+
+theorem iterateA_origin (k : ℕ) : iterateA k origin = origin := by
+  induction k with
+  | zero =>
+    rfl
+  | succ k ih =>
+    simp [iterateA]
+    rw [ih]
+    simp [applyA, step, origin]
+
 theorem addState_comm (s t : State) : addState s t = addState t s := by
   rcases s with ⟨_,_,_⟩
   rcases t with ⟨_,_,_⟩
@@ -666,6 +684,28 @@ theorem hub_nonreset :
   · simp [particularSum, iterateA, applyA, step, e3, origin, smulState, subState]
   · simp [origin]
   · simp [consumedSum, q]
+
+/-- `B*` is a reset. KNOWN four-step evaluation, not `L₀`. -/
+theorem recurrence_word_reset : particularSum recurrenceWord = origin := by
+  rw [← origin_particular]
+  simp [foldSteps, recurrenceWord, step, origin]
+
+/-- `(B*)^k` stays at the origin. KNOWN packaging of the reset, not `L₀`. -/
+theorem reset_pow_origin (k : ℕ) :
+    particularSum (List.replicate k recurrenceWord).flatten = origin := by
+  induction k with
+  | zero =>
+    simp [particularSum]
+  | succ k ih =>
+    rw [List.replicate_succ, List.flatten_cons, particular_concat,
+      recurrence_word_reset, iterateA_origin, addState_origin_left, ih]
+
+/-- `(B*)^k · (1,-2)` has particular the hub. Not a bound on `L₀`. -/
+theorem reset_pow_then_hub (k : ℕ) :
+    particularSum ((List.replicate k recurrenceWord).flatten ++ [1, -2]) =
+      (-3, -1, 0) := by
+  rw [particular_concat, reset_pow_origin, iterateA_origin, addState_origin_left]
+  exact hub_nonreset.1
 
 /-- Complete-word zero-value is not a monoid. Witness `(1,-2)(1,-2)`. -/
 theorem complete_zero_not_monoid :

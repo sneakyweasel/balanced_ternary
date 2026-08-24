@@ -9,9 +9,13 @@ with ``val(B*) = q_{n+3} - 2 q_{n+2} - q_{n+1} - 3 q_n = 0``.
 Last letter ``-3`` is interior-legal and not LSD. Algebraic zero-sum
 is not fully live. A reset is not an expanding family.
 
-Length 5–6 words are shift-combinations of the recurrence (lattice
-points in ``W^L``), not a ``7^L`` census. Finite-horizon iteration is
+The complete words ``U_k = (B*)^k · (1,-2)`` are live at remaining
+``4k+2`` and all land on the hub. Arbitrarily long accepted words
+do not force infinitely many terminals. Finite-horizon iteration is
 not ``|L_0|=∞``.
+
+Length 5–6 words are shift-combinations of the recurrence (lattice
+points in ``W^L``), not a ``7^L`` census.
 """
 
 from __future__ import annotations
@@ -23,6 +27,7 @@ from research.ostrowski.energy_trajectory import apply_word, consumed_sum
 from research.ostrowski.exceptional_kernel import W_INTERIOR, W_LSD
 from research.ostrowski.live_growth import legal_w, residual_is_live
 from research.ostrowski.live_layers import ORIGIN, linf
+from research.ostrowski.nonpisot_search import HUB
 from research.ostrowski.spectral_control import control_convolution
 from research.ostrowski.spectral_residual import transition_affine
 from research.ostrowski.system import nonpisot_order3
@@ -32,6 +37,7 @@ State3 = tuple[int, int, int]
 GENERATOR: tuple[int, ...] = (3, 1, 2, -1)
 RECURRENCE_WORD_MSD: tuple[int, ...] = (1, -2, -1, -3)
 RECURRENCE_WORD_LSD: tuple[int, ...] = (-3, -1, -2, 1)
+HUB_WORD: tuple[int, ...] = (1, -2)
 
 ALGEBRAIC_ZERO = "algebraic_zero_sum"
 PREFIX_LEGAL = "prefix_legal"
@@ -40,6 +46,7 @@ RESET_NOT_FAMILY = "reset_is_not_expanding_family"
 GROWTH_NOT_INFINITUDE = "finite_depth_is_not_infinitude"
 KNOWN_PACKAGING = "val_is_q_rec"
 LSD_NOT_INTERIOR = "lsd_alphabet_only_at_remaining_1"
+LONG_WORDS_NOT_INFINITUDE = "arbitrarily_long_accepted_words_do_not_force_infinite_L0"
 
 
 def _sys():
@@ -272,4 +279,68 @@ def phase0_recurrence_zero() -> dict[str, object]:
         GROWTH_NOT_INFINITUDE: True,
         KNOWN_PACKAGING: True,
         LSD_NOT_INTERIOR: True,
+    }
+
+
+def reset_pow_then_hub_word(k: int) -> tuple[int, ...]:
+    """MSD word ``(B*)^k · (1,-2)``. Not a monoid of complete words."""
+    if k < 0:
+        raise ValueError("k must be nonnegative")
+    return RECURRENCE_WORD_MSD * k + HUB_WORD
+
+
+def classify_reset_pow_then_hub(k: int) -> dict[str, object]:
+    """Complete live word of length ``4k+2`` landing on the hub.
+
+    Algebraic image is Lean ``reset_pow_then_hub``. Liveness is Python.
+    Distinct lengths with one terminal are not ``|L_0|=∞``.
+    """
+    word = reset_pow_then_hub_word(k)
+    sys = _sys()
+    start = len(word)
+    reset_states: list[State3] = []
+    state = ORIGIN
+    for _ in range(k):
+        state = apply_word(sys, state, RECURRENCE_WORD_MSD)
+        reset_states.append(state)
+    terminal = apply_word(sys, ORIGIN, word)
+    return {
+        "k": k,
+        "word": word,
+        "length": start,
+        "terminal": terminal,
+        "terminal_is_hub": terminal == HUB,
+        "last_lsd": word[-1] in W_LSD,
+        "prefix_legal": prefix_legal(word, start),
+        "fully_live": fully_live(word, start),
+        "reset_prefixes_origin": all(s == ORIGIN for s in reset_states),
+        "convolution_ok": control_convolution(word) == terminal,
+        LONG_WORDS_NOT_INFINITUDE: True,
+        GROWTH_NOT_INFINITUDE: True,
+        RESET_NOT_FAMILY: True,
+        LSD_NOT_INTERIOR: True,
+        KNOWN_PACKAGING: True,
+    }
+
+
+def phase0_reset_pow_then_hub(max_k: int = 4) -> dict[str, object]:
+    """``U_k`` for ``k=0..max_k`` share the hub. Not infinitude of ``L_0``."""
+    rows = [classify_reset_pow_then_hub(k) for k in range(max_k + 1)]
+    terminals = {row["terminal"] for row in rows}
+    lengths = {row["length"] for row in rows}
+    return {
+        "rows": rows,
+        "n_k": len(rows),
+        "n_lengths": len(lengths),
+        "terminals": tuple(sorted(terminals)),
+        "one_terminal": terminals == {HUB},
+        "all_live_complete": all(bool(row["fully_live"]) for row in rows),
+        "all_last_lsd": all(bool(row["last_lsd"]) for row in rows),
+        "all_reset_prefixes_origin": all(
+            bool(row["reset_prefixes_origin"]) for row in rows
+        ),
+        LONG_WORDS_NOT_INFINITUDE: True,
+        GROWTH_NOT_INFINITUDE: True,
+        RESET_NOT_FAMILY: True,
+        KNOWN_PACKAGING: True,
     }

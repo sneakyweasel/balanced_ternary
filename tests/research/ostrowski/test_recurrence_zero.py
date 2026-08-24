@@ -8,22 +8,28 @@ from __future__ import annotations
 from research.ostrowski.energy_trajectory import apply_word, consumed_sum
 from research.ostrowski.exceptional_kernel import W_LSD
 from research.ostrowski.live_layers import ORIGIN
+from research.ostrowski.nonpisot_search import HUB
 from research.ostrowski.recurrence_zero import (
     ALGEBRAIC_ZERO,
     FULLY_LIVE,
     GROWTH_NOT_INFINITUDE,
+    HUB_WORD,
     KNOWN_PACKAGING,
+    LONG_WORDS_NOT_INFINITUDE,
     LSD_NOT_INTERIOR,
     PREFIX_LEGAL,
     RECURRENCE_WORD_MSD,
     RESET_NOT_FAMILY,
+    classify_reset_pow_then_hub,
     classify_word,
     convolution_matches_c_b,
     enumerate_combos,
     lattice_words,
     msd_val,
     phase0_recurrence_zero,
+    phase0_reset_pow_then_hub,
     recurrence_word_val_zero,
+    reset_pow_then_hub_word,
     val_equals_minus_s3,
 )
 from research.ostrowski.system import nonpisot_order3
@@ -82,3 +88,33 @@ def test_short_combos_are_resets_not_a_family():
     assert report["val_star_zero"]
     assert report[RESET_NOT_FAMILY]
     assert report[GROWTH_NOT_INFINITUDE]
+
+
+def test_reset_pow_then_hub_is_live_one_terminal():
+    """Arbitrarily long accepted words can share the hub. Not |L_0|=∞."""
+    assert HUB_WORD == (1, -2)
+    assert reset_pow_then_hub_word(0) == HUB_WORD
+    assert reset_pow_then_hub_word(1) == RECURRENCE_WORD_MSD + HUB_WORD
+    for k in range(5):
+        row = classify_reset_pow_then_hub(k)
+        assert row["length"] == 4 * k + 2
+        assert row["terminal"] == HUB
+        assert row["terminal_is_hub"]
+        assert row["last_lsd"]
+        assert row["prefix_legal"]
+        assert row["fully_live"]
+        assert row["reset_prefixes_origin"]
+        assert row["convolution_ok"]
+        assert row[LONG_WORDS_NOT_INFINITUDE]
+        assert row[GROWTH_NOT_INFINITUDE]
+        assert row[RESET_NOT_FAMILY]
+    report = phase0_reset_pow_then_hub(4)
+    assert report["n_k"] == 5
+    assert report["n_lengths"] == 5
+    assert report["one_terminal"]
+    assert report["terminals"] == (HUB,)
+    assert report["all_live_complete"]
+    assert report["all_last_lsd"]
+    assert report["all_reset_prefixes_origin"]
+    assert report[LONG_WORDS_NOT_INFINITUDE]
+    assert len({reset_pow_then_hub_word(k) for k in range(5)}) == 5

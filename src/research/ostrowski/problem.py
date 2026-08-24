@@ -60,7 +60,10 @@ PROBLEM = ProblemDefinition(
         "energy_telescope at remaining 0. Hub iterates stay on the "
         "bounded F-to-F ray or leave F. Uniform unnormalized |z|≤C "
         "on origin-live remaining 0 is REFUTED (N=12 to 16); the "
-        "companion recurrence is the residual step. Every small integer "
+        "companion recurrence is the residual step. The words "
+        "(B*)^k(1,-2) are complete live of length 4k+2 and all land "
+        "on the hub (Lean reset_pow_then_hub, KNOWN); arbitrarily "
+        "long accepted words do not force |L_0|=∞. Every small integer "
         "linear form on s grows from start remaining 16 to 20. |L_0| is "
         "not proved infinite. Pisot existence of some adder is known."
     ),

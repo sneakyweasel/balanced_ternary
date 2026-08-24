@@ -2138,5 +2138,27 @@
       "tests/research/ostrowski/test_spectral_control.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "OST-np-reset-pow-then-hub",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the MSD word (B*)^k · (1,-2) has origin particular equal to the hub (-3,-1,0); this is the reset identity plus hub_nonreset, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_recurrence_zero.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "OST-np-long-words-infinite-L0",
+    "tag": "REFUTED",
+    "statement": "arbitrarily long origin-accepted words of Γ_NP force infinitely many distinct remaining-0 terminals",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "",
+    "tests": [
+      "tests/research/ostrowski/test_recurrence_zero.py"
+    ],
+    "related_conjectures": []
   }
 ]

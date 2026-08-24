@@ -294,6 +294,14 @@ role. The systems are not identified.
   is the residual `step` in companion coordinates, not a new
   eigenfunctional. Finite-horizon maximizers are not a symbolic
   family. Spectral cancellation as a new track is parked.
+- Arbitrarily long origin-accepted words force infinitely many
+  distinct terminals — **REFUTED** (ledger
+  `OST-np-long-words-infinite-L0`). The family
+  \(U_k=(B_\ast)^k\cdot(1,-2)\) is complete live of length \(4k+2\)
+  and all land on the hub (Lean `reset_pow_then_hub`, novelty
+  **KNOWN**). König of the reset tree stays at the origin. The full
+  language still grows \(\lvert L_0(N)\rvert\) at finite horizon;
+  that is not \(\lvert L_0\rvert=\infty\).
 
 ## Experiments
 
@@ -306,6 +314,7 @@ Reverse contraction: `reverse_map`, `contraction_certificate`,
 `exact_closure`. Accepting boundary: `terminal_set`. Origin versus
 \(t_n\): `origin_live`. Zero-value kernel:
 `zero_value_kernel` (complete words \(k\le 4\); not a \(Z_k\) DP).
+Recurrence family: `recurrence_zero` (`U_k=(B*)^k(1,-2)`).
 Tests:
 `tests/research/ostrowski/test_triage.py`,
 `tests/research/ostrowski/test_residual_closure.py`,
@@ -380,6 +389,13 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   \(165\to 379\). Normalized \(\lvert\lambda\rvert^{-k}\lvert z\rvert\)
   is not residual boundedness. Maximizer words at these horizons are
   not a symbolic family.
+- Arbitrarily long origin-accepted words force infinitely many
+  distinct remaining-0 terminals: false. The family
+  \(U_k=(B_\ast)^k\cdot(1,-2)\) of lengths \(4k+2\) is complete live
+  and \(\tau(U_k)\) is the hub for every tested \(k\) (ledger
+  `OST-np-long-words-infinite-L0`). König of \((B_\ast)^\infty\) stays
+  at the origin. Full-language \(\lvert L_0(N)\rvert\) growth is not
+  this family and not \(\lvert L_0\rvert=\infty\).
 - Unique control at large \(\lvert s\rvert\) fails on the \(N=12\)
   maximizer prefixes: remaining \(5\), state \((12,-2,-1)\),
   \(\lVert s\rVert_\infty=12\), Ext \((-1,0,1)\). Ext is the energy
@@ -499,6 +515,14 @@ Uniform unnormalized companion-mode bound on origin-live remaining
 from start remaining \(12\to 16\). The companion recurrence is
 `step` in companion coordinates. No new Lean. Not an `L_0` theorem.
 
+The recurrence word is a reset: Lean `Ostrowski.NP.recurrence_word_reset`
+(ledger `OST-np-reset-pow-then-hub`), novelty **KNOWN**.
+`(B*)^k · (1,-2)` has particular the hub (`reset_pow_then_hub`).
+Liveness of `U_k` stays Python. Arbitrarily long accepted words do
+not force infinitely many terminals (ledger
+`OST-np-long-words-infinite-L0`, `REFUTED`). König is not an
+`L_0` theorem.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
@@ -514,6 +538,8 @@ Ledger row `OST-np-val-concat-energy`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-complete-zero-monoid`: `REFUTED`.
 Ledger row `OST-np-fold-s3`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-unnormalized-mode-bound`: `REFUTED`.
+Ledger row `OST-np-reset-pow-then-hub`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-long-words-infinite-L0`: `REFUTED`.
 
 ## Results
 
@@ -1344,6 +1370,23 @@ Large \(\lvert s\rvert\) does not force unique Ext. A new IFS
 attractor, \(N>16\) remaining-0 BFS, or algebraic-number framework
 does not decide \(\lvert L_0\rvert\).
 
+### Arbitrarily long accepted words need not have infinitely many terminals
+
+The MSD words \(U_k=(B_\ast)^k\cdot(1,-2)\) have length \(4k+2\).
+Lean `recurrence_word_reset` / `reset_pow_origin` /
+`reset_pow_then_hub` (ledger `OST-np-reset-pow-then-hub`, novelty
+**KNOWN**) give the algebraic image: each \(B_\ast\) is a reset, so
+\(T_{U_k}(0)\) is the hub. Python `fully_live` holds for
+\(k=0,\ldots,4\); last letter \(-2\in W_{\mathrm{LSD}}\); interior
+\(-3\) occurs at remaining \(\ge 3\). The König branch
+\((B_\ast)^\infty\) stays at the origin. This **REFUTES** (ledger
+`OST-np-long-words-infinite-L0`) the implication that arbitrarily
+long accepted words force infinitely many distinct terminals. It
+does not prove \(\lvert L_0\rvert<\infty\): the full remaining-0
+census still grows \(\lvert L_0(N)\rvert=165\to 379\) from start
+remaining \(12\to 16\). König compactness is not an \(L_0\)
+theorem. No prefix-tree engine, pumping search, or \(N>16\) BFS.
+
 ## Open questions
 
 Is \(\lvert L_0\rvert=\infty\)? Origin reachability is the Ostrowski
@@ -1356,18 +1399,19 @@ is missing. Do not open order 4, Walnut, or a second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\). `REFUTED`: uniform unnormalized
-\(\lvert z_j\rvert\le C\) on origin-live remaining \(0\). `CLOSE`
-the companion/\(V_\lambda\) recurrence as a reparameterization of
-`step`. Finite-horizon maximizers are not a family and not
-\(\lvert L_0\rvert=\infty\). This spectral-cancellation track is
-the parked convolution branch, not a new one. Do not promote
-\(\lvert L_0(N)\rvert\) or \(\lvert z\rvert\) growth to infinitude.
-`fold_s3`, `origin_particular`, and `iterateA_e3` are unchanged.
-Do not `CLOSE` the Ostrowski problem. No order 4, CLI, or Walnut.
-Stop. Next question (not taken up): a contracting functional on
-\(\ker(u_n)\), or a symbolic family that is not a recurrence reset
-and not the bounded \(F\to F\) ray.
+`PARK` \(\lvert L_0\rvert\). `REFUTED`: arbitrarily long
+origin-accepted words force infinitely many distinct terminals.
+`PROMOTE` the KNOWN identity `reset_pow_then_hub` only. `CLOSE`
+König / \(\mathcal T_\infty\) / \(S_\infty\) as a reparameterization
+of the known reset plus standard compactness. Finite-horizon
+\(\lvert L_0(N)\rvert\) growth is Pattern A for the full language
+and is not \(\lvert L_0\rvert=\infty\). The reset-hub core is a
+bounded recurrent sublanguage, not finite terminal closure of all
+of \(L_0\). Spectral cancellation stays parked. Do not `CLOSE` the
+Ostrowski problem. No order 4, CLI, Walnut, or seven-module
+extendability stack. Stop. Next question (not taken up): a
+contracting functional on \(\ker(u_n)\), or a symbolic family that
+is not a recurrence reset and not the bounded \(F\to F\) ray.
 
 ## Publication assessment
 
