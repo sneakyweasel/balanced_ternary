@@ -15,6 +15,16 @@ matrix `A`, not a bound on the live set `L₀`. The multi-step form
 is KNOWN packaging of `energy_step`. From the origin, `E_i` is minus
 the consumed prefix valuation. Acceptance at remaining 0 is that the
 full difference word sums to 0.
+
+The integer controls `w` with `E_{n-1}(T_w s)` in a fixed interval
+are consecutive (`energy_control_interval`). That is not a bound on
+`L₀`.
+
+Homogeneous residual motion is energy-neutral in the sliding index
+(`energy_homogeneous`): `E_n(A^k s) = E_{n+k}(s)`. Consecutive
+adjoints are independent: `det(u_n,u_{n-1},u_{n-2}) = 3^{n-2}` for
+`n ≥ 2` (`adjointDet_eq`). Neighboring energies invert `s` over `ℚ`.
+That is not a bound on `L₀`.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -137,5 +147,160 @@ theorem energy_telescope (n : ℕ) (ws : List ℤ) (s : State) :
     simp [hsub] at hstep ⊢
     rw [hstep]
     ring
+
+/-- The set of integer controls `w` with `E_{n-1}(T_w s)` in a fixed
+interval `[lo, hi]` is consecutive. This is `energy_step` plus `q > 0`,
+not a bound on `L₀`. -/
+theorem energy_control_interval (n : ℕ) (hn : 0 < n) (lo hi w₁ w₂ w : ℤ)
+    (s : State)
+    (h1 : lo ≤ energy (n - 1) (step w₁ s) ∧ energy (n - 1) (step w₁ s) ≤ hi)
+    (h2 : lo ≤ energy (n - 1) (step w₂ s) ∧ energy (n - 1) (step w₂ s) ≤ hi)
+    (hw₁ : w₁ ≤ w) (hw₂ : w ≤ w₂) :
+    lo ≤ energy (n - 1) (step w s) ∧ energy (n - 1) (step w s) ≤ hi := by
+  have hq : (0 : ℤ) < q (n - 1) := q_pos (n - 1)
+  have hq' : (0 : ℤ) ≤ q (n - 1) := le_of_lt hq
+  rw [energy_step_state n hn w₁ s] at h1
+  rw [energy_step_state n hn w₂ s] at h2
+  rw [energy_step_state n hn w s]
+  have hmul₁ : w₁ * q (n - 1) ≤ w * q (n - 1) :=
+    Int.mul_le_mul_of_nonneg_right hw₁ hq'
+  have hmul₂ : w * q (n - 1) ≤ w₂ * q (n - 1) :=
+    Int.mul_le_mul_of_nonneg_right hw₂ hq'
+  constructor
+  · have : energy n s - w₂ * q (n - 1) ≤ energy n s - w * q (n - 1) := by
+      linarith
+    linarith [h2.1]
+  · have : energy n s - w * q (n - 1) ≤ energy n s - w₁ * q (n - 1) := by
+      linarith
+    linarith [h1.2]
+
+/-- `∑ q`-weights of a zero word vanish. -/
+theorem consumedSum_replicate_zero (start k : ℕ) :
+    consumedSum start (List.replicate k 0) = 0 := by
+  induction k generalizing start with
+  | zero => simp [consumedSum]
+  | succ k ih =>
+    simp [consumedSum, List.replicate_succ, ih]
+
+/-- Homogeneous motion `A^k = T_0^k` preserves energy in the sliding
+index: `E_n(A^k s) = E_{n+k}(s)`. This is `energy_telescope` on the
+zero word, not a bound on `L₀`. -/
+theorem energy_homogeneous (n k : ℕ) (s : State) :
+    energy n (foldSteps (List.replicate k 0) s) = energy (n + k) s := by
+  have h := energy_telescope n (List.replicate k 0) s
+  simpa [consumedSum_replicate_zero, List.length_replicate] using h
+
+/-- Determinant of three row vectors. -/
+def tripleDet (u v w : ℤ × ℤ × ℤ) : ℤ :=
+  u.1 * (v.2.1 * w.2.2 - v.2.2 * w.2.1) -
+    u.2.1 * (v.1 * w.2.2 - v.2.2 * w.1) +
+      u.2.2 * (v.1 * w.2.1 - v.2.1 * w.1)
+
+/-- `det(u_n, u_{n-1}, u_{n-2})`. -/
+def adjointDet (n : ℕ) : ℤ :=
+  tripleDet (adjointU n) (adjointU (n - 1)) (adjointU (n - 2))
+
+theorem adjointU_ge_two (n : ℕ) (hn : 2 ≤ n) :
+    adjointU n = (q (n - 2), q (n - 1), q n) := by
+  have h1 : 1 ≤ n := Nat.le_trans (by decide : 1 ≤ 2) hn
+  simp [adjointU, qShift, hn, h1]
+
+private theorem adjointDet_two : adjointDet 2 = 1 := by
+  simp [adjointDet, tripleDet, adjointU, qShift, q]
+
+private theorem adjointDet_three : adjointDet 3 = 3 := by
+  simp [adjointDet, tripleDet, adjointU, qShift, q, q_rec]
+
+private theorem adjointDet_succ_of_four (n : ℕ) (hn : 4 ≤ n) :
+    adjointDet (n + 1) = 3 * adjointDet n := by
+  have h2n : 2 ≤ n := by omega
+  have h2n1 : 2 ≤ n - 1 := by omega
+  have h2n2 : 2 ≤ n - 2 := by omega
+  have h2np1 : 2 ≤ n + 1 := by omega
+  have hsub1 : n + 1 - 1 = n := by omega
+  have hsub2 : n + 1 - 2 = n - 1 := by omega
+  have hrec : q (n + 1) = 2 * q n + q (n - 1) + 3 * q (n - 2) := by
+    have hleft : q (n + 1) = q ((n - 2) + 3) := by
+      congr 1
+      omega
+    rw [hleft, q_rec]
+    have hy : n - 2 + 2 = n := by omega
+    have hz : n - 2 + 1 = n - 1 := by omega
+    rw [hy, hz]
+  have hrec_n : q n = 2 * q (n - 1) + q (n - 2) + 3 * q (n - 3) := by
+    have hleft : q n = q ((n - 3) + 3) := by
+      congr 1
+      omega
+    rw [hleft, q_rec]
+    have hy : n - 3 + 2 = n - 1 := by omega
+    have hz : n - 3 + 1 = n - 2 := by omega
+    rw [hy, hz]
+  have hrec_nm1 : q (n - 1) = 2 * q (n - 2) + q (n - 3) + 3 * q (n - 4) := by
+    have hleft : q (n - 1) = q ((n - 4) + 3) := by
+      congr 1
+      omega
+    rw [hleft, q_rec]
+    have hy : n - 4 + 2 = n - 2 := by omega
+    have hz : n - 4 + 1 = n - 3 := by omega
+    rw [hy, hz]
+  have hU_np1 : adjointU (n + 1) = (q (n - 1), q n, q (n + 1)) := by
+    rw [adjointU_ge_two (n + 1) h2np1]
+    refine Prod.ext ?_ (Prod.ext ?_ rfl)
+    · have : n + 1 - 2 = n - 1 := hsub2
+      simp [this]
+    · have : n + 1 - 1 = n := hsub1
+      simp [this]
+  have hU_n : adjointU n = (q (n - 2), q (n - 1), q n) :=
+    adjointU_ge_two n h2n
+  have hU_nm1 : adjointU (n - 1) = (q (n - 3), q (n - 2), q (n - 1)) := by
+    rw [adjointU_ge_two (n - 1) h2n1]
+    refine Prod.ext ?_ (Prod.ext ?_ rfl)
+    · have : n - 1 - 2 = n - 3 := by omega
+      simp [this]
+    · have : n - 1 - 1 = n - 2 := by omega
+      simp [this]
+  have hU_nm2 : adjointU (n - 2) = (q (n - 4), q (n - 3), q (n - 2)) := by
+    rw [adjointU_ge_two (n - 2) h2n2]
+    refine Prod.ext ?_ (Prod.ext ?_ rfl)
+    · have : n - 2 - 2 = n - 4 := by omega
+      simp [this]
+    · have : n - 2 - 1 = n - 3 := by omega
+      simp [this]
+  rw [adjointDet, adjointDet, hsub1, hsub2, hU_np1, hU_n, hU_nm1, hU_nm2,
+    hrec, hrec_n, hrec_nm1]
+  unfold tripleDet
+  ring
+
+private theorem adjointDet_succ (n : ℕ) (hn : 2 ≤ n) :
+    adjointDet (n + 1) = 3 * adjointDet n := by
+  rcases n with (_ | _ | _ | _ | m)
+  · omega
+  · omega
+  · simp [adjointDet_two, adjointDet_three]
+  · have h4 : adjointDet 4 = 9 := by
+      simp [adjointDet, tripleDet, adjointU, qShift, q, q_rec]
+    simp [adjointDet_three, h4]
+  · exact adjointDet_succ_of_four (m + 4) (by omega)
+
+/-- Consecutive adjoints are independent: `det = 3^{n-2}` for `n ≥ 2`.
+Neighboring energies invert `s` over `ℚ`. Not a bound on `L₀`. -/
+theorem adjointDet_eq (n : ℕ) (hn : 2 ≤ n) :
+    adjointDet n = (3 : ℤ) ^ (n - 2) := by
+  have h : ∀ k : ℕ, adjointDet (k + 2) = (3 : ℤ) ^ k := by
+    intro k
+    induction k with
+    | zero =>
+      simpa using adjointDet_two
+    | succ k ih =>
+      have hk : 2 ≤ k + 2 := Nat.le_add_left _ _
+      have hidx : k + 1 + 2 = k + 2 + 1 := by omega
+      rw [hidx, adjointDet_succ (k + 2) hk, ih, pow_succ, mul_comm]
+  have := h (n - 2)
+  have hn2 : n - 2 + 2 = n := by omega
+  rwa [hn2] at this
+
+theorem adjointDet_ne_zero (n : ℕ) (hn : 2 ≤ n) : adjointDet n ≠ 0 := by
+  rw [adjointDet_eq n hn]
+  exact pow_ne_zero _ (by decide)
 
 end Ostrowski.NP

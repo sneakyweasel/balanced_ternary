@@ -326,6 +326,18 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
 - Occurring length-4 block \((2,-4,-2,-4)\) expands under three
   repeats from remaining \(18\) and leaves \(K\). Expanding
   \(A^{|B|}\) is not co-live occurrence at unbounded remaining.
+- Window endpoints of live Ext restated as \(E_n/q_{n-1}\) do not
+  bound \(\lvert s\rvert\) or \(\lvert u\rvert=s_2+2s_3\) at remaining
+  \(>1\): origin-reachable co-live nodes at start remaining \(12\)
+  have \(\lvert u\rvert\) and \(\lvert s_3\rvert\) growing on nonempty
+  windows. \(u\) is \(E_1\) only.
+- Crude \(S_k\le 2q_k\) yields real Ext-width \(<6\), not \(<4\).
+  Width \(<4\) through remaining \(24\) is computational.
+- Euclidean \(\lvert s_{\mathrm{orth}}\rvert\) on origin-reachable
+  live slices at remaining \(4\) grows from start remaining \(12\) to
+  \(16\) (\(\lVert s\rVert_\infty\) \(15\to 24\); \(166\to 427\)
+  states). Complementary \(E_{n-1},E_{n-2}\) also grow. Energy does
+  not bound the kernel component.
 
 ## Formalization
 
@@ -358,13 +370,30 @@ the same `Energy.lean` file (ledger `OST-np-energy-telescope`), novelty
 theorem.
 
 Co-live control language (`research.ostrowski.control_language`) is a
-finite-horizon census. No new Lean: no forbidden-factor theorem and no
-recurrent expanding family. `kernel_unreachable_of_not_exceptional`,
-`energy_step`, and `energy_telescope` are unchanged.
+finite-horizon census.
+
+Live Ext is the energy-slab interval in `w`: Lean
+`Ostrowski.NP.energy_control_interval` (ledger
+`OST-np-energy-ext-interval`), novelty **KNOWN**. Alphabet-specific
+`lo`/`hi` and the width `<4` table stay Python. Not an `L_0` theorem.
+`kernel_unreachable_of_not_exceptional`, `energy_step`, and
+`energy_telescope` are unchanged.
+
+Homogeneous residual motion is energy-neutral in the sliding index:
+Lean `Ostrowski.NP.energy_homogeneous` (ledger
+`OST-np-energy-homogeneous`), novelty **KNOWN**. Consecutive adjoints
+are independent: Lean `Ostrowski.NP.adjointDet_eq`,
+`det(u_n,u_{n-1},u_{n-2})=3^{n-2}` for `n≥2` (ledger
+`OST-np-adjoint-window-det`), novelty **KNOWN**. Neighboring energies
+invert `s` over `ℚ`. Origin-live `|s_orth|` growth is Python, not an
+`L_0` theorem.
 
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-energy-ext-interval`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-energy-homogeneous`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-adjoint-window-det`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -917,27 +946,91 @@ origin (bounded). Expanding occurring blocks such as
 Left Perron pairing on co-live slices grows as remaining drops
 (floats only). Not a cancellation theorem.
 
+### Live Ext from energy_step
+
+Unread-tail values \(V_n\) fill \([\mathrm{lo}(n),\mathrm{hi}(n)]\cap\mathbb Z\)
+for \(n\le 12\) (DP, not \(7^n\) brute). So \(F_n(s)=E_n(s)-V_n\) is
+an interval translate, and \(0\in F_n(s)\) iff \(s\in K_n\) (live,
+not co-live).
+
+One-step live Ext is exact: \(w\in\operatorname{Ext}_{\mathrm{live}}(s,n)\)
+iff \(w\) is legal at remaining \(n\) and
+\(\mathrm{lo}(n-1)\le E_n(s)-w q_{n-1}\le\mathrm{hi}(n-1)\). Lean
+`energy_control_interval` proves that any such \(w\)-set for a fixed
+\([\mathrm{lo},\mathrm{hi}]\) is consecutive (\(q>0\)). Intersection
+with a consecutive alphabet stays consecutive. Novelty **KNOWN**.
+
+The real \(w\)-interval has length
+\((\mathrm{hi}(n-1)-\mathrm{lo}(n-1))/q_{n-1}=(6S_{n-2}-3)/q_{n-1}\)
+for \(n\ge 2\). For remaining \(1..24\) this length is \(<4\)
+(maximum \(\approx 3.414\)). Crude \(S_k\le 2q_k\) only gives
+width \(<6\); the tighter bound is computational through \(24\), not
+an induction in Lean. Width \(<4\) is not a residual bound.
+
+The \(22\) origin-reachable windows are every consecutive subinterval
+of \(W\) of size \(\le 4\) except singleton \((-3,)\), plus empty.
+Singleton \((-3,)\) was not found on origin-reachable co-live nodes
+nor on boxed \(K_4\) (\(\mathrm{box}=6\)). On that box, co-live Ext
+equalled live Ext (no holes).
+
+The functional \(u=s_2+2s_3\) is \(E_1\). It is bounded on \(K_1\)
+only. On origin-reachable windows at start remaining \(12\), both
+\(\lvert u\rvert\) and \(\lvert s_3\rvert\) grow. Endpoints of the
+\(w\)-interval restate \(E_n/q_{n-1}\), i.e. the slab \(K_n\).
+
+### Complementary coordinates in \(\ker(E_n)\)
+
+For remaining \(n\ge 2\), the matrix with rows \(u_n,u_{n-1},u_{n-2}\)
+has determinant \(3^{n-2}\) (Lean `adjointDet_eq`). Neighboring
+energies invert \(s\) over \(\mathbb Q\):
+
+\[
+(s_1,s_2,s_3)
+=
+M_n^{-1}(E_n,E_{n-1},E_{n-2}).
+\]
+
+Homogeneous motion is energy-neutral in the sliding index (Lean
+`energy_homogeneous`, \(w=0\) of `energy_step`):
+\(E_n(A^k s)=E_{n+k}(s)\). Expanding \(A^k\) on \(\ker(u_n)\) does not
+by itself produce an energy defect; only the control particular can.
+
+The neighboring-energy frame \(M_n^{-1}(0,E_{n-1},E_{n-2})\) is
+ill-conditioned. The geometric kernel component is the Euclidean
+projection \(s_{\mathrm{orth}}=s-E_n u_n/\lVert u_n\rVert^2\). On
+origin-reachable live slices, \(\lvert s_{\mathrm{orth}}\rvert\)
+tracks \(\lVert s\rVert_\infty\): live growth sits in \(\ker(u_n)\).
+At remaining \(4\), start remaining \(12\to 16\):
+\(\lvert L_4\rvert=166\to 427\), \(\lVert s\rVert_\infty=15\to 24\),
+max \(\lvert s_{\mathrm{orth}}\rvert=28850/1931\to 46414/1931\), and
+max \(\lVert s\rVert_\infty\) within one energy level \(15\to 24\).
+At remaining \(2\) from start \(16\), \(584\) live states occupy
+\(16\) energy values with \(41\) states in the busiest level.
+
+Short interior words of length \(\le 4\) from the large-kernel seed
+\((6,2,-3)\) at remaining \(8\) (start \(12\)) include local
+expanders and five \(2\)-repeats that stay live at that horizon.
+None is a symbolic family for all remaining.
+
 ## Open questions
 
-Is \(\lvert L_0\rvert=\infty\)? The co-live prefix language at finite
-\(N\) is a proper, interval-constrained sublanguage of \(W^*\), but
-every short interior factor occurs, and occurring blocks of length
-\(4\)–\(6\) either return to the origin or leave \(K\). A global
-invariant bounding \(K\cap R(0)\), or one explicit unbounded
-live-from-0 family, is missing. Do not open order 4, Walnut, or a
-second example.
+Is \(\lvert L_0\rvert=\infty\)? Neighboring energies invert \(s\), but
+liveness constrains only \(E_n\). Origin-live \(\lvert s_{\mathrm{orth}}\rvert\)
+grows with horizon. A global invariant on \(\ker(u_n)\cap R(0)\), or
+one explicit unbounded live-from-0 family, is missing. Do not open
+order 4, Walnut, or a second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\). The control-language census is
-finite-horizon. The \(22\) consecutive extension windows are an
-observation, not a live-set theorem. No forbidden length-\(2\) or
-\(3\) factor. No co-live expanding family among occurring blocks of
-length \(4\)–\(6\). Keep `energy_telescope` as KNOWN. No new Lean.
-`kernel_unreachable_of_not_exceptional` is unchanged. Do not
-`CLOSE`. No order 4, CLI, or Walnut. Stop. Next question (not taken
-up): why \(\operatorname{Ext}(s,n)\) is always a consecutive window
-of length \(\le 4\), and whether that constraint can bound \(\lvert s\rvert\).
+`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN identities
+`energy_homogeneous` and `adjointDet_eq`. Complementary coordinates
+are neighboring energies; they are not bounded on origin-live slices.
+Homogeneous \(A^k\) is energy-neutral, so kernel expansion is
+invisible to the slab except through the control particular. No
+symbolic energy-neutral family. `kernel_unreachable_of_not_exceptional`
+is unchanged. Do not `CLOSE`. No order 4, CLI, or Walnut. Stop. Next
+question (not taken up): a contracting functional on \(\ker(u_n)\),
+or a symbolic family whose particular stays inside the growing slab.
 
 ## Publication assessment
 
