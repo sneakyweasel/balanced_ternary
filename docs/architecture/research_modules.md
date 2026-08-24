@@ -27,6 +27,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.rewrite_calculus` | `PAPER_CANDIDATE` | unary `{D,I_a,S,N}`; `add_not_DLocal`; ready for review |
 | `research.residuals` | `STRUCTURAL` | cubic Newton-stratum fibres; \(x^4\) visibility `CLOSE` |
 | `research.collatz` | `STRUCTURAL` | accelerated `T`, cylinders, dual codes, affine geometry, cycles, warp |
+| `research.ostrowski` | `STRUCTURAL` | order-3 \(B_{\min}\); NP \(K\) unbounded; \(L_0\) PARK; `OstrowskiSpec` adapter |
 | `research.regular_output_preimages` | `STRUCTURAL` | regular output of \(x^2\); sofic obstruction |
 | `research.monna_endpoint_spectra` | `STRUCTURAL` | balanced-Monna endpoint spectra; gate closed |
 | `research.lifting` | `EXPLORATORY` | lifting trees; lifting-state / \(k_0\) lines closed |
@@ -37,7 +38,6 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.operator_dynamics` | `EXPLORATORY` | composition census, dossiers |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |
 | `research.erdos_distinct_subset_sums` | `EXPLORATORY` | Erdős #1 signed-relation gate |
-| `research.ostrowski` | `STRUCTURAL` | order-3 \(B_{\min}\); NP \(K\) unbounded; \(L_0\) PARK; `OstrowskiSpec` adapter |
 | `research.kabelian_complexity` | `ARCHIVED` | k-abelian residual signatures; block-coding close |
 | `research.stabilization` | `ARCHIVED` | local \(\Phi_r\) versus global \(k_0\); literature close |
 | `research.padic_dynamics` | `ARCHIVED` | cycle-lift residual quotient; classical return-map close |

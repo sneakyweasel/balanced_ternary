@@ -16,8 +16,8 @@ The Python API is `research.conjectures`.
 
 A computational observation must not be silently stored as a conjecture.
 Claim labels in the mathematical record
-(`PROVED`, `VERIFIED COMPUTATIONALLY`, `CONJECTURE`, `OBSERVATION`,
-`REFUTED`) remain authoritative; the YAML registry indexes them.
+(`PROVED`, `COMPUTATIONALLY VERIFIED`, `CONJECTURE`, `OBSERVATION`,
+`REFUTED`) remain authoritative; the JSON registry indexes them.
 
 ## Required fields
 

@@ -4,7 +4,8 @@ The core is problem-independent balanced-ternary mathematics.
 
 ## Rule
 
-`bt.*` must never import `research.*`, `collatz`, or `visualization`.
+`bt.*` must never import `research.*`, `collatz`, `visualization`, or
+`cli`.
 
 This is enforced by `tests/unit/test_core_import_graph.py`.
 `research_engine` is a separate experimental-dynamics layer and is also

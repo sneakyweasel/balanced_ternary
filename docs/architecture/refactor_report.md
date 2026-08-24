@@ -1,6 +1,7 @@
 # Refactor report — Balanced Ternary Mathematical Laboratory
 
-Architectural move-and-shim. Mathematical behaviour is intended to be
+Historical record of the package split. The live contract is
+[overview.md](overview.md). Mathematical behaviour was intended to be
 unchanged.
 
 ## 1. Final repository tree (source)

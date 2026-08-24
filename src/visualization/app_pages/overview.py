@@ -51,7 +51,7 @@ the least-significant digit $a_0$.
         [
             {
                 "layer": "Balanced ternary",
-                "object": "Canonical words, arithmetic, features, residue automata",
+                "object": "Canonical words, arithmetic, metrics, residue automata",
                 "status": "PROVED / exact implementation",
             },
             {

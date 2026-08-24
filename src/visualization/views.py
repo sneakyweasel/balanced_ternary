@@ -18,11 +18,13 @@ from bt.arithmetic import (
     negate,
     subtract,
 )
-from bt.metrics import lsd_nonzero_index
-from bt.metrics import signed_digit_sum as bt_signed_digit_sum
-from bt.metrics import v2 as bt_v2
-from bt.metrics import v3 as bt_v3
-from bt.metrics import weight as bt_weight
+from bt.metrics import (
+    lsd_nonzero_index,
+    signed_digit_sum as bt_signed_digit_sum,
+    v2 as bt_v2,
+    v3 as bt_v3,
+    weight as bt_weight,
+)
 from bt.operators import OPERATORS, OperatorDomainError, get_operator
 from bt.transducers.divide_by_two import LeftoverCarryError
 from research.collatz.affine_center import AffineCenterState

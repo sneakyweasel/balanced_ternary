@@ -1,9 +1,8 @@
 # Formalization architecture
 
 Lean 4 + Mathlib lives under `formal/`. The Lake package name remains
-`collatz-dual-formal` in this pass (renaming it would churn the lockfile
-and CI cache). Follow-up: rename to a calculus-neutral package when the
-next Lean/Mathlib bump is done.
+`collatz-dual-formal` until the next Lean/Mathlib bump (renaming it
+churns the lockfile and CI cache).
 
 `formal/Automata/` is still a placeholder only; do not invent proofs there.
 
@@ -18,7 +17,7 @@ The project contains no `sorry` or `admit`.
 
 ## Namespace map
 
-| New path | Role | Compatibility re-export |
+| Path | Role | Compatibility re-export |
 |----------|------|-------------------------|
 | `Core/Basic.lean` | eventually-constant / bounded | `CollatzDual.Basic` |
 | `Representation/Words.lean` | BT digit-list algebra from Warp | used by `CollatzDual.Warp` |

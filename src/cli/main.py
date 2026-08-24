@@ -38,12 +38,12 @@ def main(argv: list[str] | None = None) -> int:
     sub = parser.add_subparsers(dest="cmd", required=True)
 
     _add_bt_leaf_commands(sub)
-    add_collatz_subparser(sub)
     add_operators_subparser(sub)
     add_calculus_subparser(sub)
     add_congruence_subparser(sub)
     add_normalize_subparser(sub)
     add_research_subparser(sub)
+    add_collatz_subparser(sub)
     _add_bt_namespace(sub)
     _add_research_namespaces(sub)
     _add_lab_namespaces(sub)
@@ -59,7 +59,7 @@ def _add_bt_leaf_commands(sub: argparse._SubParsersAction) -> None:
     p_dec = sub.add_parser("decode", help="balanced ternary word -> integer")
     p_dec.add_argument("word")
 
-    p_an = sub.add_parser("analyze", help="print features of an integer")
+    p_an = sub.add_parser("analyze", help="print digit metrics of an integer")
     p_an.add_argument("n", type=int)
 
     p_res = sub.add_parser("residue", help="automaton residue of a word modulo q")
@@ -136,7 +136,7 @@ def _add_lab_namespaces(sub: argparse._SubParsersAction) -> None:
 
     sub.add_parser("formal", help="Lean toolchain / build hint")
     sub.add_parser("status", help="laboratory status summary")
-    sub.add_parser("ui", help="launch the Streamlit laboratory (alias of collatz ui)")
+    sub.add_parser("ui", help="launch the Streamlit laboratory")
 
 
 def _dispatch(parser: argparse.ArgumentParser, args: argparse.Namespace) -> int:

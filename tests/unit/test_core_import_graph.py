@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 BT_ROOT = ROOT / "src" / "bt"
-FORBIDDEN = ("research", "collatz", "visualization", "research_engine")
+FORBIDDEN = ("research", "collatz", "visualization", "research_engine", "cli")
 
 
 def _imported_roots(path: Path) -> set[str]:

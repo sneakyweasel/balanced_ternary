@@ -1,11 +1,11 @@
-"""Executable checks of the Milestone A theorems."""
+"""Executable checks of core representation identities."""
 
 from __future__ import annotations
 
 import pytest
 
 from bt.arithmetic import is_prime
-from bt.metrics import weight
+from bt.automata import ModularAutomaton
 from bt.metrics import (
     check_automaton_residue,
     check_parity,
@@ -13,6 +13,7 @@ from bt.metrics import (
     lsd_nonzero_index,
     v3,
     verify_invariants,
+    weight,
 )
 from bt.representation import digits, encode
 
@@ -90,8 +91,6 @@ def test_automaton_matches_integer_mod_on_range():
 
 
 def test_automaton_on_noncanonical_words():
-    from automata.modular import ModularAutomaton
-
     assert ModularAutomaton(7).residue("00+") == 1 % 7
     assert ModularAutomaton(7).residue("+") == 1 % 7
     # 19 = "+-0+"

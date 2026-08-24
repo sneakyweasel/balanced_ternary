@@ -31,14 +31,14 @@ bt.*                        problem-independent BT mathematics
 |------|--------|-------|
 | Distribution | `balanced-ternary-prime` | `pip install -e ".[dev,ui]"` |
 | Command | `btprime` | preserved |
-| Core | `bt` | new canonical root |
+| Core | `bt` | problem-independent BT mathematics |
 | Experimental dynamics | `research_engine` | integer affine/block/trajectory, R/K/L, algebra, attacks (including spectral companion classification), planner, synthetic benchmarks, and theorem targets (not proofs); `btprime research` is the CLI wrapper; symbolic deferred |
-| Research | `research` | new canonical root |
-| CLI | `cli` | new implementation home |
-| Compatibility | `balanced_ternary`, `collatz`, `automata` | re-export shims |
+| Research | `research` | problem-specific applications |
+| CLI | `cli` | `btprime` implementation |
+| Compatibility | `balanced_ternary`, `collatz`, `automata` | re-export shims for old import paths |
 | UI | `visualization` | optional extra; not part of the math core |
 
-## Old → new module map
+## Compatibility import map
 
 | Old public import | New canonical import |
 |-------------------|----------------------|
@@ -71,9 +71,9 @@ bt.*                        problem-independent BT mathematics
 
 Compatibility shims keep the old import paths working.
 
-## Phase gates
+## Verification
 
-After each refactor phase:
+After a structural change:
 
 1. `pytest` (fast suite; `pytest --runslow` before a release)
 2. `cd formal && lake build`

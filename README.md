@@ -27,7 +27,9 @@ the least-significant digit \(a_0\).
 
 To keep a **problem-independent** encoder, arithmetic, operators,
 polynomials, automata, and transducers, and to attach new open problems
-as modules that import `bt` but never the reverse.
+as modules that import `bt` but never the reverse. Experimental dynamics
+that are not BT-specific live in `research_engine` and are imported by
+problem adapters, not by the core.
 
 ## How research is done here
 
@@ -133,29 +135,27 @@ Optional Parquet experiment I/O: `pip install -e ".[experiments]"`.
 
 ## CLI
 
-The command is `btprime`. Existing commands are aliases; namespaces are
-also available.
+The command is `btprime`. Leaf commands stay for encoding and analysis;
+namespaces group operators, calculus, research, and Collatz.
 
 ```powershell
 btprime encode 42
 btprime bt encode 42
 btprime operators apply S 42
 btprime calculus eval 42
-btprime collatz analyze 27
 btprime research analyze ostrowski
 btprime research reproduce D
+btprime collatz analyze 27
 btprime status
 ```
 
-Research UI (optional). The Streamlit app is centered on balanced ternary,
-with a calculator, encode/analyze, operators, and the Residual explorer;
-Collatz pages remain as one application:
+Research UI (optional extra `ui`). Canonical launcher:
 
 ```powershell
 btprime ui
-btprime collatz ui
-btprime calculus explorer
 ```
+
+`btprime collatz ui` and `btprime calculus explorer` remain aliases.
 
 ## Tests and Lean
 

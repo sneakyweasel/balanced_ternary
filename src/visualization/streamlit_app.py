@@ -6,6 +6,8 @@ import sys
 from pathlib import Path
 
 _SRC = Path(__file__).resolve().parent.parent
+# Streamlit runs this file as a script. The editable install already puts
+# `src/` on sys.path; this fallback covers a raw `streamlit run` without pip.
 if str(_SRC) not in sys.path:
     sys.path.insert(0, str(_SRC))
 
@@ -58,16 +60,16 @@ pages = {
     ],
     "Calculus research": [
         st.Page(
-            str(_PAGES / "residual_explorer.py"),
-            title="Residual explorer",
-            icon=":material/account_tree:",
-            url_path="residual-explorer",
-        ),
-        st.Page(
             str(_PAGES / "rewrite_calculus.py"),
             title="Rewrite calculus",
             icon=":material/join_inner:",
             url_path="rewrite-calculus",
+        ),
+        st.Page(
+            str(_PAGES / "residual_explorer.py"),
+            title="Residual explorer",
+            icon=":material/account_tree:",
+            url_path="residual-explorer",
         ),
     ],
     "Collatz research": [
