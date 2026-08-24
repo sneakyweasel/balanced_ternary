@@ -19,8 +19,16 @@ PROBLEM = ProblemDefinition(
         "K_0 = {s3=0} and the E_n-slabs K_n, with an explicit unbounded "
         "family on F. Origin-reachable states satisfy s1 ≡ 0 (mod 3), "
         "which excludes t_n except n ≡ 0 or 12 (mod 24); that "
-        "obstruction is Lean-verified. |L_0| is not proved infinite. "
-        "Pisot existence of some adder is known."
+        "obstruction is Lean-verified. Exceptional classes occupy "
+        "distinct residues mod 9, both reachable on (Z/9Z)^3; legal "
+        "two-step F-returns form a finite ray. Time-augmented "
+        "quotients G_m and affine forms on (remaining, s) do not "
+        "separate those phases. Exact L_n layers grow along a finite "
+        "live path with no symbolic family. The unread-tail energy "
+        "satisfies E_{i-1}(T_w s)=E_i(s)-w q_{i-1} (Lean, KNOWN "
+        "construction). Every small integer linear form on s grows "
+        "from start remaining 16 to 20. |L_0| is not proved "
+        "infinite. Pisot existence of some adder is known."
     ),
     bt_relevance=(
         "The rewrite-calculus theorem add_not_DLocal isolates the LSD "

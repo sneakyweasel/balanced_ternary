@@ -1984,5 +1984,16 @@
       "tests/research/ostrowski/test_origin_live.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "OST-np-energy-step",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the unread-tail energy E_i(s) = s1 q_{i-2} + s2 q_{i-1} + s3 q_i (with q_j = 0 for j < 0) satisfies E_{i-1}(T_w s) = E_i(s) - w q_{i-1} for i ≥ 1, equivalently the adjoint covariance u_{i-1} A = u_i",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_energy_geometry.py"
+    ],
+    "related_conjectures": []
   }
 ]

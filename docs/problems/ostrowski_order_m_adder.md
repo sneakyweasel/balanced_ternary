@@ -338,6 +338,10 @@ Proof summary:
   No theorem about `|L_0|`. The 55-set and the unread-tail slab
   inequalities stay human / Python.
 
+Phase-0 on the exceptional classes (`research.ostrowski.exceptional_kernel`)
+did not isolate an alphabet-free invariant or a symbolic bridge. No new
+Lean. `kernel_unreachable_of_not_exceptional` is unchanged.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 
 ## Results
@@ -662,24 +666,165 @@ All scanned live states have \(s_1\equiv 0\pmod 3\). The hub is in
 \(L_{\le N}\). Repeating \(w=1\) from the origin expands but leaves
 the unread-tail interval at the second step.
 
+### Exceptional classes \(n\equiv 0\) and \(n\equiv 12\pmod{24}\)
+
+The two progressions are kept separate. They occupy distinct
+residues modulo \(9\):
+
+\[
+t_{24k}\equiv(6,5,0),\qquad t_{24k+12}\equiv(3,4,0)\pmod 9.
+\]
+
+Both residues lie in the forward \(W\)-graph and in the alphabet-free
+graph on \((\mathbb Z/9\mathbb Z)^3\) (that graph has \(81\) reachable
+states). Coordinatewise moduli \(m\in\{4,8,9,13,18,24,27\}\) do not
+separate either class. Affine forms
+\(\ell(s)=as_1+bs_2+cs_3\) that transform as
+\(\ell(T_w(s))\equiv\lambda\ell(s)+\mu w\pmod m\), other than
+reparameterizations of \(s_1\), did not separate the targets on
+\(m\in\{8,9,13\}\).
+
+Exact two-step return to \(F\) with both controls in \(W\):
+\(T_w(a,b,0)=(0,a,b-w)\) and the unique returning \(v=a+2(b-w)\)
+gives \((3\alpha,\alpha,0)\) with \(\alpha=b-w\). Restricting \(v\in W\)
+forces \(\alpha=k\) with \(k\in\{-2,-1,0,1\}\). The hub
+\((-3,-1,0)\) is on this ray; \(t_n\) is not. A bounded ray is not an
+unbounded live family.
+
+Reverse cones of \(t_{12},t_{24},t_{36},t_{48}\) (interior \(W\),
+depth \(4\)) do not contain the origin. Minimum \(\ell_1\) stays on
+the scale of \(\lvert t_n\rvert\) and strictly above the
+\(\ell_1\le 57\) cap of \(C(\{0\})\). Finite reverse depth is not
+unreachability. \(C(\{0\})\) is co-reachability of the origin, not
+\(R_W(0)\). Short repeating blocks of length \(\le 2\) do not hit
+those \(t_n\).
+
+No legal word from the origin to an exceptional \(t_n\) was found, and
+no closed invariant excluding them was found. \(\lvert L_0\rvert\) is
+not decided.
+
+### Origin-live geometry: time-augmented quotients and slabs
+
+Canonical energy is the residual formula, not a shifted index:
+
+\[
+E_i(s)=s_1 q_{i-2}+s_2 q_{i-1}+s_3 q_i
+\]
+
+(\(q_j=0\) for \(j<0\)). \(K_n\) is the unread-tail slab in that
+energy. LSD alphabet applies only at remaining \(=1\), not remaining
+\(\equiv 1\pmod m\).
+
+Track A finite quotient \(G_m=(\mathbb Z/m\mathbb Z)\times(\mathbb Z/m\mathbb Z)^3\)
+uses remaining \(r\mapsto r-1\pmod m\) and interior \(W\) at every
+phase (over-approximation of LSD). Origin is placed at every phase.
+Exceptional targets are \((n\bmod m,\,t_n\bmod m)\). A hit is not
+reachability.
+
+| \(m\) | \(\lvert G_m\rvert\) | reachable | \(\lvert T_{\mathrm{exc}}\rvert\) | separates? |
+|---|---|---|---|---|
+| 8 | 4096 | 4096 | 14 | no |
+| 9 | 6561 | 729 | 6 | no |
+| 12 | 20736 | 6912 | 14 | no |
+| 18 | 104976 | 11664 | 11 | no |
+| 24 | 331776 | 110592 | 14 | no |
+| 27 | 531441 | 59049 | 18 | no |
+| 36 | 1679616 | 186624 | 42 | no |
+| 48 | 5308416 | 1769472 | 28 | no |
+
+Affine forms \(\ell=\alpha r+\beta s_1+\gamma s_2+\delta s_3\pmod m\)
+on \(G_m\) for \(m\in\{8,9,12,18\}\), discarding \(s_1\)-reparams and
+pure time, found no separator. Exact-remaining windows with enough
+prefix (max length 52) hit \(t_{12},t_{24},t_{36},t_{48}\) as residues;
+a miss at remaining near the horizon is a prefix artifact, not an
+obstruction.
+
+Track B layers from a single start remaining \(N\) (live BFS, so
+\(R_n=L_n\) on that path). The union census \(\lvert L_{\le N}\rvert\)
+is not \(\lvert L_n\rvert\).
+
+Start \(N=12\):
+
+| \(n\) | \(\lvert L_n\rvert\) | \(\max\lvert s\rvert_\infty\) | \(s_n^{\max}\) | hub | \(t_n\) |
+|---|---|---|---|---|---|
+| 12 | 1 | 0 | \((0,0,0)\) | no | no |
+| 10 | 9 | 6 | \((-6,-2,0)\) | yes | no |
+| 0 | 165 | 27 | \((-27,-6,0)\) | yes | no |
+
+Start \(N=16\):
+
+| \(n\) | \(\lvert L_n\rvert\) | \(\max\lvert s\rvert_\infty\) | \(s_n^{\max}\) | candidate family |
+|---|---|---|---|---|
+| 16 | 1 | 0 | \((0,0,0)\) | origin |
+| 1 | 492 | 36 | \((-36,0,0)\) | none |
+| 0 | 379 | 37 | \((-3,-37,0)\) | none |
+
+Legal-\(w\) without liveness, start \(N=4\): \(\lvert R_0\rvert=1192\),
+\(\lvert L_0\rvert=10\). Reachability is much larger than the live
+slice. Method A (forward \(T_w\)) and Method B (boxed reverse via
+\(A^{-1}\)) agree on \(L_n\cap[-6,6]^3\) for start \(4\) (remaining
+\(0..4\)) and start \(6\) remaining \(0\). Finite agreement is not a
+proof. Reverse-box miss is not unreachability.
+
+Largest-norm live states do not repeat a single ray: remaining-\(0\)
+argmax is \((-27,-6,0)\) from start \(12\) and \((-3,-37,0)\) from
+start \(16\). No integer ansatz
+\(s_i(n)=\alpha q_n+\beta q_{n-1}+\gamma q_{n-2}+c\) fits the
+argmax sequence. The tightest observed coordinate form at start \(16\)
+is \(\lvert s_3\rvert\le 12\); that bound grows (\(\max\lvert s_3\rvert=14\)
+at the \(N=18\) union census) and is not an invariant. Spectral
+pairings with left eigenvectors of \(A\) are floats only and grow on
+the live set. The hub is live at remaining \(\le N-2\); it is a
+bounded point, not an unbounded family. No \(t_n\) appears in the
+layers.
+
+### Length-independent energy geometry
+
+The unread-tail energy is the adjoint pairing
+\(E_i(s)=u_i\cdot s\) with \(u_i=(q_{i-2},q_{i-1},q_i)\)
+(\(q_j=0\) for \(j<0\)). The residual matrix satisfies
+\(u_{i-1}A=u_i\) for \(i\ge 1\), hence the constructional identity
+
+\[
+E_{i-1}(T_w s)=E_i(s)-w\,q_{i-1}.
+\]
+
+This is Lean-verified as `Ostrowski.NP.energy_step` (ledger
+`OST-np-energy-step`). Novelty is **KNOWN**: it is how
+`next_state` was derived. Normalized \(E_i/q_i\) on live states
+restates the slab \(K_n\), not an origin-live bound.
+
+No three-term combination \(a E_i+b E_{i-1}+c E_{i-2}\) has an
+\(i\)-independent coefficient vector in \(s\). Every nonzero integer
+form \(as_1+bs_2+cs_3\) with coefficients in \(\{-3,\ldots,3\}\)
+(342 forms) grows between start remaining \(16\) and \(20\). In
+particular \(\lvert s_3\rvert\) goes \(12\to 19\). Coordinate maxima
+go \((36,37,12)\to(57,49,19)\). Live union \(1351\to 2970\). The
+empirical projective cloud occupies both signs in every coordinate;
+it is not a proper coordinate cone. Method A/B still agree on the
+boxed start-\(6\) remaining-\(0\) slice. None of this is
+\(\lvert L_0\rvert=\infty\).
+
 ## Open questions
 
-Is \(\lvert L_0\rvert=\infty\)? The family \(t_n\) is not a witness
-except possibly \(n\equiv 0,12\pmod{24}\), and those cases are not
-proved reachable or unreachable. A global invariant bounding all of
-\(K\cap R(0)\), or one explicit unbounded live-from-0 family, is
-missing. Do not open order 4, Walnut, or a second example.
+Is \(\lvert L_0\rvert=\infty\)? Time-augmented residues do not
+separate the exceptional kernel phases. Exact remaining-length layers
+grow as remaining drops, and every small integer linear form grows
+with the start remaining, but that is a finite path, not infinitude.
+A global invariant bounding \(K\cap R(0)\), or one explicit unbounded
+live-from-0 family (not necessarily \(t_n\)), is missing. Do not open
+order 4, Walnut, or a second example.
 
 ## Decision
 
-`PROMOTE` the Lean obstruction kernel
-(`kernel_unreachable_of_not_exceptional`): \(n\not\equiv 0,12\pmod{24}\)
-implies \(t_n\notin R(0)\). `PARK` \(\lvert L_0\rvert\): the remaining
-progression \(n\equiv 0,12\pmod{24}\) and infinitude of the origin-live
-set are not decided. Do not `CLOSE`: this is residual-coordinate
-content, not FS1996. No order 4, CLI, or Walnut. Stop. Do not
-automatically continue. Next question (not taken up): the classes
-\(n\equiv 0,12\pmod{24}\).
+`PARK` \(\lvert L_0\rvert\) (outcome D). `PROMOTE` the KNOWN energy
+identity `energy_step` / adjoint covariance only. The Lean kernel
+`kernel_unreachable_of_not_exceptional` is unchanged. No
+length-independent linear form on the observed live set survives
+start remaining \(16\to 20\). No symbolic live family. Do not
+`CLOSE`. No order 4, CLI, or Walnut. Stop. Next question (not taken
+up): a nonlinear / piecewise-linear live coordinate, or a symbolic
+control that stays in \(K_n\) at unbounded remaining.
 
 ## Publication assessment
 

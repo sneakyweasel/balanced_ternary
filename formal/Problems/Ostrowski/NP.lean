@@ -8,5 +8,6 @@ and finiteness of `L₀` are not claimed.
 
 import Problems.Ostrowski.NP.Residual
 import Problems.Ostrowski.NP.Recurrence
+import Problems.Ostrowski.NP.Energy
 import Problems.Ostrowski.NP.KernelFamily
 import Problems.Ostrowski.NP.Reachability
