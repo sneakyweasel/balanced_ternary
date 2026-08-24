@@ -48,7 +48,11 @@ PROBLEM = ProblemDefinition(
         "The recurrence word B*=(1,-2,-1,-3) has MSD consumed sum 0 "
         "(Lean recurrence_word_zero, KNOWN) and is a reset; all 11 "
         "length-<=6 W-valued shift-combinations are resets, not an "
-        "expanding family. Every small integer "
+        "expanding family. From the origin (c_B)_3 = -val(B) (Lean "
+        "particular_s3, KNOWN), so val=0 iff c_B lies on F, not iff "
+        "c_B=0. The shortest complete non-reset is (1,-2) with "
+        "c_B=(-3,-1,0), the known F-to-F hub; repeating it stays on "
+        "the bounded ray. Every small integer "
         "linear form on s grows from start remaining 16 to 20. |L_0| is "
         "not proved infinite. Pisot existence of some adder is known."
     ),

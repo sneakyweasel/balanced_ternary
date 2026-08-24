@@ -35,6 +35,11 @@ Ostrowski convolution of `w` against `q`, not a bound on `L₀`.
 The recurrence word `B* = [1, -2, -1, -3]` has MSD consumed sum
 zero (`recurrence_word_zero`): `q_{n+3}-2q_{n+2}-q_{n+1}-3q_n = 0`.
 That is `q_rec`, not a live expanding family.
+
+From the origin, the third coordinate of the particular is minus
+the consumed valuation (`particular_s3`):
+`(particularSum ws).2.2 = -consumedSum ws.length ws`. So `val=0`
+iff `c_B` lies on `F = {s₃ = 0}`. That does not force `c_B = 0`.
 -/
 
 import Problems.Ostrowski.NP.Recurrence
@@ -506,6 +511,33 @@ theorem origin_particular (ws : List ℤ) :
     rw [foldSteps_cons, haff, step_origin, iterateA_smul, ih]
     simp only [particularSum]
     exact addState_neg_smul w (iterateA rest.length e3) (particularSum rest)
+
+theorem energy_origin (i : ℕ) : energy i origin = 0 := by
+  simp [energy, origin]
+
+theorem energy_zero_state (s : State) : energy 0 s = s.2.2 := by
+  rcases s with ⟨s1, s2, s3⟩
+  simpa using energy_zero s1 s2 s3
+
+/-- From the origin, `(c_B)₃ = -val(B)`. KNOWN energy at `n=0`, not `L₀`. -/
+theorem particular_s3 (ws : List ℤ) :
+    (particularSum ws).2.2 = -consumedSum ws.length ws := by
+  have tel := energy_telescope 0 ws origin
+  rw [origin_particular, energy_zero_state] at tel
+  simp [energy_origin] at tel
+  simpa using tel
+
+theorem foldSteps_append (u v : List ℤ) (s : State) :
+    foldSteps (u ++ v) s = foldSteps v (foldSteps u s) := by
+  simp [foldSteps, List.foldl_append]
+
+/-- Concatenation of particulars: `c_{UV} = A^{|V|} c_U + c_V`. -/
+theorem particular_concat (u v : List ℤ) :
+    particularSum (u ++ v) =
+      addState (iterateA v.length (particularSum u)) (particularSum v) := by
+  rw [← origin_particular, ← origin_particular, ← origin_particular,
+    foldSteps_append]
+  exact foldSteps_affine v (foldSteps u origin)
 
 /-- Impulse `A^r e₃` as a place-value triple. Underflow of `q` is 0. -/
 def impulsePlace (r : ℕ) : State :=

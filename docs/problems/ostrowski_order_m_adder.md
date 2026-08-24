@@ -262,6 +262,14 @@ role. The systems are not identified.
   (\(n\equiv 0,12\pmod{24}\)) have reverse cones that do not hit
   \(0\) at the scanned depths; that is not a global invariant for
   all of \(K\).
+- From the origin, \((c_B)_3=-\mathrm{val}(B)\) — **PROVED — LEAN**
+  (`particular_s3`, novelty **KNOWN**). So \(\mathrm{val}=0\) iff
+  \(c_B\in F=\{s_3=0\}\), not iff \(c_B=0\).
+- Shortest complete non-reset zero-value word is \((1,-2)\) with
+  \(c_B=(-3,-1,0)\) (the known \(F\to F\) hub) — **PROVED**.
+  Repeating it stays on the bounded ray. Recurrence combos remain
+  the identically-zero reset sublattice. A point of \(F\) is not
+  \(\lvert L_0\rvert=\infty\).
 
 ## Experiments
 
@@ -272,7 +280,9 @@ No registered CLI runner. Phase-0 functions in
 `spectral`, `spectral_residual`, `live_growth`, `nonpisot_search`.
 Reverse contraction: `reverse_map`, `contraction_certificate`,
 `exact_closure`. Accepting boundary: `terminal_set`. Origin versus
-\(t_n\): `origin_live`. Tests:
+\(t_n\): `origin_live`. Zero-value kernel:
+`zero_value_kernel` (complete words \(k\le 4\); not a \(Z_k\) DP).
+Tests:
 `tests/research/ostrowski/test_triage.py`,
 `tests/research/ostrowski/test_residual_closure.py`,
 `tests/research/ostrowski/test_spectral.py`,
@@ -355,6 +365,10 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   letter \(-3\) is not LSD-legal. All \(11\) length-\(\le 6\)
   shift-combinations in \(W\) are algebraic zero-sum resets, not an
   expanding family.
+- \(\mathrm{val}(B)=0\Rightarrow c_B=0\) is false: complete word
+  \(B=(1,-2)\) has \(\mathrm{val}=0\) and \(c_B=(-3,-1,0)\). The same
+  fiber is already visible as the remaining-\(0\) live slice
+  \(\lvert L_0(12)\rvert=165\subset F\).
 
 ## Formalization
 
@@ -425,6 +439,14 @@ The recurrence word has MSD consumed sum zero: Lean
 iteration and liveness stay Python. Not an `L_0` theorem.
 `iterateA_e3` and `origin_particular` are unchanged.
 
+From the origin the third particular coordinate is minus the
+consumed valuation: Lean `Ostrowski.NP.particular_s3` (ledger
+`OST-np-particular-s3`), novelty **KNOWN**.
+`(particularSum ws).2.2 = -consumedSum ws.length ws`. Concatenation
+`c_{UV}=A^{|V|}c_U+c_V` is `particular_concat` from
+`foldSteps_affine`. Shortest complete non-reset, \(k^\ast\), and
+\(\lvert L_0\rvert\) stay Python. Not an `L_0` theorem.
+
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-telescope`: `EXACT — LEAN VERIFIED`.
@@ -434,6 +456,7 @@ Ledger row `OST-np-adjoint-window-det`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-origin-particular`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-impulse-place`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-recurrence-word-zero`: `EXACT — LEAN VERIFIED`.
+Ledger row `OST-np-particular-s3`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -1152,24 +1175,65 @@ in \(0\) and are fully live as complete words (LSD-legal resets).
 No non-reset live expander. Algebraic zero-sum is not fully live. A
 reset is not \(\lvert L_0\rvert=\infty\).
 
+### Zero-value is not a reset
+
+From the origin, \(c_B=T_B(0)\) and Lean `particular_s3` give
+
+\[
+(c_B)_3=E_0(c_B)=-\mathrm{val}(B).
+\]
+
+So \(\mathrm{val}(B)=0\) iff \(c_B\in F=\{s_3=0\}\). Coordinates
+from `iterateA_e3` do not force \(c_1=c_2=0\) when \(c_3=0\).
+
+Identically zero-for-all-alignments remains the recurrence lattice
+(all resets). Zero at one alignment is the live fiber on \(F\).
+Existing remaining-\(0\) slices already show this:
+\(\lvert L_0(12)\rvert=165\subset F\), \(\max\lVert s\rVert_\infty=27\).
+That is not a new census.
+
+Complete words (last letter in \(W_{\mathrm{LSD}}\)) through length
+\(4\):
+
+| \(k\) | \(\lvert Z_k\rvert\) | resets | non-resets | live non-resets | \(\max\lvert c_B\rvert_\infty\) |
+|---|---|---|---|---|---|
+| 1 | 1 | 1 | 0 | 0 | 0 |
+| 2 | 2 | 1 | 1 | 1 | 3 |
+| 3 | 6 | 1 | 5 | 5 | 6 |
+| 4 | 14 | 1 | 13 | 13 | 7 |
+
+Shortest complete non-reset: \(k^\ast=2\),
+
+\[
+B=(1,-2),\qquad \mathrm{val}=2-2=0,\qquad c_B=(-3,-1,0)\ne 0,
+\]
+
+algebraic zero-sum / LSD-legal / fully live. This is the known hub
+on the bounded \(F\to F\) ray \(\alpha\in\{-2,-1,0,1\}\). Iteration
+of this 2-step stays on that ray. \(B_\ast\) remains a reset.
+A non-reset complete word is an accepted point of \(F\), not
+\(\lvert L_0\rvert=\infty\).
+
 ## Open questions
 
 Is \(\lvert L_0\rvert=\infty\)? Origin reachability is the Ostrowski
-convolution of \(w\) against \(q\). The recurrence itself gives only
-reset blocks at length \(\le 6\). A contracting functional on
-\(\ker(u_n)\cap R(0)\), or one explicit unbounded live-from-0 family
-that is not a recurrence reset, is missing. Do not open order 4,
+convolution of \(w\) against \(q\). Zero at one alignment is the
+fiber on \(F\); identically-zero recurrence combos are resets. A
+contracting functional on \(\ker(u_n)\cap R(0)\), or one explicit
+unbounded live-from-0 family that is not a recurrence reset and not
+the bounded \(F\to F\) ray, is missing. Do not open order 4,
 Walnut, or a second example.
 
 ## Decision
 
 `PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN identity
-`recurrence_word_zero` only. Every short \(W\)-valued recurrence
-combo is a reset (or LSD-illegal as a complete word). `iterateA_e3`
-and `origin_particular` are unchanged. Do not `CLOSE`. No order 4,
-CLI, or Walnut. Stop. Next question (not taken up): a contracting
+`particular_s3` only. The shortest complete non-reset is the known
+hub/ray. Do not promote \(\mathrm{val}=0\Rightarrow c_B=0\) (already
+false). `recurrence_word_zero`, `iterateA_e3`, and
+`origin_particular` are unchanged. Do not `CLOSE`. No order 4, CLI,
+or Walnut. Stop. Next question (not taken up): a contracting
 functional on \(\ker(u_n)\), or a symbolic family that is not a
-recurrence reset.
+recurrence reset and not the bounded \(F\to F\) ray.
 
 ## Publication assessment
 

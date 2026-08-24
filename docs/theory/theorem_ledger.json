@@ -2072,5 +2072,16 @@
       "tests/research/ostrowski/test_recurrence_zero.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "OST-np-particular-s3",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, from the origin the third coordinate of the control particular equals minus the MSD consumed valuation: (particularSum ws)_3 = -consumedSum |ws| ws, so val(B)=0 iff c_B lies on F={s_3=0}; this is energy_telescope at n=0, not a bound on L_0",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Energy.lean",
+    "tests": [
+      "tests/research/ostrowski/test_zero_value_kernel.py"
+    ],
+    "related_conjectures": []
   }
 ]
