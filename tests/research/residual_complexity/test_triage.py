@@ -35,6 +35,8 @@ from research.residual_complexity.triage import (
     squared_half_repunit_digits,
     superdiagonal_pairs,
     triage_report,
+    triple_width_second,
+    two_parameter_prefix,
     type_cap,
     x2_proved_count,
     zero_fibre_values,
@@ -155,6 +157,9 @@ def test_triage_report_shape():
     assert report["zero_fibre_squares_at_2r"]
     assert report["zero_fibre_full_from_3r"]
     assert report["every_fibre_full_from_5r"]
+    assert report["triple_width_map_identity"]
+    assert report["one_parameter_slice_not_fill_at_3r"]
+    assert report["first_fill_is_fibre_dependent"]
     assert report["first_saturation"][3] == 8
 
 
@@ -274,4 +279,110 @@ def test_v_one_family_is_not_full_before_five_r():
         assert "5r" in str(err)
     else:
         raise AssertionError("m=5r-1 must be rejected")
+
+
+def test_two_parameter_prefix_lies_in_packed_range_from_triple_width():
+    for r in range(1, 5):
+        s = packed_bound(r)
+        for extra in (0, 1):
+            m = 3 * r + extra
+            for alpha in packed_range(min(r, 2)):
+                for u in packed_range(min(r, 2)):
+                    for v in packed_range(min(r, 2)):
+                        p = two_parameter_prefix(m, r, alpha, u, v)
+                        assert abs(p) <= packed_bound(m)
+                        assert p % 3**r == alpha % 3**r
+            for alpha in (-s, 0, s):
+                for u in (-s, 0, s):
+                    for v in (-s, 0, s):
+                        p = two_parameter_prefix(m, r, alpha, u, v)
+                        assert abs(p) <= packed_bound(m)
+    try:
+        two_parameter_prefix(5, 2, 0, 0, 0)
+    except ValueError as err:
+        assert "3r" in str(err)
+    else:
+        raise AssertionError("m<3r must be rejected")
+
+
+def test_triple_width_second_matches_interior_type():
+    for r in range(1, 5):
+        m = 3 * r
+        for alpha in packed_range(r):
+            for u in packed_range(r):
+                for v in packed_range(min(r, 2)):
+                    p = two_parameter_prefix(m, r, alpha, u, v)
+                    assert interior_type(p, m, r)[1] == triple_width_second(r, alpha, u, v)
+        if r <= 3:
+            for alpha in packed_range(r):
+                for u in packed_range(r):
+                    for v in packed_range(r):
+                        p = two_parameter_prefix(m, r, alpha, u, v)
+                        assert interior_type(p, m, r)[1] == triple_width_second(r, alpha, u, v)
+
+
+def test_triple_width_family_is_the_entire_fibre():
+    for r in range(1, 4):
+        m = 3 * r
+        mod = 3**r
+        for alpha in packed_range(r):
+            constructed = {
+                two_parameter_prefix(m, r, alpha, u, v)
+                for u in packed_range(r)
+                for v in packed_range(r)
+            }
+            actual = {p for p in packed_range(m) if p % mod == alpha % mod}
+            assert constructed == actual
+
+
+def test_no_fixed_v_slice_fills_a_fibre_at_triple_width_for_r_two():
+    r = 2
+    m = 3 * r
+    full = set(range(3**r))
+    for alpha in packed_range(r):
+        for v in packed_range(r):
+            hit = {
+                interior_type(two_parameter_prefix(m, r, alpha, u, v), m, r)[1]
+                for u in packed_range(r)
+            }
+            assert hit != full
+
+
+def test_most_fibres_have_no_filling_fixed_u_slice_at_triple_width():
+    r = 2
+    m = 3 * r
+    full = set(range(3**r))
+    n_with_slice = 0
+    for alpha in packed_range(r):
+        found = False
+        for u in packed_range(r):
+            hit = {
+                interior_type(two_parameter_prefix(m, r, alpha, u, v), m, r)[1]
+                for v in packed_range(r)
+            }
+            if hit == full:
+                found = True
+                break
+        if found:
+            n_with_slice += 1
+    assert n_with_slice < 3**r
+    assert n_with_slice >= 1
+
+
+def test_first_fill_time_is_fibre_dependent_at_r_two():
+    r = 2
+    first = {}
+    for m in range(2 * r, 3 * r + 1):
+        for alpha in packed_range(r):
+            if alpha in first:
+                continue
+            if fibre_second_coordinates(m, r, alpha) == set(range(3**r)):
+                first[alpha] = m
+    assert set(first) == set(packed_range(r))
+    assert len(set(first.values())) >= 2
+    assert min(first.values()) == 2 * r + 1
+    assert max(first.values()) == 3 * r
+    assert first[0] == 5
+    assert first[2] == 6
+    assert first[-2] == 6
 

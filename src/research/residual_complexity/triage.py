@@ -265,6 +265,52 @@ def fibre_fill_second(r: int, alpha: int, u: int) -> int:
     return (2 * u + dz_pow(2 * alpha, r)) % (3**r)
 
 
+def two_parameter_prefix(m: int, r: int, alpha: int, u: int, v: int) -> int:
+    """Packed prefix ``p = α + u 3^r + v 3^{m-r}``.
+
+    For ``m ≥ 3r`` and ``α,u,v ∈ P_r`` this lies in ``P_m`` and is
+    ``α mod 3^r``. At ``m = 3r`` it is the entire fibre: every
+    ``p ∈ P_{3r}`` with ``p ≡ α (mod 3^r)`` is uniquely of this form.
+    """
+
+    m = _require_nat(m, "m")
+    r = _require_nat(r, "r")
+    if r < 1:
+        raise ValueError("two-parameter prefixes start at r≥1")
+    if m < 3 * r:
+        raise ValueError("two-parameter prefixes start at m=3r")
+    if abs(alpha) > packed_bound(r):
+        raise ValueError("alpha must lie in P_r")
+    if abs(u) > packed_bound(r):
+        raise ValueError("u must lie in P_r")
+    if abs(v) > packed_bound(r):
+        raise ValueError("v must lie in P_r")
+    return alpha + u * 3**r + v * 3 ** (m - r)
+
+
+def triple_width_second(r: int, alpha: int, u: int, v: int) -> int:
+    """Second coordinate of ``p = α + u 3^r + v 3^{2r}`` at ``m = 3r``.
+
+    Equals ``2uv + DZ^r(2αv + u² + DZ^r(2αu + DZ^r(α²)))`` in ``[0, 3^r)``.
+    This is the exact fibre map, not a filling witness: a single fixed
+    ``u`` or a single fixed ``v`` does not make it bijective for a
+    general fibre.
+    """
+
+    r = _require_nat(r, "r")
+    if r < 1:
+        raise ValueError("r must be positive")
+    if abs(alpha) > packed_bound(r):
+        raise ValueError("alpha must lie in P_r")
+    if abs(u) > packed_bound(r):
+        raise ValueError("u must lie in P_r")
+    if abs(v) > packed_bound(r):
+        raise ValueError("v must lie in P_r")
+    delta = dz_pow(alpha * alpha, r)
+    gamma = dz_pow(2 * alpha * u + delta, r)
+    return (2 * u * v + dz_pow(2 * alpha * v + u * u + gamma, r)) % (3**r)
+
+
 # First m at which C_{x^2}(m,r)=3^{2r}, for r=1..6. COMPUTATIONALLY VERIFIED.
 # Persistence checked a few steps past each threshold. Not a proved m_0(r).
 FIRST_SATURATION: dict[int, int] = {1: 3, 2: 6, 3: 8, 4: 10, 5: 13, 6: 15}
@@ -409,4 +455,7 @@ def triage_report(max_depth: int = MAX_DEPTH) -> dict[str, object]:
         "zero_fibre_squares_at_2r": True,
         "zero_fibre_full_from_3r": True,
         "every_fibre_full_from_5r": True,
+        "triple_width_map_identity": True,
+        "one_parameter_slice_not_fill_at_3r": True,
+        "first_fill_is_fibre_dependent": True,
     }

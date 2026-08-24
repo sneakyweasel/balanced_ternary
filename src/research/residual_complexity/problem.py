@@ -14,6 +14,8 @@ PROBLEM = ProblemDefinition(
         "image size of p |-> (p mod 3^r, DZ^m(p^2) mod 3^r); the zero "
         "fibre is quadratic residues at m=2r and full for m>=3r. Every "
         "fibre p≡α (mod 3^r) is full for m>=5r via p=α+u 3^r+3^{m-r}. "
+        "At m=3r the fibre is p=α+u 3^r+v 3^{2r} with second coordinate "
+        "2uv+DZ^r(2αv+u^2+DZ^r(2αu+DZ^r(α^2))); fill at 3r is not claimed. "
         "A closed first-saturation time m_0(r) is not claimed."
     ),
     bt_relevance=(

@@ -46,16 +46,16 @@ module's `census_count` counts live types for \(Y=\{0,+\}^\omega\).
 
 ## Branch budget
 
-Previous phases promoted the band `BTR-x2-C-band` and parked the zero fibre `BTR-x2-C-interior`. This phase's budget is every interior fibre.
+Previous phases promoted the band `BTR-x2-C-band`, parked the zero fibre `BTR-x2-C-interior`, and promoted every-fibre fill at \(m\ge 5r\) (`BTR-x2-C-fibre-fill`). This phase's budget is the \(3r\) sharpening.
 
 ```text
-Mathematical target     Does every fibre p≡α (mod 3^r) of the interior map fill (second coordinate all of Z/3^r Z) for all m≥3r, or at the observed m_sat(r), or is there a fibre that stays incomplete for all m?
-Novelty hypothesis      A fill law for every fibre with an explicit threshold, or a named incomplete fibre, would be PROJECT-SPECIFIC. Zero-fibre squares at 2r and fill at 3r are already PROJECT-SPECIFIC. Ahmed–Savchuk infinite-state is KNOWN. Same-depth 3^m is KNOWN as M_k(x^2) layer injectivity.
-Falsifier               Extra saturation table only; restating the zero fibre; safety reparameterization; Ahmed–Savchuk restatement; cubic reopen.
-Existing machinery      residual_complexity.triage (interior_type, interior_image, zero_fibre_witness, FIRST_SATURATION), BTR-x2-C-band, BTR-x2-C-interior, bt.calculus.quadratic (import only).
-Maximum Phase-0 scope   Exact types, no sampling. Prefer an explicit construction per fibre (or a named incomplete fibre) over a bigger saturation table. Small-r scans to hunt a stuck fibre, then prove or refute. No cubic, no CLI, no Lean.
-Promotion criterion     A proved fill law for every fibre with an explicit threshold, or a proved fibre that stays incomplete for all m.
-Stop criterion          Extra table only; restating the zero fibre; safety reparameterization; Ahmed–Savchuk restatement; cubic reopen.
+Mathematical target     Prove that every fibre p≡α (mod 3^r) is already full for all m≥3r, or name the exact first filling time per fibre (formula, not a table).
+Novelty hypothesis      A 3r fill law, or a fibre-dependent first-fill formula, would be PROJECT-SPECIFIC. Restating the 5r construction is REPARAMETERIZATION. Ahmed–Savchuk infinite-state is KNOWN.
+Falsifier               Extra table only; restating BTR-x2-C-fibre-fill at 5r; restating the zero fibre; safety / Ahmed–Savchuk / cubic reopen.
+Existing machinery      residual_complexity.triage (fibre_fill_witness, fibre_fill_second, fibre_second_coordinates, zero_fibre_witness, FIRST_SATURATION, packed_range, dz_pow), BTR-x2-C-band, BTR-x2-C-interior, BTR-x2-C-fibre-fill.
+Maximum Phase-0 scope   Exact types, no sampling. Prefer an explicit construction that fills at 3r, or an explicit fibre whose first fill is >3r, over a bigger table. Small-r scans to hunt a late fibre, then prove or refute. No cubic, no CLI, no Lean.
+Promotion criterion     A proved fill law for every fibre at m≥3r, or a proved exact first-filling time (formula, not a table) per fibre.
+Stop criterion          Extra table only; restating the 5r fill; restating the zero fibre; safety / Ahmed–Savchuk / cubic reopen.
 ```
 
 ## Balanced-ternary formulation
@@ -93,6 +93,9 @@ and the balanced expansion of \(((3^r-1)/2)^2\).
   the full \(\mathbb Z/3^r\mathbb Z\) for \(m\ge 3r\). **PROVED**.
 - Every fibre \(p\equiv\alpha\pmod{3^r}\): full second coordinate for
   all \(m\ge 5r\), via \(p=\alpha+u\,3^r+3^{m-r}\). **PROVED**.
+- Triple-width fibre map: for \(p=\alpha+u\,3^r+v\,3^{2r}\),
+  \(\mathrm{DZ}^{3r}(p^2)\equiv 2uv+\mathrm{DZ}^r(2\alpha v+u^2+\mathrm{DZ}^r(2\alpha u+\mathrm{DZ}^r(\alpha^2)))\pmod{3^r}\).
+  **PROVED** as an identity; surjectivity of this map is **OPEN**.
 - Remaining-horizon clock `levelled_mealy_count`. Excluded as a type
   predicate: it grows on \(F(x)=x\).
 
@@ -101,7 +104,8 @@ and the balanced expansion of \(((3^r-1)/2)^2\).
 `research.residual_complexity.triage` with \(m,r\le 7\), polynomials
 `x` and `x^2`, plus an exact integer image
 \(p\mapsto(p\bmod 3^r,\,\mathrm{DZ}^m(p^2)\bmod 3^r)\) used past depth 7
-only to test saturation and fibre fill. Tests live in
+only to test saturation and fibre fill. Triple-width identity
+`triple_width_second` and prefixes `two_parameter_prefix`. Tests live in
 `tests/research/residual_complexity/test_triage.py`. Safety counts are
 imported only as a contrast. Cubic fibres are not opened.
 
@@ -109,8 +113,11 @@ imported only as a contrast. Cubic fibres are not opened.
 
 None registered. The guess \(m_0(r)=3r\) as a *sharp* first-saturation
 time is discarded (it is not a registered conjecture). The alternative
-that some fibre never fills is discarded (`BTR-x2-C-fibre-fill`). Full
-interior \(C_{x^2}(m,r)\) remains without a claimed closed form.
+that some fibre never fills is discarded (`BTR-x2-C-fibre-fill`). The
+guess that a single-parameter slice (fixed \(u\) or fixed \(v\)) fills
+every fibre at \(m=3r\) is discarded. Fill at \(m=3r\) for a general
+fibre remains without a claimed proof. Full interior \(C_{x^2}(m,r)\)
+remains without a claimed closed form.
 
 ## Counterexamples
 
@@ -137,6 +144,17 @@ interior \(C_{x^2}(m,r)\) remains without a claimed closed form.
    \(m=5r-1\) is not the proved filling family). Full saturation of a
    general fibre at the \(5r\) threshold uses the family
    \(p=\alpha+u\,3^r+3^{m-r}\) with \(u\) running through \(P_r\).
+9. **Not a one-parameter slice at triple width.** For \(r=2\) at
+   \(m=6\), no fibre has a filling fixed-\(v\) slice (vary \(u\) only).
+   Only three of nine fibres have some filling fixed-\(u\) slice (vary
+   \(v\) only); those are the zero fibre and the two extreme fibres
+   \(\alpha=\pm 4\). A general fibre needs both parameters.
+10. **Not a uniform first-filling time \(2r+1\) for every fibre.** At
+    \(r=2\), the zero fibre and \(\alpha\in\{\pm 1,\pm 4\}\) fill at
+    \(m=5=2r+1\), while \(\alpha\in\{\pm 2,\pm 3\}\) first fill at
+    \(m=6=3r\). First-fill is fibre-dependent. The product
+    \(m_{\mathrm{sat}}(r)\) is the last fibre's first-fill time, not a
+    per-fibre formula.
 
 ## Formalization
 
@@ -336,9 +354,90 @@ the zero-fibre \(m=3r\) construction (that uses a varying high block
 fill every fibre at \(m=3r\), nor at \(m=5r-1\); the vanishing
 \(\mathrm{DZ}^{m-r}(q^2)=0\) used above starts at extra width \(4r\).
 
-**COMPUTATIONALLY VERIFIED** for \(r\le 3\): every fibre is already
-full at \(m=3r\) (and at the observed \(m_{\mathrm{sat}}(r)\)). This is
-not a proof of fill at \(3r\).
+**COMPUTATIONALLY VERIFIED** for \(r\le 6\): every fibre is already
+full at \(m_{\mathrm{sat}}(r)\le 3r\) (hence at \(m=3r\)), because the
+product \(C_{x^2}(m,r)\) attains \(3^{2r}\) iff every fibre is full.
+For \(r\le 3\) this was also checked fibre-by-fibre at \(m=3r\). This
+is not a proof of fill at \(3r\).
+
+### Triple-width fibre map
+
+**EXACT — HUMAN PROOF** (identity, not a fill law). For \(r\ge 1\)
+and \(\alpha,u,v\in P_r\), the prefix
+\(p=\alpha+u\,3^r+v\,3^{2r}\) lies in \(P_{3r}\) and is the general
+point of the fibre \(p\equiv\alpha\pmod{3^r}\). Bound: with
+\(s=(3^r-1)/2\),
+
+\[
+\lvert p\rvert
+\le
+s+s\,3^r+s\,3^{2r}
+=
+\frac{3^{3r}-1}{2}.
+\]
+
+The same bound with high block \(v\,3^{m-r}\) in place of \(v\,3^{2r}\)
+gives \(p\in P_m\) for every \(m\ge 3r\). At \(m=3r\) the two-parameter
+family is the entire fibre, not a proper subfamily.
+
+Write \(\mathrm{DZ}^k(a+b\,3^k)=\mathrm{DZ}^k(a)+b\). Then
+
+\begin{align*}
+p^2
+&=
+\alpha^2+2\alpha u\,3^r+(2\alpha v+u^2)\,3^{2r}+2uv\,3^{3r}+v^2\,3^{4r},\\
+\mathrm{DZ}^{3r}(p^2)
+&=
+\mathrm{DZ}^{3r}\bigl(\alpha^2+2\alpha u\,3^r+(2\alpha v+u^2)\,3^{2r}\bigr)
++2uv+v^2\,3^r.
+\end{align*}
+
+Modulo \(3^r\) the last summand vanishes. The remaining argument is
+\(S=\alpha^2+2\alpha u\,3^r+(2\alpha v+u^2)\,3^{2r}\), so
+
+\[
+\mathrm{DZ}^{2r}(S)
+=
+\mathrm{DZ}^{2r}(\alpha^2+2\alpha u\,3^r)+2\alpha v+u^2.
+\]
+
+A further split \(\mathrm{DZ}^r(\alpha^2+2\alpha u\,3^r)=\mathrm{DZ}^r(\alpha^2)+2\alpha u\)
+gives \(\mathrm{DZ}^{2r}(\alpha^2+2\alpha u\,3^r)=\mathrm{DZ}^r(2\alpha u+\mathrm{DZ}^r(\alpha^2))\).
+Therefore
+
+\[
+\mathrm{DZ}^{3r}(p^2)
+\equiv
+2uv+\mathrm{DZ}^r\bigl(2\alpha v+u^2+\mathrm{DZ}^r(2\alpha u+\mathrm{DZ}^r(\alpha^2))\bigr)
+\pmod{3^r}.
+\]
+
+Surjectivity of \((u,v)\mapsto\mathrm{DZ}^{3r}(p^2)\bmod 3^r\) on
+\(P_r\times P_r\) would be fill at \(m=3r\). It is not proved. The
+identity is recorded as `triple_width_second`.
+
+A one-parameter slice does not establish it. Fixing \(v=1\) and varying
+\(u\) is the \(5r\) family at the too-small width \(m=3r\), already
+incomplete. Fixing \(u\) and varying \(v\) is a perturbed arithmetic
+progression \(v\mapsto 2uv+\mathrm{DZ}^r(2\alpha v+c(u))\); for \(r=2\)
+this is bijective for only three of nine fibres (zero and
+\(\alpha=\pm(3^2-1)/2\)). Fixing \(v\) and varying \(u\) fills no fibre
+at \(r=2\). The two-parameter family is not a restatement of the \(5r\)
+\(v=1\) construction.
+
+The extreme fibres \(\alpha=\pm(3^r-1)/2\) *do* fill by the \(u=0\)
+slice: \(\mathrm{DZ}^r(2\alpha v)=\pm v\), so \(v\mapsto\pm v\) is
+bijective. That is a special case, not a general fill law.
+
+### First-filling time per fibre
+
+**COMPUTATIONALLY VERIFIED**, not a formula. First-fill is
+fibre-dependent. At \(r=2\): five fibres fill at \(m=5=2r+1\)
+(including the zero fibre), four fill at \(m=6=3r\). At \(r=3\) the
+last fibres fill at \(m=8=m_{\mathrm{sat}}(3)<3r\); at \(r=4\) at
+\(m=10\). No closed expression in \(\alpha\) and \(r\) (valuation,
+\(\lvert\alpha\rvert\), or \(2r+c\)) matched the last fibre. Extending
+the saturation table is not this phase's theorem.
 
 ### Full saturation table (not a proved \(m_0(r)\))
 
@@ -371,22 +470,25 @@ blocking \(3^{2r}\) for all large \(m\) appeared.
   \(C_{x^2}(m,r)=3^m\) for \(r\ge m\) as same-depth layer injectivity of
   \(M_k(x^2)\); the set of squares in \(\mathbb Z/3^r\mathbb Z\) is
   smaller than \(3^r\).
-- `REPARAMETERIZATION`: none of the surviving new statements.
+- `REPARAMETERIZATION`: none of the surviving new statements. The
+  \(5r\) fill is not restated as the result of this phase.
 - `PROJECT-SPECIFIC`: the superdiagonal law \(C_{x^2}(m,m-1)=3^m-3\)
   with the three constant-trit doubletons; the two-parameter census as
   a measurement distinct from the safety table; the zero-fibre law at
-  \(m=2r\) and \(m\ge 3r\); every fibre full for \(m\ge 5r\).
-- `OPEN`: the full interior count \(C_{x^2}(m,r)\), including a proved
-  first-saturation time \(m_{\mathrm{sat}}(r)\) and fill at \(m=3r\)
-  for a general fibre.
+  \(m=2r\) and \(m\ge 3r\); every fibre full for \(m\ge 5r\); the
+  triple-width identity for \(\mathrm{DZ}^{3r}(p^2)\) and the
+  one-parameter slice obstruction at \(m=3r\).
+- `OPEN`: surjectivity of the triple-width map (fill at \(m=3r\)); a
+  first-filling time formula per fibre; the full interior count
+  \(C_{x^2}(m,r)\).
 
 ## Open questions
 
-The fill law \(m\ge 5r\) is proved. Remaining: the exact first time
-each fibre fills (computationally \(\le 3r\) for \(r\le 3\), and
-\(\le m_{\mathrm{sat}}(r)\) for the product), or a closed form for
-\(C_{x^2}(m,r)\) itself. Do not reopen the safety gate or cubic
-\(M_k(x^3)\).
+The fill law \(m\ge 5r\) is proved. Remaining: surjectivity of
+\((u,v)\mapsto 2uv+\mathrm{DZ}^r(2\alpha v+u^2+\mathrm{DZ}^r(2\alpha u+\mathrm{DZ}^r(\alpha^2)))\)
+on \(P_r\times P_r\), which is fill at \(m=3r\); or a first-filling
+time formula per fibre (not a table). Do not reopen the safety gate or
+cubic \(M_k(x^3)\).
 
 Section entropy versus dynamical entropy, and solenoid / adelic
 packaging, remain unopened pending ideas of the safety gate. They are
@@ -394,22 +496,23 @@ not this gate.
 
 ## Decision
 
-`PROMOTE`. Every fibre \(p\equiv\alpha\pmod{3^r}\) of the interior map
-is full for all \(m\ge 5r\), by the explicit prefixes
-\(p=\alpha+u\,3^r+3^{m-r}\) giving
-\(\mathrm{DZ}^m(p^2)\equiv 2u+\mathrm{DZ}^r(2\alpha)\pmod{3^r}\)
-(`BTR-x2-C-fibre-fill`). The alternative that some \(\alpha\) has a
-3-adic square/valuation obstruction keeping the fibre incomplete for
-all \(m\) is false. The threshold \(5r\) is not the first saturation
-time of \(C_{x^2}(m,r)\) and is not the zero-fibre \(3r\) law; a single
-fixed high trit at \(m=3r\) does not fill every fibre. Band and
-zero-fibre rows are unretagged. The branch is not an Ahmed–Savchuk
-restatement, not a safety reparameterization, and not a cubic-stratum
-reopen. No CLI, Lean, or numbered milestone is added.
+`PARK`. The target was a proved fill at \(m\ge 3r\) or an exact
+first-filling time formula per fibre. Neither was obtained. The
+triple-width fibre is \(p=\alpha+u\,3^r+v\,3^{2r}\) with an exact
+second-coordinate identity; that identity is PROJECT-SPECIFIC
+bookkeeping, not a fill law. A one-parameter slice does not fill a
+general fibre at \(m=3r\). First-fill is fibre-dependent (at \(r=2\),
+times \(5\) and \(6\)) with no closed formula. Computationally
+\(m_{\mathrm{sat}}(r)\le 3r\) for \(r\le 6\), so every fibre is full by
+then, but that is the existing saturation table, not a theorem.
+Band, zero-fibre, and \(5r\) rows are unretagged. No ledger row is
+added. The branch is not an Ahmed–Savchuk restatement, not a safety
+reparameterization, and not a cubic-stratum reopen. No CLI, Lean, or
+numbered milestone is added.
 
-Best next question: prove that every fibre is already full for all
-\(m\ge 3r\) (as the \(r\le 3\) census suggests), or name the exact
-first filling time per fibre.
+Best next question: prove that
+\((u,v)\mapsto 2uv+\mathrm{DZ}^r(2\alpha v+u^2+\mathrm{DZ}^r(2\alpha u+\mathrm{DZ}^r(\alpha^2)))\)
+is surjective on \(P_r\times P_r\) for every \(\alpha\in P_r\).
 
 ## Publication assessment
 
@@ -419,4 +522,4 @@ The superdiagonal collision family, the zero-fibre square/construction
 law, and the every-fibre fill at \(m\ge 5r\) are exact and short. They
 classify the fibres of the interior map, not \(C_F\) for all \(F\) and
 all \((m,r)\). The first-saturation time of the product remains a
-table.
+table. Fill at \(m=3r\) remains OPEN.
