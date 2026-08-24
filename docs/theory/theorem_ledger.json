@@ -1973,5 +1973,16 @@
       "add_affine_only",
       "add_s_push_lc"
     ]
+  },
+  {
+    "id": "OST-np-kernel-unreach",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if n > 0 and n is not 0 or 12 mod 24, then the kernel family state t_n = (q_{n-1}, -q_{n-2}, 0) is not origin-reachable under unrestricted integer steps T_w",
+    "source": "docs/problems/ostrowski_order_m_adder.md",
+    "lean": "Problems/Ostrowski/NP/Reachability.lean",
+    "tests": [
+      "tests/research/ostrowski/test_origin_live.py"
+    ],
+    "related_conjectures": []
   }
 ]

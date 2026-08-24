@@ -17,8 +17,10 @@ PROBLEM = ProblemDefinition(
         "basin of the origin finite (9164 states); that basin is not "
         "the adder live set. The non-Pisot accepting boundary is "
         "K_0 = {s3=0} and the E_n-slabs K_n, with an explicit unbounded "
-        "family on F. That does not decide whether the live set from "
-        "the origin is finite. Pisot existence of some adder is known."
+        "family on F. Origin-reachable states satisfy s1 ≡ 0 (mod 3), "
+        "which excludes t_n except n ≡ 0 or 12 (mod 24); that "
+        "obstruction is Lean-verified. |L_0| is not proved infinite. "
+        "Pisot existence of some adder is known."
     ),
     bt_relevance=(
         "The rewrite-calculus theorem add_not_DLocal isolates the LSD "

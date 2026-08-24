@@ -122,9 +122,11 @@ adder live set = C({0})                REFUTED
 {s3=0} is a finite seed                REFUTED (infinite plane)
 K_0 = F = {s3=0}                       PROVED (this phase; unbounded)
 K_n = E_n slab                         PROVED (infinite for every n)
-t_n = (q_{n-1}, -q_{n-2}, 0) in K_n∩F  PROVED (Outcome A)
-(30,25,0) live only at remaining 0     PROVED
-L finite for Γ_NP                      OPEN (not implied by unbounded K)
+t_n = (q_{n-1}, -q_{n-2}, 0) in K_n∩F  PROVED (unbounded K)
+t_n in R(0) for n not 0 or 12 mod 24   REFUTED (s1 ≡ 0 mod 3)
+s1 ≡ 0 (mod 3) on R(0) for Γ_NP        PROVED
+|L_0|=∞                                OPEN (K unbounded does not imply it)
+L finite for Γ_NP                      OPEN
 3-input adder, one non-quadratic α     KNOWN negative
 uniform encoded adder, arbitrary α     KNOWN (order 2 only)
 ```
@@ -246,6 +248,20 @@ role. The systems are not identified.
 - Unbounded \(K\) implies unbounded \(L\) —
   **not claimed**. \(t_n\) need not lie on a live path from
   \((0,0,0)\).
+- Every forward image under \(\Gamma_{\mathrm{NP}}\) has
+  \(s_1'=3s_3\equiv 0\pmod 3\). Hence \(R(0)\subseteq\{s_1\equiv 0\pmod 3\}\)
+  — **PROVED**. Pisot \(B_{\min}\) occupies all three classes of
+  \(s_1\bmod 3\).
+- \(t_n\in R(0)\) requires \(q_{n-1}\equiv 0\pmod 3\), i.e.
+  \(n\equiv 0\pmod 4\). Immediate predecessors of \(t_n\) share
+  \(s_1=-q_{n-2}-q_{n-1}/3\); this is \(\not\equiv 0\pmod 3\) except
+  \(n\equiv 0\) or \(12\pmod{24}\) — **PROVED**. Those \(t_n\) are
+  unreachable from the origin.
+- \(|L_0|=\infty\) — **not proved**. Finite-depth live growth through
+  length 18 is an observation, not infinitude. Remaining \(t_n\)
+  (\(n\equiv 0,12\pmod{24}\)) have reverse cones that do not hit
+  \(0\) at the scanned depths; that is not a global invariant for
+  all of \(K\).
 
 ## Experiments
 
@@ -255,12 +271,14 @@ No registered CLI runner. Phase-0 functions in
 `counterexample_search`. Spectral comparison:
 `spectral`, `spectral_residual`, `live_growth`, `nonpisot_search`.
 Reverse contraction: `reverse_map`, `contraction_certificate`,
-`exact_closure`. Accepting boundary: `terminal_set`. Tests:
+`exact_closure`. Accepting boundary: `terminal_set`. Origin versus
+\(t_n\): `origin_live`. Tests:
 `tests/research/ostrowski/test_triage.py`,
 `tests/research/ostrowski/test_residual_closure.py`,
 `tests/research/ostrowski/test_spectral.py`,
 `tests/research/ostrowski/test_reverse_closure.py`,
-`tests/research/ostrowski/test_terminal_set.py`.
+`tests/research/ostrowski/test_terminal_set.py`,
+`tests/research/ostrowski/test_origin_live.py`.
 
 Recorded fields for each system:
 
@@ -301,9 +319,26 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
 
 ## Formalization
 
-None. The 55-set stays human / unformalized. No terminal-set Lean:
-the identities are integer unread-tail arithmetic, already checked in
-Python. No `sorry`.
+The Γ_NP origin obstruction is Lean-verified in
+`formal/Problems/Ostrowski/NP/` (mathlib v4.19.0, Lean 4.19.0), namespace
+`Ostrowski.NP`, theorem `kernel_unreachable_of_not_exceptional`. Zero
+`sorry`. `OriginReachable` is unrestricted integer reachability from
+`(0,0,0)`, not the live set `L_0`.
+
+Proof summary:
+
+- Every step has first coordinate `3 s_3`, so `R(0) ⊆ {s_1 ≡ 0 (mod 3)}`.
+- Place values `q_n` modulo 3 have period 8; `t_n` itself fails the
+  residue unless `n ≡ 0 (mod 4)`.
+- Integer preimages of `t_n` share first coordinate
+  `-q_{n-2} - q_{n-1}/3`. The combination `q_{n-1} + 3 q_{n-2}` modulo
+  9 has period 24, and is nonzero off `n ≡ 0, 12 (mod 24)`.
+- Those `t_n` cannot be last steps of an origin-reachable path.
+- Classes `n ≡ 0, 12 (mod 24)` are not classified as unreachable.
+  No theorem about `|L_0|`. The 55-set and the unread-tail slab
+  inequalities stay human / Python.
+
+Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 
 ## Results
 
@@ -575,28 +610,80 @@ closure, because the accepting boundary itself is unbounded. Whether
 that forces infinitely many distinct *reachable* live residuals is a
 different question and is not answered here.
 
+### Origin-reachable live set versus \(t_n\)
+
+Three relations:
+
+- \(R(0)\): forward images of \((0,0,0)\). For \(\Gamma_{\mathrm{NP}}\),
+  \(T_w(s)_1=3s_3\), so \(s_1\equiv 0\pmod 3\) on every reachable
+  state.
+- \(K_n\): terminal / live slab (previous phase).
+- \(L_0\): states on some live path from the origin
+  (\(\bigcup_N R_{\le N}\) in the live BFS). Not proved finite or
+  infinite.
+
+Place values modulo \(3\) have period \(8\):
+\((1,2,2,0,2,1,1,0)\). Hence \(q_{n-1}\equiv 0\pmod 3\) iff
+\(n\equiv 0\pmod 4\). The kernel family is incompatible with
+\(R(0)\) for all other \(n\).
+
+Every integer preimage of \(t_n\) has the same first coordinate
+\(-q_{n-2}-q_{n-1}/3\). Using \(q_n\bmod 9\) (period \(24\)), this
+predecessor has \(s_1\not\equiv 0\pmod 3\) except when
+\(n\equiv 0\) or \(12\pmod{24}\). Those \(t_n\) cannot be forward
+images of origin-reachable states. The same classification is the
+Lean theorem `kernel_unreachable_of_not_exceptional` (ledger
+`OST-np-kernel-unreach`). Exceptional classes are not claimed
+unreachable in Lean.
+
+The remaining progression is not settled by the mod-\(3\) trap.
+Reverse BFS from \(t_{12}\) to depth \(5\) has \(774\) states,
+minimum \(\ell_1=56541\), and does not contain the origin. That is
+not a proof that \(0\) is absent from the infinite reverse tree.
+
+Two-step return to \(F\): \(T_v\circ T_w(s_1,s_2,0)=(3a,a,0)\) with
+\(a=s_2-w\), when \(v=s_1+2a\). The kernel family is not on this
+ray for \(n\ge 1\).
+
+Pisot control: \(s_1'=s_3\), so \(s_1\equiv 0\pmod 3\) is not
+forced. \(B_{\min}\) occupies \(\{0,1,2\}\) in the first coordinate.
+The obstruction is the \(d_3=3\) first row of \(A\), not Pisot
+contraction.
+
+Live census (growth \(\ne\) infinitude; no \(t_n\) appears):
+
+| \(N\) | \(\lvert L_{\le N}\rvert\) | \(\max\lvert s_i\rvert\) | \(\lvert L\cap F\rvert\) | \(t_n\) hit |
+|---|---|---|---|---|
+| 12 | 532 | \((27,24,9)\) | 167 | none |
+| 16 | 1351 | \((36,37,12)\) | 379 | none |
+| 18 | 2036 | \((42,39,14)\) | 529 | none |
+
+All scanned live states have \(s_1\equiv 0\pmod 3\). The hub is in
+\(L_{\le N}\). Repeating \(w=1\) from the origin expands but leaves
+the unread-tail interval at the second step.
+
 ## Open questions
 
-Does the unbounded terminal family \(t_n\) (or unbounded \(K_0\))
-force infinitely many distinct live residuals on paths from
-\((0,0,0)\)? Not taken up. Do not open order 4, Walnut, Lean, or a
-second example.
+Is \(\lvert L_0\rvert=\infty\)? The family \(t_n\) is not a witness
+except possibly \(n\equiv 0,12\pmod{24}\), and those cases are not
+proved reachable or unreachable. A global invariant bounding all of
+\(K\cap R(0)\), or one explicit unbounded live-from-0 family, is
+missing. Do not open order 4, Walnut, or a second example.
 
 ## Decision
 
-`PROMOTE` the terminal-set theorem (Outcome A): \(K_0=F\) is the
-true remaining-0 accepting set, \(K_n\) is the \(E_n\)-slab, and
-\(t_n=(q_{n-1},-q_{n-2},0)\) is an unbounded family in \(K_n\cap F\).
-The singleton-zero substitution is removed. Do **not** claim that
-\(L\) is finite or infinite. Reverse contraction remains a theorem
-about co-reachability of a seed, not about \(L\). The 55-set for
-\(\Gamma_{\mathrm P}\) stays. FS1996 sufficiency remains `KNOWN`;
-this residual-coordinate characterization is not a `CLOSE`. No order
-4, CLI, Walnut, or Lean. Stop. Do not automatically continue.
+`PROMOTE` the Lean obstruction kernel
+(`kernel_unreachable_of_not_exceptional`): \(n\not\equiv 0,12\pmod{24}\)
+implies \(t_n\notin R(0)\). `PARK` \(\lvert L_0\rvert\): the remaining
+progression \(n\equiv 0,12\pmod{24}\) and infinitude of the origin-live
+set are not decided. Do not `CLOSE`: this is residual-coordinate
+content, not FS1996. No order 4, CLI, or Walnut. Stop. Do not
+automatically continue. Next question (not taken up): the classes
+\(n\equiv 0,12\pmod{24}\).
 
 ## Publication assessment
 
 Status: `STRUCTURAL`. The 55-set remains an exact theorem for one
-Pisot \(\Gamma\). The accepting boundary of \(\Gamma_{\mathrm{NP}}\)
-is an exact unbounded object. Live-set finiteness from the origin is
-not a theorem. Not `PAPER_CANDIDATE`.
+Pisot \(\Gamma\). The NP accepting boundary is unbounded; the
+origin-reachable live set is not proved infinite. Not
+`PAPER_CANDIDATE`.
