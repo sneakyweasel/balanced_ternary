@@ -28,9 +28,12 @@ PROBLEM = ProblemDefinition(
         "satisfies E_{i-1}(T_w s)=E_i(s)-w q_{i-1} and the telescope "
         "E_n(T_w s)=E_{n+k}(s)-sum_j w_j q_{n+k-1-j} (Lean, KNOWN "
         "construction). Defects restate K_n. Short expanding interior "
-        "blocks leave K_n. Every small integer linear form on s grows "
-        "from start remaining 16 to 20. |L_0| is not proved "
-        "infinite. Pisot existence of some adder is known."
+        "blocks leave K_n. The co-live prefix language at finite N has "
+        "22 consecutive Ext-windows in W (max branching 4); all length-2 "
+        "and length-3 interior factors occur; occurring blocks of length "
+        "4-6 that stay live return to the origin. Every small integer "
+        "linear form on s grows from start remaining 16 to 20. |L_0| is "
+        "not proved infinite. Pisot existence of some adder is known."
     ),
     bt_relevance=(
         "The rewrite-calculus theorem add_not_DLocal isolates the LSD "

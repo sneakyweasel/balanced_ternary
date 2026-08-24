@@ -320,6 +320,12 @@ Recorded in `tests/research/ostrowski/test_triage.py`.
   (\(\lVert T_{(-4)}^4(0)\rVert_\infty=96\)) and leaves \(K_n\) at
   remaining \(8\) after start remaining \(12\). Expanding without
   \(K_n\) is not a live family.
+- Length-6 prefixes \((1,-1,-4,-2,1,-3)\) and \((0,1,-3,1,1,-3)\) are
+  co-live at start remaining \(20\) and not co-live at \(12\). Finite
+  \(H(u)\) is not \(\lvert H(u)\rvert=\infty\).
+- Occurring length-4 block \((2,-4,-2,-4)\) expands under three
+  repeats from remaining \(18\) and leaves \(K\). Expanding
+  \(A^{|B|}\) is not co-live occurrence at unbounded remaining.
 
 ## Formalization
 
@@ -350,6 +356,11 @@ The cumulative energy identity `energy_telescope` is Lean-verified in
 the same `Energy.lean` file (ledger `OST-np-energy-telescope`), novelty
 **KNOWN**. Defect / `lo`/`hi` recurrences stay Python. Not an `L_0`
 theorem.
+
+Co-live control language (`research.ostrowski.control_language`) is a
+finite-horizon census. No new Lean: no forbidden-factor theorem and no
+recurrent expanding family. `kernel_unreachable_of_not_exceptional`,
+`energy_step`, and `energy_telescope` are unchanged.
 
 Ledger row `OST-np-kernel-unreach`: `EXACT — LEAN VERIFIED`.
 Ledger row `OST-np-energy-step`: `EXACT — LEAN VERIFIED`.
@@ -867,26 +878,66 @@ zero words (bounded). Expanding blocks such as \(w\equiv-4\) leave
 \(K_n\). Expanding without \(K_n\) is not a live family. No
 unbounded \(T_B^k(0)\) in \(K\).
 
+### Live control language
+
+A prefix is *co-live* at horizon \(N\) only if it stays in \(K\) and
+the endpoint has a legal path to remaining \(0\). The
+\((s,\mathrm{remaining})\) graph is a DAG. Live at remaining \(n\)
+is not co-live in general; at start remaining \(8,12,16,20\) the
+origin-reachable live nodes happen to all be co-live (no live
+dead-ends). That is a finite-horizon observation.
+
+\(\lvert\mathcal L_k(N)\rvert\) at \(N=12\):
+\(1,4,9,23,59,144,359,912,2271,5564,13197,22411,22411\) for
+\(k=0,\ldots,12\). At \(N=20\), \(\lvert\mathcal L_6\rvert=361\) and
+there are \(38625503\) accepting words of length \(20\), with
+\(729\) distinct remaining-\(0\) states. Growing \(\lvert\mathcal L_k(N)\rvert\)
+is not \(\lvert L_0\rvert=\infty\).
+
+Every co-live node has an extension set that is a consecutive window
+in \(W=\{-4,\ldots,2\}\), of length at most \(4\). There are exactly
+\(22\) such windows (singleton \((-3)\) is missing), stable from
+\(N=8\) to \(N=20\). This is not a finite residual automaton:
+\(\max\lVert s\rVert_\infty\) on co-live slices still grows as
+remaining drops (\(0\to 57\) at \(N=20\)).
+
+All \(49\) interior length-\(2\) factors and all \(343\) length-\(3\)
+factors occur on co-live paths already at \(N=12\). No forbidden
+short block.
+
+Length \(\le 6\) co-live prefixes of \(N=20\) are all co-live at
+\(N=16\) (\(600\) words). Two length-\(6\) words fail at \(N=12\).
+Do not call the first class \(\lvert H(u)\rvert=\infty\).
+
+Occurring prefixes of length \(4,5,6\) (\(564\) words), three repeats
+from remaining \(18\): \(14\) stay in \(K\) and all return to the
+origin (bounded). Expanding occurring blocks such as
+\((2,-4,-2,-4)\) leave \(K\). No co-live expanding family.
+
+Left Perron pairing on co-live slices grows as remaining drops
+(floats only). Not a cancellation theorem.
+
 ## Open questions
 
-Is \(\lvert L_0\rvert=\infty\)? The energy telescope and defect
-recurrence restate the unread-tail construction and the slab \(K_n\).
-They do not confine \(L_0\) and do not name an expanding family that
-stays in \(K_n\). A global invariant bounding \(K\cap R(0)\), or one
-explicit unbounded live-from-0 family (not necessarily \(t_n\)), is
-missing. Do not open order 4, Walnut, or a second example.
+Is \(\lvert L_0\rvert=\infty\)? The co-live prefix language at finite
+\(N\) is a proper, interval-constrained sublanguage of \(W^*\), but
+every short interior factor occurs, and occurring blocks of length
+\(4\)–\(6\) either return to the origin or leave \(K\). A global
+invariant bounding \(K\cap R(0)\), or one explicit unbounded
+live-from-0 family, is missing. Do not open order 4, Walnut, or a
+second example.
 
 ## Decision
 
-`PARK` \(\lvert L_0\rvert\). `PROMOTE` the KNOWN telescope
-`energy_telescope` (and the earlier `energy_step`). Defects restate
-\(K_n\) and are not a live-set theorem. Remaining-1
-\(s_2+2s_3\in[-2,1]\) is length-dependent. Short interior blocks that
-expand leave \(K_n\); only the zero word stays live and bounded.
+`PARK` \(\lvert L_0\rvert\). The control-language census is
+finite-horizon. The \(22\) consecutive extension windows are an
+observation, not a live-set theorem. No forbidden length-\(2\) or
+\(3\) factor. No co-live expanding family among occurring blocks of
+length \(4\)–\(6\). Keep `energy_telescope` as KNOWN. No new Lean.
 `kernel_unreachable_of_not_exceptional` is unchanged. Do not
 `CLOSE`. No order 4, CLI, or Walnut. Stop. Next question (not taken
-up): a control constraint, other than a repeating block of length
-\(\le 3\), that stays in \(K_n\) at unbounded remaining.
+up): why \(\operatorname{Ext}(s,n)\) is always a consecutive window
+of length \(\le 4\), and whether that constraint can bound \(\lvert s\rvert\).
 
 ## Publication assessment
 
