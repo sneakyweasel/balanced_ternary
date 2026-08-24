@@ -66,7 +66,7 @@ def test_A_plus_B_small_k_not_assumed_interval():
     for k in (1, 2, 3, 4):
         rep = sumset_A_plus_B(k)
         assert rep.cardinality >= 1
-        assert rep.proof_status == "VERIFIED COMPUTATIONALLY"
+        assert rep.proof_status == "COMPUTATIONALLY VERIFIED"
 
 
 def test_smallest_r_is_two():
@@ -143,7 +143,7 @@ def test_zoo_contains_odd_part_and_shift():
 
 def test_sequence_dossiers_match_known_identities():
     dstop = dossier_d_stopping()
-    assert dstop.claim_status == "PROVED"
+    assert dstop.claim_status == "EXACT — HUMAN PROOF"
     ww = dossier_w_ww()
-    assert ww.claim_status == "PROVED"
+    assert ww.claim_status == "EXACT — HUMAN PROOF"
     assert len(all_dossiers()) >= 4

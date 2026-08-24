@@ -229,7 +229,7 @@ def test_collatz_suffix_test():
         "3",
     )
     assert "suffix determination" in out
-    assert "EXACT COUNTEREXAMPLE" in out
+    assert "REFUTED" in out
 
 
 def test_collatz_dual_dataset_no_write():

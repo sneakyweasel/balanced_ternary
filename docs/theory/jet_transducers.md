@@ -14,7 +14,7 @@ S_k(f) = { 𝔇_w f : |w| < k }
 has size at most `(3^k − 1)/2`. That bound is combinatorial (ternary
 words), not a minimization theorem.
 
-**VERIFIED COMPUTATIONALLY** (`bt.calculus.jet_locality.profile_jet`), depth `k=3`:
+**COMPUTATIONALLY VERIFIED** (`bt.calculus.jet_locality.profile_jet`), depth `k=3`:
 
 | polynomial | raw | minimized | max \|coeff\| | LC abs |
 |---|---:|---:|---:|---:|
@@ -45,7 +45,7 @@ See also [residual_state_complexity.md](residual_state_complexity.md).
 
 ## Locality
 
-**PROVED** for `f ∈ Z[x]`: `f(n) ≡ f(m) (mod 3^k)` whenever
+**EXACT — HUMAN PROOF** for `f ∈ Z[x]`: `f(n) ≡ f(m) (mod 3^k)` whenever
 `n ≡ m (mod 3^k)`, so the low `k` canonical trits of `f(n)` depend only
 on the low `k` input trits (prefix locality).
 

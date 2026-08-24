@@ -107,4 +107,4 @@ operations (via existing `CarryTrace` when addition is used).
 
 `bt.calculus.discovery` clusters closed unary terms of depth `≤ 6`.
 It never writes `sorry` into the Lean project and never labels a
-candidate **PROVED**.
+candidate **EXACT — HUMAN PROOF**.

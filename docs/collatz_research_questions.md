@@ -120,7 +120,7 @@ Milestone 5 proves or disproves the Collatz conjecture.
 3. For fixed valuations, lift digits form a unique mixed-radix expansion
    of \((R-1)/2\). **EXACT — LEAN VERIFIED**.
 4. Even the complete \(\operatorname{BT}(R)\) does not determine the next
-   zero-lift valuation or a proposed lift digit. **EXACT COUNTEREXAMPLE**.
+   zero-lift valuation or a proposed lift digit. **REFUTED**.
 5. Adjacent swaps satisfy an exact residue law for \(R\), but modular
    wraparound prevents the sorted \(C\) order from inducing a sorted
    \(R\) order. **EXACT — HUMAN PROOF**.
@@ -143,7 +143,7 @@ See [docs/collatz_dual_coding.md](collatz_dual_coding.md).
 4. Even the complete word \(\operatorname{BT}(R)\) does not determine the
    next zero-lift valuation or proposed lift behavior. The exact witness
    \((1)\) versus \((1,4)\), both with \(R=3\), is preserved in the
-   information-content experiment. **EXACT COUNTEREXAMPLE**.
+   information-content experiment. **REFUTED**.
 5. Rational base \(3/2\) makes the odd parity-map branch
    \(n\mapsto(3n+1)/2\) an append-\(1\) operation. Balanced ternary makes
    \(n\mapsto3n+1\) append-\(+\). Neither identity alone localizes all

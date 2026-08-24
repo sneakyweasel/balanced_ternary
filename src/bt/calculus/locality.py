@@ -169,7 +169,7 @@ def profile(symbol: str) -> InformationProfile:
             precision_loss="all factors of 2",
             precision_gain="none",
             locality_class="not one rational transduction",
-            proof_status="PROVED",
+            proof_status="EXACT — HUMAN PROOF",
             notes="Existing four-step argument. Each fixed k is finite-state.",
         )
     if symbol == "T":
@@ -182,7 +182,7 @@ def profile(symbol: str) -> InformationProfile:
             precision_loss="odd-part of 3n+1",
             precision_gain="none",
             locality_class="not one rational transduction (composition)",
-            proof_status="PROVED as a composition",
+            proof_status="EXACT — HUMAN PROOF as a composition",
             notes="3n+1 is sequential; unrestricted odd-part is not. Collatz is a client.",
         )
     op = OPERATORS.get(symbol)

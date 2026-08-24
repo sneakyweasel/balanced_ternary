@@ -39,7 +39,7 @@ Verified laws (exhaustive on 3 elements; Lean by cases):
 - Kleene inequality
 - `neg` is an involution and order-reversing
 
-**PROVED (LEAN VERIFIED):** not Boolean, via `not_boolean_zero`.
+**EXACT — LEAN VERIFIED:** not Boolean, via `not_boolean_zero`.
 
 ## Computational observations
 

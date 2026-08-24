@@ -16,7 +16,7 @@ class HypothesisStatus(str, Enum):
     OPEN = "OPEN"
     SUPPORTED = "SUPPORTED"
     REFUTED = "REFUTED"
-    PROVED = "PROVED"
+    SETTLED = "SETTLED"
     PARKED = "PARKED"
     CLOSED = "CLOSED"
 

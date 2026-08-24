@@ -50,7 +50,7 @@ def dossier_d_stopping() -> SequenceDossier:
         offset=0,
         terms=terms,
         closest_oeis="A134021 (canonical BT length L_3), except a(0)=1 there vs 0 here",
-        claim_status="PROVED" if same else "OBSERVATION",
+        claim_status="EXACT — HUMAN PROOF" if same else "OBSERVATION",
         notes=(
             "For n≠0 the D-orbit length equals L_3(n). A134021(0)=1 because "
             "the zero word has length 1. This is not a new sequence."
@@ -65,7 +65,7 @@ def dossier_lsd() -> SequenceDossier:
         offset=0,
         terms=_prefix(lsd_digit, 0, 40),
         closest_oeis="n mod 3 lifted to {-1,0,+1}: 0,1,-1,0,1,-1,... (period 3)",
-        claim_status="PROVED",
+        claim_status="EXACT — HUMAN PROOF",
         notes="Equals n-3*round(n/3) in balanced remainder. Not submitted as new.",
     )
 
@@ -82,7 +82,7 @@ def dossier_w_ww() -> SequenceDossier:
         offset=0,
         terms=terms,
         closest_oeis="n / 3^{v_3(n)} (3-free kernel), A007949 is v_3 itself",
-        claim_status="PROVED" if terms == k3 else "OBSERVATION",
+        claim_status="EXACT — HUMAN PROOF" if terms == k3 else "OBSERVATION",
         notes="W∘W = K3. Restates the involution criterion for W.",
     )
 
@@ -108,7 +108,7 @@ def dossier_d_parity() -> SequenceDossier:
         offset=0,
         terms=terms,
         closest_oeis="equals n-a_0(n) mod 2, hence determined by n and a_0",
-        claim_status="PROVED",
+        claim_status="EXACT — HUMAN PROOF",
         notes="Immediate from n = a0 + 3 D(n) and 3 odd.",
     )
 

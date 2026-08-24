@@ -101,7 +101,7 @@ def suffix_determination_census(
         "candidate_k": 2,
         "lift_digit_a": 2,
         "lift_digit_b": 0,
-        "status": "EXACT COUNTEREXAMPLE: full BT(R) is insufficient",
+        "status": "REFUTED: full BT(R) is insufficient",
     }
     return {
         "max_length": max_length,

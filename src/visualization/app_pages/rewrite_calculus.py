@@ -52,7 +52,7 @@ def _badge(theorem_id: str) -> None:
         return
     kind = payload["kind"]
     color = {
-        "proved": "green",
+        "exact": "green",
         "computed": "blue",
         "conjecture": "orange",
         "refuted": "red",

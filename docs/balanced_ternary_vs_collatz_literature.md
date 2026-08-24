@@ -85,7 +85,7 @@ independent obstruction to Collatz compatibility.
 
 ## Dependence theorem and counterexample
 
-**PROVED.** Once \(\mathbf{k}\) is fixed,
+**EXACT — HUMAN PROOF.** Once \(\mathbf{k}\) is fixed,
 
 \[
 C=C(\mathbf{k}),\qquad
@@ -119,7 +119,7 @@ visualization, clustering, or counterexample search.
 
 That benefit is relative to the other **lossy exposed states**. It does not
 create arithmetic information absent from the pair \((R,\mathbf{k})\), and
-an empirical separation is **VERIFIED COMPUTATIONALLY** or an
+an empirical separation is **COMPUTATIONALLY VERIFIED** or an
 **OBSERVATION**, never a theorem about infinite trajectories.
 
 ## Automata-theoretic boundary

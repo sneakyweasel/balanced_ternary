@@ -21,7 +21,7 @@ cmp3(x,y) = sign(x-y) ∈ {-1,0,+1}
 select3(c, x_minus, x_zero, x_plus)
 ```
 
-**PROVED / LEAN VERIFIED:**
+**EXACT — LEAN VERIFIED:**
 
 - `cmp3(x+z, y+z) = cmp3(x,y)`
 - `cmp3(-x,-y) = -cmp3(x,y)`

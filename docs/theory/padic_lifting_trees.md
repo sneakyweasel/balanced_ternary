@@ -29,7 +29,7 @@ the composite along `w`, and `ρ_i` for the output trit emitted at step
 
 ## Iterated reconstruction
 
-**PROVED — LEAN.** For every `f ∈ ℤ[x]` and every trit word `w` of
+**EXACT — LEAN VERIFIED.** For every `f ∈ ℤ[x]` and every trit word `w` of
 length `k`,
 
 \[
@@ -52,7 +52,7 @@ Lean: `BTCalculus.iterated_reconstruction`.
 
 ## Lifting tree equals the zero-output subtree
 
-**PROVED — LEAN.** `3^k` divides `f(n_w)` if and only if every output
+**EXACT — LEAN VERIFIED.** `3^k` divides `f(n_w)` if and only if every output
 trit along `w` is `0`.
 
 *Proof.* Setting `x = 0` above gives `f(n_w) = S_w + 3^k c_0` with
@@ -86,7 +86,7 @@ Lean: `BTCalculus.lift_iff_outputs_zero`.
 
 ## The residual state is the scaled Taylor jet
 
-**PROVED.** For `j ≥ 1` the coefficient of `x^j` in `𝔇_w f` is
+**EXACT — HUMAN PROOF.** For `j ≥ 1` the coefficient of `x^j` in `𝔇_w f` is
 
 \[
 3^{k(j-1)}\,\frac{f^{(j)}(n_w)}{j!},
@@ -112,7 +112,7 @@ Verified computationally in `research.lifting.triage.h2_taylor_jet`.
 
 ## One-step trichotomy
 
-**PROVED — LEAN, KNOWN.** For `k ≥ 1` and a node `w` of the tree at
+**EXACT — LEAN VERIFIED, KNOWN.** For `k ≥ 1` and a node `w` of the tree at
 level `k`, write `g = 𝔇_w f`. Since the coefficient of `x^j` in `g` is
 divisible by `3^k` for `j ≥ 2`, we get `g(a) ≡ f(n_w)/3^k + a f'(n_w)
 \pmod 3`, hence the child count is
@@ -137,7 +137,7 @@ Let `Φ_r` be the Newton residue invariant of
 [polynomial_function_congruence.md](polynomial_function_congruence.md),
 so that `Φ_r(g) = Φ_r(h)` iff `g ≡_r h` as functions modulo `3^r`.
 
-**PROVED.** If `g ≡_r h` then the depth-`r` subtrees below `g` and `h`
+**EXACT — HUMAN PROOF.** If `g ≡_r h` then the depth-`r` subtrees below `g` and `h`
 agree, including the branch trits.
 
 *Proof.* Induction on `r`. For `r ≥ 1`, `g ≡_r h` implies `g(a) ≡ h(a)
@@ -147,7 +147,7 @@ same children. For the transition, `𝔇_a g - 𝔇_a h` evaluated at `x` is
 `(g-h)(a+3x)`, so `𝔇_a g ≡_{r-1} 𝔇_a h`. Apply the inductive hypothesis
 to each child. ∎
 
-**PROVED.** The horizon is sharp: `Φ_{r-1}` does not determine the
+**EXACT — HUMAN PROOF.** The horizon is sharp: `Φ_{r-1}` does not determine the
 depth-`r` subtree. Smallest witness at `r = 2`: `x^2` and `x^2 - 3` agree
 as functions modulo `3`, but at depth `2` all three grandchildren of the
 root survive for `x^2` while none survive for `x^2 - 3`.
@@ -167,7 +167,7 @@ already known (`dwivedi-mittal-saxena-2019-root-count`).
 
 ## Deep regime: linearization
 
-**PROVED.** For `k ≥ r`, every coefficient of `𝔇_w f` in degree `j ≥ 2`
+**EXACT — HUMAN PROOF.** For `k ≥ r`, every coefficient of `𝔇_w f` in degree `j ≥ 2`
 is divisible by `3^{k(j-1)}` and hence by `3^r`, so
 
 \[
@@ -204,7 +204,7 @@ elsewhere.
 
 ## Valuations are not enough
 
-**PROVED.** The candidate "lifting behaviour at level `k` is determined
+**EXACT — HUMAN PROOF.** The candidate "lifting behaviour at level `k` is determined
 by `v_3(f(n))` and `v_3(f'(n))`" is **false**, even for the bare tree
 shape with sibling order discarded.
 
@@ -219,7 +219,7 @@ At the root the witness is smaller still and purely about existence:
 `x^2 + 1` has no children, `x^2 - 1` has two, and both have the same
 capped valuation pair.
 
-**PROVED.** In the deep regime `k ≥ r` the residual is `≡_r` the linear
+**EXACT — HUMAN PROOF.** In the deep regime `k ≥ r` the residual is `≡_r` the linear
 state `c + b x` with `c = f(n)/3^k` and `b = f'(n)`. Write
 `m = min(v_3(c), r)` and `e = min(v_3(b), r)`, and write `U_r` for the
 unlabeled depth-`r` lifting shape: `()` if the node has no surviving

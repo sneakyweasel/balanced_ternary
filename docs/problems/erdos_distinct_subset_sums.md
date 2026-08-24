@@ -142,18 +142,18 @@ Phase 0 tests that and refutes it.
 ## Candidate operations / invariants
 
 - Kernel equivalence
-  \(A\) sum-distinct \(\iff R(A)=\{0^n\}\) — **PROVED**, elementary;
+  \(A\) sum-distinct \(\iff R(A)=\{0^n\}\) — **EXACT — HUMAN PROOF**, elementary;
   `KNOWN`.
 - All signed sums distinct is strictly stronger —
-  **PROVED** by \(\{1,2,4\}\). `KNOWN` (Bae \(q=2\)).
+  **EXACT — HUMAN PROOF** by \(\{1,2,4\}\). `KNOWN` (Bae \(q=2\)).
 - Magnitude–valuation bridge
-  \(v_3(s)\ge k\) and \(|s|<3^k\) \(\Rightarrow s=0\) — **PROVED**,
+  \(v_3(s)\ge k\) and \(|s|<3^k\) \(\Rightarrow s=0\) — **EXACT — HUMAN PROOF**,
   elementary. Hits equal \(R(A)\). `REPARAMETERIZATION`.
 - Canonical length equals the magnitude bound
-  \(|s|\le(3^L-1)/2\) — **PROVED** from uniqueness of balanced
+  \(|s|\le(3^L-1)/2\) — **EXACT — HUMAN PROOF** from uniqueness of balanced
   expansion. `REPARAMETERIZATION`.
 - \(v_3(s)\) equals the least-significant nonzero digit index —
-  **PROVED** (`bt.metrics.check_v3_identity`). `KNOWN`.
+  **EXACT — HUMAN PROOF** (`bt.metrics.check_v3_identity`). `KNOWN`.
 - High \(v_3\) density forces an exact relation — **REFUTED**.
   Powers of 2 and Conway–Guy are sum-distinct and have many nonzero
   signed sums with \(v_3\ge 1\).

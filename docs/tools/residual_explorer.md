@@ -8,11 +8,11 @@ Launch:
 
 ```powershell
 python -m pip install -e ".[ui]"
-btlab collatz ui
+btlab ui
 ```
 
 Open **Calculus research → Residual explorer**, or start the same app with
-`btlab calculus explorer`.
+`btlab calculus explorer` (an alias of `btlab ui`).
 
 ## Architecture
 

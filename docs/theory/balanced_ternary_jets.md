@@ -1,6 +1,6 @@
 # Balanced-ternary jets
 
-Claim labels: **PROVED**, **VERIFIED COMPUTATIONALLY**, **CONJECTURE**,
+Claim labels: **EXACT — HUMAN PROOF**, **COMPUTATIONALLY VERIFIED**, **CONJECTURE**,
 **REFUTED**, **REPARAMETERIZATION**.
 
 This is not a classical Taylor jet. A function jet is a finite path of
@@ -8,7 +8,7 @@ This is not a classical Taylor jet. A function jet is a finite path of
 
 ## Integer jets
 
-**PROVED.** For `k ≥ 0`,
+**EXACT — HUMAN PROOF.** For `k ≥ 0`,
 
 ```text
 J_k(n) = (lsd(n), lsd(D(n)), …, lsd(D^{k-1}(n)))
@@ -28,7 +28,7 @@ f_{wa} = 𝔇_a(f_w)
 b_i = ρ_{a_i}(f_{a0…a_{i-1}})
 ```
 
-**PROVED** (Python exhaustive on stated boxes; Lean
+**EXACT — HUMAN PROOF** (Python exhaustive on stated boxes; Lean
 `function_jet_reconstruction`):
 
 ```text

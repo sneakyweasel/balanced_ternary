@@ -1,6 +1,6 @@
 """Bounded hypothesis explorer for normalization theory.
 
-Candidates are never auto-promoted to **PROVED**. Failures keep the
+Candidates are never auto-promoted to **EXACT — HUMAN PROOF**. Failures keep the
 smallest counterexample and a commented Lean skeleton (not written into
 ``formal/``).
 """
@@ -82,7 +82,7 @@ def _rewrite_equals_excess(words: list[CoeffWord]) -> HypothesisResult:
             )
     return HypothesisResult(
         name="rewrite_A_equals_excess",
-        status="VERIFIED COMPUTATIONALLY",
+        status="COMPUTATIONALLY VERIFIED",
         domain=f"{len(words)} words",
         counterexample=None,
         notes="No counterexample on this box. Not a theorem.",
@@ -104,7 +104,7 @@ def _ab_same_count(words: list[CoeffWord]) -> HypothesisResult:
             )
     return HypothesisResult(
         name="strategy_A_B_same_rewrite_count",
-        status="VERIFIED COMPUTATIONALLY",
+        status="COMPUTATIONALLY VERIFIED",
         domain=f"{len(words)} words",
         counterexample=None,
         notes="No count gap on this box. Not a theorem.",
@@ -126,7 +126,7 @@ def _geodesic_excess(words: list[CoeffWord]) -> HypothesisResult:
             )
     return HypothesisResult(
         name="geodesic_equals_excess",
-        status="VERIFIED COMPUTATIONALLY",
+        status="COMPUTATIONALLY VERIFIED",
         domain=f"{len(words)} words",
         counterexample=None,
         notes="No geodesic/excess gap on this box, or graph truncated.",
@@ -147,7 +147,7 @@ def _d_commutes(words: list[CoeffWord]) -> HypothesisResult:
             )
     return HypothesisResult(
         name="D_normalize_commutes",
-        status="VERIFIED COMPUTATIONALLY",
+        status="COMPUTATIONALLY VERIFIED",
         domain=f"{len(words)} words",
         counterexample=None,
         notes="No failure on this box.",
@@ -176,7 +176,7 @@ def _fma_always_cheaper(words: list[CoeffWord]) -> HypothesisResult:
                     )
     return HypothesisResult(
         name="fma_fused_always_fewer_rewrites",
-        status="VERIFIED COMPUTATIONALLY",
+        status="COMPUTATIONALLY VERIFIED",
         domain="small P,Q,R sample",
         counterexample=None,
         notes="No staged-cheaper witness in this sample. Not a theorem.",

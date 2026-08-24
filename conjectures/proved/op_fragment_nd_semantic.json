@@ -9,11 +9,11 @@
     "knuth-taocp-vol2"
   ],
   "mathematical_domain": "balanced ternary calculus",
-  "notes": "Enlarged TRS = old tree rules + N(D(x))→D(N(x)). Termination is the lex rank with D pushable; all new critical pairs join; irreducibles are w(D^d(x)) or w(D^d(N(x))) and are pairwise distinct as functions (LEAN VERIFIED). The claim without the commute stays REFUTED as op_fragment_semantic_nf.",
+  "notes": "Enlarged TRS = old tree rules + N(D(x))\u2192D(N(x)). Termination is the lex rank with D pushable; all new critical pairs join; irreducibles are w(D^d(x)) or w(D^d(N(x))) and are pairwise distinct as functions (EXACT \u2014 LEAN VERIFIED). The claim without the commute stays REFUTED as op_fragment_semantic_nf.",
   "origin": "docs/theory/rewrite_calculus.md",
   "proof_reference": "docs/theory/rewrite_calculus.md",
-  "statement": "The operator-fragment tree TRS including N(D(x))→D(N(x)) is a complete canonical form: unique syntactic NF, and distinct irreducibles denote distinct integer functions.",
-  "status": "PROVED",
-  "tested_range": "all critical pairs; size≤6 open-term all-strategy census (9331 terms); semantic probes include ±3^k through k=8 in tests/unit/test_operator_fragment_nf.py",
+  "statement": "The operator-fragment tree TRS including N(D(x))\u2192D(N(x)) is a complete canonical form: unique syntactic NF, and distinct irreducibles denote distinct integer functions.",
+  "status": "EXACT \u2014 LEAN VERIFIED",
+  "tested_range": "all critical pairs; size\u22646 open-term all-strategy census (9331 terms); semantic probes include \u00b13^k through k=8 in tests/unit/test_operator_fragment_nf.py",
   "title": "Enlarged operator-fragment TRS is a semantic canonical form"
 }

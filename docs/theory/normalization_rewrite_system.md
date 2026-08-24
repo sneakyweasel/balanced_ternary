@@ -1,6 +1,6 @@
 # Normalization rewrite system
 
-Claim layers: **PROVED**, **VERIFIED COMPUTATIONALLY**, **CONJECTURE**,
+Claim layers: **EXACT — HUMAN PROOF**, **COMPUTATIONALLY VERIFIED**, **CONJECTURE**,
 **OBSERVATION**, **REFUTED**.
 
 ## Rule
@@ -20,7 +20,7 @@ Sweep order is a strategy, not part of the rule.
 
 ## Termination
 
-**PROVED.** The finite-support sequence `(|c_0|, |c_1|, …)` strictly
+**EXACT — HUMAN PROOF.** The finite-support sequence `(|c_0|, |c_1|, …)` strictly
 decreases in lexicographic order: a step at `i` leaves positions `< i`
 unchanged and replaces `|c_i| ≥ 2` by `|r| ≤ 1`. Lexicographic order on
 finite-support `ℕ`-sequences is well-founded, so every finite word has
@@ -38,11 +38,11 @@ plus `3 |DZ n| ≤ |n| + 1`.
 The only overlapping redexes are sites `i` and `i+1`: a step at `i`
 writes `c_{i+1}`. Disjoint sites `|i-j| ≥ 2` commute.
 
-**VERIFIED COMPUTATIONALLY.** Every critical pair with
+**COMPUTATIONALLY VERIFIED.** Every critical pair with
 `a,b ∈ [-8,8]` joins, and every word in the box `width ≤ 3`, `|c| ≤ 2`
 is locally confluent (bounded descendant search).
 
-**PROVED** (Lean, modulo high-zero stripping, matching Python
+**EXACT — HUMAN PROOF** (Lean, modulo high-zero stripping, matching Python
 `CoeffWord`). Unique stripped trit form is `encodeZ(value(P))`.
 Strategy A is a rewrite path to that form, so every fork joins there.
 Raw lists may differ by trailing zeros (`[-5,2]` → `[1,0]` vs
@@ -54,7 +54,7 @@ enumerated boxes.
 
 ## Normal form
 
-**PROVED.**
+**EXACT — HUMAN PROOF.**
 
 - `irreducible(P)` iff every stored coefficient is a trit.
 - `normalize_A(P)` equals `encode(value(P))` as LSD digits
@@ -68,13 +68,13 @@ rewrite-theoretic packaging is the extra structure.
 
 | Name | Rule | Termination |
 |------|------|-------------|
-| A | lowest legal site | **PROVED**; equals `encode` |
-| B | highest legal site | **PROVED** by the same lex rank |
-| C | maximal LSD-greedy non-adjacent independent set per round | **PROVED** (each round is ≥1 abstract step) |
+| A | lowest legal site | **EXACT — HUMAN PROOF**; equals `encode` |
+| B | highest legal site | **EXACT — HUMAN PROOF** by the same lex rank |
+| C | maximal LSD-greedy non-adjacent independent set per round | **EXACT — HUMAN PROOF** (each round is ≥1 abstract step) |
 | D | `encode(value)` | 0 rewrite steps |
 
 A and B need not have the same rewrite count
-(**VERIFIED COMPUTATIONALLY** / typically **REFUTED** equality).
+(**COMPUTATIONALLY VERIFIED** / typically **REFUTED** equality).
 C’s *pass* count is parallel depth. It is **not** always ≤ A’s
 sequential depth: `(-2,-2,2)` has parallel depth 3 and sequential
 depth 2. Not a log-depth theorem.

@@ -96,7 +96,7 @@ Persistent chrome (every page):
 - title: “Rewrite calculus companion”
 - caption: “Lean is the proof authority. This UI only instantiates
   the paper witnesses.”
-- badges for the page claim: `LEAN VERIFIED` / `HUMAN PROOF` /
+- badges for the page claim: `EXACT — LEAN VERIFIED` / `EXACT — HUMAN PROOF` /
   `KNOWN`
 - a short “not claimed” line
 - links: packet, note section, Lean theorem name

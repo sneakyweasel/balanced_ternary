@@ -11,18 +11,19 @@ Historical record of the package split. The live contract is
 ```
 src/bt/                     core BT mathematics
 src/research/               problem modules + registries + experiment I/O
+src/research_engine/        problem-independent experimental dynamics
 src/cli/                    btlab implementation
-src/balanced_ternary/       compatibility façade
-src/collatz/                compatibility façade
-src/automata/               compatibility façade
 src/visualization/          optional Streamlit UI
-formal/{Core,Representation,Operators,Problems/Collatz,CollatzDual,Automata}
+formal/{Core,Representation,Operators,Problems,BTCalculus,Automata}
 conjectures/{active,proved,refuted,archived}
 literature/
 docs/{architecture,theory,problems}
 tests/{unit,integration,research,regression}
 experiments/                generated artifacts (gitignored)
 ```
+
+The façades `src/balanced_ternary/`, `src/collatz/`, `src/automata/`, and
+`formal/CollatzDual/` were deleted after the split.
 
 ## 2. Moved / consolidated modules
 
@@ -39,8 +40,7 @@ experiments/                generated artifacts (gitignored)
 
 ## 3. Old → new import map
 
-See [overview.md](overview.md). Shims keep `balanced_ternary`, `collatz`,
-and `automata` importable.
+See [overview.md](overview.md). The compatibility packages were removed.
 
 ## 4–5. Core and research architecture
 
@@ -68,7 +68,7 @@ Preserved: `encode`, `decode`, `analyze`, `residue`, `test-invariants`,
 Added: `bt …`, `primes`, `perfect-powers`, `additive`, `polynomials`,
 `experiments`, `conjectures`, `literature`, `formal`, `status`.
 
-Entry point: `cli.main:main` (shim `balanced_ternary.cli:main`).
+Entry point: `cli.main:main` (`btlab`).
 
 ## 9. Lean module map
 

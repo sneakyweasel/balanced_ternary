@@ -204,7 +204,7 @@ def _badge(payload: dict[str, str] | None) -> None:
         return
     kind = payload["kind"]
     color = {
-        "proved": "green",
+        "exact": "green",
         "computed": "blue",
         "conjecture": "orange",
         "refuted": "red",

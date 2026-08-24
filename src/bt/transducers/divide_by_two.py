@@ -8,7 +8,7 @@ output digit ``a`` and next carry ``c'`` satisfying
 
 Solve ``a ≡ 2(d - c) (mod 3)`` lifted to ``{-1, 0, +1}``.
 
-**PROVED** as a 3-adic sequential function. Restriction to even *integers*:
+**EXACT — HUMAN PROOF** as a 3-adic sequential function. Restriction to even *integers*:
 the output is a finite canonical word and the final carry is 0.
 
 On odd integers the 3-adic expansion of ``n/2`` is infinite (example:

@@ -105,8 +105,8 @@ novelty claim.
 ## Candidate operations / invariants
 
 - Translation \(s_{\mathrm{bal}}(m)=s_3(2m)-s_3(m)\) —
-  **PROVED** (König recurrences plus exhaustive check; OEIS A065363).
-- Terminal correction — **PROVED** from prefix locality.
+  **EXACT — HUMAN PROOF** (König recurrences plus exhaustive check; OEIS A065363).
+- Terminal correction — **EXACT — HUMAN PROOF** from prefix locality.
 - Joint state \((\mathrm{residual},S_k)\) — Phase-0 object;
   cardinality \(3^k\) through \(k=10\) on every listed \(P\).
 - Remaining-horizon accept signatures of \(x^2\) at horizon \(2\) —

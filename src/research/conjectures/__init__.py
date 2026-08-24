@@ -8,7 +8,8 @@ from typing import Any
 
 STATUSES = (
     "ACTIVE",
-    "PROVED",
+    "EXACT — HUMAN PROOF",
+    "EXACT — LEAN VERIFIED",
     "REFUTED",
     "COMPUTATIONALLY_SUPPORTED",
     "REPARAMETERIZATION",
@@ -33,7 +34,8 @@ REQUIRED = (
 
 _STATUS_DIR = {
     "ACTIVE": "active",
-    "PROVED": "proved",
+    "EXACT — HUMAN PROOF": "proved",
+    "EXACT — LEAN VERIFIED": "proved",
     "REFUTED": "refuted",
     "COMPUTATIONALLY_SUPPORTED": "active",
     "REPARAMETERIZATION": "archived",

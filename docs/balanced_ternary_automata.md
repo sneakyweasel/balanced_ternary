@@ -10,18 +10,18 @@ partial) according to whether \(\mathrm{BT}(f(n))\) is obtained from
 
 | Function | Finite-state? | Type | States | Status |
 | --- | --- | --- | --- | --- |
-| \(S(n)=3n\) | yes | append LSD 0 | 1 | PROVED |
-| \(N(n)=-n\) | yes | letter-to-letter | 1 | PROVED |
-| \(D\), \(D^k\) (\(k\) fixed) | yes | drop \(k\) LSDs | 1 | PROVED |
-| \(H_3\) on \(3\mathbb{Z}\) | yes | \(D\) on \(a_0=0\) | 1 | PROVED |
-| \(I_{\pm}(n)=3n\pm 1\) | yes | append LSD \(\pm\) | 1 | PROVED |
-| \(K_3=n/3^{v_3(n)}\) | yes | skip trailing zeros | 2 | PROVED |
-| \(M_2=2n\) | yes | LSD Mealy | 3 | PROVED |
-| \(H_2\) on \(2\mathbb{Z}\) | yes | LSD Mealy | 3 | PROVED |
-| \(M_2^k\), \(H_2^k\) | yes | product of \(k\) copies | see below | existence PROVED; sizes computational |
-| \(W,W_z,W_t\) | no (one-way sequential) | global reverse | — | PROVED obstruction |
-| odd-part \(n/2^{v_2(n)}\) | no | not one rational transduction | — | PROVED (existing argument) |
-| Collatz \(T\) | no | \(3n+1\) FST then unrestricted odd-part | — | PROVED as a composition |
+| \(S(n)=3n\) | yes | append LSD 0 | 1 | EXACT — HUMAN PROOF |
+| \(N(n)=-n\) | yes | letter-to-letter | 1 | EXACT — HUMAN PROOF |
+| \(D\), \(D^k\) (\(k\) fixed) | yes | drop \(k\) LSDs | 1 | EXACT — HUMAN PROOF |
+| \(H_3\) on \(3\mathbb{Z}\) | yes | \(D\) on \(a_0=0\) | 1 | EXACT — HUMAN PROOF |
+| \(I_{\pm}(n)=3n\pm 1\) | yes | append LSD \(\pm\) | 1 | EXACT — HUMAN PROOF |
+| \(K_3=n/3^{v_3(n)}\) | yes | skip trailing zeros | 2 | EXACT — HUMAN PROOF |
+| \(M_2=2n\) | yes | LSD Mealy | 3 | EXACT — HUMAN PROOF |
+| \(H_2\) on \(2\mathbb{Z}\) | yes | LSD Mealy | 3 | EXACT — HUMAN PROOF |
+| \(M_2^k\), \(H_2^k\) | yes | product of \(k\) copies | see below | existence EXACT — HUMAN PROOF; sizes computational |
+| \(W,W_z,W_t\) | no (one-way sequential) | global reverse | — | EXACT — HUMAN PROOF obstruction |
+| odd-part \(n/2^{v_2(n)}\) | no | not one rational transduction | — | EXACT — HUMAN PROOF (existing argument) |
+| Collatz \(T\) | no | \(3n+1\) FST then unrestricted odd-part | — | EXACT — HUMAN PROOF as a composition |
 
 Reversal is not a one-way sequential function: the transducer would have to
 buffer an unbounded prefix before seeing the MSD. No claim is made about
@@ -36,7 +36,7 @@ trailing zeros of \(\mathrm{BT}(n)\), hence locally readable LSD-first;
 ## State complexity of \(M_2^k\) and \(H_2^k\)
 
 Naive product bound \(3^k\). Reachable and (for \(H_2^k\)) minimized sizes
-are **VERIFIED COMPUTATIONALLY** by BFS / Mealy partition refinement. They
+are **COMPUTATIONALLY VERIFIED** by BFS / Mealy partition refinement. They
 are not theorems. CLI:
 
 ```powershell

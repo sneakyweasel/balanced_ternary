@@ -39,7 +39,7 @@ Representation, operators, automata, or sparsity — not a claim that BT solves 
 
 ## Candidate operations / invariants
 
-Maps and functions to try. Label each PROVED / CONJECTURE / OBSERVATION.
+Maps and functions to try. Label each claim with a ledger tag from [README.md](../README.md).
 
 ## Experiments
 

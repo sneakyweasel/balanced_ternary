@@ -116,15 +116,15 @@ Pisot linear adders                    KNOWN (FS1996)
 Pisot ⇒ this 55-set                    PROJECT-SPECIFIC (previous phase)
 non-Pisot ⇒ no finite adder            NOT a theorem we may import
 live residual bounded ⇔ Pisot          OPEN (PARK; reverse contraction does not decide it)
-A^{-1} Q-norm contraction              PROVED
-C({0}) finite                          PROVED (9164 states; basin of origin, not the adder)
+A^{-1} Q-norm contraction              EXACT — HUMAN PROOF
+C({0}) finite                          EXACT — HUMAN PROOF (9164 states; basin of origin, not the adder)
 adder live set = C({0})                REFUTED
 {s3=0} is a finite seed                REFUTED (infinite plane)
-K_0 = F = {s3=0}                       PROVED (this phase; unbounded)
-K_n = E_n slab                         PROVED (infinite for every n)
-t_n = (q_{n-1}, -q_{n-2}, 0) in K_n∩F  PROVED (unbounded K)
+K_0 = F = {s3=0}                       EXACT — HUMAN PROOF (this phase; unbounded)
+K_n = E_n slab                         EXACT — HUMAN PROOF (infinite for every n)
+t_n = (q_{n-1}, -q_{n-2}, 0) in K_n∩F  EXACT — HUMAN PROOF (unbounded K)
 t_n in R(0) for n not 0 or 12 mod 24   REFUTED (s1 ≡ 0 mod 3)
-s1 ≡ 0 (mod 3) on R(0) for Γ_NP        PROVED
+s1 ≡ 0 (mod 3) on R(0) for Γ_NP        EXACT — HUMAN PROOF
 |L_0|=∞                                OPEN (K unbounded does not imply it)
 L finite for Γ_NP                      OPEN
 3-input adder, one non-quadratic α     KNOWN negative
@@ -171,12 +171,12 @@ role. The systems are not identified.
   recover Zeckendorf uniqueness.
 - Unread-tail residual
   \(E_i=\sum_{j<i}w_j q_j=\sum_{k=1}^{m}s_k q_{i-m+k}\) with
-  \(w_j=z_j-(x_j+y_j)\) — **PROVED** as an identity of the recurrence
+  \(w_j=z_j-(x_j+y_j)\) — **EXACT — HUMAN PROOF** as an identity of the recurrence
   (human + computational check). Analog of thesis (2.1).
 - Deterministic transition
   \(t_1=s_m d_{m,i}\),
   \(t_j=s_{j-1}+s_m d_{m-j+1,i}\) for \(2\le j\le m-1\),
-  \(t_m=s_{m-1}+s_m d_{1,i}-w\) — **PROVED** by substitution
+  \(t_m=s_{m-1}+s_m d_{1,i}-w\) — **EXACT — HUMAN PROOF** by substitution
   (human + order-2 regression). Analog of (2.3).
 - Unrestricted reachable \(s\in\mathbb Z^m\) lie in a finite box —
   **REFUTED** computationally: coordinates grow once liveness is
@@ -184,96 +184,96 @@ role. The systems are not identified.
 - Restricted box \(\lvert t_m\rvert\le 1\) is a sufficient adder —
   **REFUTED**.
 - Restricted box \(\lvert t_m\rvert\le 2\) is the live last-coordinate
-  *projection* — **PROVED** as a consequence of \(B_{\min}\), not as
+  *projection* — **EXACT — HUMAN PROOF** as a consequence of \(B_{\min}\), not as
   a sufficient invariant by itself.
 - Live reachable set
   \(B_{\min}\subset\mathbb Z^3\), \(\lvert B_{\min}\rvert=55\), is
   forward-invariant under every legal live transition —
-  **PROVED** (explicit set + exterior deadness recurrences).
+  **EXACT — HUMAN PROOF** (explicit set + exterior deadness recurrences).
 - Phase-0 85-state \(\lvert s_3\rvert\le 2\) graph equals
-  \(B_{\min}\) plus 30 never-live vectors — **PROVED**.
-- Order-2 specialisation recovers Theorem 2.2 — **PROVED** in the
+  \(B_{\min}\) plus 30 never-live vectors — **EXACT — HUMAN PROOF**.
+- Order-2 specialisation recovers Theorem 2.2 — **EXACT — HUMAN PROOF** in the
   source; Phase 0 regresses it.
 - \(\Gamma_{\mathrm{NP}}=([0;\overline{2}],[0;\overline{1}],[0;\overline{3}])\)
   has irreducible char poly \(x^3-2x^2-x-3\), discriminant \(-439<0\),
   unique real root in \((2,3)\), conjugate modulus squared \(3/\lambda>1\)
-  — **PROVED** (integer certificate). Perron, not Pisot.
+  — **EXACT — HUMAN PROOF** (integer certificate). Perron, not Pisot.
 - Residual matrix \(A\) with first row \((0,0,d_3)\), second
   \((1,0,d_2)\), third \((0,1,d_1)\), same characteristic polynomial
-  as the place-value recurrence — **PROVED**.
+  as the place-value recurrence — **EXACT — HUMAN PROOF**.
 - Hub \((-3,-1,0)\) is live at every remaining length, and the prefix
-  \((1,-2)\) reaches it at every even remaining length — **PROVED**.
+  \((1,-2)\) reaches it at every even remaining length — **EXACT — HUMAN PROOF**.
 - Live residual union of \(\Gamma_{\mathrm{NP}}\) is infinite —
   **OBSERVATION** through length 16 (strictly increasing counts);
   not a theorem. Finite depth is not infinitude.
 - Exact reverse map
   \(A^{-1}=\begin{pmatrix}-1/3&1&0\\-2/3&0&1\\1/3&0&0\end{pmatrix}\)
   over \(\mathbb Q\), with integer preimages iff \(t_1\equiv 0\pmod 3\) —
-  **PROVED**.
+  **EXACT — HUMAN PROOF**.
 - Rational SPD \(Q=\begin{pmatrix}10&-3&-7\\-3&11&-3\\-7&-3&12\end{pmatrix}\)
   with Sylvester minors \(10,101,457\), and
   \(Q-(A^{-1})^{\mathsf T}QA^{-1}\) SPD, hence
   \(\lvert A^{-1}x\rvert_Q^2\le(49/50)\lvert x\rvert_Q^2\) —
-  **PROVED**. Spectral radius \(\rho(A^{-1})<1\) was already known from
+  **EXACT — HUMAN PROOF**. Spectral radius \(\rho(A^{-1})<1\) was already known from
   the cubic; this is the induced-norm certificate.
 - Accepting slice \(F=\{s_3=0\}\) is an infinite plane, so reverse
-  contraction does not bound \(C(F)\) — **PROVED**.
+  contraction does not bound \(C(F)\) — **EXACT — HUMAN PROOF**.
 - Basin \(C(\{(0,0,0)\})\) is finite, cardinality \(9164\),
   stabilization depth \(67\), containing the hub \((-3,-1,0)\) and not
   containing the live accepting terminal \((30,25,0)\) —
-  **PROVED** (backward least fixed point; Checks A and B).
+  **EXACT — HUMAN PROOF** (backward least fixed point; Checks A and B).
 - \(C(\{(0,0,0)\})\) equals the unread-tail adder live set from
   \((0,0,0)\) — **REFUTED**: \(\lvert R_{\le 16}\setminus C(\{0\})\rvert=700\).
 - Reverse contraction of \(A^{-1}\) bounds the adder live set —
   **REFUTED** as a mechanism. It bounds co-reachability of a finite
   seed, not forward unread-tail images of the origin.
 - Terminal acceptance at remaining \(0\) is \(E_0=s_3=0\), i.e.
-  \(K_0=F=\{s_3=0\}\), an infinite plane — **PROVED**. Canonical
+  \(K_0=F=\{s_3=0\}\), an infinite plane — **EXACT — HUMAN PROOF**. Canonical
   digits do not constrain \((s_1,s_2)\) at remaining \(0\).
 - For \(n\ge 1\), \(K_n=\{s:\mathrm{lo}(n)\le E_n(s)\le\mathrm{hi}(n)\}\)
   with \(E_n=s_1 q_{n-2}+s_2 q_{n-1}+s_3 q_n\) and
   \(\mathrm{lo}(n)=-4S_{n-1}+2\), \(\mathrm{hi}(n)=2S_{n-1}-1\) —
-  **PROVED**. Infinite slab. Same predicate as unread-tail liveness.
+  **EXACT — HUMAN PROOF**. Infinite slab. Same predicate as unread-tail liveness.
 - Kernel family \(t_n=(q_{n-1},-q_{n-2},0)\in K_n\cap F\) with
   \(E_n(t_n)=0\) and \(\lvert t_n\rvert\to\infty\) —
-  **PROVED**. Also \((k,0,0)\in K_0\) for every \(k\in\mathbb Z\).
+  **EXACT — HUMAN PROOF**. Also \((k,0,0)\in K_0\) for every \(k\in\mathbb Z\).
 - \((30,25,0)\in K_0\) and \((30,25,0)\notin K_n\) for all \(n\ge 1\) —
-  **PROVED** (\(E_n\ge 25 q_{n-1}>\mathrm{hi}(n)\)). Not in \(C(\{0\})\).
+  **EXACT — HUMAN PROOF** (\(E_n\ge 25 q_{n-1}>\mathrm{hi}(n)\)). Not in \(C(\{0\})\).
 - Hub \((-3,-1,0)\) lies in \(\bigcap_n(K_n\cap F)\) —
-  **PROVED** (existing hub liveness). Bounded point of the plane, not
+  **EXACT — HUMAN PROOF** (existing hub liveness). Bounded point of the plane, not
   a member of the kernel family.
 - Pisot and non-Pisot systems share the same \(K_0=F\). The 55-set
-  meets \(F\) in \(18\) states — **PROVED**. Structural change is the
+  meets \(F\) in \(18\) states — **EXACT — HUMAN PROOF**. Structural change is the
   reachable live set, not the terminal predicate.
 - Unbounded \(K\) implies unbounded \(L\) —
   **not claimed**. \(t_n\) need not lie on a live path from
   \((0,0,0)\).
 - Every forward image under \(\Gamma_{\mathrm{NP}}\) has
   \(s_1'=3s_3\equiv 0\pmod 3\). Hence \(R(0)\subseteq\{s_1\equiv 0\pmod 3\}\)
-  — **PROVED**. Pisot \(B_{\min}\) occupies all three classes of
+  — **EXACT — HUMAN PROOF**. Pisot \(B_{\min}\) occupies all three classes of
   \(s_1\bmod 3\).
 - \(t_n\in R(0)\) requires \(q_{n-1}\equiv 0\pmod 3\), i.e.
   \(n\equiv 0\pmod 4\). Immediate predecessors of \(t_n\) share
   \(s_1=-q_{n-2}-q_{n-1}/3\); this is \(\not\equiv 0\pmod 3\) except
-  \(n\equiv 0\) or \(12\pmod{24}\) — **PROVED**. Those \(t_n\) are
+  \(n\equiv 0\) or \(12\pmod{24}\) — **EXACT — HUMAN PROOF**. Those \(t_n\) are
   unreachable from the origin.
 - \(|L_0|=\infty\) — **not proved**. Finite-depth live growth through
   length 18 is an observation, not infinitude. Remaining \(t_n\)
   (\(n\equiv 0,12\pmod{24}\)) have reverse cones that do not hit
   \(0\) at the scanned depths; that is not a global invariant for
   all of \(K\).
-- From the origin, \((c_B)_3=-\mathrm{val}(B)\) — **PROVED — LEAN**
+- From the origin, \((c_B)_3=-\mathrm{val}(B)\) — **EXACT — LEAN VERIFIED**
   (`particular_s3`, novelty **KNOWN**). So \(\mathrm{val}=0\) iff
   \(c_B\in F=\{s_3=0\}\), not iff \(c_B=0\).
 - Shortest complete non-reset zero-value word is \((1,-2)\) with
-  \(c_B=(-3,-1,0)\) (the known \(F\to F\) hub) — **PROVED**.
+  \(c_B=(-3,-1,0)\) (the known \(F\to F\) hub) — **EXACT — HUMAN PROOF**.
   Repeating it stays on the bounded ray. Recurrence combos remain
   the identically-zero reset sublattice. A point of \(F\) is not
   \(\lvert L_0\rvert=\infty\).
-- MSD consumed sum splits at two starts — **PROVED — LEAN**
+- MSD consumed sum splits at two starts — **EXACT — LEAN VERIFIED**
   (`consumedSum_append`, novelty **KNOWN**). Complete-word
   \(\mathrm{val}(UV)=\mathrm{val}(V)-E_{\lvert V\rvert}(c_U)\) —
-  **PROVED — LEAN** (`val_concat_energy`, novelty **KNOWN**).
+  **EXACT — LEAN VERIFIED** (`val_concat_energy`, novelty **KNOWN**).
 - Complete zero-value words form a monoid under concatenation —
   **REFUTED**. Witness \((1,-2)(1,-2)\) has \(\mathrm{val}=5\),
   \(c_B=(-6,-2,-5)\notin F\).
@@ -283,7 +283,7 @@ role. The systems are not identified.
   off the two-step ray. Finite \(\lvert L_0(N)\rvert\) is not
   \(\lvert L_0\rvert=\infty\).
 - From any residual, \((T_B(s))_3=E_{\lvert B\rvert}(s)-\mathrm{val}(B)\)
-  — **PROVED — LEAN** (`fold_s3`, novelty **KNOWN**). So
+  — **EXACT — LEAN VERIFIED** (`fold_s3`, novelty **KNOWN**). So
   \(T_B(s)\in F\) iff \(E_k(s)=\mathrm{val}(B)\). This is
   `energy_telescope` at remaining 0, not a new transducer.
   Repeating the hub word from the hub leaves \(F\). Legal two-step
@@ -309,14 +309,14 @@ role. The systems are not identified.
   two-step ray (maximizer \((-27,-6,0)\)). Integer reverse is Lean
   `unique_predecessor` (ledger `OST-np-unique-predecessor`), novelty
   **KNOWN**. New terminals \(12\to 16\) are not \(\lvert L_0\rvert=\infty\).
-- Origin-reset prefixes do not create new terminals — **PROVED — LEAN**
+- Origin-reset prefixes do not create new terminals — **EXACT — LEAN VERIFIED**
   (`reset_prefix`, novelty **KNOWN**): \(T_R(0)=0\) implies
   \(T_{RU}(0)=T_U(0)\). Hub first appears at length \(2\), not via
   \((B_\ast)^k\) padding. Primitive image \(P\) equals \(L_0\) by
   shortest realizations; that is not a new census. Finite-horizon
   \(C(N)\) growth is not \(\lvert L_0\rvert=\infty\).
 - Length-\(n\) suffix landing on \(F\) is classified by \(E_n\), not
-  by residual \(s\) — **PROVED — LEAN** (`same_energy_same_OnF`,
+  by residual \(s\) — **EXACT — LEAN VERIFIED** (`same_energy_same_OnF`,
   novelty **KNOWN**): equal \(E_{\lvert v\rvert}\) implies the same
   `OnF`. Myhill–Nerode / Hankel / digit-triple alphabets are not a
   new census. Finite-horizon Ext collapse (22 windows) is not

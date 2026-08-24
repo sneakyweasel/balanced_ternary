@@ -11,7 +11,7 @@ LSD-first. No general-purpose computer-algebra system is required for
 evaluation, reciprocity, or trial division by \(x\pm 1\) and small
 cyclotomics.
 
-## Evaluation identities (PROVED)
+## Evaluation identities (EXACT — HUMAN PROOF)
 
 \[
 P_n(3)=n,\qquad
@@ -24,7 +24,7 @@ equals the coefficient Hamming weight of \(P_n\).
 
 ## Reciprocity
 
-**PROVED.** The canonical word is a palindrome (A134027) if and only if
+**EXACT — HUMAN PROOF.** The canonical word is a palindrome (A134027) if and only if
 \(P_n\) is palindromic as a coefficient tuple, i.e. \(x^d P_n(1/x)=P_n(x)\)
 with \(d=\deg P_n\). For \(n\neq 0\) the leading coefficient is nonzero, so
 this is the usual reciprocal polynomial.
@@ -40,7 +40,7 @@ factors have degree at least 1 and \(\lvert Q(3)\rvert>1\). It does **not**
 mean that a factorization of \(P_n\) is a previously unknown factorization
 of a prime: if \(n=p\) is prime then one of \(Q(3),R(3)\) is \(\pm 1\).
 
-**Example (PROVED by direct division).** \(13=1+3+9\), word `+++`,
+**Example (EXACT — HUMAN PROOF by direct division).** \(13=1+3+9\), word `+++`,
 \(P_{13}(x)=1+x+x^2=\Phi_3(x)\), irreducible over \(\mathbb{Q}\) of degree 2.
 Here \(P_{13}(3)=13\) is prime and the polynomial is a cyclotomic.
 

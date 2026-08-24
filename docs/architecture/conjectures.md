@@ -11,13 +11,15 @@ The Python API is `research.conjectures`.
 
 ## Status values
 
-`ACTIVE`, `PROVED`, `REFUTED`, `COMPUTATIONALLY_SUPPORTED`,
+Settled conjectures use ledger tags: `EXACT — HUMAN PROOF` or
+`EXACT — LEAN VERIFIED`. They live in the `proved/` drawer.
+
+Other registry values: `ACTIVE`, `REFUTED`, `COMPUTATIONALLY_SUPPORTED`,
 `REPARAMETERIZATION`, `ARCHIVED`.
 
 A computational observation must not be silently stored as a conjecture.
-Claim labels in the mathematical record
-(`PROVED`, `COMPUTATIONALLY VERIFIED`, `CONJECTURE`, `OBSERVATION`,
-`REFUTED`) remain authoritative; the JSON registry indexes them.
+Claim labels in the mathematical record are the seven ledger tags in
+[docs/README.md](../README.md); the JSON registry indexes them.
 
 ## Required fields
 

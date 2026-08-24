@@ -24,7 +24,7 @@ These are three different objects. Do not merge them.
 
 ## Canonicalization decision guide
 
-- Unary constructor term in `{D, I_a, S, N}` → `rewrite_expr` / OpFrag NF. Unique syntactic *and* semantic representative (**PROVED — LEAN**: [BTC-op-fragment-nd-nf](theorem_ledger.md), [BTC-op-fragment-nd-semantic](theorem_ledger.md)).
+- Unary constructor term in `{D, I_a, S, N}` → `rewrite_expr` / OpFrag NF. Unique syntactic *and* semantic representative (**EXACT — LEAN VERIFIED**: [BTC-op-fragment-nd-nf](theorem_ledger.md), [BTC-op-fragment-nd-semantic](theorem_ledger.md)).
 - Integer sum of constructor terms → evaluate, then coefficient-word NF. Never a tree rule on `Add` ([BTC-add-affine-only](theorem_ledger.md)).
 - Operator word → `rewrite_word(..., simplifying_only=True)` for the production-safe fragment, or pass `rules=WORD_WN_RULES` / `WORD_WND_RULES` for the named opt-in enlargements. Do **not** treat the full `WORD_REWRITE_RULES` table as a confluent TRS ([BTC-word-full-lc](theorem_ledger.md), **REFUTED**).
 - There is no unified `canonicalize(Expr)` that includes `Add`/`Mul` as tree constructors.
@@ -136,7 +136,7 @@ Expr ::= Int | Trit | Add | Mul | Neg | D | I- | I0 | I+ | S | Nrm | Cmp3 | Sele
 
 `evaluate : Expr → ℤ` is exact. `I0` rewrites to `S`.
 
-**Tree rules** (each **PROVED / LEAN VERIFIED** as an integer identity):
+**Tree rules** (each **EXACT — LEAN VERIFIED** as an integer identity):
 
 | Rule | Lean |
 |------|------|
@@ -219,7 +219,7 @@ cancels `D(I_{-a})`, reaching `N(x)`. Join of `N(N(D(x)))`:
 
 Local confluence plus termination gives confluence (Newman). Every
 term of the fragment therefore has a unique syntactic normal form.
-This is **PROVED — LEAN** as a rewrite-relation Newman argument
+This is **EXACT — LEAN VERIFIED** as a rewrite-relation Newman argument
 ([BTC-op-fragment-nd-nf](theorem_ledger.md),
 `BTCalculus/OpFragNewman.lean`). The smaller system without the
 commute remains [BTC-op-fragment-nf](theorem_ledger.md) and is still
@@ -265,7 +265,7 @@ using `D(-n) = -D(n)` (`rewrite_N_D`). These agree as functions of
   power of `3` cannot equal a negative power of `3`.
 
 So distinct irreducibles are distinct integer operator functions
-([BTC-op-fragment-nd-semantic](theorem_ledger.md), **PROVED — LEAN**).
+([BTC-op-fragment-nd-semantic](theorem_ledger.md), **EXACT — LEAN VERIFIED**).
 Together with soundness of the rules, the enlarged TRS is a complete
 canonical form for the integer operator algebra on this fragment:
 semantically equal terms have the same NF.
@@ -414,7 +414,7 @@ Both descendants are irreducible and not AC-equivalent. The
 summands is already AC-matching; joining the same-sign peak needs
 constants, an explicit carry, or a polynomial normal form.
 
-[BTC-add-factor-cas-obstruction](theorem_ledger.md) (**PROVED**):
+[BTC-add-factor-cas-obstruction](theorem_ledger.md) (**EXACT — HUMAN PROOF**):
 any finite exact-on-ℤ factor-out Add extension of the unary tree
 core either matches only adjacent binary summands, leaving
 `S(x)+(S(y)+z)` versus `S(x+y)+z` (not AC-equivalent), or, once
@@ -456,7 +456,7 @@ before the commute became a tree rule.
 
 ### Obstruction
 
-[BTC-unary-s-distrib-obstruction](theorem_ledger.md) (**PROVED**):
+[BTC-unary-s-distrib-obstruction](theorem_ledger.md) (**EXACT — HUMAN PROOF**):
 any exact push-in rule that copies `S` (or `I_a`) through `Add` or
 `Mul` overlaps `D∘S = id` (resp. `D∘I_a = id`) in a peak whose other
 descendant is `D` of a sum or product of `S`/`I` terms. Without an
@@ -471,7 +471,7 @@ orientations fail for the same carry.
 
 ### Architectural theorem (Add is affine-only)
 
-[BTC-add-affine-only](theorem_ledger.md) (**PROVED**). Let
+[BTC-add-affine-only](theorem_ledger.md) (**EXACT — HUMAN PROOF**). Let
 `U, V, W ∈ {S, I+, I-, N}` (and `I0 = S`). The identity
 `U(x)+V(y) = W(x+y)` holds on `ℤ` if and only if `(U,V,W)` is one of
 
@@ -553,7 +553,7 @@ non-claim inside the production table.
 
 ### Named fragment `WORD_SIMP_RULES`
 
-[BTC-word-simp-nf](theorem_ledger.md) (**PROVED**). The sixteen
+[BTC-word-simp-nf](theorem_ledger.md) (**EXACT — HUMAN PROOF**). The sixteen
 `simplifying=True` rows — cancellations `N∘N`, `D∘S`, `D∘I±`,
 `D∘I0`, `Wz∘Wz`, `Wt∘Wt`, `H2∘M2`, `H3∘S`; the `W`/`K3` stock
 `W∘W → K3`, `W∘S → W`, `K3∘S → K3`, `K3∘W → W`, `W∘K3 → W`,
@@ -607,7 +607,7 @@ the named fragment below; the further W+N+D enlargement is
 
 ### Named fragment `WORD_WN_RULES`
 
-[BTC-word-wn-nf](theorem_ledger.md) (**PROVED**). The nineteen-rule
+[BTC-word-wn-nf](theorem_ledger.md) (**EXACT — HUMAN PROOF**). The nineteen-rule
 opt-in fragment
 
 ```text
@@ -695,7 +695,7 @@ rules. Two-way `N∘D ↔ D∘N` remains a KNOWN non-termination.
 
 ### Named fragment `WORD_WND_RULES`
 
-[BTC-word-wnd-nf](theorem_ledger.md) (**PROVED**). The twenty-two-rule
+[BTC-word-wnd-nf](theorem_ledger.md) (**EXACT — HUMAN PROOF**). The twenty-two-rule
 opt-in fragment
 
 ```text
@@ -773,11 +773,11 @@ Tests: `tests/unit/test_rewrite_word_fragments.py`.
 
 The unary-fragment questions — termination, local confluence, unique
 syntactic NF, and semantic canonicity on `{D, I_a, S, N}` — are
-closed (**PROVED**). The Phase-0 enlargement questions for push-in
+closed (**EXACT — HUMAN PROOF**). The Phase-0 enlargement questions for push-in
 `Add` / `Mul`, for one-way `W` without `N∘K3`, and for finite
 factor-out Add (binary or AC-matching) are closed (**REFUTED**). The
 architectural question — whether a tree TRS on `Add` can still be a
-complete finite canonicalizer — is closed (**PROVED**): it cannot,
+complete finite canonicalizer — is closed (**EXACT — HUMAN PROOF**): it cannot,
 and the complete forms are affine / coefficient-word
 ([BTC-add-affine-only](theorem_ledger.md)). No finite exact Add/Mul
 tree extension of that kind is assumed. The
@@ -795,5 +795,5 @@ Lean Newman for the enlarged fragment is packaged in
 confluence, unique syntactic NF, and the NF grammar). Semantic
 canonicity of distinct irreducibles is `OpFrag.irreducible_eval_injective`
 in `BTCalculus/OpFragSemantic.lean`
-([BTC-op-fragment-nd-semantic](theorem_ledger.md), **PROVED — LEAN**).
+([BTC-op-fragment-nd-semantic](theorem_ledger.md), **EXACT — LEAN VERIFIED**).
 Do not edit `BTCalculus/Confluence.lean`.

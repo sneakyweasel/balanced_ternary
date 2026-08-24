@@ -89,9 +89,9 @@ named obstruction rather than a missing rule.
 
 ## Candidate operations / invariants
 
-- OpFrag lex rank `(I0-count, N-inversion, size)` — **PROVED**.
-- NF grammar `w(D^d(x))` or `w(D^d(N(x)))`, `w ∈ {I-,I+,S}*` — **PROVED**.
-- Exact constructor identities `U(x)+V(y)=W(x+y)` — **PROVED** (six rows).
+- OpFrag lex rank `(I0-count, N-inversion, size)` — **EXACT — HUMAN PROOF**.
+- NF grammar `w(D^d(x))` or `w(D^d(N(x)))`, `w ∈ {I-,I+,S}*` — **EXACT — HUMAN PROOF**.
+- Exact constructor identities `U(x)+V(y)=W(x+y)` — **EXACT — HUMAN PROOF** (six rows).
 - Full `WORD_REWRITE_RULES` as a confluent TRS — **REFUTED**.
 - Unified tree canonicalizer including `Add` — **REFUTED**.
 
@@ -152,14 +152,14 @@ stay human. Do not edit `formal/BTCalculus/Confluence.lean`.
 
 ## Results
 
-- Enlarged OpFrag TRS is a complete canonical form (**PROVED — LEAN**).
+- Enlarged OpFrag TRS is a complete canonical form (**EXACT — LEAN VERIFIED**).
 - The next-state output `D(x+y)` is not D-local; constructor-sum
   identities are the six parameterized rows; the named carry-free
-  push-in system fails local confluence (**PROVED — LEAN**).
+  push-in system fails local confluence (**EXACT — LEAN VERIFIED**).
 - The unrestricted “any Add-tree TRS is a CAS” wording remains human
-  (**PROVED**).
+  (**EXACT — HUMAN PROOF**).
 - Production word table is not locally confluent; three named opt-in
-  fragments are (**PROVED** / **REFUTED** as tagged).
+  fragments are (**EXACT — HUMAN PROOF** / **REFUTED** as tagged).
 - Word-table enlargement beyond `WORD_WND_RULES` is closed.
 
 ## Open questions

@@ -5,7 +5,7 @@ State is a carry in ``{-1, 0, +1}``. On input digit ``a``:
     s = 2a + carry
     s = d + 3 * next_carry    with d in {-1, 0, +1}
 
-**PROVED:** this is exact integer doubling written in balanced ternary,
+**EXACT — HUMAN PROOF:** this is exact integer doubling written in balanced ternary,
 because the rewrite ``s = d + 3c'`` preserves value and the carry alphabet
 is closed on ``s in {-3, ..., 3}``.
 """

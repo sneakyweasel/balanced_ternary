@@ -44,16 +44,16 @@ Distinguish alphabets. Do not lift a finite bound to `ℤ`.
 
 | Alphabet | Class | Status |
 |----------|-------|--------|
-| already trits | identity / strip high zeros | **PROVED** |
-| fixed `[-B,B]` | LSD Mealy; carry stays in `[-B,B]` for `B ≥ 1`; single-coeff `|q| ≤ ⌊(B+1)/3⌋` | **PROVED** existence; Lean has the algebraic carry bound |
-| unbounded `ℤ` | not one finite-state transduction | **PROVED** (carry scale follows `3^k`) |
+| already trits | identity / strip high zeros | **EXACT — HUMAN PROOF** |
+| fixed `[-B,B]` | LSD Mealy; carry stays in `[-B,B]` for `B ≥ 1`; single-coeff `|q| ≤ ⌊(B+1)/3⌋` | **EXACT — HUMAN PROOF** existence; Lean has the algebraic carry bound |
+| unbounded `ℤ` | not one finite-state transduction | **EXACT — HUMAN PROOF** (carry scale follows `3^k`) |
 
 The transducer zoo records these three rows. The bounded machine is
 `BoundedNormalizeTransducer`.
 
 ## Add / mul / FMA
 
-**PROVED** as value identities:
+**EXACT — HUMAN PROOF** as value identities:
 
 ```text
 normalize(P+Q) = encode(value(P)+value(Q))
@@ -65,4 +65,4 @@ Costs may differ. Fused FMA can save rewrites; staged NF of `PQ` can
 also be cheaper on some inputs. There is **no** generic
 sparsity-preservation theorem. Both savings and staged-cheaper
 witnesses are searched by `bt.normtheory.discovery` and never
-auto-promoted to **PROVED**.
+auto-promoted to **EXACT — HUMAN PROOF**.

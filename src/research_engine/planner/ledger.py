@@ -83,8 +83,8 @@ class ResearchLedger:
 
 def _status_for(decision: DecisionKind, current: HypothesisStatus) -> HypothesisStatus:
     if decision is DecisionKind.PROMOTE:
-        if current is HypothesisStatus.PROVED:
-            return HypothesisStatus.PROVED
+        if current is HypothesisStatus.SETTLED:
+            return HypothesisStatus.SETTLED
         return HypothesisStatus.SUPPORTED
     if decision is DecisionKind.REFUTE:
         return HypothesisStatus.REFUTED

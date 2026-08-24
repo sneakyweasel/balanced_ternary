@@ -277,7 +277,7 @@ def carry_defect_scan(limit: int) -> dict[str, object]:
 def disjoint_support_zero_defect(a: int, b: int) -> bool:
     """True if ``a`` and ``b`` have disjoint BT supports.
 
-    **PROVED:** then there is no digitwise overlap, addition is carry-free,
+    **EXACT — HUMAN PROOF:** then there is no digitwise overlap, addition is carry-free,
     and ``carry_defect(a, b) = 0``.
     """
     from bt.support import support

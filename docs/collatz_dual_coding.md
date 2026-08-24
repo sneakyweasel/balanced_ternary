@@ -192,7 +192,7 @@ R((1))=R((1,4))=3,\qquad \operatorname{BT}(3)=\texttt{+0},
 
 but their canonical endpoints are \(5\) and \(1\), their zero-lift
 successors are \(4\) and \(2\), and for candidate \(k=2\) their lift
-digits are \(2\) and \(0\). This is an **EXACT COUNTEREXAMPLE**.
+digits are \(2\) and \(0\). This is **REFUTED**.
 
 Consequently no bounded suffix of \(\operatorname{BT}(R)\) can determine
 these quantities in general. A bounded census of 341 prefixes
