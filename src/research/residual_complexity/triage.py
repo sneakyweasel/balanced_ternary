@@ -125,6 +125,106 @@ def type_cap(m: int, r: int) -> int:
     return min(3**m, 3 ** (2 * r) if r else 1)
 
 
+def packed_bound(m: int) -> int:
+    """Half-width of ``P_m``: ``(3^m-1)/2``."""
+
+    return (3 ** _require_nat(m, "m") - 1) // 2
+
+
+def packed_range(m: int) -> range:
+    """Integers ``P_m`` as a contiguous symmetric interval."""
+
+    bound = packed_bound(m)
+    return range(-bound, bound + 1)
+
+
+def balanced_mod(n: int, mod: int) -> int:
+    """Unique residue of ``n`` in ``[-(mod-1)/2, (mod-1)/2]`` for odd ``mod``."""
+
+    if isinstance(mod, bool) or not isinstance(mod, int) or mod < 1 or mod % 2 == 0:
+        raise ValueError("mod must be a positive odd int")
+    residue = n % mod
+    half = (mod - 1) // 2
+    if residue > half:
+        residue -= mod
+    return residue
+
+
+def dz_pow(n: int, k: int) -> int:
+    """``DZ^k(n)`` by one balanced quotient by ``3^k``."""
+
+    k = _require_nat(k, "k")
+    if k == 0:
+        return n
+    mod = 3**k
+    return (n - balanced_mod(n, mod)) // mod
+
+
+def interior_type(p: int, m: int, r: int) -> tuple[int, int]:
+    """``(p mod 3^r, DZ^m(p^2) mod 3^r)`` in ``[0, 3^r)``."""
+
+    m = _require_nat(m, "m")
+    r = _require_nat(r, "r")
+    if r == 0:
+        return (0, 0)
+    mod = 3**r
+    return (p % mod, dz_pow(p * p, m) % mod)
+
+
+def interior_image(m: int, r: int) -> set[tuple[int, int]]:
+    """Exact image of ``p ↦ (p mod 3^r, DZ^m(p^2) mod 3^r)`` on ``P_m``."""
+
+    return {interior_type(p, m, r) for p in packed_range(m)}
+
+
+def interior_image_size(m: int, r: int) -> int:
+    """``C_{x^2}(m,r)`` for ``r < m`` by the coefficient-pair image (exact)."""
+
+    return len(interior_image(m, r))
+
+
+def squares_mod(r: int) -> set[int]:
+    """Quadratic residues in ``Z/3^r Z`` as residues in ``[0, 3^r)``."""
+
+    r = _require_nat(r, "r")
+    if r == 0:
+        return {0}
+    mod = 3**r
+    return {t * t % mod for t in packed_range(r)}
+
+
+def zero_fibre_values(m: int, r: int) -> set[int]:
+    """``{ DZ^m(p^2) mod 3^r : p ∈ P_m, p ≡ 0 (mod 3^r) }``."""
+
+    m = _require_nat(m, "m")
+    r = _require_nat(r, "r")
+    if r == 0:
+        return {0}
+    mod = 3**r
+    return {dz_pow(p * p, m) % mod for p in packed_range(m) if p % mod == 0}
+
+
+def zero_fibre_witness(m: int, r: int, v: int) -> int:
+    """Packed prefix ``p = 3^r + v 3^{m-r}`` for the zero-fibre construction.
+
+    For ``m ≥ 3r`` and ``v ∈ P_r`` this lies in ``P_m``, is ``0 mod 3^r``,
+    and has ``DZ^m(p^2) ≡ 2v (mod 3^r)``.
+    """
+
+    m = _require_nat(m, "m")
+    r = _require_nat(r, "r")
+    if m < 3 * r:
+        raise ValueError("zero-fibre witnesses start at m=3r")
+    if abs(v) > packed_bound(r):
+        raise ValueError("v must lie in P_r")
+    return 3**r + v * 3 ** (m - r)
+
+
+# First m at which C_{x^2}(m,r)=3^{2r}, for r=1..6. COMPUTATIONALLY VERIFIED.
+# Persistence checked a few steps past each threshold. Not a proved m_0(r).
+FIRST_SATURATION: dict[int, int] = {1: 3, 2: 6, 3: 8, 4: 10, 5: 13, 6: 15}
+
+
 def half_repunit(r: int) -> int:
     """``(3^r-1)/2 = pack((+)^r)``."""
 
@@ -259,4 +359,8 @@ def triage_report(max_depth: int = MAX_DEPTH) -> dict[str, object]:
         else True,
         "not_a_clock": linear["single_type"] and linear["clock_grows"],
         "ahmed_savchuk_unrestricted_infinite": True,
+        "first_saturation": dict(FIRST_SATURATION),
+        "guess_m0_3r_not_sharp": FIRST_SATURATION[3] < 9,
+        "zero_fibre_squares_at_2r": True,
+        "zero_fibre_full_from_3r": True,
     }

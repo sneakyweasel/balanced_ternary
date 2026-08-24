@@ -46,14 +46,16 @@ module's `census_count` counts live types for \(Y=\{0,+\}^\omega\).
 
 ## Branch budget
 
+Previous phase promoted the band `BTR-x2-C-band`. This phase's budget is the OPEN interior.
+
 ```text
-Mathematical target     Is there an exact two-parameter law for unrestricted C_F(m,r), starting with F(x)=x and F(x)=x², or a proved obstruction that the census is not a remaining-horizon clock and not a closed low-degree formula?
-Novelty hypothesis      For low-degree F, C_F(m,r) may have a closed two-parameter expression (or a short recurrence) that is not the safety table, not M_k(x²) restated on the triangle m<r, and not Ahmed–Savchuk infinite-state.
-Falsifier               Growth that still needs width-Θ enumeration; a table with no law inside Phase-0 range; reduction to the closed M_k(x³) line; restatement of Ahmed–Savchuk unrestricted infinite-state; accidentally recomputing the safety census.
-Existing machinery      bt.calculus residual rho/delta/residual_along/output_along; IntPoly; Φ_r / degree-≤2 coeff mod 3^r; reachable layers; levelled_mealy_count as the clock contrast; safety census only as a contrast table.
-Maximum Phase-0 scope   F ∈ {x, x²}, exact m,r ≤ 7, exact finite-horizon types, no manufactured countdown states, no cubic fibres, no CLI.
-Promotion criterion     A proved closed law, or a proved obstruction that this census cannot have a simple two-parameter closed form in the intended class.
-Stop criterion          Bounded tables only; safety-census reparameterization; Ahmed–Savchuk restatement; cubic-stratum reopen.
+Mathematical target     For 0<r<m-1, does C_{x^2}(m,r) saturate at 3^{2r} by an explicit threshold m_0(r), or does the image of DZ^m(p^2) mod 3^r still require width-Θ(m-r) enumeration?
+Novelty hypothesis      An explicit m_0(r), a collision family that blocks 3^{2r}, or a proved width obstruction would be PROJECT-SPECIFIC. Ahmed–Savchuk infinite-state and same-depth 3^m are KNOWN; the superdiagonal is already PROJECT-SPECIFIC on this gate.
+Falsifier               Extra table with no threshold, no family, and no obstruction; restating the band; safety or cubic reopen.
+Existing machinery      residual_complexity.triage, type_cap, quadratic_residual_formula / iter_dz, X2_CENSUS through 7, BTR-x2-C-band.
+Maximum Phase-0 scope   Exact types, no sampling. A few (m,r) past 7 to test the guess m_0(r)=3r. Prefer an explicit family or proof. No cubic, no CLI, no Lean.
+Promotion criterion     A proved saturation law with explicit m_0(r), or a proved obstruction that the interior cannot saturate at 3^{2r} / still needs width-Θ(m-r) enumeration for every m.
+Stop criterion          Bounded extra table only; band restatement; safety reparameterization; Ahmed–Savchuk; cubic reopen.
 ```
 
 ## Balanced-ternary formulation
@@ -83,22 +85,29 @@ and the balanced expansion of \(((3^r-1)/2)^2\).
 - \(\Phi_r\) / `phi_k` — exact \(\equiv_r\) type. **PROVED** (existing).
 - Degree-\(\le 2\) coefficient triple mod \(3^r\). **PROVED** (`BTA-quad-mod`).
 - Unrestricted census \(C_F(m,r)\). **COMPUTATIONALLY VERIFIED** through
-  \(m,r\le 7\).
+  \(m,r\le 7\), with extra interior cells through \(r\le 6\) as recorded
+  below.
 - Band law \(C_{x^2}(m,r)=3^m\) for \(r\ge m\), and
   \(C_{x^2}(m,m-1)=3^m-3\) for \(m\ge 2\). **PROVED**.
+- Zero fibre of the interior map: quadratic residues at \(m=2r\), and
+  the full \(\mathbb Z/3^r\mathbb Z\) for \(m\ge 3r\). **PROVED**.
 - Remaining-horizon clock `levelled_mealy_count`. Excluded as a type
   predicate: it grows on \(F(x)=x\).
 
 ## Experiments
 
 `research.residual_complexity.triage` with \(m,r\le 7\), polynomials
-`x` and `x^2`. Tests live in
+`x` and `x^2`, plus an exact integer image
+\(p\mapsto(p\bmod 3^r,\,\mathrm{DZ}^m(p^2)\bmod 3^r)\) used past depth 7
+only to test saturation. Tests live in
 `tests/research/residual_complexity/test_triage.py`. Safety counts are
-imported only as a contrast.
+imported only as a contrast. Cubic fibres are not opened.
 
 ## Conjectures
 
-None registered. Interior cells \(0<r<m-1\) are not conjectured.
+None registered. The guess \(m_0(r)=3r\) as a *sharp* first-saturation
+time is discarded (it is not a registered conjecture). Full interior
+\(C_{x^2}(m,r)\) remains without a claimed closed form.
 
 ## Counterexamples
 
@@ -110,6 +119,11 @@ None registered. Interior cells \(0<r<m-1\) are not conjectured.
 4. **Not the safety census.** Horizon-7 live counts
    \(1,3,7,16,33,66,131,260\); unrestricted
    \(1,3,9,27,81,243,729,2187\).
+5. **Not the coefficient cap at width \(m=2r\).** The fibre
+   \(p\equiv 0\pmod{3^r}\) realises only quadratic residues, so
+   \(C_{x^2}(2r,r)<3^{2r}\). Witnesses: \(C(2,1)=6<9\), \(C(4,2)=50<81\).
+6. **Not \(m_0(r)=3r\) as the first saturation time.** \(C_{x^2}(8,3)=729=3^6\)
+   already, while \(3r=9\). Also \(C(10,4)=6561\) with \(3r=12\).
 
 ## Formalization
 
@@ -202,31 +216,107 @@ m\r   0  1   2    3     4     5     6     7
 
 The coefficient cap \(C_{x^2}(m,r)\le\min(3^m,3^{2r})\) holds (at
 horizon \(r\ge 1\) and \(m\ge r\), leading coefficients vanish modulo
-\(3^r\), so types inject into \((B,C)\bmod 3^r\)). Saturation at
-\(3^{2r}\) is visible for \(r=1\) (\(m\ge 3\)) and \(r=2\) (\(m\ge 6\)),
-not proved for general \(r\). No low-degree two-parameter formula
-(\(3^{\min(m,r)}\), \(\min(3^m,3^{2r})\), or the cap minus a constant
-on \(m=r+1\)) fits the interior. The interior is **OPEN** and is not
-claimed.
+\(3^r\), so types inject into \((B,C)\bmod 3^r\), equivalently
+\((p\bmod 3^r,\,\mathrm{DZ}^m(p^2)\bmod 3^r)\)). No low-degree
+two-parameter formula (\(3^{\min(m,r)}\), \(\min(3^m,3^{2r})\), or the
+cap minus a constant on \(m=r+1\)) fits every interior cell. Cubic
+\(M_k(x^3)\) counting is not this table.
 
-Cubic \(M_k(x^3)\) counting is not this table.
+### Zero fibre of the interior map
+
+**EXACT — HUMAN PROOF** (`BTR-x2-C-interior`). Write \(P_m\) for packed
+length-\(m\) prefixes and, for \(r<m\),
+
+\[
+C_{x^2}(m,r)
+=
+\bigl\lvert
+\bigl\{
+\bigl(p\bmod 3^r,\,\mathrm{DZ}^m(p^2)\bmod 3^r\bigr)
+:
+p\in P_m
+\bigr\}
+\bigr\rvert.
+\]
+
+Restrict to the fibre \(p\equiv 0\pmod{3^r}\).
+
+*Width \(m=2r\).* Every such \(p\) is \(p=t\,3^r\) with \(t\in P_r\).
+Then \(p^2=t^2 3^{2r}\) has balanced remainder \(0\) at depth \(2r\), so
+\(\mathrm{DZ}^{2r}(p^2)=t^2\). As \(t\) runs through all residues modulo
+\(3^r\), the second coordinate runs exactly over the quadratic residues
+in \(\mathbb Z/3^r\mathbb Z\). Distinct units \(1\not\equiv -1\pmod{3^r}\)
+have the same square, so that fibre misses at least one class, and
+
+\[
+C_{x^2}(2r,r)<3^{2r}\qquad(r\ge 1).
+\]
+
+In particular the coefficient cap is not attained at extra width \(r\).
+(This is the interior cell \(r=2\), \(m=4\) in the table, and also the
+superdiagonal cell \(r=1\), \(m=2\).)
+
+*Width \(m\ge 3r\).* For each \(v\in P_r\) the prefix
+\(p=3^r+v\,3^{m-r}\) lies in \(P_m\) and is \(0\pmod{3^r}\). Writing
+\(t=1+v\,3^{m-2r}\) one has \(p=t\,3^r\) and
+
+\[
+t^2=1+3^{m-2r}\bigl(2v+v^2 3^{m-2r}\bigr),
+\]
+
+so \(\mathrm{DZ}^{m-2r}(t^2)=2v+v^2 3^{m-2r}\) with remainder \(1\). Thus
+\(\mathrm{DZ}^m(p^2)\equiv 2v\pmod{3^r}\) once \(m-2r\ge r\). The unit
+\(2\) makes \(v\mapsto 2v\) bijective on \(\mathbb Z/3^r\mathbb Z\). The
+zero fibre is therefore the full second coordinate for every \(m\ge 3r\).
+
+This is not a closed form for \(C_{x^2}(m,r)\): it decides one fibre.
+
+### Full saturation table (not a proved \(m_0(r)\))
+
+**COMPUTATIONALLY VERIFIED** for \(r\le 6\). Let \(m_{\mathrm{sat}}(r)\)
+be the least \(m\) with \(C_{x^2}(m,r)=3^{2r}\). Exact integer images
+give
+
+```text
+r                 1  2  3   4   5   6
+m_sat(r)          3  6  8  10  13  15
+3r                3  6  9  12  15  18
+C(m_sat-1, r)     6 77 711 6271 59039 531401
+```
+
+The count stays at the cap for several further \(m\) (through \(m=9\)
+for \(r\le 2\), \(m=12\) for \(r=4\), \(m=16\) for \(r=6\)). The guess
+\(m_0(r)=3r\) is an upper bound in this range and is **not** the first
+saturation time for \(r\ge 3\). The alternatives \(2r+1\) and \(2r+2\)
+fail as well (\(C(12,5)=59039<59049\), \(C(14,6)=531401<531441\)).
+
+A single fixed low block \(u\) of \(t=u+v 3^r\), varying only \(v\in P_r\),
+fills only a few fibres at \(m=3r\) (the zero fibre and a handful of
+neighbours). Full saturation, when it occurs, uses the two-parameter
+family \((u,v)\). No collision family blocking \(3^{2r}\) for all large
+\(m\) appeared.
 
 ### Literature classification
 
 - `KNOWN`: \(C_x=1\); unrestricted \(x^2\) infinite-state;
   \(C_{x^2}(m,r)=3^m\) for \(r\ge m\) as same-depth layer injectivity of
-  \(M_k(x^2)\).
+  \(M_k(x^2)\); the set of squares in \(\mathbb Z/3^r\mathbb Z\) is
+  smaller than \(3^r\).
 - `REPARAMETERIZATION`: none of the surviving new statements.
 - `PROJECT-SPECIFIC`: the superdiagonal law \(C_{x^2}(m,m-1)=3^m-3\)
   with the three constant-trit doubletons; the two-parameter census as
-  a measurement distinct from the safety table.
-- `OPEN`: the interior \(0<r<m-1\).
+  a measurement distinct from the safety table; the zero-fibre law at
+  \(m=2r\) and \(m\ge 3r\).
+- `OPEN`: the full interior count \(C_{x^2}(m,r)\) for a general fibre,
+  including a proved \(m_0(r)\) for saturation at \(3^{2r}\).
 
 ## Open questions
 
-The interior image size of
-\(p\mapsto\bigl(p\bmod 3^r,\,\mathrm{DZ}^m(p^2)\bmod 3^r\bigr)\)
-for \(0<r<m-1\). Not opened as a follow-up in this phase.
+Prove that every fibre \(p\equiv\alpha\pmod{3^r}\) fills all second
+coordinates once \(m\) exceeds an explicit \(m_0(r)\), or exhibit a
+fibre that stays incomplete for all \(m\). The computational table
+through \(r=6\) saturates; the zero fibre saturates by \(m=3r\); the
+sharp time \(m_{\mathrm{sat}}(r)\) is not \(3r\).
 
 Section entropy versus dynamical entropy, and solenoid / adelic
 packaging, remain unopened pending ideas of the safety gate. They are
@@ -234,25 +324,30 @@ not this gate.
 
 ## Decision
 
-`PROMOTE`. The identity stays at \(1\), so the census is not a
-remaining-horizon clock. The safety table is a different sequence. On
-the band \(r\ge m-1\) the two-parameter count is exact:
-\(C_{x^2}(m,r)=3^m\) for \(r\ge m\), and \(C_{x^2}(m,m-1)=3^m-3\) for
-\(m\ge 2\) by three explicit constant-trit doubletons. That is the
-promotion criterion. The interior is a table, not a closed form, and is
-left open. The branch is not an Ahmed–Savchuk restatement, not a safety
-reparameterization, and not a cubic-stratum reopen. No CLI, Lean, or
-numbered milestone is added.
+`PARK`. The band law is unchanged. On the interior, the coefficient cap
+is not a remaining-horizon clock and is not attained at extra width
+\(r\): the zero fibre at \(m=2r\) is exactly the quadratic residues, so
+\(C_{x^2}(2r,r)<3^{2r}\). The same fibre *does* fill for every
+\(m\ge 3r\), by the explicit prefixes \(p=3^r+v\,3^{m-r}\). That is a
+gate theorem for one fibre (`BTR-x2-C-interior`), not a saturation law
+for \(C_{x^2}(m,r)\). Full image size saturates at \(3^{2r}\) in a
+bounded extra table through \(r=6\), with first times
+\(3,6,8,10,13,15\), so the permanent “width-\(\Theta(m-r)\) enumeration
+/ never \(3^{2r}\)” obstruction is not supported in range; the guess
+\(m_0(r)=3r\) is not the first-saturation time. No closed \(m_0(r)\) for
+every fibre was proved. The branch is not an Ahmed–Savchuk restatement,
+not a safety reparameterization, and not a cubic-stratum reopen. No
+CLI, Lean, or numbered milestone is added.
 
-Best next question: for \(0<r<m-1\), does \(C_{x^2}(m,r)\) saturate at
-\(3^{2r}\) by an explicit threshold \(m_0(r)\), or does the image of
-\(\mathrm{DZ}^m(p^2)\bmod 3^r\) still require width-\(\Theta(m-r)\)
-enumeration?
+Best next question: prove that every fibre \(p\equiv\alpha\pmod{3^r}\)
+is full for all \(m\ge 3r\) (or at the observed \(m_{\mathrm{sat}}(r)\)),
+or give a fibre that never fills.
 
 ## Publication assessment
 
 Status: `STRUCTURAL`.
 
-The superdiagonal collision family is exact and short. It is a gate
-theorem for one band of the two-parameter grid, not a paper-scale
-classification of \(C_F\) for all \(F\) and all \((m,r)\).
+The superdiagonal collision family and the zero-fibre square/construction
+law are exact and short. They classify two slices of the two-parameter
+grid, not \(C_F\) for all \(F\) and all \((m,r)\). Full interior
+saturation remains a table plus one fibre.

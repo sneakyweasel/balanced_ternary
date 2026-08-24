@@ -9,10 +9,11 @@ PROBLEM = ProblemDefinition(
     statement=(
         "For F in Z[x], write C_F(m,r) for the number of distinct "
         "remaining-horizon-r right-language types among unrestricted "
-        "residuals of F after input depth m. Decide whether C_F(m,r) "
-        "has an exact two-parameter law for F(x)=x and F(x)=x^2, or a "
-        "proved obstruction that the census is not a remaining-horizon "
-        "clock and not a closed low-degree formula."
+        "residuals of F after input depth m. The identity is constantly 1 "
+        "and the x^2 band r>=m-1 is exact. The interior 0<r<m-1 is the "
+        "image size of p |-> (p mod 3^r, DZ^m(p^2) mod 3^r); the zero "
+        "fibre is quadratic residues at m=2r and full for m>=3r, while "
+        "a closed m_0(r) for every fibre is not claimed."
     ),
     bt_relevance=(
         "Types are the existing residual Mealy right languages of "
