@@ -1434,6 +1434,107 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
         finalized=True,
     )
 
+    order2_fp = _fp(
+        state_space_type="INTEGER_VECTOR",
+        control_structure="SINGLETON",
+        numerical_contraction="FINITE_CONTRACTING",
+        eventual_region="FINITE_SEED_CLOSURE",
+        orbit_behavior="FINITE",
+        certificate_strength="EXACT_CLOSURE",
+        affine_control_type="VECTOR",
+        piecewise_affine_structure="FINITE",
+        latent_control="FINITE",
+        transition_architecture="DETERMINISTIC",
+    )
+    order2 = MemoryExperiment(
+        experiment_id="skolem_order2_known_zero",
+        target="companion_shift_order2",
+        target_family="linear_recurrence",
+        adapter_version="0.2.1",
+        engine_version="0.2.2",
+        experiment_date="2026-08-25",
+        diagnosis=_diag(
+            "companion_shift_order2",
+            order2_fp,
+            ResearchDecision.CONTINUE,
+            "finite piecewise-affine census on a structurally distant regime; window agreement is not a Z-theorem",
+            prior="KNOWN",
+            lean="Problems.Engine.CompanionShift",
+            exact="companion_shift_zero_small_third",
+            falsification="first coordinate vanishes at index 3",
+            machinery="vector_affine",
+        ),
+        decision_reason_code=DecisionReason.KNOWN_REDISCOVERY,
+        representation_novelty=NoveltyLevel.LOW,
+        mathematical_novelty=NoveltyLevel.NONE,
+        novelty_status=NoveltyStatus.KNOWN_REDISCOVERY,
+        mathematical_yield=MathematicalYield(
+            known_rediscoveries=(
+                "order-2 companion ((0,1),(-2,3)); first-coordinate zero at index 3",
+                "exact residual closure of size 4",
+            ),
+            new_formalizations=("Problems.Engine.CompanionShift",),
+            unresolved_questions=(),
+            engineering_changes=0,
+        ),
+        grey_loot=(
+            GreyLoot(
+                id="skolem_order2_known_zero:loot:zero",
+                kind=GreyLootKind.COUNTEREXAMPLE,
+                statement="first coordinate vanishes at index 3 on the declared window",
+                evidence=LootEvidence.PROVED,
+                experiment_id="skolem_order2_known_zero",
+                target="companion_shift_order2",
+            ),
+            GreyLoot(
+                id="skolem_order2_known_zero:loot:global",
+                kind=GreyLootKind.USEFUL_NEGATIVE_RESULT,
+                statement=(
+                    "a settled dim-2 zero is a competence check; it is not the "
+                    "GLOBAL_REASONING cluster of order-6 vanishing"
+                ),
+                evidence=LootEvidence.PROVED,
+                experiment_id="skolem_order2_known_zero",
+                target="companion_shift_order2",
+            ),
+        ),
+        prior_art=PriorArtMemory(
+            literature_ids=(
+                "kenison-et-al-2025-order-4-skolem",
+                "bacik-et-al-2026-skolem-positivity-survey",
+            ),
+            independently_rediscovered=False,
+            known_theorem_status="KNOWN",
+        ),
+        scout=ScoutDossier(
+            target="companion_shift_order2",
+            problem_definition="On the declared order-2 companion window, does the first coordinate vanish?",
+            literature=(
+                "kenison-et-al-2025-order-4-skolem",
+                "bacik-et-al-2026-skolem-positivity-survey",
+            ),
+        ),
+        blind_packet=BlindPacket(
+            spec_name="companion_shift_order2",
+            dimension=2,
+            max_states=32,
+            max_steps=16,
+            allowed_definition="window (u, v) maps to (v, a v + b u) for declared integers a, b",
+        ),
+        run_artifact=RunArtifact(
+            attack_statuses={
+                "vector_affine": "OBSERVATION",
+                "closure": "SUPPORTED",
+                "quotient": "SUPPORTED",
+                "matrix_word_invariant": "INCONCLUSIVE",
+            },
+            lean_theorems=("Problems.Engine.CompanionShift",),
+            census_kind="FINITE_CENSUS",
+            strongest_exact="companion_shift_zero_small_third",
+        ),
+        finalized=True,
+    )
+
     return tuple(
         _enrich_lessons(item)
         for item in (
@@ -1456,6 +1557,7 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
             hygiene,
             positivity,
             switching,
+            order2,
         )
     )
 
@@ -1656,6 +1758,23 @@ def _lesson_fields() -> dict[str, dict]:
         "switching_affine_z2_origin:loot:global": dict(
             observation="N^2 origin non-reachability is decided without infinite-time reasoning",
             reusable_lesson="Skolem/Positivity failed at infinite-time certificates; this 2-D switching map yields an exact class obstruction before that barrier",
+            possible_transfer_targets=("companion_shift_order6", "positivity_order10"),
+            status=GreyLootStatus.REUSED,
+            engineering_action="RECORD",
+            prior_art_status="KNOWN",
+        ),
+        "skolem_order2_known_zero:loot:zero": dict(
+            observation="first coordinate vanishes at index 3",
+            reusable_lesson="a finite first-coordinate zero on a 2-D companion is a competence check, not a Skolem decision",
+            possible_transfer_targets=("companion_shift_order6",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+            counterexample="u_3=0",
+        ),
+        "skolem_order2_known_zero:loot:global": dict(
+            observation="settled dim-2 zero is exact finite closure, not infinite-time vanishing",
+            reusable_lesson="a ZERO_WITNESS on an order-2 companion is not the GLOBAL_REASONING cluster of order-6 Skolem",
             possible_transfer_targets=("companion_shift_order6", "positivity_order10"),
             status=GreyLootStatus.REUSED,
             engineering_action="RECORD",

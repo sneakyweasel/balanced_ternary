@@ -18,6 +18,8 @@ DEFAULT_ALLOWLIST: tuple[str, ...] = (
     "matrix_word_invariant",
     "switching_affine_z2_origin",
     "two_path_z2",
+    "skolem_order2_known_zero",
+    "companion_shift_order2",
 )
 
 

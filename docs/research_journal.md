@@ -2462,4 +2462,48 @@ Best next question
 - What representation mismatch, if any, does the un-overridden leftover pick cyclic_tag_bit still teach?
 ```
 
+## Frozen Engine campaign: order-2 companion known zero
+
+- **Date:** 2026-08-25
+- **Objective:** Execute `CampaignOrder.research_loop_pick` without override: the leftover competence check `skolem_order2_known_zero`
+- **Hypotheses:** Frozen v2 still recovers the 2-D companion and the index-3 zero; ingest must not dump a `ZERO_WITNESS` into `GLOBAL_REASONING`
+- **Major results:** Board pick confirmed. `FINITE_CENSUS` recovers \(M=((0,1),(-2,3))\). Closure complete, size 4. First coordinate vanishes at index 3. Lean `companion_shift_zero_small_third` reused. Planner unchanged with memory. Next leftover pick `cyclic_tag_bit` (un-overridden). No new attack. No new Lean
+- **Refuted ideas:** the first coordinate never vanishes on the bound; this calibration belongs in `GLOBAL_REASONING`; the board pick should be replaced by a frontier target
+- **Literature:** Kenison et al. 2025 order-4 completeness; Bacik et al. 2026 survey. All identities KNOWN
+- **Open:** none for this window; order-6 vanishing remains parked
+- **Decision:** CLOSE (engine `CONTINUE` on the finite census; statements are all KNOWN)
+
+```text
+What was learned
+- assemble_board leftover pick can be an already-run calibration; the protocol still runs it
+- Frozen vector_affine recovers the declared order-2 companion as a one-branch FINITE_CENSUS
+- Exact residual closure of size 4 is a ZERO_WITNESS, not an infinite-time theorem
+- Memory-aware EV may boost this target because it resembles GLOBAL_REASONING; ingest must not follow that resemblance
+- Planner output is unchanged with memory=ResearchMemory()
+
+Strongest theorem
+- companion_shift_zero_small_third (existing Lean); KNOWN
+
+Strongest refutation
+- first coordinate vanishes at index 3; this is not the order-6 global cluster
+
+Reusable machinery
+- Hint-free companion_shift_order2 wrapper around CompanionShiftSpec; v2.2 ingest that does not join GLOBAL_REASONING
+
+Prior-art status
+- KNOWN order-2 zero; ENGINE REDISCOVERY of the companion; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- The board asked for a competence check. Frozen v2 still finds the companion and the finite zero. Every statement is KNOWN. Do not add a Skolem attack.
+
+Best next question
+- What representation mismatch, if any, does the un-overridden leftover pick cyclic_tag_bit still teach?
+```
+
 

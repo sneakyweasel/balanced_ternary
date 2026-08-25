@@ -3123,6 +3123,188 @@
       },
       "reconciliation": null,
       "finalized": true
+    },
+    {
+      "experiment_id": "skolem_order2_known_zero",
+      "target": "companion_shift_order2",
+      "target_family": "linear_recurrence",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.2",
+      "experiment_date": "2026-08-25",
+      "diagnosis": {
+        "target": "companion_shift_order2",
+        "semantic_class": "INTEGER_VECTOR|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE|EXACT_CLOSURE",
+        "fingerprint": {
+          "transition_architecture": "DETERMINISTIC",
+          "state_space_type": "INTEGER_VECTOR",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "FINITE_CONTRACTING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "FINITE_SEED_CLOSURE",
+          "orbit_behavior": "FINITE",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "FINITE",
+          "latent_control": "FINITE",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "VECTOR",
+          "certificate_strength": "EXACT_CLOSURE"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_VECTOR|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE|EXACT_CLOSURE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "companion_shift_zero_small_third",
+        "strongest_falsification": "first coordinate vanishes at index 3",
+        "lean_certificate": "Problems.Engine.CompanionShift",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "vector_affine",
+        "decision": "CONTINUE",
+        "decision_reason": "finite piecewise-affine census on a structurally distant regime; window agreement is not a Z-theorem",
+        "extra": {}
+      },
+      "decision_reason_code": "KNOWN_REDISCOVERY",
+      "representation_novelty": "LOW",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "order-2 companion ((0,1),(-2,3)); first-coordinate zero at index 3",
+          "exact residual closure of size 4"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [
+          "Problems.Engine.CompanionShift"
+        ],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [],
+      "grey_loot": [
+        {
+          "id": "skolem_order2_known_zero:loot:zero",
+          "kind": "Counterexample",
+          "statement": "first coordinate vanishes at index 3 on the declared window",
+          "evidence": "PROVED",
+          "experiment_id": "skolem_order2_known_zero",
+          "target": "companion_shift_order2",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "first coordinate vanishes at index 3",
+          "minimal_example": "",
+          "counterexample": "u_3=0",
+          "reusable_lesson": "a finite first-coordinate zero on a 2-D companion is a competence check, not a Skolem decision",
+          "possible_transfer_targets": [
+            "companion_shift_order6"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "skolem_order2_known_zero:loot:global",
+          "kind": "Useful negative result",
+          "statement": "a settled dim-2 zero is a competence check; it is not the GLOBAL_REASONING cluster of order-6 vanishing",
+          "evidence": "PROVED",
+          "experiment_id": "skolem_order2_known_zero",
+          "target": "companion_shift_order2",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "settled dim-2 zero is exact finite closure, not infinite-time vanishing",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "a ZERO_WITNESS on an order-2 companion is not the GLOBAL_REASONING cluster of order-6 Skolem",
+          "possible_transfer_targets": [
+            "companion_shift_order6",
+            "positivity_order10"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "RECORD",
+          "status": "REUSED"
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "kenison-et-al-2025-order-4-skolem",
+          "bacik-et-al-2026-skolem-positivity-survey"
+        ],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": false
+      },
+      "scout": {
+        "target": "companion_shift_order2",
+        "problem_definition": "On the declared order-2 companion window, does the first coordinate vanish?",
+        "literature": [
+          "kenison-et-al-2025-order-4-skolem",
+          "bacik-et-al-2026-skolem-positivity-survey"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "companion_shift_order2",
+        "dimension": 2,
+        "skip_attacks": [],
+        "max_states": 32,
+        "max_steps": 16,
+        "allowed_definition": "window (u, v) maps to (v, a v + b u) for declared integers a, b",
+        "state_space": "",
+        "observation": "",
+        "initial_conditions": [],
+        "explicit_controls": "",
+        "computational_budget": "",
+        "extra": {},
+        "forbidden_hints": [],
+        "post_run_reconciliation": "",
+        "lean_targets": []
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "vector_affine": "OBSERVATION",
+          "closure": "SUPPORTED",
+          "quotient": "SUPPORTED",
+          "matrix_word_invariant": "INCONCLUSIVE"
+        },
+        "skipped": [],
+        "strongest_exact": "companion_shift_zero_small_third",
+        "strongest_falsification": "",
+        "census_kind": "FINITE_CENSUS",
+        "lean_theorems": [
+          "Problems.Engine.CompanionShift"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
     }
   ],
   "certified": [
