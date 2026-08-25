@@ -22,6 +22,7 @@ from research.signed_digit_constrained_controls.discovery import (
 )
 from research.signed_digit_residual.discovery import alphabet_m, signed_step
 from research.signed_digit_residual_minimality.discovery import val3
+from research_engine.behavior.profile import ComplexityProfile
 
 PAIRS: tuple[tuple[int, int], ...] = ((0, 3), (0, 9), (0, 27))
 SPEC_HORIZON = 2
@@ -236,3 +237,144 @@ def lambda3_positive_horizon_is_translation() -> bool:
 
 def lambda3_deadlock_merges_everything() -> bool:
     return bool(pair_report(0, 1, 0, alphabet_m(1), 3)["agree"])
+
+
+def ray_automaton(word: Sequence[int]) -> ControlAutomaton:
+    """One predetermined legal word. A proper subset of the complete tree."""
+    path = tuple(int(letter) for letter in word)
+    depth = len(path)
+
+    def legal(control: object) -> tuple[int, ...]:
+        index = int(control)
+        if index < 0 or index >= depth:
+            return ()
+        return (path[index],)
+
+    return ControlAutomaton(
+        f"ray_{path}",
+        0,
+        legal,
+        lambda q, _u: int(q) + 1,
+        path if path else (0,),
+    )
+
+
+def drop_last_automaton(
+    horizon: int,
+    alphabet: Sequence[int],
+    banned: int,
+) -> ControlAutomaton:
+    """Complete depth-L tree minus one last-step letter. Length-L words remain."""
+    letters = tuple(int(letter) for letter in alphabet)
+    depth = int(horizon)
+    forbidden = int(banned)
+
+    def legal(control: object) -> tuple[int, ...]:
+        remaining = int(control)
+        if remaining <= 0:
+            return ()
+        if remaining == 1:
+            return tuple(letter for letter in letters if letter != forbidden)
+        return letters
+
+    return ControlAutomaton(
+        f"drop_last_{depth}_{forbidden}",
+        depth,
+        legal,
+        lambda q, _u: max(int(q) - 1, 0),
+        letters,
+    )
+
+
+def language_max_len(automaton: ControlAutomaton, control: object | None = None) -> int:
+    start = automaton.start if control is None else control
+    longest = 0
+
+    def rec(node: object, depth: int) -> None:
+        nonlocal longest
+        letters = automaton.legal(node)
+        if not letters:
+            longest = max(longest, depth)
+            return
+        for letter in letters:
+            rec(automaton.delta(node, letter), depth + 1)
+
+    rec(start, 0)
+    return longest
+
+
+def subset_pair_report(
+    left: int,
+    right: int,
+    automaton: ControlAutomaton,
+    gain: int = 1,
+) -> dict[str, object]:
+    agree = maps_equal(left, right, automaton, automaton.start, gain)
+    max_len = language_max_len(automaton)
+    depth = critical_len(left, right)
+    predicted = max_len < depth
+    return {
+        "left": left,
+        "right": right,
+        "gain": gain,
+        "name": automaton.name,
+        "max_len": max_len,
+        "critical_len": depth,
+        "agree": agree,
+        "predicted_max_len": predicted,
+        "genuine_merge": bool(agree and left != right and max_len >= 1),
+    }
+
+
+def proper_subset_creates_extra_merge() -> bool:
+    """False: a proper subset with a word of length ≥k still separates."""
+    alphabet = alphabet_m(1)
+    probes = (
+        ray_automaton((0, 0)),
+        ray_automaton((1, -1)),
+        drop_last_automaton(2, alphabet, -1),
+        drop_last_automaton(2, alphabet, 0),
+    )
+    for auto in probes:
+        row = subset_pair_report(0, 3, auto, 1)
+        if row["agree"] is True:
+            return True
+        if row["predicted_max_len"] is True:
+            return True
+    short_ray = subset_pair_report(0, 3, ray_automaton((0,)), 1)
+    return short_ray["agree"] is not True
+
+
+def max_len_criterion_holds() -> bool:
+    alphabet = alphabet_m(1)
+    autos = (
+        horizon_automaton(0, alphabet),
+        horizon_automaton(1, alphabet),
+        horizon_automaton(2, alphabet),
+        ray_automaton((0,)),
+        ray_automaton((0, 0)),
+        ray_automaton((0, 0, 0)),
+        drop_last_automaton(2, alphabet, 1),
+        drop_last_automaton(3, alphabet, -1),
+        asymmetric_automaton(alphabet),
+    )
+    pairs = ((0, 3), (0, 9), (0, 1), (0, 27))
+    for auto in autos:
+        for left, right in pairs:
+            row = subset_pair_report(left, right, auto, 1)
+            if bool(row["agree"]) != bool(row["predicted_max_len"]):
+                return False
+    return True
+
+
+def horizon_complexity_profile(gain: int = 1) -> ComplexityProfile:
+    report = constrained_report(horizon_automaton(SPEC_HORIZON, alphabet_m(2)), gain)
+    return ComplexityProfile(
+        control_count=len(alphabet_m(2)),
+        raw_contribution_count=len(alphabet_m(2)),
+        reachable_state_count=int(report["product_count"]),
+        behavioral_state_count=int(report["mealy"]),
+        minimal_machine_count=int(report["mealy"]),
+        max_separation_depth=1,
+        closure_status="EXACT_CLOSURE",
+    )

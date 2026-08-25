@@ -271,6 +271,8 @@ def test_research_reproduce_signed_digit_short_horizon_links_lean():
     assert "hypothesis sdsh_genuine_merge: SUPPORTED EXACT REACHABLE" in out
     assert "hypothesis sdsh_short_separator: REFUTED" in out
     assert "hypothesis sdsh_only_deadlock: REFUTED" in out
+    assert "hypothesis sdsh_subset_merge: REFUTED" in out
+    assert "hypothesis sdsh_max_len: SUPPORTED EXACT REACHABLE" in out
     report = _run("research", "report", "signed_digit_short_horizon")
     assert "truncated_3adic_equiv" in report
     assert "sorry" not in report.lower()

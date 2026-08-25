@@ -1,8 +1,8 @@
 problem: signed_digit_short_horizon
 attack: short_horizon_family
-claim: remaining horizon L merges (s,q_L) and (t,q_L) iff 3^L divides s-t when 3 does not divide λ; smallest genuine merge is (0,q_1)~(3,q_1)
+claim: lsd streams agree on w iff |w|≤v_3(s-t) when 3 does not divide λ; a finite language merges iff every legal word is shorter than that
 status: EXACT
 scope: EXACT
-evidence: pairs (0,3),(0,9),(0,27) match the truncated congruence; H2 and H3 refuted; λ=3 L≥1 is translation only
-counterexamples: ("shorter word always separates", "only deadlock merges")
-lean_theorem: Problems.BalancedTernary.SignedDigitShortHorizon.truncated_3adic_equiv
+evidence: complete trees, rays, and drop-last subsets match the max-length criterion; v2 EXACT_CLOSURE at horizon 1 for (0,3); EXACT_COUNTEREXAMPLE at length 2
+counterexamples: ("shorter word always separates", "only deadlock merges", "proper subset hides separators")
+lean_theorem: Problems.BalancedTernary.SignedDigitShortHorizon.traces_eq_iff_len_le_val

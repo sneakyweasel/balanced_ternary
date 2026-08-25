@@ -2813,6 +2813,28 @@
     "related_conjectures": []
   },
   {
+    "id": "BTN-sdsh-maxlen",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If λ is not divisible by 3 and s≠t, the lsd streams of F_{λ,U} agree on a word w if and only if |w|≤v_3(s-t). A finite control language therefore merges (s,q) and (t,q) exactly when every legal word is shorter than v_3(s-t)+1.",
+    "source": "docs/problems/signed_digit_short_horizon.md",
+    "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
+    "tests": [
+      "tests/research/signed_digit_short_horizon/test_signed_digit_short_horizon.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdsh-subset-merge",
+    "tag": "REFUTED",
+    "statement": "A proper subset of the complete depth-L control tree can merge residuals that some remaining word of length v_3(s-t)+1 would separate.",
+    "source": "docs/problems/signed_digit_short_horizon.md",
+    "lean": "",
+    "tests": [
+      "tests/research/signed_digit_short_horizon/test_signed_digit_short_horizon.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "BTN-mr-factor-through-raw",
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "If F(s,c)=λ·D(s+h(c)) then F(s,(d1,d2))=λ·D(s+d1 d2). Two-trit product residual factors through the raw contribution.",

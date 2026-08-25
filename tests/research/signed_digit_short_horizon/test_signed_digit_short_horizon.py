@@ -8,12 +8,15 @@ from research.signed_digit_short_horizon.discovery import (
     asymmetric_obeys_local_truncation,
     coprime_sweep,
     genuine_merge_exists,
+    horizon_complexity_profile,
     horizon_u2_product_size,
     lambda3_deadlock_merges_everything,
     lambda3_positive_horizon_is_translation,
+    max_len_criterion_holds,
     only_deadlock_merges,
     origin_reachable_positive_horizon_residual_merge,
     pair_report,
+    proper_subset_creates_extra_merge,
     shorter_always_separates,
     smallest_genuine_merge,
     truncated_congruence_holds,
@@ -26,8 +29,10 @@ from research.signed_digit_short_horizon.lean_export import (
 from research.signed_digit_short_horizon.planner import (
     CLOSURE_HYPOTHESIS,
     DEADLOCK_HYPOTHESIS,
+    MAXLEN_HYPOTHESIS,
     MERGE_HYPOTHESIS,
     SHORT_SEP_HYPOTHESIS,
+    SUBSET_HYPOTHESIS,
     plan_signed_digit_short_horizon,
 )
 from research.signed_digit_short_horizon.problem import PROBLEM
@@ -106,6 +111,12 @@ def test_spec_is_product_and_planner():
     assert next(
         item for item in report.hypotheses if item.id == DEADLOCK_HYPOTHESIS.id
     ).status is HypothesisStatus.REFUTED
+    assert next(
+        item for item in report.hypotheses if item.id == SUBSET_HYPOTHESIS.id
+    ).status is HypothesisStatus.REFUTED
+    assert next(
+        item for item in report.hypotheses if item.id == MAXLEN_HYPOTHESIS.id
+    ).status is HypothesisStatus.SUPPORTED
 
 
 def test_export_links_lean_and_records(tmp_path):
@@ -122,3 +133,15 @@ def test_export_links_lean_and_records(tmp_path):
     assert RECORD_DIR.name == "signed_digit_short_horizon"
     write_records(report, targets)
     assert (RECORD_DIR / "closure.yaml").is_file()
+
+
+def test_proper_subset_does_not_create_extra_merges():
+    assert proper_subset_creates_extra_merge() is False
+    assert max_len_criterion_holds() is True
+    profile = horizon_complexity_profile()
+    assert profile.control_count == 5
+    assert profile.raw_contribution_count == 5
+    assert profile.reachable_state_count == 7
+    assert profile.minimal_machine_count == profile.behavioral_state_count
+    assert profile.reachable_state_count > profile.minimal_machine_count
+    assert profile.closure_status == "EXACT_CLOSURE"

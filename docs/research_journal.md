@@ -1376,6 +1376,17 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Open:** none opened
 - **Decision:** PROMOTE the truncated-congruence theorem. Stop.
 
+## Signed-digit finite-language max-length criterion (not a numbered milestone)
+
+- **Date:** 2026-08-25
+- **Objective:** Reproduce promoted residual theorems through the v2 engine API, reproduce the short-horizon theorem exactly, and decide whether a proper subset of a complete depth-L control tree can create extra residual merges
+- **Hypotheses:** missing some (but not all) length-k words can merge a pair; finite L_q merges iff max|w|<v_3(s-t)+1
+- **Major results:** v2 `observe` / identity factorization / envelope holes / `separate_states` / `CertificateKind` reproduce the signed-digit, geometry, minimality, product, D+Add, expanding-D, short-horizon, Collatz, and prime facts. Short-horizon `(0,q_1)∼(3,q_1)` is `EXACT_CLOSURE`; length 2 is `EXACT_COUNTEREXAMPLE`. Proper subsets with a remaining word of length k still separate. Lean `traces_eq_iff_len_le_val`. Horizon-2 U_2 profile: 5 controls = 5 contributions, 7 reachable, 5 Mealy, `EXACT_CLOSURE`. No new engine
+- **Refuted ideas:** a proper subset of the complete tree can hide every separator while keeping a long word
+- **Literature:** Mealy/Nerode and Anashin remain `KNOWN`. The per-word iff is `NEW FORMULATION` of the two previous 3-adic theorems
+- **Open:** none opened
+- **Decision:** PROMOTE the max-length / per-word criterion. Stop. Do not broaden the class of control languages
+
 ## Research engine v2 residual dynamics layers (not a numbered milestone)
 
 - **Date:** 2026-08-25

@@ -64,9 +64,13 @@ class ShortHorizonSpec:
         nxt, _out = self.emit(state[0], int(control))
         return (nxt, max(int(state[1]) - 1, 0))
 
-    def output(self, state: State, control: object) -> int:
+    def output(self, state: State, control: object, phase: IntPhase | None = None) -> int:
+        del phase
         _nxt, out = self.emit(state[0], int(control))
         return out
+
+    def raw_contribution(self, control: object) -> int:
+        return int(control)
 
     def legal_controls(self, state: State, phase: IntPhase) -> tuple[object, ...]:
         del phase
@@ -123,8 +127,118 @@ def short_horizon_spec(start_remaining: int = INPUT_LENGTH) -> ShortHorizonSpec:
     return ShortHorizonSpec(start_remaining=start_remaining)
 
 
+@dataclass(frozen=True)
+class FiniteLanguageSpec:
+    """Product of ``F_{λ,U}`` with a finite control language. Not a new engine."""
+
+    bound: int = 1
+    gain: int = 1
+    horizon: int = 1
+    ray: tuple[int, ...] | None = None
+    drop_last: int | None = None
+    start_remaining: int = INPUT_LENGTH
+    name: str = "signed_digit_short_horizon"
+    dimension: int = 2
+
+    @property
+    def digits(self) -> tuple[int, ...]:
+        return alphabet_m(self.bound)
+
+    @property
+    def automaton(self):
+        from research.signed_digit_short_horizon.discovery import (
+            drop_last_automaton,
+            horizon_automaton,
+            ray_automaton,
+        )
+
+        if self.ray is not None:
+            return ray_automaton(self.ray)
+        if self.drop_last is not None:
+            return drop_last_automaton(self.horizon, self.digits, self.drop_last)
+        return horizon_automaton(self.horizon, self.digits)
+
+    @property
+    def initial_state(self) -> State:
+        start = self.automaton.start
+        if isinstance(start, int):
+            return (0, int(start))
+        return (0, 0)
+
+    def emit(self, residual: int, control: int) -> tuple[int, int]:
+        return signed_step(residual, control, self.gain)
+
+    def transition(self, state: State, control: object, phase: IntPhase) -> State:
+        del phase
+        nxt, _out = self.emit(state[0], int(control))
+        nxt_control = self.automaton.delta(state[1], int(control))
+        return (nxt, int(nxt_control))
+
+    def output(self, state: State, control: object, phase: IntPhase | None = None) -> int:
+        del phase
+        _nxt, out = self.emit(state[0], int(control))
+        return out
+
+    def raw_contribution(self, control: object) -> int:
+        return int(control)
+
+    def legal_controls(self, state: State, phase: IntPhase) -> tuple[object, ...]:
+        del phase
+        return self.automaton.legal(state[1])
+
+    def next_phase(self, phase: IntPhase, control: object) -> IntPhase:
+        del control
+        if phase.value > 0:
+            return IntPhase(phase.value - 1)
+        return phase
+
+    def is_terminal(self, state: State, phase: IntPhase) -> bool:
+        if self.is_accepting(state, phase):
+            return True
+        return len(self.automaton.legal(state[1])) == 0
+
+    def is_accepting(self, state: State, phase: IntPhase) -> bool:
+        return phase.value == 0 and state[0] == 0
+
+    def initial_phase(self) -> IntPhase:
+        return IntPhase(self.start_remaining)
+
+    def canonicalize(self, state: State) -> State:
+        return (int(state[0]), int(state[1]))
+
+    def affine_system(self):
+        return None
+
+    def attack_context(self, **kwargs) -> AttackContext:
+        kwargs.setdefault("live_only", True)
+        kwargs.setdefault("functional", LinearFunctional((1, 0)))
+        kwargs.setdefault("phases", (self.initial_phase(), IntPhase(0)))
+        return AttackContext(**kwargs)
+
+
+def finite_language_spec(
+    *,
+    horizon: int = 1,
+    bound: int = 1,
+    gain: int = 1,
+    ray: tuple[int, ...] | None = None,
+    drop_last: int | None = None,
+    start_remaining: int = INPUT_LENGTH,
+) -> FiniteLanguageSpec:
+    return FiniteLanguageSpec(
+        bound=bound,
+        gain=gain,
+        horizon=horizon,
+        ray=ray,
+        drop_last=drop_last,
+        start_remaining=start_remaining,
+    )
+
+
 __all__ = [
+    "FiniteLanguageSpec",
     "ShortHorizonSpec",
     "SignedDigitResidualSpec",
+    "finite_language_spec",
     "short_horizon_spec",
 ]

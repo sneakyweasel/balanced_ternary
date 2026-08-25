@@ -88,8 +88,10 @@ Horizon only decides whether `v_3(s-t)+1` steps are available.
 
 - Traces of length `≤L` agree whenever `3^L∣s-t`. **EXACT — LEAN VERIFIED**
 - If `3∤λ` and `|w|≥v_3(s-t)+1`, every such word separates. **EXACT — LEAN VERIFIED**
+- Streams agree on `w` iff `|w|≤v_3(s-t)`. **EXACT — LEAN VERIFIED**
 - Some shorter legal word always separates (H2). **REFUTED** (`0` vs `3` at `L=1`)
 - Finite horizon merges only by deadlock (H3). **REFUTED** (same pair takes one legal step)
+- A proper subset of the complete depth-`L` tree can merge a pair that some remaining length-`k` word would separate. **REFUTED**
 - Origin-reachable `U_2` product merges distinct residuals at positive remaining horizon. **REFUTED** (only `q_0` deadlock)
 - `λ=3` and `L≥1` create residual classes beyond `s≡t (mod 3)`. **REFUTED**
 
@@ -110,9 +112,22 @@ Model S2 (branching `U_1`) is the same complete tree as S1 with `|U|>1`.
 Model S3 (asymmetric first letter) still obeys the local truncation at
 each remaining depth: `(0,1)∼(3,1)` and `(0,2)≁(3,2)`.
 
-Origin-reachable `F_{1,U_2}` with horizon 2 has 7 product states.
-Distinct reachable residuals have `v_3=0`, so the only same-`q` merge
-in that product is deadlock at remaining 0.
+Origin-reachable `F_{1,U_2}` with horizon 2 has 7 product states and
+Mealy size 5: distinct reachable residuals have `v_3=0`, so the only
+same-`q` merge is deadlock at remaining 0. Complexity profile:
+5 raw controls = 5 contributions, 7 reachable product states, 5
+minimal Mealy states, `EXACT_CLOSURE`.
+
+Proper subsets of the complete depth-`L` tree (single rays, or the
+tree minus one last-step letter) still separate `0` vs `3` whenever
+they retain a word of length 2. They merge only when every remaining
+word is shorter than `k`.
+
+v2 reproduction: `observe`, identity `raw_contribution`, pair-state
+`separate_states`, and `CertificateKind` match the truncated theorem.
+Horizon-1 `(0,q_1)∼(3,q_1)` is `EXACT_CLOSURE`. Horizon-2 and the
+length-2 ray are `EXACT_COUNTEREXAMPLE` with witness length 2. A
+capped search is not used as equivalence.
 
 ## Conjectures
 
@@ -124,6 +139,8 @@ None opened.
   has length 1 and identical output; unconstrained separator `(u,u)` is
   illegal.
 - H3: the same pair takes one legal step before terminating.
+- Proper subset: ray `(0,0)` and depth-2 tree minus last letter `-1`
+  still separate `0` vs `3` at length 2.
 - `λ=3` extra classes at `L≥1`: none on the listed probes.
 
 ## Formalization
@@ -131,17 +148,16 @@ None opened.
 `formal/Problems/BalancedTernary/SignedDigitShortHorizon.lean`.
 Theorems `truncated_3adic_equiv`, `short_horizon_equiv`,
 `short_horizon_separation`, `control_language_separation`,
-`lambda3_short_horizon_symmetry`. Reuses `signedTrace`, `intVal3`,
-`any_word_separation`. No `sorry`.
+`lambda3_short_horizon_symmetry`, `traces_eq_iff_len_le_val`. Reuses
+`signedTrace`, `intVal3`, `any_word_separation`. No `sorry`.
 
 ## Results
 
 3-adic arithmetic determines the minimum information depth
-`v_3(s-t)+1`. The control language determines whether that depth is
-accessible. If it is not, and the remaining language is a complete
-tree of depth `L≥1`, distinct residuals merge exactly on the truncated
-congruence `s≡t (mod 3^L)`. Deadlock `L=0` is the empty-language
-artifact of the same formula (`3^0=1`).
+`v_3(s-t)+1`. A finite control language `L_q` determines whether that
+depth is accessible: `(s,q)∼(t,q)` iff every word of `L_q` is shorter
+than `k`. Tree-completeness is irrelevant. Deadlock `L=0` is the
+empty-language case of the same formula.
 
 ## Open questions
 
@@ -149,15 +165,12 @@ None opened as conjectures.
 
 ## Decision
 
-`PROMOTE` the truncated-congruence theorem. Finite horizon creates
-genuine residual merges, and they are exactly the 3-adic truncations.
-Avižienis, Anashin, and finite-language Nerode equivalence remain
-`KNOWN` and answer different questions.
+`PROMOTE` the per-word criterion `traces_eq_iff_len_le_val`. Proper
+subsets do not create a new residual quotient. Avižienis, Anashin, and
+finite-language Nerode equivalence remain `KNOWN`.
 
-Best next question: if the admissible language from `q` is a proper
-subset of the complete tree of depth `L`, can two residuals with
-`v_3(s-t)<L` still merge because the separating words are missing, or
-does every nonempty language of length `≥v_3(s-t)+1` already separate?
+Best next question: which new integer dynamics can be compared to this
+residual map using only `ComplexityProfile` and `CertificateKind`?
 
 ## Publication assessment
 

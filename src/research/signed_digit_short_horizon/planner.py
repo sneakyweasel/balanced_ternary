@@ -6,7 +6,9 @@ from typing import cast
 
 from research.signed_digit_short_horizon.discovery import (
     genuine_merge_exists,
+    max_len_criterion_holds,
     only_deadlock_merges,
+    proper_subset_creates_extra_merge,
     shorter_always_separates,
 )
 from research.signed_digit_short_horizon.spec import short_horizon_spec
@@ -56,6 +58,26 @@ DEADLOCK_HYPOTHESIS = Hypothesis(
     prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
+SUBSET_HYPOTHESIS = Hypothesis(
+    id="sdsh_subset_merge",
+    statement="a proper subset of the complete depth-L tree can merge residuals that a length-L word would separate",
+    kind=ClaimKind.REACHABLE,
+    intended_scope=SearchScope.EXACT,
+    status=HypothesisStatus.OPEN,
+    problem="signed_digit_short_horizon",
+    prior_art_status=PriorArtStatus.NEW_FORMULATION,
+)
+
+MAXLEN_HYPOTHESIS = Hypothesis(
+    id="sdsh_max_len",
+    statement="finite L_q merges distinct residuals iff every legal word is shorter than v_3(s-t)+1",
+    kind=ClaimKind.REACHABLE,
+    intended_scope=SearchScope.EXACT,
+    status=HypothesisStatus.OPEN,
+    problem="signed_digit_short_horizon",
+    prior_art_status=PriorArtStatus.NEW_FORMULATION,
+)
+
 
 def short_horizon_ledger() -> ResearchLedger:
     ledger = ResearchLedger()
@@ -63,6 +85,8 @@ def short_horizon_ledger() -> ResearchLedger:
     ledger.add_hypothesis(MERGE_HYPOTHESIS)
     ledger.add_hypothesis(SHORT_SEP_HYPOTHESIS)
     ledger.add_hypothesis(DEADLOCK_HYPOTHESIS)
+    ledger.add_hypothesis(SUBSET_HYPOTHESIS)
+    ledger.add_hypothesis(MAXLEN_HYPOTHESIS)
     return ledger
 
 
@@ -97,6 +121,18 @@ def plan_signed_digit_short_horizon(
             DEADLOCK_HYPOTHESIS.id,
             DecisionKind.REFUTE,
             "the (0,3) merge at horizon 1 takes a legal step before terminating",
+        )
+    if not proper_subset_creates_extra_merge() and "sdsh_subset_merge" in session.hypotheses:
+        session.decide(
+            SUBSET_HYPOTHESIS.id,
+            DecisionKind.REFUTE,
+            "any remaining word of length v_3(s-t)+1 still separates",
+        )
+    if max_len_criterion_holds() and "sdsh_max_len" in session.hypotheses:
+        session.decide(
+            MAXLEN_HYPOTHESIS.id,
+            DecisionKind.PROMOTE,
+            "O_{s,q}=O_{t,q} iff every legal word is shorter than v_3(s-t)+1",
         )
     return PlannerReport(
         results=report.results,

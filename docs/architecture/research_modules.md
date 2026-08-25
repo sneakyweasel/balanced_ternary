@@ -34,7 +34,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.signed_digit_residual_geometry` | `STRUCTURAL` | `U_m` fills the lattice-in-box; one-sided `U` does not |
 | `research.signed_digit_residual_minimality` | `STRUCTURAL` | `λ` coprime to 3 ⇒ distinct residuals are Mealy-minimal |
 | `research.signed_digit_constrained_controls` | `STRUCTURAL` | any word of length `v_3(s-t)+1` separates; cyclic letter not required |
-| `research.signed_digit_short_horizon` | `STRUCTURAL` | remaining horizon `L` merges iff `3^L∣s-t`; smallest merge `(0,q_1)∼(3,q_1)` |
+| `research.signed_digit_short_horizon` | `STRUCTURAL` | streams agree iff `|w|≤v_3(s-t)`; proper subsets add no extra merges |
 | `research.multiplicative_residual` | `STRUCTURAL` | product controls factor through raw `h`; trit products match `U_1` |
 | `research.regular_output_preimages` | `STRUCTURAL` | regular output of \(x^2\); sofic obstruction |
 | `research.residual_complexity` | `STRUCTURAL` | unrestricted \(C_F(m,r)\); superdiagonal band |

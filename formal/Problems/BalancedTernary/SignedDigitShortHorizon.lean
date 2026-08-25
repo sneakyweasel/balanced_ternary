@@ -102,4 +102,72 @@ theorem lambda3_short_horizon_symmetry (s k : ℤ) (w : List ℤ) :
     signedTrace 3 (s + 3 * k) w = signedTrace 3 s w :=
   lambda3_trace_translate s k w
 
+theorem intVal3_ge_iff_pow_dvd {n : ℤ} {L : ℕ} (hne : n ≠ 0) :
+    L ≤ intVal3 n ↔ (3 : ℤ) ^ L ∣ n := by
+  induction L generalizing n with
+  | zero =>
+    constructor
+    · intro
+      simp
+    · intro
+      exact Nat.zero_le _
+  | succ L ih =>
+    constructor
+    · intro hle
+      have hdvd3 : (3 : ℤ) ∣ n := by
+        by_contra hnd
+        have : intVal3 n = 0 := intVal3_eq_zero_of_not_dvd hnd
+        omega
+      have hdiv0 : n / 3 ≠ 0 := by
+        intro h0
+        have hmul : 3 * (n / 3) = n := Int.mul_ediv_cancel' hdvd3
+        exact hne (by simpa [h0] using hmul.symm)
+      have hsucc : intVal3 n = intVal3 (n / 3) + 1 :=
+        intVal3_succ_of_dvd hne hdvd3
+      have hle' : L ≤ intVal3 (n / 3) := by omega
+      have hpow : (3 : ℤ) ^ L ∣ n / 3 := (ih hdiv0).mp hle'
+      obtain ⟨k, hk⟩ := hpow
+      have hmul : n = 3 * (n / 3) := (Int.mul_ediv_cancel' hdvd3).symm
+      rw [hmul, hk]
+      have hform : (3 : ℤ) ^ (L + 1) = (3 : ℤ) * (3 : ℤ) ^ L := by
+        rw [pow_three_succ, mul_comm]
+      rw [hform]
+      simpa [mul_assoc] using dvd_mul_right ((3 : ℤ) * (3 : ℤ) ^ L) k
+    · intro hdvd
+      have hdvd3 : (3 : ℤ) ∣ n :=
+        dvd_trans (dvd_pow_self (3 : ℤ) (Nat.succ_ne_zero L)) hdvd
+      have hdiv0 : n / 3 ≠ 0 := by
+        intro h0
+        have hmul : 3 * (n / 3) = n := Int.mul_ediv_cancel' hdvd3
+        exact hne (by simpa [h0] using hmul.symm)
+      have hsucc : intVal3 n = intVal3 (n / 3) + 1 :=
+        intVal3_succ_of_dvd hne hdvd3
+      have hpow : (3 : ℤ) ^ L ∣ n / 3 := by
+        obtain ⟨k, hk⟩ := hdvd
+        have hdecomp : (3 : ℤ) ^ (L + 1) = (3 : ℤ) ^ L * 3 := pow_three_succ L
+        have hre : n = (3 : ℤ) ^ L * k * 3 := by
+          rw [hk, hdecomp]
+          ring
+        have hne3 : (3 : ℤ) ≠ 0 := by decide
+        have : n / 3 = (3 : ℤ) ^ L * k := by
+          rw [hre, Int.mul_ediv_cancel _ hne3]
+        rw [this]
+        exact dvd_mul_right _ _
+      have : L ≤ intVal3 (n / 3) := (ih hdiv0).mpr hpow
+      omega
+
+theorem traces_eq_iff_len_le_val {gain s t : ℤ} {w : List ℤ}
+    (hgain : ¬ (3 : ℤ) ∣ gain) (hne : s ≠ t) :
+    signedTrace gain s w = signedTrace gain t w ↔ w.length ≤ intVal3 (s - t) := by
+  constructor
+  · intro heq
+    by_contra hlen
+    have : intVal3 (s - t) + 1 ≤ w.length := by omega
+    exact short_horizon_separation hgain hne this heq
+  · intro hlen
+    have hst : s - t ≠ 0 := sub_ne_zero.mpr hne
+    have hdvd : (3 : ℤ) ^ w.length ∣ s - t :=
+      (intVal3_ge_iff_pow_dvd hst).mp hlen
+    exact truncated_3adic_agree hdvd le_rfl
+
 end Problems.BalancedTernary

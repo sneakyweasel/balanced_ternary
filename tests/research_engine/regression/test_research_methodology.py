@@ -249,3 +249,62 @@ def test_prime_sieve_closes_and_integer_prime_does_not():
     prime_closure = compute_exact_reachable(prime, prime.attack_context())
     assert prime_closure.complete is False
     assert prime_closure.status is AttackStatus.INCONCLUSIVE
+
+
+def test_short_horizon_v2_separation_matches_truncated_congruence():
+    from research.signed_digit_short_horizon.spec import finite_language_spec, short_horizon_spec
+    from research_engine.core.contribution import FactorizationStatus, check_control_factorization
+    from research_engine.core.observation import observe
+
+    spec = finite_language_spec(horizon=1, bound=1, start_remaining=4)
+    merged = separate_states(spec, (0, 1), (3, 1))
+    assert merged.separated is False
+    assert merged.scope is SearchScope.EXACT
+    assert merged.certificate_kind is CertificateKind.EXACT_CLOSURE
+    assert merged.status is AttackStatus.SUPPORTED
+
+    long = finite_language_spec(horizon=2, bound=1, start_remaining=4)
+    split = separate_states(long, (0, 2), (3, 2))
+    assert split.separated is True
+    assert split.witness_length == 2
+    assert split.certificate_kind is CertificateKind.EXACT_COUNTEREXAMPLE
+
+    origin = short_horizon_spec(4)
+    phase = origin.initial_phase()
+    assert observe(origin, origin.initial_state, 0, phase) == origin.output(
+        origin.initial_state, 0, phase
+    )
+    fact = check_control_factorization(
+        origin,
+        states=tuple(origin.candidate_region),
+        controls=origin.digits,
+    )
+    assert fact.status is FactorizationStatus.VERIFIED
+    assert fact.control_count == fact.contribution_count == 5
+    recon = AttackPlanner().run(origin, origin.attack_context())
+    recon_result = next(item for item in recon.results if item.name == "reconnaissance")
+    closure = next(item for item in recon.results if item.name == "closure")
+    assert recon_result.certificate_kind is CertificateKind.BOUNDED_RECONNAISSANCE
+    assert closure.certificate_kind is CertificateKind.EXACT_CLOSURE
+    assert closure.evidence.get("union_size") == 7
+
+
+def test_proper_subset_language_v2_separation():
+    from research.signed_digit_short_horizon.spec import finite_language_spec
+
+    ray2 = finite_language_spec(ray=(0, 0), start_remaining=4)
+    split = separate_states(ray2, (0, 0), (3, 0))
+    assert split.separated is True
+    assert split.witness_length == 2
+    assert split.certificate_kind is CertificateKind.EXACT_COUNTEREXAMPLE
+
+    ray1 = finite_language_spec(ray=(0,), start_remaining=4)
+    merged = separate_states(ray1, (0, 0), (3, 0))
+    assert merged.separated is False
+    assert merged.scope is SearchScope.EXACT
+    assert merged.certificate_kind is CertificateKind.EXACT_CLOSURE
+
+    dropped = finite_language_spec(horizon=2, bound=1, drop_last=-1, start_remaining=4)
+    still_split = separate_states(dropped, (0, 2), (3, 2))
+    assert still_split.separated is True
+    assert still_split.witness_length == 2

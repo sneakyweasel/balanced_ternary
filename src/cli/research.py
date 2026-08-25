@@ -855,8 +855,10 @@ def _signed_digit_short_horizon_reproduce_failures(report, targets) -> tuple[str
     from research.signed_digit_short_horizon.planner import (
         CLOSURE_HYPOTHESIS,
         DEADLOCK_HYPOTHESIS,
+        MAXLEN_HYPOTHESIS,
         MERGE_HYPOTHESIS,
         SHORT_SEP_HYPOTHESIS,
+        SUBSET_HYPOTHESIS,
     )
 
     failures: list[str] = []
@@ -896,6 +898,18 @@ def _signed_digit_short_horizon_reproduce_failures(report, targets) -> tuple[str
     )
     if deadlock is None or deadlock.status is not HypothesisStatus.REFUTED:
         failures.append("signed_digit_short_horizon: deadlock-only hypothesis is not REFUTED")
+    subset = next(
+        (item for item in report.hypotheses if item.id == SUBSET_HYPOTHESIS.id),
+        None,
+    )
+    if subset is None or subset.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_short_horizon: subset-merge hypothesis is not REFUTED")
+    maxlen = next(
+        (item for item in report.hypotheses if item.id == MAXLEN_HYPOTHESIS.id),
+        None,
+    )
+    if maxlen is None or maxlen.status is not HypothesisStatus.SUPPORTED:
+        failures.append("signed_digit_short_horizon: max-len criterion is not SUPPORTED")
     closure = next((item for item in targets if item.attack == "closure"), None)
     if (
         closure is None
