@@ -155,4 +155,66 @@ theorem expandingD_residue_closure :
       (∀ a : Representation.Words.Trit, isTrit a.toInt) :=
   ⟨fun _ hr => expandingD_residue_T hr, expandingD_residue_I⟩
 
+def jet2 (n : ℤ) : ℤ × ℤ :=
+  (lsdZ n, lsdZ (DZ n))
+
+theorem jet2_expandingD (n : ℤ) :
+    jet2 (expandingD n) = (-lsdZ n, lsdZ n) := by
+  unfold jet2
+  rw [lsdZ_expandingD, DZ_expandingD]
+
+theorem jet2_IZ (a : Representation.Words.Trit) (x : ℤ) :
+    jet2 (IZ a x) = (a.toInt, lsdZ x) := by
+  unfold jet2
+  rw [lsdZ_IZ, D_after_I]
+
+theorem jet2_of_window {a b : ℤ} (ha : isTrit a) (hb : isTrit b) :
+    jet2 (a + 3 * b) = (a, b) := by
+  unfold jet2
+  have hlsd : lsdZ (a + 3 * b) = a :=
+    lsdZ_unique ha (Int.modEq_iff_dvd.mpr ⟨-b, by ring⟩)
+  have hdz : DZ (a + 3 * b) = b := by
+    have hde := decomp (a + 3 * b)
+    rw [hlsd] at hde
+    linarith
+  rw [hlsd, hdz, lsdZ_of_isTrit hb]
+
+theorem jet2_residue_closure {a b : ℤ} (ha : isTrit a) (hb : isTrit b) :
+    jet2 (expandingD (a + 3 * b)) = (-a, a) := by
+  have hn := jet2_of_window ha hb
+  have hlsd : lsdZ (a + 3 * b) = a := by
+    have := congrArg Prod.fst hn
+    simpa [jet2] using this
+  rw [jet2_expandingD, hlsd]
+
+theorem lsdZ_mul3 (m : ℤ) : lsdZ (3 * m) = 0 :=
+  lsdZ_unique (Or.inr (Or.inl rfl)) (Int.modEq_iff_dvd.mpr ⟨-m, by ring⟩)
+
+theorem DZ_expandingDGain_two (n : ℤ) :
+    DZ (expandingDGain 2 n) = 3 * DZ n := by
+  have hde := decomp (expandingDGain 2 n)
+  rw [lsdZ_expandingDGain_two] at hde
+  have hn := decomp n
+  unfold expandingDGain at *
+  linarith
+
+theorem jet2_expandingDGain_two (n : ℤ) :
+    jet2 (expandingDGain 2 n) = (lsdZ n, 0) := by
+  unfold jet2
+  rw [lsdZ_expandingDGain_two, DZ_expandingDGain_two, lsdZ_mul3]
+
+theorem DZ_expandingDGain_three (n : ℤ) :
+    DZ (expandingDGain 3 n) = 3 * DZ n := by
+  rw [expandingDGain_three_eq]
+  have hde := decomp (9 * DZ n)
+  have hlsd : lsdZ (9 * DZ n) = 0 := by
+    simpa [expandingDGain_three_eq] using lsdZ_expandingDGain_three n
+  rw [hlsd] at hde
+  linarith
+
+theorem jet2_expandingDGain_three (n : ℤ) :
+    jet2 (expandingDGain 3 n) = (0, 0) := by
+  unfold jet2
+  rw [lsdZ_expandingDGain_three, DZ_expandingDGain_three, lsdZ_mul3]
+
 end Problems.BalancedTernary

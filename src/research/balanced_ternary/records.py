@@ -12,6 +12,7 @@ from research_engine.verification.targets import TheoremTarget
 
 RECORD_DIR = Path(__file__).resolve().parents[3] / "experiments" / "balanced_ternary"
 EXPANDING_RECORD_DIR = RECORD_DIR / "expanding_d"
+J2_RECORD_DIR = RECORD_DIR / "expanding_j2"
 
 
 def record_status(result: AttackResult, *, lean_theorem: str = "") -> str:

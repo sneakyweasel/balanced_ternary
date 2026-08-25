@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -72,11 +72,13 @@ def _normalize_problem(name: str) -> str:
         return "balanced_ternary"
     if key.lower() in {"expanding_d", "expanding-d", "bt_expanding"}:
         return "expanding_d"
+    if key.lower() in {"expanding_j2", "expanding-j2", "j2"}:
+        return "expanding_j2"
     letter = key.upper()
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, or A-E"
     )
 
 
@@ -98,6 +100,12 @@ def _plan(problem: str, remaining: int):
 
         report = plan_expanding_d(remaining)
         targets = export_expanding_d_targets(report)
+        return report, targets
+    if problem == "expanding_j2":
+        from research.balanced_ternary.adapter import export_j2_targets, plan_expanding_j2
+
+        report = plan_expanding_j2(remaining)
+        targets = export_j2_targets(report)
         return report, targets
     report = run_benchmark(problem)
     return report, targets_from_report(report, problem=f"benchmark_{problem}")
@@ -132,6 +140,11 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = expanding_d_spec(remaining)
         context = spec.attack_context()
+    elif problem == "expanding_j2":
+        from research.balanced_ternary.expanding_j2_spec import expanding_j2_spec
+
+        spec = expanding_j2_spec(remaining)
+        context = spec.attack_context()
     else:
         spec, context = load_benchmark(problem)
     try:
@@ -155,6 +168,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _balanced_ternary_reproduce_failures(report, targets)
     elif problem == "expanding_d":
         failures = _expanding_d_reproduce_failures(report, targets)
+    elif problem == "expanding_j2":
+        failures = _expanding_j2_reproduce_failures(report, targets)
     else:
         failures = reproduce_checks(problem, report)
     if failures:
@@ -271,4 +286,42 @@ def _expanding_d_reproduce_failures(report, targets) -> tuple[str, ...]:
         failures.append("expanding_d: closure is not linked to expandingD_residue_closure")
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("expanding_d: exported a LIVE target")
+    return tuple(failures)
+
+
+def _expanding_j2_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.balanced_ternary.lean_export import (
+        J2_CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.balanced_ternary.planner import J2_CLOSURE_HYPOTHESIS
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 9):
+        failures.append("expanding_j2: closure is not EXACT size 9")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("expanding_j2: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("expanding_j2: modular/spectral should stay inapplicable")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == J2_CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("expanding_j2: J2-closure hypothesis is not SUPPORTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != J2_CLOSURE_THEOREM
+    ):
+        failures.append("expanding_j2: closure is not linked to jet2_residue_closure")
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("expanding_j2: exported a LIVE target")
     return tuple(failures)
