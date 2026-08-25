@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import cast
 
 from research.balanced_ternary.expanding_j2_spec import ExpandingJ2Spec, expanding_j2_spec
+from research.balanced_ternary.expanding_j3_spec import ExpandingJ3Spec, expanding_j3_spec
 from research.balanced_ternary.expanding_spec import ExpandingDResidueSpec, expanding_d_spec
 from research.balanced_ternary.spec import DoubledTritSpec, doubled_trit_spec
 from research_engine.core.problem_spec import ProblemSpec
@@ -38,6 +39,15 @@ J2_CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="expanding_j2",
+)
+
+J3_CLOSURE_HYPOTHESIS = Hypothesis(
+    id="expanding_j3_closure",
+    statement="J3 residual of T(n)=3n-lsd(n) is exactly the 27 trit triples",
+    kind=ClaimKind.REACHABLE,
+    intended_scope=SearchScope.EXACT,
+    status=HypothesisStatus.OPEN,
+    problem="expanding_j3",
 )
 
 
@@ -158,4 +168,44 @@ def plan_expanding_j2(
 def plan_j2_gain(gain: int, remaining: int = 8) -> PlannerReport:
     ledger = ResearchLedger()
     spec = ExpandingJ2Spec(gain=gain, start_remaining=remaining)
+    return AttackPlanner(ledger).run(cast(ProblemSpec, spec), spec.attack_context())
+
+
+def j3_ledger() -> ResearchLedger:
+    ledger = ResearchLedger()
+    ledger.add_hypothesis(J3_CLOSURE_HYPOTHESIS)
+    return ledger
+
+
+def plan_expanding_j3(
+    remaining: int = 8,
+    gain: int = 1,
+    ledger: ResearchLedger | None = None,
+) -> PlannerReport:
+    """Run cheap attacks on the discovered J3 residual."""
+    session = ledger if ledger is not None else j3_ledger()
+    spec = expanding_j3_spec(start_remaining=remaining, gain=gain)
+    report = AttackPlanner(session).run(cast(ProblemSpec, spec), spec.attack_context())
+    closure = next((item for item in report.results if item.name == "closure"), None)
+    if (
+        closure is not None
+        and "expanding_j3_closure" in session.hypotheses
+        and gain == 1
+    ):
+        try:
+            promote_if_legal(session, "expanding_j3_closure", closure)
+        except LedgerError:
+            pass
+    return PlannerReport(
+        results=report.results,
+        skipped=report.skipped,
+        hypotheses=tuple(session.hypotheses.values()),
+        blocked_jumps=report.blocked_jumps,
+        next_attacks=report.next_attacks,
+    )
+
+
+def plan_j3_gain(gain: int, remaining: int = 8) -> PlannerReport:
+    ledger = ResearchLedger()
+    spec = ExpandingJ3Spec(gain=gain, start_remaining=remaining)
     return AttackPlanner(ledger).run(cast(ProblemSpec, spec), spec.attack_context())

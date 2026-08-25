@@ -6,7 +6,8 @@ Which balanced-ternary digit transformations admit finite residual
 closure? Phase 0 treats doubled-trit normalization. Phase 1 treats
 the expanding section `T(n)=3n-lsd(n)` as an LSD-observable
 quotient. Phase 2 asks whether that finite structure lifts to the
-existing length-2 integer jet `J₂`.
+existing length-2 integer jet `J₂`. Phase 3 asks how many input
+digits `T` remembers on the length-3 jet `J₃`.
 
 ## Problem
 
@@ -99,6 +100,9 @@ change destroys it.
 - `J₂(T(n))=(-lsd(n), lsd(n))`. **EXACT — LEAN VERIFIED**
 - `J₂` orbit requires a third digit. **REFUTED**
 - `J₂(T_2(n))=(lsd(n),0)`, `J₂(T_3(n))=(0,0)`. **EXACT — LEAN VERIFIED**
+- `J₃(T(n))=(-a,a,b)` factors through `J₂`. **EXACT — LEAN VERIFIED**
+- `J₃(T(n))` is a function of `lsd(n)` alone. **REFUTED**
+- `J₃(T_2(n))=(a,0,b)`, `J₃(T_3(n))=(0,0,b)`. **EXACT — LEAN VERIFIED**
 
 The step is piecewise balanced division, not one integer-affine map
 `As+b(d)`. Modular/spectral attacks are inapplicable.
@@ -111,6 +115,8 @@ The step is piecewise balanced division, not one integer-affine map
 - `btlab research analyze|attack|reproduce|report expanding_d`
 - `btlab research analyze|attack|reproduce|report expanding_j2`
 - `J₂` records in `experiments/balanced_ternary/expanding_j2/`
+- `btlab research analyze|attack|reproduce|report expanding_j3`
+- `J₃` records in `experiments/balanced_ternary/expanding_j3/`
 
 ## Phase 1 — expanding `T(n)=3n-lsd(n)`
 
@@ -163,6 +169,44 @@ Lean: `jet2_expandingD`, `jet2_residue_closure`.
 This is a forgetful digit-window jet, analogous to
 `J₂(I_c(n))=(c,lsd(n))`, not a classical polynomial derivative.
 
+## Phase 3 — length-3 integer jet and memory depth
+
+`J₃(n)` is the existing `integer_jet(n, 3)=(a,b,c)` with LSD-first
+indexing. Storage orientation matches the mathematical tuple:
+`a=lsd(n)`, `b=lsd(DZ(n))`, `c=lsd(DZ²(n))`. From the Phase-1
+identities `lsd(T(n))=-a` and `DZ(T(n))=n`,
+
+\[
+J_3(T(n))=(-a,a,b)=(-a)\mathbin{\|} J_2(n).
+\]
+
+The third input digit `c` is discarded. The second digit `b`
+survives as the third output coordinate. The factorization
+`J₃∘T=F∘J₂` is exact; `J₁` is not sufficient (`n=1` vs `n=4`).
+Same `J₂` and different `c` do not separate the next `J₃`
+(`n=1` vs `n=10`). The prefix square commutes:
+`J₂(T(n))` is the first two coordinates of `J₃(T(n))`.
+
+Counts, kept separate:
+
+- raw trit triples: 27
+- reachable residual states (`I`/`T` from `(0,0,0)`): 27
+- `T`-image: 9 states of the form `(-a,a,b)`
+- full-sequence classes: 27
+- next-output Mealy: 9 (states with the same `(a,b)` merge)
+
+Reconnaissance is `OBSERVATION`. Exhaustive closure is `EXACT` by
+queue exhaustion. Lean: `jet3_expandingD`, `jet3_factors_through_jet2`,
+`jet3_residue_closure`.
+
+Perturbations (no sweep): `J₃(T_2(n))=(a,0,b)` and
+`J₃(T_3(n))=(0,0,b)`. `T_3` collapses `J₁` and `J₂` but does not
+collapse `J₃`: `b` survives. Memory structure still forgets `c`.
+
+Memory depth at this order: `J₃∘T` factors through `J₂` (`m=2`),
+not through `J₁`. The concatenation law is the natural recursive
+pattern from `DZ∘T=id`; this phase does not launch `J₄`.
+
 ## Conjectures
 
 None opened. Finite-horizon stabilization is not a conjecture and
@@ -179,6 +223,10 @@ is not promoted.
 - `J₂(T(n))` depends on the second digit: `n=1` and `n=4` have
   distinct `J₂` but `J₂(T(n))=(-1,1)` for both.
 - A third digit is required for the `J₂`-orbit: `n=1` and `n=10`.
+- `J₃(T(n))` depends only on `lsd(n)`: `n=1` and `n=4` share
+  `a=1` but `J₃(T(1))=(-1,1,0)` and `J₃(T(4))=(-1,1,1)`.
+- `J₂` fails to determine `J₃(T(n))`: no witness. `n=1` and
+  `n=10` share `J₂=(1,0)` and `J₃(T)=(-1,1,0)`.
 
 ## Formalization
 
@@ -201,6 +249,10 @@ a general Myhill–Nerode development.
 - `J₂` of `T` is the 9 trit pairs with exact law `(-a,a)`. Raw 9,
   `T`-image 3, next-output Mealy 3, full-sequence classes 9.
 - `T_2` erases the second jet digit; `T_3` collapses `J₂` to `(0,0)`.
+- `J₃` of `T` is the 27 trit triples with exact law `(-a,a,b)`.
+  Raw 27, reachable 27, `T`-image 9, next-output Mealy 9,
+  full-sequence classes 27.
+- `T_2` and `T_3` still forget `c`; `T_3` keeps `b` at order 3.
 
 ## Open questions
 
@@ -220,9 +272,13 @@ window residual, the third-digit refutation, and the order-2
 visibility of `T_2`. Finite-horizon stabilization was not treated
 as proof.
 
-Best next question: does `J₃` remain a finite forgetful window, or
-does some finite order first require a digit that `T` does not
-discard?
+Phase 3: `PROMOTE` the exact `J₃` law `(-a,a,b)`, the factorization
+through `J₂`, the `J₁`-insufficiency witness, and the survival of
+`b` under `T_3`. Do not auto-start `J₄`.
+
+Best next question: does `J_k(T)=(-lsd(n))\mathbin{\|} J_{k-1}(n)`
+hold for every `k`, or is there a first order at which the last
+digit survives?
 
 ## Publication assessment
 
@@ -231,5 +287,6 @@ Status: `STRUCTURAL`.
 Unique balanced-ternary representation is `KNOWN`. Phase 0 promoted
 the doubled-trit engine certificate and the gain boundary. Phase 1
 promoted the LSD observational quotient of expanding `T`. Phase 2
-promoted the length-2 integer jet of `T`. That is not a
+promoted the length-2 integer jet of `T`. Phase 3 promoted the
+length-3 jet law and its exact memory depth `m=2`. That is not a
 `PAPER_CANDIDATE` by itself.

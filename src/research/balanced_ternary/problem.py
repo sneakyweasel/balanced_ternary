@@ -9,7 +9,8 @@ PROBLEM = ProblemDefinition(
     statement=(
         "Doubled-trit normalization has residual closure {-1,0,1}. "
         "The expanding map T(n)=3n-lsd(n) has infinite integer orbits, "
-        "a 3-state LSD quotient, and a 9-state J2 quotient with T-image size 3."
+        "a 3-state LSD quotient, a 9-state J2 quotient, and a 27-state "
+        "J3 quotient that factors through J2 by the shift (-a,a,b)."
     ),
     bt_relevance=(
         "T is the existing section I_{-lsd(n)}(n). Lab D remains "

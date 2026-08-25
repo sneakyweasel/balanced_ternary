@@ -2393,5 +2393,38 @@
       "tests/research/balanced_ternary/test_expanding_j2.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "BTN-expanding-j3",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For T(n)=3n-lsd(n), the length-3 integer jet satisfies J3(T(n))=(-lsd(n), lsd(n), lsd(DZ(n))). Equivalently J3(T(n))=(-a,a,b) when J2(n)=(a,b). The third input digit is discarded. The map factors through J2.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/ExpandingD.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_expanding_j3.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-expanding-j3-j1",
+    "tag": "REFUTED",
+    "statement": "J3(T(n)) is a function of lsd(n) alone",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/ExpandingD.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_expanding_j3.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-expanding-j3-lambda",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "J3(T_2(n))=(lsd(n),0,lsd(DZ(n))) and J3(T_3(n))=(0,0,lsd(DZ(n))). T_3 collapses J1 and J2 but does not collapse J3: the second input digit survives.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/ExpandingD.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_expanding_j3.py"
+    ],
+    "related_conjectures": []
   }
 ]

@@ -217,4 +217,70 @@ theorem jet2_expandingDGain_three (n : ℤ) :
   unfold jet2
   rw [lsdZ_expandingDGain_three, DZ_expandingDGain_three, lsdZ_mul3]
 
+/-- Length-3 integer jet, LSD-first: `(lsd, lsd∘DZ, lsd∘DZ²)`. -/
+def jet3 (n : ℤ) : ℤ × ℤ × ℤ :=
+  (lsdZ n, lsdZ (DZ n), lsdZ (DZ (DZ n)))
+
+theorem jet2_eq_prefix_jet3 (n : ℤ) :
+    jet2 n = ((jet3 n).1, (jet3 n).2.1) :=
+  rfl
+
+theorem jet3_expandingD (n : ℤ) :
+    jet3 (expandingD n) = (-lsdZ n, lsdZ n, lsdZ (DZ n)) := by
+  unfold jet3
+  rw [lsdZ_expandingD, DZ_expandingD]
+
+theorem jet3_factors_through_jet2 (n : ℤ) :
+    jet3 (expandingD n) = (-(jet2 n).1, (jet2 n).1, (jet2 n).2) := by
+  unfold jet3 jet2
+  rw [lsdZ_expandingD, DZ_expandingD]
+
+theorem jet3_expandingD_commutes_with_jet2 (n : ℤ) :
+    jet2 (expandingD n) = ((jet3 (expandingD n)).1, (jet3 (expandingD n)).2.1) :=
+  jet2_eq_prefix_jet3 (expandingD n)
+
+theorem jet3_IZ (a : Representation.Words.Trit) (x : ℤ) :
+    jet3 (IZ a x) = (a.toInt, lsdZ x, lsdZ (DZ x)) := by
+  unfold jet3
+  rw [lsdZ_IZ, D_after_I]
+
+theorem jet3_of_window {a b c : ℤ} (ha : isTrit a) (hb : isTrit b) (hc : isTrit c) :
+    jet3 (a + 3 * b + 9 * c) = (a, b, c) := by
+  unfold jet3
+  have hlsd : lsdZ (a + 3 * b + 9 * c) = a :=
+    lsdZ_unique ha (Int.modEq_iff_dvd.mpr ⟨-(b + 3 * c), by ring⟩)
+  have hdz : DZ (a + 3 * b + 9 * c) = b + 3 * c := by
+    have hde := decomp (a + 3 * b + 9 * c)
+    rw [hlsd] at hde
+    linarith
+  have hwin := jet2_of_window hb hc
+  unfold jet2 at hwin
+  rw [hlsd, hdz]
+  exact congrArg (fun p : ℤ × ℤ => (a, p)) hwin
+
+theorem jet3_residue_closure {a b c : ℤ} (ha : isTrit a) (hb : isTrit b)
+    (hc : isTrit c) :
+    jet3 (expandingD (a + 3 * b + 9 * c)) = (-a, a, b) := by
+  have hwin := jet3_of_window ha hb hc
+  have hlsd : lsdZ (a + 3 * b + 9 * c) = a := by
+    simpa [jet3] using congrArg Prod.fst hwin
+  have hmid : lsdZ (DZ (a + 3 * b + 9 * c)) = b := by
+    simpa [jet3] using congrArg (fun p : ℤ × ℤ × ℤ => p.2.1) hwin
+  rw [jet3_expandingD, hlsd, hmid]
+
+theorem DZ_mul3 (m : ℤ) : DZ (3 * m) = m := by
+  have hde := decomp (3 * m)
+  rw [lsdZ_mul3] at hde
+  linarith
+
+theorem jet3_expandingDGain_two (n : ℤ) :
+    jet3 (expandingDGain 2 n) = (lsdZ n, 0, lsdZ (DZ n)) := by
+  unfold jet3
+  rw [lsdZ_expandingDGain_two, DZ_expandingDGain_two, lsdZ_mul3, DZ_mul3]
+
+theorem jet3_expandingDGain_three (n : ℤ) :
+    jet3 (expandingDGain 3 n) = (0, 0, lsdZ (DZ n)) := by
+  unfold jet3
+  rw [lsdZ_expandingDGain_three, DZ_expandingDGain_three, lsdZ_mul3, DZ_mul3]
+
 end Problems.BalancedTernary
