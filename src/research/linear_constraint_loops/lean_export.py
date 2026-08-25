@@ -9,4 +9,8 @@ THEOREMS = (
     "decrement_reaches_zero",
     "negation_period2",
     "negation_fixed_iff_zero",
+    "sumStripRel_three",
+    "sumStripRel_all",
+    "sumStrip_cycle_zero_one",
+    "sumStrip_fixed_zero",
 )

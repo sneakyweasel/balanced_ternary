@@ -111,6 +111,11 @@ seeded corpus.
   successor; \(3x'\in\{4x-1,4x-2\}\); \(x'=(4x)/3\).
   **EXACT — LEAN VERIFIED** (`rplusRel_unique`, `rplusRel_clear`,
   `rplusRel_ediv`). **KNOWN** (Carelli Example 4.26).
+- Sum strip: \(-1\le x+x'\le 1\). Three integer successors at every
+  \(x\); length-1 cycle at 0; length-2 cycle \(0\leftrightarrow 1\).
+  **EXACT — LEAN VERIFIED** (`sumStripRel_three`, `sumStripRel_all`,
+  `sumStrip_cycle_zero_one`, `sumStrip_fixed_zero`). **KNOWN**
+  (Carelli Lemma 5.33). Existential, not universal.
 - Engine census \(3y=4x-2\) on \(x\equiv 2\pmod{3}\) and \(3y=4x-1\) on
   \(x\equiv 1\pmod{3}\). **OBSERVATION** on the sample window;
   **DISCOVERED** (not adapter-given). Relation exactness as in
@@ -145,13 +150,22 @@ re-stated as a project conjecture.
 - “Finite seed closure means the map is contracting.” **REFUTED** as a
   diagnosis: \(R^+\) expands whenever a successor exists, yet seed 8
   closes at 66 and is billed `FINITE_CONTRACTING`.
+- “The frozen 1-D census can represent overlapping legal affine
+  domains.” **REFUTED** as an engine claim: `piecewise_affine` is
+  inapplicable whenever `legal_controls(start)` is not a singleton.
+- “Every legal path of the sum strip terminates.” **REFUTED** by an
+  `EXISTENTIAL_WITNESS` cycle. That does not imply every legal path
+  is cyclic (`UNKNOWN`).
 
 ## Formalization
 
 `formal/Problems/Engine/LinearConstraintLoops.lean`: `rplusRel_unique`,
 `rplusRel_clear`, `rplusRel_ediv`, `decrement_reaches_zero`,
-`negation_period2`, `negation_fixed_iff_zero`. KNOWN integer
-consequences of the problem definitions. No `sorry`. No ledger row.
+`negation_period2`, `negation_fixed_iff_zero`, `sumStripRel_three`,
+`sumStripRel_all`, `sumStrip_cycle_zero_one`, `sumStrip_fixed_zero`.
+KNOWN integer consequences of the problem definitions. The sum-strip
+lemmas are existential facts about the relation, not engine-discovered
+branches and not universal termination. No `sorry`. No ledger row.
 
 ## Results
 
@@ -417,27 +431,251 @@ and \(R^+\); useful failure on negation; Lean for the strongest exact
 identities; no new attack; ResearchLoop selects a subsequent target;
 yield summarized above.
 
+## Phase 2: nondeterministic one-variable SLC
+
+```text
+Mathematical target     Can frozen v2 represent, classify, and attack a
+                        one-variable SLC when legal_controls contains
+                        more than one control for a given state?
+Novelty hypothesis      Existing closure, fingerprint, and probes already
+                        support branching; the 1-D census/word/obstruction
+                        stack may not.
+Falsifier               Collapsing to a preferred successor; new attacks;
+                        silent ∃/∀ collapse; implementing the involution
+                        census fix from Phase 1.
+Existing machinery      legal_controls on ProblemSpec; ExhaustiveClosure
+                        BFS; RegimeFingerprint BRANCHING; 1-D census
+                        singleton gate; ControlWord after ParameterDomain.
+Maximum Phase-0 scope   Synthetics A–E + one Carelli-derived strip + Lean
+                        for the exact legal relation / existential cycle
+                        + dossier. No new attack.
+Promotion criterion     Overlapping branches recovered by frozen census,
+                        or a precise ENGINE_LIMITATION with quantifier
+                        discipline.
+Stop criterion          New attacks; census/quotient redesign; a
+                        NondeterministicSLC solver.
+```
+
+### Quantifier discipline
+
+Every Phase-2 claim is tagged `EXISTENTIAL`, `UNIVERSAL`,
+`MIXED_QUANTIFIER`, or `UNKNOWN`.
+
+| Label | Meaning |
+|-------|---------|
+| `EXISTENTIAL_WITNESS` | one verified legal path with the stated property |
+| `NO PATH FOUND` | search miss, not `NO LEGAL PATH EXISTS` |
+| `REFUTED` | a verified counterexample path to a universal claim |
+| `CERTIFIED_ON_WINDOW` | every explored legal path from a finite window halted; not a \(\mathbb{Z}\)-theorem |
+| `UNKNOWN` | truncation or bound; finite search does not certify the universal |
+
+The frozen attacks themselves do not carry this vocabulary. It is
+applied in post-run probes (`quantifier_report`) and in this dossier.
+
+### K. Synthetic validation (tests only)
+
+Hidden specs in `synthetics.py`. Ground truth never reaches a production
+attack.
+
+| Id | Relation | Census | Fingerprint | ∃ cycle | ∀ terminate |
+|----|----------|--------|-------------|---------|-------------|
+| A `two_affine` | \(x\rightsquigarrow 2x+1\) or \(x-2\) | skipped (`_singleton_integer`) | `BRANCHING` | `EXISTENTIAL_WITNESS` at \(-1\) (fixed point of \(2x+1\)) | `REFUTED` |
+| B `stay_or_decrement` | \(x\rightsquigarrow x\) or \(x-1\) on \(x\ge 1\) | skipped | `BRANCHING` | `EXISTENTIAL_WITNESS` (stay) | `REFUTED`; `all_paths_cycle` remains `UNKNOWN` |
+| C `dual_decrement` | \(x\rightsquigarrow x-1\) or \(x-2\) | skipped | `BRANCHING` | `NO PATH FOUND` | `CERTIFIED_ON_WINDOW` on \(\{0,\ldots,7\}\); `UNKNOWN` on a larger window (truncation is not a refutation) |
+| D overlapping | A, and the real sum strip | skipped | `BRANCHING` | — | census did **not** force disjoint domains; it refused |
+| E `decrement_or_double` | \(x\rightsquigarrow x-1\) or \(2x\) | skipped | `BRANCHING` | `EXISTENTIAL_WITNESS` \(1\leftrightarrow 2\) | `REFUTED` (cycle, and also a doubling ray) |
+
+B is the required distinction: \(\exists\) cycle is true, \(\forall\)
+paths cycle is not certified and is false. E is the false-universal
+trap: most decrement paths halt, but a legal 2-cycle exists.
+
+Finite branching with exact seed closure (`stay_or_decrement`,
+`dual_decrement`) lets `closure` return `SUPPORTED`. The Mealy quotient
+then runs, with alphabet equal to **the start state's** legal
+successors. At other states those labels are typically illegal and
+route to `__blocked__`. That is a valid Mealy machine on a global
+alphabet, and a **semantic mismatch** for successor-as-control.
+
+### L. Blind adapter
+
+`RelationLoopSpec`: every legal integer successor **is** the control.
+No preferred transition, no named branches, no Carelli language.
+`spec.py` still does not import `scout.py`.
+
+Real target: integer points of \(-1\le x+x'\le 1\) (`slc_sum_strip`).
+Adapter exposes only the inequality via integer enumeration. Scout
+name: Carelli Lemma 5.33 anti-diagonal strip, height 3. **Not** passed
+to the engine.
+
+### M. `slc_sum_strip` engine report
+
+| Field | Engine |
+|-------|--------|
+| Decision (no override) | `CONTINUE` — “structurally distant non-finite regime with at least one exact certificate” |
+| Semantic class | `INTEGER_1D\|BRANCHING\|MIXED_MAGNITUDE\|UNBOUNDED_SAMPLE` |
+| `control_structure` / architecture | `BRANCHING` / `BRANCHING` (CORE; does not core-match digit-fold `SINGLETON`) |
+| Piecewise / latent / domain | `UNOBSERVED` — census never ran |
+| Structure origin | **GIVEN BY THE ADAPTER** (the inequality). Affine slices **not** `DISCOVERED` |
+| Census | skipped. Failure boundary: `PiecewiseAffineCensusAttack.applicable` requires `len(legal_controls(start))==1` |
+| ParameterDomain / ControlWord / obstruction | skipped as dependents |
+| Closure | `INCONCLUSIVE`, cap 32, union size 33. BFS **does** follow every legal control. Truncation is not infinitude. Witnesses are a spanning tree; the full multi-graph is not exported |
+| Reconnaissance | `OBSERVATION`, horizon 16, not \(L_n\) |
+| Separation | `SUPPORTED`, length 0: identity observation separates distinct integers. This is the “exact certificate” behind `CONTINUE`. It is not a control identity |
+| Quotient | `INCONCLUSIVE` (no finite reachable set) |
+| Vector / matrix / modular / affine / … | skipped |
+| ∃ cycle | `EXISTENTIAL_WITNESS` (post-run; e.g. \((-40,41)\), and Lean \(0\leftrightarrow 1\), \(0\mapsto 0\)) |
+| ∀ terminate | `REFUTED` by that witness. Not a search miss |
+| ∀ paths cycle | `UNKNOWN` |
+| Result class | `EXISTENTIAL` |
+
+`ENGINE_LIMITATION` (campaign record, not `decide_research` enum): the
+frozen 1-D latent-control stack cannot represent legitimate overlapping
+affine domains. `decide_research` reserves `ENGINE_LIMITATION` for
+singleton + mixed magnitude + truncated + no piecewise, so a
+`BRANCHING` spec is billed `CONTINUE` instead. Do not override.
+
+### N. Failure boundary (frozen; not implemented)
+
+```text
+ENGINE_LIMITATION
+```
+
+```text
+Problem              1-D census and its dependents assume a partial function
+Affected component   PiecewiseAffineCensusAttack._singleton_integer;
+                     _eval_map drops any state with len(controls)!=1;
+                     ParameterDomain; ControlWord; control_obstruction
+Semantic mismatch    Several affine laws may be simultaneously legal.
+                     The census never starts, so it cannot recover
+                     y=-x-1, y=-x, y=1-x on overlapping domains, and
+                     it cannot incorrectly force those domains apart.
+Minimal example      slc_sum_strip at any x; synthetics A–E
+Mathematical importance  This is the generic one-variable nondeterministic SLC
+Potential generic fix    Census of a relation (set-valued samples), then
+                         overlapping ParameterDomain; legal-word language
+                         L_m(x). Not in this experiment.
+```
+
+```text
+Problem              Mealy quotient uses a global alphabet
+Affected component   behavior.quotient.quotient_from_states
+Semantic mismatch    alphabet = legal_controls(start). Successor-as-control
+                     has a state-dependent letter set. Missing letters
+                     become __blocked__, which is not the SLC relation.
+Minimal example      stay_or_decrement: start alphabet {start, start-1};
+                     at x=1 the legal set is {1,0}
+Mathematical importance  Behavioral equivalence for nondeterministic SLC
+                         is not the current Mealy quotient
+Potential generic fix    State-dependent alphabets or relation bisimulation.
+                         Do not invent a new quotient engine now.
+```
+
+```text
+Problem              Closure witnesses are a spanning tree
+Affected component   ExhaustiveClosureAttack
+Semantic mismatch    Existential cycles off the BFS tree are absent from
+                     witnesses; transition_rows counts the multi-graph
+                     but does not export it
+Minimal example      stay_or_decrement self-loop at the seed
+Mathematical importance  Exact Post* union is still correct when complete
+Potential generic fix    Export the adjacency table. Not in this experiment.
+```
+
+The Phase-1 involution-census fix remains unimplemented.
+
+### O. Prior-art reconciliation (after the blind run)
+
+| Layer | Content |
+|-------|---------|
+| Engine discovery | `BRANCHING`; mixed magnitude; unbounded sample; ∃ cycle witness; ∀ termination refuted; no affine census; no control words; no class obstruction |
+| Paper's loop | Carelli Lemma 5.33: anti-diagonal strip \(-1\le x+x'\le 1\), height 3, three integer successors \(y\in\{-x-1,-x,1-x\}\) at every \(x\) |
+| Known results | Length-1 cycle at 0; length-2 cycles including \(0\leftrightarrow 1\); Theorem 3.20 (cyclic trace \(\Rightarrow\) length \(\le 2\)); self-avoiding traces for height \(\ge 2\) |
+
+| Carelli claim | Engine |
+|---------------|--------|
+| Three overlapping affine slices | **Not recovered.** Census skipped. Lean `sumStripRel_three` / `sumStripRel_all` package the **definition**, not engine discovery |
+| Cycles of length 1 and 2 | **EXISTENTIAL_WITNESS** post-run / Lean. **KNOWN**. Not a control-word rediscovery |
+| Theorem 3.20 length \(\le 2\) | **KNOWN ONLY FROM PRIOR ART.** Not an engine theorem. `all_paths_cycle` is `UNKNOWN` |
+| Self-avoiding traces, height \(\ge 2\) | **Not recovered.** Closure truncated. Not claimed |
+| Quantifier distinction (some traces cycle, some avoid) | Fingerprint does not state it. Post-run probes distinguish ∃ cycle from ∀ terminate and leave ∀ cycle `UNKNOWN` |
+
+No recovery of Carelli's length-\(\le 2\) cyclic-trace result as engine
+mathematics. That remains **KNOWN**.
+
+### P. Mathematical yield (Phase 2)
+
+```text
+Known rediscoveries:     three-valued integer strip (definition);
+                         ∃ cycles of length 1 and 2 (KNOWN Carelli);
+                         BRANCHING as a core fingerprint
+New exact results:       none beyond the problem definition
+New counterexamples:     “the 1-D census can represent overlapping
+                         legal affine domains” REFUTED as an engine claim;
+                         “∀ legal paths of the strip terminate” REFUTED
+New existential witnesses: post-run cycle on the strip; Lean 0↔1 and 0↦0
+New universal statements: dual_decrement CERTIFIED_ON_WINDOW only;
+                         no Z-theorem from the frozen stack
+New conjectures:         none
+Lean-certified results:  sumStripRel_three, sumStripRel_all,
+                         sumStrip_cycle_zero_one, sumStrip_fixed_zero
+                         (KNOWN; no sorry; no ledger)
+Unresolved quantifier problems: ∀ paths cycle on the strip; ∀x∃
+                         terminating legal word vs ∀x∀u; self-avoiding
+                         traces; mixed quantifiers generally
+Engineering limitations: recorded above; not implemented
+```
+
+Capability coverage: `branching_controls` and
+`nontrivial_control_alphabet` are `EXERCISED`. Latent control, piecewise
+census, and control-word obstruction are `NOT_TESTED` / skipped, not
+refuted as mathematics.
+
+ResearchLoop: `CONTINUE` on `slc_sum_strip` (BRANCHING core, unbounded
+sample, trivial exact separation). No taste override. The campaign
+decision below is `PARK`.
+
+### Q. Answer to the Phase-2 question
+
+How far can the frozen deterministic latent-control machinery already
+reason about genuinely nondeterministic one-variable SLCs?
+
+```text
+multiple legal transitions
+  → fingerprint BRANCHING, magnitude over all controls, closure BFS Post*
+  → census / ParameterDomain / ControlWord / obstruction : STOP
+  → existing composition/obstruction never runs
+```
+
+Nondeterministic mathematics is **diagnosed** and **existentially
+sampled**. It is **not** consumed by the frozen 1-D control language.
+That is a useful failure. Do not thaw the architecture to paper over it.
+
 ## Open questions
 
 The Reachability instance \(T(x)=\lfloor 4x/3\rfloor\) remains open in
-the literature. Do not assign it to the engine. The named census
-limitation is recorded for a future engineering phase, not for
+the literature. Do not assign it to the engine. Named limitations
+(involution census; seed-closure vs contraction; singleton census gate;
+start-local Mealy alphabet) wait for an engineering thaw, not for
 implementation now.
 
 ## Decision
 
-`PARK`. The campaign answered the frozen-engine question against
-Carelli 2026. Recovered identities are **KNOWN**. The involution-census
-failure is a precise `ENGINE_LIMITATION` and is not patched. Do not
-auto-continue into proving or refuting the Reachability Conjecture. Do
-not add a residue-class attack.
+`PARK`. Phase 1 recovered KNOWN \(R^+\) residue structure and a named
+involution-census limitation. Phase 2 showed that `legal_controls` with
+cardinality greater than one is visible to fingerprint, probes, and
+closure, and invisible to the 1-D census/word/obstruction stack.
+Existential cycle witnesses are valid and were not promoted to universal
+theorems. Overlapping affine domains were not recovered and were not
+falsely partitioned. All identities remain **KNOWN**. Do not implement
+a nondeterministic census, a legal-word language, or a new bisimulation
+engine. Do not override ResearchLoop.
 
-Best next question: should the frozen stack next consume a
-*nondeterministic* one-variable SLC (multiple integer successors),
-where the 1-D census already requires a singleton control?
+Best next question: which *other* frozen-engine mathematical target
+should be consumed next, leaving the parked SLC limitations untouched?
 
 ## Publication assessment
 
 Status: `EXPLORATORY`. Not a `PAPER_CANDIDATE` as verification or
-number theory. Value is the first frozen-engine campaign whose primary
-metric is mathematical yield against current prior art.
+number theory. Value is a two-phase frozen-engine campaign whose
+primary metric is mathematical yield against Carelli 2026, including a
+precise semantic boundary on nondeterminism.

@@ -2,7 +2,9 @@
 
 from __future__ import annotations
 
-from research.linear_constraint_loops.spec import OneVariableLoopSpec
+from research.linear_constraint_loops.spec import OneVariableLoopSpec, RelationLoopSpec
+
+LoopSpec = OneVariableLoopSpec | RelationLoopSpec
 
 WINDOW = tuple(range(-40, 81))
 ORBIT_CAP = 80
@@ -167,3 +169,127 @@ def _first_noncontraction(spec: OneVariableLoopSpec) -> int | None:
         if image is not None and abs(image) >= abs(seed):
             return seed
     return None
+
+
+def legal_images(spec: LoopSpec, x: int) -> tuple[int, ...]:
+    return spec.successors(x)
+
+
+def existential_cycle_witness(
+    spec: LoopSpec,
+    window: tuple[int, ...] = WINDOW,
+    *,
+    max_len: int = CYCLE_CAP,
+) -> tuple[int, ...] | None:
+    """EXISTENTIAL: one legal cycle, if any. Not a universal cycle claim."""
+    for seed in window:
+        stack: list[tuple[int, tuple[int, ...]]] = [(seed, (seed,))]
+        seen_paths = 0
+        while stack and seen_paths < 4000:
+            current, path = stack.pop()
+            seen_paths += 1
+            if len(path) > max_len:
+                continue
+            for nxt in legal_images(spec, current):
+                if nxt in path:
+                    cycle = path[path.index(nxt) :]
+                    return _rotate(tuple(cycle))
+                stack.append((nxt, path + (nxt,)))
+    return None
+
+
+def universal_termination_on_seeds(
+    spec: LoopSpec,
+    window: tuple[int, ...] = WINDOW,
+    *,
+    max_depth: int = 24,
+) -> dict[str, object]:
+    """UNIVERSAL: every legal path from every window seed hits an empty menu.
+
+    A cycle is a refutation. Truncation is UNKNOWN: NO PATH FOUND is not
+    NO LEGAL PATH EXISTS, and a truncated path is not a terminating path.
+    """
+    cycle = existential_cycle_witness(spec, window, max_len=min(max_depth, CYCLE_CAP))
+    if cycle is not None:
+        return {
+            "holds": False,
+            "status": "REFUTED",
+            "quantifier": "UNIVERSAL",
+            "counterexample": cycle,
+            "reason": "EXISTENTIAL_WITNESS of a cycle",
+        }
+    truncated_path: tuple[int, ...] | None = None
+    for seed in window:
+        stack: list[tuple[int, tuple[int, ...]]] = [(seed, (seed,))]
+        visited = 0
+        while stack and visited < 8000:
+            current, path = stack.pop()
+            visited += 1
+            images = legal_images(spec, current)
+            if not images:
+                continue
+            if current in path[:-1]:
+                return {
+                    "holds": False,
+                    "status": "REFUTED",
+                    "quantifier": "UNIVERSAL",
+                    "counterexample": path,
+                    "reason": "EXISTENTIAL_WITNESS of a cycle",
+                }
+            if len(path) > max_depth:
+                truncated_path = path
+                continue
+            for nxt in images:
+                stack.append((nxt, path + (nxt,)))
+        if stack:
+            return {
+                "holds": None,
+                "status": "UNKNOWN",
+                "quantifier": "UNIVERSAL",
+                "counterexample": None,
+                "reason": "search bound; NO PATH FOUND is not NO LEGAL PATH EXISTS",
+            }
+    if truncated_path is not None:
+        return {
+            "holds": None,
+            "status": "UNKNOWN",
+            "quantifier": "UNIVERSAL",
+            "counterexample": truncated_path,
+            "reason": "truncated path; not a proof that no terminating path exists",
+        }
+    return {
+        "holds": True,
+        "status": "CERTIFIED_ON_WINDOW",
+        "quantifier": "UNIVERSAL",
+        "counterexample": None,
+        "reason": "every explored legal path from the window hit an empty menu; not a Z-theorem",
+    }
+
+
+def _result_class(cycle: tuple[int, ...] | None, universal: dict[str, object]) -> str:
+    if cycle is not None and universal.get("status") == "CERTIFIED_ON_WINDOW":
+        return "MIXED_QUANTIFIER"
+    if cycle is not None:
+        return "EXISTENTIAL"
+    if universal.get("status") == "CERTIFIED_ON_WINDOW":
+        return "UNIVERSAL"
+    return "UNKNOWN"
+
+
+def quantifier_report(spec: LoopSpec) -> dict[str, object]:
+    cycle = existential_cycle_witness(spec)
+    universal = universal_termination_on_seeds(spec)
+    return {
+        "existential_cycle": {
+            "quantifier": "EXISTENTIAL",
+            "status": "EXISTENTIAL_WITNESS" if cycle else "NO PATH FOUND",
+            "witness": cycle,
+        },
+        "universal_termination": universal,
+        "all_paths_cycle": {
+            "quantifier": "UNIVERSAL",
+            "status": "UNKNOWN",
+            "note": "finite search does not certify EVERY LEGAL WORD OF THIS CLASS IS CYCLIC",
+        },
+        "discovered_result_class": _result_class(cycle, universal),
+    }

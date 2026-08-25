@@ -2,7 +2,7 @@
 
 Each spec exposes only the exact state space, the exact transition
 relation or affine assignment from the original loop, the exact guard,
-and identity observation. Dummy control. No literature names.
+and identity observation. No literature names.
 """
 
 from __future__ import annotations
@@ -64,6 +64,12 @@ def negation_images(x: int) -> tuple[int, ...]:
 def increment_images(x: int) -> tuple[int, ...]:
     x = _require_int(x, "x")
     return (x + 1,)
+
+
+def sum_strip_images(x: int) -> tuple[int, ...]:
+    """Integer successors of ``-1 <= x + x' <= 1``."""
+    x = _require_int(x, "x")
+    return integer_images(-x - 1, -x + 1, 1)
 
 
 @dataclass(frozen=True)
@@ -147,6 +153,88 @@ class OneVariableLoopSpec:
         return AttackContext(**kwargs)
 
 
+@dataclass(frozen=True)
+class RelationLoopSpec:
+    """One-variable integer relation. Every legal successor is a control.
+
+    This does not install a preferred transition or a named branch table.
+    """
+
+    name: str
+    start: int
+    images: object
+    start_remaining: int = INPUT_LENGTH
+    state_cap: int = INTEGER_STATE_CAP
+    dimension: int = 1
+
+    def __post_init__(self) -> None:
+        _require_int(self.start, "start")
+        if self.start_remaining < 0:
+            raise ValueError("start_remaining must be nonnegative")
+        if self.state_cap < 1:
+            raise ValueError("state_cap must be a positive integer")
+        if not self.name:
+            raise ValueError("name must be nonempty")
+
+    def successors(self, x: int) -> tuple[int, ...]:
+        return tuple(int(item) for item in self.images(x))
+
+    @property
+    def initial_state(self) -> State:
+        return (self.start,)
+
+    def transition(self, state: State, control: object, phase: IntPhase) -> State:
+        del phase
+        y = int(control)
+        if y not in self.successors(int(state[0])):
+            raise ValueError(f"{y} is not legal at {state}")
+        return (y,)
+
+    def output(self, state: State, control: object, phase: IntPhase | None = None) -> int:
+        del control, phase
+        return int(state[0])
+
+    def legal_controls(self, state: State, phase: IntPhase) -> tuple[object, ...]:
+        if phase.value <= 0:
+            return ()
+        return self.successors(int(state[0]))
+
+    def next_phase(self, phase: IntPhase, control: object) -> IntPhase:
+        del control
+        if phase.value > 0:
+            return IntPhase(phase.value - 1)
+        return phase
+
+    def is_terminal(self, state: State, phase: IntPhase) -> bool:
+        if self.is_accepting(state, phase):
+            return True
+        return phase.value > 0
+
+    def is_accepting(self, state: State, phase: IntPhase) -> bool:
+        del state
+        return phase.value == 0
+
+    def initial_phase(self) -> IntPhase:
+        return IntPhase(self.start_remaining)
+
+    def canonicalize(self, state: State) -> State:
+        return (int(state[0]),)
+
+    def affine_system(self):
+        return None
+
+    def attack_context(self, **kwargs) -> AttackContext:
+        images = self.successors(self.start)
+        nxt = (images[0],) if images else self.initial_state
+        kwargs.setdefault("live_only", False)
+        kwargs.setdefault("max_states", self.state_cap)
+        kwargs.setdefault("max_steps", self.start_remaining)
+        kwargs.setdefault("functional", LinearFunctional((1,)))
+        kwargs.setdefault("pair", (self.initial_state, nxt))
+        kwargs.setdefault("phases", (self.initial_phase(), IntPhase(0)))
+        return AttackContext(**kwargs)
+
+
 def decrement_spec(*, start: int = 8) -> OneVariableLoopSpec:
     return OneVariableLoopSpec(name="slc_decrement", start=start, images=decrement_images)
 
@@ -161,3 +249,7 @@ def rplus_spec(*, start: int = 8) -> OneVariableLoopSpec:
 
 def increment_spec(*, start: int = 0) -> OneVariableLoopSpec:
     return OneVariableLoopSpec(name="slc_increment", start=start, images=increment_images)
+
+
+def sum_strip_spec(*, start: int = 5) -> RelationLoopSpec:
+    return RelationLoopSpec(name="slc_sum_strip", start=start, images=sum_strip_images)

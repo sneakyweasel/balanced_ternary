@@ -4,10 +4,18 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from research.linear_constraint_loops.discovery import existential_cycle_witness, quantifier_report, universal_termination_on_seeds
 from research.linear_constraint_loops.lean_export import LEAN_MODULE, THEOREMS
+from research.linear_constraint_loops.planner import plan_loop_session
 from research.linear_constraint_loops.problem import PROBLEM
 from research.linear_constraint_loops.runner import TARGETS, run_campaign
-from research.linear_constraint_loops.spec import decrement_spec, rplus_images, rplus_spec
+from research.linear_constraint_loops.spec import decrement_spec, rplus_images, rplus_spec, sum_strip_images, sum_strip_spec
+from research.linear_constraint_loops.synthetics import (
+    decrement_or_double_spec,
+    dual_decrement_spec,
+    stay_or_decrement_spec,
+    two_affine_spec,
+)
 from research.literature import get_reference
 from research.open_problems import get_problem
 from research_engine.planner.orchestrator import DEFAULT_ATTACK_ORDER
@@ -116,9 +124,22 @@ def test_campaign_runs_unmodified_loop():
         "hidden_vector_parity_shear",
         "integer_polynomial_x2_minus_2",
     }
-    next_summary = report.summaries[-1]
-    assert next_summary.extra.get("role") == "researchloop_next"
+    next_summary = next(item for item in report.summaries if item.extra.get("role") == "researchloop_next")
     assert next_summary.extra.get("selection")
+
+    strip = report.by_target("slc_sum_strip")
+    assert strip.extra.get("role") == "nondeterministic_slc"
+    assert strip.extra.get("control_structure") == "BRANCHING"
+    assert "piecewise_affine" in strip.skipped
+    assert "control_word" in strip.skipped
+    assert "control_obstruction" in strip.skipped
+    assert strip.extra.get("piecewise_affine_applicable") is False
+    quant = strip.extra["yield"]["quantifiers"]
+    assert quant["existential_cycle"]["status"] == "EXISTENTIAL_WITNESS"
+    assert quant["universal_termination"]["status"] == "REFUTED"
+    assert quant["universal_termination"]["holds"] is False
+    assert quant["all_paths_cycle"]["status"] == "UNKNOWN"
+    assert quant["discovered_result_class"] == "EXISTENTIAL"
 
 
 def test_decrement_spec_withholds_affine_system():
@@ -130,3 +151,66 @@ def test_decrement_spec_withholds_affine_system():
     assert TARGETS[0][0] == "simple_termination"
     assert TARGETS[1][0] == "cycle_affine"
     assert TARGETS[2][0] == "open_strip"
+
+
+def test_sum_strip_is_a_three_valued_relation():
+    assert sum_strip_images(5) == (-6, -5, -4)
+    assert len(sum_strip_images(0)) == 3
+    spec = sum_strip_spec()
+    assert spec.affine_system() is None
+    assert len(spec.legal_controls(spec.initial_state, spec.initial_phase())) == 3
+
+
+def test_synthetics_preserve_quantifier_discipline():
+    two = two_affine_spec()
+    stay = stay_or_decrement_spec()
+    dual = dual_decrement_spec()
+    trap = decrement_or_double_spec()
+    assert len(two.successors(3)) == 2
+    cycle = existential_cycle_witness(stay)
+    assert cycle is not None
+    stay_univ = universal_termination_on_seeds(stay, window=tuple(range(0, 6)))
+    assert stay_univ["status"] == "REFUTED"
+    assert stay_univ["holds"] is False
+    assert stay_univ["quantifier"] == "UNIVERSAL"
+    dual_univ = universal_termination_on_seeds(dual, window=tuple(range(0, 8)), max_depth=12)
+    assert dual_univ["status"] == "CERTIFIED_ON_WINDOW"
+    assert dual_univ["holds"] is True
+    dual_unknown = universal_termination_on_seeds(dual, window=tuple(range(0, 40)), max_depth=8)
+    assert dual_unknown["status"] == "UNKNOWN"
+    assert dual_unknown["holds"] is None
+    trap_q = quantifier_report(trap)
+    assert trap_q["existential_cycle"]["status"] == "EXISTENTIAL_WITNESS"
+    assert trap_q["universal_termination"]["status"] == "REFUTED"
+    two_q = quantifier_report(two)
+    assert two_q["existential_cycle"]["status"] == "EXISTENTIAL_WITNESS"
+    assert two_q["universal_termination"]["status"] == "REFUTED"
+    assert two_q["all_paths_cycle"]["status"] == "UNKNOWN"
+
+
+def test_frozen_census_is_inapplicable_on_branching_start():
+    for spec in (
+        two_affine_spec(),
+        stay_or_decrement_spec(),
+        dual_decrement_spec(),
+        decrement_or_double_spec(),
+        sum_strip_spec(),
+    ):
+        session = plan_loop_session(spec, record=False)
+        skipped = {item.attack for item in session.attack_report.skipped}
+        assert "piecewise_affine" in skipped
+        assert "control_word" in skipped
+        assert session.diagnosis.fingerprint.control_structure == "BRANCHING"
+        assert session.diagnosis.fingerprint.transition_architecture == "BRANCHING"
+
+
+def test_quotient_alphabet_is_start_local_on_finite_branching():
+    spec = stay_or_decrement_spec()
+    session = plan_loop_session(spec, record=False)
+    closure = next(item for item in session.attack_report.results if item.name == "closure")
+    quotient = next(item for item in session.attack_report.results if item.name == "quotient")
+    assert closure.status.value == "SUPPORTED"
+    assert closure.evidence.get("complete") is True
+    assert quotient.status.value == "SUPPORTED"
+    assert quotient.evidence.get("alphabet_size") == len(spec.successors(spec.start))
+    assert spec.successors(1) != spec.successors(spec.start)

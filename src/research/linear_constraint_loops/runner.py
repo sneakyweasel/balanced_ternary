@@ -8,14 +8,16 @@ from typing import Any
 from research.engine_campaign.analysis import SessionSummary, summarize_session
 from research.engine_campaign.corpus import seed_baseline_corpus
 from research.linear_constraint_loops.candidates import score_pool, spec_for_selection
-from research.linear_constraint_loops.discovery import falsify_claims, orbit
+from research.linear_constraint_loops.discovery import falsify_claims, orbit, quantifier_report
 from research.linear_constraint_loops.planner import plan_loop_session
 from research.linear_constraint_loops.scout import CARELLI_BASELINE, scout_for
 from research.linear_constraint_loops.spec import (
     OneVariableLoopSpec,
+    RelationLoopSpec,
     decrement_spec,
     negation_spec,
     rplus_spec,
+    sum_strip_spec,
 )
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.diagnosis.corpus import ResearchCorpus
@@ -50,16 +52,18 @@ def _structure_origin(name: str, summary: SessionSummary) -> str:
         if summary.census_kind in {"FINITE_CENSUS", "PARAMETERIZED_CENSUS"}:
             return "DISCOVERED"
         return "KNOWN ONLY FROM PRIOR ART"
+    if name == "slc_sum_strip":
+        if summary.census_kind in {"FINITE_CENSUS", "PARAMETERIZED_CENSUS"}:
+            return "DISCOVERED"
+        return "GIVEN BY THE ADAPTER"
     if name in {"slc_decrement", "slc_negation", "slc_increment"}:
         return "GIVEN BY THE ADAPTER"
     return "KNOWN ONLY FROM PRIOR ART"
 
 
-def _yield_report(name: str, summary: SessionSummary, spec: OneVariableLoopSpec) -> dict[str, Any]:
-    falsify = falsify_claims(spec)
-    scout = scout_for(name)
+def _yield_report(name: str, summary: SessionSummary, spec: OneVariableLoopSpec | RelationLoopSpec) -> dict[str, Any]:
     origin = _structure_origin(name, summary)
-    return {
+    payload: dict[str, Any] = {
         "Known results rediscovered": (
             f"{origin}; engine decision {summary.decision}; census {summary.census_kind or 'none'}"
         ),
@@ -69,11 +73,6 @@ def _yield_report(name: str, summary: SessionSummary, spec: OneVariableLoopSpec)
         "New invariant candidates": "none promoted",
         "New exact invariants": summary.obstruction_scopes or (),
         "New obstructions": summary.obstruction_scopes or (),
-        "New counterexamples": {
-            key: item.get("counterexample")
-            for key, item in falsify.items()
-            if item.get("holds_on_window") is False
-        },
         "New conjectures": (
             "none; the open strip question is Carelli Example 4.26"
             if name == "slc_rplus"
@@ -83,10 +82,24 @@ def _yield_report(name: str, summary: SessionSummary, spec: OneVariableLoopSpec)
         "Potentially new mathematics": "none claimed",
         "Engineering changes": 0,
         "structure_origin": origin,
-        "falsify": falsify,
-        "scout_open": scout.open_questions,
-        "termination_class": _termination_class(name, falsify),
+        "scout_open": scout_for(name).open_questions if name in {"slc_decrement", "slc_negation", "slc_rplus", "slc_increment", "slc_sum_strip"} else "",
     }
+    if isinstance(spec, RelationLoopSpec):
+        payload["quantifiers"] = quantifier_report(spec)
+        payload["New counterexamples"] = {}
+        payload["termination_class"] = "quantified"
+        payload["New existential witnesses"] = payload["quantifiers"]["existential_cycle"]
+        payload["New universal statements"] = payload["quantifiers"]["universal_termination"]
+    else:
+        falsify = falsify_claims(spec)
+        payload["falsify"] = falsify
+        payload["New counterexamples"] = {
+            key: item.get("counterexample")
+            for key, item in falsify.items()
+            if item.get("holds_on_window") is False
+        }
+        payload["termination_class"] = _termination_class(name, falsify)
+    return payload
 
 
 def _termination_class(name: str, falsify: dict[str, dict[str, object]]) -> str:
@@ -102,14 +115,17 @@ def _termination_class(name: str, falsify: dict[str, dict[str, object]]) -> str:
     return "empirical_termination" if empirical else "open"
 
 
-def _session_extra(role: str, spec: OneVariableLoopSpec, session_summary_seed: dict[str, Any] | None = None) -> dict[str, Any]:
+def _session_extra(role: str, spec: OneVariableLoopSpec | RelationLoopSpec, session_summary_seed: dict[str, Any] | None = None) -> dict[str, Any]:
     extra = {
         "role": role,
         "start": spec.start,
-        "orbit_start": orbit(spec, spec.start),
+        "legal_at_start": spec.successors(spec.start),
+        "control_count_at_start": len(spec.successors(spec.start)),
         "layer": "ENGINE REDISCOVERY",
         "carelli_baseline": tuple(item[0] for item in CARELLI_BASELINE),
     }
+    if isinstance(spec, OneVariableLoopSpec):
+        extra["orbit_start"] = orbit(spec, spec.start)
     extra.update(session_summary_seed or {})
     return extra
 
@@ -182,9 +198,31 @@ def run_next_selection(corpus: ResearchCorpus, report: CampaignReport) -> None:
     )
 
 
+def run_nondeterministic_target(corpus: ResearchCorpus, report: CampaignReport) -> None:
+    spec = sum_strip_spec()
+    session = plan_loop_session(spec, corpus=corpus, record=True)
+    extra = _session_extra("nondeterministic_slc", spec)
+    extra["piecewise_affine_applicable"] = "piecewise_affine" not in {
+        item.attack for item in session.attack_report.skipped
+    }
+    extra["quantifiers"] = quantifier_report(spec)
+    summary = summarize_session(session, extra)
+    _attach_census_branches(summary, session)
+    summary.extra["yield"] = _yield_report(spec.name, summary, spec)
+    fp = session.diagnosis.fingerprint
+    summary.extra["control_structure"] = fp.control_structure
+    summary.extra["transition_architecture"] = fp.transition_architecture
+    report.summaries.append(summary)
+    report.notes.append(
+        f"{spec.name}: control={fp.control_structure} census={summary.census_kind or 'none'} "
+        f"decision={summary.decision} skipped={summary.skipped}"
+    )
+
+
 def run_campaign(corpus: ResearchCorpus | None = None) -> tuple[ResearchCorpus, CampaignReport]:
     memory = corpus if corpus is not None else seed_baseline_corpus()
     report = CampaignReport()
     run_first_batch(memory, report)
     run_next_selection(memory, report)
+    run_nondeterministic_target(memory, report)
     return memory, report

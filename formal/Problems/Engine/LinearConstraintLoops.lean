@@ -6,8 +6,10 @@ namespace Problems.Engine
 /-!
 Exact identities for the one-variable loop campaign. These statements
 are the problem definitions and their immediate integer consequences.
-They are KNOWN. They are not a decision procedure for SLC termination
-and not a proof of the Reachability Conjecture.
+They are KNOWN. They are not a decision procedure for SLC termination,
+not a proof of the Reachability Conjecture, and not an engine
+rediscovery of overlapping affine branches. `sumStrip_*` lemmas are
+existential facts about the relation, not universal termination.
 -/
 
 /-- Integer points of the strip ``4x-2 ≤ 3y ≤ 4x-1`` with ``x ≥ 3``. -/
@@ -78,5 +80,27 @@ theorem negation_period2 (x : ℤ) : negationMap (negationMap x) = x := by
 theorem negation_fixed_iff_zero (x : ℤ) : negationMap x = x ↔ x = 0 := by
   simp [negationMap]
   omega
+
+/-- Integer points of the strip ``-1 ≤ x + y ≤ 1``. -/
+def sumStripRel (x y : ℤ) : Prop :=
+  -1 ≤ x + y ∧ x + y ≤ 1
+
+theorem sumStripRel_three {x y : ℤ} (h : sumStripRel x y) :
+    y = -x - 1 ∨ y = -x ∨ y = 1 - x := by
+  rcases h with ⟨hlo, hhi⟩
+  omega
+
+theorem sumStripRel_all (x : ℤ) :
+    sumStripRel x (-x - 1) ∧ sumStripRel x (-x) ∧ sumStripRel x (1 - x) := by
+  simp [sumStripRel]
+  omega
+
+/-- EXISTENTIAL cycle witness ``0 ↔ 1``. Not a universal cycle claim. -/
+theorem sumStrip_cycle_zero_one : sumStripRel 0 1 ∧ sumStripRel 1 0 := by
+  simp [sumStripRel]
+
+/-- EXISTENTIAL length-1 cycle at ``0`` along ``y = -x``. -/
+theorem sumStrip_fixed_zero : sumStripRel 0 0 := by
+  simp [sumStripRel]
 
 end Problems.Engine

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import cast
 
-from research.linear_constraint_loops.spec import OneVariableLoopSpec
+from research.linear_constraint_loops.spec import OneVariableLoopSpec, RelationLoopSpec
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.diagnosis.corpus import ResearchCorpus
 from research_engine.diagnosis.loop import ResearchLoop, ResearchSession
@@ -14,7 +14,7 @@ from research_engine.planner.orchestrator import PlannerReport
 
 
 def plan_loop_session(
-    spec: OneVariableLoopSpec,
+    spec: OneVariableLoopSpec | RelationLoopSpec,
     ledger: ResearchLedger | None = None,
     corpus: ResearchCorpus | None = None,
     *,
@@ -32,7 +32,7 @@ def plan_loop_session(
 
 
 def plan_loop(
-    spec: OneVariableLoopSpec,
+    spec: OneVariableLoopSpec | RelationLoopSpec,
     ledger: ResearchLedger | None = None,
     corpus: ResearchCorpus | None = None,
 ) -> PlannerReport:

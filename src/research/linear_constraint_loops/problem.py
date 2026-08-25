@@ -9,8 +9,10 @@ PROBLEM = ProblemDefinition(
     statement=(
         "Can frozen Research Engine v2 independently reconstruct useful "
         "arithmetic structure from exact one-variable linear-constraint "
-        "loops, then certify termination or cycle constraints short of "
-        "the open generalized-Collatz barrier?"
+        "loops, including genuinely nondeterministic relations, then "
+        "certify termination or cycle constraints short of the open "
+        "generalized-Collatz barrier, without collapsing existential "
+        "and universal claims?"
     ),
     bt_relevance=(
         "The campaign is an engine test on ordinary integer loops. "

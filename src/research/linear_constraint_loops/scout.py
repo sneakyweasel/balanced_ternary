@@ -167,11 +167,38 @@ INCREMENT = ScoutEntry(
 )
 
 
+SUM_STRIP = ScoutEntry(
+    target="slc_sum_strip",
+    problem_definition="-1 <= x + x' <= 1, one-variable SLC with a lineality anti-diagonal recession cone",
+    state_space="Z",
+    transition_relation="the integer points of -1 <= x + x' <= 1",
+    domain="all of Z",
+    known_termination="Does not terminate: cycles exist, and Carelli Lemma 5.33.8 gives self-avoiding traces when height >= 2.",
+    known_nontermination="Existential infinite traces. Not every path is the same cycle.",
+    known_cycles="Length 1 at 0 (x'=-x). Length 2 including 0<->1. Carelli Theorem 3.20: a cycle implies a cycle of length at most two.",
+    known_generalized_collatz="Not a residue-class Collatz map. Overlapping affine slices y=-x-1, y=-x, y=1-x.",
+    known_reductions="Carelli Lemma 5.33, anti-diagonal recession, height 3.",
+    known_invariants="|x+x'| <= 1. Three integer successors at every x.",
+    known_computational="Immediate on any finite window.",
+    known_conjectures="None for this instance.",
+    literature=("carelli-2026-loop-termination",),
+    saturation="Cycle existence and the length-(<=2) implication are settled. Self-avoiding traces are a theorem of the paper.",
+    open_questions="None that this campaign should reopen.",
+    classifications=(
+        ("Three integer successors at every x.", "THEOREM"),
+        ("Cycles of length 1 and 2 exist.", "THEOREM"),
+        ("A cycle implies a cycle of length at most two.", "THEOREM"),
+        ("Height >= 2 on this recession yields a self-avoiding trace.", "THEOREM"),
+    ),
+)
+
+
 SCOUTS = {
     DECREMENT.target: DECREMENT,
     NEGATION.target: NEGATION,
     RPLUS.target: RPLUS,
     INCREMENT.target: INCREMENT,
+    SUM_STRIP.target: SUM_STRIP,
 }
 
 

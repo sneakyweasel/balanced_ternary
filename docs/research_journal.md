@@ -2117,5 +2117,49 @@ Best next question
 - Can the frozen 1-D census consume a genuinely nondeterministic one-variable SLC, where legal_controls is not a singleton?
 ```
 
+## Frozen Engine campaign phase 2: nondeterministic one-variable SLC
+
+- **Date:** 2026-08-25
+- **Objective:** Test whether frozen v2 can reason about a one-variable linear-constraint loop when several transitions are legal from the same state, without adding nondeterministic machinery
+- **Hypotheses:** Fingerprint/closure already see branching; PiecewiseAffineCensus and ControlWord may not; ∃ vs ∀ must not collapse
+- **Major results:** Synthetics A–E: census inapplicable, `BRANCHING` fingerprint, quantifier probes distinguish `EXISTENTIAL_WITNESS` / `REFUTED` / `CERTIFIED_ON_WINDOW` / `UNKNOWN`. Real target `slc_sum_strip` (\(-1\le x+x'\le 1\)): census/word/obstruction skipped; closure truncated; ∃ cycle witnessed; ∀ termination `REFUTED`; ∀ paths cycle `UNKNOWN`; ResearchLoop `CONTINUE` (trivial identity separation). Lean `sumStripRel_*` / cycle witnesses. No new attack. No census fix
+- **Refuted ideas:** overlapping-domain census as a frozen capability; silent promotion of truncation to a universal refutation; collapsing ∃ cycle into ∀ paths cycle
+- **Literature:** Carelli 2026 Lemma 5.33 / Theorem 3.20. Affine slices and length-(\(\le 2\)) cyclic-trace theorem remain **KNOWN**, not engine rediscovery
+- **Open:** parked singleton-census gate; start-local Mealy alphabet; spanning-tree closure witnesses; Phase-1 involution census
+- **Decision:** PARK
+
+```text
+What was learned
+- legal_controls with cardinality >1 is visible to fingerprint, magnitude probes, and closure BFS
+- The frozen 1-D census requires a singleton at the start state, so overlapping affine branches are never recovered and never falsely partitioned
+- ControlWord and control_obstruction never run; there is no legal-word language L_m(x)
+- Post-run probes can keep EXISTENTIAL_WITNESS distinct from universal claims; truncation is UNKNOWN, not a refutation
+- Carelli's three-slice strip and length-(<=2) theorem were not rediscovered by the engine
+
+Strongest theorem
+- sumStripRel_all / sumStrip_cycle_zero_one (Lean); KNOWN existential facts about the adapter relation
+
+Strongest refutation
+- Universal termination of the sum strip; the claim that the frozen census can represent overlapping legal domains
+
+Reusable machinery
+- RelationLoopSpec (successor-as-control); hidden synthetics A–E; quantifier_report (campaign probe, not an attack)
+
+Prior-art status
+- KNOWN Carelli Lemma 5.33; ENGINE_LIMITATION on singleton census / start-local Mealy alphabet; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PARK
+
+Why
+- The experiment answered how far deterministic latent-control machinery already reaches into nondeterminism: diagnosis yes, 1-D control language no. Do not thaw the architecture.
+
+Best next question
+- Which other frozen-engine mathematical target should be consumed next, leaving the parked SLC limitations untouched?
+```
+
 
 

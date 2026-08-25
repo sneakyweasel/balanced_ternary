@@ -7,6 +7,7 @@ from research.linear_constraint_loops.spec import (
     increment_spec,
     negation_spec,
     rplus_spec,
+    sum_strip_spec,
 )
 
 __all__ = [
@@ -18,4 +19,5 @@ __all__ = [
     "plan_loop_session",
     "rplus_spec",
     "run_campaign",
+    "sum_strip_spec",
 ]
