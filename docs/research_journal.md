@@ -2292,4 +2292,45 @@ Best next question
 - Which frozen-engine target still lies inside the existing low-dimensional affine language, now that this high-dimensional census barrier is recorded?
 ```
 
+## Research Engine v2.2: research memory
+
+- **Date:** 2026-08-25
+- **Objective:** Persist accumulated experiment history as classified research knowledge without adding attacks or contaminating blind discovery
+- **Hypotheses:** Failures cluster by mathematical signature; known rediscoveries stay non-novel; `score_candidate` is unchanged unless memory is passed
+- **Major results:** `research_engine.memory` (`MemoryExperiment`, `FailureRecord`, `GreyLoot`, `MathematicalYield`, `ResearchMemory`). Historical seed covers digit-fold, Syracuse, Euclidean/vector, matrix-word, nondeterministic SLC, involution census (not implemented), Carelli \(R^+\), BB-5, aliquot, Skolem order 6, and the `skolem_lrs` identifier hygiene false positive. Global-reachability cluster emits `PROMOTE_TO_NEXT_VERSION` as guidance only. No new attack. No Lean. Package 0.2.2
+- **Refuted ideas:** treating `skolem_lrs` as a literature leak; a single failure justifying a new attack; silent grey-loot injection into `BlindPacket`
+- **Literature:** none new; historical campaigns remain KNOWN / PARK as in their dossiers
+- **Open:** which cluster, if any, later justifies a v2.3 abstraction from evidence rather than intuition
+- **Decision:** PROMOTE (memory layer enters the platform; attack stack stays frozen)
+
+```text
+What was learned
+- Failed attacks are reusable evidence about the boundary of the current language
+- Representation novelty and mathematical novelty must be scored independently
+- Grey loot survives finalization; scout knowledge stays off the attack lane
+- Recurring GLOBAL_REASONING failures (Skolem, R+, BB-5) are the leading v2.3 candidate and were not implemented
+- ExpectedResearchValue is unchanged when no memory store is supplied
+
+Strongest theorem
+- none; this is engine methodology
+
+Strongest refutation
+- identifier token skolem_lrs is not a literature leak (EXPERIMENT_HYGIENE, resolved)
+
+Reusable machinery
+- research_engine.memory; optional ResearchLoop(memory=...); FailureLearningValue
+
+Prior-art status
+- KNOWN historical campaigns; no new mathematics
+
+Branch status
+- PROMOTE
+
+Why
+- The layer answers the v2.2 question: history can be persistent research intelligence without expanding the attack surface or contaminating blind discovery.
+
+Best next question
+- Which frozen-engine target still teaches something new about an unresolved high-value failure cluster?
+```
+
 

@@ -53,7 +53,7 @@ feature. The census does not mutate `AttackContext.affine`.
 | `CapabilityCoverage` | `EXERCISED` / `NOT_TESTED` / `INAPPLICABLE` |
 | `ResearchDecision` | `CLOSE` / `CONTINUE` / `ESCALATE` / `FAMILY_SATURATED` / `ENGINE_LIMITATION` |
 | `ResearchCorpus` | session memory of `ExperimentRecord`s |
-| `ExpectedResearchValue` | `(distance × capability_gap × novelty) / cost` |
+| `ExpectedResearchValue` | `(distance × capability_gap × novelty × failure_learning) / cost`; `failure_learning` is 1.0 unless a `ResearchMemory` is supplied |
 | `AffineBranch` / `BranchRegion` / `LatentControl` | piecewise-affine census objects |
 | `PiecewiseAffineCensus` | finite vs parameterized cover from samples |
 | `AffineFamily` / `ParameterDomain` / `DomainCertificate` | arithmetic predicates for a reconstructed family |
@@ -61,6 +61,21 @@ feature. The census does not mutate `AttackContext.affine`.
 | `ControlObstructionCertificate` | class- or word-level arithmetic contradiction |
 | `VectorAffineBranch` / `VectorAffineFamily` / `VectorAffineCensus` | multi-D latent \(y=A_u x+b_u\) from I/O |
 | `MatrixWordInvariant` | recursive predicate on composed \((M_i,c_i)\) |
+| `ResearchMemory` | persistent post-run store; not an attack |
+| `FailureRecord` / `FailureClass` | what a failure means mathematically |
+| `GreyLoot` | reusable unsuccessful or partial evidence |
+| `MathematicalYield` | research output vs capability validation |
+| `DecisionReason` | structured reason alongside `ResearchDecision` |
+
+v2.2 research memory (`research_engine.memory`) wraps completed
+experiments. It does not change attack order, `decide_research`
+strings, or `score_candidate` when no memory store is passed.
+`FailureLearningValue` is an optional multiplier. Scout, attack, grey
+loot, and certified machinery occupy isolated lanes. A single failure
+never justifies a new attack; `PROMOTE_TO_NEXT_VERSION` is guidance
+only. Dossier: [engine_memory.md](../problems/engine_memory.md).
+Package **0.2.2** tags the memory layer; the attack stack remains the
+frozen 0.2.1 order.
 
 Non-core fingerprint fields: `piecewise_affine_structure`,
 `latent_control` (`NONE|FINITE|PARAMETERIZED|UNCERTAIN|UNOBSERVED`),
@@ -112,7 +127,7 @@ latent-control fields when `vector_affine` recovers a census;
 
 ## Home
 
-Python: `research_engine.diagnosis` and
+Python: `research_engine.diagnosis`, `research_engine.memory`, and
 `research_engine.attacks.piecewise_affine`,
 `research_engine.attacks.parameter_domain`,
 `research_engine.attacks.control_word`,

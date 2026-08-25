@@ -4,7 +4,10 @@ from __future__ import annotations
 
 from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Any
+from typing import TYPE_CHECKING, Any
+
+if TYPE_CHECKING:
+    from research_engine.memory.store import ResearchMemory
 
 from research_engine.attacks.result import AttackContext, AttackStatus
 from research_engine.core.problem_spec import ProblemSpec
@@ -138,11 +141,12 @@ class ResearchLoop:
         prior_art_status: str = "",
         reusable_machinery: str = "",
         record: bool = True,
+        memory: ResearchMemory | None = None,
     ) -> ResearchSession:
-        memory = corpus if corpus is not None else ResearchCorpus()
+        session_corpus = corpus if corpus is not None else ResearchCorpus()
         attack_report = AttackPlanner(self.ledger).run(spec, context)
         probes = run_integer_probes(spec, context)
-        diagnosis = diagnose(spec, attack_report, context, memory, probes)
+        diagnosis = diagnose(spec, attack_report, context, session_corpus, probes)
         decision, reason = decide_research(
             diagnosis.fingerprint,
             diagnosis.family_status,
@@ -160,11 +164,14 @@ class ResearchLoop:
             reusable_machinery=reusable_machinery,
         )
         if record:
-            memory.add(experiment)
-        return ResearchSession(
+            session_corpus.add(experiment)
+        session = ResearchSession(
             diagnosis=diagnosis,
             attack_report=attack_report,
             decision=decision,
             decision_reason=reason,
             record=experiment,
         )
+        if memory is not None:
+            memory.ingest(session, spec, context)
+        return session

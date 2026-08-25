@@ -25,6 +25,7 @@ def _corpus_untested(corpus: ResearchCorpus) -> set[str]:
 def score_candidate(
     sketch: CandidateSketch,
     corpus: ResearchCorpus,
+    memory: object | None = None,
 ) -> SelectionReport:
     nearest, delta = (
         corpus.nearest(sketch.fingerprint)
@@ -53,7 +54,13 @@ def score_candidate(
         novelty *= 0.7
 
     cost = sketch.experimental_cost if sketch.experimental_cost > 0 else 1.0
-    value = (distance * gap * novelty) / cost
+    failure_learning = 1.0
+    flv_note = ""
+    if memory is not None:
+        from research_engine.memory.learning import failure_learning_value
+
+        failure_learning, flv_note = failure_learning_value(sketch, memory)
+    value = (distance * gap * novelty * failure_learning) / cost
     bits = [
         f"distance={distance:.2f}",
         f"capability_gap={gap:.2f}",
@@ -66,6 +73,10 @@ def score_candidate(
         )
     if family in {FamilyStatus.SATURATED, FamilyStatus.EXHAUSTED} and distance <= 0.05:
         bits.append("discouraged: saturated family with matching core fingerprint")
+    if memory is not None:
+        bits.append(f"failure_learning={failure_learning:.2f}")
+        if flv_note:
+            bits.append(flv_note)
     explanation = (
         f"{sketch.name}: ExpectedResearchValue={value:.3f} (" + ", ".join(bits) + ")"
     )
@@ -77,4 +88,5 @@ def score_candidate(
         novelty_potential=novelty,
         experimental_cost=cost,
         explanation=explanation,
+        failure_learning_value=failure_learning,
     )

@@ -1,0 +1,2305 @@
+{
+  "engine_version": "0.2.2",
+  "experiments": [
+    {
+      "experiment_id": "signed_p0",
+      "target": "operator_dynamics_benchmark",
+      "target_family": "scalar_digit_fold",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "operator_dynamics_benchmark",
+        "semantic_class": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE_ORBIT|EXACT_FINITE",
+        "fingerprint": {
+          "transition_architecture": "UNARY_MAP",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "FINITE_CONTRACTING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "FINITE_SEED_CLOSURE",
+          "orbit_behavior": "FINITE_ORBIT",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNOBSERVED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "EXACT_FINITE"
+        },
+        "family_status": "SATURATED",
+        "family_id": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE_ORBIT|EXACT_FINITE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "F^2 = P0 on the stated window",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CLOSE",
+        "decision_reason": "finite per-seed closure with local refutations and no new reusable abstraction",
+        "extra": {}
+      },
+      "decision_reason_code": "FAMILY_SATURATED",
+      "representation_novelty": "NONE",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "operator family collapses to the known (P)-band"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "none; family saturated"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "signed_p0:novelty",
+          "target": "operator_dynamics_benchmark",
+          "experiment_id": "signed_p0",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "scalar_fold",
+          "failure_class": "NOVELTY",
+          "representation_status": "SCALAR_DIGIT_FOLD",
+          "mathematical_bottleneck": "saturated_finite_contracting_regime",
+          "evidence": "finite orbit behavior; not a new dynamics class",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Further scalar digit-fold variants have low expected research value.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "LOW",
+          "status": "PARKED",
+          "affected_attack_family": "scalar_fold"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "signed_p0:loot:fold",
+          "kind": "Useful negative result",
+          "statement": "SignedP0 is a finite-contracting unary fold, not a new class",
+          "evidence": "SUPPORTED",
+          "experiment_id": "signed_p0",
+          "target": "operator_dynamics_benchmark",
+          "failure_class": "NOVELTY",
+          "bottleneck": "saturated_finite_contracting_regime",
+          "payload": {}
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": true
+      },
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "operator_dynamics_benchmark",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": {
+        "attack_statuses": {},
+        "skipped": [],
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "census_kind": "FINITE_CENSUS",
+        "lean_theorems": []
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "digit_sum",
+      "target": "balanced_ternary_digit_sum_dynamics",
+      "target_family": "scalar_digit_fold",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "balanced_ternary_digit_sum_dynamics",
+        "semantic_class": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE_ORBIT|EXACT_FINITE",
+        "fingerprint": {
+          "transition_architecture": "UNARY_MAP",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "FINITE_CONTRACTING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "FINITE_SEED_CLOSURE",
+          "orbit_behavior": "FINITE_ORBIT",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNOBSERVED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "EXACT_FINITE"
+        },
+        "family_status": "SATURATED",
+        "family_id": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE_ORBIT|EXACT_FINITE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CLOSE",
+        "decision_reason": "experiment reproduces a previously observed regime",
+        "extra": {}
+      },
+      "decision_reason_code": "FAMILY_SATURATED",
+      "representation_novelty": "NONE",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "scalar digit-fold family saturated"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "digit_sum:novelty",
+          "target": "balanced_ternary_digit_sum_dynamics",
+          "experiment_id": "digit_sum",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "scalar_fold",
+          "failure_class": "NOVELTY",
+          "representation_status": "SCALAR_DIGIT_FOLD",
+          "mathematical_bottleneck": "saturated_finite_contracting_regime",
+          "evidence": "scalar digit-fold family saturated",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Further scalar digit-fold variants have low expected research value.",
+          "prior_art_status": "",
+          "engineering_action": "PARK",
+          "research_value": "LOW",
+          "status": "PARKED",
+          "affected_attack_family": "scalar_fold"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "digit_sum:loot:sat",
+          "kind": "Useful negative result",
+          "statement": "digit-sum dynamics join the saturated fold family",
+          "evidence": "SUPPORTED",
+          "experiment_id": "digit_sum",
+          "target": "balanced_ternary_digit_sum_dynamics",
+          "failure_class": "NOVELTY",
+          "bottleneck": "saturated_finite_contracting_regime",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "balanced_ternary_digit_sum_dynamics",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": null,
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "weight_dynamics",
+      "target": "balanced_ternary_weight_dynamics",
+      "target_family": "scalar_digit_fold",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "balanced_ternary_weight_dynamics",
+        "semantic_class": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE_ORBIT|EXACT_FINITE",
+        "fingerprint": {
+          "transition_architecture": "UNARY_MAP",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "FINITE_CONTRACTING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "FINITE_SEED_CLOSURE",
+          "orbit_behavior": "FINITE_ORBIT",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNOBSERVED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "EXACT_FINITE"
+        },
+        "family_status": "SATURATED",
+        "family_id": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE_ORBIT|EXACT_FINITE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "FAMILY_SATURATED",
+        "decision_reason": "core fingerprint matches a saturated family",
+        "extra": {}
+      },
+      "decision_reason_code": "FAMILY_SATURATED",
+      "representation_novelty": "NONE",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "weight map saturates the digit-fold family"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "weight_dynamics:novelty",
+          "target": "balanced_ternary_weight_dynamics",
+          "experiment_id": "weight_dynamics",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "scalar_fold",
+          "failure_class": "NOVELTY",
+          "representation_status": "SCALAR_DIGIT_FOLD",
+          "mathematical_bottleneck": "saturated_finite_contracting_regime",
+          "evidence": "third independent fold; family SATURATED",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Further scalar digit-fold variants have low expected research value.",
+          "prior_art_status": "",
+          "engineering_action": "PARK",
+          "research_value": "LOW",
+          "status": "PARKED",
+          "affected_attack_family": "scalar_fold"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "weight_dynamics:loot:sat",
+          "kind": "Useful negative result",
+          "statement": "weight dynamics saturates the digit-fold family",
+          "evidence": "SUPPORTED",
+          "experiment_id": "weight_dynamics",
+          "target": "balanced_ternary_weight_dynamics",
+          "failure_class": "NOVELTY",
+          "bottleneck": "saturated_finite_contracting_regime",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "balanced_ternary_weight_dynamics",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": null,
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "weight_drift",
+      "target": "balanced_ternary_weight_drift",
+      "target_family": "state_preserving_digit_perturbation",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "balanced_ternary_weight_drift",
+        "semantic_class": "INTEGER_1D|SINGLETON|EXPANDING|UNBOUNDED_SAMPLE|DRIFT|OBSERVATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "EXPANDING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "DRIFT",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNOBSERVED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "OBSERVATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|EXPANDING|UNBOUNDED_SAMPLE|DRIFT|OBSERVATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CLOSE",
+        "decision_reason": "expanding negative control; not a finite-contracting family member",
+        "extra": {}
+      },
+      "decision_reason_code": "DISTINCT_REGIME",
+      "representation_novelty": "LOW",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "PROJECT_SPECIFIC",
+      "mathematical_yield": {
+        "known_rediscoveries": [],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [
+          "state-preserving digit perturbation is a distinct regime"
+        ],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [],
+      "grey_loot": [
+        {
+          "id": "weight_drift:loot:regime",
+          "kind": "Branch pattern",
+          "statement": "WeightDrift is an expanding control and must not join the fold family",
+          "evidence": "SUPPORTED",
+          "experiment_id": "weight_drift",
+          "target": "balanced_ternary_weight_drift",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "balanced_ternary_weight_drift",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": null,
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "syracuse",
+      "target": "syracuse",
+      "target_family": "latent_scalar_affine",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "syracuse",
+        "semantic_class": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "PARAMETERIZED",
+          "latent_control": "PARAMETERIZED",
+          "parameter_domain": "EXACT",
+          "latent_control_algebra": "EXPLOITABLE",
+          "latent_control_obstruction": "RECURSIVE_INVARIANT",
+          "affine_control_type": "SCALAR",
+          "certificate_strength": "EXACT_RELATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "2^k y = 3x+1 on the certified domain",
+        "strongest_falsification": "",
+        "lean_certificate": "Problems.Engine.Syracuse",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "PiecewiseAffineCensus, ParameterDomain, ControlWord, control_obstruction",
+        "decision": "CONTINUE",
+        "decision_reason": "latent parameterized family recovered, domain certified, control-word algebra exploitable",
+        "extra": {}
+      },
+      "decision_reason_code": "KNOWN_REDISCOVERY",
+      "representation_novelty": "HIGH",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "accelerated odd-only 3x+1 / Syracuse map"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [
+          "latent residue control",
+          "control-word algebra"
+        ],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "map globality on Z remains empirical"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "syracuse:initial-representation",
+          "target": "syracuse",
+          "experiment_id": "syracuse",
+          "engine_version": "0.2.1",
+          "phase": "census",
+          "attack": "piecewise_affine",
+          "failure_class": "REPRESENTATION",
+          "representation_status": "HIDDEN_2ADIC_CONTROL",
+          "mathematical_bottleneck": "outside_affine_valuation_control",
+          "evidence": "initial run: hidden 2-adic control not represented",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Salvage was latent affine machinery; do not treat the initial gap as a standing PARK.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "SALVAGED",
+          "research_value": "HIGH",
+          "status": "RESOLVED",
+          "affected_attack_family": "latent_affine"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "syracuse:loot:latent",
+          "kind": "Latent control pattern",
+          "statement": "parameterized family 2^k y = 3x+1",
+          "evidence": "SUPPORTED",
+          "experiment_id": "syracuse",
+          "target": "syracuse",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {}
+        },
+        {
+          "id": "syracuse:loot:obstruction",
+          "kind": "Obstruction pattern",
+          "statement": "infinite class elimination possible without enumeration",
+          "evidence": "PROVED",
+          "experiment_id": "syracuse",
+          "target": "syracuse",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {}
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "lagarias-2010-3x+1-survey"
+        ],
+        "semantic_equivalents": [
+          {
+            "known_equivalent": true,
+            "engine_form": "latent parameterized affine family with valuation control",
+            "mathematical_meaning": "equivalent",
+            "literature_id": "lagarias-2010-3x+1-survey",
+            "confidence": "high"
+          }
+        ],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": true
+      },
+      "scout": {
+        "target": "syracuse",
+        "problem_definition": "accelerated odd-only Collatz / Syracuse map",
+        "literature": [
+          "lagarias-2010-3x+1-survey"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "syracuse",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": {
+        "attack_statuses": {},
+        "skipped": [],
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "census_kind": "PARAMETERIZED_CENSUS",
+        "lean_theorems": [
+          "Problems.Engine.Syracuse"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "control_obstruction",
+      "target": "control_obstruction",
+      "target_family": "latent_scalar_affine",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "control_obstruction",
+        "semantic_class": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "PARAMETERIZED",
+          "latent_control": "PARAMETERIZED",
+          "parameter_domain": "EXACT",
+          "latent_control_algebra": "EXPLOITABLE",
+          "latent_control_obstruction": "RECURSIVE_INVARIANT",
+          "affine_control_type": "SCALAR",
+          "certificate_strength": "EXACT_RELATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "ControlObstructionCertificate",
+        "decision": "CONTINUE",
+        "decision_reason": "class-level obstruction without enumeration",
+        "extra": {}
+      },
+      "decision_reason_code": "SALVAGED_LANGUAGE",
+      "representation_novelty": "HIGH",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [
+          "infinite class elimination without enumeration"
+        ],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [],
+      "grey_loot": [
+        {
+          "id": "control_obstruction:loot:class",
+          "kind": "Obstruction pattern",
+          "statement": "class obstruction eliminates infinite families without listing words",
+          "evidence": "PROVED",
+          "experiment_id": "control_obstruction",
+          "target": "control_obstruction",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "control_obstruction",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": null,
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "recursive_remainder",
+      "target": "recursive_remainder",
+      "target_family": "latent_scalar_affine",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "recursive_remainder",
+        "semantic_class": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "PARAMETERIZED",
+          "latent_control": "PARAMETERIZED",
+          "parameter_domain": "EXACT",
+          "latent_control_algebra": "EXPLOITABLE",
+          "latent_control_obstruction": "RECURSIVE_INVARIANT",
+          "affine_control_type": "SCALAR",
+          "certificate_strength": "EXACT_RELATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CONTINUE",
+        "decision_reason": "recursive remainder invariant; magnitude is not necessary",
+        "extra": {}
+      },
+      "decision_reason_code": "SALVAGED_LANGUAGE",
+      "representation_novelty": "HIGH",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [
+          "magnitude is not necessary for class obstruction"
+        ],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [],
+      "grey_loot": [
+        {
+          "id": "recursive_remainder:loot:mag",
+          "kind": "Candidate invariant",
+          "statement": "recursive remainder invariant obstructs classes without a magnitude Lyapunov",
+          "evidence": "PROVED",
+          "experiment_id": "recursive_remainder",
+          "target": "recursive_remainder",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "recursive_remainder",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": null,
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "euclidean_quotient",
+      "target": "euclidean_quotient",
+      "target_family": "vector_affine",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "euclidean_quotient",
+        "semantic_class": "INTEGER_VECTOR|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE_ORBIT|EXACT_FINITE",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_VECTOR",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "FINITE_CONTRACTING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "FINITE_SEED_CLOSURE",
+          "orbit_behavior": "FINITE_ORBIT",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "PARAMETERIZED",
+          "latent_control": "PARAMETERIZED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "VECTOR",
+          "certificate_strength": "EXACT_FINITE"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_VECTOR|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE_ORBIT|EXACT_FINITE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "vector_affine",
+        "decision": "CLOSE",
+        "decision_reason": "vector remainder dynamics; scalar affine census inapplicable",
+        "extra": {}
+      },
+      "decision_reason_code": "SALVAGED_LANGUAGE",
+      "representation_novelty": "HIGH",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "Euclidean remainder dynamics"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [
+          "vector affine representation"
+        ],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "euclidean_quotient:scalar",
+          "target": "euclidean_quotient",
+          "experiment_id": "euclidean_quotient",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "piecewise_affine",
+          "failure_class": "REPRESENTATION",
+          "representation_status": "SCALAR_AFFINE_INSUFFICIENT",
+          "mathematical_bottleneck": "outside_affine_valuation_control",
+          "evidence": "scalar affine census cannot represent vector controlled dynamics",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Salvage was vector_affine; do not add a Euclidean-specific attack.",
+          "prior_art_status": "",
+          "engineering_action": "SALVAGED",
+          "research_value": "HIGH",
+          "status": "RESOLVED",
+          "affected_attack_family": "latent_affine"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "euclidean_quotient:loot:vector",
+          "kind": "Latent control pattern",
+          "statement": "vector affine family recovers remainder dynamics",
+          "evidence": "SUPPORTED",
+          "experiment_id": "euclidean_quotient",
+          "target": "euclidean_quotient",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "euclidean_quotient",
+        "dimension": 2,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "vector_affine": "SUPPORTED"
+        },
+        "skipped": [
+          "piecewise_affine"
+        ],
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "census_kind": "",
+        "lean_theorems": []
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "matrix_word_invariant",
+      "target": "matrix_word_invariant",
+      "target_family": "matrix_affine",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "matrix_word_invariant",
+        "semantic_class": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_VECTOR",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "PARAMETERIZED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "RECURSIVE_INVARIANT",
+          "affine_control_type": "MATRIX_PARAMETERIZED",
+          "certificate_strength": "EXACT_RELATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "matrix_word_invariant",
+        "decision": "CONTINUE",
+        "decision_reason": "vector class obstruction can use lattice/gcd structure",
+        "extra": {}
+      },
+      "decision_reason_code": "SALVAGED_LANGUAGE",
+      "representation_novelty": "HIGH",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [
+          "matrix-word recursive invariant / lattice gcd"
+        ],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [
+          "matrix-word representation"
+        ],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [],
+      "grey_loot": [
+        {
+          "id": "matrix_word_invariant:loot:gcd",
+          "kind": "Obstruction pattern",
+          "statement": "vector class obstruction uses lattice/gcd structure",
+          "evidence": "PROVED",
+          "experiment_id": "matrix_word_invariant",
+          "target": "matrix_word_invariant",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "matrix_word_invariant",
+        "dimension": 2,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": null,
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "sum_strip_slc",
+      "target": "sum_strip",
+      "target_family": "nondeterministic_slc",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "sum_strip",
+        "semantic_class": "INTEGER_1D|BRANCHING|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|NONDETERMINISTIC|OBSERVATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "BRANCHING",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "NONDETERMINISTIC",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNCERTAIN",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "OBSERVATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|BRANCHING|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|NONDETERMINISTIC|OBSERVATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "ENGINE_LIMITATION",
+        "decision_reason": "overlapping branches diagnosed; deterministic control cannot consume them",
+        "extra": {}
+      },
+      "decision_reason_code": "QUANTIFIER_MISMATCH",
+      "representation_novelty": "LOW",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "nondeterministic one-variable linear-constraint loop"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "quantifier-aware consumption of overlapping branches"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "sum_strip_slc:quantifier",
+          "target": "sum_strip",
+          "experiment_id": "sum_strip_slc",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "control_word",
+          "failure_class": "QUANTIFIER",
+          "representation_status": "NONDETERMINISTIC_BRANCHING",
+          "mathematical_bottleneck": "overlapping_existential_branches",
+          "evidence": "branching diagnosed but deterministic control language cannot consume overlapping branches",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "PARK; do not implement a nondeterministic control attack from this instance.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "MEDIUM",
+          "status": "PARKED",
+          "affected_attack_family": "deterministic_control"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "sum_strip_slc:loot:branch",
+          "kind": "Quantifier mismatch",
+          "statement": "overlapping existential branches",
+          "evidence": "OBSERVED",
+          "experiment_id": "sum_strip_slc",
+          "target": "sum_strip",
+          "failure_class": "QUANTIFIER",
+          "bottleneck": "overlapping_existential_branches",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": {
+        "target": "sum_strip",
+        "problem_definition": "sum-strip SLC",
+        "literature": [
+          "carelli-2026-loop-termination"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "sum_strip",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": null,
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "two_affine_slc",
+      "target": "two_affine",
+      "target_family": "nondeterministic_slc",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "two_affine",
+        "semantic_class": "INTEGER_1D|BRANCHING|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|NONDETERMINISTIC|OBSERVATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "BRANCHING",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "NONDETERMINISTIC",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNCERTAIN",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "OBSERVATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|BRANCHING|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|NONDETERMINISTIC|OBSERVATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "ENGINE_LIMITATION",
+        "decision_reason": "overlapping affine branches; deterministic control skipped",
+        "extra": {}
+      },
+      "decision_reason_code": "QUANTIFIER_MISMATCH",
+      "representation_novelty": "NONE",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "two_affine_slc:quantifier",
+          "target": "two_affine",
+          "experiment_id": "two_affine_slc",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "control_word",
+          "failure_class": "QUANTIFIER",
+          "representation_status": "NONDETERMINISTIC_BRANCHING",
+          "mathematical_bottleneck": "overlapping_existential_branches",
+          "evidence": "two overlapping affine branches",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "PARK; do not implement.",
+          "prior_art_status": "",
+          "engineering_action": "PARK",
+          "research_value": "MEDIUM",
+          "status": "PARKED",
+          "affected_attack_family": "deterministic_control"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "two_affine_slc:loot:branch",
+          "kind": "Quantifier mismatch",
+          "statement": "two overlapping affine branches",
+          "evidence": "OBSERVED",
+          "experiment_id": "two_affine_slc",
+          "target": "two_affine",
+          "failure_class": "QUANTIFIER",
+          "bottleneck": "overlapping_existential_branches",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "two_affine",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": null,
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "involution_census",
+      "target": "negation",
+      "target_family": "involution",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "negation",
+        "semantic_class": "INTEGER_1D|SINGLETON|EXPANDING|UNBOUNDED_SAMPLE|PERIOD_2|OBSERVATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "EXPANDING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "PERIOD_2",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNCERTAIN",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "OBSERVATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|EXPANDING|UNBOUNDED_SAMPLE|PERIOD_2|OBSERVATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "ENGINE_LIMITATION",
+        "decision_reason": "sign-first region inference truncates y = -x",
+        "extra": {}
+      },
+      "decision_reason_code": "RECURRING_ENGINE_LIMITATION",
+      "representation_novelty": "NONE",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "complete census of the involution x |-> -x"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "involution_census:domain",
+          "target": "negation",
+          "experiment_id": "involution_census",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "piecewise_affine",
+          "failure_class": "DOMAIN_INFERENCE",
+          "representation_status": "SIGN_TRUNCATED_AFFINE",
+          "mathematical_bottleneck": "sign_first_region_inference",
+          "evidence": "sign-first region inference truncates a globally valid affine law",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Do not implement the census fix during v2.2.",
+          "prior_art_status": "",
+          "engineering_action": "DO_NOT_IMPLEMENT",
+          "research_value": "MEDIUM",
+          "status": "PARKED",
+          "affected_attack_family": "piecewise_affine"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "involution_census:loot:sign",
+          "kind": "Failed domain predicate",
+          "statement": "sign-first partition misses y = -x",
+          "evidence": "REFUTED",
+          "experiment_id": "involution_census",
+          "target": "negation",
+          "failure_class": "DOMAIN_INFERENCE",
+          "bottleneck": "sign_first_region_inference",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "negation",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": {
+        "attack_statuses": {},
+        "skipped": [],
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "census_kind": "UNRESOLVED",
+        "lean_theorems": []
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "carelli_rplus",
+      "target": "rplus",
+      "target_family": "generalized_collatz",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "rplus",
+        "semantic_class": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "PARAMETERIZED",
+          "latent_control": "PARAMETERIZED",
+          "parameter_domain": "EXACT",
+          "latent_control_algebra": "EXPLOITABLE",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "SCALAR",
+          "certificate_strength": "EXACT_RELATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "3y=4x-1 and 3y=4x-2 on residues 1 and 2 mod 3",
+        "strongest_falsification": "",
+        "lean_certificate": "Problems.Engine.LinearConstraintLoops",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CONTINUE",
+        "decision_reason": "frozen v2 reconstructs generalized-Collatz language; global reachability unresolved",
+        "extra": {}
+      },
+      "decision_reason_code": "KNOWN_REDISCOVERY",
+      "representation_novelty": "HIGH",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "Carelli R+ integer graph / Matthews\u2013Watts"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "global reachability on R+"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "carelli_rplus:global",
+          "target": "rplus",
+          "experiment_id": "carelli_rplus",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "closure",
+          "failure_class": "GLOBAL_REASONING",
+          "representation_status": "LANGUAGE_ADEQUATE",
+          "mathematical_bottleneck": "finite_to_infinite_certificate",
+          "evidence": "state language reconstructed; infinite-time reachability unresolved",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Representation fit is not an infinite-time theorem.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "HIGH",
+          "status": "PARKED",
+          "affected_attack_family": "global_reachability"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "carelli_rplus:loot:family",
+          "kind": "Latent control pattern",
+          "statement": "3y=4x-1 / 3y=4x-2",
+          "evidence": "SUPPORTED",
+          "experiment_id": "carelli_rplus",
+          "target": "rplus",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {}
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "carelli-2026-loop-termination",
+          "matthews-watts-1984-generalization-hasse"
+        ],
+        "semantic_equivalents": [
+          {
+            "known_equivalent": true,
+            "engine_form": "residue-controlled affine family on R+",
+            "mathematical_meaning": "equivalent",
+            "literature_id": "carelli-2026-loop-termination",
+            "confidence": "high"
+          }
+        ],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": true
+      },
+      "scout": {
+        "target": "rplus",
+        "problem_definition": "",
+        "literature": [
+          "carelli-2026-loop-termination"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "rplus",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": {
+        "attack_statuses": {},
+        "skipped": [],
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "census_kind": "PARAMETERIZED_CENSUS",
+        "lean_theorems": [
+          "Problems.Engine.LinearConstraintLoops"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "bb5_map",
+      "target": "bb5_map",
+      "target_family": "generalized_collatz",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "bb5_map",
+        "semantic_class": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "PARAMETERIZED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "EXACT",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "SCALAR",
+          "certificate_strength": "EXACT_RELATION"
+        },
+        "family_status": "SATURATED",
+        "family_id": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|EXACT_RELATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "3y=5x+18 / 3y=5x+22",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "FAMILY_SATURATED",
+        "decision_reason": "frozen v2 reconstructs known residue-controlled affine language",
+        "extra": {}
+      },
+      "decision_reason_code": "KNOWN_REDISCOVERY",
+      "representation_novelty": "HIGH",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "BB-5 residue-controlled affine map"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "remaining convergence problem is known"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "bb5_map:global",
+          "target": "bb5_map",
+          "experiment_id": "bb5_map",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "closure",
+          "failure_class": "GLOBAL_REASONING",
+          "representation_status": "LANGUAGE_ADEQUATE",
+          "mathematical_bottleneck": "finite_to_infinite_certificate",
+          "evidence": "residue-controlled language recovered; convergence remains the known open problem",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Do not treat known convergence as a new engine theorem.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "HIGH",
+          "status": "PARKED",
+          "affected_attack_family": "global_reachability"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "bb5_map:loot:family",
+          "kind": "Latent control pattern",
+          "statement": "3y=5x+18 on 0 mod 3; 3y=5x+22 on 1 mod 3",
+          "evidence": "SUPPORTED",
+          "experiment_id": "bb5_map",
+          "target": "bb5_map",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {}
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [],
+        "semantic_equivalents": [
+          {
+            "known_equivalent": true,
+            "engine_form": "residue-controlled affine family",
+            "mathematical_meaning": "equivalent",
+            "literature_id": "",
+            "confidence": "high"
+          }
+        ],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": true
+      },
+      "scout": {
+        "target": "bb5_map",
+        "problem_definition": "",
+        "literature": [],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "bb5_map",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": {
+        "attack_statuses": {},
+        "skipped": [],
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "census_kind": "PARAMETERIZED_CENSUS",
+        "lean_theorems": []
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "aliquot_276",
+      "target": "aliquot_276",
+      "target_family": "divisor_sum",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08",
+      "diagnosis": {
+        "target": "aliquot_276",
+        "semantic_class": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|OBSERVATION",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNCERTAIN",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "OBSERVATION"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|OBSERVATION",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "descent refuted at seed 12",
+        "lean_certificate": "Problems.Engine.AliquotDynamics",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "ENGINE_LIMITATION",
+        "decision_reason": "singleton control, mixed magnitude, truncated reachable set, no affine language",
+        "extra": {}
+      },
+      "decision_reason_code": "REPRESENTATION_MISMATCH",
+      "representation_novelty": "NONE",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "aliquot prefix of 276 matches A008892"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [
+          "descent refuted at 12"
+        ],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "fate of seed 276"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "aliquot_276:representation",
+          "target": "aliquot_276",
+          "experiment_id": "aliquot_276",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "piecewise_affine",
+          "failure_class": "REPRESENTATION",
+          "representation_status": "NON_AFFINE",
+          "mathematical_bottleneck": "outside_affine_valuation_control",
+          "evidence": "n |-> sigma(n)-n does not naturally fit affine/valuation control",
+          "counterexamples": [],
+          "minimal_example": "n |-> sigma(n)-n",
+          "reproducibility": "seed",
+          "reusable_lesson": "PARK; do not implement an aliquot attack.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "HIGH",
+          "status": "PARKED",
+          "affected_attack_family": "latent_affine"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "aliquot_276:loot:mismatch",
+          "kind": "Representation mismatch",
+          "statement": "sigma(n)-n is outside affine/control language",
+          "evidence": "OBSERVED",
+          "experiment_id": "aliquot_276",
+          "target": "aliquot_276",
+          "failure_class": "REPRESENTATION",
+          "bottleneck": "outside_affine_valuation_control",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": {
+        "target": "aliquot_276",
+        "problem_definition": "",
+        "literature": [
+          "oeis-A008892"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "aliquot_276",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": 32,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": {
+        "attack_statuses": {},
+        "skipped": [],
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "census_kind": "UNRESOLVED",
+        "lean_theorems": [
+          "Problems.Engine.AliquotDynamics"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "skolem_order6",
+      "target": "companion_shift_order6",
+      "target_family": "linear_recurrence",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.1",
+      "experiment_date": "2026-08-25",
+      "diagnosis": {
+        "target": "companion_shift_order6",
+        "semantic_class": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|FINITE_RANGE",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_VECTOR",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNOBSERVED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "VECTOR",
+          "certificate_strength": "FINITE_RANGE"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|FINITE_RANGE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "companion_shift_order6_eleventh_negative",
+        "strongest_falsification": "fixed sign refuted at n=11",
+        "lean_certificate": "Problems.Engine.CompanionShift",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CLOSE",
+        "decision_reason": "representation fits vector-affine language; infinite zero reachability unresolved",
+        "extra": {}
+      },
+      "decision_reason_code": "GLOBAL_REACHABILITY_GAP",
+      "representation_novelty": "LOW",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "order-6 companion window of Bacik et al. 2026 survey (13)"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [
+          "Problems.Engine.CompanionShift"
+        ],
+        "new_counterexamples": [
+          "u_11 < 0"
+        ],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "whether survey sequence (13) vanishes"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "skolem_order6:global",
+          "target": "companion_shift_order6",
+          "experiment_id": "skolem_order6",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "closure",
+          "failure_class": "GLOBAL_REASONING",
+          "representation_status": "LANGUAGE_ADEQUATE",
+          "mathematical_bottleneck": "finite_to_infinite_certificate",
+          "evidence": "finite computation does not decide infinite zero reachability",
+          "counterexamples": [
+            "u_11 < 0"
+          ],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Representation fit is not a Skolem decision procedure.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "HIGH",
+          "status": "PARKED",
+          "affected_attack_family": "global_reachability"
+        },
+        {
+          "id": "skolem_order6:computational",
+          "target": "companion_shift_order6",
+          "experiment_id": "skolem_order6",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "vector_affine",
+          "failure_class": "COMPUTATIONAL",
+          "representation_status": "VECTOR_AFFINE_ADEQUATE",
+          "mathematical_bottleneck": "finite_budget_exhausted",
+          "evidence": "25^6 census cube skipped; COMPUTATION_EXHAUSTED",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Computational blockage is not mathematical impossibility.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "MEDIUM",
+          "status": "PARKED",
+          "affected_attack_family": "vector_census"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "skolem_order6:loot:budget",
+          "kind": "Computational bottleneck",
+          "statement": "vector census 25^6 exceeds 50000 cells",
+          "evidence": "FINITE_RANGE",
+          "experiment_id": "skolem_order6",
+          "target": "companion_shift_order6",
+          "failure_class": "COMPUTATIONAL",
+          "bottleneck": "finite_budget_exhausted",
+          "payload": {}
+        },
+        {
+          "id": "skolem_order6:loot:sign",
+          "kind": "Counterexample",
+          "statement": "fixed-sign conjecture refuted at n=11",
+          "evidence": "REFUTED",
+          "experiment_id": "skolem_order6",
+          "target": "companion_shift_order6",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {
+            "witness": "11"
+          }
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "bacik-et-al-2026-skolem-positivity-survey",
+          "lipton-et-al-2022-skolem-conjecture"
+        ],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "OPEN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": false
+      },
+      "scout": {
+        "target": "companion_shift_order6",
+        "problem_definition": "Does the order-6 integer LRS of the 2026 survey vanish?",
+        "literature": [
+          "bacik-et-al-2026-skolem-positivity-survey"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "companion_shift_order6",
+        "dimension": 6,
+        "skip_attacks": [
+          "vector_affine"
+        ],
+        "max_states": 32,
+        "max_steps": 16,
+        "extra": {}
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "vector_affine": "COMPUTATION_EXHAUSTED"
+        },
+        "skipped": [],
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "census_kind": "",
+        "lean_theorems": [
+          "Problems.Engine.CompanionShift"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "skolem_lrs_hygiene",
+      "target": "skolem_lrs",
+      "target_family": "experiment_hygiene",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.2",
+      "experiment_date": "2026-08-25",
+      "diagnosis": {
+        "target": "skolem_lrs",
+        "semantic_class": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|FINITE_RANGE",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_VECTOR",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNOBSERVED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "VECTOR",
+          "certificate_strength": "FINITE_RANGE"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|FINITE_RANGE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "lean_certificate": "",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CLOSE",
+        "decision_reason": "token-leak false positive on the problem identifier",
+        "extra": {}
+      },
+      "decision_reason_code": "EXPERIMENT_HYGIENE",
+      "representation_novelty": "NONE",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "PROJECT_SPECIFIC",
+      "mathematical_yield": {
+        "known_rediscoveries": [],
+        "new_exact_results": [],
+        "new_formalizations": [],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "skolem_lrs_hygiene:hygiene",
+          "target": "skolem_lrs",
+          "experiment_id": "skolem_lrs_hygiene",
+          "engine_version": "0.2.1",
+          "phase": "benchmark",
+          "attack": "literature_leak",
+          "failure_class": "EXPERIMENT_HYGIENE",
+          "representation_status": "N_A",
+          "mathematical_bottleneck": "identifier_token_false_positive",
+          "evidence": "problem id skolem_lrs matched a forbidden literature token",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Allowlist package ids; match literature tokens only in adapter/spec/planner sources.",
+          "prior_art_status": "",
+          "engineering_action": "RESOLVED",
+          "research_value": "LOW",
+          "status": "RESOLVED",
+          "affected_attack_family": "hygiene"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "skolem_lrs_hygiene:loot:token",
+          "kind": "Useful negative result",
+          "statement": "skolem_lrs as an identifier is not a literature leak",
+          "evidence": "REFUTED",
+          "experiment_id": "skolem_lrs_hygiene",
+          "target": "skolem_lrs",
+          "failure_class": "EXPERIMENT_HYGIENE",
+          "bottleneck": "identifier_token_false_positive",
+          "payload": {}
+        }
+      ],
+      "prior_art": null,
+      "scout": null,
+      "blind_packet": {
+        "spec_name": "companion_shift_order6",
+        "dimension": 6,
+        "skip_attacks": [],
+        "max_states": null,
+        "max_steps": null,
+        "extra": {}
+      },
+      "run_artifact": null,
+      "reconciliation": null,
+      "finalized": true
+    }
+  ],
+  "certified": [
+    "piecewise_affine",
+    "parameter_domain",
+    "control_word",
+    "control_obstruction",
+    "vector_affine",
+    "matrix_word_invariant"
+  ]
+}

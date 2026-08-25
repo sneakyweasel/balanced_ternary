@@ -59,6 +59,8 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.cerny_bt` | `ARCHIVED` | transition-closed residual quotient; linear/nonlinear close |
 | `research.misere_quotients` | `ARCHIVED` | finite-context misere signatures; Plambeck–Siegel close |
 | `research.open_problems` | registry | pointers, not a dumping ground |
+| `research.engine_campaign` | `EXPLORATORY` | first real-problem frozen-loop campaign |
+| `research.engine_memory` | `EXPLORATORY` | v2.2 research-memory descriptor; implementation in `research_engine.memory` |
 
 The piecewise-affine census, domain-certificate, control-word, and
 control-obstruction layers are engine attacks

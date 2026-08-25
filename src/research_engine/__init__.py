@@ -77,6 +77,12 @@ from research_engine.diagnosis import (
     diagnose,
     score_candidate,
 )
+from research_engine.memory import (
+    FailureClass,
+    GreyLoot,
+    MemoryExperiment,
+    ResearchMemory,
+)
 from research_engine.planner import (
     AttackPlanner,
     DecisionKind,
@@ -146,6 +152,9 @@ __all__ = [
     "DiagnosisReport",
     "ExperimentRecord",
     "FamilyStatus",
+    "FailureClass",
+    "GreyLoot",
+    "MemoryExperiment",
     "Control",
     "DecisionKind",
     "DynamicsResult",
@@ -176,6 +185,7 @@ __all__ = [
     "ResearchDecision",
     "ResearchLedger",
     "ResearchLoop",
+    "ResearchMemory",
     "ResearchSession",
     "StructuralDelta",
     "ReverseGeometryAttack",

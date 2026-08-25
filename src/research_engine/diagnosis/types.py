@@ -213,3 +213,4 @@ class SelectionReport:
     novelty_potential: float
     experimental_cost: float
     explanation: str
+    failure_learning_value: float = 1.0
