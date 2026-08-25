@@ -83,7 +83,7 @@ or \(t=3n\) when \(\zeta=0\). The two arguments of the minimum have
 opposite parity whenever \(\zeta\neq 0\), so there is never a
 cancellation tie.
 
-**EXACT — HUMAN PROOF** (`BTM-x3-no-preserve`). The factor
+**EXACT — LEAN VERIFIED** (`BTM-x3-no-preserve`). The factor
 \(3\zeta^2+4\cdot 3^{2n}\) is never \(\pm 3^k\). Cubing therefore
 never sends an endpoint pair to an endpoint pair, and the Euclidean
 jump of \(x^3\) is never zero.
@@ -131,8 +131,9 @@ This matches the enumeration through \(n\le 5\).
 ## Formalization
 
 Ledger rows `BTM-balanced-monna`, `BTM-x3-depth`, `BTM-x3-spectrum`,
-`BTM-x3-no-preserve`. `BTM-x3-depth` is `formal/BTCalculus/MonnaEndpointCube.lean`.
-Spectrum and non-preservation remain human. No `sorry`.
+`BTM-x3-no-preserve`. `BTM-x3-depth` and `BTM-x3-no-preserve` are
+`formal/BTCalculus/MonnaEndpointCube.lean`. Spectrum remains human.
+No `sorry`.
 
 ## Code
 

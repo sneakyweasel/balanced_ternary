@@ -1911,10 +1911,10 @@
   },
   {
     "id": "BTM-x3-no-preserve",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "cubing never sends a balanced-Monna endpoint pair to an endpoint pair: 3 zeta^2+4*3^{2n} is never +/- 3^k, so u^3-v^3 is never +/- 4*3^k and B(u^3)=B(v^3) never holds",
     "source": "docs/theory/monna_endpoint_spectra.md",
-    "lean": "",
+    "lean": "BTCalculus/MonnaEndpointCube.lean",
     "tests": [
       "tests/research/monna_endpoint_spectra/test_triage.py"
     ],

@@ -98,8 +98,9 @@ None registered.
 
 Master record: [monna_endpoint_spectra.md](../theory/monna_endpoint_spectra.md).
 Ledger rows `BTM-balanced-monna`, `BTM-x3-depth`, `BTM-x3-spectrum`,
-`BTM-x3-no-preserve`. `BTM-x3-depth` is `formal/BTCalculus/MonnaEndpointCube.lean`.
-Spectrum and non-preservation remain human. No `sorry`.
+`BTM-x3-no-preserve`. `BTM-x3-depth` and `BTM-x3-no-preserve` are
+`formal/BTCalculus/MonnaEndpointCube.lean`. Spectrum remains human.
+No `sorry`.
 
 ## Results
 
@@ -132,8 +133,9 @@ tie. Verified on all 728 pairs through `n ≤ 5` (`formula_fails = 0`,
 
 The Euclidean jump of `x^3` is nonzero on every pair. The image
 pair `(u^3, v^3)` is never itself an endpoint pair
-(`BTM-x3-no-preserve`). Valuation agreement with the formula is
-not preservation.
+(**EXACT — LEAN VERIFIED**, `BTM-x3-no-preserve`): the factor is never
+`±3^k`, so `u^3−v^3` is never `±4·3^k`. Valuation agreement with the
+formula is not preservation.
 
 ### Closed spectrum
 
@@ -182,8 +184,10 @@ not a generic “nonlinear maps jump” slogan and not a finite table
 without a formula. Preservation is classified for the stated controls.
 The Monna map itself is not claimed as new. Ledger rows
 `BTM-balanced-monna`, `BTM-x3-depth`, `BTM-x3-spectrum`, and
-`BTM-x3-no-preserve` record the surviving theorems. No CLI, Lean,
-cubic-count module, or numbered milestone is added.
+`BTM-x3-no-preserve` record the surviving theorems. The depth law and
+the non-preservation obstruction are Lean-packaged in
+`formal/BTCalculus/MonnaEndpointCube.lean`. The spectrum stays human.
+No CLI, cubic-count module, or numbered milestone is added.
 
 Best next question: none on this branch; the gate is closed by a
 theorem.

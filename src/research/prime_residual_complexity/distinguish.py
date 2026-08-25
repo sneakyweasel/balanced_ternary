@@ -104,7 +104,6 @@ def jet_prime_separator(length: int = 1) -> Separator:
         raise ValueError("length must be at least 1")
     left = 1
     right = 1 + 3**length
-    word = (0,)
     if integer_jet(left, length) != integer_jet(right, length):
         raise RuntimeError("jet separator construction failed")
     found = smallest_distinguishing_word(left, right, max_horizon=1)
