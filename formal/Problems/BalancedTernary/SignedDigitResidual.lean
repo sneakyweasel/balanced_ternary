@@ -77,6 +77,24 @@ theorem lambda2_box_invariant {s u : ℤ} {m : ℕ}
     simp [Int.natAbs_mul]
   omega
 
+/-- Sharp ``λ=2`` invariant radius ``2 m.pred``. -/
+theorem lambda2_sharp_box {s u : ℤ} {m : ℕ}
+    (hs : s.natAbs ≤ 2 * m.pred) (hu : u.natAbs ≤ m) :
+    (2 * DZ (s + u)).natAbs ≤ 2 * m.pred := by
+  have hsum : (s + u).natAbs ≤ s.natAbs + u.natAbs := Int.natAbs_add_le s u
+  have hB : (s + u).natAbs ≤ 2 * m.pred + m := by omega
+  have hb := DZ_carry_bound (s + u)
+  have h3 : 3 * (DZ (s + u)).natAbs ≤ 2 * m.pred + m + 1 := by omega
+  have hmul : (2 * DZ (s + u)).natAbs = 2 * (DZ (s + u)).natAbs := by
+    simp [Int.natAbs_mul]
+  have hdz : (DZ (s + u)).natAbs ≤ m.pred := by
+    cases m with
+    | zero => omega
+    | succ k =>
+      simp [Nat.pred_succ] at hs h3 ⊢
+      omega
+  omega
+
 theorem signedNext_gain3_control2 (n : ℤ) :
     signedNext 3 (3 * n) 2 = 3 * (n + 1) := by
   simp [signedNext, DZ_three_mul_add_two]
@@ -88,26 +106,252 @@ theorem gain3_control2_unbounded (B : ℕ) :
     ∃ n : ℕ, B < (carryGain3 n).natAbs :=
   carryGain3_unbounded B
 
-/-- Finite residual closure of ``F_{λ,U_m}`` for ``λ∈{1,2}`` or trit forcing
-``m≤1``. The matching infinite witness at ``λ=3``, ``m≥2`` is
-``gain3_control2_unbounded``. -/
+/-- Finite invariant box for ``F_{λ,U_m}`` iff ``λ≤2`` or trit forcing ``m≤1``.
+The matching unbounded witnesses are ``signedIterate_unbounded_of_ge_three``. -/
 theorem finite_residual_condition {gain m : ℕ}
-    (h : gain = 1 ∨ gain = 2 ∨ m ≤ 1) :
+    (h : gain ≤ 2 ∨ m ≤ 1) :
     ∃ R : ℕ, ∀ s u : ℤ, s.natAbs ≤ R → u.natAbs ≤ m →
       ((gain : ℤ) * DZ (s + u)).natAbs ≤ R := by
-  rcases h with hgain | hgain | hm
-  · refine ⟨m / 2, ?_⟩
-    intro s u hs hu
-    simp [hgain, lambda1_reachable_box hs hu]
-  · refine ⟨2 * (m + 1), ?_⟩
-    intro s u hs hu
-    simpa [hgain] using lambda2_box_invariant (s := s) (u := u) (m := m) hs hu
+  rcases h with hgain | hm
+  · have hcases : gain = 0 ∨ gain = 1 ∨ gain = 2 := by omega
+    rcases hcases with h0 | h1 | h2
+    · refine ⟨0, ?_⟩
+      intro s u hs hu
+      simp [h0]
+    · refine ⟨m / 2, ?_⟩
+      intro s u hs hu
+      simp [h1, lambda1_reachable_box hs hu]
+    · refine ⟨2 * m.pred, ?_⟩
+      intro s u hs hu
+      simpa [h2] using lambda2_sharp_box (s := s) (u := u) (m := m) hs hu
   · refine ⟨0, ?_⟩
     intro s u hs hu
     have hs0 : s = 0 := Int.natAbs_eq_zero.mp (by omega)
     have hstep := origin_trit_forcing (gain := (gain : ℤ)) (u := u) (by omega)
     simp [signedNext] at hstep
     simpa [hs0] using hstep
+
+theorem lsdZ_le_one (n : ℤ) : lsdZ n ≤ 1 := by
+  rcases lsdZ_is_trit n with h | h | h <;> omega
+
+theorem lsdZ_ge_neg_one (n : ℤ) : -1 ≤ lsdZ n := by
+  rcases lsdZ_is_trit n with h | h | h <;> omega
+
+theorem signedNext_gain3 (s u : ℤ) :
+    signedNext 3 s u = s + u - lsdZ (s + u) := by
+  have h := sub_lsd_eq_three_DZ (s + u)
+  simp [signedNext]
+  linarith
+
+theorem signedNext_gain3_ge {s u : ℤ} (hu : 2 ≤ u) :
+    s + 1 ≤ signedNext 3 s u := by
+  have hstep := signedNext_gain3 s u
+  have hlsd := lsdZ_le_one (s + u)
+  omega
+
+theorem signedNext_gain3_le {s u : ℤ} (hu : u ≤ -2) :
+    signedNext 3 s u ≤ s - 1 := by
+  have hstep := signedNext_gain3 s u
+  have hlsd := lsdZ_ge_neg_one (s + u)
+  omega
+
+theorem DZ_ge_one_of_ge_two {n : ℤ} (h : 2 ≤ n) : 1 ≤ DZ n := by
+  have hn : n = lsdZ n + 3 * DZ n := decomp n
+  have hlsd := lsdZ_le_one n
+  by_contra hfail
+  have : DZ n ≤ 0 := by omega
+  omega
+
+theorem DZ_le_neg_one_of_le_neg_two {n : ℤ} (h : n ≤ -2) : DZ n ≤ -1 := by
+  have hn : n = lsdZ n + 3 * DZ n := decomp n
+  have hlsd := lsdZ_ge_neg_one n
+  by_contra hfail
+  have : 0 ≤ DZ n := by omega
+  omega
+
+theorem signedNext_gain_ge_four_expands {gain s u : ℤ}
+    (hg : (4 : ℤ) ≤ gain) (hs : 0 ≤ s) (hu : (2 : ℤ) ≤ u) :
+    s < signedNext gain s u := by
+  have hsum : (2 : ℤ) ≤ s + u := by omega
+  have hnn : 0 ≤ s + u := by omega
+  have hdz : 1 ≤ DZ (s + u) := DZ_ge_one_of_ge_two hsum
+  have hlow := DZ_carry_lower (s + u)
+  have hnat : ((s + u).natAbs : ℤ) = s + u := Int.natAbs_of_nonneg hnn
+  have hdzAbs : ((DZ (s + u)).natAbs : ℤ) = DZ (s + u) :=
+    Int.natAbs_of_nonneg (by omega)
+  have hlin : s + u - 1 ≤ 3 * DZ (s + u) := by
+    have : ((s + u).natAbs : ℤ) ≤ 3 * ((DZ (s + u)).natAbs : ℤ) + 1 := by
+      exact_mod_cast hlow
+    omega
+  have hmul : gain * (s + u - 1) ≤ 3 * (gain * DZ (s + u)) := by
+    have hgain : 0 ≤ gain := by omega
+    nlinarith
+  have hge : (4 : ℤ) * (s + 1) ≤ gain * (s + u - 1) := by nlinarith
+  have hchain : 4 * (s + 1) ≤ 3 * signedNext gain s u := by
+    simpa [signedNext] using le_trans hge hmul
+  by_contra hle
+  have hs' : signedNext gain s u ≤ s := Int.not_lt.mp hle
+  have : 4 * (s + 1) ≤ 3 * s := le_trans hchain (by nlinarith [hs'])
+  omega
+
+theorem signedNext_gain_ge_four_contracts_neg {gain s u : ℤ}
+    (hg : (4 : ℤ) ≤ gain) (hs : s ≤ 0) (hu : u ≤ -2) :
+    signedNext gain s u < s := by
+  have hsum : s + u ≤ -2 := by omega
+  have hnn : s + u ≤ 0 := by omega
+  have hdz : DZ (s + u) ≤ -1 := DZ_le_neg_one_of_le_neg_two hsum
+  have hlow := DZ_carry_lower (s + u)
+  have hnat' : ((s + u).natAbs : ℤ) = -(s + u) := by
+    rw [← Int.natAbs_neg]
+    exact Int.natAbs_of_nonneg (by omega)
+  have hdzAbs : ((DZ (s + u)).natAbs : ℤ) = -(DZ (s + u)) := by
+    rw [← Int.natAbs_neg]
+    exact Int.natAbs_of_nonneg (by omega)
+  have hlin : 3 * DZ (s + u) - 1 ≤ s + u := by
+    have : ((s + u).natAbs : ℤ) ≤ 3 * ((DZ (s + u)).natAbs : ℤ) + 1 := by
+      exact_mod_cast hlow
+    omega
+  by_contra hle
+  have hs' : s ≤ gain * DZ (s + u) := by
+    simpa [signedNext] using Int.not_lt.mp hle
+  have hprod : DZ (s + u) * (3 - gain) ≤ u + 1 := by nlinarith
+  have hlo : (1 : ℤ) ≤ DZ (s + u) * (3 - gain) := by nlinarith
+  omega
+
+def signedIterate (gain u : ℤ) : ℕ → ℤ
+  | 0 => 0
+  | n + 1 => signedNext gain (signedIterate gain u n) u
+
+theorem signedIterate_zero (gain u : ℤ) : signedIterate gain u 0 = 0 :=
+  rfl
+
+theorem signedIterate_succ (gain u n) :
+    signedIterate gain u (n + 1) = signedNext gain (signedIterate gain u n) u :=
+  rfl
+
+theorem signedIterate_gain3_ge {u : ℤ} (hu : 2 ≤ u) :
+    ∀ n : ℕ, (n : ℤ) ≤ signedIterate 3 u n := by
+  intro n
+  induction n with
+  | zero => simp [signedIterate]
+  | succ n ih =>
+    have h := signedNext_gain3_ge (s := signedIterate 3 u n) hu
+    have hsucc : (n + 1 : ℤ) ≤ signedIterate 3 u n + 1 := by omega
+    have hstep : signedIterate 3 u n + 1 ≤ signedNext 3 (signedIterate 3 u n) u := h
+    simpa [signedIterate] using le_trans hsucc hstep
+
+theorem signedIterate_gain3_le {u : ℤ} (hu : u ≤ -2) :
+    ∀ n : ℕ, signedIterate 3 u n ≤ - (n : ℤ) := by
+  intro n
+  induction n with
+  | zero => simp [signedIterate]
+  | succ n ih =>
+    have h := signedNext_gain3_le (s := signedIterate 3 u n) hu
+    have : signedNext 3 (signedIterate 3 u n) u ≤ signedIterate 3 u n - 1 := h
+    have : signedIterate 3 u n - 1 ≤ -((n : ℤ) + 1) := by omega
+    simpa [signedIterate] using le_trans ‹signedNext 3 (signedIterate 3 u n) u ≤ signedIterate 3 u n - 1› this
+
+theorem signedIterate_gain_ge_four_ge {gain u : ℤ}
+    (hg : (4 : ℤ) ≤ gain) (hu : (2 : ℤ) ≤ u) :
+    ∀ n : ℕ, (n : ℤ) ≤ signedIterate gain u n := by
+  intro n
+  induction n with
+  | zero => simp [signedIterate]
+  | succ n ih =>
+    have hs : 0 ≤ signedIterate gain u n := le_trans (Nat.cast_nonneg n) ih
+    have h := signedNext_gain_ge_four_expands (gain := gain)
+      (s := signedIterate gain u n) (u := u) hg hs hu
+    have : (n + 1 : ℤ) ≤ signedIterate gain u n + 1 := by omega
+    have : signedIterate gain u n + 1 ≤ signedNext gain (signedIterate gain u n) u := by omega
+    simpa [signedIterate] using
+      le_trans ‹(n + 1 : ℤ) ≤ signedIterate gain u n + 1› this
+
+theorem signedIterate_gain_ge_four_le {gain u : ℤ}
+    (hg : (4 : ℤ) ≤ gain) (hu : u ≤ -2) :
+    ∀ n : ℕ, signedIterate gain u n ≤ - (n : ℤ) := by
+  intro n
+  induction n with
+  | zero => simp [signedIterate]
+  | succ n ih =>
+    have hs : signedIterate gain u n ≤ 0 := le_trans ih (by omega)
+    have h := signedNext_gain_ge_four_contracts_neg (gain := gain)
+      (s := signedIterate gain u n) (u := u) hg hs hu
+    have : signedNext gain (signedIterate gain u n) u ≤ signedIterate gain u n - 1 := by omega
+    have : signedIterate gain u n - 1 ≤ -((n : ℤ) + 1) := by omega
+    simpa [signedIterate] using
+      le_trans ‹signedNext gain (signedIterate gain u n) u ≤ signedIterate gain u n - 1› this
+
+theorem signedIterate_natAbs_ge_of_nonneg {x : ℤ} {n : ℕ}
+    (hx : 0 ≤ x) (hn : (n : ℤ) ≤ x) : n ≤ x.natAbs := by
+  have : (x.natAbs : ℤ) = x := Int.natAbs_of_nonneg hx
+  omega
+
+theorem signedIterate_unbounded_of_ge_three {gain u : ℤ}
+    (hg : (3 : ℤ) ≤ gain) (hu : 2 ≤ u ∨ u ≤ -2) (B : ℕ) :
+    ∃ n : ℕ, B < (signedIterate gain u n).natAbs := by
+  refine ⟨B + 1, ?_⟩
+  rcases hu with hpos | hneg
+  · by_cases h3 : gain = 3
+    · subst h3
+      have hge := signedIterate_gain3_ge hpos (B + 1)
+      have hx : 0 ≤ signedIterate 3 u (B + 1) :=
+        le_trans (Nat.cast_nonneg (B + 1)) hge
+      have : B + 1 ≤ (signedIterate 3 u (B + 1)).natAbs :=
+        signedIterate_natAbs_ge_of_nonneg hx hge
+      omega
+    · have hg4 : (4 : ℤ) ≤ gain := by omega
+      have hge := signedIterate_gain_ge_four_ge hg4 hpos (B + 1)
+      have hx : 0 ≤ signedIterate gain u (B + 1) :=
+        le_trans (Nat.cast_nonneg (B + 1)) hge
+      have : B + 1 ≤ (signedIterate gain u (B + 1)).natAbs :=
+        signedIterate_natAbs_ge_of_nonneg hx hge
+      omega
+  · by_cases h3 : gain = 3
+    · subst h3
+      have hle := signedIterate_gain3_le hneg (B + 1)
+      have hxneg : 0 ≤ -signedIterate 3 u (B + 1) := by omega
+      have hge : (B + 1 : ℤ) ≤ -signedIterate 3 u (B + 1) := by omega
+      have : B + 1 ≤ (-signedIterate 3 u (B + 1)).natAbs :=
+        signedIterate_natAbs_ge_of_nonneg hxneg hge
+      simpa [Int.natAbs_neg] using Nat.lt_of_succ_le this
+    · have hg4 : (4 : ℤ) ≤ gain := by omega
+      have hle := signedIterate_gain_ge_four_le hg4 hneg (B + 1)
+      have hxneg : 0 ≤ -signedIterate gain u (B + 1) := by omega
+      have hge : (B + 1 : ℤ) ≤ -signedIterate gain u (B + 1) := by omega
+      have : B + 1 ≤ (-signedIterate gain u (B + 1)).natAbs :=
+        signedIterate_natAbs_ge_of_nonneg hxneg hge
+      simpa [Int.natAbs_neg] using Nat.lt_of_succ_le this
+
+/-- Residual and LSD output depend on the raw contribution only. -/
+theorem same_raw_same_residual (gain s u v : ℤ) (huv : u = v) :
+    signedNext gain s u = signedNext gain s v ∧
+      signedOut s u = signedOut s v := by
+  simp [huv]
+
+theorem origin_residual_box_iff (gain m : ℕ) :
+    (gain ≤ 2 ∨ m ≤ 1) ↔
+      ∃ R : ℕ, ∀ s u : ℤ, s.natAbs ≤ R → u.natAbs ≤ m →
+        ((gain : ℤ) * DZ (s + u)).natAbs ≤ R := by
+  constructor
+  · exact finite_residual_condition
+  · intro hR
+    by_contra hfail
+    have hg : 3 ≤ gain := by omega
+    have hm : 2 ≤ m := by omega
+    obtain ⟨R, hbox⟩ := hR
+    obtain ⟨n, hn⟩ :=
+      signedIterate_unbounded_of_ge_three (gain := (gain : ℤ)) (u := (m : ℤ))
+        (by exact_mod_cast hg) (Or.inl (by exact_mod_cast hm)) R
+    -- The iterate stays inside every invariant box if |u|≤m, starting at 0.
+    have hstay : ∀ k : ℕ, (signedIterate (gain : ℤ) (m : ℤ) k).natAbs ≤ R := by
+      intro k
+      induction k with
+      | zero => simp [signedIterate]
+      | succ k ih =>
+        have hu : ((m : ℤ).natAbs) ≤ m := by simp
+        simpa [signedIterate, signedNext] using hbox _ (m : ℤ) ih (by simp)
+    have : (signedIterate (gain : ℤ) (m : ℤ) n).natAbs ≤ R := hstay n
+    omega
 
 theorem sum_trits_bound (inputs : List ℤ)
     (h : ∀ a ∈ inputs, isTrit a) :

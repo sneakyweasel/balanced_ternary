@@ -30,7 +30,8 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.collatz_finite_descent` | `ARCHIVED` | shortcut `C`; uniform 2-adic `L`-descent `CLOSE` |
 | `research.ostrowski` | `STRUCTURAL` | order-3 \(B_{\min}\); NP \(K\) unbounded; \(L_0\) PARK; `OstrowskiSpec` adapter |
 | `research.balanced_ternary` | `STRUCTURAL` | doubled-trit; expanding `T` jets; `D(x+y)` residual |
-| `research.signed_digit_residual` | `STRUCTURAL` | `F_{λ,U_m}=λ·D(s+u)`; finite iff `λ≤2` or `m≤1`; `M(r)=2⌊r/2⌋+1` |
+| `research.signed_digit_residual` | `STRUCTURAL` | `F_{λ,U}=λ·D(s+u)` finite iff `λ≤2` or `max|u|≤1` |
+| `research.multiplicative_residual` | `STRUCTURAL` | product controls factor through raw `h`; trit products match `U_1` |
 | `research.regular_output_preimages` | `STRUCTURAL` | regular output of \(x^2\); sofic obstruction |
 | `research.residual_complexity` | `STRUCTURAL` | unrestricted \(C_F(m,r)\); superdiagonal band |
 | `research.monna_endpoint_spectra` | `STRUCTURAL` | balanced-Monna endpoint spectra; gate closed |

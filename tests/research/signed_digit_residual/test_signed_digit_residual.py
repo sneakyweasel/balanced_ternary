@@ -8,11 +8,17 @@ from research.signed_digit_residual.discovery import (
     alphabet_m,
     asymmetric_perturbation,
     box_leak,
+    constant_control_unbounded,
     distinguishing_fingerprint,
     finite_from_origin,
+    finite_from_origin_alphabet,
+    gain3_identity_holds,
+    geometry_perturbation,
     is_constant_unbounded_family,
     lambda1_invariant_radius_loose,
     lambda1_reachable_radius,
+    lambda2_reachable_radius,
+    lambda2_residual_complexity,
     lyapunov_leak,
     origin_reachable_report,
     r_way_mealy,
@@ -28,6 +34,8 @@ from research.signed_digit_residual.lean_export import (
 )
 from research.signed_digit_residual.planner import (
     CLOSURE_HYPOTHESIS,
+    GEOMETRY_PHASE_HYPOTHESIS,
+    MAXABS_MEALY_HYPOTHESIS,
     SCALAR_THRESHOLD_HYPOTHESIS,
     plan_signed_digit_pair,
     plan_signed_digit_residual,
@@ -91,18 +99,49 @@ def test_distinguishing_pairs_are_exact():
     assert companion["classification"] == "EXACT INFINITE"
     assert companion["unbounded_witness"] is True
     assert finite_from_origin(3, 2) is False
+    assert finite_from_origin(4, 1) is True
+    assert finite_from_origin(4, 2) is False
+    assert finite_from_origin_alphabet(4, (-1, 0, 1)) is True
+    assert finite_from_origin_alphabet(3, (-2, 0, 2)) is False
     assert is_constant_unbounded_family(2, 3)
+    assert constant_control_unbounded(3, 2)
+    assert constant_control_unbounded(4, 2)
     assert signed_step(0, 2, 3) == (3, -1)
     assert signed_step(3, 2, 3) == (6, -1)
+    assert gain3_identity_holds(5, 2)
+    four = origin_reachable_report(2, 4)
+    assert four["classification"] == "EXACT INFINITE"
+    assert four["unbounded_witness"] is True
 
 
-def test_gain2_reachable_is_not_the_invariant_interval():
-    report = origin_reachable_report(2, 2)
-    assert report["reachable"] == (-2, 0, 2)
-    assert report["invariant_radius"] == 2
-    assert report["mealy"] == 3
-    assert box_leak(1, alphabet_m(2), 2) is not None
-    assert box_leak(2, alphabet_m(2), 2) is None
+def test_lambda2_sharp_radius_and_even_reachable():
+    for bound in range(0, 7):
+        report = origin_reachable_report(bound, 2)
+        radius = lambda2_reachable_radius(bound)
+        assert report["classification"] == "EXACT FINITE"
+        assert report["invariant_radius"] == radius
+        assert report["mealy"] == lambda2_residual_complexity(bound)
+        expected = tuple(range(-radius, radius + 1, 2))
+        assert report["reachable"] == expected
+        if bound >= 2:
+            assert report["reachable"] != tuple(range(-radius, radius + 1))
+        assert box_leak(radius, alphabet_m(bound), 2) is None
+        if radius > 0:
+            assert box_leak(radius - 1, alphabet_m(bound), 2) is not None
+
+
+def test_geometry_follows_max_abs_not_holes():
+    reports = geometry_perturbation()
+    assert reports["sparse_2_g1"]["reachable"] == (-1, 0, 1)
+    assert reports["sparse_2_g2"]["reachable"] == (-2, 0, 2)
+    assert reports["sparse_2_g3"]["classification"] == "EXACT INFINITE"
+    assert reports["asymmetric_012_g1"]["reachable"] == (0, 1)
+    assert reports["asymmetric_012_g2"]["reachable"] == (0, 2)
+    assert reports["asymmetric_012_g3"]["classification"] == "EXACT INFINITE"
+    assert reports["singleton_2_g2"]["mealy"] == 2
+    assert reports["singleton_2_g2"]["reachable"] == (0, 2)
+    assert finite_from_origin_alphabet(2, (2,)) is True
+    assert finite_from_origin_alphabet(3, (2,)) is False
 
 
 def test_r_way_matches_u_r_and_formula():
@@ -147,6 +186,14 @@ def test_planner_certifies_three_and_refutes_scalar_threshold():
     assert hyp.status is HypothesisStatus.SUPPORTED
     scalar = next(item for item in report.hypotheses if item.id == SCALAR_THRESHOLD_HYPOTHESIS.id)
     assert scalar.status is HypothesisStatus.REFUTED
+    geometry = next(
+        item for item in report.hypotheses if item.id == GEOMETRY_PHASE_HYPOTHESIS.id
+    )
+    assert geometry.status is HypothesisStatus.REFUTED
+    mealy = next(
+        item for item in report.hypotheses if item.id == MAXABS_MEALY_HYPOTHESIS.id
+    )
+    assert mealy.status is HypothesisStatus.REFUTED
     skipped = {item.attack for item in report.skipped}
     assert "modular" in skipped
     assert "spectral" in skipped

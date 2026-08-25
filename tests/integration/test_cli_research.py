@@ -184,8 +184,30 @@ def test_research_reproduce_signed_digit_residual_links_lean():
     assert "reproduce: ok" in out
     assert "hypothesis sdr_lambda1_u2_closure: SUPPORTED EXACT REACHABLE" in out
     assert "hypothesis sdr_scalar_lambda3: REFUTED" in out
+    assert "hypothesis sdr_geometry_controls_phase: REFUTED" in out
+    assert "hypothesis sdr_maxabs_determines_mealy: REFUTED" in out
     report = _run("research", "report", "signed_digit_residual")
     assert "lambda1_u2_residual_closure" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()
+
+
+def test_research_analyze_multiplicative_residual_is_exact_one_not_live():
+    out = _run("research", "analyze", "multiplicative_residual")
+    assert "problem: multiplicative_residual" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED LIVE_SLICE" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_multiplicative_residual_links_lean():
+    out = _run("research", "reproduce", "mr")
+    assert "reproduce: ok" in out
+    assert "hypothesis mr_product_u1_closure: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis mr_factor_count_matters: REFUTED" in out
+    report = _run("research", "report", "multiplicative_residual")
+    assert "product_residual_closure" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
 

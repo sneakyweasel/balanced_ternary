@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, collatz, primes, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, multiplicative_residual, collatz, primes, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -85,6 +85,13 @@ def _normalize_problem(name: str) -> str:
     }:
         return "signed_digit_residual"
     if key.lower() in {
+        "multiplicative_residual",
+        "multiplicative-residual",
+        "mul_residual",
+        "mr",
+    }:
+        return "multiplicative_residual"
+    if key.lower() in {
         "collatz",
         "collatz_finite_descent",
         "collatz-finite-descent",
@@ -104,7 +111,7 @@ def _normalize_problem(name: str) -> str:
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, collatz, primes, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, multiplicative_residual, collatz, primes, or A-E"
     )
 
 
@@ -153,6 +160,15 @@ def _plan(problem: str, remaining: int):
 
         report = plan_signed_digit_residual(remaining)
         targets = export_signed_digit_targets(report)
+        return report, targets
+    if problem == "multiplicative_residual":
+        from research.multiplicative_residual.adapter import (
+            export_multiplicative_targets,
+            plan_multiplicative_residual,
+        )
+
+        report = plan_multiplicative_residual(remaining)
+        targets = export_multiplicative_targets(report)
         return report, targets
     if problem == "collatz_finite_descent":
         from research.collatz_finite_descent.adapter import (
@@ -225,6 +241,11 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = signed_digit_spec(remaining)
         context = spec.attack_context()
+    elif problem == "multiplicative_residual":
+        from research.multiplicative_residual.spec import product_spec
+
+        spec = product_spec(remaining)
+        context = spec.attack_context()
     elif problem == "collatz_finite_descent":
         from research.collatz_finite_descent.spec import shortcut_spec
 
@@ -266,6 +287,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _d_add_reproduce_failures(report, targets)
     elif problem == "signed_digit_residual":
         failures = _signed_digit_residual_reproduce_failures(report, targets)
+    elif problem == "multiplicative_residual":
+        failures = _multiplicative_residual_reproduce_failures(report, targets)
     elif problem == "collatz_finite_descent":
         failures = _collatz_finite_descent_reproduce_failures(report, targets)
     elif problem == "prime_residual_complexity":
@@ -510,6 +533,8 @@ def _signed_digit_residual_reproduce_failures(report, targets) -> tuple[str, ...
     )
     from research.signed_digit_residual.planner import (
         CLOSURE_HYPOTHESIS,
+        GEOMETRY_PHASE_HYPOTHESIS,
+        MAXABS_MEALY_HYPOTHESIS,
         SCALAR_THRESHOLD_HYPOTHESIS,
     )
 
@@ -538,6 +563,18 @@ def _signed_digit_residual_reproduce_failures(report, targets) -> tuple[str, ...
     )
     if scalar is None or scalar.status is not HypothesisStatus.REFUTED:
         failures.append("signed_digit_residual: scalar λ=3 threshold is not REFUTED")
+    geometry = next(
+        (item for item in report.hypotheses if item.id == GEOMETRY_PHASE_HYPOTHESIS.id),
+        None,
+    )
+    if geometry is None or geometry.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_residual: geometry-controls-phase is not REFUTED")
+    mealy = next(
+        (item for item in report.hypotheses if item.id == MAXABS_MEALY_HYPOTHESIS.id),
+        None,
+    )
+    if mealy is None or mealy.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_residual: max-abs Mealy hypothesis is not REFUTED")
     closure = next((item for item in targets if item.attack == "closure"), None)
     if (
         closure is None
@@ -547,6 +584,60 @@ def _signed_digit_residual_reproduce_failures(report, targets) -> tuple[str, ...
         failures.append("signed_digit_residual: closure is not linked to lambda1_u2_residual_closure")
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("signed_digit_residual: exported a LIVE target")
+    return tuple(failures)
+
+
+def _multiplicative_residual_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.multiplicative_residual.lean_export import (
+        CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.multiplicative_residual.planner import (
+        CLOSURE_HYPOTHESIS,
+        FACTOR_COUNT_HYPOTHESIS,
+        THREE_STATE_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 1):
+        failures.append("multiplicative_residual: closure is not EXACT size 1")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("multiplicative_residual: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("multiplicative_residual: modular/spectral should stay inapplicable")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("multiplicative_residual: U_1-closure hypothesis is not SUPPORTED")
+    factor = next(
+        (item for item in report.hypotheses if item.id == FACTOR_COUNT_HYPOTHESIS.id),
+        None,
+    )
+    if factor is None or factor.status is not HypothesisStatus.REFUTED:
+        failures.append("multiplicative_residual: factor-count hypothesis is not REFUTED")
+    three = next(
+        (item for item in report.hypotheses if item.id == THREE_STATE_HYPOTHESIS.id),
+        None,
+    )
+    if three is None or three.status is not HypothesisStatus.REFUTED:
+        failures.append("multiplicative_residual: 3-state residual hypothesis is not REFUTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != CLOSURE_THEOREM
+    ):
+        failures.append("multiplicative_residual: closure is not linked to product_residual_closure")
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("multiplicative_residual: exported a LIVE target")
     return tuple(failures)
 
 

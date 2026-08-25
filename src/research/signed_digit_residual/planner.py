@@ -6,6 +6,7 @@ from typing import cast
 
 from research.signed_digit_residual.discovery import (
     finite_from_origin,
+    geometry_perturbation,
     is_constant_unbounded_family,
     origin_reachable_report,
 )
@@ -34,11 +35,31 @@ SCALAR_THRESHOLD_HYPOTHESIS = Hypothesis(
     problem="signed_digit_residual",
 )
 
+GEOMETRY_PHASE_HYPOTHESIS = Hypothesis(
+    id="sdr_geometry_controls_phase",
+    statement="holes or asymmetry in U change the finite/infinite residual phase at fixed (λ, max|u|)",
+    kind=ClaimKind.REACHABLE,
+    intended_scope=SearchScope.EXACT,
+    status=HypothesisStatus.OPEN,
+    problem="signed_digit_residual",
+)
+
+MAXABS_MEALY_HYPOTHESIS = Hypothesis(
+    id="sdr_maxabs_determines_mealy",
+    statement="minimal residual complexity M(λ,U) is determined by (λ, max|u|) alone",
+    kind=ClaimKind.REACHABLE,
+    intended_scope=SearchScope.EXACT,
+    status=HypothesisStatus.OPEN,
+    problem="signed_digit_residual",
+)
+
 
 def signed_digit_ledger() -> ResearchLedger:
     ledger = ResearchLedger()
     ledger.add_hypothesis(CLOSURE_HYPOTHESIS)
     ledger.add_hypothesis(SCALAR_THRESHOLD_HYPOTHESIS)
+    ledger.add_hypothesis(GEOMETRY_PHASE_HYPOTHESIS)
+    ledger.add_hypothesis(MAXABS_MEALY_HYPOTHESIS)
     return ledger
 
 
@@ -73,6 +94,29 @@ def plan_signed_digit_residual(
             SCALAR_THRESHOLD_HYPOTHESIS.id,
             DecisionKind.REFUTE,
             "F_{3,U_1} stays at 0; λ=3 is not independently infinite",
+        )
+    geometry = geometry_perturbation()
+    if (
+        geometry["sparse_2_g1"]["classification"] == "EXACT FINITE"
+        and geometry["sparse_2_g3"]["classification"] == "EXACT INFINITE"
+        and geometry["asymmetric_012_g1"]["classification"] == "EXACT FINITE"
+        and geometry["asymmetric_012_g3"]["classification"] == "EXACT INFINITE"
+        and "sdr_geometry_controls_phase" in session.hypotheses
+    ):
+        session.decide(
+            GEOMETRY_PHASE_HYPOTHESIS.id,
+            DecisionKind.REFUTE,
+            "phase follows (λ, max|u|); {-2,0,2} and {0,1,2} match U_2",
+        )
+    if (
+        geometry["singleton_2_g2"]["mealy"] == 2
+        and origin_reachable_report(2, 2)["mealy"] == 3
+        and "sdr_maxabs_determines_mealy" in session.hypotheses
+    ):
+        session.decide(
+            MAXABS_MEALY_HYPOTHESIS.id,
+            DecisionKind.REFUTE,
+            "U={2} at λ=2 has Mealy 2 while U_2 has Mealy 3",
         )
     _ = finite_from_origin(1, 2)
     _ = is_constant_unbounded_family(2, 3)

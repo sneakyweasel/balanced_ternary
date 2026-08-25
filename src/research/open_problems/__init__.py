@@ -32,6 +32,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.residuals.problem import PROBLEM as RESIDUALS
     from research.rewrite_calculus.problem import PROBLEM as REWRITE_CALCULUS
     from research.signed_digit_residual.problem import PROBLEM as SIGNED_DIGIT_RESIDUAL
+    from research.multiplicative_residual.problem import PROBLEM as MULTIPLICATIVE_RESIDUAL
     from research.sparse_polynomials.problem import PROBLEM as SPARSE_POLYNOMIALS
     from research.stabilization.problem import PROBLEM as STABILIZATION
 
@@ -55,6 +56,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         MONNA_ENDPOINT_SPECTRA,
         REWRITE_CALCULUS,
         SIGNED_DIGIT_RESIDUAL,
+        MULTIPLICATIVE_RESIDUAL,
         BALANCED_DIGIT_SUM_POLYNOMIALS,
         ERDOS_DISTINCT_SUBSET_SUMS,
         OSTROWSKI,

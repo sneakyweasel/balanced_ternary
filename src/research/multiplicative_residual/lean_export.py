@@ -1,4 +1,4 @@
-"""Link signed-digit residual certificates to Lean names. Does not generate proofs."""
+"""Link multiplicative-residual certificates to Lean names. Does not generate proofs."""
 
 from __future__ import annotations
 
@@ -11,10 +11,9 @@ from research_engine.verification.targets import (
     targets_from_report,
 )
 
-SDR_MODULE = "Problems.BalancedTernary.SignedDigitResidual"
-CLOSURE_THEOREM = "lambda1_u2_residual_closure"
-FINITE_THEOREM = "origin_residual_box_iff"
-UNBOUNDED_THEOREM = "signedIterate_unbounded_of_ge_three"
+MR_MODULE = "Problems.BalancedTernary.MultiplicativeResidual"
+CLOSURE_THEOREM = "product_residual_closure"
+FACTOR_THEOREM = "product_factor_through_raw"
 
 
 def closure_is_exact_size(report: PlannerReport, size: int) -> bool:
@@ -30,7 +29,7 @@ def closure_is_exact_size(report: PlannerReport, size: int) -> bool:
     return closure.evidence.get("union_size") == size and closure.evidence.get("complete") is True
 
 
-def link_signed_digit_targets(
+def link_multiplicative_targets(
     targets: tuple[TheoremTarget, ...],
 ) -> tuple[TheoremTarget, ...]:
     out: list[TheoremTarget] = []
@@ -42,15 +41,15 @@ def link_signed_digit_targets(
         ):
             size = None
             for cert in target.certificates:
-                if isinstance(cert, dict) and cert.get("size") == 3:
-                    size = 3
-            if size == 3:
+                if isinstance(cert, dict) and cert.get("size") == 1:
+                    size = 1
+            if size == 1:
                 out.append(
                     attach_lean(
                         target,
-                        module=SDR_MODULE,
+                        module=MR_MODULE,
                         theorem=CLOSURE_THEOREM,
-                        name="signed_digit_u2_residual_closure",
+                        name="product_u1_residual_closure",
                     )
                 )
                 continue
@@ -58,7 +57,7 @@ def link_signed_digit_targets(
     return tuple(out)
 
 
-def export_signed_digit_targets(report: PlannerReport) -> tuple[TheoremTarget, ...]:
-    return link_signed_digit_targets(
-        targets_from_report(report, problem="signed_digit_residual")
+def export_multiplicative_targets(report: PlannerReport) -> tuple[TheoremTarget, ...]:
+    return link_multiplicative_targets(
+        targets_from_report(report, problem="multiplicative_residual")
     )

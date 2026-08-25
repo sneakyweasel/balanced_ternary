@@ -147,6 +147,41 @@ def is_constant_unbounded_family(
     return False
 
 
+def max_abs(alphabet: Sequence[int]) -> int:
+    return max((abs(int(letter)) for letter in alphabet), default=0)
+
+
+def finite_from_origin_alphabet(gain: int, alphabet: Sequence[int]) -> bool:
+    """Exact Level-B law: finite iff ``λ≤2`` or every ``|u|≤1``."""
+    if gain <= 0:
+        raise ValueError("gain must be positive")
+    return gain <= 2 or max_abs(alphabet) <= 1
+
+
+def constant_control_unbounded(gain: int, control: int) -> bool:
+    """Exact escape: ``λ≥3`` and ``|u|≥2``, not BFS growth."""
+    return gain >= 3 and abs(control) >= 2
+
+
+def gain3_identity_holds(state: int, control: int) -> bool:
+    nxt, out = signed_step(state, control, 3)
+    return nxt == state + control - out
+
+
+def lambda2_reachable_radius(m: int) -> int:
+    """Sharp ``λ=2`` invariant/reachable radius ``2(m-1)_+``."""
+    if m < 0:
+        raise ValueError("alphabet bound must be nonnegative")
+    return 2 * max(m - 1, 0)
+
+
+def lambda2_residual_complexity(m: int) -> int:
+    """Origin-reachable count for ``F_{2,U_m}``: one even lattice point per step of the radius."""
+    if m <= 1:
+        return 1
+    return 2 * m - 1
+
+
 def lambda1_reachable_radius(m: int) -> int:
     return m // 2
 
@@ -173,8 +208,9 @@ def origin_reachable_report(
         mealy = mealy_count(states, alphabet, gain)
         classification = "EXACT FINITE"
     infinite = False
-    if gain == 3 and m >= 2:
-        infinite = is_constant_unbounded_family(2, 3)
+    if not finite_from_origin(gain, m):
+        witness = 2 if m >= 2 else 0
+        infinite = constant_control_unbounded(gain, witness)
         if infinite:
             classification = "EXACT INFINITE"
     return {
@@ -228,7 +264,7 @@ def residual_complexity(arity: int) -> int:
 
 
 def finite_from_origin(gain: int, bound: int) -> bool:
-    """Exact condition on the family ``F_{λ,U_m}`` for ``λ∈{1,2,3}``."""
+    """Exact condition on ``F_{λ,U_m}`` for every integer ``λ≥1``."""
     if gain <= 0 or bound < 0:
         raise ValueError("gain must be positive and bound nonnegative")
     return gain <= 2 or bound <= 1
@@ -246,4 +282,50 @@ def asymmetric_perturbation() -> dict[str, object]:
         "mealy": mealy_count(tuple(sorted(reachable)), alphabet, gain=1),
         "classification": "EXACT FINITE",
         "note": "symmetry of U_m is not required for finiteness at λ=1",
+    }
+
+
+def _alphabet_report(alphabet: Sequence[int], gain: int) -> dict[str, object]:
+    letters = tuple(int(letter) for letter in alphabet)
+    reachable = reachable_from(0, letters, gain)
+    finite = finite_from_origin_alphabet(gain, letters)
+    if finite:
+        assert reachable is not None
+        states = tuple(sorted(reachable))
+        return {
+            "alphabet": letters,
+            "gain": gain,
+            "max_abs": max_abs(letters),
+            "reachable": states,
+            "reachable_count": len(states),
+            "invariant_radius": smallest_invariant_radius(letters, gain),
+            "mealy": mealy_count(states, letters, gain),
+            "classification": "EXACT FINITE",
+            "unbounded_witness": False,
+        }
+    witness = next((letter for letter in letters if abs(letter) >= 2), None)
+    return {
+        "alphabet": letters,
+        "gain": gain,
+        "max_abs": max_abs(letters),
+        "reachable": None,
+        "reachable_count": None,
+        "invariant_radius": smallest_invariant_radius(letters, gain),
+        "mealy": None,
+        "classification": "EXACT INFINITE",
+        "unbounded_witness": witness is not None
+        and constant_control_unbounded(gain, witness),
+    }
+
+
+def geometry_perturbation() -> dict[str, dict[str, object]]:
+    """Sparse and asymmetric alphabets: phase follows max|u|, closure follows geometry."""
+    return {
+        "sparse_2_g1": _alphabet_report((-2, 0, 2), 1),
+        "sparse_2_g2": _alphabet_report((-2, 0, 2), 2),
+        "sparse_2_g3": _alphabet_report((-2, 0, 2), 3),
+        "asymmetric_012_g1": _alphabet_report((0, 1, 2), 1),
+        "asymmetric_012_g2": _alphabet_report((0, 1, 2), 2),
+        "asymmetric_012_g3": _alphabet_report((0, 1, 2), 3),
+        "singleton_2_g2": _alphabet_report((2,), 2),
     }

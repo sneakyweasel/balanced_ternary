@@ -140,6 +140,16 @@ theorem DZ_carry_bound (n : ℤ) :
     exact htri
   omega
 
+/-- Dual lower estimate: `|n| ≤ 3 |DZ n| + 1`. -/
+theorem DZ_carry_lower (n : ℤ) :
+    n.natAbs ≤ 3 * (DZ n).natAbs + 1 := by
+  have hn : n = lsdZ n + 3 * DZ n := decomp n
+  have hr := lsdZ_natAbs_le_one n
+  have hadd := Int.natAbs_add_le (lsdZ n) (3 * DZ n)
+  have h3 : (3 * DZ n).natAbs = 3 * (DZ n).natAbs := DZ_natAbs_mul_three n
+  have hnabs : n.natAbs = (lsdZ n + 3 * DZ n).natAbs := congrArg Int.natAbs hn
+  omega
+
 /-- Bound for a coefficient in `[-B, B]` with no incoming carry. -/
 theorem DZ_le_of_abs_le {n : ℤ} {B : ℕ} (h : n.natAbs ≤ B) :
     (DZ n).natAbs ≤ (B + 1) / 3 := by
