@@ -1821,10 +1821,10 @@
   },
   {
     "id": "BTC-word-simp-nf",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "the simplifying-only fragment of WORD_REWRITE_RULES (the sixteen rules with simplifying=True: cancellations, the W/K3 stock, and I0→S) is terminating and locally confluent; every word has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
-    "lean": "",
+    "lean": "BTCalculus/WordSimpNewman.lean",
     "tests": [
       "tests/unit/test_rewrite_word_fragments.py"
     ],

@@ -2,7 +2,7 @@
   "counterexamples": [],
   "first_seen": "word-fragment confluence Phase-0",
   "id": "word_simp_nf",
-  "lean_reference": "",
+  "lean_reference": "BTCalculus.WordSimp.unique_normal_form in BTCalculus/WordSimpNewman.lean is the Lean unique-NF proof; termination is WordSimp.Step_terminating in BTCalculus/WordSimp.lean; local confluence is WordSimp.locally_confluent. Semantic canonicity is not claimed.",
   "literature": [
     "newman-1942-confluence",
     "baader-nipkow-1998-term-rewriting"
@@ -12,7 +12,7 @@
   "origin": "docs/theory/rewrite_calculus.md",
   "proof_reference": "docs/theory/rewrite_calculus.md",
   "statement": "The simplifying-only fragment of WORD_REWRITE_RULES is terminating and locally confluent; every word has a unique syntactic normal form.",
-  "status": "EXACT \u2014 HUMAN PROOF",
+  "status": "EXACT \u2014 LEAN VERIFIED",
   "tested_range": "complete critical-pair list and bounded unique-NF census in tests/unit/test_rewrite_word_fragments.py",
   "title": "Simplifying word fragment has unique NF"
 }

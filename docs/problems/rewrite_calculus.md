@@ -144,11 +144,13 @@ Lean, no `sorry`:
 - `formal/BTCalculus/RewriteAddBoundary.lean` — restricted Claim B
   (`BTC-add-not-D-local`, `BTC-constructor-sum-class`,
   `BTC-push-in-S-peak`, `BTC-add-requires-carry-state`)
+- `formal/BTCalculus/WordSimp.lean`,
+  `formal/BTCalculus/WordSimpNewman.lean` — `BTC-word-simp-nf`
 
 The English “any finite exact Add-tree TRS is a CAS” remains human
 (`BTC-add-affine-only`, `BTC-add-factor-cas-obstruction`,
-`BTC-unary-s-distrib-obstruction`). Word-fragment Newman certificates
-stay human. Do not edit `formal/BTCalculus/Confluence.lean`.
+`BTC-unary-s-distrib-obstruction`). `WORD_WN` / `WORD_WND` Newman
+certificates stay human. Do not edit `formal/BTCalculus/Confluence.lean`.
 
 ## Results
 
@@ -158,8 +160,9 @@ stay human. Do not edit `formal/BTCalculus/Confluence.lean`.
   push-in system fails local confluence (**EXACT — LEAN VERIFIED**).
 - The unrestricted “any Add-tree TRS is a CAS” wording remains human
   (**EXACT — HUMAN PROOF**).
-- Production word table is not locally confluent; three named opt-in
-  fragments are (**EXACT — HUMAN PROOF** / **REFUTED** as tagged).
+- Production word table is not locally confluent; `WORD_SIMP` has a
+  unique syntactic NF (**EXACT — LEAN VERIFIED**); `WORD_WN` /
+  `WORD_WND` stay human; the full table and SIMP+`N∘D` are **REFUTED**.
 - Word-table enlargement beyond `WORD_WND_RULES` is closed.
 
 ## Open questions

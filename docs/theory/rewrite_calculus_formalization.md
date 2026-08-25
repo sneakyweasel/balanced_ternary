@@ -224,5 +224,6 @@ maximality theorem, or maximality ledger row is added.
 | `formal/BTCalculus/Algebra.lean` | `D_add`, `addDigit` |
 | `formal/BTCalculus/RewriteCore.lean` | packaging of Claim A |
 | `formal/BTCalculus/RewriteAddBoundary.lean` | B1–B5 |
+| `formal/BTCalculus/WordSimp*.lean` | `WORD_SIMP` string-TRS Newman (unique syntactic NF; no semantics) |
 
 Do not edit `Confluence.lean`. No new CLI, word rules, or census.
