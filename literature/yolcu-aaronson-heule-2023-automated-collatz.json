@@ -1,0 +1,25 @@
+{
+  "id": "yolcu-aaronson-heule-2023-automated-collatz",
+  "title": "An Automated Approach to the Collatz Conjecture",
+  "authors": ["Emre Yolcu", "Scott Aaronson", "Marijn J. H. Heule"],
+  "year": 2023,
+  "identifiers": {
+    "doi": "10.1007/s10817-022-09658-8",
+    "arxiv": "2105.14697"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/2105.14697",
+    "pdf": "https://www.cs.cmu.edu/~mheule/publications/collatz.pdf"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "string rewriting",
+    "matrix interpretations",
+    "generalized Collatz functions",
+    "BB-5 map B(n)",
+    "mixed ternary-quinary translation"
+  ],
+  "project_relationship": "known",
+  "status": "published",
+  "notes": "docs/problems/bb5_map.md. Journal of Automated Reasoning 67:15 (2023); CADE 2021 precursor. Gives B exactly and reports failure to prove termination of the corresponding SRS. Not an adapter hint."
+}

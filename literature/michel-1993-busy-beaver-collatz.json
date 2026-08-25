@@ -1,0 +1,22 @@
+{
+  "id": "michel-1993-busy-beaver-collatz",
+  "title": "Busy beaver competition and Collatz-like problems",
+  "authors": ["Pascal Michel"],
+  "year": 1993,
+  "identifiers": {
+    "doi": "10.1016/0304-3975(93)90214-E"
+  },
+  "url": {
+    "pdf": "http://www.cs.cmu.edu/~cdm/projects/BusyBeaver/Michel1993-busy-beaver-Collatz.pdf"
+  },
+  "problem_area": "busy-beaver",
+  "relevant_concepts": [
+    "Busy Beaver",
+    "Collatz-like problems",
+    "partial generalized Collatz maps",
+    "5-state Turing machines"
+  ],
+  "project_relationship": "known",
+  "status": "published",
+  "notes": "docs/problems/bb5_map.md. Theoretical Computer Science 115. External prior-art baseline. Not an adapter hint."
+}

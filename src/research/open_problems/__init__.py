@@ -61,6 +61,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.stabilization.problem import PROBLEM as STABILIZATION
     from research.syracuse.problem import PROBLEM as SYRACUSE
     from research.engine_campaign.problem import PROBLEM as ENGINE_CAMPAIGN
+    from research.bb5_map.problem import PROBLEM as BB5_MAP
     from research.linear_constraint_loops.problem import PROBLEM as LINEAR_CONSTRAINT_LOOPS
     from research.mx_plus_r.problem import PROBLEM as MX_PLUS_R
     from research.euclidean_quotient.problem import PROBLEM as EUCLIDEAN_QUOTIENT
@@ -73,6 +74,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         SYRACUSE,
         ENGINE_CAMPAIGN,
         LINEAR_CONSTRAINT_LOOPS,
+        BB5_MAP,
         MX_PLUS_R,
         EUCLIDEAN_QUOTIENT,
         VECTOR_AFFINE,

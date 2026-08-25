@@ -2161,5 +2161,49 @@ Best next question
 - Which other frozen-engine mathematical target should be consumed next, leaving the parked SLC limitations untouched?
 ```
 
+## Frozen Engine campaign: BB-5 generalized Collatz map
+
+- **Date:** 2026-08-25
+- **Objective:** Run frozen Research Engine v2 on Michel's BB-5 map B without adding attacks, without proving BB(5) or Collatz
+- **Hypotheses:** Blind adapter yields DISCOVERED residue-selected affine branches; control-word CLASS obstructions; engine stops short of universal convergence
+- **Major results:** DISCOVERED \(3y=5x+18\) on \(x\equiv 0\pmod{3}\) and \(3y=5x+22\) on \(x\equiv 1\pmod{3}\); domains EXACT; 14 control words; mixed length-2/3 CLASS obstructions; length-1 candidates \(x=-9,-11\) outside \(n\ge 0\); exact seed-0 closure of size 15 ending at 12284. Isolated decision CONTINUE; seeded FAMILY_SATURATED. Lean `bRel_*`. No ledger. No new attack
+- **Refuted ideas:** monotone descent; one-step contraction; seed closure as map contraction; identifying seed-0 halt with BB(5) or with \(\forall n\,B\) terminates
+- **Literature:** Michel 1993/2015; Yolcu–Aaronson–Heule 2023; Aaronson 2020; bbchallenge 2025. All recovered identities KNOWN
+- **Open:** universal convergence of B on N; parked fingerprint coarseness
+- **Decision:** PARK
+
+```text
+What was learned
+- From the exact partial relation 3y in {5n+18, 5n+22} alone, v2 reconstructed two residue-selected affine branches and class cycle obstructions
+- That is reconstruction of Michel's language, not a BB-5 or Collatz theorem
+- Mixed control words can be realizable as paths and impossible as cycles; the engine kept that distinction
+- Seed-0 finite closure is the published champion trajectory and is not universal termination
+- Seed-orbit finiteness again bills an expanding 5/3 map as FINITE_CONTRACTING
+
+Strongest theorem
+- bRel_unique / bRel_undefined_two / bRel_not_fixed (Lean); KNOWN
+
+Strongest refutation
+- B is not monotone; finite seed closure is not contraction
+
+Reusable machinery
+- Hint-free PartialFiveThreeSpec; in-process frozen campaign runner; scout kept off the adapter
+
+Prior-art status
+- KNOWN Michel / Yolcu–Aaronson–Heule / bbchallenge; ENGINE REDISCOVERY of the integer graph of B; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PARK
+
+Why
+- The frozen stack recovered conceptually relevant intermediate structure on a contemporary Collatz-adjacent target and correctly stopped at the known convergence barrier. Do not prove totality of B.
+
+Best next question
+- Which other frozen-engine mathematical target should be consumed next, leaving parked fingerprint coarseness and the open convergence of B untouched?
+```
+
 
 

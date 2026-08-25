@@ -1,0 +1,22 @@
+{
+  "id": "aaronson-2020-busy-beaver-frontier",
+  "title": "The Busy Beaver Frontier",
+  "authors": ["Scott Aaronson"],
+  "year": 2020,
+  "identifiers": {
+    "doi": "10.1145/3427361.3427369"
+  },
+  "url": {
+    "pdf": "https://scottaaronson.com/bb.pdf"
+  },
+  "problem_area": "busy-beaver",
+  "relevant_concepts": [
+    "Busy Beaver",
+    "Marxen-Buntrock machine",
+    "Collatz-like maps",
+    "g(x)=(5x+18)/3"
+  ],
+  "project_relationship": "known",
+  "status": "published",
+  "notes": "docs/problems/bb5_map.md. SIGACT News 51(3). Describes the BB-5 champion as iterating g. Not an adapter hint."
+}

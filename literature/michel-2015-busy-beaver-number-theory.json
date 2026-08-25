@@ -1,0 +1,24 @@
+{
+  "id": "michel-2015-busy-beaver-number-theory",
+  "title": "Problems in number theory from busy beaver competition",
+  "authors": ["Pascal Michel"],
+  "year": 2015,
+  "identifiers": {
+    "doi": "10.2168/LMCS-11(4:10)2015",
+    "arxiv": "1311.1029"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/1311.1029",
+    "pdf": "https://lmcs.episciences.org/1611/pdf"
+  },
+  "problem_area": "busy-beaver",
+  "relevant_concepts": [
+    "Busy Beaver",
+    "Collatz-like functions",
+    "BB-5 candidate totality",
+    "generalized Collatz maps"
+  ],
+  "project_relationship": "known",
+  "status": "published",
+  "notes": "docs/problems/bb5_map.md. Logical Methods in Computer Science 11(4:10). Source of the BB-5 map correspondence. Not an adapter hint."
+}
