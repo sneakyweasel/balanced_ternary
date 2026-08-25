@@ -2492,5 +2492,49 @@
       "tests/research/collatz_finite_descent/test_finite_descent.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "PRC-section-I0-composite",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "I_0(x)=3x. If |x|>1 then 3|x| is composite.",
+    "source": "docs/problems/prime_residual_complexity.md",
+    "lean": "Problems/Primes/Residual.lean",
+    "tests": [
+      "tests/research/prime_residual_complexity/test_prime_residual.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "PRC-sieve-mod-M",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "I_a(n) mod m depends only on n mod m.",
+    "source": "docs/problems/prime_residual_complexity.md",
+    "lean": "Problems/Primes/Residual.lean",
+    "tests": [
+      "tests/research/prime_residual_complexity/test_prime_residual.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "PRC-sieve-prime-separator",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "The finite sieve residual gcd(n,210)=1 does not equal Prime: I_0(1)=3 is prime and I_0(211)=633 is composite, with 1≡211 (mod 210).",
+    "source": "docs/problems/prime_residual_complexity.md",
+    "lean": "Problems/Primes/Residual.lean",
+    "tests": [
+      "tests/research/prime_residual_complexity/test_prime_residual.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "PRC-jet-equals-prime",
+    "tag": "REFUTED",
+    "statement": "Equal length-L LSD jets have identical Prime continuation behaviour.",
+    "source": "docs/problems/prime_residual_complexity.md",
+    "lean": "Problems/Primes/Residual.lean",
+    "tests": [
+      "tests/research/prime_residual_complexity/test_prime_residual.py"
+    ],
+    "related_conjectures": []
   }
 ]

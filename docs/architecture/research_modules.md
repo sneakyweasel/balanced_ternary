@@ -37,6 +37,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.additive_combinatorics` | `EXPLORATORY` | `A_k`, `B_k`, `C_k`, sumsets |
 | `research.perfect_powers` | `EXPLORATORY` | sparse squares and cubes |
 | `research.primes` | `EXPLORATORY` | sparse-prime helpers already in the repo |
+| `research.prime_residual_complexity` | `ARCHIVED` | Prime vs sieve residuals under `I_a`; `CLOSE` |
 | `research.sparse_polynomials` | `EXPLORATORY` | Mahler / factor scans |
 | `research.operator_dynamics` | `ARCHIVED` | {S,N,D,W} identities; length-≤4 close |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |

@@ -4,7 +4,9 @@ Status: **EXPLORATORY**
 
 Placeholder for prime / balanced-ternary investigations. Currently only the
 existing sparse-prime enumerator is registered. Trial `is_prime` is an
-inspection helper, not a primality library.
+inspection helper, not a primality library. Residual complexity of
+primality is a separate closed branch:
+[prime_residual_complexity.md](prime_residual_complexity.md).
 
 ## Branch budget
 

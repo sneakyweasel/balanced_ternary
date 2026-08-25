@@ -27,6 +27,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.regular_output_preimages.problem import PROBLEM as REGULAR_OUTPUT_PREIMAGES
     from research.residual_complexity.problem import PROBLEM as RESIDUAL_COMPLEXITY
     from research.perfect_powers.problem import PROBLEM as PERFECT_POWERS
+    from research.prime_residual_complexity.problem import PROBLEM as PRIME_RESIDUAL
     from research.primes.problem import PROBLEM as PRIMES
     from research.residuals.problem import PROBLEM as RESIDUALS
     from research.rewrite_calculus.problem import PROBLEM as REWRITE_CALCULUS
@@ -42,6 +43,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         ADDITIVE,
         PERFECT_POWERS,
         PRIMES,
+        PRIME_RESIDUAL,
         SPARSE_POLYNOMIALS,
         OPERATOR_DYNAMICS,
         STABILIZATION,

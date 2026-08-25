@@ -188,3 +188,24 @@ def test_research_reproduce_collatz_links_lean():
     assert "shortcutC_no_uniform_L_descent" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
+
+
+def test_research_analyze_primes_sieve_is_exact_not_live():
+    out = _run("research", "analyze", "primes")
+    assert "problem: prime_residual_complexity" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis prc_sieve_equals_prime: REFUTED" in out
+    assert "hypothesis prc_jet_equals_prime: REFUTED" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_primes_links_lean():
+    out = _run("research", "reproduce", "primes")
+    assert "reproduce: ok" in out
+    assert "hypothesis prc_sieve_equals_prime: REFUTED" in out
+    report = _run("research", "report", "primes")
+    assert "sievePrime_I0_separator" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()

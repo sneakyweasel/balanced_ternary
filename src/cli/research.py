@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, collatz, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, collatz, primes, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -85,11 +85,20 @@ def _normalize_problem(name: str) -> str:
         "cfd",
     }:
         return "collatz_finite_descent"
+    if key.lower() in {
+        "primes",
+        "prime_residual",
+        "prime-residual",
+        "prime_residual_complexity",
+        "prime-residual-complexity",
+        "prc",
+    }:
+        return "prime_residual_complexity"
     letter = key.upper()
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, collatz, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, collatz, primes, or A-E"
     )
 
 
@@ -138,6 +147,15 @@ def _plan(problem: str, remaining: int):
 
         report = plan_collatz_finite_descent(remaining)
         targets = export_collatz_finite_descent_targets(report)
+        return report, targets
+    if problem == "prime_residual_complexity":
+        from research.prime_residual_complexity.adapter import (
+            export_prime_residual_targets,
+            plan_prime_residual_complexity,
+        )
+
+        report = plan_prime_residual_complexity(remaining)
+        targets = export_prime_residual_targets(report)
         return report, targets
     report = run_benchmark(problem)
     return report, targets_from_report(report, problem=f"benchmark_{problem}")
@@ -192,6 +210,11 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = shortcut_spec(remaining)
         context = spec.attack_context()
+    elif problem == "prime_residual_complexity":
+        from research.prime_residual_complexity.spec import sieve_spec
+
+        spec = sieve_spec(remaining)
+        context = spec.attack_context()
     else:
         spec, context = load_benchmark(problem)
     try:
@@ -223,6 +246,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _d_add_reproduce_failures(report, targets)
     elif problem == "collatz_finite_descent":
         failures = _collatz_finite_descent_reproduce_failures(report, targets)
+    elif problem == "prime_residual_complexity":
+        failures = _prime_residual_reproduce_failures(report, targets)
     else:
         failures = reproduce_checks(problem, report)
     if failures:
@@ -506,4 +531,75 @@ def _collatz_finite_descent_reproduce_failures(report, targets) -> tuple[str, ..
         failures.append("collatz: obstruction is not linked to shortcutC_no_uniform_L_descent")
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("collatz: exported a LIVE target")
+    return tuple(failures)
+
+
+def _prime_residual_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.prime_residual_complexity.lean_export import (
+        SEPARATOR_THEOREM,
+        sieve_closure_is_exact,
+    )
+    from research.prime_residual_complexity.planner import (
+        INTEGER_PRIME_HYPOTHESIS,
+        JET_EQUALS_PRIME_HYPOTHESIS,
+        SIEVE_EQUALS_PRIME_HYPOTHESIS,
+        SIEVE_RESIDUAL_HYPOTHESIS,
+    )
+    from research.prime_residual_complexity.spec import prime_spec
+    from research_engine.core.problem_spec import ProblemSpec
+    from research_engine.planner.orchestrator import run_named_attack
+
+    failures: list[str] = []
+    if not sieve_closure_is_exact(report):
+        failures.append("primes: sieve closure is not EXACT")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("primes: reconnaissance is not a bounded observation")
+    sieve_hyp = next(
+        (item for item in report.hypotheses if item.id == SIEVE_RESIDUAL_HYPOTHESIS.id),
+        None,
+    )
+    if sieve_hyp is None or sieve_hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("primes: sieve residual is not SUPPORTED")
+    jet_hyp = next(
+        (item for item in report.hypotheses if item.id == JET_EQUALS_PRIME_HYPOTHESIS.id),
+        None,
+    )
+    if jet_hyp is None or jet_hyp.status is not HypothesisStatus.REFUTED:
+        failures.append("primes: jet=prime is not REFUTED")
+    sieve_eq = next(
+        (item for item in report.hypotheses if item.id == SIEVE_EQUALS_PRIME_HYPOTHESIS.id),
+        None,
+    )
+    if sieve_eq is None or sieve_eq.status is not HypothesisStatus.REFUTED:
+        failures.append("primes: sieve=prime is not REFUTED")
+    integer_hyp = next(
+        (item for item in report.hypotheses if item.id == INTEGER_PRIME_HYPOTHESIS.id),
+        None,
+    )
+    if integer_hyp is None or integer_hyp.status is not HypothesisStatus.PARKED:
+        failures.append("primes: integer prime residual is not PARKED")
+    spec = prime_spec(4)
+    integer_closure = run_named_attack(
+        "closure",
+        cast(ProblemSpec, spec),
+        spec.attack_context(),
+    )
+    if (
+        integer_closure.status is not AttackStatus.INCONCLUSIVE
+        or integer_closure.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("primes: integer-state closure is not INCONCLUSIVE")
+    separator = next(
+        (item for item in targets if item.lean_theorem == SEPARATOR_THEOREM),
+        None,
+    )
+    if separator is None or not separator.exportable:
+        failures.append("primes: separator is not linked to sievePrime_I0_separator")
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("primes: exported a LIVE target")
     return tuple(failures)
