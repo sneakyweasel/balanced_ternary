@@ -10,6 +10,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.balanced_digit_sum_polynomials.problem import (
         PROBLEM as BALANCED_DIGIT_SUM_POLYNOMIALS,
     )
+    from research.balanced_ternary.problem import PROBLEM as BALANCED_TERNARY
     from research.cerny_bt.problem import PROBLEM as CERNY_BT
     from research.collatz.problem import PROBLEM as COLLATZ
     from research.erdos_distinct_subset_sums.problem import (
@@ -52,6 +53,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         ERDOS_DISTINCT_SUBSET_SUMS,
         OSTROWSKI,
         KABELIAN_COMPLEXITY,
+        BALANCED_TERNARY,
     )
 
 

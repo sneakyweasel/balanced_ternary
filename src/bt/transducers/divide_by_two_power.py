@@ -22,6 +22,7 @@ from bt.representation import (
 )
 from bt.transducers.divide_by_two import divide_by_two_step
 from bt.metrics import v2
+from bt.transducers.mealy import minimize_mealy_count
 
 ALPHABET: tuple[int, int, int] = (-1, 0, 1)
 
@@ -90,7 +91,7 @@ class DivideByTwoPowerTransducer:
     def minimized_state_count(self) -> int:
         """Mealy minimization of the reachable product (computational)."""
         reachable = self.reachable_states()
-        return _minimize_mealy(self.k, reachable)
+        return minimize_mealy_count(reachable, ALPHABET, _compose_step)
 
     def complexity_report(self) -> dict[str, int]:
         reachable = self.reachable_states()
@@ -98,7 +99,7 @@ class DivideByTwoPowerTransducer:
             "k": self.k,
             "naive_bound": 3**self.k,
             "reachable": len(reachable),
-            "minimized": _minimize_mealy(self.k, reachable),
+            "minimized": minimize_mealy_count(reachable, ALPHABET, _compose_step),
         }
 
 
@@ -107,30 +108,6 @@ def apply_divisible(word: WordLike, k: int) -> BalancedTernary:
 
 
 def _minimize_mealy(k: int, reachable: frozenset[tuple[int, ...]]) -> int:
-    """Partition-refinement minimization of a letter-to-letter Mealy machine."""
-    states = list(reachable)
-    # Initial partition by the output triple (out[-1], out[0], out[1]).
-    buckets: dict[tuple[int, ...], list[tuple[int, ...]]] = {}
-    for st in states:
-        sig = tuple(_compose_step(st, a)[1] for a in ALPHABET)
-        buckets.setdefault(sig, []).append(st)
-    partition = [frozenset(group) for group in buckets.values()]
-
-    changed = True
-    while changed:
-        changed = False
-        block_of = {}
-        for i, block in enumerate(partition):
-            for st in block:
-                block_of[st] = i
-        new_parts: list[frozenset[tuple[int, ...]]] = []
-        for block in partition:
-            split: dict[tuple[int, ...], list[tuple[int, ...]]] = {}
-            for st in block:
-                key = tuple(block_of[_compose_step(st, a)[0]] for a in ALPHABET)
-                split.setdefault(key, []).append(st)
-            if len(split) > 1:
-                changed = True
-            new_parts.extend(frozenset(g) for g in split.values())
-        partition = new_parts
-    return len(partition)
+    """Compatibility wrapper around the generic Mealy minimizer."""
+    del k
+    return minimize_mealy_count(reachable, ALPHABET, _compose_step)

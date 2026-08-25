@@ -28,6 +28,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.residuals` | `STRUCTURAL` | cubic Newton-stratum fibres; \(x^4\) visibility `CLOSE` |
 | `research.collatz` | `STRUCTURAL` | accelerated `T`, cylinders, dual codes, affine geometry, cycles, warp |
 | `research.ostrowski` | `STRUCTURAL` | order-3 \(B_{\min}\); NP \(K\) unbounded; \(L_0\) PARK; `OstrowskiSpec` adapter |
+| `research.balanced_ternary` | `STRUCTURAL` | doubled-trit residual closure; expanding `T(n)=3n-lsd(n)` LSD quotient |
 | `research.regular_output_preimages` | `STRUCTURAL` | regular output of \(x^2\); sofic obstruction |
 | `research.residual_complexity` | `STRUCTURAL` | unrestricted \(C_F(m,r)\); superdiagonal band |
 | `research.monna_endpoint_spectra` | `STRUCTURAL` | balanced-Monna endpoint spectra; gate closed |

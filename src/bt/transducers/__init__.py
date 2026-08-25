@@ -10,6 +10,7 @@ from bt.transducers.divide_by_two_power import (
     apply_divisible,
 )
 from bt.transducers.doubling import DoublingTransducer, apply_double
+from bt.transducers.mealy import mealy_partition, minimize_mealy_count
 from bt.transducers.zoo import ZooEntry, h2_state_counts, m2_state_counts, zoo
 
 __all__ = [
@@ -23,5 +24,7 @@ __all__ = [
     "apply_even",
     "h2_state_counts",
     "m2_state_counts",
+    "mealy_partition",
+    "minimize_mealy_count",
     "zoo",
 ]

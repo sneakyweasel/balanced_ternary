@@ -73,3 +73,41 @@ def test_research_deferred_attack_is_not_a_proof():
     unknown, text = _run_code("research", "analyze", "not-a-problem")
     assert unknown == 2
     assert "unknown problem" in text
+
+
+def test_research_analyze_balanced_ternary_is_exact_closure_not_live():
+    out = _run("research", "analyze", "balanced_ternary")
+    assert "problem: balanced_ternary" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED LIVE_SLICE" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_balanced_ternary_links_lean():
+    out = _run("research", "reproduce", "balanced_ternary")
+    assert "reproduce: ok" in out
+    assert "hypothesis balanced_ternary_finite_closure: SUPPORTED EXACT REACHABLE" in out
+    report = _run("research", "report", "balanced_ternary")
+    assert "doubledTrit_closure" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()
+
+
+def test_research_analyze_expanding_d_is_exact_lsd_closure_not_live():
+    out = _run("research", "analyze", "expanding_d")
+    assert "problem: expanding_d" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED LIVE_SLICE" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_expanding_d_links_lean():
+    out = _run("research", "reproduce", "expanding_d")
+    assert "reproduce: ok" in out
+    assert "hypothesis expanding_d_lsd_closure: SUPPORTED EXACT REACHABLE" in out
+    report = _run("research", "report", "expanding_d")
+    assert "expandingD_residue_closure" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()

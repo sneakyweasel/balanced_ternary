@@ -2,6 +2,7 @@
 
 from research_engine.attacks.affine import AffineInvariantAttack
 from research_engine.attacks.block import BlockDynamicsAttack, BlockKind, classify_block
+from research_engine.attacks.closure import ExhaustiveClosureAttack
 from research_engine.attacks.functional import FunctionalBoundAttack
 from research_engine.attacks.modular import ModularInvariantAttack, coordinate_forcing_gcds
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
@@ -22,6 +23,7 @@ __all__ = [
     "AttackStatus",
     "BlockDynamicsAttack",
     "BlockKind",
+    "ExhaustiveClosureAttack",
     "FunctionalBoundAttack",
     "ModularInvariantAttack",
     "ReconnaissanceAttack",
