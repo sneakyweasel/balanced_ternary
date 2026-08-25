@@ -1941,4 +1941,92 @@ Best next question
 - Can a higher-length remainder recurrence yield an invariant that is not a fixed-last constant?
 ```
 
+## Research Engine v2 first real-problem campaign
+
+- **Date:** 2026-08-25
+- **Objective:** Run unmodified v2 against mx+r, 5x+1, Euclidean remainder dynamics, then a score_candidate Target D
+- **Hypotheses:** Latent affine-control generalizes across \(T_{m,r}\); same local language need not be the same global regime; valuation-control may transfer to quotient-control
+- **Major results:** Every tested odd \((m,r)\) recovers \(2^k y=mx+r\) with EXACT domain and WORD/CLASS/SYMBOLIC_CLASS/RECURSIVE_INVARIANT. \(T_{3,1}\) CLOSE to Syracuse. Seed 27 is a 3-cycle of \(T_5\) (FINITE-HORIZON EXACT) while the odd window still shows net growth (EMPIRICAL). Euclidean 2-D remainder: piecewise_affine inapplicable; exact seed closure size 4; engine CLOSE not ENGINE_LIMITATION; C.1 not built. Target D selected from the scored pool with no override. Lean `mxPlusR_parameter_iff`. No ledger. Digit-fold remains a comparison cluster, except seed-closed mx+r maps are billed as FINITE_CONTRACTING
+- **Refuted ideas:** seed 27 is a long mixed trajectory for every \(T_{m,r}\); C.0 Euclidean is ENGINE_LIMITATION as an enum; same local family implies the same core fingerprint
+- **Literature:** Crandall 1978, Chamberland 2003, Lagarias 2010, Vallée 2006, Knuth vol. 2. All recovered identities KNOWN
+- **Open:** vector census of \(y=A_u x+b_u\)
+- **Decision:** PARK
+
+```text
+What was learned
+- The existing 1-D census chain generalizes across a parameterized mx+r family without map-specific attacks
+- Seed-orbit finiteness is treated as numerical contraction, so T_5 at 27 clusters with digit-fold cores
+- Euclidean remainder dynamics do not enter the latent-control chain (dimension gate); engine CLOSE from seed gcd closure
+- Restricted claimed_capabilities make ExpectedResearchValue identically zero; the default capability list restores ranking
+- No new mathematics; the campaign is a multi-domain consumption test
+
+Strongest theorem
+- mxPlusR_parameter_iff (Lean); KNOWN padic arithmetic, not a map theorem
+
+Strongest refutation
+- 27 is a 3-cycle of T_5; default seed is not a Syracuse-like transient
+
+Reusable machinery
+- Hint-free MxPlusRSpec and EuclideanSpec; in-process campaign corpus runner; no new engine attack
+
+Prior-art status
+- KNOWN mx+r / 5x+1 / Euclidean algorithm; ENGINE REDISCOVERY of families, domains, and one seed cycle
+
+Complexity profile
+- unchanged schema; census/word/obstruction counts on attack evidence
+
+Branch status
+- PARK
+
+Why
+- The same engine recovered certified affine control on a family of arithmetic maps and failed, for a named generic reason, to transfer that language to Euclidean quotients. That is a capability result, not a theorem program.
+
+Best next question
+- Can a reusable vector affine census express control-dependent A_u on Euclidean remainder dynamics and on an unrelated 2-D linear synthetic?
+```
+
+## Research Engine v2 generic vector-affine latent control
+
+- **Date:** 2026-08-25
+- **Objective:** Smallest generic \(y=A_u x+b_u\) capability; synthetics A–D; Euclidean and unrelated 2-D consumers; Lean compose/cycle/obstruction
+- **Hypotheses:** Latent-control methodology transfers from 1-D valuation-controlled affine maps to multi-D matrix-controlled affine maps without Euclidean-specific attacks
+- **Major results:** `vector_affine` recovers finite and parameterized matrix branches from I/O; domains EXACT (congruence / valuation / quotient); matrix words compose; class obstruction on shear synthetics; Euclidean recovers \(A_k=((0,1),(1,0))+k((0,0),(0,1))\) with quotient \(k=-\lfloor a/b\rfloor\); parity shear consumes the same attack; Lean `compose_two_vector_affine` / `cycle_of_vector_affine` / `vector_cycle_impossible`; decision treats VECTOR/MATRIX_PARAMETERIZED recovery as novel under MEDIUM delta. No ledger. Identities **KNOWN**
+- **Refuted ideas:** global identity on the false-affine trap; tiny-support matrices as family generators; billing `%` rediscovery as new Euclidean mathematics
+- **Literature:** Vallée 2006, Knuth vol. 2; matrix affine algebra standard
+- **Open:** matrix-word recursive invariants when entrywise magnitude domination fails
+- **Decision:** PARK
+
+```text
+What was learned
+- Scalar piecewise_affine stays 1-D; vector I/O needs a thin sibling attack, not EuclideanControl
+- Parameterized matrix families reuse DomainCertificate directions (EXACT after falsify survival)
+- Euclidean is a consumer, not a representation boundary once vector census exists
+- Generality is evidenced by an unrelated parity-shear map sharing the attack
+- No new number theory; the result is an engine-language transfer
+
+Strongest theorem
+- compose_two_vector_affine / cycle_of_vector_affine / vector_cycle_impossible (Lean); KNOWN algebra
+
+Strongest refutation
+- Trap identity fails outside the sample box; fitted matrices are not Z-theorems
+
+Reusable machinery
+- VectorAffineCensus attack; hidden_vector_affine synthetics; affine_control_type fingerprint; Problems.Engine.VectorAffine
+
+Prior-art status
+- KNOWN Euclidean / matrix composition; ENGINE REDISCOVERY of A_q and synthetic shears; NEW GENERIC ENGINE CAPABILITY vector_affine
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PARK
+
+Why
+- Latent control generalizes to vector affine dynamics; Euclid and an unrelated lattice map both consume it; mathematics remains KNOWN. Do not open an Euclidean theorem program.
+
+Best next question
+- Can matrix-word recursive invariants obstruct infinite control classes when entrywise magnitude domination fails?
+```
+
 

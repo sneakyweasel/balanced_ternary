@@ -60,11 +60,19 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.sparse_polynomials.problem import PROBLEM as SPARSE_POLYNOMIALS
     from research.stabilization.problem import PROBLEM as STABILIZATION
     from research.syracuse.problem import PROBLEM as SYRACUSE
+    from research.engine_campaign.problem import PROBLEM as ENGINE_CAMPAIGN
+    from research.mx_plus_r.problem import PROBLEM as MX_PLUS_R
+    from research.euclidean_quotient.problem import PROBLEM as EUCLIDEAN_QUOTIENT
+    from research.vector_affine.problem import PROBLEM as VECTOR_AFFINE
 
     return (
         COLLATZ,
         COLLATZ_FINITE_DESCENT,
         SYRACUSE,
+        ENGINE_CAMPAIGN,
+        MX_PLUS_R,
+        EUCLIDEAN_QUOTIENT,
+        VECTOR_AFFINE,
         RESIDUALS,
         LIFTING,
         PADIC_DYNAMICS,

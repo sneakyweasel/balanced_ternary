@@ -1,0 +1,19 @@
+{
+  "id": "chamberland-2003-3x+1-survey",
+  "title": "An update on the 3x+1 problem",
+  "authors": ["Marc Chamberland"],
+  "year": 2003,
+  "identifiers": {},
+  "url": {
+    "pdf": "https://www.math.grinnell.edu/~chamberl/papers/3x+1survey.ps"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "3x+1 survey",
+    "generalized mx+r",
+    "cycles"
+  ],
+  "project_relationship": "known",
+  "status": "survey",
+  "notes": "docs/problems/engine_campaign.md. Survey of 3x+1 and nearby generalized maps. Used as a prior-art checkpoint for Target A/B. Unverified cycle-exclusion claims elsewhere are not treated as theorems."
+}

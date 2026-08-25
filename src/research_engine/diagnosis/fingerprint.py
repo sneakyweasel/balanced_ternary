@@ -382,6 +382,64 @@ def fingerprint_from_report(
             else:
                 obstruction_field = "NONE"
 
+    affine_control_type = UNOBSERVED
+    if piecewise_structure in {"FINITE", "PARAMETERIZED"}:
+        affine_control_type = "SCALAR"
+
+    vector = results.get("vector_affine")
+    if vector is not None and piecewise_structure in {UNOBSERVED, "NONE", "UNCERTAIN"}:
+        kind = vector.evidence.get("census_kind")
+        if kind == "PARAMETERIZED_CENSUS":
+            piecewise_structure = "PARAMETERIZED"
+            latent = "PARAMETERIZED"
+            affine_control_type = "MATRIX_PARAMETERIZED"
+        elif kind == "FINITE_CENSUS":
+            piecewise_structure = "FINITE"
+            latent = "FINITE"
+            affine_control_type = "VECTOR"
+        elif kind == "UNRESOLVED":
+            piecewise_structure = "UNCERTAIN"
+            latent = "UNCERTAIN"
+        if domain_field == UNOBSERVED:
+            domains = vector.evidence.get("domains") or ()
+            directions = {item.get("direction") for item in domains if isinstance(item, dict)}
+            evidences = {item.get("evidence") for item in domains if isinstance(item, dict)}
+            if "LEAN_CERTIFIED" in evidences or "EXACT_PROVED" in evidences:
+                domain_field = "EXACT"
+            elif "EXACT" in directions and "COUNTEREXAMPLE_SURVIVED" in evidences:
+                # Vector domains certified by falsify-window survival are exact
+                # relative to the reconstructed family, not Lean theorems.
+                domain_field = "EXACT"
+            elif "EXACT" in directions or directions:
+                domain_field = "SAMPLE_SUPPORTED"
+        if algebra_field == UNOBSERVED:
+            relations = vector.evidence.get("relations") or ()
+            certs = vector.evidence.get("certificates") or ()
+            if relations and certs:
+                algebra_field = "EXPLOITABLE"
+            elif relations:
+                algebra_field = "FORMALLY_COMPOSED"
+        if obstruction_field == UNOBSERVED:
+            certs = vector.evidence.get("certificates") or ()
+            proved_statuses = {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
+
+            def _vector_proved(scope: str) -> bool:
+                return any(
+                    isinstance(item, dict)
+                    and item.get("scope") == scope
+                    and item.get("status") in proved_statuses
+                    for item in certs
+                )
+
+            if _vector_proved("SYMBOLIC_CLASS"):
+                obstruction_field = "SYMBOLIC_CLASS"
+            elif _vector_proved("CLASS"):
+                obstruction_field = "CLASS"
+            elif _vector_proved("WORD"):
+                obstruction_field = "WORD"
+            elif certs:
+                obstruction_field = "NONE"
+
     return RegimeFingerprint(
         transition_architecture=_transition_architecture(control),
         state_space_type=state_type,
@@ -404,6 +462,7 @@ def fingerprint_from_report(
         parameter_domain=domain_field,
         latent_control_algebra=algebra_field,
         latent_control_obstruction=obstruction_field,
+        affine_control_type=affine_control_type,
         certificate_strength=cert,
     )
 

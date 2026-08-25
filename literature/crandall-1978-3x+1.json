@@ -1,0 +1,20 @@
+{
+  "id": "crandall-1978-3x+1",
+  "title": "On the \"3x+1\" problem",
+  "authors": ["Richard E. Crandall"],
+  "year": 1978,
+  "identifiers": {
+    "doi": "10.1090/S0025-5718-1978-0480321-3"
+  },
+  "url": {},
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "qx+1 maps",
+    "5x+1",
+    "generalized Collatz",
+    "divergent orbits"
+  ],
+  "project_relationship": "known",
+  "status": "classical",
+  "notes": "docs/problems/engine_campaign.md. Foundational qx+1 discussion; 5x+1 is treated as a hard relative of 3x+1. Engine rediscovery of 2^k y = 5x+1 is not a new identity."
+}

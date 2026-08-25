@@ -161,6 +161,7 @@ def test_digit_fold_family_saturates_without_name_special_cases():
     assert "parameter_domain" not in CORE_DIMENSIONS
     assert "latent_control_algebra" not in CORE_DIMENSIONS
     assert "latent_control_obstruction" not in CORE_DIMENSIONS
+    assert "affine_control_type" not in CORE_DIMENSIONS
     assert core_match(fingerprints[0], fingerprints[1])
     assert core_match(fingerprints[1], fingerprints[2])
     similarity, delta = compare_fingerprints(fingerprints[0], fingerprints[2])
@@ -251,3 +252,4 @@ def test_coverage_marks_untested_capabilities():
     assert "parameter_domain" not in CORE_DIMENSIONS
     assert "latent_control_algebra" not in CORE_DIMENSIONS
     assert "latent_control_obstruction" not in CORE_DIMENSIONS
+    assert "affine_control_type" not in CORE_DIMENSIONS

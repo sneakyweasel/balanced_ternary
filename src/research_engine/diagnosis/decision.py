@@ -69,7 +69,16 @@ def decide_research(
         )
 
     far = delta is None or delta.level is DeltaLevel.HIGH
-    if recovered and far:
+    vector_language = fingerprint.affine_control_type in {
+        "VECTOR",
+        "MATRIX_PARAMETERIZED",
+    }
+    # Vector/matrix latent control is a new language even when core
+    # contraction fields only differ at MEDIUM from a scalar family.
+    novel_recovery = far or (
+        vector_language and delta is not None and delta.level is not DeltaLevel.LOW
+    )
+    if recovered and novel_recovery:
         if fingerprint.piecewise_affine_structure == "PARAMETERIZED":
             if fingerprint.parameter_domain == "EXACT":
                 if fingerprint.latent_control_algebra == "EXPLOITABLE":

@@ -27,3 +27,5 @@ import Problems.Engine.PiecewiseCensus
 import Problems.Engine.ParameterDomain
 import Problems.Engine.ControlWord
 import Problems.Engine.ControlObstruction
+import Problems.Engine.MxPlusR
+import Problems.Engine.VectorAffine

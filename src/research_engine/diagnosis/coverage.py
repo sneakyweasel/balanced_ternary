@@ -111,6 +111,7 @@ def capability_coverage(
     statuses["control_obstruction_calculus"] = CoverageStatus.NOT_TESTED.value
     statuses["symbolic_multi_step_obstruction"] = CoverageStatus.NOT_TESTED.value
     statuses["recursive_remainder_invariant"] = CoverageStatus.NOT_TESTED.value
+    statuses["latent_vector_affine_control"] = CoverageStatus.NOT_TESTED.value
 
     if _ran(results, "piecewise_affine"):
         statuses["latent_piecewise_affine_control"] = CoverageStatus.EXERCISED.value
@@ -189,6 +190,31 @@ def capability_coverage(
         statuses["control_obstruction_calculus"] = CoverageStatus.INAPPLICABLE.value
         statuses["symbolic_multi_step_obstruction"] = CoverageStatus.INAPPLICABLE.value
         statuses["recursive_remainder_invariant"] = CoverageStatus.INAPPLICABLE.value
+
+    if _ran(results, "vector_affine"):
+        statuses["latent_vector_affine_control"] = CoverageStatus.EXERCISED.value
+        vector = results["vector_affine"]
+        domains = vector.evidence.get("domains") or ()
+        if any(isinstance(item, dict) and item.get("direction") in {"EXACT", "SUFFICIENT_ONLY", "NECESSARY_ONLY"} for item in domains):
+            statuses["parameter_domain_certification"] = CoverageStatus.EXERCISED.value
+        if vector.evidence.get("relations"):
+            statuses["control_word_composition"] = CoverageStatus.EXERCISED.value
+            statuses["cycle_obstruction"] = CoverageStatus.EXERCISED.value
+        certs = vector.evidence.get("certificates") or ()
+        if any(
+            isinstance(item, dict)
+            and item.get("status") in {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
+            for item in certs
+        ):
+            statuses["control_obstruction_calculus"] = CoverageStatus.EXERCISED.value
+        if any(
+            isinstance(item, dict)
+            and (item.get("domain") or {}).get("kind") == "valuation"
+            for item in domains
+        ):
+            statuses["valuation_dynamics"] = CoverageStatus.EXERCISED.value
+    elif _inapplicable(skipped, "vector_affine"):
+        statuses["latent_vector_affine_control"] = CoverageStatus.INAPPLICABLE.value
 
     if (
         fingerprint.control_structure == "SINGLETON"

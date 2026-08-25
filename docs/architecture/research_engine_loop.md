@@ -7,7 +7,8 @@ attractors into a `ProblemSpec`. Existing attack semantics and relative
 order are unchanged. `piecewise_affine` is appended after
 `reconnaissance`; `parameter_domain` immediately after that;
 `control_word` immediately after the domain certificate;
-`control_obstruction` immediately after control-word composition.
+`control_obstruction` immediately after control-word composition;
+`vector_affine` immediately after that, and only for dimension ≥ 2.
 
 ## Why this layer exists
 
@@ -28,7 +29,7 @@ latent affine branches from exact I/O without being told the partition.
 exact target
   → generic diagnosis (RegimeFingerprint, StructuralDelta, FamilyStatus,
     CapabilityCoverage)
-  → attack planner (reconnaissance, piecewise_affine, parameter_domain, control_word, control_obstruction, then existing order)
+  → attack planner (reconnaissance, piecewise_affine, parameter_domain, control_word, control_obstruction, vector_affine, then existing order)
   → certificate / refutation
   → ResearchDecision
   → ExpectedResearchValue for a prospective sketch
@@ -55,17 +56,21 @@ feature. The census does not mutate `AttackContext.affine`.
 | `AffineFamily` / `ParameterDomain` / `DomainCertificate` | arithmetic predicates for a reconstructed family |
 | `ControlWord` / `ComposedAffineRelation` | symbolic composition of a certified family |
 | `ControlObstructionCertificate` | class- or word-level arithmetic contradiction |
+| `VectorAffineBranch` / `VectorAffineFamily` / `VectorAffineCensus` | multi-D latent \(y=A_u x+b_u\) from I/O |
 
 Non-core fingerprint fields: `piecewise_affine_structure`,
 `latent_control` (`NONE|FINITE|PARAMETERIZED|UNCERTAIN|UNOBSERVED`),
-`parameter_domain` (`UNOBSERVED|SAMPLE_SUPPORTED|EXACT|UNCERTAIN`), and
+`parameter_domain` (`UNOBSERVED|SAMPLE_SUPPORTED|EXACT|UNCERTAIN`),
 `latent_control_algebra`
-(`UNOBSERVED|FORMALLY_COMPOSED|EXPLOITABLE|UNCERTAIN`), and
+(`UNOBSERVED|FORMALLY_COMPOSED|EXPLOITABLE|UNCERTAIN`),
 `latent_control_obstruction`
-(`UNOBSERVED|NONE|WORD|CLASS|SYMBOLIC_CLASS|RECURSIVE_INVARIANT`).
+(`UNOBSERVED|NONE|WORD|CLASS|SYMBOLIC_CLASS|RECURSIVE_INVARIANT`), and
+`affine_control_type`
+(`UNOBSERVED|SCALAR|VECTOR|MATRIX_PARAMETERIZED`).
 They do not join `CORE_DIMENSIONS`. `latent_control` is discovery;
 `latent_control_algebra` is composition; `latent_control_obstruction`
-is word-, class-, or symbolic-class contradiction.
+is word-, class-, or symbolic-class contradiction;
+`affine_control_type` distinguishes scalar vs vector recovered language.
 
 `ResearchDecision` is not dossier `PROMOTE|PARK|CLOSE` and not
 hypothesis `DecisionKind`. Mapping: `CLOSE` and `FAMILY_SATURATED` →
@@ -77,7 +82,9 @@ control with truncated reachability and no recovered piecewise-affine
 language. A sample-supported parameterized family yields `CONTINUE`,
 not that status. Algebraic `EXACT` on the reconstructed *relation* is
 not a map theorem on \(\mathbb{Z}\) and not a Collatz theorem. “No
-theorem found” is not an engine limitation.
+theorem found” is not an engine limitation. Vector I/O uses the same
+latent-control fields when `vector_affine` recovers a census;
+`piecewise_affine` stays 1-D.
 
 ## No-ops
 
@@ -85,7 +92,9 @@ theorem found” is not an engine limitation.
   counts live on `AttackResult.evidence`.
 - The census does not install controls, moduli, or `AffineSystem` on
   the spec. Domain certification and control-word composition consume
-  `prior_results`, not an injected affine system.
+  `prior_results`, not an injected affine system. `vector_affine` is
+  appended after `control_obstruction` and does not split the 1-D
+  census/domain/word/obstruction chain.
 - No Syracuse-specific engine types. Coefficient search is a documented
   integer box, not a seeded \(3x+1\) rule. Composition is cleared-form
   algebra, not a hard-coded Syracuse product formula. Maximal exponent
@@ -100,6 +109,8 @@ Python: `research_engine.diagnosis` and
 `research_engine.attacks.piecewise_affine`,
 `research_engine.attacks.parameter_domain`,
 `research_engine.attacks.control_word`,
-`research_engine.attacks.control_obstruction`. CLI: `btlab research analyze`
+`research_engine.attacks.control_obstruction`,
+`research_engine.attacks.vector_affine`. CLI: `btlab research analyze`
 prints a diagnosis block after the planner report. Hidden synthetics:
-`research_engine.benchmarks.hidden_piecewise`.
+`research_engine.benchmarks.hidden_piecewise` and
+`research_engine.benchmarks.hidden_vector_affine`.

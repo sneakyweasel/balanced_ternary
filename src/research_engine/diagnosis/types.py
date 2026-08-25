@@ -35,6 +35,7 @@ FINGERPRINT_DIMENSIONS: tuple[str, ...] = CORE_DIMENSIONS + (
     "parameter_domain",
     "latent_control_algebra",
     "latent_control_obstruction",
+    "affine_control_type",
 )
 
 CAPABILITIES: tuple[str, ...] = (
@@ -61,6 +62,7 @@ CAPABILITIES: tuple[str, ...] = (
     "control_obstruction_calculus",
     "symbolic_multi_step_obstruction",
     "recursive_remainder_invariant",
+    "latent_vector_affine_control",
 )
 
 
@@ -117,6 +119,7 @@ class RegimeFingerprint:
     parameter_domain: str = UNOBSERVED
     latent_control_algebra: str = UNOBSERVED
     latent_control_obstruction: str = UNOBSERVED
+    affine_control_type: str = UNOBSERVED
     certificate_strength: str = UNOBSERVED
 
     def as_dict(self) -> dict[str, str]:

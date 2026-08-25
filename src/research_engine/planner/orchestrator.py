@@ -15,6 +15,7 @@ from research_engine.attacks.modular import ModularInvariantAttack
 from research_engine.attacks.parameter_domain import ParameterDomainAttack
 from research_engine.attacks.piecewise_affine import PiecewiseAffineCensusAttack
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
+from research_engine.attacks.vector_affine import VectorAffineCensusAttack
 from research_engine.attacks.result import (
     Attack,
     AttackContext,
@@ -39,6 +40,7 @@ DEFAULT_ATTACK_ORDER: tuple[str, ...] = (
     "parameter_domain",
     "control_word",
     "control_obstruction",
+    "vector_affine",
     "closure",
     "modular",
     "functional",
@@ -61,6 +63,7 @@ _ATTACKS: dict[str, type[Attack]] = {
     "parameter_domain": ParameterDomainAttack,
     "control_word": ControlWordAttack,
     "control_obstruction": ControlObstructionAttack,
+    "vector_affine": VectorAffineCensusAttack,
     "closure": ExhaustiveClosureAttack,
     "modular": ModularInvariantAttack,
     "functional": FunctionalBoundAttack,

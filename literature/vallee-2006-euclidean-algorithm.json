@@ -1,0 +1,20 @@
+{
+  "id": "vallee-2006-euclidean-algorithm",
+  "title": "Euclidean dynamics",
+  "authors": ["Brigitte Vallée"],
+  "year": 2006,
+  "identifiers": {
+    "doi": "10.3934/dcds.2006.15.281"
+  },
+  "url": {},
+  "problem_area": "euclidean-algorithm",
+  "relevant_concepts": [
+    "Euclidean algorithm",
+    "quotient sequences",
+    "continued fractions",
+    "gcd dynamics"
+  ],
+  "project_relationship": "known",
+  "status": "classical",
+  "notes": "docs/problems/engine_campaign.md. Dynamical analysis of the Euclidean algorithm and quotient statistics. Target C tests whether v2 rediscovers quotient control; the algorithm itself is KNOWN."
+}

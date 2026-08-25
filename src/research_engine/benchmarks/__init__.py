@@ -13,6 +13,13 @@ from research_engine.benchmarks.hidden_piecewise import (
     HiddenPowerClearDSpec,
     HiddenSignBSpec,
 )
+from research_engine.benchmarks.hidden_vector_affine import (
+    HiddenDomainCoupledSpec,
+    HiddenFalseAffineTrapSpec,
+    HiddenFiniteAlphabetSpec,
+    HiddenParameterizedMatrixSpec,
+    HiddenParityShearSpec,
+)
 from research_engine.benchmarks.systems import (
     ExpandingEscapeSpec,
     FiniteClosureSpec,
@@ -25,7 +32,12 @@ __all__ = [
     "ExpandingEscapeSpec",
     "FiniteClosureSpec",
     "HiddenCongruenceASpec",
+    "HiddenDomainCoupledSpec",
+    "HiddenFalseAffineTrapSpec",
+    "HiddenFiniteAlphabetSpec",
     "HiddenNestedCSpec",
+    "HiddenParameterizedMatrixSpec",
+    "HiddenParityShearSpec",
     "HiddenPowerClearDSpec",
     "HiddenSignBSpec",
     "InfiniteTranslateSpec",
