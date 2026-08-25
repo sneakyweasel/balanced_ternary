@@ -17,6 +17,10 @@ LYAPUNOV_THEOREM = "doubledTrit_lyapunov"
 SIGN_THEOREM = "doubledTrit_sign"
 GAIN3_THEOREM = "carryGain3_unbounded"
 
+EXPANDING_MODULE = "Problems.BalancedTernary.ExpandingD"
+EXPANDING_LSD_THEOREM = "lsdZ_expandingD"
+EXPANDING_CLOSURE_THEOREM = "expandingD_residue_closure"
+
 
 def link_balanced_ternary_targets(
     targets: tuple[TheoremTarget, ...],
@@ -49,6 +53,40 @@ def link_balanced_ternary_targets(
 def export_plan_targets(report: PlannerReport) -> tuple[TheoremTarget, ...]:
     return link_balanced_ternary_targets(
         targets_from_report(report, problem="balanced_ternary")
+    )
+
+
+def link_expanding_d_targets(
+    targets: tuple[TheoremTarget, ...],
+) -> tuple[TheoremTarget, ...]:
+    out: list[TheoremTarget] = []
+    for target in targets:
+        if (
+            target.attack == "closure"
+            and target.exportable
+            and target.kind is ClaimKind.REACHABLE
+        ):
+            size = None
+            for cert in target.certificates:
+                if isinstance(cert, dict) and cert.get("size") == 3:
+                    size = 3
+            if size == 3:
+                out.append(
+                    attach_lean(
+                        target,
+                        module=EXPANDING_MODULE,
+                        theorem=EXPANDING_CLOSURE_THEOREM,
+                        name="expanding_d_lsd_residual_closure",
+                    )
+                )
+                continue
+        out.append(target)
+    return tuple(out)
+
+
+def export_expanding_d_targets(report: PlannerReport) -> tuple[TheoremTarget, ...]:
+    return link_expanding_d_targets(
+        targets_from_report(report, problem="expanding_d")
     )
 
 

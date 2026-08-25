@@ -7,15 +7,17 @@ PROBLEM = ProblemDefinition(
     title="Balanced-ternary finite-state dynamics",
     status="STRUCTURAL",
     statement=(
-        "The LSD carry of normalizing the doubled trit stream 2 d_i, "
-        "d_i in {-1,0,1}, has exact residual closure {-1,0,1}. The "
-        "mechanism is radix-3 division plus bounded forcing. Gain λ=3 "
-        "on the same remainder map is unbounded along the all-+1 word."
+        "Doubled-trit normalization has residual closure {-1,0,1}. "
+        "The expanding map T(n)=3n-lsd(n) has infinite integer orbits "
+        "and a 3-state LSD observational quotient r |-> -r."
     ),
     bt_relevance=(
-        "The adapter reuses BoundedNormalizeTransducer(2) and "
-        "balanced_divmod; it does not introduce a second digit model."
+        "T is the existing section I_{-lsd(n)}(n). Lab D remains "
+        "(n-lsd(n))/3. The adapter does not introduce a second digit model."
     ),
     docs=("docs/problems/balanced_ternary_finite_state_dynamics.md",),
-    lean=("formal/Problems/BalancedTernary/FiniteStateDynamics.lean",),
+    lean=(
+        "formal/Problems/BalancedTernary/FiniteStateDynamics.lean",
+        "formal/Problems/BalancedTernary/ExpandingD.lean",
+    ),
 )

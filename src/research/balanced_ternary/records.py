@@ -11,6 +11,7 @@ from research_engine.planner.orchestrator import PlannerReport
 from research_engine.verification.targets import TheoremTarget
 
 RECORD_DIR = Path(__file__).resolve().parents[3] / "experiments" / "balanced_ternary"
+EXPANDING_RECORD_DIR = RECORD_DIR / "expanding_d"
 
 
 def record_status(result: AttackResult, *, lean_theorem: str = "") -> str:
@@ -68,6 +69,7 @@ def write_records(
     targets: Sequence[TheoremTarget],
     *,
     directory: Path | None = None,
+    problem: str = "balanced_ternary",
 ) -> tuple[Path, ...]:
     folder = directory if directory is not None else RECORD_DIR
     folder.mkdir(parents=True, exist_ok=True)
@@ -80,11 +82,11 @@ def write_records(
             lean = f"{target.lean_module}.{target.lean_theorem}"
         path = folder / f"{result.name}.yaml"
         path.write_text(
-            render_record(result, lean_theorem=lean),
+            render_record(result, problem=problem, lean_theorem=lean),
             encoding="utf-8",
         )
         written.append(path)
-    skipped_lines = ["problem: balanced_ternary", "attack: skipped", "claim: inapplicable or deferred"]
+    skipped_lines = [f"problem: {problem}", "attack: skipped", "claim: inapplicable or deferred"]
     skipped_lines.append("status: OBSERVED")
     skipped_lines.append("scope: BOUNDED")
     skipped_lines.append(

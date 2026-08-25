@@ -2305,5 +2305,60 @@
       "tests/research/balanced_ternary/test_perturbation.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "BTN-expanding-lsd",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "For T(n)=3n-lsd(n), lsd(T(n))=-lsd(n) and lsd(T^k(n))=(-1)^k lsd(n). Future LSD observations depend only on lsd(n).",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/ExpandingD.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_expanding_d.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-expanding-right-inverse",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "Laboratory DZ is a left inverse of T: DZ(T(n))=n. Canonical T is the section I_{-lsd(n)}(n), not a constant-section I_a.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/ExpandingD.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_expanding_d.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-expanding-section",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "T(I_a(x))=9x+2a and lsd(T(I_a(x)))=-a, independent of the higher-digit residual x.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/ExpandingD.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_expanding_d.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-expanding-magnitude",
+    "tag": "REFUTED",
+    "statement": "|T(n)| < |n| for all integers n, where T(n)=3n-lsd(n)",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/ExpandingD.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_expanding_d.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-expanding-lambda",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "For T_λ(n)=3n-λ lsd(n), lsd(T_2(n))=lsd(n) and lsd(T_3(n))=0. The observational residual remains a trit; λ changes the residue map, not the need for the full integer.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/ExpandingD.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_expanding_d.py"
+    ],
+    "related_conjectures": []
   }
 ]

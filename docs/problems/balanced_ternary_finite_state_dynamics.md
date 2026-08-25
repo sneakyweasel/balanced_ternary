@@ -3,8 +3,9 @@
 Status: **STRUCTURAL**
 
 Which balanced-ternary digit transformations admit finite residual
-closure? Phase 0 asks this of one exact system: normalize the
-LSD-first doubled trit stream `2 d_i` with `d_i ∈ {-1,0,1}`.
+closure? Phase 0 treats doubled-trit normalization. Phase 1 treats
+the expanding section `T(n)=3n-lsd(n)` as an LSD-observable
+quotient, without assuming that the integer orbit is finite.
 
 ## Problem
 
@@ -89,6 +90,11 @@ change destroys it.
 - Sign equivariance `T(-c,-d)=-T(c,d)`. **EXACT — LEAN VERIFIED**
 - Three distinct Mealy output signatures. **EXACT — LEAN VERIFIED**
 - Gain `λ=3` unbounded. **EXACT — LEAN VERIFIED**
+- Expanding `T(n)=3n-lsd(n)`: `lsd(T(n))=-lsd(n)`. **EXACT — LEAN VERIFIED**
+- `DZ(T(n))=n`. **EXACT — LEAN VERIFIED**
+- `T(I_a(x))=9x+2a`. **EXACT — LEAN VERIFIED**
+- Magnitude contraction of `T`. **REFUTED**
+- `lsd(T_2(n))=lsd(n)`, `lsd(T_3(n))=0`. **EXACT — LEAN VERIFIED**
 
 The step is piecewise balanced division, not one integer-affine map
 `As+b(d)`. Modular/spectral attacks are inapplicable.
@@ -98,8 +104,38 @@ The step is piecewise balanced division, not one integer-affine map
 - `btlab research analyze|attack|reproduce|report balanced_ternary`
 - Adapter tests in `tests/research/balanced_ternary/`
 - Attack records in `experiments/balanced_ternary/`
-- Carry-gain family `λ∈{1,2,3}` in
-  `research.balanced_ternary.perturbation`
+- `btlab research analyze|attack|reproduce|report expanding_d`
+- Expanding-`T` records in `experiments/balanced_ternary/expanding_d/`
+
+## Phase 1 — expanding `T(n)=3n-lsd(n)`
+
+Laboratory `D` is unchanged: `DZ(n)=(n-lsd(n))/3`. The Phase-1
+operator is the existing section
+
+\[
+T(n)=3n-\operatorname{lsd}(n)=I_{-\operatorname{lsd}(n)}(n).
+\]
+
+If `n=3q+r` with `r=lsd(n)`, then `T(n)=9q+2r`. Question A (finite
+integer orbit) fails: `|T(n)|>|n|` for `n≠0`. Question B
+(observational residual) is exact:
+
+\[
+\operatorname{lsd}(T(n))=-\operatorname{lsd}(n),\qquad
+\operatorname{lsd}(T^k(n))=(-1)^k\operatorname{lsd}(n).
+\]
+
+The three LSD classes are pairwise distinguishable. Higher windows
+`n \bmod 3^k` for `k≥2` refine the integer but not the observation;
+`n=1` and `n=4` separate “need mod 9”. Bounded reconnaissance is
+an `OBSERVATION`, not a Myhill–Nerode proof. The exact statement
+is Lean `lsdZ_iterate_expandingD`.
+
+`ExpandingDResidueSpec` uses that discovered state. Controls are
+`I_a` and a `T`-tick. The step is not one `Ax+b`. Exhaustive
+closure is `R_∞={-1,0,1}`. Integer-state BFS hits the cap and is
+not labelled infinitude. Perturbations `λ=2,3` change the residue
+map and keep a 3-state LSD residual.
 
 ## Conjectures
 
@@ -111,12 +147,16 @@ is not promoted.
 - Global Lyapunov `|c|` is not nonincreasing on the start layer
   (`0 → 1`). The decrease is outside `[-1,1]`.
 - `λ=3` along all-`+1`: `c_n=3n`.
+- Magnitude contraction of expanding `T`: `|T(1)|=2>1`.
+- Finite-window residual `n mod 9` as a necessary LSD state:
+  `n=1` and `n=4` have the same `T`-LSD stream.
 
 ## Formalization
 
-`formal/Problems/BalancedTernary/FiniteStateDynamics.lean`. No
-`sorry`. Minimality in Lean is the distinct-output-signature
-witness, not a general Myhill–Nerode development.
+`formal/Problems/BalancedTernary/FiniteStateDynamics.lean` and
+`formal/Problems/BalancedTernary/ExpandingD.lean`. No `sorry`.
+Minimality in Lean is the distinct-output-signature witness, not
+a general Myhill–Nerode development.
 
 ## Results
 
@@ -125,29 +165,35 @@ witness, not a general Myhill–Nerode development.
 - `λ=1` and `λ=2` are finite; `λ=3` is not.
 - Engine reconnaissance remains `OBSERVED`/`BOUNDED`. Exhaustive
   closure is `EXACT` by queue exhaustion at the frozen input phase.
+- Expanding `T`: integer orbits expand; LSD observational quotient
+  is 3 states; `DZ∘T=id`; `T(I_a(x))=9x+2a`.
+- `T_2` preserves LSD; `T_3` sends LSD to `0`. Observational
+  finiteness survives both perturbations.
 
 ## Open questions
 
-Does the integer operator `D(n)=3n-lsd(n)` have finite residual
-closure in the same engine coordinates? That is the next question,
-not part of this phase.
+None opened by this phase. Do not auto-start another milestone.
 
 ## Decision
 
-`PROMOTE` the doubled-trit adapter, the exact residual-closure
-theorem, the Lyapunov mechanism, and the `λ=3` boundary. The
-statements are not a reparameterization of Ostrowski: the engine
-had to treat a non-affine balanced-division step, and a one-line
-gain change destroys finiteness.
+Phase 0: `PROMOTE` the doubled-trit adapter, the exact residual-closure
+theorem, the Lyapunov mechanism, and the `λ=3` boundary.
 
-Best next question: can the same attack stack rediscover the known
-structure of `D` automatically?
+Phase 1: `PROMOTE` the expanding-`T` LSD residual, the section
+identities, the magnitude-contraction refutation, and the `λ=2,3`
+residue maps. The statements are not a reparameterization of lab
+`D`: `T` is a non-constant section and a right inverse of `DZ`.
+Finite-horizon stabilization was not treated as proof.
+
+Best next question: does a richer observable than the LSD of `T^k(n)`
+— for example a length-2 jet — still admit a finite residual, or does
+the extra digit force an infinite observational quotient?
 
 ## Publication assessment
 
 Status: `STRUCTURAL`.
 
-Unique balanced-ternary representation is `KNOWN`. The promoted
-content is the engine certificate, the explicit Lyapunov mechanism,
-and the controlled finite-to-infinite boundary. That is not a
-`PAPER_CANDIDATE` by itself.
+Unique balanced-ternary representation is `KNOWN`. Phase 0 promoted
+the doubled-trit engine certificate and the gain boundary. Phase 1
+promoted the LSD observational quotient of expanding `T`. That is
+not a `PAPER_CANDIDATE` by itself.
