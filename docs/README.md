@@ -120,6 +120,7 @@ Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 
 - [Rewrite calculus](problems/rewrite_calculus.md)
 - [D/Add residual completion](problems/d_add_residual.md)
+- [Signed-digit residual phase transitions](problems/signed_digit_residual.md)
 - [Balanced-ternary finite-state dynamics](problems/balanced_ternary_finite_state_dynamics.md)
 - [Residuals](problems/residuals.md)
 - [Collatz](problems/collatz.md)

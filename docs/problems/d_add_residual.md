@@ -137,7 +137,10 @@ None opened.
 
 ## Open questions
 
-None opened by this phase. Do not auto-start multiplication.
+Answered by [signed_digit_residual.md](signed_digit_residual.md):
+`D(s+raw)` classifies the bounded signed-digit family, with exact
+finite/infinite threshold `λ≤2` or `m≤1`. Do not auto-start
+multiplication.
 
 ## Decision
 

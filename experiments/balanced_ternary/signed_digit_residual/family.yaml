@@ -1,0 +1,8 @@
+problem: signed_digit_residual
+attack: distinguishing_family
+claim: origin-reachable F_{λ,U_m} is finite iff λ≤2 or m≤1 for λ in {1,2,3}
+status: EXACT
+scope: EXACT
+evidence: (1,1)={0}; (1,2)={-1,0,1}; (1,3)={-1,0,1}; (2,1)={0}; (2,2)={-2,0,2}; (3,1)={0}; (3,2)=s_n=3n
+counterexamples: ("λ=3 independently of U",)
+lean_theorem: Problems.BalancedTernary.SignedDigitResidual.finite_residual_condition

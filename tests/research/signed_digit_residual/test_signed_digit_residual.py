@@ -13,6 +13,7 @@ from research.signed_digit_residual.discovery import (
     is_constant_unbounded_family,
     lambda1_invariant_radius_loose,
     lambda1_reachable_radius,
+    lyapunov_leak,
     origin_reachable_report,
     r_way_mealy,
     r_way_reachable,
@@ -65,6 +66,9 @@ def test_lambda1_family_separates_box_reachable_and_mealy():
             assert box_leak(radius - 1, alphabet_m(bound), 1) is not None
         loose = lambda1_invariant_radius_loose(bound)
         assert loose >= radius
+        min_abs = (bound + 3) // 2
+        assert lyapunov_leak(alphabet_m(bound), 1, min_abs=min_abs, search_radius=20) is None
+
 
 
 def test_distinguishing_pairs_are_exact():
@@ -164,3 +168,5 @@ def test_export_links_lean_and_records_write(tmp_path):
     assert "closure.yaml" in names
     assert "skipped.yaml" in names
     assert RECORD_DIR.name == "signed_digit_residual"
+    assert (RECORD_DIR / "closure.yaml").is_file()
+    assert (RECORD_DIR / "family.yaml").is_file()
