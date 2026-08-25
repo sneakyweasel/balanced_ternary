@@ -48,6 +48,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.operator_dynamics` | `ARCHIVED` | {S,N,D,W} identities; length-≤4 close |
 | `research.operator_dynamics.signed_p0` | `ARCHIVED` | v2 benchmark \(N\circ I_0\circ D\); \(F^2=P_0\); `CLOSE` |
 | `research.balanced_ternary_digit_sum_dynamics` | `ARCHIVED` | v2 benchmark \(T=s\); digital root; `CLOSE` |
+| `research.balanced_ternary_weight_dynamics` | `ARCHIVED` | v2 control \(T=W\); regime replication; `CLOSE` |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |
 | `research.erdos_distinct_subset_sums` | `EXPLORATORY` | Erdős #1 signed-relation gate |
 | `research.kabelian_complexity` | `ARCHIVED` | k-abelian residual signatures; block-coding close |

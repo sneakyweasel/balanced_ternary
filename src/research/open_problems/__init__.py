@@ -14,6 +14,9 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.balanced_ternary_digit_sum_dynamics.problem import (
         PROBLEM as BALANCED_TERNARY_DIGIT_SUM_DYNAMICS,
     )
+    from research.balanced_ternary_weight_dynamics.problem import (
+        PROBLEM as BALANCED_TERNARY_WEIGHT_DYNAMICS,
+    )
     from research.cerny_bt.problem import PROBLEM as CERNY_BT
     from research.collatz.problem import PROBLEM as COLLATZ
     from research.collatz_finite_descent.problem import PROBLEM as COLLATZ_FINITE_DESCENT
@@ -82,6 +85,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         MULTIPLICATIVE_RESIDUAL,
         BALANCED_DIGIT_SUM_POLYNOMIALS,
         BALANCED_TERNARY_DIGIT_SUM_DYNAMICS,
+        BALANCED_TERNARY_WEIGHT_DYNAMICS,
         ERDOS_DISTINCT_SUBSET_SUMS,
         OSTROWSKI,
         KABELIAN_COMPLEXITY,

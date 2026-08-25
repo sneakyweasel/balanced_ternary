@@ -143,6 +143,7 @@ Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 - [Operator dynamics](problems/operator_dynamics.md)
 - [Operator-dynamics v2 benchmark](problems/operator_dynamics_benchmark.md)
 - [Balanced-ternary digit-sum dynamics](problems/balanced_ternary_digit_sum_dynamics.md)
+- [Balanced-ternary weight dynamics](problems/balanced_ternary_weight_dynamics.md)
 - [Balanced digit sums of nonlinear polynomial values](problems/balanced_digit_sum_polynomials.md)
 - [Erdős distinct subset sums](problems/erdos_distinct_subset_sums.md)
 - [k-abelian complexity](problems/kabelian_complexity.md)

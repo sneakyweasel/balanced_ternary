@@ -19,3 +19,4 @@ import Problems.BalancedTernary.SignedDigitConstrainedControls
 import Problems.BalancedTernary.SignedDigitShortHorizon
 import Problems.BalancedTernary.SignedP0
 import Problems.BalancedTernary.DigitSumDynamics
+import Problems.BalancedTernary.WeightDynamics

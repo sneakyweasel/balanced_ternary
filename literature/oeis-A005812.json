@@ -1,0 +1,21 @@
+{
+  "id": "oeis-A005812",
+  "title": "Weight of balanced ternary representation of n",
+  "authors": ["N. J. A. Sloane", "Jeffrey Shallit"],
+  "year": 1995,
+  "identifiers": {
+    "oeis": "A005812"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A005812"
+  },
+  "problem_area": "balanced-ternary digit statistics",
+  "relevant_concepts": [
+    "Hamming weight",
+    "nonzero digit count",
+    "balanced ternary"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "W(n) for n≥0 is the number of nonzero balanced-ternary digits. Recurrences a(3n)=a(n), a(3n+1)=a(n)+1. Ruskey–Sawada treat the nonzero-count analogue c_k of the digit sum. The integer iteration of W is a digital-root analogue with attractor {0,1,2}; it is the control target of docs/problems/balanced_ternary_weight_dynamics.md."
+}

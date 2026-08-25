@@ -388,3 +388,31 @@ def test_research_reproduce_digit_sum_links_lean():
     assert "digitSumZ_natAbs_lt" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
+
+
+def test_research_analyze_weight_is_exact_two_not_live():
+    out = _run("research", "analyze", "weight")
+    assert "problem: balanced_ternary_weight_dynamics" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "LIVE infinitude is not decided here" in out
+    assert "SUPPORTED EXACT LIVE\n" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_weight_links_lean():
+    out = _run("research", "reproduce", "btw")
+    assert "reproduce: ok" in out
+    assert "hypothesis wd_seed_orbit_finite: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis wd_interval_invariant: SUPPORTED EXACT LIVE_SLICE" in out
+    assert "hypothesis wd_lyapunov_n: REFUTED" in out
+    assert "hypothesis wd_global_finite_residual: REFUTED" in out
+    assert "hypothesis wd_identity_merge: REFUTED" in out
+    assert "hypothesis wd_idempotent: REFUTED" in out
+    assert "hypothesis wd_contraction_ge2: REFUTED" in out
+    assert "hypothesis wd_contraction_ge3: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis wd_even: SUPPORTED EXACT REACHABLE" in out
+    report = _run("research", "report", "wd_dynamics")
+    assert "weightZ_natAbs_lt" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()

@@ -353,3 +353,24 @@ def test_digit_sum_v2_orbit_and_identity_quotient():
     assert quotient.evidence.get("quotient_count") == 3
     split = separate_states(spec, (4,), (2,))
     assert split.separated is True
+
+
+def test_weight_v2_orbit_and_identity_quotient():
+    from research.balanced_ternary_weight_dynamics.spec import weight_dynamics_spec
+    from research_engine.core.observation import observe
+
+    spec = weight_dynamics_spec(4)
+    phase = spec.initial_phase()
+    assert observe(spec, spec.initial_state, 0, phase) == spec.output(
+        spec.initial_state, 0, phase
+    )
+    recon = AttackPlanner().run(spec, spec.attack_context())
+    recon_result = next(item for item in recon.results if item.name == "reconnaissance")
+    closure = next(item for item in recon.results if item.name == "closure")
+    quotient = next(item for item in recon.results if item.name == "quotient")
+    assert recon_result.certificate_kind is CertificateKind.BOUNDED_RECONNAISSANCE
+    assert closure.certificate_kind is CertificateKind.EXACT_CLOSURE
+    assert closure.evidence.get("union_size") == 2
+    assert quotient.evidence.get("quotient_count") == 2
+    split = separate_states(spec, (4,), (2,))
+    assert split.separated is True
