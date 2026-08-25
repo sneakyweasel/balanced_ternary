@@ -1210,7 +1210,7 @@
           "piecewise updates leave the decidable affine-SLC fragment"
         ],
         "open_question": "origin reachability / termination of this two-path loop",
-        "open_question_confidence": "class-open; instance not previously run here",
+        "open_question_confidence": "origin on N^2 classified; universal Z^2 termination unresolved",
         "current_literature_activity": "active surveys of linear-constraint termination",
         "last_checked": "2026-08-25",
         "literature_ids": [
@@ -1242,7 +1242,7 @@
         "post_run_reconciliation": "",
         "lean_targets": []
       },
-      "already_run": false
+      "already_run": true
     },
     {
       "name": "mx_plus_r_7x1_class_obstruction",

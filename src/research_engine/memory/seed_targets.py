@@ -642,6 +642,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
             certificate_strength="OBSERVATION",
             affine_control_type="VECTOR",
         ),
+        already_run=True,
         prior_art=PriorArtDossier(
             target="switching_affine_z2_origin",
             definition="priority two-path affine updates on Z^2 as in the canonical definition",
@@ -654,7 +655,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
             known_methods=("ranking functions", "vector-affine census", "matrix-word invariants"),
             known_barriers=("piecewise updates leave the decidable affine-SLC fragment",),
             open_question="origin reachability / termination of this two-path loop",
-            open_question_confidence="class-open; instance not previously run here",
+            open_question_confidence="origin on N^2 classified; universal Z^2 termination unresolved",
             current_literature_activity="active surveys of linear-constraint termination",
             literature_ids=(
                 "ben-amram-genaim-ouaknine-worrell-2025-termination-survey",

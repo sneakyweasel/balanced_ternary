@@ -1318,6 +1318,122 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
         finalized=True,
     )
 
+    z2_fp = _fp(
+        state_space_type="INTEGER_VECTOR",
+        control_structure="SINGLETON",
+        numerical_contraction="UNOBSERVED",
+        eventual_region="UNBOUNDED_SAMPLE",
+        orbit_behavior="INCOMPLETE",
+        certificate_strength="BOUNDED",
+        affine_control_type="VECTOR",
+        piecewise_affine_structure="FINITE",
+        latent_control="FINITE",
+        latent_control_algebra="EXPLOITABLE",
+        latent_control_obstruction="CLASS",
+        transition_architecture="DETERMINISTIC",
+    )
+    switching = MemoryExperiment(
+        experiment_id="switching_affine_z2_origin",
+        target="two_path_z2",
+        target_family="switching_affine",
+        adapter_version="0.2.1",
+        engine_version="0.2.2",
+        experiment_date="2026-08-25",
+        diagnosis=_diag(
+            "two_path_z2",
+            z2_fp,
+            ResearchDecision.CONTINUE,
+            "finite piecewise-affine census on a structurally distant regime; window agreement is not a Z-theorem",
+            prior="KNOWN",
+            lean="Problems.Engine.TwoPathZ2",
+            exact="two_path_nonneg_never_origin",
+            falsification="(3,2) does not reach (0,0); unit pair is a 2-cycle",
+            machinery="vector_affine",
+        ),
+        decision_reason_code=DecisionReason.KNOWN_REDISCOVERY,
+        representation_novelty=NoveltyLevel.MEDIUM,
+        mathematical_novelty=NoveltyLevel.NONE,
+        novelty_status=NoveltyStatus.KNOWN_REDISCOVERY,
+        mathematical_yield=MathematicalYield(
+            known_rediscoveries=(
+                "two affine branches (x+y,y-1) and (x-1,x+y)",
+                "image-kernel matrix-word cycle obstruction on a 2-letter alphabet",
+            ),
+            new_exact_results=("N^2 minus origin never reaches (0,0)",),
+            new_formalizations=("Problems.Engine.TwoPathZ2",),
+            new_obstructions=("nonnegative non-origin states never reach the origin",),
+            unresolved_questions=("termination on all of Z^2",),
+            engineering_changes=0,
+        ),
+        grey_loot=(
+            GreyLoot(
+                id="switching_affine_z2_origin:loot:cycle",
+                kind=GreyLootKind.COUNTEREXAMPLE,
+                statement="unit pair (1,0)<->(0,1) is a 2-cycle that never hits (0,0)",
+                evidence=LootEvidence.PROVED,
+                experiment_id="switching_affine_z2_origin",
+                target="two_path_z2",
+            ),
+            GreyLoot(
+                id="switching_affine_z2_origin:loot:n2",
+                kind=GreyLootKind.CANDIDATE_INVARIANT,
+                statement="N^2 is invariant and (0,0) has no other nonnegative preimage",
+                evidence=LootEvidence.PROVED,
+                experiment_id="switching_affine_z2_origin",
+                target="two_path_z2",
+            ),
+            GreyLoot(
+                id="switching_affine_z2_origin:loot:global",
+                kind=GreyLootKind.USEFUL_NEGATIVE_RESULT,
+                statement=(
+                    "origin-avoidance on N^2 is a finite preimage fact; this is not the "
+                    "GLOBAL_REASONING cluster of Skolem/Positivity"
+                ),
+                evidence=LootEvidence.PROVED,
+                experiment_id="switching_affine_z2_origin",
+                target="two_path_z2",
+            ),
+        ),
+        prior_art=PriorArtMemory(
+            literature_ids=(
+                "ben-amram-genaim-ouaknine-worrell-2025-termination-survey",
+                "hosseini-ouaknine-worrell-2019-termination-linear-loops",
+            ),
+            independently_rediscovered=False,
+            known_theorem_status="KNOWN",
+        ),
+        scout=ScoutDossier(
+            target="two_path_z2",
+            problem_definition="On the declared two-path integer map, is (0,0) reachable from (3,2)?",
+            literature=(
+                "ben-amram-genaim-ouaknine-worrell-2025-termination-survey",
+                "hosseini-ouaknine-worrell-2019-termination-linear-loops",
+            ),
+        ),
+        blind_packet=BlindPacket(
+            spec_name="two_path_z2",
+            dimension=2,
+            max_states=32,
+            max_steps=16,
+            allowed_definition=(
+                "if y >= 1 then (x,y):=(x+y, y-1); else if x >= 1 then (x,y):=(x-1, x+y); else halt"
+            ),
+        ),
+        run_artifact=RunArtifact(
+            attack_statuses={
+                "vector_affine": "OBSERVATION",
+                "matrix_word_invariant": "SUPPORTED",
+                "closure": "INCONCLUSIVE",
+                "separation": "SUPPORTED",
+                "quotient": "INCONCLUSIVE",
+            },
+            lean_theorems=("Problems.Engine.TwoPathZ2",),
+            census_kind="FINITE_CENSUS",
+            strongest_exact="two_path_nonneg_never_origin",
+        ),
+        finalized=True,
+    )
+
     return tuple(
         _enrich_lessons(item)
         for item in (
@@ -1339,6 +1455,7 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
             skolem,
             hygiene,
             positivity,
+            switching,
         )
     )
 
@@ -1517,6 +1634,31 @@ def _lesson_fields() -> dict[str, dict]:
             possible_transfer_targets=("companion_shift_order6", "carelli_rplus", "bb5_map"),
             status=GreyLootStatus.PARKED,
             engineering_action="PARK",
+            prior_art_status="KNOWN",
+        ),
+        "switching_affine_z2_origin:loot:cycle": dict(
+            observation="unit pair (1,0)<->(0,1) is a 2-cycle",
+            reusable_lesson="a finite cycle disjoint from the origin is an exact origin-avoidance witness, not a basin theorem",
+            possible_transfer_targets=("mx_plus_r_7x1_class_obstruction",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+            counterexample="(1,0)<->(0,1)",
+        ),
+        "switching_affine_z2_origin:loot:n2": dict(
+            observation="N^2 is invariant and the only nonnegative origin preimage is the origin",
+            reusable_lesson="low-dimensional switching affine origin-avoidance can be a finite preimage fact once the pieces are known",
+            possible_transfer_targets=("mx_plus_r_7x1_class_obstruction",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "switching_affine_z2_origin:loot:global": dict(
+            observation="N^2 origin non-reachability is decided without infinite-time reasoning",
+            reusable_lesson="Skolem/Positivity failed at infinite-time certificates; this 2-D switching map yields an exact class obstruction before that barrier",
+            possible_transfer_targets=("companion_shift_order6", "positivity_order10"),
+            status=GreyLootStatus.REUSED,
+            engineering_action="RECORD",
             prior_art_status="KNOWN",
         ),
     }

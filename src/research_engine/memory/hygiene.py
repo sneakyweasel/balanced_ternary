@@ -16,6 +16,8 @@ DEFAULT_ALLOWLIST: tuple[str, ...] = (
     "CompanionShift",
     "vector_affine",
     "matrix_word_invariant",
+    "switching_affine_z2_origin",
+    "two_path_z2",
 )
 
 

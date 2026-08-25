@@ -100,6 +100,9 @@ def test_known_failures_classify_to_expected_classes():
     assert globals_skolem and compute
     globals_pos = [f for f in by_id["positivity_order10"].failures if f.failure_class is FailureClass.GLOBAL_REASONING]
     assert globals_pos
+    switching = by_id["switching_affine_z2_origin"]
+    assert switching.novelty_status is NoveltyStatus.KNOWN_REDISCOVERY
+    assert all(f.failure_class is not FailureClass.GLOBAL_REASONING for f in switching.failures)
     hygiene = by_id["skolem_lrs_hygiene"].failures[0]
     assert hygiene.failure_class is FailureClass.EXPERIMENT_HYGIENE
     assert hygiene.status.value == "RESOLVED"
@@ -144,6 +147,7 @@ def test_global_and_quantifier_clusters_are_not_by_target_name():
     assert "companion_obs_order10" in global_cluster.targets
     assert "rplus" in global_cluster.targets
     assert "bb5_map" in global_cluster.targets
+    assert "two_path_z2" not in global_cluster.targets
     assert "sum_strip" not in global_cluster.targets
     quant_cluster = clusters[quant_keys[0]]
     assert quant_cluster.recurrence_count >= 2

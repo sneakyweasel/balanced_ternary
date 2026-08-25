@@ -2418,4 +2418,48 @@ Best next question
 - Which frozen-engine target still lies inside the existing low-dimensional affine language, now that both Skolem and Positivity have recorded the same finite-to-infinite gap?
 ```
 
+## Frozen Engine campaign: switching affine Z^2 origin
+
+- **Date:** 2026-08-25
+- **Objective:** Test whether frozen v2 + v2.2 memory can cash out existing low-dimensional affine attacks on the stored two-path integer loop, without re-entering the `GLOBAL_REASONING` cluster
+- **Hypotheses:** Vector census recovers the two declared pieces; origin from \((3,2)\) is not a finite witness; a class obstruction on \(\mathbb N_0^2\) is elementary from preimages; this is not Skolem/Positivity
+- **Major results:** `FINITE_CENSUS` of \((x+y,y-1)\) and \((x-1,x+y)\). Image-kernel matrix-word CLASS cycle obstruction on a 2-letter alphabet. Closure incomplete (cap 32). Origin absent from the truncated union. Lean `two_path_nonneg_never_origin`: nonnegative non-origin states never reach \((0,0)\). Planner unchanged with memory. Next leftover pick `cyclic_tag_bit` (un-overridden). No new attack
+- **Refuted ideas:** \((3,2)\) reaches the origin on the bound; every small nonnegative seed reaches the origin; no period-2 orbit; truncated BFS is a global basin; this failure belongs in `GLOBAL_REASONING`
+- **Literature:** Ben-Amram–Genaim–Ouaknine–Worrell 2025 survey; Hosseini–Ouaknine–Worrell 2019 affine SLC. All identities KNOWN
+- **Open:** termination on all of \(\mathbb Z^2\); origin on \(\mathbb N_0^2\) is classified
+- **Decision:** CLOSE (engine `CONTINUE` on the finite census; statements are all KNOWN)
+
+```text
+What was learned
+- Frozen vector_affine recovers the two stored switching pieces as a FINITE_CENSUS
+- matrix_word_invariant emits an image-kernel cycle obstruction; that is not an origin theorem
+- Scalar control_word / control_obstruction stay inapplicable on this dummy-control packet
+- N^2 origin-avoidance is a finite preimage fact, certified in Lean, not an infinite-time barrier
+- Truncated residual BFS (size 33, incomplete) is not a basin and not infinitude
+
+Strongest theorem
+- two_path_nonneg_never_origin (Lean); KNOWN
+
+Strongest refutation
+- (3,2) does not reach (0,0); (1,0)<->(0,1) is a 2-cycle disjoint from the origin
+
+Reusable machinery
+- Hint-free TwoPathZ2Spec; v2.2 ingest that does not join GLOBAL_REASONING; scout kept off the adapter
+
+Prior-art status
+- KNOWN two-path arithmetic; ENGINE REDISCOVERY of the two affine pieces; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- The existing stack cashed the representation and an elementary class obstruction. Every statement is KNOWN. Do not add a switching-affine attack.
+
+Best next question
+- What representation mismatch, if any, does the un-overridden leftover pick cyclic_tag_bit still teach?
+```
+
 
