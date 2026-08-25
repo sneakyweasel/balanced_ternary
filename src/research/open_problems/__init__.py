@@ -35,6 +35,15 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.signed_digit_residual_geometry.problem import (
         PROBLEM as SIGNED_DIGIT_RESIDUAL_GEOMETRY,
     )
+    from research.signed_digit_residual_minimality.problem import (
+        PROBLEM as SIGNED_DIGIT_RESIDUAL_MINIMALITY,
+    )
+    from research.signed_digit_constrained_controls.problem import (
+        PROBLEM as SIGNED_DIGIT_CONSTRAINED_CONTROLS,
+    )
+    from research.signed_digit_short_horizon.problem import (
+        PROBLEM as SIGNED_DIGIT_SHORT_HORIZON,
+    )
     from research.multiplicative_residual.problem import PROBLEM as MULTIPLICATIVE_RESIDUAL
     from research.sparse_polynomials.problem import PROBLEM as SPARSE_POLYNOMIALS
     from research.stabilization.problem import PROBLEM as STABILIZATION
@@ -60,6 +69,9 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         REWRITE_CALCULUS,
         SIGNED_DIGIT_RESIDUAL,
         SIGNED_DIGIT_RESIDUAL_GEOMETRY,
+        SIGNED_DIGIT_RESIDUAL_MINIMALITY,
+        SIGNED_DIGIT_CONSTRAINED_CONTROLS,
+        SIGNED_DIGIT_SHORT_HORIZON,
         MULTIPLICATIVE_RESIDUAL,
         BALANCED_DIGIT_SUM_POLYNOMIALS,
         ERDOS_DISTINCT_SUBSET_SUMS,

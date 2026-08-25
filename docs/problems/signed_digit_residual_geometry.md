@@ -128,7 +128,10 @@ so `1` is a lattice point in the box that is never generated.
 
 ## Open questions
 
-None opened as conjectures.
+Answered by [signed_digit_residual_minimality.md](signed_digit_residual_minimality.md):
+`M=|R|` for every nonempty `U` when `λ` is not divisible by 3, by a
+constant word of length `v_3(s-t)+1`. Do not auto-start a general-radix
+theorem.
 
 ## Decision
 
@@ -137,8 +140,8 @@ explicit admissible words both ways, and the refutation of
 lattice-in-box for arbitrary `U`. Avizienis remains `KNOWN`. The
 promoted content is origin-reachable geometry, not a carry transducer.
 
-Best next question: is `M=|R|` for every finite `U` in this output
-convention, or does some sparse alphabet merge distinct residuals?
+Best next question: answered by
+[signed_digit_residual_minimality.md](signed_digit_residual_minimality.md).
 
 ## Publication assessment
 

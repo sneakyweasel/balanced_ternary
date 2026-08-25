@@ -2681,6 +2681,138 @@
     "related_conjectures": []
   },
   {
+    "id": "BTN-sdrm-separation",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If λ is not divisible by 3 and s≠t, the constant word of any letter of length v_3(s-t)+1 distinguishes the output streams of F_{λ,U}(s,u)=λ·D(s+u) with output lsd(s+u). Distinct residuals are therefore Mealy-inequivalent, so M(λ,U)=|R_{λ,U}| on every nonempty origin-reachable machine in this regime.",
+    "source": "docs/problems/signed_digit_residual_minimality.md",
+    "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
+    "tests": [
+      "tests/research/signed_digit_residual_minimality/test_signed_digit_residual_minimality.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrm-lambda3-translate",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "At λ=3, translation by 3k preserves every output stream: signedTrace 3 (s+3k) w = signedTrace 3 s w. This symmetry is not origin-reachable when max|u|≤1.",
+    "source": "docs/problems/signed_digit_residual_minimality.md",
+    "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
+    "tests": [
+      "tests/research/signed_digit_residual_minimality/test_signed_digit_residual_minimality.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrm-merge-exists",
+    "tag": "REFUTED",
+    "statement": "Some listed finite U at λ=1 or λ=2 has M(λ,U)<|R_{λ,U}|.",
+    "source": "docs/problems/signed_digit_residual_minimality.md",
+    "lean": "",
+    "tests": [
+      "tests/research/signed_digit_residual_minimality/test_signed_digit_residual_minimality.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrm-mod3-merges",
+    "tag": "REFUTED",
+    "statement": "Identical immediate lsd signatures force behavioral equivalence of residual states.",
+    "source": "docs/problems/signed_digit_residual_minimality.md",
+    "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
+    "tests": [
+      "tests/research/signed_digit_residual_minimality/test_signed_digit_residual_minimality.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrc-any-word",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If λ is not divisible by 3 and s≠t, every word of length v_3(s-t)+1 distinguishes the lsd output streams of F_{λ,U}(s,u)=λ·D(s+u). A common cyclic letter is not required.",
+    "source": "docs/problems/signed_digit_constrained_controls.md",
+    "lean": "Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
+    "tests": [
+      "tests/research/signed_digit_constrained_controls/test_signed_digit_constrained_controls.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrc-need-constant",
+    "tag": "REFUTED",
+    "statement": "3-adic residual rigidity requires a common cyclic or constant legal letter.",
+    "source": "docs/problems/signed_digit_constrained_controls.md",
+    "lean": "",
+    "tests": [
+      "tests/research/signed_digit_constrained_controls/test_signed_digit_constrained_controls.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrc-residual-merge",
+    "tag": "REFUTED",
+    "statement": "Some Model A–D finite control constraint merges distinct residuals at the same control state.",
+    "source": "docs/problems/signed_digit_constrained_controls.md",
+    "lean": "",
+    "tests": [
+      "tests/research/signed_digit_constrained_controls/test_signed_digit_constrained_controls.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrc-lambda3-symmetry",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "At λ=3, translation by 3k preserves the output stream of every word, so a control-language restriction cannot destroy that symmetry.",
+    "source": "docs/problems/signed_digit_constrained_controls.md",
+    "lean": "Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
+    "tests": [
+      "tests/research/signed_digit_constrained_controls/test_signed_digit_constrained_controls.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdsh-truncated-mod",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If 3^L divides s-t and |w|≤L, then the lsd streams of F_{λ,U} from s and t agree on w. A remaining-horizon L controller therefore merges (s,q_L) and (t,q_L) whenever that congruence holds.",
+    "source": "docs/problems/signed_digit_short_horizon.md",
+    "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
+    "tests": [
+      "tests/research/signed_digit_short_horizon/test_signed_digit_short_horizon.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdsh-sep",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If λ is not divisible by 3, s≠t, and |w|≥v_3(s-t)+1, then the lsd streams differ on w. Finite horizon preserves residual distinguishability exactly when a legal word of that length exists.",
+    "source": "docs/problems/signed_digit_short_horizon.md",
+    "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
+    "tests": [
+      "tests/research/signed_digit_short_horizon/test_signed_digit_short_horizon.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdsh-short-separator",
+    "tag": "REFUTED",
+    "statement": "Some legal word shorter than v_3(s-t)+1 always separates distinct residuals, even when the control language forbids every critical-length word.",
+    "source": "docs/problems/signed_digit_short_horizon.md",
+    "lean": "",
+    "tests": [
+      "tests/research/signed_digit_short_horizon/test_signed_digit_short_horizon.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdsh-only-deadlock",
+    "tag": "REFUTED",
+    "statement": "Finite control horizon creates residual merges only through deadlock or empty continuation.",
+    "source": "docs/problems/signed_digit_short_horizon.md",
+    "lean": "",
+    "tests": [
+      "tests/research/signed_digit_short_horizon/test_signed_digit_short_horizon.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "BTN-mr-factor-through-raw",
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "If F(s,c)=λ·D(s+h(c)) then F(s,(d1,d2))=λ·D(s+d1 d2). Two-trit product residual factors through the raw contribution.",

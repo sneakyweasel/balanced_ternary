@@ -213,6 +213,70 @@ def test_research_reproduce_signed_digit_residual_geometry_links_lean():
     assert "admit" not in report.lower()
 
 
+def test_research_analyze_signed_digit_residual_minimality_is_exact_three_not_live():
+    out = _run("research", "analyze", "signed_digit_residual_minimality")
+    assert "problem: signed_digit_residual_minimality" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED LIVE_SLICE" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_signed_digit_residual_minimality_links_lean():
+    out = _run("research", "reproduce", "sdrm")
+    assert "reproduce: ok" in out
+    assert "hypothesis sdrm_lambda1_u2_minimal: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis sdrm_merge_exists: REFUTED" in out
+    assert "hypothesis sdrm_mod3_merges: REFUTED" in out
+    report = _run("research", "report", "signed_digit_residual_minimality")
+    assert "residual_separation" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()
+
+
+def test_research_analyze_signed_digit_constrained_controls_is_exact_ten_not_live():
+    out = _run("research", "analyze", "signed_digit_constrained_controls")
+    assert "problem: signed_digit_constrained_controls" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED LIVE_SLICE" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_signed_digit_constrained_controls_links_lean():
+    out = _run("research", "reproduce", "sdcc")
+    assert "reproduce: ok" in out
+    assert "hypothesis sdrc_norepeat_u2_product: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis sdrc_need_constant: REFUTED" in out
+    assert "hypothesis sdrc_residual_merge: REFUTED" in out
+    report = _run("research", "report", "signed_digit_constrained_controls")
+    assert "any_word_separation" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()
+
+
+def test_research_analyze_signed_digit_short_horizon_is_exact_seven_not_live():
+    out = _run("research", "analyze", "signed_digit_short_horizon")
+    assert "problem: signed_digit_short_horizon" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED LIVE_SLICE" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_signed_digit_short_horizon_links_lean():
+    out = _run("research", "reproduce", "sdsh")
+    assert "reproduce: ok" in out
+    assert "hypothesis sdsh_horizon_u2_product: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis sdsh_genuine_merge: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis sdsh_short_separator: REFUTED" in out
+    assert "hypothesis sdsh_only_deadlock: REFUTED" in out
+    report = _run("research", "report", "signed_digit_short_horizon")
+    assert "truncated_3adic_equiv" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()
+
+
 def test_research_analyze_multiplicative_residual_is_exact_one_not_live():
     out = _run("research", "analyze", "multiplicative_residual")
     assert "problem: multiplicative_residual" in out

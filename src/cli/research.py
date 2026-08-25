@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, multiplicative_residual, collatz, primes, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -92,6 +92,27 @@ def _normalize_problem(name: str) -> str:
     }:
         return "signed_digit_residual_geometry"
     if key.lower() in {
+        "signed_digit_residual_minimality",
+        "signed-digit-residual-minimality",
+        "sdrm",
+        "sdr_minimality",
+    }:
+        return "signed_digit_residual_minimality"
+    if key.lower() in {
+        "signed_digit_constrained_controls",
+        "signed-digit-constrained-controls",
+        "sdcc",
+        "sdr_constrained",
+    }:
+        return "signed_digit_constrained_controls"
+    if key.lower() in {
+        "signed_digit_short_horizon",
+        "signed-digit-short-horizon",
+        "sdsh",
+        "sdr_horizon",
+    }:
+        return "signed_digit_short_horizon"
+    if key.lower() in {
         "multiplicative_residual",
         "multiplicative-residual",
         "mul_residual",
@@ -118,7 +139,7 @@ def _normalize_problem(name: str) -> str:
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, multiplicative_residual, collatz, primes, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, or A-E"
     )
 
 
@@ -176,6 +197,33 @@ def _plan(problem: str, remaining: int):
 
         report = plan_signed_digit_residual_geometry(remaining)
         targets = export_geometry_targets(report)
+        return report, targets
+    if problem == "signed_digit_residual_minimality":
+        from research.signed_digit_residual_minimality.adapter import (
+            export_minimality_targets,
+            plan_signed_digit_residual_minimality,
+        )
+
+        report = plan_signed_digit_residual_minimality(remaining)
+        targets = export_minimality_targets(report)
+        return report, targets
+    if problem == "signed_digit_constrained_controls":
+        from research.signed_digit_constrained_controls.adapter import (
+            export_constrained_targets,
+            plan_signed_digit_constrained_controls,
+        )
+
+        report = plan_signed_digit_constrained_controls(remaining)
+        targets = export_constrained_targets(report)
+        return report, targets
+    if problem == "signed_digit_short_horizon":
+        from research.signed_digit_short_horizon.adapter import (
+            export_short_horizon_targets,
+            plan_signed_digit_short_horizon,
+        )
+
+        report = plan_signed_digit_short_horizon(remaining)
+        targets = export_short_horizon_targets(report)
         return report, targets
     if problem == "multiplicative_residual":
         from research.multiplicative_residual.adapter import (
@@ -262,6 +310,21 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = geometry_spec(remaining)
         context = spec.attack_context()
+    elif problem == "signed_digit_residual_minimality":
+        from research.signed_digit_residual_minimality.spec import minimality_spec
+
+        spec = minimality_spec(remaining)
+        context = spec.attack_context()
+    elif problem == "signed_digit_constrained_controls":
+        from research.signed_digit_constrained_controls.spec import constrained_spec
+
+        spec = constrained_spec(remaining)
+        context = spec.attack_context()
+    elif problem == "signed_digit_short_horizon":
+        from research.signed_digit_short_horizon.spec import short_horizon_spec
+
+        spec = short_horizon_spec(remaining)
+        context = spec.attack_context()
     elif problem == "multiplicative_residual":
         from research.multiplicative_residual.spec import product_spec
 
@@ -310,6 +373,12 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _signed_digit_residual_reproduce_failures(report, targets)
     elif problem == "signed_digit_residual_geometry":
         failures = _signed_digit_residual_geometry_reproduce_failures(report, targets)
+    elif problem == "signed_digit_residual_minimality":
+        failures = _signed_digit_residual_minimality_reproduce_failures(report, targets)
+    elif problem == "signed_digit_constrained_controls":
+        failures = _signed_digit_constrained_controls_reproduce_failures(report, targets)
+    elif problem == "signed_digit_short_horizon":
+        failures = _signed_digit_short_horizon_reproduce_failures(report, targets)
     elif problem == "multiplicative_residual":
         failures = _multiplicative_residual_reproduce_failures(report, targets)
     elif problem == "collatz_finite_descent":
@@ -663,6 +732,181 @@ def _signed_digit_residual_geometry_reproduce_failures(report, targets) -> tuple
         )
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("signed_digit_residual_geometry: exported a LIVE target")
+    return tuple(failures)
+
+
+def _signed_digit_residual_minimality_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.signed_digit_residual_minimality.lean_export import (
+        CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.signed_digit_residual_minimality.planner import (
+        CLOSURE_HYPOTHESIS,
+        MERGE_HYPOTHESIS,
+        MOD3_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 3):
+        failures.append("signed_digit_residual_minimality: closure is not EXACT size 3")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("signed_digit_residual_minimality: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("signed_digit_residual_minimality: modular/spectral should stay inapplicable")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("signed_digit_residual_minimality: U_2 minimal hypothesis is not SUPPORTED")
+    merge = next(
+        (item for item in report.hypotheses if item.id == MERGE_HYPOTHESIS.id),
+        None,
+    )
+    if merge is None or merge.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_residual_minimality: merge-exists is not REFUTED")
+    mod3 = next(
+        (item for item in report.hypotheses if item.id == MOD3_HYPOTHESIS.id),
+        None,
+    )
+    if mod3 is None or mod3.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_residual_minimality: mod3-merge hypothesis is not REFUTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != CLOSURE_THEOREM
+    ):
+        failures.append(
+            "signed_digit_residual_minimality: closure is not linked to residual_separation"
+        )
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("signed_digit_residual_minimality: exported a LIVE target")
+    return tuple(failures)
+
+
+def _signed_digit_constrained_controls_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.signed_digit_constrained_controls.lean_export import (
+        CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.signed_digit_constrained_controls.planner import (
+        CLOSURE_HYPOTHESIS,
+        CONSTANT_HYPOTHESIS,
+        MERGE_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 10):
+        failures.append("signed_digit_constrained_controls: closure is not EXACT size 10")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("signed_digit_constrained_controls: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("signed_digit_constrained_controls: modular/spectral should stay inapplicable")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("signed_digit_constrained_controls: no-repeat product hypothesis is not SUPPORTED")
+    constant = next(
+        (item for item in report.hypotheses if item.id == CONSTANT_HYPOTHESIS.id),
+        None,
+    )
+    if constant is None or constant.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_constrained_controls: constant-word hypothesis is not REFUTED")
+    merge = next(
+        (item for item in report.hypotheses if item.id == MERGE_HYPOTHESIS.id),
+        None,
+    )
+    if merge is None or merge.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_constrained_controls: residual-merge hypothesis is not REFUTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != CLOSURE_THEOREM
+    ):
+        failures.append(
+            "signed_digit_constrained_controls: closure is not linked to any_word_separation"
+        )
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("signed_digit_constrained_controls: exported a LIVE target")
+    return tuple(failures)
+
+
+def _signed_digit_short_horizon_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.signed_digit_short_horizon.lean_export import (
+        CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.signed_digit_short_horizon.planner import (
+        CLOSURE_HYPOTHESIS,
+        DEADLOCK_HYPOTHESIS,
+        MERGE_HYPOTHESIS,
+        SHORT_SEP_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 7):
+        failures.append("signed_digit_short_horizon: closure is not EXACT size 7")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("signed_digit_short_horizon: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("signed_digit_short_horizon: modular/spectral should stay inapplicable")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("signed_digit_short_horizon: horizon product hypothesis is not SUPPORTED")
+    merge = next(
+        (item for item in report.hypotheses if item.id == MERGE_HYPOTHESIS.id),
+        None,
+    )
+    if merge is None or merge.status is not HypothesisStatus.SUPPORTED:
+        failures.append("signed_digit_short_horizon: genuine-merge hypothesis is not SUPPORTED")
+    short_sep = next(
+        (item for item in report.hypotheses if item.id == SHORT_SEP_HYPOTHESIS.id),
+        None,
+    )
+    if short_sep is None or short_sep.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_short_horizon: short-separator hypothesis is not REFUTED")
+    deadlock = next(
+        (item for item in report.hypotheses if item.id == DEADLOCK_HYPOTHESIS.id),
+        None,
+    )
+    if deadlock is None or deadlock.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_short_horizon: deadlock-only hypothesis is not REFUTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != CLOSURE_THEOREM
+    ):
+        failures.append(
+            "signed_digit_short_horizon: closure is not linked to truncated_3adic_equiv"
+        )
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("signed_digit_short_horizon: exported a LIVE target")
     return tuple(failures)
 
 
