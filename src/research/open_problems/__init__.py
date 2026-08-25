@@ -27,9 +27,11 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.regular_output_preimages.problem import PROBLEM as REGULAR_OUTPUT_PREIMAGES
     from research.residual_complexity.problem import PROBLEM as RESIDUAL_COMPLEXITY
     from research.perfect_powers.problem import PROBLEM as PERFECT_POWERS
+    from research.prime_residual_complexity.problem import PROBLEM as PRIME_RESIDUAL
     from research.primes.problem import PROBLEM as PRIMES
     from research.residuals.problem import PROBLEM as RESIDUALS
     from research.rewrite_calculus.problem import PROBLEM as REWRITE_CALCULUS
+    from research.signed_digit_residual.problem import PROBLEM as SIGNED_DIGIT_RESIDUAL
     from research.sparse_polynomials.problem import PROBLEM as SPARSE_POLYNOMIALS
     from research.stabilization.problem import PROBLEM as STABILIZATION
 
@@ -42,6 +44,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         ADDITIVE,
         PERFECT_POWERS,
         PRIMES,
+        PRIME_RESIDUAL,
         SPARSE_POLYNOMIALS,
         OPERATOR_DYNAMICS,
         STABILIZATION,
@@ -51,6 +54,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         RESIDUAL_COMPLEXITY,
         MONNA_ENDPOINT_SPECTRA,
         REWRITE_CALCULUS,
+        SIGNED_DIGIT_RESIDUAL,
         BALANCED_DIGIT_SUM_POLYNOMIALS,
         ERDOS_DISTINCT_SUBSET_SUMS,
         OSTROWSKI,

@@ -30,6 +30,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.collatz_finite_descent` | `ARCHIVED` | shortcut `C`; uniform 2-adic `L`-descent `CLOSE` |
 | `research.ostrowski` | `STRUCTURAL` | order-3 \(B_{\min}\); NP \(K\) unbounded; \(L_0\) PARK; `OstrowskiSpec` adapter |
 | `research.balanced_ternary` | `STRUCTURAL` | doubled-trit; expanding `T` jets; `D(x+y)` residual |
+| `research.signed_digit_residual` | `STRUCTURAL` | `F_{λ,U_m}=λ·D(s+u)`; finite iff `λ≤2` or `m≤1`; `M(r)=2⌊r/2⌋+1` |
 | `research.regular_output_preimages` | `STRUCTURAL` | regular output of \(x^2\); sofic obstruction |
 | `research.residual_complexity` | `STRUCTURAL` | unrestricted \(C_F(m,r)\); superdiagonal band |
 | `research.monna_endpoint_spectra` | `STRUCTURAL` | balanced-Monna endpoint spectra; gate closed |
@@ -37,6 +38,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.additive_combinatorics` | `EXPLORATORY` | `A_k`, `B_k`, `C_k`, sumsets |
 | `research.perfect_powers` | `EXPLORATORY` | sparse squares and cubes |
 | `research.primes` | `EXPLORATORY` | sparse-prime helpers already in the repo |
+| `research.prime_residual_complexity` | `ARCHIVED` | Prime vs sieve residuals under `I_a`; `CLOSE` |
 | `research.sparse_polynomials` | `EXPLORATORY` | Mahler / factor scans |
 | `research.operator_dynamics` | `ARCHIVED` | {S,N,D,W} identities; length-≤4 close |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |

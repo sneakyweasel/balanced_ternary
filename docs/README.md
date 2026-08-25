@@ -132,6 +132,7 @@ Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 - [Additive combinatorics](problems/additive_combinatorics.md)
 - [Perfect powers](problems/perfect_powers.md)
 - [Primes](problems/primes.md)
+- [Prime residual complexity](problems/prime_residual_complexity.md)
 - [Sparse polynomials](problems/sparse_polynomials.md)
 - [Operator dynamics](problems/operator_dynamics.md)
 - [Balanced digit sums of nonlinear polynomial values](problems/balanced_digit_sum_polynomials.md)

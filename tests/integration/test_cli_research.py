@@ -170,6 +170,26 @@ def test_research_reproduce_d_add_links_lean():
     assert "admit" not in report.lower()
 
 
+def test_research_analyze_signed_digit_residual_is_exact_three_not_live():
+    out = _run("research", "analyze", "signed_digit_residual")
+    assert "problem: signed_digit_residual" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED LIVE_SLICE" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_signed_digit_residual_links_lean():
+    out = _run("research", "reproduce", "sdr")
+    assert "reproduce: ok" in out
+    assert "hypothesis sdr_lambda1_u2_closure: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis sdr_scalar_lambda3: REFUTED" in out
+    report = _run("research", "report", "signed_digit_residual")
+    assert "lambda1_u2_residual_closure" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()
+
+
 def test_research_analyze_collatz_is_inconclusive_not_live():
     out = _run("research", "analyze", "collatz")
     assert "problem: collatz_finite_descent" in out
@@ -186,5 +206,26 @@ def test_research_reproduce_collatz_links_lean():
     assert "hypothesis collatz_uniform_L_descent: REFUTED" in out
     report = _run("research", "report", "collatz")
     assert "shortcutC_no_uniform_L_descent" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()
+
+
+def test_research_analyze_primes_sieve_is_exact_not_live():
+    out = _run("research", "analyze", "primes")
+    assert "problem: prime_residual_complexity" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis prc_sieve_equals_prime: REFUTED" in out
+    assert "hypothesis prc_jet_equals_prime: REFUTED" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_primes_links_lean():
+    out = _run("research", "reproduce", "primes")
+    assert "reproduce: ok" in out
+    assert "hypothesis prc_sieve_equals_prime: REFUTED" in out
+    report = _run("research", "report", "primes")
+    assert "sievePrime_I0_separator" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
