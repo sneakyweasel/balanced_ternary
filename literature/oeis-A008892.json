@@ -1,0 +1,22 @@
+{
+  "id": "oeis-A008892",
+  "title": "Aliquot sequence starting at 276",
+  "authors": ["N. J. A. Sloane"],
+  "year": 1996,
+  "identifiers": {
+    "oeis": "A008892"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A008892"
+  },
+  "problem_area": "aliquot-dynamics",
+  "relevant_concepts": [
+    "aliquot sequence",
+    "276",
+    "Lehmer five",
+    "open termination"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/problems/aliquot_dynamics.md. Records 2145 terms; term 2145 has 214 digits; whether the sequence reaches 0 is open. Not an adapter hint."
+}

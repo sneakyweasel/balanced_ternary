@@ -2205,5 +2205,48 @@ Best next question
 - Which other frozen-engine mathematical target should be consumed next, leaving parked fingerprint coarseness and the open convergence of B untouched?
 ```
 
+## Frozen Engine campaign: aliquot dynamics
+
+- **Date:** 2026-08-25
+- **Objective:** Stress-test frozen v2 on A(n)=sigma(n)-n, including open seed 276, without new attacks
+- **Hypotheses:** Affine census will fail; known small cycles/termination appear as exact closures; 276 remains unresolved; ENGINE_LIMITATION is the honest diagnosis
+- **Major results:** Census UNRESOLVED on all seeds. 12: exact halt to 0. 6: 1-state closure. 220: 2-state closure. 276: ENGINE_LIMITATION, mixed magnitude, closure cap 32, prefix 276,396,696,1104,1872,3770 matches A008892; no fate claimed. Descent REFUTED at 12. Lean properDivisorSum_*. No new attack. ResearchLoop next un-overridden
+- **Refuted ideas:** global A(n)<n; seed closure as contraction; treating 276 truncation as infinitude or termination
+- **Literature:** Guy–Selfridge 1975; Erdős 1976; te Riele 1999; OEIS A008892. All identities KNOWN
+- **Open:** fate of 276; Catalan–Dickson; parked affine-language limitation
+- **Decision:** PARK (engine: ENGINE_LIMITATION on 276)
+
+```text
+What was learned
+- Factorization-dependent A(n) is outside the frozen affine/valuation attack language
+- Known small recurrent seeds still appear as exact finite closures
+- 276's opening trajectory is recomputed exactly within budget; its fate is not
+- ENGINE_LIMITATION is the correct flagship diagnosis, not a failed experiment
+
+Strongest theorem
+- properDivisorSum_prime / properDivisorSum_six / properDivisorSum_220_284 (Lean); KNOWN
+
+Strongest refutation
+- A(12)=16; finite seed closure is not contraction
+
+Reusable machinery
+- Budgeted SigmaMinusNSpec with TRANSITION_UNRESOLVED; scout kept off the adapter
+
+Prior-art status
+- KNOWN aliquot lore; ENGINE_LIMITATION on piecewise-affine cover; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PARK
+
+Why
+- The experiment answered the boundary question: existing machinery diagnoses and closes tiny known orbits, and cannot consume divisor-sum dynamics. Do not add an aliquot attack.
+
+Best next question
+- Which frozen-engine target still lies inside the existing attack language, now that this arithmetic boundary is recorded?
+```
+
 
 
