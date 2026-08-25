@@ -1,3 +1,4 @@
+import Mathlib.Algebra.Order.Field.Basic
 import Mathlib.Algebra.Ring.Parity
 import Mathlib.Data.Nat.Prime.Basic
 import Mathlib.NumberTheory.Padics.PadicVal.Basic
@@ -204,8 +205,11 @@ theorem monnaEndpoint_factor_ne_three_pow (n k : ℕ) (ζ : ℚ) :
     have hk : k = 2 * n := by exact_mod_cast hval.symm
     subst hk
     have h3 : (3 : ℚ) ^ (2 * n) ≠ 0 := three_pow_ne_zero _
-    have h4 : (4 : ℚ) = 1 :=
-      mul_right_cancel₀ h3 (by simpa using h)
+    have hx :
+        (4 : ℚ) * (3 : ℚ) ^ (2 * n) = (1 : ℚ) * (3 : ℚ) ^ (2 * n) := by
+      rw [one_mul]
+      exact h
+    have h4 : (4 : ℚ) = 1 := mul_right_cancel₀ h3 hx
     norm_num at h4
   · have hval :
         padicValRat 3 (3 * ζ ^ 2 + 4 * (3 : ℚ) ^ (2 * n))
@@ -225,7 +229,7 @@ theorem monnaEndpoint_factor_ne_three_pow (n k : ℕ) (ζ : ℚ) :
         linarith
       have hpowlt : (3 : ℚ) ^ k < 4 * (3 : ℚ) ^ (2 * n) := by
         have hlt3 : (3 : ℚ) ^ k < (3 : ℚ) ^ (2 * n) :=
-          pow_lt_pow_right (by norm_num : (1 : ℚ) < 3) hkn
+          pow_lt_pow_right₀ (by norm_num : (1 : ℚ) < 3) hkn
         have hle4 : (3 : ℚ) ^ (2 * n) ≤ 4 * (3 : ℚ) ^ (2 * n) := by
           nlinarith [three_pow_pos (2 * n)]
         linarith
@@ -292,10 +296,10 @@ theorem monnaEndpoint_cube_diff_ne_four_three_pow (n k : ℕ) (ζ : ℚ) :
       (eq_div_iff (three_pow_ne_zero n)).2 (by linarith [hcancel])
     have hsmall : (3 : ℚ) ^ k / (3 : ℚ) ^ n < 1 := by
       rw [div_lt_one (three_pow_pos n)]
-      exact pow_lt_pow_right (by norm_num : (1 : ℚ) < 3) hkn
+      exact pow_lt_pow_right₀ (by norm_num : (1 : ℚ) < 3) hkn
     have hge4 : (4 : ℚ) ≤ 3 * ζ ^ 2 + 4 * (3 : ℚ) ^ (2 * n) := by
       have hpow1 : (1 : ℚ) ≤ (3 : ℚ) ^ (2 * n) :=
-        one_le_pow_of_one_le (by norm_num) _
+        one_le_pow₀ (by norm_num : (1 : ℚ) ≤ 3)
       nlinarith [monnaEndpoint_factor_nonneg_sq ζ]
     linarith
 
