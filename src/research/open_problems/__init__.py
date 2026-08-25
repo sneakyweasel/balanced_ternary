@@ -13,6 +13,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.balanced_ternary.problem import PROBLEM as BALANCED_TERNARY
     from research.cerny_bt.problem import PROBLEM as CERNY_BT
     from research.collatz.problem import PROBLEM as COLLATZ
+    from research.collatz_finite_descent.problem import PROBLEM as COLLATZ_FINITE_DESCENT
     from research.erdos_distinct_subset_sums.problem import (
         PROBLEM as ERDOS_DISTINCT_SUBSET_SUMS,
     )
@@ -34,6 +35,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
 
     return (
         COLLATZ,
+        COLLATZ_FINITE_DESCENT,
         RESIDUALS,
         LIFTING,
         PADIC_DYNAMICS,

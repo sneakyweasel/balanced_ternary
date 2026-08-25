@@ -1,0 +1,8 @@
+problem: collatz_finite_descent
+attack: functional
+claim: |ℓ| on the start layer is not nonincreasing under one live step
+status: REFUTED
+scope: BOUNDED
+evidence: union_size=5; horizon=4; observed_bound=27
+counterexamples: (((27,), 'O', (41,), 41),)
+lean_theorem: 

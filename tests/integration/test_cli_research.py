@@ -168,3 +168,23 @@ def test_research_reproduce_d_add_links_lean():
     assert "dAdd_residual_closure" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
+
+
+def test_research_analyze_collatz_is_inconclusive_not_live():
+    out = _run("research", "analyze", "collatz")
+    assert "problem: collatz_finite_descent" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED" in out
+    assert "attack closure: INCONCLUSIVE BOUNDED REACHABLE" in out
+    assert "hypothesis collatz_uniform_L_descent: REFUTED" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_collatz_links_lean():
+    out = _run("research", "reproduce", "collatz")
+    assert "reproduce: ok" in out
+    assert "hypothesis collatz_uniform_L_descent: REFUTED" in out
+    report = _run("research", "report", "collatz")
+    assert "shortcutC_no_uniform_L_descent" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()

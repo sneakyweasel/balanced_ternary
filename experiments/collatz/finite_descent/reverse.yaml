@@ -1,0 +1,8 @@
+problem: collatz_finite_descent
+attack: reverse
+claim: co-reachability of 2 seed(s), union size 18, scope BOUNDED; this is not the adder live set
+status: OBSERVED
+scope: BOUNDED
+evidence: union_size=18; complete=False; horizon=6
+counterexamples: ()
+lean_theorem: 

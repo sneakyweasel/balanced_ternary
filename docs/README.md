@@ -123,6 +123,7 @@ Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 - [Balanced-ternary finite-state dynamics](problems/balanced_ternary_finite_state_dynamics.md)
 - [Residuals](problems/residuals.md)
 - [Collatz](problems/collatz.md)
+- [Shortcut Collatz finite descent](problems/collatz_finite_descent.md)
 - [Ostrowski order-m adder](problems/ostrowski_order_m_adder.md)
 - [Regular-output preimages](problems/regular_output_preimages.md)
 - [Unrestricted residual complexity](problems/residual_complexity.md)

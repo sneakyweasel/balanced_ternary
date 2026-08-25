@@ -1,0 +1,8 @@
+problem: collatz_finite_descent
+attack: skipped
+claim: inapplicable or deferred
+status: OBSERVED
+scope: BOUNDED
+evidence: modular=inapplicable; affine=inapplicable; block=inapplicable; spectral=inapplicable; symbolic=not implemented in this phase
+counterexamples: ()
+lean_theorem: 
