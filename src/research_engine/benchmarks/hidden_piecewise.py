@@ -213,6 +213,25 @@ class HiddenPositiveDoubleSpec(HiddenIntegerSpec):
         return (0,)
 
 
+def _hidden_odd_part(x: int) -> int:
+    if x == 0:
+        return 0
+    sign = 1 if x > 0 else -1
+    value = abs(x)
+    while value % 2 == 0:
+        value //= 2
+    return sign * value
+
+
+def _hidden_one_minus_clear(x: int) -> int:
+    value = 1 - x
+    if value == 0:
+        return 0
+    while value % 2 == 0:
+        value //= 2
+    return value
+
+
 def _hidden_large_fixed(x: int) -> int:
     return 2 * x + (x % 2) - 100
 
@@ -226,3 +245,25 @@ class HiddenLargeFixedSpec(HiddenIntegerSpec):
 
     def _step(self, x: int) -> int:
         return _hidden_large_fixed(x)
+
+
+@dataclass(frozen=True)
+class HiddenOddPartSpec(HiddenIntegerSpec):
+    """Power-clear of x itself: remainder is identically 0."""
+
+    name: str = "hidden_odd_part"
+    start: int = 1
+
+    def _step(self, x: int) -> int:
+        return _hidden_odd_part(x)
+
+
+@dataclass(frozen=True)
+class HiddenOneMinusClearSpec(HiddenIntegerSpec):
+    """Power-clear of 1-x, so B = (-1)^m changes with word-length parity."""
+
+    name: str = "hidden_one_minus_clear"
+    start: int = 0
+
+    def _step(self, x: int) -> int:
+        return _hidden_one_minus_clear(x)

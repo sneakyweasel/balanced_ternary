@@ -8,10 +8,11 @@ from __future__ import annotations
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from enum import Enum
+from itertools import product
 from math import gcd
 from typing import Any
 
-from research_engine.attacks.control_word import subsequent_k_impossible
+from research_engine.attacks.control_word import compose_affine_steps, subsequent_k_impossible
 from research_engine.attacks.result import AttackContext, AttackResult, AttackStatus, inapplicable
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import CertificateKind, ClaimKind, SearchScope
@@ -19,6 +20,8 @@ from research_engine.core.semantics import CertificateKind, ClaimKind, SearchSco
 LEAN_DVD = "Problems.Engine.exists_mul_eq_iff_dvd"
 LEAN_ABS = "Problems.Engine.not_dvd_of_abs_gt"
 LEAN_CYCLE_DVD = "Problems.Engine.cycle_constraint_dvd"
+LEAN_LAST = "Problems.Engine.last_step_remainder"
+LEAN_BOUND = "Problems.Engine.cycle_abs_obstruction"
 
 
 class ObstructionKind(str, Enum):
@@ -32,8 +35,11 @@ class ObstructionKind(str, Enum):
 
 class ObstructionStatus(str, Enum):
     REFUTED = "REFUTED"
+    CANDIDATE = "CANDIDATE"
     SEARCH_SUPPORTED = "SEARCH_SUPPORTED"
+    FINITE_RANGE_SUPPORTED = "FINITE_RANGE_SUPPORTED"
     OBSTRUCTION_CANDIDATE = "OBSTRUCTION_CANDIDATE"
+    SYMBOLICALLY_PROVED = "SYMBOLICALLY_PROVED"
     PROVED = "PROVED"
     LEAN_CERTIFIED = "LEAN_CERTIFIED"
 
@@ -41,6 +47,7 @@ class ObstructionStatus(str, Enum):
 class ObstructionScope(str, Enum):
     WORD = "WORD"
     CLASS = "CLASS"
+    SYMBOLIC_CLASS = "SYMBOLIC_CLASS"
 
 
 @dataclass(frozen=True)
@@ -117,7 +124,107 @@ def discover_summary(
         summary["p"] = p
     if exponent_sum or length_power:
         summary["base"] = base
+    independence = last_control_independence(family)
+    if independence.get("independent"):
+        summary["remainder_independent_of_last"] = True
+        summary["variables"] = independence.get("variables")
+        summary["exact_relation"] = independence.get("exact_relation")
     return summary
+
+
+def compose_power_word(
+    base: int,
+    p: int,
+    r: int,
+    word: Sequence[int],
+) -> tuple[int, int, int]:
+    """Evaluate the certified power-family composition on a word.
+
+    Uses ``compose_affine_steps``; does not reimplement the composition law.
+    """
+    steps = tuple((base ** int(k), p, r) for k in word)
+    return compose_affine_steps(steps)
+
+
+def last_control_independence(family: Mapping[str, Any] | None) -> dict[str, Any]:
+    """C of prefix+(k) is independent of last k, derived from composition."""
+    if family is None:
+        return {"independent": False}
+    base = int(family.get("base") or family.get("q_base") or 0)
+    if "p" not in family or "r" not in family or base < 2:
+        return {"independent": False}
+    p = int(family["p"])
+    r = int(family["r"])
+    for length in (2, 3):
+        for prefix in product(range(3), repeat=length - 1):
+            values = {
+                compose_power_word(base, p, r, prefix + (last,))[2]
+                for last in (0, 1, 2, 5)
+            }
+            if len(values) != 1:
+                return {"independent": False}
+    return {
+        "independent": True,
+        "variables": ("prefix_sum", "length"),
+        "exact_relation": "C(prefix+(k,)) = p*C_prefix + r*A_prefix",
+        "identity_remainder": r,
+        "divisibility_mode": "SYMBOLIC_DIVISIBILITY",
+    }
+
+
+def last_k_threshold(base: int, p: int, r: int, length: int) -> int | None:
+    """Smallest last-control bound that forces |A-B| > |C| for every prefix.
+
+    Conservative: uses the P=0 worst case of
+    ``base^k > |r| * length * max(1,|p|)^{length-1} + |p|^length``.
+    """
+    if r == 0 or length < 2 or base < 2:
+        return None
+    coeff = abs(r) * length * max(1, abs(p)) ** (length - 1)
+    p_pow = abs(p) ** length
+    for k_min in range(1, 49):
+        if base ** k_min > coeff + p_pow:
+            return k_min
+    return None
+
+
+def _word_divides(base: int, p: int, r: int, word: Sequence[int]) -> bool:
+    a, b, c = compose_power_word(base, p, r, word)
+    left = a - b
+    if left == 0:
+        return c == 0
+    return c % left == 0
+
+
+def _scan_dividing_words(
+    base: int,
+    p: int,
+    r: int,
+    length: int,
+    last_values: Sequence[int],
+    max_pre: int,
+    *,
+    skip_zero_remainder: bool = False,
+) -> tuple[tuple[int, ...], ...]:
+    hits: list[tuple[int, ...]] = []
+    for prefix in product(range(max_pre + 1), repeat=length - 1):
+        for last in last_values:
+            word = prefix + (last,)
+            a, b, c = compose_power_word(base, p, r, word)
+            if skip_zero_remainder and c == 0:
+                continue
+            left = a - b
+            divides = (c == 0) if left == 0 else (c % left == 0)
+            if divides:
+                hits.append(word)
+    return tuple(hits)
+
+
+def _bound_holds(base: int, p: int, r: int, word: Sequence[int]) -> bool:
+    a, b, c = compose_power_word(base, p, r, word)
+    if c == 0:
+        return True
+    return abs(a - b) > abs(c)
 
 
 def length_one_divisor_class(
@@ -395,6 +502,185 @@ def _sign_domain_word(
     return certificates
 
 
+_PROVED_STATUSES = {
+    ObstructionStatus.PROVED.value,
+    ObstructionStatus.LEAN_CERTIFIED.value,
+    ObstructionStatus.SYMBOLICALLY_PROVED.value,
+}
+
+
+def _length_m_total_refutation(
+    family: Mapping[str, Any],
+    summary: Mapping[str, Any],
+    length: int,
+) -> ControlObstructionCertificate | None:
+    """Attack 'all length-m words are impossible' before any class claim."""
+    base = int(family.get("base") or family.get("q_base") or 0)
+    p = int(family["p"])
+    r = int(family["r"])
+    if base < 2 or length < 2:
+        return None
+    exceptions = _scan_dividing_words(base, p, r, length, range(0, 6), max_pre=4)
+    if not exceptions:
+        return ControlObstructionCertificate(
+            kind=ObstructionKind.DIVISIBILITY.value,
+            scope=ObstructionScope.CLASS.value,
+            status=ObstructionStatus.CANDIDATE.value,
+            reason="no dividing length-m word in the finite probe; not a class theorem",
+            constraint={"kind": "CYCLE_CONSTRAINT", "length": length, "form": "all words"},
+            summary={**dict(summary), "length": length},
+            contradiction={"probe_max": 4, "divisibility_mode": "CLASS_DIVISIBILITY"},
+        )
+    return ControlObstructionCertificate(
+        kind=ObstructionKind.DIVISIBILITY.value,
+        scope=ObstructionScope.CLASS.value,
+        status=ObstructionStatus.REFUTED.value,
+        reason="all-length-m impossibility is false; dividing words exist",
+        constraint={"kind": "CYCLE_CONSTRAINT", "length": length, "form": "all words"},
+        summary={**dict(summary), "length": length, "divisibility_mode": "CLASS_DIVISIBILITY"},
+        contradiction={"exceptions": exceptions[:16], "exception_count": len(exceptions)},
+    )
+
+
+def _symbolic_last_k_obstructions(
+    family: Mapping[str, Any],
+    relations: Sequence[Mapping[str, Any]],
+    summary: Mapping[str, Any],
+) -> list[ControlObstructionCertificate]:
+    """Infinite class: last control ≥ k_min implies |A-B| > |C|, so D does not divide C."""
+    base = int(family.get("base") or family.get("q_base") or 0)
+    if "p" not in family or "r" not in family or base < 2:
+        return []
+    p = int(family["p"])
+    r = int(family["r"])
+    independence = last_control_independence(family)
+    if not independence.get("independent"):
+        return []
+    certificates: list[ControlObstructionCertificate] = []
+    for length in (2, 3):
+        total = _length_m_total_refutation(family, summary, length)
+        if total is not None:
+            certificates.append(total)
+        k_min = last_k_threshold(base, p, r, length)
+        if k_min is None:
+            continue
+        constraint = {
+            "kind": "CYCLE_CONSTRAINT",
+            "form": "(A-B)x=C with A=base^{P+k}, remainder independent of last k",
+            "base": base,
+            "p": p,
+            "r": r,
+            "length": length,
+        }
+        bumped = k_min
+        in_class_hits: tuple[tuple[int, ...], ...] = ()
+        while bumped <= 48:
+            in_class_hits = _scan_dividing_words(
+                base, p, r, length, (bumped,), max_pre=4, skip_zero_remainder=True
+            )
+            bound_ok = all(
+                _bound_holds(base, p, r, prefix + (bumped,))
+                for prefix in product(range(5), repeat=length - 1)
+            )
+            if not in_class_hits and bound_ok:
+                break
+            bumped += 1
+        else:
+            certificates.append(
+                ControlObstructionCertificate(
+                    kind=ObstructionKind.BOUND.value,
+                    scope=ObstructionScope.SYMBOLIC_CLASS.value,
+                    status=ObstructionStatus.FINITE_RANGE_SUPPORTED.value,
+                    reason="last-k bound did not clear counterexamples up to the search cap",
+                    constraint=constraint,
+                    summary={
+                        **dict(summary),
+                        **independence,
+                        "length": length,
+                        "k_min": k_min,
+                        "symbolic": True,
+                        "divisibility_mode": "SYMBOLIC_DIVISIBILITY",
+                    },
+                    contradiction={"in_class_hits": in_class_hits, "cap": 48},
+                )
+            )
+            continue
+        enumerated_hits = []
+        for item in relations:
+            word = tuple((item.get("word") or {}).get("parameters") or ())
+            if len(word) != length or int(word[-1]) < bumped:
+                continue
+            _, _, remainder = compose_power_word(base, p, r, word)
+            if remainder == 0:
+                continue
+            if _word_divides(base, p, r, word):
+                enumerated_hits.append(word)
+        if enumerated_hits or in_class_hits:
+            certificates.append(
+                ControlObstructionCertificate(
+                    kind=ObstructionKind.BOUND.value,
+                    scope=ObstructionScope.SYMBOLIC_CLASS.value,
+                    status=ObstructionStatus.REFUTED.value,
+                    reason="a word in the proposed last-k class still divides",
+                    constraint=constraint,
+                    summary={**dict(summary), "length": length, "k_min": bumped, "symbolic": True},
+                    contradiction={
+                        "in_class_hits": in_class_hits,
+                        "enumerated_hits": tuple(enumerated_hits),
+                    },
+                )
+            )
+            continue
+        certificates.append(
+            ControlObstructionCertificate(
+                kind=ObstructionKind.BOUND.value,
+                scope=ObstructionScope.SYMBOLIC_CLASS.value,
+                status=ObstructionStatus.LEAN_CERTIFIED.value,
+                reason=(
+                    "remainder C is independent of the last control; "
+                    f"last k ≥ {bumped} and C≠0 forces |A-B| > |C|, hence D does not divide C"
+                ),
+                constraint=constraint,
+                summary={
+                    **dict(summary),
+                    **independence,
+                    "length": length,
+                    "k_min": bumped,
+                    "symbolic": True,
+                    "class": f"last k ≥ {bumped} and C≠0",
+                    "divisibility_mode": "SYMBOLIC_DIVISIBILITY",
+                },
+                contradiction={
+                    "empty_in_class": True,
+                    "k_min": bumped,
+                    "exceptions_outside_class": (
+                        total.contradiction.get("exceptions") if total is not None else ()
+                    ),
+                },
+                lean=LEAN_BOUND,
+            )
+        )
+        certificates.append(
+            ControlObstructionCertificate(
+                kind=ObstructionKind.DIVISIBILITY.value,
+                scope=ObstructionScope.SYMBOLIC_CLASS.value,
+                status=ObstructionStatus.LEAN_CERTIFIED.value,
+                reason="last-step remainder p*C_prefix + r*A_prefix does not depend on last k",
+                constraint=constraint,
+                summary={
+                    **dict(summary),
+                    **independence,
+                    "length": length,
+                    "symbolic": True,
+                    "divisibility_mode": "SYMBOLIC_DIVISIBILITY",
+                },
+                contradiction={"remainder_independent_of_last": True},
+                lean=LEAN_LAST,
+            )
+        )
+    return certificates
+
+
 def run_control_obstruction(spec: ProblemSpec, context: AttackContext) -> tuple[ControlObstructionCertificate, ...]:
     prior = next(
         (item for item in reversed(context.prior_results) if getattr(item, "name", None) == "control_word"),
@@ -423,6 +709,7 @@ def run_control_obstruction(spec: ProblemSpec, context: AttackContext) -> tuple[
     if family:
         certificates.extend(_length_one_family_obstructions(family, relations, summary))
         certificates.extend(_domain_suffix_class(family, relations, summary))
+        certificates.extend(_symbolic_last_k_obstructions(family, relations, summary))
     certificates.extend(_modular_length_class(relations, summary))
     certificates.extend(_sign_domain_word(spec, realizability))
     return tuple(certificates)
@@ -448,21 +735,27 @@ class ControlObstructionAttack:
         proved = tuple(
             item
             for item in certificates
-            if item.status in {ObstructionStatus.PROVED.value, ObstructionStatus.LEAN_CERTIFIED.value}
-            and item.scope == ObstructionScope.CLASS.value
+            if item.status in _PROVED_STATUSES
+            and item.scope
+            in {ObstructionScope.CLASS.value, ObstructionScope.SYMBOLIC_CLASS.value}
         )
         word_proved = tuple(
             item
             for item in certificates
-            if item.status in {ObstructionStatus.PROVED.value, ObstructionStatus.LEAN_CERTIFIED.value}
+            if item.status in _PROVED_STATUSES
             and item.scope == ObstructionScope.WORD.value
+        )
+        symbolic = tuple(
+            item for item in proved if item.scope == ObstructionScope.SYMBOLIC_CLASS.value
         )
         evidence = {
             "certificates": tuple(item.as_dict() for item in certificates),
             "class_count": len(proved),
             "word_count": len(word_proved),
+            "symbolic_count": len(symbolic),
             "certificate_count": len(certificates),
-            "lean": LEAN_DVD if proved or word_proved else "",
+            "symbolic": bool(symbolic),
+            "lean": LEAN_BOUND if symbolic else (LEAN_DVD if proved or word_proved else ""),
             "reconstructed_affine": None,
         }
         if proved:
@@ -472,8 +765,9 @@ class ControlObstructionAttack:
                 kind=ClaimKind.REACHABLE,
                 scope=SearchScope.EXACT,
                 claim=(
-                    f"{len(proved)} class-level control-word obstruction(s); "
-                    "a cycle obstruction is not a cycle theorem"
+                    f"{len(proved)} class-level control-word obstruction(s)"
+                    + (f", {len(symbolic)} symbolic" if symbolic else "")
+                    + "; a cycle obstruction is not a cycle theorem"
                 ),
                 evidence=evidence,
                 certificates=tuple(item.as_dict() for item in proved),

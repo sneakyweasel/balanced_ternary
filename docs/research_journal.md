@@ -1853,4 +1853,48 @@ Best next question
 - Can class-level obstructions for m≥2 be proved symbolically in the remainder C(k)?
 ```
 
+## Symbolic multi-step control-word obstructions
+
+- **Date:** 2026-08-25
+- **Objective:** Prove infinite class-level impossibility from the symbolic remainder of a multi-step control word, without enumerating words
+- **Hypotheses:** Last-control independence of C plus |D|>|C| yields a symbolic class; total length-m emptiness is false on power-clear; r=0 must not be obstructed; Syracuse is only a consumer
+- **Major results:** `SYMBOLIC_CLASS` last-k bound (k_min=2 on 2^k y=x+1; k_min=4 on Syracuse m=2). Remainder C=p C_prefix+r A_prefix independent of last k (Lean `last_step_remainder`). Counterexample-first: all length-2 impossible is REFUTED by (1,1). Zero remainder (2^k y=x) is not obstructed. Fingerprint `SYMBOLIC_CLASS`. Engine `CONTINUE`. No ledger row
+- **Refuted ideas:** enumerative emptiness billed as symbolic; total m=2 impossibility; last-k class including C=0
+- **Literature:** last-step remainder and |D|>|C| divisibility **KNOWN**; generic engine consumption is the capability
+- **Open:** recursive remainder / gcd(D,C) when |D| does not dominate
+- **Decision:** PARK (engine `CONTINUE`). Do not auto-continue; do not claim a Collatz result
+
+```text
+What was learned
+- C of a certified power family is independent of the last control
+- An infinite last-k class is obstructed by |D|>|C| without enumerating words
+- Total length-m emptiness is false whenever a small dividing word exists
+- Zero remainder is algebraically consistent, not an obstruction
+- Digit-fold cores and WeightDrift exclusion are unchanged; Syracuse is PARK
+
+Strongest theorem
+- last_step_remainder and cycle_abs_obstruction (Lean); elementary KNOWN arithmetic
+
+Strongest refutation
+- All length-2 words impossible on 2^k y=x+1: witness (1,1)
+
+Reusable machinery
+- SYMBOLIC_CLASS certificates; last_k_threshold; ControlWordSummary remainder_independent_of_last
+
+Prior-art status
+- KNOWN growth/divisibility; NEW GENERIC ENGINE CAPABILITY is symbolic class obstruction from remainders
+
+Complexity profile
+- unchanged schema; symbolic_count / k_min on evidence
+
+Branch status
+- PARK
+
+Why
+- The engine can now eliminate an infinite multi-step class from a symbolic remainder. The Syracuse instance is known growth. That is not a Collatz solver.
+
+Best next question
+- Can a recursive remainder invariant obstruct a class where |D| does not dominate |C|?
+```
+
 

@@ -109,6 +109,7 @@ def capability_coverage(
     statuses["parameter_domain_certification"] = CoverageStatus.NOT_TESTED.value
     statuses["control_word_composition"] = CoverageStatus.NOT_TESTED.value
     statuses["control_obstruction_calculus"] = CoverageStatus.NOT_TESTED.value
+    statuses["symbolic_multi_step_obstruction"] = CoverageStatus.NOT_TESTED.value
 
     if _ran(results, "piecewise_affine"):
         statuses["latent_piecewise_affine_control"] = CoverageStatus.EXERCISED.value
@@ -158,12 +159,20 @@ def capability_coverage(
         if any(
             isinstance(item, dict)
             and item.get("kind") in {"divisibility", "gcd", "modular", "bound"}
-            and item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+            and item.get("status") in {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
             for item in certs
         ):
             statuses["cycle_obstruction"] = CoverageStatus.EXERCISED.value
+        if any(
+            isinstance(item, dict)
+            and item.get("scope") == "SYMBOLIC_CLASS"
+            and item.get("status") in {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
+            for item in certs
+        ):
+            statuses["symbolic_multi_step_obstruction"] = CoverageStatus.EXERCISED.value
     elif _inapplicable(skipped, "control_obstruction"):
         statuses["control_obstruction_calculus"] = CoverageStatus.INAPPLICABLE.value
+        statuses["symbolic_multi_step_obstruction"] = CoverageStatus.INAPPLICABLE.value
 
     if (
         fingerprint.control_structure == "SINGLETON"

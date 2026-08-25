@@ -63,7 +63,9 @@ def test_a_divisor_class_excludes_almost_all_length_one_exponents():
     class_div = [
         item
         for item in certs
-        if item.get("scope") == "CLASS" and item.get("kind") == "divisibility"
+        if item.get("scope") == "CLASS"
+        and item.get("kind") == "divisibility"
+        and item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
     ]
     assert class_div
     assert all(item.get("status") in {"PROVED", "LEAN_CERTIFIED"} for item in class_div)
@@ -174,3 +176,143 @@ def test_lean_obstruction_has_no_sorry():
     assert "exists_mul_eq_iff_dvd" in text
     assert "not_dvd_of_abs_gt" in text
     assert "cycle_constraint_dvd" in text
+    assert "last_step_remainder" in text
+    assert "cycle_abs_obstruction" in text
+    assert "two_step_remainder" in text
+
+
+def _symbolic_certs(result) -> list[dict]:
+    return [
+        item
+        for item in result.evidence.get("certificates") or ()
+        if item.get("scope") == "SYMBOLIC_CLASS"
+        and item.get("status") in {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
+    ]
+
+
+def test_symbolic_a_infinite_last_k_class_on_power_clear():
+    spec = HiddenPowerClearDSpec()
+    result = _obstruction(spec)
+    symbolic = [
+        item
+        for item in _symbolic_certs(result)
+        if item.get("kind") == "bound" and item.get("summary", {}).get("length") == 2
+    ]
+    assert symbolic
+    k_min = symbolic[0]["summary"]["k_min"]
+    assert k_min >= 2
+    assert symbolic[0]["contradiction"].get("empty_in_class") is True
+    assert result.evidence.get("symbolic") is True
+    assert result.status is AttackStatus.SUPPORTED
+
+
+def test_symbolic_b_finite_exceptions_are_outside_the_class():
+    spec = HiddenPowerClearDSpec()
+    result = _obstruction(spec)
+    refuted_total = [
+        item
+        for item in result.evidence.get("certificates") or ()
+        if item.get("scope") == "CLASS"
+        and item.get("status") == "REFUTED"
+        and item.get("constraint", {}).get("form") == "all words"
+        and item.get("summary", {}).get("length") == 2
+    ]
+    assert refuted_total
+    exceptions = {tuple(word) for word in refuted_total[0]["contradiction"].get("exceptions") or ()}
+    assert (1, 1) in exceptions
+    symbolic = [
+        item
+        for item in _symbolic_certs(result)
+        if item.get("kind") == "bound" and item.get("summary", {}).get("length") == 2
+    ]
+    k_min = symbolic[0]["summary"]["k_min"]
+    assert all(word[-1] < k_min for word in exceptions)
+
+
+def test_symbolic_c_length_parity_on_sign_clear():
+    from research_engine.benchmarks.hidden_piecewise import HiddenOneMinusClearSpec
+
+    spec = HiddenOneMinusClearSpec()
+    result = _obstruction(spec)
+    odd = length_one_divisor_class(2, -1, 1)
+    assert odd["empty"] is True
+    class_div = [
+        item
+        for item in result.evidence.get("certificates") or ()
+        if item.get("scope") == "CLASS"
+        and item.get("kind") == "divisibility"
+        and item.get("contradiction", {}).get("empty")
+    ]
+    assert class_div
+    even_symbolic = [
+        item
+        for item in _symbolic_certs(result)
+        if item.get("kind") == "bound" and item.get("summary", {}).get("length") == 2
+    ]
+    assert even_symbolic
+    exceptions = even_symbolic[0]["contradiction"].get("exceptions_outside_class") or ()
+    assert any(tuple(word) == (0, 0) for word in exceptions)
+
+
+def test_symbolic_d_discovers_last_control_summary():
+    spec = HiddenPowerClearDSpec()
+    result = _obstruction(spec)
+    summaries = [
+        item.get("summary") or {}
+        for item in _symbolic_certs(result)
+        if item.get("contradiction", {}).get("remainder_independent_of_last")
+    ]
+    assert summaries
+    assert summaries[0].get("remainder_independent_of_last") is True
+    assert summaries[0].get("exact_relation")
+    assert summaries[0].get("divisibility_mode") == "SYMBOLIC_DIVISIBILITY"
+
+
+def test_symbolic_e_does_not_silently_weaken_total_impossibility():
+    spec = HiddenPowerClearDSpec()
+    result = _obstruction(spec)
+    refuted = [
+        item
+        for item in result.evidence.get("certificates") or ()
+        if item.get("status") == "REFUTED" and item.get("constraint", {}).get("form") == "all words"
+    ]
+    assert refuted
+    proved_all = [
+        item
+        for item in result.evidence.get("certificates") or ()
+        if item.get("scope") in {"CLASS", "SYMBOLIC_CLASS"}
+        and item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+        and item.get("constraint", {}).get("form") == "all words"
+    ]
+    assert not proved_all
+
+
+def test_symbolic_f_zero_remainder_is_not_an_obstruction():
+    from research_engine.benchmarks.hidden_piecewise import HiddenOddPartSpec
+
+    spec = HiddenOddPartSpec()
+    result = _obstruction(spec)
+    symbolic_bound = [
+        item
+        for item in result.evidence.get("certificates") or ()
+        if item.get("scope") == "SYMBOLIC_CLASS"
+        and item.get("kind") == "bound"
+        and item.get("status") in {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
+    ]
+    assert not symbolic_bound
+    empty_class = [
+        item
+        for item in result.evidence.get("certificates") or ()
+        if item.get("scope") in {"CLASS", "SYMBOLIC_CLASS"}
+        and item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+        and item.get("contradiction", {}).get("empty")
+    ]
+    assert not empty_class
+
+
+def test_last_k_threshold_is_symbolic_not_enumerative():
+    from research_engine.attacks.control_obstruction import last_k_threshold
+
+    assert last_k_threshold(2, 1, 1, 2) == 2
+    assert last_k_threshold(2, 3, 1, 2) == 4
+    assert last_k_threshold(2, 1, 0, 2) is None

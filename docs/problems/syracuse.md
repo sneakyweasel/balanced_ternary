@@ -132,9 +132,12 @@ None opened. The Collatz conjecture is not a conjecture of this branch.
 `formal/Problems/Collatz/Syracuse.lean` aliases `acceleratedT`, proves
 `syracuseS_one`, specializes the Engine iff as
 `syracuseS_parameter_iff`, and applies generic composition as
-`syracuse_compose_two`. Generic lemmas:
+`syracuse_compose_two`. Thin obstruction instances:
+`syracuse_len_one_cycle_dvd`, `syracuse_last_step_remainder`,
+`syracuse_cycle_abs_obstruction`. Generic lemmas:
 `formal/Problems/Engine/ParameterDomain.lean`,
-`formal/Problems/Engine/ControlWord.lean`. No `sorry`. No ledger row.
+`formal/Problems/Engine/ControlWord.lean`,
+`formal/Problems/Engine/ControlObstruction.lean`. No `sorry`. No ledger row.
 
 ## Results
 
@@ -145,12 +148,13 @@ Diagnosis
   → PiecewiseAffineCensus
   → ParameterDomain
   → ControlWord
+  → ControlObstruction
   → Certification
 ```
 
 Hint-free adapter. No injected \(v_2\), branch table, or affine formula.
 Planner order: reconnaissance, piecewise_affine, parameter_domain,
-control_word, then existing attacks. `AttackContext.affine` stays unset.
+control_word, control_obstruction, then existing attacks. `AttackContext.affine` stays unset.
 
 ### B. Syracuse discovery trace
 
@@ -223,9 +227,11 @@ SignedP0's secondary mod-3 census does not reopen that family.
 
 ### G. Lean
 
-Generic: `Problems.Engine.mul_pow_eq_iff_padicValInt` and
-`padicValInt_eq_of_mul_pow`. Syracuse specialization:
-`syracuseS_parameter_iff` (instance at \(q=3x+1\)). Map identity
+Generic: `Problems.Engine.mul_pow_eq_iff_padicValInt`,
+`padicValInt_eq_of_mul_pow`, `last_step_remainder`,
+`cycle_abs_obstruction`. Syracuse specialization:
+`syracuseS_parameter_iff`, `syracuse_last_step_remainder`,
+`syracuse_cycle_abs_obstruction`. Map identity
 `acceleratedT_mul` / `syracuseS_mul` already existed. No `sorry`. No
 ledger row (KNOWN). The census is not retagged `EXACT — LEAN VERIFIED`.
 
@@ -233,15 +239,17 @@ ledger row (KNOWN). The census is not retagged `EXACT — LEAN VERIFIED`.
 
 Fingerprint: `INTEGER_1D`, `SINGLETON`, `MIXED_MAGNITUDE`,
 `UNBOUNDED_SAMPLE`, piecewise `PARAMETERIZED`, latent `PARAMETERIZED`,
-domain `EXACT`, control-word algebra `EXPLOITABLE`. Nearest digit-fold
+domain `EXACT`, control-word algebra `EXPLOITABLE`, obstruction
+`SYMBOLIC_CLASS`. Nearest digit-fold
 record: **HIGH** delta. Core mismatch with the saturated family.
 Coverage exercised: finite-closure attempt, contraction, growth,
 infinite reachable trajectories, valuation dynamics, modular
 restrictions (sampled), quotient, separation, latent piecewise-affine
 control, parameter-domain certification, control-word composition,
-cycle obstruction. Inapplicable: branching controls, affine
-modular/spectral/block, reverse. Not tested: symbolic (deferred)
-control, recursive digit semantics.
+cycle obstruction, control-obstruction calculus, symbolic multi-step
+obstruction. Inapplicable: branching controls, affine
+modular/spectral/block, reverse. Not tested: deferred `symbolic_control`
+attack, recursive digit semantics.
 
 Engine `ResearchDecision`:
 
@@ -249,14 +257,13 @@ Engine `ResearchDecision`:
 CONTINUE
 ```
 
-Reason: latent parameterized family recovered, the arithmetic domain
-is certified, and control-word algebra is exploitable; map globality
-on \(\mathbb{Z}\) remains empirical. Prompt vocabulary:
+Reason: latent parameterized family recovered, domain certified,
+control-word algebra exploitable, and a symbolic multi-step class
+obstruction is proved; map globality on \(\mathbb{Z}\) remains
+empirical. Prompt vocabulary:
 **PARTIALLY_CERTIFIED** (relation exact; map empirical; observed \(k\)
-sample-bounded). Not `ENGINE_LIMITATION`. Control-word composition
-derives the classical multi-step identities from the certificate
-without hard-coding them; that is **KNOWN** algebra, not a Collatz
-theorem.
+sample-bounded). Not `ENGINE_LIMITATION`. Symbolic last-\(k\) obstruction
+is **KNOWN** growth applied generically, not a Collatz theorem.
 
 ### I. ComplexityProfile
 
@@ -273,8 +280,8 @@ proof-synthesis cost; that limitation is documented rather than forked.
 |-------|------|
 | KNOWN MATHEMATICS | `acceleratedT_mul`; padic valuation iff; composed clearing / cycle equations; Tao density; Terras heuristics |
 | ENGINE REDISCOVERY | family \(2^k y=3x+1\), maximal domain, and multi-step composition from I/O; mixed magnitude |
-| NEW FORMALIZATION | Engine `mul_pow_eq_iff_padicValInt`, `compose_two_affine`; thin `syracuseS_parameter_iff`, `syracuse_compose_two` |
-| NEW GENERIC ENGINE CAPABILITY | census plus domain certificates plus control-word composition |
+| NEW FORMALIZATION | Engine `mul_pow_eq_iff_padicValInt`, `compose_two_affine`, `last_step_remainder`; thin `syracuseS_parameter_iff`, `syracuse_compose_two`, `syracuse_last_step_remainder` |
+| NEW GENERIC ENGINE CAPABILITY | census plus domain certificates plus control-word composition plus symbolic class obstruction |
 | POTENTIALLY NEW MATHEMATICS | none claimed |
 
 ### K. Branch decision
@@ -284,27 +291,31 @@ CONTINUE
 ```
 
 Dossier mapping: `PARK`. Exact reconstructed latent control is **KNOWN**
-clearing. Control-word composition is now applicable and exploitable;
-modular, reverse, block, and spectral stay inapplicable in the same
-pass (no `AffineSystem` injection). Do not reopen `research.collatz`.
-The next generic question is whether composed remainders for \(m\ge 2\)
-admit symbolic class emptiness — not a Collatz solver.
+clearing. Control-word composition is exploitable; symbolic multi-step
+obstruction is now a consumer of that algebra. Modular, reverse, block,
+and spectral stay inapplicable in the same pass (no `AffineSystem`
+injection). Do not reopen `research.collatz`. The remaining generic
+question is recursive remainder invariants where \(\lvert D\rvert\)
+does not dominate \(\lvert C\rvert\) — not a Collatz solver.
 
 ## Open questions
 
-Can the remainder of a composed control word be summarized well enough
-to prove emptiness of an infinite \(m\ge 2\) class, still without
-injecting an `AffineSystem` and still without claiming convergence?
+Can a recursive remainder invariant or a symbolic
+\(\gcd(D(\mathbf{k}),C(\mathbf{k}))\) obstruct a class where last-control
+dominance does not apply, still without injecting an `AffineSystem`
+and still without claiming convergence?
 
 ## Decision
 
 `PARK`. v2 has crossed observe → infer → certify → compose → constrain
-→ obstruct. Length-one cycle divisor classes are **KNOWN** arithmetic
-rediscovered generically. Map globality, cycles, and boundedness are
-not proved. Do not auto-continue. Do not escalate to Collatz.
+→ obstruct, including a symbolic last-\(k\) class for \(m\ge 2\).
+Length-one divisor classes and the last-\(k\) growth bound are
+**KNOWN** arithmetic rediscovered generically. Map globality, cycles,
+and boundedness are not proved. Do not auto-continue. Do not escalate
+to Collatz.
 
-Best next question: can class-level obstructions for \(m\ge 2\) be
-proved symbolically in the remainder \(C(\mathbf{k})\)?
+Best next question: can a recursive remainder invariant obstruct a
+class where \(\lvert D\rvert\) does not dominate \(\lvert C\rvert\)?
 
 ## Publication assessment
 

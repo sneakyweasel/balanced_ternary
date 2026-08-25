@@ -50,4 +50,27 @@ theorem syracuse_len_one_cycle_dvd {k : ℕ} {x : ℤ}
     ((2 : ℤ) ^ k - 3) ∣ (1 : ℤ) :=
   Problems.Engine.cycle_constraint_dvd h
 
+/-- Two-step remainder independent of the last exponent. KNOWN arithmetic
+via the generic Engine lemma; not a cycle classification. -/
+theorem syracuse_last_step_remainder
+    {k0 k1 : ℕ} {x0 x1 x2 : ℤ}
+    (h0 : (2 : ℤ) ^ k0 * x1 = 3 * x0 + 1)
+    (h1 : (2 : ℤ) ^ k1 * x2 = 3 * x1 + 1) :
+    (2 : ℤ) ^ k0 * (2 : ℤ) ^ k1 * x2 =
+      (3 : ℤ) * 3 * x0 + ((3 : ℤ) * 1 + 1 * (2 : ℤ) ^ k0) :=
+  Problems.Engine.last_step_remainder h0 h1
+
+/-- Absolute-value cycle obstruction specialized to a two-step remainder.
+KNOWN arithmetic; not a claim that all nontrivial cycles are excluded. -/
+theorem syracuse_cycle_abs_obstruction
+    {k0 k1 : ℕ} {x : ℤ}
+    (hne : (3 : ℤ) * 1 + 1 * (2 : ℤ) ^ k0 ≠ 0)
+    (hbound :
+      |(3 : ℤ) * 1 + 1 * (2 : ℤ) ^ k0| <
+        |(2 : ℤ) ^ k0 * (2 : ℤ) ^ k1 - 3 * 3|)
+    (h : (2 : ℤ) ^ k0 * (2 : ℤ) ^ k1 * x =
+      (3 : ℤ) * 3 * x + ((3 : ℤ) * 1 + 1 * (2 : ℤ) ^ k0)) :
+    False :=
+  Problems.Engine.cycle_abs_obstruction hne hbound h
+
 end Problems.Collatz

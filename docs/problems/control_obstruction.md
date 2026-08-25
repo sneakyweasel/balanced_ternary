@@ -9,22 +9,24 @@ solver and does not reopen [collatz.md](collatz.md). It consumes
 
 ## Problem
 
-Can exact symbolic constraints from certified control-word composition
-yield generic arithmetic obstructions that exclude a *class* of control
-configurations, not merely individual enumerated words?
+Can Research Engine v2 reason symbolically about the remainder
+\(C(\mathbf{k})\) of a multi-step control word and use that structure
+to eliminate an entire infinite class of configurations?
 
 ## Exact statement
 
-Given a prior `control_word` result — composed relations
-\(A x_m = B x_0 + C\) and cycle constraints \((A-B)x=C\) — does
-`control_obstruction` derive divisibility, gcd, modular, bound, sign,
-or domain contradictions, distinguish `WORD` from `CLASS` scope, and
-refuse to treat a finite search miss as `IMPOSSIBLE`?
+Given a certified family and composed cycle constraint
+\(D(\mathbf{k})x=C(\mathbf{k})\), prove
+\(\forall\mathbf{k}\in\mathcal C\), no integer \(x\) satisfies the
+constraint, where \(\mathcal C\) may be infinite, without enumerating
+its members. Distinguish `WORD` / `CLASS` / `SYMBOLIC_CLASS` and never
+infer impossibility from a finite search miss.
 
 ## Current literature
 
 - Length-one Collatz/Syracuse cycle conditions
   \((2^k-3)x=1\) and the finite list of candidate \(k\): **KNOWN**.
+- Growth \(|2^K-3^m|>|C|\) as a cycle obstruction: **KNOWN**.
 - Integer solvability of \(ax=b\): **KNOWN**.
 - Control-word composition in this laboratory:
   [control_word_composition.md](control_word_composition.md).
@@ -35,18 +37,21 @@ identities obtained as instances are not new mathematics.
 ## Branch budget
 
 ```text
-Mathematical target     Can exact composed constraints yield class-level
-                        arithmetic obstructions?
-Novelty hypothesis      Constraint-to-obstruction calculus, not a new
-                        cycle theorem.
-Falsifier               Seeded moduli; search failure billed as
-                        IMPOSSIBLE; AffineSystem injection.
-Existing machinery      control_word; (A-B)x=C; subsequent_k_impossible.
-Maximum Phase-0 scope   control_obstruction + synthetics A–F + Lean of
-                        generic non-divisibility; Syracuse as consumer.
-Promotion criterion     At least one class-level obstruction proved
-                        generically and Lean-certified.
-Stop criterion          Only word-level refutations; Collatz escalation.
+Mathematical target     Can a symbolic remainder yield an infinite
+                        class obstruction for m≥2?
+Novelty hypothesis      Last-control independence plus |D|>|C| as a
+                        generic class, not a new cycle theorem.
+Falsifier               Enumeration billed as symbolic; total m=2
+                        emptiness claimed despite dividing words;
+                        Syracuse-specific remainder code.
+Existing machinery      control_word composition; length-1 divisor
+                        class; not_dvd_of_abs_gt.
+Maximum Phase-0 scope   symbolic last-k class + synthetics A–F +
+                        Lean remainder/bound; Syracuse as consumer.
+Promotion criterion     Infinite class, genuinely symbolic, survives
+                        counterexample-first, Lean-certified, reused
+                        off Syracuse.
+Stop criterion          Only enumerated C; Collatz escalation.
 ```
 
 ## Balanced-ternary formulation
@@ -65,6 +70,10 @@ It is not required.
   **EXACT — LEAN VERIFIED** (`not_dvd_of_abs_gt`).
 - Cycle constraint implies \((A-B)\mid C\). **EXACT — LEAN VERIFIED**
   (`cycle_constraint_dvd`).
+- Last-step remainder \(C'=pC+rA\) is independent of the last
+  multiplier. **EXACT — LEAN VERIFIED** (`last_step_remainder`).
+- If \(|C|<|A-B|\) and \(C\neq 0\), no integer cycle solution.
+  **EXACT — LEAN VERIFIED** (`cycle_abs_obstruction`).
 - Length-1 family \((b^k-p)x=r\): possible \(k\) are a finite divisor
   class. **EXACT** on \(\mathbb{Z}\) for the relation, not a map theorem.
 
@@ -80,90 +89,131 @@ None opened.
 ## Counterexamples
 
 - Finite-window miss of the even-branch candidate \(x=100\) for
-  \(x\mapsto 2x+(x\bmod 2)-100\) is not an obstruction (synthetic F).
-- A divisor-class claim is `REFUTED` if an enumerated word outside the
-  predicted \(k\)-set still divides.
+  \(x\mapsto 2x+(x\bmod 2)-100\) is not an obstruction.
+- “All length-2 words are impossible” on power-clear \(2^k y=x+1\) is
+  `REFUTED` by \((k_0,k_1)=(1,1)\). The class is refined to last
+  \(k\ge 2\) and \(C\neq 0\), not silently weakened.
+- Prefixes with \(C=0\) are excluded from the last-\(k\) class: the
+  constraint becomes \(Dx=0\).
 
 ## Formalization
 
 `formal/Problems/Engine/ControlObstruction.lean`. Thin Syracuse
-instance `syracuse_len_one_cycle_dvd`. No `sorry`. No ledger row.
+instances `syracuse_len_one_cycle_dvd`, `syracuse_last_step_remainder`,
+`syracuse_cycle_abs_obstruction`. No `sorry`. No ledger row.
 
 ## Results
 
-### A. New generic attack
+### A. Generic capability
 
 `control_obstruction` after `control_word`. Consumes family, composed
-relations, cycle constraints, realizability, and the existing quotient.
-Does not inspect target names. `AttackContext.affine` is not injected.
-`ControlWord` source is unchanged.
+relations, and cycle constraints. Does not duplicate composition: it
+evaluates `compose_affine_steps` on the certified one-step law
+\((b^k,p,r)\). Scopes:
 
-### B. Obstruction classes
+```text
+WORD | CLASS | SYMBOLIC_CLASS
+```
 
-divisibility, gcd, modular, bound, sign, domain. Scope `WORD` or
-`CLASS`. Statuses `REFUTED` / `SEARCH_SUPPORTED` / `OBSTRUCTION_CANDIDATE`
-/ `PROVED` / `LEAN_CERTIFIED` stay separate from realizability.
+`ControlWord` source is unchanged. `AttackContext.affine` is not
+injected.
 
-### C. Synthetic validation
+### B. Symbolic remainder
+
+For a certified power family, after a prefix relation
+\(A y=B x+C\), one more step \(a z=p y+r\) produces remainder
+\(pC+rA\), independent of \(a\). That identity is the only symbolic
+operation required by the benchmark. It is not a computer algebra
+system.
+
+### C. Control summaries
+
+Discovered from composition, not seeded:
+
+```text
+ControlWordSummary
+    variables: prefix, length (remainder independent of last k)
+    exact relation: C(prefix+(k,)) = p*C_prefix + r*A_prefix
+    evidence: compose_affine_steps on probed last values; Lean last_step_remainder
+```
+
+Whether \(A=b^{\sum k_i}\) and \(B=p^m\) is still inferred from
+composed coefficients.
+
+### D. Obstruction classes
+
+| Mode | Mechanism |
+|------|-----------|
+| `WORD_DIVISIBILITY` | a single \((A,B,C)\) fails \(D\mid C\) |
+| `CLASS_DIVISIBILITY` | length-1 divisor complement; modular length-\(m\) with fixed \((A,B)\) |
+| `SYMBOLIC_DIVISIBILITY` | last \(k\ge k_{\min}\) and \(C\neq 0\) forces \(\lvert D\rvert>\lvert C\rvert\) |
+
+Also: domain suffix, sign off-domain, bound. Statuses
+`CANDIDATE` / `REFUTED` / `FINITE_RANGE_SUPPORTED` /
+`SYMBOLICALLY_PROVED` / `PROVED` / `LEAN_CERTIFIED` stay separate from
+`REALIZABLE` / `IMPOSSIBLE` / `UNKNOWN`.
+
+### E. Synthetic validation
 
 | Target | Ground truth | Discovered |
 |--------|--------------|------------|
-| A power-clear | length-1 cycle only for \(k=1\) | CLASS divisibility, `possible_k=(1,)` |
-| B parity-carry | length-2 needs \((A-B)\mid C\) | CLASS modular; blocked and allowed words |
-| C odd-prime clear | no length-1 cycle | CLASS divisibility, `empty=True` |
-| D later \(k=0\) | coprime images | CLASS domain |
-| E positive double | candidate \(-1\) off domain | WORD sign |
-| F large parity | even-branch candidate \(100\) off window | not classified impossible |
+| A infinite last-\(k\) | \(2^k y=x+1\), \(m=2\), last \(k\ge 2\) empty | `SYMBOLIC_CLASS` bound, \(k_{\min}=2\) |
+| B exceptions | \((1,1)\) divides; not in the last-\(k\) class | `REFUTED` total \(m=2\); exceptions outside class |
+| C length parity | \(2^k y=1-x\): odd \(m=1\) empty, even \(m=2\) last-\(k\) | CLASS empty odd; `SYMBOLIC_CLASS` even |
+| D summary | \(C\) independent of last \(k\) | `remainder_independent_of_last` |
+| E trap | finite samples suggest total emptiness | `REFUTED` by \((1,1)\); class not claimed total |
+| F realizable | \(2^k y=x\), \(C\equiv 0\) | no last-\(k\) obstruction |
 
-### D. Control-word interaction
+Length-1 CLASS results from the previous phase remain: power-clear
+`possible_k=(1,)`; odd-prime empty; later \(k=0\) domain; sign; window
+miss is not impossibility.
 
-Summaries are *discovered* from composed coefficients (whether \(A\) is
-a power of the family base with exponent \(\sum k_i\), whether \(B=p^m\)).
-Obstructions run once per \((A,B,C)\) quotient class.
+### F. Counterexample record
 
-### E. Family-level versus word-level
+- All length-2 impossible on \(2^k y=x+1\): **REFUTED**, witness
+  \((1,1)\).
+- Last-\(k\) class including \(C=0\): **REFUTED** by the identity
+  \(Dx=0\). Class restricted to \(C\neq 0\).
+- Window miss of candidate \(100\): not an obstruction.
 
-CLASS: divisor complement of length-1 cycles; modular condition on all
-length-\(m\) words with fixed \((A,B)\); later-parameter domain class.
-WORD: a single composed triple fails to divide, or its candidate is
-outside `legal_controls`. Search miss remains `UNKNOWN`.
+### G. Syracuse
 
-### F. Syracuse
-
-Consumer only. Length-1 cycle requires
-\((2^k-3)\mid 1\), hence \(k\in\{1,2\}\) as a divisor class. **KNOWN**.
-Engine status: class obstruction `PROVED` / `LEAN_CERTIFIED`. Not a
-global cycle theorem. Outcome A as *capability*; mathematics is known.
-
-### G. Genericity
-
-Odd-prime clear (\(3^k y=x+1\)) has an empty length-1 divisor class.
-The same attack, no Syracuse constants.
+Consumer only. Same attack, no seeded moduli. Length-1 divisor class
+\(k\in\{1,2\}\) remains. For \(m=2\), the generic last-\(k\) bound
+gives \(k_{\min}=4\) on \(2^k y=3x+1\): an infinite class of last
+controls is symbolically obstructed. **KNOWN** growth, not a Collatz
+theorem. Fingerprint `SYMBOLIC_CLASS`. Outcome A as *capability*.
+Does not exclude all nontrivial cycles.
 
 ### H. Lean
 
-`exists_mul_eq_iff_dvd`, `not_dvd_of_abs_gt`, `cycle_constraint_dvd`.
-Syracuse: `syracuse_len_one_cycle_dvd`.
+Generic: `last_step_remainder`, `two_step_remainder`,
+`cycle_abs_obstruction`, plus the previous divisibility lemmas.
+Syracuse: `syracuse_last_step_remainder`,
+`syracuse_cycle_abs_obstruction`. No ledger: mathematics is **KNOWN**.
 
 ### I. ResearchLoop
 
-Non-core `latent_control_obstruction`: `NONE|CANDIDATE|PROVED`.
-Capability `control_obstruction_calculus`. Digit-fold cores unchanged.
-Engine `CONTINUE` when a class obstruction is proved; map globality
-empirical. Dossier `PARK`.
+Non-core `latent_control_obstruction`:
+`UNOBSERVED|NONE|WORD|CLASS|SYMBOLIC_CLASS`.
+Capabilities `control_obstruction_calculus` and
+`symbolic_multi_step_obstruction`. Digit-fold cores unchanged.
+`WeightDrift` remains outside that family. Syracuse remains `PARK`.
+Engine `CONTINUE` when a symbolic class obstruction is proved; map
+globality empirical. Dossier `PARK`.
 
 ### J. ComplexityProfile
 
-Unchanged. Counts on evidence: `class_count`, `word_count`,
-`certificate_count`.
+Unchanged schema. Evidence carries `symbolic_count`, `k_min`,
+`length`, `symbolic=True`. No new profile dimension.
 
 ### K. Prior art
 
 | Class | Item |
 |-------|------|
-| KNOWN MATHEMATICS | \(ax=b\) iff \(a\mid b\); length-one Syracuse candidates \(k=1,2\) |
-| ENGINE REDISCOVERY | those identities from a generic divisor class |
-| NEW GENERIC ENGINE CAPABILITY | constraint \(\to\) class obstruction with WORD/CLASS split |
+| KNOWN MATHEMATICS | \(ax=b\) iff \(a\mid b\); last-step remainder; \(\lvert D\rvert>\lvert C\rvert\Rightarrow D\nmid C\); length-one Syracuse \(k=1,2\); growth bounds on multi-step Collatz cycles |
+| ENGINE REDISCOVERY | those identities from a certified family and composition |
+| NEW GENERIC ENGINE CAPABILITY | symbolic remainder \(\to\) infinite last-\(k\) class without enumerating words |
 | POTENTIALLY NEW MATHEMATICS | none claimed |
 
 ### L. Final research decision
@@ -173,21 +223,26 @@ CONTINUE
 ```
 
 Dossier mapping: `PARK`. Not `ESCALATE`. Not `ENGINE_LIMITATION`.
+Not `CLOSE`: the last-\(k\) class is a real symbolic capability, but
+gcd/modular projections of a fully symbolic \(C(\mathbf{k})\) and
+recursive remainder invariants remain unbuilt.
 
 ## Open questions
 
-Can class-level obstructions for \(m\ge 2\) be proved symbolically in
-the remainder \(C(\mathbf{k})\) without enumerating words?
+Can \(\gcd(D(\mathbf{k}),C(\mathbf{k}))\) or a modular projection of
+\(C\) be derived as a symbolic function of the whole word, not only
+via last-control dominance?
 
 ## Decision
 
-`PARK`. The engine can eliminate whole exponent classes for length-one
-cycles from a certified family. Longer-word family emptiness is still
-mostly word-level or modular-on-enumerated-C. Do not auto-continue.
-Do not reopen `research.collatz`.
+`PARK`. v2 can eliminate an infinite multi-step class from the
+symbolic remainder of a certified family. The Syracuse instance is
+**KNOWN** growth. Map globality, full cycle exclusion, and arbitrary
+summaries of \(C\) are not proved. Do not auto-continue. Do not reopen
+`research.collatz`.
 
-Best next question: can the remainder of a composed word be summarized
-well enough to prove emptiness of an infinite \(m\ge 2\) class?
+Best next question: can a recursive remainder invariant obstruct a
+class where \(\lvert D\rvert\) does not dominate \(\lvert C\rvert\)?
 
 ## Publication assessment
 

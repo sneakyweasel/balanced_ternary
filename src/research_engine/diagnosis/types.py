@@ -59,6 +59,7 @@ CAPABILITIES: tuple[str, ...] = (
     "parameter_domain_certification",
     "control_word_composition",
     "control_obstruction_calculus",
+    "symbolic_multi_step_obstruction",
 )
 
 

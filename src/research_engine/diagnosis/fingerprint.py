@@ -359,21 +359,24 @@ def fingerprint_from_report(
         else:
             certs = obstructed.evidence.get("certificates") or ()
             statuses = {item.get("status") for item in certs if isinstance(item, dict)}
-            scopes = {item.get("scope") for item in certs if isinstance(item, dict)}
-            if "LEAN_CERTIFIED" in statuses or "PROVED" in statuses:
-                obstruction_field = "PROVED" if "CLASS" in scopes else "CANDIDATE"
-                if "CLASS" in scopes and (
-                    "LEAN_CERTIFIED" in statuses or "PROVED" in statuses
-                ):
-                    class_proved = any(
-                        isinstance(item, dict)
-                        and item.get("scope") == "CLASS"
-                        and item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
-                        for item in certs
-                    )
-                    obstruction_field = "PROVED" if class_proved else "CANDIDATE"
+            proved_statuses = {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
+
+            def _proved(scope: str) -> bool:
+                return any(
+                    isinstance(item, dict)
+                    and item.get("scope") == scope
+                    and item.get("status") in proved_statuses
+                    for item in certs
+                )
+
+            if _proved("SYMBOLIC_CLASS"):
+                obstruction_field = "SYMBOLIC_CLASS"
+            elif _proved("CLASS"):
+                obstruction_field = "CLASS"
+            elif _proved("WORD"):
+                obstruction_field = "WORD"
             elif statuses:
-                obstruction_field = "CANDIDATE"
+                obstruction_field = "NONE"
             else:
                 obstruction_field = "NONE"
 

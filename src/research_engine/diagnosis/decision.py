@@ -73,13 +73,21 @@ def decide_research(
         if fingerprint.piecewise_affine_structure == "PARAMETERIZED":
             if fingerprint.parameter_domain == "EXACT":
                 if fingerprint.latent_control_algebra == "EXPLOITABLE":
-                    if fingerprint.latent_control_obstruction == "PROVED":
+                    if fingerprint.latent_control_obstruction in {
+                        "SYMBOLIC_CLASS",
+                        "CLASS",
+                        "PROVED",
+                    }:
+                        extra = (
+                            "a symbolic multi-step class obstruction is proved"
+                            if fingerprint.latent_control_obstruction == "SYMBOLIC_CLASS"
+                            else "a class-level obstruction is proved"
+                        )
                         return (
                             ResearchDecision.CONTINUE,
                             "latent parameterized family recovered, domain "
-                            "certified, control-word algebra exploitable, and "
-                            "a class-level obstruction is proved; map globality "
-                            "on Z remains empirical",
+                            f"certified, control-word algebra exploitable, and {extra}; "
+                            "map globality on Z remains empirical",
                         )
                     return (
                         ResearchDecision.CONTINUE,

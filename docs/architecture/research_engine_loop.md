@@ -61,10 +61,11 @@ Non-core fingerprint fields: `piecewise_affine_structure`,
 `parameter_domain` (`UNOBSERVED|SAMPLE_SUPPORTED|EXACT|UNCERTAIN`), and
 `latent_control_algebra`
 (`UNOBSERVED|FORMALLY_COMPOSED|EXPLOITABLE|UNCERTAIN`), and
-`latent_control_obstruction` (`UNOBSERVED|NONE|CANDIDATE|PROVED`).
+`latent_control_obstruction`
+(`UNOBSERVED|NONE|WORD|CLASS|SYMBOLIC_CLASS`).
 They do not join `CORE_DIMENSIONS`. `latent_control` is discovery;
 `latent_control_algebra` is composition; `latent_control_obstruction`
-is class-level contradiction.
+is word-, class-, or symbolic-class contradiction.
 
 `ResearchDecision` is not dossier `PROMOTE|PARK|CLOSE` and not
 hypothesis `DecisionKind`. Mapping: `CLOSE` and `FAMILY_SATURATED` →
