@@ -1,0 +1,8 @@
+problem: collatz_finite_descent
+attack: closure
+claim: residual-state BFS hit the cap 16; this is not infinitude and not a finite-closure theorem
+status: OBSERVED
+scope: BOUNDED
+evidence: union_size=17; complete=False; state_cap=16
+counterexamples: ()
+lean_theorem: 

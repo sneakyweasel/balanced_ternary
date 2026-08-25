@@ -19,7 +19,10 @@ independent solving coordinate.
 
 See [collatz_mathematics.md](../collatz_mathematics.md),
 [collatz_research_questions.md](../collatz_research_questions.md), and the
-milestone documents indexed from [docs/README.md](../README.md).
+milestone documents indexed from [docs/README.md](../README.md). A
+separate engine stress test of the shortcut map `n/2`, `(3n+1)/2` is
+recorded in [collatz_finite_descent.md](collatz_finite_descent.md) and is
+`CLOSE`.
 
 ## Lean
 
