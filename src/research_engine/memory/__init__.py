@@ -1,9 +1,11 @@
 """Persistent research memory for frozen Research Engine v2.2."""
 
+from research_engine.memory.board import assemble_board, recommend_campaign_order, score_targets, yield_corpus
 from research_engine.memory.classify import FailureSignals, classify_signals
 from research_engine.memory.cluster import cluster_failures
 from research_engine.memory.hygiene import adapter_is_blind, leak_hits
 from research_engine.memory.learning import failure_learning_value
+from research_engine.memory.named_clusters import engineering_from_named, named_failure_clusters
 from research_engine.memory.policy import (
     PROMOTE_MIN_DIVERSITY,
     PROMOTE_MIN_RECURRENCE,
@@ -11,11 +13,12 @@ from research_engine.memory.policy import (
     recommend_cluster,
 )
 from research_engine.memory.retrieval import assert_not_injected, query_loot
-from research_engine.memory.store import FinalizedError, ResearchMemory, SEED_PATH
+from research_engine.memory.store import BOARD_PATH, FinalizedError, ResearchMemory, SEED_PATH
 from research_engine.memory.types import (
     ENGINE_MEMORY_VERSION,
     FAILURE_CLASS_DEFINITIONS,
     BlindPacket,
+    CampaignOrder,
     ClusterDecision,
     DecisionReason,
     EngineeringBacklogItem,
@@ -27,19 +30,26 @@ from research_engine.memory.types import (
     FailureStatus,
     GreyLoot,
     GreyLootKind,
+    GreyLootStatus,
     ImportanceLevel,
     KnownEquivalent,
     LootEvidence,
     MathematicalYield,
     MemoryExperiment,
     MemoryLane,
+    NamedFailureCluster,
     NoveltyLevel,
     NoveltyStatus,
+    PriorArtDossier,
     PriorArtMemory,
     Reconciliation,
     ResearchQuestion,
+    ResearchTarget,
     RunArtifact,
+    ScoredAxis,
     ScoutDossier,
+    TargetBoard,
+    TargetPool,
 )
 
 __all__ = [
@@ -47,8 +57,10 @@ __all__ = [
     "FAILURE_CLASS_DEFINITIONS",
     "PROMOTE_MIN_DIVERSITY",
     "PROMOTE_MIN_RECURRENCE",
+    "BOARD_PATH",
     "SEED_PATH",
     "BlindPacket",
+    "CampaignOrder",
     "ClusterDecision",
     "DecisionReason",
     "EngineeringBacklogItem",
@@ -63,27 +75,40 @@ __all__ = [
     "FinalizedError",
     "GreyLoot",
     "GreyLootKind",
+    "GreyLootStatus",
     "ImportanceLevel",
     "KnownEquivalent",
     "LootEvidence",
     "MathematicalYield",
     "MemoryExperiment",
     "MemoryLane",
+    "NamedFailureCluster",
     "NoveltyLevel",
     "NoveltyStatus",
+    "PriorArtDossier",
     "PriorArtMemory",
     "Reconciliation",
     "ResearchMemory",
     "ResearchQuestion",
+    "ResearchTarget",
     "RunArtifact",
+    "ScoredAxis",
     "ScoutDossier",
+    "TargetBoard",
+    "TargetPool",
     "adapter_is_blind",
     "assert_not_injected",
+    "assemble_board",
     "candidates_from_clusters",
     "classify_signals",
     "cluster_failures",
+    "engineering_from_named",
     "failure_learning_value",
     "leak_hits",
+    "named_failure_clusters",
     "query_loot",
+    "recommend_campaign_order",
     "recommend_cluster",
+    "score_targets",
+    "yield_corpus",
 ]

@@ -74,6 +74,11 @@ strings, or `score_candidate` when no memory store is passed.
 loot, and certified machinery occupy isolated lanes. A single failure
 never justifies a new attack; `PROMOTE_TO_NEXT_VERSION` is guidance
 only. Dossier: [engine_memory.md](../problems/engine_memory.md).
+The v2.2 target board (`ResearchTarget`, `PriorArtDossier`, named
+failure clusters, `RecommendedCampaignOrder`) is scout-lane content
+ingested by `score_candidate` / `ResearchLoop` as `CandidateSketch`
+objects only. It does not add adapters or thaw the planner. Dossier:
+[research_target_board.md](../problems/research_target_board.md).
 Package **0.2.2** tags the memory layer; the attack stack remains the
 frozen 0.2.1 order.
 

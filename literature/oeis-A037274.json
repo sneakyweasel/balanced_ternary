@@ -1,0 +1,21 @@
+{
+  "id": "oeis-A037274",
+  "title": "Home primes (concatenate prime factors of n and iterate)",
+  "authors": ["OEIS contributors"],
+  "year": 1999,
+  "identifiers": {
+    "oeis": "A037274"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A037274"
+  },
+  "problem_area": "factorization-dynamics",
+  "relevant_concepts": [
+    "home primes",
+    "prime factor concatenation",
+    "seed 49"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/problems/research_target_board.md. Wildcard factorization-dynamics analogue of aliquot. Not an adapter hint."
+}

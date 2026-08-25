@@ -143,9 +143,10 @@ modules (`Problems.Engine.CompanionShift`, `Problems.Engine.Syracuse`,
 
 ## Open questions
 
-Which high-value failure cluster, if any, later justifies a v2.3
-abstraction — to be answered by further experiments, not by this
-milestone.
+Which frozen-engine target still teaches something new about an
+unresolved high-value failure cluster? Answered by the ranked board in
+[research_target_board.md](research_target_board.md), not by a new
+attack.
 
 ## Decision
 

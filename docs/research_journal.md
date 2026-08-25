@@ -2333,4 +2333,45 @@ Best next question
 - Which frozen-engine target still teaches something new about an unresolved high-value failure cluster?
 ```
 
+## Research Engine v2.2: research target board
+
+- **Date:** 2026-08-25
+- **Objective:** Turn experimental history into research memory, grey loot, a ranked target portfolio, and a prior-art map without new attacks
+- **Hypotheses:** Recurring failures cluster by mathematical meaning; ExpectedResearchValue with FailureLearningValue can rank a mixed portfolio; blind packets can stay free of scout conclusions
+- **Major results:** `ResearchTarget` board (~17 candidates, three pools), enriched historical `GreyLoot`, named failure clusters, engineering candidates as guidance only, prior-art dossiers, hint-free `BlindPacket`s, protocol campaign order known → frontier → wildcard → ResearchLoop pick. No new attack. No adapters for unrun targets. No Lean.
+- **Refuted ideas:** inventing EV scores to force an order; treating a single failure as an implementation instruction; injecting scout conclusions into attack-lane packets
+- **Literature:** existing campaign sources plus `oeis-A037274`, `oeis-A007320`; no novelty claimed from keywords
+- **Open:** the first computed frontier target after calibration
+- **Decision:** PROMOTE (board enters the platform as intelligence, not as theorems)
+
+```text
+What was learned
+- Historical lessons can be stored as grey loot with transfer targets and status
+- Global reachability, quantifier mismatch, and non-affine arithmetic recur across distinct names
+- Representation novelty and mathematical novelty stay independent
+- Calibration targets should run first even when EV is tiny
+- A ResearchLoop pick is computed from leftovers, not chosen by taste
+
+Strongest theorem
+- none; this is engine methodology
+
+Strongest refutation
+- none new; historical counterexamples preserved as loot
+
+Reusable machinery
+- ResearchTarget, PriorArtDossier, NamedFailureCluster, assemble_board, recommend_campaign_order
+
+Prior-art status
+- KNOWN historical campaigns; frontier open questions cited, not claimed
+
+Branch status
+- PROMOTE
+
+Why
+- v2.2 can now start a frozen-engine campaign from a ranked map of what failed and what remains open, without another scouting round and without expanding the attack surface.
+
+Best next question
+- What exact intermediate theorem or obstruction can frozen v2 produce on the first frontier target in the computed campaign order?
+```
+
 

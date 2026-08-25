@@ -39,7 +39,7 @@ def query_loot(
 
 
 def assert_not_injected(packet: BlindPacket, loot: tuple[GreyLoot, ...] | list[GreyLoot]) -> None:
-    blob = repr(packet.as_dict())
+    blob = repr(packet.as_dict()) + repr(packet.attack_payload())
     for item in loot:
         if item.id and item.id in blob:
             raise AssertionError("grey loot leaked into blind packet")

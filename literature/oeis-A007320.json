@@ -1,0 +1,21 @@
+{
+  "id": "oeis-A007320",
+  "title": "Number of steps for n to reach 1 in the juggler sequence",
+  "authors": ["OEIS contributors"],
+  "year": 1996,
+  "identifiers": {
+    "oeis": "A007320"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A007320"
+  },
+  "problem_area": "nonlinear-integer-dynamics",
+  "relevant_concepts": [
+    "juggler sequence",
+    "floor powers",
+    "reachability of 1"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/problems/research_target_board.md. Wildcard nonlinear integer map. Not an adapter hint."
+}

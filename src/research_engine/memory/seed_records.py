@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from dataclasses import replace
+
 from research_engine.diagnosis.types import (
     CapabilityCoverage,
     ExperimentRecord,
@@ -17,6 +19,7 @@ from research_engine.memory.types import (
     FailureStatus,
     GreyLoot,
     GreyLootKind,
+    GreyLootStatus,
     ImportanceLevel,
     KnownEquivalent,
     LootEvidence,
@@ -1200,25 +1203,252 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
         finalized=True,
     )
 
-    return (
-        signed,
-        digit,
-        weight,
-        drift,
-        syracuse,
-        control_obstruction,
-        remainder,
-        euclidean,
-        matrix_word,
-        sum_strip,
-        two_affine,
-        involution,
-        rplus,
-        bb5,
-        aliquot,
-        skolem,
-        hygiene,
+    return tuple(
+        _enrich_lessons(item)
+        for item in (
+            signed,
+            digit,
+            weight,
+            drift,
+            syracuse,
+            control_obstruction,
+            remainder,
+            euclidean,
+            matrix_word,
+            sum_strip,
+            two_affine,
+            involution,
+            rplus,
+            bb5,
+            aliquot,
+            skolem,
+            hygiene,
+        )
     )
+
+
+def _lesson_fields() -> dict[str, dict]:
+    return {
+        "signed_p0:loot:fold": dict(
+            observation="finite per-seed closure on the signed operator window",
+            reusable_lesson="operator-word family collapses to the known (P)-band; finite orbit diagnosis; no new dynamic regime",
+            possible_transfer_targets=("balanced_ternary_digit_sum_dynamics", "balanced_ternary_weight_dynamics"),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "digit_sum:loot:sat": dict(
+            observation="scalar digit-fold with a finite contracting attractor",
+            reusable_lesson="scalar digit-fold; finite contracting regime; family saturation evidence",
+            possible_transfer_targets=("balanced_ternary_weight_dynamics",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "weight_dynamics:loot:sat": dict(
+            observation="same core fingerprint as digit-sum with a different attractor",
+            reusable_lesson="same broad digit-fold regime; different attractor; no new machinery",
+            possible_transfer_targets=("operator_dynamics_benchmark",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "weight_drift:loot:regime": dict(
+            observation="expanding perturbation of a digit weight",
+            reusable_lesson="expanding perturbation changes the regime; must not join the fold family",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.REUSED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "syracuse:loot:latent": dict(
+            observation="parameterized family 2^k y = 3x+1 recovered from exact I/O",
+            reusable_lesson="hidden 2-adic control initially outside v2; latent affine discovery solved that boundary",
+            possible_transfer_targets=("mx_plus_r_7x1_class_obstruction", "weak_collatz_floor_5x4_rplus"),
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
+            prior_art_status="KNOWN",
+        ),
+        "syracuse:loot:obstruction": dict(
+            observation="class-level cycle constraints without enumerating seeds",
+            reusable_lesson="certified hidden controls become a reasoning language",
+            possible_transfer_targets=("control_obstruction", "matthews_prize_mod3_avoider"),
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
+            prior_art_status="KNOWN",
+        ),
+        "control_obstruction:loot:class": dict(
+            observation="gcd constraints block infinite control-word families",
+            reusable_lesson="exact constraints can eliminate infinite classes",
+            possible_transfer_targets=("mx_plus_r_7x1_class_obstruction", "companion_shift_order6_zero_class"),
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
+            prior_art_status="KNOWN",
+        ),
+        "recursive_remainder:loot:mag": dict(
+            observation="remainder recurrence without a magnitude Lyapunov",
+            reusable_lesson="class obstruction does not require magnitude domination",
+            possible_transfer_targets=("matrix_word_invariant", "switching_affine_z2_origin"),
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
+            prior_art_status="KNOWN",
+        ),
+        "euclidean_quotient:loot:vector": dict(
+            observation="remainder map is affine on Z^2, not on a scalar census",
+            reusable_lesson="scalar affine language does not cover multi-dimensional control",
+            possible_transfer_targets=("switching_affine_z2_origin", "skolem_order5_unconditional"),
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
+            prior_art_status="KNOWN",
+        ),
+        "matrix_word_invariant:loot:gcd": dict(
+            observation="composed matrix words yield lattice/gcd cycle constraints",
+            reusable_lesson="vector class obstructions can use lattice/gcd structure",
+            possible_transfer_targets=("companion_shift_order6_zero_class", "switching_affine_z2_origin"),
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
+            prior_art_status="KNOWN",
+        ),
+        "sum_strip_slc:loot:branch": dict(
+            observation="three overlapping successors at every integer",
+            reusable_lesson="branching diagnosed; deterministic control stack cannot consume overlapping legal branches; quantifier handling must remain explicit",
+            possible_transfer_targets=("two_affine",),
+            status=GreyLootStatus.PARKED,
+            engineering_action="PARK",
+            prior_art_status="KNOWN",
+            minimal_example="sum_strip at any x",
+        ),
+        "two_affine_slc:loot:branch": dict(
+            observation="two overlapping affine branches",
+            reusable_lesson="quantifier mismatch recurs on overlapping affine slices",
+            possible_transfer_targets=("sum_strip",),
+            status=GreyLootStatus.PARKED,
+            engineering_action="PARK",
+            prior_art_status="KNOWN",
+        ),
+        "involution_census:loot:sign": dict(
+            observation="sign-first regions miss y=-x",
+            reusable_lesson="sign-first domain inference can truncate a globally valid affine law",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.PARKED,
+            engineering_action="DO_NOT_IMPLEMENT",
+            prior_art_status="KNOWN",
+            counterexample="y=-x on Z",
+        ),
+        "carelli_rplus:loot:family": dict(
+            observation="3y=4x-1 and 3y=4x-2 on two residues",
+            reusable_lesson="research language recovered from inequalities; global reachability remains the real barrier",
+            possible_transfer_targets=("weak_collatz_floor_5x4_rplus", "matthews_prize_mod3_avoider"),
+            status=GreyLootStatus.ACTIVE,
+            engineering_action="WATCH",
+            prior_art_status="KNOWN",
+        ),
+        "bb5_map:loot:family": dict(
+            observation="3y=5x+18 / 3y=5x+22 on residues mod 3",
+            reusable_lesson="known residue-controlled affine language reconstructed; no new mathematics; convergence remains open",
+            possible_transfer_targets=("matthews_prize_mod3_avoider",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "aliquot_276:loot:mismatch": dict(
+            observation="sigma(n)-n has no piecewise-affine cover",
+            reusable_lesson="divisor-sum/factorization dynamics lies outside the affine-control language",
+            possible_transfer_targets=("home_prime_49",),
+            status=GreyLootStatus.PARKED,
+            engineering_action="PARK",
+            prior_art_status="KNOWN",
+            minimal_example="n |-> sigma(n)-n",
+            counterexample="descent refuted at seed 12",
+        ),
+        "skolem_order6:loot:budget": dict(
+            observation="25^6 census cube skipped",
+            reusable_lesson="vector companion representation fits; finite exploration exhausts; infinite-time zero reachability remains unresolved",
+            possible_transfer_targets=("skolem_order5_unconditional", "companion_shift_order6_zero_class"),
+            status=GreyLootStatus.ACTIVE,
+            engineering_action="WATCH",
+            prior_art_status="KNOWN",
+        ),
+        "skolem_order6:loot:sign": dict(
+            observation="first negative term at index 11",
+            reusable_lesson="finite prefix observations are not infinite-time theorems",
+            possible_transfer_targets=("companion_shift_order6_zero_class",),
+            status=GreyLootStatus.REUSED,
+            engineering_action="RECORD",
+            prior_art_status="KNOWN",
+            counterexample="u_11 < 0",
+        ),
+        "skolem_lrs_hygiene:loot:token": dict(
+            observation="problem id matched a forbidden literature token",
+            reusable_lesson="identifier-aware literature-leak matching; package ids are not leaks",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.REFUTED,
+            engineering_action="RESOLVED",
+            prior_art_status="KNOWN",
+            minimal_example="skolem_lrs as an import path",
+        ),
+    }
+
+
+def _extra_loot() -> dict[str, tuple[GreyLoot, ...]]:
+    return {
+        "syracuse": (
+            GreyLoot(
+                id="syracuse:loot:domain",
+                kind=GreyLootKind.LATENT_CONTROL_PATTERN,
+                statement="maximal 2-adic exponent reconstructed as an exact divisibility conjunction",
+                evidence=LootEvidence.PROVED,
+                experiment_id="syracuse",
+                target="syracuse",
+                observation="parameter domain of 2^k y = 3x+1 is exact",
+                reusable_lesson="maximal divisibility can be reconstructed and certified",
+                possible_transfer_targets=("mx_plus_r_7x1_class_obstruction",),
+                status=GreyLootStatus.REUSED,
+                engineering_action="REUSED",
+                prior_art_status="KNOWN",
+            ),
+            GreyLoot(
+                id="syracuse:loot:word",
+                kind=GreyLootKind.LATENT_CONTROL_PATTERN,
+                statement="certified control words compose the recovered family",
+                evidence=LootEvidence.PROVED,
+                experiment_id="syracuse",
+                target="syracuse",
+                observation="control-word algebra on the Syracuse family",
+                reusable_lesson="certified hidden controls become a reasoning language",
+                possible_transfer_targets=("carelli_rplus", "matthews_prize_mod3_avoider"),
+                status=GreyLootStatus.REUSED,
+                engineering_action="REUSED",
+                prior_art_status="KNOWN",
+            ),
+        ),
+    }
+
+
+def _enrich_lessons(experiment: MemoryExperiment) -> MemoryExperiment:
+    fields = _lesson_fields()
+    extras = _extra_loot()
+    loot: list[GreyLoot] = []
+    for item in experiment.grey_loot:
+        overlay = fields.get(item.id)
+        loot.append(item if overlay is None else replace(item, **overlay))
+    loot.extend(extras.get(experiment.experiment_id, ()))
+    yield_item = experiment.mathematical_yield
+    if experiment.experiment_id == "syracuse" and not yield_item.new_formalizations:
+        yield_item = replace(yield_item, new_formalizations=("Problems.Engine.Syracuse",))
+    if experiment.experiment_id == "carelli_rplus" and not yield_item.new_formalizations:
+        yield_item = replace(
+            yield_item,
+            new_formalizations=("Problems.Engine.LinearConstraintLoops",),
+            known_rediscoveries=yield_item.known_rediscoveries
+            or ("Carelli R+ integer graph / Matthews–Watts",),
+        )
+    if experiment.experiment_id == "digit_sum" and not yield_item.new_classifications:
+        yield_item = replace(
+            yield_item,
+            new_classifications=("scalar digit-fold family SATURATED from evidence",),
+        )
+    return replace(experiment, grey_loot=tuple(loot), mathematical_yield=yield_item)
 
 
 def dump_historical(path=None):

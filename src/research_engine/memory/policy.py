@@ -50,6 +50,10 @@ def engineering_candidate(cluster: FailureCluster) -> EngineeringCandidate:
         reusable_scope=cluster.suggested_future_abstraction or "target-specific",
         recommendation=recommendation,
         generic_abstraction=bool(cluster.suggested_future_abstraction),
+        possible_generic_abstraction=cluster.suggested_future_abstraction,
+        implementation_cost_estimate=cost,
+        current_decision=recommendation,
+        reason_not_implemented=_reason_not_implemented(recommendation),
     )
 
 
@@ -62,6 +66,10 @@ def _reason_not_implemented(recommendation: EngineeringRecommendation) -> str:
         return "insufficient recurrence"
     if recommendation is EngineeringRecommendation.IGNORE:
         return "single failure; do not implement"
+    if recommendation is EngineeringRecommendation.PROTOTYPE_LATER:
+        return "prototype deferred; not an implementation instruction"
+    if recommendation is EngineeringRecommendation.PROTOTYPE:
+        return "prototype deferred; not an implementation instruction"
     return "low expected yield"
 
 

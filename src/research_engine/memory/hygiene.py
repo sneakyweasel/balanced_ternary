@@ -11,6 +11,7 @@ DEFAULT_ALLOWLIST: tuple[str, ...] = (
     "bb5_map",
     "engine_campaign",
     "engine_memory",
+    "target_board",
     "companion_shift",
     "CompanionShift",
     "vector_affine",

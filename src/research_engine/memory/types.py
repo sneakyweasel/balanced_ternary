@@ -188,6 +188,7 @@ class EngineeringRecommendation(str, Enum):
     PARK = "PARK"
     WATCH = "WATCH"
     PROTOTYPE = "PROTOTYPE"
+    PROTOTYPE_LATER = "PROTOTYPE_LATER"
     PROMOTE_TO_NEXT_VERSION = "PROMOTE_TO_NEXT_VERSION"
 
 
@@ -196,6 +197,21 @@ class ClusterDecision(str, Enum):
     PARK = "PARK"
     WATCH = "WATCH"
     RECORD = "RECORD"
+
+
+class GreyLootStatus(str, Enum):
+    ACTIVE = "ACTIVE"
+    PARKED = "PARKED"
+    REFUTED = "REFUTED"
+    REUSED = "REUSED"
+    SATURATED = "SATURATED"
+    SUPERSEDED = "SUPERSEDED"
+
+
+class TargetPool(str, Enum):
+    CALIBRATION = "CALIBRATION"
+    FRONTIER = "FRONTIER"
+    WILDCARD = "WILDCARD"
 
 
 @dataclass(frozen=True)
@@ -209,6 +225,14 @@ class GreyLoot:
     failure_class: FailureClass | None = None
     bottleneck: str = ""
     payload: dict[str, Any] = field(default_factory=dict)
+    observation: str = ""
+    minimal_example: str = ""
+    counterexample: str = ""
+    reusable_lesson: str = ""
+    possible_transfer_targets: tuple[str, ...] = ()
+    prior_art_status: str = ""
+    engineering_action: str = ""
+    status: GreyLootStatus = GreyLootStatus.PARKED
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -221,11 +245,20 @@ class GreyLoot:
             "failure_class": None if self.failure_class is None else self.failure_class.value,
             "bottleneck": self.bottleneck,
             "payload": dict(self.payload),
+            "observation": self.observation,
+            "minimal_example": self.minimal_example,
+            "counterexample": self.counterexample,
+            "reusable_lesson": self.reusable_lesson,
+            "possible_transfer_targets": list(self.possible_transfer_targets),
+            "prior_art_status": self.prior_art_status,
+            "engineering_action": self.engineering_action,
+            "status": self.status.value,
         }
 
     @classmethod
     def from_dict(cls, data: MappingLike) -> GreyLoot:
         raw_class = data.get("failure_class")
+        raw_status = data.get("status")
         return cls(
             id=str(data["id"]),
             kind=GreyLootKind(data["kind"]),
@@ -236,6 +269,16 @@ class GreyLoot:
             failure_class=None if not raw_class else FailureClass(raw_class),
             bottleneck=str(data.get("bottleneck") or ""),
             payload=dict(data.get("payload") or {}),
+            observation=str(data.get("observation") or ""),
+            minimal_example=str(data.get("minimal_example") or ""),
+            counterexample=str(data.get("counterexample") or ""),
+            reusable_lesson=str(data.get("reusable_lesson") or ""),
+            possible_transfer_targets=tuple(
+                str(item) for item in (data.get("possible_transfer_targets") or ())
+            ),
+            prior_art_status=str(data.get("prior_art_status") or ""),
+            engineering_action=str(data.get("engineering_action") or ""),
+            status=GreyLootStatus(raw_status) if raw_status else GreyLootStatus.PARKED,
         )
 
 
@@ -461,15 +504,40 @@ class BlindPacket:
     max_states: int | None = None
     max_steps: int | None = None
     extra: dict[str, Any] = field(default_factory=dict)
+    allowed_definition: str = ""
+    state_space: str = ""
+    observation: str = ""
+    initial_conditions: tuple[str, ...] = ()
+    explicit_controls: str = ""
+    computational_budget: str = ""
+    forbidden_hints: tuple[str, ...] = ()
+    post_run_reconciliation: str = ""
+    lean_targets: tuple[str, ...] = ()
 
-    def as_dict(self) -> dict[str, Any]:
+    def attack_payload(self) -> dict[str, Any]:
+        """Engine-visible fields. Forbidden-hint lists are metadata, not I/O."""
+
         return {
             "spec_name": self.spec_name,
             "dimension": self.dimension,
             "skip_attacks": list(self.skip_attacks),
             "max_states": self.max_states,
             "max_steps": self.max_steps,
+            "allowed_definition": self.allowed_definition,
+            "state_space": self.state_space,
+            "observation": self.observation,
+            "initial_conditions": list(self.initial_conditions),
+            "explicit_controls": self.explicit_controls,
+            "computational_budget": self.computational_budget,
+        }
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            **self.attack_payload(),
             "extra": dict(self.extra),
+            "forbidden_hints": list(self.forbidden_hints),
+            "post_run_reconciliation": self.post_run_reconciliation,
+            "lean_targets": list(self.lean_targets),
         }
 
     @classmethod
@@ -484,6 +552,15 @@ class BlindPacket:
             max_states=data.get("max_states"),
             max_steps=data.get("max_steps"),
             extra=extra,
+            allowed_definition=str(data.get("allowed_definition") or ""),
+            state_space=str(data.get("state_space") or ""),
+            observation=str(data.get("observation") or ""),
+            initial_conditions=tuple(str(item) for item in (data.get("initial_conditions") or ())),
+            explicit_controls=str(data.get("explicit_controls") or ""),
+            computational_budget=str(data.get("computational_budget") or ""),
+            forbidden_hints=tuple(str(item) for item in (data.get("forbidden_hints") or ())),
+            post_run_reconciliation=str(data.get("post_run_reconciliation") or ""),
+            lean_targets=tuple(str(item) for item in (data.get("lean_targets") or ())),
         )
 
 
@@ -617,6 +694,10 @@ class EngineeringCandidate:
     reusable_scope: str
     recommendation: EngineeringRecommendation
     generic_abstraction: bool = False
+    possible_generic_abstraction: str = ""
+    implementation_cost_estimate: str = ""
+    current_decision: EngineeringRecommendation | None = None
+    reason_not_implemented: str = ""
 
     def as_dict(self) -> dict[str, Any]:
         return {
@@ -629,6 +710,12 @@ class EngineeringCandidate:
             "reusable_scope": self.reusable_scope,
             "recommendation": self.recommendation.value,
             "generic_abstraction": self.generic_abstraction,
+            "possible_generic_abstraction": self.possible_generic_abstraction or self.reusable_scope,
+            "implementation_cost_estimate": self.implementation_cost_estimate or self.implementation_cost,
+            "current_decision": None
+            if self.current_decision is None
+            else self.current_decision.value,
+            "reason_not_implemented": self.reason_not_implemented,
         }
 
 
@@ -750,6 +837,355 @@ class MemoryExperiment:
         )
 
 
+@dataclass(frozen=True)
+class ScoredAxis:
+    """Numeric score plus the reason it is not arbitrary."""
+
+    value: float
+    reason: str
+
+    def as_dict(self) -> dict[str, Any]:
+        return {"value": self.value, "reason": self.reason}
+
+    @classmethod
+    def from_dict(cls, data: MappingLike | float | int) -> ScoredAxis:
+        if isinstance(data, (int, float)):
+            return cls(value=float(data), reason="")
+        return cls(value=float(data.get("value") or 0.0), reason=str(data.get("reason") or ""))
+
+
+@dataclass(frozen=True)
+class PriorArtDossier:
+    """Scout-lane prior-art map. Never copied into a BlindPacket."""
+
+    target: str
+    definition: str = ""
+    known_equivalent_formulations: tuple[str, ...] = ()
+    known_theorems: tuple[str, ...] = ()
+    known_conjectures: tuple[str, ...] = ()
+    known_counterexamples: tuple[str, ...] = ()
+    known_computational_results: tuple[str, ...] = ()
+    known_methods: tuple[str, ...] = ()
+    known_barriers: tuple[str, ...] = ()
+    open_question: str = ""
+    open_question_confidence: str = ""
+    current_literature_activity: str = ""
+    last_checked: str = "2026-08-25"
+    literature_ids: tuple[str, ...] = ()
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "target": self.target,
+            "definition": self.definition,
+            "known_equivalent_formulations": list(self.known_equivalent_formulations),
+            "known_theorems": list(self.known_theorems),
+            "known_conjectures": list(self.known_conjectures),
+            "known_counterexamples": list(self.known_counterexamples),
+            "known_computational_results": list(self.known_computational_results),
+            "known_methods": list(self.known_methods),
+            "known_barriers": list(self.known_barriers),
+            "open_question": self.open_question,
+            "open_question_confidence": self.open_question_confidence,
+            "current_literature_activity": self.current_literature_activity,
+            "last_checked": self.last_checked,
+            "literature_ids": list(self.literature_ids),
+        }
+
+    @classmethod
+    def from_dict(cls, data: MappingLike) -> PriorArtDossier:
+        def _words(name: str) -> tuple[str, ...]:
+            return tuple(str(item) for item in (data.get(name) or ()))
+
+        return cls(
+            target=str(data["target"]),
+            definition=str(data.get("definition") or ""),
+            known_equivalent_formulations=_words("known_equivalent_formulations"),
+            known_theorems=_words("known_theorems"),
+            known_conjectures=_words("known_conjectures"),
+            known_counterexamples=_words("known_counterexamples"),
+            known_computational_results=_words("known_computational_results"),
+            known_methods=_words("known_methods"),
+            known_barriers=_words("known_barriers"),
+            open_question=str(data.get("open_question") or ""),
+            open_question_confidence=str(data.get("open_question_confidence") or ""),
+            current_literature_activity=str(data.get("current_literature_activity") or ""),
+            last_checked=str(data.get("last_checked") or "2026-08-25"),
+            literature_ids=_words("literature_ids"),
+        )
+
+
+@dataclass(frozen=True)
+class NamedFailureCluster:
+    """Semantic overlay on auto-clustered FailureRecord groups."""
+
+    id: str
+    title: str
+    member_cluster_ids: tuple[str, ...]
+    targets: tuple[str, ...]
+    recurrence_count: int
+    target_diversity: int
+    mathematical_importance: ImportanceLevel
+    existing_workarounds: tuple[str, ...]
+    current_decision: ClusterDecision
+    possible_generic_abstraction: str = ""
+    research_questions: tuple[str, ...] = ()
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "id": self.id,
+            "title": self.title,
+            "member_cluster_ids": list(self.member_cluster_ids),
+            "targets": list(self.targets),
+            "recurrence_count": self.recurrence_count,
+            "target_diversity": self.target_diversity,
+            "mathematical_importance": self.mathematical_importance.value,
+            "existing_workarounds": list(self.existing_workarounds),
+            "current_decision": self.current_decision.value,
+            "possible_generic_abstraction": self.possible_generic_abstraction,
+            "research_questions": list(self.research_questions),
+        }
+
+    @classmethod
+    def from_dict(cls, data: MappingLike) -> NamedFailureCluster:
+        return cls(
+            id=str(data["id"]),
+            title=str(data.get("title") or data["id"]),
+            member_cluster_ids=tuple(str(item) for item in (data.get("member_cluster_ids") or ())),
+            targets=tuple(str(item) for item in (data.get("targets") or ())),
+            recurrence_count=int(data.get("recurrence_count") or 0),
+            target_diversity=int(data.get("target_diversity") or 0),
+            mathematical_importance=ImportanceLevel(
+                data.get("mathematical_importance") or ImportanceLevel.MEDIUM.value
+            ),
+            existing_workarounds=tuple(str(item) for item in (data.get("existing_workarounds") or ())),
+            current_decision=ClusterDecision(data.get("current_decision") or ClusterDecision.RECORD.value),
+            possible_generic_abstraction=str(data.get("possible_generic_abstraction") or ""),
+            research_questions=tuple(str(item) for item in (data.get("research_questions") or ())),
+        )
+
+
+@dataclass(frozen=True)
+class ResearchTarget:
+    """Board record. Structure is in the fields, not the name."""
+
+    name: str
+    canonical_definition: str
+    state_space: str
+    transition_type: str
+    dimension: int
+    determinism: str
+    known_control_type: str
+    known_regime_if_any: str
+    open_question: str
+    known_results: tuple[str, ...]
+    known_obstructions: tuple[str, ...]
+    computational_status: str
+    prior_art_saturation: str
+    engine_fit: ScoredAxis
+    structural_distance: ScoredAxis
+    novelty_potential: ScoredAxis
+    failure_learning_value: ScoredAxis
+    experimental_cost: ScoredAxis
+    expected_research_value: ScoredAxis
+    pool: TargetPool
+    priority: str
+    recommended_protocol: str
+    claimed_capabilities: tuple[str, ...] = ()
+    exact_semantics: bool = True
+    finite_horizon_tractable: bool = True
+    lean_certifiable: bool = True
+    prior_art_classified: bool = False
+    prospective_fingerprint: Any = None
+    prior_art: PriorArtDossier | None = None
+    blind_packet: BlindPacket | None = None
+    already_run: bool = False
+
+    def as_sketch(self):
+        from research_engine.diagnosis.types import CandidateSketch
+
+        return CandidateSketch(
+            name=self.name,
+            fingerprint=self.prospective_fingerprint,
+            exact_semantics=self.exact_semantics,
+            finite_horizon_tractable=self.finite_horizon_tractable,
+            lean_certifiable=self.lean_certifiable,
+            prior_art_classified=self.prior_art_classified,
+            experimental_cost=self.experimental_cost.value if self.experimental_cost.value > 0 else 1.0,
+            claimed_capabilities=self.claimed_capabilities,
+        )
+
+    def with_expected_value(self, value: float, reason: str) -> ResearchTarget:
+        return replace(self, expected_research_value=ScoredAxis(value=value, reason=reason))
+
+    def as_dict(self) -> dict[str, Any]:
+        fingerprint = None
+        if self.prospective_fingerprint is not None:
+            fingerprint = self.prospective_fingerprint.as_dict()
+        return {
+            "name": self.name,
+            "canonical_definition": self.canonical_definition,
+            "state_space": self.state_space,
+            "transition_type": self.transition_type,
+            "dimension": self.dimension,
+            "determinism": self.determinism,
+            "known_control_type": self.known_control_type,
+            "known_regime_if_any": self.known_regime_if_any,
+            "open_question": self.open_question,
+            "known_results": list(self.known_results),
+            "known_obstructions": list(self.known_obstructions),
+            "computational_status": self.computational_status,
+            "prior_art_saturation": self.prior_art_saturation,
+            "engine_fit": self.engine_fit.as_dict(),
+            "structural_distance": self.structural_distance.as_dict(),
+            "novelty_potential": self.novelty_potential.as_dict(),
+            "failure_learning_value": self.failure_learning_value.as_dict(),
+            "experimental_cost": self.experimental_cost.as_dict(),
+            "expected_research_value": self.expected_research_value.as_dict(),
+            "pool": self.pool.value,
+            "priority": self.priority,
+            "recommended_protocol": self.recommended_protocol,
+            "claimed_capabilities": list(self.claimed_capabilities),
+            "exact_semantics": self.exact_semantics,
+            "finite_horizon_tractable": self.finite_horizon_tractable,
+            "lean_certifiable": self.lean_certifiable,
+            "prior_art_classified": self.prior_art_classified,
+            "prospective_fingerprint": fingerprint,
+            "prior_art": None if self.prior_art is None else self.prior_art.as_dict(),
+            "blind_packet": None if self.blind_packet is None else self.blind_packet.as_dict(),
+            "already_run": self.already_run,
+        }
+
+    @classmethod
+    def from_dict(cls, data: MappingLike) -> ResearchTarget:
+        raw_fp = data.get("prospective_fingerprint")
+        raw_prior = data.get("prior_art")
+        raw_blind = data.get("blind_packet")
+        return cls(
+            name=str(data["name"]),
+            canonical_definition=str(data.get("canonical_definition") or ""),
+            state_space=str(data.get("state_space") or ""),
+            transition_type=str(data.get("transition_type") or ""),
+            dimension=int(data.get("dimension") or 1),
+            determinism=str(data.get("determinism") or "DETERMINISTIC"),
+            known_control_type=str(data.get("known_control_type") or ""),
+            known_regime_if_any=str(data.get("known_regime_if_any") or ""),
+            open_question=str(data.get("open_question") or ""),
+            known_results=tuple(str(item) for item in (data.get("known_results") or ())),
+            known_obstructions=tuple(str(item) for item in (data.get("known_obstructions") or ())),
+            computational_status=str(data.get("computational_status") or ""),
+            prior_art_saturation=str(data.get("prior_art_saturation") or ""),
+            engine_fit=ScoredAxis.from_dict(data.get("engine_fit") or {}),
+            structural_distance=ScoredAxis.from_dict(data.get("structural_distance") or {}),
+            novelty_potential=ScoredAxis.from_dict(data.get("novelty_potential") or {}),
+            failure_learning_value=ScoredAxis.from_dict(data.get("failure_learning_value") or {}),
+            experimental_cost=ScoredAxis.from_dict(data.get("experimental_cost") or {"value": 1.0}),
+            expected_research_value=ScoredAxis.from_dict(data.get("expected_research_value") or {}),
+            pool=TargetPool(data.get("pool") or TargetPool.FRONTIER.value),
+            priority=str(data.get("priority") or ""),
+            recommended_protocol=str(data.get("recommended_protocol") or ""),
+            claimed_capabilities=tuple(str(item) for item in (data.get("claimed_capabilities") or ())),
+            exact_semantics=bool(data.get("exact_semantics", True)),
+            finite_horizon_tractable=bool(data.get("finite_horizon_tractable", True)),
+            lean_certifiable=bool(data.get("lean_certifiable", True)),
+            prior_art_classified=bool(data.get("prior_art_classified")),
+            prospective_fingerprint=None if not raw_fp else fingerprint_from_dict(raw_fp),
+            prior_art=None if not raw_prior else PriorArtDossier.from_dict(raw_prior),
+            blind_packet=None if not raw_blind else BlindPacket.from_dict(raw_blind),
+            already_run=bool(data.get("already_run")),
+        )
+
+
+@dataclass(frozen=True)
+class CampaignOrder:
+    calibration: tuple[str, ...]
+    frontier: tuple[str, ...]
+    wildcards: tuple[str, ...]
+    research_loop_pick: str
+    explanations: tuple[str, ...] = ()
+
+    def sequence(self) -> tuple[str, ...]:
+        pick = (self.research_loop_pick,) if self.research_loop_pick else ()
+        return self.calibration + self.frontier + self.wildcards + pick
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "calibration": list(self.calibration),
+            "frontier": list(self.frontier),
+            "wildcards": list(self.wildcards),
+            "research_loop_pick": self.research_loop_pick,
+            "sequence": list(self.sequence()),
+            "explanations": list(self.explanations),
+        }
+
+
+@dataclass(frozen=True)
+class TargetBoard:
+    targets: tuple[ResearchTarget, ...]
+    named_clusters: tuple[NamedFailureCluster, ...] = ()
+    engineering_candidates: tuple[EngineeringCandidate, ...] = ()
+    campaign_order: CampaignOrder | None = None
+
+    def by_name(self) -> dict[str, ResearchTarget]:
+        return {item.name: item for item in self.targets}
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "engine_version": ENGINE_MEMORY_VERSION,
+            "targets": [item.as_dict() for item in self.targets],
+            "named_clusters": [item.as_dict() for item in self.named_clusters],
+            "engineering_candidates": [item.as_dict() for item in self.engineering_candidates],
+            "campaign_order": None if self.campaign_order is None else self.campaign_order.as_dict(),
+        }
+
+    @classmethod
+    def from_dict(cls, data: MappingLike) -> TargetBoard:
+        order_raw = data.get("campaign_order")
+        order = None
+        if order_raw:
+            order = CampaignOrder(
+                calibration=tuple(str(item) for item in (order_raw.get("calibration") or ())),
+                frontier=tuple(str(item) for item in (order_raw.get("frontier") or ())),
+                wildcards=tuple(str(item) for item in (order_raw.get("wildcards") or ())),
+                research_loop_pick=str(order_raw.get("research_loop_pick") or ""),
+                explanations=tuple(str(item) for item in (order_raw.get("explanations") or ())),
+            )
+        return cls(
+            targets=tuple(ResearchTarget.from_dict(item) for item in (data.get("targets") or ())),
+            named_clusters=tuple(
+                NamedFailureCluster.from_dict(item) for item in (data.get("named_clusters") or ())
+            ),
+            engineering_candidates=tuple(
+                EngineeringCandidate(
+                    failure_cluster=str(item["failure_cluster"]),
+                    recurrence_count=int(item.get("recurrence_count") or 0),
+                    target_diversity=int(item.get("target_diversity") or 0),
+                    mathematical_importance=ImportanceLevel(
+                        item.get("mathematical_importance") or ImportanceLevel.MEDIUM.value
+                    ),
+                    expected_research_value=ImportanceLevel(
+                        item.get("expected_research_value") or ImportanceLevel.MEDIUM.value
+                    ),
+                    implementation_cost=str(item.get("implementation_cost") or ""),
+                    reusable_scope=str(item.get("reusable_scope") or ""),
+                    recommendation=EngineeringRecommendation(
+                        item.get("recommendation") or EngineeringRecommendation.PARK.value
+                    ),
+                    generic_abstraction=bool(item.get("generic_abstraction")),
+                    possible_generic_abstraction=str(item.get("possible_generic_abstraction") or ""),
+                    implementation_cost_estimate=str(item.get("implementation_cost_estimate") or ""),
+                    current_decision=(
+                        None
+                        if not item.get("current_decision")
+                        else EngineeringRecommendation(item["current_decision"])
+                    ),
+                    reason_not_implemented=str(item.get("reason_not_implemented") or ""),
+                )
+                for item in (data.get("engineering_candidates") or ())
+            ),
+            campaign_order=order,
+        )
+
+
 MappingLike = dict[str, Any]
 
 
@@ -837,6 +1273,7 @@ def experiment_record_from_dict(data: MappingLike) -> ExperimentRecord:
 __all__ = [
     "ENGINE_MEMORY_VERSION",
     "BlindPacket",
+    "CampaignOrder",
     "ClusterDecision",
     "DecisionReason",
     "EngineeringBacklogItem",
@@ -849,19 +1286,26 @@ __all__ = [
     "FailureStatus",
     "GreyLoot",
     "GreyLootKind",
+    "GreyLootStatus",
     "ImportanceLevel",
     "KnownEquivalent",
     "LootEvidence",
     "MathematicalYield",
     "MemoryExperiment",
     "MemoryLane",
+    "NamedFailureCluster",
     "NoveltyLevel",
     "NoveltyStatus",
+    "PriorArtDossier",
     "PriorArtMemory",
     "Reconciliation",
     "ResearchQuestion",
+    "ResearchTarget",
     "RunArtifact",
+    "ScoredAxis",
     "ScoutDossier",
+    "TargetBoard",
+    "TargetPool",
     "coverage_from_dict",
     "experiment_record_from_dict",
     "experiment_record_to_dict",

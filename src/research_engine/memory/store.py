@@ -33,6 +33,7 @@ if TYPE_CHECKING:
     from research_engine.diagnosis.loop import ResearchSession
 
 SEED_PATH = Path(__file__).resolve().parent / "seed" / "historical.json"
+BOARD_PATH = Path(__file__).resolve().parent / "seed" / "target_board.json"
 
 
 class FinalizedError(RuntimeError):
@@ -161,6 +162,21 @@ class ResearchMemory:
     def engineering_backlog(self) -> tuple[EngineeringBacklogItem, ...]:
         return tuple(backlog_item(item) for item in self.clusters())
 
+    def named_clusters(self):
+        from research_engine.memory.named_clusters import named_failure_clusters
+
+        return named_failure_clusters(self)
+
+    def yield_corpus(self):
+        from research_engine.memory.board import yield_corpus
+
+        return yield_corpus(self)
+
+    def assemble_board(self, corpus=None):
+        from research_engine.memory.board import assemble_board
+
+        return assemble_board(self, corpus)
+
     def as_dict(self) -> dict[str, Any]:
         return {
             "engine_version": ENGINE_MEMORY_VERSION,
@@ -188,3 +204,9 @@ class ResearchMemory:
     @classmethod
     def load_historical(cls) -> ResearchMemory:
         return cls.from_json_path(SEED_PATH)
+
+    @classmethod
+    def load_board(cls, path: Path | None = None):
+        from research_engine.memory.seed_targets import load_board
+
+        return load_board(path)
