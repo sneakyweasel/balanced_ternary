@@ -1,0 +1,29 @@
+{
+  "id": "lipton-et-al-2022-skolem-conjecture",
+  "title": "On the Skolem Problem and the Skolem Conjecture",
+  "authors": [
+    "Richard J. Lipton",
+    "Florian Luca",
+    "Joris Nieuwveld",
+    "Joël Ouaknine",
+    "David Purser",
+    "James Worrell"
+  ],
+  "year": 2022,
+  "identifiers": {
+    "doi": "10.1145/3531130.3533328"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1145/3531130.3533328"
+  },
+  "problem_area": "skolem-lrs",
+  "relevant_concepts": [
+    "Skolem Problem",
+    "Skolem Conjecture",
+    "reversible LRS",
+    "order-6 Example 3.5"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/problems/skolem_lrs.md. Conditional order-5 decidability and a different order-6 example. Not the 2026 survey sequence."
+}

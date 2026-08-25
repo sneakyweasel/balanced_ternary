@@ -2248,5 +2248,48 @@ Best next question
 - Which frozen-engine target still lies inside the existing attack language, now that this arithmetic boundary is recorded?
 ```
 
+## Frozen Engine campaign: open order-6 Skolem instance
+
+- **Date:** 2026-08-25
+- **Objective:** Test whether frozen v2 can make progress on the 2026 survey's unresolved order-6 integer LRS using only existing vector/matrix/reachability machinery
+- **Hypotheses:** Companion matrices are recovered in dimension 2; easy zeros are certified; the order-6 instance remains UNKNOWN; the frozen 3-point census cannot consume dimension ≥ 3
+- **Major results:** Dim-2 recovered exact companions \(((0,1),(-2,3))\), \(((0,1),(1,1))\), \(((0,1),(-1,0))\). Zeros at indices 3 and 1. Order-3 census UNRESOLVED. Order-6 vector census COMPUTATION_EXHAUSTED (\(25^6\)). Prefix 12,49,374,6003,21520,150773; first negative \(u_{11}\); no zero on \(\{0,\ldots,64\}\). No modular exclusion. Lean companion_shift_*. No new attack. ResearchLoop next un-overridden
+- **Refuted ideas:** flagship fixed sign (counterexample \(n=11\)); finite zero-search as non-existence; seed-zero closure as contraction
+- **Literature:** Bacik et al. 2026 survey sequence (13); Lipton et al. 2022; Luca–Ouaknine–Worrell 2026; Kenison et al. 2025 order 4. All identities KNOWN
+- **Open:** whether survey (13) vanishes; parked vector-census dimensional barrier
+- **Decision:** PARK (flagship ResearchDecision CLOSE; engineering ENGINE_LIMITATION of the census)
+
+```text
+What was learned
+- Frozen vector_affine recovers exact 2-D companions from I/O, including the easy Skolem calibrations
+- The same census cannot determine a 3x3 matrix (3-point fit) and cannot even be run in dimension 6 (25^d cube)
+- Representation fit is not research leverage: the order-6 instance stays UNKNOWN
+- NO ZERO FOUND on {0,...,64} is a finite-range check, not the literature 10^1000 certificate and not non-existence
+- Stopping at a zero is again billed FINITE_CONTRACTING
+
+Strongest theorem
+- companion_shift_positive_step / companion_shift_zero_small_third / companion_shift_order6_eleventh_negative (Lean); KNOWN
+
+Strongest refutation
+- flagship first coordinate is not of fixed sign (u_11 < 0); 3-point vector census is not a Z^d theorem for d>=3
+
+Reusable machinery
+- Hint-free CompanionShiftSpec; budgeted skip of the exponential census cube; scout kept off the adapter
+
+Prior-art status
+- KNOWN Skolem lore; ENGINE REDISCOVERY of 2-D companions; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PARK
+
+Why
+- The experiment answered the yield question: the affine/matrix language already fits, but frozen v2 does not produce a new invariant, exclusion, or decision on the open order-6 instance. Do not add a Skolem attack.
+
+Best next question
+- Which frozen-engine target still lies inside the existing low-dimensional affine language, now that this high-dimensional census barrier is recorded?
+```
 
 

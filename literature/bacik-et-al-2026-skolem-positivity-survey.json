@@ -1,0 +1,32 @@
+{
+  "id": "bacik-et-al-2026-skolem-positivity-survey",
+  "title": "A survey of the Skolem and Positivity Problems for linear recurrence sequences",
+  "authors": [
+    "Piotr Bacik",
+    "Toghrul Karimov",
+    "Florian Luca",
+    "Joris Nieuwveld",
+    "Joël Ouaknine",
+    "David Purser",
+    "James Worrell"
+  ],
+  "year": 2026,
+  "identifiers": {
+    "url": "https://people.mpi-sws.org/~joel/publications/skolem_and_positivity_survey26abs.html"
+  },
+  "url": {
+    "html": "https://people.mpi-sws.org/~joel/publications/skolem_and_positivity_survey26abs.html",
+    "pdf": "https://people.mpi-sws.org/~joel/publications/skolem_and_positivity_survey26.pdf"
+  },
+  "problem_area": "skolem-lrs",
+  "relevant_concepts": [
+    "Skolem Problem",
+    "order-6 LRS",
+    "modular invariant",
+    "MSTV class",
+    "Universal Skolem Set"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/problems/skolem_lrs.md. Section 8.3 is the unresolved order-6 instance used as the flagship. Not an adapter hint."
+}

@@ -1,0 +1,26 @@
+{
+  "id": "kenison-et-al-2025-order-4-skolem",
+  "title": "Completing the picture for the Skolem Problem on order-4 linear recurrence sequences",
+  "authors": [
+    "George Kenison",
+    "Joris Nieuwveld",
+    "Joël Ouaknine",
+    "James Worrell"
+  ],
+  "year": 2025,
+  "identifiers": {
+    "arxiv": "2409.01221"
+  },
+  "url": {
+    "pdf": "https://theoretics.episciences.org/17020/pdf"
+  },
+  "problem_area": "skolem-lrs",
+  "relevant_concepts": [
+    "Skolem Problem",
+    "order 4",
+    "algebraic LRS"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "docs/problems/skolem_lrs.md. Completes unconditional Skolem decidability at order 4. Not an adapter hint."
+}
