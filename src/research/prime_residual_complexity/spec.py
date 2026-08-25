@@ -80,6 +80,11 @@ class SieveSpec:
         del phase
         return is_coprime(state[0], self.modulus)
 
+    def output(self, state: State, control: object, phase: IntPhase | None = None) -> bool:
+        del control
+        current = phase if phase is not None else self.initial_phase()
+        return self.is_accepting(state, current)
+
     def initial_phase(self) -> IntPhase:
         return IntPhase(self.start_remaining)
 
@@ -157,6 +162,11 @@ class PrimeSpec:
     def is_accepting(self, state: State, phase: IntPhase) -> bool:
         del phase
         return is_prime(state[0])
+
+    def output(self, state: State, control: object, phase: IntPhase | None = None) -> bool:
+        del control
+        current = phase if phase is not None else self.initial_phase()
+        return self.is_accepting(state, current)
 
     def initial_phase(self) -> IntPhase:
         return IntPhase(self.start_remaining)

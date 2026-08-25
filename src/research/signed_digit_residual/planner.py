@@ -13,7 +13,7 @@ from research.signed_digit_residual.discovery import (
 from research.signed_digit_residual.spec import SignedDigitResidualSpec, signed_digit_spec
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
-from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus
+from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus, PriorArtStatus
 from research_engine.planner.ledger import LedgerError, ResearchLedger
 from research_engine.planner.orchestrator import AttackPlanner, PlannerReport, promote_if_legal
 
@@ -24,6 +24,7 @@ CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="signed_digit_residual",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 SCALAR_THRESHOLD_HYPOTHESIS = Hypothesis(
@@ -33,6 +34,7 @@ SCALAR_THRESHOLD_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="signed_digit_residual",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 GEOMETRY_PHASE_HYPOTHESIS = Hypothesis(
@@ -42,6 +44,7 @@ GEOMETRY_PHASE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="signed_digit_residual",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 MAXABS_MEALY_HYPOTHESIS = Hypothesis(
@@ -51,6 +54,7 @@ MAXABS_MEALY_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="signed_digit_residual",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 

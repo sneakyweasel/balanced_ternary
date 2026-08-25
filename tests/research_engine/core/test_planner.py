@@ -7,7 +7,7 @@ from dataclasses import dataclass
 import pytest
 
 from research_engine.algebra.linear_functionals import LinearFunctional
-from research_engine.attacks.result import AttackContext
+from research_engine.attacks.result import AttackContext, AttackStatus
 from research_engine.core.affine_system import AffineSystem
 from research_engine.core.phase import IntPhase
 from research_engine.core.semantics import ClaimKind, SearchScope
@@ -155,3 +155,43 @@ def test_park_and_refute_do_not_require_matching_attack():
     )
     assert updated.status is HypothesisStatus.REFUTED
     assert ledger.get("live_infinite").status is HypothesisStatus.PARKED
+
+
+def test_promote_requires_prior_art_status():
+    from research_engine.attacks.result import AttackResult
+    from research_engine.planner.hypothesis import PriorArtStatus
+
+    ledger = ResearchLedger()
+    ledger.add_hypothesis(
+        Hypothesis(
+            id="exact_closure",
+            statement="reachable set is finite",
+            kind=ClaimKind.REACHABLE,
+            intended_scope=SearchScope.EXACT,
+        )
+    )
+    result = AttackResult(
+        name="closure",
+        status=AttackStatus.SUPPORTED,
+        kind=ClaimKind.REACHABLE,
+        scope=SearchScope.EXACT,
+        claim="exact residual closure has size 1",
+    )
+    with pytest.raises(LedgerError, match="prior-art"):
+        ledger.decide("exact_closure", DecisionKind.PROMOTE, result.claim, from_result=result)
+    ledger.add_hypothesis(
+        Hypothesis(
+            id="exact_closure_known",
+            statement="reachable set is finite",
+            kind=ClaimKind.REACHABLE,
+            intended_scope=SearchScope.EXACT,
+            prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
+        )
+    )
+    promoted = ledger.decide(
+        "exact_closure_known",
+        DecisionKind.PROMOTE,
+        result.claim,
+        from_result=result,
+    )
+    assert promoted.status is HypothesisStatus.SUPPORTED

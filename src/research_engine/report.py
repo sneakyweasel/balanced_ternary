@@ -17,11 +17,14 @@ DISCLAIMER = (
 
 
 def format_attack_result(result: AttackResult) -> str:
-    return (
+    lines = [
         f"attack {result.name}: {result.status.value} "
-        f"{result.scope.value} {result.kind.value}\n"
-        f"  {result.claim}"
-    )
+        f"{result.scope.value} {result.kind.value}",
+        f"  {result.claim}",
+    ]
+    if result.certificate_kind is not None:
+        lines.append(f"  certificate: {result.certificate_kind.value}")
+    return "\n".join(lines)
 
 
 def format_hypothesis(hyp: Hypothesis) -> str:

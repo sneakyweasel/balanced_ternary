@@ -11,6 +11,7 @@ from collections.abc import Sequence
 from bt.calculus.derivative import D
 from bt.operators import lsd_digit
 from bt.transducers.mealy import minimize_mealy_count
+from research_engine.behavior.profile import ComplexityProfile
 
 TRITS: tuple[int, int, int] = (-1, 0, 1)
 DISTINGUISHING_PAIRS: tuple[tuple[int, int], ...] = (
@@ -316,6 +317,29 @@ def _alphabet_report(alphabet: Sequence[int], gain: int) -> dict[str, object]:
         "unbounded_witness": witness is not None
         and constant_control_unbounded(gain, witness),
     }
+
+
+def origin_complexity_profile(m: int, gain: int = 1, cap: int = DEFAULT_CAP) -> ComplexityProfile:
+    """Comparable counts for ``F_{λ,U_m}``. Identity ``h`` so controls = contributions."""
+    report = origin_reachable_report(m, gain, cap=cap)
+    radius = report["invariant_radius"]
+    classification = report["classification"]
+    if classification == "EXACT FINITE":
+        closure = "EXACT_CLOSURE"
+    elif classification == "EXACT INFINITE":
+        closure = "EXACT_UNBOUNDED_WITNESS"
+    else:
+        closure = "INCONCLUSIVE"
+    invariant_count = None if radius is None else 2 * int(radius) + 1
+    return ComplexityProfile(
+        control_count=len(report["alphabet"]),
+        raw_contribution_count=len(report["alphabet"]),
+        invariant_state_count=invariant_count,
+        reachable_state_count=report["reachable_count"],
+        behavioral_state_count=report["mealy"],
+        minimal_machine_count=report["mealy"],
+        closure_status=closure,
+    )
 
 
 def geometry_perturbation() -> dict[str, dict[str, object]]:

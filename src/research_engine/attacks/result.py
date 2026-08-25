@@ -12,7 +12,7 @@ from research_engine.algebra.linear_functionals import LinearFunctional
 from research_engine.core.affine_system import AffineSystem
 from research_engine.core.block import BlockAction
 from research_engine.core.problem_spec import ProblemSpec
-from research_engine.core.semantics import ClaimKind, Control, SearchScope, State
+from research_engine.core.semantics import CertificateKind, ClaimKind, Control, SearchScope, State
 
 S = TypeVar("S")
 C = TypeVar("C")
@@ -49,6 +49,12 @@ class AttackContext:
     moduli: tuple[int, ...] = (2, 3, 4, 5)
     word: tuple[Control, ...] | None = None
     block: BlockAction | None = None
+    pair: tuple[Any, Any] | None = None
+    max_separation_depth: int | None = None
+    symmetry_candidates: tuple[Any, ...] | None = None
+    symmetry_domain: frozenset[Any] | None = None
+    skip_attacks: tuple[str, ...] = ()
+    descent_potential: Callable[[State], int] | None = None
 
 
 @dataclass(frozen=True)
@@ -62,6 +68,7 @@ class AttackResult:
     counterexamples: tuple[Any, ...] = ()
     certificates: tuple[Any, ...] = ()
     recommended_next_attacks: tuple[str, ...] = ()
+    certificate_kind: CertificateKind | None = None
 
     def __post_init__(self) -> None:
         object.__setattr__(self, "evidence", MappingProxyType(dict(self.evidence)))

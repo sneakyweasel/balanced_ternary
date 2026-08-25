@@ -60,7 +60,8 @@ class ExpandingDResidueSpec:
         del phase
         return (apply_control(state[0], control, self.gain),)
 
-    def output(self, state: State, control: object) -> int:
+    def output(self, state: State, control: object, phase: IntPhase | None = None) -> int:
+        del phase
         return apply_control(state[0], control, self.gain)
 
     def legal_controls(self, state: State, phase: IntPhase) -> tuple[object, ...]:

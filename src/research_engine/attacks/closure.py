@@ -11,7 +11,7 @@ from collections import deque
 
 from research_engine.attacks.result import AttackContext, AttackResult, AttackStatus
 from research_engine.core.problem_spec import ProblemSpec
-from research_engine.core.semantics import ClaimKind, SearchScope, State
+from research_engine.core.semantics import CertificateKind, ClaimKind, SearchScope, State
 
 DEFAULT_CLOSURE_STATE_CAP = 256
 
@@ -110,4 +110,5 @@ class ExhaustiveClosureAttack:
             evidence=evidence,
             certificates=(certificate,),
             recommended_next_attacks=("reverse", "affine"),
+            certificate_kind=CertificateKind.EXACT_CLOSURE,
         )

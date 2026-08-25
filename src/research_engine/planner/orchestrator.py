@@ -7,6 +7,7 @@ from dataclasses import dataclass, replace
 from research_engine.attacks.affine import AffineInvariantAttack
 from research_engine.attacks.block import BlockDynamicsAttack
 from research_engine.attacks.closure import ExhaustiveClosureAttack
+from research_engine.attacks.factorization import FactorizationAttack
 from research_engine.attacks.functional import FunctionalBoundAttack
 from research_engine.attacks.modular import ModularInvariantAttack
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
@@ -18,7 +19,10 @@ from research_engine.attacks.result import (
     inapplicable,
 )
 from research_engine.attacks.reverse import ReverseGeometryAttack
+from research_engine.attacks.separation import BehavioralSeparationAttack
 from research_engine.attacks.spectral import SpectralClassificationAttack
+from research_engine.attacks.symmetry import SymmetryAttack
+from research_engine.behavior.quotient import BehavioralQuotientAttack
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
 from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus
@@ -34,6 +38,10 @@ DEFAULT_ATTACK_ORDER: tuple[str, ...] = (
     "reverse",
     "block",
     "spectral",
+    "factorization",
+    "separation",
+    "quotient",
+    "symmetry",
 )
 
 DEFERRED_ATTACKS: tuple[str, ...] = ("symbolic",)
@@ -48,6 +56,10 @@ _ATTACKS: dict[str, type[Attack]] = {
     "reverse": ReverseGeometryAttack,
     "block": BlockDynamicsAttack,
     "spectral": SpectralClassificationAttack,
+    "factorization": FactorizationAttack,
+    "separation": BehavioralSeparationAttack,
+    "quotient": BehavioralQuotientAttack,
+    "symmetry": SymmetryAttack,
 }
 
 
@@ -87,6 +99,9 @@ class AttackPlanner:
         for name in DEFAULT_ATTACK_ORDER:
             if name in closed:
                 skipped.append(SkipRecord(name, "closed by negative knowledge"))
+                continue
+            if name in context.skip_attacks:
+                skipped.append(SkipRecord(name, "skipped by adapter"))
                 continue
             attack = _ATTACKS[name]()
             if not attack.applicable(spec, context):

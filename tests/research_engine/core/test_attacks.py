@@ -15,7 +15,7 @@ from research_engine.attacks.result import AttackContext, AttackStatus
 from research_engine.attacks.reverse import ReverseGeometryAttack
 from research_engine.core.affine_system import AffineSystem
 from research_engine.core.phase import IntPhase
-from research_engine.core.semantics import ClaimKind, SearchScope
+from research_engine.core.semantics import CertificateKind, ClaimKind, SearchScope
 
 
 @dataclass(frozen=True)
@@ -66,6 +66,7 @@ def test_reconnaissance_is_bounded_observation_not_infinitude():
     assert result.status == AttackStatus.OBSERVATION
     assert result.scope == SearchScope.BOUNDED
     assert result.kind == ClaimKind.LIVE_SLICE
+    assert result.certificate_kind is CertificateKind.BOUNDED_RECONNAISSANCE
     assert result.evidence["union_size"] > result.evidence["terminal_image_size"]
     assert "infinitude" in result.claim
 

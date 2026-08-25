@@ -12,7 +12,7 @@ from research.multiplicative_residual.discovery import (
 from research.multiplicative_residual.spec import ProductResidualSpec, product_spec
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
-from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus
+from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus, PriorArtStatus
 from research_engine.planner.ledger import LedgerError, ResearchLedger
 from research_engine.planner.orchestrator import AttackPlanner, PlannerReport, promote_if_legal
 
@@ -23,6 +23,7 @@ CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="multiplicative_residual",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 FACTOR_COUNT_HYPOTHESIS = Hypothesis(
@@ -32,6 +33,7 @@ FACTOR_COUNT_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="multiplicative_residual",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 THREE_STATE_HYPOTHESIS = Hypothesis(
@@ -41,6 +43,7 @@ THREE_STATE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="multiplicative_residual",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 

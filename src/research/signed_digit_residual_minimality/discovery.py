@@ -48,6 +48,13 @@ def predicted_sep_len(left: int, right: int) -> int:
     return val3(left - right) + 1
 
 
+def val3_gap_plus_one_predictor(left: object, right: object) -> tuple[str, int]:
+    """Research-layer predictor. The engine does not know 3-adic valuation."""
+    src = int(left[0]) if isinstance(left, tuple) else int(left)
+    tgt = int(right[0]) if isinstance(right, tuple) else int(right)
+    return ("v_3_gap_plus_one", predicted_sep_len(src, tgt))
+
+
 def output_signature(
     state: int,
     alphabet: Sequence[int],

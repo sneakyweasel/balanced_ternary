@@ -1,6 +1,6 @@
 """Hypotheses, negative knowledge, and a deterministic attack planner."""
 
-from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus
+from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus, PriorArtStatus
 from research_engine.planner.ledger import LedgerError, ResearchLedger
 from research_engine.planner.negative import (
     GENERIC_FORBIDDEN,
@@ -29,6 +29,7 @@ __all__ = [
     "LedgerError",
     "NegativeKnowledge",
     "PlannerReport",
+    "PriorArtStatus",
     "ResearchLedger",
     "SkipRecord",
     "promote_if_legal",

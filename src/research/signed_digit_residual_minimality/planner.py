@@ -12,7 +12,7 @@ from research.signed_digit_residual_minimality.discovery import (
 from research.signed_digit_residual_minimality.spec import minimality_spec
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
-from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus
+from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus, PriorArtStatus
 from research_engine.planner.ledger import LedgerError, ResearchLedger
 from research_engine.planner.orchestrator import AttackPlanner, PlannerReport, promote_if_legal
 
@@ -23,6 +23,7 @@ CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="signed_digit_residual_minimality",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 MERGE_HYPOTHESIS = Hypothesis(
@@ -32,6 +33,7 @@ MERGE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="signed_digit_residual_minimality",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 MOD3_HYPOTHESIS = Hypothesis(
@@ -41,6 +43,7 @@ MOD3_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="signed_digit_residual_minimality",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 

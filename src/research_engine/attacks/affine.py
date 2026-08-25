@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from research_engine.attacks.result import AttackContext, AttackResult, AttackStatus, inapplicable
 from research_engine.core.problem_spec import ProblemSpec
-from research_engine.core.semantics import ClaimKind, SearchScope, State
+from research_engine.core.semantics import CertificateKind, ClaimKind, SearchScope, State
 
 
 class AffineInvariantAttack:
@@ -42,6 +42,7 @@ class AffineInvariantAttack:
                 evidence={"region_size": len(region), "checked_edges": checked, "leak_count": len(leaks)},
                 counterexamples=tuple(leaks[:8]),
                 recommended_next_attacks=("reconnaissance", "reverse"),
+                certificate_kind=CertificateKind.EXACT_COUNTEREXAMPLE,
             )
         return AttackResult(
             name=self.name,

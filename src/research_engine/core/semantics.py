@@ -27,6 +27,20 @@ class SearchScope(str, Enum):
     APPROXIMATE = "APPROXIMATE"
 
 
+class CertificateKind(str, Enum):
+    """Engine-only subtype of an attack outcome.
+
+    This is not a theorem-ledger tag. Named theorems still use the seven
+    strings in ``docs/theory/theorem_ledger.json``. ``PROVED`` is not a
+    value here.
+    """
+
+    EXACT_CLOSURE = "EXACT_CLOSURE"
+    EXACT_COUNTEREXAMPLE = "EXACT_COUNTEREXAMPLE"
+    EXACT_UNBOUNDED_WITNESS = "EXACT_UNBOUNDED_WITNESS"
+    BOUNDED_RECONNAISSANCE = "BOUNDED_RECONNAISSANCE"
+
+
 class ClaimKind(str, Enum):
     """Typed research target. These kinds do not imply one another.
 

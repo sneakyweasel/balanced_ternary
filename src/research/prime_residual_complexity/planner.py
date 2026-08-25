@@ -16,7 +16,7 @@ from research.prime_residual_complexity.spec import prime_spec, sieve_spec
 from research_engine.attacks.result import AttackStatus
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
-from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus
+from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus, PriorArtStatus
 from research_engine.planner.ledger import ResearchLedger
 from research_engine.planner.orchestrator import (
     AttackPlanner,
@@ -32,6 +32,7 @@ SIEVE_RESIDUAL_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="prime_residual_complexity",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 JET_EQUALS_PRIME_HYPOTHESIS = Hypothesis(
@@ -41,6 +42,7 @@ JET_EQUALS_PRIME_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="prime_residual_complexity",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 SIEVE_EQUALS_PRIME_HYPOTHESIS = Hypothesis(
@@ -50,6 +52,7 @@ SIEVE_EQUALS_PRIME_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="prime_residual_complexity",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 INTEGER_PRIME_HYPOTHESIS = Hypothesis(
@@ -59,6 +62,7 @@ INTEGER_PRIME_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="prime_residual_complexity",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 

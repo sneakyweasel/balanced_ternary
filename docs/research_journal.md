@@ -1375,3 +1375,25 @@ is restated or upgraded. The retired *Outcome A / B / C* labels map to
 - **Literature:** Mealy/Nerode equivalence, Anashin p-adic automata, and carry transducers are `KNOWN`. The truncated-congruence characterization is `NEW FORMULATION`
 - **Open:** none opened
 - **Decision:** PROMOTE the truncated-congruence theorem. Stop.
+
+## Research engine v2 residual dynamics layers (not a numbered milestone)
+
+- **Date:** 2026-08-25
+- **Objective:** Encode controls ≠ raw contribution ≠ invariant envelope ≠ reachable set ≠ behavioral quotient as independently reusable engine layers with explicit exact/bounded certificates, without a second claim vocabulary
+- **Hypotheses:** existing adapters already contain the distinctions; extracting them does not change known residual counts
+- **Major results:** Optional `ObservableSpec`, `check_control_factorization`, envelope-vs-reachability comparison, pair-state separation BFS, engine Mealy quotient, `ComplexityProfile`, `CertificateKind` on attack results, session `PriorArtStatus` gate on `PROMOTE`. Named theorems still use the seven ledger tags. `PROVED` is not an engine status
+- **Refuted ideas:** treating a depth-capped pair search as exact equivalence; promoting a hypothesis with `UNKNOWN` prior art
+- **Literature:** not a mathematical claim. The prior-art field records methodology novelty (`KNOWN` / `PROJECT-SPECIFIC` / `NEW_FORMULATION`) on the session ledger only
+- **Open:** none opened
+- **Decision:** PROMOTE the extracted layers into `research_engine`. Stop.
+
+```text
+What was learned      Observation, raw contribution, envelope, reachable set, and Mealy size are distinct report fields. Bounded reconnaissance is CertificateKind.BOUNDED_RECONNAISSANCE. Queue exhaustion is EXACT_CLOSURE. Pair BFS reports INCONCLUSIVE when capped.
+Strongest theorem     none new; the engine now states existing signed-digit / product / D+Add / Collatz / prime facts in one vocabulary
+Strongest refutation  a depth cap is not exact behavioral equivalence
+Reusable machinery    CertificateKind, ObservableSpec, factorization check, envelope comparison, BehavioralSeparationAttack, engine Mealy quotient, ComplexityProfile, PriorArtStatus
+Branch status         PROMOTE
+Why                   The signed-digit theorems already survived. This is reusable machinery after the fact, not a new residual theory
+Best next question    Which new integer dynamics can be compared to signed-digit residual using only ComplexityProfile and CertificateKind?
+```
+

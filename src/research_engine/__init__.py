@@ -38,14 +38,22 @@ from research_engine.attacks import (
     AttackContext,
     AttackResult,
     AttackStatus,
+    BehavioralSeparationAttack,
     BlockDynamicsAttack,
     BlockKind,
     ExhaustiveClosureAttack,
+    FactorizationAttack,
     FunctionalBoundAttack,
     ModularInvariantAttack,
     ReconnaissanceAttack,
     ReverseGeometryAttack,
     SpectralClassificationAttack,
+    SymmetryAttack,
+)
+from research_engine.behavior import (
+    BehavioralQuotientAttack,
+    BehavioralQuotientResult,
+    ComplexityProfile,
 )
 from research_engine.planner import (
     AttackPlanner,
@@ -54,6 +62,8 @@ from research_engine.planner import (
     HypothesisStatus,
     LedgerError,
     NegativeKnowledge,
+    PlannerReport,
+    PriorArtStatus,
     ResearchLedger,
 )
 from research_engine.core.affine_system import (
@@ -72,7 +82,7 @@ from research_engine.core.block import (
 )
 from research_engine.core.phase import IntPhase
 from research_engine.core.problem_spec import ProblemSpec
-from research_engine.core.semantics import ClaimKind, Control, Matrix, SearchScope, State, Vector
+from research_engine.core.semantics import CertificateKind, ClaimKind, Control, Matrix, SearchScope, State, Vector
 from research_engine.core.trajectory import LazyTrajectory, Trajectory, simulate
 from research_engine.reachability import (
     DynamicsResult,
@@ -98,14 +108,20 @@ __all__ = [
     "AttackResult",
     "AttackStatus",
     "AttackPlanner",
+    "BehavioralQuotientAttack",
+    "BehavioralQuotientResult",
+    "BehavioralSeparationAttack",
     "BlockAction",
     "BlockDynamicsAttack",
     "BlockKind",
+    "CertificateKind",
     "ClaimKind",
+    "ComplexityProfile",
     "Control",
     "DecisionKind",
     "DynamicsResult",
     "ExhaustiveClosureAttack",
+    "FactorizationAttack",
     "FunctionalBoundAttack",
     "Hypothesis",
     "HypothesisStatus",
@@ -116,6 +132,8 @@ __all__ = [
     "Matrix",
     "ModularInvariantAttack",
     "NegativeKnowledge",
+    "PlannerReport",
+    "PriorArtStatus",
     "ProblemSpec",
     "ReconnaissanceAttack",
     "RecurrenceSpec",
@@ -124,6 +142,7 @@ __all__ = [
     "SearchScope",
     "SpectralClassificationAttack",
     "State",
+    "SymmetryAttack",
     "TerminalSpec",
     "TheoremTarget",
     "Trajectory",

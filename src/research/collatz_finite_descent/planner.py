@@ -8,7 +8,7 @@ from research.collatz_finite_descent.blocks import expanding_legal_witness, one_
 from research.collatz_finite_descent.spec import shortcut_spec
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
-from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus
+from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus, PriorArtStatus
 from research_engine.planner.ledger import ResearchLedger
 from research_engine.planner.orchestrator import AttackPlanner, PlannerReport
 
@@ -22,6 +22,7 @@ UNIFORM_DESCENT_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="collatz_finite_descent",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 ONE_STEP_LYAPUNOV_HYPOTHESIS = Hypothesis(
@@ -31,6 +32,7 @@ ONE_STEP_LYAPUNOV_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="collatz_finite_descent",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 INTEGER_RESIDUAL_HYPOTHESIS = Hypothesis(
@@ -40,6 +42,7 @@ INTEGER_RESIDUAL_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="collatz_finite_descent",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 

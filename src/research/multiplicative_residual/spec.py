@@ -64,10 +64,15 @@ class ProductResidualSpec:
         nxt, _out = self.emit(state[0], (left, right))
         return (nxt,)
 
-    def output(self, state: State, control: object) -> int:
+    def output(self, state: State, control: object, phase: IntPhase | None = None) -> int:
+        del phase
         left, right = control  # type: ignore[misc]
         _nxt, out = self.emit(state[0], (left, right))
         return out
+
+    def raw_contribution(self, control: object) -> int:
+        left, right = control  # type: ignore[misc]
+        return self.scale * left * right
 
     def legal_controls(self, state: State, phase: IntPhase) -> tuple[object, ...]:
         if phase.value > 0:

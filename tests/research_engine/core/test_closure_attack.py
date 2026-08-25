@@ -5,7 +5,7 @@ from __future__ import annotations
 from research_engine.attacks.closure import ExhaustiveClosureAttack
 from research_engine.attacks.result import AttackContext, AttackStatus
 from research_engine.benchmarks.systems import FiniteClosureSpec, InfiniteTranslateSpec
-from research_engine.core.semantics import ClaimKind, SearchScope
+from research_engine.core.semantics import CertificateKind, ClaimKind, SearchScope
 from tests.research_engine.core.test_attacks import CountdownSpec
 
 
@@ -16,6 +16,7 @@ def test_finite_collapse_is_exact_closure():
     assert result.kind is ClaimKind.REACHABLE
     assert result.evidence["union_size"] == 1
     assert result.evidence["complete"] is True
+    assert result.certificate_kind is CertificateKind.EXACT_CLOSURE
 
 
 def test_infinite_translate_hits_the_cap():
@@ -28,6 +29,7 @@ def test_infinite_translate_hits_the_cap():
     assert result.kind is ClaimKind.REACHABLE
     assert result.evidence["complete"] is False
     assert "infinitude" in result.claim
+    assert result.certificate_kind is None
 
 
 def test_countdown_residual_is_not_faked_finite():

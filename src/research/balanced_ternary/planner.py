@@ -11,7 +11,7 @@ from research.balanced_ternary.expanding_spec import ExpandingDResidueSpec, expa
 from research.balanced_ternary.spec import DoubledTritSpec, doubled_trit_spec
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
-from research_engine.planner.hypothesis import Hypothesis, HypothesisStatus
+from research_engine.planner.hypothesis import Hypothesis, HypothesisStatus, PriorArtStatus
 from research_engine.planner.ledger import LedgerError, ResearchLedger
 from research_engine.planner.orchestrator import AttackPlanner, PlannerReport, promote_if_legal
 
@@ -22,6 +22,7 @@ CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="balanced_ternary",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 EXPANDING_CLOSURE_HYPOTHESIS = Hypothesis(
@@ -31,6 +32,7 @@ EXPANDING_CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="expanding_d",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 J2_CLOSURE_HYPOTHESIS = Hypothesis(
@@ -40,6 +42,7 @@ J2_CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="expanding_j2",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 J3_CLOSURE_HYPOTHESIS = Hypothesis(
@@ -49,6 +52,7 @@ J3_CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="expanding_j3",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 DADD_CLOSURE_HYPOTHESIS = Hypothesis(
@@ -58,6 +62,7 @@ DADD_CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="d_add",
+    prior_art_status=PriorArtStatus.PROJECT_SPECIFIC,
 )
 
 

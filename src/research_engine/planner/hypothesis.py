@@ -29,6 +29,16 @@ class DecisionKind(str, Enum):
     SUPERSEDE = "SUPERSEDE"
 
 
+class PriorArtStatus(str, Enum):
+    """Session-ledger novelty field. Not a theorem-ledger tag."""
+
+    UNKNOWN = "UNKNOWN"
+    KNOWN = "KNOWN"
+    REPARAMETERIZATION = "REPARAMETERIZATION"
+    NEW_FORMULATION = "NEW_FORMULATION"
+    PROJECT_SPECIFIC = "PROJECT-SPECIFIC"
+
+
 @dataclass(frozen=True)
 class Hypothesis:
     id: str
@@ -39,3 +49,5 @@ class Hypothesis:
     problem: str = ""
     evidence: str = ""
     superseded_by: str = ""
+    prior_art_status: PriorArtStatus = PriorArtStatus.UNKNOWN
+    novelty_note: str = ""

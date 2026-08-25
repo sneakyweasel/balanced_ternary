@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from research_engine.attacks.result import AttackContext, AttackResult, AttackStatus, phase_key
 from research_engine.core.problem_spec import ProblemSpec
-from research_engine.core.semantics import ClaimKind, SearchScope
+from research_engine.core.semantics import CertificateKind, ClaimKind, SearchScope
 from research_engine.reachability.forward import forward_search
 
 
@@ -46,4 +46,5 @@ class ReconnaissanceAttack:
                 "live_start": result.live_start,
             },
             recommended_next_attacks=("modular", "functional", "affine"),
+            certificate_kind=CertificateKind.BOUNDED_RECONNAISSANCE,
         )

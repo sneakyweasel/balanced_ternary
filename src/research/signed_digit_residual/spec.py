@@ -61,9 +61,13 @@ class SignedDigitResidualSpec:
         nxt, _out = self.emit(state[0], int(control))
         return (nxt,)
 
-    def output(self, state: State, control: object) -> int:
+    def output(self, state: State, control: object, phase: IntPhase | None = None) -> int:
+        del phase
         _nxt, out = self.emit(state[0], int(control))
         return out
+
+    def raw_contribution(self, control: object) -> int:
+        return int(control)
 
     def legal_controls(self, state: State, phase: IntPhase) -> tuple[object, ...]:
         if phase.value > 0:

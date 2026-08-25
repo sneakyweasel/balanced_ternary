@@ -6,7 +6,7 @@ from dataclasses import dataclass, field
 
 from research_engine.attacks.result import AttackResult, AttackStatus
 from research_engine.core.semantics import SearchScope
-from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus
+from research_engine.planner.hypothesis import DecisionKind, Hypothesis, HypothesisStatus, PriorArtStatus
 from research_engine.planner.negative import NegativeKnowledge
 
 
@@ -65,6 +65,8 @@ class ResearchLedger:
                 raise LedgerError("BOUNDED evidence cannot PROMOTE an EXACT hypothesis")
             if decision is DecisionKind.PROMOTE and from_result.status is not AttackStatus.SUPPORTED:
                 raise LedgerError("only SUPPORTED exact evidence can PROMOTE")
+        if decision is DecisionKind.PROMOTE and hyp.prior_art_status is PriorArtStatus.UNKNOWN:
+            raise LedgerError("PROMOTE requires a populated prior-art status")
         status = _status_for(decision, hyp.status)
         updated = Hypothesis(
             id=hyp.id,
@@ -75,6 +77,8 @@ class ResearchLedger:
             problem=hyp.problem,
             evidence=reason,
             superseded_by=superseded_by or hyp.superseded_by,
+            prior_art_status=hyp.prior_art_status,
+            novelty_note=hyp.novelty_note,
         )
         self.hypotheses[hyp.id] = updated
         self.decisions.append((hyp.id, decision, reason))
