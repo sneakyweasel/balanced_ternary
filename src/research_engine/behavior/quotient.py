@@ -39,6 +39,9 @@ class BehavioralQuotientResult:
         object.__setattr__(self, "observation_quotient", MappingProxyType(dict(self.observation_quotient)))
 
 
+_BLOCKED: tuple[str] = ("__blocked__",)
+
+
 def quotient_from_states(
     spec: ProblemSpec,
     states: Sequence[Any],
@@ -52,7 +55,20 @@ def quotient_from_states(
     canonical = tuple(spec.canonicalize(state) for state in states)
     cache = ObservationCache(spec) if has_output(spec) else None
 
+    def _legal(state: Any, control: Any) -> bool:
+        if state == _BLOCKED:
+            return False
+        try:
+            return control in spec.legal_controls(state, frozen_phase)
+        except (TypeError, ValueError):
+            return False
+
+    needs_sink = any(any(not _legal(state, control) for control in alphabet) for state in canonical)
+    machine_states = canonical + ((_BLOCKED,) if needs_sink else ())
+
     def step(state: Any, control: Any) -> tuple[Any, Hashable]:
+        if needs_sink and not _legal(state, control):
+            return _BLOCKED, "blocked"
         nxt = spec.canonicalize(spec.transition(state, control, frozen_phase))
         if cache is not None:
             out = cache(state, control, frozen_phase)
@@ -60,7 +76,7 @@ def quotient_from_states(
             out = observe(spec, state, control, frozen_phase)
         return nxt, out
 
-    parts = mealy_partition(canonical, alphabet, step)
+    parts = mealy_partition(machine_states, alphabet, step)
     block_of: dict[Any, int] = {}
     for index, block in enumerate(parts):
         for state in block:

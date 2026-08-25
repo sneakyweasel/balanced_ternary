@@ -1,0 +1,19 @@
+{
+  "id": "hosseini-ouaknine-worrell-2019-termination-linear-loops",
+  "title": "Termination of Linear Loops over the Integers",
+  "authors": ["Mehrdad Hosseini", "Joël Ouaknine", "James Worrell"],
+  "year": 2019,
+  "identifiers": {
+    "doi": "10.4230/LIPIcs.ICALP.2019.118"
+  },
+  "url": {},
+  "problem_area": "loop-termination",
+  "relevant_concepts": [
+    "affine while loops",
+    "integer termination",
+    "geometry of numbers"
+  ],
+  "project_relationship": "known",
+  "status": "classical",
+  "notes": "docs/problems/linear_constraint_loops.md. Affine SLC termination over Z. ICALP 2019."
+}

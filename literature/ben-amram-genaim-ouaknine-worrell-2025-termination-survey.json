@@ -1,0 +1,26 @@
+{
+  "id": "ben-amram-genaim-ouaknine-worrell-2025-termination-survey",
+  "title": "Termination analysis of linear-constraint programs",
+  "authors": [
+    "Amir M. Ben-Amram",
+    "Samir Genaim",
+    "Joël Ouaknine",
+    "James Worrell"
+  ],
+  "year": 2025,
+  "identifiers": {
+    "arxiv": "2509.06752"
+  },
+  "url": {
+    "arxiv": "https://arxiv.org/abs/2509.06752"
+  },
+  "problem_area": "loop-termination",
+  "relevant_concepts": [
+    "linear-constraint loops",
+    "termination survey",
+    "SLC vs multi-path loops"
+  ],
+  "project_relationship": "known",
+  "status": "survey",
+  "notes": "docs/problems/linear_constraint_loops.md. Survey cited by Carelli 2026 as the landscape of linear-loop termination."
+}

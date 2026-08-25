@@ -1,0 +1,25 @@
+{
+  "id": "carelli-2026-loop-termination",
+  "title": "Loop Termination and Generalized Collatz Sequences",
+  "authors": ["Mishel Carelli"],
+  "year": 2026,
+  "identifiers": {
+    "doi": "10.4230/LIPIcs.ICALP.2026.175",
+    "arxiv": "2605.15094"
+  },
+  "url": {
+    "pdf": "https://drops.dagstuhl.de/storage/00lipics/lipics-vol374-icalp2026/LIPIcs.ICALP.2026.175/LIPIcs.ICALP.2026.175.pdf",
+    "arxiv": "https://arxiv.org/abs/2605.15094"
+  },
+  "problem_area": "loop-termination",
+  "relevant_concepts": [
+    "single-path linear-constraint loops",
+    "one-variable SLC termination",
+    "generalized Collatz sequences",
+    "Reachability Conjecture",
+    "cyclic traces of length at most two"
+  ],
+  "project_relationship": "known",
+  "status": "published",
+  "notes": "docs/problems/linear_constraint_loops.md. ICALP 2026, LIPIcs 374, paper 175. External prior-art baseline for the frozen-engine campaign. Not an adapter hint."
+}

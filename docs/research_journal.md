@@ -2073,5 +2073,49 @@ Best next question
 - Which real mathematical target should the frozen Research Engine v2 consume next?
 ```
 
+## Frozen Engine campaign: one-variable linear-constraint loops
+
+- **Date:** 2026-08-25
+- **Objective:** Run frozen Research Engine v2 against Carelli 2026 one-variable SLCs without adding attacks
+- **Hypotheses:** Blind adapters can yield DISCOVERED affine/residue structure; control-word obstructions; the engine stops at the Reachability barrier
+- **Major results:** Decrement: adapter-given \(y=x-1\), WORD cycle obstruction, Lean termination. Negation: census UNRESOLVED (sign truncation of \(y=-x\)); control-word stack skipped; 2-cycles only post-run. \(R^+\): DISCOVERED \(3y=4x-1\) and \(3y=4x-2\) on residues 1 and 2 mod 3; CLASS obstructions; empirical halt, not a theorem. Seeded corpus bills all three `FAMILY_SATURATED` against digit-fold cores. ResearchLoop selected `hidden_vector_parity_shear` (`ExpectedResearchValue=0.027`), no override. Lean `rplusRel_*` / `decrement_reaches_zero` / `negation_period2`. Quotient deadlock fix (partial `legal_controls`). No ledger. No new attack
+- **Refuted ideas:** monotone descent / one-step contraction on \(R^+\); complete census of the involution \(x\mapsto -x\); seed closure as map contraction
+- **Literature:** Carelli 2026; Matthews–Watts 1984; Möller 1978; Braverman 2006; Tiwari 2004; Hosseini–Ouaknine–Worrell 2019; Ben-Amram et al. 2025 survey. All recovered identities KNOWN
+- **Open:** Reachability for \(\lfloor 4x/3\rfloor\); named census limitation not implemented
+- **Decision:** PARK
+
+```text
+What was learned
+- From the inequalities of Carelli's R+ alone, v2 reconstructed two residue-selected affine branches and class cycle obstructions
+- That is reconstruction of generalized-Collatz language, not a termination theorem
+- Sign-first census truncation blocks the obvious involution x'=-x, so Carelli's length-(<=2) theorem is not an engine rediscovery
+- Seed-orbit finiteness again bills expanding maps as FINITE_CONTRACTING
+- One correctness fix: Mealy quotient respects deadlock; no new attack
+
+Strongest theorem
+- rplusRel_unique / rplusRel_clear / rplusRel_ediv and decrement_reaches_zero (Lean); KNOWN
+
+Strongest refutation
+- R+ is not monotone; y=-x is not a complete engine census
+
+Reusable machinery
+- Hint-free OneVariableLoopSpec; in-process frozen campaign runner; scout kept off the adapter
+
+Prior-art status
+- KNOWN Carelli / Matthews–Watts / affine SLC decidability; ENGINE REDISCOVERY of the R+ integer graph; ENGINE_LIMITATION on the involution census
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PARK
+
+Why
+- The frozen stack recovered conceptually relevant intermediate structure on a 2026 SLC target and failed, for a named generic reason, to certify a global involution. Mathematics remains KNOWN. Do not implement the census fix; do not attack Reachability.
+
+Best next question
+- Can the frozen 1-D census consume a genuinely nondeterministic one-variable SLC, where legal_controls is not a singleton?
+```
+
 
 

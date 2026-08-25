@@ -61,6 +61,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.stabilization.problem import PROBLEM as STABILIZATION
     from research.syracuse.problem import PROBLEM as SYRACUSE
     from research.engine_campaign.problem import PROBLEM as ENGINE_CAMPAIGN
+    from research.linear_constraint_loops.problem import PROBLEM as LINEAR_CONSTRAINT_LOOPS
     from research.mx_plus_r.problem import PROBLEM as MX_PLUS_R
     from research.euclidean_quotient.problem import PROBLEM as EUCLIDEAN_QUOTIENT
     from research.vector_affine.problem import PROBLEM as VECTOR_AFFINE
@@ -71,6 +72,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         COLLATZ_FINITE_DESCENT,
         SYRACUSE,
         ENGINE_CAMPAIGN,
+        LINEAR_CONSTRAINT_LOOPS,
         MX_PLUS_R,
         EUCLIDEAN_QUOTIENT,
         VECTOR_AFFINE,

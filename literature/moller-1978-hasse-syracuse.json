@@ -1,0 +1,17 @@
+{
+  "id": "moller-1978-hasse-syracuse",
+  "title": "Über Hasses Verallgemeinerung des Syracuse-Algorithmus (Kakutanis Problem)",
+  "authors": ["Herbert Möller"],
+  "year": 1978,
+  "identifiers": {},
+  "url": {},
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "Hasse generalization",
+    "generalized Syracuse algorithm",
+    "piecewise linear maps"
+  ],
+  "project_relationship": "known",
+  "status": "classical",
+  "notes": "docs/problems/linear_constraint_loops.md. Acta Arithmetica 34. Framework for generalized Collatz mappings used by Carelli 2026."
+}

@@ -12,6 +12,7 @@ from research_engine.attacks.envelope import (
 from research_engine.attacks.factorization import FactorizationAttack
 from research_engine.attacks.result import AttackContext, AttackStatus
 from research_engine.attacks.separation import separate_states
+from research.linear_constraint_loops.spec import decrement_spec
 from research_engine.behavior.mealy import minimize_mealy_count
 from research_engine.behavior.profile import ComplexityProfile
 from research_engine.behavior.quotient import quotient_from_states
@@ -107,6 +108,14 @@ def test_quotient_count_matches_engine_mealy():
     result = quotient_from_states(collapse, states, complete=True)
     assert result.quotient_count == minimize_mealy_count(states, (-1, 0, 1), step)
     assert result.quotient_count == 1
+
+
+def test_quotient_tolerates_empty_legal_controls():
+    spec = decrement_spec(start=3)
+    states = ((3,), (2,), (1,), (0,))
+    result = quotient_from_states(spec, states, complete=True)
+    assert result.reachable_state_count == 4
+    assert result.quotient_count >= 4
 
 
 def test_complexity_profile_omits_unset_fields():
