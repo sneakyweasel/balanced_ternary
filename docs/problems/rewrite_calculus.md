@@ -154,6 +154,11 @@ The English “any finite exact Add-tree TRS is a CAS” remains human
 `BTC-unary-s-distrib-obstruction`). `WORD_WN` / `WORD_WND` Newman
 certificates stay human. Do not edit `formal/BTCalculus/Confluence.lean`.
 
+Phase-0 Lean packaging of `BTC-add-affine-only` (2026-08-25): wrapping
+`RewriteAddBoundary` only restates restricted Claim B. The unrestricted
+maximality quantification is not a short sorry-free proof (no AC engine).
+`PARK`; the tag stays **EXACT — HUMAN PROOF**. No stub module.
+
 ## Results
 
 - Enlarged OpFrag TRS is a complete canonical form (**EXACT — LEAN VERIFIED**).
@@ -169,10 +174,11 @@ certificates stay human. Do not edit `formal/BTCalculus/Confluence.lean`.
 
 ## Open questions
 
-Nothing on the enlargement or formalization programmes. The restricted
-maximality gate is closed because a short class either assumes
-D-locality/no peak repair or requires generic TRS metatheory. External
-mathematical review of the publication draft is the next stage.
+Nothing on the enlargement programme. Lean packaging of
+`BTC-add-affine-only` is `PARK`: maximality over every finite exact
+Add-tree TRS is not a short theorem without generic TRS / AC machinery.
+The restricted maximality gate remains closed. External mathematical
+review of the publication draft is the next stage.
 
 ## Decision
 
@@ -184,6 +190,10 @@ supporting results. The broader English “every finite exact Add-tree
 TRS is already a CAS” stays an archived human claim, not a paper or
 Lean theorem. Do not open another rewrite milestone or add production
 rules.
+
+`PARK` the 2026-08-25 Lean packaging of `BTC-add-affine-only`. Restricted
+B1–B5 remain Lean; the English unrestricted row does not. Do not retag.
+Do not invent a stub. CLOSE is wrong: the human proof already exists.
 
 `PROMOTE` the lattice side lemma, `CLOSE` the operation-classifier.
 On all of \(\mathbb Z\), \(D(\max(x,y))=\max(D(x),D(y))\) and

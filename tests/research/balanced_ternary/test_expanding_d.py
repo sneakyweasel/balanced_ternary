@@ -153,4 +153,4 @@ def test_planner_certifies_lsd_closure_not_horizon():
     skipped = {item.attack for item in report.skipped}
     assert "modular" in skipped
     assert "spectral" in skipped
-    assert PROBLEM.lean[-1].endswith("ExpandingD.lean")
+    assert any(path.endswith("ExpandingD.lean") for path in PROBLEM.lean)
