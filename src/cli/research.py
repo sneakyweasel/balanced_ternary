@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, balanced_ternary_weight_dynamics, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, balanced_ternary_weight_dynamics, balanced_ternary_weight_drift, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -162,11 +162,19 @@ def _normalize_problem(name: str) -> str:
         "wd_dynamics",
     }:
         return "balanced_ternary_weight_dynamics"
+    if key.lower() in {
+        "balanced_ternary_weight_drift",
+        "balanced-ternary-weight-drift",
+        "weight_drift",
+        "btdrift",
+        "wdr",
+    }:
+        return "balanced_ternary_weight_drift"
     letter = key.upper()
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, balanced_ternary_weight_dynamics, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, balanced_ternary_weight_dynamics, balanced_ternary_weight_drift, or A-E"
     )
 
 
@@ -306,6 +314,15 @@ def _plan(problem: str, remaining: int):
         report = plan_weight_dynamics(remaining)
         targets = export_weight_targets(report)
         return report, targets
+    if problem == "balanced_ternary_weight_drift":
+        from research.balanced_ternary_weight_drift.adapter import (
+            export_weight_drift_targets,
+            plan_weight_drift,
+        )
+
+        report = plan_weight_drift(remaining)
+        targets = export_weight_drift_targets(report)
+        return report, targets
     report = run_benchmark(problem)
     return report, targets_from_report(report, problem=f"benchmark_{problem}")
 
@@ -409,6 +426,11 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = weight_dynamics_spec(remaining)
         context = spec.attack_context()
+    elif problem == "balanced_ternary_weight_drift":
+        from research.balanced_ternary_weight_drift.spec import weight_drift_spec
+
+        spec = weight_drift_spec(remaining)
+        context = spec.attack_context()
     else:
         spec, context = load_benchmark(problem)
     try:
@@ -460,6 +482,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _digit_sum_dynamics_reproduce_failures(report, targets)
     elif problem == "balanced_ternary_weight_dynamics":
         failures = _weight_dynamics_reproduce_failures(report, targets)
+    elif problem == "balanced_ternary_weight_drift":
+        failures = _weight_drift_reproduce_failures(report, targets)
     else:
         failures = reproduce_checks(problem, report)
     if failures:
@@ -1449,6 +1473,92 @@ def _weight_dynamics_reproduce_failures(report, targets) -> tuple[str, ...]:
         failures.append("weight: closure is not linked to weightZ_natAbs_lt")
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("weight: exported a LIVE target")
+    return tuple(failures)
+
+
+def _weight_drift_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.balanced_ternary_weight_drift.lean_export import (
+        DRIFT_THEOREM,
+        closure_is_inconclusive,
+    )
+    from research.balanced_ternary_weight_drift.planner import (
+        CLOSURE_HYPOTHESIS,
+        CONTRACTION_HYPOTHESIS,
+        DISJOINT_HYPOTHESIS,
+        EVEN_HYPOTHESIS,
+        GLOBAL_RESIDUAL_HYPOTHESIS,
+        IDENTITY_MERGE_HYPOTHESIS,
+        IDEMPOTENT_HYPOTHESIS,
+        INCREASE_HYPOTHESIS,
+        INTERVAL_HYPOTHESIS,
+        LYAPUNOV_HYPOTHESIS,
+        NONPOS_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_inconclusive(report):
+        failures.append("weight_drift: closure is not INCONCLUSIVE")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("weight_drift: reconnaissance is not a bounded observation")
+    functional = next((item for item in report.results if item.name == "functional"), None)
+    if functional is None or functional.status is not AttackStatus.REFUTED:
+        failures.append("weight_drift: functional is not REFUTED")
+    affine = next((item for item in report.results if item.name == "affine"), None)
+    if affine is None or affine.status is not AttackStatus.REFUTED:
+        failures.append("weight_drift: affine is not REFUTED")
+    quotient = next((item for item in report.results if item.name == "quotient"), None)
+    if quotient is None or quotient.status is not AttackStatus.INCONCLUSIVE:
+        failures.append("weight_drift: quotient is not INCONCLUSIVE")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("weight_drift: modular/spectral should stay inapplicable")
+    if "factorization" not in skipped:
+        failures.append("weight_drift: factorization should stay inapplicable")
+    if "reverse" not in skipped:
+        failures.append("weight_drift: reverse should stay inapplicable")
+    if "block" not in skipped:
+        failures.append("weight_drift: block should stay inapplicable")
+    if "symmetry" not in skipped:
+        failures.append("weight_drift: symmetry should stay inapplicable")
+    if "symbolic" not in skipped:
+        failures.append("weight_drift: symbolic should stay skipped")
+    expected_refuted = (
+        (CLOSURE_HYPOTHESIS.id, "seed-orbit finite"),
+        (INTERVAL_HYPOTHESIS.id, "interval invariant"),
+        (LYAPUNOV_HYPOTHESIS.id, "Lyapunov"),
+        (GLOBAL_RESIDUAL_HYPOTHESIS.id, "global finite residual"),
+        (IDENTITY_MERGE_HYPOTHESIS.id, "identity-merge"),
+        (IDEMPOTENT_HYPOTHESIS.id, "idempotent"),
+        (CONTRACTION_HYPOTHESIS.id, "contraction"),
+        (EVEN_HYPOTHESIS.id, "evenness"),
+        (DISJOINT_HYPOTHESIS.id, "disjoint orbits"),
+    )
+    for hyp_id, label in expected_refuted:
+        hyp = next((item for item in report.hypotheses if item.id == hyp_id), None)
+        if hyp is None or hyp.status is not HypothesisStatus.REFUTED:
+            failures.append(f"weight_drift: {label} is not REFUTED")
+    increase = next(
+        (item for item in report.hypotheses if item.id == INCREASE_HYPOTHESIS.id),
+        None,
+    )
+    if increase is None or increase.status is not HypothesisStatus.SUPPORTED:
+        failures.append("weight_drift: strict-increase hypothesis is not SUPPORTED")
+    nonpos = next(
+        (item for item in report.hypotheses if item.id == NONPOS_HYPOTHESIS.id),
+        None,
+    )
+    if nonpos is None or nonpos.status is not HypothesisStatus.SUPPORTED:
+        failures.append("weight_drift: nonpositive-ray hypothesis is not SUPPORTED")
+    drift = next((item for item in targets if item.lean_theorem == DRIFT_THEOREM), None)
+    if drift is None or not drift.exportable:
+        failures.append("weight_drift: increase is not linked to weightDriftZ_gt")
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("weight_drift: exported a LIVE target")
     return tuple(failures)
 
 

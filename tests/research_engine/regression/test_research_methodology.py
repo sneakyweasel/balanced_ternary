@@ -374,3 +374,28 @@ def test_weight_v2_orbit_and_identity_quotient():
     assert quotient.evidence.get("quotient_count") == 2
     split = separate_states(spec, (4,), (2,))
     assert split.separated is True
+
+
+def test_weight_drift_v2_positive_seed_does_not_close():
+    from research.balanced_ternary_weight_drift.spec import weight_drift_spec
+    from research_engine.core.observation import observe
+
+    spec = weight_drift_spec(4)
+    phase = spec.initial_phase()
+    assert observe(spec, spec.initial_state, 0, phase) == spec.output(
+        spec.initial_state, 0, phase
+    )
+    recon = AttackPlanner().run(spec, spec.attack_context())
+    recon_result = next(item for item in recon.results if item.name == "reconnaissance")
+    closure = next(item for item in recon.results if item.name == "closure")
+    functional = next(item for item in recon.results if item.name == "functional")
+    affine = next(item for item in recon.results if item.name == "affine")
+    quotient = next(item for item in recon.results if item.name == "quotient")
+    assert recon_result.certificate_kind is CertificateKind.BOUNDED_RECONNAISSANCE
+    assert closure.status is AttackStatus.INCONCLUSIVE
+    assert closure.evidence.get("complete") is False
+    assert functional.status is AttackStatus.REFUTED
+    assert affine.status is AttackStatus.REFUTED
+    assert quotient.status is AttackStatus.INCONCLUSIVE
+    split = separate_states(spec, (4,), (6,))
+    assert split.separated is True

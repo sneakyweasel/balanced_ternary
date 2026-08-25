@@ -1544,3 +1544,48 @@ Best next question
 - none on this line; do not enumerate another digit statistic
 ```
 
+## Balanced-ternary weight-drift T=n+W (not a numbered milestone)
+
+- **Date:** 2026-08-25
+- **Objective:** Test whether v2 diagnoses F(n)=n+W(n) as a different regime from the finite-contracting digit-fold of SignedP0, s(n), and W(n)
+- **Hypotheses:** seed-4 orbit finite; box |n|≤2 invariant; V(n)=n decreases; one finite residual on ℤ; identity merge; F²=F; |F|<|n| for |n|≥2; F even; disjoint orbits
+- **Major results:** Generic planner reports INCONCLUSIVE residual closure on seed 4, REFUTED functional |n| bound (4↦6), REFUTED box |n|≤2 (F(2)=4), INCONCLUSIVE quotient. Post-hoc: n≠0 ⇒ F(n)>n and n≤0 ⇒ F^{|n|}(n)=0 (Lean weightDriftZ_gt, weightDriftIterate_reaches_zero). Orbits of 4 and 5 meet at 8. Did not reopen signed-digit, Collatz, primes, jets, Ostrowski, N∘I₀∘D, digit-sum, or weight dynamics. No new engine primitive. No ledger row
+- **Refuted ideas:** finite positive residual; interval invariance; evenness of F; disjoint orbits; contraction for |n|≥2
+- **Literature:** W is A005812 (`KNOWN`). The generator n ↦ n+s(n) is Kaprekar / A062028 (`KNOWN`). Branch CLOSE as reparameterization of that class
+- **Open:** none opened
+- **Decision:** CLOSE. v2 correctly left the digit-fold regime. The identities are classical n+f(n) generator facts. Do not enumerate another digit-statistic perturbation
+
+```text
+What was learned
+- Replacing n by W(n) contracts; adding W(n) to n produces strict increase off 0
+- v2 reports INCONCLUSIVE residual closure and a REFUTED |n| bound on seed 4 without being told growth
+- The nonpositive ray still contracts to 0; the split is sign-dependent
+- Distinct positive seeds may merge (4 and 5 meet at 8)
+- Identity observation still forbids a nontrivial Mealy quotient
+- No engine change: the state cap is not infinitude, and Lean certifies the inequalities
+
+Strongest theorem
+- n ≠ 0 ⇒ n < n+W(n); n ≤ 0 ⇒ F^{|n|}(n)=0 (Lean weightDriftZ_gt, weightDriftIterate_reaches_zero)
+
+Strongest refutation
+- F(2)=4, so the box |n|≤2 leaks and |F| is not a contraction for |n|≥2; orbits of 4 and 5 meet at 8
+
+Reusable machinery
+- none; the generic v2 planner was reused as-is
+
+Prior-art status
+- KNOWN Kaprekar generator class (A062028) with increment A005812; CLOSE as REPARAMETERIZATION
+
+Complexity profile
+- controls 1; no raw contribution; seed reachable prefix hits the cap; closure INCONCLUSIVE; dominant certificate none (Lean inequalities sit outside the attack ledger)
+
+Branch status
+- CLOSE
+
+Why
+- The experiment escaped digit-fold contraction on positives, which is the intended diagnostic. The exact structure is the classical n+f(n) generator with a nonnegative digit statistic vanishing only at 0. That is not a new mathematical class.
+
+Best next question
+- none on this line; do not enumerate another digit-statistic perturbation
+```
+

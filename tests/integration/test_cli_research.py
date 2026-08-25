@@ -416,3 +416,35 @@ def test_research_reproduce_weight_links_lean():
     assert "weightZ_natAbs_lt" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
+
+
+def test_research_analyze_weight_drift_is_inconclusive_not_live():
+    out = _run("research", "analyze", "weight_drift")
+    assert "problem: balanced_ternary_weight_drift" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED" in out
+    assert "attack closure: INCONCLUSIVE BOUNDED REACHABLE" in out
+    assert "attack functional: REFUTED" in out
+    assert "attack affine: REFUTED" in out
+    assert "LIVE infinitude is not decided here" in out
+    assert "SUPPORTED EXACT LIVE\n" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_weight_drift_links_lean():
+    out = _run("research", "reproduce", "btdrift")
+    assert "reproduce: ok" in out
+    assert "hypothesis wdr_seed_orbit_finite: REFUTED" in out
+    assert "hypothesis wdr_interval_invariant: REFUTED" in out
+    assert "hypothesis wdr_lyapunov_n: REFUTED" in out
+    assert "hypothesis wdr_global_finite_residual: REFUTED" in out
+    assert "hypothesis wdr_identity_merge: REFUTED" in out
+    assert "hypothesis wdr_idempotent: REFUTED" in out
+    assert "hypothesis wdr_contraction: REFUTED" in out
+    assert "hypothesis wdr_even: REFUTED" in out
+    assert "hypothesis wdr_disjoint_orbits: REFUTED" in out
+    assert "hypothesis wdr_strict_increase: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis wdr_nonpos_invariant: SUPPORTED EXACT REACHABLE" in out
+    report = _run("research", "report", "wdr")
+    assert "weightDriftZ_gt" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()

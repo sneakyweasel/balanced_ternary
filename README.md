@@ -82,6 +82,7 @@ Full table: [docs/architecture/research_modules.md](docs/architecture/research_m
 | `research.operator_dynamics` | EXPLORATORY |
 | `research.balanced_ternary_digit_sum_dynamics` | ARCHIVED |
 | `research.balanced_ternary_weight_dynamics` | ARCHIVED |
+| `research.balanced_ternary_weight_drift` | ARCHIVED |
 | `research.balanced_digit_sum_polynomials` | EXPLORATORY |
 | `research.erdos_distinct_subset_sums` | EXPLORATORY |
 | `research.kabelian_complexity` | ARCHIVED |
