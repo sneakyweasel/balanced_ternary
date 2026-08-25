@@ -256,6 +256,11 @@ does not justify reopening `research.collatz`. Do not auto-continue.
 Best next question: is there a generic certificate beyond KNOWN
 clearing that still does not require map-specific hints?
 
+The Syracuse end-to-end rerun (2026-08-25) answered that for the
+arithmetic relation: yes, via maximal divisibility. Remaining work is
+whether certified latent control can be consumed by other generic
+attacks, not a Collatz solver.
+
 ## Publication assessment
 
 Status: `EXPLORATORY`. Not a `PAPER_CANDIDATE`. The value is a reusable

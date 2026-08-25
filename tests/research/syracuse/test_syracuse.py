@@ -56,6 +56,19 @@ def test_adapter_sources_do_not_import_collatz():
                 raise AssertionError(f"{path.name} imports bt.metrics")
 
 
+def test_lean_specialization_applies_generic_lemma():
+    path = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Collatz" / "Syracuse.lean"
+    text = path.read_text(encoding="utf-8")
+    assert "sorry" not in text
+    assert "admit" not in text
+    assert "syracuseS_parameter_iff" in text
+    assert "mul_pow_eq_iff_padicValInt" in text
+    engine = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Engine" / "ParameterDomain.lean"
+    engine_text = engine.read_text(encoding="utf-8")
+    assert "sorry" not in engine_text
+    assert "admit" not in engine_text
+
+
 def test_problem_is_registered():
     assert get_problem("syracuse") is PROBLEM
     assert PROBLEM.status == "EXPLORATORY"

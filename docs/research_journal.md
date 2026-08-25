@@ -1721,4 +1721,48 @@ Best next question
 - Is there a generic certificate beyond KNOWN clearing that still does not require map-specific hints?
 ```
 
+## End-to-end Syracuse domain certification
+
+- **Date:** 2026-08-25
+- **Objective:** Run the existing census plus domain pipeline hint-free on Syracuse and decide whether the old domain-certification limitation is gone
+- **Hypotheses:** v2 can reconstruct maximal-divisibility domains generically; mere divisibility is not exact; odd-prime synthetics confirm the mechanism is not base-2
+- **Major results:** Hint-free family \(2^k y=3x+1\), \(k\in\{1,2,3,4,6\}\). Maximal conjunction `EXACT`/`LEAN_CERTIFIED` for the relation; mere divisibility `NECESSARY_ONLY`. Engine `CONTINUE` (PARTIALLY_CERTIFIED: map globality empirical). Lean `syracuseS_parameter_iff` applies the generic Engine lemma. Digit-fold `SATURATED`. No `research.collatz` reopen
+- **Refuted ideas:** \(2^k\mid(3x+1)\) as exact parameter selection; treating window agreement as a \(\mathbb{Z}\)-theorem; `ENGINE_LIMITATION` as the current Syracuse status
+- **Literature:** `acceleratedT_mul` **KNOWN**; engine rediscovery **OBSERVATION**
+- **Open:** consume certified latent control in generic modular/cycle/quotient attacks, without Collatz escalation
+- **Decision:** PARK (engine `CONTINUE`). Do not auto-continue
+
+```text
+What was learned
+- v2 crossed observe → infer → parameterize → identify domain → certify for the arithmetic relation
+- Maximal divisibility is exact; mere divisibility is necessary-only
+- Odd-prime v3 synthetic certifies the same pipeline off base 2
+- Map globality, cycles, and boundedness remain unproved
+- Digit-fold cores and WeightDrift exclusion are unchanged
+
+Strongest theorem
+- mul_pow_eq_iff_padicValInt, specialized as syracuseS_parameter_iff; KNOWN arithmetic
+
+Strongest refutation
+- Mere 2^k | (3x+1) does not select k when higher exponents exist
+
+Reusable machinery
+- none added; existing parameter_domain and census were sufficient
+
+Prior-art status
+- KNOWN clearing identity; NEW GENERIC ENGINE CAPABILITY is the pipeline, not the identity
+
+Complexity profile
+- unchanged schema; domain costs on evidence (predicate_count=5, queries=1994)
+
+Branch status
+- PARK
+
+Why
+- The missing domain-certification limitation is gone for the reconstructed relation. Remaining gaps are Collatz-scale and explicitly out of scope.
+
+Best next question
+- Can exact reconstructed latent control be consumed by generic control-word, cycle, modular, quotient, or residual attacks?
+```
+
 

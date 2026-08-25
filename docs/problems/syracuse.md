@@ -23,10 +23,10 @@ claiming a Collatz solution?
 ## Exact statement
 
 On \(\mathbb{Z}_{>0}^{\mathrm{odd}}\), with dummy control and identity
-observation, does the generic diagnosis layer classify \(S\) as another
-finite-contracting digit-fold regime, or as a different dynamical class?
-After the piecewise-affine census, which sample-supported branch family
-(if any) is recovered, and what remains uncertified?
+observation, can v2 discover the latent family \(2^k y=3x+1\) from exact
+I/O and certify the arithmetic domain of each parameter without being
+told \(v_2\), and without claiming a Collatz solution? Window agreement
+is not a map theorem on all odd positives.
 
 ## Current literature
 
@@ -129,144 +129,179 @@ None opened. The Collatz conjecture is not a conjecture of this branch.
 
 ## Formalization
 
-`formal/Problems/Collatz/Syracuse.lean` aliases `acceleratedT` and proves
-`syracuseS_one`. No `sorry`. `Accelerated.lean` is imported from
-`Problems.lean`. Cycle algebra from `Cycles.lean` is not copied.
+`formal/Problems/Collatz/Syracuse.lean` aliases `acceleratedT`, proves
+`syracuseS_one`, and specializes the Engine iff as
+`syracuseS_parameter_iff` (KNOWN arithmetic on \(q=3x+1\), not a map
+theorem). Generic lemma:
+`formal/Problems/Engine/ParameterDomain.lean`. No `sorry`. No ledger row.
 
 ## Results
 
-### A. Upgrade report
+### A. End-to-end pipeline
 
-See [research_engine_loop.md](../architecture/research_engine_loop.md)
-and [piecewise_affine_census.md](piecewise_affine_census.md).
-`PiecewiseAffineCensus` is appended after reconnaissance;
-`parameter_domain` immediately after that. Fingerprint gains non-core
-`piecewise_affine_structure` / `latent_control` / `parameter_domain`.
-`ComplexityProfile` is still not forked. Weight-drift is not extended.
+```text
+Diagnosis
+  → PiecewiseAffineCensus
+  → ParameterDomain
+  → Certification
+```
 
-### B. Regime corpus
+Hint-free adapter. No injected \(v_2\), branch table, or affine formula.
+Planner order: reconnaissance, piecewise_affine, parameter_domain, then
+existing attacks. `AttackContext.affine` stays unset.
 
-SignedP0, DigitSumDynamics, WeightDynamics share core
-`INTEGER_1D | SINGLETON | FINITE_CONTRACTING | FINITE_SEED_CLOSURE`
-with local differences. SignedP0 has a *secondary* finite residue census
-that does not change the core family. Syracuse: `MIXED_MAGNITUDE`,
-`UNBOUNDED_SAMPLE`, piecewise `PARAMETERIZED`, domain `EXACT`.
+### B. Syracuse discovery trace
 
-### C. Family analysis
+`piecewise_affine` is `OBSERVATION` / `BOUNDED` / `PARAMETERIZED_CENSUS`.
+Sample-supported family \(2^k y = 3x+1\) (\(p=3\), \(r=1\), `base=2`)
+with observed \(k\in\{1,2,3,4,6\}\) on 32 odd samples (window plus seed
+orbit; coverage 1.0; unresolved empty). Status remains
+`SUPPORTED_BY_SAMPLES` until domain certification. Not a global branch
+theorem. \(k=5\) is absent from this window (first odd witness \(x=53\)
+lies outside).
 
-The finite-contracting cluster with three closed members is
-`SATURATED`. WeightDrift does not join. Syracuse does not join.
+### C. Candidate domains
 
-### D. Syracuse diagnosis
+For each observed \(k\), mere divisibility \(2^k\mid(3x+1)\) is
+`NECESSARY_ONLY` / `SAMPLE_SUPPORTED` (higher \(k\) also satisfy it).
+Maximal conjunction \(2^k\mid(3x+1)\land 2^{k+1}\nmid(3x+1)\) is
+`EXACT` / `LEAN_CERTIFIED` for the **relation**, with presentation
+\(k=v_2(3x+1)\) only after that. Overlap 0. Predicate count 5.
+Counterexample queries 1994. Globality:
+`relation_certified_map_empirical`. Domain completeness:
+`window_complete`. Parameter completeness: complete on labeled samples,
+not an enumeration of every \(k\in\mathbb{N}\).
 
-Still not a contracting digit-fold. Mixed magnitude, dummy singleton
-control, truncated seed closure. The census recovers a sample-supported
-parameterized family \(2^k y = 3x+1\). `parameter_domain` then certifies
-the conjunction \(2^k\mid(3x+1)\land 2^{k+1}\nmid(3x+1)\) as `EXACT` for
-the arithmetic relation (presentation \(k=v_2(3x+1)\) only after that).
-Mere divisibility is `NECESSARY_ONLY`. Engine decision `CONTINUE`:
-relation certified, map globality on \(\mathbb{Z}\) empirical. **KNOWN**
-as `acceleratedT_mul`. Not a Collatz theorem.
+### D. Falsification
 
-### E. Structural delta
+Failed hypotheses (adapter probes and domain trap):
 
-Nearest finite-contracting records: **HIGH** (core contraction, eventual
-region, orbit, certificate strength all differ). Piecewise/latent fields
-also differ (`PARAMETERIZED` vs `FINITE`/`UNCERTAIN`). Non-core
-`parameter_domain` is `EXACT` on Syracuse.
+- \(V(n)=n\) decreases: \(S(1)=1\), \(S(3)=5\).
+- Odd box \([1,15]\) invariant: \(S(11)=17\).
+- Finite affine table exhausts \(S\): refused (`PARAMETERIZED_CENSUS`).
+- Mere \(2^k\mid(3x+1)\) selects parameter \(k\): `NECESSARY_ONLY` on
+  every observed \(k\).
+- Maximal predicates overlapping: overlap 0 on the falsification window.
 
-### F. Capability coverage
+No sufficiency counterexample survived for the maximal conjunction.
 
-Exercised: finite-closure attempt, numerical contraction, growth,
-infinite reachable trajectories (cap), latent piecewise-affine control,
-parameter-domain certification, valuation dynamics (parameterized family
-plus exact maximal-divisibility conjunction). Inapplicable: branching
-controls, affine modular/spectral/block, reverse. Not tested: cycle
-obstruction, symbolic control, recursive digit semantics.
+### E. Exact certificate
 
-### G. Attack ledger
+`AffineFamilyCertificate` (generic, not a Syracuse-only type):
 
-Reconnaissance: bounded observation. `piecewise_affine`: `OBSERVATION`,
-`PARAMETERIZED_CENSUS`, family \(p=3,r=1\), \(q_{\mathrm{base}}=2\).
-`parameter_domain`: `SUPPORTED` / `EXACT` on the arithmetic relation
-(`EXACT_ARITHMETIC_IDENTITY`); map globality remains empirical. Closure:
-INCONCLUSIVE. Functional \(|n|\): REFUTED. Modular/spectral/reverse/block/
-factorization/symmetry: inapplicable in the same planner pass (no
-`AffineSystem` injection). Separation: identity observation separates
-distinct odds.
+- family: \(2^k y=3x+1\), observed \(k=(1,2,3,4,6)\)
+- domain: maximal divisibility, presentation \(k=v_2(3x+1)\)
+- direction: `EXACT` (both necessity and sufficiency of the relation)
+- evidence: `LEAN_CERTIFIED` for the integer iff
+- soundness: certified (relation)
+- completeness / branch validity: window / empirical for the **map**
+- Lean: `Problems.Engine.mul_pow_eq_iff_padicValInt`
 
-### H. Exact mathematical discoveries
+This is not \(S\) proved on all odd positives, not cycle exclusion, and
+not boundedness.
 
-Well-definedness and odd preservation (**KNOWN**, Lean). \(S(1)=1\)
-(**KNOWN**). Sample-supported clearing family and its maximal domain
-(**OBSERVATION**, engine rediscovery of `acceleratedT_mul`; generic Lean
-iff `mul_pow_eq_iff_padicValInt` is **KNOWN** arithmetic). No new cycle
-identity. Window agreement is not a map theorem on all odd positives.
+### F. Synthetic genericity
 
-### I. Falsification record
+Same pipeline, no Syracuse references in attack sources.
 
-See Counterexamples. Naive claims (every step decreases; a small odd
-interval is invariant; a finite sample implies bounded orbits; a finite
-affine table exhausts \(S\); mere \(2^k\mid(3x+1)\) selects the exact
-parameter) fail.
+| Target | Family discovery | Parameter | Domain | Soundness | Completeness | Certificate |
+|--------|------------------|-----------|--------|-----------|--------------|-------------|
+| A congruence | `FINITE_CENSUS` coverage 1 | residues mod 3 | window-exact congruence | window | finite | `COUNTEREXAMPLE_SURVIVED` |
+| B sign | `FINITE_CENSUS` coverage 1 | sign | window-exact sign | window | finite | `COUNTEREXAMPLE_SURVIVED` |
+| C nested | `FINITE_CENSUS` coverage 1 | four congruences | window-exact | window | finite | `COUNTEREXAMPLE_SURVIVED` |
+| D power-clear | `PARAMETERIZED` \(2^k y=x+1\) | \(k=0..5\) | maximal | certified relation | partial (one unresolved) | `LEAN_CERTIFIED` |
+| odd-prime \(v_3\) | `PARAMETERIZED` base 3 | \(k=0..3\) | maximal | certified relation | partial | `LEAN_CERTIFIED` |
+| mixed residue | `PARAMETERIZED` coverage 0.825 | \(k=0..5\) | mixed then maximal | certified relation | partial | `LEAN_CERTIFIED` |
 
-### J. Lean certification
+Trap B (same map D): \(2^k\mid q\) is `NECESSARY_ONLY`. Odd-prime C shows
+the machinery is not secretly base 2.
 
-`syracuseS_one`. Packaging of `acceleratedT`. Synthetic A identities are
-in `Problems/Engine/PiecewiseCensus.lean`. The generic valuation iff is
-`Problems/Engine/ParameterDomain.lean`. Neither is retagged as a Syracuse
-theorem. The census is not `EXACT — LEAN VERIFIED`.
+Digit-fold cores remain `SATURATED`. WeightDrift stays excluded.
+SignedP0's secondary mod-3 census does not reopen that family.
 
-### K. Prior-art checkpoint
+### G. Lean
 
-| Kind | Item |
-|------|------|
-| known theorem | `acceleratedT` / `acceleratedT_mul`; padic valuation iff; Tao logarithmic density; expanding-period exclusion in `Cycles.lean` |
-| computationally verified range | large Collatz searches; this module's seed-27 prefix and odd census window |
-| heuristic / probabilistic | Terras stopping times; stochastic \(3x+1\) models |
-| working paper | cycle-sieve preprints in `literature/` |
-| engine rediscovery | mixed magnitude; truncated residual; \(S(1)=1\); sample-supported \(2^k y=3x+1\) and maximal domain |
-| new formalization | adapter alias `syracuseS`; synthetic A Lean; generic Engine valuation iff |
-| potentially new result | none claimed |
+Generic: `Problems.Engine.mul_pow_eq_iff_padicValInt` and
+`padicValInt_eq_of_mul_pow`. Syracuse specialization:
+`syracuseS_parameter_iff` (instance at \(q=3x+1\)). Map identity
+`acceleratedT_mul` / `syracuseS_mul` already existed. No `sorry`. No
+ledger row (KNOWN). The census is not retagged `EXACT — LEAN VERIFIED`.
 
-### L. ComplexityProfile
+### H. ResearchLoop
 
-Seed 27: controls 1; raw contribution unset; reachable count unset
-(truncated); max separation depth 1 (identity); closure INCONCLUSIVE.
-Census and domain metrics stay on attack evidence (`branch_count`,
-`coverage`, `census_kind`, `predicate_count`, `queries`). Profile schema
-not forked.
+Fingerprint: `INTEGER_1D`, `SINGLETON`, `MIXED_MAGNITUDE`,
+`UNBOUNDED_SAMPLE`, piecewise `PARAMETERIZED`, latent `PARAMETERIZED`,
+domain `EXACT`. Nearest digit-fold record: **HIGH** delta. Core mismatch
+with the saturated family. Coverage exercised: finite-closure attempt,
+contraction, growth, infinite reachable trajectories, valuation
+dynamics, modular restrictions (sampled), quotient, separation, latent
+piecewise-affine control, parameter-domain certification. Inapplicable:
+branching controls, affine modular/spectral/block, reverse. Not tested:
+cycle obstruction, symbolic control, recursive digit semantics.
 
-### M. Research decision
+Engine `ResearchDecision`:
 
 ```text
 CONTINUE
 ```
 
-Branch mapping: `PARK`. The arithmetic domain of the reconstructed
-relation is certified generically. That is still not a Collatz theorem,
-not a \(\mathbb{Z}\)-wide map certificate, and not a reason to reopen
-`research.collatz`.
+Reason: latent parameterized family recovered and the arithmetic domain
+of the relation is certified; map globality on \(\mathbb{Z}\) remains
+empirical. Prompt vocabulary: **PARTIALLY_CERTIFIED** (relation exact;
+map empirical; observed \(k\) sample-bounded). Not `ENGINE_LIMITATION`.
+
+### I. ComplexityProfile
+
+Unchanged schema. Seed 27: `control_count=1`,
+`max_separation_depth=1`, `closure_status=INCONCLUSIVE`; reachable count
+unset (cap). Domain-certification costs are not profile fields; they live
+on `AttackResult.evidence` (`predicate_count=5`, `queries=1994`,
+`overlap=0`, `census_kind`, `coverage`). The profile cannot express
+proof-synthesis cost; that limitation is documented rather than forked.
+
+### J. Prior art
+
+| Class | Item |
+|-------|------|
+| KNOWN MATHEMATICS | `acceleratedT_mul`; padic valuation iff; Tao density; Terras heuristics |
+| ENGINE REDISCOVERY | family \(2^k y=3x+1\) and maximal domain from I/O; mixed magnitude |
+| NEW FORMALIZATION | Engine `mul_pow_eq_iff_padicValInt`; thin `syracuseS_parameter_iff` |
+| NEW GENERIC ENGINE CAPABILITY | census plus domain certificates (maximal vs mere divisibility) |
+| POTENTIALLY NEW MATHEMATICS | none claimed |
+
+### K. Branch decision
+
+```text
+CONTINUE
+```
+
+Dossier mapping: `PARK`. Exact reconstructed latent control is **KNOWN**
+clearing. Modular, reverse, block, and spectral stay inapplicable in the
+same pass (no `AffineSystem` injection). Do not reopen `research.collatz`.
+The next generic question is whether that certified control can be
+consumed by existing control-word, cycle, modular, quotient, or residual
+attacks — not a Collatz solver.
 
 ## Open questions
 
-Is there a generic certificate beyond KNOWN clearing that still does not
-require map-specific hints and does not claim convergence?
+Can exact reconstructed latent control now be consumed by generic
+control-word, cycle, modular, quotient, or residual attacks, still
+without map-specific hints and without claiming convergence?
 
 ## Decision
 
-`PARK`. v2 now recovers a sample-supported parameterized family and
-certifies its maximal-divisibility domain, matching the known clearing
-identity. The old representation boundary moved again. That is still not
-a Collatz theorem and not a reason to reopen `research.collatz`. Do not
-auto-continue.
+`PARK`. v2 has crossed the boundary from discovering a hidden affine
+pattern to certifying the arithmetic domain of the reconstructed
+relation. The identity is **KNOWN**. Map globality, cycles, and
+boundedness are not proved. Do not auto-continue. Do not escalate to
+Collatz.
 
-Best next question: is there a generic certificate beyond KNOWN clearing
-that still does not require map-specific hints?
+Best next question: can exact reconstructed latent control be consumed
+by generic control-word, cycle, modular, quotient, or residual attacks?
 
 ## Publication assessment
 
 Status: `EXPLORATORY`. Not a `PAPER_CANDIDATE` as a Collatz contribution.
-The value is the generic census/domain layer and the moved engine
-boundary.
+The value is the generic reconstruction/certification pipeline.
+
 

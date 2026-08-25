@@ -1,4 +1,5 @@
 import Problems.Collatz.Accelerated
+import Problems.Engine.ParameterDomain
 
 namespace Problems.Collatz
 
@@ -20,5 +21,14 @@ theorem syracuseS_one : syracuseS 1 = 1 := by
   have : syracuseS 1 * 2 ^ 2 = 4 := by
     simpa [hval] using hmul
   omega
+
+/-- Generic Engine iff specialized to ``q = 3x+1``. KNOWN arithmetic;
+not a theorem that ``syracuseS`` equals the closed form on all odd
+positives, and not a Collatz convergence result. -/
+theorem syracuseS_parameter_iff
+    {x : ℤ} {k : ℕ} (hq : (3 : ℤ) * x + 1 ≠ 0) :
+    (∃ y : ℤ, (2 : ℤ) ^ k * y = 3 * x + 1 ∧ ¬ (2 : ℤ) ∣ y) ↔
+      padicValInt 2 (3 * x + 1) = k :=
+  Problems.Engine.mul_pow_eq_iff_padicValInt (b := 2) hq
 
 end Problems.Collatz

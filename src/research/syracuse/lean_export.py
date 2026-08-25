@@ -51,8 +51,8 @@ def export_syracuse_targets(report: PlannerReport) -> tuple[TheoremTarget, ...]:
             out.append(
                 attach_lean(
                     item,
-                    module="Problems.Engine",
-                    theorem="mul_pow_eq_iff_padicValInt",
+                    module="Problems.Collatz.Syracuse",
+                    theorem="syracuseS_parameter_iff",
                 )
             )
         else:
