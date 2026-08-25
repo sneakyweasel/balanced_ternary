@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -145,11 +145,20 @@ def _normalize_problem(name: str) -> str:
         "nsd",
     }:
         return "operator_dynamics_benchmark"
+    if key.lower() in {
+        "balanced_ternary_digit_sum_dynamics",
+        "balanced-ternary-digit-sum-dynamics",
+        "digit_sum",
+        "digit-sum",
+        "btds",
+        "ds_dynamics",
+    }:
+        return "balanced_ternary_digit_sum_dynamics"
     letter = key.upper()
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, or A-E"
     )
 
 
@@ -271,6 +280,15 @@ def _plan(problem: str, remaining: int):
         report = plan_signed_p0(remaining)
         targets = export_signed_p0_targets(report)
         return report, targets
+    if problem == "balanced_ternary_digit_sum_dynamics":
+        from research.balanced_ternary_digit_sum_dynamics.adapter import (
+            export_digit_sum_targets,
+            plan_digit_sum_dynamics,
+        )
+
+        report = plan_digit_sum_dynamics(remaining)
+        targets = export_digit_sum_targets(report)
+        return report, targets
     report = run_benchmark(problem)
     return report, targets_from_report(report, problem=f"benchmark_{problem}")
 
@@ -364,6 +382,11 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = signed_p0_spec(remaining)
         context = spec.attack_context()
+    elif problem == "balanced_ternary_digit_sum_dynamics":
+        from research.balanced_ternary_digit_sum_dynamics.spec import digit_sum_spec
+
+        spec = digit_sum_spec(remaining)
+        context = spec.attack_context()
     else:
         spec, context = load_benchmark(problem)
     try:
@@ -411,6 +434,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _prime_residual_reproduce_failures(report, targets)
     elif problem == "operator_dynamics_benchmark":
         failures = _operator_dynamics_reproduce_failures(report, targets)
+    elif problem == "balanced_ternary_digit_sum_dynamics":
+        failures = _digit_sum_dynamics_reproduce_failures(report, targets)
     else:
         failures = reproduce_checks(problem, report)
     if failures:
@@ -1203,3 +1228,96 @@ def _operator_dynamics_reproduce_failures(report, targets) -> tuple[str, ...]:
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("operator_dynamics: exported a LIVE target")
     return tuple(failures)
+
+
+def _digit_sum_dynamics_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.balanced_ternary_digit_sum_dynamics.lean_export import (
+        CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.balanced_ternary_digit_sum_dynamics.planner import (
+        CLOSURE_HYPOTHESIS,
+        CONTRACTION_HYPOTHESIS,
+        GLOBAL_RESIDUAL_HYPOTHESIS,
+        IDENTITY_MERGE_HYPOTHESIS,
+        IDEMPOTENT_HYPOTHESIS,
+        INTERVAL_HYPOTHESIS,
+        LYAPUNOV_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 3):
+        failures.append("digit_sum: closure is not EXACT size 3")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("digit_sum: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("digit_sum: modular/spectral should stay inapplicable")
+    if "factorization" not in skipped:
+        failures.append("digit_sum: factorization should stay inapplicable")
+    if "reverse" not in skipped:
+        failures.append("digit_sum: reverse should stay inapplicable")
+    if "block" not in skipped:
+        failures.append("digit_sum: block should stay inapplicable")
+    if "symmetry" not in skipped:
+        failures.append("digit_sum: symmetry should stay inapplicable")
+    if "symbolic" not in skipped:
+        failures.append("digit_sum: symbolic should stay skipped")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("digit_sum: seed-orbit hypothesis is not SUPPORTED")
+    interval = next(
+        (item for item in report.hypotheses if item.id == INTERVAL_HYPOTHESIS.id),
+        None,
+    )
+    if interval is None or interval.status is not HypothesisStatus.SUPPORTED:
+        failures.append("digit_sum: interval invariant is not SUPPORTED")
+    lyap = next(
+        (item for item in report.hypotheses if item.id == LYAPUNOV_HYPOTHESIS.id),
+        None,
+    )
+    if lyap is None or lyap.status is not HypothesisStatus.REFUTED:
+        failures.append("digit_sum: Lyapunov hypothesis is not REFUTED")
+    global_res = next(
+        (item for item in report.hypotheses if item.id == GLOBAL_RESIDUAL_HYPOTHESIS.id),
+        None,
+    )
+    if global_res is None or global_res.status is not HypothesisStatus.REFUTED:
+        failures.append("digit_sum: global finite residual is not REFUTED")
+    merge = next(
+        (item for item in report.hypotheses if item.id == IDENTITY_MERGE_HYPOTHESIS.id),
+        None,
+    )
+    if merge is None or merge.status is not HypothesisStatus.REFUTED:
+        failures.append("digit_sum: identity-merge hypothesis is not REFUTED")
+    idem = next(
+        (item for item in report.hypotheses if item.id == IDEMPOTENT_HYPOTHESIS.id),
+        None,
+    )
+    if idem is None or idem.status is not HypothesisStatus.REFUTED:
+        failures.append("digit_sum: idempotent hypothesis is not REFUTED")
+    contraction = next(
+        (item for item in report.hypotheses if item.id == CONTRACTION_HYPOTHESIS.id),
+        None,
+    )
+    if contraction is None or contraction.status is not HypothesisStatus.SUPPORTED:
+        failures.append("digit_sum: contraction hypothesis is not SUPPORTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != CLOSURE_THEOREM
+    ):
+        failures.append("digit_sum: closure is not linked to digitSumZ_natAbs_lt")
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("digit_sum: exported a LIVE target")
+    return tuple(failures)
+

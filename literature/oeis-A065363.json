@@ -17,5 +17,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "The sequence s_bal(n). Recurrences a(3n-1)=a(n)-1, a(3n)=a(n), a(3n+1)=a(n)+1 (König). Xie records a(n)=A053735(2n)-A053735(n) for n>=0, the ordinary-ternary translation used as the Phase-0 falsifier. The digital-root iteration of s_bal is not the target of docs/problems/balanced_digit_sum_polynomials.md."
+    "notes": "The sequence s_bal(n). Recurrences a(3n-1)=a(n)-1, a(3n)=a(n), a(3n+1)=a(n)+1 (König). Xie records a(n)=A053735(2n)-A053735(n) for n>=0, the ordinary-ternary translation used as the Phase-0 falsifier. The digital-root iteration of s_bal is OEIS A134452 and is the target of docs/problems/balanced_ternary_digit_sum_dynamics.md, not of the polynomial level-set dossier."
 }

@@ -362,3 +362,29 @@ def test_research_reproduce_operator_dynamics_links_lean():
     assert "signedP0_sq_eq_P0" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
+
+
+def test_research_analyze_digit_sum_is_exact_three_not_live():
+    out = _run("research", "analyze", "digit_sum")
+    assert "problem: balanced_ternary_digit_sum_dynamics" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "LIVE infinitude is not decided here" in out
+    assert "SUPPORTED EXACT LIVE\n" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_digit_sum_links_lean():
+    out = _run("research", "reproduce", "btds")
+    assert "reproduce: ok" in out
+    assert "hypothesis ds_seed_orbit_finite: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis ds_interval_invariant: SUPPORTED EXACT LIVE_SLICE" in out
+    assert "hypothesis ds_lyapunov_n: REFUTED" in out
+    assert "hypothesis ds_global_finite_residual: REFUTED" in out
+    assert "hypothesis ds_identity_merge: REFUTED" in out
+    assert "hypothesis ds_idempotent: REFUTED" in out
+    assert "hypothesis ds_contraction: SUPPORTED EXACT REACHABLE" in out
+    report = _run("research", "report", "ds_dynamics")
+    assert "digitSumZ_natAbs_lt" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()

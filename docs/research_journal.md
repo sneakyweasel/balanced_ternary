@@ -1454,3 +1454,48 @@ Best next question
 - none on this line; do not enumerate another operator word
 ```
 
+## Balanced-ternary digit-sum dynamics T=s (not a numbered milestone)
+
+- **Date:** 2026-08-25
+- **Objective:** Test whether Research Engine v2 can diagnose T(n)=s(n) from exact local digits, without a problem-specific theory
+- **Hypotheses:** V(n)=n is a Lyapunov; T²=T; identity observation merges orbit points; ℤ is one finite residual; the box |n|≤2 leaks
+- **Major results:** Local fold s(n)=lsd(n)+s(D(n)) matches A065363. Seed 4 closes in 3 states (`EXACT_CLOSURE`); identity Mealy quotient has 3 classes (`M=|R|`); box |n|≤2 does not leak; reverse/block/modular/spectral/factorization/symmetry inapplicable. |s(n)|<|n| for |n|≥2 (Lean digitSumZ_natAbs_lt); every orbit reaches |n|≤1 (digitSumIterate_reaches_unit). Did not reopen signed-digit, Collatz, primes, jets, Ostrowski, N∘I₀∘D, or polynomial s_bal(P(n)). No new engine primitive. No ledger row
+- **Refuted ideas:** T²=T; one-step Lyapunov; a single finite residual on ℤ; identity-observation merge
+- **Literature:** s_bal is `KNOWN` (A065363). The iteration is the balanced-ternary digital root A134452 (`KNOWN`). Branch CLOSE as reparameterization of that sequence
+- **Open:** none opened
+- **Decision:** CLOSE. The map is known digital-root algebra. The benchmark succeeded as a structural diagnosis of a recursive digit fold
+
+```text
+What was learned
+- T(n)=s(n) is the recursive fold of lsd and D, not a fixed operator word
+- v2 reports exact per-seed closure of size 3 without being told a digital root
+- The interval sample |n|≤2 does not leak; V(n)=n is not a Lyapunov
+- Identity observation yields M=|R|; no behavioral merge
+- Integer-state infinitude is a disjoint union of finite contracting orbits
+- Reverse is inapplicable (infinite preimages); no engine change
+
+Strongest theorem
+- |s(n)| < |n| whenever |n|≥2; s iterated |n| times has absolute value ≤ 1 (Lean digitSumZ_natAbs_lt, digitSumIterate_reaches_unit)
+
+Strongest refutation
+- T(4)=2 and T(2)=0, so T²≠T; orbits of 4 and 5 are disjoint
+
+Reusable machinery
+- none; the generic v2 planner was reused as-is
+
+Prior-art status
+- KNOWN balanced-ternary digital root (OEIS A134452); branch CLOSE as REPARAMETERIZATION
+
+Complexity profile
+- controls 1; no raw contribution; seed reachable 3; Mealy 3; closure EXACT_CLOSURE; dominant certificate EXACT_CLOSURE
+
+Branch status
+- CLOSE
+
+Why
+- Local semantics were already the calculus. The engine correctly diagnosed finite per-orbit residual, a non-leaking sample envelope, and identity-observation equality M=|R|. The identities are the classical digital root, not a new class.
+
+Best next question
+- none on this line; do not enumerate another digit-fold map
+```
+
