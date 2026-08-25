@@ -14,9 +14,11 @@ from research_engine.benchmarks.pipeline import (
 from research_engine.core.problem_spec import ProblemSpec
 from research_engine.core.semantics import ClaimKind, SearchScope
 from research_engine.planner.hypothesis import HypothesisStatus
+from research_engine.diagnosis.loop import diagnose
 from research_engine.planner.orchestrator import DEFERRED_ATTACKS, run_named_attack
 from research_engine.report import (
     format_attack_result,
+    format_diagnosis_report,
     format_planner_report,
     format_target_report,
 )
@@ -32,7 +34,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, balanced_ternary_weight_dynamics, balanced_ternary_weight_drift, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, balanced_ternary_weight_dynamics, balanced_ternary_weight_drift, syracuse, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -170,11 +172,17 @@ def _normalize_problem(name: str) -> str:
         "wdr",
     }:
         return "balanced_ternary_weight_drift"
+    if key.lower() in {
+        "syracuse",
+        "accelerated_odd_map",
+        "accelerated-odd-map",
+    }:
+        return "syracuse"
     letter = key.upper()
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, balanced_ternary_weight_dynamics, balanced_ternary_weight_drift, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, balanced_ternary_digit_sum_dynamics, balanced_ternary_weight_dynamics, balanced_ternary_weight_drift, syracuse, or A-E"
     )
 
 
@@ -323,6 +331,12 @@ def _plan(problem: str, remaining: int):
         report = plan_weight_drift(remaining)
         targets = export_weight_drift_targets(report)
         return report, targets
+    if problem == "syracuse":
+        from research.syracuse.adapter import export_syracuse_targets, plan_syracuse
+
+        report = plan_syracuse(remaining)
+        targets = export_syracuse_targets(report)
+        return report, targets
     report = run_benchmark(problem)
     return report, targets_from_report(report, problem=f"benchmark_{problem}")
 
@@ -331,108 +345,118 @@ def _analyze(problem_name: str, remaining: int) -> int:
     problem = _normalize_problem(problem_name)
     report, _targets = _plan(problem, remaining)
     print(format_planner_report(report, problem=problem), end="")
+    spec, context = _spec_and_context(problem, remaining)
+    print(format_diagnosis_report(diagnose(spec, report, context)), end="")
     return 0
 
 
-def _attack(problem_name: str, attack: str, remaining: int) -> int:
-    problem = _normalize_problem(problem_name)
+def _spec_and_context(problem: str, remaining: int):
     if problem == "ostrowski":
         from research.ostrowski.spec import ostrowski_spec
         from research.ostrowski.zero_value_kernel import SHORTEST_NONRESET
         from research_engine.algebra.linear_functionals import LinearFunctional
 
         spec = ostrowski_spec(remaining)
-        context = spec.attack_context(
+        return spec, spec.attack_context(
             functional=LinearFunctional((0, 0, 1)),
             word=SHORTEST_NONRESET,
         )
-    elif problem == "balanced_ternary":
+    if problem == "balanced_ternary":
         from research.balanced_ternary.spec import doubled_trit_spec
 
         spec = doubled_trit_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "expanding_d":
+        return spec, spec.attack_context()
+    if problem == "expanding_d":
         from research.balanced_ternary.expanding_spec import expanding_d_spec
 
         spec = expanding_d_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "expanding_j2":
+        return spec, spec.attack_context()
+    if problem == "expanding_j2":
         from research.balanced_ternary.expanding_j2_spec import expanding_j2_spec
 
         spec = expanding_j2_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "expanding_j3":
+        return spec, spec.attack_context()
+    if problem == "expanding_j3":
         from research.balanced_ternary.expanding_j3_spec import expanding_j3_spec
 
         spec = expanding_j3_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "d_add":
+        return spec, spec.attack_context()
+    if problem == "d_add":
         from research.balanced_ternary.d_add_spec import d_add_spec
 
         spec = d_add_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "signed_digit_residual":
+        return spec, spec.attack_context()
+    if problem == "signed_digit_residual":
         from research.signed_digit_residual.spec import signed_digit_spec
 
         spec = signed_digit_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "signed_digit_residual_geometry":
+        return spec, spec.attack_context()
+    if problem == "signed_digit_residual_geometry":
         from research.signed_digit_residual_geometry.spec import geometry_spec
 
         spec = geometry_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "signed_digit_residual_minimality":
+        return spec, spec.attack_context()
+    if problem == "signed_digit_residual_minimality":
         from research.signed_digit_residual_minimality.spec import minimality_spec
 
         spec = minimality_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "signed_digit_constrained_controls":
+        return spec, spec.attack_context()
+    if problem == "signed_digit_constrained_controls":
         from research.signed_digit_constrained_controls.spec import constrained_spec
 
         spec = constrained_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "signed_digit_short_horizon":
+        return spec, spec.attack_context()
+    if problem == "signed_digit_short_horizon":
         from research.signed_digit_short_horizon.spec import short_horizon_spec
 
         spec = short_horizon_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "multiplicative_residual":
+        return spec, spec.attack_context()
+    if problem == "multiplicative_residual":
         from research.multiplicative_residual.spec import product_spec
 
         spec = product_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "collatz_finite_descent":
+        return spec, spec.attack_context()
+    if problem == "collatz_finite_descent":
         from research.collatz_finite_descent.spec import shortcut_spec
 
         spec = shortcut_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "prime_residual_complexity":
+        return spec, spec.attack_context()
+    if problem == "prime_residual_complexity":
         from research.prime_residual_complexity.spec import sieve_spec
 
         spec = sieve_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "operator_dynamics_benchmark":
+        return spec, spec.attack_context()
+    if problem == "operator_dynamics_benchmark":
         from research.operator_dynamics.signed_p0.spec import signed_p0_spec
 
         spec = signed_p0_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "balanced_ternary_digit_sum_dynamics":
+        return spec, spec.attack_context()
+    if problem == "balanced_ternary_digit_sum_dynamics":
         from research.balanced_ternary_digit_sum_dynamics.spec import digit_sum_spec
 
         spec = digit_sum_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "balanced_ternary_weight_dynamics":
+        return spec, spec.attack_context()
+    if problem == "balanced_ternary_weight_dynamics":
         from research.balanced_ternary_weight_dynamics.spec import weight_dynamics_spec
 
         spec = weight_dynamics_spec(remaining)
-        context = spec.attack_context()
-    elif problem == "balanced_ternary_weight_drift":
+        return spec, spec.attack_context()
+    if problem == "balanced_ternary_weight_drift":
         from research.balanced_ternary_weight_drift.spec import weight_drift_spec
 
         spec = weight_drift_spec(remaining)
-        context = spec.attack_context()
-    else:
-        spec, context = load_benchmark(problem)
+        return spec, spec.attack_context()
+    if problem == "syracuse":
+        from research.syracuse.spec import syracuse_spec
+
+        spec = syracuse_spec(remaining)
+        return spec, spec.attack_context()
+    return load_benchmark(problem)
+
+
+def _attack(problem_name: str, attack: str, remaining: int) -> int:
+    problem = _normalize_problem(problem_name)
+    spec, context = _spec_and_context(problem, remaining)
     try:
         result = run_named_attack(attack, cast(ProblemSpec, spec), context)
     except KeyError:
@@ -484,6 +508,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _weight_dynamics_reproduce_failures(report, targets)
     elif problem == "balanced_ternary_weight_drift":
         failures = _weight_drift_reproduce_failures(report, targets)
+    elif problem == "syracuse":
+        failures = _syracuse_reproduce_failures(report, targets)
     else:
         failures = reproduce_checks(problem, report)
     if failures:
@@ -1559,6 +1585,65 @@ def _weight_drift_reproduce_failures(report, targets) -> tuple[str, ...]:
         failures.append("weight_drift: increase is not linked to weightDriftZ_gt")
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("weight_drift: exported a LIVE target")
+    return tuple(failures)
+
+
+def _syracuse_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.syracuse.lean_export import ONE_THEOREM, closure_is_inconclusive
+    from research.syracuse.planner import (
+        CLOSURE_HYPOTHESIS,
+        CONTRACTION_HYPOTHESIS,
+        GLOBAL_RESIDUAL_HYPOTHESIS,
+        IDEMPOTENT_HYPOTHESIS,
+        INTERVAL_HYPOTHESIS,
+        LYAPUNOV_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_inconclusive(report):
+        failures.append("syracuse: integer-state closure is not INCONCLUSIVE")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("syracuse: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("syracuse: modular/spectral should stay inapplicable")
+    if "reverse" not in skipped:
+        failures.append("syracuse: reverse should stay inapplicable")
+    functional = next((item for item in report.results if item.name == "functional"), None)
+    if functional is None or functional.status is not AttackStatus.REFUTED:
+        failures.append("syracuse: functional |n| bound is not REFUTED")
+    expected_refuted = (
+        (LYAPUNOV_HYPOTHESIS.id, "Lyapunov"),
+        (INTERVAL_HYPOTHESIS.id, "interval"),
+        (CONTRACTION_HYPOTHESIS.id, "contraction"),
+        (IDEMPOTENT_HYPOTHESIS.id, "idempotent"),
+    )
+    for hyp_id, label in expected_refuted:
+        hyp = next((item for item in report.hypotheses if item.id == hyp_id), None)
+        if hyp is None or hyp.status is not HypothesisStatus.REFUTED:
+            failures.append(f"syracuse: {label} is not REFUTED")
+    residual = next(
+        (item for item in report.hypotheses if item.id == GLOBAL_RESIDUAL_HYPOTHESIS.id),
+        None,
+    )
+    if residual is None or residual.status is not HypothesisStatus.PARKED:
+        failures.append("syracuse: integer residual is not PARKED")
+    closure_hyp = next(
+        (item for item in report.hypotheses if item.id == CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if closure_hyp is None or closure_hyp.status is not HypothesisStatus.PARKED:
+        failures.append("syracuse: seed-orbit hypothesis is not PARKED")
+    one = next((item for item in targets if item.lean_theorem == ONE_THEOREM), None)
+    if one is None or not one.exportable:
+        failures.append("syracuse: S(1)=1 is not linked to syracuseS_one")
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("syracuse: exported a LIVE target")
     return tuple(failures)
 
 

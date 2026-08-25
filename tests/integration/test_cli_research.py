@@ -448,3 +448,26 @@ def test_research_reproduce_weight_drift_links_lean():
     assert "weightDriftZ_gt" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
+
+
+def test_research_analyze_syracuse_is_inconclusive_not_live():
+    out = _run("research", "analyze", "syracuse")
+    assert "problem: syracuse" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED" in out
+    assert "attack closure: INCONCLUSIVE BOUNDED REACHABLE" in out
+    assert "attack functional: REFUTED" in out
+    assert "LIVE infinitude is not decided here" in out
+    assert "SUPPORTED EXACT LIVE\n" not in out
+    assert "numerical_contraction: MIXED_MAGNITUDE" in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_syracuse_links_lean():
+    out = _run("research", "reproduce", "syracuse")
+    assert "reproduce: ok" in out
+    assert "hypothesis syr_seed_orbit_finite: PARKED" in out
+    assert "hypothesis syr_lyapunov_n: REFUTED" in out
+    report = _run("research", "report", "syracuse")
+    assert "syracuseS_one" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()

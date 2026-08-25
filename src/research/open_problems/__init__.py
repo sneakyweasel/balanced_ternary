@@ -59,10 +59,12 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.multiplicative_residual.problem import PROBLEM as MULTIPLICATIVE_RESIDUAL
     from research.sparse_polynomials.problem import PROBLEM as SPARSE_POLYNOMIALS
     from research.stabilization.problem import PROBLEM as STABILIZATION
+    from research.syracuse.problem import PROBLEM as SYRACUSE
 
     return (
         COLLATZ,
         COLLATZ_FINITE_DESCENT,
+        SYRACUSE,
         RESIDUALS,
         LIFTING,
         PADIC_DYNAMICS,

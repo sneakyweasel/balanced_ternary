@@ -1,4 +1,6 @@
 import Problems.Collatz.Shortcut
+import Problems.Collatz.Accelerated
+import Problems.Collatz.Syracuse
 import Problems.Collatz.Arithmetic
 import Problems.Collatz.Center
 import Problems.Collatz.Cycles

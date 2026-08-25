@@ -1589,3 +1589,48 @@ Best next question
 - none on this line; do not enumerate another digit-statistic perturbation
 ```
 
+## Research Engine diagnosis loop and Syracuse stress test
+
+- **Date:** 2026-08-25
+- **Objective:** Upgrade v2 from attack executor to a diagnose → compare → decide loop, then stress-test it on the accelerated odd-only map without Collatz hints
+- **Hypotheses:** SignedP0 / digit-sum / weight share a finite-contracting regime that saturates; Syracuse is a different class; the engine may hit a representation boundary on hidden \(2\)-adic branching
+- **Major results:** `research_engine.diagnosis` (`RegimeFingerprint`, family saturation, `ResearchDecision`, `ExpectedResearchValue`). Digit-fold family `SATURATED` from evidence, not from names. WeightDrift stays a non-member expanding control. Syracuse adapter in `research.syracuse` (no `research.collatz` import): mixed magnitude, truncated closure, `ENGINE_LIMITATION`. Lean `syracuseS_one` packages `acceleratedT`. No ledger row
+- **Refuted ideas:** one-step Lyapunov; odd interval [1,15]; contraction for odd \(n\ge 3\); idempotence
+- **Literature:** Lagarias survey, Terras stopping times, Tao logarithmic density (`KNOWN`); cycle preprints not treated as theorems; parked Collatz module not reopened
+- **Open:** generic piecewise-affine / prime-power-clearing census
+- **Decision:** PARK (engine `ENGINE_LIMITATION`). Do not auto-continue; do not claim a Collatz result
+
+```text
+What was learned
+- Diagnosis classifies the three closed digit maps as one finite-contracting family
+- Family saturation discourages another contracting scalar fold without a hard-coded ban
+- Syracuse is not that family: mixed growth and truncated residuals under dummy control
+- v2 can refute naive descent, but cannot name the hidden 2-adic partition as a control alphabet
+- S(1)=1 is exact and KNOWN; a bounded seed-27 census is not convergence
+
+Strongest theorem
+- S(1)=1 (Lean syracuseS_one); well-definedness is acceleratedT (KNOWN)
+
+Strongest refutation
+- S(3)=5 and S(11)=17 kill one-step contraction and a small odd interval
+
+Reusable machinery
+- research_engine.diagnosis (fingerprints, family status, coverage, research decision, scorer)
+
+Prior-art status
+- KNOWN 3x+1 map; engine rediscovery of well-definedness and the 1-cycle; ENGINE_LIMITATION on implicit valuation control
+
+Complexity profile
+- seed 27: 1 control; closure INCONCLUSIVE; |n| functional REFUTED; no profile-schema fork
+
+Branch status
+- PARK
+
+Why
+- The upgrade succeeded: v2 now decides what kind of mathematics to attempt next. Syracuse shows a new regime and a precise engine boundary. That is not a Collatz solution and does not reopen research.collatz.
+
+Best next question
+- Can a generic piecewise-affine census from I/O samples become a reusable v2 attack?
+```
+
+

@@ -7,6 +7,8 @@ from collections.abc import Sequence
 from research_engine.attacks.result import AttackResult
 from research_engine.core.semantics import ClaimKind
 from research_engine.planner.hypothesis import Hypothesis
+from research_engine.diagnosis.loop import DiagnosisReport, ResearchSession
+from research_engine.diagnosis.types import ResearchDecision
 from research_engine.planner.orchestrator import PlannerReport
 from research_engine.verification.targets import TheoremTarget, render_yaml
 
@@ -48,6 +50,51 @@ def format_planner_report(report: PlannerReport, *, problem: str) -> str:
             f"blocked {jump.id}: {jump.antecedent} => {jump.consequent}"
         )
     return "\n".join(lines) + "\n"
+
+
+def format_fingerprint(fingerprint) -> str:
+    lines = ["RegimeFingerprint:"]
+    for key, value in fingerprint.as_dict().items():
+        lines.append(f"  {key}: {value}")
+    return "\n".join(lines)
+
+
+def format_diagnosis_report(diagnosis: DiagnosisReport) -> str:
+    lines = [
+        "diagnosis:",
+        f"  semantic_class: {diagnosis.semantic_class}",
+        f"  family_status: {diagnosis.family_status.value}",
+        f"  family_id: {diagnosis.family_id}",
+        f"  nearest: {diagnosis.nearest_target or 'none'}",
+    ]
+    if diagnosis.delta is not None:
+        lines.append(f"  structural_delta: {diagnosis.delta.level.value}")
+        for name, left, right in diagnosis.delta.differing_dimensions[:8]:
+            lines.append(f"    {name}: {left} vs {right}")
+    lines.append(format_fingerprint(diagnosis.fingerprint))
+    lines.append("CapabilityCoverage:")
+    for name in diagnosis.coverage.statuses:
+        lines.append(f"  {name}: {diagnosis.coverage.status(name)}")
+    return "\n".join(lines) + "\n"
+
+
+def format_research_session(session: ResearchSession, *, problem: str) -> str:
+    lines = [
+        format_planner_report(session.attack_report, problem=problem).rstrip(),
+        format_diagnosis_report(session.diagnosis).rstrip(),
+        f"research_decision: {session.decision.value}",
+        f"  {session.decision_reason}",
+    ]
+    return "\n".join(lines) + "\n"
+
+
+def branch_status_for(decision: ResearchDecision) -> str:
+    """Map engine ResearchDecision onto the dossier PROMOTE|PARK|CLOSE vocabulary."""
+    if decision in {ResearchDecision.CLOSE, ResearchDecision.FAMILY_SATURATED}:
+        return "CLOSE"
+    if decision is ResearchDecision.ESCALATE:
+        return "PROMOTE"
+    return "PARK"
 
 
 def format_target_report(targets: Sequence[TheoremTarget]) -> str:

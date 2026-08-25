@@ -50,6 +50,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.balanced_ternary_digit_sum_dynamics` | `ARCHIVED` | v2 benchmark \(T=s\); digital root; `CLOSE` |
 | `research.balanced_ternary_weight_dynamics` | `ARCHIVED` | v2 control \(T=W\); regime replication; `CLOSE` |
 | `research.balanced_ternary_weight_drift` | `ARCHIVED` | v2 increment \(T=n+W\); Kaprekar-class drift; `CLOSE` |
+| `research.syracuse` | `EXPLORATORY` | v2 diagnosis of accelerated odd-only \(S\); not a Collatz solver |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |
 | `research.erdos_distinct_subset_sums` | `EXPLORATORY` | Erdős #1 signed-relation gate |
 | `research.kabelian_complexity` | `ARCHIVED` | k-abelian residual signatures; block-coding close |

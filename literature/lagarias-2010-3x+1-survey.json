@@ -1,0 +1,20 @@
+{
+  "authors": ["Jeffrey C. Lagarias"],
+  "id": "lagarias-2010-3x+1-survey",
+  "identifiers": {
+    "isbn": "9780821844304"
+  },
+  "notes": "docs/problems/syracuse.md",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "3x+1 problem",
+    "Syracuse map",
+    "stopping times",
+    "cycle exclusion"
+  ],
+  "status": "survey",
+  "title": "The Ultimate Challenge: The 3x+1 Problem",
+  "url": {},
+  "year": 2010
+}

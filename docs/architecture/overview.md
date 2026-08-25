@@ -21,7 +21,7 @@ bt.*                        problem-independent BT mathematics
 
 - `bt.*` may import only `bt.*` (and the Python standard library). It must not import `research_engine`.
 - `research_engine` may import only the Python standard library. It must not import `bt.*` or `research.*`.
-- Optional engine layers (not required on `ProblemSpec`): observation, raw-contribution factorization, invariant envelope vs exact reachability, pair-state separation, Mealy quotient, complexity profiles, evidence `CertificateKind`, and session prior-art status. These wrap existing attacks. They are not a second theorem ledger.
+- Optional engine layers (not required on `ProblemSpec`): observation, raw-contribution factorization, invariant envelope vs exact reachability, pair-state separation, Mealy quotient, complexity profiles, evidence `CertificateKind`, session prior-art status, and the diagnosis loop (`RegimeFingerprint`, family saturation, `ResearchDecision`). These wrap existing attacks. They are not a second theorem ledger.
 - `research.*` may import `bt.*`, `research_engine`, and explicitly shared utilities
   (`research.experiments`, conjecture/literature registries).
 - `cli` and `visualization` may import both layers.
@@ -71,6 +71,7 @@ Do not continue past a red gate. Mathematical behaviour must not change.
 
 ## Related pages
 
+- [Research Engine diagnosis loop](research_engine_loop.md)
 - [Core](core.md)
 - [Research modules](research_modules.md)
 - [Experiments](experiments.md)

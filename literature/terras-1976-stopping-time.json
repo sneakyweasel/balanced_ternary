@@ -1,0 +1,16 @@
+{
+  "authors": ["Riho Terras"],
+  "id": "terras-1976-stopping-time",
+  "identifiers": {},
+  "notes": "docs/problems/syracuse.md",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "stopping times",
+    "density of contracting k-steps"
+  ],
+  "status": "classical",
+  "title": "A stopping time problem on the positive integers",
+  "url": {},
+  "year": 1976
+}

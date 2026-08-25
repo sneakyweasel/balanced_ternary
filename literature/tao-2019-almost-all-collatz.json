@@ -1,0 +1,20 @@
+{
+  "authors": ["Terence Tao"],
+  "id": "tao-2019-almost-all-collatz",
+  "identifiers": {
+    "doi": "10.48550/arXiv.1909.03562"
+  },
+  "notes": "docs/problems/syracuse.md",
+  "problem_area": "collatz",
+  "project_relationship": "known",
+  "relevant_concepts": [
+    "logarithmic density",
+    "almost all orbits"
+  ],
+  "status": "theorem",
+  "title": "Almost all Collatz orbits attain almost bounded values",
+  "url": {
+    "doi": "10.48550/arXiv.1909.03562"
+  },
+  "year": 2019
+}
