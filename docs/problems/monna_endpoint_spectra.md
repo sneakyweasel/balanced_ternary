@@ -98,7 +98,8 @@ None registered.
 
 Master record: [monna_endpoint_spectra.md](../theory/monna_endpoint_spectra.md).
 Ledger rows `BTM-balanced-monna`, `BTM-x3-depth`, `BTM-x3-spectrum`,
-`BTM-x3-no-preserve`. Lean is deferred. No `sorry`.
+`BTM-x3-no-preserve`. `BTM-x3-depth` is `formal/BTCalculus/MonnaEndpointCube.lean`.
+Spectrum and non-preservation remain human. No `sorry`.
 
 ## Results
 
@@ -116,7 +117,7 @@ triadic real are exactly the pairs constructed above, and
 
 ### Cubic identities
 
-**EXACT — HUMAN PROOF** (`BTM-x3-depth`). For every endpoint pair,
+**EXACT — LEAN VERIFIED** (`BTM-x3-depth`). For every endpoint pair,
 
 `u^3 − v^3 = 4·3^n (3ζ^2 + 4·3^{2n})`,
 
