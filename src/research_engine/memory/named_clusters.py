@@ -145,8 +145,8 @@ def engineering_from_named(
         if cluster.id == "global_reachability":
             recommendation = EngineeringRecommendation.PROMOTE_TO_NEXT_VERSION
             reason = (
-                "recurrence across Skolem, R+, and BB-5; guidance only — open mathematics "
-                "may be the true bottleneck; not an implementation instruction"
+                "recurrence across Skolem, Positivity, R+, and BB-5; guidance only — open "
+                "mathematics may be the true bottleneck; not an implementation instruction"
             )
         elif cluster.id == "prior_art_saturation":
             recommendation = EngineeringRecommendation.IGNORE

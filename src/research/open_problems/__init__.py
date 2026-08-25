@@ -65,6 +65,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.target_board.problem import PROBLEM as TARGET_BOARD
     from research.aliquot_dynamics.problem import PROBLEM as ALIQUOT_DYNAMICS
     from research.skolem_lrs.problem import PROBLEM as SKOLEM_LRS
+    from research.positivity_lrs.problem import PROBLEM as POSITIVITY_LRS
     from research.bb5_map.problem import PROBLEM as BB5_MAP
     from research.linear_constraint_loops.problem import PROBLEM as LINEAR_CONSTRAINT_LOOPS
     from research.mx_plus_r.problem import PROBLEM as MX_PLUS_R
@@ -83,6 +84,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         BB5_MAP,
         ALIQUOT_DYNAMICS,
         SKOLEM_LRS,
+        POSITIVITY_LRS,
         MX_PLUS_R,
         EUCLIDEAN_QUOTIENT,
         VECTOR_AFFINE,

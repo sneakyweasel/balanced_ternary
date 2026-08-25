@@ -28,5 +28,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "docs/problems/skolem_lrs.md. Section 8.3 is the unresolved order-6 instance used as the flagship. Not an adapter hint."
+  "notes": "docs/problems/skolem_lrs.md uses Section 8.3 sequence (13). docs/problems/positivity_lrs.md uses Section 8.4 sequence (16). Not an adapter hint."
 }

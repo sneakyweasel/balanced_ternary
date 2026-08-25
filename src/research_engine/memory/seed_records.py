@@ -1203,6 +1203,121 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
         finalized=True,
     )
 
+    pos_fp = _fp(
+        state_space_type="INTEGER_VECTOR",
+        control_structure="SINGLETON",
+        numerical_contraction="UNIVERSAL_DESCENT_REFUTED",
+        eventual_region="UNBOUNDED_SAMPLE",
+        orbit_behavior="INCOMPLETE",
+        certificate_strength="BOUNDED",
+        affine_control_type="UNOBSERVED",
+    )
+    positivity = MemoryExperiment(
+        experiment_id="positivity_order10",
+        target="companion_obs_order10",
+        target_family="linear_recurrence",
+        adapter_version="0.2.1",
+        engine_version="0.2.2",
+        experiment_date="2026-08-25",
+        diagnosis=_diag(
+            "companion_obs_order10",
+            pos_fp,
+            ResearchDecision.CLOSE,
+            "representation fits companion-window language; infinite nonnegativity unresolved",
+            prior="KNOWN",
+            lean="Problems.Engine.CompanionObservation",
+            exact="companion_obs_order10_step",
+            falsification="nonnegative orthant not invariant for the last row",
+        ),
+        decision_reason_code=DecisionReason.GLOBAL_REACHABILITY_GAP,
+        representation_novelty=NoveltyLevel.LOW,
+        mathematical_novelty=NoveltyLevel.NONE,
+        novelty_status=NoveltyStatus.KNOWN_REDISCOVERY,
+        mathematical_yield=MathematicalYield(
+            known_rediscoveries=("order-10 companion window of Bacik et al. 2026 survey (16)",),
+            new_formalizations=("Problems.Engine.CompanionObservation",),
+            unresolved_questions=("whether survey sequence (16) is nonnegative for every n",),
+            engineering_changes=0,
+        ),
+        failures=(
+            _fail(
+                "positivity_order10",
+                "companion_obs_order10",
+                "global",
+                FailureClass.GLOBAL_REASONING,
+                "LANGUAGE_ADEQUATE",
+                "finite_to_infinite_certificate",
+                "finite computation does not decide infinite first-coordinate nonnegativity",
+                "Hyperplane reachability and half-space safety fail for the same finite-to-infinite gap.",
+                "global_reachability",
+                attack="closure",
+                value=ImportanceLevel.HIGH,
+                prior="KNOWN",
+            ),
+            _fail(
+                "positivity_order10",
+                "companion_obs_order10",
+                "computational",
+                FailureClass.COMPUTATIONAL,
+                "VECTOR_AFFINE_ADEQUATE",
+                "finite_budget_exhausted",
+                "25^10 census cube skipped; COMPUTATION_EXHAUSTED",
+                "Computational blockage is not mathematical impossibility.",
+                "vector_census",
+                attack="vector_affine",
+                value=ImportanceLevel.MEDIUM,
+                prior="KNOWN",
+            ),
+        ),
+        grey_loot=(
+            GreyLoot(
+                id="positivity_order10:loot:budget",
+                kind=GreyLootKind.COMPUTATIONAL_BOTTLENECK,
+                statement="vector census 25^10 exceeds 50000 cells",
+                evidence=LootEvidence.FINITE_RANGE,
+                experiment_id="positivity_order10",
+                target="companion_obs_order10",
+                failure_class=FailureClass.COMPUTATIONAL,
+                bottleneck="finite_budget_exhausted",
+            ),
+            GreyLoot(
+                id="positivity_order10:loot:global",
+                kind=GreyLootKind.USEFUL_NEGATIVE_RESULT,
+                statement="half-space safety on companion windows is the same GLOBAL_REASONING cluster as Skolem",
+                evidence=LootEvidence.OBSERVED,
+                experiment_id="positivity_order10",
+                target="companion_obs_order10",
+                failure_class=FailureClass.GLOBAL_REASONING,
+                bottleneck="finite_to_infinite_certificate",
+            ),
+        ),
+        prior_art=PriorArtMemory(
+            literature_ids=(
+                "bacik-et-al-2026-skolem-positivity-survey",
+                "ouaknine-worrell-2014-simple-positivity",
+            ),
+            independently_rediscovered=False,
+            known_theorem_status="OPEN",
+        ),
+        scout=ScoutDossier(
+            target="companion_obs_order10",
+            problem_definition="Are all terms of the 2026 survey order-10 integer LRS nonnegative?",
+            literature=("bacik-et-al-2026-skolem-positivity-survey",),
+        ),
+        blind_packet=BlindPacket(
+            spec_name="companion_obs_order10",
+            dimension=10,
+            skip_attacks=("vector_affine", "matrix_word_invariant"),
+            max_states=32,
+            max_steps=16,
+        ),
+        run_artifact=RunArtifact(
+            attack_statuses={"vector_affine": "COMPUTATION_EXHAUSTED"},
+            lean_theorems=("Problems.Engine.CompanionObservation",),
+        ),
+        finalized=True,
+    )
+
     return tuple(
         _enrich_lessons(item)
         for item in (
@@ -1223,6 +1338,7 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
             aliquot,
             skolem,
             hygiene,
+            positivity,
         )
     )
 
@@ -1386,6 +1502,22 @@ def _lesson_fields() -> dict[str, dict]:
             engineering_action="RESOLVED",
             prior_art_status="KNOWN",
             minimal_example="skolem_lrs as an import path",
+        ),
+        "positivity_order10:loot:budget": dict(
+            observation="25^10 vector census is skipped",
+            reusable_lesson="high-dimensional companion census remains a computational barrier, not a sign theorem",
+            possible_transfer_targets=("companion_shift_order6",),
+            status=GreyLootStatus.PARKED,
+            engineering_action="PARK",
+            prior_art_status="KNOWN",
+        ),
+        "positivity_order10:loot:global": dict(
+            observation="finite nonnegative prefix does not decide infinite-horizon first-coordinate nonnegativity",
+            reusable_lesson="infinite-time zero reachability and infinite-time half-space safety are the same GLOBAL_REASONING cluster",
+            possible_transfer_targets=("companion_shift_order6", "carelli_rplus", "bb5_map"),
+            status=GreyLootStatus.PARKED,
+            engineering_action="PARK",
+            prior_art_status="KNOWN",
         ),
     }
 

@@ -162,8 +162,8 @@
         "reason": "existing adapter"
       },
       "expected_research_value": {
-        "value": 0.06076388888888888,
-        "reason": "euclidean_remainder: ExpectedResearchValue=0.061 (distance=0.22, capability_gap=0.50, novelty=0.25, cost=0.80, nearest=euclidean_quotient delta=MEDIUM family=ACTIVE, failure_learning=1.75, resembles 3 previous GLOBAL_REASONING failures); qualitative novelty=prior art classified; distance=historical euclidean_quotient fingerprint; fit=vector_affine already recovered remainder dynamics; failure_learning=low; competence already shown in dimension 2; cost=existing adapter"
+        "value": 0.06944444444444443,
+        "reason": "euclidean_remainder: ExpectedResearchValue=0.069 (distance=0.22, capability_gap=0.50, novelty=0.25, cost=0.80, nearest=euclidean_quotient delta=MEDIUM family=ACTIVE, failure_learning=2.00, resembles 4 previous GLOBAL_REASONING failures); qualitative novelty=prior art classified; distance=historical euclidean_quotient fingerprint; fit=vector_affine already recovered remainder dynamics; failure_learning=low; competence already shown in dimension 2; cost=existing adapter"
       },
       "pool": "CALIBRATION",
       "priority": "low after competence",
@@ -507,8 +507,8 @@
         "reason": "existing companion spec"
       },
       "expected_research_value": {
-        "value": 0.06944444444444443,
-        "reason": "skolem_order2_known_zero: ExpectedResearchValue=0.069 (distance=0.22, capability_gap=0.50, novelty=0.25, cost=0.70, nearest=euclidean_quotient delta=MEDIUM family=ACTIVE, failure_learning=1.75, resembles 3 previous GLOBAL_REASONING failures); qualitative novelty=known zero; distance=matches historical easy companion calibrations; fit=vector companion already recovered in dimension 2; failure_learning=low; competence check only; cost=existing companion spec"
+        "value": 0.07936507936507936,
+        "reason": "skolem_order2_known_zero: ExpectedResearchValue=0.079 (distance=0.22, capability_gap=0.50, novelty=0.25, cost=0.70, nearest=euclidean_quotient delta=MEDIUM family=ACTIVE, failure_learning=2.00, resembles 4 previous GLOBAL_REASONING failures); qualitative novelty=known zero; distance=matches historical easy companion calibrations; fit=vector companion already recovered in dimension 2; failure_learning=low; competence check only; cost=existing companion spec"
       },
       "pool": "CALIBRATION",
       "priority": "low after competence",
@@ -721,7 +721,7 @@
       },
       "expected_research_value": {
         "value": 0.0,
-        "reason": "companion_shift_order6_zero_class: ExpectedResearchValue=0.000 (distance=0.00, capability_gap=1.00, novelty=0.25, cost=2.00, nearest=companion_shift_order6 delta=LOW family=SATURATING, failure_learning=1.75, resembles 3 previous GLOBAL_REASONING failures); qualitative novelty=question is an intermediate constraint, not a decision procedure; distance=same vector-unbounded fingerprint as the historical run; fit=companion representation fits; census cannot be run at d=6; failure_learning=failure would recur the global-reachability cluster and the computational census barrier; cost=high-dimensional census skip; lattice probes only"
+        "reason": "companion_shift_order6_zero_class: ExpectedResearchValue=0.000 (distance=0.00, capability_gap=1.00, novelty=0.25, cost=2.00, nearest=companion_shift_order6 delta=LOW family=SATURATING, failure_learning=2.00, resembles 4 previous GLOBAL_REASONING failures); qualitative novelty=question is an intermediate constraint, not a decision procedure; distance=same vector-unbounded fingerprint as the historical run; fit=companion representation fits; census cannot be run at d=6; failure_learning=failure would recur the global-reachability cluster and the computational census barrier; cost=high-dimensional census skip; lattice probes only"
       },
       "pool": "FRONTIER",
       "priority": "frontier; already-run instance with a sharper intermediate question",
@@ -863,8 +863,8 @@
         "reason": "new adapter later; frozen attacks only"
       },
       "expected_research_value": {
-        "value": 0.033143939393939406,
-        "reason": "weak_collatz_floor_5x4_rplus: ExpectedResearchValue=0.033 (distance=0.09, capability_gap=1.00, novelty=0.25, cost=1.20, nearest=rplus delta=LOW family=SATURATING, failure_learning=1.75, resembles 3 previous GLOBAL_REASONING failures); qualitative novelty=open instance distinct from the already-run 4/3 loop; distance=same mixed-magnitude parameterized 1-D class as the 4/3 loop, different strip; fit=same SLC/residue-affine language as the reconstructed 4/3 loop, different moduli; failure_learning=failure would recur global reachability on a new open SLC, not a rediscovery of the 4/3 loop; cost=new adapter later; frozen attacks only"
+        "value": 0.037878787878787894,
+        "reason": "weak_collatz_floor_5x4_rplus: ExpectedResearchValue=0.038 (distance=0.09, capability_gap=1.00, novelty=0.25, cost=1.20, nearest=rplus delta=LOW family=SATURATING, failure_learning=2.00, resembles 4 previous GLOBAL_REASONING failures); qualitative novelty=open instance distinct from the already-run 4/3 loop; distance=same mixed-magnitude parameterized 1-D class as the 4/3 loop, different strip; fit=same SLC/residue-affine language as the reconstructed 4/3 loop, different moduli; failure_learning=failure would recur global reachability on a new open SLC, not a rediscovery of the 4/3 loop; cost=new adapter later; frozen attacks only"
       },
       "pool": "FRONTIER",
       "priority": "high; recommended first distinct SLC",
@@ -1005,8 +1005,8 @@
         "reason": "new adapter later; three-branch census"
       },
       "expected_research_value": {
-        "value": 0.030594405594405603,
-        "reason": "matthews_prize_mod3_avoider: ExpectedResearchValue=0.031 (distance=0.09, capability_gap=1.00, novelty=0.25, cost=1.30, nearest=rplus delta=LOW family=SATURATING, failure_learning=1.75, resembles 3 previous GLOBAL_REASONING failures); qualitative novelty=specific cycle-avoidance question, not general convergence; distance=three-branch mod-3 map, not the 4/3 strip and not the 5/3 partial map; fit=residue-controlled affine language already reconstructed on other maps; failure_learning=failure would recur global reachability on a distinct residue-affine open question; cost=new adapter later; three-branch census"
+        "value": 0.034965034965034975,
+        "reason": "matthews_prize_mod3_avoider: ExpectedResearchValue=0.035 (distance=0.09, capability_gap=1.00, novelty=0.25, cost=1.30, nearest=rplus delta=LOW family=SATURATING, failure_learning=2.00, resembles 4 previous GLOBAL_REASONING failures); qualitative novelty=specific cycle-avoidance question, not general convergence; distance=three-branch mod-3 map, not the 4/3 strip and not the 5/3 partial map; fit=residue-controlled affine language already reconstructed on other maps; failure_learning=failure would recur global reachability on a distinct residue-affine open question; cost=new adapter later; three-branch census"
       },
       "pool": "FRONTIER",
       "priority": "high; distinct residue-affine reachability instance",
@@ -1145,8 +1145,8 @@
         "reason": "2-D census cheaper than order-6; new adapter later"
       },
       "expected_research_value": {
-        "value": 0.041666666666666685,
-        "reason": "switching_affine_z2_origin: ExpectedResearchValue=0.042 (distance=0.14, capability_gap=1.00, novelty=0.25, cost=1.50, nearest=companion_shift_order6 delta=MEDIUM family=ACTIVE, failure_learning=1.75, resembles 3 previous GLOBAL_REASONING failures); qualitative novelty=unresolved 2-variable termination/reachability, exact semantics; distance=2-D switching, not a companion window and not Euclidean gcd; fit=vector_affine plus matrix-word on a real 2-D switching system; failure_learning=failure tests whether vector/matrix machinery yields leverage beyond companion recovery; cost=2-D census cheaper than order-6; new adapter later"
+        "value": 0.04761904761904764,
+        "reason": "switching_affine_z2_origin: ExpectedResearchValue=0.048 (distance=0.14, capability_gap=1.00, novelty=0.25, cost=1.50, nearest=companion_shift_order6 delta=MEDIUM family=ACTIVE, failure_learning=2.00, resembles 4 previous GLOBAL_REASONING failures); qualitative novelty=unresolved 2-variable termination/reachability, exact semantics; distance=2-D switching, not a companion window and not Euclidean gcd; fit=vector_affine plus matrix-word on a real 2-D switching system; failure_learning=failure tests whether vector/matrix machinery yields leverage beyond companion recovery; cost=2-D census cheaper than order-6; new adapter later"
       },
       "pool": "FRONTIER",
       "priority": "high; 2-D matrix/switching test",
@@ -1283,8 +1283,8 @@
         "reason": "existing mx+r spec"
       },
       "expected_research_value": {
-        "value": 0.039772727272727286,
-        "reason": "mx_plus_r_7x1_class_obstruction: ExpectedResearchValue=0.040 (distance=0.09, capability_gap=1.00, novelty=0.25, cost=1.00, nearest=rplus delta=LOW family=SATURATING, failure_learning=1.75, resembles 3 previous GLOBAL_REASONING failures); qualitative novelty=prior art classified; value is a class obstruction, not rediscovery; distance=core fingerprint matches the historical mx+r family; fit=identical language to the reconstructed 3x+1 family; failure_learning=likely prior-art saturation; keep only if EV does not collapse; cost=existing mx+r spec"
+        "value": 0.04545454545454547,
+        "reason": "mx_plus_r_7x1_class_obstruction: ExpectedResearchValue=0.045 (distance=0.09, capability_gap=1.00, novelty=0.25, cost=1.00, nearest=rplus delta=LOW family=SATURATING, failure_learning=2.00, resembles 4 previous GLOBAL_REASONING failures); qualitative novelty=prior art classified; value is a class obstruction, not rediscovery; distance=core fingerprint matches the historical mx+r family; fit=identical language to the reconstructed 3x+1 family; failure_learning=likely prior-art saturation; keep only if EV does not collapse; cost=existing mx+r spec"
       },
       "pool": "FRONTIER",
       "priority": "conditional; include only if EV is not saturated-family collapse",
@@ -1415,7 +1415,7 @@
       },
       "expected_research_value": {
         "value": 0.0,
-        "reason": "skolem_order5_unconditional: ExpectedResearchValue=0.000 (distance=0.00, capability_gap=1.00, novelty=0.25, cost=2.20, nearest=companion_shift_order6 delta=LOW family=SATURATING, failure_learning=1.75, resembles 3 previous GLOBAL_REASONING failures); qualitative novelty=different instance; still a vanishing question; distance=same unbounded vector class, new dimension and recurrence; fit=companion fits; census exhaustion expected at d=5; failure_learning=tests whether dim-5 census exhaustion is the same computational cluster as dim-6; cost=5-D census likely skipped"
+        "reason": "skolem_order5_unconditional: ExpectedResearchValue=0.000 (distance=0.00, capability_gap=1.00, novelty=0.25, cost=2.20, nearest=companion_shift_order6 delta=LOW family=SATURATING, failure_learning=2.00, resembles 4 previous GLOBAL_REASONING failures); qualitative novelty=different instance; still a vanishing question; distance=same unbounded vector class, new dimension and recurrence; fit=companion fits; census exhaustion expected at d=5; failure_learning=tests whether dim-5 census exhaustion is the same computational cluster as dim-6; cost=5-D census likely skipped"
       },
       "pool": "FRONTIER",
       "priority": "frontier; second companion instance",
@@ -2133,11 +2133,12 @@
       ],
       "targets": [
         "bb5_map",
+        "companion_obs_order10",
         "companion_shift_order6",
         "rplus"
       ],
-      "recurrence_count": 3,
-      "target_diversity": 3,
+      "recurrence_count": 4,
+      "target_diversity": 4,
       "mathematical_importance": "HIGH",
       "existing_workarounds": [
         "finite-window reachability; Lean for recovered identities only"
@@ -2240,8 +2241,8 @@
   "engineering_candidates": [
     {
       "failure_cluster": "global_reachability",
-      "recurrence_count": 3,
-      "target_diversity": 3,
+      "recurrence_count": 4,
+      "target_diversity": 4,
       "mathematical_importance": "HIGH",
       "expected_research_value": "HIGH",
       "implementation_cost": "high",
@@ -2251,7 +2252,7 @@
       "possible_generic_abstraction": "an intermediate notion between finite reachability and universal reachability",
       "implementation_cost_estimate": "high",
       "current_decision": "PROMOTE_TO_NEXT_VERSION",
-      "reason_not_implemented": "recurrence across Skolem, R+, and BB-5; guidance only \u2014 open mathematics may be the true bottleneck; not an implementation instruction"
+      "reason_not_implemented": "recurrence across Skolem, Positivity, R+, and BB-5; guidance only \u2014 open mathematics may be the true bottleneck; not an implementation instruction"
     },
     {
       "failure_cluster": "branching_quantifier",

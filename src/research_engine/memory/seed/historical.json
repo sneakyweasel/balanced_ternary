@@ -2687,6 +2687,232 @@
       "run_artifact": null,
       "reconciliation": null,
       "finalized": true
+    },
+    {
+      "experiment_id": "positivity_order10",
+      "target": "companion_obs_order10",
+      "target_family": "linear_recurrence",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.2",
+      "experiment_date": "2026-08-25",
+      "diagnosis": {
+        "target": "companion_obs_order10",
+        "semantic_class": "INTEGER_VECTOR|SINGLETON|UNIVERSAL_DESCENT_REFUTED|UNBOUNDED_SAMPLE|INCOMPLETE|BOUNDED",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_VECTOR",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "UNIVERSAL_DESCENT_REFUTED",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "INCOMPLETE",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNOBSERVED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "BOUNDED"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_VECTOR|SINGLETON|UNIVERSAL_DESCENT_REFUTED|UNBOUNDED_SAMPLE|INCOMPLETE|BOUNDED",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "companion_obs_order10_step",
+        "strongest_falsification": "nonnegative orthant not invariant for the last row",
+        "lean_certificate": "Problems.Engine.CompanionObservation",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CLOSE",
+        "decision_reason": "representation fits companion-window language; infinite nonnegativity unresolved",
+        "extra": {}
+      },
+      "decision_reason_code": "GLOBAL_REACHABILITY_GAP",
+      "representation_novelty": "LOW",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "order-10 companion window of Bacik et al. 2026 survey (16)"
+        ],
+        "new_exact_results": [],
+        "new_formalizations": [
+          "Problems.Engine.CompanionObservation"
+        ],
+        "new_counterexamples": [],
+        "new_conjectures": [],
+        "new_obstructions": [],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "whether survey sequence (16) is nonnegative for every n"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "positivity_order10:global",
+          "target": "companion_obs_order10",
+          "experiment_id": "positivity_order10",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "closure",
+          "failure_class": "GLOBAL_REASONING",
+          "representation_status": "LANGUAGE_ADEQUATE",
+          "mathematical_bottleneck": "finite_to_infinite_certificate",
+          "evidence": "finite computation does not decide infinite first-coordinate nonnegativity",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Hyperplane reachability and half-space safety fail for the same finite-to-infinite gap.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "HIGH",
+          "status": "PARKED",
+          "affected_attack_family": "global_reachability"
+        },
+        {
+          "id": "positivity_order10:computational",
+          "target": "companion_obs_order10",
+          "experiment_id": "positivity_order10",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "vector_affine",
+          "failure_class": "COMPUTATIONAL",
+          "representation_status": "VECTOR_AFFINE_ADEQUATE",
+          "mathematical_bottleneck": "finite_budget_exhausted",
+          "evidence": "25^10 census cube skipped; COMPUTATION_EXHAUSTED",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Computational blockage is not mathematical impossibility.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "MEDIUM",
+          "status": "PARKED",
+          "affected_attack_family": "vector_census"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "positivity_order10:loot:budget",
+          "kind": "Computational bottleneck",
+          "statement": "vector census 25^10 exceeds 50000 cells",
+          "evidence": "FINITE_RANGE",
+          "experiment_id": "positivity_order10",
+          "target": "companion_obs_order10",
+          "failure_class": "COMPUTATIONAL",
+          "bottleneck": "finite_budget_exhausted",
+          "payload": {},
+          "observation": "25^10 vector census is skipped",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "high-dimensional companion census remains a computational barrier, not a sign theorem",
+          "possible_transfer_targets": [
+            "companion_shift_order6"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "status": "PARKED"
+        },
+        {
+          "id": "positivity_order10:loot:global",
+          "kind": "Useful negative result",
+          "statement": "half-space safety on companion windows is the same GLOBAL_REASONING cluster as Skolem",
+          "evidence": "OBSERVED",
+          "experiment_id": "positivity_order10",
+          "target": "companion_obs_order10",
+          "failure_class": "GLOBAL_REASONING",
+          "bottleneck": "finite_to_infinite_certificate",
+          "payload": {},
+          "observation": "finite nonnegative prefix does not decide infinite-horizon first-coordinate nonnegativity",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "infinite-time zero reachability and infinite-time half-space safety are the same GLOBAL_REASONING cluster",
+          "possible_transfer_targets": [
+            "companion_shift_order6",
+            "carelli_rplus",
+            "bb5_map"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "status": "PARKED"
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "bacik-et-al-2026-skolem-positivity-survey",
+          "ouaknine-worrell-2014-simple-positivity"
+        ],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "OPEN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": false
+      },
+      "scout": {
+        "target": "companion_obs_order10",
+        "problem_definition": "Are all terms of the 2026 survey order-10 integer LRS nonnegative?",
+        "literature": [
+          "bacik-et-al-2026-skolem-positivity-survey"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "companion_obs_order10",
+        "dimension": 10,
+        "skip_attacks": [
+          "vector_affine",
+          "matrix_word_invariant"
+        ],
+        "max_states": 32,
+        "max_steps": 16,
+        "allowed_definition": "",
+        "state_space": "",
+        "observation": "",
+        "initial_conditions": [],
+        "explicit_controls": "",
+        "computational_budget": "",
+        "extra": {},
+        "forbidden_hints": [],
+        "post_run_reconciliation": "",
+        "lean_targets": []
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "vector_affine": "COMPUTATION_EXHAUSTED"
+        },
+        "skipped": [],
+        "strongest_exact": "",
+        "strongest_falsification": "",
+        "census_kind": "",
+        "lean_theorems": [
+          "Problems.Engine.CompanionObservation"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
     }
   ],
   "certified": [

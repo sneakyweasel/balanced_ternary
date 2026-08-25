@@ -2374,4 +2374,48 @@ Best next question
 - What exact intermediate theorem or obstruction can frozen v2 produce on the first frontier target in the computed campaign order?
 ```
 
+## Frozen Engine campaign: open order-10 LRS Positivity instance
+
+- **Date:** 2026-08-25
+- **Objective:** Test whether frozen v2 + v2.2 memory can make progress on the 2026 survey's unresolved order-10 integer LRS Positivity instance, and whether that failure is the same `GLOBAL_REASONING` cluster as Skolem
+- **Hypotheses:** Companion matrices are recovered in dimension 2; easy negatives are certified; a finite negative prefix is distinguished from nonnegativity from \(n=0\); the order-10 instance remains UNKNOWN; Positivity half-space safety fails for the same finite-to-infinite gap as Skolem hyperplane reachability
+- **Major results:** Dim-2 recovered exact companions \(((0,1),(1,1))\), \(((0,1),(-1,0))\). Negatives at indices 1 and 2. Order-3 census UNRESOLVED. Order-10 vector census COMPUTATION_EXHAUSTED (\(25^{10}\)). Prefix 35,574,34592,...; no negative on \(\{0,\ldots,64\}\). Orthant invariance holds on A and fails on the flagship last row. Lean companion_obs_*. Memory ingest joins the existing `GLOBAL_REASONING` cluster. ResearchLoop next un-overridden (`hidden_congruence_a`). No new attack
+- **Refuted ideas:** flagship nonnegative orthant invariant; finite nonnegative window as universal Positivity; eventual nonnegative tail as Positivity from \(n=0\); a new `ORDERED_VECTOR_INVARIANTS` capability merely because the property is a half-space
+- **Literature:** Bacik et al. 2026 survey sequence (16); Ouaknine–Worrell 2014 order \(\le 5\) and simple order \(\le 9\). All identities KNOWN
+- **Open:** whether survey (16) is nonnegative for every \(n\); parked vector-census dimensional barrier
+- **Decision:** PARK (campaign label ENGINE_LIMITATION; flagship ResearchDecision CLOSE)
+
+```text
+What was learned
+- Frozen vector_affine recovers exact 2-D companions from I/O, including easy sign calibrations
+- Accepting at a negative observation certifies NEGATIVE_WITNESS and distinguishes D from A
+- The same census cannot determine a 3x3 matrix and cannot be run in dimension 10
+- CERTIFIED_ON_WINDOW on {0,...,64} is not the literature 10^6 bound and not universal nonnegativity
+- Skolem GLOBAL_REASONING and Positivity GLOBAL_REASONING share the cluster key finite_to_infinite_certificate
+
+Strongest theorem
+- companion_obs_nonneg_small_step / companion_obs_early_negative_first / companion_obs_order10_step (Lean); KNOWN
+
+Strongest refutation
+- nonnegative orthant is not invariant for the flagship last row; a later nonnegative tail is not positivity from n=0
+
+Reusable machinery
+- Hint-free CompanionObsSpec; v2.2 ingest of the flagship into the existing global-reachability cluster; scout kept off the adapter
+
+Prior-art status
+- KNOWN Positivity lore; ENGINE REDISCOVERY of 2-D companions; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PARK
+
+Why
+- Representation fits. The infinite half-space safety property does not. Changing existential hyperplane reachability into universal half-space safety did not create a new frozen-engine capability. Do not add a Positivity attack.
+
+Best next question
+- Which frozen-engine target still lies inside the existing low-dimensional affine language, now that both Skolem and Positivity have recorded the same finite-to-infinite gap?
+```
+
 

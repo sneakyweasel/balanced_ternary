@@ -34,3 +34,4 @@ import Problems.Engine.LinearConstraintLoops
 import Problems.Engine.BB5Map
 import Problems.Engine.AliquotDynamics
 import Problems.Engine.CompanionShift
+import Problems.Engine.CompanionObservation

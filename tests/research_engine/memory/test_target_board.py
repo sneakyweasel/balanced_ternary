@@ -127,6 +127,7 @@ def test_named_clusters_group_by_meaning():
     glob = clusters["global_reachability"]
     assert glob.target_diversity >= 3
     assert "companion_shift_order6" in glob.targets
+    assert "companion_obs_order10" in glob.targets
     assert "rplus" in glob.targets
     assert "bb5_map" in glob.targets
     assert "sum_strip" not in glob.targets
