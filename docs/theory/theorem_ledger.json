@@ -2426,5 +2426,38 @@
       "tests/research/balanced_ternary/test_expanding_j3.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "BTN-dadd-repaired",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D(x+y)=D(x)+D(y)+D(lsd(x)+lsd(y)). The missing state at the unary/Add boundary is D of the local digit sum.",
+    "source": "docs/problems/d_add_residual.md",
+    "lean": "Problems/BalancedTernary/DAddResidual.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_d_add.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-dadd-lsd-sum",
+    "tag": "REFUTED",
+    "statement": "D(x+y) is a function of (D(x), D(y), lsd(x+y))",
+    "source": "docs/problems/d_add_residual.md",
+    "lean": "Problems/BalancedTernary/DAddResidual.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_d_add.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-dadd-closure",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If s,a,b are trits then D(s+a+b) is a trit. The streaming residual of trit addition is exactly {-1,0,1}. Three values occur on D(x)=D(y)=0, so the residual is minimal.",
+    "source": "docs/problems/d_add_residual.md",
+    "lean": "Problems/BalancedTernary/DAddResidual.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_d_add.py"
+    ],
+    "related_conjectures": []
   }
 ]

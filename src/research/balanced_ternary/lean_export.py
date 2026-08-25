@@ -26,6 +26,8 @@ J2_CLOSURE_THEOREM = "jet2_residue_closure"
 J3_MODULE = "Problems.BalancedTernary.ExpandingD"
 J3_THEOREM = "jet3_expandingD"
 J3_CLOSURE_THEOREM = "jet3_residue_closure"
+DADD_MODULE = "Problems.BalancedTernary.DAddResidual"
+DADD_CLOSURE_THEOREM = "dAdd_residual_closure"
 
 
 def link_balanced_ternary_targets(
@@ -175,3 +177,35 @@ def link_j3_targets(
 
 def export_j3_targets(report: PlannerReport) -> tuple[TheoremTarget, ...]:
     return link_j3_targets(targets_from_report(report, problem="expanding_j3"))
+
+
+def link_d_add_targets(
+    targets: tuple[TheoremTarget, ...],
+) -> tuple[TheoremTarget, ...]:
+    out: list[TheoremTarget] = []
+    for target in targets:
+        if (
+            target.attack == "closure"
+            and target.exportable
+            and target.kind is ClaimKind.REACHABLE
+        ):
+            size = None
+            for cert in target.certificates:
+                if isinstance(cert, dict) and cert.get("size") == 3:
+                    size = 3
+            if size == 3:
+                out.append(
+                    attach_lean(
+                        target,
+                        module=DADD_MODULE,
+                        theorem=DADD_CLOSURE_THEOREM,
+                        name="d_add_residual_closure",
+                    )
+                )
+                continue
+        out.append(target)
+    return tuple(out)
+
+
+def export_d_add_targets(report: PlannerReport) -> tuple[TheoremTarget, ...]:
+    return link_d_add_targets(targets_from_report(report, problem="d_add"))

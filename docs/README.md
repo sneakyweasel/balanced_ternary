@@ -119,6 +119,8 @@ Historical layer notes (stubs that point at the monograph):
 Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 
 - [Rewrite calculus](problems/rewrite_calculus.md)
+- [D/Add residual completion](problems/d_add_residual.md)
+- [Balanced-ternary finite-state dynamics](problems/balanced_ternary_finite_state_dynamics.md)
 - [Residuals](problems/residuals.md)
 - [Collatz](problems/collatz.md)
 - [Ostrowski order-m adder](problems/ostrowski_order_m_adder.md)

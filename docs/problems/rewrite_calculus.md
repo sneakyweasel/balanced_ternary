@@ -10,6 +10,8 @@ A canonical rewrite system for the unary constructors
 Reviewer packet:
 [rewrite_calculus_reviewer_packet.md](../theory/rewrite_calculus_reviewer_packet.md).
 This is **not** a Collatz problem and not the cubic-residual frontier.
+Engine discovery of the residual that repairs `D(x+y)` lives in
+[d_add_residual.md](d_add_residual.md) and does not reopen this paper.
 
 ## Problem
 

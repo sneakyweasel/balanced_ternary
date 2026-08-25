@@ -117,6 +117,9 @@ The step is piecewise balanced division, not one integer-affine map
 - `J₂` records in `experiments/balanced_ternary/expanding_j2/`
 - `btlab research analyze|attack|reproduce|report expanding_j3`
 - `J₃` records in `experiments/balanced_ternary/expanding_j3/`
+- Unary/`Add` residual completion is a separate branch:
+  [d_add_residual.md](d_add_residual.md).
+  `btlab research analyze|attack|reproduce|report d_add`
 
 ## Phase 1 — expanding `T(n)=3n-lsd(n)`
 

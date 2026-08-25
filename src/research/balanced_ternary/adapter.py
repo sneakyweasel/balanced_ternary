@@ -1,9 +1,11 @@
 """Balanced-ternary adapters for the research engine."""
 
+from research.balanced_ternary.d_add_spec import DAddResidualSpec, d_add_spec
 from research.balanced_ternary.expanding_j2_spec import ExpandingJ2Spec, expanding_j2_spec
 from research.balanced_ternary.expanding_j3_spec import ExpandingJ3Spec, expanding_j3_spec
 from research.balanced_ternary.expanding_spec import ExpandingDResidueSpec, expanding_d_spec
 from research.balanced_ternary.lean_export import (
+    export_d_add_targets,
     export_expanding_d_targets,
     export_j2_targets,
     export_j3_targets,
@@ -12,6 +14,7 @@ from research.balanced_ternary.lean_export import (
 )
 from research.balanced_ternary.perturbation import family_fingerprint, gain_spec
 from research.balanced_ternary.planner import (
+    plan_d_add,
     plan_doubled_trit,
     plan_expanding_d,
     plan_expanding_j2,
@@ -52,6 +55,11 @@ BENCHMARK_MATRIX: tuple[dict[str, str], ...] = (
         "note": "J3 residual of T; 27 triples, factors through J2",
     },
     {
+        "name": "balanced_ternary_d_add",
+        "class": "observational_finite",
+        "note": "D(x+y) residual; 3-state trit completion, 5-state bound-2",
+    },
+    {
         "name": "benchmark_B",
         "class": "synthetic_infinite",
         "note": "engine InfiniteTranslateSpec",
@@ -65,14 +73,17 @@ BENCHMARK_MATRIX: tuple[dict[str, str], ...] = (
 
 __all__ = [
     "BENCHMARK_MATRIX",
+    "DAddResidualSpec",
     "DoubledTritSpec",
     "ExpandingDResidueSpec",
     "ExpandingJ2Spec",
     "ExpandingJ3Spec",
+    "d_add_spec",
     "doubled_trit_spec",
     "expanding_d_spec",
     "expanding_j2_spec",
     "expanding_j3_spec",
+    "export_d_add_targets",
     "export_expanding_d_targets",
     "export_j2_targets",
     "export_j3_targets",
@@ -80,6 +91,7 @@ __all__ = [
     "family_fingerprint",
     "gain_spec",
     "link_balanced_ternary_targets",
+    "plan_d_add",
     "plan_doubled_trit",
     "plan_expanding_d",
     "plan_expanding_j2",

@@ -14,6 +14,7 @@ RECORD_DIR = Path(__file__).resolve().parents[3] / "experiments" / "balanced_ter
 EXPANDING_RECORD_DIR = RECORD_DIR / "expanding_d"
 J2_RECORD_DIR = RECORD_DIR / "expanding_j2"
 J3_RECORD_DIR = RECORD_DIR / "expanding_j3"
+DADD_RECORD_DIR = RECORD_DIR / "d_add"
 
 
 def record_status(result: AttackResult, *, lean_theorem: str = "") -> str:

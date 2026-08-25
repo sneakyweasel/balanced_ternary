@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -76,11 +76,13 @@ def _normalize_problem(name: str) -> str:
         return "expanding_j2"
     if key.lower() in {"expanding_j3", "expanding-j3", "j3"}:
         return "expanding_j3"
+    if key.lower() in {"d_add", "d-add", "dadd"}:
+        return "d_add"
     letter = key.upper()
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, or A-E"
     )
 
 
@@ -114,6 +116,12 @@ def _plan(problem: str, remaining: int):
 
         report = plan_expanding_j3(remaining)
         targets = export_j3_targets(report)
+        return report, targets
+    if problem == "d_add":
+        from research.balanced_ternary.adapter import export_d_add_targets, plan_d_add
+
+        report = plan_d_add(remaining)
+        targets = export_d_add_targets(report)
         return report, targets
     report = run_benchmark(problem)
     return report, targets_from_report(report, problem=f"benchmark_{problem}")
@@ -158,6 +166,11 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = expanding_j3_spec(remaining)
         context = spec.attack_context()
+    elif problem == "d_add":
+        from research.balanced_ternary.d_add_spec import d_add_spec
+
+        spec = d_add_spec(remaining)
+        context = spec.attack_context()
     else:
         spec, context = load_benchmark(problem)
     try:
@@ -185,6 +198,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _expanding_j2_reproduce_failures(report, targets)
     elif problem == "expanding_j3":
         failures = _expanding_j3_reproduce_failures(report, targets)
+    elif problem == "d_add":
+        failures = _d_add_reproduce_failures(report, targets)
     else:
         failures = reproduce_checks(problem, report)
     if failures:
@@ -377,4 +392,42 @@ def _expanding_j3_reproduce_failures(report, targets) -> tuple[str, ...]:
         failures.append("expanding_j3: closure is not linked to jet3_residue_closure")
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("expanding_j3: exported a LIVE target")
+    return tuple(failures)
+
+
+def _d_add_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.balanced_ternary.lean_export import (
+        DADD_CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.balanced_ternary.planner import DADD_CLOSURE_HYPOTHESIS
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 3):
+        failures.append("d_add: closure is not EXACT size 3")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("d_add: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("d_add: modular/spectral should stay inapplicable")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == DADD_CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("d_add: residual-closure hypothesis is not SUPPORTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != DADD_CLOSURE_THEOREM
+    ):
+        failures.append("d_add: closure is not linked to dAdd_residual_closure")
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("d_add: exported a LIVE target")
     return tuple(failures)

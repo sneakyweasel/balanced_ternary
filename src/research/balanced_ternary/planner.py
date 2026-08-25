@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from typing import cast
 
+from research.balanced_ternary.d_add_spec import DAddResidualSpec, d_add_spec
 from research.balanced_ternary.expanding_j2_spec import ExpandingJ2Spec, expanding_j2_spec
 from research.balanced_ternary.expanding_j3_spec import ExpandingJ3Spec, expanding_j3_spec
 from research.balanced_ternary.expanding_spec import ExpandingDResidueSpec, expanding_d_spec
@@ -48,6 +49,15 @@ J3_CLOSURE_HYPOTHESIS = Hypothesis(
     intended_scope=SearchScope.EXACT,
     status=HypothesisStatus.OPEN,
     problem="expanding_j3",
+)
+
+DADD_CLOSURE_HYPOTHESIS = Hypothesis(
+    id="d_add_residual_closure",
+    statement="D(x+y) streaming residual of trit addition is exactly {-1,0,1}",
+    kind=ClaimKind.REACHABLE,
+    intended_scope=SearchScope.EXACT,
+    status=HypothesisStatus.OPEN,
+    problem="d_add",
 )
 
 
@@ -208,4 +218,43 @@ def plan_expanding_j3(
 def plan_j3_gain(gain: int, remaining: int = 8) -> PlannerReport:
     ledger = ResearchLedger()
     spec = ExpandingJ3Spec(gain=gain, start_remaining=remaining)
+    return AttackPlanner(ledger).run(cast(ProblemSpec, spec), spec.attack_context())
+
+
+def d_add_ledger() -> ResearchLedger:
+    ledger = ResearchLedger()
+    ledger.add_hypothesis(DADD_CLOSURE_HYPOTHESIS)
+    return ledger
+
+
+def plan_d_add(
+    remaining: int = 8,
+    bound: int = 1,
+    ledger: ResearchLedger | None = None,
+) -> PlannerReport:
+    session = ledger if ledger is not None else d_add_ledger()
+    spec = d_add_spec(start_remaining=remaining, bound=bound)
+    report = AttackPlanner(session).run(cast(ProblemSpec, spec), spec.attack_context())
+    closure = next((item for item in report.results if item.name == "closure"), None)
+    if (
+        closure is not None
+        and "d_add_residual_closure" in session.hypotheses
+        and bound == 1
+    ):
+        try:
+            promote_if_legal(session, "d_add_residual_closure", closure)
+        except LedgerError:
+            pass
+    return PlannerReport(
+        results=report.results,
+        skipped=report.skipped,
+        hypotheses=tuple(session.hypotheses.values()),
+        blocked_jumps=report.blocked_jumps,
+        next_attacks=report.next_attacks,
+    )
+
+
+def plan_d_add_bound(bound: int, remaining: int = 8) -> PlannerReport:
+    ledger = ResearchLedger()
+    spec = DAddResidualSpec(bound=bound, start_remaining=remaining)
     return AttackPlanner(ledger).run(cast(ProblemSpec, spec), spec.attack_context())
