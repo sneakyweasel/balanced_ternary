@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, collatz, primes, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, collatz, primes, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -79,6 +79,12 @@ def _normalize_problem(name: str) -> str:
     if key.lower() in {"d_add", "d-add", "dadd"}:
         return "d_add"
     if key.lower() in {
+        "signed_digit_residual",
+        "signed-digit-residual",
+        "sdr",
+    }:
+        return "signed_digit_residual"
+    if key.lower() in {
         "collatz",
         "collatz_finite_descent",
         "collatz-finite-descent",
@@ -98,7 +104,7 @@ def _normalize_problem(name: str) -> str:
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, collatz, primes, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, collatz, primes, or A-E"
     )
 
 
@@ -138,6 +144,15 @@ def _plan(problem: str, remaining: int):
 
         report = plan_d_add(remaining)
         targets = export_d_add_targets(report)
+        return report, targets
+    if problem == "signed_digit_residual":
+        from research.signed_digit_residual.adapter import (
+            export_signed_digit_targets,
+            plan_signed_digit_residual,
+        )
+
+        report = plan_signed_digit_residual(remaining)
+        targets = export_signed_digit_targets(report)
         return report, targets
     if problem == "collatz_finite_descent":
         from research.collatz_finite_descent.adapter import (
@@ -205,6 +220,11 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = d_add_spec(remaining)
         context = spec.attack_context()
+    elif problem == "signed_digit_residual":
+        from research.signed_digit_residual.spec import signed_digit_spec
+
+        spec = signed_digit_spec(remaining)
+        context = spec.attack_context()
     elif problem == "collatz_finite_descent":
         from research.collatz_finite_descent.spec import shortcut_spec
 
@@ -244,6 +264,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _expanding_j3_reproduce_failures(report, targets)
     elif problem == "d_add":
         failures = _d_add_reproduce_failures(report, targets)
+    elif problem == "signed_digit_residual":
+        failures = _signed_digit_residual_reproduce_failures(report, targets)
     elif problem == "collatz_finite_descent":
         failures = _collatz_finite_descent_reproduce_failures(report, targets)
     elif problem == "prime_residual_complexity":
@@ -478,6 +500,53 @@ def _d_add_reproduce_failures(report, targets) -> tuple[str, ...]:
         failures.append("d_add: closure is not linked to dAdd_residual_closure")
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("d_add: exported a LIVE target")
+    return tuple(failures)
+
+
+def _signed_digit_residual_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.signed_digit_residual.lean_export import (
+        CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.signed_digit_residual.planner import (
+        CLOSURE_HYPOTHESIS,
+        SCALAR_THRESHOLD_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 3):
+        failures.append("signed_digit_residual: closure is not EXACT size 3")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("signed_digit_residual: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("signed_digit_residual: modular/spectral should stay inapplicable")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("signed_digit_residual: U_2-closure hypothesis is not SUPPORTED")
+    scalar = next(
+        (item for item in report.hypotheses if item.id == SCALAR_THRESHOLD_HYPOTHESIS.id),
+        None,
+    )
+    if scalar is None or scalar.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_residual: scalar λ=3 threshold is not REFUTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != CLOSURE_THEOREM
+    ):
+        failures.append("signed_digit_residual: closure is not linked to lambda1_u2_residual_closure")
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("signed_digit_residual: exported a LIVE target")
     return tuple(failures)
 
 

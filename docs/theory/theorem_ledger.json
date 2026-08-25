@@ -1889,10 +1889,10 @@
   },
   {
     "id": "BTM-x3-depth",
-    "tag": "EXACT — HUMAN PROOF",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "for every balanced-Monna endpoint pair u=zeta+2*3^n, v=zeta-2*3^n one has u^3-v^3=4*3^n(3 zeta^2+4*3^{2n}) and therefore t=v_3(u^3-v^3)=n+min(1+2 v_3(zeta), 2n), or t=3n when zeta=0; the two arguments of the minimum have opposite parity whenever zeta is nonzero",
     "source": "docs/theory/monna_endpoint_spectra.md",
-    "lean": "",
+    "lean": "BTCalculus/MonnaEndpointCube.lean",
     "tests": [
       "tests/research/monna_endpoint_spectra/test_triage.py"
     ],

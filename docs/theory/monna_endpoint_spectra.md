@@ -67,7 +67,7 @@ A matching valuation is not preservation. The image pair
 
 ## Cubic identities
 
-**EXACT — HUMAN PROOF** (`BTM-x3-depth`). For every endpoint pair,
+**EXACT — LEAN VERIFIED** (`BTM-x3-depth`). For every endpoint pair,
 
 \[
 u^3-v^3=4\cdot 3^n\bigl(3\zeta^2+4\cdot 3^{2n}\bigr).
@@ -131,7 +131,8 @@ This matches the enumeration through \(n\le 5\).
 ## Formalization
 
 Ledger rows `BTM-balanced-monna`, `BTM-x3-depth`, `BTM-x3-spectrum`,
-`BTM-x3-no-preserve`. Lean is deferred. No `sorry`.
+`BTM-x3-no-preserve`. `BTM-x3-depth` is `formal/BTCalculus/MonnaEndpointCube.lean`.
+Spectrum and non-preservation remain human. No `sorry`.
 
 ## Code
 
