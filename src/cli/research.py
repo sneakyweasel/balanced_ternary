@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -135,11 +135,21 @@ def _normalize_problem(name: str) -> str:
         "prc",
     }:
         return "prime_residual_complexity"
+    if key.lower() in {
+        "operator_dynamics",
+        "operator-dynamics",
+        "operator_dynamics_benchmark",
+        "operator-dynamics-benchmark",
+        "signed_p0",
+        "signed-p0",
+        "nsd",
+    }:
+        return "operator_dynamics_benchmark"
     letter = key.upper()
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, signed_digit_residual_minimality, signed_digit_constrained_controls, signed_digit_short_horizon, multiplicative_residual, collatz, primes, operator_dynamics, or A-E"
     )
 
 
@@ -252,6 +262,15 @@ def _plan(problem: str, remaining: int):
         report = plan_prime_residual_complexity(remaining)
         targets = export_prime_residual_targets(report)
         return report, targets
+    if problem == "operator_dynamics_benchmark":
+        from research.operator_dynamics.signed_p0.adapter import (
+            export_signed_p0_targets,
+            plan_signed_p0,
+        )
+
+        report = plan_signed_p0(remaining)
+        targets = export_signed_p0_targets(report)
+        return report, targets
     report = run_benchmark(problem)
     return report, targets_from_report(report, problem=f"benchmark_{problem}")
 
@@ -340,6 +359,11 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = sieve_spec(remaining)
         context = spec.attack_context()
+    elif problem == "operator_dynamics_benchmark":
+        from research.operator_dynamics.signed_p0.spec import signed_p0_spec
+
+        spec = signed_p0_spec(remaining)
+        context = spec.attack_context()
     else:
         spec, context = load_benchmark(problem)
     try:
@@ -385,6 +409,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _collatz_finite_descent_reproduce_failures(report, targets)
     elif problem == "prime_residual_complexity":
         failures = _prime_residual_reproduce_failures(report, targets)
+    elif problem == "operator_dynamics_benchmark":
+        failures = _operator_dynamics_reproduce_failures(report, targets)
     else:
         failures = reproduce_checks(problem, report)
     if failures:
@@ -1099,4 +1125,81 @@ def _prime_residual_reproduce_failures(report, targets) -> tuple[str, ...]:
         failures.append("primes: separator is not linked to sievePrime_I0_separator")
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("primes: exported a LIVE target")
+    return tuple(failures)
+
+
+def _operator_dynamics_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.operator_dynamics.signed_p0.lean_export import (
+        CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.operator_dynamics.signed_p0.planner import (
+        CLOSURE_HYPOTHESIS,
+        F2_HYPOTHESIS,
+        GLOBAL_RESIDUAL_HYPOTHESIS,
+        INTERVAL_HYPOTHESIS,
+        LYAPUNOV_HYPOTHESIS,
+        SIGN_MERGE_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 3):
+        failures.append("operator_dynamics: closure is not EXACT size 3")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("operator_dynamics: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("operator_dynamics: modular/spectral should stay inapplicable")
+    if "factorization" not in skipped:
+        failures.append("operator_dynamics: factorization should stay inapplicable")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("operator_dynamics: seed-orbit hypothesis is not SUPPORTED")
+    interval = next(
+        (item for item in report.hypotheses if item.id == INTERVAL_HYPOTHESIS.id),
+        None,
+    )
+    if interval is None or interval.status is not HypothesisStatus.REFUTED:
+        failures.append("operator_dynamics: interval invariant is not REFUTED")
+    lyap = next(
+        (item for item in report.hypotheses if item.id == LYAPUNOV_HYPOTHESIS.id),
+        None,
+    )
+    if lyap is None or lyap.status is not HypothesisStatus.REFUTED:
+        failures.append("operator_dynamics: Lyapunov hypothesis is not REFUTED")
+    global_res = next(
+        (item for item in report.hypotheses if item.id == GLOBAL_RESIDUAL_HYPOTHESIS.id),
+        None,
+    )
+    if global_res is None or global_res.status is not HypothesisStatus.REFUTED:
+        failures.append("operator_dynamics: global finite residual is not REFUTED")
+    f2 = next(
+        (item for item in report.hypotheses if item.id == F2_HYPOTHESIS.id),
+        None,
+    )
+    if f2 is None or f2.status is not HypothesisStatus.SUPPORTED:
+        failures.append("operator_dynamics: F²=P_0 hypothesis is not SUPPORTED")
+    merge = next(
+        (item for item in report.hypotheses if item.id == SIGN_MERGE_HYPOTHESIS.id),
+        None,
+    )
+    if merge is None or merge.status is not HypothesisStatus.SUPPORTED:
+        failures.append("operator_dynamics: sign-merge hypothesis is not SUPPORTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != CLOSURE_THEOREM
+    ):
+        failures.append("operator_dynamics: closure is not linked to signedP0_sq_eq_P0")
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("operator_dynamics: exported a LIVE target")
     return tuple(failures)

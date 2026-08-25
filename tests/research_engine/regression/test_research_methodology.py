@@ -308,3 +308,27 @@ def test_proper_subset_language_v2_separation():
     still_split = separate_states(dropped, (0, 2), (3, 2))
     assert still_split.separated is True
     assert still_split.witness_length == 2
+
+
+def test_signed_p0_v2_orbit_and_sign_quotient():
+    from research.operator_dynamics.signed_p0.spec import signed_p0_spec
+    from research_engine.core.observation import observe
+
+    spec = signed_p0_spec(4)
+    phase = spec.initial_phase()
+    assert observe(spec, spec.initial_state, 0, phase) == spec.output(
+        spec.initial_state, 0, phase
+    )
+    recon = AttackPlanner().run(spec, spec.attack_context())
+    recon_result = next(item for item in recon.results if item.name == "reconnaissance")
+    closure = next(item for item in recon.results if item.name == "closure")
+    quotient = next(item for item in recon.results if item.name == "quotient")
+    assert recon_result.certificate_kind is CertificateKind.BOUNDED_RECONNAISSANCE
+    assert closure.certificate_kind is CertificateKind.EXACT_CLOSURE
+    assert closure.evidence.get("union_size") == 3
+    assert quotient.evidence.get("quotient_count") == 2
+    split = separate_states(spec, (4,), (-3,))
+    assert split.separated is True
+    merged = separate_states(spec, (4,), (3,))
+    assert merged.separated is False
+    assert merged.certificate_kind is CertificateKind.EXACT_CLOSURE

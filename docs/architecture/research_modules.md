@@ -46,6 +46,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.prime_residual_complexity` | `ARCHIVED` | Prime vs sieve residuals under `I_a`; `CLOSE` |
 | `research.sparse_polynomials` | `EXPLORATORY` | Mahler / factor scans |
 | `research.operator_dynamics` | `ARCHIVED` | {S,N,D,W} identities; length-≤4 close |
+| `research.operator_dynamics.signed_p0` | `ARCHIVED` | v2 benchmark \(N\circ I_0\circ D\); \(F^2=P_0\); `CLOSE` |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |
 | `research.erdos_distinct_subset_sums` | `EXPLORATORY` | Erdős #1 signed-relation gate |
 | `research.kabelian_complexity` | `ARCHIVED` | k-abelian residual signatures; block-coding close |

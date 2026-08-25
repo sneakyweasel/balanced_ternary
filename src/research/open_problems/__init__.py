@@ -21,6 +21,9 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.misere_quotients.problem import PROBLEM as MISERE_QUOTIENTS
     from research.monna_endpoint_spectra.problem import PROBLEM as MONNA_ENDPOINT_SPECTRA
     from research.operator_dynamics.problem import PROBLEM as OPERATOR_DYNAMICS
+    from research.operator_dynamics.signed_p0.problem import (
+        PROBLEM as OPERATOR_DYNAMICS_BENCHMARK,
+    )
     from research.kabelian_complexity.problem import PROBLEM as KABELIAN_COMPLEXITY
     from research.ostrowski.problem import PROBLEM as OSTROWSKI
     from research.padic_dynamics.problem import PROBLEM as PADIC_DYNAMICS
@@ -60,6 +63,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         PRIME_RESIDUAL,
         SPARSE_POLYNOMIALS,
         OPERATOR_DYNAMICS,
+        OPERATOR_DYNAMICS_BENCHMARK,
         STABILIZATION,
         CERNY_BT,
         MISERE_QUOTIENTS,

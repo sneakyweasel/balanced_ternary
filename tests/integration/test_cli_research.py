@@ -338,3 +338,27 @@ def test_research_reproduce_primes_links_lean():
     assert "sievePrime_I0_separator" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
+
+
+def test_research_analyze_operator_dynamics_is_exact_three_not_live():
+    out = _run("research", "analyze", "operator_dynamics")
+    assert "problem: operator_dynamics_benchmark" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_operator_dynamics_links_lean():
+    out = _run("research", "reproduce", "nsd")
+    assert "reproduce: ok" in out
+    assert "hypothesis od_seed_orbit_finite: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis od_interval_invariant: REFUTED" in out
+    assert "hypothesis od_lyapunov_n: REFUTED" in out
+    assert "hypothesis od_global_finite_residual: REFUTED" in out
+    assert "hypothesis od_f2_equals_p0: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis od_sign_merge: SUPPORTED EXACT REACHABLE" in out
+    report = _run("research", "report", "signed_p0")
+    assert "signedP0_sq_eq_P0" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()

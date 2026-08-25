@@ -141,6 +141,7 @@ Each dossier follows [problems/TEMPLATE.md](problems/TEMPLATE.md).
 - [Prime residual complexity](problems/prime_residual_complexity.md)
 - [Sparse polynomials](problems/sparse_polynomials.md)
 - [Operator dynamics](problems/operator_dynamics.md)
+- [Operator-dynamics v2 benchmark](problems/operator_dynamics_benchmark.md)
 - [Balanced digit sums of nonlinear polynomial values](problems/balanced_digit_sum_polynomials.md)
 - [Erdős distinct subset sums](problems/erdos_distinct_subset_sums.md)
 - [k-abelian complexity](problems/kabelian_complexity.md)

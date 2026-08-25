@@ -1408,3 +1408,49 @@ Why                   The signed-digit theorems already survived. This is reusab
 Best next question    Which new integer dynamics can be compared to signed-digit residual using only ComplexityProfile and CertificateKind?
 ```
 
+## Operator-dynamics v2 benchmark N∘I₀∘D (not a numbered milestone)
+
+- **Date:** 2026-08-25
+- **Objective:** Test whether Research Engine v2 can diagnose a new integer map built from existing BT operators, without a problem-specific theory
+- **Hypotheses:** \(F_{a,b}=I_a\circ D\circ I_b\) is a nontrivial dynamical system; \(|n|\le 2\) is invariant; \(V(n)=n\) is a Lyapunov; \(\mathbb{Z}\) is one finite residual
+- **Major results:** \(F_{a,b}\) collapses to \(I_a\) by \(D\circ I_b=\mathrm{id}\). The surviving word \(F=N\circ I_0\circ D\) has \(F^2=P_0\), \(F^3=F\), and every orbit has size at most 3. Seed \(4\) closes in 3 states (`EXACT_CLOSURE`); sign Mealy quotient has 2 classes; the box \(|n|\le 2\) leaks at \(F(-2)=3\) and \(F(2)=-3\). Integer-state infinitude is the disjoint union of finite orbits, not residual infinitude. Reused generic planner only. Did not reopen signed-digit, Collatz, primes, jets, Ostrowski, or the `{S,N,D,W}` census. No new engine primitive. No ledger row
+- **Refuted ideas:** \(F_{a,b}\) as a benchmark target; interval invariance; one-step Lyapunov; a single finite residual on \(\mathbb{Z}\)
+- **Literature:** \(D\circ I_a=\mathrm{id}\) and \(P_a\circ P_b=P_a\) are `KNOWN`. The orbit law is a `NEW FORMULATION` of the band plus \(N\), recorded as `REPARAMETERIZATION` for the branch
+- **Open:** none opened
+- **Decision:** CLOSE. The map is known \(P_0\)/\(N\) algebra. The benchmark succeeded as a structural diagnosis
+
+```text
+What was learned
+- I_a(D(I_b(n))) rewrites to I_a immediately; it is not a dynamics target
+- N∘I_0∘D is the smallest surviving word with nontrivial iteration
+- v2 reports exact per-seed closure of size 3 without being told P_0
+- The interval envelope |n|≤2 leaks; V(n)=n is not a Lyapunov
+- Sign observation merges 4∼3 on that orbit (M=2<|R|=3)
+- Integer-state infinitude is a disjoint union of finite orbits, not residual infinitude
+- Modular/spectral/block/factorization stayed inapplicable; no engine change
+
+Strongest theorem
+- F² = P_0 for F = N∘I_0∘D; every orbit has size at most 3 (Lean signedP0_sq_eq_P0, signedP0_orbit_finite)
+
+Strongest refutation
+- F(2)=-3 leaves |n|≤2; orbits of 3 and 6 are disjoint
+
+Reusable machinery
+- none; the generic v2 planner was reused as-is
+
+Prior-art status
+- NEW FORMULATION of the P-band plus N; branch CLOSE as REPARAMETERIZATION
+
+Complexity profile
+- controls 1; no raw contribution; seed reachable 3; Mealy 2; closure EXACT_CLOSURE; dominant certificate EXACT_CLOSURE
+
+Branch status
+- CLOSE
+
+Why
+- Local semantics were already the calculus. The engine correctly diagnosed finite per-orbit residual, a leaking envelope, and a sign quotient. The identities are corollaries of P_0∘P_0=P_0 and N²=id, not a new class.
+
+Best next question
+- none on this line; do not enumerate another operator word
+```
+
