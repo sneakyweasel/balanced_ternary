@@ -32,7 +32,7 @@ def add_research_subparser(subparsers: argparse._SubParsersAction) -> None:
     p_an = c.add_parser("analyze", help="run the cheap-attack planner")
     p_an.add_argument(
         "problem",
-        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, multiplicative_residual, collatz, primes, or benchmark A-E",
+        help="ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, multiplicative_residual, collatz, primes, or benchmark A-E",
     )
     p_an.add_argument("--remaining", type=int, default=4)
     p_at = c.add_parser("attack", help="run one named cheap attack")
@@ -85,6 +85,13 @@ def _normalize_problem(name: str) -> str:
     }:
         return "signed_digit_residual"
     if key.lower() in {
+        "signed_digit_residual_geometry",
+        "signed-digit-residual-geometry",
+        "sdrg",
+        "sdr_geometry",
+    }:
+        return "signed_digit_residual_geometry"
+    if key.lower() in {
         "multiplicative_residual",
         "multiplicative-residual",
         "mul_residual",
@@ -111,7 +118,7 @@ def _normalize_problem(name: str) -> str:
     if letter in {"A", "B", "C", "D", "E"}:
         return letter
     raise ValueError(
-        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, multiplicative_residual, collatz, primes, or A-E"
+        f"unknown problem {name!r}; use ostrowski, balanced_ternary, expanding_d, expanding_j2, expanding_j3, d_add, signed_digit_residual, signed_digit_residual_geometry, multiplicative_residual, collatz, primes, or A-E"
     )
 
 
@@ -160,6 +167,15 @@ def _plan(problem: str, remaining: int):
 
         report = plan_signed_digit_residual(remaining)
         targets = export_signed_digit_targets(report)
+        return report, targets
+    if problem == "signed_digit_residual_geometry":
+        from research.signed_digit_residual_geometry.adapter import (
+            export_geometry_targets,
+            plan_signed_digit_residual_geometry,
+        )
+
+        report = plan_signed_digit_residual_geometry(remaining)
+        targets = export_geometry_targets(report)
         return report, targets
     if problem == "multiplicative_residual":
         from research.multiplicative_residual.adapter import (
@@ -241,6 +257,11 @@ def _attack(problem_name: str, attack: str, remaining: int) -> int:
 
         spec = signed_digit_spec(remaining)
         context = spec.attack_context()
+    elif problem == "signed_digit_residual_geometry":
+        from research.signed_digit_residual_geometry.spec import geometry_spec
+
+        spec = geometry_spec(remaining)
+        context = spec.attack_context()
     elif problem == "multiplicative_residual":
         from research.multiplicative_residual.spec import product_spec
 
@@ -287,6 +308,8 @@ def _reproduce(problem_name: str, remaining: int) -> int:
         failures = _d_add_reproduce_failures(report, targets)
     elif problem == "signed_digit_residual":
         failures = _signed_digit_residual_reproduce_failures(report, targets)
+    elif problem == "signed_digit_residual_geometry":
+        failures = _signed_digit_residual_geometry_reproduce_failures(report, targets)
     elif problem == "multiplicative_residual":
         failures = _multiplicative_residual_reproduce_failures(report, targets)
     elif problem == "collatz_finite_descent":
@@ -584,6 +607,62 @@ def _signed_digit_residual_reproduce_failures(report, targets) -> tuple[str, ...
         failures.append("signed_digit_residual: closure is not linked to lambda1_u2_residual_closure")
     if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
         failures.append("signed_digit_residual: exported a LIVE target")
+    return tuple(failures)
+
+
+def _signed_digit_residual_geometry_reproduce_failures(report, targets) -> tuple[str, ...]:
+    from research.signed_digit_residual_geometry.lean_export import (
+        CLOSURE_THEOREM,
+        closure_is_exact_size,
+    )
+    from research.signed_digit_residual_geometry.planner import (
+        CLOSURE_HYPOTHESIS,
+        LATTICE_ALL_U_HYPOTHESIS,
+        SIGN_MEALY_HYPOTHESIS,
+    )
+
+    failures: list[str] = []
+    if not closure_is_exact_size(report, 3):
+        failures.append("signed_digit_residual_geometry: closure is not EXACT size 3")
+    recon = next((item for item in report.results if item.name == "reconnaissance"), None)
+    if (
+        recon is None
+        or recon.status is not AttackStatus.OBSERVATION
+        or recon.scope is not SearchScope.BOUNDED
+    ):
+        failures.append("signed_digit_residual_geometry: reconnaissance is not a bounded observation")
+    skipped = {item.attack for item in report.skipped}
+    if "modular" not in skipped or "spectral" not in skipped:
+        failures.append("signed_digit_residual_geometry: modular/spectral should stay inapplicable")
+    hyp = next(
+        (item for item in report.hypotheses if item.id == CLOSURE_HYPOTHESIS.id),
+        None,
+    )
+    if hyp is None or hyp.status is not HypothesisStatus.SUPPORTED:
+        failures.append("signed_digit_residual_geometry: U_2 interval hypothesis is not SUPPORTED")
+    lattice = next(
+        (item for item in report.hypotheses if item.id == LATTICE_ALL_U_HYPOTHESIS.id),
+        None,
+    )
+    if lattice is None or lattice.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_residual_geometry: lattice-all-U is not REFUTED")
+    sign = next(
+        (item for item in report.hypotheses if item.id == SIGN_MEALY_HYPOTHESIS.id),
+        None,
+    )
+    if sign is None or sign.status is not HypothesisStatus.REFUTED:
+        failures.append("signed_digit_residual_geometry: sign-Mealy hypothesis is not REFUTED")
+    closure = next((item for item in targets if item.attack == "closure"), None)
+    if (
+        closure is None
+        or not closure.exportable
+        or closure.lean_theorem != CLOSURE_THEOREM
+    ):
+        failures.append(
+            "signed_digit_residual_geometry: closure is not linked to lambda1_interval_reachable"
+        )
+    if any(item.kind is ClaimKind.LIVE and item.exportable for item in targets):
+        failures.append("signed_digit_residual_geometry: exported a LIVE target")
     return tuple(failures)
 
 

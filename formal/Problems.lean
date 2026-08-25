@@ -13,3 +13,4 @@ import Problems.BalancedTernary.ExpandingD
 import Problems.BalancedTernary.DAddResidual
 import Problems.BalancedTernary.SignedDigitResidual
 import Problems.BalancedTernary.MultiplicativeResidual
+import Problems.BalancedTernary.SignedDigitResidualGeometry

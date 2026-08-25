@@ -182,8 +182,10 @@ or if future letters are constrained by previous ones.
 
 ## Open questions
 
-None opened as conjectures. Best next question is recorded under
-Decision. Do not auto-start a general-radix theorem.
+Answered by [signed_digit_residual_geometry.md](signed_digit_residual_geometry.md):
+for `U_m` the origin-reachable set is the lattice fill of the sharp
+box; lattice-in-box fails for one-sided `U`. Do not auto-start a
+general-radix theorem.
 
 ## Decision
 

@@ -16,8 +16,9 @@ Each record has:
 Existing comparison documents are not deleted. They are indexed from
 this registry:
 
-- [Rewrite-calculus novelty table](../theory/rewrite_calculus.md#novelty-after-literature)
+- [Rewrite-calculus positioning table](../theory/rewrite_calculus.md#position-after-the-prior-art-audit)
 - [Rewrite-calculus dossier](../problems/rewrite_calculus.md)
+- [Rewrite-calculus prior-art audit](../theory/rewrite_calculus_prior_art.md)
 - [Four-coordinate literature comparison](../literature_comparison.md)
 - [Balanced ternary versus Collatz literature](../balanced_ternary_vs_collatz_literature.md)
 - [Cerdá comparison](../cerda_comparison.md)

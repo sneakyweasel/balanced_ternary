@@ -2637,6 +2637,50 @@
     "related_conjectures": []
   },
   {
+    "id": "BTN-sdrg-lambda1-interval",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For λ=1 and U_m, every integer s with |s|≤⌊m/2⌋ is reached from 0 by an admissible word. The explicit positive word is u=2,4,...,2n.",
+    "source": "docs/problems/signed_digit_residual_geometry.md",
+    "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
+    "tests": [
+      "tests/research/signed_digit_residual_geometry/test_signed_digit_residual_geometry.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrg-lambda2-evens",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For λ=2 and U_m, every even 2n with |n|≤(m-1)_+ is reached from 0 by an admissible word. The explicit nonnegative word uses letters k+2 at step k.",
+    "source": "docs/problems/signed_digit_residual_geometry.md",
+    "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
+    "tests": [
+      "tests/research/signed_digit_residual_geometry/test_signed_digit_residual_geometry.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrg-lattice-all-U",
+    "tag": "REFUTED",
+    "statement": "For every finite U, the origin-reachable residual equals λℤ intersect the symmetric invariant interval.",
+    "source": "docs/problems/signed_digit_residual_geometry.md",
+    "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
+    "tests": [
+      "tests/research/signed_digit_residual_geometry/test_signed_digit_residual_geometry.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-sdrg-sign-mealy",
+    "tag": "REFUTED",
+    "statement": "Sign symmetry of U_m forces M(λ,U_m)=|R|/2.",
+    "source": "docs/problems/signed_digit_residual_geometry.md",
+    "lean": "",
+    "tests": [
+      "tests/research/signed_digit_residual_geometry/test_signed_digit_residual_geometry.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "BTN-mr-factor-through-raw",
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "If F(s,c)=λ·D(s+h(c)) then F(s,(d1,d2))=λ·D(s+d1 d2). Two-trit product residual factors through the raw contribution.",

@@ -61,28 +61,34 @@ word-table enlargement is **closed**. Coefficient-word confluence
 ([BTN-confluence](theorem_ledger.md), `BTCalculus/Confluence.lean`) is
 the complete finite canonicalizer for those sums after evaluation.
 
-## Novelty after literature
+## Position after the prior-art audit
 
-Method is KNOWN. The classification of *this* operator algebra is
-the candidate distinction. See the
-[dossier](../problems/rewrite_calculus.md) for the full audit.
+CMR97 is direct prior art for balanced-ternary digit append and
+convergent arithmetic rewriting. Its append \(x :_t a\) has exactly the
+semantics \(3x+a\) of this project's \(I_a\). Avižienis,
+Heuberger--Prodinger, and Frougny--Pelantová--Svobodová establish the
+signed-digit, finite-state carry, and parallel-addition background.
+See the [full audit](rewrite_calculus_prior_art.md) and the
+[dossier](../problems/rewrite_calculus.md).
 
-| Claim | Novelty | Why |
-|-------|---------|-----|
-| Newman / Knuth–Bendix on a finite left-linear TRS | `KNOWN` | `newman-1942-confluence`, `baader-nipkow-1998-term-rewriting` |
-| Unique balanced-ternary expansion; `D`/`I_a` as drop/prepend | `KNOWN` / `REPARAMETERIZATION` | `knuth-taocp-vol2`, `hayes-2001-third-base` |
-| Signed-digit carry-free addition as an *arithmetic* algorithm | `KNOWN` | `avizienis-1961-signed-digit` |
-| Completion / rewriting modulo AC | `KNOWN` | `peterson-stickel-1981-unification-ac` |
-| OpFrag confluence + semantic injectivity of the NF grammar | `PROJECT-SPECIFIC` (method KNOWN) | Oriented `N(D)→D(N)` is necessary; without it `N(D)`/`D(N)` are semantic twins |
-| Maximality: exact `S`/`I_a` push-in through Add/Mul dies at `D∘S` | `PROJECT-SPECIFIC` | Avizienis does not state a TRS maximality theorem for `{D,I_a,S,N}` |
-| Finite exact factor-out Add is already a CAS | `PROJECT-SPECIFIC` (AC engine KNOWN) | Same-sign `I_a` residue `±2` is the trit carry of `1+1` |
-| Six exact identities `U(x)+V(y)=W(x+y)` on `{S,I_a,N}`; Add is affine-only | `PROJECT-SPECIFIC` | Exhaustive constructor classification, not just unique expansion |
-| Named word fragments `SIMP` / `WN` / `WND` | `PROJECT-SPECIFIC` appendix | Same Newman method; not the publication spine |
+| Claim | Internal classification | Why |
+|-------|-------------------------|-----|
+| Newman / Knuth–Bendix on a finite left-linear TRS | `KNOWN` | standard method |
+| Unique balanced-ternary expansion | `KNOWN` | classical representation |
+| \(I_a\) as digit append and \(D\) as inverse quotient | `KNOWN / REFORMULATED` | CMR97 append is the same map; digit removal is standard |
+| Signed-digit carry and finite-state/parallel addition | `KNOWN` | Avižienis; Heuberger--Prodinger; Frougny et al. |
+| Convergent balanced-ternary arithmetic rewriting | `KNOWN` | CMR97 |
+| OpFrag confluence and its Lean packaging | `NEW FORMALIZATION` | exact open one-hole grammar; method known |
+| Semantic injectivity of the NF grammar | `NEW THEOREM` for the stated grammar | oriented `N(D)→D(N)` is necessary; no priority claim |
+| `D(x+y)` is not determined by `(D(x),D(y))` | `NEW THEOREM` in the stated factorization language | exact Lean theorem and witness; no priority claim |
+| Six constructor identities and named push-in peak | `NEW FORMULATION` | supporting results for this grammar |
+| Universal Add-tree maximality / “already a CAS” | `OPEN / NOT YET ESTABLISHED` at paper generality | stays outside the publication theorem |
+| Named word fragments `SIMP` / `WN` / `WND` | `NEW FORMULATION` appendix | same Newman method; not the publication spine |
 
-The falsifier for the package — prior work already proving the same
-maximal tree core and Add-exclusion for this operator algebra — did
-not fire. Two central claims remain `PROJECT-SPECIFIC` and form one
-coherent theorem: **maximal unary tree core + Add/carry exclusion**.
+The surviving paper is the narrow open-unary canonicality and
+state-factorization package. It is not a “maximal balanced-ternary
+arithmetic calculus,” and the research-engine/residual programme is a
+separate publication direction.
 
 ## Word-table enlargement is closed
 

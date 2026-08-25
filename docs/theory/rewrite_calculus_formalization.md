@@ -11,6 +11,8 @@ Publication draft:
 [rewrite_calculus_note.md](rewrite_calculus_note.md).
 Reviewer packet:
 [rewrite_calculus_reviewer_packet.md](rewrite_calculus_reviewer_packet.md).
+Prior-art audit:
+[rewrite_calculus_prior_art.md](rewrite_calculus_prior_art.md).
 
 ## 1. Claim A — unary canonical calculus
 
@@ -60,7 +62,9 @@ canonicity fails (`N(D(x))` vs `D(N(x))`).
 
 **Difficulty.** Lean-trivial as packaging: the proofs already live in
 `OpFragNewman.lean` and `OpFragSemantic.lean`. Method (Newman) is
-`KNOWN`. The fragment + oriented commute is `PROJECT-SPECIFIC`.
+`KNOWN`. The exact fragment, oriented commute, and Lean package are a
+`NEW FORMALIZATION`; the paper makes no priority claim for digit append
+or least-digit removal.
 
 ## 2. Definitions for Claim B
 
@@ -209,11 +213,17 @@ maximality theorem, or maximality ledger row is added.
 | Piece | Novelty |
 |-------|---------|
 | Newman / Knuth–Bendix | `KNOWN` |
-| Unique BT expansion | `KNOWN` / `REPARAMETERIZATION` |
-| Avizienis signed-digit addition | `KNOWN` |
+| Unique BT expansion | `KNOWN` |
+| CMR97 balanced digit append and arithmetic TRS | `KNOWN`; \(I_a\) is the same append map |
+| \(D\) as inverse quotient / least-digit removal | `KNOWN / REFORMULATED` |
+| Avižienis signed-digit addition | `KNOWN` |
+| Heuberger--Prodinger finite-state carry | `KNOWN` |
+| Frougny--Pelantová--Svobodová local/parallel addition and alphabet minimality | `KNOWN` |
 | AC completion | `KNOWN` (not used) |
-| Unary OpFrag package | `PROJECT-SPECIFIC` (method KNOWN) |
-| D-locality failure of Add + six-row classification + named peak | `PROJECT-SPECIFIC` |
+| Unary OpFrag package | `NEW FORMALIZATION` (method and constructors known) |
+| Semantic injectivity of irreducibles | `NEW THEOREM` for the exact grammar; no priority claim |
+| D-locality failure of Add | `NEW THEOREM` in the stated factorization language; no priority claim |
+| Six-row classification + named peak | `NEW FORMULATION` |
 
 ## 7. Lean map
 

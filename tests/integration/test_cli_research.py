@@ -192,6 +192,27 @@ def test_research_reproduce_signed_digit_residual_links_lean():
     assert "admit" not in report.lower()
 
 
+def test_research_analyze_signed_digit_residual_geometry_is_exact_three_not_live():
+    out = _run("research", "analyze", "signed_digit_residual_geometry")
+    assert "problem: signed_digit_residual_geometry" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED LIVE_SLICE" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_signed_digit_residual_geometry_links_lean():
+    out = _run("research", "reproduce", "sdrg")
+    assert "reproduce: ok" in out
+    assert "hypothesis sdrg_lambda1_u2_interval: SUPPORTED EXACT REACHABLE" in out
+    assert "hypothesis sdrg_lattice_all_U: REFUTED" in out
+    assert "hypothesis sdrg_sign_halves_mealy: REFUTED" in out
+    report = _run("research", "report", "signed_digit_residual_geometry")
+    assert "lambda1_interval_reachable" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()
+
+
 def test_research_analyze_multiplicative_residual_is_exact_one_not_live():
     out = _run("research", "analyze", "multiplicative_residual")
     assert "problem: multiplicative_residual" in out

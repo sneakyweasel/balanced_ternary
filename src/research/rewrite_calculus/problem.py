@@ -23,6 +23,7 @@ PROBLEM = ProblemDefinition(
         "docs/theory/rewrite_calculus.md",
         "docs/theory/rewrite_calculus_note.md",
         "docs/theory/rewrite_calculus_reviewer_packet.md",
+        "docs/theory/rewrite_calculus_prior_art.md",
     ),
     lean=(
         "formal/BTCalculus/OpFrag.lean",
