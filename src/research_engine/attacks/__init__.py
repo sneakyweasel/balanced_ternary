@@ -56,6 +56,12 @@ from research_engine.attacks.piecewise_affine import (
     run_piecewise_affine_census,
 )
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
+from research_engine.attacks.matrix_word_invariant import (
+    MatrixWordCertificate,
+    MatrixWordInvariant,
+    MatrixWordInvariantAttack,
+    run_matrix_word_invariant,
+)
 from research_engine.attacks.vector_affine import (
     VectorAffineCensus,
     VectorAffineCensusAttack,
@@ -132,10 +138,14 @@ __all__ = [
     "run_parameter_domain",
     "run_piecewise_affine_census",
     "run_vector_affine_census",
+    "run_matrix_word_invariant",
     "separate_states",
     "verify_symmetry",
     "VectorAffineCensus",
     "VectorAffineCensusAttack",
+    "MatrixWordCertificate",
+    "MatrixWordInvariant",
+    "MatrixWordInvariantAttack",
     "compose_vector_steps",
     "cycle_matrix_constraint",
 ]

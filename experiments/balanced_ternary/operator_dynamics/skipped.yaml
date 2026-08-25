@@ -3,7 +3,7 @@ attack: skipped
 claim: inapplicable or deferred
 status: OBSERVED
 scope: BOUNDED
-evidence: modular=inapplicable; block=inapplicable; spectral=inapplicable; factorization=inapplicable; symmetry=inapplicable; symbolic=not implemented in this phase
+evidence: vector_affine=inapplicable; matrix_word_invariant=inapplicable; modular=inapplicable; block=inapplicable; spectral=inapplicable; factorization=inapplicable; symmetry=inapplicable; symbolic=not implemented in this phase
 counterexamples: ()
 lean_theorem: 
 certificate_kind: 

@@ -2029,4 +2029,49 @@ Best next question
 - Can matrix-word recursive invariants obstruct infinite control classes when entrywise magnitude domination fails?
 ```
 
+## Research Engine v2 matrix-word recursive invariants
+
+- **Date:** 2026-08-25
+- **Objective:** Discover recursive \((M_i,c_i)\) invariants that eliminate infinite vector control classes when magnitude is INAPPLICABLE; freeze the attack architecture
+- **Hypotheses:** Image-kernel / entry-gcd predicates on composed matrix words transfer the scalar remainder-invariant method without Euclidean-specific code
+- **Major results:** `matrix_word_invariant` proves non-magnitude `RECURSIVE_INVARIANT` on shear+vertical-offset classes; gcd/det class obstructions with exceptions; false all-\(k\) invariant REFUTED; zero-offset family UNKNOWN; Euclid and parity-shear consume the attack with no cycle class (zero offset); unrelated lattice walk consumes it. Lean `recursive_matrix_word_step` / `kernel_row_cycle_impossible` / `entry_gcd_divides_translation` / `shear_word_class_impossible`. Attack architecture **FROZEN**. No ledger. Identities **KNOWN**
+- **Refuted ideas:** all-parameter lattice candidate on the in-window even-\(k\) trap; “all words impossible” when \(k=\pm 1\) is realizable; magnitude domination as the success criterion
+- **Literature:** integer \(Ax=b\) / invariant factors; Knuth / Vallée Euclidean (consumer only)
+- **Open:** none at the engine layer
+- **Decision:** PARK
+
+```text
+What was learned
+- Rank-deficient Q-consistent systems need an integer-image test, not only det≠0
+- Recurrence must stay inside the control class (odd-length prefixes, not every append)
+- Zero-offset Euclidean/parity-shear families have x=0 as a cycle solution; UNKNOWN is correct
+- Magnitude INAPPLICABLE is a required label, not an afterthought
+- This is the last planned attack; further extensions need a real mathematical failure
+
+Strongest theorem
+- shear_word_class_impossible / kernel_row_cycle_impossible / entry_gcd_divides_translation (Lean); KNOWN algebra
+
+Strongest refutation
+- False all-k invariant; exception family is not ALL WORDS IMPOSSIBLE
+
+Reusable machinery
+- MatrixWordInvariantAttack; hidden_matrix_invariants A–G; Problems.Engine.MatrixWord; capability matrix_word_recursive_invariant
+
+Prior-art status
+- KNOWN integer linear algebra; NEW GENERIC ENGINE CAPABILITY matrix_word_invariant; ATTACK ARCHITECTURE FROZEN
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PARK
+
+Why
+- Recursive non-magnitude class elimination works and is Lean-certified. Mathematics is KNOWN. Freeze the engine and consume a real target next.
+
+Best next question
+- Which real mathematical target should the frozen Research Engine v2 consume next?
+```
+
+
 

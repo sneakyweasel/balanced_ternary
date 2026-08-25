@@ -440,6 +440,36 @@ def fingerprint_from_report(
             elif certs:
                 obstruction_field = "NONE"
 
+    matrix_inv = results.get("matrix_word_invariant")
+    if matrix_inv is not None:
+        certs = matrix_inv.evidence.get("certificates") or ()
+        proved_statuses = {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
+
+        def _matrix_proved(scope: str) -> bool:
+            return any(
+                isinstance(item, dict)
+                and item.get("scope") == scope
+                and item.get("status") in proved_statuses
+                for item in certs
+            )
+
+        if _matrix_proved("RECURSIVE_INVARIANT"):
+            obstruction_field = "RECURSIVE_INVARIANT"
+            if algebra_field in {UNOBSERVED, "FORMALLY_COMPOSED"}:
+                algebra_field = "EXPLOITABLE"
+        elif _matrix_proved("SYMBOLIC_CLASS") and obstruction_field not in {
+            "RECURSIVE_INVARIANT",
+        }:
+            obstruction_field = "SYMBOLIC_CLASS"
+        elif _matrix_proved("CLASS") and obstruction_field in {
+            UNOBSERVED,
+            "NONE",
+            "WORD",
+        }:
+            obstruction_field = "CLASS"
+        elif _matrix_proved("WORD") and obstruction_field in {UNOBSERVED, "NONE"}:
+            obstruction_field = "WORD"
+
     return RegimeFingerprint(
         transition_architecture=_transition_architecture(control),
         state_space_type=state_type,

@@ -216,6 +216,27 @@ def capability_coverage(
     elif _inapplicable(skipped, "vector_affine"):
         statuses["latent_vector_affine_control"] = CoverageStatus.INAPPLICABLE.value
 
+    statuses["matrix_word_recursive_invariant"] = CoverageStatus.NOT_TESTED.value
+    if _ran(results, "matrix_word_invariant"):
+        certs = results["matrix_word_invariant"].evidence.get("certificates") or ()
+        if any(
+            isinstance(item, dict)
+            and item.get("scope") == "RECURSIVE_INVARIANT"
+            and item.get("status") in {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
+            for item in certs
+        ):
+            statuses["matrix_word_recursive_invariant"] = CoverageStatus.EXERCISED.value
+            statuses["cycle_obstruction"] = CoverageStatus.EXERCISED.value
+            statuses["control_obstruction_calculus"] = CoverageStatus.EXERCISED.value
+        elif any(
+            isinstance(item, dict)
+            and item.get("status") in {"PROVED", "LEAN_CERTIFIED", "UNKNOWN", "REFUTED"}
+            for item in certs
+        ):
+            statuses["matrix_word_recursive_invariant"] = CoverageStatus.EXERCISED.value
+    elif _inapplicable(skipped, "matrix_word_invariant"):
+        statuses["matrix_word_recursive_invariant"] = CoverageStatus.INAPPLICABLE.value
+
     if (
         fingerprint.control_structure == "SINGLETON"
         and fingerprint.numerical_contraction == "MIXED_MAGNITUDE"

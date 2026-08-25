@@ -236,9 +236,9 @@ auto-open an Euclidean research program.
 
 ## Open questions
 
-Can symbolic class obstructions for matrix words match the scalar
-recursive-remainder strength when magnitude domination fails in
-several matrix entries simultaneously?
+Answered by [matrix_word_invariant.md](matrix_word_invariant.md): yes —
+non-magnitude recursive class obstructions exist; that branch is
+`PARK` and the attack architecture is frozen.
 
 ## Decision
 
@@ -247,8 +247,8 @@ genuinely multi-dimensional controlled affine dynamics. Euclidean and
 an unrelated lattice map both consume the same attack. The identities
 are **KNOWN**. Do not escalate to an Euclidean solver.
 
-Best next question: can matrix-word recursive invariants obstruct
-infinite control classes when entrywise magnitude domination fails?
+Best next question (answered): see
+[matrix_word_invariant.md](matrix_word_invariant.md).
 
 ## Publication assessment
 

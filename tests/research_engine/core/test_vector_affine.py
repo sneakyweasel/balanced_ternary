@@ -65,6 +65,7 @@ def test_planner_keeps_scalar_chain_and_appends_vector():
     assert names[1] == "piecewise_affine"
     assert names[2] == "parameter_domain"
     assert names.index("vector_affine") == names.index("control_obstruction") + 1
+    assert names.index("matrix_word_invariant") == names.index("vector_affine") + 1
     spec = HiddenCongruenceASpec()
     report = AttackPlanner().run(spec, spec.attack_context())
     ran = [item.name for item in report.results]

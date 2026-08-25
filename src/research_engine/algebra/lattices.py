@@ -143,6 +143,14 @@ def vector_gcd(vector: Sequence[int]) -> int:
     return acc
 
 
+def matrix_entry_gcd(matrix: Matrix) -> int:
+    """Gcd of all entries. This is the first invariant factor of a rank-1 matrix."""
+    acc = 0
+    for row in matrix:
+        acc = gcd(acc, vector_gcd(row))
+    return acc
+
+
 def characteristic_polynomial(matrix: Matrix) -> tuple[int, ...]:
     """Monic ``det(xI-A)`` as ``(1, c_1, …, c_n)``.
 

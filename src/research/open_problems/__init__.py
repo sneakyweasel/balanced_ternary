@@ -64,6 +64,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.mx_plus_r.problem import PROBLEM as MX_PLUS_R
     from research.euclidean_quotient.problem import PROBLEM as EUCLIDEAN_QUOTIENT
     from research.vector_affine.problem import PROBLEM as VECTOR_AFFINE
+    from research.matrix_word_invariant.problem import PROBLEM as MATRIX_WORD_INVARIANT
 
     return (
         COLLATZ,
@@ -73,6 +74,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         MX_PLUS_R,
         EUCLIDEAN_QUOTIENT,
         VECTOR_AFFINE,
+        MATRIX_WORD_INVARIANT,
         RESIDUALS,
         LIFTING,
         PADIC_DYNAMICS,

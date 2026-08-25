@@ -15,6 +15,7 @@ from research_engine.attacks.modular import ModularInvariantAttack
 from research_engine.attacks.parameter_domain import ParameterDomainAttack
 from research_engine.attacks.piecewise_affine import PiecewiseAffineCensusAttack
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
+from research_engine.attacks.matrix_word_invariant import MatrixWordInvariantAttack
 from research_engine.attacks.vector_affine import VectorAffineCensusAttack
 from research_engine.attacks.result import (
     Attack,
@@ -41,6 +42,7 @@ DEFAULT_ATTACK_ORDER: tuple[str, ...] = (
     "control_word",
     "control_obstruction",
     "vector_affine",
+    "matrix_word_invariant",
     "closure",
     "modular",
     "functional",
@@ -64,6 +66,7 @@ _ATTACKS: dict[str, type[Attack]] = {
     "control_word": ControlWordAttack,
     "control_obstruction": ControlObstructionAttack,
     "vector_affine": VectorAffineCensusAttack,
+    "matrix_word_invariant": MatrixWordInvariantAttack,
     "closure": ExhaustiveClosureAttack,
     "modular": ModularInvariantAttack,
     "functional": FunctionalBoundAttack,
@@ -190,7 +193,12 @@ def _ensure_certificate_chain(
     context: AttackContext,
 ) -> AttackContext:
     """Census then domain, so named control-word runs consume a certificate."""
-    if name not in {"parameter_domain", "control_word", "control_obstruction"}:
+    if name not in {
+        "parameter_domain",
+        "control_word",
+        "control_obstruction",
+        "matrix_word_invariant",
+    }:
         return context
     priors = list(context.prior_results)
     names = {item.name for item in priors}
@@ -212,6 +220,13 @@ def _ensure_certificate_chain(
         composed = ControlWordAttack()
         if composed.applicable(spec, context):
             prior = composed.run(spec, context)
+            priors.append(prior)
+            context = replace(context, prior_results=tuple(priors))
+            names.add("control_word")
+    if name == "matrix_word_invariant" and "vector_affine" not in names:
+        vector = VectorAffineCensusAttack()
+        if vector.applicable(spec, context):
+            prior = vector.run(spec, context)
             priors.append(prior)
             context = replace(context, prior_results=tuple(priors))
     return context

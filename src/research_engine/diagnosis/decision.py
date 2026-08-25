@@ -89,7 +89,7 @@ def decide_research(
                         "PROVED",
                     }:
                         extra = {
-                            "RECURSIVE_INVARIANT": "a recursive remainder invariant is proved",
+                            "RECURSIVE_INVARIANT": "a recursive control invariant is proved",
                             "SYMBOLIC_CLASS": "a symbolic multi-step class obstruction is proved",
                         }.get(
                             fingerprint.latent_control_obstruction,

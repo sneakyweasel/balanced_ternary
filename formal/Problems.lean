@@ -29,3 +29,4 @@ import Problems.Engine.ControlWord
 import Problems.Engine.ControlObstruction
 import Problems.Engine.MxPlusR
 import Problems.Engine.VectorAffine
+import Problems.Engine.MatrixWord
