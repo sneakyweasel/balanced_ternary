@@ -10,7 +10,8 @@ order are unchanged. `piecewise_affine` is appended after
 `control_obstruction` immediately after control-word composition;
 `vector_affine` immediately after that, and only for dimension ≥ 2;
 `matrix_word_invariant` immediately after `vector_affine`. After the
-matrix-word invariant experiment the attack order is **frozen**.
+matrix-word invariant experiment the attack order is **frozen**
+(package **0.2.1**).
 
 ## Why this layer exists
 

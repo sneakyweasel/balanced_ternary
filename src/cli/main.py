@@ -331,7 +331,7 @@ def _run_formal() -> int:
 
 
 def _run_status() -> int:
-    version = "0.1.0"
+    version = "0.2.1"
     try:
         from importlib.metadata import version as pkg_version
 
