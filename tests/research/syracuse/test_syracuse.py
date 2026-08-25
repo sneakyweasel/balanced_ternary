@@ -67,6 +67,7 @@ def test_lean_specialization_applies_generic_lemma():
     assert "syracuse_len_one_cycle_dvd" in text
     assert "syracuse_last_step_remainder" in text
     assert "syracuse_cycle_abs_obstruction" in text
+    assert "syracuse_dvd_constant_of_dvd_remainder" in text
     assert "mul_pow_eq_iff_padicValInt" in text
     engine = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Engine" / "ParameterDomain.lean"
     engine_text = engine.read_text(encoding="utf-8")
@@ -230,7 +231,7 @@ def test_diagnosis_is_not_finite_contracting():
     assert session.diagnosis.fingerprint.latent_control == "PARAMETERIZED"
     assert session.diagnosis.fingerprint.parameter_domain == "EXACT"
     assert session.diagnosis.fingerprint.latent_control_algebra == "EXPLOITABLE"
-    assert session.diagnosis.fingerprint.latent_control_obstruction == "SYMBOLIC_CLASS"
+    assert session.diagnosis.fingerprint.latent_control_obstruction == "RECURSIVE_INVARIANT"
     assert session.diagnosis.delta is not None
     assert session.diagnosis.delta.level is DeltaLevel.HIGH
     assert not core_match(session.diagnosis.fingerprint, corpus.records[0].fingerprint)
@@ -245,6 +246,7 @@ def test_diagnosis_is_not_finite_contracting():
     assert session.diagnosis.coverage.status("cycle_obstruction") == "EXERCISED"
     assert session.diagnosis.coverage.status("control_obstruction_calculus") == "EXERCISED"
     assert session.diagnosis.coverage.status("symbolic_multi_step_obstruction") == "EXERCISED"
+    assert session.diagnosis.coverage.status("recursive_remainder_invariant") == "EXERCISED"
     assert session.diagnosis.coverage.status("branching_controls") == "INAPPLICABLE"
 
 

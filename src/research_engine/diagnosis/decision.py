@@ -74,14 +74,17 @@ def decide_research(
             if fingerprint.parameter_domain == "EXACT":
                 if fingerprint.latent_control_algebra == "EXPLOITABLE":
                     if fingerprint.latent_control_obstruction in {
+                        "RECURSIVE_INVARIANT",
                         "SYMBOLIC_CLASS",
                         "CLASS",
                         "PROVED",
                     }:
-                        extra = (
-                            "a symbolic multi-step class obstruction is proved"
-                            if fingerprint.latent_control_obstruction == "SYMBOLIC_CLASS"
-                            else "a class-level obstruction is proved"
+                        extra = {
+                            "RECURSIVE_INVARIANT": "a recursive remainder invariant is proved",
+                            "SYMBOLIC_CLASS": "a symbolic multi-step class obstruction is proved",
+                        }.get(
+                            fingerprint.latent_control_obstruction,
+                            "a class-level obstruction is proved",
                         )
                         return (
                             ResearchDecision.CONTINUE,

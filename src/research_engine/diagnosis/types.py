@@ -60,6 +60,7 @@ CAPABILITIES: tuple[str, ...] = (
     "control_word_composition",
     "control_obstruction_calculus",
     "symbolic_multi_step_obstruction",
+    "recursive_remainder_invariant",
 )
 
 

@@ -267,3 +267,23 @@ class HiddenOneMinusClearSpec(HiddenIntegerSpec):
 
     def _step(self, x: int) -> int:
         return _hidden_one_minus_clear(x)
+
+
+def _hidden_five_clear(x: int) -> int:
+    value = x + 1
+    if value == 0:
+        return 0
+    while value % 5 == 0:
+        value //= 5
+    return value
+
+
+@dataclass(frozen=True)
+class HiddenFiveClearSpec(HiddenIntegerSpec):
+    """Power-clear with odd prime base 5: 5^k y = x+1."""
+
+    name: str = "hidden_five_clear"
+    start: int = 1
+
+    def _step(self, x: int) -> int:
+        return _hidden_five_clear(x)

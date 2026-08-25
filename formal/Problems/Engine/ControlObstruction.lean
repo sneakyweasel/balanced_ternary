@@ -66,4 +66,31 @@ theorem cycle_abs_obstruction
     False :=
   not_dvd_of_abs_gt hne hbound (cycle_constraint_dvd h)
 
+/-- Length-2 remainder elimination for a power-family step. Independent of `k0`. -/
+theorem two_step_elimination (b p r : ℤ) (k0 k1 : ℕ) :
+    b ^ k1 * (r * (p + b ^ k0)) - r * (b ^ k0 * b ^ k1 - p * p) =
+      r * p * (b ^ k1 + p) := by
+  ring
+
+/-- If the two-step remainder is divisible by `D`, then `D` divides the
+constant `r p (b^{k1} + p)`. Magnitude of `D` versus `C` is not used. -/
+theorem dvd_constant_of_dvd_remainder
+    {b p r : ℤ} {k0 k1 : ℕ}
+    (h : (b ^ k0 * b ^ k1 - p * p) ∣ (r * (p + b ^ k0))) :
+    (b ^ k0 * b ^ k1 - p * p) ∣ (r * p * (b ^ k1 + p)) := by
+  set D := b ^ k0 * b ^ k1 - p * p
+  set C := r * (p + b ^ k0)
+  have hmul : D ∣ b ^ k1 * C := h.mul_left (b ^ k1)
+  have hrd : D ∣ r * D := by
+    rw [mul_comm]
+    exact dvd_mul_right D r
+  have hsub : D ∣ b ^ k1 * C - r * D := dvd_sub hmul hrd
+  simpa [C, D, two_step_elimination b p r k0 k1] using hsub
+
+theorem two_step_not_dvd_of_not_dvd_constant
+    {b p r : ℤ} {k0 k1 : ℕ}
+    (hK : ¬ (b ^ k0 * b ^ k1 - p * p) ∣ (r * p * (b ^ k1 + p))) :
+    ¬ (b ^ k0 * b ^ k1 - p * p) ∣ (r * (p + b ^ k0)) :=
+  mt dvd_constant_of_dvd_remainder hK
+
 end Problems.Engine

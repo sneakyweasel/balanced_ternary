@@ -62,7 +62,7 @@ Non-core fingerprint fields: `piecewise_affine_structure`,
 `latent_control_algebra`
 (`UNOBSERVED|FORMALLY_COMPOSED|EXPLOITABLE|UNCERTAIN`), and
 `latent_control_obstruction`
-(`UNOBSERVED|NONE|WORD|CLASS|SYMBOLIC_CLASS`).
+(`UNOBSERVED|NONE|WORD|CLASS|SYMBOLIC_CLASS|RECURSIVE_INVARIANT`).
 They do not join `CORE_DIMENSIONS`. `latent_control` is discovery;
 `latent_control_algebra` is composition; `latent_control_obstruction`
 is word-, class-, or symbolic-class contradiction.

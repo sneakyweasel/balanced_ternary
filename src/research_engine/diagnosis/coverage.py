@@ -110,6 +110,7 @@ def capability_coverage(
     statuses["control_word_composition"] = CoverageStatus.NOT_TESTED.value
     statuses["control_obstruction_calculus"] = CoverageStatus.NOT_TESTED.value
     statuses["symbolic_multi_step_obstruction"] = CoverageStatus.NOT_TESTED.value
+    statuses["recursive_remainder_invariant"] = CoverageStatus.NOT_TESTED.value
 
     if _ran(results, "piecewise_affine"):
         statuses["latent_piecewise_affine_control"] = CoverageStatus.EXERCISED.value
@@ -158,7 +159,14 @@ def capability_coverage(
         certs = results["control_obstruction"].evidence.get("certificates") or ()
         if any(
             isinstance(item, dict)
-            and item.get("kind") in {"divisibility", "gcd", "modular", "bound"}
+            and item.get("kind") in {
+                "divisibility",
+                "gcd",
+                "modular",
+                "bound",
+                "valuation",
+                "invariant",
+            }
             and item.get("status") in {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
             for item in certs
         ):
@@ -170,9 +178,17 @@ def capability_coverage(
             for item in certs
         ):
             statuses["symbolic_multi_step_obstruction"] = CoverageStatus.EXERCISED.value
+        if any(
+            isinstance(item, dict)
+            and item.get("scope") == "RECURSIVE_INVARIANT"
+            and item.get("status") in {"PROVED", "LEAN_CERTIFIED", "SYMBOLICALLY_PROVED"}
+            for item in certs
+        ):
+            statuses["recursive_remainder_invariant"] = CoverageStatus.EXERCISED.value
     elif _inapplicable(skipped, "control_obstruction"):
         statuses["control_obstruction_calculus"] = CoverageStatus.INAPPLICABLE.value
         statuses["symbolic_multi_step_obstruction"] = CoverageStatus.INAPPLICABLE.value
+        statuses["recursive_remainder_invariant"] = CoverageStatus.INAPPLICABLE.value
 
     if (
         fingerprint.control_structure == "SINGLETON"

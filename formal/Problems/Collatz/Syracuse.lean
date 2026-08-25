@@ -73,4 +73,13 @@ theorem syracuse_cycle_abs_obstruction
     False :=
   Problems.Engine.cycle_abs_obstruction hne hbound h
 
+/-- Two-step remainder elimination. KNOWN arithmetic via the generic
+Engine lemma; not a cycle classification. -/
+theorem syracuse_dvd_constant_of_dvd_remainder
+    {k0 k1 : ℕ}
+    (h : ((2 : ℤ) ^ k0 * (2 : ℤ) ^ k1 - 3 * 3) ∣ ((1 : ℤ) * (3 + (2 : ℤ) ^ k0))) :
+    ((2 : ℤ) ^ k0 * (2 : ℤ) ^ k1 - 3 * 3) ∣
+      ((1 : ℤ) * 3 * ((2 : ℤ) ^ k1 + 3)) :=
+  Problems.Engine.dvd_constant_of_dvd_remainder (b := 2) (p := 3) (r := 1) h
+
 end Problems.Collatz

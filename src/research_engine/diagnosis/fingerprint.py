@@ -369,7 +369,9 @@ def fingerprint_from_report(
                     for item in certs
                 )
 
-            if _proved("SYMBOLIC_CLASS"):
+            if _proved("RECURSIVE_INVARIANT"):
+                obstruction_field = "RECURSIVE_INVARIANT"
+            elif _proved("SYMBOLIC_CLASS"):
                 obstruction_field = "SYMBOLIC_CLASS"
             elif _proved("CLASS"):
                 obstruction_field = "CLASS"

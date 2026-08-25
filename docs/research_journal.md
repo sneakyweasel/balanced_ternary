@@ -1897,4 +1897,48 @@ Best next question
 - Can a recursive remainder invariant obstruct a class where |D| does not dominate |C|?
 ```
 
+## Recursive remainder invariants
+
+- **Date:** 2026-08-25
+- **Objective:** Discover a recursive remainder invariant that obstructs an infinite class when |D|≤|C|
+- **Hypotheses:** Fixed-last elimination D|C ⇒ D|K is generic; magnitude last-k does not apply on last=0; false seed residues are refuted; Syracuse is only a consumer
+- **Major results:** RemainderInvariant + RECURSIVE_INVARIANT. Identity b^{k1}C - r D = r p (b^{k1}+p). Synthetics A–F: residue, gcd, odd-prime valuation on five-clear, exceptions (1,0), REFUTED C≡0 mod 4, mixed predicates. Syracuse last-0 with K=12. Fingerprint RECURSIVE_INVARIANT. Engine CONTINUE. Lean two_step_elimination / dvd_constant_of_dvd_remainder. No ledger row
+- **Refuted ideas:** seed C≡0 (mod 4) from one prefix; total length-2 emptiness; using |D|>|C| as the proof of these classes
+- **Literature:** remainder elimination and D|C ⇒ D|K **KNOWN**; generic engine consumption is the capability
+- **Open:** higher-length recurrences that are not a fixed-last constant
+- **Decision:** PARK (engine CONTINUE). Do not auto-continue; do not claim a Collatz result
+
+```text
+What was learned
+- Last k=0 has |D|≤|C| infinitely often, so magnitude last-k does not apply
+- The two-step recurrence yields D|C ⇒ D|K with K independent of the prefix
+- That class is infinite and not an enumeration
+- Seed residue candidates can be false; exceptions such as (1,0) survive
+- Digit-fold cores and WeightDrift exclusion are unchanged; Syracuse is PARK
+
+Strongest theorem
+- dvd_constant_of_dvd_remainder (Lean); elementary KNOWN arithmetic
+
+Strongest refutation
+- C≡0 (mod 4) from prefix k0=1 on 3^k y=x+1 fails at k0=2
+
+Reusable machinery
+- RemainderInvariant; RECURSIVE_INVARIANT scope; elimination_constant
+
+Prior-art status
+- KNOWN elimination identities; NEW GENERIC ENGINE CAPABILITY is using them when |D|≤|C|
+
+Complexity profile
+- unchanged schema; recursive_count on evidence
+
+Branch status
+- PARK
+
+Why
+- The engine can obstruct an infinite class without magnitude domination. The identity is known. That is not a Collatz solver.
+
+Best next question
+- Can a higher-length remainder recurrence yield an invariant that is not a fixed-last constant?
+```
+
 

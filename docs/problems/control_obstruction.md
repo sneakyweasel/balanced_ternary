@@ -223,27 +223,103 @@ CONTINUE
 ```
 
 Dossier mapping: `PARK`. Not `ESCALATE`. Not `ENGINE_LIMITATION`.
-Not `CLOSE`: the last-\(k\) class is a real symbolic capability, but
-gcd/modular projections of a fully symbolic \(C(\mathbf{k})\) and
-recursive remainder invariants remain unbuilt.
+The last-\(k\) magnitude class remains; recursive remainder invariants
+are in the next section.
+
+## Recursive remainder invariants
+
+Magnitude domination \(\lvert D\rvert>\lvert C\rvert\) is inapplicable
+on the infinite class of length-2 words with last control \(0\):
+\(\lvert D\rvert\le\lvert C\rvert\) while \(D\) still grows with the
+prefix. The engine derives the elimination identity
+\(b^{k_1}C-r D=r p(b^{k_1}+p)\) from composition and concludes
+\(D\mid C\Rightarrow D\mid K\) with \(K=rp(b^{k_1}+p)\).
+
+### A. New recursive invariant capability
+
+`RemainderInvariant` plus scope `RECURSIVE_INVARIANT` inside
+`control_obstruction`. Recurrence
+\(C'=pC+rA\), \(A'=Aa\), \(B'=pB\), \(D'=A'-B'\) is
+`compose_affine_steps`. No second attack. `ControlWord` unchanged.
+
+### B. Synthetic benchmark results
+
+| Target | Ground truth | Magnitude | Invariant | Result |
+|--------|--------------|-----------|-----------|--------|
+| A residue | \(3^k y=x+1\), last \(0\), \(C\equiv K\pmod D\) | INAPPLICABLE | congruence | `LEAN_CERTIFIED` |
+| B gcd | \(\gcd(C,D)\mid 2\) | INAPPLICABLE | gcd bound | `LEAN_CERTIFIED`; exceptions include \((1,0)\) |
+| C valuation | \(5^k y=x+1\), even prefix, odd prime | INAPPLICABLE | \(v_q(D)>v_q(C)\) | `PROVED`; \(q\) discovered |
+| D exceptions | \((1,0)\) divides | INAPPLICABLE | \(D\mid K\) | finite exceptions recorded; not total emptiness |
+| E trap | seed \(C\equiv 0\pmod 4\) | INAPPLICABLE | false residue | `REFUTED` |
+| F mixed | five-clear last \(0\) | INAPPLICABLE | divisibility + gcd + valuation | all three |
+
+### C. Symbolic class certification
+
+Class: length \(2\), last \(k=0\), \(\lvert D\rvert>\lvert K\rvert\).
+Infinite in the prefix. Not a scan of \(k\le 1000\).
+
+### D. Syracuse
+
+Consumer only. Same identity with last \(k=0\): \(K=12\),
+\(\lvert 2^{k_0}-9\rvert\le\lvert 3+2^{k_0}\rvert\). Fingerprint
+`RECURSIVE_INVARIANT`. **KNOWN**. Not a cycle theorem.
+
+### E. Genericity
+
+Odd-prime clear (base \(3\)) and five-clear (base \(5\)) use the same
+code path. No Syracuse constants in the attack source.
+
+### F. Lean
+
+`two_step_elimination`, `dvd_constant_of_dvd_remainder`,
+`two_step_not_dvd_of_not_dvd_constant`. Syracuse:
+`syracuse_dvd_constant_of_dvd_remainder`. No `sorry`. No ledger.
+
+### G. ResearchLoop
+
+`latent_control_obstruction`:
+`NONE|WORD|CLASS|SYMBOLIC_CLASS|RECURSIVE_INVARIANT`.
+Capability `recursive_remainder_invariant`. Digit-fold `SATURATED`.
+`WeightDrift` excluded. Syracuse `PARK`. Engine `CONTINUE`.
+
+### H. ComplexityProfile
+
+Unchanged. Evidence: `recursive_count`, `magnitude=INAPPLICABLE`.
+
+### I. Prior art
+
+| Class | Item |
+|-------|------|
+| KNOWN MATHEMATICS | remainder elimination; \(D\mid C\Rightarrow D\mid K\); parity-vector / \(mx+r\) cycle constants |
+| ENGINE REDISCOVERY | those identities from a certified family |
+| NEW GENERIC ENGINE CAPABILITY | recursive invariant when \(\lvert D\rvert\le\lvert C\rvert\) |
+| POTENTIALLY NEW MATHEMATICS | none claimed |
+
+### J. Final decision
+
+```text
+CONTINUE
+```
+
+Dossier mapping: `PARK`. Not `ESCALATE`.
 
 ## Open questions
 
-Can \(\gcd(D(\mathbf{k}),C(\mathbf{k}))\) or a modular projection of
-\(C\) be derived as a symbolic function of the whole word, not only
-via last-control dominance?
+Can a remainder invariant that is not a fixed-last elimination (a
+genuinely higher-length recurrence, or \(\gcd(D,C)\) as a function of
+the whole word) be discovered and certified?
 
 ## Decision
 
-`PARK`. v2 can eliminate an infinite multi-step class from the
-symbolic remainder of a certified family. The Syracuse instance is
-**KNOWN** growth. Map globality, full cycle exclusion, and arbitrary
-summaries of \(C\) are not proved. Do not auto-continue. Do not reopen
-`research.collatz`.
+`PARK`. v2 can obstruct an infinite class when magnitude domination
+fails, by a recursive remainder identity. The identities are **KNOWN**.
+Map globality and full cycle exclusion are not proved. Do not
+auto-continue. Do not reopen `research.collatz`.
 
-Best next question: can a recursive remainder invariant obstruct a
-class where \(\lvert D\rvert\) does not dominate \(\lvert C\rvert\)?
+Best next question: can a higher-length remainder recurrence yield an
+invariant that is not a fixed-last constant?
 
 ## Publication assessment
 
 Status: `EXPLORATORY`. Not a `PAPER_CANDIDATE` as number theory.
+

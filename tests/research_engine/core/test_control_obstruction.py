@@ -179,6 +179,8 @@ def test_lean_obstruction_has_no_sorry():
     assert "last_step_remainder" in text
     assert "cycle_abs_obstruction" in text
     assert "two_step_remainder" in text
+    assert "two_step_elimination" in text
+    assert "dvd_constant_of_dvd_remainder" in text
 
 
 def _symbolic_certs(result) -> list[dict]:
@@ -316,3 +318,119 @@ def test_last_k_threshold_is_symbolic_not_enumerative():
     assert last_k_threshold(2, 1, 1, 2) == 2
     assert last_k_threshold(2, 3, 1, 2) == 4
     assert last_k_threshold(2, 1, 0, 2) is None
+
+
+def _recursive_certs(result, kind=None):
+    items = [
+        item
+        for item in result.evidence.get("certificates") or ()
+        if item.get("scope") == "RECURSIVE_INVARIANT"
+    ]
+    if kind is None:
+        return items
+    return [item for item in items if item.get("kind") == kind]
+
+
+def test_recursive_a_residue_when_magnitude_inapplicable():
+    spec = HiddenOddPrimeClearSpec()
+    result = _obstruction(spec)
+    modular = [
+        item
+        for item in _recursive_certs(result, "modular")
+        if item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+        and item.get("contradiction", {}).get("magnitude_obstruction") == "INAPPLICABLE"
+    ]
+    assert modular
+    assert result.evidence.get("recursive") is True
+
+
+def test_recursive_b_gcd_bound_is_infinite():
+    spec = HiddenOddPrimeClearSpec()
+    result = _obstruction(spec)
+    gcd_certs = [
+        item
+        for item in _recursive_certs(result, "gcd")
+        if item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+        and item.get("summary", {}).get("infinite")
+    ]
+    assert gcd_certs
+    assert gcd_certs[0]["contradiction"].get("gcd_bound") == 2
+
+
+def test_recursive_c_odd_prime_valuation():
+    from research_engine.benchmarks.hidden_piecewise import HiddenFiveClearSpec
+
+    spec = HiddenFiveClearSpec()
+    result = _obstruction(spec)
+    valuation = [
+        item
+        for item in _recursive_certs(result, "valuation")
+        if item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+    ]
+    assert valuation
+    prime = valuation[0]["contradiction"].get("prime")
+    assert prime is not None and prime % 2 == 1
+    assert valuation[0]["contradiction"].get("magnitude_obstruction") == "INAPPLICABLE"
+
+
+def test_recursive_d_finite_exceptions_are_recorded():
+    spec = HiddenOddPrimeClearSpec()
+    result = _obstruction(spec)
+    div = [
+        item
+        for item in _recursive_certs(result, "divisibility")
+        if item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+    ]
+    assert div
+    exceptions = {tuple(word) for word in div[0]["contradiction"].get("exceptions") or ()}
+    assert (1, 0) in exceptions
+    total = [
+        item
+        for item in result.evidence.get("certificates") or ()
+        if item.get("constraint", {}).get("form") == "all words"
+        and item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+    ]
+    assert not total
+
+
+def test_recursive_e_false_seed_residue_is_refuted():
+    spec = HiddenOddPrimeClearSpec()
+    result = _obstruction(spec)
+    refuted = [
+        item
+        for item in _recursive_certs(result, "invariant")
+        if item.get("status") == "REFUTED"
+    ]
+    assert refuted
+
+
+def test_recursive_f_mixed_predicates():
+    from research_engine.benchmarks.hidden_piecewise import HiddenFiveClearSpec
+
+    spec = HiddenFiveClearSpec()
+    result = _obstruction(spec)
+    proved = [
+        item
+        for item in _recursive_certs(result)
+        if item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+    ]
+    kinds = {item.get("kind") for item in proved}
+    assert "divisibility" in kinds
+    assert "gcd" in kinds or "modular" in kinds
+    assert "valuation" in kinds
+    assert all(
+        item.get("contradiction", {}).get("magnitude_obstruction") == "INAPPLICABLE"
+        or item.get("summary", {}).get("magnitude") == "INAPPLICABLE"
+        for item in proved
+    )
+
+
+def test_recursive_identity_is_discovered_not_seeded():
+    from research_engine.attacks.control_obstruction import (
+        elimination_constant,
+        elimination_identity_holds,
+    )
+
+    assert elimination_constant(3, 1, 1, 0) == 2
+    assert elimination_identity_holds(3, 1, 1, 4, 0)
+    assert elimination_identity_holds(5, 1, 1, 3, 0)

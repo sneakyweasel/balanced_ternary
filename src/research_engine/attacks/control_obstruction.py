@@ -22,6 +22,8 @@ LEAN_ABS = "Problems.Engine.not_dvd_of_abs_gt"
 LEAN_CYCLE_DVD = "Problems.Engine.cycle_constraint_dvd"
 LEAN_LAST = "Problems.Engine.last_step_remainder"
 LEAN_BOUND = "Problems.Engine.cycle_abs_obstruction"
+LEAN_ELIM = "Problems.Engine.two_step_elimination"
+LEAN_CONST = "Problems.Engine.dvd_constant_of_dvd_remainder"
 
 
 class ObstructionKind(str, Enum):
@@ -31,6 +33,8 @@ class ObstructionKind(str, Enum):
     SIGN = "sign"
     BOUND = "bound"
     DOMAIN = "domain"
+    VALUATION = "valuation"
+    INVARIANT = "invariant"
 
 
 class ObstructionStatus(str, Enum):
@@ -48,6 +52,31 @@ class ObstructionScope(str, Enum):
     WORD = "WORD"
     CLASS = "CLASS"
     SYMBOLIC_CLASS = "SYMBOLIC_CLASS"
+    RECURSIVE_INVARIANT = "RECURSIVE_INVARIANT"
+
+
+@dataclass(frozen=True)
+class RemainderInvariant:
+    """Exact predicate on remainder/coefficient state. Not a theorem prover."""
+
+    kind: str
+    predicate: str
+    transition: str
+    status: str
+    constant: int
+    last: int
+    magnitude: str = "INAPPLICABLE"
+
+    def as_dict(self) -> dict[str, Any]:
+        return {
+            "kind": self.kind,
+            "predicate": self.predicate,
+            "transition": self.transition,
+            "status": self.status,
+            "constant": self.constant,
+            "last": self.last,
+            "magnitude": self.magnitude,
+        }
 
 
 @dataclass(frozen=True)
@@ -225,6 +254,45 @@ def _bound_holds(base: int, p: int, r: int, word: Sequence[int]) -> bool:
     if c == 0:
         return True
     return abs(a - b) > abs(c)
+
+
+def remainder_recurrence_step(
+    prefix: tuple[int, int, int],
+    step: tuple[int, int, int],
+) -> tuple[int, int, int]:
+    """One recursive remainder update from the certified affine step."""
+    return compose_affine_steps((prefix, step))
+
+
+def elimination_constant(base: int, p: int, r: int, last: int) -> int:
+    """K such that D|C implies D|K for length-2 words with this last control."""
+    return r * p * (base ** last + p)
+
+
+def elimination_identity_holds(base: int, p: int, r: int, k0: int, last: int) -> bool:
+    a, b, c = compose_power_word(base, p, r, (k0, last))
+    left = (base ** last) * c - r * (a - b)
+    return left == elimination_constant(base, p, r, last)
+
+
+def _valuation(value: int, prime: int) -> int:
+    if prime < 2 or value == 0:
+        return 0
+    count = 0
+    magnitude = abs(value)
+    while magnitude % prime == 0:
+        magnitude //= prime
+        count += 1
+        if count > 64:
+            break
+    return count
+
+
+def _magnitude_inapplicable(base: int, p: int, r: int, k0: int, last: int) -> bool:
+    a, b, c = compose_power_word(base, p, r, (k0, last))
+    if c == 0:
+        return True
+    return abs(a - b) <= abs(c)
 
 
 def length_one_divisor_class(
@@ -681,6 +749,251 @@ def _symbolic_last_k_obstructions(
     return certificates
 
 
+_ODD_PRIMES = (3, 5, 7, 11, 13, 17, 19, 23, 29)
+_RECURRENCE = "C' = p*C + r*A; A' = A*a; B' = p*B; D' = A' - B'"
+
+
+def _recursive_invariant_obstructions(
+    family: Mapping[str, Any],
+    summary: Mapping[str, Any],
+) -> list[ControlObstructionCertificate]:
+    """Non-magnitude class obstruction: for fixed last k, D|C implies D|K."""
+    base = int(family.get("base") or family.get("q_base") or 0)
+    if "p" not in family or "r" not in family or base < 2:
+        return []
+    p = int(family["p"])
+    r = int(family["r"])
+    if r == 0:
+        return []
+    k_min = last_k_threshold(base, p, r, 2)
+    certificates: list[ControlObstructionCertificate] = []
+    for last in (0, 1, 2):
+        if k_min is not None and last >= k_min:
+            continue
+        if not _magnitude_inapplicable(base, p, r, 8, last):
+            continue
+        if not _magnitude_inapplicable(base, p, r, 12, last):
+            continue
+        constant = elimination_constant(base, p, r, last)
+        if constant == 0:
+            continue
+        identity_ok = all(
+            elimination_identity_holds(base, p, r, k0, last) for k0 in range(0, 8)
+        )
+        if not identity_ok:
+            continue
+        exceptions: list[tuple[int, ...]] = []
+        refuted = False
+        for k0 in range(0, 21):
+            a, b, c = compose_power_word(base, p, r, (k0, last))
+            d = a - b
+            if d == 0:
+                if c == 0:
+                    exceptions.append((k0, last))
+                continue
+            divides = c % d == 0
+            if divides:
+                exceptions.append((k0, last))
+            if divides and abs(d) > abs(constant):
+                refuted = True
+        _, _, seed_c = compose_power_word(base, p, r, (1, last))
+        for modulus in (4, 5, 7, 9):
+            if seed_c % modulus != 0:
+                continue
+            witness = None
+            for k0 in range(2, 12):
+                _, _, later = compose_power_word(base, p, r, (k0, last))
+                if later % modulus != 0:
+                    witness = (k0, last, later)
+                    break
+            if witness is not None:
+                certificates.append(
+                    ControlObstructionCertificate(
+                        kind=ObstructionKind.INVARIANT.value,
+                        scope=ObstructionScope.RECURSIVE_INVARIANT.value,
+                        status=ObstructionStatus.REFUTED.value,
+                        reason="seed residue C≡0 (mod m) fails on a later prefix",
+                        constraint={"kind": "CYCLE_CONSTRAINT", "length": 2, "last": last},
+                        summary={
+                            **dict(summary),
+                            "magnitude": "INAPPLICABLE",
+                            "invariant": f"C ≡ 0 (mod {modulus})",
+                        },
+                        contradiction={
+                            "modulus": modulus,
+                            "seed_word": (1, last),
+                            "counterexample": witness,
+                            "magnitude_obstruction": "INAPPLICABLE",
+                        },
+                    )
+                )
+        constraint = {
+            "kind": "CYCLE_CONSTRAINT",
+            "form": "D|C implies D|K for fixed last control",
+            "base": base,
+            "p": p,
+            "r": r,
+            "length": 2,
+            "last": last,
+        }
+        invariant = RemainderInvariant(
+            kind="constant_divides",
+            predicate=f"D|C ⇒ D|{constant}",
+            transition=_RECURRENCE,
+            status=(
+                ObstructionStatus.REFUTED.value
+                if refuted
+                else ObstructionStatus.LEAN_CERTIFIED.value
+            ),
+            constant=constant,
+            last=last,
+        )
+        if refuted:
+            certificates.append(
+                ControlObstructionCertificate(
+                    kind=ObstructionKind.DIVISIBILITY.value,
+                    scope=ObstructionScope.RECURSIVE_INVARIANT.value,
+                    status=ObstructionStatus.REFUTED.value,
+                    reason="a word with |D|>|K| still divides C",
+                    constraint=constraint,
+                    summary={**dict(summary), **invariant.as_dict(), "magnitude": "INAPPLICABLE"},
+                    contradiction={"exceptions": tuple(exceptions), "constant": constant},
+                )
+            )
+            continue
+        certificates.append(
+            ControlObstructionCertificate(
+                kind=ObstructionKind.DIVISIBILITY.value,
+                scope=ObstructionScope.RECURSIVE_INVARIANT.value,
+                status=ObstructionStatus.LEAN_CERTIFIED.value,
+                reason=(
+                    "fixed last control: D|C implies D|K; |D|≤|C| so magnitude "
+                    "does not apply; |D|>|K| is an infinite prefix class"
+                ),
+                constraint=constraint,
+                summary={
+                    **dict(summary),
+                    **invariant.as_dict(),
+                    "length": 2,
+                    "last": last,
+                    "class": f"length 2, last k={last}, |D|>|K|",
+                    "infinite": True,
+                    "magnitude": "INAPPLICABLE",
+                    "divisibility_mode": "SYMBOLIC_DIVISIBILITY",
+                },
+                contradiction={
+                    "constant": constant,
+                    "exceptions": tuple(exceptions),
+                    "empty_in_class": True,
+                    "magnitude_obstruction": "INAPPLICABLE",
+                    "recursive_invariant": "PROVED",
+                    "divisibility_contradiction": "PROVED",
+                },
+                lean=LEAN_CONST,
+            )
+        )
+        certificates.append(
+            ControlObstructionCertificate(
+                kind=ObstructionKind.GCD.value,
+                scope=ObstructionScope.RECURSIVE_INVARIANT.value,
+                status=ObstructionStatus.LEAN_CERTIFIED.value,
+                reason="gcd(C,D) divides K, hence gcd < |D| on the infinite class",
+                constraint=constraint,
+                summary={
+                    **dict(summary),
+                    "kind": "gcd_bound",
+                    "predicate": f"gcd(C,D)|{constant}",
+                    "transition": _RECURRENCE,
+                    "last": last,
+                    "magnitude": "INAPPLICABLE",
+                    "infinite": True,
+                },
+                contradiction={
+                    "gcd_bound": abs(constant),
+                    "exceptions": tuple(exceptions),
+                    "magnitude_obstruction": "INAPPLICABLE",
+                },
+                lean=LEAN_CONST,
+            )
+        )
+        if last == 0:
+            certificates.append(
+                ControlObstructionCertificate(
+                    kind=ObstructionKind.MODULAR.value,
+                    scope=ObstructionScope.RECURSIVE_INVARIANT.value,
+                    status=ObstructionStatus.LEAN_CERTIFIED.value,
+                    reason="C ≡ K (mod D) while cycle requires C ≡ 0 (mod D)",
+                    constraint=constraint,
+                    summary={
+                        **dict(summary),
+                        "kind": "congruence",
+                        "predicate": f"C ≡ {constant} (mod D)",
+                        "transition": _RECURRENCE,
+                        "last": last,
+                        "magnitude": "INAPPLICABLE",
+                        "infinite": True,
+                    },
+                    contradiction={
+                        "residue": constant,
+                        "exceptions": tuple(exceptions),
+                        "magnitude_obstruction": "INAPPLICABLE",
+                    },
+                    lean=LEAN_ELIM,
+                )
+            )
+        even_hits = []
+        odd_primes_used: list[int] = []
+        for prime in _ODD_PRIMES:
+            if constant % prime == 0:
+                continue
+            even_ok = True
+            for k0 in range(2, 13, 2):
+                a, b, c = compose_power_word(base, p, r, (k0, last))
+                d = a - b
+                if d == 0:
+                    even_ok = False
+                    break
+                if _valuation(d, prime) <= _valuation(c, prime):
+                    even_ok = False
+                    break
+            if even_ok:
+                odd_primes_used.append(prime)
+                even_hits.append(prime)
+        if even_hits:
+            prime = even_hits[0]
+            certificates.append(
+                ControlObstructionCertificate(
+                    kind=ObstructionKind.VALUATION.value,
+                    scope=ObstructionScope.RECURSIVE_INVARIANT.value,
+                    status=ObstructionStatus.PROVED.value,
+                    reason=(
+                        f"v_{prime}(D)>v_{prime}(C) on even prefixes with last k={last}; "
+                        "magnitude does not apply"
+                    ),
+                    constraint=constraint,
+                    summary={
+                        **dict(summary),
+                        "kind": "valuation",
+                        "predicate": f"v_{prime}(D)>v_{prime}(C)",
+                        "transition": _RECURRENCE,
+                        "last": last,
+                        "class": f"length 2, last k={last}, even k0",
+                        "infinite": True,
+                        "magnitude": "INAPPLICABLE",
+                    },
+                    contradiction={
+                        "prime": prime,
+                        "odd_primes": tuple(odd_primes_used),
+                        "exceptions": tuple(
+                            word for word in exceptions if word[0] % 2 == 0
+                        ),
+                        "magnitude_obstruction": "INAPPLICABLE",
+                    },
+                )
+            )
+    return certificates
+
+
 def run_control_obstruction(spec: ProblemSpec, context: AttackContext) -> tuple[ControlObstructionCertificate, ...]:
     prior = next(
         (item for item in reversed(context.prior_results) if getattr(item, "name", None) == "control_word"),
@@ -710,6 +1023,7 @@ def run_control_obstruction(spec: ProblemSpec, context: AttackContext) -> tuple[
         certificates.extend(_length_one_family_obstructions(family, relations, summary))
         certificates.extend(_domain_suffix_class(family, relations, summary))
         certificates.extend(_symbolic_last_k_obstructions(family, relations, summary))
+        certificates.extend(_recursive_invariant_obstructions(family, summary))
     certificates.extend(_modular_length_class(relations, summary))
     certificates.extend(_sign_domain_word(spec, realizability))
     return tuple(certificates)
@@ -737,7 +1051,11 @@ class ControlObstructionAttack:
             for item in certificates
             if item.status in _PROVED_STATUSES
             and item.scope
-            in {ObstructionScope.CLASS.value, ObstructionScope.SYMBOLIC_CLASS.value}
+            in {
+                ObstructionScope.CLASS.value,
+                ObstructionScope.SYMBOLIC_CLASS.value,
+                ObstructionScope.RECURSIVE_INVARIANT.value,
+            }
         )
         word_proved = tuple(
             item
@@ -748,14 +1066,23 @@ class ControlObstructionAttack:
         symbolic = tuple(
             item for item in proved if item.scope == ObstructionScope.SYMBOLIC_CLASS.value
         )
+        recursive = tuple(
+            item for item in proved if item.scope == ObstructionScope.RECURSIVE_INVARIANT.value
+        )
         evidence = {
             "certificates": tuple(item.as_dict() for item in certificates),
             "class_count": len(proved),
             "word_count": len(word_proved),
             "symbolic_count": len(symbolic),
+            "recursive_count": len(recursive),
             "certificate_count": len(certificates),
             "symbolic": bool(symbolic),
-            "lean": LEAN_BOUND if symbolic else (LEAN_DVD if proved or word_proved else ""),
+            "recursive": bool(recursive),
+            "lean": (
+                LEAN_CONST
+                if recursive
+                else (LEAN_BOUND if symbolic else (LEAN_DVD if proved or word_proved else ""))
+            ),
             "reconstructed_affine": None,
         }
         if proved:
@@ -767,6 +1094,7 @@ class ControlObstructionAttack:
                 claim=(
                     f"{len(proved)} class-level control-word obstruction(s)"
                     + (f", {len(symbolic)} symbolic" if symbolic else "")
+                    + (f", {len(recursive)} recursive" if recursive else "")
                     + "; a cycle obstruction is not a cycle theorem"
                 ),
                 evidence=evidence,
