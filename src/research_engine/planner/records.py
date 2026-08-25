@@ -55,6 +55,9 @@ def render_record(
             "control_count",
             "contribution_count",
             "separated",
+            "census_kind",
+            "branch_count",
+            "coverage",
         )
         if key in result.evidence
     )

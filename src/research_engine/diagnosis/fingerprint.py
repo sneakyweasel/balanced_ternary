@@ -273,6 +273,52 @@ def fingerprint_from_report(
     ):
         modular = "SAMPLED_RESTRICTION"
 
+    piecewise_structure = UNOBSERVED
+    latent = UNOBSERVED
+    if "piecewise_affine" in skipped:
+        piecewise_structure = UNOBSERVED
+        latent = UNOBSERVED
+    else:
+        piecewise = results.get("piecewise_affine")
+        if piecewise is None:
+            piecewise_structure = UNOBSERVED
+            latent = UNOBSERVED
+        else:
+            kind = piecewise.evidence.get("census_kind")
+            if kind == "PARAMETERIZED_CENSUS":
+                piecewise_structure = "PARAMETERIZED"
+                latent = "PARAMETERIZED"
+            elif kind == "FINITE_CENSUS":
+                piecewise_structure = "FINITE"
+                latent = "FINITE"
+            elif kind == "UNRESOLVED":
+                piecewise_structure = "UNCERTAIN"
+                latent = "UNCERTAIN"
+            else:
+                piecewise_structure = "NONE"
+                latent = "NONE"
+
+    domain_field = UNOBSERVED
+    if "parameter_domain" in skipped:
+        domain_field = UNOBSERVED
+    else:
+        domain = results.get("parameter_domain")
+        if domain is None:
+            domain_field = UNOBSERVED
+        else:
+            domains = domain.evidence.get("domains") or ()
+            lean = domain.evidence.get("lean") or ""
+            directions = {item.get("direction") for item in domains if isinstance(item, dict)}
+            evidences = {item.get("evidence") for item in domains if isinstance(item, dict)}
+            if lean or "LEAN_CERTIFIED" in evidences or "EXACT_PROVED" in evidences:
+                domain_field = "EXACT"
+            elif "EXACT" in directions:
+                domain_field = "SAMPLE_SUPPORTED"
+            elif directions:
+                domain_field = "SAMPLE_SUPPORTED"
+            else:
+                domain_field = "UNCERTAIN"
+
     return RegimeFingerprint(
         transition_architecture=_transition_architecture(control),
         state_space_type=state_type,
@@ -290,6 +336,9 @@ def fingerprint_from_report(
         modular_structure=modular,
         spectral_structure=spectral,
         factorization_structure=factorization,
+        piecewise_affine_structure=piecewise_structure,
+        latent_control=latent,
+        parameter_domain=domain_field,
         certificate_strength=cert,
     )
 

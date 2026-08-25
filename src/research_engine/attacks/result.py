@@ -55,6 +55,7 @@ class AttackContext:
     symmetry_domain: frozenset[Any] | None = None
     skip_attacks: tuple[str, ...] = ()
     descent_potential: Callable[[State], int] | None = None
+    prior_results: tuple[Any, ...] = ()
 
 
 @dataclass(frozen=True)

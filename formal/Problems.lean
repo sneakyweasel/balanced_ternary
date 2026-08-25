@@ -23,3 +23,5 @@ import Problems.BalancedTernary.SignedP0
 import Problems.BalancedTernary.DigitSumDynamics
 import Problems.BalancedTernary.WeightDynamics
 import Problems.BalancedTernary.WeightDrift
+import Problems.Engine.PiecewiseCensus
+import Problems.Engine.ParameterDomain

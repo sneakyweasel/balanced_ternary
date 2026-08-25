@@ -45,4 +45,16 @@ def export_syracuse_targets(report: PlannerReport) -> tuple[TheoremTarget, ...]:
         theorem=ONE_THEOREM,
         name="syracuse_one_fixed",
     )
-    return (linked,) + tuple(targets)
+    out: list[TheoremTarget] = [linked]
+    for item in targets:
+        if item.attack == "parameter_domain" and item.exportable:
+            out.append(
+                attach_lean(
+                    item,
+                    module="Problems.Engine",
+                    theorem="mul_pow_eq_iff_padicValInt",
+                )
+            )
+        else:
+            out.append(item)
+    return tuple(out)

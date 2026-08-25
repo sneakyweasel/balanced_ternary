@@ -7,6 +7,12 @@ from research_engine.benchmarks.pipeline import (
     run_all_benchmarks,
     run_benchmark,
 )
+from research_engine.benchmarks.hidden_piecewise import (
+    HiddenCongruenceASpec,
+    HiddenNestedCSpec,
+    HiddenPowerClearDSpec,
+    HiddenSignBSpec,
+)
 from research_engine.benchmarks.systems import (
     ExpandingEscapeSpec,
     FiniteClosureSpec,
@@ -18,6 +24,10 @@ from research_engine.benchmarks.systems import (
 __all__ = [
     "ExpandingEscapeSpec",
     "FiniteClosureSpec",
+    "HiddenCongruenceASpec",
+    "HiddenNestedCSpec",
+    "HiddenPowerClearDSpec",
+    "HiddenSignBSpec",
     "InfiniteTranslateSpec",
     "ModularTripleSpec",
     "ResetLoopSpec",

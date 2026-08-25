@@ -1633,4 +1633,92 @@ Best next question
 - Can a generic piecewise-affine census from I/O samples become a reusable v2 attack?
 ```
 
+## Generic piecewise-affine census
+
+- **Date:** 2026-08-25
+- **Objective:** Turn the Syracuse `ENGINE_LIMITATION` into a generic I/O census that recovers latent affine branches without map-specific hints
+- **Hypotheses:** Hidden congruence/sign/nested maps admit a finite census; an unbounded \(2^k\) family must not collapse to a finite table; Syracuse may then show a parameterized family from samples
+- **Major results:** `PiecewiseAffineCensus` (`AffineBranch`, `BranchRegion`, `LatentControl`). Synthetics A–C recover hidden finite branches; D is `PARAMETERIZED_CENSUS` for \((x+1)/2^{v_2(x+1)}\). Digit-fold core family stays `SATURATED`. Syracuse adapter still hint-free: sample-supported family \(2^k y=3x+1\), engine `CONTINUE` (not `ENGINE_LIMITATION`). Lean `hiddenCongruenceA` residue identities; no ledger row
+- **Refuted ideas:** two-point lines as branches; finite affine tables for unbounded \(2^k\) families; promoting window agreement to a \(\mathbb{Z}\)-theorem
+- **Literature:** `acceleratedT_mul` **KNOWN**; census rediscovery is **OBSERVATION**
+- **Open:** exact certification of a reconstructed \(2^k\)-divisibility region
+- **Decision:** PARK (engine `CONTINUE` on Syracuse). Do not auto-continue; do not claim a Collatz result
+
+```text
+What was learned
+- A generic I/O census can recover hidden finite affine partitions
+- Parameterized 2^k families are a distinct census kind, not a growing finite table
+- Digit-fold cores are unchanged; SignedP0 has only a secondary mod-3 census
+- Syracuse yields 2^k y = 3x+1 from samples, which is KNOWN as acceleratedT_mul
+- Same-run modular/cycle attacks stay inapplicable without AffineSystem injection
+
+Strongest theorem
+- hiddenCongruenceA residue identities (Lean); elementary KNOWN arithmetic
+
+Strongest refutation
+- Synthetic D and Syracuse refuse a finite branch table
+
+Reusable machinery
+- research_engine.attacks.piecewise_affine and hidden_piecewise benchmarks
+
+Prior-art status
+- KNOWN clearing identity; engine rediscovery from I/O; no new Collatz theorem
+
+Complexity profile
+- census metrics on AttackResult.evidence; profile schema not forked
+
+Branch status
+- PARK
+
+Why
+- The missing generic capability now exists and moved the Syracuse engine boundary. The recovered family is already known mathematics. Remaining work is exact domain certification, not a Collatz solver.
+
+Best next question
+- Can a reconstructed 2^k-divisibility region become an exact generic certificate without map-specific hints?
+```
+
+## Exact domain certificates
+
+- **Date:** 2026-08-25
+- **Objective:** Certify arithmetic predicates of a reconstructed parameterized family without map-specific hints, distinguishing mere divisibility from maximal selection
+- **Hypotheses:** Maximal conjunction \(b^k\mid q \land b^{k+1}\nmid q\) is exact parameter selection; \(b^k\mid q\) alone is necessary-only when higher \(k\) exist; the integer iff with \(v_b(q)\) is reusable, not a Collatz identity
+- **Major results:** `ParameterDomainAttack` after `piecewise_affine` via `prior_results`. Synthetics: trap B is `NECESSARY_ONLY`; maximal A and odd-prime C are `EXACT`; mixed D uses residue AND maximal. Syracuse hint-free: conjunction \(2^k\mid(3x+1)\land 2^{k+1}\nmid(3x+1)\), presentation \(k=v_2(3x+1)\) only after certification. Engine `CONTINUE`. Lean `mul_pow_eq_iff_padicValInt`. No ledger row
+- **Refuted ideas:** billing mere divisibility as exact parameter selection; treating window-exact map realization as a \(\mathbb{Z}\)-theorem; seeding \(v_2(3x+1)\)
+- **Literature:** `acceleratedT_mul` and padic valuation iff **KNOWN**; engine rediscovery is **OBSERVATION**
+- **Open:** generic certificates beyond KNOWN clearing, still without map-specific hints
+- **Decision:** PARK (engine `CONTINUE` on Syracuse). Do not auto-continue; do not claim a Collatz result
+
+```text
+What was learned
+- A reconstructed family can be certified without seeding a valuation formula
+- Mere divisibility is necessary-only when several exponents appear
+- The integer iff (b^k y = q and b does not divide y) iff v_b(q)=k is KNOWN arithmetic
+- Digit-fold cores and WeightDrift exclusion are unchanged
+- Syracuse domain EXACT is the known clearing identity, not a new Collatz theorem
+
+Strongest theorem
+- mul_pow_eq_iff_padicValInt (Lean); elementary KNOWN arithmetic
+
+Strongest refutation
+- Trap B: 2^k | q does not select the exact parameter when higher k exist
+
+Reusable machinery
+- research_engine.attacks.parameter_domain; BASE_BOX {2,3,5,7}; prior_results chaining
+
+Prior-art status
+- KNOWN clearing and KNOWN valuation iff; engine rediscovery from I/O; no new Collatz theorem
+
+Complexity profile
+- domain metrics on AttackResult.evidence; profile schema not forked
+
+Branch status
+- PARK
+
+Why
+- The missing generic domain-certificate layer exists and classified Syracuse as KNOWN clearing with an exact arithmetic relation. Map globality on Z remains empirical. That is not a Collatz solver.
+
+Best next question
+- Is there a generic certificate beyond KNOWN clearing that still does not require map-specific hints?
+```
+
 

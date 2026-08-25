@@ -34,6 +34,7 @@ def decide_research(
     delta: StructuralDelta | None,
     report: PlannerReport,
 ) -> tuple[ResearchDecision, str]:
+    recovered = fingerprint.piecewise_affine_structure in {"FINITE", "PARAMETERIZED"}
     hidden_branching = (
         fingerprint.control_structure == "SINGLETON"
         and fingerprint.numerical_contraction == "MIXED_MAGNITUDE"
@@ -41,6 +42,7 @@ def decide_research(
         and fingerprint.modular_structure in {"INAPPLICABLE", "SAMPLED_RESTRICTION"}
         and fingerprint.block_structure == "INAPPLICABLE"
         and fingerprint.spectral_structure == "INAPPLICABLE"
+        and not recovered
     )
     if hidden_branching:
         return (
@@ -67,6 +69,25 @@ def decide_research(
         )
 
     far = delta is None or delta.level is DeltaLevel.HIGH
+    if recovered and far:
+        if fingerprint.piecewise_affine_structure == "PARAMETERIZED":
+            if fingerprint.parameter_domain == "EXACT":
+                return (
+                    ResearchDecision.CONTINUE,
+                    "latent parameterized family recovered and the arithmetic "
+                    "domain of the relation is certified; map globality on Z "
+                    "remains empirical",
+                )
+            return (
+                ResearchDecision.CONTINUE,
+                "family recovered, domain uncertified: window agreement of a "
+                "parameterized family is not a global domain theorem",
+            )
+        return (
+            ResearchDecision.CONTINUE,
+            "finite piecewise-affine census on a structurally distant regime; "
+            "window agreement is not a Z-theorem",
+        )
     if far and fingerprint.eventual_region == "UNBOUNDED_SAMPLE":
         if _has_exact_support(report):
             return (

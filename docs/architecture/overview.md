@@ -21,7 +21,7 @@ bt.*                        problem-independent BT mathematics
 
 - `bt.*` may import only `bt.*` (and the Python standard library). It must not import `research_engine`.
 - `research_engine` may import only the Python standard library. It must not import `bt.*` or `research.*`.
-- Optional engine layers (not required on `ProblemSpec`): observation, raw-contribution factorization, invariant envelope vs exact reachability, pair-state separation, Mealy quotient, complexity profiles, evidence `CertificateKind`, session prior-art status, and the diagnosis loop (`RegimeFingerprint`, family saturation, `ResearchDecision`). These wrap existing attacks. They are not a second theorem ledger.
+- Optional engine layers (not required on `ProblemSpec`): observation, raw-contribution factorization, invariant envelope vs exact reachability, pair-state separation, Mealy quotient, complexity profiles, evidence `CertificateKind`, session prior-art status, the diagnosis loop (`RegimeFingerprint`, family saturation, `ResearchDecision`), the piecewise-affine census (`AffineBranch`, `LatentControl`), and parameter-domain certificates (`AffineFamily`, `DomainCertificate`). These wrap existing attacks. They are not a second theorem ledger.
 - `research.*` may import `bt.*`, `research_engine`, and explicitly shared utilities
   (`research.experiments`, conjecture/literature registries).
 - `cli` and `visualization` may import both layers.
@@ -33,7 +33,7 @@ bt.*                        problem-independent BT mathematics
 | Distribution | `balanced-ternary` | `pip install -e ".[dev,ui]"` |
 | Command | `btlab` | CLI entry |
 | Core | `bt` | problem-independent BT mathematics |
-| Experimental dynamics | `research_engine` | integer affine/block/trajectory, R/K/L, algebra, attacks (including spectral companion classification, optional observation/factorization/separation/quotient), planner, synthetic benchmarks, theorem targets (not proofs), and engine-only `CertificateKind`; `btlab research` is the CLI wrapper; symbolic deferred |
+| Experimental dynamics | `research_engine` | integer affine/block/trajectory, R/K/L, algebra, attacks (including spectral companion classification, piecewise-affine census, optional observation/factorization/separation/quotient), planner, synthetic benchmarks, theorem targets (not proofs), and engine-only `CertificateKind`; `btlab research` is the CLI wrapper; symbolic deferred |
 | Research | `research` | problem-specific applications |
 | CLI | `cli` | `btlab` implementation |
 | Formal | `balanced-ternary-formal` | Lake package under `formal/` |

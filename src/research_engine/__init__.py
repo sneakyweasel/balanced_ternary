@@ -34,6 +34,8 @@ from research_engine.algebra.lattices import (
 from research_engine.algebra.linear_functionals import LinearFunctional, dot, left_multiply
 from research_engine.algebra.recurrences import RecurrenceSpec
 from research_engine.attacks import (
+    AffineFamily,
+    AffineFamilyCertificate,
     AffineInvariantAttack,
     AttackContext,
     AttackResult,
@@ -45,6 +47,9 @@ from research_engine.attacks import (
     FactorizationAttack,
     FunctionalBoundAttack,
     ModularInvariantAttack,
+    ParameterDomainAttack,
+    PiecewiseAffineCensus,
+    PiecewiseAffineCensusAttack,
     ReconnaissanceAttack,
     ReverseGeometryAttack,
     SpectralClassificationAttack,
@@ -117,6 +122,8 @@ from research_engine.verification import (
 )
 
 __all__ = [
+    "AffineFamily",
+    "AffineFamilyCertificate",
     "AffineSystem",
     "AffineInvariantAttack",
     "AttackContext",
@@ -152,6 +159,9 @@ __all__ = [
     "Matrix",
     "ModularInvariantAttack",
     "NegativeKnowledge",
+    "ParameterDomainAttack",
+    "PiecewiseAffineCensus",
+    "PiecewiseAffineCensusAttack",
     "PlannerReport",
     "PriorArtStatus",
     "ProblemSpec",

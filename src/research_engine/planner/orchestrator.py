@@ -10,6 +10,8 @@ from research_engine.attacks.closure import ExhaustiveClosureAttack
 from research_engine.attacks.factorization import FactorizationAttack
 from research_engine.attacks.functional import FunctionalBoundAttack
 from research_engine.attacks.modular import ModularInvariantAttack
+from research_engine.attacks.parameter_domain import ParameterDomainAttack
+from research_engine.attacks.piecewise_affine import PiecewiseAffineCensusAttack
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
 from research_engine.attacks.result import (
     Attack,
@@ -31,6 +33,8 @@ from research_engine.planner.negative import ForbiddenImplication
 
 DEFAULT_ATTACK_ORDER: tuple[str, ...] = (
     "reconnaissance",
+    "piecewise_affine",
+    "parameter_domain",
     "closure",
     "modular",
     "functional",
@@ -49,6 +53,8 @@ DEFAULT_PLANNER_HORIZON = 16
 
 _ATTACKS: dict[str, type[Attack]] = {
     "reconnaissance": ReconnaissanceAttack,
+    "piecewise_affine": PiecewiseAffineCensusAttack,
+    "parameter_domain": ParameterDomainAttack,
     "closure": ExhaustiveClosureAttack,
     "modular": ModularInvariantAttack,
     "functional": FunctionalBoundAttack,
@@ -113,6 +119,7 @@ class AttackPlanner:
                 continue
             self.ledger.record_attack(result)
             results.append(result)
+            context = replace(context, prior_results=tuple(results))
             for target in (ClaimKind.LIVE, ClaimKind.TERMINAL):
                 jump = self.ledger.knowledge.forbids_kinds(result.kind, target)
                 if jump is not None:
@@ -161,6 +168,11 @@ def run_named_attack(name: str, spec: ProblemSpec, context: AttackContext) -> At
         raise KeyError(f"unknown attack {name!r}")
     if context.max_steps is None:
         context = replace(context, max_steps=DEFAULT_PLANNER_HORIZON)
+    if name == "parameter_domain" and not context.prior_results:
+        census = PiecewiseAffineCensusAttack()
+        if census.applicable(spec, context):
+            prior = census.run(spec, context)
+            context = replace(context, prior_results=(prior,))
     attack = cls()
     if not attack.applicable(spec, context):
         return inapplicable(name, "inapplicable", ClaimKind.REACHABLE)

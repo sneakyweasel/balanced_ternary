@@ -105,11 +105,45 @@ def capability_coverage(
     statuses["cycle_obstruction"] = CoverageStatus.NOT_TESTED.value
     statuses["valuation_dynamics"] = CoverageStatus.NOT_TESTED.value
     statuses["recursive_semantics"] = CoverageStatus.NOT_TESTED.value
+    statuses["latent_piecewise_affine_control"] = CoverageStatus.NOT_TESTED.value
+    statuses["parameter_domain_certification"] = CoverageStatus.NOT_TESTED.value
+
+    if _ran(results, "piecewise_affine"):
+        statuses["latent_piecewise_affine_control"] = CoverageStatus.EXERCISED.value
+    elif _inapplicable(skipped, "piecewise_affine"):
+        statuses["latent_piecewise_affine_control"] = CoverageStatus.INAPPLICABLE.value
+
+    if _ran(results, "parameter_domain"):
+        statuses["parameter_domain_certification"] = CoverageStatus.EXERCISED.value
+        domains = results["parameter_domain"].evidence.get("domains") or ()
+        maximal = False
+        for item in domains:
+            if not isinstance(item, dict):
+                continue
+            kind = (item.get("domain") or {}).get("kind")
+            parts = (item.get("domain") or {}).get("parts") or ()
+            if kind == "maximal_divisibility" or any(
+                isinstance(part, dict) and part.get("kind") == "maximal_divisibility"
+                for part in parts
+            ):
+                if item.get("direction") == "EXACT":
+                    maximal = True
+                    break
+        census_kind = results.get("piecewise_affine")
+        parameterized = (
+            census_kind is not None
+            and census_kind.evidence.get("census_kind") == "PARAMETERIZED_CENSUS"
+        )
+        if parameterized and maximal:
+            statuses["valuation_dynamics"] = CoverageStatus.EXERCISED.value
+    elif _inapplicable(skipped, "parameter_domain"):
+        statuses["parameter_domain_certification"] = CoverageStatus.INAPPLICABLE.value
 
     if (
         fingerprint.control_structure == "SINGLETON"
         and fingerprint.numerical_contraction == "MIXED_MAGNITUDE"
         and fingerprint.eventual_region == "UNBOUNDED_SAMPLE"
+        and statuses["valuation_dynamics"] != CoverageStatus.EXERCISED.value
     ):
         statuses["valuation_dynamics"] = CoverageStatus.NOT_TESTED.value
 

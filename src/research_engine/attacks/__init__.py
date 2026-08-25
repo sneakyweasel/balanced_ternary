@@ -22,6 +22,23 @@ from research_engine.attacks.envelope import (
 from research_engine.attacks.factorization import FactorizationAttack
 from research_engine.attacks.functional import FunctionalBoundAttack
 from research_engine.attacks.modular import ModularInvariantAttack, coordinate_forcing_gcds
+from research_engine.attacks.parameter_domain import (
+    AffineFamily,
+    AffineFamilyCertificate,
+    DomainCertificate,
+    ParameterDomain,
+    ParameterDomainAttack,
+    run_parameter_domain,
+)
+from research_engine.attacks.piecewise_affine import (
+    AffineBranch,
+    BranchRegion,
+    CensusKind,
+    LatentControl,
+    PiecewiseAffineCensus,
+    PiecewiseAffineCensusAttack,
+    run_piecewise_affine_census,
+)
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
 from research_engine.attacks.result import (
     Attack,
@@ -35,6 +52,9 @@ from research_engine.attacks.spectral import SpectralClassificationAttack
 from research_engine.attacks.symmetry import SymmetryAttack, SymmetryCandidate, SymmetryResult, verify_symmetry
 
 __all__ = [
+    "AffineBranch",
+    "AffineFamily",
+    "AffineFamilyCertificate",
     "AffineInvariantAttack",
     "Attack",
     "AttackContext",
@@ -43,8 +63,11 @@ __all__ = [
     "BehavioralSeparationAttack",
     "BlockDynamicsAttack",
     "BlockKind",
+    "BranchRegion",
+    "CensusKind",
     "ClosureLeakAttack",
     "DescentLeakAttack",
+    "DomainCertificate",
     "EnvelopeComparison",
     "EquivalenceSeparationAttack",
     "ExactReachabilityResult",
@@ -53,7 +76,12 @@ __all__ = [
     "FunctionalBoundAttack",
     "InvariantEnvelopeResult",
     "InvariantLeakAttack",
+    "LatentControl",
     "ModularInvariantAttack",
+    "ParameterDomain",
+    "ParameterDomainAttack",
+    "PiecewiseAffineCensus",
+    "PiecewiseAffineCensusAttack",
     "ReconnaissanceAttack",
     "ReverseGeometryAttack",
     "SeparationResult",
@@ -68,6 +96,8 @@ __all__ = [
     "envelope_from_interval",
     "find_invariant",
     "reachable_from_ints",
+    "run_parameter_domain",
+    "run_piecewise_affine_census",
     "separate_states",
     "verify_symmetry",
 ]

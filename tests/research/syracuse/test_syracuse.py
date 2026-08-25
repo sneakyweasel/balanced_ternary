@@ -108,6 +108,34 @@ def test_spec_planner_and_hypotheses():
     assert "spectral" in skipped
     assert "reverse" in skipped
     assert "block" in skipped
+    piecewise = next(item for item in report.results if item.name == "piecewise_affine")
+    assert piecewise.status is AttackStatus.OBSERVATION
+    assert piecewise.evidence.get("census_kind") == "PARAMETERIZED_CENSUS"
+    family = piecewise.evidence.get("family")
+    assert isinstance(family, dict)
+    assert family.get("p") == 3 and family.get("r") == 1
+    assert family.get("q_base") == 2
+    domain = next(item for item in report.results if item.name == "parameter_domain")
+    assert domain.status is AttackStatus.SUPPORTED
+    assert domain.scope.value == "EXACT"
+    domains = domain.evidence.get("domains") or ()
+    assert domains
+    assert all(item.get("direction") == "EXACT" for item in domains)
+    kinds = {item.get("domain", {}).get("kind") for item in domains}
+    assert kinds <= {"maximal_divisibility", "conjunction"}
+    assert "maximal_divisibility" in kinds or any(
+        part.get("kind") == "maximal_divisibility"
+        for item in domains
+        for part in item.get("domain", {}).get("parts", ())
+    )
+    assert any(
+        "v_2" in str(item.get("domain", {}).get("presentation", ""))
+        or "v_2" in str(item.get("domain", {}))
+        for item in domains
+    )
+    checks = domain.evidence.get("divisibility_checks") or ()
+    assert checks
+    assert all(item.get("direction") == "NECESSARY_ONLY" for item in checks)
     functional = next(item for item in report.results if item.name == "functional")
     assert functional.status is AttackStatus.REFUTED
     assert next(
@@ -151,13 +179,19 @@ def test_diagnosis_is_not_finite_contracting():
     assert session.diagnosis.fingerprint.numerical_contraction != "FINITE_CONTRACTING"
     assert session.diagnosis.fingerprint.eventual_region == "UNBOUNDED_SAMPLE"
     assert session.diagnosis.fingerprint.control_structure == "SINGLETON"
+    assert session.diagnosis.fingerprint.piecewise_affine_structure == "PARAMETERIZED"
+    assert session.diagnosis.fingerprint.latent_control == "PARAMETERIZED"
+    assert session.diagnosis.fingerprint.parameter_domain == "EXACT"
     assert session.diagnosis.delta is not None
     assert session.diagnosis.delta.level is DeltaLevel.HIGH
     assert not core_match(session.diagnosis.fingerprint, corpus.records[0].fingerprint)
-    assert session.decision is ResearchDecision.ENGINE_LIMITATION
+    assert session.decision is ResearchDecision.CONTINUE
+    assert "certified" in session.decision_reason or "domain" in session.decision_reason
     assert session.diagnosis.coverage.status("growth") == "EXERCISED"
     assert session.diagnosis.coverage.status("infinite_reachable_trajectories") == "EXERCISED"
-    assert session.diagnosis.coverage.status("valuation_dynamics") == "NOT_TESTED"
+    assert session.diagnosis.coverage.status("valuation_dynamics") == "EXERCISED"
+    assert session.diagnosis.coverage.status("latent_piecewise_affine_control") == "EXERCISED"
+    assert session.diagnosis.coverage.status("parameter_domain_certification") == "EXERCISED"
     assert session.diagnosis.coverage.status("branching_controls") == "INAPPLICABLE"
 
 
