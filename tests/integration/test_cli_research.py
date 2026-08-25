@@ -111,3 +111,22 @@ def test_research_reproduce_expanding_d_links_lean():
     assert "expandingD_residue_closure" in report
     assert "sorry" not in report.lower()
     assert "admit" not in report.lower()
+
+
+def test_research_analyze_expanding_j2_is_exact_nine_not_live():
+    out = _run("research", "analyze", "expanding_j2")
+    assert "problem: expanding_j2" in out
+    assert "attack reconnaissance: OBSERVATION BOUNDED LIVE_SLICE" in out
+    assert "attack closure: SUPPORTED EXACT REACHABLE" in out
+    assert "SUPPORTED EXACT LIVE" not in out
+    assert "sorry" not in out.lower()
+
+
+def test_research_reproduce_expanding_j2_links_lean():
+    out = _run("research", "reproduce", "expanding_j2")
+    assert "reproduce: ok" in out
+    assert "hypothesis expanding_j2_closure: SUPPORTED EXACT REACHABLE" in out
+    report = _run("research", "report", "expanding_j2")
+    assert "jet2_residue_closure" in report
+    assert "sorry" not in report.lower()
+    assert "admit" not in report.lower()
