@@ -6,6 +6,7 @@ from dataclasses import dataclass, replace
 
 from research_engine.attacks.affine import AffineInvariantAttack
 from research_engine.attacks.block import BlockDynamicsAttack
+from research_engine.attacks.closure import ExhaustiveClosureAttack
 from research_engine.attacks.functional import FunctionalBoundAttack
 from research_engine.attacks.modular import ModularInvariantAttack
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
@@ -26,6 +27,7 @@ from research_engine.planner.negative import ForbiddenImplication
 
 DEFAULT_ATTACK_ORDER: tuple[str, ...] = (
     "reconnaissance",
+    "closure",
     "modular",
     "functional",
     "affine",
@@ -39,6 +41,7 @@ DEFAULT_PLANNER_HORIZON = 16
 
 _ATTACKS: dict[str, type[Attack]] = {
     "reconnaissance": ReconnaissanceAttack,
+    "closure": ExhaustiveClosureAttack,
     "modular": ModularInvariantAttack,
     "functional": FunctionalBoundAttack,
     "affine": AffineInvariantAttack,

@@ -7,3 +7,4 @@ import Problems.Collatz.Endpoint
 import Problems.Collatz.FixedInteger
 import Problems.Collatz.Lift
 import Problems.Ostrowski.NP
+import Problems.BalancedTernary.FiniteStateDynamics

@@ -38,6 +38,7 @@ class AttackContext:
 
     live_only: bool = True
     max_steps: int | None = None
+    max_states: int | None = None
     affine: AffineSystem | None = None
     functional: LinearFunctional | None = None
     candidate_region: frozenset[State] | None = None

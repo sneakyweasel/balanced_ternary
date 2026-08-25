@@ -2250,5 +2250,60 @@
       "tests/research/residual_complexity/test_triage.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "BTN-doubled-closure",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "The LSD carry of normalizing the doubled trit stream 2 d_i, d_i in {-1,0,1}, stays in {-1,0,1}; 1 and -1 are reachable from 0.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_spec.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-doubled-lyapunov",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "V(c)=|c| strictly decreases under c |-> DZ(c+2d) whenever |c|>=2 and d is a trit.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_spec.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-doubled-sign",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "Doubled-trit carry and output are odd: T(-c,-d)=-T(c,d) and the emitted trit negates.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_spec.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-doubled-minimality",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "The three carries -1,0,1 have pairwise distinct Mealy output signatures, so the 3-state machine is minimal.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_spec.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "BTN-carry-gain-3",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "The synthetic map T_3(c,d)=3 DZ(c+2d) satisfies c_n=3n along the all-+1 word, so the residual set is unbounded. This is not value-preserving normalization.",
+    "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
+    "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
+    "tests": [
+      "tests/research/balanced_ternary/test_perturbation.py"
+    ],
+    "related_conjectures": []
   }
 ]
