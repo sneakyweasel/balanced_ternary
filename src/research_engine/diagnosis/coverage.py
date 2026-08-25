@@ -107,6 +107,8 @@ def capability_coverage(
     statuses["recursive_semantics"] = CoverageStatus.NOT_TESTED.value
     statuses["latent_piecewise_affine_control"] = CoverageStatus.NOT_TESTED.value
     statuses["parameter_domain_certification"] = CoverageStatus.NOT_TESTED.value
+    statuses["control_word_composition"] = CoverageStatus.NOT_TESTED.value
+    statuses["control_obstruction_calculus"] = CoverageStatus.NOT_TESTED.value
 
     if _ran(results, "piecewise_affine"):
         statuses["latent_piecewise_affine_control"] = CoverageStatus.EXERCISED.value
@@ -138,6 +140,30 @@ def capability_coverage(
             statuses["valuation_dynamics"] = CoverageStatus.EXERCISED.value
     elif _inapplicable(skipped, "parameter_domain"):
         statuses["parameter_domain_certification"] = CoverageStatus.INAPPLICABLE.value
+
+    if _ran(results, "control_word"):
+        statuses["control_word_composition"] = CoverageStatus.EXERCISED.value
+        constraints = results["control_word"].evidence.get("constraints") or ()
+        if any(
+            isinstance(item, dict) and item.get("kind") == "CYCLE_CONSTRAINT"
+            for item in constraints
+        ):
+            statuses["cycle_obstruction"] = CoverageStatus.EXERCISED.value
+    elif _inapplicable(skipped, "control_word"):
+        statuses["control_word_composition"] = CoverageStatus.INAPPLICABLE.value
+
+    if _ran(results, "control_obstruction"):
+        statuses["control_obstruction_calculus"] = CoverageStatus.EXERCISED.value
+        certs = results["control_obstruction"].evidence.get("certificates") or ()
+        if any(
+            isinstance(item, dict)
+            and item.get("kind") in {"divisibility", "gcd", "modular", "bound"}
+            and item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+            for item in certs
+        ):
+            statuses["cycle_obstruction"] = CoverageStatus.EXERCISED.value
+    elif _inapplicable(skipped, "control_obstruction"):
+        statuses["control_obstruction_calculus"] = CoverageStatus.INAPPLICABLE.value
 
     if (
         fingerprint.control_structure == "SINGLETON"

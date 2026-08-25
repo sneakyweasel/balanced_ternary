@@ -30,7 +30,7 @@ def _source_text() -> str:
     root = Path(__file__).resolve().parents[3]
     return "\n".join(
         (root / "src" / "research_engine" / "attacks" / name).read_text(encoding="utf-8")
-        for name in ("parameter_domain.py", "piecewise_affine.py")
+        for name in ("parameter_domain.py", "piecewise_affine.py", "control_word.py")
     )
 
 
@@ -163,7 +163,10 @@ def test_planner_chains_prior_results_and_does_not_inject_affine():
     assert names[0] == "reconnaissance"
     assert names[1] == "piecewise_affine"
     assert names[2] == "parameter_domain"
+    assert names[3] == "control_word"
+    assert names[4] == "control_obstruction"
     assert DEFAULT_ATTACK_ORDER.index("parameter_domain") == DEFAULT_ATTACK_ORDER.index("piecewise_affine") + 1
+    assert DEFAULT_ATTACK_ORDER.index("control_word") == DEFAULT_ATTACK_ORDER.index("parameter_domain") + 1
     domain = next(item for item in report.results if item.name == "parameter_domain")
     assert domain.status is AttackStatus.SUPPORTED
     assert domain.scope is SearchScope.EXACT

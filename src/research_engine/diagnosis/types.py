@@ -33,6 +33,8 @@ FINGERPRINT_DIMENSIONS: tuple[str, ...] = CORE_DIMENSIONS + (
     "piecewise_affine_structure",
     "latent_control",
     "parameter_domain",
+    "latent_control_algebra",
+    "latent_control_obstruction",
 )
 
 CAPABILITIES: tuple[str, ...] = (
@@ -55,6 +57,8 @@ CAPABILITIES: tuple[str, ...] = (
     "symbolic_control",
     "latent_piecewise_affine_control",
     "parameter_domain_certification",
+    "control_word_composition",
+    "control_obstruction_calculus",
 )
 
 
@@ -109,6 +113,8 @@ class RegimeFingerprint:
     piecewise_affine_structure: str = UNOBSERVED
     latent_control: str = UNOBSERVED
     parameter_domain: str = UNOBSERVED
+    latent_control_algebra: str = UNOBSERVED
+    latent_control_obstruction: str = UNOBSERVED
     certificate_strength: str = UNOBSERVED
 
     def as_dict(self) -> dict[str, str]:

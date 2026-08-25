@@ -25,3 +25,5 @@ import Problems.BalancedTernary.WeightDynamics
 import Problems.BalancedTernary.WeightDrift
 import Problems.Engine.PiecewiseCensus
 import Problems.Engine.ParameterDomain
+import Problems.Engine.ControlWord
+import Problems.Engine.ControlObstruction

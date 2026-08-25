@@ -148,6 +148,8 @@ def test_planner_does_not_inject_affine_system():
     assert "piecewise_affine" in names
     assert names.index("piecewise_affine") == 1
     assert names.index("parameter_domain") == 2
+    assert names.index("control_word") == 3
+    assert names.index("control_obstruction") == 4
     assert spec.attack_context().affine is None
     piecewise = next(item for item in report.results if item.name == "piecewise_affine")
     assert piecewise.evidence.get("reconstructed_affine") is None

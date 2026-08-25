@@ -50,7 +50,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.balanced_ternary_digit_sum_dynamics` | `ARCHIVED` | v2 benchmark \(T=s\); digital root; `CLOSE` |
 | `research.balanced_ternary_weight_dynamics` | `ARCHIVED` | v2 control \(T=W\); regime replication; `CLOSE` |
 | `research.balanced_ternary_weight_drift` | `ARCHIVED` | v2 increment \(T=n+W\); Kaprekar-class drift; `CLOSE` |
-| `research.syracuse` | `EXPLORATORY` | v2 diagnosis of accelerated odd-only \(S\); piecewise-affine census plus domain certificates recover a sample-supported \(2^k\) family; not a Collatz solver |
+| `research.syracuse` | `EXPLORATORY` | v2 diagnosis of accelerated odd-only \(S\); census, domain certificates, control-word composition, and generic obstruction; not a Collatz solver |
 | `research.balanced_digit_sum_polynomials` | `EXPLORATORY` | nonlinear \(s_{\mathrm{bal}}\); `CLOSE` as reparameterization |
 | `research.erdos_distinct_subset_sums` | `EXPLORATORY` | Erdős #1 signed-relation gate |
 | `research.kabelian_complexity` | `ARCHIVED` | k-abelian residual signatures; block-coding close |
@@ -60,11 +60,16 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.misere_quotients` | `ARCHIVED` | finite-context misere signatures; Plambeck–Siegel close |
 | `research.open_problems` | registry | pointers, not a dumping ground |
 
-The piecewise-affine census and domain-certificate layer are engine
-attacks (`research_engine.attacks.piecewise_affine`,
-`research_engine.attacks.parameter_domain`, hidden maps in
+The piecewise-affine census, domain-certificate, control-word, and
+control-obstruction layers are engine attacks
+(`research_engine.attacks.piecewise_affine`,
+`research_engine.attacks.parameter_domain`,
+`research_engine.attacks.control_word`,
+`research_engine.attacks.control_obstruction`, hidden maps in
 `research_engine.benchmarks.hidden_piecewise`), not a `research.*`
-solver. Dossier: [piecewise_affine_census.md](../problems/piecewise_affine_census.md).
+solver. Dossiers: [piecewise_affine_census.md](../problems/piecewise_affine_census.md),
+[control_word_composition.md](../problems/control_word_composition.md),
+[control_obstruction.md](../problems/control_obstruction.md).
 
 Each module exposes a lightweight `problem.py` descriptor
 (`id`, `title`, `status`, `statement`, `bt_relevance`, `docs`, `lean`,

@@ -130,10 +130,11 @@ None opened. The Collatz conjecture is not a conjecture of this branch.
 ## Formalization
 
 `formal/Problems/Collatz/Syracuse.lean` aliases `acceleratedT`, proves
-`syracuseS_one`, and specializes the Engine iff as
-`syracuseS_parameter_iff` (KNOWN arithmetic on \(q=3x+1\), not a map
-theorem). Generic lemma:
-`formal/Problems/Engine/ParameterDomain.lean`. No `sorry`. No ledger row.
+`syracuseS_one`, specializes the Engine iff as
+`syracuseS_parameter_iff`, and applies generic composition as
+`syracuse_compose_two`. Generic lemmas:
+`formal/Problems/Engine/ParameterDomain.lean`,
+`formal/Problems/Engine/ControlWord.lean`. No `sorry`. No ledger row.
 
 ## Results
 
@@ -143,12 +144,13 @@ theorem). Generic lemma:
 Diagnosis
   → PiecewiseAffineCensus
   → ParameterDomain
+  → ControlWord
   → Certification
 ```
 
 Hint-free adapter. No injected \(v_2\), branch table, or affine formula.
-Planner order: reconnaissance, piecewise_affine, parameter_domain, then
-existing attacks. `AttackContext.affine` stays unset.
+Planner order: reconnaissance, piecewise_affine, parameter_domain,
+control_word, then existing attacks. `AttackContext.affine` stays unset.
 
 ### B. Syracuse discovery trace
 
@@ -231,13 +233,15 @@ ledger row (KNOWN). The census is not retagged `EXACT — LEAN VERIFIED`.
 
 Fingerprint: `INTEGER_1D`, `SINGLETON`, `MIXED_MAGNITUDE`,
 `UNBOUNDED_SAMPLE`, piecewise `PARAMETERIZED`, latent `PARAMETERIZED`,
-domain `EXACT`. Nearest digit-fold record: **HIGH** delta. Core mismatch
-with the saturated family. Coverage exercised: finite-closure attempt,
-contraction, growth, infinite reachable trajectories, valuation
-dynamics, modular restrictions (sampled), quotient, separation, latent
-piecewise-affine control, parameter-domain certification. Inapplicable:
-branching controls, affine modular/spectral/block, reverse. Not tested:
-cycle obstruction, symbolic control, recursive digit semantics.
+domain `EXACT`, control-word algebra `EXPLOITABLE`. Nearest digit-fold
+record: **HIGH** delta. Core mismatch with the saturated family.
+Coverage exercised: finite-closure attempt, contraction, growth,
+infinite reachable trajectories, valuation dynamics, modular
+restrictions (sampled), quotient, separation, latent piecewise-affine
+control, parameter-domain certification, control-word composition,
+cycle obstruction. Inapplicable: branching controls, affine
+modular/spectral/block, reverse. Not tested: symbolic (deferred)
+control, recursive digit semantics.
 
 Engine `ResearchDecision`:
 
@@ -245,10 +249,14 @@ Engine `ResearchDecision`:
 CONTINUE
 ```
 
-Reason: latent parameterized family recovered and the arithmetic domain
-of the relation is certified; map globality on \(\mathbb{Z}\) remains
-empirical. Prompt vocabulary: **PARTIALLY_CERTIFIED** (relation exact;
-map empirical; observed \(k\) sample-bounded). Not `ENGINE_LIMITATION`.
+Reason: latent parameterized family recovered, the arithmetic domain
+is certified, and control-word algebra is exploitable; map globality
+on \(\mathbb{Z}\) remains empirical. Prompt vocabulary:
+**PARTIALLY_CERTIFIED** (relation exact; map empirical; observed \(k\)
+sample-bounded). Not `ENGINE_LIMITATION`. Control-word composition
+derives the classical multi-step identities from the certificate
+without hard-coding them; that is **KNOWN** algebra, not a Collatz
+theorem.
 
 ### I. ComplexityProfile
 
@@ -263,10 +271,10 @@ proof-synthesis cost; that limitation is documented rather than forked.
 
 | Class | Item |
 |-------|------|
-| KNOWN MATHEMATICS | `acceleratedT_mul`; padic valuation iff; Tao density; Terras heuristics |
-| ENGINE REDISCOVERY | family \(2^k y=3x+1\) and maximal domain from I/O; mixed magnitude |
-| NEW FORMALIZATION | Engine `mul_pow_eq_iff_padicValInt`; thin `syracuseS_parameter_iff` |
-| NEW GENERIC ENGINE CAPABILITY | census plus domain certificates (maximal vs mere divisibility) |
+| KNOWN MATHEMATICS | `acceleratedT_mul`; padic valuation iff; composed clearing / cycle equations; Tao density; Terras heuristics |
+| ENGINE REDISCOVERY | family \(2^k y=3x+1\), maximal domain, and multi-step composition from I/O; mixed magnitude |
+| NEW FORMALIZATION | Engine `mul_pow_eq_iff_padicValInt`, `compose_two_affine`; thin `syracuseS_parameter_iff`, `syracuse_compose_two` |
+| NEW GENERIC ENGINE CAPABILITY | census plus domain certificates plus control-word composition |
 | POTENTIALLY NEW MATHEMATICS | none claimed |
 
 ### K. Branch decision
@@ -276,32 +284,32 @@ CONTINUE
 ```
 
 Dossier mapping: `PARK`. Exact reconstructed latent control is **KNOWN**
-clearing. Modular, reverse, block, and spectral stay inapplicable in the
-same pass (no `AffineSystem` injection). Do not reopen `research.collatz`.
-The next generic question is whether that certified control can be
-consumed by existing control-word, cycle, modular, quotient, or residual
-attacks — not a Collatz solver.
+clearing. Control-word composition is now applicable and exploitable;
+modular, reverse, block, and spectral stay inapplicable in the same
+pass (no `AffineSystem` injection). Do not reopen `research.collatz`.
+The next generic question is whether composed remainders for \(m\ge 2\)
+admit symbolic class emptiness — not a Collatz solver.
 
 ## Open questions
 
-Can exact reconstructed latent control now be consumed by generic
-control-word, cycle, modular, quotient, or residual attacks, still
-without map-specific hints and without claiming convergence?
+Can the remainder of a composed control word be summarized well enough
+to prove emptiness of an infinite \(m\ge 2\) class, still without
+injecting an `AffineSystem` and still without claiming convergence?
 
 ## Decision
 
-`PARK`. v2 has crossed the boundary from discovering a hidden affine
-pattern to certifying the arithmetic domain of the reconstructed
-relation. The identity is **KNOWN**. Map globality, cycles, and
-boundedness are not proved. Do not auto-continue. Do not escalate to
-Collatz.
+`PARK`. v2 has crossed observe → infer → certify → compose → constrain
+→ obstruct. Length-one cycle divisor classes are **KNOWN** arithmetic
+rediscovered generically. Map globality, cycles, and boundedness are
+not proved. Do not auto-continue. Do not escalate to Collatz.
 
-Best next question: can exact reconstructed latent control be consumed
-by generic control-word, cycle, modular, quotient, or residual attacks?
+Best next question: can class-level obstructions for \(m\ge 2\) be
+proved symbolically in the remainder \(C(\mathbf{k})\)?
 
 ## Publication assessment
 
 Status: `EXPLORATORY`. Not a `PAPER_CANDIDATE` as a Collatz contribution.
-The value is the generic reconstruction/certification pipeline.
+The value is the generic reconstruction / certification / composition /
+obstruction pipeline.
 
 

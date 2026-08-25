@@ -615,7 +615,7 @@ class ParameterDomainAttack:
                 evidence=evidence,
                 certificates=(certificate.as_dict(),),
                 certificate_kind=CertificateKind.EXACT_ARITHMETIC_IDENTITY,
-                recommended_next_attacks=("closure",),
+                recommended_next_attacks=("control_word", "closure"),
             )
         if exact:
             claim = (
@@ -630,7 +630,7 @@ class ParameterDomainAttack:
                 claim=claim,
                 evidence=evidence,
                 certificates=(certificate.as_dict(),),
-                recommended_next_attacks=("closure",),
+                recommended_next_attacks=("control_word", "closure"),
             )
         if necessary_only:
             claim = (
@@ -644,7 +644,7 @@ class ParameterDomainAttack:
                 scope=SearchScope.BOUNDED,
                 claim=claim,
                 evidence=evidence,
-                recommended_next_attacks=("closure",),
+                recommended_next_attacks=("control_word", "closure"),
             )
         return AttackResult(
             name=self.name,

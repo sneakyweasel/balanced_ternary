@@ -161,3 +161,68 @@ class HiddenMixedResidueSpec(HiddenIntegerSpec):
 
     def _step(self, x: int) -> int:
         return _hidden_mixed_residue(x)
+
+
+def _hidden_parity_carry(x: int) -> int:
+    return 2 * x + (x % 2)
+
+
+def _hidden_parity_toggle(x: int) -> int:
+    if x % 2 == 0:
+        return x + 1
+    return x - 1
+
+
+def _hidden_positive_double(x: int) -> int:
+    return 2 * x + 1
+
+
+@dataclass(frozen=True)
+class HiddenParityCarrySpec(HiddenIntegerSpec):
+    """Finite alphabet synthetic: ``x ↦ 2x + (x mod 2)``."""
+
+    name: str = "hidden_parity_carry"
+
+    def _step(self, x: int) -> int:
+        return _hidden_parity_carry(x)
+
+
+@dataclass(frozen=True)
+class HiddenInvolutionESpec(HiddenIntegerSpec):
+    """Cycle-bearing synthetic: even/odd toggle, period 2."""
+
+    name: str = "hidden_involution_e"
+
+    def _step(self, x: int) -> int:
+        return _hidden_parity_toggle(x)
+
+
+@dataclass(frozen=True)
+class HiddenPositiveDoubleSpec(HiddenIntegerSpec):
+    """Algebraic cycle candidate off the nonnegative domain."""
+
+    name: str = "hidden_positive_double"
+    start: int = 0
+
+    def _step(self, x: int) -> int:
+        return _hidden_positive_double(x)
+
+    def legal_controls(self, state: State, phase: IntPhase) -> tuple[object, ...]:
+        if phase.value <= 0 or int(state[0]) < 0:
+            return ()
+        return (0,)
+
+
+def _hidden_large_fixed(x: int) -> int:
+    return 2 * x + (x % 2) - 100
+
+
+@dataclass(frozen=True)
+class HiddenLargeFixedSpec(HiddenIntegerSpec):
+    """Algebraic cycle candidate outside the default sample window."""
+
+    name: str = "hidden_large_fixed"
+    start: int = 0
+
+    def _step(self, x: int) -> int:
+        return _hidden_large_fixed(x)

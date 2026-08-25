@@ -319,6 +319,64 @@ def fingerprint_from_report(
             else:
                 domain_field = "UNCERTAIN"
 
+    algebra_field = UNOBSERVED
+    if "control_word" in skipped:
+        algebra_field = UNOBSERVED
+    else:
+        composed = results.get("control_word")
+        if composed is None:
+            algebra_field = UNOBSERVED
+        else:
+            relations = composed.evidence.get("relations") or ()
+            impossible = composed.evidence.get("impossible_words") or ()
+            quotient = composed.evidence.get("quotient") or ()
+            constraints = composed.evidence.get("constraints") or ()
+            realizability = composed.evidence.get("realizability") or ()
+            nontrivial_cycle = any(
+                isinstance(item, dict)
+                and item.get("kind") == "CYCLE_CONSTRAINT"
+                and item.get("left") not in {0, None}
+                for item in constraints
+            )
+            cycle_impossible = any(
+                isinstance(item, dict) and item.get("cycle_status") == "IMPOSSIBLE"
+                for item in realizability
+            )
+            if not relations:
+                algebra_field = "UNCERTAIN"
+            elif impossible or quotient or nontrivial_cycle or cycle_impossible:
+                algebra_field = "EXPLOITABLE"
+            else:
+                algebra_field = "FORMALLY_COMPOSED"
+
+    obstruction_field = UNOBSERVED
+    if "control_obstruction" in skipped:
+        obstruction_field = UNOBSERVED
+    else:
+        obstructed = results.get("control_obstruction")
+        if obstructed is None:
+            obstruction_field = UNOBSERVED
+        else:
+            certs = obstructed.evidence.get("certificates") or ()
+            statuses = {item.get("status") for item in certs if isinstance(item, dict)}
+            scopes = {item.get("scope") for item in certs if isinstance(item, dict)}
+            if "LEAN_CERTIFIED" in statuses or "PROVED" in statuses:
+                obstruction_field = "PROVED" if "CLASS" in scopes else "CANDIDATE"
+                if "CLASS" in scopes and (
+                    "LEAN_CERTIFIED" in statuses or "PROVED" in statuses
+                ):
+                    class_proved = any(
+                        isinstance(item, dict)
+                        and item.get("scope") == "CLASS"
+                        and item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+                        for item in certs
+                    )
+                    obstruction_field = "PROVED" if class_proved else "CANDIDATE"
+            elif statuses:
+                obstruction_field = "CANDIDATE"
+            else:
+                obstruction_field = "NONE"
+
     return RegimeFingerprint(
         transition_architecture=_transition_architecture(control),
         state_space_type=state_type,
@@ -339,6 +397,8 @@ def fingerprint_from_report(
         piecewise_affine_structure=piecewise_structure,
         latent_control=latent,
         parameter_domain=domain_field,
+        latent_control_algebra=algebra_field,
+        latent_control_obstruction=obstruction_field,
         certificate_strength=cert,
     )
 

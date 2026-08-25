@@ -123,7 +123,7 @@ def record_from_session(
 
 
 class ResearchLoop:
-    """Phase A classifies structure; Phase B is AttackPlanner including piecewise_affine and parameter_domain."""
+    """Phase A classifies structure; Phase B is AttackPlanner including piecewise_affine, parameter_domain, control_word, and control_obstruction."""
 
     def __init__(self, ledger: ResearchLedger | None = None) -> None:
         self.ledger = ledger if ledger is not None else ResearchLedger()

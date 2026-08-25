@@ -34,6 +34,7 @@ from research.syracuse.planner import (
 from research.syracuse.problem import PROBLEM
 from research.syracuse.records import RECORD_DIR, write_records
 from research.syracuse.spec import SyracuseSpec, syracuse_spec, syracuse_step
+from research_engine.attacks.control_word import compose_affine_steps
 from research_engine.attacks.result import AttackStatus
 from research_engine.core.observation import observe
 from research_engine.core.problem_spec import ProblemSpec
@@ -62,11 +63,18 @@ def test_lean_specialization_applies_generic_lemma():
     assert "sorry" not in text
     assert "admit" not in text
     assert "syracuseS_parameter_iff" in text
+    assert "syracuse_compose_two" in text
+    assert "syracuse_len_one_cycle_dvd" in text
     assert "mul_pow_eq_iff_padicValInt" in text
     engine = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Engine" / "ParameterDomain.lean"
     engine_text = engine.read_text(encoding="utf-8")
     assert "sorry" not in engine_text
     assert "admit" not in engine_text
+    control = Path(__file__).resolve().parents[3] / "formal" / "Problems" / "Engine" / "ControlWord.lean"
+    control_text = control.read_text(encoding="utf-8")
+    assert "sorry" not in control_text
+    assert "admit" not in control_text
+    assert "compose_two_affine" in control_text
 
 
 def test_problem_is_registered():
@@ -149,6 +157,30 @@ def test_spec_planner_and_hypotheses():
     checks = domain.evidence.get("divisibility_checks") or ()
     assert checks
     assert all(item.get("direction") == "NECESSARY_ONLY" for item in checks)
+    composed = next(item for item in report.results if item.name == "control_word")
+    assert composed.status in {AttackStatus.SUPPORTED, AttackStatus.OBSERVATION}
+    assert composed.evidence.get("reconstructed_affine") is None
+    relations = composed.evidence.get("relations") or ()
+    assert relations
+    base = int(family.get("base") or family.get("q_base") or 2)
+    p = int(family["p"])
+    r = int(family["r"])
+    item = next(item for item in relations if item["word"]["length"] >= 1)
+    word = tuple(item["word"]["parameters"])
+    expected = compose_affine_steps(tuple((base ** k, p, r) for k in word))
+    assert (item["a"], item["b"], item["c"]) == expected
+    constraints = composed.evidence.get("constraints") or ()
+    assert any(entry.get("kind") == "CYCLE_CONSTRAINT" for entry in constraints)
+    obstructed = next(item for item in report.results if item.name == "control_obstruction")
+    assert obstructed.status is AttackStatus.SUPPORTED
+    assert obstructed.evidence.get("reconstructed_affine") is None
+    class_certs = [
+        item
+        for item in obstructed.evidence.get("certificates") or ()
+        if item.get("scope") == "CLASS"
+        and item.get("status") in {"PROVED", "LEAN_CERTIFIED"}
+    ]
+    assert class_certs
     functional = next(item for item in report.results if item.name == "functional")
     assert functional.status is AttackStatus.REFUTED
     assert next(
@@ -195,6 +227,8 @@ def test_diagnosis_is_not_finite_contracting():
     assert session.diagnosis.fingerprint.piecewise_affine_structure == "PARAMETERIZED"
     assert session.diagnosis.fingerprint.latent_control == "PARAMETERIZED"
     assert session.diagnosis.fingerprint.parameter_domain == "EXACT"
+    assert session.diagnosis.fingerprint.latent_control_algebra == "EXPLOITABLE"
+    assert session.diagnosis.fingerprint.latent_control_obstruction == "PROVED"
     assert session.diagnosis.delta is not None
     assert session.diagnosis.delta.level is DeltaLevel.HIGH
     assert not core_match(session.diagnosis.fingerprint, corpus.records[0].fingerprint)
@@ -205,6 +239,9 @@ def test_diagnosis_is_not_finite_contracting():
     assert session.diagnosis.coverage.status("valuation_dynamics") == "EXERCISED"
     assert session.diagnosis.coverage.status("latent_piecewise_affine_control") == "EXERCISED"
     assert session.diagnosis.coverage.status("parameter_domain_certification") == "EXERCISED"
+    assert session.diagnosis.coverage.status("control_word_composition") == "EXERCISED"
+    assert session.diagnosis.coverage.status("cycle_obstruction") == "EXERCISED"
+    assert session.diagnosis.coverage.status("control_obstruction_calculus") == "EXERCISED"
     assert session.diagnosis.coverage.status("branching_controls") == "INAPPLICABLE"
 
 

@@ -1,4 +1,6 @@
 import Problems.Collatz.Accelerated
+import Problems.Engine.ControlObstruction
+import Problems.Engine.ControlWord
 import Problems.Engine.ParameterDomain
 
 namespace Problems.Collatz
@@ -30,5 +32,22 @@ theorem syracuseS_parameter_iff
     (∃ y : ℤ, (2 : ℤ) ^ k * y = 3 * x + 1 ∧ ¬ (2 : ℤ) ∣ y) ↔
       padicValInt 2 (3 * x + 1) = k :=
   Problems.Engine.mul_pow_eq_iff_padicValInt (b := 2) hq
+
+/-- Two certified one-step clearing relations compose. KNOWN arithmetic
+via the generic Engine lemma; not a cycle theorem and not convergence. -/
+theorem syracuse_compose_two
+    {k0 k1 : ℕ} {x0 x1 x2 : ℤ}
+    (h0 : (2 : ℤ) ^ k0 * x1 = 3 * x0 + 1)
+    (h1 : (2 : ℤ) ^ k1 * x2 = 3 * x1 + 1) :
+    (2 : ℤ) ^ k0 * (2 : ℤ) ^ k1 * x2 =
+      (3 : ℤ) * 3 * x0 + ((3 : ℤ) * 1 + (2 : ℤ) ^ k0 * 1) :=
+  Problems.Engine.compose_two_affine h0 h1
+
+/-- Length-one cycle constraint implies a divisibility condition. KNOWN
+arithmetic via the generic Engine lemma; not a classification of cycles. -/
+theorem syracuse_len_one_cycle_dvd {k : ℕ} {x : ℤ}
+    (h : (2 : ℤ) ^ k * x = 3 * x + 1) :
+    ((2 : ℤ) ^ k - 3) ∣ (1 : ℤ) :=
+  Problems.Engine.cycle_constraint_dvd h
 
 end Problems.Collatz

@@ -1765,4 +1765,92 @@ Best next question
 - Can exact reconstructed latent control be consumed by generic control-word, cycle, modular, quotient, or residual attacks?
 ```
 
+## Control-word composition of certified latent families
+
+- **Date:** 2026-08-25
+- **Objective:** Consume a certified one-step affine family as an abstract certificate and derive exact multi-step constraints without map-specific composition laws
+- **Hypotheses:** Cleared affine steps compose symbolically; algebraic composition is not realizability; later-step domain obstructions and necessary cycle constraints are generic; Syracuse is only a consumer
+- **Major results:** Attack `control_word` after `parameter_domain`. Synthetics A–F validate composition, impossible suffixes, involution cycles, and off-domain algebraic candidates. Syracuse derives \(2^{\sum k}x_m=3^m x_0+C(\mathbf{k})\) and \((2^K-3^m)x=C\) from the certificate. Fingerprint `latent_control_algebra=EXPLOITABLE`. Engine `CONTINUE`. Lean `compose_two_affine` / `cycle_of_composed`. Block/modular/spectral stay inapplicable (no `AffineSystem` injection). No ledger row
+- **Refuted ideas:** treating a composed equation as a realized trajectory; treating a cycle constraint as a cycle; injecting affine systems to force block dynamics; hard-coding the Syracuse product formula
+- **Literature:** composed clearing and Collatz cycle equations **KNOWN**; generic engine consumption is the capability
+- **Open:** map-agnostic obstruction from composed constraints, still without Collatz escalation
+- **Decision:** PARK (engine `CONTINUE`). Do not auto-continue; do not claim a Collatz result
+
+```text
+What was learned
+- A certified family can be composed without rediscovering or hard-coding its law
+- FORMALLY_COMPOSED is not REALIZABLE; later k=0 on coprime images is IMPOSSIBLE
+- Hypothetical periods produce exact (A-B)x=C constraints, not orbits
+- Previously inapplicable AffineSystem attacks stay inapplicable; control_word is the newly applicable layer
+- Digit-fold cores and WeightDrift exclusion are unchanged
+
+Strongest theorem
+- compose_two_affine and cycle_of_composed (Lean); elementary KNOWN algebra
+
+Strongest refutation
+- Power-clear words (*,0) are algebraically composable and arithmetically impossible
+
+Reusable machinery
+- research_engine.attacks.control_word; cleared-form composition; latent_control_algebra fingerprint
+
+Prior-art status
+- KNOWN cycle/composition identities; NEW GENERIC ENGINE CAPABILITY is reasoning with certified controls
+
+Complexity profile
+- unchanged schema; word_count / queries / quotient_size on evidence
+
+Branch status
+- PARK
+
+Why
+- Certified latent control is now a reasoning layer. The Syracuse identities it produces are already known. Map globality remains empirical. That is not a Collatz solver.
+
+Best next question
+- Can exact multi-step control-word constraints feed a generic obstruction attack that remains map-agnostic?
+```
+
+## Control-word obstruction calculus
+
+- **Date:** 2026-08-25
+- **Objective:** Consume exact control-word constraints and derive class-level arithmetic obstructions without map-specific logic
+- **Hypotheses:** Length-1 cycle solvability is a finite divisor class; search failure is not impossibility; the same calculus applies off Syracuse
+- **Major results:** Attack `control_obstruction` after `control_word`. Synthetics A–F: divisor class, modular class, empty odd-prime class, later-k domain class, sign off-domain, large-candidate not impossible. Syracuse length-1 possible \(k\in\{1,2\}\) as divisor class (KNOWN). Odd-prime clear is the non-Syracuse reuse. Engine `CONTINUE`. Lean `exists_mul_eq_iff_dvd` / `not_dvd_of_abs_gt` / `cycle_constraint_dvd`. No ledger row
+- **Refuted ideas:** treating a window miss as IMPOSSIBLE; collapsing WORD and CLASS; seeding Collatz moduli
+- **Literature:** integer divisibility and length-one Syracuse candidates **KNOWN**
+- **Open:** symbolic class emptiness for composed remainders when \(m\ge 2\)
+- **Decision:** PARK (engine `CONTINUE`). Do not auto-continue; do not claim a Collatz result
+
+```text
+What was learned
+- Exact (A-B)x=C constraints can exclude infinite exponent classes via divisors
+- WORD impossibility is not CLASS emptiness; a search miss is UNKNOWN
+- Odd-prime clear shows the calculus is not secretly base 2
+- Longer words still mostly yield modular conditions on enumerated C
+- Digit-fold cores and WeightDrift exclusion are unchanged
+
+Strongest theorem
+- exists_mul_eq_iff_dvd and not_dvd_of_abs_gt (Lean); elementary KNOWN arithmetic
+
+Strongest refutation
+- y=2x-100 has candidate x=100; absence from the sample window is not an obstruction
+
+Reusable machinery
+- research_engine.attacks.control_obstruction; WORD vs CLASS certificates
+
+Prior-art status
+- KNOWN length-one cycle divisor lists; NEW GENERIC ENGINE CAPABILITY is class obstruction from certificates
+
+Complexity profile
+- unchanged schema; class_count / word_count / certificate_count on evidence
+
+Branch status
+- PARK
+
+Why
+- The missing constraint-to-obstruction layer exists and proved class-level length-one emptiness where the arithmetic forces it. Syracuse instances are KNOWN. That is not a Collatz solver.
+
+Best next question
+- Can class-level obstructions for m≥2 be proved symbolically in the remainder C(k)?
+```
+
 

@@ -7,6 +7,8 @@ from dataclasses import dataclass, replace
 from research_engine.attacks.affine import AffineInvariantAttack
 from research_engine.attacks.block import BlockDynamicsAttack
 from research_engine.attacks.closure import ExhaustiveClosureAttack
+from research_engine.attacks.control_word import ControlWordAttack
+from research_engine.attacks.control_obstruction import ControlObstructionAttack
 from research_engine.attacks.factorization import FactorizationAttack
 from research_engine.attacks.functional import FunctionalBoundAttack
 from research_engine.attacks.modular import ModularInvariantAttack
@@ -35,6 +37,8 @@ DEFAULT_ATTACK_ORDER: tuple[str, ...] = (
     "reconnaissance",
     "piecewise_affine",
     "parameter_domain",
+    "control_word",
+    "control_obstruction",
     "closure",
     "modular",
     "functional",
@@ -55,6 +59,8 @@ _ATTACKS: dict[str, type[Attack]] = {
     "reconnaissance": ReconnaissanceAttack,
     "piecewise_affine": PiecewiseAffineCensusAttack,
     "parameter_domain": ParameterDomainAttack,
+    "control_word": ControlWordAttack,
+    "control_obstruction": ControlObstructionAttack,
     "closure": ExhaustiveClosureAttack,
     "modular": ModularInvariantAttack,
     "functional": FunctionalBoundAttack,
@@ -168,15 +174,44 @@ def run_named_attack(name: str, spec: ProblemSpec, context: AttackContext) -> At
         raise KeyError(f"unknown attack {name!r}")
     if context.max_steps is None:
         context = replace(context, max_steps=DEFAULT_PLANNER_HORIZON)
-    if name == "parameter_domain" and not context.prior_results:
-        census = PiecewiseAffineCensusAttack()
-        if census.applicable(spec, context):
-            prior = census.run(spec, context)
-            context = replace(context, prior_results=(prior,))
+    context = _ensure_certificate_chain(name, spec, context)
     attack = cls()
     if not attack.applicable(spec, context):
         return inapplicable(name, "inapplicable", ClaimKind.REACHABLE)
     return attack.run(spec, context)
+
+
+def _ensure_certificate_chain(
+    name: str,
+    spec: ProblemSpec,
+    context: AttackContext,
+) -> AttackContext:
+    """Census then domain, so named control-word runs consume a certificate."""
+    if name not in {"parameter_domain", "control_word", "control_obstruction"}:
+        return context
+    priors = list(context.prior_results)
+    names = {item.name for item in priors}
+    if "piecewise_affine" not in names:
+        census = PiecewiseAffineCensusAttack()
+        if census.applicable(spec, context):
+            prior = census.run(spec, context)
+            priors.append(prior)
+            context = replace(context, prior_results=tuple(priors))
+            names.add("piecewise_affine")
+    if name in {"control_word", "control_obstruction"} and "parameter_domain" not in names:
+        domain = ParameterDomainAttack()
+        if domain.applicable(spec, context):
+            prior = domain.run(spec, context)
+            priors.append(prior)
+            context = replace(context, prior_results=tuple(priors))
+            names.add("parameter_domain")
+    if name == "control_obstruction" and "control_word" not in names:
+        composed = ControlWordAttack()
+        if composed.applicable(spec, context):
+            prior = composed.run(spec, context)
+            priors.append(prior)
+            context = replace(context, prior_results=tuple(priors))
+    return context
 
 
 def promote_if_legal(ledger: ResearchLedger, hyp_id: str, result: AttackResult) -> Hypothesis:

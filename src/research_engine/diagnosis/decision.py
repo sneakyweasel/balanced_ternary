@@ -72,6 +72,21 @@ def decide_research(
     if recovered and far:
         if fingerprint.piecewise_affine_structure == "PARAMETERIZED":
             if fingerprint.parameter_domain == "EXACT":
+                if fingerprint.latent_control_algebra == "EXPLOITABLE":
+                    if fingerprint.latent_control_obstruction == "PROVED":
+                        return (
+                            ResearchDecision.CONTINUE,
+                            "latent parameterized family recovered, domain "
+                            "certified, control-word algebra exploitable, and "
+                            "a class-level obstruction is proved; map globality "
+                            "on Z remains empirical",
+                        )
+                    return (
+                        ResearchDecision.CONTINUE,
+                        "latent parameterized family recovered, the arithmetic "
+                        "domain is certified, and control-word algebra is "
+                        "exploitable; map globality on Z remains empirical",
+                    )
                 return (
                     ResearchDecision.CONTINUE,
                     "latent parameterized family recovered and the arithmetic "

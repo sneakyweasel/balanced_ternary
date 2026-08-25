@@ -9,6 +9,22 @@ from research_engine.attacks.counterexample import (
     EquivalenceSeparationAttack,
     InvariantLeakAttack,
 )
+from research_engine.attacks.control_obstruction import (
+    ControlObstructionAttack,
+    ControlObstructionCertificate,
+    length_one_divisor_class,
+    run_control_obstruction,
+)
+from research_engine.attacks.control_word import (
+    ComposedAffineRelation,
+    ControlComposition,
+    ControlWord,
+    ControlWordAttack,
+    ControlWordConstraint,
+    compose_affine_steps,
+    cycle_constraint,
+    run_control_word,
+)
 from research_engine.attacks.envelope import (
     EnvelopeComparison,
     ExactReachabilityResult,
@@ -66,6 +82,16 @@ __all__ = [
     "BranchRegion",
     "CensusKind",
     "ClosureLeakAttack",
+    "ComposedAffineRelation",
+    "ControlComposition",
+    "ControlObstructionAttack",
+    "ControlObstructionCertificate",
+    "ControlWord",
+    "ControlWordAttack",
+    "ControlWordConstraint",
+    "compose_affine_steps",
+    "cycle_constraint",
+    "run_control_word",
     "DescentLeakAttack",
     "DomainCertificate",
     "EnvelopeComparison",

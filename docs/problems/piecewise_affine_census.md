@@ -257,9 +257,10 @@ Best next question: is there a generic certificate beyond KNOWN
 clearing that still does not require map-specific hints?
 
 The Syracuse end-to-end rerun (2026-08-25) answered that for the
-arithmetic relation: yes, via maximal divisibility. Remaining work is
-whether certified latent control can be consumed by other generic
-attacks, not a Collatz solver.
+arithmetic relation: yes, via maximal divisibility. Control-word
+composition (same day) consumes that certificate generically; see
+[control_word_composition.md](control_word_composition.md). Remaining
+work is map-agnostic obstruction, not a Collatz solver.
 
 ## Publication assessment
 
