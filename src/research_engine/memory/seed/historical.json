@@ -5155,6 +5155,236 @@
       },
       "reconciliation": null,
       "finalized": true
+    },
+    {
+      "experiment_id": "cyclic_tag_bit",
+      "target": "cyclic_tag",
+      "target_family": "word_rewrite",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.3",
+      "experiment_date": "2026-08-26",
+      "diagnosis": {
+        "target": "cyclic_tag",
+        "semantic_class": "INTEGER_1D|SINGLETON|EXPANDING|UNBOUNDED_SAMPLE|INCOMPLETE|BOUNDED",
+        "fingerprint": {
+          "transition_architecture": "DETERMINISTIC",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "EXPANDING",
+          "structural_compression": "COARSE_OBSERVATION",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "INCOMPLETE",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNCERTAIN",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "BOUNDED"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|EXPANDING|UNBOUNDED_SAMPLE|INCOMPLETE|BOUNDED",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "tagStep_length_ge",
+        "strongest_falsification": "nonempty window words do not map to empty; seed-101 halt is not an integer Z-theorem",
+        "lean_certificate": "Problems.Engine.CyclicTag",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CONTINUE",
+        "decision_reason": "encoded word rewrite expands with no piecewise-affine cover; not a halt theorem from the integer stack",
+        "extra": {}
+      },
+      "decision_reason_code": "REPRESENTATION_MISMATCH",
+      "representation_novelty": "HIGH",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "empty has no successor; length is nondecreasing",
+          "no complete piecewise-affine cover"
+        ],
+        "new_exact_results": [
+          "tagStep [] = none",
+          "101 maps to 0111",
+          "[0] is fixed"
+        ],
+        "new_formalizations": [
+          "Problems.Engine.CyclicTag"
+        ],
+        "new_counterexamples": [
+          "nonempty window words do not drop length"
+        ],
+        "new_conjectures": [],
+        "new_obstructions": [
+          "none; integer encoding is the predicted mismatch"
+        ],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "none on this production"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "cyclic_tag_bit:representation",
+          "target": "cyclic_tag",
+          "experiment_id": "cyclic_tag_bit",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "piecewise_affine",
+          "failure_class": "REPRESENTATION",
+          "representation_status": "NON_AFFINE",
+          "mathematical_bottleneck": "outside_affine_valuation_control",
+          "evidence": "encoded word rewrite has no complete piecewise-affine cover on the sample window",
+          "counterexamples": [],
+          "minimal_example": "0w |-> w0 ; 1w |-> w11",
+          "reproducibility": "seed",
+          "reusable_lesson": "Binary-word rewriting encoded as an integer is outside residue-affine language; the mismatch is the board prediction, not a tag-system attack.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "MEDIUM",
+          "status": "PARKED",
+          "affected_attack_family": "latent_affine"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "cyclic_tag:loot:mismatch",
+          "kind": "Representation mismatch",
+          "statement": "binary-word rewriting encoded as an integer lies outside residue-affine census language",
+          "evidence": "OBSERVED",
+          "experiment_id": "cyclic_tag_bit",
+          "target": "cyclic_tag",
+          "failure_class": "REPRESENTATION",
+          "bottleneck": "outside_affine_valuation_control",
+          "payload": {},
+          "observation": "piecewise-affine census is INCONCLUSIVE; affine_system is None",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "binary-word rewriting encoded as an integer is outside residue-affine language; do not add a tag-system attack",
+          "possible_transfer_targets": [],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "cyclic_tag:loot:seed101",
+          "kind": "Useful negative result",
+          "statement": "seed 101 maps to 0111 and grows; empty is not reached; that is the rewrite, not an integer halt theorem",
+          "evidence": "PROVED",
+          "experiment_id": "cyclic_tag_bit",
+          "target": "cyclic_tag",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "101 -> 0111 then grows; empty is not reached; [0] is fixed",
+          "minimal_example": "",
+          "counterexample": "101 maps to 0111; empty has no successor",
+          "reusable_lesson": "length nondecrease is the rewrite definition, not an integer halt theorem from the frozen stack",
+          "possible_transfer_targets": [],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "cyclic_tag:loot:cluster",
+          "kind": "Useful negative result",
+          "statement": "EXPANDING / UNBOUNDED_SAMPLE on the encoding is the predicted word/integer mismatch, not a reusable affine lesson",
+          "evidence": "OBSERVED",
+          "experiment_id": "cyclic_tag_bit",
+          "target": "cyclic_tag",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "EXPANDING / UNBOUNDED_SAMPLE / COARSE_OBSERVATION on the encoding; residual BFS hits cap 32",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "the word/integer mismatch was the board prediction; obvious incompatibility is low-value failure-learning",
+          "possible_transfer_targets": [],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "baader-nipkow-1998-term-rewriting"
+        ],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": false
+      },
+      "scout": {
+        "target": "cyclic_tag_bit",
+        "problem_definition": "Does frozen v2.3 diagnose encoded word rewriting without a tag-system attack?",
+        "literature": [
+          "baader-nipkow-1998-term-rewriting"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "cyclic_tag_bit",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": 32,
+        "max_steps": 16,
+        "allowed_definition": "rewrite a binary word by the productions 0 |-> 0 and 1 |-> 11, cyclic, halt on empty",
+        "state_space": "finite binary words encoded as integers if needed",
+        "observation": "word length",
+        "initial_conditions": [
+          "101"
+        ],
+        "explicit_controls": "",
+        "computational_budget": "",
+        "extra": {},
+        "forbidden_hints": [
+          "named conjectures",
+          "open-problem status",
+          "universality claims"
+        ],
+        "post_run_reconciliation": "",
+        "lean_targets": []
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "piecewise_affine": "INCONCLUSIVE",
+          "closure": "INCONCLUSIVE"
+        },
+        "skipped": [],
+        "strongest_exact": "tagStep_length_ge",
+        "strongest_falsification": "nonempty window words do not map to empty; seed-101 halt is not an integer Z-theorem",
+        "census_kind": "UNRESOLVED",
+        "lean_theorems": [
+          "Problems.Engine.CyclicTag"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
     }
   ],
   "certified": [

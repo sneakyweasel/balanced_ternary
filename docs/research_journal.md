@@ -3034,4 +3034,48 @@ Best next question
 - What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
 ```
 
+## Research Campaign 09: cyclic_tag_bit
+
+- **Date:** 2026-08-26
+- **Objective:** Diagnose the stored 0|->0, 1|->11 rewrite (halt on empty) as an integer-encoded word map, using frozen v2.3 without a tag-system attack and without a universality claim
+- **Hypotheses:** census might fake an affine cover; seed-101 halt might be billed as an integer Z-theorem; the mismatch might require a new tag attack
+- **Major results:** Blind `StrategyPlanner(TERMINATION)` selected `global_inductive` with empty results. Live `ResearchLoop` CONTINUE with EXPANDING / UNBOUNDED_SAMPLE, piecewise-affine INCONCLUSIVE, closure INCONCLUSIVE at cap 32. Exact: empty has no successor; [0] is fixed; 101 maps to 0111; length is nondecreasing. Lean in `Problems.Engine.CyclicTag`. No new attacks
+- **Refuted ideas:** residue-affine cover; seed-101 halt is an integer Z-theorem; the successor is affine on the encoding; nonempty words map to empty in one step; a new tag attack is required
+- **Literature:** Baader–Nipkow 1998
+- **Open:** none on this production; nonempty length never drops
+- **Decision:** CLOSE. The surviving statements are KNOWN. Predicted word/integer mismatch; low-value obvious incompatibility; board has no remaining unrun names
+
+```text
+What was learned
+- Empty has no successor; [0] is fixed; 101 maps to 0111 and grows; length is nondecreasing
+- Piecewise-affine census is INCONCLUSIVE; residual BFS hits cap 32
+- StrategyPlanner(TERMINATION) selects global_inductive with no implemented ranking attack
+- Fingerprint is EXPANDING / UNBOUNDED_SAMPLE / COARSE_OBSERVATION: the predicted word/integer mismatch
+- Failure-learning is low-value obvious incompatibility, as the protocol already said
+
+Strongest theorem
+- Length never decreases when a successor exists (tagStep_length_ge)
+
+Strongest refutation
+- Nonempty window words do not map to empty in one step; [0] is fixed
+
+Reusable machinery
+- none added; WordRewriteSpec is a sentinel encoding of the existing one-variable dummy-control pattern; KNOWN lemmas in CyclicTag.lean
+
+Prior-art status
+- KNOWN rewrite identities; Baader–Nipkow is a textbook, not a class obstruction
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- The identities are the productions. The mismatch was predicted. A tag-system attack or universality claim would violate the frozen contract. The stored board is now fully run.
+
+Best next question
+- none on the stored board; every named target is now run
+```
+
 

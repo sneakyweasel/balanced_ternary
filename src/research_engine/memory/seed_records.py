@@ -2587,6 +2587,130 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
         finalized=True,
     )
 
+    tag_fp = _fp(
+        state_space_type="INTEGER_1D",
+        control_structure="SINGLETON",
+        numerical_contraction="EXPANDING",
+        structural_compression="COARSE_OBSERVATION",
+        eventual_region="UNBOUNDED_SAMPLE",
+        orbit_behavior="INCOMPLETE",
+        certificate_strength="BOUNDED",
+        piecewise_affine_structure="UNCERTAIN",
+        affine_control_type="UNOBSERVED",
+        transition_architecture="DETERMINISTIC",
+    )
+    tag_exp = MemoryExperiment(
+        experiment_id="cyclic_tag_bit",
+        target="cyclic_tag",
+        target_family="word_rewrite",
+        adapter_version="0.2.1",
+        engine_version="0.2.3",
+        experiment_date="2026-08-26",
+        diagnosis=_diag(
+            "cyclic_tag",
+            tag_fp,
+            ResearchDecision.CONTINUE,
+            "encoded word rewrite expands with no piecewise-affine cover; not a halt theorem from the integer stack",
+            prior="KNOWN",
+            lean="Problems.Engine.CyclicTag",
+            exact="tagStep_length_ge",
+            falsification="nonempty window words do not map to empty; seed-101 halt is not an integer Z-theorem",
+            machinery="",
+        ),
+        decision_reason_code=DecisionReason.REPRESENTATION_MISMATCH,
+        representation_novelty=NoveltyLevel.HIGH,
+        mathematical_novelty=NoveltyLevel.NONE,
+        novelty_status=NoveltyStatus.KNOWN_REDISCOVERY,
+        mathematical_yield=MathematicalYield(
+            known_rediscoveries=(
+                "empty has no successor; length is nondecreasing",
+                "no complete piecewise-affine cover",
+            ),
+            new_exact_results=("tagStep [] = none", "101 maps to 0111", "[0] is fixed"),
+            new_formalizations=("Problems.Engine.CyclicTag",),
+            new_obstructions=("none; integer encoding is the predicted mismatch",),
+            new_counterexamples=("nonempty window words do not drop length",),
+            unresolved_questions=("none on this production",),
+            engineering_changes=0,
+        ),
+        failures=(
+            _fail(
+                "cyclic_tag_bit",
+                "cyclic_tag",
+                "representation",
+                FailureClass.REPRESENTATION,
+                "NON_AFFINE",
+                "outside_affine_valuation_control",
+                "encoded word rewrite has no complete piecewise-affine cover on the sample window",
+                "Binary-word rewriting encoded as an integer is outside residue-affine language; the mismatch is the board prediction, not a tag-system attack.",
+                "latent_affine",
+                attack="piecewise_affine",
+                value=ImportanceLevel.MEDIUM,
+                prior="KNOWN",
+                example="0w |-> w0 ; 1w |-> w11",
+            ),
+        ),
+        grey_loot=(
+            GreyLoot(
+                id="cyclic_tag:loot:mismatch",
+                kind=GreyLootKind.REPRESENTATION_MISMATCH,
+                statement="binary-word rewriting encoded as an integer lies outside residue-affine census language",
+                evidence=LootEvidence.OBSERVED,
+                experiment_id="cyclic_tag_bit",
+                target="cyclic_tag",
+                failure_class=FailureClass.REPRESENTATION,
+                bottleneck="outside_affine_valuation_control",
+            ),
+            GreyLoot(
+                id="cyclic_tag:loot:seed101",
+                kind=GreyLootKind.USEFUL_NEGATIVE_RESULT,
+                statement="seed 101 maps to 0111 and grows; empty is not reached; that is the rewrite, not an integer halt theorem",
+                evidence=LootEvidence.PROVED,
+                experiment_id="cyclic_tag_bit",
+                target="cyclic_tag",
+            ),
+            GreyLoot(
+                id="cyclic_tag:loot:cluster",
+                kind=GreyLootKind.USEFUL_NEGATIVE_RESULT,
+                statement="EXPANDING / UNBOUNDED_SAMPLE on the encoding is the predicted word/integer mismatch, not a reusable affine lesson",
+                evidence=LootEvidence.OBSERVED,
+                experiment_id="cyclic_tag_bit",
+                target="cyclic_tag",
+            ),
+        ),
+        prior_art=PriorArtMemory(
+            literature_ids=("baader-nipkow-1998-term-rewriting",),
+            independently_rediscovered=False,
+            known_theorem_status="KNOWN",
+        ),
+        scout=ScoutDossier(
+            target="cyclic_tag_bit",
+            problem_definition=(
+                "Does frozen v2.3 diagnose encoded word rewriting without a tag-system attack?"
+            ),
+            literature=("baader-nipkow-1998-term-rewriting",),
+        ),
+        blind_packet=BlindPacket(
+            spec_name="cyclic_tag_bit",
+            dimension=1,
+            max_states=32,
+            max_steps=16,
+            allowed_definition="rewrite a binary word by the productions 0 |-> 0 and 1 |-> 11, cyclic, halt on empty",
+            state_space="finite binary words encoded as integers if needed",
+            observation="word length",
+            initial_conditions=("101",),
+            forbidden_hints=("named conjectures", "open-problem status", "universality claims"),
+        ),
+        run_artifact=RunArtifact(
+            attack_statuses={"piecewise_affine": "INCONCLUSIVE", "closure": "INCONCLUSIVE"},
+            lean_theorems=("Problems.Engine.CyclicTag",),
+            strongest_exact="tagStep_length_ge",
+            strongest_falsification="nonempty window words do not map to empty; seed-101 halt is not an integer Z-theorem",
+            census_kind="UNRESOLVED",
+        ),
+        finalized=True,
+    )
+
     return tuple(
         _enrich_lessons(item)
         for item in (
@@ -2618,6 +2742,7 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
             juggler_exp,
             reverse_exp,
             home_exp,
+            tag_exp,
         )
     )
 
@@ -3034,6 +3159,31 @@ def _lesson_fields() -> dict[str, dict]:
         "home_prime:loot:cluster": dict(
             observation="engine EXACT_CLOSURE of size 13 is a budget artefact, unlike aliquot UNBOUNDED_SAMPLE and unlike attractor closures",
             reusable_lesson="factor-concatenation truncation can look like finite closure once the successor is undefined; that is not an attractor and not a prime-reachability theorem",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "cyclic_tag:loot:mismatch": dict(
+            observation="piecewise-affine census is INCONCLUSIVE; affine_system is None",
+            reusable_lesson="binary-word rewriting encoded as an integer is outside residue-affine language; do not add a tag-system attack",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "cyclic_tag:loot:seed101": dict(
+            observation="101 -> 0111 then grows; empty is not reached; [0] is fixed",
+            reusable_lesson="length nondecrease is the rewrite definition, not an integer halt theorem from the frozen stack",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+            counterexample="101 maps to 0111; empty has no successor",
+        ),
+        "cyclic_tag:loot:cluster": dict(
+            observation="EXPANDING / UNBOUNDED_SAMPLE / COARSE_OBSERVATION on the encoding; residual BFS hits cap 32",
+            reusable_lesson="the word/integer mismatch was the board prediction; obvious incompatibility is low-value failure-learning",
             possible_transfer_targets=(),
             status=GreyLootStatus.SATURATED,
             engineering_action="CLOSE",

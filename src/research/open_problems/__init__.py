@@ -80,6 +80,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.juggler_sequence.problem import PROBLEM as JUGGLER_SEQUENCE
     from research.reverse_and_add_base3.problem import PROBLEM as REVERSE_AND_ADD_BASE3
     from research.home_prime_49.problem import PROBLEM as HOME_PRIME_49
+    from research.cyclic_tag_bit.problem import PROBLEM as CYCLIC_TAG_BIT
     from research.euclidean_quotient.problem import PROBLEM as EUCLIDEAN_QUOTIENT
     from research.vector_affine.problem import PROBLEM as VECTOR_AFFINE
     from research.matrix_word_invariant.problem import PROBLEM as MATRIX_WORD_INVARIANT
@@ -108,6 +109,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         JUGGLER_SEQUENCE,
         REVERSE_AND_ADD_BASE3,
         HOME_PRIME_49,
+        CYCLIC_TAG_BIT,
         EUCLIDEAN_QUOTIENT,
         VECTOR_AFFINE,
         MATRIX_WORD_INVARIANT,

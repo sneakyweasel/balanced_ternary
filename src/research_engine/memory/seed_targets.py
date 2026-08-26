@@ -1037,6 +1037,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
         claimed_capabilities=("growth",),
         prior_art_classified=True,
         prospective_fingerprint=nonaffine_fp,
+        already_run=True,
         prior_art=PriorArtDossier(
             target="cyclic_tag_bit",
             definition="cyclic tag 0|->0, 1|->11, halt on empty word",

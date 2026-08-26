@@ -2127,7 +2127,7 @@
         "post_run_reconciliation": "",
         "lean_targets": []
       },
-      "already_run": false
+      "already_run": true
     }
   ],
   "named_clusters": [
@@ -2187,6 +2187,7 @@
       ],
       "targets": [
         "aliquot_276",
+        "cyclic_tag",
         "euclidean_quotient",
         "home_prime",
         "home_prime_49",
@@ -2194,8 +2195,8 @@
         "reverse_add_bt",
         "syracuse"
       ],
-      "recurrence_count": 7,
-      "target_diversity": 7,
+      "recurrence_count": 8,
+      "target_diversity": 8,
       "mathematical_importance": "HIGH",
       "existing_workarounds": [
         "finite known orbits; refuse a piecewise-affine cover"
@@ -2280,8 +2281,8 @@
     },
     {
       "failure_cluster": "non_affine_arithmetic",
-      "recurrence_count": 7,
-      "target_diversity": 7,
+      "recurrence_count": 8,
+      "target_diversity": 8,
       "mathematical_importance": "HIGH",
       "expected_research_value": "HIGH",
       "implementation_cost": "high",
