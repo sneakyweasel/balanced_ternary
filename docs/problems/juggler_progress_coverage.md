@@ -157,10 +157,10 @@ and computationally the first even residual of those starts stays
 
 ## Open questions
 
-If the first even residual of an odd-to-odd start stays \(\ge n\),
-what exact later certificate can still produce `FiniteProgress`?
-Do not answer this by proving `FiniteProgress` for all \(n\), and do
-not open a cycle engine.
+Answered in [juggler_odd_odd_frontier.md](juggler_odd_odd_frontier.md):
+the first even residual is below \(n^2\), a return-to-\(n\) cell, or
+an overshoot. A `MinimalNonTerm` start cannot `Descent` or `Capture`
+on the first `O^a E`. The scanned window is all overshoot.
 
 ## Decision
 
@@ -168,9 +168,8 @@ not open a cycle engine.
 not claim termination. Do not claim that odd-to-odd states fail to
 reach 1. Do not claim that a minimal counterexample is all-odd.
 
-Best next question: after an odd-to-odd start whose first even
-residual stays \(\ge n\), which already-proved certificate can still
-supply `FiniteProgress`?
+Best next question: answered in
+[juggler_odd_odd_frontier.md](juggler_odd_odd_frontier.md).
 
 ## Publication assessment
 

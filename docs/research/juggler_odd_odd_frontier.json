@@ -1,0 +1,297 @@
+{
+  "experiment": "juggler_odd_odd_frontier",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false,
+    "first_even_descends": false,
+    "cycle_impossible": false,
+    "overshoot_is_progress": false
+  },
+  "scan": {
+    "census": {
+      "n_max": 80,
+      "odd_odd": 18,
+      "cells": {
+        "below": 0,
+        "boundary": 0,
+        "overshoot": 18,
+        "NO_EVEN_WITHIN_HORIZON": 0
+      },
+      "post_even_kinds": {
+        "CAPTURE": 5,
+        "STAY": 5,
+        "DESCENT": 8
+      },
+      "stay_count": 5,
+      "stay_samples": [
+        {
+          "n": 9,
+          "a": 2,
+          "z": 140,
+          "e": 11,
+          "b": 1,
+          "y": 11,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "STAY"
+        },
+        {
+          "n": 37,
+          "a": 4,
+          "z": 86818724,
+          "e": 9317,
+          "b": 1,
+          "y": 9317,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "STAY"
+        },
+        {
+          "n": 49,
+          "a": 2,
+          "z": 6352,
+          "e": 79,
+          "b": 1,
+          "y": 79,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "STAY"
+        },
+        {
+          "n": 69,
+          "a": 2,
+          "z": 13716,
+          "e": 117,
+          "b": 1,
+          "y": 117,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "STAY"
+        },
+        {
+          "n": 77,
+          "a": 3,
+          "z": 2322378,
+          "e": 1523,
+          "b": 1,
+          "y": 1523,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "STAY"
+        }
+      ],
+      "overshoot_samples": [
+        {
+          "n": 3,
+          "a": 3,
+          "z": 36,
+          "e": 6,
+          "b": 3,
+          "y": 1,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "CAPTURE"
+        },
+        {
+          "n": 5,
+          "a": 2,
+          "z": 36,
+          "e": 6,
+          "b": 3,
+          "y": 1,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "CAPTURE"
+        },
+        {
+          "n": 9,
+          "a": 2,
+          "z": 140,
+          "e": 11,
+          "b": 1,
+          "y": 11,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "STAY"
+        },
+        {
+          "n": 25,
+          "a": 3,
+          "z": 52214,
+          "e": 228,
+          "b": 2,
+          "y": 15,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "DESCENT"
+        },
+        {
+          "n": 33,
+          "a": 2,
+          "z": 2598,
+          "e": 50,
+          "b": 2,
+          "y": 7,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "DESCENT"
+        },
+        {
+          "n": 35,
+          "a": 2,
+          "z": 2978,
+          "e": 54,
+          "b": 2,
+          "y": 7,
+          "cell": "overshoot",
+          "e_cmp": "gt",
+          "kind": "DESCENT"
+        }
+      ]
+    },
+    "calibration": [
+      {
+        "n": 3,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "a": 3,
+        "z": 36,
+        "e": 6,
+        "b": 3,
+        "y": 1,
+        "cell": "overshoot",
+        "e_cmp": "gt",
+        "kind": "CAPTURE"
+      },
+      {
+        "n": 5,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "a": 2,
+        "z": 36,
+        "e": 6,
+        "b": 3,
+        "y": 1,
+        "cell": "overshoot",
+        "e_cmp": "gt",
+        "kind": "CAPTURE"
+      },
+      {
+        "n": 9,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "a": 2,
+        "z": 140,
+        "e": 11,
+        "b": 1,
+        "y": 11,
+        "cell": "overshoot",
+        "e_cmp": "gt",
+        "kind": "STAY"
+      },
+      {
+        "n": 13,
+        "bucket": "OE_PROGRESS",
+        "odd_odd": false
+      },
+      {
+        "n": 25,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "a": 3,
+        "z": 52214,
+        "e": 228,
+        "b": 2,
+        "y": 15,
+        "cell": "overshoot",
+        "e_cmp": "gt",
+        "kind": "DESCENT"
+      },
+      {
+        "n": 37,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "a": 4,
+        "z": 86818724,
+        "e": 9317,
+        "b": 1,
+        "y": 9317,
+        "cell": "overshoot",
+        "e_cmp": "gt",
+        "kind": "STAY"
+      },
+      {
+        "n": 69,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "a": 2,
+        "z": 13716,
+        "e": 117,
+        "b": 1,
+        "y": 117,
+        "cell": "overshoot",
+        "e_cmp": "gt",
+        "kind": "STAY"
+      },
+      {
+        "n": 77,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "a": 3,
+        "z": 2322378,
+        "e": 1523,
+        "b": 1,
+        "y": 1523,
+        "cell": "overshoot",
+        "e_cmp": "gt",
+        "kind": "STAY"
+      }
+    ],
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "image_oddEvenBlock": true,
+    "first_even_return": true,
+    "even_floorPower_lt_iff": true,
+    "even_floorPower_eq_iff": true,
+    "even_floorPower_gt_iff": true,
+    "even_ne_odd_square": true,
+    "odd_even_residual_trichotomy": true,
+    "odd_even_residual_image": true,
+    "first_even_descent_iff": true,
+    "finiteProgress_of_first_even_below": true,
+    "minimal_even_residual_gt_sq": true,
+    "minimal_nonterm_not_first_even_descent": true,
+    "minimal_nonterm_not_first_even_capture": true,
+    "first_even_return_cycle": true,
+    "minimal_first_even_dichotomy": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_all_finiteProgress_proved": true,
+    "no_infinite_path_type": true,
+    "no_frequency_theorem": true,
+    "no_cycle_engine": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true
+  },
+  "decision": {
+    "classification": "FIRST_EVEN_RESIDUAL_CLASSIFIED",
+    "secondary": [
+      "ODD_ODD_COUNTEREXAMPLE_CLASS"
+    ],
+    "reason": "first even residual is below n^2, return-to-n, or overshoot; a MinimalNonTerm start cannot Descent or Capture on the first O^a E; the window is all overshoot"
+  },
+  "search_method": "odd-odd starts; first even residual cell vs n^2 and (n+1)^2; maximal even-run endpoint; no FiniteProgress search as a proof"
+}

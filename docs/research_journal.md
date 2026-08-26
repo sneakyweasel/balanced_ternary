@@ -4909,4 +4909,49 @@ Best next question
 - After an odd-to-odd start whose first even residual stays >= n, which already-proved certificate can still supply FiniteProgress?
 ```
 
+## Juggler odd-to-odd first-even residual
+
+- **Date:** 2026-08-27
+- **Objective:** Classify the first even residual of an odd-to-odd start under minimality
+- **Hypotheses:** `FIRST_EVEN_RESIDUAL_CLASSIFIED`, `BOUNDARY_CYCLE_GREEN`, `RESIDUAL_OVERSHOOT_GREEN`, or `ODD_ODD_COUNTEREXAMPLE_CLASS`
+- **Major results:** Even residual trichotomy \(z<n^2\), return cell, or overshoot **EXACT — LEAN VERIFIED**. \(z=n^2\) is impossible for odd \(n\) **EXACT — LEAN VERIFIED**. First `O^a E` descends iff \(z<n^2\), and that case is `FiniteProgress` **EXACT — LEAN VERIFIED**. On `MinimalNonTerm`, first `O^a E` is neither `Descent` nor `Capture`; leftover is return-to-\(n\) or overshoot **EXACT — LEAN VERIFIED**. Window \(2\le n\le 80\) is all overshoot. Classification **FIRST_EVEN_RESIDUAL_CLASSIFIED**. Records: `docs/research/juggler_odd_odd_frontier.md`, `docs/problems/juggler_odd_odd_frontier.md`. Control layer unchanged
+- **Refuted ideas:** first even residual of an odd-odd start descends; \(z=n_*^2\) as a possible even residual; overshoot is already `FiniteProgress`; a halt theorem
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** after the first overshoot \(T(z)>n\), can the post-even odd state still carry a known `FiniteProgress` certificate, or is a later excursion required?
+- **Decision:** PROMOTE the trichotomy and the CE dichotomy. Do not exclude cycles. Do not claim termination
+
+```text
+What was learned
+- An even residual vs an odd n is below n^2, in (n^2,(n+1)^2), or at least (n+1)^2; n^2 cannot be even
+- O^a E descends iff z<n^2; that subclass has FiniteProgress
+- A MinimalNonTerm start cannot Descent or Capture on the first O^a E
+- The CE leftover is T(z)=n (cycle) or T(z)>n (overshoot)
+- In 2..80 every odd-odd first residual overshoots; some later even runs still stay above n
+
+Strongest theorem
+- If MinimalNonTerm n and O^a E occurs at n, then either T(z)=n and z<(n+1)^2, or (n+1)^2≤z and T(z)>n
+
+Strongest refutation
+- the first even residual of an odd-odd start descends; all 18 such starts in 2..80 overshoot
+
+Reusable machinery
+- Problems.Engine.OddOddFrontier minimal_first_even_dichotomy / finiteProgress_of_first_even_below
+- research.juggler_sequence.odd_odd_frontier
+
+Prior-art status
+- residual classification, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The odd-odd induction obligation is now an exact cell split, and the first O^a E is proved not to close a minimal counterexample.
+
+Best next question
+- After the first overshoot T(z)>n, can the post-even odd state still carry a known FiniteProgress certificate, or is a later excursion required?
+```
+
 

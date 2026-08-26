@@ -42,6 +42,7 @@ import Problems.Engine.Progress
 import Problems.Engine.MinimalNonTerm
 import Problems.Engine.RepeatedOE
 import Problems.Engine.OddRunFinancing
+import Problems.Engine.OddOddFrontier
 import Problems.Engine.RepeatedBlock
 import Problems.Engine.ReverseAdd
 import Problems.Engine.FactorConcat
