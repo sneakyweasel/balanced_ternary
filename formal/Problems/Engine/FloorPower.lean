@@ -32,6 +32,9 @@ Headline theorems:
   word `EOO` contracts if and only if `n ∈ {2, 12, 14}`.
 * `eoo_contracts_on_cell` — that classification is the square-root
   cell threshold `n > eooCellOutput ⌊√n⌋`.
+* `first_even_freeze` — every first-even word satisfies
+  `T_{Ev}(n) = T_v(⌊√n⌋)` on the square-root cell.
+* `odd_cell_unique` — every odd floor cell contains at most one `n`.
 -/
 
 /-!
@@ -2701,5 +2704,128 @@ theorem eoo_cell_output_ge_succ_sq {q : ℕ} (hq : 5 ≤ q) :
 theorem eoo_residue {n : ℕ} (hw : follows n wordEOO) :
     localDefectEven n = n - n.sqrt ^ 2 :=
   localDefectEven_eq (follows_wordEOO_iff.mp hw).1
+
+/-!
+## Primitive floor cells and the first-even freeze
+
+Even and odd branches have exact inverse-floor cells. The first even
+letter freezes every suffix on the square-root cell. Odd cells contain
+at most one integer, so an initial odd letter does not freeze a useful
+range. This is not a halt theorem and not a cell-tree calculus.
+-/
+
+theorem even_cell_iff {n q : ℕ} (heven : n % 2 = 0) :
+    floorPower n = q ↔ q ^ 2 ≤ n ∧ n < (q + 1) ^ 2 :=
+  floorPower_even_eq_iff_sq_interval heven
+
+theorem odd_cell_iff {n m : ℕ} (hodd : n % 2 = 1) :
+    floorPower n = m ↔ m ^ 2 ≤ n ^ 3 ∧ n ^ 3 < (m + 1) ^ 2 :=
+  floorPower_odd_eq_iff_cube_interval hodd
+
+theorem cell_same_next_state {n q : ℕ} (heven : n % 2 = 0)
+    (hcell : q ^ 2 ≤ n ∧ n < (q + 1) ^ 2) :
+    floorPower n = q :=
+  (even_cell_iff heven).mpr hcell
+
+theorem iterate_cons_even {n k : ℕ} (heven : n % 2 = 0) :
+    floorPower^[k + 1] n = floorPower^[k] n.sqrt := by
+  rw [iterate_cons, floorPower_even_eq heven]
+
+theorem iterate_cons_odd {n k : ℕ} (hodd : n % 2 = 1) :
+    floorPower^[k + 1] n = floorPower^[k] (n ^ 3).sqrt := by
+  rw [iterate_cons, floorPower_odd_eq hodd]
+
+/-- On a realized first-even word, the suffix is evaluated at `⌊√n⌋`. -/
+theorem first_even_freeze {n : ℕ} {v : List Branch}
+    (hw : follows n (.even :: v)) :
+    floorPower^[v.length + 1] n = floorPower^[v.length] n.sqrt :=
+  iterate_cons_even hw.1
+
+theorem first_odd_freeze {n : ℕ} {v : List Branch}
+    (hw : follows n (.odd :: v)) :
+    floorPower^[v.length + 1] n = floorPower^[v.length] (n ^ 3).sqrt :=
+  iterate_cons_odd hw.1
+
+theorem suffix_same_output_on_cell {n₁ n₂ : ℕ} {v : List Branch}
+    (h1 : follows n₁ (.even :: v)) (h2 : follows n₂ (.even :: v))
+    (hq : n₁.sqrt = n₂.sqrt) :
+    floorPower^[v.length + 1] n₁ = floorPower^[v.length + 1] n₂ := by
+  rw [first_even_freeze h1, first_even_freeze h2, hq]
+
+/-- First-even contraction is the cell threshold `T_v(⌊√n⌋) < n`. -/
+theorem first_even_contracts_iff {n : ℕ} {v : List Branch}
+    (hw : follows n (.even :: v)) :
+    floorPower^[v.length + 1] n < n ↔
+      floorPower^[v.length] n.sqrt < n := by
+  simp [first_even_freeze hw]
+
+theorem eoo_from_first_even {n : ℕ} (hw : follows n wordEOO) :
+    floorPower^[3] n < n ↔ floorPower^[2] n.sqrt < n :=
+  first_even_contracts_iff (v := [.odd, .odd]) (by simpa [wordEOO] using hw)
+
+theorem constant_cell_trichotomy {c lo hi : ℕ} (_h : lo < hi) :
+    c < lo ∨ hi ≤ c ∨ (lo ≤ c ∧ c < hi) := by
+  omega
+
+theorem constant_cell_all_contract {c lo n : ℕ}
+    (hc : c < lo) (hn : lo ≤ n) : c < n :=
+  lt_of_lt_of_le hc hn
+
+theorem constant_cell_all_expand {c hi n : ℕ}
+    (hc : hi ≤ c) (hn : n < hi) : ¬c < n :=
+  fun h => (lt_asymm h) (lt_of_lt_of_le hn hc)
+
+theorem cube_succ_diff (n : ℕ) :
+    (n + 1) ^ 3 - n ^ 3 = 3 * n ^ 2 + 3 * n + 1 := by
+  have h : (n + 1) ^ 3 = n ^ 3 + (3 * n ^ 2 + 3 * n + 1) := by ring
+  omega
+
+theorem sq_succ_diff (m : ℕ) :
+    (m + 1) ^ 2 - m ^ 2 = 2 * m + 1 := by
+  have h : (m + 1) ^ 2 = m ^ 2 + 2 * m + 1 := by ring
+  omega
+
+/-- An odd floor cell `{n : m^2 ≤ n^3 < (m+1)^2}` has at most one point. -/
+theorem odd_cell_unique {m a b : ℕ}
+    (ha : m ^ 2 ≤ a ^ 3 ∧ a ^ 3 < (m + 1) ^ 2)
+    (hb : m ^ 2 ≤ b ^ 3 ∧ b ^ 3 < (m + 1) ^ 2) :
+    a = b := by
+  wlog hle : a ≤ b generalizing a b
+  · exact (this hb ha (le_of_not_ge hle)).symm
+  refine eq_of_le_of_not_lt hle fun hlt => ?_
+  have hsucc : a + 1 ≤ b := Nat.succ_le_of_lt hlt
+  have hcube : (a + 1) ^ 3 ≤ b ^ 3 := Nat.pow_le_pow_left hsucc 3
+  have hlt2 : (a + 1) ^ 3 < (m + 1) ^ 2 := lt_of_le_of_lt hcube hb.2
+  have hge : m ^ 2 ≤ a ^ 3 := ha.1
+  have hgap : (a + 1) ^ 3 - a ^ 3 < (m + 1) ^ 2 - m ^ 2 := by
+    have h1 : (a + 1) ^ 3 - a ^ 3 ≤ (a + 1) ^ 3 - m ^ 2 :=
+      Nat.sub_le_sub_left hge _
+    have h2 : (a + 1) ^ 3 - m ^ 2 < (m + 1) ^ 2 - m ^ 2 :=
+      Nat.sub_lt_sub_right
+        (le_trans hge (Nat.pow_le_pow_left (Nat.le_succ a) 3)) hlt2
+    exact lt_of_le_of_lt h1 h2
+  have hlin : 3 * a ^ 2 + 3 * a + 1 < 2 * m + 1 := by
+    simpa [cube_succ_diff a, sq_succ_diff m] using hgap
+  have h2m : 3 * a ^ 2 + 3 * a + 1 ≤ 2 * m := by omega
+  cases Nat.eq_zero_or_pos a with
+  | inl ha0 =>
+      subst ha0
+      have hm0 : m = 0 := Nat.eq_zero_of_le_zero (by simpa using hge)
+      subst hm0
+      exact (lt_irrefl (1 : ℕ)) hlin
+  | inr hap =>
+      have hsq : 3 * a ^ 2 ≤ 2 * m :=
+        le_trans (Nat.le_add_right _ _) (le_trans (Nat.le_add_right _ _) h2m)
+      have h4 : (3 * a ^ 2) ^ 2 ≤ (2 * m) ^ 2 := Nat.pow_le_pow_left hsq 2
+      have h9 : 9 * a ^ 4 ≤ 4 * m ^ 2 := by
+        simpa [pow_two, pow_succ, pow_zero, mul_assoc, mul_left_comm, mul_comm] using h4
+      have hstrict : 4 * a ^ 3 < 9 * a ^ 4 := by
+        have hmul : 4 < 9 * a := by omega
+        have hpos : 0 < a ^ 3 := pow_pos hap 3
+        simpa [mul_assoc, pow_succ, pow_zero] using
+          Nat.mul_lt_mul_of_pos_right hmul hpos
+      have : 4 * a ^ 3 < 4 * m ^ 2 := lt_of_lt_of_le hstrict h9
+      have habs : a ^ 3 < m ^ 2 := (Nat.mul_lt_mul_left (by decide : 0 < 4)).mp this
+      exact (lt_irrefl _) (lt_of_lt_of_le habs hge)
 
 end Problems.Engine

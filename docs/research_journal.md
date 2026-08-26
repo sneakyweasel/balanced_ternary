@@ -4279,4 +4279,49 @@ Best next question
 - Prove OOE/OEO never contract, or find a first-even positive-drift word whose cell output sits strictly inside (q^2,(q+1)^2) for infinitely many odd q
 ```
 
+## Juggler floor-cell geometry
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether EOO is an isolated cell trick or the first-even freeze \(T_{Ev}(n)=T_v(\lfloor\sqrt n\rfloor)\) is a reusable geometric law
+- **Hypotheses:** `FIRST_E_FREEZE_GREEN`, `CELL_CALCULUS_GREEN`, `CELL_FAMILY_FOUND`, `CELL_GEOMETRY_TOO_EXPENSIVE`, or `CELL_DUALITY_COUNTEREXAMPLE`
+- **Major results:** First-even freeze and first-even contraction threshold **PROVED**. Odd floor cells contain at most one integer **PROVED**. `EOO` is the mixed-cell case; `EEOOOO` is an entire-cell case at \(n\in\{4,6,8\}\). No parametrized positive-drift family on the scanned window. Classification **FIRST_E_FREEZE_GREEN**. Records: `docs/research/juggler_floor_cells.md`, `docs/problems/juggler_floor_cells.md`. Control layer unchanged
+- **Refuted ideas:** a useful odd-start freeze on a wide cell; a recursive cell tree as the next necessary object; an infinite first-even positive-drift contraction family in length \(\le6\)
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether only finitely many first-even positive-drift cells can mix or all-contract; whether `OOE`/`OEO` never contract
+- **Decision:** PROMOTE the freeze and odd-cell uniqueness. Do not add a cell tree. Do not register an attack. Do not claim termination
+
+```text
+What was learned
+- Every realized Ev word satisfies T_Ev(n)=T_v(⌊√n⌋) on the square-root cell
+- Contraction is the threshold T_v(q)<n, with a trichotomy all-contract / mixed / all-expand
+- Odd cells contain at most one n, so an initial O does not freeze a range
+- EOO is mixed at q=1,3; EEOOOO is entire-cell at q=2 (n=4,6,8)
+- A recursive partition is not justified: one E already freezes, and O refines to singletons
+
+Strongest theorem
+- follows n (even :: v) implies (T^{|v|+1}(n) < n ↔ T^{|v|}(⌊√n⌋) < n)
+
+Strongest refutation
+- odd floor cells are never wider than one integer, so the anticipated E/O duality holds exactly
+
+Reusable machinery
+- FloorPower first_even_freeze / first_even_contracts_iff / odd_cell_unique
+- research.juggler_sequence.floor_cells
+
+Prior-art status
+- local finite-word cell identity, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The EOO list is the mixed-cell case of a generic first-even identity. Odd-start words fail to freeze because their primitive cells are singletons, not because the freeze formula is false. No cell tree is required.
+
+Best next question
+- Prove there are only finitely many first-even positive-drift contraction cells, or find a suffix that stays below the next square for infinitely many q
+```
+
 
