@@ -2231,4 +2231,42 @@ theorem power_deficit_eq_local_odd_iff {n : ℕ} {v : List Branch}
     have heq := suffix_deficit_eq_of_exact_even hbound hv hevenV htight
     simpa [hfirst, ho, add_comm v.length] using heq
 
+/-!
+Inverse-floor form of the odd Juggler step. This is the integer
+interval for `T(n) = M`, not a termination theorem and not a
+perfect-power height.
+-/
+
+theorem floor_sqrt_eq_iff_sq_interval {n M : ℕ} :
+    n.sqrt = M ↔ M ^ 2 ≤ n ∧ n < (M + 1) ^ 2 := by
+  constructor
+  · intro h
+    subst h
+    exact ⟨by simpa [pow_two] using Nat.sqrt_le n,
+      by simpa [pow_two, Nat.succ_eq_add_one] using Nat.lt_succ_sqrt n⟩
+  · intro ⟨hle, hlt⟩
+    apply Nat.eq_of_le_of_lt_succ
+    · exact Nat.le_sqrt.mpr (by simpa [pow_two] using hle)
+    · exact Nat.sqrt_lt.mpr (by simpa [pow_two] using hlt)
+
+theorem floorPower_odd_eq_iff_cube_interval {n M : ℕ} (hodd : n % 2 = 1) :
+    floorPower n = M ↔ M ^ 2 ≤ n ^ 3 ∧ n ^ 3 < (M + 1) ^ 2 := by
+  have hodd0 : n % 2 ≠ 0 := by omega
+  have hcube : n * n * n = n ^ 3 := by ring
+  have step : floorPower n = (n ^ 3).sqrt := by
+    simp [floorPower, hodd0, hcube]
+  rw [step]
+  exact floor_sqrt_eq_iff_sq_interval
+
+theorem floorPower_odd_eq_pow_two_depth_iff {n a s : ℕ} (hodd : n % 2 = 1) :
+    floorPower n = a ^ (2 ^ s) ↔
+      a ^ (2 ^ (s + 1)) ≤ n ^ 3 ∧ n ^ 3 < (a ^ (2 ^ s) + 1) ^ 2 := by
+  have hsq : (a ^ (2 ^ s)) ^ 2 = a ^ (2 ^ (s + 1)) := (pow_two_succ_sq a s).symm
+  constructor
+  · intro h
+    have hI := (floorPower_odd_eq_iff_cube_interval hodd).mp h
+    exact ⟨hsq ▸ hI.1, hI.2⟩
+  · intro h
+    exact (floorPower_odd_eq_iff_cube_interval hodd).mpr ⟨hsq ▸ h.1, h.2⟩
+
 end Problems.Engine

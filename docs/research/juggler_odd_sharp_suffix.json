@@ -1,0 +1,418 @@
+{
+  "experiment": "juggler_odd_sharp_suffix",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "n_max": 50000,
+    "b_max": 2500,
+    "a8_max": 150,
+    "odd_scan": {
+      "n_min": 3,
+      "n_max": 50000,
+      "first_defect_depth_ge_one": [
+        {
+          "n": 11,
+          "T": 36,
+          "s": 1,
+          "base": 6,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 37,
+          "T": 225,
+          "s": 1,
+          "base": 15,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 339,
+          "T": 6241,
+          "s": 1,
+          "base": 79,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 797,
+          "T": 22500,
+          "s": 1,
+          "base": 150,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 905,
+          "T": 27225,
+          "s": 1,
+          "base": 165,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 927,
+          "T": 28224,
+          "s": 1,
+          "base": 168,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 1077,
+          "T": 35344,
+          "s": 1,
+          "base": 188,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 1771,
+          "T": 74529,
+          "s": 1,
+          "base": 273,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 1797,
+          "T": 76176,
+          "s": 1,
+          "base": 276,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 8115,
+          "T": 731025,
+          "s": 1,
+          "base": 855,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 14363,
+          "T": 1721344,
+          "s": 1,
+          "base": 1312,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 16231,
+          "T": 2067844,
+          "s": 1,
+          "base": 1438,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        },
+        {
+          "n": 23055,
+          "T": 3500641,
+          "s": 1,
+          "base": 1871,
+          "square_depth": 1,
+          "parity": "odd",
+          "first_defect": true,
+          "sharp_suffix_length": 1
+        }
+      ],
+      "first_defect_depth_ge_one_count": 13,
+      "first_defect_depth_ge_two": [],
+      "first_defect_depth_ge_two_count": 0,
+      "s1_bases": [
+        6,
+        15,
+        79,
+        150,
+        165,
+        168,
+        188,
+        273,
+        276,
+        855,
+        1312,
+        1438,
+        1871
+      ],
+      "s1_base_square_count": 0,
+      "max_s": 1
+    },
+    "fourth_powers": {
+      "b_min": 2,
+      "b_max": 2500,
+      "odd_hits": [],
+      "odd_hit_count": 0,
+      "even_hits": [
+        {
+          "b": 97,
+          "M": 88529281,
+          "n": 198636,
+          "parity": "even",
+          "n3_minus_M2": 165506495,
+          "interval_len": 177058563,
+          "exact_cube": false
+        }
+      ],
+      "even_hit_count": 1,
+      "exact_cube_hits": [
+        {
+          "b": 8,
+          "M": 4096,
+          "n": 256,
+          "parity": "even",
+          "n3_minus_M2": 0,
+          "interval_len": 8193,
+          "exact_cube": true
+        },
+        {
+          "b": 27,
+          "M": 531441,
+          "n": 6561,
+          "parity": "odd",
+          "n3_minus_M2": 0,
+          "interval_len": 1062883,
+          "exact_cube": true
+        },
+        {
+          "b": 64,
+          "M": 16777216,
+          "n": 65536,
+          "parity": "even",
+          "n3_minus_M2": 0,
+          "interval_len": 33554433,
+          "exact_cube": true
+        },
+        {
+          "b": 125,
+          "M": 244140625,
+          "n": 390625,
+          "parity": "odd",
+          "n3_minus_M2": 0,
+          "interval_len": 488281251,
+          "exact_cube": true
+        },
+        {
+          "b": 216,
+          "M": 2176782336,
+          "n": 1679616,
+          "parity": "even",
+          "n3_minus_M2": 0,
+          "interval_len": 4353564673,
+          "exact_cube": true
+        },
+        {
+          "b": 343,
+          "M": 13841287201,
+          "n": 5764801,
+          "parity": "odd",
+          "n3_minus_M2": 0,
+          "interval_len": 27682574403,
+          "exact_cube": true
+        },
+        {
+          "b": 512,
+          "M": 68719476736,
+          "n": 16777216,
+          "parity": "even",
+          "n3_minus_M2": 0,
+          "interval_len": 137438953473,
+          "exact_cube": true
+        },
+        {
+          "b": 729,
+          "M": 282429536481,
+          "n": 43046721,
+          "parity": "odd",
+          "n3_minus_M2": 0,
+          "interval_len": 564859072963,
+          "exact_cube": true
+        },
+        {
+          "b": 1000,
+          "M": 1000000000000,
+          "n": 100000000,
+          "parity": "even",
+          "n3_minus_M2": 0,
+          "interval_len": 2000000000001,
+          "exact_cube": true
+        },
+        {
+          "b": 1331,
+          "M": 3138428376721,
+          "n": 214358881,
+          "parity": "odd",
+          "n3_minus_M2": 0,
+          "interval_len": 6276856753443,
+          "exact_cube": true
+        },
+        {
+          "b": 1728,
+          "M": 8916100448256,
+          "n": 429981696,
+          "parity": "even",
+          "n3_minus_M2": 0,
+          "interval_len": 17832200896513,
+          "exact_cube": true
+        },
+        {
+          "b": 2197,
+          "M": 23298085122481,
+          "n": 815730721,
+          "parity": "odd",
+          "n3_minus_M2": 0,
+          "interval_len": 46596170244963,
+          "exact_cube": true
+        }
+      ],
+      "exact_cube_count": 12
+    },
+    "eighth_powers": {
+      "a_min": 2,
+      "a_max": 150,
+      "odd_hits": [],
+      "odd_hit_count": 0,
+      "even_hits": [],
+      "even_hit_count": 0
+    },
+    "even_start_contrast": {
+      "samples": [
+        {
+          "n": 18,
+          "T": 4,
+          "s": 1,
+          "base": 2,
+          "square_depth": 1,
+          "parity": "even",
+          "first_defect": true,
+          "sharp_suffix_length": 1,
+          "constructed_q": 4,
+          "constructed_s": 1,
+          "T_eq_q": true,
+          "depth_eq_s": true
+        },
+        {
+          "n": 258,
+          "T": 16,
+          "s": 2,
+          "base": 2,
+          "square_depth": 2,
+          "parity": "even",
+          "first_defect": true,
+          "sharp_suffix_length": 2,
+          "constructed_q": 16,
+          "constructed_s": 2,
+          "T_eq_q": true,
+          "depth_eq_s": true
+        },
+        {
+          "n": 65538,
+          "T": 256,
+          "s": 3,
+          "base": 2,
+          "square_depth": 3,
+          "parity": "even",
+          "first_defect": true,
+          "sharp_suffix_length": 3,
+          "constructed_q": 256,
+          "constructed_s": 3,
+          "T_eq_q": true,
+          "depth_eq_s": true
+        }
+      ],
+      "all_even": true,
+      "all_first_defect": true,
+      "depths": [
+        1,
+        2,
+        3
+      ],
+      "unbounded_family": true,
+      "note": "n = q^2 + 2 with q = 2^{2^s} yields T(n) = q and an exact even tower of length s after an even first defect"
+    },
+    "examples": {
+      "oe_eleven": {
+        "n": 11,
+        "T": 36,
+        "s": 1,
+        "base": 6,
+        "square_depth": 1,
+        "parity": "odd",
+        "first_defect": true,
+        "sharp_suffix_length": 1
+      },
+      "oe_thirty_seven": {
+        "n": 37,
+        "T": 225,
+        "s": 1,
+        "base": 15,
+        "square_depth": 1,
+        "parity": "odd",
+        "first_defect": true,
+        "sharp_suffix_length": 1
+      },
+      "even_ee_eighteen": {
+        "n": 18,
+        "T": 4,
+        "s": 1,
+        "base": 2,
+        "square_depth": 1,
+        "parity": "even",
+        "first_defect": true,
+        "sharp_suffix_length": 1
+      },
+      "eleven_interval": true,
+      "eleven_pow_two": true,
+      "eleven_not_depth_two": true,
+      "even_fourth_b97_n": 198636,
+      "even_fourth_b97_parity": "even"
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "floor_sqrt_eq_iff_sq_interval": true,
+    "floorPower_odd_eq_iff_cube_interval": true,
+    "floorPower_odd_eq_pow_two_depth_iff": true,
+    "impossible_theorem": false,
+    "PowerHeight_absent": true,
+    "PowerBoundStrict_absent": true,
+    "mixed_word_power_lt_absent": true
+  },
+  "decision": {
+    "classification": "ODD_SHARP_SUFFIX_INCOMPLETE",
+    "reason": "the inverse-floor reduction is Lean-verified and no odd s \u2265 2 hit was found, but a finite-search empty set is not an impossibility theorem"
+  },
+  "search_method": "isqrt on odd n; binary-search cube roots in the exact interval M^2 \u2264 n^3 < (M+1)^2 for M a fourth or eighth power; no floats and no cmp_pow"
+}

@@ -4099,4 +4099,49 @@ Best next question
 - Does an odd start admit arbitrarily long exact-even sharp suffixes OE^s, or is the unbounded sharp family only the even monochrome towers?
 ```
 
+## Juggler odd-start sharp even-tower suffixes
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether an odd first defect can feed an arbitrarily deep exact even tower, i.e. whether \(T(n)=a^{2^s}\) occurs for odd \(n\) and unbounded \(s\ge 2\)
+- **Hypotheses:** `ODD_SHARP_SUFFIX_UNBOUNDED`, `ODD_SHARP_SUFFIX_FINITE`, or `ODD_SHARP_SUFFIX_IMPOSSIBLE`
+- **Major results:** Inverse-floor `T(n)=M` iff \(M^2\le n^3<(M+1)^2\) for odd \(n\) **PROVED**. Specialization \(M=a^{2^s}\) **PROVED**. Odd first-defect scan \(n\le 50000\): 13 depth-1 hits, 0 depth \(\ge 2\). Fourth-power scan \(b\le 2500\): no odd cube; one even cube at \(b=97\), \(n=198636\). Even-start family remains unbounded. Classification **ODD_SHARP_SUFFIX_INCOMPLETE**. Records: `docs/research/juggler_odd_sharp_suffix.md`, `docs/problems/juggler_odd_sharp_suffix.md`. Control layer unchanged
+- **Refuted ideas:** treating a finite empty search as impossibility; importing monochromatic equality onto the odd start (the tower is on \(T(n)\)); real `n^{3/2}` / `cmp_pow` attack; `PowerHeight`
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether a cube in a fourth-power square interval must be even
+- **Decision:** PARK the depth classification. Keep the inverse-floor lemmas. Do not register an attack. Do not claim termination. Do not add a recursive defect calculus
+
+```text
+What was learned
+- For odd n, T(n)=M is exactly the integer interval M^2 ≤ n^3 < (M+1)^2
+- Sharp OE^s is exactly T(n)=a^{2^s} on a first-defect odd start
+- Every odd first-defect hit through n=50000 has square_depth(T(n))=1
+- A cube can sit in a fourth-power square interval, but the only hit found is even
+- Even first defects still admit arbitrarily long exact even towers
+
+Strongest theorem
+- For odd n, T(n)=a^{2^s} if and only if a^{2^{s+1}} ≤ n^3 < (a^{2^s}+1)^2
+
+Strongest refutation
+- none for s≥2; the empty search is not a theorem. The even b=97 cube shows the interval is not automatically empty
+
+Reusable machinery
+- FloorPower floor_sqrt_eq_iff_sq_interval / floorPower_odd_eq_iff_cube_interval / floorPower_odd_eq_pow_two_depth_iff
+- research.juggler_sequence.odd_sharp_suffix integer-root probe
+
+Prior-art status
+- inverse-floor packaging of Nat.sqrt, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PARK
+
+Why
+- The odd-start sharp family is reduced to a clean Diophantine interval, and every cheap integer-root search is consistent with only OE, but no obstruction was proved and no s≥2 witness appeared. Stop rather than build a number-theory framework around an unproved gap.
+
+Best next question
+- Must a cube in [b^8,(b^4+1)^2) be even, or is there an odd witness?
+```
+
 
