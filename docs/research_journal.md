@@ -3739,4 +3739,49 @@ Best next question
 - Other k≤5 mixed blocks as Level B conditionals, without a parity-frequency theorem.
 ```
 
+## Juggler fixed-word power inequalities
+
+- **Date:** 2026-08-26
+- **Objective:** Falsify the exponent-only hypothesis that a Juggler parity word \(w\) obeys \(T^{|w|}(n)^{2^{|w|}}\lessgtr n^{3^{\#O(w)}}\) with the sign of \(3^{\#O}\) versus \(2^{|w|}\), independently of letter order
+- **Hypotheses:** two-sided canonical comparison; one-sided floor composition \(T^k(n)^{2^k}\le n^{3^o}\); same-count permutations agree; near-critical words \(27/32\), \(243/256\), \(729/512\) are the strongest floor-error tests
+- **Major results:** Exhaustive \(|w|\le 8\) on \(1\le n\le 10^6\) plus targeted \(k=9\), \(o=6\). Two-sided exponent-only law **REFUTED** (expanding reverse fails at `O`/\(n=3\); strict even contraction equals on perfect squares). One-sided composition held on the whole domain (H1, including `OE` vs `EO` and all realized \(243/256\) words). Lean **PROVED** `floorPower_oooeeeoo_eight_step_lt`: `OOOEEEOO` implies \(T^8(n)^{256}\le n^{243}\) and \(T^8(n)<n\) for \(n\ge 2\). Classification **POWER_WORD_COUNTEREXAMPLE**. Records: `docs/research/juggler_power_words.md`, `docs/problems/juggler_power_words.md`. Research Engine control layer unchanged
+- **Refuted ideas:** expanding reverse inequality \(T_w(n)^{2^k}>n^{3^o}\); strict \(T(n)^2<n\) on all even \(n\ge 2\); treating `OOOEE` as an isolated lucky word rather than one-sided composition
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** a word-indexed one-sided composition lemma without a general-word tactic or frequency theorem
+- **Decision:** PROMOTE the one-sided composition and the `OOOEEEOO` theorem. Record the two-sided law as COUNTEREXAMPLE. Do not register an attack
+
+```text
+What was learned
+- Floor steps give only upper bounds, so T_w(n)^{2^k} <= n^{3^o} is the composition principle
+- The expanding reverse inequality is false at the first odd n>=3
+- Pure-even strict contraction fails with equality on the infinite square-tower family
+- Same (k,o) permutations agreed on both comparisons (H1); ordering was not a discriminator
+- Near-critical 243/256 mixed words survived; OOOEE is the (5,3) calibration of the same mechanism
+
+Strongest theorem
+- If n>=2 follows the parity word OOOEEEOO, then T^8(n)<n (floorPower_oooeeeoo_eight_step_lt)
+
+Strongest refutation
+- OO at n=3: 11^4 = 14641 < 3^9 = 19683, against the expanding reverse inequality
+
+Reusable machinery
+- research.juggler_sequence.power_words: exact cmp_pow and fixed-word sweep
+- FloorPower primitives pow_sq_le / pow_sq_le_cube / floorPower_even_sq_le / floorPower_odd_sq_le_cube
+
+Prior-art status
+- local floor-power block lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The two-sided exponent-only law is false, but the one-sided OOOEE mechanism is not an isolated word: a near-critical 243/256 block is Lean-proved. Stop before a general-word tactic.
+
+Best next question
+- Can the one-sided floor-power chain be packaged as a composition lemma indexed by a finite word, without a general-word tactic and without a parity-frequency theorem?
+```
+
 

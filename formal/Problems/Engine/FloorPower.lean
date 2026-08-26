@@ -236,6 +236,118 @@ theorem floorPower_oooee_five_step_lt
   have hbig : (2 : ℕ) ^ 5 ≤ n ^ 5 := Nat.pow_le_pow_left hn 5
   exact (by decide : ¬(2 : ℕ) ^ 5 ≤ 1) (le_trans hbig hpow5)
 
+/-- Even branch: `T(n)^2 ≤ n`. Exact floor bound, not a real square root. -/
+theorem floorPower_even_sq_le {n : ℕ} (heven : n % 2 = 0) :
+    floorPower n ^ 2 ≤ n := by
+  have step : floorPower n = n.sqrt := by simp [floorPower, heven]
+  rw [step]
+  simpa [pow_two] using Nat.sqrt_le n
+
+/-- Odd branch: `T(n)^2 ≤ n^3`. Exact floor bound, not a real 3/2-power. -/
+theorem floorPower_odd_sq_le_cube {n : ℕ} (hodd : n % 2 = 1) :
+    floorPower n ^ 2 ≤ n ^ 3 := by
+  have hodd0 : n % 2 ≠ 0 := by omega
+  have step : floorPower n = (n * n * n).sqrt := by simp [floorPower, hodd0]
+  rw [step]
+  have hle : (n * n * n).sqrt * (n * n * n).sqrt ≤ n * n * n := Nat.sqrt_le (n * n * n)
+  simpa [pow_two, pow_three, mul_assoc] using hle
+
+/-- Even-step composition of a square upper bound. -/
+theorem pow_sq_le {a b e : ℕ} (h : a ^ 2 ≤ b) :
+    a ^ (2 * e) ≤ b ^ e := by
+  calc
+    a ^ (2 * e) = (a ^ 2) ^ e := Nat.pow_mul a 2 e
+    _ ≤ b ^ e := Nat.pow_le_pow_left h e
+
+/-- Odd-step composition of a square-vs-cube upper bound. -/
+theorem pow_sq_le_cube {a b e : ℕ} (h : a ^ 2 ≤ b ^ 3) :
+    a ^ (2 * e) ≤ b ^ (3 * e) := by
+  calc
+    a ^ (2 * e) = (a ^ 2) ^ e := Nat.pow_mul a 2 e
+    _ ≤ (b ^ 3) ^ e := Nat.pow_le_pow_left h e
+    _ = b ^ (3 * e) := (Nat.pow_mul b 3 e).symm
+
+/-- For `n ≥ 2`, a strictly larger exponent yields a strictly larger power. -/
+theorem pow_lt_of_two_le {n a b : ℕ} (hn : 2 ≤ n) (hba : b < a) :
+    n ^ b < n ^ a :=
+  Nat.pow_lt_pow_right (lt_of_lt_of_le (by decide : 1 < 2) hn) hba
+
+/-- Power comparison for the OOOEEEOO floor-power block: five odd steps
+and three even steps give `n8 ^ 256 ≤ n ^ 243`. Canonical exponents of
+the word exponent `243/256`. -/
+theorem floorPower_oooeeeoo_pow_chain
+    {n n1 n2 n3 n4 n5 n6 n7 n8 : ℕ}
+    (h1 : n1 ^ 2 ≤ n ^ 3)
+    (h2 : n2 ^ 2 ≤ n1 ^ 3)
+    (h3 : n3 ^ 2 ≤ n2 ^ 3)
+    (h4 : n4 ^ 2 ≤ n3)
+    (h5 : n5 ^ 2 ≤ n4)
+    (h6 : n6 ^ 2 ≤ n5)
+    (h7 : n7 ^ 2 ≤ n6 ^ 3)
+    (h8 : n8 ^ 2 ≤ n7 ^ 3) :
+    n8 ^ 256 ≤ n ^ 243 := by
+  calc
+    n8 ^ 256 = n8 ^ (2 * 128) := by norm_num
+    _ ≤ n7 ^ (3 * 128) := pow_sq_le_cube h8
+    _ = n7 ^ 384 := by norm_num
+    _ = n7 ^ (2 * 192) := by norm_num
+    _ ≤ n6 ^ (3 * 192) := pow_sq_le_cube h7
+    _ = n6 ^ 576 := by norm_num
+    _ = n6 ^ (2 * 288) := by norm_num
+    _ ≤ n5 ^ 288 := pow_sq_le h6
+    _ = n5 ^ (2 * 144) := by norm_num
+    _ ≤ n4 ^ 144 := pow_sq_le h5
+    _ = n4 ^ (2 * 72) := by norm_num
+    _ ≤ n3 ^ 72 := pow_sq_le h4
+    _ = n3 ^ (2 * 36) := by norm_num
+    _ ≤ n2 ^ (3 * 36) := pow_sq_le_cube h3
+    _ = n2 ^ 108 := by norm_num
+    _ = n2 ^ (2 * 54) := by norm_num
+    _ ≤ n1 ^ (3 * 54) := pow_sq_le_cube h2
+    _ = n1 ^ 162 := by norm_num
+    _ = n1 ^ (2 * 81) := by norm_num
+    _ ≤ n ^ (3 * 81) := pow_sq_le_cube h1
+    _ = n ^ 243 := by norm_num
+
+/-- On the OOOEEEOO branch word, `T^8(n) < n` for `n ≥ 2`. Conditional
+block contraction; not a halt theorem and not a parity-frequency theorem. -/
+theorem floorPower_oooeeeoo_eight_step_lt
+    {n : ℕ} (hn : 2 ≤ n) (h0 : n % 2 = 1)
+    (h1 : floorPower n % 2 = 1)
+    (h2 : floorPower (floorPower n) % 2 = 1)
+    (h3 : floorPower (floorPower (floorPower n)) % 2 = 0)
+    (h4 : floorPower (floorPower (floorPower (floorPower n))) % 2 = 0)
+    (h5 : floorPower (floorPower (floorPower (floorPower (floorPower n)))) % 2 = 0)
+    (h6 : floorPower (floorPower (floorPower (floorPower (floorPower
+        (floorPower n))))) % 2 = 1)
+    (h7 : floorPower (floorPower (floorPower (floorPower (floorPower
+        (floorPower (floorPower n)))))) % 2 = 1) :
+    floorPower (floorPower (floorPower (floorPower (floorPower (floorPower
+        (floorPower (floorPower n))))))) < n := by
+  set n1 := floorPower n
+  set n2 := floorPower n1
+  set n3 := floorPower n2
+  set n4 := floorPower n3
+  set n5 := floorPower n4
+  set n6 := floorPower n5
+  set n7 := floorPower n6
+  set n8 := floorPower n7
+  have hn1 : n1 ^ 2 ≤ n ^ 3 := floorPower_odd_sq_le_cube h0
+  have hn2 : n2 ^ 2 ≤ n1 ^ 3 := floorPower_odd_sq_le_cube h1
+  have hn3 : n3 ^ 2 ≤ n2 ^ 3 := floorPower_odd_sq_le_cube h2
+  have hn4 : n4 ^ 2 ≤ n3 := floorPower_even_sq_le h3
+  have hn5 : n5 ^ 2 ≤ n4 := floorPower_even_sq_le h4
+  have hn6 : n6 ^ 2 ≤ n5 := floorPower_even_sq_le h5
+  have hn7 : n7 ^ 2 ≤ n6 ^ 3 := floorPower_odd_sq_le_cube h6
+  have hn8 : n8 ^ 2 ≤ n7 ^ 3 := floorPower_odd_sq_le_cube h7
+  have hpow : n8 ^ 256 ≤ n ^ 243 :=
+    floorPower_oooeeeoo_pow_chain hn1 hn2 hn3 hn4 hn5 hn6 hn7 hn8
+  refine Nat.lt_of_not_ge fun hge => ?_
+  have hn256 : n ^ 256 ≤ n8 ^ 256 := Nat.pow_le_pow_left hge 256
+  have hle : n ^ 256 ≤ n ^ 243 := le_trans hn256 hpow
+  have hlt : n ^ 243 < n ^ 256 := pow_lt_of_two_le hn (by decide : 243 < 256)
+  exact (not_le_of_gt hlt) hle
+
 theorem floorPower_one : floorPower 1 = 1 := by
   native_decide
 
