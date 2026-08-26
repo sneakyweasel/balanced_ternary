@@ -180,7 +180,7 @@ theorem warpWord_involutive_of_last_ne_zero
     calc
       some d = w.reverse.head? := by simp [hr]
       _ = w.getLast? := List.head?_reverse
-      _ = some (w.getLast hw) := List.getLast?_eq_getLast hw
+      _ = some (w.getLast hw) := List.getLast?_eq_some_getLast hw
   have hdrop : dropLeadingZeros w.reverse = w.reverse := by
     rw [hr, hd]
     exact dropLeadingZeros_of_head_ne_zero hlast

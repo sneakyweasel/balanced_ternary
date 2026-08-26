@@ -63,13 +63,13 @@ lemma three_pow_ne_zero (n : ℕ) : (3 : ℚ) ^ n ≠ 0 :=
   pow_ne_zero n (by decide)
 
 lemma padicValRat_three_pow (n : ℕ) : padicValRat 3 ((3 : ℚ) ^ n) = n := by
-  rw [padicValRat.pow (by decide : (3 : ℚ) ≠ 0), padicValRat_three, mul_one]
+  rw [padicValRat.pow, padicValRat_three, mul_one]
 
 lemma padicValRat_three_zeta_sq {ζ : ℚ} (hζ : ζ ≠ 0) :
     padicValRat 3 (3 * ζ ^ 2) = 1 + 2 * padicValRat 3 ζ := by
   have h3 : (3 : ℚ) ≠ 0 := by decide
   have hsq : ζ ^ 2 ≠ 0 := pow_ne_zero 2 hζ
-  rw [padicValRat.mul h3 hsq, padicValRat.pow hζ, padicValRat_three]
+  rw [padicValRat.mul h3 hsq, padicValRat.pow, padicValRat_three]
   ring
 
 lemma padicValRat_four_three_pow (n : ℕ) :

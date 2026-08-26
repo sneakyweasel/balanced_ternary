@@ -116,7 +116,7 @@ theorem step_lex_zero {c : ℤ} (cs : List ℤ) (h : ¬ isTrit c) :
 theorem step_lex_succ {c : ℤ} {cs : List ℤ} {n : ℕ}
     (h : List.Lex (· < ·) (absList (step cs n)) (absList cs)) :
     List.Lex (· < ·) (absList (step (c :: cs) (n + 1))) (absList (c :: cs)) := by
-  simp [absList, step]
+  simp only [absList, step, List.map_cons]
   exact List.Lex.cons h
 
 theorem DZ_natAbs_mul_three (n : ℤ) :

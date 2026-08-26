@@ -1,3 +1,4 @@
+import Mathlib.Algebra.Order.Group.Abs
 import BTCalculus.MyhillNerode
 import BTCalculus.NormalizedDerivative
 
@@ -158,7 +159,7 @@ theorem two_mul_packWord_le : ∀ {w : List ℤ}, isTritList w →
     have habs : |a| ≤ 1 := by
       rcases (hw.1 : a = -1 ∨ a = 0 ∨ a = 1) with rfl | rfl | rfl <;> simp
     have hle : |a + 3 * packWord rest| ≤ |a| + 3 * |packWord rest| := by
-      have := abs_add a (3 * packWord rest)
+      have := abs_add_le a (3 * packWord rest)
       simpa [abs_mul, abs_of_nonneg (by decide : (0 : ℤ) ≤ 3)] using this
     have hmain : 2 * |packWord (a :: rest)| ≤ 2 + 3 * ((3 : ℤ) ^ rest.length - 1) := by
       rw [packWord_cons]
@@ -222,7 +223,7 @@ theorem decomp_unique {w v : List ℤ} {r s : ℤ}
     have hb2 := two_mul_packWord_le hv
     rw [← hlen] at hb2
     have habs : |packWord w - packWord v| ≤ |packWord w| + |packWord v| := by
-      simpa [sub_eq_add_neg, abs_neg] using abs_add (packWord w) (-packWord v)
+      simpa [sub_eq_add_neg, abs_neg] using abs_add_le (packWord w) (-packWord v)
     have : (0 : ℤ) < (3 : ℤ) ^ w.length := pow_pos (by decide) _
     nlinarith
   have hzero : packWord w - packWord v = 0 :=
@@ -514,21 +515,21 @@ theorem equivK_quad (k : ℕ) (A B c0 A' B' c0' : ℤ) :
         convert hzm using 1
         ring
       have hαβ : (3 : ℤ) ^ (k + 1) ∣ (A - A') + (B - B') := by
-        have := dvd_sub h1' hγ
-        convert this using 1
-        ring
+        simpa [add_sub_cancel_right] using dvd_sub h1' hγ
       have hαmβ : (3 : ℤ) ^ (k + 1) ∣ (A - A') - (B - B') := by
-        have := dvd_sub hm' hγ
-        convert this using 1
-        ring
+        simpa [add_sub_cancel_right] using dvd_sub hm' hγ
       have h2α : (3 : ℤ) ^ (k + 1) ∣ 2 * (A - A') := by
-        have := dvd_add hαβ hαmβ
-        convert this using 1
-        ring
+        have h := dvd_add hαβ hαmβ
+        have heq :
+            (A - A') + (B - B') + ((A - A') - (B - B')) = 2 * (A - A') := by
+          omega
+        simpa [heq] using h
       have h2β : (3 : ℤ) ^ (k + 1) ∣ 2 * (B - B') := by
-        have := dvd_sub hαβ hαmβ
-        convert this using 1
-        ring
+        have h := dvd_sub hαβ hαmβ
+        have heq :
+            (A - A') + (B - B') - ((A - A') - (B - B')) = 2 * (B - B') := by
+          omega
+        simpa [heq] using h
       exact ⟨three_pow_dvd_of_two_mul h2α, three_pow_dvd_of_two_mul h2β, hγ⟩
   · intro ⟨hA, hB, hC⟩
     exact equivK_quad_of_dvd k hA hB hC
@@ -556,7 +557,7 @@ theorem xsq_equivK_iff_eq (k : ℕ) {w v : List ℤ}
         have hb1 := two_mul_packWord_le hw
         have hb2 := two_mul_packWord_le hv
         have habs : |packWord w - packWord v| ≤ |packWord w| + |packWord v| := by
-          simpa [sub_eq_add_neg, abs_neg] using abs_add (packWord w) (-packWord v)
+          simpa [sub_eq_add_neg, abs_neg] using abs_add_le (packWord w) (-packWord v)
         have hx : (3 : ℤ) ^ w.length ≤ (3 : ℤ) ^ k :=
           pow_le_pow_right₀ (by decide : (1 : ℤ) ≤ 3) (Nat.le_of_lt hwk)
         have hy : (3 : ℤ) ^ v.length ≤ (3 : ℤ) ^ k :=

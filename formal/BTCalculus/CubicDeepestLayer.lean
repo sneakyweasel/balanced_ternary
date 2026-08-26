@@ -69,17 +69,19 @@ theorem deepest_n1_mod {k : ℕ} (hk : 2 ≤ k) (p : ℤ) :
   have hA : (3 : ℤ) ^ k ∣ (3 : ℤ) ^ (2 * (k - 1)) := pow_dvd_pow _ hle
   have hB : (3 : ℤ) ^ k ∣ (3 : ℤ) ^ k * p := dvd_mul_right _ _
   have := hA.add hB
-  convert this using 1
-  ring
+  have heq :
+      (3 : ℤ) ^ (2 * (k - 1)) + (3 : ℤ) ^ k * p + 3 * p ^ 2 - 3 * p ^ 2 =
+        (3 : ℤ) ^ (2 * (k - 1)) + (3 : ℤ) ^ k * p := by
+    ring
+  simpa [heq] using this
 
 theorem deepest_n2_zero {k : ℕ} (hk : 1 ≤ k) (p : ℤ) :
     (3 : ℤ) ^ k ∣ n2Resid (k - 1) p := by
   unfold n2Resid
   have hm : (k - 1) + 1 = k := Nat.sub_add_cancel hk
   rw [hm]
-  convert (dvd_mul_right ((3 : ℤ) ^ k)
-      (2 * (p + (3 : ℤ) ^ (k - 1)))) using 1
-  ring
+  simpa [mul_assoc, mul_comm, mul_left_comm] using
+    (dvd_mul_right ((3 : ℤ) ^ k) (2 * (p + (3 : ℤ) ^ (k - 1))))
 
 theorem deepest_n3_zero {k : ℕ} (hk : 1 ≤ k) :
     (3 : ℤ) ^ k ∣ n3Resid (k - 1) := by

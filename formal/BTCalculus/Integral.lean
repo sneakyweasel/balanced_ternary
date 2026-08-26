@@ -65,7 +65,7 @@ def integralWord (a : Trit) (w : List Trit) : List Trit :=
 theorem eval_integralWord (a : Trit) (w : List Trit) :
     evalMSD (integralWord a w) = IZ a (evalMSD w) := by
   unfold integralWord IZ
-  simpa [add_comm] using evalMSD_appendLSD w a
+  simpa [appendLSD, add_comm] using evalMSD_appendLSD w a
 
 theorem D_after_integralWord (a : Trit) (w : List Trit) :
     dropLSD (integralWord a w) = w :=

@@ -1,3 +1,4 @@
+import Mathlib.Algebra.Order.Group.Abs
 import BTCalculus.CubicResidual
 import BTCalculus.Rewrite
 
@@ -90,7 +91,7 @@ theorem balWidth_sub {m : ℕ} {p q : ℤ}
     (hp : balWidth m p) (hq : balWidth m q) :
     |p - q| ≤ (3 : ℤ) ^ m - 1 := by
   have hsum : |p - q| ≤ |p| + |q| := by
-    simpa [sub_eq_add_neg, abs_neg] using abs_add p (-q)
+    simpa [sub_eq_add_neg, abs_neg] using abs_add_le p (-q)
   have : 2 * |p| + 2 * |q| ≤ 2 * ((3 : ℤ) ^ m - 1) := by
     unfold balWidth at hp hq
     linarith
@@ -168,11 +169,13 @@ theorem sameDepth_n1_sign (k m : ℕ) (p : ℤ) :
   rw [n1Resid_diff]
   constructor
   · intro h
-    convert h using 1
-    ring
+    have heq : 3 * (p + p) * (3 : ℤ) ^ m = 2 * (3 : ℤ) ^ (m + 1) * p := by
+      ring
+    simpa [heq] using h
   · intro h
-    convert h using 1
-    ring
+    have heq : 2 * (3 : ℤ) ^ (m + 1) * p = 3 * (p + p) * (3 : ℤ) ^ m := by
+      ring
+    simpa [heq] using h
 
 theorem sameDepth_n2_sign (k m : ℕ) (p : ℤ) :
     (3 : ℤ) ^ k ∣ n2Resid m p - n2Resid m (-p) ↔
@@ -181,13 +184,15 @@ theorem sameDepth_n2_sign (k m : ℕ) (p : ℤ) :
   constructor
   · intro h
     have : (3 : ℤ) ^ k ∣ (3 : ℤ) ^ (m + 1) * (2 * p) := by
-      convert h using 1
-      ring
+      have heq : (3 : ℤ) ^ (m + 1) * (p + p) = (3 : ℤ) ^ (m + 1) * (2 * p) := by
+        ring
+      simpa [heq] using h
     exact three_pow_dvd_of_two_mul (by simpa [mul_assoc, mul_left_comm, mul_comm] using this)
   · intro h
     have := h.mul_left (2 : ℤ)
-    convert this using 1
-    ring
+    have heq : 2 * ((3 : ℤ) ^ (m + 1) * p) = (3 : ℤ) ^ (m + 1) * (p + p) := by
+      ring
+    simpa [heq] using this
 
 theorem sign_n2_of_n1 {k m : ℕ} {p : ℤ}
     (h : (3 : ℤ) ^ k ∣ n1Resid m p - n1Resid m (-p)) :
@@ -217,12 +222,12 @@ theorem sign_n0 {k m : ℕ} {p : ℤ} :
   constructor
   · intro h
     have : (3 : ℤ) ^ k ∣ 2 * n0Resid m p := by
-      convert h using 1
-      ring
+      have heq : n0Resid m p - -n0Resid m p = 2 * n0Resid m p := by ring
+      simpa [heq] using h
     exact three_pow_dvd_of_two_mul this
   · intro h
     have := h.mul_left (2 : ℤ)
-    convert this using 1
-    ring
+    have heq : 2 * n0Resid m p = n0Resid m p - -n0Resid m p := by ring
+    simpa [heq] using this
 
 end BTCalculus

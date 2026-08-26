@@ -7,12 +7,13 @@ rules are the `simplifying=True` rows: cancellations, the W/K3 stock,
 and `I0 → S`. Semantic canonicity of irreducibles is not claimed.
 -/
 
+import Mathlib.Data.Nat.Basic
 import Mathlib.Logic.Relation
 
 namespace BTCalculus
 namespace WordSimp
 
-open Relation
+open Relation (ReflTransGen Join)
 
 /-- Letters that appear in `WORD_REWRITE_RULES` / `WORD_SIMP_RULES`. -/
 inductive Letter

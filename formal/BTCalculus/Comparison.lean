@@ -29,11 +29,11 @@ theorem cmp3_antisym (x y : ℤ) : (cmp3 x y).negate = cmp3 y x := by
 
 theorem cmp3_translate (x y z : ℤ) : cmp3 (x + z) (y + z) = cmp3 x y := by
   rcases lt_trichotomy x y with h | h | h
-  · have : x + z < y + z := add_lt_add_right h z
+  · have : x + z < y + z := by omega
     simp [cmp3_lt h, cmp3_lt this]
   · subst h
     simp [cmp3_eq]
-  · have : y + z < x + z := add_lt_add_right h z
+  · have : y + z < x + z := by omega
     simp [cmp3_gt h, cmp3_gt this]
 
 theorem cmp3_neg (x y : ℤ) : cmp3 (-x) (-y) = (cmp3 x y).negate := by

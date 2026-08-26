@@ -3,7 +3,7 @@ import BTCalculus.NormalizedDerivative
 
 namespace BTCalculus
 
-open Relation
+open Relation (ReflTransGen Join)
 
 /-!
 Confluence of the coefficient-vector rewrite, **modulo high-zero stripping**.

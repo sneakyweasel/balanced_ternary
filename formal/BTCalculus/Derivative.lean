@@ -76,7 +76,7 @@ theorem decomp (n : ℤ) : n = lsdZ n + 3 * DZ n := by
   unfold DZ
   have hdvd := three_dvd_sub_lsd n
   have hmod : (n - lsdZ n) % 3 = 0 := Int.dvd_iff_emod_eq_zero.mp hdvd
-  have hdiv := Int.ediv_add_emod (n - lsdZ n) 3
+  have hdiv := Int.ediv_mul_add_emod (n - lsdZ n) 3
   rw [hmod, add_zero] at hdiv
   linarith
 

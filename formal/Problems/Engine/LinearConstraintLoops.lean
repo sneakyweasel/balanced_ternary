@@ -35,7 +35,7 @@ theorem rplusRel_ediv {x y : ℤ} (h : rplusRel x y) : (4 * x) / 3 = y := by
   have hsum : 4 * x = 3 * y + 1 ∨ 4 * x = 3 * y + 2 := by
     have := rplusRel_clear h
     omega
-  have hdecomp : 3 * ((4 * x) / 3) + (4 * x) % 3 = 4 * x := Int.ediv_add_emod (4 * x) 3
+  have hdecomp : 3 * ((4 * x) / 3) + (4 * x) % 3 = 4 * x := Int.mul_ediv_add_emod (4 * x) 3
   have hmod_nonneg : 0 ≤ (4 * x) % 3 := Int.emod_nonneg _ (by decide)
   have hmod_lt : (4 * x) % 3 < 3 := Int.emod_lt_of_pos _ (by decide)
   cases hsum with
@@ -130,7 +130,7 @@ theorem floor54Rel_exists (x : ℤ) (hx : 2 ≤ x) : ∃ y, floor54Rel x y := by
   let r := (5 * x) % 4
   have hr0 : 0 ≤ r := Int.emod_nonneg _ (by decide)
   have hlt : r < 4 := Int.emod_lt_of_pos _ (by decide)
-  have hdecomp : 4 * ((5 * x) / 4) + r = 5 * x := Int.ediv_add_emod (5 * x) 4
+  have hdecomp : 4 * ((5 * x) / 4) + r = 5 * x := Int.mul_ediv_add_emod (5 * x) 4
   have hr : r = 0 ∨ r = 1 ∨ r = 2 ∨ r = 3 := by omega
   rcases hr with hr | hr | hr | hr
   · refine ⟨(5 * x) / 4 - 1, ?_⟩

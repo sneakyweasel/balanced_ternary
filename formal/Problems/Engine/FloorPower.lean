@@ -576,7 +576,7 @@ lemma isSquare_pow_three_iff {n : ℕ} : IsSquare (n ^ 3) ↔ IsSquare n := by
     have hk0 : k ≠ 0 := by
       rintro rfl
       have : n ^ 3 = 0 := by simpa using hk
-      exact hn (pow_eq_zero this)
+      exact hn ((Nat.pow_eq_zero.mp this).1)
     set d := Nat.gcd k n
     have hd_dvd_k : d ∣ k := Nat.gcd_dvd_left k n
     have hd_dvd_n : d ∣ n := Nat.gcd_dvd_right k n
@@ -1921,52 +1921,51 @@ theorem pow_sub_pow_gt_sub {a b e : ℕ} (hba : b < a) (he : 2 ≤ e) (ha : 2 �
         (le_trans (by decide : (1 : ℕ) ≤ 2) he)
   have hge : d ^ e ≤ a ^ e - b ^ e :=
     Nat.le_sub_of_add_le (add_comm (b ^ e) _ ▸ hsum)
-  cases le_or_lt d 1 with
-  | inl hd1 =>
-      have hd : d = 1 := le_antisymm hd1 hdpos
-      have hb : 1 ≤ b := by
-        have : 2 ≤ b + d := by simpa [ha'] using ha
+  by_cases hd1 : d ≤ 1
+  · have hd : d = 1 := le_antisymm hd1 hdpos
+    have hb : 1 ≤ b := by
+      have : 2 ≤ b + d := by simpa [ha'] using ha
+      omega
+    have he1 : 1 ≤ e - 1 := by omega
+    have htail : b ^ (e - 1) + 1 ≤ (b + 1) ^ (e - 1) := by
+      simpa using pow_add_pow_le_add_pow (b := b) (d := 1) he1
+    have ha1 : a = b + 1 := by omega
+    have hpow : (b + 1) ^ e = (b + 1) ^ (e - 1) * (b + 1) := by
+      rw [← pow_succ, Nat.sub_add_cancel (by omega)]
+    have hmul : (b ^ (e - 1) + 1) * (b + 1) ≤ (b + 1) ^ e := by
+      rw [hpow]
+      exact Nat.mul_le_mul_right _ htail
+    have hexp : b ^ e + b ^ (e - 1) + b + 1 ≤ (b + 1) ^ e := by
+      have hexpand :
+          (b ^ (e - 1) + 1) * (b + 1) = b ^ e + b ^ (e - 1) + b + 1 := by
+        calc
+          (b ^ (e - 1) + 1) * (b + 1)
+            = b ^ (e - 1) * (b + 1) + (b + 1) := by
+              rw [add_mul, one_mul]
+          _ = b ^ (e - 1) * b + b ^ (e - 1) + (b + 1) := by
+              rw [mul_add, mul_one]
+          _ = b ^ e + b ^ (e - 1) + (b + 1) := by
+              rw [← pow_succ, Nat.sub_add_cancel (by omega)]
+          _ = b ^ e + b ^ (e - 1) + b + 1 :=
+            (add_assoc (b ^ e + b ^ (e - 1)) b (1 : ℕ)).symm
+      exact hexpand ▸ hmul
+    have hgap3 : 3 ≤ a ^ e - b ^ e := by
+      have hb1 : 1 ≤ b ^ (e - 1) := by
+        simpa using Nat.pow_le_pow_left hb (e - 1)
+      have h3 : b ^ e + 3 ≤ (b + 1) ^ e := by
+        have : 3 ≤ b ^ (e - 1) + b + 1 := by omega
         omega
-      have he1 : 1 ≤ e - 1 := by omega
-      have htail : b ^ (e - 1) + 1 ≤ (b + 1) ^ (e - 1) := by
-        simpa using pow_add_pow_le_add_pow (b := b) (d := 1) he1
-      have ha1 : a = b + 1 := by omega
-      have hpow : (b + 1) ^ e = (b + 1) ^ (e - 1) * (b + 1) := by
-        rw [← pow_succ, Nat.sub_add_cancel (by omega)]
-      have hmul : (b ^ (e - 1) + 1) * (b + 1) ≤ (b + 1) ^ e := by
-        rw [hpow]
-        exact Nat.mul_le_mul_right _ htail
-      have hexp : b ^ e + b ^ (e - 1) + b + 1 ≤ (b + 1) ^ e := by
-        have hexpand :
-            (b ^ (e - 1) + 1) * (b + 1) = b ^ e + b ^ (e - 1) + b + 1 := by
-          calc
-            (b ^ (e - 1) + 1) * (b + 1)
-              = b ^ (e - 1) * (b + 1) + (b + 1) := by
-                rw [add_mul, one_mul]
-            _ = b ^ (e - 1) * b + b ^ (e - 1) + (b + 1) := by
-                rw [mul_add, mul_one]
-            _ = b ^ e + b ^ (e - 1) + (b + 1) := by
-                rw [← pow_succ, Nat.sub_add_cancel (by omega)]
-            _ = b ^ e + b ^ (e - 1) + b + 1 :=
-              (add_assoc (b ^ e + b ^ (e - 1)) b (1 : ℕ)).symm
-        exact hexpand ▸ hmul
-      have hgap3 : 3 ≤ a ^ e - b ^ e := by
-        have hb1 : 1 ≤ b ^ (e - 1) := by
-          simpa using Nat.pow_le_pow_left hb (e - 1)
-        have h3 : b ^ e + 3 ≤ (b + 1) ^ e := by
-          have : 3 ≤ b ^ (e - 1) + b + 1 := by omega
-          omega
-        simpa [ha1] using Nat.le_sub_of_add_le (add_comm (b ^ e) (3 : ℕ) ▸ h3)
-      rw [hd]
-      exact Nat.lt_of_lt_of_le (by decide : (1 : ℕ) < 3) hgap3
-  | inr hlt =>
-      have hd2 : 2 ≤ d := Nat.succ_le_of_lt hlt
-      have hsq : d < d ^ 2 := by
-        have : d * 1 < d * d :=
-          Nat.mul_lt_mul_of_pos_left (by omega : 1 < d) (by omega : 0 < d)
-        simpa [pow_two] using this
-      have hde : d ^ 2 ≤ d ^ e := Nat.pow_le_pow_right hdpos he
-      exact lt_of_lt_of_le (lt_of_lt_of_le hsq hde) hge
+      simpa [ha1] using Nat.le_sub_of_add_le (add_comm (b ^ e) (3 : ℕ) ▸ h3)
+    rw [hd]
+    exact Nat.lt_of_lt_of_le (by decide : (1 : ℕ) < 3) hgap3
+  · have hlt : 1 < d := Nat.not_le.mp hd1
+    have hd2 : 2 ≤ d := Nat.succ_le_of_lt hlt
+    have hsq : d < d ^ 2 := by
+      have : d * 1 < d * d :=
+        Nat.mul_lt_mul_of_pos_left (by omega : 1 < d) (by omega : 0 < d)
+      simpa [pow_two] using this
+    have hde : d ^ 2 ≤ d ^ e := Nat.pow_le_pow_right hdpos he
+    exact lt_of_lt_of_le (lt_of_lt_of_le hsq hde) hge
 
 theorem two_le_two_pow_of_pos {k : ℕ} (hk : 1 ≤ k) : 2 ≤ 2 ^ k :=
   Nat.pow_le_pow_right (by decide : (1 : ℕ) ≤ 2) hk

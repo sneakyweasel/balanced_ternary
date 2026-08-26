@@ -107,8 +107,12 @@ theorem n1_on_core_mod {k r : Nat} (hr : r + 1 ≤ k)
     pow_dvd_pow _ h2m
   have hB : (3 : Int) ^ k ∣ (3 : Int) ^ k * u := dvd_mul_right _ _
   have := hA.add hB
-  convert this using 1
-  ring
+  have heq :
+      (3 : Int) ^ (2 * (k - 1 - r)) + (3 : Int) ^ k * u +
+          (3 : Int) ^ (2 * r + 1) * u ^ 2 - (3 : Int) ^ (2 * r + 1) * u ^ 2 =
+        (3 : Int) ^ (2 * (k - 1 - r)) + (3 : Int) ^ k * u := by
+    ring
+  simpa [heq] using this
 
 theorem n2Resid_zero (m : Nat) :
     n2Resid m 0 = 2 * (3 : Int) ^ (2 * m + 1) := by

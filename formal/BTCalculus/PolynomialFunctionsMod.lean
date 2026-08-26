@@ -172,24 +172,29 @@ theorem vanishesMod_cubic_iff (k : ℕ) (A B lin cst : ℤ) :
     rw [eval_cubic] at h0 h1 h2 h3
     have hcst : (3 : ℤ) ^ k ∣ cst := by simpa using h0
     have hsum : (3 : ℤ) ^ k ∣ A + B + lin := by
-      have := dvd_sub h1 h0
-      convert this using 1
-      ring
+      simpa [add_sub_cancel_right] using dvd_sub h1 h0
     have hΔ2 : (3 : ℤ) ^ k ∣ 6 * A + 2 * B := by
-      have := (dvd_sub h2 (dvd_mul_of_dvd_right h1 (2 : ℤ))).add h0
-      convert this using 1
-      ring
+      have h := (dvd_sub h2 (dvd_mul_of_dvd_right h1 (2 : ℤ))).add h0
+      have heq :
+          A * 8 + B * 4 + lin * 2 + cst - 2 * (A + B + lin + cst) + cst =
+            6 * A + 2 * B := by
+        omega
+      simpa [heq] using h
     have hΔ3 : (3 : ℤ) ^ k ∣ 6 * A := by
-      have :=
+      have h :=
         ((dvd_sub h3 (dvd_mul_of_dvd_right h2 (3 : ℤ))).add
             (dvd_mul_of_dvd_right h1 (3 : ℤ))).sub
           h0
-      convert this using 1
-      ring
+      have heq :
+          A * 27 + B * 9 + lin * 3 + cst - 3 * (A * 8 + B * 4 + lin * 2 + cst) +
+              3 * (A + B + lin + cst) - cst =
+            6 * A := by
+        omega
+      simpa [heq] using h
     have hmid : (3 : ℤ) ^ k ∣ 3 * A + B := by
       have h2mid : (3 : ℤ) ^ k ∣ 2 * (3 * A + B) := by
-        convert hΔ2 using 1
-        ring
+        have heq : 2 * (3 * A + B) = 6 * A + 2 * B := by omega
+        simpa [heq] using hΔ2
       exact three_pow_dvd_of_two_mul h2mid
     exact ⟨hcst, hsum, hmid, hΔ3⟩
   · intro ⟨hcst, hsum, hmid, h6⟩

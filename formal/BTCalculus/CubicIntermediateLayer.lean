@@ -71,8 +71,7 @@ theorem inter_n1_iff {k : ℕ} (hk : 1 ≤ k) (p q : ℤ) :
   constructor
   · intro h
     have : (3 : ℤ) ^ k ∣ 3 * ((p - q) * (p + q + (3 : ℤ) ^ (k - 2))) := by
-      convert h using 1
-      ring
+      simpa [mul_assoc] using h
     rw [hshape] at this
     have hnz : (3 : ℤ) ≠ 0 := by decide
     exact (mul_dvd_mul_iff_left hnz).mp this
@@ -80,8 +79,7 @@ theorem inter_n1_iff {k : ℕ} (hk : 1 ≤ k) (p q : ℤ) :
     have : (3 : ℤ) ^ k ∣ 3 * ((p - q) * (p + q + (3 : ℤ) ^ (k - 2))) := by
       rw [hshape]
       exact mul_dvd_mul_left _ h
-    convert this using 1
-    ring
+    simpa [mul_assoc] using this
 
 theorem inter_sign_n2_iff {k : ℕ} (hk : 2 ≤ k) (p : ℤ) :
     (3 : ℤ) ^ k ∣ n2Resid (k - 2) p - n2Resid (k - 2) (-p) ↔
@@ -90,13 +88,13 @@ theorem inter_sign_n2_iff {k : ℕ} (hk : 2 ≤ k) (p : ℤ) :
   constructor
   · intro h
     have : (3 : ℤ) ∣ 2 * p := by
-      convert h using 1
-      ring
+      have heq : p + p = 2 * p := by ring
+      simpa [heq] using h
     exact three_pow_dvd_of_two_mul (k := 1) (by simpa [pow_one] using this)
   · intro h
     have := h.mul_left (2 : ℤ)
-    convert this using 1
-    ring
+    have heq : 2 * p = p + p := by ring
+    simpa [heq] using this
 
 theorem inter_sign_n1_iff {k : ℕ} (hk : 2 ≤ k) (p : ℤ) :
     (3 : ℤ) ^ k ∣ n1Resid (k - 2) p - n1Resid (k - 2) (-p) ↔

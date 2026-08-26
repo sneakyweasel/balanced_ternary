@@ -317,18 +317,23 @@ theorem equivK_cubic_newton (k : ℕ) (A B lin cst A' B' lin' cst' : ℤ) :
     obtain ⟨hcst, hsum, hmid, h6⟩ := hiff.1 h
     refine ⟨hcst, hsum, ?_, h6⟩
     have : (3 : ℤ) ^ k ∣ 2 * ((3 * A + B) - (3 * A' + B')) := by
-      convert (hmid.mul_right (2 : ℤ)) using 1
-      ring
+      simpa [mul_comm] using hmid.mul_right (2 : ℤ)
     have hN2 : (3 : ℤ) ^ k ∣ (6 * A + 2 * B) - (6 * A' + 2 * B') := by
-      convert this using 1
-      ring
+      have heq :
+          2 * ((3 * A + B) - (3 * A' + B')) =
+            (6 * A + 2 * B) - (6 * A' + 2 * B') := by
+        omega
+      simpa [heq] using this
     exact hN2
   · intro ⟨hcst, hsum, hN2, h6⟩
     refine hiff.2 ⟨hcst, hsum, ?_, h6⟩
     have h2 : (3 : ℤ) ^ k ∣ 2 * ((3 * A + B) - (3 * A' + B')) := by
-      convert hN2 using 1
-      unfold newtonCoords
-      ring
+      have heq :
+          (newtonCoords A B lin cst).2.2.1 - (newtonCoords A' B' lin' cst').2.2.1 =
+            2 * ((3 * A + B) - (3 * A' + B')) := by
+        simp [newtonCoords]
+        omega
+      simpa [heq] using hN2
     exact three_pow_dvd_of_two_mul h2
 
 lemma isTrit_neg_one : isTrit (-1) :=

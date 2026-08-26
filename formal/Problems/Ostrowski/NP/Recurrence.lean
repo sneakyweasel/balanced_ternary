@@ -77,7 +77,7 @@ theorem q_mod3_period8 (n : ℕ) : (q (n + 8) : ZMod 3) = (q n : ZMod 3) :=
 
 theorem q_emod_three_period8 (n : ℕ) : q (n + 8) % 3 = q n % 3 := by
   have h := q_mod3_period8 n
-  simpa using (ZMod.intCast_eq_intCast_iff (q (n + 8)) (q n) 3).mp h
+  simpa using (ZMod.intCast_eq_intCast_iff' (q (n + 8)) (q n) 3).mp h
 
 private lemma q_mod3_add_eight_mul (k r : ℕ) :
     (q (8 * k + r) : ZMod 3) = (q r : ZMod 3) := by

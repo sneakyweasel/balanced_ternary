@@ -37,7 +37,7 @@ theorem bRel_undefined_two {x y : ℤ} (_hx : 0 ≤ x) (hmod : x % 3 = 2) :
   intro ⟨_, hline⟩
   set q := x / 3
   have hxeq : x = 3 * q + 2 := by
-    have := Int.ediv_add_emod x 3
+    have := Int.ediv_mul_add_emod x 3
     omega
   cases hline with
   | inl h =>

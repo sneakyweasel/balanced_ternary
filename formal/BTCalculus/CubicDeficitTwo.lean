@@ -38,13 +38,15 @@ theorem depthDeficit_zero_N2 {k : Nat} (hk : 1 ≤ k) (p q : Int) :
 theorem depthDeficit_one_N2 {k : Nat} (hk : 2 ≤ k) (p q : Int) :
     (3 : Int) ^ k ∣ n2Resid (k - 2) p - n2Resid (k - 2) q ↔
       (3 : Int) ∣ p - q := by
-  simpa [pow_one] using
+  have hdepth : k - 1 - 1 = k - 2 := by omega
+  simpa [pow_one, hdepth] using
     depthDeficit_n2_visibility (k := k) (r := 1) (by omega) p q
 
 theorem depthDeficit_two_N2_visibility {k : Nat} (hk : 3 ≤ k) (p q : Int) :
     (3 : Int) ^ k ∣ n2Resid (k - 3) p - n2Resid (k - 3) q ↔
       (3 : Int) ^ 2 ∣ p - q := by
-  simpa using depthDeficit_n2_visibility (k := k) (r := 2) (by omega) p q
+  have hdepth : k - 1 - 2 = k - 3 := by omega
+  simpa [hdepth] using depthDeficit_n2_visibility (k := k) (r := 2) (by omega) p q
 
 theorem deficitTwo_n3_zero {k : Nat} (hk : 5 ≤ k) :
     (3 : Int) ^ k ∣ n3Resid (k - 3) := by
@@ -88,8 +90,7 @@ theorem deficitTwo_n1_iff {k : Nat} (hk : 1 ≤ k) (p q : Int) :
   constructor
   · intro h
     have : (3 : Int) ^ k ∣ 3 * ((p - q) * (p + q + (3 : Int) ^ (k - 3))) := by
-      convert h using 1
-      ring
+      simpa [mul_assoc] using h
     rw [hshape] at this
     have hnz : (3 : Int) ≠ 0 := by decide
     exact (mul_dvd_mul_iff_left hnz).mp this
@@ -97,8 +98,7 @@ theorem deficitTwo_n1_iff {k : Nat} (hk : 1 ≤ k) (p q : Int) :
     have : (3 : Int) ^ k ∣ 3 * ((p - q) * (p + q + (3 : Int) ^ (k - 3))) := by
       rw [hshape]
       exact mul_dvd_mul_left _ h
-    convert this using 1
-    ring
+    simpa [mul_assoc] using this
 
 theorem deficitTwo_n1_after_n2 {k : Nat} (hk : 3 ≤ k) {p q d : Int}
     (hd : p - q = 9 * d) :
@@ -167,8 +167,8 @@ theorem deficitTwo_sign_n2_iff {k : Nat} (hk : 3 ≤ k) (p : Int) :
     exact ⟨s, by rw [ht, hs]; ring⟩
   · intro h
     have := h.mul_left (2 : Int)
-    convert this using 1
-    ring
+    have heq : (2 : Int) * p = p + p := by ring
+    simpa [heq] using this
 
 theorem deficitTwo_horizon_refines {k : Nat} (_hk : 1 ≤ k) (p q : Int)
     (h2 : (3 : Int) ^ k ∣ n2Resid (k - 3) p - n2Resid (k - 3) q)

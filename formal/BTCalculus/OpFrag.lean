@@ -7,11 +7,12 @@ This is a different object from the coefficient-word rewrite in
 `BTCalculus/Rewrite.lean`; this file is the rewrite *relation*.
 -/
 
+import Mathlib.Data.Nat.Basic
 import Mathlib.Logic.Relation
 
 namespace BTCalculus
 
-open Relation
+open Relation (ReflTransGen Join)
 
 /-- Open unary terms of the operator fragment, with a single hole. -/
 inductive OpFrag

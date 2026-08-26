@@ -1,6 +1,6 @@
 # Formalization
 
-Lean 4.19 + Mathlib for the Balanced Ternary Mathematical Laboratory.
+Lean 4.33 + Mathlib for the Balanced Ternary Mathematical Laboratory.
 Sources live under `BTCalculus/`, `Core/`, `Representation/`,
 `Operators/`, and `Problems/`. The Lake package name is
 `balanced-ternary-formal`.

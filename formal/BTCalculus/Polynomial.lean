@@ -34,7 +34,7 @@ def sectionDeriv (a : ℤ) (f : ℤ[X]) : ℤ[X] :=
 theorem eval_sectionDeriv (f : ℤ[X]) (a x : ℤ) :
     eval x (sectionDeriv a f) =
       DZ (eval a f) + ∑ n ∈ f.support, f.coeff n * eval x (powShift a n) := by
-  simp [sectionDeriv, eval_add, eval_C, eval_finset_sum, eval_mul]
+  simp [sectionDeriv, eval_add, eval_C, eval_finsetSum, eval_mul]
 
 theorem section_reconstruction_eval (f : ℤ[X]) (a x : ℤ) :
     eval (a + 3 * x) f =

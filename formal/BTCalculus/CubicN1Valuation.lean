@@ -28,8 +28,7 @@ theorem deficit_n1_iff {k r : Nat} (hk : 1 ≤ k) (p q : Int) :
   · intro h
     have : (3 : Int) ^ k ∣
         3 * ((p - q) * (p + q + (3 : Int) ^ (k - 1 - r))) := by
-      convert h using 1
-      ring
+      simpa [mul_assoc] using h
     rw [hshape] at this
     have hnz : (3 : Int) ≠ 0 := by decide
     exact (mul_dvd_mul_iff_left hnz).mp this
@@ -38,8 +37,7 @@ theorem deficit_n1_iff {k r : Nat} (hk : 1 ≤ k) (p q : Int) :
         3 * ((p - q) * (p + q + (3 : Int) ^ (k - 1 - r))) := by
       rw [hshape]
       exact mul_dvd_mul_left _ h
-    convert this using 1
-    ring
+    simpa [mul_assoc] using this
 
 theorem n1_after_n2_iff {k r : Nat} (hk : 1 ≤ k) (hr : r + 1 ≤ k)
     {p q d : Int} (hd : p - q = (3 : Int) ^ r * d) :
@@ -268,14 +266,14 @@ theorem n21_sign_n2_iff {k r : Nat} (hk : r + 1 ≤ k) (p : Int) :
   rw [depthDeficit_n2_visibility hk]
   constructor
   · intro h
-    have : (3 : Int) ^ r ∣ 2 * p := by
-      convert h using 1
-      ring
-    exact three_pow_dvd_of_two_mul_pow this
+    have : (3 : Int) ^ r ∣ p * 2 := by
+      have heq : p + p = p * (2 : Int) := by ring
+      simpa [heq] using h
+    exact three_pow_dvd_of_two_mul_pow (by simpa [mul_comm] using this)
   · intro h
     have := h.mul_left (2 : Int)
-    convert this using 1
-    ring
+    have heq : (2 : Int) * p = p + p := by ring
+    simpa [heq] using this
 
 theorem n21_sign_n1_iff {k r : Nat} (hk1 : 1 ≤ k) (hk : r + 1 ≤ k) (p : Int) :
     (3 : Int) ^ k ∣ n1Resid (k - 1 - r) p - n1Resid (k - 1 - r) (-p) ↔

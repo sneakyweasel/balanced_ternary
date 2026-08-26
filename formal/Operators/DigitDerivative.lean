@@ -65,7 +65,7 @@ theorem dropLSD_snoc (d : Trit) (w : List Trit) :
 
 theorem reconstruct_step (d : Trit) (w : List Trit) :
     evalMSD (w ++ [d]) = d.toInt + 3 * evalMSD w := by
-  simpa [add_comm] using evalMSD_appendLSD w d
+  simpa [appendLSD, add_comm] using evalMSD_appendLSD w d
 
 theorem reverse_reverse (w : List Trit) : w.reverse.reverse = w :=
   List.reverse_reverse w

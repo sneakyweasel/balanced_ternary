@@ -21,7 +21,7 @@ theorem two_dvd_three_mul_add_one {n : ℕ} (hn : Odd n) :
 
 theorem padicValNat_two_three_n_pos {n : ℕ} (hn : Odd n) (hpos : 0 < n) :
     1 ≤ padicValNat 2 (3 * n + 1) := by
-  have hne : 0 < 3 * n + 1 := by omega
+  have hne : 3 * n + 1 ≠ 0 := by omega
   exact one_le_padicValNat_of_dvd hne (two_dvd_three_mul_add_one hn)
 
 theorem acceleratedT_mul (n : ℕ) :

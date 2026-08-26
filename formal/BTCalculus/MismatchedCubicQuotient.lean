@@ -101,7 +101,9 @@ theorem cubic_q_width {k r : Nat} (_hk : 4 * r + 1 ≤ k) :
 theorem q_of_deficit_one {k : Nat} (hk : 5 ≤ k) (u : Int) :
     n0Resid (k - 2) (3 * u) = qCubic (k - 5) u := by
   have h := n0_scaled_exhausted (k := k) (r := 1) (by omega) (by omega) u
-  simpa [pow_one] using h
+  have h1 : k - 1 - 1 = k - 2 := by omega
+  have h2 : k - 1 - 4 = k - 5 := by omega
+  simpa [pow_one, h1, h2, qCubic] using h
 
 theorem q_of_deficit_two {k : Nat} (hk : 9 ≤ k) (u : Int) :
     n0Resid (k - 3) ((3 : Int) ^ 2 * u) = qCubic (k - 9) u :=

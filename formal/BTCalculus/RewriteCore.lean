@@ -13,7 +13,7 @@ import BTCalculus.OpFragSemantic
 namespace BTCalculus
 
 open Representation.Words
-open Relation
+open Relation (ReflTransGen Join)
 open OpFrag
 
 /-- Integer soundness of the six core identities (and the I± sign-flips). -/

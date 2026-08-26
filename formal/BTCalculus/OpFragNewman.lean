@@ -12,7 +12,7 @@ import BTCalculus.OpFrag
 namespace BTCalculus
 namespace OpFrag
 
-open Relation
+open Relation (ReflTransGen Join)
 
 lemma rtc_cong_D {x y : OpFrag} (h : ReflTransGen Step x y) :
     ReflTransGen Step (.D x) (.D y) := by

@@ -36,7 +36,7 @@ theorem not_dvd_of_abs_gt {a b : ℤ} (hb : b ≠ 0) (h : |b| < |a|) :
       |a| = |a| * 1 := by ring
       _ ≤ |a| * |k| := by nlinarith [abs_nonneg a]
       _ = |a * k| := (abs_mul a k).symm
-  exact (not_le_of_lt h) this
+  exact (not_le.mpr h) this
 
 /-- After a prefix `A y = B x + C`, one more step `a z = p y + r` has
 remainder `p C + r A`, independent of the last multiplier `a`. -/

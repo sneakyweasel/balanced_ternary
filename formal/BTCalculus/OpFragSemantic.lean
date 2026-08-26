@@ -16,7 +16,7 @@ namespace BTCalculus
 namespace OpFrag
 
 open Representation.Words
-open Relation
+open Relation (ReflTransGen Join)
 
 /-! ### Integer evaluation of an open term -/
 
@@ -313,7 +313,6 @@ theorem three_zpow_inj {a b : ℕ} (h : (3 : ℤ) ^ a = (3 : ℤ) ^ b) : a = b :
     rw [← pow_add, Nat.add_comm, Nat.sub_add_cancel hab]
   have : (3 : ℤ) ^ a * ((3 : ℤ) ^ (b - a) - 1) = 0 := by
     have := congrArg (fun z => z - (3 : ℤ) ^ a) h
-    simp only at this
     rw [hsplit] at this
     linarith
   have hrest : (3 : ℤ) ^ (b - a) - 1 = 0 :=

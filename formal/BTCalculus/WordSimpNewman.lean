@@ -13,7 +13,7 @@ import BTCalculus.WordSimp
 namespace BTCalculus
 namespace WordSimp
 
-open Relation
+open Relation (ReflTransGen Join)
 
 lemma join_swap {x y : Word} (h : Join (ReflTransGen Step) x y) :
     Join (ReflTransGen Step) y x :=
