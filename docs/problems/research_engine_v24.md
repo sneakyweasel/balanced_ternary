@@ -110,7 +110,8 @@ theorems.
   `tests/research/research_control/test_reverse_add_involution_phase8.py`,
   `tests/research/research_control/test_phase9_frontier_ranking.py`,
   `tests/research/research_control/test_juggler_odd_odd_phase10.py`,
-  `tests/research/research_control/test_juggler_macro_phase11.py`
+  `tests/research/research_control/test_juggler_macro_phase11.py`,
+  `tests/research/research_control/test_juggler_parity_drift_phase12.py`
 - Phase-0 replays: `skolem_order2_known_zero`,
   `switching_affine_z2_origin`
 - Ranking Phase-0 falsifier: `research_engine.control.ranking`,
@@ -147,6 +148,9 @@ theorems.
 - Juggler macro-grammar Phase-11 falsifier:
   `research_engine.control.juggler_macro`,
   `docs/research/juggler_macro_phase11.md`
+- Juggler parity-drift Phase-12 falsifier:
+  `research_engine.control.juggler_parity_drift`,
+  `docs/research/juggler_parity_drift_phase12.md`
 
 ## Conjectures
 
@@ -163,6 +167,7 @@ The control layer itself has no new ledger row. Phase-3 reuses
 `Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt`.
 Phase-10 adds `floorPower_odd_odd_two_step_gt`. Phase-11 adds
 `floorPower_odd_macro_direction` as `COMPOSITION_OF_KNOWN_FACTS`.
+Phase-12 adds `floorPower_oooee_five_step_lt`.
 No `sorry`.
 
 ## Results
@@ -501,26 +506,46 @@ Top-3 #1 is `basin_preimage_grammar` on `mx_plus_r_7x1_class_obstruction`.
 Keep `odd_odd_symbolic_composition`. Do not register
 `juggler_macro_grammar`.
 
+### R. Juggler parity-drift Phase-12 falsifier
+
+Record: [juggler_parity_drift_phase12.md](../research/juggler_parity_drift_phase12.md),
+[juggler_parity_drift_phase12.json](../research/juggler_parity_drift_phase12.json).
+`experimental_status = PHASE_12_JUGGLER_PARITY_DRIFT_FALSIFIER`.
+Not an attack. Depth at most `k=5`. Frozen window `1..40` plus seed `13`.
+`DEFAULT_ATTACK_ORDER` unchanged. Gated name `juggler_parity_drift_phase12`
+is not in `EXPERIMENTAL_ATTACKS`.
+
+| Rank | Candidate | Result |
+| --- | --- | --- |
+| 1 | one-step power bounds | survived; `DEFINITIONAL_RESTATEMENT` |
+| 2 | `OOOEE` conditional `T^5(n)<n` | survived; Lean **PROVED** |
+| 3 | shortest negative-drift word `EE` | survived; even contraction, not loot |
+
+Classification: **PARITY_DRIFT_GREEN_LOOT**.
+Loot: `PARITY_DRIFT_GREEN_LOOT`. Lean: `PROVED`
+(`floorPower_oooee_five_step_lt`). Scope: `LOCAL_BRANCH_LAW`, Level B
+conditional block, not Level C frequency, not `GLOBAL_TERMINATION`.
+Top-3 #1 is `parity_drift_block` (proposed, not registered).
+
 ## Open questions
 
-`B(n)` does not determine `parity(T^2(n))` or odd-macro survival.
-The next cheap frontier is basin/preimage on 7x+1, not another
-Juggler micro-attack.
+Does every long Juggler trajectory contain an `OOOEE` block? That is
+Level C and out of scope. Do not infer a parity-frequency theorem.
 
 ## Decision
 
 `PROMOTE` the gated Juggler `odd_even_two_step_decrease` primitive.
 `PROMOTE` the Phase-9 frontier map. `PROMOTE` the odd-odd two-step
 growth lemma as local branch loot. `PARK` the Juggler macro-grammar
-branch: the paired lemmas do not induce a next-bit transition law.
-`CLOSE` reverse-add compressed involution summaries. Do not claim
-Juggler termination or divergence. Do not thaw `DEFAULT_ATTACK_ORDER`.
-Do not register `odd_odd_symbolic_composition` or
+branch. `PROMOTE` the `OOOEE` five-step contraction as a conditional
+block law. `CLOSE` reverse-add compressed involution summaries. Do not
+claim Juggler termination or divergence. Do not thaw
+`DEFAULT_ATTACK_ORDER`. Do not register `parity_drift_block` or
 `juggler_macro_grammar`.
 
-Best next question: a finite residue/valuation quotient of predecessors
-of 1 for `mx_plus_r_7x1_class_obstruction`. Still no new attack in
-`DEFAULT_ATTACK_ORDER`.
+Best next question: other `k≤5` mixed blocks as Level B conditionals,
+or the Phase-9 backup basin/preimage on `mx_plus_r_7x1_class_obstruction`.
+Still no new attack in `DEFAULT_ATTACK_ORDER`.
 
 ## Publication assessment
 

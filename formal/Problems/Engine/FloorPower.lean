@@ -115,6 +115,126 @@ theorem floorPower_odd_macro_direction
   · intro hodd1
     exact floorPower_odd_odd_two_step_gt hn hodd hodd1
 
+/-- Power comparison for the OOOEE floor-power block: three odd steps
+(`x^2 ≤ y^3`) and two even steps (`x^2 ≤ y`) give `n5 ^ 32 ≤ n ^ 27`.
+This is the exact surrogate of negative log-log drift on that word. -/
+theorem floorPower_oooee_pow_chain
+    {n n1 n2 n3 n4 n5 : ℕ}
+    (h1 : n1 ^ 2 ≤ n ^ 3)
+    (h2 : n2 ^ 2 ≤ n1 ^ 3)
+    (h3 : n3 ^ 2 ≤ n2 ^ 3)
+    (h4 : n4 ^ 2 ≤ n3)
+    (h5 : n5 ^ 2 ≤ n4) :
+    n5 ^ 32 ≤ n ^ 27 := by
+  have h32 : n5 ^ 32 = (n5 ^ 2) ^ 16 := by
+    calc
+      n5 ^ 32 = n5 ^ (2 * 16) := by norm_num
+      _ = (n5 ^ 2) ^ 16 := Nat.pow_mul n5 2 16
+  have h16 : n4 ^ 16 = (n4 ^ 2) ^ 8 := by
+    calc
+      n4 ^ 16 = n4 ^ (2 * 8) := by norm_num
+      _ = (n4 ^ 2) ^ 8 := Nat.pow_mul n4 2 8
+  have h8 : n3 ^ 8 = (n3 ^ 2) ^ 4 := by
+    calc
+      n3 ^ 8 = n3 ^ (2 * 4) := by norm_num
+      _ = (n3 ^ 2) ^ 4 := Nat.pow_mul n3 2 4
+  have h12 : (n2 ^ 3) ^ 4 = n2 ^ 12 := by
+    calc
+      (n2 ^ 3) ^ 4 = n2 ^ (3 * 4) := (Nat.pow_mul n2 3 4).symm
+      _ = n2 ^ 12 := by norm_num
+  have h12' : n2 ^ 12 = (n2 ^ 2) ^ 6 := by
+    calc
+      n2 ^ 12 = n2 ^ (2 * 6) := by norm_num
+      _ = (n2 ^ 2) ^ 6 := Nat.pow_mul n2 2 6
+  have h18 : (n1 ^ 3) ^ 6 = n1 ^ 18 := by
+    calc
+      (n1 ^ 3) ^ 6 = n1 ^ (3 * 6) := (Nat.pow_mul n1 3 6).symm
+      _ = n1 ^ 18 := by norm_num
+  have h18' : n1 ^ 18 = (n1 ^ 2) ^ 9 := by
+    calc
+      n1 ^ 18 = n1 ^ (2 * 9) := by norm_num
+      _ = (n1 ^ 2) ^ 9 := Nat.pow_mul n1 2 9
+  have h27 : (n ^ 3) ^ 9 = n ^ 27 := by
+    calc
+      (n ^ 3) ^ 9 = n ^ (3 * 9) := (Nat.pow_mul n 3 9).symm
+      _ = n ^ 27 := by norm_num
+  calc
+    n5 ^ 32 = (n5 ^ 2) ^ 16 := h32
+    _ ≤ n4 ^ 16 := Nat.pow_le_pow_left h5 16
+    _ = (n4 ^ 2) ^ 8 := h16
+    _ ≤ n3 ^ 8 := Nat.pow_le_pow_left h4 8
+    _ = (n3 ^ 2) ^ 4 := h8
+    _ ≤ (n2 ^ 3) ^ 4 := Nat.pow_le_pow_left h3 4
+    _ = n2 ^ 12 := h12
+    _ = (n2 ^ 2) ^ 6 := h12'
+    _ ≤ (n1 ^ 3) ^ 6 := Nat.pow_le_pow_left h2 6
+    _ = n1 ^ 18 := h18
+    _ = (n1 ^ 2) ^ 9 := h18'
+    _ ≤ (n ^ 3) ^ 9 := Nat.pow_le_pow_left h1 9
+    _ = n ^ 27 := h27
+
+/-- On the OOOEE branch word, `T^5(n) < n` for `n ≥ 2`. Conditional block
+contraction; not a halt theorem and not a parity-frequency theorem. -/
+theorem floorPower_oooee_five_step_lt
+    {n : ℕ} (hn : 2 ≤ n) (h0 : n % 2 = 1)
+    (h1 : floorPower n % 2 = 1)
+    (h2 : floorPower (floorPower n) % 2 = 1)
+    (h3 : floorPower (floorPower (floorPower n)) % 2 = 0)
+    (h4 : floorPower (floorPower (floorPower (floorPower n))) % 2 = 0) :
+    floorPower (floorPower (floorPower (floorPower (floorPower n)))) < n := by
+  set n1 := floorPower n
+  set n2 := floorPower n1
+  set n3 := floorPower n2
+  set n4 := floorPower n3
+  set n5 := floorPower n4
+  have n0ne : n % 2 ≠ 0 := by omega
+  have n1ne : n1 % 2 ≠ 0 := by
+    have : n1 % 2 = 1 := h1
+    omega
+  have n2ne : n2 % 2 ≠ 0 := by
+    have : n2 % 2 = 1 := h2
+    omega
+  have n1eq : n1 = (n * n * n).sqrt := by
+    simp [n1, floorPower, n0ne]
+  have n2eq : n2 = (n1 * n1 * n1).sqrt := by
+    simp [n2, floorPower, n1ne]
+  have n3eq : n3 = (n2 * n2 * n2).sqrt := by
+    simp [n3, floorPower, n2ne]
+  have n3even : n3 % 2 = 0 := h3
+  have n4eq : n4 = n3.sqrt := by
+    simp [n4, floorPower, n3even]
+  have n4even : n4 % 2 = 0 := h4
+  have n5eq : n5 = n4.sqrt := by
+    simp [n5, floorPower, n4even]
+  have hn1 : n1 ^ 2 ≤ n ^ 3 := by
+    have : n1 * n1 ≤ n * n * n := by simpa [n1eq] using Nat.sqrt_le (n * n * n)
+    simpa [pow_two, pow_three, mul_assoc] using this
+  have hn2 : n2 ^ 2 ≤ n1 ^ 3 := by
+    have : n2 * n2 ≤ n1 * n1 * n1 := by simpa [n2eq] using Nat.sqrt_le (n1 * n1 * n1)
+    simpa [pow_two, pow_three, mul_assoc] using this
+  have hn3 : n3 ^ 2 ≤ n2 ^ 3 := by
+    have : n3 * n3 ≤ n2 * n2 * n2 := by simpa [n3eq] using Nat.sqrt_le (n2 * n2 * n2)
+    simpa [pow_two, pow_three, mul_assoc] using this
+  have hn4 : n4 ^ 2 ≤ n3 := by
+    have : n4 * n4 ≤ n3 := by simpa [n4eq] using Nat.sqrt_le n3
+    simpa [pow_two] using this
+  have hn5 : n5 ^ 2 ≤ n4 := by
+    have : n5 * n5 ≤ n4 := by simpa [n5eq] using Nat.sqrt_le n4
+    simpa [pow_two] using this
+  have hpow : n5 ^ 32 ≤ n ^ 27 :=
+    floorPower_oooee_pow_chain hn1 hn2 hn3 hn4 hn5
+  refine Nat.lt_of_not_ge fun hge => ?_
+  have hn32 : n ^ 32 ≤ n5 ^ 32 := Nat.pow_le_pow_left hge 32
+  have hle : n ^ 32 ≤ n ^ 27 := le_trans hn32 hpow
+  have hpos : 0 < n := lt_of_lt_of_le (by decide : 0 < 2) hn
+  have h27pos : 0 < n ^ 27 := pow_pos hpos 27
+  have hle' : n ^ 27 * n ^ 5 ≤ n ^ 27 * 1 := by
+    have heq : n ^ 27 * n ^ 5 = n ^ 32 := (Nat.pow_add n 27 5).symm
+    rw [heq, mul_one]
+    exact hle
+  have hpow5 : n ^ 5 ≤ 1 := Nat.le_of_mul_le_mul_left hle' h27pos
+  have hbig : (2 : ℕ) ^ 5 ≤ n ^ 5 := Nat.pow_le_pow_left hn 5
+  exact (by decide : ¬(2 : ℕ) ^ 5 ≤ 1) (le_trans hbig hpow5)
 
 theorem floorPower_one : floorPower 1 = 1 := by
   native_decide

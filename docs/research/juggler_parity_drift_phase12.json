@@ -1,0 +1,2217 @@
+{
+  "engine_control_version": "0.2.7",
+  "source_engine": "v2.3",
+  "experimental_status": "PHASE_12_JUGGLER_PARITY_DRIFT_FALSIFIER",
+  "experiment_name": "juggler_parity_drift_phase12",
+  "target": "juggler_sequence",
+  "max_composition_depth": 5,
+  "gated": true,
+  "energy_definition": "conceptual E(n)=log log n; odd +log(3/2), even -log 2",
+  "exact_surrogate": "T^k(n)<n for block contraction; T(n)^2<=n^3 (odd) and T(n)^2<=n (even) for one-step increments. No floating-point verdicts.",
+  "energy_exactly_formalizable": true,
+  "candidate_statements": [
+    {
+      "rank": 1,
+      "name": "one_step_increment_bounds",
+      "exact_statement": "For odd n>=3, T(n)^2 <= n^3 and T(n)>n. For even n>=2, T(n)^2 <= n and T(n)<n. These are the exact power surrogates of the additive log-log increments.",
+      "motivation": "Ask whether fixed additive branch costs exist as exact inequalities. The power bounds are the floor-power definitions; the signs are the one-step expansion/contraction of the exact surrogate T.",
+      "relevant_domain": "odd n>=3 or even n>=2",
+      "expected_yield": "formalizable branch costs, or a definitional restatement",
+      "cheapest_falsifier": "the first frozen n in the domain violating a power bound or T-sign",
+      "idealized_drift": "odd +log(3/2), even -log 2 (heuristic only)",
+      "parity_word": "O|E",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "survived, but the inequality is the floor-power definition or even-branch contraction already implied by T(n)<n. Not new compositional loot.",
+      "failure_class": "DEFINITIONAL_RESTATEMENT",
+      "checked": 40,
+      "loot_eligible": false,
+      "unobserved": false
+    },
+    {
+      "rank": 2,
+      "name": "oooee_conditional_contraction",
+      "exact_statement": "If a trajectory follows the parity word OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.",
+      "motivation": "OOOEE is the first mixed block whose idealized drift is negative: 3^3=27 < 2^5=32. Exact surrogate T^5(n)<n.",
+      "relevant_domain": "n>=2 whose five successive branch parities are OOOEE",
+      "expected_yield": "conditional five-step contraction, or a floor counterexample",
+      "cheapest_falsifier": "the first frozen OOOEE seed with T^5(n)>=n",
+      "idealized_drift": "3^3 < 2^{2+3} (exact negative)",
+      "parity_word": "OOOEE",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "",
+      "failure_class": "",
+      "checked": 3,
+      "loot_eligible": true,
+      "unobserved": false
+    },
+    {
+      "rank": 3,
+      "name": "shortest_negative_block",
+      "exact_statement": "If a trajectory follows the parity word EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.",
+      "motivation": "Among EE, OEE, OOOE, OOOEE, OOOEEE, the shortest negative-drift word of depth<=5 is EE. Do not optimize over arbitrary words.",
+      "relevant_domain": "n>=2 whose successive branch parities are EE",
+      "expected_yield": "a short contractive block, or a restatement of even contraction",
+      "cheapest_falsifier": "the first frozen EE seed with T^2(n)>=n",
+      "idealized_drift": "3^0 < 2^{2+0} (exact negative)",
+      "parity_word": "EE",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "survived, but the inequality is the floor-power definition or even-branch contraction already implied by T(n)<n. Not new compositional loot.",
+      "failure_class": "DEFINITIONAL_RESTATEMENT",
+      "checked": 12,
+      "loot_eligible": false,
+      "unobserved": false
+    }
+  ],
+  "candidates": [
+    {
+      "rank": 1,
+      "name": "one_step_increment_bounds",
+      "exact_statement": "For odd n>=3, T(n)^2 <= n^3 and T(n)>n. For even n>=2, T(n)^2 <= n and T(n)<n. These are the exact power surrogates of the additive log-log increments.",
+      "motivation": "Ask whether fixed additive branch costs exist as exact inequalities. The power bounds are the floor-power definitions; the signs are the one-step expansion/contraction of the exact surrogate T.",
+      "relevant_domain": "odd n>=3 or even n>=2",
+      "expected_yield": "formalizable branch costs, or a definitional restatement",
+      "cheapest_falsifier": "the first frozen n in the domain violating a power bound or T-sign",
+      "idealized_drift": "odd +log(3/2), even -log 2 (heuristic only)",
+      "parity_word": "O|E",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "survived, but the inequality is the floor-power definition or even-branch contraction already implied by T(n)<n. Not new compositional loot.",
+      "failure_class": "DEFINITIONAL_RESTATEMENT",
+      "checked": 40,
+      "loot_eligible": false,
+      "unobserved": false
+    },
+    {
+      "rank": 2,
+      "name": "oooee_conditional_contraction",
+      "exact_statement": "If a trajectory follows the parity word OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.",
+      "motivation": "OOOEE is the first mixed block whose idealized drift is negative: 3^3=27 < 2^5=32. Exact surrogate T^5(n)<n.",
+      "relevant_domain": "n>=2 whose five successive branch parities are OOOEE",
+      "expected_yield": "conditional five-step contraction, or a floor counterexample",
+      "cheapest_falsifier": "the first frozen OOOEE seed with T^5(n)>=n",
+      "idealized_drift": "3^3 < 2^{2+3} (exact negative)",
+      "parity_word": "OOOEE",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "",
+      "failure_class": "",
+      "checked": 3,
+      "loot_eligible": true,
+      "unobserved": false
+    },
+    {
+      "rank": 3,
+      "name": "shortest_negative_block",
+      "exact_statement": "If a trajectory follows the parity word EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.",
+      "motivation": "Among EE, OEE, OOOE, OOOEE, OOOEEE, the shortest negative-drift word of depth<=5 is EE. Do not optimize over arbitrary words.",
+      "relevant_domain": "n>=2 whose successive branch parities are EE",
+      "expected_yield": "a short contractive block, or a restatement of even contraction",
+      "cheapest_falsifier": "the first frozen EE seed with T^2(n)>=n",
+      "idealized_drift": "3^0 < 2^{2+0} (exact negative)",
+      "parity_word": "EE",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "survived, but the inequality is the floor-power definition or even-branch contraction already implied by T(n)<n. Not new compositional loot.",
+      "failure_class": "DEFINITIONAL_RESTATEMENT",
+      "checked": 12,
+      "loot_eligible": false,
+      "unobserved": false
+    }
+  ],
+  "domains": {
+    "one_step": "odd n>=3 or even n>=2",
+    "oooee": "n>=2 with branch word OOOEE",
+    "shortest_negative": "n>=2 with branch word EE",
+    "exceptional": "n=1"
+  },
+  "parity_words": {
+    "pre_ranked": [
+      "EE",
+      "OEE",
+      "OOOE",
+      "OOOEE",
+      "OOOEEE"
+    ],
+    "candidate_2": "OOOEE",
+    "candidate_3": "EE",
+    "no_arbitrary_search": true
+  },
+  "idealized_drifts": [
+    {
+      "word": "EE",
+      "length": 2,
+      "odd_steps": 0,
+      "even_steps": 2,
+      "exact_negative": true,
+      "exact_comparison": "3^0 < 2^2",
+      "depth_allowed": true,
+      "selected_as_candidate_3": true
+    },
+    {
+      "word": "OEE",
+      "length": 3,
+      "odd_steps": 1,
+      "even_steps": 2,
+      "exact_negative": true,
+      "exact_comparison": "3^1 < 2^3",
+      "depth_allowed": true,
+      "selected_as_candidate_3": false
+    },
+    {
+      "word": "OOOE",
+      "length": 4,
+      "odd_steps": 3,
+      "even_steps": 1,
+      "exact_negative": false,
+      "exact_comparison": "3^3 >= 2^4",
+      "depth_allowed": true,
+      "selected_as_candidate_3": false
+    },
+    {
+      "word": "OOOEE",
+      "length": 5,
+      "odd_steps": 3,
+      "even_steps": 2,
+      "exact_negative": true,
+      "exact_comparison": "3^3 < 2^5",
+      "depth_allowed": true,
+      "selected_as_candidate_3": false
+    },
+    {
+      "word": "OOOEEE",
+      "length": 6,
+      "odd_steps": 3,
+      "even_steps": 3,
+      "exact_negative": true,
+      "exact_comparison": "3^3 < 2^6",
+      "depth_allowed": false,
+      "selected_as_candidate_3": false
+    }
+  ],
+  "thresholds": {
+    "one_step_odd": 3,
+    "one_step_even": 2,
+    "oooee": 2,
+    "justification": "n>=2 is the exact obstruction n^5<=1 in the OOOEE power chain; n=1 is the odd fixed point; odd expansion uses the existing n>=3 lemma",
+    "not_chosen_to_kill_counterexamples": true
+  },
+  "frozen_samples": [
+    {
+      "source": 1,
+      "path": [
+        1,
+        1
+      ],
+      "word": "O",
+      "image": 1,
+      "contracts": false,
+      "exceptional_one": true,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 1,
+      "path": [
+        1,
+        1,
+        1
+      ],
+      "word": "OO",
+      "image": 1,
+      "contracts": false,
+      "exceptional_one": true,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 1,
+      "path": [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "word": "OOOOO",
+      "image": 1,
+      "contracts": false,
+      "exceptional_one": true,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 2,
+      "path": [
+        2,
+        1
+      ],
+      "word": "E",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 2,
+      "path": [
+        2,
+        1,
+        1
+      ],
+      "word": "EO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 2,
+      "path": [
+        2,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "word": "EOOOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 3,
+      "path": [
+        3,
+        5
+      ],
+      "word": "O",
+      "image": 5,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 3,
+      "path": [
+        3,
+        5,
+        11
+      ],
+      "word": "OO",
+      "image": 11,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 3,
+      "path": [
+        3,
+        5,
+        11,
+        36,
+        6,
+        2
+      ],
+      "word": "OOOEE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 4,
+      "path": [
+        4,
+        2
+      ],
+      "word": "E",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 4,
+      "path": [
+        4,
+        2,
+        1
+      ],
+      "word": "EE",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 4,
+      "path": [
+        4,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "word": "EEOOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 5,
+      "path": [
+        5,
+        11
+      ],
+      "word": "O",
+      "image": 11,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 5,
+      "path": [
+        5,
+        11,
+        36
+      ],
+      "word": "OO",
+      "image": 36,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 5,
+      "path": [
+        5,
+        11,
+        36,
+        6,
+        2,
+        1
+      ],
+      "word": "OOEEE",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 6,
+      "path": [
+        6,
+        2
+      ],
+      "word": "E",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 6,
+      "path": [
+        6,
+        2,
+        1
+      ],
+      "word": "EE",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 6,
+      "path": [
+        6,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "word": "EEOOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 7,
+      "path": [
+        7,
+        18
+      ],
+      "word": "O",
+      "image": 18,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 7,
+      "path": [
+        7,
+        18,
+        4
+      ],
+      "word": "OE",
+      "image": 4,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 7,
+      "path": [
+        7,
+        18,
+        4,
+        2,
+        1,
+        1
+      ],
+      "word": "OEEEO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 8,
+      "path": [
+        8,
+        2
+      ],
+      "word": "E",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 8,
+      "path": [
+        8,
+        2,
+        1
+      ],
+      "word": "EE",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 8,
+      "path": [
+        8,
+        2,
+        1,
+        1,
+        1,
+        1
+      ],
+      "word": "EEOOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 9,
+      "path": [
+        9,
+        27
+      ],
+      "word": "O",
+      "image": 27,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 9,
+      "path": [
+        9,
+        27,
+        140
+      ],
+      "word": "OO",
+      "image": 140,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 9,
+      "path": [
+        9,
+        27,
+        140,
+        11,
+        36,
+        6
+      ],
+      "word": "OOEOE",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 10,
+      "path": [
+        10,
+        3
+      ],
+      "word": "E",
+      "image": 3,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 10,
+      "path": [
+        10,
+        3,
+        5
+      ],
+      "word": "EO",
+      "image": 5,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 10,
+      "path": [
+        10,
+        3,
+        5,
+        11,
+        36,
+        6
+      ],
+      "word": "EOOOE",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 11,
+      "path": [
+        11,
+        36
+      ],
+      "word": "O",
+      "image": 36,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 11,
+      "path": [
+        11,
+        36,
+        6
+      ],
+      "word": "OE",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 11,
+      "path": [
+        11,
+        36,
+        6,
+        2,
+        1,
+        1
+      ],
+      "word": "OEEEO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 12,
+      "path": [
+        12,
+        3
+      ],
+      "word": "E",
+      "image": 3,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 12,
+      "path": [
+        12,
+        3,
+        5
+      ],
+      "word": "EO",
+      "image": 5,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 12,
+      "path": [
+        12,
+        3,
+        5,
+        11,
+        36,
+        6
+      ],
+      "word": "EOOOE",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 13,
+      "path": [
+        13,
+        46
+      ],
+      "word": "O",
+      "image": 46,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 13,
+      "path": [
+        13,
+        46,
+        6
+      ],
+      "word": "OE",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 13,
+      "path": [
+        13,
+        46,
+        6,
+        2,
+        1,
+        1
+      ],
+      "word": "OEEEO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 14,
+      "path": [
+        14,
+        3
+      ],
+      "word": "E",
+      "image": 3,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 14,
+      "path": [
+        14,
+        3,
+        5
+      ],
+      "word": "EO",
+      "image": 5,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 14,
+      "path": [
+        14,
+        3,
+        5,
+        11,
+        36,
+        6
+      ],
+      "word": "EOOOE",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 15,
+      "path": [
+        15,
+        58
+      ],
+      "word": "O",
+      "image": 58,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 15,
+      "path": [
+        15,
+        58,
+        7
+      ],
+      "word": "OE",
+      "image": 7,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 15,
+      "path": [
+        15,
+        58,
+        7,
+        18,
+        4,
+        2
+      ],
+      "word": "OEOEE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 16,
+      "path": [
+        16,
+        4
+      ],
+      "word": "E",
+      "image": 4,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 16,
+      "path": [
+        16,
+        4,
+        2
+      ],
+      "word": "EE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 16,
+      "path": [
+        16,
+        4,
+        2,
+        1,
+        1,
+        1
+      ],
+      "word": "EEEOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 17,
+      "path": [
+        17,
+        70
+      ],
+      "word": "O",
+      "image": 70,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 17,
+      "path": [
+        17,
+        70,
+        8
+      ],
+      "word": "OE",
+      "image": 8,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 17,
+      "path": [
+        17,
+        70,
+        8,
+        2,
+        1,
+        1
+      ],
+      "word": "OEEEO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 18,
+      "path": [
+        18,
+        4
+      ],
+      "word": "E",
+      "image": 4,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 18,
+      "path": [
+        18,
+        4,
+        2
+      ],
+      "word": "EE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 18,
+      "path": [
+        18,
+        4,
+        2,
+        1,
+        1,
+        1
+      ],
+      "word": "EEEOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 19,
+      "path": [
+        19,
+        82
+      ],
+      "word": "O",
+      "image": 82,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 19,
+      "path": [
+        19,
+        82,
+        9
+      ],
+      "word": "OE",
+      "image": 9,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 19,
+      "path": [
+        19,
+        82,
+        9,
+        27,
+        140,
+        11
+      ],
+      "word": "OEOOE",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 20,
+      "path": [
+        20,
+        4
+      ],
+      "word": "E",
+      "image": 4,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 20,
+      "path": [
+        20,
+        4,
+        2
+      ],
+      "word": "EE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 20,
+      "path": [
+        20,
+        4,
+        2,
+        1,
+        1,
+        1
+      ],
+      "word": "EEEOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 21,
+      "path": [
+        21,
+        96
+      ],
+      "word": "O",
+      "image": 96,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 21,
+      "path": [
+        21,
+        96,
+        9
+      ],
+      "word": "OE",
+      "image": 9,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 21,
+      "path": [
+        21,
+        96,
+        9,
+        27,
+        140,
+        11
+      ],
+      "word": "OEOOE",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 22,
+      "path": [
+        22,
+        4
+      ],
+      "word": "E",
+      "image": 4,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 22,
+      "path": [
+        22,
+        4,
+        2
+      ],
+      "word": "EE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 22,
+      "path": [
+        22,
+        4,
+        2,
+        1,
+        1,
+        1
+      ],
+      "word": "EEEOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 23,
+      "path": [
+        23,
+        110
+      ],
+      "word": "O",
+      "image": 110,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 23,
+      "path": [
+        23,
+        110,
+        10
+      ],
+      "word": "OE",
+      "image": 10,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 23,
+      "path": [
+        23,
+        110,
+        10,
+        3,
+        5,
+        11
+      ],
+      "word": "OEEOO",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 24,
+      "path": [
+        24,
+        4
+      ],
+      "word": "E",
+      "image": 4,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 24,
+      "path": [
+        24,
+        4,
+        2
+      ],
+      "word": "EE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 24,
+      "path": [
+        24,
+        4,
+        2,
+        1,
+        1,
+        1
+      ],
+      "word": "EEEOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 25,
+      "path": [
+        25,
+        125
+      ],
+      "word": "O",
+      "image": 125,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 25,
+      "path": [
+        25,
+        125,
+        1397
+      ],
+      "word": "OO",
+      "image": 1397,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 25,
+      "path": [
+        25,
+        125,
+        1397,
+        52214,
+        228,
+        15
+      ],
+      "word": "OOOEE",
+      "image": 15,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 26,
+      "path": [
+        26,
+        5
+      ],
+      "word": "E",
+      "image": 5,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 26,
+      "path": [
+        26,
+        5,
+        11
+      ],
+      "word": "EO",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 26,
+      "path": [
+        26,
+        5,
+        11,
+        36,
+        6,
+        2
+      ],
+      "word": "EOOEE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 27,
+      "path": [
+        27,
+        140
+      ],
+      "word": "O",
+      "image": 140,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 27,
+      "path": [
+        27,
+        140,
+        11
+      ],
+      "word": "OE",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 27,
+      "path": [
+        27,
+        140,
+        11,
+        36,
+        6,
+        2
+      ],
+      "word": "OEOEE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 28,
+      "path": [
+        28,
+        5
+      ],
+      "word": "E",
+      "image": 5,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 28,
+      "path": [
+        28,
+        5,
+        11
+      ],
+      "word": "EO",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 28,
+      "path": [
+        28,
+        5,
+        11,
+        36,
+        6,
+        2
+      ],
+      "word": "EOOEE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 29,
+      "path": [
+        29,
+        156
+      ],
+      "word": "O",
+      "image": 156,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 29,
+      "path": [
+        29,
+        156,
+        12
+      ],
+      "word": "OE",
+      "image": 12,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 29,
+      "path": [
+        29,
+        156,
+        12,
+        3,
+        5,
+        11
+      ],
+      "word": "OEEOO",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 30,
+      "path": [
+        30,
+        5
+      ],
+      "word": "E",
+      "image": 5,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 30,
+      "path": [
+        30,
+        5,
+        11
+      ],
+      "word": "EO",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 30,
+      "path": [
+        30,
+        5,
+        11,
+        36,
+        6,
+        2
+      ],
+      "word": "EOOEE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 31,
+      "path": [
+        31,
+        172
+      ],
+      "word": "O",
+      "image": 172,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 31,
+      "path": [
+        31,
+        172,
+        13
+      ],
+      "word": "OE",
+      "image": 13,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 31,
+      "path": [
+        31,
+        172,
+        13,
+        46,
+        6,
+        2
+      ],
+      "word": "OEOEE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 32,
+      "path": [
+        32,
+        5
+      ],
+      "word": "E",
+      "image": 5,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 32,
+      "path": [
+        32,
+        5,
+        11
+      ],
+      "word": "EO",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 32,
+      "path": [
+        32,
+        5,
+        11,
+        36,
+        6,
+        2
+      ],
+      "word": "EOOEE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 33,
+      "path": [
+        33,
+        189
+      ],
+      "word": "O",
+      "image": 189,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 33,
+      "path": [
+        33,
+        189,
+        2598
+      ],
+      "word": "OO",
+      "image": 2598,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 33,
+      "path": [
+        33,
+        189,
+        2598,
+        50,
+        7,
+        18
+      ],
+      "word": "OOEEO",
+      "image": 18,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 34,
+      "path": [
+        34,
+        5
+      ],
+      "word": "E",
+      "image": 5,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 34,
+      "path": [
+        34,
+        5,
+        11
+      ],
+      "word": "EO",
+      "image": 11,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 34,
+      "path": [
+        34,
+        5,
+        11,
+        36,
+        6,
+        2
+      ],
+      "word": "EOOEE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 35,
+      "path": [
+        35,
+        207
+      ],
+      "word": "O",
+      "image": 207,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 35,
+      "path": [
+        35,
+        207,
+        2978
+      ],
+      "word": "OO",
+      "image": 2978,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 35,
+      "path": [
+        35,
+        207,
+        2978,
+        54,
+        7,
+        18
+      ],
+      "word": "OOEEO",
+      "image": 18,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 36,
+      "path": [
+        36,
+        6
+      ],
+      "word": "E",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 36,
+      "path": [
+        36,
+        6,
+        2
+      ],
+      "word": "EE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 36,
+      "path": [
+        36,
+        6,
+        2,
+        1,
+        1,
+        1
+      ],
+      "word": "EEEOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 37,
+      "path": [
+        37,
+        225
+      ],
+      "word": "O",
+      "image": 225,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 37,
+      "path": [
+        37,
+        225,
+        3375
+      ],
+      "word": "OO",
+      "image": 3375,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 37,
+      "path": [
+        37,
+        225,
+        3375,
+        196069,
+        86818724,
+        9317
+      ],
+      "word": "OOOOE",
+      "image": 9317,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 38,
+      "path": [
+        38,
+        6
+      ],
+      "word": "E",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 38,
+      "path": [
+        38,
+        6,
+        2
+      ],
+      "word": "EE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 38,
+      "path": [
+        38,
+        6,
+        2,
+        1,
+        1,
+        1
+      ],
+      "word": "EEEOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 39,
+      "path": [
+        39,
+        243
+      ],
+      "word": "O",
+      "image": 243,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 39,
+      "path": [
+        39,
+        243,
+        3787
+      ],
+      "word": "OO",
+      "image": 3787,
+      "contracts": false,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 39,
+      "path": [
+        39,
+        243,
+        3787,
+        233046,
+        482,
+        21
+      ],
+      "word": "OOOEE",
+      "image": 21,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 40,
+      "path": [
+        40,
+        6
+      ],
+      "word": "E",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 40,
+      "path": [
+        40,
+        6,
+        2
+      ],
+      "word": "EE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 40,
+      "path": [
+        40,
+        6,
+        2,
+        1,
+        1,
+        1
+      ],
+      "word": "EEEOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    },
+    {
+      "source": 46,
+      "path": [
+        46,
+        6
+      ],
+      "word": "E",
+      "image": 6,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 1,
+      "note": "juggler one-step increment"
+    },
+    {
+      "source": 46,
+      "path": [
+        46,
+        6,
+        2
+      ],
+      "word": "EE",
+      "image": 2,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 2,
+      "note": "juggler EE block"
+    },
+    {
+      "source": 46,
+      "path": [
+        46,
+        6,
+        2,
+        1,
+        1,
+        1
+      ],
+      "word": "EEEOO",
+      "image": 1,
+      "contracts": true,
+      "exceptional_one": false,
+      "composition_depth": 5,
+      "note": "juggler OOOEE block"
+    }
+  ],
+  "sample_counts": {
+    "one_step": 41,
+    "oooee": 3,
+    "ee": 12
+  },
+  "survivors": [
+    {
+      "rank": 1,
+      "name": "one_step_increment_bounds",
+      "exact_statement": "For odd n>=3, T(n)^2 <= n^3 and T(n)>n. For even n>=2, T(n)^2 <= n and T(n)<n. These are the exact power surrogates of the additive log-log increments.",
+      "motivation": "Ask whether fixed additive branch costs exist as exact inequalities. The power bounds are the floor-power definitions; the signs are the one-step expansion/contraction of the exact surrogate T.",
+      "relevant_domain": "odd n>=3 or even n>=2",
+      "expected_yield": "formalizable branch costs, or a definitional restatement",
+      "cheapest_falsifier": "the first frozen n in the domain violating a power bound or T-sign",
+      "idealized_drift": "odd +log(3/2), even -log 2 (heuristic only)",
+      "parity_word": "O|E",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "survived, but the inequality is the floor-power definition or even-branch contraction already implied by T(n)<n. Not new compositional loot.",
+      "failure_class": "DEFINITIONAL_RESTATEMENT",
+      "checked": 40,
+      "loot_eligible": false,
+      "unobserved": false
+    },
+    {
+      "rank": 2,
+      "name": "oooee_conditional_contraction",
+      "exact_statement": "If a trajectory follows the parity word OOOEE starting at n>=2, then T^5(n)<n. Conditional on the branch word; not a claim that every orbit contains OOOEE.",
+      "motivation": "OOOEE is the first mixed block whose idealized drift is negative: 3^3=27 < 2^5=32. Exact surrogate T^5(n)<n.",
+      "relevant_domain": "n>=2 whose five successive branch parities are OOOEE",
+      "expected_yield": "conditional five-step contraction, or a floor counterexample",
+      "cheapest_falsifier": "the first frozen OOOEE seed with T^5(n)>=n",
+      "idealized_drift": "3^3 < 2^{2+3} (exact negative)",
+      "parity_word": "OOOEE",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "",
+      "failure_class": "",
+      "checked": 3,
+      "loot_eligible": true,
+      "unobserved": false
+    },
+    {
+      "rank": 3,
+      "name": "shortest_negative_block",
+      "exact_statement": "If a trajectory follows the parity word EE starting at n>=2, then T^2(n)<n. Selected as the shortest frozen-list word with exact negative idealized drift and depth<=5.",
+      "motivation": "Among EE, OEE, OOOE, OOOEE, OOOEEE, the shortest negative-drift word of depth<=5 is EE. Do not optimize over arbitrary words.",
+      "relevant_domain": "n>=2 whose successive branch parities are EE",
+      "expected_yield": "a short contractive block, or a restatement of even contraction",
+      "cheapest_falsifier": "the first frozen EE seed with T^2(n)>=n",
+      "idealized_drift": "3^0 < 2^{2+0} (exact negative)",
+      "parity_word": "EE",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "survived, but the inequality is the floor-power definition or even-branch contraction already implied by T(n)<n. Not new compositional loot.",
+      "failure_class": "DEFINITIONAL_RESTATEMENT",
+      "checked": 12,
+      "loot_eligible": false,
+      "unobserved": false
+    }
+  ],
+  "counterexamples": [],
+  "failure_mechanisms": [
+    {
+      "name": "one_step_increment_bounds",
+      "class": "DEFINITIONAL_RESTATEMENT",
+      "text": "survived, but the inequality is the floor-power definition or even-branch contraction already implied by T(n)<n. Not new compositional loot."
+    },
+    {
+      "name": "shortest_negative_block",
+      "class": "DEFINITIONAL_RESTATEMENT",
+      "text": "survived, but the inequality is the floor-power definition or even-branch contraction already implied by T(n)<n. Not new compositional loot."
+    }
+  ],
+  "exceptional_state": {
+    "state": 1,
+    "role": "exceptional terminal odd fixed point",
+    "reason": "log-log energy is undefined/awkward at 1; T(1)=1. Not a termination theorem.",
+    "not_termination_theorem": true
+  },
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "parity_frequency_theorem": false,
+    "level_c_out_of_scope": true,
+    "scope": "LOCAL_BRANCH_LAW",
+    "one_step_is_new_loot": false,
+    "ee_is_new_loot": false
+  },
+  "lean_status": "PROVED",
+  "loot_status": "PARITY_DRIFT_GREEN_LOOT",
+  "attack_proposal_update": {
+    "campaign_id": "juggler_sequence",
+    "proposals": [
+      {
+        "rank": 1,
+        "attack_name": "parity_drift_block",
+        "trigger": "OOOEE is an exact conditional contractive block",
+        "mathematical_target": "Package further k<=5 mixed blocks only as Level B conditionals. Do not infer a global parity-frequency theorem.",
+        "mechanism": "Keep depth <= 5. Do not build a parity automaton.",
+        "required_capability": "restricted symbolic composition",
+        "expected_yield": "another exact block inequality, still not Level C",
+        "falsifier": "A realizing state of the next frozen word with T^k(n)>=n.",
+        "novelty_risk": "MEDIUM",
+        "implementation_scope": "SMALL",
+        "confidence": "HIGH",
+        "novelty_risk_reason": "new compositional consequence of floor-power inequalities"
+      },
+      {
+        "rank": 2,
+        "attack_name": "odd_odd_symbolic_composition",
+        "trigger": "local odd-odd growth remains complementary loot",
+        "mathematical_target": "Keep the odd-odd two-step growth lemma. Do not replace it by energy.",
+        "mechanism": "odd_odd_symbolic_composition stays a proposal, not a flood attack.",
+        "required_capability": "restricted symbolic composition",
+        "expected_yield": "unchanged T^2>n on D_OO, n>=3",
+        "falsifier": "An n>=3 in D_OO with T^2(n)<=n.",
+        "novelty_risk": "LOW",
+        "implementation_scope": "SMALL",
+        "confidence": "HIGH",
+        "novelty_risk_reason": "floorPower_odd_odd_two_step_gt is unchanged"
+      },
+      {
+        "rank": 3,
+        "attack_name": "basin_preimage_grammar",
+        "trigger": "Level C trajectory consequence remains open and out of scope",
+        "mathematical_target": "Phase-9 backup: basin/preimage on mx_plus_r_7x1_class_obstruction if block-frequency is not pursued.",
+        "mechanism": "Do not raise k. Do not claim a halt theorem.",
+        "required_capability": "symbolic predecessor construction",
+        "expected_yield": "regular-preimage lemma or a splitting pair",
+        "falsifier": "Two predecessor states indistinguishable by the quotient.",
+        "novelty_risk": "MEDIUM",
+        "implementation_scope": "MEDIUM",
+        "confidence": "MEDIUM",
+        "novelty_risk_reason": "Phase-9 backup remains available"
+      }
+    ],
+    "notes": [
+      "updated from Juggler parity-drift Phase-12 falsifier; not executed",
+      "parity_drift_block is proposed, not registered",
+      "global_consequence is LOCAL_BRANCH_LAW, not GLOBAL_TERMINATION",
+      "Level C frequency implication is out of scope"
+    ]
+  },
+  "classification": "PARITY_DRIFT_GREEN_LOOT",
+  "decision": "PARITY_DRIFT_GREEN_LOOT",
+  "decision_reason": "OOOEE is exactly contractive and Lean-proved as a conditional block law",
+  "green_loot": "PARITY_DRIFT_GREEN_LOOT",
+  "mathematical_status": "NEW_STRUCTURAL_LEMMA",
+  "global_consequence": "LOCAL_BRANCH_LAW",
+  "laboratory_decision": "PROMOTE",
+  "top3_update": {
+    "campaign_id": "juggler_sequence",
+    "proposals": [
+      {
+        "rank": 1,
+        "attack_name": "parity_drift_block",
+        "trigger": "OOOEE is an exact conditional contractive block",
+        "mathematical_target": "Package further k<=5 mixed blocks only as Level B conditionals. Do not infer a global parity-frequency theorem.",
+        "mechanism": "Keep depth <= 5. Do not build a parity automaton.",
+        "required_capability": "restricted symbolic composition",
+        "expected_yield": "another exact block inequality, still not Level C",
+        "falsifier": "A realizing state of the next frozen word with T^k(n)>=n.",
+        "novelty_risk": "MEDIUM",
+        "implementation_scope": "SMALL",
+        "confidence": "HIGH",
+        "novelty_risk_reason": "new compositional consequence of floor-power inequalities"
+      },
+      {
+        "rank": 2,
+        "attack_name": "odd_odd_symbolic_composition",
+        "trigger": "local odd-odd growth remains complementary loot",
+        "mathematical_target": "Keep the odd-odd two-step growth lemma. Do not replace it by energy.",
+        "mechanism": "odd_odd_symbolic_composition stays a proposal, not a flood attack.",
+        "required_capability": "restricted symbolic composition",
+        "expected_yield": "unchanged T^2>n on D_OO, n>=3",
+        "falsifier": "An n>=3 in D_OO with T^2(n)<=n.",
+        "novelty_risk": "LOW",
+        "implementation_scope": "SMALL",
+        "confidence": "HIGH",
+        "novelty_risk_reason": "floorPower_odd_odd_two_step_gt is unchanged"
+      },
+      {
+        "rank": 3,
+        "attack_name": "basin_preimage_grammar",
+        "trigger": "Level C trajectory consequence remains open and out of scope",
+        "mathematical_target": "Phase-9 backup: basin/preimage on mx_plus_r_7x1_class_obstruction if block-frequency is not pursued.",
+        "mechanism": "Do not raise k. Do not claim a halt theorem.",
+        "required_capability": "symbolic predecessor construction",
+        "expected_yield": "regular-preimage lemma or a splitting pair",
+        "falsifier": "Two predecessor states indistinguishable by the quotient.",
+        "novelty_risk": "MEDIUM",
+        "implementation_scope": "MEDIUM",
+        "confidence": "MEDIUM",
+        "novelty_risk_reason": "Phase-9 backup remains available"
+      }
+    ],
+    "notes": [
+      "updated from Juggler parity-drift Phase-12 falsifier; not executed",
+      "parity_drift_block is proposed, not registered",
+      "global_consequence is LOCAL_BRANCH_LAW, not GLOBAL_TERMINATION",
+      "Level C frequency implication is out of scope"
+    ]
+  },
+  "existing_lemmas": {
+    "odd_even": "Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt",
+    "odd_odd": "Problems.Engine.FloorPower.floorPower_odd_odd_two_step_gt",
+    "oooee": "Problems.Engine.FloorPower.floorPower_oooee_five_step_lt"
+  },
+  "phase11_record_intact": true
+}

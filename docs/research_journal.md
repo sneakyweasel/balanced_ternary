@@ -3695,4 +3695,48 @@ Best next question
 - Run a basin/preimage falsifier on mx_plus_r_7x1_class_obstruction without adding another Juggler micro-attack.
 ```
 
+## Research Engine v2.4: Juggler parity-drift Phase-12 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Determine whether log-log parity drift yields an exact finite-block inequality without predicting the next parity bit
+- **Hypotheses:** exact one-step power bounds; `OOOEE` implies `T^5(n)<n`; shortest negative-drift word `EE` implies `T^2(n)<n`
+- **Major results:** Candidate 1 survived as `DEFINITIONAL_RESTATEMENT`. Candidate 2 survived on frozen `OOOEE` states `3,25,39` and is Lean **PROVED** as `floorPower_oooee_five_step_lt` via `n5^32 ≤ n^27`. Candidate 3 (`EE`) survived as even-branch contraction, not loot. Classification **PARITY_DRIFT_GREEN_LOOT**. Scope `LOCAL_BRANCH_LAW`, Level B only. Records: `docs/research/juggler_parity_drift_phase12.md`, `docs/research/juggler_parity_drift_phase12.json`. Frozen v2.3 seeds, Phase-0–11 records, and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** treating one-step `T ≤ n^{3/2}` as new loot; treating `EE` as mixed-energy loot; promoting a contractive block to a global frequency/termination theorem
+- **Literature:** engine methodology; Juggler totality remains open and unclaimed
+- **Open:** whether every long trajectory contains `OOOEE` (Level C, out of scope)
+- **Decision:** PROMOTE the local `OOOEE` five-step contraction. Do not register `parity_drift_block`. Do not claim termination or divergence
+
+```text
+What was learned
+- Additive log-log costs are exactly the floor-power inequalities; that restatement is not loot
+- The shortest negative-drift word in the frozen list is EE, which is ordinary even contraction
+- OOOEE is realized on the frozen window and satisfies T^5(n)<n
+- Floors preserve the heuristic sign: n5^32 ≤ n^27 forces T^5(n)<n for n≥2
+- A contractive block is not a theorem that every orbit contains that block
+
+Strongest theorem
+- If n≥2 follows the parity word OOOEE, then T^5(n)<n (floorPower_oooee_five_step_lt)
+
+Strongest refutation
+- One-step additive costs are definitional; EE is not mixed-branch energy loot
+
+Reusable machinery
+- research_engine.control.juggler_parity_drift: three pre-ranked k≤5 candidates; gated name juggler_parity_drift_phase12 is not in DEFAULT_ATTACK_ORDER
+
+Prior-art status
+- engine diagnosis; local floor-power block lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PROMOTE
+
+Why
+- The mixed block OOOEE has an exact contraction inequality that is not a restatement of the k=2 lemmas and is Lean-proved. Level C remains untouched.
+
+Best next question
+- Other k≤5 mixed blocks as Level B conditionals, without a parity-frequency theorem.
+```
+
 
