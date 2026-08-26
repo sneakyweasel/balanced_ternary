@@ -4009,4 +4009,94 @@ Best next question
 - What exact deficit does a non-monochrome realized word have relative to the one-sided envelope?
 ```
 
+## Juggler finite-word envelope defect and strictness
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether a realized non-monochrome finite word has a compositional algebraic deficit relative to the one-sided floor-power envelope, traced from the first non-exact branch
+- **Hypotheses:** a positive local defect \(\delta_E\) or \(\delta_O\) persists through every suffix; the weakest useful quantitative law is \(\Delta_w(n)\ge\delta_j\); unit positivity \(\Delta\ge 1\) is only the baseline
+- **Major results:** Local defects **PROVED**. `StrictPowerBound` append and suffix persistence **PROVED**. Non-monochrome \(\Rightarrow\Delta\ge 1\) **PROVED**. Deficit is monotone under even/odd continuation **PROVED**. First-defect bound \(\Delta\ge\delta_j\) through an arbitrary realized suffix **PROVED**. Probe on \(n\le 400\), depth 6: 0 unit falsifiers, 0 \(\Delta<\delta_j\), 0 suffix decreases. Classification **DEFECT_QUANTITATIVE_GREEN**. Records: `docs/research/juggler_envelope_defect.md`, `docs/problems/juggler_envelope_defect.md`. Control layer unchanged
+- **Refuted ideas:** mixed-word local strictness remains refuted (prior phase; `O`, \(n=9\)); a first-defect-position order on same-count words; `PowerHeight`; a suffix-length closed form; contraction-margin upgrade
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** exact recursive \(\mathcal{D}(x,\mathrm{branch},v)\) strictly stronger than \(\delta_j\)
+- **Decision:** PROMOTE the local-defect calculus and the first-defect lower bound. Do not register an attack. Do not claim termination
+
+```text
+What was learned
+- δ_E(x) is the even square remainder; δ_O(x) is the isqrt remainder of x^3
+- StrictPowerBound appends, so a first positive defect cannot be repaired by any suffix
+- Non-monochrome realized words satisfy Δ ≥ 1, the integer complement of the extremal families
+- powerDeficit is nondecreasing along every realized continuation
+- The first local defect is a certified lower bound: Δ_w(n) ≥ δ_j
+
+Strongest theorem
+- If a realized word leaves an equality prefix at the first non-exact even or odd branch, then the final envelope deficit is at least that local defect
+
+Strongest refutation
+- none for the defect law; mixed-word local strictness remains false at O, n=9
+
+Reusable machinery
+- FloorPower localDefectEven/Odd, StrictPowerBound, powerDeficit, suffix deficit monotonicity
+- research.juggler_sequence.envelope_defect first-defect probe
+
+Prior-art status
+- local defect lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The envelope now has a distance: equality is the two monochrome towers, and the first inexact floor step supplies a positive integer defect that every later branch preserves. Stop rather than chase a suffix-length closed form or a contraction margin.
+
+Best next question
+- Is there an exact recursive suffix defect D(x, branch, v) strictly stronger than the first local defect?
+```
+
+## Juggler first-defect bound sharpness
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether \(\Delta_w(n)\ge\delta_j\) is sharp for a nonempty suffix, or whether every later branch strictly amplifies the deficit
+- **Hypotheses:** either \(|v|>0\Rightarrow\Delta>\delta_j\), or equality is a rigid exact-even suffix on \(T(n)\)
+- **Major results:** Empty-prefix first step \(\Delta=\delta\) **PROVED**. Exact even continuation preserves \(\Delta\) **PROVED**. Any odd letter after a defect strictly increases \(\Delta\) **PROVED**. Nonempty exact prefix already forces \(\Delta>\delta_j\) **PROVED**. Iff characterization `power_deficit_eq_local_even_iff` / `_odd_iff` **PROVED**. Universal \(|v|>0\Rightarrow\Delta>\delta_j\) **REFUTED** at `OE`, \(n=11\) and `EE`, \(n=18\). Constructed even towers remain sharp through suffix length 3. Classification **DEFECT_SHARP_GREEN**. Records: `docs/research/juggler_defect_sharpness.md`, `docs/problems/juggler_defect_sharpness.md`. Control layer unchanged
+- **Refuted ideas:** universal one-step amplification; empty suffix automatically sharp (false at `OO`, \(n=9\)); recursive suffix-defect object; `PowerHeight`; contraction-margin upgrade
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether odd starts admit arbitrarily long sharp suffixes \(OE^s\)
+- **Decision:** PROMOTE the sharpness characterization. Do not register an attack. Do not claim termination. Do not add a recursive defect calculus
+
+```text
+What was learned
+- The first-defect bound is already optimal: Δ = δ_j on a rigid family
+- After a first defect at the start, equality holds iff the suffix is an exact even tower on T(n)
+- Any odd letter, or any inexact even letter, strictly increases the deficit
+- A nonempty exact prefix already makes Δ > δ_j, so |v|=0 is not automatically sharp
+- Universal |v|>0 ⇒ Δ > δ_j is false; 11 OE and 18 EE are the smallest witnesses
+
+Strongest theorem
+- After a first defect at the start, the final envelope deficit equals the local defect if and only if the remaining word is an exact even tower on T(n)
+
+Strongest refutation
+- |v|>0 ⇒ Δ > δ_j fails at word OE, n=11 and word EE, n=18
+
+Reusable machinery
+- FloorPower power_deficit_eq_local_even_iff / power_deficit_eq_local_odd_iff / append equality and strictness
+- research.juggler_sequence.defect_sharpness sharpness probe
+
+Prior-art status
+- local sharpness lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The first floor defect is exactly the irrecoverable global lower bound, and it is attained precisely on exact even suffixes of T(n). That is the sharp statement. Stop rather than invent a recursive defect calculus.
+
+Best next question
+- Does an odd start admit arbitrarily long exact-even sharp suffixes OE^s, or is the unbounded sharp family only the even monochrome towers?
+```
+
 
