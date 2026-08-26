@@ -82,6 +82,14 @@ objects only. It does not add adapters or thaw the planner. Dossier:
 Package **0.2.2** tags the memory layer; the attack stack remains the
 frozen 0.2.1 order.
 
+v2.4 research control (`research_engine.control`, package **0.2.7**)
+wraps completed campaigns without thawing attacks. It freezes
+`RESEARCH_ENGINE_V2_3_BASELINE`, assigns a primary close tag and an
+independent mathematical status, emits exactly three non-executable
+attack proposals, and replays selected v2.2 targets with historical
+results excluded from the blind track. Dossier:
+[research_engine_v24.md](../problems/research_engine_v24.md).
+
 Non-core fingerprint fields: `piecewise_affine_structure`,
 `latent_control` (`NONE|FINITE|PARAMETERIZED|UNCERTAIN|UNOBSERVED`),
 `parameter_domain` (`UNOBSERVED|SAMPLE_SUPPORTED|EXACT|UNCERTAIN`),
@@ -132,7 +140,8 @@ latent-control fields when `vector_affine` recovers a census;
 
 ## Home
 
-Python: `research_engine.diagnosis`, `research_engine.memory`, and
+Python: `research_engine.diagnosis`, `research_engine.memory`,
+`research_engine.control`, and
 `research_engine.attacks.piecewise_affine`,
 `research_engine.attacks.parameter_domain`,
 `research_engine.attacks.control_word`,

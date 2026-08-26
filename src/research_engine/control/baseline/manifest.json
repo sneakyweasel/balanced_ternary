@@ -1,0 +1,54 @@
+{
+  "identifier": "RESEARCH_ENGINE_V2_3_BASELINE",
+  "engine_control_version": "0.2.7",
+  "files": {
+    "historical.json": "ca69ff9b24e11d3d9f19a00faaa3258adc703b6b38a987c5dcc7d1736b9b7de9",
+    "target_board.json": "310d307234283faf6d6e1d4d488e0027e25fb643d9cb69c054e5c80dfde83227"
+  },
+  "campaign_order": [
+    "mx_plus_r_7x1_class_obstruction",
+    "weak_collatz_floor_5x4_rplus",
+    "matthews_prize_mod3_avoider",
+    "companion_shift_order6_zero_class",
+    "skolem_order5_unconditional",
+    "juggler_sequence",
+    "reverse_and_add_base3",
+    "home_prime_49",
+    "cyclic_tag_bit"
+  ],
+  "default_attack_order": [
+    "reconnaissance",
+    "piecewise_affine",
+    "parameter_domain",
+    "control_word",
+    "control_obstruction",
+    "vector_affine",
+    "matrix_word_invariant",
+    "closure",
+    "modular",
+    "functional",
+    "affine",
+    "reverse",
+    "block",
+    "spectral",
+    "factorization",
+    "separation",
+    "quotient",
+    "symmetry"
+  ],
+  "deferred_attacks": [
+    "symbolic"
+  ],
+  "engine_versions": {
+    "memory": "0.2.2",
+    "strategy": "0.2.3",
+    "reasoning": "0.2.4",
+    "law": "0.2.5",
+    "quantifier": "0.2.6"
+  },
+  "skip_decisions": {
+    "global_inductive_chain_attacks": [],
+    "law_domain_chain_attacks": [],
+    "quantifier_probe_chain_attacks": []
+  }
+}

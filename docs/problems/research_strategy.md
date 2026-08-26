@@ -399,7 +399,10 @@ solver ticket. Mealy start-alphabet / `__blocked__` is unchanged.
 
 None for a Phase 5. Overlapping-domain census and a nondeterministic
 control-word solver remain parked limitations, not a next coordinated
-program.
+program. v2.4 is a research-control layer
+([research_engine_v24.md](research_engine_v24.md)), not a Phase 5 and
+not a new attack engine. The nine v2.3 mathematical campaigns stay
+frozen.
 
 ## Decision
 

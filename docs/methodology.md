@@ -85,6 +85,25 @@ exhausted, the remaining work is brute-force taxonomy, or a precise
 obstruction shows the branch is not promising. A closed branch must be
 documented well enough that the project does not rediscover it.
 
+Laboratory `CLOSE` does not imply that the mathematical question is
+settled. Engine campaigns additionally carry a **primary close tag**
+and a **mathematical status** (`research_engine.control`):
+
+- close tags: `CLOSE_KNOWN`, `CLOSE_REPARAMETERIZATION`,
+  `CLOSE_FALSE_OBSTRUCTION`, `CLOSE_FINITE_CENSUS`,
+  `CLOSE_SKIP_BOUNDARY`, `CLOSE_SPEC_MISMATCH`, `CLOSE_NO_PROMOTION`
+  (exactly one);
+- mathematical status: `RESOLVED`, `STRONG_NEGATIVE`, `FRONTIER`,
+  `UNRESOLVED`.
+
+`CLOSE_SKIP_BOUNDARY` with `FRONTIER` means the executable attack
+vocabulary is exhausted and the question remains open.
+`CLOSE_FALSE_OBSTRUCTION` with `STRONG_NEGATIVE` means the investigated
+mechanism was falsified. Finite census, prefix, or budget evidence
+must not be upgraded to `RESOLVED`. These fields live on campaign
+control records; they do not replace `PROMOTE|PARK|CLOSE` on problem
+dossiers.
+
 Older entries in [research_journal.md](research_journal.md) and in the
 theory pages said *Outcome A / B / C*. That vocabulary is retired.
 Outcome C was `CLOSE`; Outcome B, a known core with a project-specific

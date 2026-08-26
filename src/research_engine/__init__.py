@@ -109,6 +109,7 @@ from research_engine.reasoning import (
 )
 from research_engine.law import ENGINE_LAW_VERSION
 from research_engine.quantifiers import ENGINE_QUANTIFIER_VERSION
+from research_engine.control.types import ENGINE_CONTROL_VERSION
 from research_engine.core.affine_system import (
     AffineSystem,
     affine_step,
@@ -208,6 +209,7 @@ __all__ = [
     "ENGINE_REASONING_VERSION",
     "ENGINE_LAW_VERSION",
     "ENGINE_QUANTIFIER_VERSION",
+    "ENGINE_CONTROL_VERSION",
     "EvidenceState",
     "StrategyPlanner",
     "StructuralDelta",

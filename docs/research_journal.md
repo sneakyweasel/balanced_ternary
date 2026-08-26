@@ -3078,4 +3078,48 @@ Best next question
 - none on the stored board; every named target is now run
 ```
 
+## Research Engine v2.4: research-control layer
+
+- **Date:** 2026-08-26
+- **Objective:** Turn the nine frozen v2.3 campaigns into an immutable baseline, an explicit CLOSE taxonomy, a non-executable Top-3 attack-proposal layer, and a controlled v2.2 replay protocol, without adding attacks
+- **Hypotheses:** laboratory CLOSE is too coarse; the engine loses the mathematical frontier when the executable attack vocabulary is exhausted; v2.2 history can be replayed without contaminating the blind track
+- **Major results:** `research_engine.control` (`ENGINE_CONTROL_VERSION = 0.2.7`). Immutable `RESEARCH_ENGINE_V2_3_BASELINE`. Primary close tags independent of `mathematical_status`. Every campaign emits exactly three non-executable proposals. Phase-0 replays of `skolem_order2_known_zero` and `switching_affine_z2_origin`. Retrospective: ranking synthesis, nonlinear composition, and proof-guided refinement are the recurring missing capabilities. `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** CLOSE implies mathematical resolution; finite census upgrades to RESOLVED; proposal names may be registry attacks; historical v2.2 yield may seed the blind track
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** which missing-capability family is the first executable v2.4 attack
+- **Decision:** PROMOTE the control layer. Do not implement ranking, basin, or symbolic composition in this branch
+
+```text
+What was learned
+- v2.3 repeatedly stopped at an unimplemented mathematical frontier, not at a lack of search volume
+- CLOSE_SKIP_BOUNDARY + FRONTIER is the honest status of the order-5/6 companion campaigns
+- CLOSE_FALSE_OBSTRUCTION + STRONG_NEGATIVE captures the 7x+1 and Matthews class/avoider refutations without claiming the map theorems
+- Top-3 proposals from the nine campaigns recur on ranking, nonlinear composition, and predecessor/basin language
+- v2.2 replays recover the historical maps independently; added information is control classification, not a new theorem
+
+Strongest theorem
+- none; this is engine methodology
+
+Strongest refutation
+- Finite/prefix/budget evidence must not infer mathematical_status = RESOLVED
+
+Reusable machinery
+- research_engine.control: baseline freeze, CLOSE taxonomy, AttackProposalDossier, v2.2 replay protocol, retrospective extractor
+
+Prior-art status
+- engine diagnosis; no new number-theory claim
+
+Complexity profile
+- unchanged schema; no new attack
+
+Branch status
+- PROMOTE
+
+Why
+- The frontier is now explicit. Implementing another attack before evaluating the proposal layer would repeat the v2.3 mistake of expanding machinery without a new mathematical consequence.
+
+Best next question
+- What is the cheapest falsifier for ranking-function synthesis as the first executable v2.4 attack family?
+```
+
 
