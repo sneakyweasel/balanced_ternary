@@ -141,10 +141,10 @@ empirical totality.
 
 ## Open questions
 
-After an uncertified collapse to \(y\ge n\) that is not itself a cheap
-`ReachesOne` state, must a later even residual fall below \(n\) or hit
-a certified `ReachesOne` state, or can such a prefix continue
-indefinitely?
+Answered in [juggler_residual_progress.md](juggler_residual_progress.md):
+every residual in \(\{1,\ldots,11\}\) is `ReachesOne`, so \(9\to 11\)
+is already fatal, and even residuals below \(144\) follow. The
+remaining question lives there.
 
 ## Decision
 

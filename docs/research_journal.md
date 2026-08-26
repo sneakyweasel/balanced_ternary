@@ -4639,4 +4639,49 @@ Best next question
 - After an uncertified collapse to y>=n, must a later residual become Descent, Capture, or cheap-ReachesOne implied, with any bound depending only on y?
 ```
 
+## Juggler residual progress
+
+- **Date:** 2026-08-27
+- **Objective:** Identify a useful residual class \(R\) such that a bounded prefix from \(y\in R\) is Descent or `ReachesOne`, starting from known uncertified collapses
+- **Hypotheses:** `RESIDUAL_PROGRESS_GREEN`, `RESIDUAL_ESCAPE_FOUND`, or `SMALL_RESIDUAL_CORE_FOUND`
+- **Major results:** \(1\le y<12\) is `ReachesOne` **EXACT — LEAN VERIFIED**. Even \(1\le y<144\) is `ReachesOne` **EXACT — LEAN VERIFIED**. Image in \(\{1,\ldots,11\}\) is fatal **EXACT — LEAN VERIFIED**. A positive non-1 value is at least \(12\). Calibration residuals `11` and `9317` locally descend from \(y\). \(9\to 11\) is now `ReachesOne`-implied. No uniform \(L\) on all of \(\mathbb{N}\) (`193` needs \(70\) steps). Classification **RESIDUAL_PROGRESS_GREEN**. Records: `docs/research/juggler_residual_progress.md`, `docs/problems/juggler_residual_progress.md`. Control layer unchanged
+- **Refuted ideas:** a uniform `ProgressWithin` bound for every positive integer; enlarging `Capture` beyond \(\{1\}\); a new residual-path datatype
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** must a residual \(y\ge 144\) eventually land in an even state below \(144\)?
+- **Decision:** PROMOTE the finite class \(R=\{1,\ldots,11\}\) and the even-below-\(144\) corollary. Keep \(S=\{1\}\). Do not claim a uniform bound for every \(y\). Do not claim termination
+
+```text
+What was learned
+- The useful R is the initial segment {1,...,11}, not all of N
+- Even residuals below 144 are ReachesOne by one even step into that segment
+- 9→11 is now ReachesOne-implied; 11 and 9317 locally descend from y
+- No uniform L: 193 first hits R at step 70
+- Renewal T^r(y)<n held on the n≤80 uncertified list; that is not a theorem
+
+Strongest theorem
+- If 1 ≤ y < 12 then ReachesOne y; if y is even and 1 ≤ y < 144 then ReachesOne y
+
+Strongest refutation
+- ProgressWithin(y,L) for a single L and every y; 193 requires 70 steps to hit R
+
+Reusable machinery
+- FloorPower reachesOne_of_lt_twelve / image_lt_twelve_reachesOne / even_lt_sq_twelve_reachesOne
+- research.juggler_sequence.residual_progress
+
+Prior-art status
+- finite residual-class certificate, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- R strictly enlarges the cheap {2,4,6,8} set and swallows the minimized uncertified residual 11. Capture still means image 1.
+
+Best next question
+- Must a residual y≥144 eventually land in an even state below 144, with any bound depending only on y?
+```
+
 
