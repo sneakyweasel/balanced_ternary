@@ -4,11 +4,12 @@ Status: **EXPLORATORY**
 
 This is laboratory intelligence for Research Engine v2.4. It does
 **not** add flood-order attacks, ranking synthesis, basin solvers,
-symbolic composition, or a new Skolem procedure. Implementation lives
-in `research_engine.control`. The thin descriptor is
-`research.research_control`. Frozen v2.3 mathematical campaigns remain
-unchanged. The ranking Phase-0 falsifier is a bounded exact experiment,
-not an executable ranking attack.
+a general symbolic-composition engine, or a new Skolem procedure.
+A gated experimental attack `odd_even_two_step_decrease` may be opted
+into; it is not in `DEFAULT_ATTACK_ORDER`. Implementation lives in
+`research_engine.control` and `research_engine.attacks.restricted_symbolic_composition`.
+The thin descriptor is `research.research_control`. Frozen v2.3
+mathematical campaigns remain unchanged.
 
 ## Problem
 
@@ -98,11 +99,42 @@ theorems.
 - Overlay: `research_engine.control.store` (never `historical.json`)
 - Tests: `tests/research_engine/control/`,
   `tests/research/research_control/test_research_control.py`,
-  `tests/research/research_control/test_ranking_phase0.py`
+  `tests/research/research_control/test_ranking_phase0.py`,
+  `tests/research/research_control/test_ranking_phase1.py`,
+  `tests/research/research_control/test_symbolic_composition_phase2.py`,
+  `tests/research/research_control/test_symbolic_composition_phase3.py`,
+  `tests/research/research_control/test_reverse_add_composition_phase4.py`,
+  `tests/research/research_control/test_reverse_add_carry_phase5.py`,
+  `tests/research/research_control/test_reverse_add_pair_interaction_phase6.py`,
+  `tests/research/research_control/test_reverse_add_weighted_pair_phase7.py`,
+  `tests/research/research_control/test_reverse_add_involution_phase8.py`
 - Phase-0 replays: `skolem_order2_known_zero`,
   `switching_affine_z2_origin`
 - Ranking Phase-0 falsifier: `research_engine.control.ranking`,
   `docs/research/ranking_phase0.md`
+- Ranking Phase-1 falsifier: `research_engine.control.ranking_phase1`,
+  `docs/research/ranking_phase1.md`
+- Symbolic-composition Phase-2 falsifier:
+  `research_engine.control.symbolic_composition`,
+  `docs/research/symbolic_composition_phase2.md`
+- Restricted symbolic-composition Phase-3 attack:
+  `research_engine.attacks.restricted_symbolic_composition`,
+  `docs/research/symbolic_composition_phase3.md`
+- Reverse-add composition Phase-4 falsifier:
+  `research_engine.control.reverse_add_composition`,
+  `docs/research/reverse_add_composition_phase4.md`
+- Reverse-add carry Phase-5 falsifier:
+  `research_engine.control.reverse_add_carry`,
+  `docs/research/reverse_add_carry_phase5.md`
+- Reverse-add pair-interaction Phase-6 falsifier:
+  `research_engine.control.reverse_add_pair_interaction`,
+  `docs/research/reverse_add_pair_interaction_phase6.md`
+- Reverse-add weighted-pair Phase-7 falsifier:
+  `research_engine.control.reverse_add_weighted_pair`,
+  `docs/research/reverse_add_weighted_pair_phase7.md`
+- Reverse-add involution Phase-8 falsifier:
+  `research_engine.control.reverse_add_involution`,
+  `docs/research/reverse_add_involution_phase8.md`
 
 ## Conjectures
 
@@ -115,8 +147,8 @@ are not deleted. Finite prefixes are not upgraded to `RESOLVED`.
 
 ## Formalization
 
-None for the control layer. Historical Lean modules are unchanged. No
-`sorry`. No ledger row.
+The control layer itself has no new ledger row. Phase-3 reuses
+`Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt`. No `sorry`.
 
 ## Results
 
@@ -217,24 +249,194 @@ Family decision: **REFINE**. Formalization: `not_yet_formalization_ready`.
 Updated Top-3 names live only in the Phase-0 record. Frozen v2.3 files
 and `DEFAULT_ATTACK_ORDER` are unchanged.
 
+### G. Ranking-function Phase-1 enriched falsifier
+
+Record: [ranking_phase1.md](../research/ranking_phase1.md),
+[ranking_phase1.json](../research/ranking_phase1.json).
+`experimental_status = PHASE_1_ENRICHED_RANKING_FALSIFIER`. Not an attack.
+
+| Target | Hypothesis | Classification |
+| --- | --- | --- |
+| Juggler | odd-even `T^2` | `COMPOSED_RANKING_PROMISING` (`BOUNDED_SURVIVOR` on 11 macros; 9 odd-to-odd steps remain outside) |
+| Reverse-add | reverse_gap L1 | `REVERSE_GAP_IMPLAUSIBLE` (`1→2`: palindromes are not an attractor) |
+| Home Prime 49 | piecewise `V_C` | `PIECEWISE_RANKING_NEEDS_RICHER_STATE` (`4→22` concat growth; `10→25` factor_count nondecrease) |
+
+Family decision: **MIXED**. Formalization: `not_yet_formalization_ready`.
+`DEFAULT_ATTACK_ORDER` unchanged.
+
+### H. Symbolic-composition Phase-2 falsifier
+
+Record: [symbolic_composition_phase2.md](../research/symbolic_composition_phase2.md),
+[symbolic_composition_phase2.json](../research/symbolic_composition_phase2.json).
+`experimental_status = PHASE_2_SYMBOLIC_COMPOSITION_FALSIFIER`. Not an attack.
+
+k=2 only. No composition engine. No termination claim.
+
+| Target | Classification | Lean |
+| --- | --- | --- |
+| Juggler | `SYMBOLIC_COMPOSITION_PROMISING`: `T^2(n) < n` on odd `n` with `T(n)` even | `PROVED` (`floorPower_odd_even_two_step_lt`) |
+| Reverse-add | `REVERSE_COMPOSITION_NEEDS_RICHER_STRUCTURE`: collapse `1→2→0`, growth `3→4→8` | `NOT_YET_FORMALIZATION_READY` |
+| Home Prime 49 | `HOME_COMPOSITION_NEEDS_RICHER_STRUCTURE`: `10→25` keeps decimal length; `16→2222→211101` drops `Ω` | `NOT_YET_FORMALIZATION_READY` |
+
+Family decision: **MIXED**. Promoted concept (not executable):
+`odd_even_symbolic_composition`. Not a universal composition engine.
+`DEFAULT_ATTACK_ORDER` unchanged.
+
+The Phase-1 juggler ranking survivor is a downstream size consequence of
+the exact two-step inequality, not a new ranking template.
+
+### I. Restricted symbolic-composition Phase-3 attack
+
+Record: [symbolic_composition_phase3.md](../research/symbolic_composition_phase3.md),
+[symbolic_composition_phase3.json](../research/symbolic_composition_phase3.json).
+`experimental_status = PHASE_3_RESTRICTED_SYMBOLIC_ATTACK`.
+
+First executable v2.4 mathematical attack. Gated:
+`enable_restricted_symbolic_composition`. Not in `DEFAULT_ATTACK_ORDER`.
+Family `restricted_symbolic_composition`, rule `odd_even_two_step_decrease`.
+Depth frozen at 2. `global_consequence = NONE`.
+
+| Target | Result |
+| --- | --- |
+| Juggler | `APPLICABLE`; `T^2(x) < x`; Lean `PROVED`; `NEW_STRUCTURAL_LEMMA` |
+| Reverse-add | `NOT_APPLICABLE` / `MAP_MISMATCH` |
+| Home Prime 49 | `NOT_APPLICABLE` / `MAP_MISMATCH` |
+| Cyclic tag | `NOT_APPLICABLE` / `MAP_MISMATCH` |
+
+Family decision: **PROMOTE_RESTRICTED**. Matching is by floor-power successor
+identity, not campaign name. StrategyPlanner does not execute the attack.
+Phase-0/1/2 records and the v2.3 freeze are unchanged.
+
+### J. Reverse-add two-step composition Phase-4 falsifier
+
+Record: [reverse_add_composition_phase4.md](../research/reverse_add_composition_phase4.md),
+[reverse_add_composition_phase4.json](../research/reverse_add_composition_phase4.json).
+`experimental_status = PHASE_4_REVERSE_ADD_COMPOSITION_FALSIFIER`. Not an attack.
+
+k=2 only. Three pre-ranked candidates. Frozen window `1..40` plus seed `196`.
+`reverse_gap` not reopened. `DEFAULT_ATTACK_ORDER` unchanged.
+
+| Rank | Candidate | Result |
+| --- | --- | --- |
+| 1 | `W(x)+W(T(x))=0` | `CANCELLATION_FAILURE` at `1→2→0` (`W(1)=1`, `W(2)=-2`) |
+| 2 | `sign(T^2(x))=sign(x)` | `SIGN_REVERSAL` at `1→2→0` |
+| 3 | `bt_length(T^2) ≤ bt_length+1` | bounded survivor on 49 samples; not a theorem |
+
+Classification: **REVERSE_COMPOSITION_NEEDS_RICHER_STRUCTURE**.
+Green loot: `NO_NEW_LOOT`. Lean: `NOT_YET_FORMALIZATION_READY`.
+Top-3 #1 remains `symbolic_nonlinear_composition`. The specific reverse-add
+composition branch is closed. Missing coordinate: carry of `x+W(x)`.
+
+### K. Reverse-add carry Phase-5 falsifier
+
+Record: [reverse_add_carry_phase5.md](../research/reverse_add_carry_phase5.md),
+[reverse_add_carry_phase5.json](../research/reverse_add_carry_phase5.json).
+`experimental_status = PHASE_5_REVERSE_ADD_CARRY_FALSIFIER`. Not an attack.
+
+k=1 only. Statistic A: carry-chain length from `add_with_trace`.
+Three pre-ranked candidates. Frozen window `1..40` plus seed `196`.
+`reverse_gap` not reopened. `DEFAULT_ATTACK_ORDER` unchanged.
+The Phase-4 two-step length bound is not proved here.
+
+| Rank | Candidate | Result |
+| --- | --- | --- |
+| 1 | `C(x) ≥ max(0, ΔL)` | survived on 49 one-step samples; near-definitional, not loot |
+| 2 | `C(x)=0 ⇒ ΔL=0` | `REVERSAL_DEPENDENCE` at `2→0` (`W(2)=-2`, length 2→1) |
+| 3 | `C(x)>0 ⇒ ΔL=1` | `LENGTH_DECOUPLING` at `5→-6` (`C=2`, length 3→3) |
+
+Classification: **CARRY_NEEDS_RICHER_STATE**.
+Green loot: `NO_NEW_LOOT`. Lean: `FORMALIZATION_BLOCKED`.
+Top-3 #1 remains `symbolic_nonlinear_composition`. Carry is a supporting
+coordinate of the addition, not a sufficient one-dimensional successor law.
+`carry_structure_analysis` is not registered. `balanced_ternary_carry_attack`
+is not registered.
+
+### L. Reverse-add pair-interaction Phase-6 falsifier
+
+Record: [reverse_add_pair_interaction_phase6.md](../research/reverse_add_pair_interaction_phase6.md),
+[reverse_add_pair_interaction_phase6.json](../research/reverse_add_pair_interaction_phase6.json).
+`experimental_status = PHASE_6_REVERSE_PAIR_INTERACTION_FALSIFIER`. Not an attack.
+
+k=1 only. Pre-normalization pair sums \(s_i=d_i(x)+d_i(W(x))\) from
+LSD-aligned `encode`. Three pre-ranked candidates. Frozen window `1..40`
+plus seed `196`. `reverse_gap` not reopened. `DEFAULT_ATTACK_ORDER`
+unchanged. Phase-4/5 observations are not proved here.
+
+| Rank | Candidate | Result |
+| --- | --- | --- |
+| 1 | `P0>P2 ⇒ ΔL ≤ 0` | survived on 19 domain samples; finite, not loot |
+| 2 | `P+≠P- ⇒ sign(T)=sign(P+-P-)` | `SIGN_IMBALANCE_MISMATCH` at `-672→-448` |
+| 3 | `ΔL≥1 ⇒ s_{n-1}≠0` | survived on 17 growth samples; near-positional, not loot |
+
+Classification: **REVERSE_PAIR_NEEDS_RICHER_STRUCTURE**.
+Green loot: `NO_NEW_LOOT`. Lean: `FORMALIZATION_BLOCKED`.
+Top-3 #1 remains `symbolic_nonlinear_composition`. Pair interaction is a
+supporting coordinate, not a sufficient count/position successor law.
+`reverse_pair_interaction` is not registered.
+
+### M. Reverse-add weighted-pair Phase-7 falsifier
+
+Record: [reverse_add_weighted_pair_phase7.md](../research/reverse_add_weighted_pair_phase7.md),
+[reverse_add_weighted_pair_phase7.json](../research/reverse_add_weighted_pair_phase7.json).
+`experimental_status = PHASE_7_WEIGHTED_REVERSE_PAIR_FALSIFIER`. Not an attack.
+
+k=1 only. Positional summaries of raw pair sums, strictly coarser than
+\(T=\sum s_i 3^i\). Frozen window `1..40` plus seed `196`. `reverse_gap`
+not reopened. `DEFAULT_ATTACK_ORDER` unchanged.
+
+| Rank | Candidate | Result |
+| --- | --- | --- |
+| 1 | `sign(T)=sign(s_h)` | survived on 42 nonzero-pair samples; repairs `-672` |
+| 2 | `m+>m- ⇒ T>0` (and symmetric) | survived on the same 42; equivalent unpacking of Candidate 1 |
+| 3 | `sign(T)=sign(s_{h_2})` | `MULTI_POSITION_INTERFERENCE` at `6→4` (`s=(1,-2,1)`, `h=2`, `h2=1`) |
+
+Classification: **WEIGHTED_PAIR_PROMISING**.
+Green loot: `NO_NEW_LOOT`. Lean: `FORMALIZATION_READY` (place-value bound
+\(|\sum_{i<h}s_i 3^i|\le 3^h-1\); not proved in this phase).
+Top-3 #1 remains `symbolic_nonlinear_composition`. Highest-pair sign is a
+supporting coordinate, not a reverse-add-specific identity.
+`weighted_reverse_pair_interaction` is not registered.
+
+### N. Reverse-add involution Phase-8 falsifier
+
+Record: [reverse_add_involution_phase8.md](../research/reverse_add_involution_phase8.md),
+[reverse_add_involution_phase8.json](../research/reverse_add_involution_phase8.json).
+`experimental_status = PHASE_8_REVERSE_INVOLUTION_FALSIFIER`. Not an attack.
+
+k=1 only. Objects `x`, `W(x)`, `T(x)`, `W(T(x))`. Not `T^2`. Frozen window
+`1..40` plus seed `196`. `reverse_gap` not reopened as ranking.
+`DEFAULT_ATTACK_ORDER` unchanged. Canonical `W` is involutive iff `x=0`
+or `3` does not divide `x`.
+
+| Rank | Candidate | Result |
+| --- | --- | --- |
+| 1 | `|W(T)-W(x)| ≤ |W(x)|` | `INVOLUTION_RESIDUAL_MISMATCH` at `1→2` (`R=-3`) |
+| 2 | `gap(T) ≤ gap(x)+L(x)` | `SUCCESSOR_REVERSAL_UNCONTROLLED` at `1→2` (`0→4`) |
+| 3 | MSD(T) in operand MSD set | survived 42 samples; assessed `GENERAL_ARITHMETIC` |
+
+Classification: **REVERSE_INVOLUTION_REFUTED**.
+Green loot: `NO_NEW_LOOT`. Lean: `FORMALIZATION_BLOCKED`.
+Top-3 #1 remains `symbolic_nonlinear_composition`.
+`reverse_involution_not_sufficient_at_this_level`.
+`reverse_involution_structure` is not registered.
+
 ## Open questions
 
-Can a deliberately small richer ranking family — odd-even composition,
-reverse-gap/palindrome defect, and composite-versus-prime piecewise
-ranking — be falsified on the same exact transition tables without
-enlarging the coefficient grid or thawing `DEFAULT_ATTACK_ORDER`?
+If compressed involution summaries fail, should reverse-and-add return
+to the existing symbolic-nonlinear frontier without a digit-language
+engine?
 
 ## Decision
 
-`PROMOTE` the research-control layer as v2.4 laboratory intelligence.
-Do not add attacks. Do not thaw `DEFAULT_ATTACK_ORDER`. Do not rewrite
-the nine v2.3 dossiers. Do not implement ranking, basin, or symbolic
-composition in this branch.
+`PROMOTE` the gated Juggler `odd_even_two_step_decrease` primitive.
+`PARK` reverse-add scalar summaries. `CLOSE` the compressed involution
+falsifier: `W(W(x))=x` does not yield reverse-and-add loot at this
+level. The only survivor is generic leading-digit inheritance. Stop
+inventing scalar descriptors of reverse-and-add. Do not thaw
+`DEFAULT_ATTACK_ORDER`. Do not register `reverse_involution_structure`.
 
-Best next question: a Phase-0 falsifier for the named richer ranking
-family (odd-even composition, reverse-gap, composite-versus-prime),
-still without a general synthesizer or a new attack in
-`DEFAULT_ATTACK_ORDER`.
+Best next question: the existing symbolic-nonlinear frontier, not a
+new digit-language engine. Still no new attack in `DEFAULT_ATTACK_ORDER`.
 
 ## Publication assessment
 

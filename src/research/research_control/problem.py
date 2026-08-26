@@ -14,7 +14,8 @@ PROBLEM = ProblemDefinition(
     ),
     bt_relevance=(
         "The control layer is engine infrastructure. Balanced ternary is not "
-        "required. No new executable attack is added."
+        "required. Flood-order attacks are unchanged. A gated experimental "
+        "restricted-composition attack may be opted into."
     ),
     docs=("docs/problems/research_engine_v24.md",),
 )

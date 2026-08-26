@@ -1,4 +1,4 @@
-"""Deterministic attack order. Symbolic steps are not implemented."""
+"""Deterministic attack order. Generic symbolic steps are not implemented."""
 
 from __future__ import annotations
 
@@ -23,6 +23,10 @@ from research_engine.attacks.result import (
     AttackResult,
     AttackStatus,
     inapplicable,
+)
+from research_engine.attacks.restricted_symbolic_composition import (
+    RestrictedSymbolicCompositionAttack,
+    experimental_enabled,
 )
 from research_engine.attacks.reverse import ReverseGeometryAttack
 from research_engine.attacks.separation import BehavioralSeparationAttack
@@ -57,6 +61,12 @@ DEFAULT_ATTACK_ORDER: tuple[str, ...] = (
 )
 
 DEFERRED_ATTACKS: tuple[str, ...] = ("symbolic",)
+EXPERIMENTAL_ATTACKS: frozenset[str] = frozenset(
+    {
+        "restricted_symbolic_composition",
+        "odd_even_two_step_decrease",
+    }
+)
 DEFAULT_PLANNER_HORIZON = 16
 
 _ATTACKS: dict[str, type[Attack]] = {
@@ -78,6 +88,8 @@ _ATTACKS: dict[str, type[Attack]] = {
     "separation": BehavioralSeparationAttack,
     "quotient": BehavioralQuotientAttack,
     "symmetry": SymmetryAttack,
+    "restricted_symbolic_composition": RestrictedSymbolicCompositionAttack,
+    "odd_even_two_step_decrease": RestrictedSymbolicCompositionAttack,
 }
 
 
@@ -168,7 +180,11 @@ class AttackPlanner:
 
 
 def run_named_attack(name: str, spec: ProblemSpec, context: AttackContext) -> AttackResult:
-    """Run one cheap attack. Symbolic stays unimplemented."""
+    """Run one cheap attack. Generic symbolic stays unimplemented.
+
+    Restricted symbolic composition is experimental and requires an
+    explicit opt-in. It is not in DEFAULT_ATTACK_ORDER.
+    """
     if name in DEFERRED_ATTACKS:
         return inapplicable(
             name,
@@ -178,6 +194,12 @@ def run_named_attack(name: str, spec: ProblemSpec, context: AttackContext) -> At
     cls = _ATTACKS.get(name)
     if cls is None:
         raise KeyError(f"unknown attack {name!r}")
+    if name in EXPERIMENTAL_ATTACKS and not experimental_enabled(context):
+        return inapplicable(
+            name,
+            "experimental attack is gated; set enable_restricted_symbolic_composition",
+            ClaimKind.REACHABLE,
+        )
     if context.max_steps is None:
         context = replace(context, max_steps=DEFAULT_PLANNER_HORIZON)
     context = _ensure_certificate_chain(name, spec, context)

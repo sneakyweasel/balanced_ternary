@@ -56,6 +56,7 @@ class AttackContext:
     skip_attacks: tuple[str, ...] = ()
     descent_potential: Callable[[State], int] | None = None
     prior_results: tuple[Any, ...] = ()
+    enable_restricted_symbolic_composition: bool = False
 
 
 @dataclass(frozen=True)

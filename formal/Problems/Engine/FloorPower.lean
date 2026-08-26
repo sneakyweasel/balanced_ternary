@@ -13,6 +13,43 @@ They are KNOWN. They are not a halt theorem on all positive integers.
 def floorPower (n : ℕ) : ℕ :=
   if n % 2 = 0 then n.sqrt else (n * n * n).sqrt
 
+/-- Integer obstruction: `k^4 ≤ n^3` and `n ≥ 2` forbid `k ≥ n`.
+This is iterated `Nat.sqrt` of `n^3`, not `T^2` on the odd-to-odd branch. -/
+theorem sqrt_sqrt_n_cubed_lt {n : ℕ} (hn : 2 ≤ n) :
+    ((n * n * n).sqrt).sqrt < n := by
+  set m := (n * n * n).sqrt
+  set k := m.sqrt
+  have hk : k * k ≤ m := Nat.sqrt_le m
+  have hm : m * m ≤ n * n * n := Nat.sqrt_le (n * n * n)
+  have hk4 : k * k * (k * k) ≤ m * m := Nat.mul_le_mul hk hk
+  have hk4n : k * k * k * k ≤ n * n * n := by
+    simpa [mul_assoc] using (le_trans hk4 hm)
+  refine Nat.lt_of_not_ge fun hkn => ?_
+  have hn4 : n * n * n * n ≤ k * k * k * k := by
+    have h2 := Nat.mul_le_mul hkn hkn
+    simpa [mul_assoc] using Nat.mul_le_mul h2 h2
+  have hle : n * n * n * n ≤ n * n * n := le_trans hn4 hk4n
+  have hn0 : 0 < n := lt_of_lt_of_le (by decide : 0 < 2) hn
+  have hn3 : 0 < n * n * n := Nat.mul_pos (Nat.mul_pos hn0 hn0) hn0
+  have hmul : n * (n * n * n) ≤ 1 * (n * n * n) := by
+    simpa [mul_assoc, mul_comm, mul_left_comm] using hle
+  have : n ≤ 1 := Nat.le_of_mul_le_mul_right hmul hn3
+  omega
+
+/-- On the odd-to-even branch, `T^2(n) < n`. Not a halt theorem for the full map. -/
+theorem floorPower_odd_even_two_step_lt
+    {n : ℕ} (hn : 2 ≤ n) (hodd : n % 2 = 1)
+    (heven : (n * n * n).sqrt % 2 = 0) :
+    floorPower (floorPower n) < n := by
+  have hodd0 : n % 2 ≠ 0 := by omega
+  have step1 : floorPower n = (n * n * n).sqrt := by
+    simp [floorPower, hodd0]
+  have step2 : floorPower (floorPower n) = ((n * n * n).sqrt).sqrt := by
+    rw [step1]
+    simp [floorPower, heven]
+  rw [step2]
+  exact sqrt_sqrt_n_cubed_lt hn
+
 theorem floorPower_one : floorPower 1 = 1 := by
   native_decide
 

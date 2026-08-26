@@ -61,7 +61,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.open_problems` | registry | pointers, not a dumping ground |
 | `research.engine_campaign` | `EXPLORATORY` | first real-problem frozen-loop campaign |
 | `research.engine_memory` | `EXPLORATORY` | v2.2 research-memory descriptor; implementation in `research_engine.memory` |
-| `research.research_control` | `EXPLORATORY` | v2.4 research-control descriptor; Phase-0 ranking falsifier in `research_engine.control.ranking` |
+| `research.research_control` | `EXPLORATORY` | v2.4 research-control descriptor; ranking Phase-0/1, symbolic-composition Phase-2, gated Phase-3 restricted composition, reverse-add Phase-4–8 falsifiers |
 
 The piecewise-affine census, domain-certificate, control-word, and
 control-obstruction layers are engine attacks

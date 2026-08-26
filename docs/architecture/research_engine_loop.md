@@ -89,10 +89,33 @@ independent mathematical status, emits exactly three non-executable
 attack proposals, and replays selected v2.2 targets with historical
 results excluded from the blind track. A Phase-0 ranking-function
 falsifier (`research_engine.control.ranking`) enumerates a tiny exact
-template family on frozen v2.3 transitions; it is not an attack and
-does not change `DEFAULT_ATTACK_ORDER`. Dossier:
-[research_engine_v24.md](../problems/research_engine_v24.md). Record:
-[ranking_phase0.md](../research/ranking_phase0.md).
+template family on frozen v2.3 transitions; Phase-1 enriches that
+probe; Phase-2 (`research_engine.control.symbolic_composition`) asks
+whether the juggler `T^2` ranking signal is an exact two-step lemma.
+Phase-4 (`research_engine.control.reverse_add_composition`) tests two-step
+reverse-add identities; Phase-5 (`research_engine.control.reverse_add_carry`)
+tests the one-step carry of `x+W(x)`; Phase-6
+(`research_engine.control.reverse_add_pair_interaction`) tests the
+pre-normalization digit pairing of `encode(x)` with `encode(W(x))`;
+Phase-7 (`research_engine.control.reverse_add_weighted_pair`) tests
+positional dominance of those pair sums; Phase-8
+(`research_engine.control.reverse_add_involution`) tests whether the
+reversal involution itself yields a reverse-specific law.
+None of these is an attack and none changes `DEFAULT_ATTACK_ORDER`.
+A gated experimental attack `restricted_symbolic_composition` /
+`odd_even_two_step_decrease` may be opted into via
+`enable_restricted_symbolic_composition`; it is not in the flood order.
+Dossier:
+[research_engine_v24.md](../problems/research_engine_v24.md). Records:
+[ranking_phase0.md](../research/ranking_phase0.md),
+[ranking_phase1.md](../research/ranking_phase1.md),
+[symbolic_composition_phase2.md](../research/symbolic_composition_phase2.md),
+[symbolic_composition_phase3.md](../research/symbolic_composition_phase3.md),
+[reverse_add_composition_phase4.md](../research/reverse_add_composition_phase4.md),
+[reverse_add_carry_phase5.md](../research/reverse_add_carry_phase5.md),
+[reverse_add_pair_interaction_phase6.md](../research/reverse_add_pair_interaction_phase6.md),
+[reverse_add_weighted_pair_phase7.md](../research/reverse_add_weighted_pair_phase7.md),
+[reverse_add_involution_phase8.md](../research/reverse_add_involution_phase8.md).
 
 Non-core fingerprint fields: `piecewise_affine_structure`,
 `latent_control` (`NONE|FINITE|PARAMETERIZED|UNCERTAIN|UNOBSERVED`),
@@ -133,7 +156,9 @@ latent-control fields when `vector_affine` recovers a census;
   `prior_results`, not an injected affine system. `vector_affine` is
   appended after `control_obstruction` and does not split the 1-D
   census/domain/word/obstruction chain. `matrix_word_invariant` is
-  appended after `vector_affine`. **ATTACK ARCHITECTURE FROZEN.**
+  appended after `vector_affine`. **ATTACK ARCHITECTURE FROZEN** for the
+  flood order. Gated `restricted_symbolic_composition` is opt-in and is
+  not in `DEFAULT_ATTACK_ORDER`.
 - No Syracuse-specific engine types. Coefficient search is a documented
   integer box, not a seeded \(3x+1\) rule. Composition is cleared-form
   algebra, not a hard-coded Syracuse product formula. Maximal exponent

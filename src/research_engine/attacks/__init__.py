@@ -1,4 +1,4 @@
-"""Typed attacks on a ``ProblemSpec``. Symbolic attacks are not here."""
+"""Typed attacks on a ``ProblemSpec``. Generic symbolic attacks are not here."""
 
 from research_engine.attacks.affine import AffineInvariantAttack
 from research_engine.attacks.block import BlockDynamicsAttack, BlockKind, classify_block
@@ -71,6 +71,11 @@ from research_engine.attacks.vector_affine import (
     cycle_matrix_constraint,
     run_vector_affine_census,
 )
+from research_engine.attacks.restricted_symbolic_composition import (
+    ENABLE_RESTRICTED_SYMBOLIC_COMPOSITION,
+    RestrictedSymbolicCompositionAttack,
+    evaluate_odd_even_two_step,
+)
 from research_engine.attacks.result import (
     Attack,
     AttackContext,
@@ -124,6 +129,9 @@ __all__ = [
     "PiecewiseAffineCensus",
     "PiecewiseAffineCensusAttack",
     "ReconnaissanceAttack",
+    "RestrictedSymbolicCompositionAttack",
+    "ENABLE_RESTRICTED_SYMBOLIC_COMPOSITION",
+    "evaluate_odd_even_two_step",
     "ReverseGeometryAttack",
     "SeparationResult",
     "SpectralClassificationAttack",

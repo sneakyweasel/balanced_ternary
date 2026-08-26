@@ -3166,4 +3166,357 @@ Best next question
 - Can odd-even composition, reverse-gap/palindrome defect, and composite-versus-prime piecewise ranking be falsified on the same exact transition tables without enlarging the coefficient grid?
 ```
 
+## Research Engine v2.4: ranking-function Phase-1 enriched falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Test the three Phase-0 enrichments — odd-even `T^2`, reverse_gap, piecewise composite `V_C` — as cheap exact falsifiers
+- **Hypotheses:** one-step scalar failure can be repaired by composition, representation defect, or piecewise regime without a general synthesizer
+- **Major results:** Juggler `COMPOSED_RANKING_PROMISING` (`BOUNDED_SURVIVOR`, 72 coherent templates, 11 odd-to-even macros; strongest `V=log_bit` on `T^2`; 9 odd-to-odd steps including `3→5` remain outside). Reverse-add `REVERSE_GAP_IMPLAUSIBLE` (`1→2` sends a palindrome to `reverse_gap=4`). Home-prime `PIECEWISE_RANKING_NEEDS_RICHER_STATE` (`4→22` concat length growth; `10→25` factor_count nondecrease). Family decision **MIXED**. Records: `docs/research/ranking_phase1.md`, `docs/research/ranking_phase1.json`. Frozen v2.3 seeds and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** palindrome defect as a termination ranking for reverse-plus-add; a single `V_C` on `(decimal_length, Omega, omega)` as composite-to-composite descent
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** whether the restricted juggler `T^2` subfamily should become an attack, or reverse-add/home-prime should move to symbolic composition first
+- **Decision:** PARK implementing a ranking attack. MIXED for the family. Do not thaw `DEFAULT_ATTACK_ORDER`
+
+```text
+What was learned
+- On the observed odd-to-even juggler macros, k=2 size ranking is a bounded survivor; it does not address odd-to-odd 3→5
+- reverse_gap of the canonical BT word is well-defined, but palindromes are not an attractor of reverse-plus-add
+- Composite-to-composite home-prime concatenation can grow decimal length while Omega stays put or omega falls (10→25)
+- The three enrichments do not share one next ranking language
+
+Strongest theorem
+- none; juggler T^2 decrease is a BOUNDED_SURVIVOR, not a global ranking
+
+Strongest refutation
+- Reverse-add 1→2: reverse_gap 0→4, so palindrome-defect ranking fails on the same seed that killed scalar ranking
+
+Reusable machinery
+- research_engine.control.ranking_phase1: k=2 composed evaluation, tiny reverse_gap grid, piecewise V_C on factor_trial features
+
+Prior-art status
+- engine diagnosis; no new number-theory claim
+
+Complexity profile
+- unchanged schema; no new attack
+
+Branch status
+- PARK
+
+Why
+- One restricted composed ranking survived a bounded sample, but reverse-gap is the wrong Lyapunov direction and piecewise V_C does not descend on concat. Specifying a general ranking attack now would ignore two of three targets.
+
+Best next question
+- Should the restricted juggler T^2 ranking be specified as an attack, or should reverse-add and home-prime move to symbolic composition first?
+```
+
+## Research Engine v2.4: symbolic-composition Phase-2 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether the Phase-1 juggler `T^2` ranking signal is an exact two-step law, and whether the same k=2 probe helps reverse-add and home-prime
+- **Hypotheses:** for some nonlinear maps, `T^2` has a simpler exact inequality than one-step ranking; that mechanism need not be shared
+- **Major results:** Juggler `SYMBOLIC_COMPOSITION_PROMISING`: on odd `n` with `T(n)` even, `T^2(n)=isqrt(isqrt(n^3))<n` by `k^4 ≤ n^3` (Lean `floorPower_odd_even_two_step_lt`, `PROVED`; 43 odd-even samples, no counterexample; odd-to-odd `3→5` remains outside). Reverse-add `REVERSE_COMPOSITION_NEEDS_RICHER_STRUCTURE`: neither two-step descent nor ascent (`3→4→8` grows; `1→2→0` collapses; `2→0→0` drops `bt_length`). Home-prime `HOME_COMPOSITION_NEEDS_RICHER_STRUCTURE`: `10→25→55` keeps decimal length; `16→2222→211101` drops `Ω` from 4 to 3; two-step length nondecrease is a `BOUNDED_SYMBOLIC_SURVIVOR`. Family **MIXED**. Promoted concept (not executable): `odd_even_symbolic_composition`. Records: `docs/research/symbolic_composition_phase2.md`, `docs/research/symbolic_composition_phase2.json`. Frozen v2.3 seeds and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** two-step reverse-plus-add as a magnitude Lyapunov law; one-step concat always lengthening composites; two-step `Ω` nondecrease on home-prime
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** whether odd-even `T^2 < n` should be specified as a tiny juggler attack, while reverse-add/home-prime move to target-specific rewrite composition
+- **Decision:** PARK specifying a symbolic-composition attack. MIXED for the family. Do not thaw `DEFAULT_ATTACK_ORDER`
+
+```text
+What was learned
+- The Phase-1 juggler ranking survivor is a downstream size consequence of an exact T^2(n) < n lemma on the odd-to-even domain
+- Evenness of T(n) identifies T^2 with iterated isqrt of n^3; the size obstruction itself does not use parity
+- Reverse-add T^2 both collapses palindromes (1→2→0) and expands other seeds (3→4→8); composition adds complexity
+- Home-prime composition remains a factor-word rewrite: 10→25 keeps decimal length, 16→2222→211101 drops Omega
+- Symbolic composition is the right language for juggler and the wrong shared theory for the three-target family
+
+Strongest theorem
+- For n ≥ 2 odd with isqrt(n^3) even, T^2(n) = isqrt(isqrt(n^3)) < n (Lean: floorPower_odd_even_two_step_lt). Not a halt theorem
+
+Strongest refutation
+- Reverse-add 1→2→0: two-step magnitude can drop to 0, so T^2 is not a uniform expansion; 3→4→8 shows it is not a uniform descent either
+
+Reusable machinery
+- research_engine.control.symbolic_composition: k=2 sample checks, integer two-step obstruction, Top-3 overlay for Phase-2 only
+- Problems.Engine.FloorPower: sqrt_sqrt_n_cubed_lt and floorPower_odd_even_two_step_lt
+
+Prior-art status
+- engine diagnosis plus a map-specific integer lemma; no new ranking/composition engine
+
+Complexity profile
+- unchanged schema; no new attack
+
+Branch status
+- PARK
+
+Why
+- The smallest demonstrated concept is odd-even T^2 < n for juggler. Promoting a universal composition family would ignore reverse-add and home-prime, where composition does not simplify. Specifying even the juggler attack now would auto-continue past the decide step.
+
+Best next question
+- Should odd-even T^2 < n be specified as a tiny juggler attack, while reverse-add and home-prime move to target-specific rewrite composition?
+```
+
+## Research Engine v2.4: restricted symbolic-composition Phase-3 attack
+
+- **Date:** 2026-08-26
+- **Objective:** Convert the proved Juggler odd-even `T^2 < n` lemma into a gated executable primitive without a general composition engine
+- **Hypotheses:** map-identity matching plus a two-candidate vocabulary plus Lean association recovers Juggler and rejects unrelated maps
+- **Major results:** Family **PROMOTE_RESTRICTED**. Juggler `APPLICABLE`: candidate `T^2(x) < x`, Lean `PROVED` (`floorPower_odd_even_two_step_lt`), `mathematical_status = NEW_STRUCTURAL_LEMMA`, `global_consequence = NONE`. Reverse-add, Home Prime, and cyclic tag `NOT_APPLICABLE` / `MAP_MISMATCH`. Attack names are not in `DEFAULT_ATTACK_ORDER`; opt-in is `enable_restricted_symbolic_composition`. Records: `docs/research/symbolic_composition_phase3.md`, `docs/research/symbolic_composition_phase3.json`. Frozen v2.3 seeds, Phase-0/1/2 records, and `DEFERRED_ATTACKS = ("symbolic",)` unchanged
+- **Refuted ideas:** treating restricted composition as a generic two-step check on every target; promoting a local lemma to termination
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** whether another stored map has a natural depth-2 branch that would justify a Phase-4 falsifier
+- **Decision:** PROMOTE the gated `odd_even_two_step_decrease` primitive for controlled research use. Do not thaw `DEFAULT_ATTACK_ORDER`
+
+```text
+What was learned
+- The Phase-2 Juggler lemma can be recovered by matching the floor-power successor, not by campaign name
+- Reverse-add, home-prime, and cyclic tag reject as MAP_MISMATCH without alternative-composition search
+- Lean certification is an association with floorPower_odd_even_two_step_lt; bounded checks are not the proof
+- A local exact lemma stays local: global_consequence is NONE
+- Gating keeps the v2.3 flood order intact
+
+Strongest theorem
+- For n ≥ 2 odd with T(n) even, T^2(n) < n (Lean: floorPower_odd_even_two_step_lt). Not a halt theorem
+
+Strongest refutation
+- Reverse-add, home-prime, and cyclic tag are not floor-power maps; the rule does not apply
+
+Reusable machinery
+- research_engine.attacks.restricted_symbolic_composition: one CompositionRule, depth 2, experimental gate
+- EXPERIMENTAL_ATTACKS outside DEFAULT_ATTACK_ORDER
+
+Prior-art status
+- engine primitive packaging a map-specific integer lemma
+
+Complexity profile
+- unchanged flood order; gated opt-in only
+
+Branch status
+- PROMOTE
+
+Why
+- The smallest executable concept works: Juggler is recovered, negatives reject, freeze holds. Widening depth or adding a composition engine would ignore the measurement.
+
+Best next question
+- Does any other stored map have a natural depth-2 branch with an exact inequality that would justify a Phase-4 falsifier, rather than widening this primitive now?
+```
+
+## Research Engine v2.4: reverse-add two-step composition Phase-4 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Test whether k=2 reverse-plus-add exposes an exact structural relation that one-step ranking and reverse_gap could not see
+- **Hypotheses:** W(x)+W(T(x))=0, or sign(T²)=sign(x), or bt_length(T²) ≤ bt_length(x)+1
+- **Major results:** Candidate 1 `CANCELLATION_FAILURE` at `1→2→0` (`W(1)=1`, `W(2)=-2`). Candidate 2 `SIGN_REVERSAL` at the same sample. Candidate 3 length+1 is a bounded survivor on 49 frozen two-step samples, not a theorem. Classification **REVERSE_COMPOSITION_NEEDS_RICHER_STRUCTURE**. Green loot `NO_NEW_LOOT`. Lean `NOT_YET_FORMALIZATION_READY`. Top-3 #1 stays `symbolic_nonlinear_composition`; `reverse_add_symbolic_composition` is not registered. Records: `docs/research/reverse_add_composition_phase4.md`, `docs/research/reverse_add_composition_phase4.json`. Frozen v2.3 seeds, Phase-0–3 records, and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** two-step reverse cancellation as a Juggler-style identity; two-step sign preservation; reverse_gap reopening
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** whether the missing coordinate is the balanced-ternary carry of `x+W(x)`
+- **Decision:** PARK a reverse-add composition attack. The Juggler composition method did not transfer
+
+```text
+What was learned
+- T^2(x)=x+W(x)+W(T(x)) does not cancel: W(1)+W(2)=-1 and T^2(1)=0
+- Two-step reverse-plus-add can leave the positive cone at the smallest seed
+- A +1 two-step length bound survived the frozen window but has no symbolic proof and is not green loot
+- Two-step composition is target-specific: Juggler produced a Lean lemma, reverse-add did not
+- reverse_gap stays closed; the missing structure is carry of x+W(x), not a larger census
+
+Strongest theorem
+- none; the length+1 bound is a BOUNDED observation, not a lemma
+
+Strongest refutation
+- 1→2→0: W(1)=1, W(2)=-2, so the second reverse expands rather than cancelling, and T^2 hits 0
+
+Reusable machinery
+- research_engine.control.reverse_add_composition: three pre-ranked k=2 candidates on frozen reverse-add samples
+
+Prior-art status
+- engine diagnosis; no new number-theory claim
+
+Complexity profile
+- unchanged flood order; no new attack
+
+Branch status
+- PARK
+
+Why
+- The three natural two-step identities do not produce a Lean-ready reverse lemma. Building a palindrome engine or thawing DEFAULT_ATTACK_ORDER would be machinery gravity.
+
+Best next question
+- Is the missing reverse-add coordinate the balanced-ternary carry of x+W(x), and should that be a separate falsifier rather than a composition engine?
+```
+
+## Research Engine v2.4: reverse-add carry Phase-5 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Test whether the existing balanced-ternary addition trace of T(x)=x+W(x) exposes a one-dimensional carry coordinate invisible to magnitude, length, reverse_gap, and two-step composition
+- **Hypotheses:** C ≥ max(0, ΔL); C=0 ⇒ ΔL=0; C>0 ⇒ ΔL=1, with C = carry-chain length of add_with_trace
+- **Major results:** Candidate 1 survived on 49 frozen one-step samples but is near-definitional. Candidate 2 `REVERSAL_DEPENDENCE` at `2→0` (`W(2)=-2`, length 2→1). Candidate 3 `LENGTH_DECOUPLING` at `5→-6` (`C=2`, length 3→3). Classification **CARRY_NEEDS_RICHER_STATE**. Green loot `NO_NEW_LOOT`. Lean `FORMALIZATION_BLOCKED`. Top-3 #1 stays `symbolic_nonlinear_composition`; carry is supporting but insufficient; `balanced_ternary_carry_attack` is not registered. Records: `docs/research/reverse_add_carry_phase5.md`, `docs/research/reverse_add_carry_phase5.json`. Frozen v2.3 seeds, Phase-0–4 records, and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** zero-carry preserves canonical length; positive carry forces +1 length; one-dimensional carry as a successor oracle
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** what exact word-level interaction of x and W(x) should be named instead of a single carry number
+- **Decision:** PARK the one-dimensional carry coordinate. Do not register a carry attack
+
+```text
+What was learned
+- Carry-chain length can be read from add_with_trace without a new arithmetic engine
+- C(x) ≥ max(0, ΔL) holds on the frozen sample and is essentially the addition mechanism
+- C=0 does not preserve length: 2→0 has W(2)=-2 and collapses by opposite-trit cancellation
+- C>0 does not force length +1: 5→-6 has an internal chain of length 2 and ΔL=0
+- Special probes respond to the arithmetic: palindrome 1 grows with C=2; seed 196 grows with C=7; W<0 at 2 and successor 0 at 8 have C=0
+
+Strongest theorem
+- none; the growth bound is a restatement of how a word sum creates an extra MSD
+
+Strongest refutation
+- 5→-6: C=2 with bt_length 3→3, so carry is not the same coordinate as length change
+
+Reusable machinery
+- research_engine.control.reverse_add_carry: three pre-ranked k=1 carry/length candidates on frozen reverse-add samples
+
+Prior-art status
+- engine diagnosis; no new number-theory claim
+
+Complexity profile
+- unchanged flood order; no new attack
+
+Branch status
+- PARK
+
+Why
+- A one-dimensional carry statistic is related to x+W(x) but does not determine successor length. Building a digit-dynamics engine or thawing DEFAULT_ATTACK_ORDER would be machinery gravity.
+
+Best next question
+- If carry is not a sufficient one-dimensional coordinate, what exact word-level interaction of x and W(x) should be named instead?
+```
+
+## Research Engine v2.4: reverse-add pair-interaction Phase-6 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Test whether LSD-aligned pair sums of encode(x) and encode(W(x)) expose an exact successor coordinate invisible to magnitude, length, reverse_gap, T², and carry-chain length
+- **Hypotheses:** P0>P2 ⇒ ΔL≤0; P+≠P- ⇒ sign(T)=sign(P+-P-); ΔL≥1 ⇒ s_{n-1}≠0
+- **Major results:** Candidates 1 and 3 survived on their frozen domains (19 and 17 samples) but are finite/near-positional, not loot. Candidate 2 `SIGN_IMBALANCE_MISMATCH` at `-672→-448` (P+=4, P-=3, T<0; counts ignore 3^i). Classification **REVERSE_PAIR_NEEDS_RICHER_STRUCTURE**. Green loot `NO_NEW_LOOT`. Lean `FORMALIZATION_BLOCKED`. Top-3 #1 stays `symbolic_nonlinear_composition`; pair interaction is supporting but insufficient; `reverse_pair_interaction` is not registered. Records: `docs/research/reverse_add_pair_interaction_phase6.md`, `docs/research/reverse_add_pair_interaction_phase6.json`. Frozen v2.3 seeds, Phase-0–5 records, and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** pair-sign majority determines sign(T); one-dimensional pair counts as a successor oracle
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** what exact remaining interaction of x and W(x) is still not a digit-language engine
+- **Decision:** PARK simple reverse-pair aggregates. Do not register a pair-interaction attack
+
+```text
+What was learned
+- Raw pair sums s_i = left_i + right_i are exactly the add_with_trace digit pairs, with no new arithmetic engine
+- P0>P2 ⇒ ΔL≤0 survived on 19 frozen domain samples and is not a definition of s_i
+- Pair-sign majority does not determine sign(T): -672→-448 has P+>P- but T<0 because counts ignore place value
+- ΔL≥1 ⇒ s_{n-1}≠0 survived on 17 growth samples; it is a weak positional restatement, not loot
+- Special probes match the arithmetic: palindrome 1 has s=(2,); reverse-as-negation 2 and 8 have all-zero pairs; 5 has an internal |s|=2; seed 196 is all |s|=2
+
+Strongest theorem
+- none; the two length survivors are finite-sample observations, not lemmas
+
+Strongest refutation
+- -672→-448: P+=4, P-=3, sign(T)=-1
+
+Reusable machinery
+- research_engine.control.reverse_add_pair_interaction: three pre-ranked k=1 pair/successor candidates on frozen reverse-add samples
+
+Prior-art status
+- engine diagnosis; no new number-theory claim
+
+Complexity profile
+- unchanged flood order; no new attack
+
+Branch status
+- PARK
+
+Why
+- Pairwise reverse interaction is visible and related to length, but simple counts and the top position do not determine T. A digit-language engine would be machinery gravity.
+
+Best next question
+- If simple pair counts and the top aligned position do not determine T, what exact remaining interaction of x and W(x) is still not a digit-language engine?
+```
+
+## Research Engine v2.4: reverse-add weighted-pair Phase-7 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Test whether a low-information positional summary of reverse-pair sums determines sign(T) without reconstructing T=sum s_i 3^i
+- **Hypotheses:** sign(T)=sign(s_h); m+>m- ⇒ T>0 (and symmetric); sign(T)=sign(s_{h2})
+- **Major results:** Candidates 1 and 2 survived on 42 nonzero-pair samples and repair Phase-6 `-672→-448` (h=6, s_h<0, m->m+). Candidate 3 `MULTI_POSITION_INTERFERENCE` at `6→4` (`s=(1,-2,1)`, h2=1 negative, h=2 positive). Classification **WEIGHTED_PAIR_PROMISING**. Green loot `NO_NEW_LOOT`. Lean `FORMALIZATION_READY` (bound |sum_{i<h} s_i 3^i| ≤ 3^h-1; not proved here). Top-3 #1 stays `symbolic_nonlinear_composition`; highest-pair sign is supporting; `weighted_reverse_pair_interaction` is not registered. Records: `docs/research/reverse_add_weighted_pair_phase7.md`, `docs/research/reverse_add_weighted_pair_phase7.json`. Frozen v2.3 seeds, Phase-0–6 records, and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** highest |s|=2 collision determines sign(T); further unweighted or collision-only scalars as successor oracles
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** whether reverse-and-add still needs a target-specific nonlinear identity once sign is a place-value fact
+- **Decision:** PARK a production weighted-pair attack. Do not register weighted_reverse_pair_interaction
+
+```text
+What was learned
+- Highest nonzero pair sign determines sign(T) on the frozen sample and is strictly coarser than the full weighted sum
+- The same law repairs -672: P+>P- but m-=6 > m+=5, so T<0
+- Candidate 2 is the mixed-sign unpacking of Candidate 1, not an independent law
+- Highest |s|=2 does not determine sign: 6→4 has an internal -2 dominated by a higher +1
+- The sign law is the base-3 bound |lower| ≤ 3^h-1, not reverse-add loot; no Lean proof in this phase
+
+Strongest theorem
+- none proved here; the candidate sign law is FORMALIZATION_READY as a place-value bound
+
+Strongest refutation
+- 6→4: h2=1, s_{h2}=-2, h=2, s_h=+1, T=4
+
+Reusable machinery
+- research_engine.control.reverse_add_weighted_pair: three pre-ranked positional summaries on frozen reverse-add samples
+
+Prior-art status
+- engine diagnosis; no new number-theory claim
+
+Complexity profile
+- unchanged flood order; no new attack
+
+Branch status
+- PARK
+
+Why
+- Positional dominance explains sign(T) without reconstructing T, but it is a general leading-term bound and the collision summary fails. A digit-language engine would be machinery gravity.
+
+Best next question
+- If highest-pair sign is an exact but general place-value fact, does reverse-and-add still need a target-specific nonlinear identity?
+```
+
+## Research Engine v2.4: reverse-add involution Phase-8 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Test whether \(W(W(x))=x\) creates a reverse-specific exact law among \(x\), \(W(x)\), \(T(x)\), and \(W(T(x))\) that is not generic place-value arithmetic and not a tautology
+- **Hypotheses:** \(|W(T)-W(x)|\le|W(x)|\); \(\operatorname{reverse\_gap}(T)\le\operatorname{reverse\_gap}(x)+\operatorname{bt\_length}(x)\); MSD(\(T\)) lies in the operand MSD set
+- **Major results:** Candidates 1 and 2 fail at the palindrome \(1\to 2\) (\(R=-3\); gap \(0\to 4\)). Candidate 3 survives 42 nonzero successors but is assessed `GENERAL_ARITHMETIC`. Classification **REVERSE_INVOLUTION_REFUTED**. Green loot `NO_NEW_LOOT`. Lean `FORMALIZATION_BLOCKED`. Top-3 #1 stays `symbolic_nonlinear_composition`; `reverse_involution_not_sufficient_at_this_level`; `reverse_involution_structure` is not registered. Records: `docs/research/reverse_add_involution_phase8.md`, `docs/research/reverse_add_involution_phase8.json`. Frozen v2.3 seeds, Phase-0–7 records, and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** reverse-sum residual bound; successor reverse-gap length bound; compressed involution summaries as reverse-and-add loot
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** return to the existing symbolic-nonlinear frontier without a digit-language engine
+- **Decision:** CLOSE the compressed involution falsifier. Do not register reverse_involution_structure. Stop inventing scalar descriptors of reverse-and-add
+
+```text
+What was learned
+- Canonical W is involutive iff x=0 or 3 does not divide x; 6 and -672 are not involutive, and that fact is not loot
+- |W(T)-W(x)| is not controlled by |W(x)|: palindrome 1 maps to 2 with residual -3
+- reverse_gap of the successor is not controlled by gap(x)+length(x): the same 1→2 step jumps 0 to 4
+- MSD inheritance of T from {MSD(x), MSD(W), negatives} survived the frozen sample but is generic leading-digit arithmetic
+- W(W(x))=x and T=x+W(x) remain definitional and were not counted as yield
+
+Strongest theorem
+- none; the only survivor is GENERAL_ARITHMETIC, not a reverse-add lemma
+
+Strongest refutation
+- 1→2: R=-3 and reverse_gap 0→4 on a reversal-fixed palindrome
+
+Reusable machinery
+- research_engine.control.reverse_add_involution: three pre-ranked k=1 involution-interaction candidates on frozen reverse-add samples; gated name reverse_involution_phase8 is not in DEFAULT_ATTACK_ORDER
+
+Prior-art status
+- engine diagnosis; no new number-theory claim
+
+Complexity profile
+- unchanged flood order; no new attack
+
+Branch status
+- CLOSE
+
+Why
+- The defining involution does not produce a compressed reverse-specific law among x, W(x), T(x), W(T(x)). Remaining survivors are generic arithmetic. A digit-language engine would be machinery gravity.
+
+Best next question
+- If compressed involution summaries fail, should reverse-and-add return to the existing symbolic-nonlinear frontier without a digit-language engine?
+```
+
 

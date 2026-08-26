@@ -10,6 +10,7 @@ from research_engine.planner.negative import (
 from research_engine.planner.orchestrator import (
     DEFAULT_ATTACK_ORDER,
     DEFERRED_ATTACKS,
+    EXPERIMENTAL_ATTACKS,
     AttackPlanner,
     PlannerReport,
     SkipRecord,
@@ -20,6 +21,7 @@ from research_engine.planner.orchestrator import (
 __all__ = [
     "DEFAULT_ATTACK_ORDER",
     "DEFERRED_ATTACKS",
+    "EXPERIMENTAL_ATTACKS",
     "AttackPlanner",
     "DecisionKind",
     "ForbiddenImplication",
