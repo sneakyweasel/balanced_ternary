@@ -100,8 +100,15 @@ pre-normalization digit pairing of `encode(x)` with `encode(W(x))`;
 Phase-7 (`research_engine.control.reverse_add_weighted_pair`) tests
 positional dominance of those pair sums; Phase-8
 (`research_engine.control.reverse_add_involution`) tests whether the
-reversal involution itself yields a reverse-specific law.
+reversal involution itself yields a reverse-specific law; Phase-9
+(`research_engine.control.frontier_ranking`) re-ranks remaining
+target × attack frontiers without executing a winner; Phase-10
+(`research_engine.control.juggler_odd_odd`) tests the complementary
+Juggler odd→odd two-step cylinder.
 None of these is an attack and none changes `DEFAULT_ATTACK_ORDER`.
+Lychrel / Reverse-and-Add (`research.lychrel_dynamics`) is a registered
+pipeline candidate, not an attack and not a reopening of
+`reverse_and_add_base3`.
 A gated experimental attack `restricted_symbolic_composition` /
 `odd_even_two_step_decrease` may be opted into via
 `enable_restricted_symbolic_composition`; it is not in the flood order.
@@ -115,7 +122,9 @@ Dossier:
 [reverse_add_carry_phase5.md](../research/reverse_add_carry_phase5.md),
 [reverse_add_pair_interaction_phase6.md](../research/reverse_add_pair_interaction_phase6.md),
 [reverse_add_weighted_pair_phase7.md](../research/reverse_add_weighted_pair_phase7.md),
-[reverse_add_involution_phase8.md](../research/reverse_add_involution_phase8.md).
+[reverse_add_involution_phase8.md](../research/reverse_add_involution_phase8.md),
+[phase9_frontier_ranking.md](../research/phase9_frontier_ranking.md),
+[juggler_odd_odd_phase10.md](../research/juggler_odd_odd_phase10.md).
 
 Non-core fingerprint fields: `piecewise_affine_structure`,
 `latent_control` (`NONE|FINITE|PARAMETERIZED|UNCERTAIN|UNOBSERVED`),

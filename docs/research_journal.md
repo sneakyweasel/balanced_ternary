@@ -3519,4 +3519,136 @@ Best next question
 - If compressed involution summaries fail, should reverse-and-add return to the existing symbolic-nonlinear frontier without a digit-language engine?
 ```
 
+## Research Engine v2.4: frontier re-ranking Phase-9 selection
+
+- **Date:** 2026-08-26
+- **Objective:** Rank remaining `(target, attack)` pairs for expected new mathematics per unit of attack effort, without implementing or executing a winner
+- **Hypotheses:** Accumulated Phase 0–8 evidence plus frozen v2.3 Top-3 dossiers suffice to select a high-information next experiment; reverse-add must stay closed
+- **Major results:** **SELECTED_FRONTIER** `(juggler_sequence, odd_odd_branch_composition)` expected loot `GREEN`, Lean `PLAUSIBLE`. Backups: `(mx_plus_r_7x1_class_obstruction, basin_preimage_grammar)` and `(matthews_prize_mod3_avoider, basin_preimage_grammar)`, both `GREY`. Reverse-add excluded. Score is qualitative, not calibrated. Records: `docs/research/phase9_frontier_ranking.md`, `docs/research/phase9_frontier_ranking.json`. Frozen v2.3 seeds, Phase-0–8 records, and `DEFAULT_ATTACK_ORDER` unchanged. No new board. No new attack registration
+- **Refuted ideas:** reopening reverse-add because it has stored observations; treating a successful Juggler lemma as a universal composition attack; ranking synthesizer / digit-language / generic symbolic engine as the next battle
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** exact k=2 law on the Juggler odd-odd cylinder, if any
+- **Decision:** PROMOTE the frontier map as laboratory intelligence. Do not execute the selected pair in this phase
+
+```text
+What was learned
+- The ranking unit is (target, attack), not a leftover board ordering
+- Reverse-add is CLOSED: many observations are not a reason to reopen it
+- The Juggler odd-even lemma is exhausted; the complementary odd-odd cylinder is the highest-yield unused pair
+- Image-as-basin remains a recurring limitation and supplies the two GREY backups
+- Replays of known zeros or reproduced orthant theorems are unattractive
+
+Strongest theorem
+- none; this phase selects, it does not prove
+
+Strongest refutation
+- none new; reverse-add remains excluded by Phase-8
+
+Reusable machinery
+- research_engine.control.frontier_ranking: frozen candidate pool, qualitative score, Top-3 AttackProposalDossier; gated name phase9_frontier_ranking is not in DEFAULT_ATTACK_ORDER
+
+Prior-art status
+- engine diagnosis; no new number-theory claim
+
+Complexity profile
+- unchanged flood order; no new attack
+
+Branch status
+- PROMOTE (selection intelligence only)
+
+Why
+- The next battle should be the cheapest high-yield falsifier on a named complementary Juggler cylinder, not another reverse-add scalar or a new attack family.
+
+Best next question
+- Run a k=2 odd-odd composition falsifier on the existing frozen Juggler transitions without generalizing odd_even_two_step_decrease.
+```
+
+## Research Engine v2.4: Juggler odd-odd composition Phase-10 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Determine whether the complementary odd→odd floor-power cylinder admits a simple exact k=2 law that is not definitional restatement and not a halt theorem
+- **Hypotheses:** `T^2(x)>x` on all `D_OO`; `T^2(n)>n` on `D_OO` with exact threshold `n≥3`; `T^2(x)` remains odd
+- **Major results:** Candidate 1 `THRESHOLD_FAILURE` at `1→1→1`. Candidate 2 survived 8 frozen samples and is Lean **PROVED** as `floorPower_odd_odd_two_step_gt`. Candidate 3 `PARITY_DOMAIN_LEAK` at `5→11→36`. Classification **JUGGLER_ODD_ODD_GREEN_LOOT**. Scope `LOCAL_BRANCH_LAW`, not `GLOBAL_TERMINATION`. Top-3 #1 is `odd_odd_symbolic_composition` (proposed, not registered). `odd_even_two_step_decrease` unchanged. Records: `docs/research/juggler_odd_odd_phase10.md`, `docs/research/juggler_odd_odd_phase10.json`. Frozen v2.3 seeds, Phase-0–9 records, and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** strict two-step growth on the whole cylinder including 1; odd-cylinder invariance under `T^2`; k>2 to hide `5→11→36`
+- **Literature:** engine methodology; Juggler totality remains open and unclaimed
+- **Open:** whether leakage into an even image reuses the odd-even lemma at depth 2
+- **Decision:** PROMOTE the local odd-odd growth lemma. Do not register a production odd-odd attack. Do not claim termination or divergence
+
+```text
+What was learned
+- D_OO and D_OE are complementary odd cylinders; the existing odd-even theorem is unchanged
+- T^2(x)>x fails on D_OO at the fixed point 1
+- For n≥3 in D_OO, T^2(n)>n follows from (n+1)^2 ≤ n^3 plus odd-branch monotonicity
+- T^2 does not preserve oddness: 5→11→36 leaves the cylinder
+- The growth law is LOCAL_BRANCH_LAW, the dual of odd-even descent, not a divergence theorem
+
+Strongest theorem
+- For odd n≥3 with T(n) odd, T^2(n)>n (floorPower_odd_odd_two_step_gt)
+
+Strongest refutation
+- 5→11→36: two odd steps can land even
+
+Reusable machinery
+- research_engine.control.juggler_odd_odd: three pre-ranked k=2 odd-odd candidates; gated name juggler_odd_odd_phase10 is not in DEFAULT_ATTACK_ORDER
+
+Prior-art status
+- engine diagnosis; local floor-power lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PROMOTE
+
+Why
+- The complementary cylinder has an exact dual inequality with a derived threshold and a Lean proof. Cylinder invariance fails, so stop at k=2.
+
+Best next question
+- Does odd-cylinder leakage into an even image reuse floorPower_odd_even_two_step_lt without raising composition depth?
+```
+
+## Lychrel / Reverse-and-Add problem registration
+
+- **Date:** 2026-08-26
+- **Objective:** Register the Lychrel / Reverse-and-Add family \(R_b(n)=n+\operatorname{rev}_b(n)\) as a pipeline candidate (decimal canonical, base-\(b\) generalization, base-3 instance, exploratory balanced-ternary branch) without executing an attack
+- **Hypotheses:** A digit-transducer / residual / PalReach formulation might be new relative to computational Lychrel lore; this is registration, not a test of that hypothesis
+- **Major results:** Problem `lychrel_dynamics` registered. Five candidate attack families recorded and not placed in `DEFAULT_ATTACK_ORDER`. Novelty review required and incomplete. Distinct from closed `reverse_and_add_base3` (\(n+W(n)\)). Records: `docs/problems/lychrel_dynamics.md`, `research.lychrel_dynamics`. Literature ids `oeis-A023108`, `oeis-A006960`, `oeis-A056964`, `oeis-A077408`, `oeis-A060382`, `prosper-veigneau-2001-palindromic-reversal`, `weisstein-196-algorithm`
+- **Refuted ideas:** identifying this problem with the closed BT reverse-plus-add campaign; billing 196 or 103 as proved Lychrel numbers
+- **Literature:** known computational candidate lists and the palindromic-reversal paper; automata/transducer prior art still required before any attack
+- **Open:** existence of a non-palindromizing seed in base 10 (literature-open, not a project conjecture)
+- **Decision:** PARK. Do not execute. Do not thaw the flood order. Do not reopen reverse-and-add
+
+```text
+What was learned
+- Unsigned R_b is a different map from closed T(n)=n+W(n)
+- Decimal 196 and ternary 103 are computational candidates, not theorems
+- Five attack families can be named without becoming flood-order attacks
+- Novelty risk is very high; qualitative labels are not a numeric rank
+- Lean targets are definitional objects, not the conjecture
+
+Strongest theorem
+- none; this phase registers
+
+Strongest refutation
+- identification with reverse_and_add_base3
+
+Reusable machinery
+- research.lychrel_dynamics pipeline record and candidate family metadata; not an attack
+
+Prior-art status
+- known; novelty review mandatory before selection-to-execution
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PARK
+
+Why
+- The family is a serious candidate with a clear attack surface, but novelty risk is very high and no novelty review has finished. Registration is not an attack.
+
+Best next question
+- Complete the novelty-review searches before any promotion from selection to execution.
+```
+
 

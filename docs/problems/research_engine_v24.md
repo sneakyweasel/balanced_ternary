@@ -107,7 +107,9 @@ theorems.
   `tests/research/research_control/test_reverse_add_carry_phase5.py`,
   `tests/research/research_control/test_reverse_add_pair_interaction_phase6.py`,
   `tests/research/research_control/test_reverse_add_weighted_pair_phase7.py`,
-  `tests/research/research_control/test_reverse_add_involution_phase8.py`
+  `tests/research/research_control/test_reverse_add_involution_phase8.py`,
+  `tests/research/research_control/test_phase9_frontier_ranking.py`,
+  `tests/research/research_control/test_juggler_odd_odd_phase10.py`
 - Phase-0 replays: `skolem_order2_known_zero`,
   `switching_affine_z2_origin`
 - Ranking Phase-0 falsifier: `research_engine.control.ranking`,
@@ -135,6 +137,12 @@ theorems.
 - Reverse-add involution Phase-8 falsifier:
   `research_engine.control.reverse_add_involution`,
   `docs/research/reverse_add_involution_phase8.md`
+- Frontier re-ranking Phase-9 selection:
+  `research_engine.control.frontier_ranking`,
+  `docs/research/phase9_frontier_ranking.md`
+- Juggler odd-odd Phase-10 falsifier:
+  `research_engine.control.juggler_odd_odd`,
+  `docs/research/juggler_odd_odd_phase10.md`
 
 ## Conjectures
 
@@ -420,23 +428,67 @@ Top-3 #1 remains `symbolic_nonlinear_composition`.
 `reverse_involution_not_sufficient_at_this_level`.
 `reverse_involution_structure` is not registered.
 
+### O. Frontier re-ranking Phase-9 selection
+
+Record: [phase9_frontier_ranking.md](../research/phase9_frontier_ranking.md),
+[phase9_frontier_ranking.json](../research/phase9_frontier_ranking.json).
+`experimental_status = PHASE_9_FRONTIER_RERANKING`. Not an attack.
+Not executed. Reverse-add remains CLOSED.
+
+The unit is `(target, attack family)`. Score is a qualitative
+prioritization aid
+\(S = P(\text{new math})\times\text{frontier}\times\text{Lean}/(\text{cost}\times\text{novelty})\),
+not a calibrated probability.
+
+| Rank | Target | Attack | Loot | Scope | Lean |
+| --- | --- | --- | --- | --- | --- |
+| 1 | `juggler_sequence` | `odd_odd_branch_composition` | `GREEN` | `MEDIUM` | `PLAUSIBLE` |
+| 2 | `mx_plus_r_7x1_class_obstruction` | `basin_preimage_grammar` | `GREY` | `MEDIUM` | `PLAUSIBLE` |
+| 3 | `matthews_prize_mod3_avoider` | `basin_preimage_grammar` | `GREY` | `MEDIUM` | `PLAUSIBLE` |
+
+Decision: **SELECTED_FRONTIER**
+`(juggler_sequence, odd_odd_branch_composition)`.
+Backups: 7x+1 basin/preimage, Matthews basin/preimage.
+`DEFAULT_ATTACK_ORDER` unchanged. No new board. No production attack.
+
+### P. Juggler odd-odd composition Phase-10 falsifier
+
+Record: [juggler_odd_odd_phase10.md](../research/juggler_odd_odd_phase10.md),
+[juggler_odd_odd_phase10.json](../research/juggler_odd_odd_phase10.json).
+`experimental_status = PHASE_10_JUGGLER_ODD_ODD_COMPOSITION_FALSIFIER`.
+Not an attack. `k=2` only. Frozen window `1..40` plus seed `13`.
+`odd_even_two_step_decrease` unchanged. `DEFAULT_ATTACK_ORDER` unchanged.
+
+| Rank | Candidate | Result |
+| --- | --- | --- |
+| 1 | `T^2(x)>x` on all `D_OO` | `THRESHOLD_FAILURE` at `1→1→1` |
+| 2 | `T^2(n)>n` on `D_OO`, `n≥3` | survived 8 samples; Lean **PROVED** |
+| 3 | `T^2(x)` odd on `D_OO` | `PARITY_DOMAIN_LEAK` at `5→11→36` |
+
+Classification: **JUGGLER_ODD_ODD_GREEN_LOOT**.
+Green loot: `JUGGLER_ODD_ODD_GREEN_LOOT`. Lean: `PROVED`
+(`floorPower_odd_odd_two_step_gt`). Scope: `LOCAL_BRANCH_LAW`,
+not `GLOBAL_TERMINATION`. Top-3 #1 is `odd_odd_symbolic_composition`
+(proposed, not registered).
+
 ## Open questions
 
-If compressed involution summaries fail, should reverse-and-add return
-to the existing symbolic-nonlinear frontier without a digit-language
-engine?
+The odd-odd cylinder is not `T^2`-invariant (`5→11→36`). Does that
+leakage feed the existing odd-even lemma without raising composition
+depth?
 
 ## Decision
 
 `PROMOTE` the gated Juggler `odd_even_two_step_decrease` primitive.
-`PARK` reverse-add scalar summaries. `CLOSE` the compressed involution
-falsifier: `W(W(x))=x` does not yield reverse-and-add loot at this
-level. The only survivor is generic leading-digit inheritance. Stop
-inventing scalar descriptors of reverse-and-add. Do not thaw
-`DEFAULT_ATTACK_ORDER`. Do not register `reverse_involution_structure`.
+`PROMOTE` the Phase-9 frontier map. `PROMOTE` the odd-odd two-step
+growth lemma as local branch loot. `CLOSE` reverse-add compressed
+involution summaries. Do not claim Juggler termination or divergence.
+Do not thaw `DEFAULT_ATTACK_ORDER`. Do not register
+`odd_odd_branch_composition` or `odd_odd_symbolic_composition`.
 
-Best next question: the existing symbolic-nonlinear frontier, not a
-new digit-language engine. Still no new attack in `DEFAULT_ATTACK_ORDER`.
+Best next question: whether odd-cylinder leakage into an even image
+reuses `floorPower_odd_even_two_step_lt` at depth 2. Still no new
+attack in `DEFAULT_ATTACK_ORDER`.
 
 ## Publication assessment
 

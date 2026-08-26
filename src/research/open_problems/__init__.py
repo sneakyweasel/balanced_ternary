@@ -80,6 +80,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.skolem_order5_unconditional.problem import PROBLEM as SKOLEM_ORDER5
     from research.juggler_sequence.problem import PROBLEM as JUGGLER_SEQUENCE
     from research.reverse_and_add_base3.problem import PROBLEM as REVERSE_AND_ADD_BASE3
+    from research.lychrel_dynamics.problem import PROBLEM as LYCHREL_DYNAMICS
     from research.home_prime_49.problem import PROBLEM as HOME_PRIME_49
     from research.cyclic_tag_bit.problem import PROBLEM as CYCLIC_TAG_BIT
     from research.euclidean_quotient.problem import PROBLEM as EUCLIDEAN_QUOTIENT
@@ -110,6 +111,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         SKOLEM_ORDER5,
         JUGGLER_SEQUENCE,
         REVERSE_AND_ADD_BASE3,
+        LYCHREL_DYNAMICS,
         HOME_PRIME_49,
         CYCLIC_TAG_BIT,
         EUCLIDEAN_QUOTIENT,

@@ -1,0 +1,336 @@
+{
+  "engine_control_version": "0.2.7",
+  "source_engine": "v2.3",
+  "experimental_status": "PHASE_10_JUGGLER_ODD_ODD_COMPOSITION_FALSIFIER",
+  "experiment_name": "juggler_odd_odd_phase10",
+  "target": "juggler_sequence",
+  "attack": "odd_odd_branch_composition",
+  "composition_depth": 2,
+  "gated": true,
+  "domains": {
+    "D_OE": "D_OE = {odd x : T(x) even and T^2(x) defined}",
+    "D_OO": "D_OO = {odd x : T(x) odd and T^2(x) defined}",
+    "positive_control": "floorPower_odd_even_two_step_lt",
+    "odd_even_unchanged": true
+  },
+  "candidates": [
+    {
+      "rank": 1,
+      "name": "strict_two_step_growth",
+      "exact_statement": "T^2(x) > x on D_OO",
+      "motivation": "The odd branch is expanding. The smallest dual of the proved odd-even descent is strict two-step growth on the complementary cylinder.",
+      "relevant_domain": "D_OO = {odd x : T(x) odd and T^2(x) defined}",
+      "expected_yield": "exact two-step growth law, or a threshold/equality obstruction",
+      "cheapest_falsifier": "the first frozen D_OO seed with T^2(x) <= x",
+      "survived": false,
+      "counterexample": {
+        "source": 1,
+        "mid": 1,
+        "image": 1,
+        "note": "juggler odd-odd T^2",
+        "source_odd": true,
+        "mid_odd": true,
+        "image_odd": true,
+        "composition_depth": 2
+      },
+      "failure_mechanism": "Strict growth fails at 1->1->1: T^2(1)=1 is not > 1. Fixed point or threshold.",
+      "failure_class": "THRESHOLD_FAILURE",
+      "arithmetic_class": "BRANCH_SPECIFIC",
+      "assessed_arithmetic": "N/A",
+      "checked": 1
+    },
+    {
+      "rank": 2,
+      "name": "thresholded_two_step_growth",
+      "exact_statement": "For n in D_OO with n >= 3, T^2(n) > n. The threshold 3 is the exact comparison (n+1)^2 <= n^3, not a fitted constant.",
+      "motivation": "For n>=3, isqrt(n^3) >= n+1. If T(n) is odd then T is nondecreasing on that image, so two odd steps grow. Dual of T^2 < n on D_OE.",
+      "relevant_domain": "D_OO intersect {n >= 3}",
+      "expected_yield": "exact complementary inequality with a derived threshold",
+      "cheapest_falsifier": "the first frozen D_OO seed n>=3 with T^2(n) <= n",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "",
+      "failure_class": "",
+      "arithmetic_class": "FLOOR_POWER_BRANCH_SPECIFIC",
+      "assessed_arithmetic": "FLOOR_POWER_BRANCH_SPECIFIC",
+      "checked": 8
+    },
+    {
+      "rank": 3,
+      "name": "odd_cylinder_preservation",
+      "exact_statement": "x in D_OO implies T^2(x) is odd",
+      "motivation": "Parity is the floor-power branch bit. Two successive odd steps might remain in the odd cylinder. Modulus 2 is the branch mechanism, not a residue sweep.",
+      "relevant_domain": "D_OO = {odd x : T(x) odd and T^2(x) defined}",
+      "expected_yield": "exact T^2 parity / cylinder-invariance law",
+      "cheapest_falsifier": "the first frozen D_OO seed whose T^2 is even",
+      "survived": false,
+      "counterexample": {
+        "source": 5,
+        "mid": 11,
+        "image": 36,
+        "note": "juggler odd-odd T^2",
+        "source_odd": true,
+        "mid_odd": true,
+        "image_odd": false,
+        "composition_depth": 2
+      },
+      "failure_mechanism": "Odd-cylinder leaks at 5->11->36: T^2(5)=36 is even, so T^2 leaves D_OO.",
+      "failure_class": "PARITY_DOMAIN_LEAK",
+      "arithmetic_class": "BRANCH_SPECIFIC",
+      "assessed_arithmetic": "N/A",
+      "checked": 3
+    }
+  ],
+  "candidate_statements": [
+    "T^2(x) > x on D_OO",
+    "For n in D_OO with n >= 3, T^2(n) > n. The threshold 3 is the exact comparison (n+1)^2 <= n^3, not a fitted constant.",
+    "x in D_OO implies T^2(x) is odd"
+  ],
+  "existing_samples": [
+    {
+      "source": 1,
+      "mid": 1,
+      "image": 1,
+      "note": "juggler odd-odd T^2",
+      "source_odd": true,
+      "mid_odd": true,
+      "image_odd": true,
+      "composition_depth": 2
+    },
+    {
+      "source": 3,
+      "mid": 5,
+      "image": 11,
+      "note": "juggler odd-odd T^2",
+      "source_odd": true,
+      "mid_odd": true,
+      "image_odd": true,
+      "composition_depth": 2
+    },
+    {
+      "source": 5,
+      "mid": 11,
+      "image": 36,
+      "note": "juggler odd-odd T^2",
+      "source_odd": true,
+      "mid_odd": true,
+      "image_odd": false,
+      "composition_depth": 2
+    },
+    {
+      "source": 9,
+      "mid": 27,
+      "image": 140,
+      "note": "juggler odd-odd T^2",
+      "source_odd": true,
+      "mid_odd": true,
+      "image_odd": false,
+      "composition_depth": 2
+    },
+    {
+      "source": 25,
+      "mid": 125,
+      "image": 1397,
+      "note": "juggler odd-odd T^2",
+      "source_odd": true,
+      "mid_odd": true,
+      "image_odd": true,
+      "composition_depth": 2
+    },
+    {
+      "source": 33,
+      "mid": 189,
+      "image": 2598,
+      "note": "juggler odd-odd T^2",
+      "source_odd": true,
+      "mid_odd": true,
+      "image_odd": false,
+      "composition_depth": 2
+    },
+    {
+      "source": 35,
+      "mid": 207,
+      "image": 2978,
+      "note": "juggler odd-odd T^2",
+      "source_odd": true,
+      "mid_odd": true,
+      "image_odd": false,
+      "composition_depth": 2
+    },
+    {
+      "source": 37,
+      "mid": 225,
+      "image": 3375,
+      "note": "juggler odd-odd T^2",
+      "source_odd": true,
+      "mid_odd": true,
+      "image_odd": true,
+      "composition_depth": 2
+    },
+    {
+      "source": 39,
+      "mid": 243,
+      "image": 3787,
+      "note": "juggler odd-odd T^2",
+      "source_odd": true,
+      "mid_odd": true,
+      "image_odd": true,
+      "composition_depth": 2
+    }
+  ],
+  "existing_sample_count": 9,
+  "odd_even_control_count": 11,
+  "required_probe": {
+    "source": 3,
+    "mid": 5,
+    "image": 11
+  },
+  "survivors": [
+    {
+      "rank": 2,
+      "name": "thresholded_two_step_growth",
+      "exact_statement": "For n in D_OO with n >= 3, T^2(n) > n. The threshold 3 is the exact comparison (n+1)^2 <= n^3, not a fitted constant.",
+      "motivation": "For n>=3, isqrt(n^3) >= n+1. If T(n) is odd then T is nondecreasing on that image, so two odd steps grow. Dual of T^2 < n on D_OE.",
+      "relevant_domain": "D_OO intersect {n >= 3}",
+      "expected_yield": "exact complementary inequality with a derived threshold",
+      "cheapest_falsifier": "the first frozen D_OO seed n>=3 with T^2(n) <= n",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "",
+      "failure_class": "",
+      "arithmetic_class": "FLOOR_POWER_BRANCH_SPECIFIC",
+      "assessed_arithmetic": "FLOOR_POWER_BRANCH_SPECIFIC",
+      "checked": 8
+    }
+  ],
+  "first_counterexamples": [
+    {
+      "name": "strict_two_step_growth",
+      "rank": 1,
+      "failure_class": "THRESHOLD_FAILURE",
+      "counterexample": {
+        "source": 1,
+        "mid": 1,
+        "image": 1,
+        "note": "juggler odd-odd T^2",
+        "source_odd": true,
+        "mid_odd": true,
+        "image_odd": true,
+        "composition_depth": 2
+      }
+    },
+    {
+      "name": "odd_cylinder_preservation",
+      "rank": 3,
+      "failure_class": "PARITY_DOMAIN_LEAK",
+      "counterexample": {
+        "source": 5,
+        "mid": 11,
+        "image": 36,
+        "note": "juggler odd-odd T^2",
+        "source_odd": true,
+        "mid_odd": true,
+        "image_odd": false,
+        "composition_depth": 2
+      }
+    }
+  ],
+  "failure_mechanisms": [
+    {
+      "name": "strict_two_step_growth",
+      "class": "THRESHOLD_FAILURE",
+      "text": "Strict growth fails at 1->1->1: T^2(1)=1 is not > 1. Fixed point or threshold."
+    },
+    {
+      "name": "odd_cylinder_preservation",
+      "class": "PARITY_DOMAIN_LEAK",
+      "text": "Odd-cylinder leaks at 5->11->36: T^2(5)=36 is even, so T^2 leaves D_OO."
+    }
+  ],
+  "anti_tautology_checks": {
+    "rejected_identities": [
+      "T(x)=floor(x^(3/2)) for odd x",
+      "T^2(x)=floor(floor(x^(3/2))^(3/2)) when T(x) is odd",
+      "the successor is odd"
+    ],
+    "domains": [
+      "D_OE = {odd x : T(x) even and T^2(x) defined}",
+      "D_OO = {odd x : T(x) odd and T^2(x) defined}"
+    ],
+    "not_investigated": "k>2",
+    "candidate1_is_definitional": false,
+    "candidate2_is_definitional": false,
+    "candidate2_uses_second_step_parity": true,
+    "candidate3_is_definitional": false,
+    "global_termination_claimed": false,
+    "global_divergence_claimed": false,
+    "scope": "LOCAL_BRANCH_LAW",
+    "reason": "T^2(n)>n on D_OO, n>=3 uses the second-step odd parity to select the expanding formula, then the comparison (n+1)^2 <= n^3. It is not T=floor(n^(3/2)) written twice. T(n)>n for odd n>=3 holds on D_OE as well, but T^2>n does not: the even second step contracts.",
+    "growth_survived": true
+  },
+  "lean_status": "PROVED",
+  "lean_module": "Problems.Engine.FloorPower",
+  "lean_odd_even": "Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt",
+  "lean_odd_odd": "Problems.Engine.FloorPower.floorPower_odd_odd_two_step_gt",
+  "mathematical_status": "NEW_STRUCTURAL_LEMMA",
+  "global_consequence": "LOCAL_BRANCH_LAW",
+  "not_global_termination": true,
+  "top3_update": {
+    "campaign_id": "juggler_sequence",
+    "proposals": [
+      {
+        "rank": 1,
+        "attack_name": "odd_odd_symbolic_composition",
+        "trigger": "exact T^2 > n on D_OO for n>=3",
+        "mathematical_target": "Package the dual odd-odd two-step growth lemma. Do not claim divergence.",
+        "mechanism": "Keep k=2. Do not generalize odd_even_two_step_decrease automatically.",
+        "required_capability": "restricted symbolic composition",
+        "expected_yield": "Lean-certified local branch law T^2(n)>n on D_OO, n>=3",
+        "falsifier": "An n>=3 in D_OO with T^2(n)<=n.",
+        "novelty_risk": "LOW",
+        "implementation_scope": "SMALL",
+        "confidence": "HIGH",
+        "novelty_risk_reason": "the inequality is the exact dual of the proved odd-even descent"
+      },
+      {
+        "rank": 2,
+        "attack_name": "basin_preimage_grammar",
+        "trigger": "odd-odd growth is local; basin of 1 remains open",
+        "mathematical_target": "Characterize predecessors of 1 under floor-power. Not a halt attack.",
+        "mechanism": "Do not use T^2>n as a Lyapunov function.",
+        "required_capability": "symbolic predecessor construction",
+        "expected_yield": "regular-preimage lemma or a splitting pair for reachability of 1",
+        "falsifier": "Two predecessor states indistinguishable by the proposed quotient.",
+        "novelty_risk": "MEDIUM",
+        "implementation_scope": "MEDIUM",
+        "confidence": "MEDIUM",
+        "novelty_risk_reason": "Phase-9 backup; image/basin is independent of the local growth law"
+      },
+      {
+        "rank": 3,
+        "attack_name": "proof_guided_hypothesis_refinement",
+        "trigger": "odd-even and odd-odd two-step lemmas are both local",
+        "mathematical_target": "Ask whether mixed-parity words have an exact k=2 law without raising depth.",
+        "mechanism": "If k>2 is required, PARK. Do not manufacture a survivor by depth.",
+        "required_capability": "proof-guided hypothesis refinement",
+        "expected_yield": "a mixed-parity identity at depth 2, or a stop at richer structure",
+        "falsifier": "A mixed-parity pair on which every k=2 size law fails.",
+        "novelty_risk": "MEDIUM",
+        "implementation_scope": "MEDIUM",
+        "confidence": "LOW",
+        "novelty_risk_reason": "cylinder leakage 5->11->36 already shows T^2 is not odd-invariant"
+      }
+    ],
+    "notes": [
+      "updated from Juggler odd-odd Phase-10 falsifier; not executed",
+      "odd_odd_symbolic_composition is proposed, not registered",
+      "odd_even_two_step_decrease is unchanged",
+      "global_consequence is LOCAL_BRANCH_LAW, not GLOBAL_TERMINATION"
+    ]
+  },
+  "classification": "JUGGLER_ODD_ODD_GREEN_LOOT",
+  "decision": "JUGGLER_ODD_ODD_GREEN_LOOT",
+  "decision_reason": "thresholded T^2 > n on D_OO, n>=3 is the dual of odd-even descent; strict growth fails at the fixed point 1; T^2 is not odd-cylinder invariant",
+  "green_loot": "JUGGLER_ODD_ODD_GREEN_LOOT",
+  "laboratory_decision": "PROMOTE"
+}

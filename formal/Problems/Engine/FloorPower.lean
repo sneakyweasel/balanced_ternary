@@ -50,6 +50,56 @@ theorem floorPower_odd_even_two_step_lt
   rw [step2]
   exact sqrt_sqrt_n_cubed_lt hn
 
+/-- Integer comparison: `(n+1)^2 ≤ n^3` for `n ≥ 3`. Threshold for odd-branch growth. -/
+theorem succ_sq_le_cube {n : ℕ} (hn : 3 ≤ n) : (n + 1) ^ 2 ≤ n ^ 3 := by
+  zify
+  nlinarith
+
+/-- On the odd branch, `n ≥ 3` implies `T(n) > n`. Independent of the parity of `T(n)`. -/
+theorem floorPower_odd_gt {n : ℕ} (hn : 3 ≤ n) (hodd : n % 2 = 1) :
+    n < floorPower n := by
+  have hodd0 : n % 2 ≠ 0 := by omega
+  have step1 : floorPower n = (n * n * n).sqrt := by
+    simp [floorPower, hodd0]
+  rw [step1]
+  have hsq : (n + 1) ^ 2 ≤ n ^ 3 := succ_sq_le_cube hn
+  have hpow : n ^ 3 = n * n * n := by ring
+  have : n + 1 ≤ (n * n * n).sqrt := by
+    exact Nat.le_sqrt.mpr (by simpa [hpow, pow_two] using hsq)
+  omega
+
+/-- The odd branch is nondecreasing: `k ≤ T(k)` when `k` is odd and positive. -/
+theorem floorPower_odd_nondecreasing {k : ℕ} (hk : 1 ≤ k) (hodd : k % 2 = 1) :
+    k ≤ floorPower k := by
+  have hodd0 : k % 2 ≠ 0 := by omega
+  have step1 : floorPower k = (k * k * k).sqrt := by
+    simp [floorPower, hodd0]
+  rw [step1]
+  have h1 : k * k ≤ k * k * k := by
+    have : 1 ≤ k := hk
+    simpa [Nat.mul_assoc] using Nat.mul_le_mul_left (k * k) this
+  exact Nat.le_sqrt.mpr h1
+
+/-- On the odd-to-odd branch with `n ≥ 3`, `T^2(n) > n`. Dual of
+`floorPower_odd_even_two_step_lt`. Not a divergence theorem. -/
+theorem floorPower_odd_odd_two_step_gt
+    {n : ℕ} (hn : 3 ≤ n) (hodd : n % 2 = 1)
+    (hodd1 : (n * n * n).sqrt % 2 = 1) :
+    n < floorPower (floorPower n) := by
+  have hodd0 : n % 2 ≠ 0 := by omega
+  have step1 : floorPower n = (n * n * n).sqrt := by
+    simp [floorPower, hodd0]
+  have hkpos : 1 ≤ floorPower n := by
+    have : n < floorPower n := floorPower_odd_gt hn hodd
+    omega
+  have hoddT : floorPower n % 2 = 1 := by
+    simpa [step1] using hodd1
+  have hmono : floorPower n ≤ floorPower (floorPower n) :=
+    floorPower_odd_nondecreasing hkpos hoddT
+  have hgt : n < floorPower n := floorPower_odd_gt hn hodd
+  omega
+
+
 theorem floorPower_one : floorPower 1 = 1 := by
   native_decide
 
