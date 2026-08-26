@@ -1,0 +1,502 @@
+{
+  "experiment": "juggler_post_overshoot",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false,
+    "overshoot_is_progress": false,
+    "return_below_universal": false,
+    "two_excursion_always_returns": false,
+    "cycle_impossible": false
+  },
+  "scan": {
+    "census": {
+      "n_max": 80,
+      "odd_odd_overshoot": 18,
+      "e_parity": {
+        "even": 13,
+        "odd": 5
+      },
+      "first_kinds": {
+        "CAPTURE": 5,
+        "STAY": 5,
+        "DESCENT": 8
+      },
+      "second_kinds": {
+        "CAPTURE": 1,
+        "STAY": 2,
+        "DESCENT": 2
+      },
+      "two_excursion_stay": [
+        37,
+        77
+      ],
+      "stay_after_first": [
+        9,
+        37,
+        49,
+        69,
+        77
+      ],
+      "rows": [
+        {
+          "n": 3,
+          "a": 3,
+          "z": 36,
+          "e": 6,
+          "b": 3,
+          "y": 1,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "CAPTURE"
+        },
+        {
+          "n": 5,
+          "a": 2,
+          "z": 36,
+          "e": 6,
+          "b": 3,
+          "y": 1,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "CAPTURE"
+        },
+        {
+          "n": 9,
+          "a": 2,
+          "z": 140,
+          "e": 11,
+          "b": 1,
+          "y": 11,
+          "cell": "overshoot",
+          "e_parity": "odd",
+          "first_kind": "STAY",
+          "second": {
+            "a": 1,
+            "z": 36,
+            "e": 6,
+            "b": 3,
+            "y": 1,
+            "kind": "CAPTURE"
+          }
+        },
+        {
+          "n": 25,
+          "a": 3,
+          "z": 52214,
+          "e": 228,
+          "b": 2,
+          "y": 15,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "DESCENT"
+        },
+        {
+          "n": 33,
+          "a": 2,
+          "z": 2598,
+          "e": 50,
+          "b": 2,
+          "y": 7,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "DESCENT"
+        },
+        {
+          "n": 35,
+          "a": 2,
+          "z": 2978,
+          "e": 54,
+          "b": 2,
+          "y": 7,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "DESCENT"
+        },
+        {
+          "n": 37,
+          "a": 4,
+          "z": 86818724,
+          "e": 9317,
+          "b": 1,
+          "y": 9317,
+          "cell": "overshoot",
+          "e_parity": "odd",
+          "first_kind": "STAY",
+          "second": {
+            "a": 3,
+            "z": 24906114455136,
+            "e": 4990602,
+            "b": 2,
+            "y": 2233,
+            "kind": "STAY"
+          }
+        },
+        {
+          "n": 39,
+          "a": 3,
+          "z": 233046,
+          "e": 482,
+          "b": 2,
+          "y": 21,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "DESCENT"
+        },
+        {
+          "n": 43,
+          "a": 2,
+          "z": 4710,
+          "e": 68,
+          "b": 4,
+          "y": 1,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "CAPTURE"
+        },
+        {
+          "n": 45,
+          "a": 2,
+          "z": 5222,
+          "e": 72,
+          "b": 4,
+          "y": 1,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "CAPTURE"
+        },
+        {
+          "n": 49,
+          "a": 2,
+          "z": 6352,
+          "e": 79,
+          "b": 1,
+          "y": 79,
+          "cell": "overshoot",
+          "e_parity": "odd",
+          "first_kind": "STAY",
+          "second": {
+            "a": 1,
+            "z": 702,
+            "e": 26,
+            "b": 2,
+            "y": 5,
+            "kind": "DESCENT"
+          }
+        },
+        {
+          "n": 53,
+          "a": 2,
+          "z": 7554,
+          "e": 86,
+          "b": 2,
+          "y": 9,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "DESCENT"
+        },
+        {
+          "n": 55,
+          "a": 2,
+          "z": 8210,
+          "e": 90,
+          "b": 2,
+          "y": 9,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "DESCENT"
+        },
+        {
+          "n": 59,
+          "a": 3,
+          "z": 946636,
+          "e": 972,
+          "b": 2,
+          "y": 31,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "DESCENT"
+        },
+        {
+          "n": 69,
+          "a": 2,
+          "z": 13716,
+          "e": 117,
+          "b": 1,
+          "y": 117,
+          "cell": "overshoot",
+          "e_parity": "odd",
+          "first_kind": "STAY",
+          "second": {
+            "a": 2,
+            "z": 44992,
+            "e": 212,
+            "b": 3,
+            "y": 3,
+            "kind": "DESCENT"
+          }
+        },
+        {
+          "n": 73,
+          "a": 2,
+          "z": 15550,
+          "e": 124,
+          "b": 2,
+          "y": 11,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "DESCENT"
+        },
+        {
+          "n": 75,
+          "a": 3,
+          "z": 2125824,
+          "e": 1458,
+          "b": 5,
+          "y": 1,
+          "cell": "overshoot",
+          "e_parity": "even",
+          "first_kind": "CAPTURE"
+        },
+        {
+          "n": 77,
+          "a": 3,
+          "z": 2322378,
+          "e": 1523,
+          "b": 1,
+          "y": 1523,
+          "cell": "overshoot",
+          "e_parity": "odd",
+          "first_kind": "STAY",
+          "second": {
+            "a": 1,
+            "z": 59436,
+            "e": 243,
+            "b": 1,
+            "y": 243,
+            "kind": "STAY"
+          }
+        }
+      ]
+    },
+    "hard": [
+      {
+        "n": 9,
+        "first": {
+          "a": 2,
+          "z": 140,
+          "e": 11,
+          "b": 1,
+          "y": 11
+        },
+        "second": {
+          "a": 1,
+          "z": 36,
+          "e": 6,
+          "b": 3,
+          "y": 1
+        },
+        "y1_parity": "odd",
+        "first_kind": "STAY",
+        "second_kind": "CAPTURE",
+        "origin": {
+          "n": 9,
+          "first_below": {
+            "step": 5,
+            "value": 6
+          },
+          "first_eq": null,
+          "first_one": {
+            "step": 7,
+            "value": 1
+          },
+          "min_state": 1,
+          "max_state": 140,
+          "horizon": 7
+        }
+      },
+      {
+        "n": 37,
+        "first": {
+          "a": 4,
+          "z": 86818724,
+          "e": 9317,
+          "b": 1,
+          "y": 9317
+        },
+        "second": {
+          "a": 3,
+          "z": 24906114455136,
+          "e": 4990602,
+          "b": 2,
+          "y": 2233
+        },
+        "y1_parity": "odd",
+        "first_kind": "STAY",
+        "second_kind": "STAY",
+        "origin": {
+          "n": 37,
+          "first_below": {
+            "step": 15,
+            "value": 8
+          },
+          "first_eq": null,
+          "first_one": {
+            "step": 17,
+            "value": 1
+          },
+          "min_state": 1,
+          "max_state": 24906114455136,
+          "horizon": 17
+        }
+      },
+      {
+        "n": 49,
+        "first": {
+          "a": 2,
+          "z": 6352,
+          "e": 79,
+          "b": 1,
+          "y": 79
+        },
+        "second": {
+          "a": 1,
+          "z": 702,
+          "e": 26,
+          "b": 2,
+          "y": 5
+        },
+        "y1_parity": "odd",
+        "first_kind": "STAY",
+        "second_kind": "DESCENT",
+        "origin": {
+          "n": 49,
+          "first_below": {
+            "step": 5,
+            "value": 26
+          },
+          "first_eq": null,
+          "first_one": {
+            "step": 11,
+            "value": 1
+          },
+          "min_state": 1,
+          "max_state": 6352,
+          "horizon": 11
+        }
+      },
+      {
+        "n": 69,
+        "first": {
+          "a": 2,
+          "z": 13716,
+          "e": 117,
+          "b": 1,
+          "y": 117
+        },
+        "second": {
+          "a": 2,
+          "z": 44992,
+          "e": 212,
+          "b": 3,
+          "y": 3
+        },
+        "y1_parity": "odd",
+        "first_kind": "STAY",
+        "second_kind": "DESCENT",
+        "origin": {
+          "n": 69,
+          "first_below": {
+            "step": 7,
+            "value": 14
+          },
+          "first_eq": null,
+          "first_one": {
+            "step": 14,
+            "value": 1
+          },
+          "min_state": 1,
+          "max_state": 44992,
+          "horizon": 14
+        }
+      },
+      {
+        "n": 77,
+        "first": {
+          "a": 3,
+          "z": 2322378,
+          "e": 1523,
+          "b": 1,
+          "y": 1523
+        },
+        "second": {
+          "a": 1,
+          "z": 59436,
+          "e": 243,
+          "b": 1,
+          "y": 243
+        },
+        "y1_parity": "odd",
+        "first_kind": "STAY",
+        "second_kind": "STAY",
+        "origin": {
+          "n": 77,
+          "first_below": {
+            "step": 10,
+            "value": 21
+          },
+          "first_eq": null,
+          "first_one": {
+            "step": 19,
+            "value": 1
+          },
+          "min_state": 1,
+          "max_state": 2322378,
+          "horizon": 19
+        }
+      }
+    ],
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "post_even_overshoot": true,
+    "overshoot_residual_gt_start": true,
+    "post_overshoot_parity": true,
+    "ReturnBelow": true,
+    "finiteProgress_of_returnBelow": true,
+    "finiteProgress_of_oddEven_lt": true,
+    "minimal_nonterm_no_returnBelow": true,
+    "minimal_post_even_even_y_ge_sq": true,
+    "minimal_post_even_even_overshoots": true,
+    "minimal_post_even_even_z_ge_fourth": true,
+    "minimal_first_even_dichotomy": true,
+    "even_floorPower_gt_iff": true,
+    "certificate_present": true,
+    "ReturnBelow_distinct": true,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_return_below_universal": true,
+    "no_two_excursion_progress": true,
+    "no_infinite_path_type": true,
+    "no_frequency_theorem": true,
+    "no_cycle_engine": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true
+  },
+  "decision": {
+    "classification": "PERSISTENT_OVERSHOOT_COUNTEREXAMPLE",
+    "secondary": [],
+    "reason": "first post-overshoot state is classified even or odd; even y on a CE forces n^4 \u2264 z; ReturnBelow is FiniteProgress when it fires; two excursions do not always return below n ([37, 77])"
+  },
+  "search_method": "odd-odd overshoots; first post-even parity; first O^a E^b kind; second excursion from stay-odd y; origin-scale first below / equal / ReachesOne; no universal return-below theorem"
+}

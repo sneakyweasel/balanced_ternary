@@ -4917,7 +4917,7 @@ Best next question
 - **Major results:** Even residual trichotomy \(z<n^2\), return cell, or overshoot **EXACT — LEAN VERIFIED**. \(z=n^2\) is impossible for odd \(n\) **EXACT — LEAN VERIFIED**. First `O^a E` descends iff \(z<n^2\), and that case is `FiniteProgress` **EXACT — LEAN VERIFIED**. On `MinimalNonTerm`, first `O^a E` is neither `Descent` nor `Capture`; leftover is return-to-\(n\) or overshoot **EXACT — LEAN VERIFIED**. Window \(2\le n\le 80\) is all overshoot. Classification **FIRST_EVEN_RESIDUAL_CLASSIFIED**. Records: `docs/research/juggler_odd_odd_frontier.md`, `docs/problems/juggler_odd_odd_frontier.md`. Control layer unchanged
 - **Refuted ideas:** first even residual of an odd-odd start descends; \(z=n_*^2\) as a possible even residual; overshoot is already `FiniteProgress`; a halt theorem
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
-- **Open:** after the first overshoot \(T(z)>n\), can the post-even odd state still carry a known `FiniteProgress` certificate, or is a later excursion required?
+- **Open:** answered in the post-overshoot residual phase
 - **Decision:** PROMOTE the trichotomy and the CE dichotomy. Do not exclude cycles. Do not claim termination
 
 ```text
@@ -4952,6 +4952,51 @@ Why
 
 Best next question
 - After the first overshoot T(z)>n, can the post-even odd state still carry a known FiniteProgress certificate, or is a later excursion required?
+```
+
+## Juggler post-overshoot residual
+
+- **Date:** 2026-08-27
+- **Objective:** Classify the first state after a first-even overshoot and test whether one or two later excursions force a return below the original start
+- **Hypotheses:** `POST_OVERSHOOT_PROGRESS_GREEN`, `RETURN_BELOW_START_GREEN`, `TWO_EXCURSION_GREEN`, or `PERSISTENT_OVERSHOOT_COUNTEREXAMPLE`
+- **Major results:** \(z\ge(n+1)^2\iff T(z)>n\) **EXACT — LEAN VERIFIED**. Post-overshoot \(y\) may be even or odd **EXACT — LEAN VERIFIED**. `ReturnBelow` plus a prefix is `FiniteProgress`; a CE never returns below its start **EXACT — LEAN VERIFIED**. Even \(y\) after the first `O^a E` on a CE forces \(n^2\le y\) and \(n^4\le z\) **EXACT — LEAN VERIFIED**. Two excursions do not always return below \(n\): \(37\) and \(77\) stay **COMPUTATIONALLY VERIFIED**. Classification **PERSISTENT_OVERSHOOT_COUNTEREXAMPLE**. Records: `docs/research/juggler_post_overshoot.md`, `docs/problems/juggler_post_overshoot.md`. Control layer unchanged
+- **Refuted ideas:** the first post-overshoot state is odd; two excursions force return below \(n\); every overshoot is already `FiniteProgress`; a halt theorem
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** after two persistent overshoots with odd residual states, what existing certificate can still fire without assuming a return law?
+- **Decision:** PROMOTE the classification, the even-\(y\) fourth-power barrier, and the two-excursion negative. Do not claim a general return-below theorem. Do not claim termination
+
+```text
+What was learned
+- After overshoot, y=T(z)>n and may be even or odd
+- ReturnBelow is a finite-prefix certificate, distinct from Descent and Capture; a CE never has it
+- Even y after the first O^a E on a CE already overshoots and forces n^4 ≤ z
+- In 2..80, 13 of 18 odd-odd overshoots have even T(z); the odd leftovers are 9, 37, 49, 69, 77
+- Two excursions close 9, 49, 69 and fail on 37 and 77
+
+Strongest theorem
+- If MinimalNonTerm n and the first O^a E image y is even, then n^2 ≤ y and n^4 ≤ z
+
+Strongest refutation
+- two consecutive O^a E^b excursions force a return below n; 37 and 77 stay
+
+Reusable machinery
+- Problems.Engine.OddOddFrontier ReturnBelow / minimal_post_even_even_z_ge_fourth
+- research.juggler_sequence.post_overshoot
+
+Prior-art status
+- leftover classification, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The overshoot branch now has an exact residual split and a CE scale law, and the hoped-for two-excursion return is computationally false.
+
+Best next question
+- After two persistent overshoots with odd residual states, what existing certificate can still fire without assuming a return law?
 ```
 
 

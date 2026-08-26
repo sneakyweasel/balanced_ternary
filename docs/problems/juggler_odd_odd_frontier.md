@@ -156,10 +156,10 @@ scanned window only overshoot occurs.
 
 ## Open questions
 
-After a first overshoot \(T(z)>n\), which already-proved certificate
-can still supply `FiniteProgress` on the post-even state? Do not
-answer this by proving `FiniteProgress` for all \(n\), and do not
-build a cycle engine unless a return cell is found.
+Answered in [juggler_post_overshoot.md](juggler_post_overshoot.md):
+the first post-overshoot state may be even or odd; even \(y\) on a
+CE forces \(n^4\le z\); `ReturnBelow` is a finite-prefix certificate;
+two excursions do not always return below \(n\).
 
 ## Decision
 
@@ -167,9 +167,8 @@ build a cycle engine unless a return cell is found.
 claim that overshoot progresses. Do not claim that return-to-\(n\)
 is impossible. Do not claim termination.
 
-Best next question: after the first overshoot \(T(z)>n\), can the
-post-even odd state still carry a known `FiniteProgress` certificate,
-or is a later excursion required?
+Best next question: answered in
+[juggler_post_overshoot.md](juggler_post_overshoot.md).
 
 ## Publication assessment
 

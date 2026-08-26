@@ -4,14 +4,21 @@ import Problems.Engine.Progress
 namespace Problems.Engine
 
 /-!
-# First even residual of an odd-to-odd start
+# First even residual and post-overshoot residual of an odd-to-odd start
 
 An even residual `z` falls into one of three square cells relative to
 an odd `n`: below `n^2`, the return cell `n^2 < z < (n+1)^2`, or
 overshoot `(n+1)^2 ≤ z`. Under `MinimalNonTerm`, the first cell is
 impossible and the first `O^a E` block is not `Descent` or `Capture`.
 The leftover is a return-to-start cycle candidate or strict overshoot.
-Not a halt theorem.
+
+A strict overshoot produces a later state `y = T(z) > n`. That `y` may
+be even or odd. `ReturnBelow` is a finite-prefix certificate, distinct
+from `Descent` at the residual state. A later return below the original
+start is `FiniteProgress` at `n`, and is impossible on a
+`MinimalNonTerm` orbit. An even post-even residual on a CE forces
+`n^4 ≤ z`. This is not a theorem that every overshoot returns, and not
+a halt theorem.
 -/
 
 theorem image_oddEvenBlock (x a b : ℕ) :
@@ -191,5 +198,123 @@ theorem minimal_first_even_dichotomy {n a : ℕ} (h : MinimalNonTerm n)
     simpa [himg] using hmid.2.2
   · refine Or.inr ⟨hover.1, ?_⟩
     simpa [himg] using hover.2
+
+/-- First even residual overshoots iff the post-even image exceeds `n`. -/
+theorem post_even_overshoot {z n : ℕ} (heven : z % 2 = 0) :
+    (n + 1) ^ 2 ≤ z ↔ n < floorPower z :=
+  (even_floorPower_gt_iff heven).symm
+
+/-- Named starting point for residual analysis after overshoot. -/
+theorem overshoot_residual_gt_start {n a : ℕ}
+    (hw : follows n (oddEvenBlock a 1))
+    (hover : (n + 1) ^ 2 ≤ image n (List.replicate a Branch.odd)) :
+    n < image n (oddEvenBlock a 1) := by
+  have hz := odd_run_even_residual hw
+  have himg : image n (oddEvenBlock a 1) =
+      floorPower (image n (List.replicate a Branch.odd)) := by
+    simp [image_oddEvenBlock, image]
+  have : n < floorPower (image n (List.replicate a Branch.odd)) :=
+    (even_floorPower_gt_iff hz).mpr hover
+  simpa [himg] using this
+
+/-- The first post-overshoot state is not assumed odd. -/
+theorem post_overshoot_parity (n a : ℕ) :
+    image n (oddEvenBlock a 1) % 2 = 0 ∨
+      image n (oddEvenBlock a 1) % 2 = 1 :=
+  Nat.mod_two_eq_zero_or_one _
+
+/-- Finite prefix from a later state that lands strictly below the
+original start. Distinct from `Descent` (`T_w(x) < x`) and from
+`Capture`. -/
+def ReturnBelow (n x : ℕ) : Prop :=
+  ∃ w, follows x w ∧ image x w < n
+
+/-- A later return below the original start is `FiniteProgress` at `n`. -/
+theorem finiteProgress_of_returnBelow {n : ℕ} {u : List Branch}
+    (hu : follows n u) (hr : ReturnBelow n (image n u)) :
+    FiniteProgress n := by
+  obtain ⟨w, hw, hlt⟩ := hr
+  refine finiteProgress_of_descent ⟨follows_append hu hw, ?_⟩
+  simpa [image_append] using hlt
+
+/-- First full excursion `O^a E^b` with image below `n` is progress. -/
+theorem finiteProgress_of_oddEven_lt {n a b : ℕ}
+    (hw : follows n (oddEvenBlock a b))
+    (hlt : image n (oddEvenBlock a b) < n) :
+    FiniteProgress n :=
+  finiteProgress_of_descent ⟨hw, hlt⟩
+
+/-- A minimal non-1 orbit never returns below its start. -/
+theorem minimal_nonterm_no_returnBelow {n x k : ℕ}
+    (h : MinimalNonTerm n) (hk : floorPower^[k] n = x) :
+    ¬ReturnBelow n x := by
+  intro ⟨w, _hw, hlt⟩
+  have hexit : floorPower^[k + w.length] n = image x w := by
+    rw [iterate_add_right, hk, image_eq_iterate]
+  have hge : n ≤ image x w :=
+    minimal_nonterm_ge_of_not_reachesOne h
+      (by
+        rw [← hexit]
+        exact floorPower_iterate_pos h.pos _)
+      (orbit_not_reachesOne h hexit)
+  exact Nat.not_lt.mpr hge hlt
+
+theorem image_oddEvenBlock_iterate (n a b : ℕ) :
+    image n (oddEvenBlock a b) = floorPower^[a + b] n := by
+  have hlen : (oddEvenBlock a b).length = a + b := by
+    simp [oddEvenBlock, List.length_append, List.length_replicate]
+  rw [image_eq_iterate, hlen]
+
+/-- Even post-even residual on a CE sits at scale `≥ n^2`. -/
+theorem minimal_post_even_even_y_ge_sq {n a : ℕ}
+    (h : MinimalNonTerm n) (_hw : follows n (oddEvenBlock a 1))
+    (hy : image n (oddEvenBlock a 1) % 2 = 0) :
+    n ^ 2 ≤ image n (oddEvenBlock a 1) :=
+  minimal_nonterm_even_ge_sq (k := a + 1) h
+    (image_oddEvenBlock_iterate n a 1).symm hy
+
+/-- Even `y = T(z)` after the first `O^a E` already overshoots on a CE:
+the return cell would require `y = n`, and `n` is odd. -/
+theorem minimal_post_even_even_overshoots {n a : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n (oddEvenBlock a 1))
+    (hy : image n (oddEvenBlock a 1) % 2 = 0) :
+    (n + 1) ^ 2 ≤ image n (List.replicate a Branch.odd) ∧
+      n < image n (oddEvenBlock a 1) := by
+  have hz := odd_run_even_residual hw
+  have himg : image n (oddEvenBlock a 1) =
+      floorPower (image n (List.replicate a Branch.odd)) := by
+    simp [image_oddEvenBlock, image]
+  have hny := minimal_post_even_even_y_ge_sq h hw hy
+  have hn : 12 ≤ n := minimal_nonterm_ge_twelve h
+  have hgt : n < image n (oddEvenBlock a 1) := by
+    have hsq : n < n ^ 2 := by
+      rw [pow_two]
+      have : n * 1 < n * n :=
+        Nat.mul_lt_mul_of_pos_left (by omega) (by omega)
+      simpa using this
+    exact lt_of_lt_of_le hsq hny
+  refine ⟨?_, hgt⟩
+  have : n < floorPower (image n (List.replicate a Branch.odd)) := by
+    simpa [himg] using hgt
+  exact (even_floorPower_gt_iff hz).mp this
+
+/-- Even post-overshoot forces a fourth-power barrier on `z`. -/
+theorem minimal_post_even_even_z_ge_fourth {n a : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n (oddEvenBlock a 1))
+    (hy : image n (oddEvenBlock a 1) % 2 = 0) :
+    n ^ 4 ≤ image n (List.replicate a Branch.odd) := by
+  have hz := odd_run_even_residual hw
+  set z := image n (List.replicate a Branch.odd)
+  have himg : image n (oddEvenBlock a 1) = floorPower z := by
+    simp [image_oddEvenBlock, image, z]
+  have hny : n ^ 2 ≤ floorPower z := by
+    have := minimal_post_even_even_y_ge_sq h hw hy
+    simpa [himg] using this
+  have hsq : floorPower z ^ 2 ≤ z := floorPower_even_sq_le hz
+  have hpow : (n ^ 2) ^ 2 ≤ floorPower z ^ 2 := Nat.pow_le_pow_left hny 2
+  calc
+    n ^ 4 = (n ^ 2) ^ 2 := by rw [show (4 : ℕ) = 2 * 2 from rfl, Nat.pow_mul]
+    _ ≤ floorPower z ^ 2 := hpow
+    _ ≤ z := hsq
 
 end Problems.Engine
