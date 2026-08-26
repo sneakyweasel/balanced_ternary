@@ -87,8 +87,12 @@ wraps completed campaigns without thawing attacks. It freezes
 `RESEARCH_ENGINE_V2_3_BASELINE`, assigns a primary close tag and an
 independent mathematical status, emits exactly three non-executable
 attack proposals, and replays selected v2.2 targets with historical
-results excluded from the blind track. Dossier:
-[research_engine_v24.md](../problems/research_engine_v24.md).
+results excluded from the blind track. A Phase-0 ranking-function
+falsifier (`research_engine.control.ranking`) enumerates a tiny exact
+template family on frozen v2.3 transitions; it is not an attack and
+does not change `DEFAULT_ATTACK_ORDER`. Dossier:
+[research_engine_v24.md](../problems/research_engine_v24.md). Record:
+[ranking_phase0.md](../research/ranking_phase0.md).
 
 Non-core fingerprint fields: `piecewise_affine_structure`,
 `latent_control` (`NONE|FINITE|PARAMETERIZED|UNCERTAIN|UNOBSERVED`),

@@ -3122,4 +3122,48 @@ Best next question
 - What is the cheapest falsifier for ranking-function synthesis as the first executable v2.4 attack family?
 ```
 
+## Research Engine v2.4: ranking-function Phase-0 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Decide PROMOTE / REFINE / ABANDON for ranking-function synthesis as the first executable v2.4 attack, using only frozen v2.3 transitions and a tiny exact template family
+- **Hypotheses:** a scalar ranking `V = a·log_bit + b·digit + c·residue` already decreases outside a finite core on the three TERMINATION campaigns that stalled at unimplemented `global_inductive`
+- **Major results:** 145 canonical templates, exact integer comparison, `K≤8` known cores. All three primary targets are `RANKING_NEEDS_RICHER_STATE`. Cyclic tag negative control is `RANKING_IMPLAUSIBLE` (length nondecrease). Family decision **REFINE**. Formalization `not_yet_formalization_ready`. Records: `docs/research/ranking_phase0.md`, `docs/research/ranking_phase0.json`. Frozen v2.3 seeds and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** a simple size ranking on `(log_bit, digit, residue)` is already a termination certificate on these bounded samples; naive word-length ranking for cyclic tag
+- **Literature:** engine methodology; campaign prior art unchanged
+- **Open:** whether a small richer family (odd-even composition, reverse-gap/palindrome defect, composite-versus-prime piecewise) survives the same exact tables
+- **Decision:** PARK the ranking synthesizer. REFINE the attack family. Do not enlarge the coefficient grid and do not thaw `DEFAULT_ATTACK_ORDER`
+
+```text
+What was learned
+- Juggler odd-to-odd floor-power (3→5) increases every available size statistic at constant parity, so no positive-tilt scalar V on (log_bit, digit, parity) can descend
+- Reverse-plus-add typically grows; bt_length is not a descent coordinate on the observed window
+- Home-prime factor concatenation increases decimal length; primes are an infinite halt set, not a finite ranking core
+- Cyclic tag length is nondecreasing: the prototype does discriminate a known obstruction
+- Expansion anti-rankings (net negative size tilt) can survive inequalities and must be rejected as termination candidates
+
+Strongest theorem
+- none; this is a bounded exact falsifier, not a ranking theorem
+
+Strongest refutation
+- Odd juggler 3→5: every coherent scalar template in the Phase-0 family fails on an exact transition outside E={1}
+
+Reusable machinery
+- research_engine.control.ranking: canonical 7³ grid, exact integer V, structured failure classes, AttackProposalDossier overlay for Phase-0 only
+
+Prior-art status
+- engine diagnosis; no new number-theory claim
+
+Complexity profile
+- unchanged schema; no new attack
+
+Branch status
+- PARK
+
+Why
+- Scalar ranking is not ready to become an executable attack, but the failures share a coherent richer language. Building a general synthesizer now would be machinery gravity. The named Phase-1 family is the next cheapest falsifier.
+
+Best next question
+- Can odd-even composition, reverse-gap/palindrome defect, and composite-versus-prime piecewise ranking be falsified on the same exact transition tables without enlarging the coefficient grid?
+```
+
 

@@ -7,7 +7,8 @@ This is laboratory intelligence for Research Engine v2.4. It does
 symbolic composition, or a new Skolem procedure. Implementation lives
 in `research_engine.control`. The thin descriptor is
 `research.research_control`. Frozen v2.3 mathematical campaigns remain
-unchanged.
+unchanged. The ranking Phase-0 falsifier is a bounded exact experiment,
+not an executable ranking attack.
 
 ## Problem
 
@@ -96,9 +97,12 @@ theorems.
 - Baseline: `research_engine.control.baseline`
 - Overlay: `research_engine.control.store` (never `historical.json`)
 - Tests: `tests/research_engine/control/`,
-  `tests/research/research_control/test_research_control.py`
+  `tests/research/research_control/test_research_control.py`,
+  `tests/research/research_control/test_ranking_phase0.py`
 - Phase-0 replays: `skolem_order2_known_zero`,
   `switching_affine_z2_origin`
+- Ranking Phase-0 falsifier: `research_engine.control.ranking`,
+  `docs/research/ranking_phase0.md`
 
 ## Conjectures
 
@@ -164,6 +168,11 @@ nine Top-3 dossiers):
 
 These are specifications for a later stage, not implementations.
 
+A Phase-0 ranking-function falsifier later tested that specification
+on four frozen campaigns; see Results F and
+[ranking_phase0.md](../research/ranking_phase0.md). It did not add an
+attack.
+
 ### D. v2.2 replay
 
 Protocol `campaign_type=REPLAY`, `source_engine=v2.2`,
@@ -186,12 +195,34 @@ mistaken for yield; skip-boundary at unimplemented global-inductive /
 matrix-word; finite census mistaken for a global theorem; integer
 encoding mistaken for a word/rewrite spec.
 
+### F. Ranking-function Phase-0 falsifier
+
+Record: [ranking_phase0.md](../research/ranking_phase0.md),
+[ranking_phase0.json](../research/ranking_phase0.json).
+`engine_control_version = 0.2.7`. Not an attack.
+
+Tiny integer templates `V = a·log_bit + b·digit + c·residue` on the
+three `TERMINATION → global_inductive` campaigns plus cyclic-tag
+negative control. Exact integer comparison; exceptional cores of size
+`K ≤ 8`; no grid enlargement.
+
+| Target | Classification |
+| --- | --- |
+| `juggler_sequence` | `RANKING_NEEDS_RICHER_STATE` (odd-to-odd floor-power growth) |
+| `reverse_and_add_base3` | `RANKING_NEEDS_RICHER_STATE` (reverse-plus-add expansion) |
+| `home_prime_49` | `RANKING_NEEDS_RICHER_STATE` (factor-concat length growth) |
+| `cyclic_tag_bit` | `RANKING_IMPLAUSIBLE` (length nondecrease; sanity check) |
+
+Family decision: **REFINE**. Formalization: `not_yet_formalization_ready`.
+Updated Top-3 names live only in the Phase-0 record. Frozen v2.3 files
+and `DEFAULT_ATTACK_ORDER` are unchanged.
+
 ## Open questions
 
-Which missing-capability family from the retrospective should be the
-first executable v2.4 attack — ranking synthesis, basin/preimage
-grammar, or symbolic nonlinear composition — and what is the cheapest
-falsifier for that family?
+Can a deliberately small richer ranking family — odd-even composition,
+reverse-gap/palindrome defect, and composite-versus-prime piecewise
+ranking — be falsified on the same exact transition tables without
+enlarging the coefficient grid or thawing `DEFAULT_ATTACK_ORDER`?
 
 ## Decision
 
@@ -200,9 +231,10 @@ Do not add attacks. Do not thaw `DEFAULT_ATTACK_ORDER`. Do not rewrite
 the nine v2.3 dossiers. Do not implement ranking, basin, or symbolic
 composition in this branch.
 
-Best next question: the highest-frequency missing capability in the
-retrospective (ranking-function synthesis) — specify its Phase-0
-falsifier before writing an attack.
+Best next question: a Phase-0 falsifier for the named richer ranking
+family (odd-even composition, reverse-gap, composite-versus-prime),
+still without a general synthesizer or a new attack in
+`DEFAULT_ATTACK_ORDER`.
 
 ## Publication assessment
 
