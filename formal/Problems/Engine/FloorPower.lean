@@ -30,6 +30,8 @@ Headline theorems:
   the formal exponent gap implies block contraction.
 * `floorPower_eoo_contracts_iff` — the shortest mixed positive-drift
   word `EOO` contracts if and only if `n ∈ {2, 12, 14}`.
+* `eoo_contracts_on_cell` — that classification is the square-root
+  cell threshold `n > eooCellOutput ⌊√n⌋`.
 -/
 
 /-!
@@ -2633,5 +2635,71 @@ theorem floorPower_eoo_contracts_iff {n : ℕ} (hw : follows n wordEOO) :
     · exact floorPower_eoo_twelve_contracts
     · exact floorPower_eoo_fourteen_contracts
 
+/-!
+## EOO square-root cells
+
+The first even step freezes the remaining `OO` computation on the
+square-root cell `[q^2, (q+1)^2)`. Contraction is the threshold
+`n > eooCellOutput q`. This explains the enumerated set `{2, 12, 14}`
+and is not a halt theorem.
+-/
+
+theorem sqrt_cell_iff {n q : ℕ} :
+    n.sqrt = q ↔ q ^ 2 ≤ n ∧ n < (q + 1) ^ 2 :=
+  floor_sqrt_eq_iff_sq_interval
+
+def eooCellOutput (q : ℕ) : ℕ := (((q ^ 3).sqrt) ^ 3).sqrt
+
+theorem follows_eoo_sqrt_iff {n : ℕ} :
+    follows n wordEOO ↔
+      n % 2 = 0 ∧ n.sqrt % 2 = 1 ∧ (n.sqrt ^ 3).sqrt % 2 = 1 := by
+  constructor
+  · intro hw
+    have h := follows_wordEOO_iff.mp hw
+    refine ⟨h.1, eoo_sqrt_odd hw, ?_⟩
+    have h1 : floorPower n = n.sqrt := floorPower_even_eq h.1
+    have h2 : floorPower (floorPower n) = (n.sqrt ^ 3).sqrt := by
+      rw [h1, floorPower_odd_eq (by simpa [h1] using h.2.1)]
+    simpa [h2] using h.2.2
+  · intro ⟨heven, hoddq, hoddb⟩
+    refine follows_wordEOO_iff.mpr ⟨heven, ?_, ?_⟩
+    · simpa [floorPower_even_eq heven] using hoddq
+    · have h1 : floorPower n = n.sqrt := floorPower_even_eq heven
+      have h2 : floorPower (floorPower n) = (n.sqrt ^ 3).sqrt := by
+        rw [h1, floorPower_odd_eq (by simpa [h1] using hoddq)]
+      simpa [h2] using hoddb
+
+theorem eoo_output_eq_cell {n : ℕ} (hw : follows n wordEOO) :
+    floorPower^[3] n = eooCellOutput n.sqrt :=
+  floorPower_eoo_of_follows hw
+
+theorem eoo_output_constant_on_sqrt_cell {n m : ℕ}
+    (hn : follows n wordEOO) (hm : follows m wordEOO)
+    (hq : n.sqrt = m.sqrt) :
+    floorPower^[3] n = floorPower^[3] m := by
+  rw [eoo_output_eq_cell hn, eoo_output_eq_cell hm, hq]
+
+/-- On a realized `EOO` start, contraction is the cell threshold
+`n > eooCellOutput ⌊√n⌋`. -/
+theorem eoo_contracts_on_cell {n : ℕ} (hw : follows n wordEOO) :
+    floorPower^[3] n < n ↔ eooCellOutput n.sqrt < n := by
+  simp [eoo_output_eq_cell hw]
+
+theorem eoo_cell_output_one : eooCellOutput 1 = 1 := by
+  native_decide
+
+theorem eoo_cell_output_three : eooCellOutput 3 = 11 := by
+  native_decide
+
+theorem eoo_cell_output_ge_succ_sq {q : ℕ} (hq : 5 ≤ q) :
+    (q + 1) ^ 2 ≤ eooCellOutput q := by
+  have hpow := eoo_sqrt_cube_pow_ge hq
+  refine Nat.le_sqrt.mpr ?_
+  have hexp : (q + 1) ^ 2 * (q + 1) ^ 2 = (q + 1) ^ 4 := by ring
+  simpa [eooCellOutput, hexp] using hpow
+
+theorem eoo_residue {n : ℕ} (hw : follows n wordEOO) :
+    localDefectEven n = n - n.sqrt ^ 2 :=
+  localDefectEven_eq (follows_wordEOO_iff.mp hw).1
 
 end Problems.Engine

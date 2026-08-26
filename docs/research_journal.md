@@ -4234,4 +4234,49 @@ Best next question
 - Do OOE and OEO never contract, or is there an infinite mixed positive-drift contraction family?
 ```
 
+## Juggler EOO square-root cell mechanism
+
+- **Date:** 2026-08-26
+- **Objective:** Replace the enumerated `EOO` contraction set \(\{2,12,14\}\) by an exact square-root cell threshold on \(q=\lfloor\sqrt n\rfloor\)
+- **Hypotheses:** `EOO_CELL_MECHANISM_GREEN`, `EOO_CELL_COUNTEREXAMPLE`, `COMPENSATED_PATTERN_FOUND`, `COMPENSATED_EOO_ISOLATED`, or `POSITIVE_DRIFT_CONTRACTION_FAMILY`
+- **Major results:** On a realized `EOO` start, \(T^3(n)=\mathrm{eooCellOutput}\,q\) and contracts iff \(n>c(q)\) **PROVED**. Only \(q=1,3\) have \(c<(q+1)^2\). `OOE`/`OEO` vary on n-sqrt cells. `EOOO` uses the same first-even freeze but contracts only at \(n=2\). Classification **EOO_CELL_MECHANISM_GREEN**. Records: `docs/research/juggler_eoo_cell_mechanism.md`, `docs/problems/juggler_eoo_cell_mechanism.md`. Control layer unchanged
+- **Refuted ideas:** `OOE`/`OEO` freeze on the start square-root cell; a three-point residue pattern beyond “same cell, \(n>c\)”; an infinite length-4 mixed contraction family on the scanned window; turning the generic \(\Delta>G\) certificate into a word-specific tactic
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether `OOE`/`OEO` never contract, or whether a first-even positive-drift word has \(c(q)\) strictly inside \((q^2,(q+1)^2)\) for infinitely many odd \(q\)
+- **Decision:** PROMOTE the cell/threshold classification. Do not register an attack. Do not claim termination. Do not add a generic cell calculus
+
+```text
+What was learned
+- EOO output is constant on each square-root cell [q^2, (q+1)^2)
+- Contraction is the threshold n > eooCellOutput q, not a huge power comparison
+- Only q=1 (c=1 → n=2) and q=3 (c=11 → n=12,14) intersect that threshold
+- OOE and OEO do not freeze on n-sqrt cells; the first even step is the specializer
+- EOOO has the same first-even freeze, but the extra odd step pushes q=3 to 36 > 16
+
+Strongest theorem
+- follows n EOO implies (T^3(n) < n ↔ eooCellOutput ⌊√n⌋ < n)
+
+Strongest refutation
+- OOE/OEO constancy on the start square-root cell is false; first-odd words vary inside the cell
+
+Reusable machinery
+- FloorPower eooCellOutput / eoo_contracts_on_cell / follows_eoo_sqrt_iff
+- research.juggler_sequence.eoo_cell_mechanism cell scan
+
+Prior-art status
+- local finite-word cell classification, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The enumerated set {2,12,14} is the overlap of EOO-realizable even integers in the cells q=1,3 with the threshold n>c(q). For q≥5 the cell output already meets or exceeds the next square, so no further EOO start contracts.
+
+Best next question
+- Prove OOE/OEO never contract, or find a first-even positive-drift word whose cell output sits strictly inside (q^2,(q+1)^2) for infinitely many odd q
+```
+
 
