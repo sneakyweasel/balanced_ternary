@@ -2990,4 +2990,48 @@ Best next question
 - What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
 ```
 
+## Research Campaign 08: home_prime_49
+
+- **Date:** 2026-08-26
+- **Objective:** Diagnose the stored factorization-concatenation map as recurring the non-affine arithmetic cluster, using frozen v2.3 without a concatenation attack and without claiming that seed 49 reaches a prime
+- **Hypotheses:** the fingerprint might match aliquot unbounded truncation, or seed-49 prefix might be billed as a Z-theorem, or census might fake an affine cover, or the adapter might leak unfinished-seed folklore
+- **Major results:** Blind `StrategyPlanner(TERMINATION)` selected `global_inductive` with empty results. Live `ResearchLoop` CONTINUE with exact residual closure of size 13 on the truncated seed-49 prefix and piecewise-affine INCONCLUSIVE. Exact: T(7)=7; 49=7·7 concatenates to 77; 4→22→211. Seed 49 grows until the factorization cap. T(49)=77 is not aliquot or floor-power; T(8)=222 is not reverse-add. Lean in `Problems.Engine.FactorConcat`. No new attacks
+- **Refuted ideas:** residue-affine cover; seed-49 prefix is a Z-theorem; this is aliquot; this is the floor-power map; this is reverse-plus-add; a new concatenation attack is required
+- **Literature:** OEIS A037274; laboratory aliquot comparison
+- **Open:** whether seed 49 reaches a prime; not decided by the truncated prefix
+- **Decision:** CLOSE. The surviving statements are KNOWN. Budget-truncated prefix plus a missing affine cover; engine EXACT_CLOSURE is a cap artefact, distinct from aliquot UNBOUNDED_SAMPLE and from attractor closures
+
+```text
+What was learned
+- Packet seed 49 maps to 77 then grows until the factorization cap; T(7)=7; that is not a prime-reachability theorem
+- Piecewise-affine census is INCONCLUSIVE; factor concatenation sits outside residue-affine language
+- StrategyPlanner(TERMINATION) selects global_inductive with no implemented ranking attack
+- Engine FINITE_SEED_CLOSURE of size 13 is a budget artefact, distinct from aliquot UNBOUNDED_SAMPLE and from reverse-add/juggler attractor closures
+- T(49)=77 is not aliquot 8 and not floor-power 343; T(8)=222 is not reverse-add 0; seed 4 reaches 211
+
+Strongest theorem
+- Seed 4 reaches the prime 211 in two steps (four_reaches_two_eleven)
+
+Strongest refutation
+- T(49)=77 (not aliquot or floor-power); T(8)=222 (not reverse-add)
+
+Reusable machinery
+- none added; FactorConcatSpec follows the existing factorization-capped one-variable pattern; KNOWN lemmas in FactorConcat.lean
+
+Prior-art status
+- KNOWN computational prefix; OEIS A037274 records home-prime iteration, not a class obstruction
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- The finite prefix is KNOWN. There is no affine cover and no class forcing seed 49 to a prime. A concatenation attack or unfinished-seed claim would violate the frozen contract.
+
+Best next question
+- What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
+```
+
 

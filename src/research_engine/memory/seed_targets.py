@@ -878,6 +878,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
         claimed_capabilities=("growth",),
         prior_art_classified=True,
         prospective_fingerprint=nonaffine_fp,
+        already_run=True,
         prior_art=PriorArtDossier(
             target="home_prime_49",
             definition="concatenate prime factors of n, iterate from 49",

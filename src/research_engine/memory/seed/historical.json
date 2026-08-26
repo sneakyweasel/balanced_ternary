@@ -2269,12 +2269,10 @@
           "minimal_example": "n |-> sigma(n)-n",
           "counterexample": "descent refuted at seed 12",
           "reusable_lesson": "divisor-sum/factorization dynamics lies outside the affine-control language",
-          "possible_transfer_targets": [
-            "home_prime_49"
-          ],
+          "possible_transfer_targets": [],
           "prior_art_status": "KNOWN",
-          "engineering_action": "PARK",
-          "status": "PARKED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         }
       ],
       "prior_art": null,
@@ -4595,9 +4593,7 @@
           "minimal_example": "",
           "counterexample": "",
           "reusable_lesson": "even/odd floor powers are outside residue-affine language; do not add a radical attack",
-          "possible_transfer_targets": [
-            "home_prime_49"
-          ],
+          "possible_transfer_targets": [],
           "prior_art_status": "KNOWN",
           "engineering_action": "REUSED",
           "status": "REUSED"
@@ -4635,12 +4631,10 @@
           "minimal_example": "",
           "counterexample": "",
           "reusable_lesson": "a nonlinear integer map can close on a packet seed and still sit outside affine control",
-          "possible_transfer_targets": [
-            "home_prime_49"
-          ],
+          "possible_transfer_targets": [],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         }
       ],
       "prior_art": {
@@ -4827,12 +4821,10 @@
           "minimal_example": "",
           "counterexample": "",
           "reusable_lesson": "digit reverse-plus-add is outside residue-affine language; do not add a reverse-add attack",
-          "possible_transfer_targets": [
-            "home_prime_49"
-          ],
+          "possible_transfer_targets": [],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "reverse_add_bt:loot:seed196",
@@ -4848,12 +4840,10 @@
           "minimal_example": "",
           "counterexample": "196 reaches 0; W(2)=-2",
           "reusable_lesson": "a finite seed closure is not a reverse-fixed theorem on all integers",
-          "possible_transfer_targets": [
-            "home_prime_49"
-          ],
+          "possible_transfer_targets": [],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "reverse_add_bt:loot:cluster",
@@ -4869,12 +4859,10 @@
           "minimal_example": "",
           "counterexample": "",
           "reusable_lesson": "digit reverse-plus-add can close on a packet seed and still sit outside affine control and outside digit-fold saturation",
-          "possible_transfer_targets": [
-            "home_prime_49"
-          ],
+          "possible_transfer_targets": [],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         }
       ],
       "prior_art": {
@@ -4934,6 +4922,235 @@
         "census_kind": "UNRESOLVED",
         "lean_theorems": [
           "Problems.Engine.ReverseAdd"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "home_prime_49",
+      "target": "home_prime",
+      "target_family": "nonlinear_integer",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.3",
+      "experiment_date": "2026-08-26",
+      "diagnosis": {
+        "target": "home_prime",
+        "semantic_class": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE|EXACT_CLOSURE",
+        "fingerprint": {
+          "transition_architecture": "DETERMINISTIC",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "FINITE_CONTRACTING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "FINITE_SEED_CLOSURE",
+          "orbit_behavior": "FINITE",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNCERTAIN",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "EXACT_CLOSURE"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE|EXACT_CLOSURE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "four_reaches_two_eleven",
+        "strongest_falsification": "T(49)=77 is not aliquot or floor-power; T(8)=222 is not reverse-add; seed-49 prefix is not a Z-theorem",
+        "lean_certificate": "Problems.Engine.FactorConcat",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CONTINUE",
+        "decision_reason": "truncated seed-49 prefix with no piecewise-affine cover; not a prime-reachability theorem",
+        "extra": {}
+      },
+      "decision_reason_code": "DISTINCT_REGIME",
+      "representation_novelty": "MEDIUM",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "packet seed 49 maps to 77 then grows until the factorization cap",
+          "no complete piecewise-affine cover"
+        ],
+        "new_exact_results": [
+          "T(7)=7",
+          "4 maps to 22 then 211"
+        ],
+        "new_formalizations": [
+          "Problems.Engine.FactorConcat"
+        ],
+        "new_counterexamples": [
+          "T(49)=77 is not aliquot or floor-power; T(8)=222 is not reverse-add"
+        ],
+        "new_conjectures": [],
+        "new_obstructions": [
+          "none; a truncated prefix is not a prime-reachability theorem"
+        ],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "whether seed 49 reaches a prime"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "home_prime_49:representation",
+          "target": "home_prime",
+          "experiment_id": "home_prime_49",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "piecewise_affine",
+          "failure_class": "REPRESENTATION",
+          "representation_status": "NON_AFFINE",
+          "mathematical_bottleneck": "outside_affine_valuation_control",
+          "evidence": "factor concatenation has no complete piecewise-affine cover on the sample window",
+          "counterexamples": [],
+          "minimal_example": "n |-> concat(prime factors of n)",
+          "reproducibility": "seed",
+          "reusable_lesson": "Factor concatenation is outside residue-affine language; a budget-truncated seed-49 prefix is not aliquot truncation and not a prime-reachability theorem.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "HIGH",
+          "status": "PARKED",
+          "affected_attack_family": "latent_affine"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "home_prime:loot:mismatch",
+          "kind": "Representation mismatch",
+          "statement": "factor concatenation lies outside residue-affine census language",
+          "evidence": "OBSERVED",
+          "experiment_id": "home_prime_49",
+          "target": "home_prime",
+          "failure_class": "REPRESENTATION",
+          "bottleneck": "outside_affine_valuation_control",
+          "payload": {},
+          "observation": "piecewise-affine census is INCONCLUSIVE; affine_system is None",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "factor concatenation is outside residue-affine language; do not add a concatenation attack",
+          "possible_transfer_targets": [],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "home_prime:loot:seed49",
+          "kind": "Useful negative result",
+          "statement": "seed 49 maps to 77 then truncates at the factorization cap; that is not a theorem that 49 reaches a prime",
+          "evidence": "OBSERVED",
+          "experiment_id": "home_prime_49",
+          "target": "home_prime",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "49 -> 77 -> ... then truncates at the factorization cap; T(7)=7",
+          "minimal_example": "",
+          "counterexample": "49 maps to 77; 4 reaches 211",
+          "reusable_lesson": "a budget-truncated prefix is not a theorem that seed 49 reaches a prime",
+          "possible_transfer_targets": [],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "home_prime:loot:cluster",
+          "kind": "Useful negative result",
+          "statement": "engine EXACT_CLOSURE of the truncated prefix is a budget artefact, distinct from aliquot UNBOUNDED_SAMPLE and from reverse-add/juggler attractor closures",
+          "evidence": "OBSERVED",
+          "experiment_id": "home_prime_49",
+          "target": "home_prime",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "engine EXACT_CLOSURE of size 13 is a budget artefact, unlike aliquot UNBOUNDED_SAMPLE and unlike attractor closures",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "factor-concatenation truncation can look like finite closure once the successor is undefined; that is not an attractor and not a prime-reachability theorem",
+          "possible_transfer_targets": [],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "oeis-A037274"
+        ],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": false
+      },
+      "scout": {
+        "target": "home_prime_49",
+        "problem_definition": "Does frozen v2.3 diagnose factor concatenation without a dedicated attack or a prime-reachability theorem?",
+        "literature": [
+          "oeis-A037274"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "home_prime_49",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": 32,
+        "max_steps": 16,
+        "allowed_definition": "n maps to the concatenation of its prime factors written in ascending order",
+        "state_space": "integers >= 2",
+        "observation": "the integer n",
+        "initial_conditions": [
+          "49"
+        ],
+        "explicit_controls": "",
+        "computational_budget": "",
+        "extra": {},
+        "forbidden_hints": [
+          "named conjectures",
+          "open-problem status",
+          "published unfinished seeds"
+        ],
+        "post_run_reconciliation": "",
+        "lean_targets": []
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "piecewise_affine": "INCONCLUSIVE",
+          "closure": "SUPPORTED"
+        },
+        "skipped": [],
+        "strongest_exact": "four_reaches_two_eleven",
+        "strongest_falsification": "T(49)=77 is not aliquot or floor-power; seed-49 prefix is not a Z-theorem",
+        "census_kind": "UNRESOLVED",
+        "lean_theorems": [
+          "Problems.Engine.FactorConcat"
         ]
       },
       "reconciliation": null,
