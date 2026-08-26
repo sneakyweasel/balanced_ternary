@@ -451,7 +451,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
                 "open-problem status",
                 "literature reductions",
             ),
-            skip_attacks=(),
+            skip_attacks=("vector_affine", "matrix_word_invariant"),
             computational_budget="max index 64; skip 25^d cubes above 50000 cells",
         ),
     )

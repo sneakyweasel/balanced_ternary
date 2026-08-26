@@ -2814,4 +2814,48 @@ Best next question
 - What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
 ```
 
+## Research Campaign 04: companion_shift_order6_zero_class
+
+- **Date:** 2026-08-26
+- **Objective:** Recover a lattice/gcd or matrix-word congruence on vanishing indices of the declared order-6 companion window, using frozen Research Engine v2.3 without interpolants, without a new attack, and without claiming non-existence
+- **Hypotheses:** an intermediate vanishing-index class constraint might exist that is not the companion definition; prefix gaps and companion rediscovery are not the yield
+- **Major results:** Blind `StrategyPlanner(ORIGIN_AVOIDANCE)` selected `vector_matrix` with empty results. Live `ResearchLoop` decision CONTINUE. Prefix length 65 is `FINITE_ZERO_FREE` (`zero_at=None`); `u_11<0`; every modulus 2..32 hits a 0 residue (`NO_PREFIX_EXCLUSION`); `vector_affine` and `matrix_word_invariant` skipped (`COMPUTATION_EXHAUSTED`). Lean reused in `Problems.Engine.CompanionShift`. No new attacks
+- **Refuted ideas:** companion-as-yield; prefix ⇒ non-existence; matrix-word gives a vanishing congruence; this is the order-2 competence check; fixed sign
+- **Literature:** Bacik et al. 2026; Kenison et al. 2025; Lipton et al. 2022
+- **Open:** whether the first coordinate vanishes on Z; not decided by the prefix or the skip
+- **Decision:** CLOSE. The surviving statements are KNOWN. No vanishing-index class constraint
+
+```text
+What was learned
+- Frozen skip at dimension 6 blocks vector census and matrix-word; that is COMPUTATION_EXHAUSTED, not a congruence
+- No first-coordinate zero on indices 0..64 is FINITE_ZERO_FREE, not non-existence
+- Every modulus 2..32 hits a 0 residue on the prefix; prefix modular zeros are not integer vanishing
+- u_11 < 0 is already Lean-certified and KNOWN
+- Companion reconstruction is the problem definition, not yield
+
+Strongest theorem
+- The observation at index 11 is negative (companion_shift_order6_eleventh_negative)
+
+Strongest refutation
+- matrix_word_invariant is skipped at d=6; no zero on 0..64 does not mean no zero exists
+
+Reusable machinery
+- none added; existing CompanionShiftSpec, StrategyPlanner, and CompanionShift.lean
+
+Prior-art status
+- KNOWN companion window and prefix facts; literature-open vanishing is out of this campaign's target
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- No lattice/gcd vanishing congruence was recovered. The skip, the prefix, and the companion window are KNOWN. Further census expansion or interpolants would violate the frozen contract.
+
+Best next question
+- What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
+```
+
 

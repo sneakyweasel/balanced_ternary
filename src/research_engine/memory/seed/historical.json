@@ -3854,8 +3854,8 @@
             "companion_shift_order6_zero_class"
           ],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "matthews_mod3:loot:seeds",
@@ -3875,8 +3875,8 @@
             "companion_shift_order6_zero_class"
           ],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "matthews_mod3:loot:branches",
@@ -3960,6 +3960,272 @@
         "census_kind": "FINITE_CENSUS",
         "lean_theorems": [
           "Problems.Engine.MatthewsMod3"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "companion_shift_order6_zero_class",
+      "target": "companion_shift_order6",
+      "target_family": "linear_recurrence",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.3",
+      "experiment_date": "2026-08-26",
+      "diagnosis": {
+        "target": "companion_shift_order6",
+        "semantic_class": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|FINITE_RANGE",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_VECTOR",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNOBSERVED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "VECTOR",
+          "certificate_strength": "FINITE_RANGE"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|FINITE_RANGE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "companion_shift_order6_eleventh_negative",
+        "strongest_falsification": "no lattice-gcd vanishing congruence; u_11 < 0",
+        "lean_certificate": "Problems.Engine.CompanionShift",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CONTINUE",
+        "decision_reason": "matrix-word skipped at dimension 6; prefix zeros absent is not a vanishing congruence",
+        "extra": {}
+      },
+      "decision_reason_code": "KNOWN_REDISCOVERY",
+      "representation_novelty": "LOW",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "order-6 companion window",
+          "25^6 census and matrix-word skipped by the frozen cell budget"
+        ],
+        "new_exact_results": [
+          "u_11 < 0",
+          "no first-coordinate zero on indices 0..64"
+        ],
+        "new_formalizations": [
+          "Problems.Engine.CompanionShift"
+        ],
+        "new_counterexamples": [
+          "fixed sign refuted at n=11"
+        ],
+        "new_conjectures": [],
+        "new_obstructions": [
+          "none; prefix modular hits are not a vanishing congruence"
+        ],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "whether the first coordinate vanishes on Z"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "companion_shift_order6_zero_class:computational",
+          "target": "companion_shift_order6",
+          "experiment_id": "companion_shift_order6_zero_class",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "matrix_word_invariant",
+          "failure_class": "COMPUTATIONAL",
+          "representation_status": "VECTOR_AFFINE_ADEQUATE",
+          "mathematical_bottleneck": "finite_budget_exhausted",
+          "evidence": "25^6 census and matrix-word skipped; COMPUTATION_EXHAUSTED",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "A skipped lattice probe is not a vanishing congruence.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "MEDIUM",
+          "status": "PARKED",
+          "affected_attack_family": "vector_census"
+        },
+        {
+          "id": "companion_shift_order6_zero_class:global",
+          "target": "companion_shift_order6",
+          "experiment_id": "companion_shift_order6_zero_class",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "closure",
+          "failure_class": "GLOBAL_REASONING",
+          "representation_status": "LANGUAGE_ADEQUATE",
+          "mathematical_bottleneck": "finite_to_infinite_certificate",
+          "evidence": "finite zero-free prefix does not decide vanishing on Z",
+          "counterexamples": [
+            "u_11 < 0"
+          ],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Prefix modular zeros are not an integer vanishing congruence.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "HIGH",
+          "status": "PARKED",
+          "affected_attack_family": "global_reachability"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "order6_zero:loot:prefix",
+          "kind": "Computational bottleneck",
+          "statement": "no first-coordinate zero on indices 0..64; this is not non-existence",
+          "evidence": "FINITE_RANGE",
+          "experiment_id": "companion_shift_order6_zero_class",
+          "target": "companion_shift_order6",
+          "failure_class": "COMPUTATIONAL",
+          "bottleneck": "finite_budget_exhausted",
+          "payload": {},
+          "observation": "no first-coordinate zero on indices 0..64",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "a finite zero-free prefix is not non-existence and not a class obstruction",
+          "possible_transfer_targets": [
+            "skolem_order5_unconditional"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "order6_zero:loot:matrix",
+          "kind": "Useful negative result",
+          "statement": "matrix_word_invariant is skipped at dimension 6; no lattice-gcd vanishing congruence",
+          "evidence": "FINITE_RANGE",
+          "experiment_id": "companion_shift_order6_zero_class",
+          "target": "companion_shift_order6",
+          "failure_class": "COMPUTATIONAL",
+          "bottleneck": "finite_budget_exhausted",
+          "payload": {},
+          "observation": "matrix_word_invariant is skipped when 25^d exceeds the frozen cell budget",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "lattice/gcd vanishing congruences cannot be read from a skipped matrix-word attack",
+          "possible_transfer_targets": [
+            "skolem_order5_unconditional"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "order6_zero:loot:modulus",
+          "kind": "Useful negative result",
+          "statement": "every modulus 2..32 hits a 0 residue on the prefix; that does not force an integer zero",
+          "evidence": "OBSERVED",
+          "experiment_id": "companion_shift_order6_zero_class",
+          "target": "companion_shift_order6",
+          "failure_class": "GLOBAL_REASONING",
+          "bottleneck": "finite_to_infinite_certificate",
+          "payload": {},
+          "observation": "every modulus 2..32 hits a 0 residue on the prefix while the integer sequence stays nonzero",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "prefix modular zeros are not an integer vanishing congruence",
+          "possible_transfer_targets": [],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "bacik-et-al-2026-skolem-positivity-survey",
+          "kenison-et-al-2025-order-4-skolem",
+          "lipton-et-al-2022-skolem-conjecture"
+        ],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": false
+      },
+      "scout": {
+        "target": "companion_shift_order6_zero_class",
+        "problem_definition": "Can matrix-word or lattice-gcd recover a congruence constraint on vanishing indices?",
+        "literature": [
+          "bacik-et-al-2026-skolem-positivity-survey",
+          "kenison-et-al-2025-order-4-skolem",
+          "lipton-et-al-2022-skolem-conjecture"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "companion_shift_order6",
+        "dimension": 6,
+        "skip_attacks": [
+          "vector_affine",
+          "matrix_word_invariant"
+        ],
+        "max_states": 32,
+        "max_steps": 16,
+        "allowed_definition": "window x maps to M x for a declared 6x6 companion matrix of an integer recurrence",
+        "state_space": "Z^6",
+        "observation": "first coordinate",
+        "initial_conditions": [
+          "declared order-6 window"
+        ],
+        "explicit_controls": "",
+        "computational_budget": "",
+        "extra": {},
+        "forbidden_hints": [
+          "named conjectures",
+          "known congruence of zeros",
+          "interpolant methods",
+          "open-problem status",
+          "literature reductions"
+        ],
+        "post_run_reconciliation": "",
+        "lean_targets": []
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "vector_affine": "COMPUTATION_EXHAUSTED",
+          "matrix_word_invariant": "COMPUTATION_EXHAUSTED",
+          "closure": "INCONCLUSIVE"
+        },
+        "skipped": [],
+        "strongest_exact": "companion_shift_order6_eleventh_negative",
+        "strongest_falsification": "matrix-word skipped; prefix is not non-existence",
+        "census_kind": "",
+        "lean_theorems": [
+          "Problems.Engine.CompanionShift"
         ]
       },
       "reconciliation": null,
