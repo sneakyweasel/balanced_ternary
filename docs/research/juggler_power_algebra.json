@@ -1,0 +1,622 @@
+{
+  "experiment": "juggler_power_algebra",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "n_max": 10000,
+    "k_max": 8,
+    "local_iff": {
+      "n_max": 1000000,
+      "mismatch_count": 0,
+      "mismatches": [],
+      "even_equal_count": 500,
+      "odd_equal_count": 500,
+      "holds": true
+    },
+    "itinerary": {
+      "local_square_false": [],
+      "local_square_false_count": 0,
+      "propagation_false": [],
+      "propagation_false_count": 0,
+      "structured_equalities": [
+        {
+          "word": "O",
+          "start": 1,
+          "trajectory": [
+            1,
+            1
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "OO",
+          "start": 1,
+          "trajectory": [
+            1,
+            1,
+            1
+          ],
+          "square_states": [
+            true,
+            true
+          ],
+          "local_equality": [
+            true,
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "OOO",
+          "start": 1,
+          "trajectory": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "square_states": [
+            true,
+            true,
+            true
+          ],
+          "local_equality": [
+            true,
+            true,
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "OOOO",
+          "start": 1,
+          "trajectory": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "square_states": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "local_equality": [
+            true,
+            true,
+            true,
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "OOOOO",
+          "start": 1,
+          "trajectory": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "square_states": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "local_equality": [
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "OOOOOO",
+          "start": 1,
+          "trajectory": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "square_states": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "local_equality": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "OOOOOOO",
+          "start": 1,
+          "trajectory": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "square_states": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "local_equality": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "OOOOOOOO",
+          "start": 1,
+          "trajectory": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "square_states": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "local_equality": [
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true,
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "E",
+          "start": 4,
+          "trajectory": [
+            4,
+            2
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": false,
+          "contains_even": true
+        },
+        {
+          "word": "O",
+          "start": 9,
+          "trajectory": [
+            9,
+            27
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "E",
+          "start": 16,
+          "trajectory": [
+            16,
+            4
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": false,
+          "contains_even": true
+        },
+        {
+          "word": "EE",
+          "start": 16,
+          "trajectory": [
+            16,
+            4,
+            2
+          ],
+          "square_states": [
+            true,
+            true
+          ],
+          "local_equality": [
+            true,
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": false,
+          "contains_even": true
+        },
+        {
+          "word": "O",
+          "start": 25,
+          "trajectory": [
+            25,
+            125
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "E",
+          "start": 36,
+          "trajectory": [
+            36,
+            6
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": false,
+          "contains_even": true
+        },
+        {
+          "word": "O",
+          "start": 49,
+          "trajectory": [
+            49,
+            343
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "E",
+          "start": 64,
+          "trajectory": [
+            64,
+            8
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": false,
+          "contains_even": true
+        },
+        {
+          "word": "O",
+          "start": 81,
+          "trajectory": [
+            81,
+            729
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "OO",
+          "start": 81,
+          "trajectory": [
+            81,
+            729,
+            19683
+          ],
+          "square_states": [
+            true,
+            true
+          ],
+          "local_equality": [
+            true,
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "E",
+          "start": 100,
+          "trajectory": [
+            100,
+            10
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": false,
+          "contains_even": true
+        },
+        {
+          "word": "O",
+          "start": 121,
+          "trajectory": [
+            121,
+            1331
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "E",
+          "start": 144,
+          "trajectory": [
+            144,
+            12
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": false,
+          "contains_even": true
+        },
+        {
+          "word": "O",
+          "start": 169,
+          "trajectory": [
+            169,
+            2197
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        },
+        {
+          "word": "E",
+          "start": 196,
+          "trajectory": [
+            196,
+            14
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": false,
+          "contains_even": true
+        },
+        {
+          "word": "O",
+          "start": 225,
+          "trajectory": [
+            225,
+            3375
+          ],
+          "square_states": [
+            true
+          ],
+          "local_equality": [
+            true
+          ],
+          "global_equality_predicted": true,
+          "contains_odd": true,
+          "contains_even": false
+        }
+      ],
+      "structured_count": 118,
+      "structured_with_odd": 62,
+      "structured_both_letters": 0
+    },
+    "square_starts": {
+      "structured_count": 56,
+      "propagation_false_count": 0,
+      "local_square_false_count": 0
+    },
+    "examples": {
+      "odd_square_nine": {
+        "word": "O",
+        "start": 9,
+        "trajectory": [
+          9,
+          27
+        ],
+        "square_states": [
+          true
+        ],
+        "local_equality": [
+          true
+        ],
+        "global_equality_predicted": true,
+        "contains_odd": true,
+        "contains_even": false,
+        "independent_global_eq": true
+      },
+      "odd_fourth_eighty_one": {
+        "word": "OO",
+        "start": 81,
+        "trajectory": [
+          81,
+          729,
+          19683
+        ],
+        "square_states": [
+          true,
+          true
+        ],
+        "local_equality": [
+          true,
+          true
+        ],
+        "global_equality_predicted": true,
+        "contains_odd": true,
+        "contains_even": false
+      },
+      "even_tower_sixteen": {
+        "word": "EE",
+        "start": 16,
+        "trajectory": [
+          16,
+          4,
+          2
+        ],
+        "square_states": [
+          true,
+          true
+        ],
+        "local_equality": [
+          true,
+          true
+        ],
+        "global_equality_predicted": true,
+        "contains_odd": false,
+        "contains_even": true,
+        "independent_global_eq": true
+      }
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "power_bound_word": true,
+    "floorPower_even_sq_eq_iff_square": true,
+    "floorPower_odd_sq_eq_cube_iff_square": true,
+    "power_bound_eq_of_append_even": true,
+    "power_bound_eq_of_append_odd": true,
+    "power_bound_eq_implies_local_eq": true,
+    "power_bound_eq_implies_square": true,
+    "power_bound_follows": true,
+    "power_bound_contracts": true,
+    "PowerBoundEq_def": true,
+    "mixed_word_power_lt_absent": true,
+    "floorPower_odd_sq_lt_cube_absent": true,
+    "PowerBoundStrict_absent": true,
+    "PowerHeight_absent": true
+  },
+  "decision": {
+    "classification": "EQUALITY_RIGIDITY_GREEN",
+    "reason": "Local branch equality is equivalent to a perfect square, and global envelope equality forces every local inequality to be tight, hence every relevant state is a square"
+  },
+  "search_method": "local tightness and isqrt squares; powers_equal only as a tiny sanity check"
+}

@@ -3874,4 +3874,49 @@ Best next question
 - Is equality for words containing E impossible for n>=2, and is all-odd equality exactly the odd b^{2^j} family?
 ```
 
+## Juggler finite-word power algebra and equality rigidity
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether global envelope equality for a realized finite word forces every local branch inequality to be tight, and whether each local tightness is equivalent to a perfect square
+- **Hypotheses:** even `T(n)^2=n` iff square; odd `T(n)^2=n^3` iff square; composite envelope equality implies every local inequality is tight, hence every relevant state is square
+- **Major results:** Local iff-square theorems **PROVED**. Equality propagation **PROVED** (`power_bound_eq_implies_local_eq`). Square-state consequence **PROVED** (`power_bound_eq_implies_square`). Unfolded word theorem `power_bound_word`. Computational search: 0 `LOCAL_SQUARE_EQ_FALSE`, 0 `GLOBAL_EQ_PROPAGATION_FALSE`; 118 predicted equalities on \(n\le 10^4\), depth 8, none both-letter. Classification **EQUALITY_RIGIDITY_GREEN**. Records: `docs/research/juggler_power_algebra.md`, `docs/problems/juggler_power_algebra.md`. Control layer unchanged
+- **Refuted ideas:** mixed-word strictness remains refuted (prior phase); huge `cmp_pow` equality search; `PowerBoundStrict` / `PowerHeight` certificates
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** how `O` and `E` act on successive perfect powers; not an equality-word census
+- **Decision:** PROMOTE the rigidity chain. Do not register an attack. Do not claim termination
+
+```text
+What was learned
+- Local even and odd envelope equalities are exactly the perfect-square states
+- Global T_w(n)^{2^k} = n^{3^o} forces every local inequality in the chain to be tight
+- Therefore every relevant itinerary state is a square; images such as 27 and 2 need not be
+- 9→27 and 16→4→2 are instances of that chain, not exceptional words
+- Contraction from 3^o < 2^k is a separate comparison from floor equality
+
+Strongest theorem
+- If a realized finite word attains the envelope with equality, then every local branch is exact and every relevant state is a perfect square
+
+Strongest refutation
+- none for the rigidity chain; mixed-word strictness remains false at O, n=9
+
+Reusable machinery
+- FloorPower PowerBoundEq / power_bound_eq_implies_local_eq / power_bound_eq_implies_square
+- research.juggler_sequence.power_algebra local-tightness probe
+
+Prior-art status
+- local floor-power rigidity lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Equality is controlled by the same local inequalities that built the finite-word envelope, with an exact square condition at each step. Stop rather than census equality words or add PowerHeight.
+
+Best next question
+- How do O and E act on successive perfect powers (the descending s^2 ↦ s^3 / s^2 ↦ s dynamics)?
+```
+
 
