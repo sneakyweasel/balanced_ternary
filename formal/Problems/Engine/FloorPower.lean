@@ -35,6 +35,8 @@ Headline theorems:
 * `first_even_freeze` — every first-even word satisfies
   `T_{Ev}(n) = T_v(⌊√n⌋)` on the square-root cell.
 * `odd_cell_unique` — every odd floor cell contains at most one `n`.
+* `oo_suffix_threshold` / `ooo_suffix_threshold` — the positive-drift
+  suffixes `OO` and `OOO` eventually sit at or above `(q+1)^2`.
 -/
 
 /-!
@@ -2828,4 +2830,112 @@ theorem odd_cell_unique {m a b : ℕ}
       have habs : a ^ 3 < m ^ 2 := (Nat.mul_lt_mul_left (by decide : 0 < 4)).mp this
       exact (lt_irrefl _) (lt_of_lt_of_le habs hge)
 
+/-!
+## First-even cell thresholds
+
+On a square-root cell the contracting inputs are the integers
+`n ∈ [q^2, (q+1)^2) ∩ (c, ∞)`. Any contraction requires
+`c + 1 < (q+1)^2`; the whole cell contracts iff `c < q^2`.
+The one-sided power envelope does not prove these lower bounds.
+This is not a halt theorem.
+-/
+
+theorem sq_lt_succ_sq (q : ℕ) : q ^ 2 < (q + 1) ^ 2 := by
+  have h : (q + 1) ^ 2 = q ^ 2 + 2 * q + 1 := by ring
+  omega
+
+theorem cell_any_contracts_iff {c lo hi : ℕ} :
+    (∃ n, lo ≤ n ∧ n < hi ∧ c < n) ↔ lo < hi ∧ c + 1 < hi := by
+  constructor
+  · rintro ⟨n, hlo, hhi, hc⟩
+    exact ⟨lt_of_le_of_lt hlo hhi, lt_of_le_of_lt (Nat.succ_le_of_lt hc) hhi⟩
+  · intro ⟨hcell, hc⟩
+    refine ⟨max lo (c + 1), Nat.le_max_left _ _, ?_, ?_⟩
+    · exact max_lt_iff.mpr ⟨hcell, hc⟩
+    · exact Nat.lt_of_succ_le (Nat.le_max_right _ _)
+
+theorem cell_all_contracts_iff {c lo hi : ℕ} :
+    (∀ n, lo ≤ n → n < hi → c < n) ↔ hi ≤ lo ∨ c < lo := by
+  constructor
+  · intro h
+    cases Nat.lt_or_ge lo hi with
+    | inl hlt => exact Or.inr (h lo le_rfl hlt)
+    | inr hle => exact Or.inl hle
+  · rintro (hle | hc) n hlo hhi
+    · exact (not_lt_of_ge (le_trans hle hlo) hhi).elim
+    · exact lt_of_lt_of_le hc hlo
+
+theorem first_even_any_contracts_iff {c q : ℕ} :
+    (∃ n, q ^ 2 ≤ n ∧ n < (q + 1) ^ 2 ∧ c < n) ↔ c + 1 < (q + 1) ^ 2 := by
+  constructor
+  · intro h
+    exact (cell_any_contracts_iff.mp h).2
+  · intro h
+    exact cell_any_contracts_iff.mpr ⟨sq_lt_succ_sq q, h⟩
+
+theorem first_even_all_contracts_iff {c q : ℕ} :
+    (∀ n, q ^ 2 ≤ n → n < (q + 1) ^ 2 → c < n) ↔ c < q ^ 2 := by
+  have h := cell_all_contracts_iff (c := c) (lo := q ^ 2) (hi := (q + 1) ^ 2)
+  have hne : ¬(q + 1) ^ 2 ≤ q ^ 2 := not_le_of_gt (sq_lt_succ_sq q)
+  simp [h, hne]
+
+theorem floorPower_odd_ge {n : ℕ} (hodd : n % 2 = 1) :
+    n ≤ floorPower n := by
+  rw [floorPower_odd_eq hodd]
+  refine Nat.le_sqrt.mpr ?_
+  have hn : 1 ≤ n := Nat.one_le_iff_ne_zero.mpr (fun h => by
+    subst h
+    simp at hodd)
+  have : n * n ≤ n * n * n :=
+    Nat.le_mul_of_pos_right (n * n) hn
+  simpa [pow_two, pow_three, mul_assoc] using this
+
+theorem eooCellOutput_eq_iterate {q : ℕ}
+    (hw : follows q [.odd, .odd]) :
+    eooCellOutput q = floorPower^[2] q := by
+  have hodd : q % 2 = 1 := hw.1
+  have h1 : floorPower q = (q ^ 3).sqrt := floorPower_odd_eq hodd
+  have hodd2 : floorPower q % 2 = 1 := hw.2.1
+  have h2 : floorPower (floorPower q) = ((q ^ 3).sqrt ^ 3).sqrt := by
+    rw [h1, floorPower_odd_eq (by simpa [h1] using hodd2)]
+  simpa [eooCellOutput, Function.iterate_succ_apply, h1] using h2.symm
+
+/-- For the suffix `OO`, every `q ≥ 5` that realizes the word sits at or
+above the next square. So `Q_{OO}` is finite. -/
+theorem oo_suffix_threshold {q : ℕ} (hq : 5 ≤ q)
+    (hw : follows q [.odd, .odd]) :
+    (q + 1) ^ 2 ≤ floorPower^[2] q := by
+  simpa [eooCellOutput_eq_iterate hw] using eoo_cell_output_ge_succ_sq hq
+
+theorem follows_oo_of_ooo {q : ℕ}
+    (hw : follows q [.odd, .odd, .odd]) :
+    follows q [.odd, .odd] :=
+  ⟨hw.1, hw.2.1, trivial⟩
+
+theorem ooo_three : floorPower^[3] 3 = 36 := by
+  native_decide
+
+/-- For the suffix `OOO`, every `q ≥ 3` that realizes the word sits at or
+above the next square. So `Q_{OOO}` is finite. -/
+theorem ooo_suffix_threshold {q : ℕ} (hq : 3 ≤ q)
+    (hw : follows q [.odd, .odd, .odd]) :
+    (q + 1) ^ 2 ≤ floorPower^[3] q := by
+  cases lt_or_ge q 5 with
+  | inl hlt =>
+      have hq3 : q = 3 := by
+        have hodd : q % 2 = 1 := hw.1
+        omega
+      subst hq3
+      rw [ooo_three]
+      omega
+  | inr h5 =>
+      have hoo := follows_oo_of_ooo hw
+      have h2 := oo_suffix_threshold h5 hoo
+      have hodd2 : floorPower^[2] q % 2 = 1 := by
+        simpa [Function.iterate_succ_apply] using hw.2.2.1
+      have hge : floorPower^[2] q ≤ floorPower^[3] q := by
+        simpa [Function.iterate_succ_apply] using floorPower_odd_ge hodd2
+      exact le_trans h2 hge
+
 end Problems.Engine
+

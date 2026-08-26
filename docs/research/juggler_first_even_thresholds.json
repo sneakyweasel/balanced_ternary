@@ -1,0 +1,1690 @@
+{
+  "experiment": "juggler_first_even_thresholds",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "q_max": 120,
+    "suffixes": [
+      {
+        "v": "O",
+        "alpha": {
+          "word": "O",
+          "odd_count": 1,
+          "length": 1,
+          "num": 3,
+          "den": 2,
+          "gt_two": false,
+          "ev_positive_drift": false
+        },
+        "q_max": 120,
+        "realized": 60,
+        "Q": [
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15,
+          17,
+          19,
+          21,
+          23,
+          25,
+          27,
+          29,
+          31,
+          33,
+          35,
+          37,
+          39,
+          41,
+          43,
+          45,
+          47,
+          49,
+          51,
+          53,
+          55,
+          57,
+          59,
+          61,
+          63,
+          65,
+          67,
+          69,
+          71,
+          73,
+          75,
+          77,
+          79,
+          81,
+          83,
+          85,
+          87,
+          89,
+          91,
+          93,
+          95,
+          97,
+          99,
+          101,
+          103,
+          105,
+          107,
+          109,
+          111,
+          113,
+          115,
+          117,
+          119
+        ],
+        "Q_all": [
+          3,
+          5,
+          7,
+          9,
+          11,
+          13,
+          15,
+          17,
+          19,
+          21,
+          23,
+          25,
+          27,
+          29,
+          31,
+          33,
+          35,
+          37,
+          39,
+          41,
+          43,
+          45,
+          47,
+          49,
+          51,
+          53,
+          55,
+          57,
+          59,
+          61,
+          63,
+          65,
+          67,
+          69,
+          71,
+          73,
+          75,
+          77,
+          79,
+          81,
+          83,
+          85,
+          87,
+          89,
+          91,
+          93,
+          95,
+          97,
+          99,
+          101,
+          103,
+          105,
+          107,
+          109,
+          111,
+          113,
+          115,
+          117,
+          119
+        ],
+        "first_expand": null,
+        "mono_breaks": [],
+        "rows": [
+          {
+            "q": 1,
+            "output": 1,
+            "cell": [
+              1,
+              4
+            ],
+            "regime": "mixed",
+            "any": true,
+            "all_cell": false
+          },
+          {
+            "q": 3,
+            "output": 5,
+            "cell": [
+              9,
+              16
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 5,
+            "output": 11,
+            "cell": [
+              25,
+              36
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 7,
+            "output": 18,
+            "cell": [
+              49,
+              64
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 9,
+            "output": 27,
+            "cell": [
+              81,
+              100
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 11,
+            "output": 36,
+            "cell": [
+              121,
+              144
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 13,
+            "output": 46,
+            "cell": [
+              169,
+              196
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 15,
+            "output": 58,
+            "cell": [
+              225,
+              256
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 17,
+            "output": 70,
+            "cell": [
+              289,
+              324
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 19,
+            "output": 82,
+            "cell": [
+              361,
+              400
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 21,
+            "output": 96,
+            "cell": [
+              441,
+              484
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 23,
+            "output": 110,
+            "cell": [
+              529,
+              576
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 25,
+            "output": 125,
+            "cell": [
+              625,
+              676
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 27,
+            "output": 140,
+            "cell": [
+              729,
+              784
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 29,
+            "output": 156,
+            "cell": [
+              841,
+              900
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 31,
+            "output": 172,
+            "cell": [
+              961,
+              1024
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 33,
+            "output": 189,
+            "cell": [
+              1089,
+              1156
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 35,
+            "output": 207,
+            "cell": [
+              1225,
+              1296
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 37,
+            "output": 225,
+            "cell": [
+              1369,
+              1444
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 39,
+            "output": 243,
+            "cell": [
+              1521,
+              1600
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 41,
+            "output": 262,
+            "cell": [
+              1681,
+              1764
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 43,
+            "output": 281,
+            "cell": [
+              1849,
+              1936
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 45,
+            "output": 301,
+            "cell": [
+              2025,
+              2116
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 47,
+            "output": 322,
+            "cell": [
+              2209,
+              2304
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 49,
+            "output": 343,
+            "cell": [
+              2401,
+              2500
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 51,
+            "output": 364,
+            "cell": [
+              2601,
+              2704
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 53,
+            "output": 385,
+            "cell": [
+              2809,
+              2916
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 55,
+            "output": 407,
+            "cell": [
+              3025,
+              3136
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 57,
+            "output": 430,
+            "cell": [
+              3249,
+              3364
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 59,
+            "output": 453,
+            "cell": [
+              3481,
+              3600
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 61,
+            "output": 476,
+            "cell": [
+              3721,
+              3844
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 63,
+            "output": 500,
+            "cell": [
+              3969,
+              4096
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 65,
+            "output": 524,
+            "cell": [
+              4225,
+              4356
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 67,
+            "output": 548,
+            "cell": [
+              4489,
+              4624
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 69,
+            "output": 573,
+            "cell": [
+              4761,
+              4900
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 71,
+            "output": 598,
+            "cell": [
+              5041,
+              5184
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 73,
+            "output": 623,
+            "cell": [
+              5329,
+              5476
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 75,
+            "output": 649,
+            "cell": [
+              5625,
+              5776
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 77,
+            "output": 675,
+            "cell": [
+              5929,
+              6084
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 79,
+            "output": 702,
+            "cell": [
+              6241,
+              6400
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 81,
+            "output": 729,
+            "cell": [
+              6561,
+              6724
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 83,
+            "output": 756,
+            "cell": [
+              6889,
+              7056
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 85,
+            "output": 783,
+            "cell": [
+              7225,
+              7396
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 87,
+            "output": 811,
+            "cell": [
+              7569,
+              7744
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 89,
+            "output": 839,
+            "cell": [
+              7921,
+              8100
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 91,
+            "output": 868,
+            "cell": [
+              8281,
+              8464
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 93,
+            "output": 896,
+            "cell": [
+              8649,
+              8836
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 95,
+            "output": 925,
+            "cell": [
+              9025,
+              9216
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 97,
+            "output": 955,
+            "cell": [
+              9409,
+              9604
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 99,
+            "output": 985,
+            "cell": [
+              9801,
+              10000
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 101,
+            "output": 1015,
+            "cell": [
+              10201,
+              10404
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 103,
+            "output": 1045,
+            "cell": [
+              10609,
+              10816
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 105,
+            "output": 1075,
+            "cell": [
+              11025,
+              11236
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 107,
+            "output": 1106,
+            "cell": [
+              11449,
+              11664
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 109,
+            "output": 1137,
+            "cell": [
+              11881,
+              12100
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 111,
+            "output": 1169,
+            "cell": [
+              12321,
+              12544
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 113,
+            "output": 1201,
+            "cell": [
+              12769,
+              12996
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 115,
+            "output": 1233,
+            "cell": [
+              13225,
+              13456
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 117,
+            "output": 1265,
+            "cell": [
+              13689,
+              13924
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 119,
+            "output": 1298,
+            "cell": [
+              14161,
+              14400
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          }
+        ]
+      },
+      {
+        "v": "OO",
+        "alpha": {
+          "word": "OO",
+          "odd_count": 2,
+          "length": 2,
+          "num": 9,
+          "den": 4,
+          "gt_two": true,
+          "ev_positive_drift": true
+        },
+        "q_max": 120,
+        "realized": 34,
+        "Q": [
+          1,
+          3
+        ],
+        "Q_all": [],
+        "first_expand": 5,
+        "mono_breaks": [],
+        "rows": [
+          {
+            "q": 1,
+            "output": 1,
+            "cell": [
+              1,
+              4
+            ],
+            "regime": "mixed",
+            "any": true,
+            "all_cell": false
+          },
+          {
+            "q": 3,
+            "output": 11,
+            "cell": [
+              9,
+              16
+            ],
+            "regime": "mixed",
+            "any": true,
+            "all_cell": false
+          },
+          {
+            "q": 5,
+            "output": 36,
+            "cell": [
+              25,
+              36
+            ],
+            "regime": "all_expand",
+            "any": false,
+            "all_cell": false
+          }
+        ]
+      },
+      {
+        "v": "OOO",
+        "alpha": {
+          "word": "OOO",
+          "odd_count": 3,
+          "length": 3,
+          "num": 27,
+          "den": 8,
+          "gt_two": true,
+          "ev_positive_drift": true
+        },
+        "q_max": 120,
+        "realized": 14,
+        "Q": [
+          1
+        ],
+        "Q_all": [],
+        "first_expand": 3,
+        "mono_breaks": [],
+        "rows": [
+          {
+            "q": 1,
+            "output": 1,
+            "cell": [
+              1,
+              4
+            ],
+            "regime": "mixed",
+            "any": true,
+            "all_cell": false
+          },
+          {
+            "q": 3,
+            "output": 36,
+            "cell": [
+              9,
+              16
+            ],
+            "regime": "all_expand",
+            "any": false,
+            "all_cell": false
+          }
+        ]
+      },
+      {
+        "v": "EO",
+        "alpha": {
+          "word": "EO",
+          "odd_count": 1,
+          "length": 2,
+          "num": 3,
+          "den": 4,
+          "gt_two": false,
+          "ev_positive_drift": false
+        },
+        "q_max": 120,
+        "realized": 25,
+        "Q": [
+          2,
+          10,
+          12,
+          14,
+          26,
+          28,
+          30,
+          32,
+          34,
+          50,
+          52,
+          54,
+          56,
+          58,
+          60,
+          62,
+          82,
+          84,
+          86,
+          88,
+          90,
+          92,
+          94,
+          96,
+          98
+        ],
+        "Q_all": [
+          2,
+          10,
+          12,
+          14,
+          26,
+          28,
+          30,
+          32,
+          34,
+          50,
+          52,
+          54,
+          56,
+          58,
+          60,
+          62,
+          82,
+          84,
+          86,
+          88,
+          90,
+          92,
+          94,
+          96,
+          98
+        ],
+        "first_expand": null,
+        "mono_breaks": [],
+        "rows": [
+          {
+            "q": 2,
+            "output": 1,
+            "cell": [
+              4,
+              9
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 10,
+            "output": 5,
+            "cell": [
+              100,
+              121
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 12,
+            "output": 5,
+            "cell": [
+              144,
+              169
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 14,
+            "output": 5,
+            "cell": [
+              196,
+              225
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 26,
+            "output": 11,
+            "cell": [
+              676,
+              729
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 28,
+            "output": 11,
+            "cell": [
+              784,
+              841
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 30,
+            "output": 11,
+            "cell": [
+              900,
+              961
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 32,
+            "output": 11,
+            "cell": [
+              1024,
+              1089
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 34,
+            "output": 11,
+            "cell": [
+              1156,
+              1225
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 50,
+            "output": 18,
+            "cell": [
+              2500,
+              2601
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 52,
+            "output": 18,
+            "cell": [
+              2704,
+              2809
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 54,
+            "output": 18,
+            "cell": [
+              2916,
+              3025
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 56,
+            "output": 18,
+            "cell": [
+              3136,
+              3249
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 58,
+            "output": 18,
+            "cell": [
+              3364,
+              3481
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 60,
+            "output": 18,
+            "cell": [
+              3600,
+              3721
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 62,
+            "output": 18,
+            "cell": [
+              3844,
+              3969
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 82,
+            "output": 27,
+            "cell": [
+              6724,
+              6889
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 84,
+            "output": 27,
+            "cell": [
+              7056,
+              7225
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 86,
+            "output": 27,
+            "cell": [
+              7396,
+              7569
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 88,
+            "output": 27,
+            "cell": [
+              7744,
+              7921
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 90,
+            "output": 27,
+            "cell": [
+              8100,
+              8281
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 92,
+            "output": 27,
+            "cell": [
+              8464,
+              8649
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 94,
+            "output": 27,
+            "cell": [
+              8836,
+              9025
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 96,
+            "output": 27,
+            "cell": [
+              9216,
+              9409
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 98,
+            "output": 27,
+            "cell": [
+              9604,
+              9801
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          }
+        ]
+      },
+      {
+        "v": "EOO",
+        "alpha": {
+          "word": "EOO",
+          "odd_count": 2,
+          "length": 3,
+          "num": 9,
+          "den": 8,
+          "gt_two": false,
+          "ev_positive_drift": false
+        },
+        "q_max": 120,
+        "realized": 18,
+        "Q": [
+          2,
+          10,
+          12,
+          14,
+          26,
+          28,
+          30,
+          32,
+          34,
+          82,
+          84,
+          86,
+          88,
+          90,
+          92,
+          94,
+          96,
+          98
+        ],
+        "Q_all": [
+          2,
+          10,
+          12,
+          14,
+          26,
+          28,
+          30,
+          32,
+          34,
+          82,
+          84,
+          86,
+          88,
+          90,
+          92,
+          94,
+          96,
+          98
+        ],
+        "first_expand": null,
+        "mono_breaks": [],
+        "rows": [
+          {
+            "q": 2,
+            "output": 1,
+            "cell": [
+              4,
+              9
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 10,
+            "output": 11,
+            "cell": [
+              100,
+              121
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 12,
+            "output": 11,
+            "cell": [
+              144,
+              169
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 14,
+            "output": 11,
+            "cell": [
+              196,
+              225
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 26,
+            "output": 36,
+            "cell": [
+              676,
+              729
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 28,
+            "output": 36,
+            "cell": [
+              784,
+              841
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 30,
+            "output": 36,
+            "cell": [
+              900,
+              961
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 32,
+            "output": 36,
+            "cell": [
+              1024,
+              1089
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 34,
+            "output": 36,
+            "cell": [
+              1156,
+              1225
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 82,
+            "output": 140,
+            "cell": [
+              6724,
+              6889
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 84,
+            "output": 140,
+            "cell": [
+              7056,
+              7225
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 86,
+            "output": 140,
+            "cell": [
+              7396,
+              7569
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 88,
+            "output": 140,
+            "cell": [
+              7744,
+              7921
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 90,
+            "output": 140,
+            "cell": [
+              8100,
+              8281
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 92,
+            "output": 140,
+            "cell": [
+              8464,
+              8649
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 94,
+            "output": 140,
+            "cell": [
+              8836,
+              9025
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 96,
+            "output": 140,
+            "cell": [
+              9216,
+              9409
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 98,
+            "output": 140,
+            "cell": [
+              9604,
+              9801
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          }
+        ]
+      },
+      {
+        "v": "EOOO",
+        "alpha": {
+          "word": "EOOO",
+          "odd_count": 3,
+          "length": 4,
+          "num": 27,
+          "den": 16,
+          "gt_two": false,
+          "ev_positive_drift": false
+        },
+        "q_max": 120,
+        "realized": 4,
+        "Q": [
+          2,
+          10,
+          12,
+          14
+        ],
+        "Q_all": [
+          2,
+          10,
+          12,
+          14
+        ],
+        "first_expand": null,
+        "mono_breaks": [],
+        "rows": [
+          {
+            "q": 2,
+            "output": 1,
+            "cell": [
+              4,
+              9
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 10,
+            "output": 36,
+            "cell": [
+              100,
+              121
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 12,
+            "output": 36,
+            "cell": [
+              144,
+              169
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          },
+          {
+            "q": 14,
+            "output": 36,
+            "cell": [
+              196,
+              225
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          }
+        ]
+      },
+      {
+        "v": "EOOOO",
+        "alpha": {
+          "word": "EOOOO",
+          "odd_count": 4,
+          "length": 5,
+          "num": 81,
+          "den": 32,
+          "gt_two": true,
+          "ev_positive_drift": true
+        },
+        "q_max": 120,
+        "realized": 1,
+        "Q": [
+          2
+        ],
+        "Q_all": [
+          2
+        ],
+        "first_expand": null,
+        "mono_breaks": [],
+        "rows": [
+          {
+            "q": 2,
+            "output": 1,
+            "cell": [
+              4,
+              9
+            ],
+            "regime": "all_contract",
+            "any": true,
+            "all_cell": true
+          }
+        ]
+      },
+      {
+        "v": "OOOO",
+        "alpha": {
+          "word": "OOOO",
+          "odd_count": 4,
+          "length": 4,
+          "num": 81,
+          "den": 16,
+          "gt_two": true,
+          "ev_positive_drift": true
+        },
+        "q_max": 120,
+        "realized": 4,
+        "Q": [
+          1
+        ],
+        "Q_all": [],
+        "first_expand": 37,
+        "mono_breaks": [],
+        "rows": [
+          {
+            "q": 1,
+            "output": 1,
+            "cell": [
+              1,
+              4
+            ],
+            "regime": "mixed",
+            "any": true,
+            "all_cell": false
+          }
+        ]
+      }
+    ],
+    "off_by_one": "any contraction on [q^2,(q+1)^2) is c+1 < (q+1)^2, not merely c < (q+1)^2"
+  },
+  "lean": {
+    "sorry_free": true,
+    "cell_any_contracts_iff": true,
+    "cell_all_contracts_iff": true,
+    "first_even_any_contracts_iff": true,
+    "first_even_all_contracts_iff": true,
+    "first_even_contracts_iff": true,
+    "oo_suffix_threshold": true,
+    "ooo_suffix_threshold": true,
+    "floorPower_odd_ge": true,
+    "eoo_cell_output_ge_succ_sq": true,
+    "floorPower_eoo_contracts_iff": true,
+    "power_bound_compensated_contracts": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_cell_tree": true,
+    "no_lower_envelope": true,
+    "mixed_word_power_lt_absent": true
+  },
+  "decision": {
+    "classification": "FIRST_E_FINITE_GREEN",
+    "secondary": "FIRST_E_THRESHOLD_GREEN",
+    "reason": "Q_OO = {1,3} and Q_OOO = {1} with Lean eventual thresholds; Q_O is all realized odd q because \u03b1=3/2<2, which is formal contraction of EO, not compensated positive drift"
+  },
+  "search_method": "suffix image at realized q only; integer cell comparison; no huge envelope powers"
+}

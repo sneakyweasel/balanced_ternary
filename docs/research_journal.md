@@ -4324,4 +4324,49 @@ Best next question
 - Prove there are only finitely many first-even positive-drift contraction cells, or find a suffix that stays below the next square for infinitely many q
 ```
 
+## Juggler first-even thresholds
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether \(Q_v=\{q:T_v(q)<(q+1)^2\}\) is finite for positive-drift first-even suffixes
+- **Hypotheses:** `FIRST_E_FINITE_GREEN`, `FIRST_E_THRESHOLD_GREEN`, `FIRST_E_INFINITE_FAMILY`, `FIRST_E_THRESHOLD_COUNTEREXAMPLE`, or `FIRST_E_MECHANISM_TOO_LOCAL`
+- **Major results:** Exact any-contraction is \(c+1<(q+1)^2\) **PROVED**. Whole-cell contraction is \(c<q^2\) **PROVED**. \(Q_{OO}=\{1,3\}\) with threshold \(q\ge5\) **PROVED**. \(Q_{OOO}=\{1\}\) with threshold \(q\ge3\) **PROVED**. \(Q_O\) is all odd \(q\), but \(\alpha=3/2\le2\). Classification **FIRST_E_FINITE_GREEN**. Records: `docs/research/juggler_first_even_thresholds.md`, `docs/problems/juggler_first_even_thresholds.md`. Control layer unchanged
+- **Refuted ideas:** deriving finiteness from the one-sided upper envelope; treating \(c<(q+1)^2\) as the exact integer any-contraction test; reading \(Q_O=\mathbb{N}_{\mathrm{odd}}\) as a compensated positive-drift family
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether every suffix with \(\alpha_v>2\) is eventually above \((q+1)^2\)
+- **Decision:** PROMOTE the interval law and the OO/OOO finiteness theorems. Do not open a generic lower envelope. Do not claim termination
+
+```text
+What was learned
+- Any contraction on [q^2,(q+1)^2) is c+1<(q+1)^2; whole-cell is c<q^2
+- Ev is formally expanding iff the suffix satisfies α_v>2
+- Q_OO={1,3} and Q_OOO={1} by eventual thresholds, not by census
+- A later odd step is nondecreasing, so OOO inherits the OO bound
+- Q_O is infinite because α=3/2<2; that is formal contraction of EO
+
+Strongest theorem
+- follows q OO and q≥5 imply T^2(q) ≥ (q+1)^2; follows q OOO and q≥3 imply T^3(q) ≥ (q+1)^2
+
+Strongest refutation
+- the one-sided power envelope cannot prove these lower bounds; Q_O infinite is not a positive-drift family
+
+Reusable machinery
+- FloorPower cell_any_contracts_iff / oo_suffix_threshold / ooo_suffix_threshold
+- research.juggler_sequence.first_even_thresholds
+
+Prior-art status
+- local finite-word threshold, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The EOO and EOOO contraction starts are the realized points of two finite Q_v, now with explicit eventual bounds. Suffixes with α≤2 can have large Q_v, but those words are not formally expanding.
+
+Best next question
+- Prove eventual non-contraction for every suffix with α_v>2, or find one such suffix with unbounded Q_v
+```
+
 
