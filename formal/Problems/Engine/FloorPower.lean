@@ -50,6 +50,9 @@ Headline theorems:
 * `internal_even_collapse` — a medial even run is the same residual
   evaluation. Bounded `maxEvenRun` is not a useful family bound:
   `q = 2500` follows a `maxEvenRun = 3` superquadratic word onto `1`.
+* `Capture` / `Descent` — a realized block either lands in the certified
+  basin `{1}` or strictly decreases. Capture composes. This is not a
+  halt theorem: it does not say every start has such a block.
 -/
 
 /-!
@@ -3574,6 +3577,88 @@ theorem nested_even_collapse_2500 :
 theorem nested_even_collapse_2500_superquadratic :
     2 ^ (wordEE_OEEE12.length + 1) < 3 ^ oddCount wordEE_OEEE12 := by
   native_decide
+
+/-!
+## Descent and capture certificates
+
+A realized finite block may strictly descend, or it may land in the
+certified basin `{1}`. The changing-family collapses are capture, not
+merely contraction. This is a local calculus, not a termination theorem.
+-/
+
+def InertBasin (s : ℕ) : Prop := s = 1
+
+def Capture (n : ℕ) (w : List Branch) : Prop :=
+  follows n w ∧ image n w = 1
+
+def Descent (n : ℕ) (w : List Branch) : Prop :=
+  follows n w ∧ image n w < n
+
+def ReachesOne (n : ℕ) : Prop :=
+  ∃ k, floorPower^[k] n = 1
+
+theorem reachesOne_one : ReachesOne 1 :=
+  ⟨0, rfl⟩
+
+theorem reachesOne_of_iterate {n m k : ℕ}
+    (h : floorPower^[k] n = m) (hm : ReachesOne m) : ReachesOne n := by
+  obtain ⟨j, hj⟩ := hm
+  refine ⟨k + j, ?_⟩
+  rw [Nat.add_comm, Function.iterate_add_apply, h, hj]
+
+theorem capture_reachesOne {n : ℕ} {w : List Branch} (h : Capture n w) :
+    ReachesOne n :=
+  ⟨w.length, by rw [← image_eq_iterate, h.2]⟩
+
+theorem capture_of_suffix {n : ℕ} {u v : List Branch}
+    (hu : follows n u) (hv : Capture (image n u) v) :
+    Capture n (u ++ v) :=
+  ⟨follows_append hu hv.1, by rw [image_append, hv.2]⟩
+
+theorem capture_append {n : ℕ} {u v : List Branch}
+    (hu : Capture n u) (hv : Capture (image n u) v) :
+    Capture n (u ++ v) :=
+  capture_of_suffix hu.1 hv
+
+theorem even_tower_capture {k : ℕ} (hk : 1 ≤ k) :
+    Capture (2 ^ (2 ^ (k - 1))) (List.replicate k Branch.even) :=
+  even_tower_to_one hk
+
+theorem even_tower_odd_tail_capture {k o : ℕ} (hk : 1 ≤ k) :
+    Capture (2 ^ (2 ^ (k - 1)))
+      (List.replicate k Branch.even ++ List.replicate o Branch.odd) :=
+  ⟨(even_tower_odd_tail_contracts (k := k) (o := o) hk).1,
+    (even_tower_odd_tail_contracts (k := k) (o := o) hk).2.1⟩
+
+theorem odd_even_tower_seven_capture : Capture 7 wordOEEE9 :=
+  ⟨odd_even_tower_seven.1, odd_even_tower_seven.2.1⟩
+
+theorem nested_even_collapse_2500_capture : Capture 2500 wordEE_OEEE12 :=
+  ⟨nested_even_collapse_2500.1, nested_even_collapse_2500.2.1⟩
+
+theorem first_even_cell_capture {n : ℕ} {v : List Branch}
+    (hw : follows n (.even :: v)) (hcap : image n.sqrt v = 1) :
+    Capture n (.even :: v) :=
+  ⟨hw, by
+    have : image n (.even :: v) = image n.sqrt v := by
+      rw [image_eq_iterate, image_eq_iterate, List.length_cons, iterate_cons_even hw.1]
+    rw [this, hcap]⟩
+
+/-- If every strictly smaller state already reaches `1`, a descent block
+at `n` forces `n` to reach `1`. Not a halt theorem. -/
+theorem descent_of_below {n : ℕ} {w : List Branch}
+    (hbelow : ∀ m, m < n → ReachesOne m) (hd : Descent n w) :
+    ReachesOne n :=
+  reachesOne_of_iterate (image_eq_iterate n w).symm (hbelow _ hd.2)
+
+/-- A hypothetical value that never reaches `1`, and is minimal with
+that property, has no descent certificate and no capture into `{1}`.
+This is the global obstruction formulation, not a totality proof. -/
+theorem minimal_avoids_progress {n : ℕ} {w : List Branch}
+    (hfail : ¬ReachesOne n) (hmin : ∀ m, m < n → ReachesOne m) :
+    ¬Descent n w ∧ ¬Capture n w :=
+  ⟨fun hd => hfail (descent_of_below hmin hd),
+    fun hc => hfail (capture_reachesOne hc)⟩
 
 end Problems.Engine
 

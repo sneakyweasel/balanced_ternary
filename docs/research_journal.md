@@ -4549,4 +4549,49 @@ Best next question
 - Must every large superquadratic first-even contraction contain an even run that lands in an inert basin with unbounded entry/exit ratio?
 ```
 
+## Juggler descent and capture certificates
+
+- **Date:** 2026-08-27
+- **Objective:** Normalize changing-family collapses as capture into \(\{1\}\) and pair them with descent as a local progress calculus
+- **Hypotheses:** `CAPTURE_NORMALIZATION_GREEN`, `CAPTURE_BASIN_ONE_GREEN`, `ESCAPE_NOT_CAPTURED`, `DESCENT_CAPTURE_FRAMEWORK_GREEN`, or `ESCAPE_FAMILY_FOUND`
+- **Major results:** `Capture`/`Descent`/`ReachesOne` **PROVED**. Capture composes through an arbitrary prefix **PROVED**. \(E^kO^{3k}\), `OEEE` at \(q=7\), and the nested \(q=2500\) word are capture **PROVED**. First-even cell capture when \(T_v(q)=1\) **PROVED**. A minimal non-1 value admits neither certificate **PROVED**. Short `EOO` at \(12,14\) is descent, not capture. Classification **DESCENT_CAPTURE_FRAMEWORK_GREEN**. Records: `docs/research/juggler_capture_certificates.md`, `docs/problems/juggler_capture_certificates.md`. Control layer unchanged
+- **Refuted ideas:** treating large changing-family contractions as generic compensated descent; enlarging the basin beyond \(\{1\}\) for the known families
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** structural constraints on a hypothetical infinite `NO_CERTIFICATE` path
+- **Decision:** PROMOTE the descent/capture calculus. Keep \(S=\{1\}\). Do not claim every trajectory contains a certificate. Do not claim termination
+
+```text
+What was learned
+- Large changing-family collapses are capture into {1}, not mere contraction
+- Capture composes: a prefix plus a residual capture is a capture
+- Short EOO at 12 and 14 is descent to 11; small is not inert (3→5→11→36)
+- On a first-even cell, T_v(q)=1 is cell capture
+- A hypothetical minimal n that never reaches 1 admits no descent and no capture
+
+Strongest theorem
+- Capture n u and Capture (T_u n) v imply Capture n (u++v); a minimal non-1 n admits neither Descent nor Capture
+
+Strongest refutation
+- none of the large collapse families escape {1}; EOO 12/14 are descent, which the framework already names
+
+Reusable machinery
+- FloorPower Capture / Descent / capture_of_suffix / minimal_avoids_progress
+- research.juggler_sequence.capture_certificates
+
+Prior-art status
+- local certificate calculus, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The scale-collapse loophole is a machine-checkable capture certificate. Together with descent, that is the first exact vocabulary for what a hypothetical minimal counterexample must avoid.
+
+Best next question
+- What structural constraints would an infinite NO_CERTIFICATE path have to satisfy?
+```
+
 

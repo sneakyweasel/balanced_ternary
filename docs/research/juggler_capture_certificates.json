@@ -1,0 +1,260 @@
+{
+  "experiment": "juggler_capture_certificates",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "small_states": [
+      {
+        "s": 1,
+        "path": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "inert": true,
+        "reaches_one": true
+      },
+      {
+        "s": 2,
+        "path": [
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "inert": false,
+        "reaches_one": true
+      },
+      {
+        "s": 3,
+        "path": [
+          3,
+          5,
+          11,
+          36,
+          6,
+          2,
+          1
+        ],
+        "inert": false,
+        "reaches_one": true
+      },
+      {
+        "s": 4,
+        "path": [
+          4,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "inert": false,
+        "reaches_one": true
+      },
+      {
+        "s": 5,
+        "path": [
+          5,
+          11,
+          36,
+          6,
+          2,
+          1,
+          1
+        ],
+        "inert": false,
+        "reaches_one": true
+      },
+      {
+        "s": 6,
+        "path": [
+          6,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "inert": false,
+        "reaches_one": true
+      },
+      {
+        "s": 7,
+        "path": [
+          7,
+          18,
+          4,
+          2,
+          1,
+          1,
+          1
+        ],
+        "inert": false,
+        "reaches_one": true
+      },
+      {
+        "s": 8,
+        "path": [
+          8,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "inert": false,
+        "reaches_one": true
+      }
+    ],
+    "blocks": [
+      {
+        "word": "E",
+        "n": 2,
+        "follows": true,
+        "endpoint": 1,
+        "kind": "CAPTURE",
+        "contracts": true
+      },
+      {
+        "word": "EOO",
+        "n": 2,
+        "follows": true,
+        "endpoint": 1,
+        "kind": "CAPTURE",
+        "contracts": true
+      },
+      {
+        "word": "EOO",
+        "n": 12,
+        "follows": true,
+        "endpoint": 11,
+        "kind": "DESCENT",
+        "contracts": true
+      },
+      {
+        "word": "EOO",
+        "n": 14,
+        "follows": true,
+        "endpoint": 11,
+        "kind": "DESCENT",
+        "contracts": true
+      },
+      {
+        "word": "EEOOOO",
+        "n": 4,
+        "follows": true,
+        "endpoint": 1,
+        "kind": "CAPTURE",
+        "contracts": true
+      },
+      {
+        "word": "OO",
+        "n": 3,
+        "follows": true,
+        "endpoint": 11,
+        "kind": "NO_CERTIFICATE",
+        "contracts": false
+      },
+      {
+        "word": "OEEEOOOOOOOOO",
+        "n": 7,
+        "follows": true,
+        "endpoint": 1,
+        "kind": "CAPTURE",
+        "contracts": true
+      },
+      {
+        "word": "EEOEEEOOOOOOOOOOOO",
+        "n": 2500,
+        "follows": true,
+        "endpoint": 1,
+        "kind": "CAPTURE",
+        "contracts": true
+      },
+      {
+        "word": "EEOOOOOO",
+        "n": 4,
+        "follows": true,
+        "endpoint": 1,
+        "kind": "CAPTURE",
+        "contracts": true
+      },
+      {
+        "word": "EEEOOOOOOOOO",
+        "n": 16,
+        "follows": true,
+        "endpoint": 1,
+        "kind": "CAPTURE",
+        "contracts": true
+      },
+      {
+        "word": "EEEEOOOOOOOOOOOO",
+        "n": 256,
+        "follows": true,
+        "endpoint": 1,
+        "kind": "CAPTURE",
+        "contracts": true
+      }
+    ],
+    "composition": {
+      "n": 16,
+      "prefix": "EEE",
+      "suffix": "OOOOOOOOO",
+      "mid": 1,
+      "prefix_kind": "CAPTURE",
+      "suffix_kind": "CAPTURE",
+      "concat_kind": "CAPTURE"
+    },
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "InertBasin": true,
+    "Capture": true,
+    "Descent": true,
+    "ReachesOne": true,
+    "capture_of_suffix": true,
+    "capture_append": true,
+    "even_tower_capture": true,
+    "even_tower_odd_tail_capture": true,
+    "odd_even_tower_seven_capture": true,
+    "nested_even_collapse_2500_capture": true,
+    "first_even_cell_capture": true,
+    "capture_reachesOne": true,
+    "descent_of_below": true,
+    "minimal_avoids_progress": true,
+    "power_bound_compensated_contracts": true,
+    "first_even_freeze": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_lower_envelope_structure": true,
+    "no_global_termination_theorem": true
+  },
+  "decision": {
+    "classification": "DESCENT_CAPTURE_FRAMEWORK_GREEN",
+    "secondary": "CAPTURE_BASIN_ONE_GREEN",
+    "reason": "large changing-family witnesses capture into {1}; short EOO at 12 and 14 are descent, not capture; capture composes and a minimal non-1 value admits neither certificate"
+  },
+  "search_method": "classify known collapse and EOO blocks as CAPTURE/DESCENT/NO_CERTIFICATE; basin S={1}; no logs, no halt claim"
+}

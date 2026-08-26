@@ -144,9 +144,10 @@ infinite, only that it cannot be a small function of \(R\).
 
 ## Open questions
 
-Does every sufficiently large superquadratic first-even contraction
-require an internal even run that lands in the basin of \(1\) (or
-another inert residual) with entry/exit ratio tending to infinity?
+The large collapse witnesses are capture into \(\{1\}\); see
+[juggler_capture_certificates.md](juggler_capture_certificates.md).
+What remains is the structure of a hypothetical path that avoids both
+descent and capture.
 
 ## Decision
 
