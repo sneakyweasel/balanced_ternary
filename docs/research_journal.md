@@ -4962,7 +4962,7 @@ Best next question
 - **Major results:** \(z\ge(n+1)^2\iff T(z)>n\) **EXACT — LEAN VERIFIED**. Post-overshoot \(y\) may be even or odd **EXACT — LEAN VERIFIED**. `ReturnBelow` plus a prefix is `FiniteProgress`; a CE never returns below its start **EXACT — LEAN VERIFIED**. Even \(y\) after the first `O^a E` on a CE forces \(n^2\le y\) and \(n^4\le z\) **EXACT — LEAN VERIFIED**. Two excursions do not always return below \(n\): \(37\) and \(77\) stay **COMPUTATIONALLY VERIFIED**. Classification **PERSISTENT_OVERSHOOT_COUNTEREXAMPLE**. Records: `docs/research/juggler_post_overshoot.md`, `docs/problems/juggler_post_overshoot.md`. Control layer unchanged
 - **Refuted ideas:** the first post-overshoot state is odd; two excursions force return below \(n\); every overshoot is already `FiniteProgress`; a halt theorem
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
-- **Open:** after two persistent overshoots with odd residual states, what existing certificate can still fire without assuming a return law?
+- **Open:** answered in the residual-chain certificate phase
 - **Decision:** PROMOTE the classification, the even-\(y\) fourth-power barrier, and the two-excursion negative. Do not claim a general return-below theorem. Do not claim termination
 
 ```text
@@ -4997,6 +4997,51 @@ Why
 
 Best next question
 - After two persistent overshoots with odd residual states, what existing certificate can still fire without assuming a return law?
+```
+
+## Juggler residual-chain certificate propagation
+
+- **Date:** 2026-08-27
+- **Objective:** Formalize residual-step certificate propagation and isolate the recursive odd-odd leftover
+- **Hypotheses:** `RESIDUAL_CHAIN_GREEN`, `RESIDUAL_CERTIFICATE_CLOSURE_GREEN`, `PERSISTENT_ODD_RESIDUAL_COUNTEREXAMPLE`, or `RESIDUAL_CHAIN_REDUCES_NO_FURTHER`
+- **Major results:** `ResidualStep` composes `ReachesOne`, `Capture`, and `ReturnBelow` **EXACT — LEAN VERIFIED**. Residual `Descent` that stays \(\ge x\) is not `Descent` at \(x\) **EXACT — LEAN VERIFIED**. `PersistentOddResidual` stays on the odd-odd frontier **EXACT — LEAN VERIFIED**. CE residual scale: odd exit \(\ge n\), even exit \(\ge n^2\) **EXACT — LEAN VERIFIED**. First residuals in \(2\le n\le 80\): 13 propagate, 3 automatic-`FiniteProgress` stay (\(9,49,77\)), 2 persistent odd-odd (\(37,69\)). Classification **RESIDUAL_CHAIN_GREEN**. Records: `docs/research/juggler_residual_chain.md`, `docs/problems/juggler_residual_chain.md`. Control layer unchanged
+- **Refuted ideas:** `FiniteProgress(y)` implies `FiniteProgress(n)`; every stay residual is odd-odd; a uniform residual horizon; a halt theorem
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** on a persistent odd-odd residual of a hypothetical CE, does the intervening even-run scale budget force a later `ReturnBelow` or a barrier violation?
+- **Decision:** PROMOTE the residual relation and the compose/non-compose split. Do not claim that chains terminate. Do not claim that `FiniteProgress` propagates. Do not claim termination
+
+```text
+What was learned
+- ReachesOne, Capture, and ReturnBelow propagate backward along a residual excursion
+- Descent at y with image ≥ n is not Descent at n; FiniteProgress does not propagate
+- Stay-odd splits: 9, 49, 77 have automatic FiniteProgress; 37, 69 are persistent odd-odd
+- 37 → 9317 → 2233 stays above 37; the middle step is Descent at 9317
+- A CE residual is ≥ n if odd and ≥ n^2 if even
+
+Strongest theorem
+- ResidualStep x y and ReachesOne y imply ReachesOne x; residual Descent staying ≥ x is not Descent at x
+
+Strongest refutation
+- FiniteProgress at the residual is FiniteProgress at the start; 9→11, 77→1523, and 37→9317→2233 stay above the original n
+
+Reusable machinery
+- Problems.Engine.ResidualChain ResidualStep / residual_descent_not_below / ResidualChain
+- research.juggler_sequence.residual_chain
+
+Prior-art status
+- composition lemmas, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The odd-odd leftover is now a composable residual relation with an exact certificate split, and stay-odd is no longer one class.
+
+Best next question
+- For a persistent odd-odd residual of a hypothetical minimal counterexample, does the existing scale budget on the intervening even run force a later ReturnBelow or a later even residual that violates the barrier?
 ```
 
 

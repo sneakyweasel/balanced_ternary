@@ -153,10 +153,11 @@ ordinary orbits and fail on \(37\) and \(77\).
 
 ## Open questions
 
-For an odd post-overshoot state \(y>n\) of the \(37\)/\(77\) shape,
-which already-proved certificate can still fire after more than two
-excursions? Do not answer this by proving that every overshoot
-returns, and do not introduce a frequency or energy law.
+Answered in [juggler_residual_chain.md](juggler_residual_chain.md):
+`ReachesOne`, `Capture`, and `ReturnBelow` propagate along a residual
+step; residual `Descent` that stays \(\ge n\) does not. Stay-odd
+splits into automatic `FiniteProgress` (\(9,49,77\)) and persistent
+odd-odd (\(37,69\)).
 
 ## Decision
 
@@ -165,9 +166,8 @@ fourth-power barrier, and the negative that two excursions do not
 always return below \(n\). Do not claim a general return-below
 theorem. Do not claim termination.
 
-Best next question: after two persistent overshoots with odd residual
-states, what existing certificate can still fire without assuming a
-return law?
+Best next question: answered in
+[juggler_residual_chain.md](juggler_residual_chain.md).
 
 ## Publication assessment
 

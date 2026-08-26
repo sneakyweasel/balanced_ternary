@@ -1,0 +1,324 @@
+{
+  "experiment": "juggler_residual_chain",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false,
+    "finite_progress_propagates": false,
+    "residual_descent_is_progress": false,
+    "uniform_residual_horizon": false,
+    "overshoot_is_progress": false
+  },
+  "scan": {
+    "census": {
+      "n_max": 80,
+      "odd_odd": 18,
+      "first_kinds": {
+        "CAPTURE": 5,
+        "RETURN_BELOW": 8,
+        "CYCLE": 0,
+        "STAY_AUTO_FP": 3,
+        "PERSISTENT_ODD_ODD": 2,
+        "STAY_EVEN": 0,
+        "NO_EVEN": 0
+      },
+      "stay_auto_fp": [
+        9,
+        49,
+        77
+      ],
+      "persistent_odd_odd": [
+        37,
+        69
+      ],
+      "propagating": 13
+    },
+    "hard": [
+      {
+        "n": 9,
+        "chain": [
+          {
+            "i": 0,
+            "x": 9,
+            "x_odd_odd": true,
+            "a": 2,
+            "z": 140,
+            "b": 1,
+            "y": 11,
+            "y_parity": "odd",
+            "y_bucket": "OE_PROGRESS",
+            "y_odd_odd": false,
+            "vs_n": "STAY",
+            "vs_x": "STAY",
+            "kind": "STAY_AUTO_FP",
+            "persistent": false,
+            "auto_fp": true,
+            "y_lt_n": false
+          },
+          {
+            "i": 1,
+            "x": 11,
+            "x_odd_odd": false,
+            "a": 1,
+            "z": 36,
+            "b": 3,
+            "y": 1,
+            "y_parity": "odd",
+            "y_bucket": "ONE",
+            "y_odd_odd": false,
+            "vs_n": "CAPTURE",
+            "vs_x": "CAPTURE",
+            "kind": "CAPTURE",
+            "persistent": false,
+            "auto_fp": false,
+            "y_lt_n": true
+          }
+        ]
+      },
+      {
+        "n": 37,
+        "chain": [
+          {
+            "i": 0,
+            "x": 37,
+            "x_odd_odd": true,
+            "a": 4,
+            "z": 86818724,
+            "b": 1,
+            "y": 9317,
+            "y_parity": "odd",
+            "y_bucket": "ODD_ODD",
+            "y_odd_odd": true,
+            "vs_n": "STAY",
+            "vs_x": "STAY",
+            "kind": "PERSISTENT_ODD_ODD",
+            "persistent": true,
+            "auto_fp": false,
+            "y_lt_n": false
+          },
+          {
+            "i": 1,
+            "x": 9317,
+            "x_odd_odd": true,
+            "a": 3,
+            "z": 24906114455136,
+            "b": 2,
+            "y": 2233,
+            "y_parity": "odd",
+            "y_bucket": "ODD_ODD",
+            "y_odd_odd": true,
+            "vs_n": "STAY",
+            "vs_x": "DESCENT",
+            "kind": "PERSISTENT_ODD_ODD",
+            "persistent": false,
+            "auto_fp": false,
+            "y_lt_n": false
+          },
+          {
+            "i": 2,
+            "x": 2233,
+            "x_odd_odd": true,
+            "a": 2,
+            "z": 34276462,
+            "b": 5,
+            "y": 1,
+            "y_parity": "odd",
+            "y_bucket": "ONE",
+            "y_odd_odd": false,
+            "vs_n": "CAPTURE",
+            "vs_x": "CAPTURE",
+            "kind": "CAPTURE",
+            "persistent": false,
+            "auto_fp": false,
+            "y_lt_n": true
+          }
+        ]
+      },
+      {
+        "n": 49,
+        "chain": [
+          {
+            "i": 0,
+            "x": 49,
+            "x_odd_odd": true,
+            "a": 2,
+            "z": 6352,
+            "b": 1,
+            "y": 79,
+            "y_parity": "odd",
+            "y_bucket": "OE_PROGRESS",
+            "y_odd_odd": false,
+            "vs_n": "STAY",
+            "vs_x": "STAY",
+            "kind": "STAY_AUTO_FP",
+            "persistent": false,
+            "auto_fp": true,
+            "y_lt_n": false
+          },
+          {
+            "i": 1,
+            "x": 79,
+            "x_odd_odd": false,
+            "a": 1,
+            "z": 702,
+            "b": 2,
+            "y": 5,
+            "y_parity": "odd",
+            "y_bucket": "ODD_ODD",
+            "y_odd_odd": true,
+            "vs_n": "DESCENT",
+            "vs_x": "DESCENT",
+            "kind": "RETURN_BELOW",
+            "persistent": false,
+            "auto_fp": false,
+            "y_lt_n": true
+          }
+        ]
+      },
+      {
+        "n": 69,
+        "chain": [
+          {
+            "i": 0,
+            "x": 69,
+            "x_odd_odd": true,
+            "a": 2,
+            "z": 13716,
+            "b": 1,
+            "y": 117,
+            "y_parity": "odd",
+            "y_bucket": "ODD_ODD",
+            "y_odd_odd": true,
+            "vs_n": "STAY",
+            "vs_x": "STAY",
+            "kind": "PERSISTENT_ODD_ODD",
+            "persistent": true,
+            "auto_fp": false,
+            "y_lt_n": false
+          },
+          {
+            "i": 1,
+            "x": 117,
+            "x_odd_odd": true,
+            "a": 2,
+            "z": 44992,
+            "b": 3,
+            "y": 3,
+            "y_parity": "odd",
+            "y_bucket": "ODD_ODD",
+            "y_odd_odd": true,
+            "vs_n": "DESCENT",
+            "vs_x": "DESCENT",
+            "kind": "RETURN_BELOW",
+            "persistent": false,
+            "auto_fp": false,
+            "y_lt_n": true
+          }
+        ]
+      },
+      {
+        "n": 77,
+        "chain": [
+          {
+            "i": 0,
+            "x": 77,
+            "x_odd_odd": true,
+            "a": 3,
+            "z": 2322378,
+            "b": 1,
+            "y": 1523,
+            "y_parity": "odd",
+            "y_bucket": "OE_PROGRESS",
+            "y_odd_odd": false,
+            "vs_n": "STAY",
+            "vs_x": "STAY",
+            "kind": "STAY_AUTO_FP",
+            "persistent": false,
+            "auto_fp": true,
+            "y_lt_n": false
+          },
+          {
+            "i": 1,
+            "x": 1523,
+            "x_odd_odd": false,
+            "a": 1,
+            "z": 59436,
+            "b": 1,
+            "y": 243,
+            "y_parity": "odd",
+            "y_bucket": "ODD_ODD",
+            "y_odd_odd": true,
+            "vs_n": "STAY",
+            "vs_x": "DESCENT",
+            "kind": "PERSISTENT_ODD_ODD",
+            "persistent": false,
+            "auto_fp": false,
+            "y_lt_n": false
+          },
+          {
+            "i": 2,
+            "x": 243,
+            "x_odd_odd": true,
+            "a": 2,
+            "z": 233046,
+            "b": 2,
+            "y": 21,
+            "y_parity": "odd",
+            "y_bucket": "OE_PROGRESS",
+            "y_odd_odd": false,
+            "vs_n": "DESCENT",
+            "vs_x": "DESCENT",
+            "kind": "RETURN_BELOW",
+            "persistent": false,
+            "auto_fp": true,
+            "y_lt_n": true
+          }
+        ]
+      }
+    ],
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "ResidualStep": true,
+    "PersistentOddResidual": true,
+    "residualStep_word": true,
+    "reachesOne_of_residualStep": true,
+    "finiteProgress_of_residual_capture": true,
+    "finiteProgress_of_residual_returnBelow": true,
+    "residual_descent_not_below": true,
+    "persistent_odd_odd": true,
+    "persistent_residual_preserves_frontier": true,
+    "minimal_residual_scale": true,
+    "ResidualChain": true,
+    "reachesOne_of_residualChain": true,
+    "finiteProgress_of_residualChain_returnBelow": true,
+    "finiteProgress_of_residualChain_capture": true,
+    "certificate_present": true,
+    "ReturnBelow_distinct": true,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_finiteProgress_propagation": true,
+    "no_infinite_path_type": false,
+    "no_frequency_theorem": true,
+    "no_cycle_engine": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true,
+    "MinimalNonTerm_unchanged": true
+  },
+  "decision": {
+    "classification": "RESIDUAL_CHAIN_GREEN",
+    "secondary": [],
+    "reason": "residual steps compose ReachesOne, Capture, and ReturnBelow; Descent at y with image \u2265 n is not Descent at n; persistent odd-odd leftovers [37, 69]; automatic FiniteProgress stay [9, 49, 77]"
+  },
+  "search_method": "odd-odd starts; first O^a E^b residual class; hard residual chains; no FiniteProgress(y)\u21d2FiniteProgress(n) theorem"
+}
