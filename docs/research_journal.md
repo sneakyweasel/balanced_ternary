@@ -4189,4 +4189,49 @@ Best next question
 - Must a cube in [b^8,(b^4+1)^2) be even, or is there an odd witness?
 ```
 
+## Juggler defect-compensated contraction
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether a mixed realized word with \(3^o>2^k\) can still contract because floor defect exceeds the formal gap \(n^{3^o}-n^{2^k}\)
+- **Hypotheses:** `COMPENSATED_CONTRACTION_FOUND`, `COMPENSATION_FIRST_DEFECT_SUFFICIENT`, `POSITIVE_DRIFT_NONCONTRACTION`, or `NO_USEFUL_COMPENSATION`
+- **Major results:** Certificate `power_bound_compensated_contracts` **PROVED**. `EOO` contracts iff \(n\in\{2,12,14\}\) **PROVED**. First local defect never exceeds the \((k,o)=(3,2)\) formal gap **PROVED**. `OOE`/`OEO` produced no contraction on the scanned odd window. Classification **COMPENSATED_CONTRACTION_FOUND**. Records: `docs/research/juggler_compensated_contraction.md`, `docs/problems/juggler_compensated_contraction.md`. Control layer unchanged
+- **Refuted ideas:** first-defect-only compensation \(\delta_j>G\) on the shortest mixed positive-drift family; treating \(\Delta>G\) as new arithmetic rather than a packaging of contraction; opening a lower-envelope theory; reopening parked \(OE^s\)
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether `OOE`/`OEO` never contract, or whether an infinite mixed positive-drift contraction family exists
+- **Decision:** PROMOTE the certificate and the finite `EOO` classification. Do not register an attack. Do not claim termination. Do not add a lower envelope
+
+```text
+What was learned
+- Formal drift 3^o > 2^k is not a complete predictor of block direction
+- Δ > G is equivalent to contraction for n ≥ 2 and packages a reusable certificate
+- The first local defect never supplies G for (k,o)=(3,2)
+- EOO contracts exactly at 2, 12, 14; n=10 realizes EOO and expands
+- OOE and OEO did not contract on the scanned window
+
+Strongest theorem
+- follows n EOO implies (T^3(n) < n ↔ n = 2 ∨ n = 12 ∨ n = 14)
+
+Strongest refutation
+- first-defect sufficiency δ_j > G fails at every EOO witness (n=2: δ=1 < 256=G)
+
+Reusable machinery
+- FloorPower power_bound_compensated_contracts / floorPower_eoo_contracts_iff
+- research.juggler_sequence.compensated_contraction bounded exact probe
+
+Prior-art status
+- local finite-word direction, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The shortest mixed positive-drift word yields a finite compensated-contraction family and a reusable deficit-versus-gap certificate. First-defect-only compensation is false here, so the phase stops rather than building a suffix-amplification calculus.
+
+Best next question
+- Do OOE and OEO never contract, or is there an infinite mixed positive-drift contraction family?
+```
+
 

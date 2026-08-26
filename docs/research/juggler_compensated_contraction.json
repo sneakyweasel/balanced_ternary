@@ -1,0 +1,263 @@
+{
+  "experiment": "juggler_compensated_contraction",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "n_max": 20000,
+    "eoo_even_max": 200000,
+    "k4_n_max": 10000,
+    "bit_limit": 80,
+    "length3": {
+      "OOE": {
+        "word": "OOE",
+        "n_min": 3,
+        "n_max": 20000,
+        "step": 2,
+        "realized": 2476,
+        "contract_count": 0,
+        "contracts": [],
+        "first_defect_sufficient_count": 0,
+        "first_defect_insufficient_count": 41,
+        "first_defect_unknown_count": 2435
+      },
+      "OEO": {
+        "word": "OEO",
+        "n_min": 3,
+        "n_max": 20000,
+        "step": 2,
+        "realized": 2495,
+        "contract_count": 0,
+        "contracts": [],
+        "first_defect_sufficient_count": 0,
+        "first_defect_insufficient_count": 29,
+        "first_defect_unknown_count": 2466
+      },
+      "EOO": {
+        "word": "EOO",
+        "n_min": 2,
+        "n_max": 200000,
+        "step": 2,
+        "realized": 22888,
+        "contract_count": 3,
+        "contracts": [
+          {
+            "word": "EOO",
+            "n": 2,
+            "k": 3,
+            "odd_count": 2,
+            "formal_ratio_num": 9,
+            "formal_ratio_den": 8,
+            "first_defect_position": 0,
+            "first_defect": 1,
+            "envelope_gap_to_contraction": 256,
+            "certified_deficit_lower_bound": 1,
+            "actual_deficit": 511,
+            "image": 1,
+            "actual_contraction": true,
+            "first_defect_certifies": false
+          },
+          {
+            "word": "EOO",
+            "n": 12,
+            "k": 3,
+            "odd_count": 2,
+            "formal_ratio_num": 9,
+            "formal_ratio_den": 8,
+            "first_defect_position": 0,
+            "first_defect": 3,
+            "envelope_gap_to_contraction": 4729798656,
+            "certified_deficit_lower_bound": 3,
+            "actual_deficit": 4945421471,
+            "image": 11,
+            "actual_contraction": true,
+            "first_defect_certifies": false
+          },
+          {
+            "word": "EOO",
+            "n": 14,
+            "k": 3,
+            "odd_count": 2,
+            "formal_ratio_num": 9,
+            "formal_ratio_den": 8,
+            "first_defect_position": 0,
+            "first_defect": 5,
+            "envelope_gap_to_contraction": 19185257728,
+            "certified_deficit_lower_bound": 5,
+            "actual_deficit": 20446687903,
+            "image": 11,
+            "actual_contraction": true,
+            "first_defect_certifies": false
+          }
+        ],
+        "first_defect_sufficient_count": 0,
+        "first_defect_insufficient_count": 18,
+        "first_defect_unknown_count": 22870
+      }
+    },
+    "length4": {
+      "OOOE": {
+        "word": "OOOE",
+        "n_min": 2,
+        "n_max": 10000,
+        "step": 1,
+        "realized": 601,
+        "contract_count": 0,
+        "contracts": [],
+        "first_defect_sufficient_count": 0,
+        "first_defect_insufficient_count": 1,
+        "first_defect_unknown_count": 600
+      },
+      "OOEO": {
+        "word": "OOEO",
+        "n_min": 2,
+        "n_max": 10000,
+        "step": 1,
+        "realized": 633,
+        "contract_count": 0,
+        "contracts": [],
+        "first_defect_sufficient_count": 0,
+        "first_defect_insufficient_count": 0,
+        "first_defect_unknown_count": 633
+      },
+      "OEOO": {
+        "word": "OEOO",
+        "n_min": 2,
+        "n_max": 10000,
+        "step": 1,
+        "realized": 624,
+        "contract_count": 0,
+        "contracts": [],
+        "first_defect_sufficient_count": 0,
+        "first_defect_insufficient_count": 0,
+        "first_defect_unknown_count": 624
+      },
+      "EOOO": {
+        "word": "EOOO",
+        "n_min": 2,
+        "n_max": 10000,
+        "step": 1,
+        "realized": 583,
+        "contract_count": 1,
+        "contracts": [
+          {
+            "word": "EOOO",
+            "n": 2,
+            "k": 4,
+            "odd_count": 3,
+            "formal_ratio_num": 27,
+            "formal_ratio_den": 16,
+            "first_defect_position": 0,
+            "first_defect": 1,
+            "envelope_gap_to_contraction": 134152192,
+            "certified_deficit_lower_bound": 1,
+            "actual_deficit": 134217727,
+            "image": 1,
+            "actual_contraction": true,
+            "first_defect_certifies": false
+          }
+        ],
+        "first_defect_sufficient_count": 0,
+        "first_defect_insufficient_count": 1,
+        "first_defect_unknown_count": 582
+      }
+    },
+    "eoo_witnesses": [
+      {
+        "word": "EOO",
+        "n": 2,
+        "k": 3,
+        "odd_count": 2,
+        "formal_ratio_num": 9,
+        "formal_ratio_den": 8,
+        "first_defect_position": 0,
+        "first_defect": 1,
+        "envelope_gap_to_contraction": 256,
+        "certified_deficit_lower_bound": 1,
+        "actual_deficit": 511,
+        "image": 1,
+        "actual_contraction": true,
+        "first_defect_certifies": false
+      },
+      {
+        "word": "EOO",
+        "n": 12,
+        "k": 3,
+        "odd_count": 2,
+        "formal_ratio_num": 9,
+        "formal_ratio_den": 8,
+        "first_defect_position": 0,
+        "first_defect": 3,
+        "envelope_gap_to_contraction": 4729798656,
+        "certified_deficit_lower_bound": 3,
+        "actual_deficit": 4945421471,
+        "image": 11,
+        "actual_contraction": true,
+        "first_defect_certifies": false
+      },
+      {
+        "word": "EOO",
+        "n": 14,
+        "k": 3,
+        "odd_count": 2,
+        "formal_ratio_num": 9,
+        "formal_ratio_den": 8,
+        "first_defect_position": 0,
+        "first_defect": 5,
+        "envelope_gap_to_contraction": 19185257728,
+        "certified_deficit_lower_bound": 5,
+        "actual_deficit": 20446687903,
+        "image": 11,
+        "actual_contraction": true,
+        "first_defect_certifies": false
+      }
+    ],
+    "ten_eoo_expands": {
+      "word": "EOO",
+      "n": 10,
+      "k": 3,
+      "odd_count": 2,
+      "formal_ratio_num": 9,
+      "formal_ratio_den": 8,
+      "first_defect_position": 0,
+      "first_defect": 1,
+      "envelope_gap_to_contraction": 900000000,
+      "certified_deficit_lower_bound": 1,
+      "actual_deficit": 785641119,
+      "image": 11,
+      "actual_contraction": false,
+      "first_defect_certifies": false
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "power_bound_compensated_contracts": true,
+    "power_bound_compensated_contracts_follows": true,
+    "floorPower_eoo_contracts_iff": true,
+    "floorPower_eoo_two_contracts": true,
+    "floorPower_eoo_twelve_contracts": true,
+    "floorPower_eoo_fourteen_contracts": true,
+    "eoo_first_defect_lt_formal_gap": true,
+    "floorPower_eoo_two_deficit_gt_gap": true,
+    "follows_eoo_two": true,
+    "follows_eoo_twelve": true,
+    "follows_eoo_fourteen": true,
+    "PowerHeight_absent": true,
+    "PowerBoundStrict_absent": true,
+    "mixed_word_power_lt_absent": true,
+    "ooe_not_contracts": false,
+    "oeo_not_contracts": false
+  },
+  "decision": {
+    "classification": "COMPENSATED_CONTRACTION_FOUND",
+    "reason": "EOO contracts exactly at n \u2208 {2, 12, 14}; the first-defect bound is never enough for (k,o)=(3,2), so compensation uses the full envelope deficit"
+  },
+  "search_method": "realized length-3 mixed positive-drift words via exact floor_power; G and \u0394 only inside a bit budget; no floats"
+}

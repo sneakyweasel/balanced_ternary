@@ -26,6 +26,10 @@ Headline theorems:
 * `power_deficit_eq_local_even_iff` / `power_deficit_eq_local_odd_iff` —
   first-defect sharpness: `Δ = δ` iff the suffix is an exact even tower.
 * `floorPower_odd_eq_iff_cube_interval` — inverse-floor form of an odd step.
+* `power_bound_compensated_contracts` — a certified deficit larger than
+  the formal exponent gap implies block contraction.
+* `floorPower_eoo_contracts_iff` — the shortest mixed positive-drift
+  word `EOO` contracts if and only if `n ∈ {2, 12, 14}`.
 -/
 
 /-!
@@ -2312,5 +2316,322 @@ theorem floorPower_odd_eq_pow_two_depth_iff {n a s : ℕ} (hodd : n % 2 = 1) :
     exact ⟨hsq ▸ hI.1, hI.2⟩
   · intro h
     exact (floorPower_odd_eq_iff_cube_interval hodd).mpr ⟨hsq ▸ h.1, h.2⟩
+
+/-!
+## Defect-compensated contraction
+
+Formal drift `3^o > 2^k` does not by itself decide the block direction.
+If the envelope deficit exceeds the formal gap `n^{3^o} - n^{2^k}`, the
+image still contracts. This is not a halt theorem, not a first-defect
+certificate, and not a lower-envelope theory.
+-/
+
+/-- Reusable certificate: a deficit larger than the formal exponent gap
+forces `m < n` for `n ≥ 2`. -/
+theorem power_bound_compensated_contracts
+    {m n k o D : ℕ} (_hn : 2 ≤ n)
+    (_hpow : PowerBound m n k o)
+    (hD : D ≤ powerDeficit m n k o)
+    (hgap : n ^ (3 ^ o) - n ^ (2 ^ k) < D) :
+    m < n := by
+  refine Nat.lt_of_not_ge fun hge => ?_
+  have hleft : n ^ (2 ^ k) ≤ m ^ (2 ^ k) := Nat.pow_le_pow_left hge _
+  have hΔ : n ^ (3 ^ o) - m ^ (2 ^ k) ≤ n ^ (3 ^ o) - n ^ (2 ^ k) :=
+    Nat.sub_le_sub_left hleft _
+  unfold powerDeficit at hD
+  exact (lt_irrefl D) (lt_of_le_of_lt (le_trans hD hΔ) hgap)
+
+theorem power_bound_compensated_contracts_follows
+    {n : ℕ} {w : List Branch} {D : ℕ}
+    (hn : 2 ≤ n) (hw : follows n w)
+    (hD : D ≤ powerDeficit (floorPower^[w.length] n) n w.length (oddCount w))
+    (hgap : n ^ (3 ^ oddCount w) - n ^ (2 ^ w.length) < D) :
+    floorPower^[w.length] n < n :=
+  power_bound_compensated_contracts hn (power_bound_follows hw) hD hgap
+
+def wordEOO : List Branch := [.even, .odd, .odd]
+def wordOOE : List Branch := [.odd, .odd, .even]
+def wordOEO : List Branch := [.odd, .even, .odd]
+
+theorem follows_wordEOO_iff {n : ℕ} :
+    follows n wordEOO ↔
+      n % 2 = 0 ∧
+        floorPower n % 2 = 1 ∧
+          floorPower (floorPower n) % 2 = 1 := by
+  simp [follows, wordEOO]
+
+theorem follows_wordOOE_iff {n : ℕ} :
+    follows n wordOOE ↔
+      n % 2 = 1 ∧
+        floorPower n % 2 = 1 ∧
+          floorPower (floorPower n) % 2 = 0 := by
+  simp [follows, wordOOE]
+
+theorem follows_wordOEO_iff {n : ℕ} :
+    follows n wordOEO ↔
+      n % 2 = 1 ∧
+        floorPower n % 2 = 0 ∧
+          floorPower (floorPower n) % 2 = 1 := by
+  simp [follows, wordOEO]
+
+theorem oddCount_wordEOO : oddCount wordEOO = 2 := by simp [wordEOO]
+theorem oddCount_wordOOE : oddCount wordOOE = 2 := by simp [wordOOE]
+theorem oddCount_wordOEO : oddCount wordOEO = 2 := by simp [wordOEO]
+theorem length_wordEOO : wordEOO.length = 3 := by simp [wordEOO]
+theorem length_wordOOE : wordOOE.length = 3 := by simp [wordOOE]
+theorem length_wordOEO : wordOEO.length = 3 := by simp [wordOEO]
+
+theorem follows_eoo_two : follows 2 wordEOO := by
+  rw [follows_wordEOO_iff]; native_decide
+
+theorem follows_eoo_twelve : follows 12 wordEOO := by
+  rw [follows_wordEOO_iff]; native_decide
+
+theorem follows_eoo_fourteen : follows 14 wordEOO := by
+  rw [follows_wordEOO_iff]; native_decide
+
+theorem floorPower_eoo_two_contracts : floorPower^[3] 2 < 2 := by
+  native_decide
+
+theorem floorPower_eoo_twelve_contracts : floorPower^[3] 12 < 12 := by
+  native_decide
+
+theorem floorPower_eoo_fourteen_contracts : floorPower^[3] 14 < 14 := by
+  native_decide
+
+theorem floorPower_eoo_two_eq : floorPower^[3] 2 = 1 := by
+  native_decide
+
+theorem floorPower_eoo_twelve_eq : floorPower^[3] 12 = 11 := by
+  native_decide
+
+theorem floorPower_eoo_fourteen_eq : floorPower^[3] 14 = 11 := by
+  native_decide
+
+theorem n_lt_formal_gap_three_two {n : ℕ} (hn : 2 ≤ n) :
+    n < n ^ 9 - n ^ 8 := by
+  have hfact : n ^ 9 - n ^ 8 = n ^ 8 * (n - 1) := by
+    rw [pow_succ, Nat.mul_sub_left_distrib, mul_one]
+  rw [hfact]
+  cases eq_or_lt_of_le hn with
+  | inl h2 =>
+      subst h2
+      native_decide
+  | inr hlt =>
+      have hn3 : 3 ≤ n := Nat.succ_le_of_lt hlt
+      have hself : n ≤ n ^ 8 := Nat.le_self_pow (by decide : 8 ≠ 0) n
+      have hmul : n * (n - 1) ≤ n ^ 8 * (n - 1) :=
+        Nat.mul_le_mul_right (n - 1) hself
+      have hn0 : 0 < n := lt_of_lt_of_le (by decide : 0 < 3) hn3
+      have hpred : 1 < n - 1 := by omega
+      have hstrict : n * 1 < n * (n - 1) :=
+        Nat.mul_lt_mul_of_pos_left hpred hn0
+      exact lt_of_lt_of_le (by simpa using hstrict) hmul
+
+theorem localDefectEven_lt_formal_gap_three_two {n : ℕ} (hn : 2 ≤ n) :
+    localDefectEven n < n ^ 9 - n ^ 8 :=
+  lt_of_le_of_lt (Nat.sub_le _ _) (n_lt_formal_gap_three_two hn)
+
+theorem eoo_first_defect_lt_formal_gap {n : ℕ} (hn : 2 ≤ n)
+    (_hw : follows n wordEOO) :
+    localDefectEven n < n ^ (3 ^ oddCount wordEOO) - n ^ (2 ^ wordEOO.length) := by
+  simpa [oddCount_wordEOO, length_wordEOO] using
+    localDefectEven_lt_formal_gap_three_two hn
+
+theorem floorPower_eoo_two_deficit_gt_gap :
+    2 ^ (3 ^ 2) - 2 ^ (2 ^ 3) <
+      powerDeficit (floorPower^[3] 2) 2 3 2 := by
+  native_decide
+
+theorem floorPower_eoo_of_follows {n : ℕ} (hw : follows n wordEOO) :
+    floorPower^[3] n = (((n.sqrt ^ 3).sqrt ^ 3).sqrt) := by
+  have heven : n % 2 = 0 := (follows_wordEOO_iff.mp hw).1
+  have hodd1 : floorPower n % 2 = 1 := (follows_wordEOO_iff.mp hw).2.1
+  have h1 : floorPower n = n.sqrt := floorPower_even_eq heven
+  have h2 : floorPower (floorPower n) = (n.sqrt ^ 3).sqrt := by
+    rw [h1, floorPower_odd_eq (by simpa [h1] using hodd1)]
+  have hodd2 : floorPower (floorPower n) % 2 = 1 :=
+    (follows_wordEOO_iff.mp hw).2.2
+  have h3 : floorPower (floorPower (floorPower n)) =
+      ((n.sqrt ^ 3).sqrt ^ 3).sqrt := by
+    rw [h2, floorPower_odd_eq (by simpa [h2] using hodd2)]
+  simpa [Function.iterate_succ_apply] using h3
+
+theorem eoo_sqrt_odd {n : ℕ} (hw : follows n wordEOO) :
+    n.sqrt % 2 = 1 := by
+  have h := (follows_wordEOO_iff.mp hw).2.1
+  simpa [floorPower_even_eq (follows_wordEOO_iff.mp hw).1] using h
+
+theorem eoo_n_ge_two {n : ℕ} (hw : follows n wordEOO) : 2 ≤ n := by
+  have heven : n % 2 = 0 := (follows_wordEOO_iff.mp hw).1
+  have hn0 : n ≠ 0 := by
+    intro h
+    subst h
+    simp [follows, wordEOO, floorPower] at hw
+  omega
+
+theorem eoo_sqrt_cube_pow_of_small {q : ℕ} (hlo : 5 ≤ q) (hhi : q ≤ 24) :
+    ((q ^ 3).sqrt) ^ 3 ≥ (q + 1) ^ 4 := by
+  interval_cases q <;> first | omega | native_decide
+
+theorem succ_pow_eight_le_five_mul {s : ℕ} (hs : 5 ≤ s) :
+    (s + 1) ^ 8 ≤ 5 * s ^ 8 := by
+  have h56 : 5 * (s + 1) ≤ 6 * s := by omega
+  have hpow : (5 * (s + 1)) ^ 8 ≤ (6 * s) ^ 8 :=
+    Nat.pow_le_pow_left h56 8
+  have hmul : 5 ^ 8 * (s + 1) ^ 8 ≤ 6 ^ 8 * s ^ 8 := by
+    simpa [mul_pow] using hpow
+  have h69 : (6 : ℕ) ^ 8 ≤ 5 ^ 9 := by native_decide
+  have hR : 6 ^ 8 * s ^ 8 ≤ 5 ^ 9 * s ^ 8 :=
+    Nat.mul_le_mul_right (s ^ 8) h69
+  have hchain : 5 ^ 8 * (s + 1) ^ 8 ≤ 5 ^ 9 * s ^ 8 := le_trans hmul hR
+  have hrew : 5 ^ 9 * s ^ 8 = 5 ^ 8 * (5 * s ^ 8) := by
+    rw [pow_succ']
+    ring
+  rw [hrew] at hchain
+  exact Nat.le_of_mul_le_mul_left hchain (pow_pos (by decide : 0 < 5) 8)
+
+theorem succ_pow_eight_le_pow_nine {s : ℕ} (hs : 5 ≤ s) :
+    (s + 1) ^ 8 ≤ s ^ 9 := by
+  have h5 := succ_pow_eight_le_five_mul hs
+  have hmul : 5 * s ^ 8 ≤ s * s ^ 8 := Nat.mul_le_mul_right (s ^ 8) hs
+  have hrew : s * s ^ 8 = s ^ 9 := by
+    calc
+      s * s ^ 8 = s ^ 8 * s := mul_comm _ _
+      _ = s ^ 9 := (pow_succ s 8).symm
+  exact le_trans h5 (hrew ▸ hmul)
+
+theorem eoo_qs_le_cbrt {q : ℕ} : q * q.sqrt ≤ (q ^ 3).sqrt := by
+  refine Nat.le_sqrt.mpr ?_
+  have hs : q.sqrt * q.sqrt ≤ q := Nat.sqrt_le q
+  have hleft : (q * q.sqrt) * (q * q.sqrt) = (q * q) * (q.sqrt * q.sqrt) := by
+    ring
+  have hmid : (q * q) * (q.sqrt * q.sqrt) ≤ (q * q) * q :=
+    Nat.mul_le_mul_left (q * q) hs
+  have : (q * q.sqrt) * (q * q.sqrt) ≤ q * q * q := by
+    simpa [hleft] using hmid
+  have : q * q * q = q ^ 3 := by simp [pow_three, mul_assoc]
+  simpa [this] using ‹(q * q.sqrt) * (q * q.sqrt) ≤ q * q * q›
+
+theorem eoo_qs_cube_ge_of_ge_twenty_five {q : ℕ} (hq : 25 ≤ q) :
+    (q * q.sqrt) ^ 3 ≥ (q + 1) ^ 4 := by
+  set s := q.sqrt
+  have hs : 5 ≤ s := Nat.le_sqrt.mpr (show 5 * 5 ≤ q from hq)
+  have hsq : s * s ≤ q := Nat.sqrt_le q
+  have hup : q + 1 ≤ (s + 1) * (s + 1) :=
+    Nat.succ_le_of_lt (Nat.lt_succ_sqrt q)
+  have hqs : s * s * s ≤ q * s := Nat.mul_le_mul_right s hsq
+  have hleft : (s * s * s) ^ 3 ≤ (q * s) ^ 3 := Nat.pow_le_pow_left hqs 3
+  have hright : (q + 1) ^ 4 ≤ ((s + 1) * (s + 1)) ^ 4 :=
+    Nat.pow_le_pow_left hup 4
+  have hs3 : s * s * s = s ^ 3 := by
+    simp [pow_three, mul_assoc]
+  have hs9 : (s * s * s) ^ 3 = s ^ 9 := by
+    rw [hs3]
+    calc
+      (s ^ 3) ^ 3 = s ^ (3 * 3) := (Nat.pow_mul s 3 3).symm
+      _ = s ^ 9 := by norm_num
+  have h8 : ((s + 1) * (s + 1)) ^ 4 = (s + 1) ^ 8 := by
+    have hexp : (s + 1) * (s + 1) = (s + 1) ^ 2 := (pow_two (s + 1)).symm
+    rw [hexp]
+    calc
+      ((s + 1) ^ 2) ^ 4 = (s + 1) ^ (2 * 4) := (Nat.pow_mul (s + 1) 2 4).symm
+      _ = (s + 1) ^ 8 := by norm_num
+  have hcmp : (s + 1) ^ 8 ≤ s ^ 9 := succ_pow_eight_le_pow_nine hs
+  have hmid : ((s + 1) * (s + 1)) ^ 4 ≤ (s * s * s) ^ 3 := by
+    simpa [h8, hs9] using hcmp
+  exact le_trans hright (le_trans hmid hleft)
+
+theorem eoo_sqrt_cube_pow_ge {q : ℕ} (hq : 5 ≤ q) :
+    ((q ^ 3).sqrt) ^ 3 ≥ (q + 1) ^ 4 := by
+  cases lt_or_ge q 25 with
+  | inl hlt =>
+      have : q ≤ 24 := Nat.lt_succ_iff.mp hlt
+      exact eoo_sqrt_cube_pow_of_small hq this
+  | inr hge =>
+      exact le_trans (eoo_qs_cube_ge_of_ge_twenty_five hge)
+        (Nat.pow_le_pow_left eoo_qs_le_cbrt 3)
+
+theorem eoo_image_ge_succ_sq {n : ℕ} (hw : follows n wordEOO)
+    (hq : 5 ≤ n.sqrt) :
+    (n.sqrt + 1) ^ 2 ≤ floorPower^[3] n := by
+  have himg := floorPower_eoo_of_follows hw
+  have hpow := eoo_sqrt_cube_pow_ge hq
+  have hle : (n.sqrt + 1) ^ 2 ≤ ((n.sqrt ^ 3).sqrt ^ 3).sqrt := by
+    refine Nat.le_sqrt.mpr ?_
+    have hexp : (n.sqrt + 1) ^ 2 * (n.sqrt + 1) ^ 2 = (n.sqrt + 1) ^ 4 := by
+      ring
+    simpa [hexp] using hpow
+  simpa [himg] using hle
+
+theorem eoo_expands_of_sqrt_ge_five {n : ℕ} (hw : follows n wordEOO)
+    (hq : 5 ≤ n.sqrt) :
+    n < floorPower^[3] n := by
+  have hsucc : n < (n.sqrt + 1) * (n.sqrt + 1) := Nat.lt_succ_sqrt n
+  have hsq : (n.sqrt + 1) * (n.sqrt + 1) = (n.sqrt + 1) ^ 2 := by
+    simp [pow_two]
+  have : n < (n.sqrt + 1) ^ 2 := by simpa [hsq] using hsucc
+  exact lt_of_lt_of_le this (eoo_image_ge_succ_sq hw hq)
+
+theorem eoo_sqrt_cases {n : ℕ} (hw : follows n wordEOO) :
+    n.sqrt = 1 ∨ n.sqrt = 3 ∨ 5 ≤ n.sqrt := by
+  have hodd : n.sqrt % 2 = 1 := eoo_sqrt_odd hw
+  have hn : 2 ≤ n := eoo_n_ge_two hw
+  have hpos : 1 ≤ n.sqrt := Nat.le_sqrt.mpr (by
+    have : 1 ≤ n := le_trans (by decide : 1 ≤ 2) hn
+    simpa using this)
+  cases lt_or_ge n.sqrt 5 with
+  | inr h5 => exact Or.inr (Or.inr h5)
+  | inl hlt =>
+      have : n.sqrt = 1 ∨ n.sqrt = 3 := by
+        interval_cases n.sqrt <;> omega
+      exact this.imp_right Or.inl
+
+theorem eoo_eq_two_of_sqrt_one {n : ℕ} (hw : follows n wordEOO)
+    (h1 : n.sqrt = 1) : n = 2 := by
+  have heven : n % 2 = 0 := (follows_wordEOO_iff.mp hw).1
+  have hge : 1 ≤ n := by
+    have : 1 * 1 ≤ n := by simpa [h1] using Nat.sqrt_le n
+    omega
+  have hlt : n < 4 := by
+    have : n < (n.sqrt + 1) * (n.sqrt + 1) := Nat.lt_succ_sqrt n
+    simpa [h1] using this
+  interval_cases n <;> omega
+
+theorem eoo_of_sqrt_three {n : ℕ} (hw : follows n wordEOO)
+    (h3 : n.sqrt = 3) : n = 10 ∨ n = 12 ∨ n = 14 := by
+  have heven : n % 2 = 0 := (follows_wordEOO_iff.mp hw).1
+  have hge : 9 ≤ n := by simpa [h3] using Nat.sqrt_le n
+  have hlt : n < 16 := by
+    have : n < (n.sqrt + 1) * (n.sqrt + 1) := Nat.lt_succ_sqrt n
+    simpa [h3] using this
+  interval_cases n <;> omega
+
+theorem floorPower_eoo_image_of_sqrt_three {n : ℕ} (hw : follows n wordEOO)
+    (h3 : n.sqrt = 3) : floorPower^[3] n = 11 := by
+  have himg := floorPower_eoo_of_follows hw
+  have : ((((3 : ℕ) ^ 3).sqrt) ^ 3).sqrt = 11 := by native_decide
+  simpa [himg, h3] using this
+
+/-- `EOO` contracts if and only if `n ∈ {2, 12, 14}`. Not a halt theorem. -/
+theorem floorPower_eoo_contracts_iff {n : ℕ} (hw : follows n wordEOO) :
+    floorPower^[3] n < n ↔ n = 2 ∨ n = 12 ∨ n = 14 := by
+  constructor
+  · intro hlt
+    rcases eoo_sqrt_cases hw with h1 | h3 | h5
+    · exact Or.inl (eoo_eq_two_of_sqrt_one hw h1)
+    · have hmem := eoo_of_sqrt_three hw h3
+      have himg : floorPower^[3] n = 11 :=
+        floorPower_eoo_image_of_sqrt_three hw h3
+      rcases hmem with rfl | rfl | rfl
+      · simp [himg] at hlt
+      · exact Or.inr (Or.inl rfl)
+      · exact Or.inr (Or.inr rfl)
+    · exact (lt_asymm hlt (eoo_expands_of_sqrt_ge_five hw h5)).elim
+  · rintro (rfl | rfl | rfl)
+    · exact floorPower_eoo_two_contracts
+    · exact floorPower_eoo_twelve_contracts
+    · exact floorPower_eoo_fourteen_contracts
+
 
 end Problems.Engine
