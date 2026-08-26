@@ -4729,4 +4729,49 @@ Best next question
 - After the first odd run has grown past n^2, must the first even residual fall below n, or can it land in [n, ∞)?
 ```
 
+## Juggler repeated OE scale budget
+
+- **Date:** 2026-08-27
+- **Objective:** Quantify the scale cost of consecutive `OE` blocks on a hypothetical minimal non-1 orbit
+- **Hypotheses:** `REPEATED_OE_SCALE_GREEN`, `OE_RUN_FORBIDDEN_GREEN`, or `BLOCK_SCALE_COUNTEREXAMPLE`
+- **Major results:** `T^2(x)^4 ≤ x^3` and \(T^{2r}(x)^{4^r}\le x^{3^r}\) **EXACT — LEAN VERIFIED**. On a `MinimalNonTerm` orbit, \(n^{4^r}\le x^{3^r}\) **EXACT — LEAN VERIFIED**. \((\texttt{OE})^r\) cannot start at \(n_*\) **EXACT — LEAN VERIFIED**. No envelope or scale failure on \(n\le 80\). Longest stay-\(\ge n\) consecutive run is \(r=2\) at \(x=17537\) on the orbit of \(77\). Classification **REPEATED_OE_SCALE_GREEN**. Records: `docs/research/juggler_repeated_oe.md`, `docs/problems/juggler_repeated_oe.md`. Control layer unchanged
+- **Refuted ideas:** an `OE` frequency theorem; a uniform \(r\) independent of \(x\); a halt theorem
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** what lower bound on the odd-run length \(a\) in \(O^aE\) does minimality impose before the first legal even residual?
+- **Decision:** PROMOTE the repeated-`OE` scale barrier. Do not claim every orbit contains many `OE` blocks. Do not claim termination
+
+```text
+What was learned
+- One OE block is the word envelope T^2(x)^4 ≤ x^3; (OE)^r is T^{2r}(x)^{4^r} ≤ x^{3^r}
+- Minimality converts that into n^{4^r} ≤ x^{3^r}
+- (OE)^r cannot start at n_* because the first image is odd
+- Consecutive OE can stay above n (77: 17537 --(OE)^2--> 243); r is not uniformly bounded
+- This is a scale budget, not a frequency theorem
+
+Strongest theorem
+- If MinimalNonTerm n and (OE)^r occurs at a later state x, then n^{4^r} ≤ x^{3^r}
+
+Strongest refutation
+- a uniform bound on consecutive OE length independent of x; r=2 stays above 77
+
+Reusable machinery
+- Problems.Engine.RepeatedOE repeated_oe_scale_barrier / oe_requires_scale
+- research.juggler_sequence.repeated_oe
+
+Prior-art status
+- conditional block-scale obstruction, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Repeated OE is now an exact scale inequality on a hypothetical counterexample, obtained from the existing word envelope plus minimality.
+
+Best next question
+- For a block O^a E, what exact lower bound on a does minimality impose before the first legal even residual?
+```
+
 

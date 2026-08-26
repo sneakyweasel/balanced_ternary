@@ -136,10 +136,10 @@ all-odd theorem.
 
 ## Open questions
 
-Can odd growth finance an even run that stays \(\ge n_*\) and then
-return to a state from which the same accounting can continue
-indefinitely, or does some short mixed word force a descent below
-\(n_*\) once the scale barrier is imposed?
+Answered in [juggler_repeated_oe.md](juggler_repeated_oe.md): \(r\)
+consecutive `OE` blocks on a minimal non-1 orbit require
+\(n_*^{4^r}\le x^{3^r}\), and \((\texttt{OE})^r\) cannot start at
+\(n_*\). The remaining question lives there.
 
 ## Decision
 

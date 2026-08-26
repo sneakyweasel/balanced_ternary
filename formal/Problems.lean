@@ -39,6 +39,7 @@ import Problems.Engine.CompanionObservation
 import Problems.Engine.TwoPathZ2
 import Problems.Engine.FloorPower
 import Problems.Engine.MinimalNonTerm
+import Problems.Engine.RepeatedOE
 import Problems.Engine.ReverseAdd
 import Problems.Engine.FactorConcat
 import Problems.Engine.CyclicTag

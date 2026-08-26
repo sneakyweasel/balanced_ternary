@@ -1,0 +1,161 @@
+{
+  "experiment": "juggler_repeated_oe",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "all_odd_orbit": false,
+    "oe_frequency_theorem": false
+  },
+  "scan": {
+    "census": {
+      "n_max": 80,
+      "run_count": 79,
+      "stay_ge_n": 20,
+      "envelope_fail": 0,
+      "scale_fail": 0,
+      "max_r": 2,
+      "max_r_stay": 2,
+      "longest_stay": {
+        "n": 77,
+        "x": 17537,
+        "r": 2,
+        "image": 243,
+        "exit_ge_n": true,
+        "envelope_ok": true,
+        "scale_ok": true
+      },
+      "samples_stay": [
+        {
+          "n": 3,
+          "x": 11,
+          "r": 1,
+          "image": 6,
+          "exit_ge_n": true,
+          "envelope_ok": true,
+          "scale_ok": true
+        },
+        {
+          "n": 5,
+          "x": 11,
+          "r": 1,
+          "image": 6,
+          "exit_ge_n": true,
+          "envelope_ok": true,
+          "scale_ok": true
+        },
+        {
+          "n": 25,
+          "x": 1397,
+          "r": 1,
+          "image": 228,
+          "exit_ge_n": true,
+          "envelope_ok": true,
+          "scale_ok": true
+        },
+        {
+          "n": 33,
+          "x": 189,
+          "r": 1,
+          "image": 50,
+          "exit_ge_n": true,
+          "envelope_ok": true,
+          "scale_ok": true
+        },
+        {
+          "n": 35,
+          "x": 207,
+          "r": 1,
+          "image": 54,
+          "exit_ge_n": true,
+          "envelope_ok": true,
+          "scale_ok": true
+        },
+        {
+          "n": 37,
+          "x": 196069,
+          "r": 1,
+          "image": 9317,
+          "exit_ge_n": true,
+          "envelope_ok": true,
+          "scale_ok": true
+        },
+        {
+          "n": 37,
+          "x": 852846071,
+          "r": 1,
+          "image": 4990602,
+          "exit_ge_n": true,
+          "envelope_ok": true,
+          "scale_ok": true
+        },
+        {
+          "n": 37,
+          "x": 105519,
+          "r": 1,
+          "image": 5854,
+          "exit_ge_n": true,
+          "envelope_ok": true,
+          "scale_ok": true
+        }
+      ]
+    },
+    "calibration": [
+      {
+        "n": 13,
+        "word": "OE",
+        "follows": true,
+        "image": 6,
+        "kind": "DESCENT",
+        "oe_envelope": true
+      },
+      {
+        "n": 27,
+        "word": "OE",
+        "follows": true,
+        "image": 11,
+        "kind": "DESCENT",
+        "oe_envelope": true
+      },
+      {
+        "n": 25,
+        "word": "OOOE",
+        "follows": true,
+        "image": 228,
+        "kind": "NO_CERTIFICATE",
+        "oe_envelope": null
+      }
+    ],
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "wordOE": true,
+    "repeatedOE": true,
+    "oe_block_scale": true,
+    "oe_block_contracts": true,
+    "repeated_oe_scale": true,
+    "repeated_oe_scale_barrier": true,
+    "oe_requires_scale": true,
+    "minimal_nonterm_not_repeated_oe": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_lower_envelope_structure": true,
+    "no_global_termination_theorem": true,
+    "no_infinite_path_type": true,
+    "no_frequency_theorem": true
+  },
+  "decision": {
+    "classification": "REPEATED_OE_SCALE_GREEN",
+    "secondary": "OE_RUN_FORBIDDEN_GREEN",
+    "reason": "r consecutive OE blocks on a minimal non-1 orbit require n^{4^r} <= x^{3^r}; (OE)^r cannot start at n_* itself"
+  },
+  "search_method": "consecutive OE runs on realized prefixes; envelope T^{2r}(x)^{4^r}<=x^{3^r}; scale n^{4^r}<=x^{3^r} when exit>=n; no frequency claim"
+}
