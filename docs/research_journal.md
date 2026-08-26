@@ -4864,4 +4864,49 @@ Best next question
 - Can a long expanding repetition avoid every current certificate, or does some already-proved certificate eventually apply?
 ```
 
+## Juggler finite-progress coverage
+
+- **Date:** 2026-08-27
+- **Objective:** Make the strong-induction spine formal and isolate the leftover class after even and `OE` coverage
+- **Hypotheses:** `INDUCTION_SPINE_GREEN`, `ODD_ODD_FRONTIER_GREEN`, `RESIDUAL_CLASS_IDENTIFIED`, or `FINITE_PROGRESS_GREEN`
+- **Major results:** `(∀ n>1 FiniteProgress n) ⇒ (∀ n≥1 ReachesOne n)` **EXACT — LEAN VERIFIED**. Even `n≥2` and odd-to-even `n≥2` have `FiniteProgress` **EXACT — LEAN VERIFIED**. Any uncovered `n≥2` is odd-to-odd **EXACT — LEAN VERIFIED**. On `2≤n≤80` every odd-to-odd start has first-even image `≥n`. Classification **ODD_ODD_FRONTIER_GREEN**. Records: `docs/research/juggler_progress_coverage.md`, `docs/problems/juggler_progress_coverage.md`. Control layer unchanged
+- **Refuted ideas:** the leftover class is empty; the first even residual of an odd-to-odd start descends; a halt theorem; an all-odd minimal orbit
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** after an odd-to-odd start whose first even residual stays `≥n`, which already-proved certificate can still supply `FiniteProgress`?
+- **Decision:** PROMOTE the spine and the odd-to-odd gap. Do not prove `FiniteProgress` for all `n`. Do not claim termination
+
+```text
+What was learned
+- FiniteProgress is Descent or Capture; strong induction turns a universal hypothesis into ReachesOne
+- Even n>=2 and odd-to-even n>=2 have FiniteProgress automatically
+- Any n>=2 without FiniteProgress must be odd-to-odd; the first odd-to-odd image expands
+- In 2..80 every odd-to-odd start has first-even image >= n, so induction does not fire there
+- This is a coverage gap, not a halt theorem and not an all-odd orbit claim
+
+Strongest theorem
+- If every n>1 has FiniteProgress, then every n>=1 is ReachesOne; every n>=2 that is not odd-to-odd has FiniteProgress
+
+Strongest refutation
+- the first even residual of an odd-to-odd start is a descent; all 18 such starts in 2..80 stay above n
+
+Reusable machinery
+- Problems.Engine.Progress FiniteProgress / reachesOne_of_all_finiteProgress / unresolved_is_odd_odd
+- research.juggler_sequence.progress_coverage
+
+Prior-art status
+- organizing coverage theorem, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The induction spine is now a machine-visible implication, and Lean isolates odd-to-odd as the only automatic gap.
+
+Best next question
+- After an odd-to-odd start whose first even residual stays >= n, which already-proved certificate can still supply FiniteProgress?
+```
+
 

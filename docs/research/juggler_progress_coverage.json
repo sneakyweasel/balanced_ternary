@@ -1,0 +1,226 @@
+{
+  "experiment": "juggler_progress_coverage",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false,
+    "odd_odd_is_nonterminating": false,
+    "cycle_obstruction": false
+  },
+  "scan": {
+    "census": {
+      "n_max": 80,
+      "even_progress": 40,
+      "oe_progress": 21,
+      "odd_odd": 18,
+      "first_even_kinds": {
+        "FIRST_EVEN_STAYS_ABOVE_START": 18
+      },
+      "stay_above_start": 18,
+      "first_even_descent": 0,
+      "no_even_horizon": 0,
+      "a_values": [
+        2,
+        3,
+        4
+      ],
+      "stay_samples": [
+        {
+          "n": 3,
+          "a": 3,
+          "xa": 36,
+          "y": 6,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        {
+          "n": 5,
+          "a": 2,
+          "xa": 36,
+          "y": 6,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        {
+          "n": 9,
+          "a": 2,
+          "xa": 140,
+          "y": 11,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        {
+          "n": 25,
+          "a": 3,
+          "xa": 52214,
+          "y": 228,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        {
+          "n": 33,
+          "a": 2,
+          "xa": 2598,
+          "y": 50,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        {
+          "n": 35,
+          "a": 2,
+          "xa": 2978,
+          "y": 54,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        {
+          "n": 37,
+          "a": 4,
+          "xa": 86818724,
+          "y": 9317,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        {
+          "n": 39,
+          "a": 3,
+          "xa": 233046,
+          "y": 482,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        }
+      ]
+    },
+    "calibration": [
+      {
+        "n": 2,
+        "T": 1,
+        "bucket": "EVEN_PROGRESS",
+        "odd_odd": false,
+        "E_image": 1,
+        "E_lt": true
+      },
+      {
+        "n": 3,
+        "T": 5,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "first_even": {
+          "n": 3,
+          "a": 3,
+          "xa": 36,
+          "y": 6,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        "T_gt": true
+      },
+      {
+        "n": 5,
+        "T": 11,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "first_even": {
+          "n": 5,
+          "a": 2,
+          "xa": 36,
+          "y": 6,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        "T_gt": true
+      },
+      {
+        "n": 7,
+        "T": 18,
+        "bucket": "OE_PROGRESS",
+        "odd_odd": false,
+        "OE_follows": true,
+        "OE_image": 4,
+        "OE_lt": true
+      },
+      {
+        "n": 13,
+        "T": 46,
+        "bucket": "OE_PROGRESS",
+        "odd_odd": false,
+        "OE_follows": true,
+        "OE_image": 6,
+        "OE_lt": true
+      },
+      {
+        "n": 25,
+        "T": 125,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "first_even": {
+          "n": 25,
+          "a": 3,
+          "xa": 52214,
+          "y": 228,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        "T_gt": true
+      },
+      {
+        "n": 69,
+        "T": 573,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "first_even": {
+          "n": 69,
+          "a": 2,
+          "xa": 13716,
+          "y": 117,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        "T_gt": true
+      },
+      {
+        "n": 77,
+        "T": 675,
+        "bucket": "ODD_ODD",
+        "odd_odd": true,
+        "first_even": {
+          "n": 77,
+          "a": 3,
+          "xa": 2322378,
+          "y": 1523,
+          "kind": "FIRST_EVEN_STAYS_ABOVE_START"
+        },
+        "T_gt": true
+      }
+    ],
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "FiniteProgress": true,
+    "finiteProgress_of_descent": true,
+    "finiteProgress_of_capture": true,
+    "reachesOne_of_finiteProgress": true,
+    "reachesOne_of_all_finiteProgress": true,
+    "even_finiteProgress": true,
+    "odd_even_finiteProgress": true,
+    "finiteProgress_of_not_odd_odd": true,
+    "unresolved_is_odd_odd": true,
+    "odd_odd_image_gt": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_lower_envelope_structure": true,
+    "no_global_termination_theorem": true,
+    "no_all_finiteProgress_proved": true,
+    "no_infinite_path_type": true,
+    "no_frequency_theorem": true,
+    "no_progress_tactic": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "ODD_ODD_FRONTIER_GREEN",
+    "secondary": [
+      "INDUCTION_SPINE_GREEN",
+      "RESIDUAL_CLASS_IDENTIFIED"
+    ],
+    "reason": "even and OE states have FiniteProgress; the leftover class is odd-to-odd, and in the window the first even residual stays at or above the start"
+  },
+  "search_method": "classify n>=2 as even / OE / odd-odd; first even residual on odd-odd starts only; no FiniteProgress search used as a proof"
+}

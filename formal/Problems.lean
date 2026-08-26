@@ -38,6 +38,7 @@ import Problems.Engine.CompanionShift
 import Problems.Engine.CompanionObservation
 import Problems.Engine.TwoPathZ2
 import Problems.Engine.FloorPower
+import Problems.Engine.Progress
 import Problems.Engine.MinimalNonTerm
 import Problems.Engine.RepeatedOE
 import Problems.Engine.OddRunFinancing
