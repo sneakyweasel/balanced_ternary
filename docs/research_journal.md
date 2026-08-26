@@ -2770,4 +2770,48 @@ Best next question
 - What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
 ```
 
+## Research Campaign 03: matthews_prize_mod3_avoider
+
+- **Date:** 2026-08-26
+- **Objective:** Extract a class obstruction forcing ±1 (mod 3) avoiders of the three-branch map into the known cycles, using frozen Research Engine v2.3 without new attacks
+- **Hypotheses:** residue-affine control might force avoiders into -1 or {-2,-4}; branch reconstruction and 0 (mod 3) divergence are not the yield; totality is forbidden
+- **Major results:** Blind `StrategyPlanner(CYCLE_EXCLUSION)` selected `census_obstruction` and recovered the three given branches (`FINITE_CENSUS`). Exact: 0 (mod 3) is invariant and expanding; cycles at -1 and {-2,-4}. Packet seeds 1 and 5 enter 0 (mod 3). Window avoiders in [-40,40] are {-28,-10,-4,-2,-1}, i.e. the cycles and two preimages. Lean in `Problems.Engine.MatthewsMod3`. No new attacks
+- **Refuted ideas:** rediscovery of the three formulas as yield; seeds 1 and 5 are avoiders; {1,2} (mod 3) is a basin; finite cycle visit is a Z-theorem; this is the 4/3 strip or the BB5 map; every window avoider is a cycle point
+- **Literature:** Matthews–Watts 1984; laboratory BB-5 / R+ residue-affine reconstruction
+- **Open:** whether every Z-avoider enters -1 or {-2,-4}; not decided by the window
+- **Decision:** CLOSE. The surviving statements are KNOWN elementary arithmetic. No avoider-class obstruction
+
+```text
+What was learned
+- Frozen v2.3 recovers the three given branches as a FINITE_CENSUS; that is the problem definition, not yield
+- 0 (mod 3) is invariant and expanding; {1,2} (mod 3) is not a basin (T(1)=3)
+- Packet seeds 1 and 5 are not avoiders
+- Window avoiders include preimages -28 and -10 of {-2,-4}; that is not a Z-theorem
+- Named cycles at -1 and {-2,-4} are elementary from the definition
+
+Strongest theorem
+- If 3|x then T(x)=2x, 3|T(x), and |T(x)|=2|x|
+
+Strongest refutation
+- T(1)=3 and T(5)=1; {1,2} (mod 3) is not a basin; -28 and -10 are avoider preimages, not only cycle points
+
+Reusable machinery
+- none added; existing OneVariableLoopSpec, StrategyPlanner, and new KNOWN lemmas in MatthewsMod3.lean
+
+Prior-art status
+- KNOWN elementary residue arithmetic; Matthews–Watts supply the map, not an avoider obstruction
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- No class forces avoiders into the known cycles. The invariant and cycles are exact, Lean-certified, and KNOWN. Further census expansion would not change that.
+
+Best next question
+- What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
+```
+
 

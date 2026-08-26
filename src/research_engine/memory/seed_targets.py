@@ -568,6 +568,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
         claimed_capabilities=_REACH,
         prior_art_classified=True,
         prospective_fingerprint=affine_fp,
+        already_run=True,
         prior_art=PriorArtDossier(
             target="matthews_prize_mod3_avoider",
             definition="the three-branch mod-3 integer map displayed in the canonical definition",

@@ -74,6 +74,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.mx_plus_r.problem import PROBLEM as MX_PLUS_R
     from research.mx_plus_r_7x1_class_obstruction.problem import PROBLEM as MX_PLUS_R_7X1
     from research.weak_collatz_floor_5x4_rplus.problem import PROBLEM as WEAK_COLLATZ_FLOOR_5X4
+    from research.matthews_prize_mod3_avoider.problem import PROBLEM as MATTHEWS_PRIZE_MOD3
     from research.euclidean_quotient.problem import PROBLEM as EUCLIDEAN_QUOTIENT
     from research.vector_affine.problem import PROBLEM as VECTOR_AFFINE
     from research.matrix_word_invariant.problem import PROBLEM as MATRIX_WORD_INVARIANT
@@ -96,6 +97,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         MX_PLUS_R,
         MX_PLUS_R_7X1,
         WEAK_COLLATZ_FLOOR_5X4,
+        MATTHEWS_PRIZE_MOD3,
         EUCLIDEAN_QUOTIENT,
         VECTOR_AFFINE,
         MATRIX_WORD_INVARIANT,

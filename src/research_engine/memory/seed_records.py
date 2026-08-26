@@ -1790,6 +1790,136 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
         finalized=True,
     )
 
+    matthews_fp = _fp(
+        state_space_type="INTEGER_1D",
+        control_structure="SINGLETON",
+        numerical_contraction="MIXED_MAGNITUDE",
+        eventual_region="UNBOUNDED_SAMPLE",
+        orbit_behavior="INCOMPLETE",
+        certificate_strength="BOUNDED",
+        affine_control_type="SCALAR",
+        piecewise_affine_structure="FINITE",
+        latent_control="FINITE",
+        parameter_domain="SAMPLE_SUPPORTED",
+        latent_control_algebra="EXPLOITABLE",
+        latent_control_obstruction="WORD",
+        transition_architecture="DETERMINISTIC",
+    )
+    matthews = MemoryExperiment(
+        experiment_id="matthews_prize_mod3_avoider",
+        target="mod3_three_branch",
+        target_family="residue_affine",
+        adapter_version="0.2.1",
+        engine_version="0.2.3",
+        experiment_date="2026-08-26",
+        diagnosis=_diag(
+            "mod3_three_branch",
+            matthews_fp,
+            ResearchDecision.CONTINUE,
+            "finite residue-affine census recovered; 0 (mod 3) invariant is elementary and not an avoider obstruction",
+            prior="KNOWN",
+            lean="Problems.Engine.MatthewsMod3",
+            exact="matthews_zero_class_dvd",
+            falsification="seeds 1 and 5 enter 0 (mod 3); window avoiders include -28 and -10",
+            machinery="piecewise_affine",
+        ),
+        decision_reason_code=DecisionReason.KNOWN_REDISCOVERY,
+        representation_novelty=NoveltyLevel.MEDIUM,
+        mathematical_novelty=NoveltyLevel.NONE,
+        novelty_status=NoveltyStatus.KNOWN_REDISCOVERY,
+        mathematical_yield=MathematicalYield(
+            known_rediscoveries=(
+                "three residue-affine branches 2x / (7x+2)/3 / (x-2)/3",
+                "generic control-word cycle obstructions",
+            ),
+            new_exact_results=(
+                "0 (mod 3) is invariant and expanding",
+                "cycles at -1 and {-2,-4}",
+            ),
+            new_formalizations=("Problems.Engine.MatthewsMod3",),
+            new_obstructions=("none; avoider-class forcing into cycles is not obtained",),
+            new_counterexamples=(
+                "seeds 1 and 5 enter 0 (mod 3)",
+                "{1,2} (mod 3) is not a basin",
+                "window avoiders include preimages -28 and -10, not only cycle points",
+            ),
+            unresolved_questions=("whether every Z-avoider enters -1 or {-2,-4}",),
+            engineering_changes=0,
+        ),
+        grey_loot=(
+            GreyLoot(
+                id="matthews_mod3:loot:zero",
+                kind=GreyLootKind.CANDIDATE_INVARIANT,
+                statement="if 3|x then T(x)=2x and 3|T(x)",
+                evidence=LootEvidence.PROVED,
+                experiment_id="matthews_prize_mod3_avoider",
+                target="mod3_three_branch",
+            ),
+            GreyLoot(
+                id="matthews_mod3:loot:seeds",
+                kind=GreyLootKind.COUNTEREXAMPLE,
+                statement="packet seeds 1 and 5 enter 0 (mod 3); {1,2} (mod 3) is not a basin",
+                evidence=LootEvidence.PROVED,
+                experiment_id="matthews_prize_mod3_avoider",
+                target="mod3_three_branch",
+            ),
+            GreyLoot(
+                id="matthews_mod3:loot:branches",
+                kind=GreyLootKind.USEFUL_NEGATIVE_RESULT,
+                statement="three-branch census is the problem definition, not an avoider-class obstruction",
+                evidence=LootEvidence.KNOWN,
+                experiment_id="matthews_prize_mod3_avoider",
+                target="mod3_three_branch",
+            ),
+        ),
+        prior_art=PriorArtMemory(
+            literature_ids=("matthews-watts-1984-generalization-hasse",),
+            independently_rediscovered=False,
+            known_theorem_status="KNOWN",
+        ),
+        scout=ScoutDossier(
+            target="matthews_prize_mod3_avoider",
+            problem_definition=(
+                "On the three-branch mod-3 map, does a class obstruction force avoiders into the known cycles?"
+            ),
+            literature=("matthews-watts-1984-generalization-hasse",),
+        ),
+        blind_packet=BlindPacket(
+            spec_name="mod3_three_branch",
+            dimension=1,
+            max_states=32,
+            max_steps=16,
+            allowed_definition=(
+                "T(x)=2x when 3|x; T(x)=(7x+2)/3 when x ≡ 1 (mod 3); "
+                "T(x)=(x-2)/3 when x ≡ 2 (mod 3)"
+            ),
+            state_space="Z",
+            observation="the integer x",
+            initial_conditions=("1", "5"),
+            forbidden_hints=(
+                "named conjectures",
+                "known cycle theorem",
+                "open-problem status",
+                "literature reductions",
+                "prize claims",
+            ),
+        ),
+        run_artifact=RunArtifact(
+            attack_statuses={
+                "piecewise_affine": "OBSERVATION",
+                "parameter_domain": "OBSERVATION",
+                "control_word": "SUPPORTED",
+                "control_obstruction": "OBSERVATION",
+                "closure": "INCONCLUSIVE",
+            },
+            lean_theorems=("Problems.Engine.MatthewsMod3",),
+            census_kind="FINITE_CENSUS",
+            strongest_exact="matthews_zero_class_dvd",
+            strongest_falsification="seeds 1 and 5 enter 0 (mod 3)",
+        ),
+        finalized=True,
+    )
+
     return tuple(
         _enrich_lessons(item)
         for item in (
@@ -1815,6 +1945,7 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
             order2,
             seven,
             floor54,
+            matthews,
         )
     )
 
@@ -2066,22 +2197,47 @@ def _lesson_fields() -> dict[str, dict]:
             observation="every x>=2 has a unique integer successor on the closed 5x-4 strip",
             reusable_lesson="when interval length equals the modulus the SLC successor is total; this is not a halt theorem",
             possible_transfer_targets=("matthews_prize_mod3_avoider",),
-            status=GreyLootStatus.SATURATED,
-            engineering_action="CLOSE",
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
             prior_art_status="KNOWN",
         ),
         "floor_5x4:loot:never_drops": dict(
             observation="fixed points 2,3,4 and the growing orbit of 5 never lose a successor",
             reusable_lesson="losing the successor on a closed strip with interval length equal to the modulus is false; the weak-map halt question is a different spec",
             possible_transfer_targets=("matthews_prize_mod3_avoider",),
-            status=GreyLootStatus.SATURATED,
-            engineering_action="CLOSE",
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
             prior_art_status="KNOWN",
             counterexample="2,3,4 fixed; seed 5 grows",
         ),
         "floor_5x4:loot:reparam": dict(
             observation="four residue-affine branches 4y=5x-r on residues mod 4",
             reusable_lesson="FINITE_CENSUS of 4y=5x-r is a 4/3 SLC reparameterization, not a class obstruction to losing the successor",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "matthews_mod3:loot:zero": dict(
+            observation="if 3|x then T(x)=2x and 3|T(x)",
+            reusable_lesson="an expanding invariant residue class is not an avoider-class obstruction into cycles",
+            possible_transfer_targets=("companion_shift_order6_zero_class",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "matthews_mod3:loot:seeds": dict(
+            observation="packet seeds 1 and 5 enter 0 (mod 3); window avoiders include preimages -28 and -10",
+            reusable_lesson="a residue class that can exit is not a basin; finite preimages of known cycles are not a Z-theorem",
+            possible_transfer_targets=("companion_shift_order6_zero_class",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+            counterexample="T(1)=3; T(5)=1; -28 -> -10 -> {-2,-4}",
+        ),
+        "matthews_mod3:loot:branches": dict(
+            observation="three residue-affine branches 2x / (7x+2)/3 / (x-2)/3",
+            reusable_lesson="census rediscovery of the given formulas is the problem definition, not an avoider obstruction",
             possible_transfer_targets=(),
             status=GreyLootStatus.SATURATED,
             engineering_action="CLOSE",
