@@ -2858,4 +2858,48 @@ Best next question
 - What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
 ```
 
+## Research Campaign 05: skolem_order5_unconditional
+
+- **Date:** 2026-08-26
+- **Objective:** On a declared order-5 companion window, see whether frozen v2.3 can do more than a finite prefix, without interpolants, without un-skipping matrix-word, and without claiming an unconditional order-5 decision
+- **Hypotheses:** dimension 5 might be a new computational cluster; a finite zero might be billed as an order-5 procedure; uniqueness might fall out of the prefix
+- **Major results:** Blind `StrategyPlanner(ORIGIN_AVOIDANCE)` selected `vector_matrix` with empty results. Prefix is `ZERO_WITNESS` at index 2. Skip pair at d=5 equals skip pair at d=6 (`COMPUTATION_EXHAUSTED`). Lean `companion_shift_order5_zero_second`. No new attacks
+- **Refuted ideas:** census runs at d=5; d=5 skip is a new cluster; ZERO_WITNESS is an unconditional order-5 procedure; prefix recovers uniqueness; this is the order-6 flagship or the order-2 window
+- **Literature:** Lipton et al. 2022 Example 2.4; Kenison et al. 2025; Bacik et al. 2026
+- **Open:** unconditional vanishing for general order-5 LRS; not decided by this window
+- **Decision:** CLOSE. The surviving statements are KNOWN. Finite zero plus the same skip cluster as dimension 6
+
+```text
+What was learned
+- Frozen skip at dimension 5 is identical to dimension 6; not a new cluster
+- The declared window has a first-coordinate zero at index 2 (ZERO_WITNESS)
+- A finite zero is not uniqueness and not an unconditional order-5 procedure
+- Companion reconstruction remains the problem definition, not yield
+- StrategyPlanner(ORIGIN_AVOIDANCE) still selects vector_matrix with empty results
+
+Strongest theorem
+- The observation at index 2 vanishes (companion_shift_order5_zero_second)
+
+Strongest refutation
+- 25^5 census is skipped with the same attack pair as 25^6; a ZERO_WITNESS does not decide all order-5 LRS
+
+Reusable machinery
+- none added; existing CompanionShiftSpec, StrategyPlanner, and a KNOWN identity in CompanionShift.lean
+
+Prior-art status
+- KNOWN finite zero of Lipton et al. 2022 Example 2.4; literature uniqueness and the conditional procedure are out of scope
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- The finite zero is KNOWN. The skip is the same computational cluster as dimension 6. No uniqueness certificate and no unconditional procedure. Further census expansion or interpolants would violate the frozen contract.
+
+Best next question
+- What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
+```
+
 

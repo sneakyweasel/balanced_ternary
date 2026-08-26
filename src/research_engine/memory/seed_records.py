@@ -2077,6 +2077,142 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
         finalized=True,
     )
 
+    order5_fp = _fp(
+        state_space_type="INTEGER_VECTOR",
+        control_structure="SINGLETON",
+        numerical_contraction="MIXED_MAGNITUDE",
+        eventual_region="UNBOUNDED_SAMPLE",
+        orbit_behavior="MIXED",
+        certificate_strength="FINITE_RANGE",
+        affine_control_type="VECTOR",
+    )
+    order5 = MemoryExperiment(
+        experiment_id="skolem_order5_unconditional",
+        target="companion_shift_order5",
+        target_family="linear_recurrence",
+        adapter_version="0.2.1",
+        engine_version="0.2.3",
+        experiment_date="2026-08-26",
+        diagnosis=_diag(
+            "companion_shift_order5",
+            order5_fp,
+            ResearchDecision.CONTINUE,
+            "finite zero at index 2; 25^5 census skipped, same cluster as dimension 6",
+            prior="KNOWN",
+            lean="Problems.Engine.CompanionShift",
+            exact="companion_shift_order5_zero_second",
+            falsification="census skip at d=5 is not a new cluster; a ZERO_WITNESS is not an order-5 procedure",
+            machinery="",
+        ),
+        decision_reason_code=DecisionReason.KNOWN_REDISCOVERY,
+        representation_novelty=NoveltyLevel.LOW,
+        mathematical_novelty=NoveltyLevel.NONE,
+        novelty_status=NoveltyStatus.KNOWN_REDISCOVERY,
+        mathematical_yield=MathematicalYield(
+            known_rediscoveries=(
+                "order-5 companion window with a finite first-coordinate zero",
+                "25^5 census and matrix-word skipped by the same frozen cell budget as d=6",
+            ),
+            new_exact_results=("first-coordinate zero at index 2",),
+            new_formalizations=("Problems.Engine.CompanionShift",),
+            new_obstructions=("none; uniqueness is not recovered; skip is not a decision",),
+            new_counterexamples=("census skip at d=5 is the same cluster as d=6",),
+            unresolved_questions=("unconditional vanishing for general order-5 LRS",),
+            engineering_changes=0,
+        ),
+        failures=(
+            _fail(
+                "skolem_order5_unconditional",
+                "companion_shift_order5",
+                "computational",
+                FailureClass.COMPUTATIONAL,
+                "VECTOR_AFFINE_ADEQUATE",
+                "finite_budget_exhausted",
+                "25^5 census and matrix-word skipped; COMPUTATION_EXHAUSTED",
+                "Dimension-5 census skip is the same computational cluster as dimension 6.",
+                "vector_census",
+                attack="vector_affine",
+                value=ImportanceLevel.MEDIUM,
+                prior="KNOWN",
+            ),
+        ),
+        grey_loot=(
+            GreyLoot(
+                id="order5:loot:zero",
+                kind=GreyLootKind.COUNTEREXAMPLE,
+                statement="first coordinate vanishes at index 2 on the declared window",
+                evidence=LootEvidence.PROVED,
+                experiment_id="skolem_order5_unconditional",
+                target="companion_shift_order5",
+            ),
+            GreyLoot(
+                id="order5:loot:skip",
+                kind=GreyLootKind.COMPUTATIONAL_BOTTLENECK,
+                statement="25^5 census and matrix-word are skipped; same cluster as dimension 6",
+                evidence=LootEvidence.FINITE_RANGE,
+                experiment_id="skolem_order5_unconditional",
+                target="companion_shift_order5",
+                failure_class=FailureClass.COMPUTATIONAL,
+                bottleneck="finite_budget_exhausted",
+            ),
+            GreyLoot(
+                id="order5:loot:uniqueness",
+                kind=GreyLootKind.USEFUL_NEGATIVE_RESULT,
+                statement="a ZERO_WITNESS is not uniqueness and not an unconditional order-5 procedure",
+                evidence=LootEvidence.OBSERVED,
+                experiment_id="skolem_order5_unconditional",
+                target="companion_shift_order5",
+            ),
+        ),
+        prior_art=PriorArtMemory(
+            literature_ids=(
+                "lipton-et-al-2022-skolem-conjecture",
+                "kenison-et-al-2025-order-4-skolem",
+                "bacik-et-al-2026-skolem-positivity-survey",
+            ),
+            independently_rediscovered=False,
+            known_theorem_status="KNOWN",
+        ),
+        scout=ScoutDossier(
+            target="skolem_order5_unconditional",
+            problem_definition=(
+                "Can frozen v2.3 do more than exhaust a finite prefix on a declared order-5 window?"
+            ),
+            literature=(
+                "lipton-et-al-2022-skolem-conjecture",
+                "kenison-et-al-2025-order-4-skolem",
+                "bacik-et-al-2026-skolem-positivity-survey",
+            ),
+        ),
+        blind_packet=BlindPacket(
+            spec_name="companion_shift_order5",
+            dimension=5,
+            skip_attacks=("vector_affine", "matrix_word_invariant"),
+            max_states=32,
+            max_steps=16,
+            allowed_definition="window x maps to M x for a declared 5x5 companion matrix of an integer recurrence",
+            state_space="Z^5",
+            observation="first coordinate",
+            initial_conditions=("declared order-5 window",),
+            forbidden_hints=(
+                "named conjectures",
+                "interpolant methods",
+                "open-problem status",
+                "known congruence of zeros",
+            ),
+        ),
+        run_artifact=RunArtifact(
+            attack_statuses={
+                "vector_affine": "COMPUTATION_EXHAUSTED",
+                "matrix_word_invariant": "COMPUTATION_EXHAUSTED",
+            },
+            lean_theorems=("Problems.Engine.CompanionShift",),
+            strongest_exact="companion_shift_order5_zero_second",
+            strongest_falsification="census skip at d=5 is the same cluster as d=6",
+        ),
+        finalized=True,
+    )
+
     return tuple(
         _enrich_lessons(item)
         for item in (
@@ -2104,6 +2240,7 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
             floor54,
             matthews,
             order6_zero,
+            order5,
         )
     )
 
@@ -2405,21 +2542,46 @@ def _lesson_fields() -> dict[str, dict]:
             observation="no first-coordinate zero on indices 0..64",
             reusable_lesson="a finite zero-free prefix is not non-existence and not a class obstruction",
             possible_transfer_targets=("skolem_order5_unconditional",),
-            status=GreyLootStatus.SATURATED,
-            engineering_action="CLOSE",
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
             prior_art_status="KNOWN",
         ),
         "order6_zero:loot:matrix": dict(
             observation="matrix_word_invariant is skipped when 25^d exceeds the frozen cell budget",
             reusable_lesson="lattice/gcd vanishing congruences cannot be read from a skipped matrix-word attack",
             possible_transfer_targets=("skolem_order5_unconditional",),
-            status=GreyLootStatus.SATURATED,
-            engineering_action="CLOSE",
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
             prior_art_status="KNOWN",
         ),
         "order6_zero:loot:modulus": dict(
             observation="every modulus 2..32 hits a 0 residue on the prefix while the integer sequence stays nonzero",
             reusable_lesson="prefix modular zeros are not an integer vanishing congruence",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "order5:loot:zero": dict(
+            observation="first coordinate vanishes at index 2",
+            reusable_lesson="a ZERO_WITNESS on an order-5 companion is a finite fact, not an unconditional order-5 procedure",
+            possible_transfer_targets=("juggler_sequence",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+            counterexample="u_2 = 0",
+        ),
+        "order5:loot:skip": dict(
+            observation="25^5 census and matrix-word are skipped by the frozen cell budget",
+            reusable_lesson="dimension-5 census skip is the same computational cluster as dimension 6",
+            possible_transfer_targets=("juggler_sequence",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "order5:loot:uniqueness": dict(
+            observation="frozen moduli 2..32 do not recover uniqueness of the zero",
+            reusable_lesson="a finite zero is not a uniqueness certificate and not a decision procedure",
             possible_transfer_targets=(),
             status=GreyLootStatus.SATURATED,
             engineering_action="CLOSE",

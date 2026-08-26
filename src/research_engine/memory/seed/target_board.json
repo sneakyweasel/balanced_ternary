@@ -1486,7 +1486,10 @@
       "blind_packet": {
         "spec_name": "companion_shift_order5",
         "dimension": 5,
-        "skip_attacks": [],
+        "skip_attacks": [
+          "vector_affine",
+          "matrix_word_invariant"
+        ],
         "max_states": 32,
         "max_steps": 16,
         "allowed_definition": "window x maps to M x for a declared 5x5 companion matrix of an integer recurrence",
@@ -1496,7 +1499,7 @@
           "declared order-5 window"
         ],
         "explicit_controls": "singleton dummy control",
-        "computational_budget": "at most 16 planner steps / 32 residual states",
+        "computational_budget": "max index 64; skip 25^d cubes above 50000 cells",
         "extra": {},
         "forbidden_hints": [
           "named conjectures",
@@ -1507,7 +1510,7 @@
         "post_run_reconciliation": "",
         "lean_targets": []
       },
-      "already_run": false
+      "already_run": true
     },
     {
       "name": "aliquot_276",

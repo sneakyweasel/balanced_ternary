@@ -4116,8 +4116,8 @@
             "skolem_order5_unconditional"
           ],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "order6_zero:loot:matrix",
@@ -4137,8 +4137,8 @@
             "skolem_order5_unconditional"
           ],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "order6_zero:loot:modulus",
@@ -4223,6 +4223,246 @@
         "skipped": [],
         "strongest_exact": "companion_shift_order6_eleventh_negative",
         "strongest_falsification": "matrix-word skipped; prefix is not non-existence",
+        "census_kind": "",
+        "lean_theorems": [
+          "Problems.Engine.CompanionShift"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "skolem_order5_unconditional",
+      "target": "companion_shift_order5",
+      "target_family": "linear_recurrence",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.3",
+      "experiment_date": "2026-08-26",
+      "diagnosis": {
+        "target": "companion_shift_order5",
+        "semantic_class": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|FINITE_RANGE",
+        "fingerprint": {
+          "transition_architecture": "UNOBSERVED",
+          "state_space_type": "INTEGER_VECTOR",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "MIXED_MAGNITUDE",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "UNBOUNDED_SAMPLE",
+          "orbit_behavior": "MIXED",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNOBSERVED",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "VECTOR",
+          "certificate_strength": "FINITE_RANGE"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_VECTOR|SINGLETON|MIXED_MAGNITUDE|UNBOUNDED_SAMPLE|MIXED|FINITE_RANGE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "companion_shift_order5_zero_second",
+        "strongest_falsification": "census skip at d=5 is not a new cluster; a ZERO_WITNESS is not an order-5 procedure",
+        "lean_certificate": "Problems.Engine.CompanionShift",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CONTINUE",
+        "decision_reason": "finite zero at index 2; 25^5 census skipped, same cluster as dimension 6",
+        "extra": {}
+      },
+      "decision_reason_code": "KNOWN_REDISCOVERY",
+      "representation_novelty": "LOW",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "order-5 companion window with a finite first-coordinate zero",
+          "25^5 census and matrix-word skipped by the same frozen cell budget as d=6"
+        ],
+        "new_exact_results": [
+          "first-coordinate zero at index 2"
+        ],
+        "new_formalizations": [
+          "Problems.Engine.CompanionShift"
+        ],
+        "new_counterexamples": [
+          "census skip at d=5 is the same cluster as d=6"
+        ],
+        "new_conjectures": [],
+        "new_obstructions": [
+          "none; uniqueness is not recovered; skip is not a decision"
+        ],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "unconditional vanishing for general order-5 LRS"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "skolem_order5_unconditional:computational",
+          "target": "companion_shift_order5",
+          "experiment_id": "skolem_order5_unconditional",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "vector_affine",
+          "failure_class": "COMPUTATIONAL",
+          "representation_status": "VECTOR_AFFINE_ADEQUATE",
+          "mathematical_bottleneck": "finite_budget_exhausted",
+          "evidence": "25^5 census and matrix-word skipped; COMPUTATION_EXHAUSTED",
+          "counterexamples": [],
+          "minimal_example": "",
+          "reproducibility": "seed",
+          "reusable_lesson": "Dimension-5 census skip is the same computational cluster as dimension 6.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "MEDIUM",
+          "status": "PARKED",
+          "affected_attack_family": "vector_census"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "order5:loot:zero",
+          "kind": "Counterexample",
+          "statement": "first coordinate vanishes at index 2 on the declared window",
+          "evidence": "PROVED",
+          "experiment_id": "skolem_order5_unconditional",
+          "target": "companion_shift_order5",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "first coordinate vanishes at index 2",
+          "minimal_example": "",
+          "counterexample": "u_2 = 0",
+          "reusable_lesson": "a ZERO_WITNESS on an order-5 companion is a finite fact, not an unconditional order-5 procedure",
+          "possible_transfer_targets": [
+            "juggler_sequence"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "order5:loot:skip",
+          "kind": "Computational bottleneck",
+          "statement": "25^5 census and matrix-word are skipped; same cluster as dimension 6",
+          "evidence": "FINITE_RANGE",
+          "experiment_id": "skolem_order5_unconditional",
+          "target": "companion_shift_order5",
+          "failure_class": "COMPUTATIONAL",
+          "bottleneck": "finite_budget_exhausted",
+          "payload": {},
+          "observation": "25^5 census and matrix-word are skipped by the frozen cell budget",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "dimension-5 census skip is the same computational cluster as dimension 6",
+          "possible_transfer_targets": [
+            "juggler_sequence"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "order5:loot:uniqueness",
+          "kind": "Useful negative result",
+          "statement": "a ZERO_WITNESS is not uniqueness and not an unconditional order-5 procedure",
+          "evidence": "OBSERVED",
+          "experiment_id": "skolem_order5_unconditional",
+          "target": "companion_shift_order5",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "frozen moduli 2..32 do not recover uniqueness of the zero",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "a finite zero is not a uniqueness certificate and not a decision procedure",
+          "possible_transfer_targets": [],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "lipton-et-al-2022-skolem-conjecture",
+          "kenison-et-al-2025-order-4-skolem",
+          "bacik-et-al-2026-skolem-positivity-survey"
+        ],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": false
+      },
+      "scout": {
+        "target": "skolem_order5_unconditional",
+        "problem_definition": "Can frozen v2.3 do more than exhaust a finite prefix on a declared order-5 window?",
+        "literature": [
+          "lipton-et-al-2022-skolem-conjecture",
+          "kenison-et-al-2025-order-4-skolem",
+          "bacik-et-al-2026-skolem-positivity-survey"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "companion_shift_order5",
+        "dimension": 5,
+        "skip_attacks": [
+          "vector_affine",
+          "matrix_word_invariant"
+        ],
+        "max_states": 32,
+        "max_steps": 16,
+        "allowed_definition": "window x maps to M x for a declared 5x5 companion matrix of an integer recurrence",
+        "state_space": "Z^5",
+        "observation": "first coordinate",
+        "initial_conditions": [
+          "declared order-5 window"
+        ],
+        "explicit_controls": "",
+        "computational_budget": "",
+        "extra": {},
+        "forbidden_hints": [
+          "named conjectures",
+          "interpolant methods",
+          "open-problem status",
+          "known congruence of zeros"
+        ],
+        "post_run_reconciliation": "",
+        "lean_targets": []
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "vector_affine": "COMPUTATION_EXHAUSTED",
+          "matrix_word_invariant": "COMPUTATION_EXHAUSTED"
+        },
+        "skipped": [],
+        "strongest_exact": "companion_shift_order5_zero_second",
+        "strongest_falsification": "census skip at d=5 is the same cluster as d=6",
         "census_kind": "",
         "lean_theorems": [
           "Problems.Engine.CompanionShift"

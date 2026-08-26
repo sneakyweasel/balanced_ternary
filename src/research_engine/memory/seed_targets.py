@@ -766,6 +766,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
         claimed_capabilities=_VECTOR,
         prior_art_classified=True,
         prospective_fingerprint=companion_fp,
+        already_run=True,
         prior_art=PriorArtDossier(
             target="skolem_order5_unconditional",
             definition="first-coordinate vanishing of a declared order-5 companion window",
@@ -795,6 +796,8 @@ def board_targets() -> tuple[ResearchTarget, ...]:
                 "open-problem status",
                 "known congruence of zeros",
             ),
+            skip_attacks=("vector_affine", "matrix_word_invariant"),
+            computational_budget="max index 64; skip 25^d cubes above 50000 cells",
         ),
     )
 

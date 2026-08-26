@@ -6,7 +6,8 @@ namespace Problems.Engine
 /-!
 Exact identities for the companion-window campaign.
 These statements are the problem definition and immediate consequences.
-They are KNOWN. They are not a Skolem theorem for the order-6 instance.
+They are KNOWN. They are not a Skolem theorem for the order-6 instance
+or an unconditional order-5 decision procedure.
 -/
 
 def step2 (a0 a1 : ℤ) (p : ℤ × ℤ) : ℤ × ℤ :=
@@ -59,6 +60,32 @@ theorem companion_shift_order6_step :
 /-- The observation at index 11 is negative. Not a vanishing theorem. -/
 theorem companion_shift_order6_eleventh_negative :
     (iterate6 11 start6).x0 < 0 := by
+  native_decide
+
+structure Vec5 where
+  x0 : ℤ
+  x1 : ℤ
+  x2 : ℤ
+  x3 : ℤ
+  x4 : ℤ
+deriving Repr, DecidableEq
+
+def last5 (v : Vec5) : ℤ :=
+  4225 * v.x0 + (-4745) * v.x1 + 522 * v.x2 + (-10) * v.x3 + 9 * v.x4
+
+def shift5 (v : Vec5) : Vec5 :=
+  ⟨v.x1, v.x2, v.x3, v.x4, last5 v⟩
+
+def start5 : Vec5 :=
+  ⟨-30, -27, 0, 469, 1762⟩
+
+def iterate5 : ℕ → Vec5 → Vec5
+  | 0, v => v
+  | n + 1, v => iterate5 n (shift5 v)
+
+/-- The observation at index 2 vanishes. Not an order-5 decision procedure. -/
+theorem companion_shift_order5_zero_second :
+    (iterate5 2 start5).x0 = 0 := by
   native_decide
 
 end Problems.Engine
