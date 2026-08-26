@@ -1,0 +1,276 @@
+{
+  "experiment": "juggler_collapse_normalization",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "identity_ok": true,
+    "identities_checked": 80,
+    "even_tower_residuals": [
+      {
+        "k": 2,
+        "word": "EEOOOOOO",
+        "q": 4,
+        "initial_even_run": 2,
+        "max_even_run": 2,
+        "residual_word": "OOOOOO",
+        "residual_state": 1,
+        "image": 1,
+        "contracts": true
+      },
+      {
+        "k": 3,
+        "word": "EEEOOOOOOOOO",
+        "q": 16,
+        "initial_even_run": 3,
+        "max_even_run": 3,
+        "residual_word": "OOOOOOOOO",
+        "residual_state": 1,
+        "image": 1,
+        "contracts": true
+      },
+      {
+        "k": 4,
+        "word": "EEEEOOOOOOOOOOOO",
+        "q": 256,
+        "initial_even_run": 4,
+        "max_even_run": 4,
+        "residual_word": "OOOOOOOOOOOO",
+        "residual_state": 1,
+        "image": 1,
+        "contracts": true
+      },
+      {
+        "k": 5,
+        "word": "EEEEEOOOOOOOOOOOOOOO",
+        "q": 65536,
+        "initial_even_run": 5,
+        "max_even_run": 5,
+        "residual_word": "OOOOOOOOOOOOOOO",
+        "residual_state": 1,
+        "image": 1,
+        "contracts": true
+      }
+    ],
+    "internal_collapse": [
+      {
+        "k": 3,
+        "q": 17,
+        "word": "OEEEOOOOOOOOO",
+        "initial_even_run": 0,
+        "max_even_run": 3,
+        "residual_after_odd": 70,
+        "image": 1
+      },
+      {
+        "k": 4,
+        "q": 345,
+        "word": "OEEEEOOOOOOOOOOOO",
+        "initial_even_run": 0,
+        "max_even_run": 4,
+        "residual_after_odd": 6408,
+        "image": 1
+      },
+      {
+        "k": 5,
+        "q": 19955,
+        "word": "OEEEEEOOOOOOOOOOOOOOO",
+        "initial_even_run": 0,
+        "max_even_run": 5,
+        "residual_after_odd": 2818886,
+        "image": 1
+      }
+    ],
+    "short_words": [
+      {
+        "word": "OO",
+        "initial_even_run": 0,
+        "max_even_run": 0,
+        "q_max": 3
+      },
+      {
+        "word": "OOO",
+        "initial_even_run": 0,
+        "max_even_run": 0,
+        "q_max": 1
+      },
+      {
+        "word": "OOOO",
+        "initial_even_run": 0,
+        "max_even_run": 0,
+        "q_max": 1
+      },
+      {
+        "word": "EOOOO",
+        "initial_even_run": 1,
+        "max_even_run": 1,
+        "q_max": 2
+      },
+      {
+        "word": "OEOOO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOEOO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOEO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOOE",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOOO",
+        "initial_even_run": 0,
+        "max_even_run": 0,
+        "q_max": 1
+      },
+      {
+        "word": "EOOOOO",
+        "initial_even_run": 1,
+        "max_even_run": 1,
+        "q_max": 2
+      },
+      {
+        "word": "OEOOOO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOEOOO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOEOO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOOEO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOOOE",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOOOO",
+        "initial_even_run": 0,
+        "max_even_run": 0,
+        "q_max": 1
+      },
+      {
+        "word": "EOOOOOO",
+        "initial_even_run": 1,
+        "max_even_run": 1,
+        "q_max": 2
+      },
+      {
+        "word": "OEOOOOO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOEOOOO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOEOOO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOOEOO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOOOEO",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOOOOE",
+        "initial_even_run": 0,
+        "max_even_run": 1,
+        "q_max": null
+      },
+      {
+        "word": "OOOOOOO",
+        "initial_even_run": 0,
+        "max_even_run": 0,
+        "q_max": 1
+      }
+    ],
+    "seven_oeee": {
+      "q": 7,
+      "word": "OEEEOOOOOOOOO",
+      "follows": true,
+      "image": 1,
+      "superquadratic": true
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "initialEvenRun": true,
+    "stripInitialEven": true,
+    "initial_even_decomposition": true,
+    "iterate_even_pow_two_eq": true,
+    "collapse_residual_identity": true,
+    "collapse_on_pow_two": true,
+    "collapse_tower_contracts_iff": true,
+    "even_tower_collapse_residual": true,
+    "odd_then_even_collapse": true,
+    "odd_even_tower_seven": true,
+    "wordOEEE9": true,
+    "odd_even_tower_seven_superquadratic": true,
+    "floorPower_iterate_even_pow_two_eq": true,
+    "image_append": true,
+    "eventually_no_first_even_contraction": true,
+    "changing_suffix_unbounded_contraction": true,
+    "first_even_freeze": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_lower_envelope_structure": true,
+    "no_bounded_collapse_theorem": true
+  },
+  "decision": {
+    "classification": "COLLAPSE_DEPTH_TOO_WEAK",
+    "secondary": "COLLAPSE_NORMALIZATION_GREEN",
+    "reason": "E^r u on a^{2^r} reduces to u on a, but initial even-run length 0 still admits O E^k O^{3k} contractions at arbitrarily large scanned q; the extra parameter is the longest even run",
+    "lean_ok": true
+  },
+  "search_method": "exact a^{2^r} identity; even-tower residual at 1; odd q whose odd-image falls into an even basin of 1; no logs, no huge envelopes"
+}

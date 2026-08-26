@@ -44,6 +44,9 @@ Headline theorems:
   — the family `E^k O^{3k}` at `q = 2^{2^{k-1}}` produces arbitrarily
   large first-even contraction cells, so no threshold depending only on
   a uniform superquadratic margin exists.
+* `collapse_on_pow_two` / `collapse_residual_identity` — an initial
+  even run `E^r u` evaluates as `T_u` after `r` square roots; on
+  `a^{2^r}` the residual state is exactly `a`.
 -/
 
 /-!
@@ -3405,6 +3408,114 @@ theorem changing_suffix_unbounded_contraction (N : ℕ) :
   · have hk1 : 1 ≤ k := by simp [k]
     obtain ⟨hw, himg, hlt⟩ := even_tower_odd_tail_contracts (k := k) (o := o) hk1
     exact ⟨hw, by simpa [q, v, himg] using hlt⟩
+
+/-!
+## Collapse normalization
+
+An initial even run is a scale change, not a new envelope. The residual
+suffix sees `T_{E^r}(q)`, which on an exact even tower is the small
+state `a`. This does not restore `Q(ε)`: an internal even run after an
+odd letter can collapse in the same way. Not a halt theorem.
+-/
+
+def initialEvenRun : List Branch → ℕ
+  | [] => 0
+  | .even :: w => initialEvenRun w + 1
+  | .odd :: _ => 0
+
+def stripInitialEven : List Branch → List Branch
+  | [] => []
+  | .even :: w => stripInitialEven w
+  | .odd :: w => .odd :: w
+
+theorem initial_even_decomposition : ∀ v,
+    v = List.replicate (initialEvenRun v) Branch.even ++ stripInitialEven v
+  | [] => rfl
+  | .odd :: _ => by simp [initialEvenRun, stripInitialEven]
+  | .even :: w => by
+      simp [initialEvenRun, stripInitialEven, List.replicate_succ]
+      exact initial_even_decomposition w
+
+theorem stripInitialEven_nil_or_odd :
+    ∀ v, stripInitialEven v = [] ∨ ∃ u, stripInitialEven v = .odd :: u
+  | [] => Or.inl rfl
+  | .odd :: w => Or.inr ⟨w, rfl⟩
+  | .even :: w => stripInitialEven_nil_or_odd w
+
+theorem iterate_even_pow_two_eq {a k : ℕ} (ha : a % 2 = 0) :
+    floorPower^[k] (a ^ (2 ^ k)) = a :=
+  floorPower_iterate_even_pow_two_eq ha
+
+theorem collapse_residual_identity (q r : ℕ) (u : List Branch) :
+    image q (List.replicate r Branch.even ++ u) =
+      image (image q (List.replicate r Branch.even)) u :=
+  image_append q _ _
+
+/-- Exact tower input: the suffix sees the compressed state `a`. -/
+theorem collapse_on_pow_two {a r : ℕ} {u : List Branch}
+    (ha : a % 2 = 0) (hu : follows a u) :
+    follows (a ^ (2 ^ r)) (List.replicate r Branch.even ++ u) ∧
+      image (a ^ (2 ^ r)) (List.replicate r Branch.even ++ u) = image a u := by
+  have hE := follows_replicate_even_pow_two ha r
+  have himg :
+      image (a ^ (2 ^ r)) (List.replicate r Branch.even) = a := by
+    simpa [image_eq_iterate, List.length_replicate] using
+      iterate_even_pow_two_eq (a := a) (k := r) ha
+  refine ⟨follows_append hE (by simpa [himg] using hu), ?_⟩
+  rw [collapse_residual_identity, himg]
+
+theorem collapse_tower_contracts_iff {a r : ℕ} {u : List Branch}
+    (ha : a % 2 = 0) (hu : follows a u) :
+    image (a ^ (2 ^ r)) (List.replicate r Branch.even ++ u) + 1 <
+        (a ^ (2 ^ r) + 1) ^ 2 ↔
+      image a u + 1 < (a ^ (2 ^ r) + 1) ^ 2 := by
+  rw [(collapse_on_pow_two ha hu).2]
+
+/-- The changing-suffix family is residual evaluation at `1`. -/
+theorem even_tower_collapse_residual {k o : ℕ} (hk : 1 ≤ k) :
+    image (2 ^ (2 ^ (k - 1)))
+        (List.replicate k Branch.even ++ List.replicate o Branch.odd) =
+      image 1 (List.replicate o Branch.odd) := by
+  obtain ⟨_, himgE⟩ := even_tower_to_one hk
+  rw [collapse_residual_identity, himgE]
+
+theorem odd_then_even_collapse (q k : ℕ) (u : List Branch) :
+    image q (.odd :: List.replicate k Branch.even ++ u) =
+      image (image (floorPower q) (List.replicate k Branch.even)) u := by
+  rw [List.cons_append, image_cons, collapse_residual_identity]
+
+/-- `OEEE` followed by nine odds. Initial even-run length is `0`. -/
+def wordOEEE9 : List Branch :=
+  [.odd, .even, .even, .even, .odd, .odd, .odd, .odd, .odd, .odd, .odd, .odd, .odd]
+
+theorem wordOEEE9_eq :
+    wordOEEE9 =
+      .odd :: List.replicate 3 Branch.even ++ List.replicate 9 Branch.odd :=
+  rfl
+
+theorem floorPower_seven : floorPower 7 = 18 := by
+  native_decide
+
+theorem floorPower_eighteen : floorPower 18 = 4 := by
+  native_decide
+
+theorem floorPower_four : floorPower 4 = 2 := by
+  native_decide
+
+theorem odd_even_tower_seven :
+    follows 7 wordOEEE9 ∧ image 7 wordOEEE9 = 1 ∧
+      image 7 wordOEEE9 + 1 < (7 + 1) ^ 2 := by
+  have himg : image 7 wordOEEE9 = 1 := by
+    simp [image, wordOEEE9, floorPower_seven, floorPower_eighteen,
+      floorPower_four, floorPower_two, floorPower_one]
+  have hw : follows 7 wordOEEE9 := by
+    simp [follows, wordOEEE9, floorPower_seven, floorPower_eighteen,
+      floorPower_four, floorPower_two, floorPower_one]
+  exact ⟨hw, himg, by simp [himg]⟩
+
+theorem odd_even_tower_seven_superquadratic :
+    2 ^ (wordOEEE9.length + 1) < 3 ^ oddCount wordOEEE9 := by
+  native_decide
 
 end Problems.Engine
 

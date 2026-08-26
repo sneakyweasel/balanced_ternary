@@ -4459,4 +4459,49 @@ Best next question
 - If suffixes that collapse a large even tower onto a small state are excluded, does any residual uniform bound remain?
 ```
 
+## Juggler collapse normalization
+
+- **Date:** 2026-08-26
+- **Objective:** Formalize \(T_{E^r u}(a^{2^r})=T_u(a)\) and test whether bounded initial even-run depth restores family non-contraction
+- **Hypotheses:** `COLLAPSE_NORMALIZATION_GREEN`, `COLLAPSE_DEPTH_SUFFICIENT`, `COLLAPSE_DEPTH_TOO_WEAK`, `COLLAPSE_COUNTEREXAMPLE`, or `COLLAPSE_NORMALIZATION_INSUFFICIENT`
+- **Major results:** Decomposition \(v=E^{r(v)}u(v)\) **PROVED**. Residual identity and exact-tower evaluation at \(a\) **PROVED**. \(E^kO^{3k}\) is \(O^{3k}\) on residual \(1\) **PROVED**. Bounded initial even-run **REFUTED**: `OEEE` plus nine odds at \(q=7\) **PROVED**; scanned \(OE^kO^{3k}\) contracts at \(q=345\) (\(k=4\)) and \(q=19955\) (\(k=5\)). Classification **COLLAPSE_DEPTH_TOO_WEAK**. Records: `docs/research/juggler_collapse_normalization.md`, `docs/problems/juggler_collapse_normalization.md`. Control layer unchanged
+- **Refuted ideas:** initial even-run length as a sufficient collapse complexity; restoring \(Q(R)\) from a bound on the leading `E`s alone
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether a bound on the longest even run anywhere restores a family threshold
+- **Decision:** PROMOTE the residual identity and the initial-run refutation. Do not add a collapse algebra. Do not claim termination
+
+```text
+What was learned
+- E^r u on a^{2^r} is exactly u on a, for even a that realize u
+- First-even contraction on that tower cell is T_u(a)+1 < (a^{2^r}+1)^2
+- The E^k O^{3k} family is residual evaluation at 1 after k square roots
+- An odd letter followed by a long even run can collapse large q onto 1
+- Initial even-run length 0 is not a family bound; the extra parameter is the longest even run
+
+Strongest theorem
+- even a and follows a u imply T_{E^r u}(a^{2^r}) = T_u(a)
+
+Strongest refutation
+- q=7 follows OEEE plus nine odds, is superquadratic, has initial even-run 0, and contracts
+
+Reusable machinery
+- FloorPower initialEvenRun / collapse_on_pow_two / odd_even_tower_seven
+- research.juggler_sequence.collapse_normalization
+
+Prior-art status
+- local collapse identity, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The missing state for changing families is scale collapse, but the collapse need not sit at the start of the word. Bounding only the leading E-run leaves an internal even basin that still feeds 1.
+
+Best next question
+- Does a bound on the longest even run restore family-level first-even non-contraction for superquadratic suffixes?
+```
+
 

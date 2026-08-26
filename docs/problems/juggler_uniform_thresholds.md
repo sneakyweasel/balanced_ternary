@@ -152,8 +152,9 @@ that a uniform superquadratic margin is not enough to prevent them.
 
 ## Open questions
 
-If one excludes suffixes that collapse a large even tower onto a small
-state, does a residual uniform statement survive?
+Answered in [juggler_collapse_normalization.md](juggler_collapse_normalization.md):
+excluding an *initial* even tower is not enough. Internal even runs
+after an odd letter still collapse large \(q\) onto \(1\).
 
 ## Decision
 
