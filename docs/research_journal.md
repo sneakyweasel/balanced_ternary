@@ -4819,4 +4819,49 @@ Best next question
 - For a fixed pair (a,b), can repeated O^a E^b stay >= n_* indefinitely, or does financing eventually fail?
 ```
 
+## Juggler repeated O^a E^b blocks
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether a fixed \(O^aE^b\) can repeat on a hypothetical minimal non-1 orbit without violating the scale budget
+- **Hypotheses:** `REPEATED_BLOCK_SCALE_GREEN`, `REPEATED_CONTRACTION_FORBIDDEN`, `REPEATED_EXPANSION_SURVIVES`, or `REPETITION_GLOBAL_OBSTRUCTION_GREEN`
+- **Major results:** \((O^aE^b)^r\) requires \(n^{2^{r(a+b)}}\le x^{3^{ar}}\) **EXACT — LEAN VERIFIED**. \(3^a\neq 2^{a+b}\) for nonempty blocks **EXACT — LEAN VERIFIED**. Formally contracting blocks contract the entry and cannot start at \(n_*\) **EXACT — LEAN VERIFIED**. Later contracting copies may stay (\(\mathrm{OE}\) from \(17537\) to \(243\ge 77\)). Expanding \((OOE)^2\) from \(69\) stays at \(212>69\). Classification **REPEATED_BLOCK_SCALE_GREEN**. Records: `docs/research/juggler_repeated_block.md`, `docs/problems/juggler_repeated_block.md`. Control layer unchanged
+- **Refuted ideas:** a contracting block is always a descent below \(n_*\); repeated expansion contradicts the scale budget; a repetition-global obstruction; a frequency theorem; a halt theorem
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** can a long expanding repetition avoid every current certificate, or does some already-proved certificate eventually apply?
+- **Decision:** PROMOTE the repeated-block scale law and the regime split. Accept that repetition alone is not a global obstruction. Do not claim termination
+
+```text
+What was learned
+- (O^a E^b)^r on a minimal non-1 orbit requires n^{2^{r(a+b)}} <= x^{3^{a r}}
+- 3^a != 2^{a+b} for nonempty blocks; contracting is 3^a < 2^{a+b}, expanding is the rest
+- Contracting blocks contract the entry and cannot start at n_*; later copies may stay above n
+- Expanding (OOE)^2 from 69 stays at 212>69; repetition finances later even runs more easily
+- Repetition alone is not a global obstruction
+
+Strongest theorem
+- If MinimalNonTerm n and (O^a E^b)^r occurs at a later state x, then n^{2^{r(a+b)}} <= x^{3^{a r}}
+
+Strongest refutation
+- repeated expansion contradicts the scale budget; 69 --(OOE)^2--> 212
+
+Reusable machinery
+- Problems.Engine.RepeatedBlock repeated_odd_even_scale_barrier / initial_contracting_repeated_forbidden
+- research.juggler_sequence.repeated_block
+
+Prior-art status
+- conditional repeated-block scale theorem plus a useful negative, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The r-fold envelope plus minimality unifies the OE and odd-run theorems, and the expanding census kills repetition as a standalone contradiction.
+
+Best next question
+- Can a long expanding repetition avoid every current certificate, or does some already-proved certificate eventually apply?
+```
+
 

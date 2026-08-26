@@ -150,10 +150,12 @@ conditional scale law, not a grammar of all parity words.
 
 ## Open questions
 
-For a fixed pair \((a,b)\), can a repeated block \(O^aE^b\) stay
-\(\ge n_*\) indefinitely, or does the required starting scale
-eventually become impossible? Do not treat this as a frequency
-theorem.
+Answered in [juggler_repeated_block.md](juggler_repeated_block.md):
+\((O^aE^b)^r\) on a minimal non-1 orbit requires
+\(n^{2^{r(a+b)}}\le x^{3^{ar}}\). Formally contracting blocks cannot
+start at \(n_*\). Expanding repetition can stay above the start
+(\(69\xrightarrow{(OOE)^2}212\)). Repetition alone is not a global
+obstruction.
 
 ## Decision
 
@@ -162,9 +164,8 @@ theorem. Do not claim that later odd runs have length at least \(2\).
 Do not claim that every orbit contains many odd or even steps. Do not
 claim termination.
 
-Best next question: for a fixed pair \((a,b)\), can repeated
-\(O^aE^b\) stay \(\ge n_*\) indefinitely, or does financing
-eventually fail?
+Best next question: answered in
+[juggler_repeated_block.md](juggler_repeated_block.md).
 
 ## Publication assessment
 
