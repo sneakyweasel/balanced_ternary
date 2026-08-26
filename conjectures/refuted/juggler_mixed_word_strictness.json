@@ -1,0 +1,20 @@
+{
+  "id": "juggler_mixed_word_strictness",
+  "title": "Mixed Juggler words are strictly below the floor-power envelope",
+  "statement": "If n>=2 and w is a realized finite parity word containing at least one odd letter, then T_w(n)^{2^{|w|}} < n^{3^{#O(w)}}.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "word O, n=9, T(9)=27, 27^2 = 9^3 = 729",
+    "word OO, n=81, T^2(81)^{4} = 81^{9}"
+  ],
+  "first_seen": "juggler equality rigidity phase",
+  "lean_reference": "formal/Problems/Engine/FloorPower.lean:floorPower_nine_odd_eq",
+  "literature": [
+    "oeis-A007320"
+  ],
+  "mathematical_domain": "Juggler floor-power composition",
+  "notes": "Odd n=m^2 has integer n^{3/2}=m^3, so the odd floor is tight. Do not add mixed_word_power_lt. The weak envelope T_w(n)^{2^k} <= n^{3^o} remains.",
+  "origin": "docs/problems/juggler_equality_rigidity.md",
+  "proof_reference": "docs/problems/juggler_equality_rigidity.md",
+  "tested_range": "deep n<=10^4 depth 12; wide n<=10^6 depth 8; odd squares to 10^8; itinerary bit cap 1024"
+}

@@ -3784,4 +3784,94 @@ Best next question
 - Can the one-sided floor-power chain be packaged as a composition lemma indexed by a finite word, without a general-word tactic and without a parity-frequency theorem?
 ```
 
+## Juggler one-sided floor-power composition
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether the surviving one-sided envelope \(T_w(n)^{2^k}\le n^{3^o}\) is a compositional theorem of realized finite words
+- **Hypotheses:** `PowerBound` is preserved by append-even and append-odd; the exponent gap \(3^o<2^k\) at \(n\ge 2\) yields strict contraction; mixed-word equality is not required for the weak theorem
+- **Major results:** Near-equality scan found no one-sided failure. Mixed words had no equality in the focus set. Lean API `power_bound_empty` / `power_bound_append_even` / `power_bound_append_odd` / `power_bound_follows` / `power_bound_contracts` **PROVED**. `OOOEE` and `OOOEEEOO` are instances via `floorPower_oooee_of_follows` and `floorPower_oooeeeoo_of_follows`. Classification **POWER_COMPOSITION_GREEN**. Records: `docs/research/juggler_power_composition.md`, `docs/problems/juggler_power_composition.md`. Control layer unchanged
+- **Refuted ideas:** requiring a strict floor inequality in the composition theorem; treating OOOEE as an isolated chain rather than an instance of `PowerBound`
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** mixed-word equality classification (secondary)
+- **Decision:** PROMOTE the finite-word power calculus. Do not register an attack. Do not claim termination
+
+```text
+What was learned
+- The weak bound is inductive: empty word, append even (k,o)->(k+1,o), append odd (k,o)->(k+1,o+1)
+- Realization is a finite itinerary hypothesis `follows`, not a second engine
+- Strict contraction is the exponent gap at n>=2, not a strict floor inequality
+- Equality is structural (square towers, n=1), so the weak theorem is correctly non-strict
+- OOOEE and OOOEEEOO are ordinary instances of the same corollary
+
+Strongest theorem
+- Every realized finite word w obeys T_w(n)^{2^{|w|}} <= n^{3^{#O(w)}}; if 3^o < 2^k and n>=2 then T_w(n)<n
+
+Strongest refutation
+- none for the weak bound; the two-sided expanding reverse remains false at OO, n=3
+
+Reusable machinery
+- FloorPower.PowerBound / follows / power_bound_append_even / power_bound_append_odd / power_bound_contracts
+- research.juggler_sequence.power_composition near-equality probe
+
+Prior-art status
+- local floor-power composition lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The one-sided envelope is a finite-word theorem, not a word-specific accident. Stop rather than classify mixed equality or add a tactic.
+
+Best next question
+- Is mixed-word equality possible, or is equality generated only by even perfect-power towers and the odd fixed point n=1?
+```
+
+## Juggler mixed-word floor-power equality
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether every odd Juggler step forces the composed one-sided envelope to be strict for \(n\ge 2\)
+- **Hypotheses:** mixed-word equality does not occur for \(n\ge 2\); equivalently \(T(n)^2<n^3\) for every odd \(n\ge 3\) because \(n^{3/2}\) is never an integer
+- **Major results:** Mixed-word equality **exists**. Smallest witness: word `O`, \(n=9\), \(T(9)=27\), \(27^2=9^3\). Mechanism: odd squares have integer \(n^{3/2}\). Lean **PROVED** `floorPower_odd_sq_eq_cube_of_sq` and `floorPower_nine_odd_eq`. No both-letter (`O` and `E`) equality on the searched domain. Classification **MIXED_EQUALITY_FOUND**. Records: `docs/research/juggler_equality_rigidity.md`, `docs/problems/juggler_equality_rigidity.md`. Control layer unchanged
+- **Refuted ideas:** mixed-word strictness `mixed_word_power_lt`; universal `T(n)^2<n^3` for odd \(n\ge 3\); `floorPower_odd_sq_lt_cube` as a lemma for all odd \(n\ge 3\)
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether a word containing `E` can attain equality for \(n\ge 2\); whether all-odd equality is exactly the odd \(b^{2^j}\) family
+- **Decision:** PROMOTE the witness and the odd-square mechanism. Stop mixed-strictness. Do not register an attack
+
+```text
+What was learned
+- An odd step need not be strict: T(n)^2 = n^3 whenever n is an odd square
+- The smallest mixed equality is O at n=9, not a deep or exotic word
+- All-odd tight chains continue on odd high even powers such as 81 = 3^4
+- A tight odd step has odd image, so E cannot follow it immediately
+- Floor strictness is not the same as the exponent-gap contraction 3^o < 2^k
+
+Strongest theorem
+- If m is odd, then T(m^2)^2 = (m^2)^3 (floorPower_odd_sq_eq_cube_of_sq); in particular T(9)^2 = 9^3
+
+Strongest refutation
+- Mixed-word equality at O, n=9: 27^2 = 9^3 = 729
+
+Reusable machinery
+- research.juggler_sequence.equality_rigidity: mixed-equality search reusing power_words cmp_pow
+- FloorPower lemmas floorPower_odd_sq_eq_cube_of_sq and floorPower_nine_odd_eq
+
+Prior-art status
+- local floor-power equality witness, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The mixed-strictness hypothesis is false, with a minimized arithmetic source. Stop rather than add PowerBoundStrict or a mixed_word_power_lt theorem.
+
+Best next question
+- Is equality for words containing E impossible for n>=2, and is all-odd equality exactly the odd b^{2^j} family?
+```
+
 

@@ -1,0 +1,427 @@
+{
+  "experiment": "juggler_equality_rigidity",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "n_max": 10000,
+    "k_max": 12,
+    "n_wide": 1000000,
+    "k_wide": 8,
+    "odd_square_limit": 100000000,
+    "target_limit": 1000000000,
+    "bit_cap": 8192,
+    "hit_count": 15996,
+    "all_odd_hit_count": 15996,
+    "both_letters_hit_count": 0,
+    "near_critical_hit_count": 0,
+    "alternating_hit_count": 0,
+    "smallest_witness": {
+      "word": "O",
+      "n": 9,
+      "k": 1,
+      "odd_count": 1,
+      "T_k": 27,
+      "left_power": "27^2",
+      "right_power": "9^3",
+      "parity_trace": [
+        9,
+        27
+      ],
+      "contains_even": false,
+      "n_is_odd_square": true,
+      "truncated": false,
+      "near_critical": false,
+      "alternating": false
+    },
+    "smallest_both_letters": null,
+    "sample_all_odd": [
+      {
+        "word": "O",
+        "n": 9,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 27,
+        "left_power": "27^2",
+        "right_power": "9^3",
+        "parity_trace": [
+          9,
+          27
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 25,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 125,
+        "left_power": "125^2",
+        "right_power": "25^3",
+        "parity_trace": [
+          25,
+          125
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 49,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 343,
+        "left_power": "343^2",
+        "right_power": "49^3",
+        "parity_trace": [
+          49,
+          343
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 81,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 729,
+        "left_power": "729^2",
+        "right_power": "81^3",
+        "parity_trace": [
+          81,
+          729
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "OO",
+        "n": 81,
+        "k": 2,
+        "odd_count": 2,
+        "T_k": 19683,
+        "left_power": "19683^4",
+        "right_power": "81^9",
+        "parity_trace": [
+          81,
+          729,
+          19683
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 121,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 1331,
+        "left_power": "1331^2",
+        "right_power": "121^3",
+        "parity_trace": [
+          121,
+          1331
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 169,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 2197,
+        "left_power": "2197^2",
+        "right_power": "169^3",
+        "parity_trace": [
+          169,
+          2197
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 225,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 3375,
+        "left_power": "3375^2",
+        "right_power": "225^3",
+        "parity_trace": [
+          225,
+          3375
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 289,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 4913,
+        "left_power": "4913^2",
+        "right_power": "289^3",
+        "parity_trace": [
+          289,
+          4913
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 361,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 6859,
+        "left_power": "6859^2",
+        "right_power": "361^3",
+        "parity_trace": [
+          361,
+          6859
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 441,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 9261,
+        "left_power": "9261^2",
+        "right_power": "441^3",
+        "parity_trace": [
+          441,
+          9261
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 529,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 12167,
+        "left_power": "12167^2",
+        "right_power": "529^3",
+        "parity_trace": [
+          529,
+          12167
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 625,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 15625,
+        "left_power": "15625^2",
+        "right_power": "625^3",
+        "parity_trace": [
+          625,
+          15625
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "OO",
+        "n": 625,
+        "k": 2,
+        "odd_count": 2,
+        "T_k": 1953125,
+        "left_power": "1953125^4",
+        "right_power": "625^9",
+        "parity_trace": [
+          625,
+          15625,
+          1953125
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 729,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 19683,
+        "left_power": "19683^2",
+        "right_power": "729^3",
+        "parity_trace": [
+          729,
+          19683
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      },
+      {
+        "word": "O",
+        "n": 841,
+        "k": 1,
+        "odd_count": 1,
+        "T_k": 24389,
+        "left_power": "24389^2",
+        "right_power": "841^3",
+        "parity_trace": [
+          841,
+          24389
+        ],
+        "contains_even": false,
+        "n_is_odd_square": true,
+        "truncated": false,
+        "near_critical": false,
+        "alternating": false
+      }
+    ],
+    "sample_both_letters": [],
+    "one_step_odd_squares_ge3": [
+      9,
+      25,
+      49,
+      81,
+      121,
+      169,
+      225,
+      289,
+      361
+    ],
+    "phase_b_iff_square": {
+      "n_max": 1000000,
+      "equal_count": 499,
+      "smallest_equal": 9,
+      "mismatch_count": 0,
+      "strict_non_square_count": 499500,
+      "holds": true
+    },
+    "layers": {
+      "deep": {
+        "n_max": 10000,
+        "k_max": 12,
+        "hits": 54
+      },
+      "wide": {
+        "n_max": 1000000,
+        "k_max": 8,
+        "hits": 516
+      },
+      "odd_squares": {
+        "limit": 100000000,
+        "hits": 4999
+      },
+      "odd_high_powers": {
+        "hits": 196
+      },
+      "perfect_powers": {
+        "limit": 1000000000,
+        "hits": 15905
+      }
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "floorPower_nine_odd_eq": true,
+    "floorPower_odd_sq_eq_cube_of_sq": true,
+    "mixed_word_power_lt_absent": true,
+    "floorPower_odd_sq_lt_cube_absent": true,
+    "PowerBoundStrict_absent": true
+  },
+  "decision": {
+    "classification": "MIXED_EQUALITY_FOUND",
+    "reason": "A realized mixed word attains the envelope: odd n that is a perfect square forces T(n)^2 = n^3, so n^{3/2} is an integer",
+    "smallest_witness": {
+      "word": "O",
+      "n": 9,
+      "k": 1,
+      "odd_count": 1,
+      "T_k": 27,
+      "left_power": "27^2",
+      "right_power": "9^3",
+      "parity_trace": [
+        9,
+        27
+      ],
+      "contains_even": false,
+      "n_is_odd_square": true,
+      "truncated": false,
+      "near_critical": false,
+      "alternating": false
+    },
+    "both_letters_hits": 0,
+    "lean_witness": true,
+    "lean_square_mechanism": true
+  },
+  "phase_b": {
+    "odd_n3_always_strict": false,
+    "reason": "odd perfect squares have integer n^{3/2}; T(n)^2 = n^3",
+    "smallest_odd_square_ge3": 9,
+    "iff_square": {
+      "n_max": 1000000,
+      "equal_count": 499,
+      "smallest_equal": 9,
+      "mismatch_count": 0,
+      "strict_non_square_count": 499500,
+      "holds": true
+    }
+  }
+}

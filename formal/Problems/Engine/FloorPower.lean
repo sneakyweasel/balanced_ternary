@@ -252,6 +252,27 @@ theorem floorPower_odd_sq_le_cube {n : ℕ} (hodd : n % 2 = 1) :
   have hle : (n * n * n).sqrt * (n * n * n).sqrt ≤ n * n * n := Nat.sqrt_le (n * n * n)
   simpa [pow_two, pow_three, mul_assoc] using hle
 
+/-- Odd squares attain the one-step envelope: odd `m` implies `T(m^2)^2 = (m^2)^3`.
+So `n^{3/2}` can be an integer for odd `n≥3`. Mixed-word equality is possible.
+This kills any universal lemma `T(n)^2 < n^3` for all odd `n≥3`. -/
+theorem floorPower_odd_sq_eq_cube_of_sq {m : ℕ} (hodd : m % 2 = 1) :
+    floorPower (m ^ 2) ^ 2 = (m ^ 2) ^ 3 := by
+  have nne : (m ^ 2) % 2 ≠ 0 := by
+    have : (m ^ 2) % 2 = 1 := by
+      rw [Nat.pow_two, Nat.mul_mod, hodd]
+    omega
+  have step : floorPower (m ^ 2) = ((m ^ 2) * (m ^ 2) * (m ^ 2)).sqrt := by
+    simp [floorPower, nne]
+  have hcube : (m ^ 2) * (m ^ 2) * (m ^ 2) = (m ^ 3) * (m ^ 3) := by ring
+  rw [step, hcube, Nat.sqrt_eq]
+  ring
+
+/-- Smallest mixed-equality witness: word `O` at `n=9`. -/
+theorem floorPower_nine_odd_eq : floorPower 9 ^ 2 = 9 ^ 3 := by
+  have h : floorPower ((3 : ℕ) ^ 2) ^ 2 = ((3 : ℕ) ^ 2) ^ 3 :=
+    floorPower_odd_sq_eq_cube_of_sq (by decide)
+  simpa using h
+
 /-- Even-step composition of a square upper bound. -/
 theorem pow_sq_le {a b e : ℕ} (h : a ^ 2 ≤ b) :
     a ^ (2 * e) ≤ b ^ e := by
@@ -271,6 +292,167 @@ theorem pow_sq_le_cube {a b e : ℕ} (h : a ^ 2 ≤ b ^ 3) :
 theorem pow_lt_of_two_le {n a b : ℕ} (hn : 2 ≤ n) (hba : b < a) :
     n ^ b < n ^ a :=
   Nat.pow_lt_pow_right (lt_of_lt_of_le (by decide : 1 < 2) hn) hba
+
+/-!
+One-sided floor-power composition on realized finite words.
+Not a tactic, not a termination theorem, and not a parity-frequency theorem.
+The invariant is `PowerBound m n k o`, i.e. `m^{2^k} ≤ n^{3^o}`.
+-/
+
+inductive Branch where
+  | even
+  | odd
+  deriving DecidableEq, Repr
+
+def oddCount : List Branch → ℕ
+  | [] => 0
+  | .odd :: w => oddCount w + 1
+  | .even :: w => oddCount w
+
+/-- The orbit of `n` realizes the finite parity word `w`. -/
+def follows : ℕ → List Branch → Prop
+  | _, [] => True
+  | n, .even :: w => n % 2 = 0 ∧ follows (floorPower n) w
+  | n, .odd :: w => n % 2 = 1 ∧ follows (floorPower n) w
+
+/-- Weak one-sided bound `m^{2^k} ≤ n^{3^o}`. Equality is allowed. -/
+def PowerBound (m n k o : ℕ) : Prop := m ^ (2 ^ k) ≤ n ^ (3 ^ o)
+
+@[simp] theorem oddCount_nil : oddCount [] = 0 := rfl
+
+@[simp] theorem oddCount_even_cons (w : List Branch) :
+    oddCount (.even :: w) = oddCount w := rfl
+
+@[simp] theorem oddCount_odd_cons (w : List Branch) :
+    oddCount (.odd :: w) = oddCount w + 1 := rfl
+
+theorem power_bound_empty (n : ℕ) : PowerBound n n 0 0 := by
+  simp [PowerBound]
+
+theorem power_bound_append_even {m n k o : ℕ}
+    (h : PowerBound m n k o) (heven : m % 2 = 0) :
+    PowerBound (floorPower m) n (k + 1) o := by
+  have hsq : floorPower m ^ 2 ≤ m := floorPower_even_sq_le heven
+  unfold PowerBound at *
+  have hmul : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  rw [hmul]
+  exact le_trans (pow_sq_le hsq) h
+
+theorem power_bound_append_odd {m n k o : ℕ}
+    (h : PowerBound m n k o) (hodd : m % 2 = 1) :
+    PowerBound (floorPower m) n (k + 1) (o + 1) := by
+  have hsq : floorPower m ^ 2 ≤ m ^ 3 := floorPower_odd_sq_le_cube hodd
+  unfold PowerBound at *
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h3 : 3 ^ (o + 1) = 3 * 3 ^ o := by rw [pow_succ, mul_comm]
+  rw [h2, h3]
+  calc
+    floorPower m ^ (2 * 2 ^ k) ≤ m ^ (3 * 2 ^ k) := pow_sq_le_cube hsq
+    _ = (m ^ (2 ^ k)) ^ 3 := by rw [mul_comm, Nat.pow_mul]
+    _ ≤ (n ^ (3 ^ o)) ^ 3 := Nat.pow_le_pow_left h 3
+    _ = n ^ ((3 ^ o) * 3) := (Nat.pow_mul n (3 ^ o) 3).symm
+    _ = n ^ (3 * 3 ^ o) := by rw [mul_comm]
+
+/-- Image of `n` after the realized word `w`. Definitional on `cons`. -/
+def image : ℕ → List Branch → ℕ
+  | n, [] => n
+  | n, _ :: w => image (floorPower n) w
+
+@[simp] theorem image_nil (n : ℕ) : image n [] = n := rfl
+
+@[simp] theorem image_cons (n : ℕ) (b : Branch) (w : List Branch) :
+    image n (b :: w) = image (floorPower n) w := rfl
+
+theorem iterate_cons (n : ℕ) (k : ℕ) :
+    floorPower^[k + 1] n = floorPower^[k] (floorPower n) := by
+  induction k generalizing n with
+  | zero => rfl
+  | succ k ih =>
+      rw [Function.iterate_succ_apply, ih, ← Function.iterate_succ_apply]
+
+theorem image_eq_iterate (n : ℕ) : ∀ w, image n w = floorPower^[w.length] n := by
+  intro w
+  induction w generalizing n with
+  | nil => simp
+  | cons _b w ih =>
+      simp [List.length_cons, ih, iterate_cons]
+
+theorem power_bound_from {start current k o : ℕ}
+    (hbound : PowerBound current start k o) :
+    ∀ w, follows current w →
+      PowerBound (image current w) start (k + w.length)
+        (o + oddCount w) := by
+  intro w
+  induction w generalizing current k o with
+  | nil =>
+      intro _
+      simpa using hbound
+  | cons b rest ih =>
+      intro hw
+      cases b with
+      | even =>
+          have heven : current % 2 = 0 := hw.1
+          have hrest : follows (floorPower current) rest := hw.2
+          have hih :=
+            ih (current := floorPower current) (k := k + 1) (o := o)
+              (power_bound_append_even hbound heven) hrest
+          have hk : k + (rest.length + 1) = k + 1 + rest.length := by omega
+          simp [List.length_cons]
+          rw [hk]
+          exact hih
+      | odd =>
+          have hodd : current % 2 = 1 := hw.1
+          have hrest : follows (floorPower current) rest := hw.2
+          have hih :=
+            ih (current := floorPower current) (k := k + 1) (o := o + 1)
+              (power_bound_append_odd hbound hodd) hrest
+          have hk : k + (rest.length + 1) = k + 1 + rest.length := by omega
+          have ho : o + (oddCount rest + 1) = o + 1 + oddCount rest := by omega
+          simp [List.length_cons]
+          rw [hk, ho]
+          exact hih
+
+/-- Weak composition: every realized finite word obeys the one-sided bound. -/
+theorem power_bound_follows {n : ℕ} {w : List Branch} (hw : follows n w) :
+    PowerBound (floorPower^[w.length] n) n w.length (oddCount w) := by
+  have h := power_bound_from (power_bound_empty n) w hw
+  simpa [image_eq_iterate] using h
+
+/-- Strict block contraction from the exponent gap. Domain `n ≥ 2`.
+Not a claim that every trajectory meets a negative-drift word. -/
+theorem power_bound_contracts {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hw : follows n w)
+    (hgap : 3 ^ oddCount w < 2 ^ w.length) :
+    floorPower^[w.length] n < n := by
+  have hpow := power_bound_follows hw
+  unfold PowerBound at hpow
+  refine Nat.lt_of_not_ge fun hge => ?_
+  have hleft : n ^ (2 ^ w.length) ≤ (floorPower^[w.length] n) ^ (2 ^ w.length) :=
+    Nat.pow_le_pow_left hge _
+  have hle : n ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w) := le_trans hleft hpow
+  have hlt : n ^ (3 ^ oddCount w) < n ^ (2 ^ w.length) := pow_lt_of_two_le hn hgap
+  exact (not_le_of_gt hlt) hle
+
+def wordOOOEE : List Branch := [.odd, .odd, .odd, .even, .even]
+
+def wordOOOEEEOO : List Branch :=
+  [.odd, .odd, .odd, .even, .even, .even, .odd, .odd]
+
+theorem floorPower_oooee_of_follows {n : ℕ} (hn : 2 ≤ n)
+    (hw : follows n wordOOOEE) :
+    floorPower^[5] n < n := by
+  have h := power_bound_contracts (w := wordOOOEE) hn hw
+  have hgap : 3 ^ oddCount wordOOOEE < 2 ^ wordOOOEE.length := by
+    native_decide
+  simpa [wordOOOEE] using h hgap
+
+theorem floorPower_oooeeeoo_of_follows {n : ℕ} (hn : 2 ≤ n)
+    (hw : follows n wordOOOEEEOO) :
+    floorPower^[8] n < n := by
+  have h := power_bound_contracts (w := wordOOOEEEOO) hn hw
+  have hgap : 3 ^ oddCount wordOOOEEEOO < 2 ^ wordOOOEEEOO.length := by
+    native_decide
+  simpa [wordOOOEEEOO] using h hgap
 
 /-- Power comparison for the OOOEEEOO floor-power block: five odd steps
 and three even steps give `n8 ^ 256 ≤ n ^ 243`. Canonical exponents of
