@@ -39,6 +39,7 @@ class ResearchHypothesisStatus(str, Enum):
 class ObligationKind(str, Enum):
     INDUCTIVE_INCLUSION = "INDUCTIVE_INCLUSION"
     DOMAIN_CERTIFICATION = "DOMAIN_CERTIFICATION"
+    LAW_CERTIFICATION = "LAW_CERTIFICATION"
     DIVISIBILITY = "DIVISIBILITY"
     MATRIX_INVARIANT = "MATRIX_INVARIANT"
     RANKING_DESCENT = "RANKING_DESCENT"
@@ -239,6 +240,7 @@ class StrategyReport:
     attempted_chains: tuple[str, ...] = ()
     version: str = ENGINE_STRATEGY_VERSION
     reasoning: Any = None
+    law: Any = None
 
     def replace(self, **changes: Any) -> StrategyReport:
         return replace(self, **changes)

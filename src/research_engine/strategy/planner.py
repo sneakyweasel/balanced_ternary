@@ -50,6 +50,32 @@ def _memory_wants_inductive(memory: object) -> bool:
     return False
 
 
+def _memory_wants_law_domain(memory: object) -> bool:
+    failures = getattr(memory, "failures", lambda: ())()
+    for item in failures:
+        klass = getattr(item, "failure_class", None)
+        value = klass.value if hasattr(klass, "value") else klass
+        if value == "DOMAIN_INFERENCE":
+            return True
+        if getattr(item, "mathematical_bottleneck", "") == "sign_first_region_inference":
+            return True
+    hypotheses = getattr(memory, "hypotheses", lambda: ())()
+    wanted = {ObligationKind.DOMAIN_CERTIFICATION, ObligationKind.LAW_CERTIFICATION}
+    for hyp in hypotheses:
+        if getattr(hyp, "cluster_id", "") == "census_domain":
+            return True
+        for obligation in getattr(hyp, "proof_obligations", ()):
+            if getattr(obligation, "kind", None) in wanted:
+                return True
+    loot = getattr(memory, "grey_loot", lambda: ())()
+    for item in loot:
+        kind = getattr(item, "kind", None)
+        value = kind.value if hasattr(kind, "value") else kind
+        if value == "FAILED_DOMAIN_PREDICATE":
+            return True
+    return False
+
+
 def score_chain(
     chain: AttackChain,
     goal: ResearchGoal,
@@ -63,6 +89,10 @@ def score_chain(
     if chain.id == "global_inductive":
         if memory is not None and _memory_wants_inductive(memory):
             value *= 1.25
+        return value
+    if chain.id == "law_domain":
+        if memory is None or not _memory_wants_law_domain(memory):
+            return 0.0
         return value
     dim = _dimension(spec)
     if dim == 1 and chain.id == "census_obstruction":
@@ -230,12 +260,28 @@ class StrategyPlanner:
                 attempted_chains=("global_inductive",),
                 reasoning=reasoning,
             )
+        if plan.chain.id == "law_domain":
+            from research_engine.law.analyze import analyze as analyze_law
+            from research_engine.law.analyze import hypotheses_from_report as law_hypotheses
+
+            law_report = analyze_law(spec, context)
+            hypotheses = law_hypotheses(law_report)
+            if memory is not None and hasattr(memory, "add_hypothesis"):
+                remember_hypotheses(memory, hypotheses)
+            return StrategyReport(
+                plan=plan,
+                results=(),
+                hypotheses=hypotheses,
+                metrics=compute_metrics((), hypotheses, 1),
+                attempted_chains=("law_domain",),
+                law=law_report,
+            )
         attempted: list[str] = []
         collected: list[AttackResult] = []
         skipped: list[SkipRecord] = []
         chosen = plan.chain
         for chain in (plan.chain, *plan.alternatives):
-            if chain.id == "global_inductive":
+            if chain.id in {"global_inductive", "law_domain"}:
                 continue
             attempted.append(chain.id)
             chunk, skip, failed = _run_chain(spec, context, chain, collected)

@@ -2,12 +2,12 @@
 
 Status: **EXPLORATORY**
 
-This is laboratory intelligence for Research Engine v2.3 Phases 1–2.
+This is laboratory intelligence for Research Engine v2.3 Phases 1–3.
 It does **not** add flood-order attacks, rewrite the census, run an
 LP/SMT ranking optimizer, or introduce relation/quantifier semantics.
 Phase 1 lives in `research_engine.strategy`. Phase 2 lives in
-`research_engine.reasoning`. The thin descriptor is
-`research.research_strategy`.
+`research_engine.reasoning`. Phase 3 lives in `research_engine.law`.
+The thin descriptor is `research.research_strategy`.
 
 ## Problem
 
@@ -56,7 +56,17 @@ empirical base:
 6. is selected only by the opt-in chain `global_inductive` for
    `TERMINATION | BOUNDEDNESS | POSITIVITY | REACHABILITY`.
 
-Phases 3–4 (law/domain separation, quantifiers) remain **gated**.
+**Phase 3.** A law/domain split, not a census rewrite,
+
+1. extracts affine laws from exact I/O **before** attaching a region;
+2. allows `LAW_CERTIFIED` to precede `DOMAIN_CERTIFIED`;
+3. calls existing `infer_region` without reordering sign-first;
+4. records a truncated involution domain as `DOMAIN_TRUNCATED`, never as
+   a completed `FINITE_CENSUS`;
+5. is selected only by the opt-in chain `law_domain` when memory already
+   carries `DOMAIN_INFERENCE` / domain obligations.
+
+Phase 4 (quantifiers) remains **gated**.
 
 ## Current literature
 
@@ -108,7 +118,35 @@ Stop criterion          Target-specific solver; general SMT/CEGIS engine;
 ```
 
 Phase 1 budget (implemented, not reopened) is recorded in the journal
-entry for 2026-08-26.
+entry for 2026-08-26. Phase 3 budget:
+
+```text
+Mathematical target     Can affine laws be certified independently of
+                        region partition — so LAW_CERTIFIED may precede
+                        DOMAIN_CERTIFIED — without mutating infer_region
+                        or completing the parked involution census?
+Novelty hypothesis      Engine methodology: (p,q,r) / parameterized family
+                        first, domain second. A globally valid sample law
+                        is not a finite census and not a Z-theorem.
+Falsifier               infer_region sign-first order changes; negation
+                        flood census becomes FINITE_CENSUS; DEFAULT_ATTACK_ORDER
+                        changes; Carelli length-≤2 billed as engine rediscovery;
+                        Phase 4 quantifiers or overlapping-domain census ships.
+Existing machinery      piecewise_affine._candidate_lines / infer_region
+                        (sign-first); ParameterizedFamily; ParameterDomainAttack;
+                        ObligationKind DOMAIN_CERTIFICATION; FAILED_DOMAIN_PREDICATE
+                        loot; census_domain PARK / DO_NOT_IMPLEMENT; negation_spec.
+Maximum Phase-0 scope   research_engine.law types + wrap _candidate_lines +
+                        optional truncated-domain attach + opt-in strategy
+                        chain + replay tests + dossier. No infer_region
+                        reorder. No flood-order attack. No Lean. No CLI.
+Promotion criterion     negation yields a known LAW_CERTIFIED while flood
+                        census_kind stays UNRESOLVED; decrement /
+                        census_obstruction / DEFAULT_ATTACK_ORDER regress clean.
+Stop criterion          Completing the involution census; changing sign-first
+                        order so y=-x covers Z; vector _infer_region rewrite;
+                        overlapping-domain / quantifier work (Phase 4).
+```
 
 ## Balanced-ternary formulation
 
@@ -136,15 +174,21 @@ methodology.
 - Bounded region CEGIS over the four-form catalog — **OBSERVATION**
 - Ranking reconnaissance from a fixed catalog wrapping
   `DescentLeakAttack` — **OBSERVATION** (not a Lyapunov theorem)
+- Affine law before region attachment (`LAW_CERTIFIED` may precede
+  `DOMAIN_CERTIFIED`) — **OBSERVATION**
+- Truncated sign domain on a globally valid sample law —
+  **OBSERVATION** (not a completed census)
 
 ## Experiments
 
 - Types and planner: `research_engine.strategy`
 - Reasoning: `research_engine.reasoning.analyze`
+- Law/domain: `research_engine.law.analyze`
 - Historical generation: `generate_from_memory(ResearchMemory.load_historical())`
 - Live chain selection: `StrategyPlanner.run(spec, context, goal=...)`
 - Tests: `tests/research_engine/strategy/test_strategy.py`,
   `tests/research_engine/reasoning/test_reasoning.py`,
+  `tests/research_engine/law/test_law.py`,
   `tests/research/research_strategy/test_research_strategy.py`
 - Existing specs only. No new adapters. No order-6 census cubes.
   No unrun board targets are executed as solvers.
@@ -233,31 +277,50 @@ Replay (existing specs, calibration tagged known):
 `PROOF_READY` hypothesis. Session `LIVE` hypotheses remain `OPEN`.
 Finite complete closure is not promoted to live infinitude.
 
-### E. Gated later phases (not implemented)
+### E. Phase 3 law ⊥ domain
 
-**Phase 3 — Law ⊥ domain.** Census law candidates before region
-partition. Gate: the parked involution regression; this phase does not
-touch `infer_region`.
+`ENGINE_LAW_VERSION = 0.2.5`. Strategy and reasoning versions stay
+`0.2.3` / `0.2.4`. Package version stays `0.2.2`. `infer_region` still
+returns sign/nonneg first on a mixed-sign window. `DEFAULT_ATTACK_ORDER`
+is unchanged; `law_domain` is not a flood attack.
+
+Replay (existing specs):
+
+- Negation \(y=-x\): the affine law is `LAW_CERTIFIED`
+  (`KNOWN_REDISCOVERY`); the attached sign region is
+  `DOMAIN_TRUNCATED`, never `DOMAIN_CERTIFIED`. Flood
+  `piecewise_affine` remains `UNRESOLVED` / `INCONCLUSIVE`. This is not
+  Carelli’s length-\(\le 2\) theorem and not a completed involution
+  census.
+- Decrement \(y=x-1\): law `LAW_CERTIFIED` and sample domain
+  `sign/nonneg` may both certify on the window; flood `FINITE_CENSUS`
+  is unchanged.
+- `CYCLE_EXCLUSION` on `HiddenPowerClearDSpec` without domain-inference
+  memory still selects `census_obstruction`. Historical memory with
+  `DOMAIN_INFERENCE` selects `law_domain` on negation.
+
+### F. Gated later phase (not implemented)
 
 **Phase 4 — Quantifiers.** \(R\subseteq X\times X\) and
 \(\exists\neq\forall\). Gate: a second independent branching target
-besides parked nondeterministic SLC.
+besides parked nondeterministic SLC. Overlapping legal affine domains
+(sum-strip) stay in that gate.
 
 ## Open questions
 
-Can law candidates be separated from domain partition without touching
-`infer_region` (Phase 3 gate)?
+Can overlapping nondeterministic branches be consumed without a new
+deterministic control language (Phase 4 gate)?
 
 ## Decision
 
-`PROMOTE` Phase 2 as v2.3 laboratory intelligence: generic inductive
-and ranking certificates with evidence discipline, on top of the Phase 1
-strategy layer, wrapping the frozen attack stack. Do not add flood
-attacks. Do not implement the involution census. Do not open Phases 3–4.
-Do not bill cluster replays as universal theorems.
+`PROMOTE` Phase 3 as v2.3 laboratory intelligence: affine laws may be
+certified independently of truncated domains, without mutating
+`infer_region` or completing the parked involution census. Do not add
+flood attacks. Do not implement the involution census. Do not open
+Phase 4. Do not bill Carelli length-\(\le 2\) as an engine rediscovery.
 
-Best next question: can law candidates be separated from domain
-partition without touching `infer_region`?
+Best next question: can overlapping nondeterministic branches be
+consumed without a new deterministic control language?
 
 ## Publication assessment
 

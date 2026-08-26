@@ -386,6 +386,14 @@ def _falsify_branch(
     return tuple(hits)
 
 
+def candidate_affine_laws(
+    samples: Mapping[int, int],
+) -> dict[tuple[int, int, int], set[int]]:
+    """Affine identities from exact I/O. Region inference is a later step."""
+
+    return _candidate_lines(samples)
+
+
 def _candidate_lines(samples: Mapping[int, int]) -> dict[tuple[int, int, int], set[int]]:
     items = tuple(samples.items())
     supports: dict[tuple[int, int, int], set[int]] = {}

@@ -199,8 +199,18 @@ GLOBAL_INDUCTIVE_CHAIN = AttackChain(
     cost=1.0,
 )
 
+LAW_DOMAIN_CHAIN = AttackChain(
+    id="law_domain",
+    attacks=(),
+    goals=(ResearchGoal.CYCLE_EXCLUSION, ResearchGoal.ORIGIN_AVOIDANCE),
+    expected_outputs=("affine_law", "domain_attachment"),
+    historical_yield=4.0,
+    cost=1.0,
+)
+
 SEEDED_CHAINS: tuple[AttackChain, ...] = (
     GLOBAL_INDUCTIVE_CHAIN,
+    LAW_DOMAIN_CHAIN,
     CENSUS_OBSTRUCTION_CHAIN,
     VECTOR_MATRIX_CHAIN,
     FINITE_CLOSURE_CHAIN,

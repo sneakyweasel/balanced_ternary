@@ -15,6 +15,7 @@ from research_engine.strategy import (
     CENSUS_OBSTRUCTION_CHAIN,
     ENGINE_STRATEGY_VERSION,
     GLOBAL_INDUCTIVE_CHAIN,
+    LAW_DOMAIN_CHAIN,
     ResearchGoal,
     ResearchHypothesis,
     ResearchHypothesisStatus,
@@ -49,6 +50,8 @@ def test_strategy_version_and_frozen_order():
     )
     assert GLOBAL_INDUCTIVE_CHAIN.id not in DEFAULT_ATTACK_ORDER
     assert "global_inductive" not in DEFAULT_ATTACK_ORDER
+    assert LAW_DOMAIN_CHAIN.id not in DEFAULT_ATTACK_ORDER
+    assert "law_domain" not in DEFAULT_ATTACK_ORDER
 
 
 def test_historical_memory_loads_without_hypotheses_key():

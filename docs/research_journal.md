@@ -2594,4 +2594,48 @@ Best next question
 - Can law candidates be separated from domain partition without touching infer_region?
 ```
 
+## Research Engine v2.3 Phase 3: law ⊥ domain
+
+- **Date:** 2026-08-26
+- **Objective:** Certify affine laws independently of region partition, so LAW_CERTIFIED may precede DOMAIN_CERTIFIED, without mutating infer_region or completing the parked involution census
+- **Hypotheses:** `_candidate_lines` already contains the law; sign-first `infer_region` is a later, possibly truncated, domain attachment
+- **Major results:** `research_engine.law` (`AffineLaw`, `DomainAttachment`, `LawEvidence`, `DomainEvidence`). Negation \(y=-x\) is `LAW_CERTIFIED` (known) with `DOMAIN_TRUNCATED`; flood census stays `UNRESOLVED`. Decrement \(y=x-1\) may certify law and sample domain together; flood `FINITE_CENSUS` unchanged. Opt-in chain `law_domain` only when memory carries `DOMAIN_INFERENCE`. `infer_region` sign-first order unchanged. `ENGINE_LAW_VERSION = 0.2.5`. Phase 4 gated
+- **Refuted ideas:** completing the involution census as the Phase-3 vehicle; `LAW_CERTIFIED` as `FINITE_CENSUS`; truncated sign region as `DOMAIN_CERTIFIED`; Carelli length-≤2 as an engine rediscovery from \(y=-x\)
+- **Literature:** engine methodology; affine involution and decrement remain KNOWN rediscoveries
+- **Open:** overlapping nondeterministic branches / quantifier semantics (Phase 4 gate)
+- **Decision:** PROMOTE Phase 3 as laboratory intelligence. Do not add flood attacks. Do not implement the involution census. Do not open Phase 4
+
+```text
+What was learned
+- Affine laws can be extracted from exact I/O before infer_region attaches a domain
+- Sign-first truncation is a domain failure, not a missing law
+- LAW_CERTIFIED must not rewrite an UNRESOLVED flood census
+- law_domain can sit on StrategyPlanner without stealing census_obstruction when memory is absent
+- The parked involution regression remains a calibration, not a census-fix ticket
+
+Strongest theorem
+- none; engine methodology only (known calibrations tagged KNOWN_REDISCOVERY)
+
+Strongest refutation
+- y=-x on a truncated sign region is not a complete finite census and not Carelli length-≤2
+
+Reusable machinery
+- research_engine.law (analyze, AffineLaw, DomainAttachment); opt-in law_domain chain; candidate_affine_laws export
+
+Prior-art status
+- KNOWN rediscoveries on slc_negation and slc_decrement; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PROMOTE (Phase 3 only)
+
+Why
+- The engine can now state a sample-certified affine law when the region partition is incomplete, without thawing infer_region or claiming a Z-cover.
+
+Best next question
+- Can overlapping nondeterministic branches be consumed without a new deterministic control language?
+```
+
 

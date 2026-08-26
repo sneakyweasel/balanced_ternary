@@ -26,6 +26,8 @@ DEFAULT_ALLOWLIST: tuple[str, ...] = (
     "global_inductive",
     "InvariantCertificate",
     "RankingCertificate",
+    "law_domain",
+    "AffineLaw",
 )
 
 

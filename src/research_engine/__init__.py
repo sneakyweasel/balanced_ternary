@@ -107,6 +107,7 @@ from research_engine.reasoning import (
     analyze,
     hypotheses_from_report,
 )
+from research_engine.law import ENGINE_LAW_VERSION
 from research_engine.core.affine_system import (
     AffineSystem,
     affine_step,
@@ -204,6 +205,7 @@ __all__ = [
     "ResearchSession",
     "ENGINE_STRATEGY_VERSION",
     "ENGINE_REASONING_VERSION",
+    "ENGINE_LAW_VERSION",
     "EvidenceState",
     "StrategyPlanner",
     "StructuralDelta",

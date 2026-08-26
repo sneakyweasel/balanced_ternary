@@ -53,6 +53,8 @@ from research_engine.attacks.piecewise_affine import (
     LatentControl,
     PiecewiseAffineCensus,
     PiecewiseAffineCensusAttack,
+    candidate_affine_laws,
+    infer_region,
     run_piecewise_affine_census,
 )
 from research_engine.attacks.reconnaissance import ReconnaissanceAttack
@@ -128,6 +130,7 @@ __all__ = [
     "SymmetryAttack",
     "SymmetryCandidate",
     "SymmetryResult",
+    "candidate_affine_laws",
     "classify_block",
     "compare_envelope_to_reachable",
     "compute_exact_reachable",
@@ -135,6 +138,7 @@ __all__ = [
     "envelope_from_interval",
     "find_invariant",
     "reachable_from_ints",
+    "infer_region",
     "run_parameter_domain",
     "run_piecewise_affine_census",
     "run_vector_affine_census",
