@@ -3964,4 +3964,49 @@ Best next question
 - Which words can appear as traces of the even exponent maps e ↦ e/2 and e ↦ 3e/2, once every pre-branch exponent is required to stay even?
 ```
 
+## Juggler equality-word language and parity rigidity
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether a realized finite word attaining the floor-power envelope with equality must be monochrome, \(E^k\) or \(O^k\), and whether those families are exactly the even and odd perfect-power towers
+- **Hypotheses:** exact perfect-power states keep the parity of the base; therefore an equality itinerary cannot switch letters; the reverse towers realize \(E^k\) and \(O^k\)
+- **Major results:** Parity of \(a^e\) **PROVED**. Exact-step parity preservation **PROVED**. Monochrome theorem `power_bound_eq_implies_monochrome` **PROVED**. Extremal iff `power_bound_eq_iff_extremal` **PROVED**: equality is exactly \(a^{2^k}\xrightarrow{E^k}a\) or \(a^{2^k}\xrightarrow{O^k}a^{3^k}\). Even minimum \(2^{2^k}\) for \(n\ge 2\); odd minimum \(3^{2^k}\) for \(n\ge 3\). Computational search: 0 `MIXED_EQUALITY_WORD_FOUND` on \(n\le 10^4\), depth 8, square towers, and prescribed mixed words. Classification **EXTREMAL_FAMILY_GREEN**. Records: `docs/research/juggler_equality_language.md`, `docs/problems/juggler_equality_language.md`. Control layer unchanged
+- **Refuted ideas:** mixed-word strictness remains refuted (prior phase; one-letter equality at `O`, \(n=9\), not a both-letter word); equality-word census; `PowerHeight`; a second exponent automaton
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** exact deficit of a non-monochrome realized word relative to the weak envelope
+- **Decision:** PROMOTE the monochrome language and the two extremal families. Do not register an attack. Do not claim termination
+
+```text
+What was learned
+- For e ≥ 1 the parity of a^e is the parity of a, so an exact tower never changes letter
+- Envelope equality forces w = E^k or w = O^k; no mixed equality word exists
+- The two families are exactly a^{2^k} --E^k--> a (even a) and a^{2^k} --O^k--> a^{3^k} (odd a)
+- All-even equality contracts; all-odd equality expands; both saturate the same one-sided envelope
+- The simple parity invariant was not falsified; no PowerHeight or word automaton was required
+
+Strongest theorem
+- A realized finite word attains the floor-power envelope with equality if and only if it is an exact even tower or an exact odd tower
+
+Strongest refutation
+- none for the language; mixed-word strictness remains false at O, n=9
+
+Reusable machinery
+- FloorPower power_bound_eq_implies_monochrome / power_bound_eq_iff_extremal / iterate even/odd towers
+- research.juggler_sequence.equality_language mixed-word probe
+
+Prior-art status
+- local equality-language lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Equality is not a free language over {E,O}. It collapses to two monochrome arithmetic extremals, which are the boundary of the existing finite-word envelope. Stop rather than census words or return to termination.
+
+Best next question
+- What exact deficit does a non-monochrome realized word have relative to the one-sided envelope?
+```
+
 

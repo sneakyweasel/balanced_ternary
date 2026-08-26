@@ -1,0 +1,248 @@
+{
+  "experiment": "juggler_equality_language",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "n_max": 10000,
+    "k_max": 8,
+    "mixed": {
+      "domain": {
+        "saturation_count": 99,
+        "mixed_count": 0,
+        "max_saturation_length": 3
+      },
+      "sample_mixed": [],
+      "tower_mixed_count": 0,
+      "prescribed_mixed_realized": 0,
+      "mixed_found": false
+    },
+    "families": {
+      "records": [
+        {
+          "base": 2,
+          "k": 1,
+          "start": 4,
+          "word": "E",
+          "expected_word": "E",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 2,
+          "even_image_is_base": true,
+          "square_depth": 1,
+          "has_pow_two_depth": true,
+          "base_parity": 0
+        },
+        {
+          "base": 2,
+          "k": 2,
+          "start": 16,
+          "word": "EE",
+          "expected_word": "EE",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 2,
+          "even_image_is_base": true,
+          "square_depth": 2,
+          "has_pow_two_depth": true,
+          "base_parity": 0
+        },
+        {
+          "base": 2,
+          "k": 3,
+          "start": 256,
+          "word": "EEE",
+          "expected_word": "EEE",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 2,
+          "even_image_is_base": true,
+          "square_depth": 3,
+          "has_pow_two_depth": true,
+          "base_parity": 0
+        },
+        {
+          "base": 2,
+          "k": 4,
+          "start": 65536,
+          "word": "EEEE",
+          "expected_word": "EEEE",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 2,
+          "even_image_is_base": true,
+          "square_depth": 4,
+          "has_pow_two_depth": true,
+          "base_parity": 0
+        },
+        {
+          "base": 3,
+          "k": 1,
+          "start": 9,
+          "word": "O",
+          "expected_word": "O",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 27,
+          "even_image_is_base": false,
+          "square_depth": 1,
+          "has_pow_two_depth": true,
+          "base_parity": 1
+        },
+        {
+          "base": 3,
+          "k": 2,
+          "start": 81,
+          "word": "OO",
+          "expected_word": "OO",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 19683,
+          "even_image_is_base": false,
+          "square_depth": 2,
+          "has_pow_two_depth": true,
+          "base_parity": 1
+        },
+        {
+          "base": 3,
+          "k": 3,
+          "start": 6561,
+          "word": "OOO",
+          "expected_word": "OOO",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 7625597484987,
+          "even_image_is_base": false,
+          "square_depth": 3,
+          "has_pow_two_depth": true,
+          "base_parity": 1
+        },
+        {
+          "base": 5,
+          "k": 2,
+          "start": 625,
+          "word": "OO",
+          "expected_word": "OO",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 1953125,
+          "even_image_is_base": false,
+          "square_depth": 2,
+          "has_pow_two_depth": true,
+          "base_parity": 1
+        },
+        {
+          "base": 4,
+          "k": 2,
+          "start": 256,
+          "word": "EE",
+          "expected_word": "EE",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 4,
+          "even_image_is_base": true,
+          "square_depth": 3,
+          "has_pow_two_depth": true,
+          "base_parity": 0
+        },
+        {
+          "base": 6,
+          "k": 1,
+          "start": 36,
+          "word": "E",
+          "expected_word": "E",
+          "monochrome": true,
+          "matches_family": true,
+          "image": 6,
+          "even_image_is_base": true,
+          "square_depth": 1,
+          "has_pow_two_depth": true,
+          "base_parity": 0
+        }
+      ],
+      "all_match": true,
+      "all_monochrome": true
+    },
+    "examples": {
+      "odd_square_nine": {
+        "start": 9,
+        "word": "O",
+        "length": 1,
+        "odd_count": 1,
+        "square_depth": 1,
+        "infinite_depth": false,
+        "trajectory": [
+          9,
+          27
+        ],
+        "contracts": false,
+        "budget_ok": true,
+        "independent_global_eq": true,
+        "base": 3
+      },
+      "even_tower_sixteen": {
+        "start": 16,
+        "word": "EE",
+        "length": 2,
+        "odd_count": 0,
+        "square_depth": 2,
+        "infinite_depth": false,
+        "trajectory": [
+          16,
+          4,
+          2
+        ],
+        "contracts": true,
+        "budget_ok": true,
+        "independent_global_eq": true,
+        "base": 2
+      },
+      "odd_fourth_eighty_one": {
+        "start": 81,
+        "word": "OO",
+        "length": 2,
+        "odd_count": 2,
+        "square_depth": 2,
+        "infinite_depth": false,
+        "trajectory": [
+          81,
+          729,
+          19683
+        ],
+        "contracts": false,
+        "budget_ok": true,
+        "base": 3
+      },
+      "word_of_mixed_probe": false
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "even_iff_pow_even": true,
+    "floorPower_sq_preserves_parity": true,
+    "floorPower_pow_two_depth_preserves_parity": true,
+    "power_bound_eq_implies_monochrome": true,
+    "floorPower_iterate_even_pow_two_eq": true,
+    "floorPower_iterate_odd_pow_two_eq": true,
+    "follows_replicate_even_pow_two": true,
+    "follows_replicate_odd_pow_two": true,
+    "power_bound_eq_iff_extremal": true,
+    "two_pow_two_pow_extremal_even": true,
+    "three_pow_two_pow_extremal_odd": true,
+    "odd_equality_three_pow_le": true,
+    "PowerHeight_absent": true,
+    "mixed_word_power_lt_absent": true
+  },
+  "decision": {
+    "classification": "EXTREMAL_FAMILY_GREEN",
+    "reason": "Envelope equality is exactly the two monochrome towers a^{2^k} --E^k--> a and a^{2^k} --O^k--> a^{3^k}"
+  },
+  "search_method": "local tightness and repeated isqrt; mixed-word search only; no equality census and no cmp_pow on n^{3^o}"
+}

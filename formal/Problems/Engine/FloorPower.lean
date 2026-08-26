@@ -1162,4 +1162,359 @@ theorem power_bound_eq_contracts_pow_two_lb {n : ℕ} {w : List Branch}
     2 ^ (2 ^ w.length) ≤ n :=
   hasPowTwoDepth_two_le hn (power_bound_eq_implies_pow_two_depth hw heq)
 
+/-!
+Parity rigidity of exact perfect-power states, and the monochrome
+equality-word language. Not an equality-word census and not a
+termination theorem.
+-/
+
+theorem even_iff_pow_even {a e : ℕ} (he : 1 ≤ e) :
+    a % 2 = 0 ↔ (a ^ e) % 2 = 0 := by
+  constructor
+  · intro ha
+    have : Even (a ^ e) := by
+      rw [Nat.even_pow]
+      exact ⟨Nat.even_iff.2 ha, Nat.pos_iff_ne_zero.mp he⟩
+    exact Nat.even_iff.1 this
+  · intro h
+    by_contra hne
+    have ha : a % 2 = 1 := by omega
+    have : (a ^ e) % 2 = 1 := pow_mod_two_of_odd ha
+    omega
+
+theorem odd_iff_pow_odd {a e : ℕ} (he : 1 ≤ e) :
+    a % 2 = 1 ↔ (a ^ e) % 2 = 1 := by
+  constructor
+  · exact pow_mod_two_of_odd
+  · exact odd_of_pow_odd he
+
+theorem even_iff_pow_two_depth_even {a r : ℕ} :
+    a % 2 = 0 ↔ (a ^ (2 ^ r)) % 2 = 0 :=
+  even_iff_pow_even (Nat.one_le_pow r 2 (by decide : 0 < 2))
+
+theorem odd_iff_pow_two_depth_odd {a r : ℕ} :
+    a % 2 = 1 ↔ (a ^ (2 ^ r)) % 2 = 1 :=
+  odd_iff_pow_odd (Nat.one_le_pow r 2 (by decide : 0 < 2))
+
+/-- An exact step on a square keeps the parity of the state. -/
+theorem floorPower_sq_preserves_parity {n : ℕ} (hsq : n.sqrt ^ 2 = n) :
+    floorPower n % 2 = n % 2 := by
+  set s := n.sqrt
+  have hn : n = s ^ 2 := hsq.symm
+  rcases Nat.mod_two_eq_zero_or_one n with heven | hodd
+  · have himg : floorPower n = s := by
+      have : floorPower (s ^ 2) = s :=
+        floorPower_of_even_sq (by simpa [hn] using heven)
+      simpa [hn] using this
+    have hs : s % 2 = 0 :=
+      (even_iff_pow_even (by decide : 1 ≤ 2)).2 (by simpa [hn] using heven)
+    omega
+  · have hs : s % 2 = 1 :=
+      odd_of_pow_odd (by decide : 1 ≤ 2) (by simpa [hn] using hodd)
+    have himg : floorPower n = s ^ 3 := by
+      have : floorPower (s ^ 2) = s ^ 3 := floorPower_of_odd_sq hs
+      simpa [hn] using this
+    have : (s ^ 3) % 2 = 1 := pow_mod_two_of_odd hs
+    omega
+
+theorem floorPower_of_pow_two_depth_even_base {a r : ℕ} (hr : 1 ≤ r)
+    (ha : a % 2 = 0) :
+    floorPower (a ^ (2 ^ r)) = a ^ (2 ^ (r - 1)) ∧
+      (a ^ (2 ^ (r - 1))) % 2 = 0 := by
+  have hn : (a ^ (2 ^ r)) % 2 = 0 := even_iff_pow_two_depth_even.1 ha
+  refine ⟨floorPower_of_pow_two_depth_even hr hn, ?_⟩
+  exact even_iff_pow_two_depth_even.1 ha
+
+theorem floorPower_of_pow_two_depth_odd_base {a r : ℕ} (hr : 1 ≤ r)
+    (ha : a % 2 = 1) :
+    floorPower (a ^ (2 ^ r)) = a ^ (3 * 2 ^ (r - 1)) ∧
+      (a ^ (3 * 2 ^ (r - 1))) % 2 = 1 :=
+  ⟨floorPower_of_pow_two_depth_odd hr ha, pow_mod_two_of_odd ha⟩
+
+/-- Exact even or odd branch on `a^{2^r}` keeps the parity of `a`. -/
+theorem floorPower_pow_two_depth_preserves_parity {a r : ℕ} (hr : 1 ≤ r) :
+    floorPower (a ^ (2 ^ r)) % 2 = a % 2 := by
+  rcases Nat.mod_two_eq_zero_or_one a with ha | ha
+  · have h := floorPower_of_pow_two_depth_even_base hr ha
+    omega
+  · have h := floorPower_of_pow_two_depth_odd_base hr ha
+    omega
+
+theorem oddCount_replicate_even (k : ℕ) :
+    oddCount (List.replicate k Branch.even) = 0 := by
+  induction k with
+  | zero => simp
+  | succ k ih =>
+      rw [List.replicate_succ, oddCount_even_cons, ih]
+
+theorem oddCount_replicate_odd (k : ℕ) :
+    oddCount (List.replicate k Branch.odd) = k := by
+  induction k with
+  | zero => simp
+  | succ k ih =>
+      rw [List.replicate_succ, oddCount_odd_cons, ih]
+
+/-- Envelope equality forces a monochrome word. -/
+theorem power_bound_eq_implies_monochrome {n : ℕ} {w : List Branch}
+    (hw : follows n w)
+    (heq : PowerBoundEq (floorPower^[w.length] n) n w.length (oddCount w)) :
+    w = List.replicate w.length Branch.even ∨
+      w = List.replicate w.length Branch.odd := by
+  induction w generalizing n with
+  | nil => exact Or.inl rfl
+  | cons b rest ih =>
+      have hsq : n.sqrt ^ 2 = n :=
+        power_bound_eq_implies_square hw heq 0 (Nat.succ_pos _)
+      have hpar : floorPower n % 2 = n % 2 :=
+        floorPower_sq_preserves_parity hsq
+      have hfrom :=
+        power_bound_eq_from (w := b :: rest) (power_bound_empty n) hw
+          (by simpa [image_eq_iterate] using heq)
+      have hloc : localsTight n (b :: rest) := hfrom.2
+      have hrest : follows (floorPower n) rest := by
+        cases b with
+        | even => exact hw.2
+        | odd => exact hw.2
+      have htailEq :
+          PowerBoundEq (floorPower^[rest.length] (floorPower n)) (floorPower n)
+            rest.length (oddCount rest) :=
+        localsTight_implies_power_bound_eq rest hrest hloc.2
+      have hmono := ih hrest htailEq
+      cases b with
+      | even =>
+          have heven : n % 2 = 0 := hw.1
+          have himg : floorPower n % 2 = 0 := by omega
+          have hrestEven : rest = List.replicate rest.length Branch.even := by
+            cases hmono with
+            | inl h => exact h
+            | inr h =>
+                cases rest with
+                | nil => rfl
+                | cons b' rest' =>
+                    rw [List.length_cons, List.replicate_succ] at h
+                    have hb' : b' = Branch.odd := (List.cons_eq_cons.mp h).1
+                    have : floorPower n % 2 = 1 := by
+                      rw [hb'] at hrest
+                      exact hrest.1
+                    omega
+          refine Or.inl ?_
+          rw [List.length_cons, List.replicate_succ]
+          exact congrArg (List.cons Branch.even) hrestEven
+      | odd =>
+          have hodd : n % 2 = 1 := hw.1
+          have himg : floorPower n % 2 = 1 := by omega
+          have hrestOdd : rest = List.replicate rest.length Branch.odd := by
+            cases hmono with
+            | inr h => exact h
+            | inl h =>
+                cases rest with
+                | nil => rfl
+                | cons b' rest' =>
+                    rw [List.length_cons, List.replicate_succ] at h
+                    have hb' : b' = Branch.even := (List.cons_eq_cons.mp h).1
+                    have : floorPower n % 2 = 0 := by
+                      rw [hb'] at hrest
+                      exact hrest.1
+                    omega
+          refine Or.inr ?_
+          rw [List.length_cons, List.replicate_succ]
+          exact congrArg (List.cons Branch.odd) hrestOdd
+
+theorem floorPower_iterate_even_pow_two {a : ℕ} (ha : a % 2 = 0) :
+    ∀ {k j : ℕ}, j ≤ k →
+      floorPower^[j] (a ^ (2 ^ k)) = a ^ (2 ^ (k - j)) := by
+  intro k j
+  induction j generalizing k with
+  | zero =>
+      intro _
+      simp
+  | succ j ih =>
+      intro hle
+      have hk : 1 ≤ k := by omega
+      rw [iterate_cons]
+      have hstep : floorPower (a ^ (2 ^ k)) = a ^ (2 ^ (k - 1)) :=
+        (floorPower_of_pow_two_depth_even_base hk ha).1
+      rw [hstep]
+      have hj : j ≤ k - 1 := by omega
+      have hkj : k - 1 - j = k - (j + 1) := by
+        rw [Nat.sub_right_comm, ← Nat.sub_add_eq]
+      rw [ih (k := k - 1) hj, hkj]
+
+theorem floorPower_iterate_odd_pow_two {a : ℕ} (ha : a % 2 = 1) :
+    ∀ {k j : ℕ}, j ≤ k →
+      floorPower^[j] (a ^ (2 ^ k)) = a ^ (3 ^ j * 2 ^ (k - j)) := by
+  intro k j
+  induction j generalizing a k with
+  | zero =>
+      intro _
+      simp
+  | succ j ih =>
+      intro hle
+      have hk : 1 ≤ k := by omega
+      rw [iterate_cons]
+      have hstep : floorPower (a ^ (2 ^ k)) = a ^ (3 * 2 ^ (k - 1)) :=
+        (floorPower_of_pow_two_depth_odd_base hk ha).1
+      rw [hstep]
+      have ha3 : (a ^ 3) % 2 = 1 := pow_mod_two_of_odd ha
+      have hform : a ^ (3 * 2 ^ (k - 1)) = (a ^ 3) ^ (2 ^ (k - 1)) := by
+        rw [← pow_mul, mul_comm]
+      rw [hform]
+      have hj : j ≤ k - 1 := by omega
+      have hih := ih (a := a ^ 3) (k := k - 1) ha3 hj
+      have hkj : k - 1 - j = k - (j + 1) := by
+        rw [Nat.sub_right_comm, ← Nat.sub_add_eq]
+      rw [hih, ← pow_mul, ← mul_assoc, ← pow_succ', hkj]
+
+theorem floorPower_iterate_even_pow_two_eq {a k : ℕ} (ha : a % 2 = 0) :
+    floorPower^[k] (a ^ (2 ^ k)) = a := by
+  simpa [pow_one] using floorPower_iterate_even_pow_two ha (j := k) le_rfl
+
+theorem floorPower_iterate_odd_pow_two_eq {a k : ℕ} (ha : a % 2 = 1) :
+    floorPower^[k] (a ^ (2 ^ k)) = a ^ (3 ^ k) := by
+  simpa [mul_one] using floorPower_iterate_odd_pow_two ha (j := k) le_rfl
+
+theorem follows_replicate_even_pow_two {a : ℕ} (ha : a % 2 = 0) :
+    ∀ k, follows (a ^ (2 ^ k)) (List.replicate k Branch.even) := by
+  intro k
+  induction k with
+  | zero => simp [follows]
+  | succ k ih =>
+      rw [List.replicate_succ]
+      refine ⟨even_iff_pow_two_depth_even.1 ha, ?_⟩
+      have himg : floorPower (a ^ (2 ^ (k + 1))) = a ^ (2 ^ k) := by
+        simpa [Nat.add_sub_cancel] using
+          (floorPower_of_pow_two_depth_even_base (Nat.succ_pos k) ha).1
+      rw [himg]
+      exact ih
+
+theorem follows_replicate_odd_pow_two {a : ℕ} (ha : a % 2 = 1) :
+    ∀ k, follows (a ^ (2 ^ k)) (List.replicate k Branch.odd) := by
+  intro k
+  induction k generalizing a ha with
+  | zero => simp [follows]
+  | succ k ih =>
+      rw [List.replicate_succ]
+      refine ⟨odd_iff_pow_two_depth_odd.1 ha, ?_⟩
+      have himg : floorPower (a ^ (2 ^ (k + 1))) = (a ^ 3) ^ (2 ^ k) := by
+        have h := (floorPower_of_pow_two_depth_odd_base (Nat.succ_pos k) ha).1
+        rw [h, Nat.succ_sub_one, ← pow_mul, mul_comm]
+      rw [himg]
+      exact ih (pow_mod_two_of_odd ha)
+
+theorem power_bound_eq_replicate_even {a k : ℕ} (ha : a % 2 = 0) :
+    PowerBoundEq (floorPower^[k] (a ^ (2 ^ k))) (a ^ (2 ^ k)) k 0 := by
+  unfold PowerBoundEq
+  rw [floorPower_iterate_even_pow_two_eq ha, pow_zero, pow_one]
+
+theorem power_bound_eq_replicate_odd {a k : ℕ} (ha : a % 2 = 1) :
+    PowerBoundEq (floorPower^[k] (a ^ (2 ^ k))) (a ^ (2 ^ k)) k k := by
+  unfold PowerBoundEq
+  rw [floorPower_iterate_odd_pow_two_eq ha, ← Nat.pow_mul, ← Nat.pow_mul, mul_comm]
+
+/-- Equality saturates iff the word is an exact even or odd tower. -/
+theorem power_bound_eq_iff_extremal {n : ℕ} {w : List Branch} :
+    (follows n w ∧
+        PowerBoundEq (floorPower^[w.length] n) n w.length (oddCount w)) ↔
+      (w = List.replicate w.length Branch.even ∧
+          ∃ a, a % 2 = 0 ∧ n = a ^ (2 ^ w.length)) ∨
+      (w = List.replicate w.length Branch.odd ∧
+          ∃ a, a % 2 = 1 ∧ n = a ^ (2 ^ w.length)) := by
+  constructor
+  · rintro ⟨hw, heq⟩
+    have ⟨a, ha⟩ := power_bound_eq_implies_pow_two_depth hw heq
+    rcases Nat.mod_two_eq_zero_or_one n with hn | hn
+    · refine Or.inl ?_
+      have hwE : w = List.replicate w.length Branch.even := by
+        have hmono := power_bound_eq_implies_monochrome hw heq
+        cases hmono with
+        | inl h => exact h
+        | inr h =>
+            cases w with
+            | nil => rfl
+            | cons b rest =>
+                rw [List.length_cons, List.replicate_succ] at h
+                have hb : b = Branch.odd := (List.cons_eq_cons.mp h).1
+                have : n % 2 = 1 := by
+                  rw [hb] at hw
+                  exact hw.1
+                omega
+      refine ⟨hwE, a, even_iff_pow_two_depth_even.2 (by simpa [ha] using hn), ha⟩
+    · refine Or.inr ?_
+      have hwO : w = List.replicate w.length Branch.odd := by
+        have hmono := power_bound_eq_implies_monochrome hw heq
+        cases hmono with
+        | inr h => exact h
+        | inl h =>
+            cases w with
+            | nil => rfl
+            | cons b rest =>
+                rw [List.length_cons, List.replicate_succ] at h
+                have hb : b = Branch.even := (List.cons_eq_cons.mp h).1
+                have : n % 2 = 0 := by
+                  rw [hb] at hw
+                  exact hw.1
+                omega
+      refine ⟨hwO, a, odd_iff_pow_two_depth_odd.2 (by simpa [ha] using hn), ha⟩
+  · rintro (⟨hwE, a, ha, hn⟩ | ⟨hwO, a, ha, hn⟩)
+    · set k := w.length
+      have hwE' : w = List.replicate k Branch.even := hwE
+      rw [hn, hwE']
+      refine ⟨follows_replicate_even_pow_two ha k, ?_⟩
+      simpa [oddCount_replicate_even] using power_bound_eq_replicate_even (k := k) ha
+    · set k := w.length
+      have hwO' : w = List.replicate k Branch.odd := hwO
+      rw [hn, hwO']
+      refine ⟨follows_replicate_odd_pow_two ha k, ?_⟩
+      simpa [oddCount_replicate_odd] using power_bound_eq_replicate_odd (k := k) ha
+
+theorem two_pow_two_pow_extremal_even (k : ℕ) :
+    follows (2 ^ (2 ^ k)) (List.replicate k Branch.even) ∧
+      PowerBoundEq (floorPower^[k] (2 ^ (2 ^ k))) (2 ^ (2 ^ k)) k 0 :=
+  ⟨follows_replicate_even_pow_two (by decide : (2 : ℕ) % 2 = 0) k,
+    power_bound_eq_replicate_even (by decide : (2 : ℕ) % 2 = 0)⟩
+
+theorem three_pow_two_pow_extremal_odd (k : ℕ) :
+    follows (3 ^ (2 ^ k)) (List.replicate k Branch.odd) ∧
+      PowerBoundEq (floorPower^[k] (3 ^ (2 ^ k))) (3 ^ (2 ^ k)) k k :=
+  ⟨follows_replicate_odd_pow_two (by decide : (3 : ℕ) % 2 = 1) k,
+    power_bound_eq_replicate_odd (by decide : (3 : ℕ) % 2 = 1)⟩
+
+/-- Among \(n\ge 3\), an all-odd equality of length `k` is at least `3^{2^k}`. -/
+theorem odd_equality_three_pow_le {n k : ℕ} (hn : 3 ≤ n)
+    (hw : follows n (List.replicate k Branch.odd))
+    (heq : PowerBoundEq (floorPower^[k] n) n k k) :
+    3 ^ (2 ^ k) ≤ n := by
+  cases k with
+  | zero =>
+      exact hn
+  | succ k =>
+      have heq' :
+          PowerBoundEq (floorPower^[(List.replicate (k + 1) Branch.odd).length] n) n
+            (List.replicate (k + 1) Branch.odd).length
+            (oddCount (List.replicate (k + 1) Branch.odd)) := by
+        simpa [List.length_replicate, oddCount_replicate_odd] using heq
+      have ⟨a, ha⟩ :=
+        power_bound_eq_implies_pow_two_depth
+          (w := List.replicate (k + 1) Branch.odd) hw heq'
+      have hodd : n % 2 = 1 := by
+        rw [List.replicate_succ] at hw
+        exact hw.1
+      have haodd : a % 2 = 1 :=
+        odd_iff_pow_two_depth_odd.2 (by simpa [ha] using hodd)
+      have ha3 : 3 ≤ a := by
+        by_contra hlt
+        have : a ≤ 2 := by omega
+        interval_cases a
+        · have : n = 0 := by simp [ha]
+          omega
+        · have : n = 1 := by simp [ha]
+          omega
+        · have : n % 2 = 0 := by
+            rw [ha]
+            exact even_iff_pow_two_depth_even.1 rfl
+          omega
+      have : 3 ^ (2 ^ (k + 1)) ≤ a ^ (2 ^ (k + 1)) :=
+        Nat.pow_le_pow_left ha3 _
+      simpa [ha] using this
+
 end Problems.Engine
