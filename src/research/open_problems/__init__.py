@@ -77,6 +77,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.matthews_prize_mod3_avoider.problem import PROBLEM as MATTHEWS_PRIZE_MOD3
     from research.companion_shift_order6_zero_class.problem import PROBLEM as COMPANION_SHIFT_ORDER6_ZERO
     from research.skolem_order5_unconditional.problem import PROBLEM as SKOLEM_ORDER5
+    from research.juggler_sequence.problem import PROBLEM as JUGGLER_SEQUENCE
     from research.euclidean_quotient.problem import PROBLEM as EUCLIDEAN_QUOTIENT
     from research.vector_affine.problem import PROBLEM as VECTOR_AFFINE
     from research.matrix_word_invariant.problem import PROBLEM as MATRIX_WORD_INVARIANT
@@ -102,6 +103,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         MATTHEWS_PRIZE_MOD3,
         COMPANION_SHIFT_ORDER6_ZERO,
         SKOLEM_ORDER5,
+        JUGGLER_SEQUENCE,
         EUCLIDEAN_QUOTIENT,
         VECTOR_AFFINE,
         MATRIX_WORD_INVARIANT,

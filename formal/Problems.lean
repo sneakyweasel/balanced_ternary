@@ -37,3 +37,4 @@ import Problems.Engine.AliquotDynamics
 import Problems.Engine.CompanionShift
 import Problems.Engine.CompanionObservation
 import Problems.Engine.TwoPathZ2
+import Problems.Engine.FloorPower

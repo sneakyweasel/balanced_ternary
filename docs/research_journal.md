@@ -2902,4 +2902,48 @@ Best next question
 - What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
 ```
 
+## Research Campaign 06: juggler_sequence
+
+- **Date:** 2026-08-26
+- **Objective:** Diagnose the stored even/odd floor-power map as distinct from residue-affine control and from divisor-sum, using frozen v2.3 without a radical attack and without a halt theorem on all positive integers
+- **Hypotheses:** the fingerprint might match aliquot truncation, or seed-13 halt might be billed as a Z-theorem, or census might fake an affine cover
+- **Major results:** Blind `StrategyPlanner(TERMINATION)` selected `global_inductive` with empty results. Live `ResearchLoop` CONTINUE with exact residual closure of size 5 on seed 13 and piecewise-affine INCONCLUSIVE. Exact: T(1)=1; 13→46→6→2→1. Odd 3 grows. T(8)=2 is not the 5x/4 strip; T(13)=46 is not σ(13)−13. Lean in `Problems.Engine.FloorPower`. No new attacks
+- **Refuted ideas:** residue-affine cover; seed-13 halt is a Z-theorem; this is aliquot; this is the 5x/4 strip; global descent; a new radical attack is required
+- **Literature:** OEIS A007320; laboratory aliquot comparison
+- **Open:** whether every positive integer reaches 1; not decided by seed 13
+- **Decision:** CLOSE. The surviving statements are KNOWN. Finite seed closure plus a missing affine cover; fingerprint distinct from aliquot truncation
+
+```text
+What was learned
+- Packet seed 13 reaches 1 in four steps; T(1)=1; that is not a halt theorem
+- Piecewise-affine census is INCONCLUSIVE; floor powers sit outside residue-affine language
+- StrategyPlanner(TERMINATION) selects global_inductive with no implemented ranking attack
+- The seed-13 fingerprint is FINITE_SEED_CLOSURE, distinct from aliquot factorization truncation
+- Odd 3 grows; T(8)=2 is not floor(5n/4)
+
+Strongest theorem
+- The packet seed 13 reaches 1 in four steps (floorPower_thirteen_reaches_one)
+
+Strongest refutation
+- T(3)=5 (not descent); T(13)=46 (not aliquot); T(8)=2 (not the 5x/4 strip)
+
+Reusable machinery
+- none added; FloorPowerSpec follows the existing one-variable dummy-control pattern; KNOWN lemmas in FloorPower.lean
+
+Prior-art status
+- KNOWN computational orbit; OEIS A007320 records step counts, not a class obstruction
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- The finite orbit is KNOWN. There is no affine cover and no class forcing all seeds to 1. A radical attack would violate the frozen contract.
+
+Best next question
+- What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
+```
+
 

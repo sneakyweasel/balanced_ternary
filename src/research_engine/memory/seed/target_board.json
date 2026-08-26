@@ -1879,7 +1879,7 @@
         "post_run_reconciliation": "",
         "lean_targets": []
       },
-      "already_run": false
+      "already_run": true
     },
     {
       "name": "reverse_and_add_base3",
@@ -2189,10 +2189,11 @@
         "aliquot_276",
         "euclidean_quotient",
         "home_prime_49",
+        "juggler",
         "syracuse"
       ],
-      "recurrence_count": 4,
-      "target_diversity": 4,
+      "recurrence_count": 5,
+      "target_diversity": 5,
       "mathematical_importance": "HIGH",
       "existing_workarounds": [
         "finite known orbits; refuse a piecewise-affine cover"
@@ -2277,8 +2278,8 @@
     },
     {
       "failure_cluster": "non_affine_arithmetic",
-      "recurrence_count": 4,
-      "target_diversity": 4,
+      "recurrence_count": 5,
+      "target_diversity": 5,
       "mathematical_importance": "HIGH",
       "expected_research_value": "HIGH",
       "implementation_cost": "high",

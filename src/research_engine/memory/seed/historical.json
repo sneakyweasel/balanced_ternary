@@ -4358,8 +4358,8 @@
             "juggler_sequence"
           ],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "order5:loot:skip",
@@ -4379,8 +4379,8 @@
             "juggler_sequence"
           ],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "order5:loot:uniqueness",
@@ -4466,6 +4466,241 @@
         "census_kind": "",
         "lean_theorems": [
           "Problems.Engine.CompanionShift"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "juggler_sequence",
+      "target": "juggler",
+      "target_family": "nonlinear_integer",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.3",
+      "experiment_date": "2026-08-26",
+      "diagnosis": {
+        "target": "juggler",
+        "semantic_class": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE|EXACT_CLOSURE",
+        "fingerprint": {
+          "transition_architecture": "DETERMINISTIC",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "FINITE_CONTRACTING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "FINITE_SEED_CLOSURE",
+          "orbit_behavior": "FINITE",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNCERTAIN",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "EXACT_CLOSURE"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE|EXACT_CLOSURE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "floorPower_thirteen_reaches_one",
+        "strongest_falsification": "odd 3 grows; T(8)=2 is not the 5x/4 strip; seed-13 halt is not a Z-theorem",
+        "lean_certificate": "Problems.Engine.FloorPower",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CONTINUE",
+        "decision_reason": "finite seed-13 closure with no piecewise-affine cover; not a halt theorem",
+        "extra": {}
+      },
+      "decision_reason_code": "DISTINCT_REGIME",
+      "representation_novelty": "MEDIUM",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "packet seed 13 reaches 1 in four steps",
+          "no complete piecewise-affine cover"
+        ],
+        "new_exact_results": [
+          "T(1)=1",
+          "13 maps to 46 then 6, 2, 1"
+        ],
+        "new_formalizations": [
+          "Problems.Engine.FloorPower"
+        ],
+        "new_counterexamples": [
+          "odd 3 grows; T(8)=2 is not the 5x/4 strip"
+        ],
+        "new_conjectures": [],
+        "new_obstructions": [
+          "none; finite seed closure is not a halt theorem"
+        ],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "whether every positive integer reaches 1"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "juggler_sequence:representation",
+          "target": "juggler",
+          "experiment_id": "juggler_sequence",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "piecewise_affine",
+          "failure_class": "REPRESENTATION",
+          "representation_status": "NON_AFFINE",
+          "mathematical_bottleneck": "outside_affine_valuation_control",
+          "evidence": "even/odd floor powers have no complete piecewise-affine cover on the sample window",
+          "counterexamples": [],
+          "minimal_example": "odd n |-> floor(n**(3/2))",
+          "reproducibility": "seed",
+          "reusable_lesson": "Floor-power successors are outside residue-affine language; a finite seed-13 closure is not the aliquot fingerprint and not a Z-theorem.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "HIGH",
+          "status": "PARKED",
+          "affected_attack_family": "latent_affine"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "juggler:loot:mismatch",
+          "kind": "Representation mismatch",
+          "statement": "even/odd floor powers lie outside residue-affine census language",
+          "evidence": "OBSERVED",
+          "experiment_id": "juggler_sequence",
+          "target": "juggler",
+          "failure_class": "REPRESENTATION",
+          "bottleneck": "outside_affine_valuation_control",
+          "payload": {},
+          "observation": "piecewise-affine census is INCONCLUSIVE; affine_system is None",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "even/odd floor powers are outside residue-affine language; do not add a radical attack",
+          "possible_transfer_targets": [
+            "reverse_and_add_base3",
+            "home_prime_49"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "juggler:loot:seed13",
+          "kind": "Useful negative result",
+          "statement": "seed 13 reaches 1 in four steps; that is not a theorem on all positive integers",
+          "evidence": "PROVED",
+          "experiment_id": "juggler_sequence",
+          "target": "juggler",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "13 -> 46 -> 6 -> 2 -> 1 in four steps; T(1)=1",
+          "minimal_example": "",
+          "counterexample": "13 reaches 1; odd 3 grows",
+          "reusable_lesson": "a finite seed closure is not a halt theorem on all positive integers",
+          "possible_transfer_targets": [
+            "reverse_and_add_base3"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "juggler:loot:cluster",
+          "kind": "Useful negative result",
+          "statement": "seed-13 finite closure is a distinct fingerprint from aliquot factorization truncation",
+          "evidence": "OBSERVED",
+          "experiment_id": "juggler_sequence",
+          "target": "juggler",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "seed-13 fingerprint is FINITE_SEED_CLOSURE, unlike aliquot factorization truncation",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "a nonlinear integer map can close on a packet seed and still sit outside affine control",
+          "possible_transfer_targets": [
+            "home_prime_49"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "oeis-A007320"
+        ],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": false
+      },
+      "scout": {
+        "target": "juggler_sequence",
+        "problem_definition": "Does frozen v2.3 diagnose floor-power dynamics without a radical attack or a halt theorem?",
+        "literature": [
+          "oeis-A007320"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "juggler",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": 32,
+        "max_steps": 16,
+        "allowed_definition": "even n maps to floor(sqrt(n)); odd n maps to floor(n**(3/2))",
+        "state_space": "positive integers",
+        "observation": "the integer n",
+        "initial_conditions": [
+          "13"
+        ],
+        "explicit_controls": "",
+        "computational_budget": "",
+        "extra": {},
+        "forbidden_hints": [
+          "named conjectures",
+          "open-problem status"
+        ],
+        "post_run_reconciliation": "",
+        "lean_targets": []
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "piecewise_affine": "INCONCLUSIVE",
+          "closure": "SUPPORTED"
+        },
+        "skipped": [],
+        "strongest_exact": "floorPower_thirteen_reaches_one",
+        "strongest_falsification": "odd 3 grows; seed-13 halt is not a Z-theorem",
+        "census_kind": "UNRESOLVED",
+        "lean_theorems": [
+          "Problems.Engine.FloorPower"
         ]
       },
       "reconciliation": null,

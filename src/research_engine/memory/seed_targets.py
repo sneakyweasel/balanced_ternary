@@ -927,6 +927,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
         claimed_capabilities=("growth", "finite_closure"),
         prior_art_classified=True,
         prospective_fingerprint=nonaffine_fp,
+        already_run=True,
         prior_art=PriorArtDossier(
             target="juggler_sequence",
             definition="even n -> floor(sqrt(n)); odd n -> floor(n^{3/2})",
