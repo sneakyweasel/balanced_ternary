@@ -45,6 +45,8 @@ class ObligationKind(str, Enum):
     RANKING_DESCENT = "RANKING_DESCENT"
     CLASS_OBSTRUCTION = "CLASS_OBSTRUCTION"
     CONTROL_COMPOSITION = "CONTROL_COMPOSITION"
+    EXISTS_PATH = "EXISTS_PATH"
+    ALL_PATHS = "ALL_PATHS"
 
 
 @dataclass(frozen=True)
@@ -241,6 +243,7 @@ class StrategyReport:
     version: str = ENGINE_STRATEGY_VERSION
     reasoning: Any = None
     law: Any = None
+    quantifiers: Any = None
 
     def replace(self, **changes: Any) -> StrategyReport:
         return replace(self, **changes)

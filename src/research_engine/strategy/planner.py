@@ -50,6 +50,36 @@ def _memory_wants_inductive(memory: object) -> bool:
     return False
 
 
+def _memory_wants_quantifier(memory: object) -> bool:
+    failures = getattr(memory, "failures", lambda: ())()
+    for item in failures:
+        klass = getattr(item, "failure_class", None)
+        value = klass.value if hasattr(klass, "value") else klass
+        if value == "QUANTIFIER":
+            return True
+        bottleneck = getattr(item, "mathematical_bottleneck", "") or getattr(item, "bottleneck", "")
+        if bottleneck in {"overlapping_existential_branches", "branching_quantifier"}:
+            return True
+    hypotheses = getattr(memory, "hypotheses", lambda: ())()
+    wanted = {ObligationKind.EXISTS_PATH, ObligationKind.ALL_PATHS}
+    for hyp in hypotheses:
+        if getattr(hyp, "cluster_id", "") == "branching_quantifier":
+            return True
+        for obligation in getattr(hyp, "proof_obligations", ()):
+            if getattr(obligation, "kind", None) in wanted:
+                return True
+    loot = getattr(memory, "grey_loot", lambda: ())()
+    for item in loot:
+        kind = getattr(item, "kind", None)
+        value = kind.value if hasattr(kind, "value") else kind
+        if value in {"QUANTIFIER_MISMATCH", "Quantifier mismatch"}:
+            return True
+        bottleneck = getattr(item, "bottleneck", "")
+        if bottleneck in {"overlapping_existential_branches", "branching_quantifier"}:
+            return True
+    return False
+
+
 def _memory_wants_law_domain(memory: object) -> bool:
     failures = getattr(memory, "failures", lambda: ())()
     for item in failures:
@@ -92,6 +122,10 @@ def score_chain(
         return value
     if chain.id == "law_domain":
         if memory is None or not _memory_wants_law_domain(memory):
+            return 0.0
+        return value
+    if chain.id == "quantifier_probe":
+        if memory is None or not _memory_wants_quantifier(memory):
             return 0.0
         return value
     dim = _dimension(spec)
@@ -276,12 +310,28 @@ class StrategyPlanner:
                 attempted_chains=("law_domain",),
                 law=law_report,
             )
+        if plan.chain.id == "quantifier_probe":
+            from research_engine.quantifiers.analyze import analyze as analyze_quantifiers
+            from research_engine.quantifiers.analyze import hypotheses_from_report as quant_hypotheses
+
+            quant_report = analyze_quantifiers(spec, context)
+            hypotheses = quant_hypotheses(quant_report)
+            if memory is not None and hasattr(memory, "add_hypothesis"):
+                remember_hypotheses(memory, hypotheses)
+            return StrategyReport(
+                plan=plan,
+                results=(),
+                hypotheses=hypotheses,
+                metrics=compute_metrics((), hypotheses, 1),
+                attempted_chains=("quantifier_probe",),
+                quantifiers=quant_report,
+            )
         attempted: list[str] = []
         collected: list[AttackResult] = []
         skipped: list[SkipRecord] = []
         chosen = plan.chain
         for chain in (plan.chain, *plan.alternatives):
-            if chain.id in {"global_inductive", "law_domain"}:
+            if chain.id in {"global_inductive", "law_domain", "quantifier_probe"}:
                 continue
             attempted.append(chain.id)
             chunk, skip, failed = _run_chain(spec, context, chain, collected)

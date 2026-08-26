@@ -2,12 +2,14 @@
 
 Status: **EXPLORATORY**
 
-This is laboratory intelligence for Research Engine v2.3 Phases 1–3.
+This is laboratory intelligence for Research Engine v2.3 Phases 1–4.
 It does **not** add flood-order attacks, rewrite the census, run an
-LP/SMT ranking optimizer, or introduce relation/quantifier semantics.
-Phase 1 lives in `research_engine.strategy`. Phase 2 lives in
-`research_engine.reasoning`. Phase 3 lives in `research_engine.law`.
-The thin descriptor is `research.research_strategy`.
+LP/SMT ranking optimizer, teach overlapping-domain census, or add a
+nondeterministic SLC solver. Phase 1 lives in `research_engine.strategy`.
+Phase 2 lives in `research_engine.reasoning`. Phase 3 lives in
+`research_engine.law`. Phase 4 lives in `research_engine.quantifiers`.
+The thin descriptor is `research.research_strategy`. The coordinated
+v2.3 program is complete; there is no Phase 5.
 
 ## Problem
 
@@ -15,9 +17,11 @@ Can frozen v2.2 turn attack artifacts and `ResearchMemory` into ranked
 falsifiable hypotheses and opt-in attack chains, and can a generic
 inductive/ranking layer wrap existing envelope and leak attacks to
 produce intermediate \(T(S)\subseteq S\) / \(V(T(x))<V(x)\) certificates
-on the global-reachability cluster — without changing default
-`PlannerReport`s, contaminating blind discovery, or becoming a Skolem,
-Positivity, or Collatz solver?
+on the global-reachability cluster, and keep `EXISTS_PATH` ≠ `ALL_PATHS`
+when `legal_controls` is read as \(R\subseteq X\times X\) — without
+changing default `PlannerReport`s, contaminating blind discovery,
+becoming a Skolem, Positivity, or Collatz solver, or installing a
+nondeterministic control language?
 
 ## Exact statement
 
@@ -66,14 +70,29 @@ empirical base:
 5. is selected only by the opt-in chain `law_domain` when memory already
    carries `DOMAIN_INFERENCE` / domain obligations.
 
-Phase 4 (quantifiers) remains **gated**.
+**Phase 4.** A quantifier layer, not a new flood attack,
+
+1. treats `legal_controls` × `transition` as an explicit relation
+   \(R\subseteq X\times X\) (control is the witness of the pair);
+2. keeps `EXISTS_PATH` ≠ `ALL_PATHS` as first-class engine evidence;
+3. wraps existing residual-state BFS / `ExhaustiveClosureAttack` with
+   bounded ∃-cycle and ∀-termination probes;
+4. records `NO_PATH_FOUND` as not nonexistence, an existential cycle as
+   not `all_paths_cycle`, `CERTIFIED_ON_WINDOW` as not a \(\mathbb Z\)-theorem,
+   and truncation as `UNKNOWN` not `REFUTED`;
+5. is selected only by the opt-in chain `quantifier_probe` when memory
+   already carries `QUANTIFIER` / `QUANTIFIER_MISMATCH` /
+   `overlapping_existential_branches` / `branching_quantifier`;
+6. does not teach `piecewise_affine` to accept branching, does not
+   rewrite the Mealy start-alphabet, and does not implement a
+   nondeterministic control-word solver.
 
 ## Current literature
 
-The strategy and reasoning layers are engine methodology, not a
-number-theory result. Historical campaigns remain **KNOWN**
-rediscoveries or **PARK**ed limitations as recorded in their own
-dossiers. Project relationship: **engine diagnosis**. No new
+The strategy, reasoning, law, and quantifier layers are engine
+methodology, not a number-theory result. Historical campaigns remain
+**KNOWN** rediscoveries or **PARK**ed limitations as recorded in their
+own dossiers. Project relationship: **engine diagnosis**. No new
 mathematics is claimed.
 
 v2.2 context: [engine_memory.md](engine_memory.md),
@@ -145,13 +164,53 @@ Promotion criterion     negation yields a known LAW_CERTIFIED while flood
                         census_obstruction / DEFAULT_ATTACK_ORDER regress clean.
 Stop criterion          Completing the involution census; changing sign-first
                         order so y=-x covers Z; vector _infer_region rewrite;
-                        overlapping-domain / quantifier work (Phase 4).
+                        overlapping-domain census (historical Phase-4 gate,
+                        now answered without that rewrite).
+```
+
+Phase 4 budget (this implementation):
+
+```text
+Mathematical target     Can the engine treat legal_controls as a relation
+                        R ⊆ X×X and keep EXISTS_PATH ≠ ALL_PATHS as
+                        first-class evidence — without a new deterministic
+                        control language, overlapping-domain census, or
+                        nondeterministic SLC solver?
+Novelty hypothesis      Engine methodology: successor-as-control already
+                        is a relation; campaign quantifier_report already
+                        distinguishes ∃/∀. Lifting that discipline into
+                        research_engine is not a number-theory theorem.
+Falsifier               DEFAULT_ATTACK_ORDER changes; census runs on
+                        branching specs; ∃ cycle billed as ∀ paths cycle;
+                        NO PATH FOUND billed as NO LEGAL PATH EXISTS;
+                        Carelli length-≤2 or sum-strip universal cycle
+                        billed as engine rediscovery; Mealy alphabet rewrite.
+Existing machinery      ProblemSpec.legal_controls × transition;
+                        RelationLoopSpec; ExhaustiveClosureAttack (follows
+                        every legal control); RegimeFingerprint BRANCHING;
+                        piecewise_affine._singleton_integer skip;
+                        research.linear_constraint_loops.discovery
+                        quantifier_report (campaign probe, not an attack);
+                        synthetics A–E; two_affine + sum_strip historical
+                        QUANTIFIER / overlapping_existential_branches PARK.
+Maximum Phase-0 scope   research_engine.quantifiers types + relation view +
+                        bounded ∃/∀ probes wrapping closure/legal_controls +
+                        opt-in strategy chain + replay tests + dossier.
+                        No new flood-order attack. No Lean. No CLI.
+Promotion criterion     stay_or_decrement (or equivalent) keeps ∃ cycle
+                        distinct from ∀ paths cycle; a second independent
+                        branching target (two_affine) replays the same
+                        discipline; flood planner / Phases 1–3 unchanged.
+Stop criterion          NondeterministicSLC solver; overlapping ParameterDomain;
+                        Mealy start-alphabet rewrite; thawing
+                        branching_quantifier as an implementation ticket.
 ```
 
 ## Balanced-ternary formulation
 
-None. Strategy records and reasoning certificates are structured
-metadata about engine experiments, regions, and ranking probes.
+None. Strategy records, reasoning certificates, affine-law pairs, and
+path-quantifier claims are structured metadata about engine experiments,
+regions, ranking probes, and bounded path search.
 
 ## Why BT may be relevant
 
@@ -178,17 +237,25 @@ methodology.
   `DOMAIN_CERTIFIED`) — **OBSERVATION**
 - Truncated sign domain on a globally valid sample law —
   **OBSERVATION** (not a completed census)
+- `legal_controls` × `transition` as \(R\subseteq X\times X\) —
+  **OBSERVATION**
+- `EXISTS_PATH` ≠ `ALL_PATHS` (`EXISTENTIAL_WITNESS` does not certify
+  `all_paths_cycle`) — **OBSERVATION**
+- `NO_PATH_FOUND` is not nonexistence; `CERTIFIED_ON_WINDOW` is not a
+  \(\mathbb Z\)-theorem — **OBSERVATION**
 
 ## Experiments
 
 - Types and planner: `research_engine.strategy`
 - Reasoning: `research_engine.reasoning.analyze`
 - Law/domain: `research_engine.law.analyze`
+- Quantifiers: `research_engine.quantifiers.analyze`
 - Historical generation: `generate_from_memory(ResearchMemory.load_historical())`
 - Live chain selection: `StrategyPlanner.run(spec, context, goal=...)`
 - Tests: `tests/research_engine/strategy/test_strategy.py`,
   `tests/research_engine/reasoning/test_reasoning.py`,
   `tests/research_engine/law/test_law.py`,
+  `tests/research_engine/quantifiers/test_quantifiers.py`,
   `tests/research/research_strategy/test_research_strategy.py`
 - Existing specs only. No new adapters. No order-6 census cubes.
   No unrun board targets are executed as solvers.
@@ -208,9 +275,9 @@ are recorded as **non-theorems**: evidence stays below
 
 ## Formalization
 
-None for the strategy or reasoning layers. Session `ResearchLedger`
-promotion discipline is unchanged. No `sorry`. No theorem-ledger row.
-No Lean mathematics in this phase.
+None for the strategy, reasoning, law, or quantifier layers. Session
+`ResearchLedger` promotion discipline is unchanged. No `sorry`. No
+theorem-ledger row. No Lean mathematics in this phase.
 
 ## Results
 
@@ -299,28 +366,55 @@ Replay (existing specs):
   memory still selects `census_obstruction`. Historical memory with
   `DOMAIN_INFERENCE` selects `law_domain` on negation.
 
-### F. Gated later phase (not implemented)
+### F. Phase 4 quantifiers
 
-**Phase 4 — Quantifiers.** \(R\subseteq X\times X\) and
-\(\exists\neq\forall\). Gate: a second independent branching target
-besides parked nondeterministic SLC. Overlapping legal affine domains
-(sum-strip) stay in that gate.
+`ENGINE_QUANTIFIER_VERSION = 0.2.6`. Strategy, reasoning, and law
+versions stay `0.2.3` / `0.2.4` / `0.2.5`. Package version stays
+`0.2.2`. `DEFAULT_ATTACK_ORDER` is unchanged; `quantifier_probe` is not
+a flood attack. Census still skips branching (`_singleton_integer`).
+
+Replay (existing specs):
+
+- Stay-or-decrement: `existential_cycle` is `EXISTENTIAL_WITNESS`;
+  `all_paths_cycle` stays `UNKNOWN`; `universal_termination` is
+  `REFUTED`. Flood census is inapplicable. `KNOWN_REDISCOVERY`.
+- Two-affine: the same ∃≠∀ discipline on a second independent branching
+  target; census still skipped; `KNOWN_REDISCOVERY`.
+- Dual-decrement: `CERTIFIED_ON_WINDOW` on `{0,…,7}`; shrinking the
+  depth cap yields `UNKNOWN`, not a silent `REFUTED`. Not a
+  \(\mathbb Z\)-theorem.
+- Sum-strip: ∃ cycle witness, ∀ terminate `REFUTED`, ∀ paths cycle
+  `UNKNOWN`; flood census inapplicable. Parked diagnostic, not Carelli
+  length-\(\le 2\).
+- `CYCLE_EXCLUSION` on `HiddenPowerClearDSpec` without `QUANTIFIER`
+  memory still selects `census_obstruction`. `TERMINATION` on decrement
+  still selects `global_inductive`. `quantifier_probe` is selected only
+  when memory already carries a quantifier token.
+
+The semantic mismatch named, not fixed: overlapping affine domains stay
+an `ENGINE_LIMITATION`; `branching_quantifier` remains `PARK` as a
+solver ticket. Mealy start-alphabet / `__blocked__` is unchanged.
 
 ## Open questions
 
-Can overlapping nondeterministic branches be consumed without a new
-deterministic control language (Phase 4 gate)?
+None for a Phase 5. Overlapping-domain census and a nondeterministic
+control-word solver remain parked limitations, not a next coordinated
+program.
 
 ## Decision
 
-`PROMOTE` Phase 3 as v2.3 laboratory intelligence: affine laws may be
-certified independently of truncated domains, without mutating
-`infer_region` or completing the parked involution census. Do not add
-flood attacks. Do not implement the involution census. Do not open
-Phase 4. Do not bill Carelli length-\(\le 2\) as an engine rediscovery.
+`PROMOTE` Phase 4 as v2.3 laboratory intelligence: `legal_controls` is
+an explicit relation, and `EXISTS_PATH` is kept distinct from
+`ALL_PATHS`, without a new flood attack, overlapping-domain census, or
+nondeterministic SLC solver. The coordinated v2.3 program (hypotheses,
+global reasoning, law ⊥ domain, quantifiers) is complete. Do not open
+Phase 5. Do not add flood attacks. Do not implement the involution
+census. Do not thaw `branching_quantifier` as an implementation ticket.
+Do not bill Carelli length-\(\le 2\) as an engine rediscovery.
 
-Best next question: can overlapping nondeterministic branches be
-consumed without a new deterministic control language?
+Best next question: none from this program. Parked clusters
+(`census_domain`, `branching_quantifier`, `non_affine_arithmetic`) stay
+parked.
 
 ## Publication assessment
 

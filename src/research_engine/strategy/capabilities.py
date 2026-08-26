@@ -208,9 +208,19 @@ LAW_DOMAIN_CHAIN = AttackChain(
     cost=1.0,
 )
 
+QUANTIFIER_PROBE_CHAIN = AttackChain(
+    id="quantifier_probe",
+    attacks=(),
+    goals=(ResearchGoal.CYCLE_EXCLUSION, ResearchGoal.TERMINATION, ResearchGoal.BOUNDEDNESS),
+    expected_outputs=("existential_witness", "universal_window"),
+    historical_yield=4.0,
+    cost=1.0,
+)
+
 SEEDED_CHAINS: tuple[AttackChain, ...] = (
     GLOBAL_INDUCTIVE_CHAIN,
     LAW_DOMAIN_CHAIN,
+    QUANTIFIER_PROBE_CHAIN,
     CENSUS_OBSTRUCTION_CHAIN,
     VECTOR_MATRIX_CHAIN,
     FINITE_CLOSURE_CHAIN,

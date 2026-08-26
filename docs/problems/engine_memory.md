@@ -146,8 +146,9 @@ modules (`Problems.Engine.CompanionShift`, `Problems.Engine.Syracuse`,
 Which frozen-engine target still teaches something new about an
 unresolved high-value failure cluster? Answered by the ranked board in
 [research_target_board.md](research_target_board.md), not by a new
-attack. v2.3 Phases 1–3 are a separate dossier:
-[research_strategy.md](research_strategy.md).
+attack. v2.3 Phases 1–4 are a separate dossier:
+[research_strategy.md](research_strategy.md). The coordinated v2.3
+program is complete; there is no Phase 5.
 
 ## Decision
 

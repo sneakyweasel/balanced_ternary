@@ -2638,4 +2638,48 @@ Best next question
 - Can overlapping nondeterministic branches be consumed without a new deterministic control language?
 ```
 
+## Research Engine v2.3 Phase 4: EXISTS_PATH ≠ ALL_PATHS
+
+- **Date:** 2026-08-26
+- **Objective:** Treat legal_controls × transition as R ⊆ X×X and keep EXISTS_PATH ≠ ALL_PATHS as engine evidence, without a new flood attack, overlapping-domain census, or nondeterministic SLC solver
+- **Hypotheses:** successor-as-control already is a relation; campaign quantifier_report already distinguishes ∃/∀; lifting that discipline into research_engine is methodology, not a number-theory theorem
+- **Major results:** `research_engine.quantifiers` (`PathQuantifier`, `PathStatus`, `RelationEdge`, `PathClaim`, `QuantifierReport`). Stay-or-decrement: ∃ cycle `EXISTENTIAL_WITNESS`, ∀ paths cycle `UNKNOWN`, ∀ terminate `REFUTED`. Two-affine replays the same split; census still skipped. Dual-decrement window-certifies termination; truncation stays `UNKNOWN`. Sum-strip is a parked diagnostic, not Carelli length-≤2. Opt-in chain `quantifier_probe` only when memory carries `QUANTIFIER`. `ENGINE_QUANTIFIER_VERSION = 0.2.6`. Phases 1–3 versions unchanged. v2.3 complete
+- **Refuted ideas:** ∃ cycle as ∀ paths cycle; `NO_PATH_FOUND` as nonexistence; `CERTIFIED_ON_WINDOW` as a Z-theorem; overlapping-domain census as the Phase-4 vehicle; Carelli length-≤2 as an engine rediscovery
+- **Literature:** engine methodology; stay-or-decrement, two-affine, and sum-strip remain KNOWN rediscoveries
+- **Open:** none for a Phase 5; overlapping-domain census and a nondeterministic control-word solver stay PARK
+- **Decision:** PROMOTE Phase 4 as laboratory intelligence. Do not add flood attacks. Do not implement overlapping-domain census. Do not thaw branching_quantifier. Do not open Phase 5
+
+```text
+What was learned
+- legal_controls × transition is already R ⊆ X×X; the missing piece was engine-owned ∃/∀ status
+- An existential cycle does not certify all_paths_cycle; Phase 0 leaves the latter UNKNOWN
+- NO_PATH_FOUND is a search report, not a nonexistence theorem
+- CERTIFIED_ON_WINDOW is not a Z-theorem; shrinking the cap must yield UNKNOWN, not REFUTED
+- quantifier_probe can sit on StrategyPlanner without stealing census_obstruction, global_inductive, or law_domain when QUANTIFIER memory is absent
+
+Strongest theorem
+- none; engine methodology only (known calibrations tagged KNOWN_REDISCOVERY)
+
+Strongest refutation
+- stay-or-decrement has a stay cycle and does not universally terminate; that is not ∀ paths cycle
+
+Reusable machinery
+- research_engine.quantifiers (analyze, relation_edges, bounded probes); opt-in quantifier_probe chain
+
+Prior-art status
+- KNOWN rediscoveries on stay-or-decrement, two-affine, and sum-strip; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PROMOTE (Phase 4; v2.3 program complete)
+
+Why
+- The engine can now state EXISTS_PATH ≠ ALL_PATHS on branching specs without teaching the census to accept overlapping domains or adding a nondeterministic solver.
+
+Best next question
+- none from this program; parked clusters stay parked
+```
+
 

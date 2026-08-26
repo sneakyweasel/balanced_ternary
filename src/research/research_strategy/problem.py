@@ -1,4 +1,4 @@
-"""Descriptor for Research Engine v2.3 research strategy (Phases 1–3)."""
+"""Descriptor for Research Engine v2.3 research strategy (Phases 1–4)."""
 
 from research.open_problems.definition import ProblemDefinition
 
@@ -9,12 +9,14 @@ PROBLEM = ProblemDefinition(
     statement=(
         "Can frozen Research Engine v2.2 turn attack artifacts into ranked "
         "hypotheses and opt-in chains, certify inductive/ranking structure, "
-        "and separate affine laws from truncated domains without adding flood "
-        "attacks or completing the parked involution census?"
+        "separate affine laws from truncated domains, and keep EXISTS_PATH "
+        "distinct from ALL_PATHS on legal_controls-as-relation — without adding "
+        "flood attacks, overlapping-domain census, or a nondeterministic SLC solver?"
     ),
     bt_relevance=(
-        "The strategy, reasoning, and law layers are engine infrastructure. "
-        "Balanced ternary is not required. No new flood-order attack is added."
+        "The strategy, reasoning, law, and quantifier layers are engine "
+        "infrastructure. Balanced ternary is not required. No new flood-order "
+        "attack is added."
     ),
     docs=("docs/problems/research_strategy.md",),
 )

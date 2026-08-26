@@ -28,6 +28,11 @@ DEFAULT_ALLOWLIST: tuple[str, ...] = (
     "RankingCertificate",
     "law_domain",
     "AffineLaw",
+    "quantifier_probe",
+    "QuantifierReport",
+    "EXISTS_PATH",
+    "ALL_PATHS",
+    "PathQuantifier",
 )
 
 

@@ -184,8 +184,9 @@ No target is run. Recompute with `assemble_board` after new experiments.
 The first frontier in the computed campaign order — what exact
 intermediate theorem or obstruction can frozen v2 produce there?
 
-v2.3 Phases 1–3 (hypotheses, inductive/ranking certificates, law/domain
-split; no new flood attacks; involution census still unimplemented) is
+v2.3 Phases 1–4 (hypotheses, inductive/ranking certificates, law/domain
+split, quantifier probes; no new flood attacks; involution census still
+unimplemented; overlapping-domain census still unimplemented) is
 [research_strategy.md](research_strategy.md).
 
 ## Decision

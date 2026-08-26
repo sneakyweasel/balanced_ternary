@@ -1,4 +1,4 @@
-"""Campaign facade. Strategy, reasoning, and law types live in research_engine."""
+"""Campaign facade. Strategy, reasoning, law, and quantifier types live in research_engine."""
 
 from research.research_strategy.problem import PROBLEM
 
