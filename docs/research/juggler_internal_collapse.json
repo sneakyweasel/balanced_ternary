@@ -1,0 +1,262 @@
+{
+  "experiment": "juggler_internal_collapse",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "residual_at_small_y": [
+      {
+        "y": 1,
+        "residual": "",
+        "T": 1
+      },
+      {
+        "y": 1,
+        "residual": "O",
+        "T": 1
+      },
+      {
+        "y": 1,
+        "residual": "OO",
+        "T": 1
+      },
+      {
+        "y": 1,
+        "residual": "OOO",
+        "T": 1
+      },
+      {
+        "y": 2,
+        "residual": "",
+        "T": 2
+      },
+      {
+        "y": 2,
+        "residual": "E",
+        "T": 1
+      },
+      {
+        "y": 3,
+        "residual": "",
+        "T": 3
+      },
+      {
+        "y": 3,
+        "residual": "O",
+        "T": 5
+      },
+      {
+        "y": 3,
+        "residual": "OO",
+        "T": 11
+      },
+      {
+        "y": 3,
+        "residual": "OOO",
+        "T": 36
+      },
+      {
+        "y": 4,
+        "residual": "",
+        "T": 4
+      },
+      {
+        "y": 4,
+        "residual": "E",
+        "T": 2
+      },
+      {
+        "y": 5,
+        "residual": "",
+        "T": 5
+      },
+      {
+        "y": 5,
+        "residual": "O",
+        "T": 11
+      },
+      {
+        "y": 5,
+        "residual": "OO",
+        "T": 36
+      }
+    ],
+    "q_max_by_max_run": [
+      {
+        "max_even_run": 0,
+        "word": "OO",
+        "q_max": 3,
+        "T": 11
+      },
+      {
+        "max_even_run": 1,
+        "word": "EOOOO",
+        "q_max": 2,
+        "T": 1
+      },
+      {
+        "max_even_run": 2,
+        "word": "EEOOOOOO",
+        "q_max": 8,
+        "T": 1
+      }
+    ],
+    "nested_family": [
+      {
+        "name": "OEEE_O9",
+        "word": "OEEEOOOOOOOOO",
+        "q": 7,
+        "max_even_run": 3,
+        "T": 1,
+        "superquadratic": true,
+        "contracts": true,
+        "events": [
+          {
+            "position": 1,
+            "r": 3,
+            "entry": 18,
+            "exit": 1,
+            "ratio": 18,
+            "sharp_envelope": true
+          }
+        ]
+      },
+      {
+        "name": "EE_OEEE_O12",
+        "word": "EEOEEEOOOOOOOOOOOO",
+        "q": 2500,
+        "max_even_run": 3,
+        "T": 1,
+        "superquadratic": true,
+        "contracts": true,
+        "events": [
+          {
+            "position": 0,
+            "r": 2,
+            "entry": 2500,
+            "exit": 7,
+            "ratio": 357,
+            "sharp_envelope": true
+          },
+          {
+            "position": 3,
+            "r": 3,
+            "entry": 18,
+            "exit": 1,
+            "ratio": 18,
+            "sharp_envelope": true
+          }
+        ]
+      },
+      {
+        "name": "EEE_OEEE_O12",
+        "word": "EEEOEEEOOOOOOOOOOOO",
+        "q": 6250000,
+        "max_even_run": 3,
+        "T": 1,
+        "superquadratic": true,
+        "contracts": true,
+        "events": [
+          {
+            "position": 0,
+            "r": 3,
+            "entry": 6250000,
+            "exit": 7,
+            "ratio": 892857,
+            "sharp_envelope": true
+          },
+          {
+            "position": 4,
+            "r": 3,
+            "entry": 18,
+            "exit": 1,
+            "ratio": 18,
+            "sharp_envelope": true
+          }
+        ]
+      },
+      {
+        "name": "layer2_z33933",
+        "word": "EEEOEEEOEEEOOOOOOOOOOOOOOOO",
+        "q_bit_length": 121,
+        "max_even_run": 3,
+        "T": 1,
+        "superquadratic": true,
+        "contracts": true,
+        "events": [
+          {
+            "position": 0,
+            "r": 3,
+            "entry": 1757834801507538428761922983056010000,
+            "exit": 33933,
+            "ratio": 51803106165312186625465563995403,
+            "sharp_envelope": true
+          },
+          {
+            "position": 4,
+            "r": 3,
+            "entry": 6250768,
+            "exit": 7,
+            "ratio": 892966,
+            "sharp_envelope": true
+          },
+          {
+            "position": 8,
+            "r": 3,
+            "entry": 18,
+            "exit": 1,
+            "ratio": 18,
+            "sharp_envelope": true
+          }
+        ]
+      }
+    ],
+    "t_gt_one_short": [
+      {
+        "word": "OO",
+        "q": 3,
+        "T": 11
+      }
+    ],
+    "only_non1_short": [
+      {
+        "word": "OO",
+        "q": 3,
+        "T": 11
+      }
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "maxEvenRun": true,
+    "internal_even_collapse": true,
+    "collapse_basin_one": true,
+    "nested_even_collapse_2500": true,
+    "nested_even_collapse_2500_superquadratic": true,
+    "maxEvenRun_wordEE_OEEE12": true,
+    "odd_even_tower_seven": true,
+    "collapse_on_pow_two": true,
+    "image_append": true,
+    "eventually_no_first_even_contraction": true,
+    "changing_suffix_unbounded_contraction": true,
+    "first_even_freeze": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_lower_envelope_structure": true,
+    "no_residual_automaton": true
+  },
+  "decision": {
+    "classification": "BOUNDED_RUN_COUNTEREXAMPLE",
+    "secondary": "COLLAPSE_COMPRESSION_GREEN",
+    "reason": "maxEvenRun=3 still admits nested E^3 O collapses onto 1 at q=7, 2500, 6250000, and a 121-bit q; the mechanism is numeric collapse to the inert basin 1",
+    "lean_ok": true
+  },
+  "search_method": "enumerate maximal even runs; integer entry/exit/ratio; nested E^3 O family onto basin 1; no logs, no huge envelopes"
+}

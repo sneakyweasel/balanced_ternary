@@ -4504,4 +4504,49 @@ Best next question
 - Does a bound on the longest even run restore family-level first-even non-contraction for superquadratic suffixes?
 ```
 
+## Juggler internal even-run collapse
+
+- **Date:** 2026-08-27
+- **Objective:** Explain changing-family contraction by internal even-run collapse, and test whether bounded `maxEvenRun` restores a useful family bound
+- **Hypotheses:** `INTERNAL_COLLAPSE_NORMALIZATION_GREEN`, `BOUNDED_RUN_COUNTEREXAMPLE`, `NUMERIC_COLLAPSE_COUNTEREXAMPLE`, `COLLAPSE_COMPRESSION_GREEN`, or `GLOBAL_COLLAPSE_OBSTRUCTION_GREEN`
+- **Major results:** Medial identity \(T_{uE^rv}=T_v\circ T_{E^r}\circ T_u\) **PROVED**. Basin \(T_{O^s}(1)=1\) **PROVED**. Nested `maxEvenRun=3` word at \(q=2500\) lands on \(1\) **PROVED**. Further nests at \(q=6250000\) and a 121-bit \(q\) **COMPUTATIONALLY VERIFIED**. Short \(T>1\) contraction only `OO` at \(q=3\). Classification **BOUNDED_RUN_COUNTEREXAMPLE**. Records: `docs/research/juggler_internal_collapse.md`, `docs/problems/juggler_internal_collapse.md`. Control layer unchanged
+- **Refuted ideas:** a useful \(Q(R)\) from syntactic `maxEvenRun ≤ R`; treating initial-run length and max-run length as interchangeable family bounds
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether every large superquadratic contraction requires an even run into an inert basin with unbounded entry/exit ratio
+- **Decision:** PROMOTE the internal-run identity and the nested R=3 family. Do not add a collapse tree. Do not claim termination
+
+```text
+What was learned
+- A medial even run is residual evaluation at its exit state
+- 1 is inert under any odd tail; 3 grows under odds
+- Nested E^3 O blocks keep maxEvenRun=3 while lifting q from 7 to 2500 to 6.25e6 to 121 bits
+- Short-word q_max for maxE≤2 stays small only because a second stacked run is absent
+- Large changing-family contractions on the scan are collapse-to-1, not generic α-growth
+
+Strongest theorem
+- follows 2500 (EE ++ OEEE ++ O^12), the word is superquadratic with maxEvenRun=3, and T=1
+
+Strongest refutation
+- maxEvenRun=3 does not give a useful family threshold; q can have 121 bits
+
+Reusable machinery
+- FloorPower maxEvenRun / internal_even_collapse / nested_even_collapse_2500
+- research.juggler_sequence.internal_collapse
+
+Prior-art status
+- local collapse mechanism, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Changing families defeat fixed-word bounds by feeding a large state into an even run that exits at 1. Bounding the length of those runs does not bound the entry state, because an extra even run can be stacked in front.
+
+Best next question
+- Must every large superquadratic first-even contraction contain an even run that lands in an inert basin with unbounded entry/exit ratio?
+```
+
 

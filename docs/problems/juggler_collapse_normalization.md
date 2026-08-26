@@ -150,8 +150,10 @@ the longest even run is sufficient; that is the next question.
 
 ## Open questions
 
-Does a bound on the longest even run in \(v\), together with
-\(\alpha_v>2\), restore a family-level first-even threshold?
+Answered in [juggler_internal_collapse.md](juggler_internal_collapse.md):
+a bound on the longest even run is not a useful family threshold.
+Nested `E^3 O` blocks with `maxEvenRun=3` still collapse onto \(1\) at
+\(q=2500\) and larger.
 
 ## Decision
 

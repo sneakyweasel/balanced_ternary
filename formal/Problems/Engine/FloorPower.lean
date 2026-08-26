@@ -47,6 +47,9 @@ Headline theorems:
 * `collapse_on_pow_two` / `collapse_residual_identity` — an initial
   even run `E^r u` evaluates as `T_u` after `r` square roots; on
   `a^{2^r}` the residual state is exactly `a`.
+* `internal_even_collapse` — a medial even run is the same residual
+  evaluation. Bounded `maxEvenRun` is not a useful family bound:
+  `q = 2500` follows a `maxEvenRun = 3` superquadratic word onto `1`.
 -/
 
 /-!
@@ -3515,6 +3518,61 @@ theorem odd_even_tower_seven :
 
 theorem odd_even_tower_seven_superquadratic :
     2 ^ (wordOEEE9.length + 1) < 3 ^ oddCount wordOEEE9 := by
+  native_decide
+
+/-!
+## Internal even runs
+
+A medial run `u E^r v` is residual evaluation at the exit state. The
+inert basin is `1` under an odd tail. Syntactic `maxEvenRun ≤ R` does
+not keep first-even contraction cells small: an extra even run before
+`OEEE` lifts `q = 7` to `q = 2500`. Not a halt theorem.
+-/
+
+def maxEvenRunFrom (cur best : ℕ) : List Branch → ℕ
+  | [] => max cur best
+  | .even :: w => maxEvenRunFrom (cur + 1) best w
+  | .odd :: w => maxEvenRunFrom 0 (max cur best) w
+
+def maxEvenRun (w : List Branch) : ℕ := maxEvenRunFrom 0 0 w
+
+theorem internal_even_collapse (q : ℕ) (u : List Branch) (r : ℕ)
+    (v : List Branch) :
+    image q (u ++ List.replicate r Branch.even ++ v) =
+      image (image (image q u) (List.replicate r Branch.even)) v := by
+  rw [image_append, image_append]
+
+theorem collapse_basin_one (o : ℕ) :
+    image 1 (List.replicate o Branch.odd) = 1 :=
+  image_replicate_odd_one o
+
+def wordEE_OEEE12 : List Branch :=
+  [.even, .even] ++ wordOEEE9 ++ [.odd, .odd, .odd]
+
+theorem floorPower_fifty : floorPower 50 = 7 := by
+  native_decide
+
+theorem floorPower_2500 : floorPower 2500 = 50 := by
+  native_decide
+
+theorem maxEvenRun_wordEE_OEEE12 : maxEvenRun wordEE_OEEE12 = 3 := by
+  native_decide
+
+theorem nested_even_collapse_2500 :
+    follows 2500 wordEE_OEEE12 ∧ image 2500 wordEE_OEEE12 = 1 ∧
+      image 2500 wordEE_OEEE12 + 1 < (2500 + 1) ^ 2 := by
+  have himg : image 2500 wordEE_OEEE12 = 1 := by
+    simp [wordEE_OEEE12, image, wordOEEE9, floorPower_2500, floorPower_fifty,
+      floorPower_seven, floorPower_eighteen, floorPower_four, floorPower_two,
+      floorPower_one]
+  have hw : follows 2500 wordEE_OEEE12 := by
+    simp [wordEE_OEEE12, follows, wordOEEE9, floorPower_2500, floorPower_fifty,
+      floorPower_seven, floorPower_eighteen, floorPower_four, floorPower_two,
+      floorPower_one]
+  exact ⟨hw, himg, by simp [himg]⟩
+
+theorem nested_even_collapse_2500_superquadratic :
+    2 ^ (wordEE_OEEE12.length + 1) < 3 ^ oddCount wordEE_OEEE12 := by
   native_decide
 
 end Problems.Engine
