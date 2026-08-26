@@ -977,6 +977,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
         claimed_capabilities=("finite_closure", "growth"),
         prior_art_classified=True,
         prospective_fingerprint=nonaffine_fp,
+        already_run=True,
         prior_art=PriorArtDossier(
             target="reverse_and_add_base3",
             definition="n |-> n + reverse_digits(n) in balanced ternary",

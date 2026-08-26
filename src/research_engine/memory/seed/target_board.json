@@ -2005,7 +2005,7 @@
         "post_run_reconciliation": "",
         "lean_targets": []
       },
-      "already_run": false
+      "already_run": true
     },
     {
       "name": "cyclic_tag_bit",
@@ -2190,10 +2190,11 @@
         "euclidean_quotient",
         "home_prime_49",
         "juggler",
+        "reverse_add_bt",
         "syracuse"
       ],
-      "recurrence_count": 5,
-      "target_diversity": 5,
+      "recurrence_count": 6,
+      "target_diversity": 6,
       "mathematical_importance": "HIGH",
       "existing_workarounds": [
         "finite known orbits; refuse a piecewise-affine cover"
@@ -2278,8 +2279,8 @@
     },
     {
       "failure_cluster": "non_affine_arithmetic",
-      "recurrence_count": 5,
-      "target_diversity": 5,
+      "recurrence_count": 6,
+      "target_diversity": 6,
       "mathematical_importance": "HIGH",
       "expected_research_value": "HIGH",
       "implementation_cost": "high",

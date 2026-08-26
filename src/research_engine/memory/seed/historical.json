@@ -4596,12 +4596,11 @@
           "counterexample": "",
           "reusable_lesson": "even/odd floor powers are outside residue-affine language; do not add a radical attack",
           "possible_transfer_targets": [
-            "reverse_and_add_base3",
             "home_prime_49"
           ],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "juggler:loot:seed13",
@@ -4617,12 +4616,10 @@
           "minimal_example": "",
           "counterexample": "13 reaches 1; odd 3 grows",
           "reusable_lesson": "a finite seed closure is not a halt theorem on all positive integers",
-          "possible_transfer_targets": [
-            "reverse_and_add_base3"
-          ],
+          "possible_transfer_targets": [],
           "prior_art_status": "KNOWN",
-          "engineering_action": "CLOSE",
-          "status": "SATURATED"
+          "engineering_action": "REUSED",
+          "status": "REUSED"
         },
         {
           "id": "juggler:loot:cluster",
@@ -4701,6 +4698,242 @@
         "census_kind": "UNRESOLVED",
         "lean_theorems": [
           "Problems.Engine.FloorPower"
+        ]
+      },
+      "reconciliation": null,
+      "finalized": true
+    },
+    {
+      "experiment_id": "reverse_and_add_base3",
+      "target": "reverse_add_bt",
+      "target_family": "nonlinear_integer",
+      "adapter_version": "0.2.1",
+      "engine_version": "0.2.3",
+      "experiment_date": "2026-08-26",
+      "diagnosis": {
+        "target": "reverse_add_bt",
+        "semantic_class": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE|EXACT_CLOSURE",
+        "fingerprint": {
+          "transition_architecture": "DETERMINISTIC",
+          "state_space_type": "INTEGER_1D",
+          "control_structure": "SINGLETON",
+          "numerical_contraction": "FINITE_CONTRACTING",
+          "structural_compression": "UNOBSERVED",
+          "eventual_region": "FINITE_SEED_CLOSURE",
+          "orbit_behavior": "FINITE",
+          "recurrence": "UNOBSERVED",
+          "quotient": "UNOBSERVED",
+          "separation": "UNOBSERVED",
+          "symmetry": "UNOBSERVED",
+          "block_structure": "UNOBSERVED",
+          "reverse_structure": "UNOBSERVED",
+          "modular_structure": "UNOBSERVED",
+          "spectral_structure": "UNOBSERVED",
+          "factorization_structure": "UNOBSERVED",
+          "piecewise_affine_structure": "UNCERTAIN",
+          "latent_control": "UNOBSERVED",
+          "parameter_domain": "UNOBSERVED",
+          "latent_control_algebra": "UNOBSERVED",
+          "latent_control_obstruction": "UNOBSERVED",
+          "affine_control_type": "UNOBSERVED",
+          "certificate_strength": "EXACT_CLOSURE"
+        },
+        "family_status": "ACTIVE",
+        "family_id": "INTEGER_1D|SINGLETON|FINITE_CONTRACTING|FINITE_SEED_CLOSURE|FINITE|EXACT_CLOSURE",
+        "nearest_target": "",
+        "structural_delta": null,
+        "coverage": {
+          "statuses": {
+            "finite_closure": "EXERCISED",
+            "numerical_contraction": "EXERCISED"
+          }
+        },
+        "strongest_exact": "reverseAdd_one_ninety_six_reaches_zero",
+        "strongest_falsification": "T(196)=392 is not digit-sum or aliquot; T(8)=0 is not floor-power; seed-196 halt is not a Z-theorem",
+        "lean_certificate": "Problems.Engine.ReverseAdd",
+        "prior_art_status": "KNOWN",
+        "reusable_machinery": "",
+        "decision": "CONTINUE",
+        "decision_reason": "finite seed-196 closure with no piecewise-affine cover; not a reverse-fixed theorem",
+        "extra": {}
+      },
+      "decision_reason_code": "DISTINCT_REGIME",
+      "representation_novelty": "MEDIUM",
+      "mathematical_novelty": "NONE",
+      "novelty_status": "KNOWN_REDISCOVERY",
+      "mathematical_yield": {
+        "known_rediscoveries": [
+          "packet seed 196 reaches 0 in eight steps",
+          "no complete piecewise-affine cover"
+        ],
+        "new_exact_results": [
+          "T(0)=0",
+          "196 maps to 392 then reaches 0"
+        ],
+        "new_formalizations": [
+          "Problems.Engine.ReverseAdd"
+        ],
+        "new_counterexamples": [
+          "T(196)=392 is not digit-sum or aliquot; T(8)=0 is not the floor-power map"
+        ],
+        "new_conjectures": [],
+        "new_obstructions": [
+          "none; finite seed closure is not a reverse-fixed theorem"
+        ],
+        "new_reductions": [],
+        "new_classifications": [],
+        "new_terminology": [],
+        "potentially_new_mathematics": [],
+        "unresolved_questions": [
+          "whether every integer seed hits a reverse-fixed point"
+        ],
+        "engineering_changes": 0
+      },
+      "failures": [
+        {
+          "id": "reverse_and_add_base3:representation",
+          "target": "reverse_add_bt",
+          "experiment_id": "reverse_and_add_base3",
+          "engine_version": "0.2.1",
+          "phase": "diagnosis",
+          "attack": "piecewise_affine",
+          "failure_class": "REPRESENTATION",
+          "representation_status": "NON_AFFINE",
+          "mathematical_bottleneck": "outside_affine_valuation_control",
+          "evidence": "digit reverse-plus-add has no complete piecewise-affine cover on the sample window",
+          "counterexamples": [],
+          "minimal_example": "n |-> n + digit_reverse(n)",
+          "reproducibility": "seed",
+          "reusable_lesson": "Digit reverse-plus-add is outside residue-affine language; a finite seed-196 closure is not digit-fold, not aliquot, and not a Z-theorem.",
+          "prior_art_status": "KNOWN",
+          "engineering_action": "PARK",
+          "research_value": "HIGH",
+          "status": "PARKED",
+          "affected_attack_family": "latent_affine"
+        }
+      ],
+      "grey_loot": [
+        {
+          "id": "reverse_add_bt:loot:mismatch",
+          "kind": "Representation mismatch",
+          "statement": "digit reverse-plus-add lies outside residue-affine census language",
+          "evidence": "OBSERVED",
+          "experiment_id": "reverse_and_add_base3",
+          "target": "reverse_add_bt",
+          "failure_class": "REPRESENTATION",
+          "bottleneck": "outside_affine_valuation_control",
+          "payload": {},
+          "observation": "piecewise-affine census is INCONCLUSIVE; affine_system is None",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "digit reverse-plus-add is outside residue-affine language; do not add a reverse-add attack",
+          "possible_transfer_targets": [
+            "home_prime_49"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "reverse_add_bt:loot:seed196",
+          "kind": "Useful negative result",
+          "statement": "seed 196 reaches 0 in eight steps; that is not a theorem on all integers",
+          "evidence": "PROVED",
+          "experiment_id": "reverse_and_add_base3",
+          "target": "reverse_add_bt",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "196 -> 392 -> ... -> 0 in eight steps; T(0)=0; W(196)=196",
+          "minimal_example": "",
+          "counterexample": "196 reaches 0; W(2)=-2",
+          "reusable_lesson": "a finite seed closure is not a reverse-fixed theorem on all integers",
+          "possible_transfer_targets": [
+            "home_prime_49"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        },
+        {
+          "id": "reverse_add_bt:loot:cluster",
+          "kind": "Useful negative result",
+          "statement": "seed-196 finite closure is distinct from digit-fold saturation, aliquot truncation, and floor-power closure",
+          "evidence": "OBSERVED",
+          "experiment_id": "reverse_and_add_base3",
+          "target": "reverse_add_bt",
+          "failure_class": null,
+          "bottleneck": "",
+          "payload": {},
+          "observation": "seed-196 fingerprint is FINITE_SEED_CLOSURE, unlike digit-fold, aliquot truncation, and floor-power closure",
+          "minimal_example": "",
+          "counterexample": "",
+          "reusable_lesson": "digit reverse-plus-add can close on a packet seed and still sit outside affine control and outside digit-fold saturation",
+          "possible_transfer_targets": [
+            "home_prime_49"
+          ],
+          "prior_art_status": "KNOWN",
+          "engineering_action": "CLOSE",
+          "status": "SATURATED"
+        }
+      ],
+      "prior_art": {
+        "literature_ids": [
+          "oeis-A134028"
+        ],
+        "semantic_equivalents": [],
+        "terminology_variants": [],
+        "known_theorem_status": "KNOWN",
+        "publication_date": "",
+        "confidence": "",
+        "independently_rediscovered": false
+      },
+      "scout": {
+        "target": "reverse_and_add_base3",
+        "problem_definition": "Does frozen v2.3 diagnose reverse-plus-add dynamics without a reverse-add attack or a totality theorem?",
+        "literature": [
+          "oeis-A134028"
+        ],
+        "known_results": [],
+        "open_questions": "",
+        "saturation": "",
+        "extra": {}
+      },
+      "blind_packet": {
+        "spec_name": "reverse_add_bt",
+        "dimension": 1,
+        "skip_attacks": [],
+        "max_states": 32,
+        "max_steps": 16,
+        "allowed_definition": "n maps to n plus the integer whose balanced-ternary digits reverse those of n",
+        "state_space": "integers",
+        "observation": "the integer n",
+        "initial_conditions": [
+          "196"
+        ],
+        "explicit_controls": "",
+        "computational_budget": "",
+        "extra": {},
+        "forbidden_hints": [
+          "named conjectures",
+          "open-problem status",
+          "palindrome conjectures",
+          "base-10 folklore"
+        ],
+        "post_run_reconciliation": "",
+        "lean_targets": []
+      },
+      "run_artifact": {
+        "attack_statuses": {
+          "piecewise_affine": "INCONCLUSIVE",
+          "closure": "SUPPORTED"
+        },
+        "skipped": [],
+        "strongest_exact": "reverseAdd_one_ninety_six_reaches_zero",
+        "strongest_falsification": "T(196)=392 is not digit-sum or aliquot; seed-196 halt is not a Z-theorem",
+        "census_kind": "UNRESOLVED",
+        "lean_theorems": [
+          "Problems.Engine.ReverseAdd"
         ]
       },
       "reconciliation": null,

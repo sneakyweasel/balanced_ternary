@@ -2946,4 +2946,48 @@ Best next question
 - What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
 ```
 
+## Research Campaign 07: reverse_and_add_base3
+
+- **Date:** 2026-08-26
+- **Objective:** Diagnose the stored balanced-ternary reverse-plus-add map as distinct from digit-fold saturation and from factorization or floor-power maps, using frozen v2.3 without a reverse-add attack, without a palindrome theorem, and without importing base-10 folklore
+- **Hypotheses:** the fingerprint might match digit-fold or aliquot/juggler, or seed-196 halt might be billed as a Z-theorem, or census might fake an affine cover, or the adapter might leak palindrome conjectures
+- **Major results:** Blind `StrategyPlanner(TERMINATION)` selected `global_inductive` with empty results. Live `ResearchLoop` CONTINUE with exact residual closure of size 9 on seed 196 and piecewise-affine INCONCLUSIVE. Exact: T(0)=0; W(196)=196 so T(196)=392; 196 reaches 0 in eight steps. T(8)=0 is not the floor-power image; T(196)=392 is not digit-sum or σ(196)−196. Lean in `Problems.Engine.ReverseAdd`. No new attacks
+- **Refuted ideas:** residue-affine cover; seed-196 halt is a Z-theorem; this is digit-fold; this is aliquot; this is the floor-power map; every seed is reverse-fixed; a new reverse-add attack is required
+- **Literature:** OEIS A134028 (the reverse W); laboratory digit-fold / aliquot / floor-power comparison
+- **Open:** whether every integer seed hits a reverse-fixed point; not decided by seed 196
+- **Decision:** CLOSE. The surviving statements are KNOWN. Finite seed closure plus a missing affine cover; fingerprint distinct from digit-fold, aliquot, and floor-power
+
+```text
+What was learned
+- Packet seed 196 is reverse-fixed and reaches 0 in eight steps; T(0)=0; that is not a reverse-fixed theorem on Z
+- Piecewise-affine census is INCONCLUSIVE; digit reverse sits outside residue-affine language
+- StrategyPlanner(TERMINATION) selects global_inductive with no implemented ranking attack
+- The seed-196 fingerprint is FINITE_SEED_CLOSURE, distinct from digit-fold saturation, aliquot truncation, and floor-power closure
+- T(8)=0 is not the floor-power image 2; T(196)=392 is not digit-sum 2 and not aliquot 203; W(2)=-2
+
+Strongest theorem
+- The packet seed 196 reaches 0 in eight steps (reverseAdd_one_ninety_six_reaches_zero)
+
+Strongest refutation
+- T(196)=392 (not digit-sum or aliquot); T(8)=0 (not floor-power); W(2)=-2 (not every seed reverse-fixed)
+
+Reusable machinery
+- none added; ReverseAddSpec follows the existing one-variable dummy-control pattern; KNOWN lemmas in ReverseAdd.lean wrapping core encodeZ
+
+Prior-art status
+- KNOWN computational orbit; OEIS A134028 is the reverse W, not a class obstruction
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- The finite orbit is KNOWN. There is no affine cover and no class forcing all seeds to a reverse-fixed point. A reverse-add attack or palindrome totality claim would violate the frozen contract.
+
+Best next question
+- What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
+```
+
 
