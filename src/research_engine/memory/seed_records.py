@@ -1535,6 +1535,126 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
         finalized=True,
     )
 
+    seven_fp = _fp(
+        state_space_type="INTEGER_1D",
+        control_structure="SINGLETON",
+        numerical_contraction="MIXED_MAGNITUDE",
+        eventual_region="UNBOUNDED_SAMPLE",
+        orbit_behavior="MIXED",
+        certificate_strength="EXACT_RELATION",
+        affine_control_type="SCALAR",
+        piecewise_affine_structure="PARAMETERIZED",
+        latent_control="PARAMETERIZED",
+        parameter_domain="EXACT",
+        latent_control_algebra="EXPLOITABLE",
+        latent_control_obstruction="RECURSIVE_INVARIANT",
+        transition_architecture="DETERMINISTIC",
+    )
+    seven = MemoryExperiment(
+        experiment_id="mx_plus_r_7x1_class_obstruction",
+        target="mx_plus_r_7_1",
+        target_family="mx_plus_r",
+        adapter_version="0.2.1",
+        engine_version="0.2.3",
+        experiment_date="2026-08-26",
+        diagnosis=_diag(
+            "mx_plus_r_7_1",
+            seven_fp,
+            ResearchDecision.CONTINUE,
+            "latent parameterized family recovered; image class is elementary and not a basin exclusion",
+            prior="KNOWN",
+            lean="Problems.Engine.MxPlusR",
+            exact="mxPlusR_seven_image_residue",
+            falsification="73 ≡ 3 (mod 7) maps to 1; 299593 ≡ 0 (mod 7) maps to 1",
+            machinery="piecewise_affine",
+        ),
+        decision_reason_code=DecisionReason.KNOWN_REDISCOVERY,
+        representation_novelty=NoveltyLevel.MEDIUM,
+        mathematical_novelty=NoveltyLevel.NONE,
+        novelty_status=NoveltyStatus.KNOWN_REDISCOVERY,
+        mathematical_yield=MathematicalYield(
+            known_rediscoveries=(
+                "parameterized family 2^k y = 7x+1",
+                "generic control-word cycle obstructions",
+            ),
+            new_exact_results=(
+                "image of T lies in {n odd : n ≡ 1,2,4 (mod 7)}",
+                "only positive length-one cycle is 1",
+            ),
+            new_formalizations=("Problems.Engine.MxPlusR",),
+            new_obstructions=("image class <2> in (Z/7Z)*; not a basin exclusion",),
+            new_counterexamples=(
+                "73 ≡ 3 (mod 7) maps to 1",
+                "299593 ≡ 0 (mod 7) maps to 1",
+            ),
+            unresolved_questions=("which odd n reach 1",),
+            engineering_changes=0,
+        ),
+        grey_loot=(
+            GreyLoot(
+                id="mx_plus_r_7x1:loot:image",
+                kind=GreyLootKind.CANDIDATE_INVARIANT,
+                statement="T(n) ≡ 1, 2, or 4 (mod 7) for every odd positive n",
+                evidence=LootEvidence.PROVED,
+                experiment_id="mx_plus_r_7x1_class_obstruction",
+                target="mx_plus_r_7_1",
+            ),
+            GreyLoot(
+                id="mx_plus_r_7x1:loot:out_class",
+                kind=GreyLootKind.COUNTEREXAMPLE,
+                statement="73 ≡ 3 (mod 7) and 299593 ≡ 0 (mod 7) both map to 1",
+                evidence=LootEvidence.PROVED,
+                experiment_id="mx_plus_r_7x1_class_obstruction",
+                target="mx_plus_r_7_1",
+            ),
+            GreyLoot(
+                id="mx_plus_r_7x1:loot:family",
+                kind=GreyLootKind.USEFUL_NEGATIVE_RESULT,
+                statement="family rediscovery and generic cycle words are not a basin obstruction to 1",
+                evidence=LootEvidence.KNOWN,
+                experiment_id="mx_plus_r_7x1_class_obstruction",
+                target="mx_plus_r_7_1",
+            ),
+        ),
+        prior_art=PriorArtMemory(
+            literature_ids=("crandall-1978-3x+1", "chamberland-2003-3x+1-survey"),
+            independently_rediscovered=False,
+            known_theorem_status="KNOWN",
+        ),
+        scout=ScoutDossier(
+            target="mx_plus_r_7x1_class_obstruction",
+            problem_definition=(
+                "On T(x)=(7x+1)/2^{v_2(7x+1)}, does a class obstruction constrain reaching 1?"
+            ),
+            literature=("crandall-1978-3x+1", "chamberland-2003-3x+1-survey"),
+        ),
+        blind_packet=BlindPacket(
+            spec_name="mx_plus_r_7_1",
+            dimension=1,
+            max_states=32,
+            max_steps=16,
+            allowed_definition="odd x maps to (7x+1) divided by the maximal power of 2 that divides it",
+            state_space="odd positive integers",
+            observation="the integer",
+            initial_conditions=("3",),
+            forbidden_hints=("named conjectures", "open-problem status", "known residue partition"),
+        ),
+        run_artifact=RunArtifact(
+            attack_statuses={
+                "piecewise_affine": "OBSERVATION",
+                "parameter_domain": "SUPPORTED",
+                "control_word": "SUPPORTED",
+                "control_obstruction": "SUPPORTED",
+                "closure": "INCONCLUSIVE",
+            },
+            lean_theorems=("Problems.Engine.MxPlusR",),
+            census_kind="PARAMETERIZED_CENSUS",
+            strongest_exact="mxPlusR_seven_image_residue",
+            strongest_falsification="73 ≡ 3 (mod 7) maps to 1",
+        ),
+        finalized=True,
+    )
+
     return tuple(
         _enrich_lessons(item)
         for item in (
@@ -1558,6 +1678,7 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
             positivity,
             switching,
             order2,
+            seven,
         )
     )
 
@@ -1778,6 +1899,31 @@ def _lesson_fields() -> dict[str, dict]:
             possible_transfer_targets=("companion_shift_order6", "positivity_order10"),
             status=GreyLootStatus.REUSED,
             engineering_action="RECORD",
+            prior_art_status="KNOWN",
+        ),
+        "mx_plus_r_7x1:loot:image": dict(
+            observation="T(n) occupies only the subgroup generated by 2 in (Z/7Z)*",
+            reusable_lesson="order of 2 modulo q can cut the image of qx+1 strictly inside the units; this is not a basin exclusion",
+            possible_transfer_targets=("weak_collatz_floor_5x4_rplus", "matthews_prize_mod3_avoider"),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "mx_plus_r_7x1:loot:out_class": dict(
+            observation="73 ≡ 3 (mod 7) and 299593 ≡ 0 (mod 7) both map to 1",
+            reusable_lesson="an image-class restriction does not exclude the complementary classes from reaching 1",
+            possible_transfer_targets=("weak_collatz_floor_5x4_rplus",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+            counterexample="T(73)=1 and T(299593)=1",
+        ),
+        "mx_plus_r_7x1:loot:family": dict(
+            observation="2^k y = 7x+1 and generic cycle words are KNOWN infrastructure",
+            reusable_lesson="family rediscovery is not a class obstruction to reaching 1",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
             prior_art_status="KNOWN",
         ),
     }

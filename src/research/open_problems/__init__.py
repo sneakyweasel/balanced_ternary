@@ -72,6 +72,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.bb5_map.problem import PROBLEM as BB5_MAP
     from research.linear_constraint_loops.problem import PROBLEM as LINEAR_CONSTRAINT_LOOPS
     from research.mx_plus_r.problem import PROBLEM as MX_PLUS_R
+    from research.mx_plus_r_7x1_class_obstruction.problem import PROBLEM as MX_PLUS_R_7X1
     from research.euclidean_quotient.problem import PROBLEM as EUCLIDEAN_QUOTIENT
     from research.vector_affine.problem import PROBLEM as VECTOR_AFFINE
     from research.matrix_word_invariant.problem import PROBLEM as MATRIX_WORD_INVARIANT
@@ -92,6 +93,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         SWITCHING_AFFINE_Z2,
         SKOLEM_ORDER2,
         MX_PLUS_R,
+        MX_PLUS_R_7X1,
         EUCLIDEAN_QUOTIENT,
         VECTOR_AFFINE,
         MATRIX_WORD_INVARIANT,

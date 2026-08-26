@@ -710,6 +710,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
         claimed_capabilities=_REACH,
         prior_art_classified=True,
         prospective_fingerprint=affine_fp,
+        already_run=True,
         prior_art=PriorArtDossier(
             target="mx_plus_r_7x1_class_obstruction",
             definition="accelerated 7x+1 map",

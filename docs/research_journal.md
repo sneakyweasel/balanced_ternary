@@ -2682,4 +2682,48 @@ Best next question
 - none from this program; parked clusters stay parked
 ```
 
+## Research Campaign 01: mx_plus_r_7x1_class_obstruction
+
+- **Date:** 2026-08-26
+- **Objective:** Extract a nontrivial class obstruction for \(T(x)=(7x+1)/2^{v_2(7x+1)}\) relevant to reaching 1, using frozen Research Engine v2.3 without new attacks
+- **Hypotheses:** residue/valuation control might exclude an infinite family from the basin of 1; family rediscovery is not the yield
+- **Major results:** Blind `StrategyPlanner(CYCLE_EXCLUSION)` selected `census_obstruction` and recovered \(2^k y=7x+1\). Exact image theorem: \(T(n)\equiv 1,2,\) or \(4\pmod 7\). Complementary classes are not basin-excluded: \(T(73)=1\) and \(T(299593)=1\). Only positive length-one cycle is \(1\). Seed \(3\) misses \(1\) on horizons 16 and 32 (not divergence). Lean in `Problems.Engine.MxPlusR`. No new attacks
+- **Refuted ideas:** rediscovery of the family as yield; seed 3 reaches 1 on the bound; \(n\equiv 3,5,6\pmod 7\) cannot reach 1; odd multiples of 7 cannot reach 1; the 7x+1 image class fills all units as in 3x+1 / 5x+1
+- **Literature:** Crandall 1978; Chamberland 2003; laboratory `mxPlusR_parameter_iff`
+- **Open:** which odd \(n\) reach 1; not decided by the image class
+- **Decision:** CLOSE. The surviving statement is KNOWN elementary arithmetic. No class excludes an infinite family from reaching 1
+
+```text
+What was learned
+- Frozen v2.3 rediscovers 2^k y = 7x+1; that is infrastructure, not yield
+- T(n) lands in <2> = {1,2,4} inside (Z/7Z)*; 3x+1 and 5x+1 fill all units
+- C_out is transient, not basin-excluded: T(73)=1 and T(299593)=1
+- Generic cycle-word obstructions classify 1-cycles (only x=1), they do not block reaching 1
+- Finite non-visit of 1 from seed 3 is not divergence and not a class obstruction
+
+Strongest theorem
+- If 2^k y = 7x+1 then y ≡ 1, 2, or 4 (mod 7)
+
+Strongest refutation
+- T(73)=1 with 73 ≡ 3 (mod 7); T(299593)=1 with 299593 ≡ 0 (mod 7)
+
+Reusable machinery
+- none added; existing MxPlusRSpec, StrategyPlanner, and MxPlusR.lean lemmas
+
+Prior-art status
+- KNOWN elementary congruence; 7-specific because 2 has order 3 mod 7
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- No class excludes an infinite family from reaching 1. The image statement is exact, Lean-certified, and KNOWN. Further census expansion would not change that.
+
+Best next question
+- What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
+```
+
 
