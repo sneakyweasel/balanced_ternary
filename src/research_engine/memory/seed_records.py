@@ -1655,6 +1655,141 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
         finalized=True,
     )
 
+    floor_fp = _fp(
+        state_space_type="INTEGER_1D",
+        control_structure="SINGLETON",
+        numerical_contraction="EXPANDING",
+        eventual_region="UNBOUNDED_SAMPLE",
+        orbit_behavior="INCOMPLETE",
+        certificate_strength="BOUNDED",
+        affine_control_type="SCALAR",
+        piecewise_affine_structure="FINITE",
+        latent_control="FINITE",
+        parameter_domain="SAMPLE_SUPPORTED",
+        latent_control_algebra="EXPLOITABLE",
+        latent_control_obstruction="CLASS",
+        transition_architecture="DETERMINISTIC",
+    )
+    floor54 = MemoryExperiment(
+        experiment_id="weak_collatz_floor_5x4_rplus",
+        target="floor_5x4_strip",
+        target_family="linear_constraint_loop",
+        adapter_version="0.2.1",
+        engine_version="0.2.3",
+        experiment_date="2026-08-26",
+        diagnosis=_diag(
+            "floor_5x4_strip",
+            floor_fp,
+            ResearchDecision.CONTINUE,
+            "finite residue-affine census recovered; unique successor is elementary and losing the successor is false",
+            prior="KNOWN",
+            lean="Problems.Engine.LinearConstraintLoops",
+            exact="floor54Rel_exists",
+            falsification="fixed points 2,3,4 never lose a successor; seed 5 grows",
+            machinery="piecewise_affine",
+        ),
+        decision_reason_code=DecisionReason.KNOWN_REDISCOVERY,
+        representation_novelty=NoveltyLevel.MEDIUM,
+        mathematical_novelty=NoveltyLevel.NONE,
+        novelty_status=NoveltyStatus.KNOWN_REDISCOVERY,
+        mathematical_yield=MathematicalYield(
+            known_rediscoveries=(
+                "four residue-affine branches 4y=5x-r",
+                "generic control-word cycle obstructions",
+            ),
+            new_exact_results=(
+                "unique successor for every x>=2",
+                "a defined successor stays in x>=2",
+            ),
+            new_formalizations=("Problems.Engine.LinearConstraintLoops",),
+            new_obstructions=("none; losing the successor is false on this closed strip",),
+            new_counterexamples=(
+                "fixed points 2,3,4 never lose a successor",
+                "seed 5 grows on horizons 16 and 32",
+                "T_strip(8)=9 while R+(8)=10",
+            ),
+            unresolved_questions=("weak-map halt is a different spec",),
+            engineering_changes=0,
+        ),
+        grey_loot=(
+            GreyLoot(
+                id="floor_5x4:loot:unique",
+                kind=GreyLootKind.CANDIDATE_INVARIANT,
+                statement="every x>=2 has a unique integer successor on 5x-4 <= 4x' <= 5x-1",
+                evidence=LootEvidence.PROVED,
+                experiment_id="weak_collatz_floor_5x4_rplus",
+                target="floor_5x4_strip",
+            ),
+            GreyLoot(
+                id="floor_5x4:loot:never_drops",
+                kind=GreyLootKind.COUNTEREXAMPLE,
+                statement="fixed points 2,3,4 and the growing orbit of 5 never lose a successor",
+                evidence=LootEvidence.PROVED,
+                experiment_id="weak_collatz_floor_5x4_rplus",
+                target="floor_5x4_strip",
+            ),
+            GreyLoot(
+                id="floor_5x4:loot:reparam",
+                kind=GreyLootKind.USEFUL_NEGATIVE_RESULT,
+                statement="four residue-affine branches are a 4/3 SLC reparameterization, not a halt obstruction",
+                evidence=LootEvidence.KNOWN,
+                experiment_id="weak_collatz_floor_5x4_rplus",
+                target="floor_5x4_strip",
+            ),
+        ),
+        prior_art=PriorArtMemory(
+            literature_ids=(
+                "carelli-2026-loop-termination",
+                "matthews-watts-1984-generalization-hasse",
+                "ben-amram-genaim-ouaknine-worrell-2025-termination-survey",
+            ),
+            independently_rediscovered=False,
+            known_theorem_status="KNOWN",
+        ),
+        scout=ScoutDossier(
+            target="weak_collatz_floor_5x4_rplus",
+            problem_definition=(
+                "On 5x-4 <= 4x' <= 5x-1 with x>=2, does a class obstruction constrain losing the successor?"
+            ),
+            literature=(
+                "carelli-2026-loop-termination",
+                "matthews-watts-1984-generalization-hasse",
+                "ben-amram-genaim-ouaknine-worrell-2025-termination-survey",
+            ),
+        ),
+        blind_packet=BlindPacket(
+            spec_name="floor_5x4_strip",
+            dimension=1,
+            max_states=32,
+            max_steps=16,
+            allowed_definition="integer x >= 2 maps to the unique integer x' with 5x-4 <= 4 x' <= 5x-1 when it exists",
+            state_space="Z",
+            observation="the integer x",
+            initial_conditions=("5",),
+            forbidden_hints=(
+                "named conjectures",
+                "known residue partition",
+                "open-problem status",
+                "literature reductions",
+                "cycle theorems",
+            ),
+        ),
+        run_artifact=RunArtifact(
+            attack_statuses={
+                "piecewise_affine": "OBSERVATION",
+                "parameter_domain": "OBSERVATION",
+                "control_word": "SUPPORTED",
+                "control_obstruction": "SUPPORTED",
+                "closure": "INCONCLUSIVE",
+            },
+            lean_theorems=("Problems.Engine.LinearConstraintLoops",),
+            census_kind="FINITE_CENSUS",
+            strongest_exact="floor54Rel_exists",
+            strongest_falsification="fixed points 2,3,4 never lose a successor",
+        ),
+        finalized=True,
+    )
+
     return tuple(
         _enrich_lessons(item)
         for item in (
@@ -1679,6 +1814,7 @@ def historical_experiments() -> tuple[MemoryExperiment, ...]:
             switching,
             order2,
             seven,
+            floor54,
         )
     )
 
@@ -1795,8 +1931,8 @@ def _lesson_fields() -> dict[str, dict]:
             observation="3y=4x-1 and 3y=4x-2 on two residues",
             reusable_lesson="research language recovered from inequalities; global reachability remains the real barrier",
             possible_transfer_targets=("weak_collatz_floor_5x4_rplus", "matthews_prize_mod3_avoider"),
-            status=GreyLootStatus.ACTIVE,
-            engineering_action="WATCH",
+            status=GreyLootStatus.REUSED,
+            engineering_action="REUSED",
             prior_art_status="KNOWN",
         ),
         "bb5_map:loot:family": dict(
@@ -1921,6 +2057,31 @@ def _lesson_fields() -> dict[str, dict]:
         "mx_plus_r_7x1:loot:family": dict(
             observation="2^k y = 7x+1 and generic cycle words are KNOWN infrastructure",
             reusable_lesson="family rediscovery is not a class obstruction to reaching 1",
+            possible_transfer_targets=(),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "floor_5x4:loot:unique": dict(
+            observation="every x>=2 has a unique integer successor on the closed 5x-4 strip",
+            reusable_lesson="when interval length equals the modulus the SLC successor is total; this is not a halt theorem",
+            possible_transfer_targets=("matthews_prize_mod3_avoider",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+        ),
+        "floor_5x4:loot:never_drops": dict(
+            observation="fixed points 2,3,4 and the growing orbit of 5 never lose a successor",
+            reusable_lesson="losing the successor on a closed strip with interval length equal to the modulus is false; the weak-map halt question is a different spec",
+            possible_transfer_targets=("matthews_prize_mod3_avoider",),
+            status=GreyLootStatus.SATURATED,
+            engineering_action="CLOSE",
+            prior_art_status="KNOWN",
+            counterexample="2,3,4 fixed; seed 5 grows",
+        ),
+        "floor_5x4:loot:reparam": dict(
+            observation="four residue-affine branches 4y=5x-r on residues mod 4",
+            reusable_lesson="FINITE_CENSUS of 4y=5x-r is a 4/3 SLC reparameterization, not a class obstruction to losing the successor",
             possible_transfer_targets=(),
             status=GreyLootStatus.SATURATED,
             engineering_action="CLOSE",

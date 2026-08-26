@@ -103,4 +103,53 @@ theorem sumStrip_cycle_zero_one : sumStripRel 0 1 ∧ sumStripRel 1 0 := by
 theorem sumStrip_fixed_zero : sumStripRel 0 0 := by
   simp [sumStripRel]
 
+/-- Integer points of the strip ``5x-4 ≤ 4y ≤ 5x-1`` with ``x ≥ 2``.
+These identities are KNOWN elementary arithmetic. They are not a halt
+theorem, not the Reachability Conjecture, and not a 4/3 rediscovery. -/
+def floor54Rel (x y : ℤ) : Prop :=
+  2 ≤ x ∧ 5 * x - 4 ≤ 4 * y ∧ 4 * y ≤ 5 * x - 1
+
+/-- The integer graph is a partial function. -/
+theorem floor54Rel_unique {x y z : ℤ} (hy : floor54Rel x y) (hz : floor54Rel x z) :
+    y = z := by
+  have : 4 * y = 4 * z := by
+    rcases hy with ⟨_, hy₁, hy₂⟩
+    rcases hz with ⟨_, hz₁, hz₂⟩
+    omega
+  omega
+
+/-- Every integer point of the strip lies on one of the four cleared lines. -/
+theorem floor54Rel_clear {x y : ℤ} (h : floor54Rel x y) :
+    4 * y = 5 * x - 1 ∨ 4 * y = 5 * x - 2 ∨ 4 * y = 5 * x - 3 ∨ 4 * y = 5 * x - 4 := by
+  rcases h with ⟨_, hlo, hhi⟩
+  omega
+
+/-- On ``x ≥ 2`` a successor always exists. Unlike ``rplusRel``, the
+interval length equals the modulus. -/
+theorem floor54Rel_exists (x : ℤ) (hx : 2 ≤ x) : ∃ y, floor54Rel x y := by
+  let r := (5 * x) % 4
+  have hr0 : 0 ≤ r := Int.emod_nonneg _ (by decide)
+  have hlt : r < 4 := Int.emod_lt_of_pos _ (by decide)
+  have hdecomp : 4 * ((5 * x) / 4) + r = 5 * x := Int.ediv_add_emod (5 * x) 4
+  have hr : r = 0 ∨ r = 1 ∨ r = 2 ∨ r = 3 := by omega
+  rcases hr with hr | hr | hr | hr
+  · refine ⟨(5 * x) / 4 - 1, ?_⟩
+    simp [floor54Rel]
+    omega
+  · refine ⟨(5 * x) / 4, ?_⟩
+    simp [floor54Rel]
+    omega
+  · refine ⟨(5 * x) / 4, ?_⟩
+    simp [floor54Rel]
+    omega
+  · refine ⟨(5 * x) / 4, ?_⟩
+    simp [floor54Rel]
+    omega
+
+/-- A defined successor stays in the domain. The orbit cannot lose its
+successor by leaving ``x ≥ 2``. -/
+theorem floor54Rel_stays {x y : ℤ} (h : floor54Rel x y) : 2 ≤ y := by
+  rcases h with ⟨hx, hlo, hhi⟩
+  omega
+
 end Problems.Engine

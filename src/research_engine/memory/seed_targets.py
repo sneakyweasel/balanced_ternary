@@ -491,6 +491,7 @@ def board_targets() -> tuple[ResearchTarget, ...]:
         claimed_capabilities=_REACH,
         prior_art_classified=True,
         prospective_fingerprint=affine_fp,
+        already_run=True,
         prior_art=PriorArtDossier(
             target="weak_collatz_floor_5x4_rplus",
             definition="integer SLC for the expanding locus of T(x)=floor(5x/4)",

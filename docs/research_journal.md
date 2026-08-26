@@ -2726,4 +2726,48 @@ Best next question
 - What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
 ```
 
+## Research Campaign 02: weak_collatz_floor_5x4_rplus
+
+- **Date:** 2026-08-26
+- **Objective:** Extract a class or branch obstruction for the closed strip \(5x-4\le 4x'\le 5x-1\) (\(x\ge 2\)) relevant to losing the successor, using frozen Research Engine v2.3 without new attacks
+- **Hypotheses:** residue-affine control might force loss of the successor; 4/3 reconstruction is not the yield; a universal halt claim is forbidden
+- **Major results:** Blind `StrategyPlanner(CYCLE_EXCLUSION)` selected `census_obstruction` and recovered four branches \(4y=5x-r\) (`FINITE_CENSUS`). Exact definedness: unique successor for every \(x\ge 2\), and the successor stays in the domain. Fixed points \(2,3,4\). Seed \(5\) grows on horizons 16 and 32. The map is not \(R^+\) (\(8\mapsto 9\) vs \(10\)). Lean in `Problems.Engine.LinearConstraintLoops`. No new attacks
+- **Refuted ideas:** rediscovery of the 4/3 language as yield; this is the 4/3 loop; every orbit loses its successor; finite halt is a \(\mathbb Z\)-theorem; a residue image class excludes a losing-successor basin; \(R^+\) is likewise total on its domain
+- **Literature:** Carelli 2026; Matthews–Watts 1984; Ben-Amram–Genaim–Ouaknine–Worrell 2025; laboratory `rplusRel_*`
+- **Open:** weak-map halt when hitting a multiple of 4 is a different spec, not this closed strip
+- **Decision:** CLOSE. The surviving statements are KNOWN elementary arithmetic or a REPARAMETERIZATION of the 4/3 SLC campaign. Losing the successor is false on this spec
+
+```text
+What was learned
+- Frozen v2.3 recovers 4y=5x-r as a FINITE_CENSUS; that is 4/3 language, not yield
+- Interval length equals the modulus, so the successor is total on x>=2 and stays there
+- R+ can be undefined (length 2, modulus 3); this strip cannot
+- Fixed points 2,3,4 and growing seed 5 refute “every orbit loses its successor”
+- The board’s weak-map halt question is a different spec from the stored inequality
+
+Strongest theorem
+- For every integer x>=2 there is a unique y with 5x-4 <= 4y <= 5x-1, and that y satisfies y>=2
+
+Strongest refutation
+- 2,3,4 are fixed points; seed 5 grows on horizons 16 and 32; strip(8)=9 while R+(8)=10
+
+Reusable machinery
+- none added; existing OneVariableLoopSpec, integer_images, StrategyPlanner, and LinearConstraintLoops.lean lemmas
+
+Prior-art status
+- KNOWN elementary interval arithmetic; 5/4-specific because length equals modulus, unlike R+
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- CLOSE
+
+Why
+- Losing the successor is false on the stored closed strip. The branch census is a REPARAMETERIZATION of the 4/3 campaign. Further census expansion would not change that.
+
+Best next question
+- What exact obstruction, if any, can frozen v2.3 produce on the next unrun leftover target without new attacks?
+```
+
 
