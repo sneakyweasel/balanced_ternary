@@ -142,9 +142,10 @@ descend from \(y\) itself. Capture is still image \(1\).
 
 ## Open questions
 
-After a residual \(y\ge 144\) that is not itself in \(R\), must the
-next even collapse land below \(144\) (or in \(R\)), or can an orbit
-stay in odd / large-even territory indefinitely?
+Answered in [juggler_even_scale_barrier.md](juggler_even_scale_barrier.md):
+an even residual on a minimal non-1 orbit must lie at scale
+\(\ge n_*^2\), and an \(E^r\) run must start at \(\ge n_*^{2^r}\). The
+orbit is not forced to be all-odd. The remaining question lives there.
 
 ## Decision
 

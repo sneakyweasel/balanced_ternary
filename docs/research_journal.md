@@ -4684,4 +4684,49 @@ Best next question
 - Must a residual y≥144 eventually land in an even state below 144, with any bound depending only on y?
 ```
 
+## Juggler even-run scale barriers
+
+- **Date:** 2026-08-27
+- **Objective:** Convert minimality into an exact scale lower bound on even runs, without claiming the orbit is all-odd
+- **Hypotheses:** `EVEN_SCALE_BARRIER_GREEN`, `MINIMAL_NORMAL_FORM_GREEN`, or `INTERNAL_COLLAPSE_BELOW_MINIMAL`
+- **Major results:** `MinimalNonTerm` **EXACT — LEAN VERIFIED**. An \(E^r\) run on a minimal non-1 orbit has entry \(\ge n^{2^r}\) **EXACT — LEAN VERIFIED**. The start is odd, at least \(12\), and its first image is odd **EXACT — LEAN VERIFIED**. Finite-prefix normal form **EXACT — LEAN VERIFIED**. Changing-family towers cannot lie on the orbit. Classification **MINIMAL_NORMAL_FORM_GREEN**. Records: `docs/research/juggler_even_scale_barrier.md`, `docs/problems/juggler_even_scale_barrier.md`. Control layer unchanged
+- **Refuted ideas:** “minimal counterexample orbit is all-odd”; enlarging `Capture`; a halt theorem
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** after the first odd run grows past \(n^2\), must the first even residual fall below \(n\), or can it land in \([n,\infty)\)?
+- **Decision:** PROMOTE the scale barrier and the finite-prefix normal form. Do not claim an all-odd orbit. Do not claim termination
+
+```text
+What was learned
+- Minimality is a scale constraint, not an all-odd constraint
+- E^r on a minimal non-1 orbit forces entry >= n^{2^r}; the exit stays >= n
+- The start is odd and the first image is odd; later even states are allowed at scale >= n^2
+- OE at the start is descent; changing-family collapses to 1 cannot occur on the orbit
+- Ordinary orbits do visit even states above the start (e.g. 3→36)
+
+Strongest theorem
+- If MinimalNonTerm n and an E^r run occurs at a later state m, then n^{2^r} <= m
+
+Strongest refutation
+- the claim that a minimal non-1 orbit must be all-odd
+
+Reusable machinery
+- Problems.Engine.MinimalNonTerm even_run_scale_barrier / minimal_counterexample_normal_form
+- research.juggler_sequence.even_scale_barrier
+
+Prior-art status
+- conditional scale obstruction, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The even branch plus minimality gives an exact numerical barrier. That is the first global restriction on how a hypothetical counterexample may collapse.
+
+Best next question
+- After the first odd run has grown past n^2, must the first even residual fall below n, or can it land in [n, ∞)?
+```
+
 

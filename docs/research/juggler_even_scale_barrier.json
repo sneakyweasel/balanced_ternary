@@ -1,0 +1,377 @@
+{
+  "experiment": "juggler_even_scale_barrier",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "all_odd_orbit": false
+  },
+  "scan": {
+    "census": {
+      "n_max": 80,
+      "run_count": 103,
+      "pow_fail": 0,
+      "scale_fail_when_exit_ge_n": 0,
+      "exit_ge_n": 25,
+      "exit_below_n": 78,
+      "even_entry_above_start": 64,
+      "samples": [
+        {
+          "n": 3,
+          "entry": 36,
+          "r": 2,
+          "exit": 2,
+          "pow_ok": true,
+          "scale_ok": true,
+          "exit_ge_n": false
+        },
+        {
+          "n": 3,
+          "entry": 36,
+          "r": 1,
+          "exit": 6,
+          "pow_ok": true,
+          "scale_ok": true,
+          "exit_ge_n": true
+        },
+        {
+          "n": 4,
+          "entry": 4,
+          "r": 1,
+          "exit": 2,
+          "pow_ok": true,
+          "scale_ok": true,
+          "exit_ge_n": false
+        },
+        {
+          "n": 5,
+          "entry": 36,
+          "r": 2,
+          "exit": 2,
+          "pow_ok": true,
+          "scale_ok": true,
+          "exit_ge_n": false
+        },
+        {
+          "n": 5,
+          "entry": 36,
+          "r": 1,
+          "exit": 6,
+          "pow_ok": true,
+          "scale_ok": true,
+          "exit_ge_n": true
+        },
+        {
+          "n": 6,
+          "entry": 6,
+          "r": 1,
+          "exit": 2,
+          "pow_ok": true,
+          "scale_ok": true,
+          "exit_ge_n": false
+        },
+        {
+          "n": 7,
+          "entry": 18,
+          "r": 1,
+          "exit": 4,
+          "pow_ok": true,
+          "scale_ok": true,
+          "exit_ge_n": false
+        },
+        {
+          "n": 8,
+          "entry": 8,
+          "r": 1,
+          "exit": 2,
+          "pow_ok": true,
+          "scale_ok": true,
+          "exit_ge_n": false
+        }
+      ]
+    },
+    "patterns": [
+      {
+        "n": 13,
+        "word": "OE",
+        "follows": true,
+        "image": 6,
+        "kind": "DESCENT",
+        "even_images": [
+          46
+        ],
+        "even_ge_sq": false
+      },
+      {
+        "n": 13,
+        "word": "OOE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 13,
+        "word": "OEO",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 13,
+        "word": "OEE",
+        "follows": true,
+        "image": 2,
+        "kind": "DESCENT",
+        "even_images": [
+          46,
+          6
+        ],
+        "even_ge_sq": false
+      },
+      {
+        "n": 13,
+        "word": "OOEE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 13,
+        "word": "OOOE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 25,
+        "word": "OE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 25,
+        "word": "OOE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 25,
+        "word": "OEO",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 25,
+        "word": "OEE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 25,
+        "word": "OOEE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 25,
+        "word": "OOOE",
+        "follows": true,
+        "image": 228,
+        "kind": "NO_CERTIFICATE",
+        "even_images": [
+          52214
+        ],
+        "even_ge_sq": true
+      },
+      {
+        "n": 37,
+        "word": "OE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 37,
+        "word": "OOE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 37,
+        "word": "OEO",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 37,
+        "word": "OEE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 37,
+        "word": "OOEE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 37,
+        "word": "OOOE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 41,
+        "word": "OE",
+        "follows": true,
+        "image": 16,
+        "kind": "DESCENT",
+        "even_images": [
+          262
+        ],
+        "even_ge_sq": false
+      },
+      {
+        "n": 41,
+        "word": "OOE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 41,
+        "word": "OEO",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 41,
+        "word": "OEE",
+        "follows": true,
+        "image": 4,
+        "kind": "DESCENT",
+        "even_images": [
+          262,
+          16
+        ],
+        "even_ge_sq": false
+      },
+      {
+        "n": 41,
+        "word": "OOEE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      },
+      {
+        "n": 41,
+        "word": "OOOE",
+        "follows": false,
+        "kind": "NO_FOLLOW"
+      }
+    ],
+    "changing_families": [
+      {
+        "n": 2,
+        "word": "E",
+        "kind": "CAPTURE",
+        "image": 1
+      },
+      {
+        "n": 16,
+        "word": "EEEOOOOOOOOO",
+        "kind": "CAPTURE",
+        "image": 1
+      },
+      {
+        "n": 7,
+        "word": "OEEEOOOOOOOOO",
+        "kind": "CAPTURE",
+        "image": 1
+      },
+      {
+        "n": 2500,
+        "word": "EEOEEEOOOOOOOOOOOO",
+        "kind": "CAPTURE",
+        "image": 1
+      }
+    ],
+    "first_image_parity": {
+      "odd_starts": 34,
+      "first_image_even": [
+        {
+          "n": 13,
+          "image": 46,
+          "kind": "DESCENT"
+        },
+        {
+          "n": 15,
+          "image": 58,
+          "kind": "DESCENT"
+        },
+        {
+          "n": 17,
+          "image": 70,
+          "kind": "DESCENT"
+        },
+        {
+          "n": 19,
+          "image": 82,
+          "kind": "DESCENT"
+        },
+        {
+          "n": 21,
+          "image": 96,
+          "kind": "DESCENT"
+        },
+        {
+          "n": 23,
+          "image": 110,
+          "kind": "DESCENT"
+        },
+        {
+          "n": 27,
+          "image": 140,
+          "kind": "DESCENT"
+        },
+        {
+          "n": 29,
+          "image": 156,
+          "kind": "DESCENT"
+        }
+      ],
+      "first_image_even_count": 19,
+      "all_those_oe_descent": true
+    },
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "MinimalNonTerm": true,
+    "minimal_nonterm_ge_of_not_reachesOne": true,
+    "even_run_pow_le": true,
+    "even_run_exit_ge": true,
+    "even_run_scale_barrier": true,
+    "minimal_nonterm_even_ge_sq": true,
+    "minimal_nonterm_first_even_ge_sq": true,
+    "minimal_nonterm_avoid_even_lt_sq_twelve": true,
+    "even_tower_not_on_minimal": true,
+    "minimal_nonterm_oe_descent": true,
+    "minimal_nonterm_odd_image_odd": true,
+    "minimal_counterexample_normal_form": true,
+    "minimal_nonterm_odd": true,
+    "minimal_nonterm_image_ge": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_lower_envelope_structure": true,
+    "no_global_termination_theorem": true,
+    "no_infinite_path_type": true,
+    "no_all_odd_orbit_theorem": true
+  },
+  "decision": {
+    "classification": "MINIMAL_NORMAL_FORM_GREEN",
+    "secondary": "EVEN_SCALE_BARRIER_GREEN",
+    "reason": "E^r on a minimal non-1 orbit forces entry >= n^{2^r}; normal form packages scale, no descent below n, no capture, and first image odd; even states above n remain allowed"
+  },
+  "search_method": "realized even runs: T^r(m)^{2^r}<=m and n^{2^r}<=entry when exit>=n; short odd-start patterns; changing-family capture; no all-odd claim"
+}
