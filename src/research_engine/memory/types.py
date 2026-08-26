@@ -543,7 +543,16 @@ class BlindPacket:
     @classmethod
     def from_dict(cls, data: MappingLike) -> BlindPacket:
         extra = dict(data.get("extra") or {})
-        forbidden = {"scout", "grey_loot", "literature", "known_results"}
+        forbidden = {
+            "scout",
+            "grey_loot",
+            "literature",
+            "known_results",
+            "hypotheses",
+            "research_hypothesis",
+            "known_theorem_status",
+            "prior_art",
+        }
         extra = {key: value for key, value in extra.items() if key not in forbidden}
         return cls(
             spec_name=str(data["spec_name"]),

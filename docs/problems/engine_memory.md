@@ -146,7 +146,8 @@ modules (`Problems.Engine.CompanionShift`, `Problems.Engine.Syracuse`,
 Which frozen-engine target still teaches something new about an
 unresolved high-value failure cluster? Answered by the ranked board in
 [research_target_board.md](research_target_board.md), not by a new
-attack.
+attack. v2.3 Phase 1 is a separate gated dossier:
+[research_strategy.md](research_strategy.md).
 
 ## Decision
 

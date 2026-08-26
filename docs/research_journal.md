@@ -2506,4 +2506,48 @@ Best next question
 - What representation mismatch, if any, does the un-overridden leftover pick cyclic_tag_bit still teach?
 ```
 
+## Research Engine v2.3 Phase 1: research strategy
+
+- **Date:** 2026-08-26
+- **Objective:** Turn frozen v2.2 memory and the 0.2.1 attack stack into ranked falsifiable hypotheses and opt-in attack chains, without new attacks
+- **Hypotheses:** Evidence-backed `ResearchHypothesis` records plus a capability graph can replace flood-order planning on stated research goals; known rediscoveries stay tagged known
+- **Major results:** Historical memory regenerates Syracuse / Carelli \(R^+\) / switching-affine / matrix-word statements as known hypotheses. `StrategyPlanner` rediscovers `piecewise_affine → parameter_domain → control_word → control_obstruction` and runs fewer attacks than flood order. Default `AttackPlanner` / `ResearchLoop` unchanged. Hypotheses do not cross `BlindPacket`s. Phases 2–4 gated
+- **Refuted ideas:** a planted singleton invariant on the hidden sign map; flood-order as the only orchestration; known loot billed as novel
+- **Literature:** engine methodology; historical campaigns remain KNOWN as in their dossiers
+- **Open:** whether a replayed real target yields a `PROOF_READY` inductive or ranking obligation (Phase 2 gate)
+- **Decision:** PROMOTE Phase 1 as laboratory intelligence. Do not add attacks. Do not open Phases 2–4
+
+```text
+What was learned
+- Grey loot and exact artifacts already contain ranked, falsifiable research statements
+- The historically successful census→domain→control-word→obstruction chain can be selected, not merely encoded as named-run prerequisites
+- Counterexample-first leak attacks refute false invariants without a new solver
+- Blindness extends from grey loot to hypotheses: source_target A is not a predicate for B
+- Global reasoning, law/domain split, and quantifiers remain gated
+
+Strongest theorem
+- none; engine methodology only
+
+Strongest refutation
+- S={(0,)} is not invariant for the hidden sign map
+
+Reusable machinery
+- research_engine.strategy (ResearchHypothesis, AttackChain, StrategyPlanner); optional ResearchMemory.hypotheses
+
+Prior-art status
+- KNOWN rediscoveries regenerated; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PROMOTE (Phase 1 only)
+
+Why
+- The engine can now ask which chain to run and which evidence-backed hypothesis to falsify, without thawing the attack stack.
+
+Best next question
+- Does a replayed real target produce a PROOF_READY obligation T(S)⊆S or V(T(x))<V(x)?
+```
+
 

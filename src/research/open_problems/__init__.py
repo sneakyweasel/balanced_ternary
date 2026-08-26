@@ -63,6 +63,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
     from research.engine_campaign.problem import PROBLEM as ENGINE_CAMPAIGN
     from research.engine_memory.problem import PROBLEM as ENGINE_MEMORY
     from research.target_board.problem import PROBLEM as TARGET_BOARD
+    from research.research_strategy.problem import PROBLEM as RESEARCH_STRATEGY
     from research.aliquot_dynamics.problem import PROBLEM as ALIQUOT_DYNAMICS
     from research.skolem_lrs.problem import PROBLEM as SKOLEM_LRS
     from research.positivity_lrs.problem import PROBLEM as POSITIVITY_LRS
@@ -82,6 +83,7 @@ def list_problems() -> tuple[ProblemDefinition, ...]:
         ENGINE_CAMPAIGN,
         ENGINE_MEMORY,
         TARGET_BOARD,
+        RESEARCH_STRATEGY,
         LINEAR_CONSTRAINT_LOOPS,
         BB5_MAP,
         ALIQUOT_DYNAMICS,

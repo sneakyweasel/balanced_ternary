@@ -12,7 +12,7 @@ from research_engine.memory.policy import (
     candidates_from_clusters,
     recommend_cluster,
 )
-from research_engine.memory.retrieval import assert_not_injected, query_loot
+from research_engine.memory.retrieval import assert_hypotheses_not_injected, assert_not_injected, query_loot
 from research_engine.memory.store import BOARD_PATH, FinalizedError, ResearchMemory, SEED_PATH
 from research_engine.memory.types import (
     ENGINE_MEMORY_VERSION,
@@ -97,6 +97,7 @@ __all__ = [
     "TargetBoard",
     "TargetPool",
     "adapter_is_blind",
+    "assert_hypotheses_not_injected",
     "assert_not_injected",
     "assemble_board",
     "candidates_from_clusters",

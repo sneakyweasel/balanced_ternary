@@ -20,6 +20,9 @@ DEFAULT_ALLOWLIST: tuple[str, ...] = (
     "two_path_z2",
     "skolem_order2_known_zero",
     "companion_shift_order2",
+    "research_strategy",
+    "StrategyPlanner",
+    "ResearchHypothesis",
 )
 
 

@@ -94,6 +94,13 @@ from research_engine.planner import (
     PriorArtStatus,
     ResearchLedger,
 )
+from research_engine.strategy import (
+    ENGINE_STRATEGY_VERSION,
+    ResearchGoal,
+    ResearchHypothesis,
+    StrategyPlanner,
+    generate_from_memory,
+)
 from research_engine.core.affine_system import (
     AffineSystem,
     affine_step,
@@ -183,10 +190,14 @@ __all__ = [
     "RegimeFingerprint",
     "ResearchCorpus",
     "ResearchDecision",
+    "ResearchGoal",
+    "ResearchHypothesis",
     "ResearchLedger",
     "ResearchLoop",
     "ResearchMemory",
     "ResearchSession",
+    "ENGINE_STRATEGY_VERSION",
+    "StrategyPlanner",
     "StructuralDelta",
     "ReverseGeometryAttack",
     "SearchScope",
@@ -209,6 +220,7 @@ __all__ = [
     "filter_terminal",
     "forward_live_layers",
     "forward_search",
+    "generate_from_memory",
     "identity_matrix",
     "is_co_live",
     "is_suffix_accepted",

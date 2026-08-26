@@ -184,6 +184,9 @@ No target is run. Recompute with `assemble_board` after new experiments.
 The first frontier in the computed campaign order — what exact
 intermediate theorem or obstruction can frozen v2 produce there?
 
+v2.3 Phase 1 (hypotheses + opt-in strategy, no new attacks) is
+[research_strategy.md](research_strategy.md).
+
 ## Decision
 
 `PROMOTE` the target board and grey-loot corpus as v2.2 laboratory

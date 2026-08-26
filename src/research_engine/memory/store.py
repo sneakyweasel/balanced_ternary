@@ -43,8 +43,13 @@ class FinalizedError(RuntimeError):
 class ResearchMemory:
     """Lane-isolated store. Grey loot never enters the attack lane."""
 
-    def __init__(self, experiments: Iterable[MemoryExperiment] = ()) -> None:
+    def __init__(
+        self,
+        experiments: Iterable[MemoryExperiment] = (),
+        hypotheses: Iterable[Any] = (),
+    ) -> None:
         self._experiments: dict[str, MemoryExperiment] = {}
+        self._hypotheses: dict[str, Any] = {}
         self._certified: list[str] = [
             "piecewise_affine",
             "parameter_domain",
@@ -55,6 +60,8 @@ class ResearchMemory:
         ]
         for item in experiments:
             self._experiments[item.experiment_id] = item
+        for item in hypotheses:
+            self._hypotheses[item.id] = item
 
     @property
     def experiments(self) -> tuple[MemoryExperiment, ...]:
@@ -62,6 +69,14 @@ class ResearchMemory:
 
     def get(self, experiment_id: str) -> MemoryExperiment:
         return self._experiments[experiment_id]
+
+    def hypotheses(self) -> tuple[Any, ...]:
+        return tuple(self._hypotheses.values())
+
+    def add_hypothesis(self, hypothesis: Any) -> None:
+        """Store a strategy hypothesis. Never copies it into a BlindPacket."""
+
+        self._hypotheses[hypothesis.id] = hypothesis
 
     def add(self, experiment: MemoryExperiment) -> None:
         existing = self._experiments.get(experiment.experiment_id)
@@ -182,6 +197,10 @@ class ResearchMemory:
             "engine_version": ENGINE_MEMORY_VERSION,
             "experiments": [item.as_dict() for item in self.experiments],
             "certified": list(self._certified),
+            "hypotheses": [
+                item.as_dict() if hasattr(item, "as_dict") else dict(item)
+                for item in self.hypotheses()
+            ],
         }
 
     def to_json(self, path: Path) -> None:
@@ -190,7 +209,13 @@ class ResearchMemory:
     @classmethod
     def from_dict(cls, data: dict[str, Any]) -> ResearchMemory:
         experiments = tuple(MemoryExperiment.from_dict(item) for item in (data.get("experiments") or ()))
-        memory = cls(experiments)
+        raw_hyps = data.get("hypotheses") or ()
+        hypotheses = []
+        if raw_hyps:
+            from research_engine.strategy.types import ResearchHypothesis
+
+            hypotheses = [ResearchHypothesis.from_dict(item) for item in raw_hyps]
+        memory = cls(experiments, hypotheses)
         certified = data.get("certified")
         if certified:
             memory._certified = list(certified)

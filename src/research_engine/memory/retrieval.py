@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing import Any
+
 from research_engine.memory.types import (
     BlindPacket,
     FailureClass,
@@ -45,3 +47,26 @@ def assert_not_injected(packet: BlindPacket, loot: tuple[GreyLoot, ...] | list[G
             raise AssertionError("grey loot leaked into blind packet")
         if item.statement and item.kind is GreyLootKind.COUNTEREXAMPLE and item.statement in blob:
             raise AssertionError("grey-loot statement leaked into blind packet")
+
+
+def assert_hypotheses_not_injected(
+    packet: BlindPacket,
+    hypotheses: tuple[Any, ...] | list[Any],
+) -> None:
+    """A hypothesis born on target A must not enter target B's attack payload."""
+
+    payload = repr(packet.attack_payload())
+    spec = packet.spec_name
+    for item in hypotheses:
+        source = getattr(item, "source_target", "") or getattr(item, "target", "")
+        if source in {spec, ""}:
+            continue
+        hyp_id = getattr(item, "id", "")
+        statement = getattr(item, "statement", "")
+        if hyp_id and hyp_id in payload:
+            raise AssertionError("research hypothesis id leaked into blind packet")
+        if statement and statement in payload:
+            raise AssertionError("research hypothesis statement leaked into blind packet")
+        status = getattr(item, "closest_known_result", "")
+        if status and status in payload and "KNOWN" in str(status):
+            raise AssertionError("known-result text leaked into blind packet")
