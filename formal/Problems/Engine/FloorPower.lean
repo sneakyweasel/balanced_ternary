@@ -40,6 +40,10 @@ Headline theorems:
 * `eventually_no_first_even_contraction` — every fixed suffix with
   `3^#O(v) > 2^(|v|+1)` has only finitely many first-even contraction
   cells.
+* `even_tower_odd_tail_contracts` / `changing_suffix_unbounded_contraction`
+  — the family `E^k O^{3k}` at `q = 2^{2^{k-1}}` produces arbitrarily
+  large first-even contraction cells, so no threshold depending only on
+  a uniform superquadratic margin exists.
 -/
 
 /-!
@@ -3227,6 +3231,180 @@ theorem oo_lower_growth_eventual :
   eventually_no_first_even_contraction
     (by native_decide : 2 ^ (([.odd, .odd] : List Branch).length + 1) <
       3 ^ oddCount [.odd, .odd])
+
+/-!
+## Changing superquadratic suffixes
+
+The fixed-word threshold depends on `v`. A uniform-in-`ε` upgrade is
+false: an even tower can collapse a huge perfect power of two onto `1`,
+after which any odd tail stays at `1`. Formal exponent `α_v` is then
+irrelevant. This is not a lower-envelope theory and does not replace
+`eventually_no_first_even_contraction`.
+-/
+
+def alphaMargin (v : List Branch) : ℕ :=
+  3 ^ oddCount v - 2 ^ (v.length + 1)
+
+theorem minimal_superquadratic_margin {v : List Branch}
+    (hα : 2 ^ (v.length + 1) < 3 ^ oddCount v) :
+    1 ≤ alphaMargin v :=
+  superquadratic_gap hα
+
+theorem oddCount_append : ∀ u v, oddCount (u ++ v) = oddCount u + oddCount v
+  | [], _ => by simp
+  | .even :: u, v => by simp [oddCount_append u v]
+  | .odd :: u, v => by
+      simp [oddCount_append u v, Nat.add_assoc, Nat.add_comm]
+
+theorem image_append (n : ℕ) : ∀ u v, image n (u ++ v) = image (image n u) v
+  | [], _ => by simp
+  | _ :: u, v => by simp [image_append (floorPower n) u v]
+
+theorem follows_append {n : ℕ} : ∀ {u v : List Branch},
+    follows n u → follows (image n u) v → follows n (u ++ v)
+  | [], _, _, hv => by simpa [image] using hv
+  | .even :: u, v, hu, hv =>
+      ⟨hu.1, follows_append (u := u) hu.2 (by simpa [image] using hv)⟩
+  | .odd :: u, v, hu, hv =>
+      ⟨hu.1, follows_append (u := u) hu.2 (by simpa [image] using hv)⟩
+
+theorem floorPower_two : floorPower 2 = 1 := by
+  native_decide
+
+theorem follows_replicate_odd_one : ∀ o, follows 1 (List.replicate o Branch.odd)
+  | 0 => by simp [follows]
+  | o + 1 => by
+      rw [List.replicate_succ]
+      refine ⟨rfl, ?_⟩
+      simpa [floorPower_one] using follows_replicate_odd_one o
+
+theorem image_replicate_odd_one : ∀ o, image 1 (List.replicate o Branch.odd) = 1
+  | 0 => by simp
+  | o + 1 => by
+      rw [List.replicate_succ]
+      simpa [floorPower_one] using image_replicate_odd_one o
+
+theorem replicate_append_singleton (n : ℕ) (a : Branch) :
+    List.replicate (n + 1) a = List.replicate n a ++ [a] := by
+  simpa using List.replicate_add n 1 a
+
+theorem even_tower_to_one {k : ℕ} (hk : 1 ≤ k) :
+    follows (2 ^ (2 ^ (k - 1))) (List.replicate k Branch.even) ∧
+      image (2 ^ (2 ^ (k - 1))) (List.replicate k Branch.even) = 1 := by
+  cases k with
+  | zero => omega
+  | succ m =>
+      have hrep : List.replicate (m + 1) Branch.even =
+          List.replicate m Branch.even ++ [Branch.even] :=
+        replicate_append_singleton m .even
+      have hu : follows (2 ^ (2 ^ m)) (List.replicate m Branch.even) :=
+        follows_replicate_even_pow_two (by decide : (2 : ℕ) % 2 = 0) m
+      have himg :
+          image (2 ^ (2 ^ m)) (List.replicate m Branch.even) = 2 := by
+        simpa [image_eq_iterate, List.length_replicate] using
+          floorPower_iterate_even_pow_two_eq
+            (a := 2) (k := m) (by decide : (2 : ℕ) % 2 = 0)
+      have hv : follows 2 [Branch.even] := by
+        change 2 % 2 = 0 ∧ follows (floorPower 2) []
+        rw [floorPower_two]
+        exact ⟨rfl, trivial⟩
+      have himg2 : image 2 [Branch.even] = 1 := by
+        simp [image, floorPower_two]
+      refine ⟨?_, ?_⟩
+      · simpa [hrep] using follows_append hu (by simpa [himg] using hv)
+      · simpa [hrep, image_append, himg] using himg2
+
+/-- An even tower can collapse `2^{2^{k-1}}` onto `1`. Any odd tail then
+stays at `1`, so the first-even cell contracts. -/
+theorem even_tower_odd_tail_contracts {k o : ℕ} (hk : 1 ≤ k) :
+    follows (2 ^ (2 ^ (k - 1)))
+        (List.replicate k Branch.even ++ List.replicate o Branch.odd) ∧
+      image (2 ^ (2 ^ (k - 1)))
+          (List.replicate k Branch.even ++ List.replicate o Branch.odd) = 1 ∧
+        image (2 ^ (2 ^ (k - 1)))
+            (List.replicate k Branch.even ++ List.replicate o Branch.odd) + 1 <
+          (2 ^ (2 ^ (k - 1)) + 1) ^ 2 := by
+  obtain ⟨hE, himgE⟩ := even_tower_to_one hk
+  have hO := follows_replicate_odd_one o
+  have himgO := image_replicate_odd_one o
+  have hq : 2 ≤ 2 ^ (2 ^ (k - 1)) :=
+    Nat.le_self_pow (pow_ne_zero (k - 1) (by decide : (2 : ℕ) ≠ 0)) 2
+  refine ⟨follows_append hE (by simpa [himgE] using hO), ?_, ?_⟩
+  · rw [image_append, himgE, himgO]
+  · rw [image_append, himgE, himgO]
+    have h9 : (2 + 1) ^ 2 ≤ (2 ^ (2 ^ (k - 1)) + 1) ^ 2 :=
+      Nat.pow_le_pow_left (Nat.succ_le_succ hq) 2
+    exact lt_of_lt_of_le (by decide : (1 : ℕ) + 1 < (2 + 1) ^ 2) h9
+
+theorem three_k_superquadratic {k : ℕ} (hk : 2 ≤ k) :
+    2 ^ (4 * k + 1) < 3 ^ (3 * k) := by
+  have hk' : k = k - 2 + 2 := (Nat.sub_add_cancel hk).symm
+  rw [hk']
+  induction k - 2 with
+  | zero => native_decide
+  | succ m ih =>
+      have hL : 2 ^ (4 * (m + 1 + 2) + 1) = 16 * 2 ^ (4 * (m + 2) + 1) := by
+        have : 4 * (m + 1 + 2) + 1 = 4 + (4 * (m + 2) + 1) := by ring
+        rw [this, Nat.pow_add]
+      have hR : 3 ^ (3 * (m + 1 + 2)) = 27 * 3 ^ (3 * (m + 2)) := by
+        have : 3 * (m + 1 + 2) = 3 + 3 * (m + 2) := by ring
+        rw [this, Nat.pow_add]
+      rw [hL, hR]
+      have hlt : 16 * 2 ^ (4 * (m + 2) + 1) < 16 * 3 ^ (3 * (m + 2)) :=
+        Nat.mul_lt_mul_of_pos_left ih (by decide : 0 < 16)
+      have hle : 16 * 3 ^ (3 * (m + 2)) ≤ 27 * 3 ^ (3 * (m + 2)) :=
+        Nat.mul_le_mul_right _ (by decide : 16 ≤ 27)
+      exact lt_of_lt_of_le hlt hle
+
+theorem even_tower_three_k_superquadratic {k : ℕ} (hk : 2 ≤ k) :
+    2 ^ ((List.replicate k Branch.even ++
+            List.replicate (3 * k) Branch.odd).length + 1) <
+      3 ^ oddCount
+        (List.replicate k Branch.even ++ List.replicate (3 * k) Branch.odd) := by
+  simp [oddCount_append, oddCount_replicate_even, oddCount_replicate_odd,
+    List.length_append, List.length_replicate]
+  have hlen : k + 3 * k + 1 = 4 * k + 1 := by ring
+  rw [hlen]
+  exact three_k_superquadratic hk
+
+theorem nat_le_two_pow : ∀ n, n ≤ 2 ^ n
+  | 0 => by decide
+  | n + 1 => by
+      have ih := nat_le_two_pow n
+      have hpow : 2 ^ (n + 1) = 2 * 2 ^ n := by
+        rw [pow_succ, mul_comm]
+      rw [hpow]
+      have h1 : n + 1 ≤ 2 ^ n + 1 := Nat.succ_le_succ ih
+      have hp : 1 ≤ 2 ^ n := Nat.succ_le_of_lt (pow_pos (by decide : 0 < 2) n)
+      have h2 : 2 ^ n + 1 ≤ 2 * 2 ^ n := by omega
+      exact le_trans h1 h2
+
+/-- No threshold depending only on a uniform superquadratic margin can
+rule out arbitrarily large first-even contraction cells. The family
+`v_k = E^k O^{3k}` is formally expanding and collapses
+`q_k = 2^{2^{k-1}}` onto `1`. -/
+theorem changing_suffix_unbounded_contraction (N : ℕ) :
+    ∃ k o q v,
+      N ≤ q ∧
+        2 ^ (v.length + 1) < 3 ^ oddCount v ∧
+          v = List.replicate k Branch.even ++ List.replicate o Branch.odd ∧
+            follows q v ∧ image q v + 1 < (q + 1) ^ 2 := by
+  let k := N + 2
+  let o := 3 * k
+  let q := 2 ^ (2 ^ (k - 1))
+  let v := List.replicate k Branch.even ++ List.replicate o Branch.odd
+  refine ⟨k, o, q, v, ?_, ?_, rfl, ?_⟩
+  · have h1 : N ≤ 2 ^ N := nat_le_two_pow N
+    have h2 : N ≤ 2 ^ (N + 1) :=
+      le_trans h1 (Nat.pow_le_pow_right (by decide : 1 ≤ 2) (Nat.le_succ N))
+    have h3 : 2 ^ N ≤ 2 ^ (2 ^ (N + 1)) :=
+      Nat.pow_le_pow_right (by decide : 1 ≤ 2) h2
+    have hk : k - 1 = N + 1 := by simp [k]
+    simpa [q, hk] using le_trans h1 h3
+  · simpa [v, o] using even_tower_three_k_superquadratic (k := k) (by simp [k])
+  · have hk1 : 1 ≤ k := by simp [k]
+    obtain ⟨hw, himg, hlt⟩ := even_tower_odd_tail_contracts (k := k) (o := o) hk1
+    exact ⟨hw, by simpa [q, v, himg] using hlt⟩
 
 end Problems.Engine
 

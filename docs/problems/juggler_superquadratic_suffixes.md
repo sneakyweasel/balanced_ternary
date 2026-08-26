@@ -133,9 +133,9 @@ families that change the suffix.
 
 ## Open questions
 
-Can the threshold be made uniform for all \(v\) with
-\(\alpha_v\ge 2+\varepsilon\)? Do changing superquadratic suffixes
-still produce infinitely many first-even contraction cells?
+Answered in [juggler_uniform_thresholds.md](juggler_uniform_thresholds.md):
+a uniform \(Q(\varepsilon)\) does not exist. The even-tower family
+\(E^kO^{3k}\) produces arbitrarily large first-even contraction cells.
 
 ## Decision
 

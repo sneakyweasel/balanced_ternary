@@ -4414,4 +4414,49 @@ Best next question
 - Can changing superquadratic suffixes still produce infinitely many first-even contraction cells, or is there a uniform threshold for α_v≥2+ε?
 ```
 
+## Juggler uniform superquadratic thresholds
+
+- **Date:** 2026-08-26
+- **Objective:** Prove or refute a threshold \(Q(\varepsilon)\) for all suffixes with \(\alpha_v\ge 2+\varepsilon\)
+- **Hypotheses:** `UNIFORM_MARGIN_GREEN`, `UNIFORM_LENGTH_MARGIN_GREEN`, `UNIFORM_CONSTANT_ARTIFACT`, `CHANGING_SUFFIX_COUNTEREXAMPLE`, or `NO_USEFUL_UNIFORMITY`
+- **Major results:** Short-word \(q_{\max}\) is not controlled by \(\varepsilon_v\) alone **COMPUTATIONALLY VERIFIED**. `lowerDenom` depends on letter order **OBSERVATION**. Discrete gap \(3^o-2^{r+1}\ge 1\) **PROVED**. Family \(v_k=E^kO^{3k}\) at \(q_k=2^{2^{k-1}}\) collapses onto \(1\) and contracts for arbitrarily large \(q\) **PROVED**. Classification **CHANGING_SUFFIX_COUNTEREXAMPLE**. Records: `docs/research/juggler_uniform_thresholds.md`, `docs/problems/juggler_uniform_thresholds.md`. Control layer unchanged
+- **Refuted ideas:** a threshold depending only on the exponent margin \(\varepsilon\); restoring uniformity by improving the coarse \(4T^2\) constants; treating \(D_v\) as the essential obstruction
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether a residual uniform bound survives after excluding even-tower collapses onto a small state
+- **Decision:** PROMOTE the changing-suffix family theorem. Close \(\varepsilon\)-only uniformity as REFUTED. Keep the fixed-word theorem. Do not open a lower-envelope theory. Do not claim termination
+
+```text
+What was learned
+- q_max on short superquadratic words stays in {1,2,3} and is not monotone in ε
+- D_v depends on letter order (late odds cube a larger D), but that is not why Q(ε) fails
+- An even tower maps 2^{2^{k-1}} onto 1; any odd tail then stays at 1
+- The family E^k O^{3k} is superquadratic for k≥2 and contracts at arbitrarily large q
+- Q(ε,r) is true by finiteness of length-r words, but must be at least 2^{2^{k-1}}
+
+Strongest theorem
+- ∀ N ∃ k o q v: N≤q, 2^{|v|+1}<3^{#O(v)}, v=E^k O^o, follows q v, and T_v(q)+1<(q+1)^2
+
+Strongest refutation
+- no Q(ε) exists; even α=(27/16)^k→∞ fails on the even-tower collapse family
+
+Reusable machinery
+- FloorPower even_tower_odd_tail_contracts / changing_suffix_unbounded_contraction
+- research.juggler_sequence.uniform_superquadratic
+
+Prior-art status
+- local family counterexample, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The remaining loophole of the fixed-word theorem was a changing suffix v=v_q. A uniform superquadratic margin does not close it: a long even prefix can collapse a huge perfect power of two onto 1.
+
+Best next question
+- If suffixes that collapse a large even tower onto a small state are excluded, does any residual uniform bound remain?
+```
+
 

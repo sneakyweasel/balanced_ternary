@@ -1,0 +1,403 @@
+{
+  "experiment": "juggler_uniform_thresholds",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "k_max": 6,
+    "q_max": 80,
+    "margin_scan": [
+      {
+        "word": "OO",
+        "length": 2,
+        "odd_count": 2,
+        "alpha_num": 9,
+        "alpha_den": 4,
+        "alpha_minus_2_num": 1,
+        "alpha_minus_2_den": 4,
+        "q_max": 3,
+        "q_cap": 80
+      },
+      {
+        "word": "EOOOO",
+        "length": 5,
+        "odd_count": 4,
+        "alpha_num": 81,
+        "alpha_den": 32,
+        "alpha_minus_2_num": 17,
+        "alpha_minus_2_den": 32,
+        "q_max": 2,
+        "q_cap": 80
+      },
+      {
+        "word": "OEOOO",
+        "length": 5,
+        "odd_count": 4,
+        "alpha_num": 81,
+        "alpha_den": 32,
+        "alpha_minus_2_num": 17,
+        "alpha_minus_2_den": 32,
+        "q_max": null,
+        "q_cap": 80
+      },
+      {
+        "word": "OOEOO",
+        "length": 5,
+        "odd_count": 4,
+        "alpha_num": 81,
+        "alpha_den": 32,
+        "alpha_minus_2_num": 17,
+        "alpha_minus_2_den": 32,
+        "q_max": null,
+        "q_cap": 80
+      },
+      {
+        "word": "OOOEO",
+        "length": 5,
+        "odd_count": 4,
+        "alpha_num": 81,
+        "alpha_den": 32,
+        "alpha_minus_2_num": 17,
+        "alpha_minus_2_den": 32,
+        "q_max": null,
+        "q_cap": 80
+      },
+      {
+        "word": "OOOOE",
+        "length": 5,
+        "odd_count": 4,
+        "alpha_num": 81,
+        "alpha_den": 32,
+        "alpha_minus_2_num": 17,
+        "alpha_minus_2_den": 32,
+        "q_max": null,
+        "q_cap": 80
+      },
+      {
+        "word": "OOO",
+        "length": 3,
+        "odd_count": 3,
+        "alpha_num": 27,
+        "alpha_den": 8,
+        "alpha_minus_2_num": 11,
+        "alpha_minus_2_den": 8,
+        "q_max": 1,
+        "q_cap": 80
+      },
+      {
+        "word": "EOOOOO",
+        "length": 6,
+        "odd_count": 5,
+        "alpha_num": 243,
+        "alpha_den": 64,
+        "alpha_minus_2_num": 115,
+        "alpha_minus_2_den": 64,
+        "q_max": 2,
+        "q_cap": 40
+      },
+      {
+        "word": "OEOOOO",
+        "length": 6,
+        "odd_count": 5,
+        "alpha_num": 243,
+        "alpha_den": 64,
+        "alpha_minus_2_num": 115,
+        "alpha_minus_2_den": 64,
+        "q_max": null,
+        "q_cap": 40
+      },
+      {
+        "word": "OOEOOO",
+        "length": 6,
+        "odd_count": 5,
+        "alpha_num": 243,
+        "alpha_den": 64,
+        "alpha_minus_2_num": 115,
+        "alpha_minus_2_den": 64,
+        "q_max": null,
+        "q_cap": 40
+      },
+      {
+        "word": "OOOEOO",
+        "length": 6,
+        "odd_count": 5,
+        "alpha_num": 243,
+        "alpha_den": 64,
+        "alpha_minus_2_num": 115,
+        "alpha_minus_2_den": 64,
+        "q_max": null,
+        "q_cap": 40
+      },
+      {
+        "word": "OOOOEO",
+        "length": 6,
+        "odd_count": 5,
+        "alpha_num": 243,
+        "alpha_den": 64,
+        "alpha_minus_2_num": 115,
+        "alpha_minus_2_den": 64,
+        "q_max": null,
+        "q_cap": 40
+      },
+      {
+        "word": "OOOOOE",
+        "length": 6,
+        "odd_count": 5,
+        "alpha_num": 243,
+        "alpha_den": 64,
+        "alpha_minus_2_num": 115,
+        "alpha_minus_2_den": 64,
+        "q_max": null,
+        "q_cap": 40
+      },
+      {
+        "word": "OOOO",
+        "length": 4,
+        "odd_count": 4,
+        "alpha_num": 81,
+        "alpha_den": 16,
+        "alpha_minus_2_num": 49,
+        "alpha_minus_2_den": 16,
+        "q_max": 1,
+        "q_cap": 80
+      },
+      {
+        "word": "OOOOO",
+        "length": 5,
+        "odd_count": 5,
+        "alpha_num": 243,
+        "alpha_den": 32,
+        "alpha_minus_2_num": 179,
+        "alpha_minus_2_den": 32,
+        "q_max": 1,
+        "q_cap": 40
+      },
+      {
+        "word": "OOOOOO",
+        "length": 6,
+        "odd_count": 6,
+        "alpha_num": 729,
+        "alpha_den": 64,
+        "alpha_minus_2_num": 601,
+        "alpha_minus_2_den": 64,
+        "q_max": 1,
+        "q_cap": 40
+      }
+    ],
+    "denom_audit": [
+      {
+        "word": "EOOOO",
+        "D_bit_length": 423,
+        "same_r_o": true
+      },
+      {
+        "word": "OEOOO",
+        "D_bit_length": 315,
+        "same_r_o": true
+      },
+      {
+        "word": "OOEOO",
+        "D_bit_length": 243,
+        "same_r_o": true
+      },
+      {
+        "word": "OOOEO",
+        "D_bit_length": 195,
+        "same_r_o": true
+      },
+      {
+        "word": "OOOOE",
+        "D_bit_length": 163,
+        "same_r_o": true
+      }
+    ],
+    "epsilon_r": [
+      {
+        "length": 1,
+        "odd_count": null
+      },
+      {
+        "length": 2,
+        "odd_count": 2,
+        "gap": 1,
+        "alpha_minus_2_num": 1,
+        "alpha_minus_2_den": 4,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 3,
+        "odd_count": 3,
+        "gap": 11,
+        "alpha_minus_2_num": 11,
+        "alpha_minus_2_den": 8,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 4,
+        "odd_count": 4,
+        "gap": 49,
+        "alpha_minus_2_num": 49,
+        "alpha_minus_2_den": 16,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 5,
+        "odd_count": 4,
+        "gap": 17,
+        "alpha_minus_2_num": 17,
+        "alpha_minus_2_den": 32,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 6,
+        "odd_count": 5,
+        "gap": 115,
+        "alpha_minus_2_num": 115,
+        "alpha_minus_2_den": 64,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 7,
+        "odd_count": 6,
+        "gap": 473,
+        "alpha_minus_2_num": 473,
+        "alpha_minus_2_den": 128,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 8,
+        "odd_count": 6,
+        "gap": 217,
+        "alpha_minus_2_num": 217,
+        "alpha_minus_2_den": 256,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 9,
+        "odd_count": 7,
+        "gap": 1163,
+        "alpha_minus_2_num": 1163,
+        "alpha_minus_2_den": 512,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 10,
+        "odd_count": 7,
+        "gap": 139,
+        "alpha_minus_2_num": 139,
+        "alpha_minus_2_den": 1024,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 11,
+        "odd_count": 8,
+        "gap": 2465,
+        "alpha_minus_2_num": 2465,
+        "alpha_minus_2_den": 2048,
+        "at_least_inv_len": true
+      },
+      {
+        "length": 12,
+        "odd_count": 9,
+        "gap": 11491,
+        "alpha_minus_2_num": 11491,
+        "alpha_minus_2_den": 4096,
+        "at_least_inv_len": true
+      }
+    ],
+    "collapse_family": [
+      {
+        "k": 2,
+        "o": 6,
+        "word": "EEOOOOOO",
+        "length": 8,
+        "odd_count": 6,
+        "alpha_num": 729,
+        "alpha_den": 256,
+        "q": 4,
+        "follows": true,
+        "output": 1,
+        "contracts": true,
+        "superquadratic": true
+      },
+      {
+        "k": 3,
+        "o": 9,
+        "word": "EEEOOOOOOOOO",
+        "length": 12,
+        "odd_count": 9,
+        "alpha_num": 19683,
+        "alpha_den": 4096,
+        "q": 16,
+        "follows": true,
+        "output": 1,
+        "contracts": true,
+        "superquadratic": true
+      },
+      {
+        "k": 4,
+        "o": 12,
+        "word": "EEEEOOOOOOOOOOOO",
+        "length": 16,
+        "odd_count": 12,
+        "alpha_num": 531441,
+        "alpha_den": 65536,
+        "q": 256,
+        "follows": true,
+        "output": 1,
+        "contracts": true,
+        "superquadratic": true
+      },
+      {
+        "k": 5,
+        "o": 15,
+        "word": "EEEEEOOOOOOOOOOOOOOO",
+        "length": 20,
+        "odd_count": 15,
+        "alpha_num": 14348907,
+        "alpha_den": 1048576,
+        "q": 65536,
+        "follows": true,
+        "output": 1,
+        "contracts": true,
+        "superquadratic": true
+      }
+    ],
+    "D_v_depends_on_order": true,
+    "q_max_depends_on_order": true,
+    "D_v_is_uniformity_obstruction": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "alphaMargin": true,
+    "minimal_superquadratic_margin": true,
+    "even_tower_to_one": true,
+    "even_tower_odd_tail_contracts": true,
+    "three_k_superquadratic": true,
+    "changing_suffix_unbounded_contraction": true,
+    "LowerPowerBound": true,
+    "lower_growth_word": true,
+    "eventually_no_first_even_contraction": true,
+    "alpha_ne_two": true,
+    "first_even_contracts_iff": true,
+    "first_even_freeze": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_lower_envelope_structure": true,
+    "mixed_word_power_lt_absent": true,
+    "no_uniform_first_even_threshold": true
+  },
+  "decision": {
+    "classification": "CHANGING_SUFFIX_COUNTEREXAMPLE",
+    "reason": "the family E^k O^{3k} at q=2^{2^{k-1}} is superquadratic, maps onto 1, and contracts for arbitrarily large q; no Q(\u03b5) exists",
+    "lean_family_theorem": true
+  },
+  "search_method": "group short words by \u03b1-2; audit lowerDenom order; exact even-tower collapse family; no logs, no huge envelopes"
+}
