@@ -5,49 +5,81 @@ import Mathlib.Tactic
 namespace Problems.Engine
 
 /-!
-Exact identities for the even/odd floor-power map.
-These statements are the problem definition and a finite seed orbit.
-They are KNOWN. They are not a halt theorem on all positive integers.
+# Finite-word floor-power envelope
+
+The Juggler map on `ℕ` is
+
+```
+T(n) = Nat.sqrt n          if n is even
+T(n) = Nat.sqrt (n ^ 3)    if n is odd
+```
+
+This file packages the local exact theory of realized finite parity words.
+It is not a halt theorem on all positive integers.
+
+Headline theorems:
+
+* `power_bound_follows` — every realized word obeys
+  `T_w(n) ^ (2 ^ |w|) ≤ n ^ (3 ^ #O(w))`.
+* `power_bound_eq_iff_extremal` — envelope equality is exactly the two
+  monochrome towers `a^(2^k)`.
+* `power_deficit_eq_local_even_iff` / `power_deficit_eq_local_odd_iff` —
+  first-defect sharpness: `Δ = δ` iff the suffix is an exact even tower.
+* `floorPower_odd_eq_iff_cube_interval` — inverse-floor form of an odd step.
+-/
+
+/-!
+## One-step map
 -/
 
 /-- Even `n` maps to `Nat.sqrt n`; odd `n` maps to `Nat.sqrt (n^3)`. -/
 def floorPower (n : ℕ) : ℕ :=
-  if n % 2 = 0 then n.sqrt else (n * n * n).sqrt
+  if n % 2 = 0 then n.sqrt else (n ^ 3).sqrt
+
+theorem floorPower_even_eq {n : ℕ} (heven : n % 2 = 0) :
+    floorPower n = n.sqrt :=
+  if_pos heven
+
+theorem floorPower_odd_eq {n : ℕ} (hodd : n % 2 = 1) :
+    floorPower n = (n ^ 3).sqrt := by
+  have hodd0 : n % 2 ≠ 0 := by omega
+  simp [floorPower, hodd0]
 
 /-- Integer obstruction: `k^4 ≤ n^3` and `n ≥ 2` forbid `k ≥ n`.
 This is iterated `Nat.sqrt` of `n^3`, not `T^2` on the odd-to-odd branch. -/
 theorem sqrt_sqrt_n_cubed_lt {n : ℕ} (hn : 2 ≤ n) :
-    ((n * n * n).sqrt).sqrt < n := by
-  set m := (n * n * n).sqrt
+    ((n ^ 3).sqrt).sqrt < n := by
+  set m := (n ^ 3).sqrt
   set k := m.sqrt
   have hk : k * k ≤ m := Nat.sqrt_le m
-  have hm : m * m ≤ n * n * n := Nat.sqrt_le (n * n * n)
+  have hm : m * m ≤ n ^ 3 := Nat.sqrt_le (n ^ 3)
   have hk4 : k * k * (k * k) ≤ m * m := Nat.mul_le_mul hk hk
-  have hk4n : k * k * k * k ≤ n * n * n := by
-    simpa [mul_assoc] using (le_trans hk4 hm)
+  have hk4n : k ^ 4 ≤ n ^ 3 := by
+    have : k * k * k * k ≤ n ^ 3 := by
+      simpa [mul_assoc] using (le_trans hk4 hm)
+    simpa [pow_succ, pow_zero, mul_assoc] using this
   refine Nat.lt_of_not_ge fun hkn => ?_
-  have hn4 : n * n * n * n ≤ k * k * k * k := by
+  have hn4 : n ^ 4 ≤ k ^ 4 := by
     have h2 := Nat.mul_le_mul hkn hkn
-    simpa [mul_assoc] using Nat.mul_le_mul h2 h2
-  have hle : n * n * n * n ≤ n * n * n := le_trans hn4 hk4n
+    have h4 := Nat.mul_le_mul h2 h2
+    simpa [pow_succ, pow_zero, mul_assoc] using h4
+  have hle : n ^ 4 ≤ n ^ 3 := le_trans hn4 hk4n
   have hn0 : 0 < n := lt_of_lt_of_le (by decide : 0 < 2) hn
-  have hn3 : 0 < n * n * n := Nat.mul_pos (Nat.mul_pos hn0 hn0) hn0
-  have hmul : n * (n * n * n) ≤ 1 * (n * n * n) := by
-    simpa [mul_assoc, mul_comm, mul_left_comm] using hle
+  have hn3 : 0 < n ^ 3 := pow_pos hn0 3
+  have hmul : n * n ^ 3 ≤ 1 * n ^ 3 := by
+    simpa [pow_succ, pow_zero, mul_assoc] using hle
   have : n ≤ 1 := Nat.le_of_mul_le_mul_right hmul hn3
   omega
 
 /-- On the odd-to-even branch, `T^2(n) < n`. Not a halt theorem for the full map. -/
 theorem floorPower_odd_even_two_step_lt
     {n : ℕ} (hn : 2 ≤ n) (hodd : n % 2 = 1)
-    (heven : (n * n * n).sqrt % 2 = 0) :
+    (heven : (n ^ 3).sqrt % 2 = 0) :
     floorPower (floorPower n) < n := by
-  have hodd0 : n % 2 ≠ 0 := by omega
-  have step1 : floorPower n = (n * n * n).sqrt := by
-    simp [floorPower, hodd0]
-  have step2 : floorPower (floorPower n) = ((n * n * n).sqrt).sqrt := by
+  have step1 : floorPower n = (n ^ 3).sqrt := floorPower_odd_eq hodd
+  have step2 : floorPower (floorPower n) = ((n ^ 3).sqrt).sqrt := by
     rw [step1]
-    simp [floorPower, heven]
+    exact floorPower_even_eq heven
   rw [step2]
   exact sqrt_sqrt_n_cubed_lt hn
 
@@ -59,37 +91,28 @@ theorem succ_sq_le_cube {n : ℕ} (hn : 3 ≤ n) : (n + 1) ^ 2 ≤ n ^ 3 := by
 /-- On the odd branch, `n ≥ 3` implies `T(n) > n`. Independent of the parity of `T(n)`. -/
 theorem floorPower_odd_gt {n : ℕ} (hn : 3 ≤ n) (hodd : n % 2 = 1) :
     n < floorPower n := by
-  have hodd0 : n % 2 ≠ 0 := by omega
-  have step1 : floorPower n = (n * n * n).sqrt := by
-    simp [floorPower, hodd0]
-  rw [step1]
+  rw [floorPower_odd_eq hodd]
   have hsq : (n + 1) ^ 2 ≤ n ^ 3 := succ_sq_le_cube hn
-  have hpow : n ^ 3 = n * n * n := by ring
-  have : n + 1 ≤ (n * n * n).sqrt := by
-    exact Nat.le_sqrt.mpr (by simpa [hpow, pow_two] using hsq)
+  have : n + 1 ≤ (n ^ 3).sqrt := Nat.le_sqrt.mpr (by simpa [pow_two] using hsq)
   omega
 
 /-- The odd branch is nondecreasing: `k ≤ T(k)` when `k` is odd and positive. -/
 theorem floorPower_odd_nondecreasing {k : ℕ} (hk : 1 ≤ k) (hodd : k % 2 = 1) :
     k ≤ floorPower k := by
-  have hodd0 : k % 2 ≠ 0 := by omega
-  have step1 : floorPower k = (k * k * k).sqrt := by
-    simp [floorPower, hodd0]
-  rw [step1]
-  have h1 : k * k ≤ k * k * k := by
+  rw [floorPower_odd_eq hodd]
+  have h1 : k ^ 2 ≤ k ^ 3 := by
     have : 1 ≤ k := hk
-    simpa [Nat.mul_assoc] using Nat.mul_le_mul_left (k * k) this
-  exact Nat.le_sqrt.mpr h1
+    simpa [pow_succ, pow_two, pow_zero, mul_assoc] using
+      Nat.mul_le_mul_left (k * k) this
+  exact Nat.le_sqrt.mpr (by simpa [pow_two] using h1)
 
 /-- On the odd-to-odd branch with `n ≥ 3`, `T^2(n) > n`. Dual of
 `floorPower_odd_even_two_step_lt`. Not a divergence theorem. -/
 theorem floorPower_odd_odd_two_step_gt
     {n : ℕ} (hn : 3 ≤ n) (hodd : n % 2 = 1)
-    (hodd1 : (n * n * n).sqrt % 2 = 1) :
+    (hodd1 : (n ^ 3).sqrt % 2 = 1) :
     n < floorPower (floorPower n) := by
-  have hodd0 : n % 2 ≠ 0 := by omega
-  have step1 : floorPower n = (n * n * n).sqrt := by
-    simp [floorPower, hodd0]
+  have step1 : floorPower n = (n ^ 3).sqrt := floorPower_odd_eq hodd
   have hkpos : 1 ≤ floorPower n := by
     have : n < floorPower n := floorPower_odd_gt hn hodd
     omega
@@ -107,8 +130,8 @@ macro-transition law, not a halt theorem, and not a divergence theorem.
 The case `n = 1` is excluded: `floorPower 1 = 1`. -/
 theorem floorPower_odd_macro_direction
     {n : ℕ} (hn : 3 ≤ n) (hodd : n % 2 = 1) :
-    ((n * n * n).sqrt % 2 = 0 → floorPower (floorPower n) < n) ∧
-    ((n * n * n).sqrt % 2 = 1 → n < floorPower (floorPower n)) := by
+    ((n ^ 3).sqrt % 2 = 0 → floorPower (floorPower n) < n) ∧
+    ((n ^ 3).sqrt % 2 = 1 → n < floorPower (floorPower n)) := by
   refine ⟨?he, ?ho⟩
   · intro heven
     have hn2 : 2 ≤ n := le_trans (by decide : 2 ≤ 3) hn
@@ -116,9 +139,7 @@ theorem floorPower_odd_macro_direction
   · intro hodd1
     exact floorPower_odd_odd_two_step_gt hn hodd hodd1
 
-/-- Power comparison for the OOOEE floor-power block: three odd steps
-(`x^2 ≤ y^3`) and two even steps (`x^2 ≤ y`) give `n5 ^ 32 ≤ n ^ 27`.
-This is the exact surrogate of negative log-log drift on that word. -/
+/-- Named expansion of the OOOEE envelope `n5 ^ 32 ≤ n ^ 27`. -/
 theorem floorPower_oooee_pow_chain
     {n n1 n2 n3 n4 n5 : ℕ}
     (h1 : n1 ^ 2 ≤ n ^ 3)
@@ -174,99 +195,29 @@ theorem floorPower_oooee_pow_chain
     _ ≤ (n ^ 3) ^ 9 := Nat.pow_le_pow_left h1 9
     _ = n ^ 27 := h27
 
-/-- On the OOOEE branch word, `T^5(n) < n` for `n ≥ 2`. Conditional block
-contraction; not a halt theorem and not a parity-frequency theorem. -/
-theorem floorPower_oooee_five_step_lt
-    {n : ℕ} (hn : 2 ≤ n) (h0 : n % 2 = 1)
-    (h1 : floorPower n % 2 = 1)
-    (h2 : floorPower (floorPower n) % 2 = 1)
-    (h3 : floorPower (floorPower (floorPower n)) % 2 = 0)
-    (h4 : floorPower (floorPower (floorPower (floorPower n))) % 2 = 0) :
-    floorPower (floorPower (floorPower (floorPower (floorPower n)))) < n := by
-  set n1 := floorPower n
-  set n2 := floorPower n1
-  set n3 := floorPower n2
-  set n4 := floorPower n3
-  set n5 := floorPower n4
-  have n0ne : n % 2 ≠ 0 := by omega
-  have n1ne : n1 % 2 ≠ 0 := by
-    have : n1 % 2 = 1 := h1
-    omega
-  have n2ne : n2 % 2 ≠ 0 := by
-    have : n2 % 2 = 1 := h2
-    omega
-  have n1eq : n1 = (n * n * n).sqrt := by
-    simp [n1, floorPower, n0ne]
-  have n2eq : n2 = (n1 * n1 * n1).sqrt := by
-    simp [n2, floorPower, n1ne]
-  have n3eq : n3 = (n2 * n2 * n2).sqrt := by
-    simp [n3, floorPower, n2ne]
-  have n3even : n3 % 2 = 0 := h3
-  have n4eq : n4 = n3.sqrt := by
-    simp [n4, floorPower, n3even]
-  have n4even : n4 % 2 = 0 := h4
-  have n5eq : n5 = n4.sqrt := by
-    simp [n5, floorPower, n4even]
-  have hn1 : n1 ^ 2 ≤ n ^ 3 := by
-    have : n1 * n1 ≤ n * n * n := by simpa [n1eq] using Nat.sqrt_le (n * n * n)
-    simpa [pow_two, pow_three, mul_assoc] using this
-  have hn2 : n2 ^ 2 ≤ n1 ^ 3 := by
-    have : n2 * n2 ≤ n1 * n1 * n1 := by simpa [n2eq] using Nat.sqrt_le (n1 * n1 * n1)
-    simpa [pow_two, pow_three, mul_assoc] using this
-  have hn3 : n3 ^ 2 ≤ n2 ^ 3 := by
-    have : n3 * n3 ≤ n2 * n2 * n2 := by simpa [n3eq] using Nat.sqrt_le (n2 * n2 * n2)
-    simpa [pow_two, pow_three, mul_assoc] using this
-  have hn4 : n4 ^ 2 ≤ n3 := by
-    have : n4 * n4 ≤ n3 := by simpa [n4eq] using Nat.sqrt_le n3
-    simpa [pow_two] using this
-  have hn5 : n5 ^ 2 ≤ n4 := by
-    have : n5 * n5 ≤ n4 := by simpa [n5eq] using Nat.sqrt_le n4
-    simpa [pow_two] using this
-  have hpow : n5 ^ 32 ≤ n ^ 27 :=
-    floorPower_oooee_pow_chain hn1 hn2 hn3 hn4 hn5
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have hn32 : n ^ 32 ≤ n5 ^ 32 := Nat.pow_le_pow_left hge 32
-  have hle : n ^ 32 ≤ n ^ 27 := le_trans hn32 hpow
-  have hpos : 0 < n := lt_of_lt_of_le (by decide : 0 < 2) hn
-  have h27pos : 0 < n ^ 27 := pow_pos hpos 27
-  have hle' : n ^ 27 * n ^ 5 ≤ n ^ 27 * 1 := by
-    have heq : n ^ 27 * n ^ 5 = n ^ 32 := (Nat.pow_add n 27 5).symm
-    rw [heq, mul_one]
-    exact hle
-  have hpow5 : n ^ 5 ≤ 1 := Nat.le_of_mul_le_mul_left hle' h27pos
-  have hbig : (2 : ℕ) ^ 5 ≤ n ^ 5 := Nat.pow_le_pow_left hn 5
-  exact (by decide : ¬(2 : ℕ) ^ 5 ≤ 1) (le_trans hbig hpow5)
-
 /-- Even branch: `T(n)^2 ≤ n`. Exact floor bound, not a real square root. -/
 theorem floorPower_even_sq_le {n : ℕ} (heven : n % 2 = 0) :
     floorPower n ^ 2 ≤ n := by
-  have step : floorPower n = n.sqrt := by simp [floorPower, heven]
-  rw [step]
+  rw [floorPower_even_eq heven]
   simpa [pow_two] using Nat.sqrt_le n
 
 /-- Odd branch: `T(n)^2 ≤ n^3`. Exact floor bound, not a real 3/2-power. -/
 theorem floorPower_odd_sq_le_cube {n : ℕ} (hodd : n % 2 = 1) :
     floorPower n ^ 2 ≤ n ^ 3 := by
-  have hodd0 : n % 2 ≠ 0 := by omega
-  have step : floorPower n = (n * n * n).sqrt := by simp [floorPower, hodd0]
-  rw [step]
-  have hle : (n * n * n).sqrt * (n * n * n).sqrt ≤ n * n * n := Nat.sqrt_le (n * n * n)
-  simpa [pow_two, pow_three, mul_assoc] using hle
+  rw [floorPower_odd_eq hodd]
+  have hle : (n ^ 3).sqrt * (n ^ 3).sqrt ≤ n ^ 3 := Nat.sqrt_le (n ^ 3)
+  simpa [pow_two] using hle
 
 /-- Odd squares attain the one-step envelope: odd `m` implies `T(m^2)^2 = (m^2)^3`.
 So `n^{3/2}` can be an integer for odd `n≥3`. Mixed-word equality is possible.
 This kills any universal lemma `T(n)^2 < n^3` for all odd `n≥3`. -/
 theorem floorPower_odd_sq_eq_cube_of_sq {m : ℕ} (hodd : m % 2 = 1) :
     floorPower (m ^ 2) ^ 2 = (m ^ 2) ^ 3 := by
-  have nne : (m ^ 2) % 2 ≠ 0 := by
-    have : (m ^ 2) % 2 = 1 := by
-      rw [Nat.pow_two, Nat.mul_mod, hodd]
-    omega
-  have step : floorPower (m ^ 2) = ((m ^ 2) * (m ^ 2) * (m ^ 2)).sqrt := by
-    simp [floorPower, nne]
-  have hcube : (m ^ 2) * (m ^ 2) * (m ^ 2) = (m ^ 3) * (m ^ 3) := by ring
-  rw [step, hcube, Nat.sqrt_eq]
-  ring
+  have nne : (m ^ 2) % 2 = 1 := by
+    rw [Nat.pow_two, Nat.mul_mod, hodd]
+  rw [floorPower_odd_eq nne]
+  have hcube : (m ^ 2) ^ 3 = (m ^ 3) ^ 2 := by ring
+  rw [hcube, Nat.sqrt_eq']
 
 /-- Smallest mixed-equality witness: word `O` at `n=9`. -/
 theorem floorPower_nine_odd_eq : floorPower 9 ^ 2 = 9 ^ 3 := by
@@ -294,7 +245,22 @@ theorem pow_lt_of_two_le {n a b : ℕ} (hn : 2 ≤ n) (hba : b < a) :
     n ^ b < n ^ a :=
   Nat.pow_lt_pow_right (lt_of_lt_of_le (by decide : 1 < 2) hn) hba
 
+theorem two_pow_succ (k : ℕ) : 2 ^ (k + 1) = 2 * 2 ^ k := by
+  rw [pow_succ, mul_comm]
+
+theorem three_pow_succ (o : ℕ) : 3 ^ (o + 1) = 3 * 3 ^ o := by
+  rw [pow_succ, mul_comm]
+
+theorem pow_three_succ_right (n o : ℕ) :
+    (n ^ (3 ^ o)) ^ 3 = n ^ (3 ^ (o + 1)) := by
+  calc
+    (n ^ (3 ^ o)) ^ 3 = n ^ (3 ^ o * 3) := (Nat.pow_mul n (3 ^ o) 3).symm
+    _ = n ^ (3 * 3 ^ o) := by rw [mul_comm]
+    _ = n ^ (3 ^ (o + 1)) := by rw [← pow_succ']
+
 /-!
+## Finite words and the weak envelope
+
 One-sided floor-power composition on realized finite words.
 Not a tactic, not a termination theorem, and not a parity-frequency theorem.
 The invariant is `PowerBound m n k o`, i.e. `m^{2^k} ≤ n^{3^o}`.
@@ -335,8 +301,7 @@ theorem power_bound_append_even {m n k o : ℕ}
     PowerBound (floorPower m) n (k + 1) o := by
   have hsq : floorPower m ^ 2 ≤ m := floorPower_even_sq_le heven
   unfold PowerBound at *
-  have hmul : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
-  rw [hmul]
+  rw [two_pow_succ]
   exact le_trans (pow_sq_le hsq) h
 
 theorem power_bound_append_odd {m n k o : ℕ}
@@ -344,9 +309,7 @@ theorem power_bound_append_odd {m n k o : ℕ}
     PowerBound (floorPower m) n (k + 1) (o + 1) := by
   have hsq : floorPower m ^ 2 ≤ m ^ 3 := floorPower_odd_sq_le_cube hodd
   unfold PowerBound at *
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
-  have h3 : 3 ^ (o + 1) = 3 * 3 ^ o := by rw [pow_succ, mul_comm]
-  rw [h2, h3]
+  rw [two_pow_succ, three_pow_succ]
   calc
     floorPower m ^ (2 * 2 ^ k) ≤ m ^ (3 * 2 ^ k) := pow_sq_le_cube hsq
     _ = (m ^ (2 ^ k)) ^ 3 := by rw [mul_comm, Nat.pow_mul]
@@ -444,12 +407,35 @@ def wordOOOEE : List Branch := [.odd, .odd, .odd, .even, .even]
 def wordOOOEEEOO : List Branch :=
   [.odd, .odd, .odd, .even, .even, .even, .odd, .odd]
 
+theorem follows_wordOOOEE_iff {n : ℕ} :
+    follows n wordOOOEE ↔
+      n % 2 = 1 ∧
+      floorPower n % 2 = 1 ∧
+      floorPower (floorPower n) % 2 = 1 ∧
+      floorPower (floorPower (floorPower n)) % 2 = 0 ∧
+      floorPower (floorPower (floorPower (floorPower n))) % 2 = 0 := by
+  simp [follows, wordOOOEE]
+
+theorem follows_wordOOOEEEOO_iff {n : ℕ} :
+    follows n wordOOOEEEOO ↔
+      n % 2 = 1 ∧
+      floorPower n % 2 = 1 ∧
+      floorPower (floorPower n) % 2 = 1 ∧
+      floorPower (floorPower (floorPower n)) % 2 = 0 ∧
+      floorPower (floorPower (floorPower (floorPower n))) % 2 = 0 ∧
+      floorPower (floorPower (floorPower (floorPower (floorPower n)))) % 2 = 0 ∧
+      floorPower (floorPower (floorPower (floorPower (floorPower
+          (floorPower n))))) % 2 = 1 ∧
+      floorPower (floorPower (floorPower (floorPower (floorPower
+          (floorPower (floorPower n)))))) % 2 = 1 := by
+  simp [follows, wordOOOEEEOO]
+
 theorem floorPower_oooee_of_follows {n : ℕ} (hn : 2 ≤ n)
     (hw : follows n wordOOOEE) :
     floorPower^[5] n < n := by
   have h := power_bound_contracts (w := wordOOOEE) hn hw
   have hgap : 3 ^ oddCount wordOOOEE < 2 ^ wordOOOEE.length := by
-    native_decide
+    simp [wordOOOEE]
   simpa [wordOOOEE] using h hgap
 
 theorem floorPower_oooeeeoo_of_follows {n : ℕ} (hn : 2 ≤ n)
@@ -457,8 +443,21 @@ theorem floorPower_oooeeeoo_of_follows {n : ℕ} (hn : 2 ≤ n)
     floorPower^[8] n < n := by
   have h := power_bound_contracts (w := wordOOOEEEOO) hn hw
   have hgap : 3 ^ oddCount wordOOOEEEOO < 2 ^ wordOOOEEEOO.length := by
-    native_decide
+    simp [wordOOOEEEOO]
   simpa [wordOOOEEEOO] using h hgap
+
+/-- On the OOOEE branch word, `T^5(n) < n` for `n ≥ 2`. Wrapper of
+`floorPower_oooee_of_follows`. Not a halt theorem. -/
+theorem floorPower_oooee_five_step_lt
+    {n : ℕ} (hn : 2 ≤ n) (h0 : n % 2 = 1)
+    (h1 : floorPower n % 2 = 1)
+    (h2 : floorPower (floorPower n) % 2 = 1)
+    (h3 : floorPower (floorPower (floorPower n)) % 2 = 0)
+    (h4 : floorPower (floorPower (floorPower (floorPower n))) % 2 = 0) :
+    floorPower (floorPower (floorPower (floorPower (floorPower n)))) < n := by
+  have hw : follows n wordOOOEE :=
+    (follows_wordOOOEE_iff (n := n)).mpr ⟨h0, h1, h2, h3, h4⟩
+  simpa [wordOOOEE] using floorPower_oooee_of_follows hn hw
 
 /-- Power comparison for the OOOEEEOO floor-power block: five odd steps
 and three even steps give `n8 ^ 256 ≤ n ^ 243`. Canonical exponents of
@@ -497,8 +496,8 @@ theorem floorPower_oooeeeoo_pow_chain
     _ ≤ n ^ (3 * 81) := pow_sq_le_cube h1
     _ = n ^ 243 := by norm_num
 
-/-- On the OOOEEEOO branch word, `T^8(n) < n` for `n ≥ 2`. Conditional
-block contraction; not a halt theorem and not a parity-frequency theorem. -/
+/-- On the OOOEEEOO branch word, `T^8(n) < n` for `n ≥ 2`. Wrapper of
+`floorPower_oooeeeoo_of_follows`. Not a halt theorem. -/
 theorem floorPower_oooeeeoo_eight_step_lt
     {n : ℕ} (hn : 2 ≤ n) (h0 : n % 2 = 1)
     (h1 : floorPower n % 2 = 1)
@@ -512,29 +511,13 @@ theorem floorPower_oooeeeoo_eight_step_lt
         (floorPower (floorPower n)))))) % 2 = 1) :
     floorPower (floorPower (floorPower (floorPower (floorPower (floorPower
         (floorPower (floorPower n))))))) < n := by
-  set n1 := floorPower n
-  set n2 := floorPower n1
-  set n3 := floorPower n2
-  set n4 := floorPower n3
-  set n5 := floorPower n4
-  set n6 := floorPower n5
-  set n7 := floorPower n6
-  set n8 := floorPower n7
-  have hn1 : n1 ^ 2 ≤ n ^ 3 := floorPower_odd_sq_le_cube h0
-  have hn2 : n2 ^ 2 ≤ n1 ^ 3 := floorPower_odd_sq_le_cube h1
-  have hn3 : n3 ^ 2 ≤ n2 ^ 3 := floorPower_odd_sq_le_cube h2
-  have hn4 : n4 ^ 2 ≤ n3 := floorPower_even_sq_le h3
-  have hn5 : n5 ^ 2 ≤ n4 := floorPower_even_sq_le h4
-  have hn6 : n6 ^ 2 ≤ n5 := floorPower_even_sq_le h5
-  have hn7 : n7 ^ 2 ≤ n6 ^ 3 := floorPower_odd_sq_le_cube h6
-  have hn8 : n8 ^ 2 ≤ n7 ^ 3 := floorPower_odd_sq_le_cube h7
-  have hpow : n8 ^ 256 ≤ n ^ 243 :=
-    floorPower_oooeeeoo_pow_chain hn1 hn2 hn3 hn4 hn5 hn6 hn7 hn8
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have hn256 : n ^ 256 ≤ n8 ^ 256 := Nat.pow_le_pow_left hge 256
-  have hle : n ^ 256 ≤ n ^ 243 := le_trans hn256 hpow
-  have hlt : n ^ 243 < n ^ 256 := pow_lt_of_two_le hn (by decide : 243 < 256)
-  exact (not_le_of_gt hlt) hle
+  have hw : follows n wordOOOEEEOO :=
+    (follows_wordOOOEEEOO_iff (n := n)).mpr ⟨h0, h1, h2, h3, h4, h5, h6, h7⟩
+  simpa [wordOOOEEEOO] using floorPower_oooeeeoo_of_follows hn hw
+
+/-!
+## Seed identities
+-/
 
 theorem floorPower_one : floorPower 1 = 1 := by
   native_decide
@@ -548,6 +531,8 @@ theorem floorPower_thirteen_reaches_one :
   native_decide
 
 /-!
+## Equality rigidity and saturation
+
 Local branch equality, composite equality, and square rigidity.
 Not a termination theorem, not an equality-word classifier, and not a
 `PowerBound` certificate datatype. `PowerBound` remains the weak bound.
@@ -556,8 +541,7 @@ Not a termination theorem, not an equality-word classifier, and not a
 /-- Even branch: `T(n)^2 = n` iff `n` is a perfect square. -/
 theorem floorPower_even_sq_eq_iff_square {n : ℕ} (heven : n % 2 = 0) :
     floorPower n ^ 2 = n ↔ n.sqrt ^ 2 = n := by
-  have step : floorPower n = n.sqrt := by simp [floorPower, heven]
-  rw [step]
+  rw [floorPower_even_eq heven]
 
 lemma sqrt_sq_iff_isSquare (n : ℕ) : n.sqrt ^ 2 = n ↔ IsSquare n := by
   rw [isSquare_iff_exists_sq]
@@ -617,10 +601,7 @@ lemma cube_sqrt_sq_iff (n : ℕ) :
 /-- Odd branch: `T(n)^2 = n^3` iff `n` is a perfect square. -/
 theorem floorPower_odd_sq_eq_cube_iff_square {n : ℕ} (hodd : n % 2 = 1) :
     floorPower n ^ 2 = n ^ 3 ↔ n.sqrt ^ 2 = n := by
-  have hodd0 : n % 2 ≠ 0 := by omega
-  have step : floorPower n = (n * n * n).sqrt := by simp [floorPower, hodd0]
-  have hcube : n * n * n = n ^ 3 := by ring
-  rw [step, hcube]
+  rw [floorPower_odd_eq hodd]
   exact cube_sqrt_sq_iff n
 
 /-- Equality form of the one-sided envelope. Independent of `PowerBound`. -/
@@ -639,7 +620,7 @@ theorem power_bound_eq_of_append_even {m n k o : ℕ}
     (heq : PowerBoundEq (floorPower m) n (k + 1) o) :
     PowerBoundEq m n k o ∧ floorPower m ^ 2 = m := by
   have hlocal : floorPower m ^ 2 ≤ m := floorPower_even_sq_le heven
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have hA : (floorPower m ^ 2) ^ (2 ^ k) ≤ m ^ (2 ^ k) :=
     Nat.pow_le_pow_left hlocal _
   have hA' : floorPower m ^ (2 ^ (k + 1)) ≤ m ^ (2 ^ k) := by
@@ -662,8 +643,8 @@ theorem power_bound_eq_of_append_odd {m n k o : ℕ}
     (heq : PowerBoundEq (floorPower m) n (k + 1) (o + 1)) :
     PowerBoundEq m n k o ∧ floorPower m ^ 2 = m ^ 3 := by
   have hlocal : floorPower m ^ 2 ≤ m ^ 3 := floorPower_odd_sq_le_cube hodd
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
-  have h3 : 3 ^ (o + 1) = 3 * 3 ^ o := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
+  have h3 : 3 ^ (o + 1) = 3 * 3 ^ o := three_pow_succ o
   have hA : (floorPower m ^ 2) ^ (2 ^ k) ≤ (m ^ 3) ^ (2 ^ k) :=
     Nat.pow_le_pow_left hlocal _
   have hA' : floorPower m ^ (2 ^ (k + 1)) ≤ m ^ (3 * 2 ^ k) := by
@@ -702,6 +683,14 @@ def localTight : ℕ → Branch → Prop
 def localsTight (n : ℕ) : List Branch → Prop
   | [] => True
   | b :: w => localTight n b ∧ localsTight (floorPower n) w
+
+theorem localTight_even_iff_square {n : ℕ} (heven : n % 2 = 0) :
+    localTight n .even ↔ n.sqrt ^ 2 = n :=
+  floorPower_even_sq_eq_iff_square heven
+
+theorem localTight_odd_iff_square {n : ℕ} (hodd : n % 2 = 1) :
+    localTight n .odd ↔ n.sqrt ^ 2 = n :=
+  floorPower_odd_sq_eq_cube_iff_square hodd
 
 theorem power_bound_eq_from {start current k o : ℕ} :
     ∀ w, PowerBound current start k o → follows current w →
@@ -842,6 +831,12 @@ theorem follows_get_odd {n : ℕ} :
                 iterate_cons n j
               have hrest : follows (floorPower n) rest := hw.2
               simpa [hget, hiter] using ih hrest j hj (hget ▸ ho)
+
+theorem follows_get {n : ℕ} {w : List Branch} (hw : follows n w)
+    (i : ℕ) (hi : i < w.length) :
+    (w[i] = .even → (floorPower^[i] n) % 2 = 0) ∧
+    (w[i] = .odd → (floorPower^[i] n) % 2 = 1) :=
+  ⟨follows_get_even w hw i hi, follows_get_odd w hw i hi⟩
 
 /-- Global envelope equality forces every relevant itinerary state to be a square. -/
 theorem power_bound_eq_implies_square {n : ℕ} {w : List Branch}
@@ -1163,6 +1158,8 @@ theorem power_bound_eq_contracts_pow_two_lb {n : ℕ} {w : List Branch}
   hasPowTwoDepth_two_le hn (power_bound_eq_implies_pow_two_depth hw heq)
 
 /-!
+## Extremal equality language
+
 Parity rigidity of exact perfect-power states, and the monochrome
 equality-word language. Not an equality-word census and not a
 termination theorem.
@@ -1253,6 +1250,47 @@ theorem oddCount_replicate_odd (k : ℕ) :
   | zero => simp
   | succ k ih =>
       rw [List.replicate_succ, oddCount_odd_cons, ih]
+
+/-- An all-even realized word of length `k ≥ 1` contracts for `n ≥ 2`. -/
+theorem even_word_contracts {n k : ℕ} (hn : 2 ≤ n) (hk : 1 ≤ k)
+    (hw : follows n (List.replicate k Branch.even)) :
+    floorPower^[k] n < n := by
+  have h := power_bound_contracts (w := List.replicate k Branch.even) hn hw
+  have hgap :
+      3 ^ oddCount (List.replicate k Branch.even) <
+        2 ^ (List.replicate k Branch.even).length := by
+    simp [oddCount_replicate_even, List.length_replicate]
+    exact Nat.pos_iff_ne_zero.mp hk
+  simpa [List.length_replicate] using h hgap
+
+theorem floorPower_iterate_odd_nondecreasing {m k : ℕ} (hm : 1 ≤ m)
+    (hw : follows m (List.replicate k Branch.odd)) :
+    m ≤ floorPower^[k] m := by
+  induction k generalizing m with
+  | zero => simp
+  | succ k ih =>
+      rw [List.replicate_succ] at hw
+      have hodd : m % 2 = 1 := hw.1
+      have hstep : m ≤ floorPower m := floorPower_odd_nondecreasing hm hodd
+      have hrest := ih (le_trans hm hstep) hw.2
+      rw [iterate_cons]
+      exact le_trans hstep hrest
+
+/-- An all-odd realized word of length `k ≥ 1` expands for `n ≥ 3`. -/
+theorem odd_word_expands {n k : ℕ} (hn : 3 ≤ n) (hk : 1 ≤ k)
+    (hw : follows n (List.replicate k Branch.odd)) :
+    n < floorPower^[k] n := by
+  cases k with
+  | zero => exact (Nat.not_succ_le_zero 0 hk).elim
+  | succ k =>
+      rw [List.replicate_succ] at hw
+      have hodd : n % 2 = 1 := hw.1
+      have hgt : n < floorPower n := floorPower_odd_gt hn hodd
+      have himgpos : 1 ≤ floorPower n := by omega
+      have hrest : floorPower n ≤ floorPower^[k] (floorPower n) :=
+        floorPower_iterate_odd_nondecreasing himgpos hw.2
+      rw [iterate_cons]
+      exact lt_of_lt_of_le hgt hrest
 
 /-- Envelope equality forces a monochrome word. -/
 theorem power_bound_eq_implies_monochrome {n : ℕ} {w : List Branch}
@@ -1518,6 +1556,8 @@ theorem odd_equality_three_pow_le {n k : ℕ} (hn : 3 ≤ n)
       simpa [ha] using this
 
 /-!
+## Defect and sharpness
+
 Composite envelope defect. This is not the refuted local claim
 `T(n)^2 < n^3` for every odd `n`, and not a termination theorem.
 `StrictPowerBound` is the strict companion of `PowerBound`.
@@ -1539,9 +1579,7 @@ theorem localDefectEven_eq {x : ℕ} (heven : x % 2 = 0) :
 
 theorem localDefectOdd_eq {x : ℕ} (hodd : x % 2 = 1) :
     localDefectOdd x = x ^ 3 - (x ^ 3).sqrt ^ 2 := by
-  have hodd0 : x % 2 ≠ 0 := by omega
-  have hcube : x * x * x = x ^ 3 := by ring
-  simp [localDefectOdd, floorPower, hodd0, hcube]
+  simp [localDefectOdd, floorPower_odd_eq hodd]
 
 theorem localDefectEven_add {x : ℕ} (heven : x % 2 = 0) :
     floorPower x ^ 2 + localDefectEven x = x :=
@@ -1619,7 +1657,7 @@ theorem strict_power_bound_append_even {m n k o : ℕ}
     StrictPowerBound (floorPower m) n (k + 1) o := by
   have hsq : floorPower m ^ 2 ≤ m := floorPower_even_sq_le heven
   unfold StrictPowerBound at *
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   rw [h2]
   exact lt_of_le_of_lt (pow_sq_le hsq) h
 
@@ -1628,7 +1666,7 @@ theorem strict_power_bound_append_odd {m n k o : ℕ}
     StrictPowerBound (floorPower m) n (k + 1) (o + 1) := by
   have hsq : floorPower m ^ 2 ≤ m ^ 3 := floorPower_odd_sq_le_cube hodd
   unfold StrictPowerBound at *
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have hmid : m ^ (3 * 2 ^ k) = (m ^ (2 ^ k)) ^ 3 := by
     rw [mul_comm, Nat.pow_mul]
   have hle : floorPower m ^ (2 ^ (k + 1)) ≤ (m ^ (2 ^ k)) ^ 3 := by
@@ -1648,7 +1686,7 @@ theorem strict_power_bound_of_even_defect {m n k o : ℕ}
     (hδ : floorPower m ^ 2 < m) :
     StrictPowerBound (floorPower m) n (k + 1) o := by
   unfold StrictPowerBound PowerBoundEq at *
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   rw [h2, Nat.pow_mul, ← h]
   exact Nat.pow_lt_pow_left hδ (pow_ne_zero_two_pow k)
 
@@ -1657,7 +1695,7 @@ theorem strict_power_bound_of_odd_defect {m n k o : ℕ}
     (hδ : floorPower m ^ 2 < m ^ 3) :
     StrictPowerBound (floorPower m) n (k + 1) (o + 1) := by
   unfold StrictPowerBound PowerBoundEq at *
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   rw [h2, Nat.pow_mul]
   have : (floorPower m ^ 2) ^ (2 ^ k) < (m ^ 3) ^ (2 ^ k) :=
     Nat.pow_lt_pow_left hδ (pow_ne_zero_two_pow k)
@@ -1675,7 +1713,7 @@ theorem even_defect_gap_ge_local {m n k o : ℕ}
     (h : PowerBoundEq m n k o) (_heven : m % 2 = 0)
     (hδ : floorPower m ^ 2 < m) :
     localDefectEven m ≤ n ^ (3 ^ o) - floorPower m ^ (2 ^ (k + 1)) := by
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have hle : floorPower m ^ 2 ≤ m := le_of_lt hδ
   have hgap : m - floorPower m ^ 2 ≤ m ^ (2 ^ k) - (floorPower m ^ 2) ^ (2 ^ k) :=
     pow_sub_pow_ge_sub hle (Nat.one_le_pow _ _ (by decide : 0 < 2))
@@ -1686,8 +1724,8 @@ theorem odd_defect_gap_ge_local {m n k o : ℕ}
     (h : PowerBoundEq m n k o) (_hodd : m % 2 = 1)
     (hδ : floorPower m ^ 2 < m ^ 3) :
     localDefectOdd m ≤ n ^ (3 ^ (o + 1)) - floorPower m ^ (2 ^ (k + 1)) := by
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
-  have h3 : 3 ^ (o + 1) = 3 * 3 ^ o := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
+  have h3 : 3 ^ (o + 1) = 3 * 3 ^ o := three_pow_succ o
   have hle : floorPower m ^ 2 ≤ m ^ 3 := le_of_lt hδ
   have hgap :
       (m ^ 3) ^ (2 ^ k) - (floorPower m ^ 2) ^ (2 ^ k) ≥ m ^ 3 - floorPower m ^ 2 :=
@@ -1790,7 +1828,7 @@ theorem power_deficit_append_even {m n k o : ℕ}
     (_h : PowerBound m n k o) (heven : m % 2 = 0) :
     powerDeficit m n k o ≤ powerDeficit (floorPower m) n (k + 1) o := by
   unfold powerDeficit
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have hle : floorPower m ^ (2 ^ (k + 1)) ≤ m ^ (2 ^ k) := by
     rw [h2]
     exact pow_sq_le (floorPower_even_sq_le heven)
@@ -1800,7 +1838,7 @@ theorem power_deficit_append_odd {m n k o : ℕ}
     (h : PowerBound m n k o) (hodd : m % 2 = 1) :
     powerDeficit m n k o ≤ powerDeficit (floorPower m) n (k + 1) (o + 1) := by
   unfold powerDeficit PowerBound at *
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have hsq : floorPower m ^ 2 ≤ m ^ 3 := floorPower_odd_sq_le_cube hodd
   have hmid : m ^ (3 * 2 ^ k) = (m ^ (2 ^ k)) ^ 3 := by
     rw [mul_comm, Nat.pow_mul]
@@ -1974,7 +2012,7 @@ theorem even_defect_gap_gt_of_pos_prefix {m n k o : ℕ}
     (h : PowerBoundEq m n k o) (_heven : m % 2 = 0)
     (hδ : floorPower m ^ 2 < m) (hk : 1 ≤ k) (hm : 2 ≤ m) :
     localDefectEven m < powerDeficit (floorPower m) n (k + 1) o := by
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have he : 2 ≤ 2 ^ k := two_le_two_pow_of_pos hk
   have hgap :
       m - floorPower m ^ 2 < m ^ (2 ^ k) - (floorPower m ^ 2) ^ (2 ^ k) :=
@@ -1986,7 +2024,7 @@ theorem odd_defect_gap_gt_of_pos_prefix {m n k o : ℕ}
     (h : PowerBoundEq m n k o) (_hodd : m % 2 = 1)
     (hδ : floorPower m ^ 2 < m ^ 3) (hk : 1 ≤ k) (hm : 2 ≤ m) :
     localDefectOdd m < powerDeficit (floorPower m) n (k + 1) (o + 1) := by
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have he : 2 ≤ 2 ^ k := two_le_two_pow_of_pos hk
   have hm3 : 2 ≤ m ^ 3 := by
     have : 8 ≤ m ^ 3 := Nat.pow_le_pow_left hm 3
@@ -2009,7 +2047,7 @@ theorem power_deficit_append_even_eq {m n k o : ℕ}
     (htight : floorPower m ^ 2 = m) :
     powerDeficit (floorPower m) n (k + 1) o = powerDeficit m n k o := by
   unfold powerDeficit
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have hT : floorPower m ^ (2 ^ (k + 1)) = m ^ (2 ^ k) := by
     rw [h2, Nat.pow_mul, htight]
   rw [hT]
@@ -2019,7 +2057,7 @@ theorem power_deficit_append_even_of_defect {m n k o : ℕ}
     (hδ : floorPower m ^ 2 < m) :
     powerDeficit m n k o < powerDeficit (floorPower m) n (k + 1) o := by
   unfold powerDeficit PowerBound at *
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have hT : floorPower m ^ (2 ^ (k + 1)) = (floorPower m ^ 2) ^ (2 ^ k) := by
     rw [h2, Nat.pow_mul]
   have hlt : (floorPower m ^ 2) ^ (2 ^ k) < m ^ (2 ^ k) :=
@@ -2046,7 +2084,7 @@ theorem power_deficit_append_odd_of_strict {m n k o : ℕ}
     (h : StrictPowerBound m n k o) (hodd : m % 2 = 1) :
     powerDeficit m n k o < powerDeficit (floorPower m) n (k + 1) (o + 1) := by
   unfold powerDeficit StrictPowerBound at *
-  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := by rw [pow_succ, mul_comm]
+  have h2 : 2 ^ (k + 1) = 2 * 2 ^ k := two_pow_succ k
   have hsq : floorPower m ^ 2 ≤ m ^ 3 := floorPower_odd_sq_le_cube hodd
   have hmid : m ^ (3 * 2 ^ k) = (m ^ (2 ^ k)) ^ 3 := by
     rw [mul_comm, Nat.pow_mul]
@@ -2231,9 +2269,15 @@ theorem power_deficit_eq_local_odd_iff {n : ℕ} {v : List Branch}
     simpa [hfirst, ho, add_comm v.length] using heq
 
 /-!
-Inverse-floor form of the odd Juggler step. This is the integer
-interval for `T(n) = M`, not a termination theorem and not a
-perfect-power height.
+## Inverse floor
+
+Inverse-floor form of a Juggler step. This is the integer interval
+for `T(n) = M`, not a termination theorem and not a perfect-power
+height.
+
+The remaining Diophantine question — whether an odd first defect can
+satisfy `HasPowTwoDepth (floorPower n) s` for some `s ≥ 2` — is not
+claimed here. Finite search is not an impossibility theorem.
 -/
 
 theorem floor_sqrt_eq_iff_sq_interval {n M : ℕ} :
@@ -2248,13 +2292,14 @@ theorem floor_sqrt_eq_iff_sq_interval {n M : ℕ} :
     · exact Nat.le_sqrt.mpr (by simpa [pow_two] using hle)
     · exact Nat.sqrt_lt.mpr (by simpa [pow_two] using hlt)
 
+theorem floorPower_even_eq_iff_sq_interval {n M : ℕ} (heven : n % 2 = 0) :
+    floorPower n = M ↔ M ^ 2 ≤ n ∧ n < (M + 1) ^ 2 := by
+  rw [floorPower_even_eq heven]
+  exact floor_sqrt_eq_iff_sq_interval
+
 theorem floorPower_odd_eq_iff_cube_interval {n M : ℕ} (hodd : n % 2 = 1) :
     floorPower n = M ↔ M ^ 2 ≤ n ^ 3 ∧ n ^ 3 < (M + 1) ^ 2 := by
-  have hodd0 : n % 2 ≠ 0 := by omega
-  have hcube : n * n * n = n ^ 3 := by ring
-  have step : floorPower n = (n ^ 3).sqrt := by
-    simp [floorPower, hodd0, hcube]
-  rw [step]
+  rw [floorPower_odd_eq hodd]
   exact floor_sqrt_eq_iff_sq_interval
 
 theorem floorPower_odd_eq_pow_two_depth_iff {n a s : ℕ} (hodd : n % 2 = 1) :

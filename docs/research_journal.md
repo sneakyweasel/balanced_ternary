@@ -4144,4 +4144,49 @@ Best next question
 - Must a cube in [b^8,(b^4+1)^2) be even, or is there an odd witness?
 ```
 
+## Juggler FloorPower paper-ready packaging
+
+- **Date:** 2026-08-26
+- **Objective:** Make `Problems.Engine.FloorPower` paper-ready (unique proofs, glue, section order) and retry the parked odd-start \(s\ge 2\) question
+- **Hypotheses:** specialized OOOEE/OOOEEEOO proofs are instances of `power_bound_contracts`; cubes in \([b^8,(b^4+1)^2)\) are even unless exact
+- **Major results:** `floorPower` now uses `n^3`. Shared exponent rewrites (`two_pow_succ`, `three_pow_succ`, `pow_three_succ_right`). `follows_wordOOOEE_iff` / `follows_wordOOOEEEOO_iff`; nested-hyp block lemmas are wrappers. Glue: `floorPower_even_eq_iff_sq_interval`, `localTight_*_iff_square`, `even_word_contracts`, `odd_word_expands`. No `sorry`. Extended search: fourth powers \(b\le 20000\) still one inexact cube (`b=97`, even \(n=198636\)); odd starts \(n\le 200000\) still max depth 1. No elementary \(s\ge 2\) obstruction. Reserved `floorPower_odd_pow_two_depth_ge_two_false` remains absent. Classification still **ODD_SHARP_SUFFIX_INCOMPLETE**. No ledger row. Control layer unchanged
+- **Refuted ideas:** treating the still-empty odd search as impossibility; adding `PowerHeight`; expanding `lean_export.py` beyond the seed-13 trio; reopening Phase 11 as a macro grammar
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether a cube in a fourth-power square interval must be even
+- **Decision:** PROMOTE the packaging and glue. PARK the \(s\ge 2\) depth classification again. Do not register an attack. Do not claim termination
+
+```text
+What was learned
+- OOOEE / OOOEEEOO nested-hyp theorems are definitionally the follows predicates
+- The one-step map is cleaner as Nat.sqrt / Nat.sqrt (n^3)
+- Even equality words of length k≥1 contract; odd equality words of length k≥1 expand for n≥3
+- b=97 remains the only inexact fourth-power cube through b=20000
+- No odd s≥2 hit through n=200000; no short integer obstruction appeared
+
+Strongest theorem
+- power_bound_eq_iff_extremal and the first-defect sharpness iff remain the headline results; the new statements are glue
+
+Strongest refutation
+- none for s≥2; the even b=97 cube is still the only inexact interval hit
+
+Reusable machinery
+- FloorPower paper sections; follows_word iff wrappers; even/odd inverse-floor pair
+- even_word_contracts / odd_word_expands
+
+Prior-art status
+- local floor-power envelope, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE the Lean packaging; PARK the odd-start Diophantine
+
+Why
+- The existing theory is now a single narrative with unique proofs. The parked interval question is unchanged: empty search is not a theorem, and no elementary evenness law was found.
+
+Best next question
+- Must a cube in [b^8,(b^4+1)^2) be even, or is there an odd witness?
+```
+
 
