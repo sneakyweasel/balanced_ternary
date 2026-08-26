@@ -109,7 +109,8 @@ theorems.
   `tests/research/research_control/test_reverse_add_weighted_pair_phase7.py`,
   `tests/research/research_control/test_reverse_add_involution_phase8.py`,
   `tests/research/research_control/test_phase9_frontier_ranking.py`,
-  `tests/research/research_control/test_juggler_odd_odd_phase10.py`
+  `tests/research/research_control/test_juggler_odd_odd_phase10.py`,
+  `tests/research/research_control/test_juggler_macro_phase11.py`
 - Phase-0 replays: `skolem_order2_known_zero`,
   `switching_affine_z2_origin`
 - Ranking Phase-0 falsifier: `research_engine.control.ranking`,
@@ -143,6 +144,9 @@ theorems.
 - Juggler odd-odd Phase-10 falsifier:
   `research_engine.control.juggler_odd_odd`,
   `docs/research/juggler_odd_odd_phase10.md`
+- Juggler macro-grammar Phase-11 falsifier:
+  `research_engine.control.juggler_macro`,
+  `docs/research/juggler_macro_phase11.md`
 
 ## Conjectures
 
@@ -156,7 +160,10 @@ are not deleted. Finite prefixes are not upgraded to `RESOLVED`.
 ## Formalization
 
 The control layer itself has no new ledger row. Phase-3 reuses
-`Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt`. No `sorry`.
+`Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt`.
+Phase-10 adds `floorPower_odd_odd_two_step_gt`. Phase-11 adds
+`floorPower_odd_macro_direction` as `COMPOSITION_OF_KNOWN_FACTS`.
+No `sorry`.
 
 ## Results
 
@@ -471,24 +478,49 @@ Green loot: `JUGGLER_ODD_ODD_GREEN_LOOT`. Lean: `PROVED`
 not `GLOBAL_TERMINATION`. Top-3 #1 is `odd_odd_symbolic_composition`
 (proposed, not registered).
 
+### Q. Juggler macro-dynamics Phase-11 falsifier
+
+Record: [juggler_macro_phase11.md](../research/juggler_macro_phase11.md),
+[juggler_macro_phase11.json](../research/juggler_macro_phase11.json).
+`experimental_status = PHASE_11_JUGGLER_MACRO_GRAMMAR_FALSIFIER`.
+Not an attack. `k=2` only. Frozen window `1..40` plus seed `13`.
+`odd_even_two_step_decrease` unchanged. `DEFAULT_ATTACK_ORDER` unchanged.
+Gated name `juggler_macro_phase11` is not in `EXPERIMENTAL_ATTACKS`.
+
+| Rank | Candidate | Result |
+| --- | --- | --- |
+| 1 | Combined direction on odd `n≥3` | survived; `COMPOSITION_OF_KNOWN_FACTS` |
+| 2 | `B` determines `parity(T^2)` | `MACRO_PARITY_NOT_DETERMINISTIC` at `5→11→36` |
+| 3 | `B=E` exits the odd macro | `DIRECTION_SURVIVAL_DECOUPLING` at `15→58→7` |
+
+Classification: **MACRO_GRAMMAR_NEEDS_RICHER_STRUCTURE**.
+Loot: `NO_NEW_LOOT`. Lean: `COMPOSITION_OF_KNOWN_FACTS`
+(`floorPower_odd_macro_direction`). Macro-state
+`M(n)=(parity(n), B(n), parity(T^2(n)))` is `MACRO_STATE_INSUFFICIENT`.
+Top-3 #1 is `basin_preimage_grammar` on `mx_plus_r_7x1_class_obstruction`.
+Keep `odd_odd_symbolic_composition`. Do not register
+`juggler_macro_grammar`.
+
 ## Open questions
 
-The odd-odd cylinder is not `T^2`-invariant (`5→11→36`). Does that
-leakage feed the existing odd-even lemma without raising composition
-depth?
+`B(n)` does not determine `parity(T^2(n))` or odd-macro survival.
+The next cheap frontier is basin/preimage on 7x+1, not another
+Juggler micro-attack.
 
 ## Decision
 
 `PROMOTE` the gated Juggler `odd_even_two_step_decrease` primitive.
 `PROMOTE` the Phase-9 frontier map. `PROMOTE` the odd-odd two-step
-growth lemma as local branch loot. `CLOSE` reverse-add compressed
-involution summaries. Do not claim Juggler termination or divergence.
-Do not thaw `DEFAULT_ATTACK_ORDER`. Do not register
-`odd_odd_branch_composition` or `odd_odd_symbolic_composition`.
+growth lemma as local branch loot. `PARK` the Juggler macro-grammar
+branch: the paired lemmas do not induce a next-bit transition law.
+`CLOSE` reverse-add compressed involution summaries. Do not claim
+Juggler termination or divergence. Do not thaw `DEFAULT_ATTACK_ORDER`.
+Do not register `odd_odd_symbolic_composition` or
+`juggler_macro_grammar`.
 
-Best next question: whether odd-cylinder leakage into an even image
-reuses `floorPower_odd_even_two_step_lt` at depth 2. Still no new
-attack in `DEFAULT_ATTACK_ORDER`.
+Best next question: a finite residue/valuation quotient of predecessors
+of 1 for `mx_plus_r_7x1_class_obstruction`. Still no new attack in
+`DEFAULT_ATTACK_ORDER`.
 
 ## Publication assessment
 

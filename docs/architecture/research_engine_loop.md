@@ -104,7 +104,9 @@ reversal involution itself yields a reverse-specific law; Phase-9
 (`research_engine.control.frontier_ranking`) re-ranks remaining
 target × attack frontiers without executing a winner; Phase-10
 (`research_engine.control.juggler_odd_odd`) tests the complementary
-Juggler odd→odd two-step cylinder.
+Juggler odd→odd two-step cylinder; Phase-11
+(`research_engine.control.juggler_macro`) asks whether the paired
+branch lemmas induce an exact odd-state macro-transition grammar.
 None of these is an attack and none changes `DEFAULT_ATTACK_ORDER`.
 Lychrel / Reverse-and-Add (`research.lychrel_dynamics`) is a registered
 pipeline candidate, not an attack and not a reopening of
@@ -124,7 +126,8 @@ Dossier:
 [reverse_add_weighted_pair_phase7.md](../research/reverse_add_weighted_pair_phase7.md),
 [reverse_add_involution_phase8.md](../research/reverse_add_involution_phase8.md),
 [phase9_frontier_ranking.md](../research/phase9_frontier_ranking.md),
-[juggler_odd_odd_phase10.md](../research/juggler_odd_odd_phase10.md).
+[juggler_odd_odd_phase10.md](../research/juggler_odd_odd_phase10.md),
+[juggler_macro_phase11.md](../research/juggler_macro_phase11.md).
 
 Non-core fingerprint fields: `piecewise_affine_structure`,
 `latent_control` (`NONE|FINITE|PARAMETERIZED|UNCERTAIN|UNOBSERVED`),

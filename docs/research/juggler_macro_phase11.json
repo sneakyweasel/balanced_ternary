@@ -1,0 +1,700 @@
+{
+  "engine_control_version": "0.2.7",
+  "source_engine": "v2.3",
+  "experimental_status": "PHASE_11_JUGGLER_MACRO_GRAMMAR_FALSIFIER",
+  "experiment_name": "juggler_macro_phase11",
+  "target": "juggler_sequence",
+  "composition_depth": 2,
+  "gated": true,
+  "branch_definition": {
+    "B": "E if T(n) even, O if T(n) odd, on odd n",
+    "D_OE": "odd n with B(n)=E",
+    "D_OO": "odd n with B(n)=O",
+    "complementary_on_odd_n_ge_3": true
+  },
+  "macro_state": {
+    "definition": "M(n)=(parity(n), B(n), parity(T^2(n)))",
+    "sufficient": false,
+    "status": "MACRO_STATE_INSUFFICIENT",
+    "no_extra_components": true
+  },
+  "candidates": [
+    {
+      "rank": 1,
+      "name": "combined_direction_law",
+      "exact_statement": "For odd n>=3, B(n)=E => T^2(n)<n and B(n)=O => T^2(n)>n. Domains D_OE and D_OO are complementary on odd n>=3; n=1 is excluded.",
+      "motivation": "Canonical pairing of the two proved lemmas on a common domain. Survival here is COMPOSITION_OF_KNOWN_FACTS, not new loot.",
+      "relevant_domain": "odd n>=3 with T and T^2 defined",
+      "expected_yield": "a combined direction lemma usable as input, not green loot",
+      "cheapest_falsifier": "an odd n>=3 whose two-step direction disagrees with B(n)",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "",
+      "failure_class": "",
+      "checked": 19
+    },
+    {
+      "rank": 2,
+      "name": "branch_determines_t2_parity",
+      "exact_statement": "For odd n>=3, B(n)=E => T^2(n) even and B(n)=O => T^2(n) odd. The pair (P_E, P_O)=(even, odd) is the first-observation pair on the frozen mapping (n=7 even, n=3 odd), not a residue sweep.",
+      "motivation": "Does the contracting/expanding branch also determine whether the odd macro-state survives? Depth remains 2.",
+      "relevant_domain": "odd n>=3 with T and T^2 defined",
+      "expected_yield": "a unique next parity for each branch label",
+      "cheapest_falsifier": "the first frozen odd n>=3 whose T^2 parity disagrees with (P_E, P_O)",
+      "survived": false,
+      "counterexample": {
+        "source": 5,
+        "mid": 11,
+        "image": 36,
+        "branch": "O",
+        "image_odd": false,
+        "contracts": false,
+        "expands": true,
+        "exceptional_one": false,
+        "macro_state": [
+          1,
+          "O",
+          0
+        ],
+        "composition_depth": 2,
+        "note": "juggler macro T^2"
+      },
+      "failure_mechanism": "T^2 parity is not a function of B: B(5)=O but T^2(5)=36 has parity 0. Macro-state (1, 'O', 0) is not determined by (parity, B).",
+      "failure_class": "MACRO_PARITY_NOT_DETERMINISTIC",
+      "checked": 2
+    },
+    {
+      "rank": 3,
+      "name": "contraction_exits_odd_macro",
+      "exact_statement": "For odd n>=3, B(n)=E => T^2(n) is even, i.e. the contracting branch leaves the odd macro domain. One-sided coupling; the expanding branch is not assumed to continue.",
+      "motivation": "The first frozen E-state n=7 has T^2=4 even. Ask whether contraction is coupled to exit from the odd macro description.",
+      "relevant_domain": "odd n>=3 with B(n)=E",
+      "expected_yield": "deterministic exit of the odd macro after contraction",
+      "cheapest_falsifier": "the first frozen E-state whose T^2 is odd",
+      "survived": false,
+      "counterexample": {
+        "source": 15,
+        "mid": 58,
+        "image": 7,
+        "branch": "E",
+        "image_odd": true,
+        "contracts": true,
+        "expands": false,
+        "exceptional_one": false,
+        "macro_state": [
+          1,
+          "E",
+          1
+        ],
+        "composition_depth": 2,
+        "note": "juggler macro T^2"
+      },
+      "failure_mechanism": "Contraction does not exit the odd macro: B(15)=E and T^2(15)=7 is odd, so the odd label sequence continues.",
+      "failure_class": "DIRECTION_SURVIVAL_DECOUPLING",
+      "checked": 4
+    }
+  ],
+  "candidate_freeze": {
+    "count": 3,
+    "no_adaptive_fourth": true,
+    "parity_pair": {
+      "P_E": "even",
+      "P_O": "odd",
+      "first_E_observation": {
+        "n": 7,
+        "T": 18,
+        "T2": 4
+      },
+      "first_O_observation": {
+        "n": 3,
+        "T": 5,
+        "T2": 11
+      }
+    },
+    "survival_coupling": {
+      "branch": "E",
+      "claim": "T^2 even, contraction exits odd macro",
+      "first_E_observation": {
+        "n": 7,
+        "T": 18,
+        "T2": 4
+      }
+    }
+  },
+  "domains": {
+    "combined": "odd n>=3",
+    "parity_pair": "odd n>=3",
+    "contraction_exit": "odd n>=3 with B(n)=E",
+    "exceptional": "n=1"
+  },
+  "existing_lemmas": {
+    "odd_even": "Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt",
+    "odd_odd": "Problems.Engine.FloorPower.floorPower_odd_odd_two_step_gt",
+    "combined": "Problems.Engine.FloorPower.floorPower_odd_macro_direction"
+  },
+  "frozen_samples": [
+    {
+      "source": 1,
+      "mid": 1,
+      "image": 1,
+      "branch": "O",
+      "image_odd": true,
+      "contracts": false,
+      "expands": false,
+      "exceptional_one": true,
+      "macro_state": [
+        1,
+        "O",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 3,
+      "mid": 5,
+      "image": 11,
+      "branch": "O",
+      "image_odd": true,
+      "contracts": false,
+      "expands": true,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "O",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 5,
+      "mid": 11,
+      "image": 36,
+      "branch": "O",
+      "image_odd": false,
+      "contracts": false,
+      "expands": true,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "O",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 7,
+      "mid": 18,
+      "image": 4,
+      "branch": "E",
+      "image_odd": false,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 9,
+      "mid": 27,
+      "image": 140,
+      "branch": "O",
+      "image_odd": false,
+      "contracts": false,
+      "expands": true,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "O",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 11,
+      "mid": 36,
+      "image": 6,
+      "branch": "E",
+      "image_odd": false,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 13,
+      "mid": 46,
+      "image": 6,
+      "branch": "E",
+      "image_odd": false,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 15,
+      "mid": 58,
+      "image": 7,
+      "branch": "E",
+      "image_odd": true,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 17,
+      "mid": 70,
+      "image": 8,
+      "branch": "E",
+      "image_odd": false,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 19,
+      "mid": 82,
+      "image": 9,
+      "branch": "E",
+      "image_odd": true,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 21,
+      "mid": 96,
+      "image": 9,
+      "branch": "E",
+      "image_odd": true,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 23,
+      "mid": 110,
+      "image": 10,
+      "branch": "E",
+      "image_odd": false,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 25,
+      "mid": 125,
+      "image": 1397,
+      "branch": "O",
+      "image_odd": true,
+      "contracts": false,
+      "expands": true,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "O",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 27,
+      "mid": 140,
+      "image": 11,
+      "branch": "E",
+      "image_odd": true,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 29,
+      "mid": 156,
+      "image": 12,
+      "branch": "E",
+      "image_odd": false,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 31,
+      "mid": 172,
+      "image": 13,
+      "branch": "E",
+      "image_odd": true,
+      "contracts": true,
+      "expands": false,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "E",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 33,
+      "mid": 189,
+      "image": 2598,
+      "branch": "O",
+      "image_odd": false,
+      "contracts": false,
+      "expands": true,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "O",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 35,
+      "mid": 207,
+      "image": 2978,
+      "branch": "O",
+      "image_odd": false,
+      "contracts": false,
+      "expands": true,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "O",
+        0
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 37,
+      "mid": 225,
+      "image": 3375,
+      "branch": "O",
+      "image_odd": true,
+      "contracts": false,
+      "expands": true,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "O",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    {
+      "source": 39,
+      "mid": 243,
+      "image": 3787,
+      "branch": "O",
+      "image_odd": true,
+      "contracts": false,
+      "expands": true,
+      "exceptional_one": false,
+      "macro_state": [
+        1,
+        "O",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    }
+  ],
+  "survivors": [
+    {
+      "rank": 1,
+      "name": "combined_direction_law",
+      "exact_statement": "For odd n>=3, B(n)=E => T^2(n)<n and B(n)=O => T^2(n)>n. Domains D_OE and D_OO are complementary on odd n>=3; n=1 is excluded.",
+      "motivation": "Canonical pairing of the two proved lemmas on a common domain. Survival here is COMPOSITION_OF_KNOWN_FACTS, not new loot.",
+      "relevant_domain": "odd n>=3 with T and T^2 defined",
+      "expected_yield": "a combined direction lemma usable as input, not green loot",
+      "cheapest_falsifier": "an odd n>=3 whose two-step direction disagrees with B(n)",
+      "survived": true,
+      "counterexample": null,
+      "failure_mechanism": "",
+      "failure_class": "",
+      "checked": 19
+    }
+  ],
+  "counterexamples": [
+    {
+      "name": "branch_determines_t2_parity",
+      "rank": 2,
+      "failure_class": "MACRO_PARITY_NOT_DETERMINISTIC",
+      "counterexample": {
+        "source": 5,
+        "mid": 11,
+        "image": 36,
+        "branch": "O",
+        "image_odd": false,
+        "contracts": false,
+        "expands": true,
+        "exceptional_one": false,
+        "macro_state": [
+          1,
+          "O",
+          0
+        ],
+        "composition_depth": 2,
+        "note": "juggler macro T^2"
+      }
+    },
+    {
+      "name": "contraction_exits_odd_macro",
+      "rank": 3,
+      "failure_class": "DIRECTION_SURVIVAL_DECOUPLING",
+      "counterexample": {
+        "source": 15,
+        "mid": 58,
+        "image": 7,
+        "branch": "E",
+        "image_odd": true,
+        "contracts": true,
+        "expands": false,
+        "exceptional_one": false,
+        "macro_state": [
+          1,
+          "E",
+          1
+        ],
+        "composition_depth": 2,
+        "note": "juggler macro T^2"
+      }
+    }
+  ],
+  "failure_mechanisms": [
+    {
+      "name": "branch_determines_t2_parity",
+      "class": "MACRO_PARITY_NOT_DETERMINISTIC",
+      "text": "T^2 parity is not a function of B: B(5)=O but T^2(5)=36 has parity 0. Macro-state (1, 'O', 0) is not determined by (parity, B)."
+    },
+    {
+      "name": "contraction_exits_odd_macro",
+      "class": "DIRECTION_SURVIVAL_DECOUPLING",
+      "text": "Contraction does not exit the odd macro: B(15)=E and T^2(15)=7 is odd, so the odd label sequence continues."
+    }
+  ],
+  "exceptional_state": {
+    "state": 1,
+    "role": "exceptional terminal odd fixed point",
+    "present": true,
+    "transition": {
+      "source": 1,
+      "mid": 1,
+      "image": 1,
+      "branch": "O",
+      "image_odd": true,
+      "contracts": false,
+      "expands": false,
+      "exceptional_one": true,
+      "macro_state": [
+        1,
+        "O",
+        1
+      ],
+      "composition_depth": 2,
+      "note": "juggler macro T^2"
+    },
+    "reason": "1->1->1 is why T^2(n)>n cannot hold on all of D_OO. The combined direction lemma uses n>=3. This is not a termination result.",
+    "not_termination_theorem": true
+  },
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "global_parity_grammar": false,
+    "scope": "LOCAL_BRANCH_LAW",
+    "combined_is_new_loot": false,
+    "combined_status": "COMPOSITION_OF_KNOWN_FACTS"
+  },
+  "lean_status": "COMPOSITION_OF_KNOWN_FACTS",
+  "loot_status": "NO_NEW_LOOT",
+  "attack_proposal_update": {
+    "campaign_id": "juggler_sequence",
+    "proposals": [
+      {
+        "rank": 1,
+        "attack_name": "basin_preimage_grammar",
+        "trigger": "macro direction and macro survival are independent",
+        "mathematical_target": "Promote the Phase-9 backup: basin/preimage on mx_plus_r_7x1_class_obstruction. Do not invent another Juggler micro-attack.",
+        "mechanism": "Record macro_state_needs_richer_information. Do not add a history bit.",
+        "required_capability": "symbolic predecessor construction",
+        "expected_yield": "regular-preimage lemma or a splitting pair for reachability of 1",
+        "falsifier": "Two predecessor states indistinguishable by the proposed quotient.",
+        "novelty_risk": "MEDIUM",
+        "implementation_scope": "MEDIUM",
+        "confidence": "MEDIUM",
+        "novelty_risk_reason": "Phase-9 backup after a Juggler macro stop"
+      },
+      {
+        "rank": 2,
+        "attack_name": "odd_odd_symbolic_composition",
+        "trigger": "the paired local lemmas remain the Juggler green loot",
+        "mathematical_target": "Keep odd-even and odd-odd two-step laws. Do not combine them into a grammar.",
+        "mechanism": "Do not register juggler_macro_grammar.",
+        "required_capability": "restricted symbolic composition",
+        "expected_yield": "unchanged local branch inequalities",
+        "falsifier": "A domain element violating either proved two-step inequality.",
+        "novelty_risk": "LOW",
+        "implementation_scope": "SMALL",
+        "confidence": "HIGH",
+        "novelty_risk_reason": "the combined direction lemma is COMPOSITION_OF_KNOWN_FACTS"
+      },
+      {
+        "rank": 3,
+        "attack_name": "odd_even_symbolic_composition",
+        "trigger": "odd-even two-step decrease remains gated",
+        "mathematical_target": "Keep odd_even_two_step_decrease gated. Do not thaw DEFAULT_ATTACK_ORDER.",
+        "mechanism": "Do not raise composition depth to chase a grammar.",
+        "required_capability": "restricted symbolic composition",
+        "expected_yield": "unchanged odd-even two-step decrease",
+        "falsifier": "An odd-even domain element with T^2(n)>=n.",
+        "novelty_risk": "LOW",
+        "implementation_scope": "SMALL",
+        "confidence": "HIGH",
+        "novelty_risk_reason": "floorPower_odd_even_two_step_lt is unchanged"
+      }
+    ],
+    "notes": [
+      "updated from Juggler macro Phase-11 falsifier; not executed",
+      "macro_state_needs_richer_information",
+      "juggler_macro_grammar is not registered",
+      "do not invent another Juggler micro-attack"
+    ]
+  },
+  "classification": "MACRO_GRAMMAR_NEEDS_RICHER_STRUCTURE",
+  "decision": "MACRO_GRAMMAR_NEEDS_RICHER_STRUCTURE",
+  "decision_reason": "paired direction is known; B does not determine T^2 parity or odd-macro survival",
+  "green_loot": "NO_NEW_LOOT",
+  "mathematical_status": "none",
+  "global_consequence": "LOCAL_BRANCH_LAW",
+  "laboratory_decision": "PARK",
+  "top3_update": {
+    "campaign_id": "juggler_sequence",
+    "proposals": [
+      {
+        "rank": 1,
+        "attack_name": "basin_preimage_grammar",
+        "trigger": "macro direction and macro survival are independent",
+        "mathematical_target": "Promote the Phase-9 backup: basin/preimage on mx_plus_r_7x1_class_obstruction. Do not invent another Juggler micro-attack.",
+        "mechanism": "Record macro_state_needs_richer_information. Do not add a history bit.",
+        "required_capability": "symbolic predecessor construction",
+        "expected_yield": "regular-preimage lemma or a splitting pair for reachability of 1",
+        "falsifier": "Two predecessor states indistinguishable by the proposed quotient.",
+        "novelty_risk": "MEDIUM",
+        "implementation_scope": "MEDIUM",
+        "confidence": "MEDIUM",
+        "novelty_risk_reason": "Phase-9 backup after a Juggler macro stop"
+      },
+      {
+        "rank": 2,
+        "attack_name": "odd_odd_symbolic_composition",
+        "trigger": "the paired local lemmas remain the Juggler green loot",
+        "mathematical_target": "Keep odd-even and odd-odd two-step laws. Do not combine them into a grammar.",
+        "mechanism": "Do not register juggler_macro_grammar.",
+        "required_capability": "restricted symbolic composition",
+        "expected_yield": "unchanged local branch inequalities",
+        "falsifier": "A domain element violating either proved two-step inequality.",
+        "novelty_risk": "LOW",
+        "implementation_scope": "SMALL",
+        "confidence": "HIGH",
+        "novelty_risk_reason": "the combined direction lemma is COMPOSITION_OF_KNOWN_FACTS"
+      },
+      {
+        "rank": 3,
+        "attack_name": "odd_even_symbolic_composition",
+        "trigger": "odd-even two-step decrease remains gated",
+        "mathematical_target": "Keep odd_even_two_step_decrease gated. Do not thaw DEFAULT_ATTACK_ORDER.",
+        "mechanism": "Do not raise composition depth to chase a grammar.",
+        "required_capability": "restricted symbolic composition",
+        "expected_yield": "unchanged odd-even two-step decrease",
+        "falsifier": "An odd-even domain element with T^2(n)>=n.",
+        "novelty_risk": "LOW",
+        "implementation_scope": "SMALL",
+        "confidence": "HIGH",
+        "novelty_risk_reason": "floorPower_odd_even_two_step_lt is unchanged"
+      }
+    ],
+    "notes": [
+      "updated from Juggler macro Phase-11 falsifier; not executed",
+      "macro_state_needs_richer_information",
+      "juggler_macro_grammar is not registered",
+      "do not invent another Juggler micro-attack"
+    ]
+  },
+  "lean_combined_present": true,
+  "phase10_record_intact": true
+}

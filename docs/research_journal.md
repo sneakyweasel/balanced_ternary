@@ -3651,4 +3651,48 @@ Best next question
 - Complete the novelty-review searches before any promotion from selection to execution.
 ```
 
+## Research Engine v2.4: Juggler macro-dynamics Phase-11 falsifier
+
+- **Date:** 2026-08-26
+- **Objective:** Determine whether the paired odd-even contraction and odd-odd expansion lemmas induce an exact macro-transition grammar for odd Juggler states
+- **Hypotheses:** combined direction on odd `n≥3`; `B` determines `parity(T^2)`; contraction exits the odd macro
+- **Major results:** Candidate 1 survived as `COMPOSITION_OF_KNOWN_FACTS` (`floorPower_odd_macro_direction`). Candidate 2 `MACRO_PARITY_NOT_DETERMINISTIC` at `5→11→36`. Candidate 3 `DIRECTION_SURVIVAL_DECOUPLING` at `15→58→7`. Classification **MACRO_GRAMMAR_NEEDS_RICHER_STRUCTURE**. Loot `NO_NEW_LOOT`. Macro-state `M(n)=(parity(n), B(n), parity(T^2(n)))` is `MACRO_STATE_INSUFFICIENT`. Records: `docs/research/juggler_macro_phase11.md`, `docs/research/juggler_macro_phase11.json`. Frozen v2.3 seeds, Phase-0–10 records, and `DEFAULT_ATTACK_ORDER` unchanged
+- **Refuted ideas:** `B` as a next-parity grammar; contraction as deterministic exit from the odd macro; billing the combined direction lemma as new loot; a parity automaton or `k>2` rescue
+- **Literature:** engine methodology; Juggler totality remains open and unclaimed
+- **Open:** basin/preimage grammar on `mx_plus_r_7x1_class_obstruction`
+- **Decision:** PARK the macro-grammar branch. Keep the two local Juggler lemmas. Do not register `juggler_macro_grammar`. Do not invent another Juggler micro-attack
+
+```text
+What was learned
+- D_OE and D_OO remain complementary on odd n>=3; n=1 is the exceptional fixed point
+- Pairing the two proved lemmas yields a combined direction statement, not a new consequence
+- B(n)=O does not determine parity(T^2): 3→5→11 stays odd, 5→11→36 leaves even
+- B(n)=E does not force exit: 7→18→4 is even, 15→58→7 is odd
+- The three-bit macro-state loses the information that would couple direction to survival
+
+Strongest theorem
+- For odd n>=3, B=E => T^2<n and B=O => T^2>n (floorPower_odd_macro_direction; COMPOSITION_OF_KNOWN_FACTS)
+
+Strongest refutation
+- 5→11→36 and 15→58→7: branch label does not determine T^2 parity or odd-macro survival
+
+Reusable machinery
+- research_engine.control.juggler_macro: three pre-ranked k=2 macro candidates; gated name juggler_macro_phase11 is not in DEFAULT_ATTACK_ORDER
+
+Prior-art status
+- engine diagnosis; combined known lemmas, not a Juggler halt or divergence result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PARK
+
+Why
+- The paired branch laws do not induce a next-bit transition grammar. A richer state has not been justified. Stop rather than manufacture a macro theory.
+
+Best next question
+- Run a basin/preimage falsifier on mx_plus_r_7x1_class_obstruction without adding another Juggler micro-attack.
+```
+
 

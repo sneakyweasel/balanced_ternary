@@ -99,6 +99,22 @@ theorem floorPower_odd_odd_two_step_gt
   have hgt : n < floorPower n := floorPower_odd_gt hn hodd
   omega
 
+/-- Combined odd-state two-step direction for `n ≥ 3`. This is the
+conjunction of `floorPower_odd_even_two_step_lt` and
+`floorPower_odd_odd_two_step_gt` on a common domain. It is not a
+macro-transition law, not a halt theorem, and not a divergence theorem.
+The case `n = 1` is excluded: `floorPower 1 = 1`. -/
+theorem floorPower_odd_macro_direction
+    {n : ℕ} (hn : 3 ≤ n) (hodd : n % 2 = 1) :
+    ((n * n * n).sqrt % 2 = 0 → floorPower (floorPower n) < n) ∧
+    ((n * n * n).sqrt % 2 = 1 → n < floorPower (floorPower n)) := by
+  refine ⟨?he, ?ho⟩
+  · intro heven
+    have hn2 : 2 ≤ n := le_trans (by decide : 2 ≤ 3) hn
+    exact floorPower_odd_even_two_step_lt hn2 hodd heven
+  · intro hodd1
+    exact floorPower_odd_odd_two_step_gt hn hodd hodd1
+
 
 theorem floorPower_one : floorPower 1 = 1 := by
   native_decide

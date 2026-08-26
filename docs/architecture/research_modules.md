@@ -61,7 +61,7 @@ promoted mathematical theory; it is not a new-math frontier.
 | `research.open_problems` | registry | pointers, not a dumping ground |
 | `research.engine_campaign` | `EXPLORATORY` | first real-problem frozen-loop campaign |
 | `research.engine_memory` | `EXPLORATORY` | v2.2 research-memory descriptor; implementation in `research_engine.memory` |
-| `research.research_control` | `EXPLORATORY` | v2.4 research-control descriptor; ranking Phase-0/1, symbolic-composition Phase-2, gated Phase-3 restricted composition, reverse-add Phase-4–8 falsifiers, Phase-9 frontier re-ranking, Phase-10 Juggler odd-odd falsifier |
+| `research.research_control` | `EXPLORATORY` | v2.4 research-control descriptor; ranking Phase-0/1, symbolic-composition Phase-2, gated Phase-3 restricted composition, reverse-add Phase-4–8 falsifiers, Phase-9 frontier re-ranking, Phase-10 Juggler odd-odd falsifier, Phase-11 Juggler macro-grammar falsifier |
 | `research.lychrel_dynamics` | `EXPLORATORY` | Lychrel / Reverse-and-Add pipeline candidate; registration only; PARK; not a reopening of `reverse_and_add_base3` |
 
 The piecewise-affine census, domain-certificate, control-word, and
