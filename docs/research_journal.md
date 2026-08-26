@@ -3919,4 +3919,49 @@ Best next question
 - How do O and E act on successive perfect powers (the descending s^2 ↦ s^3 / s^2 ↦ s dynamics)?
 ```
 
+## Juggler exact perfect-power dynamics and saturation budget
+
+- **Date:** 2026-08-26
+- **Objective:** Decide whether a realized word of length \(k\) can attain the finite-word floor-power envelope with equality only if the start is a \(2^k\)-th power
+- **Hypotheses:** if \(n=a^{2^r}\) then exact \(E\) is \(a^{2^{r-1}}\) and exact \(O\) is \(a^{3\cdot 2^{r-1}}\); each exact branch drops one factor of \(2\); equality of length \(k\) forces \(HasPowTwoDepth(n,k)\)
+- **Major results:** Exact even/odd transitions **PROVED**. Depth-drop lemmas **PROVED**. Cube-depth pullback `hasPowTwoDepth_of_cube` **PROVED**. Budget theorem `power_bound_eq_implies_pow_two_depth` **PROVED**. For \(n\ge 2\), equality of length \(k\) implies \(2^{2^k}\le n\). Computational search: 0 `POWER_TWO_DEPTH_COUNTEREXAMPLE` on \(n\le 10^4\), depth 8, prescribed words to length 6, and square towers of bases \(2..30\); 99 saturating starts, 0 mixed saturations. Classification **SATURATION_BUDGET_GREEN**. Records: `docs/research/juggler_saturation_budget.md`, `docs/problems/juggler_saturation_budget.md`. Control layer unchanged
+- **Refuted ideas:** mixed-word strictness remains refuted (prior phase); `PowerHeight` hierarchy; huge `cmp_pow` equality search; equality-word census
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** which words arise as traces of the even exponent maps \(e\mapsto e/2\) and \(e\mapsto 3e/2\)
+- **Decision:** PROMOTE the finite saturation-budget theorem. Do not register an attack. Do not claim termination
+
+```text
+What was learned
+- Exact E on a^{2^r} is a^{2^{r-1}}; exact O is a^{3·2^{r-1}} = (a^3)^{2^{r-1}}
+- Both transitions drop one factor of 2 from the exponent; the image stays square iff r ≥ 2 (or the remaining base is square)
+- Envelope equality of length k forces HasPowTwoDepth(n, k), hence n ≥ 2^{2^k} for n ≥ 2
+- Exact steps preserve parity, so mixed words cannot saturate; all-even equality is the contracting case and is tight at 2^{2^k}
+- The simple 2-adic depth invariant was not falsified; no PowerHeight datatype was required
+
+Strongest theorem
+- If a realized finite word of length k attains the floor-power envelope with equality, then the start is a 2^k-th power
+
+Strongest refutation
+- none for the budget; mixed-word strictness remains false at O, n=9
+
+Reusable machinery
+- FloorPower HasPowTwoDepth / hasPowTwoDepth_even_exact / hasPowTwoDepth_odd_exact / power_bound_eq_implies_pow_two_depth
+- research.juggler_sequence.saturation_budget square-depth probe
+
+Prior-art status
+- local perfect-power budget lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Equality saturation is a finite 2-adic resource. Each exact branch spends one unit, so a k-step equality word cannot start below a 2^k-th power. Stop rather than classify equality words or add PowerHeight.
+
+Best next question
+- Which words can appear as traces of the even exponent maps e ↦ e/2 and e ↦ 3e/2, once every pre-branch exponent is required to stay even?
+```
+
 

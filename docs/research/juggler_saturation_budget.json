@@ -1,0 +1,4138 @@
+{
+  "experiment": "juggler_saturation_budget",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "n_max": 10000,
+    "k_max": 8,
+    "domain": {
+      "n_min": 2,
+      "n_max": 10000,
+      "k_max": 8,
+      "saturation_count": 99,
+      "counterexamples": [],
+      "counterexample_count": 0,
+      "contracting_equalities": [
+        {
+          "start": 4,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 16,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 36,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            36,
+            6
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 64,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            64,
+            8
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 100,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            100,
+            10
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 144,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            144,
+            12
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 196,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            196,
+            14
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 256,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            256,
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 324,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            324,
+            18
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 400,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            400,
+            20
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 484,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            484,
+            22
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 576,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            576,
+            24
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 676,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            676,
+            26
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 784,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            784,
+            28
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 900,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            900,
+            30
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 1024,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            1024,
+            32
+          ],
+          "contracts": true,
+          "budget_ok": true
+        }
+      ],
+      "contracting_count": 50,
+      "mixed_count": 0,
+      "max_saturation_length": 3,
+      "samples": [
+        {
+          "start": 4,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 9,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            9,
+            27
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 16,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 25,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            25,
+            125
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 36,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            36,
+            6
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 49,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            49,
+            343
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 64,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            64,
+            8
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 81,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            81,
+            729,
+            19683
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 100,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            100,
+            10
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 121,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            121,
+            1331
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 144,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            144,
+            12
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 169,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            169,
+            2197
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 196,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            196,
+            14
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 225,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            225,
+            3375
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 256,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            256,
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 289,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            289,
+            4913
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 324,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            324,
+            18
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 361,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            361,
+            6859
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 400,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            400,
+            20
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 441,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            441,
+            9261
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 484,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            484,
+            22
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 529,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            529,
+            12167
+          ],
+          "contracts": false,
+          "budget_ok": true
+        },
+        {
+          "start": 576,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            576,
+            24
+          ],
+          "contracts": true,
+          "budget_ok": true
+        },
+        {
+          "start": 625,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            625,
+            15625,
+            1953125
+          ],
+          "contracts": false,
+          "budget_ok": true
+        }
+      ]
+    },
+    "words": {
+      "k_max": 6,
+      "records": [
+        {
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "start": 4,
+          "square_depth": 1,
+          "budget_ok": true,
+          "contracts": true
+        },
+        {
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "start": 9,
+          "square_depth": 1,
+          "budget_ok": true,
+          "contracts": false
+        },
+        {
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "start": 16,
+          "square_depth": 2,
+          "budget_ok": true,
+          "contracts": true
+        },
+        {
+          "word": "OE",
+          "length": 2,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EO",
+          "length": 2,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "start": 81,
+          "square_depth": 2,
+          "budget_ok": true,
+          "contracts": false
+        },
+        {
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "start": 256,
+          "square_depth": 3,
+          "budget_ok": true,
+          "contracts": true
+        },
+        {
+          "word": "OEE",
+          "length": 3,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOE",
+          "length": 3,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOE",
+          "length": 3,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEO",
+          "length": 3,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEO",
+          "length": 3,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOO",
+          "length": 3,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "start": 6561,
+          "square_depth": 3,
+          "budget_ok": true,
+          "contracts": false
+        },
+        {
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEE",
+          "length": 4,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEE",
+          "length": 4,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEE",
+          "length": 4,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOE",
+          "length": 4,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOE",
+          "length": 4,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOE",
+          "length": 4,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOE",
+          "length": 4,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEO",
+          "length": 4,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEO",
+          "length": 4,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEO",
+          "length": 4,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEO",
+          "length": 4,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOO",
+          "length": 4,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOO",
+          "length": 4,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOO",
+          "length": 4,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEEE",
+          "length": 5,
+          "odd_count": 0,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEEE",
+          "length": 5,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEEE",
+          "length": 5,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEEE",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOEE",
+          "length": 5,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOEE",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOEE",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOEE",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEOE",
+          "length": 5,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEOE",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEOE",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEOE",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOOE",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOOE",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOOE",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOOE",
+          "length": 5,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEEO",
+          "length": 5,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEEO",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEEO",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEEO",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOEO",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOEO",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOEO",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOEO",
+          "length": 5,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEOO",
+          "length": 5,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEOO",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEOO",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEOO",
+          "length": 5,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOOO",
+          "length": 5,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOOO",
+          "length": 5,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOOO",
+          "length": 5,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOOO",
+          "length": 5,
+          "odd_count": 5,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEEEE",
+          "length": 6,
+          "odd_count": 0,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEEEE",
+          "length": 6,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEEEE",
+          "length": 6,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEEEE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOEEE",
+          "length": 6,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOEEE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOEEE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOEEE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEOEE",
+          "length": 6,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEOEE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEOEE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEOEE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOOEE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOOEE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOOEE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOOEE",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEEOE",
+          "length": 6,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEEOE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEEOE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEEOE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOEOE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOEOE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOEOE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOEOE",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEOOE",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEOOE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEOOE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEOOE",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOOOE",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOOOE",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOOOE",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOOOE",
+          "length": 6,
+          "odd_count": 5,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEEEO",
+          "length": 6,
+          "odd_count": 1,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEEEO",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEEEO",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEEEO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOEEO",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOEEO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOEEO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOEEO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEOEO",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEOEO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEOEO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEOEO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOOEO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOOEO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOOEO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOOEO",
+          "length": 6,
+          "odd_count": 5,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEEOO",
+          "length": 6,
+          "odd_count": 2,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEEOO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEEOO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEEOO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOEOO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOEOO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOEOO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOEOO",
+          "length": 6,
+          "odd_count": 5,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEEOOO",
+          "length": 6,
+          "odd_count": 3,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": true,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEEOOO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOEOOO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOEOOO",
+          "length": 6,
+          "odd_count": 5,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EEOOOO",
+          "length": 6,
+          "odd_count": 4,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OEOOOO",
+          "length": 6,
+          "odd_count": 5,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "EOOOOO",
+          "length": 6,
+          "odd_count": 5,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        },
+        {
+          "word": "OOOOOO",
+          "length": 6,
+          "odd_count": 6,
+          "start": null,
+          "square_depth": null,
+          "budget_ok": true,
+          "contracts": false,
+          "unrealized_in_bound": true
+        }
+      ],
+      "realized": 6,
+      "counterexample_count": 0,
+      "mixed_realized": 0
+    },
+    "towers": {
+      "records": [
+        {
+          "start": 4,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 2,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 16,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 2,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 256,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            256,
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 2,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 65536,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            65536,
+            256,
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 2,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 9,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            9,
+            27
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 3,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 81,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            81,
+            729,
+            19683
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 3,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 6561,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            6561,
+            531441,
+            387420489,
+            7625597484987
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 3,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 43046721,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            43046721,
+            282429536481,
+            150094635296999121,
+            58149737003040059690390169,
+            443426488243037769948249630619149892803
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 3,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 16,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 4,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 256,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            256,
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 4,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 65536,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            65536,
+            256,
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 4,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 4294967296,
+          "word": "EEEEE",
+          "length": 5,
+          "odd_count": 0,
+          "square_depth": 5,
+          "infinite_depth": false,
+          "trajectory": [
+            4294967296,
+            65536,
+            256,
+            16,
+            4,
+            2
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 4,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 25,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            25,
+            125
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 5,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 625,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            625,
+            15625,
+            1953125
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 5,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 390625,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            390625,
+            244140625,
+            3814697265625,
+            7450580596923828125
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 5,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 152587890625,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            152587890625,
+            59604644775390625,
+            14551915228366851806640625,
+            55511151231257827021181583404541015625,
+            413590306276513837435704346034981426782906055450439453125
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 5,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 36,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            36,
+            6
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 6,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 1296,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            1296,
+            36,
+            6
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 6,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 1679616,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            1679616,
+            1296,
+            36,
+            6
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 6,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 2821109907456,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            2821109907456,
+            1679616,
+            1296,
+            36,
+            6
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 6,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 49,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            49,
+            343
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 7,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 2401,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            2401,
+            117649,
+            40353607
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 7,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 5764801,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            5764801,
+            13841287201,
+            1628413597910449,
+            65712362363534280139543
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 7,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 33232930569601,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            33232930569601,
+            191581231380566414401,
+            2651730845859653471779023381601,
+            4318114567396436564035293097707728087552248849,
+            283753509180010707824461062763116716606126555757084586223347181136007
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 7,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 64,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            64,
+            8
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 8,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 4096,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            4096,
+            64,
+            8
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 8,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 16777216,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            16777216,
+            4096,
+            64,
+            8
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 8,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 281474976710656,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            281474976710656,
+            16777216,
+            4096,
+            64,
+            8
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 8,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 81,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            81,
+            729,
+            19683
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 9,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 6561,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            6561,
+            531441,
+            387420489,
+            7625597484987
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 9,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 43046721,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            43046721,
+            282429536481,
+            150094635296999121,
+            58149737003040059690390169,
+            443426488243037769948249630619149892803
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 9,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 1853020188851841,
+          "word": "OOOOO",
+          "length": 5,
+          "odd_count": 5,
+          "square_depth": 5,
+          "infinite_depth": false,
+          "trajectory": [
+            1853020188851841,
+            79766443076872509863361,
+            22528399544939174411840147874772641,
+            3381391913522726342930221472392241170198527451848561,
+            196627050475552913618075908526912116283103450944214766927315415537966391196809,
+            87189642485960958202911070585860771696964072404731750085525219437990967093723439943475549906831683116791055225665627
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 9,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 100,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            100,
+            10
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 10,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 10000,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            10000,
+            100,
+            10
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 10,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 100000000,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            100000000,
+            10000,
+            100,
+            10
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 10,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 10000000000000000,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            10000000000000000,
+            100000000,
+            10000,
+            100,
+            10
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 10,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 121,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            121,
+            1331
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 11,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 14641,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            14641,
+            1771561,
+            2357947691
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 11,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 214358881,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            214358881,
+            3138428376721,
+            5559917313492231481,
+            13109994191499930367061460371
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 11,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 45949729863572161,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            45949729863572161,
+            9849732675807611094711841,
+            30912680532870672635673352936887453361,
+            171871947701161912897410416779483616222663749691203457641,
+            2253240236044012487937308538033349567966729852481170503814810577345406584190098644811
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 11,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 144,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            144,
+            12
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 12,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 20736,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            20736,
+            144,
+            12
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 12,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 429981696,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            429981696,
+            20736,
+            144,
+            12
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 12,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 184884258895036416,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            184884258895036416,
+            429981696,
+            20736,
+            144,
+            12
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 12,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 169,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            169,
+            2197
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 13,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 28561,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            28561,
+            4826809,
+            10604499373
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 13,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 815730721,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            815730721,
+            23298085122481,
+            112455406951957393129,
+            1192533292512492016559195008117
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 13,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 665416609183179841,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            665416609183179841,
+            542800770374370512771595361,
+            12646218552730347184269489080961456410641,
+            1422135653750684847524758738836375672734734444846971695885689,
+            1695944113566709517484636187661516861140855543234405659039410058251625487462691115859137613
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 13,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 196,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            196,
+            14
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 14,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 38416,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            38416,
+            196,
+            14
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 14,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 1475789056,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            1475789056,
+            38416,
+            196,
+            14
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 14,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 2177953337809371136,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            2177953337809371136,
+            1475789056,
+            38416,
+            196,
+            14
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 14,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 225,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            225,
+            3375
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 15,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 50625,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            50625,
+            11390625,
+            38443359375
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 15,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 2562890625,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            2562890625,
+            129746337890625,
+            1477891880035400390625,
+            56815128661595284938812255859375
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 15,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 6568408355712890625,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            6568408355712890625,
+            16834112196028232574462890625,
+            2184164409074570299708284437656402587890625,
+            3227958844833626033698502022506460207296186126768589019775390625,
+            183396897083556953527174779270996122261269327966001579065247195643451050273142755031585693359375
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 15,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 256,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            256,
+            16,
+            4
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 16,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 65536,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            65536,
+            256,
+            16,
+            4
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 16,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 4294967296,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 5,
+          "infinite_depth": false,
+          "trajectory": [
+            4294967296,
+            65536,
+            256,
+            16,
+            4
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 16,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 18446744073709551616,
+          "word": "EEEEE",
+          "length": 5,
+          "odd_count": 0,
+          "square_depth": 6,
+          "infinite_depth": false,
+          "trajectory": [
+            18446744073709551616,
+            4294967296,
+            65536,
+            256,
+            16,
+            4
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 16,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 289,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            289,
+            4913
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 17,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 83521,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            83521,
+            24137569,
+            118587876497
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 17,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 6975757441,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            6975757441,
+            582622237229761,
+            14063084452067724991009,
+            1667711322168688287513535727415473
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 17,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 48661191875666868481,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            48661191875666868481,
+            339448671314611904643504117121,
+            197770344305988984840145602058543169130838081,
+            2781261054089634417978685260068829533776361098661640987380359813729,
+            4638340549812103886046405455860613539726667862420609462303646857662236460371202960637786828872428817
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 17,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 324,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            324,
+            18
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 18,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 104976,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            104976,
+            324,
+            18
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 18,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 11019960576,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            11019960576,
+            104976,
+            324,
+            18
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 18,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 121439531096594251776,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            121439531096594251776,
+            11019960576,
+            104976,
+            324,
+            18
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 18,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 361,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            361,
+            6859
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 19,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 130321,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            130321,
+            47045881,
+            322687697779
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 19,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 16983563041,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            16983563041,
+            2213314919066161,
+            104127350297911241532841,
+            33600614943460448322716069311260139
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 19,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 288441413567621167681,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            288441413567621167681,
+            4898762930960846817716295277921,
+            10842505080063916320800450434338728415281531281,
+            1129001324578697586834677702350194330797437762674602085830056130299321,
+            37935138777825626081921793537883175111660882975396868589425211875005368072659738180509867983917766065619
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 19,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 400,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            400,
+            20
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 20,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 160000,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            160000,
+            400,
+            20
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 20,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 25600000000,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            25600000000,
+            160000,
+            400,
+            20
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 20,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 655360000000000000000,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            655360000000000000000,
+            25600000000,
+            160000,
+            400,
+            20
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 20,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 441,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            441,
+            9261
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 21,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 194481,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            194481,
+            85766121,
+            794280046581
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 21,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 37822859361,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            37822859361,
+            7355827511386641,
+            630880792396715529789561,
+            501096025171921401632658604207540941
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 21,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 1430568690241985328321,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            1430568690241985328321,
+            54108198377272584130510593262881,
+            398010574215107679422058885600836061208944572721,
+            251097226443098886970664441840231989700105826160990622054885970191165481,
+            125823822102330728059094871646396993781924854087897873550413500214540284704192612790133635243620957813457621
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 21,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 484,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            484,
+            22
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 22,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 234256,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            234256,
+            484,
+            22
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 22,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 54875873536,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            54875873536,
+            234256,
+            484,
+            22
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 22,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 3011361496339065143296,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            3011361496339065143296,
+            54875873536,
+            234256,
+            484,
+            22
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 22,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 529,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            529,
+            12167
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 23,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 279841,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            279841,
+            148035889,
+            1801152661463
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 23,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 78310985281,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            78310985281,
+            21914624432020321,
+            3244150909895248285300369,
+            5843211045545439551605946764725979847
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 23,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 6132610415680998648961,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            6132610415680998648961,
+            480250763996501976790165756943041,
+            10524515126174167358877236351104092889324551536161,
+            34143115322784228849944935551113819944806873883247339368564776954250143409,
+            199505428583424551679895455175383779355358100716985185998909941221796774964943927385447953187055123587793878423
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 23,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 576,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            576,
+            24
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 24,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 331776,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            331776,
+            576,
+            24
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 24,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 110075314176,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            110075314176,
+            331776,
+            576,
+            24
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 24,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 12116574790945106558976,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            12116574790945106558976,
+            110075314176,
+            331776,
+            576,
+            24
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 24,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 625,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            625,
+            15625,
+            1953125
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 25,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 390625,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            390625,
+            244140625,
+            3814697265625,
+            7450580596923828125
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 25,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 152587890625,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            152587890625,
+            59604644775390625,
+            14551915228366851806640625,
+            55511151231257827021181583404541015625,
+            413590306276513837435704346034981426782906055450439453125
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 25,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 23283064365386962890625,
+          "word": "OOOOO",
+          "length": 5,
+          "odd_count": 5,
+          "square_depth": 5,
+          "infinite_depth": false,
+          "trajectory": [
+            23283064365386962890625,
+            3552713678800500929355621337890625,
+            211758236813575084767080625169910490512847900390625,
+            3081487911019577364889564708135883709660962637144621112383902072906494140625,
+            171056941445900521352994333897694840244172600326723116669563999498265513023176342954911888227798044681549072265625,
+            70747492803333690371164994460060873286582274985462017106114178827621104051506602458902589468444985151984003432006858044186583850572447307314405406941659748554229736328125
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 25,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 676,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            676,
+            26
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 26,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 456976,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            456976,
+            676,
+            26
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 26,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 208827064576,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            208827064576,
+            456976,
+            676,
+            26
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 26,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 43608742899428874059776,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            43608742899428874059776,
+            208827064576,
+            456976,
+            676,
+            26
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 26,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 729,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            729,
+            19683
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 27,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 531441,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            531441,
+            387420489,
+            7625597484987
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 27,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 282429536481,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            282429536481,
+            150094635296999121,
+            58149737003040059690390169,
+            443426488243037769948249630619149892803
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 27,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 79766443076872509863361,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            79766443076872509863361,
+            22528399544939174411840147874772641,
+            3381391913522726342930221472392241170198527451848561,
+            196627050475552913618075908526912116283103450944214766927315415537966391196809,
+            87189642485960958202911070585860771696964072404731750085525219437990967093723439943475549906831683116791055225665627
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 27,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 784,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            784,
+            28
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 28,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 614656,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            614656,
+            784,
+            28
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 28,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 377801998336,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            377801998336,
+            614656,
+            784,
+            28
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 28,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 142734349946674946768896,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            142734349946674946768896,
+            377801998336,
+            614656,
+            784,
+            28
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 28,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 841,
+          "word": "O",
+          "length": 1,
+          "odd_count": 1,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            841,
+            24389
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 29,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 707281,
+          "word": "OO",
+          "length": 2,
+          "odd_count": 2,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            707281,
+            594823321,
+            14507145975869
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 29,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 500246412961,
+          "word": "OOO",
+          "length": 3,
+          "odd_count": 3,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            500246412961,
+            353814783205469041,
+            210457284365172120330305161,
+            3053134545970524535745336759489912159909
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 29,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 250246473680347348787521,
+          "word": "OOOO",
+          "length": 4,
+          "odd_count": 4,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            250246473680347348787521,
+            125184900814733057351483732809459681,
+            44292268542362921407825091617016319887724139383235921,
+            9321630555798640999650267840597716238267698470229978898792541514288701586888281,
+            28460192274683252067641587184070060152533008953728086009094435531484770427909293744039496370928530635848872578990126429
+          ],
+          "contracts": false,
+          "budget_ok": true,
+          "tower_base": 29,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 900,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            900,
+            30
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 30,
+          "tower_r": 1,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 810000,
+          "word": "EE",
+          "length": 2,
+          "odd_count": 0,
+          "square_depth": 2,
+          "infinite_depth": false,
+          "trajectory": [
+            810000,
+            900,
+            30
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 30,
+          "tower_r": 2,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 656100000000,
+          "word": "EEE",
+          "length": 3,
+          "odd_count": 0,
+          "square_depth": 3,
+          "infinite_depth": false,
+          "trajectory": [
+            656100000000,
+            810000,
+            900,
+            30
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 30,
+          "tower_r": 3,
+          "has_pow_two_depth_r": true
+        },
+        {
+          "start": 430467210000000000000000,
+          "word": "EEEE",
+          "length": 4,
+          "odd_count": 0,
+          "square_depth": 4,
+          "infinite_depth": false,
+          "trajectory": [
+            430467210000000000000000,
+            656100000000,
+            810000,
+            900,
+            30
+          ],
+          "contracts": true,
+          "budget_ok": true,
+          "tower_base": 30,
+          "tower_r": 4,
+          "has_pow_two_depth_r": true
+        }
+      ],
+      "count": 116,
+      "counterexample_count": 0,
+      "odd_count": 60,
+      "odd_counterexample_count": 0
+    },
+    "examples": {
+      "odd_square_nine": {
+        "start": 9,
+        "word": "O",
+        "length": 1,
+        "odd_count": 1,
+        "square_depth": 1,
+        "infinite_depth": false,
+        "trajectory": [
+          9,
+          27
+        ],
+        "contracts": false,
+        "budget_ok": true,
+        "independent_global_eq": true
+      },
+      "odd_fourth_eighty_one": {
+        "start": 81,
+        "word": "OO",
+        "length": 2,
+        "odd_count": 2,
+        "square_depth": 2,
+        "infinite_depth": false,
+        "trajectory": [
+          81,
+          729,
+          19683
+        ],
+        "contracts": false,
+        "budget_ok": true,
+        "independent_global_eq": true
+      },
+      "even_tower_sixteen": {
+        "start": 16,
+        "word": "EE",
+        "length": 2,
+        "odd_count": 0,
+        "square_depth": 2,
+        "infinite_depth": false,
+        "trajectory": [
+          16,
+          4,
+          2
+        ],
+        "contracts": true,
+        "budget_ok": true,
+        "independent_global_eq": true
+      },
+      "even_tower_two_fifty_six": {
+        "start": 256,
+        "word": "EEE",
+        "length": 3,
+        "odd_count": 0,
+        "square_depth": 3,
+        "infinite_depth": false,
+        "trajectory": [
+          256,
+          16,
+          4,
+          2
+        ],
+        "contracts": true,
+        "budget_ok": true
+      },
+      "depth_one_not_square_image": {
+        "start": 36,
+        "square_depth": 1,
+        "prefix": {
+          "start": 36,
+          "word": "E",
+          "length": 1,
+          "odd_count": 0,
+          "square_depth": 1,
+          "infinite_depth": false,
+          "trajectory": [
+            36,
+            6
+          ],
+          "contracts": true,
+          "budget_ok": true
+        }
+      },
+      "word_of_nine": "O",
+      "word_of_sixteen": "EE"
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "floorPower_of_pow_two_depth_even": true,
+    "floorPower_of_pow_two_depth_odd": true,
+    "hasPowTwoDepth_even_exact": true,
+    "hasPowTwoDepth_odd_exact": true,
+    "hasPowTwoDepth_ge_two_image_square": true,
+    "hasPowTwoDepth_of_cube": true,
+    "localsTight_implies_power_bound_eq": true,
+    "power_bound_eq_implies_pow_two_depth": true,
+    "power_bound_eq_contracts_pow_two_lb": true,
+    "HasPowTwoDepth_def": true,
+    "PowerHeight_absent": true,
+    "mixed_word_power_lt_absent": true
+  },
+  "decision": {
+    "classification": "SATURATION_BUDGET_GREEN",
+    "depth_status": "POWER_TWO_DEPTH_GREEN",
+    "reason": "Each exact branch consumes one unit of 2-adic perfect-power depth, so a realized equality word of length k forces the start to be a 2^k-th power"
+  },
+  "search_method": "local tightness and repeated isqrt depth; powers_equal only as a tiny sanity check; no cmp_pow on n^{3^o}"
+}

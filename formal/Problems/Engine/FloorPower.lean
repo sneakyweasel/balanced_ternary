@@ -890,4 +890,276 @@ theorem floorPower_odd_sq_image_odd {s : ℕ} (hodd : s % 2 = 1) :
     simp [Nat.pow_mod, hodd]
   exact this
 
+/-!
+2-adic perfect-power depth of equality-saturating states.
+Not a reusable height abstraction and not a termination theorem.
+`HasPowTwoDepth n r` means `n` is a `2^r`-th power.
+-/
+
+def HasPowTwoDepth (n r : ℕ) : Prop := ∃ a, n = a ^ (2 ^ r)
+
+theorem hasPowTwoDepth_zero (n : ℕ) : HasPowTwoDepth n 0 :=
+  ⟨n, by simp⟩
+
+theorem two_pow_pred {r : ℕ} (hr : 1 ≤ r) : 2 ^ r = 2 * 2 ^ (r - 1) := by
+  cases r with
+  | zero => exact (Nat.not_succ_le_zero 0 hr).elim
+  | succ r => rw [Nat.add_sub_cancel, Nat.pow_succ']
+
+theorem pow_two_succ_sq (a r : ℕ) :
+    a ^ (2 ^ (r + 1)) = (a ^ (2 ^ r)) ^ 2 := by
+  rw [pow_succ (2 : ℕ), Nat.pow_mul]
+
+theorem pow_two_pred_sq {a r : ℕ} (hr : 1 ≤ r) :
+    a ^ (2 ^ r) = (a ^ (2 ^ (r - 1))) ^ 2 := by
+  rw [two_pow_pred hr, mul_comm, Nat.pow_mul]
+
+/-- Exact even branch on a `2^r`-th power, `r ≥ 1`. -/
+theorem floorPower_of_pow_two_depth_even {a r : ℕ} (hr : 1 ≤ r)
+    (heven : (a ^ (2 ^ r)) % 2 = 0) :
+    floorPower (a ^ (2 ^ r)) = a ^ (2 ^ (r - 1)) := by
+  have hrep := pow_two_pred_sq (a := a) hr
+  rw [hrep] at heven ⊢
+  exact floorPower_of_even_sq heven
+
+theorem pow_mod_two_of_odd {a e : ℕ} (hodd : a % 2 = 1) :
+    (a ^ e) % 2 = 1 := by
+  simp [Nat.pow_mod, hodd]
+
+theorem odd_of_pow_odd {a e : ℕ} (he : 1 ≤ e) (h : (a ^ e) % 2 = 1) :
+    a % 2 = 1 := by
+  by_contra hne
+  have heven : a % 2 = 0 := by omega
+  have : Even (a ^ e) := by
+    rw [Nat.even_pow]
+    exact ⟨Nat.even_iff.2 heven, Nat.pos_iff_ne_zero.mp he⟩
+  have : (a ^ e) % 2 = 0 := Nat.even_iff.1 this
+  omega
+
+/-- Exact odd branch on a `2^r`-th power, `r ≥ 1`. -/
+theorem floorPower_of_pow_two_depth_odd {a r : ℕ} (hr : 1 ≤ r)
+    (hodd : a % 2 = 1) :
+    floorPower (a ^ (2 ^ r)) = a ^ (3 * 2 ^ (r - 1)) := by
+  have hs : (a ^ (2 ^ (r - 1))) % 2 = 1 := pow_mod_two_of_odd hodd
+  have hrep := pow_two_pred_sq (a := a) hr
+  rw [hrep]
+  have himg : floorPower ((a ^ (2 ^ (r - 1))) ^ 2) = (a ^ (2 ^ (r - 1))) ^ 3 :=
+    floorPower_of_odd_sq hs
+  rw [himg, ← pow_mul, mul_comm]
+
+theorem hasPowTwoDepth_sq {s r : ℕ} (h : HasPowTwoDepth s r) :
+    HasPowTwoDepth (s ^ 2) (r + 1) := by
+  obtain ⟨a, ha⟩ := h
+  refine ⟨a, ?_⟩
+  rw [ha, pow_two_succ_sq]
+
+theorem hasPowTwoDepth_one_iff (n : ℕ) :
+    HasPowTwoDepth n 1 ↔ n.sqrt ^ 2 = n := by
+  constructor
+  · rintro ⟨a, ha⟩
+    have : n = a ^ 2 := by simpa using ha
+    simp [this, Nat.sqrt_eq']
+  · intro h
+    exact ⟨n.sqrt, h.symm⟩
+
+/-- A cube that is a `2^m`-th power is the cube of a `2^m`-th power's base. -/
+theorem hasPowTwoDepth_of_cube {s m : ℕ}
+    (h : HasPowTwoDepth (s ^ 3) m) : HasPowTwoDepth s m := by
+  induction m generalizing s with
+  | zero => exact ⟨s, by simp⟩
+  | succ m ih =>
+      obtain ⟨a, ha⟩ := h
+      have hsq : IsSquare (s ^ 3) := by
+        refine ⟨a ^ (2 ^ m), ?_⟩
+        have : a ^ (2 ^ (m + 1)) = (a ^ (2 ^ m)) ^ 2 := pow_two_succ_sq a m
+        rw [ha, this, pow_two]
+      have hs : IsSquare s := (isSquare_pow_three_iff (n := s)).mp hsq
+      obtain ⟨t, ht⟩ := (isSquare_iff_exists_sq s).1 hs
+      have ht3 : t ^ 3 = a ^ (2 ^ m) := by
+        have hpow : (t ^ 3) ^ 2 = (a ^ (2 ^ m)) ^ 2 := by
+          calc
+            (t ^ 3) ^ 2 = t ^ 6 := by ring
+            _ = (t ^ 2) ^ 3 := by ring
+            _ = s ^ 3 := by rw [ht]
+            _ = a ^ (2 ^ (m + 1)) := ha
+            _ = (a ^ (2 ^ m)) ^ 2 := pow_two_succ_sq a m
+        exact Nat.pow_left_injective (by decide : (2 : ℕ) ≠ 0) hpow
+      obtain ⟨b, hb⟩ := ih ⟨a, ht3⟩
+      refine ⟨b, ?_⟩
+      rw [ht, hb, pow_two_succ_sq]
+
+/-- Even exact step drops 2-adic depth by one. -/
+theorem hasPowTwoDepth_even_exact {n r : ℕ} (hr : 1 ≤ r)
+    (h : HasPowTwoDepth n r) (heven : n % 2 = 0) :
+    HasPowTwoDepth (floorPower n) (r - 1) := by
+  obtain ⟨a, ha⟩ := h
+  rw [ha, floorPower_of_pow_two_depth_even hr (by simpa [ha] using heven)]
+  exact ⟨a, rfl⟩
+
+/-- Odd exact step drops 2-adic depth by one (`a^{3·2^{r-1}} = (a^3)^{2^{r-1}}`). -/
+theorem hasPowTwoDepth_odd_exact {n r : ℕ} (hr : 1 ≤ r)
+    (h : HasPowTwoDepth n r) (hodd : n % 2 = 1) :
+    HasPowTwoDepth (floorPower n) (r - 1) := by
+  obtain ⟨a, ha⟩ := h
+  have haodd : a % 2 = 1 :=
+    odd_of_pow_odd (Nat.one_le_pow _ _ (by decide : 0 < 2)) (by simpa [ha] using hodd)
+  rw [ha, floorPower_of_pow_two_depth_odd hr haodd]
+  refine ⟨a ^ 3, ?_⟩
+  rw [← pow_mul, mul_comm]
+
+/-- Depth at least 2 forces the exact image to remain a square. -/
+theorem hasPowTwoDepth_ge_two_image_square {n r : ℕ} (hr : 2 ≤ r)
+    (h : HasPowTwoDepth n r) :
+    (floorPower n).sqrt ^ 2 = floorPower n := by
+  have hr1 : 1 ≤ r := le_trans (by decide : 1 ≤ 2) hr
+  have himg : HasPowTwoDepth (floorPower n) (r - 1) := by
+    rcases Nat.mod_two_eq_zero_or_one n with heven | hodd
+    · exact hasPowTwoDepth_even_exact hr1 h heven
+    · exact hasPowTwoDepth_odd_exact hr1 h hodd
+  have : 1 ≤ r - 1 := by omega
+  have : HasPowTwoDepth (floorPower n) 1 := by
+    obtain ⟨a, ha⟩ := himg
+    refine ⟨a ^ (2 ^ (r - 1 - 1)), ?_⟩
+    have hpow : 2 ^ (r - 1) = 2 * 2 ^ (r - 1 - 1) := two_pow_pred this
+    have : floorPower n = (a ^ (2 ^ (r - 1 - 1))) ^ 2 := by
+      rw [ha, hpow, mul_comm, Nat.pow_mul]
+    simpa [HasPowTwoDepth, pow_one] using this
+  exact (hasPowTwoDepth_one_iff _).1 this
+
+/-- Depth exactly one: the exact image need not be a square. -/
+theorem hasPowTwoDepth_one_image_sq_iff {a : ℕ}
+    (heven : (a ^ 2) % 2 = 0) :
+    (floorPower (a ^ 2)).sqrt ^ 2 = floorPower (a ^ 2) ↔ a.sqrt ^ 2 = a := by
+  rw [floorPower_of_even_sq heven]
+
+theorem hasPowTwoDepth_one_odd_image_sq_iff {a : ℕ} (hodd : a % 2 = 1) :
+    (floorPower (a ^ 2)).sqrt ^ 2 = floorPower (a ^ 2) ↔ a.sqrt ^ 2 = a := by
+  rw [floorPower_of_odd_sq hodd]
+  exact cube_sqrt_sq_iff a
+
+theorem localsTight_implies_power_bound_eq {n : ℕ} :
+    ∀ w, follows n w → localsTight n w →
+      PowerBoundEq (floorPower^[w.length] n) n w.length (oddCount w) := by
+  intro w
+  induction w generalizing n with
+  | nil =>
+      intro _ _
+      simp [PowerBoundEq]
+  | cons b rest ih =>
+      intro hw hloc
+      cases b with
+      | even =>
+          have heven : n % 2 = 0 := hw.1
+          have hrest : follows (floorPower n) rest := hw.2
+          have htail := ih hrest hloc.2
+          have hlocal : floorPower n ^ 2 = n := by
+            simpa [localTight] using hloc.1
+          have hlen : (Branch.even :: rest).length = rest.length + 1 :=
+            List.length_cons
+          have ho : oddCount (Branch.even :: rest) = oddCount rest := rfl
+          unfold PowerBoundEq at htail ⊢
+          have h2 : 2 ^ (rest.length + 1) = 2 * 2 ^ rest.length := by
+            rw [pow_succ, mul_comm]
+          rw [hlen, ho, iterate_cons, h2]
+          calc
+            (floorPower^[rest.length] (floorPower n)) ^ (2 * 2 ^ rest.length)
+              = ((floorPower^[rest.length] (floorPower n)) ^ (2 ^ rest.length)) ^ 2 := by
+                rw [mul_comm, Nat.pow_mul]
+            _ = (floorPower n ^ (3 ^ oddCount rest)) ^ 2 := by rw [htail]
+            _ = (floorPower n ^ 2) ^ (3 ^ oddCount rest) := by
+              rw [← Nat.pow_mul, mul_comm, Nat.pow_mul]
+            _ = n ^ (3 ^ oddCount rest) := by rw [hlocal]
+      | odd =>
+          have hodd : n % 2 = 1 := hw.1
+          have hrest : follows (floorPower n) rest := hw.2
+          have htail := ih hrest hloc.2
+          have hlocal : floorPower n ^ 2 = n ^ 3 := by
+            simpa [localTight] using hloc.1
+          have hlen : (Branch.odd :: rest).length = rest.length + 1 :=
+            List.length_cons
+          have ho : oddCount (Branch.odd :: rest) = oddCount rest + 1 := rfl
+          unfold PowerBoundEq at htail ⊢
+          have h2 : 2 ^ (rest.length + 1) = 2 * 2 ^ rest.length := by
+            rw [pow_succ, mul_comm]
+          rw [hlen, ho, iterate_cons, h2]
+          have h3 : 3 ^ (oddCount rest + 1) = 3 * 3 ^ oddCount rest := by
+            rw [pow_succ, mul_comm]
+          rw [h3]
+          calc
+            (floorPower^[rest.length] (floorPower n)) ^ (2 * 2 ^ rest.length)
+              = ((floorPower^[rest.length] (floorPower n)) ^ (2 ^ rest.length)) ^ 2 := by
+                rw [mul_comm, Nat.pow_mul]
+            _ = (floorPower n ^ (3 ^ oddCount rest)) ^ 2 := by rw [htail]
+            _ = (floorPower n ^ 2) ^ (3 ^ oddCount rest) := by
+              rw [← Nat.pow_mul, mul_comm, Nat.pow_mul]
+            _ = (n ^ 3) ^ (3 ^ oddCount rest) := by rw [hlocal]
+            _ = n ^ (3 * 3 ^ oddCount rest) := (Nat.pow_mul n 3 _).symm
+
+/-- Envelope equality of length `k` forces the start to be a `2^k`-th power. -/
+theorem power_bound_eq_implies_pow_two_depth {n : ℕ} {w : List Branch}
+    (hw : follows n w)
+    (heq : PowerBoundEq (floorPower^[w.length] n) n w.length (oddCount w)) :
+    HasPowTwoDepth n w.length := by
+  induction w generalizing n with
+  | nil => exact hasPowTwoDepth_zero n
+  | cons b rest ih =>
+      have hfrom :=
+        power_bound_eq_from (w := b :: rest) (power_bound_empty n) hw
+          (by simpa [image_eq_iterate] using heq)
+      have hloc : localsTight n (b :: rest) := hfrom.2
+      have hsq : n.sqrt ^ 2 = n :=
+        power_bound_eq_implies_square hw heq 0 (Nat.succ_pos _)
+      set s := n.sqrt
+      have hn : n = s ^ 2 := hsq.symm
+      have hrest : follows (floorPower n) rest := by
+        cases b with
+        | even => exact hw.2
+        | odd => exact hw.2
+      have htailEq :
+          PowerBoundEq (floorPower^[rest.length] (floorPower n)) (floorPower n)
+            rest.length (oddCount rest) :=
+        localsTight_implies_power_bound_eq rest hrest hloc.2
+      have hdepth : HasPowTwoDepth (floorPower n) rest.length :=
+        ih hrest htailEq
+      have hr : 1 ≤ (b :: rest).length := Nat.succ_pos _
+      cases b with
+      | even =>
+          have heven : n % 2 = 0 := hw.1
+          have himg : floorPower n = s := by
+            have : floorPower (s ^ 2) = s := floorPower_of_even_sq (by simpa [hn] using heven)
+            simpa [hn] using this
+          have : HasPowTwoDepth s rest.length := by simpa [himg] using hdepth
+          simpa [hn, List.length_cons] using hasPowTwoDepth_sq this
+      | odd =>
+          have hodd : n % 2 = 1 := hw.1
+          have hsodd : s % 2 = 1 :=
+            odd_of_pow_odd (by decide : 1 ≤ 2) (by simpa [hn] using hodd)
+          have himg : floorPower n = s ^ 3 := by
+            have : floorPower (s ^ 2) = s ^ 3 := floorPower_of_odd_sq hsodd
+            simpa [hn] using this
+          have : HasPowTwoDepth (s ^ 3) rest.length := by simpa [himg] using hdepth
+          have hs : HasPowTwoDepth s rest.length := hasPowTwoDepth_of_cube this
+          simpa [hn, List.length_cons] using hasPowTwoDepth_sq hs
+
+theorem hasPowTwoDepth_two_le {n r : ℕ} (hn : 2 ≤ n) (h : HasPowTwoDepth n r) :
+    2 ^ (2 ^ r) ≤ n := by
+  obtain ⟨a, ha⟩ := h
+  have ha2 : 2 ≤ a := by
+    by_contra hlt
+    have : a ≤ 1 := Nat.lt_succ_iff.mp (lt_of_not_ge hlt)
+    interval_cases a
+    · have : n = 0 := by simp [ha]
+      omega
+    · have : n = 1 := by simp [ha]
+      omega
+  have : 2 ^ (2 ^ r) ≤ a ^ (2 ^ r) := Nat.pow_le_pow_left ha2 _
+  simpa [ha] using this
+
+/-- A contracting equality word of length `k` at `n ≥ 2` is at least `2^{2^k}`. -/
+theorem power_bound_eq_contracts_pow_two_lb {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hw : follows n w)
+    (heq : PowerBoundEq (floorPower^[w.length] n) n w.length (oddCount w)) :
+    2 ^ (2 ^ w.length) ≤ n :=
+  hasPowTwoDepth_two_le hn (power_bound_eq_implies_pow_two_depth hw heq)
+
 end Problems.Engine
