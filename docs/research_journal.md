@@ -4774,4 +4774,49 @@ Best next question
 - For a block O^a E, what exact lower bound on a does minimality impose before the first legal even residual?
 ```
 
+## Juggler odd-run financing
+
+- **Date:** 2026-08-27
+- **Objective:** Convert minimality plus the word envelope into an exact odd-run financing law for the first legal even residual
+- **Hypotheses:** `ODD_RUN_FINANCING_GREEN`, `ODD_RUN_MINIMUM_GREEN`, `BLOCK_FINANCING_GREEN`, or `SCALE_FINANCING_COUNTEREXAMPLE`
+- **Major results:** \(O^aE\) on a `MinimalNonTerm` orbit requires \(n^{2^{a+1}}\le x^{3^a}\) **EXACT — LEAN VERIFIED**. \(O^aE^b\) requires \(n^{2^{a+b}}\le x^{3^a}\) **EXACT — LEAN VERIFIED**. At the start, \(2^{a+1}\le 3^a\) iff \(a\ge 2\), so the first even residual cannot occur before `OOE` **EXACT — LEAN VERIFIED**. No envelope or financing failure on \(n\le 80\). Later \(a=1\) occurs (\(77\): \(1523\xrightarrow{\mathrm{OE}}243\)). Classification **ODD_RUN_FINANCING_GREEN**. Records: `docs/research/juggler_odd_run_financing.md`, `docs/problems/juggler_odd_run_financing.md`. Control layer unchanged
+- **Refuted ideas:** an absolute later odd-run lower bound \(a\ge 2\); an odd-run frequency theorem; a halt theorem; a lower-envelope theory
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** for a fixed pair \((a,b)\), can repeated \(O^aE^b\) stay \(\ge n_*\) indefinitely, or does the required scale eventually become impossible?
+- **Decision:** PROMOTE the financing law and the \(O^aE^b\) block theorem. Do not claim a later absolute bound on \(a\). Do not claim termination
+
+```text
+What was learned
+- Odd growth must finance the next allowed even collapse: n^{2^{a+1}} <= x^{3^a}
+- The same accounting for O^a E^b is n^{2^{a+b}} <= x^{3^a}
+- At the start this is 2^{a+1} <= 3^a, whose first solution is a=2, so no even residual before OOE
+- Later a=1 is possible after growth (77: 1523 --OE--> 243); the inequality stays, the absolute bound on a does not
+- A coarse xa >= x0 lower bound does not tighten the start window; no extra modulus programme
+
+Strongest theorem
+- If MinimalNonTerm n and O^a E^b occurs at a later state x, then n^{2^{a+b}} <= x^{3^a}
+
+Strongest refutation
+- every later odd run has length at least 2; 1523 finances OE above 77
+
+Reusable machinery
+- Problems.Engine.OddRunFinancing odd_run_financing_scale_barrier / odd_even_block_scale_barrier / initial_even_not_before_ooe
+- research.juggler_sequence.odd_run_financing
+
+Prior-art status
+- conditional growth-pays-for-collapse accounting, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Minimality plus the word envelope is now an exact integer-power balance between odd expansion and even collapse, including a finite start constraint.
+
+Best next question
+- For a fixed pair (a,b), can repeated O^a E^b stay >= n_* indefinitely, or does financing eventually fail?
+```
+
 

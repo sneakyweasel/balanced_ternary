@@ -133,10 +133,12 @@ budget, not a grammar of all parity words.
 
 ## Open questions
 
-How many extra odd steps are required to finance the next even
-collapse while remaining \(\ge n_*\)? In particular, can a later
-`OOE` (formally expanding) stay above \(n_*\) indefinitely in a
-repeated block, or does the even-run scale barrier still cut it off?
+Answered in [juggler_odd_run_financing.md](juggler_odd_run_financing.md):
+a realized \(O^aE\) on a minimal non-1 orbit requires
+\(n_*^{2^{a+1}}\le x^{3^a}\), and more generally
+\(O^aE^b\) requires \(n_*^{2^{a+b}}\le x^{3^a}\). At the start the
+first even residual cannot occur before `OOE`. Later odd runs may be
+shorter if the entry is already large.
 
 ## Decision
 
@@ -144,8 +146,8 @@ repeated block, or does the even-run scale barrier still cut it off?
 orbit contains many `OE` blocks. Do not claim a uniform bound on \(r\)
 independent of \(x\). Do not claim termination.
 
-Best next question: for a block \(O^aE\), what exact lower bound on
-\(a\) does minimality impose before the first legal even residual?
+Best next question: answered in
+[juggler_odd_run_financing.md](juggler_odd_run_financing.md).
 
 ## Publication assessment
 
