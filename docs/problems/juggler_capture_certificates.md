@@ -121,8 +121,10 @@ vocabulary, not a totality proof.
 
 ## Open questions
 
-What would an infinite path of `NO_CERTIFICATE` blocks have to look
-like, if a minimal non-1 value exists?
+Answered in [juggler_no_progress_paths.md](juggler_no_progress_paths.md):
+a hypothetical minimal non-1 orbit avoids every `ReachesOne` state;
+even prefixes at \(n\ge 2\) are descent; landing at \(2,4,6,8\) is
+already fatal. The remaining question lives there.
 
 ## Decision
 

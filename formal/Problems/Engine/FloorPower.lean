@@ -3508,6 +3508,12 @@ theorem floorPower_eighteen : floorPower 18 = 4 := by
 theorem floorPower_four : floorPower 4 = 2 := by
   native_decide
 
+theorem floorPower_six : floorPower 6 = 2 := by
+  native_decide
+
+theorem floorPower_eight : floorPower 8 = 2 := by
+  native_decide
+
 theorem odd_even_tower_seven :
     follows 7 wordOEEE9 ∧ image 7 wordOEEE9 = 1 ∧
       image 7 wordOEEE9 + 1 < (7 + 1) ^ 2 := by
@@ -3659,6 +3665,74 @@ theorem minimal_avoids_progress {n : ℕ} {w : List Branch}
     ¬Descent n w ∧ ¬Capture n w :=
   ⟨fun hd => hfail (descent_of_below hmin hd),
     fun hc => hfail (capture_reachesOne hc)⟩
+
+theorem two_reachesOne : ReachesOne 2 :=
+  ⟨1, by
+    change floorPower 2 = 1
+    exact floorPower_two⟩
+
+theorem four_reachesOne : ReachesOne 4 :=
+  reachesOne_of_iterate (k := 1) (by
+    change floorPower 4 = 2
+    exact floorPower_four) two_reachesOne
+
+theorem six_reachesOne : ReachesOne 6 :=
+  reachesOne_of_iterate (k := 1) (by
+    change floorPower 6 = 2
+    exact floorPower_six) two_reachesOne
+
+theorem eight_reachesOne : ReachesOne 8 :=
+  reachesOne_of_iterate (k := 1) (by
+    change floorPower 8 = 2
+    exact floorPower_eight) two_reachesOne
+
+/-- Backward closure of `ReachesOne` along a realized image. -/
+theorem reachesOne_of_image {n : ℕ} {w : List Branch}
+    (hm : ReachesOne (image n w)) : ReachesOne n :=
+  reachesOne_of_iterate (image_eq_iterate n w).symm hm
+
+theorem image_two_reachesOne {n : ℕ} {w : List Branch}
+    (h : image n w = 2) : ReachesOne n :=
+  reachesOne_of_image (by rw [h]; exact two_reachesOne)
+
+theorem image_four_reachesOne {n : ℕ} {w : List Branch}
+    (h : image n w = 4) : ReachesOne n :=
+  reachesOne_of_image (by rw [h]; exact four_reachesOne)
+
+theorem image_six_reachesOne {n : ℕ} {w : List Branch}
+    (h : image n w = 6) : ReachesOne n :=
+  reachesOne_of_image (by rw [h]; exact six_reachesOne)
+
+theorem image_eight_reachesOne {n : ℕ} {w : List Branch}
+    (h : image n w = 8) : ReachesOne n :=
+  reachesOne_of_image (by rw [h]; exact eight_reachesOne)
+
+/-- Stronger than `minimal_avoids_progress`: a non-`ReachesOne` value
+cannot visit any certified `ReachesOne` state, even one `≥ n`. -/
+theorem minimal_avoids_reachesOne_image {n : ℕ} {w : List Branch}
+    (hfail : ¬ReachesOne n) : ¬ReachesOne (image n w) :=
+  fun hm => hfail (reachesOne_of_image hm)
+
+theorem even_word_descent {n k : ℕ} (hn : 2 ≤ n) (hk : 1 ≤ k)
+    (hw : follows n (List.replicate k Branch.even)) :
+    Descent n (List.replicate k Branch.even) :=
+  ⟨hw, by
+    have himg := image_eq_iterate n (List.replicate k Branch.even)
+    rw [himg, List.length_replicate]
+    exact even_word_contracts hn hk hw⟩
+
+/-- A minimal non-`ReachesOne` value `n ≥ 3` cannot be even: a nonempty
+even prefix would be a descent. -/
+theorem minimal_odd_start {n : ℕ} (hn : 3 ≤ n)
+    (hfail : ¬ReachesOne n) (hmin : ∀ m, m < n → ReachesOne m) :
+    n % 2 = 1 := by
+  by_cases heven : n % 2 = 0
+  · have hw : follows n (List.replicate 1 Branch.even) := ⟨heven, trivial⟩
+    have hd : Descent n (List.replicate 1 Branch.even) :=
+      even_word_descent (by omega) (by decide) hw
+    exact (minimal_avoids_progress (w := List.replicate 1 Branch.even)
+      hfail hmin).1 hd |>.elim
+  · omega
 
 end Problems.Engine
 

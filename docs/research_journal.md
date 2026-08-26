@@ -4594,4 +4594,49 @@ Best next question
 - What structural constraints would an infinite NO_CERTIFICATE path have to satisfy?
 ```
 
+## Juggler no-progress path structure
+
+- **Date:** 2026-08-27
+- **Objective:** Derive necessary structure for a hypothetical infinite `NO_CERTIFICATE` Juggler prefix from existing descent/capture certificates
+- **Hypotheses:** `NO_PROGRESS_STRUCTURE_GREEN`, `COLLAPSE_WITHOUT_CAPTURE_COUNTEREXAMPLE`, or `DEFECT_RESET_COUNTEREXAMPLE`
+- **Major results:** `ReachesOne` closed backward along images **EXACT — LEAN VERIFIED**. \(2,4,6,8\) are `ReachesOne` **EXACT — LEAN VERIFIED**. A non-1 value cannot visit any `ReachesOne` image, even one \(\ge n\) **EXACT — LEAN VERIFIED**. A nonempty even prefix at \(n\ge 2\) is `Descent` **EXACT — LEAN VERIFIED**. A minimal non-1 \(n\ge 3\) is odd **EXACT — LEAN VERIFIED**. `OOOE` at \(3\) and `OOE` at \(5\) land at \(6\) (`NO_CERTIFICATE` as blocks, `ReachesOne`-implied). `OOE` at \(9\) lands at uncertified \(11\); no defect reset on \(n\le 80\). Classification **NO_PROGRESS_STRUCTURE_GREEN**. Records: `docs/research/juggler_no_progress_paths.md`, `docs/problems/juggler_no_progress_paths.md`. Control layer unchanged
+- **Refuted ideas:** treating Phase A as the full obstruction; enlarging `Capture` beyond \(\{1\}\); a new coinductive path type
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** after an uncertified collapse to \(y\ge n\), must a later residual become descent, capture, or cheap-`ReachesOne` implied?
+- **Decision:** PROMOTE the extra constraint \(C\). Keep \(S=\{1\}\). Do not claim every uncertified collapse has a bounded sequel. Do not claim termination
+
+```text
+What was learned
+- ReachesOne is closed backward: visiting any certified state, not only [1, n), is fatal
+- Landing at 2, 4, 6, or 8 is already ReachesOne; the capture basin stays {1}
+- OOE at 5 lands at 6: not Descent, not Capture, still forbidden
+- Even prefixes at n>=2 are Descent; a minimal non-1 n>=3 starts odd
+- Uncertified y>=n collapses exist (OOE at 9 to 11) and can be large (OOOOE at 37 to 9317); no defect reset on the scan
+
+Strongest theorem
+- If not ReachesOne n, then not ReachesOne (image n w); a nonempty even word at n>=2 is Descent
+
+Strongest refutation
+- the claim that every even collapse to m>1 is already Descent, Capture, or cheap ReachesOne; OOE at 9 lands at 11
+
+Reusable machinery
+- FloorPower two_reachesOne / reachesOne_of_image / minimal_avoids_reachesOne_image / even_word_descent
+- research.juggler_sequence.no_progress_paths
+
+Prior-art status
+- local obstruction refinement, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- C is strictly stronger than minimal_avoids_progress. A prefix can stay at or above n and still be fatal if its image is a certified ReachesOne state.
+
+Best next question
+- After an uncertified collapse to y>=n, must a later residual become Descent, Capture, or cheap-ReachesOne implied, with any bound depending only on y?
+```
+
 

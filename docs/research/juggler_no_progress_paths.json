@@ -1,0 +1,478 @@
+{
+  "experiment": "juggler_no_progress_paths",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "annotations": [
+      {
+        "n": 3,
+        "path": [
+          3,
+          5,
+          11,
+          36,
+          6,
+          2
+        ],
+        "word": "OOOEE",
+        "prefixes": [
+          {
+            "step": 1,
+            "word": "O",
+            "image": 5,
+            "kind": "NO_CERTIFICATE",
+            "reaches_one_implied": false
+          },
+          {
+            "step": 2,
+            "word": "OO",
+            "image": 11,
+            "kind": "NO_CERTIFICATE",
+            "reaches_one_implied": false
+          },
+          {
+            "step": 3,
+            "word": "OOO",
+            "image": 36,
+            "kind": "NO_CERTIFICATE",
+            "reaches_one_implied": false
+          },
+          {
+            "step": 4,
+            "word": "OOOE",
+            "image": 6,
+            "kind": "NO_CERTIFICATE",
+            "reaches_one_implied": true
+          },
+          {
+            "step": 5,
+            "word": "OOOEE",
+            "image": 2,
+            "kind": "DESCENT",
+            "reaches_one_implied": true
+          }
+        ],
+        "first_progress": {
+          "step": 5,
+          "word": "OOOEE",
+          "image": 2,
+          "kind": "DESCENT",
+          "reaches_one_implied": true
+        },
+        "started_odd": true,
+        "started_even": false,
+        "pattern": {
+          "starts_odd": true,
+          "odd_expansion_ge_n": true,
+          "first_progress_kind": "DESCENT",
+          "first_progress_image": 2,
+          "even_residual_lt_n_or_one_or_two": true,
+          "even_residual_cheap_reaches_one": true
+        }
+      },
+      {
+        "n": 7,
+        "path": [
+          7,
+          18,
+          4
+        ],
+        "word": "OE",
+        "prefixes": [
+          {
+            "step": 1,
+            "word": "O",
+            "image": 18,
+            "kind": "NO_CERTIFICATE",
+            "reaches_one_implied": false
+          },
+          {
+            "step": 2,
+            "word": "OE",
+            "image": 4,
+            "kind": "DESCENT",
+            "reaches_one_implied": true
+          }
+        ],
+        "first_progress": {
+          "step": 2,
+          "word": "OE",
+          "image": 4,
+          "kind": "DESCENT",
+          "reaches_one_implied": true
+        },
+        "started_odd": true,
+        "started_even": false,
+        "pattern": {
+          "starts_odd": true,
+          "odd_expansion_ge_n": true,
+          "first_progress_kind": "DESCENT",
+          "first_progress_image": 4,
+          "even_residual_lt_n_or_one_or_two": true,
+          "even_residual_cheap_reaches_one": true
+        }
+      },
+      {
+        "n": 13,
+        "path": [
+          13,
+          46,
+          6
+        ],
+        "word": "OE",
+        "prefixes": [
+          {
+            "step": 1,
+            "word": "O",
+            "image": 46,
+            "kind": "NO_CERTIFICATE",
+            "reaches_one_implied": false
+          },
+          {
+            "step": 2,
+            "word": "OE",
+            "image": 6,
+            "kind": "DESCENT",
+            "reaches_one_implied": true
+          }
+        ],
+        "first_progress": {
+          "step": 2,
+          "word": "OE",
+          "image": 6,
+          "kind": "DESCENT",
+          "reaches_one_implied": true
+        },
+        "started_odd": true,
+        "started_even": false,
+        "pattern": {
+          "starts_odd": true,
+          "odd_expansion_ge_n": true,
+          "first_progress_kind": "DESCENT",
+          "first_progress_image": 6,
+          "even_residual_lt_n_or_one_or_two": true,
+          "even_residual_cheap_reaches_one": true
+        }
+      },
+      {
+        "n": 41,
+        "path": [
+          41,
+          262,
+          16
+        ],
+        "word": "OE",
+        "prefixes": [
+          {
+            "step": 1,
+            "word": "O",
+            "image": 262,
+            "kind": "NO_CERTIFICATE",
+            "reaches_one_implied": false
+          },
+          {
+            "step": 2,
+            "word": "OE",
+            "image": 16,
+            "kind": "DESCENT",
+            "reaches_one_implied": false
+          }
+        ],
+        "first_progress": {
+          "step": 2,
+          "word": "OE",
+          "image": 16,
+          "kind": "DESCENT",
+          "reaches_one_implied": false
+        },
+        "started_odd": true,
+        "started_even": false,
+        "pattern": {
+          "starts_odd": true,
+          "odd_expansion_ge_n": true,
+          "first_progress_kind": "DESCENT",
+          "first_progress_image": 16,
+          "even_residual_lt_n_or_one_or_two": true,
+          "even_residual_cheap_reaches_one": false
+        }
+      }
+    ],
+    "census": {
+      "n_max": 80,
+      "cap": 24,
+      "even_starts": 40,
+      "even_starts_first_step_progress": 40,
+      "descent_collapses": 78,
+      "capture_collapses": 0,
+      "reaches_one_collapses": 2,
+      "extra_constraint_count": 2,
+      "uncertified_ge_n_count": 23,
+      "extra_constraint_witnesses": [
+        {
+          "x": 36,
+          "y": 6,
+          "r": 1,
+          "start_index": 3,
+          "n": 3,
+          "prefix": "OOOE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "REACHES_ONE",
+          "ratio_num": 36,
+          "ratio_den": 6,
+          "extra_constraint": true,
+          "uncertified_ge_n": false
+        },
+        {
+          "x": 36,
+          "y": 6,
+          "r": 1,
+          "start_index": 2,
+          "n": 5,
+          "prefix": "OOE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "REACHES_ONE",
+          "ratio_num": 36,
+          "ratio_den": 6,
+          "extra_constraint": true,
+          "uncertified_ge_n": false
+        }
+      ],
+      "uncertified_ge_n_witnesses": [
+        {
+          "x": 140,
+          "y": 11,
+          "r": 1,
+          "start_index": 2,
+          "n": 9,
+          "prefix": "OOE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "NO_CERTIFICATE",
+          "ratio_num": 140,
+          "ratio_den": 11,
+          "extra_constraint": false,
+          "uncertified_ge_n": true
+        },
+        {
+          "x": 52214,
+          "y": 228,
+          "r": 1,
+          "start_index": 3,
+          "n": 25,
+          "prefix": "OOOE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "NO_CERTIFICATE",
+          "ratio_num": 52214,
+          "ratio_den": 228,
+          "extra_constraint": false,
+          "uncertified_ge_n": true
+        },
+        {
+          "x": 2598,
+          "y": 50,
+          "r": 1,
+          "start_index": 2,
+          "n": 33,
+          "prefix": "OOE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "NO_CERTIFICATE",
+          "ratio_num": 2598,
+          "ratio_den": 50,
+          "extra_constraint": false,
+          "uncertified_ge_n": true
+        },
+        {
+          "x": 2978,
+          "y": 54,
+          "r": 1,
+          "start_index": 2,
+          "n": 35,
+          "prefix": "OOE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "NO_CERTIFICATE",
+          "ratio_num": 2978,
+          "ratio_den": 54,
+          "extra_constraint": false,
+          "uncertified_ge_n": true
+        },
+        {
+          "x": 86818724,
+          "y": 9317,
+          "r": 1,
+          "start_index": 4,
+          "n": 37,
+          "prefix": "OOOOE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "NO_CERTIFICATE",
+          "ratio_num": 86818724,
+          "ratio_den": 9317,
+          "extra_constraint": false,
+          "uncertified_ge_n": true
+        },
+        {
+          "x": 24906114455136,
+          "y": 4990602,
+          "r": 1,
+          "start_index": 8,
+          "n": 37,
+          "prefix": "OOOOEOOOE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "NO_CERTIFICATE",
+          "ratio_num": 24906114455136,
+          "ratio_den": 4990602,
+          "extra_constraint": false,
+          "uncertified_ge_n": true
+        },
+        {
+          "x": 24906114455136,
+          "y": 2233,
+          "r": 2,
+          "start_index": 8,
+          "n": 37,
+          "prefix": "OOOOEOOOEE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "NO_CERTIFICATE",
+          "ratio_num": 24906114455136,
+          "ratio_den": 2233,
+          "extra_constraint": false,
+          "uncertified_ge_n": true
+        },
+        {
+          "x": 34276462,
+          "y": 5854,
+          "r": 1,
+          "start_index": 12,
+          "n": 37,
+          "prefix": "OOOOEOOOEEOOE",
+          "prefix_kind": "NO_CERTIFICATE",
+          "bucket": "NO_CERTIFICATE",
+          "ratio_num": 34276462,
+          "ratio_den": 5854,
+          "extra_constraint": false,
+          "uncertified_ge_n": true
+        }
+      ],
+      "minimized_extra_constraint": {
+        "x": 36,
+        "y": 6,
+        "r": 1,
+        "start_index": 3,
+        "n": 3,
+        "prefix": "OOOE",
+        "prefix_kind": "NO_CERTIFICATE",
+        "bucket": "REACHES_ONE",
+        "ratio_num": 36,
+        "ratio_den": 6,
+        "extra_constraint": true,
+        "uncertified_ge_n": false
+      },
+      "minimized_uncertified_ge_n": {
+        "x": 140,
+        "y": 11,
+        "r": 1,
+        "start_index": 2,
+        "n": 9,
+        "prefix": "OOE",
+        "prefix_kind": "NO_CERTIFICATE",
+        "bucket": "NO_CERTIFICATE",
+        "ratio_num": 140,
+        "ratio_den": 11,
+        "extra_constraint": false,
+        "uncertified_ge_n": true
+      },
+      "largest_uncertified_ge_n": {
+        "x": 24906114455136,
+        "y": 2233,
+        "r": 2,
+        "start_index": 8,
+        "n": 37,
+        "prefix": "OOOOEOOOEE",
+        "prefix_kind": "NO_CERTIFICATE",
+        "bucket": "NO_CERTIFICATE",
+        "ratio_num": 24906114455136,
+        "ratio_den": 2233,
+        "extra_constraint": false,
+        "uncertified_ge_n": true
+      }
+    },
+    "defects": {
+      "n_max": 80,
+      "scanned": 79,
+      "positive_defect_orbits": 75,
+      "reset_count": 0,
+      "resets": []
+    },
+    "stubborn_uncertified": [
+      {
+        "x": 86818724,
+        "y": 9317,
+        "r": 1,
+        "start_index": 4,
+        "n": 37,
+        "prefix": "OOOOE",
+        "prefix_kind": "NO_CERTIFICATE",
+        "bucket": "NO_CERTIFICATE",
+        "ratio_num": 86818724,
+        "ratio_den": 9317,
+        "extra_constraint": false,
+        "uncertified_ge_n": true,
+        "suffix_kinds": [
+          "NO_CERTIFICATE",
+          "NO_CERTIFICATE",
+          "NO_CERTIFICATE",
+          "NO_CERTIFICATE",
+          "NO_CERTIFICATE",
+          "NO_CERTIFICATE",
+          "NO_CERTIFICATE",
+          "NO_CERTIFICATE"
+        ]
+      }
+    ],
+    "cheap_reaches_one": [
+      1,
+      2,
+      4,
+      6,
+      8
+    ],
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "two_reachesOne": true,
+    "four_reachesOne": true,
+    "six_reachesOne": true,
+    "eight_reachesOne": true,
+    "image_two_reachesOne": true,
+    "image_four_reachesOne": true,
+    "image_six_reachesOne": true,
+    "image_eight_reachesOne": true,
+    "reachesOne_of_image": true,
+    "minimal_avoids_reachesOne_image": true,
+    "even_word_descent": true,
+    "minimal_odd_start": true,
+    "minimal_avoids_progress": true,
+    "reachesOne_of_iterate": true,
+    "even_word_contracts": true,
+    "floorPower_two": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_lower_envelope_structure": true,
+    "no_global_termination_theorem": true,
+    "no_no_progress_prefix_type": true
+  },
+  "decision": {
+    "classification": "NO_PROGRESS_STRUCTURE_GREEN",
+    "reason": "orbit avoids every ReachesOne state; even prefixes at n>=2 are descent; landing at 2,4,6,8 is ReachesOne-implied even when the image is at least n (OOE at 5 lands at 6); no defect reset"
+  },
+  "search_method": "realized-orbit prefixes to first DESCENT/CAPTURE; even-run residuals y>1; integer deficit reset; cheap ReachesOne {1,2,4,6,8}; no logs, no halt claim"
+}
