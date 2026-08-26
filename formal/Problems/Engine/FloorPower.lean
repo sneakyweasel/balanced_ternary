@@ -37,6 +37,9 @@ Headline theorems:
 * `odd_cell_unique` — every odd floor cell contains at most one `n`.
 * `oo_suffix_threshold` / `ooo_suffix_threshold` — the positive-drift
   suffixes `OO` and `OOO` eventually sit at or above `(q+1)^2`.
+* `eventually_no_first_even_contraction` — every fixed suffix with
+  `3^#O(v) > 2^(|v|+1)` has only finitely many first-even contraction
+  cells.
 -/
 
 /-!
@@ -2937,5 +2940,295 @@ theorem ooo_suffix_threshold {q : ℕ} (hq : 3 ≤ q)
         simpa [Function.iterate_succ_apply] using floorPower_odd_ge hodd2
       exact le_trans h2 hge
 
+/-!
+## Coarse lower growth
+
+The one-sided envelope is an upper bound and cannot prove eventual
+non-contraction. For `n ≥ 1` the elementary comparison
+`n < 4 · n.sqrt^2` gives a multiplicative lower bound on each branch.
+These compose along a fixed word to
+`q^{3^o} ≤ D_v · T_v(q)^{2^r}`. If `3^o > 2^{r+1}`, the exponent gap
+beats `(q+1)^2` for all sufficiently large `q`. The threshold depends
+on `v`. This is not a halt theorem and not a lower-envelope theory.
+-/
+
+/-- Weak lower bound `n^{3^o} ≤ D · m^{2^k}`. Separate from `PowerBound`. -/
+def LowerPowerBound (m n k o D : ℕ) : Prop :=
+  n ^ (3 ^ o) ≤ D * m ^ (2 ^ k)
+
+def lowerDenomFrom (k o D : ℕ) : List Branch → ℕ
+  | [] => D
+  | .even :: w => lowerDenomFrom (k + 1) o (D * 4 ^ (2 ^ k)) w
+  | .odd :: w => lowerDenomFrom (k + 1) (o + 1) (D ^ 3 * 4 ^ (2 ^ k)) w
+
+def lowerDenom (w : List Branch) : ℕ := lowerDenomFrom 0 0 1 w
+
+theorem three_pow_odd (o : ℕ) : 3 ^ o % 2 = 1 := by
+  induction o with
+  | zero => simp
+  | succ o ih =>
+      simp [pow_succ, Nat.mul_mod, ih]
+
+theorem two_pow_even_of_pos {k : ℕ} (hk : 1 ≤ k) : 2 ^ k % 2 = 0 := by
+  cases k with
+  | zero => omega
+  | succ k => simp [pow_succ]
+
+/-- No finite word has formal exponent exactly `2`. -/
+theorem alpha_ne_two (v : List Branch) :
+    3 ^ oddCount v ≠ 2 ^ (v.length + 1) := by
+  intro h
+  have hodd : 3 ^ oddCount v % 2 = 1 := three_pow_odd _
+  have heven : 2 ^ (v.length + 1) % 2 = 0 :=
+    two_pow_even_of_pos (Nat.succ_le_succ (Nat.zero_le _))
+  rw [h] at hodd
+  omega
+
+theorem floorPower_pos {n : ℕ} (hn : 1 ≤ n) : 1 ≤ floorPower n := by
+  cases Nat.mod_two_eq_zero_or_one n with
+  | inl heven =>
+      rw [floorPower_even_eq heven]
+      exact Nat.le_sqrt.mpr (by simpa [pow_two] using hn)
+  | inr hodd =>
+      rw [floorPower_odd_eq hodd]
+      have h3 : 1 ≤ n ^ 3 :=
+        Nat.succ_le_of_lt (pow_pos (lt_of_lt_of_le (by decide : 0 < 1) hn) 3)
+      exact Nat.le_sqrt.mpr (by simpa [pow_two] using h3)
+
+theorem four_mul_sqrt_sq_gt {n : ℕ} (hn : 1 ≤ n) :
+    n < 4 * n.sqrt ^ 2 := by
+  have hs : 1 ≤ n.sqrt := Nat.le_sqrt.mpr (by simpa [pow_two] using hn)
+  have hsucc : n < (n.sqrt + 1) ^ 2 := by
+    simpa [pow_two, Nat.succ_eq_add_one] using Nat.lt_succ_sqrt n
+  have h2 : n.sqrt + 1 ≤ 2 * n.sqrt := by omega
+  have hsq : (n.sqrt + 1) ^ 2 ≤ (2 * n.sqrt) ^ 2 :=
+    Nat.pow_le_pow_left h2 2
+  have : n < (2 * n.sqrt) ^ 2 := lt_of_lt_of_le hsucc hsq
+  have hexp : (2 * n.sqrt) ^ 2 = 4 * n.sqrt ^ 2 := by ring
+  simpa [hexp] using this
+
+theorem four_mul_floorPower_even_sq {n : ℕ} (heven : n % 2 = 0)
+    (hn : 1 ≤ n) : n ≤ 4 * floorPower n ^ 2 := by
+  rw [floorPower_even_eq heven]
+  exact Nat.le_of_lt (four_mul_sqrt_sq_gt hn)
+
+theorem four_mul_floorPower_odd_sq {n : ℕ} (hodd : n % 2 = 1)
+    (hn : 1 ≤ n) : n ^ 3 ≤ 4 * floorPower n ^ 2 := by
+  rw [floorPower_odd_eq hodd]
+  have h3 : 1 ≤ n ^ 3 :=
+    Nat.succ_le_of_lt (pow_pos (lt_of_lt_of_le (by decide : 0 < 1) hn) 3)
+  exact Nat.le_of_lt (four_mul_sqrt_sq_gt h3)
+
+theorem lower_power_empty (n : ℕ) : LowerPowerBound n n 0 0 1 := by
+  simp [LowerPowerBound]
+
+theorem lower_power_append_even {m n k o D : ℕ}
+    (h : LowerPowerBound m n k o D) (heven : m % 2 = 0) (hm : 1 ≤ m) :
+    LowerPowerBound (floorPower m) n (k + 1) o (D * 4 ^ (2 ^ k)) := by
+  have h4 := four_mul_floorPower_even_sq heven hm
+  unfold LowerPowerBound at *
+  have hpow : m ^ (2 ^ k) ≤ (4 * floorPower m ^ 2) ^ (2 ^ k) :=
+    Nat.pow_le_pow_left h4 _
+  have hle : n ^ (3 ^ o) ≤ D * (4 * floorPower m ^ 2) ^ (2 ^ k) :=
+    le_trans h (Nat.mul_le_mul_left D hpow)
+  have hexp : (4 * floorPower m ^ 2) ^ (2 ^ k) =
+      4 ^ (2 ^ k) * (floorPower m ^ 2) ^ (2 ^ k) := mul_pow 4 _ _
+  have hT : (floorPower m ^ 2) ^ (2 ^ k) = floorPower m ^ (2 * 2 ^ k) :=
+    (Nat.pow_mul (floorPower m) 2 (2 ^ k)).symm
+  calc
+    n ^ (3 ^ o)
+        ≤ D * (4 * floorPower m ^ 2) ^ (2 ^ k) := hle
+    _ = D * (4 ^ (2 ^ k) * (floorPower m ^ 2) ^ (2 ^ k)) := by rw [hexp]
+    _ = D * 4 ^ (2 ^ k) * floorPower m ^ (2 * 2 ^ k) := by
+        rw [hT, mul_assoc]
+    _ = (D * 4 ^ (2 ^ k)) * floorPower m ^ (2 ^ (k + 1)) := by
+        rw [two_pow_succ, mul_assoc]
+
+theorem lower_power_append_odd {m n k o D : ℕ}
+    (h : LowerPowerBound m n k o D) (hodd : m % 2 = 1) (hm : 1 ≤ m) :
+    LowerPowerBound (floorPower m) n (k + 1) (o + 1)
+      (D ^ 3 * 4 ^ (2 ^ k)) := by
+  have h4 := four_mul_floorPower_odd_sq hodd hm
+  unfold LowerPowerBound at *
+  have hcube : n ^ (3 ^ (o + 1)) = (n ^ (3 ^ o)) ^ 3 :=
+    (pow_three_succ_right n o).symm
+  have hD : (n ^ (3 ^ o)) ^ 3 ≤ (D * m ^ (2 ^ k)) ^ 3 :=
+    Nat.pow_le_pow_left h 3
+  have hexpD : (D * m ^ (2 ^ k)) ^ 3 = D ^ 3 * (m ^ (2 ^ k)) ^ 3 :=
+    mul_pow D _ 3
+  have h4pow : (m ^ 3) ^ (2 ^ k) ≤ (4 * floorPower m ^ 2) ^ (2 ^ k) :=
+    Nat.pow_le_pow_left h4 _
+  have hm3 : (m ^ (2 ^ k)) ^ 3 = (m ^ 3) ^ (2 ^ k) := by
+    rw [← Nat.pow_mul, ← Nat.pow_mul, mul_comm]
+  have hexp : (4 * floorPower m ^ 2) ^ (2 ^ k) =
+      4 ^ (2 ^ k) * (floorPower m ^ 2) ^ (2 ^ k) := mul_pow 4 _ _
+  have hT : (floorPower m ^ 2) ^ (2 ^ k) = floorPower m ^ (2 * 2 ^ k) :=
+    (Nat.pow_mul (floorPower m) 2 (2 ^ k)).symm
+  calc
+    n ^ (3 ^ (o + 1))
+        = (n ^ (3 ^ o)) ^ 3 := hcube
+    _ ≤ (D * m ^ (2 ^ k)) ^ 3 := hD
+    _ = D ^ 3 * (m ^ (2 ^ k)) ^ 3 := hexpD
+    _ = D ^ 3 * (m ^ 3) ^ (2 ^ k) := by rw [hm3]
+    _ ≤ D ^ 3 * (4 * floorPower m ^ 2) ^ (2 ^ k) :=
+        Nat.mul_le_mul_left _ h4pow
+    _ = D ^ 3 * (4 ^ (2 ^ k) * (floorPower m ^ 2) ^ (2 ^ k)) := by rw [hexp]
+    _ = D ^ 3 * 4 ^ (2 ^ k) * floorPower m ^ (2 * 2 ^ k) := by
+        rw [hT, mul_assoc]
+    _ = (D ^ 3 * 4 ^ (2 ^ k)) * floorPower m ^ (2 ^ (k + 1)) := by
+        rw [two_pow_succ, mul_assoc]
+
+theorem lower_power_from {start current k o D : ℕ}
+    (h : LowerPowerBound current start k o D) (hpos : 1 ≤ current) :
+    ∀ v, follows current v →
+      LowerPowerBound (image current v) start (k + v.length)
+        (o + oddCount v) (lowerDenomFrom k o D v) := by
+  intro v
+  induction v generalizing current k o D with
+  | nil =>
+      intro _
+      simpa [image, lowerDenomFrom] using h
+  | cons b w ih =>
+      intro hw
+      cases b with
+      | even =>
+          have heven : current % 2 = 0 := hw.1
+          have hrest : follows (floorPower current) w := hw.2
+          have hnext := lower_power_append_even h heven hpos
+          have hpos' : 1 ≤ floorPower current := floorPower_pos hpos
+          have hih := ih hnext hpos' hrest
+          simpa [image, lowerDenomFrom, List.length_cons, Nat.add_comm,
+            Nat.add_left_comm, Nat.add_assoc] using hih
+      | odd =>
+          have hodd : current % 2 = 1 := hw.1
+          have hrest : follows (floorPower current) w := hw.2
+          have hnext := lower_power_append_odd h hodd hpos
+          have hpos' : 1 ≤ floorPower current := floorPower_pos hpos
+          have hih := ih hnext hpos' hrest
+          simpa [image, lowerDenomFrom, List.length_cons, oddCount,
+            Nat.add_comm, Nat.add_left_comm, Nat.add_assoc] using hih
+
+theorem lower_growth_word {q : ℕ} {v : List Branch}
+    (hq : 1 ≤ q) (hw : follows q v) :
+    LowerPowerBound (image q v) q v.length (oddCount v) (lowerDenom v) := by
+  simpa [lowerDenom] using lower_power_from (lower_power_empty q) hq v hw
+
+theorem succ_sq_le_four_sq {q : ℕ} (hq : 1 ≤ q) :
+    (q + 1) ^ 2 ≤ 4 * q ^ 2 := by
+  cases q with
+  | zero => omega
+  | succ t =>
+      have : (t + 2) ^ 2 ≤ 4 * (t + 1) ^ 2 := by
+        have hL : (t + 2) ^ 2 = t ^ 2 + 4 * t + 4 := by ring
+        have hR : 4 * (t + 1) ^ 2 = 4 * t ^ 2 + 8 * t + 4 := by ring
+        have : t ^ 2 + 4 * t + 4 ≤ 4 * t ^ 2 + 8 * t + 4 := by
+          exact Nat.add_le_add (Nat.add_le_add (Nat.le_mul_of_pos_left (t ^ 2) (by decide : 1 ≤ 4))
+            (Nat.mul_le_mul_right t (by decide : 4 ≤ 8))) le_rfl
+        simpa [hL, hR] using this
+      simpa [Nat.succ_eq_add_one] using this
+
+theorem superquadratic_gap {v : List Branch}
+    (hα : 2 ^ (v.length + 1) < 3 ^ oddCount v) :
+    1 ≤ 3 ^ oddCount v - 2 ^ (v.length + 1) :=
+  Nat.succ_le_of_lt (Nat.sub_pos_of_lt hα)
+
+theorem lowerDenomFrom_pos (k o D : ℕ) (hD : 1 ≤ D) :
+    ∀ w, 1 ≤ lowerDenomFrom k o D w := by
+  intro w
+  induction w generalizing k o D with
+  | nil => simpa [lowerDenomFrom] using hD
+  | cons b w ih =>
+      cases b with
+      | even =>
+          have h4 : 1 ≤ (4 : ℕ) ^ (2 ^ k) :=
+            Nat.succ_le_of_lt (pow_pos (by decide : 0 < 4) _)
+          have hD' : 1 ≤ D * 4 ^ (2 ^ k) := by
+            simpa using Nat.mul_le_mul hD h4
+          exact ih (k + 1) o _ hD'
+      | odd =>
+          have h3 : 1 ≤ D ^ 3 := Nat.succ_le_of_lt (pow_pos (lt_of_lt_of_le (by decide : 0 < 1) hD) 3)
+          have h4 : 1 ≤ (4 : ℕ) ^ (2 ^ k) :=
+            Nat.succ_le_of_lt (pow_pos (by decide : 0 < 4) _)
+          have hD' : 1 ≤ D ^ 3 * 4 ^ (2 ^ k) := by
+            simpa using Nat.mul_le_mul h3 h4
+          exact ih (k + 1) (o + 1) _ hD'
+
+theorem lowerDenom_pos (w : List Branch) : 1 ≤ lowerDenom w :=
+  lowerDenomFrom_pos 0 0 1 (by decide) w
+
+theorem pow_le_pow_left_cancel {a b k : ℕ} (hk : 1 ≤ k)
+    (h : a ^ k ≤ b ^ k) : a ≤ b := by
+  refine le_of_not_gt fun hlt => ?_
+  have hlt' : b ^ k < a ^ k :=
+    Nat.pow_lt_pow_left hlt (Nat.one_le_iff_ne_zero.mp hk)
+  exact (not_le_of_gt hlt') h
+
+/-- Every fixed superquadratic suffix is eventually above the next square.
+The threshold `Q0` depends on `v`. -/
+theorem eventually_no_first_even_contraction {v : List Branch}
+    (hα : 2 ^ (v.length + 1) < 3 ^ oddCount v) :
+    ∃ Q0, ∀ q, Q0 ≤ q → follows q v → (q + 1) ^ 2 ≤ image q v := by
+  set D := lowerDenom v
+  set r := v.length
+  set Q0 := D * 4 ^ (2 ^ r)
+  refine ⟨Q0, fun q hq hw => ?_⟩
+  have hD : 1 ≤ D := lowerDenom_pos v
+  have h4p : 1 ≤ (4 : ℕ) ^ (2 ^ r) :=
+    Nat.succ_le_of_lt (pow_pos (by decide : 0 < 4) _)
+  have hQpos : 1 ≤ Q0 := by
+    simpa [Q0] using Nat.mul_le_mul hD h4p
+  have hq1 : 1 ≤ q := le_trans hQpos hq
+  have hL : LowerPowerBound (image q v) q r (oddCount v) D := by
+    simpa [D, r] using lower_growth_word hq1 hw
+  have hgap : 1 ≤ 3 ^ oddCount v - 2 ^ (r + 1) := superquadratic_gap (by simpa [r] using hα)
+  have hqg : q ≤ q ^ (3 ^ oddCount v - 2 ^ (r + 1)) :=
+    le_trans (by simp : q ≤ q ^ 1)
+      (Nat.pow_le_pow_right hq1 hgap)
+  have hleft : Q0 * q ^ (2 ^ (r + 1)) ≤ q ^ (3 ^ oddCount v) := by
+    have hmul : Q0 * q ^ (2 ^ (r + 1)) ≤
+        q ^ (3 ^ oddCount v - 2 ^ (r + 1)) * q ^ (2 ^ (r + 1)) :=
+      Nat.mul_le_mul_right _ (le_trans hq hqg)
+    have hadd : q ^ (3 ^ oddCount v - 2 ^ (r + 1)) * q ^ (2 ^ (r + 1)) =
+        q ^ (3 ^ oddCount v) := by
+      rw [← Nat.pow_add, Nat.sub_add_cancel (Nat.le_of_lt (by simpa [r] using hα))]
+    simpa [hadd] using hmul
+  have hsucc : (q + 1) ^ (2 ^ (r + 1)) ≤ 4 ^ (2 ^ r) * q ^ (2 ^ (r + 1)) := by
+    have hsq := succ_sq_le_four_sq hq1
+    have hpow : ((q + 1) ^ 2) ^ (2 ^ r) ≤ (4 * q ^ 2) ^ (2 ^ r) :=
+      Nat.pow_le_pow_left hsq _
+    have hLexp : ((q + 1) ^ 2) ^ (2 ^ r) = (q + 1) ^ (2 ^ (r + 1)) := by
+      rw [← Nat.pow_mul, two_pow_succ, mul_comm]
+    have hRexp : (4 * q ^ 2) ^ (2 ^ r) = 4 ^ (2 ^ r) * q ^ (2 ^ (r + 1)) := by
+      rw [mul_pow, ← Nat.pow_mul, two_pow_succ, mul_comm]
+    simpa [hLexp, hRexp] using hpow
+  have hDsucc : D * (q + 1) ^ (2 ^ (r + 1)) ≤ q ^ (3 ^ oddCount v) :=
+    calc
+      D * (q + 1) ^ (2 ^ (r + 1))
+          ≤ D * (4 ^ (2 ^ r) * q ^ (2 ^ (r + 1))) :=
+            Nat.mul_le_mul_left D hsucc
+      _ = Q0 * q ^ (2 ^ (r + 1)) := by
+            simp [Q0, mul_assoc]
+      _ ≤ q ^ (3 ^ oddCount v) := hleft
+  have hT : (q + 1) ^ (2 ^ (r + 1)) ≤ image q v ^ (2 ^ r) := by
+    have hbound : q ^ (3 ^ oddCount v) ≤ D * image q v ^ (2 ^ r) := hL
+    have : D * (q + 1) ^ (2 ^ (r + 1)) ≤ D * image q v ^ (2 ^ r) :=
+      le_trans hDsucc hbound
+    exact Nat.le_of_mul_le_mul_left this (lt_of_lt_of_le (by decide : 0 < 1) hD)
+  have hT' : ((q + 1) ^ 2) ^ (2 ^ r) ≤ image q v ^ (2 ^ r) := by
+    have hexp : (q + 1) ^ (2 ^ (r + 1)) = ((q + 1) ^ 2) ^ (2 ^ r) := by
+      rw [← Nat.pow_mul, two_pow_succ, mul_comm]
+    simpa [hexp] using hT
+  exact pow_le_pow_left_cancel
+    (Nat.succ_le_of_lt (pow_pos (by decide : 0 < 2) r)) hT'
+
+theorem oo_lower_growth_eventual :
+    ∃ Q0, ∀ q, Q0 ≤ q → follows q [.odd, .odd] →
+      (q + 1) ^ 2 ≤ image q [.odd, .odd] :=
+  eventually_no_first_even_contraction
+    (by native_decide : 2 ^ (([.odd, .odd] : List Branch).length + 1) <
+      3 ^ oddCount [.odd, .odd])
+
 end Problems.Engine
+
+
 

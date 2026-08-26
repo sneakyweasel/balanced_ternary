@@ -4369,4 +4369,49 @@ Best next question
 - Prove eventual non-contraction for every suffix with α_v>2, or find one such suffix with unbounded Q_v
 ```
 
+## Juggler superquadratic suffixes
+
+- **Date:** 2026-08-26
+- **Objective:** Prove or refute that every fixed suffix \(v\) with \(\alpha_v>2\) has finite first-even contraction set \(Q_v\)
+- **Hypotheses:** `FIRST_E_EVENTUAL_NONCONTRACTION_GREEN`, `LOWER_GROWTH_COMPOSITION_GREEN`, `SUPERQUADRATIC_COUNTEREXAMPLE`, or `LOWER_BOUND_TECHNIQUE_TOO_WEAK`
+- **Major results:** Coarse bound \(n<4\cdot n.\mathrm{sqrt}^2\) **PROVED**. `LowerPowerBound` composes along any realized word **PROVED**. Eventual \(T_v(q)\ge(q+1)^2\) for each fixed \(v\) with \(3^{\#O(v)}>2^{|v|+1}\) **PROVED**. No finite word has \(\alpha_v=2\) **PROVED**. Scan of superquadratic words of length \(\le5\) found only \(Q_v\subseteq\{1,2,3\}\). Classification **FIRST_E_EVENTUAL_NONCONTRACTION_GREEN**. Records: `docs/research/juggler_superquadratic_suffixes.md`, `docs/problems/juggler_superquadratic_suffixes.md`. Control layer unchanged
+- **Refuted ideas:** deriving the threshold from the one-sided upper envelope; a critical \(\alpha_v=2\) regime for finite words; a uniform-in-\(v\) threshold
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether changing superquadratic suffixes can still produce infinitely many first-even contraction cells; whether a uniform bound exists for \(\alpha_v\ge2+\varepsilon\)
+- **Decision:** PROMOTE the fixed-word lower-growth theorem. Keep exact OO/OOO classifications. Do not open a generic lower-envelope theory. Do not claim termination
+
+```text
+What was learned
+- 4 T^2 beats n (even) and n^3 (odd) for every n≥1
+- These compose to q^{3^o} ≤ D_v T_v(q)^{2^r} for a word-dependent D_v
+- The integer gap 3^o > 2^{r+1} then beats (q+1)^2 for large q
+- No finite word has α_v=2, because 3^o is odd
+- Exact OO/OOO bounds remain much sharper than the coarse Q0(v)
+
+Strongest theorem
+- 2^{|v|+1} < 3^{#O(v)} implies ∃ Q0(v) ∀ q≥Q0(v), follows q v → T_v(q) ≥ (q+1)^2
+
+Strongest refutation
+- the upper envelope cannot prove this; α_v=2 never occurs
+
+Reusable machinery
+- FloorPower LowerPowerBound / lower_growth_word / eventually_no_first_even_contraction
+- research.juggler_sequence.superquadratic_suffixes
+
+Prior-art status
+- local fixed-word threshold, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Compensated contraction for any one formally expanding first-even word Ev is a finite-cell phenomenon. The proof is a coarse integer lower bound, not a new envelope theory.
+
+Best next question
+- Can changing superquadratic suffixes still produce infinitely many first-even contraction cells, or is there a uniform threshold for α_v≥2+ε?
+```
+
 
