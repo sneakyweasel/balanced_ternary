@@ -11,6 +11,12 @@ _G_CYCLE = (
     ResearchGoal.REACHABILITY,
 )
 _G_TERM = (ResearchGoal.TERMINATION, ResearchGoal.BOUNDEDNESS, ResearchGoal.POSITIVITY)
+_G_INDUCTIVE = (
+    ResearchGoal.TERMINATION,
+    ResearchGoal.BOUNDEDNESS,
+    ResearchGoal.POSITIVITY,
+    ResearchGoal.REACHABILITY,
+)
 
 
 def _cap(
@@ -184,7 +190,17 @@ MODULAR_FUNCTIONAL_CHAIN = AttackChain(
     cost=2.1,
 )
 
+GLOBAL_INDUCTIVE_CHAIN = AttackChain(
+    id="global_inductive",
+    attacks=(),
+    goals=_G_INDUCTIVE,
+    expected_outputs=("inductive_certificate", "ranking_certificate"),
+    historical_yield=8.0,
+    cost=1.0,
+)
+
 SEEDED_CHAINS: tuple[AttackChain, ...] = (
+    GLOBAL_INDUCTIVE_CHAIN,
     CENSUS_OBSTRUCTION_CHAIN,
     VECTOR_MATRIX_CHAIN,
     FINITE_CLOSURE_CHAIN,

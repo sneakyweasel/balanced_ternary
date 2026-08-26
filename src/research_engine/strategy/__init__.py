@@ -3,6 +3,7 @@
 from research_engine.strategy.capabilities import (
     ATTACK_CAPABILITIES,
     CENSUS_OBSTRUCTION_CHAIN,
+    GLOBAL_INDUCTIVE_CHAIN,
     SEEDED_CHAINS,
     VECTOR_MATRIX_CHAIN,
     capability,
@@ -34,6 +35,7 @@ __all__ = [
     "ATTACK_CAPABILITIES",
     "CENSUS_OBSTRUCTION_CHAIN",
     "ENGINE_STRATEGY_VERSION",
+    "GLOBAL_INDUCTIVE_CHAIN",
     "SEEDED_CHAINS",
     "VECTOR_MATRIX_CHAIN",
     "AttackCapability",

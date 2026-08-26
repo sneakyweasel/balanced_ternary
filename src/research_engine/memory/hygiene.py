@@ -23,6 +23,9 @@ DEFAULT_ALLOWLIST: tuple[str, ...] = (
     "research_strategy",
     "StrategyPlanner",
     "ResearchHypothesis",
+    "global_inductive",
+    "InvariantCertificate",
+    "RankingCertificate",
 )
 
 

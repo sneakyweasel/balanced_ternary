@@ -2550,4 +2550,48 @@ Best next question
 - Does a replayed real target produce a PROOF_READY obligation T(S)⊆S or V(T(x))<V(x)?
 ```
 
+## Research Engine v2.3 Phase 2: global reasoning
+
+- **Date:** 2026-08-26
+- **Objective:** Add a generic inductive/ranking layer that wraps existing envelope and leak attacks, producing intermediate T(S)⊆S / V(T(x))<V(x) certificates on the GLOBAL_REASONING cluster without becoming a Skolem, Positivity, or Collatz solver
+- **Hypotheses:** Bounded CEGIS over a four-form region catalog plus a fixed ranking catalog can certify known calibrations and refuse to bill finite closure as a universal theorem
+- **Major results:** `research_engine.reasoning` (`EvidenceState`, `InvariantCertificate`, `RankingCertificate`, bounded CEGIS, ranking reconnaissance). Two-path Z^2 nonnegative orthant is `INDUCTIVE_CERTIFIED` (known). Decrement ranking is `RANKING_CERTIFIED` (known). Carelli / Skolem order-2 / positivity small companion stay below `UNIVERSAL_THEOREM`. Opt-in chain `global_inductive`; `DEFAULT_ATTACK_ORDER` unchanged; `ENGINE_STRATEGY_VERSION` stays 0.2.3; `ENGINE_REASONING_VERSION = 0.2.4`. Phases 3–4 gated
+- **Refuted ideas:** finite complete closure as `UNIVERSAL_THEOREM`; Phase 1 `PROOF_READY` control-obstruction as an inductive certificate; flood-order mutation as the vehicle for global reasoning
+- **Literature:** engine methodology; Two-path N^2 and decrement ranking remain KNOWN rediscoveries
+- **Open:** whether law candidates can be separated from domain partition without touching `infer_region` (Phase 3 gate)
+- **Decision:** PROMOTE Phase 2 as laboratory intelligence. Do not add flood attacks. Do not open Phases 3–4
+
+```text
+What was learned
+- True T(S)⊆S is distinct from AffineInvariantAttack live-slice leak search
+- A four-form catalog plus four CEGIS rounds is enough to rediscover N^2 invariance and decrement ranking
+- Evidence states stop finite BFS from being billed as a universal theorem
+- Carelli / Skolem / positivity calibrations can be replayed as diagnostics without becoming solvers
+- global_inductive can sit on StrategyPlanner without mutating DEFAULT_ATTACK_ORDER
+
+Strongest theorem
+- none; engine methodology only (known calibrations tagged KNOWN_REDISCOVERY)
+
+Strongest refutation
+- complete finite closure is not UNIVERSAL_THEOREM; cluster replays are not solvers
+
+Reusable machinery
+- research_engine.reasoning (analyze, InvariantCertificate, RankingCertificate, EvidenceState); opt-in global_inductive chain
+
+Prior-art status
+- KNOWN rediscoveries on TwoPathZ2 and slc_decrement; no new mathematics
+
+Complexity profile
+- unchanged schema
+
+Branch status
+- PROMOTE (Phase 2 only)
+
+Why
+- The engine now has an intermediate certificate between finite exact structure and a universal theorem, without thawing the attack stack or opening a target-specific solver.
+
+Best next question
+- Can law candidates be separated from domain partition without touching infer_region?
+```
+
 

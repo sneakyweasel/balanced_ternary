@@ -238,6 +238,7 @@ class StrategyReport:
     metrics: StrategyMetrics = field(default_factory=StrategyMetrics)
     attempted_chains: tuple[str, ...] = ()
     version: str = ENGINE_STRATEGY_VERSION
+    reasoning: Any = None
 
     def replace(self, **changes: Any) -> StrategyReport:
         return replace(self, **changes)

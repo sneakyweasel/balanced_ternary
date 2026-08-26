@@ -19,6 +19,7 @@ from research_engine.strategy.capabilities import (
 from research_engine.strategy.hypotheses import extract_from_results, remember_hypotheses
 from research_engine.strategy.types import (
     AttackChain,
+    ObligationKind,
     ResearchGoal,
     ResearchHypothesisStatus,
     StrategyMetrics,
@@ -33,6 +34,22 @@ def _dimension(spec: ProblemSpec) -> int:
     return int(getattr(spec, "dimension", 1) or 1)
 
 
+def _memory_wants_inductive(memory: object) -> bool:
+    failures = getattr(memory, "failures", lambda: ())()
+    for item in failures:
+        klass = getattr(item, "failure_class", None)
+        value = klass.value if hasattr(klass, "value") else klass
+        if value == "GLOBAL_REASONING":
+            return True
+    hypotheses = getattr(memory, "hypotheses", lambda: ())()
+    wanted = {ObligationKind.INDUCTIVE_INCLUSION, ObligationKind.RANKING_DESCENT}
+    for hyp in hypotheses:
+        for obligation in getattr(hyp, "proof_obligations", ()):
+            if getattr(obligation, "kind", None) in wanted:
+                return True
+    return False
+
+
 def score_chain(
     chain: AttackChain,
     goal: ResearchGoal,
@@ -43,6 +60,10 @@ def score_chain(
         return 0.0
     cost = chain.cost if chain.cost > 0 else 1.0
     value = chain.historical_yield / cost
+    if chain.id == "global_inductive":
+        if memory is not None and _memory_wants_inductive(memory):
+            value *= 1.25
+        return value
     dim = _dimension(spec)
     if dim == 1 and chain.id == "census_obstruction":
         value *= 2.0
@@ -194,11 +215,28 @@ class StrategyPlanner:
         memory: object | None = None,
     ) -> StrategyReport:
         plan = select_chain(spec, goal, memory)
+        if plan.chain.id == "global_inductive":
+            from research_engine.reasoning.analyze import analyze, hypotheses_from_report
+
+            reasoning = analyze(spec, context)
+            hypotheses = hypotheses_from_report(reasoning)
+            if memory is not None and hasattr(memory, "add_hypothesis"):
+                remember_hypotheses(memory, hypotheses)
+            return StrategyReport(
+                plan=plan,
+                results=(),
+                hypotheses=hypotheses,
+                metrics=compute_metrics((), hypotheses, 1),
+                attempted_chains=("global_inductive",),
+                reasoning=reasoning,
+            )
         attempted: list[str] = []
         collected: list[AttackResult] = []
         skipped: list[SkipRecord] = []
         chosen = plan.chain
         for chain in (plan.chain, *plan.alternatives):
+            if chain.id == "global_inductive":
+                continue
             attempted.append(chain.id)
             chunk, skip, failed = _run_chain(spec, context, chain, collected)
             skipped.extend(skip)

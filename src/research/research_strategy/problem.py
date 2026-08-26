@@ -1,20 +1,20 @@
-"""Descriptor for Research Engine v2.3 Phase 1 research strategy."""
+"""Descriptor for Research Engine v2.3 research strategy (Phases 1–2)."""
 
 from research.open_problems.definition import ProblemDefinition
 
 PROBLEM = ProblemDefinition(
     id="research_strategy",
-    title="Research Engine v2.3 Phase 1 research strategy",
+    title="Research Engine v2.3 research strategy",
     status="EXPLORATORY",
     statement=(
         "Can frozen Research Engine v2.2 turn attack artifacts and research "
-        "memory into ranked falsifiable hypotheses, proof obligations, and "
-        "opt-in attack chains without adding attacks or changing default "
-        "planner reports?"
+        "memory into ranked falsifiable hypotheses and opt-in chains, and can "
+        "a generic inductive/ranking layer certify T(S)⊆S or V(T(x))<V(x) "
+        "without adding flood attacks or claiming a universal theorem?"
     ),
     bt_relevance=(
-        "The strategy layer is engine infrastructure. Balanced ternary is not "
-        "required. No new attack is added."
+        "The strategy and reasoning layers are engine infrastructure. "
+        "Balanced ternary is not required. No new flood-order attack is added."
     ),
     docs=("docs/problems/research_strategy.md",),
 )

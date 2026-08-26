@@ -101,6 +101,12 @@ from research_engine.strategy import (
     StrategyPlanner,
     generate_from_memory,
 )
+from research_engine.reasoning import (
+    ENGINE_REASONING_VERSION,
+    EvidenceState,
+    analyze,
+    hypotheses_from_report,
+)
 from research_engine.core.affine_system import (
     AffineSystem,
     affine_step,
@@ -197,6 +203,8 @@ __all__ = [
     "ResearchMemory",
     "ResearchSession",
     "ENGINE_STRATEGY_VERSION",
+    "ENGINE_REASONING_VERSION",
+    "EvidenceState",
     "StrategyPlanner",
     "StructuralDelta",
     "ReverseGeometryAttack",
@@ -220,7 +228,9 @@ __all__ = [
     "filter_terminal",
     "forward_live_layers",
     "forward_search",
+    "analyze",
     "generate_from_memory",
+    "hypotheses_from_report",
     "identity_matrix",
     "is_co_live",
     "is_suffix_accepted",
