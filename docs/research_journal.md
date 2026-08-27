@@ -7431,4 +7431,51 @@ Best next question
   decides whether a persistent residual landing stays odd-to-odd?
 ```
 
+## Juggler noncontracting realization boundary
+
+- **Date:** 2026-08-27
+- **Objective:** Describe \(N_w=\{n\in R_w:T_w(n)\ge n\}\) by something structurally simpler than evaluating \(T_w\)
+- **Hypotheses:** upper-tail threshold; \(a_w\) from \((k,o)\) or runs; \(N_{wb}\subseteq N_w\); first-defect restriction
+- **Major results:** Formally contracting words have empty \(N\) for \(n>1\) (envelope). Expanding words: \(2583/2584\) nonempty windows are upper tails; the only inversion is `EOO` at \(10\) vs \(12\) with the same image \(11\). Same \((k,o)\) splits \(a_w\) by factor \(108\). Late expand `EO`→`EOO` at \(10\); late contract `OOOE`→`OOOEE` at \(3\). First-defect position does not separate \(C_w\) from \(N_w\). Classification `NC_BOUNDARY_COMPLEX`
+- **Refuted ideas:** threshold for all expanding words; \(a_w=F(k,o)\); \(a_w=F(k,o,\mathrm{runs})\); prefix inheritance either way; first-defect restriction on \(N_w\)
+- **Literature:** `power_bound_contracts` / `image_monotone_of_follows`; PE / residual-future / sum-rho stay CLOSE; realization-set and landing-image stay closed/parked
+- **Open:** none from this branch
+- **Decision:** CLOSE. The only exact positive law is the existing envelope. Do not invent another statistic
+
+```text
+What was learned
+- N_w is empty on formally contracting words for n>1
+- N_E is empty; N_{O^r} is all odds in the window
+- The only threshold inversion is EOO at 10 vs 12 (constant image 11)
+- a_w is not a function of (k,o) or of the tested run signature
+- A contracting prefix can gain NC on the next letter (EO at 10)
+- An NC prefix can lose NC on the next letter (OOOE at 3)
+- First-defect position does not decide membership in N_w
+
+Strongest theorem
+- 3^o < 2^k and n>1 imply T_w(n) < n (already Lean power_bound_contracts)
+
+Strongest refutation
+- n >= a_w implies n in N_w (EOO: 10 in N, 12 in C, T=11)
+
+Reusable machinery
+- research.juggler_sequence.nc_boundary
+
+Prior-art status
+- boundary census of T>=n, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- Locating a_w still requires evaluating T_w. Word statistics do not
+  fix the threshold. Stop. Do not invent another scalar.
+
+Best next question
+- none from this branch
+```
+
 
