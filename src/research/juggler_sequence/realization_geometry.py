@@ -15,7 +15,7 @@ from typing import Any, Iterable
 
 from research.juggler_sequence.atlas.packed import pack_word, split_word_id, unpack_word
 from research.juggler_sequence.atlas.storage import DEFAULT_DATA_DIR, connect, sqlite_path
-from research.juggler_sequence.compensated_contraction import image_after
+from research.juggler_sequence.compensated_contraction import follows_word, image_after
 from research.juggler_sequence.floor_cells import even_cell, odd_cell_integers
 from research.juggler_sequence.lean_paths import CELLS, COLLAPSE
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
@@ -29,6 +29,7 @@ DIAG_N = 4000
 DIAG_K = 12
 CONFIRM_N = 100_000
 CONFIRM_K = 12
+SELECTED_N = 10_000_000
 ATLAS_EID = "wa-20260827T200310Z-cuda-k20-n100000000"
 ATLAS_N = 100_000_000
 
@@ -91,6 +92,129 @@ def leading_run(word: str, letter: str) -> int:
             break
         n += 1
     return n
+
+
+def interval_label(geo: dict[str, Any]) -> str:
+    if geo["size"] == 0:
+        return "EMPTY"
+    if geo["n_components"] == 1:
+        return "SINGLE_INTERVAL"
+    largest_frac = geo["largest_frac"] or 0.0
+    if geo["n_components"] <= 4 or largest_frac >= 0.8:
+        return "FEW_INTERVALS"
+    return "FRAGMENTED"
+
+
+def prepend_E(starts: list[int], n_max: int) -> list[int]:
+    """R_{Ew}(N) from R_w via even inverse-floor cells, clipped to N."""
+
+    out: list[int] = []
+    for q in starts:
+        lo, hi = even_cell(q)
+        if lo > n_max:
+            continue
+        start = lo + (lo & 1)
+        if start < 2:
+            start = 2
+        out.extend(range(start, min(hi, n_max + 1), 2))
+    return out
+
+
+def prepend_O(starts: list[int], n_max: int) -> list[int]:
+    """R_{Ow}(N) predicted from R_w(N) via odd cells. Landings > N are lost."""
+
+    out: list[int] = []
+    for q in starts:
+        for n in odd_cell_integers(q):
+            if n % 2 == 1 and 1 <= n <= n_max:
+                out.append(n)
+    out.sort()
+    return out
+
+
+def corridor_recurrence(
+    realizing: dict[str, list[int]], *, n_max: int, k_max: int
+) -> dict[str, Any]:
+    empty = list(range(1, n_max + 1))
+    pred_e = prepend_E(empty, n_max)
+    pred_o = prepend_O(empty, n_max)
+    actual_e = realizing.get("E", [])
+    actual_o = realizing.get("O", [])
+    tower_ok = True
+    for r in range(1, min(5, k_max)):
+        parent = "E" * r
+        child = parent + "E"
+        if parent not in realizing:
+            continue
+        if prepend_E(realizing[parent], n_max) != realizing.get(child, []):
+            tower_ok = False
+            break
+    mismatches_e = 0
+    mismatches_o = 0
+    checked = 0
+    first_e = None
+    first_o = None
+    for word, starts in realizing.items():
+        if len(word) >= k_max:
+            continue
+        checked += 1
+        pred = prepend_E(starts, n_max)
+        actual = realizing.get("E" + word, [])
+        if pred != actual:
+            mismatches_e += 1
+            if first_e is None:
+                first_e = {"word": word, "predicted": len(pred), "actual": len(actual)}
+        pred = prepend_O(starts, n_max)
+        actual = realizing.get("O" + word, [])
+        if pred != actual:
+            mismatches_o += 1
+            if first_o is None:
+                first_o = {
+                    "word": word,
+                    "predicted": len(pred),
+                    "actual": len(actual),
+                    "missing": len(actual) - len(pred),
+                }
+    return {
+        "empty_prepend_E_exact": pred_e == actual_e,
+        "empty_prepend_O_exact": pred_o == actual_o,
+        "empty_prepend_O_predicted": len(pred_o),
+        "empty_prepend_O_actual": len(actual_o),
+        "empty_prepend_O_leak": len(actual_o) - len(pred_o),
+        "even_tower_prepend_exact": tower_ok,
+        "checked_prefixes": checked,
+        "prepend_E_mismatches": mismatches_e,
+        "prepend_O_mismatches": mismatches_o,
+        "first_prepend_E_mismatch": first_e,
+        "first_prepend_O_mismatch": first_o,
+        "append_rule": "R_{wb} = {n in R_w : T_w(n) has parity b}",
+        "prepend_E_rule": "R_{Ew}(N) = union_{q in R_w(N)} (even_cell(q) ∩ 2Z ∩ [1,N])",
+        "prepend_O_rule": "R_{Ow} = union_{q in R_w} (odd_cell(q) ∩ (2Z+1)); not closed on [1,N]",
+    }
+
+
+def selected_root_scan(
+    *, n_max: int = SELECTED_N, words: tuple[str, ...] = FIRST_HOLES + FIRST_UNARY
+) -> dict[str, Any]:
+    """Exact root membership for a few words, no full trie."""
+
+    k_max = max(len(word) for word in words)
+    wanted = set(words)
+    stats = {word: {"size": 0, "min": None, "max": None} for word in words}
+    for n in range(1, n_max + 1):
+        state = n
+        letters: list[str] = []
+        for _ in range(k_max):
+            letters.append("O" if state & 1 else "E")
+            word = "".join(letters)
+            if word in wanted:
+                rec = stats[word]
+                rec["size"] += 1
+                if rec["min"] is None:
+                    rec["min"] = n
+                rec["max"] = n
+            state = floor_power(state)
+    return {"n_max": n_max, "words": stats}
 
 
 def degree_label(mask: int) -> str:
@@ -224,6 +348,7 @@ def prefix_row(word: str, starts: list[int], *, n_max: int) -> dict[str, Any]:
         "child_O_max": child_o[-1] if child_o else None,
         "child_E_max": child_e[-1] if child_e else None,
         "scale_separated": scale_sep,
+        "interval_class": interval_label(geo),
         **geo,
         **land,
     }
@@ -261,7 +386,9 @@ def window_census(realizing: dict[str, list[int]], *, n_max: int, k_max: int) ->
             regain.append({"parent": row["word"], "child": child, "min": row["min"]})
     lead_e_unary = Counter()
     lead_e_n = Counter()
+    interval_by_degree: dict[str, Counter[str]] = defaultdict(Counter)
     for row in rows:
+        interval_by_degree[row["class"]][row["interval_class"]] += 1
         if row["length"] != k_max - 1:
             continue
         lead_e_n[row["lead_E"]] += 1
@@ -280,6 +407,7 @@ def window_census(realizing: dict[str, list[int]], *, n_max: int, k_max: int) ->
         "unary_to_binary": regain[:20],
         "unary_to_binary_count": len(regain),
         "profile": {str(k): dict(by_len[k]) for k in sorted(by_len)},
+        "interval_by_degree": {key: dict(val) for key, val in interval_by_degree.items()},
         "lead_E_unary_frac_at_horizon": {
             str(lead): (lead_e_unary[lead] / lead_e_n[lead] if lead_e_n[lead] else None)
             for lead in sorted(lead_e_n)
@@ -415,7 +543,13 @@ def reproduce_atlas(*, data_dir: Path = DEFAULT_DATA_DIR, experiment_id: str = A
     }
 
 
-def classify_missing_child(parent: str, lost: str, *, atlas_n: int = ATLAS_N) -> dict[str, Any]:
+def classify_missing_child(
+    parent: str,
+    lost: str,
+    *,
+    interior: dict[str, Any] | None = None,
+    atlas_n: int = ATLAS_N,
+) -> dict[str, Any]:
     child = parent + lost
     if child == "EEEEEE":
         return {
@@ -423,14 +557,45 @@ def classify_missing_child(parent: str, lost: str, *, atlas_n: int = ATLAS_N) ->
             "lost": lost,
             "child": child,
             "status": "SCALE_LIMITED",
-            "reason": f"even_tower(6)={even_tower(6)} > atlas n_max={atlas_n}",
+            "certificate_type": "EVEN_TOWER",
+            "min_root": even_tower(6),
+            "reason": f"m(E^6)=even_tower(6)={even_tower(6)} > atlas n_max={atlas_n}",
         }
+    rec = None
+    if interior and interior.get("words"):
+        rec = interior["words"].get(child)
+    if rec and rec.get("min_state") is not None:
+        y = rec["min_state"]
+        if rec.get("states_within_atlas"):
+            return {
+                "parent": parent,
+                "lost": lost,
+                "child": child,
+                "status": "SEARCH_INCONSISTENT",
+                "certificate_type": "INTERIOR_STATE",
+                "min_interior_state": y,
+                "reason": "an interior realizing state lies inside the atlas bound",
+            }
+        if y > atlas_n:
+            return {
+                "parent": parent,
+                "lost": lost,
+                "child": child,
+                "status": "SCALE_LIMITED",
+                "certificate_type": "INTERIOR_STATE",
+                "min_interior_state": y,
+                "reason": (
+                    f"smallest interior realizing state {y} > atlas n_max={atlas_n}; "
+                    "no rooted realizer in the scan"
+                ),
+            }
     return {
         "parent": parent,
         "lost": lost,
         "child": child,
-        "status": "SCALE_LIMITED",
-        "reason": "absent as a rooted prefix under the atlas bound; present as an interior factor",
+        "status": "SEARCH_UNOBSERVED",
+        "certificate_type": "ATLAS_ABSENCE",
+        "reason": "absent as a rooted prefix under the atlas bound; no interior-state certificate",
     }
 
 
@@ -440,6 +605,7 @@ def interior_factors(
     data_dir: Path = DEFAULT_DATA_DIR,
     experiment_id: str = ATLAS_EID,
     length: int = 20,
+    atlas_n: int = ATLAS_N,
 ) -> dict[str, Any]:
     if not atlas_available(data_dir):
         return {"available": False}
@@ -457,25 +623,50 @@ def interior_factors(
         ).fetchall()
     finally:
         con.close()
-    hits: dict[str, list[tuple[int, int, str]]] = {word: [] for word in words}
-    for packed, min_n in rows:
-        host = unpack_word(length, int(packed))
-        for word, fp in packed_targets.items():
-            fac_len = lengths[word]
-            mask = (1 << fac_len) - 1
-            for pos in range(0, length - fac_len + 1):
-                if ((int(packed) >> pos) & mask) == fp:
-                    hits[word].append((pos, int(min_n), host))
-                    break
-    out = {}
-    for word, xs in hits.items():
-        out[word] = {
-            "count": len(xs),
-            "min_position": min((x[0] for x in xs), default=None),
-            "min_root_status": "NOT_FOUND_WITHIN_BOUND",
-            "example": None if not xs else {"position": xs[0][0], "n": xs[0][1], "host": xs[0][2]},
+    best: dict[str, dict[str, Any]] = {
+        word: {
+            "count": 0,
+            "min_position": None,
+            "min_state": None,
+            "states_within_atlas": 0,
+            "example": None,
         }
-    return {"available": True, "length": length, "words": out}
+        for word in words
+    }
+    for packed, min_n in rows:
+        packed_i = int(packed)
+        start = int(min_n)
+        seen_host = {word: False for word in words}
+        state = start
+        for pos in range(0, length):
+            for word, fp in packed_targets.items():
+                fac_len = lengths[word]
+                if pos + fac_len > length:
+                    continue
+                if ((packed_i >> pos) & ((1 << fac_len) - 1)) != fp:
+                    continue
+                rec = best[word]
+                if not seen_host[word]:
+                    rec["count"] += 1
+                    seen_host[word] = True
+                if state <= atlas_n:
+                    rec["states_within_atlas"] += 1
+                if rec["min_position"] is None or pos < rec["min_position"]:
+                    rec["min_position"] = pos
+                if rec["min_state"] is None or state < rec["min_state"]:
+                    rec["min_state"] = state
+                    rec["example"] = {
+                        "position": pos,
+                        "n": start,
+                        "state": state,
+                        "host": unpack_word(length, packed_i),
+                        "follows": follows_word(state, word),
+                    }
+            if pos + 1 < length:
+                state = floor_power(state)
+    for rec in best.values():
+        rec["min_root_status"] = "NOT_FOUND_WITHIN_BOUND"
+    return {"available": True, "length": length, "atlas_n": atlas_n, "words": best}
 
 
 def amplification_laws(realizing: dict[str, list[int]]) -> dict[str, Any]:
@@ -598,6 +789,8 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
     amp = payload["amplification"]
     atlas = payload["atlas"]
     interior = payload["interior"]
+    corridor = payload["corridor"]
+    missing = payload["missing_children"]
     if diag["uncovered_total"] != 0:
         return {
             "classification": CLASS_COUNTER,
@@ -610,39 +803,60 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
             "classification": CLASS_COUNTER,
             "reason": "a first hole was FOUND as a rooted prefix under the atlas bound",
         }
+    if any(row["status"] == "SEARCH_INCONSISTENT" for row in missing):
+        return {
+            "classification": CLASS_COUNTER,
+            "reason": "an interior realizing state of a first hole lies inside the atlas bound",
+        }
     square_fails = amp["square_law_counterexample"] is not None
     odd_square_fails = amp["odd_landing_square_counterexample"] is not None
     landing_is_degree = (
         diag["unary_total"] > 0 and diag["unary_monochrome"] == diag["unary_total"]
     )
+    prepend_e_exact = (
+        corridor["empty_prepend_E_exact"]
+        and corridor["even_tower_prepend_exact"]
+        and corridor["prepend_E_mismatches"] == 0
+    )
+    prepend_o_leaks = (
+        not corridor["empty_prepend_O_exact"] and corridor["prepend_O_mismatches"] > 0
+    )
+    holes_scale = all(row["status"] == "SCALE_LIMITED" for row in missing)
     interior_ok = interior.get("available") and all(
-        rec["count"] > 0 and rec["min_position"] and rec["min_position"] >= 1
+        rec["count"] > 0
+        and rec["min_position"]
+        and rec["min_position"] >= 1
+        and rec["min_state"] is not None
+        and rec["min_state"] > ATLAS_N
+        and rec.get("example", {}).get("follows")
         for rec in interior["words"].values()
     )
-    ee_frozen = (
-        atlas.get("available")
-        and atlas["ee_prefix_length_12"]["count"] == 37
-        and atlas["ee_prefix_length_12"]["unary"] == 37
-    )
-    if landing_is_degree and interior_ok and square_fails and odd_square_fails:
+    if (
+        landing_is_degree
+        and prepend_e_exact
+        and prepend_o_leaks
+        and holes_scale
+        and interior_ok
+        and square_fails
+        and odd_square_fails
+    ):
         return {
-            "classification": CLASS_ROOT,
+            "classification": CLASS_COMPLEX,
             "secondary": CLASS_COUNTER,
             "reason": (
-                "Child degree is exactly landing-parity monochromicity of T_w(R_w). "
-                "Naive m(wE)>=m(w)^2 fails as soon as an odd letter appears "
-                "(smallest even-landing identity m(OOOE)=m(OOOOE)=3; smallest "
-                "odd-landing jump m(OEEE)=7 to m(OEEEE)=41<49). "
-                "The first holes are SCALE_LIMITED root absences with interior "
-                "witnesses. No extra low-complexity interval rule beyond landing "
-                "parity survived."
+                "Appending a letter is the landing-parity filter of T_w(R_w), which "
+                "is the definition of follows. Prepending E is the even-cell union "
+                "already in even_cell_iff; it is exact on every finite window. "
+                "Prepending O leaks the window because odd landings escape [1,N]. "
+                "Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE "
+                "7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No "
+                "new set geometry beyond follows plus inverse-floor cells survived."
             ),
-            "ee_corridor_reproduced": ee_frozen,
         }
     if landing_is_degree:
         return {
             "classification": CLASS_CELL,
-            "reason": "unary iff landing parity is monochrome; amplification/root split incomplete",
+            "reason": "unary iff landing parity is monochrome; cell/root certificates incomplete",
         }
     return {
         "classification": CLASS_COMPLEX,
@@ -655,6 +869,8 @@ def run_probe() -> dict[str, Any]:
     diagnostic = window_census(realizing, n_max=DIAG_N, k_max=DIAG_K)
     confirm_realizing = collect_realizing(n_max=CONFIRM_N, k_max=CONFIRM_K)
     confirm = window_census(confirm_realizing, n_max=CONFIRM_N, k_max=CONFIRM_K)
+    interior = interior_factors()
+    eeee_diag = next((row for row in diagnostic["adversarial"] if row["word"] == "EEEE"), None)
     return {
         "diagnostic": diagnostic,
         "confirm": {
@@ -670,16 +886,25 @@ def run_probe() -> dict[str, Any]:
             "unary_to_binary_count": confirm["unary_to_binary_count"],
             "unary_to_binary": confirm["unary_to_binary"],
             "profile": confirm["profile"],
+            "interval_by_degree": confirm["interval_by_degree"],
             "lead_E_unary_frac_at_horizon": confirm["lead_E_unary_frac_at_horizon"],
         },
+        "corridor": corridor_recurrence(realizing, n_max=DIAG_N, k_max=DIAG_K),
         "amplification": amplification_laws(realizing),
         "atlas": reproduce_atlas(),
-        "interior": interior_factors(),
+        "interior": interior,
         "missing_children": [
-            classify_missing_child("EEEEE", "E"),
-            classify_missing_child("EEEEO", "E"),
-            classify_missing_child("EEEOE", "O"),
+            classify_missing_child("EEEEE", "E", interior=interior),
+            classify_missing_child("EEEEO", "E", interior=interior),
+            classify_missing_child("EEEOE", "O", interior=interior),
         ],
+        "selected_roots": selected_root_scan(),
+        "window_artefact": {
+            "word": "EEEE",
+            "diagnostic_class": None if eeee_diag is None else eeee_diag["class"],
+            "atlas_class": "BINARY",
+            "reason": "n<=4000 cannot see m(EEEEE)=65536, so EEEE looks UNARY_O in the small window",
+        },
         "atlas_unary_return": atlas_unary_return(),
         "next_step_cell_example": {
             "m=2": next_step_cells(2),
@@ -710,8 +935,9 @@ def probe_payload() -> dict[str, Any]:
         "lean": lean,
         "decision": decision,
         "search_method": (
-            "nested R_w by one-pass itinerary; child split by parity of image_after; "
-            "atlas min-realizer/continuations for the parked k<=20 census"
+            "nested R_w by one-pass itinerary; append children by landing parity; "
+            "prepend children by even_cell / odd_cell; interior states of first holes; "
+            "selected exact roots at n<=1e7"
         ),
     }
 
@@ -750,9 +976,10 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Mathematical target     What geometry of R_w makes a prefix unary?",
         "Novelty hypothesis      inverse-floor cells / scale of R_w force d(w)=1",
         "Falsifier               unary without monochrome landings, or a square",
-        "                        amplification law that survives mixed words",
+        "                        amplification law that survives mixed words, or",
+        "                        a hole that is CELL_EMPTY rather than scale",
         "Existing machinery      follows_word, image_after, even_cell, atlas trie",
-        "Maximum Phase-0 scope   reproduce atlas facts; R_w on n<=4000 then 1e5",
+        "Maximum Phase-0 scope   R_w on n<=4000 then 1e5; selected roots n<=1e7",
         "```",
         "",
         "## Metadata",
@@ -810,10 +1037,50 @@ def render_markdown(payload: dict[str, Any]) -> str:
         for word, rec in interior["words"].items():
             ex = rec["example"]
             lines.append(
-                f"- `{word}` interior hits at length 20: `{rec['count']}` "
-                f"min_pos=`{rec['min_position']}` example n=`{ex['n'] if ex else None}` "
+                f"- `{word}` hosts=`{rec['count']}` min_pos=`{rec['min_position']}` "
+                f"min_state=`{rec['min_state']}` in_atlas=`{rec['states_within_atlas']}` "
+                f"follows=`{ex['follows'] if ex else None}` host_n=`{ex['n'] if ex else None}` "
                 f"host=`{ex['host'] if ex else None}`"
             )
+    selected = scan.get("selected_roots", {})
+    if selected.get("words"):
+        lines.extend(["", f"## Selected exact roots n<=`{selected['n_max']}`", ""])
+        for word, rec in selected["words"].items():
+            lines.append(
+                f"- `{word}` |R|=`{rec['size']}` min=`{rec['min']}` max=`{rec['max']}`"
+            )
+    artefact = scan.get("window_artefact")
+    if artefact:
+        lines.extend(
+            [
+                "",
+                "## Window artefact",
+                "",
+                f"- `{artefact['word']}` diagnostic=`{artefact['diagnostic_class']}` "
+                f"atlas=`{artefact['atlas_class']}` — {artefact['reason']}",
+            ]
+        )
+    corridor = scan.get("corridor")
+    if corridor:
+        lines.extend(
+            [
+                "",
+                "## Set recurrence",
+                "",
+                f"- prepend E on the empty word: exact=`{corridor['empty_prepend_E_exact']}`",
+                f"- prepend O on the empty word: exact=`{corridor['empty_prepend_O_exact']}` "
+                f"predicted=`{corridor['empty_prepend_O_predicted']}` "
+                f"actual=`{corridor['empty_prepend_O_actual']}` "
+                f"leak=`{corridor['empty_prepend_O_leak']}`",
+                f"- even-tower prepend E: `{corridor['even_tower_prepend_exact']}`",
+                f"- prepend E mismatches among prefixes: `{corridor['prepend_E_mismatches']}`",
+                f"- prepend O mismatches among prefixes: `{corridor['prepend_O_mismatches']}` "
+                f"first=`{corridor['first_prepend_O_mismatch']}`",
+                f"- append rule: {corridor['append_rule']}",
+                f"- prepend E rule: {corridor['prepend_E_rule']}",
+                f"- prepend O rule: {corridor['prepend_O_rule']}",
+            ]
+        )
     lines.extend(
         [
             "",
@@ -825,6 +1092,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             f"- unary with a singleton landing: `{diag['unary_singleton_landing']}`",
             f"- binary nodes: `{diag['binary_total']}` scale-separated children `{diag['binary_scale_separated']}`",
             f"- unary prefixes that regain two children: `{diag['unary_to_binary_count']}`",
+            f"- interval classes by degree: `{diag.get('interval_by_degree')}`",
             "",
             "Branching profile (diagnostic):",
             "",

@@ -184,6 +184,22 @@
           "BINARY": 84
         }
       },
+      "interval_by_degree": {
+        "BINARY": {
+          "FRAGMENTED": 390,
+          "FEW_INTERVALS": 260
+        },
+        "UNARY_O": {
+          "SINGLE_INTERVAL": 191,
+          "FEW_INTERVALS": 198,
+          "FRAGMENTED": 259
+        },
+        "UNARY_E": {
+          "FRAGMENTED": 148,
+          "FEW_INTERVALS": 188,
+          "SINGLE_INTERVAL": 202
+        }
+      },
       "lead_E_unary_frac_at_horizon": {
         "0": 0.714622641509434,
         "1": 1.0,
@@ -210,6 +226,7 @@
           "child_O_max": 4000,
           "child_E_max": 3968,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 2000,
           "min": 2,
           "max": 4000,
@@ -248,6 +265,7 @@
           "child_O_max": 3968,
           "child_E_max": 2400,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 1023,
           "min": 4,
           "max": 3968,
@@ -286,6 +304,7 @@
           "child_O_max": 80,
           "child_E_max": 2400,
           "scale_separated": true,
+          "interval_class": "FRAGMENTED",
           "size": 427,
           "min": 16,
           "max": 2400,
@@ -324,6 +343,7 @@
           "child_O_max": 2400,
           "child_E_max": null,
           "scale_separated": null,
+          "interval_class": "FRAGMENTED",
           "size": 406,
           "min": 256,
           "max": 2400,
@@ -362,6 +382,7 @@
           "child_O_max": 3598,
           "child_E_max": 4000,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 977,
           "min": 2,
           "max": 4000,
@@ -400,6 +421,7 @@
           "child_O_max": 3842,
           "child_E_max": 4000,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 486,
           "min": 50,
           "max": 4000,
@@ -438,6 +460,7 @@
           "child_O_max": 3598,
           "child_E_max": 3134,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 491,
           "min": 2,
           "max": 3598,
@@ -476,6 +499,7 @@
           "child_O_max": 3999,
           "child_E_max": 3995,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 2000,
           "min": 1,
           "max": 3999,
@@ -514,6 +538,7 @@
           "child_O_max": 3999,
           "child_E_max": 3989,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 1010,
           "min": 1,
           "max": 3999,
@@ -552,6 +577,7 @@
           "child_O_max": 3987,
           "child_E_max": 3999,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 510,
           "min": 1,
           "max": 3999,
@@ -590,6 +616,7 @@
           "child_O_max": 3985,
           "child_E_max": 3995,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 990,
           "min": 7,
           "max": 3995,
@@ -628,6 +655,7 @@
           "child_O_max": 3985,
           "child_E_max": 3967,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 482,
           "min": 15,
           "max": 3985,
@@ -666,6 +694,7 @@
           "child_O_max": 3989,
           "child_E_max": 3983,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 500,
           "min": 5,
           "max": 3989,
@@ -704,6 +733,7 @@
           "child_O_max": 1224,
           "child_E_max": 3968,
           "scale_separated": true,
+          "interval_class": "FRAGMENTED",
           "size": 596,
           "min": 4,
           "max": 3968,
@@ -742,6 +772,7 @@
           "child_O_max": 345,
           "child_E_max": 3995,
           "scale_separated": true,
+          "interval_class": "FRAGMENTED",
           "size": 195,
           "min": 41,
           "max": 3995,
@@ -780,6 +811,7 @@
           "child_O_max": 3939,
           "child_E_max": 3905,
           "scale_separated": false,
+          "interval_class": "FRAGMENTED",
           "size": 146,
           "min": 37,
           "max": 3939,
@@ -820,6 +852,7 @@
           "child_O_max": 2400,
           "child_E_max": null,
           "scale_separated": null,
+          "interval_class": "FRAGMENTED",
           "size": 406,
           "min": 256,
           "max": 2400,
@@ -1010,6 +1043,22 @@
           "UNARY_E": 222
         }
       },
+      "interval_by_degree": {
+        "BINARY": {
+          "FRAGMENTED": 1904,
+          "FEW_INTERVALS": 5
+        },
+        "UNARY_O": {
+          "SINGLE_INTERVAL": 18,
+          "FEW_INTERVALS": 61,
+          "FRAGMENTED": 561
+        },
+        "UNARY_E": {
+          "FRAGMENTED": 405,
+          "FEW_INTERVALS": 23,
+          "SINGLE_INTERVAL": 5
+        }
+      },
       "lead_E_unary_frac_at_horizon": {
         "0": 0.19741100323624594,
         "1": 0.9863013698630136,
@@ -1018,6 +1067,27 @@
         "4": 1.0,
         "5": 1.0
       }
+    },
+    "corridor": {
+      "empty_prepend_E_exact": true,
+      "empty_prepend_O_exact": false,
+      "empty_prepend_O_predicted": 126,
+      "empty_prepend_O_actual": 2000,
+      "empty_prepend_O_leak": 1874,
+      "even_tower_prepend_exact": true,
+      "checked_prefixes": 1268,
+      "prepend_E_mismatches": 0,
+      "prepend_O_mismatches": 946,
+      "first_prepend_E_mismatch": null,
+      "first_prepend_O_mismatch": {
+        "word": "O",
+        "predicted": 67,
+        "actual": 1010,
+        "missing": 943
+      },
+      "append_rule": "R_{wb} = {n in R_w : T_w(n) has parity b}",
+      "prepend_E_rule": "R_{Ew}(N) = union_{q in R_w(N)} (even_cell(q) \u2229 2Z \u2229 [1,N])",
+      "prepend_O_rule": "R_{Ow} = union_{q in R_w} (odd_cell(q) \u2229 (2Z+1)); not closed on [1,N]"
     },
     "amplification": {
       "samples": 865,
@@ -1170,36 +1240,49 @@
     "interior": {
       "available": true,
       "length": 20,
+      "atlas_n": 100000000,
       "words": {
         "EEEEEE": {
           "count": 2906,
           "min_position": 1,
-          "min_root_status": "NOT_FOUND_WITHIN_BOUND",
+          "min_state": 4294972782,
+          "states_within_atlas": 0,
           "example": {
-            "position": 10,
-            "n": 1571189,
-            "host": "OOOOOOOOOOEEEEEEEEEE"
-          }
+            "position": 6,
+            "n": 40853379,
+            "state": 4294972782,
+            "host": "OOOOEEEEEEEEOOOOOOOO",
+            "follows": true
+          },
+          "min_root_status": "NOT_FOUND_WITHIN_BOUND"
         },
         "EEEEOE": {
           "count": 6164,
           "min_position": 2,
-          "min_root_status": "NOT_FOUND_WITHIN_BOUND",
+          "min_state": 39062504258660,
+          "states_within_atlas": 0,
           "example": {
-            "position": 9,
-            "n": 613259,
-            "host": "OOOOOOOOOEEEEOEEEEEE"
-          }
+            "position": 7,
+            "n": 14435959,
+            "state": 39062504258660,
+            "host": "OOOOEEOEEEEOEEEOOOOO",
+            "follows": true
+          },
+          "min_root_status": "NOT_FOUND_WITHIN_BOUND"
         },
         "EEEOEO": {
           "count": 11310,
           "min_position": 1,
-          "min_root_status": "NOT_FOUND_WITHIN_BOUND",
+          "min_state": 2608762880,
+          "states_within_atlas": 0,
           "example": {
-            "position": 8,
-            "n": 14483,
-            "host": "OOOOOOOOEEEOEOEEEEEE"
-          }
+            "position": 6,
+            "n": 27551539,
+            "state": 2608762880,
+            "host": "OOEOOEEEEOEOEEEOOOOO",
+            "follows": true
+          },
+          "min_root_status": "NOT_FOUND_WITHIN_BOUND"
         }
       }
     },
@@ -1209,23 +1292,70 @@
         "lost": "E",
         "child": "EEEEEE",
         "status": "SCALE_LIMITED",
-        "reason": "even_tower(6)=4294967296 > atlas n_max=100000000"
+        "certificate_type": "EVEN_TOWER",
+        "min_root": 4294967296,
+        "reason": "m(E^6)=even_tower(6)=4294967296 > atlas n_max=100000000"
       },
       {
         "parent": "EEEEO",
         "lost": "E",
         "child": "EEEEOE",
         "status": "SCALE_LIMITED",
-        "reason": "absent as a rooted prefix under the atlas bound; present as an interior factor"
+        "certificate_type": "INTERIOR_STATE",
+        "min_interior_state": 39062504258660,
+        "reason": "smallest interior realizing state 39062504258660 > atlas n_max=100000000; no rooted realizer in the scan"
       },
       {
         "parent": "EEEOE",
         "lost": "O",
         "child": "EEEOEO",
         "status": "SCALE_LIMITED",
-        "reason": "absent as a rooted prefix under the atlas bound; present as an interior factor"
+        "certificate_type": "INTERIOR_STATE",
+        "min_interior_state": 2608762880,
+        "reason": "smallest interior realizing state 2608762880 > atlas n_max=100000000; no rooted realizer in the scan"
       }
     ],
+    "selected_roots": {
+      "n_max": 10000000,
+      "words": {
+        "EEEEEE": {
+          "size": 0,
+          "min": null,
+          "max": null
+        },
+        "EEEEOE": {
+          "size": 0,
+          "min": null,
+          "max": null
+        },
+        "EEEOEO": {
+          "size": 0,
+          "min": null,
+          "max": null
+        },
+        "EEEEE": {
+          "size": 604928,
+          "min": 65536,
+          "max": 5764800
+        },
+        "EEEEO": {
+          "size": 1063,
+          "min": 256,
+          "max": 6560
+        },
+        "EEEOE": {
+          "size": 481443,
+          "min": 6250000,
+          "max": 10000000
+        }
+      }
+    },
+    "window_artefact": {
+      "word": "EEEE",
+      "diagnostic_class": "UNARY_O",
+      "atlas_class": "BINARY",
+      "reason": "n<=4000 cannot see m(EEEEE)=65536, so EEEE looks UNARY_O in the small window"
+    },
     "atlas_unary_return": {
       "available": true,
       "unary_to_binary_examples": [
@@ -1366,10 +1496,9 @@
     "no_global_termination_theorem": true
   },
   "decision": {
-    "classification": "ROOT_FACTOR_GREEN",
+    "classification": "REALIZATION_GEOMETRY_COMPLEX",
     "secondary": "REALIZATION_COUNTEREXAMPLE",
-    "reason": "Child degree is exactly landing-parity monochromicity of T_w(R_w). Naive m(wE)>=m(w)^2 fails as soon as an odd letter appears (smallest even-landing identity m(OOOE)=m(OOOOE)=3; smallest odd-landing jump m(OEEE)=7 to m(OEEEE)=41<49). The first holes are SCALE_LIMITED root absences with interior witnesses. No extra low-complexity interval rule beyond landing parity survived.",
-    "ee_corridor_reproduced": true
+    "reason": "Appending a letter is the landing-parity filter of T_w(R_w), which is the definition of follows. Prepending E is the even-cell union already in even_cell_iff; it is exact on every finite window. Prepending O leaks the window because odd landings escape [1,N]. Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE 7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No new set geometry beyond follows plus inverse-floor cells survived."
   },
-  "search_method": "nested R_w by one-pass itinerary; child split by parity of image_after; atlas min-realizer/continuations for the parked k<=20 census"
+  "search_method": "nested R_w by one-pass itinerary; append children by landing parity; prepend children by even_cell / odd_cell; interior states of first holes; selected exact roots at n<=1e7"
 }

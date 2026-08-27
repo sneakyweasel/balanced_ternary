@@ -4,8 +4,8 @@ Status: **EXPLORATORY**
 
 Standalone arithmetic layer on the parked word atlas. It is **not** a
 Research Engine control-layer experiment, not a reopening of the
-closed PE-factor or residual-future branches, and not a claim that
-every positive integer reaches 1.
+closed PE-factor, residual-future, or sum-rho branches, and not a
+claim that every positive integer reaches 1.
 
 ## Problem
 
@@ -30,9 +30,9 @@ scan bound is
 \]
 
 never a forbidden factor, unless a separate arithmetic certificate
-exists. The first rooted holes `EEEEEE`, `EEEEOE`, `EEEOEO` are
-classified at least as `SCALE_LIMITED` when they appear as interior
-factors.
+exists. Empty children are classified as `SCALE_LIMITED`,
+`CELL_EMPTY`, `SEARCH_UNOBSERVED`, or `CERTIFIED_EMPTY`. The three
+first rooted holes are `SCALE_LIMITED`.
 
 This says nothing about totality.
 
@@ -49,9 +49,11 @@ This says nothing about totality.
 - Word atlas prefix trie —
   **PARK** as machinery; graph reading in
   [juggler_atlas_graph.md](../research/juggler_atlas_graph.md).
-- Word-language arrangement attack —
-  **CLOSE** as `JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`.
+- Word-language / PE-factor arrangement —
+  **CLOSE**. Do not reopen.
 - Residual-future quotient —
+  **CLOSE**. Do not reopen.
+- Global sum-rho / word-statistics —
   **CLOSE**. Do not reopen.
 
 Project relationship: **extended**.
@@ -67,13 +69,14 @@ Falsifier               unary without monochrome landings; a square
                         only tautological restatements of landing parity
 Existing machinery      follows_word, image_after, even_cell,
                         odd_cell_integers, parked atlas continuations
-Maximum Phase-0 scope   reproduce atlas facts; exact R_w on n<=4000
-                        then n<=1e5; child split; min-realizer laws;
-                        root vs interior for the three first holes
+Maximum Phase-0 scope   exact R_w on n<=4000 then n<=1e5; selected
+                        roots n<=1e7; child split; prepend cells;
+                        interior-state certificates for first holes
 Promotion criterion     an explicit A(w),B(w) or cell rule for d(w)=1
                         that is not landing-parity restated
-Stop criterion          only scan-bound tautologies; PE-factor or
-                        residual-quotient reopen; automaton; halt claim
+Stop criterion          only scan-bound tautologies; PE-factor,
+                        residual-quotient, or sum-rho reopen;
+                        automaton; halt claim
 ```
 
 ## Balanced-ternary formulation
@@ -88,14 +91,22 @@ It is not required.
 
 - Nested realizing sets \(R_{wb}\subseteq R_w\) —
   **EXACT — HUMAN PROOF** from `follows`
-- Child split by parity of \(T_w(n)\) —
-  **EXACT — HUMAN PROOF**
+- Append child split by parity of \(T_w(n)\) —
+  **EXACT — HUMAN PROOF** (definitional)
+- Prepend-\(E\) cell union
+  \(R_{Ew}(N)=\bigcup_{q\in R_w(N)}(\mathrm{even\_cell}(q)\cap 2\mathbb{Z}\cap[1,N])\) —
+  **EXACT — HUMAN PROOF**, Lean `even_cell_iff`;
+  **COMPUTATIONALLY VERIFIED** on \(n\le 4000\), \(k\le 12\)
+- Prepend-\(O\) cell union closed on a finite window —
+  **REFUTED**; odd landings escape \([1,N]\)
 - \(m(E^r)=2^{2^{r-1}}\) —
   **EXACT — HUMAN PROOF**, Lean `even_tower_to_one`
 - \(m(wE)\ge m(w)^2\) for mixed words —
-  **REFUTED** on `OOE` / `OO`
+  **REFUTED** on `OOOE` / `OEEE`
 - First rooted holes as forbidden factors —
-  **REFUTED**; they are `SCALE_LIMITED` and interior-realized
+  **REFUTED**; they are `SCALE_LIMITED` with interior witnesses
+- Unary iff \(R_w\) is a single interval —
+  **REFUTED**; 259 `UNARY_O` prefixes on \(n\le 4000\) are `FRAGMENTED`
 - Unary iff landing parity of \(T_w(R_w)\) is monochrome —
   **EXACT — HUMAN PROOF** (definitional on the exact split)
 
@@ -104,9 +115,13 @@ It is not required.
 - Probe: `research.juggler_sequence.realization_geometry`
 - Diagnostic window: \(n\le 4000\), \(k\le 12\)
 - Confirm window: \(n\le 10^5\), \(k\le 12\)
+- Selected exact roots: \(n\le 10^7\) for the three first holes
+  and their parents
 - Atlas: `wa-20260827T200310Z-cuda-k20-n100000000`
 - Records: [juggler_realization_geometry.md](../research/juggler_realization_geometry.md)
 - Tests: `tests/research/juggler_sequence/test_realization_geometry.py`
+
+No new census. No GPU. No new atlas SQLite tables. No automaton.
 
 ## Conjectures
 
@@ -118,9 +133,15 @@ None opened in `conjectures/`.
   \(m(\texttt{OOOE})=m(\texttt{OOOOE})=3\); `OEEE` has
   \(m=7\) and \(m(\texttt{OEEEE})=41<49\).
 - “A length-6 even-ish word absent as a rooted prefix is forbidden.”
-  False: `EEEEEE` occurs inside \(2906\) length-20 realized prefixes.
+  False: `EEEEEE` occurs inside \(2906\) length-20 realized prefixes,
+  at realizing states \(\ge 4294972782\).
 - “Unary corridors never regain two children.” False: \(52\) returns
   in the confirm window, and \(5\) atlas `EE…` parents thaw.
+- “Unary means \(R_w\) is an interval.” False: diagnostic unary
+  nodes include \(259+148\) `FRAGMENTED` sets.
+- “Prepend-\(O\) is a closed operator on \(R_w(N)\).” False: on
+  \(N=4000\) the empty-word prediction keeps \(126\) odds and
+  misses \(1874\).
 
 ## Formalization
 
@@ -131,30 +152,39 @@ No `sorry`. No automaton.
 
 Phase 0 is recorded in
 [juggler_realization_geometry.md](../research/juggler_realization_geometry.md).
-The exact child rule is landing parity of \(T_w(R_w)\). Naive
-square amplification is special to the even tower. The first holes
-are `SCALE_LIMITED`. No extra low-complexity interval predicate
-beyond landing parity survived the diagnostic and confirm windows.
+Classification **REALIZATION_GEOMETRY_COMPLEX**.
+
+Appending a letter is the landing-parity filter of \(T_w(R_w)\).
+Prepending \(E\) is the even-cell union already in `even_cell_iff`,
+and it is exact on every finite window. Prepending \(O\) leaks the
+window. The first holes are `SCALE_LIMITED`, not `CELL_EMPTY`:
+
+| word | certificate | bound |
+|------|-------------|-------|
+| `EEEEEE` | even tower | \(m=2^{32}>10^8\) |
+| `EEEEOE` | interior state | \(10^8<m\le 39062504258660\) |
+| `EEEOEO` | interior state | \(10^8<m\le 2608762880\) |
+
+Selected exact roots at \(n\le 10^7\) find no member of any first
+hole. `EEEE` looks `UNARY_O` at \(n\le 4000\) only because
+\(m(\texttt{EEEEE})=65536\); the atlas class is `BINARY`.
 
 ## Open questions
 
-The leftover atlas question is unchanged: is there any arithmetic,
-other than the integer \(y\) itself, that decides whether a
-persistent residual landing stays odd-to-odd? This branch does not
-answer it. A tighter cell description of \(R_w\) itself — not of
-\(d(w)\) — remains open and is not automatically the next phase.
+None from this branch. The append rule is `follows`. The prepend-\(E\)
+rule is `even_cell_iff`. Do not reopen PE factors, residual quotients,
+or sum-rho.
 
 ## Decision
 
-**PARK**. Landing parity explains \(d(w)\) exactly and the root /
-interior split is real, but both are already implied by `follows` /
-`image` plus even-scale. The square law does not lift past odd
-letters. Do not promote a restatement. Do not reopen PE factors or
-residual quotients. Do not pursue termination.
+**CLOSE**. Every exact statement is `follows`, `even_cell_iff`, or
+`even_tower_to_one`. The square law does not lift past odd letters.
+Unary is not an interval predicate. The first holes are
+`SCALE_LIMITED` root absences with interior witnesses, not empty
+cells. Do not promote a restatement. Do not invent another scalar.
+Do not pursue termination.
 
-Best next question: is there any arithmetic, other than the integer
-\(y\) itself, that decides whether a persistent residual landing
-stays odd-to-odd?
+Best next question: none from this branch.
 
 ## Publication assessment
 

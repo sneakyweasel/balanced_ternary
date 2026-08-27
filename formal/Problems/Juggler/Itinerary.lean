@@ -257,4 +257,16 @@ theorem reachesOne_of_image {n : ℕ} {w : List Branch}
     (hm : ReachesOne (image n w)) : ReachesOne n :=
   reachesOne_of_iterate (image_eq_iterate n w).symm hm
 
+/-- `T_w` is monotone on the realizing set of `w`. -/
+theorem image_monotone_of_follows :
+    ∀ {w : List Branch} {n m : ℕ},
+      follows n w → follows m w → n ≤ m → image n w ≤ image m w
+  | [], _, _, _, _, hle => hle
+  | .even :: w, _, _, hn, hm, hle =>
+      image_monotone_of_follows (w := w) hn.2 hm.2
+        (floorPower_even_mono hn.1 hm.1 hle)
+  | .odd :: w, _, _, hn, hm, hle =>
+      image_monotone_of_follows (w := w) hn.2 hm.2
+        (floorPower_odd_mono hn.1 hm.1 hle)
+
 end Problems.Juggler

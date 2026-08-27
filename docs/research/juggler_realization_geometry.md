@@ -1,6 +1,6 @@
 # Juggler realization-set geometry
 
-Status: **ROOT_FACTOR_GREEN**
+Status: **REALIZATION_GEOMETRY_COMPLEX**
 
 Standalone application phase. Not a Research Engine experiment
 and not a termination theorem. Studies the realizing sets
@@ -13,9 +13,10 @@ reopen PE-factor grammar or residual-future quotients.
 Mathematical target     What geometry of R_w makes a prefix unary?
 Novelty hypothesis      inverse-floor cells / scale of R_w force d(w)=1
 Falsifier               unary without monochrome landings, or a square
-                        amplification law that survives mixed words
+                        amplification law that survives mixed words, or
+                        a hole that is CELL_EMPTY rather than scale
 Existing machinery      follows_word, image_after, even_cell, atlas trie
-Maximum Phase-0 scope   reproduce atlas facts; R_w on n<=4000 then 1e5
+Maximum Phase-0 scope   R_w on n<=4000 then 1e5; selected roots n<=1e7
 ```
 
 ## Metadata
@@ -23,10 +24,10 @@ Maximum Phase-0 scope   reproduce atlas facts; R_w on n<=4000 then 1e5
 - diagnostic window: `n<= 4000`, `k<= 12`
 - confirm window: `n<= 100000`, `k<= 12`
 - engine control layer modified: `False`
-- classification: **ROOT_FACTOR_GREEN**
+- classification: **REALIZATION_GEOMETRY_COMPLEX**
 - sorry-free: `True`
 
-Child degree is exactly landing-parity monochromicity of T_w(R_w). Naive m(wE)>=m(w)^2 fails as soon as an odd letter appears (smallest even-landing identity m(OOOE)=m(OOOOE)=3; smallest odd-landing jump m(OEEE)=7 to m(OEEEE)=41<49). The first holes are SCALE_LIMITED root absences with interior witnesses. No extra low-complexity interval rule beyond landing parity survived.
+Appending a letter is the landing-parity filter of T_w(R_w), which is the definition of follows. Prepending E is the even-cell union already in even_cell_iff; it is exact on every finite window. Prepending O leaks the window because odd landings escape [1,N]. Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE 7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No new set geometry beyond follows plus inverse-floor cells survived.
 
 ## Atlas reproduction
 
@@ -65,15 +66,39 @@ Leading-`E` unary fraction at length 19:
 
 ## Missing-child status
 
-- `EEEEEE` status=`SCALE_LIMITED` — even_tower(6)=4294967296 > atlas n_max=100000000
-- `EEEEOE` status=`SCALE_LIMITED` — absent as a rooted prefix under the atlas bound; present as an interior factor
-- `EEEOEO` status=`SCALE_LIMITED` — absent as a rooted prefix under the atlas bound; present as an interior factor
+- `EEEEEE` status=`SCALE_LIMITED` — m(E^6)=even_tower(6)=4294967296 > atlas n_max=100000000
+- `EEEEOE` status=`SCALE_LIMITED` — smallest interior realizing state 39062504258660 > atlas n_max=100000000; no rooted realizer in the scan
+- `EEEOEO` status=`SCALE_LIMITED` — smallest interior realizing state 2608762880 > atlas n_max=100000000; no rooted realizer in the scan
 
 ## Root versus interior
 
-- `EEEEEE` interior hits at length 20: `2906` min_pos=`1` example n=`1571189` host=`OOOOOOOOOOEEEEEEEEEE`
-- `EEEEOE` interior hits at length 20: `6164` min_pos=`2` example n=`613259` host=`OOOOOOOOOEEEEOEEEEEE`
-- `EEEOEO` interior hits at length 20: `11310` min_pos=`1` example n=`14483` host=`OOOOOOOOEEEOEOEEEEEE`
+- `EEEEEE` hosts=`2906` min_pos=`1` min_state=`4294972782` in_atlas=`0` follows=`True` host_n=`40853379` host=`OOOOEEEEEEEEOOOOOOOO`
+- `EEEEOE` hosts=`6164` min_pos=`2` min_state=`39062504258660` in_atlas=`0` follows=`True` host_n=`14435959` host=`OOOOEEOEEEEOEEEOOOOO`
+- `EEEOEO` hosts=`11310` min_pos=`1` min_state=`2608762880` in_atlas=`0` follows=`True` host_n=`27551539` host=`OOEOOEEEEOEOEEEOOOOO`
+
+## Selected exact roots n<=`10000000`
+
+- `EEEEEE` |R|=`0` min=`None` max=`None`
+- `EEEEOE` |R|=`0` min=`None` max=`None`
+- `EEEOEO` |R|=`0` min=`None` max=`None`
+- `EEEEE` |R|=`604928` min=`65536` max=`5764800`
+- `EEEEO` |R|=`1063` min=`256` max=`6560`
+- `EEEOE` |R|=`481443` min=`6250000` max=`10000000`
+
+## Window artefact
+
+- `EEEE` diagnostic=`UNARY_O` atlas=`BINARY` — n<=4000 cannot see m(EEEEE)=65536, so EEEE looks UNARY_O in the small window
+
+## Set recurrence
+
+- prepend E on the empty word: exact=`True`
+- prepend O on the empty word: exact=`False` predicted=`126` actual=`2000` leak=`1874`
+- even-tower prepend E: `True`
+- prepend E mismatches among prefixes: `0`
+- prepend O mismatches among prefixes: `946` first=`{'word': 'O', 'predicted': 67, 'actual': 1010, 'missing': 943}`
+- append rule: R_{wb} = {n in R_w : T_w(n) has parity b}
+- prepend E rule: R_{Ew}(N) = union_{q in R_w(N)} (even_cell(q) ∩ 2Z ∩ [1,N])
+- prepend O rule: R_{Ow} = union_{q in R_w} (odd_cell(q) ∩ (2Z+1)); not closed on [1,N]
 
 ## Diagnostic realizing sets
 
@@ -83,6 +108,7 @@ Leading-`E` unary fraction at length 19:
 - unary with a singleton landing: `1025`
 - binary nodes: `650` scale-separated children `307`
 - unary prefixes that regain two children: `62`
+- interval classes by degree: `{'BINARY': {'FRAGMENTED': 390, 'FEW_INTERVALS': 260}, 'UNARY_O': {'SINGLE_INTERVAL': 191, 'FEW_INTERVALS': 198, 'FRAGMENTED': 259}, 'UNARY_E': {'FRAGMENTED': 148, 'FEW_INTERVALS': 188, 'SINGLE_INTERVAL': 202}}`
 
 Branching profile (diagnostic):
 
@@ -187,9 +213,9 @@ even. The square lower bound does not survive mixed words.
 
 ## Decision
 
-**ROOT_FACTOR_GREEN**
+**REALIZATION_GEOMETRY_COMPLEX**
 
-Child degree is exactly landing-parity monochromicity of T_w(R_w). Naive m(wE)>=m(w)^2 fails as soon as an odd letter appears (smallest even-landing identity m(OOOE)=m(OOOOE)=3; smallest odd-landing jump m(OEEE)=7 to m(OEEEE)=41<49). The first holes are SCALE_LIMITED root absences with interior witnesses. No extra low-complexity interval rule beyond landing parity survived.
+Appending a letter is the landing-parity filter of T_w(R_w), which is the definition of follows. Prepending E is the even-cell union already in even_cell_iff; it is exact on every finite window. Prepending O leaks the window because odd landings escape [1,N]. Naive m(wE)>=m(w)^2 fails after an odd letter (OOOE at 3; OEEE 7->41). The first holes are SCALE_LIMITED, not CELL_EMPTY. No new set geometry beyond follows plus inverse-floor cells survived.
 
 This is not a halt result and not a forbidden-factor law.
 

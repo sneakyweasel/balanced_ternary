@@ -192,4 +192,16 @@ theorem floorPower_thirteen_step : floorPower 13 = 46 := by
 theorem floorPower_eighteen : floorPower 18 = 4 := by
   native_decide
 
+theorem floorPower_even_mono {n m : ℕ}
+    (hn : n % 2 = 0) (hm : m % 2 = 0) (hle : n ≤ m) :
+    floorPower n ≤ floorPower m := by
+  rw [floorPower_even_eq hn, floorPower_even_eq hm]
+  exact Nat.sqrt_le_sqrt hle
+
+theorem floorPower_odd_mono {n m : ℕ}
+    (hn : n % 2 = 1) (hm : m % 2 = 1) (hle : n ≤ m) :
+    floorPower n ≤ floorPower m := by
+  rw [floorPower_odd_eq hn, floorPower_odd_eq hm]
+  exact Nat.sqrt_le_sqrt (pow_le_pow_left' hle 3)
+
 end Problems.Juggler

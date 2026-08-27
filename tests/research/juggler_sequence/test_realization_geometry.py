@@ -2,17 +2,23 @@
 
 from __future__ import annotations
 
+import json
+
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
 from research.juggler_sequence.realization_geometry import (
+    CLASS_COMPLEX,
     FIRST_HOLES,
     FIRST_UNARY,
+    JSON_PATH,
     LEAN_THEOREMS,
     amplification_laws,
     atlas_available,
     child_sets,
     classify_missing_child,
     collect_realizing,
+    corridor_recurrence,
     even_tower,
+    interval_label,
     lean_api_present,
     prefix_row,
     reproduce_atlas,
@@ -72,12 +78,33 @@ def test_square_amplification_fails_after_odd_letters():
     assert even_hit["m_wE"] == even_hit["m_w"]
 
 
-def test_first_holes_are_scale_limited():
-    for parent, lost in (("EEEEE", "E"), ("EEEEO", "E"), ("EEEOE", "O")):
-        rec = classify_missing_child(parent, lost)
-        assert rec["status"] == "SCALE_LIMITED"
-        assert rec["child"] in FIRST_HOLES
+def test_first_holes_need_certificates():
+    tower = classify_missing_child("EEEEE", "E")
+    assert tower["status"] == "SCALE_LIMITED"
+    assert tower["certificate_type"] == "EVEN_TOWER"
+    assert tower["min_root"] == even_tower(6)
+    mixed = classify_missing_child("EEEEO", "E")
+    assert mixed["status"] == "SEARCH_UNOBSERVED"
+    assert mixed["child"] in FIRST_HOLES
     assert FIRST_UNARY == ("EEEEE", "EEEEO", "EEEOE")
+
+
+def test_prepend_E_closed_prepend_O_leaks():
+    realizing = collect_realizing(n_max=400, k_max=6)
+    rec = corridor_recurrence(realizing, n_max=400, k_max=6)
+    assert rec["empty_prepend_E_exact"] is True
+    assert rec["even_tower_prepend_exact"] is True
+    assert rec["prepend_E_mismatches"] == 0
+    assert rec["empty_prepend_O_exact"] is False
+    assert rec["empty_prepend_O_leak"] > 0
+    assert rec["prepend_O_mismatches"] > 0
+
+
+def test_interval_label_and_odd_fragmentation():
+    realizing = collect_realizing(n_max=80, k_max=3)
+    odd = prefix_row("O", realizing["O"], n_max=80)
+    assert odd["interval_class"] == "FRAGMENTED"
+    assert interval_label({"size": 4, "n_components": 1, "largest_frac": 1.0}) == "SINGLE_INTERVAL"
 
 
 def test_lean_api_no_halt_or_forbidden_engines():
@@ -117,3 +144,30 @@ def test_window_landing_parity_and_no_uncovered():
     assert census["unary_total"] > 0
     assert census["unary_monochrome"] == census["unary_total"]
     assert amplification_laws(realizing)["square_law_counterexample"] is not None
+
+
+def test_selected_roots_small_window():
+    from research.juggler_sequence.realization_geometry import selected_root_scan
+
+    rec = selected_root_scan(n_max=300, words=("E", "EE", "EEEEEE"))
+    assert rec["words"]["E"]["min"] == 2
+    assert rec["words"]["EE"]["min"] == 4
+    assert rec["words"]["EEEEEE"]["size"] == 0
+
+
+def test_committed_artifacts_complex():
+    if not JSON_PATH.is_file():
+        return
+    payload = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert payload["engine_control_layer_modified"] is False
+    assert payload["anti_overclaim"]["reopen_pe_factors"] is False
+    assert payload["anti_overclaim"]["reopen_residual_quotient"] is False
+    assert payload["anti_overclaim"]["automaton"] is False
+    assert payload["decision"]["classification"] == CLASS_COMPLEX
+    scan = payload["scan"]
+    assert scan["diagnostic"]["uncovered_total"] == 0
+    assert scan["corridor"]["prepend_E_mismatches"] == 0
+    assert scan["corridor"]["empty_prepend_O_leak"] > 0
+    for row in scan["missing_children"]:
+        assert row["status"] == "SCALE_LIMITED"
+        assert row["child"] in FIRST_HOLES

@@ -7341,19 +7341,20 @@ Best next question
 - **Date:** 2026-08-27
 - **Objective:** Explain unary nodes of the parked atlas trie by the geometry of realizing sets \(R_w\)
 - **Hypotheses:** inverse-floor cells or scale of \(R_w\) force \(d(w)=1\); \(m(wE)\ge m(w)^2\) lifts past odd letters
-- **Major results:** Child degree is exactly monochrome landing parity of \(T_w(R_w)\). Atlas first holes `EEEEEE` / `EEEEOE` / `EEEOEO` are `SCALE_LIMITED` (tower \(2^{32}\) for \(E^6\); interior hosts 2906 / 6164 / 11310 at length 20). Square amplification fails at `OOOE` (\(m=3\)) and odd-landing jump `OEEE` \(7\to 41<49\). Unary can thaw: 52 returns on \(n\le 10^5\), 5 atlas `EE…` parents. Classification `ROOT_FACTOR_GREEN`
-- **Refuted ideas:** mixed-word square amplification; rooted absence as a forbidden factor; permanent EE freezing; a non-tautological interval rule for \(d(w)\)
-- **Literature:** `JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR` stays CLOSE; residual-future quotient stays CLOSE; `even_tower_to_one` / `even_cell_iff`
-- **Open:** odd-to-odd continuation arithmetic other than the integer y
-- **Decision:** PARK. Landing parity and the root/interior split are exact but already implied by follows/image plus even-scale. Do not promote a restatement
+- **Major results:** Append children are the landing-parity filter of \(T_w(R_w)\). Prepend-\(E\) is the even-cell union and is exact on \(n\le 4000\); prepend-\(O\) leaks \(1874/2000\) odds. First holes `EEEEEE` / `EEEEOE` / `EEEOEO` are `SCALE_LIMITED` with interior states \(4294972782\), \(39062504258660\), \(2608762880\). Selected roots at \(n\le 10^7\) are empty for all three holes. Square law fails at `OOOE` (\(m=3\)) and `OEEE` \(7\to 41\). Unary is not an interval predicate. Classification `REALIZATION_GEOMETRY_COMPLEX`
+- **Refuted ideas:** mixed-word square amplification; rooted absence as a forbidden factor; permanent EE freezing; unary as a single-interval law; prepend-\(O\) closed on a finite window
+- **Literature:** PE-factor, residual-future, and sum-rho stay CLOSE; `even_tower_to_one` / `even_cell_iff`
+- **Open:** none from this branch
+- **Decision:** CLOSE. The exact rules are already `follows` and `even_cell_iff`. Do not promote a restatement
 
 ```text
 What was learned
 - d(w) is the number of parities in T_w(R_w); uncovered children are empty
+- R_{Ew}(N) is the even-cell union of R_w(N); R_{Ow}(N) is not a cell union of R_w(N)
 - The even tower is the only place m(wE)=m(w)^2 holds
 - The first trie holes are SCALE_LIMITED, not CELL_EMPTY
-- EE corridors can thaw; freezing is local, not permanent
-- Span / density / component count do not replace landing parity
+- EEEE looks unary at n<=4000 only because m(EEEEE)=65536
+- Unary sets can be FRAGMENTED; interval class does not decide d(w)
 
 Strongest theorem
 - m(E^r)=2^{2^{r-1}} (already Lean even_tower_to_one)
@@ -7362,7 +7363,7 @@ Strongest refutation
 - m(wE)>=m(w)^2 after an odd letter (OOOE at 3; OEEE 7→41)
 
 Reusable machinery
-- research.juggler_sequence.realization_geometry (nested R_w, child split)
+- research.juggler_sequence.realization_geometry (nested R_w, prepend cells, interior states)
 
 Prior-art status
 - realizing-set reading of the parked atlas, not a Juggler halt result
@@ -7371,12 +7372,59 @@ Complexity profile
 - unchanged flood order; no new production attack
 
 Branch status
+- CLOSE
+
+Why
+- Append geometry is follows. Prepend-E is even_cell_iff. The useful
+  correction is SCALE_LIMITED interior-state certificates for the
+  first holes. Stop. Do not invent another scalar.
+
+Best next question
+- none from this branch
+```
+
+## Juggler landing-image geometry
+
+- **Date:** 2026-08-27
+- **Objective:** Describe the arithmetic geometry of \(Y_w=T_w(R_w)\) beyond the child-split tautology
+- **Hypotheses:** \(Y_w\) is interval-like, a small cell union, or recursively \(\Phi_E/\Phi_O\) of a closed class; unary images have a geometric certificate stronger than monochrome parity
+- **Major results:** \(T_w\) is monotone on \(R_w\) (`image_monotone_of_follows`). Endpoints of \(R_w\) control the hull of \(Y_w\). \(Y_{wb}=\Phi_b(Y_w)\) holds on the diagnostic window. Mixed images fragment (248 `FRAGMENTED`; pure \(O^r\) is one component per realizer). Classification `IMAGE_MONOTONE_GREEN`
+- **Refuted ideas:** mixed \(Y_w\) as an interval; interval class as a branching rule; unary as a small-span phenomenon (`EEEE` is \(\{1\}\) at \(N=4000\) and \(\{1,2\}\) at \(N=10^5\))
+- **Literature:** realization-set geometry stays PARK; PE / residual-future / summed-rho stay CLOSE
+- **Open:** odd-to-odd continuation arithmetic other than the integer \(y\)
+- **Decision:** PARK. Monotonicity and \(\Phi\) are one-step parity-class facts. Mixed images have no bounded-complexity cell calculus. Do not add an atlas image schema
+
+```text
+What was learned
+- T_w is monotone on R_w; min/max of Y_w are T_w of the R_w endpoints
+- Y_{wb} = Phi_b(Y_w) is exact composition, not a new operator class
+- Pure E collapses toward a small interval; pure O is maximally fragmented
+- Unary images can be non-singleton; thaw is image_gained_second_parity
+- Interval / component / hull-defect statistics do not replace landing parity
+
+Strongest theorem
+- follows(n,w) and follows(m,w) and n <= m imply image(n,w) <= image(m,w)
+
+Strongest refutation
+- Y_{O^r} is not an interval (one component per realizer)
+
+Reusable machinery
+- research.juggler_sequence.landing_image
+- floorPower_even_mono / floorPower_odd_mono / image_monotone_of_follows
+
+Prior-art status
+- image-geometry reading of follows/image, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
 - PARK
 
 Why
-- The geometry that decides d(w) is the parity of the image. That is
-  follows/image, not a new cell calculus. The valuable correction is
-  the SCALE_LIMITED / interior-factor split. Stop.
+- The surviving exact facts are consequences of floorPower being
+  monotone on each parity class. Mixed Y_w fragments. Do not promote
+  a restatement of the one-step map.
 
 Best next question
 - Is there any arithmetic, other than the integer y itself, that
