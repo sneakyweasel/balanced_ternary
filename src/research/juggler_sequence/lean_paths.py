@@ -38,6 +38,8 @@ LAYERS: dict[str, Path] = {
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
+    "LandingValuation": JUGGLER_DIR / "LandingValuation.lean",
+    "PreimageCylinders": JUGGLER_DIR / "PreimageCylinders.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -68,6 +70,8 @@ LANDING_PARITY = LAYERS["LandingParity"]
 CYCLES = LAYERS["Cycles"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
+LANDING_VALUATION = LAYERS["LandingValuation"]
+PREIMAGE_CYLINDERS = LAYERS["PreimageCylinders"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",

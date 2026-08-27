@@ -161,6 +161,8 @@ The leftover is still whether an odd-to-odd residual chain can
 continue indefinitely. That is not a threshold-coordinate problem.
 Sequential near-Mordell composition is not that arithmetic either;
 see [juggler_sequential_mordell.md](juggler_sequential_mordell.md).
+The 2-adic remainder law is \(y\bmod 8\); see
+[juggler_landing_valuation.md](juggler_landing_valuation.md).
 Do not reopen residues, slack, or expanding-word grammar.
 
 ## Decision

@@ -169,8 +169,10 @@ solver. No three-step hierarchy.
 
 The leftover is still whether an odd-to-odd residual chain can
 continue indefinitely. Sequential near-Mordell composition is not
-that arithmetic. Do not open a three-step attack, a Mordell
-solver, or a halt claim.
+that arithmetic. The even remainder lifts to \(\rho\equiv y-1
+\pmod 8\), which is not history-sensitive; see
+[juggler_landing_valuation.md](juggler_landing_valuation.md).
+Do not open a three-step attack, a Mordell solver, or a halt claim.
 
 ## Decision
 

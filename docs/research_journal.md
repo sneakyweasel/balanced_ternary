@@ -6825,3 +6825,93 @@ Best next question
 - Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
 ```
 
+## Juggler 2-adic landing obstruction
+
+- **Date:** 2026-08-27
+- **Objective:** Classify v₂(y³-T(y)²) on odd-odd landings and decide whether PE history strengthens the law or restricts the next residual block
+- **Hypotheses:** a history-sensitive bound v₂≥r>1; y≡1 mod 2^r forces v₂≥r; valuation locks the next odd-run grammar
+- **Major results:** Lean ρ≡y-1 (mod 8) and the exact valuation table (3,7)→1, 5→2, 1→≥3. y=33≡1 (mod 16) has v₂=3. PE endpoint 763 has v₂=1. Census n≤4000: the PE table is the same residue law; v₂ does not decide the next word. No halt theorem
+- **Refuted ideas:** PE ⇒ v₂≥r>1; y≡1 mod 16 ⇒ v₂≥4; history changes the 2-adic law; valuation is monotone or transported
+- **Literature:** odd_remainder_even; odd_sq_mod_eight; landing-parity CLOSE; sequential-Mordell CLOSE; expanding-grammar CLOSE
+- **Open:** whether any arithmetic other than the integer y itself decides odd-to-odd continuation
+- **Decision:** CLOSE as `LANDING_VALUATION_IS_Y_MOD_8`. Do not claim termination
+
+```text
+What was learned
+- Odd-odd remainder satisfies ρ≡y-1 (mod 8)
+- v₂(ρ) is a function of y mod 8, except y≡1 only forces v₂≥3 or ρ=0
+- The floor metric does not strengthen the congruence
+- PE endpoints occupy every odd class and can have v₂=1
+- Valuation does not decide the next landing or residual word
+
+Strongest theorem
+- On odd-odd y, ρ≡y-1 (mod 8), and the valuation table is exact
+
+Strongest refutation
+- A PE endpoint forces v₂(ρ)≥r>1 (witness 365→763, v₂=1)
+
+Reusable machinery
+- formal/Problems/Juggler/LandingValuation.lean
+- research.juggler_sequence.landing_valuation
+
+Prior-art status
+- elementary odd-cube / odd-square arithmetic, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The 2-adic landing law is the residue of y. Persistent-expanding history does not change it, and the valuation is not transported to the next block. The leftover is still the integer y itself.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
+```
+
+## Juggler PE preimage cylinders
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether the predecessor relation x→^w y constrains T(y) mod 2 or the next residual grammar in a way y alone does not
+- **Hypotheses:** C_w is a thin set whose next square cells are restricted; a PE word forbids a next residual class; residue plus θ recovers the missing history
+- **Major results:** Lean wordCylinder is follows ∧ image; inverse letters are the existing cells. OOE overshoots 3461→9585 (T even) and 3803→10657 (T odd) share y≡1 (mod 8). Census n≤4000: every PE word with ≥8 samples realises both next parities; θ unrestricted on both sides. No halt theorem
+- **Refuted ideas:** a PE word forces next landing parity; matching residue/θ locks continuation; long PE runs occupy a restricted next cylinder
+- **Literature:** Cells inverse-floor; Itinerary follows/image; landing-parity CLOSE; landing-valuation CLOSE; residual-state CLOSE
+- **Open:** whether any arithmetic other than the integer y itself decides odd-to-odd continuation
+- **Decision:** CLOSE as `PREIMAGE_CYLINDER_IS_Y`. Do not claim termination
+
+```text
+What was learned
+- The inverse of a finite word is follows plus image
+- T(y) is a function of y; history can only thin the attainable y
+- Every well-sampled PE word realises both next parities
+- Same residue and θ still split, including OOE at y≡1 (mod 8)
+- Long PE runs exit by an ordinary odd-to-even landing
+
+Strongest theorem
+- wordCylinder x w y ↔ follows x w ∧ image x w = y, and each letter is the inverse-floor cell
+
+Strongest refutation
+- The OOE overshoot cylinder forces T(y) mod 2 (witnesses 3461→9585 even, 3803→10657 odd)
+
+Reusable machinery
+- formal/Problems/Juggler/PreimageCylinders.lean
+- research.juggler_sequence.preimage_cylinders
+
+Prior-art status
+- negative cylinder-history result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- Predecessor information that is not y itself does not restrict the next square cell or the next residual grammar. The cylinder of a PE word still samples both landing parities.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
+```
+

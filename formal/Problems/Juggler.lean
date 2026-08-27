@@ -26,6 +26,8 @@ import Problems.Juggler.LandingParity
 import Problems.Juggler.Cycles
 import Problems.Juggler.CycleDiophantine
 import Problems.Juggler.SequentialMordell
+import Problems.Juggler.LandingValuation
+import Problems.Juggler.PreimageCylinders
 
 /-!
 # Juggler formalization
