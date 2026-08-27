@@ -5187,7 +5187,7 @@ Best next question
 - **Major results:** if \(T_v(n)\ge(n+1)^2\) for \(n\ge N\), then no cycle \(vE\) at \(n\ge N\) **EXACT — LEAN VERIFIED**. No `OOOE` cycle **EXACT — LEAN VERIFIED**. No length-4 E-terminating cycle **EXACT — LEAN VERIFIED**. Classification **LAST_EVEN_CLASS_GREEN**. Records: `docs/research/juggler_cycle_e_term.md`, `docs/problems/juggler_cycle_e_term.md`. Control layer unchanged
 - **Refuted ideas:** every length-4 E-word needs a separate cell analysis; last-even return is \(z=n^2\); O-terminating cycles are included; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** which existing suffix thresholds already sit above the next square for words longer than `OOO`?
+- **Open:** answered in the E-terminating threshold-inventory phase
 - **Decision:** PROMOTE the generic threshold theorem and the length-4 E-terminating exclusion. Do not claim that all cycles are impossible. Do not treat cycles ending in `O`
 
 ```text
@@ -5222,6 +5222,51 @@ Why
 
 Best next question
 - Which existing suffix thresholds already sit above the next square for words longer than OOO, and do they exclude the corresponding E-terminating cycles without a new census?
+```
+
+## Juggler E-terminating threshold inventory
+
+- **Date:** 2026-08-27
+- **Objective:** Inventory existing next-square thresholds and close length-5 E-terminating words by odd-append inheritance
+- **Hypotheses:** `LAST_E_THRESHOLD_COVERAGE_GREEN`, `THRESHOLD_INHERITANCE_GREEN`, `E_TERMINATING_LENGTH5_GREEN`, `E_TERMINATING_THRESHOLD_GAP`, or `LAST_E_METHOD_PARK`
+- **Major results:** `O^a` for \(a\ge 3\) has next-square threshold \(N=3\) **EXACT — LEAN VERIFIED**. No `O^a E` cycle for \(a\ge 3\) **EXACT — LEAN VERIFIED**. No length-5 E-terminating cycle **EXACT — LEAN VERIFIED**. Every expanding \(vE\) is excluded above a huge \(Q_0(v)\) **EXACT — LEAN VERIFIED**. Classification **LAST_E_THRESHOLD_COVERAGE_GREEN**. Records: `docs/research/juggler_cycle_e_threshold.md`, `docs/problems/juggler_cycle_e_threshold.md`. Control layer unchanged
+- **Refuted ideas:** every expanding \(vE\) needs a new exact threshold; the eventual \(Q_0\) is a useful uniform bound; O-terminating cycles are included; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** what is the smallest expanding E-terminating suffix that is not all-odd?
+- **Decision:** PROMOTE the inventory, inheritance, and length-5 exclusion. Do not claim that all cycles are impossible. Do not treat cycles ending in `O`
+
+```text
+What was learned
+- Exact next-square thresholds already exist for OO and OOO
+- Odd-append inherits a next-square bound, so O^a has N=3 for a≥3
+- The only expanding length-5 E-word is OOOOE
+- Every expanding vE is already superquadratic and has a huge eventual Q0
+- The first mixed expanding E-suffix appears at length 6
+
+Strongest theorem
+- There is no CycleWord n (v ++ [E]) for |v|=4 and n≥2
+
+Strongest refutation
+- the eventual Q0 is a practical uniform bound; it is D_v · 4^{2^|v|}
+
+Reusable machinery
+- Problems.Engine.CycleWord threshold_inherits_odd_append / odd_run_suffix_threshold / no_cycle_word_length_five_ends_even
+- research.juggler_sequence.cycle_e_threshold
+
+Prior-art status
+- threshold reuse, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Existing thresholds plus one inheritance lemma close every length-5 E-terminating cycle without a census or a cycle engine.
+
+Best next question
+- What is the smallest expanding E-terminating suffix that is not all-odd, and can it be excluded without a new census?
 ```
 
 

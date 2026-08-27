@@ -133,9 +133,9 @@ in `O` remain open.
 
 ## Open questions
 
-Which longer suffixes already have a next-square threshold, and can
-that class exclude more E-terminating words without a census? Do not
-open the O-terminating branch here.
+Answered in [juggler_cycle_e_threshold.md](juggler_cycle_e_threshold.md):
+odd-append inheritance lifts `OOO` to `O^a` for \(a\ge 3\), and every
+length-5 E-terminating word is excluded.
 
 ## Decision
 
@@ -143,9 +143,8 @@ open the O-terminating branch here.
 E-terminating exclusion. Do not claim that all cycles are impossible.
 Do not claim termination. Do not treat cycles ending in `O`.
 
-Best next question: which existing suffix thresholds already sit above
-the next square for words longer than `OOO`, and do they exclude the
-corresponding E-terminating cycles without a new census?
+Best next question: answered in
+[juggler_cycle_e_threshold.md](juggler_cycle_e_threshold.md).
 
 ## Publication assessment
 

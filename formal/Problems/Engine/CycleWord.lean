@@ -11,10 +11,20 @@ lower-growth theorem still gives `n^{3^o - 2^k} ≤ lowerDenom w`.
 
 A last even letter is the square *cell* `n^2 ≤ z < (n+1)^2`, not an
 exact-square identity. If a suffix `v` sits at or above the next
-square, `vE` cannot be a cycle. Combined with the `OO` and `OOO`
-thresholds this excludes `OOE` and `OOOE`. Every length-4
-E-terminating word is either contracting or `OOOE`. This is not a
-halt theorem and not a claim that every cycle word is impossible.
+square, `vE` cannot be a cycle.
+
+Existing next-square inventory, not a new engine:
+
+* exact `OO` at `N = 5` (`oo_suffix_threshold`)
+* exact `OOO` at `N = 3` (`ooo_suffix_threshold`)
+* inherited `O^a` for `a ≥ 3` at `N = 3` (odd-append)
+* eventual every superquadratic `v` at a huge `Q0(v)`
+  (`eventually_no_first_even_contraction`)
+* cell-specific `EOO` uses `(√n+1)^2`, not `(n+1)^2`
+
+Every length-5 E-terminating word is either contracting or `OOOOE`.
+This is not a halt theorem and not a claim that every cycle word is
+impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -412,5 +422,102 @@ theorem no_cycle_word_length_four_ends_even {n : ℕ} {v : List Branch}
   have hOOOE : CycleWord n wordOOOE := by
     simpa [wordOOOE, hvOOO] using h
   exact no_cycle_word_oooe hn hOOOE
+
+theorem threshold_inherits_odd_append {v : List Branch} {N : ℕ}
+    (hth : ∀ m, N ≤ m → follows m v → (m + 1) ^ 2 ≤ image m v)
+    {n : ℕ} (hn : N ≤ n) (hw : follows n (v ++ [Branch.odd])) :
+    (n + 1) ^ 2 ≤ image n (v ++ [Branch.odd]) := by
+  have hv := follows_of_append_left hw
+  have hodd : image n v % 2 = 1 := (follows_of_append_right hw).1
+  have hge := hth n hn hv
+  have himg : image n (v ++ [Branch.odd]) = floorPower (image n v) := by
+    rw [image_append]
+    simp [image]
+  exact le_trans hge (by simpa [himg] using floorPower_odd_ge hodd)
+
+theorem replicate_odd_concat (a : ℕ) :
+    List.replicate a Branch.odd ++ [Branch.odd] =
+      List.replicate (a + 1) Branch.odd := by
+  induction a with
+  | zero => simp
+  | succ a ih =>
+      rw [List.replicate_succ, List.cons_append, ih]
+      rfl
+
+theorem follows_replicate_odd_head {n a : ℕ} (ha : 1 ≤ a)
+    (hw : follows n (List.replicate a Branch.odd)) : n % 2 = 1 := by
+  cases a with
+  | zero => omega
+  | succ a =>
+      simpa [List.replicate_succ] using hw.1
+
+theorem odd_run_suffix_threshold_add :
+    ∀ k m, 3 ≤ m → follows m (List.replicate (3 + k) Branch.odd) →
+      (m + 1) ^ 2 ≤ image m (List.replicate (3 + k) Branch.odd)
+  | 0, m, hm, hf => by
+      simpa [image_eq_iterate] using ooo_suffix_threshold hm hf
+  | k + 1, m, hm, hf => by
+      have hrep :
+          List.replicate (3 + (k + 1)) Branch.odd =
+            List.replicate (3 + k) Branch.odd ++ [Branch.odd] := by
+        have : 3 + (k + 1) = (3 + k) + 1 := Nat.add_assoc 3 k 1
+        rw [this, replicate_odd_concat]
+      have hf' :
+          follows m (List.replicate (3 + k) Branch.odd ++ [Branch.odd]) := by
+        simpa [hrep] using hf
+      have hle :=
+        threshold_inherits_odd_append (N := 3)
+          (odd_run_suffix_threshold_add k) hm hf'
+      simpa [hrep] using hle
+
+theorem odd_run_suffix_threshold {a : ℕ} (ha : 3 ≤ a) :
+    ∀ m, 3 ≤ m → follows m (List.replicate a Branch.odd) →
+      (m + 1) ^ 2 ≤ image m (List.replicate a Branch.odd) := by
+  have hlen : a = 3 + (a - 3) := (Nat.add_sub_of_le ha).symm
+  rw [hlen]
+  exact odd_run_suffix_threshold_add (a - 3)
+
+theorem no_cycle_odd_run_append_even {a : ℕ} (ha : 3 ≤ a)
+    {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleWord n (List.replicate a Branch.odd ++ [Branch.even]) := by
+  intro h
+  have hw := follows_of_append_left h.1
+  have hodd :=
+    follows_replicate_odd_head (le_trans (by decide : (1 : ℕ) ≤ 3) ha) hw
+  have hn3 : 3 ≤ n := by omega
+  exact no_cycle_append_even_of_suffix_threshold
+    (odd_run_suffix_threshold ha) hn3 h
+
+/-- Coarse coverage: every expanding `vE` is excluded above a huge `Q0`. -/
+theorem eventually_no_cycle_append_even {v : List Branch}
+    (hα : 2 ^ (v.length + 1) < 3 ^ oddCount v) :
+    ∃ Q0, ∀ n, Q0 ≤ n → ¬CycleWord n (v ++ [Branch.even]) := by
+  rcases eventually_no_first_even_contraction hα with ⟨Q0, hth⟩
+  exact ⟨Q0, fun n hn h => no_cycle_append_even_of_suffix_threshold hth hn h⟩
+
+/-- Every length-5 E-terminating cycle word is impossible: it is either
+formally contracting, or it is `OOOOE` and inherits the `OOO` threshold. -/
+theorem no_cycle_word_length_five_ends_even {n : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (hv : v.length = 4)
+    (h : CycleWord n (v ++ [Branch.even])) : False := by
+  have hexp := cycle_word_formally_expanding hn h
+  have hlen : (v ++ [Branch.even]).length = 5 := by simp [hv]
+  have ho : oddCount (v ++ [Branch.even]) = oddCount v := by
+    simp [oddCount_append]
+  rw [hlen, ho] at hexp
+  have hge : 4 ≤ oddCount v := by
+    refine Nat.succ_le_of_lt (lt_of_not_ge fun hle => ?_)
+    have hpow : 3 ^ oddCount v ≤ 27 := by
+      interval_cases oddCount v <;> decide
+    exact (not_le_of_gt hexp) (le_trans hpow (by decide : (27 : ℕ) ≤ 32))
+  have hle : oddCount v ≤ 4 := by
+    simpa [hv] using oddCount_le_length v
+  have hodd : oddCount v = 4 := le_antisymm hle hge
+  have hvO : v = List.replicate 4 Branch.odd := by
+    have := eq_replicate_odd_of_oddCount_eq_length (hodd.trans hv.symm)
+    simpa [hv] using this
+  have hC : CycleWord n (List.replicate 4 Branch.odd ++ [Branch.even]) := by
+    simpa [hvO] using h
+  exact no_cycle_odd_run_append_even (by decide : (3 : ℕ) ≤ 4) hn hC
 
 end Problems.Engine

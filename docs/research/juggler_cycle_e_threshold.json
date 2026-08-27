@@ -1,0 +1,96 @@
+{
+  "experiment": "juggler_cycle_e_threshold",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "O_terminating_cycles_impossible": false,
+    "useful_uniform_Q0": false,
+    "cycle_is_envelope_equality": false,
+    "power_bound_eq_forbids_cycles": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "inventory": [
+      {
+        "suffix": "OO",
+        "kind": "exact",
+        "N": 5,
+        "theorem": "oo_suffix_threshold",
+        "excludes": "OOE"
+      },
+      {
+        "suffix": "OOO",
+        "kind": "exact",
+        "N": 3,
+        "theorem": "ooo_suffix_threshold",
+        "excludes": "OOOE"
+      },
+      {
+        "suffix": "O^a (a\u22653)",
+        "kind": "inherited",
+        "N": 3,
+        "theorem": "odd_run_suffix_threshold",
+        "excludes": "O^a E"
+      },
+      {
+        "suffix": "superquadratic v",
+        "kind": "eventual",
+        "N": "D_v * 4^(2^|v|)",
+        "theorem": "eventually_no_first_even_contraction",
+        "excludes": "all expanding vE above Q0"
+      },
+      {
+        "suffix": "EOO",
+        "kind": "cell-specific",
+        "N": null,
+        "theorem": "eoo_image_ge_succ_sq",
+        "excludes": "not (n+1)^2 API"
+      }
+    ],
+    "length5_count": 16,
+    "length5_expanding": [
+      "OOOOE"
+    ],
+    "unique_expanding_is_ooooe": true
+  },
+  "lean": {
+    "sorry_free": true,
+    "threshold_inherits_odd_append": true,
+    "odd_run_suffix_threshold": true,
+    "no_cycle_odd_run_append_even": true,
+    "eventually_no_cycle_append_even": true,
+    "no_cycle_word_length_five_ends_even": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_all_cycles_impossible": true,
+    "no_cycle_engine": true,
+    "no_length_six": true,
+    "no_infinite_path_type": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true,
+    "MinimalNonTerm_not_rewritten": true,
+    "PowerBoundEq_not_used_as_cycle_attack": true,
+    "O_terminating_not_claimed": true
+  },
+  "decision": {
+    "classification": "LAST_E_THRESHOLD_COVERAGE_GREEN",
+    "secondary": [
+      "THRESHOLD_INHERITANCE_GREEN",
+      "E_TERMINATING_LENGTH5_GREEN"
+    ],
+    "reason": "OOO odd-append inheritance gives O^a for a\u22653; the only expanding length-5 E-word is OOOOE and is excluded; every expanding vE is eventually excluded above a huge Q0"
+  },
+  "search_method": "existing-threshold inventory; odd-append inheritance; no cycle-state search; no length-6 census"
+}
