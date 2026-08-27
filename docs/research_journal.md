@@ -5097,7 +5097,7 @@ Best next question
 - **Major results:** `CycleWord n w` implies \(n^{3^o-2^k}\le D_w\) and \(n\le D_w\) **EXACT — LEAN VERIFIED**. Contracting words cannot cycle **EXACT — LEAN VERIFIED**. No `O` or `OO` cycle for \(n\ge 2\) **EXACT — LEAN VERIFIED**. No `EOO` cycle **EXACT — LEAN VERIFIED**. `OOE` has \(n\le 262144\). Classification **CYCLE_BOUND_GREEN**. Records: `docs/research/juggler_cycle_word.md`, `docs/problems/juggler_cycle_word.md`. Control layer unchanged
 - **Refuted ideas:** cycle return is envelope equality / `PowerBoundEq`; \(D_w\) is tight for every mixed word; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** can `OEO` be reduced below its crude \(D_w\) bound by unfolding the even square cell, the way `EOO` was reduced?
+- **Open:** answered in the cycle-word arithmetic phase
 - **Decision:** PROMOTE the cycle size inequality and the short-word exclusions. Do not claim that all cycles are impossible. Do not claim termination
 
 ```text
@@ -5132,6 +5132,51 @@ Why
 
 Best next question
 - Can OEO be reduced below its crude D_w bound by unfolding the even square cell, the way EOO was reduced?
+```
+
+## Juggler cycle-word arithmetic
+
+- **Date:** 2026-08-27
+- **Objective:** Exclude `OOE` and `OEO` by exact last-branch cells and rotation, without tightening \(D_w\)
+- **Hypotheses:** `OOE_CYCLE_EXCLUDED`, `OEO_CYCLE_EXCLUDED`, `CYCLE_STRUCTURE_GREEN`, `CYCLE_BOUND_TOO_WEAK`, or `MIXED_CYCLE_COUNTEREXAMPLE`
+- **Major results:** last-even cycle return is the cell \(n^2\le z<(n+1)^2\), not \(z=n^2\) **EXACT — LEAN VERIFIED**. Cycle minimum is odd **EXACT — LEAN VERIFIED**. No `OOE` or `OEO` cycle for \(n\ge 2\) **EXACT — LEAN VERIFIED**. Classification **OOE_CYCLE_EXCLUDED**. Records: `docs/research/juggler_cycle_arith.md`, `docs/problems/juggler_cycle_arith.md`. Control layer unchanged
+- **Refuted ideas:** last-even return is \(z=n^2\); `OOE`/`OEO` require a smaller \(D_w\); cycle return is envelope equality; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** can a cycle word of length at least 4 that ends in `E` be excluded by the same last-even cell against an existing superquadratic prefix?
+- **Decision:** PROMOTE the cell/rotation exclusions. Do not claim that all cycles are impossible. Do not claim termination
+
+```text
+What was learned
+- Last-even cycle return is the square cell, not z = n^2
+- For odd n the pre-final even state cannot be n^2
+- OOE contradicts the existing OO suffix threshold for n ≥ 5
+- OEO is a one-letter rotation of EOO
+- The minimum state of a nontrivial cycle is odd
+
+Strongest theorem
+- There is no CycleWord n wordOOE or CycleWord n wordOEO for n ≥ 2
+
+Strongest refutation
+- last-even return is the exact square z = n^2
+
+Reusable machinery
+- Problems.Engine.CycleWord cycle_last_even_interval / exists_cycle_min_odd / no_cycle_word_ooe
+- research.juggler_sequence.cycle_arith
+
+Prior-art status
+- finite-word exclusion, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The first mixed expanding words are now closed by exact cells and rotation, without a cycle engine and without touching the unbounded residual branch.
+
+Best next question
+- Can a cycle word of length at least 4 that ends in E be excluded by the same last-even cell against an existing superquadratic prefix, without a cycle engine?
 ```
 
 

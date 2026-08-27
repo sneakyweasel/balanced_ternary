@@ -131,9 +131,9 @@ collapse to \(n\le 4\). `EOO` is excluded independently of \(D_w\).
 
 ## Open questions
 
-Can the first-even cell method that excluded `EOO` be repeated for
-other `Ev` expanding words, or does `OOE` need a tighter Diophantine
-unfolding than \(n\le 262144\)? Do not build a cycle engine.
+Answered in [juggler_cycle_arith.md](juggler_cycle_arith.md): last-even
+return is a square cell, not \(z=n^2\). `OOE` and `OEO` are excluded
+without improving \(D_w\).
 
 ## Decision
 
@@ -141,8 +141,8 @@ unfolding than \(n\le 262144\)? Do not build a cycle engine.
 Do not claim that all cycles are impossible. Do not claim termination.
 Do not treat cycle return as envelope equality.
 
-Best next question: can `OEO` be reduced below its crude \(D_w\) bound
-by unfolding the even square cell, the way `EOO` was reduced?
+Best next question: answered in
+[juggler_cycle_arith.md](juggler_cycle_arith.md).
 
 ## Publication assessment
 

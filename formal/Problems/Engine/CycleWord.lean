@@ -7,10 +7,13 @@ namespace Problems.Engine
 
 `CycleWord n w` is a realized nonempty return `T_w(n) = n`. Cycle
 return is not envelope equality: the defect stays positive. The
-lower-growth theorem still gives `n^{3^o - 2^k} ≤ lowerDenom w`, hence
-the crude bound `n ≤ lowerDenom w`. Contracting words, `O`, `OO`, and
-`EOO` are excluded. This is not a halt theorem and not a claim that
-every cycle word is impossible.
+lower-growth theorem still gives `n^{3^o - 2^k} ≤ lowerDenom w`.
+
+A last even letter is the square *cell* `n^2 ≤ z < (n+1)^2`, not an
+exact-square identity. Combined with the `OO` suffix threshold this
+excludes `OOE`. `OEO` rotates onto `EOO`. The minimum cycle state is
+odd. This is not a halt theorem and not a claim that every cycle word
+is impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -148,5 +151,177 @@ theorem cycle_ooe_le_lowerDenom {n : ℕ} (hn : 2 ≤ n)
     (h : CycleWord n wordOOE) : n ≤ 262144 := by
   have := cycle_le_lowerDenom hn h
   simpa [lowerDenom_wordOOE] using this
+
+theorem cycle_iterate_period {n : ℕ} {w : List Branch} (h : CycleWord n w) :
+    floorPower^[w.length] n = n := by
+  simpa [image_eq_iterate] using h.2.1
+
+theorem cycle_iterate_one_tail {n k : ℕ} (h : floorPower^[k] n = 1) :
+    ∀ j, floorPower^[k + j] n = 1
+  | 0 => by simpa using h
+  | j + 1 => by
+      rw [Nat.add_succ, Function.iterate_succ_apply']
+      simpa [cycle_iterate_one_tail h j] using floorPower_one
+
+theorem cycleWord_iterate_ge_two {n : ℕ} {w : List Branch} {i : ℕ}
+    (hn : 2 ≤ n) (h : CycleWord n w) (hi : i < w.length) :
+    2 ≤ floorPower^[i] n := by
+  have hpos : 1 ≤ floorPower^[i] n :=
+    floorPower_iterate_pos (le_trans (by decide : (1 : ℕ) ≤ 2) hn) i
+  refine Nat.succ_le_of_lt (lt_of_le_of_ne hpos ?_)
+  intro heq
+  have htail := cycle_iterate_one_tail heq.symm (w.length - i)
+  have hsum : i + (w.length - i) = w.length := Nat.add_sub_of_le (Nat.le_of_lt hi)
+  have hone : floorPower^[w.length] n = 1 := by simpa [hsum] using htail
+  have : n = 1 := (cycle_iterate_period h).symm.trans hone
+  omega
+
+/-- Even states strictly descend. Last-even cycle return is therefore
+never a fixed point of `T`. -/
+theorem floorPower_even_lt {n : ℕ} (hn : 2 ≤ n) (he : n % 2 = 0) :
+    floorPower n < n := by
+  have hsq : floorPower n ^ 2 ≤ n := floorPower_even_sq_le he
+  refine Nat.lt_of_not_ge fun hge => ?_
+  have : n ^ 2 ≤ n := le_trans (Nat.pow_le_pow_left hge 2) hsq
+  have hn0 : 0 < n := lt_of_lt_of_le (by decide : (0 : ℕ) < 2) hn
+  have : n ≤ 1 :=
+    Nat.le_of_mul_le_mul_right (by simpa [pow_two] using this) hn0
+  omega
+
+/-- Last even letter: the inverse cell, not an exact-square identity. -/
+theorem cycle_last_even_interval {n : ℕ} {u : List Branch}
+    (h : CycleWord n (u ++ [.even])) :
+    n ^ 2 ≤ image n u ∧ image n u < (n + 1) ^ 2 := by
+  have hf := follows_of_append_right (u := u) h.1
+  have he : image n u % 2 = 0 := hf.1
+  have hz : floorPower (image n u) = n := by
+    have : image (image n u) [.even] = n := by
+      simpa [image_append] using h.2.1
+    simpa [image] using this
+  exact (floorPower_even_eq_iff_sq_interval he).mp hz
+
+theorem cycle_last_even_ne_odd_sq {n : ℕ} {u : List Branch}
+    (hodd : n % 2 = 1) (h : CycleWord n (u ++ [.even])) :
+    image n u ≠ n ^ 2 :=
+  even_ne_odd_square (follows_of_append_right (u := u) h.1).1 hodd
+
+theorem cycle_last_odd_interval {n : ℕ} {u : List Branch}
+    (h : CycleWord n (u ++ [.odd])) :
+    n ^ 2 ≤ image n u ^ 3 ∧ image n u ^ 3 < (n + 1) ^ 2 := by
+  have hf := follows_of_append_right (u := u) h.1
+  have ho : image n u % 2 = 1 := hf.1
+  have hz : floorPower (image n u) = n := by
+    have : image (image n u) [.odd] = n := by
+      simpa [image_append] using h.2.1
+    simpa [image] using this
+  exact (floorPower_odd_eq_iff_cube_interval ho).mp hz
+
+theorem cycleWord_rotate_cons {n : ℕ} {b : Branch} {w : List Branch}
+    (h : CycleWord n (b :: w)) :
+    CycleWord (floorPower n) (w ++ [b]) := by
+  have hf0 : follows (floorPower n) w := by
+    cases b <;> exact h.1.2
+  have hb : follows n [b] := by
+    cases b <;> exact ⟨h.1.1, trivial⟩
+  have himg_w : image (floorPower n) w = n := by
+    simpa [image] using h.2.1
+  refine ⟨follows_append hf0 (by simpa [himg_w] using hb), ?_, by simp⟩
+  rw [image_append, himg_w]
+  cases b <;> simp [image]
+
+theorem exists_iterate_min (n k : ℕ) (hk : 1 ≤ k) :
+    ∃ i < k, ∀ j < k, floorPower^[i] n ≤ floorPower^[j] n := by
+  induction k with
+  | zero => omega
+  | succ k ih =>
+      match k with
+      | 0 =>
+          refine ⟨0, by omega, ?_⟩
+          intro j hj
+          have : j = 0 := by omega
+          subst this
+          exact le_rfl
+      | k' + 1 =>
+          have ⟨i, hi, hmin⟩ := ih (by omega : 1 ≤ k' + 1)
+          cases le_or_gt (floorPower^[i] n) (floorPower^[k' + 1] n) with
+          | inl hle =>
+              refine ⟨i, Nat.lt_trans hi (by omega), ?_⟩
+              intro j hj
+              rcases Nat.lt_or_eq_of_le (Nat.lt_succ_iff.mp hj) with hlt | heq
+              · exact hmin j hlt
+              · simpa [heq] using hle
+          | inr hgt =>
+              refine ⟨k' + 1, by omega, ?_⟩
+              intro j hj
+              rcases Nat.lt_or_eq_of_le (Nat.lt_succ_iff.mp hj) with hjt | heq
+              · exact (le_of_lt hgt).trans (hmin j hjt)
+              · subst heq
+                exact le_rfl
+
+/-- The minimum state of a nontrivial cycle is odd, because an even
+state strictly descends. -/
+theorem exists_cycle_min_odd {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    ∃ i < w.length,
+      (∀ j < w.length, floorPower^[i] n ≤ floorPower^[j] n) ∧
+        floorPower^[i] n % 2 = 1 := by
+  have ⟨i, hi, hmin⟩ := exists_iterate_min n w.length h.2.2
+  refine ⟨i, hi, hmin, ?_⟩
+  have hge := cycleWord_iterate_ge_two hn h hi
+  rcases Nat.mod_two_eq_zero_or_one (floorPower^[i] n) with he | ho
+  · exfalso
+    have hlt : floorPower^[i + 1] n < floorPower^[i] n := by
+      simpa [Function.iterate_succ_apply'] using floorPower_even_lt hge he
+    cases lt_or_eq_of_le (Nat.succ_le_of_lt hi) with
+    | inl hlen =>
+        exact (not_le_of_gt hlt) (hmin (i + 1) hlen)
+    | inr heq =>
+        have hper := cycle_iterate_period h
+        have hlt' : floorPower^[w.length] n < floorPower^[i] n := by
+          convert hlt
+          exact heq.symm
+        rw [hper] at hlt'
+        exact (not_le_of_gt hlt') (hmin 0 (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2))
+  · exact ho
+
+theorem no_cycle_word_ooe {n : ℕ} (hn : 2 ≤ n) : ¬CycleWord n wordOOE := by
+  intro h
+  have hw := follows_wordOOE_iff.mp h.1
+  have hOO : follows n [.odd, .odd] := ⟨hw.1, hw.2.1, trivial⟩
+  have hcell : CycleWord n ([.odd, .odd] ++ [.even]) := by
+    simpa [wordOOE] using h
+  have hI := cycle_last_even_interval hcell
+  have hb : image n [.odd, .odd] = floorPower^[2] n :=
+    image_eq_iterate n [.odd, .odd]
+  rw [hb] at hI
+  cases lt_or_ge n 5 with
+  | inl hlt =>
+      have hn3 : n = 3 := by
+        have : n % 2 = 1 := hw.1
+        omega
+      subst hn3
+      have himg : floorPower^[2] 3 = 11 := by
+        simpa [eooCellOutput_eq_iterate hOO] using eoo_cell_output_three
+      have he : floorPower^[2] 3 % 2 = 0 := by
+        have := (follows_of_append_right (u := [.odd, .odd]) hcell.1).1
+        simpa [hb] using this
+      have : (11 : ℕ) % 2 = 1 := by decide
+      omega
+  | inr hge =>
+      exact (not_le_of_gt hI.2) (oo_suffix_threshold hge hOO)
+
+theorem no_cycle_word_oeo {n : ℕ} (hn : 2 ≤ n) : ¬CycleWord n wordOEO := by
+  intro h
+  have hw := follows_wordOEO_iff.mp h.1
+  have hn3 : 3 ≤ n := by
+    have : n % 2 = 1 := hw.1
+    omega
+  have ha : 2 ≤ floorPower n :=
+    le_trans hn (le_of_lt (floorPower_odd_gt hn3 hw.1))
+  have hrot : CycleWord (floorPower n) wordEOO := by
+    have hcons : CycleWord n (.odd :: [.even, .odd]) := by
+      simpa [wordOEO] using h
+    simpa [wordEOO] using cycleWord_rotate_cons hcons
+  exact no_cycle_word_eoo ha hrot
 
 end Problems.Engine

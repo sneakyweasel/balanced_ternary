@@ -1,0 +1,68 @@
+{
+  "experiment": "juggler_cycle_arith",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "cycle_is_envelope_equality": false,
+    "power_bound_eq_forbids_cycles": false,
+    "last_even_is_exact_square": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "ooe_hits": [],
+    "oeo_hits": [],
+    "ooe_three_follows": false,
+    "ooe_three_prefinal_odd": true,
+    "last_even_exact_square_hits": [],
+    "rotate": {
+      "OOE": "OEO",
+      "OEO": "EOO",
+      "EOO": "OOE"
+    },
+    "oeo_rotates_to_eoo": true,
+    "even_two_descends": true,
+    "even_twelve_descends": true
+  },
+  "lean": {
+    "sorry_free": true,
+    "cycle_last_even_interval": true,
+    "cycle_last_even_ne_odd_sq": true,
+    "cycle_last_odd_interval": true,
+    "cycleWord_rotate_cons": true,
+    "exists_cycle_min_odd": true,
+    "floorPower_even_lt": true,
+    "no_cycle_word_ooe": true,
+    "no_cycle_word_oeo": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_all_cycles_impossible": true,
+    "no_cycle_engine": true,
+    "no_infinite_path_type": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true,
+    "MinimalNonTerm_not_rewritten": true,
+    "PowerBoundEq_not_used_as_cycle_attack": true,
+    "no_exact_square_identity": true
+  },
+  "decision": {
+    "classification": "OOE_CYCLE_EXCLUDED",
+    "secondary": [
+      "OEO_CYCLE_EXCLUDED",
+      "CYCLE_STRUCTURE_GREEN"
+    ],
+    "reason": "OOE is excluded by the last-even cell against the OO suffix threshold; OEO rotates onto EOO; the cycle minimum is odd; last-even return is not z = n^2"
+  },
+  "search_method": "last-even square cell; OO suffix threshold; one-letter rotation onto EOO; no CycleSearch engine"
+}
