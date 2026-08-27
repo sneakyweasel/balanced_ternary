@@ -1,0 +1,151 @@
+{
+  "odd_odd_starts": 18,
+  "first_exact_odd_prefix": 0,
+  "first_nonextremal": 18,
+  "first_lands_odd_odd": 4,
+  "y_gt_x_failures": [
+    {
+      "x": 9317,
+      "y": 2233
+    },
+    {
+      "x": 53,
+      "y": 9
+    },
+    {
+      "x": 55,
+      "y": 9
+    },
+    {
+      "x": 117,
+      "y": 3
+    }
+  ],
+  "smallest_y_lt_x": {
+    "x": 53,
+    "y": 9
+  },
+  "persist_then_descent": [
+    {
+      "x": 37,
+      "mid": 9317,
+      "y": 2233
+    },
+    {
+      "x": 69,
+      "mid": 117,
+      "y": 3
+    }
+  ],
+  "smallest_persist_descent": {
+    "x": 69,
+    "mid": 117,
+    "y": 3
+  },
+  "even_width_grows": [
+    {
+      "x": 37,
+      "y": 9317,
+      "next_y": 2233,
+      "even_width_prev": 18635,
+      "even_width_next": 44567460015,
+      "even_tightens": false,
+      "odd_width_prev": 173637449,
+      "odd_width_next": 49812228910273,
+      "odd_tightens": false
+    },
+    {
+      "x": 69,
+      "y": 117,
+      "next_y": 3,
+      "even_width_prev": 235,
+      "even_width_next": 58975,
+      "even_tightens": false,
+      "odd_width_prev": 27433,
+      "odd_width_next": 89985,
+      "odd_tightens": false
+    }
+  ],
+  "odd_width_grows": [
+    {
+      "x": 37,
+      "y": 9317,
+      "next_y": 2233,
+      "even_width_prev": 18635,
+      "even_width_next": 44567460015,
+      "even_tightens": false,
+      "odd_width_prev": 173637449,
+      "odd_width_next": 49812228910273,
+      "odd_tightens": false
+    },
+    {
+      "x": 69,
+      "y": 117,
+      "next_y": 3,
+      "even_width_prev": 235,
+      "even_width_next": 58975,
+      "even_tightens": false,
+      "odd_width_prev": 27433,
+      "odd_width_next": 89985,
+      "odd_tightens": false
+    }
+  ],
+  "v2_pairs": [
+    [
+      2,
+      5
+    ],
+    [
+      5,
+      1
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      1,
+      2
+    ],
+    [
+      2,
+      6
+    ],
+    [
+      6,
+      2
+    ]
+  ],
+  "v3_pairs": [
+    [
+      0,
+      0
+    ],
+    [
+      0,
+      0
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      0
+    ],
+    [
+      2,
+      1
+    ],
+    [
+      1,
+      0
+    ]
+  ],
+  "v2_monotone": false,
+  "v3_monotone": false,
+  "max_odd_odd_depth": 2,
+  "max_nonextremal_depth": 2,
+  "interval_tightens_always": false,
+  "search_horizon_is_not_L": true
+}

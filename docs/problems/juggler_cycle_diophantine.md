@@ -185,8 +185,10 @@ class \(R\) only upgrades \(2\le p\) to \(13\le p\).
 
 The peak pair \((\delta,\varepsilon)\) is envelope slack. Do not
 reopen defect composition, another modulus, or a remainder-dynamics
-object. The leftover is the existing odd-odd / unbounded residual
-branch.
+object. Answered in
+[juggler_odd_odd_residual.md](juggler_odd_odd_residual.md):
+non-extremal odd-odd continuation is
+`ODD_ODD_RESIDUAL_COMPLEX`.
 
 ## Decision
 
@@ -195,8 +197,8 @@ branch.
 identity, and the cycle \(R\)-avoidance corollary. Do not claim a
 word-independent cycle obstruction. Do not claim termination.
 
-Best next question: the leftover remains the existing odd-odd /
-unbounded residual branch, not another peak-cell identity.
+Best next question: answered in
+[juggler_odd_odd_residual.md](juggler_odd_odd_residual.md).
 
 ## Publication assessment
 

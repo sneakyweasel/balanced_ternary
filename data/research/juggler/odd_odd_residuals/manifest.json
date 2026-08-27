@@ -1,0 +1,15 @@
+{
+  "search_id": "odd-odd-residual-phase0",
+  "algorithm_version": "odd-odd-residual-v1",
+  "git_commit": "b927d20126745a4aca7a2ba4f25c318ba5c23c69",
+  "n_max": 80,
+  "chain_cap": 8,
+  "bit_limit": 256,
+  "max_depth": 2,
+  "max_nonextremal_depth": 2,
+  "completed": true,
+  "checksum_sha256": "7942b80fe0871f74bb61ea0b46f6c8923260826bc62c8d4766f2fc0b26c1ea15",
+  "runtime_ms": 3,
+  "odd_odd_starts": 18,
+  "classification": "ODD_ODD_RESIDUAL_COMPLEX"
+}

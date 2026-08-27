@@ -1,0 +1,15 @@
+{
+  "search_id": "odd-odd-residual-phase0",
+  "algorithm_version": "odd-odd-residual-v1",
+  "n_max": 80,
+  "chain_cap": 8,
+  "bit_limit": 256,
+  "hard_probes": [
+    9,
+    37,
+    49,
+    69,
+    77
+  ],
+  "arithmetic": "python-int"
+}

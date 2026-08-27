@@ -5593,7 +5593,7 @@ Best next question
 - **Major results:** \(x^3=(p^{2^r}+\varepsilon)^2+\delta\) **EXACT — LEAN VERIFIED** and **REPARAMETERIZATION** of the nested cells. The slack identity \(x^3-p^{2^{r+1}}=2\varepsilon p^{2^r}+\varepsilon^2+\delta\) is `cycle_top_pred_scale` made exact. \(\delta\) and \(\varepsilon\) odd is existing peak/top parity. A nontrivial cycle avoids \(R=\{1,\ldots,11\}\), hence \(p\ge 13\) **EXACT — LEAN VERIFIED**, a named corollary of `reachesOne_of_lt_twelve`. Residue census on 38 transient peaks: 13 pairs mod 8, 24 pairs mod 16, all odd/odd. Classification **DIOPHANTINE_REPACKAGING**. Records: `docs/research/juggler_cycle_diophantine.md`, `docs/problems/juggler_cycle_diophantine.md`. Control layer unchanged
 - **Refuted ideas:** the sequential identity is stronger than the envelope slack; \((\delta,\varepsilon)\) is modularly rigid beyond odd/odd; \(R\) forbids a residue class of \(p\) already on transients; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** the leftover remains the existing odd-odd / unbounded residual branch, not another peak-cell identity
+- **Open:** answered in the odd-odd residual branch: non-extremal continuation is `ODD_ODD_RESIDUAL_COMPLEX`
 - **Decision:** CLOSE the Diophantine peak-pair branch as `DIOPHANTINE_REPACKAGING`. Record the named defects and the cycle \(R\)-avoidance corollary. Do not claim a cycle obstruction
 
 ```text
@@ -5628,7 +5628,7 @@ Why
 - The peak pair rewrites the nested cells. Residues do not beat the envelope. Stop before another defect layer.
 
 Best next question
-- The leftover remains the existing odd-odd / unbounded residual branch, not another peak-cell identity
+- Answered in the odd-odd residual branch: non-extremal continuation is `ODD_ODD_RESIDUAL_COMPLEX`.
 ```
 
 ## Juggler odd fourth-power heavy search
@@ -5966,5 +5966,50 @@ Best next question
 - Produce an explicit infinite realized mixed prefix-NC family,
   or prove that defect eventually exceeds the formal gap on every
   non-monochrome prefix-NC word
+```
+
+## Juggler odd-odd residual admissibility
+
+- **Date:** 2026-08-27
+- **Objective:** Test whether a non-extremal `ResidualStep` chain remains finitely admissible, or whether successor constraints tighten until the next odd-odd step is impossible
+- **Hypotheses:** `ODD_ODD_ADMISSIBILITY_GREEN`, `ODD_ODD_BOUNDED_GREEN`, `ODD_ODD_VALUATION_GREEN`, `ODD_ODD_MONOTONE_GREEN`, `ODD_ODD_COUNTEREXAMPLE`, or `ODD_ODD_RESIDUAL_COMPLEX`
+- **Major results:** `HARD_PROBES` reproduce \(37\to 9317\) (`O^4E^1`), \(9317\to 2233\) (`O^3E^2`), \(69\to 117\), \(77\to 1523\to 243\), \(9\to 11\). Every odd-odd start in \(2\le n\le 80\) has a non-extremal first residual. Interval widths grow on both length-2 continuations. \(v_2(z)\) on the \(37\)-chain is \(2,5,1\). \(y>x\) fails at \(53\to 9\) and after persistence at \(69\to 117\to 3\). Window max non-extremal odd-odd depth is \(2\), a horizon count, not \(L\). No Lean file. Classification **ODD_ODD_RESIDUAL_COMPLEX**. Records: `docs/research/juggler_odd_odd_residual.md`, `docs/problems/juggler_odd_odd_residual.md`, `data/research/juggler/odd_odd_residuals/`. Control layer unchanged
+- **Refuted ideas:** successor cells tighten; \(y>x\) is necessary; \(v_2/v_3\) is monotone; exact \(O^k\) towers are the unbounded residual branch; a search-horizon depth is \(L\); a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** not another ResidualStep invariant; the parked odd-sharp-suffix search remains the existing open computational question
+- **Decision:** CLOSE the non-extremal odd-odd continuation branch as `ODD_ODD_RESIDUAL_COMPLEX`. Do not add Lean. Do not infer a bound from the window
+
+```text
+What was learned
+- ResidualStep stays the successor; another odd-odd step is ResidualStep plus is_odd_odd plus a positive odd defect
+- Those conditions do not tighten: even-run widths grow on 37 and 69
+- y>x fails at 53→9 and after persistence at 69→117→3 and 9317→2233
+- No first residual in n≤80 is an exact O^k tower
+- Depth 2 is a search-horizon count, not a bound L
+
+Strongest theorem
+- none new; ResidualStep and PersistentOddResidual remain the Lean facts
+
+Strongest refutation
+- interval tightening and y>x; 37→9317→2233 has even-run width 18635→44567460015 and y<x at the second step
+
+Reusable machinery
+- research.juggler_sequence.odd_odd_residuals
+- data/research/juggler/odd_odd_residuals/
+
+Prior-art status
+- negative admissibility result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- CLOSE
+
+Why
+- Every proposed I(S) dies on the known traces. The leftover is ResidualStep rewritten. Stop before a new recurrence object.
+
+Best next question
+- Not another ResidualStep invariant. The parked odd-sharp-suffix search remains the existing open computational question; do not reopen it here.
 ```
 
