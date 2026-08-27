@@ -1647,6 +1647,82 @@ theorem localDefectEven_lt_succ_sqrt {x : ℕ} (heven : x % 2 = 0) :
   have hsq : x.sqrt ^ 2 = x.sqrt * x.sqrt := pow_two _
   omega
 
+/-- Same bound in the successor `T(x)`, not `√x`. -/
+theorem localDefectEven_lt_succ {x : ℕ} (heven : x % 2 = 0) :
+    localDefectEven x < 2 * floorPower x + 1 := by
+  simpa [floorPower_even_eq heven] using localDefectEven_lt_succ_sqrt heven
+
+/-- Odd remainder sits in the same successor window `0 ≤ ρ < 2T(x)+1`. -/
+theorem localDefectOdd_lt_succ {x : ℕ} (hodd : x % 2 = 1) :
+    localDefectOdd x < 2 * floorPower x + 1 := by
+  rw [localDefectOdd_eq hodd, floorPower_odd_eq hodd]
+  have hle : (x ^ 3).sqrt * (x ^ 3).sqrt ≤ x ^ 3 := Nat.sqrt_le (x ^ 3)
+  have hlt : x ^ 3 < ((x ^ 3).sqrt + 1) * ((x ^ 3).sqrt + 1) := by
+    simpa [Nat.succ_eq_add_one] using Nat.lt_succ_sqrt (x ^ 3)
+  have hbin : ((x ^ 3).sqrt + 1) * ((x ^ 3).sqrt + 1) =
+      (x ^ 3).sqrt ^ 2 + 2 * (x ^ 3).sqrt + 1 := by ring
+  have hsq : (x ^ 3).sqrt ^ 2 = (x ^ 3).sqrt * (x ^ 3).sqrt := pow_two _
+  omega
+
+/-- Local floor remainder of a realized letter. The envelope drops this. -/
+def branchDefect : Branch → ℕ → ℕ
+  | .even, x => localDefectEven x
+  | .odd, x => localDefectOdd x
+
+def branchExp : Branch → ℕ
+  | .even => 1
+  | .odd => 3
+
+theorem branchDefect_add {x : ℕ} {b : Branch} (h : follows x [b]) :
+    x ^ branchExp b = floorPower x ^ 2 + branchDefect b x := by
+  cases b with
+  | even =>
+      simpa [branchExp, branchDefect, pow_one] using
+        (localDefectEven_add h.1).symm
+  | odd =>
+      simpa [branchExp, branchDefect] using (localDefectOdd_add h.1).symm
+
+theorem branchDefect_lt {x : ℕ} {b : Branch} (h : follows x [b]) :
+    branchDefect b x < 2 * floorPower x + 1 := by
+  cases b with
+  | even =>
+      simpa [branchDefect] using localDefectEven_lt_succ h.1
+  | odd =>
+      simpa [branchDefect] using localDefectOdd_lt_succ h.1
+
+theorem branchDefect_eq_zero_iff_localTight {x : ℕ} {b : Branch}
+    (h : follows x [b]) :
+    branchDefect b x = 0 ↔ localTight x b := by
+  cases b with
+  | even =>
+      constructor
+      · intro hz
+        have hadd := localDefectEven_add h.1
+        have hz' : localDefectEven x = 0 := by
+          simpa [branchDefect] using hz
+        rw [hz', Nat.add_zero] at hadd
+        simpa [localTight] using hadd
+      · intro ht
+        have : floorPower x ^ 2 = x := by simpa [localTight] using ht
+        simp [branchDefect, localDefectEven, this]
+  | odd =>
+      constructor
+      · intro hz
+        have hadd := localDefectOdd_add h.1
+        have hz' : localDefectOdd x = 0 := by
+          simpa [branchDefect] using hz
+        rw [hz', Nat.add_zero] at hadd
+        simpa [localTight] using hadd
+      · intro ht
+        have : floorPower x ^ 2 = x ^ 3 := by simpa [localTight] using ht
+        simp [branchDefect, localDefectOdd, this]
+
+/-- Dropping a nonnegative remainder recovers the local envelope step. -/
+theorem power_bound_of_branchDefect {x : ℕ} {b : Branch} (h : follows x [b]) :
+    floorPower x ^ 2 ≤ x ^ branchExp b := by
+  have hadd := branchDefect_add h
+  exact Nat.le.intro (hadd.symm)
+
 theorem pow_sq_lt {a b e : ℕ} (h : a ^ 2 < b) (he : e ≠ 0) :
     a ^ (2 * e) < b ^ e := by
   have : (a ^ 2) ^ e < b ^ e := Nat.pow_lt_pow_left h he

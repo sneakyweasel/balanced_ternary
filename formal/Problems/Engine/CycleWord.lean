@@ -39,8 +39,14 @@ formally contracting. Financing that descent from `p` back to `x`
 recovers the existing ascent scale, not a stronger envelope. The
 distinguished order is `m ≤ p < x < M` with a strict top window
 `p^{2^r} < M`. Composing the known scale laws does not beat the
-ordinary word envelope. This is not a halt theorem and not a claim
-that every cycle word is impossible.
+ordinary word envelope.
+
+The local floor remainder `branchDefect` is the information the
+envelope drops: `x^e = T(x)^2 + ρ` with `0 ≤ ρ < 2T(x)+1`. On a
+cycle these remainders balance against the odd/even state gaps, and
+at least one remainder is positive for `n ≥ 2`. Dropping every `ρ`
+recovers `power_bound_word`. This is not a halt theorem and not a
+claim that every cycle word is impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -1747,6 +1753,257 @@ theorem cycle_distinguished_order {n : ℕ} {w : List Branch}
     exact lt_of_lt_of_le this hcell'.1
   exact ⟨floorPower^[k] n, p, x, r, hm, hp2, hmodd, hpodd, hm_le_p, hpx, hxn,
     hMsq, hr1, hwin, hhi, hcell'.1, hcell'.2, hfourth⟩
+
+/-!
+## Exact local remainders on a cycle
+
+`branchDefect` is the floor remainder the envelope forgets. The path
+sums below are not a remainder-dynamics object.
+-/
+
+def pathDefectSum (n : ℕ) : List Branch → ℕ
+  | [] => 0
+  | b :: w => branchDefect b n + pathDefectSum (floorPower n) w
+
+def pathPows (n : ℕ) : List Branch → ℕ
+  | [] => 0
+  | .even :: w => n + pathPows (floorPower n) w
+  | .odd :: w => n ^ 3 + pathPows (floorPower n) w
+
+def pathSquares (n : ℕ) : List Branch → ℕ
+  | [] => 0
+  | _ :: w => n ^ 2 + pathSquares (floorPower n) w
+
+def pathNextSquares (n : ℕ) : List Branch → ℕ
+  | [] => 0
+  | _ :: w => floorPower n ^ 2 + pathNextSquares (floorPower n) w
+
+def pathEvenGaps (n : ℕ) : List Branch → ℕ
+  | [] => 0
+  | .even :: w => n * (n - 1) + pathEvenGaps (floorPower n) w
+  | .odd :: w => pathEvenGaps (floorPower n) w
+
+def pathOddGaps (n : ℕ) : List Branch → ℕ
+  | [] => 0
+  | .odd :: w => n ^ 2 * (n - 1) + pathOddGaps (floorPower n) w
+  | .even :: w => pathOddGaps (floorPower n) w
+
+theorem follows_singleton_of_get {n : ℕ} {w : List Branch}
+    (hw : follows n w) {i : ℕ} (hi : i < w.length) :
+    follows (floorPower^[i] n) [w[i]] := by
+  rcases hbranch : w[i] with _ | _
+  · exact ⟨follows_get_even w hw i hi hbranch, trivial⟩
+  · exact ⟨follows_get_odd w hw i hi hbranch, trivial⟩
+
+theorem cycle_remainder_eq {n : ℕ} {w : List Branch} {i : ℕ}
+    (h : CycleWord n w) (hi : i < w.length) :
+    (floorPower^[i] n) ^ branchExp w[i] =
+      (floorPower^[i + 1] n) ^ 2 +
+        branchDefect w[i] (floorPower^[i] n) := by
+  have hadd := branchDefect_add (follows_singleton_of_get h.1 hi)
+  have hiter : floorPower (floorPower^[i] n) = floorPower^[i + 1] n :=
+    (Function.iterate_succ_apply' floorPower i n).symm
+  simpa [hiter] using hadd
+
+theorem cycle_remainder_lt {n : ℕ} {w : List Branch} {i : ℕ}
+    (h : CycleWord n w) (hi : i < w.length) :
+    branchDefect w[i] (floorPower^[i] n) <
+      2 * floorPower^[i + 1] n + 1 := by
+  have hlt := branchDefect_lt (follows_singleton_of_get h.1 hi)
+  have hiter : floorPower (floorPower^[i] n) = floorPower^[i + 1] n :=
+    (Function.iterate_succ_apply' floorPower i n).symm
+  simpa [hiter] using hlt
+
+theorem pathPows_eq_next_add_defects {n : ℕ} :
+    ∀ {w}, follows n w →
+      pathPows n w = pathNextSquares n w + pathDefectSum n w
+  | [], _ => by simp [pathPows, pathNextSquares, pathDefectSum]
+  | .even :: rest, h => by
+      have ih := pathPows_eq_next_add_defects (n := floorPower n) h.2
+      have hadd : n = floorPower n ^ 2 + branchDefect .even n := by
+        simpa [branchExp, pow_one] using
+          branchDefect_add (b := .even) ⟨h.1, trivial⟩
+      simp only [pathPows, pathNextSquares, pathDefectSum]
+      omega
+  | .odd :: rest, h => by
+      have ih := pathPows_eq_next_add_defects (n := floorPower n) h.2
+      have hadd : n ^ 3 = floorPower n ^ 2 + branchDefect .odd n := by
+        simpa [branchExp] using branchDefect_add (b := .odd) ⟨h.1, trivial⟩
+      simp only [pathPows, pathNextSquares, pathDefectSum]
+      omega
+
+theorem pathPows_add_evenGaps (n : ℕ) :
+    ∀ w, pathPows n w + pathEvenGaps n w =
+      pathSquares n w + pathOddGaps n w
+  | [] => by simp [pathPows, pathEvenGaps, pathSquares, pathOddGaps]
+  | .even :: rest => by
+      have ih := pathPows_add_evenGaps (floorPower n) rest
+      have hsq : n + n * (n - 1) = n ^ 2 := by
+        cases n with
+        | zero => simp
+        | succ n =>
+            simp [pow_two]
+            ring
+      simp only [pathPows, pathEvenGaps, pathSquares, pathOddGaps]
+      omega
+  | .odd :: rest => by
+      have ih := pathPows_add_evenGaps (floorPower n) rest
+      have hcub : n ^ 3 = n ^ 2 + n ^ 2 * (n - 1) := by
+        cases n with
+        | zero => simp
+        | succ k =>
+            have : k + 1 - 1 = k := Nat.add_sub_cancel k 1
+            simp [this]
+            ring
+      simp only [pathPows, pathEvenGaps, pathSquares, pathOddGaps]
+      omega
+
+theorem pathNextSquares_add_sq (n : ℕ) :
+    ∀ w, pathNextSquares n w + n ^ 2 =
+      pathSquares n w + image n w ^ 2
+  | [] => by simp [pathNextSquares, pathSquares, image]
+  | _b :: rest => by
+      have ih := pathNextSquares_add_sq (floorPower n) rest
+      simp only [pathNextSquares, pathSquares, image]
+      calc
+        floorPower n ^ 2 + pathNextSquares (floorPower n) rest + n ^ 2
+            = pathNextSquares (floorPower n) rest + floorPower n ^ 2 + n ^ 2 := by
+              omega
+        _ = pathSquares (floorPower n) rest + image (floorPower n) rest ^ 2 + n ^ 2 := by
+            rw [ih]
+        _ = n ^ 2 + pathSquares (floorPower n) rest +
+              image (floorPower n) rest ^ 2 := by
+            omega
+
+theorem cycle_pathNextSquares_eq {n : ℕ} {w : List Branch}
+    (h : CycleWord n w) :
+    pathNextSquares n w = pathSquares n w := by
+  have heq := pathNextSquares_add_sq n w
+  rw [h.2.1] at heq
+  exact Nat.add_right_cancel heq
+
+/-- Cyclic closure keeps the remainders: `∑ρ + even gaps = odd gaps`.
+This is not the exponent envelope. -/
+theorem cycle_remainder_balance {n : ℕ} {w : List Branch}
+    (h : CycleWord n w) :
+    pathDefectSum n w + pathEvenGaps n w = pathOddGaps n w := by
+  have hpow := pathPows_eq_next_add_defects h.1
+  have hsq := cycle_pathNextSquares_eq h
+  have hgap := pathPows_add_evenGaps n w
+  rw [hpow, hsq, Nat.add_assoc] at hgap
+  exact Nat.add_left_cancel hgap
+
+/-- Dropping every remainder recovers the ordinary word envelope. -/
+theorem cycle_remainders_project_to_envelope {n : ℕ} {w : List Branch}
+    (h : CycleWord n w) :
+    (floorPower^[w.length] n) ^ (2 ^ w.length) ≤
+      n ^ (3 ^ oddCount w) := by
+  simpa [image_eq_iterate] using power_bound_word h.1
+
+theorem localsTight_of_defects_zero {n : ℕ} :
+    ∀ {w}, follows n w →
+      (∀ i, (hi : i < w.length) →
+        branchDefect w[i] (floorPower^[i] n) = 0) →
+          localsTight n w
+  | [], _, _ => trivial
+  | b :: rest, hw, hz => by
+      cases b with
+      | even =>
+          have hf : follows n [.even] := ⟨hw.1, trivial⟩
+          have h0 : branchDefect .even n = 0 := by
+            simpa [List.getElem_cons_zero] using hz 0 (Nat.succ_pos _)
+          refine ⟨(branchDefect_eq_zero_iff_localTight hf).mp h0, ?_⟩
+          refine localsTight_of_defects_zero (n := floorPower n) hw.2 ?_
+          intro i hi
+          have hi' : i + 1 < (Branch.even :: rest).length := by
+            simpa [List.length_cons] using Nat.succ_lt_succ hi
+          have hzi := hz (i + 1) hi'
+          simpa [List.getElem_cons_succ, iterate_cons] using hzi
+      | odd =>
+          have hf : follows n [.odd] := ⟨hw.1, trivial⟩
+          have h0 : branchDefect .odd n = 0 := by
+            simpa [List.getElem_cons_zero] using hz 0 (Nat.succ_pos _)
+          refine ⟨(branchDefect_eq_zero_iff_localTight hf).mp h0, ?_⟩
+          refine localsTight_of_defects_zero (n := floorPower n) hw.2 ?_
+          intro i hi
+          have hi' : i + 1 < (Branch.odd :: rest).length := by
+            simpa [List.length_cons] using Nat.succ_lt_succ hi
+          have hzi := hz (i + 1) hi'
+          simpa [List.getElem_cons_succ, iterate_cons] using hzi
+
+/-- All-zero remainders are incompatible with a nontrivial cycle. -/
+theorem cycle_not_localsTight {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) : ¬localsTight n w := by
+  intro ht
+  have hmono : isMonochrome w := by
+    by_contra hmix
+    exact not_localsTight_of_nonmonochrome h.1 hmix ht
+  rcases hmono with he | ho
+  · have hwE : follows n (List.replicate w.length Branch.even) := by
+      rw [← he]
+      exact h.1
+    have hlt := even_word_contracts hn h.2.2 hwE
+    have himg := cycle_iterate_period h
+    rw [himg] at hlt
+    exact (lt_irrefl n) hlt
+  · have hwO : follows n (List.replicate w.length Branch.odd) := by
+      rw [← ho]
+      exact h.1
+    have hodd := follows_replicate_odd_head h.2.2 hwO
+    have hn3 : 3 ≤ n := by
+      have : n ≠ 2 := fun h2 =>
+        (by decide : ¬(2 : ℕ) % 2 = 1) (h2 ▸ hodd)
+      omega
+    have hgt := odd_word_expands hn3 h.2.2 hwO
+    have himg := cycle_iterate_period h
+    rw [himg] at hgt
+    exact (lt_irrefl n) hgt
+
+theorem cycle_exists_pos_remainder {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    ∃ i, ∃ hi : i < w.length,
+      0 < branchDefect (w[i]'hi) (floorPower^[i] n) := by
+  by_contra hnone
+  have hall : ∀ i, (hi : i < w.length) →
+      branchDefect (w[i]'hi) (floorPower^[i] n) = 0 := by
+    intro i hi
+    cases hρ : branchDefect (w[i]'hi) (floorPower^[i] n) with
+    | zero => rfl
+    | succ k =>
+        exact (hnone ⟨i, hi, by simp [hρ]⟩).elim
+  exact cycle_not_localsTight hn h (localsTight_of_defects_zero h.1 hall)
+
+/-- Peak odd remainder is positive: `M` even and `x` odd forbid `x^3 = M^2`. -/
+theorem cycleMax_pred_cube_strict {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    n ^ 2 < (floorPower^[w.length - 1] n) ^ 3 := by
+  have hcell := cycle_top_predecessor_cell hn h
+  refine lt_of_le_of_ne hcell.1 ?_
+  intro heq
+  have hx := cycleMax_predecessor_odd hn h
+  have hM := cycleMax_start_even hn h
+  have hx3 : ((floorPower^[w.length - 1] n) ^ 3) % 2 = 1 := by
+    simp [Nat.pow_mod, hx]
+  have hM2 : (n ^ 2) % 2 = 0 := by
+    simp [Nat.pow_mod, hM]
+  have : (n ^ 2) % 2 = 1 := by
+    simpa [heq] using hx3
+  omega
+
+theorem cycle_peak_odd_remainder_pos {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    0 < localDefectOdd (floorPower^[w.length - 1] n) := by
+  have ho := cycleMax_predecessor_odd hn h
+  have hTx := cycleMax_predecessor_apply hn h
+  have hlt := cycleMax_pred_cube_strict hn h
+  have hadd := localDefectOdd_add ho
+  have : floorPower (floorPower^[w.length - 1] n) = n := hTx
+  have hρ : localDefectOdd (floorPower^[w.length - 1] n) =
+      (floorPower^[w.length - 1] n) ^ 3 - n ^ 2 := by
+    simp [localDefectOdd, this]
+  have hpos :
+      n ^ 2 < (floorPower^[w.length - 1] n) ^ 3 := hlt
+  omega
 
 end Problems.Engine
 

@@ -175,9 +175,10 @@ Scale compositions retain only total odd/even counts.
 
 ## Open questions
 
-The next new ingredient, if any, must see the **sequence** of even
-collapses rather than compose their exponent budgets. Do not open an
-odd-landing graph, residual engine, or energy to name that ingredient.
+Answered in
+[juggler_cycle_rounding.md](juggler_cycle_rounding.md): cyclic
+return of the exact floor remainders is a non-envelope identity, not
+an exponent-budget composition. Do not reopen scale composition.
 
 ## Decision
 
@@ -185,8 +186,8 @@ odd-landing graph, residual engine, or energy to name that ingredient.
 normal form. Do not claim a word-independent cycle obstruction. Do
 not claim termination.
 
-Best next question: is there a cycle-only identity that uses return
-\(T_w(n)=n\) in a way that is not an envelope of a subword?
+Best next question: answered in
+[juggler_cycle_rounding.md](juggler_cycle_rounding.md).
 
 ## Publication assessment
 

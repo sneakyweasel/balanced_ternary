@@ -5502,7 +5502,7 @@ Best next question
 - **Major results:** distinguished order \(m\le p<x<M\) **EXACT — LEAN VERIFIED**. Strict top window \(p^{2^r}<M\) **EXACT — LEAN VERIFIED**. Derived \(m^4<x^3\) **EXACT — LEAN VERIFIED** and a **REPARAMETERIZATION** of \(M>m^2\) plus the cube cell. Every attempted stronger scale law reduces to `power_bound_word` or an existing extremal theorem. Classification **COMPOSITION_REPACKAGING**. Records: `docs/research/juggler_cycle_extremal_composition.md`, `docs/problems/juggler_cycle_extremal_composition.md`. Control layer unchanged
 - **Refuted ideas:** first-even versus top is a new scale gap; \(p=m\); \(z<p\) or \(z>x\) as universal; split min-to-max is stronger than the envelope; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** is there a cycle-only identity that uses return \(T_w(n)=n\) in a way that is not an envelope of a subword?
+- **Open:** answered in the cyclic-rounding branch: return of the exact floor remainders is a non-envelope identity
 - **Decision:** CLOSE the compose-for-contradiction branch. Record the compatible normal form. Do not open odd-landings, a residual graph, or an energy
 
 ```text
@@ -5536,8 +5536,55 @@ Why
 - The existing cells coexist around one closed trajectory. Their scale content is the ordinary envelope. A further abstraction layer would be machinery gravity.
 
 Best next question
-- Is there a cycle-only identity that uses return T_w(n)=n in a way that is not an envelope of a subword?
+- Answered in the cyclic-rounding branch: return of the exact floor remainders is a non-envelope identity.
 ```
+
+## Juggler cyclic rounding
+
+- **Date:** 2026-08-27
+- **Objective:** Keep the exact local floor remainders the envelope discards and test whether cyclic closure of those equations yields a non-envelope constraint or a cycle obstruction
+- **Hypotheses:** `CYCLIC_ROUNDING_GREEN`, `CYCLIC_ROUNDING_NEW_CONSTRAINT`, `CYCLE_REMAINDER_RIGIDITY_GREEN`, `CYCLE_ROUNDING_REPACKAGING`, or `ROUNDING_COUNTEREXAMPLE`
+- **Major results:** every cycle branch satisfies \(x^e=T(x)^2+\rho\) with \(0\le\rho<2T(x)+1\) **EXACT — LEAN VERIFIED**. Cyclic return balances \(\sum\rho+\sum_{\mathrm{even}}x(x-1)=\sum_{\mathrm{odd}}x^2(x-1)\) **EXACT — LEAN VERIFIED**. All-zero remainders are impossible for \(n\ge 2\) **EXACT — LEAN VERIFIED**. Peak odd remainder is positive, equivalently \(M^2<x^3\) **EXACT — LEAN VERIFIED**. Dropping remainders recovers `power_bound_word`. Universal remainder amplification is **REFUTED** at start 9. Classification **CYCLIC_ROUNDING_GREEN**. Records: `docs/research/juggler_cycle_rounding.md`, `docs/problems/juggler_cycle_rounding.md`. Control layer unchanged
+- **Refuted ideas:** a positive remainder forces the next remainder to grow; remainder composition is only the exponent envelope; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** is there a sequential, non-sum remainder identity that uses \(T_w(n)=n\) and cannot be rewritten as the path-power / path-square balance?
+- **Decision:** PROMOTE the remainder API, the cyclic balance, and the all-zero rigidity. Do not claim a cycle obstruction. Do not build remainder dynamics
+
+```text
+What was learned
+- The envelope remainder is the existing localDefect, now with a uniform successor window
+- Cyclic return keeps the remainders as ∑ρ + even gaps = odd gaps
+- That identity is not power_bound_word: it uses the states, not only 2^k vs 3^o
+- All-zero remainders are impossible on a nontrivial cycle; peak ρ_O is odd and positive
+- A later remainder need not grow; start 9 has 0, 83, 19
+
+Strongest theorem
+- On a CycleWord, ∑ρ + ∑_{even} x(x-1) = ∑_{odd} x^2(x-1), and some ρ is positive for n ≥ 2
+
+Strongest refutation
+- remainder amplification; start 9 has remainders 0, 83, 19
+
+Reusable machinery
+- Problems.Engine.FloorPower branchDefect / localDefectOdd_lt_succ
+- Problems.Engine.CycleWord cycle_remainder_balance / cycle_exists_pos_remainder
+- research.juggler_sequence.cycle_rounding
+
+Prior-art status
+- remainder-refinement lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Keeping the remainders around a cycle is the first identity that uses T_w(n)=n without collapsing to the exponent envelope. It is not an obstruction. Stop before a remainder-dynamics object.
+
+Best next question
+- Is there a sequential, non-sum remainder identity that uses T_w(n)=n and cannot be rewritten as the path-power / path-square balance?
+```
+
 
 
 
