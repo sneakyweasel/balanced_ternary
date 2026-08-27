@@ -36,9 +36,11 @@ strictly between the landing and the maximum: `p < x < M`, with
 `M^2 ≤ x^3 < (M+1)^2` and `x^3 ≥ p^{2^{r+1}}`. The peak block
 `OE^r` is a canonical strict descent `T_{OE^r}(x)=p<x` and is
 formally contracting. Financing that descent from `p` back to `x`
-recovers the existing ascent scale, not a stronger envelope. This is
-not a halt theorem and not a claim that every cycle word is
-impossible.
+recovers the existing ascent scale, not a stronger envelope. The
+distinguished order is `m ≤ p < x < M` with a strict top window
+`p^{2^r} < M`. Composing the known scale laws does not beat the
+ordinary word envelope. This is not a halt theorem and not a claim
+that every cycle word is impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -1586,7 +1588,169 @@ theorem cycle_peak_finance {n : ℕ} {w : List Branch}
   exact ⟨r, v, p, x, hr1, hpdef, hxdef, hpx, hv, himgv, hfP, himgP, hpeak,
     hfin, hrep⟩
 
+/-- Dual of `exists_first_odd_iterate`. -/
+theorem exists_first_even_iterate {n t : ℕ}
+    (h0 : n % 2 = 1) (ht : 1 ≤ t)
+    (heven : floorPower^[t] n % 2 = 0) :
+    ∃ a, 1 ≤ a ∧ a ≤ t ∧
+      (∀ i < a, floorPower^[i] n % 2 = 1) ∧
+      floorPower^[a] n % 2 = 0 := by
+  let P : ℕ → Prop :=
+    fun a => 1 ≤ a ∧ a ≤ t ∧ floorPower^[a] n % 2 = 0
+  have hP : ∃ a, P a := ⟨t, ht, le_rfl, heven⟩
+  let a := Nat.find hP
+  have ha : P a := Nat.find_spec hP
+  refine ⟨a, ha.1, ha.2.1, ?_, ha.2.2⟩
+  intro i hi
+  have hnot : ¬P i := Nat.find_min hP hi
+  cases i with
+  | zero => exact h0
+  | succ i =>
+      have hi1 : 1 ≤ i + 1 := Nat.succ_le_succ (Nat.zero_le i)
+      have hi2 : i + 1 ≤ t :=
+        Nat.le_of_lt (lt_of_lt_of_le hi ha.2.1)
+      have : ¬floorPower^[i + 1] n % 2 = 0 := fun h =>
+        hnot ⟨hi1, hi2, h⟩
+      rcases Nat.mod_two_eq_zero_or_one (floorPower^[i + 1] n) with he | ho
+      · exact (this he).elim
+      · exact ho
+
+/-- Top-window lower bound is strict: `p` odd and `M` even forbid
+equality `M = p^{2^r}`. Parity, not an envelope. -/
+theorem cycle_top_window_strict {p M r : ℕ}
+    (hp : p % 2 = 1) (hM : M % 2 = 0)
+    (hlo : p ^ (2 ^ r) ≤ M) :
+    p ^ (2 ^ r) < M := by
+  refine lt_of_le_of_ne hlo ?_
+  intro heq
+  have hodd : (p ^ (2 ^ r)) % 2 = 1 := odd_iff_pow_two_depth_odd.mp hp
+  rw [heq] at hodd
+  omega
+
+theorem cycleMax_iterate_le {n : ℕ} {w : List Branch} (h : CycleMax n w)
+    (j : ℕ) : floorPower^[j] n ≤ n := by
+  have hlen : 1 ≤ w.length := h.1.2.2
+  rw [cycle_iterate_mod h.1]
+  exact cycleMax_le h
+    (Nat.mod_lt _ (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) hlen))
+
+/-- A cycle maximum cannot also be a cycle minimum. -/
+theorem cycleMax_not_cycleMin {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) : ¬CycleMin n w := by
+  intro hm
+  have he := cycleMax_start_even hn h
+  have ho := cycleMin_start_odd hn hm
+  omega
+
+/-- On a cycle maximum the rotated minimum satisfies `m^2 < M`. -/
+theorem cycleMax_min_sq_lt {n : ℕ} {w : List Branch} {k : ℕ}
+    (hn : 2 ≤ n) (h : CycleMax n w) (hk : k < w.length)
+    (hmin : CycleMin (floorPower^[k] n) (rotateWord w k)) :
+    floorPower^[k] n ^ 2 < n := by
+  have hk0 : k ≠ 0 := by
+    intro hk0
+    have : CycleMin n w := by
+      simpa [hk0, rotateWord] using hmin
+    exact cycleMax_not_cycleMin hn h this
+  have hm2 : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h.1 hk
+  have ⟨i, hi, hmax, _, hgt⟩ :=
+    cycleMin_max_gt_sq (n := floorPower^[k] n) hm2 hmin
+  have hlen : (rotateWord w k).length = w.length := rotateWord_length w k
+  have hle : floorPower^[i] (floorPower^[k] n) ≤ n := by
+    have himg : floorPower^[i] (floorPower^[k] n) = floorPower^[k + i] n := by
+      simpa [Nat.add_comm] using
+        (Function.iterate_add_apply floorPower i k n).symm
+    simpa [himg] using cycleMax_iterate_le h (k + i)
+  have hfrom : floorPower^[w.length - k] (floorPower^[k] n) = n := by
+    have hsum : w.length - k + k = w.length := Nat.sub_add_cancel (Nat.le_of_lt hk)
+    have hiter := Function.iterate_add_apply floorPower (w.length - k) k n
+    rw [← hiter, hsum, cycle_iterate_period h.1]
+  have hidx : w.length - k < (rotateWord w k).length := by
+    rw [hlen]
+    omega
+  have hnle : n ≤ floorPower^[i] (floorPower^[k] n) := by
+    simpa [hfrom] using hmax (w.length - k) hidx
+  have heq : floorPower^[i] (floorPower^[k] n) = n := le_antisymm hle hnle
+  simpa [heq] using hgt
+
+/-- Distinguished cycle order: minimum, top landing, peak predecessor,
+maximum. Scale compositions beyond this package are envelope
+repackaging. -/
+theorem cycle_distinguished_order {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ m p x r, 2 ≤ m ∧ 2 ≤ p ∧
+      m % 2 = 1 ∧ p % 2 = 1 ∧
+        m ≤ p ∧ p < x ∧ x < n ∧
+          m ^ 2 < n ∧
+            1 ≤ r ∧
+              p ^ (2 ^ r) < n ∧ n < (p + 1) ^ (2 ^ r) ∧
+                n ^ 2 ≤ x ^ 3 ∧ x ^ 3 < (n + 1) ^ 2 ∧
+                  m ^ 4 < x ^ 3 := by
+  have ⟨r, u, p, x, hr1, hw, hpdef, hxdef, hpodd, hp2, _, _, hpx, hxn, _,
+      himg, hC⟩ := cycle_top_three_level hn h
+  have ⟨k, hk, hmin⟩ := exists_cycleMin hn h.1
+  have hm : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h.1 hk
+  have hmodd := cycleMin_start_odd (n := floorPower^[k] n) hm hmin
+  have hMsq := cycleMax_min_sq_lt hn h hk hmin
+  have heven : ∀ i < r, floorPower^[i] n % 2 = 0 := by
+    have hf : follows n (List.replicate r Branch.even ++ u) := by
+      simpa [hw] using h.1.1
+    exact follows_replicate_even_iter r (follows_of_append_left hf)
+  have hlo : p ^ (2 ^ r) ≤ n := by
+    simpa [hpdef] using even_iter_pow_le r heven
+  have hhi : n < (p + 1) ^ (2 ^ r) := by
+    simpa [hpdef] using even_iter_lt_succ_pow r heven
+  have hwin := cycle_top_window_strict hpodd (cycleMax_start_even hn h) hlo
+  have hcell := cycle_top_predecessor_cell hn h
+  have hcell' : n ^ 2 ≤ x ^ 3 ∧ x ^ 3 < (n + 1) ^ 2 := by
+    simpa [hxdef] using hcell
+  have hrlt : r < w.length := by
+    have hwu : w.length = r + u.length := by
+      simp [hw, List.length_append, List.length_replicate]
+    cases u with
+    | nil =>
+        have : p = n := by simpa [image] using himg
+        omega
+    | cons _ _ =>
+        simp [hwu]
+  have hm_le_p : floorPower^[k] n ≤ p := by
+    have hlen : (rotateWord w k).length = w.length := rotateWord_length w k
+    let j := (r + (w.length - k)) % w.length
+    have hj : j < (rotateWord w k).length := by
+      simpa [j, hlen] using
+        Nat.mod_lt (r + (w.length - k))
+          (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.1.2.2)
+    have himg_j :
+        floorPower^[j] (floorPower^[k] n) = floorPower^[k + j] n := by
+      simpa [Nat.add_comm] using
+        (Function.iterate_add_apply floorPower j k n).symm
+    have hmodkj : (k + j) % w.length = r := by
+      have hL : 0 < w.length :=
+        lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.1.2.2
+      have hsum : k + (r + (w.length - k)) = r + w.length := by omega
+      have : (k + (r + (w.length - k)) % w.length) % w.length =
+          (r + w.length) % w.length := by
+        rw [Nat.add_mod_mod, hsum]
+      simpa [j, Nat.add_mod, Nat.mod_self, Nat.mod_eq_of_lt hrlt] using this
+    have hpj : floorPower^[k + j] n = floorPower^[r] n := by
+      rw [cycle_iterate_mod h.1, cycle_iterate_mod (k := r) h.1, hmodkj,
+        Nat.mod_eq_of_lt hrlt]
+    have hge := cycleMin_ge hmin hj
+    simpa [himg_j, hpj, hpdef] using hge
+  have hfourth : floorPower^[k] n ^ 4 < x ^ 3 := by
+    have hpow : (floorPower^[k] n ^ 2) ^ 2 < n ^ 2 :=
+      Nat.pow_lt_pow_left hMsq (by decide : (2 : ℕ) ≠ 0)
+    have h4 : floorPower^[k] n ^ 4 = (floorPower^[k] n ^ 2) ^ 2 := by
+      rw [← Nat.pow_mul]
+    have : floorPower^[k] n ^ 4 < n ^ 2 := by
+      simpa [h4] using hpow
+    exact lt_of_lt_of_le this hcell'.1
+  exact ⟨floorPower^[k] n, p, x, r, hm, hp2, hmodd, hpodd, hm_le_p, hpx, hxn,
+    hMsq, hr1, hwin, hhi, hcell'.1, hcell'.2, hfourth⟩
+
 end Problems.Engine
+
+
 
 
 

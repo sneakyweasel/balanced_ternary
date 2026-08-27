@@ -5457,7 +5457,7 @@ Best next question
 - **Major results:** every cycle maximum has a canonical `OE^r` descent **EXACT — LEAN VERIFIED**. The block is formally contracting **EXACT — LEAN VERIFIED**. Peak-ascent finance \(3^{o+1}\ge 2^{k+r+1}\) **EXACT — LEAN VERIFIED** and is a **REPARAMETERIZATION** of the top ascent. Classification **PEAK_DESCENT_GREEN**. Records: `docs/research/juggler_cycle_peak_descent.md`, `docs/problems/juggler_cycle_peak_descent.md`. Control layer unchanged
 - **Refuted ideas:** peak finance is a stronger scale gap; transients close \(p\to x\); \(T(p)\) has one parity; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** does the finite sequence of odd landings after maximal even runs carry a composable scale law that is not already the block envelope?
+- **Open:** answered in the extremal-composition branch: composing landings and extrema is envelope repackaging
 - **Decision:** PROMOTE the canonical peak descent and the finance identity. Do not claim a stronger scale gap. Do not build an odd-milestone engine
 
 ```text
@@ -5491,7 +5491,53 @@ Why
 - The maximum now names a contracting subword without a census. The financing question is answered: it does not beat the existing ascent law. Stop before a milestone graph.
 
 Best next question
-- Does the finite sequence of odd landings after maximal even runs carry a composable scale law that is not already the block envelope?
+- Answered in the extremal-composition branch: composing the existing min / first-even / top-cell / peak constraints is envelope repackaging.
 ```
+
+## Juggler extremal composition
+
+- **Date:** 2026-08-27
+- **Objective:** Compose existing cycle constraints (minimum scale, first-even financing, top cell, peak descent) and test whether they yield a word-independent contradiction or only the ordinary envelope
+- **Hypotheses:** `GLOBAL_EXTREMAL_COMPOSITION_GREEN`, `FIRST_TO_TOP_SCALE_GREEN`, `TOP_TO_RETURN_GREEN`, `DEFECT_EXTREMAL_GREEN`, `COMPOSITION_REPACKAGING`, or `EXTREMAL_COUNTEREXAMPLE`
+- **Major results:** distinguished order \(m\le p<x<M\) **EXACT — LEAN VERIFIED**. Strict top window \(p^{2^r}<M\) **EXACT — LEAN VERIFIED**. Derived \(m^4<x^3\) **EXACT — LEAN VERIFIED** and a **REPARAMETERIZATION** of \(M>m^2\) plus the cube cell. Every attempted stronger scale law reduces to `power_bound_word` or an existing extremal theorem. Classification **COMPOSITION_REPACKAGING**. Records: `docs/research/juggler_cycle_extremal_composition.md`, `docs/problems/juggler_cycle_extremal_composition.md`. Control layer unchanged
+- **Refuted ideas:** first-even versus top is a new scale gap; \(p=m\); \(z<p\) or \(z>x\) as universal; split min-to-max is stronger than the envelope; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** is there a cycle-only identity that uses return \(T_w(n)=n\) in a way that is not an envelope of a subword?
+- **Decision:** CLOSE the compose-for-contradiction branch. Record the compatible normal form. Do not open odd-landings, a residual graph, or an energy
+
+```text
+What was learned
+- A CycleMax packages as m ≤ p < x < M with a strict top window p^{2^r} < M
+- The fourth-power comparison m^4 < x^3 is M > m^2 plus the cube cell
+- Split paths m → z → M and p → x → M recover the ordinary word envelope
+- Transient starts already forbid treating p = m, z = M, or z ≷ x as universal
+- Location-sensitive packaging exists; it does not produce a cycle contradiction
+
+Strongest theorem
+- A CycleMax has distinguished states m ≤ p < x < M with p^{2^r} < M < (p+1)^{2^r} and m^4 < x^3
+
+Strongest refutation
+- composing scale laws beats the envelope; every such composition is power_bound_word or an existing extremal theorem
+
+Reusable machinery
+- Problems.Engine.CycleWord cycle_distinguished_order / cycle_top_window_strict / cycleMax_min_sq_lt
+- research.juggler_sequence.cycle_extremal_composition
+
+Prior-art status
+- negative composition result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- CLOSE
+
+Why
+- The existing cells coexist around one closed trajectory. Their scale content is the ordinary envelope. A further abstraction layer would be machinery gravity.
+
+Best next question
+- Is there a cycle-only identity that uses return T_w(n)=n in a way that is not an envelope of a subword?
+```
+
 
 

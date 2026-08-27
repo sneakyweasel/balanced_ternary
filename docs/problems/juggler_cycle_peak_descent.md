@@ -150,9 +150,10 @@ the predecessor.
 
 ## Open questions
 
-The odd-milestone residual cycle is the next structural object, not
-another squeeze of \((p,x,M)\) and not a cycle-word census. Do not
-open a milestone graph until a precise finite relation is named.
+Answered in
+[juggler_cycle_extremal_composition.md](juggler_cycle_extremal_composition.md):
+composing the existing min / first-even / top-cell / peak constraints
+is envelope repackaging. Do not open an odd-landing graph.
 
 ## Decision
 
@@ -160,9 +161,8 @@ open a milestone graph until a precise finite relation is named.
 not claim a stronger scale gap. Do not build an odd-milestone engine.
 Do not claim termination.
 
-Best next question: does the finite sequence of odd landings after
-maximal even runs carry a composable scale law that is not already
-the block envelope?
+Best next question: answered in
+[juggler_cycle_extremal_composition.md](juggler_cycle_extremal_composition.md).
 
 ## Publication assessment
 
