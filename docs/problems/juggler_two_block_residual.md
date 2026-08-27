@@ -160,10 +160,10 @@ new layer. No `sorry`. No halt theorem.
 
 ## Open questions
 
-If two-block expansion is allowed, is there a longer-range
-obstruction that is still short of the concatenated endpoint
-inequality — for example a bound on consecutive expanding
-persistent blocks that is not a halt theorem?
+Answered in [juggler_expansion_slack.md](juggler_expansion_slack.md):
+the weighted slack cocycle is a reparameterization of \(1+q\) and
+does not bound consecutive expanding persistent blocks. Four and
+five consecutive PE blocks occur.
 
 ## Decision
 
@@ -172,9 +172,8 @@ first block does change the admissible state at \(y\) (odd-odd,
 next \(a\ge 2\)), but that state is compatible with another
 expanding persistent block. Do not claim termination.
 
-Best next question: is there a finite bound on consecutive
-expanding persistent residual blocks that is not a rewrite of
-\(T_w(n)<n\)?
+Best next question: answered in
+[juggler_expansion_slack.md](juggler_expansion_slack.md).
 
 ## Publication assessment
 

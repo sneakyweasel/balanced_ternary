@@ -6554,3 +6554,48 @@ Best next question
 - Is there a finite bound on consecutive expanding persistent residual blocks that is not a rewrite of T_w(n)<n?
 ```
 
+## Juggler weighted slack budget and expansion density
+
+- **Date:** 2026-08-27
+- **Objective:** After the exact affine law y_{i+1}=λ_i y_i-c_i, decide whether the weighted slack budget constrains expanding persistent residual run length or density independently of T_w(n)≥n
+- **Hypotheses:** positive local slack, after the exact expansion weights, forbids arbitrarily long PE runs or density 1; the constraint is not the endpoint rewrite y_m≥y_0
+- **Major results:** The log-affine law and the weighted cocycle are the existing 1+q identities in other coordinates (Lean `block_power_identity`, `weighted_slack_concat`, `normalized_budget_identity`). Local compatibility c<(λ-1)y is T>n (`block_growth_compat`). Four consecutive PE blocks are Lean-certified (`four_block_pe_1999`: 1999 --OOE--> 5169 --OOOOEE--> 50093 --OOE--> 193753 --OOE--> 887471). A length-5 run starts at 2183. On n≤10000 the maximum PE run is still 5. B_m stays 10^{-5} to 10^{-9} of the endpoint tautology. c/(λ-1) decays with scale and reaches a near-tight expanding OOE at 180370579261640036336071806107777 with 0<q<10^{-30}. No halt theorem
+- **Refuted ideas:** uniform c/(λ-1)≥ε>0 on expanding persistent blocks; B_m bounded below independently of y_m≥y_0; the weighted budget forbids PE density 1 on a finite prefix; a finite-run bound produced by this coordinate system
+- **Literature:** OEIS A007320; GlobalDefect / NormalizedDefect / PersistentExpandingResidual / two-block refutation
+- **Open:** a raw finite M is not proved; this mechanism does not produce it
+- **Decision:** CLOSE the weighted-slack-budget attack as WEIGHTED_SLACK_ENDPOINT. Do not claim termination
+
+```text
+What was learned
+- log T = λ log n - c and the weighted cocycle are 1+q in logarithmic coordinates
+- c<(λ-1)y is T>n on one expanding block
+- Four and five consecutive PE blocks occur
+- c/(λ-1) decays with scale and can be smaller than 10^{-12}
+- B_m stays negligible compared with the endpoint tautology
+
+Strongest theorem
+- PersistentExpandingResidual 1999 5169, 5169 50093, 50093 193753, and 193753 887471
+
+Strongest refutation
+- Every expanding persistent block pays a uniform positive tax c/(λ-1)≥ε>0
+
+Reusable machinery
+- formal/Problems/Juggler/ExpansionSlack.lean
+- research.juggler_sequence.expansion_slack
+
+Prior-art status
+- reparameterization of 1+q plus a four-block existence theorem, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The exact identities do not constrain the internal sequence beyond T_w(n)≥n. Local taxes can be arbitrarily small relative to the formal margin, and the accumulated budget stays far below the endpoint allowance. The merged expansion/slack attack is therefore not an independent obstruction.
+
+Best next question
+- What arithmetic produces a near-tight expanding residual block (q vanishing at scale), and is that tightness a property of the large-λ predecessor rather than of the weighted budget?
+```
+
