@@ -1,3 +1,4 @@
+import Problems.Juggler.GlobalDefect
 import Problems.Juggler.Progress
 
 namespace Problems.Juggler
@@ -206,5 +207,22 @@ theorem no_minimal_of_all_coeffStop
   intro n hm
   have hn : 2 ≤ n := le_trans (by decide : 2 ≤ 12) (minimal_nonterm_ge_twelve hm)
   exact coeffStop_contradicts_minimal hm (h n hn)
+
+/-- On a minimal non-1 orbit every realized image stays `≥ n`, so the
+accumulated defect cannot exceed the formal exponent surplus.
+Equivalent to `T_w(n) ≥ n`, not a new obstruction for expanding mixed
+prefixes. -/
+theorem minimal_nonterm_global_defect_le_surplus {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w) :
+    globalDefect n w + n ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w) := by
+  have hid := global_defect_identity hw
+  have hge := minimal_nonterm_image_ge h hw
+  have hpow :
+      n ^ (2 ^ w.length) ≤ image n w ^ (2 ^ w.length) :=
+    Nat.pow_le_pow_left hge _
+  have : globalDefect n w + n ^ (2 ^ w.length) ≤
+      globalDefect n w + image n w ^ (2 ^ w.length) :=
+    Nat.add_le_add_left hpow _
+  exact le_trans this (add_comm (globalDefect n w) _ ▸ hid.symm.le)
 
 end Problems.Juggler

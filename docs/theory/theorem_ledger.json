@@ -2877,5 +2877,16 @@
       "tests/research/multiplicative_residual/test_multiplicative_residual.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-global-defect-identity",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every realized finite Juggler word w, n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + Δ_w(n), where Δ is the recursively lifted accumulation of local floor remainders. Δ ≥ 0, so the power envelope is a corollary; Δ = 0 iff every local remainder vanishes; concatenation is the two-term power-gap lift, not an additive sum.",
+    "source": "docs/problems/juggler_global_defect.md",
+    "lean": "Problems/Juggler/GlobalDefect.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_global_defect.py"
+    ],
+    "related_conjectures": []
   }
 ]

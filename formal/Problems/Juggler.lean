@@ -1,10 +1,3 @@
-/-!
-# Juggler formalization
-
-One-way layers under `Problems.Juggler`. The isolated unproved
-statement is `FiniteCoeffStopConjecture`.
--/
-
 import Problems.Juggler.Dynamics
 import Problems.Juggler.Iteration
 import Problems.Juggler.Termination
@@ -13,6 +6,7 @@ import Problems.Juggler.WordStats
 import Problems.Juggler.Envelope
 import Problems.Juggler.Equality
 import Problems.Juggler.Defect
+import Problems.Juggler.GlobalDefect
 import Problems.Juggler.Cells
 import Problems.Juggler.Collapse
 import Problems.Juggler.Drift
@@ -24,3 +18,10 @@ import Problems.Juggler.Scale
 import Problems.Juggler.Residuals
 import Problems.Juggler.Cycles
 import Problems.Juggler.CycleDiophantine
+
+/-!
+# Juggler formalization
+
+One-way layers under `Problems.Juggler`. The isolated unproved
+statement is `FiniteCoeffStopConjecture`.
+-/

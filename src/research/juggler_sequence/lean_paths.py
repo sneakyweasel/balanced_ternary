@@ -18,6 +18,7 @@ LAYERS: dict[str, Path] = {
     "Envelope": JUGGLER_DIR / "Envelope.lean",
     "Equality": JUGGLER_DIR / "Equality.lean",
     "Defect": JUGGLER_DIR / "Defect.lean",
+    "GlobalDefect": JUGGLER_DIR / "GlobalDefect.lean",
     "Cells": JUGGLER_DIR / "Cells.lean",
     "Collapse": JUGGLER_DIR / "Collapse.lean",
     "Drift": JUGGLER_DIR / "Drift.lean",
@@ -39,6 +40,7 @@ WORD_STATS = LAYERS["WordStats"]
 ENVELOPE = LAYERS["Envelope"]
 EQUALITY = LAYERS["Equality"]
 DEFECT = LAYERS["Defect"]
+GLOBAL_DEFECT = LAYERS["GlobalDefect"]
 CELLS = LAYERS["Cells"]
 COLLAPSE = LAYERS["Collapse"]
 DRIFT = LAYERS["Drift"]

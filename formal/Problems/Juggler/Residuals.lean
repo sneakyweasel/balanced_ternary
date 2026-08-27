@@ -1,3 +1,4 @@
+import Problems.Juggler.GlobalDefect
 import Problems.Juggler.Scale
 
 namespace Problems.Juggler
@@ -347,6 +348,18 @@ theorem residualStep_word {x y : ℕ} (h : ResidualStep x y) :
     ∃ w, follows x w ∧ image x w = y := by
   obtain ⟨_a, _b, _hb, hw, himg⟩ := h
   exact ⟨_, hw, himg⟩
+
+/-- A residual step carries the exact global-defect identity.
+`ResidualStep` itself is unchanged. -/
+theorem residualStep_global_defect {x y : ℕ} (h : ResidualStep x y) :
+    ∃ a b, 1 ≤ b ∧ follows x (oddEvenBlock a b) ∧
+      image x (oddEvenBlock a b) = y ∧
+        x ^ (3 ^ a) =
+          y ^ (2 ^ (a + b)) + globalDefect x (oddEvenBlock a b) := by
+  obtain ⟨a, b, hb, hw, himg⟩ := h
+  have hid := global_defect_identity hw
+  refine ⟨a, b, hb, hw, himg, ?_⟩
+  simpa [himg, oddCount_oddEvenBlock, length_oddEvenBlock] using hid
 
 /-- Any certified residual closes `ReachesOne` at the source. Stronger
 than requiring a capture of the residual word itself. -/

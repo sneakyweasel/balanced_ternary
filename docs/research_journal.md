@@ -6330,3 +6330,48 @@ Best next question
 - Does every n >= 2 have finite coefficient / drift stopping time?
 ```
 
+## Juggler global accumulated defect
+
+- **Date:** 2026-08-27
+- **Objective:** Assemble local Juggler floor remainders into one exact compositional global defect
+- **Hypotheses:** the correct recurrence is a weighted lift through later exponents, not `Δ_{i+1}=Δ_i+ρ_i`; the envelope slack is a theorem, not the definition
+- **Major results:** `powGap a ρ e = (a+ρ)^e-a^e`. Even step keeps the old slack and lifts `ρ` through `2^k`. Odd step cubes the running slack and then lifts `ρ`. Lean `global_defect_identity`: `n^{3^o}=T_w(n)^{2^k}+Δ_w(n)`. Envelope is the corollary `Δ≥0`. `Δ=0` iff every local remainder vanishes iff `localsTight` iff `PowerBoundEq`. Mixed realized words have `Δ>0`. First-defect bound `ρ_i^{2^i}≤Δ`. Composition is the two-term lift `powGap(mid^{2^{|u|}},Δ_u,3^{#O(v)})+powGap(T_v^{2^{|v|}},Δ_v,2^{|u|})`. A `ResidualStep` carries the same identity. On a CE, `Δ+n^{2^k}≤n^{3^o}`. Short-word census `n≤80`, length `≤5` matches the slack exactly. No halt theorem
+- **Refuted ideas:** additive accumulation `Δ_{i+1}=Δ_i+ρ_i`; treating `Δ` as a prior subtraction of `PowerBound`; `Δ` larger than the formal surplus forbids `OOE`/`OOEO`/`OOOE` on a CE (that inequality is `T_w(n)<n`)
+- **Literature:** OEIS A007320; existing envelope / equality / local-defect layers
+- **Open:** can a first-defect lower bound beat `n^{3^o}-n^{2^k}` on a mixed expanding class?
+- **Decision:** PROMOTE the global defect layer. Do not claim termination
+
+```text
+What was learned
+- Local remainders must be lifted through later 2^k and 3^{#O} exponents
+- The envelope slack is exactly this lifted accumulation
+- Zero global defect is the existing rigid equality tower
+- Composition is polynomial, not additive
+- The CE surplus inequality restates T_w(n)≥n and does not kill expanding mixed prefixes
+
+Strongest theorem
+- n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + Δ_w(n) for every realized finite word
+
+Strongest refutation
+- Δ > n^{3^o}-n^{2^k} on an expanding mixed CE prefix: equivalent to T_w(n)<n
+
+Reusable machinery
+- formal/Problems/Juggler/GlobalDefect.lean
+- research.juggler_sequence.global_defect
+
+Prior-art status
+- constructive strengthening of PowerBound / powerDeficit, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PROMOTE
+
+Why
+- The recurrence, identity, equality characterization, and composition law are new exact statements. They do not prove termination.
+
+Best next question
+- Can a quantitative lower bound on Δ beat the formal surplus on some mixed expanding class?
+```
+
