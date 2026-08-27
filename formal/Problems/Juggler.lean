@@ -7,6 +7,7 @@ import Problems.Juggler.Envelope
 import Problems.Juggler.Equality
 import Problems.Juggler.Defect
 import Problems.Juggler.GlobalDefect
+import Problems.Juggler.DefectLowerBound
 import Problems.Juggler.Cells
 import Problems.Juggler.Collapse
 import Problems.Juggler.Drift

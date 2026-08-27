@@ -1,4 +1,4 @@
-import Problems.Juggler.GlobalDefect
+import Problems.Juggler.DefectLowerBound
 import Problems.Juggler.Scale
 
 namespace Problems.Juggler
@@ -360,6 +360,47 @@ theorem residualStep_global_defect {x y : ℕ} (h : ResidualStep x y) :
   have hid := global_defect_identity hw
   refine ⟨a, b, hb, hw, himg, ?_⟩
   simpa [himg, oddCount_oddEvenBlock, length_oddEvenBlock] using hid
+
+theorem replicate_even_cons {b : ℕ} (hb : 1 ≤ b) :
+    List.replicate b Branch.even =
+      Branch.even :: List.replicate (b - 1) Branch.even := by
+  cases b with
+  | zero => cases hb
+  | succ b => simp [List.replicate_succ]
+
+/-- A residual block with a nonempty odd run has its first defect inside
+that run. The first-defect contribution bound is `firstDefect_contribution`. -/
+theorem residualStep_firstDefect {x y : ℕ} (h : ResidualStep x y) :
+    ∃ a b, 1 ≤ b ∧ follows x (oddEvenBlock a b) ∧
+      image x (oddEvenBlock a b) = y ∧
+        (0 < a → firstDefect x (oddEvenBlock a b) < a) := by
+  obtain ⟨a, b, hb, hw, himg⟩ := h
+  refine ⟨a, b, hb, hw, himg, ?_⟩
+  intro ha
+  have hform :
+      oddEvenBlock a b =
+        List.replicate a Branch.odd ++
+          Branch.even :: List.replicate (b - 1) Branch.even := by
+    simp [oddEvenBlock, replicate_even_cons hb]
+  have hw' :
+      follows x
+        (List.replicate a Branch.odd ++
+          Branch.even :: List.replicate (b - 1) Branch.even) := by
+    simpa [hform] using hw
+  have hlt := firstDefect_lt_of_odd_run_then_even ha hw'
+  simpa [hform] using hlt
+
+theorem residualStep_amplify {x y : ℕ} (h : ResidualStep x y) :
+    ∃ a b, 1 ≤ b ∧ follows x (oddEvenBlock a b) ∧
+      image x (oddEvenBlock a b) = y ∧
+        ∀ hpos : firstDefect x (oddEvenBlock a b) < (oddEvenBlock a b).length,
+          (branchDefect
+              (oddEvenBlock a b)[firstDefect x (oddEvenBlock a b)]
+              (floorPower^[firstDefect x (oddEvenBlock a b)] x)) ^
+            (2 ^ firstDefect x (oddEvenBlock a b)) ≤
+            globalDefect x (oddEvenBlock a b) := by
+  obtain ⟨a, b, hb, hw, himg⟩ := h
+  exact ⟨a, b, hb, hw, himg, fun hpos => firstDefect_contribution hw hpos⟩
 
 /-- Any certified residual closes `ReachesOne` at the source. Stronger
 than requiring a capture of the residual word itself. -/

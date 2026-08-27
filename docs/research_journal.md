@@ -6419,3 +6419,48 @@ Best next question
 - A global ∑ρ bound in (n, word statistics), not another residual relation.
 ```
 
+## Juggler first-defect amplification
+
+- **Date:** 2026-08-27
+- **Objective:** Turn the first positive local remainder into a quantitative lower bound on Δ by lifting it through the suffix
+- **Hypotheses:** the first defect sits after a rigid tight prefix; the odd cubic lift and a residue-sensitive ρ give an F that is not the endpoint rewrite T<n; that F might beat the formal surplus on expanding OOE
+- **Major results:** Lean `firstDefect` with tight-prefix extremal tower. A later even letter cannot follow a completely tight odd run, so `OOE`/`OOEO` have j≤1 and `OOOE` has j≤2. Exact `odd_defect_lift` `(x^a+D)^3-x^{3a}=3x^{2a}D+3x^a D^2+D^3`, universal factor 3 sharp as D/scale→0. `amplifyDefect` drops later remainders and lower-bounds Δ. Normalized pair `(D, x^{2^k})` with tight even/odd step laws. Residue bounds: x≡2 (mod 4) and T even ⇒ ρ_E≥2; x≡3 (mod 8) ⇒ ρ_O≥2; x≡7 (mod 8) ⇒ ρ_O≥3. `OOE` bound Δ≥3 T(n)^4 ρ_0 or Δ≥ρ_1^2. ResidualStep carries firstDefect < odd-run length. Census: Amplify never exceeds Δ; no expanding OOE/OOEO/OOOE start has F larger than the formal surplus. No halt theorem
+- **Refuted ideas:** first-defect Amplify exceeds n^{3^o}-n^{2^k} on expanding mixed OOE-class prefixes (that inequality is T_w(n)<n); a universal odd-step factor strictly larger than 3
+- **Literature:** OEIS A007320; existing global-defect / equality / local-remainder layers
+- **Open:** does the defect/surplus ratio R_w drift under persistent mixed residual suffixes?
+- **Decision:** PROMOTE the first-defect amplification layer. Do not claim termination
+
+```text
+What was learned
+- The prefix before the first defect is a rigid equality tower
+- Tight odd runs stay odd, so a later even letter forces a prior defect
+- Odd suffix letters lift an inserted defect by exactly the cubic, at least the factor 3
+- Residue classes give ρ>1 without using the endpoint
+- The OOE lower bounds are real and still far below the formal surplus
+
+Strongest theorem
+- Δ_w(n) ≥ Amplify_{w[j+1:]}(T^{j+1}(n), ρ_j^{2^j}) after the first positive remainder, and mixed OOE has j≤1 with Δ ≥ 3 T(n)^4 ρ_0 or Δ ≥ ρ_1^2
+
+Strongest refutation
+- Those F_w bounds exceed n^{3^o}-n^{2^k} on expanding OOE/OOEO/OOOE: equivalent to T_w(n)<n, and unseen on the scanned window
+
+Reusable machinery
+- formal/Problems/Juggler/DefectLowerBound.lean
+- research.juggler_sequence.defect_lower_bound
+
+Prior-art status
+- quantitative strengthening of the global defect layer, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PROMOTE
+
+Why
+- First-defect location, suffix Amplify, the cubic lift, and residue remainders are new exact statements. They do not prove termination and they do not forbid expanding OOE.
+
+Best next question
+- Does the defect/surplus ratio R_w have a forced drift on persistent odd-to-odd residual chains?
+```
+

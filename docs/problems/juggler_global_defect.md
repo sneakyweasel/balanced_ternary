@@ -129,8 +129,9 @@ No halt theorem.
 
 ## Open questions
 
-Can a first-defect lower bound ever exceed the formal surplus
-`n^{3^o}-n^{2^k}` on a mixed expanding class?
+Taken up by `docs/problems/juggler_defect_lower_bound.md`. A
+first-defect Amplify bound exists and does not beat the formal
+surplus on expanding `OOE`.
 
 ## Decision
 
