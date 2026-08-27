@@ -146,10 +146,9 @@ excluded. The unbounded residual branch is untouched.
 
 ## Open questions
 
-Can the same last-even cell versus a superquadratic prefix exclude
-longer words that end in `E`, or does a longer expanding word survive
-the cell? Do not build a cycle engine. Do not reopen the unbounded
-branch here.
+Answered in [juggler_cycle_e_term.md](juggler_cycle_e_term.md): a
+suffix threshold \(T_v\ge(n+1)^2\) forbids any cycle \(vE\). Every
+length-4 E-terminating word is excluded.
 
 ## Decision
 
@@ -157,9 +156,8 @@ branch here.
 exclusions. Do not claim that all cycles are impossible. Do not claim
 termination. Do not treat last-even return as an exact square.
 
-Best next question: can a cycle word of length at least 4 that ends
-in `E` be excluded by the same last-even cell against an existing
-superquadratic prefix, without a cycle engine?
+Best next question: answered in
+[juggler_cycle_e_term.md](juggler_cycle_e_term.md).
 
 ## Publication assessment
 

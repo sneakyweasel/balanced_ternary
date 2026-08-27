@@ -10,10 +10,11 @@ return is not envelope equality: the defect stays positive. The
 lower-growth theorem still gives `n^{3^o - 2^k} ≤ lowerDenom w`.
 
 A last even letter is the square *cell* `n^2 ≤ z < (n+1)^2`, not an
-exact-square identity. Combined with the `OO` suffix threshold this
-excludes `OOE`. `OEO` rotates onto `EOO`. The minimum cycle state is
-odd. This is not a halt theorem and not a claim that every cycle word
-is impossible.
+exact-square identity. If a suffix `v` sits at or above the next
+square, `vE` cannot be a cycle. Combined with the `OO` and `OOO`
+thresholds this excludes `OOE` and `OOOE`. Every length-4
+E-terminating word is either contracting or `OOOE`. This is not a
+halt theorem and not a claim that every cycle word is impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -323,5 +324,93 @@ theorem no_cycle_word_oeo {n : ℕ} (hn : 2 ≤ n) : ¬CycleWord n wordOEO := by
       simpa [wordOEO] using h
     simpa [wordEOO] using cycleWord_rotate_cons hcons
   exact no_cycle_word_eoo ha hrot
+
+theorem cycle_last_even_cell {n : ℕ} {v : List Branch}
+    (h : CycleWord n (v ++ [.even])) :
+    n ^ 2 ≤ image n v ∧ image n v < (n + 1) ^ 2 :=
+  cycle_last_even_interval h
+
+theorem cycle_last_even_cell_odd {n : ℕ} {v : List Branch}
+    (hodd : n % 2 = 1) (h : CycleWord n (v ++ [.even])) :
+    n ^ 2 < image n v ∧ image n v < (n + 1) ^ 2 :=
+  ⟨lt_of_le_of_ne (cycle_last_even_interval h).1
+      (cycle_last_even_ne_odd_sq hodd h).symm,
+    (cycle_last_even_interval h).2⟩
+
+/-- If a suffix sits at or above the next square, it cannot be the
+pre-final state of an E-terminating cycle. -/
+theorem no_cycle_append_even_of_suffix_threshold {v : List Branch} {N : ℕ}
+    (hth : ∀ m, N ≤ m → follows m v → (m + 1) ^ 2 ≤ image m v)
+    {n : ℕ} (hn : N ≤ n) (h : CycleWord n (v ++ [.even])) : False :=
+  (not_le_of_gt (cycle_last_even_interval h).2)
+    (hth n hn (follows_of_append_left h.1))
+
+def wordOOOE : List Branch := [.odd, .odd, .odd, .even]
+
+theorem wordOOOE_eq_append :
+    wordOOOE = [.odd, .odd, .odd] ++ [.even] :=
+  rfl
+
+theorem no_cycle_word_oooe {n : ℕ} (hn : 2 ≤ n) : ¬CycleWord n wordOOOE := by
+  intro h
+  have hcell : CycleWord n ([.odd, .odd, .odd] ++ [.even]) := by
+    simpa [wordOOOE] using h
+  have hw := follows_of_append_left hcell.1
+  have hn3 : 3 ≤ n := by
+    have : n % 2 = 1 := hw.1
+    omega
+  refine no_cycle_append_even_of_suffix_threshold (N := 3) ?_ hn3 hcell
+  intro m hm hf
+  simpa [image_eq_iterate] using ooo_suffix_threshold hm hf
+
+theorem oddCount_le_length : ∀ w : List Branch, oddCount w ≤ w.length
+  | [] => by simp
+  | .odd :: w => Nat.succ_le_succ (oddCount_le_length w)
+  | .even :: w => le_trans (oddCount_le_length w) (Nat.le_succ _)
+
+theorem eq_replicate_odd_of_oddCount_eq_length {v : List Branch}
+    (h : oddCount v = v.length) : v = List.replicate v.length Branch.odd := by
+  induction v with
+  | nil => simp
+  | cons b rest ih =>
+      cases b with
+      | odd =>
+          have hrest : oddCount rest = rest.length := by
+            have : oddCount rest + 1 = rest.length + 1 := by
+              simpa [oddCount, List.length_cons] using h
+            omega
+          have hk : (Branch.odd :: rest).length = rest.length + 1 := rfl
+          rw [hk, List.replicate_succ]
+          exact congrArg (List.cons Branch.odd) (ih hrest)
+      | even =>
+          have : oddCount rest ≤ rest.length := oddCount_le_length rest
+          have : oddCount rest + 0 = rest.length + 1 := by
+            simpa [oddCount, List.length_cons] using h
+          omega
+
+/-- Every length-4 E-terminating cycle word is impossible: it is either
+formally contracting, or it is `OOOE` and hits the `OOO` threshold. -/
+theorem no_cycle_word_length_four_ends_even {n : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (hv : v.length = 3)
+    (h : CycleWord n (v ++ [Branch.even])) : False := by
+  have hexp := cycle_word_formally_expanding hn h
+  have hlen : (v ++ [Branch.even]).length = 4 := by simp [hv]
+  have ho : oddCount (v ++ [Branch.even]) = oddCount v := by
+    simp [oddCount_append]
+  rw [hlen, ho] at hexp
+  have hge : 3 ≤ oddCount v := by
+    refine Nat.succ_le_of_lt (lt_of_not_ge fun hle => ?_)
+    have hpow : 3 ^ oddCount v ≤ 9 := by
+      interval_cases oddCount v <;> decide
+    exact (not_le_of_gt hexp) (le_trans hpow (by decide : (9 : ℕ) ≤ 16))
+  have hle : oddCount v ≤ 3 := by
+    simpa [hv] using oddCount_le_length v
+  have hodd : oddCount v = 3 := le_antisymm hle hge
+  have hvOOO : v = [.odd, .odd, .odd] := by
+    have := eq_replicate_odd_of_oddCount_eq_length (hodd.trans hv.symm)
+    simpa [hv] using this
+  have hOOOE : CycleWord n wordOOOE := by
+    simpa [wordOOOE, hvOOO] using h
+  exact no_cycle_word_oooe hn hOOOE
 
 end Problems.Engine

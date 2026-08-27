@@ -5142,7 +5142,7 @@ Best next question
 - **Major results:** last-even cycle return is the cell \(n^2\le z<(n+1)^2\), not \(z=n^2\) **EXACT — LEAN VERIFIED**. Cycle minimum is odd **EXACT — LEAN VERIFIED**. No `OOE` or `OEO` cycle for \(n\ge 2\) **EXACT — LEAN VERIFIED**. Classification **OOE_CYCLE_EXCLUDED**. Records: `docs/research/juggler_cycle_arith.md`, `docs/problems/juggler_cycle_arith.md`. Control layer unchanged
 - **Refuted ideas:** last-even return is \(z=n^2\); `OOE`/`OEO` require a smaller \(D_w\); cycle return is envelope equality; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** can a cycle word of length at least 4 that ends in `E` be excluded by the same last-even cell against an existing superquadratic prefix?
+- **Open:** answered in the E-terminating suffix-threshold phase
 - **Decision:** PROMOTE the cell/rotation exclusions. Do not claim that all cycles are impossible. Do not claim termination
 
 ```text
@@ -5177,6 +5177,51 @@ Why
 
 Best next question
 - Can a cycle word of length at least 4 that ends in E be excluded by the same last-even cell against an existing superquadratic prefix, without a cycle engine?
+```
+
+## Juggler E-terminating suffix thresholds
+
+- **Date:** 2026-08-27
+- **Objective:** Lift the `OOE` cell argument to a generic suffix threshold and close length-4 E-terminating words
+- **Hypotheses:** `LAST_EVEN_CLASS_GREEN`, `E_TERMINATING_LENGTH4_GREEN`, `E_SUFFIX_COUNTEREXAMPLE`, `CELL_THRESHOLD_TOO_WEAK`, or `CYCLE_E_BRANCH_PARK`
+- **Major results:** if \(T_v(n)\ge(n+1)^2\) for \(n\ge N\), then no cycle \(vE\) at \(n\ge N\) **EXACT — LEAN VERIFIED**. No `OOOE` cycle **EXACT — LEAN VERIFIED**. No length-4 E-terminating cycle **EXACT — LEAN VERIFIED**. Classification **LAST_EVEN_CLASS_GREEN**. Records: `docs/research/juggler_cycle_e_term.md`, `docs/problems/juggler_cycle_e_term.md`. Control layer unchanged
+- **Refuted ideas:** every length-4 E-word needs a separate cell analysis; last-even return is \(z=n^2\); O-terminating cycles are included; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** which existing suffix thresholds already sit above the next square for words longer than `OOO`?
+- **Decision:** PROMOTE the generic threshold theorem and the length-4 E-terminating exclusion. Do not claim that all cycles are impossible. Do not treat cycles ending in `O`
+
+```text
+What was learned
+- The reusable condition is a suffix threshold T_v ≥ (n+1)^2, not word length
+- The only expanding length-4 E-terminating word is OOOE
+- Every other length-4 E-word is formally contracting
+- OOOE is excluded by the existing OOO threshold
+- Cycles ending in O are a separate branch
+
+Strongest theorem
+- If T_v(m) ≥ (m+1)^2 whenever m ≥ N follows v, then there is no CycleWord n (vE) for n ≥ N
+
+Strongest refutation
+- length-4 E-terminating words other than OOOE require a new cell argument; they are contracting
+
+Reusable machinery
+- Problems.Engine.CycleWord no_cycle_append_even_of_suffix_threshold / no_cycle_word_length_four_ends_even
+- research.juggler_sequence.cycle_e_term
+
+Prior-art status
+- reusable cell-versus-threshold lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The OOE argument is now a generic interface, and every length-4 E-terminating cycle word is excluded without a cycle engine.
+
+Best next question
+- Which existing suffix thresholds already sit above the next square for words longer than OOO, and do they exclude the corresponding E-terminating cycles without a new census?
 ```
 
 

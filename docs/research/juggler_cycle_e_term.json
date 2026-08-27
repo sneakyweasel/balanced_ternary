@@ -1,0 +1,115 @@
+{
+  "experiment": "juggler_cycle_e_term",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "O_terminating_cycles_impossible": false,
+    "cycle_is_envelope_equality": false,
+    "power_bound_eq_forbids_cycles": false,
+    "last_even_is_exact_square": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "words": [
+      {
+        "word": "OOOE",
+        "k": 4,
+        "o": 3,
+        "expanding": true
+      },
+      {
+        "word": "OOEE",
+        "k": 4,
+        "o": 2,
+        "expanding": false
+      },
+      {
+        "word": "OEOE",
+        "k": 4,
+        "o": 2,
+        "expanding": false
+      },
+      {
+        "word": "OEEE",
+        "k": 4,
+        "o": 1,
+        "expanding": false
+      },
+      {
+        "word": "EOOE",
+        "k": 4,
+        "o": 2,
+        "expanding": false
+      },
+      {
+        "word": "EOEE",
+        "k": 4,
+        "o": 1,
+        "expanding": false
+      },
+      {
+        "word": "EEOE",
+        "k": 4,
+        "o": 1,
+        "expanding": false
+      },
+      {
+        "word": "EEEE",
+        "k": 4,
+        "o": 0,
+        "expanding": false
+      }
+    ],
+    "expanding": [
+      "OOOE"
+    ],
+    "contracting": [
+      "OOEE",
+      "OEOE",
+      "OEEE",
+      "EOOE",
+      "EOEE",
+      "EEOE",
+      "EEEE"
+    ],
+    "unique_expanding_is_oooe": true
+  },
+  "lean": {
+    "sorry_free": true,
+    "cycle_last_even_cell": true,
+    "cycle_last_even_cell_odd": true,
+    "no_cycle_append_even_of_suffix_threshold": true,
+    "no_cycle_word_oooe": true,
+    "no_cycle_word_length_four_ends_even": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_all_cycles_impossible": true,
+    "no_cycle_engine": true,
+    "no_infinite_path_type": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true,
+    "MinimalNonTerm_not_rewritten": true,
+    "PowerBoundEq_not_used_as_cycle_attack": true,
+    "O_terminating_not_claimed": true
+  },
+  "decision": {
+    "classification": "LAST_EVEN_CLASS_GREEN",
+    "secondary": [
+      "E_TERMINATING_LENGTH4_GREEN"
+    ],
+    "reason": "suffix threshold forbids any cycle vE once T_v sits at or above the next square; the only expanding length-4 E-terminating word is OOOE, and it is excluded"
+  },
+  "search_method": "generic last-even suffix threshold; OOO threshold; formal drift for contracting length-4 words; no CycleSearch engine"
+}
