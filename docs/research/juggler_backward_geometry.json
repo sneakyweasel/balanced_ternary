@@ -1,0 +1,5918 @@
+{
+  "experiment": "juggler_backward_geometry",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "tau_always_finite": false,
+    "new_lyapunov_scalar": false,
+    "reopen_pe_factors": false,
+    "reopen_residual_quotient": false,
+    "reopen_sum_rho": false,
+    "reopen_realization_geometry": false,
+    "reopen_landing_image": false,
+    "reopen_nc_boundary": false,
+    "reopen_first_return": false,
+    "reopen_information_complexity": false,
+    "reopen_prefix_nc": false,
+    "reopen_preimage_cylinders": false,
+    "reopen_adversarial_paths": false,
+    "automaton": false,
+    "collatz_inverse": false,
+    "cell_tree_engine": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "even_cell_iff": true,
+    "odd_cell_iff": true,
+    "odd_cell_unique": true,
+    "floorPower_even_eq_iff_sq_interval": true,
+    "floorPower_odd_eq_iff_cube_interval": true,
+    "floorPower_one": true,
+    "cells_present": true,
+    "no_forbidden_engines": true,
+    "no_global_termination_theorem": true,
+    "no_collatz_inverse": true
+  },
+  "decision": {
+    "classification": "BACKWARD_COMPLEX",
+    "reason": "Repeated inversion is the nested floor cells: even steps explode quadratically, odd steps descend along a unique spine until an empty cell, and hard-path reverse images are ordinary cell points. No extra inverse rigidity."
+  },
+  "scan": {
+    "census": {
+      "m_max": 4000,
+      "targets": 4000,
+      "nonempty_even": 4000,
+      "nonempty_odd": 126,
+      "pred_e_min": 1,
+      "pred_e_max": 4001,
+      "pred_o_rate": "63/2000",
+      "equal_edges": 1,
+      "odd_ascending": [],
+      "even_descending": [],
+      "e_formula_failures": [],
+      "multi_odd": [],
+      "pred_o_by_mod2": {
+        "0": [
+          59,
+          2000
+        ],
+        "1": [
+          67,
+          2000
+        ]
+      },
+      "pred_o_by_mod3": {
+        "0": [
+          44,
+          1333
+        ],
+        "1": [
+          40,
+          1334
+        ],
+        "2": [
+          42,
+          1333
+        ]
+      },
+      "pred_o_by_bits": {
+        "1": [
+          1,
+          1
+        ],
+        "2": [
+          0,
+          2
+        ],
+        "3": [
+          1,
+          4
+        ],
+        "4": [
+          1,
+          8
+        ],
+        "5": [
+          2,
+          16
+        ],
+        "6": [
+          3,
+          32
+        ],
+        "7": [
+          5,
+          64
+        ],
+        "8": [
+          7,
+          128
+        ],
+        "9": [
+          12,
+          256
+        ],
+        "10": [
+          19,
+          512
+        ],
+        "11": [
+          30,
+          1024
+        ],
+        "12": [
+          45,
+          1953
+        ]
+      },
+      "examples": {
+        "1": {
+          "m": 1,
+          "pred_e": 1,
+          "pred_o": 1,
+          "pred": 2,
+          "min_even": 2,
+          "max_even": 2,
+          "odd": 1,
+          "descending": 0,
+          "equal": 1,
+          "ascending": 1,
+          "expected_e": 1,
+          "e_formula_ok": true,
+          "even_cloud_start": 1,
+          "mod2": 1,
+          "mod3": 1,
+          "bits": 1
+        },
+        "2": {
+          "m": 2,
+          "pred_e": 3,
+          "pred_o": 0,
+          "pred": 3,
+          "min_even": 4,
+          "max_even": 8,
+          "odd": null,
+          "descending": 0,
+          "equal": 0,
+          "ascending": 3,
+          "expected_e": 3,
+          "e_formula_ok": true,
+          "even_cloud_start": 4,
+          "mod2": 0,
+          "mod3": 2,
+          "bits": 2
+        },
+        "3": {
+          "m": 3,
+          "pred_e": 3,
+          "pred_o": 0,
+          "pred": 3,
+          "min_even": 10,
+          "max_even": 14,
+          "odd": null,
+          "descending": 0,
+          "equal": 0,
+          "ascending": 3,
+          "expected_e": 3,
+          "e_formula_ok": true,
+          "even_cloud_start": 9,
+          "mod2": 1,
+          "mod3": 0,
+          "bits": 2
+        },
+        "5": {
+          "m": 5,
+          "pred_e": 5,
+          "pred_o": 1,
+          "pred": 6,
+          "min_even": 26,
+          "max_even": 34,
+          "odd": 3,
+          "descending": 1,
+          "equal": 0,
+          "ascending": 5,
+          "expected_e": 5,
+          "e_formula_ok": true,
+          "even_cloud_start": 25,
+          "mod2": 1,
+          "mod3": 2,
+          "bits": 3
+        }
+      },
+      "counterexamples": []
+    },
+    "composition": {
+      "rows": [
+        {
+          "root": 1,
+          "word": "E",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 2,
+          "max": 2,
+          "sample": [
+            2
+          ],
+          "naive": [
+            1,
+            3
+          ],
+          "parity": [
+            2,
+            2
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 1,
+          "word": "O",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 1,
+          "max": 1,
+          "sample": [
+            1
+          ],
+          "naive": [
+            1,
+            1
+          ],
+          "parity": [
+            1,
+            1
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 1,
+          "word": "EE",
+          "count": 3,
+          "truncated": false,
+          "empty": false,
+          "min": 4,
+          "max": 8,
+          "sample": [
+            4,
+            6,
+            8
+          ],
+          "naive": [
+            1,
+            15
+          ],
+          "parity": [
+            4,
+            8
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 1,
+          "word": "EO",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            1,
+            2
+          ],
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 1,
+          "word": "OE",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 2,
+          "max": 2,
+          "sample": [
+            2
+          ],
+          "naive": [
+            1,
+            3
+          ],
+          "parity": [
+            2,
+            2
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 1,
+          "word": "OO",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 1,
+          "max": 1,
+          "sample": [
+            1
+          ],
+          "naive": [
+            1,
+            1
+          ],
+          "parity": [
+            1,
+            1
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 1,
+          "word": "EEE",
+          "count": 21,
+          "truncated": false,
+          "empty": false,
+          "min": 16,
+          "max": 80,
+          "sample": [
+            16,
+            18,
+            20,
+            22,
+            24,
+            36,
+            38,
+            40
+          ],
+          "naive": [
+            1,
+            255
+          ],
+          "parity": [
+            16,
+            80
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": true,
+          "kind": "finite"
+        },
+        {
+          "root": 1,
+          "word": "EOE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            1,
+            8
+          ],
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 1,
+          "word": "OEE",
+          "count": 3,
+          "truncated": false,
+          "empty": false,
+          "min": 4,
+          "max": 8,
+          "sample": [
+            4,
+            6,
+            8
+          ],
+          "naive": [
+            1,
+            15
+          ],
+          "parity": [
+            4,
+            8
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 1,
+          "word": "EEO",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            1,
+            6
+          ],
+          "parity": [
+            3,
+            3
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 2,
+          "word": "E",
+          "count": 3,
+          "truncated": false,
+          "empty": false,
+          "min": 4,
+          "max": 8,
+          "sample": [
+            4,
+            6,
+            8
+          ],
+          "naive": [
+            4,
+            8
+          ],
+          "parity": [
+            4,
+            8
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 2,
+          "word": "O",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            2,
+            2
+          ],
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 2,
+          "word": "EE",
+          "count": 21,
+          "truncated": false,
+          "empty": false,
+          "min": 16,
+          "max": 80,
+          "sample": [
+            16,
+            18,
+            20,
+            22,
+            24,
+            36,
+            38,
+            40
+          ],
+          "naive": [
+            16,
+            80
+          ],
+          "parity": [
+            16,
+            80
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": true,
+          "kind": "finite"
+        },
+        {
+          "root": 2,
+          "word": "EO",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            3,
+            4
+          ],
+          "parity": [
+            3,
+            3
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 2,
+          "word": "OE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            4,
+            8
+          ],
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 2,
+          "word": "OO",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            2,
+            2
+          ],
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 2,
+          "word": "EEE",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 256,
+          "max": 2388,
+          "sample": [
+            256,
+            258,
+            260,
+            262,
+            264,
+            266,
+            268,
+            270
+          ],
+          "naive": [
+            256,
+            6560
+          ],
+          "parity": [
+            256,
+            6560
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 2,
+          "word": "EOE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            9,
+            24
+          ],
+          "parity": [
+            10,
+            14
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 2,
+          "word": "OEE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            16,
+            80
+          ],
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 2,
+          "word": "EEO",
+          "count": 4,
+          "truncated": false,
+          "empty": false,
+          "min": 7,
+          "max": 17,
+          "sample": [
+            7,
+            11,
+            13,
+            17
+          ],
+          "naive": [
+            7,
+            18
+          ],
+          "parity": [
+            7,
+            17
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 3,
+          "word": "E",
+          "count": 3,
+          "truncated": false,
+          "empty": false,
+          "min": 10,
+          "max": 14,
+          "sample": [
+            10,
+            12,
+            14
+          ],
+          "naive": [
+            9,
+            15
+          ],
+          "parity": [
+            10,
+            14
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 3,
+          "word": "O",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": null,
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 3,
+          "word": "EE",
+          "count": 39,
+          "truncated": false,
+          "empty": false,
+          "min": 100,
+          "max": 224,
+          "sample": [
+            100,
+            102,
+            104,
+            106,
+            108,
+            110,
+            112,
+            114
+          ],
+          "naive": [
+            81,
+            255
+          ],
+          "parity": [
+            100,
+            224
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": true,
+          "kind": "finite"
+        },
+        {
+          "root": 3,
+          "word": "EO",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            5,
+            6
+          ],
+          "parity": [
+            5,
+            5
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 3,
+          "word": "OE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": null,
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 3,
+          "word": "OO",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": null,
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 3,
+          "word": "EEE",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 10000,
+          "max": 11416,
+          "sample": [
+            10000,
+            10002,
+            10004,
+            10006,
+            10008,
+            10010,
+            10012,
+            10014
+          ],
+          "naive": [
+            6561,
+            65535
+          ],
+          "parity": [
+            10000,
+            50624
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 3,
+          "word": "EOE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            25,
+            48
+          ],
+          "parity": [
+            26,
+            34
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 3,
+          "word": "OEE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": null,
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 3,
+          "word": "EEO",
+          "count": 2,
+          "truncated": false,
+          "empty": false,
+          "min": 23,
+          "max": 29,
+          "sample": [
+            23,
+            29
+          ],
+          "naive": [
+            19,
+            40
+          ],
+          "parity": [
+            23,
+            35
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": true,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 5,
+          "word": "E",
+          "count": 5,
+          "truncated": false,
+          "empty": false,
+          "min": 26,
+          "max": 34,
+          "sample": [
+            26,
+            28,
+            30,
+            32,
+            34
+          ],
+          "naive": [
+            25,
+            35
+          ],
+          "parity": [
+            26,
+            34
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 5,
+          "word": "O",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 3,
+          "max": 3,
+          "sample": [
+            3
+          ],
+          "naive": [
+            3,
+            3
+          ],
+          "parity": [
+            3,
+            3
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 5,
+          "word": "EE",
+          "count": 155,
+          "truncated": false,
+          "empty": false,
+          "min": 676,
+          "max": 1224,
+          "sample": [
+            676,
+            678,
+            680,
+            682,
+            684,
+            686,
+            688,
+            690
+          ],
+          "naive": [
+            625,
+            1295
+          ],
+          "parity": [
+            676,
+            1224
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": true,
+          "kind": "finite"
+        },
+        {
+          "root": 5,
+          "word": "EO",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            9,
+            10
+          ],
+          "parity": [
+            9,
+            9
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 5,
+          "word": "OE",
+          "count": 3,
+          "truncated": false,
+          "empty": false,
+          "min": 10,
+          "max": 14,
+          "sample": [
+            10,
+            12,
+            14
+          ],
+          "naive": [
+            9,
+            15
+          ],
+          "parity": [
+            10,
+            14
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 5,
+          "word": "OO",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": null,
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 5,
+          "word": "EEE",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 456976,
+          "max": 457774,
+          "sample": [
+            456976,
+            456978,
+            456980,
+            456982,
+            456984,
+            456986,
+            456988,
+            456990
+          ],
+          "naive": [
+            390625,
+            1679615
+          ],
+          "parity": [
+            456976,
+            1500624
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 5,
+          "word": "EOE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": [
+            81,
+            120
+          ],
+          "parity": [
+            82,
+            98
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 5,
+          "word": "OEE",
+          "count": 39,
+          "truncated": false,
+          "empty": false,
+          "min": 100,
+          "max": 224,
+          "sample": [
+            100,
+            102,
+            104,
+            106,
+            108,
+            110,
+            112,
+            114
+          ],
+          "naive": [
+            81,
+            255
+          ],
+          "parity": [
+            100,
+            224
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": true,
+          "kind": "finite"
+        },
+        {
+          "root": 5,
+          "word": "EEO",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 79,
+          "max": 79,
+          "sample": [
+            79
+          ],
+          "naive": [
+            74,
+            118
+          ],
+          "parity": [
+            79,
+            113
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": true,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 7,
+          "word": "E",
+          "count": 7,
+          "truncated": false,
+          "empty": false,
+          "min": 50,
+          "max": 62,
+          "sample": [
+            50,
+            52,
+            54,
+            56,
+            58,
+            60,
+            62
+          ],
+          "naive": [
+            49,
+            63
+          ],
+          "parity": [
+            50,
+            62
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 7,
+          "word": "O",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": null,
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 7,
+          "word": "EE",
+          "count": 399,
+          "truncated": false,
+          "empty": false,
+          "min": 2500,
+          "max": 3968,
+          "sample": [
+            2500,
+            2502,
+            2504,
+            2506,
+            2508,
+            2510,
+            2512,
+            2514
+          ],
+          "naive": [
+            2401,
+            4095
+          ],
+          "parity": [
+            2500,
+            3968
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": true,
+          "kind": "finite"
+        },
+        {
+          "root": 7,
+          "word": "EO",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 15,
+          "max": 15,
+          "sample": [
+            15
+          ],
+          "naive": [
+            14,
+            15
+          ],
+          "parity": [
+            15,
+            15
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 7,
+          "word": "OE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": null,
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 7,
+          "word": "OO",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": null,
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 7,
+          "word": "EEE",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 6250000,
+          "max": 6250798,
+          "sample": [
+            6250000,
+            6250002,
+            6250004,
+            6250006,
+            6250008,
+            6250010,
+            6250012,
+            6250014
+          ],
+          "naive": [
+            5764801,
+            16777215
+          ],
+          "parity": [
+            6250000,
+            15752960
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 7,
+          "word": "EOE",
+          "count": 15,
+          "truncated": false,
+          "empty": false,
+          "min": 226,
+          "max": 254,
+          "sample": [
+            226,
+            228,
+            230,
+            232,
+            234,
+            236,
+            238,
+            240
+          ],
+          "naive": [
+            196,
+            255
+          ],
+          "parity": [
+            226,
+            254
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 7,
+          "word": "OEE",
+          "count": 0,
+          "truncated": false,
+          "empty": true,
+          "min": null,
+          "max": null,
+          "sample": [],
+          "naive": null,
+          "parity": null,
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "empty"
+        },
+        {
+          "root": 7,
+          "word": "EEO",
+          "count": 10,
+          "truncated": false,
+          "empty": false,
+          "min": 185,
+          "max": 239,
+          "sample": [
+            185,
+            189,
+            207,
+            215,
+            217,
+            219,
+            227,
+            235
+          ],
+          "naive": [
+            180,
+            255
+          ],
+          "parity": [
+            185,
+            249
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": true,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 11,
+          "word": "E",
+          "count": 11,
+          "truncated": false,
+          "empty": false,
+          "min": 122,
+          "max": 142,
+          "sample": [
+            122,
+            124,
+            126,
+            128,
+            130,
+            132,
+            134,
+            136
+          ],
+          "naive": [
+            121,
+            143
+          ],
+          "parity": [
+            122,
+            142
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 11,
+          "word": "O",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 5,
+          "max": 5,
+          "sample": [
+            5
+          ],
+          "naive": [
+            5,
+            5
+          ],
+          "parity": [
+            5,
+            5
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 11,
+          "word": "EE",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 14884,
+          "max": 16432,
+          "sample": [
+            14884,
+            14886,
+            14888,
+            14890,
+            14892,
+            14894,
+            14896,
+            14898
+          ],
+          "naive": [
+            14641,
+            20735
+          ],
+          "parity": [
+            14884,
+            20448
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 11,
+          "word": "EO",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 27,
+          "max": 27,
+          "sample": [
+            27
+          ],
+          "naive": [
+            25,
+            27
+          ],
+          "parity": [
+            25,
+            27
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": true,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 11,
+          "word": "OE",
+          "count": 5,
+          "truncated": false,
+          "empty": false,
+          "min": 26,
+          "max": 34,
+          "sample": [
+            26,
+            28,
+            30,
+            32,
+            34
+          ],
+          "naive": [
+            25,
+            35
+          ],
+          "parity": [
+            26,
+            34
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 11,
+          "word": "OO",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 3,
+          "max": 3,
+          "sample": [
+            3
+          ],
+          "naive": [
+            3,
+            3
+          ],
+          "parity": [
+            3,
+            3
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 11,
+          "word": "EEE",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 14884,
+          "max": 16432,
+          "sample": [
+            14884,
+            14886,
+            14888,
+            14890,
+            14892,
+            14894,
+            14896,
+            14898
+          ],
+          "naive": [
+            214358881,
+            429981695
+          ],
+          "parity": [
+            221533456,
+            418161600
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 11,
+          "word": "EOE",
+          "count": 27,
+          "truncated": false,
+          "empty": false,
+          "min": 730,
+          "max": 782,
+          "sample": [
+            730,
+            732,
+            734,
+            736,
+            738,
+            740,
+            742,
+            744
+          ],
+          "naive": [
+            625,
+            783
+          ],
+          "parity": [
+            626,
+            782
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": true,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 11,
+          "word": "OEE",
+          "count": 155,
+          "truncated": false,
+          "empty": false,
+          "min": 676,
+          "max": 1224,
+          "sample": [
+            676,
+            678,
+            680,
+            682,
+            684,
+            686,
+            688,
+            690
+          ],
+          "naive": [
+            625,
+            1295
+          ],
+          "parity": [
+            676,
+            1224
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": true,
+          "kind": "finite"
+        },
+        {
+          "root": 11,
+          "word": "EEO",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 14884,
+          "max": 16432,
+          "sample": [
+            14884,
+            14886,
+            14888,
+            14890,
+            14892,
+            14894,
+            14896,
+            14898
+          ],
+          "naive": [
+            599,
+            754
+          ],
+          "parity": [
+            607,
+            747
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 36,
+          "word": "E",
+          "count": 37,
+          "truncated": false,
+          "empty": false,
+          "min": 1296,
+          "max": 1368,
+          "sample": [
+            1296,
+            1298,
+            1300,
+            1302,
+            1304,
+            1306,
+            1308,
+            1310
+          ],
+          "naive": [
+            1296,
+            1368
+          ],
+          "parity": [
+            1296,
+            1368
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 36,
+          "word": "O",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 11,
+          "max": 11,
+          "sample": [
+            11
+          ],
+          "naive": [
+            11,
+            11
+          ],
+          "parity": [
+            11,
+            11
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 36,
+          "word": "EE",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 1679616,
+          "max": 1680414,
+          "sample": [
+            1679616,
+            1679618,
+            1679620,
+            1679622,
+            1679624,
+            1679626,
+            1679628,
+            1679630
+          ],
+          "naive": [
+            1679616,
+            1874160
+          ],
+          "parity": [
+            1679616,
+            1874160
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 36,
+          "word": "EO",
+          "count": 2,
+          "truncated": false,
+          "empty": false,
+          "min": 119,
+          "max": 123,
+          "sample": [
+            119,
+            123
+          ],
+          "naive": [
+            119,
+            123
+          ],
+          "parity": [
+            119,
+            123
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 36,
+          "word": "OE",
+          "count": 11,
+          "truncated": false,
+          "empty": false,
+          "min": 122,
+          "max": 142,
+          "sample": [
+            122,
+            124,
+            126,
+            128,
+            130,
+            132,
+            134,
+            136
+          ],
+          "naive": [
+            121,
+            143
+          ],
+          "parity": [
+            122,
+            142
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 36,
+          "word": "OO",
+          "count": 1,
+          "truncated": false,
+          "empty": false,
+          "min": 5,
+          "max": 5,
+          "sample": [
+            5
+          ],
+          "naive": [
+            5,
+            5
+          ],
+          "parity": [
+            5,
+            5
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "singleton"
+        },
+        {
+          "root": 36,
+          "word": "EEE",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 1679616,
+          "max": 1680414,
+          "sample": [
+            1679616,
+            1679618,
+            1679620,
+            1679622,
+            1679624,
+            1679626,
+            1679628,
+            1679630
+          ],
+          "naive": [
+            2821109907456,
+            3512479453920
+          ],
+          "parity": [
+            2821109907456,
+            3512479453920
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 36,
+          "word": "EOE",
+          "count": 242,
+          "truncated": false,
+          "empty": false,
+          "min": 14162,
+          "max": 15374,
+          "sample": [
+            14162,
+            14164,
+            14166,
+            14168,
+            14170,
+            14172,
+            14174,
+            14176
+          ],
+          "naive": [
+            14161,
+            15375
+          ],
+          "parity": [
+            14162,
+            15374
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": true,
+          "kind": "finite"
+        },
+        {
+          "root": 36,
+          "word": "OEE",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 14884,
+          "max": 16432,
+          "sample": [
+            14884,
+            14886,
+            14888,
+            14890,
+            14892,
+            14894,
+            14896,
+            14898
+          ],
+          "naive": [
+            14641,
+            20735
+          ],
+          "parity": [
+            14884,
+            20448
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        },
+        {
+          "root": 36,
+          "word": "EEO",
+          "count": 400,
+          "truncated": true,
+          "empty": false,
+          "min": 1679616,
+          "max": 1680414,
+          "sample": [
+            1679616,
+            1679618,
+            1679620,
+            1679622,
+            1679624,
+            1679626,
+            1679628,
+            1679630
+          ],
+          "naive": [
+            14130,
+            15200
+          ],
+          "parity": [
+            14131,
+            15199
+          ],
+          "exact_inside_parity": true,
+          "stricter_interval_than_parity": false,
+          "holes_in_interval": false,
+          "kind": "finite"
+        }
+      ],
+      "stricter_than_parity": [
+        {
+          "m": 3,
+          "word": "EEO"
+        },
+        {
+          "m": 5,
+          "word": "EEO"
+        },
+        {
+          "m": 7,
+          "word": "EEO"
+        },
+        {
+          "m": 11,
+          "word": "EO"
+        },
+        {
+          "m": 11,
+          "word": "EOE"
+        }
+      ],
+      "holes": [
+        {
+          "m": 1,
+          "word": "EEE",
+          "count": 21
+        },
+        {
+          "m": 2,
+          "word": "EE",
+          "count": 21
+        },
+        {
+          "m": 3,
+          "word": "EE",
+          "count": 39
+        },
+        {
+          "m": 5,
+          "word": "EE",
+          "count": 155
+        },
+        {
+          "m": 5,
+          "word": "OEE",
+          "count": 39
+        },
+        {
+          "m": 7,
+          "word": "EE",
+          "count": 399
+        },
+        {
+          "m": 11,
+          "word": "OEE",
+          "count": 155
+        },
+        {
+          "m": 36,
+          "word": "EOE",
+          "count": 242
+        }
+      ],
+      "new_scale_law": false,
+      "note": "When the exact fiber interval sits inside the parity nest, the nest is the interval hull of a parent range and therefore includes non-predecessors. The exact set is the cell law applied to the actual predecessor set. EE fibers also have holes from skipped odd intermediates. Neither is a new scale inequality."
+    },
+    "trees": [
+      {
+        "root": 1,
+        "node_cap": 1000000,
+        "depth_max": 12,
+        "visited": 335807,
+        "scale_limited_parents": 333491,
+        "collisions": [],
+        "even_cloud_start": 1,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 1,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 1,
+            "max_descendant": 1,
+            "branch_count": 1
+          },
+          {
+            "root": 1,
+            "depth": 1,
+            "descendant_count": 1,
+            "min_descendant": 2,
+            "max_descendant": 2,
+            "branch_count": 1
+          },
+          {
+            "root": 1,
+            "depth": 2,
+            "descendant_count": 3,
+            "min_descendant": 4,
+            "max_descendant": 8,
+            "branch_count": 3
+          },
+          {
+            "root": 1,
+            "depth": 3,
+            "descendant_count": 21,
+            "min_descendant": 16,
+            "max_descendant": 80,
+            "branch_count": 21
+          },
+          {
+            "root": 1,
+            "depth": 4,
+            "descendant_count": 1067,
+            "min_descendant": 7,
+            "max_descendant": 6560,
+            "branch_count": 1067
+          },
+          {
+            "root": 1,
+            "depth": 5,
+            "descendant_count": 46764,
+            "min_descendant": 5,
+            "max_descendant": 390624,
+            "branch_count": 46764
+          },
+          {
+            "root": 1,
+            "depth": 6,
+            "descendant_count": 15933,
+            "min_descendant": 3,
+            "max_descendant": 119714,
+            "branch_count": 15933
+          },
+          {
+            "root": 1,
+            "depth": 7,
+            "descendant_count": 513,
+            "min_descendant": 9,
+            "max_descendant": 2429,
+            "branch_count": 513
+          },
+          {
+            "root": 1,
+            "depth": 8,
+            "descendant_count": 151926,
+            "min_descendant": 33,
+            "max_descendant": 1000000,
+            "branch_count": 151926
+          },
+          {
+            "root": 1,
+            "depth": 9,
+            "descendant_count": 9183,
+            "min_descendant": 19,
+            "max_descendant": 50624,
+            "branch_count": 9183
+          },
+          {
+            "root": 1,
+            "depth": 10,
+            "descendant_count": 4033,
+            "min_descendant": 107,
+            "max_descendant": 656098,
+            "branch_count": 4033
+          },
+          {
+            "root": 1,
+            "depth": 11,
+            "descendant_count": 104750,
+            "min_descendant": 25,
+            "max_descendant": 913934,
+            "branch_count": 104750
+          },
+          {
+            "root": 1,
+            "depth": 12,
+            "descendant_count": 1612,
+            "min_descendant": 361,
+            "max_descendant": 14882,
+            "branch_count": 1612
+          }
+        ],
+        "odd_spine": {
+          "root": 1,
+          "depth": 0,
+          "node_sequence": [
+            1
+          ],
+          "k_sequence": [],
+          "stopped": "cap_or_fixed",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 1,
+          "depth": 5,
+          "node_sequence": [
+            1,
+            2,
+            4,
+            16,
+            256,
+            65536
+          ],
+          "k_sequence": [
+            "E",
+            "E",
+            "E",
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "2",
+            "2",
+            "4",
+            "16",
+            "256"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 1,
+          "depth": 4,
+          "node_sequence": [
+            1,
+            2,
+            8,
+            80,
+            6560
+          ],
+          "k_sequence": [
+            "E",
+            "E",
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "2",
+            "4",
+            "10",
+            "82"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 3,
+        "node_cap": 1000000,
+        "depth_max": 12,
+        "visited": 79288,
+        "scale_limited_parents": 79130,
+        "collisions": [],
+        "even_cloud_start": 9,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 3,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 3,
+            "max_descendant": 3,
+            "branch_count": 1
+          },
+          {
+            "root": 3,
+            "depth": 1,
+            "descendant_count": 3,
+            "min_descendant": 10,
+            "max_descendant": 14,
+            "branch_count": 3
+          },
+          {
+            "root": 3,
+            "depth": 2,
+            "descendant_count": 39,
+            "min_descendant": 100,
+            "max_descendant": 224,
+            "branch_count": 39
+          },
+          {
+            "root": 3,
+            "depth": 3,
+            "descendant_count": 6429,
+            "min_descendant": 23,
+            "max_descendant": 50624,
+            "branch_count": 6429
+          },
+          {
+            "root": 3,
+            "depth": 4,
+            "descendant_count": 118,
+            "min_descendant": 469,
+            "max_descendant": 1367,
+            "branch_count": 118
+          },
+          {
+            "root": 3,
+            "depth": 5,
+            "descendant_count": 65904,
+            "min_descendant": 67,
+            "max_descendant": 872354,
+            "branch_count": 65904
+          },
+          {
+            "root": 3,
+            "depth": 6,
+            "descendant_count": 835,
+            "min_descendant": 3645,
+            "max_descendant": 14882,
+            "branch_count": 835
+          },
+          {
+            "root": 3,
+            "depth": 7,
+            "descendant_count": 13,
+            "min_descendant": 273,
+            "max_descendant": 599,
+            "branch_count": 13
+          },
+          {
+            "root": 3,
+            "depth": 8,
+            "descendant_count": 5562,
+            "min_descendant": 69,
+            "max_descendant": 359998,
+            "branch_count": 5562
+          },
+          {
+            "root": 3,
+            "depth": 9,
+            "descendant_count": 94,
+            "min_descendant": 1775,
+            "max_descendant": 5057,
+            "branch_count": 94
+          },
+          {
+            "root": 3,
+            "depth": 10,
+            "descendant_count": 1,
+            "min_descendant": 287,
+            "max_descendant": 287,
+            "branch_count": 1
+          },
+          {
+            "root": 3,
+            "depth": 11,
+            "descendant_count": 287,
+            "min_descendant": 82370,
+            "max_descendant": 82942,
+            "branch_count": 287
+          },
+          {
+            "root": 3,
+            "depth": 12,
+            "descendant_count": 2,
+            "min_descendant": 1895,
+            "max_descendant": 1901,
+            "branch_count": 2
+          }
+        ],
+        "odd_spine": {
+          "root": 3,
+          "depth": 0,
+          "node_sequence": [
+            3
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 3,
+          "depth": 3,
+          "node_sequence": [
+            3,
+            10,
+            100,
+            10000
+          ],
+          "k_sequence": [
+            "E",
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "10/3",
+            "10",
+            "100"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 3,
+          "depth": 3,
+          "node_sequence": [
+            3,
+            14,
+            224,
+            50624
+          ],
+          "k_sequence": [
+            "E",
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "14/3",
+            "16",
+            "226"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 5,
+        "node_cap": 1000000,
+        "depth_max": 12,
+        "visited": 153513,
+        "scale_limited_parents": 152969,
+        "collisions": [],
+        "even_cloud_start": 25,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 5,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 5,
+            "max_descendant": 5,
+            "branch_count": 1
+          },
+          {
+            "root": 5,
+            "depth": 1,
+            "descendant_count": 6,
+            "min_descendant": 3,
+            "max_descendant": 34,
+            "branch_count": 6
+          },
+          {
+            "root": 5,
+            "depth": 2,
+            "descendant_count": 158,
+            "min_descendant": 10,
+            "max_descendant": 1224,
+            "branch_count": 158
+          },
+          {
+            "root": 5,
+            "depth": 3,
+            "descendant_count": 71459,
+            "min_descendant": 79,
+            "max_descendant": 923520,
+            "branch_count": 71459
+          },
+          {
+            "root": 5,
+            "depth": 4,
+            "descendant_count": 6782,
+            "min_descendant": 23,
+            "max_descendant": 50624,
+            "branch_count": 6782
+          },
+          {
+            "root": 5,
+            "depth": 5,
+            "descendant_count": 124,
+            "min_descendant": 341,
+            "max_descendant": 1367,
+            "branch_count": 124
+          },
+          {
+            "root": 5,
+            "depth": 6,
+            "descendant_count": 68125,
+            "min_descendant": 49,
+            "max_descendant": 872354,
+            "branch_count": 68125
+          },
+          {
+            "root": 5,
+            "depth": 7,
+            "descendant_count": 901,
+            "min_descendant": 2383,
+            "max_descendant": 14882,
+            "branch_count": 901
+          },
+          {
+            "root": 5,
+            "depth": 8,
+            "descendant_count": 13,
+            "min_descendant": 273,
+            "max_descendant": 599,
+            "branch_count": 13
+          },
+          {
+            "root": 5,
+            "depth": 9,
+            "descendant_count": 5562,
+            "min_descendant": 69,
+            "max_descendant": 359998,
+            "branch_count": 5562
+          },
+          {
+            "root": 5,
+            "depth": 10,
+            "descendant_count": 94,
+            "min_descendant": 1775,
+            "max_descendant": 5057,
+            "branch_count": 94
+          },
+          {
+            "root": 5,
+            "depth": 11,
+            "descendant_count": 1,
+            "min_descendant": 287,
+            "max_descendant": 287,
+            "branch_count": 1
+          },
+          {
+            "root": 5,
+            "depth": 12,
+            "descendant_count": 287,
+            "min_descendant": 82370,
+            "max_descendant": 82942,
+            "branch_count": 287
+          }
+        ],
+        "odd_spine": {
+          "root": 5,
+          "depth": 1,
+          "node_sequence": [
+            5,
+            3
+          ],
+          "k_sequence": [
+            "O"
+          ],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 5,
+          "depth": 3,
+          "node_sequence": [
+            5,
+            26,
+            676,
+            456976
+          ],
+          "k_sequence": [
+            "E",
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "26/5",
+            "26",
+            "676"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 5,
+          "depth": 2,
+          "node_sequence": [
+            5,
+            34,
+            1224
+          ],
+          "k_sequence": [
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "34/5",
+            "36"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 7,
+        "node_cap": 1000000,
+        "depth_max": 12,
+        "visited": 29200,
+        "scale_limited_parents": 28489,
+        "collisions": [],
+        "even_cloud_start": 49,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 7,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 7,
+            "max_descendant": 7,
+            "branch_count": 1
+          },
+          {
+            "root": 7,
+            "depth": 1,
+            "descendant_count": 7,
+            "min_descendant": 50,
+            "max_descendant": 62,
+            "branch_count": 7
+          },
+          {
+            "root": 7,
+            "depth": 2,
+            "descendant_count": 400,
+            "min_descendant": 15,
+            "max_descendant": 3968,
+            "branch_count": 400
+          },
+          {
+            "root": 7,
+            "depth": 3,
+            "descendant_count": 25,
+            "min_descendant": 185,
+            "max_descendant": 254,
+            "branch_count": 25
+          },
+          {
+            "root": 7,
+            "depth": 4,
+            "descendant_count": 5787,
+            "min_descendant": 33,
+            "max_descendant": 65024,
+            "branch_count": 5787
+          },
+          {
+            "root": 7,
+            "depth": 5,
+            "descendant_count": 126,
+            "min_descendant": 1057,
+            "max_descendant": 1617,
+            "branch_count": 126
+          },
+          {
+            "root": 7,
+            "depth": 6,
+            "descendant_count": 5,
+            "min_descendant": 107,
+            "max_descendant": 133,
+            "branch_count": 5
+          },
+          {
+            "root": 7,
+            "depth": 7,
+            "descendant_count": 624,
+            "min_descendant": 25,
+            "max_descendant": 17954,
+            "branch_count": 624
+          },
+          {
+            "root": 7,
+            "depth": 8,
+            "descendant_count": 33,
+            "min_descendant": 626,
+            "max_descendant": 685,
+            "branch_count": 33
+          },
+          {
+            "root": 7,
+            "depth": 9,
+            "descendant_count": 21453,
+            "min_descendant": 391876,
+            "max_descendant": 470594,
+            "branch_count": 21453
+          },
+          {
+            "root": 7,
+            "depth": 10,
+            "descendant_count": 103,
+            "min_descendant": 5359,
+            "max_descendant": 6049,
+            "branch_count": 103
+          },
+          {
+            "root": 7,
+            "depth": 11,
+            "descendant_count": 2,
+            "min_descendant": 307,
+            "max_descendant": 327,
+            "branch_count": 2
+          },
+          {
+            "root": 7,
+            "depth": 12,
+            "descendant_count": 634,
+            "min_descendant": 94250,
+            "max_descendant": 107582,
+            "branch_count": 634
+          }
+        ],
+        "odd_spine": {
+          "root": 7,
+          "depth": 0,
+          "node_sequence": [
+            7
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 7,
+          "depth": 2,
+          "node_sequence": [
+            7,
+            50,
+            2500
+          ],
+          "k_sequence": [
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "50/7",
+            "50"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 7,
+          "depth": 2,
+          "node_sequence": [
+            7,
+            62,
+            3968
+          ],
+          "k_sequence": [
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "62/7",
+            "64"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 9,
+        "node_cap": 1000000,
+        "depth_max": 12,
+        "visited": 29774,
+        "scale_limited_parents": 25648,
+        "collisions": [],
+        "even_cloud_start": 81,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 9,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 9,
+            "max_descendant": 9,
+            "branch_count": 1
+          },
+          {
+            "root": 9,
+            "depth": 1,
+            "descendant_count": 9,
+            "min_descendant": 82,
+            "max_descendant": 98,
+            "branch_count": 9
+          },
+          {
+            "root": 9,
+            "depth": 2,
+            "descendant_count": 821,
+            "min_descendant": 19,
+            "max_descendant": 9800,
+            "branch_count": 821
+          },
+          {
+            "root": 9,
+            "depth": 3,
+            "descendant_count": 53,
+            "min_descendant": 359,
+            "max_descendant": 482,
+            "branch_count": 53
+          },
+          {
+            "root": 9,
+            "depth": 4,
+            "descendant_count": 22173,
+            "min_descendant": 51,
+            "max_descendant": 233288,
+            "branch_count": 22173
+          },
+          {
+            "root": 9,
+            "depth": 5,
+            "descendant_count": 357,
+            "min_descendant": 2583,
+            "max_descendant": 3842,
+            "branch_count": 357
+          },
+          {
+            "root": 9,
+            "depth": 6,
+            "descendant_count": 9,
+            "min_descendant": 191,
+            "max_descendant": 245,
+            "branch_count": 9
+          },
+          {
+            "root": 9,
+            "depth": 7,
+            "descendant_count": 1898,
+            "min_descendant": 39,
+            "max_descendant": 60514,
+            "branch_count": 1898
+          },
+          {
+            "root": 9,
+            "depth": 8,
+            "descendant_count": 51,
+            "min_descendant": 1101,
+            "max_descendant": 1598,
+            "branch_count": 51
+          },
+          {
+            "root": 9,
+            "depth": 9,
+            "descendant_count": 3,
+            "min_descendant": 109,
+            "max_descendant": 135,
+            "branch_count": 3
+          },
+          {
+            "root": 9,
+            "depth": 10,
+            "descendant_count": 355,
+            "min_descendant": 11882,
+            "max_descendant": 18494,
+            "branch_count": 355
+          },
+          {
+            "root": 9,
+            "depth": 11,
+            "descendant_count": 7,
+            "min_descendant": 521,
+            "max_descendant": 699,
+            "branch_count": 7
+          },
+          {
+            "root": 9,
+            "depth": 12,
+            "descendant_count": 4037,
+            "min_descendant": 271442,
+            "max_descendant": 489998,
+            "branch_count": 4037
+          }
+        ],
+        "odd_spine": {
+          "root": 9,
+          "depth": 0,
+          "node_sequence": [
+            9
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 9,
+          "depth": 2,
+          "node_sequence": [
+            9,
+            82,
+            6724
+          ],
+          "k_sequence": [
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "82/9",
+            "82"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 9,
+          "depth": 2,
+          "node_sequence": [
+            9,
+            98,
+            9800
+          ],
+          "k_sequence": [
+            "E",
+            "E"
+          ],
+          "scale_profile": [
+            "98/9",
+            "100"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 37,
+        "node_cap": 1000000,
+        "depth_max": 12,
+        "visited": 38,
+        "scale_limited_parents": 37,
+        "collisions": [],
+        "even_cloud_start": 1369,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 37,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 37,
+            "max_descendant": 37,
+            "branch_count": 1
+          },
+          {
+            "root": 37,
+            "depth": 1,
+            "descendant_count": 37,
+            "min_descendant": 1370,
+            "max_descendant": 1442,
+            "branch_count": 37
+          },
+          {
+            "root": 37,
+            "depth": 2,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 3,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 4,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 37,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 37,
+          "depth": 0,
+          "node_sequence": [
+            37
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 37,
+          "depth": 1,
+          "node_sequence": [
+            37,
+            1370
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "1370/37"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 37,
+          "depth": 1,
+          "node_sequence": [
+            37,
+            1442
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "1442/37"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 49,
+        "node_cap": 1000000,
+        "depth_max": 12,
+        "visited": 50,
+        "scale_limited_parents": 49,
+        "collisions": [],
+        "even_cloud_start": 2401,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 49,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 49,
+            "max_descendant": 49,
+            "branch_count": 1
+          },
+          {
+            "root": 49,
+            "depth": 1,
+            "descendant_count": 49,
+            "min_descendant": 2402,
+            "max_descendant": 2498,
+            "branch_count": 49
+          },
+          {
+            "root": 49,
+            "depth": 2,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 3,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 4,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 49,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 49,
+          "depth": 0,
+          "node_sequence": [
+            49
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 49,
+          "depth": 1,
+          "node_sequence": [
+            49,
+            2402
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "2402/49"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 49,
+          "depth": 1,
+          "node_sequence": [
+            49,
+            2498
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "2498/49"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 69,
+        "node_cap": 1000000,
+        "depth_max": 12,
+        "visited": 360,
+        "scale_limited_parents": 358,
+        "collisions": [],
+        "even_cloud_start": 4761,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 69,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 69,
+            "max_descendant": 69,
+            "branch_count": 1
+          },
+          {
+            "root": 69,
+            "depth": 1,
+            "descendant_count": 69,
+            "min_descendant": 4762,
+            "max_descendant": 4898,
+            "branch_count": 69
+          },
+          {
+            "root": 69,
+            "depth": 2,
+            "descendant_count": 1,
+            "min_descendant": 287,
+            "max_descendant": 287,
+            "branch_count": 1
+          },
+          {
+            "root": 69,
+            "depth": 3,
+            "descendant_count": 287,
+            "min_descendant": 82370,
+            "max_descendant": 82942,
+            "branch_count": 287
+          },
+          {
+            "root": 69,
+            "depth": 4,
+            "descendant_count": 2,
+            "min_descendant": 1895,
+            "max_descendant": 1901,
+            "branch_count": 2
+          },
+          {
+            "root": 69,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 69,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 69,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 69,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 69,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 69,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 69,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 69,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 69,
+          "depth": 0,
+          "node_sequence": [
+            69
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 69,
+          "depth": 1,
+          "node_sequence": [
+            69,
+            4762
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "4762/69"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 69,
+          "depth": 1,
+          "node_sequence": [
+            69,
+            4898
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "4898/69"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 77,
+        "node_cap": 1000000,
+        "depth_max": 12,
+        "visited": 927,
+        "scale_limited_parents": 923,
+        "collisions": [],
+        "even_cloud_start": 5929,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 77,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 77,
+            "max_descendant": 77,
+            "branch_count": 1
+          },
+          {
+            "root": 77,
+            "depth": 1,
+            "descendant_count": 77,
+            "min_descendant": 5930,
+            "max_descendant": 6082,
+            "branch_count": 77
+          },
+          {
+            "root": 77,
+            "depth": 2,
+            "descendant_count": 2,
+            "min_descendant": 331,
+            "max_descendant": 333,
+            "branch_count": 2
+          },
+          {
+            "root": 77,
+            "depth": 3,
+            "descendant_count": 664,
+            "min_descendant": 109562,
+            "max_descendant": 111554,
+            "branch_count": 664
+          },
+          {
+            "root": 77,
+            "depth": 4,
+            "descendant_count": 7,
+            "min_descendant": 2293,
+            "max_descendant": 2315,
+            "branch_count": 7
+          },
+          {
+            "root": 77,
+            "depth": 5,
+            "descendant_count": 1,
+            "min_descendant": 175,
+            "max_descendant": 175,
+            "branch_count": 1
+          },
+          {
+            "root": 77,
+            "depth": 6,
+            "descendant_count": 175,
+            "min_descendant": 30626,
+            "max_descendant": 30974,
+            "branch_count": 175
+          },
+          {
+            "root": 77,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 77,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 77,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 77,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 77,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 77,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 77,
+          "depth": 0,
+          "node_sequence": [
+            77
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 77,
+          "depth": 1,
+          "node_sequence": [
+            77,
+            5930
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "5930/77"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 77,
+          "depth": 1,
+          "node_sequence": [
+            77,
+            6082
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "6082/77"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 193,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 2444,
+        "scale_limited_parents": 2441,
+        "collisions": [],
+        "even_cloud_start": 37249,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 193,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 193,
+            "max_descendant": 193,
+            "branch_count": 1
+          },
+          {
+            "root": 193,
+            "depth": 1,
+            "descendant_count": 193,
+            "min_descendant": 37250,
+            "max_descendant": 37634,
+            "branch_count": 193
+          },
+          {
+            "root": 193,
+            "depth": 2,
+            "descendant_count": 2,
+            "min_descendant": 1119,
+            "max_descendant": 1121,
+            "branch_count": 2
+          },
+          {
+            "root": 193,
+            "depth": 3,
+            "descendant_count": 2240,
+            "min_descendant": 1252162,
+            "max_descendant": 1258882,
+            "branch_count": 2240
+          },
+          {
+            "root": 193,
+            "depth": 4,
+            "descendant_count": 8,
+            "min_descendant": 11621,
+            "max_descendant": 11657,
+            "branch_count": 8
+          },
+          {
+            "root": 193,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 193,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 193,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 193,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 193,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 193,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 193,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 193,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 193,
+          "depth": 0,
+          "node_sequence": [
+            193
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 193,
+          "depth": 1,
+          "node_sequence": [
+            193,
+            37250
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "37250/193"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 193,
+          "depth": 1,
+          "node_sequence": [
+            193,
+            37634
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "37634/193"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 243,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 84377,
+        "scale_limited_parents": 84117,
+        "collisions": [],
+        "even_cloud_start": 59049,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 243,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 243,
+            "max_descendant": 243,
+            "branch_count": 1
+          },
+          {
+            "root": 243,
+            "depth": 1,
+            "descendant_count": 244,
+            "min_descendant": 39,
+            "max_descendant": 59534,
+            "branch_count": 244
+          },
+          {
+            "root": 243,
+            "depth": 2,
+            "descendant_count": 41,
+            "min_descendant": 1519,
+            "max_descendant": 1598,
+            "branch_count": 41
+          },
+          {
+            "root": 243,
+            "depth": 3,
+            "descendant_count": 63922,
+            "min_descendant": 135,
+            "max_descendant": 2556800,
+            "branch_count": 63922
+          },
+          {
+            "root": 243,
+            "depth": 4,
+            "descendant_count": 297,
+            "min_descendant": 17463,
+            "max_descendant": 18695,
+            "branch_count": 297
+          },
+          {
+            "root": 243,
+            "depth": 5,
+            "descendant_count": 4,
+            "min_descendant": 675,
+            "max_descendant": 701,
+            "branch_count": 4
+          },
+          {
+            "root": 243,
+            "depth": 6,
+            "descendant_count": 2771,
+            "min_descendant": 77,
+            "max_descendant": 492802,
+            "branch_count": 2771
+          },
+          {
+            "root": 243,
+            "depth": 7,
+            "descendant_count": 89,
+            "min_descendant": 5923,
+            "max_descendant": 6239,
+            "branch_count": 89
+          },
+          {
+            "root": 243,
+            "depth": 8,
+            "descendant_count": 2,
+            "min_descendant": 331,
+            "max_descendant": 333,
+            "branch_count": 2
+          },
+          {
+            "root": 243,
+            "depth": 9,
+            "descendant_count": 664,
+            "min_descendant": 109562,
+            "max_descendant": 111554,
+            "branch_count": 664
+          },
+          {
+            "root": 243,
+            "depth": 10,
+            "descendant_count": 7,
+            "min_descendant": 2293,
+            "max_descendant": 2315,
+            "branch_count": 7
+          },
+          {
+            "root": 243,
+            "depth": 11,
+            "descendant_count": 16134,
+            "min_descendant": 175,
+            "max_descendant": 5363854,
+            "branch_count": 16134
+          },
+          {
+            "root": 243,
+            "depth": 12,
+            "descendant_count": 201,
+            "min_descendant": 30247,
+            "max_descendant": 30974,
+            "branch_count": 201
+          }
+        ],
+        "odd_spine": {
+          "root": 243,
+          "depth": 1,
+          "node_sequence": [
+            243,
+            39
+          ],
+          "k_sequence": [
+            "O"
+          ],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 243,
+          "depth": 1,
+          "node_sequence": [
+            243,
+            59050
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "59050/243"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 243,
+          "depth": 1,
+          "node_sequence": [
+            243,
+            59534
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "59534/243"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 365,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 8225,
+        "scale_limited_parents": 8221,
+        "collisions": [],
+        "even_cloud_start": 133225,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 365,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 365,
+            "max_descendant": 365,
+            "branch_count": 1
+          },
+          {
+            "root": 365,
+            "depth": 1,
+            "descendant_count": 365,
+            "min_descendant": 133226,
+            "max_descendant": 133954,
+            "branch_count": 365
+          },
+          {
+            "root": 365,
+            "depth": 2,
+            "descendant_count": 3,
+            "min_descendant": 2611,
+            "max_descendant": 2617,
+            "branch_count": 3
+          },
+          {
+            "root": 365,
+            "depth": 3,
+            "descendant_count": 7841,
+            "min_descendant": 6817322,
+            "max_descendant": 6853922,
+            "branch_count": 7841
+          },
+          {
+            "root": 365,
+            "depth": 4,
+            "descendant_count": 15,
+            "min_descendant": 35955,
+            "max_descendant": 36077,
+            "branch_count": 15
+          },
+          {
+            "root": 365,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 365,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 365,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 365,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 365,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 365,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 365,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 365,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 365,
+          "depth": 0,
+          "node_sequence": [
+            365
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 365,
+          "depth": 1,
+          "node_sequence": [
+            365,
+            133226
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "133226/365"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 365,
+          "depth": 1,
+          "node_sequence": [
+            365,
+            133954
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "133954/365"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 425,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 429,
+        "scale_limited_parents": 428,
+        "collisions": [],
+        "even_cloud_start": 180625,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 425,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 425,
+            "max_descendant": 425,
+            "branch_count": 1
+          },
+          {
+            "root": 425,
+            "depth": 1,
+            "descendant_count": 425,
+            "min_descendant": 180626,
+            "max_descendant": 181474,
+            "branch_count": 425
+          },
+          {
+            "root": 425,
+            "depth": 2,
+            "descendant_count": 3,
+            "min_descendant": 3197,
+            "max_descendant": 3201,
+            "branch_count": 3
+          },
+          {
+            "root": 425,
+            "depth": 3,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 425,
+            "depth": 4,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 425,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 425,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 425,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 425,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 425,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 425,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 425,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 425,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 425,
+          "depth": 0,
+          "node_sequence": [
+            425
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 425,
+          "depth": 1,
+          "node_sequence": [
+            425,
+            180626
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "180626/425"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 425,
+          "depth": 1,
+          "node_sequence": [
+            425,
+            181474
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "181474/425"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 763,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 8991,
+        "scale_limited_parents": 8986,
+        "collisions": [],
+        "even_cloud_start": 582169,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 763,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 763,
+            "max_descendant": 763,
+            "branch_count": 1
+          },
+          {
+            "root": 763,
+            "depth": 1,
+            "descendant_count": 763,
+            "min_descendant": 582170,
+            "max_descendant": 583694,
+            "branch_count": 763
+          },
+          {
+            "root": 763,
+            "depth": 2,
+            "descendant_count": 2,
+            "min_descendant": 6973,
+            "max_descendant": 6979,
+            "branch_count": 2
+          },
+          {
+            "root": 763,
+            "depth": 3,
+            "descendant_count": 1,
+            "min_descendant": 365,
+            "max_descendant": 365,
+            "branch_count": 1
+          },
+          {
+            "root": 763,
+            "depth": 4,
+            "descendant_count": 365,
+            "min_descendant": 133226,
+            "max_descendant": 133954,
+            "branch_count": 365
+          },
+          {
+            "root": 763,
+            "depth": 5,
+            "descendant_count": 3,
+            "min_descendant": 2611,
+            "max_descendant": 2617,
+            "branch_count": 3
+          },
+          {
+            "root": 763,
+            "depth": 6,
+            "descendant_count": 7841,
+            "min_descendant": 6817322,
+            "max_descendant": 6853922,
+            "branch_count": 7841
+          },
+          {
+            "root": 763,
+            "depth": 7,
+            "descendant_count": 15,
+            "min_descendant": 35955,
+            "max_descendant": 36077,
+            "branch_count": 15
+          },
+          {
+            "root": 763,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 763,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 763,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 763,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 763,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 763,
+          "depth": 0,
+          "node_sequence": [
+            763
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 763,
+          "depth": 1,
+          "node_sequence": [
+            763,
+            582170
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "582170/763"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 763,
+          "depth": 1,
+          "node_sequence": [
+            763,
+            583694
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "583694/763"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 1749,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 10745,
+        "scale_limited_parents": 10739,
+        "collisions": [],
+        "even_cloud_start": 3059001,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 1749,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 1749,
+            "max_descendant": 1749,
+            "branch_count": 1
+          },
+          {
+            "root": 1749,
+            "depth": 1,
+            "descendant_count": 1749,
+            "min_descendant": 3059002,
+            "max_descendant": 3062498,
+            "branch_count": 1749
+          },
+          {
+            "root": 1749,
+            "depth": 2,
+            "descendant_count": 4,
+            "min_descendant": 21073,
+            "max_descendant": 21085,
+            "branch_count": 4
+          },
+          {
+            "root": 1749,
+            "depth": 3,
+            "descendant_count": 1,
+            "min_descendant": 763,
+            "max_descendant": 763,
+            "branch_count": 1
+          },
+          {
+            "root": 1749,
+            "depth": 4,
+            "descendant_count": 763,
+            "min_descendant": 582170,
+            "max_descendant": 583694,
+            "branch_count": 763
+          },
+          {
+            "root": 1749,
+            "depth": 5,
+            "descendant_count": 2,
+            "min_descendant": 6973,
+            "max_descendant": 6979,
+            "branch_count": 2
+          },
+          {
+            "root": 1749,
+            "depth": 6,
+            "descendant_count": 1,
+            "min_descendant": 365,
+            "max_descendant": 365,
+            "branch_count": 1
+          },
+          {
+            "root": 1749,
+            "depth": 7,
+            "descendant_count": 365,
+            "min_descendant": 133226,
+            "max_descendant": 133954,
+            "branch_count": 365
+          },
+          {
+            "root": 1749,
+            "depth": 8,
+            "descendant_count": 3,
+            "min_descendant": 2611,
+            "max_descendant": 2617,
+            "branch_count": 3
+          },
+          {
+            "root": 1749,
+            "depth": 9,
+            "descendant_count": 7841,
+            "min_descendant": 6817322,
+            "max_descendant": 6853922,
+            "branch_count": 7841
+          },
+          {
+            "root": 1749,
+            "depth": 10,
+            "descendant_count": 15,
+            "min_descendant": 35955,
+            "max_descendant": 36077,
+            "branch_count": 15
+          },
+          {
+            "root": 1749,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1749,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 1749,
+          "depth": 0,
+          "node_sequence": [
+            1749
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 1749,
+          "depth": 1,
+          "node_sequence": [
+            1749,
+            3059002
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "3059002/1749"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 1749,
+          "depth": 1,
+          "node_sequence": [
+            1749,
+            3062498
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "3062498/1749"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 1999,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 2004,
+        "scale_limited_parents": 2003,
+        "collisions": [],
+        "even_cloud_start": 3996001,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 1999,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 1999,
+            "max_descendant": 1999,
+            "branch_count": 1
+          },
+          {
+            "root": 1999,
+            "depth": 1,
+            "descendant_count": 1999,
+            "min_descendant": 3996002,
+            "max_descendant": 3999998,
+            "branch_count": 1999
+          },
+          {
+            "root": 1999,
+            "depth": 2,
+            "descendant_count": 4,
+            "min_descendant": 25183,
+            "max_descendant": 25189,
+            "branch_count": 4
+          },
+          {
+            "root": 1999,
+            "depth": 3,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1999,
+            "depth": 4,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1999,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1999,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1999,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1999,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1999,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1999,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1999,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 1999,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 1999,
+          "depth": 0,
+          "node_sequence": [
+            1999
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 1999,
+          "depth": 1,
+          "node_sequence": [
+            1999,
+            3996002
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "3996002/1999"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 1999,
+          "depth": 1,
+          "node_sequence": [
+            1999,
+            3999998
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "3999998/1999"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 2183,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 2189,
+        "scale_limited_parents": 2188,
+        "collisions": [],
+        "even_cloud_start": 4765489,
+        "even_in_window": true,
+        "branching": [
+          {
+            "root": 2183,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 2183,
+            "max_descendant": 2183,
+            "branch_count": 1
+          },
+          {
+            "root": 2183,
+            "depth": 1,
+            "descendant_count": 2183,
+            "min_descendant": 4765490,
+            "max_descendant": 4769854,
+            "branch_count": 2183
+          },
+          {
+            "root": 2183,
+            "depth": 2,
+            "descendant_count": 5,
+            "min_descendant": 28319,
+            "max_descendant": 28333,
+            "branch_count": 5
+          },
+          {
+            "root": 2183,
+            "depth": 3,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 2183,
+            "depth": 4,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 2183,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 2183,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 2183,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 2183,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 2183,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 2183,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 2183,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 2183,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 2183,
+          "depth": 0,
+          "node_sequence": [
+            2183
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 2183,
+          "depth": 1,
+          "node_sequence": [
+            2183,
+            4765490
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "4765490/2183"
+          ],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 2183,
+          "depth": 1,
+          "node_sequence": [
+            2183,
+            4769854
+          ],
+          "k_sequence": [
+            "E"
+          ],
+          "scale_profile": [
+            "4769854/2183"
+          ],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 3431,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 1,
+        "scale_limited_parents": 1,
+        "collisions": [],
+        "even_cloud_start": 11771761,
+        "even_in_window": false,
+        "branching": [
+          {
+            "root": 3431,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 3431,
+            "max_descendant": 3431,
+            "branch_count": 1
+          },
+          {
+            "root": 3431,
+            "depth": 1,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 2,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 3,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 4,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3431,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 3431,
+          "depth": 0,
+          "node_sequence": [
+            3431
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 3431,
+          "depth": 0,
+          "node_sequence": [
+            3431
+          ],
+          "k_sequence": [],
+          "scale_profile": [],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 3431,
+          "depth": 0,
+          "node_sequence": [
+            3431
+          ],
+          "k_sequence": [],
+          "scale_profile": [],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 3889,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 1,
+        "scale_limited_parents": 1,
+        "collisions": [],
+        "even_cloud_start": 15124321,
+        "even_in_window": false,
+        "branching": [
+          {
+            "root": 3889,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 3889,
+            "max_descendant": 3889,
+            "branch_count": 1
+          },
+          {
+            "root": 3889,
+            "depth": 1,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 2,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 3,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 4,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 3889,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 3889,
+          "depth": 0,
+          "node_sequence": [
+            3889
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 3889,
+          "depth": 0,
+          "node_sequence": [
+            3889
+          ],
+          "k_sequence": [],
+          "scale_profile": [],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 3889,
+          "depth": 0,
+          "node_sequence": [
+            3889
+          ],
+          "k_sequence": [],
+          "scale_profile": [],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      },
+      {
+        "root": 4447,
+        "node_cap": 10000000,
+        "depth_max": 12,
+        "visited": 1,
+        "scale_limited_parents": 1,
+        "collisions": [],
+        "even_cloud_start": 19775809,
+        "even_in_window": false,
+        "branching": [
+          {
+            "root": 4447,
+            "depth": 0,
+            "descendant_count": 1,
+            "min_descendant": 4447,
+            "max_descendant": 4447,
+            "branch_count": 1
+          },
+          {
+            "root": 4447,
+            "depth": 1,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 2,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 3,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 4,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 5,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 6,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 7,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 8,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 9,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 10,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 11,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          },
+          {
+            "root": 4447,
+            "depth": 12,
+            "descendant_count": 0,
+            "min_descendant": null,
+            "max_descendant": null,
+            "branch_count": 0
+          }
+        ],
+        "odd_spine": {
+          "root": 4447,
+          "depth": 0,
+          "node_sequence": [
+            4447
+          ],
+          "k_sequence": [],
+          "stopped": "empty_odd_cell",
+          "validation_status": "ok"
+        },
+        "min_even_ray": {
+          "root": 4447,
+          "depth": 0,
+          "node_sequence": [
+            4447
+          ],
+          "k_sequence": [],
+          "scale_profile": [],
+          "which": "min",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        },
+        "max_even_ray": {
+          "root": 4447,
+          "depth": 0,
+          "node_sequence": [
+            4447
+          ],
+          "k_sequence": [],
+          "scale_profile": [],
+          "which": "max",
+          "stopped": "cap_or_empty",
+          "validation_status": "ok"
+        }
+      }
+    ],
+    "hard_reverse": {
+      "starts": [
+        3,
+        365,
+        425,
+        2183,
+        3889
+      ],
+      "reports": [
+        {
+          "start": 3,
+          "steps": 5,
+          "word": "OOOEE",
+          "returned": true,
+          "kinds": {
+            "unique_odd": 3,
+            "min_even": 1,
+            "interior_even": 1
+          },
+          "all_unique_odd_or_ordinary_even": true,
+          "even_kinds": {
+            "min_even": 1,
+            "interior_even": 1
+          },
+          "path_head": [
+            3,
+            5,
+            11,
+            36,
+            6,
+            2
+          ],
+          "path_tail": [
+            36,
+            6,
+            2
+          ],
+          "steps_sample": [
+            {
+              "child": 3,
+              "parent": 5,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 5,
+              "parent": 11,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 11,
+              "parent": 36,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 36,
+              "parent": 6,
+              "kind": "min_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 0
+            },
+            {
+              "child": 6,
+              "parent": 2,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 2
+            }
+          ]
+        },
+        {
+          "start": 365,
+          "steps": 15,
+          "word": "OOEOOEOOEOOEOEE",
+          "returned": true,
+          "kinds": {
+            "unique_odd": 9,
+            "interior_even": 6
+          },
+          "all_unique_odd_or_ordinary_even": true,
+          "even_kinds": {
+            "interior_even": 6
+          },
+          "path_head": [
+            365,
+            6973,
+            582276,
+            763,
+            21075,
+            3059506
+          ],
+          "path_tail": [
+            1432400,
+            1196,
+            34
+          ],
+          "steps_sample": [
+            {
+              "child": 365,
+              "parent": 6973,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 6973,
+              "parent": 582276,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 582276,
+              "parent": 763,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 107
+            },
+            {
+              "child": 763,
+              "parent": 21075,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 21075,
+              "parent": 3059506,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 3059506,
+              "parent": 1749,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 505
+            },
+            {
+              "child": 1749,
+              "parent": 73145,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 73145,
+              "parent": 19782308,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 12707,
+              "parent": 1432400,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 1432400,
+              "parent": 1196,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 1984
+            },
+            {
+              "child": 1196,
+              "parent": 34,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 40
+            }
+          ]
+        },
+        {
+          "start": 425,
+          "steps": 46,
+          "word": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "returned": true,
+          "kinds": {
+            "unique_odd": 29,
+            "interior_even": 17
+          },
+          "all_unique_odd_or_ordinary_even": true,
+          "even_kinds": {
+            "interior_even": 17
+          },
+          "path_head": [
+            425,
+            8761,
+            820031,
+            742583689,
+            20235694231553,
+            91028453119575577493
+          ],
+          "path_tail": [
+            17936359616,
+            133926,
+            365
+          ],
+          "steps_sample": [
+            {
+              "child": 425,
+              "parent": 8761,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 8761,
+              "parent": 820031,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 820031,
+              "parent": 742583689,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 742583689,
+              "parent": 20235694231553,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 20235694231553,
+              "parent": {
+                "bits": 67
+              },
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": {
+                "bits": 67
+              },
+              "parent": {
+                "bits": 100
+              },
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": {
+                "bits": 100
+              },
+              "parent": {
+                "bits": 150
+              },
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": {
+                "bits": 150
+              },
+              "parent": {
+                "bits": 75
+              },
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": null
+            },
+            {
+              "child": 6852087,
+              "parent": 17936359616,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 17936359616,
+              "parent": 133926,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 186140
+            },
+            {
+              "child": 133926,
+              "parent": 365,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 701
+            }
+          ]
+        },
+        {
+          "start": 2183,
+          "steps": 54,
+          "word": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE",
+          "returned": true,
+          "kinds": {
+            "unique_odd": 34,
+            "interior_even": 20
+          },
+          "all_unique_odd_or_ordinary_even": true,
+          "even_kinds": {
+            "interior_even": 20
+          },
+          "path_head": [
+            2183,
+            101995,
+            32573792,
+            5707,
+            431133,
+            283085027
+          ],
+          "path_tail": [
+            2315711085392,
+            1521746,
+            1233
+          ],
+          "steps_sample": [
+            {
+              "child": 2183,
+              "parent": 101995,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 101995,
+              "parent": 32573792,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 32573792,
+              "parent": 5707,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 3943
+            },
+            {
+              "child": 5707,
+              "parent": 431133,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 431133,
+              "parent": 283085027,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 283085027,
+              "parent": 4762942611531,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 4762942611531,
+              "parent": {
+                "bits": 64
+              },
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": {
+                "bits": 64
+              },
+              "parent": 3224085211,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 4118921585
+            },
+            {
+              "child": 175034201,
+              "parent": 2315711085392,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 2315711085392,
+              "parent": 1521746,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 196876
+            },
+            {
+              "child": 1521746,
+              "parent": 1233,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 1457
+            }
+          ]
+        },
+        {
+          "start": 3889,
+          "steps": 77,
+          "word": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE",
+          "returned": true,
+          "kinds": {
+            "unique_odd": 48,
+            "interior_even": 29
+          },
+          "all_unique_odd_or_ordinary_even": true,
+          "even_kinds": {
+            "interior_even": 29
+          },
+          "path_head": [
+            3889,
+            242525,
+            119435867,
+            1305275389885,
+            1491259504415506425,
+            1821083405626235967451743648
+          ],
+          "path_tail": [
+            37977720,
+            6162,
+            78
+          ],
+          "steps_sample": [
+            {
+              "child": 3889,
+              "parent": 242525,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 242525,
+              "parent": 119435867,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 119435867,
+              "parent": 1305275389885,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 1305275389885,
+              "parent": 1491259504415506425,
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": 1491259504415506425,
+              "parent": {
+                "bits": 91
+              },
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": {
+                "bits": 91
+              },
+              "parent": 42674153836089,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 46453172927727
+            },
+            {
+              "child": 42674153836089,
+              "parent": {
+                "bits": 68
+              },
+              "kind": "unique_odd",
+              "sign": "descending",
+              "letter": "O",
+              "even_remainder": null
+            },
+            {
+              "child": {
+                "bits": 68
+              },
+              "parent": 16696432607,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 20221674729
+            },
+            {
+              "child": 1442307256461688,
+              "parent": 37977720,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 40063288
+            },
+            {
+              "child": 37977720,
+              "parent": 6162,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 7476
+            },
+            {
+              "child": 6162,
+              "parent": 78,
+              "kind": "interior_even",
+              "sign": "ascending",
+              "letter": "E",
+              "even_remainder": 78
+            }
+          ]
+        }
+      ],
+      "distinguished_beyond_cell": false,
+      "any_not_ordinary": false
+    },
+    "questions": {
+      "Q1_pred_e_formula": {
+        "holds": true,
+        "reason": "|Pred_E(m)| = m+1 (m even) or m (m odd)"
+      },
+      "Q2_pred_o_unique": {
+        "holds": true,
+        "reason": "|Pred_O(m)| in {0,1}"
+      },
+      "Q3_even_ascending": {
+        "holds": true,
+        "reason": "every even predecessor satisfies n > m"
+      },
+      "Q4_odd_descending": {
+        "holds": true,
+        "reason": "odd predecessors descend except the fixed point 1"
+      },
+      "Q5_composition_is_cell_nest": {
+        "holds": true,
+        "reason": "exact fibers are nested cells on the real predecessor set; a wider interval hull is a relaxation, not a new bound"
+      },
+      "Q6_hard_preds_ordinary": {
+        "holds": true,
+        "reason": "hard-path predecessors are unique-odd or ordinary even-cell points"
+      },
+      "Q7_no_mod3_quotient": {
+        "holds": true,
+        "reason": "Pred_O occupancy by m mod 3 spreads only 2688/889111"
+      },
+      "Q8_no_same_root_collision": {
+        "holds": true,
+        "reason": "T is a function; inverse from a fixed root is a tree"
+      }
+    },
+    "fixed_point": {
+      "m": 1,
+      "pred_e": 1,
+      "pred_o": 1,
+      "pred": 2,
+      "min_even": 2,
+      "max_even": 2,
+      "odd": 1,
+      "descending": 0,
+      "equal": 1,
+      "ascending": 1,
+      "expected_e": 1,
+      "e_formula_ok": true,
+      "even_cloud_start": 1,
+      "mod2": 1,
+      "mod3": 1,
+      "bits": 1
+    }
+  },
+  "artifacts": {
+    "predecessor_edges.csv": "data/research/juggler/backward/predecessor_edges.csv",
+    "inverse_paths.jsonl": "data/research/juggler/backward/inverse_paths.jsonl",
+    "branching_summary.csv": "data/research/juggler/backward/branching_summary.csv",
+    "counterexamples.jsonl": "data/research/juggler/backward/counterexamples.jsonl"
+  },
+  "search_method": "exact Pred from even_cell / odd_cell_integers with T(n)=m; one-step census m<=4000; nested cell composition; bounded inverse BFS on selected roots; reverse images of known walks"
+}

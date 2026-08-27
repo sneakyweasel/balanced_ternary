@@ -7623,4 +7623,53 @@ Best next question
 - none from this branch
 ```
 
+## Juggler backward predecessor geometry
+
+- **Date:** 2026-08-28
+- **Objective:** Test whether repeated exact inversion of the Juggler floor-power map imposes a structural constraint invisible in the forward O/E dynamics
+- **Hypotheses:** mixed inverse paths obey a new scale inequality, sparsity bound, well-founded rank, or hard-path restriction beyond the floor cells
+- **Major results:** Pred is the existing even/odd floor cells with T(n)=m. On m=1..4000 every even cell is nonempty, 126 odd cells are occupied (rate 63/2000), |Pred_E| is m or m+1, even edges ascend, odd edges descend except 1->1. Composed bounds are nested cells; hull-versus-fiber gaps are relaxations. Bounded inverse BFS on selected roots has no same-root collisions. Hard walks 3, 365, 425, 2183, 3889 reverse to unique-odd or ordinary even-cell points. Classification BACKWARD_COMPLEX
+- **Refuted ideas:** Collatz n=(2^k m-1)/3 as the Juggler inverse; affine inverse composition; a new scale law from mixed words; distinguished inverse labels on hard forward paths; m mod 3 as an inverse admissibility rule
+- **Literature:** Cells.lean stays the predecessor law. prefix-NC / preimage-cylinder / realization-geometry / odd-landing / first-return / adversarial / information-complexity stay CLOSE
+- **Open:** none from this branch. Finite backward depth is not a theorem. The basin of 1 is not a totality result
+- **Decision:** CLOSE. Repeated inversion is the nested floor cells. Do not invent another scalar. Do not launch a GPU predecessor census
+
+```text
+What was learned
+- Pred_E is the even square cell; Pred_O is the odd cube cell, at most one
+- Every m>=1 has a nonempty even cell, so even inverse rays always exist and leave every bound
+- Odd inverse rays are unique and stop at the first empty odd cell
+- Mixed composition is nested cells; a wider interval hull only fills non-predecessors
+- Inverse trees from a fixed root do not collide
+- Hard forward prefixes reverse to ordinary cell points
+- The tree of 1 is the basin of the known fixed point, not a new exceptional law
+
+Strongest theorem
+- odd cells contain at most one integer (already Lean odd_cell_unique)
+
+Strongest refutation
+- mixed inverse words obey a new scale inequality
+  (EEO at 3,5,7 and EO/EOE at 11 are hull relaxations)
+
+Reusable machinery
+- research.juggler_sequence.backward_geometry
+- reuses even_cell, odd_cell_integers, floor_power
+
+Prior-art status
+- inverse-graph reading of the certified floor cells, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- Repeated exact inversion does not add structure beyond the existing
+  floor cells. Stop. Do not invent another scalar.
+
+Best next question
+- none from this branch
+```
+
 

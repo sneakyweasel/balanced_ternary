@@ -1,0 +1,65 @@
+{"root": 1, "depth": 0, "node_sequence": [1], "k_sequence": [], "stopped": "cap_or_fixed", "validation_status": "ok"}
+{"root": 1, "depth": 5, "node_sequence": [1, 2, 4, 16, 256, 65536], "k_sequence": ["E", "E", "E", "E", "E"], "scale_profile": ["2", "2", "4", "16", "256"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 1, "depth": 4, "node_sequence": [1, 2, 8, 80, 6560], "k_sequence": ["E", "E", "E", "E"], "scale_profile": ["2", "4", "10", "82"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 3, "depth": 0, "node_sequence": [3], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 3, "depth": 3, "node_sequence": [3, 10, 100, 10000], "k_sequence": ["E", "E", "E"], "scale_profile": ["10/3", "10", "100"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 3, "depth": 3, "node_sequence": [3, 14, 224, 50624], "k_sequence": ["E", "E", "E"], "scale_profile": ["14/3", "16", "226"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 5, "depth": 1, "node_sequence": [5, 3], "k_sequence": ["O"], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 5, "depth": 3, "node_sequence": [5, 26, 676, 456976], "k_sequence": ["E", "E", "E"], "scale_profile": ["26/5", "26", "676"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 5, "depth": 2, "node_sequence": [5, 34, 1224], "k_sequence": ["E", "E"], "scale_profile": ["34/5", "36"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 7, "depth": 0, "node_sequence": [7], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 7, "depth": 2, "node_sequence": [7, 50, 2500], "k_sequence": ["E", "E"], "scale_profile": ["50/7", "50"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 7, "depth": 2, "node_sequence": [7, 62, 3968], "k_sequence": ["E", "E"], "scale_profile": ["62/7", "64"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 9, "depth": 0, "node_sequence": [9], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 9, "depth": 2, "node_sequence": [9, 82, 6724], "k_sequence": ["E", "E"], "scale_profile": ["82/9", "82"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 9, "depth": 2, "node_sequence": [9, 98, 9800], "k_sequence": ["E", "E"], "scale_profile": ["98/9", "100"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 37, "depth": 0, "node_sequence": [37], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 37, "depth": 1, "node_sequence": [37, 1370], "k_sequence": ["E"], "scale_profile": ["1370/37"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 37, "depth": 1, "node_sequence": [37, 1442], "k_sequence": ["E"], "scale_profile": ["1442/37"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 49, "depth": 0, "node_sequence": [49], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 49, "depth": 1, "node_sequence": [49, 2402], "k_sequence": ["E"], "scale_profile": ["2402/49"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 49, "depth": 1, "node_sequence": [49, 2498], "k_sequence": ["E"], "scale_profile": ["2498/49"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 69, "depth": 0, "node_sequence": [69], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 69, "depth": 1, "node_sequence": [69, 4762], "k_sequence": ["E"], "scale_profile": ["4762/69"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 69, "depth": 1, "node_sequence": [69, 4898], "k_sequence": ["E"], "scale_profile": ["4898/69"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 77, "depth": 0, "node_sequence": [77], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 77, "depth": 1, "node_sequence": [77, 5930], "k_sequence": ["E"], "scale_profile": ["5930/77"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 77, "depth": 1, "node_sequence": [77, 6082], "k_sequence": ["E"], "scale_profile": ["6082/77"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 193, "depth": 0, "node_sequence": [193], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 193, "depth": 1, "node_sequence": [193, 37250], "k_sequence": ["E"], "scale_profile": ["37250/193"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 193, "depth": 1, "node_sequence": [193, 37634], "k_sequence": ["E"], "scale_profile": ["37634/193"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 243, "depth": 1, "node_sequence": [243, 39], "k_sequence": ["O"], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 243, "depth": 1, "node_sequence": [243, 59050], "k_sequence": ["E"], "scale_profile": ["59050/243"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 243, "depth": 1, "node_sequence": [243, 59534], "k_sequence": ["E"], "scale_profile": ["59534/243"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 365, "depth": 0, "node_sequence": [365], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 365, "depth": 1, "node_sequence": [365, 133226], "k_sequence": ["E"], "scale_profile": ["133226/365"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 365, "depth": 1, "node_sequence": [365, 133954], "k_sequence": ["E"], "scale_profile": ["133954/365"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 425, "depth": 0, "node_sequence": [425], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 425, "depth": 1, "node_sequence": [425, 180626], "k_sequence": ["E"], "scale_profile": ["180626/425"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 425, "depth": 1, "node_sequence": [425, 181474], "k_sequence": ["E"], "scale_profile": ["181474/425"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 763, "depth": 0, "node_sequence": [763], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 763, "depth": 1, "node_sequence": [763, 582170], "k_sequence": ["E"], "scale_profile": ["582170/763"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 763, "depth": 1, "node_sequence": [763, 583694], "k_sequence": ["E"], "scale_profile": ["583694/763"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 1749, "depth": 0, "node_sequence": [1749], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 1749, "depth": 1, "node_sequence": [1749, 3059002], "k_sequence": ["E"], "scale_profile": ["3059002/1749"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 1749, "depth": 1, "node_sequence": [1749, 3062498], "k_sequence": ["E"], "scale_profile": ["3062498/1749"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 1999, "depth": 0, "node_sequence": [1999], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 1999, "depth": 1, "node_sequence": [1999, 3996002], "k_sequence": ["E"], "scale_profile": ["3996002/1999"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 1999, "depth": 1, "node_sequence": [1999, 3999998], "k_sequence": ["E"], "scale_profile": ["3999998/1999"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 2183, "depth": 0, "node_sequence": [2183], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 2183, "depth": 1, "node_sequence": [2183, 4765490], "k_sequence": ["E"], "scale_profile": ["4765490/2183"], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 2183, "depth": 1, "node_sequence": [2183, 4769854], "k_sequence": ["E"], "scale_profile": ["4769854/2183"], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 3431, "depth": 0, "node_sequence": [3431], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 3431, "depth": 0, "node_sequence": [3431], "k_sequence": [], "scale_profile": [], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 3431, "depth": 0, "node_sequence": [3431], "k_sequence": [], "scale_profile": [], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 3889, "depth": 0, "node_sequence": [3889], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 3889, "depth": 0, "node_sequence": [3889], "k_sequence": [], "scale_profile": [], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 3889, "depth": 0, "node_sequence": [3889], "k_sequence": [], "scale_profile": [], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 4447, "depth": 0, "node_sequence": [4447], "k_sequence": [], "stopped": "empty_odd_cell", "validation_status": "ok"}
+{"root": 4447, "depth": 0, "node_sequence": [4447], "k_sequence": [], "scale_profile": [], "which": "min", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 4447, "depth": 0, "node_sequence": [4447], "k_sequence": [], "scale_profile": [], "which": "max", "stopped": "cap_or_empty", "validation_status": "ok"}
+{"root": 3, "depth": 5, "node_sequence": [3, 5, 11, 36, 6, 2], "k_sequence": "OOOEE", "scale_profile": {"unique_odd": 3, "min_even": 1, "interior_even": 1}, "validation_status": "ok", "kind": "hard_forward_reverse"}
+{"root": 365, "depth": 15, "node_sequence": [365, 6973, 582276, 763, 21075, 3059506], "k_sequence": "OOEOOEOOEOOEOEE", "scale_profile": {"unique_odd": 9, "interior_even": 6}, "validation_status": "ok", "kind": "hard_forward_reverse"}
+{"root": 425, "depth": 46, "node_sequence": [425, 8761, 820031, 742583689, 20235694231553, 91028453119575577493], "k_sequence": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE", "scale_profile": {"unique_odd": 29, "interior_even": 17}, "validation_status": "ok", "kind": "hard_forward_reverse"}
+{"root": 2183, "depth": 54, "node_sequence": [2183, 101995, 32573792, 5707, 431133, 283085027], "k_sequence": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE", "scale_profile": {"unique_odd": 34, "interior_even": 20}, "validation_status": "ok", "kind": "hard_forward_reverse"}
+{"root": 3889, "depth": 77, "node_sequence": [3889, 242525, 119435867, 1305275389885, 1491259504415506425, 1821083405626235967451743648], "k_sequence": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE", "scale_profile": {"unique_odd": 48, "interior_even": 29}, "validation_status": "ok", "kind": "hard_forward_reverse"}

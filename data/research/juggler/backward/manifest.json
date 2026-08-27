@@ -1,0 +1,12 @@
+{
+  "experiment": "juggler_backward_geometry",
+  "m_max": 4000,
+  "classification": "BACKWARD_COMPLEX",
+  "artifacts": {
+    "predecessor_edges.csv": "data/research/juggler/backward/predecessor_edges.csv",
+    "inverse_paths.jsonl": "data/research/juggler/backward/inverse_paths.jsonl",
+    "branching_summary.csv": "data/research/juggler/backward/branching_summary.csv",
+    "counterexamples.jsonl": "data/research/juggler/backward/counterexamples.jsonl"
+  },
+  "independence_claim": false
+}
