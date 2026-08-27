@@ -7721,4 +7721,54 @@ Best next question
 - none from this branch
 ```
 
+## Juggler 2-adic / positive-integer bridge
+
+- **Date:** 2026-08-28
+- **Objective:** Decide whether 2-adic admissibility of a finite Juggler O/E word is a different arithmetic notion from positive-integer follows-realizability, using balanced-ternary jets as the second coordinate
+- **Hypotheses:** a Type-3 integer obstruction beyond resolved cylinders; a finite BT jet constrains the 2-adic class; an exact P(w) vs m(w) lifting bound
+- **Major results:** There is no pre-existing Juggler Admissible_P automaton; the existing object is first-letter parity plus the odd-odd remainder law, which does not forbid OO. Every residue class at P<=16 splits at the second letter (even classes by the square-cell construction; odd classes by search, worst t=16 at r=38921). Weak Admissible_P is the full language {O,E}*. I(k) at n<=4000 fills through k=4 and misses 3/15 words at k=5/6. First holes EEEEEE / EEEEOE / EEEOEO remain SCALE_LIMITED. Finite BT jets are CRT-transverse to 2-adic cylinders and do not determine the first letter (1 vs 4). Classification BRIDGE_COMPLEX
+- **Refuted ideas:** a finite 2-adic cylinder forces a letter after the first; same BT 1-jet implies the same first letter; EEEEEE is 2-adically forbidden; absence in n<=4000 is Type 3; ADMISSIBILITY_REALIZATION_GREEN / LIFTING_BOUND_GREEN / BT_2ADIC_BRIDGE_GREEN / INTEGER_OBSTRUCTION_GREEN
+- **Literature:** follows, even_tower_to_one, odd_odd_remainder_mod_eight, integer_jet / encode stay in place. Collatz Layer-C cylinders are a different map. PE / residual-quotient / sum-rho / realization geometry / information-complexity / backward-geometry / accelerated stay CLOSE
+- **Open:** none from this branch. Compactness in Z_2 is not a positive-integer existence theorem. Finite-state at fixed P is not a global automaton
+- **Decision:** CLOSE as BRIDGE_COMPLEX. The two layers differ by witness scale, not by an extra finite 2-adic prohibition. Do not build an automaton. Do not claim termination
+
+```text
+What was learned
+- Juggler has no Collatz-style 2-adic word automaton; Admissible_P is first-letter parity
+- Every tested cylinder splits at letter 2; later letters are Archimedean, not 2-adic
+- Weak Admissible_P contains every finite word; Forced_P contains only length 0/1
+- A_P \\ I gaps are Type 1 SCALE_LIMITED or bound-limited; no Type-3 certificate
+- Finite BT jets never determine n mod 2; CRT intersections are infinite families
+- P_adm is undefined for |w|>=2, so it does not predict m(w)
+- The first atlas holes remain SCALE_LIMITED calibration, not integer incompatibility
+
+Strongest theorem
+- an even residue class modulo 2^P always meets both an even-q and an odd-q
+  square cell, so it never forces the second Juggler letter
+
+Strongest refutation
+- same BT 1-jet implies the same 2-adic first-letter status (n=1 and n=4)
+
+Reusable machinery
+- research.juggler_sequence.two_adic_bridge
+- reuses follows_word, floor_power, even_tower, landing_row, integer_jet / encode
+
+Prior-art status
+- negative bridge between residue constraints and follows, not a halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- 2-adic symbolic consistency for this map is the first letter. The integer
+  itinerary lives in the floor geometry. Balanced ternary is transverse by
+  CRT. Stop. Do not invent another coordinate system.
+
+Best next question
+- none from this branch
+```
+
 
