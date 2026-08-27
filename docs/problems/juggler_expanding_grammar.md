@@ -176,10 +176,10 @@ No new residual state object.
 
 ## Open questions
 
-What determines whether the landing of a persistent residual stays
-odd-to-odd? That is a threshold-parity question, not another
-expanding-word rewrite. Do not reopen the weighted-slack budget or
-the residual-state tuple.
+Answered in [juggler_landing_parity.md](juggler_landing_parity.md):
+\(\theta=\rho/(2T+1)\) is unrestricted on odd-to-odd states and does
+not predict the next landing. Do not reopen the weighted-slack
+budget or the residual-state tuple.
 
 ## Decision
 
@@ -192,8 +192,8 @@ inequality \(T_w(n)>n\) plus the already-open odd-odd residual
 chain. Do not claim a finite run bound. Do not claim an infinite
 orbit. Do not claim termination.
 
-Best next question: what arithmetic decides whether a persistent
-residual landing remains odd-to-odd?
+Best next question: answered in
+[juggler_landing_parity.md](juggler_landing_parity.md).
 
 ## Publication assessment
 

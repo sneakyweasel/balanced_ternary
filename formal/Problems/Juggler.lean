@@ -21,6 +21,7 @@ import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionSlack
 import Problems.Juggler.NearTightScale
 import Problems.Juggler.ExpandingGrammar
+import Problems.Juggler.LandingParity
 import Problems.Juggler.Cycles
 import Problems.Juggler.CycleDiophantine
 

@@ -6690,3 +6690,48 @@ Best next question
 - What arithmetic decides whether a persistent residual landing remains odd-to-odd?
 ```
 
+## Juggler landing-parity and square-threshold dynamics
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether the square-threshold position θ=ρ/(2T+1) is a compact state for odd-to-odd landing, beyond residues and defect size
+- **Hypotheses:** inverse-floor cells package T; persistent odd-to-odd occupies a proper θ interval; θ-bins predict the next landing better than x mod 8; θ composes as a branch map
+- **Major results:** Lean landingCell_iff / landingParity_*_iff / landingGap_bound wrap the existing Cells and Defect lemmas. Census n≤2000: odd-odd θ occupies [0,0.997] and every tenth of [0,1]; PE continuation spans [0,0.995]; next-parity entropy given a θ-bin is ≈0.99. No halt theorem
+- **Refuted ideas:** persistent odd-to-odd forces θ into a proper subinterval; a θ-bin decides the next landing; landing cells predict better than residues; θ(T(x)) is a function of θ(x) and the branch
+- **Literature:** Cells inverse-floor iff; Defect remainder window; residual-state CLOSE; expanding-grammar CLOSE; near-tight η→0
+- **Open:** whether any arithmetic other than the integer y itself decides odd-to-odd continuation
+- **Decision:** CLOSE as `LANDING_THETA_UNRESTRICTED`. Do not claim termination
+
+```text
+What was learned
+- T(x)=m iff m²≤F(x)<(m+1)² is the existing inverse-floor cell
+- θ=ρ/(2T+1) stays order-1 while η=ρ/T² decays
+- Odd-to-odd and PE-continuation both occupy essentially all of [0,1]
+- A θ-bin is no more predictive than x mod 8
+- θ does not compose as a branch map
+
+Strongest theorem
+- landingIndex x = m ↔ landingCell x m, and landingGap x < landingWidth x
+
+Strongest refutation
+- Persistent odd-to-odd forces θ into a proper subinterval of [0,1]
+
+Reusable machinery
+- formal/Problems/Juggler/LandingParity.lean
+- research.juggler_sequence.landing_parity
+
+Prior-art status
+- negative threshold-state result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The cell language is T itself. The candidate coordinate θ is unrestricted on the persistent set and does not predict the next landing. Exact landing information that is not T was not found.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
+```
+
