@@ -5918,3 +5918,53 @@ Best next question
   a method, or exhibit the smallest odd non-square window hit
 ```
 
+## Juggler near-extremal non-contracting prefixes
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether realized non-monochrome prefixes can keep \(G_j=2^j-3^{o_j}\le 0\) with \(\Delta\) too small to force contraction
+- **Hypotheses:** `NEAR_EXTREMAL_STRUCTURE_GREEN`, `DEFECT_DRIVEN_CONTRACTION_GREEN`, `BAD_PREFIX_BOUNDED_GREEN`, `BAD_PREFIX_ARBITRARY`, `NEAR_EXTREMAL_COUNTEREXAMPLE`
+- **Major results:** Prefix-NC words start with \(O\); length \(\ge 2\) starts with \(OO\); the mixed family \(O^k E\) (\(k\ge 2\)) is already Lean. The language also contains other mixed patterns (`OOEO`, …). `EOO` has \(\tau=1\) and is not a bad prefix. Scan \(n\le 2000\), \(k\le 10\): 1541 mixed prefix-NC rows, 0 defect-driven certificates, mixed words of length 10 that expand (`n=37`, `n=173`). Closest computed \(\Delta/G\) is on short `OOE` and still far below the formal gap. Classification **NEAR_EXTREMAL_STRUCTURE_GREEN**. No new Lean. No ledger row. Control layer unchanged
+- **Refuted ideas:** treating `EOO` block contraction as a prefix-NC escape; treating a horizon hit as an infinite realized family
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** realized mixed prefix-NC lengths unbounded, or defect eventually exceeds the formal gap
+- **Decision:** PARK. Record the prefix-NC language. Do not claim `BAD_PREFIX_BOUNDED_GREEN` or termination
+
+```text
+What was learned
+- Every prefix-NC word starts with O; length >= 2 starts with OO
+- O^k E for k>=2 is prefix-NC (already Lean); other mixed patterns exist
+- EOO has tau=1, so it is not a bad prefix
+- n=3 realizes OOOE, not OOE
+- 1541 mixed prefix-NC rows on n<=2000, k<=10; 0 defect certificates
+- Mixed prefix-NC words of length 10 expand (n=37, n=173)
+
+Strongest theorem
+- none new; compensated contraction and 2^{k+1}<=3^k remain the Lean facts
+
+Strongest refutation
+- EOO is not a prefix-noncontracting escape route
+
+Reusable machinery
+- near_extremal_prefixes probe and records under
+  docs/research/juggler_near_extremal_prefixes.md
+
+Prior-art status
+- finite-prefix language, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PARK
+
+Why
+- The combinatorial language is described and the scan shows
+  expanding mixed prefixes through the horizon. That is not a
+  bound and not a new contraction theorem. Stop.
+
+Best next question
+- Produce an explicit infinite realized mixed prefix-NC family,
+  or prove that defect eventually exceeds the formal gap on every
+  non-monochrome prefix-NC word
+```
+

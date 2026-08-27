@@ -1,0 +1,347 @@
+{
+  "experiment": "juggler_near_extremal_prefixes",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false
+  },
+  "scan": {
+    "n_max": 2000,
+    "k_real": 10,
+    "k_comb": 16,
+    "bit_limit": 80,
+    "combinatorial": {
+      "k_max": 16,
+      "word_count": 5017,
+      "mixed_count": 5001,
+      "oke_count": 14,
+      "other_mixed_count": 4987,
+      "counts_by_length": {
+        "1": 1,
+        "2": 1,
+        "3": 2,
+        "4": 3,
+        "5": 4,
+        "6": 8,
+        "7": 13,
+        "8": 19,
+        "9": 38,
+        "10": 64,
+        "11": 128,
+        "12": 226,
+        "13": 367,
+        "14": 734,
+        "15": 1295,
+        "16": 2114
+      },
+      "starts_with_o": true,
+      "len_ge_2_starts_with_oo": true,
+      "oke_family": [
+        "O^2E",
+        "O^3E",
+        "O^4E",
+        "O^5E",
+        "O^6E",
+        "O^7E",
+        "O^8E",
+        "O^9E",
+        "O^10E",
+        "O^11E",
+        "O^12E",
+        "O^13E",
+        "O^14E",
+        "O^15E"
+      ],
+      "other_mixed_sample": [
+        "OOOOOOOOOOOOOOEO",
+        "OOOOOOOOOOOOOOEE",
+        "OOOOOOOOOOOOOEO",
+        "OOOOOOOOOOOOOEOO",
+        "OOOOOOOOOOOOOEOE",
+        "OOOOOOOOOOOOOEE",
+        "OOOOOOOOOOOOOEEO",
+        "OOOOOOOOOOOOOEEE",
+        "OOOOOOOOOOOOEO",
+        "OOOOOOOOOOOOEOO",
+        "OOOOOOOOOOOOEOOO",
+        "OOOOOOOOOOOOEOOE",
+        "OOOOOOOOOOOOEOE",
+        "OOOOOOOOOOOOEOEO",
+        "OOOOOOOOOOOOEOEE",
+        "OOOOOOOOOOOOEE"
+      ],
+      "oe_not_prefix_nc": true,
+      "e_not_prefix_nc": true,
+      "ooe_prefix_nc": true
+    },
+    "realized": {
+      "n_min": 2,
+      "n_max": 2000,
+      "k_max": 10,
+      "mixed_prefix_count": 1541,
+      "max_mixed_prefix_nc_length": 10,
+      "max_opening_odd_run": 10,
+      "defect_contract_count": 0,
+      "defect_avoid_count": 42,
+      "tau_defined_count": 1863,
+      "tau_none_count": 136,
+      "max_tau": 10,
+      "horizon_mixed_prefix_nc": true,
+      "closest_avoiders": [
+        {
+          "n": 155,
+          "word": "OOE",
+          "k": 3,
+          "exponent_gap": -1,
+          "deficit": 218485219853305754,
+          "formal_gap": 51306726471060156250,
+          "image": 291
+        },
+        {
+          "n": 249,
+          "word": "OOE",
+          "k": 3,
+          "exponent_gap": -1,
+          "deficit": 16405931570391222713,
+          "formal_gap": 3664767755095933504248,
+          "image": 496
+        },
+        {
+          "n": 191,
+          "word": "OOE",
+          "k": 3,
+          "exponent_gap": -1,
+          "deficit": 1955560860140947135,
+          "formal_gap": 336527484273921100990,
+          "image": 368
+        },
+        {
+          "n": 85,
+          "word": "OOE",
+          "k": 3,
+          "exponent_gap": -1,
+          "deficit": 1423092791036469,
+          "formal_gap": 228892041032812500,
+          "image": 148
+        },
+        {
+          "n": 197,
+          "word": "OOE",
+          "k": 3,
+          "exponent_gap": -1,
+          "deficit": 2868053562625631876,
+          "formal_gap": 444616812294001522756,
+          "image": 381
+        },
+        {
+          "n": 117,
+          "word": "OOE",
+          "k": 3,
+          "exponent_gap": -1,
+          "deficit": 28149261888898901,
+          "formal_gap": 4073285799929837556,
+          "image": 212
+        },
+        {
+          "n": 69,
+          "word": "OOE",
+          "k": 3,
+          "exponent_gap": -1,
+          "deficit": 337555077560388,
+          "formal_gap": 34938289461147588,
+          "image": 117
+        },
+        {
+          "n": 157,
+          "word": "OOE",
+          "k": 3,
+          "exponent_gap": -1,
+          "deficit": 600155858833774332,
+          "formal_gap": 57586650353448278556,
+          "image": 295
+        }
+      ],
+      "longest_mixed": [
+        {
+          "n": 37,
+          "word": "OOOOEOOOEE",
+          "k": 10,
+          "image": 2233,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 103,
+          "word": "OOOOEOEOOO",
+          "k": 10,
+          "image": 7871516405498,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 113,
+          "word": "OOOEOOOOOE",
+          "k": 10,
+          "image": 14245160192996,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 163,
+          "word": "OOOOOOEOEE",
+          "k": 10,
+          "image": 53045,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 173,
+          "word": "OOEOOOOOOO",
+          "k": 10,
+          "image": 10191096955185724142110473921312275306979975,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 193,
+          "word": "OOOEOOOOOO",
+          "k": 10,
+          "image": 85357154459746972731761066262612011066679467,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 205,
+          "word": "OOOOEOEOOE",
+          "k": 10,
+          "image": 86551,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 225,
+          "word": "OOOEOOOEEO",
+          "k": 10,
+          "image": 105519,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 229,
+          "word": "OOEOOOOOOO",
+          "k": 10,
+          "image": 2231975102195274135015874268610969460017417753,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 241,
+          "word": "OOOOOEOOOO",
+          "k": 10,
+          "image": 6107677170787853046695207664967692662775828615,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 265,
+          "word": "OOOOOEOOOE",
+          "k": 10,
+          "image": 3356613790616152,
+          "actual_contraction": false,
+          "defect_contracts": null
+        },
+        {
+          "n": 289,
+          "word": "OOOOOOOEEE",
+          "k": 10,
+          "image": 180236,
+          "actual_contraction": false,
+          "defect_contracts": null
+        }
+      ],
+      "defect_examples": [],
+      "tau_none_sample": [
+        {
+          "n": 37,
+          "word": "OOOOEOOOEE",
+          "odd_run": 4
+        },
+        {
+          "n": 103,
+          "word": "OOOOEOEOOO",
+          "odd_run": 4
+        },
+        {
+          "n": 113,
+          "word": "OOOEOOOOOE",
+          "odd_run": 3
+        },
+        {
+          "n": 163,
+          "word": "OOOOOOEOEE",
+          "odd_run": 6
+        },
+        {
+          "n": 173,
+          "word": "OOEOOOOOOO",
+          "odd_run": 2
+        },
+        {
+          "n": 193,
+          "word": "OOOEOOOOOO",
+          "odd_run": 3
+        },
+        {
+          "n": 205,
+          "word": "OOOOEOEOOE",
+          "odd_run": 4
+        },
+        {
+          "n": 225,
+          "word": "OOOEOOOEEO",
+          "odd_run": 3
+        }
+      ]
+    },
+    "examples": {
+      "three_oooe": {
+        "word": "OOOE",
+        "n": 3,
+        "k": 4,
+        "odd_count": 3,
+        "exponent_gap": -11,
+        "image": 6,
+        "actual_contraction": false,
+        "first_defect_position": 0,
+        "first_defect": 2,
+        "formal_gap": 7625554438266,
+        "deficit": 4804487577531,
+        "defect_contracts": false,
+        "monochrome": false,
+        "prefix_nc": true
+      },
+      "oe_tau": 2,
+      "eoo_tau": 1
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "power_bound_contracts": true,
+    "power_bound_compensated_contracts": true,
+    "power_bound_compensated_contracts_follows": true,
+    "two_pow_succ_le_three_pow_iff": true,
+    "power_bound_eq_iff_extremal": true,
+    "PowerHeight_absent": true,
+    "new_defect_structure_absent": true
+  },
+  "decision": {
+    "classification": "NEAR_EXTREMAL_STRUCTURE_GREEN",
+    "reason": "prefix-noncontracting words start with O, length \u2265 2 starts with OO, and include the unbounded mixed family O^k E for k\u22652 plus other mixed patterns; defect-driven contraction is already Lean and did not fire on the realized mixed prefixes in range. A finite horizon hit is not an infinite family"
+  },
+  "search_method": "exact G = 2^k - 3^o on prefixes; realized itineraries via floor_power; \u0394 and n^{3^o}-n^{2^k} only inside a bit budget; no floats"
+}
