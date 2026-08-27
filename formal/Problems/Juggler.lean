@@ -18,6 +18,7 @@ import Problems.Juggler.Minimal
 import Problems.Juggler.Scale
 import Problems.Juggler.Residuals
 import Problems.Juggler.NormalizedDefect
+import Problems.Juggler.ExpansionBlocks
 import Problems.Juggler.Cycles
 import Problems.Juggler.CycleDiophantine
 

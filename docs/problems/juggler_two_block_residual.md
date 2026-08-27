@@ -160,10 +160,10 @@ new layer. No `sorry`. No halt theorem.
 
 ## Open questions
 
-If two-block expansion is allowed, is there a longer-range
-obstruction that is still short of the concatenated endpoint
-inequality — for example a bound on consecutive expanding
-persistent blocks that is not a halt theorem?
+Taken up by `docs/problems/juggler_expansion_density.md`. Consecutive
+PE runs of length 3 are Lean-certified; length 7 occurs
+computationally. Density among persistent steps is 1 on the scanned
+windows. No finite \(M\) is proved.
 
 ## Decision
 
@@ -172,9 +172,8 @@ first block does change the admissible state at \(y\) (odd-odd,
 next \(a\ge 2\)), but that state is compatible with another
 expanding persistent block. Do not claim termination.
 
-Best next question: is there a finite bound on consecutive
-expanding persistent residual blocks that is not a rewrite of
-\(T_w(n)<n\)?
+Best next question: taken up by
+`docs/problems/juggler_expansion_density.md`.
 
 ## Publication assessment
 

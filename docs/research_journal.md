@@ -6554,3 +6554,48 @@ Best next question
 - Is there a finite bound on consecutive expanding persistent residual blocks that is not a rewrite of T_w(n)<n?
 ```
 
+## Juggler expansion density and long-run block compatibility
+
+- **Date:** 2026-08-27
+- **Objective:** Determine whether expanding persistent residual blocks can occur with arbitrarily high density, or whether a finite consecutive-run bound or a density bound strictly below 1 exists that is not \(T_w(n)<n\)
+- **Hypotheses:** cumulative block surplus and weighted slack forbid dense PE runs; a finite \(M\) or \(\limsup r/m<1\) might survive after the two-block obstruction died
+- **Major results:** Integer surplus \(E(w)=3^{\#O}-2^{|w|}\) is positive iff the word is expanding. An expanding residual \(O^a E^b\) has \(b<a\) (and already \(a\ge 2\)). Slack numerator folds on three blocks; the certified chain is 365 --OOE--> 763 --OOE--> 1749 --OOE--> 4447. Computed consecutive PE runs reach length 7 (starts 11681, 14237, 15343, 27623). Density of expanding among persistent residual steps is 1 on \(n\le 2000\). The 365 run ends at 4447 because 12707 is odd-to-even, not because the next block contracts. No halt theorem
+- **Refuted ideas:** consecutive PE runs have length at most 3; expanding fraction among persistent steps is bounded by \(1-c\); one expansion poisons the next (already dead)
+- **Literature:** OEIS A007320; PersistentExpandingResidual / 1+q / two-block refutation
+- **Open:** what forces a PE run to end (contracting residual versus odd-to-even landing) without becoming \(T_w(n)<n\)
+- **Decision:** PROMOTE the integer grammar and the certified length-3 chain. Do not promote a finite-\(M\) or density-\(<1\) theorem. Do not claim termination
+
+```text
+What was learned
+- An expanding residual block has a≥2 and strictly fewer evens than odds
+- The 365 OOE chain continues one more certified step to 4447
+- Consecutive PE runs reach length 7 on n≤20000 and grew with the window
+- Density among persistent residual steps is 1, so that is the wrong coordinate
+- A PE run can end by landing odd-to-even, not only by a contracting residual
+
+Strongest theorem
+- PersistentExpansionChain 365 [365, 763, 1749, 4447], and expanding residual ⇒ b<a
+
+Strongest refutation
+- Expanding fraction among persistent residual blocks is bounded by 1-c; consecutive PE runs have length at most 3
+
+Reusable machinery
+- formal/Problems/Juggler/ExpansionBlocks.lean
+- research.juggler_sequence.expansion_density
+
+Prior-art status
+- single-block expanding grammar and a certified triple, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PROMOTE
+
+Why
+- The integer grammar and the certified length-3 chain are new exact statements. They do not give a finite M or a density bound below 1, and density among persistent steps is a near-reparameterization of persistence itself.
+
+Best next question
+- What forces a PE run to end (contracting residual versus odd-to-even landing) without becoming T_w(n)<n?
+```
+

@@ -29,7 +29,7 @@ The project contains no `sorry` or `admit`.
 | `Problems/Engine/ControlWord.lean` | cleared affine composition / cycle constraint | `Problems.Engine` |
 | `Problems/Engine/ControlObstruction.lean` | integer cycle-constraint obstructions | `Problems.Engine` |
 | `Problems/Collatz/*` | lift, cylinders, endpoint, center, cycles, … | `Problems.Collatz` |
-| `Problems/Juggler/*` | one-way Juggler layers: dynamics, words, global defect, first-defect amplification, normalized relative slack, first-passage, certificates, leaves | `Problems.Juggler` |
+| `Problems/Juggler/*` | one-way Juggler layers: dynamics, words, global defect, first-defect amplification, normalized relative slack, expanding residual blocks, first-passage, certificates, leaves | `Problems.Juggler` |
 | `BTCalculus/` | trit algebra, `D`/`I_a`, product/sum rules, `cmp3`/`select3`, rewrite soundness, coefficient normalization, section derivative, jets, residual `≡_k`, cascade composition, polynomial function congruence modulo `3^k`, cubic residual Newton image, fibres, deepest-layer criteria, the first intermediate layer `m=k-2`, the depth-deficit `N2` visibility law, the general `N1` valuation stratification, the two-regime `N0` scaling, the mismatched-width cubic quotient, and the `Q` one-family obstruction | `BTCalculus` |
 | `Automata/` | placeholder only | no invented proofs |
 
