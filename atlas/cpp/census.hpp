@@ -11,7 +11,10 @@ struct CensusTables {
     uint64_t n_max = 0;
     std::vector<uint64_t> min_n;
     std::vector<uint64_t> min_exp;
+    std::vector<uint64_t> overflow_n;
     uint64_t overflow_count = 0;
+    uint64_t overflow_cap = 16000000;
+    bool overflow_truncated = false;
 };
 
 void cpu_census(CensusTables& tables);

@@ -19,7 +19,7 @@ from research.juggler_sequence.atlas import (
     word_record,
 )
 from research.juggler_sequence.atlas.cli import main as atlas_main
-from research.juggler_sequence.atlas.cpu_census import census
+from research.juggler_sequence.atlas.cpu_census import census, merge_starts
 from research.juggler_sequence.atlas.native import find_binary, parse_census_tsv, run_census
 from research.juggler_sequence.atlas.fixtures import (
     EEOE_AT_2500,
@@ -208,6 +208,17 @@ def test_cli_validate_and_build(tmp_path: Path):
         == 0
     )
     assert atlas_main(["--data-dir", str(tmp_path), "benchmark", "--k-max", "3", "--n-max", "50"]) == 0
+
+
+def test_overflow_merge_does_not_worsen_minima():
+    min_n, min_exp, _ = census(k_max=3, n_max=5)
+    before = list(min_n)
+    merge_starts(min_n, min_exp, [365], k_max=3)
+    from research.juggler_sequence.atlas.packed import dense_index, pack_word
+
+    idx = dense_index(*pack_word("OOE"))
+    assert min_n[idx] == 5
+    assert min_n[idx] == before[idx]
 
 
 def test_gpu_equals_cpu_k6(tmp_path: Path):

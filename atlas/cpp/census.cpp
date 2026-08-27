@@ -12,7 +12,9 @@ void init_tables(CensusTables& tables) {
     const int size = dense_size(tables.k_max);
     tables.min_n.assign(static_cast<size_t>(size), std::numeric_limits<uint64_t>::max());
     tables.min_exp.assign(static_cast<size_t>(size), std::numeric_limits<uint64_t>::max());
+    tables.overflow_n.clear();
     tables.overflow_count = 0;
+    tables.overflow_truncated = false;
 }
 
 }  // namespace
@@ -31,6 +33,11 @@ void cpu_census(CensusTables& tables) {
             bool overflow = false;
             Wide8 nxt = floor_power_w8(state, overflow);
             if (overflow) {
+                if (tables.overflow_n.size() < static_cast<size_t>(tables.overflow_cap)) {
+                    tables.overflow_n.push_back(n);
+                } else {
+                    tables.overflow_truncated = true;
+                }
                 ++tables.overflow_count;
                 break;
             }

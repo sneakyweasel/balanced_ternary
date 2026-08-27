@@ -115,12 +115,35 @@ def parse_census_tsv(path: Path) -> dict[str, object]:
         idx = dense_index(length, packed)
         min_n_tbl[idx] = min_n
         min_exp_tbl[idx] = min_exp
+    overflow_path = path.with_name(path.name + ".overflow")
+    overflow_n, truncated = parse_overflow_file(overflow_path)
     return {
         "k_max": k_max,
         "n_max": n_max,
         "n_begin": n_begin,
         "backend": backend,
         "overflow_count": overflow,
+        "overflow_n": overflow_n,
+        "overflow_truncated": truncated,
         "min_n": min_n_tbl,
         "min_exp": min_exp_tbl,
     }
+
+
+def parse_overflow_file(path: Path) -> tuple[list[int], bool]:
+    if not path.is_file():
+        return [], False
+    starts: list[int] = []
+    truncated = False
+    with path.open(encoding="utf-8") as fh:
+        for raw in fh:
+            line = raw.strip()
+            if not line:
+                continue
+            if line.startswith("#"):
+                body = line[1:].strip()
+                if body.startswith("overflow_truncated="):
+                    truncated = body.split("=", 1)[1] == "1"
+                continue
+            starts.append(int(line))
+    return starts, truncated

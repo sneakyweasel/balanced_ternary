@@ -41,6 +41,14 @@ def utc_now() -> str:
     return datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
 
 
+def _compact_int(value: int | None, *, bit_limit: int = 256) -> str | None:
+    if value is None:
+        return None
+    if int(value).bit_length() > bit_limit:
+        return f"bits:{int(value).bit_length()}"
+    return str(value)
+
+
 def sha256_file(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as fh:
@@ -206,7 +214,7 @@ def write_realizers(
                     "realization_scan_limit": n_max,
                     "realization_source": source,
                     "realization_status": STATUS_FOUND if found else STATUS_NOT_FOUND,
-                    "trajectory_end": None if end is None else str(end),
+                    "trajectory_end": _compact_int(end),
                     "min_expanding_realizer": min_exp[idx],
                     "expanding_status": STATUS_FOUND if exp_found else STATUS_NOT_FOUND,
                 }
@@ -365,7 +373,7 @@ def write_pe_records(
                 "experiment_id": experiment_id,
                 "word_id": rec["word_id"],
                 "min_n": rec["min_n"],
-                "end_state": str(rec["end_state"]),
+                "end_state": _compact_int(rec["end_state"]) or "0",
                 "scan_limit": rec.get("scan_limit", 0),
                 "pe_definition": rec["pe_definition"],
                 "a": rec.get("a"),
@@ -420,7 +428,7 @@ def write_parquet_partitions(
                     "realization_scan_limit": n_max,
                     "realization_source": source,
                     "realization_status": STATUS_FOUND if found else STATUS_NOT_FOUND,
-                    "trajectory_end": None if end is None else str(end),
+                    "trajectory_end": _compact_int(end),
                     "min_expanding_realizer": min_exp[idx],
                     "expanding_status": (
                         STATUS_FOUND if min_exp[idx] is not None else STATUS_NOT_FOUND

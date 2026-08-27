@@ -2,14 +2,23 @@
 setlocal EnableDelayedExpansion
 call "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat" || exit /b 1
 
-if not defined CUDA_PATH (
-  set "CUDA_ROOT=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA"
-  for /d %%D in ("%CUDA_ROOT%\v*") do set "CUDA_PATH=%%D"
+if defined CUDA_PATH if exist "!CUDA_PATH!\bin\nvcc.exe" goto :cuda_ok
+if defined CUDA_HOME if exist "!CUDA_HOME!\bin\nvcc.exe" (
+  set "CUDA_PATH=!CUDA_HOME!"
+  goto :cuda_ok
 )
-if not exist "%CUDA_PATH%\bin\nvcc.exe" (
-  echo CUDA nvcc not found. Set CUDA_PATH or install CUDA 12.8+.
-  exit /b 1
+set "CUDA_ROOT=C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA"
+set "CUDA_PATH="
+for /f "delims=" %%D in ('dir /b /ad /o-n "!CUDA_ROOT!\v*" 2^>nul') do (
+  if exist "!CUDA_ROOT!\%%D\bin\nvcc.exe" (
+    set "CUDA_PATH=!CUDA_ROOT!\%%D"
+    goto :cuda_ok
+  )
 )
+echo CUDA nvcc not found. Set CUDA_PATH or install CUDA 12.8+.
+exit /b 1
+
+:cuda_ok
 set "PATH=%CUDA_PATH%\bin;%PATH%"
 echo Using CUDA_PATH=%CUDA_PATH%
 

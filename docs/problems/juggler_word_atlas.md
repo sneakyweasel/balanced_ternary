@@ -94,13 +94,13 @@ It is not required.
 
 - Engine: `atlas/` CUDA/C++ census (`juggler-atlas-census`)
 - Python API: `research.juggler_sequence.atlas`
-- CLI: `juggler-atlas build|validate|factors|continuations|benchmark`
+- CLI: `juggler-atlas build|validate|factors|continuations|benchmark|science`
 - Data: [word_atlas](../../data/research/juggler/word_atlas/)
 - Milestone 1 window: word length \(\le 12\), \(n\le 10^6\)
+- Scientific census (2026-08-27): \(k\le 20\), \(n\le 10^8\),
+  `PE_CERTIFIED` scan \(n\le 10^7\), experiment
+  `wa-20260827T200310Z-cuda-k20-n100000000`
 - Tests: `tests/research/juggler_sequence/test_word_atlas.py`
-
-Do not default-test the later scientific window \(k\le 20\),
-\(n\le 10^8\).
 
 ## Conjectures
 
@@ -129,25 +129,47 @@ CPU reference). Fixtures `floorPower`, `OOE` at 5, and the 365 /
 Stored word metadata recomputes from packed bits. No new
 language law is claimed.
 
+Scientific census `wa-20260827T200310Z-cuda-k20-n100000000`
+(`COMPUTATIONALLY VERIFIED` as a bounded observation, not a
+theorem):
+
+- Realizable words fill every binary string for \(k\le 5\). First
+  gap at \(k=6\): `EEEEEE`, `EEEEOE`, `EEEOEO` are
+  `NOT OBSERVED WITHIN SEARCH BOUND` among prefixes and among
+  factors of stored words of length \(\le 20\). At \(k=20\),
+  132398 of 1048576 words are realized under \(n\le 10^8\).
+- `p_{\mathrm{PE}}(r)=r+1` for \(r\le 8\), the single-block
+  \(O^a E^b\) factor count.
+- Every grammar-legal PE-run factor for \(r\le 8\) is
+  `COMPUTATIONALLY OBSERVED`. Known late window factors
+  `EEEEEE` (14237) and `OEEEEO` (9157) appear in `PE_RUN`.
+- Binary PE-run absences begin at `EOEO` (\(r=4\)) and are the
+  known \(a\ge 2\) block grammar, not a new law.
+- Host PE scan to \(10^7\) found 715855 `PE_CERTIFIED` blocks
+  and 9832 distinct PE-run words. GPU overflow merge: 5491117
+  starts.
+
 ## Open questions
 
-The leftover scientific question is unchanged: is there any
-arithmetic, other than the integer \(y\) itself, that decides
-whether a persistent residual landing stays odd-to-odd? The atlas
-does not answer it. A later phase may scale the census; that is a
-separate decide step.
+The PE-factor scale-up question is answered inside the stated
+bound: no extra PE-run constraint beyond the known \(O^a E^b\)
+grammar survived. The leftover mathematical question is unchanged:
+is there any arithmetic, other than the integer \(y\) itself, that
+decides whether a persistent residual landing stays odd-to-odd?
+The atlas does not answer it. Do not reopen
+`JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`.
 
 ## Decision
 
-**PARK** as reusable machinery. Milestone 1 is an experimental
-microscope, not a theorem and not a reopening of
-`JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`. Do not claim termination. Do
-not treat `NOT_FOUND_WITHIN_BOUND` as a prohibition.
+**PARK** as reusable machinery. The \(k\le 20\), \(n\le 10^8\)
+census is a bounded observation. It does not promote a new
+forbidden-factor law, does not reopen
+`JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`, and does not prove totality.
+Absence remains `NOT OBSERVED WITHIN SEARCH BOUND`.
 
-Best next question: after a validated scale-up, does the
-`PE_CERTIFIED` language show any factor structure beyond the known
-\(O^a E^b\) grammar *inside a stated search bound*, recorded only as
-`COMPUTATIONALLY OBSERVED` / `NOT OBSERVED WITHIN SEARCH BOUND`?
+Best next question: is there any arithmetic, other than the
+integer \(y\) itself, that decides whether a persistent residual
+landing stays odd-to-odd?
 
 ## Publication assessment
 

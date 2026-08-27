@@ -1,0 +1,5782 @@
+{
+  "experiment": "juggler_future_quotient",
+  "algorithm_version": "future-quotient-v1",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "residual_state_object": false,
+    "residual_step_extended": false,
+    "finite_residual_automaton": false,
+    "word_language_reopened": false,
+    "pe_factor_reopened": false,
+    "history_is_new_state": false,
+    "new_scalar_energy": false
+  },
+  "scan": {
+    "h_max": 6,
+    "k_max": 16,
+    "n_max_primary": 80,
+    "n_max_phase0": 4000,
+    "primary": {
+      "n_max": 80,
+      "include_atlas": false,
+      "n_chain_landings": 43,
+      "n_atlas_starts": 0,
+      "n_y": 30,
+      "slices": {
+        "all": {
+          "n_y": 30,
+          "growth_labels": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 30,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 1,
+              "Q_H": 6,
+              "max_fiber": 9,
+              "n_multi": 5,
+              "n_halt_multi": 5,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 2,
+              "Q_H": 11,
+              "max_fiber": 8,
+              "n_multi": 8,
+              "n_halt_multi": 8,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 3,
+              "Q_H": 12,
+              "max_fiber": 8,
+              "n_multi": 7,
+              "n_halt_multi": 7,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 4,
+              "Q_H": 12,
+              "max_fiber": 8,
+              "n_multi": 7,
+              "n_halt_multi": 7,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 5,
+              "Q_H": 12,
+              "max_fiber": 8,
+              "n_multi": 7,
+              "n_halt_multi": 7,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 6,
+              "Q_H": 12,
+              "max_fiber": 8,
+              "n_multi": 7,
+              "n_halt_multi": 7,
+              "n_live_multi": 0,
+              "n_capped": 0
+            }
+          ],
+          "growth_block": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 30,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 1,
+              "Q_H": 14,
+              "max_fiber": 6,
+              "n_multi": 7,
+              "n_halt_multi": 7,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 2,
+              "Q_H": 22,
+              "max_fiber": 3,
+              "n_multi": 6,
+              "n_halt_multi": 6,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 3,
+              "Q_H": 23,
+              "max_fiber": 3,
+              "n_multi": 6,
+              "n_halt_multi": 6,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 4,
+              "Q_H": 23,
+              "max_fiber": 3,
+              "n_multi": 6,
+              "n_halt_multi": 6,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 5,
+              "Q_H": 23,
+              "max_fiber": 3,
+              "n_multi": 6,
+              "n_halt_multi": 6,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 6,
+              "Q_H": 23,
+              "max_fiber": 3,
+              "n_multi": 6,
+              "n_halt_multi": 6,
+              "n_live_multi": 0,
+              "n_capped": 0
+            }
+          ],
+          "k_star": {
+            "1": {
+              "k_star": 9,
+              "exceeds_k_max": false,
+              "separator": [
+                243,
+                1523
+              ],
+              "v2_diff": 8
+            },
+            "2": {
+              "k_star": 9,
+              "exceeds_k_max": false,
+              "separator": [
+                243,
+                1523
+              ],
+              "v2_diff": 8
+            },
+            "3": {
+              "k_star": 9,
+              "exceeds_k_max": false,
+              "separator": [
+                243,
+                1523
+              ],
+              "v2_diff": 8
+            },
+            "4": {
+              "k_star": 9,
+              "exceeds_k_max": false,
+              "separator": [
+                243,
+                1523
+              ],
+              "v2_diff": 8
+            },
+            "5": {
+              "k_star": 9,
+              "exceeds_k_max": false,
+              "separator": [
+                243,
+                1523
+              ],
+              "v2_diff": 8
+            },
+            "6": {
+              "k_star": 9,
+              "exceeds_k_max": false,
+              "separator": [
+                243,
+                1523
+              ],
+              "v2_diff": 8
+            }
+          },
+          "projections_H1": [
+            {
+              "name": "exact_y",
+              "n_states": 30,
+              "n_projected": 30,
+              "n_future": 6,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 5,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 30,
+              "n_projected": 1,
+              "n_future": 6,
+              "compression": 0.03333333333333333,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 30,
+              "n_projected": 4,
+              "n_future": 6,
+              "compression": 0.13333333333333333,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 4,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 30,
+              "n_projected": 6,
+              "n_future": 6,
+              "compression": 0.2,
+              "n_multi_fibers": 5,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 4,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "residual_V",
+              "n_states": 30,
+              "n_projected": 19,
+              "n_future": 6,
+              "compression": 0.6333333333333333,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 5,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 30,
+              "n_projected": 3,
+              "n_future": 6,
+              "compression": 0.1,
+              "n_multi_fibers": 3,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 30,
+              "n_projected": 1,
+              "n_future": 6,
+              "compression": 0.03333333333333333,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 30,
+              "n_projected": 6,
+              "n_future": 6,
+              "compression": 0.2,
+              "n_multi_fibers": 5,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 4,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 30,
+              "n_projected": 2,
+              "n_future": 6,
+              "compression": 0.06666666666666667,
+              "n_multi_fibers": 2,
+              "n_separating_classes": 2,
+              "n_overdescribed_futures": 3,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                5
+              ]
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 30,
+              "n_projected": 6,
+              "n_future": 6,
+              "compression": 0.2,
+              "n_multi_fibers": 5,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 4,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 30,
+              "n_projected": 4,
+              "n_future": 6,
+              "compression": 0.13333333333333333,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 4,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 30,
+              "n_projected": 7,
+              "n_future": 6,
+              "compression": 0.23333333333333334,
+              "n_multi_fibers": 6,
+              "n_separating_classes": 5,
+              "n_overdescribed_futures": 4,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 30,
+              "n_projected": 8,
+              "n_future": 6,
+              "compression": 0.26666666666666666,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 8,
+              "n_overdescribed_futures": 4,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                33
+              ]
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 30,
+              "n_projected": 10,
+              "n_future": 6,
+              "compression": 0.3333333333333333,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 8,
+              "n_overdescribed_futures": 4,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                33
+              ]
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 30,
+              "n_projected": 29,
+              "n_future": 6,
+              "compression": 0.9666666666666667,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                243,
+                1523
+              ]
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 30,
+              "n_projected": 29,
+              "n_future": 6,
+              "compression": 0.9666666666666667,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                243,
+                1523
+              ]
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 30,
+              "n_projected": 30,
+              "n_future": 6,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 5,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 30,
+              "n_projected": 30,
+              "n_future": 6,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 5,
+              "sufficient": true,
+              "first_separator": null
+            }
+          ],
+          "projections_Hmax": [
+            {
+              "name": "exact_y",
+              "n_states": 30,
+              "n_projected": 30,
+              "n_future": 12,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 7,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 30,
+              "n_projected": 1,
+              "n_future": 12,
+              "compression": 0.03333333333333333,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 30,
+              "n_projected": 4,
+              "n_future": 12,
+              "compression": 0.13333333333333333,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 6,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 30,
+              "n_projected": 6,
+              "n_future": 12,
+              "compression": 0.2,
+              "n_multi_fibers": 5,
+              "n_separating_classes": 5,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "residual_V",
+              "n_states": 30,
+              "n_projected": 19,
+              "n_future": 12,
+              "compression": 0.6333333333333333,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 6,
+              "sufficient": false,
+              "first_separator": [
+                9,
+                49
+              ]
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 30,
+              "n_projected": 3,
+              "n_future": 12,
+              "compression": 0.1,
+              "n_multi_fibers": 3,
+              "n_separating_classes": 2,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 30,
+              "n_projected": 1,
+              "n_future": 12,
+              "compression": 0.03333333333333333,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 30,
+              "n_projected": 6,
+              "n_future": 12,
+              "compression": 0.2,
+              "n_multi_fibers": 5,
+              "n_separating_classes": 5,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 30,
+              "n_projected": 2,
+              "n_future": 12,
+              "compression": 0.06666666666666667,
+              "n_multi_fibers": 2,
+              "n_separating_classes": 2,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                5
+              ]
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 30,
+              "n_projected": 6,
+              "n_future": 12,
+              "compression": 0.2,
+              "n_multi_fibers": 5,
+              "n_separating_classes": 5,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 30,
+              "n_projected": 4,
+              "n_future": 12,
+              "compression": 0.13333333333333333,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 6,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 30,
+              "n_projected": 7,
+              "n_future": 12,
+              "compression": 0.23333333333333334,
+              "n_multi_fibers": 6,
+              "n_separating_classes": 6,
+              "n_overdescribed_futures": 6,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 30,
+              "n_projected": 8,
+              "n_future": 12,
+              "compression": 0.26666666666666666,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 8,
+              "n_overdescribed_futures": 6,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                33
+              ]
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 30,
+              "n_projected": 10,
+              "n_future": 12,
+              "compression": 0.3333333333333333,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 9,
+              "n_overdescribed_futures": 6,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                33
+              ]
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 30,
+              "n_projected": 29,
+              "n_future": 12,
+              "compression": 0.9666666666666667,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 7,
+              "sufficient": false,
+              "first_separator": [
+                243,
+                1523
+              ]
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 30,
+              "n_projected": 29,
+              "n_future": 12,
+              "compression": 0.9666666666666667,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 7,
+              "sufficient": false,
+              "first_separator": [
+                243,
+                1523
+              ]
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 30,
+              "n_projected": 30,
+              "n_future": 12,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 7,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 30,
+              "n_projected": 30,
+              "n_future": 12,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 7,
+              "sufficient": true,
+              "first_separator": null
+            }
+          ],
+          "halt_fibers": [
+            {
+              "members": [
+                3,
+                5,
+                7,
+                11,
+                43,
+                45,
+                75,
+                2233
+              ],
+              "size": 8,
+              "word": [
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                15,
+                31,
+                33,
+                35,
+                73
+              ],
+              "size": 5,
+              "word": [
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                21,
+                53,
+                55
+              ],
+              "size": 3,
+              "word": [
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "STAY_AUTO_FP",
+                  false,
+                  false,
+                  true
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                79,
+                117,
+                9317
+              ],
+              "size": 3,
+              "word": [
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                25,
+                59
+              ],
+              "size": 2,
+              "word": [
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                37,
+                69
+              ],
+              "size": 2,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                39,
+                243
+              ],
+              "size": 2,
+              "word": [
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "STAY_AUTO_FP",
+                  false,
+                  false,
+                  true
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            }
+          ]
+        },
+        "persistent": {
+          "n_y": 2,
+          "growth_labels": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 1,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 2,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 3,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 4,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 5,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 6,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            }
+          ],
+          "growth_block": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 1,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 2,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 3,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 4,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 5,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 6,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            }
+          ],
+          "k_star": {
+            "1": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "2": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "3": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "4": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "5": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "6": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            }
+          },
+          "projections_H1": [
+            {
+              "name": "exact_y",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "residual_V",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            }
+          ],
+          "projections_Hmax": [
+            {
+              "name": "exact_y",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "residual_V",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            }
+          ],
+          "halt_fibers": [
+            {
+              "members": [
+                37,
+                69
+              ],
+              "size": 2,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            }
+          ]
+        },
+        "pe": {
+          "n_y": 2,
+          "growth_labels": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 1,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 2,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 3,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 4,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 5,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 6,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            }
+          ],
+          "growth_block": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 2,
+              "n_multi": 1,
+              "n_halt_multi": 1,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 1,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 2,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 3,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 4,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 5,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            },
+            {
+              "H": 6,
+              "Q_H": 2,
+              "max_fiber": 1,
+              "n_multi": 0,
+              "n_halt_multi": 0,
+              "n_live_multi": 0,
+              "n_capped": 0
+            }
+          ],
+          "k_star": {
+            "1": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "2": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "3": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "4": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "5": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "6": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            }
+          },
+          "projections_H1": [
+            {
+              "name": "exact_y",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "residual_V",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            }
+          ],
+          "projections_Hmax": [
+            {
+              "name": "exact_y",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "residual_V",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 2,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.5,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 2,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            }
+          ],
+          "halt_fibers": [
+            {
+              "members": [
+                37,
+                69
+              ],
+              "size": 2,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            }
+          ]
+        }
+      },
+      "most_promising_H1": {
+        "name": "residual_V",
+        "reason": "sufficient_with_fiber"
+      }
+    },
+    "phase0": {
+      "n_max": 4000,
+      "include_atlas": true,
+      "n_chain_landings": 3386,
+      "n_atlas_starts": 4000,
+      "n_y": 6004,
+      "slices": {
+        "all": {
+          "n_y": 6004,
+          "growth_labels": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 6004,
+              "n_multi": 1,
+              "n_halt_multi": 0,
+              "n_live_multi": 1,
+              "n_capped": 2154
+            },
+            {
+              "H": 1,
+              "Q_H": 6,
+              "max_fiber": 4109,
+              "n_multi": 5,
+              "n_halt_multi": 1,
+              "n_live_multi": 4,
+              "n_capped": 2154
+            },
+            {
+              "H": 2,
+              "Q_H": 18,
+              "max_fiber": 1197,
+              "n_multi": 17,
+              "n_halt_multi": 5,
+              "n_live_multi": 12,
+              "n_capped": 2154
+            },
+            {
+              "H": 3,
+              "Q_H": 54,
+              "max_fiber": 587,
+              "n_multi": 53,
+              "n_halt_multi": 18,
+              "n_live_multi": 35,
+              "n_capped": 2154
+            },
+            {
+              "H": 4,
+              "Q_H": 158,
+              "max_fiber": 265,
+              "n_multi": 150,
+              "n_halt_multi": 51,
+              "n_live_multi": 99,
+              "n_capped": 2154
+            },
+            {
+              "H": 5,
+              "Q_H": 393,
+              "max_fiber": 223,
+              "n_multi": 326,
+              "n_halt_multi": 122,
+              "n_live_multi": 204,
+              "n_capped": 2154
+            },
+            {
+              "H": 6,
+              "Q_H": 769,
+              "max_fiber": 223,
+              "n_multi": 520,
+              "n_halt_multi": 208,
+              "n_live_multi": 312,
+              "n_capped": 2154
+            }
+          ],
+          "growth_block": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 6004,
+              "n_multi": 1,
+              "n_halt_multi": 0,
+              "n_live_multi": 1,
+              "n_capped": 2154
+            },
+            {
+              "H": 1,
+              "Q_H": 73,
+              "max_fiber": 1962,
+              "n_multi": 57,
+              "n_halt_multi": 19,
+              "n_live_multi": 38,
+              "n_capped": 2154
+            },
+            {
+              "H": 2,
+              "Q_H": 691,
+              "max_fiber": 470,
+              "n_multi": 386,
+              "n_halt_multi": 146,
+              "n_live_multi": 240,
+              "n_capped": 2154
+            },
+            {
+              "H": 3,
+              "Q_H": 2201,
+              "max_fiber": 136,
+              "n_multi": 771,
+              "n_halt_multi": 326,
+              "n_live_multi": 445,
+              "n_capped": 2154
+            },
+            {
+              "H": 4,
+              "Q_H": 3546,
+              "max_fiber": 56,
+              "n_multi": 751,
+              "n_halt_multi": 425,
+              "n_live_multi": 326,
+              "n_capped": 2154
+            },
+            {
+              "H": 5,
+              "Q_H": 4114,
+              "max_fiber": 56,
+              "n_multi": 553,
+              "n_halt_multi": 429,
+              "n_live_multi": 124,
+              "n_capped": 2154
+            },
+            {
+              "H": 6,
+              "Q_H": 4230,
+              "max_fiber": 56,
+              "n_multi": 484,
+              "n_halt_multi": 433,
+              "n_live_multi": 51,
+              "n_capped": 2154
+            }
+          ],
+          "k_star": {
+            "1": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                33,
+                573141612728625270488952931933108109345
+              ],
+              "v2_diff": 16
+            },
+            "2": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                33,
+                573141612728625270488952931933108109345
+              ],
+              "v2_diff": 16
+            },
+            "3": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                33,
+                573141612728625270488952931933108109345
+              ],
+              "v2_diff": 16
+            },
+            "4": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                33,
+                573141612728625270488952931933108109345
+              ],
+              "v2_diff": 16
+            },
+            "5": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                33,
+                573141612728625270488952931933108109345
+              ],
+              "v2_diff": 16
+            },
+            "6": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                33,
+                573141612728625270488952931933108109345
+              ],
+              "v2_diff": 16
+            }
+          },
+          "projections_H1": [
+            {
+              "name": "exact_y",
+              "n_states": 6004,
+              "n_projected": 6004,
+              "n_future": 6,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 5,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 6004,
+              "n_projected": 1,
+              "n_future": 6,
+              "compression": 0.00016655562958027982,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 6004,
+              "n_projected": 4,
+              "n_future": 6,
+              "compression": 0.0006662225183211193,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 6004,
+              "n_projected": 15,
+              "n_future": 6,
+              "compression": 0.002498334443704197,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 11,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "residual_V",
+              "n_states": 6004,
+              "n_projected": 121,
+              "n_future": 6,
+              "compression": 0.020153231179213856,
+              "n_multi_fibers": 90,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 5,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 6004,
+              "n_projected": 3,
+              "n_future": 6,
+              "compression": 0.0004996668887408394,
+              "n_multi_fibers": 3,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 6004,
+              "n_projected": 1,
+              "n_future": 6,
+              "compression": 0.00016655562958027982,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 6004,
+              "n_projected": 15,
+              "n_future": 6,
+              "compression": 0.002498334443704197,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 11,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 6004,
+              "n_projected": 2,
+              "n_future": 6,
+              "compression": 0.00033311125916055963,
+              "n_multi_fibers": 2,
+              "n_separating_classes": 2,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                5
+              ]
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 6004,
+              "n_projected": 15,
+              "n_future": 6,
+              "compression": 0.002498334443704197,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 11,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 6004,
+              "n_projected": 4,
+              "n_future": 6,
+              "compression": 0.0006662225183211193,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 6004,
+              "n_projected": 16,
+              "n_future": 6,
+              "compression": 0.002664890073284477,
+              "n_multi_fibers": 13,
+              "n_separating_classes": 12,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 6004,
+              "n_projected": 8,
+              "n_future": 6,
+              "compression": 0.0013324450366422385,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 8,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                17
+              ]
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 6004,
+              "n_projected": 19,
+              "n_future": 6,
+              "compression": 0.0031645569620253164,
+              "n_multi_fibers": 16,
+              "n_separating_classes": 15,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                17
+              ]
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 6004,
+              "n_projected": 128,
+              "n_future": 6,
+              "compression": 0.021319120586275817,
+              "n_multi_fibers": 128,
+              "n_separating_classes": 128,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                257
+              ]
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 6004,
+              "n_projected": 135,
+              "n_future": 6,
+              "compression": 0.022485009993337773,
+              "n_multi_fibers": 132,
+              "n_separating_classes": 131,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                257
+              ]
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 6004,
+              "n_projected": 5880,
+              "n_future": 6,
+              "compression": 0.9793471019320453,
+              "n_multi_fibers": 122,
+              "n_separating_classes": 108,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                33,
+                573141612728625270488952931933108109345
+              ]
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 6004,
+              "n_projected": 5880,
+              "n_future": 6,
+              "compression": 0.9793471019320453,
+              "n_multi_fibers": 122,
+              "n_separating_classes": 108,
+              "n_overdescribed_futures": 5,
+              "sufficient": false,
+              "first_separator": [
+                33,
+                573141612728625270488952931933108109345
+              ]
+            }
+          ],
+          "projections_Hmax": [
+            {
+              "name": "exact_y",
+              "n_states": 6004,
+              "n_projected": 6004,
+              "n_future": 769,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 520,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 6004,
+              "n_projected": 1,
+              "n_future": 769,
+              "compression": 0.00016655562958027982,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 6004,
+              "n_projected": 4,
+              "n_future": 769,
+              "compression": 0.0006662225183211193,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 494,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 6004,
+              "n_projected": 15,
+              "n_future": 769,
+              "compression": 0.002498334443704197,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 12,
+              "n_overdescribed_futures": 478,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "residual_V",
+              "n_states": 6004,
+              "n_projected": 121,
+              "n_future": 769,
+              "compression": 0.020153231179213856,
+              "n_multi_fibers": 90,
+              "n_separating_classes": 74,
+              "n_overdescribed_futures": 476,
+              "sufficient": false,
+              "first_separator": [
+                9,
+                49
+              ]
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 6004,
+              "n_projected": 3,
+              "n_future": 769,
+              "compression": 0.0004996668887408394,
+              "n_multi_fibers": 3,
+              "n_separating_classes": 3,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 6004,
+              "n_projected": 1,
+              "n_future": 769,
+              "compression": 0.00016655562958027982,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                3
+              ]
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 6004,
+              "n_projected": 15,
+              "n_future": 769,
+              "compression": 0.002498334443704197,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 12,
+              "n_overdescribed_futures": 478,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 6004,
+              "n_projected": 2,
+              "n_future": 769,
+              "compression": 0.00033311125916055963,
+              "n_multi_fibers": 2,
+              "n_separating_classes": 2,
+              "n_overdescribed_futures": 442,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                5
+              ]
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 6004,
+              "n_projected": 15,
+              "n_future": 769,
+              "compression": 0.002498334443704197,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 12,
+              "n_overdescribed_futures": 478,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 6004,
+              "n_projected": 4,
+              "n_future": 769,
+              "compression": 0.0006662225183211193,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 494,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 6004,
+              "n_projected": 16,
+              "n_future": 769,
+              "compression": 0.002664890073284477,
+              "n_multi_fibers": 13,
+              "n_separating_classes": 13,
+              "n_overdescribed_futures": 498,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                9
+              ]
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 6004,
+              "n_projected": 8,
+              "n_future": 769,
+              "compression": 0.0013324450366422385,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 8,
+              "n_overdescribed_futures": 510,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                17
+              ]
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 6004,
+              "n_projected": 19,
+              "n_future": 769,
+              "compression": 0.0031645569620253164,
+              "n_multi_fibers": 16,
+              "n_separating_classes": 16,
+              "n_overdescribed_futures": 511,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                17
+              ]
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 6004,
+              "n_projected": 128,
+              "n_future": 769,
+              "compression": 0.021319120586275817,
+              "n_multi_fibers": 128,
+              "n_separating_classes": 128,
+              "n_overdescribed_futures": 520,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                257
+              ]
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 6004,
+              "n_projected": 135,
+              "n_future": 769,
+              "compression": 0.022485009993337773,
+              "n_multi_fibers": 132,
+              "n_separating_classes": 132,
+              "n_overdescribed_futures": 520,
+              "sufficient": false,
+              "first_separator": [
+                1,
+                257
+              ]
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 6004,
+              "n_projected": 5880,
+              "n_future": 769,
+              "compression": 0.9793471019320453,
+              "n_multi_fibers": 122,
+              "n_separating_classes": 122,
+              "n_overdescribed_futures": 520,
+              "sufficient": false,
+              "first_separator": [
+                33,
+                573141612728625270488952931933108109345
+              ]
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 6004,
+              "n_projected": 5880,
+              "n_future": 769,
+              "compression": 0.9793471019320453,
+              "n_multi_fibers": 122,
+              "n_separating_classes": 122,
+              "n_overdescribed_futures": 520,
+              "sufficient": false,
+              "first_separator": [
+                33,
+                573141612728625270488952931933108109345
+              ]
+            }
+          ],
+          "halt_fibers": [
+            {
+              "members": [
+                37,
+                69,
+                225,
+                269,
+                673,
+                739,
+                1141,
+                1253
+              ],
+              "size": 223,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                3,
+                5,
+                7,
+                11,
+                13,
+                17,
+                41,
+                43
+              ],
+              "size": 166,
+              "word": [
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                23,
+                29,
+                79,
+                85,
+                117,
+                121,
+                129,
+                153
+              ],
+              "size": 165,
+              "word": [
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                247,
+                1125,
+                1135,
+                1245,
+                1399,
+                1993,
+                2375,
+                2467
+              ],
+              "size": 165,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                15,
+                27,
+                31,
+                33,
+                35,
+                47,
+                73,
+                143
+              ],
+              "size": 156,
+              "word": [
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                1081,
+                2345,
+                2349,
+                2947,
+                3373,
+                5489,
+                5561,
+                5625
+              ],
+              "size": 149,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                99,
+                113,
+                183,
+                431,
+                951,
+                985,
+                1201,
+                1911
+              ],
+              "size": 131,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                841,
+                1003,
+                2061,
+                3079,
+                4721,
+                5961,
+                6713,
+                7071
+              ],
+              "size": 97,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            }
+          ]
+        },
+        "persistent": {
+          "n_y": 4109,
+          "growth_labels": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 4109,
+              "n_multi": 1,
+              "n_halt_multi": 0,
+              "n_live_multi": 1,
+              "n_capped": 1833
+            },
+            {
+              "H": 1,
+              "Q_H": 1,
+              "max_fiber": 4109,
+              "n_multi": 1,
+              "n_halt_multi": 0,
+              "n_live_multi": 1,
+              "n_capped": 1833
+            },
+            {
+              "H": 2,
+              "Q_H": 5,
+              "max_fiber": 1197,
+              "n_multi": 5,
+              "n_halt_multi": 1,
+              "n_live_multi": 4,
+              "n_capped": 1833
+            },
+            {
+              "H": 3,
+              "Q_H": 17,
+              "max_fiber": 587,
+              "n_multi": 17,
+              "n_halt_multi": 5,
+              "n_live_multi": 12,
+              "n_capped": 1833
+            },
+            {
+              "H": 4,
+              "Q_H": 53,
+              "max_fiber": 265,
+              "n_multi": 53,
+              "n_halt_multi": 17,
+              "n_live_multi": 36,
+              "n_capped": 1833
+            },
+            {
+              "H": 5,
+              "Q_H": 159,
+              "max_fiber": 223,
+              "n_multi": 153,
+              "n_halt_multi": 49,
+              "n_live_multi": 104,
+              "n_capped": 1833
+            },
+            {
+              "H": 6,
+              "Q_H": 416,
+              "max_fiber": 223,
+              "n_multi": 360,
+              "n_halt_multi": 117,
+              "n_live_multi": 243,
+              "n_capped": 1833
+            }
+          ],
+          "growth_block": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 4109,
+              "n_multi": 1,
+              "n_halt_multi": 0,
+              "n_live_multi": 1,
+              "n_capped": 1833
+            },
+            {
+              "H": 1,
+              "Q_H": 37,
+              "max_fiber": 1783,
+              "n_multi": 27,
+              "n_halt_multi": 2,
+              "n_live_multi": 25,
+              "n_capped": 1833
+            },
+            {
+              "H": 2,
+              "Q_H": 382,
+              "max_fiber": 470,
+              "n_multi": 215,
+              "n_halt_multi": 51,
+              "n_live_multi": 164,
+              "n_capped": 1833
+            },
+            {
+              "H": 3,
+              "Q_H": 1415,
+              "max_fiber": 136,
+              "n_multi": 505,
+              "n_halt_multi": 151,
+              "n_live_multi": 354,
+              "n_capped": 1833
+            },
+            {
+              "H": 4,
+              "Q_H": 2492,
+              "max_fiber": 56,
+              "n_multi": 532,
+              "n_halt_multi": 239,
+              "n_live_multi": 293,
+              "n_capped": 1833
+            },
+            {
+              "H": 5,
+              "Q_H": 3016,
+              "max_fiber": 56,
+              "n_multi": 359,
+              "n_halt_multi": 252,
+              "n_live_multi": 107,
+              "n_capped": 1833
+            },
+            {
+              "H": 6,
+              "Q_H": 3124,
+              "max_fiber": 56,
+              "n_multi": 298,
+              "n_halt_multi": 256,
+              "n_live_multi": 42,
+              "n_capped": 1833
+            }
+          ],
+          "k_star": {
+            "1": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "2": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                8835,
+                896329126731182483841667
+              ],
+              "v2_diff": 17
+            },
+            "3": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                8835,
+                896329126731182483841667
+              ],
+              "v2_diff": 17
+            },
+            "4": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                6607,
+                47957744079
+              ],
+              "v2_diff": 16
+            },
+            "5": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                6607,
+                47957744079
+              ],
+              "v2_diff": 16
+            },
+            "6": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                6607,
+                47957744079
+              ],
+              "v2_diff": 16
+            }
+          },
+          "projections_H1": [
+            {
+              "name": "exact_y",
+              "n_states": 4109,
+              "n_projected": 4109,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 4109,
+              "n_projected": 4,
+              "n_future": 1,
+              "compression": 0.0009734728644439036,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 1,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "residual_V",
+              "n_states": 4109,
+              "n_projected": 37,
+              "n_future": 1,
+              "compression": 0.009004623996106109,
+              "n_multi_fibers": 27,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 1,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 4109,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 0.0004867364322219518,
+              "n_multi_fibers": 2,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 1,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 4109,
+              "n_projected": 4,
+              "n_future": 1,
+              "compression": 0.0009734728644439036,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 4109,
+              "n_projected": 14,
+              "n_future": 1,
+              "compression": 0.0034071550255536627,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 4109,
+              "n_projected": 8,
+              "n_future": 1,
+              "compression": 0.0019469457288878072,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 4109,
+              "n_projected": 17,
+              "n_future": 1,
+              "compression": 0.0041372596738865905,
+              "n_multi_fibers": 15,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 4109,
+              "n_projected": 128,
+              "n_future": 1,
+              "compression": 0.031151131662204914,
+              "n_multi_fibers": 128,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 4109,
+              "n_projected": 133,
+              "n_future": 1,
+              "compression": 0.03236797274275979,
+              "n_multi_fibers": 131,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 4109,
+              "n_projected": 4100,
+              "n_future": 1,
+              "compression": 0.9978096860550012,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 4109,
+              "n_projected": 4100,
+              "n_future": 1,
+              "compression": 0.9978096860550012,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            }
+          ],
+          "projections_Hmax": [
+            {
+              "name": "exact_y",
+              "n_states": 4109,
+              "n_projected": 4109,
+              "n_future": 416,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 360,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 416,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                89
+              ]
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 4109,
+              "n_projected": 4,
+              "n_future": 416,
+              "compression": 0.0009734728644439036,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 347,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                109
+              ]
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 416,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 11,
+              "n_overdescribed_futures": 336,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "residual_V",
+              "n_states": 4109,
+              "n_projected": 37,
+              "n_future": 416,
+              "compression": 0.009004623996106109,
+              "n_multi_fibers": 27,
+              "n_separating_classes": 27,
+              "n_overdescribed_futures": 340,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                387
+              ]
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 416,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                89
+              ]
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 416,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                89
+              ]
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 416,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 11,
+              "n_overdescribed_futures": 336,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 4109,
+              "n_projected": 2,
+              "n_future": 416,
+              "compression": 0.0004867364322219518,
+              "n_multi_fibers": 2,
+              "n_separating_classes": 2,
+              "n_overdescribed_futures": 316,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                89
+              ]
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 416,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 11,
+              "n_overdescribed_futures": 336,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 4109,
+              "n_projected": 4,
+              "n_future": 416,
+              "compression": 0.0009734728644439036,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 347,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                109
+              ]
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 4109,
+              "n_projected": 14,
+              "n_future": 416,
+              "compression": 0.0034071550255536627,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 12,
+              "n_overdescribed_futures": 349,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 4109,
+              "n_projected": 8,
+              "n_future": 416,
+              "compression": 0.0019469457288878072,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 8,
+              "n_overdescribed_futures": 354,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 4109,
+              "n_projected": 17,
+              "n_future": 416,
+              "compression": 0.0041372596738865905,
+              "n_multi_fibers": 15,
+              "n_separating_classes": 15,
+              "n_overdescribed_futures": 354,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 4109,
+              "n_projected": 128,
+              "n_future": 416,
+              "compression": 0.031151131662204914,
+              "n_multi_fibers": 128,
+              "n_separating_classes": 128,
+              "n_overdescribed_futures": 360,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                293
+              ]
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 4109,
+              "n_projected": 133,
+              "n_future": 416,
+              "compression": 0.03236797274275979,
+              "n_multi_fibers": 131,
+              "n_separating_classes": 131,
+              "n_overdescribed_futures": 360,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                293
+              ]
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 4109,
+              "n_projected": 4100,
+              "n_future": 416,
+              "compression": 0.9978096860550012,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 9,
+              "n_overdescribed_futures": 360,
+              "sufficient": false,
+              "first_separator": [
+                6607,
+                47957744079
+              ]
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 4109,
+              "n_projected": 4100,
+              "n_future": 416,
+              "compression": 0.9978096860550012,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 9,
+              "n_overdescribed_futures": 360,
+              "sufficient": false,
+              "first_separator": [
+                6607,
+                47957744079
+              ]
+            }
+          ],
+          "halt_fibers": [
+            {
+              "members": [
+                37,
+                69,
+                225,
+                269,
+                673,
+                739,
+                1141,
+                1253
+              ],
+              "size": 223,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                247,
+                1125,
+                1135,
+                1245,
+                1399,
+                1993,
+                2375,
+                2467
+              ],
+              "size": 165,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                1081,
+                2345,
+                2349,
+                2947,
+                3373,
+                5489,
+                5561,
+                5625
+              ],
+              "size": 149,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                99,
+                113,
+                183,
+                431,
+                951,
+                985,
+                1201,
+                1911
+              ],
+              "size": 131,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                841,
+                1003,
+                2061,
+                3079,
+                4721,
+                5961,
+                6713,
+                7071
+              ],
+              "size": 97,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                319,
+                349,
+                2063,
+                3357,
+                3803,
+                3977,
+                5117,
+                5633
+              ],
+              "size": 90,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "STAY_AUTO_FP",
+                  false,
+                  false,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                483,
+                1255,
+                1285,
+                1749,
+                2011,
+                4283,
+                4565,
+                4707
+              ],
+              "size": 69,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "STAY_AUTO_FP",
+                  false,
+                  false,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                1361,
+                1535,
+                1571,
+                3065,
+                4159,
+                8343,
+                10237,
+                11271
+              ],
+              "size": 61,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "STAY_AUTO_FP",
+                  false,
+                  false,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            }
+          ]
+        },
+        "pe": {
+          "n_y": 4109,
+          "growth_labels": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 4109,
+              "n_multi": 1,
+              "n_halt_multi": 0,
+              "n_live_multi": 1,
+              "n_capped": 1833
+            },
+            {
+              "H": 1,
+              "Q_H": 1,
+              "max_fiber": 4109,
+              "n_multi": 1,
+              "n_halt_multi": 0,
+              "n_live_multi": 1,
+              "n_capped": 1833
+            },
+            {
+              "H": 2,
+              "Q_H": 5,
+              "max_fiber": 1197,
+              "n_multi": 5,
+              "n_halt_multi": 1,
+              "n_live_multi": 4,
+              "n_capped": 1833
+            },
+            {
+              "H": 3,
+              "Q_H": 17,
+              "max_fiber": 587,
+              "n_multi": 17,
+              "n_halt_multi": 5,
+              "n_live_multi": 12,
+              "n_capped": 1833
+            },
+            {
+              "H": 4,
+              "Q_H": 53,
+              "max_fiber": 265,
+              "n_multi": 53,
+              "n_halt_multi": 17,
+              "n_live_multi": 36,
+              "n_capped": 1833
+            },
+            {
+              "H": 5,
+              "Q_H": 159,
+              "max_fiber": 223,
+              "n_multi": 153,
+              "n_halt_multi": 49,
+              "n_live_multi": 104,
+              "n_capped": 1833
+            },
+            {
+              "H": 6,
+              "Q_H": 416,
+              "max_fiber": 223,
+              "n_multi": 360,
+              "n_halt_multi": 117,
+              "n_live_multi": 243,
+              "n_capped": 1833
+            }
+          ],
+          "growth_block": [
+            {
+              "H": 0,
+              "Q_H": 1,
+              "max_fiber": 4109,
+              "n_multi": 1,
+              "n_halt_multi": 0,
+              "n_live_multi": 1,
+              "n_capped": 1833
+            },
+            {
+              "H": 1,
+              "Q_H": 37,
+              "max_fiber": 1783,
+              "n_multi": 27,
+              "n_halt_multi": 2,
+              "n_live_multi": 25,
+              "n_capped": 1833
+            },
+            {
+              "H": 2,
+              "Q_H": 382,
+              "max_fiber": 470,
+              "n_multi": 215,
+              "n_halt_multi": 51,
+              "n_live_multi": 164,
+              "n_capped": 1833
+            },
+            {
+              "H": 3,
+              "Q_H": 1415,
+              "max_fiber": 136,
+              "n_multi": 505,
+              "n_halt_multi": 151,
+              "n_live_multi": 354,
+              "n_capped": 1833
+            },
+            {
+              "H": 4,
+              "Q_H": 2492,
+              "max_fiber": 56,
+              "n_multi": 532,
+              "n_halt_multi": 239,
+              "n_live_multi": 293,
+              "n_capped": 1833
+            },
+            {
+              "H": 5,
+              "Q_H": 3016,
+              "max_fiber": 56,
+              "n_multi": 359,
+              "n_halt_multi": 252,
+              "n_live_multi": 107,
+              "n_capped": 1833
+            },
+            {
+              "H": 6,
+              "Q_H": 3124,
+              "max_fiber": 56,
+              "n_multi": 298,
+              "n_halt_multi": 256,
+              "n_live_multi": 42,
+              "n_capped": 1833
+            }
+          ],
+          "k_star": {
+            "1": {
+              "k_star": 0,
+              "exceeds_k_max": false,
+              "separator": null,
+              "v2_diff": null
+            },
+            "2": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                8835,
+                896329126731182483841667
+              ],
+              "v2_diff": 17
+            },
+            "3": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                8835,
+                896329126731182483841667
+              ],
+              "v2_diff": 17
+            },
+            "4": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                6607,
+                47957744079
+              ],
+              "v2_diff": 16
+            },
+            "5": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                6607,
+                47957744079
+              ],
+              "v2_diff": 16
+            },
+            "6": {
+              "k_star": null,
+              "exceeds_k_max": true,
+              "separator": [
+                6607,
+                47957744079
+              ],
+              "v2_diff": 16
+            }
+          },
+          "projections_H1": [
+            {
+              "name": "exact_y",
+              "n_states": 4109,
+              "n_projected": 4109,
+              "n_future": 1,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 4109,
+              "n_projected": 4,
+              "n_future": 1,
+              "compression": 0.0009734728644439036,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 1,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "residual_V",
+              "n_states": 4109,
+              "n_projected": 37,
+              "n_future": 1,
+              "compression": 0.009004623996106109,
+              "n_multi_fibers": 27,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 1,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 0,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 1,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 4109,
+              "n_projected": 2,
+              "n_future": 1,
+              "compression": 0.0004867364322219518,
+              "n_multi_fibers": 2,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 1,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 4109,
+              "n_projected": 4,
+              "n_future": 1,
+              "compression": 0.0009734728644439036,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 4109,
+              "n_projected": 14,
+              "n_future": 1,
+              "compression": 0.0034071550255536627,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 4109,
+              "n_projected": 8,
+              "n_future": 1,
+              "compression": 0.0019469457288878072,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 4109,
+              "n_projected": 17,
+              "n_future": 1,
+              "compression": 0.0041372596738865905,
+              "n_multi_fibers": 15,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 4109,
+              "n_projected": 128,
+              "n_future": 1,
+              "compression": 0.031151131662204914,
+              "n_multi_fibers": 128,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 4109,
+              "n_projected": 133,
+              "n_future": 1,
+              "compression": 0.03236797274275979,
+              "n_multi_fibers": 131,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 4109,
+              "n_projected": 4100,
+              "n_future": 1,
+              "compression": 0.9978096860550012,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 4109,
+              "n_projected": 4100,
+              "n_future": 1,
+              "compression": 0.9978096860550012,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 1,
+              "sufficient": true,
+              "first_separator": null
+            }
+          ],
+          "projections_Hmax": [
+            {
+              "name": "exact_y",
+              "n_states": 4109,
+              "n_projected": 4109,
+              "n_future": 416,
+              "compression": 1.0,
+              "n_multi_fibers": 0,
+              "n_separating_classes": 0,
+              "n_overdescribed_futures": 360,
+              "sufficient": true,
+              "first_separator": null
+            },
+            {
+              "name": "parity",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 416,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                89
+              ]
+            },
+            {
+              "name": "y_mod_8",
+              "n_states": 4109,
+              "n_projected": 4,
+              "n_future": 416,
+              "compression": 0.0009734728644439036,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 347,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                109
+              ]
+            },
+            {
+              "name": "v2_3y1",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 416,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 11,
+              "n_overdescribed_futures": 336,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "residual_V",
+              "n_states": 4109,
+              "n_projected": 37,
+              "n_future": 416,
+              "compression": 0.009004623996106109,
+              "n_multi_fibers": 27,
+              "n_separating_classes": 27,
+              "n_overdescribed_futures": 340,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                387
+              ]
+            },
+            {
+              "name": "pe_flags",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 416,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                89
+              ]
+            },
+            {
+              "name": "y_mod_2_1",
+              "n_states": 4109,
+              "n_projected": 1,
+              "n_future": 416,
+              "compression": 0.0002433682161109759,
+              "n_multi_fibers": 1,
+              "n_separating_classes": 1,
+              "n_overdescribed_futures": 0,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                89
+              ]
+            },
+            {
+              "name": "mod2_1_v2",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 416,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 11,
+              "n_overdescribed_futures": 336,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "y_mod_2_2",
+              "n_states": 4109,
+              "n_projected": 2,
+              "n_future": 416,
+              "compression": 0.0004867364322219518,
+              "n_multi_fibers": 2,
+              "n_separating_classes": 2,
+              "n_overdescribed_futures": 316,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                89
+              ]
+            },
+            {
+              "name": "mod2_2_v2",
+              "n_states": 4109,
+              "n_projected": 13,
+              "n_future": 416,
+              "compression": 0.003163786809442687,
+              "n_multi_fibers": 11,
+              "n_separating_classes": 11,
+              "n_overdescribed_futures": 336,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "y_mod_2_3",
+              "n_states": 4109,
+              "n_projected": 4,
+              "n_future": 416,
+              "compression": 0.0009734728644439036,
+              "n_multi_fibers": 4,
+              "n_separating_classes": 4,
+              "n_overdescribed_futures": 347,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                109
+              ]
+            },
+            {
+              "name": "mod2_3_v2",
+              "n_states": 4109,
+              "n_projected": 14,
+              "n_future": 416,
+              "compression": 0.0034071550255536627,
+              "n_multi_fibers": 12,
+              "n_separating_classes": 12,
+              "n_overdescribed_futures": 349,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "y_mod_2_4",
+              "n_states": 4109,
+              "n_projected": 8,
+              "n_future": 416,
+              "compression": 0.0019469457288878072,
+              "n_multi_fibers": 8,
+              "n_separating_classes": 8,
+              "n_overdescribed_futures": 354,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "mod2_4_v2",
+              "n_states": 4109,
+              "n_projected": 17,
+              "n_future": 416,
+              "compression": 0.0041372596738865905,
+              "n_multi_fibers": 15,
+              "n_separating_classes": 15,
+              "n_overdescribed_futures": 354,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                229
+              ]
+            },
+            {
+              "name": "y_mod_2_8",
+              "n_states": 4109,
+              "n_projected": 128,
+              "n_future": 416,
+              "compression": 0.031151131662204914,
+              "n_multi_fibers": 128,
+              "n_separating_classes": 128,
+              "n_overdescribed_futures": 360,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                293
+              ]
+            },
+            {
+              "name": "mod2_8_v2",
+              "n_states": 4109,
+              "n_projected": 133,
+              "n_future": 416,
+              "compression": 0.03236797274275979,
+              "n_multi_fibers": 131,
+              "n_separating_classes": 131,
+              "n_overdescribed_futures": 360,
+              "sufficient": false,
+              "first_separator": [
+                37,
+                293
+              ]
+            },
+            {
+              "name": "y_mod_2_16",
+              "n_states": 4109,
+              "n_projected": 4100,
+              "n_future": 416,
+              "compression": 0.9978096860550012,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 9,
+              "n_overdescribed_futures": 360,
+              "sufficient": false,
+              "first_separator": [
+                6607,
+                47957744079
+              ]
+            },
+            {
+              "name": "mod2_16_v2",
+              "n_states": 4109,
+              "n_projected": 4100,
+              "n_future": 416,
+              "compression": 0.9978096860550012,
+              "n_multi_fibers": 9,
+              "n_separating_classes": 9,
+              "n_overdescribed_futures": 360,
+              "sufficient": false,
+              "first_separator": [
+                6607,
+                47957744079
+              ]
+            }
+          ],
+          "halt_fibers": [
+            {
+              "members": [
+                37,
+                69,
+                225,
+                269,
+                673,
+                739,
+                1141,
+                1253
+              ],
+              "size": 223,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                247,
+                1125,
+                1135,
+                1245,
+                1399,
+                1993,
+                2375,
+                2467
+              ],
+              "size": 165,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                1081,
+                2345,
+                2349,
+                2947,
+                3373,
+                5489,
+                5561,
+                5625
+              ],
+              "size": 149,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                99,
+                113,
+                183,
+                431,
+                951,
+                985,
+                1201,
+                1911
+              ],
+              "size": 131,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                841,
+                1003,
+                2061,
+                3079,
+                4721,
+                5961,
+                6713,
+                7071
+              ],
+              "size": 97,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                319,
+                349,
+                2063,
+                3357,
+                3803,
+                3977,
+                5117,
+                5633
+              ],
+              "size": 90,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "STAY_AUTO_FP",
+                  false,
+                  false,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                483,
+                1255,
+                1285,
+                1749,
+                2011,
+                4283,
+                4565,
+                4707
+              ],
+              "size": 69,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "STAY_AUTO_FP",
+                  false,
+                  false,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  true,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            },
+            {
+              "members": [
+                1361,
+                1535,
+                1571,
+                3065,
+                4159,
+                8343,
+                10237,
+                11271
+              ],
+              "size": 61,
+              "word": [
+                [
+                  true,
+                  "PERSISTENT_ODD_ODD",
+                  true,
+                  true,
+                  true
+                ],
+                [
+                  true,
+                  "STAY_AUTO_FP",
+                  false,
+                  false,
+                  true
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "RETURN_BELOW",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  true,
+                  "CAPTURE",
+                  false,
+                  false,
+                  false
+                ],
+                [
+                  "HALT"
+                ]
+              ],
+              "all_halted": true,
+              "any_capped": false
+            }
+          ]
+        }
+      },
+      "most_promising_H1": {
+        "name": "residual_V",
+        "reason": "sufficient_with_fiber"
+      }
+    },
+    "hard": {
+      "9": {
+        "y": 9,
+        "terminal": "HALT",
+        "capped": false,
+        "labels": [
+          [
+            true,
+            "STAY_AUTO_FP",
+            false,
+            false,
+            true
+          ],
+          [
+            true,
+            "CAPTURE",
+            false,
+            false,
+            false
+          ],
+          [
+            "HALT"
+          ]
+        ],
+        "block": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            "HALT"
+          ]
+        ]
+      },
+      "11": {
+        "y": 11,
+        "terminal": "HALT",
+        "capped": false,
+        "labels": [
+          [
+            true,
+            "CAPTURE",
+            false,
+            false,
+            false
+          ],
+          [
+            "HALT"
+          ]
+        ],
+        "block": [
+          [
+            1,
+            3
+          ],
+          [
+            "HALT"
+          ]
+        ]
+      },
+      "37": {
+        "y": 37,
+        "terminal": "HALT",
+        "capped": false,
+        "labels": [
+          [
+            true,
+            "PERSISTENT_ODD_ODD",
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            "RETURN_BELOW",
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            "CAPTURE",
+            false,
+            false,
+            false
+          ],
+          [
+            "HALT"
+          ]
+        ],
+        "block": [
+          [
+            4,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            "HALT"
+          ]
+        ]
+      },
+      "49": {
+        "y": 49,
+        "terminal": "HALT",
+        "capped": false,
+        "labels": [
+          [
+            true,
+            "STAY_AUTO_FP",
+            false,
+            false,
+            true
+          ],
+          [
+            true,
+            "RETURN_BELOW",
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            "CAPTURE",
+            false,
+            false,
+            false
+          ],
+          [
+            "HALT"
+          ]
+        ],
+        "block": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            "HALT"
+          ]
+        ]
+      },
+      "69": {
+        "y": 69,
+        "terminal": "HALT",
+        "capped": false,
+        "labels": [
+          [
+            true,
+            "PERSISTENT_ODD_ODD",
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            "RETURN_BELOW",
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            "CAPTURE",
+            false,
+            false,
+            false
+          ],
+          [
+            "HALT"
+          ]
+        ],
+        "block": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            "HALT"
+          ]
+        ]
+      },
+      "77": {
+        "y": 77,
+        "terminal": "HALT",
+        "capped": false,
+        "labels": [
+          [
+            true,
+            "STAY_AUTO_FP",
+            false,
+            false,
+            true
+          ],
+          [
+            true,
+            "RETURN_BELOW",
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            "RETURN_BELOW",
+            false,
+            false,
+            false
+          ],
+          [
+            true,
+            "RETURN_BELOW",
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            "STAY_AUTO_FP",
+            false,
+            false,
+            true
+          ],
+          [
+            true,
+            "CAPTURE",
+            false,
+            false,
+            false
+          ]
+        ],
+        "block": [
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ]
+      },
+      "365": {
+        "y": 365,
+        "terminal": "HALT",
+        "capped": false,
+        "labels": [
+          [
+            true,
+            "PERSISTENT_ODD_ODD",
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            "PERSISTENT_ODD_ODD",
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            "PERSISTENT_ODD_ODD",
+            true,
+            true,
+            true
+          ],
+          [
+            true,
+            "STAY_AUTO_FP",
+            false,
+            false,
+            true
+          ],
+          [
+            true,
+            "RETURN_BELOW",
+            true,
+            false,
+            false
+          ],
+          [
+            true,
+            "CAPTURE",
+            false,
+            false,
+            false
+          ]
+        ],
+        "block": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ]
+      }
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "ResidualStep": true,
+    "PersistentOddResidual": true,
+    "PersistentExpandingResidual": true,
+    "ResidualChain": true,
+    "no_ResidualState_file": true,
+    "no_ResidualState_def": true,
+    "ResidualStep_unchanged": true,
+    "no_forbidden_engines": true,
+    "forbidden_hits": [],
+    "no_global_termination_theorem": true,
+    "FloorPower_absent": true,
+    "no_word_language_reopen": true,
+    "no_pe_factor_reopen": true
+  },
+  "decision": {
+    "classification": "STATE_QUOTIENT_GREEN",
+    "secondary": [
+      "residual_V"
+    ],
+    "reason": "a listed projection other than exact y predicts Future_1 with a multi-y fiber that is not only a HALT certificate: ['residual_V']"
+  },
+  "search_method": "odd-odd residual landings n<=80 and n<=4000; optional atlas PE_CERTIFIED starts n<=1e5 cap 4000; Future_H labels from classify_step/residual_class; projections exact y, y mod 2^k, v2(3y+1), residual V, PE flags; no GPU; no ResidualState"
+}

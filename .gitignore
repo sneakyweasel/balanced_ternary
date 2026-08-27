@@ -40,9 +40,12 @@ data/research/**/*.sqlite-wal
 data/research/**/*.sqlite-shm
 data/research/**/ranges/*
 
-# Juggler word atlas experiment outputs
+# Juggler word atlas computed dumps (keep README + small summaries)
+data/research/juggler/word_atlas/_native_tmp/
+data/research/juggler/word_atlas/experiments/
 data/research/juggler/word_atlas/**/*.parquet
 data/research/juggler/word_atlas/**/*.tsv
+data/research/juggler/word_atlas/**/*.overflow
 atlas/build/
 _atlas_gpu_check/
 

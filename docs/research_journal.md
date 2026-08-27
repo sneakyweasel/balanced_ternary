@@ -7103,3 +7103,95 @@ Best next question
   OBSERVED WITHIN SEARCH BOUND?
 ```
 
+
+
+## Juggler word atlas scientific census
+
+- **Date:** 2026-08-27
+- **Objective:** Scale the validated atlas to k≤20, n≤10^8 and ask whether PE-run factors show any structure beyond the known O^a E^b grammar inside that bound
+- **Hypotheses:** a surviving PE-run factor constraint would be new; default is that the known grammar already accounts for the absences
+- **Major results:** experiment `wa-20260827T200310Z-cuda-k20-n100000000`; GPU Kernel A plus 5491117 overflow merges; PE_CERTIFIED host scan to 10^7 (715855 blocks, 9832 runs). All grammar-legal PE-run factors for r≤8 observed. p_PE(r)=r+1. Realizable language fills k≤5; first gap at k=6 is EEEEEE, EEEEOE, EEEOEO (NOT OBSERVED WITHIN SEARCH BOUND). Late window factors EEEEEE (14237) and OEEEEO (9157) appear in PE_RUN
+- **Refuted ideas:** a new PE forbidden-factor law inside this bound; treating the k=6 realizable gaps as global prohibitions
+- **Literature:** JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR stays CLOSE
+- **Open:** odd-to-odd continuation arithmetic other than the integer y
+- **Decision:** PARK as reusable machinery. The PE-factor question does not promote
+
+```text
+What was learned
+- PE-run factors for r≤8 match the known a≥2 O^a E^b concatenations
+- EOEO and the isolated-odd family are that grammar, not a new law
+- Realizable p(r) first drops at r=6; EEEEEE can sit past k=20 on a known PE run
+- uint64/SQLite cannot store 20-step odd images; compact bit-length sentinels are required
+- 5.5M GPU overflows replayed exactly on the host
+
+Strongest theorem
+- none added
+
+Strongest refutation
+- Extra PE-run factor structure beyond the known grammar, inside k≤20 / n≤10^8 / PE n≤10^7
+
+Reusable machinery
+- juggler-atlas science, compact end-state storage, overflow TSV merge
+
+Prior-art status
+- bounded census, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PARK
+
+Why
+- The scale-up answered the PE-factor question negatively. That is an
+  observation, not a theorem, and not a reason to reopen the closed
+  word-language branch.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that
+  decides whether a persistent residual landing stays odd-to-odd?
+```
+
+## Juggler ResidualStep future-equivalence
+
+- **Date:** 2026-08-27
+- **Objective:** Construct empirical ResidualStep future-equivalence classes \(\sim_H\) and measure \(\lvert Y/\sim_H\rvert\) versus \(H\)
+- **Hypotheses:** a stable proper quotient of landings — not \(y\), not incoming history, not a PE-run word prefix — appears as saturation of \(Q_H\) with multi-\(y\) fibers that survive the horizon cap
+- **Major results:** On odd-odd residual landings \(n\le 80\), \(\lvert Y\rvert=30\) and block \(Q_H=1,14,22,23\) then flat. \(H=1\) / \(V\) has \(19\) classes, matching \(\lvert\{V(y)\}\rvert\). Six leftover multi-\(y\) fibers are complete halt words (e.g. \(7,11\) emit \(OE^3\); \(25,59\) emit \(O^3E^2,OE,OE^3\)). On \(n\le 200\), \(\lvert Y\rvert=111\) and block \(Q_H\) plateaus at \(76\) from \(H=5\); \(13\) capped traces are pairwise distinguished. No `ResidualState.lean`. ResidualStep unchanged. Classification **RESIDUAL_MN_REPACK**
+- **Refuted ideas:** a surviving proper quotient of landings; \(H=1\) merges as a new state; a finite ResidualStep automaton
+- **Literature:** `oeis-A007320`; residual-state `RESIDUAL_STATE_NEEDS_X`; word-language `JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`
+- **Open:** a global \(\sum\rho\) bound in \((n,\text{word statistics})\) (object C), not another residual relation
+- **Decision:** CLOSE
+
+```text
+What was learned
+- ResidualStep futures are deterministic traces, not trit-tree equivalence
+- Q_H grows then plateaus below |Y| because some landings share a complete block-word to HALT
+- H=1 V-merges refine away or collapse to the same halt word
+- Live prefixes through the cap are pairwise distinct; no surviving multi-y live fiber
+- The observation word is a certificate of y, not a new ResidualStep state
+
+Strongest theorem
+- none new; ResidualStep is unchanged
+
+Strongest refutation
+- 7 and 11 share OE^3 then HALT; 25 and 59 share O^3E^2, OE, OE^3 then HALT; Q_H plateaus at 23<30
+
+Reusable machinery
+- research.juggler_sequence.residual_minimize
+
+Prior-art status
+- trace-class CLOSE / REPARAMETERIZATION after residual-state sufficiency CLOSE, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- Leftover multi-y classes are identical complete observation words to HALT. That is a rewriting of those integers, not a hidden ResidualStep state. Do not add an automaton.
+
+Best next question
+- A global ∑ρ bound in (n, word statistics), not another residual relation.
+```

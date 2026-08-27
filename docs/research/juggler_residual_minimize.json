@@ -1,0 +1,5262 @@
+{
+  "experiment": "juggler_residual_minimize",
+  "algorithm_version": "residual-minimize-v1",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "residual_state_object": false,
+    "residual_step_extended": false,
+    "finite_residual_automaton": false,
+    "word_language_reopened": false,
+    "history_is_new_state": false,
+    "defect_financing_opened": false,
+    "global_defect_growth_opened": false
+  },
+  "scan": {
+    "n_max_primary": 80,
+    "n_max_secondary": 200,
+    "h_max": 8,
+    "hard_probes": [
+      9,
+      37,
+      49,
+      69,
+      77
+    ],
+    "primary": {
+      "n_max": 80,
+      "n_starts": 18,
+      "n_landings": 43,
+      "n_y": 30,
+      "ys": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        15,
+        21,
+        25,
+        31,
+        33,
+        35,
+        37,
+        39,
+        43,
+        45,
+        49,
+        53,
+        55,
+        59,
+        69,
+        73,
+        75,
+        77,
+        79,
+        117,
+        243,
+        1523,
+        2233,
+        9317
+      ],
+      "growth": {
+        "block": [
+          {
+            "H": 0,
+            "Q_H": 1,
+            "max_fiber": 30,
+            "n_multi_fibers": 1,
+            "n_refine": 402,
+            "n_live": 30,
+            "n_capped": 0
+          },
+          {
+            "H": 1,
+            "Q_H": 14,
+            "max_fiber": 6,
+            "n_multi_fibers": 7,
+            "n_refine": 23,
+            "n_live": 29,
+            "n_capped": 0
+          },
+          {
+            "H": 2,
+            "Q_H": 22,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 2,
+            "n_live": 21,
+            "n_capped": 0
+          },
+          {
+            "H": 3,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 12,
+            "n_capped": 0
+          },
+          {
+            "H": 4,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 4,
+            "n_capped": 0
+          },
+          {
+            "H": 5,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 2,
+            "n_capped": 0
+          },
+          {
+            "H": 6,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 1,
+            "n_capped": 0
+          },
+          {
+            "H": 7,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 0,
+            "n_capped": 0
+          },
+          {
+            "H": 8,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": null,
+            "n_live": 0,
+            "n_capped": 0
+          }
+        ],
+        "V": [
+          {
+            "H": 0,
+            "Q_H": 1,
+            "max_fiber": 30,
+            "n_multi_fibers": 1,
+            "n_refine": 420,
+            "n_live": 30,
+            "n_capped": 0
+          },
+          {
+            "H": 1,
+            "Q_H": 19,
+            "max_fiber": 4,
+            "n_multi_fibers": 8,
+            "n_refine": 7,
+            "n_live": 29,
+            "n_capped": 0
+          },
+          {
+            "H": 2,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 21,
+            "n_capped": 0
+          },
+          {
+            "H": 3,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 12,
+            "n_capped": 0
+          },
+          {
+            "H": 4,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 4,
+            "n_capped": 0
+          },
+          {
+            "H": 5,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 2,
+            "n_capped": 0
+          },
+          {
+            "H": 6,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 1,
+            "n_capped": 0
+          },
+          {
+            "H": 7,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 0,
+            "n_capped": 0
+          },
+          {
+            "H": 8,
+            "Q_H": 23,
+            "max_fiber": 3,
+            "n_multi_fibers": 6,
+            "n_refine": null,
+            "n_live": 0,
+            "n_capped": 0
+          }
+        ],
+        "class": [
+          {
+            "H": 0,
+            "Q_H": 1,
+            "max_fiber": 30,
+            "n_multi_fibers": 1,
+            "n_refine": 283,
+            "n_live": 30,
+            "n_capped": 0
+          },
+          {
+            "H": 1,
+            "Q_H": 5,
+            "max_fiber": 16,
+            "n_multi_fibers": 4,
+            "n_refine": 81,
+            "n_live": 29,
+            "n_capped": 0
+          },
+          {
+            "H": 2,
+            "Q_H": 8,
+            "max_fiber": 8,
+            "n_multi_fibers": 6,
+            "n_refine": 9,
+            "n_live": 21,
+            "n_capped": 0
+          },
+          {
+            "H": 3,
+            "Q_H": 11,
+            "max_fiber": 8,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 12,
+            "n_capped": 0
+          },
+          {
+            "H": 4,
+            "Q_H": 11,
+            "max_fiber": 8,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 4,
+            "n_capped": 0
+          },
+          {
+            "H": 5,
+            "Q_H": 11,
+            "max_fiber": 8,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 2,
+            "n_capped": 0
+          },
+          {
+            "H": 6,
+            "Q_H": 11,
+            "max_fiber": 8,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 1,
+            "n_capped": 0
+          },
+          {
+            "H": 7,
+            "Q_H": 11,
+            "max_fiber": 8,
+            "n_multi_fibers": 6,
+            "n_refine": 0,
+            "n_live": 0,
+            "n_capped": 0
+          },
+          {
+            "H": 8,
+            "Q_H": 11,
+            "max_fiber": 8,
+            "n_multi_fibers": 6,
+            "n_refine": null,
+            "n_live": 0,
+            "n_capped": 0
+          }
+        ]
+      },
+      "v_distinct": 19,
+      "v_h1_matches": true,
+      "plateau_from": 3,
+      "fibers_H": {
+        "block": [
+          {
+            "word": [
+              [
+                3,
+                2
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              25,
+              59
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                2
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              53,
+              55
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              33,
+              35,
+              73
+            ],
+            "size": 3,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              15,
+              31
+            ],
+            "size": 2,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              7,
+              11
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                4
+              ],
+              "HALT"
+            ],
+            "members": [
+              43,
+              45
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ],
+        "V": [
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  3
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              25,
+              59
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ],
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              53,
+              55
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              33,
+              35,
+              73
+            ],
+            "size": 3,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              15,
+              31
+            ],
+            "size": 2,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              7,
+              11
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  4
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              43,
+              45
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ],
+        "class": [
+          {
+            "word": [
+              "RETURN_BELOW",
+              "RETURN_BELOW",
+              "STAY_AUTO_FP",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              39,
+              243
+            ],
+            "size": 2,
+            "n_live_obs": 4,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "RETURN_BELOW",
+              "STAY_AUTO_FP",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              21,
+              53,
+              55
+            ],
+            "size": 3,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "RETURN_BELOW",
+              "RETURN_BELOW",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              25,
+              59
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "PERSISTENT_ODD_ODD",
+              "RETURN_BELOW",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              37,
+              69
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "RETURN_BELOW",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              15,
+              31,
+              33,
+              35,
+              73,
+              79,
+              117,
+              9317
+            ],
+            "size": 8,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              3,
+              5,
+              7,
+              11,
+              43,
+              45,
+              75,
+              2233
+            ],
+            "size": 8,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ]
+      },
+      "fibers_H1": {
+        "block": [
+          {
+            "word": [
+              [
+                2,
+                2
+              ]
+            ],
+            "members": [
+              33,
+              35,
+              53,
+              55,
+              73,
+              243
+            ],
+            "size": 6,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                1,
+                1
+              ]
+            ],
+            "members": [
+              15,
+              21,
+              31,
+              1523
+            ],
+            "size": 4,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                3,
+                2
+              ]
+            ],
+            "members": [
+              25,
+              39,
+              59,
+              9317
+            ],
+            "size": 4,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                1
+              ]
+            ],
+            "members": [
+              9,
+              49,
+              69
+            ],
+            "size": 3,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                3
+              ]
+            ],
+            "members": [
+              5,
+              117
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                1,
+                3
+              ]
+            ],
+            "members": [
+              7,
+              11
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                4
+              ]
+            ],
+            "members": [
+              43,
+              45
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ],
+        "V": [
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              33,
+              35,
+              73,
+              243
+            ],
+            "size": 4,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  3
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              25,
+              39,
+              59
+            ],
+            "size": 3,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              7,
+              11
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              9,
+              49
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              15,
+              31
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ]
+            ],
+            "members": [
+              21,
+              1523
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  4
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              43,
+              45
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ]
+            ],
+            "members": [
+              53,
+              55
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ],
+        "class": [
+          {
+            "word": [
+              "RETURN_BELOW"
+            ],
+            "members": [
+              15,
+              21,
+              25,
+              31,
+              33,
+              35,
+              39,
+              53,
+              55,
+              59,
+              73,
+              79,
+              117,
+              243,
+              1523,
+              9317
+            ],
+            "size": 16,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "CAPTURE"
+            ],
+            "members": [
+              3,
+              5,
+              7,
+              11,
+              43,
+              45,
+              75,
+              2233
+            ],
+            "size": 8,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "STAY_AUTO_FP"
+            ],
+            "members": [
+              9,
+              49,
+              77
+            ],
+            "size": 3,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "PERSISTENT_ODD_ODD"
+            ],
+            "members": [
+              37,
+              69
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ]
+      },
+      "n_capped": 0
+    },
+    "secondary": {
+      "n_max": 200,
+      "n_starts": 56,
+      "n_landings": 162,
+      "n_y": 111,
+      "ys": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        15,
+        17,
+        19,
+        21,
+        25,
+        27,
+        29,
+        31,
+        33,
+        35,
+        37,
+        39,
+        43,
+        45,
+        47,
+        49,
+        53,
+        55,
+        59,
+        63,
+        69,
+        71,
+        73,
+        75,
+        77,
+        79,
+        81,
+        85,
+        87,
+        89,
+        95,
+        97,
+        99,
+        101,
+        103,
+        105,
+        109,
+        111,
+        113,
+        115,
+        117,
+        121,
+        125,
+        127,
+        129,
+        131,
+        133,
+        137,
+        151,
+        155,
+        157,
+        163,
+        165,
+        167,
+        169,
+        171,
+        173,
+        175,
+        179,
+        181,
+        183,
+        187,
+        191,
+        193,
+        195,
+        197,
+        199,
+        243,
+        253,
+        291,
+        295,
+        329,
+        333,
+        381,
+        385,
+        1523,
+        1661,
+        1873,
+        2233,
+        2309,
+        2331,
+        2913,
+        6573,
+        6623,
+        7191,
+        8165,
+        9317,
+        30529,
+        53045,
+        124381,
+        954175,
+        45137689,
+        93937177,
+        262584099,
+        26612713755,
+        3972502044971,
+        122959442649427,
+        697485455088953,
+        258288373266707936943,
+        11180611962307083575217341,
+        6313028752924540594327544385,
+        180370579261640036336071806107777,
+        888034721042973822495186607446955,
+        1941719144218166368455510841464890645,
+        314097630832457094601796592567466624850923021672186263
+      ],
+      "growth": {
+        "block": [
+          {
+            "H": 0,
+            "Q_H": 1,
+            "max_fiber": 111,
+            "n_multi_fibers": 1,
+            "n_refine": 5615,
+            "n_live": 111,
+            "n_capped": 13
+          },
+          {
+            "H": 1,
+            "Q_H": 26,
+            "max_fiber": 18,
+            "n_multi_fibers": 16,
+            "n_refine": 399,
+            "n_live": 110,
+            "n_capped": 13
+          },
+          {
+            "H": 2,
+            "Q_H": 64,
+            "max_fiber": 7,
+            "n_multi_fibers": 23,
+            "n_refine": 31,
+            "n_live": 88,
+            "n_capped": 13
+          },
+          {
+            "H": 3,
+            "Q_H": 74,
+            "max_fiber": 5,
+            "n_multi_fibers": 21,
+            "n_refine": 2,
+            "n_live": 61,
+            "n_capped": 13
+          },
+          {
+            "H": 4,
+            "Q_H": 75,
+            "max_fiber": 5,
+            "n_multi_fibers": 21,
+            "n_refine": 1,
+            "n_live": 38,
+            "n_capped": 13
+          },
+          {
+            "H": 5,
+            "Q_H": 76,
+            "max_fiber": 5,
+            "n_multi_fibers": 20,
+            "n_refine": 0,
+            "n_live": 27,
+            "n_capped": 13
+          },
+          {
+            "H": 6,
+            "Q_H": 76,
+            "max_fiber": 5,
+            "n_multi_fibers": 20,
+            "n_refine": 0,
+            "n_live": 22,
+            "n_capped": 13
+          },
+          {
+            "H": 7,
+            "Q_H": 76,
+            "max_fiber": 5,
+            "n_multi_fibers": 20,
+            "n_refine": 0,
+            "n_live": 20,
+            "n_capped": 13
+          },
+          {
+            "H": 8,
+            "Q_H": 76,
+            "max_fiber": 5,
+            "n_multi_fibers": 20,
+            "n_refine": null,
+            "n_live": 17,
+            "n_capped": 13
+          }
+        ],
+        "V": [
+          {
+            "H": 0,
+            "Q_H": 1,
+            "max_fiber": 111,
+            "n_multi_fibers": 1,
+            "n_refine": 5832,
+            "n_live": 111,
+            "n_capped": 13
+          },
+          {
+            "H": 1,
+            "Q_H": 38,
+            "max_fiber": 12,
+            "n_multi_fibers": 18,
+            "n_refine": 204,
+            "n_live": 110,
+            "n_capped": 13
+          },
+          {
+            "H": 2,
+            "Q_H": 69,
+            "max_fiber": 5,
+            "n_multi_fibers": 23,
+            "n_refine": 11,
+            "n_live": 88,
+            "n_capped": 13
+          },
+          {
+            "H": 3,
+            "Q_H": 75,
+            "max_fiber": 5,
+            "n_multi_fibers": 21,
+            "n_refine": 1,
+            "n_live": 61,
+            "n_capped": 13
+          },
+          {
+            "H": 4,
+            "Q_H": 76,
+            "max_fiber": 5,
+            "n_multi_fibers": 20,
+            "n_refine": 0,
+            "n_live": 38,
+            "n_capped": 13
+          },
+          {
+            "H": 5,
+            "Q_H": 76,
+            "max_fiber": 5,
+            "n_multi_fibers": 20,
+            "n_refine": 0,
+            "n_live": 27,
+            "n_capped": 13
+          },
+          {
+            "H": 6,
+            "Q_H": 76,
+            "max_fiber": 5,
+            "n_multi_fibers": 20,
+            "n_refine": 0,
+            "n_live": 22,
+            "n_capped": 13
+          },
+          {
+            "H": 7,
+            "Q_H": 76,
+            "max_fiber": 5,
+            "n_multi_fibers": 20,
+            "n_refine": 0,
+            "n_live": 20,
+            "n_capped": 13
+          },
+          {
+            "H": 8,
+            "Q_H": 76,
+            "max_fiber": 5,
+            "n_multi_fibers": 20,
+            "n_refine": null,
+            "n_live": 17,
+            "n_capped": 13
+          }
+        ],
+        "class": [
+          {
+            "H": 0,
+            "Q_H": 1,
+            "max_fiber": 111,
+            "n_multi_fibers": 1,
+            "n_refine": 4275,
+            "n_live": 111,
+            "n_capped": 13
+          },
+          {
+            "H": 1,
+            "Q_H": 5,
+            "max_fiber": 51,
+            "n_multi_fibers": 4,
+            "n_refine": 1064,
+            "n_live": 110,
+            "n_capped": 13
+          },
+          {
+            "H": 2,
+            "Q_H": 12,
+            "max_fiber": 22,
+            "n_multi_fibers": 11,
+            "n_refine": 254,
+            "n_live": 88,
+            "n_capped": 13
+          },
+          {
+            "H": 3,
+            "Q_H": 26,
+            "max_fiber": 22,
+            "n_multi_fibers": 17,
+            "n_refine": 30,
+            "n_live": 61,
+            "n_capped": 13
+          },
+          {
+            "H": 4,
+            "Q_H": 36,
+            "max_fiber": 22,
+            "n_multi_fibers": 17,
+            "n_refine": 6,
+            "n_live": 38,
+            "n_capped": 13
+          },
+          {
+            "H": 5,
+            "Q_H": 41,
+            "max_fiber": 22,
+            "n_multi_fibers": 13,
+            "n_refine": 1,
+            "n_live": 27,
+            "n_capped": 13
+          },
+          {
+            "H": 6,
+            "Q_H": 42,
+            "max_fiber": 22,
+            "n_multi_fibers": 12,
+            "n_refine": 1,
+            "n_live": 22,
+            "n_capped": 13
+          },
+          {
+            "H": 7,
+            "Q_H": 43,
+            "max_fiber": 22,
+            "n_multi_fibers": 11,
+            "n_refine": 0,
+            "n_live": 20,
+            "n_capped": 13
+          },
+          {
+            "H": 8,
+            "Q_H": 43,
+            "max_fiber": 22,
+            "n_multi_fibers": 11,
+            "n_refine": null,
+            "n_live": 17,
+            "n_capped": 13
+          }
+        ]
+      },
+      "v_distinct": 38,
+      "v_h1_matches": true,
+      "plateau_from": 5,
+      "fibers_H": {
+        "block": [
+          {
+            "word": [
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              191,
+              195,
+              243
+            ],
+            "size": 3,
+            "n_live_obs": 4,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              197,
+              199
+            ],
+            "size": 2,
+            "n_live_obs": 4,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              125,
+              127,
+              131,
+              133
+            ],
+            "size": 4,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                1,
+                1
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              19,
+              21
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                3,
+                2
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              25,
+              59
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                2
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              53,
+              55
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                4
+              ],
+              "HALT"
+            ],
+            "members": [
+              137,
+              157
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                1,
+                2
+              ],
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              381,
+              385
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              15,
+              27,
+              31,
+              47
+            ],
+            "size": 4,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                2
+              ],
+              [
+                1,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              33,
+              35,
+              73,
+              169
+            ],
+            "size": 4,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                3
+              ],
+              [
+                3,
+                3
+              ],
+              "HALT"
+            ],
+            "members": [
+              85,
+              117,
+              121
+            ],
+            "size": 3,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                1
+              ],
+              [
+                1,
+                4
+              ],
+              "HALT"
+            ],
+            "members": [
+              95,
+              101,
+              155
+            ],
+            "size": 3,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ],
+        "V": [
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ],
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              191,
+              195,
+              243
+            ],
+            "size": 3,
+            "n_live_obs": 4,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ],
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              197,
+              199
+            ],
+            "size": 2,
+            "n_live_obs": 4,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              125,
+              127,
+              131,
+              133
+            ],
+            "size": 4,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ],
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              19,
+              21
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  3
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              25,
+              59
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ],
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              53,
+              55
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  4
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              137,
+              157
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ],
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              381,
+              385
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              15,
+              27,
+              31,
+              47
+            ],
+            "size": 4,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              33,
+              35,
+              73,
+              169
+            ],
+            "size": 4,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ],
+              [
+                [
+                  "a",
+                  3
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              85,
+              117,
+              121
+            ],
+            "size": 3,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  4
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ],
+              [
+                [
+                  "a",
+                  null
+                ],
+                [
+                  "b",
+                  null
+                ],
+                [
+                  "cell",
+                  null
+                ],
+                [
+                  "class",
+                  null
+                ],
+                [
+                  "next_exists",
+                  false
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              95,
+              101,
+              155
+            ],
+            "size": 3,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ],
+        "class": [
+          {
+            "word": [
+              "RETURN_BELOW",
+              "RETURN_BELOW",
+              "STAY_AUTO_FP",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              39,
+              191,
+              195,
+              243
+            ],
+            "size": 4,
+            "n_live_obs": 4,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "STAY_AUTO_FP",
+              "RETURN_BELOW",
+              "RETURN_BELOW",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              97,
+              115
+            ],
+            "size": 2,
+            "n_live_obs": 4,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "STAY_AUTO_FP",
+              "RETURN_BELOW",
+              "STAY_AUTO_FP",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              197,
+              199
+            ],
+            "size": 2,
+            "n_live_obs": 4,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "RETURN_BELOW",
+              "RETURN_BELOW",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              25,
+              59,
+              125,
+              127,
+              131,
+              133,
+              171,
+              8165,
+              45137689
+            ],
+            "size": 9,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "RETURN_BELOW",
+              "STAY_AUTO_FP",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              19,
+              21,
+              53,
+              55,
+              187,
+              381,
+              385
+            ],
+            "size": 7,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "STAY_AUTO_FP",
+              "RETURN_BELOW",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              49,
+              103,
+              137,
+              157
+            ],
+            "size": 4,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "PERSISTENT_ODD_ODD",
+              "RETURN_BELOW",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              37,
+              69
+            ],
+            "size": 2,
+            "n_live_obs": 3,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "RETURN_BELOW",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              15,
+              27,
+              29,
+              31,
+              33,
+              35,
+              47,
+              73,
+              79,
+              85,
+              117,
+              121,
+              129,
+              169,
+              253,
+              295,
+              9317,
+              124381
+            ],
+            "size": 18,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "STAY_AUTO_FP",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              9,
+              81,
+              87,
+              95,
+              101,
+              155
+            ],
+            "size": 6,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "PERSISTENT_ODD_ODD",
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              99,
+              113,
+              183
+            ],
+            "size": 3,
+            "n_live_obs": 2,
+            "long": true,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "CAPTURE",
+              "HALT"
+            ],
+            "members": [
+              3,
+              5,
+              7,
+              11,
+              17,
+              43,
+              45,
+              63,
+              71,
+              75,
+              151,
+              167,
+              179,
+              181,
+              291,
+              1661,
+              1873,
+              2233,
+              2331,
+              2913,
+              6573,
+              6623
+            ],
+            "size": 22,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ]
+      },
+      "fibers_H1": {
+        "block": [
+          {
+            "word": [
+              [
+                2,
+                1
+              ]
+            ],
+            "members": [
+              9,
+              49,
+              69,
+              89,
+              95,
+              97,
+              101,
+              105,
+              109,
+              111,
+              137,
+              155,
+              157,
+              173,
+              175,
+              197,
+              199,
+              180370579261640036336071806107777
+            ],
+            "size": 18,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                1,
+                1
+              ]
+            ],
+            "members": [
+              15,
+              19,
+              21,
+              27,
+              31,
+              47,
+              171,
+              253,
+              295,
+              333,
+              1523,
+              2309,
+              30529,
+              124381,
+              954175,
+              93937177
+            ],
+            "size": 16,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                2,
+                2
+              ]
+            ],
+            "members": [
+              33,
+              35,
+              53,
+              55,
+              73,
+              125,
+              127,
+              131,
+              133,
+              169,
+              191,
+              195,
+              243,
+              11180611962307083575217341,
+              1941719144218166368455510841464890645
+            ],
+            "size": 15,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                3,
+                1
+              ]
+            ],
+            "members": [
+              77,
+              81,
+              87,
+              99,
+              113,
+              183,
+              193,
+              53045,
+              697485455088953
+            ],
+            "size": 9,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                1,
+                2
+              ]
+            ],
+            "members": [
+              29,
+              79,
+              381,
+              385,
+              8165,
+              3972502044971,
+              258288373266707936943,
+              6313028752924540594327544385
+            ],
+            "size": 8,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                1,
+                3
+              ]
+            ],
+            "members": [
+              7,
+              11,
+              17,
+              45137689,
+              262584099
+            ],
+            "size": 5,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                3,
+                2
+              ]
+            ],
+            "members": [
+              25,
+              39,
+              59,
+              9317,
+              888034721042973822495186607446955
+            ],
+            "size": 5,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                1,
+                4
+              ]
+            ],
+            "members": [
+              63,
+              71,
+              167,
+              179,
+              291
+            ],
+            "size": 5,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                3
+              ]
+            ],
+            "members": [
+              5,
+              85,
+              117,
+              121
+            ],
+            "size": 4,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                2,
+                5
+              ]
+            ],
+            "members": [
+              151,
+              181,
+              2233,
+              2331
+            ],
+            "size": 4,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                3,
+                3
+              ]
+            ],
+            "members": [
+              3,
+              187
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                4,
+                1
+              ]
+            ],
+            "members": [
+              37,
+              103
+            ],
+            "size": 2,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ],
+        "V": [
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              33,
+              35,
+              73,
+              125,
+              127,
+              131,
+              133,
+              169,
+              191,
+              195,
+              243,
+              1941719144218166368455510841464890645
+            ],
+            "size": 12,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              9,
+              49,
+              95,
+              97,
+              101,
+              137,
+              155,
+              157,
+              175,
+              197,
+              199
+            ],
+            "size": 11,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              15,
+              27,
+              31,
+              47,
+              171,
+              253,
+              295,
+              2309,
+              30529,
+              954175,
+              93937177
+            ],
+            "size": 11,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "PERSISTENT_ODD_ODD"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ]
+            ],
+            "members": [
+              69,
+              89,
+              105,
+              109,
+              111,
+              173,
+              180370579261640036336071806107777
+            ],
+            "size": 7,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ]
+            ],
+            "members": [
+              29,
+              79,
+              381,
+              385,
+              3972502044971,
+              6313028752924540594327544385
+            ],
+            "size": 6,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ]
+            ],
+            "members": [
+              19,
+              21,
+              333,
+              1523,
+              124381
+            ],
+            "size": 5,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  4
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              63,
+              71,
+              167,
+              179,
+              291
+            ],
+            "size": 5,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  3
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "PERSISTENT_ODD_ODD"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  true
+                ]
+              ]
+            ],
+            "members": [
+              99,
+              113,
+              183,
+              193,
+              697485455088953
+            ],
+            "size": 5,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  3
+                ],
+                [
+                  "b",
+                  2
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "RETURN_BELOW"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              25,
+              39,
+              59,
+              888034721042973822495186607446955
+            ],
+            "size": 4,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  3
+                ],
+                [
+                  "b",
+                  1
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "STAY_AUTO_FP"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              77,
+              81,
+              87,
+              53045
+            ],
+            "size": 4,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  2
+                ],
+                [
+                  "b",
+                  5
+                ],
+                [
+                  "cell",
+                  "overshoot"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              151,
+              181,
+              2233,
+              2331
+            ],
+            "size": 4,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              [
+                [
+                  "a",
+                  1
+                ],
+                [
+                  "b",
+                  3
+                ],
+                [
+                  "cell",
+                  "below"
+                ],
+                [
+                  "class",
+                  "CAPTURE"
+                ],
+                [
+                  "next_exists",
+                  true
+                ],
+                [
+                  "odd_odd",
+                  false
+                ]
+              ]
+            ],
+            "members": [
+              7,
+              11,
+              17
+            ],
+            "size": 3,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          }
+        ],
+        "class": [
+          {
+            "word": [
+              "RETURN_BELOW"
+            ],
+            "members": [
+              15,
+              19,
+              21,
+              25,
+              27,
+              29,
+              31,
+              33,
+              35,
+              39,
+              47,
+              53,
+              55,
+              59,
+              73,
+              79,
+              85,
+              117,
+              121,
+              125,
+              127,
+              129,
+              131,
+              133,
+              169,
+              171,
+              187,
+              191,
+              195,
+              243,
+              253,
+              295,
+              333,
+              381,
+              385,
+              1523,
+              2309,
+              8165,
+              9317,
+              30529,
+              124381,
+              954175,
+              45137689,
+              93937177,
+              262584099,
+              3972502044971,
+              258288373266707936943,
+              11180611962307083575217341,
+              6313028752924540594327544385,
+              888034721042973822495186607446955,
+              1941719144218166368455510841464890645
+            ],
+            "size": 51,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              "CAPTURE"
+            ],
+            "members": [
+              3,
+              5,
+              7,
+              11,
+              17,
+              43,
+              45,
+              63,
+              71,
+              75,
+              151,
+              167,
+              179,
+              181,
+              291,
+              1661,
+              1873,
+              2233,
+              2331,
+              2913,
+              6573,
+              6623
+            ],
+            "size": 22,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": true,
+            "any_capped": false
+          },
+          {
+            "word": [
+              "STAY_AUTO_FP"
+            ],
+            "members": [
+              9,
+              49,
+              77,
+              81,
+              87,
+              95,
+              97,
+              101,
+              103,
+              115,
+              137,
+              155,
+              157,
+              163,
+              165,
+              175,
+              197,
+              199,
+              53045
+            ],
+            "size": 19,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          },
+          {
+            "word": [
+              "PERSISTENT_ODD_ODD"
+            ],
+            "members": [
+              37,
+              69,
+              89,
+              99,
+              105,
+              109,
+              111,
+              113,
+              173,
+              183,
+              193,
+              329,
+              7191,
+              26612713755,
+              122959442649427,
+              697485455088953,
+              180370579261640036336071806107777,
+              314097630832457094601796592567466624850923021672186263
+            ],
+            "size": 18,
+            "n_live_obs": 1,
+            "long": false,
+            "all_halted": false,
+            "any_capped": true
+          }
+        ]
+      },
+      "n_capped": 13
+    },
+    "hard": {
+      "9": {
+        "y": 9,
+        "states": [
+          9,
+          11,
+          1
+        ],
+        "terminal": "HALT",
+        "capped": false,
+        "blocks": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "classes": [
+          "STAY_AUTO_FP",
+          "CAPTURE"
+        ]
+      },
+      "37": {
+        "y": 37,
+        "states": [
+          37,
+          9317,
+          2233,
+          1
+        ],
+        "terminal": "HALT",
+        "capped": false,
+        "blocks": [
+          [
+            4,
+            1
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            5
+          ]
+        ],
+        "classes": [
+          "PERSISTENT_ODD_ODD",
+          "RETURN_BELOW",
+          "CAPTURE"
+        ]
+      },
+      "49": {
+        "y": 49,
+        "states": [
+          49,
+          79,
+          5,
+          1
+        ],
+        "terminal": "HALT",
+        "capped": false,
+        "blocks": [
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "classes": [
+          "STAY_AUTO_FP",
+          "RETURN_BELOW",
+          "CAPTURE"
+        ]
+      },
+      "69": {
+        "y": 69,
+        "states": [
+          69,
+          117,
+          3,
+          1
+        ],
+        "terminal": "HALT",
+        "capped": false,
+        "blocks": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "classes": [
+          "PERSISTENT_ODD_ODD",
+          "RETURN_BELOW",
+          "CAPTURE"
+        ]
+      },
+      "77": {
+        "y": 77,
+        "states": [
+          77,
+          1523,
+          243,
+          21,
+          9,
+          11,
+          1
+        ],
+        "terminal": "HALT",
+        "capped": false,
+        "blocks": [
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "classes": [
+          "STAY_AUTO_FP",
+          "RETURN_BELOW",
+          "RETURN_BELOW",
+          "RETURN_BELOW",
+          "STAY_AUTO_FP",
+          "CAPTURE"
+        ]
+      },
+      "11": {
+        "y": 11,
+        "states": [
+          11,
+          1
+        ],
+        "terminal": "HALT",
+        "capped": false,
+        "blocks": [
+          [
+            1,
+            3
+          ]
+        ],
+        "classes": [
+          "CAPTURE"
+        ]
+      }
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "ResidualStep": true,
+    "PersistentOddResidual": true,
+    "ResidualChain": true,
+    "no_ResidualState_file": true,
+    "no_ResidualState_def": true,
+    "ResidualStep_unchanged": true,
+    "no_forbidden_engines": true,
+    "forbidden_hits": [],
+    "no_global_termination_theorem": true,
+    "GlobalDefect_untouched_by_this_probe": true,
+    "FloorPower_absent": true,
+    "no_word_language_reopen": true
+  },
+  "decision": {
+    "classification": "RESIDUAL_MN_REPACK",
+    "secondary": [
+      "plateau"
+    ],
+    "reason": "Q_H plateaus below |Y| only because some landings share a complete block-word to HALT; the trace is a certificate of y, not a new state (Q_H=[1, 14, 22, 23, 23, 23, 23, 23, 23], |Y|=30, long_halt=4, short=2)",
+    "fibers": {
+      "n_multi": 6,
+      "n_long_live": 0,
+      "n_long_halt": 4,
+      "n_short": 2,
+      "long_live": [],
+      "long_halt": [
+        {
+          "word": [
+            [
+              3,
+              2
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            25,
+            59
+          ],
+          "size": 2,
+          "n_live_obs": 3,
+          "long": true,
+          "all_halted": true,
+          "any_capped": false
+        },
+        {
+          "word": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            53,
+            55
+          ],
+          "size": 2,
+          "n_live_obs": 3,
+          "long": true,
+          "all_halted": true,
+          "any_capped": false
+        },
+        {
+          "word": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            33,
+            35,
+            73
+          ],
+          "size": 3,
+          "n_live_obs": 2,
+          "long": true,
+          "all_halted": true,
+          "any_capped": false
+        },
+        {
+          "word": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            15,
+            31
+          ],
+          "size": 2,
+          "n_live_obs": 2,
+          "long": true,
+          "all_halted": true,
+          "any_capped": false
+        }
+      ],
+      "short": [
+        {
+          "word": [
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            7,
+            11
+          ],
+          "size": 2,
+          "n_live_obs": 1,
+          "long": false,
+          "all_halted": true,
+          "any_capped": false
+        },
+        {
+          "word": [
+            [
+              2,
+              4
+            ],
+            "HALT"
+          ],
+          "members": [
+            43,
+            45
+          ],
+          "size": 2,
+          "n_live_obs": 1,
+          "long": false,
+          "all_halted": true,
+          "any_capped": false
+        }
+      ]
+    }
+  },
+  "search_method": "odd-odd residual landings n<=80 and n<=200; intrinsic residual_excursion traces; ~_H on block/V/class; no ResidualState"
+}

@@ -1,0 +1,1151 @@
+{
+  "decision": {
+    "classification": "STATE_QUOTIENT_GREEN",
+    "secondary": [
+      "residual_V"
+    ],
+    "reason": "a listed projection other than exact y predicts Future_1 with a multi-y fiber that is not only a HALT certificate: ['residual_V']"
+  },
+  "primary": {
+    "n_y": 30,
+    "growth_labels": [
+      {
+        "H": 0,
+        "Q_H": 1,
+        "max_fiber": 30,
+        "n_multi": 1,
+        "n_halt_multi": 1,
+        "n_live_multi": 0,
+        "n_capped": 0
+      },
+      {
+        "H": 1,
+        "Q_H": 6,
+        "max_fiber": 9,
+        "n_multi": 5,
+        "n_halt_multi": 5,
+        "n_live_multi": 0,
+        "n_capped": 0
+      },
+      {
+        "H": 2,
+        "Q_H": 11,
+        "max_fiber": 8,
+        "n_multi": 8,
+        "n_halt_multi": 8,
+        "n_live_multi": 0,
+        "n_capped": 0
+      },
+      {
+        "H": 3,
+        "Q_H": 12,
+        "max_fiber": 8,
+        "n_multi": 7,
+        "n_halt_multi": 7,
+        "n_live_multi": 0,
+        "n_capped": 0
+      },
+      {
+        "H": 4,
+        "Q_H": 12,
+        "max_fiber": 8,
+        "n_multi": 7,
+        "n_halt_multi": 7,
+        "n_live_multi": 0,
+        "n_capped": 0
+      },
+      {
+        "H": 5,
+        "Q_H": 12,
+        "max_fiber": 8,
+        "n_multi": 7,
+        "n_halt_multi": 7,
+        "n_live_multi": 0,
+        "n_capped": 0
+      },
+      {
+        "H": 6,
+        "Q_H": 12,
+        "max_fiber": 8,
+        "n_multi": 7,
+        "n_halt_multi": 7,
+        "n_live_multi": 0,
+        "n_capped": 0
+      }
+    ],
+    "k_star": {
+      "1": {
+        "k_star": 9,
+        "exceeds_k_max": false,
+        "separator": [
+          243,
+          1523
+        ],
+        "v2_diff": 8
+      },
+      "2": {
+        "k_star": 9,
+        "exceeds_k_max": false,
+        "separator": [
+          243,
+          1523
+        ],
+        "v2_diff": 8
+      },
+      "3": {
+        "k_star": 9,
+        "exceeds_k_max": false,
+        "separator": [
+          243,
+          1523
+        ],
+        "v2_diff": 8
+      },
+      "4": {
+        "k_star": 9,
+        "exceeds_k_max": false,
+        "separator": [
+          243,
+          1523
+        ],
+        "v2_diff": 8
+      },
+      "5": {
+        "k_star": 9,
+        "exceeds_k_max": false,
+        "separator": [
+          243,
+          1523
+        ],
+        "v2_diff": 8
+      },
+      "6": {
+        "k_star": 9,
+        "exceeds_k_max": false,
+        "separator": [
+          243,
+          1523
+        ],
+        "v2_diff": 8
+      }
+    },
+    "projections_H1": [
+      {
+        "name": "exact_y",
+        "n_states": 30,
+        "n_projected": 30,
+        "n_future": 6,
+        "compression": 1.0,
+        "n_multi_fibers": 0,
+        "n_separating_classes": 0,
+        "n_overdescribed_futures": 5,
+        "sufficient": true,
+        "first_separator": null
+      },
+      {
+        "name": "parity",
+        "n_states": 30,
+        "n_projected": 1,
+        "n_future": 6,
+        "compression": 0.03333333333333333,
+        "n_multi_fibers": 1,
+        "n_separating_classes": 1,
+        "n_overdescribed_futures": 0,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          3
+        ]
+      },
+      {
+        "name": "y_mod_8",
+        "n_states": 30,
+        "n_projected": 4,
+        "n_future": 6,
+        "compression": 0.13333333333333333,
+        "n_multi_fibers": 4,
+        "n_separating_classes": 4,
+        "n_overdescribed_futures": 4,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "v2_3y1",
+        "n_states": 30,
+        "n_projected": 6,
+        "n_future": 6,
+        "compression": 0.2,
+        "n_multi_fibers": 5,
+        "n_separating_classes": 4,
+        "n_overdescribed_futures": 4,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "residual_V",
+        "n_states": 30,
+        "n_projected": 19,
+        "n_future": 6,
+        "compression": 0.6333333333333333,
+        "n_multi_fibers": 8,
+        "n_separating_classes": 0,
+        "n_overdescribed_futures": 5,
+        "sufficient": true,
+        "first_separator": null
+      },
+      {
+        "name": "pe_flags",
+        "n_states": 30,
+        "n_projected": 3,
+        "n_future": 6,
+        "compression": 0.1,
+        "n_multi_fibers": 3,
+        "n_separating_classes": 1,
+        "n_overdescribed_futures": 0,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          3
+        ]
+      },
+      {
+        "name": "y_mod_2_1",
+        "n_states": 30,
+        "n_projected": 1,
+        "n_future": 6,
+        "compression": 0.03333333333333333,
+        "n_multi_fibers": 1,
+        "n_separating_classes": 1,
+        "n_overdescribed_futures": 0,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          3
+        ]
+      },
+      {
+        "name": "mod2_1_v2",
+        "n_states": 30,
+        "n_projected": 6,
+        "n_future": 6,
+        "compression": 0.2,
+        "n_multi_fibers": 5,
+        "n_separating_classes": 4,
+        "n_overdescribed_futures": 4,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "y_mod_2_2",
+        "n_states": 30,
+        "n_projected": 2,
+        "n_future": 6,
+        "compression": 0.06666666666666667,
+        "n_multi_fibers": 2,
+        "n_separating_classes": 2,
+        "n_overdescribed_futures": 3,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          5
+        ]
+      },
+      {
+        "name": "mod2_2_v2",
+        "n_states": 30,
+        "n_projected": 6,
+        "n_future": 6,
+        "compression": 0.2,
+        "n_multi_fibers": 5,
+        "n_separating_classes": 4,
+        "n_overdescribed_futures": 4,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "y_mod_2_3",
+        "n_states": 30,
+        "n_projected": 4,
+        "n_future": 6,
+        "compression": 0.13333333333333333,
+        "n_multi_fibers": 4,
+        "n_separating_classes": 4,
+        "n_overdescribed_futures": 4,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "mod2_3_v2",
+        "n_states": 30,
+        "n_projected": 7,
+        "n_future": 6,
+        "compression": 0.23333333333333334,
+        "n_multi_fibers": 6,
+        "n_separating_classes": 5,
+        "n_overdescribed_futures": 4,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "y_mod_2_4",
+        "n_states": 30,
+        "n_projected": 8,
+        "n_future": 6,
+        "compression": 0.26666666666666666,
+        "n_multi_fibers": 8,
+        "n_separating_classes": 8,
+        "n_overdescribed_futures": 4,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          33
+        ]
+      },
+      {
+        "name": "mod2_4_v2",
+        "n_states": 30,
+        "n_projected": 10,
+        "n_future": 6,
+        "compression": 0.3333333333333333,
+        "n_multi_fibers": 9,
+        "n_separating_classes": 8,
+        "n_overdescribed_futures": 4,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          33
+        ]
+      },
+      {
+        "name": "y_mod_2_8",
+        "n_states": 30,
+        "n_projected": 29,
+        "n_future": 6,
+        "compression": 0.9666666666666667,
+        "n_multi_fibers": 1,
+        "n_separating_classes": 1,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          243,
+          1523
+        ]
+      },
+      {
+        "name": "mod2_8_v2",
+        "n_states": 30,
+        "n_projected": 29,
+        "n_future": 6,
+        "compression": 0.9666666666666667,
+        "n_multi_fibers": 1,
+        "n_separating_classes": 1,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          243,
+          1523
+        ]
+      },
+      {
+        "name": "y_mod_2_16",
+        "n_states": 30,
+        "n_projected": 30,
+        "n_future": 6,
+        "compression": 1.0,
+        "n_multi_fibers": 0,
+        "n_separating_classes": 0,
+        "n_overdescribed_futures": 5,
+        "sufficient": true,
+        "first_separator": null
+      },
+      {
+        "name": "mod2_16_v2",
+        "n_states": 30,
+        "n_projected": 30,
+        "n_future": 6,
+        "compression": 1.0,
+        "n_multi_fibers": 0,
+        "n_separating_classes": 0,
+        "n_overdescribed_futures": 5,
+        "sufficient": true,
+        "first_separator": null
+      }
+    ],
+    "most_promising_H1": {
+      "name": "residual_V",
+      "reason": "sufficient_with_fiber"
+    }
+  },
+  "phase0": {
+    "n_y": 6004,
+    "n_atlas_starts": 4000,
+    "growth_labels": [
+      {
+        "H": 0,
+        "Q_H": 1,
+        "max_fiber": 6004,
+        "n_multi": 1,
+        "n_halt_multi": 0,
+        "n_live_multi": 1,
+        "n_capped": 2154
+      },
+      {
+        "H": 1,
+        "Q_H": 6,
+        "max_fiber": 4109,
+        "n_multi": 5,
+        "n_halt_multi": 1,
+        "n_live_multi": 4,
+        "n_capped": 2154
+      },
+      {
+        "H": 2,
+        "Q_H": 18,
+        "max_fiber": 1197,
+        "n_multi": 17,
+        "n_halt_multi": 5,
+        "n_live_multi": 12,
+        "n_capped": 2154
+      },
+      {
+        "H": 3,
+        "Q_H": 54,
+        "max_fiber": 587,
+        "n_multi": 53,
+        "n_halt_multi": 18,
+        "n_live_multi": 35,
+        "n_capped": 2154
+      },
+      {
+        "H": 4,
+        "Q_H": 158,
+        "max_fiber": 265,
+        "n_multi": 150,
+        "n_halt_multi": 51,
+        "n_live_multi": 99,
+        "n_capped": 2154
+      },
+      {
+        "H": 5,
+        "Q_H": 393,
+        "max_fiber": 223,
+        "n_multi": 326,
+        "n_halt_multi": 122,
+        "n_live_multi": 204,
+        "n_capped": 2154
+      },
+      {
+        "H": 6,
+        "Q_H": 769,
+        "max_fiber": 223,
+        "n_multi": 520,
+        "n_halt_multi": 208,
+        "n_live_multi": 312,
+        "n_capped": 2154
+      }
+    ],
+    "k_star": {
+      "1": {
+        "k_star": null,
+        "exceeds_k_max": true,
+        "separator": [
+          33,
+          573141612728625270488952931933108109345
+        ],
+        "v2_diff": 16
+      },
+      "2": {
+        "k_star": null,
+        "exceeds_k_max": true,
+        "separator": [
+          33,
+          573141612728625270488952931933108109345
+        ],
+        "v2_diff": 16
+      },
+      "3": {
+        "k_star": null,
+        "exceeds_k_max": true,
+        "separator": [
+          33,
+          573141612728625270488952931933108109345
+        ],
+        "v2_diff": 16
+      },
+      "4": {
+        "k_star": null,
+        "exceeds_k_max": true,
+        "separator": [
+          33,
+          573141612728625270488952931933108109345
+        ],
+        "v2_diff": 16
+      },
+      "5": {
+        "k_star": null,
+        "exceeds_k_max": true,
+        "separator": [
+          33,
+          573141612728625270488952931933108109345
+        ],
+        "v2_diff": 16
+      },
+      "6": {
+        "k_star": null,
+        "exceeds_k_max": true,
+        "separator": [
+          33,
+          573141612728625270488952931933108109345
+        ],
+        "v2_diff": 16
+      }
+    },
+    "projections_H1": [
+      {
+        "name": "exact_y",
+        "n_states": 6004,
+        "n_projected": 6004,
+        "n_future": 6,
+        "compression": 1.0,
+        "n_multi_fibers": 0,
+        "n_separating_classes": 0,
+        "n_overdescribed_futures": 5,
+        "sufficient": true,
+        "first_separator": null
+      },
+      {
+        "name": "parity",
+        "n_states": 6004,
+        "n_projected": 1,
+        "n_future": 6,
+        "compression": 0.00016655562958027982,
+        "n_multi_fibers": 1,
+        "n_separating_classes": 1,
+        "n_overdescribed_futures": 0,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          3
+        ]
+      },
+      {
+        "name": "y_mod_8",
+        "n_states": 6004,
+        "n_projected": 4,
+        "n_future": 6,
+        "compression": 0.0006662225183211193,
+        "n_multi_fibers": 4,
+        "n_separating_classes": 4,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "v2_3y1",
+        "n_states": 6004,
+        "n_projected": 15,
+        "n_future": 6,
+        "compression": 0.002498334443704197,
+        "n_multi_fibers": 12,
+        "n_separating_classes": 11,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "residual_V",
+        "n_states": 6004,
+        "n_projected": 121,
+        "n_future": 6,
+        "compression": 0.020153231179213856,
+        "n_multi_fibers": 90,
+        "n_separating_classes": 0,
+        "n_overdescribed_futures": 5,
+        "sufficient": true,
+        "first_separator": null
+      },
+      {
+        "name": "pe_flags",
+        "n_states": 6004,
+        "n_projected": 3,
+        "n_future": 6,
+        "compression": 0.0004996668887408394,
+        "n_multi_fibers": 3,
+        "n_separating_classes": 1,
+        "n_overdescribed_futures": 0,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          3
+        ]
+      },
+      {
+        "name": "y_mod_2_1",
+        "n_states": 6004,
+        "n_projected": 1,
+        "n_future": 6,
+        "compression": 0.00016655562958027982,
+        "n_multi_fibers": 1,
+        "n_separating_classes": 1,
+        "n_overdescribed_futures": 0,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          3
+        ]
+      },
+      {
+        "name": "mod2_1_v2",
+        "n_states": 6004,
+        "n_projected": 15,
+        "n_future": 6,
+        "compression": 0.002498334443704197,
+        "n_multi_fibers": 12,
+        "n_separating_classes": 11,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "y_mod_2_2",
+        "n_states": 6004,
+        "n_projected": 2,
+        "n_future": 6,
+        "compression": 0.00033311125916055963,
+        "n_multi_fibers": 2,
+        "n_separating_classes": 2,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          5
+        ]
+      },
+      {
+        "name": "mod2_2_v2",
+        "n_states": 6004,
+        "n_projected": 15,
+        "n_future": 6,
+        "compression": 0.002498334443704197,
+        "n_multi_fibers": 12,
+        "n_separating_classes": 11,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "y_mod_2_3",
+        "n_states": 6004,
+        "n_projected": 4,
+        "n_future": 6,
+        "compression": 0.0006662225183211193,
+        "n_multi_fibers": 4,
+        "n_separating_classes": 4,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "mod2_3_v2",
+        "n_states": 6004,
+        "n_projected": 16,
+        "n_future": 6,
+        "compression": 0.002664890073284477,
+        "n_multi_fibers": 13,
+        "n_separating_classes": 12,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          9
+        ]
+      },
+      {
+        "name": "y_mod_2_4",
+        "n_states": 6004,
+        "n_projected": 8,
+        "n_future": 6,
+        "compression": 0.0013324450366422385,
+        "n_multi_fibers": 8,
+        "n_separating_classes": 8,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          17
+        ]
+      },
+      {
+        "name": "mod2_4_v2",
+        "n_states": 6004,
+        "n_projected": 19,
+        "n_future": 6,
+        "compression": 0.0031645569620253164,
+        "n_multi_fibers": 16,
+        "n_separating_classes": 15,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          17
+        ]
+      },
+      {
+        "name": "y_mod_2_8",
+        "n_states": 6004,
+        "n_projected": 128,
+        "n_future": 6,
+        "compression": 0.021319120586275817,
+        "n_multi_fibers": 128,
+        "n_separating_classes": 128,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          257
+        ]
+      },
+      {
+        "name": "mod2_8_v2",
+        "n_states": 6004,
+        "n_projected": 135,
+        "n_future": 6,
+        "compression": 0.022485009993337773,
+        "n_multi_fibers": 132,
+        "n_separating_classes": 131,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          1,
+          257
+        ]
+      },
+      {
+        "name": "y_mod_2_16",
+        "n_states": 6004,
+        "n_projected": 5880,
+        "n_future": 6,
+        "compression": 0.9793471019320453,
+        "n_multi_fibers": 122,
+        "n_separating_classes": 108,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          33,
+          573141612728625270488952931933108109345
+        ]
+      },
+      {
+        "name": "mod2_16_v2",
+        "n_states": 6004,
+        "n_projected": 5880,
+        "n_future": 6,
+        "compression": 0.9793471019320453,
+        "n_multi_fibers": 122,
+        "n_separating_classes": 108,
+        "n_overdescribed_futures": 5,
+        "sufficient": false,
+        "first_separator": [
+          33,
+          573141612728625270488952931933108109345
+        ]
+      }
+    ],
+    "most_promising_H1": {
+      "name": "residual_V",
+      "reason": "sufficient_with_fiber"
+    }
+  },
+  "hard": {
+    "9": {
+      "y": 9,
+      "terminal": "HALT",
+      "capped": false,
+      "labels": [
+        [
+          true,
+          "STAY_AUTO_FP",
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          "CAPTURE",
+          false,
+          false,
+          false
+        ],
+        [
+          "HALT"
+        ]
+      ],
+      "block": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          "HALT"
+        ]
+      ]
+    },
+    "11": {
+      "y": 11,
+      "terminal": "HALT",
+      "capped": false,
+      "labels": [
+        [
+          true,
+          "CAPTURE",
+          false,
+          false,
+          false
+        ],
+        [
+          "HALT"
+        ]
+      ],
+      "block": [
+        [
+          1,
+          3
+        ],
+        [
+          "HALT"
+        ]
+      ]
+    },
+    "37": {
+      "y": 37,
+      "terminal": "HALT",
+      "capped": false,
+      "labels": [
+        [
+          true,
+          "PERSISTENT_ODD_ODD",
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          "RETURN_BELOW",
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          "CAPTURE",
+          false,
+          false,
+          false
+        ],
+        [
+          "HALT"
+        ]
+      ],
+      "block": [
+        [
+          4,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          5
+        ],
+        [
+          "HALT"
+        ]
+      ]
+    },
+    "49": {
+      "y": 49,
+      "terminal": "HALT",
+      "capped": false,
+      "labels": [
+        [
+          true,
+          "STAY_AUTO_FP",
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          "RETURN_BELOW",
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          "CAPTURE",
+          false,
+          false,
+          false
+        ],
+        [
+          "HALT"
+        ]
+      ],
+      "block": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          "HALT"
+        ]
+      ]
+    },
+    "69": {
+      "y": 69,
+      "terminal": "HALT",
+      "capped": false,
+      "labels": [
+        [
+          true,
+          "PERSISTENT_ODD_ODD",
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          "RETURN_BELOW",
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          "CAPTURE",
+          false,
+          false,
+          false
+        ],
+        [
+          "HALT"
+        ]
+      ],
+      "block": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ],
+        [
+          "HALT"
+        ]
+      ]
+    },
+    "77": {
+      "y": 77,
+      "terminal": "HALT",
+      "capped": false,
+      "labels": [
+        [
+          true,
+          "STAY_AUTO_FP",
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          "RETURN_BELOW",
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          "RETURN_BELOW",
+          false,
+          false,
+          false
+        ],
+        [
+          true,
+          "RETURN_BELOW",
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          "STAY_AUTO_FP",
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          "CAPTURE",
+          false,
+          false,
+          false
+        ]
+      ],
+      "block": [
+        [
+          3,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          3
+        ]
+      ]
+    },
+    "365": {
+      "y": 365,
+      "terminal": "HALT",
+      "capped": false,
+      "labels": [
+        [
+          true,
+          "PERSISTENT_ODD_ODD",
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          "PERSISTENT_ODD_ODD",
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          "PERSISTENT_ODD_ODD",
+          true,
+          true,
+          true
+        ],
+        [
+          true,
+          "STAY_AUTO_FP",
+          false,
+          false,
+          true
+        ],
+        [
+          true,
+          "RETURN_BELOW",
+          true,
+          false,
+          false
+        ],
+        [
+          true,
+          "CAPTURE",
+          false,
+          false,
+          false
+        ]
+      ],
+      "block": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ]
+    }
+  }
+}

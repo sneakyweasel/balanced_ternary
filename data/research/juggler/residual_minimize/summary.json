@@ -1,0 +1,948 @@
+{
+  "decision": {
+    "classification": "RESIDUAL_MN_REPACK",
+    "secondary": [
+      "plateau"
+    ],
+    "reason": "Q_H plateaus below |Y| only because some landings share a complete block-word to HALT; the trace is a certificate of y, not a new state (Q_H=[1, 14, 22, 23, 23, 23, 23, 23, 23], |Y|=30, long_halt=4, short=2)",
+    "fibers": {
+      "n_multi": 6,
+      "n_long_live": 0,
+      "n_long_halt": 4,
+      "n_short": 2,
+      "long_live": [],
+      "long_halt": [
+        {
+          "word": [
+            [
+              3,
+              2
+            ],
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            25,
+            59
+          ],
+          "size": 2,
+          "n_live_obs": 3,
+          "long": true,
+          "all_halted": true,
+          "any_capped": false
+        },
+        {
+          "word": [
+            [
+              2,
+              2
+            ],
+            [
+              2,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            53,
+            55
+          ],
+          "size": 2,
+          "n_live_obs": 3,
+          "long": true,
+          "all_halted": true,
+          "any_capped": false
+        },
+        {
+          "word": [
+            [
+              2,
+              2
+            ],
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            33,
+            35,
+            73
+          ],
+          "size": 3,
+          "n_live_obs": 2,
+          "long": true,
+          "all_halted": true,
+          "any_capped": false
+        },
+        {
+          "word": [
+            [
+              1,
+              1
+            ],
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            15,
+            31
+          ],
+          "size": 2,
+          "n_live_obs": 2,
+          "long": true,
+          "all_halted": true,
+          "any_capped": false
+        }
+      ],
+      "short": [
+        {
+          "word": [
+            [
+              1,
+              3
+            ],
+            "HALT"
+          ],
+          "members": [
+            7,
+            11
+          ],
+          "size": 2,
+          "n_live_obs": 1,
+          "long": false,
+          "all_halted": true,
+          "any_capped": false
+        },
+        {
+          "word": [
+            [
+              2,
+              4
+            ],
+            "HALT"
+          ],
+          "members": [
+            43,
+            45
+          ],
+          "size": 2,
+          "n_live_obs": 1,
+          "long": false,
+          "all_halted": true,
+          "any_capped": false
+        }
+      ]
+    }
+  },
+  "primary": {
+    "n_y": 30,
+    "n_landings": 43,
+    "v_distinct": 19,
+    "v_h1_matches": true,
+    "plateau_from": 3,
+    "growth": {
+      "block": [
+        {
+          "H": 0,
+          "Q_H": 1,
+          "max_fiber": 30,
+          "n_multi_fibers": 1,
+          "n_refine": 402,
+          "n_live": 30,
+          "n_capped": 0
+        },
+        {
+          "H": 1,
+          "Q_H": 14,
+          "max_fiber": 6,
+          "n_multi_fibers": 7,
+          "n_refine": 23,
+          "n_live": 29,
+          "n_capped": 0
+        },
+        {
+          "H": 2,
+          "Q_H": 22,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 2,
+          "n_live": 21,
+          "n_capped": 0
+        },
+        {
+          "H": 3,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 12,
+          "n_capped": 0
+        },
+        {
+          "H": 4,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 4,
+          "n_capped": 0
+        },
+        {
+          "H": 5,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 2,
+          "n_capped": 0
+        },
+        {
+          "H": 6,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 1,
+          "n_capped": 0
+        },
+        {
+          "H": 7,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 0,
+          "n_capped": 0
+        },
+        {
+          "H": 8,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": null,
+          "n_live": 0,
+          "n_capped": 0
+        }
+      ],
+      "V": [
+        {
+          "H": 0,
+          "Q_H": 1,
+          "max_fiber": 30,
+          "n_multi_fibers": 1,
+          "n_refine": 420,
+          "n_live": 30,
+          "n_capped": 0
+        },
+        {
+          "H": 1,
+          "Q_H": 19,
+          "max_fiber": 4,
+          "n_multi_fibers": 8,
+          "n_refine": 7,
+          "n_live": 29,
+          "n_capped": 0
+        },
+        {
+          "H": 2,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 21,
+          "n_capped": 0
+        },
+        {
+          "H": 3,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 12,
+          "n_capped": 0
+        },
+        {
+          "H": 4,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 4,
+          "n_capped": 0
+        },
+        {
+          "H": 5,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 2,
+          "n_capped": 0
+        },
+        {
+          "H": 6,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 1,
+          "n_capped": 0
+        },
+        {
+          "H": 7,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 0,
+          "n_capped": 0
+        },
+        {
+          "H": 8,
+          "Q_H": 23,
+          "max_fiber": 3,
+          "n_multi_fibers": 6,
+          "n_refine": null,
+          "n_live": 0,
+          "n_capped": 0
+        }
+      ],
+      "class": [
+        {
+          "H": 0,
+          "Q_H": 1,
+          "max_fiber": 30,
+          "n_multi_fibers": 1,
+          "n_refine": 283,
+          "n_live": 30,
+          "n_capped": 0
+        },
+        {
+          "H": 1,
+          "Q_H": 5,
+          "max_fiber": 16,
+          "n_multi_fibers": 4,
+          "n_refine": 81,
+          "n_live": 29,
+          "n_capped": 0
+        },
+        {
+          "H": 2,
+          "Q_H": 8,
+          "max_fiber": 8,
+          "n_multi_fibers": 6,
+          "n_refine": 9,
+          "n_live": 21,
+          "n_capped": 0
+        },
+        {
+          "H": 3,
+          "Q_H": 11,
+          "max_fiber": 8,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 12,
+          "n_capped": 0
+        },
+        {
+          "H": 4,
+          "Q_H": 11,
+          "max_fiber": 8,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 4,
+          "n_capped": 0
+        },
+        {
+          "H": 5,
+          "Q_H": 11,
+          "max_fiber": 8,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 2,
+          "n_capped": 0
+        },
+        {
+          "H": 6,
+          "Q_H": 11,
+          "max_fiber": 8,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 1,
+          "n_capped": 0
+        },
+        {
+          "H": 7,
+          "Q_H": 11,
+          "max_fiber": 8,
+          "n_multi_fibers": 6,
+          "n_refine": 0,
+          "n_live": 0,
+          "n_capped": 0
+        },
+        {
+          "H": 8,
+          "Q_H": 11,
+          "max_fiber": 8,
+          "n_multi_fibers": 6,
+          "n_refine": null,
+          "n_live": 0,
+          "n_capped": 0
+        }
+      ]
+    },
+    "fibers_H": [
+      {
+        "word": [
+          [
+            3,
+            2
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          "HALT"
+        ],
+        "members": [
+          25,
+          59
+        ],
+        "size": 2,
+        "n_live_obs": 3,
+        "long": true,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          "HALT"
+        ],
+        "members": [
+          53,
+          55
+        ],
+        "size": 2,
+        "n_live_obs": 3,
+        "long": true,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            2,
+            2
+          ],
+          [
+            1,
+            3
+          ],
+          "HALT"
+        ],
+        "members": [
+          33,
+          35,
+          73
+        ],
+        "size": 3,
+        "n_live_obs": 2,
+        "long": true,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            3
+          ],
+          "HALT"
+        ],
+        "members": [
+          15,
+          31
+        ],
+        "size": 2,
+        "n_live_obs": 2,
+        "long": true,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            1,
+            3
+          ],
+          "HALT"
+        ],
+        "members": [
+          7,
+          11
+        ],
+        "size": 2,
+        "n_live_obs": 1,
+        "long": false,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            2,
+            4
+          ],
+          "HALT"
+        ],
+        "members": [
+          43,
+          45
+        ],
+        "size": 2,
+        "n_live_obs": 1,
+        "long": false,
+        "all_halted": true,
+        "any_capped": false
+      }
+    ],
+    "fibers_H1": [
+      {
+        "word": [
+          [
+            2,
+            2
+          ]
+        ],
+        "members": [
+          33,
+          35,
+          53,
+          55,
+          73,
+          243
+        ],
+        "size": 6,
+        "n_live_obs": 1,
+        "long": false,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            1,
+            1
+          ]
+        ],
+        "members": [
+          15,
+          21,
+          31,
+          1523
+        ],
+        "size": 4,
+        "n_live_obs": 1,
+        "long": false,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            3,
+            2
+          ]
+        ],
+        "members": [
+          25,
+          39,
+          59,
+          9317
+        ],
+        "size": 4,
+        "n_live_obs": 1,
+        "long": false,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            2,
+            1
+          ]
+        ],
+        "members": [
+          9,
+          49,
+          69
+        ],
+        "size": 3,
+        "n_live_obs": 1,
+        "long": false,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            2,
+            3
+          ]
+        ],
+        "members": [
+          5,
+          117
+        ],
+        "size": 2,
+        "n_live_obs": 1,
+        "long": false,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            1,
+            3
+          ]
+        ],
+        "members": [
+          7,
+          11
+        ],
+        "size": 2,
+        "n_live_obs": 1,
+        "long": false,
+        "all_halted": true,
+        "any_capped": false
+      },
+      {
+        "word": [
+          [
+            2,
+            4
+          ]
+        ],
+        "members": [
+          43,
+          45
+        ],
+        "size": 2,
+        "n_live_obs": 1,
+        "long": false,
+        "all_halted": true,
+        "any_capped": false
+      }
+    ]
+  },
+  "secondary": {
+    "n_y": 111,
+    "n_landings": 162,
+    "v_distinct": 38,
+    "v_h1_matches": true,
+    "plateau_from": 5,
+    "growth": [
+      {
+        "H": 0,
+        "Q_H": 1,
+        "max_fiber": 111,
+        "n_multi_fibers": 1,
+        "n_refine": 5615,
+        "n_live": 111,
+        "n_capped": 13
+      },
+      {
+        "H": 1,
+        "Q_H": 26,
+        "max_fiber": 18,
+        "n_multi_fibers": 16,
+        "n_refine": 399,
+        "n_live": 110,
+        "n_capped": 13
+      },
+      {
+        "H": 2,
+        "Q_H": 64,
+        "max_fiber": 7,
+        "n_multi_fibers": 23,
+        "n_refine": 31,
+        "n_live": 88,
+        "n_capped": 13
+      },
+      {
+        "H": 3,
+        "Q_H": 74,
+        "max_fiber": 5,
+        "n_multi_fibers": 21,
+        "n_refine": 2,
+        "n_live": 61,
+        "n_capped": 13
+      },
+      {
+        "H": 4,
+        "Q_H": 75,
+        "max_fiber": 5,
+        "n_multi_fibers": 21,
+        "n_refine": 1,
+        "n_live": 38,
+        "n_capped": 13
+      },
+      {
+        "H": 5,
+        "Q_H": 76,
+        "max_fiber": 5,
+        "n_multi_fibers": 20,
+        "n_refine": 0,
+        "n_live": 27,
+        "n_capped": 13
+      },
+      {
+        "H": 6,
+        "Q_H": 76,
+        "max_fiber": 5,
+        "n_multi_fibers": 20,
+        "n_refine": 0,
+        "n_live": 22,
+        "n_capped": 13
+      },
+      {
+        "H": 7,
+        "Q_H": 76,
+        "max_fiber": 5,
+        "n_multi_fibers": 20,
+        "n_refine": 0,
+        "n_live": 20,
+        "n_capped": 13
+      },
+      {
+        "H": 8,
+        "Q_H": 76,
+        "max_fiber": 5,
+        "n_multi_fibers": 20,
+        "n_refine": null,
+        "n_live": 17,
+        "n_capped": 13
+      }
+    ]
+  },
+  "hard": {
+    "9": {
+      "y": 9,
+      "states": [
+        9,
+        11,
+        1
+      ],
+      "terminal": "HALT",
+      "capped": false,
+      "blocks": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "classes": [
+        "STAY_AUTO_FP",
+        "CAPTURE"
+      ]
+    },
+    "37": {
+      "y": 37,
+      "states": [
+        37,
+        9317,
+        2233,
+        1
+      ],
+      "terminal": "HALT",
+      "capped": false,
+      "blocks": [
+        [
+          4,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          2,
+          5
+        ]
+      ],
+      "classes": [
+        "PERSISTENT_ODD_ODD",
+        "RETURN_BELOW",
+        "CAPTURE"
+      ]
+    },
+    "49": {
+      "y": 49,
+      "states": [
+        49,
+        79,
+        5,
+        1
+      ],
+      "terminal": "HALT",
+      "capped": false,
+      "blocks": [
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "classes": [
+        "STAY_AUTO_FP",
+        "RETURN_BELOW",
+        "CAPTURE"
+      ]
+    },
+    "69": {
+      "y": 69,
+      "states": [
+        69,
+        117,
+        3,
+        1
+      ],
+      "terminal": "HALT",
+      "capped": false,
+      "blocks": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          3
+        ]
+      ],
+      "classes": [
+        "PERSISTENT_ODD_ODD",
+        "RETURN_BELOW",
+        "CAPTURE"
+      ]
+    },
+    "77": {
+      "y": 77,
+      "states": [
+        77,
+        1523,
+        243,
+        21,
+        9,
+        11,
+        1
+      ],
+      "terminal": "HALT",
+      "capped": false,
+      "blocks": [
+        [
+          3,
+          1
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "classes": [
+        "STAY_AUTO_FP",
+        "RETURN_BELOW",
+        "RETURN_BELOW",
+        "RETURN_BELOW",
+        "STAY_AUTO_FP",
+        "CAPTURE"
+      ]
+    },
+    "11": {
+      "y": 11,
+      "states": [
+        11,
+        1
+      ],
+      "terminal": "HALT",
+      "capped": false,
+      "blocks": [
+        [
+          1,
+          3
+        ]
+      ],
+      "classes": [
+        "CAPTURE"
+      ]
+    }
+  }
+}

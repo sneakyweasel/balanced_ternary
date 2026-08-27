@@ -15,11 +15,13 @@ branch (`JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`) is not reopened.
 
 ```text
 README.md
-word_atlas.sqlite              # gitignored; metadata + registry
-experiments/<experiment_id>/
+summaries/<experiment_id>.{md,json}   # small distilled records
+word_atlas.sqlite                     # gitignored
+_native_tmp/                          # gitignored native TSV dumps
+experiments/<experiment_id>/          # gitignored run output
   manifest.json
   observations/word_length=k/census.parquet
-  census.tsv                   # optional native dump
+  census.tsv
 ```
 
 ## Commands

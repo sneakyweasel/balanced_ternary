@@ -113,12 +113,22 @@ int main(int argc, char** argv) {
         juggler_atlas::cpu_census(tables);
     }
     write_tsv(args.output, tables, used);
+    {
+        std::ofstream ov(args.output + ".overflow");
+        ov << "# overflow_count=" << tables.overflow_count << "\n";
+        ov << "# overflow_truncated=" << (tables.overflow_truncated ? 1 : 0) << "\n";
+        for (uint64_t n : tables.overflow_n) {
+            ov << n << "\n";
+        }
+    }
     std::cout << "experiment_id=\n";
     std::cout << "configuration=k_max=" << args.k_max << ",backend=" << used << "\n";
     std::cout << "input_range=" << args.n_begin << ".." << args.n_max << "\n";
     std::cout << "output_location=" << args.output << "\n";
     std::cout << "record_counts=table_size=" << tables.min_n.size()
-              << ",overflow=" << tables.overflow_count << "\n";
+              << ",overflow=" << tables.overflow_count
+              << ",overflow_stored=" << tables.overflow_n.size()
+              << ",overflow_truncated=" << (tables.overflow_truncated ? 1 : 0) << "\n";
     std::cout << "checksum=\n";
     return 0;
 }

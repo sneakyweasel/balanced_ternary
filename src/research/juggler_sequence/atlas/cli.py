@@ -32,10 +32,22 @@ def main(argv: list[str] | None = None) -> int:
     p_build.add_argument("--k-max", type=int, default=12)
     p_build.add_argument("--n-max", type=int, default=1_000_000)
     p_build.add_argument("--n-begin", type=int, default=1)
+    p_build.add_argument("--pe-n-max", type=int, default=None)
     p_build.add_argument(
         "--backend",
         choices=("auto", "cpu", "cuda", "native-cpu"),
         default="auto",
+    )
+
+    p_sci = sub.add_parser("science", help="scientific census and Markdown report")
+    p_sci.add_argument("--k-max", type=int, default=20)
+    p_sci.add_argument("--n-max", type=int, default=100_000_000)
+    p_sci.add_argument("--pe-n-max", type=int, default=None)
+    p_sci.add_argument("--r-max", type=int, default=8)
+    p_sci.add_argument(
+        "--backend",
+        choices=("auto", "cpu", "cuda", "native-cpu"),
+        default="cuda",
     )
 
     p_val = sub.add_parser("validate", help="three-way fixture validation")
@@ -67,9 +79,36 @@ def main(argv: list[str] | None = None) -> int:
             n_max=args.n_max,
             n_begin=args.n_begin,
             backend=args.backend,
+            pe_n_max=args.pe_n_max,
             data_dir=args.data_dir,
         )
         _print_run(payload, args.data_dir)
+        return 0
+    if args.cmd == "science":
+        from research.juggler_sequence.atlas.science import run_science
+
+        report = run_science(
+            k_max=args.k_max,
+            n_max=args.n_max,
+            pe_n_max=args.pe_n_max,
+            backend=args.backend,
+            data_dir=args.data_dir,
+            r_max=args.r_max,
+        )
+        _print_run(
+            {
+                "experiment_id": report["experiment_id"],
+                "k_max": report["k_max"],
+                "n_max": report["n_max"],
+                "configuration": {"r_max": args.r_max, "backend": args.backend},
+                "search_limits": {"k_max": report["k_max"], "n_max": report["n_max"]},
+                "record_counts": report.get("build", {}).get("record_counts"),
+                "markdown_path": report.get("markdown_path"),
+                "p_r": report.get("p_r"),
+                "p_pe": report.get("p_pe"),
+            },
+            args.data_dir,
+        )
         return 0
     if args.cmd == "validate":
         report = api.validate(
@@ -164,6 +203,9 @@ def _print_run(payload: dict[str, Any], data_dir: Path) -> None:
             "histogram",
             "seconds",
             "native",
+            "markdown_path",
+            "p_r",
+            "p_pe",
         )
         if k in payload
     }

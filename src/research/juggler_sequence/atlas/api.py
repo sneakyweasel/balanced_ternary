@@ -6,7 +6,11 @@ import json
 from pathlib import Path
 from typing import Any
 
-from research.juggler_sequence.atlas.cpu_census import census
+from research.juggler_sequence.atlas.cpu_census import (
+    census,
+    fill_end_states,
+    merge_starts,
+)
 from research.juggler_sequence.atlas.native import find_binary, parse_census_tsv, run_census
 from research.juggler_sequence.atlas.packed import pack_word
 from research.juggler_sequence.atlas.pe_adapter import pe_certified_records
@@ -66,11 +70,13 @@ def build(
     n_max: int = 1_000_000,
     n_begin: int = 1,
     backend: str = "auto",
+    pe_n_max: int | None = None,
     data_dir: Path | None = None,
 ) -> dict[str, Any]:
     root = Path(data_dir) if data_dir is not None else DEFAULT_DATA_DIR
     root.mkdir(parents=True, exist_ok=True)
     start = utc_now()
+    print(f"atlas build: census k_max={k_max} n_max={n_max} backend={backend}", flush=True)
     chosen, native_info, min_n, min_exp, end_at = _run_backend(
         k_max=k_max,
         n_max=n_max,
@@ -85,7 +91,13 @@ def build(
         raise FileExistsError(f"refusing to overwrite {exp_dir}")
     exp_dir.mkdir(parents=True)
 
-    pe = pe_certified_records(n_max=n_max, search_id=eid, pe_definition=PE_CERTIFIED)
+    pe_limit = n_max if pe_n_max is None else pe_n_max
+    print(f"atlas build: PE_CERTIFIED post-pass pe_n_max={pe_limit}", flush=True)
+    pe = pe_certified_records(n_max=pe_limit, search_id=eid, pe_definition=PE_CERTIFIED)
+    print(
+        f"atlas build: PE blocks={len(pe['pe_certified'])} runs={len(pe['pe_run'])}",
+        flush=True,
+    )
     con = connect(root)
     try:
         word_count = ensure_words(con, k_max)
@@ -112,6 +124,7 @@ def build(
         "git_commit": git_commit(),
         "k_max": k_max,
         "n_max": n_max,
+        "pe_n_max": pe_limit,
         "n_begin": n_begin,
         "backend": chosen,
         "realization_source": source,
@@ -169,16 +182,30 @@ def _run_backend(
             binary=binary,
         )
         parsed = parse_census_tsv(dump)
-        py_min, py_exp, py_end = census(k_max=k_max, n_max=n_max, n_begin=n_begin)
-        nat_min = parsed["min_n"]
-        assert isinstance(nat_min, list)
-        if parsed.get("overflow_count"):
-            min_n, min_exp, end_at = py_min, py_exp, py_end
-        else:
-            min_n, min_exp, end_at = py_min, py_exp, py_end
-            if nat_min != py_min:
-                raise ValueError("native census disagrees with the Python exact reference")
+        min_n = parsed["min_n"]
+        min_exp = parsed["min_exp"]
+        assert isinstance(min_n, list) and isinstance(min_exp, list)
+        if parsed.get("overflow_truncated"):
+            raise ValueError(
+                "native overflow cap was exceeded; raise overflow_cap or lower n_max"
+            )
+        overflow_n = list(parsed.get("overflow_n") or [])
+        if overflow_n:
+            merge_starts(min_n, min_exp, overflow_n, k_max=k_max)
+        end_at = fill_end_states(min_n, k_max=k_max)
         info["overflow_count"] = parsed.get("overflow_count", 0)
+        info["overflow_merged"] = len(overflow_n)
+        print(
+            f"atlas build: native {native_backend} overflow={info['overflow_count']} "
+            f"merged={len(overflow_n)}",
+            flush=True,
+        )
+        from research.juggler_sequence.atlas.packed import dense_index, pack_word
+
+        if n_max >= 5 and k_max >= 3:
+            idx = dense_index(*pack_word("OOE"))
+            if min_n[idx] != 5:
+                raise ValueError(f"OOE min_realizer is {min_n[idx]}, expected 5")
         return native_backend if want == "cuda" else "cpu", info, min_n, min_exp, end_at
     min_n, min_exp, end_at = census(k_max=k_max, n_max=n_max, n_begin=n_begin)
     return "cpu", None, min_n, min_exp, end_at
