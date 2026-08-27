@@ -41,6 +41,7 @@ LAYERS: dict[str, Path] = {
     "LandingValuation": JUGGLER_DIR / "LandingValuation.lean",
     "PreimageCylinders": JUGGLER_DIR / "PreimageCylinders.lean",
     "OddLandingSets": JUGGLER_DIR / "OddLandingSets.lean",
+    "WordLanguage": JUGGLER_DIR / "WordLanguage.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -74,6 +75,7 @@ SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
 LANDING_VALUATION = LAYERS["LandingValuation"]
 PREIMAGE_CYLINDERS = LAYERS["PreimageCylinders"]
 ODD_LANDING_SETS = LAYERS["OddLandingSets"]
+WORD_LANGUAGE = LAYERS["WordLanguage"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",

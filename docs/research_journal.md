@@ -6960,3 +6960,48 @@ Best next question
 - Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
 ```
 
+## Juggler word language
+
+- **Date:** 2026-08-27
+- **Objective:** After subtracting the known PE block grammar, decide whether L, L_up, or PE-run words have extra forbidden factors or prefix/suffix constraints that survive larger windows
+- **Hypotheses:** arithmetic realisation forbids some grammar-legal arrangements; PE-run prefixes determine futures; short missing L words are unrealisable
+- **Major results:** Lean jugglerLanguage is factor-closed; expandingLanguage is not (OOE at 5, OE never). Census: L_r={O,E}^r for r≤5 at n≤10000; EEOE at 2500. PE missing factors shrink with n and vanish by the known runs at 9157 and 14237. Prefix MN is coarser than the landing integer. No halt theorem
+- **Refuted ideas:** a surviving grammar-legal PE forbidden factor; L_r proper for r≤5 independently of the window; PE prefixes determine the next block
+- **Literature:** follows/image; expanding a≥2, b<a; EXPANDING_GRAMMAR_IS_PERSISTENCE; PREFIX_NC_ARITHMETIC_COMPLEX; RESIDUAL_STATE_NEEDS_X; floorPower_odd_even_two_step_lt
+- **Open:** whether any arithmetic other than the integer y itself decides odd-to-odd continuation
+- **Decision:** CLOSE as `JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR`. Do not claim termination
+
+```text
+What was learned
+- L is factor-closed; L_up is not
+- Short missing words in L are even-prefix scale
+- Realised PE-run factors fill the known O^a E^b grammar as n grows
+- EEEEEE and OEEEEO appear on already-known long runs
+- Word-prefix futures are coarser than the landing integer
+
+Strongest theorem
+- expandingLanguage(OOE) and not expandingLanguage(OE), with OE a factor of OOE
+
+Strongest refutation
+- A grammar-legal PE factor is permanently forbidden (EEEEEE at 14237; OEEEEO at 9157)
+
+Reusable machinery
+- formal/Problems/Juggler/WordLanguage.lean
+- research.juggler_sequence.word_language
+
+Prior-art status
+- negative language census, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- After the known residual-block grammar is subtracted, every candidate forbidden factor is a search window, and the symbolic quotient is weaker than the landing integer.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
+```
+

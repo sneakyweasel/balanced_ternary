@@ -29,6 +29,7 @@ import Problems.Juggler.SequentialMordell
 import Problems.Juggler.LandingValuation
 import Problems.Juggler.PreimageCylinders
 import Problems.Juggler.OddLandingSets
+import Problems.Juggler.WordLanguage
 
 /-!
 # Juggler formalization
