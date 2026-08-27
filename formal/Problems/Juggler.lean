@@ -24,6 +24,7 @@ import Problems.Juggler.ExpandingGrammar
 import Problems.Juggler.LandingParity
 import Problems.Juggler.Cycles
 import Problems.Juggler.CycleDiophantine
+import Problems.Juggler.SequentialMordell
 
 /-!
 # Juggler formalization

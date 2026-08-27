@@ -6735,3 +6735,48 @@ Best next question
 - Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
 ```
 
+## Juggler sequential near-Mordell steps
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether two consecutive odd steps carry Diophantine information beyond one-step floors and globalDefect(OO), and whether peak machinery applies
+- **Hypotheses:** (ρ,σ) coupled; Γ=x⁹-z⁴ is not Δ_OO; peak slack transports to persistent OO
+- **Major results:** Lean oddMordellStep / two_step_mordell_identity / sequential_defect_eq_global / odd_remainder_even / peak_needs_even_max. Census n≤2000: 505 odd-odd pairs, identity and Γ=Δ_OO always, ρ even, y never even. ρ mod 8 does not lock σ. No halt theorem
+- **Refuted ideas:** sequential defect is new; two-step polynomial is not substitution; (ρ,σ) coupled beyond floor windows; peak even-M slack applies to persistent OO
+- **Literature:** localDefectOdd; OO slack_identity; CycleDiophantine DIOPHANTINE_REPACKAGING; J-approx-equality-rigidity REFUTED; landing-parity CLOSE
+- **Open:** whether any arithmetic other than the integer y itself decides odd-to-odd continuation
+- **Decision:** CLOSE as `SEQUENTIAL_MORDELL_IS_OO_DEFECT`. Do not claim termination
+
+```text
+What was learned
+- (x³-ρ)³=(z²+σ)² is y⁶=y⁶
+- Γ=x⁹-z⁴ is globalDefect of the word OO
+- On odd-odd, ρ is even
+- Peak slack needs even M; persistent OO supplies odd y
+- (ρ,σ) show no coupling beyond independent floor windows
+
+Strongest theorem
+- On a realized OO word, sequentialDefect x z = globalDefect x [.odd,.odd], and if x and y are odd then ρ is even
+
+Strongest refutation
+- Peak Diophantine slack transports to a persistent odd-odd pair
+
+Reusable machinery
+- formal/Problems/Juggler/SequentialMordell.lean
+- research.juggler_sequence.sequential_mordell
+
+Prior-art status
+- negative sequential-identity result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The pair of odd steps is two copies of the local floor identity. The composed polynomial is substitution, Γ is the existing OO defect, and peak theory needs an even maximum that odd-odd does not supply. The census finds no transported divisor or valuation.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
+```
+

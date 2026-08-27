@@ -36,6 +36,7 @@ LAYERS: dict[str, Path] = {
     "LandingParity": JUGGLER_DIR / "LandingParity.lean",
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
+    "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -64,6 +65,7 @@ EXPANDING_GRAMMAR = LAYERS["ExpandingGrammar"]
 LANDING_PARITY = LAYERS["LandingParity"]
 CYCLES = LAYERS["Cycles"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
+SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",

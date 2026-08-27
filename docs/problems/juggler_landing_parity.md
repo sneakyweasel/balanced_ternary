@@ -159,6 +159,8 @@ No discretized threshold automaton.
 
 The leftover is still whether an odd-to-odd residual chain can
 continue indefinitely. That is not a threshold-coordinate problem.
+Sequential near-Mordell composition is not that arithmetic either;
+see [juggler_sequential_mordell.md](juggler_sequential_mordell.md).
 Do not reopen residues, slack, or expanding-word grammar.
 
 ## Decision
