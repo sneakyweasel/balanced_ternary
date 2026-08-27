@@ -1,7 +1,10 @@
-import Problems.Engine.CycleWord
+import Problems.Juggler.Cycles
 
-namespace Problems.Engine
+namespace Problems.Juggler
 
+/-!
+# Cycle peak Diophantine identities
+-/
 /-!
 # Peak Diophantine defects
 
@@ -194,4 +197,4 @@ theorem cycle_top_landing_ge_thirteen {n : ℕ} {w : List Branch}
     omega
   exact ⟨r, p, hr1, hpdef, hpodd, hp13⟩
 
-end Problems.Engine
+end Problems.Juggler

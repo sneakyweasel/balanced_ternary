@@ -15,11 +15,15 @@ from fractions import Fraction
 from math import gcd, isqrt
 from pathlib import Path
 from typing import Any, Iterable
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    juggler_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_power_words.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_power_words.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
+LEAN_PATH = ENVELOPE
 
 K_MAX = 8
 N_MAX = 10**6
@@ -28,7 +32,7 @@ EXACT_POW_BITS = 4096
 GAP_BITS = 4096
 CALIBRATION_OOOEE = (3, 25, 39)
 WORD_OOOEE = "OOOEE"
-LEAN_MODULE = "Problems.Engine.FloorPower"
+LEAN_MODULE = "Problems.Juggler.Envelope"
 LEAN_OOOEEEOO = "floorPower_oooeeeoo_eight_step_lt"
 LEAN_OOOEE = "floorPower_oooee_five_step_lt"
 LOG_GRID = (2, 10, 100, 1000, 10_000, 100_000, 1_000_000)

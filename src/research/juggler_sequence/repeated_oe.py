@@ -14,13 +14,19 @@ from typing import Any
 from research.juggler_sequence.capture_certificates import classify_block
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, word_of
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    MINIMAL,
+    SCALE,
+    juggler_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_repeated_oe.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_repeated_oe.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "RepeatedOE.lean"
-MIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "MinimalNonTerm.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
+LEAN_PATH = SCALE
+MIN_PATH = MINIMAL
+FLOOR_PATH = ENVELOPE
 
 CLASS_GREEN = "REPEATED_OE_SCALE_GREEN"
 CLASS_FORBIDDEN = "OE_RUN_FORBIDDEN_GREEN"
@@ -156,7 +162,7 @@ def calibration_rows() -> list[dict[str, Any]]:
 def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
     minimum = MIN_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    floor = juggler_text()
     combined = text + minimum + floor
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,

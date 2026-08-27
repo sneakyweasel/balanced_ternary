@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import juggler_text
+
 from research.juggler_sequence.defect_sharpness import (
     CLASS_SHARP,
     LEAN_THEOREMS,
@@ -78,7 +80,7 @@ def test_examples_and_lean_api():
         assert lean[name] is True
     assert lean["PowerHeight_absent"] is True
     assert lean["PowerBoundStrict_absent"] is True
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     assert "PowerHeight" not in text
     assert "def PowerBoundStrict" not in text
     assert "theorem mixed_word_power_lt" not in text

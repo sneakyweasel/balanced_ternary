@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import juggler_text
+
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
 from research.juggler_sequence.superquadratic_suffixes import (
     CLASS_EVENTUAL,
@@ -49,7 +51,7 @@ def test_examples_and_lean_api():
         if name == "LowerPowerBound":
             continue
         assert lean[name] is True
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     assert "PowerHeight" not in text
     assert "sorry" not in text
     assert "admit" not in text

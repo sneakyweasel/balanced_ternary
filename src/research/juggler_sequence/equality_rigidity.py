@@ -12,6 +12,7 @@ from math import gcd, isqrt
 from pathlib import Path
 from typing import Any, Iterable
 
+from research.juggler_sequence.lean_paths import juggler_text
 from research.juggler_sequence.power_words import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
@@ -266,7 +267,7 @@ def smallest_hit(hits: list[dict[str, Any]]) -> dict[str, Any] | None:
 
 
 def lean_present() -> dict[str, bool]:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     return {
         "sorry_free": "sorry" not in text and "admit" not in text,
         LEAN_NINE: f"theorem {LEAN_NINE}" in text,

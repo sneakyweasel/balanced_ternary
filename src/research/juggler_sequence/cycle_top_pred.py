@@ -15,13 +15,20 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.lean_paths import (
+    CYCLES,
+    ENVELOPE,
+    PROGRESS,
+    juggler_text,
+    engine_floor_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_top_pred.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_top_pred.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "CycleWord.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-PROGRESS_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "Progress.lean"
+LEAN_PATH = CYCLES
+FLOOR_PATH = ENVELOPE
+PROGRESS_PATH = PROGRESS
 
 CLASS_NESTED = "TOP_NESTED_CELL_GREEN"
 CLASS_SCALE = "TOP_SCALE_GAP_GREEN"
@@ -150,9 +157,10 @@ def envelope_room(p: int, r: int) -> bool | None:
 
 def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    corpus = juggler_text()
+    floor = engine_floor_text()
     progress = PROGRESS_PATH.read_text(encoding="utf-8")
-    combined = text + floor + progress
+    combined = text + corpus + progress
     named = {name: f"theorem {name}" in text for name in LEAN_THEOREMS}
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,

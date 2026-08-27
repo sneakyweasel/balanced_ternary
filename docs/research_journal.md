@@ -6284,3 +6284,49 @@ Best next question
 - A genuine existence argument that every n>=2 eventually takes an even step with 2^{k-1} <= 3^{o} < 2^k, not another start-set census.
 ```
 
+## Juggler layer architecture rewrite
+
+- **Date:** 2026-08-27
+- **Objective:** Rewrite the Juggler Lean stack as one-way layers under `Problems.Juggler` so the only unproved global arrow is finite coefficient stopping time
+- **Hypotheses:** the missing object is a first-passage / certificate separation, not another word identity; fused `FloorPower` caused recent CLOSE loops
+- **Major results:** Live Lean is `formal/Problems/Juggler/` with barrel `formal/Problems/Juggler.lean`. Engine copies of FloorPower, Progress, MinimalNonTerm, RepeatedOE, OddRunFinancing, OddOddFrontier, ResidualChain, ResidualPath, RepeatedBlock, CycleWord, and CycleDiophantine are deleted; no export shims. `follows ↔ word`, `HasFiniteCoeffStop → HasFiniteStop`, `DescentCertificate → HasFiniteStop ∨ ReachesOne`, and `HasFiniteCoeffStop → ¬MinimalNonTerm` are proved. `∀ n ≥ 2, HasFiniteCoeffStop n` and `MinimalNonTerm n → HasFiniteCoeffStop n` are first-class unproved Props. Python paths go through `research.juggler_sequence.lean_paths`. No new hunt. No halt theorem. No ledger row (reparameterization / packaging)
+- **Refuted ideas:** dual Engine/Juggler namespaces; leftover FloorPower as a compatibility layer
+- **Literature:** `oeis-A007320`; Terras stopping-time is methodological only (`terras-1976-stopping-time`); drift-crossing / drift-first-passage remain closed
+- **Open:** does every \(n\ge 2\) have finite coefficient / drift stopping time?
+- **Decision:** PROMOTE the architecture. Do not claim termination
+
+```text
+What was learned
+- The fused FloorPower stack mixed orbit, word, envelope, stopping time, and certificates
+- follows ↔ word is the itinerary bridge; G(w) is a property of the word alone
+- Finite coefficient stop already implies a strict smaller iterate
+- One inductive DescentCertificate replaces Descent/Capture/FiniteProgress as parallel defs
+- MinimalNonTerm is incompatible with a realized coefficient stop
+- Scale, residuals, and cycles are downward-only leaves
+
+Strongest theorem
+- HasFiniteCoeffStop n → HasFiniteStop n, wrapping power_bound_contracts
+
+Strongest refutation
+- none new; the rewrite does not settle τ_G(n)<∞
+
+Reusable machinery
+- formal/Problems/Juggler/
+- research.juggler_sequence.lean_paths
+
+Prior-art status
+- architectural reparameterization of existing local lemmas, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Engine Juggler files are gone, layers compile one-way, and the missing implication is a first-class Lean statement.
+
+Best next question
+- Does every n >= 2 have finite coefficient / drift stopping time?
+```
+

@@ -19,15 +19,25 @@ from research.juggler_sequence.odd_odd_frontier import (
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, itinerary
 from research.juggler_sequence.progress_coverage import is_odd_odd
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    MINIMAL,
+    PROGRESS,
+    RESIDUALS,
+    SCALE,
+    juggler_text,
+    engine_floor_text,
+    has_named,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_post_overshoot.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_post_overshoot.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "OddOddFrontier.lean"
-PROGRESS_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "Progress.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-MIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "MinimalNonTerm.lean"
-FIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "OddRunFinancing.lean"
+LEAN_PATH = RESIDUALS
+PROGRESS_PATH = PROGRESS
+FLOOR_PATH = ENVELOPE
+MIN_PATH = MINIMAL
+FIN_PATH = SCALE
 
 CLASS_PERSISTENT = "PERSISTENT_OVERSHOOT_COUNTEREXAMPLE"
 CLASS_RETURN = "RETURN_BELOW_START_GREEN"
@@ -58,8 +68,8 @@ LEAN_THEOREMS = (
 CERTIFICATE_UNCHANGED = (
     "FiniteProgress",
     "ReachesOne",
-    "Capture",
-    "Descent",
+    "DescentCertificate",
+    "descent_of_below",
     "even_run_scale_barrier",
     "odd_run_financing_scale_barrier",
     "power_bound_word",
@@ -180,10 +190,11 @@ def post_overshoot_census(*, n_max: int = N_MAX, cap: int = FIRST_EVEN_CAP) -> d
 def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
     progress = PROGRESS_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    corpus = juggler_text()
+    floor = engine_floor_text()
     minimum = MIN_PATH.read_text(encoding="utf-8")
     financing = FIN_PATH.read_text(encoding="utf-8")
-    combined = text + progress + floor + minimum + financing
+    combined = text + progress + corpus + minimum + financing
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **{
@@ -191,13 +202,13 @@ def lean_api_present() -> dict[str, bool]:
             for name in LEAN_THEOREMS
         },
         "certificate_present": all(
-            (f"theorem {name}" in combined or f"def {name}" in combined)
+            (has_named(combined, name))
             for name in CERTIFICATE_UNCHANGED
         ),
         "ReturnBelow_distinct": "def ReturnBelow" in text
-        and "def Descent" in floor
-        and "def Capture" in floor
-        and "def ReachesOne" in floor,
+        and "inductive DescentCertificate" in corpus
+        and "inductive DescentCertificate" in corpus
+        and "def ReachesOne" in corpus,
         "PowerHeight_absent": "PowerHeight" not in combined,
         "no_global_termination_theorem": "theorem juggler_reaches_one" not in combined,
         "no_return_below_universal": "theorem overshoot_return_below" not in text,

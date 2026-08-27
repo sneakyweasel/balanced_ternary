@@ -85,7 +85,9 @@ def test_phase12_does_not_expand_census_or_depth():
 
 
 def test_existing_juggler_lemmas_unchanged_and_oooee_present():
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    from research.juggler_sequence.lean_paths import juggler_text
+
+    text = juggler_text()
     assert "theorem floorPower_odd_even_two_step_lt" in text
     assert "exact sqrt_sqrt_n_cubed_lt hn" in text
     assert "theorem floorPower_odd_odd_two_step_gt" in text

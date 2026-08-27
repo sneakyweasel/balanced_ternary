@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import juggler_text
+
 from research.juggler_sequence.collapse_normalization import (
     CLASS_WEAK,
     LEAN_THEOREMS,
@@ -65,7 +67,7 @@ def test_examples_and_lean_api():
     assert lean["sorry_free"] is True
     for name in LEAN_THEOREMS:
         assert lean[name] is True
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     assert "PowerHeight" not in text
     assert "sorry" not in text
     assert "admit" not in text

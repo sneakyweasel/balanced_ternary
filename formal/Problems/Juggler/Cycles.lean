@@ -1,7 +1,10 @@
-import Problems.Engine.ResidualPath
+import Problems.Juggler.Residuals
 
-namespace Problems.Engine
+namespace Problems.Juggler
 
+/-!
+# Fixed cycle words
+-/
 /-!
 # Fixed cycle words and lower-growth size bounds
 
@@ -211,17 +214,6 @@ theorem cycleWord_iterate_ge_two {n : ℕ} {w : List Branch} {i : ℕ}
 
 /-- Even states strictly descend. Last-even cycle return is therefore
 never a fixed point of `T`. -/
-theorem floorPower_even_lt {n : ℕ} (hn : 2 ≤ n) (he : n % 2 = 0) :
-    floorPower n < n := by
-  have hsq : floorPower n ^ 2 ≤ n := floorPower_even_sq_le he
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have : n ^ 2 ≤ n := le_trans (Nat.pow_le_pow_left hge 2) hsq
-  have hn0 : 0 < n := lt_of_lt_of_le (by decide : (0 : ℕ) < 2) hn
-  have : n ≤ 1 :=
-    Nat.le_of_mul_le_mul_right (by simpa [pow_two] using this) hn0
-  omega
-
-/-- Last even letter: the inverse cell, not an exact-square identity. -/
 theorem cycle_last_even_interval {n : ℕ} {u : List Branch}
     (h : CycleWord n (u ++ [.even])) :
     n ^ 2 ≤ image n u ∧ image n u < (n + 1) ^ 2 := by
@@ -395,33 +387,6 @@ theorem no_cycle_word_oooe {n : ℕ} (hn : 2 ≤ n) : ¬CycleWord n wordOOOE := 
   intro m hm hf
   simpa [image_eq_iterate] using ooo_suffix_threshold hm hf
 
-theorem oddCount_le_length : ∀ w : List Branch, oddCount w ≤ w.length
-  | [] => by simp
-  | .odd :: w => Nat.succ_le_succ (oddCount_le_length w)
-  | .even :: w => le_trans (oddCount_le_length w) (Nat.le_succ _)
-
-theorem eq_replicate_odd_of_oddCount_eq_length {v : List Branch}
-    (h : oddCount v = v.length) : v = List.replicate v.length Branch.odd := by
-  induction v with
-  | nil => simp
-  | cons b rest ih =>
-      cases b with
-      | odd =>
-          have hrest : oddCount rest = rest.length := by
-            have : oddCount rest + 1 = rest.length + 1 := by
-              simpa [oddCount, List.length_cons] using h
-            omega
-          have hk : (Branch.odd :: rest).length = rest.length + 1 := rfl
-          rw [hk, List.replicate_succ]
-          exact congrArg (List.cons Branch.odd) (ih hrest)
-      | even =>
-          have : oddCount rest ≤ rest.length := oddCount_le_length rest
-          have : oddCount rest + 0 = rest.length + 1 := by
-            simpa [oddCount, List.length_cons] using h
-          omega
-
-/-- Every length-4 E-terminating cycle word is impossible: it is either
-formally contracting, or it is `OOOE` and hits the `OOO` threshold. -/
 theorem no_cycle_word_length_four_ends_even {n : ℕ} {v : List Branch}
     (hn : 2 ≤ n) (hv : v.length = 3)
     (h : CycleWord n (v ++ [Branch.even])) : False := by
@@ -906,22 +871,6 @@ theorem cycleMax_return_cell {n : ℕ} {w : List Branch}
   have hI := (floorPower_even_eq_iff_sq_interval he).mp hfp
   exact ⟨he, hI.1, hI.2⟩
 
-theorem follows_take {n : ℕ} :
-    ∀ (w : List Branch) (i : ℕ), follows n w → follows n (w.take i)
-  | _, 0, _ => trivial
-  | [], _i + 1, _ => trivial
-  | .even :: rest, i + 1, h =>
-      ⟨h.1, follows_take rest i h.2⟩
-  | .odd :: rest, i + 1, h =>
-      ⟨h.1, follows_take rest i h.2⟩
-
-theorem image_take_of_le {n : ℕ} {w : List Branch} {i : ℕ}
-    (hi : i ≤ w.length) :
-    image n (w.take i) = floorPower^[i] n := by
-  rw [image_eq_iterate, List.length_take, Nat.min_eq_left hi]
-
-/-- Any realized path from `n ≥ 2` to a state at least `n^2` is
-superquadratic: `3^o ≥ 2^{k+1}`. Cycle-independent. -/
 theorem square_scale_superquadratic {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hw : follows n w) (himg : n ^ 2 ≤ image n w) :
     2 ^ (w.length + 1) ≤ 3 ^ oddCount w := by
@@ -2005,9 +1954,4 @@ theorem cycle_peak_odd_remainder_pos {n : ℕ} {w : List Branch}
       n ^ 2 < (floorPower^[w.length - 1] n) ^ 3 := hlt
   omega
 
-end Problems.Engine
-
-
-
-
-
+end Problems.Juggler

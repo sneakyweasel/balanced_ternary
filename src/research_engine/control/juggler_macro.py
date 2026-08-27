@@ -29,7 +29,7 @@ from research_engine.control.types import (
 
 TARGET = "juggler_sequence"
 EXPERIMENT_NAME = "juggler_macro_phase11"
-LEAN_MODULE = "Problems.Engine.FloorPower"
+LEAN_MODULE = "Problems.Juggler.Dynamics"
 LEAN_COMBINED = "floorPower_odd_macro_direction"
 LEAN_OE = "floorPower_odd_even_two_step_lt"
 LEAN_OO = "floorPower_odd_odd_two_step_gt"

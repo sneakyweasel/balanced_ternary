@@ -42,9 +42,9 @@ def test_phase3_juggler_and_negative_controls():
     assert juggler.mathematical_status == "NEW_STRUCTURAL_LEMMA"
     assert juggler.global_consequence == "NONE"
     assert juggler.depth == 2
-    lean = (REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean").read_text(
-        encoding="utf-8"
-    )
+    from research.juggler_sequence.lean_paths import juggler_text
+
+    lean = juggler_text()
     assert "theorem floorPower_odd_even_two_step_lt" in lean
     assert "sorry" not in lean
     assert "admit" not in lean

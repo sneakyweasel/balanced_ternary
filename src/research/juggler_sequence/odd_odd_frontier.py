@@ -13,15 +13,25 @@ from typing import Any
 
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import coverage_bucket, is_odd_odd
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    MINIMAL,
+    PROGRESS,
+    RESIDUALS,
+    SCALE,
+    juggler_text,
+    engine_floor_text,
+    has_named,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_frontier.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_frontier.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "OddOddFrontier.lean"
-PROGRESS_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "Progress.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-MIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "MinimalNonTerm.lean"
-FIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "OddRunFinancing.lean"
+LEAN_PATH = RESIDUALS
+PROGRESS_PATH = PROGRESS
+FLOOR_PATH = ENVELOPE
+MIN_PATH = MINIMAL
+FIN_PATH = SCALE
 
 CLASS_CLASSIFIED = "FIRST_EVEN_RESIDUAL_CLASSIFIED"
 CLASS_OVERSHOOT = "ODD_ODD_COUNTEREXAMPLE_CLASS"
@@ -58,8 +68,8 @@ CERTIFICATE_UNCHANGED = (
     "odd_run_financing_scale_barrier",
     "power_bound_word",
     "ReachesOne",
-    "Capture",
-    "Descent",
+    "DescentCertificate",
+    "descent_of_below",
 )
 
 
@@ -166,10 +176,11 @@ def calibration_rows() -> list[dict[str, Any]]:
 def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
     progress = PROGRESS_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    corpus = juggler_text()
+    floor = engine_floor_text()
     minimum = MIN_PATH.read_text(encoding="utf-8")
     financing = FIN_PATH.read_text(encoding="utf-8")
-    combined = text + progress + floor + minimum + financing
+    combined = text + progress + corpus + minimum + financing
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **{
@@ -177,7 +188,7 @@ def lean_api_present() -> dict[str, bool]:
             for name in LEAN_THEOREMS
         },
         "certificate_present": all(
-            (f"theorem {name}" in combined or f"def {name}" in combined)
+            (has_named(combined, name))
             for name in CERTIFICATE_UNCHANGED
         ),
         "PowerHeight_absent": "PowerHeight" not in combined,

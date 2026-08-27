@@ -14,12 +14,19 @@ from typing import Any
 
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    PROGRESS,
+    juggler_text,
+    engine_floor_text,
+    has_named,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_progress_coverage.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_progress_coverage.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "Progress.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
+LEAN_PATH = PROGRESS
+FLOOR_PATH = ENVELOPE
 
 CLASS_SPINE = "INDUCTION_SPINE_GREEN"
 CLASS_FRONTIER = "ODD_ODD_FRONTIER_GREEN"
@@ -52,8 +59,8 @@ CERTIFICATE_UNCHANGED = (
     "even_word_contracts",
     "descent_of_below",
     "ReachesOne",
-    "Capture",
-    "Descent",
+    "DescentCertificate",
+    "descent_of_below",
 )
 
 
@@ -149,8 +156,9 @@ def calibration_rows() -> list[dict[str, Any]]:
 
 def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
-    combined = text + floor
+    corpus = juggler_text()
+    floor = engine_floor_text()
+    combined = text + corpus
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **{
@@ -158,7 +166,7 @@ def lean_api_present() -> dict[str, bool]:
             for name in LEAN_THEOREMS
         },
         "certificate_present": all(
-            (f"theorem {name}" in combined or f"def {name}" in combined)
+            (has_named(combined, name))
             for name in CERTIFICATE_UNCHANGED
         ),
         "PowerHeight_absent": "PowerHeight" not in combined,

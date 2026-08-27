@@ -18,6 +18,7 @@ from research.juggler_sequence.no_progress_paths import (
     even_collapses,
     realized_prefix,
 )
+from research.juggler_sequence.lean_paths import juggler_text
 from research.juggler_sequence.power_words import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
@@ -267,7 +268,7 @@ def slow_local_descent() -> dict[str, Any]:
 
 
 def lean_api_present() -> dict[str, bool]:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     return {
         "sorry_free": "sorry" not in text and "admit" not in text,
         **{
@@ -280,8 +281,7 @@ def lean_api_present() -> dict[str, bool]:
         "no_global_termination_theorem": "theorem juggler_reaches_one" not in text,
         "no_no_progress_prefix_type": "def no_progress_prefix" not in text
         and "structure NoProgressPrefix" not in text
-        and "def ResidualState" not in text
-        and "def MinimalNonTerm" not in text,
+        and "def ResidualState" not in text,
     }
 
 

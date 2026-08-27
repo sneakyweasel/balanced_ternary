@@ -24,6 +24,13 @@ from research.juggler_sequence.envelope_defect import (
 from research.juggler_sequence.equality_language import is_monochrome
 from research.juggler_sequence.excursions import first_return_below
 from research.juggler_sequence.near_extremal_prefixes import exponent_gap
+from research.juggler_sequence.lean_paths import (
+    CYCLE_DIOPHANTINE,
+    ENVELOPE,
+    MINIMAL,
+    RESIDUALS,
+    juggler_text,
+)
 from research.juggler_sequence.power_words import (
     ANTI_OVERCLAIM,
     EXACT_POW_BITS,
@@ -36,10 +43,10 @@ REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_corridor.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_corridor.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "Corridor.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-RESIDUAL_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "ResidualChain.lean"
-MIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "MinimalNonTerm.lean"
-CYCLE_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "CycleDiophantine.lean"
+FLOOR_PATH = ENVELOPE
+RESIDUAL_PATH = RESIDUALS
+MIN_PATH = MINIMAL
+CYCLE_PATH = CYCLE_DIOPHANTINE
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "corridor"
 
 CLASS_PACK = "CORRIDOR_REPACKAGING"
@@ -472,7 +479,7 @@ def analyze_starts(
 
 
 def lean_api_present() -> dict[str, Any]:
-    floor = FLOOR_PATH.read_text(encoding="utf-8") if FLOOR_PATH.is_file() else ""
+    floor = juggler_text()
     residual = RESIDUAL_PATH.read_text(encoding="utf-8") if RESIDUAL_PATH.is_file() else ""
     minimum = MIN_PATH.read_text(encoding="utf-8") if MIN_PATH.is_file() else ""
     cycle = CYCLE_PATH.read_text(encoding="utf-8") if CYCLE_PATH.is_file() else ""

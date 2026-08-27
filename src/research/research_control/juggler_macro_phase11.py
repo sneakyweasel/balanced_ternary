@@ -26,11 +26,15 @@ from research_engine.control.juggler_macro import (
     render_phase11_markdown,
 )
 from research_engine.control.juggler_odd_odd import odd_even_two_step, odd_odd_two_step
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    juggler_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_macro_phase11.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_macro_phase11.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
+LEAN_PATH = ENVELOPE
 PHASE10_JSON = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_phase10.json"
 
 
@@ -72,7 +76,7 @@ def frozen_odd_macro_samples() -> tuple[MacroSample, ...]:
 
 
 def lean_macro_combined() -> bool:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     return (
         f"theorem {LEAN_OE}" in text
         and f"theorem {LEAN_OO}" in text

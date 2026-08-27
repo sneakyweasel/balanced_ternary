@@ -12,7 +12,8 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
-from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
+from research.juggler_sequence.lean_paths import CERTIFICATES, has_named, juggler_text
+from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_capture_certificates.json"
@@ -24,10 +25,11 @@ CLASS_ESCAPE = "ESCAPE_NOT_CAPTURED"
 CLASS_FRAME = "DESCENT_CAPTURE_FRAMEWORK_GREEN"
 CLASS_FAMILY = "ESCAPE_FAMILY_FOUND"
 
+LEAN_PATH = CERTIFICATES
+
 LEAN_THEOREMS = (
     "InertBasin",
-    "Capture",
-    "Descent",
+    "DescentCertificate",
     "ReachesOne",
     "capture_of_suffix",
     "capture_append",
@@ -127,11 +129,11 @@ def composition_check() -> dict[str, Any]:
 
 
 def lean_api_present() -> dict[str, bool]:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     return {
         "sorry_free": "sorry" not in text and "admit" not in text,
         **{
-            name: (f"theorem {name}" in text or f"def {name}" in text)
+            name: has_named(text, name)
             for name in LEAN_THEOREMS
         },
         "certificate_present": all(f"theorem {name}" in text for name in CERTIFICATE_UNCHANGED),
@@ -151,7 +153,7 @@ def classify(blocks: list[dict[str, Any]], lean: dict[str, bool]) -> dict[str, A
     eoo_descent = any(row["word"] == "EOO" and row["kind"] == "DESCENT" for row in blocks)
     lean_ok = (
         lean["sorry_free"]
-        and lean["Capture"]
+        and lean["DescentCertificate"]
         and lean["capture_append"]
         and lean["minimal_avoids_progress"]
         and lean["even_tower_odd_tail_capture"]

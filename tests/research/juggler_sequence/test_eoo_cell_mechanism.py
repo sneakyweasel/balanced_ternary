@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import juggler_text
+
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
 from research.juggler_sequence.eoo_cell_mechanism import (
     CLASS_GREEN,
@@ -101,7 +103,7 @@ def test_examples_and_lean_api():
         assert lean[name] is True
     assert lean["eooCellOutput_present"] is True
     assert lean["certificate_present"] is True
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     assert "PowerHeight" not in text
     assert "theorem mixed_word_power_lt" not in text
     assert "sorry" not in text

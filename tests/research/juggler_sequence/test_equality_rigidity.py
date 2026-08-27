@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import juggler_text
+
 from research.juggler_sequence.equality_rigidity import (
     CLASS_FOUND,
     classify,
@@ -85,7 +87,7 @@ def test_lean_witness_and_anti_strictness_api():
     assert lean["mixed_word_power_lt_absent"] is True
     assert lean["floorPower_odd_sq_lt_cube_absent"] is True
     assert lean["PowerBoundStrict_absent"] is True
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     assert "theorem mixed_word_power_lt" not in text
     assert "theorem floorPower_odd_sq_lt_cube" not in text
 

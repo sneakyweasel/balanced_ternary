@@ -23,7 +23,7 @@ ENABLE_RESTRICTED_SYMBOLIC_COMPOSITION = False
 DOMAIN = "odd n >= 2 with T(n) even (equivalently isqrt(n^3) even on the floor-power map)"
 PRIMARY_CANDIDATE = "T^2(x) < x"
 WEAK_CANDIDATE = "T^2(x) <= x - 1"
-LEAN_MODULE = "Problems.Engine.FloorPower"
+LEAN_MODULE = "Problems.Juggler.Dynamics"
 LEAN_THEOREM = "floorPower_odd_even_two_step_lt"
 LEAN_TARGET = f"{LEAN_MODULE}.{LEAN_THEOREM}"
 

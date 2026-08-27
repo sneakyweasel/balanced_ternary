@@ -14,5 +14,5 @@ PROBLEM = ProblemDefinition(
     ),
     bt_relevance="Not required. Ordinary positive integers.",
     docs=("docs/problems/juggler_sequence.md",),
-    lean=("formal/Problems/Engine/FloorPower.lean",),
+    lean=("formal/Problems/Juggler.lean",),
 )

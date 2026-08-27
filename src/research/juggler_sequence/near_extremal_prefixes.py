@@ -19,6 +19,7 @@ from research.juggler_sequence.envelope_defect import (
     tiny_deficit,
 )
 from research.juggler_sequence.equality_language import is_monochrome
+from research.juggler_sequence.lean_paths import SCALE, juggler_text
 from research.juggler_sequence.power_words import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
@@ -301,9 +302,9 @@ def scan_realized(
 
 
 def lean_api_present() -> dict[str, bool]:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     financing = (
-        REPO_ROOT / "formal" / "Problems" / "Engine" / "OddRunFinancing.lean"
+        SCALE
     ).read_text(encoding="utf-8")
     combined = text + "\n" + financing
     return {

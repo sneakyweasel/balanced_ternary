@@ -47,9 +47,9 @@ Macro-state `M(n)=(parity(n), B(n), parity(T^2(n)))`. Status: `MACRO_STATE_INSUF
 
 ## Existing lemmas
 
-- `Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt`
-- `Problems.Engine.FloorPower.floorPower_odd_odd_two_step_gt`
-- combined: `Problems.Engine.FloorPower.floorPower_odd_macro_direction`
+- `Problems.Juggler.Dynamics.floorPower_odd_even_two_step_lt`
+- `Problems.Juggler.Dynamics.floorPower_odd_odd_two_step_gt`
+- combined: `Problems.Juggler.Dynamics.floorPower_odd_macro_direction`
 
 ## Exceptional state
 

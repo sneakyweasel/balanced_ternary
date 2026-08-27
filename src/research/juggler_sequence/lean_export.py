@@ -1,6 +1,6 @@
 """Lean export names. Finite identities; not a halt theorem."""
 
-LEAN_MODULE = "Problems.Engine.FloorPower"
+LEAN_MODULE = "Problems.Juggler"
 
 THEOREMS = (
     "floorPower_one",
@@ -8,4 +8,4 @@ THEOREMS = (
     "floorPower_thirteen_reaches_one",
 )
 
-LEAN_PATH = "formal/Problems/Engine/FloorPower.lean"
+LEAN_PATH = "formal/Problems/Juggler/"

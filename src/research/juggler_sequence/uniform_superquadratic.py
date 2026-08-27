@@ -14,6 +14,7 @@ from typing import Any
 
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH
+from research.juggler_sequence.lean_paths import juggler_text
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_uniform_thresholds.json"
@@ -183,7 +184,7 @@ def epsilon_r_table(*, r_max: int = 12) -> list[dict[str, Any]]:
 
 
 def lean_api_present() -> dict[str, bool]:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     return {
         "sorry_free": "sorry" not in text and "admit" not in text,
         **{

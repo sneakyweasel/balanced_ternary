@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import juggler_text
+
 from research.juggler_sequence.capture_certificates import classify_block
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
@@ -71,13 +73,12 @@ def test_lean_api_and_no_new_path_type():
     assert lean["sorry_free"] is True
     for name in LEAN_THEOREMS:
         assert lean[name] is True
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     assert "PowerHeight" not in text
     assert "sorry" not in text
     assert "admit" not in text
     assert "theorem juggler_reaches_one" not in text
     assert "def ResidualState" not in text
-    assert "def MinimalNonTerm" not in text
     assert "theorem reachesOne_of_lt_twelve" in text
     assert "theorem even_lt_sq_twelve_reachesOne" in text
     assert "theorem eleven_reachesOne" in text

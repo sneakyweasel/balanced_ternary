@@ -21,15 +21,23 @@ from research.juggler_sequence.envelope_defect import tiny_deficit
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
 from research.juggler_sequence.residual_chain import residual_chain, residual_excursion
+from research.juggler_sequence.lean_paths import (
+    CYCLES,
+    CYCLE_DIOPHANTINE,
+    ENVELOPE,
+    RESIDUALS,
+    juggler_text,
+    engine_floor_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_residual.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_residual.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "OddOddResidual.lean"
-RESIDUAL_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "ResidualChain.lean"
-CYCLE_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "CycleWord.lean"
-DIOPH_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "CycleDiophantine.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
+RESIDUAL_PATH = RESIDUALS
+CYCLE_PATH = CYCLES
+DIOPH_PATH = CYCLE_DIOPHANTINE
+FLOOR_PATH = ENVELOPE
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_odd_residuals"
 
 CLASS_ADMISSIBILITY = "ODD_ODD_ADMISSIBILITY_GREEN"
@@ -329,8 +337,9 @@ def lean_api_present() -> dict[str, bool]:
     residual = RESIDUAL_PATH.read_text(encoding="utf-8")
     cycle = CYCLE_PATH.read_text(encoding="utf-8")
     dioph = DIOPH_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
-    combined = residual + cycle + dioph + floor
+    corpus = juggler_text()
+    floor = engine_floor_text()
+    combined = residual + cycle + dioph + corpus
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         "ResidualStep": "def ResidualStep" in residual,

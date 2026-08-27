@@ -269,9 +269,9 @@
     "growth_survived": true
   },
   "lean_status": "PROVED",
-  "lean_module": "Problems.Engine.FloorPower",
-  "lean_odd_even": "Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt",
-  "lean_odd_odd": "Problems.Engine.FloorPower.floorPower_odd_odd_two_step_gt",
+  "lean_module": "Problems.Juggler.Dynamics",
+  "lean_odd_even": "Problems.Juggler.Dynamics.floorPower_odd_even_two_step_lt",
+  "lean_odd_odd": "Problems.Juggler.Dynamics.floorPower_odd_odd_two_step_gt",
   "mathematical_status": "NEW_STRUCTURAL_LEMMA",
   "global_consequence": "LOCAL_BRANCH_LAW",
   "not_global_termination": true,

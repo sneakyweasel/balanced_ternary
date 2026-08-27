@@ -31,15 +31,22 @@ from research.juggler_sequence.power_words import (
     word_of,
 )
 from research.juggler_sequence.saturation_budget import square_depth
+from research.juggler_sequence.lean_paths import (
+    CYCLE_DIOPHANTINE,
+    ENVELOPE,
+    MINIMAL,
+    RESIDUALS,
+    juggler_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_drift_crossing.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_drift_crossing.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "DriftCrossing.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-RESIDUAL_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "ResidualChain.lean"
-MIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "MinimalNonTerm.lean"
-CYCLE_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "CycleDiophantine.lean"
+FLOOR_PATH = ENVELOPE
+RESIDUAL_PATH = RESIDUALS
+MIN_PATH = MINIMAL
+CYCLE_PATH = CYCLE_DIOPHANTINE
 PREFIX_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "PrefixNc.lean"
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "drift_crossing"
 
@@ -675,7 +682,7 @@ def extra_starts() -> tuple[int, ...]:
 
 
 def lean_api_present() -> dict[str, Any]:
-    floor = FLOOR_PATH.read_text(encoding="utf-8") if FLOOR_PATH.is_file() else ""
+    floor = juggler_text()
     residual = RESIDUAL_PATH.read_text(encoding="utf-8") if RESIDUAL_PATH.is_file() else ""
     minimum = MIN_PATH.read_text(encoding="utf-8") if MIN_PATH.is_file() else ""
     cycle = CYCLE_PATH.read_text(encoding="utf-8") if CYCLE_PATH.is_file() else ""

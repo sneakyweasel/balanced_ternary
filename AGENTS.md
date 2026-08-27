@@ -75,6 +75,7 @@ implementing, find the invariant or obstruction, and decide.
 | Accelerated `T`, cylinders, cycles, warp | `src/research/collatz/` |
 | Integer affine / R/K/L / recurrences / theorem targets / spectral classification | `src/research_engine/` |
 | Lean packaging of existing lemmas | `formal/BTCalculus/` or `formal/Problems/Collatz/` |
+| Juggler Lean (floor-power map, words, first-passage, certificates) | `formal/Problems/Juggler/` |
 | Named theorem metadata | `docs/theory/theorem_ledger.json` then render |
 | New research area | [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md) + `src/research/<id>/` |
 

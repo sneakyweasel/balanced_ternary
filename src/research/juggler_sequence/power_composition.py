@@ -10,6 +10,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from research.juggler_sequence.lean_paths import juggler_text
 from research.juggler_sequence.power_words import (
     ANTI_OVERCLAIM,
     LEAN_PATH,
@@ -193,7 +194,7 @@ def run_near_equality(
 
 
 def lean_api_present() -> dict[str, bool]:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     names = (LEAN_EMPTY, LEAN_EVEN, LEAN_ODD, LEAN_FOLLOWS, LEAN_CONTRACTS)
     return {
         "sorry_free": "sorry" not in text and "admit" not in text,

@@ -26,7 +26,7 @@ TARGET = "juggler_sequence"
 ATTACK = "odd_odd_branch_composition"
 DEPTH = 2
 EXPERIMENT_NAME = "juggler_odd_odd_phase10"
-LEAN_MODULE = "Problems.Engine.FloorPower"
+LEAN_MODULE = "Problems.Juggler.Dynamics"
 LEAN_ODD_EVEN = "floorPower_odd_even_two_step_lt"
 LEAN_ODD_ODD = "floorPower_odd_odd_two_step_gt"
 

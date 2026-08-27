@@ -25,7 +25,7 @@ from research_engine.control.types import (
 
 TARGET = "juggler_sequence"
 EXPERIMENT_NAME = "juggler_parity_drift_phase12"
-LEAN_MODULE = "Problems.Engine.FloorPower"
+LEAN_MODULE = "Problems.Juggler.Envelope"
 LEAN_OOOEE = "floorPower_oooee_five_step_lt"
 LEAN_OE = "floorPower_odd_even_two_step_lt"
 LEAN_OO = "floorPower_odd_odd_two_step_gt"

@@ -10,6 +10,7 @@ from research.juggler_sequence.discovery import orbit as juggler_orbit
 from research.juggler_sequence.discovery import step as juggler_step
 from research.juggler_sequence.spec import FloorPowerSpec, map_images
 from research.research_control.juggler_odd_odd_phase10 import frozen_seeds
+from research.juggler_sequence.lean_paths import ENVELOPE, juggler_text
 from research_engine.control.juggler_parity_drift import (
     EXPERIMENT_NAME,
     LEAN_OE,
@@ -29,7 +30,7 @@ from research_engine.control.juggler_parity_drift import (
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_drift_phase12.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_parity_drift_phase12.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
+LEAN_PATH = ENVELOPE
 PHASE11_JSON = REPO_ROOT / "docs" / "research" / "juggler_macro_phase11.json"
 
 
@@ -65,7 +66,7 @@ def frozen_drift_samples() -> tuple[DriftSample, ...]:
 
 
 def lean_oooee_proved() -> bool:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     return (
         f"theorem {LEAN_OE}" in text
         and f"theorem {LEAN_OO}" in text

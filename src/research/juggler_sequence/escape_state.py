@@ -25,13 +25,18 @@ from research.juggler_sequence.near_extremal_prefixes import (
     prefix_noncontracting,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, itinerary, odd_count, word_of
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    RESIDUALS,
+    juggler_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_escape_state.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_escape_state.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "EscapeState.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-RESIDUAL_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "ResidualChain.lean"
+FLOOR_PATH = ENVELOPE
+RESIDUAL_PATH = RESIDUALS
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "escape_state"
 
 CLASS_INVARIANT = "ESCAPE_STATE_INVARIANT_GREEN"
@@ -210,7 +215,7 @@ def scan_window(*, n_max: int = N_MAX, k_max: int = K_MAX) -> dict[str, Any]:
 
 
 def lean_api_present() -> dict[str, bool]:
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    floor = juggler_text()
     residual = RESIDUAL_PATH.read_text(encoding="utf-8")
     combined = floor + residual
     return {

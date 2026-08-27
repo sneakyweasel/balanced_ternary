@@ -14,14 +14,23 @@ from typing import Any
 
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_superquadratic import lower_denom
+from research.juggler_sequence.lean_paths import (
+    CYCLES,
+    ENVELOPE,
+    PROGRESS,
+    RESIDUALS,
+    juggler_text,
+    engine_floor_text,
+    has_named,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_word.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_word.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "CycleWord.lean"
-PATH_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "ResidualPath.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-PROGRESS_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "Progress.lean"
+LEAN_PATH = CYCLES
+PATH_PATH = RESIDUALS
+FLOOR_PATH = ENVELOPE
+PROGRESS_PATH = PROGRESS
 
 CLASS_BOUND = "CYCLE_BOUND_GREEN"
 CLASS_EXCLUDED = "CYCLE_WORD_EXCLUDED"
@@ -144,9 +153,10 @@ def word_row(word: str, *, search_cap: int | None = None) -> dict[str, Any]:
 def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
     path = PATH_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    corpus = juggler_text()
+    floor = engine_floor_text()
     progress = PROGRESS_PATH.read_text(encoding="utf-8")
-    combined = text + path + floor + progress
+    combined = text + path + corpus + progress
     named = {}
     for name in LEAN_THEOREMS:
         if name == "CycleWord":
@@ -157,7 +167,7 @@ def lean_api_present() -> dict[str, bool]:
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **named,
         "certificate_present": all(
-            (f"theorem {name}" in combined or f"def {name}" in combined)
+            (has_named(combined, name))
             for name in CERTIFICATE_UNCHANGED
         ),
         "PowerHeight_absent": "PowerHeight" not in combined,

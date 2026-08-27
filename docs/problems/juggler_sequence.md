@@ -117,9 +117,11 @@ literature-open and is not restated as a project conjecture.
 
 ## Formalization
 
-`formal/Problems/Engine/FloorPower.lean`. Identities
-`floorPower_one`, `floorPower_thirteen_step`,
-`floorPower_thirteen_reaches_one`. No `sorry`. No ledger row (KNOWN).
+Live Lean is `formal/Problems/Juggler/` (barrel
+`formal/Problems/Juggler.lean`). Identities `floorPower_one`,
+`floorPower_thirteen_step`, `floorPower_thirteen_reaches_one`. The
+old `formal/Problems/Engine/FloorPower.lean` stack was deleted in the
+layer rewrite. No `sorry`. No ledger row (KNOWN).
 
 ## Results
 

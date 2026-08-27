@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from research.juggler_sequence.lean_paths import juggler_text
+
 from research.juggler_sequence.power_composition import (
     CLASS_GREEN,
     LEAN_CONTRACTS,
@@ -80,7 +82,7 @@ def test_lean_api_and_instances_present():
     assert lean[LEAN_CONTRACTS] is True
     assert lean["oooee_intact"] is True
     assert lean["oooeeeoo_intact"] is True
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     assert "theorem floorPower_oooee_of_follows" in text
     assert "theorem floorPower_oooeeeoo_of_follows" in text
     assert "sorry" not in text

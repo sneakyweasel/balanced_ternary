@@ -13,6 +13,15 @@ from typing import Any
 
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import is_odd_odd
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    MINIMAL,
+    PROGRESS,
+    RESIDUALS,
+    juggler_text,
+    engine_floor_text,
+    has_named,
+)
 from research.juggler_sequence.residual_chain import (
     residual_chain,
     residual_class,
@@ -22,11 +31,11 @@ from research.juggler_sequence.residual_chain import (
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_path.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_residual_path.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "ResidualPath.lean"
-CHAIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "ResidualChain.lean"
-PROGRESS_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "Progress.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-MIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "MinimalNonTerm.lean"
+LEAN_PATH = RESIDUALS
+CHAIN_PATH = RESIDUALS
+PROGRESS_PATH = PROGRESS
+FLOOR_PATH = ENVELOPE
+MIN_PATH = MINIMAL
 
 CLASS_BOUNDED = "BOUNDED_RESIDUAL_CYCLE_GREEN"
 CLASS_OBSTRUCTION = "CYCLE_OBSTRUCTION_GREEN"
@@ -59,8 +68,8 @@ CERTIFICATE_UNCHANGED = (
     "ResidualStep",
     "ReachesOne",
     "FiniteProgress",
-    "Capture",
-    "Descent",
+    "DescentCertificate",
+    "descent_of_below",
     "ReturnBelow",
     "power_bound_word",
     "power_bound_contracts",
@@ -143,9 +152,10 @@ def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
     chain = CHAIN_PATH.read_text(encoding="utf-8")
     progress = PROGRESS_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    corpus = juggler_text()
+    floor = engine_floor_text()
     minimum = MIN_PATH.read_text(encoding="utf-8")
-    combined = text + chain + progress + floor + minimum
+    combined = text + chain + progress + corpus + minimum
     named = {}
     for name in LEAN_THEOREMS:
         if name in {"ResidualDescent", "ResidualReturn", "ResidualOvershoot"}:
@@ -156,7 +166,7 @@ def lean_api_present() -> dict[str, bool]:
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **named,
         "certificate_present": all(
-            (f"theorem {name}" in combined or f"def {name}" in combined)
+            (has_named(combined, name))
             for name in CERTIFICATE_UNCHANGED
         ),
         "PowerHeight_absent": "PowerHeight" not in combined,

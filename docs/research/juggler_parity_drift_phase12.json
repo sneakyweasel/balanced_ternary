@@ -2209,9 +2209,9 @@
     ]
   },
   "existing_lemmas": {
-    "odd_even": "Problems.Engine.FloorPower.floorPower_odd_even_two_step_lt",
-    "odd_odd": "Problems.Engine.FloorPower.floorPower_odd_odd_two_step_gt",
-    "oooee": "Problems.Engine.FloorPower.floorPower_oooee_five_step_lt"
+    "odd_even": "Problems.Juggler.Envelope.floorPower_odd_even_two_step_lt",
+    "odd_odd": "Problems.Juggler.Envelope.floorPower_odd_odd_two_step_gt",
+    "oooee": "Problems.Juggler.Envelope.floorPower_oooee_five_step_lt"
   },
   "phase11_record_intact": true
 }

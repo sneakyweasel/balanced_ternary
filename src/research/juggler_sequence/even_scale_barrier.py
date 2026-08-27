@@ -16,12 +16,17 @@ from research.juggler_sequence.capture_certificates import classify_block
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
 from research.juggler_sequence.no_progress_paths import even_collapses, realized_prefix
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    MINIMAL,
+    juggler_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_even_scale_barrier.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_even_scale_barrier.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "MinimalNonTerm.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
+LEAN_PATH = MINIMAL
+FLOOR_PATH = ENVELOPE
 
 CLASS_GREEN = "MINIMAL_NORMAL_FORM_GREEN"
 CLASS_BARRIER = "EVEN_SCALE_BARRIER_GREEN"
@@ -187,7 +192,7 @@ def first_image_parity(*, n_max: int = N_MAX) -> dict[str, Any]:
 
 def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    floor = juggler_text()
     return {
         "sorry_free": "sorry" not in text and "admit" not in text
         and "sorry" not in floor

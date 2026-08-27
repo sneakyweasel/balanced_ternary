@@ -14,14 +14,23 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
+from research.juggler_sequence.lean_paths import (
+    CYCLES,
+    ENVELOPE,
+    MINIMAL,
+    PROGRESS,
+    juggler_text,
+    engine_floor_text,
+    has_named,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_internal_e.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_cycle_internal_e.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "CycleWord.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-PROGRESS_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "Progress.lean"
-MIN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "MinimalNonTerm.lean"
+LEAN_PATH = CYCLES
+FLOOR_PATH = ENVELOPE
+PROGRESS_PATH = PROGRESS
+MIN_PATH = MINIMAL
 
 CLASS_BOOTSTRAP = "INTERNAL_E_BOOTSTRAP_GREEN"
 CLASS_LEN6 = "E_TERMINATING_LENGTH6_GREEN"
@@ -123,10 +132,11 @@ def candidate_row(word: str) -> dict[str, Any]:
 
 def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    corpus = juggler_text()
+    floor = engine_floor_text()
     progress = PROGRESS_PATH.read_text(encoding="utf-8")
     minimal = MIN_PATH.read_text(encoding="utf-8")
-    combined = text + floor + progress
+    combined = text + corpus + progress
     named: dict[str, bool] = {}
     for name in LEAN_THEOREMS:
         token = f"def {name}" if name == "CycleMin" else f"theorem {name}"
@@ -135,7 +145,7 @@ def lean_api_present() -> dict[str, bool]:
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **named,
         "certificate_present": all(
-            (f"theorem {name}" in combined or f"def {name}" in combined)
+            (has_named(combined, name))
             for name in CERTIFICATE_UNCHANGED
         ),
         "PowerHeight_absent": "PowerHeight" not in combined,

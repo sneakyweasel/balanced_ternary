@@ -1,22 +1,28 @@
-import Problems.Engine.FloorPower
+import Problems.Juggler.Progress
 
-namespace Problems.Engine
+namespace Problems.Juggler
 
 /-!
-# Minimal non-termination: even-run scale barriers
+# Minimal non-termination
 
 Conditional constraints on a hypothetical minimal `n` that never
-reaches `1`. Not a halt theorem. Not an all-odd orbit claim: an even
-state above `n` may still map to a non-terminating square root.
+reaches `1`. The already-proved half is
 
-Positive integers only: `ReachesOne 0` is false, so minimality is
-quantified over `m ≥ 1`.
+```
+MinimalNonTerm n  →  ∀ k, T^[k] n ≥ n
+HasFiniteCoeffStop n  →  ¬MinimalNonTerm n
+```
+
+The missing implication `MinimalNonTerm n → HasFiniteCoeffStop n`
+is packaged as a Prop and is not proved. Not an all-odd orbit claim.
 -/
 
-/-- A positive integer that never reaches `1`, and is minimal with
-that property among positive integers. -/
 def MinimalNonTerm (n : ℕ) : Prop :=
   1 ≤ n ∧ ¬ReachesOne n ∧ ∀ m, 1 ≤ m → m < n → ReachesOne m
+
+/-- Isolated missing implication. Not a theorem. -/
+def MinimalImpliesCoeffStop (n : ℕ) : Prop :=
+  MinimalNonTerm n → HasFiniteCoeffStop n
 
 theorem MinimalNonTerm.pos {n : ℕ} (h : MinimalNonTerm n) : 1 ≤ n :=
   h.1
@@ -37,12 +43,6 @@ theorem minimal_nonterm_ge_of_not_reachesOne {n m : ℕ}
 theorem minimal_nonterm_ge_twelve {n : ℕ} (h : MinimalNonTerm n) : 12 ≤ n :=
   non_reachesOne_ge_twelve h.pos h.not_reachesOne
 
-theorem floorPower_iterate_pos {n : ℕ} (hn : 1 ≤ n) : ∀ k, 1 ≤ floorPower^[k] n
-  | 0 => hn
-  | k + 1 => by
-      have ih := floorPower_iterate_pos (floorPower_pos hn) k
-      simpa [iterate_cons] using ih
-
 theorem orbit_not_reachesOne {n m k : ℕ} (h : MinimalNonTerm n)
     (hk : floorPower^[k] n = m) : ¬ReachesOne m :=
   fun hm => h.not_reachesOne (reachesOne_of_iterate hk hm)
@@ -52,11 +52,11 @@ theorem image_not_reachesOne {n : ℕ} {w : List Branch}
   orbit_not_reachesOne h (image_eq_iterate n w).symm
 
 theorem minimal_nonterm_no_capture {n : ℕ} {w : List Branch}
-    (h : MinimalNonTerm n) : ¬Capture n w :=
-  fun hc => h.not_reachesOne (capture_reachesOne hc)
+    (h : MinimalNonTerm n) : ¬(follows n w ∧ image n w = 1) :=
+  fun hc => h.not_reachesOne (capture_reachesOne hc.1 hc.2)
 
 theorem minimal_nonterm_no_descent {n : ℕ} {w : List Branch}
-    (h : MinimalNonTerm n) : ¬Descent n w := by
+    (h : MinimalNonTerm n) : ¬(follows n w ∧ image n w < n) := by
   intro hd
   have hpos := image_pos h.pos w
   have hr := h.below hpos hd.2
@@ -67,9 +67,13 @@ theorem minimal_nonterm_image_ge {n : ℕ} {w : List Branch}
   by_contra hlt
   exact minimal_nonterm_no_descent h ⟨hw, Nat.lt_of_not_ge hlt⟩
 
-theorem iterate_add_right (n k r : ℕ) :
-    floorPower^[k + r] n = floorPower^[r] (floorPower^[k] n) := by
-  rw [Nat.add_comm, Function.iterate_add_apply]
+theorem minimal_nonterm_iterate_ge {n : ℕ} (h : MinimalNonTerm n) :
+    ∀ k, n ≤ floorPower^[k] n
+  | 0 => le_rfl
+  | k + 1 => by
+      have hw : follows n (word n (k + 1)) := follows_word_self n (k + 1)
+      have := minimal_nonterm_image_ge h hw
+      simpa [image_word] using this
 
 theorem minimal_nonterm_odd {n : ℕ} (h : MinimalNonTerm n) : n % 2 = 1 := by
   by_cases heven : n % 2 = 0
@@ -82,7 +86,6 @@ theorem minimal_nonterm_odd {n : ℕ} (h : MinimalNonTerm n) : n % 2 = 1 := by
     exact (h.not_reachesOne (reachesOne_of_iterate (k := 1) rfl hr)).elim
   · omega
 
-/-- Even-run envelope: `r` even steps give `T^r(m)^{2^r} ≤ m`. -/
 theorem even_run_pow_le {m : ℕ} :
     ∀ {r : ℕ}, follows m (List.replicate r Branch.even) →
       (floorPower^[r] m) ^ (2 ^ r) ≤ m := by
@@ -115,8 +118,6 @@ theorem even_run_exit_ge {n m k r : ℕ} (h : MinimalNonTerm n)
     (by rw [← hexit]; exact floorPower_iterate_pos h.pos (k + r))
     (orbit_not_reachesOne h hexit)
 
-/-- Scale barrier: an `E^r` run on a minimal non-1 orbit has
-entry at least `n ^ (2 ^ r)`. Not an all-odd claim. -/
 theorem even_run_scale_barrier {n m k r : ℕ} (h : MinimalNonTerm n)
     (hk : floorPower^[k] n = m)
     (hw : follows m (List.replicate r Branch.even)) :
@@ -153,11 +154,12 @@ theorem minimal_nonterm_avoid_even_lt_sq_twelve {n m k : ℕ}
 theorem even_tower_not_on_minimal {n k j : ℕ} (h : MinimalNonTerm n)
     (hk : 1 ≤ k) : floorPower^[j] n ≠ 2 ^ (2 ^ (k - 1)) :=
   fun heq =>
-    orbit_not_reachesOne h heq (capture_reachesOne (even_tower_capture hk))
+    orbit_not_reachesOne h heq
+      (capture_reachesOne (even_tower_capture hk).1 (even_tower_capture hk).2)
 
 theorem minimal_nonterm_oe_descent {n : ℕ} (h : MinimalNonTerm n)
     (heven : floorPower n % 2 = 0) :
-    Descent n [.odd, .even] := by
+    follows n [.odd, .even] ∧ image n [.odd, .even] < n := by
   have hodd := minimal_nonterm_odd h
   have hw : follows n [.odd, .even] := ⟨hodd, heven, trivial⟩
   have hT : floorPower n = (n ^ 3).sqrt := floorPower_odd_eq hodd
@@ -167,24 +169,20 @@ theorem minimal_nonterm_oe_descent {n : ℕ} (h : MinimalNonTerm n)
       (by simpa [hT] using heven)
   exact ⟨hw, by simpa [image] using hlt⟩
 
-/-- The first image is odd. Later even states are still allowed if they
-stay at scale `≥ n^2`. -/
 theorem minimal_nonterm_odd_image_odd {n : ℕ} (h : MinimalNonTerm n) :
     floorPower n % 2 = 1 := by
   by_cases heven : floorPower n % 2 = 0
   · exact (minimal_nonterm_no_descent h (minimal_nonterm_oe_descent h heven)).elim
   · omega
 
-/-- Finite-prefix normal form. Not a totality proof and not an all-odd
-orbit theorem. -/
 theorem minimal_counterexample_normal_form {n : ℕ} {w : List Branch}
     (h : MinimalNonTerm n) (hw : follows n w) :
     12 ≤ n ∧
       n % 2 = 1 ∧
       n ≤ image n w ∧
       ¬ReachesOne (image n w) ∧
-      ¬Descent n w ∧
-      ¬Capture n w ∧
+      ¬(follows n w ∧ image n w < n) ∧
+      ¬(follows n w ∧ image n w = 1) ∧
       (image n w % 2 = 0 → n ^ 2 ≤ image n w) :=
   ⟨minimal_nonterm_ge_twelve h,
     minimal_nonterm_odd h,
@@ -195,4 +193,18 @@ theorem minimal_counterexample_normal_form {n : ℕ} {w : List Branch}
     fun heven =>
       minimal_nonterm_even_ge_sq h (image_eq_iterate n w).symm heven⟩
 
-end Problems.Engine
+/-- Finite coefficient stopping time contradicts minimality. -/
+theorem coeffStop_contradicts_minimal {n : ℕ}
+    (h : MinimalNonTerm n) (hτ : HasFiniteCoeffStop n) : False := by
+  have hn : 2 ≤ n := le_trans (by decide : 2 ≤ 12) (minimal_nonterm_ge_twelve h)
+  obtain ⟨k, hk, hlt⟩ := coeffStop_implies_stop hn hτ
+  have hge := minimal_nonterm_iterate_ge h k
+  exact (not_le_of_gt hlt) hge
+
+theorem no_minimal_of_all_coeffStop
+    (h : FiniteCoeffStopConjecture) : ∀ n, ¬MinimalNonTerm n := by
+  intro n hm
+  have hn : 2 ≤ n := le_trans (by decide : 2 ≤ 12) (minimal_nonterm_ge_twelve hm)
+  exact coeffStop_contradicts_minimal hm (h n hn)
+
+end Problems.Juggler

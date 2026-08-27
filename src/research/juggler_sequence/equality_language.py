@@ -12,6 +12,7 @@ from math import isqrt
 from pathlib import Path
 from typing import Any
 
+from research.juggler_sequence.lean_paths import juggler_text
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, itinerary
 from research.juggler_sequence.saturation_budget import (
     has_pow_two_depth,
@@ -175,7 +176,7 @@ def example_records() -> dict[str, Any]:
 
 
 def lean_api_present() -> dict[str, bool]:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     return {
         "sorry_free": "sorry" not in text and "admit" not in text,
         **{name: f"theorem {name}" in text for name in LEAN_THEOREMS},

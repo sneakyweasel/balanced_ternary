@@ -1,8 +1,10 @@
-import Problems.Engine.OddRunFinancing
-import Problems.Engine.Progress
+import Problems.Juggler.Scale
 
-namespace Problems.Engine
+namespace Problems.Juggler
 
+/-!
+# Residual first-even and residual-path regimes
+-/
 /-!
 # First even residual and post-overshoot residual of an odd-to-odd start
 
@@ -97,7 +99,7 @@ theorem odd_even_residual_image {z n : ℕ}
 
 /-- `O^a E` descends iff the even residual lies below `n^2`. -/
 theorem first_even_descent_iff {n a : ℕ} (hw : follows n (oddEvenBlock a 1)) :
-    Descent n (oddEvenBlock a 1) ↔
+    (follows n (oddEvenBlock a 1) ∧ image n (oddEvenBlock a 1) < n) ↔
       image n (List.replicate a Branch.odd) < n ^ 2 := by
   have hz := odd_run_even_residual hw
   have himg : image n (oddEvenBlock a 1) =
@@ -119,7 +121,8 @@ theorem finiteProgress_of_first_even_below {n a : ℕ}
     (hw : follows n (oddEvenBlock a 1))
     (hlt : image n (List.replicate a Branch.odd) < n ^ 2) :
     FiniteProgress n :=
-  finiteProgress_of_descent ((first_even_descent_iff hw).mpr hlt)
+  finiteProgress_of_imageLt ((first_even_descent_iff hw).mpr hlt).1
+    ((first_even_descent_iff hw).mpr hlt).2
 
 theorem minimal_even_residual_gt_sq {n z k : ℕ} (h : MinimalNonTerm n)
     (hk : floorPower^[k] n = z) (heven : z % 2 = 0) : n ^ 2 < z := by
@@ -130,7 +133,7 @@ theorem minimal_even_residual_gt_sq {n z k : ℕ} (h : MinimalNonTerm n)
 /-- A `MinimalNonTerm` start cannot descend on its first `O^a E`. -/
 theorem minimal_nonterm_not_first_even_descent {n a : ℕ}
     (h : MinimalNonTerm n) (hw : follows n (oddEvenBlock a 1)) :
-    ¬Descent n (oddEvenBlock a 1) := by
+    ¬(follows n (oddEvenBlock a 1) ∧ image n (oddEvenBlock a 1) < n) := by
   intro hd
   have hz := odd_run_even_residual hw
   have hlt := (first_even_descent_iff hw).mp hd
@@ -141,7 +144,7 @@ theorem minimal_nonterm_not_first_even_descent {n a : ℕ}
 /-- Nor can the first `O^a E` capture `{1}`: the image stays `≥ n ≥ 12`. -/
 theorem minimal_nonterm_not_first_even_capture {n a : ℕ}
     (h : MinimalNonTerm n) (hw : follows n (oddEvenBlock a 1)) :
-    ¬Capture n (oddEvenBlock a 1) := by
+    ¬(follows n (oddEvenBlock a 1) ∧ image n (oddEvenBlock a 1) = 1) := by
   intro hc
   have hz := odd_run_even_residual hw
   have himg : image n (oddEvenBlock a 1) =
@@ -160,7 +163,7 @@ theorem minimal_nonterm_not_first_even_capture {n a : ℕ}
 /-- First `O^a E` is not `FiniteProgress` on a minimal non-1 start. -/
 theorem minimal_nonterm_not_first_even_finiteProgress {n a : ℕ}
     (h : MinimalNonTerm n) (hw : follows n (oddEvenBlock a 1)) :
-    ¬(Descent n (oddEvenBlock a 1) ∨ Capture n (oddEvenBlock a 1)) :=
+    ¬((follows n (oddEvenBlock a 1) ∧ image n (oddEvenBlock a 1) < n) ∨ (follows n (oddEvenBlock a 1) ∧ image n (oddEvenBlock a 1) = 1)) :=
   fun hfp =>
     hfp.elim (minimal_nonterm_not_first_even_descent h hw)
       (minimal_nonterm_not_first_even_capture h hw)
@@ -234,7 +237,7 @@ theorem finiteProgress_of_returnBelow {n : ℕ} {u : List Branch}
     (hu : follows n u) (hr : ReturnBelow n (image n u)) :
     FiniteProgress n := by
   obtain ⟨w, hw, hlt⟩ := hr
-  refine finiteProgress_of_descent ⟨follows_append hu hw, ?_⟩
+  refine finiteProgress_of_imageLt (follows_append hu hw) ?_
   simpa [image_append] using hlt
 
 /-- First full excursion `O^a E^b` with image below `n` is progress. -/
@@ -242,7 +245,7 @@ theorem finiteProgress_of_oddEven_lt {n a b : ℕ}
     (hw : follows n (oddEvenBlock a b))
     (hlt : image n (oddEvenBlock a b) < n) :
     FiniteProgress n :=
-  finiteProgress_of_descent ⟨hw, hlt⟩
+  finiteProgress_of_imageLt hw hlt
 
 /-- A minimal non-1 orbit never returns below its start. -/
 theorem minimal_nonterm_no_returnBelow {n x k : ℕ}
@@ -317,4 +320,281 @@ theorem minimal_post_even_even_z_ge_fourth {n a : ℕ}
     _ ≤ floorPower z ^ 2 := hpow
     _ ≤ z := hsq
 
-end Problems.Engine
+/-!
+# Residual steps and certificate propagation
+
+A residual step is one realized `O^a E^b` excursion with `b ≥ 1`.
+`ReachesOne` and `Capture` propagate backward along a residual word.
+A later `ReturnBelow` the original start is `FiniteProgress` there.
+A `Descent` at the residual that stays `≥` the original start is not
+`Descent` at the start. Persistent odd-to-odd residuals remain on the
+same unresolved frontier. This is not a halt theorem and not a claim
+that `FiniteProgress` at the residual implies `FiniteProgress` at the
+start.
+-/
+
+/-- One realized excursion through a later even residual. Not an
+infinite transition system. -/
+def ResidualStep (x y : ℕ) : Prop :=
+  ∃ a b, 1 ≤ b ∧ follows x (oddEvenBlock a b) ∧
+    image x (oddEvenBlock a b) = y
+
+/-- Another odd-to-odd frontier state, strictly above the current one.
+Recursion, not progress. -/
+def PersistentOddResidual (x y : ℕ) : Prop :=
+  ResidualStep x y ∧ x < y ∧ y % 2 = 1 ∧ floorPower y % 2 = 1
+
+theorem residualStep_word {x y : ℕ} (h : ResidualStep x y) :
+    ∃ w, follows x w ∧ image x w = y := by
+  obtain ⟨_a, _b, _hb, hw, himg⟩ := h
+  exact ⟨_, hw, himg⟩
+
+/-- Any certified residual closes `ReachesOne` at the source. Stronger
+than requiring `Capture` of the residual word itself. -/
+theorem reachesOne_of_residualStep {x y : ℕ}
+    (h : ResidualStep x y) (hy : ReachesOne y) : ReachesOne x := by
+  obtain ⟨w, _hw, himg⟩ := residualStep_word h
+  rw [← himg] at hy
+  exact reachesOne_of_image hy
+
+theorem finiteProgress_of_residual_capture {x y : ℕ} {v : List Branch}
+    (h : ResidualStep x y) (hc : (follows y v ∧ image y v = 1)) : FiniteProgress x := by
+  obtain ⟨w, hw, himg⟩ := residualStep_word h
+  rw [← himg] at hc
+  exact finiteProgress_of_capture (capture_of_suffix hw hc.1 hc.2).1
+    (capture_of_suffix hw hc.1 hc.2).2
+
+theorem finiteProgress_of_residual_returnBelow {x y : ℕ}
+    (h : ResidualStep x y) (hr : ReturnBelow x y) : FiniteProgress x := by
+  obtain ⟨w, hw, himg⟩ := residualStep_word h
+  rw [← himg] at hr
+  exact finiteProgress_of_returnBelow hw hr
+
+/-- Concatenating a residual descent that stays at or above `x` is not
+`Descent` at `x`. Distinguishes `T_v(y) < y` from `T_v(y) < x`. -/
+theorem residual_descent_not_below {x y : ℕ} {u v : List Branch}
+    (_hu : follows x u) (hy : image x u = y)
+    (_hd : (follows y v ∧ image y v < y)) (hge : x ≤ image y v) :
+    ¬(follows x (u ++ v) ∧ image x (u ++ v) < x) := by
+  intro hD
+  have himg : image x (u ++ v) = image y v := by
+    rw [image_append, hy]
+  have : image y v < x := by
+    simpa [himg] using hD.2
+  exact Nat.not_lt.mpr hge this
+
+theorem persistent_odd_odd {x y : ℕ} (h : PersistentOddResidual x y) :
+    y % 2 = 1 ∧ floorPower y % 2 = 1 :=
+  ⟨h.2.2.1, h.2.2.2⟩
+
+theorem persistent_residual_gt {x y : ℕ} (h : PersistentOddResidual x y) :
+    x < y :=
+  h.2.1
+
+/-- The same frontier analysis applies to a persistent residual.
+This is recursion, not a progress certificate. -/
+theorem persistent_residual_preserves_frontier {x y : ℕ}
+    (h : PersistentOddResidual x y) :
+    y % 2 = 1 ∧ floorPower y % 2 = 1 :=
+  persistent_odd_odd h
+
+theorem minimal_residual_image_ge {n y : ℕ}
+    (h : MinimalNonTerm n) (hs : ResidualStep n y) : n ≤ y := by
+  obtain ⟨w, hw, himg⟩ := residualStep_word hs
+  simpa [himg] using minimal_nonterm_image_ge h hw
+
+/-- Combined residual scale on a CE: odd exits stay `≥ n`, even exits
+stay `≥ n^2`. -/
+theorem minimal_residual_scale {n y : ℕ}
+    (h : MinimalNonTerm n) (hs : ResidualStep n y) :
+    n ≤ y ∧ (y % 2 = 0 → n ^ 2 ≤ y) := by
+  refine ⟨minimal_residual_image_ge h hs, ?_⟩
+  intro hy
+  obtain ⟨w, hw, himg⟩ := residualStep_word hs
+  rw [← himg] at hy
+  have := minimal_nonterm_first_even_ge_sq h hw hy
+  rwa [himg] at this
+
+/-- Finite residual chains. Not an infinite-path type. -/
+inductive ResidualChain : ℕ → ℕ → Prop where
+  | refl (x : ℕ) : ResidualChain x x
+  | step {x y z : ℕ} : ResidualStep x y → ResidualChain y z → ResidualChain x z
+
+theorem residualChain_word {x y : ℕ} (h : ResidualChain x y) :
+    ∃ w, follows x w ∧ image x w = y := by
+  induction h with
+  | refl x => exact ⟨[], trivial, rfl⟩
+  | step hs _ ih =>
+      obtain ⟨u, hu, hul⟩ := residualStep_word hs
+      obtain ⟨v, hv, hvl⟩ := ih
+      refine ⟨u ++ v, follows_append hu (by simpa [hul] using hv), ?_⟩
+      rw [image_append, hul, hvl]
+
+theorem reachesOne_of_residualChain {x y : ℕ}
+    (h : ResidualChain x y) (hy : ReachesOne y) : ReachesOne x := by
+  obtain ⟨w, _hw, himg⟩ := residualChain_word h
+  rw [← himg] at hy
+  exact reachesOne_of_image hy
+
+theorem finiteProgress_of_residualChain_returnBelow {x y : ℕ}
+    (h : ResidualChain x y) (hr : ReturnBelow x y) : FiniteProgress x := by
+  obtain ⟨w, hw, himg⟩ := residualChain_word h
+  rw [← himg] at hr
+  exact finiteProgress_of_returnBelow hw hr
+
+theorem finiteProgress_of_residualChain_capture {x y : ℕ} {v : List Branch}
+    (h : ResidualChain x y) (hc : (follows y v ∧ image y v = 1)) : FiniteProgress x := by
+  obtain ⟨w, hw, himg⟩ := residualChain_word h
+  rw [← himg] at hc
+  exact finiteProgress_of_capture (capture_of_suffix hw hc.1 hc.2).1
+    (capture_of_suffix hw hc.1 hc.2).2
+
+/-!
+# Residual path regimes: repeats, cycles, envelopes
+
+A residual step is already `ResidualStep`. This module records the
+finite bounded-path consequence (a repeated orbit state is a cycle)
+and the cycle-word envelope `2^r < 3^o`. A residual return
+`ResidualStep x x` therefore needs `a ≥ 2`. This is not a halt
+theorem, not a cycle-impossibility theorem, and not an infinite-path
+type.
+-/
+
+def ResidualDescent (x y : ℕ) : Prop :=
+  ResidualStep x y ∧ y < x
+
+def ResidualReturn (x y : ℕ) : Prop :=
+  ResidualStep x y ∧ y = x
+
+def ResidualOvershoot (x y : ℕ) : Prop :=
+  ResidualStep x y ∧ x < y
+
+theorem two_pow_ne_three_pow {k o : ℕ} (hk : 1 ≤ k) : 2 ^ k ≠ 3 ^ o := by
+  intro h
+  have heven := two_pow_even_of_pos hk
+  have hodd := three_pow_odd o
+  rw [h] at heven
+  omega
+
+/-- A realized return to `x ≥ 2` forces `2^r ≤ 3^o`. -/
+theorem cycle_envelope {x : ℕ} {w : List Branch}
+    (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x) :
+    2 ^ w.length ≤ 3 ^ oddCount w := by
+  have hpow := power_bound_word hw
+  have himg : floorPower^[w.length] x = x := by
+    rw [← image_eq_iterate, hret]
+  rw [himg] at hpow
+  exact (Nat.pow_le_pow_iff_right (show 1 < x by omega)).mp hpow
+
+/-- Equality `2^r = 3^o` is impossible for a nonempty word, so every
+nontrivial cycle is strictly expanding in the exponent. -/
+theorem cycle_strict_envelope {x : ℕ} {w : List Branch}
+    (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x)
+    (hlen : 1 ≤ w.length) :
+    2 ^ w.length < 3 ^ oddCount w :=
+  lt_of_le_of_ne (cycle_envelope hx hw hret) (two_pow_ne_three_pow hlen)
+
+/-- Contracting words cannot close a cycle. -/
+theorem cycle_not_contracting {x : ℕ} {w : List Branch}
+    (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x) :
+    ¬3 ^ oddCount w < 2 ^ w.length := by
+  intro hgap
+  have hlt := power_bound_contracts hx hw hgap
+  have himg : floorPower^[w.length] x = x := by
+    rw [← image_eq_iterate, hret]
+  rw [himg] at hlt
+  exact (lt_irrefl x) hlt
+
+/-- A repeated iterate is a finite Juggler cycle at that state. -/
+theorem orbit_repeat_cycle {n i j : ℕ} (hij : i ≤ j)
+    (h : floorPower^[i] n = floorPower^[j] n) :
+    floorPower^[j - i] (floorPower^[i] n) = floorPower^[i] n := by
+  have hsum : i + (j - i) = j := Nat.add_sub_cancel' hij
+  calc
+    floorPower^[j - i] (floorPower^[i] n)
+        = floorPower^[i + (j - i)] n := (iterate_add_right n i (j - i)).symm
+    _ = floorPower^[j] n := by rw [hsum]
+    _ = floorPower^[i] n := h.symm
+
+/-- A residual return is an actual cycle of length `a + b`. -/
+theorem residual_return_cycle {x a b : ℕ}
+    (_hw : follows x (oddEvenBlock a b))
+    (hret : image x (oddEvenBlock a b) = x) :
+    floorPower^[a + b] x = x := by
+  rw [← image_oddEvenBlock_iterate, hret]
+
+theorem residual_return_envelope {x a b : ℕ}
+    (hx : 2 ≤ x) (hb : 1 ≤ b) (hw : follows x (oddEvenBlock a b))
+    (hret : image x (oddEvenBlock a b) = x) :
+    2 ^ (a + b) ≤ 3 ^ a ∧ 2 ^ (a + b) < 3 ^ a := by
+  have hlen := length_oddEvenBlock a b
+  have hodd := oddCount_oddEvenBlock a b
+  have hle : 2 ^ (oddEvenBlock a b).length ≤ 3 ^ oddCount (oddEvenBlock a b) :=
+    cycle_envelope hx hw hret
+  have hlt : 2 ^ (oddEvenBlock a b).length < 3 ^ oddCount (oddEvenBlock a b) :=
+    cycle_strict_envelope hx hw hret (by
+      rw [hlen]
+      omega)
+  constructor
+  · simpa [hlen, hodd] using hle
+  · simpa [hlen, hodd] using hlt
+
+/-- Residual period-1 on `x ≥ 2` cannot start with `a ≤ 1`. -/
+theorem residual_return_a_ge_two {x a b : ℕ}
+    (hx : 2 ≤ x) (hb : 1 ≤ b) (hw : follows x (oddEvenBlock a b))
+    (hret : image x (oddEvenBlock a b) = x) : 2 ≤ a := by
+  have hle := (residual_return_envelope hx hb hw hret).1
+  have hmon : 2 ^ (a + 1) ≤ 2 ^ (a + b) :=
+    Nat.pow_le_pow_right (by decide : (1 : ℕ) ≤ 2) (Nat.add_le_add_left hb a)
+  have : 2 ^ (a + 1) ≤ 3 ^ a := le_trans hmon hle
+  exact two_pow_succ_le_three_pow_iff.mp this
+
+/-- A residual chain from a CE stays at or above the start. -/
+theorem minimal_residual_chain_ge {n y : ℕ}
+    (h : MinimalNonTerm n) (hc : ResidualChain n y) : n ≤ y := by
+  obtain ⟨w, hw, himg⟩ := residualChain_word hc
+  simpa [himg] using minimal_nonterm_image_ge h hw
+
+/-- Finite pigeonhole: a prefix valued in `[lo, hi]` that is longer
+than the interval cannot be nodup. This is the finite form of
+“bounded residual path ⇒ repeat”. -/
+theorem bounded_prefix_not_nodup {lo hi : ℕ} (hle : lo ≤ hi)
+    (xs : List ℕ) (hmem : ∀ x ∈ xs, lo ≤ x ∧ x ≤ hi)
+    (hlen : hi + 1 - lo < xs.length) : ¬xs.Nodup := by
+  intro hn
+  have hsubset : xs.toFinset ⊆ Finset.Icc lo hi := by
+    intro x hx
+    exact Finset.mem_Icc.mpr (hmem x (List.mem_toFinset.mp hx))
+  have hcard := Finset.card_le_card hsubset
+  have hIcc : (Finset.Icc lo hi).card = hi + 1 - lo := by
+    let emb : ℕ ↪ ℕ := ⟨fun i => i + lo, add_left_injective lo⟩
+    have hmap : Finset.Icc lo hi = (Finset.range (hi + 1 - lo)).map emb := by
+      ext x
+      constructor
+      · intro hx
+        rcases Finset.mem_Icc.mp hx with ⟨hlo, hhi⟩
+        refine Finset.mem_map.mpr ⟨x - lo, ?_, ?_⟩
+        · exact Finset.mem_range.mpr (by omega)
+        · change x - lo + lo = x
+          exact Nat.sub_add_cancel hlo
+      · intro hx
+        rcases Finset.mem_map.mp hx with ⟨i, himem, heq⟩
+        have hi' : i < hi + 1 - lo := Finset.mem_range.mp himem
+        have hsum : i + lo = x := by
+          simpa [emb] using heq
+        have hlo : lo ≤ x := by
+          rw [← hsum]
+          exact Nat.le_add_left lo i
+        have hhi : x ≤ hi := by
+          rw [← hsum]
+          have : i + lo < hi + 1 - lo + lo := Nat.add_lt_add_right hi' lo
+          have hcancel : hi + 1 - lo + lo = hi + 1 :=
+            Nat.sub_add_cancel (Nat.le_succ_of_le hle)
+          rw [hcancel] at this
+          exact Nat.lt_succ_iff.mp this
+        exact Finset.mem_Icc.mpr ⟨hlo, hhi⟩
+    rw [hmap, Finset.card_map, Finset.card_range]
+  have hlen' : xs.toFinset.card = xs.length := List.toFinset_card_of_nodup hn
+  omega
+
+end Problems.Juggler

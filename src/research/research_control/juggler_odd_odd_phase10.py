@@ -9,6 +9,7 @@ from research.juggler_sequence.discovery import WINDOW as JUGGLER_WINDOW
 from research.juggler_sequence.discovery import orbit as juggler_orbit
 from research.juggler_sequence.discovery import step as juggler_step
 from research.juggler_sequence.spec import FloorPowerSpec, map_images
+from research.juggler_sequence.lean_paths import DYNAMICS, juggler_text
 from research_engine.control.juggler_odd_odd import (
     DEPTH,
     OddOddSample,
@@ -24,7 +25,7 @@ from research_engine.control.juggler_odd_odd import (
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_phase10.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_odd_phase10.md"
-LEAN_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
+LEAN_PATH = DYNAMICS
 
 
 def frozen_seeds() -> tuple[int, ...]:
@@ -107,7 +108,7 @@ def odd_even_samples() -> tuple[OddOddSample, ...]:
 
 
 def lean_odd_odd_proved() -> bool:
-    text = LEAN_PATH.read_text(encoding="utf-8")
+    text = juggler_text()
     return (
         "theorem floorPower_odd_even_two_step_lt" in text
         and "theorem floorPower_odd_odd_two_step_gt" in text

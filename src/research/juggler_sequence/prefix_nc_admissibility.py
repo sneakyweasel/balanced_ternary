@@ -33,13 +33,18 @@ from research.juggler_sequence.near_extremal_prefixes import (
     prefix_noncontracting,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power, itinerary, odd_count, word_of
+from research.juggler_sequence.lean_paths import (
+    ENVELOPE,
+    RESIDUALS,
+    juggler_text,
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_prefix_nc_admissibility.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_prefix_nc_admissibility.md"
 LEAN_NEW = REPO_ROOT / "formal" / "Problems" / "Engine" / "PrefixNCAdmissibility.lean"
-FLOOR_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "FloorPower.lean"
-RESIDUAL_PATH = REPO_ROOT / "formal" / "Problems" / "Engine" / "ResidualChain.lean"
+FLOOR_PATH = ENVELOPE
+RESIDUAL_PATH = RESIDUALS
 DATA_DIR = REPO_ROOT / "data" / "research" / "juggler" / "prefix_nc_admissibility"
 
 CLASS_GREEN = "PREFIX_NC_ADMISSIBILITY_GREEN"
@@ -421,7 +426,7 @@ def extension_rows(words: list[str], image: Ival) -> list[dict[str, Any]]:
 
 
 def lean_api_present() -> dict[str, bool]:
-    floor = FLOOR_PATH.read_text(encoding="utf-8")
+    floor = juggler_text()
     residual = RESIDUAL_PATH.read_text(encoding="utf-8")
     combined = floor + residual
     return {
