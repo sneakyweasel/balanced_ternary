@@ -5926,7 +5926,7 @@ Best next question
 - **Major results:** Prefix-NC words start with \(O\); length \(\ge 2\) starts with \(OO\); the mixed family \(O^k E\) (\(k\ge 2\)) is already Lean. The language also contains other mixed patterns (`OOEO`, …). `EOO` has \(\tau=1\) and is not a bad prefix. Scan \(n\le 2000\), \(k\le 10\): 1541 mixed prefix-NC rows, 0 defect-driven certificates, mixed words of length 10 that expand (`n=37`, `n=173`). Closest computed \(\Delta/G\) is on short `OOE` and still far below the formal gap. Classification **NEAR_EXTREMAL_STRUCTURE_GREEN**. No new Lean. No ledger row. Control layer unchanged
 - **Refuted ideas:** treating `EOO` block contraction as a prefix-NC escape; treating a horizon hit as an infinite realized family
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
-- **Open:** realized mixed prefix-NC lengths unbounded, or defect eventually exceeds the formal gap
+- **Open:** answered in the prefix-NC admissibility branch as `PREFIX_NC_ARITHMETIC_COMPLEX`; an explicit infinite family remains open
 - **Decision:** PARK. Record the prefix-NC language. Do not claim `BAD_PREFIX_BOUNDED_GREEN` or termination
 
 ```text
@@ -5963,9 +5963,8 @@ Why
   bound and not a new contraction theorem. Stop.
 
 Best next question
-- Produce an explicit infinite realized mixed prefix-NC family,
-  or prove that defect eventually exceeds the formal gap on every
-  non-monochrome prefix-NC word
+- Answered in the prefix-NC admissibility branch: backward
+  floor-cell pullback is `PREFIX_NC_ARITHMETIC_COMPLEX`.
 ```
 
 ## Juggler odd-odd residual admissibility
@@ -5976,7 +5975,7 @@ Best next question
 - **Major results:** `HARD_PROBES` reproduce \(37\to 9317\) (`O^4E^1`), \(9317\to 2233\) (`O^3E^2`), \(69\to 117\), \(77\to 1523\to 243\), \(9\to 11\). Every odd-odd start in \(2\le n\le 80\) has a non-extremal first residual. Interval widths grow on both length-2 continuations. \(v_2(z)\) on the \(37\)-chain is \(2,5,1\). \(y>x\) fails at \(53\to 9\) and after persistence at \(69\to 117\to 3\). Window max non-extremal odd-odd depth is \(2\), a horizon count, not \(L\). No Lean file. Classification **ODD_ODD_RESIDUAL_COMPLEX**. Records: `docs/research/juggler_odd_odd_residual.md`, `docs/problems/juggler_odd_odd_residual.md`, `data/research/juggler/odd_odd_residuals/`. Control layer unchanged
 - **Refuted ideas:** successor cells tighten; \(y>x\) is necessary; \(v_2/v_3\) is monotone; exact \(O^k\) towers are the unbounded residual branch; a search-horizon depth is \(L\); a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** not another ResidualStep invariant; the parked odd-sharp-suffix search remains the existing open computational question
+- **Open:** answered in the prefix-NC admissibility branch as `PREFIX_NC_ARITHMETIC_COMPLEX`
 - **Decision:** CLOSE the non-extremal odd-odd continuation branch as `ODD_ODD_RESIDUAL_COMPLEX`. Do not add Lean. Do not infer a bound from the window
 
 ```text
@@ -6010,6 +6009,52 @@ Why
 - Every proposed I(S) dies on the known traces. The leftover is ResidualStep rewritten. Stop before a new recurrence object.
 
 Best next question
-- Not another ResidualStep invariant. The parked odd-sharp-suffix search remains the existing open computational question; do not reopen it here.
+- Answered in the prefix-NC admissibility branch: backward
+  floor-cell pullback is `PREFIX_NC_ARITHMETIC_COMPLEX`.
+```
+
+## Juggler prefix-NC arithmetic admissibility
+
+- **Date:** 2026-08-27
+- **Objective:** Test whether backward even/odd floor-cell constraints empty the realizing set of a mixed prefix-noncontracting word
+- **Hypotheses:** `PREFIX_NC_ADMISSIBILITY_GREEN`, `PREFIX_NC_ESCAPE_SET_SHRINKS`, `PREFIX_NC_NEAR_EXTREMAL_GREEN`, `PREFIX_NC_COUNTEREXAMPLE`, or `PREFIX_NC_ARITHMETIC_COMPLEX`
+- **Major results:** \(A(\mathtt{OOE},6)=\{5\}\) **COMPUTATIONALLY VERIFIED**. All \(43\) mixed prefix-NC words of length \(\le 8\) are realized with \(n\le 800\). Empty fiber over images \(1..24\) does not mean unrealizable (`OOEOOOOOOO` at \(173\)). Horizon witnesses: \(37\) realizes `OOOOEOOOEE`, \(173\) realizes `OOEOOOOOOO`, \(2127\) realizes `OOOOEOOOOEE`. Backward constraints are the existing even cell and `odd_cell_unique`. No Lean file. Classification **PREFIX_NC_ARITHMETIC_COMPLEX**. Records: `docs/research/juggler_prefix_nc_admissibility.md`, `docs/problems/juggler_prefix_nc_admissibility.md`, `data/research/juggler/prefix_nc_admissibility/`. Control layer unchanged. `ResidualStep` not extended
+- **Refuted ideas:** long mixed prefix-NC words are arithmetically empty; empty-over-image-cap is unrealizable; a search-horizon word is an infinite family; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** an explicit infinite mixed family, or a Lean emptiness proof for one specified infinite pattern; not a cell-tree engine
+- **Decision:** CLOSE the backward-admissibility branch as `PREFIX_NC_ARITHMETIC_COMPLEX`. Do not add Lean. Do not infer a bound from the window
+
+```text
+What was learned
+- Backward admissibility is the existing even cell and odd_cell_unique, composed along the word
+- A(OOE, 6) = {5}
+- Every mixed prefix-NC word of length <= 8 has a realizing start n <= 800
+- Empty fiber over images 1..24 is not A(w)=empty; OOEOOOOOOO is realized at 173
+- A dangerous finite word is not a dangerous infinite trajectory
+
+Strongest theorem
+- none new; inverse-floor cells and odd_cell_unique remain the Lean facts
+
+Strongest refutation
+- H1/H2 in the window; all 43 mixed k<=8 words are realized, and OOE at 5 avoids compensated contraction
+
+Reusable machinery
+- research.juggler_sequence.prefix_nc_admissibility
+- data/research/juggler/prefix_nc_admissibility/
+
+Prior-art status
+- negative admissibility result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- CLOSE
+
+Why
+- The combinatorial escape language and the arithmetic language agree through length 8. The leftover is ResidualStep-style cell composition, not a new obstruction. Stop before a cell-tree engine.
+
+Best next question
+- An explicit infinite realized mixed prefix-NC family, or a Lean emptiness proof for one specified infinite pattern; do not start it here.
 ```
 

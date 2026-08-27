@@ -1,0 +1,13 @@
+{
+  "search_id": "prefix-nc-admissibility-phase0",
+  "algorithm_version": "prefix-nc-admissibility-v1",
+  "git_commit": "7ade3ee9cacb5254fbc8832c7138c40df550b36c",
+  "k_comb": 8,
+  "image_cap": 24,
+  "forward_n_max": 800,
+  "completed": true,
+  "checksum_sha256": "ad6d9a8df3f02b27ad4d04c9d066aee39a64ecd5b7aeda9ff035e7991fe02b7b",
+  "runtime_ms": 99,
+  "mixed_count": 43,
+  "classification": "PREFIX_NC_ARITHMETIC_COMPLEX"
+}

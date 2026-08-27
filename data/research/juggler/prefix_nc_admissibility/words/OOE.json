@@ -1,0 +1,48 @@
+{
+  "word": "OOE",
+  "length": 3,
+  "odd_count": 2,
+  "prefix_nc": true,
+  "monochrome": false,
+  "prefix_drift_profile": [
+    -1,
+    -5,
+    -1
+  ],
+  "exponent_gap": -1,
+  "deviation": {
+    "e_count": 1,
+    "first_e": 2,
+    "oke_shadow": true,
+    "oke_then_e": true
+  },
+  "realizable": true,
+  "minimum_start": 5,
+  "maximum_start_or_unbounded": 5,
+  "admissibility_width": 1,
+  "components": 1,
+  "measure": 1,
+  "empty_over_image": false,
+  "truncated": false,
+  "layers": [
+    {
+      "letter": "O",
+      "components": 1,
+      "measure": 1
+    },
+    {
+      "letter": "O",
+      "components": 1,
+      "measure": 2
+    },
+    {
+      "letter": "E",
+      "components": 1,
+      "measure": 7
+    }
+  ],
+  "first_defect": 4,
+  "global_defect": 273509,
+  "compensated_contraction": false,
+  "known_n": 5
+}

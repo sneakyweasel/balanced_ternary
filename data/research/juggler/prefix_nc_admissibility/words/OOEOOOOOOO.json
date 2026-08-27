@@ -1,0 +1,85 @@
+{
+  "word": "OOEOOOOOOO",
+  "length": 10,
+  "odd_count": 9,
+  "prefix_nc": true,
+  "monochrome": false,
+  "prefix_drift_profile": [
+    -1,
+    -5,
+    -1,
+    -11,
+    -49,
+    -179,
+    -601,
+    -1931,
+    -6049,
+    -18659
+  ],
+  "exponent_gap": -18659,
+  "deviation": {
+    "e_count": 1,
+    "first_e": 2,
+    "oke_shadow": false,
+    "oke_then_e": false
+  },
+  "realizable": true,
+  "minimum_start": 173,
+  "maximum_start_or_unbounded": null,
+  "admissibility_width": null,
+  "components": 0,
+  "measure": 0,
+  "empty_over_image": true,
+  "truncated": false,
+  "layers": [
+    {
+      "letter": "O",
+      "components": 0,
+      "measure": 0
+    },
+    {
+      "letter": "E",
+      "components": 1,
+      "measure": 1
+    },
+    {
+      "letter": "O",
+      "components": 1,
+      "measure": 1
+    },
+    {
+      "letter": "O",
+      "components": 1,
+      "measure": 1
+    },
+    {
+      "letter": "O",
+      "components": 1,
+      "measure": 1
+    },
+    {
+      "letter": "O",
+      "components": 1,
+      "measure": 1
+    },
+    {
+      "letter": "O",
+      "components": 1,
+      "measure": 1
+    },
+    {
+      "letter": "O",
+      "components": 1,
+      "measure": 2
+    },
+    {
+      "letter": "O",
+      "components": 1,
+      "measure": 4
+    }
+  ],
+  "first_defect": 2092,
+  "global_defect": null,
+  "compensated_contraction": null,
+  "known_n": 173
+}

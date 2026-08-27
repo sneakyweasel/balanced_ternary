@@ -1,0 +1,21 @@
+{
+  "mixed_count": 43,
+  "k_max": 8,
+  "image_cap": 24,
+  "forward_n_max": 800,
+  "realized_forward": 43,
+  "unrealized_in_forward": 0,
+  "unrealizable_mixed": false,
+  "empty_over_image": 41,
+  "truncated": 0,
+  "empty_law": false,
+  "o_shrinks": true,
+  "e_widens": false,
+  "e_empties": false,
+  "only_oke_survives": false,
+  "realized_horizon": true,
+  "arbitrarily_extendable": false,
+  "max_realized_length": 8,
+  "search_horizon_is_not_L": true,
+  "unrealized_sample": []
+}

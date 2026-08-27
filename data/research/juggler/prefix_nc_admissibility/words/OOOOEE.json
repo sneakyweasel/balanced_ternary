@@ -1,0 +1,46 @@
+{
+  "word": "OOOOEE",
+  "length": 6,
+  "odd_count": 4,
+  "prefix_nc": true,
+  "monochrome": false,
+  "prefix_drift_profile": [
+    -1,
+    -5,
+    -19,
+    -65,
+    -49,
+    -17
+  ],
+  "exponent_gap": -17,
+  "deviation": {
+    "e_count": 2,
+    "first_e": 4,
+    "oke_shadow": false,
+    "oke_then_e": true
+  },
+  "realizable": true,
+  "minimum_start": 271,
+  "maximum_start_or_unbounded": null,
+  "admissibility_width": null,
+  "components": null,
+  "measure": null,
+  "empty_over_image": false,
+  "truncated": true,
+  "layers": [
+    {
+      "letter": "E",
+      "components": 800,
+      "measure": 1152640000
+    },
+    {
+      "letter": "E",
+      "components": 1,
+      "measure": 1201
+    }
+  ],
+  "first_defect": 1990,
+  "global_defect": null,
+  "compensated_contraction": null,
+  "known_n": 271
+}

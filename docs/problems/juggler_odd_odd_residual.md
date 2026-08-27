@@ -168,10 +168,10 @@ tighten: interval widths can grow, valuations are not monotone, and
 ## Open questions
 
 Do not reopen ResidualStep invariants, another peak identity, or a
-remainder-dynamics object. The leftover is not a ResidualStep
-invariant. The existing parked odd-sharp-suffix / fourth-power
-search remains the open computational question; do not reopen it
-here.
+remainder-dynamics object. Answered in
+[juggler_prefix_nc_admissibility.md](juggler_prefix_nc_admissibility.md):
+backward floor-cell pullback of mixed prefix-NC words is
+`PREFIX_NC_ARITHMETIC_COMPLEX`.
 
 ## Decision
 
@@ -181,9 +181,8 @@ invariants, and the horizon-versus-\(L\) distinction. Do not add
 Lean. Do not infer a bound from the window. Do not claim
 termination.
 
-Best next question: not another ResidualStep invariant. The parked
-odd-sharp-suffix search remains the existing open computational
-question; do not reopen it here.
+Best next question: answered in
+[juggler_prefix_nc_admissibility.md](juggler_prefix_nc_admissibility.md).
 
 ## Publication assessment
 

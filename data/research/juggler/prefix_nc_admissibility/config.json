@@ -1,0 +1,10 @@
+{
+  "search_id": "prefix-nc-admissibility-phase0",
+  "algorithm_version": "prefix-nc-admissibility-v1",
+  "k_comb": 8,
+  "image_cap": 24,
+  "forward_n_max": 800,
+  "interval_cap": 800,
+  "cube_cap": 4000,
+  "arithmetic": "python-int"
+}

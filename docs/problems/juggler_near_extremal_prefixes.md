@@ -137,8 +137,12 @@ This is not `BAD_PREFIX_BOUNDED_GREEN` and not a halt theorem.
 
 ## Open questions
 
-Are realized mixed prefix-NC lengths unbounded? Does a later defect
-ever exceed \(n^{3^o}-n^{2^k}\) on this language?
+Answered in
+[juggler_prefix_nc_admissibility.md](juggler_prefix_nc_admissibility.md)
+as arithmetic pullback: the constraints are the existing floor
+cells, and every mixed prefix-NC word of length \(\le 8\) is
+realized. An explicit infinite family, or a defect that exceeds
+the formal gap, remains open and is not started there.
 
 ## Decision
 
@@ -147,9 +151,8 @@ that horizon-length examples are an infinite family. Do not add a
 second compensated-contraction lemma. Do not start a global
 automaton. Do not claim termination.
 
-Best next question: produce an explicit infinite realized mixed
-prefix-NC family, or prove that defect eventually exceeds the
-formal gap on every non-monochrome prefix-NC word.
+Best next question: answered in
+[juggler_prefix_nc_admissibility.md](juggler_prefix_nc_admissibility.md).
 
 ## Publication assessment
 

@@ -1,0 +1,51 @@
+{
+  "word": "OOOOEOOOOEE",
+  "length": 11,
+  "odd_count": 8,
+  "prefix_nc": true,
+  "monochrome": false,
+  "prefix_drift_profile": [
+    -1,
+    -5,
+    -19,
+    -65,
+    -49,
+    -179,
+    -601,
+    -1931,
+    -6049,
+    -5537,
+    -4513
+  ],
+  "exponent_gap": -4513,
+  "deviation": {
+    "e_count": 3,
+    "first_e": 4,
+    "oke_shadow": false,
+    "oke_then_e": false
+  },
+  "realizable": true,
+  "minimum_start": 2127,
+  "maximum_start_or_unbounded": null,
+  "admissibility_width": null,
+  "components": null,
+  "measure": null,
+  "empty_over_image": false,
+  "truncated": true,
+  "layers": [
+    {
+      "letter": "E",
+      "components": 800,
+      "measure": 1678153177090675178177600
+    },
+    {
+      "letter": "E",
+      "components": 1,
+      "measure": 45800561911
+    }
+  ],
+  "first_defect": 193358,
+  "global_defect": null,
+  "compensated_contraction": null,
+  "known_n": 2127
+}
