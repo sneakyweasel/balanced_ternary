@@ -10,10 +10,13 @@ from research.juggler_sequence.odd_sharp_suffix import (
     CLASS_WITNESS,
     HITS_DIR,
     LEAN_THEOREMS,
+    analyze_even_cbrt_moduli,
     analyze_even_cbrt_near_misses,
+    analyze_near_power_gap,
     analyze_persisted_hits,
     classify,
     cube_in_sq_interval,
+    eighth_in_exact_family_cell,
     even_cbrt_surplus_record,
     even_start_contrast,
     example_records,
@@ -21,7 +24,9 @@ from research.juggler_sequence.odd_sharp_suffix import (
     integer_cbrt,
     is_cube,
     lean_api_present,
+    near_power_record,
     nearest_cube_record,
+    nearest_cube_signed,
     odd_floor_cube_interval,
     render_markdown,
     run_probe,
@@ -203,6 +208,101 @@ def test_committed_even_cbrt_analysis():
     assert "a = 97 must survive" in md
     assert "10^8" in md
     assert "not a theorem" in md
+
+
+def test_even_cbrt_moduli_parity_and_a97():
+    rec2 = even_cbrt_surplus_record(2)
+    rec3 = even_cbrt_surplus_record(3)
+    rec97 = even_cbrt_surplus_record(97)
+    assert rec2["m_even"] is True and rec2["a_odd"] is False
+    assert rec2["gap"] % 2 == 1
+    assert rec3["m_even"] is True and rec3["a_odd"] is True
+    assert rec3["gap"] % 2 == 0
+    assert rec97["m_even"] is False and rec97["in_window"] is True
+    assert rec97["gap"] % 2 == 1
+    analysis = analyze_even_cbrt_moduli(a_max=200)
+    assert analysis["even_m_window_count"] == 0
+    assert analysis["a97_survives"] is True
+    assert analysis["parity"]["m_even_a_even_implies_D_odd"] is True
+    assert analysis["parity"]["m_even_a_odd_implies_D_even"] is True
+    assert analysis["odd_a_eighth_mod32"] == [1]
+    assert analysis["odd_a_two_a4_mod32"] == [2]
+    assert analysis["candidates"]["A_pure_parity"] is False
+    assert analysis["candidates"]["B_pow2_empty_even_m"] is False
+    assert analysis["candidates"]["C_mixed_empty_even_m"] is False
+    assert analysis["candidates"]["D_modular_plus_size"] is False
+    assert analysis["candidates"]["E_not_modular"] is True
+    assert analysis["classification"] == "OBSTRUCTION_NOT_MODULAR"
+    for row in analysis["modulus_tables"]:
+        assert row["even_m_empty"] is False
+    for residue in analysis["r_mod32_odd_a_even_m"]:
+        assert int(residue) in (1, 9, 25)
+
+
+def test_committed_even_cbrt_moduli_analysis():
+    path = ANALYSIS_DIR / "even_cbrt_moduli.json"
+    assert path.is_file()
+    data = json.loads(path.read_text(encoding="utf-8"))
+    assert data["classification"] == "OBSTRUCTION_NOT_MODULAR"
+    assert data["a97_survives"] is True
+    assert data["even_m_window_count"] == 0
+    assert data["candidates"]["E_not_modular"] is True
+    md = (ANALYSIS_DIR / "even_cbrt_moduli.md").read_text(encoding="utf-8")
+    assert "a = 97 regression" in md
+    assert "OBSTRUCTION_NOT_MODULAR" in md
+
+
+def test_near_power_exact_cell_and_a97():
+    assert nearest_cube_signed(27) == (3, 0)
+    assert nearest_cube_signed(97) == (5, -28)
+    assert nearest_cube_signed(3) == (1, 2)
+    rec97 = near_power_record(97)
+    assert rec97["a_is_cube"] is False
+    assert rec97["m_even"] is False
+    assert rec97["in_window"] is True
+    assert rec97["leaves_exact_cell"] is True
+    assert rec97["same_sign_uv"] is True
+    rec3 = near_power_record(3)
+    assert rec3["m_even"] is True
+    assert rec3["in_window"] is False
+    assert rec3["u"] == 2
+    rec27 = near_power_record(27)
+    assert rec27["a_is_cube"] is True
+    assert rec27["u"] == 0
+    assert rec27["v"] == 0
+    assert rec27["leaves_exact_cell"] is False
+    for k in range(1, 12):
+        assert eighth_in_exact_family_cell(k**3, k) is True
+        assert eighth_in_exact_family_cell(k**3 + 1, k) is False
+        if k**3 > 1:
+            assert eighth_in_exact_family_cell(k**3 - 1, k) is False
+    analysis = analyze_near_power_gap(a_max=200, k_max=8, u_radius=3)
+    assert analysis["even_m_in_window_count"] == 0
+    assert analysis["a97_survives"] is True
+    assert analysis["routes"]["A_unrestricted_noncube_gap"] is False
+    assert analysis["routes"]["B_exact_family_cell_exclusive"] is True
+    assert analysis["routes"]["B_leaves_cell_implies_miss"] is False
+    assert analysis["routes"]["C_fourth_power_rigidity_elementary"] is False
+    assert analysis["routes"]["D_trivial_gap_threshold"] is False
+    assert analysis["classification"] == "DIOPHANTINE_ESCALATION_REQUIRED"
+    assert analysis["u1_window_count"] == 0
+    assert analysis["u1_stays_in_ref_cell"] == 0
+
+
+def test_committed_near_power_analysis():
+    path = ANALYSIS_DIR / "near_power.json"
+    assert path.is_file()
+    data = json.loads(path.read_text(encoding="utf-8"))
+    assert data["classification"] == "DIOPHANTINE_ESCALATION_REQUIRED"
+    assert data["a97_survives"] is True
+    assert data["even_m_in_window_count"] == 0
+    assert data["routes"]["A_unrestricted_noncube_gap"] is False
+    assert data["routes"]["B_exact_family_cell_exclusive"] is True
+    assert data["routes"]["B_leaves_cell_implies_miss"] is False
+    md = (ANALYSIS_DIR / "near_power.md").read_text(encoding="utf-8")
+    assert "a = 97 must survive" in md
+    assert "DIOPHANTINE_ESCALATION_REQUIRED" in md
+    assert "10^8" in md
 
 
 def test_persisted_hits_nearest_cube_split():

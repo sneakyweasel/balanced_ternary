@@ -420,7 +420,7 @@
   },
   "decision": {
     "classification": "ODD_SHARP_SUFFIX_INCOMPLETE",
-    "reason": "nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; even-m surplus analysis did not yield an elementary gap bound"
+    "reason": "nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; modular search and elementary near-power gaps did not yield an obstruction"
   },
   "search_method": "isqrt on odd n; binary-search cube roots in the exact interval M^2 \u2264 n^3 < (M+1)^2 for M a fourth or eighth power; no floats and no cmp_pow"
 }

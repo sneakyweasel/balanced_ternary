@@ -89,4 +89,6 @@ conjecture and is written immediately under `hits/`.
 `ODD_FOURTH_POWER_NO_WITNESS` and
 `ODD_FOURTH_POWER_STRUCTURE_DISCOVERED`. Nearest-cube and even-`m`
 notes live in `analysis/`. This is not a theorem. Do not rerun the
-`10^8` search to refresh those notes.
+`10^8` search to refresh those notes. Modular even-`m` notes are
+`analysis/even_cbrt_moduli.md`. Near-power gap notes are
+`analysis/near_power.md`.

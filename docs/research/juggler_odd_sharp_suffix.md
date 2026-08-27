@@ -10,11 +10,10 @@ of an odd Juggler step and the search for sharp suffixes `OE^s`.
 
 ```text
 Mathematical target     non-cube a and even m => (m+1)^3-a^8 > 2a^4
-Novelty hypothesis      elementary gap bound or finite A0
+Novelty hypothesis      an elementary gap around X^2=Y^3 with X=a^4
 Falsifier               even-m non-cube window hit
-Existing machinery      nearest-cube Lean, persisted 465-hit corpus
-Maximum Phase-0 scope   even-m surplus analysis; Lean only a bound
-                        the analysis actually yields
+Existing machinery      nearest-cube Lean, even_cbrt surplus, a=97
+Maximum Phase-0 scope   closest even-m failures and a=k^3+u neighborhoods
 ```
 
 ## Metadata
@@ -34,7 +33,7 @@ Maximum Phase-0 scope   even-m surplus analysis; Lean only a bound
 - eighth-power odd hits: `0`
 - sorry-free: `True`
 
-nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; even-m surplus analysis did not yield an elementary gap bound.
+nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; modular search and elementary near-power gaps did not yield an obstruction.
 
 ## Inverse-floor reduction
 
@@ -61,6 +60,14 @@ make `m` odd. Even-`m` discovery (`a <= 20000`) found no window
 hit; `a = 37840` shows an eighth power can sit at the top of a
 cube cell, so a uniform remaining-fraction bound is false. Notes:
 `data/research/juggler/odd_sharp_suffix/analysis/even_cbrt.md`.
+Even-`m` residue tables for `2^k` and small odd/mixed moduli did not
+empty the even-`m` classes (`OBSTRUCTION_NOT_MODULAR`). Notes:
+`data/research/juggler/odd_sharp_suffix/analysis/even_cbrt_moduli.md`.
+Near-power neighborhoods `a = k^3 + u` leave the exact-family cube
+cell immediately, but that does not force `D > 2a^4` (`a = 97`).
+Closest even-`m` failures are small and not near-cubes. Classification
+`DIOPHANTINE_ESCALATION_REQUIRED`. Notes:
+`data/research/juggler/odd_sharp_suffix/analysis/near_power.md`.
 
 ## Odd first-defect census
 
@@ -148,7 +155,7 @@ to support `OE` (`s = 1`).
 
 **ODD_SHARP_SUFFIX_INCOMPLETE**
 
-nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; even-m surplus analysis did not yield an elementary gap bound.
+nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; modular search and elementary near-power gaps did not yield an obstruction.
 
 This is a local inverse-floor statement, not a global halt result.
 

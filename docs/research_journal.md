@@ -5774,3 +5774,99 @@ Best next question
   or exhibit such an a
 ```
 
+## Juggler even cube-root modular obstruction
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether parity or a small exact modulus rules out even \(m\) with \((m+1)^3-a^8\le 2a^4\)
+- **Hypotheses:** `MOD2_OBSTRUCTION_GREEN`, `MODULAR_OBSTRUCTION_GREEN`, `MODULAR_PLUS_SIZE_GREEN`, `EVEN_M_OBSTRUCTION_COUNTEREXAMPLE`, `OBSTRUCTION_NOT_MODULAR`
+- **Major results:** Candidate A fails: even \(a\) makes \(D\) odd, odd \(a\) makes \(D\) even, and both occur. Candidates B/C fail: no \(q\in\{2,4,8,16,32,64,128,3,5,7,9,13,15,24\}\) empties even-\(m\) classes; \(a=3\) is a live even-\(m\) pair. Candidate D fails for a fixed modulus once \(2a^4\ge q\). For odd \(a\), \(a^8\equiv 1\pmod{32}\) and \(2a^4\equiv 2\pmod{32}\). \(a=97\) stays an odd-\(m\) window hit. Classification **OBSTRUCTION_NOT_MODULAR**. No new Lean. No ledger row. Control layer unchanged
+- **Refuted ideas:** pure parity obstruction; some \(2^k\) forbids even \(m\); a small mixed modulus forbids even \(m\)
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** a non-cube with even \(m\) never satisfies \((m+1)^3-a^8\le 2a^4\)
+- **Decision:** PARK. Record `OBSTRUCTION_NOT_MODULAR`. Do not start Baker/Thue/Mordell. Do not enlarge the modulus. Do not rerun \(10^8\). Do not claim `FOURTH_POWER_ODD_GREEN`
+
+```text
+What was learned
+- Even m occurs (a=3); no modulus can forbid even m itself
+- D is odd for even a and even for odd a; both fit 0<D<=2a^4
+- Odd eighth powers are 1 mod 32 and 2a^4 is 2 mod 32
+- 2^k and small odd/mixed q leave many even-m residue classes
+- a=97 remains the odd-m window regression
+
+Strongest theorem
+- none new; the odd-m nearest-cube lemmas remain the Lean facts
+
+Strongest refutation
+- Candidates A-D fail; the obstruction is not modular
+
+Reusable machinery
+- even_cbrt_moduli analysis under
+  data/research/juggler/odd_sharp_suffix/analysis/
+
+Prior-art status
+- local residue comparison, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PARK
+
+Why
+- The even-m window inequality is not a small-modulus fact. Stop rather
+  than start Baker/Thue or enlarge q.
+
+Best next question
+- Prove the even-m gap inequality by a non-modular argument, or exhibit
+  a non-cube a with even m and D <= 2a^4
+```
+
+## Juggler even cube-root near-power gap
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether an elementary near-square / near-cube gap closes even \(m\) with \((m+1)^3-a^8\le 2a^4\)
+- **Hypotheses:** `NEAR_POWER_GAP_GREEN`, `FOURTH_POWER_RIGIDITY_GREEN`, `ODD_FOURTH_POWER_GREEN`, `NONCUBE_GAP_COUNTEREXAMPLE`, `DIOPHANTINE_ESCALATION_REQUIRED`
+- **Major results:** Route A is false at \(a=97\) (\(k=5\), \(u=-28\), odd \(m\), window hit). The exact-family cell of \(k^8\) holds \(a^8\) only for \(a=k^3\); every checked \(u\neq 0\) leaves that cell, but leaving it does not force a miss. Closest even-\(m\) failures are \(a=3,6,79,2\), not near-cubes. Neighborhood \(1\le k\le 30\), \(1\le|u|\le 6\): 0 window hits. Discovery \(a\le 20000\): 0 even-\(m\) hits; sign of \(v\) matched sign of \(u\). No elementary \(D\) bound stronger than \(1\) produces a threshold. Classification **DIOPHANTINE_ESCALATION_REQUIRED**. No new Lean. No ledger row. Control layer unchanged
+- **Refuted ideas:** unrestricted non-cube gap; leaving the exact-family cell implies a miss; \(|a-k^3|\) is the quantity that separates hits from misses
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** a non-cube with even \(m\) never satisfies \((m+1)^3-a^8\le 2a^4\)
+- **Decision:** PARK. Record `DIOPHANTINE_ESCALATION_REQUIRED`. Do not start Baker/Thue/Mordell. Do not enlarge the modulus. Do not rerun \(10^8\). Do not claim `NEAR_POWER_GAP_GREEN` or `ODD_FOURTH_POWER_GREEN`
+
+```text
+What was learned
+- Route A fails: a=97 is a non-cube window hit (m odd)
+- Exact-family cells are exclusive to a=k^3; nonzero u jumps cells
+- Jumping cells does not bound D; a=97 left its nearest cell and hit
+- Closest even-m failures are small a (3, 6, 79, 2), not near-cubes
+- |u|=1 through k<=30 never hits the window
+- No elementary gap stronger than D>=1 yields a finite threshold
+
+Strongest theorem
+- none new; the odd-m nearest-cube lemmas remain the Lean facts
+
+Strongest refutation
+- Route A, and "leave the exact-family cell => miss", both fail at a=97
+
+Reusable machinery
+- near_power analysis under
+  data/research/juggler/odd_sharp_suffix/analysis/
+
+Prior-art status
+- local gap comparison, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PARK
+
+Why
+- Elementary near-common-power expansions identify the exact family
+  and then stop. The leftover even-m inequality is a genuine
+  Diophantine gap. Record it and do not introduce Baker/Thue.
+
+Best next question
+- Name a concrete method for X=a^4, Y even, X^2-Y^3=r before
+  introducing it, or exhibit the smallest even-m window hit
+```
+

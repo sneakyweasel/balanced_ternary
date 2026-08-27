@@ -490,6 +490,682 @@ def write_even_cbrt_analysis(
     return data
 
 
+POW2_MODULI = (2, 4, 8, 16, 32, 64, 128)
+ODD_MODULI = (3, 5, 7, 9, 13)
+MIXED_MODULI = (15, 24)
+MODULAR_SCAN_MAX = 2_000
+REGRESSION_AS = (3, 6, 8, 27, 79, 97)
+
+
+def _v2(n: int) -> int | None:
+    if n == 0:
+        return None
+    n = abs(n)
+    k = 0
+    while n % 2 == 0:
+        n //= 2
+        k += 1
+    return k
+
+
+def modular_pair_residues(a: int, m: int, q: int) -> dict[str, int]:
+    d = (m + 1) ** 3 - a**8
+    r = a**8 - m**3
+    w = 2 * (a**4)
+    return {
+        "a": a % q,
+        "m": m % q,
+        "D": d % q,
+        "r": r % q,
+        "w": w % q,
+    }
+
+
+def analyze_even_cbrt_moduli(
+    a_max: int = MODULAR_SCAN_MAX,
+) -> dict[str, Any]:
+    """Targeted even-m residue tables. Not a generic modular framework."""
+
+    if a_max < 1:
+        raise ValueError("analyze_even_cbrt_moduli requires a_max >= 1")
+    moduli = POW2_MODULI + ODD_MODULI + MIXED_MODULI
+    even_m_rows: list[dict[str, Any]] = []
+    odd_m_odd_a = 0
+    even_m_window = 0
+    v2_even_a: dict[str, int] = {}
+    v2_odd_a: dict[str, int] = {}
+    r32_odd_a_even_m: dict[str, int] = {}
+    d32_odd_a_even_m: dict[str, int] = {}
+    for a in range(1, a_max + 1):
+        rec = even_cbrt_surplus_record(a)
+        if rec["a_is_cube"]:
+            continue
+        if rec["m_even"]:
+            even_m_rows.append(rec)
+            if rec["in_window"]:
+                even_m_window += 1
+            key = str(_v2(rec["gap"]))
+            if rec["a_odd"]:
+                bucket = v2_odd_a
+                r32_odd_a_even_m[str(rec["r"] % 32)] = (
+                    r32_odd_a_even_m.get(str(rec["r"] % 32), 0) + 1
+                )
+                d32_odd_a_even_m[str(rec["gap"] % 32)] = (
+                    d32_odd_a_even_m.get(str(rec["gap"] % 32), 0) + 1
+                )
+            else:
+                bucket = v2_even_a
+            bucket[key] = bucket.get(key, 0) + 1
+        elif rec["a_odd"]:
+            odd_m_odd_a += 1
+
+    def class_table(q: int) -> dict[str, Any]:
+        pairs: dict[str, int] = {}
+        d_set: set[int] = set()
+        r_set: set[int] = set()
+        even_m_classes = 0
+        for rec in even_m_rows:
+            key = f"{rec['a'] % q},{rec['m'] % q}"
+            if key not in pairs:
+                even_m_classes += 1
+            pairs[key] = pairs.get(key, 0) + 1
+            d_set.add(rec["gap"] % q)
+            r_set.add(rec["r"] % q)
+        return {
+            "modulus": q,
+            "even_m_class_count": even_m_classes,
+            "D_residues": sorted(d_set),
+            "r_residues": sorted(r_set),
+            "even_m_empty": even_m_classes == 0,
+        }
+
+    modulus_tables = [class_table(q) for q in moduli]
+    regressions = {}
+    for a in REGRESSION_AS:
+        rec = even_cbrt_surplus_record(a)
+        regressions[str(a)] = {
+            "m": rec["m"],
+            "m_even": rec["m_even"],
+            "a_odd": rec["a_odd"],
+            "a_is_cube": rec["a_is_cube"],
+            "in_window": rec["in_window"],
+            "D": rec["gap"],
+            "r": rec["r"],
+            "w": rec["width"],
+            "v2D": _v2(rec["gap"]),
+            "residues": {str(q): modular_pair_residues(a, rec["m"], q) for q in moduli},
+        }
+    a97 = regressions["97"]
+    a3 = regressions["3"]
+    odd_eighth_mod32 = sorted({pow(a, 8, 32) for a in range(1, 32, 2)})
+    odd_a_fourth_mod32 = sorted({pow(a, 4, 32) for a in range(1, 32, 2)})
+    two_a4_odd_mod32 = sorted({(2 * pow(a, 4, 32)) % 32 for a in range(1, 32, 2)})
+    candidate_a = False
+    candidate_b = all(not row["even_m_empty"] for row in modulus_tables if row["modulus"] in POW2_MODULI)
+    candidate_c = all(not row["even_m_empty"] for row in modulus_tables)
+    # Fixed q cannot sign-determine D-2a^4 once 2a^4 >= q.
+    candidate_d = False
+    return {
+        "a_max": a_max,
+        "even_m_noncube_count": len(even_m_rows),
+        "even_m_window_count": even_m_window,
+        "odd_m_odd_a_noncube_count": odd_m_odd_a,
+        "parity": {
+            "m_even_a_even_implies_D_odd": all(
+                rec["gap"] % 2 == 1 for rec in even_m_rows if not rec["a_odd"]
+            ),
+            "m_even_a_odd_implies_D_even": all(
+                rec["gap"] % 2 == 0 for rec in even_m_rows if rec["a_odd"]
+            ),
+            "a97_D_odd": a97["D"] % 2 == 1,
+            "a3_D_even": a3["D"] % 2 == 0,
+        },
+        "odd_a_eighth_mod32": odd_eighth_mod32,
+        "odd_a_two_a4_mod32": two_a4_odd_mod32,
+        "odd_a_fourth_mod32": odd_a_fourth_mod32,
+        "r_mod32_odd_a_even_m": r32_odd_a_even_m,
+        "D_mod32_odd_a_even_m": d32_odd_a_even_m,
+        "v2D_even_m_a_even": v2_even_a,
+        "v2D_even_m_a_odd": v2_odd_a,
+        "modulus_tables": modulus_tables,
+        "regressions": regressions,
+        "a97_survives": a97["in_window"] and not a97["m_even"],
+        "candidates": {
+            "A_pure_parity": candidate_a,
+            "B_pow2_empty_even_m": not candidate_b,
+            "C_mixed_empty_even_m": not candidate_c,
+            "D_modular_plus_size": candidate_d,
+            "E_not_modular": True,
+        },
+        "classification": "OBSTRUCTION_NOT_MODULAR",
+        "invariant": (
+            "even m occurs (a=3); D is odd when a is even and even when a "
+            "is odd. For odd a, a^8 ≡ 1 (mod 32) and 2a^4 ≡ 2 (mod 32), "
+            "and r ≡ 1,9,25 (mod 32) on the discovery range. None of these "
+            "forces D > 2a^4. a=97 remains an odd-m window hit"
+        ),
+        "remaining_case": (
+            "a non-cube with even m and D <= 2a^4 is not ruled out by "
+            "parity, 2^k, or the small odd/mixed moduli. The leftover is "
+            "still that size inequality"
+        ),
+    }
+
+
+def render_even_cbrt_moduli_markdown(analysis: dict[str, Any]) -> str:
+    a97 = analysis["regressions"]["97"]
+    a3 = analysis["regressions"]["3"]
+    cand = analysis["candidates"]
+    lines = [
+        "# Even cube-root modular obstruction",
+        "",
+        "Targeted residue tables for even `m = ⌊∛(a^8)⌋`.",
+        "This is not a generic modular framework, not a `10^8` rerun,",
+        "and not a theorem.",
+        "",
+        f"- discovery `a_max`: `{analysis['a_max']}`",
+        f"- even-`m` non-cubes: `{analysis['even_m_noncube_count']}`",
+        f"- even-`m` window hits: `{analysis['even_m_window_count']}`",
+        f"- classification: **{analysis['classification']}**",
+        "",
+        "## Parity (Candidate A)",
+        "",
+        f"- even `m`, even `a` ⇒ `D` odd: `{analysis['parity']['m_even_a_even_implies_D_odd']}`",
+        f"- even `m`, odd `a` ⇒ `D` even: `{analysis['parity']['m_even_a_odd_implies_D_even']}`",
+        f"- `a=97` has odd `D`: `{analysis['parity']['a97_D_odd']}`",
+        f"- `a=3` has even `D`: `{analysis['parity']['a3_D_even']}`",
+        "",
+        "Parity splits the cases but does not contradict `0 < D ≤ 2a^4`.",
+        f"Candidate A: `{cand['A_pure_parity']}`.",
+        "",
+        "## a = 97 regression",
+        "",
+        f"- `m = {a97['m']}` even: `{a97['m_even']}`",
+        f"- in window: `{a97['in_window']}`",
+        f"- `D = {a97['D']}`, `v2(D) = {a97['v2D']}`",
+        "",
+        "## a = 3 even-`m` miss",
+        "",
+        f"- `m = {a3['m']}` even: `{a3['m_even']}`",
+        f"- in window: `{a3['in_window']}`",
+        f"- `D = {a3['D']}`",
+        "",
+        "Because `a=3` is a live even-`m` pair, no modulus can claim that",
+        "even `m` is impossible. An obstruction must use `D ≤ 2a^4`.",
+        "",
+        "## Odd `a` modulo 32",
+        "",
+        f"- odd eighth powers: `{analysis['odd_a_eighth_mod32']}`",
+        f"- `2a^4` for odd `a`: `{analysis['odd_a_two_a4_mod32']}`",
+        f"- even-`m` `r` counts: `{analysis['r_mod32_odd_a_even_m']}`",
+        f"- even-`m` `D` counts: `{analysis['D_mod32_odd_a_even_m']}`",
+        "",
+        "## Modulus tables",
+        "",
+        "Each row is observed even-`m` non-cubes on the discovery range.",
+        "Empty even-`m` classes would be Candidate B/C. None are empty.",
+        "",
+    ]
+    for row in analysis["modulus_tables"]:
+        residues = row["D_residues"]
+        shown = residues if len(residues) <= 16 else f"{len(residues)} values"
+        lines.append(
+            f"- q `{row['modulus']}`: even-`m` classes `{row['even_m_class_count']}`, "
+            f"empty `{row['even_m_empty']}`, "
+            f"`D` residues `{shown}`"
+        )
+    lines.extend(
+        [
+            "",
+            "## Candidates",
+            "",
+            f"- A pure parity: `{cand['A_pure_parity']}`",
+            f"- B some `2^k` empties even `m`: `{cand['B_pow2_empty_even_m']}`",
+            f"- C mixed small modulus empties even `m`: `{cand['C_mixed_empty_even_m']}`",
+            f"- D modular + size: `{cand['D_modular_plus_size']}`",
+            f"- E not modular: `{cand['E_not_modular']}`",
+            "",
+            "## Invariant",
+            "",
+            analysis["invariant"] + ".",
+            "",
+            analysis["remaining_case"] + ".",
+            "",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_even_cbrt_moduli_analysis(
+    a_max: int = MODULAR_SCAN_MAX,
+    analysis_dir: Path | None = None,
+) -> dict[str, Any]:
+    data = analyze_even_cbrt_moduli(a_max)
+    directory = ANALYSIS_DIR if analysis_dir is None else analysis_dir
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / "even_cbrt_moduli.json").write_text(
+        json.dumps(data, indent=2) + "\n", encoding="utf-8"
+    )
+    (directory / "even_cbrt_moduli.md").write_text(
+        render_even_cbrt_moduli_markdown(data), encoding="utf-8"
+    )
+    return data
+
+
+NEAR_POWER_SCAN_MAX = EVEN_CBRT_SCAN_MAX
+NEAR_POWER_K_MAX = 30
+NEAR_POWER_U_RADIUS = 6
+CLASS_NONCUBE_GAP_CE = "NONCUBE_GAP_COUNTEREXAMPLE"
+CLASS_NEAR_POWER_GAP = "NEAR_POWER_GAP_GREEN"
+CLASS_FOURTH_RIGIDITY = "FOURTH_POWER_RIGIDITY_GREEN"
+CLASS_ODD_FOURTH = "ODD_FOURTH_POWER_GREEN"
+CLASS_DIOPHANTINE_ESC = "DIOPHANTINE_ESCALATION_REQUIRED"
+
+
+def nearest_cube_signed(a: int) -> tuple[int, int]:
+    """Nearest cube k^3 to a, with signed u = a - k^3. Ties keep the floor."""
+
+    if a < 1:
+        raise ValueError("nearest_cube_signed requires positive a")
+    k = integer_cbrt(a)
+    cube = k * k * k
+    if cube == a:
+        return k, 0
+    below = a - cube
+    above = (k + 1) ** 3 - a
+    if above < below:
+        return k + 1, a - (k + 1) ** 3
+    return k, below
+
+
+def eighth_in_exact_family_cell(a: int, k: int) -> bool:
+    """Whether a^8 lies in [k^{24}, (k^8+1)^3)."""
+
+    if k < 1:
+        return False
+    eighth = a**8
+    k8 = k**8
+    return k8**3 <= eighth < (k8 + 1) ** 3
+
+
+def near_power_record(a: int) -> dict[str, Any]:
+    """Surplus record plus the signed nearest-cube displacement (u, v)."""
+
+    rec = even_cbrt_surplus_record(a)
+    k, u = nearest_cube_signed(a)
+    k8 = k**8
+    v = rec["m"] - k8
+    return {
+        **rec,
+        "k": k,
+        "u": u,
+        "k8": k8,
+        "v": v,
+        "same_sign_uv": (u > 0 and v > 0) or (u < 0 and v < 0) or (u == 0 and v == 0),
+        "leaves_exact_cell": not eighth_in_exact_family_cell(a, k),
+        "linear_3v": 3 * v,
+        "linear_8k5u": 8 * (k**5) * u,
+    }
+
+
+def _compact_near_power(row: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "a": row["a"],
+        "m": row["m"],
+        "k": row["k"],
+        "u": row["u"],
+        "v": row["v"],
+        "m_even": row["m_even"],
+        "a_odd": row["a_odd"],
+        "a_is_cube": row["a_is_cube"],
+        "same_sign_uv": row["same_sign_uv"],
+        "leaves_exact_cell": row["leaves_exact_cell"],
+        "r": row["r"],
+        "gap": row["gap"],
+        "width": row["width"],
+        "surplus": row["surplus"],
+        "in_window": row["in_window"],
+        "cube_gap": row["cube_gap"],
+    }
+
+
+def _neighborhood_row(k: int, u: int) -> dict[str, Any]:
+    a = k**3 + u
+    if a < 1:
+        raise ValueError("_neighborhood_row requires positive a")
+    rec = near_power_record(a)
+    k8 = k**8
+    return {
+        **_compact_near_power(rec),
+        "ref_k": k,
+        "ref_u": u,
+        "ref_v": rec["m"] - k8,
+        "leaves_ref_cell": not eighth_in_exact_family_cell(a, k),
+    }
+
+
+def analyze_near_power_gap(
+    a_max: int = NEAR_POWER_SCAN_MAX,
+    k_max: int = NEAR_POWER_K_MAX,
+    u_radius: int = NEAR_POWER_U_RADIUS,
+) -> dict[str, Any]:
+    """Closest even-m failures and a=k^3+u neighborhoods. Not a 10^8 rerun."""
+
+    if a_max < 1 or k_max < 1 or u_radius < 1:
+        raise ValueError("analyze_near_power_gap requires positive bounds")
+
+    even_rows: list[dict[str, Any]] = []
+    even_hits: list[dict[str, Any]] = []
+    min_surplus: dict[str, Any] | None = None
+    min_r: dict[str, Any] | None = None
+    even_count = 0
+    same_sign_count = 0
+    leaves_count = 0
+    surplus_lt_a4 = 0
+    for a in range(1, a_max + 1):
+        rec = near_power_record(a)
+        if rec["a_is_cube"] or not rec["m_even"]:
+            continue
+        even_count += 1
+        even_rows.append(rec)
+        if rec["same_sign_uv"]:
+            same_sign_count += 1
+        if rec["leaves_exact_cell"]:
+            leaves_count += 1
+        if rec["surplus"] < rec["a"] ** 4:
+            surplus_lt_a4 += 1
+        if rec["in_window"]:
+            even_hits.append(_compact_near_power(rec))
+        if min_surplus is None or rec["surplus"] < min_surplus["surplus"]:
+            min_surplus = rec
+        if min_r is None or rec["r"] < min_r["r"]:
+            min_r = rec
+
+    def _ratio_cmp(left: dict[str, Any], right: dict[str, Any]) -> int:
+        cross = left["gap"] * right["width"] - right["gap"] * left["width"]
+        if cross < 0:
+            return -1
+        if cross > 0:
+            return 1
+        return left["a"] - right["a"]
+
+    def _top_ratio_cmp(left: dict[str, Any], right: dict[str, Any]) -> int:
+        cross = left["r"] * right["cube_gap"] - right["r"] * left["cube_gap"]
+        if cross > 0:
+            return -1
+        if cross < 0:
+            return 1
+        return left["a"] - right["a"]
+
+    closest_ratio = sorted(even_rows, key=cmp_to_key(_ratio_cmp))[:8]
+    closest_surplus = sorted(even_rows, key=lambda row: (row["surplus"], row["a"]))[:8]
+    closest_top = sorted(even_rows, key=cmp_to_key(_top_ratio_cmp))[:8]
+
+    neighborhood: list[dict[str, Any]] = []
+    u1_window: list[dict[str, Any]] = []
+    u1_stays_in_ref_cell = 0
+    for k in range(1, k_max + 1):
+        for u in range(-u_radius, u_radius + 1):
+            if u == 0:
+                continue
+            a = k**3 + u
+            if a < 1:
+                continue
+            row = _neighborhood_row(k, u)
+            neighborhood.append(row)
+            if abs(u) == 1 and row["in_window"]:
+                u1_window.append(row)
+            if abs(u) == 1 and not row["leaves_ref_cell"]:
+                u1_stays_in_ref_cell += 1
+    exact_cell_noncube = sum(1 for row in neighborhood if not row["leaves_ref_cell"])
+
+    adversarial_as = (1, 2, 3, 5, 6, 8, 27, 79, 97, 125, HIGH_POSITION_EXAMPLE_A)
+    adversarial = [_compact_near_power(near_power_record(a)) for a in adversarial_as]
+    a97 = near_power_record(97)
+    a3 = near_power_record(3)
+
+    route_a = (not a97["in_window"]) or a97["a_is_cube"]
+    leaves_is_exclusive = exact_cell_noncube == 0 and u1_stays_in_ref_cell == 0
+    leaves_implies_miss = not a97["in_window"]
+    u1_closes = len(u1_window) == 0
+    even_m_empty = len(even_hits) == 0
+    surplus_ge_a4 = surplus_lt_a4 == 0
+
+    if even_hits:
+        classification = CLASS_NONCUBE_GAP_CE
+    else:
+        classification = CLASS_DIOPHANTINE_ESC
+
+    return {
+        "a_max": a_max,
+        "k_max": k_max,
+        "u_radius": u_radius,
+        "even_m_noncube_count": even_count,
+        "even_m_in_window_count": len(even_hits),
+        "even_m_hits": even_hits,
+        "same_sign_uv_count": same_sign_count,
+        "leaves_exact_cell_count": leaves_count,
+        "min_surplus": None if min_surplus is None else _compact_near_power(min_surplus),
+        "min_r": None if min_r is None else _compact_near_power(min_r),
+        "closest_by_gap_over_width": [_compact_near_power(row) for row in closest_ratio],
+        "closest_by_surplus": [_compact_near_power(row) for row in closest_surplus],
+        "closest_to_next_cube": [_compact_near_power(row) for row in closest_top],
+        "neighborhood_count": len(neighborhood),
+        "neighborhood_window_count": sum(1 for row in neighborhood if row["in_window"]),
+        "neighborhood_even_m_window_count": sum(
+            1 for row in neighborhood if row["m_even"] and row["in_window"]
+        ),
+        "u1_window_count": len(u1_window),
+        "u1_stays_in_ref_cell": u1_stays_in_ref_cell,
+        "exact_family_cell_noncube_count": exact_cell_noncube,
+        "neighborhood_samples": [
+            row
+            for row in neighborhood
+            if abs(row["ref_u"]) == 1 and row["ref_k"] in (1, 2, 3, 4, 5)
+        ],
+        "adversarial": adversarial,
+        "a97": _compact_near_power(a97),
+        "a3": _compact_near_power(a3),
+        "routes": {
+            "A_unrestricted_noncube_gap": route_a,
+            "B_exact_family_cell_exclusive": leaves_is_exclusive,
+            "B_leaves_cell_implies_miss": leaves_implies_miss,
+            "B_u_pm_1_closes_window": u1_closes,
+            "C_fourth_power_rigidity_elementary": False,
+            "D_trivial_gap_threshold": False,
+            "target_even_m_empty_on_discovery": even_m_empty,
+            "observation_surplus_ge_a4_on_discovery": surplus_ge_a4,
+        },
+        "classification": classification,
+        "unresolved": (
+            "a non-cube and m = floor_cbrt(a^8) even imply "
+            "(m+1)^3 - a^8 > 2a^4"
+        ),
+        "invariant": (
+            "the exact-family cube cell of k^8 holds a^8 only for a = k^3; "
+            "nonzero u immediately leaves that cell. This does not force "
+            "D > 2a^4: a=97 left the cell of its nearest cube and still hit. "
+            "Closest even-m failures are small a, not near-cubes. Route A "
+            "is false. No elementary lower bound stronger than D >= 1 "
+            "produces a threshold"
+        ),
+        "a97_survives": a97["in_window"] and not a97["m_even"],
+    }
+
+
+def render_near_power_markdown(analysis: dict[str, Any]) -> str:
+    a97 = analysis["a97"]
+    a3 = analysis["a3"]
+    min_s = analysis["min_surplus"]
+    routes = analysis["routes"]
+    lines = [
+        "# Near-square / near-cube gap of even-m fourth-power windows",
+        "",
+        "Discovery scan of the displacement `(u, v)` around the exact family",
+        "`a = k^3`, `m = k^8`. This is not a `10^8` rerun, not a modular",
+        "search, and not a theorem.",
+        "",
+        f"- discovery `a_max`: `{analysis['a_max']}`",
+        f"- neighborhood `k_max`: `{analysis['k_max']}`",
+        f"- `u` radius: `{analysis['u_radius']}`",
+        f"- even-`m` non-cubes: `{analysis['even_m_noncube_count']}`",
+        f"- even-`m` window hits: `{analysis['even_m_in_window_count']}`",
+        f"- same sign `(u, v)`: `{analysis['same_sign_uv_count']}`",
+        f"- leave nearest exact-family cell: `{analysis['leaves_exact_cell_count']}`",
+        f"- classification: **{analysis['classification']}**",
+        "",
+        "## a = 97 must survive",
+        "",
+        f"- `a = 97`, nearest cube `k = {a97['k']}`, `u = {a97['u']}`",
+        f"- `m = {a97['m']}` odd: `{not a97['m_even']}`",
+        f"- `v = {a97['v']}` (same sign as `u`: `{a97['same_sign_uv']}`)",
+        f"- left exact-family cell: `{a97['leaves_exact_cell']}`",
+        f"- in window: `{a97['in_window']}`",
+        f"- surplus `D - 2a^4 = {a97['surplus']}`",
+        "",
+        "Route A (`a` non-cube `⇒ D > 2a^4`) is false at this example.",
+        "Leaving the exact-family cell does not force a miss.",
+        "",
+        "## Closest even-`m` failures",
+        "",
+        "Ranked by `D / (2a^4)`. These are the sharp local near-misses.",
+        "They are not the integers closest to a cube.",
+        "",
+    ]
+    if min_s is not None:
+        lines.append(
+            f"Minimum surplus is `a = {min_s['a']}`, `u = {min_s['u']}`, "
+            f"surplus `{min_s['surplus']}`."
+        )
+        lines.append("")
+    lines.append(
+        f"`a = 3` has `k = {a3['k']}`, `u = {a3['u']}`, `m = {a3['m']}`, "
+        f"`v = {a3['v']}`, surplus `{a3['surplus']}`."
+    )
+    lines.append("")
+    for row in analysis["closest_by_gap_over_width"]:
+        lines.append(
+            f"- a `{row['a']}`: k `{row['k']}`, u `{row['u']}`, "
+            f"m `{row['m']}`, v `{row['v']}`, surplus `{row['surplus']}`"
+        )
+    lines.extend(
+        [
+            "",
+            "## Closest to the next cube",
+            "",
+            "Even-`m` non-cubes with largest `r / (3m^2+3m+1)`. A hit needs",
+            "`r` in the top slice of width `2a^4`. Sitting high in the cell",
+            "is not enough by itself (`a = 37840`).",
+            "",
+        ]
+    )
+    for row in analysis["closest_to_next_cube"]:
+        lines.append(
+            f"- a `{row['a']}`: u `{row['u']}`, r `{row['r']}`, "
+            f"cube gap `{row['cube_gap']}`, surplus `{row['surplus']}`"
+        )
+    lines.extend(
+        [
+            "",
+            "## Exact-family neighborhood `a = k^3 + u`",
+            "",
+            f"Checked `1 <= k <= {analysis['k_max']}` and "
+            f"`1 <= |u| <= {analysis['u_radius']}`.",
+            "",
+            f"- neighborhood rows: `{analysis['neighborhood_count']}`",
+            f"- any window hit: `{analysis['neighborhood_window_count']}`",
+            f"- even-`m` window hit: `{analysis['neighborhood_even_m_window_count']}`",
+            f"- `|u| = 1` window hits: `{analysis['u1_window_count']}`",
+            f"- `|u| = 1` still in the `k^8` cell: `{analysis['u1_stays_in_ref_cell']}`",
+            f"- non-cube occupants of an exact-family cell: "
+            f"`{analysis['exact_family_cell_noncube_count']}`",
+            "",
+            "The linear increment `8k^{21}u` already exceeds the cell width",
+            "`3k^{16}+3k^8+1` for every checked `k >= 1` and `|u| >= 1`.",
+            "Sign of `v` matched sign of `u` on the discovery even-`m` set,",
+            "but that is only an observation. Nonzero `u` jumps to a",
+            "different cube cell; it does not identify the gap `D`.",
+            "",
+            "## Sample `|u| = 1` rows",
+            "",
+        ]
+    )
+    for row in analysis["neighborhood_samples"]:
+        lines.append(
+            f"- k `{row['ref_k']}`, u `{row['ref_u']}`, a `{row['a']}`: "
+            f"m `{row['m']}`, v `{row['ref_v']}`, even m `{row['m_even']}`, "
+            f"leaves ref cell `{row['leaves_ref_cell']}`, "
+            f"in window `{row['in_window']}`, surplus `{row['surplus']}`"
+        )
+    lines.extend(
+        [
+            "",
+            "## Adversarial regressions",
+            "",
+        ]
+    )
+    for row in analysis["adversarial"]:
+        lines.append(
+            f"- a `{row['a']}`: cube `{row['a_is_cube']}`, u `{row['u']}`, "
+            f"m even `{row['m_even']}`, in window `{row['in_window']}`, "
+            f"surplus `{row['surplus']}`"
+        )
+    lines.extend(
+        [
+            "",
+            "## Routes",
+            "",
+            f"- A unrestricted non-cube gap: `{routes['A_unrestricted_noncube_gap']}`",
+            f"- B exact-family cell exclusive: `{routes['B_exact_family_cell_exclusive']}`",
+            f"- B leaving the cell implies a miss: `{routes['B_leaves_cell_implies_miss']}`",
+            f"- B `|u|=1` closes the window: `{routes['B_u_pm_1_closes_window']}`",
+            f"- C elementary fourth-power rigidity: `{routes['C_fourth_power_rigidity_elementary']}`",
+            f"- D trivial `D >= 1` threshold: `{routes['D_trivial_gap_threshold']}`",
+            f"- target empty on discovery: `{routes['target_even_m_empty_on_discovery']}`",
+            f"- observation `surplus >= a^4` on discovery: "
+            f"`{routes['observation_surplus_ge_a4_on_discovery']}`",
+            "",
+            "Route B's exclusive-cell fact is elementary and true, but it is",
+            "not a lower bound on `D` in the *new* cell. Route C would need",
+            "a quantitative gap for `X^2 - Y^3` with `X = a^4`; that is not",
+            "an integer-polynomial comparison. Route D cannot start because",
+            "`m >= a^{8/3}-1` is sharp.",
+            "",
+            "## Unresolved Diophantine statement",
+            "",
+            analysis["unresolved"] + ".",
+            "",
+            "No Baker, Thue, or Mordell machinery is introduced.",
+            "",
+            "## Invariant",
+            "",
+            analysis["invariant"] + ".",
+            "",
+            f"`a = 97` survives: `{analysis['a97_survives']}`.",
+            "",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_near_power_analysis(
+    a_max: int = NEAR_POWER_SCAN_MAX,
+    k_max: int = NEAR_POWER_K_MAX,
+    u_radius: int = NEAR_POWER_U_RADIUS,
+    analysis_dir: Path | None = None,
+) -> dict[str, Any]:
+    data = analyze_near_power_gap(a_max, k_max, u_radius)
+    directory = ANALYSIS_DIR if analysis_dir is None else analysis_dir
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / "near_power.json").write_text(
+        json.dumps(data, indent=2) + "\n", encoding="utf-8"
+    )
+    (directory / "near_power.md").write_text(
+        render_near_power_markdown(data), encoding="utf-8"
+    )
+    return data
+
+
 def cube_in_sq_interval(m: int) -> int | None:
     """The unique candidate cube in [M^2, (M+1)^2), if it exists."""
 
@@ -745,8 +1421,8 @@ def classify(
             "classification": CLASS_INCOMPLETE,
             "reason": (
                 "nearest-cube Lean covers occupancy, the exact family, and "
-                "odd m implying even n; even-m surplus analysis did not "
-                "yield an elementary gap bound"
+                "odd m implying even n; modular search and elementary "
+                "near-power gaps did not yield an obstruction"
             ),
         }
     return {

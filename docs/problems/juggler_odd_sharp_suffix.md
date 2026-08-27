@@ -39,17 +39,16 @@ This is a local Diophantine question. It is not a termination theorem.
 
 ```text
 Mathematical target     non-cube a and even m => (m+1)^3-a^8 > 2a^4
-Novelty hypothesis      an elementary gap bound, possibly after a finite
-                        threshold A0
-Falsifier               NONCUBE_EVEN_CANDIDATE_SURVIVES
-Existing machinery      occupancy, exact family, odd-cbrt parity,
-                        integer_cbrt, persisted 465-hit corpus
-Maximum Phase-0 scope   even-m surplus / near-miss analysis; integer
-                        inequality or explicit A0; Lean only that bound
-Promotion criterion     FOURTH_POWER_ODD_GREEN and ODD_SHARP_SUFFIX_GREEN
-Stop criterion          no elementary or finite-reduction after the
-                        focused analysis; Baker/Thue/Mordell; PowerHeight;
-                        search expansion; engine edits
+Novelty hypothesis      an elementary gap around X^2=Y^3 with X=a^4
+Falsifier               NONCUBE_GAP_COUNTEREXAMPLE
+Existing machinery      occupancy, successor candidate, even_cbrt surplus,
+                        modular close, a=97 regression
+Maximum Phase-0 scope   closest even-m failures and a=k^3+u neighborhoods;
+                        Lean only a sharp inequality
+Promotion criterion     NEAR_POWER_GAP_GREEN or FOURTH_POWER_RIGIDITY_GREEN,
+                        then ODD_FOURTH_POWER_GREEN
+Stop criterion          DIOPHANTINE_ESCALATION_REQUIRED; Baker/Thue/Mordell;
+                        modular expansion; 10^8 rerun
 ```
 
 ## Balanced-ternary formulation
@@ -86,6 +85,10 @@ It is not required.
   [nearest_cube.md](../../data/research/juggler/odd_sharp_suffix/analysis/nearest_cube.md)
 - Even-\(m\) surplus / near-miss discovery (no \(10^8\) rerun):
   [even_cbrt.md](../../data/research/juggler/odd_sharp_suffix/analysis/even_cbrt.md)
+- Even-\(m\) modular tables (no generic framework):
+  [even_cbrt_moduli.md](../../data/research/juggler/odd_sharp_suffix/analysis/even_cbrt_moduli.md)
+- Near-square / near-cube gap around \(a=k^3+u\) (no \(10^8\) rerun):
+  [near_power.md](../../data/research/juggler/odd_sharp_suffix/analysis/near_power.md)
 - Integer cube-root / fourth-power interval search on the output
   parameter \(a\); no huge \(n^{3/2}\) construction; no floats
 - Records: [juggler_odd_sharp_suffix.md](../research/juggler_odd_sharp_suffix.md),
@@ -180,29 +183,53 @@ remaining-fraction lemma is false. The trivial bound
 This is not `NONCUBE_EVEN_CANDIDATE_SURVIVES` and not
 `FOURTH_POWER_ODD_GREEN`.
 
+Modular search on \(q\in\{2,4,8,16,32,64,128,3,5,7,9,13,15,24\}\)
+did not empty the even-\(m\) classes. \(a=3\) is a live even-\(m\)
+pair, so no modulus can forbid even \(m\) itself. Parity only splits
+cases: even \(a\) makes \(D\) odd; odd \(a\) makes \(D\) even. For odd
+\(a\), \(a^8\equiv 1\pmod{32}\) and \(2a^4\equiv 2\pmod{32}\). None of
+Candidates A–D closes \(D\le 2a^4\). Classification
+**OBSTRUCTION_NOT_MODULAR**.
+
+Near-power analysis of \(X=a^4\), \(Y=m\), \(X^2-Y^3=r\):
+Route A is false at \(a=97\). The exact-family cube cell of
+\(k^8\) holds \(a^8\) only for \(a=k^3\); every checked
+\(u\neq 0\) leaves that cell, but leaving it does not force a
+miss. Closest even-\(m\) failures are small and not near-cubes
+(\(a=3,6,79,2\)). The \(|u|=1\) neighborhood through \(k\le 30\)
+has no window hit. No elementary lower bound stronger than
+\(D\ge 1\) produces a threshold. Classification
+**DIOPHANTINE_ESCALATION_REQUIRED**. Notes:
+[near_power.md](../../data/research/juggler/odd_sharp_suffix/analysis/near_power.md).
+This is not `NEAR_POWER_GAP_GREEN` and not
+`ODD_FOURTH_POWER_GREEN`.
+
 Even first defects remain unbounded: \(n=q^2+2\) with
 \(q=4,16,256\) gives sharp suffixes of depths \(1,2,3\).
 
 ## Open questions
 
 If \(a\) is not a cube and \(m=\lfloor\sqrt[3]{a^8}\rfloor\) is even,
-can \(n=m+1\) lie in the window? Cube-root bracketing and a uniform
-remaining-fraction bound do not decide this. The \(a=97\) even hit
-and the exact family \(a=k^3\), \(n=k^8\) must remain legal.
+can \(n=m+1\) lie in the window? Cube-root bracketing, remaining
+fraction, small exact moduli, and elementary near-common-power
+expansions do not decide this. The unresolved statement is exactly
+that gap inequality. The \(a=97\) even hit and the exact family
+\(a=k^3\), \(n=k^8\) must remain legal.
 
 ## Decision
 
 **PARK** the unrestricted fourth-power claim. Record
-`ODD_SHARP_SUFFIX_INCOMPLETE`. The elementary nearest-cube lemmas
-remain Lean. The even-\(m\) gap inequality is not elementary after
-the focused surplus analysis: no uniform remaining-fraction bound,
-no cube-root threshold \(A_0\), and no small-modulus obstruction on
-the surviving candidate. Do not start Baker/Thue/Mordell. Do not
-rerun \(10^8\). Do not register an attack. Do not claim termination.
-Do not add `PowerHeight` or a recursive defect object.
+`ODD_SHARP_SUFFIX_INCOMPLETE`, `OBSTRUCTION_NOT_MODULAR`, and
+`DIOPHANTINE_ESCALATION_REQUIRED`. The elementary nearest-cube
+lemmas remain Lean. Do not start Baker/Thue/Mordell. Do not
+enlarge the modulus. Do not rerun \(10^8\). Do not register an
+attack. Do not claim termination. Do not add `PowerHeight` or a
+recursive defect object.
 
-Best next question: prove that a non-cube with even \(m\) never
-satisfies \((m+1)^3-a^8\le 2a^4\), or exhibit such an \(a\).
+Best next question: the remaining statement is Diophantine
+(\(X=a^4\), \(Y=m\) even, \(X^2-Y^3=r>0\) never satisfies
+\((Y+1)^3-X^2\le 2X\)). Name a concrete method before introducing
+it, or exhibit the smallest counterexample.
 
 ## Publication assessment
 

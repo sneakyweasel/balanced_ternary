@@ -47,14 +47,23 @@ The only remaining counterexample shape is a non-cube `a` with even
 `m` such that `(m+1)^3 - a^8 ≤ 2a^4`. Discovery on `a <= 20000`
 found none. A uniform remaining-fraction bound is false (`a = 37840`
 sits at the top of its cube cell and still misses). The trivial
-bound `m >= a^{8/3}-1` cannot produce a threshold. Finite emptiness
-is not a theorem.
+bound `m >= a^{8/3}-1` cannot produce a threshold. Small exact
+moduli (`2^k` through `128`, then `3,5,7,9,13,15,24`) do not empty
+even-`m` classes: `a=3` is a live even-`m` pair. Classification
+`OBSTRUCTION_NOT_MODULAR`. The exact-family cube cell of `k^8`
+holds `a^8` only for `a = k^3`; nonzero `u` leaves that cell but
+does not force `D > 2a^4` (`a = 97`). Closest even-`m` failures
+are small and not near-cubes. Classification
+`DIOPHANTINE_ESCALATION_REQUIRED`. Finite emptiness is not a
+theorem.
 
 Interval emptiness is the wrong conjecture: `a = 97` is a cube in the
 interval (`m` odd, `n` even).
 
 ## Decision
 
-**PARK**. Keep the nearest-cube Lean. Do not treat `a < 10^8`
+**PARK**. Keep the nearest-cube Lean. Record
+`OBSTRUCTION_NOT_MODULAR` and
+`DIOPHANTINE_ESCALATION_REQUIRED`. Do not treat `a < 10^8`
 emptiness as impossibility. Do not claim `ODD_FOURTH_POWER_GREEN`
-or `ODD_SHARP_SUFFIX_GREEN`.
+or `ODD_SHARP_SUFFIX_GREEN`. Do not start Baker/Thue/Mordell.
