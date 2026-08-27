@@ -159,11 +159,8 @@ No Lean file.
 ## Open questions
 
 Do not build a cell-tree engine and do not reopen ResidualStep.
-The leftover is not “another scalar along a residual.” A
-dangerous finite word is still not a dangerous infinite
-trajectory; constructing an explicit infinite mixed family, or
-proving emptiness for one specified infinite pattern, remains
-open and is not started here.
+Answered in [juggler_escape_state.md](juggler_escape_state.md):
+the combined escape margin is `ESCAPE_STATE_COMPLEX`.
 
 ## Decision
 
@@ -173,10 +170,8 @@ killing of H1/H2 in the window, and the image-cap versus
 unrealizable distinction. Do not add Lean. Do not infer a bound
 from the window. Do not claim termination.
 
-Best next question: not a cell-tree engine. An explicit infinite
-realized mixed prefix-NC family, or a Lean emptiness proof for
-one specified infinite pattern, remains open; do not start it
-here.
+Best next question: answered in
+[juggler_escape_state.md](juggler_escape_state.md).
 
 ## Publication assessment
 

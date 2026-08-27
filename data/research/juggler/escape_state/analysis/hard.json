@@ -1,0 +1,146 @@
+[
+  {
+    "n": 5,
+    "escape": [
+      {
+        "k": 3,
+        "word": "OOE",
+        "image": 6,
+        "margin": 1288991,
+        "budget": 1562496
+      }
+    ]
+  },
+  {
+    "n": 9,
+    "escape": [
+      {
+        "k": 3,
+        "word": "OOE",
+        "image": 11,
+        "margin": 171312160,
+        "budget": 344373685
+      },
+      {
+        "k": 4,
+        "word": "OOEO",
+        "image": 36,
+        "margin": null,
+        "budget": null
+      }
+    ]
+  },
+  {
+    "n": 37,
+    "escape": [
+      {
+        "k": 5,
+        "word": "OOOOE",
+        "image": 9317,
+        "margin": null,
+        "budget": null
+      },
+      {
+        "k": 6,
+        "word": "OOOOEO",
+        "image": 899319,
+        "margin": null,
+        "budget": null
+      },
+      {
+        "k": 7,
+        "word": "OOOOEOO",
+        "image": 852846071,
+        "margin": null,
+        "budget": null
+      },
+      {
+        "k": 8,
+        "word": "OOOOEOOO",
+        "image": 24906114455136,
+        "margin": null,
+        "budget": null
+      }
+    ]
+  },
+  {
+    "n": 69,
+    "escape": [
+      {
+        "k": 3,
+        "word": "OOE",
+        "image": 117,
+        "margin": 34600734383587200,
+        "budget": 34938289461147408
+      },
+      {
+        "k": 4,
+        "word": "OOEO",
+        "image": 1265,
+        "margin": null,
+        "budget": null
+      },
+      {
+        "k": 5,
+        "word": "OOEOO",
+        "image": 44992,
+        "margin": null,
+        "budget": null
+      },
+      {
+        "k": 6,
+        "word": "OOEOOE",
+        "image": 212,
+        "margin": null,
+        "budget": null
+      }
+    ]
+  },
+  {
+    "n": 173,
+    "escape": [
+      {
+        "k": 3,
+        "word": "OOE",
+        "image": 329,
+        "margin": 136464969980530382880,
+        "budget": 138005778697887767040
+      },
+      {
+        "k": 4,
+        "word": "OOEO",
+        "image": 5967,
+        "margin": null,
+        "budget": null
+      },
+      {
+        "k": 5,
+        "word": "OOEOO",
+        "image": 460929,
+        "margin": null,
+        "budget": null
+      },
+      {
+        "k": 6,
+        "word": "OOEOOO",
+        "image": 312932773,
+        "margin": null,
+        "budget": null
+      },
+      {
+        "k": 7,
+        "word": "OOEOOOO",
+        "image": 5535751327289,
+        "margin": null,
+        "budget": null
+      },
+      {
+        "k": 8,
+        "word": "OOEOOOOO",
+        "image": 13024613938403266721,
+        "margin": null,
+        "budget": null
+      }
+    ]
+  }
+]

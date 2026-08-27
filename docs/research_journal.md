@@ -6021,7 +6021,7 @@ Best next question
 - **Major results:** \(A(\mathtt{OOE},6)=\{5\}\) **COMPUTATIONALLY VERIFIED**. All \(43\) mixed prefix-NC words of length \(\le 8\) are realized with \(n\le 800\). Empty fiber over images \(1..24\) does not mean unrealizable (`OOEOOOOOOO` at \(173\)). Horizon witnesses: \(37\) realizes `OOOOEOOOEE`, \(173\) realizes `OOEOOOOOOO`, \(2127\) realizes `OOOOEOOOOEE`. Backward constraints are the existing even cell and `odd_cell_unique`. No Lean file. Classification **PREFIX_NC_ARITHMETIC_COMPLEX**. Records: `docs/research/juggler_prefix_nc_admissibility.md`, `docs/problems/juggler_prefix_nc_admissibility.md`, `data/research/juggler/prefix_nc_admissibility/`. Control layer unchanged. `ResidualStep` not extended
 - **Refuted ideas:** long mixed prefix-NC words are arithmetically empty; empty-over-image-cap is unrealizable; a search-horizon word is an infinite family; a halt theorem
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
-- **Open:** an explicit infinite mixed family, or a Lean emptiness proof for one specified infinite pattern; not a cell-tree engine
+- **Open:** answered in the escape-state branch as `ESCAPE_STATE_COMPLEX`
 - **Decision:** CLOSE the backward-admissibility branch as `PREFIX_NC_ARITHMETIC_COMPLEX`. Do not add Lean. Do not infer a bound from the window
 
 ```text
@@ -6055,6 +6055,51 @@ Why
 - The combinatorial escape language and the arithmetic language agree through length 8. The leftover is ResidualStep-style cell composition, not a new obstruction. Stop before a cell-tree engine.
 
 Best next question
-- An explicit infinite realized mixed prefix-NC family, or a Lean emptiness proof for one specified infinite pattern; do not start it here.
+- Answered in the escape-state branch: the combined escape margin is `ESCAPE_STATE_COMPLEX`.
+```
+
+## Juggler escape-state margin
+
+- **Date:** 2026-08-27
+- **Objective:** Test whether \(M=\mathrm{formal\_gap}-\Delta\), or a small tuple, is a progress measure on mixed prefix-NC non-contracting prefixes
+- **Hypotheses:** `ESCAPE_STATE_INVARIANT_GREEN`, `ESCAPE_MARGIN_GREEN`, `ESCAPE_REGIME_GREEN`, `ESCAPE_COUNTEREXAMPLE`, or `ESCAPE_STATE_COMPLEX`
+- **Major results:** On \(G\le 0\), \(M=T_w(n)^{2^k}-n^{2^k}\) **COMPUTATIONALLY VERIFIED**, a **REPARAMETERIZATION** of \(T\ge n\). Sign identity has \(0\) failures. Overshoot \(T-n\) grows on \(9\), \(37\), \(173\). No \(M=0\) return for \(n\ge 2\) in \(n\le 200\), \(k\le 8\). \(187\) escape prefixes; longest \(8\) is the horizon, not \(L\). No Lean file. Classification **ESCAPE_STATE_COMPLEX**. Records: `docs/research/juggler_escape_state.md`, `docs/problems/juggler_escape_state.md`, `data/research/juggler/escape_state/`. Control layer unchanged. `ResidualStep` not extended
+- **Refuted ideas:** \(M\) is a new progress law; escape overshoot shrinks; \(M=0\) is a second envelope boundary; a history certificate creates a new future state; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** not another local rewrite of \(T\ge n\); a global well-founded measure remains the global problem
+- **Decision:** CLOSE the escape-state branch as `ESCAPE_STATE_COMPLEX`. Do not add Lean. Do not infer a bound from the window
+
+```text
+What was learned
+- On G<=0, M = T^{2^k}-n^{2^k}, so M>=0 iff the prefix does not contract
+- That is compensated-contraction / actual contraction rewritten, not a new state
+- Escape overshoot grows: 9 goes 11→36; 37 goes 9317→24906114455136
+- The future orbit is determined by the current integer; history is only a past certificate
+- Indefinite escape is non-termination
+
+Strongest theorem
+- none new; the envelope and compensated contraction remain the Lean facts
+
+Strongest refutation
+- M is a progress measure; it is T>=n, and overshoot grows on known expanders
+
+Reusable machinery
+- research.juggler_sequence.escape_state
+- data/research/juggler/escape_state/
+
+Prior-art status
+- negative progress-measure result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- CLOSE
+
+Why
+- The escape predicate is prefix-NC plus T>=n. No compact I with I_{j+1}<I_j survived. Stop before a state machine.
+
+Best next question
+- Not another local rewrite of T>=n. A global well-founded measure, if it exists, is not this margin.
 ```
 
