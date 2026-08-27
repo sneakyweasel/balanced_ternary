@@ -151,10 +151,10 @@ before square scale, so the cycle demand \(M>m^2\) is not vacuous.
 
 ## Open questions
 
-Does the superquadratic min-to-max prefix plus the exact maximum
-return cell force a forbidden transition for some scalable family,
-without enumerating words? Do not start a first-cell census. Do not
-reopen length 7.
+Answered in [juggler_cycle_top_excursion.md](juggler_cycle_top_excursion.md):
+the maximum begins a finite even run onto an odd landing with a
+two-sided scale window. The ascent is not yet forced out of that
+window. Do not start a first-cell census. Do not reopen length 7.
 
 ## Decision
 
@@ -162,9 +162,8 @@ reopen length 7.
 not claim that growth and collapse cannot coexist. Do not claim that
 first-cell maxima are impossible. Do not claim termination.
 
-Best next question: does the superquadratic min-to-max prefix plus
-the exact maximum return cell force a forbidden transition without a
-word census?
+Best next question: answered in
+[juggler_cycle_top_excursion.md](juggler_cycle_top_excursion.md).
 
 ## Publication assessment
 

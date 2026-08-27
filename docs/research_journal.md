@@ -5359,4 +5359,49 @@ Best next question
 - Does the superquadratic min-to-max prefix plus the exact maximum return cell force a forbidden transition without a word census?
 ```
 
+## Juggler top excursions
+
+- **Date:** 2026-08-27
+- **Objective:** Normalize every nontrivial cycle at the odd landing after the maximum even run, and record the two-sided scale window
+- **Hypotheses:** `TOP_EXCURSION_GREEN`, `TOP_SCALE_WINDOW_GREEN`, `TOP_ASCENT_CONTRADICTION_GREEN`, `TOP_WINDOW_SURVIVES`, or `TOP_EXCURSION_COUNTEREXAMPLE`
+- **Major results:** `r` even iterates give \(T^r(x)^{2^r}\le x<(T^r(x)+1)^{2^r}\) **EXACT — LEAN VERIFIED**. Every cycle maximum has a finite even run onto an odd landing **EXACT — LEAN VERIFIED**. The cycle rotates to \(p\to M\to E^r\to p\) with \(3^{\#O(u)}\ge 2^{|u|+r}\) **EXACT — LEAN VERIFIED**. Classification **TOP_EXCURSION_GREEN**. Records: `docs/research/juggler_cycle_top_excursion.md`, `docs/problems/juggler_cycle_top_excursion.md`. Control layer unchanged
+- **Refuted ideas:** the top window is empty; every top run has length 1; \(T(M)\) is the cycle minimum; ordinary overshoots close a top excursion; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** does any existing exact threshold force the ascent \(p\to M\) out of the top window for a scalable family of \(r\)?
+- **Decision:** PROMOTE the top even-run, the two-sided window, and the landing normal form. Do not claim that the ascent is impossible. Do not claim that \(T(M)=m\)
+
+```text
+What was learned
+- Every cycle maximum begins a finite E^r onto an odd landing p
+- The exact window is p^{2^r} ≤ M < (p+1)^{2^r}; it is nonempty
+- The ascent p → M is scale-superquadratic: 3^o ≥ 2^{k+r}
+- Direct return p = m is the last-even first-cell family; it is not forced
+- Transient maxima sit in the window and do not return to p
+
+Strongest theorem
+- A CycleMax rotates to p → M → E^r → p with p^{2^r} ≤ M < (p+1)^{2^r}
+
+Strongest refutation
+- the top window is empty; it is a nonempty integer interval
+
+Reusable machinery
+- Problems.Engine.CycleWord even_iter_pow_le / cycleMax_top_normal_form / power_scale_superquadratic
+- research.juggler_sequence.cycle_top_excursion
+
+Prior-art status
+- maximum-normalization lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The maximum is now a turning point with a sharp two-sided cell. That is the strongest word-independent structure currently available. The ascent is not shown to overshoot the cell.
+
+Best next question
+- Does any existing exact threshold force the ascent p → M out of the top window for a scalable family of r, without naming the word?
+```
+
 

@@ -29,8 +29,10 @@ contradicts the last-even cell.
 
 The extrema of any nontrivial cycle are word-independent: the
 minimum is odd, the maximum is even, and `M > m^2`. A realized path
-from `m` to any even cycle state is therefore superquadratic. This is
-not a halt theorem and not a claim that every cycle word is impossible.
+from `m` to any even cycle state is therefore superquadratic. The
+maximum begins a finite even run `E^r` onto an odd landing `p`, with
+`p^{2^r} ≤ M < (p+1)^{2^r}`. This is not a halt theorem and not a
+claim that every cycle word is impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -949,5 +951,237 @@ theorem cycleMin_to_max_superquadratic {n : ℕ} {w : List Branch}
         2 ^ (i + 1) ≤ 3 ^ oddCount (w.take i) := by
   have ⟨i, hi, _hmax, heven, hgt⟩ := cycleMin_max_gt_sq hn h
   exact ⟨i, hi, heven, hgt, cycleMin_to_even_superquadratic hn h hi heven⟩
+
+/-- `r` consecutive even iterates give `T^r(x)^{2^r} ≤ x`. -/
+theorem even_iter_pow_le {x : ℕ} :
+    ∀ r, (∀ i < r, floorPower^[i] x % 2 = 0) →
+      (floorPower^[r] x) ^ (2 ^ r) ≤ x
+  | 0, _ => by simp
+  | r + 1, he => by
+      have he0 : x % 2 = 0 := he 0 (by omega)
+      have her : ∀ i < r, floorPower^[i] (floorPower x) % 2 = 0 := by
+        intro i hi
+        have := he (i + 1) (by omega)
+        simpa [Function.iterate_succ_apply] using this
+      have ih := even_iter_pow_le r her
+      have hstep : floorPower x ^ 2 ≤ x := floorPower_even_sq_le he0
+      have hiter : floorPower^[r + 1] x = floorPower^[r] (floorPower x) :=
+        Function.iterate_succ_apply floorPower r x
+      have hpow :
+          (floorPower^[r + 1] x) ^ (2 ^ (r + 1)) =
+            ((floorPower^[r] (floorPower x)) ^ (2 ^ r)) ^ 2 := by
+        have hr2 : 2 ^ (r + 1) = 2 ^ r * 2 := by
+          rw [two_pow_succ, mul_comm]
+        rw [hiter, hr2, Nat.pow_mul]
+      rw [hpow]
+      exact le_trans (Nat.pow_le_pow_left ih 2) hstep
+
+/-- Matching upper cell: `x < (T^r(x)+1)^{2^r}`. -/
+theorem even_iter_lt_succ_pow {x : ℕ} :
+    ∀ r, (∀ i < r, floorPower^[i] x % 2 = 0) →
+      x < (floorPower^[r] x + 1) ^ (2 ^ r)
+  | 0, _ => by
+      simp
+      exact Nat.lt_succ_self x
+  | r + 1, he => by
+      have he0 : x % 2 = 0 := he 0 (by omega)
+      have her : ∀ i < r, floorPower^[i] (floorPower x) % 2 = 0 := by
+        intro i hi
+        have := he (i + 1) (by omega)
+        simpa [Function.iterate_succ_apply] using this
+      have ih := even_iter_lt_succ_pow r her
+      have hfp : floorPower x = x.sqrt := floorPower_even_eq he0
+      have hcell : x < (floorPower x + 1) ^ 2 := by
+        have hI := (floorPower_even_eq_iff_sq_interval he0).mp hfp
+        simpa [hfp] using hI.2
+      have hiter : floorPower^[r + 1] x = floorPower^[r] (floorPower x) :=
+        Function.iterate_succ_apply floorPower r x
+      have hle :
+          floorPower x + 1 ≤
+            (floorPower^[r + 1] x + 1) ^ (2 ^ r) := by
+        refine Nat.succ_le_of_lt ?_
+        simpa [hiter] using ih
+      have hlt :
+          x < ((floorPower^[r + 1] x + 1) ^ (2 ^ r)) ^ 2 :=
+        lt_of_lt_of_le hcell (Nat.pow_le_pow_left hle 2)
+      have hpow :
+          ((floorPower^[r + 1] x + 1) ^ (2 ^ r)) ^ 2 =
+            (floorPower^[r + 1] x + 1) ^ (2 ^ (r + 1)) := by
+        have hr2 : 2 ^ (r + 1) = 2 ^ r * 2 := by
+          rw [two_pow_succ, mul_comm]
+        rw [hr2, Nat.pow_mul]
+      rwa [hpow] at hlt
+
+theorem exists_first_odd_iterate {n t : ℕ}
+    (h0 : n % 2 = 0) (ht : 1 ≤ t)
+    (hodd : floorPower^[t] n % 2 = 1) :
+    ∃ r, 1 ≤ r ∧ r ≤ t ∧
+      (∀ i < r, floorPower^[i] n % 2 = 0) ∧
+      floorPower^[r] n % 2 = 1 := by
+  let P : ℕ → Prop :=
+    fun r => 1 ≤ r ∧ r ≤ t ∧ floorPower^[r] n % 2 = 1
+  have hP : ∃ r, P r := ⟨t, ht, le_rfl, hodd⟩
+  let r := Nat.find hP
+  have hr : P r := Nat.find_spec hP
+  refine ⟨r, hr.1, hr.2.1, ?_, hr.2.2⟩
+  intro i hi
+  have hnot : ¬P i := Nat.find_min hP hi
+  cases i with
+  | zero => exact h0
+  | succ i =>
+      have hi1 : 1 ≤ i + 1 := Nat.succ_le_succ (Nat.zero_le i)
+      have hi2 : i + 1 ≤ t :=
+        Nat.le_of_lt (lt_of_lt_of_le hi hr.2.1)
+      have : ¬floorPower^[i + 1] n % 2 = 1 := fun h =>
+        hnot ⟨hi1, hi2, h⟩
+      rcases Nat.mod_two_eq_zero_or_one (floorPower^[i + 1] n) with he | ho
+      · exact he
+      · exact (this ho).elim
+
+/-- Reaching scale `n^{2^s}` requires `3^o ≥ 2^{k+s}`. -/
+theorem power_scale_superquadratic {n : ℕ} {w : List Branch} {s : ℕ}
+    (hn : 2 ≤ n) (hw : follows n w)
+    (himg : n ^ (2 ^ s) ≤ image n w) :
+    2 ^ (w.length + s) ≤ 3 ^ oddCount w := by
+  have hpow : (image n w) ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w) := by
+    simpa [image_eq_iterate] using power_bound_word hw
+  have hleft :
+      (n ^ (2 ^ s)) ^ (2 ^ w.length) ≤ (image n w) ^ (2 ^ w.length) :=
+    Nat.pow_le_pow_left himg _
+  have hmul : (n ^ (2 ^ s)) ^ (2 ^ w.length) = n ^ (2 ^ s * 2 ^ w.length) :=
+    (Nat.pow_mul n (2 ^ s) (2 ^ w.length)).symm
+  have h2 : 2 ^ s * 2 ^ w.length = 2 ^ (w.length + s) := by
+    rw [← Nat.pow_add, Nat.add_comm]
+  have hle : n ^ (2 ^ (w.length + s)) ≤ n ^ (3 ^ oddCount w) := by
+    rw [← h2, ← hmul]
+    exact le_trans hleft hpow
+  exact
+    (Nat.pow_le_pow_iff_right
+        (lt_of_lt_of_le (by decide : (1 : ℕ) < 2) hn)).mp
+      hle
+
+theorem follows_of_even_iter {n : ℕ} :
+    ∀ r, (∀ i < r, floorPower^[i] n % 2 = 0) →
+      follows n (List.replicate r Branch.even)
+  | 0, _ => trivial
+  | r + 1, he => by
+      refine ⟨he 0 (by omega), ?_⟩
+      refine follows_of_even_iter r ?_
+      intro i hi
+      have := he (i + 1) (by omega)
+      simpa [Function.iterate_succ_apply] using this
+
+theorem take_eq_replicate_even {n : ℕ} :
+    ∀ (w : List Branch) r,
+      follows n w → r ≤ w.length →
+        (∀ i < r, floorPower^[i] n % 2 = 0) →
+          w.take r = List.replicate r Branch.even
+  | w, 0, _, _, _ => by simp
+  | [], r + 1, _, hlen, _ => by
+      simp at hlen
+  | b :: rest, r + 1, hw, hlen, he => by
+      have he0 : n % 2 = 0 := he 0 (by omega)
+      have hb : b = Branch.even := by
+        cases b with
+        | even => rfl
+        | odd =>
+            have : n % 2 = 1 := hw.1
+            omega
+      subst hb
+      have hrest :
+          rest.take r = List.replicate r Branch.even := by
+        refine take_eq_replicate_even rest r hw.2 (by simp at hlen; omega) ?_
+        intro i hi
+        have := he (i + 1) (by omega)
+        simpa [Function.iterate_succ_apply] using this
+      simpa [List.take, List.replicate_succ] using hrest
+
+theorem rotateWord_even_run :
+    ∀ r u, rotateWord (List.replicate r Branch.even ++ u) r =
+      u ++ List.replicate r Branch.even
+  | 0, u => by simp [rotateWord]
+  | r + 1, u => by
+      have hrep :
+          List.replicate (r + 1) Branch.even ++ u =
+            Branch.even :: (List.replicate r Branch.even ++ u) := by
+        rw [List.replicate_succ, List.cons_append]
+      rw [hrep, rotateWord]
+      have hassoc :
+          List.replicate r Branch.even ++ u ++ [Branch.even] =
+            List.replicate r Branch.even ++ (u ++ [Branch.even]) := by
+        simp [List.append_assoc]
+      rw [hassoc, rotateWord_even_run r (u ++ [Branch.even])]
+      simp [List.append_assoc, List.replicate_succ]
+
+/-- Every cycle maximum begins a finite even run onto an odd landing. -/
+theorem cycleMax_top_even_run {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ r, 1 ≤ r ∧ r < w.length ∧
+      (∀ i < r, floorPower^[i] n % 2 = 0) ∧
+        floorPower^[r] n % 2 = 1 ∧
+          (floorPower^[r] n) ^ (2 ^ r) ≤ n ∧
+            n < (floorPower^[r] n + 1) ^ (2 ^ r) := by
+  have ⟨i, hi, _, hodd⟩ := exists_cycle_min_odd hn h.1
+  have h0 := cycleMax_start_even hn h
+  have hi1 : 1 ≤ i := by
+    cases i with
+    | zero =>
+        have : n % 2 = 1 := by simpa using hodd
+        omega
+    | succ _ => omega
+  have ⟨r, hr1, hrle, heven, hodd'⟩ := exists_first_odd_iterate h0 hi1 hodd
+  have hrlt : r < w.length := lt_of_le_of_lt hrle hi
+  exact ⟨r, hr1, hrlt, heven, hodd', even_iter_pow_le r heven,
+    even_iter_lt_succ_pow r heven⟩
+
+/-- Rotate a cycle maximum to the odd landing after its top even run. -/
+theorem cycleMax_top_normal_form {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ r u p, 1 ≤ r ∧
+      w = List.replicate r Branch.even ++ u ∧
+        p = floorPower^[r] n ∧ p % 2 = 1 ∧ 2 ≤ p ∧
+          CycleWord p (u ++ List.replicate r Branch.even) ∧
+            image p u = n ∧
+              p ^ (2 ^ r) ≤ n ∧ n < (p + 1) ^ (2 ^ r) ∧
+                2 ^ (u.length + r) ≤ 3 ^ oddCount u := by
+  have ⟨r, hr1, hrlt, heven, hodd, hlo, hhi⟩ := cycleMax_top_even_run hn h
+  have hw := h.1.1
+  have htake :=
+    take_eq_replicate_even w r hw (Nat.le_of_lt hrlt) heven
+  have hsplit := (List.take_append_drop r w).symm
+  set u := w.drop r
+  have hwform : w = List.replicate r Branch.even ++ u := by
+    simpa [htake, u] using hsplit
+  have hp : 2 ≤ floorPower^[r] n := cycleWord_iterate_ge_two hn h.1 hrlt
+  have hrot := cycleWord_rotateWord h.1 r
+  have hrotw : rotateWord w r = u ++ List.replicate r Branch.even := by
+    simpa [hwform] using rotateWord_even_run r u
+  have hC : CycleWord (floorPower^[r] n) (u ++ List.replicate r Branch.even) := by
+    simpa [hrotw] using hrot
+  have himg : image (floorPower^[r] n) u = n := by
+    have hlenu : u.length = w.length - r := by
+      simp [u, List.length_drop]
+    have himg' : image (floorPower^[r] n) u =
+        floorPower^[w.length - r] (floorPower^[r] n) := by
+      simpa [hlenu] using image_eq_iterate (floorPower^[r] n) u
+    have hsum : w.length - r + r = w.length :=
+      Nat.sub_add_cancel (Nat.le_of_lt hrlt)
+    have hcomp : floorPower^[w.length - r] (floorPower^[r] n) =
+        floorPower^[w.length] n := by
+      have hiter := Function.iterate_add_apply floorPower (w.length - r) r n
+      simpa [hsum] using hiter.symm
+    simpa [himg', hcomp] using cycle_iterate_period h.1
+  have hα : 2 ^ (u.length + r) ≤ 3 ^ oddCount u := by
+    have hu : follows (floorPower^[r] n) u := by
+      have := follows_of_append_left (u := u) hC.1
+      exact this
+    exact power_scale_superquadratic hp hu (by simpa [himg] using hlo)
+  exact ⟨r, u, floorPower^[r] n, hr1, hwform, rfl, hodd, hp, hC, himg, hlo, hhi, hα⟩
+
+theorem top_ascent_superquadratic {p : ℕ} {u : List Branch} {r : ℕ}
+    (hp : 2 ≤ p) (hu : follows p u)
+    (hM : p ^ (2 ^ r) ≤ image p u) :
+    2 ^ (u.length + r) ≤ 3 ^ oddCount u :=
+  power_scale_superquadratic hp hu hM
 
 end Problems.Engine
