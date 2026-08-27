@@ -1,0 +1,15 @@
+{
+  "search_id": "juggler-excursions-phase0-n2-2000",
+  "algorithm_version": "excursion-v1",
+  "git_commit": "2aadc9c6132d1673b897f3edfe2a2fea026490c2",
+  "n_range": [
+    2,
+    2000
+  ],
+  "horizon": 10000,
+  "completion_status": "COMPLETE",
+  "checksum": "d88ca820e9b912106c9be2b162f3bf37b7e9f4daec31dc99cd2fca1c276c051f",
+  "checksum_sha256_phase0": "a5bc534e489cd06fc34432a1be22a72fb023b7cf0f5e53d7a109638227a082ba",
+  "runtime_ms": 190,
+  "classification": "EXCURSION_ENVELOPE_GREEN"
+}

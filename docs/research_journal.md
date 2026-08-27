@@ -6103,3 +6103,48 @@ Best next question
 - Not another local rewrite of T>=n. A global well-founded measure, if it exists, is not this margin.
 ```
 
+## Juggler excursions and first-return induction
+
+- **Date:** 2026-08-27
+- **Objective:** Test whether first-return-below words can be certified by the existing finite-word envelope and defect calculus, without a new engine
+- **Hypotheses:** `EXCURSION_ENVELOPE_GREEN`, `FIRST_RETURN_DEFECT_GREEN`, `MINIMAL_COUNTEREXAMPLE_ROUTE_GREEN`, `EXCURSION_STRUCTURE_GREEN`, `EXCURSION_COUNTEREXAMPLE`, or `EXCURSION_INDUCTION_COMPLEX`
+- **Major results:** On \(2\le n\le 2000\), all 1999 starts return below \(n\) before horizon \(10^4\). Every first-return word has \(2^k>3^o\) **COMPUTATIONALLY VERIFIED**. First-defect and peak-suffix never certify a return the exponent gap misses. `COMPUTED_ONLY` count \(0\). Lemma A universal **REFUTED** (even \(n\) has word \(E\)). Lemma A for odd starts and Lemma B hold on the window. No measure \(M\) other than the defined return. Classification **EXCURSION_ENVELOPE_GREEN**. Records: `docs/research/juggler_excursions.md`, `docs/problems/juggler_excursions.md`, `data/research/juggler/excursions/`. Control layer unchanged. `ResidualStep` not extended. No Lean file
+- **Refuted ideas:** first-return words must be non-extremal for every start; full-word \(\Delta\) as a certificate on a completed return; return value \(<n\) as a new canonical measure
+- **Literature:** `oeis-A007320`; escape-state / odd-odd residual / prefix-NC admissibility / CycleDiophantine remain closed
+- **Open:** does every \(n\ge 2\) realize a finite prefix with \(3^o<2^k\)? That would give `FiniteProgress` from `power_bound_contracts`. An infinite prefix-NC itinerary would be a non-terminator
+- **Decision:** PARK the excursion branch as `EXCURSION_ENVELOPE_GREEN`. Do not add Lean. Do not infer a bound from the window. Do not claim termination
+
+```text
+What was learned
+- τ_<, τ_≤, and the peak/return split are distinct; the primary object is first return strictly below the start
+- On n=2..2000 every first-return word is formally contracting, so power_bound_contracts already certifies the completed return
+- First-defect and peak-suffix are extra, not independent certificates
+- A MinimalNonTerm has no finite excursion; the census cannot produce a smaller MNT
+- The missing theorem is existence of a contracting prefix, not another local residual
+
+Strongest theorem
+- none new; power_bound_contracts remains the Lean fact applied post hoc to w(n)
+
+Strongest refutation
+- Lemma A for every start: even n returns by the extremal word E
+
+Reusable machinery
+- research.juggler_sequence.excursions
+- data/research/juggler/excursions/
+
+Prior-art status
+- window-level envelope observation, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PARK
+
+Why
+- The window is clean enough to name a candidate theorem, not complete enough to prove it. Stop before Lean and before a new global state engine.
+
+Best next question
+- Does every n>=2 realize a finite prefix with 3^o<2^k?
+```
+

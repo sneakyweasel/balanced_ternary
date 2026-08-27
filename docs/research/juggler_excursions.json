@@ -1,0 +1,2241 @@
+{
+  "experiment": "juggler_excursions",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "search_horizon_is_L": false,
+    "full_delta_is_certificate": false,
+    "finite_progress_for_all": false,
+    "minimal_nonterm_rebuilt": false,
+    "first_return_means_orbit_period": false
+  },
+  "window": {
+    "n_start": 2,
+    "n_end": 2000,
+    "horizon": 10000,
+    "bit_cap": 4096,
+    "hard_starts": [
+      9,
+      37,
+      49,
+      69,
+      77,
+      173
+    ],
+    "algorithm_version": "excursion-v1",
+    "search_id": "juggler-excursions-phase0-n2-2000"
+  },
+  "scan": {
+    "analysis": {
+      "row_count": 1999,
+      "returned": 1999,
+      "unfinished": [],
+      "unfinished_count": 0,
+      "start_class_counts": {
+        "EVEN_AUTO": 1000,
+        "ODD_ODD_START": 505,
+        "OE_AUTO": 494
+      },
+      "certificate_counts": {
+        "EXPONENT": 1999,
+        "FIRST_DEFECT": 1495,
+        "PEAK_SUFFIX": 1994
+      },
+      "certificate_combo_counts": {
+        "EXPONENT+FIRST_DEFECT+PEAK_SUFFIX": 1495,
+        "EXPONENT+PEAK_SUFFIX": 499,
+        "EXPONENT": 5
+      },
+      "odd_odd_returned": 505,
+      "computed_only_count": 0,
+      "computed_only_odd_odd_count": 0,
+      "computed_only_shapes": [],
+      "certified_count": 1999,
+      "certified_fraction": 1.0,
+      "lemma_a_odd_holds": true,
+      "lemma_a_universal_holds": false,
+      "lemma_a_universal_counterexample": [
+        2,
+        4,
+        6,
+        8,
+        10
+      ],
+      "lemma_b_holds": true,
+      "lemma_b_exact_holds": true,
+      "lemma_b_exact_counterexamples": [],
+      "lemma_c_defect_vs_peak": [],
+      "lemma_d_no_first_defect_count": 482,
+      "lemma_d_shapes": [
+        [
+          2,
+          2,
+          2,
+          0
+        ],
+        [
+          2,
+          2,
+          3,
+          1
+        ],
+        [
+          3,
+          3,
+          2,
+          0
+        ],
+        [
+          3,
+          3,
+          4,
+          1
+        ],
+        [
+          3,
+          3,
+          5,
+          2
+        ],
+        [
+          3,
+          3,
+          7,
+          3
+        ],
+        [
+          4,
+          4,
+          3,
+          0
+        ],
+        [
+          4,
+          4,
+          4,
+          1
+        ],
+        [
+          4,
+          4,
+          6,
+          2
+        ],
+        [
+          4,
+          4,
+          8,
+          3
+        ],
+        [
+          4,
+          4,
+          9,
+          4
+        ],
+        [
+          4,
+          4,
+          11,
+          5
+        ],
+        [
+          5,
+          4,
+          2,
+          0
+        ],
+        [
+          5,
+          4,
+          3,
+          1
+        ],
+        [
+          5,
+          5,
+          3,
+          0
+        ],
+        [
+          5,
+          5,
+          5,
+          1
+        ],
+        [
+          5,
+          5,
+          7,
+          2
+        ],
+        [
+          5,
+          5,
+          8,
+          3
+        ],
+        [
+          5,
+          5,
+          10,
+          4
+        ],
+        [
+          5,
+          5,
+          11,
+          5
+        ],
+        [
+          5,
+          5,
+          16,
+          8
+        ],
+        [
+          6,
+          5,
+          2,
+          0
+        ],
+        [
+          6,
+          5,
+          4,
+          1
+        ],
+        [
+          6,
+          5,
+          6,
+          2
+        ],
+        [
+          6,
+          5,
+          7,
+          3
+        ],
+        [
+          6,
+          6,
+          4,
+          0
+        ],
+        [
+          6,
+          6,
+          6,
+          1
+        ],
+        [
+          6,
+          6,
+          7,
+          2
+        ],
+        [
+          6,
+          6,
+          9,
+          3
+        ],
+        [
+          6,
+          6,
+          12,
+          5
+        ],
+        [
+          6,
+          6,
+          18,
+          9
+        ],
+        [
+          7,
+          6,
+          3,
+          0
+        ],
+        [
+          7,
+          6,
+          5,
+          1
+        ],
+        [
+          7,
+          6,
+          6,
+          2
+        ],
+        [
+          7,
+          6,
+          9,
+          4
+        ],
+        [
+          7,
+          6,
+          11,
+          5
+        ],
+        [
+          7,
+          6,
+          19,
+          10
+        ],
+        [
+          7,
+          7,
+          5,
+          0
+        ],
+        [
+          7,
+          7,
+          8,
+          2
+        ],
+        [
+          7,
+          7,
+          11,
+          4
+        ],
+        [
+          8,
+          6,
+          4,
+          1
+        ],
+        [
+          8,
+          7,
+          4,
+          0
+        ],
+        [
+          8,
+          7,
+          5,
+          1
+        ],
+        [
+          8,
+          7,
+          7,
+          2
+        ],
+        [
+          8,
+          7,
+          8,
+          3
+        ],
+        [
+          8,
+          7,
+          10,
+          4
+        ],
+        [
+          8,
+          7,
+          12,
+          5
+        ],
+        [
+          8,
+          7,
+          16,
+          8
+        ],
+        [
+          8,
+          8,
+          5,
+          0
+        ],
+        [
+          8,
+          8,
+          8,
+          2
+        ],
+        [
+          8,
+          8,
+          16,
+          7
+        ],
+        [
+          9,
+          7,
+          3,
+          0
+        ],
+        [
+          9,
+          7,
+          4,
+          1
+        ],
+        [
+          9,
+          7,
+          6,
+          2
+        ],
+        [
+          9,
+          7,
+          7,
+          3
+        ],
+        [
+          9,
+          7,
+          14,
+          7
+        ],
+        [
+          9,
+          8,
+          4,
+          0
+        ],
+        [
+          9,
+          8,
+          9,
+          3
+        ],
+        [
+          9,
+          8,
+          12,
+          5
+        ],
+        [
+          9,
+          8,
+          15,
+          7
+        ],
+        [
+          9,
+          8,
+          17,
+          8
+        ],
+        [
+          9,
+          9,
+          12,
+          4
+        ],
+        [
+          10,
+          8,
+          3,
+          0
+        ],
+        [
+          10,
+          8,
+          5,
+          1
+        ],
+        [
+          10,
+          8,
+          6,
+          2
+        ],
+        [
+          10,
+          8,
+          10,
+          4
+        ],
+        [
+          10,
+          9,
+          8,
+          2
+        ],
+        [
+          10,
+          9,
+          22,
+          11
+        ],
+        [
+          10,
+          10,
+          14,
+          5
+        ],
+        [
+          11,
+          8,
+          4,
+          1
+        ],
+        [
+          11,
+          9,
+          4,
+          0
+        ],
+        [
+          11,
+          9,
+          5,
+          1
+        ],
+        [
+          11,
+          9,
+          18,
+          9
+        ],
+        [
+          11,
+          10,
+          16,
+          7
+        ],
+        [
+          11,
+          10,
+          40,
+          22
+        ],
+        [
+          11,
+          11,
+          12,
+          3
+        ],
+        [
+          12,
+          9,
+          3,
+          0
+        ],
+        [
+          12,
+          9,
+          4,
+          1
+        ],
+        [
+          12,
+          9,
+          6,
+          2
+        ],
+        [
+          12,
+          10,
+          9,
+          3
+        ],
+        [
+          12,
+          10,
+          11,
+          4
+        ],
+        [
+          12,
+          10,
+          17,
+          8
+        ],
+        [
+          12,
+          11,
+          9,
+          2
+        ],
+        [
+          12,
+          11,
+          12,
+          4
+        ],
+        [
+          12,
+          11,
+          15,
+          6
+        ],
+        [
+          13,
+          10,
+          3,
+          0
+        ],
+        [
+          13,
+          10,
+          5,
+          1
+        ],
+        [
+          13,
+          10,
+          10,
+          4
+        ],
+        [
+          13,
+          11,
+          5,
+          0
+        ],
+        [
+          13,
+          11,
+          11,
+          4
+        ],
+        [
+          13,
+          12,
+          11,
+          3
+        ],
+        [
+          14,
+          10,
+          2,
+          0
+        ],
+        [
+          14,
+          11,
+          6,
+          1
+        ],
+        [
+          14,
+          11,
+          10,
+          4
+        ],
+        [
+          14,
+          12,
+          9,
+          2
+        ],
+        [
+          14,
+          13,
+          13,
+          4
+        ],
+        [
+          15,
+          13,
+          9,
+          2
+        ],
+        [
+          16,
+          12,
+          7,
+          2
+        ],
+        [
+          16,
+          13,
+          10,
+          3
+        ],
+        [
+          16,
+          14,
+          24,
+          11
+        ],
+        [
+          17,
+          13,
+          4,
+          0
+        ],
+        [
+          17,
+          13,
+          10,
+          4
+        ],
+        [
+          17,
+          14,
+          9,
+          2
+        ],
+        [
+          17,
+          14,
+          14,
+          5
+        ],
+        [
+          19,
+          15,
+          13,
+          5
+        ],
+        [
+          19,
+          15,
+          16,
+          7
+        ],
+        [
+          24,
+          19,
+          19,
+          8
+        ],
+        [
+          25,
+          18,
+          12,
+          5
+        ],
+        [
+          25,
+          19,
+          10,
+          3
+        ],
+        [
+          28,
+          21,
+          22,
+          10
+        ],
+        [
+          31,
+          22,
+          19,
+          9
+        ],
+        [
+          38,
+          27,
+          8,
+          2
+        ],
+        [
+          47,
+          34,
+          23,
+          10
+        ],
+        [
+          49,
+          35,
+          13,
+          4
+        ]
+      ],
+      "grazers": [
+        {
+          "n": 3,
+          "status": "RETURNED",
+          "tau_lt": 5,
+          "tau_le": 5,
+          "k": 5,
+          "odd_count": 3,
+          "exponent_gap": 5,
+          "word_preview": "OOOEE",
+          "word_length": 5,
+          "peak": 36,
+          "peak_index": 3,
+          "return_value": 2,
+          "return_deficit": 1,
+          "peak_overshoot": 33,
+          "r": 3,
+          "o_u": 3,
+          "s": 2,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 2,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 5,
+          "status": "RETURNED",
+          "tau_lt": 4,
+          "tau_le": 4,
+          "k": 4,
+          "odd_count": 2,
+          "exponent_gap": 7,
+          "word_preview": "OOEE",
+          "word_length": 4,
+          "peak": 36,
+          "peak_index": 2,
+          "return_value": 2,
+          "return_deficit": 3,
+          "peak_overshoot": 31,
+          "r": 2,
+          "o_u": 2,
+          "s": 2,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 4,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 7,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 18,
+          "peak_index": 1,
+          "return_value": 4,
+          "return_deficit": 3,
+          "peak_overshoot": 11,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 19,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 9,
+          "status": "RETURNED",
+          "tau_lt": 5,
+          "tau_le": 5,
+          "k": 5,
+          "odd_count": 3,
+          "exponent_gap": 5,
+          "word_preview": "OOEOE",
+          "word_length": 5,
+          "peak": 140,
+          "peak_index": 2,
+          "return_value": 6,
+          "return_deficit": 3,
+          "peak_overshoot": 131,
+          "r": 2,
+          "o_u": 2,
+          "s": 3,
+          "q": 1,
+          "first_defect_index": 1,
+          "first_defect": 83,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 11,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 36,
+          "peak_index": 1,
+          "return_value": 6,
+          "return_deficit": 5,
+          "peak_overshoot": 25,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 35,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 13,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 46,
+          "peak_index": 1,
+          "return_value": 6,
+          "return_deficit": 7,
+          "peak_overshoot": 33,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 81,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 15,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 58,
+          "peak_index": 1,
+          "return_value": 7,
+          "return_deficit": 8,
+          "peak_overshoot": 43,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 11,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 17,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 70,
+          "peak_index": 1,
+          "return_value": 8,
+          "return_deficit": 9,
+          "peak_overshoot": 53,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 13,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 19,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 82,
+          "peak_index": 1,
+          "return_value": 9,
+          "return_deficit": 10,
+          "peak_overshoot": 63,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 135,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 25,
+          "status": "RETURNED",
+          "tau_lt": 5,
+          "tau_le": 5,
+          "k": 5,
+          "odd_count": 3,
+          "exponent_gap": 5,
+          "word_preview": "OOOEE",
+          "word_length": 5,
+          "peak": 52214,
+          "peak_index": 3,
+          "return_value": 15,
+          "return_deficit": 10,
+          "peak_overshoot": 52189,
+          "r": 3,
+          "o_u": 3,
+          "s": 2,
+          "q": 0,
+          "first_defect_index": 1,
+          "first_defect": 1516,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 21,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 96,
+          "peak_index": 1,
+          "return_value": 9,
+          "return_deficit": 12,
+          "peak_overshoot": 75,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 45,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 23,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 110,
+          "peak_index": 1,
+          "return_value": 10,
+          "return_deficit": 13,
+          "peak_overshoot": 87,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 67,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 27,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 140,
+          "peak_index": 1,
+          "return_value": 11,
+          "return_deficit": 16,
+          "peak_overshoot": 113,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 83,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 29,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 156,
+          "peak_index": 1,
+          "return_value": 12,
+          "return_deficit": 17,
+          "peak_overshoot": 127,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 53,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 31,
+          "status": "RETURNED",
+          "tau_lt": 2,
+          "tau_le": 2,
+          "k": 2,
+          "odd_count": 1,
+          "exponent_gap": 1,
+          "word_preview": "OE",
+          "word_length": 2,
+          "peak": 172,
+          "peak_index": 1,
+          "return_value": 13,
+          "return_deficit": 18,
+          "peak_overshoot": 141,
+          "r": 1,
+          "o_u": 1,
+          "s": 1,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 207,
+          "certificates": [
+            "EXPONENT",
+            "FIRST_DEFECT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "OE_AUTO",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": true,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": true
+        },
+        {
+          "n": 39,
+          "status": "RETURNED",
+          "tau_lt": 5,
+          "tau_le": 5,
+          "k": 5,
+          "odd_count": 3,
+          "exponent_gap": 5,
+          "word_preview": "OOOEE",
+          "word_length": 5,
+          "peak": 233046,
+          "peak_index": 3,
+          "return_value": 21,
+          "return_deficit": 18,
+          "peak_overshoot": 233007,
+          "r": 3,
+          "o_u": 3,
+          "s": 2,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 270,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 89,
+          "status": "RETURNED",
+          "tau_lt": 8,
+          "tau_le": 8,
+          "k": 8,
+          "odd_count": 5,
+          "exponent_gap": 13,
+          "word_preview": "OOEOOEOE",
+          "word_length": 8,
+          "peak": 84722,
+          "peak_index": 5,
+          "return_value": 70,
+          "return_deficit": 19,
+          "peak_overshoot": 84633,
+          "r": 5,
+          "o_u": 4,
+          "s": 3,
+          "q": 1,
+          "first_defect_index": 0,
+          "first_defect": 1048,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 99,
+          "status": "RETURNED",
+          "tau_lt": 8,
+          "tau_le": 8,
+          "k": 8,
+          "odd_count": 5,
+          "exponent_gap": 13,
+          "word_preview": "OOOEOOEE",
+          "word_length": 8,
+          "peak": 37754276,
+          "peak_index": 6,
+          "return_value": 78,
+          "return_deficit": 21,
+          "peak_overshoot": 37754177,
+          "r": 6,
+          "o_u": 5,
+          "s": 2,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 74,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 49,
+          "status": "RETURNED",
+          "tau_lt": 5,
+          "tau_le": 5,
+          "k": 5,
+          "odd_count": 3,
+          "exponent_gap": 5,
+          "word_preview": "OOEOE",
+          "word_length": 5,
+          "peak": 6352,
+          "peak_index": 2,
+          "return_value": 26,
+          "return_deficit": 23,
+          "peak_overshoot": 6303,
+          "r": 2,
+          "o_u": 2,
+          "s": 3,
+          "q": 1,
+          "first_defect_index": 1,
+          "first_defect": 5703,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 105,
+          "status": "RETURNED",
+          "tau_lt": 8,
+          "tau_le": 8,
+          "k": 8,
+          "odd_count": 5,
+          "exponent_gap": 13,
+          "word_preview": "OOEOOOEE",
+          "word_length": 8,
+          "peak": 46493554,
+          "peak_index": 6,
+          "return_value": 82,
+          "return_deficit": 23,
+          "peak_overshoot": 46493449,
+          "r": 6,
+          "o_u": 5,
+          "s": 2,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 2000,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        }
+      ],
+      "tallest": [
+        {
+          "n": 193,
+          "status": "RETURNED",
+          "tau_lt": 70,
+          "tau_le": 70,
+          "k": 70,
+          "odd_count": 44,
+          "exponent_gap": 195820718533800070543,
+          "word_preview": "OOOEOOOOOOOEOOOEEOEEOOOOOOEEEOOOEOOEEOOOOOEOOOOEEOOEOOEOEEOOEOOEEOEEEE",
+          "word_length": 70,
+          "peak": 6743569603489758391265376070807357156339920158784377929096419715849060516985205368792190354996630779167466266586213526771780967700267133711091446786931423291036091166608223302792047793105565012490585915410391500762927066039966992101729450252321626382793545523711387059090,
+          "peak_index": 47,
+          "return_value": 80,
+          "return_deficit": 113,
+          "peak_overshoot": 6743569603489758391265376070807357156339920158784377929096419715849060516985205368792190354996630779167466266586213526771780967700267133711091446786931423291036091166608223302792047793105565012490585915410391500762927066039966992101729450252321626382793545523711387058897,
+          "r": 47,
+          "o_u": 34,
+          "s": 23,
+          "q": 10,
+          "first_defect_index": 0,
+          "first_defect": 1296,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 557,
+          "status": "RETURNED",
+          "tau_lt": 27,
+          "tau_le": 27,
+          "k": 27,
+          "odd_count": 17,
+          "exponent_gap": 5077565,
+          "word_preview": "OOOOOEOOOOOOOOEOEOEEEOEEOEE",
+          "word_length": 27,
+          "peak": 1574129748074641238266477947016366564737788647737964712725226015704424966204805187535229840916967987155824008376401359208726835599504498723543801156199562476574693946628795032862408336683968515032287018752176270949381935119781771704619038962043542680073518307807995396,
+          "peak_index": 14,
+          "return_value": 438,
+          "return_deficit": 119,
+          "peak_overshoot": 1574129748074641238266477947016366564737788647737964712725226015704424966204805187535229840916967987155824008376401359208726835599504498723543801156199562476574693946628795032862408336683968515032287018752176270949381935119781771704619038962043542680073518307807994839,
+          "r": 14,
+          "o_u": 13,
+          "s": 13,
+          "q": 4,
+          "first_defect_index": 0,
+          "first_defect": 17668,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 761,
+          "status": "RETURNED",
+          "tau_lt": 62,
+          "tau_le": 62,
+          "k": 62,
+          "odd_count": 39,
+          "exponent_gap": 559130865408411637,
+          "word_preview": "OOOOOOOOOEEOEOEEOOEEOOOEOOOOEOOOEOEOOOEEOOOOEOOOOEEEOOOEEEEOEE",
+          "word_length": 62,
+          "peak": 11986307718463031741056827050977981267870246529113307039126033359119925741719205025763602922516019092075566521972510765939208897103291873953039957492676896621570138635311245731202318151807665682479840140824238104215892354513024844489482216531801853394084822,
+          "peak_index": 49,
+          "return_value": 340,
+          "return_deficit": 421,
+          "peak_overshoot": 11986307718463031741056827050977981267870246529113307039126033359119925741719205025763602922516019092075566521972510765939208897103291873953039957492676896621570138635311245731202318151807665682479840140824238104215892354513024844489482216531801853394084061,
+          "r": 49,
+          "o_u": 35,
+          "s": 13,
+          "q": 4,
+          "first_defect_index": 0,
+          "first_defect": 5032,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 663,
+          "status": "RETURNED",
+          "tau_lt": 23,
+          "tau_le": 23,
+          "k": 23,
+          "odd_count": 14,
+          "exponent_gap": 3605639,
+          "word_preview": "OOOOOOOOOOOEEOEOEEEOEEE",
+          "word_length": 23,
+          "peak": 11307766533079965984258844223359010907828494119652873324896780021733166159542096097177379727797856873718731056545100741084109625941065866738774869304120991337004025480315579808620479972369688625760748850793673889668580129932035025942104899396452,
+          "peak_index": 11,
+          "return_value": 40,
+          "return_deficit": 623,
+          "peak_overshoot": 11307766533079965984258844223359010907828494119652873324896780021733166159542096097177379727797856873718731056545100741084109625941065866738774869304120991337004025480315579808620479972369688625760748850793673889668580129932035025942104899395789,
+          "r": 11,
+          "o_u": 11,
+          "s": 12,
+          "q": 3,
+          "first_defect_index": 0,
+          "first_defect": 15206,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 807,
+          "status": "RETURNED",
+          "tau_lt": 40,
+          "tau_le": 40,
+          "k": 40,
+          "odd_count": 25,
+          "exponent_gap": 252223018333,
+          "word_preview": "OOOEOOEOOOOOOOOOEOEEOEOEOEOOOEOOEOEOEEEE",
+          "word_length": 40,
+          "peak": 141340036301289163586349223234922872960283359416582422850138301747736704386604635485856183499769834567609974510494570545990194717454548429453833402500387444350830285090310850018976378688966165861920845173813929288,
+          "peak_index": 16,
+          "return_value": 173,
+          "return_deficit": 634,
+          "peak_overshoot": 141340036301289163586349223234922872960283359416582422850138301747736704386604635485856183499769834567609974510494570545990194717454548429453833402500387444350830285090310850018976378688966165861920845173813928481,
+          "r": 16,
+          "o_u": 14,
+          "s": 24,
+          "q": 11,
+          "first_defect_index": 0,
+          "first_defect": 2318,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 1629,
+          "status": "RETURNED",
+          "tau_lt": 24,
+          "tau_le": 24,
+          "k": 24,
+          "odd_count": 15,
+          "exponent_gap": 2428309,
+          "word_preview": "OOOEOOOOOOOOOEEOOOEEEEEE",
+          "word_length": 24,
+          "peak": 23292139916051353110852765829175511900830611448756758316847629067097093323384798569377582664784085690018868943566837712710317191290688069501988519497205164373033794724826480570657023982083857132171967850954926,
+          "peak_index": 13,
+          "return_value": 558,
+          "return_deficit": 1071,
+          "peak_overshoot": 23292139916051353110852765829175511900830611448756758316847629067097093323384798569377582664784085690018868943566837712710317191290688069501988519497205164373033794724826480570657023982083857132171967850953297,
+          "r": 13,
+          "o_u": 12,
+          "s": 11,
+          "q": 3,
+          "first_defect_index": 0,
+          "first_defect": 113180,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 293,
+          "status": "RETURNED",
+          "tau_lt": 43,
+          "tau_le": 43,
+          "k": 43,
+          "odd_count": 27,
+          "exponent_gap": 1170495537221,
+          "word_preview": "OOOOOOOOEEEOOOOOEOEOOOOOEEEEOOEOOEOEOEOEOEE",
+          "word_length": 43,
+          "peak": 782960644528031182478778269971671893857290991978652977413980144809602271665761768285250254182147217823074414682446735642976716076853608380272794108384550040642846923889122,
+          "peak_index": 24,
+          "return_value": 137,
+          "return_deficit": 156,
+          "peak_overshoot": 782960644528031182478778269971671893857290991978652977413980144809602271665761768285250254182147217823074414682446735642976716076853608380272794108384550040642846923888829,
+          "r": 24,
+          "o_u": 19,
+          "s": 19,
+          "q": 8,
+          "first_defect_index": 0,
+          "first_defect": 3532,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 357,
+          "status": "RETURNED",
+          "tau_lt": 24,
+          "tau_le": 24,
+          "k": 24,
+          "odd_count": 15,
+          "exponent_gap": 2428309,
+          "word_preview": "OOOOOOOOOOEEEEEOOEOOEOEE",
+          "word_length": 24,
+          "peak": 1580989446943204349269987976520466875945390265676357712616164899103502088741825409579379605266580890680620379312986028251134159031439455696176206088,
+          "peak_index": 10,
+          "return_value": 152,
+          "return_deficit": 205,
+          "peak_overshoot": 1580989446943204349269987976520466875945390265676357712616164899103502088741825409579379605266580890680620379312986028251134159031439455696176205731,
+          "r": 10,
+          "o_u": 10,
+          "s": 14,
+          "q": 5,
+          "first_defect_index": 0,
+          "first_defect": 4268,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 1865,
+          "status": "RETURNED",
+          "tau_lt": 27,
+          "tau_le": 27,
+          "k": 27,
+          "odd_count": 17,
+          "exponent_gap": 5077565,
+          "word_preview": "OOOOEOOOOOOOEEOEEOEOOOEEEOE",
+          "word_length": 27,
+          "peak": 2836816798103512829845159462452522827309289680813334259970988507510782602593609970880797063589315850764221391220021876343801868046937352312866,
+          "peak_index": 12,
+          "return_value": 1402,
+          "return_deficit": 463,
+          "peak_overshoot": 2836816798103512829845159462452522827309289680813334259970988507510782602593609970880797063589315850764221391220021876343801868046937352311001,
+          "r": 12,
+          "o_u": 11,
+          "s": 15,
+          "q": 6,
+          "first_defect_index": 0,
+          "first_defect": 36944,
+          "certificates": [
+            "EXPONENT"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": null,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 565,
+          "status": "RETURNED",
+          "tau_lt": 24,
+          "tau_le": 24,
+          "k": 24,
+          "odd_count": 15,
+          "exponent_gap": 2428309,
+          "word_preview": "OOEOOEOOOOOOOOOEEEOEEOEE",
+          "word_length": 24,
+          "peak": 77240592947637658658395838093181000440291450812142597879808980787783367255303888808482116161485973911423335244312263226823622052989132,
+          "peak_index": 15,
+          "return_value": 225,
+          "return_deficit": 340,
+          "peak_overshoot": 77240592947637658658395838093181000440291450812142597879808980787783367255303888808482116161485973911423335244312263226823622052988567,
+          "r": 15,
+          "o_u": 13,
+          "s": 9,
+          "q": 2,
+          "first_defect_index": 0,
+          "first_defect": 24084,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 1247,
+          "status": "RETURNED",
+          "tau_lt": 21,
+          "tau_le": 21,
+          "k": 21,
+          "odd_count": 13,
+          "exponent_gap": 502829,
+          "word_preview": "OOEOOOOOOOOOEEEOEEOEE",
+          "word_length": 21,
+          "peak": 77240592947637658658395838093181000440291450812142597879808980787783367255303888808482116161485973911423335244312263226823622052989132,
+          "peak_index": 12,
+          "return_value": 225,
+          "return_deficit": 1022,
+          "peak_overshoot": 77240592947637658658395838093181000440291450812142597879808980787783367255303888808482116161485973911423335244312263226823622052987885,
+          "r": 12,
+          "o_u": 11,
+          "s": 9,
+          "q": 2,
+          "first_defect_index": 0,
+          "first_defect": 14998,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 1721,
+          "status": "RETURNED",
+          "tau_lt": 50,
+          "tau_le": 50,
+          "k": 50,
+          "odd_count": 31,
+          "exponent_gap": 508226510558677,
+          "word_preview": "OOOOEOOOOOOEEOEOEOOOOOEOOEOOEEOOEOOOEEEEOOOOEOEEEE",
+          "word_length": 50,
+          "peak": 1234069405694682988461327770660035304935575287678626834635725002803096583584118309472428805205051603943916977784277535266893266,
+          "peak_index": 28,
+          "return_value": 59,
+          "return_deficit": 1662,
+          "peak_overshoot": 1234069405694682988461327770660035304935575287678626834635725002803096583584118309472428805205051603943916977784277535266891545,
+          "r": 28,
+          "o_u": 21,
+          "s": 22,
+          "q": 10,
+          "first_defect_index": 0,
+          "first_defect": 82336,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 799,
+          "status": "RETURNED",
+          "tau_lt": 27,
+          "tau_le": 27,
+          "k": 27,
+          "odd_count": 17,
+          "exponent_gap": 5077565,
+          "word_preview": "OOOOOEOOOOOOEEOEOOEOEEOEOEE",
+          "word_length": 27,
+          "peak": 340096995290750930946730833124562084795277809225355790367610061629987636006939840231847893315893302391734182408707290003940482,
+          "peak_index": 12,
+          "return_value": 620,
+          "return_deficit": 179,
+          "peak_overshoot": 340096995290750930946730833124562084795277809225355790367610061629987636006939840231847893315893302391734182408707290003939683,
+          "r": 12,
+          "o_u": 11,
+          "s": 15,
+          "q": 6,
+          "first_defect_index": 0,
+          "first_defect": 174,
+          "certificates": [
+            "EXPONENT"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": null,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 659,
+          "status": "RETURNED",
+          "tau_lt": 27,
+          "tau_le": 27,
+          "k": 27,
+          "odd_count": 17,
+          "exponent_gap": 5077565,
+          "word_preview": "OOOEOOOOOOOOEOEOEEEOOOEEEOE",
+          "word_length": 27,
+          "peak": 81852577310175136248443437589534754176235200233899170884683484246517034358548188948690700397620333130305555746600454913288,
+          "peak_index": 12,
+          "return_value": 515,
+          "return_deficit": 144,
+          "peak_overshoot": 81852577310175136248443437589534754176235200233899170884683484246517034358548188948690700397620333130305555746600454912629,
+          "r": 12,
+          "o_u": 11,
+          "s": 15,
+          "q": 6,
+          "first_defect_index": 0,
+          "first_defect": 6290,
+          "certificates": [
+            "EXPONENT"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": null,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 1769,
+          "status": "RETURNED",
+          "tau_lt": 31,
+          "tau_le": 31,
+          "k": 31,
+          "odd_count": 19,
+          "exponent_gap": 985222181,
+          "word_preview": "OOOOEOEOOOOOOOEOOEEEOOOOEEEEOEE",
+          "word_length": 31,
+          "peak": 32607367893182055015417032880528267664477178623352509257771691881227586235071833453786398798587158879073714372169259480,
+          "peak_index": 17,
+          "return_value": 57,
+          "return_deficit": 1712,
+          "peak_overshoot": 32607367893182055015417032880528267664477178623352509257771691881227586235071833453786398798587158879073714372169257711,
+          "r": 17,
+          "o_u": 14,
+          "s": 14,
+          "q": 5,
+          "first_defect_index": 0,
+          "first_defect": 33200,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 229,
+          "status": "RETURNED",
+          "tau_lt": 24,
+          "tau_le": 24,
+          "k": 24,
+          "odd_count": 15,
+          "exponent_gap": 2428309,
+          "word_preview": "OOEOOOOOOOOOEOEEEEOEOOEE",
+          "word_length": 24,
+          "peak": 1082806933115764426772283648532540743291228764921277517815291154392040375703192517715082796799167037644,
+          "peak_index": 12,
+          "return_value": 104,
+          "return_deficit": 125,
+          "peak_overshoot": 1082806933115764426772283648532540743291228764921277517815291154392040375703192517715082796799167037415,
+          "r": 12,
+          "o_u": 11,
+          "s": 12,
+          "q": 4,
+          "first_defect_index": 0,
+          "first_defect": 2764,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 451,
+          "status": "RETURNED",
+          "tau_lt": 21,
+          "tau_le": 21,
+          "k": 21,
+          "odd_count": 13,
+          "exponent_gap": 502829,
+          "word_preview": "OOOOOOOOOEOEEEEOEOOEE",
+          "word_length": 21,
+          "peak": 1082806933115764426772283648532540743291228764921277517815291154392040375703192517715082796799167037644,
+          "peak_index": 9,
+          "return_value": 104,
+          "return_deficit": 347,
+          "peak_overshoot": 1082806933115764426772283648532540743291228764921277517815291154392040375703192517715082796799167037193,
+          "r": 9,
+          "o_u": 9,
+          "s": 12,
+          "q": 4,
+          "first_defect_index": 0,
+          "first_defect": 14922,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 899,
+          "status": "RETURNED",
+          "tau_lt": 35,
+          "tau_le": 35,
+          "k": 35,
+          "odd_count": 22,
+          "exponent_gap": 2978678759,
+          "word_preview": "OOOOOEOEOOOEOOOEOOOEOOEOOEEOEOEEOEE",
+          "word_length": 35,
+          "peak": 2053953979622780070732864498694861060612178431017113854481465763467109526125497763961255505596776745174,
+          "peak_index": 25,
+          "return_value": 498,
+          "return_deficit": 401,
+          "peak_overshoot": 2053953979622780070732864498694861060612178431017113854481465763467109526125497763961255505596776744275,
+          "r": 25,
+          "o_u": 19,
+          "s": 10,
+          "q": 3,
+          "first_defect_index": 0,
+          "first_defect": 674,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 1773,
+          "status": "RETURNED",
+          "tau_lt": 51,
+          "tau_le": 51,
+          "k": 51,
+          "odd_count": 32,
+          "exponent_gap": 398779624833407,
+          "word_preview": "OOOOOOOEOOOEOEEOOOOEEEOEOOEOOEOOOEOEEEOOEOOEOOOOEEE",
+          "word_length": 51,
+          "peak": 4659904877594423257607309965642364332510434656414681364706045367851001161115461121888142810472,
+          "peak_index": 11,
+          "return_value": 471,
+          "return_deficit": 1302,
+          "peak_overshoot": 4659904877594423257607309965642364332510434656414681364706045367851001161115461121888142808699,
+          "r": 11,
+          "o_u": 10,
+          "s": 40,
+          "q": 22,
+          "first_defect_index": 0,
+          "first_defect": 107892,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 173,
+          "status": "RETURNED",
+          "tau_lt": 26,
+          "tau_le": 26,
+          "k": 26,
+          "odd_count": 16,
+          "exponent_gap": 24062143,
+          "word_preview": "OOEOOOOOOOOEOOEOOEEOEEOEEE",
+          "word_length": 26,
+          "peak": 4450608860210678234719664930918817118564659064289879586228390154864378511410864886,
+          "peak_index": 17,
+          "return_value": 27,
+          "return_deficit": 146,
+          "peak_overshoot": 4450608860210678234719664930918817118564659064289879586228390154864378511410864713,
+          "r": 17,
+          "o_u": 14,
+          "s": 9,
+          "q": 2,
+          "first_defect_index": 0,
+          "first_defect": 2092,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        }
+      ],
+      "computed_only_sample": [],
+      "mce_candidate_flags": [],
+      "prefix_envelope_true": 1874,
+      "prefix_envelope_false": [],
+      "tautological_delta_used_as_certificate": false,
+      "hard": [
+        {
+          "n": 9,
+          "status": "RETURNED",
+          "tau_lt": 5,
+          "tau_le": 5,
+          "k": 5,
+          "odd_count": 3,
+          "exponent_gap": 5,
+          "word_preview": "OOEOE",
+          "word_length": 5,
+          "peak": 140,
+          "peak_index": 2,
+          "return_value": 6,
+          "return_deficit": 3,
+          "peak_overshoot": 131,
+          "r": 2,
+          "o_u": 2,
+          "s": 3,
+          "q": 1,
+          "first_defect_index": 1,
+          "first_defect": 83,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 37,
+          "status": "RETURNED",
+          "tau_lt": 15,
+          "tau_le": 15,
+          "k": 15,
+          "odd_count": 9,
+          "exponent_gap": 13085,
+          "word_preview": "OOOOEOOOEEOOEEE",
+          "word_length": 15,
+          "peak": 24906114455136,
+          "peak_index": 8,
+          "return_value": 8,
+          "return_deficit": 29,
+          "peak_overshoot": 24906114455099,
+          "r": 8,
+          "o_u": 7,
+          "s": 7,
+          "q": 2,
+          "first_defect_index": 0,
+          "first_defect": 28,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 49,
+          "status": "RETURNED",
+          "tau_lt": 5,
+          "tau_le": 5,
+          "k": 5,
+          "odd_count": 3,
+          "exponent_gap": 5,
+          "word_preview": "OOEOE",
+          "word_length": 5,
+          "peak": 6352,
+          "peak_index": 2,
+          "return_value": 26,
+          "return_deficit": 23,
+          "peak_overshoot": 6303,
+          "r": 2,
+          "o_u": 2,
+          "s": 3,
+          "q": 1,
+          "first_defect_index": 1,
+          "first_defect": 5703,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 69,
+          "status": "RETURNED",
+          "tau_lt": 7,
+          "tau_le": 7,
+          "k": 7,
+          "odd_count": 4,
+          "exponent_gap": 47,
+          "word_preview": "OOEOOEE",
+          "word_length": 7,
+          "peak": 44992,
+          "peak_index": 5,
+          "return_value": 14,
+          "return_deficit": 55,
+          "peak_overshoot": 44923,
+          "r": 5,
+          "o_u": 4,
+          "s": 2,
+          "q": 0,
+          "first_defect_index": 0,
+          "first_defect": 180,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 77,
+          "status": "RETURNED",
+          "tau_lt": 10,
+          "tau_le": 10,
+          "k": 10,
+          "odd_count": 6,
+          "exponent_gap": 295,
+          "word_preview": "OOOEOEOOEE",
+          "word_length": 10,
+          "peak": 2322378,
+          "peak_index": 3,
+          "return_value": 21,
+          "return_deficit": 56,
+          "peak_overshoot": 2322301,
+          "r": 3,
+          "o_u": 3,
+          "s": 7,
+          "q": 3,
+          "first_defect_index": 0,
+          "first_defect": 908,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": true,
+          "full_delta_exceeds_gap": null
+        },
+        {
+          "n": 173,
+          "status": "RETURNED",
+          "tau_lt": 26,
+          "tau_le": 26,
+          "k": 26,
+          "odd_count": 16,
+          "exponent_gap": 24062143,
+          "word_preview": "OOEOOOOOOOOEOOEOOEEOEEOEEE",
+          "word_length": 26,
+          "peak": 4450608860210678234719664930918817118564659064289879586228390154864378511410864886,
+          "peak_index": 17,
+          "return_value": 27,
+          "return_deficit": 146,
+          "peak_overshoot": 4450608860210678234719664930918817118564659064289879586228390154864378511410864713,
+          "r": 17,
+          "o_u": 14,
+          "s": 9,
+          "q": 2,
+          "first_defect_index": 0,
+          "first_defect": 2092,
+          "certificates": [
+            "EXPONENT",
+            "PEAK_SUFFIX"
+          ],
+          "start_class": "ODD_ODD_START",
+          "peak_suffix_certifies": true,
+          "first_defect_sufficient": null,
+          "prefix_envelope_holds": null,
+          "full_delta_exceeds_gap": null
+        }
+      ],
+      "max_tau": 70,
+      "max_peak_bits": 900
+    },
+    "residual_step_extended": false,
+    "explicit_L": false,
+    "adversarial_engine": false,
+    "cycle_diophantine_reopened": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "Excursions_absent": true,
+    "Excursions_present": false,
+    "ResidualStep_not_extended": true,
+    "no_global_termination_theorem": true,
+    "forbidden_engines": [
+      "CycleEngine",
+      "ResidualGraph",
+      "RemainderDynamics",
+      "PowerHeight",
+      "ResidualStep",
+      "CycleDiophantine"
+    ],
+    "power_bound_word": true,
+    "power_bound_contracts": true,
+    "power_bound_eq_iff_extremal": true,
+    "power_bound_compensated_contracts": true
+  },
+  "decision": {
+    "classification": "EXCURSION_ENVELOPE_GREEN",
+    "secondary": [],
+    "reason": "every first-return-below word in the window is formally contracting (2^k > 3^o); first-defect and peak-suffix never certify a return that the exponent gap misses"
+  },
+  "search_method": "first_return_below on each n; certificates are exponent gap, first_defect_sufficient, or peak_suffix_certifies via cmp_pow sandwiches; HARD_STARTS (9, 37, 49, 69, 77, 173); window n=2..2000; horizon 10000 is not L"
+}

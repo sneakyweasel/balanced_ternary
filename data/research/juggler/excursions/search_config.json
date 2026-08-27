@@ -1,0 +1,18 @@
+{
+  "search_id": "juggler-excursions-phase0-n2-2000",
+  "algorithm_version": "excursion-v1",
+  "n_start": 2,
+  "n_end": 2000,
+  "horizon": 10000,
+  "bit_cap": 4096,
+  "chunk_size": 200,
+  "hard_starts": [
+    9,
+    37,
+    49,
+    69,
+    77,
+    173
+  ],
+  "arithmetic": "python-int"
+}
