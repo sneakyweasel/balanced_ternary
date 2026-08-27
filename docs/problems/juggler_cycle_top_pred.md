@@ -155,10 +155,11 @@ cells constrain \(x\) but do not empty any top-run length.
 
 ## Open questions
 
-Does any further exact cell — still word-independent, still without
-an \(r\)-census — force the nested triple \((p,x,M)\) out of both
-windows at once? Do not start a first-cell census. Do not reopen
-length 7.
+Answered in [juggler_cycle_peak_descent.md](juggler_cycle_peak_descent.md):
+the nested triple is not squeezed further. The maximum determines a
+canonical contracting peak block \(OE^r\), and financing it recovers
+the existing ascent scale. Do not start a first-cell census. Do not
+reopen length 7.
 
 ## Decision
 
@@ -166,9 +167,8 @@ length 7.
 cells. Do not claim that a top-run length is impossible. Do not claim
 that \(x\ge p^2\). Do not claim termination.
 
-Best next question: does any further exact cell force the nested
-triple \((p,x,M)\) out of both windows at once, without naming the
-ascent word?
+Best next question: answered in
+[juggler_cycle_peak_descent.md](juggler_cycle_peak_descent.md).
 
 ## Publication assessment
 

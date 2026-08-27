@@ -5446,7 +5446,52 @@ Why
 - The global maximum is now a three-level exact cell, not merely a two-sided window. That is a word-independent restriction. It is not an r-obstruction.
 
 Best next question
-- Does any further exact cell force the nested triple (p,x,M) out of both windows at once, without naming the ascent word?
+- Answered in the peak-descent branch: the maximum determines a canonical contracting OE^r block, and financing it recovers the existing ascent scale.
+```
+
+## Juggler canonical peak descent
+
+- **Date:** 2026-08-27
+- **Objective:** Name the canonical peak block \(x\xrightarrow{OE^r}p<x\) and test whether financing it from \(p\) to \(x\) is stronger than the existing top-ascent envelope
+- **Hypotheses:** `PEAK_DESCENT_GREEN`, `ODD_MILESTONE_GREEN`, `PEAK_SCALE_GAP_GREEN`, `PEAK_MILESTONE_COUNTEREXAMPLE`, or `MILESTONE_REPACKAGING`
+- **Major results:** every cycle maximum has a canonical `OE^r` descent **EXACT — LEAN VERIFIED**. The block is formally contracting **EXACT — LEAN VERIFIED**. Peak-ascent finance \(3^{o+1}\ge 2^{k+r+1}\) **EXACT — LEAN VERIFIED** and is a **REPARAMETERIZATION** of the top ascent. Classification **PEAK_DESCENT_GREEN**. Records: `docs/research/juggler_cycle_peak_descent.md`, `docs/problems/juggler_cycle_peak_descent.md`. Control layer unchanged
+- **Refuted ideas:** peak finance is a stronger scale gap; transients close \(p\to x\); \(T(p)\) has one parity; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** does the finite sequence of odd landings after maximal even runs carry a composable scale law that is not already the block envelope?
+- **Decision:** PROMOTE the canonical peak descent and the finance identity. Do not claim a stronger scale gap. Do not build an odd-milestone engine
+
+```text
+What was learned
+- Every cycle maximum determines a peak block OE^r with T(x)=p<x
+- OE^r is formally contracting: 3 < 2^{r+1}
+- Combining p^{2^{r+1}} ≤ x^3 with the ascent envelope recovers 3^{o+1} ≥ 2^{k+r+1}
+- That inequality is the existing top-ascent law after appending the final O
+- Transient peaks realise the descent only; they do not close p → x
+
+Strongest theorem
+- A CycleMax has a canonical descent x --OE^r--> p < x, and OE^r is formally contracting
+
+Strongest refutation
+- peak finance is stronger than the top ascent; it is the same exponent comparison
+
+Reusable machinery
+- Problems.Engine.CycleWord cycle_peak_descent / peak_ascent_scale / cycle_peak_finance
+- research.juggler_sequence.cycle_peak_descent
+
+Prior-art status
+- canonical peak-block lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The maximum now names a contracting subword without a census. The financing question is answered: it does not beat the existing ascent law. Stop before a milestone graph.
+
+Best next question
+- Does the finite sequence of odd landings after maximal even runs carry a composable scale law that is not already the block envelope?
 ```
 
 

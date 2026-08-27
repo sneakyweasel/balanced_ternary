@@ -33,8 +33,12 @@ from `m` to any even cycle state is therefore superquadratic. The
 maximum begins a finite even run `E^r` onto an odd landing `p`, with
 `p^{2^r} ≤ M < (p+1)^{2^r}`. The predecessor `x` of `M` is odd and
 strictly between the landing and the maximum: `p < x < M`, with
-`M^2 ≤ x^3 < (M+1)^2` and `x^3 ≥ p^{2^{r+1}}`. This is not a halt
-theorem and not a claim that every cycle word is impossible.
+`M^2 ≤ x^3 < (M+1)^2` and `x^3 ≥ p^{2^{r+1}}`. The peak block
+`OE^r` is a canonical strict descent `T_{OE^r}(x)=p<x` and is
+formally contracting. Financing that descent from `p` back to `x`
+recovers the existing ascent scale, not a stronger envelope. This is
+not a halt theorem and not a claim that every cycle word is
+impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -1418,5 +1422,171 @@ theorem cycle_top_scale_constraint {n : ℕ} {w : List Branch}
   exact ⟨r, p, x, hr1, hpdef, hxdef, cycle_top_pred_scale hlo hcell, hMx,
     cycle_top_pred_gt_pow hr1 hlo hMx⟩
 
+/-- The canonical peak block `OE^r` is formally contracting for `r ≥ 1`. -/
+theorem peak_block_formally_contracting {r : ℕ} (hr : 1 ≤ r) :
+    3 ^ oddCount (oddEvenBlock 1 r) < 2 ^ (oddEvenBlock 1 r).length := by
+  have hlen : (oddEvenBlock 1 r).length = 1 + r := length_oddEvenBlock 1 r
+  have hodd : oddCount (oddEvenBlock 1 r) = 1 := oddCount_oddEvenBlock 1 r
+  have hgap : (3 : ℕ) ^ 1 < 2 ^ (1 + r) := by
+    have h4 : (2 : ℕ) ^ 2 ≤ 2 ^ (1 + r) :=
+      Nat.pow_le_pow_right (by decide : (1 : ℕ) ≤ 2) (by omega)
+    omega
+  simpa [hlen, hodd] using hgap
+
+theorem peak_block_contracts {x r : ℕ} (hx : 2 ≤ x) (hr : 1 ≤ r)
+    (hw : follows x (oddEvenBlock 1 r)) :
+    image x (oddEvenBlock 1 r) < x :=
+  contracting_odd_even_block_contracts hx
+    (by
+      have : (3 : ℕ) ^ 1 < 2 ^ (1 + r) := by
+        have h4 : (2 : ℕ) ^ 2 ≤ 2 ^ (1 + r) :=
+          Nat.pow_le_pow_right (by decide : (1 : ℕ) ≤ 2) (by omega)
+        omega
+      exact this)
+    hw
+
+/-- Every cycle maximum carries a canonical peak descent
+`x --OE^r--> p` with `p < x`. Determined by the maximum, not by a
+word search. -/
+theorem cycle_peak_descent {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ r p x, 1 ≤ r ∧
+      p = floorPower^[r] n ∧
+        x = floorPower^[w.length - 1] n ∧
+          p < x ∧
+            follows x (oddEvenBlock 1 r) ∧
+              image x (oddEvenBlock 1 r) = p := by
+  have ⟨r, u, p, x, hr1, hw, hpdef, hxdef, hpodd, _, hxodd, _, hpx, _, hTx,
+      _, _⟩ := cycle_top_three_level hn h
+  have heven : ∀ i < r, floorPower^[i] n % 2 = 0 := by
+    have hf : follows n (List.replicate r Branch.even ++ u) := by
+      simpa [hw] using h.1.1
+    exact follows_replicate_even_iter r (follows_of_append_left hf)
+  have hfE : follows n (List.replicate r Branch.even) :=
+    follows_of_even_iter r heven
+  have hform : oddEvenBlock 1 r = Branch.odd :: List.replicate r Branch.even := by
+    simp [oddEvenBlock]
+  have hf : follows x (oddEvenBlock 1 r) := by
+    rw [hform]
+    refine ⟨hxodd, ?_⟩
+    simpa [hTx] using hfE
+  have himg : image x (oddEvenBlock 1 r) = p := by
+    rw [hform, image, hTx, image_eq_iterate, List.length_replicate, hpdef]
+  exact ⟨r, p, x, hr1, hpdef, hxdef, hpx, hf, himg⟩
+
+/-- Closed peak-ascent accounting: the peak lower cell plus the
+ascent envelope from `p` to `x` give `3^{o+1} ≥ 2^{k+r+1}`. This is
+the existing top-ascent law after appending the final `O`. -/
+theorem peak_ascent_scale {p x : ℕ} {v : List Branch} {r : ℕ}
+    (hp : 2 ≤ p) (hv : follows p v) (hx : image p v = x)
+    (hpeak : p ^ (2 ^ (r + 1)) ≤ x ^ 3) :
+    2 ^ (v.length + r + 1) ≤ 3 ^ (oddCount v + 1) := by
+  have hxiter : floorPower^[v.length] p = x := by
+    simpa [image_eq_iterate] using hx
+  have hpow : x ^ (2 ^ v.length) ≤ p ^ (3 ^ oddCount v) := by
+    simpa [hxiter] using power_bound_word hv
+  have hexp : r + 1 + v.length = v.length + r + 1 := by omega
+  have hL :
+      (p ^ (2 ^ (r + 1))) ^ (2 ^ v.length) = p ^ (2 ^ (v.length + r + 1)) := by
+    rw [← Nat.pow_mul, ← Nat.pow_add, hexp]
+  have hleft : p ^ (2 ^ (v.length + r + 1)) ≤ (x ^ 3) ^ (2 ^ v.length) := by
+    rw [← hL]
+    exact Nat.pow_le_pow_left hpeak _
+  have hmid : (x ^ 3) ^ (2 ^ v.length) = (x ^ (2 ^ v.length)) ^ 3 := by
+    rw [(Nat.pow_mul x 3 (2 ^ v.length)).symm, Nat.mul_comm,
+      Nat.pow_mul x (2 ^ v.length) 3]
+  have hright : (x ^ (2 ^ v.length)) ^ 3 ≤ (p ^ (3 ^ oddCount v)) ^ 3 :=
+    Nat.pow_le_pow_left hpow 3
+  have hthree : (p ^ (3 ^ oddCount v)) ^ 3 = p ^ (3 ^ (oddCount v + 1)) := by
+    rw [← Nat.pow_mul, Nat.mul_comm, three_pow_succ]
+  have hle : p ^ (2 ^ (v.length + r + 1)) ≤ p ^ (3 ^ (oddCount v + 1)) :=
+    le_trans hleft (le_trans (le_of_eq hmid) (le_trans hright (le_of_eq hthree)))
+  exact
+    (Nat.pow_le_pow_iff_right
+        (lt_of_lt_of_le (by decide : (1 : ℕ) < 2) hp)).mp
+      hle
+
+/-- The peak predecessor is reached by a prefix of the top ascent.
+Financing `OE^r` recovers the existing superquadratic law on that
+ascent, not a stronger envelope. -/
+theorem cycle_peak_finance {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ r v p x, 1 ≤ r ∧
+      p = floorPower^[r] n ∧
+        x = floorPower^[w.length - 1] n ∧
+          p < x ∧
+            follows p v ∧ image p v = x ∧
+              follows x (oddEvenBlock 1 r) ∧
+                image x (oddEvenBlock 1 r) = p ∧
+                  p ^ (2 ^ (r + 1)) ≤ x ^ 3 ∧
+                    2 ^ (v.length + r + 1) ≤ 3 ^ (oddCount v + 1) ∧
+                      2 ^ ((v ++ [Branch.odd]).length + r) ≤
+                        3 ^ oddCount (v ++ [Branch.odd]) := by
+  have ⟨r, u, p, x, hr1, hw, hpdef, hxdef, _, hp2, hxodd, _, hpx, _, hTx,
+      himg, hC⟩ := cycle_top_three_level hn h
+  have hne : u ≠ [] := by
+    intro hu
+    have : p = n := by simpa [hu, image] using himg
+    have he := cycleMax_start_even hn h
+    omega
+  have hsplit : u.dropLast ++ [u.getLast hne] = u :=
+    List.dropLast_append_getLast hne
+  set v := u.dropLast
+  have hu : follows p u := follows_of_append_left (u := u) hC.1
+  have hv : follows p v := by
+    have : follows p (v ++ [u.getLast hne]) := by
+      simpa [v, hsplit] using hu
+    exact follows_of_append_left this
+  have hulen : 1 ≤ u.length := by
+    cases u with
+    | nil => exact (hne rfl).elim
+    | cons _ _ => simp
+  have hx_as : x = floorPower^[u.length - 1] p := by
+    have hwlen : w.length = r + u.length := by
+      simp [hw, List.length_append, List.length_replicate]
+    have hsum : w.length - 1 = (u.length - 1) + r := by omega
+    have hiter :
+        floorPower^[w.length - 1] n =
+          floorPower^[u.length - 1] (floorPower^[r] n) := by
+      rw [hsum]
+      exact Function.iterate_add_apply floorPower (u.length - 1) r n
+    rw [hxdef, hpdef, hiter]
+  have himgv : image p v = x := by
+    have hlenv : v.length = u.length - 1 := by simp [v]
+    rw [image_eq_iterate, hlenv, hx_as]
+  have heven : ∀ i < r, floorPower^[i] n % 2 = 0 := by
+    have hf : follows n (List.replicate r Branch.even ++ u) := by
+      simpa [hw] using h.1.1
+    exact follows_replicate_even_iter r (follows_of_append_left hf)
+  have hfE : follows n (List.replicate r Branch.even) :=
+    follows_of_even_iter r heven
+  have hform : oddEvenBlock 1 r = Branch.odd :: List.replicate r Branch.even := by
+    simp [oddEvenBlock]
+  have hfP : follows x (oddEvenBlock 1 r) := by
+    rw [hform]
+    refine ⟨hxodd, ?_⟩
+    simpa [hTx] using hfE
+  have himgP : image x (oddEvenBlock 1 r) = p := by
+    rw [hform, image, hTx, image_eq_iterate, List.length_replicate, hpdef]
+  have hcell := cycle_top_predecessor_cell hn h
+  have hlo : p ^ (2 ^ r) ≤ n := by
+    simpa [hpdef] using even_iter_pow_le r heven
+  have hcube : n ^ 2 ≤ x ^ 3 := by
+    simpa [hxdef] using hcell.1
+  have hpeak : p ^ (2 ^ (r + 1)) ≤ x ^ 3 := cycle_top_pred_scale hlo hcube
+  have hfin := peak_ascent_scale hp2 hv himgv hpeak
+  have hrep : 2 ^ ((v ++ [Branch.odd]).length + r) ≤
+      3 ^ oddCount (v ++ [Branch.odd]) := by
+    have hlen : (v ++ [Branch.odd]).length = v.length + 1 := by
+      simp [List.length_append]
+    have hodd : oddCount (v ++ [Branch.odd]) = oddCount v + 1 := by
+      simp [oddCount_append]
+    have hidx : v.length + r + 1 = v.length + 1 + r := by omega
+    simpa [hlen, hodd, hidx] using hfin
+  exact ⟨r, v, p, x, hr1, hpdef, hxdef, hpx, hv, himgv, hfP, himgP, hpeak,
+    hfin, hrep⟩
+
 end Problems.Engine
+
+
 
