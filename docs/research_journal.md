@@ -6915,3 +6915,48 @@ Best next question
 - Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
 ```
 
+## Juggler iterated odd-landing sets
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether P_r, the set of odd y whose next r+1 landings stay odd, develops exploitable recursive structure
+- **Hypotheses:** shrinking cylinders; a 2-adic automaton created by iteration; constrained successive θ; a new odd-odd remainder chain law
+- **Major results:** Lean oddLanding / oddRun_recursive / oddLanding_preimage_unique. Recursion is y in P_{r+1} iff y odd and T(y) in P_r. Census n≤8000 and n≤40000: stay ≈1/2; cells are singletons; all odd residues survive; θ unrestricted. No halt theorem
+- **Refuted ideas:** P_r occupies shrinking arithmetic cylinders; iteration is recognized modulo 2^m; successive θ on long odd runs is constrained
+- **Literature:** odd_cell_unique; landingParity_odd_iff; residual-state CLOSE; landing-parity CLOSE; landing-valuation CLOSE; preimage-cylinders CLOSE
+- **Open:** whether any arithmetic other than the integer y itself decides odd-to-odd continuation
+- **Decision:** CLOSE as `ODD_LANDING_SETS_ARE_FORWARD_ORBITS`. Do not claim termination
+
+```text
+What was learned
+- P_{r+1} = {y odd : T(y) in P_r} is exact and is iterated T
+- An odd landing has at most one integer preimage
+- Stay is one half through r=7, matching independent parity
+- P_r is isolated odds, not positive-length cylinders
+- Modulus and θ do not refine under iteration
+
+Strongest theorem
+- oddRun (r+1) y ↔ y odd ∧ oddRun r (T(y)), and the odd-landing cylinder of m is empty or a singleton
+
+Strongest refutation
+- Iterated odd persistence occupies a proper subcylinder of P_r, or is recognized modulo 2^m
+
+Reusable machinery
+- formal/Problems/Juggler/OddLandingSets.lean
+- research.juggler_sequence.odd_landing_sets
+
+Prior-art status
+- negative set-structure result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The recursion produces no simplification. Odd cells are singletons, membership looks like independent parity, and neither residue nor square-gap position becomes a state.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
+```
+

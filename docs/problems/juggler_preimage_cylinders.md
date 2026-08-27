@@ -154,7 +154,10 @@ state machine.
 
 The leftover is still whether an odd-to-odd residual chain can
 continue indefinitely. Predecessor cylinders do not decide the
-next landing. Do not reopen residues, \(\theta\), valuation, or
+next landing. Iterated odd-landing sets are forward orbits of
+\(T\); see
+[juggler_odd_landing_sets.md](juggler_odd_landing_sets.md).
+Do not reopen residues, \(\theta\), valuation, or
 expanding-word grammar.
 
 ## Decision
