@@ -6599,3 +6599,49 @@ Best next question
 - What arithmetic produces a near-tight expanding residual block (q vanishing at scale), and is that tightness a property of the large-λ predecessor rather than of the weighted budget?
 ```
 
+## Juggler scale-induced near-tightness
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether tiny successor q after a large-λ expanding block is exceptional rigidity or automatic floor-scale decay
+- **Hypotheses:** η=O(1/T) from ρ<2T+1; fixed-word q→0; OOE is dominated by the last even remainder of order n^{-9/8}; large λ acts only by inflating y
+- **Major results:** Lean η bounds and 1+η<(1+1/T)^2; exact OOE product 1+q=(1+η0)^3(1+η1)^2(1+η2)^4; successor-ratio upper bound. Census: last-even dominates 96% of realized OOE; median q/n^{-9/8}≈4.25. The 329 --OOOOOOOOE--> y successor has 0<q<10^{-30} and q/y^{-9/8}≈2.64. PE pairs track y^{-9/8}. Mixed OOE can be arbitrarily near-tight. No halt theorem
+- **Refuted ideas:** tiny q is exceptional arithmetic; mixed-word q→0 implies a rigid monochrome tower; large λ controls successor q by a mechanism other than the size of y
+- **Literature:** OEIS A007320; Defect remainder window; NormalizedDefect 1+q; expansion-slack close
+- **Open:** whether a PE chain can exploit automatic near-tightness indefinitely
+- **Decision:** PROMOTE the scale-decay / large-λ feedback description. Do not claim termination
+
+```text
+What was learned
+- η < 2/T + 1/T^2 is the floor window
+- OOE slack is the weighted product of three local 1+η factors
+- The last even remainder dominates; q_OOE has order n^{-9/8}
+- The 329 successor q is predicted by y^{-9/8}
+- Large λ enters only by making y large
+- Exact equality rigidity has no naive quantitative stability
+
+Strongest theorem
+- 1+q_OOE = (1+η0)^3 (1+η1)^2 (1+η2)^4, and 1+q_OOE is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8
+
+Strongest refutation
+- Mixed realized OOE cannot have q→0
+
+Reusable machinery
+- formal/Problems/Juggler/NearTightScale.lean
+- research.juggler_sequence.near_tight_scale
+
+Prior-art status
+- scale explanation of near-tightness, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PROMOTE
+
+Why
+- Tiny q is the unavoidable asymptotic of floors at large scale. The large-λ feedback law is real and is not an obstruction: it explains why expanding chains can stay near the envelope.
+
+Best next question
+- Can a persistent expanding residual chain exploit automatic asymptotic near-tightness forever, or does some other arithmetic break the loop?
+```
+

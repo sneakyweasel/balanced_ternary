@@ -201,10 +201,9 @@ identities under new names.
 
 ## Open questions
 
-A raw finite bound \(M\) on consecutive PE blocks is not proved and
-is not visible as a small \(M\) on \(n\le 10000\). This coordinate
-system does not produce such an \(M\). Do not reopen the budget as
-another rewrite of \(1+q\).
+Answered in [juggler_near_tight_scale.md](juggler_near_tight_scale.md):
+tiny \(q\) is automatic floor-scale decay, not a weighted-budget
+obstruction. Large \(\lambda\) acts only by inflating the next start.
 
 ## Decision
 
@@ -217,10 +216,8 @@ the endpoint budget. Four and five consecutive expanding persistent
 blocks occur. Do not claim termination. Do not open a larger run
 census.
 
-Best next question: what arithmetic produces a near-tight expanding
-residual block (\(q\) vanishing at scale), and is that tightness a
-property of the large-\(\lambda\) predecessor rather than of the
-weighted budget?
+Best next question: answered in
+[juggler_near_tight_scale.md](juggler_near_tight_scale.md).
 
 ## Publication assessment
 
