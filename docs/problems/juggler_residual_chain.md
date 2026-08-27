@@ -153,9 +153,9 @@ proper subclass of stay-odd.
 
 ## Open questions
 
-On a persistent odd-odd residual, which already-proved certificate
-can still fire without assuming a return law or a uniform horizon?
-Do not answer this by proving that every chain closes.
+Answered in [juggler_residual_path.md](juggler_residual_path.md): a
+bounded residual prefix with a repeat is a cycle; every nonempty
+cycle word has \(2^r<3^o\); residual returns need \(a\ge 2\).
 
 ## Decision
 
@@ -163,10 +163,8 @@ Do not answer this by proving that every chain closes.
 Do not claim that residual chains terminate. Do not claim that
 `FiniteProgress` propagates. Do not claim totality.
 
-Best next question: for a persistent odd-odd residual of a
-hypothetical minimal counterexample, does the existing scale budget
-on the intervening even run force a later `ReturnBelow` or a later
-even residual that violates the barrier?
+Best next question: answered in
+[juggler_residual_path.md](juggler_residual_path.md).
 
 ## Publication assessment
 

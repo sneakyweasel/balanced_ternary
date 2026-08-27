@@ -1,0 +1,214 @@
+{
+  "experiment": "juggler_residual_path",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false,
+    "cycles_impossible": false,
+    "unbounded_branch_impossible": false,
+    "overshoot_is_progress": false,
+    "uniform_residual_horizon": false
+  },
+  "scan": {
+    "cycles": {
+      "n_max": 400,
+      "fixed": [
+        1
+      ],
+      "returns": [],
+      "residual_period_one": []
+    },
+    "hard": [
+      {
+        "n": 9,
+        "edges": [
+          {
+            "x": 9,
+            "a": 2,
+            "b": 1,
+            "z": 140,
+            "y": 11,
+            "edge": "OVERSHOOT",
+            "kind": "STAY_AUTO_FP",
+            "y_lt_n": false
+          },
+          {
+            "x": 11,
+            "a": 1,
+            "b": 3,
+            "z": 36,
+            "y": 1,
+            "edge": "DESCENT",
+            "kind": "CAPTURE",
+            "y_lt_n": true
+          }
+        ]
+      },
+      {
+        "n": 37,
+        "edges": [
+          {
+            "x": 37,
+            "a": 4,
+            "b": 1,
+            "z": 86818724,
+            "y": 9317,
+            "edge": "OVERSHOOT",
+            "kind": "PERSISTENT_ODD_ODD",
+            "y_lt_n": false
+          },
+          {
+            "x": 9317,
+            "a": 3,
+            "b": 2,
+            "z": 24906114455136,
+            "y": 2233,
+            "edge": "DESCENT",
+            "kind": "PERSISTENT_ODD_ODD",
+            "y_lt_n": false
+          },
+          {
+            "x": 2233,
+            "a": 2,
+            "b": 5,
+            "z": 34276462,
+            "y": 1,
+            "edge": "DESCENT",
+            "kind": "CAPTURE",
+            "y_lt_n": true
+          }
+        ]
+      },
+      {
+        "n": 49,
+        "edges": [
+          {
+            "x": 49,
+            "a": 2,
+            "b": 1,
+            "z": 6352,
+            "y": 79,
+            "edge": "OVERSHOOT",
+            "kind": "STAY_AUTO_FP",
+            "y_lt_n": false
+          },
+          {
+            "x": 79,
+            "a": 1,
+            "b": 2,
+            "z": 702,
+            "y": 5,
+            "edge": "DESCENT",
+            "kind": "RETURN_BELOW",
+            "y_lt_n": true
+          }
+        ]
+      },
+      {
+        "n": 69,
+        "edges": [
+          {
+            "x": 69,
+            "a": 2,
+            "b": 1,
+            "z": 13716,
+            "y": 117,
+            "edge": "OVERSHOOT",
+            "kind": "PERSISTENT_ODD_ODD",
+            "y_lt_n": false
+          },
+          {
+            "x": 117,
+            "a": 2,
+            "b": 3,
+            "z": 44992,
+            "y": 3,
+            "edge": "DESCENT",
+            "kind": "RETURN_BELOW",
+            "y_lt_n": true
+          }
+        ]
+      },
+      {
+        "n": 77,
+        "edges": [
+          {
+            "x": 77,
+            "a": 3,
+            "b": 1,
+            "z": 2322378,
+            "y": 1523,
+            "edge": "OVERSHOOT",
+            "kind": "STAY_AUTO_FP",
+            "y_lt_n": false
+          },
+          {
+            "x": 1523,
+            "a": 1,
+            "b": 1,
+            "z": 59436,
+            "y": 243,
+            "edge": "DESCENT",
+            "kind": "PERSISTENT_ODD_ODD",
+            "y_lt_n": false
+          },
+          {
+            "x": 243,
+            "a": 2,
+            "b": 2,
+            "z": 233046,
+            "y": 21,
+            "edge": "DESCENT",
+            "kind": "RETURN_BELOW",
+            "y_lt_n": true
+          }
+        ]
+      }
+    ],
+    "a_one_forbidden": true,
+    "basin": [
+      1
+    ]
+  },
+  "lean": {
+    "sorry_free": true,
+    "ResidualDescent": true,
+    "ResidualReturn": true,
+    "ResidualOvershoot": true,
+    "two_pow_ne_three_pow": true,
+    "cycle_envelope": true,
+    "cycle_strict_envelope": true,
+    "cycle_not_contracting": true,
+    "orbit_repeat_cycle": true,
+    "residual_return_cycle": true,
+    "residual_return_envelope": true,
+    "residual_return_a_ge_two": true,
+    "minimal_residual_chain_ge": true,
+    "bounded_prefix_not_nodup": true,
+    "certificate_present": false,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_cycle_impossible": true,
+    "no_infinite_path_type": true,
+    "no_frequency_theorem": true,
+    "no_cycle_engine": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true,
+    "MinimalNonTerm_unchanged": true
+  },
+  "decision": {
+    "classification": "BOUNDED_RESIDUAL_CYCLE_GREEN",
+    "secondary": [
+      "CYCLE_OBSTRUCTION_GREEN"
+    ],
+    "reason": "a repeated orbit state is a finite cycle; every nonempty cycle word has 2^r < 3^o; residual returns need a \u2265 2; contracting and a = 1 residual returns are excluded; no cycle found in the scan n \u2264 400"
+  },
+  "search_method": "finite residual prefixes; exact cycle envelope; residual period-1 scan; no CycleSearch engine; no infinite-path type"
+}

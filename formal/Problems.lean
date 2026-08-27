@@ -45,6 +45,7 @@ import Problems.Engine.OddRunFinancing
 import Problems.Engine.OddOddFrontier
 import Problems.Engine.ResidualChain
 import Problems.Engine.RepeatedBlock
+import Problems.Engine.ResidualPath
 import Problems.Engine.ReverseAdd
 import Problems.Engine.FactorConcat
 import Problems.Engine.CyclicTag

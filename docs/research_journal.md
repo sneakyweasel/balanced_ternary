@@ -5007,7 +5007,7 @@ Best next question
 - **Major results:** `ResidualStep` composes `ReachesOne`, `Capture`, and `ReturnBelow` **EXACT — LEAN VERIFIED**. Residual `Descent` that stays \(\ge x\) is not `Descent` at \(x\) **EXACT — LEAN VERIFIED**. `PersistentOddResidual` stays on the odd-odd frontier **EXACT — LEAN VERIFIED**. CE residual scale: odd exit \(\ge n\), even exit \(\ge n^2\) **EXACT — LEAN VERIFIED**. First residuals in \(2\le n\le 80\): 13 propagate, 3 automatic-`FiniteProgress` stay (\(9,49,77\)), 2 persistent odd-odd (\(37,69\)). Classification **RESIDUAL_CHAIN_GREEN**. Records: `docs/research/juggler_residual_chain.md`, `docs/problems/juggler_residual_chain.md`. Control layer unchanged
 - **Refuted ideas:** `FiniteProgress(y)` implies `FiniteProgress(n)`; every stay residual is odd-odd; a uniform residual horizon; a halt theorem
 - **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
-- **Open:** on a persistent odd-odd residual of a hypothetical CE, does the intervening even-run scale budget force a later `ReturnBelow` or a barrier violation?
+- **Open:** answered in the residual-path regime phase
 - **Decision:** PROMOTE the residual relation and the compose/non-compose split. Do not claim that chains terminate. Do not claim that `FiniteProgress` propagates. Do not claim termination
 
 ```text
@@ -5042,6 +5042,51 @@ Why
 
 Best next question
 - For a persistent odd-odd residual of a hypothetical minimal counterexample, does the existing scale budget on the intervening even run force a later ReturnBelow or a later even residual that violates the barrier?
+```
+
+## Juggler residual-path regimes
+
+- **Date:** 2026-08-27
+- **Objective:** Split a hypothetical residual path into a bounded cycle-candidate regime and an unbounded scale-budget regime
+- **Hypotheses:** `BOUNDED_RESIDUAL_CYCLE_GREEN`, `CYCLE_OBSTRUCTION_GREEN`, `UNBOUNDED_RESIDUAL_SCALE_GREEN`, or `NO_RESIDUAL_CONSTRAINT`
+- **Major results:** A repeated orbit state is a finite Juggler cycle **EXACT — LEAN VERIFIED**. A bounded prefix longer than its window is not nodup **EXACT — LEAN VERIFIED**. Every nonempty cycle word has \(2^r<3^o\); contracting words and \(2^r=3^o\) are impossible **EXACT — LEAN VERIFIED**. Residual returns need \(a\ge 2\) **EXACT — LEAN VERIFIED**. Scan \(2\le n\le 400\): only fixed point is \(1\); no residual period-1. Classification **BOUNDED_RESIDUAL_CYCLE_GREEN**. Records: `docs/research/juggler_residual_path.md`, `docs/problems/juggler_residual_path.md`. Control layer unchanged
+- **Refuted ideas:** residual return with \(a\le 1\); contracting cycle words; a halt theorem; an infinite-path type
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed or found here
+- **Open:** can a mixed residual word with \(a\ge 2\) return exactly to its start, or does the existing strict defect already forbid that equality?
+- **Decision:** PROMOTE the bounded-path reduction and the strict cycle envelope. Do not claim that cycles are impossible. Do not close the unbounded branch. Do not claim termination
+
+```text
+What was learned
+- A repeated iterate is a finite cycle; a bounded residual prefix must repeat
+- Every nonempty cycle word satisfies 2^r < 3^o
+- Residual period-1 needs a ≥ 2; a ≤ 1 and contracting words are excluded
+- In 2..400 the only fixed point is 1; no residual period-1 appears
+- The unbounded branch still only has the existing per-step financing
+
+Strongest theorem
+- If a realized word returns to x ≥ 2, then 2^r < 3^o; a residual return therefore has a ≥ 2
+
+Strongest refutation
+- residual return with a ≤ 1; 2^{1+b} ≤ 3 is impossible for b ≥ 1
+
+Reusable machinery
+- Problems.Engine.ResidualPath cycle_strict_envelope / residual_return_a_ge_two / bounded_prefix_not_nodup
+- research.juggler_sequence.residual_path
+
+Prior-art status
+- case split, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The bounded residual regime is now an exact cycle candidate with a strict exponent gap, and a meaningful class of returns is excluded without a cycle engine.
+
+Best next question
+- Can a mixed residual word with a ≥ 2 return exactly to its start, or does the existing strict defect already forbid PowerBoundEq on that return?
 ```
 
 
