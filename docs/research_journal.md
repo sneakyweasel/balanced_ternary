@@ -6645,3 +6645,48 @@ Best next question
 - Can a persistent expanding residual chain exploit automatic asymptotic near-tightness forever, or does some other arithmetic break the loop?
 ```
 
+## Juggler expanding residual grammar
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether the realized persistent residual grammar can sustain λ>1 indefinitely, or whether a finite parity/threshold quotient forces a contracting block
+- **Hypotheses:** syntactic expansion of O^a E^b is a sharp even-run bound; persistence already forces expansion; type-level OOE self-loops are not orbit cycles; finite residues do not decide continuation
+- **Major results:** Lean `expandingWord` / `maxExpandingEvens` / `a+b ≤ log₂(3^a)`; `PersistentOddResidual ↔ PersistentExpandingResidual` for n≥2. Census: no persistent contracting residual; OOE type cycle at 365 exits odd-to-even at 4447; residue mod 8 both continues and exits; max PE run still 5. No halt theorem
+- **Refuted ideas:** the expanding-word grammar is an independent obstruction to an infinite PE chain; a type-level recurrent component is an infinite expanding grammar; residue modulo 8 decides PE continuation
+- **Literature:** OEIS A007320; Envelope `power_bound_contracts`; Residuals PE definitions; two-block and expansion-slack existence; residual-state CLOSE; near-tight PROMOTE
+- **Open:** what decides whether a persistent residual landing stays odd-to-odd
+- **Decision:** CLOSE as `EXPANDING_GRAMMAR_IS_PERSISTENCE`. Do not claim termination
+
+```text
+What was learned
+- Syntactic expansion of O^a E^b is b ≤ log₂(3^a) − a
+- On n≥2, persistence and expansion coincide
+- A contracting residual cannot overshoot
+- The OOE type self-loop is not an infinite orbit
+- PE runs end by leaving odd-odd or by descent, not by a new expanding-word law
+
+Strongest theorem
+- PersistentOddResidual x y ↔ PersistentExpandingResidual x y for 2 ≤ x
+
+Strongest refutation
+- The expanding residual grammar forbids an infinite PE chain independently of T_w(n)>n
+
+Reusable machinery
+- formal/Problems/Juggler/ExpandingGrammar.lean
+- research.juggler_sequence.expanding_grammar
+
+Prior-art status
+- identification of expansion with persistence, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The hoped-for combinatorial obstruction is the already-known envelope. Type cycles disappear when landing parity is restored. Finite residues do not decide continuation. The leftover is the odd-to-odd landing, not another expanding-word rewrite.
+
+Best next question
+- What arithmetic decides whether a persistent residual landing remains odd-to-odd?
+```
+

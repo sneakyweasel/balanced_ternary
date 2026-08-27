@@ -170,9 +170,10 @@ limit layer.
 
 ## Open questions
 
-Can a persistent expanding chain exploit automatic near-tightness
-indefinitely? That is a different question from “why is \(q\) tiny?”
-Do not reopen the weighted-slack budget.
+Answered in [juggler_expanding_grammar.md](juggler_expanding_grammar.md):
+the expanding-word grammar is persistence, not an independent
+obstruction. Tiny \(q\) still does not punish expansion. The leftover
+is the odd-to-odd landing, not another slack rewrite.
 
 ## Decision
 
@@ -181,9 +182,8 @@ Tiny \(q\) is the unavoidable asymptotic of floors at large scale.
 Do not claim that the feedback loop is an obstruction. Do not claim
 termination.
 
-Best next question: can a persistent expanding residual chain
-exploit automatic asymptotic near-tightness forever, or does some
-other arithmetic eventually break the loop?
+Best next question: answered in
+[juggler_expanding_grammar.md](juggler_expanding_grammar.md).
 
 ## Publication assessment
 

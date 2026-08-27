@@ -32,6 +32,7 @@ LAYERS: dict[str, Path] = {
     "NormalizedDefect": JUGGLER_DIR / "NormalizedDefect.lean",
     "ExpansionSlack": JUGGLER_DIR / "ExpansionSlack.lean",
     "NearTightScale": JUGGLER_DIR / "NearTightScale.lean",
+    "ExpandingGrammar": JUGGLER_DIR / "ExpandingGrammar.lean",
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
 }
@@ -58,6 +59,7 @@ RESIDUALS = LAYERS["Residuals"]
 NORMALIZED_DEFECT = LAYERS["NormalizedDefect"]
 EXPANSION_SLACK = LAYERS["ExpansionSlack"]
 NEAR_TIGHT_SCALE = LAYERS["NearTightScale"]
+EXPANDING_GRAMMAR = LAYERS["ExpandingGrammar"]
 CYCLES = LAYERS["Cycles"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 
