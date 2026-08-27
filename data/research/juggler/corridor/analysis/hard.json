@@ -1,0 +1,68 @@
+[
+  {
+    "n": 9,
+    "tau": 5,
+    "word": "OOEOE",
+    "peak_bits": 8,
+    "stay_above": 10,
+    "return_suffixes": 5,
+    "identity_failures": 0,
+    "extremal_eq": 4,
+    "min_slack": 1
+  },
+  {
+    "n": 37,
+    "tau": 15,
+    "word": "OOOOEOOOEEOOEEE",
+    "peak_bits": 45,
+    "stay_above": 105,
+    "return_suffixes": 15,
+    "identity_failures": 0,
+    "extremal_eq": 0,
+    "min_slack": 1
+  },
+  {
+    "n": 49,
+    "tau": 5,
+    "word": "OOEOE",
+    "peak_bits": 13,
+    "stay_above": 10,
+    "return_suffixes": 5,
+    "identity_failures": 0,
+    "extremal_eq": 4,
+    "min_slack": 1
+  },
+  {
+    "n": 69,
+    "tau": 7,
+    "word": "OOEOOEE",
+    "peak_bits": 16,
+    "stay_above": 21,
+    "return_suffixes": 7,
+    "identity_failures": 0,
+    "extremal_eq": 0,
+    "min_slack": 1
+  },
+  {
+    "n": 77,
+    "tau": 10,
+    "word": "OOOEOEOOEE",
+    "peak_bits": 22,
+    "stay_above": 45,
+    "return_suffixes": 10,
+    "identity_failures": 0,
+    "extremal_eq": 0,
+    "min_slack": 1
+  },
+  {
+    "n": 173,
+    "tau": 26,
+    "word": "OOEOOOOOOOOEOOEOOEEOEEOEEE",
+    "peak_bits": 272,
+    "stay_above": 325,
+    "return_suffixes": 26,
+    "identity_failures": 0,
+    "extremal_eq": 0,
+    "min_slack": 1
+  }
+]

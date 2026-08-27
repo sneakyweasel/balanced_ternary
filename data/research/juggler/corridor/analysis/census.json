@@ -1,0 +1,14 @@
+{
+  "returned": 1999,
+  "unfinished": [],
+  "corridor_count": 45948,
+  "stay_above_count": 39137,
+  "return_count": 6811,
+  "even_stay_above_count": 0,
+  "identity_failure_count": 0,
+  "forward_unavailable": 17849,
+  "reverse_unavailable": 213,
+  "extremal_eq_count": 150,
+  "max_tau": 70,
+  "max_peak_bits": 900
+}

@@ -1,0 +1,42 @@
+{
+  "decision": {
+    "classification": "CORRIDOR_REPACKAGING",
+    "secondary": [],
+    "reason": "on stay-above segments, forward, reverse, and compat are the concatenated envelope plus image>=n; reverse never fires unless the concatenated word is formally contracting; equality hits are only known extremal towers"
+  },
+  "window": {
+    "n_start": 2,
+    "n_end": 2000,
+    "horizon": 10000,
+    "bit_cap": 4096,
+    "hard_starts": [
+      9,
+      37,
+      49,
+      69,
+      77,
+      173
+    ],
+    "tall_starts": [
+      193,
+      557,
+      761
+    ],
+    "algorithm_version": "corridor-v1",
+    "search_id": "juggler-corridor-phase0-n2-2000",
+    "pivot_policy": "every j in 0..tau-1",
+    "suffix_policy": "every s>=1 with j+s<=tau; stay-above iff j+s<tau"
+  },
+  "census": {
+    "returned": 1999,
+    "unfinished_count": 0,
+    "corridor_count": 45948,
+    "stay_above_count": 39137,
+    "return_count": 6811,
+    "even_stay_above_count": 0,
+    "identity_failure_count": 0,
+    "extremal_eq_count": 150,
+    "max_tau": 70,
+    "max_peak_bits": 900
+  }
+}

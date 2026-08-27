@@ -6148,3 +6148,48 @@ Best next question
 - Does every n>=2 realize a finite prefix with 3^o<2^k?
 ```
 
+## Juggler two-sided minimal-counterexample corridor
+
+- **Date:** 2026-08-27
+- **Objective:** Test whether a pivot corridor \(x^{2^r}\le n^{3^o}\) and \(n^{2^s}\le x^{3^q}\) constrains \(x\) beyond the concatenated-word test, using stay-above prefixes of actual first-return paths
+- **Hypotheses:** `CORRIDOR_REPACKAGING`, `CORRIDOR_RIGIDITY_GREEN`, `CORRIDOR_DEFECT_GREEN`, `CORRIDOR_COUNTEREXAMPLE`
+- **Major results:** On \(2\le n\le 2000\), 45948 corridors; 39137 stay-above. Available exact comparisons satisfy forward, reverse, and compat. Reverse never fires unless \(2^{r+s}>3^{o+q}\). Mixed equality 0. Both-sides equality 0. Defect-over-gap 0. Extremal equality hits are monochrome towers. Classification **CORRIDOR_REPACKAGING**. Records: `docs/research/juggler_corridor.md`, `docs/problems/juggler_corridor.md`, `data/research/juggler/corridor/`. Control layer unchanged. `ResidualStep` not extended. No Lean file
+- **Refuted ideas:** the corridor is a new opposite inequality; reverse-without-fullword on stay-above or at return; mixed saturation; even stay-above corridors
+- **Literature:** `oeis-A007320`; this is not the REFUTED two-sided exponent-only law; excursion / escape-state / prefix-NC / CycleDiophantine remain closed
+- **Open:** does every \(n\ge 2\) realize a finite prefix with \(3^o<2^k\)? The corridor does not replace that existence statement
+- **Decision:** CLOSE the corridor branch as `CORRIDOR_REPACKAGING`. Do not add Lean. Do not claim termination
+
+```text
+What was learned
+- The future lower bound T^j(n)>=n is already minimal_nonterm_image_ge
+- On stay-above segments, forward, reverse, and compat are power_bound_word plus image>=n
+- Composition 2^{r+s}<=3^{o+q} is contraposed power_bound_contracts on the concatenated word
+- Reverse never certified a return the exponent gap missed, including at non-peak pivots
+- Closest slack is the trivial single-odd gap 3-2=1; 2^a=3^b has no positive solutions, so the corridor never algebraically closes
+
+Strongest theorem
+- none new; power_bound_word, power_bound_contracts, and minimal_nonterm_image_ge remain the Lean facts
+
+Strongest refutation
+- the corridor supplies a pivot-specific contraction or rigidity not implied by the concatenated word
+
+Reusable machinery
+- research.juggler_sequence.corridor
+- data/research/juggler/corridor/
+
+Prior-art status
+- negative corridor result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- CLOSE
+
+Why
+- Every exact corridor predicate collapsed to the existing envelope plus stay-above. Stop before Lean and before a corridor automaton.
+
+Best next question
+- Does every n>=2 realize a finite prefix with 3^o<2^k?
+```
+

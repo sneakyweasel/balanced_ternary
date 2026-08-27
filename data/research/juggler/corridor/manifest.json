@@ -1,0 +1,16 @@
+{
+  "search_id": "juggler-corridor-phase0-n2-2000",
+  "git_commit": "64d99efb63288abbba3be67aa9347be37fc99401",
+  "algorithm_version": "corridor-v1",
+  "start_range": [
+    2,
+    2000
+  ],
+  "maximum_horizon": 10000,
+  "pivot_policy": "every j in 0..tau-1",
+  "suffix_policy": "every s>=1 with j+s<=tau; stay-above iff j+s<tau",
+  "completion_status": "COMPLETE",
+  "checksum": "4adc85f9c240ed13521a1fd4ca1f0edb39ee6b8e6ba0743842bc21fbf9e3d678",
+  "classification": "CORRIDOR_REPACKAGING",
+  "runtime_note": "in-memory Phase-0 census; no sqlite"
+}

@@ -1,0 +1,24 @@
+{
+  "search_id": "juggler-corridor-phase0-n2-2000",
+  "algorithm_version": "corridor-v1",
+  "n_start": 2,
+  "n_end": 2000,
+  "horizon": 10000,
+  "bit_cap": 4096,
+  "pivot_policy": "every j in 0..tau-1",
+  "suffix_policy": "every s>=1 with j+s<=tau; stay-above iff j+s<tau",
+  "hard_starts": [
+    9,
+    37,
+    49,
+    69,
+    77,
+    173
+  ],
+  "tall_starts": [
+    193,
+    557,
+    761
+  ],
+  "arithmetic": "python-int"
+}
