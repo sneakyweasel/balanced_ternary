@@ -4,9 +4,6 @@ namespace Problems.Juggler
 
 /-!
 # Envelope defect and compensated contraction
--/
-/-!
-## Defect and sharpness
 
 Composite envelope defect. This is not the refuted local claim
 `T(n)^2 < n^3` for every odd `n`, and not a termination theorem.

@@ -185,6 +185,7 @@ theorem floorPower_seven : floorPower 7 = 18 := by
 theorem floorPower_eight : floorPower 8 = 2 := by
   native_decide
 
+/-- Packet seed: `T(13) = 46`. -/
 theorem floorPower_thirteen_step : floorPower 13 = 46 := by
   native_decide
 

@@ -3,9 +3,6 @@ import Problems.Juggler.Cycles
 namespace Problems.Juggler
 
 /-!
-# Cycle peak Diophantine identities
--/
-/-!
 # Peak Diophantine defects
 
 The sequential peak identity

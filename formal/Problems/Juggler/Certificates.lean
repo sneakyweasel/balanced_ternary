@@ -62,6 +62,7 @@ theorem capture_reachesOne {n : ℕ} {w : List Branch}
     (_hw : follows n w) (himg : image n w = 1) : ReachesOne n :=
   ⟨w.length, by rw [← image_eq_iterate, himg]⟩
 
+/-- Certified basin `{1}`. Naming alias of `s = 1`, not a second attractor. -/
 def InertBasin (s : ℕ) : Prop :=
   s = 1
 

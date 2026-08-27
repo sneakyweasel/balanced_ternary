@@ -18,6 +18,7 @@ theorem finiteProgress_of_imageLt {n : ℕ} {w : List Branch}
     (hw : follows n w) (hlt : image n w < n) : FiniteProgress n :=
   DescentCertificate.imageLt w hw hlt
 
+/-- Naming alias of `finiteProgress_of_imageLt`. -/
 theorem finiteProgress_of_descent {n : ℕ} {w : List Branch}
     (hw : follows n w) (hlt : image n w < n) : FiniteProgress n :=
   finiteProgress_of_imageLt hw hlt

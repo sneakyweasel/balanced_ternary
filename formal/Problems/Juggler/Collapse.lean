@@ -4,9 +4,6 @@ namespace Problems.Juggler
 
 /-!
 # Even-run residual evaluation
--/
-/-!
-## Changing superquadratic suffixes
 
 The fixed-word threshold depends on `v`. A uniform-in-`ε` upgrade is
 false: an even tower can collapse a huge perfect power of two onto `1`,

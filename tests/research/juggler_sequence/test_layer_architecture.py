@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+import re
+
 from research.juggler_sequence.lean_paths import (
     DELETED_ENGINE,
     JUGGLER_DIR,
@@ -11,6 +13,10 @@ from research.juggler_sequence.lean_paths import (
     juggler_sources,
     juggler_text,
 )
+
+LAYER_RANK = {name: i for i, name in enumerate(LAYERS)}
+IMPORT_RE = re.compile(r"^import Problems\.Juggler\.(\w+)", re.M)
+INCOMPLETE = ("sorry", "admit", "axiom")
 
 BOXED = (
     "HasFiniteStop",
@@ -48,13 +54,22 @@ def test_engine_juggler_files_are_gone():
 def test_layers_exist_and_are_sorry_free():
     assert JUGGLER_DIR.is_dir()
     text = juggler_text()
-    assert "sorry" not in text
-    assert "admit" not in text
+    for token in INCOMPLETE:
+        assert token not in text, token
     for name, path in LAYERS.items():
         assert path.is_file(), name
         body = path.read_text(encoding="utf-8")
-        assert "sorry" not in body
-        assert "admit" not in body
+        for token in INCOMPLETE:
+            assert token not in body, f"{name} contains {token}"
+
+
+def test_imports_are_one_way():
+    for name, path in LAYERS.items():
+        body = path.read_text(encoding="utf-8")
+        for match in IMPORT_RE.finditer(body):
+            dep = match.group(1)
+            assert dep in LAYER_RANK, f"{name} imports unknown {dep}"
+            assert LAYER_RANK[dep] < LAYER_RANK[name], f"{name} imports {dep}"
 
 
 def test_boxed_implication_is_first_class():

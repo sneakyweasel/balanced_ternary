@@ -22,6 +22,7 @@ theorem reachesOne_of_iterate {n m k : ℕ}
   refine ⟨k + j, ?_⟩
   rw [Nat.add_comm, Function.iterate_add_apply, h, hj]
 
+/-- Packet seed `13` reaches `1` in four steps. Not a map theorem. -/
 theorem floorPower_thirteen_reaches_one :
     (floorPower^[4] 13) = 1 := by
   native_decide

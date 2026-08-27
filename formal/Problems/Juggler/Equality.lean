@@ -6,11 +6,6 @@ namespace Problems.Juggler
 # Envelope equality and saturation
 
 Local branch equality, composite equality, and square rigidity.
--/
-/-!
-## Equality rigidity and saturation
-
-Local branch equality, composite equality, and square rigidity.
 Not a termination theorem, not an equality-word classifier, and not a
 `PowerBound` certificate datatype. `PowerBound` remains the weak bound.
 -/

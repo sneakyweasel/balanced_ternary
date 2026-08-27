@@ -3,9 +3,6 @@ import Problems.Juggler.Residuals
 namespace Problems.Juggler
 
 /-!
-# Fixed cycle words
--/
-/-!
 # Fixed cycle words and lower-growth size bounds
 
 `CycleWord n w` is a realized nonempty return `T_w(n) = n`. Cycle

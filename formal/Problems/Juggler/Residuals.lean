@@ -3,21 +3,19 @@ import Problems.Juggler.Scale
 namespace Problems.Juggler
 
 /-!
-# Residual first-even and residual-path regimes
--/
-/-!
 # First even residual and post-overshoot residual of an odd-to-odd start
 
 An even residual `z` falls into one of three square cells relative to
 an odd `n`: below `n^2`, the return cell `n^2 < z < (n+1)^2`, or
 overshoot `(n+1)^2 ≤ z`. Under `MinimalNonTerm`, the first cell is
-impossible and the first `O^a E` block is not `Descent` or `Capture`.
-The leftover is a return-to-start cycle candidate or strict overshoot.
+impossible and the first `O^a E` block is neither an image descent
+`T_w(n) < n` nor a capture `T_w(n) = 1`. The leftover is a
+return-to-start cycle candidate or strict overshoot.
 
 A strict overshoot produces a later state `y = T(z) > n`. That `y` may
 be even or odd. `ReturnBelow` is a finite-prefix certificate, distinct
-from `Descent` at the residual state. A later return below the original
-start is `FiniteProgress` at `n`, and is impossible on a
+from an image descent at the residual state. A later return below the
+original start is `FiniteProgress` at `n`, and is impossible on a
 `MinimalNonTerm` orbit. An even post-even residual on a CE forces
 `n^4 ≤ z`. This is not a theorem that every overshoot returns, and not
 a halt theorem.
@@ -227,8 +225,8 @@ theorem post_overshoot_parity (n a : ℕ) :
   Nat.mod_two_eq_zero_or_one _
 
 /-- Finite prefix from a later state that lands strictly below the
-original start. Distinct from `Descent` (`T_w(x) < x`) and from
-`Capture`. -/
+original start. Distinct from an image descent `T_w(x) < x` and from
+a capture `T_w(x) = 1`. -/
 def ReturnBelow (n x : ℕ) : Prop :=
   ∃ w, follows x w ∧ image x w < n
 
@@ -324,12 +322,13 @@ theorem minimal_post_even_even_z_ge_fourth {n a : ℕ}
 # Residual steps and certificate propagation
 
 A residual step is one realized `O^a E^b` excursion with `b ≥ 1`.
-`ReachesOne` and `Capture` propagate backward along a residual word.
-A later `ReturnBelow` the original start is `FiniteProgress` there.
-A `Descent` at the residual that stays `≥` the original start is not
-`Descent` at the start. Persistent odd-to-odd residuals remain on the
-same unresolved frontier. This is not a halt theorem and not a claim
-that `FiniteProgress` at the residual implies `FiniteProgress` at the
+`ReachesOne` and a capture `T_v(y) = 1` propagate backward along a
+residual word. A later `ReturnBelow` the original start is
+`FiniteProgress` there. An image descent at the residual that stays
+`≥` the original start is not an image descent at the start.
+Persistent odd-to-odd residuals remain on the same unresolved
+frontier. This is not a halt theorem and not a claim that
+`FiniteProgress` at the residual implies `FiniteProgress` at the
 start.
 -/
 
@@ -350,7 +349,7 @@ theorem residualStep_word {x y : ℕ} (h : ResidualStep x y) :
   exact ⟨_, hw, himg⟩
 
 /-- Any certified residual closes `ReachesOne` at the source. Stronger
-than requiring `Capture` of the residual word itself. -/
+than requiring a capture of the residual word itself. -/
 theorem reachesOne_of_residualStep {x y : ℕ}
     (h : ResidualStep x y) (hy : ReachesOne y) : ReachesOne x := by
   obtain ⟨w, _hw, himg⟩ := residualStep_word h
@@ -371,7 +370,7 @@ theorem finiteProgress_of_residual_returnBelow {x y : ℕ}
   exact finiteProgress_of_returnBelow hw hr
 
 /-- Concatenating a residual descent that stays at or above `x` is not
-`Descent` at `x`. Distinguishes `T_v(y) < y` from `T_v(y) < x`. -/
+an image descent at `x`. Distinguishes `T_v(y) < y` from `T_v(y) < x`. -/
 theorem residual_descent_not_below {x y : ℕ} {u v : List Branch}
     (_hu : follows x u) (hy : image x u = y)
     (_hd : (follows y v ∧ image y v < y)) (hge : x ≤ image y v) :

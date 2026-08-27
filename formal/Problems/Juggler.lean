@@ -1,3 +1,10 @@
+/-!
+# Juggler formalization
+
+One-way layers under `Problems.Juggler`. The isolated unproved
+statement is `FiniteCoeffStopConjecture`.
+-/
+
 import Problems.Juggler.Dynamics
 import Problems.Juggler.Iteration
 import Problems.Juggler.Termination

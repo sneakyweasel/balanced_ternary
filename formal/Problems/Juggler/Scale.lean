@@ -4,9 +4,6 @@ namespace Problems.Juggler
 
 /-!
 # Scale barriers on a minimal non-1 orbit
--/
-/-!
-# Repeated `OE` scale budget
 
 Exact power-envelope specializations of `OE` and `(OE)^r`, then the
 minimal-counterexample scale barrier. Not a frequency theorem, not a

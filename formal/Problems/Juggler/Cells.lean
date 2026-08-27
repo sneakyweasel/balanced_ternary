@@ -4,9 +4,6 @@ namespace Problems.Juggler
 
 /-!
 # Inverse-floor cells and first-even geometry
--/
-/-!
-## Inverse floor
 
 Inverse-floor form of a Juggler step. This is the integer interval
 for `T(n) = M`, not a termination theorem and not a perfect-power
