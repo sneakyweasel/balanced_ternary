@@ -23,8 +23,10 @@ Existing next-square inventory, not a new engine:
 * cell-specific `EOO` uses `(√n+1)^2`, not `(n+1)^2`
 
 Every length-5 E-terminating word is either contracting or `OOOOE`.
-This is not a halt theorem and not a claim that every cycle word is
-impossible.
+A cycle minimum forbids an `OE` start: the first even residual is
+below `n^2`. An internal `E` plus a next-square suffix then
+contradicts the last-even cell. This is not a halt theorem and not a
+claim that every cycle word is impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -519,5 +521,240 @@ theorem no_cycle_word_length_five_ends_even {n : ℕ} {v : List Branch}
   have hC : CycleWord n (List.replicate 4 Branch.odd ++ [Branch.even]) := by
     simpa [hvO] using h
   exact no_cycle_odd_run_append_even (by decide : (3 : ℕ) ≤ 4) hn hC
+
+/-- The start is a minimum of its realized cycle. Cycle-internal. -/
+def CycleMin (n : ℕ) (w : List Branch) : Prop :=
+  CycleWord n w ∧ ∀ j, j < w.length → n ≤ floorPower^[j] n
+
+theorem cycleMin_cycleWord {n : ℕ} {w : List Branch} (h : CycleMin n w) :
+    CycleWord n w :=
+  h.1
+
+theorem cycleMin_ge {n : ℕ} {w : List Branch} {j : ℕ}
+    (h : CycleMin n w) (hj : j < w.length) : n ≤ floorPower^[j] n :=
+  h.2 j hj
+
+theorem cycle_iterate_mul_length {n : ℕ} {w : List Branch}
+    (h : CycleWord n w) : ∀ q, floorPower^[q * w.length] n = n
+  | 0 => by simp
+  | q + 1 => by
+      have hmul : (q + 1) * w.length = q * w.length + w.length :=
+        Nat.succ_mul q w.length
+      rw [hmul, Function.iterate_add_apply, cycle_iterate_period h,
+        cycle_iterate_mul_length h q]
+
+theorem cycle_iterate_mod {n : ℕ} {w : List Branch} {k : ℕ}
+    (h : CycleWord n w) : floorPower^[k] n = floorPower^[k % w.length] n := by
+  have hsum : k = k % w.length + k / w.length * w.length := by
+    have hdiv := Nat.div_add_mod k w.length
+    rw [Nat.mul_comm, Nat.add_comm] at hdiv
+    exact hdiv.symm
+  conv => lhs; rw [hsum]
+  rw [Function.iterate_add_apply, cycle_iterate_mul_length h]
+
+theorem cycleMin_succ_ge {n : ℕ} {w : List Branch} {i : ℕ}
+    (h : CycleMin n w) (hi : i < w.length) :
+    n ≤ floorPower (floorPower^[i] n) := by
+  have hnext : floorPower (floorPower^[i] n) = floorPower^[i + 1] n :=
+    (Function.iterate_succ_apply' floorPower i n).symm
+  rw [hnext]
+  cases lt_or_eq_of_le (Nat.succ_le_of_lt hi) with
+  | inl hlt =>
+      exact cycleMin_ge h hlt
+  | inr heq =>
+      rw [← Nat.succ_eq_add_one, heq, cycle_iterate_period h.1]
+
+/-- Even cycle states sit at or above `n^2`. Parity on the realized cycle. -/
+theorem cycleMin_even_ge_sq {n : ℕ} {w : List Branch} {i : ℕ}
+    (_hn : 2 ≤ n) (h : CycleMin n w) (hi : i < w.length)
+    (he : floorPower^[i] n % 2 = 0) :
+    n ^ 2 ≤ floorPower^[i] n := by
+  have hy := cycleMin_succ_ge h hi
+  have hz : floorPower (floorPower^[i] n) = (floorPower^[i] n).sqrt :=
+    floorPower_even_eq he
+  rw [hz] at hy
+  exact (by simpa [pow_two] using Nat.le_sqrt.mp hy)
+
+theorem floorPower_odd_lt_sq {n : ℕ} (hn : 2 ≤ n) (hodd : n % 2 = 1) :
+    floorPower n < n ^ 2 := by
+  rw [floorPower_odd_eq hodd]
+  refine Nat.sqrt_lt.mpr ?_
+  have hn1 : 1 < n := lt_of_lt_of_le (by decide : (1 : ℕ) < 2) hn
+  have hpow : n ^ 3 < n ^ 4 :=
+    Nat.pow_lt_pow_right hn1 (by decide : (3 : ℕ) < 4)
+  have h4 : n ^ 4 = n ^ 2 * n ^ 2 := Nat.pow_add n 2 2
+  simpa [h4] using hpow
+
+theorem cycleMin_start_odd {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) : n % 2 = 1 := by
+  rcases Nat.mod_two_eq_zero_or_one n with he | ho
+  · exfalso
+    have hlt : floorPower n < n := floorPower_even_lt hn he
+    cases Nat.eq_or_lt_of_le h.1.2.2 with
+    | inl h1 =>
+        have hper := cycle_iterate_period h.1
+        have hlen1 : w.length = 1 := by omega
+        rw [hlen1] at hper
+        change floorPower n = n at hper
+        omega
+    | inr hgt =>
+        have hge : n ≤ floorPower^[1] n := cycleMin_ge h hgt
+        exact (not_le_of_gt hlt) hge
+  · exact ho
+
+theorem cycleMin_not_start_even {n : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n (.even :: v)) : False := by
+  have he : n % 2 = 0 := h.1.1.1
+  have ho := cycleMin_start_odd hn h
+  omega
+
+/-- A cycle minimum cannot start `OE`: the first even residual is `< n^2`. -/
+theorem cycleMin_not_odd_even {n : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n (.odd :: .even :: v)) : False := by
+  have hodd : n % 2 = 1 := h.1.1.1
+  have he : floorPower n % 2 = 0 := h.1.1.2.1
+  have hlt := floorPower_odd_lt_sq hn hodd
+  have hlen : (1 : ℕ) < (.odd :: .even :: v).length := by simp
+  have hsq := cycleMin_even_ge_sq hn h hlen (by simpa using he)
+  have : floorPower^[1] n = floorPower n := by simp
+  rw [this] at hsq
+  exact (not_le_of_gt hlt) hsq
+
+def rotateWord : List Branch → ℕ → List Branch
+  | w, 0 => w
+  | [], _k + 1 => []
+  | b :: rest, k + 1 => rotateWord (rest ++ [b]) k
+
+theorem rotateWord_length : ∀ w k, (rotateWord w k).length = w.length
+  | w, 0 => rfl
+  | [], _k + 1 => rfl
+  | b :: rest, k + 1 => by
+      have := rotateWord_length (rest ++ [b]) k
+      simpa [rotateWord, List.length_append] using this
+
+theorem cycleWord_rotateWord {n : ℕ} {w : List Branch}
+    (h : CycleWord n w) : ∀ k, CycleWord (floorPower^[k] n) (rotateWord w k)
+  | 0 => by simpa [rotateWord] using h
+  | k + 1 => by
+      match w with
+      | [] =>
+          exact (Nat.not_succ_le_zero 0 h.2.2).elim
+      | b :: rest =>
+          have hrot := cycleWord_rotate_cons (by simpa using h)
+          have ih := cycleWord_rotateWord hrot k
+          have : floorPower^[k + 1] n = floorPower^[k] (floorPower n) :=
+            Function.iterate_succ_apply floorPower k n
+          simpa [rotateWord, this] using ih
+
+theorem exists_cycleMin {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    ∃ k < w.length, CycleMin (floorPower^[k] n) (rotateWord w k) := by
+  have ⟨i, hi, hle, _hodd⟩ := exists_cycle_min_odd hn h
+  refine ⟨i, hi, cycleWord_rotateWord h i, ?_⟩
+  intro j hj
+  have hlen : (rotateWord w i).length = w.length := rotateWord_length w i
+  rw [hlen] at hj
+  have himg : floorPower^[j] (floorPower^[i] n) = floorPower^[i + j] n := by
+    simpa [Nat.add_comm] using
+      (Function.iterate_add_apply floorPower j i n).symm
+  rw [himg, cycle_iterate_mod (k := i + j) h]
+  exact hle _ (Nat.mod_lt _ (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2))
+
+/-- Internal `E` plus a next-square suffix contradicts the last-even cell
+on a cycle minimum. `y ≥ n` is enough; `y > n` is not required. -/
+theorem no_cycleMin_internal_even_threshold {u v : List Branch} {N : ℕ}
+    (hth : ∀ m, N ≤ m → follows m v → (m + 1) ^ 2 ≤ image m v)
+    {n : ℕ} (hn : N ≤ n)
+    (h : CycleMin n (u ++ [.even] ++ v ++ [.even])) : False := by
+  have hw : CycleWord n (u ++ [.even] ++ v ++ [.even]) := h.1
+  have hcell : CycleWord n ((u ++ [.even] ++ v) ++ [.even]) := by
+    simpa [List.append_assoc] using hw
+  have hI := cycle_last_even_interval hcell
+  have himg_y := image_eq_iterate n (u ++ [.even])
+  have hlen :
+      (u ++ [Branch.even]).length <
+        (u ++ [Branch.even] ++ v ++ [Branch.even]).length := by
+    simp [List.length_append]
+  have hy_ge : n ≤ image n (u ++ [.even]) := by
+    simpa [himg_y] using cycleMin_ge h hlen
+  have hf_tail : follows (image n (u ++ [.even])) (v ++ [.even]) :=
+    follows_of_append_right (u := u ++ [.even])
+      (by simpa [List.append_assoc] using hw.1)
+  have hf_v : follows (image n (u ++ [.even])) v :=
+    follows_of_append_left (v := [.even]) hf_tail
+  have hth' := hth _ (le_trans hn hy_ge) hf_v
+  have himg : image n (u ++ [.even] ++ v) = image (image n (u ++ [.even])) v :=
+    image_append n (u ++ [.even]) v
+  rw [himg] at hI
+  have hy2 : (n + 1) ^ 2 ≤ image (image n (u ++ [.even])) v :=
+    le_trans (Nat.pow_le_pow_left (Nat.succ_le_succ hy_ge) 2) hth'
+  exact (not_le_of_gt hI.2) hy2
+
+def wordOOEOOE : List Branch :=
+  [.odd, .odd, .even, .odd, .odd, .even]
+
+def wordOEOOOE : List Branch :=
+  [.odd, .even, .odd, .odd, .odd, .even]
+
+theorem wordOOEOOE_split :
+    wordOOEOOE = [.odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even] :=
+  rfl
+
+theorem wordOEOOOE_is_odd_even :
+    wordOEOOOE = .odd :: .even :: [.odd, .odd, .odd, .even] :=
+  rfl
+
+theorem no_cycleMin_ooeooe {n : ℕ} (hn : 2 ≤ n)
+    (h : CycleMin n wordOOEOOE) : False := by
+  have hodd : n % 2 = 1 := h.1.1.1
+  have hn5 : 5 ≤ n := by
+    cases lt_or_ge n 5 with
+    | inl hlt =>
+        have hn3 : n = 3 := by omega
+        subst hn3
+        have hOOE : follows 3 ([.odd, .odd] ++ [.even]) :=
+          follows_of_append_left (by simpa [wordOOEOOE] using h.1.1)
+        have he : image 3 [.odd, .odd] % 2 = 0 :=
+          (follows_of_append_right (u := [.odd, .odd]) hOOE).1
+        have himg : image 3 [.odd, .odd] = 11 := by native_decide
+        rw [himg] at he
+        exact absurd he (by decide : ¬(11 : ℕ) % 2 = 0)
+    | inr hge => exact hge
+  have hsplit : CycleMin n ([.odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even]) := by
+    simpa [wordOOEOOE] using h
+  refine no_cycleMin_internal_even_threshold (N := 5) ?_ hn5 hsplit
+  intro m hm hf
+  simpa [image_eq_iterate] using oo_suffix_threshold hm hf
+
+theorem no_cycleMin_oeoooe {n : ℕ} (hn : 2 ≤ n)
+    (h : CycleMin n wordOEOOOE) : False := by
+  have hodd : n % 2 = 1 := h.1.1.1
+  have hn3 : 3 ≤ n := by omega
+  have hsplit : CycleMin n ([.odd] ++ [.even] ++ [.odd, .odd, .odd] ++ [.even]) := by
+    simpa [wordOEOOOE] using h
+  refine no_cycleMin_internal_even_threshold (N := 3) ?_ hn3 hsplit
+  intro m hm hf
+  simpa [image_eq_iterate] using ooo_suffix_threshold hm hf
+
+theorem rotate_ooeooe :
+    ∀ k, k < 6 →
+      rotateWord wordOOEOOE k = wordOOEOOE ∨
+        rotateWord wordOOEOOE k = [.odd, .even, .odd, .odd, .even, .odd] ∨
+          rotateWord wordOOEOOE k = [.even, .odd, .odd, .even, .odd, .odd] := by
+  intro k hk
+  interval_cases k <;> simp [wordOOEOOE, rotateWord]
+
+theorem no_cycle_word_ooeooe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleWord n wordOOEOOE := by
+  intro h
+  have ⟨k, hk, hm⟩ := exists_cycleMin hn h
+  have hlen : wordOOEOOE.length = 6 := rfl
+  rw [hlen] at hk
+  have hnk : 2 ≤ floorPower^[k] n :=
+    cycleWord_iterate_ge_two hn h (by omega)
+  rcases rotate_ooeooe k hk with h0 | h1 | h2
+  · exact no_cycleMin_ooeooe hnk (by simpa [h0] using hm)
+  · exact cycleMin_not_odd_even hnk (by simpa [h1] using hm)
+  · exact cycleMin_not_start_even hnk (by simpa [h2] using hm)
 
 end Problems.Engine

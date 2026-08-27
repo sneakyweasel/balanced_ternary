@@ -1,0 +1,169 @@
+{
+  "experiment": "juggler_cycle_internal_e",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "O_terminating_cycles_impossible": false,
+    "length_six_e_cycles_impossible": false,
+    "useful_uniform_Q0": false,
+    "cycle_is_envelope_equality": false,
+    "power_bound_eq_forbids_cycles": false,
+    "y_gt_n_required": false,
+    "ooooee_free_via_ooooe": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "normalized_expanding": [
+      "OOOOOE",
+      "OEOOOE",
+      "OOEOOE",
+      "OOOEOE",
+      "OOOOEE"
+    ],
+    "unique_family": true,
+    "candidates": [
+      {
+        "word": "OOOOOE",
+        "formal_exponent": "243/64",
+        "odd_count": 5,
+        "internal_e_index": null,
+        "suffix_after_internal_e": null,
+        "existing_threshold": null,
+        "threshold_N": null,
+        "internal_e_bootstrap_applicable": false,
+        "all_odd_last_e": true,
+        "prefinal_superquadratic": true,
+        "q0_exists": true,
+        "q0_computed": false,
+        "cyclemin_excluded": false,
+        "cycleword_excluded": false,
+        "exception": false
+      },
+      {
+        "word": "OEOOOE",
+        "formal_exponent": "81/64",
+        "odd_count": 4,
+        "internal_e_index": 1,
+        "suffix_after_internal_e": "OOO",
+        "existing_threshold": "ooo_suffix_threshold",
+        "threshold_N": 3,
+        "internal_e_bootstrap_applicable": true,
+        "all_odd_last_e": false,
+        "prefinal_superquadratic": true,
+        "q0_exists": true,
+        "q0_computed": false,
+        "cyclemin_excluded": true,
+        "cycleword_excluded": false,
+        "exception": false
+      },
+      {
+        "word": "OOEOOE",
+        "formal_exponent": "81/64",
+        "odd_count": 4,
+        "internal_e_index": 2,
+        "suffix_after_internal_e": "OO",
+        "existing_threshold": "oo_suffix_threshold",
+        "threshold_N": 5,
+        "internal_e_bootstrap_applicable": true,
+        "all_odd_last_e": false,
+        "prefinal_superquadratic": true,
+        "q0_exists": true,
+        "q0_computed": false,
+        "cyclemin_excluded": true,
+        "cycleword_excluded": true,
+        "exception": false
+      },
+      {
+        "word": "OOOEOE",
+        "formal_exponent": "81/64",
+        "odd_count": 4,
+        "internal_e_index": 3,
+        "suffix_after_internal_e": "O",
+        "existing_threshold": null,
+        "threshold_N": null,
+        "internal_e_bootstrap_applicable": false,
+        "all_odd_last_e": false,
+        "prefinal_superquadratic": true,
+        "q0_exists": true,
+        "q0_computed": false,
+        "cyclemin_excluded": false,
+        "cycleword_excluded": false,
+        "exception": true
+      },
+      {
+        "word": "OOOOEE",
+        "formal_exponent": "81/64",
+        "odd_count": 4,
+        "internal_e_index": 4,
+        "suffix_after_internal_e": "",
+        "existing_threshold": null,
+        "threshold_N": null,
+        "internal_e_bootstrap_applicable": false,
+        "all_odd_last_e": false,
+        "prefinal_superquadratic": true,
+        "q0_exists": true,
+        "q0_computed": false,
+        "cyclemin_excluded": false,
+        "cycleword_excluded": false,
+        "exception": true
+      }
+    ],
+    "bootstrap_words": [
+      "OEOOOE",
+      "OOEOOE"
+    ],
+    "exception_words": [
+      "OOOEOE",
+      "OOOOEE"
+    ],
+    "all_odd_word": [
+      "OOOOOE"
+    ],
+    "y_gt_n_required": false,
+    "ooooee_free_via_ooooe": false,
+    "n_search": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_even_ge_sq": true,
+    "cycleMin_not_odd_even": true,
+    "no_cycleMin_internal_even_threshold": true,
+    "no_cycleMin_oeoooe": true,
+    "no_cycleMin_ooeooe": true,
+    "no_cycle_word_ooeooe": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_all_cycles_impossible": true,
+    "no_cycle_engine": true,
+    "no_length_six_theorem": true,
+    "no_infinite_path_type": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true,
+    "orbit_min_not_used": true,
+    "PowerBoundEq_not_used_as_cycle_attack": true,
+    "O_terminating_not_claimed": true,
+    "no_ooooee_special_theorem": true,
+    "no_ooooeoe_special_theorem": true
+  },
+  "decision": {
+    "classification": "INTERNAL_E_BOOTSTRAP_GREEN",
+    "secondary": [
+      "OOOEOE_EXCEPTION"
+    ],
+    "reason": "an internal even cycle state is at least n^2, so its image is at least n; a next-square suffix then overshoots the last-even cell. This excludes CycleMin OEOOOE and the full CycleWord OOEOOE. OOOEOE and OOOOEE remain"
+  },
+  "search_method": "structural inventory of normalized expanding length-6 E-words; internal-E bootstrap; no cycle-state search; no length-6 census theorem"
+}

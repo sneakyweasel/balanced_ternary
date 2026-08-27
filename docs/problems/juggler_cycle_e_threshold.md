@@ -132,13 +132,16 @@ Classification **LAST_E_THRESHOLD_COVERAGE_GREEN**, with secondary
 **THRESHOLD_INHERITANCE_GREEN** and **E_TERMINATING_LENGTH5_GREEN**.
 
 The first genuine threshold gap is an expanding E-word whose suffix
-is not all-odd. That first appears at length 6. It is not opened here.
+is not all-odd. That first appears at length 6 and is taken up in
+[juggler_cycle_internal_e.md](juggler_cycle_internal_e.md).
 
 ## Open questions
 
-What is the smallest expanding E-terminating suffix that is not all-odd,
-and does it already have a next-square theorem? Do not start a length-6
-census. Do not open the O-terminating branch.
+Answered in [juggler_cycle_internal_e.md](juggler_cycle_internal_e.md):
+an internal even step plus the cycle-minimum scale barrier bootstraps
+the existing `OO` / `OOO` thresholds. The remaining mixed cases are
+`OOOEOE` and `OOOOEE`. Do not start a length-6 census. Do not open the
+O-terminating branch.
 
 ## Decision
 
@@ -146,8 +149,8 @@ census. Do not open the O-terminating branch.
 E-terminating exclusion. Do not claim that all cycles are impossible.
 Do not claim termination. Do not treat cycles ending in `O`.
 
-Best next question: what is the smallest expanding E-terminating suffix
-that is not all-odd, and can it be excluded without a new census?
+Best next question: answered in
+[juggler_cycle_internal_e.md](juggler_cycle_internal_e.md).
 
 ## Publication assessment
 

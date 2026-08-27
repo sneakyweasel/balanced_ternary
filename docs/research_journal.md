@@ -5269,4 +5269,49 @@ Best next question
 - What is the smallest expanding E-terminating suffix that is not all-odd, and can it be excluded without a new census?
 ```
 
+## Juggler internal-E scale barriers
+
+- **Date:** 2026-08-27
+- **Objective:** Use the cycle-minimum even-scale barrier to bootstrap existing next-square suffixes across an internal even step
+- **Hypotheses:** `INTERNAL_E_BOOTSTRAP_GREEN`, `E_TERMINATING_LENGTH6_GREEN`, `OOOEOE_EXCEPTION`, `INTERNAL_E_COUNTEREXAMPLE`, or `LAST_E_METHOD_LIMITED`
+- **Major results:** even cycle states on a cycle minimum satisfy \(z\ge n^2\) **EXACT — LEAN VERIFIED**. If the suffix after an internal `E` has a next-square threshold at \(N\), there is no such `CycleMin` for \(n\ge N\) **EXACT — LEAN VERIFIED**. No `CycleMin` for `OEOOOE` **EXACT — LEAN VERIFIED**. No `CycleWord` for `OOEOOE` **EXACT — LEAN VERIFIED**. Classification **INTERNAL_E_BOOTSTRAP_GREEN**. Records: `docs/research/juggler_cycle_internal_e.md`, `docs/problems/juggler_cycle_internal_e.md`. Control layer unchanged
+- **Refuted ideas:** \(y>n\) is required for the bootstrap; `OOOOEE` dies through the `OOOOE` threshold; `¬CycleMin` is `¬CycleWord`; every mixed length-6 E-word is excluded; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** what exact extra scale does the prefix `OOO` give before the internal `E` of `OOOEOE`?
+- **Decision:** PROMOTE the cycle-minimum barrier and the internal-E bootstrap. Do not claim that all length-6 E-cycles are impossible. Do not treat cycles ending in `O`
+
+```text
+What was learned
+- Cycle-min even states satisfy z ≥ n^2 by parity on the realized cycle
+- y ≥ n is enough: a next-square suffix then overshoots the last-even cell
+- OEOOOE is impossible as a cycle minimum via suffix OOO
+- OOEOOE is impossible as a CycleWord: every rotation dies
+- OOOEOE and OOOOEE are not covered by existing next-square suffixes
+
+Strongest theorem
+- If v has a next-square threshold at N, then there is no CycleMin n (u E v E) for n ≥ N
+
+Strongest refutation
+- OOOOEE is free from the OOOOE threshold; T_OOOO ≥ (n+1)^2 does not lift across an extra E
+
+Reusable machinery
+- Problems.Engine.CycleWord CycleMin / no_cycleMin_internal_even_threshold / no_cycle_word_ooeooe
+- research.juggler_sequence.cycle_internal_e
+
+Prior-art status
+- threshold transport across an internal even step, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Minimality on the realized cycle amplifies existing OO / OOO thresholds far enough to kill the first mixed E-words that have those suffixes, without a census or a D_w improvement.
+
+Best next question
+- What exact extra scale does the prefix OOO give before the internal E of OOOEOE?
+```
+
 
