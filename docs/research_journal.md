@@ -6193,3 +6193,48 @@ Best next question
 - Does every n>=2 realize a finite prefix with 3^o<2^k?
 ```
 
+## Juggler first positive-drift crossing and endpoint arithmetic
+
+- **Date:** 2026-08-27
+- **Objective:** Test whether a long actual prefix-NC orbit forces new arithmetic on the endpoint \(x_k=T^k(n)\), and characterize the first \(G_k>0\) crossing
+- **Hypotheses:** `DRIFT_ENDPOINT_GREEN`, `DRIFT_FIRST_CROSSING_GREEN`, `DRIFT_ENDPOINT_FILTRATION_GREEN`, `DRIFT_INDUCTION_GREEN`, `DRIFT_ENDPOINT_COUNTEREXAMPLE`, `DRIFT_ENDPOINT_COMPLEX`
+- **Major results:** On \(2\le n\le 2000\), all 1999 starts cross; absorbed-at-1 still NC is 0. Every crossing is an even letter with \(2^{\tau-1}\le 3^o<2^\tau\) **COMPUTATIONALLY VERIFIED**, a **REPARAMETERIZATION** of the \(G\)-recurrence. Mixed NC prefixes 2797; endpoints split on parity (1428/1369), square (8/2789), and \(\gcd\) (493/2304). Only universal mixed predicate is \(T^k\ge n\), the old non-contraction identity. Longest \(\tau_+=70\) at \(n=193\). Classification **DRIFT_ENDPOINT_COMPLEX**. Records: `docs/research/juggler_drift_crossing.md`, `docs/problems/juggler_drift_crossing.md`, `data/research/juggler/drift_crossing/`. Control layer unchanged. `ResidualStep` not extended. No Lean file
+- **Refuted ideas:** long prefix-NC survival forces even/odd/square/\(v_2\)/\(v_3\)/large gcd/fixed residue; crossing predecessor is a square; \(\tau_+<\infty\) from a finite window
+- **Literature:** `oeis-A007320`; corridor / escape-state / prefix-NC / CycleDiophantine remain closed; odd-fourth-power remains parked
+- **Open:** does every \(n\ge 2\) realize a finite prefix with \(3^o<2^k\)? Endpoint arithmetic does not supply the obstruction
+- **Decision:** CLOSE the drift-crossing branch as `DRIFT_ENDPOINT_COMPLEX`. Do not add Lean. Do not claim termination
+
+```text
+What was learned
+- tau_+ exists on n=2..2000; no start reaches 1 still prefix-NC
+- First positive G is always an even letter; that is the G-recurrence, not a Juggler endpoint law
+- Mixed prefix-NC endpoints keep both parities, both gcd regimes, and both square statuses
+- T^k >= n on every mixed NC prefix in the window is tau_+=tau_< rewritten
+- Longest actual postponement is n=193 with tau_+=70; the last NC state 6498 has gcd 1 and is not a square
+
+Strongest theorem
+- none new; power_bound_contracts remains the Lean fact that G>0 implies T^k<n
+
+Strongest refutation
+- long prefix-NC survival forces a shrinking endpoint class
+
+Reusable machinery
+- research.juggler_sequence.drift_crossing
+- data/research/juggler/drift_crossing/
+
+Prior-art status
+- negative endpoint-filtration result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- CLOSE
+
+Why
+- The only exact crossing law is the G-recurrence. Mixed endpoints stay arithmetically free. Stop before Lean and before another endpoint state machine.
+
+Best next question
+- A genuine existence argument that every n>=2 eventually takes an even step with 2^{k-1} <= 3^{o} < 2^k, not another endpoint laboratory.
+```
+

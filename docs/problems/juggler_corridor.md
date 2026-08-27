@@ -165,6 +165,10 @@ prefix-noncontracting would be a non-terminator. Do not reopen
 the corridor, ResidualStep, escape-state margins, or peak
 Diophantine identities.
 
+Answered in [juggler_drift_crossing.md](juggler_drift_crossing.md):
+actual prefix-NC endpoints do not form a shrinking arithmetic
+class. Closed as `DRIFT_ENDPOINT_COMPLEX`.
+
 ## Decision
 
 **CLOSE** the corridor branch as `CORRIDOR_REPACKAGING`. On

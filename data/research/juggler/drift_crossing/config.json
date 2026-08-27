@@ -1,0 +1,38 @@
+{
+  "search_id": "juggler-drift-crossing-phase0-n2-2000",
+  "algorithm_version": "drift-crossing-v1",
+  "n_start": 2,
+  "n_end": 2000,
+  "horizon": 10000,
+  "bit_cap": 4096,
+  "crossing_policy": "stop at first G_k>0; absorb if T^k=1 still NC",
+  "endpoint_metrics": [
+    "parity",
+    "square",
+    "fourth",
+    "square_depth",
+    "v2",
+    "v3",
+    "dist_square",
+    "dist_fourth",
+    "gcd_n",
+    "mod8",
+    "mod9",
+    "mod16",
+    "least_odd_divisor"
+  ],
+  "hard_starts": [
+    9,
+    37,
+    49,
+    69,
+    77,
+    173
+  ],
+  "tall_starts": [
+    193,
+    557,
+    761
+  ],
+  "arithmetic": "python-int"
+}
