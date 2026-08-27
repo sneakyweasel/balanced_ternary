@@ -1,0 +1,21 @@
+{"law": "same_class_structured_successor", "status": "REFUTED", "version": "v1_occupancy", "x": 2, "y": 4, "source_signature": "v1_occupancy:0", "successor_x": "v1_occupancy:1", "successor_y": "v1_occupancy:0", "kind": "same_class_different_successor"}
+{"law": "strict_hut_rank", "status": "REFUTED", "version": "v1_occupancy", "cycle": ["v1_occupancy:1", "v1_occupancy:1"]}
+{"law": "hut_never_returns", "status": "REFUTED", "version": "v1_occupancy", "example": {"m": 1, "Jm": 1, "signature": "v1_occupancy:1"}}
+{"law": "same_class_structured_successor", "status": "REFUTED", "version": "v2_type", "x": 2, "y": 4, "source_signature": "v2_type:0,0", "successor_x": "v2_type:1,1", "successor_y": "v2_type:0,0", "kind": "same_class_different_successor"}
+{"law": "strict_hut_rank", "status": "REFUTED", "version": "v2_type", "cycle": ["v2_type:1,1", "v2_type:1,1"]}
+{"law": "hut_never_returns", "status": "REFUTED", "version": "v2_type", "example": {"m": 1, "Jm": 1, "signature": "v2_type:1,1"}}
+{"law": "same_class_structured_successor", "status": "REFUTED", "version": "v3_oddpos", "x": 2, "y": 4, "source_signature": "v3_oddpos:0,0,0", "successor_x": "v3_oddpos:1,1,1", "successor_y": "v3_oddpos:0,0,0", "kind": "same_class_different_successor"}
+{"law": "strict_hut_rank", "status": "REFUTED", "version": "v3_oddpos", "cycle": ["v3_oddpos:1,1,1", "v3_oddpos:1,1,1"]}
+{"law": "hut_never_returns", "status": "REFUTED", "version": "v3_oddpos", "example": {"m": 1, "Jm": 1, "signature": "v3_oddpos:1,1,1"}}
+{"law": "same_class_structured_successor", "status": "REFUTED", "version": "v4_mod3", "x": 2, "y": 8, "source_signature": "v4_mod3:0,0,0,2", "successor_x": "v4_mod3:1,1,1,1", "successor_y": "v4_mod3:0,0,0,2", "kind": "same_class_different_successor"}
+{"law": "strict_hut_rank", "status": "REFUTED", "version": "v4_mod3", "cycle": ["v4_mod3:1,1,1,1", "v4_mod3:1,1,1,1"]}
+{"law": "hut_never_returns", "status": "REFUTED", "version": "v4_mod3", "example": {"m": 1, "Jm": 1, "signature": "v4_mod3:1,1,1,1"}}
+{"law": "same_class_structured_successor", "status": "REFUTED", "version": "vB_border", "x": 4, "y": 10, "source_signature": "vB_border:0,0,1,1,0", "successor_x": "vB_border:0,0,0,1,0", "successor_y": "vB_border:1,0,-1,-1,0", "kind": "same_class_different_successor"}
+{"law": "strict_hut_rank", "status": "REFUTED", "version": "vB_border", "cycle": ["vB_border:1,1,0,0,0", "vB_border:1,1,0,0,0"]}
+{"law": "hut_never_returns", "status": "REFUTED", "version": "vB_border", "example": {"m": 1, "Jm": 1, "signature": "vB_border:1,1,0,0,0"}}
+{"law": "same_class_structured_successor", "status": "REFUTED", "version": "vC_valuation", "x": 2, "y": 4, "source_signature": "vC_valuation:0,0,0,0", "successor_x": "vC_valuation:-1,1,1,1", "successor_y": "vC_valuation:0,0,0,0", "kind": "same_class_different_successor"}
+{"law": "strict_hut_rank", "status": "REFUTED", "version": "vC_valuation", "cycle": ["vC_valuation:-1,1,1,1", "vC_valuation:-1,1,1,1"]}
+{"law": "hut_never_returns", "status": "REFUTED", "version": "vC_valuation", "example": {"m": 1, "Jm": 1, "signature": "vC_valuation:-1,1,1,1"}}
+{"law": "bt_suffix_determines_hut", "status": "REFUTED", "jet": [1, 0, 0, 0], "x": 1, "y": 82, "version": "v3_oddpos"}
+{"law": "raw_H_is_a_class", "status": "REFUTED", "note": "E(m) endpoints determine m; using H(m) as a class renames T", "example": {"m": 5, "even_cell_lower": 26, "even_cell_upper": 34}}
+{"law": "even_fan_collapse", "status": "REFUTED", "note": "E(m) contains only even n, so fan classes are the even slice of the signature. vC neighbors of even n are odd, hence v2=0", "example": {"target_m": 4, "signature_version": "vC_valuation", "fan_size": 5, "distinct_child_hut_classes": 2, "class_distribution": "vC_valuation:0,0,0,0=4;vC_valuation:0,0,0,1=1"}}

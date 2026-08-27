@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="140" viewBox="0 0 360 140">
+<rect width="100%" height="100%" fill="#f7f4ea"/>
+<text x="16" y="24" font-family="Georgia, serif" font-size="14">Odd spine from 9 (empty_odd_cell)</text>
+<circle cx="40" cy="80" r="16" fill="#fff" stroke="#234" />
+<text x="40" y="85" text-anchor="middle" font-size="11" font-family="Georgia, serif">9</text>
+</svg>

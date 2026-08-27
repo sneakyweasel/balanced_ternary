@@ -149,10 +149,19 @@ None opened.
 
 ## Counterexamples
 
-Recorded by the probe in
-`data/research/juggler/cell_hut/hut_counterexamples.jsonl` and in
-[juggler_cell_hut.md](../research/juggler_cell_hut.md). Failed
-signature versions are not retuned.
+- Raw \(H(m)\) as a class: even-cell endpoints recover \(m\).
+- Same class, different successor: \(2\) and \(4\) on `v1`–`v3` and
+  `vC`; \(2\) and \(8\) on `v4_mod3`; \(4\) and \(10\) on Border-Hut.
+  Versions were not retuned.
+- Strict hut rank: every frozen version has a class self-loop
+  (the fixed point \(1\), and other self-returns).
+- Even-fan collapse: members of \(E(m)\) are even, so the fan only
+  sees the even slice of a finite label set. For the valuation
+  signature, neighbors of even \(n\) are odd, hence \(v_2=0\).
+- Length-4 BT jet \((1,0,0,0)\) at \(1\) versus \(82\) splits
+  `v3_oddpos`.
+- Out-degree growth on \(m\le 10^5\): `v3` \(6\to 8\), Border-Hut
+  \(6\to 7\), valuation \(15\to 28\).
 
 ## Formalization
 
@@ -161,19 +170,34 @@ None added. Existing `Cells.lean` lemmas are reused. No `sorry`.
 ## Results
 
 Phase 0 is recorded in
-[juggler_cell_hut.md](../research/juggler_cell_hut.md) after the probe
-runs.
+[juggler_cell_hut.md](../research/juggler_cell_hut.md).
+Classification **HUT_COMPLEX**.
+
+On \(1\le m\le 4000\), \(126\) odd cells are occupied. For every
+\(m>1\) with an odd predecessor the order is \(o(m)<m<E(m)\). Every
+frozen signature is a finite label set: occupancy, type, tertile,
+mod \(3\), neighbor-image type, or a bounded \(v_2\) pair. Same-class
+states take incompatible successors. Class graphs are dense or cyclic.
+Even fans occupy only the even slice of those labels. Odd spines
+stop at an empty odd cell or at the fixed point \(1\). Length-4 BT
+jets all split, and \(D\) / \(I_a\) do not supply a hut calculus.
+Selected extension to \(10^5\) grows several out-degrees. No
+well-founded rank was invented.
 
 ## Open questions
 
-Filled after the probe. Do not infer totality from a hut quotient.
+None from this branch. Do not invent a second hut. Do not infer
+totality from a class graph.
 
 ## Decision
 
-Phase-0 will record exactly one of PROMOTE, PARK, or CLOSE after the
-probe. Until that run, the branch is open.
+**CLOSE**. The wide-even / singleton-odd asymmetry is real and already
+certified, but it does not define a local quotient whose forward
+transitions are simpler than \(T\). Finite signatures coarsen the
+state without constraining the successor. Do not add arbitrary
+features. Do not claim termination.
 
-Best next question: pending the probe.
+Best next question: none from this branch.
 
 ## Publication assessment
 

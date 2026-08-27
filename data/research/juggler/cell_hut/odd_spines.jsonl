@@ -1,0 +1,29 @@
+{"root": 1, "depth": 1, "node_sequence": [1, 1], "cell_width_sequence": [1, 1], "parity_sequence": [1, 1], "termination_status": "fixed_point"}
+{"root": 5, "depth": 1, "node_sequence": [5, 3], "cell_width_sequence": [5, 3], "parity_sequence": [1, 1], "termination_status": "empty_odd_cell"}
+{"root": 9, "depth": 0, "node_sequence": [9], "cell_width_sequence": [9], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 37, "depth": 0, "node_sequence": [37], "cell_width_sequence": [37], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 365, "depth": 0, "node_sequence": [365], "cell_width_sequence": [365], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 1999, "depth": 0, "node_sequence": [1999], "cell_width_sequence": [1999], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 2, "depth": 0, "node_sequence": [2], "cell_width_sequence": [3], "parity_sequence": [0], "termination_status": "empty_odd_cell"}
+{"root": 3, "depth": 0, "node_sequence": [3], "cell_width_sequence": [3], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 4, "depth": 0, "node_sequence": [4], "cell_width_sequence": [5], "parity_sequence": [0], "termination_status": "empty_odd_cell"}
+{"root": 6, "depth": 0, "node_sequence": [6], "cell_width_sequence": [7], "parity_sequence": [0], "termination_status": "empty_odd_cell"}
+{"root": 7, "depth": 0, "node_sequence": [7], "cell_width_sequence": [7], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 8, "depth": 0, "node_sequence": [8], "cell_width_sequence": [9], "parity_sequence": [0], "termination_status": "empty_odd_cell"}
+{"root": 10, "depth": 0, "node_sequence": [10], "cell_width_sequence": [11], "parity_sequence": [0], "termination_status": "empty_odd_cell"}
+{"root": 11, "depth": 2, "node_sequence": [11, 5, 3], "cell_width_sequence": [11, 5, 3], "parity_sequence": [1, 1, 1], "termination_status": "empty_odd_cell"}
+{"root": 49, "depth": 0, "node_sequence": [49], "cell_width_sequence": [49], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 69, "depth": 0, "node_sequence": [69], "cell_width_sequence": [69], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 77, "depth": 0, "node_sequence": [77], "cell_width_sequence": [77], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 173, "depth": 0, "node_sequence": [173], "cell_width_sequence": [173], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 193, "depth": 0, "node_sequence": [193], "cell_width_sequence": [193], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 425, "depth": 0, "node_sequence": [425], "cell_width_sequence": [425], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 763, "depth": 0, "node_sequence": [763], "cell_width_sequence": [763], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 1749, "depth": 0, "node_sequence": [1749], "cell_width_sequence": [1749], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 2183, "depth": 0, "node_sequence": [2183], "cell_width_sequence": [2183], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 3889, "depth": 0, "node_sequence": [3889], "cell_width_sequence": [3889], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 4447, "depth": 0, "node_sequence": [4447], "cell_width_sequence": [4447], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 5169, "depth": 0, "node_sequence": [5169], "cell_width_sequence": [5169], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 50093, "depth": 0, "node_sequence": [50093], "cell_width_sequence": [50093], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 193753, "depth": 0, "node_sequence": [193753], "cell_width_sequence": [193753], "parity_sequence": [1], "termination_status": "empty_odd_cell"}
+{"root": 887471, "depth": 0, "node_sequence": [887471], "cell_width_sequence": [887471], "parity_sequence": [1], "termination_status": "empty_odd_cell"}

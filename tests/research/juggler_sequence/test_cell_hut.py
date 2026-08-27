@@ -176,8 +176,13 @@ def test_committed_artifacts_if_present():
     assert payload["anti_overclaim"]["collatz_inverse"] is False
     assert payload["anti_overclaim"]["reopen_backward_geometry"] is False
     assert payload["anti_overclaim"]["hut_descent_is_termination"] is False
-    if payload["decision"]["classification"] == CLASS_COMPLEX:
-        for version, report in payload["scan"]["transitions"].items():
-            assert report["merge_pair"] is not None or report["vacuous_bound"] or report["graph_density"] >= 0.2
-            assert report["n_classes"] < report["n_states"]
-            _ = version
+    assert payload["decision"]["classification"] == CLASS_COMPLEX
+    assert payload["branch_status"] == "CLOSE"
+    v3 = payload["scan"]["transitions"]["v3_oddpos"]
+    assert v3["merge_pair"]["x"] == 2
+    assert v3["merge_pair"]["y"] == 4
+    for version, report in payload["scan"]["transitions"].items():
+        assert report["merge_pair"] is not None
+        assert report["n_classes"] < report["n_states"]
+        assert report["rule"] is None
+        _ = version

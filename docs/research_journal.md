@@ -7820,4 +7820,104 @@ Best next question
 - none from this branch
 ```
 
+## Juggler cell-hut quotient
+
+- **Date:** 2026-08-28
+- **Objective:** Decide whether the wide-even / singleton-odd predecessor-cell asymmetry defines a local class whose forward transitions are simpler than the exact integer map
+- **Hypotheses:** a compact signature of Pred_E / Pred_O sends equivalent neighborhoods to a small structured successor family; the odd spine or even fan supplies a new inverse law; a well-founded hut rank exists
+- **Major results:** Raw H(m)=(Pred_E, Pred_O) determines m and is rejected as a class. Frozen signatures v1–v4, Border-Hut, and valuation are finite label sets. On m<=4000 every version has a same-class merge (2 vs 4, or 4 vs 10) and a class self-loop. Out-degree is bounded only because the label set is finite; several out-degrees grow on m<=1e5. Even fans occupy the even slice of those labels (valuation neighbors of even n are odd, so v2=0). Odd spines stop at an empty odd cell or at 1. Length-4 BT jets all split (1 vs 82). Classification HUT_COMPLEX
+- **Refuted ideas:** H(m) as a class; occupancy / type / tertile / mod 3 / neighbor-image / v2-border as a structured hut transition; even-fan collapse; a new odd-spine law; a BT suffix or D/I hut calculus; a strict hut rank; hut descent as termination
+- **Literature:** even_cell_iff / odd_cell_unique stay in place. Backward geometry, future-quotient, 2-adic bridge, floor-boundary, PE / residual-quotient / sum-rho / realization geometry / information-complexity / accelerated stay CLOSE or PARK
+- **Open:** none from this branch. Do not invent a second hut. Finite class graphs are not a totality theorem
+- **Decision:** CLOSE as HUT_COMPLEX. The cell asymmetry is real and already certified; the induced quotient coarsens T without simplifying the transition algebra
+
+```text
+What was learned
+- Raw predecessor cells determine m; a hut class must forget endpoints
+- Every frozen finite signature has a same-class merge at 2 vs 4 (or 4 vs 10)
+- Out-degree bounds are vacuous label-set bounds and grow with the window
+- Even-fan “compression” is the even slice of those labels, not a new collapse
+- The odd spine is the existing unique-odd descent to an empty cell or 1
+- Length-4 BT jets and D/I do not represent the hut
+- No well-founded rank was justified; class self-loops already block one
+
+Strongest theorem
+- none new; even_cell_iff / odd_cell_unique remain the cell facts
+
+Strongest refutation
+- same hut class implies a structured successor family
+  (2 and 4 share v3_oddpos:0,0,0 and go to v3_oddpos:1,1,1 vs v3_oddpos:0,0,0)
+
+Reusable machinery
+- research.juggler_sequence.cell_hut
+- reuses even_pred_range, pred_odd, floor_power, v2, integer_jet / encode
+
+Prior-art status
+- negative quotient test on certified cells, not a halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The wide-even / singleton-odd asymmetry does not induce a simpler
+  transition algebra. Finite signatures coarsen the state. Stop. Do
+  not invent a second hut.
+
+Best next question
+- none from this branch
+```
+
+## Juggler probabilistic drift and large-deviation frontier
+
+- **Date:** 2026-08-28
+- **Objective:** Derive the exact-to-diagnostic log-log increment of Juggler, test whether large-scale drift is robust across named ensembles, and decide whether model-violating finite paths have exact arithmetic structure
+- **Hypotheses:** a stable negative μ_∞; a finite-memory symbolic process at large scale; a named exceptional family that could support statistical-plus-exact synthesis
+- **Major results:** Mixed-parity one-step and orbit-induced mean ΔL are negative and sit near the ideal half-and-half value −0.1438 (uniform [16,1e5] −0.1442; orbit n<=4000 −0.1437). At ≥64 bits the increment equals the branch term to float precision. Orbit P(O)≈0.501; short history does not replace the current integer. Odd-only one-step drift is tautologically +log(3/2). n<=4000: every start returns, max H=77 at 3889, peak 19694 bits at 2183; 169 starts have H≥16, all odd with long initial O-runs. n<=1e5: 99985/99999 returned, max completed H=183 at 34175, 14 bit-cap leftovers including 48443 and 78901. Descriptive P(H≥k)≈exp(−0.12 k) on n<=4000 is not a theorem. Classification STATISTICAL_ONLY
+- **Refuted ideas:** P(O)=1/2 as a dynamical law; odd-uniform one-step as a competing μ_∞; H≤10 for every n≤4000; M0–M4 yield a pointwise constraint; exceptional starts form a residue / cell family; JUGGLER_EXCEPTIONAL_GREEN / STATISTICAL_EXACT_SYNTHESIS_GREEN
+- **Literature:** tao-2019-almost-all-collatz and prasad-prasad-2025-juggler-like are context only. Phase-12 OOOEE/EE block lemmas and power_bound_contracts stay in place. Closed symbolic-compression branches stay closed
+- **Open:** none from this branch as an automatic sequel. A later theorem would need a named measure and a genuine tail inequality
+- **Decision:** PARK as STATISTICAL_ONLY. Typical contraction is not universal contraction. Do not claim termination
+
+```text
+What was learned
+- L = log log x is a diagnostic; ΔL = branch_term + floor_error
+- Mixed-parity drift is stably negative near −log(4/3)/2
+- Floor error vanishes at large bit length; the integer is still required for the next letter
+- Exceptional finite paths are odd starts with long initial O-runs
+- 14 starts in n<=1e5 hit the 25000-bit cap, including the known 48443 / 78901 records
+- Model complexity past a Bernoulli/Markov baseline does not create a deterministic constraint
+- Typical contraction ≠ universal contraction
+
+Strongest theorem
+- none added; even contraction and power_bound_contracts remain the exact certificates
+
+Strongest refutation
+- the deterministic exceptional set is a new arithmetic family (it is the expanding odd prefix)
+
+Reusable machinery
+- research.juggler_sequence.probabilistic
+- data/research/juggler/probabilistic/
+
+Prior-art status
+- statistical reading of exact J, not a halt result and not a Prasad reproduction
+
+Complexity profile
+- unchanged flood order; no new production attack; CUDA unused
+
+Branch status
+- PARK
+
+Why
+- The increment law is real and robust, but the exceptional set is the
+  expanding branch already visible to the closed exact program. The
+  stochastic model describes typical contraction and does not upgrade
+  it to a pointwise statement.
+
+Best next question
+- none from this branch
+```
+
 

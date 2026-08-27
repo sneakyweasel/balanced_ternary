@@ -1,0 +1,35 @@
+{
+  "experiment": "juggler_cell_hut",
+  "m_max": 4000,
+  "extend_max": 100000,
+  "signature_versions": [
+    "v1_occupancy",
+    "v2_type",
+    "v3_oddpos",
+    "v4_mod3",
+    "vB_border",
+    "vC_valuation"
+  ],
+  "classification": "HUT_COMPLEX",
+  "artifacts": {
+    "hut_states.csv": "data/research/juggler/cell_hut/hut_states.csv",
+    "hut_transitions.csv": "data/research/juggler/cell_hut/hut_transitions.csv",
+    "odd_spines.jsonl": "data/research/juggler/cell_hut/odd_spines.jsonl",
+    "even_fans.csv": "data/research/juggler/cell_hut/even_fans.csv",
+    "hut_counterexamples.jsonl": "data/research/juggler/cell_hut/hut_counterexamples.jsonl"
+  },
+  "independence_claim": false,
+  "cuda": false,
+  "figures": {
+    "cell_hut_m1.svg": "data/research/juggler/cell_hut/figures/cell_hut_m1.svg",
+    "cell_hut_m2.svg": "data/research/juggler/cell_hut/figures/cell_hut_m2.svg",
+    "cell_hut_m5.svg": "data/research/juggler/cell_hut/figures/cell_hut_m5.svg",
+    "cell_hut_m365.svg": "data/research/juggler/cell_hut/figures/cell_hut_m365.svg",
+    "odd_spine_1.svg": "data/research/juggler/cell_hut/figures/odd_spine_1.svg",
+    "odd_spine_5.svg": "data/research/juggler/cell_hut/figures/odd_spine_5.svg",
+    "odd_spine_9.svg": "data/research/juggler/cell_hut/figures/odd_spine_9.svg",
+    "odd_spine_37.svg": "data/research/juggler/cell_hut/figures/odd_spine_37.svg",
+    "odd_spine_365.svg": "data/research/juggler/cell_hut/figures/odd_spine_365.svg",
+    "odd_spine_1999.svg": "data/research/juggler/cell_hut/figures/odd_spine_1999.svg"
+  }
+}

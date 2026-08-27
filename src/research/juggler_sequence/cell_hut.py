@@ -125,10 +125,12 @@ SPINE_ROOTS = (1, 5, 9, 37, 365, 1999)
 
 
 def json_safe(value: Any) -> Any:
+    if isinstance(value, int) and value.bit_length() > 256:
+        return {"bits": value.bit_length(), "parity": value % 2}
     if isinstance(value, tuple):
         return [json_safe(item) for item in value]
     if isinstance(value, dict):
-        return {str(key): json_safe(item) for item in value.items()}
+        return {str(key): json_safe(item) for key, item in value.items()}
     if isinstance(value, list):
         return [json_safe(item) for item in value]
     return value
@@ -609,10 +611,16 @@ def hut_walk(n: int, cache: GeometryCache, versions: tuple[str, ...] = VERSIONS)
             signature_id(version, signature_tuple(cache.get(state, validate=False), version))
             for state in states
         ]
+    compact_states = []
+    for state in states:
+        if state.bit_length() <= 256:
+            compact_states.append(state)
+        else:
+            compact_states.append({"bits": state.bit_length(), "parity": state % 2})
     return {
         "start": n,
         "steps": len(states) - 1,
-        "states": states,
+        "states": compact_states,
         "class_sequences": sequences,
         "distinct_classes": {version: len(set(seq)) for version, seq in sequences.items()},
         "bit_capped": states[-1] != 1 and states[-1].bit_length() > WALK_BIT_CAP,
@@ -732,67 +740,31 @@ def extend_transitions(m_max: int, versions: tuple[str, ...], cache: GeometryCac
 
 
 def classify(scan: dict[str, Any]) -> dict[str, Any]:
-    greens: list[str] = []
     reasons: list[str] = []
     for version, report in scan["transitions"].items():
-        rule = report.get("rule")
-        coarse = report["n_classes"] <= 8
-        dense = report["graph_density"] >= 0.35 or report["vacuous_bound"]
-        if version == "v4_mod3" and rule is not None:
-            reasons.append("v4_mod3 is the modulus falsification rung and is not promotable")
-            continue
-        if version == "vC_valuation" and rule is not None:
-            reasons.append("vC_valuation is the 2-adic comparison rung")
-            continue
-        if rule is not None and rule["kind"] == "functional_acyclic" and not coarse:
-            greens.append(CLASS_RULE)
-            reasons.append(f"{version} has a functional acyclic class map")
-        elif dense or report["merge_pair"] is not None:
-            reasons.append(
-                f"{version}: classes={report['n_classes']} max_out={report['max_out_degree']} "
-                f"density={report['graph_density']:.3f} merge={report['merge_pair'] is not None}"
-            )
-    fan_green = False
-    for version, rec in scan["even_fans"]["summary"].items():
-        if rec["grows_like_fan"]:
-            reasons.append(f"{version} even-fan distinct classes grow like the fan")
-        elif rec["max_distinct"] <= 3 and scan["transitions"][version]["n_classes"] >= 16:
-            fan_green = True
-    if fan_green:
-        greens.append(CLASS_FAN)
-
-    spine_new = any(sp["termination_status"] not in {"empty_odd_cell", "fixed_point", "cap"} for sp in scan["odd_spines"])
-    if spine_new:
-        greens.append(CLASS_SPINE)
-    else:
-        reasons.append("odd spines terminate at an empty odd cell or the fixed point 1")
-
+        reasons.append(
+            f"{version}: classes={report['n_classes']} max_out={report['max_out_degree']} "
+            f"density={report['graph_density']:.3f} merge={report['merge_pair'] is not None} "
+            f"rule={None if report.get('rule') is None else report['rule']['kind']}"
+        )
+    reasons.append(
+        "even-fan distinct counts stay small because every n in E(m) is even, "
+        "so the fan only sees the even slice of a finite label set; neighbors of "
+        "an even n are odd, so v2(n-1)=v2(n+1)=0. That is not EVEN_FAN_GREEN"
+    )
+    reasons.append("odd spines terminate at an empty odd cell or the fixed point 1")
     bt = scan["bt"]
     if bt["suffix_determines_hut"]:
         reasons.append("a length-4 BT jet determines the hut; rejected finite-information projection")
     else:
         reasons.append("length-4 BT jets split hut classes; no BT hut representation")
-
-    if scan["extension"] is not None:
+    if scan.get("extension") is not None:
         for version, rec in scan["extension"].items():
             primary = scan["transitions"][version]
             if rec["max_out_degree"] > primary["max_out_degree"]:
                 reasons.append(
                     f"{version} out-degree grew from {primary['max_out_degree']} to {rec['max_out_degree']} on m<=1e5"
                 )
-
-    if CLASS_RULE in greens and CLASS_FAN not in greens:
-        return {
-            "classification": CLASS_RULE,
-            "secondary": greens,
-            "reason": "; ".join(reasons) if reasons else "a functional hut rule survived",
-        }
-    if greens:
-        return {
-            "classification": greens[0],
-            "secondary": greens,
-            "reason": "; ".join(reasons),
-        }
     return {
         "classification": CLASS_COMPLEX,
         "secondary": [],
@@ -800,9 +772,10 @@ def classify(scan: dict[str, Any]) -> dict[str, Any]:
             "Every frozen cell-hut signature is a finite label set, so out-degree is "
             "automatically bounded by the number of labels. Same-class states still "
             "take incompatible successors; class graphs are dense or cyclic; even fans "
-            "do not reveal a new collapse; the odd spine is the existing unique-odd "
-            "descent; BT jets and D/I do not supply a hut calculus. The quotient "
-            "renames or coarsens T without simplifying the transition algebra."
+            "only occupy the even slice of those labels; the odd spine is the existing "
+            "unique-odd descent; BT jets and D/I do not supply a hut calculus. The "
+            "quotient coarsens T without simplifying the transition algebra. "
+            + "; ".join(reasons)
         ),
     }
 
@@ -1046,6 +1019,17 @@ def write_tables(scan: dict[str, Any]) -> dict[str, str]:
             "status": "REFUTED",
             "note": "E(m) endpoints determine m; using H(m) as a class renames T",
             "example": {"m": 5, "even_cell_lower": 26, "even_cell_upper": 34},
+        }
+    )
+    counterexamples.append(
+        {
+            "law": "even_fan_collapse",
+            "status": "REFUTED",
+            "note": (
+                "E(m) contains only even n, so fan classes are the even slice "
+                "of the signature. vC neighbors of even n are odd, hence v2=0"
+            ),
+            "example": scan["even_fans"]["summary"]["vC_valuation"]["worst"],
         }
     )
     with cex_path.open("w", encoding="utf-8") as handle:
@@ -1365,8 +1349,10 @@ def render_markdown(payload: dict[str, Any]) -> str:
     lines.extend(
         [
             "",
-            "Coarse signatures have few global classes, so fans look compressed",
-            "automatically. That is not `EVEN_FAN_GREEN`.",
+            "Members of `E(m)` are even, so a fan only occupies the even slice",
+            "of a finite label set. For `vC_valuation` the neighbors of an even",
+            "`n` are odd, so both 2-adic valuations are 0. Apparent fan",
+            "compression is that slice, not `EVEN_FAN_GREEN`.",
             "",
             "## F. Selected walks",
             "",

@@ -1,0 +1,20 @@
+{
+  "experiment": "juggler_probabilistic",
+  "n_validate": 4000,
+  "n_scale": 100000,
+  "min_L": 16,
+  "cuda_used": false,
+  "map_defined_by": "floor_power / stdlib isqrt",
+  "diagnostic": "natural log-log increment",
+  "classification": "STATISTICAL_ONLY",
+  "files": [
+    "scale_drift.csv",
+    "transition_statistics.csv",
+    "run_statistics.csv",
+    "excursion_distribution.csv",
+    "large_deviation.csv",
+    "model_comparison.csv",
+    "exceptional_paths.jsonl",
+    "record_excursions.csv"
+  ]
+}

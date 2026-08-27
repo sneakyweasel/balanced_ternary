@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="720" height="220" viewBox="0 0 720 220">
+<rect width="100%" height="100%" fill="#f7f4ea"/>
+<text x="16" y="28" font-family="Georgia, serif" font-size="16">Cell-hut of m=365</text>
+<line x1="40" y1="140" x2="680" y2="140" stroke="#333" stroke-width="2"/>
+<text x="56" y="170" font-size="12" font-family="Georgia, serif">no odd predecessor</text>
+<circle cx="260" cy="140" r="6" fill="#222"/>
+<text x="250" y="120" font-size="12" font-family="Georgia, serif">m=365</text>
+<rect x="380" y="124" width="260" height="32" fill="#7aa2c8" stroke="#234" />
+<text x="400" y="146" font-size="12" font-family="Georgia, serif">E=[133226,133954] size=365</text>
+<text x="16" y="204" font-size="11" font-family="Georgia, serif">order no_odd  tertile=0  lsd=-1;jet=-1,-1,-1,-1;lsd8=-1,-1,-1,-1,-1,-1,1</text>
+</svg>
