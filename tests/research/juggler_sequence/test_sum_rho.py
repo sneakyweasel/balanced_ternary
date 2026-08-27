@@ -44,8 +44,8 @@ def test_path_identity_and_delta_ge_rho():
 
 
 def test_length_one_delta_equals_rho():
-    assert walk(10, 1)["delta"] == walk(10, 1)["rho_sum"] == local_defect(10)
-    assert walk(15, 1)["delta"] == walk(15, 1)["rho_sum"] == local_defect(15)
+    assert walk(10, 1)["rho_sum"] == local_defect(10) == global_defect(10, "E")
+    assert walk(15, 1)["rho_sum"] == local_defect(15) == global_defect(15, "O")
 
 
 def test_no_new_state_potential():

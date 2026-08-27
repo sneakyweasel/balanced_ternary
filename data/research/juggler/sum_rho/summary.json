@@ -1,0 +1,177 @@
+{
+  "decision": {
+    "classification": "RHO_COMPLEX",
+    "secondary": [
+      "RHO_COUNTEREXAMPLE",
+      "RHO_REPACK"
+    ],
+    "reason": "H1 and H3 fail: Rho varies at fixed (k,o) and at fixed run signature (first H1 {'k': 1, 'o': 0, 'n_values': 124, 'pair': [{'n': 4, 'word': 'E', 'rho_sum': 0}, {'n': 3968, 'word': 'E', 'rho_sum': 124}]}; first H3 {'k': 1, 'o': 0, 'runs': 1, 'max_O': 0, 'max_E': 1, 'n_values': 124, 'pair': [{'n': 4, 'word': 'E', 'rho_sum': 0}, {'n': 3968, 'word': 'E', 'rho_sum': 124}]}); H2 k*2n fails at {'n': 3, 'k': 3, 'word': 'OOO', 'rho_sum': 41, 'bound': 21}; H2 k*2n^3 fails at {'n': 25, 'k': 3, 'word': 'OOO', 'rho_sum': 97493, 'bound': 93753}; no new telescope (only pathPows = nextSquares + Rho); H4 is the circular rewrite Rho > surplus implies T<n only because Delta >= Rho and Delta > surplus iff T<n; it never fires on expanding rows; same-word OOE Rho varies ({'word': 'OOE', 'n_realizers': 106, 'min': {'n': 5, 'rho_sum': 39}, 'max': {'n': 775, 'rho_sum': 6023969}, 'varies': True})"
+  },
+  "n_rows": 79553,
+  "h1": {
+    "holds": false,
+    "n_groups": 142,
+    "n_splits": 123,
+    "first": {
+      "k": 1,
+      "o": 0,
+      "n_values": 124,
+      "pair": [
+        {
+          "n": 4,
+          "word": "E",
+          "rho_sum": 0
+        },
+        {
+          "n": 3968,
+          "word": "E",
+          "rho_sum": 124
+        }
+      ]
+    }
+  },
+  "h2": {
+    "k_times_2n3": {
+      "holds": false,
+      "first_counterexample": {
+        "n": 25,
+        "k": 3,
+        "word": "OOO",
+        "rho_sum": 97493,
+        "bound": 93753
+      },
+      "worst_ratio": {
+        "n": 3547,
+        "word": "OOOEOOOEOOOOOO",
+        "ratio": 1.7180881280189654e+103,
+        "rho_sum": 21467774938663757729688406338589392906662976205686818682158585739140952822775240350190598911294724532344512259949066,
+        "bound": 1249515353058
+      }
+    },
+    "k_times_2n": {
+      "holds": false,
+      "first_counterexample": {
+        "n": 3,
+        "k": 3,
+        "word": "OOO",
+        "rho_sum": 41,
+        "bound": 21
+      },
+      "worst_ratio": {
+        "n": 3547,
+        "word": "OOOEOOOEOOOOOO",
+        "ratio": 2.1612579219433966e+110,
+        "rho_sum": 21467774938663757729688406338589392906662976205686818682158585739140952822775240350190598911294724532344512259949066,
+        "bound": 99330
+      }
+    }
+  },
+  "h3": {
+    "holds": false,
+    "n_groups": 2573,
+    "n_splits": 1969,
+    "first": {
+      "k": 1,
+      "o": 0,
+      "runs": 1,
+      "max_O": 0,
+      "max_E": 1,
+      "n_values": 124,
+      "pair": [
+        {
+          "n": 4,
+          "word": "E",
+          "rho_sum": 0
+        },
+        {
+          "n": 3968,
+          "word": "E",
+          "rho_sum": 124
+        }
+      ]
+    }
+  },
+  "h4": {
+    "rho_gt_delta_anywhere": 0,
+    "rho_gt_delta_on_expanding": 0,
+    "rho_le_abs_gap_counterexample": {
+      "n": 3,
+      "word": "O",
+      "rho_sum": 2,
+      "gap": 1
+    },
+    "rho_ge_abs_gap_counterexample": {
+      "n": 1,
+      "word": "O",
+      "rho_sum": 0,
+      "gap": 1
+    }
+  },
+  "telescope": {
+    "n": 37,
+    "word": "OOOOEO",
+    "all_zero": {
+      "id": false,
+      "sq": false,
+      "cube": false,
+      "local_defect": false
+    },
+    "first_nonzero": {
+      "id": 216,
+      "sq": 49284,
+      "cube": 11340000,
+      "local_defect": 306614
+    },
+    "known_path_identity": true
+  },
+  "same_word_ooe": {
+    "word": "OOE",
+    "n_realizers": 106,
+    "min": {
+      "n": 5,
+      "rho_sum": 39
+    },
+    "max": {
+      "n": 775,
+      "rho_sum": 6023969
+    },
+    "varies": true
+  },
+  "hard": {
+    "9": {
+      "word": "OOEOEEEO",
+      "rho_sum": 140,
+      "delta": null,
+      "end": 1,
+      "overflow": false
+    },
+    "37": {
+      "word": "OOOOEOOO",
+      "rho_sum": 32064036900595,
+      "delta": null,
+      "end": 24906114455136,
+      "overflow": false
+    },
+    "49": {
+      "word": "OOEOEEOO",
+      "rho_sum": 6115,
+      "delta": null,
+      "end": 36,
+      "overflow": false
+    },
+    "69": {
+      "word": "OOEOOEEE",
+      "rho_sum": 10086,
+      "delta": null,
+      "end": 3,
+      "overflow": false
+    },
+    "77": {
+      "word": "OOOEOEOO",
+      "rho_sum": 1441315,
+      "delta": null,
+      "end": 233046,
+      "overflow": false
+    }
+  }
+}

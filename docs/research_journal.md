@@ -7255,7 +7255,7 @@ Best next question
 - **Open:** object C global sum-rho bound; not another modulus
 - **Decision:** CLOSE as FUTURE_QUOTIENT_REPACK. Do not add Lean, an automaton, or a new scalar energy
 
-`	ext
+```text
 What was learned
 - Future_1 labels have only 6 classes; residual_V is that next-step rewrite
 - y mod 8 and v2(3y+1) fail at 1 vs 9; y mod 2^16 fails on the atlas sample
@@ -7288,4 +7288,99 @@ Why
 
 Best next question
 - A global sum-rho bound in (n, word statistics), not another residual relation.
-`
+```
+
+## Juggler global sum-rho / word-statistics
+
+- **Date:** 2026-08-27
+- **Objective:** Test whether the existing naive pathDefectSum admits a word-statistics bound that is not a rewrite of Delta or T_w(n)<n
+- **Hypotheses:** H1–H3 survive, or a new A(x)-A(T(x)) telescope, or H4 is a non-circular contraction law
+- **Major results:** RHO_COMPLEX on 79553 itinerary prefixes (n≤4000, k≤20). H1 fails at E: n=4 Rho=0 vs n=3968 Rho=124. H3 fails on the same pair. H2 fails at OOO (n=3 and n=25). OOE Rho ranges from 39 at 5 to 6023969 at 775. No new telescope. H4 is T<n. Delta ≥ Rho on the short identity window
+- **Refuted ideas:** Rho ≤ F(k,o); Rho ≤ F(k,o,runs); k(2n+1) and k(2n^3+1) envelopes; a new state potential
+- **Literature:** pathDefectSum and globalDefect stay the existing objects; residual-quotient and PE-factor branches stay CLOSE
+- **Open:** none from this branch
+- **Decision:** CLOSE as RHO_COMPLEX. Do not invent another scalar aggregate
+
+```text
+What was learned
+- Rho is pathDefectSum; composition is exact additivity; the path identity is already Lean
+- The same one-letter word E already forbids a pure word bound
+- Scale envelopes fail at OOO; later expanding prefixes make Rho / n^3 explode
+- H4 never beats surplus on expanding rows because Delta ≥ Rho and Delta > surplus iff T < n
+- Same word, different n: OOE Rho is state-dependent by many orders of magnitude
+
+Strongest theorem
+- none added
+
+Strongest refutation
+- Rho ≤ F(k,o) (E at 4 vs 3968); Rho ≤ k(2n+1) (OOO at 3)
+
+Reusable machinery
+- research.juggler_sequence.sum_rho
+
+Prior-art status
+- negative object-C census, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- Accumulated naive remainders stay irreducibly state-dependent.
+  The only exact laws were already in pathDefectSum / globalDefect.
+  Do not invent another scalar.
+
+Best next question
+- none from this branch
+```
+
+## Juggler realization-set geometry
+
+- **Date:** 2026-08-27
+- **Objective:** Explain unary nodes of the parked atlas trie by the geometry of realizing sets \(R_w\)
+- **Hypotheses:** inverse-floor cells or scale of \(R_w\) force \(d(w)=1\); \(m(wE)\ge m(w)^2\) lifts past odd letters
+- **Major results:** Child degree is exactly monochrome landing parity of \(T_w(R_w)\). Atlas first holes `EEEEEE` / `EEEEOE` / `EEEOEO` are `SCALE_LIMITED` (tower \(2^{32}\) for \(E^6\); interior hosts 2906 / 6164 / 11310 at length 20). Square amplification fails at `OOOE` (\(m=3\)) and odd-landing jump `OEEE` \(7\to 41<49\). Unary can thaw: 52 returns on \(n\le 10^5\), 5 atlas `EE…` parents. Classification `ROOT_FACTOR_GREEN`
+- **Refuted ideas:** mixed-word square amplification; rooted absence as a forbidden factor; permanent EE freezing; a non-tautological interval rule for \(d(w)\)
+- **Literature:** `JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR` stays CLOSE; residual-future quotient stays CLOSE; `even_tower_to_one` / `even_cell_iff`
+- **Open:** odd-to-odd continuation arithmetic other than the integer y
+- **Decision:** PARK. Landing parity and the root/interior split are exact but already implied by follows/image plus even-scale. Do not promote a restatement
+
+```text
+What was learned
+- d(w) is the number of parities in T_w(R_w); uncovered children are empty
+- The even tower is the only place m(wE)=m(w)^2 holds
+- The first trie holes are SCALE_LIMITED, not CELL_EMPTY
+- EE corridors can thaw; freezing is local, not permanent
+- Span / density / component count do not replace landing parity
+
+Strongest theorem
+- m(E^r)=2^{2^{r-1}} (already Lean even_tower_to_one)
+
+Strongest refutation
+- m(wE)>=m(w)^2 after an odd letter (OOOE at 3; OEEE 7→41)
+
+Reusable machinery
+- research.juggler_sequence.realization_geometry (nested R_w, child split)
+
+Prior-art status
+- realizing-set reading of the parked atlas, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PARK
+
+Why
+- The geometry that decides d(w) is the parity of the image. That is
+  follows/image, not a new cell calculus. The valuable correction is
+  the SCALE_LIMITED / interior-factor split. Stop.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that
+  decides whether a persistent residual landing stays odd-to-odd?
+```
+
+

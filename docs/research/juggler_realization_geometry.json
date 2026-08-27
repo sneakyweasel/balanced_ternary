@@ -1,0 +1,1375 @@
+{
+  "experiment": "juggler_realization_geometry",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "forbidden_factor_law": false,
+    "reopen_pe_factors": false,
+    "reopen_residual_quotient": false,
+    "automaton": false
+  },
+  "scan": {
+    "diagnostic": {
+      "n_max": 4000,
+      "k_max": 12,
+      "n_words": 1836,
+      "uncovered_total": 0,
+      "unary_total": 1186,
+      "unary_monochrome": 1186,
+      "unary_singleton_landing": 1025,
+      "binary_total": 650,
+      "binary_scale_separated": 307,
+      "unary_to_binary": [
+        {
+          "parent": "OEEEOO",
+          "child": "OEEEOOO",
+          "min": 7
+        },
+        {
+          "parent": "OOEOEEEO",
+          "child": "OOEOEEEOO",
+          "min": 9
+        },
+        {
+          "parent": "EOOOE",
+          "child": "EOOOEE",
+          "min": 10
+        },
+        {
+          "parent": "OEOEEEOO",
+          "child": "OEOEEEOOO",
+          "min": 15
+        },
+        {
+          "parent": "OOOEEOEOOEO",
+          "child": "OOOEEOEOOEOE",
+          "min": 39
+        },
+        {
+          "parent": "OOEEEEOO",
+          "child": "OOEEEEOOO",
+          "min": 43
+        },
+        {
+          "parent": "OEOEOOEOEE",
+          "child": "OEOEOOEOEEE",
+          "min": 51
+        },
+        {
+          "parent": "OOOEOEOOEEO",
+          "child": "OOOEOEOOEEOE",
+          "min": 77
+        },
+        {
+          "parent": "EOOEOE",
+          "child": "EOOEOEE",
+          "min": 82
+        },
+        {
+          "parent": "OOEOEOEOEE",
+          "child": "OOEOEOEOEEE",
+          "min": 97
+        },
+        {
+          "parent": "OOEOOOEEEOO",
+          "child": "OOEOOOEEEOOE",
+          "min": 105
+        },
+        {
+          "parent": "OOEOOEEOEOO",
+          "child": "OOEOOEEOEOOE",
+          "min": 109
+        },
+        {
+          "parent": "OEOOOEEOE",
+          "child": "OEOOOEEOEO",
+          "min": 135
+        },
+        {
+          "parent": "OOOEOOOEEO",
+          "child": "OOOEOOOEEOO",
+          "min": 225
+        },
+        {
+          "parent": "OOEOEOOEOOE",
+          "child": "OOEOEOOEOOEE",
+          "min": 263
+        },
+        {
+          "parent": "OOOOEEEEOO",
+          "child": "OOOOEEEEOOE",
+          "min": 271
+        },
+        {
+          "parent": "OEOEOEEO",
+          "child": "OEOEOEEOO",
+          "min": 273
+        },
+        {
+          "parent": "OOOOOOOEEEE",
+          "child": "OOOOOOOEEEEE",
+          "min": 289
+        },
+        {
+          "parent": "OOEEOOOEEOE",
+          "child": "OOEEOOOEEOEO",
+          "min": 307
+        },
+        {
+          "parent": "OOEOOOEOEE",
+          "child": "OOEOOOEOEEE",
+          "min": 319
+        }
+      ],
+      "unary_to_binary_count": 62,
+      "profile": {
+        "1": {
+          "BINARY": 2
+        },
+        "2": {
+          "BINARY": 4
+        },
+        "3": {
+          "BINARY": 8
+        },
+        "4": {
+          "BINARY": 13,
+          "UNARY_O": 2,
+          "UNARY_E": 1
+        },
+        "5": {
+          "BINARY": 20,
+          "UNARY_O": 4,
+          "UNARY_E": 5
+        },
+        "6": {
+          "BINARY": 29,
+          "UNARY_O": 14,
+          "UNARY_E": 6
+        },
+        "7": {
+          "BINARY": 43,
+          "UNARY_O": 20,
+          "UNARY_E": 15
+        },
+        "8": {
+          "BINARY": 73,
+          "UNARY_O": 34,
+          "UNARY_E": 14
+        },
+        "9": {
+          "BINARY": 126,
+          "UNARY_O": 50,
+          "UNARY_E": 18
+        },
+        "10": {
+          "BINARY": 127,
+          "UNARY_O": 93,
+          "UNARY_E": 100
+        },
+        "11": {
+          "BINARY": 121,
+          "UNARY_O": 186,
+          "UNARY_E": 140
+        },
+        "12": {
+          "UNARY_O": 245,
+          "UNARY_E": 239,
+          "BINARY": 84
+        }
+      },
+      "lead_E_unary_frac_at_horizon": {
+        "0": 0.714622641509434,
+        "1": 1.0,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0
+      },
+      "adversarial": [
+        {
+          "word": "E",
+          "length": 1,
+          "lead_E": 1,
+          "lead_O": 0,
+          "odd_count": 0,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.4885,
+          "rho_E": 0.5115,
+          "uncovered": 0,
+          "child_O": 977,
+          "child_E": 1023,
+          "child_O_min": 2,
+          "child_E_min": 4,
+          "child_O_max": 4000,
+          "child_E_max": 3968,
+          "scale_separated": false,
+          "size": 2000,
+          "min": 2,
+          "max": 4000,
+          "span": 3998,
+          "density": 0.5,
+          "n_gaps": 1999,
+          "mean_gap": 2.0,
+          "median_gap": 2,
+          "max_gap": 2,
+          "n_components": 2000,
+          "largest_component": 1,
+          "largest_frac": 0.0005,
+          "n_unique_landings": 63,
+          "landing_min": 1,
+          "landing_max": 63,
+          "odd_landings": 977,
+          "even_landings": 1023,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "EE",
+          "length": 2,
+          "lead_E": 2,
+          "lead_O": 0,
+          "odd_count": 0,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.5826001955034213,
+          "rho_E": 0.4173998044965787,
+          "uncovered": 0,
+          "child_O": 596,
+          "child_E": 427,
+          "child_O_min": 4,
+          "child_E_min": 16,
+          "child_O_max": 3968,
+          "child_E_max": 2400,
+          "scale_separated": false,
+          "size": 1023,
+          "min": 4,
+          "max": 3968,
+          "span": 3964,
+          "density": 0.25575,
+          "n_gaps": 1022,
+          "mean_gap": 3.87866927592955,
+          "median_gap": 2.0,
+          "max_gap": 124,
+          "n_components": 1023,
+          "largest_component": 1,
+          "largest_frac": 0.0009775171065493646,
+          "n_unique_landings": 7,
+          "landing_min": 1,
+          "landing_max": 7,
+          "odd_landings": 596,
+          "even_landings": 427,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "EEE",
+          "length": 3,
+          "lead_E": 3,
+          "lead_O": 0,
+          "odd_count": 0,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.04918032786885246,
+          "rho_E": 0.9508196721311475,
+          "uncovered": 0,
+          "child_O": 21,
+          "child_E": 406,
+          "child_O_min": 16,
+          "child_E_min": 256,
+          "child_O_max": 80,
+          "child_E_max": 2400,
+          "scale_separated": true,
+          "size": 427,
+          "min": 16,
+          "max": 2400,
+          "span": 2384,
+          "density": 0.10675,
+          "n_gaps": 426,
+          "mean_gap": 5.596244131455399,
+          "median_gap": 2.0,
+          "max_gap": 672,
+          "n_components": 427,
+          "largest_component": 1,
+          "largest_frac": 0.00234192037470726,
+          "n_unique_landings": 2,
+          "landing_min": 1,
+          "landing_max": 2,
+          "odd_landings": 21,
+          "even_landings": 406,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "EEEE",
+          "length": 4,
+          "lead_E": 4,
+          "lead_O": 0,
+          "odd_count": 0,
+          "class": "UNARY_O",
+          "mask": 1,
+          "rho_O": 1.0,
+          "rho_E": 0.0,
+          "uncovered": 0,
+          "child_O": 406,
+          "child_E": 0,
+          "child_O_min": 256,
+          "child_E_min": null,
+          "child_O_max": 2400,
+          "child_E_max": null,
+          "scale_separated": null,
+          "size": 406,
+          "min": 256,
+          "max": 2400,
+          "span": 2144,
+          "density": 0.1015,
+          "n_gaps": 405,
+          "mean_gap": 5.293827160493827,
+          "median_gap": 2,
+          "max_gap": 672,
+          "n_components": 406,
+          "largest_component": 1,
+          "largest_frac": 0.0024630541871921183,
+          "n_unique_landings": 1,
+          "landing_min": 1,
+          "landing_max": 1,
+          "odd_landings": 406,
+          "even_landings": 0,
+          "monochrome": true,
+          "singleton_landing": true
+        },
+        {
+          "word": "EO",
+          "length": 2,
+          "lead_E": 1,
+          "lead_O": 0,
+          "odd_count": 1,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.5025588536335721,
+          "rho_E": 0.49744114636642783,
+          "uncovered": 0,
+          "child_O": 491,
+          "child_E": 486,
+          "child_O_min": 2,
+          "child_E_min": 50,
+          "child_O_max": 3598,
+          "child_E_max": 4000,
+          "scale_separated": false,
+          "size": 977,
+          "min": 2,
+          "max": 4000,
+          "span": 3998,
+          "density": 0.24425,
+          "n_gaps": 976,
+          "mean_gap": 4.096311475409836,
+          "median_gap": 2.0,
+          "max_gap": 128,
+          "n_components": 977,
+          "largest_component": 1,
+          "largest_frac": 0.0010235414534288639,
+          "n_unique_landings": 32,
+          "landing_min": 1,
+          "landing_max": 500,
+          "odd_landings": 491,
+          "even_landings": 486,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "EOE",
+          "length": 3,
+          "lead_E": 1,
+          "lead_O": 0,
+          "odd_count": 1,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.5596707818930041,
+          "rho_E": 0.4403292181069959,
+          "uncovered": 0,
+          "child_O": 272,
+          "child_E": 214,
+          "child_O_min": 226,
+          "child_E_min": 50,
+          "child_O_max": 3842,
+          "child_E_max": 4000,
+          "scale_separated": false,
+          "size": 486,
+          "min": 50,
+          "max": 4000,
+          "span": 3950,
+          "density": 0.1215,
+          "n_gaps": 485,
+          "mean_gap": 8.144329896907216,
+          "median_gap": 2,
+          "max_gap": 660,
+          "n_components": 486,
+          "largest_component": 1,
+          "largest_frac": 0.00205761316872428,
+          "n_unique_landings": 15,
+          "landing_min": 4,
+          "landing_max": 22,
+          "odd_landings": 272,
+          "even_landings": 214,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "EOO",
+          "length": 3,
+          "lead_E": 1,
+          "lead_O": 0,
+          "odd_count": 2,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.3340122199592668,
+          "rho_E": 0.6659877800407332,
+          "uncovered": 0,
+          "child_O": 164,
+          "child_E": 327,
+          "child_O_min": 2,
+          "child_E_min": 26,
+          "child_O_max": 3598,
+          "child_E_max": 3134,
+          "scale_separated": false,
+          "size": 491,
+          "min": 2,
+          "max": 3598,
+          "span": 3596,
+          "density": 0.12275,
+          "n_gaps": 490,
+          "mean_gap": 7.338775510204082,
+          "median_gap": 2.0,
+          "max_gap": 528,
+          "n_components": 491,
+          "largest_component": 1,
+          "largest_frac": 0.002036659877800407,
+          "n_unique_landings": 15,
+          "landing_min": 1,
+          "landing_max": 9641,
+          "odd_landings": 164,
+          "even_landings": 327,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "O",
+          "length": 1,
+          "lead_E": 0,
+          "lead_O": 1,
+          "odd_count": 1,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.505,
+          "rho_E": 0.495,
+          "uncovered": 0,
+          "child_O": 1010,
+          "child_E": 990,
+          "child_O_min": 1,
+          "child_E_min": 7,
+          "child_O_max": 3999,
+          "child_E_max": 3995,
+          "scale_separated": false,
+          "size": 2000,
+          "min": 1,
+          "max": 3999,
+          "span": 3998,
+          "density": 0.5,
+          "n_gaps": 1999,
+          "mean_gap": 2.0,
+          "median_gap": 2,
+          "max_gap": 2,
+          "n_components": 2000,
+          "largest_component": 1,
+          "largest_frac": 0.0005,
+          "n_unique_landings": 2000,
+          "landing_min": 1,
+          "landing_max": 252887,
+          "odd_landings": 1010,
+          "even_landings": 990,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "OO",
+          "length": 2,
+          "lead_E": 0,
+          "lead_O": 2,
+          "odd_count": 2,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.504950495049505,
+          "rho_E": 0.49504950495049505,
+          "uncovered": 0,
+          "child_O": 510,
+          "child_E": 500,
+          "child_O_min": 1,
+          "child_E_min": 5,
+          "child_O_max": 3999,
+          "child_E_max": 3989,
+          "scale_separated": false,
+          "size": 1010,
+          "min": 1,
+          "max": 3999,
+          "span": 3998,
+          "density": 0.2525,
+          "n_gaps": 1009,
+          "mean_gap": 3.9623389494549057,
+          "median_gap": 2,
+          "max_gap": 26,
+          "n_components": 1010,
+          "largest_component": 1,
+          "largest_frac": 0.0009900990099009901,
+          "n_unique_landings": 1010,
+          "landing_min": 1,
+          "landing_max": 127171489,
+          "odd_landings": 510,
+          "even_landings": 500,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "OOO",
+          "length": 3,
+          "lead_E": 0,
+          "lead_O": 3,
+          "odd_count": 3,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.5529411764705883,
+          "rho_E": 0.4470588235294118,
+          "uncovered": 0,
+          "child_O": 282,
+          "child_E": 228,
+          "child_O_min": 1,
+          "child_E_min": 3,
+          "child_O_max": 3987,
+          "child_E_max": 3999,
+          "scale_separated": false,
+          "size": 510,
+          "min": 1,
+          "max": 3999,
+          "span": 3998,
+          "density": 0.1275,
+          "n_gaps": 509,
+          "mean_gap": 7.854616895874264,
+          "median_gap": 6,
+          "max_gap": 38,
+          "n_components": 510,
+          "largest_component": 1,
+          "largest_frac": 0.00196078431372549,
+          "n_unique_landings": 510,
+          "landing_min": 1,
+          "landing_max": 1434117166732,
+          "odd_landings": 282,
+          "even_landings": 228,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "OE",
+          "length": 2,
+          "lead_E": 0,
+          "lead_O": 1,
+          "odd_count": 1,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.4868686868686869,
+          "rho_E": 0.5131313131313131,
+          "uncovered": 0,
+          "child_O": 482,
+          "child_E": 508,
+          "child_O_min": 15,
+          "child_E_min": 7,
+          "child_O_max": 3985,
+          "child_E_max": 3995,
+          "scale_separated": false,
+          "size": 990,
+          "min": 7,
+          "max": 3995,
+          "span": 3988,
+          "density": 0.2475,
+          "n_gaps": 989,
+          "mean_gap": 4.032355915065723,
+          "median_gap": 4,
+          "max_gap": 26,
+          "n_components": 990,
+          "largest_component": 1,
+          "largest_frac": 0.00101010101010101,
+          "n_unique_landings": 433,
+          "landing_min": 4,
+          "landing_max": 502,
+          "odd_landings": 482,
+          "even_landings": 508,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "OEO",
+          "length": 3,
+          "lead_E": 0,
+          "lead_O": 1,
+          "odd_count": 2,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.4896265560165975,
+          "rho_E": 0.5103734439834025,
+          "uncovered": 0,
+          "child_O": 236,
+          "child_E": 246,
+          "child_O_min": 19,
+          "child_E_min": 15,
+          "child_O_max": 3985,
+          "child_E_max": 3967,
+          "scale_separated": false,
+          "size": 482,
+          "min": 15,
+          "max": 3985,
+          "span": 3970,
+          "density": 0.1205,
+          "n_gaps": 481,
+          "mean_gap": 8.253638253638254,
+          "median_gap": 4,
+          "max_gap": 38,
+          "n_components": 482,
+          "largest_component": 1,
+          "largest_frac": 0.002074688796680498,
+          "n_unique_landings": 216,
+          "landing_min": 18,
+          "landing_max": 11213,
+          "odd_landings": 236,
+          "even_landings": 246,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "OOE",
+          "length": 3,
+          "lead_E": 0,
+          "lead_O": 2,
+          "odd_count": 2,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.49,
+          "rho_E": 0.51,
+          "uncovered": 0,
+          "child_O": 245,
+          "child_E": 255,
+          "child_O_min": 9,
+          "child_E_min": 5,
+          "child_O_max": 3989,
+          "child_E_max": 3983,
+          "scale_separated": false,
+          "size": 500,
+          "min": 5,
+          "max": 3989,
+          "span": 3984,
+          "density": 0.125,
+          "n_gaps": 499,
+          "mean_gap": 7.9839679358717435,
+          "median_gap": 6,
+          "max_gap": 52,
+          "n_components": 500,
+          "largest_component": 1,
+          "largest_frac": 0.002,
+          "n_unique_landings": 500,
+          "landing_min": 6,
+          "landing_max": 11245,
+          "odd_landings": 245,
+          "even_landings": 255,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "EEO",
+          "length": 3,
+          "lead_E": 2,
+          "lead_O": 0,
+          "odd_count": 1,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.33053691275167785,
+          "rho_E": 0.6694630872483222,
+          "uncovered": 0,
+          "child_O": 197,
+          "child_E": 399,
+          "child_O_min": 4,
+          "child_E_min": 2500,
+          "child_O_max": 1224,
+          "child_E_max": 3968,
+          "scale_separated": true,
+          "size": 596,
+          "min": 4,
+          "max": 3968,
+          "span": 3964,
+          "density": 0.149,
+          "n_gaps": 595,
+          "mean_gap": 6.66218487394958,
+          "median_gap": 2,
+          "max_gap": 1276,
+          "n_components": 596,
+          "largest_component": 1,
+          "largest_frac": 0.0016778523489932886,
+          "n_unique_landings": 4,
+          "landing_min": 1,
+          "landing_max": 18,
+          "odd_landings": 197,
+          "even_landings": 399,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "OEEEE",
+          "length": 5,
+          "lead_E": 0,
+          "lead_O": 1,
+          "odd_count": 1,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.15384615384615385,
+          "rho_E": 0.8461538461538461,
+          "uncovered": 0,
+          "child_O": 30,
+          "child_E": 165,
+          "child_O_min": 41,
+          "child_E_min": 1627,
+          "child_O_max": 345,
+          "child_E_max": 3995,
+          "scale_separated": true,
+          "size": 195,
+          "min": 41,
+          "max": 3995,
+          "span": 3954,
+          "density": 0.04875,
+          "n_gaps": 194,
+          "mean_gap": 20.38144329896907,
+          "median_gap": 4.0,
+          "max_gap": 1282,
+          "n_components": 195,
+          "largest_component": 1,
+          "largest_frac": 0.005128205128205128,
+          "n_unique_landings": 2,
+          "landing_min": 1,
+          "landing_max": 2,
+          "odd_landings": 30,
+          "even_landings": 165,
+          "monochrome": false,
+          "singleton_landing": false
+        },
+        {
+          "word": "OOOOE",
+          "length": 5,
+          "lead_E": 0,
+          "lead_O": 4,
+          "odd_count": 4,
+          "class": "BINARY",
+          "mask": 3,
+          "rho_O": 0.5342465753424658,
+          "rho_E": 0.4657534246575342,
+          "uncovered": 0,
+          "child_O": 78,
+          "child_E": 68,
+          "child_O_min": 37,
+          "child_E_min": 271,
+          "child_O_max": 3939,
+          "child_E_max": 3905,
+          "scale_separated": false,
+          "size": 146,
+          "min": 37,
+          "max": 3939,
+          "span": 3902,
+          "density": 0.0365,
+          "n_gaps": 145,
+          "mean_gap": 26.910344827586208,
+          "median_gap": 18,
+          "max_gap": 118,
+          "n_components": 146,
+          "largest_component": 1,
+          "largest_frac": 0.00684931506849315,
+          "n_unique_landings": 146,
+          "landing_min": 9317,
+          "landing_max": 1261303737,
+          "odd_landings": 78,
+          "even_landings": 68,
+          "monochrome": false,
+          "singleton_landing": false
+        }
+      ],
+      "first_unary_in_window": [
+        {
+          "word": "EEEEO",
+          "length": 5,
+          "lead_E": 4,
+          "lead_O": 0,
+          "odd_count": 1,
+          "class": "UNARY_O",
+          "mask": 1,
+          "rho_O": 1.0,
+          "rho_E": 0.0,
+          "uncovered": 0,
+          "child_O": 406,
+          "child_E": 0,
+          "child_O_min": 256,
+          "child_E_min": null,
+          "child_O_max": 2400,
+          "child_E_max": null,
+          "scale_separated": null,
+          "size": 406,
+          "min": 256,
+          "max": 2400,
+          "span": 2144,
+          "density": 0.1015,
+          "n_gaps": 405,
+          "mean_gap": 5.293827160493827,
+          "median_gap": 2,
+          "max_gap": 672,
+          "n_components": 406,
+          "largest_component": 1,
+          "largest_frac": 0.0024630541871921183,
+          "n_unique_landings": 1,
+          "landing_min": 1,
+          "landing_max": 1,
+          "odd_landings": 406,
+          "even_landings": 0,
+          "monochrome": true,
+          "singleton_landing": true
+        }
+      ]
+    },
+    "confirm": {
+      "n_max": 100000,
+      "k_max": 12,
+      "n_words": 2982,
+      "uncovered_total": 0,
+      "unary_total": 1073,
+      "unary_monochrome": 1073,
+      "unary_singleton_landing": 916,
+      "binary_scale_separated": 327,
+      "binary_total": 1909,
+      "unary_to_binary_count": 52,
+      "unary_to_binary": [
+        {
+          "parent": "EOOOEEEO",
+          "child": "EOOOEEEOO",
+          "min": 10
+        },
+        {
+          "parent": "OEOEEEOO",
+          "child": "OEOEEEOOO",
+          "min": 15
+        },
+        {
+          "parent": "EEEOO",
+          "child": "EEEOOO",
+          "min": 16
+        },
+        {
+          "parent": "OEOOEOEEEO",
+          "child": "OEOOEOEEEOO",
+          "min": 19
+        },
+        {
+          "parent": "OEEOOOE",
+          "child": "OEEOOOEE",
+          "min": 23
+        },
+        {
+          "parent": "EOOEEEOO",
+          "child": "EOOEEEOOO",
+          "min": 26
+        },
+        {
+          "parent": "OOEEOEEEOO",
+          "child": "OOEEOEEEOOO",
+          "min": 33
+        },
+        {
+          "parent": "OOEEEEOO",
+          "child": "OOEEEEOOO",
+          "min": 43
+        },
+        {
+          "parent": "OEOEEOOOE",
+          "child": "OEOEEOOOEE",
+          "min": 67
+        },
+        {
+          "parent": "OOOEEEEEOO",
+          "child": "OOOEEEEEOOO",
+          "min": 75
+        },
+        {
+          "parent": "OEOEOEEEOO",
+          "child": "OEOEOEEEOOO",
+          "min": 83
+        },
+        {
+          "parent": "OOEEEOOOE",
+          "child": "OOEEEOOOEE",
+          "min": 85
+        },
+        {
+          "parent": "OOEOEEEEOO",
+          "child": "OOEOEEEEOOO",
+          "min": 95
+        },
+        {
+          "parent": "OEOOEEEEOO",
+          "child": "OEOOEEEEOOO",
+          "min": 153
+        },
+        {
+          "parent": "OEEOOEOE",
+          "child": "OEEOOEOEE",
+          "min": 359
+        },
+        {
+          "parent": "EOOOEEOE",
+          "child": "EOOOEEOEO",
+          "min": 626
+        },
+        {
+          "parent": "OEOEOOOEEOE",
+          "child": "OEOEOOOEEOEO",
+          "min": 695
+        },
+        {
+          "parent": "OOEOEEOEOO",
+          "child": "OOEOEEOEOOE",
+          "min": 1085
+        },
+        {
+          "parent": "OOOEEEOEOO",
+          "child": "OOOEEEOEOOE",
+          "min": 1093
+        },
+        {
+          "parent": "OEOOEEOEOO",
+          "child": "OEOOEEOEOOE",
+          "min": 1101
+        }
+      ],
+      "profile": {
+        "1": {
+          "BINARY": 2
+        },
+        "2": {
+          "BINARY": 4
+        },
+        "3": {
+          "BINARY": 8
+        },
+        "4": {
+          "BINARY": 15,
+          "UNARY_O": 1
+        },
+        "5": {
+          "BINARY": 26,
+          "UNARY_O": 3,
+          "UNARY_E": 2
+        },
+        "6": {
+          "BINARY": 42,
+          "UNARY_O": 8,
+          "UNARY_E": 7
+        },
+        "7": {
+          "BINARY": 69,
+          "UNARY_O": 15,
+          "UNARY_E": 15
+        },
+        "8": {
+          "BINARY": 104,
+          "UNARY_O": 45,
+          "UNARY_E": 19
+        },
+        "9": {
+          "BINARY": 154,
+          "UNARY_O": 66,
+          "UNARY_E": 52
+        },
+        "10": {
+          "BINARY": 275,
+          "UNARY_O": 104,
+          "UNARY_E": 47
+        },
+        "11": {
+          "BINARY": 497,
+          "UNARY_O": 135,
+          "UNARY_E": 69
+        },
+        "12": {
+          "BINARY": 713,
+          "UNARY_O": 263,
+          "UNARY_E": 222
+        }
+      },
+      "lead_E_unary_frac_at_horizon": {
+        "0": 0.19741100323624594,
+        "1": 0.9863013698630136,
+        "2": 1.0,
+        "3": 1.0,
+        "4": 1.0,
+        "5": 1.0
+      }
+    },
+    "amplification": {
+      "samples": 865,
+      "tower_identity_in_window": true,
+      "square_law_counterexample": {
+        "word": "OOOE",
+        "m_w": 3,
+        "m_wE": 3,
+        "landing": 6
+      },
+      "odd_landing_square_counterexample": {
+        "word": "OEEE",
+        "m_w": 7,
+        "m_wE": 41,
+        "landing": 1
+      },
+      "even_landing_identity_fail": null
+    },
+    "atlas": {
+      "available": true,
+      "experiment_id": "wa-20260827T200310Z-cuda-k20-n100000000",
+      "tower": [
+        {
+          "r": 1,
+          "word": "E",
+          "min_realizer": 2,
+          "status": "FOUND",
+          "tower": 2
+        },
+        {
+          "r": 2,
+          "word": "EE",
+          "min_realizer": 4,
+          "status": "FOUND",
+          "tower": 4
+        },
+        {
+          "r": 3,
+          "word": "EEE",
+          "min_realizer": 16,
+          "status": "FOUND",
+          "tower": 16
+        },
+        {
+          "r": 4,
+          "word": "EEEE",
+          "min_realizer": 256,
+          "status": "FOUND",
+          "tower": 256
+        },
+        {
+          "r": 5,
+          "word": "EEEEE",
+          "min_realizer": 65536,
+          "status": "FOUND",
+          "tower": 65536
+        },
+        {
+          "r": 6,
+          "word": "EEEEEE",
+          "min_realizer": null,
+          "status": "NOT_FOUND_WITHIN_BOUND",
+          "tower": 4294967296
+        },
+        {
+          "r": 7,
+          "word": "EEEEEEE",
+          "min_realizer": null,
+          "status": "NOT_FOUND_WITHIN_BOUND",
+          "tower": null
+        }
+      ],
+      "first_unary": [
+        {
+          "word": "EEEEE",
+          "min_realizer": 65536,
+          "status": "FOUND",
+          "mask": 1,
+          "class": "UNARY_O"
+        },
+        {
+          "word": "EEEEO",
+          "min_realizer": 256,
+          "status": "FOUND",
+          "mask": 1,
+          "class": "UNARY_O"
+        },
+        {
+          "word": "EEEOE",
+          "min_realizer": 6250000,
+          "status": "FOUND",
+          "mask": 2,
+          "class": "UNARY_E"
+        }
+      ],
+      "first_holes": [
+        {
+          "word": "EEEEEE",
+          "min_realizer": null,
+          "status": "NOT_FOUND_WITHIN_BOUND"
+        },
+        {
+          "word": "EEEEOE",
+          "min_realizer": null,
+          "status": "NOT_FOUND_WITHIN_BOUND"
+        },
+        {
+          "word": "EEEOEO",
+          "min_realizer": null,
+          "status": "NOT_FOUND_WITHIN_BOUND"
+        }
+      ],
+      "ee_prefix_length_12": {
+        "count": 37,
+        "unary": 37
+      },
+      "lead_E_unary_length_19": {
+        "0": {
+          "nodes": 76332,
+          "unary": 21785,
+          "frac": 0.28539799821830947
+        },
+        "1": {
+          "nodes": 1476,
+          "unary": 1470,
+          "frac": 0.9959349593495935
+        },
+        "2": {
+          "nodes": 29,
+          "unary": 29,
+          "frac": 1.0
+        },
+        "3": {
+          "nodes": 5,
+          "unary": 5,
+          "frac": 1.0
+        },
+        "4": {
+          "nodes": 2,
+          "unary": 2,
+          "frac": 1.0
+        },
+        "5": {
+          "nodes": 1,
+          "unary": 1,
+          "frac": 1.0
+        }
+      }
+    },
+    "interior": {
+      "available": true,
+      "length": 20,
+      "words": {
+        "EEEEEE": {
+          "count": 2906,
+          "min_position": 1,
+          "min_root_status": "NOT_FOUND_WITHIN_BOUND",
+          "example": {
+            "position": 10,
+            "n": 1571189,
+            "host": "OOOOOOOOOOEEEEEEEEEE"
+          }
+        },
+        "EEEEOE": {
+          "count": 6164,
+          "min_position": 2,
+          "min_root_status": "NOT_FOUND_WITHIN_BOUND",
+          "example": {
+            "position": 9,
+            "n": 613259,
+            "host": "OOOOOOOOOEEEEOEEEEEE"
+          }
+        },
+        "EEEOEO": {
+          "count": 11310,
+          "min_position": 1,
+          "min_root_status": "NOT_FOUND_WITHIN_BOUND",
+          "example": {
+            "position": 8,
+            "n": 14483,
+            "host": "OOOOOOOOEEEOEOEEEEEE"
+          }
+        }
+      }
+    },
+    "missing_children": [
+      {
+        "parent": "EEEEE",
+        "lost": "E",
+        "child": "EEEEEE",
+        "status": "SCALE_LIMITED",
+        "reason": "even_tower(6)=4294967296 > atlas n_max=100000000"
+      },
+      {
+        "parent": "EEEEO",
+        "lost": "E",
+        "child": "EEEEOE",
+        "status": "SCALE_LIMITED",
+        "reason": "absent as a rooted prefix under the atlas bound; present as an interior factor"
+      },
+      {
+        "parent": "EEEOE",
+        "lost": "O",
+        "child": "EEEOEO",
+        "status": "SCALE_LIMITED",
+        "reason": "absent as a rooted prefix under the atlas bound; present as an interior factor"
+      }
+    ],
+    "atlas_unary_return": {
+      "available": true,
+      "unary_to_binary_examples": [
+        {
+          "parent": "OEEEEO",
+          "child": "OEEEEOO"
+        },
+        {
+          "parent": "EOEEEO",
+          "child": "EOEEEOO"
+        },
+        {
+          "parent": "EEOEEO",
+          "child": "EEOEEOO"
+        },
+        {
+          "parent": "EEEEOO",
+          "child": "EEEEOOO"
+        },
+        {
+          "parent": "EEOOEOO",
+          "child": "EEOOEOOE"
+        },
+        {
+          "parent": "OEEEOOOE",
+          "child": "OEEEOOOEE"
+        },
+        {
+          "parent": "EOEEOOOE",
+          "child": "EOEEOOOEE"
+        },
+        {
+          "parent": "EEOOOEEOE",
+          "child": "EEOOOEEOEO"
+        },
+        {
+          "parent": "OOOEEEEEO",
+          "child": "OOOEEEEEOO"
+        },
+        {
+          "parent": "OOEOEEEEO",
+          "child": "OOEOEEEEOO"
+        },
+        {
+          "parent": "OEOOEEEEO",
+          "child": "OEOOEEEEOO"
+        },
+        {
+          "parent": "EOOOEEEEO",
+          "child": "EOOOEEEEOO"
+        },
+        {
+          "parent": "OOEEOEEEO",
+          "child": "OOEEOEEEOO"
+        },
+        {
+          "parent": "OEOEOEEEO",
+          "child": "OEOEOEEEOO"
+        },
+        {
+          "parent": "EOOEOEEEO",
+          "child": "EOOEOEEEOO"
+        },
+        {
+          "parent": "OEEOOEEEO",
+          "child": "OEEOOEEEOO"
+        },
+        {
+          "parent": "EOEOOEEEO",
+          "child": "EOEOOEEEOO"
+        },
+        {
+          "parent": "OOEEEOEEO",
+          "child": "OOEEEOEEOO"
+        },
+        {
+          "parent": "OEOEEOEEO",
+          "child": "OEOEEOEEOO"
+        },
+        {
+          "parent": "EOOEEOEEO",
+          "child": "EOOEEOEEOO"
+        }
+      ],
+      "unary_to_binary_count": 2543,
+      "ee_unary_to_binary": [
+        {
+          "parent": "EEOEEO",
+          "child": "EEOEEOO"
+        },
+        {
+          "parent": "EEEEOO",
+          "child": "EEEEOOO"
+        },
+        {
+          "parent": "EEOOEOO",
+          "child": "EEOOEOOE"
+        },
+        {
+          "parent": "EEOOOEEOE",
+          "child": "EEOOOEEOEO"
+        },
+        {
+          "parent": "EEOOEEEOO",
+          "child": "EEOOEEEOOO"
+        }
+      ],
+      "ee_unary_to_binary_count": 5
+    },
+    "next_step_cell_example": {
+      "m=2": {
+        "even_parents": [
+          4,
+          6,
+          8
+        ],
+        "n_even_parents": 3,
+        "odd_parents": []
+      },
+      "m=1": {
+        "even_parents": [
+          2
+        ],
+        "n_even_parents": 1,
+        "odd_parents": [
+          1
+        ]
+      }
+    }
+  },
+  "lean": {
+    "sorry_free": true,
+    "even_tower_to_one": true,
+    "even_cell_iff": true,
+    "odd_cell_iff": true,
+    "odd_cell_unique": true,
+    "no_forbidden_engines": true,
+    "no_global_termination_theorem": true
+  },
+  "decision": {
+    "classification": "ROOT_FACTOR_GREEN",
+    "secondary": "REALIZATION_COUNTEREXAMPLE",
+    "reason": "Child degree is exactly landing-parity monochromicity of T_w(R_w). Naive m(wE)>=m(w)^2 fails as soon as an odd letter appears (smallest even-landing identity m(OOOE)=m(OOOOE)=3; smallest odd-landing jump m(OEEE)=7 to m(OEEEE)=41<49). The first holes are SCALE_LIMITED root absences with interior witnesses. No extra low-complexity interval rule beyond landing parity survived.",
+    "ee_corridor_reproduced": true
+  },
+  "search_method": "nested R_w by one-pass itinerary; child split by parity of image_after; atlas min-realizer/continuations for the parked k<=20 census"
+}

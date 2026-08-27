@@ -114,7 +114,16 @@ It is not required.
   definition / existing additivity
 - \(\mathrm{Rho}=\sum x_i^{e_i}-\sum T(x_i)^2\) —
   **EXACT — LEAN VERIFIED**
-- H1–H4 — Phase-0 tests
+- H1 \(\mathrm{Rho}\le F(k,o)\) —
+  **REFUTED** (`E` at \(4\) vs \(3968\))
+- H2 \(\mathrm{Rho}\le k(2n+1)\) or \(k(2n^3+1)\) —
+  **REFUTED** (`OOO` at \(3\) and \(25\))
+- H3 run signature determines Rho —
+  **REFUTED** (same `E` pair)
+- H4 \(\mathrm{Rho}\) vs surplus as a new contraction law —
+  **REPARAMETERIZATION** of \(T_w(n)<n\)
+- new \(A(x)-A(T(x))\) telescope —
+  **REFUTED** for the existing potentials
 - global halt — not claimed
 
 ## Experiments
@@ -133,7 +142,21 @@ None opened.
 
 ## Counterexamples
 
-Filled after the Phase-0 run.
+- H1 “\(\mathrm{Rho}\le F(k,o)\)”: word `E`, \(n=4\) has \(\mathrm{Rho}=0\);
+  \(n=3968\) has \(\mathrm{Rho}=124\).
+- H3 “run signature determines Rho”: the same pair; one-letter `E`
+  is a single even run.
+- H2 “\(\mathrm{Rho}\le k(2n+1)\)”: `OOO` at \(n=3\),
+  \(\mathrm{Rho}=41>21\).
+- H2 “\(\mathrm{Rho}\le k(2n^3+1)\)”: `OOO` at \(n=25\),
+  \(\mathrm{Rho}=97493>93753\).
+- Same word, different \(n\): `OOE` has \(\mathrm{Rho}=39\) at \(5\)
+  and \(\mathrm{Rho}=6023969\) at \(775\).
+- H4 “\(\mathrm{Rho}>|3^o-2^k|\) forces contraction”: both
+  directions fail; the surplus comparison reduces to \(T_w(n)<n\).
+- New state potential \(A(x)-A(T(x))\): none of \(x\), \(x^2\),
+  \(x^3\), \(\rho(x)\) telescopes. The only identity is the existing
+  `pathPows = pathNextSquares + pathDefectSum`.
 
 ## Formalization
 
@@ -142,16 +165,46 @@ No `sorry`.
 
 ## Results
 
-Filled after the Phase-0 run.
+Classification **RHO_COMPLEX**, with secondary **RHO_COUNTEREXAMPLE**
+and **RHO_REPACK**.
+
+On itinerary prefixes \(n\le 4000\), \(k\le 20\) (bit cap \(256\))
+plus `HARD_PROBES` and PE starts \(365,1999\), there are \(79553\)
+realized \((n,w)\) rows.
+
+- \(\mathrm{Rho}\) is the existing `pathDefectSum`. Composition is
+  exact additivity. The path identity holds. \(\Delta\ge\mathrm{Rho}\)
+  on the short identity window; length one gives equality.
+- H1 fails at \(124\) of \(142\) \((k,o)\) groups. Smallest split:
+  `E` at \(4\) versus \(3968\).
+- H3 fails at \(1969\) of \(2573\) run-signature groups, same first
+  pair.
+- H2 scale envelopes fail at `OOO`.
+- H4 is the circular rewrite \(\Delta>\mathrm{surplus}\iff T<n\).
+  \(\mathrm{Rho}>\Delta\) never occurs on the short \(\Delta\) window.
+- No new telescope.
+
+No GPU search, no `RHO_RECORD` table, no Lean, no first-return
+induction.
 
 ## Open questions
 
-Filled after the Phase-0 run.
+None opened. Do not invent another scalar aggregate. Residual
+quotients and PE-factor grammar stay closed.
 
 ## Decision
 
-Filled after the Phase-0 run.
+**CLOSE** the sum-\(\rho\) word-statistics attack as `RHO_COMPLEX`.
+Accumulated naive remainders stay state-dependent after aggregation.
+Every proposed bound has a small exact counterexample, and the only
+exact composition/telescope laws were already in
+`pathDefectSum` / `globalDefect`. Do not add Lean. Do not claim
+termination.
+
+Best next question: none from this branch. Do not start another
+scalar energy.
 
 ## Publication assessment
 
-Status: `EXPLORATORY`.
+Status: `EXPLORATORY`. A negative object-C census, not a paper
+candidate and not a Juggler totality result.

@@ -339,6 +339,7 @@ def test_h2(rows: list[dict[str, Any]]) -> dict[str, Any]:
                 if viol is None or (row["n"], row["k"]) < (viol["n"], viol["k"]):
                     viol = {
                         "n": row["n"],
+                        "k": row["k"],
                         "word": row["word"],
                         "rho_sum": row["rho_sum"],
                         "bound": bound,
@@ -441,7 +442,7 @@ def test_h4(rows: list[dict[str, Any]]) -> dict[str, Any]:
             gap_lower = {"n": row["n"], "word": row["word"], "rho_sum": row["rho_sum"], "gap": row["gap"]}
     return {
         "rho_gt_delta_on_expanding": fire_expand,
-        "rho_gt_delta_anywhere": sum(1 for row in surplus_known if row["rho_sum"] > row["delta"]),
+        "rho_gt_delta_anywhere": sum(1 for row in rows if row["rho_sum"] > row["delta"]),
         "n_expanding": len(expanding),
         "n_contracting": len(contracting),
         "rho_le_abs_gap_counterexample": gap_upper,
