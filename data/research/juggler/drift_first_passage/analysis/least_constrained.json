@@ -1,0 +1,98 @@
+[
+  {
+    "word": "OOE",
+    "length": 3,
+    "start_count": 254,
+    "G": -1,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOEO",
+    "length": 4,
+    "start_count": 130,
+    "G": -11,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOOE",
+    "length": 4,
+    "start_count": 117,
+    "G": -11,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOOOE",
+    "length": 5,
+    "start_count": 74,
+    "G": -49,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOEOO",
+    "length": 5,
+    "start_count": 64,
+    "G": -49,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOOEO",
+    "length": 5,
+    "start_count": 57,
+    "G": -49,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOOOEO",
+    "length": 6,
+    "start_count": 38,
+    "G": -179,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOEOOO",
+    "length": 6,
+    "start_count": 36,
+    "G": -179,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOOOEE",
+    "length": 6,
+    "start_count": 36,
+    "G": -17,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOOEOO",
+    "length": 6,
+    "start_count": 33,
+    "G": -179,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOEOOE",
+    "length": 6,
+    "start_count": 28,
+    "G": -17,
+    "mixed": true,
+    "modulus": 2
+  },
+  {
+    "word": "OOOOOE",
+    "length": 6,
+    "start_count": 28,
+    "G": -179,
+    "mixed": true,
+    "modulus": 2
+  }
+]

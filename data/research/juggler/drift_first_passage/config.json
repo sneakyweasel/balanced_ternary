@@ -1,0 +1,41 @@
+{
+  "search_id": "juggler-drift-first-passage-phase0-n2-2000-hunt100000",
+  "algorithm_version": "drift-first-passage-v1",
+  "classification_version": "drift-first-passage-class-v1",
+  "n_start": 2,
+  "n_end": 2000,
+  "hunt_start": 2,
+  "hunt_end": 100000,
+  "horizon": 10000,
+  "bit_cap": 4096,
+  "hunt_bit_cap": 2000000,
+  "crossing_policy": "stop at first G_k>0; absorb if T^k=1 still NC",
+  "hard_starts": [
+    9,
+    37,
+    49,
+    69,
+    77,
+    173
+  ],
+  "tall_starts": [
+    193,
+    557,
+    761
+  ],
+  "record_starts": [
+    9,
+    37,
+    49,
+    69,
+    77,
+    173,
+    193,
+    557,
+    761,
+    1181,
+    1721,
+    1773
+  ],
+  "arithmetic": "python-int"
+}

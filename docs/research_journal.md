@@ -6238,3 +6238,49 @@ Best next question
 - A genuine existence argument that every n>=2 eventually takes an even step with 2^{k-1} <= 3^{o} < 2^k, not another endpoint laboratory.
 ```
 
+## Juggler drift-first-passage tree
+
+- **Date:** 2026-08-27
+- **Objective:** Test whether nested realizing sets \(A_w^{NC}\) of actual prefix-NC words acquire a named arithmetic constraint that forbids indefinite continuation
+- **Hypotheses:** `DRIFT_TREE_PRUNING_GREEN`, `DRIFT_FIRST_PASSAGE_UNBOUNDED`, `DRIFT_FIRST_PASSAGE_COMPLEX`, `DRIFT_FIRST_PASSAGE_INCOMPLETE`, `DRIFT_FIRST_PASSAGE_COUNTEREXAMPLE`
+- **Major results:** Nested window \(n=2..2000\): \(1318\) prefix-NC words, compression \(\approx 1\) after length \(4\); tags empty \(1072\), same \(1048\), tautological subset \(10\), named-thinner \(259\) (residue/modulus artefacts, not a rule). Hunt \(n\le 10^5\): max \(\tau_+=253\) at \(n=78901\); \(n=193\), \(\tau_+=70\), last NC \(6498\) still holds; leftover \(n=48443\) at the bit cap. Classification **DRIFT_FIRST_PASSAGE_COMPLEX**. Records: `docs/research/juggler_drift_first_passage.md`, `docs/problems/juggler_drift_first_passage.md`, `data/research/juggler/drift_first_passage/`. Control layer unchanged. `ResidualStep` not extended. No Lean file
+- **Refuted ideas:** nested start-set signatures compress below the words; a cardinality drop is a pruning rule; \(\tau_+\le 70\); late first-passage starts occupy a thin residue class; a larger record is an unbounded family
+- **Literature:** `oeis-A007320`; Terras stopping-time is methodological only (`terras-1976-stopping-time`); prefix-NC / endpoint / corridor / CycleDiophantine remain closed; odd-fourth-power remains parked
+- **Open:** does every \(n\ge 2\) realize a finite prefix with \(3^o<2^k\)? Nested start-sets do not supply the obstruction
+- **Decision:** CLOSE the drift-first-passage branch as `DRIFT_FIRST_PASSAGE_COMPLEX`. Do not add Lean. Do not claim termination
+
+```text
+What was learned
+- A_w as part of the node is the right object; window-exact nested sets still do not prune
+- After length 4, distinct arithmetic signatures track the words (compression near 1)
+- Named-thinner hits are residue death or modulus artefacts of longer prefixes, not a rule
+- Least-constrained mixed prefixes are the short words OOE / OOEO / OOOE
+- Hunt record is n=78901 with tau_+=253; n=193 / tau_+=70 remains the nested-window regression
+- One hunt start (n=48443) hit the bit cap still prefix-NC; that cutoff is not L
+
+Strongest theorem
+- none new; power_bound_contracts remains the Lean fact that G>0 implies T^k<n
+
+Strongest refutation
+- nested A_w signatures compress, or tau_+ <= 70
+
+Reusable machinery
+- research.juggler_sequence.drift_first_passage
+- data/research/juggler/drift_first_passage/
+
+Prior-art status
+- negative nested-set result plus a larger delay record, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- CLOSE
+
+Why
+- The nested start-set does not acquire a named pruning rule. Isolated larger tau_+ records change the known delay, not the induction. Stop before Lean and before a formal prefix tree.
+
+Best next question
+- A genuine existence argument that every n>=2 eventually takes an even step with 2^{k-1} <= 3^{o} < 2^k, not another start-set census.
+```
+

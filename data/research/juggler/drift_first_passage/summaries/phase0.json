@@ -1,0 +1,1127 @@
+{
+  "decision": {
+    "classification": "DRIFT_FIRST_PASSAGE_COMPLEX",
+    "secondary": [],
+    "reason": "nested A_w signatures do not compress below the words themselves; 10 extensions are tautological window subsets and 259 named-thinner hits are residue/modulus artefacts of longer prefixes, not a pruning rule; hunt max tau_+=253 is a larger record, not a structured unbounded family; 1 hunt bit-cap leftovers are not a bound L"
+  },
+  "window": {
+    "n_start": 2,
+    "n_end": 2000,
+    "hunt_start": 2,
+    "hunt_end": 100000,
+    "horizon": 10000,
+    "bit_cap": 4096,
+    "hunt_bit_cap": 2000000,
+    "hard_starts": [
+      9,
+      37,
+      49,
+      69,
+      77,
+      173
+    ],
+    "tall_starts": [
+      193,
+      557,
+      761
+    ],
+    "record_starts": [
+      9,
+      37,
+      49,
+      69,
+      77,
+      173,
+      193,
+      557,
+      761,
+      1181,
+      1721,
+      1773
+    ],
+    "algorithm_version": "drift-first-passage-v1",
+    "classification_version": "drift-first-passage-class-v1",
+    "search_id": "juggler-drift-first-passage-phase0-n2-2000-hunt100000",
+    "crossing_policy": "stop at first G_k>0; absorb if T^k=1 still NC"
+  },
+  "nested": {
+    "n_start": 2,
+    "n_end": 2000,
+    "start_count": 1999,
+    "crossed": 1999,
+    "absorbed_count": 0,
+    "unfinished_count": 0,
+    "identity_failure_count": 0,
+    "even_tau_failures": [],
+    "max_tau": 70,
+    "max_peak_bits": 900,
+    "prefix_count": 1318,
+    "mixed_prefix_count": 1307,
+    "tag_counts": {
+      "empty": 1072,
+      "same": 1048,
+      "strict_subset": 10,
+      "named_thinner": 259
+    },
+    "named_examples": [
+      {
+        "parent": "OOOE",
+        "letter": "O",
+        "child": "OOOEO",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 117,
+        "child_count": 57,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOO",
+        "letter": "O",
+        "child": "OOOOO",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 134,
+        "child_count": 60,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOO",
+        "letter": "E",
+        "child": "OOOOE",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 134,
+        "child_count": 74,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOOE",
+        "letter": "O",
+        "child": "OOOOEO",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 74,
+        "child_count": 38,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOOE",
+        "letter": "E",
+        "child": "OOOOEE",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 74,
+        "child_count": 36,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOOEO",
+        "letter": "O",
+        "child": "OOOOEOO",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 38,
+        "child_count": 13,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOOEO",
+        "letter": "E",
+        "child": "OOOOEOE",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 38,
+        "child_count": 25,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOOEOO",
+        "letter": "O",
+        "child": "OOOOEOOO",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 13,
+        "child_count": 7,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOOEOO",
+        "letter": "E",
+        "child": "OOOOEOOE",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 13,
+        "child_count": 6,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOOEOOO",
+        "letter": "O",
+        "child": "OOOOEOOOO",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 7,
+        "child_count": 3,
+        "parent_modulus": 2,
+        "child_modulus": 12
+      },
+      {
+        "parent": "OOOOEOOO",
+        "letter": "E",
+        "child": "OOOOEOOOE",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 7,
+        "child_count": 4,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      },
+      {
+        "parent": "OOOOEOOOE",
+        "letter": "O",
+        "child": "OOOOEOOOEO",
+        "keeps_nc": true,
+        "tag": "named_thinner",
+        "parent_count": 4,
+        "child_count": 3,
+        "parent_modulus": 2,
+        "child_modulus": 2
+      }
+    ],
+    "empty_examples": [
+      {
+        "parent": "OOOOEOOOEE",
+        "letter": "E",
+        "child": "OOOOEOOOEEE",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOOEOOOEEO",
+        "letter": "E",
+        "child": "OOOOEOOOEEOE",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOOEOOOEEOO",
+        "letter": "O",
+        "child": "OOOOEOOOEEOOO",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOOEOOOEEOOE",
+        "letter": "O",
+        "child": "OOOOEOOOEEOOEO",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOOEOOOEEOOEE",
+        "letter": "O",
+        "child": "OOOOEOOOEEOOEEO",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOEOEOOE",
+        "letter": "O",
+        "child": "OOOEOEOOEO",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOOEOEOOOEE",
+        "letter": "O",
+        "child": "OOOOEOEOOOEEO",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 3,
+        "child_count": 0,
+        "parent_modulus": 2,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOEOOOOOEE",
+        "letter": "O",
+        "child": "OOOEOOOOOEEO",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOEOOOOOEEE",
+        "letter": "O",
+        "child": "OOOEOOOOOEEEO",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOOOOEOE",
+        "letter": "O",
+        "child": "OOOOOOEOEO",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 2,
+        "child_count": 0,
+        "parent_modulus": 458,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOOOOEOEEO",
+        "letter": "E",
+        "child": "OOOOOOEOEEOE",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      },
+      {
+        "parent": "OOOOOOEOEEOO",
+        "letter": "E",
+        "child": "OOOOOOEOEEOOE",
+        "keeps_nc": true,
+        "tag": "empty",
+        "parent_count": 1,
+        "child_count": 0,
+        "parent_modulus": 0,
+        "child_modulus": 0
+      }
+    ],
+    "depth_census": [
+      {
+        "length": 1,
+        "words": 1,
+        "mixed_words": 0,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 999
+      },
+      {
+        "length": 2,
+        "words": 1,
+        "mixed_words": 0,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 505
+      },
+      {
+        "length": 3,
+        "words": 2,
+        "mixed_words": 1,
+        "signatures": 1,
+        "compression": 0.5,
+        "max_start_count": 254
+      },
+      {
+        "length": 4,
+        "words": 3,
+        "mixed_words": 2,
+        "signatures": 1,
+        "compression": 0.333333,
+        "max_start_count": 134
+      },
+      {
+        "length": 5,
+        "words": 4,
+        "mixed_words": 3,
+        "signatures": 4,
+        "compression": 1.0,
+        "max_start_count": 74
+      },
+      {
+        "length": 6,
+        "words": 8,
+        "mixed_words": 7,
+        "signatures": 8,
+        "compression": 1.0,
+        "max_start_count": 38
+      },
+      {
+        "length": 7,
+        "words": 13,
+        "mixed_words": 12,
+        "signatures": 13,
+        "compression": 1.0,
+        "max_start_count": 25
+      },
+      {
+        "length": 8,
+        "words": 19,
+        "mixed_words": 18,
+        "signatures": 19,
+        "compression": 1.0,
+        "max_start_count": 16
+      },
+      {
+        "length": 9,
+        "words": 38,
+        "mixed_words": 37,
+        "signatures": 38,
+        "compression": 1.0,
+        "max_start_count": 10
+      },
+      {
+        "length": 10,
+        "words": 55,
+        "mixed_words": 54,
+        "signatures": 55,
+        "compression": 1.0,
+        "max_start_count": 6
+      },
+      {
+        "length": 11,
+        "words": 87,
+        "mixed_words": 86,
+        "signatures": 79,
+        "compression": 0.908046,
+        "max_start_count": 4
+      },
+      {
+        "length": 12,
+        "words": 98,
+        "mixed_words": 98,
+        "signatures": 82,
+        "compression": 0.836735,
+        "max_start_count": 3
+      },
+      {
+        "length": 13,
+        "words": 85,
+        "mixed_words": 85,
+        "signatures": 73,
+        "compression": 0.858824,
+        "max_start_count": 2
+      },
+      {
+        "length": 14,
+        "words": 90,
+        "mixed_words": 90,
+        "signatures": 76,
+        "compression": 0.844444,
+        "max_start_count": 2
+      },
+      {
+        "length": 15,
+        "words": 79,
+        "mixed_words": 79,
+        "signatures": 66,
+        "compression": 0.835443,
+        "max_start_count": 2
+      },
+      {
+        "length": 16,
+        "words": 65,
+        "mixed_words": 65,
+        "signatures": 57,
+        "compression": 0.876923,
+        "max_start_count": 2
+      },
+      {
+        "length": 17,
+        "words": 65,
+        "mixed_words": 65,
+        "signatures": 57,
+        "compression": 0.876923,
+        "max_start_count": 2
+      },
+      {
+        "length": 18,
+        "words": 54,
+        "mixed_words": 54,
+        "signatures": 47,
+        "compression": 0.87037,
+        "max_start_count": 2
+      },
+      {
+        "length": 19,
+        "words": 55,
+        "mixed_words": 55,
+        "signatures": 48,
+        "compression": 0.872727,
+        "max_start_count": 1
+      },
+      {
+        "length": 20,
+        "words": 52,
+        "mixed_words": 52,
+        "signatures": 46,
+        "compression": 0.884615,
+        "max_start_count": 1
+      },
+      {
+        "length": 21,
+        "words": 45,
+        "mixed_words": 45,
+        "signatures": 40,
+        "compression": 0.888889,
+        "max_start_count": 1
+      },
+      {
+        "length": 22,
+        "words": 45,
+        "mixed_words": 45,
+        "signatures": 40,
+        "compression": 0.888889,
+        "max_start_count": 1
+      },
+      {
+        "length": 23,
+        "words": 38,
+        "mixed_words": 38,
+        "signatures": 36,
+        "compression": 0.947368,
+        "max_start_count": 1
+      },
+      {
+        "length": 24,
+        "words": 27,
+        "mixed_words": 27,
+        "signatures": 25,
+        "compression": 0.925926,
+        "max_start_count": 1
+      },
+      {
+        "length": 25,
+        "words": 27,
+        "mixed_words": 27,
+        "signatures": 25,
+        "compression": 0.925926,
+        "max_start_count": 1
+      },
+      {
+        "length": 26,
+        "words": 22,
+        "mixed_words": 22,
+        "signatures": 21,
+        "compression": 0.954545,
+        "max_start_count": 1
+      },
+      {
+        "length": 27,
+        "words": 16,
+        "mixed_words": 16,
+        "signatures": 15,
+        "compression": 0.9375,
+        "max_start_count": 1
+      },
+      {
+        "length": 28,
+        "words": 16,
+        "mixed_words": 16,
+        "signatures": 15,
+        "compression": 0.9375,
+        "max_start_count": 1
+      },
+      {
+        "length": 29,
+        "words": 14,
+        "mixed_words": 14,
+        "signatures": 13,
+        "compression": 0.928571,
+        "max_start_count": 1
+      },
+      {
+        "length": 30,
+        "words": 14,
+        "mixed_words": 14,
+        "signatures": 13,
+        "compression": 0.928571,
+        "max_start_count": 1
+      },
+      {
+        "length": 31,
+        "words": 13,
+        "mixed_words": 13,
+        "signatures": 12,
+        "compression": 0.923077,
+        "max_start_count": 1
+      },
+      {
+        "length": 32,
+        "words": 11,
+        "mixed_words": 11,
+        "signatures": 10,
+        "compression": 0.909091,
+        "max_start_count": 1
+      },
+      {
+        "length": 33,
+        "words": 11,
+        "mixed_words": 11,
+        "signatures": 10,
+        "compression": 0.909091,
+        "max_start_count": 1
+      },
+      {
+        "length": 34,
+        "words": 11,
+        "mixed_words": 11,
+        "signatures": 10,
+        "compression": 0.909091,
+        "max_start_count": 1
+      },
+      {
+        "length": 35,
+        "words": 9,
+        "mixed_words": 9,
+        "signatures": 8,
+        "compression": 0.888889,
+        "max_start_count": 1
+      },
+      {
+        "length": 36,
+        "words": 9,
+        "mixed_words": 9,
+        "signatures": 8,
+        "compression": 0.888889,
+        "max_start_count": 1
+      },
+      {
+        "length": 37,
+        "words": 8,
+        "mixed_words": 8,
+        "signatures": 7,
+        "compression": 0.875,
+        "max_start_count": 1
+      },
+      {
+        "length": 38,
+        "words": 8,
+        "mixed_words": 8,
+        "signatures": 7,
+        "compression": 0.875,
+        "max_start_count": 1
+      },
+      {
+        "length": 39,
+        "words": 8,
+        "mixed_words": 8,
+        "signatures": 7,
+        "compression": 0.875,
+        "max_start_count": 1
+      },
+      {
+        "length": 40,
+        "words": 7,
+        "mixed_words": 7,
+        "signatures": 6,
+        "compression": 0.857143,
+        "max_start_count": 1
+      },
+      {
+        "length": 41,
+        "words": 7,
+        "mixed_words": 7,
+        "signatures": 6,
+        "compression": 0.857143,
+        "max_start_count": 1
+      },
+      {
+        "length": 42,
+        "words": 7,
+        "mixed_words": 7,
+        "signatures": 6,
+        "compression": 0.857143,
+        "max_start_count": 1
+      },
+      {
+        "length": 43,
+        "words": 6,
+        "mixed_words": 6,
+        "signatures": 5,
+        "compression": 0.833333,
+        "max_start_count": 1
+      },
+      {
+        "length": 44,
+        "words": 6,
+        "mixed_words": 6,
+        "signatures": 5,
+        "compression": 0.833333,
+        "max_start_count": 1
+      },
+      {
+        "length": 45,
+        "words": 6,
+        "mixed_words": 6,
+        "signatures": 5,
+        "compression": 0.833333,
+        "max_start_count": 1
+      },
+      {
+        "length": 46,
+        "words": 5,
+        "mixed_words": 5,
+        "signatures": 5,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 47,
+        "words": 5,
+        "mixed_words": 5,
+        "signatures": 5,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 48,
+        "words": 5,
+        "mixed_words": 5,
+        "signatures": 5,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 49,
+        "words": 5,
+        "mixed_words": 5,
+        "signatures": 5,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 50,
+        "words": 3,
+        "mixed_words": 3,
+        "signatures": 3,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 51,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 52,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 53,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 54,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 55,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 56,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 57,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 58,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 59,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 60,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 61,
+        "words": 2,
+        "mixed_words": 2,
+        "signatures": 2,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 62,
+        "words": 1,
+        "mixed_words": 1,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 63,
+        "words": 1,
+        "mixed_words": 1,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 64,
+        "words": 1,
+        "mixed_words": 1,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 65,
+        "words": 1,
+        "mixed_words": 1,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 66,
+        "words": 1,
+        "mixed_words": 1,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 67,
+        "words": 1,
+        "mixed_words": 1,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 68,
+        "words": 1,
+        "mixed_words": 1,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 1
+      },
+      {
+        "length": 69,
+        "words": 1,
+        "mixed_words": 1,
+        "signatures": 1,
+        "compression": 1.0,
+        "max_start_count": 1
+      }
+    ],
+    "least_constrained": [
+      {
+        "word": "OOE",
+        "length": 3,
+        "start_count": 254,
+        "G": -1,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOEO",
+        "length": 4,
+        "start_count": 130,
+        "G": -11,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOOE",
+        "length": 4,
+        "start_count": 117,
+        "G": -11,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOOOE",
+        "length": 5,
+        "start_count": 74,
+        "G": -49,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOEOO",
+        "length": 5,
+        "start_count": 64,
+        "G": -49,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOOEO",
+        "length": 5,
+        "start_count": 57,
+        "G": -49,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOOOEO",
+        "length": 6,
+        "start_count": 38,
+        "G": -179,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOEOOO",
+        "length": 6,
+        "start_count": 36,
+        "G": -179,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOOOEE",
+        "length": 6,
+        "start_count": 36,
+        "G": -17,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOOEOO",
+        "length": 6,
+        "start_count": 33,
+        "G": -179,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOEOOE",
+        "length": 6,
+        "start_count": 28,
+        "G": -17,
+        "mixed": true,
+        "modulus": 2
+      },
+      {
+        "word": "OOOOOE",
+        "length": 6,
+        "start_count": 28,
+        "G": -179,
+        "mixed": true,
+        "modulus": 2
+      }
+    ]
+  },
+  "hunt": {
+    "max_tau": 253,
+    "max_tau_n": 78901,
+    "crossed": 99998,
+    "unfinished_count": 1,
+    "beats_known_record": [
+      {
+        "n": 78901,
+        "tau_plus": 253,
+        "odd_count": 159,
+        "word": "OOOOEOEOOOOEOEEOOOOEOOOOOEOEOOOOOEOOOOOEOOOOEOOOOOOOOOEEOOOOEEOOOEOEOOEOOEOOOOOEOEOOEOEOEEOEEOOOEEOOOEOOOOOOOEOEEEOOEOEEOOOOEOEEOEOEOOEOEEOEOEOEOOOEEEOOOEOOEOOEOEOEOEOEEEOOEOEEOEOOEOOOOOEOEEOOOEOOEOEOOOOOOEOEEOOEOEEEOOOOOOOOOEEOOEOOEEOOOEEEOEEEEOOEOOEEE",
+        "pred": 84694,
+        "pred_bits": 17,
+        "G_tau": 7191527803718120219869487625089243434136398048234153211327923351434830419925,
+        "peak_bits": 1234916,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 34175,
+        "tau_plus": 183,
+        "odd_count": 115,
+        "word": "OOOOOEOOOEOOEOOOOEOEEEOOOOEOEOEOOOOEEOEOOOEOOOOOOOOEOOOOOEOOOEEEEOEOEOOOOOOOEEOOEOEOEOOEOOEOOOEOOOEEOEOEOOEEOOEEOOOEOOOOOEEOEEOOOEEOOEOOEOOOOEOEOEOOOOOEEEEOEEOOOOEEEOOOEOEEOEEOOEOOEEE",
+        "pred": 294704,
+        "pred_bits": 19,
+        "G_tau": 4864860212052908354878381857080642029725733440276014501,
+        "peak_bits": 19297,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 28719,
+        "tau_plus": 156,
+        "odd_count": 98,
+        "word": "OOEOOOOOOOOOEEOOOOEEOOOEOOOOOOOEEOOOOEOOOEOEOEEEOEEOOOEOOOOOOEEEOEOOOEOEOEEEOOEOEEOOEOOEOOEOOEOEOOEOOOOOOOOEOEOOOOEEOOOEOOEOOOEOOOEEOOOEEEEOOOEEEOEEEEOOOEEE",
+        "pred": 388794,
+        "pred_bits": 19,
+        "G_tau": 34079683362957951161456843181920880650483837047,
+        "peak_bits": 12480,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 13325,
+        "tau_plus": 154,
+        "odd_count": 97,
+        "word": "OOOOOOOOOOOOOOEOEEEOOOEOOOEEOOEEEOOEOOOOOOEOEOOOOEOOEEEOEOOEEOOEEOOOOEOOOEOEEEOOOOOOOOEOOOEOEOEOEOOOEOEEOOOOEOOEOOEOOEOEOEEOOEOOEOOOOEEEEEEOOEOOOOEOEEOEEE",
+        "pred": 7860112,
+        "pred_bits": 23,
+        "G_tau": 3747906759887531021508089223576319489453297021,
+        "peak_bits": 4223,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 56509,
+        "tau_plus": 138,
+        "odd_count": 87,
+        "word": "OOEOOEOOOEOOEOEOOEOEOOOOOOOOOEEEEOOEOOOOEOOEOOEOOOOOOEOEEEOOOOOEOEEEEOOOOOEOOOOEOEOEEEOOOOEOOEOEOEOOOOOOOEOEOEOEOEOOEEOOOOEOOEOEEOOEEEOEEE",
+        "pred": 656330956,
+        "pred_bits": 30,
+        "G_tau": 25191233797866452294221617288770376677557,
+        "peak_bits": 2923,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 83787,
+        "tau_plus": 138,
+        "odd_count": 87,
+        "word": "OOEOOOOEOEOEOEOOOOEEOOOOEOOOOOOEEOOOOOOEEOEOOOEOEOEOOEEOEOOOOOEEOOOOOEOEEEOEOEEOOEOOEEOEOOEOEOEOOOOEOOOEEOOOOOOOOOEEOEOOEEOOOOOEEEEOOOEEEE",
+        "pred": 1363020656,
+        "pred_bits": 31,
+        "G_tau": 25191233797866452294221617288770376677557,
+        "peak_bits": 2210,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 15845,
+        "tau_plus": 132,
+        "odd_count": 83,
+        "word": "OOOOOOOOOOOOOOOOOOOEEOEOEEOEEOOOEOOOOOOOOOOEEEEEOOOOOEOOEOEEOOOOEOOEEOOEEOOOEOOEEOOEEEOEOOOOOEEOEOEOEOEOOOEEEOEOOOEEOOOEEOOEOOEEOEEE",
+        "pred": 1435662,
+        "pred_bits": 21,
+        "G_tau": 1453679476547675485879747043335942348069,
+        "peak_bits": 79357,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 39947,
+        "tau_plus": 124,
+        "odd_count": 78,
+        "word": "OOEOOOOEOOOOOEEEOOOOEOOEEEOEOOOOOOOEOOOEEOOEEOEOOOOOOEOOOOOOOEEOEEOEOOEOEEOEOOEEOEOOOEOEOOOOEEEOOOOEOOOOEEOOOOOEEEEEOEOOOEEE",
+        "pred": 12784074,
+        "pred_bits": 24,
+        "G_tau": 4844444664297995820229445163776257927,
+        "peak_bits": 6529,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 52505,
+        "tau_plus": 123,
+        "odd_count": 77,
+        "word": "OOOOEOOOOOEOEEEOOEOOOEEOEOOOOOOOOOOOEOEEOOOEOEOOOOEOEOEOEOEOOOEOOOOEEOEOOOEOOOOOOOEEEEOEEOOOOEOOEEOEEOEOOOEOOEOOOEOEOEEEEEE",
+        "pred": 72446,
+        "pred_bits": 17,
+        "G_tau": 5159422876859107601153300548673004845,
+        "peak_bits": 15273,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 30717,
+        "tau_plus": 121,
+        "odd_count": 76,
+        "word": "OOOEOOEOEOOOOOOOOOOEOOOOOOOOEEEOOOEEOOEOEOEEOOOEOOEEEOOOOOEOOOOEEOEOOEOOOOEOOOEEOOEEEEOEEOOEOOOOOOOOOEOEEEOEOEOEEOOEOEEEE",
+        "pred": 1446756,
+        "pred_bits": 21,
+        "G_tau": 833655628429758618448562142704105231,
+        "peak_bits": 15684,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 76249,
+        "tau_plus": 119,
+        "odd_count": 75,
+        "word": "OOOEOOOOOEOOOOEOEOOOOOOOOEOOOOOEEEOEEOEOEOEEOOOOOOEEOEOOEEOEOOOOOOOOOEOEEOEEOEEEOEEOEOOOOOOOEOOEOOEEOEEOEOEOOEOEOOEOEOE",
+        "pred": 864208370,
+        "pred_bits": 30,
+        "G_tau": 56347210179100227332219537521310981,
+        "peak_bits": 19197,
+        "crossing_letter": "E"
+      },
+      {
+        "n": 7847,
+        "tau_plus": 115,
+        "odd_count": 72,
+        "word": "OOOOOOOEEOOOEOOOOOOOOOEEEOOOOEOOEEOEEOOOOOEOEEOOOOOEOOEOOOEOOOOEEEEEEOOOEEOEEOOOOOEOOOOOOEEOOEEEOOOOEOEOOEOEEEEOEEE",
+        "pred": 16772,
+        "pred_bits": 15,
+        "G_tau": 19009975323339446616403822758988127,
+        "peak_bits": 12433,
+        "crossing_letter": "E"
+      }
+    ]
+  }
+}

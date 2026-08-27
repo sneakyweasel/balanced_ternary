@@ -1,0 +1,158 @@
+{
+  "n": 52505,
+  "status": "CROSSED",
+  "tau_plus": 123,
+  "word": "OOOOEOOOOOEOEEEOOEOOOEEOEOOOOOOOOOOOEOEEOOOEOEOOOOEOEOEOEOEOOOEOOOOEEOEOOOEOOOOOOOEEEEOEEOOOOEOOEEOEEOEOOOEOOEOOOEOEOEEEEEE",
+  "nc_word": "OOOOEOOOOOEOEEEOOEOOOEEOEOOOOOOOOOOOEOEEOOOEOEOOOOEOEOEOEOEOOOEOOOOEEOEOOOEOOOOOOOEEEEOEEOOOOEOOEEOEEOEOOOEOOEOOOEOEOEEEEE",
+  "odd_count": 77,
+  "G_tau": 5159422876859107601153300548673004845,
+  "last_nc": 72446,
+  "peak_bits": 15273,
+  "chain": [
+    {
+      "k": 1,
+      "word": "O",
+      "G": -1,
+      "start_count": 999,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": null
+    },
+    {
+      "k": 2,
+      "word": "OO",
+      "G": -5,
+      "start_count": 505,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 3,
+      "word": "OOO",
+      "G": -19,
+      "start_count": 251,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 4,
+      "word": "OOOO",
+      "G": -65,
+      "start_count": 134,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 5,
+      "word": "OOOOE",
+      "G": -49,
+      "start_count": 74,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 6,
+      "word": "OOOOEO",
+      "G": -179,
+      "start_count": 38,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 7,
+      "word": "OOOOEOO",
+      "G": -601,
+      "start_count": 13,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 8,
+      "word": "OOOOEOOO",
+      "G": -1931,
+      "start_count": 7,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 9,
+      "word": "OOOOEOOOO",
+      "G": -6049,
+      "start_count": 3,
+      "modulus": 12,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        5
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 10,
+      "word": "OOOOEOOOOO",
+      "G": -18659,
+      "start_count": 2,
+      "modulus": 144,
+      "singleton": false,
+      "residues_mod8": [
+        1
+      ],
+      "tag_from_parent": "named_thinner"
+    }
+  ],
+  "unique_after": null
+}

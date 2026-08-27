@@ -1,0 +1,10 @@
+{
+  "note": "Hunt leftover. The 2e6-bit cap is not a bound L and not a non-terminator.",
+  "unfinished": [
+    {
+      "n": 48443,
+      "status": "BIT_CAP",
+      "bit_cap": 2000000
+    }
+  ]
+}

@@ -1,0 +1,554 @@
+[
+  {
+    "length": 1,
+    "words": 1,
+    "mixed_words": 0,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 999
+  },
+  {
+    "length": 2,
+    "words": 1,
+    "mixed_words": 0,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 505
+  },
+  {
+    "length": 3,
+    "words": 2,
+    "mixed_words": 1,
+    "signatures": 1,
+    "compression": 0.5,
+    "max_start_count": 254
+  },
+  {
+    "length": 4,
+    "words": 3,
+    "mixed_words": 2,
+    "signatures": 1,
+    "compression": 0.333333,
+    "max_start_count": 134
+  },
+  {
+    "length": 5,
+    "words": 4,
+    "mixed_words": 3,
+    "signatures": 4,
+    "compression": 1.0,
+    "max_start_count": 74
+  },
+  {
+    "length": 6,
+    "words": 8,
+    "mixed_words": 7,
+    "signatures": 8,
+    "compression": 1.0,
+    "max_start_count": 38
+  },
+  {
+    "length": 7,
+    "words": 13,
+    "mixed_words": 12,
+    "signatures": 13,
+    "compression": 1.0,
+    "max_start_count": 25
+  },
+  {
+    "length": 8,
+    "words": 19,
+    "mixed_words": 18,
+    "signatures": 19,
+    "compression": 1.0,
+    "max_start_count": 16
+  },
+  {
+    "length": 9,
+    "words": 38,
+    "mixed_words": 37,
+    "signatures": 38,
+    "compression": 1.0,
+    "max_start_count": 10
+  },
+  {
+    "length": 10,
+    "words": 55,
+    "mixed_words": 54,
+    "signatures": 55,
+    "compression": 1.0,
+    "max_start_count": 6
+  },
+  {
+    "length": 11,
+    "words": 87,
+    "mixed_words": 86,
+    "signatures": 79,
+    "compression": 0.908046,
+    "max_start_count": 4
+  },
+  {
+    "length": 12,
+    "words": 98,
+    "mixed_words": 98,
+    "signatures": 82,
+    "compression": 0.836735,
+    "max_start_count": 3
+  },
+  {
+    "length": 13,
+    "words": 85,
+    "mixed_words": 85,
+    "signatures": 73,
+    "compression": 0.858824,
+    "max_start_count": 2
+  },
+  {
+    "length": 14,
+    "words": 90,
+    "mixed_words": 90,
+    "signatures": 76,
+    "compression": 0.844444,
+    "max_start_count": 2
+  },
+  {
+    "length": 15,
+    "words": 79,
+    "mixed_words": 79,
+    "signatures": 66,
+    "compression": 0.835443,
+    "max_start_count": 2
+  },
+  {
+    "length": 16,
+    "words": 65,
+    "mixed_words": 65,
+    "signatures": 57,
+    "compression": 0.876923,
+    "max_start_count": 2
+  },
+  {
+    "length": 17,
+    "words": 65,
+    "mixed_words": 65,
+    "signatures": 57,
+    "compression": 0.876923,
+    "max_start_count": 2
+  },
+  {
+    "length": 18,
+    "words": 54,
+    "mixed_words": 54,
+    "signatures": 47,
+    "compression": 0.87037,
+    "max_start_count": 2
+  },
+  {
+    "length": 19,
+    "words": 55,
+    "mixed_words": 55,
+    "signatures": 48,
+    "compression": 0.872727,
+    "max_start_count": 1
+  },
+  {
+    "length": 20,
+    "words": 52,
+    "mixed_words": 52,
+    "signatures": 46,
+    "compression": 0.884615,
+    "max_start_count": 1
+  },
+  {
+    "length": 21,
+    "words": 45,
+    "mixed_words": 45,
+    "signatures": 40,
+    "compression": 0.888889,
+    "max_start_count": 1
+  },
+  {
+    "length": 22,
+    "words": 45,
+    "mixed_words": 45,
+    "signatures": 40,
+    "compression": 0.888889,
+    "max_start_count": 1
+  },
+  {
+    "length": 23,
+    "words": 38,
+    "mixed_words": 38,
+    "signatures": 36,
+    "compression": 0.947368,
+    "max_start_count": 1
+  },
+  {
+    "length": 24,
+    "words": 27,
+    "mixed_words": 27,
+    "signatures": 25,
+    "compression": 0.925926,
+    "max_start_count": 1
+  },
+  {
+    "length": 25,
+    "words": 27,
+    "mixed_words": 27,
+    "signatures": 25,
+    "compression": 0.925926,
+    "max_start_count": 1
+  },
+  {
+    "length": 26,
+    "words": 22,
+    "mixed_words": 22,
+    "signatures": 21,
+    "compression": 0.954545,
+    "max_start_count": 1
+  },
+  {
+    "length": 27,
+    "words": 16,
+    "mixed_words": 16,
+    "signatures": 15,
+    "compression": 0.9375,
+    "max_start_count": 1
+  },
+  {
+    "length": 28,
+    "words": 16,
+    "mixed_words": 16,
+    "signatures": 15,
+    "compression": 0.9375,
+    "max_start_count": 1
+  },
+  {
+    "length": 29,
+    "words": 14,
+    "mixed_words": 14,
+    "signatures": 13,
+    "compression": 0.928571,
+    "max_start_count": 1
+  },
+  {
+    "length": 30,
+    "words": 14,
+    "mixed_words": 14,
+    "signatures": 13,
+    "compression": 0.928571,
+    "max_start_count": 1
+  },
+  {
+    "length": 31,
+    "words": 13,
+    "mixed_words": 13,
+    "signatures": 12,
+    "compression": 0.923077,
+    "max_start_count": 1
+  },
+  {
+    "length": 32,
+    "words": 11,
+    "mixed_words": 11,
+    "signatures": 10,
+    "compression": 0.909091,
+    "max_start_count": 1
+  },
+  {
+    "length": 33,
+    "words": 11,
+    "mixed_words": 11,
+    "signatures": 10,
+    "compression": 0.909091,
+    "max_start_count": 1
+  },
+  {
+    "length": 34,
+    "words": 11,
+    "mixed_words": 11,
+    "signatures": 10,
+    "compression": 0.909091,
+    "max_start_count": 1
+  },
+  {
+    "length": 35,
+    "words": 9,
+    "mixed_words": 9,
+    "signatures": 8,
+    "compression": 0.888889,
+    "max_start_count": 1
+  },
+  {
+    "length": 36,
+    "words": 9,
+    "mixed_words": 9,
+    "signatures": 8,
+    "compression": 0.888889,
+    "max_start_count": 1
+  },
+  {
+    "length": 37,
+    "words": 8,
+    "mixed_words": 8,
+    "signatures": 7,
+    "compression": 0.875,
+    "max_start_count": 1
+  },
+  {
+    "length": 38,
+    "words": 8,
+    "mixed_words": 8,
+    "signatures": 7,
+    "compression": 0.875,
+    "max_start_count": 1
+  },
+  {
+    "length": 39,
+    "words": 8,
+    "mixed_words": 8,
+    "signatures": 7,
+    "compression": 0.875,
+    "max_start_count": 1
+  },
+  {
+    "length": 40,
+    "words": 7,
+    "mixed_words": 7,
+    "signatures": 6,
+    "compression": 0.857143,
+    "max_start_count": 1
+  },
+  {
+    "length": 41,
+    "words": 7,
+    "mixed_words": 7,
+    "signatures": 6,
+    "compression": 0.857143,
+    "max_start_count": 1
+  },
+  {
+    "length": 42,
+    "words": 7,
+    "mixed_words": 7,
+    "signatures": 6,
+    "compression": 0.857143,
+    "max_start_count": 1
+  },
+  {
+    "length": 43,
+    "words": 6,
+    "mixed_words": 6,
+    "signatures": 5,
+    "compression": 0.833333,
+    "max_start_count": 1
+  },
+  {
+    "length": 44,
+    "words": 6,
+    "mixed_words": 6,
+    "signatures": 5,
+    "compression": 0.833333,
+    "max_start_count": 1
+  },
+  {
+    "length": 45,
+    "words": 6,
+    "mixed_words": 6,
+    "signatures": 5,
+    "compression": 0.833333,
+    "max_start_count": 1
+  },
+  {
+    "length": 46,
+    "words": 5,
+    "mixed_words": 5,
+    "signatures": 5,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 47,
+    "words": 5,
+    "mixed_words": 5,
+    "signatures": 5,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 48,
+    "words": 5,
+    "mixed_words": 5,
+    "signatures": 5,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 49,
+    "words": 5,
+    "mixed_words": 5,
+    "signatures": 5,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 50,
+    "words": 3,
+    "mixed_words": 3,
+    "signatures": 3,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 51,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 52,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 53,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 54,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 55,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 56,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 57,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 58,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 59,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 60,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 61,
+    "words": 2,
+    "mixed_words": 2,
+    "signatures": 2,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 62,
+    "words": 1,
+    "mixed_words": 1,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 63,
+    "words": 1,
+    "mixed_words": 1,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 64,
+    "words": 1,
+    "mixed_words": 1,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 65,
+    "words": 1,
+    "mixed_words": 1,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 66,
+    "words": 1,
+    "mixed_words": 1,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 67,
+    "words": 1,
+    "mixed_words": 1,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 68,
+    "words": 1,
+    "mixed_words": 1,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 1
+  },
+  {
+    "length": 69,
+    "words": 1,
+    "mixed_words": 1,
+    "signatures": 1,
+    "compression": 1.0,
+    "max_start_count": 1
+  }
+]

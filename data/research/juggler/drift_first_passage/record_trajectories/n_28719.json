@@ -1,0 +1,211 @@
+{
+  "n": 28719,
+  "status": "CROSSED",
+  "tau_plus": 156,
+  "word": "OOEOOOOOOOOOEEOOOOEEOOOEOOOOOOOEEOOOOEOOOEOEOEEEOEEOOOEOOOOOOEEEOEOOOEOEOEEEOOEOEEOOEOOEOOEOOEOEOOEOOOOOOOOEOEOOOOEEOOOEOOEOOOEOOOEEOOOEEEEOOOEEEOEEEEOOOEEE",
+  "nc_word": "OOEOOOOOOOOOEEOOOOEEOOOEOOOOOOOEEOOOOEOOOEOEOEEEOEEOOOEOOOOOOEEEOEOOOEOEOEEEOOEOEEOOEOOEOOEOOEOEOOEOOOOOOOOEOEOOOOEEOOOEOOEOOOEOOOEEOOOEEEEOOOEEEOEEEEOOOEE",
+  "odd_count": 98,
+  "G_tau": 34079683362957951161456843181920880650483837047,
+  "last_nc": 388794,
+  "peak_bits": 12480,
+  "chain": [
+    {
+      "k": 1,
+      "word": "O",
+      "G": -1,
+      "start_count": 999,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": null
+    },
+    {
+      "k": 2,
+      "word": "OO",
+      "G": -5,
+      "start_count": 505,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 3,
+      "word": "OOE",
+      "G": -1,
+      "start_count": 254,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 4,
+      "word": "OOEO",
+      "G": -11,
+      "start_count": 130,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 5,
+      "word": "OOEOO",
+      "G": -49,
+      "start_count": 64,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 6,
+      "word": "OOEOOO",
+      "G": -179,
+      "start_count": 36,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 7,
+      "word": "OOEOOOO",
+      "G": -601,
+      "start_count": 14,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 8,
+      "word": "OOEOOOOO",
+      "G": -1931,
+      "start_count": 11,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 9,
+      "word": "OOEOOOOOO",
+      "G": -6049,
+      "start_count": 5,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 10,
+      "word": "OOEOOOOOOO",
+      "G": -18659,
+      "start_count": 3,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 11,
+      "word": "OOEOOOOOOOO",
+      "G": -57001,
+      "start_count": 3,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        5,
+        7
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 12,
+      "word": "OOEOOOOOOOOO",
+      "G": -173051,
+      "start_count": 2,
+      "modulus": 1018,
+      "singleton": false,
+      "residues_mod8": [
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 13,
+      "word": "OOEOOOOOOOOOE",
+      "G": -168955,
+      "start_count": 2,
+      "modulus": 1018,
+      "singleton": false,
+      "residues_mod8": [
+        5,
+        7
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 14,
+      "word": "OOEOOOOOOOOOEE",
+      "G": -160763,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    }
+  ],
+  "unique_after": 14
+}

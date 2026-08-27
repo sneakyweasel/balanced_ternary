@@ -1,0 +1,20 @@
+{
+  "search_id": "juggler-drift-first-passage-phase0-n2-2000-hunt100000",
+  "git_commit": "2a8a20435d3149cfa7727df99bdeddf2f5eeef87",
+  "algorithm_version": "drift-first-passage-v1",
+  "n_range": [
+    2,
+    2000
+  ],
+  "maximum_horizon": 10000,
+  "hunt_range": [
+    2,
+    100000
+  ],
+  "classification_version": "drift-first-passage-class-v1",
+  "crossing_policy": "stop at first G_k>0; absorb if T^k=1 still NC",
+  "completion_status": "COMPLETE",
+  "checksum": "688916d752afc298f5e10e038468744dbc7c69e216e8465e37cfa39bbdc323e3",
+  "classification": "DRIFT_FIRST_PASSAGE_COMPLEX",
+  "runtime_note": "in-memory Phase-0 census; no sqlite"
+}

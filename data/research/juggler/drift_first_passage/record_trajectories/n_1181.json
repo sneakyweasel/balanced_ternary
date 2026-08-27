@@ -1,0 +1,631 @@
+{
+  "n": 1181,
+  "status": "CROSSED",
+  "tau_plus": 50,
+  "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOEOEOEOEEE",
+  "nc_word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOEOEOEOEE",
+  "odd_count": 31,
+  "G_tau": 508226510558677,
+  "last_nc": 2348,
+  "peak_bits": 150,
+  "chain": [
+    {
+      "k": 1,
+      "word": "O",
+      "G": -1,
+      "start_count": 999,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": null
+    },
+    {
+      "k": 2,
+      "word": "OO",
+      "G": -5,
+      "start_count": 505,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 3,
+      "word": "OOE",
+      "G": -1,
+      "start_count": 254,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 4,
+      "word": "OOEO",
+      "G": -11,
+      "start_count": 130,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 5,
+      "word": "OOEOO",
+      "G": -49,
+      "start_count": 64,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "strict_subset"
+    },
+    {
+      "k": 6,
+      "word": "OOEOOO",
+      "G": -179,
+      "start_count": 36,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 7,
+      "word": "OOEOOOE",
+      "G": -115,
+      "start_count": 22,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 8,
+      "word": "OOEOOOEO",
+      "G": -473,
+      "start_count": 12,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5,
+        7
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 9,
+      "word": "OOEOOOEOO",
+      "G": -1675,
+      "start_count": 6,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 10,
+      "word": "OOEOOOEOOO",
+      "G": -5537,
+      "start_count": 4,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        1,
+        3,
+        5
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 11,
+      "word": "OOEOOOEOOOO",
+      "G": -17635,
+      "start_count": 3,
+      "modulus": 2,
+      "singleton": false,
+      "residues_mod8": [
+        3,
+        5
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 12,
+      "word": "OOEOOOEOOOOO",
+      "G": -54953,
+      "start_count": 2,
+      "modulus": 768,
+      "singleton": false,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 13,
+      "word": "OOEOOOEOOOOOE",
+      "G": -50857,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "named_thinner"
+    },
+    {
+      "k": 14,
+      "word": "OOEOOOEOOOOOEO",
+      "G": -160763,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 15,
+      "word": "OOEOOOEOOOOOEOE",
+      "G": -144379,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 16,
+      "word": "OOEOOOEOOOOOEOEE",
+      "G": -111611,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 17,
+      "word": "OOEOOOEOOOOOEOEEO",
+      "G": -400369,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 18,
+      "word": "OOEOOOEOOOOOEOEEOO",
+      "G": -1332179,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 19,
+      "word": "OOEOOOEOOOOOEOEEOOE",
+      "G": -1070035,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 20,
+      "word": "OOEOOOEOOOOOEOEEOOEO",
+      "G": -3734393,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 21,
+      "word": "OOEOOOEOOOOOEOEEOOEOO",
+      "G": -12251755,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 22,
+      "word": "OOEOOOEOOOOOEOEEOOEOOO",
+      "G": -38852417,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 23,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOE",
+      "G": -34658113,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 24,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEE",
+      "G": -26269505,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 25,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEO",
+      "G": -95585731,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 26,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOO",
+      "G": -320311625,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 27,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOO",
+      "G": -1028043739,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 28,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOE",
+      "G": -893826011,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 29,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEO",
+      "G": -2949913489,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 30,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOO",
+      "G": -9386611379,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 31,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOO",
+      "G": -29233575961,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 32,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOE",
+      "G": -27086092313,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 33,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEE",
+      "G": -22791125017,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 34,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEO",
+      "G": -76963309643,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 35,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOE",
+      "G": -59783440459,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 36,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEO",
+      "G": -213710059745,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 37,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOO",
+      "G": -709849655971,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 38,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOE",
+      "G": -572410702499,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 39,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEO",
+      "G": -1992110014441,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 40,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOO",
+      "G": -6526085857211,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 41,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOO",
+      "G": -20677769199409,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 42,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOE",
+      "G": -18478745943857,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 43,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOEO",
+      "G": -59834284342675,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 44,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOEOE",
+      "G": -51038191320467,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 45,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOEOEO",
+      "G": -170706760005817,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 46,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOEOEOE",
+      "G": -135522387916985,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 47,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOEOEOEO",
+      "G": -476935907928619,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 48,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOEOEOEOE",
+      "G": -336198419573291,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    },
+    {
+      "k": 49,
+      "word": "OOEOOOEOOOOOEOEEOOEOOOEEOOOEOOOEEOEOOEOOOEOEOEOEE",
+      "G": -54723442862635,
+      "start_count": 1,
+      "modulus": 0,
+      "singleton": true,
+      "residues_mod8": [
+        5
+      ],
+      "tag_from_parent": "same"
+    }
+  ],
+  "unique_after": 13
+}
