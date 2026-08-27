@@ -1,0 +1,1089 @@
+{
+  "experiment": "juggler_adversarial_paths",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "tau_always_finite": false,
+    "new_lyapunov_scalar": false,
+    "reopen_pe_factors": false,
+    "reopen_residual_quotient": false,
+    "reopen_sum_rho": false,
+    "reopen_realization_geometry": false,
+    "reopen_landing_image": false,
+    "reopen_nc_boundary": false,
+    "reopen_first_return": false,
+    "reopen_information_complexity": false,
+    "automaton": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "power_bound_contracts": true,
+    "floorPower_odd_ge": true,
+    "no_forbidden_engines": true,
+    "no_global_termination_theorem": true
+  },
+  "decision": {
+    "classification": "EXTREMAL_COMPLEX",
+    "reason": "Record paths are the known first-return extremals. Fixed-(k,o) arrangement splits, but no reproducible shape, peak-location, certificate-survival, or hardening-swap law survives. Extremality remains state-determined."
+  },
+  "scan": {
+    "coverage": {
+      "n_min": 2,
+      "n_max": 4000,
+      "starts": 3999,
+      "returned": 3999,
+      "horizon_miss": 0,
+      "promoted": [
+        2183,
+        3431
+      ],
+      "tau_min": 1,
+      "tau_max": 77,
+      "distinct_words": 272
+    },
+    "records": {
+      "min_M": {
+        "n": 2,
+        "tau": 1,
+        "word": "E",
+        "o": 0,
+        "M": 1,
+        "ratio": "1/2",
+        "peak_bits": 2,
+        "peak_pos": 0,
+        "first_defect": 0,
+        "first_exp": 1,
+        "runs": [
+          1,
+          0,
+          1
+        ],
+        "final": "E"
+      },
+      "min_M/n": {
+        "n": 425,
+        "tau": 46,
+        "word": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+        "o": 29,
+        "M": 60,
+        "ratio": "12/85",
+        "peak_bits": 243,
+        "peak_pos": 38,
+        "first_defect": 0,
+        "first_exp": 46,
+        "runs": [
+          18,
+          7,
+          4
+        ],
+        "final": "E"
+      },
+      "max_tau": {
+        "n": 3889,
+        "tau": 77,
+        "word": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE",
+        "o": 48,
+        "M": 3811,
+        "ratio": "3811/3889",
+        "peak_bits": 3350,
+        "peak_pos": 41,
+        "first_defect": 0,
+        "first_exp": 77,
+        "runs": [
+          40,
+          6,
+          4
+        ],
+        "final": "E"
+      },
+      "max_peak_bits": {
+        "n": 2183,
+        "tau": 54,
+        "word": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE",
+        "o": 34,
+        "M": 950,
+        "ratio": "950/2183",
+        "peak_bits": 19694,
+        "peak_pos": 32,
+        "first_defect": 0,
+        "first_exp": 54,
+        "runs": [
+          20,
+          8,
+          6
+        ],
+        "final": "E"
+      },
+      "M_eq_1": [
+        {
+          "n": 2,
+          "tau": 1,
+          "word": "E",
+          "o": 0,
+          "M": 1,
+          "ratio": "1/2",
+          "peak_bits": 2,
+          "peak_pos": 0,
+          "first_defect": 0,
+          "first_exp": 1,
+          "runs": [
+            1,
+            0,
+            1
+          ],
+          "final": "E"
+        },
+        {
+          "n": 3,
+          "tau": 5,
+          "word": "OOOEE",
+          "o": 3,
+          "M": 1,
+          "ratio": "1/3",
+          "peak_bits": 6,
+          "peak_pos": 3,
+          "first_defect": 0,
+          "first_exp": 5,
+          "runs": [
+            2,
+            3,
+            2
+          ],
+          "final": "E"
+        }
+      ]
+    },
+    "prefixes": [
+      {
+        "k": 1,
+        "endpoint_n": 3999,
+        "endpoint_word": "O",
+        "endpoint_bits": 18,
+        "peak_n": 3999,
+        "peak_word": "O",
+        "peak_bits": 18
+      },
+      {
+        "k": 2,
+        "endpoint_n": 3999,
+        "endpoint_word": "OO",
+        "endpoint_bits": 27,
+        "peak_n": 3999,
+        "peak_word": "OO",
+        "peak_bits": 27
+      },
+      {
+        "k": 3,
+        "endpoint_n": 3999,
+        "endpoint_word": "OOO",
+        "endpoint_bits": 41,
+        "peak_n": 3999,
+        "peak_word": "OOO",
+        "peak_bits": 41
+      },
+      {
+        "k": 4,
+        "endpoint_n": 3987,
+        "endpoint_word": "OOOO",
+        "endpoint_bits": 61,
+        "peak_n": 3987,
+        "peak_word": "OOOO",
+        "peak_bits": 61
+      },
+      {
+        "k": 5,
+        "endpoint_n": 3987,
+        "endpoint_word": "OOOOO",
+        "endpoint_bits": 91,
+        "peak_n": 3987,
+        "peak_word": "OOOOO",
+        "peak_bits": 91
+      },
+      {
+        "k": 6,
+        "endpoint_n": 3987,
+        "endpoint_word": "OOOOOO",
+        "endpoint_bits": 137,
+        "peak_n": 3987,
+        "peak_word": "OOOOOO",
+        "peak_bits": 137
+      },
+      {
+        "k": 7,
+        "endpoint_n": 3973,
+        "endpoint_word": "OOOOOOO",
+        "endpoint_bits": 205,
+        "peak_n": 3973,
+        "peak_word": "OOOOOOO",
+        "peak_bits": 205
+      },
+      {
+        "k": 8,
+        "endpoint_n": 3439,
+        "endpoint_word": "OOOOOOOO",
+        "endpoint_bits": 302,
+        "peak_n": 3439,
+        "peak_word": "OOOOOOOO",
+        "peak_bits": 302
+      },
+      {
+        "k": 9,
+        "endpoint_n": 3439,
+        "endpoint_word": "OOOOOOOOO",
+        "endpoint_bits": 452,
+        "peak_n": 3439,
+        "peak_word": "OOOOOOOOO",
+        "peak_bits": 452
+      },
+      {
+        "k": 10,
+        "endpoint_n": 3439,
+        "endpoint_word": "OOOOOOOOOO",
+        "endpoint_bits": 678,
+        "peak_n": 3439,
+        "peak_word": "OOOOOOOOOO",
+        "peak_bits": 678
+      },
+      {
+        "k": 11,
+        "endpoint_n": 663,
+        "endpoint_word": "OOOOOOOOOOO",
+        "endpoint_bits": 811,
+        "peak_n": 663,
+        "peak_word": "OOOOOOOOOOO",
+        "peak_bits": 811
+      },
+      {
+        "k": 12,
+        "endpoint_n": 3973,
+        "endpoint_word": "OOOOOOOEOOOO",
+        "endpoint_bits": 518,
+        "peak_n": 663,
+        "peak_word": "OOOOOOOOOOOE",
+        "peak_bits": 811
+      },
+      {
+        "k": 13,
+        "endpoint_n": 3151,
+        "endpoint_word": "OOOOOOEOOOOOO",
+        "endpoint_bits": 754,
+        "peak_n": 663,
+        "peak_word": "OOOOOOOOOOOEE",
+        "peak_bits": 811
+      },
+      {
+        "k": 14,
+        "endpoint_n": 3151,
+        "endpoint_word": "OOOOOOEOOOOOOO",
+        "endpoint_bits": 1131,
+        "peak_n": 3151,
+        "peak_word": "OOOOOOEOOOOOOO",
+        "peak_bits": 1131
+      },
+      {
+        "k": 15,
+        "endpoint_n": 3151,
+        "endpoint_word": "OOOOOOEOOOOOOOO",
+        "endpoint_bits": 1697,
+        "peak_n": 3151,
+        "peak_word": "OOOOOOEOOOOOOOO",
+        "peak_bits": 1697
+      },
+      {
+        "k": 16,
+        "endpoint_n": 3151,
+        "endpoint_word": "OOOOOOEOOOOOOOOO",
+        "endpoint_bits": 2545,
+        "peak_n": 3151,
+        "peak_word": "OOOOOOEOOOOOOOOO",
+        "peak_bits": 2545
+      },
+      {
+        "k": 17,
+        "endpoint_n": 3151,
+        "endpoint_word": "OOOOOOEOOOOOOOOOE",
+        "endpoint_bits": 1273,
+        "peak_n": 3151,
+        "peak_word": "OOOOOOEOOOOOOOOOE",
+        "peak_bits": 2545
+      },
+      {
+        "k": 18,
+        "endpoint_n": 3151,
+        "endpoint_word": "OOOOOOEOOOOOOOOOEO",
+        "endpoint_bits": 1909,
+        "peak_n": 3151,
+        "peak_word": "OOOOOOEOOOOOOOOOEO",
+        "peak_bits": 2545
+      },
+      {
+        "k": 19,
+        "endpoint_n": 3973,
+        "endpoint_word": "OOOOOOOEOOOOEEOOOOO",
+        "endpoint_bits": 982,
+        "peak_n": 3151,
+        "peak_word": "OOOOOOEOOOOOOOOOEOE",
+        "peak_bits": 2545
+      },
+      {
+        "k": 20,
+        "endpoint_n": 3973,
+        "endpoint_word": "OOOOOOOEOOOOEEOOOOOO",
+        "endpoint_bits": 1473,
+        "peak_n": 3151,
+        "peak_word": "OOOOOOEOOOOOOOOOEOEE",
+        "peak_bits": 2545
+      }
+    ],
+    "pareto": [
+      {
+        "n": 425,
+        "tau": 46,
+        "M": 60,
+        "ratio": "12/85",
+        "peak_bits": 243,
+        "word": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE"
+      },
+      {
+        "n": 557,
+        "tau": 27,
+        "M": 119,
+        "ratio": "119/557",
+        "peak_bits": 888,
+        "word": "OOOOOEOOOOOOOOEOEOEEEOEEOEE"
+      },
+      {
+        "n": 2183,
+        "tau": 54,
+        "M": 950,
+        "ratio": "950/2183",
+        "peak_bits": 19694,
+        "word": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE"
+      },
+      {
+        "n": 761,
+        "tau": 62,
+        "M": 421,
+        "ratio": "421/761",
+        "peak_bits": 851,
+        "word": "OOOOOOOOOEEOEOEEOOEEOOOEOOOOEOOOEOEOOOEEOOOOEOOOOEEEOOOEEEEOEE"
+      },
+      {
+        "n": 193,
+        "tau": 70,
+        "M": 113,
+        "ratio": "113/193",
+        "peak_bits": 900,
+        "word": "OOOEOOOOOOOEOOOEEOEEOOOOOOEEEOOOEOOEEOOOOOEOOOOEEOOEOOEOEEOOEOOEEOEEEE"
+      },
+      {
+        "n": 3439,
+        "tau": 62,
+        "M": 2158,
+        "ratio": "2158/3439",
+        "peak_bits": 1045,
+        "word": "OOOOOOOOOOEOEOOEOOOEEOOEEOOOEEOOEOEOOOOEOOEEOOOOOEEEOEOEOEOEEE"
+      },
+      {
+        "n": 3547,
+        "tau": 70,
+        "M": 2633,
+        "ratio": "2633/3547",
+        "peak_bits": 1049,
+        "word": "OOOEOOOEOOOOOOOOEEEEOOOOOEOEEOEOOOOOOOEOEOOEEOOOOEEOEOEOOOEEEOOOEOEEEE"
+      },
+      {
+        "n": 3973,
+        "tau": 59,
+        "M": 3326,
+        "ratio": "3326/3973",
+        "peak_bits": 1890,
+        "word": "OOOOOOOEOOOOEEOOOOOOEOEOOEEOEOOOOOEOEOEOEOOOOEEEEEEOOOOEEEE"
+      },
+      {
+        "n": 3271,
+        "tau": 69,
+        "M": 3181,
+        "ratio": "3181/3271",
+        "peak_bits": 2460,
+        "word": "OOEOOOOOOOEOEOOOOOOEEEEOEOOOOOOEEOOOEOOOOOOEEOEOOOOEEEEOEEOEEOOOEEOEE"
+      },
+      {
+        "n": 3889,
+        "tau": 77,
+        "M": 3811,
+        "ratio": "3811/3889",
+        "peak_bits": 3350,
+        "word": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE"
+      }
+    ],
+    "shape": {
+      "groups_k_le": 12,
+      "groups_with_many_words": 5,
+      "groups_split": 5,
+      "groups_identical_extrema": 0,
+      "clustered_worst": 5,
+      "distributed_worst": 4,
+      "examples": [
+        {
+          "k": 5,
+          "o": 3,
+          "n_words": 2,
+          "best_margin_word": "OOOEE",
+          "worst_margin_word": "OOEOE",
+          "best_peak_word": "OOOEE",
+          "min_M_range": [
+            1,
+            3
+          ],
+          "peak_bits_range": [
+            27,
+            41
+          ]
+        },
+        {
+          "k": 7,
+          "o": 4,
+          "n_words": 3,
+          "best_margin_word": "OOEOOEE",
+          "worst_margin_word": "OOOOEEE",
+          "best_peak_word": "OOOOEEE",
+          "min_M_range": [
+            55,
+            237
+          ],
+          "peak_bits_range": [
+            31,
+            61
+          ]
+        },
+        {
+          "k": 10,
+          "o": 6,
+          "n_words": 12,
+          "best_margin_word": "OOOEOEOOEE",
+          "worst_margin_word": "OOEOOOOEEE",
+          "best_peak_word": "OOOOOOEEEE",
+          "min_M_range": [
+            56,
+            2652
+          ],
+          "peak_bits_range": [
+            34,
+            125
+          ]
+        },
+        {
+          "k": 8,
+          "o": 5,
+          "n_words": 7,
+          "best_margin_word": "OOEOOEOE",
+          "worst_margin_word": "OOOOEEOE",
+          "best_peak_word": "OOOOOEEE",
+          "min_M_range": [
+            19,
+            287
+          ],
+          "peak_bits_range": [
+            31,
+            91
+          ]
+        },
+        {
+          "k": 12,
+          "o": 7,
+          "n_words": 18,
+          "best_margin_word": "OOOOOOOEEEEE",
+          "worst_margin_word": "OOOEOEOOEOEE",
+          "best_peak_word": "OOOOOOOEEEEE",
+          "min_M_range": [
+            269,
+            3649
+          ],
+          "peak_bits_range": [
+            28,
+            201
+          ]
+        }
+      ]
+    },
+    "same_word": {
+      "multi_start_words": 49,
+      "strongest": {
+        "word": "OOEE",
+        "n_starts": 255,
+        "min_M": 3,
+        "max_M": 3878,
+        "min_n": 5,
+        "max_n": 3983
+      }
+    },
+    "swaps": {
+      "n_trials": 38,
+      "n_hardened": 1,
+      "examples": [
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOEOOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOOEOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOEOEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOOEOEOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOOEEOOEOOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOOEEOOOOEEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOOEEOOOEEOEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOOEEOOOEOEOEOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOOEEOOOEOEEOEOOOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOOEEOOOEOEEOOOEOOOOEEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOOEEOOOEOEEOOEOOOOEOEEEOOOOOOOEEEOEOEE",
+          "realized": false
+        },
+        {
+          "from": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+          "to": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEOEOOOOOOEEEOEOEE",
+          "realized": false
+        }
+      ]
+    },
+    "certificates": {
+      "returned": 3999,
+      "first_exp_equals_tau": 3999,
+      "first_exp_before_tau": [],
+      "first_defect_zero": 3937,
+      "first_defect_nonzero": [
+        {
+          "n": 4,
+          "first_defect": null,
+          "word": "E"
+        },
+        {
+          "n": 9,
+          "first_defect": 1,
+          "word": "OOEOE"
+        },
+        {
+          "n": 16,
+          "first_defect": null,
+          "word": "E"
+        },
+        {
+          "n": 25,
+          "first_defect": 1,
+          "word": "OOOEE"
+        },
+        {
+          "n": 36,
+          "first_defect": null,
+          "word": "E"
+        },
+        {
+          "n": 49,
+          "first_defect": 1,
+          "word": "OOEOE"
+        },
+        {
+          "n": 64,
+          "first_defect": null,
+          "word": "E"
+        },
+        {
+          "n": 81,
+          "first_defect": 2,
+          "word": "OOOEOEE"
+        }
+      ]
+    },
+    "defect_certs": [
+      {
+        "n": 2,
+        "tau": 1,
+        "first_exp": 1,
+        "first_defect_cert": 1,
+        "first_return": 1,
+        "word": "E"
+      },
+      {
+        "n": 3,
+        "tau": 5,
+        "first_exp": 5,
+        "first_defect_cert": 5,
+        "first_return": 5,
+        "word": "OOOEE"
+      },
+      {
+        "n": 7,
+        "tau": 2,
+        "first_exp": 2,
+        "first_defect_cert": 2,
+        "first_return": 2,
+        "word": "OE"
+      },
+      {
+        "n": 193,
+        "tau": 70,
+        "first_exp": 70,
+        "first_defect_cert": null,
+        "first_return": 70,
+        "word": "OOOEOOOOOOOEOOOEEOEEOOOOOOEEEOOOEOOEEOOOOOEOOOOEEOOEOOEOEEOOEOOEEOEEEE"
+      },
+      {
+        "n": 425,
+        "tau": 46,
+        "first_exp": 46,
+        "first_defect_cert": null,
+        "first_return": 46,
+        "word": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE"
+      },
+      {
+        "n": 2183,
+        "tau": 54,
+        "first_exp": 54,
+        "first_defect_cert": null,
+        "first_return": 54,
+        "word": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE"
+      },
+      {
+        "n": 3889,
+        "tau": 77,
+        "first_exp": 77,
+        "first_defect_cert": null,
+        "first_return": 77,
+        "word": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE"
+      }
+    ],
+    "peaks": {
+      "early": 44,
+      "mid": 1822,
+      "late": 133,
+      "peak_at_OE": 1999,
+      "n_odd_long": 1999,
+      "extremals": [
+        {
+          "n": 2,
+          "peak_pos": 0,
+          "tau": 1,
+          "o_before": 0,
+          "o_after": 0,
+          "local_maxima": [
+            0
+          ],
+          "word": "E"
+        },
+        {
+          "n": 3,
+          "peak_pos": 3,
+          "tau": 5,
+          "o_before": 3,
+          "o_after": 0,
+          "local_maxima": [
+            3
+          ],
+          "word": "OOOEE"
+        },
+        {
+          "n": 7,
+          "peak_pos": 1,
+          "tau": 2,
+          "o_before": 1,
+          "o_after": 0,
+          "local_maxima": [
+            1
+          ],
+          "word": "OE"
+        },
+        {
+          "n": 193,
+          "peak_pos": 47,
+          "tau": 70,
+          "o_before": 34,
+          "o_after": 10,
+          "local_maxima": [
+            3,
+            11,
+            15,
+            18,
+            26,
+            32,
+            35,
+            42,
+            47,
+            51,
+            54,
+            56,
+            60,
+            63,
+            66
+          ],
+          "word": "OOOEOOOOOOOEOOOEEOEEOOOOOOEEEOOOEOOEEOOOOOEOOOOEEOOEOOEOEEOOEOOEEOEEEE"
+        },
+        {
+          "n": 425,
+          "peak_pos": 38,
+          "tau": 46,
+          "o_before": 27,
+          "o_after": 2,
+          "local_maxima": [
+            7,
+            10,
+            15,
+            17,
+            21,
+            27,
+            38,
+            42,
+            44
+          ],
+          "word": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE"
+        },
+        {
+          "n": 2183,
+          "peak_pos": 32,
+          "tau": 54,
+          "o_before": 27,
+          "o_after": 7,
+          "local_maxima": [
+            2,
+            7,
+            16,
+            20,
+            28,
+            32,
+            38,
+            45,
+            48,
+            52
+          ],
+          "word": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE"
+        },
+        {
+          "n": 3889,
+          "peak_pos": 41,
+          "tau": 77,
+          "o_before": 31,
+          "o_after": 17,
+          "local_maxima": [
+            5,
+            7,
+            11,
+            14,
+            16,
+            18,
+            25,
+            29,
+            31,
+            35,
+            41,
+            44,
+            46,
+            49,
+            51,
+            56,
+            59,
+            62,
+            66,
+            73
+          ],
+          "word": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE"
+        }
+      ]
+    },
+    "slacks": [
+      {
+        "n": 2,
+        "tau": 1,
+        "G_head": [
+          1
+        ],
+        "G_tail": [
+          1
+        ],
+        "word": "E"
+      },
+      {
+        "n": 3,
+        "tau": 5,
+        "G_head": [
+          -1,
+          -5,
+          -19,
+          -11,
+          5
+        ],
+        "G_tail": [
+          -1,
+          -5,
+          -19,
+          -11,
+          5
+        ],
+        "word": "OOOEE"
+      },
+      {
+        "n": 7,
+        "tau": 2,
+        "G_head": [
+          -1,
+          1
+        ],
+        "G_tail": [
+          -1,
+          1
+        ],
+        "word": "OE"
+      },
+      {
+        "n": 193,
+        "tau": 70,
+        "G_head": [
+          -1,
+          -5,
+          -19,
+          -11,
+          -49,
+          -179
+        ],
+        "G_tail": [
+          -291363479247117974395,
+          -910983925888773026417,
+          -837196949593934819953,
+          -689622997004258407025,
+          -394475091824905581169,
+          195820718533800070543
+        ],
+        "word": "OOOEOOOOOOOEOOOEEOEEOOOOOOEEEOOOEOOEEOOOOOEOOOOEEOOEOOEOEEOOEOOEEOEEEE"
+      },
+      {
+        "n": 425,
+        "tau": 46,
+        "G_head": [
+          -1,
+          -5,
+          -19,
+          -65,
+          -211,
+          -665
+        ],
+        "G_tail": [
+          -5426574229435,
+          -18478745943857,
+          -14080699432753,
+          -51038191320467,
+          -33446005276051,
+          1738366812781
+        ],
+        "word": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE"
+      },
+      {
+        "n": 2183,
+        "tau": 54,
+        "G_head": [
+          -1,
+          -5,
+          -1,
+          -11,
+          -49,
+          -179
+        ],
+        "G_tail": [
+          -1290070235430529,
+          -727120282009217,
+          -3307260752870275,
+          -12173582072296073,
+          -7669982444925577,
+          1337216809815415
+        ],
+        "word": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE"
+      },
+      {
+        "n": 3889,
+        "tau": 77,
+        "G_head": [
+          -1,
+          -5,
+          -19,
+          -65,
+          -211,
+          -179
+        ],
+        "G_tail": [
+          -21866447876087858074091,
+          -70321710111133219435969,
+          -60876977145393929008577,
+          -41987511213915348153793,
+          -4208579350958186444225,
+          71349284374956136974911
+        ],
+        "word": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE"
+      }
+    ],
+    "questions": {
+      "Q1": {
+        "holds": false,
+        "reason": "lex record words: ['E', 'OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE', 'OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE', 'OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE']"
+      },
+      "Q2": {
+        "holds": false,
+        "reason": "5 fixed-(k,o) groups split extrema; clustered_worst=5 distributed_worst=4"
+      },
+      "Q3": {
+        "holds": false,
+        "reason": "peak-at-OE is 1999 of 1999 long odd returns (early/mid/late 44/1822/133); universal odd-growth plus even contraction, not an extremal-only law"
+      },
+      "Q4": {
+        "holds": false,
+        "reason": "first defect is 0 on 3937 of 3999; nonzero starts: [{'n': 4, 'first_defect': None, 'word': 'E'}, {'n': 9, 'first_defect': 1, 'word': 'OOEOE'}, {'n': 16, 'first_defect': None, 'word': 'E'}, {'n': 25, 'first_defect': 1, 'word': 'OOOEE'}, {'n': 36, 'first_defect': None, 'word': 'E'}, {'n': 49, 'first_defect': 1, 'word': 'OOEOE'}, {'n': 64, 'first_defect': None, 'word': 'E'}, {'n': 81, 'first_defect': 2, 'word': 'OOOEOEE'}]"
+      },
+      "Q5": {
+        "holds": false,
+        "reason": "first G_j>0 equals tau on 3999 of 3999"
+      },
+      "Q6": {
+        "holds": false,
+        "reason": "extremal peaks are not one growth/finance cut; positions [2, 3, 7, 193, 425, 2183, 3889] at [0, 3, 1, 47, 38, 32, 41]"
+      },
+      "Q7": {
+        "holds": false,
+        "reason": "adjacent O/E swaps hardened 1 of 38 window trials"
+      }
+    },
+    "hard_paths": [
+      {
+        "n": 2,
+        "word": "E",
+        "k": 1,
+        "o": 0,
+        "peak_bits": 2,
+        "peak_pos": 0,
+        "endpoint": 1,
+        "first_defect": 0,
+        "first_exp": 1,
+        "return_status": "RETURNED",
+        "margin": 1
+      },
+      {
+        "n": 3,
+        "word": "OOOEE",
+        "k": 5,
+        "o": 3,
+        "peak_bits": 6,
+        "peak_pos": 3,
+        "endpoint": 2,
+        "first_defect": 0,
+        "first_exp": 5,
+        "return_status": "RETURNED",
+        "margin": 1
+      },
+      {
+        "n": 7,
+        "word": "OE",
+        "k": 2,
+        "o": 1,
+        "peak_bits": 5,
+        "peak_pos": 1,
+        "endpoint": 4,
+        "first_defect": 0,
+        "first_exp": 2,
+        "return_status": "RETURNED",
+        "margin": 3
+      },
+      {
+        "n": 193,
+        "word": "OOOEOOOOOOOEOOOEEOEEOOOOOOEEEOOOEOOEEOOOOOEOOOOEEOOEOOEOEEOOEOOEEOEEEE",
+        "k": 70,
+        "o": 44,
+        "peak_bits": 900,
+        "peak_pos": 47,
+        "endpoint": 80,
+        "first_defect": 0,
+        "first_exp": 70,
+        "return_status": "RETURNED",
+        "margin": 113
+      },
+      {
+        "n": 425,
+        "word": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE",
+        "k": 46,
+        "o": 29,
+        "peak_bits": 243,
+        "peak_pos": 38,
+        "endpoint": 365,
+        "first_defect": 0,
+        "first_exp": 46,
+        "return_status": "RETURNED",
+        "margin": 60
+      },
+      {
+        "n": 2183,
+        "word": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE",
+        "k": 54,
+        "o": 34,
+        "peak_bits": 19694,
+        "peak_pos": 32,
+        "endpoint": 1233,
+        "first_defect": 0,
+        "first_exp": 54,
+        "return_status": "RETURNED",
+        "margin": 950
+      },
+      {
+        "n": 3889,
+        "word": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE",
+        "k": 77,
+        "o": 48,
+        "peak_bits": 3350,
+        "peak_pos": 41,
+        "endpoint": 78,
+        "first_defect": 0,
+        "first_exp": 77,
+        "return_status": "RETURNED",
+        "margin": 3811
+      }
+    ]
+  },
+  "search_method": "exact first-return walks via _walk_returns on n=2..4000; separate peak / margin / duration / prefix-endpoint orderings; observed (k,o) shape tables; adjacent swaps of record words"
+}

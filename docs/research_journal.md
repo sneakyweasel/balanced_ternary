@@ -7574,4 +7574,53 @@ Best next question
 - none from this branch
 ```
 
+## Juggler adversarial parity-path optimization
+
+- **Date:** 2026-08-28
+- **Objective:** Among realizable finite O/E paths, identify the hardest trajectories and test whether they share a shape, peak, certificate-survival, or hardening-swap law
+- **Hypotheses:** Q1 recurring record shape; Q2 fixed-(k,o) arrangement law; Q3 peak at a characteristic transition; Q4 postponed first defect; Q5 certificate evasion; Q6 growth/finance cut; Q7 hardening local swap
+- **Major results:** All 3999 starts in 2..4000 returned. Lex records are the known first-return extremals (M=1 at 2 and OOOEE at 3; min M/n at 425; tau=77 at 3889; 19694-bit peak at 2183). Pareto count 10. Five (k,o) groups with k<=12 all split. first G_j>0 equals tau on every return. Adjacent swaps hardened 1 of 38 trials. Classification EXTREMAL_COMPLEX
+- **Refuted ideas:** a single adversarial word class; a clustering law at fixed (k,o); first-defect postponement; a systematic hardening swap; a return-margin law stronger than M>=1
+- **Literature:** first-return / envelope / information-complexity stay CLOSE. This phase reused _walk_returns and did not reopen those branches
+- **Open:** none from this branch. Do not infer that tau is finite
+- **Decision:** CLOSE. Optimization recovered the known first-return boundary. No new exact structure. Do not invent a difficulty scalar. Do not launch GPU Phase 2
+
+```text
+What was learned
+- The hardest paths on n<=4000 are the known first-return records
+- Prefix endpoint/peak records for k<=10 are long initial odd runs of large odds
+- Every multi-word (k,o) group with k<=12 splits min-margin and peak bits
+- Same word OOEE still has M from 3 to 3878
+- first G_j>0 equals tau on all 3999 returns
+- Peak-at-OE is universal on long odd returns, not an extremal-only law
+- Adjacent O/E swaps do not systematically harden realized paths
+
+Strongest theorem
+- odd n satisfy T(n)>=n (already Lean floorPower_odd_ge)
+
+Strongest refutation
+- a reproducible adversarial word-arrangement law at fixed (k,o)
+  (OOOEE vs OOEOE at (5,3); min M = 1 vs 3)
+
+Reusable machinery
+- research.juggler_sequence.adversarial_paths
+- reuses excursions._walk_returns
+
+Prior-art status
+- adversarial reading of the parked first-return census, not a halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The finite adversarial boundary is the known first-return boundary.
+  Shape and state still split the objectives. Stop.
+
+Best next question
+- none from this branch
+```
+
 

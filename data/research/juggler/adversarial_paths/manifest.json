@@ -1,0 +1,15 @@
+{
+  "experiment": "juggler_adversarial_paths",
+  "n_max": 4000,
+  "classification": "EXTREMAL_COMPLEX",
+  "artifacts": {
+    "record_peak.csv": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\adversarial_paths\\record_peak.csv",
+    "record_return.csv": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\adversarial_paths\\record_return.csv",
+    "record_duration.csv": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\adversarial_paths\\record_duration.csv",
+    "pareto_frontier.csv": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\adversarial_paths\\pareto_frontier.csv",
+    "word_shape_extrema.csv": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\adversarial_paths\\word_shape_extrema.csv",
+    "hard_paths.jsonl": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\adversarial_paths\\hard_paths.jsonl",
+    "certificate_survival.jsonl": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\adversarial_paths\\certificate_survival.jsonl"
+  },
+  "independence_claim": false
+}

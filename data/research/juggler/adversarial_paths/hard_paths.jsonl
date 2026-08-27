@@ -1,0 +1,7 @@
+{"n": 2, "word": "E", "k": 1, "o": 0, "peak_bits": 2, "peak_pos": 0, "endpoint": 1, "first_defect": 0, "first_exp": 1, "return_status": "RETURNED", "margin": 1}
+{"n": 3, "word": "OOOEE", "k": 5, "o": 3, "peak_bits": 6, "peak_pos": 3, "endpoint": 2, "first_defect": 0, "first_exp": 5, "return_status": "RETURNED", "margin": 1}
+{"n": 7, "word": "OE", "k": 2, "o": 1, "peak_bits": 5, "peak_pos": 1, "endpoint": 4, "first_defect": 0, "first_exp": 2, "return_status": "RETURNED", "margin": 3}
+{"n": 193, "word": "OOOEOOOOOOOEOOOEEOEEOOOOOOEEEOOOEOOEEOOOOOEOOOOEEOOEOOEOEEOOEOOEEOEEEE", "k": 70, "o": 44, "peak_bits": 900, "peak_pos": 47, "endpoint": 80, "first_defect": 0, "first_exp": 70, "return_status": "RETURNED", "margin": 113}
+{"n": 425, "word": "OOOOOOOEOOEEOOOEOEEOOEOOOOOEEEEOOOOOOOEEEOEOEE", "k": 46, "o": 29, "peak_bits": 243, "peak_pos": 38, "endpoint": 365, "first_defect": 0, "first_exp": 46, "return_status": "RETURNED", "margin": 60}
+{"n": 2183, "word": "OOEOOOOEOOOOOOOOEOOOEOOOOOOOEOOOEEEOOOEEEEEEOEEOEEOOEE", "k": 54, "o": 34, "peak_bits": 19694, "peak_pos": 32, "endpoint": 1233, "first_defect": 0, "first_exp": 54, "return_status": "RETURNED", "margin": 950}
+{"n": 3889, "word": "OOOOOEOEOOOEOOEOEOEOOOOOOEOOOEOEOOOEOOOOOEEOEOEEOEOEEOOOEEOEOOEEOOEEOOOOOEEEE", "k": 77, "o": 48, "peak_bits": 3350, "peak_pos": 41, "endpoint": 78, "first_defect": 0, "first_exp": 77, "return_status": "RETURNED", "margin": 3811}
