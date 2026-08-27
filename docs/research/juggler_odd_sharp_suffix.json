@@ -405,6 +405,14 @@
     "floor_sqrt_eq_iff_sq_interval": true,
     "floorPower_odd_eq_iff_cube_interval": true,
     "floorPower_odd_eq_pow_two_depth_iff": true,
+    "fourth_window_occupancy": true,
+    "exact_cube_left_endpoint": true,
+    "fourth_window_cube_eq_succ_cbrt": true,
+    "noncube_odd_cbrt_fourth_window_cube_even": true,
+    "odd_cube_interval_of_odd_cbrt_implies_square": true,
+    "floorPower_odd_eq_fourth_power_of_odd_cbrt_implies_square": true,
+    "odd_nonsquare_not_fourth_power_of_odd_cbrt": true,
+    "odd_first_defect_not_pow_two_depth_ge_two_of_odd_cbrt": true,
     "impossible_theorem": false,
     "PowerHeight_absent": true,
     "PowerBoundStrict_absent": true,
@@ -412,7 +420,7 @@
   },
   "decision": {
     "classification": "ODD_SHARP_SUFFIX_INCOMPLETE",
-    "reason": "the inverse-floor reduction is Lean-verified and no odd s \u2265 2 hit was found, but a finite-search empty set is not an impossibility theorem"
+    "reason": "nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; even-m surplus analysis did not yield an elementary gap bound"
   },
   "search_method": "isqrt on odd n; binary-search cube roots in the exact interval M^2 \u2264 n^3 < (M+1)^2 for M a fourth or eighth power; no floats and no cmp_pow"
 }

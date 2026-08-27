@@ -15,13 +15,13 @@ Claims are labelled **EXACT — HUMAN PROOF**, **EXACT — LEAN VERIFIED**,
 
 Every integer has a unique canonical expansion
 
-\[
-n = \sum_i a_i 3^i,\qquad a_i \in \{-1,0,+1\}
-\]
 
-with no leading zeros (except \(n=0\)). Display uses `-`, `0`, `+`
+n = \sum_i a_i 3^i,\qquad a_i \in -1,0,+1
+
+
+with no leading zeros (except n=0). Display uses `-`, `0`, `+`
 (most-significant digit first). Mathematical positions are indexed from
-the least-significant digit \(a_0\).
+the least-significant digit a_0.
 
 ## Why this repository exists
 
@@ -47,8 +47,8 @@ See [docs/methodology.md](docs/methodology.md).
 
 Representation, arithmetic, normalization, operators (`S`, `N`, `D`,
 `W`, `M2`, `H2`, …), the trit calculus (`D`, `I_a`, `cmp3`, `select3`,
-rewrite), metrics, support, polynomials \(P_n\) with
-\(P_n(3)=n\), generic automata, and generic transducers.
+rewrite), metrics, support, polynomials P_n with
+P_n(3)=n, generic automata, and generic transducers.
 
 ```python
 from bt import decode, encode
@@ -56,6 +56,8 @@ from bt import decode, encode
 word = encode(42)
 assert decode(word) == 42
 ```
+
+
 
 ## Research applications (`research`)
 
@@ -65,35 +67,39 @@ The live publication task is the rewrite-calculus note
 The cubic Newton stratum is the last promoted mathematical theory.
 Full table: [docs/architecture/research_modules.md](docs/architecture/research_modules.md).
 
-| Module | Status |
-|--------|--------|
-| `research.rewrite_calculus` | PAPER_CANDIDATE |
-| `research.residuals` | STRUCTURAL |
-| `research.collatz` | STRUCTURAL |
-| `research.ostrowski` | STRUCTURAL |
-| `research.regular_output_preimages` | STRUCTURAL |
-| `research.residual_complexity` | STRUCTURAL |
-| `research.monna_endpoint_spectra` | STRUCTURAL |
-| `research.lifting` | EXPLORATORY |
-| `research.additive_combinatorics` | EXPLORATORY |
-| `research.perfect_powers` | EXPLORATORY |
-| `research.primes` | EXPLORATORY |
-| `research.sparse_polynomials` | EXPLORATORY |
-| `research.operator_dynamics` | EXPLORATORY |
-| `research.balanced_ternary_digit_sum_dynamics` | ARCHIVED |
-| `research.balanced_ternary_weight_dynamics` | ARCHIVED |
-| `research.balanced_ternary_weight_drift` | ARCHIVED |
-| `research.balanced_digit_sum_polynomials` | EXPLORATORY |
-| `research.erdos_distinct_subset_sums` | EXPLORATORY |
-| `research.kabelian_complexity` | ARCHIVED |
-| `research.stabilization` | ARCHIVED |
-| `research.padic_dynamics` | ARCHIVED |
-| `research.cerny_bt` | ARCHIVED |
-| `research.misere_quotients` | ARCHIVED |
+
+| Module                                         | Status          |
+| ---------------------------------------------- | --------------- |
+| `research.rewrite_calculus`                    | PAPER_CANDIDATE |
+| `research.residuals`                           | STRUCTURAL      |
+| `research.collatz`                             | STRUCTURAL      |
+| `research.ostrowski`                           | STRUCTURAL      |
+| `research.regular_output_preimages`            | STRUCTURAL      |
+| `research.residual_complexity`                 | STRUCTURAL      |
+| `research.monna_endpoint_spectra`              | STRUCTURAL      |
+| `research.lifting`                             | EXPLORATORY     |
+| `research.additive_combinatorics`              | EXPLORATORY     |
+| `research.perfect_powers`                      | EXPLORATORY     |
+| `research.primes`                              | EXPLORATORY     |
+| `research.sparse_polynomials`                  | EXPLORATORY     |
+| `research.operator_dynamics`                   | EXPLORATORY     |
+| `research.balanced_ternary_digit_sum_dynamics` | ARCHIVED        |
+| `research.balanced_ternary_weight_dynamics`    | ARCHIVED        |
+| `research.balanced_ternary_weight_drift`       | ARCHIVED        |
+| `research.balanced_digit_sum_polynomials`      | EXPLORATORY     |
+| `research.erdos_distinct_subset_sums`          | EXPLORATORY     |
+| `research.kabelian_complexity`                 | ARCHIVED        |
+| `research.stabilization`                       | ARCHIVED        |
+| `research.padic_dynamics`                      | ARCHIVED        |
+| `research.cerny_bt`                            | ARCHIVED        |
+| `research.misere_quotients`                    | ARCHIVED        |
+
 
 ```python
 from research.collatz import AffineCenterState, CompatibilityState, collatz_step
 ```
+
+
 
 ## Formal verification
 
@@ -101,6 +107,8 @@ Lean 4 + Mathlib under `formal/`. No `sorry` or `admit`.
 
 ```powershell
 cd formal
+lake update
+lake exe cache get
 lake build
 ```
 
@@ -110,7 +118,7 @@ See [formal/README.md](formal/README.md) and
 ## Current open problems and conjectures
 
 Active / computationally supported registry entries include `N_k=2^k+1`,
-low-\(K_m/m\) lift conjectures, and non-contraction compatibility.
+low-K_m/m lift conjectures, and non-contraction compatibility.
 Refuted hypotheses (including `W(3)=1` and `n_*=165` at step 17) are
 kept under `conjectures/refuted/`.
 
@@ -118,6 +126,8 @@ kept under `conjectures/refuted/`.
 btlab conjectures list
 btlab status
 ```
+
+
 
 ## Quick start
 
@@ -170,9 +180,9 @@ lake build
 ## How to add a new research problem
 
 1. Copy [docs/problems/TEMPLATE.md](docs/problems/TEMPLATE.md) to
-   `docs/problems/<id>.md`.
+  `docs/problems/<id>.md`.
 2. Copy `src/research/template/` to `src/research/<id>/` and fill
-   `problem.py`.
+  `problem.py`.
 3. Import only `bt.*` plus shared experiment/registry utilities.
 4. Register conjectures in `conjectures/` and literature in `literature/`.
 5. Add tests under `tests/research/` and witnesses under `tests/regression/`.

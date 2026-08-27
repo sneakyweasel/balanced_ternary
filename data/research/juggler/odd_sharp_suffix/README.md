@@ -87,4 +87,6 @@ conjecture and is written immediately under `hits/`.
 `1 <= a < 10^8`, algorithm `odd-fourth-v1-cbrt`, arithmetic
 `python-int`. See `manifest.json` and `summaries/`. Outcome:
 `ODD_FOURTH_POWER_NO_WITNESS` and
-`ODD_FOURTH_POWER_STRUCTURE_DISCOVERED`. This is not a theorem.
+`ODD_FOURTH_POWER_STRUCTURE_DISCOVERED`. Nearest-cube and even-`m`
+notes live in `analysis/`. This is not a theorem. Do not rerun the
+`10^8` search to refresh those notes.

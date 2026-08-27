@@ -8,6 +8,7 @@ no cmp_pow census, and not a termination theorem.
 from __future__ import annotations
 
 import json
+from functools import cmp_to_key
 from math import isqrt
 from pathlib import Path
 from typing import Any
@@ -41,6 +42,14 @@ LEAN_THEOREMS = (
     "floor_sqrt_eq_iff_sq_interval",
     "floorPower_odd_eq_iff_cube_interval",
     "floorPower_odd_eq_pow_two_depth_iff",
+    "fourth_window_occupancy",
+    "exact_cube_left_endpoint",
+    "fourth_window_cube_eq_succ_cbrt",
+    "noncube_odd_cbrt_fourth_window_cube_even",
+    "odd_cube_interval_of_odd_cbrt_implies_square",
+    "floorPower_odd_eq_fourth_power_of_odd_cbrt_implies_square",
+    "odd_nonsquare_not_fourth_power_of_odd_cbrt",
+    "odd_first_defect_not_pow_two_depth_ge_two_of_odd_cbrt",
 )
 
 LEAN_IMPOSSIBLE = "floorPower_odd_pow_two_depth_ge_two_false"
@@ -269,6 +278,214 @@ def write_nearest_cube_analysis(
     )
     (directory / "nearest_cube.md").write_text(
         render_nearest_cube_markdown(data), encoding="utf-8"
+    )
+    return data
+
+
+EVEN_CBRT_SCAN_MAX = 20_000
+HIGH_POSITION_EXAMPLE_A = 37_840
+
+
+def even_cbrt_surplus_record(a: int) -> dict[str, Any]:
+    """Exact gap, width, and surplus for one a. No floats."""
+
+    if a < 1:
+        raise ValueError("even_cbrt_surplus_record requires positive a")
+    lower = a**8
+    width = 2 * (a**4)
+    m = integer_cbrt(lower)
+    r = lower - m * m * m
+    gap = (m + 1) ** 3 - lower
+    return {
+        "a": a,
+        "m": m,
+        "r": r,
+        "gap": gap,
+        "width": width,
+        "surplus": gap - width,
+        "m_even": m % 2 == 0,
+        "a_is_cube": is_cube(a),
+        "a_odd": a % 2 == 1,
+        "in_window": gap <= width,
+        "cube_gap": 3 * m * m + 3 * m + 1,
+    }
+
+
+def analyze_even_cbrt_near_misses(
+    a_max: int = EVEN_CBRT_SCAN_MAX,
+) -> dict[str, Any]:
+    """Even-m surplus shape on a small discovery range. Not a 10^8 rerun."""
+
+    if a_max < 1:
+        raise ValueError("analyze_even_cbrt_near_misses requires a_max >= 1")
+    even_hits: list[dict[str, Any]] = []
+    closest: list[dict[str, Any]] = []
+    min_surplus: dict[str, Any] | None = None
+    even_count = 0
+    for a in range(1, a_max + 1):
+        rec = even_cbrt_surplus_record(a)
+        if rec["a_is_cube"] or not rec["m_even"]:
+            continue
+        even_count += 1
+        if rec["in_window"]:
+            even_hits.append({"a": rec["a"], "m": rec["m"], "surplus": rec["surplus"]})
+        if min_surplus is None or rec["surplus"] < min_surplus["surplus"]:
+            min_surplus = rec
+        closest.append(rec)
+
+    def _ratio_cmp(left: dict[str, Any], right: dict[str, Any]) -> int:
+        cross = left["gap"] * right["width"] - right["gap"] * left["width"]
+        if cross < 0:
+            return -1
+        if cross > 0:
+            return 1
+        return left["a"] - right["a"]
+
+    closest.sort(key=cmp_to_key(_ratio_cmp))
+    closest = closest[:8]
+    a97 = even_cbrt_surplus_record(97)
+    a3 = even_cbrt_surplus_record(3)
+    high = even_cbrt_surplus_record(HIGH_POSITION_EXAMPLE_A)
+    return {
+        "a_max": a_max,
+        "even_m_noncube_count": even_count,
+        "even_m_in_window_count": len(even_hits),
+        "even_m_hits": even_hits,
+        "min_surplus": None
+        if min_surplus is None
+        else {
+            "a": min_surplus["a"],
+            "m": min_surplus["m"],
+            "surplus": min_surplus["surplus"],
+            "gap": min_surplus["gap"],
+            "width": min_surplus["width"],
+        },
+        "closest_by_gap_over_width": [
+            {
+                "a": row["a"],
+                "m": row["m"],
+                "surplus": row["surplus"],
+                "gap": row["gap"],
+                "width": row["width"],
+            }
+            for row in closest
+        ],
+        "a97": {
+            "m": a97["m"],
+            "m_even": a97["m_even"],
+            "in_window": a97["in_window"],
+            "surplus": a97["surplus"],
+        },
+        "a3": {
+            "m": a3["m"],
+            "m_even": a3["m_even"],
+            "in_window": a3["in_window"],
+            "surplus": a3["surplus"],
+        },
+        "high_position_example": {
+            "a": high["a"],
+            "m": high["m"],
+            "r": high["r"],
+            "cube_gap": high["cube_gap"],
+            "gap": high["gap"],
+            "width": high["width"],
+            "m_even": high["m_even"],
+            "in_window": high["in_window"],
+            "surplus": high["surplus"],
+        },
+        "trivial_cbrt_bound_cannot_threshold": True,
+        "invariant": (
+            "a non-cube with even m never placed m+1 in the window on the "
+            "discovery range; a=97 remains an odd-m hit; interval position "
+            "can sit at the top of a cube cell, so a uniform remaining-"
+            "fraction bound is false"
+        ),
+        "remaining_case": (
+            "the trivial bound m >= a^{8/3}-1 is sharp and cannot produce "
+            "an A0. Proving gap > 2a^4 for even m needs more than cube-root "
+            "bracketing"
+        ),
+    }
+
+
+def render_even_cbrt_markdown(analysis: dict[str, Any]) -> str:
+    min_s = analysis["min_surplus"]
+    high = analysis["high_position_example"]
+    a97 = analysis["a97"]
+    a3 = analysis["a3"]
+    lines = [
+        "# Even cube-root surplus of fourth-power windows",
+        "",
+        "Discovery scan of non-cube `a` with even `m = ⌊∛(a^8)⌋`.",
+        "This is not a `10^8` rerun and not a theorem.",
+        "",
+        f"- discovery `a_max`: `{analysis['a_max']}`",
+        f"- even-`m` non-cubes: `{analysis['even_m_noncube_count']}`",
+        f"- even-`m` window hits: `{analysis['even_m_in_window_count']}`",
+        f"- trivial `m >= a^{{8/3}}-1` cannot threshold: `{analysis['trivial_cbrt_bound_cannot_threshold']}`",
+        "",
+        "## a = 97 must survive",
+        "",
+        f"- `m = {a97['m']}` odd: `{not a97['m_even']}`",
+        f"- in window: `{a97['in_window']}`",
+        f"- surplus `gap - 2a^4 = {a97['surplus']}`",
+        "",
+        "## a = 3 even-`m` miss",
+        "",
+        f"- `m = {a3['m']}` even: `{a3['m_even']}`",
+        f"- in window: `{a3['in_window']}`",
+        f"- surplus: `{a3['surplus']}`",
+        "",
+        "## Closest even-`m` near-misses",
+        "",
+        "Ranked by `gap / (2a^4)`. All listed ratios are `> 1`.",
+        "",
+    ]
+    if min_s is not None:
+        lines.append(
+            f"Minimum surplus is `a = {min_s['a']}`, surplus `{min_s['surplus']}`."
+        )
+        lines.append("")
+    for row in analysis["closest_by_gap_over_width"]:
+        lines.append(
+            f"- a `{row['a']}`: m `{row['m']}`, gap `{row['gap']}`, "
+            f"width `{row['width']}`, surplus `{row['surplus']}`"
+        )
+    lines.extend(
+        [
+            "",
+            "## High interval position",
+            "",
+            f"Example `a = {high['a']}` has even `m = {high['m']}`,",
+            f"`r = {high['r']}`, cube gap `{high['cube_gap']}`,",
+            f"remaining gap `{high['gap']}`, width `{high['width']}`.",
+            "The eighth power can sit at the top of a cube cell. A uniform",
+            "positive remaining-fraction lemma is false. The candidate is",
+            f"still outside the window (in_window `{high['in_window']}`).",
+            "",
+            "## Invariant",
+            "",
+            analysis["invariant"] + ".",
+            "",
+            analysis["remaining_case"] + ".",
+            "",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_even_cbrt_analysis(
+    a_max: int = EVEN_CBRT_SCAN_MAX,
+    analysis_dir: Path | None = None,
+) -> dict[str, Any]:
+    data = analyze_even_cbrt_near_misses(a_max)
+    directory = ANALYSIS_DIR if analysis_dir is None else analysis_dir
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / "even_cbrt.json").write_text(
+        json.dumps(data, indent=2) + "\n", encoding="utf-8"
+    )
+    (directory / "even_cbrt.md").write_text(
+        render_even_cbrt_markdown(data), encoding="utf-8"
     )
     return data
 
@@ -527,9 +744,9 @@ def classify(
         return {
             "classification": CLASS_INCOMPLETE,
             "reason": (
-                "the inverse-floor reduction is Lean-verified and no odd "
-                "s ≥ 2 hit was found, but a finite-search empty set is not "
-                "an impossibility theorem"
+                "nearest-cube Lean covers occupancy, the exact family, and "
+                "odd m implying even n; even-m surplus analysis did not "
+                "yield an elementary gap bound"
             ),
         }
     return {
@@ -612,16 +829,13 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "## Branch budget",
         "",
         "```text",
-        "Mathematical target     Can odd n have T(n)=a^{2^s} for unbounded s",
-        "                        (sharp OE^s)?",
-        "Novelty hypothesis      s≥2 is impossible, or a finite exceptional",
-        "                        family, or an infinite odd family",
-        "Falsifier               An odd n with square_depth(T(n))≥2, or a failed",
-        "                        obstruction",
-        "Existing machinery      localDefectOdd, power_deficit_eq_local_odd_iff,",
-        "                        HasPowTwoDepth, isqrt",
-        "Maximum Phase-0 scope   Inverse-floor lemma; integer-root search past",
-        "                        2000; smallest s≥2 obstruction or witness",
+        "Mathematical target     T(n)=a^4 and n odd  =>  n is a square",
+        "Novelty hypothesis      inexact cubes are even (a=97); that kills OE^s",
+        "                        for s>=2",
+        "Falsifier               odd non-square n with T(n)=a^4",
+        "Existing machinery      inverse-floor Lean, persisted 465-hit corpus",
+        "Maximum Phase-0 scope   nearest-cube analysis of persisted hits; Lean",
+        "                        only the cheap lemmas the analysis uses",
         "```",
         "",
         "## Metadata",
@@ -657,6 +871,12 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "```",
         "",
         "No real `n^{3/2}` is used. A large finite search is not a theorem.",
+        "",
+        "Nearest-cube Lean: the window holds at most one cube; a cube `a`",
+        "places `n = k^8` at the left endpoint; a non-cube leaves only",
+        "`n = m+1`; that candidate is even exactly when `m` is odd. The",
+        "even-`m` leftover is open. `a = 3` shows that odd `a` need not",
+        "make `m` odd.",
         "",
         "## Odd first-defect census",
         "",

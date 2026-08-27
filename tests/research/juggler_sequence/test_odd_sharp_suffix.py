@@ -2,15 +2,19 @@
 
 from __future__ import annotations
 
+import json
+
 from research.juggler_sequence.odd_sharp_suffix import (
     ANALYSIS_DIR,
     CLASS_INCOMPLETE,
     CLASS_WITNESS,
     HITS_DIR,
     LEAN_THEOREMS,
+    analyze_even_cbrt_near_misses,
     analyze_persisted_hits,
     classify,
     cube_in_sq_interval,
+    even_cbrt_surplus_record,
     even_start_contrast,
     example_records,
     hit_record,
@@ -160,6 +164,45 @@ def test_nearest_cube_exact_family_and_a97():
     assert rec97["m_odd"] is True
     assert is_cube(27) is True
     assert is_cube(97) is False
+    surplus97 = even_cbrt_surplus_record(97)
+    assert surplus97["m_even"] is False
+    assert surplus97["in_window"] is True
+    assert surplus97["surplus"] < 0
+    rec3 = even_cbrt_surplus_record(3)
+    assert rec3["m"] == 18
+    assert rec3["m_even"] is True
+    assert rec3["in_window"] is False
+    assert rec3["surplus"] > 0
+
+
+def test_even_cbrt_discovery_has_no_window_hit():
+    analysis = analyze_even_cbrt_near_misses(a_max=200)
+    assert analysis["even_m_in_window_count"] == 0
+    assert analysis["a97"]["in_window"] is True
+    assert analysis["a97"]["m_even"] is False
+    assert analysis["a3"]["m_even"] is True
+    assert analysis["a3"]["in_window"] is False
+    assert analysis["high_position_example"]["m_even"] is True
+    assert analysis["high_position_example"]["in_window"] is False
+    assert analysis["trivial_cbrt_bound_cannot_threshold"] is True
+    min_s = analysis["min_surplus"]
+    assert min_s is not None
+    assert min_s["a"] == 2
+    assert min_s["surplus"] > 0
+
+
+def test_committed_even_cbrt_analysis():
+    path = ANALYSIS_DIR / "even_cbrt.json"
+    assert path.is_file()
+    data = json.loads(path.read_text(encoding="utf-8"))
+    assert data["even_m_in_window_count"] == 0
+    assert data["a97"]["in_window"] is True
+    assert data["a3"]["m_even"] is True
+    assert data["high_position_example"]["in_window"] is False
+    md = (ANALYSIS_DIR / "even_cbrt.md").read_text(encoding="utf-8")
+    assert "a = 97 must survive" in md
+    assert "10^8" in md
+    assert "not a theorem" in md
 
 
 def test_persisted_hits_nearest_cube_split():
@@ -176,6 +219,13 @@ def test_persisted_hits_nearest_cube_split():
     assert integer_cbrt(3**8) == 18
     assert analysis["a97"]["n"] == 198636
     assert HITS_DIR.is_dir()
+    committed = json.loads((ANALYSIS_DIR / "nearest_cube.json").read_text(encoding="utf-8"))
+    assert committed["odd_a_need_not_force_m_odd"] is True
+    assert committed["inexact_is_succ_cbrt"] is True
+    assert "odd_a_forces_m_odd" not in committed
+    md = (ANALYSIS_DIR / "nearest_cube.md").read_text(encoding="utf-8")
+    assert "odd `a` need not force odd `m`" in md
+    assert "odd a forces m odd" not in md.lower()
 
 
 def test_committed_artifacts_schema():
@@ -189,6 +239,9 @@ def test_committed_artifacts_schema():
     assert data["scan"]["odd_scan"]["first_defect_depth_ge_two_count"] == 0
     assert data["scan"]["fourth_powers"]["odd_hit_count"] == 0
     assert data["lean"]["floorPower_odd_eq_iff_cube_interval"] is True
+    assert data["lean"]["odd_cube_interval_of_odd_cbrt_implies_square"] is True
+    assert data["lean"]["odd_first_defect_not_pow_two_depth_ge_two_of_odd_cbrt"] is True
+    assert data["lean"]["impossible_theorem"] is False
     assert data["lean"]["PowerHeight_absent"] is True
     assert data["anti_overclaim"]["global_termination"] is False
     assert data["scan"]["examples"]["oe_eleven"]["n"] == 11

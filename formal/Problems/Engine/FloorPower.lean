@@ -2381,8 +2381,9 @@ for `T(n) = M`, not a termination theorem and not a perfect-power
 height.
 
 The remaining Diophantine question — whether an odd first defect can
-satisfy `HasPowTwoDepth (floorPower n) s` for some `s ≥ 2` — is not
-claimed here. Finite search is not an impossibility theorem.
+satisfy `HasPowTwoDepth (floorPower n) s` for some `s ≥ 2` when
+`⌊∛(a^8)⌋` is even — is not claimed here. Finite search is not an
+impossibility theorem.
 -/
 
 theorem floor_sqrt_eq_iff_sq_interval {n M : ℕ} :
@@ -2465,25 +2466,27 @@ theorem is_cube_iff_eighth_is_cube {a : ℕ} :
     exact ⟨k, hk⟩
 
 lemma eight_mul_pow_twelve_le {a : ℕ} : 8 * a ^ 12 ≤ 27 * a ^ 16 := by
-  rw [show a ^ 16 = a ^ 4 * a ^ 12 from (pow_add a 4 12).symm]
-  refine Nat.mul_le_mul_right (a ^ 12) ?_
   cases a with
   | zero => simp
   | succ a =>
-      have : 1 ≤ (a + 1) ^ 4 := Nat.one_le_pow 4 (a + 1) (Nat.succ_pos _)
-      nlinarith
+      have h16 : (a + 1) ^ 16 = (a + 1) ^ 4 * (a + 1) ^ 12 := pow_add _ 4 12
+      rw [h16]
+      have : 8 ≤ 27 * (a + 1) ^ 4 := by
+        have : 1 ≤ (a + 1) ^ 4 := Nat.one_le_pow 4 (a + 1) (Nat.succ_pos _)
+        nlinarith
+      simpa [mul_left_comm, mul_assoc] using Nat.mul_le_mul_right ((a + 1) ^ 12) this
 
 lemma three_mul_sq_ge_two_pow_four {n a : ℕ} (h : a ^ 8 ≤ n ^ 3) :
     2 * a ^ 4 ≤ 3 * n ^ 2 := by
-  have hn6 : n ^ 6 ≥ a ^ 16 := by
+  have hn6 : a ^ 16 ≤ n ^ 6 := by
     have := Nat.pow_le_pow_left h 2
-    simpa [pow_mul] using this
+    simpa [← pow_mul] using this
   have hcmp : (2 * a ^ 4) ^ 3 ≤ (3 * n ^ 2) ^ 3 := by
     have hL : (2 * a ^ 4) ^ 3 = 8 * a ^ 12 := by ring
     have hR : (3 * n ^ 2) ^ 3 = 27 * n ^ 6 := by ring
     rw [hL, hR]
     exact le_trans eight_mul_pow_twelve_le (Nat.mul_le_mul_left 27 hn6)
-  exact (Nat.pow_le_pow_iff_left (by decide : (0 : ℕ) < 3)).mp hcmp
+  exact (Nat.pow_le_pow_iff_left (by decide : (3 : ℕ) ≠ 0)).mp hcmp
 
 lemma cube_gap_covers_fourth_window {n a : ℕ} (h : a ^ 8 ≤ n ^ 3) :
     2 * a ^ 4 + 1 ≤ 3 * n ^ 2 + 3 * n + 1 := by
@@ -2503,7 +2506,7 @@ theorem fourth_window_occupancy {a n k : ℕ}
   · exact (this hk hn (le_of_not_ge hlt)).symm
   apply le_antisymm hlt
   by_contra hne
-  have hsucc : n + 1 ≤ k := Nat.succ_le_of_lt (lt_of_le_of_ne hlt hne)
+  have hsucc : n + 1 ≤ k := by omega
   have hgap := cube_gap_covers_fourth_window hn.1
   have hnext : (n + 1) ^ 3 ≤ k ^ 3 := Nat.pow_le_pow_left hsucc 3
   have hspan := fourth_window_span a
@@ -2549,7 +2552,7 @@ theorem fourth_window_cube_eq_succ_cbrt {a n : ℕ}
   have hge : m + 1 ≤ n := Nat.succ_le_of_lt hn_gt
   have hcube : a ^ 8 ≤ (m + 1) ^ 3 ∧ (m + 1) ^ 3 < (a ^ 4 + 1) ^ 2 := by
     refine ⟨le_of_lt hm.2, lt_of_le_of_lt (Nat.pow_le_pow_left hge 3) h.2⟩
-  exact (fourth_window_occupancy h hcube).symm
+  exact fourth_window_occupancy h hcube
 
 theorem noncube_odd_cbrt_fourth_window_cube_even {a n : ℕ}
     (hnot : Nat.nthRoot 3 (a ^ 8) ^ 3 ≠ a ^ 8)
@@ -2566,13 +2569,15 @@ theorem odd_cube_interval_of_odd_cbrt_implies_square {n a : ℕ}
     (h : a ^ 8 ≤ n ^ 3 ∧ n ^ 3 < (a ^ 4 + 1) ^ 2) :
     n.sqrt ^ 2 = n := by
   by_cases hcube : Nat.nthRoot 3 (a ^ 8) ^ 3 = a ^ 8
-  · obtain ⟨k, ha, hn⟩ := pow_eight_eq_cube hcube.symm
-    have hwin :
-        (k ^ 3) ^ 8 ≤ n ^ 3 ∧ n ^ 3 < ((k ^ 3) ^ 4 + 1) ^ 2 := by
-      simpa [ha] using h
-    have := exact_cube_left_endpoint hwin
+  · obtain ⟨k, ha, _⟩ := pow_eight_eq_cube hcube.symm
+    subst ha
+    have := exact_cube_left_endpoint h
     subst this
-    simp [Nat.sqrt_eq']
+    have hpow : (k ^ 4) ^ 2 = k ^ 8 := by rw [← pow_mul]
+    have hroot : (k ^ 8).sqrt = k ^ 4 := by
+      rw [← hpow]
+      exact Nat.sqrt_eq' _
+    rw [hroot, hpow]
   · have heven := noncube_odd_cbrt_fourth_window_cube_even hcube hcbrt h
     omega
 
@@ -2585,6 +2590,50 @@ theorem floorPower_odd_eq_fourth_power_of_odd_cbrt_implies_square
   have hsq : (a ^ 4) ^ 2 = a ^ 8 := by ring
   exact odd_cube_interval_of_odd_cbrt_implies_square hodd hcbrt
     ⟨hsq ▸ hI.1, hI.2⟩
+
+theorem odd_nonsquare_not_fourth_power_of_odd_cbrt {n a : ℕ}
+    (hodd : n % 2 = 1) (hsq : n.sqrt ^ 2 ≠ n)
+    (hcbrt : Nat.nthRoot 3 (a ^ 8) % 2 = 1) :
+    floorPower n ≠ a ^ 4 := by
+  intro hT
+  exact hsq (floorPower_odd_eq_fourth_power_of_odd_cbrt_implies_square
+    hodd hcbrt hT)
+
+/-- Every `2^s`-th power with `s ≥ 2` is a fourth power. -/
+theorem pow_two_depth_ge_two_is_fourth {a s : ℕ} (hs : 2 ≤ s) :
+    a ^ (2 ^ s) = (a ^ (2 ^ (s - 2))) ^ 4 := by
+  have hsplit : 2 ^ s = 2 ^ (s - 2) * 4 := by
+    calc
+      2 ^ s = 2 ^ (s - 2 + 2) := by rw [Nat.sub_add_cancel hs]
+      _ = 2 ^ (s - 2) * 2 ^ 2 := pow_add _ _ _
+      _ = 2 ^ (s - 2) * 4 := by rfl
+  rw [hsplit, pow_mul]
+
+theorem odd_first_defect_not_fourth_power_of_odd_cbrt
+    {n a : ℕ} (hodd : n % 2 = 1)
+    (hδ : floorPower n ^ 2 < n ^ 3)
+    (hcbrt : Nat.nthRoot 3 (a ^ 8) % 2 = 1) :
+    floorPower n ≠ a ^ 4 := by
+  have hsq : n.sqrt ^ 2 ≠ n := by
+    intro h
+    have heq : floorPower n ^ 2 = n ^ 3 :=
+      (floorPower_odd_sq_eq_cube_iff_square hodd).mpr h
+    exact (lt_irrefl _) (heq ▸ hδ)
+  exact odd_nonsquare_not_fourth_power_of_odd_cbrt hodd hsq hcbrt
+
+/-- Restricted Phase-G corollary: an odd first defect cannot have a
+sharp exact-even suffix of length `≥ 2` when the fourth-power base has
+odd cube root of `a^8`. The even-cube-root case is open. -/
+theorem odd_first_defect_not_pow_two_depth_ge_two_of_odd_cbrt
+    {n a s : ℕ} (hodd : n % 2 = 1)
+    (hδ : floorPower n ^ 2 < n ^ 3)
+    (hs : 2 ≤ s)
+    (hcbrt : Nat.nthRoot 3 ((a ^ (2 ^ (s - 2))) ^ 8) % 2 = 1) :
+    floorPower n ≠ a ^ (2 ^ s) := by
+  intro hT
+  have hfourth : floorPower n = (a ^ (2 ^ (s - 2))) ^ 4 := by
+    rw [hT, pow_two_depth_ge_two_is_fourth hs]
+  exact odd_first_defect_not_fourth_power_of_odd_cbrt hodd hδ hcbrt hfourth
 
 /-!
 ## Defect-compensated contraction

@@ -2,7 +2,7 @@
 
 Outcome: **ODD_FOURTH_POWER_STRUCTURE_DISCOVERED**
 Witness outcome: **ODD_FOURTH_POWER_NO_WITNESS**
-Proof-ready: **no**
+Proof-ready: **no** (even-`m` leftover)
 
 On the persisted range `1 <= a < 10^8` the integer interval
 
@@ -19,30 +19,42 @@ contains a cube for exactly 465 values of `a`. Those cubes are:
 There is no `ODD_NON_SQUARE` hit. Odd cubes occur only when `a` is an
 odd cube, hence `n` is an eighth power.
 
-This is computational evidence. It is not a theorem. The preferred
-Lean target remains
+This is computational evidence. It is not a theorem.
 
-```text
-T(n) = a^4 and n odd  =>  n is a square.
-```
+## Lean nearest-cube facts
 
-## Cheap exact facts used by the search
+**EXACT — LEAN VERIFIED** in `FloorPower.lean`:
 
-- Occupancy is 0 or 1: the interval width `2a^4 + 1` is smaller than
-  the next-cube gap once a cube sits at or above `a^8`.
-- Even `a` forces even `n`.
-- An odd square `n` with `T(n) = a^4` is exactly an eighth power.
+- Occupancy is at most one cube.
+- If `a = k^3`, the unique cube is `n = k^8`.
+- If `a` is not a cube, the only possible cube is `n = m+1`,
+  where `m = ⌊∛(a^8)⌋`.
+- That candidate is even exactly when `m` is odd.
 
-## What the search adds
+The restricted claim `T(n)=a^4`, `n` odd, and `m` odd implies `n` is
+a square is therefore Lean. The unrestricted English target is not.
+
+## Retracted observations
+
+- “Even `a` forces even `n`” is only an observation on the hit set
+  (every even hit is an exact `k^3`). It is not a theorem.
+- “Odd `a` forces `m` odd” is false: `a = 3` has `3^8 = 6561` and
+  `m = 18`. The candidate `19` misses the window.
+
+## Leftover
+
+The only remaining counterexample shape is a non-cube `a` with even
+`m` such that `(m+1)^3 - a^8 ≤ 2a^4`. Discovery on `a <= 20000`
+found none. A uniform remaining-fraction bound is false (`a = 37840`
+sits at the top of its cube cell and still misses). The trivial
+bound `m >= a^{8/3}-1` cannot produce a threshold. Finite emptiness
+is not a theorem.
 
 Interval emptiness is the wrong conjecture: `a = 97` is a cube in the
-interval. The remaining restriction is oddness of `n`, and on this
-range the only odd preimages are squares.
-
-No congruence was found that forbids an inexact odd cube in general.
-`a = 97` is odd and still produces an even `n`.
+interval (`m` odd, `n` even).
 
 ## Decision
 
-Park the computational conjecture. Do not open Lean in this phase.
-Do not treat `a < 10^8` emptiness as impossibility.
+**PARK**. Keep the nearest-cube Lean. Do not treat `a < 10^8`
+emptiness as impossibility. Do not claim `ODD_FOURTH_POWER_GREEN`
+or `ODD_SHARP_SUFFIX_GREEN`.

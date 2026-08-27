@@ -9,5 +9,7 @@ left endpoint of `[a^8, (a^4+1)^2)`. Classification:
 This is the entire odd-square family. An odd square `n = b^2` satisfies
 `T(n) = b^3`, so `b^3 = a^4` forces `a = k^3` and `n = k^8`.
 
-The live search is therefore: odd `a` that is not a cube, looking for an
-inexact odd cube in the interval.
+The leftover question is not “odd `a` that is not a cube”. Odd `a`
+need not make `m = ⌊∛(a^8)⌋` odd (`a = 3` has `m = 18`). The only
+remaining counterexample shape is a non-cube with even `m` that places
+`n = m+1` in the window.

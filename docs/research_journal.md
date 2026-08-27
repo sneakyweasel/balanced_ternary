@@ -5679,5 +5679,98 @@ Best next question
   non-square witness
 ```
 
+## Juggler odd fourth-power nearest-cube obstruction
 
+- **Date:** 2026-08-27
+- **Objective:** Name the arithmetic obstruction in \(T(n)=a^4\) with \(n\) odd, from the persisted \(a<10^8\) hits, and Lean only the cheapest surviving route
+- **Hypotheses:** `NONCUBE_CUBE_EVEN_GREEN`, `ODD_FOURTH_POWER_GREEN`, `ODD_SHARP_SUFFIX_GREEN`, `ODD_FOURTH_POWER_COUNTEREXAMPLE`
+- **Major results:** Occupancy \(\le 1\), exact family \(a=k^3\Rightarrow n=k^8\), and non-cube \(\Rightarrow n=m+1\) are **EXACT — LEAN VERIFIED**. Odd \(m\) forces the candidate even, so \(T(n)=a^4\) and \(n\) odd implies \(n\) is a square when \(m\) is odd. Restricted Phase-G corollary: an odd first defect cannot have a sharp exact-even suffix of length \(\ge 2\) when that cube root is odd. The preferred “odd \(a\) forces \(m\) odd” guess is false (\(a=3\), \(m=18\)). Corpus still 465 hits, 0 odd non-squares, unique inexact hit \(a=97\). Classification still **ODD_SHARP_SUFFIX_INCOMPLETE**. No ledger row. Control layer unchanged
+- **Refuted ideas:** odd \(a\) forces \(m\) odd; treating hit-set “even \(a\) forces even \(n\)” as a theorem; interval emptiness; replacing the reserved impossibility name by the restricted corollary
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** a non-cube with even \(m\) never satisfies \((m+1)^3-a^8\le 2a^4\)
+- **Decision:** PARK. Record the restricted odd-\(m\) Lean. Do not claim `ODD_FOURTH_POWER_GREEN` or `ODD_SHARP_SUFFIX_GREEN`. Do not start Routes C/D. Do not claim termination
+
+```text
+What was learned
+- The fourth-power window holds at most one cube
+- A cube a sits at n=k^8; a non-cube leaves only n=m+1
+- That candidate is even exactly when m is odd (a=97)
+- Odd a need not make m odd (a=3, m=18, empty window)
+- The leftover counterexample shape is even m with gap ≤ 2a^4
+
+Strongest theorem
+- If T(n)=a^4, n is odd, and floor_cbrt(a^8) is odd, then n is a square
+
+Strongest refutation
+- “odd a forces m odd” fails at a=3; interval emptiness still fails at a=97
+
+Reusable machinery
+- FloorPower nearest-cube block (occupancy, exact family, successor candidate, odd-cbrt parity)
+- odd_sharp_suffix nearest-cube analysis of persisted hits
+
+Prior-art status
+- restricted inverse-floor packaging, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PARK
+
+Why
+- Route B names a real obstruction only when m is odd. The even-m
+  emptiness is not elementary after the focused hit analysis. Stop
+  rather than open a modulus sweep or enlarge the search.
+
+Best next question
+- Prove that a non-cube with even m never places m+1 in the window,
+  or exhibit such an a
+```
+
+## Juggler even cube-root fourth-power obstruction
+
+- **Date:** 2026-08-27
+- **Objective:** Prove or refute that a non-cube \(a\) with even \(m=\lfloor\sqrt[3]{a^8}\rfloor\) satisfies \((m+1)^3-a^8>2a^4\)
+- **Hypotheses:** `FOURTH_POWER_ODD_GREEN`, `ODD_SHARP_SUFFIX_GREEN`, `NONCUBE_EVEN_CANDIDATE_SURVIVES`
+- **Major results:** Even-\(m\) discovery \(a\le 20000\): 0 window hits; closest near-misses \(a=3,6,79,2\). \(a=97\) remains an odd-\(m\) hit. \(a=37840\) has even \(m\) with \(a^8\) at the top of its cube cell, so a uniform remaining-fraction lemma is false. The trivial bound \(m\ge a^{8/3}-1\) is sharp and cannot produce an \(A_0\). No small-modulus obstruction on the surviving candidate. Classification still **ODD_SHARP_SUFFIX_INCOMPLETE**. No new Lean. No ledger row. Control layer unchanged
+- **Refuted ideas:** uniform remaining-fraction bound for even \(m\); cube-root bracketing threshold \(A_0\); treating the \(10^8\) empty even-\(m\) range as a theorem
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** a non-cube with even \(m\) never satisfies \((m+1)^3-a^8\le 2a^4\)
+- **Decision:** PARK. Do not start Baker/Thue/Mordell. Do not rerun \(10^8\). Do not claim `FOURTH_POWER_ODD_GREEN` or `ODD_SHARP_SUFFIX_GREEN`
+
+```text
+What was learned
+- Even-m non-cubes did not hit the window on a<=20000
+- Closest even-m near-misses are small a (3, 6, 79, 2)
+- a=97 stays legal: m odd, surplus negative
+- Eighth powers can sit at the top of a cube cell (a=37840)
+- m >= a^{8/3}-1 cannot yield a finite threshold for any A0
+
+Strongest theorem
+- none new; the odd-m nearest-cube lemmas remain the Lean facts
+
+Strongest refutation
+- a uniform remaining-fraction bound for even m fails at a=37840
+
+Reusable machinery
+- even_cbrt_surplus_record / even_cbrt discovery notes under
+  data/research/juggler/odd_sharp_suffix/analysis/
+
+Prior-art status
+- local gap comparison, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PARK
+
+Why
+- The even-m gap inequality is not elementary after the focused surplus
+  analysis. Stop rather than open Baker/Thue or enlarge the search.
+
+Best next question
+- Prove that a non-cube with even m never places m+1 in the window,
+  or exhibit such an a
+```
 

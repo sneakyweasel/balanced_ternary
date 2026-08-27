@@ -5,8 +5,9 @@
   "other_count": 0,
   "odd_non_square_count": 0,
   "odd_a_inexact_count": 1,
-  "odd_a_forces_m_odd": true,
-  "odd_noncube_candidate_even": true,
+  "inexact_is_succ_cbrt": true,
+  "odd_cbrt_inexact_even_n": true,
+  "odd_a_need_not_force_m_odd": true,
   "exact_left_endpoint": true,
   "a97": {
     "a": 97,
@@ -163,6 +164,6 @@
       }
     }
   },
-  "invariant": "odd non-cube a forces m odd, so the unique inexact candidate n = m+1 is even",
-  "remaining_case": "even non-cube a would have m even and candidate m+1 odd; no such hit is in the persisted corpus"
+  "invariant": "a non-cube leaves at most the candidate n = m+1; that candidate is even exactly when m is odd. The only persisted inexact hit is a = 97, where m is odd and n is even",
+  "remaining_case": "an even m makes n = m+1 odd. Odd a does not force m odd (a = 3 has m = 18). No persisted hit has even m except the exact even family a = k^3. The leftover is: a non-cube with even m never places m+1 in the window"
 }

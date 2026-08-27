@@ -1,0 +1,97 @@
+{
+  "a_max": 20000,
+  "even_m_noncube_count": 9971,
+  "even_m_in_window_count": 0,
+  "even_m_hits": [],
+  "min_surplus": {
+    "a": 2,
+    "m": 6,
+    "surplus": 55,
+    "gap": 87,
+    "width": 32
+  },
+  "closest_by_gap_over_width": [
+    {
+      "a": 3,
+      "m": 18,
+      "surplus": 136,
+      "gap": 298,
+      "width": 162
+    },
+    {
+      "a": 6,
+      "m": 118,
+      "surplus": 2951,
+      "gap": 5543,
+      "width": 2592
+    },
+    {
+      "a": 79,
+      "m": 114904,
+      "surplus": 99960902,
+      "gap": 177861064,
+      "width": 77900162
+    },
+    {
+      "a": 2,
+      "m": 6,
+      "surplus": 55,
+      "gap": 87,
+      "width": 32
+    },
+    {
+      "a": 37,
+      "m": 15200,
+      "surplus": 17963358,
+      "gap": 21711680,
+      "width": 3748322
+    },
+    {
+      "a": 4,
+      "m": 40,
+      "surplus": 2873,
+      "gap": 3385,
+      "width": 512
+    },
+    {
+      "a": 73,
+      "m": 93080,
+      "surplus": 389359878,
+      "gap": 446156360,
+      "width": 56796482
+    },
+    {
+      "a": 12,
+      "m": 754,
+      "surplus": 345707,
+      "gap": 387179,
+      "width": 41472
+    }
+  ],
+  "a97": {
+    "m": 198635,
+    "m_even": false,
+    "in_window": true,
+    "surplus": -11552067
+  },
+  "a3": {
+    "m": 18,
+    "m_even": true,
+    "in_window": false,
+    "surplus": 136
+  },
+  "high_position_example": {
+    "a": 37840,
+    "m": 1613874181766,
+    "r": 7813705284528762532036904,
+    "cube_gap": 7813769623717469643181567,
+    "gap": 64339188707111144663,
+    "width": 4100478192926720000,
+    "m_even": true,
+    "in_window": false,
+    "surplus": 60238710514184424663
+  },
+  "trivial_cbrt_bound_cannot_threshold": true,
+  "invariant": "a non-cube with even m never placed m+1 in the window on the discovery range; a=97 remains an odd-m hit; interval position can sit at the top of a cube cell, so a uniform remaining-fraction bound is false",
+  "remaining_case": "the trivial bound m >= a^{8/3}-1 is sharp and cannot produce an A0. Proving gap > 2a^4 for even m needs more than cube-root bracketing"
+}

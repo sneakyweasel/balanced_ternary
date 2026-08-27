@@ -9,15 +9,16 @@ This is not a theorem and not a new search.
 - other non-cubes: `0`
 - odd non-squares: `0`
 - odd-a inexact hits: `1`
-- odd `a` forces `m` odd: `True`
-- odd non-cube candidate even: `True`
+- inexact hits are `n = m+1`: `True`
+- odd-`m` inexact hits have even `n`: `True`
+- odd `a` need not force odd `m` (`a=3`): `True`
 - exact hits sit at the left endpoint: `True`
 
 ## Invariant
 
-odd non-cube a forces m odd, so the unique inexact candidate n = m+1 is even.
+a non-cube leaves at most the candidate n = m+1; that candidate is even exactly when m is odd. The only persisted inexact hit is a = 97, where m is odd and n is even.
 
-even non-cube a would have m even and candidate m+1 odd; no such hit is in the persisted corpus.
+an even m makes n = m+1 odd. Odd a does not force m odd (a = 3 has m = 18). No persisted hit has even m except the exact even family a = k^3. The leftover is: a non-cube with even m never places m+1 in the window.
 
 ## a = 97
 

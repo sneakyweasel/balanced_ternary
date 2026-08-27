@@ -9,16 +9,12 @@ of an odd Juggler step and the search for sharp suffixes `OE^s`.
 ## Branch budget
 
 ```text
-Mathematical target     Can odd n have T(n)=a^{2^s} for unbounded s
-                        (sharp OE^s)?
-Novelty hypothesis      s≥2 is impossible, or a finite exceptional
-                        family, or an infinite odd family
-Falsifier               An odd n with square_depth(T(n))≥2, or a failed
-                        obstruction
-Existing machinery      localDefectOdd, power_deficit_eq_local_odd_iff,
-                        HasPowTwoDepth, isqrt
-Maximum Phase-0 scope   Inverse-floor lemma; integer-root search past
-                        2000; smallest s≥2 obstruction or witness
+Mathematical target     non-cube a and even m => (m+1)^3-a^8 > 2a^4
+Novelty hypothesis      elementary gap bound or finite A0
+Falsifier               even-m non-cube window hit
+Existing machinery      nearest-cube Lean, persisted 465-hit corpus
+Maximum Phase-0 scope   even-m surplus analysis; Lean only a bound
+                        the analysis actually yields
 ```
 
 ## Metadata
@@ -38,7 +34,7 @@ Maximum Phase-0 scope   Inverse-floor lemma; integer-root search past
 - eighth-power odd hits: `0`
 - sorry-free: `True`
 
-the inverse-floor reduction is Lean-verified and no odd s ≥ 2 hit was found, but a finite-search empty set is not an impossibility theorem.
+nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; even-m surplus analysis did not yield an elementary gap bound.
 
 ## Inverse-floor reduction
 
@@ -56,6 +52,15 @@ a^{2^{s+1}} ≤ n^3 < (a^{2^s} + 1)^2
 ```
 
 No real `n^{3/2}` is used. A large finite search is not a theorem.
+
+Nearest-cube Lean: the window holds at most one cube; a cube `a`
+places `n = k^8` at the left endpoint; a non-cube leaves only
+`n = m+1`; that candidate is even exactly when `m` is odd. The
+even-`m` leftover is open. `a = 3` shows that odd `a` need not
+make `m` odd. Even-`m` discovery (`a <= 20000`) found no window
+hit; `a = 37840` shows an eighth power can sit at the top of a
+cube cell, so a uniform remaining-fraction bound is false. Notes:
+`data/research/juggler/odd_sharp_suffix/analysis/even_cbrt.md`.
 
 ## Odd first-defect census
 
@@ -87,8 +92,11 @@ it is not an odd Juggler step. No odd preimage was found.
 The persisted exact search `1 <= a < 10^8` (dataset
 `data/research/juggler/odd_sharp_suffix/`) found 465 interval cubes:
 the exact family `a = k^3`, `n = k^8` for `k <= 464`, plus the one
-inexact even hit `a = 97`. Zero odd non-squares. That finite search
-is not a theorem.
+inexact even hit `a = 97` (`m = 198635` odd). Zero odd non-squares.
+Nearest-cube notes:
+`data/research/juggler/odd_sharp_suffix/analysis/nearest_cube.md`.
+That finite search is not a theorem. “Even `a` forces even `n`” is
+only an observation on the hit set.
 
 - even hits (truncated): `[{'b': 97, 'M': 88529281, 'n': 198636, 'parity': 'even', 'n3_minus_M2': 165506495, 'interval_len': 177058563, 'exact_cube': False}]`
 - odd hits: `[]`
@@ -114,6 +122,14 @@ to support `OE` (`s = 1`).
 - `floor_sqrt_eq_iff_sq_interval`: `True`
 - `floorPower_odd_eq_iff_cube_interval`: `True`
 - `floorPower_odd_eq_pow_two_depth_iff`: `True`
+- `fourth_window_occupancy`: `True`
+- `exact_cube_left_endpoint`: `True`
+- `fourth_window_cube_eq_succ_cbrt`: `True`
+- `noncube_odd_cbrt_fourth_window_cube_even`: `True`
+- `odd_cube_interval_of_odd_cbrt_implies_square`: `True`
+- `floorPower_odd_eq_fourth_power_of_odd_cbrt_implies_square`: `True`
+- `odd_nonsquare_not_fourth_power_of_odd_cbrt`: `True`
+- `odd_first_defect_not_pow_two_depth_ge_two_of_odd_cbrt`: `True`
 - impossibility theorem: `False`
 - `PowerHeight` absent: `True`
 - `PowerBoundStrict` absent: `True`
@@ -132,7 +148,7 @@ to support `OE` (`s = 1`).
 
 **ODD_SHARP_SUFFIX_INCOMPLETE**
 
-the inverse-floor reduction is Lean-verified and no odd s ≥ 2 hit was found, but a finite-search empty set is not an impossibility theorem.
+nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; even-m surplus analysis did not yield an elementary gap bound.
 
 This is a local inverse-floor statement, not a global halt result.
 

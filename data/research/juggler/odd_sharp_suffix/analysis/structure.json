@@ -2,6 +2,8 @@
   "outcome": "ODD_FOURTH_POWER_STRUCTURE_DISCOVERED",
   "witness_outcome": "ODD_FOURTH_POWER_NO_WITNESS",
   "proof_ready": false,
+  "classification": "ODD_SHARP_SUFFIX_INCOMPLETE",
+  "branch_status": "PARK",
   "a_range": [1, 100000000],
   "algorithm_version": "odd-fourth-v1-cbrt",
   "arithmetic_method": "python-int",
@@ -14,22 +16,34 @@
     {
       "a": 97,
       "n": 198636,
+      "m": 198635,
       "classification": "EVEN_CUBE"
     }
   ],
   "exact_family": "a = k^3 for 1 <= k <= 464, n = k^8",
-  "proof_obligation": "T(n)=a^4 and n odd implies n is an eighth power (equivalently a cube). Inexact interval cubes, if they exist, have even n.",
+  "lean_restricted": [
+    "fourth_window_occupancy",
+    "exact_cube_left_endpoint",
+    "fourth_window_cube_eq_succ_cbrt",
+    "noncube_odd_cbrt_fourth_window_cube_even",
+    "odd_cube_interval_of_odd_cbrt_implies_square",
+    "odd_first_defect_not_pow_two_depth_ge_two_of_odd_cbrt"
+  ],
+  "proof_obligation": "A non-cube a with even m = floor_cbrt(a^8) never satisfies (m+1)^3 - a^8 <= 2 a^4. That is the only remaining shape of an odd non-square n with T(n)=a^4.",
   "parity_constraints": {
-    "even_a_implies_even_n": true,
-    "odd_square_n_iff_a_odd_cube": true,
-    "inexact_cube_implies_even_n": "observed on [1, 10^8); not a theorem"
+    "even_a_implies_even_n": "observed on the hit set; not a theorem",
+    "odd_a_forces_m_odd": false,
+    "odd_a_counterexample": {"a": 3, "m": 18},
+    "odd_square_n_iff_a_odd_cube": "observed on [1, 10^8); Lean for odd m",
+    "inexact_cube_implies_even_n": "Lean when m is odd; leftover is even m"
   },
   "observed_moduli": {
     "a97_n_mod_16": 12,
     "a97_a_mod_16": 1,
     "exact_odd_n_mod_16": 1
   },
-  "possible_lemma": "floorPower n = a^4 and n odd implies n is a square. Do not treat the empty odd-non-square search as this lemma.",
+  "possible_lemma": "T(n)=a^4 and n odd implies n is a square. Lean only under odd m. Do not treat the empty odd-non-square search as this lemma.",
   "occupancy_threshold": 1,
-  "note": "At most one cube fits in [a^8, (a^4+1)^2) for every a >= 1."
+  "occupancy_status": "EXACT — LEAN VERIFIED",
+  "note": "At most one cube fits in [a^8, (a^4+1)^2). Finite emptiness of the even-m leftover is not a theorem."
 }
