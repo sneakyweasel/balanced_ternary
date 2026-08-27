@@ -5052,7 +5052,7 @@ Best next question
 - **Major results:** A repeated orbit state is a finite Juggler cycle **EXACT — LEAN VERIFIED**. A bounded prefix longer than its window is not nodup **EXACT — LEAN VERIFIED**. Every nonempty cycle word has \(2^r<3^o\); contracting words and \(2^r=3^o\) are impossible **EXACT — LEAN VERIFIED**. Residual returns need \(a\ge 2\) **EXACT — LEAN VERIFIED**. Scan \(2\le n\le 400\): only fixed point is \(1\); no residual period-1. Classification **BOUNDED_RESIDUAL_CYCLE_GREEN**. Records: `docs/research/juggler_residual_path.md`, `docs/problems/juggler_residual_path.md`. Control layer unchanged
 - **Refuted ideas:** residual return with \(a\le 1\); contracting cycle words; a halt theorem; an infinite-path type
 - **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed or found here
-- **Open:** can a mixed residual word with \(a\ge 2\) return exactly to its start, or does the existing strict defect already forbid that equality?
+- **Open:** answered in the fixed cycle-word bound phase
 - **Decision:** PROMOTE the bounded-path reduction and the strict cycle envelope. Do not claim that cycles are impossible. Do not close the unbounded branch. Do not claim termination
 
 ```text
@@ -5087,6 +5087,51 @@ Why
 
 Best next question
 - Can a mixed residual word with a ≥ 2 return exactly to its start, or does the existing strict defect already forbid PowerBoundEq on that return?
+```
+
+## Juggler fixed cycle-word size bounds
+
+- **Date:** 2026-08-27
+- **Objective:** Turn exact cycle return into a finite size bound via lower growth, then exclude short words
+- **Hypotheses:** `CYCLE_BOUND_GREEN`, `CYCLE_WORD_EXCLUDED`, `CYCLE_SMALL_SEARCH_GREEN`, `CYCLE_BOUND_TOO_WEAK`, or `CYCLE_REALIZATION_COUNTEREXAMPLE`
+- **Major results:** `CycleWord n w` implies \(n^{3^o-2^k}\le D_w\) and \(n\le D_w\) **EXACT — LEAN VERIFIED**. Contracting words cannot cycle **EXACT — LEAN VERIFIED**. No `O` or `OO` cycle for \(n\ge 2\) **EXACT — LEAN VERIFIED**. No `EOO` cycle **EXACT — LEAN VERIFIED**. `OOE` has \(n\le 262144\). Classification **CYCLE_BOUND_GREEN**. Records: `docs/research/juggler_cycle_word.md`, `docs/problems/juggler_cycle_word.md`. Control layer unchanged
+- **Refuted ideas:** cycle return is envelope equality / `PowerBoundEq`; \(D_w\) is tight for every mixed word; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** can `OEO` be reduced below its crude \(D_w\) bound by unfolding the even square cell, the way `EOO` was reduced?
+- **Decision:** PROMOTE the cycle size inequality and the short-word exclusions. Do not claim that all cycles are impossible. Do not claim termination
+
+```text
+What was learned
+- Cycle return is compatible with a positive envelope defect
+- Lower growth still gives n^{3^o-2^k} ≤ D_w and the crude bound n ≤ D_w
+- O and OO collapse to n ≤ 4 and are excluded
+- EOO is excluded by existing square-root cells, not by its huge D_w
+- OOE is finite-bounded by 262144; OEO still has a weak D_w
+
+Strongest theorem
+- If CycleWord n w and n ≥ 2, then n^{3^o-2^k} ≤ lowerDenom w
+
+Strongest refutation
+- cycle return contradicts PowerBoundEq; the cycle defect is n^{3^o}-n^{2^k} > 0
+
+Reusable machinery
+- Problems.Engine.CycleWord CycleWord / cycle_pow_le_lowerDenom / no_cycle_word_eoo
+- research.juggler_sequence.cycle_word
+
+Prior-art status
+- finite reduction, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Each fixed cycle word is now a finite arithmetic problem, and several short expanding words are already excluded without a cycle engine.
+
+Best next question
+- Can OEO be reduced below its crude D_w bound by unfolding the even square cell, the way EOO was reduced?
 ```
 
 

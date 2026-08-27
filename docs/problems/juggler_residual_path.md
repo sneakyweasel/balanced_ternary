@@ -153,10 +153,10 @@ untouched beyond the existing scale budget.
 
 ## Open questions
 
-Can an expanding residual cycle with \(a\ge 2\) and \(2^{a+b}<3^a\)
-survive the existing defect and equality-rigidity lemmas, or does a
-mixed-word strict defect already forbid exact return? Do not answer
-this by building a cycle engine.
+Answered in [juggler_cycle_word.md](juggler_cycle_word.md): cycle
+return is not envelope equality. Lower growth gives
+\(n^{3^o-2^k}\le D_w\). Contracting words, `O`, `OO`, and `EOO` are
+excluded.
 
 ## Decision
 
@@ -164,9 +164,8 @@ this by building a cycle engine.
 Do not claim that cycles are impossible. Do not close the unbounded
 branch. Do not claim termination.
 
-Best next question: can a mixed residual word with \(a\ge 2\) return
-exactly to its start, or does the existing strict defect already
-forbid `PowerBoundEq` on that return?
+Best next question: answered in
+[juggler_cycle_word.md](juggler_cycle_word.md).
 
 ## Publication assessment
 
