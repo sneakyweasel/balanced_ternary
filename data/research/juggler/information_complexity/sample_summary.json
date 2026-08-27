@@ -1,0 +1,147 @@
+{
+  "A_residual_80": {
+    "sample_id": "A_residual_80",
+    "n": 30,
+    "meta": {
+      "source": "collect_landings(n_max=80)",
+      "n_requested": 30,
+      "n_kept": 30,
+      "n_dropped_bitcap": 0
+    },
+    "Q": [
+      1,
+      2,
+      4,
+      8,
+      12,
+      16
+    ],
+    "I": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      4
+    ],
+    "k2": [
+      0,
+      9,
+      9,
+      9,
+      9,
+      9
+    ]
+  },
+  "B_n_4000": {
+    "sample_id": "B_n_4000",
+    "n": 3999,
+    "meta": {
+      "source": "integers 2..4000",
+      "n_requested": 3999,
+      "n_kept": 3999,
+      "n_dropped_bitcap": 0
+    },
+    "Q": [
+      2,
+      4,
+      8,
+      16,
+      29,
+      49
+    ],
+    "I": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "k2": [
+      1,
+      12,
+      12,
+      12,
+      12,
+      12
+    ]
+  },
+  "C_atlas_enriched": {
+    "sample_id": "C_atlas_enriched",
+    "n": 5999,
+    "meta": {
+      "source": "landings n<=4000 with bit_length<=1024 plus atlas PE starts",
+      "n_landings_kept": 2329,
+      "n_landings_excluded_bits": 3,
+      "excluded_bit_lengths": [
+        1273,
+        2462,
+        5836
+      ],
+      "n_pe": 4000,
+      "n_requested": 6001,
+      "atlas_present": true,
+      "n_kept": 5999,
+      "n_dropped_bitcap": 2
+    },
+    "Q": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32
+    ],
+    "I": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "k2": [
+      0,
+      22,
+      26,
+      26,
+      26,
+      26
+    ]
+  },
+  "D_hard": {
+    "sample_id": "D_hard",
+    "n": 21,
+    "meta": {
+      "source": "documented hard / PE / first-return extremals",
+      "n_requested": 21,
+      "n_kept": 21,
+      "n_dropped_bitcap": 0
+    },
+    "Q": [
+      2,
+      4,
+      7,
+      10,
+      14,
+      16
+    ],
+    "I": [
+      1,
+      2,
+      3,
+      4,
+      4,
+      4
+    ],
+    "k2": [
+      1,
+      17,
+      17,
+      17,
+      17,
+      17
+    ]
+  }
+}

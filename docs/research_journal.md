@@ -7527,4 +7527,51 @@ Best next question
 - none from this branch
 ```
 
+## Juggler information complexity
+
+- **Date:** 2026-08-27
+- **Objective:** Measure whether longer finite O/E futures require more exact arithmetic information about the start, on fixed samples
+- **Hypotheses:** Q_H / I_H / k*_2 / greedy D_H grow with H<=6 after |Y| is controlled; families differ by a new law
+- **Major results:** F_H is the H-step itinerary. On A (30 residual landings) Q_H=1,2,4,8,12,16 and k*_2=0,9,9,9,9,9. On B (2..4000) Q_H=2,4,8,16,29,49 and k*_2=1,12,12,12,12,12. Nested consecutive |Y| sends k*_2(2) through 5,7,9,10. Sample C (5999) is 0,22,26,26,26,26. Greedy uses one residue test of width k*(2). Classification INFO_COMPLEXITY_COUNTEREXAMPLE
+- **Refuted ideas:** k* grows with H on a fixed sample; I_H is more than ceil(log2 Q_H); Level-3 state futures refine with H; MSD trit prefixes separate word classes for H>=2
+- **Literature:** future-quotient / residual minimize / PE / first-return stay CLOSE. This phase used word futures, not residual Future_H labels
+- **Open:** none from this branch. Finite-state complexity does not imply formal independence
+- **Decision:** CLOSE. Collapse mechanism: 2^H itinerary bound plus a sample-diameter 2-adic pair. Do not invent another complexity measure. Do not run a proof-complexity pilot
+
+```text
+What was learned
+- Word Q_H is bounded by 2^H; I_H is just ceil(log2 Q_H)
+- k*_2 jumps when the second letter appears and then plateaus
+- The plateau value grows with |Y| on consecutive intervals, not with H
+- The same 243 vs 1523 pair that set residual k*=9 also sets word k*=9 on A
+- 4 vs 2052 (v2=11) sets k*=12 on 2..4000; 33 vs the documented 2^16 pair sets k*=17 on D
+- The O/E word forgets almost every start (C_6 = 49/3999 on B)
+- Exact T(x) already determines later state tuples, so Level 3 does not grow with H
+
+Strongest theorem
+- none new; Q_H <= 2^H is the alphabet bound
+
+Strongest refutation
+- k*_2(H) grows with H on a fixed sample (A: 0,9,9,9,9,9; B: 1,12,12,12,12,12)
+
+Reusable machinery
+- research.juggler_sequence.information_complexity
+
+Prior-art status
+- information-complexity reading of word futures, not a Juggler halt or independence result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- Apparent horizon growth is itinerary counting plus sample diameter.
+  Stop. Do not invent another complexity measure.
+
+Best next question
+- none from this branch
+```
+
 

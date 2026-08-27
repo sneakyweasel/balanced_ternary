@@ -1,0 +1,2591 @@
+{
+  "classification": "INFO_COMPLEXITY_COUNTEREXAMPLE",
+  "reason": "Q_H <= 2^H and I_H <= H on every fixed sample (word-alphabet counting). k*_2 jumps at H=2 and then plateaus; the H=2 value grows with |Y| on nested consecutive intervals. Apparent horizon complexity is the itinerary bound plus a sample-diameter 2-adic pair.",
+  "summaries": {
+    "A_residual_80": {
+      "sample_id": "A_residual_80",
+      "n": 30,
+      "meta": {
+        "source": "collect_landings(n_max=80)",
+        "n_requested": 30,
+        "n_kept": 30,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        1,
+        2,
+        4,
+        8,
+        12,
+        16
+      ],
+      "I": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        4
+      ],
+      "C": [
+        0.03333333333333333,
+        0.06666666666666667,
+        0.13333333333333333,
+        0.26666666666666666,
+        0.4,
+        0.5333333333333333
+      ],
+      "max_size": [
+        30,
+        23,
+        14,
+        11,
+        6,
+        4
+      ],
+      "n_multi": [
+        1,
+        2,
+        4,
+        7,
+        7,
+        9
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.125,
+        0.4166666666666667,
+        0.4375
+      ],
+      "k2": [
+        0,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      "k2_status": [
+        "ONE_CLASS",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        0,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "k_bt_msd": [
+        0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        null,
+        {
+          "y": 243,
+          "z": 1523,
+          "H_first_difference": 2,
+          "Fy": "OO",
+          "Fz": "OE"
+        },
+        {
+          "y": 243,
+          "z": 1523,
+          "H_first_difference": 2,
+          "Fy": "OOE",
+          "Fz": "OEO"
+        },
+        {
+          "y": 243,
+          "z": 1523,
+          "H_first_difference": 2,
+          "Fy": "OOEE",
+          "Fz": "OEOO"
+        },
+        {
+          "y": 243,
+          "z": 1523,
+          "H_first_difference": 2,
+          "Fy": "OOEEO",
+          "Fz": "OEOOE"
+        },
+        {
+          "y": 243,
+          "z": 1523,
+          "H_first_difference": 2,
+          "Fy": "OOEEOE",
+          "Fz": "OEOOEE"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 9,
+          "median": 9,
+          "max": 9,
+          "n_classes": 1
+        },
+        {
+          "min": 7,
+          "median": 7,
+          "max": 7,
+          "n_classes": 2
+        },
+        {
+          "min": 4,
+          "median": 6,
+          "max": 7,
+          "n_classes": 4
+        },
+        {
+          "min": 0,
+          "median": 3,
+          "max": 7,
+          "n_classes": 8
+        },
+        {
+          "min": 0,
+          "median": 2,
+          "max": 5,
+          "n_classes": 12
+        },
+        {
+          "min": 0,
+          "median": 2,
+          "max": 5,
+          "n_classes": 16
+        }
+      ],
+      "greedy": [
+        {
+          "n_tests": 0,
+          "bits": 0,
+          "predicates": [],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        }
+      ]
+    },
+    "B_n_4000": {
+      "sample_id": "B_n_4000",
+      "n": 3999,
+      "meta": {
+        "source": "integers 2..4000",
+        "n_requested": 3999,
+        "n_kept": 3999,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        2,
+        4,
+        8,
+        16,
+        29,
+        49
+      ],
+      "I": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "C": [
+        0.0005001250312578145,
+        0.001000250062515629,
+        0.002000500125031258,
+        0.004001000250062516,
+        0.007251812953238309,
+        0.012253063265816454
+      ],
+      "max_size": [
+        2000,
+        1023,
+        596,
+        406,
+        406,
+        406
+      ],
+      "n_multi": [
+        2,
+        4,
+        8,
+        16,
+        29,
+        48
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.02040816326530612
+      ],
+      "k2": [
+        1,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "k2_status": [
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "k_bt_msd": [
+        9,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        {
+          "y": 2,
+          "z": 3,
+          "H_first_difference": 1,
+          "Fy": "E",
+          "Fz": "O"
+        },
+        {
+          "y": 4,
+          "z": 2052,
+          "H_first_difference": 2,
+          "Fy": "EE",
+          "Fz": "EO"
+        },
+        {
+          "y": 4,
+          "z": 2052,
+          "H_first_difference": 2,
+          "Fy": "EEO",
+          "Fz": "EOO"
+        },
+        {
+          "y": 2,
+          "z": 2050,
+          "H_first_difference": 4,
+          "Fy": "EOOO",
+          "Fz": "EOOE"
+        },
+        {
+          "y": 2,
+          "z": 2050,
+          "H_first_difference": 4,
+          "Fy": "EOOOO",
+          "Fz": "EOOEE"
+        },
+        {
+          "y": 2,
+          "z": 2050,
+          "H_first_difference": 4,
+          "Fy": "EOOOOO",
+          "Fz": "EOOEEE"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 2
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 4
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 8
+        },
+        {
+          "min": 7,
+          "median": 12,
+          "max": 12,
+          "n_classes": 16
+        },
+        {
+          "min": 7,
+          "median": 12,
+          "max": 12,
+          "n_classes": 29
+        },
+        {
+          "min": 0,
+          "median": 12,
+          "max": 12,
+          "n_classes": 49
+        }
+      ],
+      "greedy": [
+        {
+          "n_tests": 1,
+          "bits": 1,
+          "predicates": [
+            "parity"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 12,
+          "predicates": [
+            "mod2_12"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 12,
+          "predicates": [
+            "mod2_12"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 12,
+          "predicates": [
+            "mod2_12"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 12,
+          "predicates": [
+            "mod2_12"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 12,
+          "predicates": [
+            "mod2_12"
+          ],
+          "unresolved": 0
+        }
+      ]
+    },
+    "C_atlas_enriched": {
+      "sample_id": "C_atlas_enriched",
+      "n": 5999,
+      "meta": {
+        "source": "landings n<=4000 with bit_length<=1024 plus atlas PE starts",
+        "n_landings_kept": 2329,
+        "n_landings_excluded_bits": 3,
+        "excluded_bit_lengths": [
+          1273,
+          2462,
+          5836
+        ],
+        "n_pe": 4000,
+        "n_requested": 6001,
+        "atlas_present": true,
+        "n_kept": 5999,
+        "n_dropped_bitcap": 2
+      },
+      "Q": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "I": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "C": [
+        0.0001666944490748458,
+        0.0003333888981496916,
+        0.0006667777962993832,
+        0.0013335555925987664,
+        0.002667111185197533,
+        0.005334222370395066
+      ],
+      "max_size": [
+        5999,
+        5244,
+        2882,
+        1962,
+        1783,
+        919
+      ],
+      "n_multi": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        32
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "k2": [
+        0,
+        22,
+        26,
+        26,
+        26,
+        26
+      ],
+      "k2_status": [
+        "ONE_CLASS",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "k_bt_msd": [
+        0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        null,
+        {
+          "y": 2529,
+          "z": 3195097057761,
+          "H_first_difference": 2,
+          "Fy": "OO",
+          "Fz": "OE"
+        },
+        {
+          "y": 26261,
+          "z": 397989144213,
+          "H_first_difference": 3,
+          "Fy": "OOO",
+          "Fz": "OOE"
+        },
+        {
+          "y": 26261,
+          "z": 397989144213,
+          "H_first_difference": 3,
+          "Fy": "OOOO",
+          "Fz": "OOEE"
+        },
+        {
+          "y": 26261,
+          "z": 397989144213,
+          "H_first_difference": 3,
+          "Fy": "OOOOO",
+          "Fz": "OOEEO"
+        },
+        {
+          "y": 26261,
+          "z": 397989144213,
+          "H_first_difference": 3,
+          "Fy": "OOOOOE",
+          "Fz": "OOEEOE"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 26,
+          "median": 26,
+          "max": 26,
+          "n_classes": 1
+        },
+        {
+          "min": 18,
+          "median": 22,
+          "max": 26,
+          "n_classes": 2
+        },
+        {
+          "min": 17,
+          "median": 19,
+          "max": 24,
+          "n_classes": 4
+        },
+        {
+          "min": 14,
+          "median": 16,
+          "max": 24,
+          "n_classes": 8
+        },
+        {
+          "min": 13,
+          "median": 15,
+          "max": 24,
+          "n_classes": 16
+        },
+        {
+          "min": 10,
+          "median": 13,
+          "max": 24,
+          "n_classes": 32
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "D_hard": {
+      "sample_id": "D_hard",
+      "n": 21,
+      "meta": {
+        "source": "documented hard / PE / first-return extremals",
+        "n_requested": 21,
+        "n_kept": 21,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        2,
+        4,
+        7,
+        10,
+        14,
+        16
+      ],
+      "I": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4
+      ],
+      "C": [
+        0.09523809523809523,
+        0.19047619047619047,
+        0.3333333333333333,
+        0.47619047619047616,
+        0.6666666666666666,
+        0.7619047619047619
+      ],
+      "max_size": [
+        16,
+        13,
+        8,
+        6,
+        4,
+        2
+      ],
+      "n_multi": [
+        2,
+        3,
+        4,
+        6,
+        5,
+        5
+      ],
+      "singleton_frac": [
+        0.0,
+        0.25,
+        0.42857142857142855,
+        0.4,
+        0.6428571428571429,
+        0.6875
+      ],
+      "k2": [
+        1,
+        17,
+        17,
+        17,
+        17,
+        17
+      ],
+      "k2_status": [
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "k_bt_msd": [
+        6,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        {
+          "y": 2,
+          "z": 3,
+          "H_first_difference": 1,
+          "Fy": "E",
+          "Fz": "O"
+        },
+        {
+          "y": 33,
+          "z": "573141612728625270488952931933108109345",
+          "H_first_difference": 2,
+          "Fy": "OO",
+          "Fz": "OE"
+        },
+        {
+          "y": 33,
+          "z": "573141612728625270488952931933108109345",
+          "H_first_difference": 2,
+          "Fy": "OOE",
+          "Fz": "OEO"
+        },
+        {
+          "y": 33,
+          "z": "573141612728625270488952931933108109345",
+          "H_first_difference": 2,
+          "Fy": "OOEE",
+          "Fz": "OEOO"
+        },
+        {
+          "y": 33,
+          "z": "573141612728625270488952931933108109345",
+          "H_first_difference": 2,
+          "Fy": "OOEEO",
+          "Fz": "OEOOO"
+        },
+        {
+          "y": 33,
+          "z": "573141612728625270488952931933108109345",
+          "H_first_difference": 2,
+          "Fy": "OOEEOE",
+          "Fz": "OEOOOO"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 12,
+          "median": 14,
+          "max": 17,
+          "n_classes": 2
+        },
+        {
+          "min": 0,
+          "median": 4,
+          "max": 12,
+          "n_classes": 4
+        },
+        {
+          "min": 0,
+          "median": 2,
+          "max": 12,
+          "n_classes": 7
+        },
+        {
+          "min": 0,
+          "median": 2,
+          "max": 6,
+          "n_classes": 10
+        },
+        {
+          "min": 0,
+          "median": 0,
+          "max": 6,
+          "n_classes": 14
+        },
+        {
+          "min": 0,
+          "median": 0,
+          "max": 6,
+          "n_classes": 16
+        }
+      ],
+      "greedy": [
+        {
+          "n_tests": 1,
+          "bits": 1,
+          "predicates": [
+            "parity"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        },
+        {
+          "n_tests": 1,
+          "bits": 4,
+          "predicates": [
+            "mod3_4"
+          ],
+          "unresolved": 0
+        }
+      ]
+    }
+  },
+  "nested": {
+    "nested_30": {
+      "sample_id": "nested_30",
+      "n": 30,
+      "meta": {
+        "source": "integers 2..31",
+        "n_requested": 30,
+        "n_kept": 30,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        2,
+        4,
+        7,
+        11,
+        12,
+        13
+      ],
+      "I": [
+        1,
+        2,
+        3,
+        4,
+        4,
+        4
+      ],
+      "C": [
+        0.06666666666666667,
+        0.13333333333333333,
+        0.23333333333333334,
+        0.36666666666666664,
+        0.4,
+        0.43333333333333335
+      ],
+      "max_size": [
+        15,
+        11,
+        7,
+        5,
+        5,
+        5
+      ],
+      "n_multi": [
+        2,
+        4,
+        7,
+        9,
+        9,
+        8
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.18181818181818182,
+        0.25,
+        0.38461538461538464
+      ],
+      "k2": [
+        1,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "k2_status": [
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "k_bt_msd": [
+        4,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        {
+          "y": 2,
+          "z": 3,
+          "H_first_difference": 1,
+          "Fy": "E",
+          "Fz": "O"
+        },
+        {
+          "y": 2,
+          "z": 18,
+          "H_first_difference": 2,
+          "Fy": "EO",
+          "Fz": "EE"
+        },
+        {
+          "y": 2,
+          "z": 18,
+          "H_first_difference": 2,
+          "Fy": "EOO",
+          "Fz": "EEE"
+        },
+        {
+          "y": 2,
+          "z": 18,
+          "H_first_difference": 2,
+          "Fy": "EOOO",
+          "Fz": "EEEO"
+        },
+        {
+          "y": 2,
+          "z": 18,
+          "H_first_difference": 2,
+          "Fy": "EOOOO",
+          "Fz": "EEEOO"
+        },
+        {
+          "y": 2,
+          "z": 18,
+          "H_first_difference": 2,
+          "Fy": "EOOOOO",
+          "Fz": "EEEOOO"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 5,
+          "median": 5,
+          "max": 5,
+          "n_classes": 2
+        },
+        {
+          "min": 5,
+          "median": 5,
+          "max": 5,
+          "n_classes": 4
+        },
+        {
+          "min": 2,
+          "median": 4,
+          "max": 5,
+          "n_classes": 7
+        },
+        {
+          "min": 0,
+          "median": 3,
+          "max": 5,
+          "n_classes": 11
+        },
+        {
+          "min": 0,
+          "median": 2,
+          "max": 5,
+          "n_classes": 12
+        },
+        {
+          "min": 0,
+          "median": 2,
+          "max": 5,
+          "n_classes": 13
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "nested_100": {
+      "sample_id": "nested_100",
+      "n": 100,
+      "meta": {
+        "source": "integers 2..101",
+        "n_requested": 100,
+        "n_kept": 100,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        2,
+        4,
+        8,
+        13,
+        20,
+        29
+      ],
+      "I": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        5
+      ],
+      "C": [
+        0.02,
+        0.04,
+        0.08,
+        0.13,
+        0.2,
+        0.29
+      ],
+      "max_size": [
+        50,
+        26,
+        21,
+        21,
+        21,
+        21
+      ],
+      "n_multi": [
+        2,
+        4,
+        8,
+        12,
+        18,
+        22
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.07692307692307693,
+        0.1,
+        0.2413793103448276
+      ],
+      "k2": [
+        1,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "k2_status": [
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        5,
+        5,
+        5,
+        5,
+        5,
+        5
+      ],
+      "k_bt_msd": [
+        5,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        {
+          "y": 2,
+          "z": 3,
+          "H_first_difference": 1,
+          "Fy": "E",
+          "Fz": "O"
+        },
+        {
+          "y": 2,
+          "z": 66,
+          "H_first_difference": 2,
+          "Fy": "EO",
+          "Fz": "EE"
+        },
+        {
+          "y": 2,
+          "z": 66,
+          "H_first_difference": 2,
+          "Fy": "EOO",
+          "Fz": "EEE"
+        },
+        {
+          "y": 2,
+          "z": 66,
+          "H_first_difference": 2,
+          "Fy": "EOOO",
+          "Fz": "EEEO"
+        },
+        {
+          "y": 2,
+          "z": 66,
+          "H_first_difference": 2,
+          "Fy": "EOOOO",
+          "Fz": "EEEOO"
+        },
+        {
+          "y": 2,
+          "z": 66,
+          "H_first_difference": 2,
+          "Fy": "EOOOOO",
+          "Fz": "EEEOOO"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 7,
+          "median": 7,
+          "max": 7,
+          "n_classes": 2
+        },
+        {
+          "min": 7,
+          "median": 7,
+          "max": 7,
+          "n_classes": 4
+        },
+        {
+          "min": 4,
+          "median": 7,
+          "max": 7,
+          "n_classes": 8
+        },
+        {
+          "min": 0,
+          "median": 6,
+          "max": 7,
+          "n_classes": 13
+        },
+        {
+          "min": 0,
+          "median": 4,
+          "max": 7,
+          "n_classes": 20
+        },
+        {
+          "min": 0,
+          "median": 3,
+          "max": 7,
+          "n_classes": 29
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "nested_500": {
+      "sample_id": "nested_500",
+      "n": 500,
+      "meta": {
+        "source": "integers 2..501",
+        "n_requested": 500,
+        "n_kept": 500,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        2,
+        4,
+        8,
+        15,
+        26,
+        39
+      ],
+      "I": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "C": [
+        0.004,
+        0.008,
+        0.016,
+        0.03,
+        0.052,
+        0.078
+      ],
+      "max_size": [
+        250,
+        129,
+        103,
+        66,
+        66,
+        66
+      ],
+      "n_multi": [
+        2,
+        4,
+        8,
+        15,
+        25,
+        38
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.038461538461538464,
+        0.02564102564102564
+      ],
+      "k2": [
+        1,
+        9,
+        9,
+        9,
+        9,
+        9
+      ],
+      "k2_status": [
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        6,
+        6,
+        6,
+        6,
+        6,
+        6
+      ],
+      "k_bt_msd": [
+        7,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        {
+          "y": 2,
+          "z": 3,
+          "H_first_difference": 1,
+          "Fy": "E",
+          "Fz": "O"
+        },
+        {
+          "y": 2,
+          "z": 258,
+          "H_first_difference": 2,
+          "Fy": "EO",
+          "Fz": "EE"
+        },
+        {
+          "y": 2,
+          "z": 258,
+          "H_first_difference": 2,
+          "Fy": "EOO",
+          "Fz": "EEE"
+        },
+        {
+          "y": 2,
+          "z": 258,
+          "H_first_difference": 2,
+          "Fy": "EOOO",
+          "Fz": "EEEE"
+        },
+        {
+          "y": 2,
+          "z": 258,
+          "H_first_difference": 2,
+          "Fy": "EOOOO",
+          "Fz": "EEEEO"
+        },
+        {
+          "y": 2,
+          "z": 258,
+          "H_first_difference": 2,
+          "Fy": "EOOOOO",
+          "Fz": "EEEEOO"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 9,
+          "median": 9,
+          "max": 9,
+          "n_classes": 2
+        },
+        {
+          "min": 9,
+          "median": 9,
+          "max": 9,
+          "n_classes": 4
+        },
+        {
+          "min": 7,
+          "median": 9,
+          "max": 9,
+          "n_classes": 8
+        },
+        {
+          "min": 4,
+          "median": 8,
+          "max": 9,
+          "n_classes": 15
+        },
+        {
+          "min": 0,
+          "median": 8,
+          "max": 9,
+          "n_classes": 26
+        },
+        {
+          "min": 0,
+          "median": 6,
+          "max": 9,
+          "n_classes": 39
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "nested_1000": {
+      "sample_id": "nested_1000",
+      "n": 1000,
+      "meta": {
+        "source": "integers 2..1001",
+        "n_requested": 1000,
+        "n_kept": 1000,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        2,
+        4,
+        8,
+        15,
+        28,
+        42
+      ],
+      "I": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "C": [
+        0.002,
+        0.004,
+        0.008,
+        0.015,
+        0.028,
+        0.042
+      ],
+      "max_size": [
+        500,
+        255,
+        202,
+        129,
+        105,
+        105
+      ],
+      "n_multi": [
+        2,
+        4,
+        8,
+        15,
+        27,
+        41
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.03571428571428571,
+        0.023809523809523808
+      ],
+      "k2": [
+        1,
+        10,
+        10,
+        10,
+        10,
+        10
+      ],
+      "k2_status": [
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "k_bt_msd": [
+        7,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        {
+          "y": 2,
+          "z": 3,
+          "H_first_difference": 1,
+          "Fy": "E",
+          "Fz": "O"
+        },
+        {
+          "y": 2,
+          "z": 514,
+          "H_first_difference": 2,
+          "Fy": "EO",
+          "Fz": "EE"
+        },
+        {
+          "y": 2,
+          "z": 514,
+          "H_first_difference": 2,
+          "Fy": "EOO",
+          "Fz": "EEE"
+        },
+        {
+          "y": 2,
+          "z": 514,
+          "H_first_difference": 2,
+          "Fy": "EOOO",
+          "Fz": "EEEE"
+        },
+        {
+          "y": 2,
+          "z": 514,
+          "H_first_difference": 2,
+          "Fy": "EOOOO",
+          "Fz": "EEEEO"
+        },
+        {
+          "y": 2,
+          "z": 514,
+          "H_first_difference": 2,
+          "Fy": "EOOOOO",
+          "Fz": "EEEEOO"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 10,
+          "median": 10,
+          "max": 10,
+          "n_classes": 2
+        },
+        {
+          "min": 10,
+          "median": 10,
+          "max": 10,
+          "n_classes": 4
+        },
+        {
+          "min": 8,
+          "median": 10,
+          "max": 10,
+          "n_classes": 8
+        },
+        {
+          "min": 7,
+          "median": 10,
+          "max": 10,
+          "n_classes": 15
+        },
+        {
+          "min": 0,
+          "median": 9,
+          "max": 10,
+          "n_classes": 28
+        },
+        {
+          "min": 0,
+          "median": 8,
+          "max": 10,
+          "n_classes": 42
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  },
+  "families": {
+    "fam_even": {
+      "sample_id": "fam_even",
+      "n": 2000,
+      "meta": {
+        "source": "fam_even",
+        "n_requested": 2000,
+        "n_kept": 2000,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        1,
+        2,
+        4,
+        8,
+        13,
+        18
+      ],
+      "I": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "C": [
+        0.0005,
+        0.001,
+        0.002,
+        0.004,
+        0.0065,
+        0.009
+      ],
+      "max_size": [
+        2000,
+        1023,
+        596,
+        406,
+        406,
+        406
+      ],
+      "n_multi": [
+        1,
+        2,
+        4,
+        8,
+        13,
+        17
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.05555555555555555
+      ],
+      "k2": [
+        0,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "k2_status": [
+        "ONE_CLASS",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        0,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "k_bt_msd": [
+        0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        null,
+        {
+          "y": 4,
+          "z": 2052,
+          "H_first_difference": 2,
+          "Fy": "EE",
+          "Fz": "EO"
+        },
+        {
+          "y": 4,
+          "z": 2052,
+          "H_first_difference": 2,
+          "Fy": "EEO",
+          "Fz": "EOO"
+        },
+        {
+          "y": 2,
+          "z": 2050,
+          "H_first_difference": 4,
+          "Fy": "EOOO",
+          "Fz": "EOOE"
+        },
+        {
+          "y": 2,
+          "z": 2050,
+          "H_first_difference": 4,
+          "Fy": "EOOOO",
+          "Fz": "EOOEE"
+        },
+        {
+          "y": 2,
+          "z": 2050,
+          "H_first_difference": 4,
+          "Fy": "EOOOOO",
+          "Fz": "EOOEEE"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 1
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 2
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 4
+        },
+        {
+          "min": 7,
+          "median": 11,
+          "max": 12,
+          "n_classes": 8
+        },
+        {
+          "min": 7,
+          "median": 10,
+          "max": 12,
+          "n_classes": 13
+        },
+        {
+          "min": 0,
+          "median": 9,
+          "max": 12,
+          "n_classes": 18
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "fam_odd": {
+      "sample_id": "fam_odd",
+      "n": 1999,
+      "meta": {
+        "source": "fam_odd",
+        "n_requested": 1999,
+        "n_kept": 1999,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        31
+      ],
+      "I": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "C": [
+        0.0005002501250625312,
+        0.0010005002501250625,
+        0.002001000500250125,
+        0.00400200100050025,
+        0.0080040020010005,
+        0.015507753876938469
+      ],
+      "max_size": [
+        1999,
+        1009,
+        509,
+        281,
+        227,
+        165
+      ],
+      "n_multi": [
+        1,
+        2,
+        4,
+        8,
+        16,
+        31
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "k2": [
+        0,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "k2_status": [
+        "ONE_CLASS",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        0,
+        7,
+        7,
+        7,
+        7,
+        7
+      ],
+      "k_bt_msd": [
+        0,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        null,
+        {
+          "y": 7,
+          "z": 2055,
+          "H_first_difference": 2,
+          "Fy": "OE",
+          "Fz": "OO"
+        },
+        {
+          "y": 5,
+          "z": 2053,
+          "H_first_difference": 3,
+          "Fy": "OOE",
+          "Fz": "OOO"
+        },
+        {
+          "y": 5,
+          "z": 2053,
+          "H_first_difference": 3,
+          "Fy": "OOEE",
+          "Fz": "OOOE"
+        },
+        {
+          "y": 3,
+          "z": 2051,
+          "H_first_difference": 5,
+          "Fy": "OOOEE",
+          "Fz": "OOOEO"
+        },
+        {
+          "y": 3,
+          "z": 2051,
+          "H_first_difference": 5,
+          "Fy": "OOOEEE",
+          "Fz": "OOOEOE"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 1
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 2
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 4
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 8
+        },
+        {
+          "min": 8,
+          "median": 12,
+          "max": 12,
+          "n_classes": 16
+        },
+        {
+          "min": 2,
+          "median": 12,
+          "max": 12,
+          "n_classes": 31
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "fam_OOO": {
+      "sample_id": "fam_OOO",
+      "n": 509,
+      "meta": {
+        "source": "fam_OOO",
+        "n_requested": 509,
+        "n_kept": 509,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        1,
+        1,
+        1,
+        2,
+        4,
+        8
+      ],
+      "I": [
+        0,
+        0,
+        0,
+        1,
+        2,
+        3
+      ],
+      "C": [
+        0.0019646365422396855,
+        0.0019646365422396855,
+        0.0019646365422396855,
+        0.003929273084479371,
+        0.007858546168958742,
+        0.015717092337917484
+      ],
+      "max_size": [
+        509,
+        509,
+        509,
+        281,
+        146,
+        78
+      ],
+      "n_multi": [
+        1,
+        1,
+        1,
+        2,
+        4,
+        8
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "k2": [
+        0,
+        0,
+        0,
+        12,
+        12,
+        12
+      ],
+      "k2_status": [
+        "ONE_CLASS",
+        "ONE_CLASS",
+        "ONE_CLASS",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        0,
+        0,
+        0,
+        7,
+        7,
+        7
+      ],
+      "k_bt_msd": [
+        0,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        null,
+        null,
+        null,
+        {
+          "y": 77,
+          "z": 2125,
+          "H_first_difference": 4,
+          "Fy": "OOOE",
+          "Fz": "OOOO"
+        },
+        {
+          "y": 3,
+          "z": 2051,
+          "H_first_difference": 5,
+          "Fy": "OOOEE",
+          "Fz": "OOOEO"
+        },
+        {
+          "y": 3,
+          "z": 2051,
+          "H_first_difference": 5,
+          "Fy": "OOOEEE",
+          "Fz": "OOOEOE"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 1
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 1
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 1
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 2
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 4
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 8
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "fam_EEE": {
+      "sample_id": "fam_EEE",
+      "n": 427,
+      "meta": {
+        "source": "fam_EEE",
+        "n_requested": 427,
+        "n_kept": 427,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      "I": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        1
+      ],
+      "C": [
+        0.00234192037470726,
+        0.00234192037470726,
+        0.00234192037470726,
+        0.00468384074941452,
+        0.00468384074941452,
+        0.00468384074941452
+      ],
+      "max_size": [
+        427,
+        427,
+        427,
+        406,
+        406,
+        406
+      ],
+      "n_multi": [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "k2": [
+        0,
+        0,
+        0,
+        12,
+        12,
+        12
+      ],
+      "k2_status": [
+        "ONE_CLASS",
+        "ONE_CLASS",
+        "ONE_CLASS",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        0,
+        0,
+        0,
+        7,
+        7,
+        7
+      ],
+      "k_bt_msd": [
+        0,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        null,
+        null,
+        null,
+        {
+          "y": 68,
+          "z": 2116,
+          "H_first_difference": 4,
+          "Fy": "EEEO",
+          "Fz": "EEEE"
+        },
+        {
+          "y": 68,
+          "z": 2116,
+          "H_first_difference": 4,
+          "Fy": "EEEOO",
+          "Fz": "EEEEO"
+        },
+        {
+          "y": 68,
+          "z": 2116,
+          "H_first_difference": 4,
+          "Fy": "EEEOOO",
+          "Fz": "EEEEOO"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 1
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 1
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 1
+        },
+        {
+          "min": 7,
+          "median": 9,
+          "max": 12,
+          "n_classes": 2
+        },
+        {
+          "min": 7,
+          "median": 9,
+          "max": 12,
+          "n_classes": 2
+        },
+        {
+          "min": 7,
+          "median": 9,
+          "max": 12,
+          "n_classes": 2
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "fam_mixed": {
+      "sample_id": "fam_mixed",
+      "n": 3933,
+      "meta": {
+        "source": "fam_mixed",
+        "n_requested": 3933,
+        "n_kept": 3933,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        2,
+        4,
+        8,
+        16,
+        29,
+        48
+      ],
+      "I": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "C": [
+        0.0005085176709890668,
+        0.0010170353419781336,
+        0.0020340706839562673,
+        0.004068141367912535,
+        0.00737350622934147,
+        0.012204424103737605
+      ],
+      "max_size": [
+        2000,
+        1023,
+        596,
+        406,
+        406,
+        406
+      ],
+      "n_multi": [
+        2,
+        4,
+        8,
+        16,
+        29,
+        47
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.020833333333333332
+      ],
+      "k2": [
+        1,
+        12,
+        12,
+        12,
+        12,
+        12
+      ],
+      "k2_status": [
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        8,
+        8,
+        8,
+        8,
+        8,
+        8
+      ],
+      "k_bt_msd": [
+        9,
+        null,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        {
+          "y": 2,
+          "z": 3,
+          "H_first_difference": 1,
+          "Fy": "E",
+          "Fz": "O"
+        },
+        {
+          "y": 4,
+          "z": 2052,
+          "H_first_difference": 2,
+          "Fy": "EE",
+          "Fz": "EO"
+        },
+        {
+          "y": 4,
+          "z": 2052,
+          "H_first_difference": 2,
+          "Fy": "EEO",
+          "Fz": "EOO"
+        },
+        {
+          "y": 2,
+          "z": 2050,
+          "H_first_difference": 4,
+          "Fy": "EOOO",
+          "Fz": "EOOE"
+        },
+        {
+          "y": 2,
+          "z": 2050,
+          "H_first_difference": 4,
+          "Fy": "EOOOO",
+          "Fz": "EOOEE"
+        },
+        {
+          "y": 2,
+          "z": 2050,
+          "H_first_difference": 4,
+          "Fy": "EOOOOO",
+          "Fz": "EOOEEE"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 2
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 4
+        },
+        {
+          "min": 12,
+          "median": 12,
+          "max": 12,
+          "n_classes": 8
+        },
+        {
+          "min": 7,
+          "median": 12,
+          "max": 12,
+          "n_classes": 16
+        },
+        {
+          "min": 7,
+          "median": 12,
+          "max": 12,
+          "n_classes": 29
+        },
+        {
+          "min": 0,
+          "median": 12,
+          "max": 12,
+          "n_classes": 48
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    },
+    "fam_PE": {
+      "sample_id": "fam_PE",
+      "n": 4000,
+      "meta": {
+        "source": "fam_PE",
+        "n_requested": 4000,
+        "n_kept": 4000,
+        "n_dropped_bitcap": 0
+      },
+      "Q": [
+        1,
+        1,
+        2,
+        3,
+        4,
+        7
+      ],
+      "I": [
+        0,
+        0,
+        1,
+        2,
+        2,
+        3
+      ],
+      "C": [
+        0.00025,
+        0.00025,
+        0.0005,
+        0.00075,
+        0.001,
+        0.00175
+      ],
+      "max_size": [
+        4000,
+        4000,
+        2265,
+        1735,
+        1735,
+        895
+      ],
+      "n_multi": [
+        1,
+        1,
+        2,
+        3,
+        4,
+        7
+      ],
+      "singleton_frac": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "k2": [
+        0,
+        0,
+        16,
+        16,
+        16,
+        16
+      ],
+      "k2_status": [
+        "ONE_CLASS",
+        "ONE_CLASS",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED",
+        "SEPARATED"
+      ],
+      "k3": [
+        0,
+        0,
+        10,
+        10,
+        10,
+        10
+      ],
+      "k_bt_msd": [
+        0,
+        0,
+        null,
+        null,
+        null,
+        null
+      ],
+      "separators": [
+        null,
+        null,
+        {
+          "y": 357,
+          "z": 33125,
+          "H_first_difference": 3,
+          "Fy": "OOO",
+          "Fz": "OOE"
+        },
+        {
+          "y": 357,
+          "z": 33125,
+          "H_first_difference": 3,
+          "Fy": "OOOO",
+          "Fz": "OOEO"
+        },
+        {
+          "y": 357,
+          "z": 33125,
+          "H_first_difference": 3,
+          "Fy": "OOOOO",
+          "Fz": "OOEOO"
+        },
+        {
+          "y": 357,
+          "z": 33125,
+          "H_first_difference": 3,
+          "Fy": "OOOOOO",
+          "Fz": "OOEOOE"
+        }
+      ],
+      "intra_k2": [
+        {
+          "min": 16,
+          "median": 16,
+          "max": 16,
+          "n_classes": 1
+        },
+        {
+          "min": 16,
+          "median": 16,
+          "max": 16,
+          "n_classes": 1
+        },
+        {
+          "min": 16,
+          "median": 16,
+          "max": 16,
+          "n_classes": 2
+        },
+        {
+          "min": 16,
+          "median": 16,
+          "max": 16,
+          "n_classes": 3
+        },
+        {
+          "min": 16,
+          "median": 16,
+          "max": 16,
+          "n_classes": 4
+        },
+        {
+          "min": 15,
+          "median": 16,
+          "max": 16,
+          "n_classes": 7
+        }
+      ],
+      "greedy": [
+        null,
+        null,
+        null,
+        null,
+        null,
+        null
+      ]
+    }
+  }
+}

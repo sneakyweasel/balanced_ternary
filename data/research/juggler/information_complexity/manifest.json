@@ -1,0 +1,15 @@
+{
+  "experiment": "juggler_information_complexity",
+  "F_H": "O/E itinerary of the next H steps (parities of x, T(x), ..., T^{H-1}(x))",
+  "H_max": 6,
+  "classification": "INFO_COMPLEXITY_COUNTEREXAMPLE",
+  "artifacts": {
+    "future_classes.jsonl": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\information_complexity\\future_classes.jsonl",
+    "future_classes.parquet": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\information_complexity\\future_classes.parquet",
+    "precision_tests.jsonl": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\information_complexity\\precision_tests.jsonl",
+    "precision_tests.parquet": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\information_complexity\\precision_tests.parquet",
+    "separators.jsonl": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\information_complexity\\separators.jsonl",
+    "separators.parquet": "C:\\Users\\phili\\Desktop\\balanced_ternary\\data\\research\\juggler\\information_complexity\\separators.parquet"
+  },
+  "independence_claim": false
+}
