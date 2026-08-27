@@ -141,10 +141,11 @@ sharp and nonempty. The ascent is not shown to overshoot it.
 
 ## Open questions
 
-Does any existing exact threshold force the ascent \(p\to M\) out of
-\([p^{2^r},(p+1)^{2^r})\) for some scalable family of \(r\), without
-naming the ascent word? Do not start a first-cell census. Do not
-reopen length 7.
+Answered in [juggler_cycle_top_pred.md](juggler_cycle_top_pred.md):
+the maximum is reached from an odd predecessor \(x\) with
+\(p<x<M\) and nested cells. The cells survive; they do not empty a
+top-run length. Do not start a first-cell census. Do not reopen
+length 7.
 
 ## Decision
 
@@ -152,9 +153,8 @@ reopen length 7.
 normal form. Do not claim that the ascent is impossible. Do not claim
 that \(T(M)=m\). Do not claim termination.
 
-Best next question: does any existing exact threshold force the
-ascent \(p\to M\) out of the top window for a scalable family of
-\(r\), without naming the word?
+Best next question: answered in
+[juggler_cycle_top_pred.md](juggler_cycle_top_pred.md).
 
 ## Publication assessment
 

@@ -5401,7 +5401,52 @@ Why
 - The maximum is now a turning point with a sharp two-sided cell. That is the strongest word-independent structure currently available. The ascent is not shown to overshoot the cell.
 
 Best next question
-- Does any existing exact threshold force the ascent p → M out of the top window for a scalable family of r, without naming the word?
+- Answered in the maximum-predecessor branch: the odd predecessor forces p < x < M inside nested cells, without emptying a top-run length.
+```
+
+## Juggler maximum predecessors
+
+- **Date:** 2026-08-27
+- **Objective:** Exploit that the global maximum is reached from an odd predecessor, and test whether the nested top cells restrict or empty a cycle
+- **Hypotheses:** `TOP_NESTED_CELL_GREEN`, `TOP_SCALE_GAP_GREEN`, `TOP_RUN_OBSTRUCTION_GREEN`, `TOP_NESTED_CELL_SURVIVES`, or `TOP_COUNTEREXAMPLE_PATTERN`
+- **Major results:** the predecessor of a cycle maximum is odd **EXACT — LEAN VERIFIED**. The top is three-level \(p<x<M\) **EXACT — LEAN VERIFIED**. Nested cells \(p^{2^r}\le M<(p+1)^{2^r}\) and \(M^2\le x^3<(M+1)^2\) **EXACT — LEAN VERIFIED**. Scale \(x^3\ge p^{2^{r+1}}\) and \(M<x^2\) **EXACT — LEAN VERIFIED**. Classification **TOP_NESTED_CELL_GREEN**. Records: `docs/research/juggler_cycle_top_pred.md`, `docs/problems/juggler_cycle_top_pred.md`. Control layer unchanged
+- **Refuted ideas:** \(x=p\) on a cycle; \(x\ge p^2\) is forced; the nested cells empty every top-run length; \(T(M)=p\) for \(r>1\); a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** does any further exact cell force the nested triple \((p,x,M)\) out of both windows at once, without naming the ascent word?
+- **Decision:** PROMOTE the odd predecessor, the three-level top, and the nested cells. Do not claim that a top-run length is impossible. Do not claim that \(x\ge p^2\)
+
+```text
+What was learned
+- The maximum is reached by an odd step; an even predecessor would descend
+- The odd-to-even two-step plus even descent force p < x < M for every r ≥ 1
+- T(M)=p only when r=1; the conclusion p<x still holds for longer top runs
+- Nested cells give x^3 ≥ p^{2^{r+1}} and M < x^2, but the integer region stays nonempty
+- Transient r=1 maxima can have x < p^2 (9 and 77), so that strengthening is false
+
+Strongest theorem
+- A CycleMax has an odd predecessor x with p < x < M, p^{2^r} ≤ M < (p+1)^{2^r}, and M^2 ≤ x^3 < (M+1)^2
+
+Strongest refutation
+- x ≥ p^2; start 9 has p=11, x=27, M=140
+
+Reusable machinery
+- Problems.Engine.CycleWord cycle_top_three_level / cycle_top_nested_cell / cycle_top_pred_scale
+- research.juggler_sequence.cycle_top_pred
+
+Prior-art status
+- maximum-predecessor nested-cell lemma, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- The global maximum is now a three-level exact cell, not merely a two-sided window. That is a word-independent restriction. It is not an r-obstruction.
+
+Best next question
+- Does any further exact cell force the nested triple (p,x,M) out of both windows at once, without naming the ascent word?
 ```
 
 

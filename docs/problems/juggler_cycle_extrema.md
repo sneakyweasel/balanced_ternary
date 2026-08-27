@@ -151,10 +151,11 @@ before square scale, so the cycle demand \(M>m^2\) is not vacuous.
 
 ## Open questions
 
-Answered in [juggler_cycle_top_excursion.md](juggler_cycle_top_excursion.md):
-the maximum begins a finite even run onto an odd landing with a
-two-sided scale window. The ascent is not yet forced out of that
-window. Do not start a first-cell census. Do not reopen length 7.
+Answered in [juggler_cycle_top_excursion.md](juggler_cycle_top_excursion.md)
+and [juggler_cycle_top_pred.md](juggler_cycle_top_pred.md): the
+maximum begins a finite even run onto an odd landing, then is
+reached from a strict odd predecessor inside nested cells. The cells
+survive. Do not start a first-cell census. Do not reopen length 7.
 
 ## Decision
 

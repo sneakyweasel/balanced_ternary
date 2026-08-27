@@ -31,8 +31,10 @@ The extrema of any nontrivial cycle are word-independent: the
 minimum is odd, the maximum is even, and `M > m^2`. A realized path
 from `m` to any even cycle state is therefore superquadratic. The
 maximum begins a finite even run `E^r` onto an odd landing `p`, with
-`p^{2^r} ≤ M < (p+1)^{2^r}`. This is not a halt theorem and not a
-claim that every cycle word is impossible.
+`p^{2^r} ≤ M < (p+1)^{2^r}`. The predecessor `x` of `M` is odd and
+strictly between the landing and the maximum: `p < x < M`, with
+`M^2 ≤ x^3 < (M+1)^2` and `x^3 ≥ p^{2^{r+1}}`. This is not a halt
+theorem and not a claim that every cycle word is impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -980,9 +982,7 @@ theorem even_iter_pow_le {x : ℕ} :
 theorem even_iter_lt_succ_pow {x : ℕ} :
     ∀ r, (∀ i < r, floorPower^[i] x % 2 = 0) →
       x < (floorPower^[r] x + 1) ^ (2 ^ r)
-  | 0, _ => by
-      simp
-      exact Nat.lt_succ_self x
+  | 0, _ => by simp
   | r + 1, he => by
       have he0 : x % 2 = 0 := he 0 (by omega)
       have her : ∀ i < r, floorPower^[i] (floorPower x) % 2 = 0 := by
@@ -1184,4 +1184,239 @@ theorem top_ascent_superquadratic {p : ℕ} {u : List Branch} {r : ℕ}
     2 ^ (u.length + r) ≤ 3 ^ oddCount u :=
   power_scale_superquadratic hp hu hM
 
+theorem cycleMax_length_ge_two {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) : 2 ≤ w.length := by
+  have hlen : 1 ≤ w.length := h.1.2.2
+  cases Nat.eq_or_lt_of_le hlen with
+  | inl h1 =>
+      have hper := cycle_iterate_period h.1
+      have he := cycleMax_start_even hn h
+      have hlt := floorPower_even_lt hn he
+      have : floorPower n = n := by
+        rw [show w.length = 1 from h1.symm] at hper
+        simpa using hper
+      omega
+  | inr hgt => exact hgt
+
+/-- The predecessor of a cycle maximum is odd: an even predecessor
+would strictly descend. -/
+theorem cycleMax_predecessor_odd {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    floorPower^[w.length - 1] n % 2 = 1 := by
+  have hlen : 2 ≤ w.length := cycleMax_length_ge_two hn h
+  have hi : w.length - 1 < w.length := by omega
+  have hx2 : 2 ≤ floorPower^[w.length - 1] n :=
+    cycleWord_iterate_ge_two hn h.1 hi
+  have hTx : floorPower (floorPower^[w.length - 1] n) = n := by
+    have hper := cycle_iterate_period h.1
+    have hsum : w.length = w.length - 1 + 1 := by omega
+    rw [hsum, Function.iterate_succ_apply'] at hper
+    exact hper
+  rcases Nat.mod_two_eq_zero_or_one (floorPower^[w.length - 1] n) with he | ho
+  · have hlt := floorPower_even_lt hx2 he
+    have hle := cycleMax_le h hi
+    omega
+  · exact ho
+
+theorem cycleMax_predecessor_apply {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    floorPower (floorPower^[w.length - 1] n) = n := by
+  have hlen : 2 ≤ w.length := cycleMax_length_ge_two hn h
+  have hper := cycle_iterate_period h.1
+  have hsum : w.length = w.length - 1 + 1 := by omega
+  rw [hsum, Function.iterate_succ_apply'] at hper
+  exact hper
+
+theorem cycleMax_predecessor_lt {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    floorPower^[w.length - 1] n < n := by
+  have hlen : 2 ≤ w.length := cycleMax_length_ge_two hn h
+  have hi : w.length - 1 < w.length := by omega
+  have hx2 : 2 ≤ floorPower^[w.length - 1] n :=
+    cycleWord_iterate_ge_two hn h.1 hi
+  have ho := cycleMax_predecessor_odd hn h
+  have hn3 : 3 ≤ floorPower^[w.length - 1] n := by omega
+  have hTx := cycleMax_predecessor_apply hn h
+  have hgt := floorPower_odd_gt hn3 ho
+  simpa [hTx] using hgt
+
+/-- Inverse odd cell at the predecessor of the maximum. -/
+theorem cycle_top_predecessor_cell {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    n ^ 2 ≤ (floorPower^[w.length - 1] n) ^ 3 ∧
+      (floorPower^[w.length - 1] n) ^ 3 < (n + 1) ^ 2 := by
+  have ho := cycleMax_predecessor_odd hn h
+  have hTx := cycleMax_predecessor_apply hn h
+  exact (floorPower_odd_eq_iff_cube_interval ho).mp hTx
+
+/-- Even-run iterates after the first step are at most `T(x)`. -/
+theorem even_iter_le_first {x : ℕ} :
+    ∀ r, (∀ i < r, floorPower^[i] x % 2 = 0) →
+      (∀ i < r, 2 ≤ floorPower^[i] x) →
+        1 ≤ r →
+          floorPower^[r] x ≤ floorPower x
+  | 0, _, _, hr => (Nat.not_succ_le_zero 0 hr).elim
+  | 1, _, _, _ => le_rfl
+  | r + 2, he, h2, _ => by
+      have hmid_even : floorPower^[r + 1] x % 2 = 0 := he (r + 1) (by omega)
+      have hmid_ge : 2 ≤ floorPower^[r + 1] x := h2 (r + 1) (by omega)
+      have hstep : floorPower^[r + 2] x < floorPower^[r + 1] x := by
+        simpa [Function.iterate_succ_apply'] using
+          floorPower_even_lt hmid_ge hmid_even
+      have ih : floorPower^[r + 1] x ≤ floorPower x :=
+        even_iter_le_first (r + 1)
+          (fun i hi => he i (lt_trans hi (by omega)))
+          (fun i hi => h2 i (lt_trans hi (by omega)))
+          (by omega)
+      exact le_of_lt (lt_of_lt_of_le hstep ih)
+
+/-- The odd-cell lower bound forces `M < x^2` for `x ≥ 2`. -/
+theorem cycle_top_max_lt_pred_sq {x n : ℕ}
+    (hx : 2 ≤ x) (hcell : n ^ 2 ≤ x ^ 3) : n < x ^ 2 := by
+  have hx0 : 0 < x := lt_of_lt_of_le (by decide : (0 : ℕ) < 2) hx
+  have hstrict : x ^ 3 < x ^ 4 := by
+    have : x ^ 3 * 1 < x ^ 3 * x :=
+      Nat.mul_lt_mul_of_pos_left (by omega : 1 < x) (Nat.pow_pos hx0)
+    simpa [pow_succ] using this
+  have hpow : x ^ 4 = (x ^ 2) ^ 2 := by
+    rw [← Nat.pow_mul]
+  have : n ^ 2 < (x ^ 2) ^ 2 :=
+    lt_of_le_of_lt hcell (hpow ▸ hstrict)
+  exact (Nat.pow_lt_pow_iff_left (by decide : (2 : ℕ) ≠ 0)).mp this
+
+/-- From the nested lower cells: `x^3 ≥ p^{2^{r+1}}`. -/
+theorem cycle_top_pred_scale {p n x r : ℕ}
+    (hM : p ^ (2 ^ r) ≤ n) (hcell : n ^ 2 ≤ x ^ 3) :
+    p ^ (2 ^ (r + 1)) ≤ x ^ 3 := by
+  have hsq : (p ^ (2 ^ r)) ^ 2 ≤ n ^ 2 := Nat.pow_le_pow_left hM 2
+  have hpow : p ^ (2 ^ (r + 1)) = (p ^ (2 ^ r)) ^ 2 := pow_two_succ_sq p r
+  exact le_trans (hpow ▸ hsq) hcell
+
+/-- From `M < x^2` and the top lower window: `p^{2^{r-1}} < x`. -/
+theorem cycle_top_pred_gt_pow {p n x r : ℕ}
+    (hr : 1 ≤ r) (hM : p ^ (2 ^ r) ≤ n) (hMx : n < x ^ 2) :
+    p ^ (2 ^ (r - 1)) < x := by
+  have hlt : p ^ (2 ^ r) < x ^ 2 := lt_of_le_of_lt hM hMx
+  have hpow : p ^ (2 ^ r) = (p ^ (2 ^ (r - 1))) ^ 2 := pow_two_pred_sq hr
+  have : (p ^ (2 ^ (r - 1))) ^ 2 < x ^ 2 := by rwa [hpow] at hlt
+  exact (Nat.pow_lt_pow_iff_left (by decide : (2 : ℕ) ≠ 0)).mp this
+
+theorem follows_replicate_even_iter {n : ℕ} :
+    ∀ r, follows n (List.replicate r Branch.even) →
+      ∀ i < r, floorPower^[i] n % 2 = 0
+  | 0, _, i, hi => by omega
+  | r + 1, hf, i, hi => by
+      rw [List.replicate_succ] at hf
+      have he0 : n % 2 = 0 := hf.1
+      cases i with
+      | zero => exact he0
+      | succ i =>
+          have : floorPower^[i] (floorPower n) % 2 = 0 :=
+            follows_replicate_even_iter r hf.2 i (by omega)
+          simpa [Function.iterate_succ_apply] using this
+
+/-- Three-level top: landing, odd predecessor, maximum. The two-step
+odd-to-even law gives `T(M) < x`; even descent then gives `p ≤ T(M)`.
+`T(M) = p` only when `r = 1`. -/
+theorem cycle_top_three_level {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ r u p x, 1 ≤ r ∧
+      w = List.replicate r Branch.even ++ u ∧
+        p = floorPower^[r] n ∧
+          x = floorPower^[w.length - 1] n ∧
+            p % 2 = 1 ∧ 2 ≤ p ∧
+              x % 2 = 1 ∧ 2 ≤ x ∧
+                p < x ∧ x < n ∧
+                  floorPower x = n ∧
+                    image p u = n ∧
+                      CycleWord p (u ++ List.replicate r Branch.even) := by
+  have ⟨r, u, p, hr1, hw, hpdef, hpodd, hp2, hC, himg, _, _, _⟩ :=
+    cycleMax_top_normal_form hn h
+  have hi : w.length - 1 < w.length := by
+    have : 2 ≤ w.length := cycleMax_length_ge_two hn h
+    omega
+  have hxodd := cycleMax_predecessor_odd hn h
+  have hx2 : 2 ≤ floorPower^[w.length - 1] n :=
+    cycleWord_iterate_ge_two hn h.1 hi
+  have hxl := cycleMax_predecessor_lt hn h
+  have hTx := cycleMax_predecessor_apply hn h
+  have he := cycleMax_start_even hn h
+  have htwo : floorPower n < floorPower^[w.length - 1] n := by
+    have hsqrt : (floorPower^[w.length - 1] n ^ 3).sqrt % 2 = 0 := by
+      have hfpeq :
+          floorPower (floorPower^[w.length - 1] n) =
+            (floorPower^[w.length - 1] n ^ 3).sqrt :=
+        floorPower_odd_eq hxodd
+      rw [← hfpeq, hTx]
+      exact he
+    have hstep := floorPower_odd_even_two_step_lt hx2 hxodd hsqrt
+    rwa [hTx] at hstep
+  have hrw : r < w.length := by
+    have hwu : w.length = r + u.length := by
+      simp [hw, List.length_append, List.length_replicate]
+    cases u with
+    | nil =>
+        have : p = n := by simpa [image] using himg
+        omega
+    | cons _ _ =>
+        simp [hwu]
+  have hge : ∀ i < r, 2 ≤ floorPower^[i] n := fun i hi =>
+    cycleWord_iterate_ge_two hn h.1 (lt_trans hi hrw)
+  have heven : ∀ i < r, floorPower^[i] n % 2 = 0 := by
+    have hf : follows n (List.replicate r Branch.even ++ u) := by
+      simpa [hw] using h.1.1
+    exact follows_replicate_even_iter r (follows_of_append_left hf)
+  have hple : p ≤ floorPower n := by
+    simpa [hpdef] using even_iter_le_first r heven hge hr1
+  have hpx : p < floorPower^[w.length - 1] n := lt_of_le_of_lt hple htwo
+  exact ⟨r, u, p, floorPower^[w.length - 1] n, hr1, hw, hpdef, rfl, hpodd, hp2,
+    hxodd, hx2, hpx, hxl, hTx, himg, hC⟩
+
+/-- Nested exact top cells at the maximum, its odd predecessor, and
+the even-run landing. -/
+theorem cycle_top_nested_cell {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ r p x, 1 ≤ r ∧
+      p = floorPower^[r] n ∧
+        x = floorPower^[w.length - 1] n ∧
+          p < x ∧ x < n ∧
+            p ^ (2 ^ r) ≤ n ∧ n < (p + 1) ^ (2 ^ r) ∧
+              n ^ 2 ≤ x ^ 3 ∧ x ^ 3 < (n + 1) ^ 2 := by
+  have ⟨r, u, p, x, hr1, hw, hpdef, hxdef, _, _, _, _, hpx, hxn, _, _, _⟩ :=
+    cycle_top_three_level hn h
+  have hcell := cycle_top_predecessor_cell hn h
+  have heven : ∀ i < r, floorPower^[i] n % 2 = 0 := by
+    have hf : follows n (List.replicate r Branch.even ++ u) := by
+      simpa [hw] using h.1.1
+    exact follows_replicate_even_iter r (follows_of_append_left hf)
+  have hlo : p ^ (2 ^ r) ≤ n := by
+    simpa [hpdef] using even_iter_pow_le r heven
+  have hhi : n < (p + 1) ^ (2 ^ r) := by
+    simpa [hpdef] using even_iter_lt_succ_pow r heven
+  have hcell' : n ^ 2 ≤ x ^ 3 ∧ x ^ 3 < (n + 1) ^ 2 := by
+    simpa [hxdef] using hcell
+  exact ⟨r, p, x, hr1, hpdef, hxdef, hpx, hxn, hlo, hhi, hcell'⟩
+
+/-- Scale constraint implied by the nested cells. Weaker than a
+top-run obstruction: the integer region is not shown empty. -/
+theorem cycle_top_scale_constraint {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ r p x, 1 ≤ r ∧
+      p = floorPower^[r] n ∧
+        x = floorPower^[w.length - 1] n ∧
+          p ^ (2 ^ (r + 1)) ≤ x ^ 3 ∧
+            n < x ^ 2 ∧
+              p ^ (2 ^ (r - 1)) < x := by
+  have ⟨r, p, x, hr1, hpdef, hxdef, _, _, hlo, _, hcell, _⟩ :=
+    cycle_top_nested_cell hn h
+  have hx2 : 2 ≤ x := by
+    have hi : w.length - 1 < w.length := by
+      have : 2 ≤ w.length := cycleMax_length_ge_two hn h
+      omega
+    simpa [hxdef] using cycleWord_iterate_ge_two hn h.1 hi
+  have hMx := cycle_top_max_lt_pred_sq hx2 hcell
+  exact ⟨r, p, x, hr1, hpdef, hxdef, cycle_top_pred_scale hlo hcell, hMx,
+    cycle_top_pred_gt_pow hr1 hlo hMx⟩
+
 end Problems.Engine
+
