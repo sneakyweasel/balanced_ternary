@@ -7771,4 +7771,53 @@ Best next question
 - none from this branch
 ```
 
+## Juggler Archimedean floor-boundary geometry
+
+- **Date:** 2026-08-28
+- **Objective:** Decide whether exact floor-boundary positions (e,u) impose a Diophantine restriction on difficult Juggler trajectories invisible in the existing envelope and cell lemmas
+- **Hypotheses:** small (e,u) forces a next-step gap law; small odd defects form a restricting Mordell family; mixed boundary chains have an exact compatibility rule; hard starts hug a wall
+- **Major results:** (e,u) is local_defect plus the complementary cell width 2m+1. Even-cell position is inert (even_cell_iff). Odd e=0 is odd squares. On odd n<=1e5 and e<=16 the only non-squares are 3 (e=2), 5 (e=4), 15 (e=11), 17 (e=13). Those isolates do not force the next gap to be small (next theta mean 0.453). Exact consecutive hits are monochrome towers / 4th powers. Same word OOE has first thetas 0.174 / 0.660 / 0.379. Hard start 193 has mean theta 0.492. Classification FLOOR_BOUNDARY_COMPLEX
+- **Refuted ideas:** even wall vs mid-cell changes J; e_O<=2 forces a small next gap; a word has a characteristic boundary profile; hard starts hug a floor wall; FLOOR_BOUNDARY_GREEN and the other green promotion targets
+- **Literature:** localDefect*_eq_zero_iff / *_lt_succ, even_cell_iff, odd_cell_unique, equality monochrome, even_tower_to_one stay in place. Sum-rho / landing theta / 2-adic bridge / first-return / realization geometry stay CLOSE
+- **Open:** none from this branch. A Mordell-rank classification of n^3-m^2=delta is not opened
+- **Decision:** CLOSE as FLOOR_BOUNDARY_COMPLEX. Boundary position does not add a finite-word theorem beyond the existing cells and equality families. Do not invent another distance
+
+```text
+What was learned
+- e is local_defect; u is the complementary gap in the certified cell width
+- Even-cell position never changes J; odd (e,u) is not a free cell coordinate
+- Small odd defects in the window are squares plus four isolates
+- Those isolates do not constrain the next cell position
+- Exact consecutive hits are monochrome equality / towers / 4th powers
+- The same word admits generic and near-boundary realizers
+- Hard first-return / PE starts are mid-cell, not wall-hugging
+
+Strongest theorem
+- even n in a square cell all have the same image (already Lean even_cell_iff)
+
+Strongest refutation
+- e_O<=2 forces a small next gap (next theta mean 0.453 on n<=4000)
+
+Reusable machinery
+- research.juggler_sequence.floor_boundary
+- reuses local_defect, floor_power, even_tower, follows_word
+
+Prior-art status
+- negative Diophantine reading of the certified floor cells, not a halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The Archimedean lattice around y=sqrt(x) and y=x^(3/2) is already
+  described by the cell lemmas and equality. Position inside a cell
+  does not create a new restriction on difficult trajectories.
+
+Best next question
+- none from this branch
+```
+
 

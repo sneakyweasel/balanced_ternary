@@ -1,0 +1,13 @@
+{
+  "n_max": 4000,
+  "odd_delta_n_max": 100000,
+  "files": [
+    "boundary_profiles.csv",
+    "boundary_chains.csv",
+    "diophantine_hits.csv",
+    "selected_profiles.jsonl",
+    "counterexamples.jsonl"
+  ],
+  "classification": "FLOOR_BOUNDARY_COMPLEX",
+  "note": "unique n<=4000 as profiles; selected walks in jsonl; not a generic GPU census"
+}
