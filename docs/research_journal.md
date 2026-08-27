@@ -5314,4 +5314,49 @@ Best next question
 - What exact extra scale does the prefix OOO give before the internal E of OOOEOE?
 ```
 
+## Juggler cycle extrema
+
+- **Date:** 2026-08-27
+- **Objective:** Package word-independent cycle extrema and test whether square-scale growth forces a superquadratic prefix
+- **Hypotheses:** `CYCLE_EXTREMES_GREEN`, `ASCENDING_SUPERQUADRATIC_GREEN`, `MAX_RETURN_CELL_GREEN`, `EXTREMAL_CYCLE_COUNTEREXAMPLE`, or `EXTREMES_NOT_ENOUGH`
+- **Major results:** cycle maximum is even **EXACT — LEAN VERIFIED**. On a cycle minimum, \(M>m^2\) **EXACT — LEAN VERIFIED**. Any realized path from \(n\ge 2\) to a state \(\ge n^2\) is superquadratic **EXACT — LEAN VERIFIED**. Min-to-even prefixes on a cycle minimum are superquadratic **EXACT — LEAN VERIFIED**. Classification **CYCLE_EXTREMES_GREEN**. Records: `docs/research/juggler_cycle_extrema.md`, `docs/problems/juggler_cycle_extrema.md`. Control layer unchanged
+- **Refuted ideas:** \(M=m^2\) is possible; the full-cycle envelope already forces the prefix law; every odd start hits \(m^2\) before dropping; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** does the superquadratic min-to-max prefix plus the exact maximum return cell force a forbidden transition without a word census?
+- **Decision:** PROMOTE the extrema package and the square-scale prefix law. Do not claim that growth and collapse cannot coexist. Do not exclude first-cell maxima
+
+```text
+What was learned
+- A nontrivial cycle has odd min, even max, and M > m^2
+- Reaching square scale requires 3^o ≥ 2^{k+1}, which is strictly stronger than 2^k < 3^o
+- OOE is expanding but cannot carry m to m^2
+- Ordinary stay-above-min transients often drop before m^2, so the cycle demand is not vacuous
+- The maximum return cell does not force T(M) = m
+
+Strongest theorem
+- If follows n w, n ≥ 2, and n^2 ≤ T_w(n), then 3^{#O(w)} ≥ 2^{|w|+1}
+
+Strongest refutation
+- every odd start hits m^2 before dropping; 7 walks OE and falls to 4
+
+Reusable machinery
+- Problems.Engine.CycleWord CycleMax / cycleMin_max_gt_sq / square_scale_superquadratic
+- research.juggler_sequence.cycle_extrema
+
+Prior-art status
+- word-independent extrema and prefix law, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Stopping the length programme produced a reusable constraint that applies to every cycle word at once: the path from the minimum to any even cycle state is superquadratic.
+
+Best next question
+- Does the superquadratic min-to-max prefix plus the exact maximum return cell force a forbidden transition without a word census?
+```
+
 

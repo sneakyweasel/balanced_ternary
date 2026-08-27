@@ -154,10 +154,10 @@ The generic theorem is the reusable result. `OOEOOE` is fully excluded.
 
 ## Open questions
 
-What exact lower bound does the prefix `OOO` provide before the internal
-`E` of `OOOEOE`? Do not open length 7. Do not start an O-terminating
-programme. Do not invent an \(O^a\) higher-power hierarchy unless that
-bound is forced.
+The word-length programme is stopped. The next opened branch is
+[juggler_cycle_extrema.md](juggler_cycle_extrema.md). The parked
+word-specific question remains: what exact extra scale does the prefix
+`OOO` give before the internal `E` of `OOOEOE`? Do not open length 7.
 
 ## Decision
 
@@ -165,8 +165,9 @@ bound is forced.
 Do not claim that all length-6 E-terminating cycles are impossible. Do
 not claim termination. Do not treat cycles ending in `O`.
 
-Best next question: what exact extra scale does the prefix `OOO` give
-before the internal `E` of `OOOEOE`?
+Best next question: answered by a pivot to
+[juggler_cycle_extrema.md](juggler_cycle_extrema.md). The parked
+`OOOEOE` scale question is not reopened here.
 
 ## Publication assessment
 

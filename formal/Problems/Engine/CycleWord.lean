@@ -25,8 +25,12 @@ Existing next-square inventory, not a new engine:
 Every length-5 E-terminating word is either contracting or `OOOOE`.
 A cycle minimum forbids an `OE` start: the first even residual is
 below `n^2`. An internal `E` plus a next-square suffix then
-contradicts the last-even cell. This is not a halt theorem and not a
-claim that every cycle word is impossible.
+contradicts the last-even cell.
+
+The extrema of any nontrivial cycle are word-independent: the
+minimum is odd, the maximum is even, and `M > m^2`. A realized path
+from `m` to any even cycle state is therefore superquadratic. This is
+not a halt theorem and not a claim that every cycle word is impossible.
 -/
 
 def CycleWord (n : ℕ) (w : List Branch) : Prop :=
@@ -756,5 +760,194 @@ theorem no_cycle_word_ooeooe {n : ℕ} (hn : 2 ≤ n) :
   · exact no_cycleMin_ooeooe hnk (by simpa [h0] using hm)
   · exact cycleMin_not_odd_even hnk (by simpa [h1] using hm)
   · exact cycleMin_not_start_even hnk (by simpa [h2] using hm)
+
+/-- Dual of `CycleMin`: the start is a maximum of its realized cycle. -/
+def CycleMax (n : ℕ) (w : List Branch) : Prop :=
+  CycleWord n w ∧ ∀ j, j < w.length → floorPower^[j] n ≤ n
+
+theorem cycleMax_cycleWord {n : ℕ} {w : List Branch} (h : CycleMax n w) :
+    CycleWord n w :=
+  h.1
+
+theorem cycleMax_le {n : ℕ} {w : List Branch} {j : ℕ}
+    (h : CycleMax n w) (hj : j < w.length) : floorPower^[j] n ≤ n :=
+  h.2 j hj
+
+theorem exists_iterate_max (n k : ℕ) (hk : 1 ≤ k) :
+    ∃ i < k, ∀ j < k, floorPower^[j] n ≤ floorPower^[i] n := by
+  induction k with
+  | zero => omega
+  | succ k ih =>
+      match k with
+      | 0 =>
+          refine ⟨0, by omega, ?_⟩
+          intro j hj
+          have : j = 0 := by omega
+          subst this
+          exact le_rfl
+      | k' + 1 =>
+          have ⟨i, hi, hmax⟩ := ih (by omega : 1 ≤ k' + 1)
+          cases le_or_gt (floorPower^[k' + 1] n) (floorPower^[i] n) with
+          | inl hle =>
+              refine ⟨i, Nat.lt_trans hi (by omega), ?_⟩
+              intro j hj
+              rcases Nat.lt_or_eq_of_le (Nat.lt_succ_iff.mp hj) with hlt | heq
+              · exact hmax j hlt
+              · simpa [heq] using hle
+          | inr hgt =>
+              refine ⟨k' + 1, by omega, ?_⟩
+              intro j hj
+              rcases Nat.lt_or_eq_of_le (Nat.lt_succ_iff.mp hj) with hjt | heq
+              · exact (hmax j hjt).trans (le_of_lt hgt)
+              · subst heq
+                exact le_rfl
+
+/-- The maximum state of a nontrivial cycle is even, because an odd
+state strictly ascends. -/
+theorem exists_cycle_max_even {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    ∃ i < w.length,
+      (∀ j < w.length, floorPower^[j] n ≤ floorPower^[i] n) ∧
+        floorPower^[i] n % 2 = 0 := by
+  have ⟨i, hi, hmax⟩ := exists_iterate_max n w.length h.2.2
+  refine ⟨i, hi, hmax, ?_⟩
+  have hge := cycleWord_iterate_ge_two hn h hi
+  rcases Nat.mod_two_eq_zero_or_one (floorPower^[i] n) with he | ho
+  · exact he
+  · exfalso
+    have hn3 : 3 ≤ floorPower^[i] n := by omega
+    have hlt : floorPower^[i] n < floorPower^[i + 1] n := by
+      simpa [Function.iterate_succ_apply'] using floorPower_odd_gt hn3 ho
+    cases lt_or_eq_of_le (Nat.succ_le_of_lt hi) with
+    | inl hlen =>
+        exact (not_le_of_gt hlt) (hmax (i + 1) hlen)
+    | inr heq =>
+        have hper := cycle_iterate_period h
+        have hlt' : floorPower^[i] n < floorPower^[w.length] n := by
+          convert hlt
+          exact heq.symm
+        rw [hper] at hlt'
+        exact (not_le_of_gt hlt') (hmax 0 (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2))
+
+theorem cycleMax_start_even {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) : n % 2 = 0 := by
+  rcases Nat.mod_two_eq_zero_or_one n with he | ho
+  · exact he
+  · exfalso
+    have hn3 : 3 ≤ n := by omega
+    have hgt : n < floorPower n := floorPower_odd_gt hn3 ho
+    cases Nat.eq_or_lt_of_le h.1.2.2 with
+    | inl h1 =>
+        have hper := cycle_iterate_period h.1
+        have hlen1 : w.length = 1 := by omega
+        rw [hlen1] at hper
+        change floorPower n = n at hper
+        omega
+    | inr hgt1 =>
+        have hle : floorPower^[1] n ≤ n := cycleMax_le h hgt1
+        exact (not_le_of_gt hgt) hle
+
+theorem exists_cycleMax {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    ∃ k < w.length, CycleMax (floorPower^[k] n) (rotateWord w k) := by
+  have ⟨i, hi, hge, _heven⟩ := exists_cycle_max_even hn h
+  refine ⟨i, hi, cycleWord_rotateWord h i, ?_⟩
+  intro j hj
+  have hlen : (rotateWord w i).length = w.length := rotateWord_length w i
+  rw [hlen] at hj
+  have himg : floorPower^[j] (floorPower^[i] n) = floorPower^[i + j] n := by
+    simpa [Nat.add_comm] using
+      (Function.iterate_add_apply floorPower j i n).symm
+  rw [himg, cycle_iterate_mod (k := i + j) h]
+  exact hge _ (Nat.mod_lt _ (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2))
+
+/-- On a cycle minimum the maximum is even and strictly above `n^2`. -/
+theorem cycleMin_max_gt_sq {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ i < w.length,
+      (∀ j < w.length, floorPower^[j] n ≤ floorPower^[i] n) ∧
+        floorPower^[i] n % 2 = 0 ∧ n ^ 2 < floorPower^[i] n := by
+  have ⟨i, hi, hmax, heven⟩ := exists_cycle_max_even hn h.1
+  refine ⟨i, hi, hmax, heven, ?_⟩
+  have hsq := cycleMin_even_ge_sq hn h hi heven
+  have hodd := cycleMin_start_odd hn h
+  exact lt_of_le_of_ne hsq (even_ne_odd_square heven hodd).symm
+
+theorem cycleMin_max_sqrt_ge {n : ℕ} {w : List Branch} {i : ℕ}
+    (_hn : 2 ≤ n) (h : CycleMin n w) (hi : i < w.length)
+    (he : floorPower^[i] n % 2 = 0) :
+    n ≤ (floorPower^[i] n).sqrt := by
+  have hy := cycleMin_succ_ge h hi
+  have hz : floorPower (floorPower^[i] n) = (floorPower^[i] n).sqrt :=
+    floorPower_even_eq he
+  simpa [hz] using hy
+
+theorem cycleMax_return_cell {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    n % 2 = 0 ∧ n.sqrt ^ 2 ≤ n ∧ n < (n.sqrt + 1) ^ 2 := by
+  have he := cycleMax_start_even hn h
+  have hfp : floorPower n = n.sqrt := floorPower_even_eq he
+  have hI := (floorPower_even_eq_iff_sq_interval he).mp hfp
+  exact ⟨he, hI.1, hI.2⟩
+
+theorem follows_take {n : ℕ} :
+    ∀ (w : List Branch) (i : ℕ), follows n w → follows n (w.take i)
+  | _, 0, _ => trivial
+  | [], _i + 1, _ => trivial
+  | .even :: rest, i + 1, h =>
+      ⟨h.1, follows_take rest i h.2⟩
+  | .odd :: rest, i + 1, h =>
+      ⟨h.1, follows_take rest i h.2⟩
+
+theorem image_take_of_le {n : ℕ} {w : List Branch} {i : ℕ}
+    (hi : i ≤ w.length) :
+    image n (w.take i) = floorPower^[i] n := by
+  rw [image_eq_iterate, List.length_take, Nat.min_eq_left hi]
+
+/-- Any realized path from `n ≥ 2` to a state at least `n^2` is
+superquadratic: `3^o ≥ 2^{k+1}`. Cycle-independent. -/
+theorem square_scale_superquadratic {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hw : follows n w) (himg : n ^ 2 ≤ image n w) :
+    2 ^ (w.length + 1) ≤ 3 ^ oddCount w := by
+  have hpow : (image n w) ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w) := by
+    simpa [image_eq_iterate] using power_bound_word hw
+  have hleft :
+      (n ^ 2) ^ (2 ^ w.length) ≤ (image n w) ^ (2 ^ w.length) :=
+    Nat.pow_le_pow_left himg _
+  have hmul : (n ^ 2) ^ (2 ^ w.length) = n ^ (2 * 2 ^ w.length) :=
+    (Nat.pow_mul n 2 (2 ^ w.length)).symm
+  have h2 : 2 * 2 ^ w.length = 2 ^ (w.length + 1) :=
+    (two_pow_succ w.length).symm
+  have hle : n ^ (2 ^ (w.length + 1)) ≤ n ^ (3 ^ oddCount w) := by
+    rw [← h2, ← hmul]
+    exact le_trans hleft hpow
+  exact
+    (Nat.pow_le_pow_iff_right
+        (lt_of_lt_of_le (by decide : (1 : ℕ) < 2) hn)).mp
+      hle
+
+/-- The path from a cycle minimum to any later even state — in
+particular to the maximum — is superquadratic. -/
+theorem cycleMin_to_even_superquadratic {n : ℕ} {w : List Branch} {i : ℕ}
+    (hn : 2 ≤ n) (h : CycleMin n w) (hi : i < w.length)
+    (he : floorPower^[i] n % 2 = 0) :
+    2 ^ (i + 1) ≤ 3 ^ oddCount (w.take i) := by
+  have hw : follows n (w.take i) := follows_take w i h.1.1
+  have hlen : (w.take i).length = i := by
+    rw [List.length_take, Nat.min_eq_left (Nat.le_of_lt hi)]
+  have himg : image n (w.take i) = floorPower^[i] n :=
+    image_take_of_le (Nat.le_of_lt hi)
+  have hsq : n ^ 2 ≤ floorPower^[i] n := cycleMin_even_ge_sq hn h hi he
+  have hsq' : n ^ 2 ≤ image n (w.take i) := by simpa [himg] using hsq
+  have hα := square_scale_superquadratic hn hw hsq'
+  simpa [hlen] using hα
+
+theorem cycleMin_to_max_superquadratic {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ i < w.length,
+      floorPower^[i] n % 2 = 0 ∧ n ^ 2 < floorPower^[i] n ∧
+        2 ^ (i + 1) ≤ 3 ^ oddCount (w.take i) := by
+  have ⟨i, hi, _hmax, heven, hgt⟩ := cycleMin_max_gt_sq hn h
+  exact ⟨i, hi, heven, hgt, cycleMin_to_even_superquadratic hn h hi heven⟩
 
 end Problems.Engine
