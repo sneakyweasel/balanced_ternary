@@ -96,6 +96,7 @@ It is not required.
 - Python API: `research.juggler_sequence.atlas`
 - CLI: `juggler-atlas build|validate|factors|continuations|benchmark|science`
 - Data: [word_atlas](../../data/research/juggler/word_atlas/)
+- Graph reading: [juggler_atlas_graph.md](../research/juggler_atlas_graph.md)
 - Milestone 1 window: word length \(\le 12\), \(n\le 10^6\)
 - Scientific census (2026-08-27): \(k\le 20\), \(n\le 10^8\),
   `PE_CERTIFIED` scan \(n\le 10^7\), experiment
@@ -134,10 +135,16 @@ Scientific census `wa-20260827T200310Z-cuda-k20-n100000000`
 theorem):
 
 - Realizable words fill every binary string for \(k\le 5\). First
-  gap at \(k=6\): `EEEEEE`, `EEEEOE`, `EEEOEO` are
-  `NOT OBSERVED WITHIN SEARCH BOUND` among prefixes and among
-  factors of stored words of length \(\le 20\). At \(k=20\),
-  132398 of 1048576 words are realized under \(n\le 10^8\).
+  prefix gap at \(k=6\): `EEEEEE`, `EEEEOE`, `EEEOEO` are
+  `NOT OBSERVED WITHIN SEARCH BOUND` as rooted prefixes. They
+  are the three lost children of the first unary nodes
+  `EEEEE`, `EEEEO`, `EEEOE`. As interior factors of stored
+  length-\(20\) realized prefixes they are common (`EEEEEE`
+  occurs \(3948\) times, never at position \(0\)). The
+  REALIZABLE `factors` table stores prefixes, not substrings.
+  Graph reading: [juggler_atlas_graph.md](../research/juggler_atlas_graph.md).
+  At \(k=20\), 132398 of 1048576 words are realized under
+  \(n\le 10^8\).
 - `p_{\mathrm{PE}}(r)=r+1` for \(r\le 8\), the single-block
   \(O^a E^b\) factor count.
 - Every grammar-legal PE-run factor for \(r\le 8\) is

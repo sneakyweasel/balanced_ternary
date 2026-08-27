@@ -1,6 +1,6 @@
 # Juggler residual future-quotient
 
-Status: **STATE_QUOTIENT_GREEN**
+Status: **FUTURE_QUOTIENT_REPACK**
 
 Standalone application phase. Not a Research Engine experiment
 and not a termination theorem. ResidualStep stays the successor.
@@ -21,12 +21,12 @@ Maximum Phase-0 scope   H<=6; n<=80 and n<=4000; optional atlas PE starts; no GP
 
 - algorithm: `future-quotient-v1`
 - engine control layer modified: `False`
-- classification: **STATE_QUOTIENT_GREEN**
-- secondary: `['residual_V']`
+- classification: **FUTURE_QUOTIENT_REPACK**
+- secondary: `['STATE_QUOTIENT_COUNTEREXAMPLE', 'STATE_COMPLEXITY_PARK']`
 - sorry-free: `True`
 - ResidualState.lean absent: `True`
 
-a listed projection other than exact y predicts Future_1 with a multi-y fiber that is not only a HALT certificate: ['residual_V'].
+every listed arithmetic projection of y is separated at H=1 (pairs {'y_mod_8': [1, 9], 'v2_3y1': [1, 9], 'y_mod_2_16': [33, 573141612728625270488952931933108109345]}); residual_V predicts Future_1 only as a rewrite of the next ResidualStep and splits by H=6 (pair [9, 49]); n<=80 label Q_H=[1, 6, 11, 12, 12, 12, 12] plateaus on HALT fibers; atlas-enriched Q_H=[1, 6, 18, 54, 158, 393, 769] on |Y|=6004, live_multi=312; k*(H) exceeds 16 on the atlas-enriched sample.
 
 Closed branches were not reopened: `RESIDUAL_STATE_NEEDS_X`,
 `RESIDUAL_MN_REPACK`, `LANDING_VALUATION_IS_Y_MOD_8`,
@@ -35,7 +35,7 @@ Closed branches were not reopened: `RESIDUAL_STATE_NEEDS_X`,
 ## Window n ≤ 80
 
 - distinct y: `30`
-- most promising at H=1: `{'name': 'residual_V', 'reason': 'sufficient_with_fiber'}`
+- most promising at H=1: `{'name': None, 'reason': 'no_arithmetic_quotient; residual_V is a Future_1 rewrite'}`
 
 ### Future_H labels
 
@@ -86,7 +86,7 @@ Closed branches were not reopened: `RESIDUAL_STATE_NEEDS_X`,
 - distinct y: `6004`
 - chain landings: `3386`
 - atlas PE starts used: `4000`
-- most promising at H=1: `{'name': 'residual_V', 'reason': 'sufficient_with_fiber'}`
+- most promising at H=1: `{'name': None, 'reason': 'no_arithmetic_quotient; residual_V is a Future_1 rewrite'}`
 
 ### Future_H labels (all sampled)
 
@@ -207,9 +207,9 @@ Closed branches were not reopened: `RESIDUAL_STATE_NEEDS_X`,
 
 ## Decision
 
-**STATE_QUOTIENT_GREEN**
+**FUTURE_QUOTIENT_REPACK**
 
-a listed projection other than exact y predicts Future_1 with a multi-y fiber that is not only a HALT certificate: ['residual_V'].
+every listed arithmetic projection of y is separated at H=1 (pairs {'y_mod_8': [1, 9], 'v2_3y1': [1, 9], 'y_mod_2_16': [33, 573141612728625270488952931933108109345]}); residual_V predicts Future_1 only as a rewrite of the next ResidualStep and splits by H=6 (pair [9, 49]); n<=80 label Q_H=[1, 6, 11, 12, 12, 12, 12] plateaus on HALT fibers; atlas-enriched Q_H=[1, 6, 18, 54, 158, 393, 769] on |Y|=6004, live_multi=312; k*(H) exceeds 16 on the atlas-enriched sample.
 
 This is not a halt result. ResidualStep is not a state object.
 The PE-factor branch was not reopened. No automaton was built.

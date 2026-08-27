@@ -7195,3 +7195,97 @@ Why
 Best next question
 - A global ∑ρ bound in (n, word statistics), not another residual relation.
 ```
+
+## Juggler atlas continuation graph
+
+- **Date:** 2026-08-27
+- **Objective:** Read the directed graph the parked atlas census actually makes appear
+- **Hypotheses:** none; distillation of `wa-20260827T200310Z-cuda-k20-n100000000`
+- **Major results:** REALIZABLE is a prefix trie, not the integer functional graph. First holes at k=6 are the three lost children of `EEEEE` / `EEEEO` / `EEEOE`; min `E^r` realizers are the power-of-two tower \(2^{2^{r-1}}\). The same three words are abundant interior factors of length-20 prefixes (3948 / 6167 / 11357 hits, never at position 0). From length 12 the `EE…` corridor freezes as 37 unary rays. EXPANDING has dead ends (`EEOOOO`). PE_CERTIFIED factor counts freeze at 9 from r=8.
+- **Refuted ideas:** reading the REALIZABLE `factors` table as a substring language; treating the k=6 prefix holes as forbidden factors; treating EXPANDING as a thinner copy of REALIZABLE
+- **Literature:** `JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR` stays CLOSE; even-tower / even-run scale barrier already excludes the rooted even tower from a minimal non-1 orbit
+- **Open:** odd-to-odd continuation arithmetic other than the integer y
+- **Decision:** PARK with the atlas. Do not reopen the language branch
+
+```text
+What was learned
+- The stored atlas object is a language-filtered prefix trie
+- The first three prefix holes are lost children of the even square-tower
+- Those holes are common as interior factors of longer realized prefixes
+- Even-start corridors freeze; odd-start prefixes keep branching
+- EXPANDING is not right-extendable; PE_CERTIFIED is a thin O^a E^b spine
+
+Strongest theorem
+- min realizer of E^r is 2^{2^{r-1}} (elementary; census confirms r<=5)
+
+Strongest refutation
+- "EEEEEE is absent as a factor of stored realizable words of length <=20"
+
+Reusable machinery
+- none; reading of existing tables
+
+Prior-art status
+- census reading, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PARK
+
+Why
+- The graph facts refine how to read the parked atlas. They do not
+  promote a new language law and do not change the leftover
+  odd-to-odd question.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that
+  decides whether a persistent residual landing stays odd-to-odd?
+```
+
+
+## Juggler residual future-quotient
+
+- **Date:** 2026-08-27
+- **Objective:** Measure whether listed arithmetic projections of residual landings determine bounded Future_H, and whether k*(H) grows
+- **Hypotheses:** a compact S, not exact y, predicts next-step residual labels, or k*(H) is a genuine precision hierarchy
+- **Major results:** FUTURE_QUOTIENT_REPACK. Arithmetic projections fail at H=1 (1 vs 9 for y mod 8 and v2(3y+1); 33 vs a PE landing for y mod 2^16). residual_V predicts Future_1 only as a ResidualStep rewrite and splits at H=6 (9 vs 49). n<=80 label Q_H = 1,6,11,12,12,12,12 on HALT fibers; k*=9 stable. Atlas-enriched |Y|=6004 has Q_H = 1,6,18,54,158,393,769 with 2154 capped traces
+- **Refuted ideas:** y mod 2^k or v2(3y+1) as a Future_1 quotient; residual_V as a multi-step state; k*(H) growth on n<=80
+- **Literature:** RESIDUAL_STATE_NEEDS_X, RESIDUAL_MN_REPACK, LANDING_VALUATION_IS_Y_MOD_8 stay CLOSE; PE-factor branch not reopened
+- **Open:** object C global sum-rho bound; not another modulus
+- **Decision:** CLOSE as FUTURE_QUOTIENT_REPACK. Do not add Lean, an automaton, or a new scalar energy
+
+`	ext
+What was learned
+- Future_1 labels have only 6 classes; residual_V is that next-step rewrite
+- y mod 8 and v2(3y+1) fail at 1 vs 9; y mod 2^16 fails on the atlas sample
+- k*(H)=9 is stable on n<=80; it already exceeds 16 at H=1 on 6004 states
+- n<=80 leftover fibers are HALT words (RESIDUAL_MN_REPACK replay)
+- Atlas PE starts make Q_H grow through H=6; that is observed class growth, not a compact quotient
+
+Strongest theorem
+- none added
+
+Strongest refutation
+- y mod 2^k or v2(3y+1) determines Future_1 (pairs 1,9 and 33 vs a 2^16-congruent PE landing)
+
+Reusable machinery
+- research.juggler_sequence.future_quotient (Future_H labels + projection census)
+
+Prior-art status
+- bounded precision census, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The listed arithmetic signatures do not predict bounded residual futures.
+  The only apparent compression is a rewrite of the next ResidualStep or a
+  shared HALT word. Do not invent another scalar feature.
+
+Best next question
+- A global sum-rho bound in (n, word statistics), not another residual relation.
+`

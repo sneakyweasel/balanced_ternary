@@ -183,7 +183,10 @@
   "first_realizable_gap": {
     "k": 6,
     "missing": ["EEEEEE", "EEEEOE", "EEEOEO"],
-    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND",
+    "as": "rooted prefixes",
+    "interior_factors_in_length_20_realized_prefixes": true,
+    "graph_reading": "docs/research/juggler_atlas_graph.md"
   },
   "claims": {
     "closed_word_language": "CLOSED BRANCH",

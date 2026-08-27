@@ -52,6 +52,7 @@ ATLAS_PE_N_CAP = 100_000
 ATLAS_PE_LIMIT = 4000
 EXPERIMENT_ID = "wa-20260827T200310Z-cuda-k20-n100000000"
 ALGORITHM_VERSION = "future-quotient-v1"
+REWRITE_PROJECTIONS = frozenset({"residual_V", "pe_flags"})
 
 TERMINAL_HALT = "HALT"
 TERMINAL_NO_EVEN = "NO_EVEN"
@@ -474,22 +475,22 @@ def window_census(*, n_max: int, include_atlas: bool, h_max: int = H_MAX) -> dic
     }
 
 
+def _is_arithmetic(name: str) -> bool:
+    return name != "exact_y" and name not in REWRITE_PROJECTIONS
+
+
+def _has_fiber(row: dict[str, Any]) -> bool:
+    return row["sufficient"] and row["n_projected"] < row["n_states"]
+
+
 def _most_promising(rows: list[dict[str, Any]]) -> dict[str, Any] | None:
-    ranked = [
-        row
-        for row in rows
-        if row["name"] != "exact_y" and row["sufficient"] and row["n_projected"] < row["n_states"]
-    ]
+    ranked = [row for row in rows if _is_arithmetic(row["name"]) and _has_fiber(row)]
     if ranked:
         ranked.sort(key=lambda row: (row["n_projected"], row["name"]))
-        return {"name": ranked[0]["name"], "reason": "sufficient_with_fiber"}
-    with_sep = [row for row in rows if row["name"] != "exact_y"]
-    if not with_sep:
-        return None
-    with_sep.sort(key=lambda row: (row["n_separating_classes"], -row["n_multi_fibers"], row["name"]))
+        return {"name": ranked[0]["name"], "reason": "sufficient_arithmetic_fiber"}
     return {
-        "name": with_sep[0]["name"],
-        "reason": "fewest_H1_separators_among_insufficient",
+        "name": None,
+        "reason": "no_arithmetic_quotient; residual_V is a Future_1 rewrite",
     }
 
 
@@ -513,15 +514,14 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     primary = scan["primary"]["slices"]["all"]
     phase0 = scan["phase0"]["slices"]["all"]
     h1 = {row["name"]: row for row in phase0["projections_H1"]}
-    no_y = [row for row in phase0["projections_H1"] if row["name"] != "exact_y"]
-    sufficient_no_y = [
-        row
-        for row in no_y
-        if row["sufficient"] and row["n_projected"] < row["n_states"]
-    ]
+    hmax = {row["name"]: row for row in phase0["projections_Hmax"]}
+    arith = [row for row in phase0["projections_H1"] if _is_arithmetic(row["name"])]
+    sufficient_arith = [row for row in arith if _has_fiber(row)]
+    v_h1 = h1.get("residual_V", {})
+    v_hmax = hmax.get("residual_V", {})
     live = phase0["growth_labels"][-1]["n_live_multi"]
-    halt_multi = phase0["growth_labels"][-1]["n_halt_multi"]
     q = [row["Q_H"] for row in phase0["growth_labels"]]
+    q_primary = [row["Q_H"] for row in primary["growth_labels"]]
     n_y = phase0["n_y"]
     k_rows = [phase0["k_star"][str(h)] for h in range(1, H_MAX + 1)]
     k_vals = [row["k_star"] for row in k_rows]
@@ -533,63 +533,56 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and k_primary_finite[-1] >= k_primary_finite[0] + 2
     )
     any_exceeds = any(row["exceeds_k_max"] for row in k_rows)
-    all_no_y_split = all(not row["sufficient"] for row in no_y)
+    all_arith_split = all(not row["sufficient"] for row in arith)
+    v_is_h1_rewrite = bool(v_h1.get("sufficient")) and not bool(v_hmax.get("sufficient"))
 
-    if sufficient_no_y and live:
+    if sufficient_arith and live:
         return {
             "classification": CLASS_QUOTIENT,
-            "secondary": [row["name"] for row in sufficient_no_y[:4]],
+            "secondary": [row["name"] for row in sufficient_arith[:4]],
             "reason": (
-                "a listed projection other than exact y predicts Future_1 "
-                f"with a multi-y fiber that is not only a HALT certificate: "
-                f"{[row['name'] for row in sufficient_no_y]}"
+                "an arithmetic projection of y predicts Future_1 with a "
+                f"multi-y fiber: {[row['name'] for row in sufficient_arith]}"
             ),
         }
-    if sufficient_no_y and q[-1] < n_y and live == 0:
-        return {
-            "classification": CLASS_REPACK,
-            "secondary": [row["name"] for row in sufficient_no_y[:4]],
-            "reason": (
-                "a no-y projection is sufficient only because leftover fibers "
-                "are shared complete words to HALT"
-            ),
-        }
-    if k_grows and not all(row["exceeds_k_max"] for row in k_rows):
+    if k_grows:
         return {
             "classification": CLASS_COMPLEXITY,
-            "secondary": [f"k*={k_vals}"],
+            "secondary": [f"k*_primary={k_primary}"],
             "reason": (
-                "computationally observed k*(H) grows with H on the Phase-0 "
-                f"window (k*={k_vals}, Q_H={q}, |Y|={n_y})"
+                "computationally observed k*(H) grows with H on the fixed "
+                f"n<=80 window (k*={k_primary})"
             ),
         }
-    if all_no_y_split and live == 0:
+    if all_arith_split and v_is_h1_rewrite:
         seps = {
             name: h1[name]["first_separator"]
-            for name in ("y_mod_8", "v2_3y1", "residual_V", "pe_flags")
+            for name in ("y_mod_8", "v2_3y1", "y_mod_2_16")
             if name in h1
         }
-        extra = ""
-        if any_exceeds:
-            extra = f"; k*(H) exceeds {K_MAX} at some horizon"
+        extra = (
+            f"; k*(H) exceeds {K_MAX} on the atlas-enriched sample" if any_exceeds else ""
+        )
         return {
             "classification": CLASS_REPACK,
             "secondary": [CLASS_COUNTER, CLASS_PARK],
             "reason": (
-                "every listed projection except exact y has an H=1 separator; "
-                "Q_H leftover multi-y fibers are shared HALT words; "
-                f"primary n<=80 Q_H={[row['Q_H'] for row in primary['growth_labels']]}; "
-                f"phase0 Q_H={q}, |Y|={n_y}; separators={seps}"
+                "every listed arithmetic projection of y is separated at H=1 "
+                f"(pairs {seps}); residual_V predicts Future_1 only as a rewrite "
+                f"of the next ResidualStep and splits by H={H_MAX} "
+                f"(pair {v_hmax.get('first_separator')}); "
+                f"n<=80 label Q_H={q_primary} plateaus on HALT fibers; "
+                f"atlas-enriched Q_H={q} on |Y|={n_y}, live_multi={live}"
                 + extra
             ),
         }
-    if all_no_y_split:
+    if all_arith_split:
         return {
             "classification": CLASS_PARK,
             "secondary": [CLASS_COUNTER],
             "reason": (
-                "every listed low-dimensional projection is separated at H=1; "
-                "no compact quotient survived the Phase-0 sample "
+                "every listed arithmetic projection is separated at H=1; "
+                "no compact quotient of y survived "
                 f"(Q_H={q}, |Y|={n_y}, live_multi={live}, k*={k_vals})"
             ),
         }
@@ -597,7 +590,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         "classification": CLASS_INCOMPLETE,
         "secondary": [],
         "reason": (
-            f"no clean split (sufficient_no_y={len(sufficient_no_y)}, "
+            f"no clean split (sufficient_arith={len(sufficient_arith)}, "
             f"live={live}, k*={k_vals}, Q_H={q})"
         ),
     }

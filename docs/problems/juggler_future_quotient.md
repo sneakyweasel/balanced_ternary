@@ -114,14 +114,20 @@ It is not required. Level-C BT features are out of Phase-0 scope.
 ## Candidate operations / invariants
 
 - `Future_H` from existing labels —
-  **OBSERVATION** (experimental object)
+  **OBSERVATION** (experimental object; 6 classes at \(H=1\))
 - exact \(y\) —
   sufficient by construction; leftover same-future pairs are
   overdescription
-- \(y\bmod 2^k\), \(v_2(3y+1)\), \((y\bmod 2^k,v_2)\) —
-  Phase-0 projections
-- intrinsic \(V\) / outgoing PE flags —
-  existing residual data; \(V\) is \(\mathrm{Future}_1\)-adjacent
+- \(y\bmod 8\), \(v_2(3y+1)\) predict \(\mathrm{Future}_1\) —
+  **REFUTED**; smallest pair \(1,9\)
+- \(y\bmod 2^{16}\) predicts \(\mathrm{Future}_1\) on the
+  atlas-enriched sample —
+  **REFUTED**; pair \(33\) and a PE landing congruent modulo \(2^{16}\)
+- intrinsic \(V\) is a compact quotient of \(y\) —
+  **REPARAMETERIZATION** of the next ResidualStep at \(H=1\);
+  **REFUTED** as a multi-step state at \(H=6\) by \(9,49\)
+- \(k^*(H)\) grows with \(H\) on \(n\le 80\) —
+  **REFUTED**; \(k^*=9\) for every \(H\le 6\)
 - global halt — not claimed
 
 ## Experiments
@@ -141,7 +147,15 @@ None opened.
 
 ## Counterexamples
 
-Recorded by the probe after the Phase-0 run.
+- “\(y\bmod 8\) determines \(\mathrm{Future}_1\)”: \(1\) and \(9\).
+- “\(v_2(3y+1)\) determines \(\mathrm{Future}_1\)”: \(1\) and \(9\).
+- “\(y\bmod 2^{16}\) determines \(\mathrm{Future}_1\) on the
+  atlas-enriched sample”: \(33\) versus
+  \(573141612728625270488952931933108109345\).
+- “intrinsic \(V\) is a multi-step quotient”: \(9\) and \(49\) share
+  \(\mathrm{Future}_1\) and split at \(H=2\).
+- “incoming history / a new scalar energy”: not tested; closed
+  branches stay closed.
 
 ## Formalization
 
@@ -150,16 +164,54 @@ No `sorry`.
 
 ## Results
 
-Filled after the Phase-0 run.
+Classification **FUTURE_QUOTIENT_REPACK**, with secondary
+**STATE_QUOTIENT_COUNTEREXAMPLE** and **STATE_COMPLEXITY_PARK**.
+
+On odd-odd residual landings from \(n\le 80\) there are \(30\)
+distinct \(y\). Label \(Q_H\) is
+
+\[
+1,6,11,12,12,12,12
+\]
+
+and plateaus from \(H=3\) on HALT fibers. \(k^*(H)=9\) for every
+\(H\le 6\), witnessed by \(243\) and \(1523\).
+
+On the Phase-0 sample — those landings plus \(4000\) atlas
+`PE_CERTIFIED` starts, \(|Y|=6004\) — label \(Q_H\) is
+
+\[
+1,6,18,54,158,393,769
+\]
+
+with \(2154\) capped traces. This is computationally observed class
+growth up to \(H=6\), not a finite-state theorem. Every listed
+arithmetic projection of \(y\) has an \(H=1\) separator.
+`residual_V` predicts \(\mathrm{Future}_1\) because it *is* the next
+ResidualStep vector, and it splits by \(H=6\).
+
+No `ResidualState.lean`. `ResidualStep` is unchanged. No GPU
+pair-search and no new atlas tables were added.
 
 ## Open questions
 
-Filled after the Phase-0 run.
+Object C — a global \(\sum\rho\) bound in \((n,\text{word
+statistics})\) — stays recorded, not opened. Do not invent another
+scalar projection. Do not reopen the PE-factor branch.
 
 ## Decision
 
-Filled after the Phase-0 run.
+**CLOSE** the future-quotient Phase-0 as `FUTURE_QUOTIENT_REPACK`.
+The listed arithmetic signatures do not predict bounded residual
+futures. The only apparent compression is a rewrite of the next
+ResidualStep or a shared HALT word. Do not add Lean. Do not build
+an automaton. Do not claim termination.
+
+Best next question: a global \(\sum\rho\) bound in
+\((n,\text{word statistics})\) — object C — not another residual
+relation and not another modulus.
 
 ## Publication assessment
 
-Status: `EXPLORATORY`.
+Status: `EXPLORATORY`. A negative precision/quotient census, not a
+paper candidate and not a Juggler totality result.

@@ -1,0 +1,135 @@
+{
+  "experiment_id": "wa-20260827T200310Z-cuda-k20-n100000000",
+  "k_max": 20,
+  "n_max": 100000000,
+  "engine_control_layer_modified": false,
+  "claims": {
+    "even_tower_min_realizer": "EXACT — HUMAN PROOF",
+    "census_reading": "COMPUTATIONALLY VERIFIED",
+    "missing_prefixes": "NOT OBSERVED WITHIN SEARCH BOUND",
+    "closed_word_language": "CLOSED BRANCH"
+  },
+  "anti_overclaim": {
+    "global_termination": false,
+    "forbidden_factor_law": false,
+    "reopen_word_language": false,
+    "expanding_is_factor_closed": false,
+    "prefix_table_is_substring_language": false
+  },
+  "first_unary_parents": [
+    {
+      "word": "EEEEE",
+      "min_realizer": 65536,
+      "keep": "O",
+      "lost": "E",
+      "missing_child": "EEEEEE"
+    },
+    {
+      "word": "EEEEO",
+      "min_realizer": 256,
+      "keep": "O",
+      "lost": "E",
+      "missing_child": "EEEEOE"
+    },
+    {
+      "word": "EEEOE",
+      "min_realizer": 6250000,
+      "keep": "E",
+      "lost": "O",
+      "missing_child": "EEEOEO"
+    }
+  ],
+  "even_tower": {
+    "formula": "min_realizer(E^r) = 2^(2^(r-1))",
+    "values": {
+      "1": 2,
+      "2": 4,
+      "3": 16,
+      "4": 256,
+      "5": 65536
+    },
+    "E6_tower": 4294967296
+  },
+  "interior_factors_in_length_20_realized_prefixes": {
+    "EEEEEE": {"count": 3948, "min_position": 1, "example": "OOOOOOOOOOEEEEEEEEEE", "example_min_n": 1571189},
+    "EEEEOE": {"count": 6167, "min_position": 2, "example": "OOOOOOOOOEEEEOEEEEEE", "example_min_n": 613259},
+    "EEEOEO": {"count": 11357, "min_position": 1, "example": "OOOOOOOOEEEOEOEEEEEE", "example_min_n": 14483}
+  },
+  "even_prefix_freeze": {
+    "max_leading_E": 5,
+    "ee_prefix_count_length_12_to_19": 37,
+    "unary_rate_length_19": {
+      "starts_odd": {"nodes": 76332, "unary_frac": 0.285},
+      "leading_E1": {"nodes": 1476, "unary_frac": 0.996},
+      "leading_E_ge_2": {"nodes": 37, "unary_frac": 1.0},
+      "leading_O_ge_10": {"nodes": 512, "unary_frac": 0.0}
+    }
+  },
+  "ee_rays_length_12": [
+    {"word": "EEOOOOOOOOOO", "min_realizer": 4, "keep": "O"},
+    {"word": "EEEOOOOOOOOO", "min_realizer": 16, "keep": "O"},
+    {"word": "EEOOOEEEOOOO", "min_realizer": 100, "keep": "O"},
+    {"word": "EEEEOOOOOOOO", "min_realizer": 256, "keep": "O"},
+    {"word": "EEOOEEEOOOOO", "min_realizer": 676, "keep": "O"},
+    {"word": "EEOEEEOOOOOO", "min_realizer": 2500, "keep": "O"},
+    {"word": "EEOOEOEEEOOO", "min_realizer": 6724, "keep": "O"},
+    {"word": "EEEOOOEEEOOO", "min_realizer": 10000, "keep": "O"},
+    {"word": "EEOEOEEEOOOO", "min_realizer": 51076, "keep": "O"},
+    {"word": "EEEEEOOOOOOO", "min_realizer": 65536, "keep": "O"},
+    {"word": "EEOEOOEOEEEO", "min_realizer": 131044, "keep": "O"},
+    {"word": "EEOEEOOOEEEO", "min_realizer": 280900, "keep": "O"},
+    {"word": "EEOOOEEOEOEE", "min_realizer": 391876, "keep": "E"},
+    {"word": "EEEOOEEEOOOO", "min_realizer": 456976, "keep": "O"},
+    {"word": "EEOOEEOEEEOO", "min_realizer": 1188100, "keep": "O"},
+    {"word": "EEOOOOEOOOEE", "min_realizer": 1876900, "keep": "O"},
+    {"word": "EEOOOEEOEOOE", "min_realizer": 2316484, "keep": "O"},
+    {"word": "EEOEEEEOOOOO", "min_realizer": 2829124, "keep": "O"},
+    {"word": "EEOOEEEEOOOO", "min_realizer": 3422500, "keep": "O"},
+    {"word": "EEOOEOEEOOEE", "min_realizer": 5769604, "keep": "E"},
+    {"word": "EEEOEEEOOOOO", "min_realizer": 6250000, "keep": "O"},
+    {"word": "EEOEOEOOEOEE", "min_realizer": 6770404, "keep": "E"},
+    {"word": "EEOOEEOOEOEE", "min_realizer": 7896100, "keep": "E"},
+    {"word": "EEOEOEEOOOEE", "min_realizer": 20160100, "keep": "E"},
+    {"word": "EEOOEOOEEEOO", "min_realizer": 22676644, "keep": "O"},
+    {"word": "EEOOOEEEEEOO", "min_realizer": 31651876, "keep": "O"},
+    {"word": "EEOOOEOEOOEE", "min_realizer": 35164900, "keep": "O"},
+    {"word": "EEOEEOOEEEOO", "min_realizer": 38962564, "keep": "O"},
+    {"word": "EEOOOEOEEEEE", "min_realizer": 43059844, "keep": "O"},
+    {"word": "EEEOOEOEEEOO", "min_realizer": 45212176, "keep": "O"},
+    {"word": "EEOEOEOEEEOO", "min_realizer": 47472100, "keep": "O"},
+    {"word": "EEOOEEEOOOEE", "min_realizer": 52215076, "keep": "E"},
+    {"word": "EEOOEOOEOEEE", "min_realizer": 62758084, "keep": "E"},
+    {"word": "EEOOEOEEEEOO", "min_realizer": 81468676, "keep": "O"},
+    {"word": "EEOOEOEOEOEE", "min_realizer": 88548100, "keep": "E"},
+    {"word": "EEOOOEOOEEEE", "min_realizer": 96079204, "keep": "E"},
+    {"word": "EEEEOOOEEEOO", "min_realizer": 100000000, "keep": "O"}
+  ],
+  "growth": {
+    "realized_by_length": {
+      "1": 2, "2": 4, "3": 8, "4": 16, "5": 32, "6": 61, "7": 115, "8": 213,
+      "9": 364, "10": 639, "11": 1152, "12": 1995, "13": 3313, "14": 5473,
+      "15": 9166, "16": 15527, "17": 25813, "18": 44344, "19": 77845, "20": 132398
+    },
+    "branching_range_after_complete_ball": [1.65, 1.91],
+    "density_k20": 0.12626361846923828,
+    "tree_identity_k19_to_k20": 132398
+  },
+  "expanding": {
+    "ratio_by_length": {
+      "1": 0.5, "2": 0.25, "3": 0.5, "4": 0.312, "5": 0.188, "6": 0.361,
+      "7": 0.243, "8": 0.169, "9": 0.332, "10": 0.26, "11": 0.423, "12": 0.342,
+      "13": 0.279, "14": 0.446, "15": 0.369, "16": 0.299, "17": 0.469,
+      "18": 0.396, "19": 0.553, "20": 0.482
+    },
+    "first_dead_end": "EEOOOO"
+  },
+  "pe_certified": {
+    "distinct_words_by_length": {
+      "3": 1, "4": 1, "5": 1, "6": 2, "7": 2, "8": 2, "9": 3, "10": 3,
+      "11": 4, "12": 4, "13": 4, "14": 5, "15": 5, "16": 5, "17": 6,
+      "18": 6, "19": 7, "20": 7, "21": 6, "22": 3, "23": 3, "24": 1
+    },
+    "factor_count_freezes_at": 9,
+    "freeze_from_r": 8
+  }
+}

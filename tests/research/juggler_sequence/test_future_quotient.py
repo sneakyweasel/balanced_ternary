@@ -2,12 +2,18 @@
 
 from __future__ import annotations
 
+import json
+
 from research.juggler_sequence.future_quotient import (
+    CLASS_REPACK,
+    DATA_DIR,
     FORBIDDEN_ENGINES,
     H_MAX,
+    JSON_PATH,
     LEAN_NEW,
     LEAN_PATH,
     N_MAX_PRIMARY,
+    classify,
     future_trace,
     future_word,
     label_key,
@@ -117,8 +123,28 @@ def test_lean_adds_no_state_object():
             assert name not in src
 
 
+def test_residual_v_is_future1_rewrite_and_splits_later():
+    t9 = future_trace(9)
+    t49 = future_trace(49)
+    assert future_word(t9, 1, "labels") == future_word(t49, 1, "labels")
+    assert future_word(t9, 2, "labels") != future_word(t49, 2, "labels")
+
+
 def test_floor_power_unchanged():
     assert floor_power(1) == 1
     assert floor_power(9) == 27
     assert floor_power(37) == 225
     assert floor_power(365) == 6973
+
+
+def test_committed_artifacts_repack():
+    assert JSON_PATH.is_file()
+    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    assert data["experiment"] == "juggler_future_quotient"
+    assert data["engine_control_layer_modified"] is False
+    assert data["anti_overclaim"]["pe_factor_reopened"] is False
+    assert data["anti_overclaim"]["finite_residual_automaton"] is False
+    decision = classify(data["scan"], lean_api_present())
+    assert decision["classification"] == CLASS_REPACK
+    summary = json.loads((DATA_DIR / "summary.json").read_text(encoding="utf-8"))
+    assert summary["decision"]["classification"] == CLASS_REPACK

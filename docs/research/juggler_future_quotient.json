@@ -2269,8 +2269,8 @@
         }
       },
       "most_promising_H1": {
-        "name": "residual_V",
-        "reason": "sufficient_with_fiber"
+        "name": null,
+        "reason": "no_arithmetic_quotient; residual_V is a Future_1 rewrite"
       }
     },
     "phase0": {
@@ -5391,8 +5391,8 @@
         }
       },
       "most_promising_H1": {
-        "name": "residual_V",
-        "reason": "sufficient_with_fiber"
+        "name": null,
+        "reason": "no_arithmetic_quotient; residual_V is a Future_1 rewrite"
       }
     },
     "hard": {
@@ -5772,11 +5772,12 @@
     "no_pe_factor_reopen": true
   },
   "decision": {
-    "classification": "STATE_QUOTIENT_GREEN",
+    "classification": "FUTURE_QUOTIENT_REPACK",
     "secondary": [
-      "residual_V"
+      "STATE_QUOTIENT_COUNTEREXAMPLE",
+      "STATE_COMPLEXITY_PARK"
     ],
-    "reason": "a listed projection other than exact y predicts Future_1 with a multi-y fiber that is not only a HALT certificate: ['residual_V']"
+    "reason": "every listed arithmetic projection of y is separated at H=1 (pairs {'y_mod_8': [1, 9], 'v2_3y1': [1, 9], 'y_mod_2_16': [33, 573141612728625270488952931933108109345]}); residual_V predicts Future_1 only as a rewrite of the next ResidualStep and splits by H=6 (pair [9, 49]); n<=80 label Q_H=[1, 6, 11, 12, 12, 12, 12] plateaus on HALT fibers; atlas-enriched Q_H=[1, 6, 18, 54, 158, 393, 769] on |Y|=6004, live_multi=312; k*(H) exceeds 16 on the atlas-enriched sample"
   },
   "search_method": "odd-odd residual landings n<=80 and n<=4000; optional atlas PE_CERTIFIED starts n<=1e5 cap 4000; Future_H labels from classify_step/residual_class; projections exact y, y mod 2^k, v2(3y+1), residual V, PE flags; no GPU; no ResidualState"
 }
