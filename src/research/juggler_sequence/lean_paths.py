@@ -31,8 +31,13 @@ LAYERS: dict[str, Path] = {
     "Residuals": JUGGLER_DIR / "Residuals.lean",
     "NormalizedDefect": JUGGLER_DIR / "NormalizedDefect.lean",
     "ExpansionBlocks": JUGGLER_DIR / "ExpansionBlocks.lean",
+    "ExpansionSlack": JUGGLER_DIR / "ExpansionSlack.lean",
+    "NearTightScale": JUGGLER_DIR / "NearTightScale.lean",
+    "ExpandingGrammar": JUGGLER_DIR / "ExpandingGrammar.lean",
+    "LandingParity": JUGGLER_DIR / "LandingParity.lean",
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
+    "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -56,8 +61,13 @@ SCALE = LAYERS["Scale"]
 RESIDUALS = LAYERS["Residuals"]
 NORMALIZED_DEFECT = LAYERS["NormalizedDefect"]
 EXPANSION_BLOCKS = LAYERS["ExpansionBlocks"]
+EXPANSION_SLACK = LAYERS["ExpansionSlack"]
+NEAR_TIGHT_SCALE = LAYERS["NearTightScale"]
+EXPANDING_GRAMMAR = LAYERS["ExpandingGrammar"]
+LANDING_PARITY = LAYERS["LandingParity"]
 CYCLES = LAYERS["Cycles"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
+SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",

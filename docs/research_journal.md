@@ -6599,3 +6599,229 @@ Best next question
 - What forces a PE run to end (contracting residual versus odd-to-even landing) without becoming T_w(n)<n?
 ```
 
+## Juggler weighted slack budget and expansion density
+
+- **Date:** 2026-08-27
+- **Objective:** After the exact affine law y_{i+1}=λ_i y_i-c_i, decide whether the weighted slack budget constrains expanding persistent residual run length or density independently of T_w(n)≥n
+- **Hypotheses:** positive local slack, after the exact expansion weights, forbids arbitrarily long PE runs or density 1; the constraint is not the endpoint rewrite y_m≥y_0
+- **Major results:** The log-affine law and the weighted cocycle are the existing 1+q identities in other coordinates (Lean `block_power_identity`, `weighted_slack_concat`, `normalized_budget_identity`). Local compatibility c<(λ-1)y is T>n (`block_growth_compat`). Four consecutive PE blocks are Lean-certified (`four_block_pe_1999`: 1999 --OOE--> 5169 --OOOOEE--> 50093 --OOE--> 193753 --OOE--> 887471). A length-5 run starts at 2183. On n≤10000 the maximum PE run is still 5. B_m stays 10^{-5} to 10^{-9} of the endpoint tautology. c/(λ-1) decays with scale and reaches a near-tight expanding OOE at 180370579261640036336071806107777 with 0<q<10^{-30}. No halt theorem
+- **Refuted ideas:** uniform c/(λ-1)≥ε>0 on expanding persistent blocks; B_m bounded below independently of y_m≥y_0; the weighted budget forbids PE density 1 on a finite prefix; a finite-run bound produced by this coordinate system
+- **Literature:** OEIS A007320; GlobalDefect / NormalizedDefect / PersistentExpandingResidual / two-block refutation
+- **Open:** a raw finite M is not proved; this mechanism does not produce it
+- **Decision:** CLOSE the weighted-slack-budget attack as WEIGHTED_SLACK_ENDPOINT. Do not claim termination
+
+```text
+What was learned
+- log T = λ log n - c and the weighted cocycle are 1+q in logarithmic coordinates
+- c<(λ-1)y is T>n on one expanding block
+- Four and five consecutive PE blocks occur
+- c/(λ-1) decays with scale and can be smaller than 10^{-12}
+- B_m stays negligible compared with the endpoint tautology
+
+Strongest theorem
+- PersistentExpandingResidual 1999 5169, 5169 50093, 50093 193753, and 193753 887471
+
+Strongest refutation
+- Every expanding persistent block pays a uniform positive tax c/(λ-1)≥ε>0
+
+Reusable machinery
+- formal/Problems/Juggler/ExpansionSlack.lean
+- research.juggler_sequence.expansion_slack
+
+Prior-art status
+- reparameterization of 1+q plus a four-block existence theorem, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The exact identities do not constrain the internal sequence beyond T_w(n)≥n. Local taxes can be arbitrarily small relative to the formal margin, and the accumulated budget stays far below the endpoint allowance. The merged expansion/slack attack is therefore not an independent obstruction.
+
+Best next question
+- What arithmetic produces a near-tight expanding residual block (q vanishing at scale), and is that tightness a property of the large-λ predecessor rather than of the weighted budget?
+```
+
+## Juggler scale-induced near-tightness
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether tiny successor q after a large-λ expanding block is exceptional rigidity or automatic floor-scale decay
+- **Hypotheses:** η=O(1/T) from ρ<2T+1; fixed-word q→0; OOE is dominated by the last even remainder of order n^{-9/8}; large λ acts only by inflating y
+- **Major results:** Lean η bounds and 1+η<(1+1/T)^2; exact OOE product 1+q=(1+η0)^3(1+η1)^2(1+η2)^4; successor-ratio upper bound. Census: last-even dominates 96% of realized OOE; median q/n^{-9/8}≈4.25. The 329 --OOOOOOOOE--> y successor has 0<q<10^{-30} and q/y^{-9/8}≈2.64. PE pairs track y^{-9/8}. Mixed OOE can be arbitrarily near-tight. No halt theorem
+- **Refuted ideas:** tiny q is exceptional arithmetic; mixed-word q→0 implies a rigid monochrome tower; large λ controls successor q by a mechanism other than the size of y
+- **Literature:** OEIS A007320; Defect remainder window; NormalizedDefect 1+q; expansion-slack close
+- **Open:** whether a PE chain can exploit automatic near-tightness indefinitely
+- **Decision:** PROMOTE the scale-decay / large-λ feedback description. Do not claim termination
+
+```text
+What was learned
+- η < 2/T + 1/T^2 is the floor window
+- OOE slack is the weighted product of three local 1+η factors
+- The last even remainder dominates; q_OOE has order n^{-9/8}
+- The 329 successor q is predicted by y^{-9/8}
+- Large λ enters only by making y large
+- Exact equality rigidity has no naive quantitative stability
+
+Strongest theorem
+- 1+q_OOE = (1+η0)^3 (1+η1)^2 (1+η2)^4, and 1+q_OOE is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8
+
+Strongest refutation
+- Mixed realized OOE cannot have q→0
+
+Reusable machinery
+- formal/Problems/Juggler/NearTightScale.lean
+- research.juggler_sequence.near_tight_scale
+
+Prior-art status
+- scale explanation of near-tightness, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PROMOTE
+
+Why
+- Tiny q is the unavoidable asymptotic of floors at large scale. The large-λ feedback law is real and is not an obstruction: it explains why expanding chains can stay near the envelope.
+
+Best next question
+- Can a persistent expanding residual chain exploit automatic asymptotic near-tightness forever, or does some other arithmetic break the loop?
+```
+
+## Juggler expanding residual grammar
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether the realized persistent residual grammar can sustain λ>1 indefinitely, or whether a finite parity/threshold quotient forces a contracting block
+- **Hypotheses:** syntactic expansion of O^a E^b is a sharp even-run bound; persistence already forces expansion; type-level OOE self-loops are not orbit cycles; finite residues do not decide continuation
+- **Major results:** Lean `expandingWord` / `maxExpandingEvens` / `a+b ≤ log₂(3^a)`; `PersistentOddResidual ↔ PersistentExpandingResidual` for n≥2. Census: no persistent contracting residual; OOE type cycle at 365 exits odd-to-even at 4447; residue mod 8 both continues and exits; max PE run still 5. No halt theorem
+- **Refuted ideas:** the expanding-word grammar is an independent obstruction to an infinite PE chain; a type-level recurrent component is an infinite expanding grammar; residue modulo 8 decides PE continuation
+- **Literature:** OEIS A007320; Envelope `power_bound_contracts`; Residuals PE definitions; two-block and expansion-slack existence; residual-state CLOSE; near-tight PROMOTE
+- **Open:** what decides whether a persistent residual landing stays odd-to-odd
+- **Decision:** CLOSE as `EXPANDING_GRAMMAR_IS_PERSISTENCE`. Do not claim termination
+
+```text
+What was learned
+- Syntactic expansion of O^a E^b is b ≤ log₂(3^a) − a
+- On n≥2, persistence and expansion coincide
+- A contracting residual cannot overshoot
+- The OOE type self-loop is not an infinite orbit
+- PE runs end by leaving odd-odd or by descent, not by a new expanding-word law
+
+Strongest theorem
+- PersistentOddResidual x y ↔ PersistentExpandingResidual x y for 2 ≤ x
+
+Strongest refutation
+- The expanding residual grammar forbids an infinite PE chain independently of T_w(n)>n
+
+Reusable machinery
+- formal/Problems/Juggler/ExpandingGrammar.lean
+- research.juggler_sequence.expanding_grammar
+
+Prior-art status
+- identification of expansion with persistence, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The hoped-for combinatorial obstruction is the already-known envelope. Type cycles disappear when landing parity is restored. Finite residues do not decide continuation. The leftover is the odd-to-odd landing, not another expanding-word rewrite.
+
+Best next question
+- What arithmetic decides whether a persistent residual landing remains odd-to-odd?
+```
+
+## Juggler landing-parity and square-threshold dynamics
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether the square-threshold position θ=ρ/(2T+1) is a compact state for odd-to-odd landing, beyond residues and defect size
+- **Hypotheses:** inverse-floor cells package T; persistent odd-to-odd occupies a proper θ interval; θ-bins predict the next landing better than x mod 8; θ composes as a branch map
+- **Major results:** Lean landingCell_iff / landingParity_*_iff / landingGap_bound wrap the existing Cells and Defect lemmas. Census n≤2000: odd-odd θ occupies [0,0.997] and every tenth of [0,1]; PE continuation spans [0,0.995]; next-parity entropy given a θ-bin is ≈0.99. No halt theorem
+- **Refuted ideas:** persistent odd-to-odd forces θ into a proper subinterval; a θ-bin decides the next landing; landing cells predict better than residues; θ(T(x)) is a function of θ(x) and the branch
+- **Literature:** Cells inverse-floor iff; Defect remainder window; residual-state CLOSE; expanding-grammar CLOSE; near-tight η→0
+- **Open:** whether any arithmetic other than the integer y itself decides odd-to-odd continuation
+- **Decision:** CLOSE as `LANDING_THETA_UNRESTRICTED`. Do not claim termination
+
+```text
+What was learned
+- T(x)=m iff m²≤F(x)<(m+1)² is the existing inverse-floor cell
+- θ=ρ/(2T+1) stays order-1 while η=ρ/T² decays
+- Odd-to-odd and PE-continuation both occupy essentially all of [0,1]
+- A θ-bin is no more predictive than x mod 8
+- θ does not compose as a branch map
+
+Strongest theorem
+- landingIndex x = m ↔ landingCell x m, and landingGap x < landingWidth x
+
+Strongest refutation
+- Persistent odd-to-odd forces θ into a proper subinterval of [0,1]
+
+Reusable machinery
+- formal/Problems/Juggler/LandingParity.lean
+- research.juggler_sequence.landing_parity
+
+Prior-art status
+- negative threshold-state result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The cell language is T itself. The candidate coordinate θ is unrestricted on the persistent set and does not predict the next landing. Exact landing information that is not T was not found.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
+```
+
+## Juggler sequential near-Mordell steps
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether two consecutive odd steps carry Diophantine information beyond one-step floors and globalDefect(OO), and whether peak machinery applies
+- **Hypotheses:** (ρ,σ) coupled; Γ=x⁹-z⁴ is not Δ_OO; peak slack transports to persistent OO
+- **Major results:** Lean oddMordellStep / two_step_mordell_identity / sequential_defect_eq_global / odd_remainder_even / peak_needs_even_max. Census n≤2000: 505 odd-odd pairs, identity and Γ=Δ_OO always, ρ even, y never even. ρ mod 8 does not lock σ. No halt theorem
+- **Refuted ideas:** sequential defect is new; two-step polynomial is not substitution; (ρ,σ) coupled beyond floor windows; peak even-M slack applies to persistent OO
+- **Literature:** localDefectOdd; OO slack_identity; CycleDiophantine DIOPHANTINE_REPACKAGING; J-approx-equality-rigidity REFUTED; landing-parity CLOSE
+- **Open:** whether any arithmetic other than the integer y itself decides odd-to-odd continuation
+- **Decision:** CLOSE as `SEQUENTIAL_MORDELL_IS_OO_DEFECT`. Do not claim termination
+
+```text
+What was learned
+- (x³-ρ)³=(z²+σ)² is y⁶=y⁶
+- Γ=x⁹-z⁴ is globalDefect of the word OO
+- On odd-odd, ρ is even
+- Peak slack needs even M; persistent OO supplies odd y
+- (ρ,σ) show no coupling beyond independent floor windows
+
+Strongest theorem
+- On a realized OO word, sequentialDefect x z = globalDefect x [.odd,.odd], and if x and y are odd then ρ is even
+
+Strongest refutation
+- Peak Diophantine slack transports to a persistent odd-odd pair
+
+Reusable machinery
+- formal/Problems/Juggler/SequentialMordell.lean
+- research.juggler_sequence.sequential_mordell
+
+Prior-art status
+- negative sequential-identity result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The pair of odd steps is two copies of the local floor identity. The composed polynomial is substitution, Γ is the existing OO defect, and peak theory needs an even maximum that odd-odd does not supply. The census finds no transported divisor or valuation.
+
+Best next question
+- Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
+```
+

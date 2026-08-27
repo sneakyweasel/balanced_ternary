@@ -160,10 +160,14 @@ new layer. No `sorry`. No halt theorem.
 
 ## Open questions
 
-Taken up by `docs/problems/juggler_expansion_density.md`. Consecutive
-PE runs of length 3 are Lean-certified; length 7 occurs
-computationally. Density among persistent steps is 1 on the scanned
-windows. No finite \(M\) is proved.
+Taken up independently on two machines. Density and run length:
+`docs/problems/juggler_expansion_density.md` certifies a length-3 PE
+chain and finds length 7 computationally; density among persistent
+steps is 1 on the scanned windows. Slack:
+[juggler_expansion_slack.md](juggler_expansion_slack.md) shows the
+weighted slack cocycle is a reparameterization of \(1+q\) and does
+not bound consecutive expanding persistent blocks; four and five
+consecutive PE blocks occur. No finite \(M\) is proved.
 
 ## Decision
 
@@ -173,7 +177,8 @@ next \(a\ge 2\)), but that state is compatible with another
 expanding persistent block. Do not claim termination.
 
 Best next question: taken up by
-`docs/problems/juggler_expansion_density.md`.
+`docs/problems/juggler_expansion_density.md` and answered in
+[juggler_expansion_slack.md](juggler_expansion_slack.md).
 
 ## Publication assessment
 

@@ -19,8 +19,13 @@ import Problems.Juggler.Scale
 import Problems.Juggler.Residuals
 import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionBlocks
+import Problems.Juggler.ExpansionSlack
+import Problems.Juggler.NearTightScale
+import Problems.Juggler.ExpandingGrammar
+import Problems.Juggler.LandingParity
 import Problems.Juggler.Cycles
 import Problems.Juggler.CycleDiophantine
+import Problems.Juggler.SequentialMordell
 
 /-!
 # Juggler formalization
