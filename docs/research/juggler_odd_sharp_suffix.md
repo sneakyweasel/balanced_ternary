@@ -24,7 +24,9 @@ Maximum Phase-0 scope   Inverse-floor lemma; integer-root search past
 ## Metadata
 
 - odd scan: `n <= 50000`
-- fourth-power scan: `b <= 2500`
+- fourth-power scan: `b <= 2500` (in-memory probe)
+- persisted exact search: `1 <= a < 10^8` in
+  `data/research/juggler/odd_sharp_suffix/`
 - eighth-power scan: `a <= 150`
 - engine control layer modified: `False`
 - classification: **ODD_SHARP_SUFFIX_INCOMPLETE**
@@ -81,6 +83,12 @@ For `s ≥ 2` one may take `M = b^4`. A cube in
 `[M^2, (M+1)^2)` is possible: `b = 97` gives the even preimage
 `n = 198636`. That is an even cube, so
 it is not an odd Juggler step. No odd preimage was found.
+
+The persisted exact search `1 <= a < 10^8` (dataset
+`data/research/juggler/odd_sharp_suffix/`) found 465 interval cubes:
+the exact family `a = k^3`, `n = k^8` for `k <= 464`, plus the one
+inexact even hit `a = 97`. Zero odd non-squares. That finite search
+is not a theorem.
 
 - even hits (truncated): `[{'b': 97, 'M': 88529281, 'n': 198636, 'parity': 'even', 'n3_minus_M2': 165506495, 'interval_len': 177058563, 'exact_cube': False}]`
 - odd hits: `[]`

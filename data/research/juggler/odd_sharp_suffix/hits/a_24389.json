@@ -1,0 +1,20 @@
+{
+  "s": 2,
+  "a": 24389,
+  "n": 500246412961,
+  "n_is_odd": true,
+  "n_is_square": true,
+  "exact_Tn": "353814783205469041",
+  "interval_lower": "125184900814733057351483732809459681",
+  "interval_upper": "125184900814733058059113299220397764",
+  "cube_residual": "0",
+  "classification": "ODD_SQUARE",
+  "n_mod_2": 1,
+  "n_mod_4": 1,
+  "n_mod_8": 1,
+  "n_mod_16": 1,
+  "a_mod_2": 1,
+  "a_mod_4": 1,
+  "a_mod_8": 5,
+  "a_mod_16": 5
+}

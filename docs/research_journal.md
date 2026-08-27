@@ -5585,6 +5585,99 @@ Best next question
 - Is there a sequential, non-sum remainder identity that uses T_w(n)=n and cannot be rewritten as the path-power / path-square balance?
 ```
 
+## Juggler cycle Diophantine defects
+
+- **Date:** 2026-08-27
+- **Objective:** Test whether the sequential peak defects \(\delta=x^3-M^2\) and \(\varepsilon=M-p^{2^r}\) impose a congruence or residual-class restriction that the existing power envelope cannot see
+- **Hypotheses:** `DIOPHANTINE_NEW_CONGRUENCE`, `CYCLE_R_AVOIDANCE_GREEN`, `DIOPHANTINE_REPACKAGING`, or `DIOPHANTINE_COUNTEREXAMPLE`
+- **Major results:** \(x^3=(p^{2^r}+\varepsilon)^2+\delta\) **EXACT — LEAN VERIFIED** and **REPARAMETERIZATION** of the nested cells. The slack identity \(x^3-p^{2^{r+1}}=2\varepsilon p^{2^r}+\varepsilon^2+\delta\) is `cycle_top_pred_scale` made exact. \(\delta\) and \(\varepsilon\) odd is existing peak/top parity. A nontrivial cycle avoids \(R=\{1,\ldots,11\}\), hence \(p\ge 13\) **EXACT — LEAN VERIFIED**, a named corollary of `reachesOne_of_lt_twelve`. Residue census on 38 transient peaks: 13 pairs mod 8, 24 pairs mod 16, all odd/odd. Classification **DIOPHANTINE_REPACKAGING**. Records: `docs/research/juggler_cycle_diophantine.md`, `docs/problems/juggler_cycle_diophantine.md`. Control layer unchanged
+- **Refuted ideas:** the sequential identity is stronger than the envelope slack; \((\delta,\varepsilon)\) is modularly rigid beyond odd/odd; \(R\) forbids a residue class of \(p\) already on transients; a halt theorem
+- **Literature:** `oeis-A007320`; no nontrivial Juggler cycle is claimed
+- **Open:** the leftover remains the existing odd-odd / unbounded residual branch, not another peak-cell identity
+- **Decision:** CLOSE the Diophantine peak-pair branch as `DIOPHANTINE_REPACKAGING`. Record the named defects and the cycle \(R\)-avoidance corollary. Do not claim a cycle obstruction
+
+```text
+What was learned
+- The sequential peak identity exists and is not a path-sum remainder balance
+- Its arithmetic content is the known slack of x^3 ≥ p^{2^{r+1}}
+- δ and ε are odd by the existing peak/top parity; transients realise many residues mod 8 and 16
+- R-avoidance is cycle-only and only upgrades 2 ≤ p to 13 ≤ p
+- Transient landings in R are common and do not refute the cycle bound
+
+Strongest theorem
+- On a CycleMax, x^3 = (p^{2^r} + ε)^2 + δ, equivalently x^3 − p^{2^{r+1}} = 2ε p^{2^r} + ε^2 + δ
+
+Strongest refutation
+- a modular restriction stronger than odd/odd; 13 distinct (δ,ε) pairs mod 8 on transients
+
+Reusable machinery
+- Problems.Engine.CycleDiophantine peakOddDefect / topEvenDefect / peak_diophantine_slack
+- cycleWord_iterate_not_lt_twelve / cycle_top_landing_ge_thirteen
+- research.juggler_sequence.cycle_diophantine
+
+Prior-art status
+- negative sequential-identity result, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- CLOSE
+
+Why
+- The peak pair rewrites the nested cells. Residues do not beat the envelope. Stop before another defect layer.
+
+Best next question
+- The leftover remains the existing odd-odd / unbounded residual branch, not another peak-cell identity
+```
+
+## Juggler odd fourth-power heavy search
+
+- **Date:** 2026-08-27
+- **Objective:** Search the exact interval \(a^8\le n^3<(a^4+1)^2\) for an odd non-square \(n\) with \(T(n)=a^4\), persist the range, and look for an obstruction
+- **Hypotheses:** `ODD_FOURTH_POWER_COUNTEREXAMPLE`, `ODD_FOURTH_POWER_NO_WITNESS`, `ODD_FOURTH_POWER_STRUCTURE_DISCOVERED`, `ODD_FOURTH_POWER_PROOF_READY`
+- **Major results:** Resumable exact \(a\)-parameter search (`odd-fourth-v1-cbrt`, `python-int`). Persisted range \(1\le a<10^8\): \(99\,999\,999\) candidates, \(465\) interval cubes, \(0\) odd non-squares. Cubes are exactly \(a=k^3\), \(n=k^8\) for \(1\le k\le 464\), plus the inexact even hit \(a=97\), \(n=198636\). Occupancy at most one. Dataset: `data/research/juggler/odd_sharp_suffix/`. Tool: `tools/odd_fourth_power_search.py`. Control layer unchanged. Classification still **ODD_SHARP_SUFFIX_INCOMPLETE**
+- **Refuted ideas:** interval emptiness as the obstruction (`a=97`); scanning \(n\) instead of \(a\); treating the empty odd-non-square range as a theorem; incrementing the cube index \(m\) by \(1\) (jumps of size \(a^{5/3}\))
+- **Literature:** `oeis-A007320`; Juggler totality remains open and unclaimed
+- **Open:** whether \(T(n)=a^4\) and \(n\) odd forces \(n\) to be a square
+- **Decision:** PARK. Record `ODD_FOURTH_POWER_NO_WITNESS` and `ODD_FOURTH_POWER_STRUCTURE_DISCOVERED`. Do not start Lean. Do not claim termination
+
+```text
+What was learned
+- T(n)=a^4 is the exact interval a^8 <= n^3 < (a^4+1)^2
+- The interval holds at most one cube
+- Even a forces even n; odd squares occur only for a=k^3
+- Through a<10^8 the only inexact cube is a=97, n=198636 even
+- No odd non-square witness; emptiness is evidence, not a theorem
+
+Strongest theorem
+- none new; the inverse-floor iff remains the Lean fact
+
+Strongest refutation
+- "the fourth-power square interval never contains a cube" fails at a=97
+
+Reusable machinery
+- tools/odd_fourth_power_search.py and the SQLite dataset under
+  data/research/juggler/odd_sharp_suffix/
+
+Prior-art status
+- finite exact search, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PARK
+
+Why
+- The search left a persistent range and a clean hit list: exact eighth
+  powers plus one even exception. That is enough to park. It is not a
+  proof, and it does not justify a number-theory framework.
+
+Best next question
+- Prove that T(n)=a^4 and n odd implies n is a square, or find an odd
+  non-square witness
+```
 
 
 

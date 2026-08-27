@@ -1,0 +1,14 @@
+{
+  "a_start": 1,
+  "a_end": 20000,
+  "n_tested": 19999,
+  "seconds": 0.6292012000922114,
+  "candidates_per_sec": 31784.74547898047,
+  "cube_root_ops_per_sec": 165412.2887824003,
+  "exact_verification_per_sec": 35682.41409362239,
+  "hits": 28,
+  "arithmetic_method": "python-int",
+  "algorithm_version": "odd-fourth-v1-cbrt",
+  "memory_bytes": 31309824,
+  "note_high_a": "scan_range(10^6, 10^6+5000) measured about 15900 candidates/sec"
+}

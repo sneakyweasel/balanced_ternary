@@ -78,11 +78,14 @@ It is not required.
 ## Experiments
 
 - Probe: `research.juggler_sequence.odd_sharp_suffix`
-- Integer cube-root / fourth-power interval search; no huge
-  \(n^{3/2}\) construction
+- Heavy exact search: `tools/odd_fourth_power_search.py`, dataset
+  [odd_sharp_suffix](../../data/research/juggler/odd_sharp_suffix/)
+- Integer cube-root / fourth-power interval search on the output
+  parameter \(a\); no huge \(n^{3/2}\) construction; no floats
 - Records: [juggler_odd_sharp_suffix.md](../research/juggler_odd_sharp_suffix.md),
   [juggler_odd_sharp_suffix.json](../research/juggler_odd_sharp_suffix.json)
-- Tests: `tests/research/juggler_sequence/test_odd_sharp_suffix.py`
+- Tests: `tests/research/juggler_sequence/test_odd_sharp_suffix.py`,
+  `tests/tools/test_odd_fourth_power_search.py`
 - The Research Engine control layer is not modified.
 
 ## Conjectures
@@ -130,11 +133,16 @@ inverse-floor equation. It is not a termination theorem.
 Odd first-defect scan \(n\le 50000\): thirteen hits with
 \(\mathrm{square\_depth}(T(n))\ge 1\), all of depth \(1\). The
 smallest is \(11\to 36=6^2\). None of the \(s=1\) bases is a square,
-so none of them lifts to \(s\ge 2\). Fourth-power scan \(b\le 2500\)
-found no odd cube in \([b^8,(b^4+1)^2)\). One even cube occurs at
-\(b=97\), \(n=198636\). That shows the interval can contain a cube;
-the remaining constraint is oddness of \(n\). Eighth-power scan
-\(a\le 150\) found no hits.
+so none of them lifts to \(s\ge 2\).
+
+Persisted \(a\)-parameter search on \(1\le a<10^8\)
+(**COMPUTATIONALLY VERIFIED**): \(99\,999\,999\) values, \(465\)
+interval cubes, \(0\) odd non-squares. Every cube is either the exact
+family \(a=k^3\), \(n=k^8\) for \(1\le k\le 464\), or the one inexact
+even hit \(a=97\), \(n=198636\). Occupancy is at most one cube. Even
+\(a\) forces even \(n\). This is
+`ODD_FOURTH_POWER_NO_WITNESS` plus
+`ODD_FOURTH_POWER_STRUCTURE_DISCOVERED`. It is not a theorem.
 
 Even first defects remain unbounded: \(n=q^2+2\) with
 \(q=4,16,256\) gives sharp suffixes of depths \(1,2,3\).
@@ -144,18 +152,22 @@ elementary modular or factorization obstruction was proved.
 
 ## Open questions
 
-If \(M=b^4\), must a cube in \([M^2,(M+1)^2)\) be even? A yes would
+If \(T(n)=a^4\) and \(n\) is odd, must \(n\) be a square? Equivalently:
+must every inexact cube in \([a^8,(a^4+1)^2)\) be even? A yes would
 make odd-start sharp suffixes exactly the family \(OE\).
 
 ## Decision
 
 **PARK** the depth classification. Record
-`ODD_SHARP_SUFFIX_INCOMPLETE`. Keep the inverse-floor lemmas. Do not
+`ODD_SHARP_SUFFIX_INCOMPLETE`. The heavy search through \(a<10^8\)
+found structure and no odd non-square witness; that is evidence, not
+an impossibility theorem. Keep the inverse-floor lemmas. Do not
 register an attack. Do not claim termination. Do not add
-`PowerHeight` or a recursive defect object.
+`PowerHeight` or a recursive defect object. Do not start Lean in
+this phase.
 
-Best next question: prove that a cube in a fourth-power square
-interval is even, or exhibit an odd witness.
+Best next question: prove \(T(n)=a^4\) and \(n\) odd implies \(n\) is
+a square, or exhibit an odd non-square witness.
 
 ## Publication assessment
 

@@ -1,0 +1,13 @@
+{
+  "search_id": "juggler_odd_sharp_suffix-s2-odd-fourth-v1-cbrt-1-1000000",
+  "problem": "juggler_odd_sharp_suffix",
+  "parameter_s": 2,
+  "algorithm_version": "odd-fourth-v1-cbrt",
+  "arithmetic_method": "python-int",
+  "a_start": 1,
+  "a_end": 100000000,
+  "chunk_size": 1000000,
+  "odd_a_only": false,
+  "near_miss_cap_per_chunk": 8,
+  "software_version": "0.2.2"
+}

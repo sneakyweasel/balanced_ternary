@@ -47,6 +47,7 @@ import Problems.Engine.ResidualChain
 import Problems.Engine.RepeatedBlock
 import Problems.Engine.ResidualPath
 import Problems.Engine.CycleWord
+import Problems.Engine.CycleDiophantine
 import Problems.Engine.ReverseAdd
 import Problems.Engine.FactorConcat
 import Problems.Engine.CyclicTag

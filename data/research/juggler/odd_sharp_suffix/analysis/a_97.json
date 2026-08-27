@@ -1,0 +1,36 @@
+{
+  "candidate": {
+    "s": 2,
+    "a": 97,
+    "n": 198636,
+    "classification": "EVEN_CUBE",
+    "n_is_odd": false,
+    "n_is_square": false,
+    "cube_residual": "165506495",
+    "interval_lower": "7837433594376961",
+    "interval_upper": "7837433771435524",
+    "exact_Tn": "88529281"
+  },
+  "proof_obligation": "Explain why an inexact cube in [a^8, (a^4+1)^2) can occur, and why this n is even.",
+  "exact_interval": "97^8 <= 198636^3 < (97^4 + 1)^2",
+  "parity_constraints": {
+    "a_odd": true,
+    "n_even": true,
+    "n_mod_2": 0,
+    "n_mod_4": 0,
+    "n_mod_8": 4,
+    "n_mod_16": 12,
+    "a_mod_2": 1,
+    "a_mod_4": 1,
+    "a_mod_8": 1,
+    "a_mod_16": 1
+  },
+  "nearby_cubes": {
+    "note": "97 is not near a cube (4^3=64, 5^3=125). This is not an exact left-endpoint hit."
+  },
+  "observed_moduli": {
+    "n": [0, 0, 4, 12],
+    "a": [1, 1, 1, 1]
+  },
+  "possible_lemma": "An inexact interval cube need not be forbidden; odd a does not force odd n. The remaining claim is: inexact cube implies n even."
+}

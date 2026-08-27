@@ -3,21 +3,27 @@
 from __future__ import annotations
 
 from research.juggler_sequence.odd_sharp_suffix import (
+    ANALYSIS_DIR,
     CLASS_INCOMPLETE,
     CLASS_WITNESS,
+    HITS_DIR,
     LEAN_THEOREMS,
+    analyze_persisted_hits,
     classify,
     cube_in_sq_interval,
     even_start_contrast,
     example_records,
     hit_record,
     integer_cbrt,
+    is_cube,
     lean_api_present,
+    nearest_cube_record,
     odd_floor_cube_interval,
     render_markdown,
     run_probe,
     scan_fourth_powers,
     scan_odd_starts,
+    write_nearest_cube_analysis,
 )
 from research.juggler_sequence.power_algebra import is_square, local_tight
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, LEAN_PATH, floor_power
@@ -134,6 +140,42 @@ def test_classify_incomplete_without_witness():
     )
     assert "global_termination" in text
     assert all(v is False for v in ANTI_OVERCLAIM.values())
+
+
+def test_nearest_cube_exact_family_and_a97():
+    for k, a, n in ((3, 27, 6561), (5, 125, 390625), (7, 343, 5764801)):
+        rec = nearest_cube_record(a, n)
+        assert rec["r"] == 0
+        assert rec["n_eq_m"] is True
+        assert rec["a_is_cube"] is True
+        assert rec["n"] == k**8
+        assert rec["n_is_odd"] is True
+        assert rec["n_is_square"] is True
+    rec97 = nearest_cube_record(97, 198636)
+    assert rec97["a_is_cube"] is False
+    assert rec97["n_eq_m_plus_1"] is True
+    assert rec97["n"] == rec97["m"] + 1
+    assert rec97["n_is_odd"] is False
+    assert rec97["gap"] <= rec97["width"]
+    assert rec97["m_odd"] is True
+    assert is_cube(27) is True
+    assert is_cube(97) is False
+
+
+def test_persisted_hits_nearest_cube_split():
+    analysis = analyze_persisted_hits()
+    assert analysis["hit_count"] == 465
+    assert analysis["exact_cube_count"] == 464
+    assert analysis["a97_count"] == 1
+    assert analysis["other_count"] == 0
+    assert analysis["odd_non_square_count"] == 0
+    assert analysis["inexact_is_succ_cbrt"] is True
+    assert analysis["odd_cbrt_inexact_even_n"] is True
+    assert analysis["odd_a_need_not_force_m_odd"] is True
+    assert analysis["exact_left_endpoint"] is True
+    assert integer_cbrt(3**8) == 18
+    assert analysis["a97"]["n"] == 198636
+    assert HITS_DIR.is_dir()
 
 
 def test_committed_artifacts_schema():

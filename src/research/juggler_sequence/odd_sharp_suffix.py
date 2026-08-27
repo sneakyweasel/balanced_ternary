@@ -23,6 +23,8 @@ from research.juggler_sequence.saturation_budget import has_pow_two_depth, squar
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JSON_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_sharp_suffix.json"
 DOC_PATH = REPO_ROOT / "docs" / "research" / "juggler_odd_sharp_suffix.md"
+HITS_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_sharp_suffix" / "hits"
+ANALYSIS_DIR = REPO_ROOT / "data" / "research" / "juggler" / "odd_sharp_suffix" / "analysis"
 
 CLASS_UNBOUNDED = "ODD_SHARP_SUFFIX_UNBOUNDED"
 CLASS_FINITE = "ODD_SHARP_SUFFIX_FINITE"
@@ -63,6 +65,212 @@ def integer_cbrt(n: int) -> int:
         else:
             hi = mid - 1
     return lo
+
+
+def is_cube(n: int) -> bool:
+    if n < 0:
+        return False
+    root = integer_cbrt(n)
+    return root * root * root == n
+
+
+def nearest_cube_record(a: int, n: int) -> dict[str, Any]:
+    """Exact nearest-cube data for one persisted interval hit. No floats."""
+
+    if a < 1 or n < 1:
+        raise ValueError("nearest_cube_record requires positive a and n")
+    lower = a**8
+    width = 2 * (a**4)
+    m = integer_cbrt(lower)
+    r = lower - m * m * m
+    gap = (m + 1) ** 3 - lower
+    a_is_cube = is_cube(a)
+    if r == 0:
+        role = "left_endpoint"
+    elif n == m + 1:
+        role = "succ_cbrt"
+    else:
+        role = "other"
+    return {
+        "a": a,
+        "n": n,
+        "m": m,
+        "r": r,
+        "gap": gap,
+        "width": width,
+        "gap_le_width": gap <= width,
+        "a_is_cube": a_is_cube,
+        "n_eq_m": n == m,
+        "n_eq_m_plus_1": n == m + 1,
+        "role": role,
+        "n_is_odd": n % 2 == 1,
+        "n_is_square": is_square(n),
+        "a_odd": a % 2 == 1,
+        "m_odd": m % 2 == 1,
+        "a_mod_2": a % 2,
+        "a_mod_3": a % 3,
+        "a_mod_4": a % 4,
+        "a_mod_8": a % 8,
+        "a_mod_16": a % 16,
+        "a_mod_32": a % 32,
+        "n_mod_2": n % 2,
+        "n_mod_3": n % 3,
+        "n_mod_4": n % 4,
+        "n_mod_8": n % 8,
+        "n_mod_16": n % 16,
+        "n_mod_32": n % 32,
+    }
+
+
+def load_persisted_hits(hits_dir: Path | None = None) -> list[dict[str, Any]]:
+    directory = HITS_DIR if hits_dir is None else hits_dir
+    rows: list[dict[str, Any]] = []
+    for path in sorted(directory.glob("a_*.json"), key=lambda p: int(p.stem[2:])):
+        raw = json.loads(path.read_text(encoding="utf-8"))
+        rows.append(nearest_cube_record(int(raw["a"]), int(raw["n"])))
+    return rows
+
+
+def analyze_persisted_hits(
+    hits_dir: Path | None = None,
+) -> dict[str, Any]:
+    """Split persisted interval cubes into exact cubes, a=97, and other."""
+
+    records = load_persisted_hits(hits_dir)
+    exact = [row for row in records if row["a_is_cube"]]
+    a97 = [row for row in records if row["a"] == 97]
+    other = [row for row in records if not row["a_is_cube"] and row["a"] != 97]
+    odd_non_square = [
+        row for row in records if row["n_is_odd"] and not row["n_is_square"]
+    ]
+    odd_a_inexact = [row for row in records if row["a_odd"] and not row["a_is_cube"]]
+    inexact = [row for row in records if not row["a_is_cube"]]
+    inexact_succ = all(row["role"] == "succ_cbrt" for row in inexact)
+    odd_cbrt_inexact_even_n = all(
+        (not row["m_odd"]) or (not row["n_is_odd"]) for row in inexact
+    )
+    return {
+        "hit_count": len(records),
+        "exact_cube_count": len(exact),
+        "a97_count": len(a97),
+        "other_count": len(other),
+        "odd_non_square_count": len(odd_non_square),
+        "odd_a_inexact_count": len(odd_a_inexact),
+        "inexact_is_succ_cbrt": inexact_succ,
+        "odd_cbrt_inexact_even_n": odd_cbrt_inexact_even_n,
+        "odd_a_need_not_force_m_odd": integer_cbrt(3**8) % 2 == 0,
+        "exact_left_endpoint": all(row["role"] == "left_endpoint" for row in exact),
+        "a97": None if not a97 else a97[0],
+        "other": [{"a": row["a"], "n": row["n"], "role": row["role"]} for row in other],
+        "odd_non_square": [row["a"] for row in odd_non_square],
+        "residue_counts": _residue_counts(records),
+        "invariant": (
+            "a non-cube leaves at most the candidate n = m+1; that candidate "
+            "is even exactly when m is odd. The only persisted inexact hit "
+            "is a = 97, where m is odd and n is even"
+        ),
+        "remaining_case": (
+            "an even m makes n = m+1 odd. Odd a does not force m odd "
+            "(a = 3 has m = 18). No persisted hit has even m except the "
+            "exact even family a = k^3. The leftover is: a non-cube with "
+            "even m never places m+1 in the window"
+        ),
+    }
+
+
+def _residue_counts(records: list[dict[str, Any]]) -> dict[str, Any]:
+    exact = [row for row in records if row["a_is_cube"]]
+    inexact = [row for row in records if not row["a_is_cube"]]
+    moduli = (2, 3, 4, 8, 16, 32)
+
+    def bundle(rows: list[dict[str, Any]], prefix: str) -> dict[str, dict[str, int]]:
+        out: dict[str, dict[str, int]] = {}
+        for mod in moduli:
+            key = f"{prefix}_mod_{mod}"
+            counts: dict[str, int] = {}
+            for row in rows:
+                counts[str(row[key])] = counts.get(str(row[key]), 0) + 1
+            out[f"mod_{mod}"] = counts
+        return out
+
+    return {
+        "exact_a": bundle(exact, "a"),
+        "exact_n": bundle(exact, "n"),
+        "inexact_a": bundle(inexact, "a"),
+        "inexact_n": bundle(inexact, "n"),
+    }
+
+
+def render_nearest_cube_markdown(analysis: dict[str, Any]) -> str:
+    a97 = analysis["a97"]
+    lines = [
+        "# Nearest-cube reduction of persisted fourth-power hits",
+        "",
+        "Exact integer analysis of the persisted `a < 10^8` hit list.",
+        "This is not a theorem and not a new search.",
+        "",
+        f"- hits: `{analysis['hit_count']}`",
+        f"- exact cubes `a = k^3`: `{analysis['exact_cube_count']}`",
+        f"- `a = 97`: `{analysis['a97_count']}`",
+        f"- other non-cubes: `{analysis['other_count']}`",
+        f"- odd non-squares: `{analysis['odd_non_square_count']}`",
+        f"- odd-a inexact hits: `{analysis['odd_a_inexact_count']}`",
+        f"- inexact hits are `n = m+1`: `{analysis['inexact_is_succ_cbrt']}`",
+        f"- odd-`m` inexact hits have even `n`: `{analysis['odd_cbrt_inexact_even_n']}`",
+        f"- odd `a` need not force odd `m` (`a=3`): `{analysis['odd_a_need_not_force_m_odd']}`",
+        f"- exact hits sit at the left endpoint: `{analysis['exact_left_endpoint']}`",
+        "",
+        "## Invariant",
+        "",
+        analysis["invariant"] + ".",
+        "",
+        analysis["remaining_case"] + ".",
+        "",
+        "## a = 97",
+        "",
+    ]
+    if a97 is None:
+        lines.append("No `a = 97` hit.")
+    else:
+        lines.extend(
+            [
+                f"- `m = {a97['m']}`",
+                f"- `r = {a97['r']}`",
+                f"- gap `(m+1)^3 - a^8 = {a97['gap']}`",
+                f"- width `2a^4 = {a97['width']}`",
+                f"- `n = m+1`: `{a97['n_eq_m_plus_1']}`",
+                f"- `n` even: `{not a97['n_is_odd']}`",
+                f"- `a` not a cube: `{not a97['a_is_cube']}`",
+            ]
+        )
+    lines.extend(
+        [
+            "",
+            "## Residues",
+            "",
+            "Exact-family `n` follows `k^8` and is therefore even exactly",
+            "when `k` is even. The unique inexact hit is `a = 97 ≡ 1 (mod 32)`,",
+            "`n = 198636 ≡ 12 (mod 16)`. No other residue pattern is needed.",
+            "",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_nearest_cube_analysis(
+    hits_dir: Path | None = None,
+    analysis_dir: Path | None = None,
+) -> dict[str, Any]:
+    data = analyze_persisted_hits(hits_dir)
+    directory = ANALYSIS_DIR if analysis_dir is None else analysis_dir
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / "nearest_cube.json").write_text(
+        json.dumps(data, indent=2) + "\n", encoding="utf-8"
+    )
+    (directory / "nearest_cube.md").write_text(
+        render_nearest_cube_markdown(data), encoding="utf-8"
+    )
+    return data
 
 
 def cube_in_sq_interval(m: int) -> int | None:

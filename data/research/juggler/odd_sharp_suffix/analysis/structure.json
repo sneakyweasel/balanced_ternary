@@ -1,0 +1,35 @@
+{
+  "outcome": "ODD_FOURTH_POWER_STRUCTURE_DISCOVERED",
+  "witness_outcome": "ODD_FOURTH_POWER_NO_WITNESS",
+  "proof_ready": false,
+  "a_range": [1, 100000000],
+  "algorithm_version": "odd-fourth-v1-cbrt",
+  "arithmetic_method": "python-int",
+  "candidates_tested": 99999999,
+  "interval_cubes": 465,
+  "even_cubes": 233,
+  "odd_squares": 232,
+  "odd_non_squares": 0,
+  "inexact_hits": [
+    {
+      "a": 97,
+      "n": 198636,
+      "classification": "EVEN_CUBE"
+    }
+  ],
+  "exact_family": "a = k^3 for 1 <= k <= 464, n = k^8",
+  "proof_obligation": "T(n)=a^4 and n odd implies n is an eighth power (equivalently a cube). Inexact interval cubes, if they exist, have even n.",
+  "parity_constraints": {
+    "even_a_implies_even_n": true,
+    "odd_square_n_iff_a_odd_cube": true,
+    "inexact_cube_implies_even_n": "observed on [1, 10^8); not a theorem"
+  },
+  "observed_moduli": {
+    "a97_n_mod_16": 12,
+    "a97_a_mod_16": 1,
+    "exact_odd_n_mod_16": 1
+  },
+  "possible_lemma": "floorPower n = a^4 and n odd implies n is a square. Do not treat the empty odd-non-square search as this lemma.",
+  "occupancy_threshold": 1,
+  "note": "At most one cube fits in [a^8, (a^4+1)^2) for every a >= 1."
+}

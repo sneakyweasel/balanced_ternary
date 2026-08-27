@@ -34,6 +34,12 @@ experiments/**/*.parquet
 experiments/**/*.csv
 experiments/**/*.txt
 
+# Heavy odd-fourth-power search artifacts
+data/research/**/*.sqlite
+data/research/**/*.sqlite-wal
+data/research/**/*.sqlite-shm
+data/research/**/ranges/*
+
 # OS
 Thumbs.db
 Desktop.ini

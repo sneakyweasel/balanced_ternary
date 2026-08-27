@@ -1,4 +1,6 @@
 import Mathlib.Algebra.Group.Nat.Even
+import Mathlib.Analysis.SpecialFunctions.Pow.NthRootLemmas
+import Mathlib.Data.Nat.Factorization.Basic
 import Mathlib.Data.Nat.Sqrt
 import Mathlib.Tactic
 
@@ -2415,6 +2417,174 @@ theorem floorPower_odd_eq_pow_two_depth_iff {n a s : ℕ} (hodd : n % 2 = 1) :
     exact ⟨hsq ▸ hI.1, hI.2⟩
   · intro h
     exact (floorPower_odd_eq_iff_cube_interval hodd).mpr ⟨hsq ▸ h.1, h.2⟩
+
+/-!
+## Fourth-power window
+
+Nearest-cube form of `a^8 ≤ n^3 < (a^4+1)^2`. Occupancy is at most one
+cube. A non-cube `a` leaves only the candidate `⌊∛(a^8)⌋+1`. That
+candidate is even exactly when the cube root is odd. This does not
+kill an even cube-root, and is not a termination theorem.
+-/
+
+theorem succ_cube_sub_cube (m : ℕ) :
+    (m + 1) ^ 3 = m ^ 3 + (3 * m ^ 2 + 3 * m + 1) := by
+  ring
+
+theorem fourth_window_span (a : ℕ) :
+    (a ^ 4 + 1) ^ 2 = a ^ 8 + 2 * a ^ 4 + 1 := by
+  ring
+
+theorem nat_cbrt_eq_iff {m N : ℕ} :
+    Nat.nthRoot 3 N = m ↔ m ^ 3 ≤ N ∧ N < (m + 1) ^ 3 := by
+  constructor
+  · intro h
+    subst h
+    exact ⟨Nat.pow_nthRoot_le (Or.inl (by decide : (3 : ℕ) ≠ 0)),
+      Nat.lt_pow_nthRoot_add_one (by decide : (3 : ℕ) ≠ 0) N⟩
+  · intro ⟨hle, hlt⟩
+    exact Nat.nthRoot_eq_of_le_of_lt hle hlt
+
+theorem pow_eight_eq_cube {a m : ℕ} (h : a ^ 8 = m ^ 3) :
+    ∃ k, a = k ^ 3 ∧ m = k ^ 8 := by
+  obtain ⟨c, ha, hm⟩ :=
+    Nat.exists_eq_pow_of_pow_eq_pow (Or.inl (by decide : (8 : ℕ) ≠ 0)) h
+  have hg : Nat.gcd 8 3 = 1 := by decide
+  have h3 : 3 / Nat.gcd 8 3 = 3 := by simp [hg]
+  have h8 : 8 / Nat.gcd 8 3 = 8 := by simp [hg]
+  exact ⟨c, by simpa [h3] using ha, by simpa [h8] using hm⟩
+
+theorem is_cube_iff_eighth_is_cube {a : ℕ} :
+    (∃ k, a = k ^ 3) ↔ Nat.nthRoot 3 (a ^ 8) ^ 3 = a ^ 8 := by
+  constructor
+  · rintro ⟨k, rfl⟩
+    have hpow : (k ^ 3) ^ 8 = (k ^ 8) ^ 3 := by ring
+    rw [hpow, Nat.nthRoot_pow (by decide : (3 : ℕ) ≠ 0)]
+  · intro h
+    obtain ⟨k, hk, _⟩ := pow_eight_eq_cube h.symm
+    exact ⟨k, hk⟩
+
+lemma eight_mul_pow_twelve_le {a : ℕ} : 8 * a ^ 12 ≤ 27 * a ^ 16 := by
+  rw [show a ^ 16 = a ^ 4 * a ^ 12 from (pow_add a 4 12).symm]
+  refine Nat.mul_le_mul_right (a ^ 12) ?_
+  cases a with
+  | zero => simp
+  | succ a =>
+      have : 1 ≤ (a + 1) ^ 4 := Nat.one_le_pow 4 (a + 1) (Nat.succ_pos _)
+      nlinarith
+
+lemma three_mul_sq_ge_two_pow_four {n a : ℕ} (h : a ^ 8 ≤ n ^ 3) :
+    2 * a ^ 4 ≤ 3 * n ^ 2 := by
+  have hn6 : n ^ 6 ≥ a ^ 16 := by
+    have := Nat.pow_le_pow_left h 2
+    simpa [pow_mul] using this
+  have hcmp : (2 * a ^ 4) ^ 3 ≤ (3 * n ^ 2) ^ 3 := by
+    have hL : (2 * a ^ 4) ^ 3 = 8 * a ^ 12 := by ring
+    have hR : (3 * n ^ 2) ^ 3 = 27 * n ^ 6 := by ring
+    rw [hL, hR]
+    exact le_trans eight_mul_pow_twelve_le (Nat.mul_le_mul_left 27 hn6)
+  exact (Nat.pow_le_pow_iff_left (by decide : (0 : ℕ) < 3)).mp hcmp
+
+lemma cube_gap_covers_fourth_window {n a : ℕ} (h : a ^ 8 ≤ n ^ 3) :
+    2 * a ^ 4 + 1 ≤ 3 * n ^ 2 + 3 * n + 1 := by
+  have hsq := three_mul_sq_ge_two_pow_four h
+  have : 2 * a ^ 4 ≤ 3 * n * (n + 1) := by
+    calc
+      2 * a ^ 4 ≤ 3 * n ^ 2 := hsq
+      _ ≤ 3 * n ^ 2 + 3 * n := Nat.le_add_right _ _
+      _ = 3 * n * (n + 1) := by ring
+  omega
+
+theorem fourth_window_occupancy {a n k : ℕ}
+    (hn : a ^ 8 ≤ n ^ 3 ∧ n ^ 3 < (a ^ 4 + 1) ^ 2)
+    (hk : a ^ 8 ≤ k ^ 3 ∧ k ^ 3 < (a ^ 4 + 1) ^ 2) :
+    n = k := by
+  wlog hlt : n ≤ k
+  · exact (this hk hn (le_of_not_ge hlt)).symm
+  apply le_antisymm hlt
+  by_contra hne
+  have hsucc : n + 1 ≤ k := Nat.succ_le_of_lt (lt_of_le_of_ne hlt hne)
+  have hgap := cube_gap_covers_fourth_window hn.1
+  have hnext : (n + 1) ^ 3 ≤ k ^ 3 := Nat.pow_le_pow_left hsucc 3
+  have hspan := fourth_window_span a
+  have hlt' : (n + 1) ^ 3 < a ^ 8 + 2 * a ^ 4 + 1 := by
+    calc
+      (n + 1) ^ 3 ≤ k ^ 3 := hnext
+      _ < (a ^ 4 + 1) ^ 2 := hk.2
+      _ = a ^ 8 + 2 * a ^ 4 + 1 := hspan
+  have hge : a ^ 8 + (3 * n ^ 2 + 3 * n + 1) ≤ (n + 1) ^ 3 := by
+    rw [succ_cube_sub_cube]
+    exact Nat.add_le_add_right hn.1 _
+  have : a ^ 8 + (2 * a ^ 4 + 1) ≤ (n + 1) ^ 3 :=
+    le_trans (Nat.add_le_add_left hgap _) hge
+  omega
+
+theorem eighth_pow_mem_fourth_window (k : ℕ) :
+    (k ^ 3) ^ 8 ≤ (k ^ 8) ^ 3 ∧ (k ^ 8) ^ 3 < ((k ^ 3) ^ 4 + 1) ^ 2 := by
+  constructor
+  · have : (k ^ 3) ^ 8 = (k ^ 8) ^ 3 := by ring
+    exact this.le
+  · have hspan := fourth_window_span (k ^ 3)
+    have heq : (k ^ 8) ^ 3 = (k ^ 3) ^ 8 := by ring
+    rw [heq, hspan]
+    exact Nat.lt_add_of_pos_right (Nat.succ_pos _)
+
+theorem exact_cube_left_endpoint {k n : ℕ}
+    (h : (k ^ 3) ^ 8 ≤ n ^ 3 ∧ n ^ 3 < ((k ^ 3) ^ 4 + 1) ^ 2) :
+    n = k ^ 8 :=
+  fourth_window_occupancy h (eighth_pow_mem_fourth_window k)
+
+theorem fourth_window_cube_eq_succ_cbrt {a n : ℕ}
+    (hnot : Nat.nthRoot 3 (a ^ 8) ^ 3 ≠ a ^ 8)
+    (h : a ^ 8 ≤ n ^ 3 ∧ n ^ 3 < (a ^ 4 + 1) ^ 2) :
+    n = Nat.nthRoot 3 (a ^ 8) + 1 := by
+  set m := Nat.nthRoot 3 (a ^ 8)
+  have hm : m ^ 3 ≤ a ^ 8 ∧ a ^ 8 < (m + 1) ^ 3 := (nat_cbrt_eq_iff).1 rfl
+  have hlt : m ^ 3 < a ^ 8 := lt_of_le_of_ne hm.1 hnot
+  have hn_gt : m < n := by
+    apply lt_of_not_ge
+    intro hle
+    have : n ^ 3 ≤ m ^ 3 := Nat.pow_le_pow_left hle 3
+    exact (not_le_of_gt hlt) (le_trans h.1 this)
+  have hge : m + 1 ≤ n := Nat.succ_le_of_lt hn_gt
+  have hcube : a ^ 8 ≤ (m + 1) ^ 3 ∧ (m + 1) ^ 3 < (a ^ 4 + 1) ^ 2 := by
+    refine ⟨le_of_lt hm.2, lt_of_le_of_lt (Nat.pow_le_pow_left hge 3) h.2⟩
+  exact (fourth_window_occupancy h hcube).symm
+
+theorem noncube_odd_cbrt_fourth_window_cube_even {a n : ℕ}
+    (hnot : Nat.nthRoot 3 (a ^ 8) ^ 3 ≠ a ^ 8)
+    (hodd : Nat.nthRoot 3 (a ^ 8) % 2 = 1)
+    (h : a ^ 8 ≤ n ^ 3 ∧ n ^ 3 < (a ^ 4 + 1) ^ 2) :
+    n % 2 = 0 := by
+  have hn := fourth_window_cube_eq_succ_cbrt hnot h
+  have : (Nat.nthRoot 3 (a ^ 8) + 1) % 2 = 0 := by omega
+  simpa [hn] using this
+
+theorem odd_cube_interval_of_odd_cbrt_implies_square {n a : ℕ}
+    (hodd : n % 2 = 1)
+    (hcbrt : Nat.nthRoot 3 (a ^ 8) % 2 = 1)
+    (h : a ^ 8 ≤ n ^ 3 ∧ n ^ 3 < (a ^ 4 + 1) ^ 2) :
+    n.sqrt ^ 2 = n := by
+  by_cases hcube : Nat.nthRoot 3 (a ^ 8) ^ 3 = a ^ 8
+  · obtain ⟨k, ha, hn⟩ := pow_eight_eq_cube hcube.symm
+    have hwin :
+        (k ^ 3) ^ 8 ≤ n ^ 3 ∧ n ^ 3 < ((k ^ 3) ^ 4 + 1) ^ 2 := by
+      simpa [ha] using h
+    have := exact_cube_left_endpoint hwin
+    subst this
+    simp [Nat.sqrt_eq']
+  · have heven := noncube_odd_cbrt_fourth_window_cube_even hcube hcbrt h
+    omega
+
+theorem floorPower_odd_eq_fourth_power_of_odd_cbrt_implies_square
+    {n a : ℕ} (hodd : n % 2 = 1)
+    (hcbrt : Nat.nthRoot 3 (a ^ 8) % 2 = 1)
+    (hT : floorPower n = a ^ 4) :
+    n.sqrt ^ 2 = n := by
+  have hI := (floorPower_odd_eq_iff_cube_interval hodd).mp hT
+  have hsq : (a ^ 4) ^ 2 = a ^ 8 := by ring
+  exact odd_cube_interval_of_odd_cbrt_implies_square hodd hcbrt
+    ⟨hsq ▸ hI.1, hI.2⟩
 
 /-!
 ## Defect-compensated contraction

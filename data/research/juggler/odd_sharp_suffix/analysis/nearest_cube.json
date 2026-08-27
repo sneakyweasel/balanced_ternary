@@ -1,0 +1,168 @@
+{
+  "hit_count": 465,
+  "exact_cube_count": 464,
+  "a97_count": 1,
+  "other_count": 0,
+  "odd_non_square_count": 0,
+  "odd_a_inexact_count": 1,
+  "odd_a_forces_m_odd": true,
+  "odd_noncube_candidate_even": true,
+  "exact_left_endpoint": true,
+  "a97": {
+    "a": 97,
+    "n": 198636,
+    "m": 198635,
+    "r": 118202679086,
+    "gap": 165506495,
+    "width": 177058562,
+    "gap_le_width": true,
+    "a_is_cube": false,
+    "n_eq_m": false,
+    "n_eq_m_plus_1": true,
+    "role": "succ_cbrt",
+    "n_is_odd": false,
+    "n_is_square": false,
+    "a_odd": true,
+    "m_odd": true,
+    "a_mod_2": 1,
+    "a_mod_3": 1,
+    "a_mod_4": 1,
+    "a_mod_8": 1,
+    "a_mod_16": 1,
+    "a_mod_32": 1,
+    "n_mod_2": 0,
+    "n_mod_3": 0,
+    "n_mod_4": 0,
+    "n_mod_8": 4,
+    "n_mod_16": 12,
+    "n_mod_32": 12
+  },
+  "other": [],
+  "odd_non_square": [],
+  "residue_counts": {
+    "exact_a": {
+      "mod_2": {
+        "1": 232,
+        "0": 232
+      },
+      "mod_3": {
+        "1": 155,
+        "2": 155,
+        "0": 154
+      },
+      "mod_4": {
+        "1": 116,
+        "0": 232,
+        "3": 116
+      },
+      "mod_8": {
+        "1": 58,
+        "0": 232,
+        "3": 58,
+        "5": 58,
+        "7": 58
+      },
+      "mod_16": {
+        "1": 29,
+        "8": 116,
+        "11": 29,
+        "0": 116,
+        "13": 29,
+        "7": 29,
+        "9": 29,
+        "3": 29,
+        "5": 29,
+        "15": 29
+      },
+      "mod_32": {
+        "1": 15,
+        "8": 58,
+        "27": 15,
+        "0": 116,
+        "29": 15,
+        "24": 58,
+        "23": 15,
+        "25": 15,
+        "19": 15,
+        "21": 15,
+        "15": 15,
+        "17": 14,
+        "11": 14,
+        "13": 14,
+        "7": 14,
+        "9": 14,
+        "3": 14,
+        "5": 14,
+        "31": 14
+      }
+    },
+    "exact_n": {
+      "mod_2": {
+        "1": 232,
+        "0": 232
+      },
+      "mod_3": {
+        "1": 310,
+        "0": 154
+      },
+      "mod_4": {
+        "1": 232,
+        "0": 232
+      },
+      "mod_8": {
+        "1": 232,
+        "0": 232
+      },
+      "mod_16": {
+        "1": 232,
+        "0": 232
+      },
+      "mod_32": {
+        "1": 232,
+        "0": 232
+      }
+    },
+    "inexact_a": {
+      "mod_2": {
+        "1": 1
+      },
+      "mod_3": {
+        "1": 1
+      },
+      "mod_4": {
+        "1": 1
+      },
+      "mod_8": {
+        "1": 1
+      },
+      "mod_16": {
+        "1": 1
+      },
+      "mod_32": {
+        "1": 1
+      }
+    },
+    "inexact_n": {
+      "mod_2": {
+        "0": 1
+      },
+      "mod_3": {
+        "0": 1
+      },
+      "mod_4": {
+        "0": 1
+      },
+      "mod_8": {
+        "4": 1
+      },
+      "mod_16": {
+        "12": 1
+      },
+      "mod_32": {
+        "12": 1
+      }
+    }
+  },
+  "invariant": "odd non-cube a forces m odd, so the unique inexact candidate n = m+1 is even",
+  "remaining_case": "even non-cube a would have m even and candidate m+1 odd; no such hit is in the persisted corpus"
+}

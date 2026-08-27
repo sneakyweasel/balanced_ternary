@@ -1,0 +1,20 @@
+{
+  "s": 2,
+  "a": 238328,
+  "n": 218340105584896,
+  "n_is_odd": false,
+  "n_is_square": true,
+  "exact_Tn": "3226266762397899821056",
+  "interval_lower": "10408797222153426578715765348940396820955136",
+  "interval_upper": "10408797222153426578722217882465192620597249",
+  "cube_residual": "0",
+  "classification": "EVEN_CUBE",
+  "n_mod_2": 0,
+  "n_mod_4": 0,
+  "n_mod_8": 0,
+  "n_mod_16": 0,
+  "a_mod_2": 0,
+  "a_mod_4": 0,
+  "a_mod_8": 0,
+  "a_mod_16": 8
+}

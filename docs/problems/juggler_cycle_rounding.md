@@ -147,10 +147,11 @@ amplification is false.
 
 ## Open questions
 
-The additive balance is the strongest remainder-closure identity
-found. An obstruction, if one exists, must use the remainders
-sequentially rather than as a sum. Do not open a remainder-dynamics
-object to name that sequential law.
+Answered in
+[juggler_cycle_diophantine.md](juggler_cycle_diophantine.md): the
+sequential peak identity exists and is the envelope slack
+\(x^3-p^{2^{r+1}}=2\varepsilon p^{2^r}+\varepsilon^2+\delta\). Do not
+open a remainder-dynamics object.
 
 ## Decision
 
@@ -158,9 +159,8 @@ object to name that sequential law.
 rigidity. Do not claim a cycle obstruction. Do not build remainder
 dynamics. Do not claim termination.
 
-Best next question: is there a sequential, non-sum remainder identity
-that uses \(T_w(n)=n\) and cannot be rewritten as the path-power /
-path-square balance?
+Best next question: answered in
+[juggler_cycle_diophantine.md](juggler_cycle_diophantine.md).
 
 ## Publication assessment
 
