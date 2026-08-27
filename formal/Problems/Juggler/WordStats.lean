@@ -87,6 +87,10 @@ def driftG (w : List Branch) : ℤ :=
 def exponentGap (w : List Branch) : Prop :=
   3 ^ oddCount w < 2 ^ w.length
 
+/-- Formal surplus is strictly positive: the odd exponent dominates. -/
+def exponentExpanding (w : List Branch) : Prop :=
+  2 ^ w.length < 3 ^ oddCount w
+
 theorem exponentGap_iff_posDrift (w : List Branch) :
     exponentGap w ↔ 0 < driftG w := by
   unfold exponentGap driftG
@@ -97,6 +101,10 @@ theorem exponentGap_iff_posDrift (w : List Branch) :
     have hlt : ((3 : ℕ) : ℤ) ^ oddCount w < ((2 : ℕ) : ℤ) ^ w.length :=
       lt_of_sub_pos h
     exact Int.ofNat_lt.mp hlt
+
+theorem exponentExpanding_not_gap {w : List Branch}
+    (h : exponentExpanding w) : ¬ exponentGap w :=
+  fun hg => (lt_asymm h) hg
 
 /-- Prefix-noncontracting: no prefix has positive combinatorial drift. -/
 def prefixNoncontracting (w : List Branch) : Prop :=

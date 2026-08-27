@@ -240,6 +240,28 @@ theorem oddCount_oddEvenBlock (a b : ℕ) :
   simp [oddEvenBlock, oddCount_append, oddCount_replicate_odd,
     oddCount_replicate_even]
 
+theorem exponentExpanding_oddEvenBlock (a b : ℕ) :
+    exponentExpanding (oddEvenBlock a b) ↔ 2 ^ (a + b) < 3 ^ a := by
+  simp [exponentExpanding, length_oddEvenBlock, oddCount_oddEvenBlock]
+
+/-- An expanding residual block has at least two odd letters. -/
+theorem expanding_oddEvenBlock_two_le_odds {a b : ℕ} (hb : 1 ≤ b)
+    (h : exponentExpanding (oddEvenBlock a b)) : 2 ≤ a := by
+  rw [exponentExpanding_oddEvenBlock] at h
+  match a with
+  | 0 =>
+      rw [Nat.zero_add, pow_zero] at h
+      exact (not_lt_of_ge (Nat.one_le_two_pow (n := b)) h).elim
+  | 1 =>
+      have hb' : 2 ≤ 1 + b := by omega
+      have h4 : 2 ^ 2 ≤ 2 ^ (1 + b) :=
+        Nat.pow_le_pow_right (by decide : (1 : ℕ) ≤ 2) hb'
+      have : ¬2 ^ (1 + b) < 3 := fun hlt =>
+        (by decide : ¬(4 : ℕ) < 3) (lt_of_le_of_lt h4 hlt)
+      exact (this h).elim
+  | _a + 2 =>
+      omega
+
 theorem length_repeatedOddEven (a b : ℕ) :
     ∀ r, (repeatedOddEven a b r).length = r * (a + b)
   | 0 => by simp [repeatedOddEven]

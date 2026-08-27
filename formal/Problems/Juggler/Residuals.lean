@@ -650,4 +650,106 @@ theorem bounded_prefix_not_nodup {lo hi : ℕ} (hle : lo ≤ hi)
   have hlen' : xs.toFinset.card = xs.length := List.toFinset_card_of_nodup hn
   omega
 
+/-- Persistent odd-to-odd residual whose block is formally expanding.
+Not a claim that a second such block is impossible. -/
+def PersistentExpandingResidual (x y : ℕ) : Prop :=
+  PersistentOddResidual x y ∧
+    ∃ a b, 1 ≤ b ∧ follows x (oddEvenBlock a b) ∧
+      image x (oddEvenBlock a b) = y ∧
+        exponentExpanding (oddEvenBlock a b)
+
+theorem persistent_expanding_of {x y a b : ℕ}
+    (hb : 1 ≤ b) (hw : follows x (oddEvenBlock a b))
+    (himg : image x (oddEvenBlock a b) = y)
+    (hgt : x < y) (hy : y % 2 = 1) (ht : floorPower y % 2 = 1)
+    (hexp : exponentExpanding (oddEvenBlock a b)) :
+    PersistentExpandingResidual x y :=
+  ⟨⟨⟨a, b, hb, hw, himg⟩, hgt, hy, ht⟩, a, b, hb, hw, himg, hexp⟩
+
+theorem persistent_expanding_endpoint_odd_odd {x y : ℕ}
+    (h : PersistentExpandingResidual x y) :
+    y % 2 = 1 ∧ floorPower y % 2 = 1 :=
+  ⟨h.1.2.2.1, h.1.2.2.2⟩
+
+/-- A persistent residual endpoint is odd-to-odd, so the next residual
+block has at least two odd letters. This does not force that block to
+be exponent-contracting. -/
+theorem persistent_next_odd_run_two {y a b : ℕ}
+    (hy : y % 2 = 1) (ht : floorPower y % 2 = 1)
+    (hb : 1 ≤ b) (hw : follows y (oddEvenBlock a b)) : 2 ≤ a := by
+  have ha : 1 ≤ a := by
+    by_contra h0
+    have ha0 : a = 0 := by omega
+    have hw' : follows y (List.replicate b Branch.even) := by
+      simpa [oddEvenBlock, ha0] using hw
+    have heven : y % 2 = 0 := by
+      cases b with
+      | zero => cases hb
+      | succ b =>
+          simpa [List.replicate_succ] using hw'.1
+    omega
+  by_contra h2
+  have ha1 : a = 1 := by omega
+  have hw' :
+      follows y (Branch.odd :: List.replicate b Branch.even) := by
+    simpa [oddEvenBlock, ha1] using hw
+  have heven : floorPower y % 2 = 0 := by
+    cases b with
+    | zero => cases hb
+    | succ b =>
+        simpa [List.replicate_succ] using hw'.2.1
+  omega
+
+theorem persistent_expanding_next_min_odds {x y a b : ℕ}
+    (h : PersistentExpandingResidual x y)
+    (hb : 1 ≤ b) (hw : follows y (oddEvenBlock a b)) : 2 ≤ a :=
+  persistent_next_odd_run_two h.1.2.2.1 h.1.2.2.2 hb hw
+
+theorem oddEvenBlock_two_one :
+    oddEvenBlock 2 1 = [.odd, .odd, .even] := by
+  simp [oddEvenBlock]
+
+theorem ooe_is_expanding : exponentExpanding (oddEvenBlock 2 1) := by
+  rw [exponentExpanding_oddEvenBlock]
+  decide
+
+/-- Smallest odd-odd start of two consecutive expanding persistent
+`OOE` blocks. This kills the two-block impossibility. -/
+theorem follows_oddEvenBlock_two_one {n : ℕ}
+    (h : word n 3 = [.odd, .odd, .even]) :
+    follows n (oddEvenBlock 2 1) := by
+  have hlen : (oddEvenBlock 2 1).length = 3 := length_oddEvenBlock 2 1
+  have hw : word n (oddEvenBlock 2 1).length = oddEvenBlock 2 1 := by
+    rw [hlen, oddEvenBlock_two_one, h]
+  exact (follows_iff_word n _).mpr hw
+
+theorem image_oddEvenBlock_two_one {n y : ℕ}
+    (h : floorPower^[3] n = y) :
+    image n (oddEvenBlock 2 1) = y := by
+  simpa [image_eq_iterate, length_oddEvenBlock] using h
+
+theorem two_block_ooe_365 :
+    PersistentExpandingResidual 365 763 ∧
+      PersistentExpandingResidual 763 1749 := by
+  have w365 : word 365 3 = [.odd, .odd, .even] := by native_decide
+  have w763 : word 763 3 = [.odd, .odd, .even] := by native_decide
+  have i365 : floorPower^[3] 365 = 763 := by native_decide
+  have i763 : floorPower^[3] 763 = 1749 := by native_decide
+  have h365 := follows_oddEvenBlock_two_one w365
+  have h763 := follows_oddEvenBlock_two_one w763
+  have hy : (763 : ℕ) % 2 = 1 := by native_decide
+  have ht : floorPower 763 % 2 = 1 := by native_decide
+  have hz : (1749 : ℕ) % 2 = 1 := by native_decide
+  have htz : floorPower 1749 % 2 = 1 := by native_decide
+  exact ⟨
+    persistent_expanding_of (by decide) h365
+      (image_oddEvenBlock_two_one i365) (by decide) hy ht ooe_is_expanding,
+    persistent_expanding_of (by decide) h763
+      (image_oddEvenBlock_two_one i763) (by decide) hz htz ooe_is_expanding⟩
+
+theorem two_consecutive_persistent_expanding_exists :
+    ∃ x y z, PersistentExpandingResidual x y ∧
+      PersistentExpandingResidual y z :=
+  ⟨365, 763, 1749, two_block_ooe_365⟩
+
 end Problems.Juggler

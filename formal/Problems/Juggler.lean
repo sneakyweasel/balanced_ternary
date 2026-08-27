@@ -17,6 +17,7 @@ import Problems.Juggler.Progress
 import Problems.Juggler.Minimal
 import Problems.Juggler.Scale
 import Problems.Juggler.Residuals
+import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.Cycles
 import Problems.Juggler.CycleDiophantine
 

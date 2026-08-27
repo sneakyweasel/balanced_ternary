@@ -6464,3 +6464,93 @@ Best next question
 - Does the defect/surplus ratio R_w have a forced drift on persistent odd-to-odd residual chains?
 ```
 
+## Juggler normalized relative slack
+
+- **Date:** 2026-08-27
+- **Objective:** Find a dimensionless defect coordinate with an exact residual transition law, and test whether R=Δ/S drifts up on persistent odd-to-odd chains
+- **Hypotheses:** 1+q = n^{3^o}/T^{2^k} multiplies under concatenation and is not T≥n; persistent residual structure might force R↑
+- **Major results:** Preferred object is 1+q, not R and not Q. Exact Lean product 1+q_uv = (1+q_u)^{3^{#O(v)}}(1+q_v)^{2^{|u|}}; even step (1+η)^{2^k}, odd step (1+q)^3(1+η)^{2^k}. Running 1+q is nondecreasing under a realized extension. R≤1 iff T≥n whenever S>0. A return T_w(n)=n uses the whole surplus. Census: two persistent expanding residuals on n≤80 (37→9317 OOOOE, 69→117 OOE, min R≈9.7e-3); both sequels are exponent-contracting so the next R is undefined; per-block q can reset downward; running R can fall (EOO→EOOO); η reaches 0 on odd-odd starts. No halt theorem
+- **Refuted ideas:** R as an independent potential (it is the endpoint comparison); forced one-step increase of running R; per-block q monotone along a residual chain; a positive lower envelope for η on odd-odd states
+- **Literature:** OEIS A007320; existing global-defect / first-defect / ResidualStep layers
+- **Open:** is the sequel of a persistent expanding residual block forced to be exponent-contracting?
+- **Decision:** PROMOTE the exact 1+q calculus. Do not promote a drift-to-R>1 attack. Do not claim termination
+
+```text
+What was learned
+- 1+q is the normalization that factors the huge exponents
+- R is T≥n in other coordinates whenever S>0
+- Q is a genuinely different scale with no simple product
+- Running 1+q cannot fall; per-block q and running R can
+- Persistent expanding residual steps are rare, and their sequel left S>0
+
+Strongest theorem
+- 1+q_uv = (1+q_u)^{3^{#O(v)}} (1+q_v)^{2^{|u|}}, and running 1+q is nondecreasing under a realized extension
+
+Strongest refutation
+- R_{i+1} ≥ R_i along a realized itinerary: EOO to EOOO on n=12 drops from R>1 to R<1
+
+Reusable machinery
+- formal/Problems/Juggler/NormalizedDefect.lean
+- research.juggler_sequence.normalized_defect
+
+Prior-art status
+- multiplicative form of the global defect, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PROMOTE
+
+Why
+- The 1+q product and prefix monotonicity are new exact statements that do not rewrite T_w(n)≥n. They do not force R past 1 on a persistent chain.
+
+Best next question
+- Is the sequel of a persistent expanding residual block forced to be exponent-contracting?
+```
+
+## Juggler two-step persistent residual compatibility
+
+- **Date:** 2026-08-27
+- **Objective:** Determine what arithmetic an expanding persistent residual block leaves at its endpoint, and whether a second expanding persistent block can start there
+- **Hypotheses:** the endpoint y is a constrained residual state that forces the next block to be exponent-contracting; two consecutive PersistentExpandingResidual steps are impossible
+- **Major results:** The two-block impossibility is false. Lean `two_block_ooe_365`: 365 --OOE--> 763 --OOE--> 1749. Smallest pair on the window is 173 --OOE--> 329 --OOOOOOOOE--> …. A triple starts at 365. Expanding residual ⇒ a≥2; persistent endpoint ⇒ next a≥2; that is the grammar of another expansion. Census n≤4000: 316 PE blocks, 76 with PE sequels; y occupies all odd classes mod 8; PE-sequel rate at endpoints ≈24% vs 28.5% base rate. The n≤80 contracting sequels at 37 and 69 are a small-window artifact. No halt theorem
+- **Refuted ideas:** no two consecutive PE blocks; expanding persistent ⇒ contracting sequel; endpoint residue class narrower than odd-odd; first block forces a large next local remainder
+- **Literature:** OEIS A007320; ResidualStep / PersistentOddResidual / 1+q layers
+- **Open:** a finite bound on consecutive PE blocks that is not T_w(n)<n
+- **Decision:** PROMOTE the refutation and the endpoint characterization. Do not claim termination
+
+```text
+What was learned
+- Two expanding persistent residual blocks can follow each other
+- The first block leaves y odd-odd, so the next run has a≥2
+- That state is compatible with another expansion, including OOE
+- The n≤80 contracting sequels were not a law
+- y is not a proper residue subclass of odd-odd
+
+Strongest theorem
+- PersistentExpandingResidual 365 763 and PersistentExpandingResidual 763 1749
+
+Strongest refutation
+- Two consecutive persistent expanding residual blocks are impossible
+
+Reusable machinery
+- exponentExpanding, PersistentExpandingResidual, two_block_ooe_365
+- research.juggler_sequence.two_block_residual
+
+Prior-art status
+- two-block compatibility refutation, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PROMOTE
+
+Why
+- The obstruction does not exist at two blocks. The transported state is real (odd-odd, next a≥2) and is not a rewrite of T_uv(x)<x, but it does not forbid another expansion.
+
+Best next question
+- Is there a finite bound on consecutive expanding persistent residual blocks that is not a rewrite of T_w(n)<n?
+```
+

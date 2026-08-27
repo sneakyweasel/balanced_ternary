@@ -29,6 +29,7 @@ LAYERS: dict[str, Path] = {
     "Minimal": JUGGLER_DIR / "Minimal.lean",
     "Scale": JUGGLER_DIR / "Scale.lean",
     "Residuals": JUGGLER_DIR / "Residuals.lean",
+    "NormalizedDefect": JUGGLER_DIR / "NormalizedDefect.lean",
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
 }
@@ -52,6 +53,7 @@ PROGRESS = LAYERS["Progress"]
 MINIMAL = LAYERS["Minimal"]
 SCALE = LAYERS["Scale"]
 RESIDUALS = LAYERS["Residuals"]
+NORMALIZED_DEFECT = LAYERS["NormalizedDefect"]
 CYCLES = LAYERS["Cycles"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 

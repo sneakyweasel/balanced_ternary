@@ -2899,5 +2899,27 @@
       "tests/research/juggler_sequence/test_defect_lower_bound.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-normalized-relative-slack",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For a realized Juggler word, the relative slack 1+q = n^{3^{#O(w)}} / T_w(n)^{2^{|w|}} multiplies under concatenation: 1+q_{uv} = (1+q_u)^{3^{#O(v)}} (1+q_v)^{2^{|u|}}. An even letter multiplies by (1+η)^{2^k}; an odd letter multiplies by (1+q)^3 (1+η)^{2^k}. Running 1+q does not decrease under a realized extension. The surplus ratio R=Δ/S satisfies R≤1 iff T_w(n)≥n whenever S>0, so R is the endpoint comparison in other coordinates. A realized return T_w(n)=n uses the whole formal surplus.",
+    "source": "docs/problems/juggler_normalized_defect.md",
+    "lean": "Problems/Juggler/NormalizedDefect.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_normalized_defect.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-two-block-persistent-expanding",
+    "tag": "REFUTED",
+    "statement": "Two consecutive persistent expanding Juggler residual blocks are impossible. Counterexample: 365 follows OOE to 763 and 763 follows OOE to 1749; both steps are PersistentExpandingResidual. An expanding O^a E^b block has a≥2, and a persistent residual endpoint is odd-to-odd so the next residual also has a≥2; that state is compatible with another expanding block. The n≤80 contracting sequels at 37 and 69 are a small-window artifact.",
+    "source": "docs/problems/juggler_two_block_residual.md",
+    "lean": "Problems/Juggler/Residuals.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_block_residual.py"
+    ],
+    "related_conjectures": []
   }
 ]

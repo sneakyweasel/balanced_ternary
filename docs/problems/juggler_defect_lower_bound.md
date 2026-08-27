@@ -159,8 +159,8 @@ None opened in `conjectures/`.
 
 ## Open questions
 
-Does the defect/surplus ratio \(R_w(n)=\Delta_w(n)/(n^{3^o}-n^{2^k})\)
-have a forced drift under persistent mixed residual suffixes?
+Taken up by `docs/problems/juggler_normalized_defect.md`. The
+preferred object is the relative slack \(1+q\), not \(R\).
 
 ## Decision
 
@@ -168,8 +168,7 @@ have a forced drift under persistent mixed residual suffixes?
 new exact object. It does not prove termination, and it does not
 forbid expanding `OOE`.
 
-Best next question: does \(R_w\) have a forced drift on persistent
-odd-to-odd residual chains?
+Best next question: taken up by `docs/problems/juggler_normalized_defect.md`.
 
 ## Publication assessment
 
