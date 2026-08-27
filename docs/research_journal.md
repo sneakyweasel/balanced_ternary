@@ -6375,3 +6375,47 @@ Best next question
 - Can a quantitative lower bound on Δ beat the formal surplus on some mixed expanding class?
 ```
 
+## Juggler residual-state sufficiency
+
+- **Date:** 2026-08-27
+- **Objective:** Ask which coordinates of `(y, parity, A, G, ρ, cell)` determine the next ResidualStep constraint class, without adding a Lean state object
+- **Hypotheses:** a proper quotient, not the integer itself and not incoming history, predicts `V` or `V_n`
+- **Major results:** Window `HARD_PROBES +` odd-odd `n≤80` has 43 landings. Intrinsic `V` is a function of `y`. Relative `V_n` needs `(n, y)` (`y=9` from starts `9` and `53`). Incoming `(A, G, cell)` varies at six `y` and never changes `V`. No fiber-bearing subset of `(parity, A, G, ρ, cell)` predicts `V`. `(G, ρ)` is window-injective on non-start landings, not a nonempty fiber. No `ResidualState.lean`. ResidualStep unchanged. Objects B and C not opened
+- **Refuted ideas:** the larger tuple as a canonical residual state; history as a new state space (escape-state replay); `V_n` as a function of `y` alone
+- **Literature:** `oeis-A007320`; escape-state `ESCAPE_STATE_COMPLEX`; odd-odd residual `ODD_ODD_RESIDUAL_COMPLEX`
+- **Open:** a global `∑ρ` bound in `(n, word statistics)` (object C), not another residual relation
+- **Decision:** CLOSE
+
+```text
+What was learned
+- ResidualStep stays a relation; the next constraint class is a function of the current integer
+- Start-relative constraints need the pair (start, current)
+- Incoming A, G, cell are history certificates and do not change V
+- (G, ρ) can look sufficient on a short window without having a shared fiber
+- The larger candidate tuple is not a new state space
+
+Strongest theorem
+- none new; ResidualStep is unchanged
+
+Strongest refutation
+- y=3 from start 3 and from 69→117→3 have different incoming (A, G, cell) and the same V(3); y=9 has V_9(9)=STAY and V_53(9)=DESCENT
+
+Reusable machinery
+- research.juggler_sequence.residual_state
+
+Prior-art status
+- sufficiency/quotient CLOSE of a proposed residual state, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- Every proper quotient splits or is a window-injective rewriting of y. History does not create a new state. The canonical residual information is y, or (n, y) for start-relative facts.
+
+Best next question
+- A global ∑ρ bound in (n, word statistics), not another residual relation.
+```
+

@@ -151,6 +151,9 @@ Does every \(n\ge 2\) have finite coefficient / drift stopping time?
 Everything required to turn a yes into a strict smaller iterate is
 already proved.
 
+Residual-state sufficiency (object A) is recorded in
+[juggler_residual_state.md](juggler_residual_state.md).
+
 ## Decision
 
 **PROMOTE** the layered architecture. Engine Juggler files are gone,
