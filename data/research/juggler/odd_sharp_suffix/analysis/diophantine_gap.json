@@ -1,0 +1,273 @@
+{
+  "hit_count": 465,
+  "exact_family_count": 464,
+  "positive_r_count": 1,
+  "odd_nonsquare_hit_count": 0,
+  "even_positive_count": 1,
+  "positive_hits": [
+    {
+      "a": 97,
+      "n": 198636,
+      "r": 165506495,
+      "b2": 88529281,
+      "two_b2": 177058562,
+      "r_le_two_b2": true,
+      "n_odd": false
+    }
+  ],
+  "a97": {
+    "a": 97,
+    "n": 198636,
+    "b": 9409,
+    "r": 165506495,
+    "b2": 88529281,
+    "two_b2": 177058562,
+    "r_le_two_b2": true,
+    "n_odd": false
+  },
+  "regressions": [
+    {
+      "a": 2,
+      "n": 7,
+      "r": 87,
+      "two_b2": 32,
+      "r_le_two_b2": false,
+      "n_odd": true,
+      "a_is_cube": false,
+      "in_window": false
+    },
+    {
+      "a": 3,
+      "n": 19,
+      "r": 298,
+      "two_b2": 162,
+      "r_le_two_b2": false,
+      "n_odd": true,
+      "a_is_cube": false,
+      "in_window": false
+    },
+    {
+      "a": 6,
+      "n": 119,
+      "r": 5543,
+      "two_b2": 2592,
+      "r_le_two_b2": false,
+      "n_odd": true,
+      "a_is_cube": false,
+      "in_window": false
+    },
+    {
+      "a": 8,
+      "n": 256,
+      "r": 0,
+      "two_b2": 8192,
+      "r_le_two_b2": true,
+      "n_odd": false,
+      "a_is_cube": true,
+      "in_window": true
+    },
+    {
+      "a": 27,
+      "n": 6561,
+      "r": 0,
+      "two_b2": 1062882,
+      "r_le_two_b2": true,
+      "n_odd": true,
+      "a_is_cube": true,
+      "in_window": true
+    },
+    {
+      "a": 79,
+      "n": 114905,
+      "r": 177861064,
+      "two_b2": 77900162,
+      "r_le_two_b2": false,
+      "n_odd": true,
+      "a_is_cube": false,
+      "in_window": false
+    },
+    {
+      "a": 97,
+      "n": 198636,
+      "r": 165506495,
+      "two_b2": 177058562,
+      "r_le_two_b2": true,
+      "n_odd": false,
+      "a_is_cube": false,
+      "in_window": true
+    },
+    {
+      "a": 125,
+      "n": 390625,
+      "r": 0,
+      "two_b2": 488281250,
+      "r_le_two_b2": true,
+      "n_odd": true,
+      "a_is_cube": true,
+      "in_window": true
+    },
+    {
+      "a": 37840,
+      "n": 1613874181767,
+      "r": 64339188707111144663,
+      "two_b2": 4100478192926720000,
+      "r_le_two_b2": false,
+      "n_odd": true,
+      "a_is_cube": false,
+      "in_window": false
+    }
+  ],
+  "theorems": [
+    {
+      "id": "mihailescu",
+      "name": "Mihailescu / Catalan",
+      "citation": "Mihailescu 2004; consecutive perfect powers are 8 and 9",
+      "theorem_variables": "|x^p - y^q| for p,q > 1",
+      "our_variables": "x=n, p=3, y=b, q=4",
+      "hypotheses": "nonzero difference of perfect powers",
+      "resulting_lower_bound": "2",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "THEOREM"
+    },
+    {
+      "id": "liouville",
+      "name": "Liouville on x^3 - b^4",
+      "citation": "defining polynomial x^3 - b^4, degree 3",
+      "theorem_variables": "alpha = b^{4/3}, integer n",
+      "our_variables": "r = |n^3 - b^4|",
+      "hypotheses": "b not a cube",
+      "resulting_lower_bound": "1",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "THEOREM"
+    },
+    {
+      "id": "roth_height",
+      "name": "Roth / height-dependent irrationality of b^{4/3}",
+      "citation": "Roth 1955; height of x^3 - b^4 is b^4",
+      "theorem_variables": "|alpha - p/q| > c(alpha)/q^{2+eps}",
+      "our_variables": "alpha = b^{4/3} depends on b; q = 1",
+      "hypotheses": "alpha algebraic irrational",
+      "resulting_lower_bound": "b^{-O(1)} after height; weaker than r >= 1 at our scale",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "THEOREM"
+    },
+    {
+      "id": "hall_strong",
+      "name": "Hall conjecture (strong)",
+      "citation": "Hall 1971; |Y^2 - X^3| > C X^{1/2}",
+      "theorem_variables": "X cube-root side, Y square-root side",
+      "our_variables": "X=n, Y=b^2=a^4; need |X^3-Y^2| > 2Y = 2 X^{3/2}",
+      "hypotheses": "Y^2 != X^3; C absolute",
+      "resulting_lower_bound": "C n^{1/2} ~ C b^{2/3}",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "CONJECTURE"
+    },
+    {
+      "id": "hall_weak_abc",
+      "name": "Weak Hall / ABC",
+      "citation": "Stark-Trotter; Masser-Oesterle ABC implies weak Hall",
+      "theorem_variables": "|Y^2 - X^3| > c(eps) X^{1/2-eps}",
+      "our_variables": "same X=n, Y=a^4",
+      "hypotheses": "ABC or an eps-Hall statement",
+      "resulting_lower_bound": "n^{1/2-eps}",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "CONJECTURE"
+    },
+    {
+      "id": "danilov",
+      "name": "Danilov optimality of the Hall exponent",
+      "citation": "Danilov 1982 Math. Notes 32",
+      "theorem_variables": "|Y^2 - X^3| < C X^{1/2} infinitely often",
+      "our_variables": "general square-cube pairs, Y not forced to a fourth power",
+      "hypotheses": "none on Y being a fourth power",
+      "resulting_lower_bound": "no C, delta with |X^3-Y^2| > C X^{1/2+delta} for all pairs",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "THEOREM"
+    },
+    {
+      "id": "bennett_exponents",
+      "name": "Bennett differences of perfect powers (fixed bases)",
+      "citation": "Bennett CMB 2008",
+      "theorem_variables": "0 < |A^x - B^y| < (1/4) max(A^{x/2}, B^{y/2})",
+      "our_variables": "A,B fixed; x,y variable. Ours is opposite",
+      "hypotheses": "A,B fixed positive integers",
+      "resulting_lower_bound": "at most one exponent pair; no |n^3-b^4| bound",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "THEOREM"
+    },
+    {
+      "id": "bennett_same_exponent",
+      "name": "Bennett |A x^n - B y^n| = 1",
+      "citation": "Bennett Crelle / LMS 1997-2001",
+      "theorem_variables": "same exponent n >= 3",
+      "our_variables": "exponents 3 and 4 differ; not this equation",
+      "hypotheses": "equal exponents",
+      "resulting_lower_bound": "does not apply",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "THEOREM"
+    },
+    {
+      "id": "bugeaud_constant",
+      "name": "Bugeaud effective gap depending only on the exponents",
+      "citation": "Bugeaud 1996; Waldschmidt survey arXiv:0908.4031",
+      "theorem_variables": "|x^n - y^m| for fixed n,m",
+      "our_variables": "n=3, m=4; bound independent of x,y",
+      "resulting_lower_bound": "C(3,4), a constant",
+      "hypotheses": "x^3 != y^4",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "THEOREM"
+    },
+    {
+      "id": "baker_logs",
+      "name": "Baker linear forms in logarithms for |X^3-Y^2|",
+      "citation": "Baker; later Laurent-Mignotte-Nesterenko",
+      "theorem_variables": "linear form log X^3 - log Y^2",
+      "our_variables": "typically (log n)^C or n^eps with tiny eps",
+      "hypotheses": "effective transcendental estimates",
+      "resulting_lower_bound": "(log n)^C or n^eps << 2 n^{3/2}",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "THEOREM"
+    },
+    {
+      "id": "superelliptic_fixed_k",
+      "name": "Superelliptic x^3 - y^8 = k for fixed k",
+      "citation": "Bilu-Hanrot; Baker-Davenport reductions; Faltings for each k",
+      "theorem_variables": "k fixed, x,y variable",
+      "our_variables": "k = r grows up to 2 a^4",
+      "hypotheses": "k constant",
+      "resulting_lower_bound": "does not apply uniformly in r",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "THEOREM"
+    },
+    {
+      "id": "pillai",
+      "name": "Pillai conjecture",
+      "citation": "Pillai 1945; open for |k| > 1",
+      "theorem_variables": "x^p - y^q = k, finitely many for each k",
+      "our_variables": "no explicit |n^3-b^4| rate",
+      "hypotheses": "p,q >= 2",
+      "resulting_lower_bound": "gaps -> infinity, no 2b^2 rate",
+      "beats_2b2": false,
+      "a97_legal": true,
+      "status": "CONJECTURE"
+    }
+  ],
+  "any_theorem_beats_2b2": false,
+  "required_bound": "|n^3 - b^4| > 2 b^2 for b=a^2 not a cube and n odd",
+  "weakest_sufficient": "|x^3 - y^8| > 2 y^4 when y is not a cube and x is odd (equivalently |X^3 - Y^2| > 2Y when Y is a fourth power and X is odd). This is stronger than Hall and not a published theorem",
+  "formalization_cost": "Mihailescu is realistic to cite and too weak. Hall is open and still too weak. Baker/Thue proofs of weaker |X^3-Y^2| bounds are not a practical Lean import and still miss 2Y",
+  "a97_survives": true,
+  "classification": "DIOPHANTINE_ESCALATION_REQUIRED",
+  "unresolved": "0 < n^3 - b^4 <= 2 b^2 with b = a^2 not a cube and n odd"
+}

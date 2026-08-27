@@ -12,6 +12,7 @@ from research.juggler_sequence.odd_sharp_suffix import (
     LEAN_THEOREMS,
     analyze_even_cbrt_moduli,
     analyze_even_cbrt_near_misses,
+    analyze_diophantine_gap,
     analyze_near_power_gap,
     analyze_persisted_hits,
     classify,
@@ -26,6 +27,7 @@ from research.juggler_sequence.odd_sharp_suffix import (
     lean_api_present,
     near_power_record,
     nearest_cube_record,
+    window_scale_record,
     nearest_cube_signed,
     odd_floor_cube_interval,
     render_markdown,
@@ -303,6 +305,41 @@ def test_committed_near_power_analysis():
     assert "a = 97 must survive" in md
     assert "DIOPHANTINE_ESCALATION_REQUIRED" in md
     assert "10^8" in md
+
+
+def test_diophantine_gap_scale_and_a97():
+    rec27 = window_scale_record(27, 6561)
+    assert rec27["r"] == 0
+    assert rec27["b"] == 27**2
+    rec97 = window_scale_record(97, 198636)
+    assert rec97["r_positive"] is True
+    assert rec97["r_le_two_b2"] is True
+    assert rec97["n_odd"] is False
+    rec3 = window_scale_record(3)
+    assert rec3["r_le_two_b2"] is False
+    assert rec3["m_even"] is True
+    analysis = analyze_diophantine_gap()
+    assert analysis["odd_nonsquare_hit_count"] == 0
+    assert analysis["positive_r_count"] == 1
+    assert analysis["a97_survives"] is True
+    assert analysis["any_theorem_beats_2b2"] is False
+    assert analysis["classification"] == "DIOPHANTINE_ESCALATION_REQUIRED"
+    assert all(not row["beats_2b2"] for row in analysis["theorems"])
+    assert all(row["a97_legal"] for row in analysis["theorems"])
+
+
+def test_committed_diophantine_gap_analysis():
+    path = ANALYSIS_DIR / "diophantine_gap.json"
+    assert path.is_file()
+    data = json.loads(path.read_text(encoding="utf-8"))
+    assert data["classification"] == "DIOPHANTINE_ESCALATION_REQUIRED"
+    assert data["a97_survives"] is True
+    assert data["any_theorem_beats_2b2"] is False
+    assert data["odd_nonsquare_hit_count"] == 0
+    md = (ANALYSIS_DIR / "diophantine_gap.md").read_text(encoding="utf-8")
+    assert "a = 97 must survive" in md
+    assert "Hall" in md
+    assert "DIOPHANTINE_ESCALATION_REQUIRED" in md
 
 
 def test_persisted_hits_nearest_cube_split():

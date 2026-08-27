@@ -1166,6 +1166,406 @@ def write_near_power_analysis(
     return data
 
 
+CLASS_GAP_THEOREM = "GAP_THEOREM_SUFFICIENT"
+CLASS_ODDNESS_GAP = "ODDNESS_GAP_SUFFICIENT"
+CLASS_THEOREM_IDENTIFIED = "DIOPHANTINE_THEOREM_IDENTIFIED"
+CLASS_FOURTH_CE = "FOURTH_POWER_DIOPHANTINE_COUNTEREXAMPLE"
+DIOPHANTINE_REGRESSION_AS = (2, 3, 6, 8, 27, 79, 97, 125, HIGH_POSITION_EXAMPLE_A)
+
+
+def window_scale_record(a: int, n: int | None = None) -> dict[str, Any]:
+    """Exact r = n^3 - b^4 against 2b^2. No floats. b = a^2."""
+
+    if a < 1:
+        raise ValueError("window_scale_record requires positive a")
+    rec = even_cbrt_surplus_record(a)
+    b = a * a
+    b2 = b * b
+    if n is None:
+        if rec["a_is_cube"]:
+            n = rec["m"]
+        elif rec["in_window"]:
+            n = rec["m"] + 1
+        else:
+            n = rec["m"] + 1
+    r = n * n * n - b**4
+    return {
+        "a": a,
+        "n": n,
+        "b": b,
+        "b2": b2,
+        "r": r,
+        "two_b2": 2 * b2,
+        "r_le_two_b2": r <= 2 * b2,
+        "r_positive": r > 0,
+        "n_odd": n % 2 == 1,
+        "n_is_square": is_square(n),
+        "a_is_cube": rec["a_is_cube"],
+        "m_even": rec["m_even"],
+        "in_window": rec["in_window"] if not rec["a_is_cube"] else r == 0,
+    }
+
+
+def candidate_gap_theorems() -> list[dict[str, Any]]:
+    """Published or standard bounds mapped onto n^3 - b^4. Not proofs."""
+
+    return [
+        {
+            "id": "mihailescu",
+            "name": "Mihailescu / Catalan",
+            "citation": "Mihailescu 2004; consecutive perfect powers are 8 and 9",
+            "theorem_variables": "|x^p - y^q| for p,q > 1",
+            "our_variables": "x=n, p=3, y=b, q=4",
+            "hypotheses": "nonzero difference of perfect powers",
+            "resulting_lower_bound": "2",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "THEOREM",
+        },
+        {
+            "id": "liouville",
+            "name": "Liouville on x^3 - b^4",
+            "citation": "defining polynomial x^3 - b^4, degree 3",
+            "theorem_variables": "alpha = b^{4/3}, integer n",
+            "our_variables": "r = |n^3 - b^4|",
+            "hypotheses": "b not a cube",
+            "resulting_lower_bound": "1",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "THEOREM",
+        },
+        {
+            "id": "roth_height",
+            "name": "Roth / height-dependent irrationality of b^{4/3}",
+            "citation": "Roth 1955; height of x^3 - b^4 is b^4",
+            "theorem_variables": "|alpha - p/q| > c(alpha)/q^{2+eps}",
+            "our_variables": "alpha = b^{4/3} depends on b; q = 1",
+            "hypotheses": "alpha algebraic irrational",
+            "resulting_lower_bound": (
+                "b^{-O(1)} after height; weaker than r >= 1 at our scale"
+            ),
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "THEOREM",
+        },
+        {
+            "id": "hall_strong",
+            "name": "Hall conjecture (strong)",
+            "citation": "Hall 1971; |Y^2 - X^3| > C X^{1/2}",
+            "theorem_variables": "X cube-root side, Y square-root side",
+            "our_variables": "X=n, Y=b^2=a^4; need |X^3-Y^2| > 2Y = 2 X^{3/2}",
+            "hypotheses": "Y^2 != X^3; C absolute",
+            "resulting_lower_bound": "C n^{1/2} ~ C b^{2/3}",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "CONJECTURE",
+        },
+        {
+            "id": "hall_weak_abc",
+            "name": "Weak Hall / ABC",
+            "citation": "Stark-Trotter; Masser-Oesterle ABC implies weak Hall",
+            "theorem_variables": "|Y^2 - X^3| > c(eps) X^{1/2-eps}",
+            "our_variables": "same X=n, Y=a^4",
+            "hypotheses": "ABC or an eps-Hall statement",
+            "resulting_lower_bound": "n^{1/2-eps}",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "CONJECTURE",
+        },
+        {
+            "id": "danilov",
+            "name": "Danilov optimality of the Hall exponent",
+            "citation": "Danilov 1982 Math. Notes 32",
+            "theorem_variables": "|Y^2 - X^3| < C X^{1/2} infinitely often",
+            "our_variables": "general square-cube pairs, Y not forced to a fourth power",
+            "hypotheses": "none on Y being a fourth power",
+            "resulting_lower_bound": (
+                "no C, delta with |X^3-Y^2| > C X^{1/2+delta} for all pairs"
+            ),
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "THEOREM",
+        },
+        {
+            "id": "bennett_exponents",
+            "name": "Bennett differences of perfect powers (fixed bases)",
+            "citation": "Bennett CMB 2008",
+            "theorem_variables": "0 < |A^x - B^y| < (1/4) max(A^{x/2}, B^{y/2})",
+            "our_variables": "A,B fixed; x,y variable. Ours is opposite",
+            "hypotheses": "A,B fixed positive integers",
+            "resulting_lower_bound": "at most one exponent pair; no |n^3-b^4| bound",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "THEOREM",
+        },
+        {
+            "id": "bennett_same_exponent",
+            "name": "Bennett |A x^n - B y^n| = 1",
+            "citation": "Bennett Crelle / LMS 1997-2001",
+            "theorem_variables": "same exponent n >= 3",
+            "our_variables": "exponents 3 and 4 differ; not this equation",
+            "hypotheses": "equal exponents",
+            "resulting_lower_bound": "does not apply",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "THEOREM",
+        },
+        {
+            "id": "bugeaud_constant",
+            "name": "Bugeaud effective gap depending only on the exponents",
+            "citation": "Bugeaud 1996; Waldschmidt survey arXiv:0908.4031",
+            "theorem_variables": "|x^n - y^m| for fixed n,m",
+            "our_variables": "n=3, m=4; bound independent of x,y",
+            "resulting_lower_bound": "C(3,4), a constant",
+            "hypotheses": "x^3 != y^4",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "THEOREM",
+        },
+        {
+            "id": "baker_logs",
+            "name": "Baker linear forms in logarithms for |X^3-Y^2|",
+            "citation": "Baker; later Laurent-Mignotte-Nesterenko",
+            "theorem_variables": "linear form log X^3 - log Y^2",
+            "our_variables": "typically (log n)^C or n^eps with tiny eps",
+            "hypotheses": "effective transcendental estimates",
+            "resulting_lower_bound": "(log n)^C or n^eps << 2 n^{3/2}",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "THEOREM",
+        },
+        {
+            "id": "superelliptic_fixed_k",
+            "name": "Superelliptic x^3 - y^8 = k for fixed k",
+            "citation": "Bilu-Hanrot; Baker-Davenport reductions; Faltings for each k",
+            "theorem_variables": "k fixed, x,y variable",
+            "our_variables": "k = r grows up to 2 a^4",
+            "hypotheses": "k constant",
+            "resulting_lower_bound": "does not apply uniformly in r",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "THEOREM",
+        },
+        {
+            "id": "pillai",
+            "name": "Pillai conjecture",
+            "citation": "Pillai 1945; open for |k| > 1",
+            "theorem_variables": "x^p - y^q = k, finitely many for each k",
+            "our_variables": "no explicit |n^3-b^4| rate",
+            "hypotheses": "p,q >= 2",
+            "resulting_lower_bound": "gaps -> infinity, no 2b^2 rate",
+            "beats_2b2": False,
+            "a97_legal": True,
+            "status": "CONJECTURE",
+        },
+    ]
+
+
+def analyze_diophantine_gap(hits_dir: Path | None = None) -> dict[str, Any]:
+    """Identify whether a known gap theorem beats 2b^2. Not a 10^8 rerun."""
+
+    theorems = candidate_gap_theorems()
+    hits = load_persisted_hits(hits_dir)
+    hit_scales = [window_scale_record(int(row["a"]), int(row["n"])) for row in hits]
+    exact = [row for row in hit_scales if row["r"] == 0]
+    positive = [row for row in hit_scales if row["r"] > 0]
+    odd_nonsquare_hits = [
+        row for row in hit_scales if row["n_odd"] and not row["n_is_square"]
+    ]
+    even_positive = [row for row in positive if not row["n_odd"]]
+    regressions = [window_scale_record(a) for a in DIOPHANTINE_REGRESSION_AS]
+    a97 = window_scale_record(97, 198636)
+    any_beats = any(row["beats_2b2"] for row in theorems)
+    a97_killed = any(not row["a97_legal"] for row in theorems)
+    if odd_nonsquare_hits:
+        classification = CLASS_FOURTH_CE
+    elif any_beats and not a97_killed:
+        classification = CLASS_GAP_THEOREM
+    else:
+        classification = CLASS_DIOPHANTINE_ESC
+    return {
+        "hit_count": len(hit_scales),
+        "exact_family_count": len(exact),
+        "positive_r_count": len(positive),
+        "odd_nonsquare_hit_count": len(odd_nonsquare_hits),
+        "even_positive_count": len(even_positive),
+        "positive_hits": [
+            {
+                "a": row["a"],
+                "n": row["n"],
+                "r": row["r"],
+                "b2": row["b2"],
+                "two_b2": row["two_b2"],
+                "r_le_two_b2": row["r_le_two_b2"],
+                "n_odd": row["n_odd"],
+            }
+            for row in positive
+        ],
+        "a97": {
+            "a": a97["a"],
+            "n": a97["n"],
+            "b": a97["b"],
+            "r": a97["r"],
+            "b2": a97["b2"],
+            "two_b2": a97["two_b2"],
+            "r_le_two_b2": a97["r_le_two_b2"],
+            "n_odd": a97["n_odd"],
+        },
+        "regressions": [
+            {
+                "a": row["a"],
+                "n": row["n"],
+                "r": row["r"],
+                "two_b2": row["two_b2"],
+                "r_le_two_b2": row["r_le_two_b2"],
+                "n_odd": row["n_odd"],
+                "a_is_cube": row["a_is_cube"],
+                "in_window": row["in_window"],
+            }
+            for row in regressions
+        ],
+        "theorems": theorems,
+        "any_theorem_beats_2b2": any_beats,
+        "required_bound": "|n^3 - b^4| > 2 b^2 for b=a^2 not a cube and n odd",
+        "weakest_sufficient": (
+            "|x^3 - y^8| > 2 y^4 when y is not a cube and x is odd "
+            "(equivalently |X^3 - Y^2| > 2Y when Y is a fourth power "
+            "and X is odd). This is stronger than Hall and not a "
+            "published theorem"
+        ),
+        "formalization_cost": (
+            "Mihailescu is realistic to cite and too weak. Hall is open "
+            "and still too weak. Baker/Thue proofs of weaker |X^3-Y^2| "
+            "bounds are not a practical Lean import and still miss 2Y"
+        ),
+        "a97_survives": a97["r_le_two_b2"] and not a97["n_odd"],
+        "classification": classification,
+        "unresolved": (
+            "0 < n^3 - b^4 <= 2 b^2 with b = a^2 not a cube and n odd"
+        ),
+    }
+
+
+def render_diophantine_gap_markdown(analysis: dict[str, Any]) -> str:
+    a97 = analysis["a97"]
+    lines = [
+        "# Diophantine gap survey for n^3 - b^4",
+        "",
+        "Whether a known perfect-power gap rules out",
+        "`0 < n^3 - b^4 <= 2 b^2` for odd non-square `n` and `b = a^2`.",
+        "This is not a `10^8` rerun, not Baker/Thue code, and not a theorem.",
+        "",
+        f"- persisted hits: `{analysis['hit_count']}`",
+        f"- exact family `r = 0`: `{analysis['exact_family_count']}`",
+        f"- positive-`r` hits: `{analysis['positive_r_count']}`",
+        f"- odd non-square hits: `{analysis['odd_nonsquare_hit_count']}`",
+        f"- any published bound beats `2b^2`: `{analysis['any_theorem_beats_2b2']}`",
+        f"- classification: **{analysis['classification']}**",
+        "",
+        "## Scale a theorem must reach",
+        "",
+        "The window is `0 <= n^3 - b^4 <= 2 b^2` with `b = a^2`.",
+        "A useful lower bound must exceed `2 b^2` after excluding the",
+        "exact family `r = 0` and after remaining legal at `a = 97`.",
+        "",
+        "Rewritten as a square-cube gap: `Y = b^2 = a^4`, `X = n`,",
+        "`|X^3 - Y^2| <= 2 Y`. Hall-type bounds give about `X^{1/2}`,",
+        "while `2 Y` is about `X^{3/2}`.",
+        "",
+        "## a = 97 must survive",
+        "",
+        f"- `b = {a97['b']}`, `n = {a97['n']}` even",
+        f"- `r = {a97['r']}`",
+        f"- `2 b^2 = {a97['two_b2']}`",
+        f"- `r <= 2 b^2`: `{a97['r_le_two_b2']}`",
+        "",
+        "Any bound `|X^3 - Y^2| > 2 Y` without extra hypotheses is false.",
+        "Oddness, or `Y` being a fourth power together with odd `X`, is",
+        "required.",
+        "",
+        "## Persisted positive-`r` hits",
+        "",
+    ]
+    if not analysis["positive_hits"]:
+        lines.append("None.")
+    for row in analysis["positive_hits"]:
+        lines.append(
+            f"- a `{row['a']}`, n `{row['n']}`: r `{row['r']}`, "
+            f"2b^2 `{row['two_b2']}`, odd `{row['n_odd']}`"
+        )
+    lines.extend(
+        [
+            "",
+            "## Adversarial regressions",
+            "",
+        ]
+    )
+    for row in analysis["regressions"]:
+        lines.append(
+            f"- a `{row['a']}`: cube `{row['a_is_cube']}`, n `{row['n']}`, "
+            f"r `{row['r']}`, r<=2b^2 `{row['r_le_two_b2']}`, "
+            f"odd `{row['n_odd']}`"
+        )
+    lines.extend(
+        [
+            "",
+            "## Candidate theorems",
+            "",
+        ]
+    )
+    for row in analysis["theorems"]:
+        lines.extend(
+            [
+                f"### {row['name']}",
+                "",
+                f"- citation: {row['citation']}",
+                f"- status: `{row['status']}`",
+                f"- theorem variables: {row['theorem_variables']}",
+                f"- our variables: {row['our_variables']}",
+                f"- hypotheses: {row['hypotheses']}",
+                f"- resulting lower bound: {row['resulting_lower_bound']}",
+                f"- beats `2b^2`: `{row['beats_2b2']}`",
+                f"- `a=97` remains legal: `{row['a97_legal']}`",
+                "",
+            ]
+        )
+    lines.extend(
+        [
+            "## Weakest bound that would suffice",
+            "",
+            analysis["weakest_sufficient"] + ".",
+            "",
+            "## Formalization cost",
+            "",
+            analysis["formalization_cost"] + ".",
+            "",
+            "## Unresolved statement",
+            "",
+            analysis["unresolved"] + ".",
+            "",
+            f"`a = 97` survives: `{analysis['a97_survives']}`.",
+            "",
+        ]
+    )
+    return "\n".join(lines) + "\n"
+
+
+def write_diophantine_gap_analysis(
+    hits_dir: Path | None = None,
+    analysis_dir: Path | None = None,
+) -> dict[str, Any]:
+    data = analyze_diophantine_gap(hits_dir)
+    directory = ANALYSIS_DIR if analysis_dir is None else analysis_dir
+    directory.mkdir(parents=True, exist_ok=True)
+    (directory / "diophantine_gap.json").write_text(
+        json.dumps(data, indent=2) + "\n", encoding="utf-8"
+    )
+    (directory / "diophantine_gap.md").write_text(
+        render_diophantine_gap_markdown(data), encoding="utf-8"
+    )
+    return data
+
+
 def cube_in_sq_interval(m: int) -> int | None:
     """The unique candidate cube in [M^2, (M+1)^2), if it exists."""
 
@@ -1421,8 +1821,9 @@ def classify(
             "classification": CLASS_INCOMPLETE,
             "reason": (
                 "nearest-cube Lean covers occupancy, the exact family, and "
-                "odd m implying even n; modular search and elementary "
-                "near-power gaps did not yield an obstruction"
+                "odd m implying even n; modular search, elementary "
+                "near-power gaps, and published 3-vs-4 gap theorems do not "
+                "reach 2b^2"
             ),
         }
     return {

@@ -91,4 +91,5 @@ conjecture and is written immediately under `hits/`.
 notes live in `analysis/`. This is not a theorem. Do not rerun the
 `10^8` search to refresh those notes. Modular even-`m` notes are
 `analysis/even_cbrt_moduli.md`. Near-power gap notes are
-`analysis/near_power.md`.
+`analysis/near_power.md`. Published 3-vs-4 / Hall-scale notes
+are `analysis/diophantine_gap.md`.

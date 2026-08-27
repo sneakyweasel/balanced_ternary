@@ -5870,3 +5870,51 @@ Best next question
   introducing it, or exhibit the smallest even-m window hit
 ```
 
+## Juggler fourth-power Diophantine gap survey
+
+- **Date:** 2026-08-27
+- **Objective:** Decide whether a known \(|x^3-y^4|\) or Hall-scale theorem proves \(0<n^3-b^4\le 2b^2\) impossible for odd non-square \(n\) and \(b=a^2\)
+- **Hypotheses:** `GAP_THEOREM_SUFFICIENT`, `ODDNESS_GAP_SUFFICIENT`, `DIOPHANTINE_THEOREM_IDENTIFIED`, `FOURTH_POWER_DIOPHANTINE_COUNTEREXAMPLE`, `DIOPHANTINE_ESCALATION_REQUIRED`
+- **Major results:** No mapped theorem beats \(2b^2\). Mihăilescu gives \(\ge 2\); Liouville gives \(\ge 1\); Roth loses to the height of \(b^{4/3}\); Hall (even as a conjecture) gives \(X^{1/2}\) against a window of size \(2Y\sim 2X^{3/2}\); Danilov forbids raising the Hall exponent; Bennett equal-exponent and fixed-base results do not apply; superelliptic solvers need fixed \(k\). The only persisted positive-\(r\) hit is \(a=97\), \(r=165506495\le 2b^2=177058562\), \(n\) even. The weakest sufficient bound would be \(|x^3-y^8|>2y^4\) for non-cube \(y\) and odd \(x\); that is stronger than Hall and is not published. Classification **DIOPHANTINE_ESCALATION_REQUIRED**. No new Lean. No ledger row. Control layer unchanged
+- **Refuted ideas:** treating Hall or Mihăilescu as a closing theorem; applying equal-exponent or fixed-base Bennett results to \(n^3-b^4\)
+- **Literature:** Mihăilescu 2004; Hall 1971; Danilov 1982; Bennett CMB 2008 and Crelle/LMS; Bugeaud 1996; Waldschmidt arXiv:0908.4031; Pillai 1945. Juggler totality remains open and unclaimed
+- **Open:** \(0<n^3-b^4\le 2b^2\) with \(b=a^2\) not a cube and \(n\) odd
+- **Decision:** PARK. Record `DIOPHANTINE_ESCALATION_REQUIRED`. Do not start Baker/Thue. Do not claim `GAP_THEOREM_SUFFICIENT` or `ODD_FOURTH_POWER_GREEN`
+
+```text
+What was learned
+- The window is |X^3-Y^2| <= 2Y with Y=a^4; Hall-scale is X^{1/2}
+- Mihailescu and Liouville give constants, not 2b^2
+- Roth-type bounds fail because b^{4/3} has height growing with b
+- a=97 shows |X^3-Y^2| > 2Y is false without oddness / fourth-power extra structure
+- No published theorem specializes to the required bound
+
+Strongest theorem
+- none new; the odd-m nearest-cube lemmas remain the Lean facts
+
+Strongest refutation
+- Hall, even if proved, does not close the window; Danilov blocks any stronger uniform Hall exponent
+
+Reusable machinery
+- diophantine_gap analysis under
+  data/research/juggler/odd_sharp_suffix/analysis/
+
+Prior-art status
+- literature comparison, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; control layer not modified
+
+Branch status
+- PARK
+
+Why
+- The remaining inequality is stronger than the best standard
+  square-cube gap statements. Record the exact missing bound
+  and do not import Baker/Thue.
+
+Best next question
+- Prove |x^3-y^8| > 2y^4 for non-cube y and odd x, after naming
+  a method, or exhibit the smallest odd non-square window hit
+```
+

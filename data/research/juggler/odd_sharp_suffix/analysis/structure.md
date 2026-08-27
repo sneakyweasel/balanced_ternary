@@ -53,7 +53,9 @@ even-`m` classes: `a=3` is a live even-`m` pair. Classification
 `OBSTRUCTION_NOT_MODULAR`. The exact-family cube cell of `k^8`
 holds `a^8` only for `a = k^3`; nonzero `u` leaves that cell but
 does not force `D > 2a^4` (`a = 97`). Closest even-`m` failures
-are small and not near-cubes. Classification
+are small and not near-cubes. Published Hall-scale and 3-vs-4
+bounds do not beat `2b^2`; the only persisted positive-`r` hit
+is `a=97` with even `n`. Classification
 `DIOPHANTINE_ESCALATION_REQUIRED`. Finite emptiness is not a
 theorem.
 

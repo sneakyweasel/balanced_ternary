@@ -9,11 +9,11 @@ of an odd Juggler step and the search for sharp suffixes `OE^s`.
 ## Branch budget
 
 ```text
-Mathematical target     non-cube a and even m => (m+1)^3-a^8 > 2a^4
-Novelty hypothesis      an elementary gap around X^2=Y^3 with X=a^4
-Falsifier               even-m non-cube window hit
-Existing machinery      nearest-cube Lean, even_cbrt surplus, a=97
-Maximum Phase-0 scope   closest even-m failures and a=k^3+u neighborhoods
+Mathematical target     0 < n^3-b^4 <= 2b^2, n odd, b=a^2 non-cube
+Novelty hypothesis      a known 3-vs-4 gap theorem already beats 2b^2
+Falsifier               odd non-square window hit
+Existing machinery      nearest-cube Lean, near-power close, a=97
+Maximum Phase-0 scope   map published bounds to 2b^2; no Baker code
 ```
 
 ## Metadata
@@ -33,7 +33,7 @@ Maximum Phase-0 scope   closest even-m failures and a=k^3+u neighborhoods
 - eighth-power odd hits: `0`
 - sorry-free: `True`
 
-nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; modular search and elementary near-power gaps did not yield an obstruction.
+nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; modular search, elementary near-power gaps, and published 3-vs-4 gap theorems do not reach 2b^2.
 
 ## Inverse-floor reduction
 
@@ -68,6 +68,9 @@ cell immediately, but that does not force `D > 2a^4` (`a = 97`).
 Closest even-`m` failures are small and not near-cubes. Classification
 `DIOPHANTINE_ESCALATION_REQUIRED`. Notes:
 `data/research/juggler/odd_sharp_suffix/analysis/near_power.md`.
+Published Hall-scale and 3-vs-4 bounds do not beat `2b^2`; `a=97`
+has `r=165506495 <= 2b^2=177058562` with `n` even. Notes:
+`data/research/juggler/odd_sharp_suffix/analysis/diophantine_gap.md`.
 
 ## Odd first-defect census
 
@@ -155,7 +158,7 @@ to support `OE` (`s = 1`).
 
 **ODD_SHARP_SUFFIX_INCOMPLETE**
 
-nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; modular search and elementary near-power gaps did not yield an obstruction.
+nearest-cube Lean covers occupancy, the exact family, and odd m implying even n; modular search, elementary near-power gaps, and published 3-vs-4 gap theorems do not reach 2b^2.
 
 This is a local inverse-floor statement, not a global halt result.
 

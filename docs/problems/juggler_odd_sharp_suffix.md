@@ -38,17 +38,13 @@ This is a local Diophantine question. It is not a termination theorem.
 ## Branch budget
 
 ```text
-Mathematical target     non-cube a and even m => (m+1)^3-a^8 > 2a^4
-Novelty hypothesis      an elementary gap around X^2=Y^3 with X=a^4
-Falsifier               NONCUBE_GAP_COUNTEREXAMPLE
-Existing machinery      occupancy, successor candidate, even_cbrt surplus,
-                        modular close, a=97 regression
-Maximum Phase-0 scope   closest even-m failures and a=k^3+u neighborhoods;
-                        Lean only a sharp inequality
-Promotion criterion     NEAR_POWER_GAP_GREEN or FOURTH_POWER_RIGIDITY_GREEN,
-                        then ODD_FOURTH_POWER_GREEN
-Stop criterion          DIOPHANTINE_ESCALATION_REQUIRED; Baker/Thue/Mordell;
-                        modular expansion; 10^8 rerun
+Mathematical target     0 < n^3-b^4 <= 2b^2, n odd, b=a^2 non-cube, is impossible
+Novelty hypothesis      a known 3-vs-4 gap theorem already beats 2b^2
+Falsifier               FOURTH_POWER_DIOPHANTINE_COUNTEREXAMPLE
+Existing machinery      occupancy, near-power close, a=97, persisted hits
+Maximum Phase-0 scope   map published bounds to 2b^2; mine r/b^2; no Baker code
+Promotion criterion     GAP_THEOREM_SUFFICIENT or ODDNESS_GAP_SUFFICIENT
+Stop criterion          DIOPHANTINE_ESCALATION_REQUIRED; unused heavy import
 ```
 
 ## Balanced-ternary formulation
@@ -89,6 +85,8 @@ It is not required.
   [even_cbrt_moduli.md](../../data/research/juggler/odd_sharp_suffix/analysis/even_cbrt_moduli.md)
 - Near-square / near-cube gap around \(a=k^3+u\) (no \(10^8\) rerun):
   [near_power.md](../../data/research/juggler/odd_sharp_suffix/analysis/near_power.md)
+- Published 3-vs-4 / Hall-scale gap survey (no Baker code):
+  [diophantine_gap.md](../../data/research/juggler/odd_sharp_suffix/analysis/diophantine_gap.md)
 - Integer cube-root / fourth-power interval search on the output
   parameter \(a\); no huge \(n^{3/2}\) construction; no floats
 - Records: [juggler_odd_sharp_suffix.md](../research/juggler_odd_sharp_suffix.md),
@@ -204,6 +202,23 @@ has no window hit. No elementary lower bound stronger than
 This is not `NEAR_POWER_GAP_GREEN` and not
 `ODD_FOURTH_POWER_GREEN`.
 
+Published gap theorems do not reach \(2b^2\). Mihăilescu gives
+\(\ge 2\). Liouville on \(x^3-b^4\) gives \(\ge 1\). Roth-type
+bounds lose to the height of \(b^{4/3}\). Hall, even if true,
+gives \(\lvert X^3-Y^2\rvert>C X^{1/2}\) while the window is
+\(\lvert X^3-Y^2\rvert\le 2Y\sim 2X^{3/2}\). Danilov shows the
+Hall exponent cannot be raised. Bennett equal-exponent and
+fixed-base results do not apply. Superelliptic solvers treat
+fixed \(k\), not \(k\le 2a^4\). The only persisted positive-\(r\)
+hit is \(a=97\), \(r=165506495\le 2b^2=177058562\), \(n\) even.
+The weakest sufficient statement would be
+\(\lvert x^3-y^8\rvert>2y^4\) for non-cube \(y\) and odd \(x\);
+that is stronger than Hall and is not a published theorem.
+Classification **DIOPHANTINE_ESCALATION_REQUIRED**. Notes:
+[diophantine_gap.md](../../data/research/juggler/odd_sharp_suffix/analysis/diophantine_gap.md).
+Not `GAP_THEOREM_SUFFICIENT` and not
+`DIOPHANTINE_THEOREM_IDENTIFIED`.
+
 Even first defects remain unbounded: \(n=q^2+2\) with
 \(q=4,16,256\) gives sharp suffixes of depths \(1,2,3\).
 
@@ -211,10 +226,12 @@ Even first defects remain unbounded: \(n=q^2+2\) with
 
 If \(a\) is not a cube and \(m=\lfloor\sqrt[3]{a^8}\rfloor\) is even,
 can \(n=m+1\) lie in the window? Cube-root bracketing, remaining
-fraction, small exact moduli, and elementary near-common-power
-expansions do not decide this. The unresolved statement is exactly
-that gap inequality. The \(a=97\) even hit and the exact family
-\(a=k^3\), \(n=k^8\) must remain legal.
+fraction, small exact moduli, elementary near-common-power
+expansions, and the standard published 3-vs-4 / Hall-scale
+theorems do not decide this. The unresolved statement is
+\(0<n^3-b^4\le 2b^2\) with \(b=a^2\) not a cube and \(n\) odd.
+The \(a=97\) even hit and the exact family \(a=k^3\), \(n=k^8\)
+must remain legal.
 
 ## Decision
 
@@ -222,14 +239,15 @@ that gap inequality. The \(a=97\) even hit and the exact family
 `ODD_SHARP_SUFFIX_INCOMPLETE`, `OBSTRUCTION_NOT_MODULAR`, and
 `DIOPHANTINE_ESCALATION_REQUIRED`. The elementary nearest-cube
 lemmas remain Lean. Do not start Baker/Thue/Mordell. Do not
-enlarge the modulus. Do not rerun \(10^8\). Do not register an
-attack. Do not claim termination. Do not add `PowerHeight` or a
+import a theorem that fails the \(2b^2\) test. Do not enlarge
+the modulus. Do not rerun \(10^8\). Do not register an attack.
+Do not claim termination. Do not add `PowerHeight` or a
 recursive defect object.
 
-Best next question: the remaining statement is Diophantine
-(\(X=a^4\), \(Y=m\) even, \(X^2-Y^3=r>0\) never satisfies
-\((Y+1)^3-X^2\le 2X\)). Name a concrete method before introducing
-it, or exhibit the smallest counterexample.
+Best next question: either exhibit the smallest odd non-square
+window hit, or name a method that can prove
+\(\lvert x^3-y^8\rvert>2y^4\) for non-cube \(y\) and odd \(x\)
+before implementing it.
 
 ## Publication assessment
 
