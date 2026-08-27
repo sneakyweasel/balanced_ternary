@@ -7478,4 +7478,53 @@ Best next question
 - none from this branch
 ```
 
+## Juggler first-return excursion frontier
+
+- **Date:** 2026-08-27
+- **Objective:** Determine whether first-return maximality (every proper prefix stays at or above n, and the complete word returns strictly below n) forces a new exact relation among word, peak, defects, and return margin
+- **Hypotheses:** H1 nontrivial margin bound; H2 peak bound stronger than the envelope; H3 new G_j profile law; H4 new final-step restriction; H5 Pareto extremals form one class. H6 not attempted
+- **Major results:** All 3999 starts in 2..4000 returned (two after a 25000-bit promotion). tau ranges from 1 to 77; 272 distinct first-return words. Every observed return is maximal and ends with E. Classification EXCURSION_COMPLEX
+- **Refuted ideas:** M >= F(k,o) stronger than M>=1 (OOOEE at 3); peak bound stronger than the envelope (n=2183, 19694-bit peak); first-return word determines M (OOEE, M from 3 to 3878); same (k,o) determines M; a single extremal class
+- **Literature:** floorPower_odd_ge, power_bound_contracts; parked EXCURSION_ENVELOPE_GREEN. PE / residual-future / sum-rho / realization-set / landing-image / N_w-boundary stay CLOSE
+- **Open:** none from this branch. Do not infer that tau_< is finite for all n
+- **Decision:** CLOSE. The conjunction prefix>=n and final <n adds no exact law beyond T^tau(n)<n, the existing envelope, and floorPower_odd_ge. Do not invent another scalar. Do not attempt H6
+
+```text
+What was learned
+- Every start in 2..4000 returned; two required a 25000-bit promotion
+- First-return words are maximal and the first formally contracting prefix
+- Every return ends with E; the predecessor lies in [n, n^2)
+- M=1 is attained (n=2 and OOOEE at 3); no stronger F(k,o) survives
+- Peak size is unbounded as a word statistic; n=2183 reaches 19694 bits
+- G_j<=0 then G_tau>0 is the parked envelope census, not a new grammar
+- Same first-return word still has state-determined margin
+- Lex extremals and the Pareto front sit in different word classes
+
+Strongest theorem
+- odd n satisfy T(n)>=n (already Lean floorPower_odd_ge)
+
+Strongest refutation
+- M >= F(k,o) for first-return excursions (OOOEE at 3 has M=1)
+
+Reusable machinery
+- research.juggler_sequence.first_return_excursions
+- reuses excursions._walk_returns
+
+Prior-art status
+- first-return reading of the parked envelope, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- First-return maximality is real on the window, but every useful
+  statement is T<n, 2^k>3^o, or floorPower_odd_ge. Stop.
+
+Best next question
+- none from this branch
+```
+
 
