@@ -1,0 +1,69 @@
+{
+  "schema_version": "juggler-word-atlas/v1",
+  "packed_word": {
+    "bit0": "first symbol",
+    "bit_value": {"0": "E", "1": "O"},
+    "word_id": "(length << 32) | packed"
+  },
+  "languages": [
+    "REALIZABLE",
+    "EXPANDING",
+    "PERSISTENT",
+    "PE_CERTIFIED",
+    "PE_RUN",
+    "PE_PROXY"
+  ],
+  "realization_status": ["FOUND", "NOT_FOUND_WITHIN_BOUND"],
+  "realization_source": ["TRAJECTORY_CPU", "TRAJECTORY_KERNEL_A"],
+  "pe_definition": ["PE_PROXY", "PE_CERTIFIED"],
+  "m1_note": "PE_PROXY is unused. GPU Kernel A does not classify PE.",
+  "tables": {
+    "words": [
+      "word_id",
+      "length",
+      "packed",
+      "odd_count",
+      "even_count",
+      "run_signature",
+      "exponent_surplus",
+      "exponent_deficit",
+      "beta_num",
+      "beta_den"
+    ],
+    "realizers": [
+      "experiment_id",
+      "word_id",
+      "min_realizer",
+      "realization_scan_limit",
+      "realization_source",
+      "realization_status",
+      "trajectory_end",
+      "min_expanding_realizer",
+      "expanding_status"
+    ],
+    "continuations": [
+      "experiment_id",
+      "word_id",
+      "language_id",
+      "successor_mask",
+      "continuation_count"
+    ],
+    "factors": [
+      "experiment_id",
+      "language_id",
+      "r",
+      "packed_factor"
+    ],
+    "pe_records": [
+      "experiment_id",
+      "word_id",
+      "min_n",
+      "end_state",
+      "scan_limit",
+      "pe_definition",
+      "a",
+      "b",
+      "search_id"
+    ]
+  }
+}

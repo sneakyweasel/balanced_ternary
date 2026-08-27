@@ -40,6 +40,12 @@ data/research/**/*.sqlite-wal
 data/research/**/*.sqlite-shm
 data/research/**/ranges/*
 
+# Juggler word atlas experiment outputs
+data/research/juggler/word_atlas/**/*.parquet
+data/research/juggler/word_atlas/**/*.tsv
+atlas/build/
+_atlas_gpu_check/
+
 # OS
 Thumbs.db
 Desktop.ini

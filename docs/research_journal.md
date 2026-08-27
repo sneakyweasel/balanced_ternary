@@ -7005,3 +7005,101 @@ Best next question
 - Is there any arithmetic, other than the integer y itself, that decides whether a persistent residual landing stays odd-to-odd?
 ```
 
+## Juggler word atlas
+
+- **Date:** 2026-08-27
+- **Objective:** Build a reusable GPU-first census of finite O/E words with min witnesses and separate language tags; do not reopen the closed word-language attack
+- **Hypotheses:** none in Milestone 1; this is infrastructure
+- **Major results:** Packed-word C++/CUDA Kernel A; Python exact reference; SQLite/Parquet store; PE_CERTIFIED host post-pass via classify_step/walk_pe_run. GPU filled slots match Python at k<=12, n<=10^6. Lean fixtures (floorPower seeds, OOE at 5, PE 365/1999) hold. PE_PROXY unused
+- **Refuted ideas:** none; no forbidden-factor claim
+- **Literature:** follows/image; PersistentExpandingResidual; JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR stays CLOSE
+- **Open:** odd-to-odd continuation arithmetic other than the integer y
+- **Decision:** PARK as reusable machinery. Do not claim termination
+
+```text
+What was learned
+- Trajectory-first Kernel A is enough for the M1 census
+- uint64 is not enough for 12-step odd growth; Wide8 plus Python merge is required
+- PE classification stays off the GPU
+- Absence under a bound is NOT_FOUND_WITHIN_BOUND, not a prohibition
+
+Strongest theorem
+- none added; existing Lean fixtures remain the certification boundary
+
+Strongest refutation
+- none; PE_PROXY was not written as PE_CERTIFIED
+
+Reusable machinery
+- atlas/ CUDA/C++ census
+- research.juggler_sequence.atlas
+- data/research/juggler/word_atlas
+
+Prior-art status
+- computational microscope, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PARK
+
+Why
+- Milestone 1 is validated infrastructure. It does not reopen
+  JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR and does not prove totality.
+
+Best next question
+- After a validated scale-up, does the PE_CERTIFIED language show any
+  factor structure beyond the known O^a E^b grammar inside a stated
+  search bound, recorded only as COMPUTATIONALLY OBSERVED / NOT
+  OBSERVED WITHIN SEARCH BOUND?
+```
+
+## Juggler word atlas
+
+- **Date:** 2026-08-27
+- **Objective:** Build a reusable GPU-first census of finite O/E words with min witnesses and separate language tags; do not reopen the closed word-language attack
+- **Hypotheses:** none in Milestone 1; this is infrastructure
+- **Major results:** Packed-word C++/CUDA Kernel A; Python exact reference; SQLite/Parquet store; PE_CERTIFIED host post-pass via classify_step/walk_pe_run. GPU filled slots match Python at k<=12, n<=10^6. Lean fixtures (floorPower seeds, OOE at 5, PE 365/1999) hold. PE_PROXY unused
+- **Refuted ideas:** none; no forbidden-factor claim
+- **Literature:** follows/image; PersistentExpandingResidual; JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR stays CLOSE
+- **Open:** odd-to-odd continuation arithmetic other than the integer y
+- **Decision:** PARK as reusable machinery. Do not claim termination
+
+```text
+What was learned
+- Trajectory-first Kernel A is enough for the M1 census
+- uint64 is not enough for 12-step odd growth; Wide8 plus Python merge is required
+- PE classification stays off the GPU
+- Absence under a bound is NOT_FOUND_WITHIN_BOUND, not a prohibition
+
+Strongest theorem
+- none added; existing Lean fixtures remain the certification boundary
+
+Strongest refutation
+- none; PE_PROXY was not written as PE_CERTIFIED
+
+Reusable machinery
+- atlas/ CUDA/C++ census
+- research.juggler_sequence.atlas
+- data/research/juggler/word_atlas
+
+Prior-art status
+- computational microscope, not a Juggler halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- PARK
+
+Why
+- Milestone 1 is validated infrastructure. It does not reopen
+  JUGGLER_LANGUAGE_IS_KNOWN_GRAMMAR and does not prove totality.
+
+Best next question
+- After a validated scale-up, does the PE_CERTIFIED language show any
+  factor structure beyond the known O^a E^b grammar inside a stated
+  search bound, recorded only as COMPUTATIONALLY OBSERVED / NOT
+  OBSERVED WITHIN SEARCH BOUND?
+```
+
