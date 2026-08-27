@@ -1,0 +1,8 @@
+{"m":5,"a":1,"b":0,"ok":true,"predecessors":[3],"count":1,"truncated":false,"cell":"Pred_O(m)","n":3,"contains_start":true,"word":"O"}
+{"m":11,"a":1,"b":0,"ok":true,"predecessors":[5],"count":1,"truncated":false,"cell":"Pred_O(m)","n":5,"contains_start":true,"word":"O"}
+{"m":1,"a":1,"b":3,"ok":true,"predecessors":[7,11,13,17],"count":4,"truncated":false,"cell":"Pred_O then Pred_E^3","even_fiber":21,"n":7,"contains_start":true,"word":"OEEE"}
+{"m":27,"a":1,"b":0,"ok":true,"predecessors":[9],"count":1,"truncated":false,"cell":"Pred_O(m)","n":9,"contains_start":true,"word":"O"}
+{"m":1,"a":1,"b":3,"ok":true,"predecessors":[7,11,13,17],"count":4,"truncated":false,"cell":"Pred_O then Pred_E^3","even_fiber":21,"n":11,"contains_start":true,"word":"OEEE"}
+{"m":7,"a":1,"b":1,"ok":true,"predecessors":[15],"count":1,"truncated":false,"cell":"Pred_O then Pred_E^1","even_fiber":7,"n":15,"contains_start":true,"word":"OE"}
+{"m":225,"a":1,"b":0,"ok":true,"predecessors":[37],"count":1,"truncated":false,"cell":"Pred_O(m)","n":37,"contains_start":true,"word":"O"}
+{"m":1,"a":1,"b":4,"ok":true,"predecessors":[41,57,63,65,71,119,123,139,141,147,149,159,167,177,179,257,259,261,267,279,281,283,291,301,303,305,311,315,337,345],"count":30,"truncated":false,"cell":"Pred_O then Pred_E^4","even_fiber":1063,"n":63,"contains_start":true,"word":"OEEEE"}

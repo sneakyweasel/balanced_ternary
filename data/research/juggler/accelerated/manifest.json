@@ -1,0 +1,17 @@
+{
+  "algorithm": "accelerated-odd-return-v1",
+  "n_max": 4000,
+  "starts": 1999,
+  "ok": 1999,
+  "failed": [],
+  "classification": "ACCELERATION_COMPLEX",
+  "files": {
+    "macro_edges": "macro_edges.csv",
+    "macro_trajectories_csv": "macro_trajectories.csv",
+    "macro_trajectories_parquet": "macro_trajectories.parquet",
+    "macro_extrema": "macro_extrema.csv",
+    "macro_branch_summary": "macro_branch_summary.csv",
+    "inverse_macro_examples": "inverse_macro_examples.jsonl"
+  },
+  "parquet_optional": false
+}

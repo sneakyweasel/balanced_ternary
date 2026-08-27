@@ -7672,4 +7672,53 @@ Best next question
 - none from this branch
 ```
 
+## Juggler accelerated odd-to-odd map
+
+- **Date:** 2026-08-28
+- **Objective:** Decide whether first-return-to-odd A, with exact branch (a,b), is a simpler exact dynamical system than one-step J or ResidualStep
+- **Hypotheses:** even-tail collapse after an odd start yields a cleaner transition, inverse, contraction, or repeated-branch law
+- **Major results:** On odd n<=4000 every start has a next odd landing and a=1. J(n) odd on 1009 starts (A=J); J(n) even on 990 starts (A equals ResidualStep with a=1). Defect, monotonicity, contraction, beta, and inverse are existing word / cell theorems. First J-return can land on an even intermediate before A(n); smallest witness n=7. Classification ACCELERATION_COMPLEX, secondary ACCELERATION_REPACKAGING
+- **Refuted ideas:** A is ResidualStep; A is a new transition law; macro contraction stronger than the envelope; fixed-(a,b) inverse cleaner than the floor cells; every first J-return is an A-state; macro word (1,0)/(1,b) is a mathematical discovery
+- **Literature:** ResidualStep, image_monotone_of_follows, global_defect_identity, floor cells, and first-return-below stay in place. PE / residual-quotient / sum-rho / realization geometry / information-complexity / backward-geometry stay CLOSE
+- **Open:** none from this branch. Do not replace J by A. Finite domain in the window is not a totality theorem
+- **Decision:** CLOSE. Acceleration is a shorter encoding of the same odd-state dynamics. Do not invent a second acceleration. Do not launch CUDA Phase 2
+
+```text
+What was learned
+- First-return-to-odd A has a identically 1; (3,2) labels are ResidualStep
+- A(n)=J(n) when J(n) is odd, so Collatz-style acceleration is not uniform
+- When J(n) is even, A is the existing a=1 ResidualStep landing
+- Delta, monotonicity, contraction, beta, and inverse are T_w / cell theorems
+- First J-return below n can occur on an even state before A(n) (n=7)
+- Macro words only run-length even tails; odd-run complexity survives
+- Hard / PE records remain ResidualStep blocks written as (1,0) sequences
+
+Strongest theorem
+- for odd n>1, A(n)<n iff J(n) is even (floorPower_odd_ge plus isqrt decrease)
+
+Strongest refutation
+- A replaces the first-return problem of J
+  (n=7 returns at even 4 before A(7)=1)
+
+Reusable machinery
+- research.juggler_sequence.accelerated
+- reuses floor_power, residual_excursion, global_defect, floor cells
+
+Prior-art status
+- coordinate change of the existing odd subsequence, not a halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- Acceleration removes only even tails. The exact odd-state complexity
+  is one-step J or ResidualStep. Stop. Do not invent a second map.
+
+Best next question
+- none from this branch
+```
+
 
