@@ -2,9 +2,9 @@
 
 Author: Philippe Cochin. Date: 28 August 2026.
 Status: **PAPER_CANDIDATE**. The publication draft is dated 28 August 2026
-and is not submitted. After the paper audit it is a standalone math note
-(envelope, defect, short certificates, ambient discrepancy), not a
-repository tour.
+and is not submitted. After the publication audit it is a standalone math
+note centered on the envelope, defect calculus, and cycle restrictions;
+short certificates and ambient discrepancy are secondary.
 
 This branch opens no new attack and makes no claim that every positive
 integer reaches \(1\).
@@ -20,10 +20,11 @@ pointwise-progress boundary?
 The paper-level target is not universal termination. It is the qualified
 math note:
 
-> Realized finite words obey an exact power envelope; even and odd-to-even
-> starts have uniform short descent certificates; the complementary
-> odd-to-odd class has density \(1/4\). That density is not Terras's
-> theorem and not a density of arrival at \(1\).
+> Realized finite words obey a power envelope and an exact compositional
+> defect identity with rigid zero cases. Inverse cells impose cycle
+> restrictions and exclude two explicit length-six words. The uniform
+> short-certificate class has density \(3/4\), but this is not Terras's
+> theorem or a density of arrival at \(1\).
 
 Every substantive claim must be linked to one of:
 
@@ -43,6 +44,8 @@ Every substantive claim must be linked to one of:
 - Kuipers--Niederreiter, *Uniform Distribution of Sequences*,
   `kuipers-niederreiter-1974-uniform-distribution` — classical discrepancy
   tools. **KNOWN**.
+- Iwaniec--Kowalski, *Analytic Number Theory* — van der Corput's derivative
+  estimate. **KNOWN**.
 - Prasad--Prasad 2025, `prasad-prasad-2025-juggler-like` — probabilistic and
   large-deviation context for juggler-like models. **KNOWN**; not a theorem on
   the exact floor-power map.
@@ -60,8 +63,8 @@ Mathematical target     Produce one defensible theorem-and-certificate account
                         of finite Juggler structure and the remaining
                         pointwise gap.
 Novelty hypothesis      The integrated Lean semantics, exact finite structure,
-                        reproducible Word Atlas, and systematic tested-family
-                        eliminations form a publishable research artifact.
+                        global-defect calculus, and certified cycle
+                        consequences form a publishable research artifact.
 Falsifier               A central statement lacks a proof/certificate, a
                         bounded absence is promoted to impossibility, or the
                         synthesis has no distinction from existing literature.
@@ -105,8 +108,9 @@ added to `bt.*`.
 - leftover length-six orientations \(OOOEOE\) and \(OOOOEE\) —
   **EXACT — LEAN VERIFIED** (recorded in the leftover-cycles branch;
   not a length-six census);
-- Word Atlas scientific census —
-  **COMPUTATIONALLY VERIFIED** within its configured bounds;
+- horizon-\(20\) first-return census through \(N=10^6\) —
+  **COMPUTATIONALLY VERIFIED** with exact Python integers and zero unresolved
+  cases;
 - \(|S_O(N)|\ll N^{5/6}\) on ambient odd inputs —
   **EXACT — HUMAN PROOF** using classical tools;
 - automatic discrepancy transfer to Juggler-generated sets —
@@ -116,7 +120,9 @@ added to `bt.*`.
 
 ## Experiments
 
-No new experiment. The synthesis cites existing artifacts:
+The publication audit reran the horizon-\(20\) census without a bit-size
+cutoff. The horizon-\(40\) probe remains capped and outside the paper.
+Laboratory context remains in:
 
 - `data/research/juggler/word_atlas/`;
 - `data/research/juggler/parity_discrepancy_next/`;
@@ -152,7 +158,7 @@ These refute the named candidate laws, not termination.
 
 ## Formalization
 
-No Lean source is added by this synthesis. The review object is
+No Lean theorem statement is changed by this revision. The review object is
 `formal/Problems/JugglerPaper.lean`. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
 The paper-central theorem metadata is recorded in
@@ -180,7 +186,7 @@ Do almost all odd-to-odd starts have a finite descent certificate?
 
 ## Decision
 
-**PROMOTE** the integrated document stack as a paper candidate. The individual
+**PROMOTE** the corrected document stack as a paper candidate. The individual
 Atlas, discrepancy, probabilistic, and closed-compression branches keep their
 original decisions. Promotion applies to the synthesis: its contribution is
 the formal/computational map and exact evidence boundary, not a termination
@@ -193,7 +199,7 @@ certificate?
 
 Status: `PAPER_CANDIDATE`.
 
-The candidate is a standalone math note: envelope, defect, short
-certificates, and an ambient discrepancy corollary. External mathematical
-review is the next gate. The Atlas and closed-compression diaries stay
-in the laboratory record.
+The candidate is a standalone math note: envelope, exact defect calculus,
+cycle restrictions, short certificates, and an ambient discrepancy
+corollary. The horizon-\(20\) rows are exact and uncapped; omitted ordinary
+proofs have been supplied. External mathematical review is the next gate.

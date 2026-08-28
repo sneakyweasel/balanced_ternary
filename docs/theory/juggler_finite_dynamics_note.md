@@ -1,5 +1,5 @@
 ---
-title: Finite-word contraction and short descent certificates for the Juggler map
+title: Power envelopes, exact defects, and cycle restrictions for the Juggler map
 author: Philippe Cochin
 date: 28 August 2026
 subtitle: Publication draft. Not submitted.
@@ -18,44 +18,39 @@ J(n)=
 It is conjectured that every positive integer eventually reaches \(1\).
 We do not prove that conjecture.
 
-For every finite parity word \(w\) realized at \(n\), the iterate satisfies
-the power envelope
+We develop an exact finite-word calculus for the Juggler map. For every
+parity word \(w\) realized at \(n\), the endpoint satisfies the power envelope
 \[
 J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}.
 \]
 Hence \(3^{\#O(w)}<2^{|w|}\) forces \(J^{|w|}(n)<n\) whenever \(n\ge2\).
 Local floor remainders lift through later exponents to an exact global
-defect: concatenation is a two-term power-gap, not an additive sum, and
-zero defect is the rigid monochrome towers. These statements are
-conditional on a realized word: they do not say that every orbit meets a
-contracting word, and the defect is not a state-independent tax.
+defect. We prove its identity, vanishing classification, and composition
+law: concatenation is a two-term power-gap, and zero defect gives precisely
+the rigid monochrome towers. Exact inverse cells then yield necessary cycle
+restrictions, including superquadratic prefixes from a cycle minimum to
+later even states and the exclusion of two explicit length-six words.
 
-A start \(n\ge2\) has a *descent certificate* if some realized finite word
-sends it strictly below \(n\). Every even start, and every odd start whose
-first image is even, has a uniform one- or two-step certificate. A classical
-discrepancy bound
+As a secondary application, every even start and every odd start whose first
+image is even has a uniform one- or two-step descent certificate. A classical
+discrepancy estimate
 \[
 \bigl|S_O(N)\bigr|\ll N^{5/6},\qquad
 S_O(N)=\sum_{\substack{n\le N\\n\ {\rm odd}}}
 (-1)^{\lfloor n^{3/2}\rfloor},
 \]
-implies that the complementary odd-to-odd starts have density \(1/4\), so
-the uniform short-certificate class has density \(3/4\). This is not a
-density of all descent certificates, and it is not a density of starts that
-reach \(1\). Odd-to-odd starts expand on the first step and may still
-descend later. The bound itself is ambient: it does not transfer to sparse
-Juggler-generated image sets.
+implies that this uniform short-certificate class has density \(3/4\).
+It is neither a density of all descent certificates nor a density of starts
+that reach \(1\).
 
-The remaining question, analogue of Terras's almost-all stopping-time
-theorem, is whether almost every odd-to-odd start has some finite descent.
-No such theorem is proved here.
+All finite-word statements are conditional on the realized itinerary. The
+remaining pointwise question is whether almost every odd-to-odd start has
+some finite descent; no such theorem is proved here.
 
 ## 1. Introduction
 
 The Juggler sequence was introduced by Pickover [1]; see also OEIS A094683
-[2]. Universal arrival at \(1\) remains open. An exact check in the
-software archive shows every start \(n\le4000\) reaches \(1\). That check
-is not a proof.
+[2]. Universal arrival at \(1\) remains open.
 
 The map combines a contracting even branch with an expanding odd branch,
 \[
@@ -68,23 +63,18 @@ only when the orbit realizes those parities. The paper records the exact
 finite-word comparison, the compositional slack, the uniform short
 certificates, and the density of the class those certificates cover.
 
-The contribution is a short exact-arithmetic note, not a survey of failed
-compressions and not a description of the computational atlas used in the
-surrounding laboratory. We do not prove a Collatz theorem, and we do not
-transfer Collatz stopping-time results to \(J\).
+The main contribution is the exact power-envelope and defect calculus,
+together with its inverse-cell and cycle consequences. The
+short-certificate density is a secondary corollary. We do not prove a
+Collatz theorem or transfer Collatz stopping-time results to \(J\).
 
-### 1.1 Evidence discipline
+### 1.1 Verification convention
 
-- **EXACT — LEAN VERIFIED:** a theorem checked by Lean in the software
-  archive named in Section 7.
-- **EXACT — HUMAN PROOF:** a mathematical argument not packaged in Lean.
-  Theorem 5.1 is of this kind.
-- **COMPUTATIONALLY VERIFIED:** an exact finite computation under stated
-  bounds.
-- **OBSERVATION:** a descriptive pattern in finite data.
-- **REFUTED:** a universal candidate killed by a certificate.
-
-A finite check is never called a termination proof.
+Theorems in Sections 2--4 are proved both below and in Lean under the names
+listed at the start of each section. Theorem 5.1 is an ordinary human proof
+and is not formalized. Proposition 4.4 is an exact Python-integer census,
+not a theorem about an infinite set. No finite computation is used as a
+termination proof.
 
 ### 1.2 Related maps
 
@@ -98,7 +88,7 @@ descent theorem on the odd-to-odd class.
 
 Crandall [8] and Matthews–Watts [9] treat piecewise-affine Hasse–Syracuse
 maps; the Juggler branches are floor powers, not affine. Prasad and Prasad
-[11] estimate excursion and stopping constants for juggler-like random
+[12] estimate excursion and stopping constants for juggler-like random
 walks; Section 6 keeps that comparison descriptive.
 
 ## 2. Finite words, envelope, and defect
@@ -117,13 +107,20 @@ The identities in this section are formalized in Lean
 `power_bound_eq_iff_extremal`). The proofs below are the ordinary
 integer arguments.
 
-**Theorem 2.1 (fixed-word monotonicity; EXACT — LEAN VERIFIED).**
+**Theorem 2.1 (fixed-word monotonicity).**
 If \(n\le m\) and both realize \(w\), then
 \(J^{|w|}(n)\le J^{|w|}(m)\).
 
+*Proof.* Induct on \(w\). The empty word is immediate. For the induction
+step, the two current states realize the same next letter. On the even
+branch, monotonicity follows from monotonicity of the integer square root;
+on the odd branch it follows from monotonicity of \(x\mapsto x^3\) followed
+by the integer square root. Apply the induction hypothesis to the prefix
+and then the appropriate branch inequality. \(\square\)
+
 The realizing set of a fixed word need not be an interval.
 
-**Theorem 2.2 (finite-word power envelope; EXACT — LEAN VERIFIED).**
+**Theorem 2.2 (finite-word power envelope).**
 If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
 \[
 m^{2^{|w|}}\le n^{3^{\#O(w)}}.
@@ -148,7 +145,7 @@ J(x)^{2^{k+1}}=(J(x)^2)^{2^k}\le x^{3\cdot 2^k}=(x^{2^k})^3
 \]
 This is the claimed bound after one more odd letter. \(\square\)
 
-**Corollary 2.3 (exponent-gap contraction; EXACT — LEAN VERIFIED).**
+**Corollary 2.3 (exponent-gap contraction).**
 If \(n\ge2\), \(w\) is realized at \(n\), and
 \(3^{\#O(w)}<2^{|w|}\), then \(J^{|w|}(n)<n\).
 
@@ -191,7 +188,7 @@ old slack and lifts the new remainder through \(2^j\). An odd letter
 first cubes the running slack and then lifts the new remainder. In
 particular \(\Delta\) is not the sum of the local remainders.
 
-**Theorem 2.4 (global defect identity; EXACT — LEAN VERIFIED).**
+**Theorem 2.4 (global defect identity).**
 If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
 \[
 n^{3^{\#O(w)}}=m^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
@@ -224,7 +221,7 @@ x^{3\cdot 2^k}
 \]
 which is the odd update. \(\square\)
 
-**Theorem 2.5 (vanishing; EXACT — LEAN VERIFIED).**
+**Theorem 2.5 (vanishing).**
 If \(w\) is realized at \(n\), the following are equivalent.
 
 1. \(\Delta_w(n)=0\).
@@ -243,12 +240,20 @@ power-gaps; either vanishes only when the incoming slack and the new
 remainder both vanish. Thus \(D_{|w|}=0\) forces \(D_0=0\) and every
 \(\rho_j=0\). The converse is immediate.
 
-If every remainder vanishes, each step is an exact square or an exact
-cube-to-square, so the current parity is preserved and the itinerary
-cannot use both letters. The exact towers are the saturation of the
-envelope (`power_bound_eq_iff_extremal`). \(\square\)
+If every remainder vanishes, an even step satisfies
+\(x_j=x_{j+1}^2\), while an odd step satisfies
+\(x_j^3=x_{j+1}^2\). In either case \(x_j\) and \(x_{j+1}\) have the
+same parity, so the itinerary is monochrome. If \(w=E^k\), repeated
+substitution gives \(n=x_k^{2^k}\); writing \(a=x_k\), its parity is
+even. If \(w=O^k\), unique factorization applied to
+\(x_j^3=x_{j+1}^2\) shows that every prime valuation of \(x_j\) is
+divisible by \(2\). Iterating this valuation relation shows that every
+prime valuation of \(n=x_0\) is divisible by \(2^k\), hence
+\(n=a^{2^k}\) for an odd \(a\). Conversely, these even and odd towers
+make every local remainder zero. This is the extremal classification
+`power_bound_eq_iff_extremal`. \(\square\)
 
-**Theorem 2.6 (composition; EXACT — LEAN VERIFIED).**
+**Theorem 2.6 (composition).**
 If \(u\) is realized at \(n\) and \(v\) is realized at
 \(m=J^{|u|}(n)\), then
 \[
@@ -291,9 +296,9 @@ prefix slack to the third power, and later letters of either parity
 raise a suffix slack through \(2^{|u|}\). The naive recurrence
 \(\Delta\leftarrow\Delta+\rho\) is false.
 
-The identity does not supply a state-independent positive tax.
-Persistent expanding blocks can have arbitrarily small observed
-normalized slack \(\Delta/n^{3^{\#O(w)}}\) at large scale. The
+The identity does not supply a state-independent positive tax. On the
+recorded finite window, some persistent expanding blocks have very small
+normalized slack \(\Delta/n^{3^{\#O(w)}}\). The
 inequality \(\Delta_w(n)>n^{3^{\#O(w)}}-n^{2^{|w|}}\) on a formally
 expanding word is exactly \(J^{|w|}(n)<n\), so it does not forbid
 mixed expanding prefixes.
@@ -310,9 +315,18 @@ and
 J(n)=m\iff m^2\le n^3<(m+1)^2
 \quad(n\ {\rm odd}).
 \]
-An odd fiber contains at most one integer
-(`odd_cell_unique`; EXACT — LEAN VERIFIED). An even fiber is a
-parity-restricted square interval and may contain many predecessors.
+An odd fiber contains at most one integer (`odd_cell_unique`). Indeed,
+suppose \(a<b\) lie in the same odd cell indexed by \(m\). Then
+\((a+1)^3\le b^3<(m+1)^2\) and \(m^2\le a^3\). Subtracting the latter
+lower bound from the former upper bound gives
+\[
+3a^2+3a+1=(a+1)^3-a^3<(m+1)^2-m^2=2m+1,
+\]
+and hence \(3a^2\le2m\). If \(a=0\), then \(m=0\) and the displayed
+strict inequality is already impossible. If \(a>0\), squaring and using
+\(m^2\le a^3\) gives \(9a^4\le4m^2\le4a^3\), contradicting
+\(4a^3<9a^4\). An even fiber is a parity-restricted square interval and
+may contain many predecessors.
 
 A nonempty realized word \(w\) with \(J^{|w|}(n)=n\) is a cycle word.
 
@@ -322,7 +336,7 @@ The identities in this section are formalized in Lean
 `no_cycle_word_oooeoe`, `no_cycle_word_ooooee`). The proofs below are
 the ordinary integer arguments.
 
-**Theorem 3.1 (cycle restrictions; EXACT — LEAN VERIFIED).**
+**Theorem 3.1 (cycle restrictions).**
 Let \(w\) be a cycle word at \(n\ge2\).
 
 (i) The word is formally expanding:
@@ -350,8 +364,36 @@ minimum to square scale.
 These are necessary restrictions, not an exclusion of every nontrivial
 cycle.
 
-The two remaining legal minimum-based length-six orientations are
-nevertheless impossible. The argument uses the last-even cell together
+*Proof.* For (i), Theorem 2.2 applied to a cycle endpoint gives
+\(n^{2^{|w|}}\le n^{3^{\#O(w)}}\). Since \(n\ge2\), comparison of
+exponents gives \(2^{|w|}\le3^{\#O(w)}\); equality is impossible because
+the two sides have different prime divisors and \(|w|\ge1\).
+
+Every state on such a cycle is at least \(2\): once an orbit reaches \(1\),
+it remains there and cannot return to a start \(n\ge2\). An even state
+\(x\ge2\) satisfies \(J(x)<x\), so a cycle minimum cannot be even. An odd
+state \(x\ge3\) satisfies \(J(x)>x\), so a cycle maximum cannot be odd.
+This proves the first assertion of (ii). For the final-letter assertion,
+let \(x\) be the predecessor of a minimum-oriented return \(n\). If the
+last letter were odd, the odd return cell would give
+\(n^2\le x^3<(n+1)^2\). Minimality gives \(x\ge n\), hence
+\(n^3<(n+1)^2\), impossible for \(n\ge3\); and the minimum is odd, so
+\(n\ge3\).
+
+For (iii), let a realized word \(v\) send \(n\) to \(y\ge n^2\).
+Theorem 2.2 gives
+\[
+n^{2^{|v|+1}}=(n^2)^{2^{|v|}}
+\le y^{2^{|v|}}\le n^{3^{\#O(v)}}.
+\]
+Since \(n\ge2\), comparison of exponents proves the superquadratic
+inequality. On a cycle minimum, if a later state \(y\) is even, its
+successor is at least \(n\). Thus \(n\le J(y)=\lfloor\sqrt y\rfloor\),
+so \(n^2\le y\), and the preceding argument applies to that prefix.
+\(\square\)
+
+The two length-six orientations considered here are nevertheless
+impossible. The argument uses the last-even cell together
 with a coarse lower envelope. For \(n\ge1\),
 \[
 n<4\,\lfloor\sqrt n\rfloor^2,
@@ -369,7 +411,7 @@ In particular \(D_{OOO}=2^{38}\) and \(D_{OOOO}=2^{130}\). If a cycle word ends
 in an even letter, the last-even cell is
 \(J^{|w|-1}(n)<(n+1)^2\).
 
-**Theorem 3.2 (leftover length-six orientations; EXACT — LEAN VERIFIED).**
+**Theorem 3.2 (two length-six exclusions).**
 Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle word at any \(n\ge2\).
 This is not an exclusion of every length-six word, nor of every cycle.
 
@@ -384,7 +426,9 @@ Indeed \(257^{64}<2\cdot256^{64}\) and \(256(n+1)\le257\,n\), so
 \(2^{131}n^{64}<2^{136}n^{64}\le n^{81}\).
 
 For \(n<256\), neither word returns to its start. Lean checks both
-itineraries by `native_decide` on `Fin 256`.
+itinerary-and-return tables by `native_decide` on `Fin 256`; the same
+mechanism also verifies the finite numerical inequality
+\(257^{64}<2\cdot256^{64}\) used at the cutoff.
 
 Now suppose \(n\ge256\) realizes \(OOOOEE\), and write
 \(z=J^4(n)\) for the image after the prefix \(OOOO\). The last two
@@ -416,7 +460,7 @@ of the same predicate, not four different claims. The predicate is
 existential over all finite words, not only over words of length one or
 two.
 
-**Theorem 4.1 (uniform short certificates; EXACT — LEAN VERIFIED).**
+**Theorem 4.1 (uniform short certificates).**
 Let \(n\ge2\).
 
 1. If \(n\) is even, then the one-letter word \(E\) is a descent
@@ -424,7 +468,7 @@ Let \(n\ge2\).
 2. If \(n\) is odd and \(J(n)\) is even, then the two-letter word \(OE\)
    is a descent certificate.
 
-**Theorem 4.2 (unresolved starts are odd-to-odd; EXACT — LEAN VERIFIED).**
+**Theorem 4.2 (unresolved starts are odd-to-odd).**
 If \(n\ge2\) has no descent certificate, then \(n\) is odd and \(J(n)\)
 is odd.
 
@@ -440,37 +484,32 @@ odd-to-odd.
 Lean also certifies a finite landing class
 (`reachesOne_of_lt_twelve`, `even_lt_sq_twelve_reachesOne`):
 
-**Theorem 4.3 (small residuals; EXACT — LEAN VERIFIED).**
+**Theorem 4.3 (small residuals).**
 Every \(y\in\{1,\ldots,11\}\) reaches \(1\). Consequently every even
 residual strictly below \(144=12^2\) reaches \(1\).
 
 This enlarges the set of fatal landings for a hypothetical minimal
 counterexample. It does not prove that every even start reaches \(1\).
 
-Independently, an exact computation gives:
-
-**Proposition 4.4 (window totality; COMPUTATIONALLY VERIFIED).**
-Every start \(1\le n\le4000\) reaches \(1\).
-
-This is a finite check, not a bound on all starts.
-
 On the complementary odd-to-odd class, first return below the start is
 frequent at a short horizon, but not automatic.
 
-**Proposition 4.5 (odd-to-odd first return; OBSERVATION).**
+**Proposition 4.4 (odd-to-odd first-return census).**
 For starts \(2\le n\le N\) and horizon \(20\), write \(\mathrm{OO}\) for
 the odd-to-odd starts in that range. The exact census is:
 
 | \(N\) | \(\#\mathrm{OO}\) | OO first return \(\le20\) | all starts, first return \(\le20\) |
 |------:|------------------:|--------------------------:|-----------------------------------:|
-| \(10^3\) | \(252\) | \(0.877\) | \(0.969\) |
-| \(10^4\) | \(2504\) | \(0.887\) | \(0.972\) |
-| \(10^5\) | \(24984\) | \(0.896\) | \(0.974\) |
-| \(10^6\) | \(249926\) | \(0.895\) | \(0.974\) |
+| \(10^3\) | \(252\) | \(221/252\) (\(0.877\)) | \(968/999\) (\(0.969\)) |
+| \(10^4\) | \(2504\) | \(2220/2504\) (\(0.887\)) | \(9715/9999\) (\(0.972\)) |
+| \(10^5\) | \(24984\) | \(22379/24984\) (\(0.896\)) | \(97394/99999\) (\(0.974\)) |
+| \(10^6\) | \(249926\) | \(223683/249926\) (\(0.895\)) | \(973756/999999\) (\(0.974\)) |
 
 At \(N=10^6\), \(26{,}243\) odd-to-odd starts have no return below the
-start in \(20\) steps. None of these rows is a Lean descent certificate,
-and none is an almost-all theorem.
+start in \(20\) steps. These rows use exact Python integer arithmetic with
+no size cutoff through step \(20\); the unresolved count is zero in every
+row. They are not Lean-certified and do not constitute an almost-all
+theorem.
 
 ## 5. Ambient discrepancy and the short-certificate class
 
@@ -501,12 +540,20 @@ For odd \(n=2r+1\) set
 \[
 g(r)=\frac{(2r+1)^{3/2}}2.
 \]
-Then \(s(n)=-1\) if and only if \(\{g(r)\}\ge1/2\), and \(S_O(N)\) is
-twice the interval discrepancy of the sequence \(\{g(r)\}\) against
-\([1/2,1)\).
+Then \(s(n)=-1\) if and only if \(\{g(r)\}\ge1/2\). For \(R\) points
+\(x_0,\ldots,x_{R-1}\) and an interval \(I\subset[0,1)\), define the
+unnormalized interval discrepancy
+\[
+\mathcal D_R(I)=\#\{0\le r<R:\{x_r\}\in I\}-R|I|.
+\]
+Taking \(R=M(N)\), the odd integers at most \(N\) are exactly
+\(2r+1\) for \(0\le r<R\), and therefore
+\(S_O(N)=-2\mathcal D_R([1/2,1))\) for \(x_r=g(r)\).
 
-The following two lemmas are classical; see Kuipers–Niederreiter [10,
-Ch. 1–2].
+The following two lemmas are classical. The derivative estimate is the
+\(k=2\) case of Iwaniec--Kowalski [11, Thm. 8.20, Sec. 8.3,
+pp. 204--213]. The discrepancy inequality is
+Kuipers--Niederreiter [10, Ch. 2, Sec. 2, Thm. 2.5, pp. 112--115].
 
 **Lemma 5.A (van der Corput, second-derivative form).**
 Let \(f\) be twice differentiable on an interval of length \(M\), with
@@ -527,7 +574,7 @@ D
 \]
 for every cutoff \(H\ge1\).
 
-**Theorem 5.1 (ambient odd-input discrepancy; EXACT — HUMAN PROOF).**
+**Theorem 5.1 (ambient odd-input discrepancy).**
 \[
 |S_O(N)|\ll N^{5/6}.
 \]
@@ -537,29 +584,34 @@ This argument is not packaged in Lean.
 \[
 g''(r)=\tfrac32(2r+1)^{-1/2}.
 \]
-It is positive and decreasing. On a dyadic block \(r\asymp M\) one has
-\(g''(r)\asymp M^{-1/2}\). For the \(h\)-th Fourier mode take
+It is positive and decreasing. Separate the initial term \(r=0\), then
+partition \(1\le r<R\) into blocks
+\([M,\min(2M,R))\), where \(M\) runs over powers of \(2\). On such a
+block \(g''(r)\asymp M^{-1/2}\). For the \(h\)-th Fourier mode take
 \(f=hg\), so \(\lambda\asymp hM^{-1/2}\). Lemma 5.A gives
 \[
 \Bigl|\sum_{r\asymp M}e(hg(r))\Bigr|
 \ll h^{1/2}M^{3/4}+h^{-1/2}M^{1/4}.
 \]
-Lemma 5.B, with \(R\asymp M\) and the relation between \(S_O\) and
-interval discrepancy, yields
+Lemma 5.B, with \(R\asymp M\), bounds that block's contribution to
+\(S_O(N)\) by
 \[
-|S_O|\ll
+\text{block contribution}\ll
 \frac{M}{H}+M^{3/4}H^{1/2}+M^{1/4}
 \]
 on that block: the middle term is
 \(\sum_{h\le H}h^{-1}\cdot h^{1/2}M^{3/4}\ll M^{3/4}H^{1/2}\), and the
 last term is
 \(\sum_{h\le H}h^{-1}\cdot h^{-1/2}M^{1/4}\ll M^{1/4}\).
-The choice \(H\asymp M^{1/6}\) balances the first two terms at
-\(M^{5/6}\). Summing dyadic blocks up to \(N\) preserves the exponent.
+For bounded \(M\), the trivial estimate is absorbed into the constant.
+Otherwise choose \(H=\lfloor M^{1/6}\rfloor\), which balances the first
+two terms at \(M^{5/6}\). The initial term contributes \(O(1)\), and the
+geometric sum of the block bounds is
+\(\sum_{M\le R}O(M^{5/6})=O(R^{5/6})=O(N^{5/6})\).
 The floor sign is not replaced by a single exponential; the exponential
 sums are those of the sequence \(\{g(r)\}\). \(\square\)
 
-**Corollary 5.2 (short-certificate class; EXACT — HUMAN PROOF).**
+**Corollary 5.2 (short-certificate class).**
 The odd-to-odd starts have natural density \(1/4\):
 \[
 \bigl|\operatorname{OO}(N)-N/4\bigr|\ll N^{5/6}.
@@ -578,30 +630,23 @@ computation at \(10^7\) has running maximum \(459\). The observed growth
 is much smaller than \(N^{5/6}\). The descriptive \(N^{1/3}\)-scale
 envelope is not promoted to a theorem.
 
-The bound does not transfer from intervals to Juggler images. For a
-general interval \(I=[A,B]\) the variation of \(S_O\) depends on the
-right endpoint, not only on \(|I|\). The expanding image
-\(Y=J_O(O(I))\) is a sparse gap set. At source bound \(10^6\), recorded
-consecutive gaps in \(Y\) range from \(4\) to \(3000\). A certified
-finite concentration is the run of \(52\) consecutive odd sources of
-equal sign on \([952525,952627]\). Therefore ambient interval
-cancellation does not imply orbit or image-set cancellation. This is a
-boundary for the present argument, not a proof that no sparse-sequence
-estimate can exist.
+Theorem 5.1 concerns consecutive source intervals. It supplies no transfer
+theorem for orbit samples or sparse image sets, so it cannot by itself
+control the odd-to-odd dynamics after the first step.
 
 ## 6. The remaining gap
 
 Theorem 4.1 and Corollary 5.2 together say that a uniform one- or
 two-step argument covers a set of density \(3/4\). The first odd-to-odd
 image expands, so ordinary strong induction cannot fire on that class.
-Proposition 4.5 shows that most odd-to-odd starts in a finite window
+Proposition 4.4 shows that most odd-to-odd starts in a finite window
 still return below the start inside twenty steps. That is an
 observation, not Terras's theorem for \(J\).
 
 A mixed-parity heuristic, ignoring floors, gives mean log-log drift
 \(\tfrac12\log(3/4)<0\). Finite ensembles sit near this value; hard
 paths are more odd-rich. This agrees qualitatively with the
-juggler-like random-walk model of Prasad and Prasad [11]. Fair parity
+juggler-like random-walk model of Prasad and Prasad [12]. Fair parity
 is an assumption, not a dynamical theorem, and typical negative drift
 is not pointwise contraction.
 
@@ -611,7 +656,7 @@ The gap is therefore:
 > prefix. In particular, it is open whether almost every odd-to-odd
 > start has a finite descent certificate.
 
-![Even and odd-to-even starts have uniform short certificates. The complementary odd-to-odd class is the remaining pointwise gap. This figure is not a theorem.](figures/juggler_frontier.png){width=100%}
+![The theorem flow of the note. Exact finite-word identities yield contraction, rigidity, and cycle restrictions; the discrepancy argument counts the uniform short-certificate class but leaves almost-all descent on odd-to-odd starts open.](figures/juggler_frontier.png){width=100%}
 
 That is the Juggler form of the Terras question. A sharper ambient
 discrepancy exponent does not answer it.
@@ -628,10 +673,6 @@ From a clone, the review object is
 ```text
 cd formal && lake build Problems.JugglerPaper
 ```
-
-A Word Atlas used in the laboratory records bounded realizers through
-length \(20\) and starts \(n\le10^8\). It is infrastructure, not a
-theorem of this note.
 
 ## Acknowledgments
 
@@ -674,7 +715,9 @@ responsibility for the contents.
     [doi:10.4064/aa-43-2-167-175](https://doi.org/10.4064/aa-43-2-167-175).
 10. L. Kuipers and H. Niederreiter, *Uniform Distribution of Sequences*,
     Wiley-Interscience, New York, 1974.
-11. V. Prasad and M. A. Prasad, “Estimates of the maximum excursion
+11. H. Iwaniec and E. Kowalski, *Analytic Number Theory*, American
+    Mathematical Society Colloquium Publications 53, Providence, RI, 2004.
+12. V. Prasad and M. A. Prasad, “Estimates of the maximum excursion
     constant and stopping constant of juggler-like sequences,”
     ResearchGate preprint, 2025.
     [doi:10.13140/RG.2.2.14110.04168](https://doi.org/10.13140/RG.2.2.14110.04168).

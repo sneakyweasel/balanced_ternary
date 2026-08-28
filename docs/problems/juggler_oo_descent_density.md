@@ -50,7 +50,7 @@ is the size of that realizing set inside \(\mathrm{OO}\).
   `FP` on \(\mathrm{OO}\).
 - Image-discrepancy transfer —
   **REFUTED** in the tested form. Do not reopen.
-- Math-note Proposition 4.5, horizon-\(20\) first return —
+- Math-note Proposition 4.4, horizon-\(20\) first return —
   **OBSERVATION**. The \(K=20\) row of this census must reproduce it.
 - `power_bound_contracts` / `floorPower_oooee_of_follows` —
   **EXACT — LEAN VERIFIED**. Conditional on a realized word.
@@ -137,7 +137,7 @@ almost-all descent fails.
   \(\mathrm{OO}\)” — leftover rate \(0.750\) at \(N=10^6\).
 - “A fixed horizon \(20\) has leftover \(o(|\mathrm{OO}|)\)” —
   leftover \(26{,}243\) of \(249{,}926\) at \(N=10^6\), rate
-  \(0.105\), reproducing Proposition 4.5.
+  \(0.105\), reproducing Proposition 4.4.
 - “A fixed horizon \(40\) has leftover \(o(|\mathrm{OO}|)\)” —
   leftover rate \(0.0239\) at \(N=10^6\), already \(0.0244\) at
   \(N=10^4\).
@@ -165,7 +165,7 @@ Inside \(\mathrm{OO}\) at \(N=10^6\) (\(\#\mathrm{OO}=249{,}926\)):
 - word union: rate \(0.250\), leftover \(0.750\)
 - first return \(\le 5\): leftover \(0.500\)
 - first return \(\le 10\): leftover \(0.250\)
-- first return \(\le 20\): leftover \(0.105\) (Proposition 4.5 reproduced)
+- first return \(\le 20\): leftover \(0.105\) (Proposition 4.4 reproduced)
 - first return \(\le 40\): leftover \(0.0239\), already \(0.0244\) at
   \(N=10^4\)
 

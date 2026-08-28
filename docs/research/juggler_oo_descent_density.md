@@ -46,7 +46,9 @@ every tested fixed family has a stable leftover fraction bounded away from 0.
 - OO return ≤20: `221` rate=`0.87698413` leftover=`31` leftover_rate=`0.12301587`
 - OO return ≤40: `248` rate=`0.98412698` leftover=`4` leftover_rate=`0.01587302`
 - all-start return ≤20: `968` rate=`0.96896897`
-- bit-cap leftovers: `0`
+- exact through horizon: `20`
+- unresolved through horizon 20: `0`
+- horizon-40 bit-cap exits: `0`
 
 ### N=`10000`
 
@@ -60,7 +62,9 @@ every tested fixed family has a stable leftover fraction bounded away from 0.
 - OO return ≤20: `2220` rate=`0.88658147` leftover=`284` leftover_rate=`0.11341853`
 - OO return ≤40: `2443` rate=`0.97563898` leftover=`61` leftover_rate=`0.02436102`
 - all-start return ≤20: `9715` rate=`0.97159716`
-- bit-cap leftovers: `6`
+- exact through horizon: `20`
+- unresolved through horizon 20: `0`
+- horizon-40 bit-cap exits: `6`
 
 ### N=`100000`
 
@@ -74,7 +78,9 @@ every tested fixed family has a stable leftover fraction bounded away from 0.
 - OO return ≤20: `22379` rate=`0.89573327` leftover=`2605` leftover_rate=`0.10426673`
 - OO return ≤40: `24375` rate=`0.9756244` leftover=`609` leftover_rate=`0.0243756`
 - all-start return ≤20: `97394` rate=`0.97394974`
-- bit-cap leftovers: `95`
+- exact through horizon: `20`
+- unresolved through horizon 20: `0`
+- horizon-40 bit-cap exits: `95`
 
 ### N=`1000000`
 
@@ -88,9 +94,11 @@ every tested fixed family has a stable leftover fraction bounded away from 0.
 - OO return ≤20: `223683` rate=`0.89499692` leftover=`26243` leftover_rate=`0.10500308`
 - OO return ≤40: `243960` rate=`0.97612893` leftover=`5966` leftover_rate=`0.02387107`
 - all-start return ≤20: `973756` rate=`0.97375697`
-- bit-cap leftovers: `1126`
+- exact through horizon: `20`
+- unresolved through horizon 20: `0`
+- horizon-40 bit-cap exits: `1126`
 
-## Proposition 4.5 reproduction
+## Proposition 4.4 reproduction
 
 - present: `True`
 - matches N=10^3 row: `True`

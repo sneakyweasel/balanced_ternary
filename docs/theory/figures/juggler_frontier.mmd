@@ -1,41 +1,7 @@
-flowchart TD
-    Juggler["Juggler map"]
-    Lean["Exact Lean semantics"]
-    Atlas["Finite words"]
-    Covered["Even and odd-to-even<br/>finite progress"]
-    Frontier["Odd-to-odd frontier"]
-    Tests["Further tests"]
-    Words["Words"]
-    States["States"]
-    Geometry["Geometry"]
-    Cycles["Cycles"]
-    Statistics["Statistics"]
-    ClosedA["No extra word law"]
-    ClosedB["No state quotient"]
-    ClosedC["Exact cells"]
-    Partial["Partial restrictions"]
-    Descriptive["Descriptive bounds"]
-    Gap["Remaining pointwise gap"]
-
-    Juggler --> Lean
-    Juggler --> Atlas
-    Lean --> Covered
-    Covered --> Frontier
-    Lean --> Tests
-    Atlas --> Tests
-    Tests --> Words
-    Tests --> States
-    Tests --> Geometry
-    Tests --> Cycles
-    Tests --> Statistics
-    Words --> ClosedA
-    States --> ClosedB
-    Geometry --> ClosedC
-    Cycles --> Partial
-    Statistics --> Descriptive
-    ClosedA --> Gap
-    ClosedB --> Gap
-    ClosedC --> Gap
-    Partial --> Gap
-    Descriptive --> Gap
-    Frontier --> Gap
+flowchart LR
+    Words["Realized parity words"] --> Envelope["Power envelope"] --> Contract["Exponent-gap contraction"]
+    Remainders["Local floor remainders"] --> Defect["Exact global defect"] --> Towers["Monochrome towers<br/>and composition"]
+    Cells["Inverse cells"] --> Cycles["Cycle restrictions"] --> Excluded["OOOEOE and OOOOEE<br/>excluded"]
+    Discrepancy["Parity discrepancy"] --> Density["Uniform short-certificate<br/>class has density 3/4"]
+    Certificates["One- and two-step<br/>certificates"] --> Density
+    Density --> OO["Odd-to-odd starts"] --> Open["Open: almost-all<br/>finite descent?"]

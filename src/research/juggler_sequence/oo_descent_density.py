@@ -23,11 +23,12 @@ WORD_OOOEE = "OOOEE"
 WORD_OOEOE = "OOEOE"
 WORDS = (WORD_OOOEE, WORD_OOEOE)
 HORIZONS = (5, 10, 20, 40)
+EXACT_HORIZON = 20
 SNAPSHOTS = (1_000, 10_000, 100_000, 1_000_000)
 N_MAX = SNAPSHOTS[-1]
 BIT_CAP = 4096
 
-# Math-note Proposition 4.5, N=10^3 row.
+# Math-note Proposition 4.4 (legacy artifact key: prop45), N=10^3 row.
 PROP45_N1000 = {"oo": 252, "oo_return20": 221, "all_return20": 968}
 
 CLASS_VANISHING = "FIXED_FAMILY_VANISHING"
@@ -52,7 +53,12 @@ def is_odd_odd(n: int) -> bool:
     return n >= 3 and n % 2 == 1 and floor_power(n) % 2 == 1
 
 
-def walk_prefix(n: int, horizon: int = HORIZONS[-1], *, bit_cap: int = BIT_CAP) -> dict[str, Any]:
+def walk_prefix(
+    n: int,
+    horizon: int = HORIZONS[-1],
+    *,
+    bit_cap: int | None = BIT_CAP,
+) -> dict[str, Any]:
     """Parity prefix and first strict return of an OO start."""
 
     letters: list[str] = []
@@ -62,7 +68,7 @@ def walk_prefix(n: int, horizon: int = HORIZONS[-1], *, bit_cap: int = BIT_CAP) 
     for step in range(1, horizon + 1):
         letters.append("E" if current % 2 == 0 else "O")
         current = floor_power(current)
-        if current.bit_length() > bit_cap:
+        if bit_cap is not None and current.bit_length() > bit_cap:
             bit_cap_hit = True
             break
         if current < n:
@@ -74,6 +80,7 @@ def walk_prefix(n: int, horizon: int = HORIZONS[-1], *, bit_cap: int = BIT_CAP) 
         "prefix": prefix,
         "tau": tau,
         "bit_cap_hit": bit_cap_hit,
+        "steps_computed": len(letters),
         "oooee": prefix.startswith(WORD_OOOEE),
         "ooeoe": prefix.startswith(WORD_OOEOE),
     }
@@ -87,7 +94,8 @@ def _empty_row() -> dict[str, int]:
         "oooee": 0,
         "ooeoe": 0,
         "word_union": 0,
-        "bit_cap": 0,
+        "bit_cap_40": 0,
+        "unresolved_through_20": 0,
     }
     for k in HORIZONS:
         row[f"oo_return_{k}"] = 0
@@ -104,7 +112,9 @@ def _snapshot_row(acc: dict[str, int], n_max: int) -> dict[str, Any]:
         "oooee": acc["oooee"],
         "ooeoe": acc["ooeoe"],
         "word_union": acc["word_union"],
-        "bit_cap": acc["bit_cap"],
+        "bit_cap_40": acc["bit_cap_40"],
+        "unresolved_through_20": acc["unresolved_through_20"],
+        "exact_through_horizon": EXACT_HORIZON,
     }
     for k in HORIZONS:
         oo_ret = acc[f"oo_return_{k}"]
@@ -152,15 +162,32 @@ def window_census(n_max: int, snapshots: tuple[int, ...] | None = None) -> list[
                 acc["oo"] += 1
                 walked = walk_prefix(n)
                 if walked["bit_cap_hit"] and walked["tau"] is None:
-                    acc["bit_cap"] += 1
+                    acc["bit_cap_40"] += 1
                 if walked["oooee"]:
                     acc["oooee"] += 1
                 if walked["ooeoe"]:
                     acc["ooeoe"] += 1
                 if walked["oooee"] or walked["ooeoe"]:
                     acc["word_union"] += 1
-                tau = walked["tau"]
+                if (
+                    walked["bit_cap_hit"]
+                    and walked["tau"] is None
+                    and walked["steps_computed"] <= EXACT_HORIZON
+                ):
+                    exact_tau = walk_prefix(
+                        n, EXACT_HORIZON, bit_cap=None
+                    )["tau"]
+                else:
+                    exact_tau = (
+                        walked["tau"]
+                        if walked["tau"] is not None
+                        and walked["tau"] <= EXACT_HORIZON
+                        else None
+                    )
                 for k in HORIZONS:
+                    tau = exact_tau if k <= EXACT_HORIZON else walked["tau"]
+                    if k > EXACT_HORIZON and exact_tau is not None:
+                        tau = exact_tau
                     if tau is not None and tau <= k:
                         acc[f"oo_return_{k}"] += 1
                         acc[f"all_return_{k}"] += 1
@@ -357,7 +384,8 @@ def probe_payload(n_max: int = N_MAX) -> dict[str, Any]:
         "search_method": (
             "one pass n=2..N; OO is odd with odd first image; "
             "OOOEE/OOEOE prefixes and first strict return at K=5,10,20,40; "
-            "bit-cap leftovers count as uncovered; no FiniteProgress tactic"
+            "K<=20 exact with uncapped reruns; K=40 is capped; "
+            "no FiniteProgress tactic"
         ),
     }
 
@@ -419,12 +447,14 @@ def render_markdown(payload: dict[str, Any]) -> str:
                 f"- OO return ≤{k}: `{row[f'oo_return_{k}']}` rate=`{row[f'oo_return_rate_{k}']}` leftover=`{row[f'oo_leftover_{k}']}` leftover_rate=`{row[f'oo_leftover_rate_{k}']}`"
             )
         lines.append(f"- all-start return ≤20: `{row['all_return_20']}` rate=`{row['all_return_rate_20']}`")
-        lines.append(f"- bit-cap leftovers: `{row['bit_cap']}`")
+        lines.append(f"- exact through horizon: `{row['exact_through_horizon']}`")
+        lines.append(f"- unresolved through horizon 20: `{row['unresolved_through_20']}`")
+        lines.append(f"- horizon-40 bit-cap exits: `{row['bit_cap_40']}`")
         lines.append("")
     prop45 = scan["prop45"]
     lines.extend(
         [
-            "## Proposition 4.5 reproduction",
+            "## Proposition 4.4 reproduction",
             "",
             f"- present: `{prop45.get('present')}`",
             f"- matches N=10^3 row: `{prop45.get('ok')}`",

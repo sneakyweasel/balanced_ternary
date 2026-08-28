@@ -8484,6 +8484,43 @@ Best next question
 - do almost all odd-to-odd starts have a finite descent certificate?
 ```
 
+## Juggler publication-readiness revision
+
+- **Date:** 2026-08-28
+- **Objective:** Repair the finite-dynamics note so every paper claim is independently checkable at its stated strength
+- **Major results:** The horizon-\(20\) first-return census was rerun with uncapped Python integers and has zero unresolved cases in all four paper rows. Ordinary proofs were added for fixed-word monotonicity, the zero-defect tower classification, odd-cell uniqueness, and the cycle/superquadratic restrictions. The discrepancy proof now defines unnormalized discrepancy, cites the precise classical estimates, and handles the initial dyadic block. The laboratory frontier chart was replaced by a theorem-flow figure
+- **Refuted ideas:** The previous description of the capped census as exact was invalid provenance; finite concentration data alone did not justify a general image-set statement
+- **Open:** almost-all finite descent on odd-to-odd starts
+- **Decision:** PROMOTE the corrected paper synthesis. No new research branch or theorem attack was opened
+
+```text
+What was learned
+- The horizon-20 counts are unchanged, but their exact provenance now excludes bit-cap exits
+- The power-envelope, defect, and cycle results form the paper's central contribution
+- Density 3/4 is a secondary ambient corollary
+- The finite n<256 Lean boundary checks include two itinerary tables and one numerical inequality
+
+Strongest theorem
+- realized finite words satisfy the exact global-defect identity and its two-term composition law
+
+Strongest refutation
+- a capped trajectory census cannot be presented as exact without resolving every cutoff exit
+
+Reusable machinery
+- an uncapped horizon-20 rerun path with explicit unresolved-through-20 metadata
+
+Branch status
+- PROMOTE
+
+Why
+- The corrected note now separates exact formal mathematics, exact finite
+  computation, and the remaining pointwise gap without enlarging the research
+  scope. The synthesis remains suitable for external mathematical review.
+
+Best next question
+- do almost all odd-to-odd starts have a finite descent certificate?
+```
+
 ## Juggler leftover length-six orientations
 
 - **Date:** 2026-08-28

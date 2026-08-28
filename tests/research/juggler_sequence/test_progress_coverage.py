@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from research.juggler_sequence.compensated_contraction import follows_word, image_after
+from research.juggler_sequence.oo_descent_density import window_census
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.progress_coverage import (
     CLASS_FRONTIER,
@@ -130,8 +131,8 @@ def test_floor_power_unchanged():
     assert floor_power(46) == 6
 
 
-def test_horizon20_first_return_n1000_observation():
-    """Pin the N=10^3 row of the math-note first-return table."""
+def test_horizon20_first_return_n1000_exact_census():
+    """Check the exact census path against a direct implementation."""
 
     def first_return(n: int, horizon: int) -> int | None:
         x = n
@@ -156,3 +157,10 @@ def test_horizon20_first_return_n1000_observation():
     assert oo == 252
     assert oo_drop == 221
     assert all_drop == 968
+    row = window_census(1_000, snapshots=(1_000,))[0]
+    assert (row["oo"], row["oo_return_20"], row["all_return_20"]) == (
+        oo,
+        oo_drop,
+        all_drop,
+    )
+    assert row["unresolved_through_20"] == 0

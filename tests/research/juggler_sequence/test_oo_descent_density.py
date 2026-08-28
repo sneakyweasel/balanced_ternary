@@ -8,6 +8,7 @@ from research.juggler_sequence.compensated_contraction import follows_word, imag
 from research.juggler_sequence.oo_descent_density import (
     CLASS_LEFTOVER,
     CLASS_VANISHING,
+    EXACT_HORIZON,
     JSON_PATH,
     PROP45_N1000,
     WORD_OOEOE,
@@ -53,6 +54,38 @@ def test_n1000_reproduces_proposition_45():
     assert row["oooee"] < row["oo"]
     assert row["word_union"] < row["oo"]
     assert row["oo_leftover_rate_20"] > 0.1
+
+
+def test_paper_rows_are_exact_and_pinned():
+    expected = {
+        1_000: (252, 221, 968),
+        10_000: (2_504, 2_220, 9_715),
+        100_000: (24_984, 22_379, 97_394),
+        1_000_000: (249_926, 223_683, 973_756),
+    }
+    data = json.loads(JSON_PATH.read_text(encoding="utf-8"))
+    rows = {row["n_max"]: row for row in data["scan"]["rows"]}
+    for n_max, (oo, oo_return_20, all_return_20) in expected.items():
+        row = rows[n_max]
+        assert row["oo"] == oo
+        assert row["oo_return_20"] == oo_return_20
+        assert row["all_return_20"] == all_return_20
+        assert row["exact_through_horizon"] == EXACT_HORIZON
+        assert row["unresolved_through_20"] == 0
+
+
+def test_uncapped_path_matches_direct_small_window():
+    rows = window_census(500, snapshots=(500,))
+    direct_oo = direct_return = 0
+    for n in range(2, 501):
+        if not is_odd_odd(n):
+            continue
+        direct_oo += 1
+        if walk_prefix(n, EXACT_HORIZON, bit_cap=None)["tau"] is not None:
+            direct_return += 1
+    assert rows[0]["oo"] == direct_oo
+    assert rows[0]["oo_return_20"] == direct_return
+    assert rows[0]["unresolved_through_20"] == 0
 
 
 def test_lean_witnesses_without_new_attack():

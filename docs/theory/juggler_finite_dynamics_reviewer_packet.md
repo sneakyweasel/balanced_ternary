@@ -8,10 +8,10 @@ Send this page with the
 The note is written to be self-contained. This page is a claim map, not
 required reading for the proofs.
 
-**Primary review question.** Does the note correctly separate the uniform
-one- and two-step descent certificates from existential descent, and does
-it avoid presenting the density-\(3/4\) short-certificate class as a
-Terras theorem or a \(\operatorname{ReachesOne}\) density?
+**Primary review question.** Are the power-envelope, global-defect, and
+cycle arguments correct at their stated quantifiers, and is the secondary
+density-\(3/4\) corollary kept distinct from existential descent and
+\(\operatorname{ReachesOne}\)?
 
 No termination theorem is claimed.
 
@@ -30,12 +30,11 @@ claims. Theorem 5.1 is a human proof.
 
 ## Paper thesis
 
-Every realized finite Juggler word obeys a power envelope; a negative
-exponent gap forces contraction. Every even start and every odd-to-even
-start has a uniform short descent certificate. The complementary
-odd-to-odd class has density \(1/4\) by a classical discrepancy bound on
-the ambient odd-input sign sum. That density is not Terras's almost-all
-stopping-time theorem, and it is not a density of arrival at \(1\).
+Every realized finite Juggler word obeys a power envelope, and its local
+floor losses assemble into an exact compositional global defect with rigid
+zero cases. Inverse cells give cycle restrictions and two explicit
+length-six exclusions. As a secondary corollary, the uniform one- and
+two-step certificate class has density \(3/4\).
 
 ## Claim map
 
@@ -49,11 +48,9 @@ stopping-time theorem, and it is not a density of arrival at \(1\).
 | Even and odd-to-even starts have uniform short certificates | **EXACT — LEAN VERIFIED** | not all `FiniteProgress` |
 | \(\neg\mathrm{FP}\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only |
 | \(\{1,\ldots,11\}\) and even residuals \(<144\) reach \(1\) | **EXACT — LEAN VERIFIED** | finite landing class |
-| Every \(n\le4000\) reaches \(1\) | **COMPUTATIONALLY VERIFIED** | window only |
-| Horizon-\(20\) first-return rates | **OBSERVATION** | not Lean, not almost-all |
+| Proposition 4.4 horizon-\(20\) first-return census | **COMPUTATIONALLY VERIFIED** | exact Python integers, zero unresolved cases; not Lean or almost-all |
 | \(\lvert S_O(N)\rvert\ll N^{5/6}\) | **EXACT — HUMAN PROOF** | ambient; not Lean |
 | \(\lvert\mathrm{OO}(N)-N/4\rvert\ll N^{5/6}\) | **EXACT — HUMAN PROOF** | short-certificate class density \(3/4\) |
-| Ambient bound transfers to Juggler images | **REFUTED** | tested form |
 
 ## Quantifier checks
 
@@ -66,9 +63,11 @@ stopping-time theorem, and it is not a density of arrival at \(1\).
 3. Terras–Everett prove almost-all Collatz stopping times. The note does
    not prove the Juggler analogue on odd-to-odd starts.
 4. `power_bound_contracts` requires a realized contracting word.
-5. Cycle restrictions do not exclude all cycles. The two leftover
-   length-six orientations are excluded; that is not a length-six census.
-6. Atlas absence, if mentioned, is `NOT OBSERVED WITHIN SEARCH BOUND`.
+5. Cycle restrictions do not exclude all cycles. The two length-six
+   orientations considered in Theorem 3.2 are excluded; that is not a
+   length-six census.
+6. The `native_decide` boundary checks cover both `Fin 256` itinerary
+   tables and the finite inequality \(257^{64}<2\cdot256^{64}\).
 
 ## What the paper does not claim
 
@@ -93,7 +92,7 @@ Reject or revise if:
    length-six cycle words are claimed excluded;
 6. the discrepancy proof replaces the floor by a single exponential;
 7. an interval bound is applied to a sparse image set without transfer;
-8. Proposition 4.5 is promoted from observation to theorem.
+8. Proposition 4.4 is promoted from exact finite census to an infinite theorem.
 
 ## Verification
 
@@ -103,6 +102,7 @@ Repository: [https://github.com/sneakyweasel/balanced_ternary/](https://github.c
 pip install -e ".[dev]"
 python tools/render_theorem_ledger.py --check
 python -m pytest tests/unit/test_theorem_ledger.py
+python -m pytest tests/research/juggler_sequence/test_oo_descent_density.py
 python -m pytest tests/research/juggler_sequence/test_progress_coverage.py
 python -m pytest tests/research/juggler_sequence/test_odd_image_discrepancy.py
 python -m pytest tests/research/juggler_sequence/test_cycle_leftover_words.py

@@ -338,17 +338,19 @@ cycleMin_not_end_odd
 cycleMin_prefix_ooo_even_sqrt_ne
 ```
 
-They constrain a minimum-based orientation. The two leftover legal
-orientations are then excluded separately:
+They constrain a minimum-based orientation. The two length-six
+orientations considered in the note are then excluded separately:
 
 ```text
 no_cycle_word_oooeoe
 no_cycle_word_ooooee
 ```
 
-The finite range \(n<256\) is evaluated in `LeftoverEval.lean`. The tail
+The finite range \(n<256\) is evaluated in `LeftoverEval.lean`.
+`native_decide` checks both `Fin 256` itinerary-and-return tables and the
+finite numerical inequality \(257^{64}<2\cdot256^{64}\). The tail
 \(n\ge256\) uses the last-even cell against the coarse lower envelope
-`LowerPowerBound`, via the comparison \(n^{81}>2^{130}(n+1)^{64}\).
+`LowerPowerBound`, via \(n^{81}>2^{130}(n+1)^{64}\).
 This is not a length-six census, not an exclusion of odd-terminating
 cycle words, and not a halt theorem.
 
@@ -357,10 +359,9 @@ cycle words, and not a halt theorem.
 Lean certifies the definitions and theorem statements above. It does not
 certify:
 
-- the Word Atlas census or its GPU implementation;
+- Proposition 4.4's exact Python-integer horizon-\(20\) census;
 - the analytic \(N^{5/6}\) discrepancy argument;
 - statistical drift estimates;
-- the empirical failure of every tested quotient;
 - universal Juggler termination.
 
 Those claims have separate evidence labels and reproducibility records in the

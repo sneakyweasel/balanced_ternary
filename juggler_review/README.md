@@ -22,10 +22,10 @@ The Section 6 figure is [figures/juggler_frontier.png](figures/juggler_frontier.
 - [juggler_finite_dynamics_formalization.md](juggler_finite_dynamics_formalization.md)
   — theorem names. The Lean import graph is
   [figures/juggler_lean_layers.png](figures/juggler_lean_layers.png).
-- [JugglerPaper.lean](JugglerPaper.lean) — paper barrel (import list
-  only). It does not compile by itself.
 
-To check the Lean proofs, clone the repository and from `formal/` run
+The paper barrel depends on the repository's full Lean source tree and is
+therefore not duplicated in this snapshot. To check the Lean proofs, clone
+the repository and from `formal/` run
 
 ```text
 lake build Problems.JugglerPaper

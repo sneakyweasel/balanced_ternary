@@ -58,6 +58,8 @@ same predicate, not four different claims.
 This barrel does not prove that every positive integer reaches `1`,
 that every orbit meets a contracting word, or that all nontrivial
 cycles are impossible. Theorem 5.1 is a human proof and is not here.
+Proposition 4.4 is an exact uncapped Python census through horizon 20,
+not a Lean theorem.
 `FiniteCoeffStopConjecture` is a laboratory target, not a claim of
 the note.
 -/

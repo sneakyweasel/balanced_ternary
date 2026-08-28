@@ -1,4 +1,4 @@
-"""Render the research-frontier figure at the same print scale as the Lean graph."""
+"""Render the paper's theorem-flow figure."""
 
 from __future__ import annotations
 
@@ -11,93 +11,72 @@ from juggler_figure_style import DEFAULT_BOX, draw_edge, draw_frame, draw_node, 
 OUT = Path(__file__).with_name("juggler_frontier.png")
 
 NODES = {
-    "Juggler": ("Juggler map", ""),
-    "Lean": ("Exact Lean", "semantics"),
-    "Atlas": ("Finite words", ""),
-    "Covered": ("Even and odd-to-even", "finite progress"),
-    "Tests": ("Further tests", ""),
-    "Frontier": ("Odd-to-odd", "frontier"),
-    "Words": ("Words", ""),
-    "States": ("States", ""),
-    "Geometry": ("Geometry", ""),
-    "Cycles": ("Cycles", ""),
-    "Statistics": ("Statistics", ""),
-    "ClosedA": ("No extra word law", ""),
-    "ClosedB": ("No state quotient", ""),
-    "ClosedC": ("Exact cells", ""),
-    "Partial": ("Partial restrictions", ""),
-    "Descriptive": ("Descriptive bounds", ""),
-    "Gap": ("Remaining pointwise gap", ""),
+    "Words": ("Realized", "parity words"),
+    "Envelope": ("Power envelope", ""),
+    "Contract": ("Exponent-gap", "contraction"),
+    "Remainders": ("Local floor", "remainders"),
+    "Defect": ("Exact global", "defect"),
+    "Towers": ("Monochrome towers", "and composition"),
+    "Cells": ("Inverse cells", ""),
+    "Cycles": ("Cycle restrictions", ""),
+    "Excluded": ("OOOEOE, OOOOEE", "excluded"),
+    "Discrepancy": ("Parity", "discrepancy"),
+    "Certificates": ("One- and two-step", "certificates"),
+    "Density": ("Uniform class", "density 3/4"),
+    "OddOdd": ("Odd-to-odd", "starts"),
+    "Open": ("Open", "almost-all descent?"),
 }
 
 FRAMES = [
-    ("Map", 0.12, 1.88, 1.15, 4.55),
-    ("Sources", 2.02, 3.92, 1.15, 4.55),
-    ("Coverage", 4.06, 6.22, 1.15, 4.55),
-    ("Families", 6.36, 8.12, 1.15, 4.55),
-    ("Verdicts", 8.26, 10.93, 1.15, 4.55),
+    ("Exact finite-word calculus", 0.10, 6.70, 3.28, 5.70),
+    ("Cycle consequences", 0.10, 9.35, 1.67, 3.17),
+    ("Density corollary and boundary", 0.10, 10.90, 0.08, 1.56),
 ]
 
 POS = {
-    "Juggler": (1.00, 2.85),
-    "Lean": (2.97, 3.85),
-    "Atlas": (2.97, 1.85),
-    "Covered": (5.14, 3.85),
-    "Tests": (5.14, 2.85),
-    "Frontier": (5.14, 1.70),
-    "Words": (7.24, 4.10),
-    "States": (7.24, 3.42),
-    "Geometry": (7.24, 2.74),
-    "Cycles": (7.24, 2.06),
-    "Statistics": (7.24, 1.38),
-    "ClosedA": (9.60, 4.10),
-    "ClosedB": (9.60, 3.42),
-    "ClosedC": (9.60, 2.74),
-    "Partial": (9.60, 2.06),
-    "Descriptive": (9.60, 1.38),
-    "Gap": (5.525, 0.48),
+    "Words": (1.10, 5.05),
+    "Envelope": (3.35, 5.05),
+    "Contract": (5.60, 5.05),
+    "Remainders": (1.10, 3.90),
+    "Defect": (3.35, 3.90),
+    "Towers": (5.60, 3.90),
+    "Cells": (1.10, 2.42),
+    "Cycles": (5.60, 2.42),
+    "Excluded": (8.20, 2.42),
+    "Discrepancy": (1.10, 1.27),
+    "Certificates": (1.10, 0.53),
+    "Density": (3.65, 0.90),
+    "OddOdd": (6.20, 0.90),
+    "Open": (8.75, 0.90),
 }
 
 BOX = {
-    "Covered": (2.00, 0.56),
-    "Tests": (2.00, 0.56),
-    "Frontier": (2.00, 0.56),
-    "ClosedA": (2.48, 0.48),
-    "ClosedB": (2.48, 0.48),
-    "ClosedC": (2.48, 0.48),
-    "Partial": (2.48, 0.48),
-    "Descriptive": (2.48, 0.48),
-    "Words": (1.60, 0.48),
-    "States": (1.60, 0.48),
-    "Geometry": (1.60, 0.48),
-    "Cycles": (1.60, 0.48),
-    "Statistics": (1.60, 0.48),
-    "Gap": (10.50, 0.56),
+    name: (1.82, 0.58)
+    for name in NODES
 }
+BOX.update(
+    {
+        "Certificates": (2.02, 0.58),
+        "Towers": (2.02, 0.58),
+        "Excluded": (2.02, 0.58),
+    }
+)
 
 EDGES = [
-    ("Juggler", "Lean", "d", 0.08),
-    ("Juggler", "Atlas", "d", -0.08),
-    ("Lean", "Covered", "h", 0.0),
-    ("Lean", "Tests", "d", 0.05),
-    ("Atlas", "Tests", "d", -0.05),
-    ("Covered", "Frontier", "bypass", 0.12),
-    ("Tests", "Words", "d", 0.10),
-    ("Tests", "States", "d", 0.04),
-    ("Tests", "Geometry", "h", 0.0),
-    ("Tests", "Cycles", "d", -0.04),
-    ("Tests", "Statistics", "d", -0.10),
-    ("Words", "ClosedA", "h", 0.0),
-    ("States", "ClosedB", "h", 0.0),
-    ("Geometry", "ClosedC", "h", 0.0),
-    ("Cycles", "Partial", "h", 0.0),
-    ("Statistics", "Descriptive", "h", 0.0),
-    ("Descriptive", "Gap", "sink", 0.0),
-    ("Frontier", "Gap", "sink", 0.0),
+    ("Words", "Envelope", "h", 0.0),
+    ("Envelope", "Contract", "h", 0.0),
+    ("Remainders", "Defect", "h", 0.0),
+    ("Defect", "Towers", "h", 0.0),
+    ("Cells", "Cycles", "h", 0.0),
+    ("Cycles", "Excluded", "h", 0.0),
+    ("Discrepancy", "Density", "d", -0.05),
+    ("Certificates", "Density", "d", 0.05),
+    ("Density", "OddOdd", "h", 0.0),
+    ("OddOdd", "Open", "h", 0.0),
 ]
 
-FIG_W = 11.05
-FIG_H = 4.85
+FIG_W = 11.0
+FIG_H = 5.8
 
 
 def box_size(name: str) -> tuple[float, float]:
@@ -109,12 +88,6 @@ def ports(src: str, dst: str, kind: str) -> tuple[tuple[float, float], tuple[flo
     x1, y1 = POS[dst]
     w0, h0 = box_size(src)
     w1, h1 = box_size(dst)
-    if kind == "bypass":
-        return (x0 - w0 / 2, y0), (x1 - w1 / 2, y1)
-    if kind == "sink":
-        left, right = x1 - w1 / 2 + 0.18, x1 + w1 / 2 - 0.18
-        x_land = min(max(x0, left), right)
-        return (x0, y0 - h0 / 2), (x_land, y1 + h1 / 2)
     if kind == "v":
         if y1 < y0:
             return (x0, y0 - h0 / 2), (x1, y1 + h1 / 2)
