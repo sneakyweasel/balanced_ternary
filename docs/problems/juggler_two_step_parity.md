@@ -1,6 +1,6 @@
 # Juggler multi-step itinerary-parity census
 
-Status: **EXPLORATORY**
+Status: **THEOREM**
 
 Phase-0 gate for iterating the one-step image-parity discrepancy bound
 (Theorem 5.1 of the finite-dynamics note, \(|S_O(N)|\ll N^{5/6}\)) to
@@ -149,17 +149,30 @@ Working document:
   1 - \{\delta(n)\}]\), giving \(O(hP^{1/2})\) cells of length
   \(\asymp P^{1/2}/h\) per dyadic block on which the gap is constant.
   Validated exactly at \(10^6\) and \(10^9\).
-- **Theorem C (nested parity discrepancy, drafted)**: all four joint
-  parity classes of \((m, \lfloor m^{3/2}\rfloor)\) on odd
+- **Theorem C (nested parity discrepancy)** —
+  **EXACT — HUMAN PROOF** (`J-nested-parity-discrepancy`): all four
+  joint parity classes of \((m, \lfloor m^{3/2}\rfloor)\) on odd
   \(n \le N\) have cardinality \(N/8 + O(N^{23/24+\varepsilon})\).
   Proof chain: Vaaler waves, Lemma A substitution, one van der Corput
-  A-process (\(H = N^{1/12}\)), Lemma B cells with a Vaaler-expanded
-  \(\kappa\), second-derivative test per cell, assembly at
-  \(J_1 = J_2 = N^{1/24}\). Drafted at full exponent bookkeeping in
-  the working document, deliberately unoptimized, **pending the
-  review pass** that Theorem 5.1 received. Not tagged, not in the
-  ledger, not in the note. `depth2_analytic_lemma_proved` stays
-  `False`.
+  A-process (\(H = N^{1/12}\)), Lemma B cells with an exactly split
+  moving-endpoint expansion, second-derivative test per cell,
+  assembly at \(J_1 = J_2 = N^{1/24}\).
+
+## Phase 2: review pass
+
+Adversarial re-derivation of every step (record in the working
+document). All estimates re-derived with constants; three
+presentational repairs (exact moving-endpoint split replacing
+smooth-weight partial summation; majorant-product bookkeeping;
+half-integer mode coefficients). The delicate smooth cancellation was
+pinned to its exact constant: \(A_h'' \to \tfrac{81}{256} jh^2
+n^{-7/4}\), and the scaled-integer validator
+`smooth_cancellation_check` returns \(0.3164 = 81/256\) across
+\(n = 10^4\) to \(10^8\). No step failed. Ledger rows
+`J-nested-parity-linearization` and `J-nested-parity-discrepancy`
+added; `depth2_analytic_lemma_proved` flipped to `True`. Ambient
+counting only: not an orbit transfer, not a frequency theorem along
+trajectories, not a termination claim.
 
 ## Results
 
@@ -180,12 +193,11 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-Review Theorem C (the drafted proof) at the rigor level applied to
-Theorem 5.1; only then import into the note and ledger. After that:
-the depth-4 extension via the decaying-amplitude identity
+The depth-4 extension via the decaying-amplitude identity
 \(m^{3/4} = \tfrac34 m n^{-3/8} + \tfrac14 n^{9/8} + O(n^{-15/8})\),
 targeting the OOEE density \(1/16 + o(1)\) and a certified descent
-class of density \(13/16\).
+class of density \(13/16\). Separately, the editorial import of
+Theorem C into the finite-dynamics note.
 
 ## Decision
 
@@ -197,16 +209,27 @@ converges to the product density with envelope exponents
 obstruction dissolved under the exact linearization (Lemma A), the
 supporting cell structure is exact (Lemma B), and a complete draft
 proof of the depth-2 power saving \(N^{23/24+\varepsilon}\)
-(Theorem C) is written with explicit exponent bookkeeping. What is
-promoted is the draft, not a ledger row: the next phase is the
-dedicated review pass, and only after it survives do the note import,
-the ledger row, and the depth-4 extension (OOEE density, certified
-class \(13/16\)) open.
+(Theorem C) was written with explicit exponent bookkeeping.
 
-Best next question: does Theorem C survive a dedicated review pass at
-the rigor level applied to Theorem 5.1?
+**PROMOTE** (Phase 2, review pass): every step of Theorem C
+re-derived adversarially; the one delicate cancellation confirmed to
+its exact constant \(81/256\); three presentational repairs applied;
+ledger rows added and the module flag flipped. The theorem is
+settled at project standard. Two follow-on phases open and stay
+separate: the note import (editorial), and the depth-4 extension
+(OOEE density \(1/16\), certified descent class \(13/16\)) via the
+decaying-amplitude identity.
+
+Best next question: does the depth-4 extension close — i.e., do the
+linearizations at \(m^{3/4}\)-scale and the same cell machinery give
+\(\#\mathrm{OOEE}(N) = N/16 + O(N^{1-\delta})\), lifting the
+certified descent class to density \(13/16\)?
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. A clean census supporting a concrete analytic
-target; no theorem yet, not a paper candidate.
+Status: `THEOREM`. An exact linearization lemma and a power-saving
+joint-parity discrepancy bound for a nested floor-power sequence,
+outside the existing Piatetski-Shapiro literature, plus the census.
+Import into the finite-dynamics note is a pending editorial phase;
+after the depth-4 extension this material strengthens the paper's
+Section 5 (certified density above \(3/4\)).

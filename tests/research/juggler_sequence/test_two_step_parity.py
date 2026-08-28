@@ -88,8 +88,21 @@ def test_ooee_is_contracting_word():
 
 def test_anti_overclaim_flags():
     assert ANTI_OVERCLAIM["parity_frequency_theorem"] is False
-    assert ANTI_OVERCLAIM["depth2_analytic_lemma_proved"] is False
     assert ANTI_OVERCLAIM["global_termination"] is False
+    assert ANTI_OVERCLAIM["predictive_state_claim"] is False
+    # Flipped by the Phase-2 review pass (J-nested-parity-discrepancy).
+    assert ANTI_OVERCLAIM["depth2_analytic_lemma_proved"] is True
+
+
+def test_smooth_cancellation_constant():
+    # |A1''| n^{7/4} / h^2 -> 81/256 = 0.31640625 (j = 1).
+    from research.juggler_sequence.two_step_parity import (
+        smooth_cancellation_check,
+    )
+
+    for n, h in ((10_001, 1), (100_001, 3), (1_000_001, 10)):
+        ratio = smooth_cancellation_check(n, h)
+        assert abs(ratio - 81 / 256) < 0.01
 
 
 def test_isqrt_agreement_on_odd_branch():

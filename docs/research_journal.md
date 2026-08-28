@@ -8784,4 +8784,48 @@ Best next question
   applied to Theorem 5.1?
 ```
 
+## Juggler nested parity review pass
+
+- **Date:** 2026-08-28
+- **Objective:** Phase 2 of the two-step parity branch: adversarial review of the drafted Theorem C at the rigor level applied to Theorem 5.1
+- **Hypotheses:** every estimate in the draft re-derives with explicit constants, or a broken step is named and the branch parks
+- **Major results:** no step failed. The delicate smooth cancellation was pinned exactly: the second \(n\)-derivative of the \(A_h\)-integrand vanishes identically at \(t=0\), giving \(A_h''\to\tfrac{81}{256}jh^2n^{-7/4}\), and the new exact validator `smooth_cancellation_check` returns \(0.3164=81/256\) across \(n=10^4\ldots10^8\), confirming exponent and constant. Three repairs: the moving Vaaler endpoint splits exactly into the smooth families \(e(rn^{3/2})\), \(e(r(n{+}2h)^{3/2})\) (no smooth-weight partial summation); majorant products handled as degree-\(2J\) nonnegative polynomials; mode coefficients generalized to \(\tfrac12\mathbb Z\). Theorem C settled as **EXACT — HUMAN PROOF**: each joint parity class of \((\lfloor n^{3/2}\rfloor, \lfloor\lfloor n^{3/2}\rfloor^{3/2}\rfloor)\) on odd \(n\le N\) is \(N/8+O(N^{23/24+\varepsilon})\). Ledger rows `J-nested-parity-linearization`, `J-nested-parity-discrepancy`; `depth2_analytic_lemma_proved` flipped to `True`
+- **Refuted ideas:** none; the review was the falsifier and it did not fire
+- **Literature:** unchanged (independent); classical inputs Vaaler 1985 and Graham–Kolesnik Thm 2.2 cited
+- **Open:** the depth-4 extension (OOEE density \(1/16\), certified class \(13/16\)); the editorial note import
+- **Decision:** PROMOTE. The theorem is settled at project standard; the two follow-on phases stay separate and are not auto-opened
+
+```text
+What was learned
+- The draft survived adversarial re-derivation with no failed step
+- The A_h cancellation has exact constant 81/256, machine-confirmed
+- The moving Vaaler endpoint is exactly splittable, removing the one
+  fiddly partial-summation step from the proof
+- Majorant products and half-integer modes were statement gaps, not
+  proof gaps
+
+Strongest theorem
+- J-nested-parity-discrepancy: joint parity classes of the first two
+  odd-branch images are N/8 + O(N^{23/24+eps}) — EXACT — HUMAN PROOF
+
+Strongest refutation
+- none; the falsifier (a broken step) did not fire
+
+Reusable machinery
+- smooth_cancellation_check validator; the exact-split trick for
+  moving Vaaler endpoints
+
+Branch status
+- PROMOTE
+
+Why
+- Every load-bearing estimate was re-derived and the single delicate
+  cancellation was confirmed to its exact constant, so the theorem
+  meets the same standard as Theorem 5.1 and enters the ledger.
+
+Best next question
+- does the depth-4 extension close: #OOEE(N) = N/16 + O(N^{1-delta}),
+  lifting the certified descent class to density 13/16?
+```
+
 

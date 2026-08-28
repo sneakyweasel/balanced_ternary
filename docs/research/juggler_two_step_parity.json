@@ -115,6 +115,6 @@
     "predictive_state_claim": false,
     "reopen_landing_theta": false,
     "reopen_2adic_bridge": false,
-    "depth2_analytic_lemma_proved": false
+    "depth2_analytic_lemma_proved": true
   }
 }

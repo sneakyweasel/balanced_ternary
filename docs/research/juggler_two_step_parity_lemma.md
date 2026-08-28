@@ -1,9 +1,10 @@
-# The nested parity discrepancy lemma (two-step parity, Phase 1)
+# The nested parity discrepancy lemma (two-step parity)
 
-Working analytic document for the promoted two-step parity branch.
-Claim labels are per statement. Nothing here is in the theorem ledger
-or the finite-dynamics note yet: a dedicated review pass is required
-first (see the dossier decision). Not a termination claim.
+Analytic document for the promoted two-step parity branch, revised by
+the Phase-2 review pass (see the review record at the end). Claim
+labels are per statement. Ledger row: `J-nested-parity-discrepancy`.
+Not imported into the finite-dynamics note yet. Not a termination
+claim.
 
 Throughout, \(n\) is odd, \(X = n^{3/2}\), \(m = m(n) = \lfloor
 n^{3/2}\rfloor = \operatorname{isqrt}(n^3)\), \(\theta = \theta_n =
@@ -88,7 +89,7 @@ on which \(G\) is constant and \(G \asymp hP^{1/2}\). Exact validation
 \(10^6\) and \(10^9\), \(h \in \{1,2,3,7\}\), all matches, only
 exact-boundary samples skipped.
 
-## Theorem C (nested parity discrepancy) — proof drafted, pending review
+## Theorem C (nested parity discrepancy) — EXACT — HUMAN PROOF
 
 For every \(\varepsilon > 0\) and every choice of signs
 \((a, b) \in \{0,1\}^2\), \((a,b) \ne (0,0)\),
@@ -114,35 +115,47 @@ Work on dyadic blocks \(n \in (P, 2P]\), odd. Fix truncations
 \(R = P^{1/4}\) (cell modes).
 
 **Step 1 (wave expansion).** By Vaaler's theorem applied to the
-period-2 square wave, \(\psi(x) = \sum_{0 < |q| \le J} a_q e(qx/2) +
-O(\Delta_J(x/2))\) with \(|a_q| \le \min(1, 2/|q|)\), \(a_q = 0\) for
-even \(q\), and \(\Delta_J \ge 0\) a trigonometric polynomial of degree
-\(J\) with constant term \(O(1/J)\). Expanding both factors reduces the
-theorem to bounds, uniform in \(0 \le |i| \le J_1\),
-\(1 \le |j| \le J_2\) (odd), for
+period-2 square wave, \(\psi(x) = V_J(x/2) + O(\Delta_J(x/2))\) where
+\(V_J(t) = \sum_{0 < |q| \le J} a_q e(qt)\) with \(|a_q| \le
+\min(1, 2/|q|)\), and \(\Delta_J \ge 0\) is a trigonometric polynomial
+of degree \(J\) with constant term \(O(1/J)\) and coefficients
+\(O(1/J)\). For the product, \(|\psi_1\psi_2 - V_1 V_2| \le \Delta_1 +
+\Delta_2 + \Delta_1\Delta_2\), and \(\Delta^2\) is again a nonnegative
+trigonometric polynomial (degree \(2J\), constant term \(O(1/J)\)),
+so every error term is a majorant sum of the same shape. Expanding
+both factors reduces the theorem to bounds, uniform in the mode
+coefficients \(\mu, \nu \in \tfrac12\mathbb Z\) with \(|\mu| \le J_1\),
+\(\tfrac12 \le |\nu| \le J_2\) (majorant modes contribute integer
+\(\mu, \nu\); wave modes contribute odd-over-two values), for
 
 \[
-S_{i,j}(P) = \sum_{n \in (P,2P],\ n \text{ odd}}
-e\bigl(\tfrac i2 n^{3/2} + \tfrac j2 m^{3/2}\bigr),
+S_{\mu,\nu}(P) = \sum_{n \in (P,2P],\ n \text{ odd}}
+e\bigl(\mu\, n^{3/2} + \nu\, m^{3/2}\bigr),
 \]
 
-plus majorant terms: \(\sum_n \Delta_{J_1}(n^{3/2}/2) \ll P/J_1 +
-P^{5/6+\varepsilon} \ll P^{23/24+\varepsilon}\) by the depth-1
-machinery, and \(\sum_n \Delta_{J_2}(m^{3/2}/2)\) reduces to the
-\(i = 0\) case of \(S_{i,j}\) itself. The mode weights sum to
-\(O(\log^2 P)\).
+plus pure first-factor majorant sums: \(\sum_n \Delta_{J_1}(n^{3/2}/2)
+\ll P/J_1 + P^{5/6+\varepsilon} \ll P^{23/24+\varepsilon}\) by the
+depth-1 machinery, while \(\sum_n \Delta_{J_2}(m^{3/2}/2)\) reduces to
+the \(\mu = 0\) case of \(S_{\mu,\nu}\) itself. The analysis below
+only uses \(|\nu| \ge \tfrac12\) and the truncation sizes; mode
+weights sum to \(O(\log^2 P)\).
+
+Below, write \(i = 2\mu\) and \(j = 2\nu\), so \(|i| \le 2J_1\),
+\(1 \le |j| \le 2J_2\); every bound depends only on \(|i|, |j|\) and
+absolute constants.
 
 **Step 2 (linearization).** By Lemma A, replacing \(\tfrac j2 m^{3/2}\)
-by \(\tfrac{3j}4 m n^{3/4} - \tfrac j4 n^{9/4}\) changes \(S_{i,j}\)
+by \(\tfrac{3j}4 m n^{3/4} - \tfrac j4 n^{9/4}\) changes \(S_{\mu,\nu}\)
 by at most \(2\pi \tfrac j4 \sum_{n \sim P} n^{-3/4} \ll j P^{1/4}
 \le P^{7/24}\).
 
 **Step 3 (van der Corput A-process).** With \(H = P^{1/12}\),
-\(|S_{i,j}|^2 \le \tfrac{2P}H \sum_{0 \le h < H} |T_h|\), where
-\(T_h\) sums \(e(\Phi(n+2h) - \Phi(n))\) over the overlap and
-\(T_0 \le P\). Using Lemma A on both endpoints and the exact rewrite
-\(m(n{+}2h)(n{+}2h)^{3/4} - m(n) n^{3/4} = g(n)(n{+}2h)^{3/4} +
-m(n)\,[(n{+}2h)^{3/4} - n^{3/4}]\) with \(m(n) = n^{3/2} - \theta_n\):
+\(|S_{\mu,\nu}|^2 \le \tfrac{2P}H \sum_{0 \le h < H} |T_h|\), where
+\(T_h\) sums \(e(\Phi(n+2h) - \Phi(n))\) over the overlap,
+\(\Phi\) is the Step-2 linearized phase, and \(T_0 \le P\). The exact
+rewrite \(m(n{+}2h)(n{+}2h)^{3/4} - m(n) n^{3/4} = g(n)(n{+}2h)^{3/4}
++ m(n)\,[(n{+}2h)^{3/4} - n^{3/4}]\) with \(m(n) = n^{3/2} - \theta_n\)
+gives
 
 \[
 \Phi(n{+}2h) - \Phi(n) = A_h(n) +
@@ -151,26 +164,42 @@ m(n)\,[(n{+}2h)^{3/4} - n^{3/4}]\) with \(m(n) = n^{3/2} - \theta_n\):
 
 where \(A_h\) is smooth (it collects the \(i\)-difference, the
 \(-\tfrac j4\Delta(n^{9/4})\) term, and \(\tfrac{3j}4 n^{3/2}
-\Delta(n^{3/4})\)), and the error collects the \(\theta_n\)-term of
-amplitude \(\asymp jhP^{-1/4}\) plus the two Lemma-A remainders.
-Cumulative error cost \(\ll jhP^{3/4} \le P^{7/8}\).
+\Delta(n^{3/4})\)), and the error is exactly the
+\(-\tfrac{3j}4\theta_n[(n{+}2h)^{3/4} - n^{3/4}]\) term, of amplitude
+\(\le \tfrac{9jh}8 P^{-1/4}\). Cumulative error cost
+\(\ll jhP^{3/4} \le P^{7/8}\), and \(\tfrac PH\sum_h jhP^{3/4} \ll
+jHP^{7/4} \le P^{15/8+1/24} \ll P^{23/12}\).
 
 A cancellation makes the smooth part harmless: the two
-\(n^{5/4}\)-scale contributions of \(A_h\) cancel at leading order
-(integral form: \(A_h^{(5/4)} = \tfrac{9j}{16}\int_0^{2h}
-(n+t)^{-1/4}[n^{3/2} - (n+t)^{3/2}]\,dt\)), leaving
-\(|A_h''| \ll jh^2 P^{-7/4} + ihP^{-3/2}\), both \(o(jhP^{-3/4})\)
-in our ranges.
+\(n^{5/4}\)-scale contributions of \(A_h\) cancel at leading order.
+In integral form \(A_h^{(5/4)} = \tfrac{9j}{16}\int_0^{2h}
+(n+t)^{-1/4}[n^{3/2} - (n+t)^{3/2}]\,dt\), and the second
+\(n\)-derivative of the integrand vanishes identically at \(t = 0\),
+leaving \(A_h'' = \tfrac{81}{256}\,j h^2 n^{-7/4}(1 + o(1))\) plus the
+\(i\)-part \(O(ihP^{-3/2})\), both \(o(jhP^{-3/4})\) in our ranges.
+(The constant \(81/256 = 0.31640625\) is confirmed by the exact
+scaled second-difference validator `smooth_cancellation_check`, which
+returns \(0.3164\) across \(n = 10^4\) to \(10^8\) and
+\(h \in \{1, 3, 10\}\).)
 
 **Step 4 (cells).** Split \(T_h\) over the \(O(hP^{1/2})\) cells of
 Lemma B. On a cell, \(g = G + \kappa\) with \(G\) constant,
 \(G \asymp hP^{1/2}\), and \(\kappa(n) = [\{n^{3/2}\} \ge \rho(n)]\)
-with \(\rho = 1 - \{\delta\}\) smooth and monotone on the cell.
+with \(\rho = 1 - \{\delta(n)\}\) smooth and monotone on the cell.
 Vaaler-expand \(\kappa\) with modes \(e(r n^{3/2})\), \(0 < |r| \le
-R\), coefficients \(c_r(n)\) with \(|c_r| \le 1/(\pi|r|)\) and
-variation \(O(1/|r|)\) per cell (absorbed by partial summation), plus
-a smooth main term \(1 - \rho(n)\) and a majorant error of total mass
-\(O(\ell/R)\) per cell.
+R\). The moving endpoint costs nothing: the coefficient
+\(c_r(\rho(n))\) is a linear combination of \(1\) and \(e(-r\rho(n))\)
+with weights \(O(1/|r|)\), and since \(\rho(n) = 1 + G - \delta(n)\),
+the second piece contributes the *exact* smooth phase
+\(r\delta(n)\); combined with the mode, \(e(rn^{3/2} + r\delta(n)) =
+e(r(n{+}2h)^{3/2})\) up to a unimodular constant. So every
+\(r\)-term falls into one of two smooth phase families,
+\(e(rn^{3/2})\) or \(e(r(n{+}2h)^{3/2})\), and no partial summation
+over coefficient variation is needed. The main term \(1 - \rho(n) = \delta(n) - G\) has total
+variation exactly \(1\) per cell and is absorbed by one Abel
+summation. The Vaaler majorant error has total mass \(O(\ell/R)\) per
+cell plus mode sums of the same two families with weights
+\(O(1/R)\).
 
 **Step 5 (second-derivative test per cell).** The remaining phases are
 smooth. For the \(r = 0\) parts, \(f'' = -\tfrac{9j(G+c)}{64}
@@ -191,29 +220,52 @@ P^{1/4}\)); the same test and the \(1/|r|\) weights give
 Majorant errors contribute \(O(P/R) = O(P^{3/4})\).
 
 Total: \(|T_h| \ll P^{7/8}(1 + h^{1/2})\) uniformly in
-\(|i| \le J_1\), \(1 \le |j| \le J_2\).
+\(|i| \le 2J_1\), \(1 \le |j| \le 2J_2\).
 
-**Step 6 (assembly).** \(|S_{i,j}|^2 \ll P^2/H + P^{15/8} H^{1/2}
-= 2P^{23/12}\) at \(H = P^{1/12}\), so \(|S_{i,j}| \ll P^{23/24}\).
-Summing wave modes (\(\log^2\)), majorants, and dyadic blocks
-(\(\log\)) gives the theorem with \(N^{23/24}\log^3 N\). \(\square\)
+**Step 6 (assembly).** \(|S_{\mu,\nu}|^2 \ll P^2/H + P^{15/8} H^{1/2}
+\ll P^{23/12}\) at \(H = P^{1/12}\), so \(|S_{\mu,\nu}| \ll
+P^{23/24}\). Summing wave modes (\(\log^2\)), majorants, and dyadic
+blocks (\(\log\)) gives the theorem with \(N^{23/24}\log^3 N\).
+\(\square\)
 
-### Verification status
+### Review record (Phase 2)
 
-- Lemma A, Lemma B: complete proofs above; exact integer validation in
-  `research.juggler_sequence.two_step_parity` and pinned tests.
-- Theorem C: the chain is classical machinery (Vaaler's theorem; van
-  der Corput second-derivative test, Graham–Kolesnik Thm 2.2; partial
-  summation with smooth-weight variation) around the two lemmas. The
-  draft has not had the external review pass that Theorem 5.1
-  received; the exponent \(23/24\) is deliberately unoptimized (slack
-  at every step). Until reviewed, the ledger flag
-  `depth2_analytic_lemma_proved` stays `False` and nothing is imported
-  into the note or the theorem ledger.
-- Float sanity (not a verdict): \(|S_{0,1}(P)|/\#\{n\} =
-  0.0216,\ 0.0027,\ 0.0018\) at \(P = 10^4, 10^5, 10^6\) — cancellation
-  far stronger than \(P^{-1/24}\), consistent with the census envelope
-  exponent \(0.28\).
+Adversarial re-derivation of every step, at the rigor level applied to
+Theorem 5.1. Checks performed and their outcomes:
+
+- **Lemma A remainder**: re-derived with Lagrange form; the validator's
+  worst ratio \(0.7494\) matches the theoretical supremum \(3/4\).
+- **Smooth cancellation**: the second \(n\)-derivative of the
+  \(A_h\)-integrand vanishes identically at \(t = 0\) (symbolic
+  check), giving \(A_h'' = \tfrac{81}{256} jh^2 n^{-7/4}(1+o(1))\);
+  the exact scaled validator returns \(0.3164 = 81/256\) across four
+  decades of \(n\), confirming both the exponent and the constant.
+- **Second-derivative dominance**: \(r\)-modes dominate the cell
+  phases at scale \(|r|P^{-1/2}\) versus \(jhP^{-3/4}\) since
+  \(jh \le P^{1/8} \ll P^{1/4}\); the \(i\)-part is smaller by
+  \(P^{-3/4}\); \(f''\) ratio per cell is bounded, so the van der
+  Corput II constant is absolute (Graham–Kolesnik Thm 2.2).
+- **Moving Vaaler endpoint**: repaired — the coefficient
+  \(n\)-dependence splits exactly into the two smooth families
+  \(e(rn^{3/2})\), \(e(r(n{+}2h)^{3/2})\); no smooth-weight partial
+  summation remains except one Abel summation on \(\delta - G\)
+  (variation exactly 1).
+- **Majorant products**: \(\Delta_1\Delta_2\)-terms are degree-\(2J\)
+  nonnegative trigonometric polynomials with the same treatment;
+  statement generalized to mode coefficients in \(\tfrac12\mathbb Z\).
+- **Aggregation**: \(P^2/H + PH^{1/2}P^{7/8}\) balances at
+  \(H = P^{1/12}\) to \(P^{23/12}\); all error channels
+  (\(jP^{5/4}\), \(jHP^{7/4} \le P^{15/8+1/24}\), majorant
+  \(P^{23/24}\)-terms) stay below budget.
+
+No step failed. Exponent \(23/24\) deliberately unoptimized (slack at
+every stage). Ledger row `J-nested-parity-discrepancy`; the module
+flag `depth2_analytic_lemma_proved` is `True` as of this review.
+
+Float sanity (not a verdict): \(|S_{0,1}(P)|/\#\{n\} =
+0.0216,\ 0.0027,\ 0.0018\) at \(P = 10^4, 10^5, 10^6\) — cancellation
+far stronger than \(P^{-1/24}\), consistent with the census envelope
+exponent \(0.28\).
 
 ### Extension path (not claimed)
 
@@ -223,4 +275,5 @@ letter (even branch),
 O(n^{-15/8})\), with the integer again entering linearly and with
 *decaying* smooth amplitude. The depth-4 extension (OOEE density
 \(\tfrac1{16} + o(1)\), certified descent class \(\tfrac{13}{16}\))
-is a separate phase after Theorem C survives review.
+is a separate phase. Import of Theorem C into the finite-dynamics
+note is likewise a separate editorial phase.

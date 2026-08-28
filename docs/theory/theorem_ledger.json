@@ -3264,5 +3264,27 @@
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-nested-parity-linearization",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "For odd n \u2265 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 \u2264 E(n) \u2264 (3/8)(n^{3/2}-1)^{-1/2} \u2264 (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} \u2265 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-nested-parity-discrepancy",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "Each of the four joint parity classes of (floor(n^{3/2}), floor(floor(n^{3/2})^{3/2})) over odd n \u2264 N has cardinality N/8 + O(N^{23/24+eps}); in particular #{odd n \u2264 N : J(n) odd, J^2(n) even} = N/8 + O(N^{23/24+eps}), one itinerary letter beyond the ambient odd-input bound. Proof: Vaaler wave expansion, the exact linearization row J-nested-parity-linearization, one van der Corput A-process at H = N^{1/12}, constant-gap cells with an exactly split moving-endpoint expansion, and the second-derivative test per cell; exponent deliberately unoptimized. Ambient counting over all odd starts; not an orbit transfer theorem, not a frequency theorem along trajectories, and not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]

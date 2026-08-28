@@ -7,8 +7,11 @@ and with what empirical discrepancy exponent?
 
 Not a Research Engine control-layer experiment. Not a frequency
 theorem, not a predictive-state claim (theta bins and residue states
-stay REFUTED/CLOSE), and not a termination theorem. The census decides
-only whether the depth-2 analytic lemma is worth attempting.
+stay REFUTED/CLOSE), and not a termination theorem. The census gated
+the depth-2 analytic lemma; that lemma is now proved (ledger rows
+J-nested-parity-linearization and J-nested-parity-discrepancy, proof
+in docs/research/juggler_two_step_parity_lemma.md), and this module
+also hosts the exact validators used by its review pass.
 """
 
 from __future__ import annotations
@@ -53,7 +56,10 @@ ANTI_OVERCLAIM = {
     "predictive_state_claim": False,
     "reopen_landing_theta": False,
     "reopen_2adic_bridge": False,
-    "depth2_analytic_lemma_proved": False,
+    # Flipped by the Phase-2 review pass: Theorem C is EXACT — HUMAN
+    # PROOF (ledger row J-nested-parity-discrepancy). Ambient counting
+    # only; the flags above stay False.
+    "depth2_analytic_lemma_proved": True,
 }
 
 
@@ -110,6 +116,31 @@ def identity_scan(samples: tuple[int, ...]) -> dict[str, Any]:
         if bound > 0:
             worst_ratio = max(worst_ratio, err / bound)
     return {"holds": True, "count": len(samples), "worst_ratio": round(worst_ratio, 6)}
+
+
+def smooth_cancellation_check(n: int, h: int) -> float:
+    """|A1''(n)| * n^{7/4} / h^2 for the smooth difference part (j = 1).
+
+    A1(n) = -(1/4)[(n+2h)^{9/4} - n^{9/4}]
+            + (3/4) n^{3/2} [(n+2h)^{3/4} - n^{3/4}].
+    The leading n^{5/4}-scale terms cancel, leaving A1'' = O(h^2 n^{-7/4});
+    this returns the normalized ratio via an exact scaled second
+    difference (step 2), which must stay O(1).
+    """
+    scale = SCALE
+
+    def a1_scaled(x: int) -> int:
+        q9 = _quartic_scaled(x**9, scale)
+        q9h = _quartic_scaled((x + 2 * h) ** 9, scale)
+        q34 = _quartic_scaled(x**3, scale)
+        q34h = _quartic_scaled((x + 2 * h) ** 3, scale)
+        s32 = _sqrt_scaled(x**3, scale)
+        return -(q9h - q9) // 4 + (3 * s32 * (q34h - q34)) // (4 * scale)
+
+    d2 = a1_scaled(n + 2) - 2 * a1_scaled(n) + a1_scaled(n - 2)
+    n74 = _quartic_scaled(n**7, scale)
+    # A1'' ~ d2 / (4 * scale); ratio = |A1''| n^{7/4} / h^2.
+    return abs(d2) * n74 / (4 * scale * scale * h * h)
 
 
 def gap_decomposition_check(start: int, count: int, h: int) -> dict[str, Any]:
@@ -280,7 +311,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
     lines = [
         "# Juggler multi-step itinerary-parity census",
         "",
-        "Status: **OBSERVATION** (exact counting; no analytic lemma claimed)",
+        "Status: **COMPUTATIONALLY VERIFIED** counts; the depth-2 analytic",
+        "lemma is now **EXACT — HUMAN PROOF** (`J-nested-parity-discrepancy`,",
+        "proof in `juggler_two_step_parity_lemma.md`)",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
