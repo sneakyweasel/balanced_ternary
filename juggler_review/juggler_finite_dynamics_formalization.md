@@ -338,8 +338,17 @@ cycleMin_not_end_odd
 cycleMin_prefix_ooo_even_sqrt_ne
 ```
 
-They constrain a minimum-based orientation. The two length-six
-orientations considered in the note are then excluded separately:
+They constrain a minimum-based orientation. The note's Section 3
+motivation cites the threshold eliminations of the other expanding
+even-terminating length-six candidates:
+
+```text
+no_cycleMin_oeoooe
+no_cycleMin_ooeooe
+no_cycle_odd_run_append_even
+```
+
+The two surviving orientations are then excluded separately:
 
 ```text
 no_cycle_word_oooeoe

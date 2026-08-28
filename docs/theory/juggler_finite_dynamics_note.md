@@ -104,6 +104,7 @@ The identities in this section are formalized in Lean
 `image_monotone_of_follows`, `power_bound_word`,
 `power_bound_contracts`, `global_defect_identity`,
 `global_defect_eq_zero_iff_localsTight`, `global_defect_append`,
+`global_defect_eq_zero_implies_monochrome`,
 `power_bound_eq_iff_extremal`). The proofs below are the ordinary
 integer arguments.
 
@@ -361,9 +362,6 @@ the path to any later even state is superquadratic
 (\(9>8\)) but not superquadratic (\(9<16\)), so it cannot carry the
 minimum to square scale.
 
-These are necessary restrictions, not an exclusion of every nontrivial
-cycle.
-
 *Proof.* For (i), Theorem 2.2 applied to a cycle endpoint gives
 \(n^{2^{|w|}}\le n^{3^{\#O(w)}}\). Since \(n\ge2\), comparison of
 exponents gives \(2^{|w|}\le3^{\#O(w)}\); equality is impossible because
@@ -392,9 +390,20 @@ successor is at least \(n\). Thus \(n\le J(y)=\lfloor\sqrt y\rfloor\),
 so \(n^2\le y\), and the preceding argument applies to that prefix.
 \(\square\)
 
-The two length-six orientations considered here are nevertheless
-impossible. The argument uses the last-even cell together
-with a coarse lower envelope. For \(n\ge1\),
+Two length-six orientations are nevertheless impossible, and they are
+not an arbitrary pair. In a minimum-based orientation, Theorem 3.1
+forces a length-six cycle word to start odd, end even, and be formally
+expanding; that leaves \(OEOOOE\), \(OOEOOE\), \(OOOEOE\), \(OOOOEE\),
+and \(OOOOOE\). The first fails the superquadratic test of
+Theorem 3.1(iii), and the accompanying Lean development eliminates
+\(OOEOOE\) and \(OOOOOE\) by odd-run and internal-even threshold
+arguments (`no_cycleMin_ooeooe`, `no_cycle_odd_run_append_even`) not
+reproduced here. \(OOOEOE\) and \(OOOOEE\) are the two survivors of
+that elimination and require an individual argument, which uses the
+last-even cell together with a coarse lower envelope. No census of all
+length-six words, or of all cycles, is claimed.
+
+For \(n\ge1\),
 \[
 n<4\,\lfloor\sqrt n\rfloor^2,
 \]
@@ -413,7 +422,6 @@ in an even letter, the last-even cell is
 
 **Theorem 3.2 (two length-six exclusions).**
 Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle word at any \(n\ge2\).
-This is not an exclusion of every length-six word, nor of every cycle.
 
 *Proof.* First, if \(n\ge256\), then
 \[
@@ -460,6 +468,13 @@ of the same predicate, not four different claims. The predicate is
 existential over all finite words, not only over words of length one or
 two.
 
+The theorems in this section are formalized in Lean
+(`even_finiteProgress`, `odd_even_finiteProgress`,
+`unresolved_is_odd_odd`, `reachesOne_of_all_finiteProgress`,
+`reachesOne_of_lt_twelve`, `even_lt_sq_twelve_reachesOne`). The proofs
+below are the ordinary integer arguments. Proposition 4.4 is the exact
+census of Section 1.1, not a Lean theorem.
+
 **Theorem 4.1 (uniform short certificates).**
 Let \(n\ge2\).
 
@@ -468,9 +483,20 @@ Let \(n\ge2\).
 2. If \(n\) is odd and \(J(n)\) is even, then the two-letter word \(OE\)
    is a descent certificate.
 
+*Proof.* For (1), \(\lfloor\sqrt n\rfloor\le\sqrt n<n\) for \(n\ge2\).
+For (2), the word \(OE\) is realized by hypothesis, and
+\[
+J^2(n)=\bigl\lfloor\sqrt{\lfloor n^{3/2}\rfloor}\bigr\rfloor
+\le n^{3/4}<n
+\]
+for \(n\ge2\). \(\square\)
+
 **Theorem 4.2 (unresolved starts are odd-to-odd).**
 If \(n\ge2\) has no descent certificate, then \(n\) is odd and \(J(n)\)
 is odd.
+
+*Proof.* Contrapositive of Theorem 4.1: an even start and an
+odd-to-even start each carry a short certificate. \(\square\)
 
 The converse is false: many odd-to-odd starts descend after a longer
 word.
@@ -481,15 +507,24 @@ The hypothesis is not proved. A certificate at \(n\) only reduces the
 problem to a strictly smaller positive integer, which may itself be
 odd-to-odd.
 
-Lean also certifies a finite landing class
-(`reachesOne_of_lt_twelve`, `even_lt_sq_twelve_reachesOne`):
+Lean also certifies a finite landing class:
 
 **Theorem 4.3 (small residuals).**
 Every \(y\in\{1,\ldots,11\}\) reaches \(1\). Consequently every even
 residual strictly below \(144=12^2\) reaches \(1\).
 
+*Proof.* The orbits are finite and merge quickly:
+\(2\to1\), \(4\to2\), \(6\to2\), \(8\to2\),
+\(3\to5\to11\to36\to6\), \(7\to18\to4\),
+\(9\to27\to140\to11\), and \(10\to3\). Each chain ends on a start
+already settled, so every \(y\le11\) reaches \(1\). For the second claim, an even
+\(y<144\) has \(J(y)=\lfloor\sqrt y\rfloor\le11\), which lands in the
+verified set. (Lean evaluates the same finite orbits in
+`reachesOne_of_lt_twelve` and `even_lt_sq_twelve_reachesOne`.)
+\(\square\)
+
 This enlarges the set of fatal landings for a hypothetical minimal
-counterexample. It does not prove that every even start reaches \(1\).
+counterexample.
 
 On the complementary odd-to-odd class, first return below the start is
 frequent at a short horizon, but not automatic.
@@ -596,10 +631,9 @@ block \(g''(r)\asymp M^{-1/2}\). For the \(h\)-th Fourier mode take
 Lemma 5.B, with \(R\asymp M\), bounds that block's contribution to
 \(S_O(N)\) by
 \[
-\text{block contribution}\ll
-\frac{M}{H}+M^{3/4}H^{1/2}+M^{1/4}
+\frac{M}{H}+M^{3/4}H^{1/2}+M^{1/4}.
 \]
-on that block: the middle term is
+Here the middle term is
 \(\sum_{h\le H}h^{-1}\cdot h^{1/2}M^{3/4}\ll M^{3/4}H^{1/2}\), and the
 last term is
 \(\sum_{h\le H}h^{-1}\cdot h^{-1/2}M^{1/4}\ll M^{1/4}\).
@@ -627,8 +661,9 @@ The exact census through \(N=10^7\) has
 \(\operatorname{OO}(N)/N=0.2499896\). Through \(N=10^6\) one has
 \(S_O(N)=146\) and running maximum \(256\), at \(n=985351\). A spot
 computation at \(10^7\) has running maximum \(459\). The observed growth
-is much smaller than \(N^{5/6}\). The descriptive \(N^{1/3}\)-scale
-envelope is not promoted to a theorem.
+is much smaller than \(N^{5/6}\): the recorded maxima at \(10^6\) and
+\(10^7\) sit near the scale \(N^{1/3}\). That empirical scale is an
+observation, not a theorem.
 
 Theorem 5.1 concerns consecutive source intervals. It supplies no transfer
 theorem for orbit samples or sparse image sets, so it cannot by itself

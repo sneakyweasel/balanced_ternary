@@ -41,4 +41,5 @@ def test_note_records_theorem_32_without_open_gap():
     assert "remain open" not in note
     assert "OOOEOE" in note
     assert "OOOOEE" in note
-    assert "not an exclusion of every length-six word" in note
+    flat = " ".join(note.split())
+    assert "No census of all length-six words, or of all cycles, is claimed." in flat
