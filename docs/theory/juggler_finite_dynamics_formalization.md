@@ -428,6 +428,11 @@ floor_gap_eq_carry :
     if 1 - Int.fract δ ≤ Int.fract x then 1 else 0
 
 seq_floor_gap : (the same identity along any sequence Y : ℕ → ℝ)
+
+seq_floor_gap_second : (the double-gap identity: the second
+  difference of the level-2 gap is the floor of the double increment
+  plus a 0/1 carry plus the difference of two Lemma-N carries; two
+  composed instances of seq_floor_gap)
 ```
 
 The first is the parity bridge that converts parity sums into interval

@@ -9154,3 +9154,90 @@ Best next question
 ```
 
 
+## Juggler kernel attack: a double-differencing draft proof of Conjecture 6.2 (Phase 8)
+
+Target: the kernel K_c(P) = sum over odd n ~ P of e(c(n) theta_2),
+theta_2 = {floor(n^{3/2})^{3/2}}, c ~ k P^{9/8}, c' ~ k P^{1/8} -
+the single remaining obstruction of the two-step parity branch
+(Conjecture O / note Conjecture 6.2).
+
+Result: a complete DRAFT proof of K_c << P^{1-delta+eps} (Theorem R,
+working doc Part VI), delta = 1/64 for bounded k and 1/72 uniformly
+for k <= P^{1/24}. The route evades both recorded Phase-5 walls,
+which differenced sub-organizations of the OOO* phase; here the
+whole phase c*theta_2 is Weyl-differenced twice, and three exact
+mechanisms remove every full-size sawtooth coefficient:
+
+- level-2 numerology: Y'' ~ P^{1/4} >> 1 > P^{-3/4} ~ Y''' - one
+  differencing leaves the level-2 gap content unfrozen, a second
+  freezes it (one extra differencing per unit of derivative growth);
+- the exact double-gap identity D2 g2 = floor(D2 D1 Y) + kappa'' +
+  D2 kappa_2 (Lemma R2; Lean `seq_floor_gap_second`, two composed
+  instances of `seq_floor_gap`, built clean), with every carry a
+  difference of unit sawtooths {A}+{B}-{A+B};
+- integer annihilation: integers multiplying c are reduced to
+  bounded or frozen values J, and e(cJ) is a smooth phase - {c}
+  never enters.
+
+The falsifier fired once and productively: raw floor(D2 D1 Y) is NOT
+frozen (mean run 1.5 at P = 10^6, jumps (3/2)P^{3/4} ~ 47,900) -
+the level-1 second gap j1 flickers at every step. The exact repair
+is the branch decomposition (Lemma R3): on cell intersections with
+j1 = j fixed, D2 D1 Y = F_j(m) exactly, F_j' ~ |j|P^{-3/4} < 1, so
+per-branch floors freeze while the flicker rides in [j1 = j]
+indicator weights (level-1 carries, O(1)-coefficient Vaaler modes).
+Recorded as negative knowledge.
+
+Also proved: Lemma R1 - the kernel is exactly the exponential sum of
+the level-2 local floor defect, (k/2)(m^{9/4} - v^{3/2}) up to an
+absorbable one-signed remainder (validated in exact scaled integers
+through 10^12), tying Conjecture 6.2 to the note's local remainder
+calculus.
+
+Validators and probes (`two_step_parity.py`, all pytest-pinned):
+`kernel_reformulation_scan` 1003/1003; `double_gap_identity_check`
+400/400 at 10^6 across three shift pairs; `branch_freeze_scan`
+matches the drift prediction at 10^6 and 10^8;
+`differenced_kernel_probe` shows |T_1|, |T_2| at square-root scale
+on 2.5e4 and 2.5e5 terms across four shift pairs.
+
+Honesty boundary: Theorem R is a DRAFT - it has not passed the
+adversarial review pass that Theorems C/E/Q received. The ledger tag
+of `J-kernel-cancellation` stays CONJECTURE (statement now records
+the draft); `kernel_bound_proved` stays False;
+`kernel_double_differencing_draft` flipped True. The OOO* corollary
+(all sixteen depth-4 classes) additionally needs the
+passenger-robust variant inside the Phase-5 reduction - expected to
+be routine for this engine, deferred to the review scope. No note
+import, no density claim: the OOO* classes are non-contracting at
+depth 4, so 13/16 does not move; what a confirmed Theorem R opens is
+depth >= 5 contracting words (OOOEE) and the unconditional d <= 4
+base of Proposition 6.1's hypothesis.
+
+```text
+What was learned
+- the kernel falls to double differencing on paper: the two recorded
+  walls were artifacts of differencing sub-organizations
+- raw second-gap freeze is false; branch-conditioned freeze is exact
+  and validated
+- the kernel is the level-2 local-defect exponential sum (Lemma R1)
+Strongest theorem
+- Theorem R (DRAFT): K_c << P^{1-1/72+eps} uniformly for k <= P^{1/24}
+Strongest refutation
+- floor(D2 D1 Y) has mean run length 1.5, not P^{3/4}: the naive
+  freeze claim is dead; branches are forced
+Reusable machinery
+- seq_floor_gap_second (Lean), Lemmas R1-R3 with exact validators,
+  differenced kernel probes
+Branch status
+- PROMOTE (to an adversarial review pass of Theorem R at the
+  Theorem-C standard, including the OOO* corollary bookkeeping)
+Why
+- the draft closes with explicit exponents and every exact brick is
+  machine-checked, but this project's standard is that no analytic
+  draft carries a tag until re-derived adversarially
+Best next question
+- does Theorem R survive piece-by-piece re-derivation, in particular
+  the sign-dominance checks in Step 5 and the passenger-robust OOO*
+  corollary?
+```

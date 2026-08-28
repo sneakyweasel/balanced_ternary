@@ -362,11 +362,13 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: Conjecture O, the kernel bound \(K_c \ll
-P^{1-\delta}\) — the exact remaining obstacle to OOO\*, to depth-4
-completeness, and to every density tier beyond \(13/16\). The
-editorial import into the finite-dynamics note is done (Phase 7,
-consolidation).
+One mathematical: does the Phase-8 double-differencing draft proof of
+Conjecture O (Theorem R, working doc Part VI, \(\delta = 1/72\)
+uniformly for \(k \le P^{1/24}\)) survive an adversarial review pass
+at the Theorem-C standard, and does its passenger-robust variant
+close the OOO\* corollary? The editorial import into the
+finite-dynamics note is done (Phase 7, consolidation); the kernel
+tag stays `CONJECTURE` until review.
 
 ## Decision
 
@@ -437,10 +439,31 @@ Reviewer packet, formalization map, frontier figure, ledger
 (`J-kernel-cancellation` added; lean fields on the gap rows), and the
 review bundle are synchronized; PDFs rebuilt.
 
-Best next question: the branch's mathematical frontier is now a
-single object — does the kernel \(K_c(P) = \sum e(c(n)\{\lfloor
-n^{3/2}\rfloor^{3/2}\})\), \(c \asymp kP^{9/8}\), admit any power
-saving (Conjecture O)?
+**PROMOTE** (Phase 8, kernel attack): a complete double-differencing
+draft proof of Conjecture O was written (Theorem R, working doc Part
+VI): two Weyl differencings exploit the level-2 numerology \(Y''
+\asymp P^{1/4} \gg 1 > P^{-3/4} \asymp Y'''\), the exact double-gap
+identity (Lemma R2, Lean `seq_floor_gap_second`) reduces the integer
+content to bounded/frozen values, and the branch decomposition
+(Lemma R3) carries the level-1 flicker in indicator weights — no
+full-size sawtooth coefficient survives, evading both recorded
+Phase-5 walls, which differenced sub-organizations rather than the
+full phase. Draft exponent: \(\delta = 1/64\) for bounded \(k\),
+\(1/72\) uniformly for \(k \le P^{1/24}\). The falsifier fired once
+(raw \(\lfloor\Delta\Delta Y\rfloor\) is *not* frozen — mean run
+1.5, jumps \(\tfrac32 P^{3/4}\)) and was met by the exact branch
+reorganization, recorded as negative knowledge. New validators:
+`kernel_reformulation_scan` (Lemma R1, kernel = level-2 local floor
+defect sum, exact to \(10^{12}\)), `double_gap_identity_check`,
+`branch_freeze_scan`, `differenced_kernel_probe` (\(|T_1|, |T_2|\)
+at square-root scale). No ledger retag, no note import, no density
+claim: `kernel_bound_proved` stays `False`;
+`kernel_double_differencing_draft` flipped to `True`.
+
+Best next question: does Theorem R's bookkeeping survive an
+adversarial re-derivation of every piece (the Theorem-C treatment),
+including the sign-dominance checks and the passenger-robust OOO\*
+corollary?
 
 ## Publication assessment
 

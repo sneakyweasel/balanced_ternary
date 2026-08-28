@@ -10,10 +10,14 @@ from research.juggler_sequence.two_step_parity import (
     CONTRACTING_TARGET,
     SCALE,
     WORDS4,
+    branch_freeze_scan,
     deep_word_counts,
+    differenced_kernel_probe,
+    double_gap_identity_check,
     fourth_letter_scan,
     fourth_letter_smoothing_check,
     gap_decomposition_check,
+    kernel_reformulation_scan,
     identity_error_scaled,
     identity_scan,
     itinerary_word,
@@ -246,6 +250,41 @@ def test_kernel_probe_cancels():
     # cancellation (far below the trivial bound; loose threshold).
     result = kernel_probe(10**4)
     assert result["abs_sum"] < 0.1 * result["count"]
+
+
+def test_kernel_reformulation_identity():
+    # Lemma R1: (1/2)(m^{9/4} - v^{3/2}) - (3/4) v^{1/2} theta_2 lies
+    # in [0, (3/16) v^{-1/2}]; exact scaled integers through 10^12.
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert kernel_reformulation_scan(samples)["holds"] is True
+
+
+def test_double_gap_identity():
+    # Lemma R2: D2 g2 = floor(D2 D1 Y) + kappa'' + D2 kappa_2, exact
+    # on orbit data (Lean: seq_floor_gap_second).
+    for h1, h2 in ((1, 1), (1, 3), (2, 5)):
+        result = double_gap_identity_check(10**6 + 1, 200, h1, h2)
+        assert result["holds"] is True
+        assert result["matches"] >= 190
+
+
+def test_branch_freeze():
+    # Lemma R3: per-branch floors of D2 D1 Y are frozen at the drift
+    # scale; the j = 0 branch is constant across the whole cell.
+    result = branch_freeze_scan(10**6, 1, 1, 400)
+    assert result["in_cell"] >= 10
+    assert result["branch_0"]["distinct"] == 1
+    for j in (-1, 1):
+        assert result[f"branch_{j}"]["distinct"] <= 5
+
+
+def test_differenced_kernel_cancels():
+    # Theorem R support: the once- and twice-differenced kernel sums
+    # cancel far below the trivial bound (loose threshold).
+    t1 = differenced_kernel_probe(10**4, 1)
+    t2 = differenced_kernel_probe(10**4, 1, 2)
+    assert t1["abs_sum"] < 0.1 * t1["count"]
+    assert t2["abs_sum"] < 0.1 * t2["count"]
 
 
 def test_lemma_a_prime_w_level_linearization():

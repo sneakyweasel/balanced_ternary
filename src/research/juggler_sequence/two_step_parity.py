@@ -85,6 +85,12 @@ ANTI_OVERCLAIM = {
     # slow variable w); every depth-4 word class is proved except
     # OOO*, which is exactly the kernel (Conjecture O).
     "depth4_slow_branch_proved": True,
+    # Phase 8: a complete double-differencing DRAFT proof of the
+    # kernel bound (Theorem R, working doc Part VI) exists, with all
+    # exact identities machine-validated. It has NOT passed
+    # adversarial review: kernel_bound_proved stays False and the
+    # ledger tag stays CONJECTURE until it does.
+    "kernel_double_differencing_draft": True,
 }
 
 
@@ -509,6 +515,221 @@ def kernel_probe(p_block: int, coeff_num: int = 3, coeff_den: int = 4) -> dict[s
         cnt += 1
         n += 2
     return {"count": cnt, "abs_sum": round((re * re + im * im) ** 0.5, 1)}
+
+
+# --- Phase 8: the kernel — double-differencing validators and probes ---
+
+
+def kernel_reformulation_check(n: int, scale: int = 10**40) -> tuple[int, int]:
+    """(diff*scale, bound*scale) for the kernel reformulation (Lemma R1).
+
+    With Y = m^{3/2}, v = floor(Y), theta_2 = Y - v:
+    (1/2)(m^{9/4} - v^{3/2}) - (3/4) v^{1/2} theta_2 = R in
+    [0, (3/16) v^{-1/2}] (Taylor of (v + theta_2)^{3/2} at v, one-signed
+    remainder). Hence the central kernel phase c*theta_2 with
+    c = (3k/4) v^{1/2} equals (k/2)(m^{9/4} - v^{3/2}) up to kR: the
+    kernel is the exponential sum of the level-2 local floor defect.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    m94 = isqrt(isqrt(m**9 * scale**4))
+    v32 = isqrt(v**3 * scale * scale)
+    v12 = isqrt(v * scale * scale)
+    th2 = isqrt(m**3 * scale * scale) - v * scale
+    diff = (m94 - v32) // 2 - (3 * v12 * th2) // (4 * scale)
+    # Floor slack: th2 and v12 each carry O(1) scaled-unit error, and
+    # the cross products propagate them at v^{1/2} ~ n^{9/8} units.
+    slack = isqrt(n**9) + 10**6
+    bound = (3 * scale * scale) // (16 * v12) + slack
+    return diff, bound
+
+
+def kernel_reformulation_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    """Check 0 <= diff <= bound on odd samples (slack folded into bound)."""
+    slack = 10**7
+    for n in samples:
+        diff, bound = kernel_reformulation_check(n)
+        if diff < -slack or diff > bound:
+            return {"holds": False, "witness": n}
+    return {"holds": True, "count": len(samples)}
+
+
+def double_gap_identity_check(
+    start: int, count: int, h1: int, h2: int
+) -> dict[str, Any]:
+    """Lemma R2: the second difference of the level-2 gap decomposes as
+
+    D2 g2 = floor(D2 D1 Y) + kappa'' + D2 kappa_2,
+
+    with W = D1 Y, kappa'' = [{W} >= 1 - {D2 W}] (gap identity on the
+    sequence W) and kappa_2 = [theta_2 >= 1 - {W}] (Lemma N). Exact on
+    orbit data; boundary-ambiguous samples are skipped (guard band),
+    as in level2_gap_check. Lean: seq_floor_gap applied twice
+    (seq_floor_gap_second in GapCells.lean).
+    """
+    s = 10**24
+    guard = 10**6
+    matches = skipped = 0
+    n = start if start % 2 == 1 else start + 1
+    d1, d2 = 2 * h1, 2 * h2
+
+    def y_scaled(x: int) -> int:
+        return isqrt(isqrt(x**3) ** 3 * s * s)
+
+    def v_of(x: int) -> int:
+        return isqrt(isqrt(x**3) ** 3)
+
+    for _ in range(count):
+        y00, y10 = y_scaled(n), y_scaled(n + d1)
+        y01, y11 = y_scaled(n + d2), y_scaled(n + d1 + d2)
+        v00, v10, v01, v11 = v_of(n), v_of(n + d1), v_of(n + d2), v_of(n + d1 + d2)
+        w0 = y10 - y00                      # W(n) * s
+        w1 = y11 - y01                      # W(n + d2) * s
+        dw = w1 - w0                        # (D2 D1 Y) * s
+        fdw, frac_dw = divmod(dw, s)
+        frac_w0 = w0 % s
+        frac_w1 = w1 % s
+        th2_0 = y00 - v00 * s
+        th2_1 = y01 - v01 * s
+        fracs = (frac_dw, frac_w0, frac_w1, th2_0, th2_1)
+        pairs = (
+            (frac_w0, s - frac_dw),
+            (th2_0, s - frac_w0),
+            (th2_1, s - frac_w1),
+        )
+        if any(f < guard or f > s - guard for f in fracs) or any(
+            abs(a - b) < guard for a, b in pairs
+        ):
+            skipped += 1
+            n += 2
+            continue
+        kappa_dd = 1 if frac_w0 >= s - frac_dw else 0
+        kappa2_0 = 1 if th2_0 >= s - frac_w0 else 0
+        kappa2_1 = 1 if th2_1 >= s - frac_w1 else 0
+        lhs = (v11 - v01) - (v10 - v00)     # D2 g2
+        rhs = fdw + kappa_dd + (kappa2_1 - kappa2_0)
+        if lhs != rhs:
+            return {"holds": False, "witness": n}
+        matches += 1
+        n += 2
+    return {"holds": True, "matches": matches, "skipped": skipped}
+
+
+def branch_freeze_scan(
+    p_block: int, h1: int, h2: int, window: int
+) -> dict[str, Any]:
+    """Lemma R3 support: the branch values of D2 D1 Y freeze.
+
+    Raw floor(D2 D1 Y) is NOT frozen: the level-1 second gap
+    j1 = D2 g1 flickers at every step and shifts D2 D1 Y by
+    (3/2) j1 m^{1/2} ~ n^{3/4}. The proof's organization conditions on
+    the cell gaps (G1, G2) and the bounded j1 = j; the branch function
+    F_j(m) = (m+G1+G2+j)^{3/2} - (m+G1)^{3/2} - (m+G2)^{3/2} + m^{3/2}
+    is smooth in m with n-drift ~ (9/8) j n^{-1/4} + O(h1 h2 n^{-3/4})
+    < 1, so its floor is constant on long runs; the flicker lives in
+    the indicator [j1 = j], never in the branch. This scan evaluates
+    each branch j in {-1, 0, 1} at every n of a window inside a cell
+    intersection and reports the distinct-floor counts against the
+    drift prediction.
+    """
+    s = 10**24
+    d1, d2 = 2 * h1, 2 * h2
+    n0 = p_block + 1
+    m0 = isqrt(n0**3)
+    big_g1 = isqrt((n0 + d1) ** 3) - m0
+    big_g2 = isqrt((n0 + d2) ** 3) - m0
+
+    def branch_floor(m: int, j: int) -> int:
+        val = (
+            isqrt((m + big_g1 + big_g2 + j) ** 3 * s * s)
+            - isqrt((m + big_g1) ** 3 * s * s)
+            - isqrt((m + big_g2) ** 3 * s * s)
+            + isqrt(m**3 * s * s)
+        )
+        return val // s
+
+    out: dict[str, Any] = {"window": window}
+    in_cell = 0
+    values: dict[int, set[int]] = {-1: set(), 0: set(), 1: set()}
+    n = n0
+    for _ in range(window):
+        m = isqrt(n**3)
+        if (
+            isqrt((n + d1) ** 3) - m != big_g1
+            or isqrt((n + d2) ** 3) - m != big_g2
+        ):
+            break
+        in_cell += 1
+        for j in (-1, 0, 1):
+            values[j].add(branch_floor(m, j))
+        n += 2
+    for j in (-1, 0, 1):
+        drift = 1.125 * abs(j) / p_block**0.25 + h1 * h2 / p_block**0.75
+        out[f"branch_{j}"] = {
+            "distinct": len(values[j]),
+            "predicted": round(1 + 2 * in_cell * drift, 1),
+        }
+    out["in_cell"] = in_cell
+    return out
+
+
+def _kernel_phase_scaled(n: int, coeff_num: int, coeff_den: int) -> float:
+    """{c(n) theta_2(n)} with c = (num/den) n^{9/8}, exact scaled ints."""
+    s = 10**12
+    s30 = 10**30
+    m = isqrt(n**3)
+    t2 = isqrt(m**3 * s * s)
+    th2 = t2 - (t2 // s) * s
+    r9 = _eighth_scaled(n**9, s30)
+    prod = (coeff_num * r9 * th2) // coeff_den
+    return (prod % (s30 * s)) / (s30 * s)
+
+
+def differenced_kernel_probe(
+    p_block: int,
+    h1: int,
+    h2: int = 0,
+    coeff_num: int = 3,
+    coeff_den: int = 4,
+) -> dict[str, Any]:
+    """Float probe of the once- or twice-differenced kernel sums.
+
+    h2 = 0: T1 = sum e(phi(n+2h1) - phi(n)).
+    h2 > 0: T2 = sum e(phi(n+2h1+2h2) - phi(n+2h1) - phi(n+2h2) + phi(n)).
+    phi = c theta_2 with c = (coeff_num/coeff_den) n^{9/8}. Exact scaled
+    phases, float only in the final exponential. Supports or refutes the
+    double-differencing route; not a proof.
+    """
+    from math import cos, pi, sin
+
+    d1, d2 = 2 * h1, 2 * h2
+    re = im = 0.0
+    cnt = 0
+    n = p_block + 1
+    while n < 2 * p_block:
+        if h2 > 0:
+            ph = (
+                _kernel_phase_scaled(n + d1 + d2, coeff_num, coeff_den)
+                - _kernel_phase_scaled(n + d1, coeff_num, coeff_den)
+                - _kernel_phase_scaled(n + d2, coeff_num, coeff_den)
+                + _kernel_phase_scaled(n, coeff_num, coeff_den)
+            )
+        else:
+            ph = _kernel_phase_scaled(
+                n + d1, coeff_num, coeff_den
+            ) - _kernel_phase_scaled(n, coeff_num, coeff_den)
+        theta = 2 * pi * ph
+        re += cos(theta)
+        im += sin(theta)
+        cnt += 1
+        n += 2
+    return {
+        "count": cnt,
+        "abs_sum": round((re * re + im * im) ** 0.5, 1),
+        "sqrt_count": round(cnt**0.5, 1),
+    }
 
 
 # --- Phase 4: second-order linearization bricks for the OOO* layer ---

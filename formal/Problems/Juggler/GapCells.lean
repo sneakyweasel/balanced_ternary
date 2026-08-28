@@ -84,6 +84,31 @@ theorem gap_carry_mem (x δ : ℝ) :
   · exact Or.inr (if_pos h)
   · exact Or.inl (if_neg h)
 
+/-- Double-gap identity (Lemma R2 of the two-step parity companion):
+the second difference of the level-2 gap `g₂ n = ⌊Y (n+h₁)⌋ − ⌊Y n⌋`
+along a shift `h₂` is the floor of the double increment `Δ₂Δ₁Y` plus
+a 0/1 carry on the first increment plus the difference of the two
+Lemma-N carries. Two composed instances of `seq_floor_gap`. -/
+theorem seq_floor_gap_second (Y : ℕ → ℝ) (n h₁ h₂ : ℕ) :
+    (⌊Y (n + h₁ + h₂)⌋ - ⌊Y (n + h₂)⌋) - (⌊Y (n + h₁)⌋ - ⌊Y n⌋) =
+      ⌊(Y (n + h₁ + h₂) - Y (n + h₂)) - (Y (n + h₁) - Y n)⌋ +
+        (if 1 - Int.fract ((Y (n + h₁ + h₂) - Y (n + h₂)) -
+              (Y (n + h₁) - Y n)) ≤
+            Int.fract (Y (n + h₁) - Y n) then 1 else 0) +
+        ((if 1 - Int.fract (Y (n + h₁ + h₂) - Y (n + h₂)) ≤
+              Int.fract (Y (n + h₂)) then 1 else 0) -
+          (if 1 - Int.fract (Y (n + h₁) - Y n) ≤
+              Int.fract (Y n) then 1 else 0)) := by
+  have hW0 := seq_floor_gap Y n h₁
+  have hW1 := seq_floor_gap Y (n + h₂) h₁
+  rw [show n + h₂ + h₁ = n + h₁ + h₂ from by omega] at hW1
+  have hDW := floor_gap_eq_carry (Y (n + h₁) - Y n)
+    ((Y (n + h₁ + h₂) - Y (n + h₂)) - (Y (n + h₁) - Y n))
+  rw [show Y (n + h₁) - Y n +
+        ((Y (n + h₁ + h₂) - Y (n + h₂)) - (Y (n + h₁) - Y n)) =
+      Y (n + h₁ + h₂) - Y (n + h₂) from by ring] at hDW
+  omega
+
 /-- Parity bridge: `⌊x⌋` is odd exactly when `{x/2} ≥ 1/2`. This is
 the exact fractional-part reduction that converts the parity sums of
 the discrepancy program into interval discrepancies. -/
