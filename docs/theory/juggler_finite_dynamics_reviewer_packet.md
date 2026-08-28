@@ -26,6 +26,7 @@ claims. Theorem 5.1 is a human proof.
 | [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md) | math note (the review object) |
 | this page | claim and falsifier map |
 | [juggler_finite_dynamics_formalization.md](juggler_finite_dynamics_formalization.md) | Lean names, optional |
+| `formal/Problems/JugglerPaper.lean` | paper Lean barrel (`lake build Problems.JugglerPaper`) |
 
 ## Paper thesis
 
@@ -41,7 +42,7 @@ stopping-time theorem, and it is not a density of arrival at \(1\).
 | Claim | Evidence | Scope |
 |---|---|---|
 | Power envelope and exponent-gap contraction | **EXACT — LEAN VERIFIED** | conditional on a realized word |
-| Global defect identity | **EXACT — LEAN VERIFIED** | slack, not a uniform tax |
+| Global defect identity, vanishing, and composition | **EXACT — LEAN VERIFIED** | weighted lift, not an additive sum; not a uniform tax |
 | Odd inverse cells have at most one integer | **EXACT — LEAN VERIFIED** | one-step fibers |
 | Nontrivial cycle words are formally expanding | **EXACT — LEAN VERIFIED** | necessary condition; not an exclusion of all cycles |
 | Length-six orientations \(OOOEOE\) and \(OOOOEE\) | **EXACT — LEAN VERIFIED** | these two words only; not a length-six census |
@@ -104,6 +105,8 @@ python -m pytest tests/unit/test_theorem_ledger.py
 python -m pytest tests/research/juggler_sequence/test_progress_coverage.py
 python -m pytest tests/research/juggler_sequence/test_odd_image_discrepancy.py
 python -m pytest tests/research/juggler_sequence/test_cycle_leftover_words.py
+python -m pytest tests/research/juggler_sequence/test_layer_architecture.py
 ```
 
-From `formal/`: `lake build`.
+From `formal/`: `lake build Problems.JugglerPaper`.
+The laboratory barrel `Problems.Juggler` is not the review object.

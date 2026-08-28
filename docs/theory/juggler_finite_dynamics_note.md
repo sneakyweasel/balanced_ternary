@@ -24,9 +24,11 @@ the power envelope
 J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}.
 \]
 Hence \(3^{\#O(w)}<2^{|w|}\) forces \(J^{|w|}(n)<n\) whenever \(n\ge2\).
-An exact global-defect identity records the floor slack in this comparison.
-These statements are conditional on a realized word: they do not say that
-every orbit meets a contracting word.
+Local floor remainders lift through later exponents to an exact global
+defect: concatenation is a two-term power-gap, not an additive sum, and
+zero defect is the rigid monochrome towers. These statements are
+conditional on a realized word: they do not say that every orbit meets a
+contracting word, and the defect is not a state-independent tax.
 
 A start \(n\ge2\) has a *descent certificate* if some realized finite word
 sends it strictly below \(n\). Every even start, and every odd start whose
@@ -63,8 +65,8 @@ O(n)=\lfloor n^{3/2}\rfloor.
 A word of length \(k\) with \(o\) odd letters has ideal exponent
 \(3^o/2^k\). Floors are applied after every letter, and a word is available
 only when the orbit realizes those parities. The paper records the exact
-finite-word comparison, the exact slack, the uniform short certificates,
-and the density of the class those certificates cover.
+finite-word comparison, the compositional slack, the uniform short
+certificates, and the density of the class those certificates cover.
 
 The contribution is a short exact-arithmetic note, not a survey of failed
 compressions and not a description of the computational atlas used in the
@@ -117,8 +119,10 @@ letters.
 The identities in this section are formalized in Lean
 (`follows_iff_word`, `image_eq_iterate`, `image_append`,
 `image_monotone_of_follows`, `power_bound_word`,
-`power_bound_contracts`, `global_defect_identity`). The proofs below are
-the ordinary integer arguments.
+`power_bound_contracts`, `global_defect_identity`,
+`global_defect_eq_zero_iff_localsTight`, `global_defect_append`,
+`power_bound_eq_iff_extremal`). The proofs below are the ordinary
+integer arguments.
 
 **Theorem 2.1 (fixed-word monotonicity; EXACT — LEAN VERIFIED).**
 If \(n\le m\) and both realize \(w\), then
@@ -163,23 +167,143 @@ has \(m<n\). \(\square\)
 The corollary includes familiar contracting blocks such as \(OOOEE\). It
 does not prove that every start realizes some contracting word.
 
-The floor slack is exact. For a single branch,
+The floor slack is exact, and it is not an additive path sum. For a
+single branch,
 \[
 x^e=J(x)^2+\rho(x),\qquad
 e=\begin{cases}1,&x\ {\rm even},\\3,&x\ {\rm odd},\end{cases}
 \]
-with \(0\le\rho(x)<2J(x)+1\). Lifting these remainders through a word
-gives a nonnegative global defect \(\Delta_w(n)\).
+with \(0\le\rho(x)<2J(x)+1\). Write
+\[
+\operatorname{gap}(a,\rho,e)=(a+\rho)^e-a^e,
+\]
+so \(a^e+\operatorname{gap}(a,\rho,e)=(a+\rho)^e\). If \(e\ge1\), then
+\(\operatorname{gap}(a,\rho,e)=0\) if and only if \(\rho=0\), and
+\(\rho^e\le\operatorname{gap}(a,\rho,e)\).
+
+Along a realized word \(w\), write \(x_0=n\) and \(x_{j+1}=J(x_j)\), and
+let \(\rho_j=\rho(x_j)\). Define a running slack by \(D_0=0\) and
+\[
+D_{j+1}=
+\begin{cases}
+D_j+\operatorname{gap}(x_{j+1}^2,\rho_j,2^j),
+& \text{next letter even},\\[4pt]
+\operatorname{gap}(x_{j+1}^2,\rho_j,2^j)
++\operatorname{gap}(x_j^{2^j},D_j,3),
+& \text{next letter odd}.
+\end{cases}
+\]
+The *global defect* is \(\Delta_w(n)=D_{|w|}\). An even letter keeps the
+old slack and lifts the new remainder through \(2^j\). An odd letter
+first cubes the running slack and then lifts the new remainder. In
+particular \(\Delta\) is not the sum of the local remainders.
 
 **Theorem 2.4 (global defect identity; EXACT — LEAN VERIFIED).**
 If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
 \[
 n^{3^{\#O(w)}}=m^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
 \]
+Theorem 2.2 is the inequality \(\Delta_w(n)\ge0\).
 
-The identity names the slack in Theorem 2.2. It does not supply a
-state-independent positive tax: persistent expanding blocks can have
-arbitrarily small observed normalized slack at large scale.
+*Proof.* The empty word is \(n=n+0\). Suppose a realized prefix of
+length \(k\) with odd count \(o\) ends at \(x\) and satisfies
+\(n^{3^o}=x^{2^k}+D\).
+
+If the next letter is even, then \(x=J(x)^2+\rho(x)\), so
+\[
+n^{3^o}
+=(J(x)^2+\rho(x))^{2^k}+D
+=J(x)^{2^{k+1}}+D+\operatorname{gap}(J(x)^2,\rho(x),2^k).
+\]
+The odd count is unchanged, and the new slack is the even update.
+
+If the next letter is odd, then \(x^3=J(x)^2+\rho(x)\). Cubing the
+inductive identity gives
+\[
+n^{3^{o+1}}=(x^{2^k}+D)^3
+=x^{3\cdot 2^k}+\operatorname{gap}(x^{2^k},D,3).
+\]
+The leading term is
+\[
+x^{3\cdot 2^k}
+=(J(x)^2+\rho(x))^{2^k}
+=J(x)^{2^{k+1}}+\operatorname{gap}(J(x)^2,\rho(x),2^k),
+\]
+which is the odd update. \(\square\)
+
+**Theorem 2.5 (vanishing; EXACT — LEAN VERIFIED).**
+If \(w\) is realized at \(n\), the following are equivalent.
+
+1. \(\Delta_w(n)=0\).
+2. Every local remainder along \(w\) vanishes.
+3. \(J^{|w|}(n)^{2^{|w|}}=n^{3^{\#O(w)}}\).
+
+In that case \(w\) is monochrome. More precisely, either \(w=E^k\) and
+\(n=a^{2^k}\) for an even \(a\), or \(w=O^k\) and \(n=a^{2^k}\) for an
+odd \(a\). A realized mixed word therefore has \(\Delta_w(n)>0\).
+
+*Proof.* The identity of Theorem 2.4 gives (1)\(\Leftrightarrow\)(3).
+For (1)\(\Leftrightarrow\)(2), use the recurrence. If \(e\ge1\), a
+power-gap vanishes if and only if its addend vanishes. The even update
+is a sum of two nonnegative terms, and the odd update is a sum of two
+power-gaps; either vanishes only when the incoming slack and the new
+remainder both vanish. Thus \(D_{|w|}=0\) forces \(D_0=0\) and every
+\(\rho_j=0\). The converse is immediate.
+
+If every remainder vanishes, each step is an exact square or an exact
+cube-to-square, so the current parity is preserved and the itinerary
+cannot use both letters. The exact towers are the saturation of the
+envelope (`power_bound_eq_iff_extremal`). \(\square\)
+
+**Theorem 2.6 (composition; EXACT — LEAN VERIFIED).**
+If \(u\) is realized at \(n\) and \(v\) is realized at
+\(m=J^{|u|}(n)\), then
+\[
+\Delta_{uv}(n)
+=
+\operatorname{gap}\bigl(m^{2^{|u|}},\,\Delta_u(n),\,3^{\#O(v)}\bigr)
++
+\operatorname{gap}\bigl(J^{|v|}(m)^{2^{|v|}},\,\Delta_v(m),\,2^{|u|}\bigr).
+\]
+In particular
+\(\Delta_v(m)^{2^{|u|}}\le\Delta_{uv}(n)\). Every local remainder
+satisfies \(\rho_j^{2^j}\le\Delta_w(n)\).
+
+*Proof.* Write \(o_u=\#O(u)\) and \(o_v=\#O(v)\). Theorem 2.4 on \(u\)
+and on \(uv\) gives
+\[
+n^{3^{o_u+o_v}}
+=\bigl(m^{2^{|u|}}+\Delta_u(n)\bigr)^{3^{o_v}}
+=J^{|uv|}(n)^{2^{|uv|}}+\Delta_{uv}(n).
+\]
+The first power expands as
+\[
+m^{2^{|u|}\cdot 3^{o_v}}
++\operatorname{gap}\bigl(m^{2^{|u|}},\,\Delta_u(n),\,3^{o_v}\bigr).
+\]
+Theorem 2.4 on \(v\) at \(m\) rewrites the leading term as
+\[
+\bigl(J^{|v|}(m)^{2^{|v|}}+\Delta_v(m)\bigr)^{2^{|u|}},
+\]
+which expands as the second gap plus \(J^{|uv|}(n)^{2^{|uv|}}\).
+Comparing the two expressions for \(n^{3^{o_u+o_v}}\) yields the
+identity. The suffix inequality is
+\(\rho^e\le\operatorname{gap}(a,\rho,e)\) on the second summand. For a
+local remainder at index \(j\), split \(w\) after \(j\) letters: the
+suffix defect is at least \(\rho_j\), and raising through \(2^j\) gives
+the stated bound. \(\square\)
+
+Composition is polynomial, not additive: later odd letters raise the
+prefix slack to the third power, and later letters of either parity
+raise a suffix slack through \(2^{|u|}\). The naive recurrence
+\(\Delta\leftarrow\Delta+\rho\) is false.
+
+The identity does not supply a state-independent positive tax.
+Persistent expanding blocks can have arbitrarily small observed
+normalized slack \(\Delta/n^{3^{\#O(w)}}\) at large scale. The
+inequality \(\Delta_w(n)>n^{3^{\#O(w)}}-n^{2^{|w|}}\) on a formally
+expanding word is exactly \(J^{|w|}(n)<n\), so it does not forbid
+mixed expanding prefixes.
 
 ## 3. Inverse cells and cycles
 
@@ -489,18 +613,22 @@ and the laboratory notes live at
 The archive is not required to read the arguments above. The
 discrepancy bound is a human proof; Lean does not certify it.
 
-From a clone, the formal layer and the focused records are
+From a clone, the paper Lean barrel and the focused records are
 
 ```text
 pip install -e ".[dev]"
-cd formal && lake build
+cd formal && lake build Problems.JugglerPaper
 python tools/render_theorem_ledger.py --check
 python -m pytest tests/unit/test_theorem_ledger.py
 python -m pytest tests/research/juggler_sequence/test_progress_coverage.py
 python -m pytest tests/research/juggler_sequence/test_odd_image_discrepancy.py
 python -m pytest tests/research/juggler_sequence/test_global_defect.py
 python -m pytest tests/research/juggler_sequence/test_cycle_leftover_words.py
+python -m pytest tests/research/juggler_sequence/test_layer_architecture.py
 ```
+
+The laboratory barrel `Problems.Juggler` is the full stack. It is not
+the review object.
 
 A Word Atlas used in the laboratory records bounded realizers and
 persistent-expanding blocks through length \(20\) and starts

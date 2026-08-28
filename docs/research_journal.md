@@ -8582,4 +8582,41 @@ Best next question
   classes, on which contracting words cover almost every OO start?
 ```
 
+## Juggler math-note defect restoration
+
+- **Date:** 2026-08-28
+- **Objective:** Restore the promoted global-defect calculus to the math note so the object is the weighted lift, not a rename of the envelope slack
+- **Hypotheses:** identity, vanishing, and composition can be written as ordinary integer arguments without reopening Amplify, \(1+q\), or a tax
+- **Major results:** Theorems 2.4--2.6 now define \(\operatorname{gap}\), the even/odd recurrence, prove \(n^{3^o}=m^{2^k}+\Delta\), characterize \(\Delta=0\), and give the two-term composition law. The note still records that \(\Delta\) is not a state-independent tax and that beating the formal surplus is \(T_w(n)<n\)
+- **Refuted ideas:** none new; the additive recurrence \(\Delta\leftarrow\Delta+\rho\) remains false
+- **Literature:** existing `J-global-defect-identity` row; no new citation
+- **Open:** almost-all descent on odd-to-odd starts
+- **Decision:** PROMOTE the restored note language. Underlying PARK/CLOSE branch decisions unchanged. No new attack
+
+```text
+What was learned
+- The interesting object is the recurrence and composition, not Δ as a name for slack
+- Vanishing recovers the rigid monochrome towers
+- The tax warning still belongs next to the identity
+
+Strongest theorem
+- n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + Δ_w(n), with two-term powGap composition
+
+Strongest refutation
+- none new
+
+Reusable machinery
+- none added; the note was restored
+
+Branch status
+- PROMOTE
+
+Why
+- The cut had left only a naming identity. The honest statements were
+  already Lean-verified and belong in the note if the defect is kept.
+
+Best next question
+- do almost all odd-to-odd starts have a finite descent certificate?
+```
+
 

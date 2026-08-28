@@ -35,8 +35,11 @@ import Problems.Juggler.OddLandingSets
 import Problems.Juggler.WordLanguage
 
 /-!
-# Juggler formalization
+# Juggler laboratory barrel
 
-One-way layers under `Problems.Juggler`. The isolated unproved
-statement is `FiniteCoeffStopConjecture`.
+The full one-way layer stack. The review object for the math note is
+`Problems.JugglerPaper`, not this file.
+
+`FiniteCoeffStopConjecture` is an isolated laboratory target. It is
+not a theorem and not a claim of the note.
 -/

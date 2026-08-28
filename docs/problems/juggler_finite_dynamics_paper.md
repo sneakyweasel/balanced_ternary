@@ -93,7 +93,7 @@ added to `bt.*`.
   **EXACT — LEAN VERIFIED**;
 - finite-word power envelope and exponent-gap contraction —
   **EXACT — LEAN VERIFIED**;
-- exact global defect —
+- exact global defect, vanishing, and two-term composition —
   **EXACT — LEAN VERIFIED**;
 - fixed-word monotonicity —
   **EXACT — LEAN VERIFIED**;

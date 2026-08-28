@@ -4,6 +4,10 @@ This page is the Lean companion to the math note
 [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md).
 The note is written to be readable without this page. The development is
 in `formal/Problems/Juggler/`; it contains no `sorry` or `admit`.
+The review object for the math note is the paper barrel
+`formal/Problems/JugglerPaper.lean` (`lake build Problems.JugglerPaper`).
+That file imports only the modules named below. Laboratory satellites
+remain in `formal/Problems/Juggler.lean` and are not the review object.
 
 The package formalizes finite trajectories and conditional cycle structure.
 It does not prove that every positive integer reaches \(1\), that every orbit
@@ -163,12 +167,24 @@ The recursively lifted global defect satisfies:
 global_defect_identity (hw : follows n w) :
   n ^ (3 ^ oddCount w) =
     image n w ^ (2 ^ w.length) + globalDefect n w
+
+global_defect_eq_zero_iff_localsTight (hw : follows n w) :
+  globalDefect n w = 0 ↔ localsTight n w
+
+global_defect_append (hu : follows n u) (hv : follows (image n u) v) :
+  globalDefect n (u ++ v) =
+    powGap (image n u ^ (2 ^ u.length)) (globalDefect n u)
+      (3 ^ oddCount v) +
+    powGap (image (image n u) v ^ (2 ^ v.length))
+      (globalDefect (image n u) v) (2 ^ u.length)
 ```
 
-This refines the power envelope by naming all accumulated floor slack. The
+This is the weighted lift of local remainders, not an additive path sum.
+Zero defect recovers local tightness and the rigid monochrome towers. The
 normalized-defect and lower-bound modules provide exact consequences of this
 identity. They do not turn the defect into a state-independent contraction
-budget.
+budget. The math note now states the identity, vanishing, and composition
+as Theorems 2.4--2.6.
 
 ## 6. Residual steps and finite progress
 

@@ -7,7 +7,26 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[3]
 JUGGLER_DIR = REPO_ROOT / "formal" / "Problems" / "Juggler"
 JUGGLER_BARREL = REPO_ROOT / "formal" / "Problems" / "Juggler.lean"
+JUGGLER_PAPER_BARREL = REPO_ROOT / "formal" / "Problems" / "JugglerPaper.lean"
 ENGINE_DIR = REPO_ROOT / "formal" / "Problems" / "Engine"
+
+PAPER_MODULES: tuple[str, ...] = (
+    "Dynamics",
+    "Iteration",
+    "Termination",
+    "Itinerary",
+    "WordStats",
+    "Envelope",
+    "Equality",
+    "Defect",
+    "GlobalDefect",
+    "Cells",
+    "Certificates",
+    "Progress",
+    "Cycles",
+    "LeftoverEval",
+    "LeftoverCycles",
+)
 
 LAYERS: dict[str, Path] = {
     "Dynamics": JUGGLER_DIR / "Dynamics.lean",
@@ -99,7 +118,7 @@ DELETED_ENGINE = (
 
 
 def juggler_sources() -> list[Path]:
-    return [JUGGLER_BARREL, *LAYERS.values()]
+    return [JUGGLER_BARREL, JUGGLER_PAPER_BARREL, *LAYERS.values()]
 
 
 def juggler_text() -> str:
