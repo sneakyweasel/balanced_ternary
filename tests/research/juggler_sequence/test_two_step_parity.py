@@ -23,11 +23,13 @@ from research.juggler_sequence.two_step_parity import (
     itinerary_word,
     juggler_step,
     kernel_probe,
+    level3_inner_linearization_scan,
     level3_kernel_probe,
     level3_raw_gap_wildness,
     level3_reformulation_scan,
     differenced_level3_kernel_probe,
     oooo_indicator_identity_check,
+    v_level_cell_scan,
     lemma_a_prime_scan,
     lemma_m_scan,
     level2_gap_check,
@@ -391,6 +393,7 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["depth5_contracting_proved"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_isolated"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
+    assert ANTI_OVERCLAIM["scale_invariant_R_extension_refuted"] is True
     assert ANTI_OVERCLAIM["density_one_claimed"] is False
 
 
@@ -430,6 +433,23 @@ def test_oooo_indicator_identity():
     result = oooo_indicator_identity_check(5001)
     assert result["holds"] is True
     assert result["checked"] > 100
+
+
+def test_level3_inner_linearization_identity():
+    # Lemma V2: v^{3/2} = m^{9/4} - (3/2) m^{3/4} theta_2 + E,
+    # 0 <= E <= (3/8) v^{-1/2}; exact scaled integers through 10^12.
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert level3_inner_linearization_scan(samples)["holds"] is True
+
+
+def test_v_level_has_no_cells():
+    # Proposition W: floor(ΔY) and Δv have run length 1 — there are
+    # no v-level b-runs, so Lemma R3 cannot be copied one layer up.
+    for p in (10**4, 10**5, 10**6):
+        result = v_level_cell_scan(p, 400)
+        assert result["no_v_level_cells"] is True
+        assert result["floor_dY_mean_run"] == 1.0
+        assert result["dv_mean_run"] == 1.0
 
 
 def test_depth6_census_minimal_scale_envelope():

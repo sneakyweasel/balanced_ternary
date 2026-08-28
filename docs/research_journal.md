@@ -9455,3 +9455,54 @@ Best next question
   every full-size sawtooth coefficient in K3, or is there
   a new wall at the v-level?
 ```
+
+## Juggler scale-invariant R-extension refuted (Phase 12)
+
+The promoted question — does the product of the two carry
+lattices still kill every full-size sawtooth in K3, or is
+there a new wall at the v-level? — answered by a wall.
+Working document Part IX; rows `J-level3-inner-linearization`
+(EXACT — HUMAN PROOF) and `J-scale-invariant-R-extension`
+(REFUTED).
+
+Lemma V2: v^{3/2} = m^{9/4} - (3/2) m^{3/4} theta_2 + E2,
+one-signed, validated to n = 10^{12}. This linearization is
+forced if Z is to become smooth in m. Restoring the outer
+coefficient c ~ n^{27/16} produces a W-family at
+alpha = 45/16. Independently, floor(ΔY) and Δv have run
+length 1 at P = 10^4, 10^5, 10^6: there are no v-level
+b-runs, so Lemma R3 cannot be copied. The engine line of
+Theorem R's Step-3 θ-coefficients is alpha = 9/4;
+45/16 > 9/4, so the spawned sawtooth has coefficient > n
+and derivative ≫ 1 — the Phase-5 wall at a larger scale.
+Conjecture V (that K3 cancels) is not refuted.
+
+```text
+What was learned
+- the smooth-model "three Weyl steps" does not descend to
+  the nested floors
+- there are no v-level b-runs (Y' ~ P^{5/4})
+- the forced inner linearization produces alpha = 45/16,
+  past R's engine line 9/4
+- both copy-routes die by recorded mechanisms, not a new
+  unnamed sum
+- K3 cancellation (Conjecture V) is untouched; the method
+  is what died
+Strongest theorem
+- Lemma V2: the forced inner linearization —
+  EXACT — HUMAN PROOF
+Strongest refutation
+- scale-invariant copy of Theorem R
+  (J-scale-invariant-R-extension)
+Reusable machinery
+- level3_inner_linearization_scan; v_level_cell_scan
+Branch status
+- PROMOTE
+Why
+- the Terras-via-R-ladder route is now a named dead end
+  with an exact identity and a measured obstruction;
+  a rescue would be a different method, not a repair
+Best next question
+- does any method bound W-family kernels with alpha > 9/4,
+  or is 9/4 the hard ceiling?
+```

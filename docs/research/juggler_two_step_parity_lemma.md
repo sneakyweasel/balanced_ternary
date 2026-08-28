@@ -12,7 +12,9 @@ Ledger rows: `J-nested-parity-discrepancy`,
 `J-even-branch-third-letter`, `J-tier2-gap-and-shifted-forms`,
 `J-depth4-slow-branch`, `J-kernel-cancellation`,
 `J-depth4-complete`, `J-depth5-contracting`,
-`J-five-step-descent-density`.
+`J-five-step-descent-density`,
+`J-level3-inner-linearization`,
+`J-scale-invariant-R-extension`.
 Imported into the finite-dynamics note (consolidation phase, August
 2026): Lemmas A/B as Lemma 5.3, Theorem C as Theorem 5.4,
 Proposition L as Proposition 5.5, Lemma D as Lemma 5.6, Theorem E as
@@ -31,6 +33,8 @@ contracting splits OOOEE and OOEOE (Theorem T, Corollary U), lifting
 the certified-descent density to \(7/8\). Part VIII (Phase 11)
 isolates the OOOO\* fifth letter as the level-3 floor-defect
 kernel \(K_3\) (Lemma V1, Conjecture V); the bound is not claimed.
+Part IX (Phase 12) refutes the scale-invariant copy of Theorem R
+(Lemma V2, Proposition W).
 Not a termination claim; the remaining depth-\(\ge5\) expanders
 (OOOO\*, OOEOO, OOOEO) and the density-one statement remain open.
 
@@ -1817,7 +1821,11 @@ G''' \asymp P^{3/8} \gg 1 > P^{-5/8} \asymp G^{(4)}.
 Theorem R used \(Y'' \asymp P^{1/4} \gg 1 > P^{-3/4} \asymp Y'''\)
 and two Weyl steps. The same "one extra differencing per unit of
 derivative growth" therefore predicts **three** Weyl steps here.
-This is the scale-invariant pattern, not a new analytic idea.
+This is the scale-invariant pattern *of the smooth model*, not
+of the nested floors. Phase 12 (Part IX) shows the prediction
+does not descend: there are no \(v\)-level \(b\)-runs, and the
+forced inner linearization produces a \(W\)-family at
+\(\alpha = 45/16 > 9/4\).
 
 Closed form only; the derivatives are elementary. A float check
 of \(n^{27/8}\) at \(P = 10^4\) matches \(G'''\) and \(G^{(4)}\)
@@ -1887,4 +1895,119 @@ full-size sawtooth coefficient, or exhibit a new wall.
 
 `depth5_kernel_isolated` flipped; `depth5_kernel_bound_proved`
 and `density_one_claimed` stay `False`. No ledger row (no
-bound, no density increment). No note import.
+bound, no density increment). No note import. The
+scale-invariant copy is taken up — and refuted — in Part IX.
+
+## Part IX: the \(v\)-level wall (Phase 12)
+
+Scope: the Phase-11 question — does the product of the two
+carry lattices still kill every full-size sawtooth in \(K_3\),
+or is there a new wall at the \(v\)-level? Answer: a new wall.
+No bound draft.
+
+### Lemma V2 (forced inner linearization) — EXACT — HUMAN PROOF
+
+For odd \(n \ge 5\),
+
+\[
+v^{3/2}
+= m^{9/4} - \tfrac32 m^{3/4}\,\theta_2 + E_2,
+\qquad
+0 \le E_2 \le \tfrac38\, v^{-1/2}.
+\]
+
+*Proof.* Taylor of \((Y - \theta_2)^{3/2}\) at \(Y\):
+\(v^{3/2} = Y^{3/2} - \tfrac32 Y^{1/2}\theta_2 +
+\tfrac38 (Y-\xi)^{-1/2}\theta_2^2\) with \(\xi \in (0,\theta_2)\),
+\(Y^{3/2} = m^{9/4}\), \(Y^{1/2} = m^{3/4}\), and
+\(Y - \xi \ge v\). \(\square\) Validated
+(`level3_inner_linearization_scan`) through \(n = 10^{12}+1\).
+
+Restoring the outer coefficient \(c \asymp k z^{1/2}
+\asymp k n^{27/16}\) of Lemma V1, the phase \(c\,v^{3/2}\)
+splits as a smooth chirp \(c\,m^{9/4}\) minus the \(W\)-family
+phase \(C\,\theta_2\) with
+
+\[
+C = \tfrac{3c}2 m^{3/4} \asymp k n^{45/16},
+\]
+
+plus a remainder phase \(c E_2 \asymp k n^{9/16}\theta_2^2\)
+(engine-side: coefficient \(< n\), derivative
+\(\asymp n^{-7/16} < 1\)). The remainder is not the wall.
+The main term is.
+
+This linearization is forced if \(Z = v^{3/2}\) is to become
+smooth in \(m\). Not linearizing leaves \(Z\) as a function of
+the integer \(v = \lfloor Y\rfloor\), which is the other dead
+route below.
+
+### Proposition W (no \(v\)-level cells; \(\alpha = 45/16\) past the engine line) — EXACT — HUMAN PROOF / REFUTED method
+
+Two independent deaths of "copy Theorem R one nesting up."
+
+**(i) No \(b\)-runs.** Theorem R segments on runs where
+\(\lfloor\Delta X\rfloor\) is constant, of length
+\(\asymp P^{1/2}/h\). The \(v\)-level analogue is runs of
+\(\lfloor\Delta Y\rfloor\) or of \(\Delta v\). But
+\(Y' \asymp P^{5/4}\) and \(Y'' \asymp P^{1/4} \gg 1\), so
+\(\lfloor\Delta Y\rfloor\) changes at every step of \(n\).
+Measured (`v_level_cell_scan`): mean and max run length \(1\)
+at \(P = 10^4, 10^5, 10^6\), both for \(\lfloor\Delta Y\rfloor\)
+and for \(\Delta v\). Lemma R3 cannot be restated at the
+\(v\)-level: its cells have length \(1\).
+
+**(ii) The forced \(W\)-family is past the engine line.**
+For a \(W\)-family \(e(C\theta_2)\) with \(C \asymp k P^{\alpha}\),
+Theorem R's Step-3 \(\theta\)-coefficient of \((\Delta\Delta C)\,Y\)
+is \(\asymp k h_1 h_2 P^{\alpha - 5/4}\). This is
+
+- sub-unit (R's constraint C1) iff \(\alpha \le 5/4\),
+- engine-treatable (coefficient \(< P\) and derivative \(< 1\))
+  iff \(\alpha < 9/4\).
+
+Lemma V2 produces \(\alpha = 45/16 = 2.8125 > 9/4\). The spawned
+\(\theta\)-sawtooth then has coefficient
+\(\asymp k h_1 h_2 P^{25/16} > P\) and derivative
+\(\asymp k h_1 h_2 P^{9/16} \gg 1\): a unit sawtooth whose
+coefficient exceeds \(n\) and which crosses integers within
+single steps. That is the Phase-5 wall, at a larger scale.
+
+The two Phase-11 routes therefore die by recorded mechanisms,
+not by a new unnamed sum:
+
+- copy R with \((X,m,Y,v)\mapsto(Y,v,Z,z)\): dies by (i);
+- linearize through the inner floor, then invoke R: dies by (ii).
+
+Inherited Phase-5 dead routes (composed Lemma-B cells, the
+swap \(e(c\theta_3)=e(cZ)\,e(-\{c\}z)\), a second A-process
+on \(z^{3/2}\)) remain dead and were not retested.
+
+### What this does *not* refute
+
+Conjecture V — that \(K_3\) itself cancels — is untouched.
+The Phase-11 probe still shows square-root cancellation.
+What is refuted is the *method*: a scale-invariant copy of
+Theorem R with \(\delta(\alpha)\) read off from the smooth
+model \(G(n)=n^{27/8}\). The smooth numerology of Part VIII
+is correct as a statement about \(n^{27/8}\) and false as a
+statement about \(\{\lfloor Y\rfloor^{3/2}\}\).
+
+A bound on \(K_3\) would still not raise certified descent
+at depth 5, and a \(\delta\) that halves per nesting would
+still not give Terras. The new information is sharper:
+the engine/kernel line of the \(W\)-family is \(\alpha = 9/4\)
+for R's own Step-3 bookkeeping, and the first supercritical
+OOOO\* coefficient already overshoots it.
+
+### Phase-12 decision
+
+**PROMOTE** the obstruction. Lemma V2 is exact; the missing
+\(v\)-level cells are measured; the \(\alpha = 45/16\) wall
+is the Phase-5 object at a named larger scale. The
+scale-invariant R-extension is **REFUTED** (ledger row
+`J-scale-invariant-R-extension`). Conjecture V stays a
+conjecture; `depth5_kernel_bound_proved` and
+`density_one_claimed` stay `False`.
+`scale_invariant_R_extension_refuted` flipped. No note
+import, no density claim, no rescue draft.

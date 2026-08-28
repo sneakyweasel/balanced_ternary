@@ -96,6 +96,9 @@ ANTI_OVERCLAIM = {
     # floor-defect kernel K3 (Lemma V1). No bound, no density move.
     "depth5_kernel_isolated": True,
     "depth5_kernel_bound_proved": False,
+    # Phase 12: copying Theorem R to K3 is REFUTED (no v-level
+    # b-runs; forced inner linearization produces α = 45/16).
+    "scale_invariant_R_extension_refuted": True,
 }
 
 
@@ -680,6 +683,96 @@ def oooo_indicator_identity_check(n_max: int) -> dict[str, Any]:
             return {"holds": False, "witness": n}
         checked += 1
     return {"holds": True, "checked": checked, "n_max": n_max}
+
+
+def level3_inner_linearization_check(
+    n: int, scale: int = 10**40
+) -> tuple[int, int]:
+    """(E*scale, bound*scale) for the forced inner linearization (V2).
+
+    v^{3/2} = m^{9/4} - (3/2) m^{3/4} theta_2 + E, with
+    0 ≤ E ≤ (3/8) v^{-1/2} (Taylor of (Y - theta_2)^{3/2} at Y).
+    The main term produces the W-family phase C theta_2 with
+    C = (3c/2) m^{3/4} ≍ k n^{45/16} once the outer coefficient
+    c ≍ k z^{1/2} is restored — past the engine line α = 9/4 of
+    Theorem R's Step-3 θ-coefficients.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    v32 = isqrt(v**3 * scale * scale)
+    m94 = isqrt(isqrt(m**9 * scale**4))
+    m34 = isqrt(isqrt(m**3 * scale**4))
+    th2 = isqrt(m**3 * scale * scale) - v * scale
+    err = v32 - m94 + (3 * m34 * th2) // (2 * scale)
+    v12 = isqrt(v * scale * scale)
+    slack = isqrt(v) + 10**6
+    bound = (3 * scale * scale) // (8 * v12) + slack
+    return err, bound
+
+
+def level3_inner_linearization_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    slack = 10**7
+    for n in samples:
+        err, bound = level3_inner_linearization_check(n)
+        if err < -slack or err > bound:
+            return {"holds": False, "witness": n}
+    return {"holds": True, "count": len(samples)}
+
+
+def v_level_cell_scan(p_block: int, window: int = 400) -> dict[str, Any]:
+    """Run lengths of floor(ΔY) and Δv at step 2.
+
+    Theorem R needs b-runs of floor(ΔX) of length ≍ P^{1/2}/h.
+    The v-level analogue — runs of floor(ΔY) or of Δv — has mean
+    length 1 at every tested scale: Y' ≍ P^{5/4} so the first
+    difference of Y changes by ≍ P^{1/4} ≫ 1 at every step.
+    A copy of Lemma R3 at the v-level cannot even be stated.
+    """
+    s = 10**12
+
+    def y_scaled(x: int) -> int:
+        return isqrt(isqrt(x**3) ** 3 * s * s)
+
+    def v_of(x: int) -> int:
+        return isqrt(isqrt(x**3) ** 3)
+
+    floor_runs: list[int] = []
+    dv_runs: list[int] = []
+    prev_f = prev_dv = None
+    f_run = dv_run = 0
+    n = p_block + 1
+    for _ in range(window):
+        floor_dy = (y_scaled(n + 2) - y_scaled(n)) // s
+        dv = v_of(n + 2) - v_of(n)
+        if prev_f is None or floor_dy != prev_f:
+            if f_run:
+                floor_runs.append(f_run)
+            f_run = 1
+            prev_f = floor_dy
+        else:
+            f_run += 1
+        if prev_dv is None or dv != prev_dv:
+            if dv_run:
+                dv_runs.append(dv_run)
+            dv_run = 1
+            prev_dv = dv
+        else:
+            dv_run += 1
+        n += 2
+    if f_run:
+        floor_runs.append(f_run)
+    if dv_run:
+        dv_runs.append(dv_run)
+    return {
+        "window": window,
+        "floor_dY_mean_run": sum(floor_runs) / len(floor_runs),
+        "floor_dY_max_run": max(floor_runs),
+        "dv_mean_run": sum(dv_runs) / len(dv_runs),
+        "dv_max_run": max(dv_runs),
+        "no_v_level_cells": max(floor_runs) == 1 and max(dv_runs) == 1,
+    }
 
 
 def oeo_mode_probe(p_block: int) -> dict[str, Any]:
@@ -1396,7 +1489,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "`J-depth4-complete`, `J-depth5-contracting`,",
         "`J-five-step-descent-density`; proofs in",
         "`juggler_two_step_parity_lemma.md`). OOOO* kernel isolated",
-        "(Lemma V1); the bound is open.",
+        "(Lemma V1); the scale-invariant copy of Theorem R is",
+        "**REFUTED**; the bound is open.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
@@ -1442,7 +1536,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "now theorems at every depth <= 4, and the two length-5",
         "contracting splits OOOEE/OOEOE lift certified descent to 7/8;",
         "the OOOO* fifth letter is the isolated level-3 kernel K3",
-        "(Lemma V1); the bound is open.",
+        "(Lemma V1); the scale-invariant copy of Theorem R is",
+        "REFUTED (Part IX); the bound is open.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")

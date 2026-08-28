@@ -3418,5 +3418,27 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-level3-inner-linearization",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Lemma V2: for odd n ≥ 5, v^{3/2} = m^{9/4} - (3/2) m^{3/4} theta_2 + E2 with 0 ≤ E2 ≤ (3/8) v^{-1/2}, where m = floor(n^{3/2}), v = floor(m^{3/2}), theta_2 = {m^{3/2}}. Taylor of (Y - theta_2)^{3/2} at Y. This is the forced inner linearization that makes Z = v^{3/2} smooth in m. Restoring the OOOO* outer coefficient c ≍ k z^{1/2} ≍ k n^{27/16} produces a W-family phase C theta_2 with C = (3c/2) m^{3/4} ≍ k n^{45/16}, plus an engine-side remainder c E2 ≍ k n^{9/16} theta_2^2. Validated by exact scaled-integer arithmetic through n = 10^{12}. Not a kernel bound.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-scale-invariant-R-extension",
+    "tag": "REFUTED",
+    "statement": "Theorem R extends to the OOOO* kernel K3 by replacing the W-family exponent 9/8 with 27/16 and adding one Weyl step (the scale-invariant copy predicted by the smooth model G(n) = n^{27/8}). False: (i) there are no v-level b-runs — floor(Delta Y) and Delta v have mean and max run length 1 at P = 10^4, 10^5, 10^6, so Lemma R3 cannot be restated with (X,m,Y,v) -> (Y,v,Z,z); (ii) the forced inner linearization (row J-level3-inner-linearization) produces a W-family at alpha = 45/16 > 9/4, past Theorem R's engine line for Step-3 theta-coefficients (the spawned sawtooth has coefficient > n and derivative >> 1 — the Phase-5 wall at a larger scale). Conjecture V (that K3 itself cancels) is not refuted; the Phase-11 probe still shows square-root cancellation. Not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]

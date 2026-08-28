@@ -103,6 +103,8 @@ It is not required. The 2-adic / BT bridge stays closed.
   (`depth5_contracting_proved` is `True`); certified density \(7/8\)
 - OOOO\* kernel isolated — Phase 11 (`depth5_kernel_isolated`
   is `True`); bound not proved
+- Scale-invariant copy of Theorem R — **REFUTED** in Phase 12
+  (`scale_invariant_R_extension_refuted` is `True`)
 - Global halt — not claimed
 
 ## Experiments
@@ -121,6 +123,8 @@ Research Engine modification.
 - **Conjecture V** (level-3 kernel cancellation): \(K_3(P)\ll
   P^{1-\delta}\) for the \(z^{1/2}\)-shaped family
   \(c\asymp k P^{27/16}\). Isolated in Phase 11; bound open.
+  The scale-invariant *method* for proving it is **REFUTED**
+  (Phase 12); the cancellation statement is untouched.
   Envelope exponents remain observations.
 
 ## Counterexamples
@@ -129,6 +133,9 @@ Research Engine modification.
 - Prior refutations stand: residue classes do not decide letter 3;
   θ-bins do not predict the next landing; the short-interval transfer
   law is false. None were retested.
+- Phase 12: the scale-invariant copy of Theorem R is **REFUTED**
+  (no \(v\)-level \(b\)-runs; forced \(\alpha=45/16\) wall).
+  Permanent; do not retry as a repair of Theorem R.
 
 ## Formalization
 
@@ -396,6 +403,30 @@ iterates. No bound, no density claim.
 - **Conjecture V**: \(K_3\ll P^{1-\delta}\). Not claimed.
 - A bound at depth 5 would not raise certified density
   (\(3^4>2^5\)); first OOOO-prefixed contractor is OOOOEEE.
+  The "three Weyl steps" prediction is a smooth-model
+  statement only; see Phase 12.
+
+## Phase 12: the \(v\)-level wall
+
+Working document, Part IX. Scope: the product of carry
+lattices versus a new wall. The wall is real.
+
+- **Lemma V2** — **EXACT — HUMAN PROOF**
+  (`J-level3-inner-linearization`):
+  \(v^{3/2}=m^{9/4}-\tfrac32 m^{3/4}\theta_2+E_2\),
+  \(0\le E_2\le\tfrac38 v^{-1/2}\). Forced if \(Z\) is to
+  become smooth in \(m\). Restoring \(c\asymp n^{27/16}\)
+  produces a \(W\)-family at \(\alpha=45/16\).
+- **Proposition W** — no \(v\)-level \(b\)-runs (mean and
+  max run of \(\lfloor\Delta Y\rfloor\) and of \(\Delta v\)
+  equal \(1\) at \(P=10^4,10^5,10^6\)); and
+  \(\alpha=45/16>9/4\) is past Theorem R's engine line for
+  Step-3 \(\theta\)-coefficients (spawned sawtooth has
+  coefficient \(>n\) and derivative \(\gg 1\)).
+- **Scale-invariant R-extension** — **REFUTED**
+  (`J-scale-invariant-R-extension`). Both copy-routes die
+  by recorded mechanisms. Conjecture V (cancellation of
+  \(K_3\)) is not refuted.
 
 ## Results
 
@@ -416,10 +447,10 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: does the product of the two carry lattices
-still kill every full-size sawtooth coefficient in \(K_3\), or
-does a new wall appear at the \(v\)-level? (Conjecture V.)
-A \(\delta\) that halves per nesting still does not give Terras.
+One mathematical: does any method bound \(W\)-family kernels
+with \(\alpha>9/4\), or is that the hard ceiling of the
+nested-floor engine? Conjecture V (cancellation of \(K_3\))
+is still open as a statement and closed as an R-copy.
 One editorial: import Theorems R/S/T and Corollary U into the
 finite-dynamics note (its Conjecture 6.2 and the \(13/16\)
 headline are superseded).
@@ -560,9 +591,16 @@ wild. Conjecture V is the bound, not a claim.
 `depth5_kernel_isolated` flipped; no ledger row, no density
 move, no note import.
 
-Best next question: does the product of the two carry lattices
-still annihilate every full-size sawtooth coefficient in
-\(K_3\), or is there a new wall at the \(v\)-level?
+**PROMOTE** (Phase 12, \(v\)-level wall): Lemma V2 forces the
+inner linearization; there are no \(v\)-level \(b\)-runs;
+the resulting \(W\)-family has \(\alpha=45/16>9/4\). The
+scale-invariant copy of Theorem R is **REFUTED**. Conjecture
+V stays a conjecture. Two ledger rows added;
+`scale_invariant_R_extension_refuted` flipped. No bound, no
+density move, no rescue draft, no note import.
+
+Best next question: does any method bound \(W\)-family kernels
+with \(\alpha>9/4\), or is \(9/4\) the hard ceiling?
 
 ## Publication assessment
 
@@ -576,4 +614,5 @@ Pending editorial debt: the note still states Conjecture 6.2 as
 open and the headline density as \(13/16\); import Theorems R/S/T
 and Corollary U in a consolidation phase. The OOOO\* kernel
 \(K_3\) is isolated in the laboratory (Conjecture V) and is
-not in the note.
+not in the note; the scale-invariant copy of Theorem R is
+laboratory-**REFUTED** and likewise not in the note.
