@@ -9,15 +9,20 @@ The note is written to be self-contained. This page is a claim map, not
 required reading for the proofs.
 
 **Primary review question.** Are the power-envelope, global-defect, and
-cycle arguments correct at their stated quantifiers, and is the secondary
-density-\(3/4\) corollary kept distinct from existential descent and
+cycle arguments correct at their stated quantifiers; are the Section-5
+discrepancy proofs (depths 1–4, exponents \(5/6\) to \(23/24\)) sound;
+and are the secondary densities (\(3/4\) at two steps, \(13/16\) at
+four) kept distinct from existential descent and
 \(\operatorname{ReachesOne}\)?
 
-No termination theorem is claimed.
+No termination theorem is claimed. The depth-4 \(OOO*\) split and the
+kernel bound (Conjecture 6.2) are open, and the note says so.
 
 Large language models were used extensively in drafting. They are not
 authors. Lean theorems and named computations certify the exact-arithmetic
-claims. Theorem 5.1 is a human proof.
+claims. The analytic estimates of Section 5 and Proposition 6.1 are
+human proofs; only their exact floor reductions are in Lean
+(`GapCells.lean`).
 
 ## What to read
 
@@ -33,9 +38,14 @@ claims. Theorem 5.1 is a human proof.
 Every realized finite Juggler word obeys a power envelope, and its local
 floor losses assemble into an exact compositional global defect with rigid
 zero cases. Inverse cells give cycle restrictions and a small-cycle
-census: no nontrivial cycle has length at most six. As a secondary
-corollary, the uniform one- and two-step certificate class has density
-\(3/4\).
+census: no nontrivial cycle has length at most six. As secondary
+corollaries, an exact-linearization discrepancy calculus proves every
+itinerary word class of depth at most four except \(OOO*\)
+equidistributed with power savings, so the uniform certificate classes
+have densities \(3/4\) (two steps) and \(13/16\) (four steps);
+all-depth equidistribution would imply density-one finite descent
+(Proposition 6.1), and the precise remaining depth-4 obstacle is the
+kernel of Conjecture 6.2.
 
 ## Claim map
 
@@ -55,6 +65,14 @@ corollary, the uniform one- and two-step certificate class has density
 | Proposition 4.4 horizon-\(20\) first-return census | **COMPUTATIONALLY VERIFIED** | exact Python integers, zero unresolved cases; not Lean or almost-all |
 | \(\lvert S_O(N)\rvert\ll N^{5/6}\) | **EXACT — HUMAN PROOF** | ambient; not Lean |
 | \(\lvert\mathrm{OO}(N)-N/4\rvert\ll N^{5/6}\) | **EXACT — HUMAN PROOF** | short-certificate class density \(3/4\) |
+| Parity bridge and gap-cell floor identities (Lemma 5.3(ii), Section 5 reduction) | **EXACT — LEAN VERIFIED** | `GapCells.lean`; exact reductions only, no analytic content |
+| Nested parity discrepancy \(N^{23/24+\varepsilon}\) (Theorem 5.4) | **EXACT — HUMAN PROOF** | depth 2; exponent deliberately unoptimized |
+| OE-branch third letter \(N^{7/8+\varepsilon}\) (Proposition 5.5) | **EXACT — HUMAN PROOF** | completes depth 3 |
+| Triple parity discrepancy \(N^{23/24+\varepsilon}\) (Theorem 5.7) | **EXACT — HUMAN PROOF** | OOE\(*\) depth-4 words |
+| OE\(**\) splits \(N^{7/8+\varepsilon}\), \(N^{13/16+\varepsilon}\) (Theorem 5.8) | **EXACT — HUMAN PROOF** | depth 4 complete except OOO\(*\) |
+| Certified-descent density \(13/16\) (Corollary 5.9) | **EXACT — HUMAN PROOF** | uniform four-step class; exact ceiling of the method |
+| Equidistribution \(\Rightarrow\) density-one descent (Proposition 6.1) | **EXACT — HUMAN PROOF** | unconditional implication; hypothesis open beyond depth 4 minus OOO\(*\) |
+| Kernel cancellation \(K_c(P)\ll P^{1-\delta}\) (Conjecture 6.2) | **CONJECTURE** | not claimed; square-root cancellation observed in exact probes |
 
 ## Quantifier checks
 
@@ -62,10 +80,13 @@ corollary, the uniform one- and two-step certificate class has density
    predicate (image \(<n\) or image \(1\)). Theorems 4.1–4.2 isolate a
    uniform short subclass. They do not say that odd-to-odd starts lack
    descent.
-2. Corollary 5.2 is a density of that uniform subclass. It is not
-   density of `FiniteProgress` and not density of `ReachesOne`.
+2. Corollary 5.2 and Corollary 5.9 are densities of uniform
+   subclasses (\(3/4\) at two steps, \(13/16\) at four). Neither is a
+   density of `FiniteProgress` nor of `ReachesOne`.
 3. Terras–Everett prove almost-all Collatz stopping times. The note does
-   not prove the Juggler analogue on odd-to-odd starts.
+   not prove the Juggler analogue; Proposition 6.1 is an unconditional
+   *implication* from all-depth equidistribution, whose hypothesis is
+   open (first open case: the depth-4 \(OOO*\) split, Conjecture 6.2).
 4. `power_bound_contracts` requires a realized contracting word.
 5. Cycle restrictions do not exclude all cycles. Theorem 3.3 is a
    census for lengths at most six only; cycles of length seven or more
@@ -76,9 +97,14 @@ corollary, the uniform one- and two-step certificate class has density
 ## What the paper does not claim
 
 - Every positive integer reaches \(1\).
-- Three-quarters of starts reach \(1\).
-- Three-quarters of starts have some descent certificate.
+- Three-quarters (or \(13/16\)) of starts reach \(1\).
+- Three-quarters (or \(13/16\)) of starts have some descent certificate
+  as their *complete* inventory: the densities count uniform classes.
 - A Collatz theorem, or a transfer of Terras's theorem to \(J\).
+- Density-one finite descent (Proposition 6.1 is conditional on
+  all-depth equidistribution).
+- The kernel bound \(K_c(P)\ll P^{1-\delta}\) (Conjecture 6.2 is open).
+- The \(OOO*\) depth-4 word class density.
 - Every trajectory meets a contracting word.
 - Every nontrivial cycle is impossible.
 - The Juggler map is irreducible or has no finite-state model.
@@ -89,15 +115,23 @@ corollary, the uniform one- and two-step certificate class has density
 Reject or revise if:
 
 1. a Lean theorem is quoted with stronger quantifiers than its statement;
-2. the \(3/4\) figure is called a Terras theorem or a `ReachesOne` density;
+2. the \(3/4\) or \(13/16\) figure is called a Terras theorem or a
+   `ReachesOne` density;
 3. Theorem 4.2 is read as “odd-to-odd starts have no descent”;
-4. Theorem 5.1 is described as Lean-certified;
+4. any analytic estimate of Section 5 (or Proposition 6.1) is
+   described as Lean-certified;
 5. the census of Theorem 3.3 is read beyond length six, or an
    exclusion of cycles of length seven or more is attributed to the
    note;
-6. the discrepancy proof replaces the floor by a single exponential;
+6. the discrepancy proofs replace a floor by a single exponential, or
+   an exact linearization (Lemma 5.3(i), Lemma 5.6) is quoted without
+   its one-signed remainder bounds;
 7. an interval bound is applied to a sparse image set without transfer;
-8. Proposition 4.4 is promoted from exact finite census to an infinite theorem.
+8. Proposition 4.4 is promoted from exact finite census to an infinite
+   theorem;
+9. Proposition 6.1 is quoted without its equidistribution hypothesis,
+   or Conjecture 6.2 is cited as a theorem;
+10. the \(OOO*\) split is claimed as proved at depth 4.
 
 ## Verification
 
@@ -110,6 +144,7 @@ python -m pytest tests/unit/test_theorem_ledger.py
 python -m pytest tests/research/juggler_sequence/test_oo_descent_density.py
 python -m pytest tests/research/juggler_sequence/test_progress_coverage.py
 python -m pytest tests/research/juggler_sequence/test_odd_image_discrepancy.py
+python -m pytest tests/research/juggler_sequence/test_two_step_parity.py
 python -m pytest tests/research/juggler_sequence/test_cycle_leftover_words.py
 python -m pytest tests/research/juggler_sequence/test_layer_architecture.py
 ```

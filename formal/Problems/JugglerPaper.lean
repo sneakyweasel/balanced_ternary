@@ -17,6 +17,7 @@ import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionSlack
 import Problems.Juggler.NearTightScale
+import Problems.Juggler.GapCells
 
 /-!
 # Juggler paper barrel
@@ -58,6 +59,11 @@ The note's Lean-tagged theorems are:
 * 4.1 `even_finiteProgress`, `odd_even_finiteProgress`
 * 4.2 `unresolved_is_odd_odd`
 * 4.3 `reachesOne_of_lt_twelve`, `even_lt_sq_twelve_reachesOne`
+* §5  exact floor reductions only: `floor_odd_iff_half_le_fract_half`
+      (parity bridge), `floor_add_eq_add_carry`, `floor_gap_eq_carry`,
+      `seq_floor_gap` (gap cells). The analytic estimates of §5
+      (Theorems 5.1, 5.4, 5.7, 5.8, Proposition 5.5, Corollary 5.9)
+      and Proposition 6.1 are human proofs, not Lean theorems.
 * §6  `four_block_pe_1999` (certified four-block expanding chain)
 
 `FiniteProgress` is a descent certificate: a realized word with image
@@ -68,7 +74,9 @@ same predicate, not four different claims.
 This barrel does not prove that every positive integer reaches `1`,
 that every orbit meets a contracting word, or that all nontrivial
 cycles are impossible. The cycle census stops at length six; length
-seven and beyond is open. Theorem 5.1 is a human proof and is not here.
+seven and beyond is open. The discrepancy estimates of the note's
+Section 5 are human proofs and are not here; only their exact floor
+reductions (`GapCells`) are.
 Proposition 4.4 is an exact uncapped Python census through horizon 20,
 not a Lean theorem.
 `FiniteCoeffStopConjecture` is a laboratory target, not a claim of

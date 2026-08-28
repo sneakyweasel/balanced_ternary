@@ -241,10 +241,13 @@ unresolved_is_odd_odd :
 ```
 
 Thus even and odd-to-even starts have automatic finite progress. The note's
-density-\(3/4\) corollary counts that uniform short-certificate class. It
-is not a Lean cardinality theorem, not a density of all `FiniteProgress`,
-and not a `ReachesOne` density. Odd-to-odd starts may still descend after
-a longer word. The Terras analogue on that class remains open.
+density corollaries (\(3/4\) at two steps, \(13/16\) at four) count
+uniform certificate classes. They are not Lean cardinality theorems, not
+densities of all `FiniteProgress`, and not `ReachesOne` densities.
+Odd-to-odd starts may still descend after a longer word. The Terras
+analogue remains open; the note's Proposition 6.1 reduces it to
+all-depth parity equidistribution, which is proved through depth 4
+except the \(OOO*\) split.
 
 ## 7. Exact inverse cells
 
@@ -405,13 +408,45 @@ one_plus_eta_lt_succ_sq :
 The certified four-block expanding chain named in the note's Section 6
 is `four_block_pe_1999` in `ExpansionSlack.lean`.
 
-## 9. Evidence boundary
+## 9. Exact floor reductions for the discrepancy section
+
+Source: `formal/Problems/Juggler/GapCells.lean`.
+
+The analytic estimates of the note's Section 5 are human proofs. The
+exact floor reductions beneath them are Lean-verified over the reals:
+
+```text
+floor_odd_iff_half_le_fract_half :
+  ⌊x⌋ % 2 = 1 ↔ 1 / 2 ≤ Int.fract (x / 2)
+
+floor_add_eq_add_carry :
+  ⌊x + y⌋ = ⌊x⌋ + ⌊y⌋ +
+    if 1 ≤ Int.fract x + Int.fract y then 1 else 0
+
+floor_gap_eq_carry :
+  ⌊x + δ⌋ - ⌊x⌋ = ⌊δ⌋ +
+    if 1 - Int.fract δ ≤ Int.fract x then 1 else 0
+
+seq_floor_gap : (the same identity along any sequence Y : ℕ → ℝ)
+```
+
+The first is the parity bridge that converts parity sums into interval
+discrepancies (Section 5's fractional-part form). The gap identities
+are the cell structure of the note's Lemma 5.3(ii) and of the
+companion's Lemmas B and N: the increment of a floored smooth sequence
+is the floor of the smooth increment plus a 0/1 sawtooth carry. No
+Vaaler, van der Corput, or Erdős–Turán content is formalized.
+
+## 10. Evidence boundary
 
 Lean certifies the definitions and theorem statements above. It does not
 certify:
 
 - Proposition 4.4's exact Python-integer horizon-\(20\) census;
-- the analytic \(N^{5/6}\) discrepancy argument;
+- the analytic discrepancy estimates of Section 5 (Theorems 5.1, 5.4,
+  5.7, 5.8, Proposition 5.5, Corollary 5.9) or Proposition 6.1;
+- the scaled-integer validators for the exact-linearization lemmas
+  (those are pytest-pinned computations, not proofs);
 - statistical drift estimates;
 - universal Juggler termination.
 

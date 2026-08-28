@@ -9102,4 +9102,55 @@ Best next question
   admit any power saving?
 ```
 
+## Juggler consolidation: the parity-discrepancy branch enters the note (Phase 7)
+
+Editorial phase, no new mathematics claimed. The two-step parity
+branch is imported into the finite-dynamics note at publication
+quality, and the small Lean packaging pass limited to floor identities
+is done.
+
+The note's Section 5 is now "Parity discrepancy and certified-descent
+densities": Lemma 5.3 (exact linearization + gap cells, former
+Lemmas A/B), Theorem 5.4 (nested parity discrepancy N^{23/24+eps},
+former Theorem C, full six-step proof), Proposition 5.5 (OE-branch
+third letter N^{7/8+eps}, former Proposition L — depth 3 complete),
+Lemma 5.6 (fourth-letter linearization, former Lemma D), Theorem 5.7
+(triple parity, former Theorem E), Theorem 5.8 (OE** splits with the
+w-level linearization inline, former Lemma A'/Theorem Q), and
+Corollary 5.9 (depth-4 census + certified density 13/16 + the
+one-growing-layer ceiling, former Corollary F/Proposition I).
+Section 6 gains Proposition 6.1 (equidistribution implies density-one
+descent, former Proposition J, full Hoeffding proof), the kernel
+definition with Conjecture 6.2 (former Conjecture O), the sharp
+engine/kernel regime boundary at coefficient growth n, and the two
+analytic route obstructions (composed cells, fiber transform) in the
+negative-knowledge paragraph. Abstract, intro, verification
+convention, figure (13/16 + OOO* kernel nodes), acknowledgments, and
+references (Vaaler; Graham–Kolesnik) updated in step.
+
+Lean pass: new module `formal/Problems/Juggler/GapCells.lean`, built
+clean and imported by both barrels — `floor_add_eq_add_carry`,
+`floor_gap_eq_carry`, `seq_floor_gap` (the Lemma B/N gap-cell
+identity, one statement covering both levels) and
+`floor_odd_iff_half_le_fract_half` (the parity bridge that turns
+parity sums into interval discrepancies). Exact reductions only; the
+Vaaler / van der Corput / Erdős–Turán stages remain human proofs, and
+the note's Section 1.1 says exactly where that boundary runs.
+
+Records: reviewer packet (claim map + falsifiers 9/10), formalization
+map (new Section 9), theorem ledger (`J-kernel-cancellation` row
+added; lean fields and note-import cross-references on the branch
+rows), dossier Phase-7 PROMOTE, review bundle resynced, PDFs rebuilt.
+
+```text
+What was learned
+- consolidation only; the one addition is that the floor reductions
+  under Section 5 are now machine-checked over the reals
+Branch status
+- PROMOTE (editorial debt cleared; frontier unchanged)
+Best next question
+- does the kernel K_c(P) = sum e(c(n){m^{3/2}}), c ~ k P^{9/8},
+  admit any power saving (Conjecture 6.2)?
+```
+
 

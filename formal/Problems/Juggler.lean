@@ -34,6 +34,7 @@ import Problems.Juggler.LandingValuation
 import Problems.Juggler.PreimageCylinders
 import Problems.Juggler.OddLandingSets
 import Problems.Juggler.WordLanguage
+import Problems.Juggler.GapCells
 
 /-!
 # Juggler laboratory barrel

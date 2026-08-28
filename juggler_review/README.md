@@ -33,7 +33,9 @@ lake build Problems.JugglerPaper
 
 Repository: https://github.com/sneakyweasel/balanced_ternary/
 
-Theorem 5.1 is a human proof and is not in Lean.
+The analytic estimates of Section 5 and Proposition 6.1 are human
+proofs and are not in Lean; only their exact floor reductions are
+(`GapCells.lean`).
 
 ## What is not here
 

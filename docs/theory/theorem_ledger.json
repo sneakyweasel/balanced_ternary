@@ -3279,9 +3279,9 @@
   {
     "id": "J-nested-parity-discrepancy",
     "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Each of the four joint parity classes of (floor(n^{3/2}), floor(floor(n^{3/2})^{3/2})) over odd n \u2264 N has cardinality N/8 + O(N^{23/24+eps}); in particular #{odd n \u2264 N : J(n) odd, J^2(n) even} = N/8 + O(N^{23/24+eps}), one itinerary letter beyond the ambient odd-input bound. Proof: Vaaler wave expansion, the exact linearization row J-nested-parity-linearization, one van der Corput A-process at H = N^{1/12}, constant-gap cells with an exactly split moving-endpoint expansion, and the second-derivative test per cell; exponent deliberately unoptimized. Ambient counting over all odd starts; not an orbit transfer theorem, not a frequency theorem along trajectories, and not a termination claim.",
+    "statement": "Each of the four joint parity classes of (floor(n^{3/2}), floor(floor(n^{3/2})^{3/2})) over odd n \u2264 N has cardinality N/8 + O(N^{23/24+eps}); in particular #{odd n \u2264 N : J(n) odd, J^2(n) even} = N/8 + O(N^{23/24+eps}), one itinerary letter beyond the ambient odd-input bound. Proof: Vaaler wave expansion, the exact linearization row J-nested-parity-linearization, one van der Corput A-process at H = N^{1/12}, constant-gap cells with an exactly split moving-endpoint expansion, and the second-derivative test per cell; exponent deliberately unoptimized. Ambient counting over all odd starts; not an orbit transfer theorem, not a frequency theorem along trajectories, and not a termination claim. Imported into the finite-dynamics note as Theorem 5.4.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
-    "lean": "",
+    "lean": "formal/Problems/Juggler/GapCells.lean: floor_gap_eq_carry and floor_odd_iff_half_le_fract_half certify the exact floor reductions (gap cells, parity bridge) only; the analytic estimate is a human proof.",
     "tests": [
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
@@ -3301,7 +3301,7 @@
   {
     "id": "J-triple-parity-discrepancy",
     "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Each of the eight sign classes of ((-1)^m, (-1)^v, (-1)^{floor(sqrt v)}) over odd n \u2264 N, with m = floor(n^{3/2}) and v = floor(m^{3/2}), has cardinality N/16 + O(N^{23/24+eps}). Proof: the c = 0 cases are rows J-ambient-odd-discrepancy and J-nested-parity-discrepancy; for c = 1, the fourth letter is smoothed exactly by row J-fourth-letter-linearization before any differencing, pure fourth-letter modes reduce to a single smooth exponential sum (direct second-derivative test), and mixed modes rerun the depth-2 machinery with the smooth passenger (k/2) n^{9/8}, whose curvature is smaller than every retained scale by at least N^{9/8-1/24}. Even-branch fourth letter only; ambient counting; not a termination claim.",
+    "statement": "Each of the eight sign classes of ((-1)^m, (-1)^v, (-1)^{floor(sqrt v)}) over odd n \u2264 N, with m = floor(n^{3/2}) and v = floor(m^{3/2}), has cardinality N/16 + O(N^{23/24+eps}). Proof: the c = 0 cases are rows J-ambient-odd-discrepancy and J-nested-parity-discrepancy; for c = 1, the fourth letter is smoothed exactly by row J-fourth-letter-linearization before any differencing, pure fourth-letter modes reduce to a single smooth exponential sum (direct second-derivative test), and mixed modes rerun the depth-2 machinery with the smooth passenger (k/2) n^{9/8}, whose curvature is smaller than every retained scale by at least N^{9/8-1/24}. Even-branch fourth letter only; ambient counting; not a termination claim. Imported into the finite-dynamics note as Theorem 5.7.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3312,7 +3312,7 @@
   {
     "id": "J-four-step-descent-density",
     "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "#{n \u2264 N : n odd with itinerary OOEE} = N/16 + O(N^{23/24+eps}), and the class of starts with a certified descent within four steps \u2014 evens (one step), OE (two steps, Lean lemma floorPower_odd_even_two_step_lt), OOEE (four steps, row J-power-envelope-contraction via 3^2 < 2^4) \u2014 has cardinality 13N/16 + O(N^{23/24+eps}). Indicator algebra (1-psi_1)(1+psi_2)(1+psi_3)/8 is exactly branch-consistent: the (1+psi_2) factor vanishes precisely where J^3 would take the odd branch. Raises the certified descent density from 3/4 to 13/16. Density of a certificate class, not a termination claim; OOO* classes remain open.",
+    "statement": "#{n \u2264 N : n odd with itinerary OOEE} = N/16 + O(N^{23/24+eps}), and the class of starts with a certified descent within four steps \u2014 evens (one step), OE (two steps, Lean lemma floorPower_odd_even_two_step_lt), OOEE (four steps, row J-power-envelope-contraction via 3^2 < 2^4) \u2014 has cardinality 13N/16 + O(N^{23/24+eps}). Indicator algebra (1-psi_1)(1+psi_2)(1+psi_3)/8 is exactly branch-consistent: the (1+psi_2) factor vanishes precisely where J^3 would take the odd branch. Raises the certified descent density from 3/4 to 13/16. Density of a certificate class, not a termination claim; OOO* classes remain open. Imported into the finite-dynamics note as Corollary 5.9.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3334,7 +3334,7 @@
   {
     "id": "J-equidistribution-implies-density-one",
     "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Conditional implication (Proposition J): if for every itinerary word w of length d the class count satisfies |#w(N) - 2^{-d} N| \u2264 E_d(N), then the starts with no contracting prefix of length \u2264 d number at most e^{-cd} N + 2^d E_d(N), with c = 2 (log2/log3 - 1/2)^2 > 0.0342 via Hoeffding on the odd-letter count (a word with no contracting prefix has o_d \u2265 d log2/log3). Every other start n \u2265 2 has a uniform power-envelope descent certificate within d steps (row J-power-envelope-contraction). Hence all-depth parity equidistribution with power savings (Conjecture K; proved for all words of length \u2264 3 and all words of length 4 except OOO* \u2014 rows J-triple-parity-discrepancy, J-even-branch-third-letter, J-depth4-slow-branch) implies that the set of Juggler starts admitting a finite descent certificate has natural density one \u2014 the Juggler analogue of the Terras program. E-rooted words have a contracting prefix at length 1, so only O-rooted class bounds are ever consumed. The implication is unconditional; the hypothesis is open beyond the proved cases. Not a termination claim; no unconditional density-one claim.",
+    "statement": "Conditional implication (Proposition J): if for every itinerary word w of length d the class count satisfies |#w(N) - 2^{-d} N| \u2264 E_d(N), then the starts with no contracting prefix of length \u2264 d number at most e^{-cd} N + 2^d E_d(N), with c = 2 (log2/log3 - 1/2)^2 > 0.0342 via Hoeffding on the odd-letter count (a word with no contracting prefix has o_d \u2265 d log2/log3). Every other start n \u2265 2 has a uniform power-envelope descent certificate within d steps (row J-power-envelope-contraction). Hence all-depth parity equidistribution with power savings (Conjecture K; proved for all words of length \u2264 3 and all words of length 4 except OOO* \u2014 rows J-triple-parity-discrepancy, J-even-branch-third-letter, J-depth4-slow-branch) implies that the set of Juggler starts admitting a finite descent certificate has natural density one \u2014 the Juggler analogue of the Terras program. E-rooted words have a contracting prefix at length 1, so only O-rooted class bounds are ever consumed. The implication is unconditional; the hypothesis is open beyond the proved cases. Not a termination claim; no unconditional density-one claim. Imported into the finite-dynamics note as Proposition 6.1.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3345,7 +3345,7 @@
   {
     "id": "J-even-branch-third-letter",
     "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Proposition L: |sum over odd n \u2264 N of ((-1)^m)^a psi(m^{1/2})| \u226a N^{7/8+eps} for a in {0,1}, with m = floor(n^{3/2}) and psi(x) = (-1)^{floor(x)}. Hence #OEO(N) and #OEE(N) each equal N/8 + O(N^{7/8+eps}), completing all four depth-3 itinerary word classes (OO-splits by row J-triple-parity-discrepancy). Proof: exact smoothing m^{1/2} = n^{3/4} + D1 with -(1/2)X^{-1/2} - (1/8)(X-1)^{-3/2} \u2264 D1 \u2264 0 (decaying; cumulative cost O(l N^{1/4})), then pure smooth modes with van der Corput II. Branch-consistent: the (1+(-1)^m)/2 factor vanishes exactly where J^2 takes the odd branch. Corrects an earlier overclaim that depth 3 was already fully proved. Validated to n = 10^{12} (smoothing) and n \u2264 20001 (indicator identity).",
+    "statement": "Proposition L: |sum over odd n \u2264 N of ((-1)^m)^a psi(m^{1/2})| \u226a N^{7/8+eps} for a in {0,1}, with m = floor(n^{3/2}) and psi(x) = (-1)^{floor(x)}. Hence #OEO(N) and #OEE(N) each equal N/8 + O(N^{7/8+eps}), completing all four depth-3 itinerary word classes (OO-splits by row J-triple-parity-discrepancy). Proof: exact smoothing m^{1/2} = n^{3/4} + D1 with -(1/2)X^{-1/2} - (1/8)(X-1)^{-3/2} \u2264 D1 \u2264 0 (decaying; cumulative cost O(l N^{1/4})), then pure smooth modes with van der Corput II. Branch-consistent: the (1+(-1)^m)/2 factor vanishes exactly where J^2 takes the odd branch. Corrects an earlier overclaim that depth 3 was already fully proved. Validated to n = 10^{12} (smoothing) and n \u2264 20001 (indicator identity). Imported into the finite-dynamics note as Proposition 5.5.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3358,7 +3358,7 @@
     "tag": "EXACT \u2014 HUMAN PROOF",
     "statement": "Tier-2 bricks. Lemma M: for odd n \u2265 5, X = n^{3/2}, m = floor(X), integer G \u2265 0, Z = X + G: m^{3/2} = -(1/8)X^{3/2} + (3/4) m X^{1/2} + (3/8) m^2 X^{-1/2} + R5 and (m+G)^{3/2} = Z^{3/2} - (3/2)X Z^{1/2} + (3/8)X^2 Z^{-1/2} + m((3/2)Z^{1/2} - (3/4)X Z^{-1/2}) + (3/8) m^2 Z^{-1/2} + R6, with 0 \u2264 R5, R6 \u2264 (1/16)(base-1)^{-3/2} (positive third-order Taylor remainders). Lemma N: the level-2 gap satisfies g2 = v(n+2h) - v(n) = floor(DY) + [theta2 \u2265 1 - {DY}] with DY = Y(n+2h) - Y(n), Y = m^{3/2} \u2014 Lemma B one level up; on constant-g1 cells DY is a quadratic in m with smooth coefficients by Lemma M. Validated exactly to n = 10^{12} (Lemma M, gaps h in {1,2,5}) and on 3800 orbit samples (Lemma N). Bricks only; the tier-2 discrepancy bound is not claimed \u2014 the remaining obstacle is the kernel sum e(c(n){m^{3/2}}) with c of size n^{9/8} (Conjecture O; float probe shows square-root cancellation).",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
-    "lean": "",
+    "lean": "formal/Problems/Juggler/GapCells.lean: seq_floor_gap certifies the Lemma N floor identity; Lemma M and all analytic content remain human proofs.",
     "tests": [
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
@@ -3367,7 +3367,18 @@
   {
     "id": "J-depth4-slow-branch",
     "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Theorem Q: #OEOE(N), #OEOO(N) = N/16 + O(N^{7/8+eps}) and #OEEE(N), #OEEO(N) = N/16 + O(N^{13/16+eps}). With rows J-triple-parity-discrepancy and J-four-step-descent-density this proves every depth-4 itinerary word class except OOO*. Proof: Lemma A' gives the exact identity w^{3/2} = m^{3/4} - (3/2) m^{1/4} theta_w + E (0 \u2264 E \u2264 (3/8)(U-1)^{-1/2}, using U m^{1/4} = m^{3/4} exactly), so the fourth-letter phase is (k/2) n^{9/8} minus one growing sawtooth B theta_w with B = (3k/4) n^{3/8}; B drifts by \u2264 1 on intervals of length P^{5/8}/k, where a shifted-window Fourier expansion in U (mass O(log), partial summation for the moving coefficients) reduces to smooth modes with single-signed curvature ~ k n^{-7/8} (window T = P^{5/16} << k P^{3/8} avoids sign collision for every k \u2265 1); van der Corput II and the balance J = P^{1/8} give N^{7/8+eps}. The OEE branch has decaying amplitudes only. No differencing and no kernel: the coefficient crosses integers every P^{5/8}/k steps, unlike the OOO* weight (crossings within single steps) \u2014 the engine reaches exactly the letters whose phase coefficients grow slower than n. Ambient counting; not a termination claim; OOO* remains open (Conjecture O).",
+    "statement": "Theorem Q: #OEOE(N), #OEOO(N) = N/16 + O(N^{7/8+eps}) and #OEEE(N), #OEEO(N) = N/16 + O(N^{13/16+eps}). With rows J-triple-parity-discrepancy and J-four-step-descent-density this proves every depth-4 itinerary word class except OOO*. Proof: Lemma A' gives the exact identity w^{3/2} = m^{3/4} - (3/2) m^{1/4} theta_w + E (0 \u2264 E \u2264 (3/8)(U-1)^{-1/2}, using U m^{1/4} = m^{3/4} exactly), so the fourth-letter phase is (k/2) n^{9/8} minus one growing sawtooth B theta_w with B = (3k/4) n^{3/8}; B drifts by \u2264 1 on intervals of length P^{5/8}/k, where a shifted-window Fourier expansion in U (mass O(log), partial summation for the moving coefficients) reduces to smooth modes with single-signed curvature ~ k n^{-7/8} (window T = P^{5/16} << k P^{3/8} avoids sign collision for every k \u2265 1); van der Corput II and the balance J = P^{1/8} give N^{7/8+eps}. The OEE branch has decaying amplitudes only. No differencing and no kernel: the coefficient crosses integers every P^{5/8}/k steps, unlike the OOO* weight (crossings within single steps) \u2014 the engine reaches exactly the letters whose phase coefficients grow slower than n. Ambient counting; not a termination claim; OOO* remains open (Conjecture O). Imported into the finite-dynamics note as Theorem 5.8.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-kernel-cancellation",
+    "tag": "CONJECTURE",
+    "statement": "Conjecture O / note Conjecture 6.2: K_c(P) = sum over odd n ~ P of e(c(n) {floor(n^{3/2})^{3/2}}) satisfies K_c(P) << P^{1-delta} for some delta > 0, uniformly over smooth coefficients c with c ~ k P^{9/8} and c' ~ k P^{1/8} (the W-shaped family produced by differencing the OOO* phase). Exact-scaled-phase probes show square-root cancellation (|K| = 51.9, 124.4, 1017.5 on 5e3, 5e4, 5e5 terms). Every reorganization of the OOO* split tried funnels into this object; a bound would complete depth-4 equidistribution and raise the certified descent density beyond 13/16. Open; no bound is claimed. The coefficient derivative c' >> 1 crosses integers within single steps, so no drift-1 interval exists and the depth-4 engine does not apply.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [

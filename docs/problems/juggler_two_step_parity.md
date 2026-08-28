@@ -364,11 +364,9 @@ counts, **OBSERVATION** exponents.
 
 One mathematical: Conjecture O, the kernel bound \(K_c \ll
 P^{1-\delta}\) — the exact remaining obstacle to OOO\*, to depth-4
-completeness, and to every density tier beyond \(13/16\). One
-editorial: import of Theorems C/E/L/Q, Corollary F, Proposition J,
-and Conjecture O into the finite-dynamics note (headline: certified
-density \(13/16\); every depth-4 word class except OOO\*; a named
-open kernel).
+completeness, and to every density tier beyond \(13/16\). The
+editorial import into the finite-dynamics note is done (Phase 7,
+consolidation).
 
 ## Decision
 
@@ -423,21 +421,34 @@ engine/kernel regime boundary is now sharp (coefficient growth
 \(n^{1}\)). One ledger row added; Proposition-J row and Conjecture-K
 texts updated.
 
+**PROMOTE** (Phase 7, consolidation): the branch is imported into the
+finite-dynamics note at publication quality. Lemmas A/B/D/A′ and
+Theorems C/E/L/Q enter as note Lemma 5.3, Theorem 5.4,
+Proposition 5.5, Lemma 5.6, Theorems 5.7–5.8; Corollary F and the
+Proposition-I ceiling as Corollary 5.9; Proposition J as
+Proposition 6.1; Conjecture O as Conjecture 6.2, with the two
+analytic route obstructions recorded in the note's Section 6
+negative-knowledge paragraph. The exact floor reductions (parity
+bridge, Lemma B/N gap identity) are now Lean-verified in
+`formal/Problems/Juggler/GapCells.lean`
+(`floor_odd_iff_half_le_fract_half`, `floor_add_eq_add_carry`,
+`floor_gap_eq_carry`, `seq_floor_gap`), imported by both barrels.
+Reviewer packet, formalization map, frontier figure, ledger
+(`J-kernel-cancellation` added; lean fields on the gap rows), and the
+review bundle are synchronized; PDFs rebuilt.
+
 Best next question: the branch's mathematical frontier is now a
 single object — does the kernel \(K_c(P) = \sum e(c(n)\{\lfloor
 n^{3/2}\rfloor^{3/2}\})\), \(c \asymp kP^{9/8}\), admit any power
-saving (Conjecture O)? Before attacking it, the editorial import of
-the branch into the finite-dynamics note is the natural
-consolidation point.
+saving (Conjecture O)?
 
 ## Publication assessment
 
-Status: `THEOREM`. Exact linearization lemmas, power-saving
+Status: `THEOREM`, imported. Exact linearization lemmas, power-saving
 joint-parity discrepancy bounds for nested floor-power sequences at
 all depths \(\le 3\) and every depth-4 word except OOO\*, outside the
 existing Piatetski-Shapiro literature, and a certified-descent
-density of \(13/16\) — a direct headline improvement over the note's
-current \(3/4\). The isolated kernel \(K_c\) (Conjecture O) is itself
-a publishable problem statement, with a sharp engine/kernel regime
-boundary. Import into the finite-dynamics note is the pending
-editorial phase.
+density of \(13/16\) — now the note's Section 5 headline, replacing
+\(3/4\). The isolated kernel \(K_c\) (Conjecture O) is stated in the
+note as Conjecture 6.2, with a sharp engine/kernel regime boundary.
+No pending editorial debt.

@@ -41,8 +41,17 @@ S_O(N)=\sum_{\substack{n\le N\\n\ {\rm odd}}}
 (-1)^{\lfloor n^{3/2}\rfloor},
 \]
 implies that this uniform short-certificate class has density \(3/4\).
-It is neither a density of all descent certificates nor a density of starts
-that reach \(1\).
+An exact-linearization calculus for the nested floor powers extends the
+discrepancy method one level down the orbit: every itinerary word class
+of depth at most four except \(OOO*\) has cardinality
+\(2^{-|w|}N+O(N^{1-\delta_w})\) with explicit exponents, and consequently
+the class of starts carrying a uniform descent certificate of length at
+most four has natural density \(13/16\). An unconditional counting
+argument shows that parity equidistribution at all depths would give the
+set of starts with some finite descent certificate density one; the
+precise remaining obstacle at depth four is an explicit exponential-sum
+kernel, stated here as an open problem. None of these densities is a
+density of starts that reach \(1\).
 
 All finite-word statements are conditional on the realized itinerary. The
 remaining pointwise question is whether almost every odd-to-odd start has
@@ -62,19 +71,29 @@ A word of length \(k\) with \(o\) odd letters has ideal exponent
 \(3^o/2^k\). Floors are applied after every letter, and a word is available
 only when the orbit realizes those parities. The paper records the exact
 finite-word comparison, the compositional slack, the uniform short
-certificates, and the density of the class those certificates cover.
+certificates, and the densities of the classes those certificates cover,
+through itinerary depth four.
 
 The main contribution is the exact power-envelope and defect calculus,
 together with its inverse-cell and cycle consequences, chief among
 them a small-cycle census: no nontrivial cycle has length at most six.
-The short-certificate density is a secondary corollary. We do not prove a
-Collatz theorem or transfer Collatz stopping-time results to \(J\).
+The certified-descent densities — \(3/4\) at two steps, \(13/16\) at
+four — are secondary corollaries. We do not prove a Collatz theorem or
+transfer Collatz stopping-time results to \(J\).
 
 ### 1.1 Verification convention
 
 Theorems in Sections 2--4 are proved both below and in Lean under the names
-listed at the start of each section. Theorem 5.1 is an ordinary human proof
-and is not formalized. Proposition 4.4 is an exact Python-integer census,
+listed at the start of each section. The analytic estimates of Section 5
+(Theorems 5.1, 5.4, 5.7, 5.8, Proposition 5.5) and Proposition 6.1 are
+ordinary human proofs and are not formalized; the exact floor reductions
+beneath them — the parity bridge \(\lfloor x\rfloor\) odd iff
+\(\{x/2\}\ge1/2\), and the gap-cell identity — are Lean-verified
+(`floor_odd_iff_half_le_fract_half`, `floor_gap_eq_carry`,
+`seq_floor_gap` in `GapCells.lean`). The exact-linearization lemmas of
+Section 5 are additionally validated by scaled-integer computations
+recorded in the repository; those validations are checks, not proofs.
+Proposition 4.4 is an exact Python-integer census,
 not a theorem about an infinite set. The four-block chain named in
 Section 6 is Lean-certified (`four_block_pe_1999`); the failed
 reductions there are exact-integer counterexamples, not estimates. No
@@ -94,6 +113,15 @@ Crandall [8] and Matthews–Watts [9] treat piecewise-affine Hasse–Syracuse
 maps; the Juggler branches are floor powers, not affine. Prasad and Prasad
 [12] estimate excursion and stopping constants for juggler-like random
 walks; Section 6 keeps that comparison descriptive.
+
+The discrepancy calculus of Section 5 concerns nested floor powers
+\(\lfloor\lfloor n^{c}\rfloor^{d}\rfloor\). A literature check (August
+2026) found no equidistribution result for such nested sequences: the
+Piatetski–Shapiro corpus covers single floors, intersections, and
+pseudo-polynomials. The tools themselves are classical — Vaaler's
+trigonometric approximation to the sawtooth [13] and van der Corput's
+second-derivative test in the form presented by Graham and Kolesnik
+[14].
 
 ## 2. Finite words, envelope, and defect
 
@@ -628,7 +656,16 @@ no size cutoff through step \(20\); the unresolved count is zero in every
 row. They are not Lean-certified and do not constitute an almost-all
 theorem.
 
-## 5. Ambient discrepancy and the short-certificate class
+## 5. Parity discrepancy and certified-descent densities
+
+This section counts itinerary word classes. It proves the ambient
+depth-1 estimate (Theorem 5.1) with its density-\(3/4\) corollary, then
+extends the method through itinerary depth four by exact linearization
+of the nested floor powers: depth 2 and 3 completely (Theorem 5.4,
+Proposition 5.5), and depth 4 completely except the \(OOO*\) split
+(Theorems 5.7 and 5.8), giving the certified-descent density \(13/16\)
+(Corollary 5.9). All estimates here are human proofs; the exact floor
+reductions beneath them are Lean-verified (Section 1.1).
 
 For odd \(n\) write \(s(n)=(-1)^{\lfloor n^{3/2}\rfloor}\) and
 \[
@@ -651,8 +688,9 @@ The floor sign has an exact fractional-part form. Write
 \[
 \lfloor x\rfloor\ \text{is odd}
 \quad\Longleftrightarrow\quad
-\{x/2\}\ge\tfrac12.
+\{x/2\}\ge\tfrac12
 \]
+(Lean: `floor_odd_iff_half_le_fract_half`).
 For odd \(n=2r+1\) set
 \[
 g(r)=\frac{(2r+1)^{3/2}}2.
@@ -749,16 +787,441 @@ observation, not a theorem.
 
 Theorem 5.1 concerns consecutive source intervals. It supplies no transfer
 theorem for orbit samples or sparse image sets, so it cannot by itself
-control the odd-to-odd dynamics after the first step.
+control the odd-to-odd dynamics after the first step. The remainder of
+this section does not transfer Theorem 5.1 to image sets; it attacks the
+nested sums directly, by removing the inner floors exactly before any
+analytic step.
+
+For the rest of the section, \(n\) is odd, \(X=n^{3/2}\),
+\(m=\lfloor X\rfloor=\operatorname{isqrt}(n^3)\), and
+\(\theta=X-m\in[0,1)\). At the second level, \(Y=m^{3/2}\),
+\(v=\lfloor Y\rfloor\), \(\theta_2=Y-v\); on the \(OE\) branch (\(m\)
+even), \(U=m^{1/2}\), \(w=\lfloor U\rfloor=J^2(n)\), and
+\(\theta_w=U-w\). Write \(\psi(x)=(-1)^{\lfloor x\rfloor}\). The first
+image parity of an odd start is \((-1)^m=\psi(n^{3/2})\); the next
+letters are the parities of \(v\) (after an odd image) or \(w\) (after
+an even image). Each \(\psi\)-factor below is evaluated
+unconditionally; the indicator algebra of the corollaries only ever
+weights it on the branch where it computes the true itinerary letter,
+and these branch-consistency identities are machine-checked exactly on
+verification windows.
+
+**Lemma 5.3 (exact linearization and gap cells).**
+(i) For every odd \(n\ge3\),
+\[
+m^{3/2}=\tfrac32\,m\,n^{3/4}-\tfrac12\,n^{9/4}+E(n),
+\qquad
+0\le E(n)\le\tfrac38\,(n^{3/2}-1)^{-1/2}\le\tfrac12\,n^{-3/4}.
+\]
+(ii) For \(h\ge1\) and odd \(n\), let \(g(n)=m(n+2h)-m(n)\) and
+\(\delta(n)=(n+2h)^{3/2}-n^{3/2}\). Then
+\[
+g(n)=\lfloor\delta(n)\rfloor+\kappa(n),
+\qquad
+\kappa(n)=\bigl[\{n^{3/2}\}\ge1-\{\delta(n)\}\bigr]\in\{0,1\}.
+\]
+
+*Proof.* (i) Let \(f(t)=(X-t)^{3/2}\) on \([0,\theta]\), so
+\(f(\theta)=m^{3/2}\). Taylor with Lagrange remainder at \(0\) gives
+\(f(\theta)=X^{3/2}-\tfrac32X^{1/2}\theta
++\tfrac38(X-\xi)^{-1/2}\theta^2\) for some \(\xi\in(0,\theta)\).
+Substituting \(\theta=X-m\) in the linear term yields
+\(-\tfrac12X^{3/2}+\tfrac32mX^{1/2}=-\tfrac12n^{9/4}+\tfrac32mn^{3/4}\),
+and the remainder lies in \([0,\tfrac38(X-1)^{-1/2}]\), with
+\((X-1)^{-1/2}\le\tfrac43X^{-1/2}\) already for \(n\ge3\). (ii)
+\(g=\lfloor X+\delta\rfloor-\lfloor X\rfloor
+=\lfloor\delta\rfloor+\lfloor\{X\}+\{\delta\}\rfloor\), and the last
+floor is \(1\) precisely when \(\{X\}+\{\delta\}\ge1\) (Lean:
+`floor_gap_eq_carry`, `seq_floor_gap`). \(\square\)
+
+The point of (i): the non-smooth integer \(m\) enters the phase
+*linearly*, multiplied by a smooth coefficient; no fractional part of
+growing amplitude survives. The naive expansion
+\(m^{3/2}=n^{9/4}-\tfrac32\theta n^{3/4}+O(n^{-3/4})\) instead leaves
+the sawtooth \(\theta\) with the growing amplitude \(n^{3/4}\), which
+defeats the van der Corput method directly. For (ii), since
+\(\delta\) is smooth and increasing with
+\(\delta'\asymp hn^{-1/2}\), the level sets of
+\(\lfloor\delta\rfloor\) partition a dyadic block \(n\in(P,2P]\) into
+\(O(hP^{1/2})\) cells of length \(\asymp P^{1/2}/h\) on which the
+integer part of the gap is constant.
+
+**Theorem 5.4 (nested parity discrepancy).**
+For every \(\varepsilon>0\) and every
+\((a,b)\in\{0,1\}^2\setminus\{(0,0)\}\),
+\[
+\Bigl|\sum_{n\le N,\ n\ \mathrm{odd}}
+\psi(n^{3/2})^{a}\,\psi(m(n)^{3/2})^{b}\Bigr|
+\ll_\varepsilon N^{23/24+\varepsilon}.
+\]
+Consequently each of the four joint parity classes of
+\((m,\lfloor m^{3/2}\rfloor)\) on odd \(n\le N\) has cardinality
+\(\tfrac N8+O(N^{23/24+\varepsilon})\); in particular the odd-to-odd
+cylinder refines one letter deeper than Theorem 5.1.
+
+*Proof.* Work on dyadic blocks \(n\in(P,2P]\), odd, with truncations
+\(J_1=J_2=P^{1/24}\) (wave modes), \(H=P^{1/12}\) (differencing), and
+\(R=P^{1/4}\) (cell modes).
+
+*Step 1 (wave expansion).* By Vaaler's theorem [13] applied to the
+period-2 square wave, \(\psi(x)=V_J(x/2)+O(\Delta_J(x/2))\), where
+\(V_J(t)=\sum_{0<|q|\le J}a_qe(qt)\) with \(|a_q|\le\min(1,2/|q|)\) and
+\(\Delta_J\ge0\) is a trigonometric polynomial of degree \(J\) with
+constant term and coefficients \(O(1/J)\). For the product,
+\(|\psi_1\psi_2-V_1V_2|\le\Delta_1+\Delta_2+\Delta_1\Delta_2\), and
+each error term is again a nonnegative trigonometric polynomial of the
+same shape. Expanding both factors reduces the theorem to bounds,
+uniform in the mode pair, for
+\[
+S_{\mu,\nu}(P)=\sum_{n\in(P,2P],\ n\ \mathrm{odd}}
+e\bigl(\mu\,n^{3/2}+\nu\,m^{3/2}\bigr),
+\qquad
+|\mu|\le J_1,\ \tfrac12\le|\nu|\le J_2,
+\]
+with \(\mu,\nu\in\tfrac12\mathbb Z\); the pure first-factor majorant
+sums are \(\ll P/J_1+P^{5/6+\varepsilon}\ll P^{23/24+\varepsilon}\) by
+the depth-1 machinery, and mode weights sum to \(O(\log^2P)\). Write
+\(i=2\mu\), \(j=2\nu\).
+
+*Step 2 (linearization).* By Lemma 5.3(i), replacing
+\(\tfrac j2m^{3/2}\) by \(\tfrac{3j}4mn^{3/4}-\tfrac j4n^{9/4}\)
+changes \(S_{\mu,\nu}\) by at most
+\(2\pi\tfrac j4\sum_{n\sim P}n^{-3/4}\ll jP^{1/4}\le P^{7/24}\).
+
+*Step 3 (van der Corput A-process).* With \(H=P^{1/12}\),
+\(|S_{\mu,\nu}|^2\le\tfrac{2P}H\sum_{0\le h<H}|T_h|\), where \(T_h\)
+sums \(e(\Phi(n{+}2h)-\Phi(n))\) over the overlap and \(\Phi\) is the
+linearized phase. The exact rewrite
+\(m(n{+}2h)(n{+}2h)^{3/4}-m(n)n^{3/4}
+=g(n)(n{+}2h)^{3/4}+m(n)[(n{+}2h)^{3/4}-n^{3/4}]\) with
+\(m(n)=n^{3/2}-\theta_n\) gives
+\[
+\Phi(n{+}2h)-\Phi(n)=A_h(n)
++\tfrac{3j}4\,g(n)\,(n{+}2h)^{3/4}+O(jhP^{-1/4}),
+\]
+where \(A_h\) is smooth and the error is the
+\(-\tfrac{3j}4\theta_n[(n{+}2h)^{3/4}-n^{3/4}]\) term. The two
+\(n^{5/4}\)-scale contributions of \(A_h\) cancel at leading order,
+leaving \(A_h''=\tfrac{81}{256}jh^2n^{-7/4}(1+o(1))\) plus an
+\(i\)-part \(O(ihP^{-3/2})\), both \(o(jhP^{-3/4})\) in these ranges.
+
+*Step 4 (cells).* Split \(T_h\) over the \(O(hP^{1/2})\) cells of
+Lemma 5.3(ii). On a cell, \(g=G+\kappa\) with \(G\) constant and
+\(\kappa(n)=[\{n^{3/2}\}\ge\rho(n)]\), \(\rho=1-\{\delta(n)\}\) smooth
+and monotone there. Vaaler-expand \(\kappa\) with modes
+\(e(rn^{3/2})\), \(0<|r|\le R\). The moving endpoint costs nothing:
+since \(\rho(n)=1+G-\delta(n)\), the coefficient's \(n\)-dependent
+piece contributes the exact smooth phase \(r\delta(n)\), and
+\(e(rn^{3/2}+r\delta(n))=e(r(n{+}2h)^{3/2})\) up to a unimodular
+constant. Every \(r\)-term therefore falls into one of the two smooth
+families \(e(rn^{3/2})\), \(e(r(n{+}2h)^{3/2})\); the main term
+\(\delta(n)-G\) has total variation exactly \(1\) per cell and is
+absorbed by one Abel summation.
+
+*Step 5 (second-derivative test per cell).* The remaining phases are
+smooth. For the \(r=0\) parts,
+\(|f''|\asymp\lambda_0=jhP^{-3/4}\) with a single sign and bounded
+ratio across a cell; van der Corput II [14] on a cell of length
+\(\ell\asymp P^{1/2}/h\) gives \(\ll\ell\lambda_0^{1/2}
++\lambda_0^{-1/2}\), hence over all cells
+\(\ll(jh)^{1/2}P^{5/8}+j^{-1/2}h^{1/2}P^{7/8}\). For \(r\ne0\), the
+curvature is dominated by the \(r\)-term \(\asymp|r|P^{-1/2}\) of
+fixed sign (as \(jh\le P^{1/8}\ll P^{1/4}\)); the same test and the
+\(1/|r|\) weights give \(\ll R^{1/2}P^{3/4}+hP^{3/4}\log P\), and the
+majorant errors contribute \(O(P/R)=O(P^{3/4})\). In total
+\(|T_h|\ll P^{7/8}(1+h^{1/2})\), uniformly in the modes.
+
+*Step 6 (assembly).*
+\(|S_{\mu,\nu}|^2\ll P^2/H+P^{15/8}H^{1/2}\ll P^{23/12}\) at
+\(H=P^{1/12}\), so \(|S_{\mu,\nu}|\ll P^{23/24}\). Summing mode
+weights, majorants, and dyadic blocks gives the theorem with
+\(N^{23/24}\log^3N\). \(\square\)
+
+The exponent \(23/24\) is deliberately unoptimized; every stage has
+slack. The observed cancellation is far stronger (envelope exponent
+\(\approx0.28\) in exact censuses), which the proof does not claim.
+
+**Proposition 5.5 (OE-branch third letter).**
+For \(a\in\{0,1\}\),
+\[
+\Bigl|\sum_{n\le N,\ n\ \mathrm{odd}}\bigl((-1)^m\bigr)^a\,
+\psi\bigl(m^{1/2}\bigr)\Bigr|\ll_\varepsilon N^{7/8+\varepsilon},
+\]
+and consequently
+\(\#\mathrm{OEO}(N),\ \#\mathrm{OEE}(N)=N/8+O(N^{7/8+\varepsilon})\).
+Together with Theorem 5.4 this makes depth 3 complete: each of
+\(OOO\), \(OOE\), \(OEO\), \(OEE\) has density \(1/8\) with a power
+saving.
+
+*Proof.* Taylor expansion of \((X-\theta)^{1/2}\) with both correction
+terms one-signed gives
+\[
+m^{1/2}=n^{3/4}+D_1(n),
+\qquad
+-\tfrac12X^{-1/2}-\tfrac18(X-1)^{-3/2}\le D_1\le0 .
+\]
+\(D_1\) is decaying, so replacing \(\tfrac l2m^{1/2}\) by
+\(\tfrac l2n^{3/4}\) inside a Vaaler mode costs
+\(\ll l\sum_{n\sim P}n^{-3/4}\ll lP^{1/4}\), absorbable at
+\(l\le2P^{1/24}\). The mode sums are then pure:
+\(\sum_{n\sim P}e(\tfrac i2n^{3/2}+\tfrac l2n^{3/4})\) with
+\(l\ne0\). For \(i\ne0\), \(\varphi''\asymp|i|P^{-1/2}\) is
+single-signed and van der Corput II gives
+\(\ll i^{1/2}P^{3/4}+i^{-1/2}P^{1/4}\); for \(i=0\),
+\(\varphi''\asymp lP^{-5/4}\) gives
+\(\ll l^{1/2}P^{3/8}+l^{-1/2}P^{5/8}\). Vaaler majorants, truncation
+tails, and dyadic assembly are as in Theorem 5.4, and every bound is
+\(\ll P^{7/8}\) after summing mode weights. Branch consistency: the
+\((1+(-1)^m)/2\) factor vanishes exactly on odd \(m\), where \(J^2\)
+takes the \(3/2\)-power branch, so the unconditional
+\(\psi(m^{1/2})\) is only weighted where it computes the true third
+letter. \(\square\)
+
+**Lemma 5.6 (fourth-letter linearization).**
+For every odd \(n\ge3\),
+\[
+v^{1/2}=n^{9/8}+D(n),
+\qquad
+-\tfrac34\,n^{-3/8}-n^{-9/8}\le D(n)\le0 .
+\]
+
+*Proof.* Two applications of the Lemma 5.3(i) pattern. With
+\(f(t)=(Y-t)^{1/2}\) on \([0,\theta_2]\):
+\(v^{1/2}=m^{3/4}-\tfrac12\theta_2m^{-3/4}-E_2\),
+\(0\le E_2\le\tfrac18(Y-1)^{-3/2}\). With \(f(t)=(X-t)^{3/4}\) on
+\([0,\theta]\): \(m^{3/4}=n^{9/8}-\tfrac34\theta n^{-3/8}-E_3\),
+\(0\le E_3\le\tfrac3{32}(X-1)^{-5/4}\). Every term is nonpositive
+after the leading one, and
+\(\tfrac12m^{-3/4}+E_3+E_2\le n^{-9/8}\) for \(n\ge3\). \(\square\)
+
+Unlike the depth-2 layer, *every* non-smooth term now has decaying
+amplitude: the cumulative phase cost of replacing
+\(\tfrac k2v^{1/2}\) by the smooth \(\tfrac k2n^{9/8}\) over a dyadic
+block is \(\ll kP^{5/8}\), negligible against the target.
+
+**Theorem 5.7 (triple parity discrepancy).**
+For every \(\varepsilon>0\) and every
+\((a,b,c)\in\{0,1\}^3\setminus\{(0,0,0)\}\),
+\[
+\Bigl|\sum_{n\le N,\ n\ \mathrm{odd}}
+\psi(n^{3/2})^{a}\,\psi(m^{3/2})^{b}\,\psi(v^{1/2})^{c}\Bigr|
+\ll_\varepsilon N^{23/24+\varepsilon}.
+\]
+Consequently each of the eight sign classes of
+\((\psi(n^{3/2}),\psi(m^{3/2}),\psi(v^{1/2}))\) on odd \(n\le N\) has
+cardinality \(\tfrac N{16}+O(N^{23/24+\varepsilon})\).
+
+*Proof.* The \(c=0\) cases are Theorem 5.4 and Theorem 5.1. For
+\(c=1\), wave-expand all present sign factors as in Step 1 of
+Theorem 5.4, with truncations \(J_1=J_2=J_3=P^{1/24}\), and bound
+\[
+S_{i,j,k}(P)=\sum_{n\in(P,2P],\ n\ \mathrm{odd}}
+e\bigl(\tfrac i2n^{3/2}+\tfrac j2m^{3/2}+\tfrac k2v^{1/2}\bigr)
+\]
+uniformly for \(|i|\le2J_1\), \(|j|\le2J_2\), \(1\le|k|\le2J_3\). By
+Lemma 5.6, replacing \(\tfrac k2v^{1/2}\) by \(\tfrac k2n^{9/8}\)
+costs \(\ll|k|P^{5/8}\le P^{2/3}\), before any differencing.
+
+If \(j=0\), the remaining sum is a single smooth exponential sum with
+phase \(\tfrac i2n^{3/2}+\tfrac k2n^{9/8}\). Both curvature terms are
+positive for positive modes, and for mixed signs with \(|i|\ge1\) the
+first dominates by \(P^{3/8-1/24}\); van der Corput II gives
+\(\ll P^{5/8}\) for \(i=0\) and \(\ll|i|^{1/2}P^{3/4}+P^{1/4}\)
+otherwise, both \(\ll P^{23/24}\).
+
+If \(j\ne0\), the phase is exactly the Theorem 5.4 phase plus the
+smooth passenger \(\tfrac k2n^{9/8}\). Steps 2–6 run verbatim; the
+passenger modifies the smooth part of the differenced phase by
+\(\tfrac k2[(n{+}2h)^{9/8}-n^{9/8}]\), whose second derivative
+\(\ll|k|hP^{-15/8}\) is smaller than the retained cell curvature
+\(jhP^{-3/4}\) and the \(r\)-mode curvature \(|r|P^{-1/2}\) by powers
+of \(P\). Every sign-dominance check of Theorem 5.4 holds with these
+margins. \(\square\)
+
+**Theorem 5.8 (the OE\*\* splits).**
+\[
+\#\mathrm{OEOE}(N),\ \#\mathrm{OEOO}(N)
+=\tfrac N{16}+O\bigl(N^{7/8+\varepsilon}\bigr),
+\qquad
+\#\mathrm{OEEE}(N),\ \#\mathrm{OEEO}(N)
+=\tfrac N{16}+O\bigl(N^{13/16+\varepsilon}\bigr).
+\]
+Together with Theorems 5.4 and 5.7 this proves every depth-4
+itinerary word class except \(OOO*\).
+
+*Proof.* On the \(OE\) branch \(m\) is even and \(w=\lfloor
+U\rfloor\), \(U=m^{1/2}\). The \(w\)-level linearization is Lemma
+5.3(i) verbatim with base \(U\): since \(Um^{1/4}=m^{3/4}\) exactly,
+\[
+w^{3/2}=m^{3/4}-\tfrac32\,m^{1/4}\,\theta_w+E,
+\qquad 0\le E\le\tfrac38(U-1)^{-1/2},
+\]
+and \(m^{3/4}=n^{9/8}\) up to one-signed corrections of scale
+\(n^{-3/8}\). For a Vaaler mode \(k\ne0\), the phase is therefore
+\(\varphi_1(n)-B(n)\theta_w(n)\) up to absorbable errors, with
+\(\varphi_1=\tfrac i2n^{3/2}+\tfrac j2n^{3/4}+\tfrac k2n^{9/8}\) and
+\(B=\tfrac{3k}4n^{3/8}(1+O(n^{-3/2}))\): a *single growing sawtooth*
+of amplitude \(\asymp kn^{3/8}\) riding \(\theta_w=\{m^{1/2}\}\),
+whose underlying integer increments once every \(\asymp\tfrac43
+n^{1/4}\) steps. Truncations: \(J_1=J_2=J_3=P^{1/8}\).
+
+*Drift-1 intervals.* \(B'\asymp kn^{-5/8}\), so \(B\) drifts by at
+most \(1\) on intervals \(I\) of length \(L_0=P^{5/8}/k\); there are
+\(\asymp kP^{3/8}\) of them. On \(I\), expand
+\(e(-B\{U\})=\sum_ra_r(B)e(rU)\) (Fourier in \(U\), Vaaler truncation
+\(|r+B|\le T=P^{5/16}\)); the coefficients satisfy
+\(|a_r(B)|\le\min(1,|r+B|^{-1})\) with window mass \(O(\log T)\), and
+their \(n\)-dependence through \(B(n)\) has total variation \(O(1)\)
+per interval, removed by one partial summation per mode.
+
+*Mode sums.* Smoothing \(rU\to rn^{3/4}\) costs \(kP^{5/8}\) in
+total. Writing \(r=-B_0+t\), \(|t|\le T\), the curvature of the mode
+phase is
+\[
+\varphi''=\tfrac{27k}{128}n^{-7/8}
+-\tfrac3{16}\bigl(t+\tfrac j2\bigr)n^{-5/4}+\tfrac{3i}8n^{-1/2}.
+\]
+For \(i\ne0\) the last term dominates and van der Corput II gives
+\(\ll i^{1/2}P^{3/4}+i^{-1/2}kP^{5/8}\) after summing intervals. For
+\(i=0\), \((T+J_2)P^{-5/4}\ll kP^{-7/8}\) because
+\(T=P^{5/16}\ll kP^{3/8}\) for every \(k\ge1\), so
+\(\lambda\asymp kn^{-7/8}\) is single-signed; van der Corput II per
+interval and summation over \(\asymp kP^{3/8}\) intervals give
+\(S_k\ll k^{1/2}P^{13/16+\varepsilon}\). With Vaaler weights \(1/k\),
+\(\sum_{k\le J_3}k^{-1/2}P^{13/16}=J_3^{1/2}P^{13/16}=P^{7/8}\),
+balanced against the truncation error \(P/J_3=P^{7/8}\) at
+\(J_3=P^{1/8}\). Total \(\ll P^{7/8+\varepsilon}\).
+
+*OEE branch.* The fourth letter needs \(\psi(w^{1/2})\), and
+\(w^{1/2}=U^{1/2}-\tfrac12\theta_wU^{-1/2}
+-\tfrac18\theta_w^2(U-\xi)^{-3/2}\) has *decaying* amplitudes only,
+with \(U^{1/2}=m^{1/4}\to n^{3/8}\) likewise. The pure modes
+\(e(\tfrac l2n^{3/8})\) have \(\lambda\asymp lP^{-13/8}\), giving
+\(l^{1/2}P^{3/16}+l^{-1/2}P^{13/16}\); the mixed cases sit in the
+dominance hierarchy \(iP^{-1/2}\gg jP^{-5/4}\gg lP^{-13/8}\) with all
+three second derivatives of the same sign. Total
+\(\ll N^{13/16+\varepsilon}\). \(\square\)
+
+**Corollary 5.9 (depth-4 census and certified-descent density).**
+Every itinerary word class of depth at most four except \(OOO*\)
+satisfies
+\(\#\{n\le N:\mathrm{word}(n)\ \text{has prefix}\ w\}
+=2^{-|w|}N+O(N^{1-\delta_w})\) with the explicit exponents above. In
+particular
+\[
+\#\{n\le N:n\ \text{odd},\ \text{itinerary }OOEE\}
+=\tfrac N{16}+O(N^{23/24+\varepsilon}),
+\]
+and the class of starts with a certified descent within four steps —
+evens (one step), \(OE\) (two steps), \(OOEE\) (four steps) — has
+cardinality
+\[
+\tfrac N2+\tfrac N4+\tfrac N{16}+O(N^{23/24+\varepsilon})
+=\tfrac{13N}{16}+O(N^{23/24+\varepsilon}).
+\]
+
+*Proof.* For \(OOEE\), the indicator algebra gives
+\(\#OOEE=\tfrac18\sum_{n\le N\ \mathrm{odd}}
+(1-\psi_1)(1+\psi_2)(1+\psi_3)\) with
+\(\psi_1=\psi(n^{3/2})\), \(\psi_2=\psi(m^{3/2})\),
+\(\psi_3=\psi(v^{1/2})\); expanding gives the main term and seven
+sign sums bounded by Theorem 5.7. The factor \((1+\psi_2)\) vanishes
+precisely where \(J^3\) would take the odd branch, so the
+unconditional \(\psi_3\) is only weighted where it computes the true
+fourth letter. Every \(OOEE\) start descends within four steps by the
+power envelope: \(3^2<2^4\), so Corollary 2.3 applies. The even class
+and the \(OE\) class carry the certificates of Theorem 4.1, and the
+three classes are disjoint. The remaining depth-\(\le4\) prefixes are
+Theorem 5.1 (depth 1), Theorem 5.4 and Proposition 5.5 (depths 2–3),
+and Theorems 5.7–5.8 (depth 4). \(\square\)
+
+The density \(13/16\) is the exact ceiling of this machinery: a word
+contracts iff \(3^{o}<2^{\ell}\), the method proves letters at
+positions 1–3 of any word plus further letters along even branches
+only, and the contracting minimal words with all odd letters at
+positions \(\le2\) are exactly \(E\), \(OE\), and \(OOEE\), of total
+density \(\tfrac12+\tfrac14+\tfrac1{16}=\tfrac{13}{16}\). Any further
+certified density requires the \(OOO*\) split — a second growing
+layer — whose precise obstruction is isolated in Section 6.
+
+As with Corollary 5.2, these are densities of uniform
+certificate classes. They are not densities of all descent
+certificates and not densities of starts that reach \(1\).
 
 ## 6. The remaining gap
 
-Theorem 4.1 and Corollary 5.2 together say that a uniform one- or
-two-step argument covers a set of density \(3/4\). The first odd-to-odd
-image expands, so ordinary strong induction cannot fire on that class.
-Proposition 4.4 shows that most odd-to-odd starts in a finite window
-still return below the start inside twenty steps. That is an
-observation, not Terras's theorem for \(J\).
+Theorem 4.1 and Corollary 5.2 say that a uniform one- or two-step
+argument covers a set of density \(3/4\); Corollary 5.9 raises the
+uniformly certified class to density \(13/16\) at four steps. The
+first odd-to-odd image expands, so ordinary strong induction cannot
+fire on the complement. Proposition 4.4 shows that most odd-to-odd
+starts in a finite window still return below the start inside twenty
+steps. That is an observation, not Terras's theorem for \(J\).
+
+The depth-by-depth counting of Section 5 does assemble into a
+conditional Terras-style statement, and the reduction is unconditional:
+
+**Proposition 6.1 (equidistribution implies density-one descent).**
+Let \(d\ge1\) and suppose that for every itinerary word \(w\) of
+length \(d\) (over all starts, first letter the parity of \(n\)),
+\[
+\bigl|\#\{n\le N:\mathrm{word}_d(n)=w\}-2^{-d}N\bigr|\le E_d(N).
+\]
+Then the starts with no contracting prefix of length \(\le d\) number
+at most
+\[
+e^{-cd}\,N+2^dE_d(N),
+\qquad
+c=2\Bigl(\tfrac{\log2}{\log3}-\tfrac12\Bigr)^2>0.0342 .
+\]
+Every other start \(n\ge2\) satisfies \(J^t(n)<n\) for some
+\(t\le d\) with the uniform power-envelope certificate of
+Corollary 2.3. Consequently, if \(E_d(N)=O_d(N^{1-\delta_d})\) with
+\(\delta_d>0\) for every \(d\), the set of starts admitting a finite
+descent certificate has natural density \(1\).
+
+*Proof.* A word \(w\) of length \(d\) has a contracting prefix iff
+\(3^{o_t}<2^t\) for some \(t\le d\), where \(o_t\) counts odd letters
+among the first \(t\). If \(w\) has no contracting prefix then
+\(3^{o_d}\ge2^d\), i.e. \(o_d\ge\beta d\) with
+\(\beta=\log2/\log3=0.6309\ldots\) The number of such words is at
+most \(2^d\Pr[\mathrm{Bin}(d,\tfrac12)\ge\beta d]\le
+2^de^{-2(\beta-1/2)^2d}\) by Hoeffding's inequality. Each word class
+has at most \(2^{-d}N+E_d(N)\) members; summing over the
+non-contracting words gives the count. The density-one statement
+follows by letting \(d\to\infty\) slowly with \(N\) (any
+\(d(N)\to\infty\) with \(2^dE_d(N)/N\to0\)). \(\square\)
+
+Every E-rooted word has a contracting prefix at length one
+(\(3^0<2\)), so the hypothesis only ever consumes O-rooted class
+bounds — exactly what Section 5 proves through depth 4, except
+\(OOO*\). The hypothesis beyond that is open, and its first open
+case has an exact shape. Differencing the \(OOO*\) phase funnels, in
+every reorganization tried, into one object: for smooth \(c\) with
+\(c\asymp kP^{9/8}\) and \(c'\asymp kP^{1/8}\) on \(n\sim P\),
+\[
+K_c(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
+e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr).
+\]
+
+**Conjecture 6.2 (kernel cancellation).**
+\(K_c(P)\ll P^{1-\delta}\) for some \(\delta>0\), uniformly over the
+family above. Exact-phase probes show square-root cancellation
+(\(|K|\approx51.9,\ 124.4,\ 1017.5\) on \(5\cdot10^3,\ 5\cdot10^4,\
+5\cdot10^5\) terms), but no proof is claimed.
+
+The boundary is quantitative: the Section 5 engine reaches every
+itinerary letter whose phase coefficient grows slower than \(n\)
+(the \(OE\!*\!*\) coefficient \(B\asymp kn^{3/8}\) crosses integers
+every \(\asymp P^{5/8}/k\) steps, so drift-1 intervals exist), while
+the \(OOO*\) coefficient \(W\asymp kn^{9/8}\) crosses integers within
+single steps (\(W'\asymp kn^{1/8}\gg1\)) and no drift-1 interval
+exists. Bounding \(K_c\) is the precise remaining obstacle to the
+\(OOO*\) split, hence to any certified density beyond \(13/16\)
+through this program. \(K_c\) is a bilinear correlation between the
+fractional parts of one nested-floor layer and a smooth weight at the
+scale of the next layer; we found no treatment of such an object in
+the nested-floor literature.
 
 A mixed-parity heuristic, ignoring floors, gives mean log-log drift
 \(\tfrac12\log(3/4)<0\). Finite ensembles sit near this value; hard
@@ -790,23 +1253,43 @@ persistence already implies expansion, so that attack reduces to the
 tautology \(J^{|w|}(n)>n\). Each failed reduction is an exact
 computation on named witnesses.
 
+Two analytic routes around Conjecture 6.2 also fail, and the failures
+are recorded. Composing gap cells across two levels fails: on a cell
+where the first-level gap is constant, the second-level gap takes a
+new value at essentially every point (distinct-value ratio
+\(1.0000\) in exact windows), so no usable sub-cell survives.
+Reindexing by the image \(m\) (each \(m\) has at most one odd
+preimage) strips one nesting level but introduces a fiber indicator
+of density \(\asymp m^{-1/3}\), whose sawtooth produces mode sums
+that must beat the sparsity exponent \(1/3\) while the engine saves
+only \(1/24\); already the first mode is fatal. Both routes are
+parked as negative knowledge, not retried.
+
 The gap is therefore:
 
 > No theorem forces every exact integer state into a contracting
 > prefix. In particular, it is open whether almost every odd-to-odd
-> start has a finite descent certificate.
+> start has a finite descent certificate. By Proposition 6.1 that
+> would follow from all-depth parity equidistribution, whose first
+> open case is the \(OOO*\) kernel of Conjecture 6.2.
 
-![The theorem flow of the note. Exact finite-word identities yield contraction, rigidity, and cycle restrictions; the discrepancy argument counts the uniform short-certificate class but leaves almost-all descent on odd-to-odd starts open.](figures/juggler_frontier.png){width=100%}
+![The theorem flow of the note. Exact finite-word identities yield contraction, rigidity, and cycle restrictions; the discrepancy calculus counts the uniform certificate classes through depth four (density 13/16) but leaves the OOO* kernel, and with it almost-all descent, open.](figures/juggler_frontier.png){width=100%}
 
 That is the Juggler form of the Terras question. A sharper ambient
-discrepancy exponent does not answer it.
+discrepancy exponent does not answer it; by Proposition 6.1 the
+question now rests on equidistribution at growing depth, beginning
+with Conjecture 6.2.
 
 ## 7. Software archive
 
 Lean proofs of the exact-arithmetic theorems live at
 [https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/).
-The archive is not required to read the arguments above. Theorem 5.1 is
-a human proof; Lean does not certify it.
+The archive is not required to read the arguments above. The analytic
+estimates of Section 5 and Proposition 6.1 are human proofs; Lean
+certifies only the exact floor reductions beneath them
+(`GapCells.lean`) and the exact-arithmetic theorems of Sections 2–4.
+The scaled-integer validators for the linearization lemmas live in
+`src/research/juggler_sequence/two_step_parity.py` with pinned tests.
 
 From a clone, the review object is
 
@@ -820,8 +1303,9 @@ I used large language models extensively while drafting and revising the
 text, organizing companion notes, and as an interactive assistant for
 Lean statements, tests, and literature records. The models are not
 authors. Lean theorems and named computations are the certificates for
-those claims. The discrepancy bound (Theorem 5.1) is a human proof using
-classical analytic inequalities; it is not Lean-certified. I take full
+those claims. The discrepancy estimates of Section 5 and
+Proposition 6.1 are human proofs using classical analytic
+inequalities; they are not Lean-certified. I take full
 responsibility for the contents.
 
 ## References
@@ -861,3 +1345,9 @@ responsibility for the contents.
     constant and stopping constant of juggler-like sequences,”
     ResearchGate preprint, 2025.
     [doi:10.13140/RG.2.2.14110.04168](https://doi.org/10.13140/RG.2.2.14110.04168).
+13. J. D. Vaaler, “Some extremal functions in Fourier analysis,”
+    *Bull. Amer. Math. Soc. (N.S.)* 12 (1985), 183–216.
+    [doi:10.1090/S0273-0979-1985-15349-2](https://doi.org/10.1090/S0273-0979-1985-15349-2).
+14. S. W. Graham and G. Kolesnik, *Van der Corput's Method of
+    Exponential Sums*, London Mathematical Society Lecture Note
+    Series 126, Cambridge University Press, Cambridge, 1991.

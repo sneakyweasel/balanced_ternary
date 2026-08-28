@@ -20,17 +20,17 @@ NODES = {
     "Cells": ("Inverse cells", ""),
     "Cycles": ("Cycle restrictions", ""),
     "Excluded": ("No cycles of", "length \u2264 6"),
-    "Discrepancy": ("Parity", "discrepancy"),
-    "Certificates": ("One- and two-step", "certificates"),
-    "Density": ("Uniform class", "density 3/4"),
-    "OddOdd": ("Odd-to-odd", "starts"),
+    "Discrepancy": ("Parity discrepancy", "depths \u2264 4"),
+    "Certificates": ("One- to four-step", "certificates"),
+    "Density": ("Certified class", "density 13/16"),
+    "Kernel": ("OOO* kernel", "(open)"),
     "Open": ("Open", "almost-all descent?"),
 }
 
 FRAMES = [
     ("Exact finite-word calculus", 0.10, 6.70, 3.28, 5.70),
     ("Cycle consequences", 0.10, 9.35, 1.67, 3.17),
-    ("Density corollary and boundary", 0.10, 10.90, 0.08, 1.56),
+    ("Density corollaries and boundary", 0.10, 10.90, 0.08, 1.56),
 ]
 
 POS = {
@@ -46,7 +46,7 @@ POS = {
     "Discrepancy": (1.10, 1.27),
     "Certificates": (1.10, 0.53),
     "Density": (3.65, 0.90),
-    "OddOdd": (6.20, 0.90),
+    "Kernel": (6.20, 0.90),
     "Open": (8.75, 0.90),
 }
 
@@ -71,8 +71,8 @@ EDGES = [
     ("Cycles", "Excluded", "h", 0.0),
     ("Discrepancy", "Density", "d", -0.05),
     ("Certificates", "Density", "d", 0.05),
-    ("Density", "OddOdd", "h", 0.0),
-    ("OddOdd", "Open", "h", 0.0),
+    ("Density", "Kernel", "h", 0.0),
+    ("Kernel", "Open", "h", 0.0),
 ]
 
 FIG_W = 11.0

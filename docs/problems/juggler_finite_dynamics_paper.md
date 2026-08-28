@@ -172,7 +172,12 @@ The census consolidation added
 `formal/Problems/Juggler/SmallCycleCensus.lean`
 (`no_cycle_word_length_le_six`), an assembly of previously verified
 exclusions with no new `native_decide` table; no existing Lean theorem
-statement changed. The review object is
+statement changed. The discrepancy consolidation added
+`formal/Problems/Juggler/GapCells.lean`
+(`floor_add_eq_add_carry`, `floor_gap_eq_carry`, `seq_floor_gap`,
+`floor_odd_iff_half_le_fract_half`): the exact floor reductions under
+Section 5, over the reals; the analytic estimates themselves are human
+proofs and stay outside Lean. The review object is
 `formal/Problems/JugglerPaper.lean`. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
 The paper-central theorem metadata is recorded in
@@ -188,15 +193,22 @@ The publication stack consists of:
 - [formalization map](../theory/juggler_finite_dynamics_formalization.md);
 - [curated branch ledger](../juggler_branch_ledger.md).
 
-The note makes the short-certificate boundary explicit: a uniform one- or
-two-step argument covers a set of density \(3/4\). That is not a density
-of all descent certificates and not a \(\operatorname{ReachesOne}\)
-density. The Terras analogue — almost-all descent on odd-to-odd starts —
-remains open.
+The note makes the certificate boundary explicit: uniform one- and
+two-step arguments cover density \(3/4\), and the imported
+parity-discrepancy calculus (Section 5, consolidation phase) raises the
+uniformly certified class to density \(13/16\) at four steps — the
+exact ceiling of the one-growing-layer method. Neither is a density of
+all descent certificates nor a \(\operatorname{ReachesOne}\) density.
+Proposition 6.1 reduces the Terras analogue to all-depth parity
+equidistribution, proved through depth 4 except \(OOO*\); the precise
+remaining depth-4 obstacle is the kernel of Conjecture 6.2.
 
 ## Open questions
 
 Do almost all odd-to-odd starts have a finite descent certificate?
+Equivalently, by Proposition 6.1, does parity equidistribution hold at
+all depths — beginning with the \(OOO*\) kernel bound
+(Conjecture 6.2)?
 
 ## Decision
 
@@ -215,6 +227,8 @@ Status: `PAPER_CANDIDATE`.
 
 The candidate is a standalone math note: envelope, exact defect calculus,
 cycle restrictions with a length-\(\le6\) cycle census, short
-certificates, and an ambient discrepancy corollary. The horizon-\(20\)
+certificates, and a parity-discrepancy calculus through depth four with
+certified-descent densities \(3/4\) and \(13/16\), a conditional
+density-one theorem, and a named open kernel. The horizon-\(20\)
 rows are exact and uncapped; omitted ordinary proofs have been supplied.
 External mathematical review is the next gate.

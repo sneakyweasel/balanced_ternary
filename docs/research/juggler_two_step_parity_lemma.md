@@ -8,10 +8,19 @@ Propositions H/I/J, Conjecture K). Claim labels are per statement.
 Ledger rows: `J-nested-parity-discrepancy`,
 `J-fourth-letter-linearization`, `J-triple-parity-discrepancy`,
 `J-four-step-descent-density`, `J-second-order-linearization`,
-`J-equidistribution-implies-density-one`.
-Not imported into the finite-dynamics note yet. Not a termination
-claim; the tier-2 discrepancy bound and density-one statement are
-NOT claimed unconditionally.
+`J-equidistribution-implies-density-one`,
+`J-even-branch-third-letter`, `J-tier2-gap-and-shifted-forms`,
+`J-depth4-slow-branch`, `J-kernel-cancellation`.
+Imported into the finite-dynamics note (consolidation phase, August
+2026): Lemmas A/B as Lemma 5.3, Theorem C as Theorem 5.4,
+Proposition L as Proposition 5.5, Lemma D as Lemma 5.6, Theorem E as
+Theorem 5.7, Lemma A\u2032 and Theorem Q as Theorem 5.8, Corollary F
+and Proposition I as Corollary 5.9, Proposition J as Proposition 6.1,
+and Conjecture O as Conjecture 6.2. The floor reductions (Lemmas B/N
+pattern and the parity bridge) are Lean-verified in
+`formal/Problems/Juggler/GapCells.lean`. Not a termination claim; the
+tier-2 discrepancy bound and density-one statement are NOT claimed
+unconditionally.
 
 Throughout, \(n\) is odd, \(X = n^{3/2}\), \(m = m(n) = \lfloor
 n^{3/2}\rfloor = \operatorname{isqrt}(n^3)\), \(\theta = \theta_n =
@@ -700,7 +709,7 @@ tier 2, the OOO\* split, whose precise obstruction — the kernel
 \(K_c\) — is isolated in Part IV.
 
 Import of Theorems C/E and Corollary F into the finite-dynamics note
-remains a separate editorial phase.
+is done (note Theorems 5.4/5.7, Corollary 5.9; consolidation phase).
 
 ## Part IV: depth-3 completion and the tier-2 kernel (Phase 5)
 
