@@ -576,15 +576,22 @@ One mathematical: Conjecture EE (the transport inductive step,
 Part XV) — for all but a power-saving fraction of
 \(P^{1/4}\)-blocks, the in-block kernel-mode sums over the
 rotation-carry substrate of Lemma DD cancel by \(L^{-\delta}\).
-Its obligations are named: (α) exponential sums over circle
-rotation orbits with smooth \(P^{3/4}\)-amplified weights
-(Ostrowski/Denjoy–Koksma territory), (β) cross-block
-equidistribution of block data (proven, level \(\le 2\)),
-(γ) the level-3 DD-type model. Conjecture V (\(K_3\) cancels)
-remains open behind it; dispersion is closed as a completion
-route (Proposition CC). One editorial: import Theorems R/S/T/X
-and Corollaries U/Y into the finite-dynamics note (its
-Conjecture 6.2 and the \(13/16\) headline are superseded).
+Of its three obligations, (γ) is discharged (Lemma FF, Part
+XVI: the level-3 kernel phase is an explicit closed form in
+\((\mu, s, d, \{F\})\), validated to \(10^{-25}\)) and (β) is
+proven machinery; what remains is (α) in cascade form —
+harmonically-weighted linear-rotation sums with smooth carriers
+(sixth-derivative ladder inside blocks, \(\ell^1\)-bounded
+Fourier mass, Diophantine conditions at the *amplified*
+frequencies, exceptional blocks by measure). The census gate
+passed decisively: in-block sums sit at the square-root scale
+(\(R \sim \mathrm{Exp}(1)\) at \(P = 10^6, 10^8, 10^{10}\)),
+and \(\gamma\)-resonance does not predict bad blocks.
+Conjecture V (\(K_3\) cancels) remains open behind EE;
+dispersion is closed as a completion route (Proposition CC).
+One editorial: import Theorems R/S/T/X and Corollaries U/Y
+into the finite-dynamics note (its Conjecture 6.2 and the
+\(13/16\) headline are superseded).
 
 ## Decision
 
@@ -809,10 +816,33 @@ EXACT); probes `block_m_affine_model_check`,
 `dispersion_count_route_refuted`, `transport_substrate_exact`.
 No \(K_3\) bound, no density move, no note import.
 
-Best next question: does a Denjoy–Koksma/Ostrowski argument give
-\(L^{-\delta}\) cancellation for the in-block sums
-\(\sum_{t<L} e(k\,\Phi_B(t, s(t)))\) of Conjecture EE for all
-\(\gamma\) outside a measure-\(P^{-\delta'}\) exceptional set?
+**PROMOTE** (Phase 19, level-3 model and census gate): naive
+Denjoy–Koksma is vacuous (observable variation \(P^{15/8} \gg
+L\)); the correct route is a two-layer Fourier cascade with
+\(\ell^1\)-bounded harmonic mass. Lemma FF (EXACT — HUMAN PROOF,
+`J-level3-block-phase-model`) gives the level-3 kernel phase as
+an explicit closed form in the four block observables, with the
+key discovery that the product form \(u = \tfrac34 z^{1/2}
+\theta_3\) forces the \(\theta_3\)-expansion to precision
+\(P^{-27/16}\), three orders past sub-unit — the precision
+budget of the cascade. Validated at scale \(10^{48}\): errors
+\(5\cdot10^{-11}\) down to \(4\cdot10^{-25}\) (\(\theta_3\)),
+\(2\cdot10^{-4}\) down to \(2\cdot10^{-8}\) (\(u\)). The census
+gate passed: \(R_k(B) = |S_k(B)|^2/L\) has a textbook
+\(\mathrm{Exp}(1)\) profile at \(P = 10^6, 10^8, 10^{10}\) for
+\(k \le 3\) — square-root cancellation per block, far stronger
+than EE needs — with no \(\gamma\)-resonance elevation, locating
+the cascade's Diophantine conditions at the amplified
+frequencies. Obligation (γ) of Conjecture EE discharged. Probes
+`level3_block_model_check`, `block_kernel_sum_census`; flags
+`level3_block_model_exact`, `in_block_cancellation_observed`.
+No \(K_3\) bound, no density move, no note import.
+
+Best next question: does the two-layer Fourier cascade, with van
+der Corput high-derivative tests on the smooth carriers and
+measure control of the amplified-frequency resonances, prove
+Conjecture EE's in-block bound \(|S_k(B)| \le L^{1-\delta}\)
+outside a power-saving exceptional set of blocks?
 
 ## Publication assessment
 
@@ -832,5 +862,7 @@ the increment-first \(K_3\) attack, and X1-absorption of
 laboratory-**PARKED** (Proposition BB). Of the two post-BB
 theories, dispersion is laboratory-**REFUTED** as a completion
 route (Proposition CC) and transport is **PROMOTED** with an
-exact substrate (Lemma DD) and a stated inductive step
-(Conjecture EE, Part XV). None of this is in the note.
+exact substrate (Lemma DD), a stated inductive step
+(Conjecture EE, Part XV), the level-3 phase model (Lemma FF,
+Part XVI), and a decisively passed census gate (square-root
+in-block cancellation). None of this is in the note.

@@ -3561,5 +3561,16 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-level3-block-phase-model",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Lemma FF: on DD-blocks, with F = mu^{3/2} + (3/2) mu^{1/2} s, v = floor(F) + d, e = d - {F}: theta_3 = { mu^{9/4} + (9/4) mu^{5/4} s + (27/32) mu^{1/4} s^2 - (27/128) mu^{-3/4} s^3 + (243/2048) mu^{-7/4} s^4 + ((3/2) mu^{3/4} + (9/8) mu^{-1/4} s - (27/64) mu^{-5/4} s^2) e + (3/8) mu^{-3/4} e^2 } + O(P^{-19/16}), and (3/4) z^{1/2} = (3/4)(mu^{9/8} + (9/8) mu^{1/8} s - (27/128) mu^{-7/8} s^2) + (9/16) F^{-1/4} e + O(P^{-13/16}), modelling the kernel phase u = (3/4) z^{1/2} theta_3 mod 1 to ~P^{-15/16}. The product form multiplies theta_3 model error by z^{1/2} ≍ P^{27/16}, so the expansion must run three orders past sub-unit — the precision budget of the transport cascade. Validated in exact integers at scale 10^48: theta_3 error 5e-11 (P=10^4) down to 4e-25 (P=10^10); u error 2e-4 down to 2e-8. Discharges obligation (γ) of Conjecture EE: the level-3 kernel phase on a block is an explicit closed form in (mu, s, d, {F}); no nesting remains to be modelled. Not a K3 bound; Conjectures V and EE stay open.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]

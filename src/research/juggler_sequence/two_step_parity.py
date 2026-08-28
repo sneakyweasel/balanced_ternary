@@ -108,6 +108,15 @@ ANTI_OVERCLAIM = {
     # inductive step (Conjecture EE) is stated on this substrate.
     # No K3 bound, no density move; Conjecture V stays open.
     "transport_substrate_exact": True,
+    # Phase 19: Lemma FF — theta_3 and the kernel phase on DD-blocks
+    # are explicit polynomials in (mu, s, d, {F}); the product form
+    # forces theta_3 precision P^{-27/16}. Census: in-block kernel
+    # sums are at the random-phase scale (R ~ Exp(1)) at P = 10^6,
+    # 10^8, 10^10, with no gamma-resonance elevation (OBSERVATION).
+    # Conjecture EE's cancellation target is empirically comfortable;
+    # EE itself and the K3 bound stay open.
+    "level3_block_model_exact": True,
+    "in_block_cancellation_observed": True,
     # Phase 10: Theorem T / Corollary U close OOOEE and OOEOE;
     # certified descent density 7/8. OOOO* at depth 5 remains open.
     "depth5_contracting_proved": True,
@@ -858,6 +867,173 @@ def carry_multiplier_probe(p_block: int, sample_cap: int = 20_000) -> dict[str, 
         "mean_abs": round((re * re + im * im) ** 0.5 / cnt, 4),
         "noise_floor": round(cnt**-0.5, 4),
     }
+
+
+def level3_block_model_check(
+    p_block: int, n_blocks: int = 20
+) -> dict[str, Any]:
+    """Lemma FF validator: the level-3 block phase model.
+
+    On DD-blocks, with F = mu^{3/2} + (3/2) mu^{1/2} s, v = floor(F) + d,
+    e = d - {F}:
+
+      theta_3 = { mu^{9/4} + (9/4) mu^{5/4} s + (27/32) mu^{1/4} s^2
+                  - (27/128) mu^{-3/4} s^3 + (243/2048) mu^{-7/4} s^4
+                  + ((3/2) mu^{3/4} + (9/8) mu^{-1/4} s
+                     - (27/64) mu^{-5/4} s^2) e
+                  + (3/8) mu^{-3/4} e^2 }
+                + O(P^{-19/16}),
+
+    The product form u = (3/4) z^{1/2} theta_3 mod 1 amplifies the
+    theta_3 model error by z^{1/2} ~ P^{27/16}, so the model must be
+    kept to precision P^{-27/16}: the terms of scales P^{-9/8},
+    P^{-11/8}, P^{-13/8} above are all mandatory for the kernel phase
+    even though each is sub-unit. With the coefficient
+    (3/4) z^{1/2} = (3/4)(mu^{9/8} + (9/8) mu^{1/8} s) + corrections
+    of scales P^{-9/16} (the (3/4) F^{-1/4} e term) and P^{-13/16}
+    (the F^{3/4} s^2 term), u is modelled to ~P^{-15/16}. The nested
+    level-3 defect on a block is an explicit polynomial in the carry
+    s with mu-monomial coefficients plus a (3/2) mu^{3/4}-amplified
+    level-2 fractional term. Exact scaled integers; returns worst
+    circular errors.
+    """
+    sc = 10**48
+    block_len = max(4, isqrt(isqrt(p_block)))
+    worst_t3 = 0.0
+    worst_u = 0.0
+    n0 = p_block + 1
+    for _ in range(n_blocks):
+        m0 = isqrt(n0**3)
+        a = isqrt((n0 + 2) ** 3) - m0
+        for t in range(block_len):
+            n = n0 + 2 * t
+            m_true = isqrt(n**3)
+            v_true = isqrt(m_true**3)
+            z = isqrt(v_true**3)
+            mu = m0 + a * t
+            st = m_true - mu
+            f = isqrt(mu**3 * sc * sc) + 3 * isqrt(mu * sc * sc) * st // 2
+            d = v_true - f // sc
+            f_frac = f % sc
+            t3_true = isqrt(v_true**3 * sc * sc) - z * sc
+
+            mu94 = isqrt(isqrt(mu**9 * sc**4))
+            mu54 = isqrt(isqrt(mu**5 * sc**4))
+            mu34 = isqrt(isqrt(mu**3 * sc**4))
+            mu14 = isqrt(isqrt(mu * sc**4))
+            df = d * sc - f_frac
+            theta = (
+                mu94
+                + 9 * mu54 * st // 4
+                + 27 * mu14 * st * st // 32
+                - 27 * st**3 * sc * sc // (128 * mu34)
+                + 243 * st**4 * sc * sc // (2048 * mu34 * mu)
+                + 3 * mu34 * df // (2 * sc)
+                + 9 * st * df * sc // (8 * mu14)
+                - 27 * st * st * df * sc // (64 * mu14 * mu)
+                + 3 * df * df // (8 * mu34)
+            )
+            t3_model = theta % sc
+            e3 = abs(t3_true - t3_model)
+            e3 = min(e3, sc - e3) / sc
+            worst_t3 = max(worst_t3, e3)
+
+            mu98 = isqrt(mu94 * sc)
+            mu18 = isqrt(mu14 * sc)
+            mu38 = isqrt(mu34 * sc)
+            coeff = (
+                3
+                * (
+                    mu98
+                    + 9 * st * mu18 // 8
+                    - 27 * st * st * mu18 // (128 * mu)
+                )
+                // 4
+            )
+            u_model = (
+                coeff * t3_model // sc
+                + 9 * df * t3_model // (16 * mu38)
+            ) % sc
+            z12 = isqrt(z * sc * sc)
+            u_true = 3 * z12 * t3_true // 4 % (sc * sc) // sc
+            eu = abs(u_true - u_model)
+            eu = min(eu, sc - eu) / sc
+            worst_u = max(worst_u, eu)
+        n0 += 2 * block_len
+    return {
+        "block_len": block_len,
+        "n_blocks": n_blocks,
+        "max_theta3_err": worst_t3,
+        "max_u_err": worst_u,
+        "theta3_scale": p_block ** (-9 / 8),
+        "u_scale": p_block ** (-9 / 16),
+    }
+
+
+def block_kernel_sum_census(
+    p_block: int,
+    n_blocks: int = 200,
+    ks: tuple[int, ...] = (1, 2, 3),
+) -> dict[str, Any]:
+    """Census gate for Conjecture EE: in-block kernel-sum cancellation.
+
+    For blocks B of L = P^{1/4} consecutive odd steps, computes
+    R_k(B) = |sum_{t<L} e(k u)|^2 / L (u the exact K3 amplitude).
+    Conjecture EE needs |S_k(B)| <= L^{1-delta} for most blocks; the
+    random-phase prediction is R_k ~ Exp(1) (mean 1, thin tails).
+    Also reports the mean R among the most rotation-resonant decile
+    of blocks (gamma = D - A near a rational p/q, q <= 8), as an
+    exploratory diagnostic for the harmonic-skeleton mechanism.
+    OBSERVATION only.
+    """
+    from math import cos, pi, sin
+
+    s24 = 10**24
+    block_len = max(4, isqrt(isqrt(p_block)))
+    rs: dict[int, list[float]] = {k: [] for k in ks}
+    resonance: list[float] = []
+    n0 = p_block + 1
+    for _ in range(n_blocks):
+        x0 = isqrt(n0**3 * s24 * s24)
+        d_s = isqrt((n0 + 2) ** 3 * s24 * s24) - x0
+        gamma = (d_s % s24) / s24
+        res = min(
+            abs(q * gamma - round(q * gamma)) / q for q in range(1, 9)
+        )
+        resonance.append(res)
+        us = [
+            _dispersion_amplitude_scaled(n0 + 2 * t) / _U_SCALE
+            for t in range(block_len)
+        ]
+        for k in ks:
+            re = im = 0.0
+            for u in us:
+                ph = 2 * pi * ((k * u) % 1.0)
+                re += cos(ph)
+                im += sin(ph)
+            rs[k].append((re * re + im * im) / block_len)
+        n0 += 2 * block_len
+
+    order = sorted(range(n_blocks), key=lambda i: resonance[i])
+    decile = max(1, n_blocks // 10)
+    out: dict[str, Any] = {
+        "block_len": block_len,
+        "n_blocks": n_blocks,
+    }
+    for k in ks:
+        vals = sorted(rs[k])
+        out[f"k={k}"] = {
+            "mean_R": round(sum(vals) / n_blocks, 3),
+            "median_R": round(vals[n_blocks // 2], 3),
+            "max_R": round(vals[-1], 2),
+            "frac_R>4": round(
+                sum(1 for x in vals if x > 4) / n_blocks, 4
+            ),
+            "mean_R_resonant_decile": round(
+                sum(rs[k][i] for i in order[:decile]) / decile, 3
+            ),
+        }
+    return out
 
 
 def transport_block_variance(

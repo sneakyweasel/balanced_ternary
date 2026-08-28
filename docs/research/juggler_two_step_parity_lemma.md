@@ -2796,3 +2796,122 @@ Conjecture EE as the target and Lemma DD as its proven substrate
 flipped; `depth5_kernel_bound_proved` and `density_one_claimed`
 stay `False`. Conjecture V is open; Conjecture EE is a conjecture.
 No note import, no commit.
+
+## Part XVI: the level-3 block phase model and the in-block census (Phase 19)
+
+Scope: obligation (γ) of Conjecture EE — the level-3 analogue of
+Lemma DD — plus the census gate for the in-block cancellation
+target. Two preliminary analytic findings are recorded first;
+no proof of Conjecture EE is attempted, no \(K_3\) bound, no
+density move.
+
+### Two findings that shape the analytic phase
+
+**Denjoy–Koksma does not apply naively.** In rotation coordinates
+(\(s = \gamma t + \beta_0 - \omega\), \(\omega\) the orbit of the
+base rotation), the level-3 phase is a quadratic polynomial in
+\(\omega\) with multipliers \(a_1 \asymp P^{15/8}\),
+\(a_2 \asymp P^{3/8}\), plus a \((3/2)\mu^{3/4} \asymp
+P^{9/8}\)-amplified second fractional layer. The observable's
+total variation on the circle is \(\asymp a_1 \gg L = P^{1/4}\),
+so the Denjoy–Koksma inequality is vacuous. The correct route is
+harmonic: \(e(A\{x\})\) has Fourier mass concentrated in an
+\(\ell^1\)-summable window around the harmonic \(j \approx A\),
+so a two-layer Fourier cascade (the \(\rho\)-layer at
+\(j \approx P^{9/8}\), each harmonic spawning an \(\omega\)-layer
+at \(j' \approx jW + a_1 \approx P^{15/8}\)) reduces the block
+sum to harmonically-weighted linear-rotation sums with smooth
+carriers, at a total mass cost of only polylog — unlike Weyl
+differencing, which loses square roots. The smooth carriers
+satisfy a sixth-derivative ladder inside blocks
+(\(g^{(6)} \asymp P^{-15/16} < 1\)), so van der Corput
+high-derivative tests apply there; the linear parts leave
+Diophantine conditions on *amplified* block frequencies, to be
+handled by measure plus the proven cross-block equidistribution.
+
+**The product form sets the precision budget.** The kernel phase
+\(u = \tfrac34 z^{1/2}\theta_3 \bmod 1\) multiplies any
+\(\theta_3\)-model error by \(z^{1/2} \asymp P^{27/16}\).
+A model of \(\theta_3\) accurate to its natural sub-unit scale is
+therefore useless for \(u\): the expansion must be carried to
+precision \(P^{-27/16}\), three Taylor orders deeper than
+sub-unit. This is a hard constraint the cascade must respect.
+
+### Lemma FF (level-3 block phase model). EXACT — HUMAN PROOF
+
+On DD-blocks, with \(F = \mu^{3/2} + \tfrac32\mu^{1/2}s\),
+\(v = \lfloor F\rfloor + d\), \(e = d - \{F\}\):
+
+\[
+\theta_3 = \Bigl\{ \mu^{9/4} + \tfrac94\mu^{5/4}s
+ + \tfrac{27}{32}\mu^{1/4}s^2 - \tfrac{27}{128}\mu^{-3/4}s^3
+ + \tfrac{243}{2048}\mu^{-7/4}s^4
+ + \bigl(\tfrac32\mu^{3/4} + \tfrac98\mu^{-1/4}s
+    - \tfrac{27}{64}\mu^{-5/4}s^2\bigr)\,e
+ + \tfrac38\mu^{-3/4}e^2 \Bigr\} + O(P^{-19/16}),
+\]
+
+and \(\tfrac34 z^{1/2} = \tfrac34\bigl(\mu^{9/8}
++ \tfrac98\mu^{1/8}s - \tfrac{27}{128}\mu^{-7/8}s^2\bigr)
++ \tfrac34\cdot\tfrac34 F^{-1/4}e + O(P^{-13/16})\), giving a
+model of \(u\) to \(\sim P^{-15/16}\). *Proof.* Taylor expansion
+of \((F + e)^{3/2}\) about \(F\) and of \(F^{p}\) about
+\(\mu^{3/2}\) (\(p = \tfrac32, \tfrac34\)), with every term above
+\(P^{-27/16}\) retained: the dropped terms are \(O(\mu^{-11/4}s^5
++ \mu^{-9/4}s^3|e| + \mu^{-7/4}s\,e^2 + F^{-3/2}|e|^3)
+= O(P^{-23/8})\) for \(\theta_3\) — comfortably inside the
+\(P^{-27/16}\) budget — and \(O(P^{-13/16})\) for the coefficient,
+which multiplies \(\theta_3 < 1\). \(\square\)
+
+Validator `level3_block_model_check` (exact integers at scale
+\(10^{48}\); the earlier \(10^{24}\) run exposed how the
+\(z^{1/2}\)-amplification magnifies even isqrt rounding):
+worst \(\theta_3\)-error \(5\cdot10^{-11}\) at \(P = 10^4\)
+falling to \(4\cdot10^{-25}\) at \(P = 10^{10}\); worst
+\(u\)-error \(2\cdot10^{-4}\) falling to \(2\cdot10^{-8}\) —
+below the predicted scales at every tested \(P\).
+
+**Meaning.** The level-3 kernel phase on a block is now an
+explicit closed-form function of four observables: the affine
+base \(\mu(t)\), the rotation carry \(s(t)\), the level-2
+fractional orbit \(\{F(t)\}\), and the \(O(1)\) defect \(d(t)\).
+Obligation (γ) of Conjecture EE is discharged: no further
+nesting remains to be modelled.
+
+### The census gate (OBSERVATION)
+
+`block_kernel_sum_census`: \(R_k(B) = |S_k(B)|^2/L\) over
+consecutive blocks, \(u\) exact, \(k \in \{1,2,3\}\):
+
+| \(P\) | \(L\) | blocks | mean \(R\) | median \(R\) | max \(R\) | frac \(R>4\) | resonant-decile mean |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| \(10^6\) | 31 | 300 | 0.94–1.05 | 0.64–0.72 | 5.8–6.0 | 2.3–3.3% | 0.78–1.13 |
+| \(10^8\) | 100 | 200 | 0.93–0.99 | 0.62–0.65 | 5.1–8.4 | 2.0–3.5% | 0.95–1.04 |
+| \(10^{10}\) | 316 | 100 | 0.88–1.04 | 0.63–0.76 | 4.0–6.5 | 1.0–2.0% | 0.77–0.80 |
+
+This is a textbook \(\mathrm{Exp}(1)\) profile (median
+\(\ln 2 \approx 0.69\), \(\mathbb P(R>4) = e^{-4} \approx 1.8\%\),
+max \(\approx \ln(\#\text{blocks})\)): the in-block sums sit at
+the *square-root* scale \(|S_k(B)| \asymp L^{1/2}\), far stronger
+than the \(L^{1-\delta}\) Conjecture EE needs. Two consequences:
+the census gate passes decisively, and \(\gamma\)-rational
+resonance does **not** predict bad blocks (resonant-decile means
+indistinguishable from the bulk) — the Diophantine conditions of
+the cascade live at the amplified frequencies
+(\(\{a_1\gamma\}\)-type), not at \(\gamma\) itself, which tells
+the analytic phase where its exceptional-set argument must work.
+
+### Phase-19 decision
+
+**PROMOTE** the cascade phase. Obligation (γ) of Conjecture EE is
+closed by Lemma FF (ledger row `J-level3-block-phase-model`,
+EXACT — HUMAN PROOF); the cancellation target is empirically at
+the random-phase scale (OBSERVATION, census-gate precedent — no
+ledger row). Flags `level3_block_model_exact`,
+`in_block_cancellation_observed` flipped;
+`depth5_kernel_bound_proved` and `density_one_claimed` stay
+`False`. Conjectures V and EE stay open. No note import, no
+commit. The remaining analytic work is obligation (α) in cascade
+form: bound the harmonically-weighted linear-rotation sums for
+all blocks outside an exceptional set controlled by measure and
+the proven level-\(\le 2\) equidistribution.

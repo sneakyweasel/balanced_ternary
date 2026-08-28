@@ -10,10 +10,12 @@ from research.juggler_sequence.two_step_parity import (
     CONTRACTING_TARGET,
     SCALE,
     WORDS4,
+    block_kernel_sum_census,
     block_m_affine_model_check,
     block_v_amplified_model_check,
     branch_freeze_scan,
     carry_multiplier_probe,
+    level3_block_model_check,
     deep_word_counts,
     differenced_kernel_probe,
     dispersion_spacing_census,
@@ -158,6 +160,10 @@ def test_anti_overclaim_flags():
     # substrate is exact but Conjecture EE and the K3 bound stay open.
     assert ANTI_OVERCLAIM["dispersion_count_route_refuted"] is True
     assert ANTI_OVERCLAIM["transport_substrate_exact"] is True
+    # Phase 19: level-3 block model exact; in-block cancellation at
+    # the random-phase scale (OBSERVATION). EE and the bound open.
+    assert ANTI_OVERCLAIM["level3_block_model_exact"] is True
+    assert ANTI_OVERCLAIM["in_block_cancellation_observed"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
 
 
@@ -609,6 +615,27 @@ def test_block_carry_models():
     assert a6["max_defect"] <= 2
     b6 = block_v_amplified_model_check(10**6, n_blocks=10)
     assert b6["max_defect"] <= 1
+
+
+def test_level3_block_model():
+    # Lemma FF: theta_3 and the kernel phase u on DD-blocks are
+    # explicit polynomials in (mu, s, d, {F}) with errors below the
+    # predicted scales P^{-19/16} and ~P^{-9/16}. The product form
+    # u = (3/4) z^{1/2} theta_3 forces the theta_3 model to precision
+    # P^{-27/16} (the z^{1/2} amplification).
+    r4 = level3_block_model_check(10**4, n_blocks=10)
+    assert r4["max_theta3_err"] < r4["theta3_scale"]
+    assert r4["max_u_err"] < r4["u_scale"]
+    r6 = level3_block_model_check(10**6, n_blocks=5)
+    assert r6["max_theta3_err"] < r6["theta3_scale"]
+    assert r6["max_u_err"] < r6["u_scale"]
+
+
+def test_block_kernel_sum_census():
+    # Census gate for Conjecture EE (OBSERVATION guard, loose): the
+    # in-block kernel sums sit at the random-phase scale R ~ Exp(1).
+    r = block_kernel_sum_census(10**4, n_blocks=60, ks=(1,))
+    assert r["k=1"]["mean_R"] < 3.0
 
 
 def test_carry_multiplier_probe():

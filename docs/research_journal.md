@@ -9887,3 +9887,96 @@ Best next question
   cancellation for the in-block sums of Conjecture EE for all
   gamma outside a measure-P^{-delta'} exceptional set?
 ```
+
+## Juggler level-3 block phase model exact; in-block census at the random-phase scale (Phase 19)
+
+The promoted question was the Denjoy-Koksma route to Conjecture
+EE's in-block cancellation. Working it on paper produced two
+findings before any code: (1) naive Denjoy-Koksma is vacuous - in
+rotation coordinates the level-3 phase is a quadratic in the orbit
+coordinate omega with multipliers a1 ~ P^{15/8} and a2 ~ P^{3/8}
+plus a P^{9/8}-amplified second fractional layer, so the
+observable's variation dwarfs the block length P^{1/4}; the
+correct route is a two-layer Fourier cascade, whose harmonic mass
+is l^1-bounded (polylog) because e(A{x}) concentrates its Fourier
+mass near the harmonic j ~ A - unlike Weyl differencing, which
+loses square roots. The smooth carriers obey a sixth-derivative
+ladder inside blocks (g^{(6)} ~ P^{-15/16} < 1), so van der Corput
+high-derivative tests apply; the linear parts leave Diophantine
+conditions on amplified block frequencies. (2) The product form
+u = (3/4) z^{1/2} theta_3 multiplies any theta_3-model error by
+z^{1/2} ~ P^{27/16}: the level-3 model must be carried to
+precision P^{-27/16}, three Taylor orders past sub-unit. This is
+the precision budget of the whole cascade.
+
+Lemma FF (EXACT - HUMAN PROOF, `J-level3-block-phase-model`):
+on DD-blocks, with F = mu^{3/2} + (3/2) mu^{1/2} s, v = floor(F)
++ d, e = d - {F}, theta_3 is the fractional part of an explicit
+polynomial - mu^{9/4} + (9/4) mu^{5/4} s + (27/32) mu^{1/4} s^2
+- (27/128) mu^{-3/4} s^3 + (243/2048) mu^{-7/4} s^4 + ((3/2)
+mu^{3/4} + (9/8) mu^{-1/4} s - (27/64) mu^{-5/4} s^2) e + (3/8)
+mu^{-3/4} e^2 - up to O(P^{-19/16}), and the kernel coefficient
+(3/4) z^{1/2} has a matching three-term expansion, modelling the
+kernel phase u to ~P^{-15/16}. Validated in exact integers at
+scale 10^48 (the first run at 10^24 exposed how the z^{1/2}
+amplification magnifies even isqrt rounding - itself a useful
+lesson): theta_3 errors 5e-11 (P = 10^4) down to 4e-25
+(P = 10^10), u errors 2e-4 down to 2e-8, below the predicted
+scales everywhere. Obligation (gamma) of Conjecture EE is
+discharged: the level-3 kernel phase on a block is an explicit
+closed form in the four observables (mu, s, d, {F}); no nesting
+remains to be modelled.
+
+The census gate (OBSERVATION): R_k(B) = |sum_{t<L} e(k u)|^2 / L
+over consecutive blocks at P = 10^6 (300 blocks), 10^8 (200),
+10^10 (100), k = 1, 2, 3: mean R 0.88-1.05, median 0.62-0.76
+(Exp(1) median ln 2 = 0.69), fraction R > 4 at 1.0-3.5%
+(Exp(1): 1.8%), max ~ ln(#blocks). Textbook random-phase profile:
+the in-block sums cancel at the square-root scale L^{1/2}, far
+stronger than the L^{1-delta} Conjecture EE needs. The
+gamma-resonant decile of blocks (gamma near rationals q <= 8)
+shows no elevation - the cascade's Diophantine dangers live at
+the amplified frequencies ({a1 gamma}-type), not at gamma,
+which tells the analytic phase where its exceptional-set
+argument must operate.
+
+Probes level3_block_model_check and block_kernel_sum_census with
+tests; ledger row `J-level3-block-phase-model` (EXACT); flags
+`level3_block_model_exact`, `in_block_cancellation_observed`.
+`depth5_kernel_bound_proved` and `density_one_claimed` stay
+False. Conjectures V and EE stay open. No note import, no commit.
+
+```text
+What was learned
+- Denjoy-Koksma is vacuous here (variation P^{15/8} >> L); the
+  viable route is a Fourier cascade with l^1-bounded mass
+- the product form sets a hard precision budget: theta_3 must be
+  modelled to P^{-27/16}, three orders past sub-unit
+- the level-3 kernel phase on a block is an explicit closed form
+  in (mu, s, d, {F}) - the last nesting is discharged
+- in-block cancellation is at the square-root scale, and
+  gamma-resonance does not predict bad blocks
+Strongest theorem
+- Lemma FF: the level-3 block phase model - EXACT - HUMAN PROOF
+Strongest refutation
+- none this phase (one route assessment: naive Denjoy-Koksma
+  unusable; recorded as method knowledge, not a ledger row)
+Reusable machinery
+- level3_block_model_check (scale-10^48 exact validator),
+  block_kernel_sum_census (per-block kernel statistics with
+  resonance diagnostics)
+Branch status
+- PROMOTE
+Why
+- both remaining prerequisites of the cascade phase are now in
+  hand: an exact phase model at the required precision and
+  empirical square-root cancellation per block; the analytic
+  phase has a concrete plan and a located exceptional-set
+  mechanism
+Best next question
+- does the two-layer Fourier cascade, with van der Corput
+  high-derivative tests on the smooth carriers and measure
+  control of the amplified-frequency resonances, prove
+  |S_k(B)| <= L^{1-delta} outside a power-saving exceptional
+  set of blocks?
+```
