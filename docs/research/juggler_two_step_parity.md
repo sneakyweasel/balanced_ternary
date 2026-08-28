@@ -1,0 +1,45 @@
+# Juggler multi-step itinerary-parity census
+
+Status: **OBSERVATION** (exact counting; no analytic lemma claimed)
+
+Exact census of the joint parity word of the first four itinerary
+letters on odd starts. Phase-0 falsifier for iterating the one-step
+discrepancy bound (Theorem 5.1 in the finite-dynamics note) to
+depth two and beyond. Not a frequency theorem, not a predictive
+state, not a termination claim.
+
+Window: odd `n <= 10000000`. Expected class fraction of a
+depth-`d` word within odd starts is `2^{-(d-1)}`.
+
+| depth | max|D_w| on window | max|D|/N^{1/2} | max|D|/N^{1/3} | fitted exponent |
+| --- | --- | --- | --- | --- |
+| 2 | 195.0 | 0.061664 | 0.90511 | 0.2841 |
+| 3 | 1156.5 | 0.365717 | 5.367997 | 0.625 |
+| 4 | 3020.75 | 0.955245 | 14.021079 | 0.6634 |
+
+Depth-4 counts at `N = 10000000` (odds = 4999999):
+
+| word | count | D_w |
+| --- | --- | --- |
+| OEEE | 625279 | 279.125 |
+| OEEO | 624031 | -968.875 |
+| OEOE | 625515 | 515.125 |
+| OEOO | 625279 | 279.125 |
+| OOEE | 625193 | 193.125 |
+| OOEO | 625551 | 551.125 |
+| OOOE | 625236 | 236.125 |
+| OOOO | 623915 | -1084.875 |
+
+## OOEE class
+
+`OOEE` count 625193 = 0.125039 of odd
+starts (product density 0.125). Every census
+OOEE start satisfied the four-step descent `T^4(n) < n`
+(violations: 0); this instantiates the
+contraction `3^2 < 2^4` and is a guard, not a new theorem.
+
+## Reading
+
+The fitted exponents are envelope slopes on a geometric sample,
+label **OBSERVATION**. A depth-2 analytic lemma (discrepancy of
+the nested parity pair over odd n) is a separate, unproved step.

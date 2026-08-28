@@ -8698,4 +8698,90 @@ Best next question
 - do almost all odd-to-odd starts have a finite descent certificate?
 ```
 
+## Juggler two-step parity census
+
+- **Date:** 2026-08-28
+- **Objective:** Phase-0 gate for iterating the one-step discrepancy bound (Theorem 5.1) to joint parity words of depth 2–4 on odd starts: do the classes equidistribute, and with what empirical exponent?
+- **Hypotheses:** all depth \(\le 4\) itinerary parity classes converge to the product densities with envelope exponent clearly below 1; the contracting `OOEE` class then becomes the target of a depth-2 analytic lemma
+- **Major results:** at \(N=10^7\) all eight depth-4 classes sit within \(0.2\%\) of \(1/8\) of odd starts; running envelopes \(\max|D|\) are \(195\) (depth 2), \(1156.5\) (depth 3), \(3020.75\) (depth 4) with fitted exponents \(0.28/0.63/0.66\), all below the proven depth-1 exponent \(5/6\); the depth-2 envelope is on the same \(N^{1/3}\) scale as the proven depth-1 case; `OOEE` holds \(12.504\%\) of odd starts with zero four-step descent violations (guard for the exact contraction \(x^{16}\le n^9\)). Records: `docs/research/juggler_two_step_parity.md`, `docs/problems/juggler_two_step_parity.md`
+- **Refuted ideas:** none new; the falsifier (class bias or exponent \(\approx 1\)) did not fire. Transfer, θ-state, and residue-prediction refutations were cited, not retested
+- **Literature:** Theorem 5.1 (`J-odd-image-discrepancy`) reused as the depth-1 base case; nested-floor parity is outside classical Piatetski-Shapiro single-floor theory
+- **Open:** the depth-2 analytic lemma — a power-saving bound for the nested sign sum \(\sum_{n\le N\,\mathrm{odd}}(-1)^{\lfloor n^{3/2}\rfloor+\lfloor\lfloor n^{3/2}\rfloor^{3/2}\rfloor}\)
+- **Decision:** PROMOTE the question to Phase 1 (the depth-2 lemma). No theorem is claimed; no certified-density change until the lemma is proved
+
+```text
+What was learned
+- Depth-4 joint parity classes equidistribute to 0.2% at N=10^7
+- The depth-2 discrepancy envelope matches the depth-1 N^{1/3} scale
+- Fitted exponents 0.28/0.63/0.66 stay below the proven 5/6
+- OOEE holds its product density 1/8 and always descends in 4 steps
+- The obstacle to a proof is the nested floor, not the data
+
+Strongest theorem
+- none; this phase is a census gate
+
+Strongest refutation
+- none; the falsifier did not fire
+
+Reusable machinery
+- research.juggler_sequence.two_step_parity
+
+Branch status
+- PROMOTE
+
+Why
+- The promotion criterion was met exactly: every class converges with
+  a power-saving empirical envelope, so the depth-2 analytic lemma is
+  a well-posed target rather than a hope.
+
+Best next question
+- does the van der Corput / Erdős–Turán argument of Theorem 5.1 extend
+  to the nested sign sum with any power saving?
+```
+
+## Juggler nested parity linearization
+
+- **Date:** 2026-08-28
+- **Objective:** Phase 1 of the two-step parity branch: prove a power-saving bound for the nested sign sum \(\sum_{n\le N\,\mathrm{odd}}(-1)^{\lfloor n^{3/2}\rfloor+\lfloor\lfloor n^{3/2}\rfloor^{3/2}\rfloor}\)
+- **Hypotheses:** the growing-amplitude cross term \(\tfrac32\{n^{3/2}\}n^{3/4}\) that blocks van der Corput can be removed structurally rather than estimated
+- **Major results:** Lemma A (**EXACT — HUMAN PROOF**): \(m^{3/2}=\tfrac32 mn^{3/4}-\tfrac12 n^{9/4}+E(n)\), \(0\le E\le\tfrac12 n^{-3/4}\) — substituting \(\theta=n^{3/2}-m\) into the linear Taylor term eliminates the fractional part exactly; the integer enters the phase linearly. Lemma B (**EXACT — HUMAN PROOF**): \(m(n{+}2h)-m(n)=\lfloor\delta\rfloor+\kappa\) with explicit \(\kappa\), giving constant-gap cells of length \(\asymp P^{1/2}/h\). Theorem C (drafted, pending review): each joint parity class of \((m,\lfloor m^{3/2}\rfloor)\) on odd \(n\le N\) has cardinality \(N/8+O(N^{23/24+\varepsilon})\), by Vaaler waves, Lemma A, one A-process at \(H=N^{1/12}\), Lemma B cells, and the second-derivative test; full exponent bookkeeping in `docs/research/juggler_two_step_parity_lemma.md`. Both lemmas validated by exact scaled-integer arithmetic through \(n=10^{12}\); the worst identity ratio \(0.7494\) matches the theoretical supremum \(3/4\)
+- **Refuted ideas:** direct third-derivative test on \(\theta\)-frozen short blocks (interval length lands exactly at the useless threshold \(\lambda_3^{-1/3}\)); the sum-over-images route (mode sums have genuine size \(M^{3/4}\gg M^{2/3}\), consistent with the closed transfer branch)
+- **Literature:** checked August 2026 — nested floor powers \(\lfloor\lfloor n^c\rfloor^d\rfloor\) are absent from the Piatetski-Shapiro corpus; annotation **independent**. Cited machinery: Vaaler 1985, Graham–Kolesnik van der Corput II
+- **Open:** the review pass for Theorem C; then the depth-4 extension via \(m^{3/4}=\tfrac34 mn^{-3/8}+\tfrac14 n^{9/8}+O(n^{-15/8})\)
+- **Decision:** PROMOTE the drafted proof to a dedicated review phase. No ledger row, no note import, `depth2_analytic_lemma_proved` stays `False` until review
+
+```text
+What was learned
+- The nested fractional part is removable exactly, not just estimable:
+  m^{3/2} = (3/2)m n^{3/4} - (1/2)n^{9/4} + O(n^{-3/4})
+- After one differencing the integer enters only through the gap
+  g = m(n+2h) - m(n), constant on cells of length ~ P^{1/2}/h
+- The smooth n^{5/4}-scale terms cancel at leading order, so the cell
+  phases have single-sign second derivative ~ jhP^{-3/4}
+- The bookkeeping closes at N^{23/24+eps} with slack at every step
+- Sum-over-images fails for a structural reason: M^{3/4} mode sums
+
+Strongest theorem
+- Lemma A, the exact linearization; Theorem C is drafted, not settled
+
+Strongest refutation
+- none; two attack routes were discarded for cause and recorded
+
+Reusable machinery
+- identity_scan / gap_decomposition_check exact validators;
+  the linearization pattern extends to every deeper letter
+
+Branch status
+- PROMOTE
+
+Why
+- The single obstruction that made the nested sum hard is gone by an
+  exact identity, the remaining chain is classical, and every step is
+  validated numerically. What remains is review rigor, not ideas.
+
+Best next question
+- does Theorem C survive a dedicated review pass at the rigor level
+  applied to Theorem 5.1?
+```
+
 

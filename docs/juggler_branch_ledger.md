@@ -41,6 +41,7 @@ statement in the branch.
 | Statistics | [Probabilistic drift](problems/juggler_probabilistic.md) | PARK | **OBSERVATION** | Mixed ensembles have negative log-log drift; hard paths are odd-rich; no pointwise exceptional-family theorem | Descriptive layer |
 | Ambient discrepancy | [Odd-image discrepancy](problems/juggler_odd_image_discrepancy.md) | PARK | **EXACT — HUMAN PROOF** | The ambient odd-input sign sum satisfies \(|S_O(N)|\ll N^{5/6}\) | Analytic theorem |
 | Dynamical transfer | [Parity discrepancy transfer](problems/juggler_parity_discrepancy_transfer.md) | CLOSE | **REFUTED** | Translation-uniform short-interval laws and automatic transfer to sparse generated images fail in the tested form | Analytic boundary |
+| Two-step parity | [Multi-step itinerary-parity census](problems/juggler_two_step_parity.md) | PROMOTE | **COMPUTATIONALLY VERIFIED** census; **EXACT — HUMAN PROOF** linearization lemmas; drafted depth-2 theorem | Depth-2/3/4 classes equidistribute at \(N\le10^7\); the exact identity \(m^{3/2}=\tfrac32 mn^{3/4}-\tfrac12 n^{9/4}+O(n^{-3/4})\) removes the nested fractional part, and a full draft proof of the \(N^{23/24+\varepsilon}\) joint-parity bound awaits its review pass | Analytic frontier |
 | Acceleration | [Odd-to-odd acceleration](problems/juggler_accelerated.md) | CLOSE | **REPARAMETERIZATION** | Acceleration shortens notation but retains the same state-dependent blocks | Global elimination |
 
 ## Synthesis

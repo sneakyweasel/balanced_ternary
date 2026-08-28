@@ -1,0 +1,120 @@
+{
+  "n_max": 10000000,
+  "depth": 4,
+  "checkpoints": [
+    {
+      "n": 10000000,
+      "odds": 4999999,
+      "counts4": {
+        "OEEE": 625279,
+        "OEEO": 624031,
+        "OEOE": 625515,
+        "OEOO": 625279,
+        "OOEE": 625193,
+        "OOEO": 625551,
+        "OOOE": 625236,
+        "OOOO": 623915
+      },
+      "D": {
+        "OE": 104.5,
+        "OO": -104.5,
+        "OEE": -689.75,
+        "OEO": 794.25,
+        "OOE": 744.25,
+        "OOO": -848.75,
+        "OEEE": 279.125,
+        "OEEO": -968.875,
+        "OEOE": 515.125,
+        "OEOO": 279.125,
+        "OOEE": 193.125,
+        "OOEO": 551.125,
+        "OOOE": 236.125,
+        "OOOO": -1084.875
+      },
+      "max_abs_D": {
+        "2": 195.0,
+        "3": 1156.5,
+        "4": 3020.75
+      },
+      "max_over_n12": {
+        "2": 0.061664,
+        "3": 0.365717,
+        "4": 0.955245
+      },
+      "max_over_n13": {
+        "2": 0.90511,
+        "3": 5.367997,
+        "4": 14.021079
+      }
+    }
+  ],
+  "final": {
+    "n": 10000000,
+    "odds": 4999999,
+    "counts4": {
+      "OEEE": 625279,
+      "OEEO": 624031,
+      "OEOE": 625515,
+      "OEOO": 625279,
+      "OOEE": 625193,
+      "OOEO": 625551,
+      "OOOE": 625236,
+      "OOOO": 623915
+    },
+    "D": {
+      "OE": 104.5,
+      "OO": -104.5,
+      "OEE": -689.75,
+      "OEO": 794.25,
+      "OOE": 744.25,
+      "OOO": -848.75,
+      "OEEE": 279.125,
+      "OEEO": -968.875,
+      "OEOE": 515.125,
+      "OEOO": 279.125,
+      "OOEE": 193.125,
+      "OOEO": 551.125,
+      "OOOE": 236.125,
+      "OOOO": -1084.875
+    },
+    "max_abs_D": {
+      "2": 195.0,
+      "3": 1156.5,
+      "4": 3020.75
+    },
+    "max_over_n12": {
+      "2": 0.061664,
+      "3": 0.365717,
+      "4": 0.955245
+    },
+    "max_over_n13": {
+      "2": 0.90511,
+      "3": 5.367997,
+      "4": 14.021079
+    }
+  },
+  "max_abs_D": {
+    "2": 195.0,
+    "3": 1156.5,
+    "4": 3020.75
+  },
+  "fitted_exponent": {
+    "2": 0.2841,
+    "3": 0.625,
+    "4": 0.6634
+  },
+  "ooee": {
+    "count": 625193,
+    "fraction_of_odds": 0.125039,
+    "expected_fraction": 0.125,
+    "descent_violations": 0
+  },
+  "anti_overclaim": {
+    "global_termination": false,
+    "parity_frequency_theorem": false,
+    "predictive_state_claim": false,
+    "reopen_landing_theta": false,
+    "reopen_2adic_bridge": false,
+    "depth2_analytic_lemma_proved": false
+  }
+}
