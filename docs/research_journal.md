@@ -9241,3 +9241,114 @@ Best next question
   the sign-dominance checks in Step 5 and the passenger-robust OOO*
   corollary?
 ```
+
+## Juggler kernel review: Theorem R survives, Theorem S completes depth 4 (Phase 9)
+
+Adversarial review pass of the Phase-8 double-differencing draft, at
+the standard Theorems C/E/Q received. Every step was re-derived from
+scratch. The draft survives with its exponents intact, after two
+repairs.
+
+Defect 1 (organizational). The draft's Lemma R3 conditioned on
+"constant-gap cells with fixed (G1, G2)". Those sets are wild: the
+level-1 gap g1 is two-valued on every floor-run because the carry
+kappa_1(theta) toggles at essentially every step. Repair: restate R3
+over runs of the frozen floors b1 = floor(D1 X), b2 = floor(D2 X),
+b12 = floor(D12 X) and the carry vector (kappa_1, kappa_2, kappa_12)
+in {0,1}^3. The eight branch indicators are arcs in the single
+variable theta with slowly moving endpoints (drift ~ h P^{-1/2}) -
+exactly Theorem C's moving-endpoint expansion. The exact identity
+DDY = F_kappa(m), the offset bound |j| <= 3 and all freeze scales
+are unchanged; the Phase-8 validator had in fact measured the
+sub-runs of the repaired organization (observed in-cell lengths 25
+vs b-run length ~ 500 at P = 10^6 - the kappa-toggles, visible in
+retrospect).
+
+Defect 2 (real error). For mixed pieces - a frozen-floor factor
+e(-cJ) times a large X-mode s ~ r P^{3/4} spawned by the level-2
+carries - the draft used the third-derivative test per J-run of
+length P^{1/4}. That is worthless: the test's second term
+M^{1/2} lambda_3^{-1/6} summed over P^{3/4} runs is ~ r^{-1/6} P,
+the trivial bound. Repair: one targeted third Weyl differencing of
+the mixed pieces, then the split J = F - {F}. The point is a scale
+inversion: at the undifferenced level the coefficient c has window
+drift c' ~ k P^{1/8} > 1 against the slow sawtooth {F(X)} (the
+original wall), but after Delta_3 the coefficient Delta_3 c ~
+k h_3 P^{1/8} has drift ~ k h_3 P^{-7/8} < 1, so the shifted-window
+expansion applies with no run segmentation at all; the differenced
+mode curvature s (Delta_3 X)'' ~ r h_3 P^{-3/4} < 1 is single-signed
+and dominant, and full-range van der Corput II plus the balance
+H_3 = r^{-1/3} P^{1/4} recovers exactly the P^{1/8}/r^{1/6} saving
+the draft had claimed. eta = 1/16 and delta = 1/64 (bounded k),
+1/72 (k <= P^{1/24}) survive unchanged. New probe: the triple
+difference T_3 cancels at square-root scale across (h1,h2,h3) in
+{(1,1,1),(1,2,3),(2,3,5)} at P = 5*10^4 and 5*10^5.
+
+Also verified: the collision inventory (the curvature-crossover
+scale s* ~ k P^{3/8} lies outside every mode window, and small
+u-modes never reach it since R' = P^{1/16}); single-signed leading
+curvatures per branch via the monomial exponent products 15/8 and
+11/8, both outside {0,1,2}; the family hypothesis extended to four
+derivatives (used by the double MVT on (cF)''); k-uniformity; and
+the majorant/boundary inventory. One structural insight from the
+review: the c11*DDY-content and the -c*floor(DDY)-content must be
+treated together per run - their sum is the smooth c(F - J), which
+is what per-run van der Corput II actually sees.
+
+Theorem S (new): the OOO* splits close. The Phase-5 reduction's
+passengers ride through the engine: Proposition H's vm- and
+vm^2-cross terms reduce to the W-family via xi*v*m = (xi X)v -
+(xi theta)v and its quadratic analogue (every theta-cross
+coefficient sub-unit, every smooth v-coefficient a family member),
+and the i- and j-mode phases difference into the established
+dominance hierarchy (j-passengers become real-valued branch
+functions - no floor, hence no new integer content). #OOOE(N),
+#OOOO(N) = N/16 + O(N^{1-1/72+eps}): depth-4 equidistribution is
+complete. Conjecture K now holds unconditionally at every depth
+<= 4, so Proposition J's hypothesis has theorem base cases d <= 4.
+
+Records: J-kernel-cancellation retagged EXACT - HUMAN PROOF
+(statement records the review and repairs); new row
+J-depth4-complete (Theorem S); stale "kernel open" language purged
+from J-second-order-linearization, J-tier2-gap-and-shifted-forms,
+J-equidistribution-implies-density-one. Flags kernel_bound_proved,
+tier2_analytic_lemma_proved, depth4_complete_proved flipped True;
+density_one_claimed stays False (depth >= 5 equidistribution open).
+The census doc regenerated from the stored scan. The certified
+descent density does not move: OOO* words are non-contracting at
+depth 4 (3^3 > 2^4); the only route above 13/16 is the tier-3
+ladder at depth 5 (OOOEE et al.). Editorial debt recorded: the
+note's Conjecture 6.2, Section 6 boundary text and frontier figure
+are superseded and await a consolidation import.
+
+```text
+What was learned
+- the draft survives review; both defects were organizational or
+  repairable by the part's own mechanisms, at unchanged exponents
+- differencing inverts the wall: c' ~ k P^{1/8} > 1 blocks the
+  {F}-expansion, but (Delta_3 c)' ~ k h_3 P^{-7/8} < 1 admits it -
+  one more differencing is exactly what turns the frozen-floor
+  content from an obstruction into a slow sawtooth
+- passengers are harmless because they never contribute new integer
+  content: only the c-side carries floors
+Strongest theorem
+- Theorem R: K_c << P^{1-1/72+eps} uniformly for k <= P^{1/24};
+  with Theorem S, every depth-<=4 word class is N 2^{-|w|} +
+  O(N^{1-delta})
+Strongest refutation
+- per-run third-derivative test on mixed pieces gives exactly the
+  trivial bound - the draft's Step 5 was wrong as written
+Reusable machinery
+- the targeted-differencing + J = F - {F} pattern (scale inversion),
+  T_3 probes, the (b, kappa)-branch organization
+Branch status
+- PROMOTE (tier-3 ladder: depth-5 OOO-prefixed contracting words,
+  the only route above 13/16; editorial import of R/S into the note)
+Why
+- the kernel was the single irreducible obstruction of this branch;
+  it is now a theorem and depth 4 is finished, but the certified
+  density is unchanged until depth 5 opens
+Best next question
+- does the tier-3 ladder (three differencings, same exact identities)
+  close OOOEE, the shortest contracting word beyond depth 4?
+```

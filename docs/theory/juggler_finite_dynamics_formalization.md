@@ -449,7 +449,10 @@ certify:
 
 - Proposition 4.4's exact Python-integer horizon-\(20\) census;
 - the analytic discrepancy estimates of Section 5 (Theorems 5.1, 5.4,
-  5.7, 5.8, Proposition 5.5, Corollary 5.9) or Proposition 6.1;
+  5.7, 5.8, Proposition 5.5, Corollary 5.9), Proposition 6.1, or the
+  kernel bound and depth-4 completion (working-doc Theorems R and S,
+  ledger rows `J-kernel-cancellation`, `J-depth4-complete` — human
+  proofs resting on the Lean floor reductions above);
 - the scaled-integer validators for the exact-linearization lemmas
   (those are pytest-pinned computations, not proofs);
 - statistical drift estimates;

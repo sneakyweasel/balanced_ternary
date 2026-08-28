@@ -19,11 +19,13 @@ and Proposition I as Corollary 5.9, Proposition J as Proposition 6.1,
 and Conjecture O as Conjecture 6.2. The floor reductions (Lemmas B/N
 pattern, the parity bridge, and the Part-VI double-gap identity) are
 Lean-verified in `formal/Problems/Juggler/GapCells.lean`. Part VI
-(Phase 8) holds a complete double-differencing DRAFT proof of
-Conjecture O (Theorem R), pending adversarial review. Not a
-termination claim; the tier-2 discrepancy bound and density-one
-statement are NOT claimed unconditionally — the kernel tag stays
-`CONJECTURE` until the review pass.
+(Phases 8–9) holds the double-differencing proof of Conjecture O
+(Theorem R) and the depth-4 completion (Theorem S), both re-derived
+by the Phase-9 adversarial review (record in Part VI); ledger rows
+`J-kernel-cancellation` (retagged) and `J-depth4-complete`. The
+note's Conjecture 6.2 paragraph is superseded and awaits editorial
+consolidation. Not a termination claim; the depth-\(\ge5\) tiers and
+the density-one statement remain conditional.
 
 Throughout, \(n\) is odd, \(X = n^{3/2}\), \(m = m(n) = \lfloor
 n^{3/2}\rfloor = \operatorname{isqrt}(n^3)\), \(\theta = \theta_n =
@@ -880,19 +882,20 @@ K_c(P) \;=\; \sum_{\substack{n \sim P \\ n\ \mathrm{odd}}}
 e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr).
 \]
 
-### Conjecture O (kernel cancellation)
+### Conjecture O (kernel cancellation) — *proved: see Theorem R, Part VI*
 
 \(K_c(P) \ll P^{1-\delta}\) for some \(\delta > 0\), uniformly over
 the \(W\)-shaped family. Float probe with exact scaled phase
 arithmetic (`kernel_probe`, \(c = \tfrac34 n^{9/8}\)): \(|K| = 51.9,\
 124.4,\ 1017.5\) on \(5\cdot10^3,\ 5\cdot10^4,\ 5\cdot10^5\) terms —
-square-root cancellation, strongly consistent with the conjecture.
-Bounding \(K_c\) is the *precise* remaining obstacle to the OOO\*
-split, hence to any certified density beyond \(13/16\) through this
-program. The object is a bilinear correlation between the fractional
-parts of one Piatetski–Shapiro layer and a smooth weight at the scale
-of the next layer; we found no treatment of it in the nested-floor
-literature.
+square-root cancellation. Bounding \(K_c\) was the *precise*
+remaining obstacle to the OOO\* split, hence to any depth-4 statement
+beyond \(13/16\) through this program. The object is a bilinear
+correlation between the fractional parts of one Piatetski–Shapiro
+layer and a smooth weight at the scale of the next layer; we found no
+treatment of it in the nested-floor literature. Proved in Phases 8–9
+with \(\delta = 1/64\) (bounded \(k\)) and \(\delta = 1/72\) for
+\(k \le P^{1/24}\): Theorem R.
 
 ### Remark (the OEO\* tier is easier — next target)
 
@@ -1088,13 +1091,16 @@ ever consumes O-rooted class bounds, which are exactly what Theorems
 
 ## Part VI: the kernel — a double-differencing attack (Phase 8)
 
-**Status: DRAFT.** The argument below is complete at the
-exponent-bookkeeping level and every exact identity in it is
-machine-validated, but it has *not* passed the adversarial review
-pass that Theorems C, E and Q received before their ledger rows were
-tagged. Conjecture O's ledger tag stays `CONJECTURE` until a review
-phase either confirms or breaks the bookkeeping. Nothing in the
-finite-dynamics note is changed by this part.
+**Status: reviewed.** Drafted in Phase 8 and re-derived
+adversarially in Phase 9 (review record after Theorem R). The review
+found two defects — one organizational, one a real error in the
+draft's Step 5 — and repaired both with the part's own exact
+mechanisms; the final exponents are unchanged. Theorem R and its
+depth-4 corollary (Theorem S) are `EXACT — HUMAN PROOF`
+(ledger rows `J-kernel-cancellation`, `J-depth4-complete`). The
+finite-dynamics note is *not* yet updated: its Conjecture 6.2
+paragraph is superseded by this part and awaits an editorial
+consolidation phase.
 
 Notation: \(n\) odd, \(X = n^{3/2}\), \(m = \lfloor X\rfloor\),
 \(\theta = X - m\), \(Y = m^{3/2}\), \(v = \lfloor Y\rfloor\),
@@ -1188,40 +1194,54 @@ guard-band skips on a wide window at \(n \sim 10^3\).
 
 ### Lemma R3 (branch decomposition and freeze) — EXACT — HUMAN PROOF
 
-On the intersection of the \(h_1\)- and \(h_2\)-cell partitions
-(both gaps frozen: \(m_{10} = m + G_1\), \(m_{01} = m + G_2\)) and
-the level set \([j_1 = j]\),
+*(Restated by the Phase-9 review; see the review record.)* Write
+\(b_1 = \lfloor\Delta_1X\rfloor\), \(b_2 = \lfloor\Delta_2X\rfloor\),
+\(b_{12} = \lfloor\Delta_{12}X\rfloor\) (shift \(d_1 + d_2\)) — each
+constant on runs of length \(\asymp P^{1/2}/h\) — and let
+\(\boldsymbol\kappa = (\kappa_1, \kappa_2, \kappa_{12}) \in
+\{0,1\}^3\) be the corresponding level-1 carries, so that \(m_{10} =
+m + b_1 + \kappa_1\), \(m_{01} = m + b_2 + \kappa_2\), \(m_{11} = m +
+b_{12} + \kappa_{12}\). Then on each \(b\)-run intersection and each
+carry branch \(\boldsymbol\kappa\),
 
 \[
-\Delta\Delta Y \;=\; F_j(m), \qquad
-F_j(m) = (m + G_1 + G_2 + j)^{3/2} - (m + G_1)^{3/2}
-- (m + G_2)^{3/2} + m^{3/2}
+\Delta\Delta Y \;=\; F_{\boldsymbol\kappa}(m), \qquad
+F_{\boldsymbol\kappa}(m) = (m + b_{12} + \kappa_{12})^{3/2}
+- (m + b_1 + \kappa_1)^{3/2} - (m + b_2 + \kappa_2)^{3/2} + m^{3/2}
 \]
 
-**exactly** (no error term), with \(|j_1| \le 3\) for \(h_1 h_2 \le
-P^{1/2}/3\), and
+**exactly** (no error term). The net offset \(j = (b_{12} +
+\kappa_{12}) - (b_1 + \kappa_1) - (b_2 + \kappa_2)\) is bounded
+(\(|j| \le 3\) for \(h_1 h_2 \le P^{1/2}/3\)), and
 
 \[
-F_j \;\asymp\; \tfrac32 |j|\, P^{3/4} + h_1 h_2 P^{1/4},
+F_{\boldsymbol\kappa} \;\asymp\; \tfrac32 |j|\, P^{3/4}
++ h_1 h_2 P^{1/4},
 \qquad
-F_j'(m) \;\asymp\; |j|\, P^{-3/4} + h_1 h_2 P^{-5/4} \;<\; 1 .
+F_{\boldsymbol\kappa}'(m) \;\asymp\; |j|\, P^{-3/4}
++ h_1 h_2 P^{-5/4} \;<\; 1 .
 \]
 
-Hence on each branch the floor \(\lfloor F_j(X(n))\rfloor\) is
-constant on runs of length \(\asymp \min\bigl(P^{1/4}/|j|,\;
-P^{3/4}/(h_1 h_2)\bigr)\), and the \(\theta\)-correction \(F_j(m) =
-F_j(X) - F_j'(\xi)\theta\) has sub-unit amplitude.
+Hence on each branch the floor \(\lfloor
+F_{\boldsymbol\kappa}(X(n))\rfloor\) is constant on runs of length
+\(\asymp \min\bigl(P^{1/4}/|j|,\; P^{3/4}/(h_1 h_2)\bigr)\), and the
+\(\theta\)-correction \(F(m) = F(X) - F'(\xi)\theta\) has sub-unit
+amplitude. The branch indicator \([\boldsymbol\kappa = \cdot]\) is a
+finite union of arcs in the single variable \(\theta\) with slowly
+moving endpoints \(1 - \{\Delta_1X\}\), \(1 - \{\Delta_2X\}\), \(1 -
+\{\Delta_{12}X\}\) (drifts \(\asymp hP^{-1/2} < 1\)): exactly
+Theorem C's moving-endpoint expansion.
 
-*Proof.* The identity is the definition of \(j_1\): \(m_{11} = m +
-G_1 + G_2 + j_1\). The bound on \(j_1\): \(j_1 = \lfloor
-\Delta_1X_{01}\rfloor - \lfloor \Delta_1X_{00}\rfloor + \Delta_2
-\kappa_1\) with \(|\Delta\Delta X| \le 4h_1h_2 \sup|X''| =
-3h_1h_2P^{-1/2}\). The derivative: MVT on the second difference of
-\(\tfrac32 m^{1/2}\) plus \(\tfrac34 j (m+\xi)^{-1/2}\). \(\square\)
-Validated (`branch_freeze_scan`): distinct branch-floor counts match
-the drift prediction at \(P = 10^6, 10^8\) (e.g. at \(P = 10^8\),
-\((h_1,h_2)=(1,1)\): 2 distinct values per cell against 2.8
-predicted for \(j = \pm1\), exactly 1 for \(j = 0\)).
+*Proof.* The corner identities are Lemma B at the three shifts. The
+bound on \(j\): \(b_{12} - b_1 - b_2 \in \{0, 1\}\) up to
+\(\lfloor\Delta\Delta X\rfloor\)-corrections with \(|\Delta\Delta X|
+\le 4h_1h_2\sup|X''| = 3h_1h_2P^{-1/2}\). The derivative: MVT on the
+second difference of \(\tfrac32 m^{1/2}\) plus \(\tfrac34 j
+(m+\xi)^{-1/2}\). \(\square\) Validated (`branch_freeze_scan`):
+distinct branch-floor counts match the drift prediction at \(P =
+10^6, 10^8\) (e.g. at \(P = 10^8\), \((h_1,h_2)=(1,1)\): 2 distinct
+values per cell against 2.8 predicted for offset \(\pm1\), exactly 1
+for offset 0).
 
 ### Negative knowledge: the raw second gap is NOT frozen
 
@@ -1235,11 +1255,11 @@ forced, with the flicker carried by the \([j_1 = j]\) indicator —
 level-1 carries, i.e. unit sawtooths of \(X\)-forms via Lemma R2's
 sawtooth identity.
 
-### Theorem R (kernel cancellation — DRAFT, pending review)
+### Theorem R (kernel cancellation) — EXACT — HUMAN PROOF
 
 Let \(c\) be smooth on \((P, 2P]\) with \(c^{(r)} \asymp k
-P^{9/8 - r}\) for \(r = 0, 1, 2, 3\), derivative signs following the
-monomial pattern (the \(W\)-shaped family; e.g. \(c = \tfrac{3k}4
+P^{9/8 - r}\) for \(r = 0, 1, 2, 3, 4\), derivative signs following
+the monomial pattern (the \(W\)-shaped family; e.g. \(c = \tfrac{3k}4
 n^{9/8}\)). Then
 
 \[
@@ -1295,11 +1315,12 @@ cross-terms arise:
   (m{+}G_1)^{3/2} - m^{3/2}\) on the cell; \(\theta\)-coefficient
   \(\asymp \Delta_2 c \cdot G_1 X^{-1/2} \asymp k h_1 h_2 P^{-1/8} <
   1\); smooth curvature \(\asymp k h_1 h_2 P^{-5/8}\).
-- \(c_{11}\,\Delta\Delta Y\): Lemma R3 branches. Per branch \(j\):
-  smooth part \(c\,F_j(X)\) with curvature \(\asymp k|j| P^{-1/8} +
-  k h_1 h_2 P^{-5/8} < 1\), frozen-floor runs as in Step 5;
-  \(\theta\)-content \(c\,F_j'\,\theta\) with coefficient \(\asymp
-  k|j| P^{3/8} + k h_1 h_2 P^{-1/8}\) and window drift \((c F_j')'
+- \(c_{11}\,\Delta\Delta Y\): Lemma R3 branches. Per branch with
+  net offset \(j\): smooth part \(c\,F_{\boldsymbol\kappa}(X)\) with
+  curvature \(\asymp k|j| P^{-1/8} + k h_1 h_2 P^{-5/8} < 1\),
+  combined per run with Step 4's frozen floor (Step 5(i));
+  \(\theta\)-content \(c\,F'\,\theta\) with coefficient \(\asymp
+  k|j| P^{3/8} + k h_1 h_2 P^{-1/8}\) and window drift \((c F')'
   \asymp k|j| P^{-5/8} < 1\): shifted-window expansion, then
   \(X\)-modes \(s \asymp k|j| P^{3/8}\) with curvature \(s X''
   \asymp k|j| P^{-1/8} < 1\), van der Corput II.
@@ -1326,39 +1347,85 @@ part of \(c\) is ever split off.
   \(Y_{10}\) with \(O(1)\) coefficients — Vaaler windows \(|r| \le
   R\), \(R = P^{\rho}\), majorant error \(P/R\) per layer; the
   \(Y\)-modes linearize (Lemma M) to \(X\)-modes \(s \asymp R
-  P^{3/4}\), curvature \(sX'' \asymp R P^{1/4} \gg 1\), handled by
-  the **third**-derivative test: \(\lambda_3 = s X''' \asymp R
-  P^{-3/4} < 1\), saving \(P^{1/8}/R^{1/6}\).
+  P^{3/4}\), curvature \(sX'' \asymp R P^{1/4} \gg 1\): pieces
+  without a frozen-\(J\) factor take the **third**-derivative test
+  over full ranges (\(\lambda_3 = s X''' \asymp R P^{-3/4} < 1\),
+  saving \(P^{1/8}/R^{1/6}\)); pieces riding a frozen-\(J\) factor
+  are the mixed class, Step 5(iii).
 - \(c_{11}\,\Delta\Delta v = c_{11}\,\Delta_2 g_2\): Lemma R2. The
   factor \(e(-c \lfloor \Delta\Delta Y\rfloor)\) splits over Lemma
-  R3 branches: per branch the frozen integer \(J_j = \lfloor
-  F_j(X(n))\rfloor\) (boundary toggles are sub-unit-sawtooth
-  indicators) gives the smooth phase \(e(-c J_j)\), curvature
-  \(|c'' J_j| \asymp k|j| P^{-1/8} + k h_1 h_2 P^{-5/8} < 1\),
-  single-signed per branch; van der Corput II per frozen run and
-  summation over runs give \(\ll (k|j|)^{1/2} P^{15/16} +
-  |j|^{3/2} k^{-1/2} P^{13/16}\) for \(j \ne 0\) and \(\ll (k h_1
-  h_2)^{1/2} P^{11/16} + (h_1 h_2 / k)^{1/2} P^{9/16}\) for \(j =
-  0\). The carries \(\kappa''\), \(\Delta_2\kappa_2\) are indicator
-  weights times \(e(\mp c)\) (curvature \(c'' \asymp k P^{-7/8}\),
-  smooth), expanded exactly as above.
+  R3 branches: per branch the frozen integer \(J = \lfloor
+  F_{\boldsymbol\kappa}(X(n))\rfloor\) (boundary toggles are
+  slow-sawtooth indicators in \(\{F(X)\}\) and \(\theta\)) combines
+  with the \(c_{11}\Delta\Delta Y\)-content into the smooth per-run
+  phase \(c(F - J)\), curvature \(\asymp k|j| P^{-1/8} + k h_1 h_2
+  P^{-5/8} < 1\), single-signed per branch (Step 5(i)); van der
+  Corput II per frozen run and summation over runs give \(\ll
+  (k|j|)^{1/2} P^{15/16} + |j|^{3/2} k^{-1/2} P^{13/16}\) for \(j
+  \ne 0\) and \(\ll (k h_1 h_2)^{1/2} P^{11/16} + (h_1 h_2 /
+  k)^{1/2} P^{9/16}\) for \(j = 0\). The carries \(\kappa''\)
+  (\(W\)-, \(\Delta W\)-content only: slow modes, Step 5(ii)) and
+  \(\Delta_2\kappa_2\) (\(\theta_2\)-content: Step 5(iii)/(iv)) are
+  indicator weights times \(e(\mp c)\) (curvature \(c'' \asymp k
+  P^{-7/8}\), smooth).
 
-**Step 5 (dominance and mode assembly).** Final pieces fall into
-three classes: (i) smooth phases with \(\lambda_2 \asymp k h_1 h_2
-P^{-5/8}\) or \(k|j| P^{-1/8}\) — van der Corput II; the leading
-curvature in each group is a genuine double difference of a single
-smooth function per cell/branch, so the double MVT gives a
-single-signed \(\lambda_2\) (for the monomial-pattern family the
-composite sign check is \(\alpha(\alpha{-}1)(\alpha{+}\beta{-}2)
-(\alpha{+}\beta{-}3) > 0\) at \(\alpha = \tfrac98\), \(\beta =
-\tfrac94\)); (ii) \(X\)-mode phases with \(|s| \in [1, R P^{3/4}]\)
-— third-derivative test, dominance \(s X''' \gg\) competing third
-derivatives since window centers exceed widths (the Theorem-Q
-separation check); (iii) sub-unit sawtooths — multiplicative
-mode-mass \(O(\log)\), no loss. Mode masses multiply over at most
-four expansion layers: \(P^{\varepsilon}\). Savings: class (i)
-\(\ge P^{1/16}/(k|j|)^{1/2}\); class (ii) \(\ge P^{1/8}/R^{1/6}\);
-majorant truncations \(P/R\). Optimum \(\rho = 1/16\):
+**Step 5 (dominance and mode assembly — as repaired by the review).**
+Final pieces fall into four classes.
+
+- **(i) Pure smooth pieces**, \(\lambda_2 \asymp k h_1 h_2 P^{-5/8}\)
+  or \(k|j| P^{-1/8}\) — van der Corput II; the leading curvature in
+  each group is a genuine double difference of a single smooth
+  function per run/branch (the \(c_{11}\Delta\Delta Y\)- and
+  \(-c\lfloor\Delta\Delta Y\rfloor\)-contents combine per run to the
+  smooth \(c\,(F_{\boldsymbol\kappa} - J)\)), so the double MVT gives
+  a single-signed \(\lambda_2\): for the monomial-pattern family the
+  composite sign check is \(\alpha(\alpha{-}1)(\alpha{+}\beta{-}2)
+  (\alpha{+}\beta{-}3) > 0\) at \(\alpha = \tfrac98\) with \(\beta =
+  \tfrac34\) (offset branches, \(cF \asymp k\,\mathrm{off}\,
+  n^{15/8}\)) and \(\beta = \tfrac14\)-composites (zero-offset,
+  \(cF \asymp kh_1h_2 n^{11/8}\)) — exponents \(\tfrac{15}8,
+  \tfrac{11}8 \notin \{0,1,2\}\), no vanishing. Per-run van der
+  Corput II is legitimate here because \(\lambda_2^{-1/2} \asymp
+  P^{1/16} \ll P^{1/4} \asymp\) run length. Saving \(\ge
+  P^{1/16}/(k|j|)^{1/2}\).
+- **(ii) Slow-mode pieces** (\(W\)-, \(\Delta W\)-, \(F\)-, small
+  \(u\)-modes, no \(\theta_2\)-content): van der Corput II over full
+  ranges at the dominant scale; dominance is clean because the
+  colliding scale \(s^* \asymp kP^{3/8}\) lies outside every window
+  (centers \(\ge\) width by construction; \(u \le R' = P^{1/16} \ll
+  kP^{3/8}\); the Theorem-Q separation check).
+- **(iii) Mixed pieces** — a frozen-\(J\) factor times a large
+  \(X\)-mode \(s \asymp rP^{3/4}\) spawned by the
+  \(\theta_2\)-carries (\(\kappa_2\), \(\Delta_2\kappa_2\)): here
+  van der Corput II fails (\(\lambda_2 \asymp rP^{1/4} \gg 1\)) and
+  per-run III gives nothing (see the review record). Repair: one
+  **targeted third Weyl differencing** (shift \(2h_3\), \(h_3 \le
+  H_3\)) of the piece, then the split \(J = F - \{F\}\): the
+  differenced coefficient \(\Delta_3 c \asymp k h_3 P^{1/8}\) has
+  window drift \(\asymp k h_3 P^{-7/8} < 1\) against the *slow*
+  sawtooth \(\{F(X)\}\) (drift \(\asymp P^{-1/4}\)), so the
+  shifted-window expansion applies with no run segmentation;
+  \(\Delta_3\lfloor F\rfloor = \lfloor\Delta_3F\rfloor + \text{carry}
+  \in \{-1,0,1\} + \text{carry}\) is bounded (gap identity on \(F\),
+  \(|\Delta_3F| \asymp h_3P^{-1/4}\cdot P^{1/2}\)-drift \(< 1\)) and
+  its indicators are slow; and the differenced mode curvature
+  \(s(\Delta_3X)'' \asymp r h_3 P^{-3/4} < 1\) is single-signed
+  (\(X''' < 0\), \(s\)-sign fixed per window) and dominant
+  (\(rP^{3/8} \gg k\)): van der Corput II over full ranges gives
+  \((rh_3)^{1/2}P^{5/8}\), and balancing \(H_3 = r^{-1/3}P^{1/4}\)
+  yields the piece bound \(r^{1/6}P^{1-1/8}\) — the same class-(iv)
+  saving as below, so nothing is lost.
+- **(iv) Carry-mode pieces without frozen-\(J\)**: \(X\)-modes
+  \(|s| \le RP^{3/4}\), third-derivative test over full ranges,
+  \(\lambda_3 = sX''' \asymp rP^{-3/4}\), saving
+  \(P^{1/8}/r^{1/6}\).
+
+Sub-unit sawtooths cost multiplicative mode-mass \(O(\log)\) only;
+mode masses multiply over at most four expansion layers plus the
+targeted differencing: \(P^{\varepsilon}\). Majorant truncations
+\(P/R\). With \(R = P^{\rho}\), \(\rho = 1/16\): savings
+\(P^{1/16}/(k|j|)^{1/2}\), \(P^{1/8 - \rho/6}\), and truncation
+\(P^{-\rho}\) balance at
 
 \[
 |T_2| \;\ll\; P^{1 - 1/16 + \varepsilon}
@@ -1372,47 +1439,140 @@ and \(a + b \le \tfrac18 - \kappa_0\) (C1): \(|K_c| \ll P\,
 \varepsilon\): \(a = \tfrac1{32}\), \(b = \tfrac1{16}\), \(\delta =
 \tfrac1{64}\). For \(\kappa_0 = \tfrac1{24}\): \(a = \tfrac1{36}\),
 \(b = \tfrac1{18}\), \(\delta = \tfrac1{72}\). Exponents
-deliberately unoptimized. \(\square\) *(draft)*
+deliberately unoptimized. \(\square\)
 
 Float support (`differenced_kernel_probe`, exact scaled phases):
 \(|T_1| = 267{-}288\), \(|T_2| = 70{-}158\) on \(2.5\cdot10^4\)
 terms and \(|T_1| = 300{-}567\), \(|T_2| = 436{-}686\) on
 \(2.5\cdot10^5\) terms across \((h_1, h_2) \in \{(1,1), (1,2),
-(2,3), (5,7)\}\) — square-root scale throughout, consistent with
-every differenced level of the argument.
+(2,3), (5,7)\}\); triple differences \(|T_3| = 132{-}164\) and
+\(213{-}369\) at the same sizes across \((h_1,h_2,h_3) \in \{(1,1,1),
+(1,2,3), (2,3,5)\}\) — square-root scale throughout, consistent with
+every differenced level of the argument including the targeted third
+differencing.
 
-### What Theorem R would and would not give
+### Review record (Phase 9)
 
-If the draft survives review at any \(\delta > 0\):
+Every step re-derived adversarially. Two defects found; both
+repaired with the part's own exact mechanisms; final exponents
+unchanged.
 
-1. **Conjecture O / note Conjecture 6.2 is settled** for the
-   \(W\)-shaped family — the exact object every Phase-5
-   reorganization funnels into.
-2. **OOO\* is not yet automatic.** The Phase-5 reduction produces
-   the kernel *with tame passengers* (shifted-window mode factors
-   riding along). The double-differencing engine is insensitive to
-   tame passengers — they join the smooth or sub-unit pots — but
-   the combined bookkeeping must be executed, in the review phase,
-   as a corollary: all sixteen depth-4 word classes at \(2^{-4}N +
-   O(N^{1-\delta'})\), completing Conjecture K at depth 4. Note the
-   OOO\*-classes are non-contracting at depth 4 (\(3^3 > 2^4\)), so
-   the certified-descent density stays \(13/16\) at four steps; what
-   opens is depth \(\ge 5\), where OOO-prefixed contracting words
-   (e.g. OOOEE, \(3^3 < 2^5\)) live, and the unconditional base
-   cases \(d \le 4\) of Proposition J's hypothesis.
+1. **Organizational (Lemma R3 as drafted).** The draft conditioned
+   on "cells with fixed \((G_1, G_2)\)". But the level-1 gaps are
+   *two-valued* on each \(b\)-run — the carry \(\kappa_1(\theta)\)
+   toggles at essentially every step — so those "cells" are wild
+   sets and the branch indicator would not have admitted the
+   moving-endpoint expansion. Repaired by restating R3 over
+   \(b\)-run intersections and the carry vector \(\boldsymbol\kappa
+   \in \{0,1\}^3\): the eight branch indicators are arcs in \(\theta\)
+   with slow endpoints (Theorem C's Step-4 pattern). The exact
+   identity, offset bounds, and freeze scales are unchanged; the
+   Phase-8 validator already measured the sub-runs of the repaired
+   organization.
+2. **Real error (Step 5 as drafted).** For mixed pieces (frozen-\(J\)
+   factor × large \(X\)-mode \(s \asymp rP^{3/4}\)) the draft
+   implicitly used the third-derivative test per \(J\)-run of length
+   \(P^{1/4}\). That fails: the test's second term \(M^{1/2}
+   \lambda_3^{-1/6}\) summed over \(P^{3/4}\) runs is \(\asymp
+   r^{-1/6}P\) — the trivial bound. Repaired by the targeted third
+   Weyl differencing of Step 5(iii): after \(\Delta_3\), the
+   \(J\)-content splits as \(J = F - \{F\}\) with the *slow* sawtooth
+   \(\{F(X)\}\) (drift \(P^{-1/4}\)) against the *small* coefficient
+   \(\Delta_3c\) (window drift \(kh_3P^{-7/8} < 1\)): shifted-window
+   expansion with no run segmentation, full-range van der Corput II,
+   and the class-(iv) saving \(P^{1/8}/r^{1/6}\) is recovered after
+   balancing \(H_3\). Float support: the \(T_3\) probes above.
+
+Also verified in the review: the collision inventory (the crossover
+scale \(s^* \asymp kP^{3/8}\) lies outside every mode window; small
+\(u\)-modes never reach it since \(R' = P^{1/16}\)); single-signed
+leading curvatures per branch via the monomial exponent products
+\(\tfrac{15}8, \tfrac{11}8 \notin \{0,1,2\}\); the family hypothesis
+extended to \(r \le 4\) (used by the double MVT on \((cF)''\));
+window drifts of all shifted expansions; the odd-\(n\)
+reparameterization; \(k\)-uniformity of all constants; and the
+boundary/majorant inventory (\(P/R\)-losses at \(\rho = 1/16\), run
+and cell boundary counts \(\ll P^{3/4+\varepsilon}\)).
+
+### Theorem S (the OOO\* splits — depth 4 complete) — EXACT — HUMAN PROOF
+
+For \(w \in \{\mathrm{OOOE}, \mathrm{OOOO}\}\),
+
+\[
+\#\{\text{odd } n \le N : \text{word}_4(n) = w\}
+= \tfrac N{16} + O\bigl(N^{1 - 1/72 + \varepsilon}\bigr),
+\]
+
+and hence **every** depth-\(\le4\) itinerary word class satisfies
+\(\#\{n \le N\} = 2^{-|w|}N + O(N^{1-\delta_w})\) with explicit
+\(\delta_w > 0\): depth-4 equidistribution is complete.
+
+*Proof.* The class indicator expands (Vaaler, truncation \(J_3 =
+P^{1/24}\), error \(P/J_3 = P^{1-1/24}\)) into mode sums \(S_{ijk} =
+\sum_n e\bigl(\tfrac i2 X + \tfrac j2 Y + \tfrac k2 v^{3/2}\bigr)\)
+over dyadic blocks. Proposition H rewrites \(\tfrac k2 v^{3/2}\) as a
+polynomial in \((m, v)\) with smooth coefficients plus an absorbable
+error. Its \(v\)-linear part is \(vW\) with \(W \asymp \tfrac{3k}4
+n^{9/8}\) in the Theorem-R family; the \(vm\)- and \(vm^2\)-cross
+terms reduce to the same family by \(\xi v m = \xi X\,v - \xi\theta
+v\) and \(\xi_2 v m^2 = \xi_2X^2\,v - 2\xi_2X\theta\,v +
+\xi_2\theta^2 v\), where \(\xi \asymp kn^{-3/8}\), \(\xi_2 \asymp
+kn^{-15/8}\) make every \(\theta\)-cross coefficient sub-unit
+(\(\xi X \asymp kP^{-3/8}\cdot P^{3/2}\cdot P^{-3/2}\theta\)-scale
+\(< 1\)) and every smooth \(v\)-coefficient a family member
+(\(\xi X, \xi_2X^2 \asymp kP^{9/8}\) with monomial-pattern
+derivatives). Writing \(v = Y - \theta_2\) splits each family term
+into a smooth-in-\(m\) part (Lemma M) and a kernel factor
+\(e(-c\,\theta_2)\). The double differencing of Theorem R applied to
+the whole mode phase carries the passengers along: the pure-\(m\)
+polynomial phases difference into the Step-3 classes
+(\((\Delta\Delta\mu)m\)-content sub-unit under C1, crosses smooth per
+cell, \(\mu\,\Delta\Delta m\) = bounded-offset branch phases with
+curvature \(\asymp k|j|P^{-1/8}\), single-signed by the same
+monomial-exponent check); the \(\tfrac i2X\)- and \(\tfrac
+j2Y\)-passenger phases difference to \(\tfrac i2\Delta\Delta X\)
+(curvature \(\ll ih_1h_2P^{-5/2}\), subdominant) and \(\tfrac
+j2F_{\boldsymbol\kappa}(m)\) (real-valued, no floor: smooth plus
+sub-unit \(\theta\), curvature \(\asymp jP^{-5/4}\), subdominant in
+the established hierarchy); and the kernel factor is handled by
+Steps 2–5 verbatim. Assembly as in Theorem R and summation over
+\(k \le J_3\) with \(1/k\)-weights give \(\sum_k \tfrac1k
+P^{1-1/72} + P^{1-1/24} \ll P^{1-1/72+\varepsilon}\); dyadic blocks
+sum to \(N^{1-1/72+\varepsilon}\). The \(i\)- and \(j\)-weighted
+sums are no larger. \(\square\)
+
+### Consequences
+
+1. **Conjecture O / note Conjecture 6.2 is settled** (Theorem R) for
+   the \(W\)-shaped family — the exact object every Phase-5
+   reorganization funnels into — and the OOO\* splits close
+   (Theorem S): Conjecture K holds unconditionally at every depth
+   \(\le 4\), so the base cases \(d \le 4\) of Proposition J's
+   hypothesis are theorems.
+2. **The certified-descent density stays \(13/16\)** at four steps:
+   the OOO\*-classes are non-contracting at depth 4 (\(3^3 > 2^4\)).
+   What opens is depth \(\ge 5\), where OOO-prefixed contracting
+   words (e.g. OOOEE, \(3^3 < 2^5\)) live: their closure needs the
+   fifth-letter machinery, not attempted here.
 3. **A tier ladder.** The engine used one differencing per unit of
-   derivative growth (\(Y'' \gg 1 > Y'''\)). The depth-5 growing
-   layer has \(Z'' \sim P^{ > 1}\) at two levels of nesting; three
-   differencings with the same identities are the natural attack,
-   with \(\delta\) roughly halving per level. Not attempted here.
+   derivative growth (\(Y'' \gg 1 > Y'''\)). Deeper growing layers
+   need one more differencing each, with \(\delta\) roughly halving
+   per level and the same exact identities — the natural attack on
+   depth-5 words, not attempted here.
+4. **Editorial debt.** The finite-dynamics note still states
+   Conjecture 6.2 as open with the \(13/16\)/OOO\*-kernel frontier
+   figure; Sections 5–6 and the figure await a consolidation phase.
 
-### Phase-8 decision
+### Phase-8/9 decision
 
-Branch status: **PROMOTE** — to a dedicated adversarial review pass
-of Theorem R (the same treatment Theorems C/E/Q received), with the
-OOO\* corollary bookkeeping as part of the review scope. No ledger
-retag, no note import, and no density claim until that pass
-completes. The falsifier fired once (raw-freeze failure, recorded
-above) and was met by an exact reorganization, not a patch; all
-three new identities are machine-validated and the differenced sums
-cancel at square-root scale.
+Phase 8: **PROMOTE** — draft written; falsifier fired once
+(raw-freeze failure, recorded above) and was met by an exact
+reorganization; validators and probes all passed.
+
+Phase 9 (review): **PROMOTE** — every step re-derived; two defects
+found and repaired (review record above); Theorem R and Theorem S
+tagged `EXACT — HUMAN PROOF` (ledger rows `J-kernel-cancellation`
+retagged, `J-depth4-complete` added); `kernel_bound_proved` and
+`depth4_complete_proved` flipped. The remaining mathematical
+frontier of the branch is the depth-5 tier (three differencings);
+the remaining editorial debt is the note import.

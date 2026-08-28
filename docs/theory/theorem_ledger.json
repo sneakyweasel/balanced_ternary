@@ -1,7 +1,7 @@
 [
   {
     "id": "BT-encode-unique",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "Every integer has a unique canonical balanced ternary word.",
     "source": "docs/mathematics.md",
     "lean": "Representation/Words.lean",
@@ -12,8 +12,8 @@
   },
   {
     "id": "BT-D-S",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "D \u2218 S = id",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D ∘ S = id",
     "source": "docs/balanced_ternary_operators.md",
     "lean": "Operators/DigitDerivative.lean",
     "tests": [
@@ -38,7 +38,7 @@
   },
   {
     "id": "BT-Pn3",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "P_n(3) = n",
     "source": "docs/balanced_ternary_polynomials.md",
     "lean": "Operators/Polynomial.lean",
@@ -49,7 +49,7 @@
   },
   {
     "id": "C-T-welldefined",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Accelerated T is well-defined on positive odd integers.",
     "source": "docs/collatz_mathematics.md",
     "lean": "Problems/Collatz/Accelerated.lean",
@@ -60,8 +60,8 @@
   },
   {
     "id": "C-append-plus",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "BT(3n+1)=BT(n)+ for n\u22600",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "BT(3n+1)=BT(n)+ for n≠0",
     "source": "docs/collatz_mathematics.md",
     "lean": "Representation/Words.lean",
     "tests": [
@@ -71,7 +71,7 @@
   },
   {
     "id": "C-odd-part-not-one-fst",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "Unrestricted odd-part is not one rational transduction.",
     "source": "docs/collatz_mathematics.md",
     "lean": "",
@@ -82,7 +82,7 @@
   },
   {
     "id": "C-affine-formula",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "T^m(n)=(3^m n+C)/2^K",
     "source": "docs/collatz_itinerary_compatibility.md",
     "lean": "Problems/Collatz/",
@@ -93,7 +93,7 @@
   },
   {
     "id": "C-lift-zero",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Positive integer realizer iff eventual zero lift.",
     "source": "docs/collatz_zero_lift.md",
     "lean": "Problems/Collatz/Lift.lean",
@@ -106,7 +106,7 @@
   },
   {
     "id": "C-R-direct",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Direct residue formula for R",
     "source": "docs/collatz_dual_coding.md",
     "lean": "Problems/Collatz/Arithmetic.lean",
@@ -117,7 +117,7 @@
   },
   {
     "id": "C-endpoint",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Kramer endpoint / 2-adic endpoint congruences",
     "source": "docs/literature_comparison.md",
     "lean": "Problems/Collatz/Endpoint.lean",
@@ -128,7 +128,7 @@
   },
   {
     "id": "C-center",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Affine-center numerator identities",
     "source": "docs/collatz_affine_center.md",
     "lean": "Problems/Collatz/Center.lean",
@@ -139,7 +139,7 @@
   },
   {
     "id": "C-gap",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Affine gap recurrence",
     "source": "docs/collatz_fixed_integer_asymptotics.md",
     "lean": "Problems/Collatz/FixedInteger.lean",
@@ -150,7 +150,7 @@
   },
   {
     "id": "C-cycles",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Expanding periods excluded; D divides C; even amplitude",
     "source": "docs/collatz_cycle_languages.md",
     "lean": "Problems/Collatz/Cycles.lean",
@@ -162,7 +162,7 @@
   {
     "id": "C-nstar-le-n",
     "tag": "REFUTED",
-    "statement": "n* \u2264 n for finite valuation codes",
+    "statement": "n* ≤ n for finite valuation codes",
     "source": "docs/collatz_fixed_integer_asymptotics.md",
     "lean": "Problems/Collatz/FixedInteger.lean",
     "tests": [
@@ -187,7 +187,7 @@
   },
   {
     "id": "BTC-decomp",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "n = lsd(n) + 3 D(n)",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Derivative.lean",
@@ -198,8 +198,8 @@
   },
   {
     "id": "BTC-D-I",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "D \u2218 I_a = id",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D ∘ I_a = id",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Integral.lean",
     "tests": [
@@ -209,8 +209,8 @@
   },
   {
     "id": "BTC-P-band",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "P_a \u2218 P_b = P_a",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "P_a ∘ P_b = P_a",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Integral.lean",
     "tests": [
@@ -220,7 +220,7 @@
   },
   {
     "id": "BTC-D-mul",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "D(xy) = lsd(x)D(y)+lsd(y)D(x)+3 D(x)D(y)",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Algebra.lean",
@@ -231,7 +231,7 @@
   },
   {
     "id": "BTC-D-add",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "D(x+y)=D(x)+D(y)+carry(lsd(x),lsd(y))",
     "source": "docs/theory/digit_derivative.md",
     "lean": "BTCalculus/Algebra.lean",
@@ -242,7 +242,7 @@
   },
   {
     "id": "BTC-trit-kleene",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Trit is a 3-element Kleene algebra and not a Boolean algebra",
     "source": "docs/theory/trit_algebra.md",
     "lean": "BTCalculus/Trit.lean",
@@ -253,7 +253,7 @@
   },
   {
     "id": "BTC-cmp3",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "cmp3 translation, negation, and antisymmetry",
     "source": "docs/theory/trit_control.md",
     "lean": "BTCalculus/Comparison.lean",
@@ -264,8 +264,8 @@
   },
   {
     "id": "BTC-select3",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "select3 represents every Trit\u2192\u2124 map; abs/min/max",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "select3 represents every Trit→ℤ map; abs/min/max",
     "source": "docs/theory/trit_control.md",
     "lean": "BTCalculus/Select.lean",
     "tests": [
@@ -275,7 +275,7 @@
   },
   {
     "id": "BTN-divmod",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "unique trit residue c = 3q + r",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Normalization.lean",
@@ -286,8 +286,8 @@
   },
   {
     "id": "BTN-step-value",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "value(P \u2192 P') = value(P)",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "value(P → P') = value(P)",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Normalization.lean",
     "tests": [
@@ -297,7 +297,7 @@
   },
   {
     "id": "BTN-nf",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "normalize_LSD(P) = encodeZ(value(P)); result is all trits",
     "source": "docs/theory/balanced_ternary_normalization.md",
     "lean": "BTCalculus/Normalization.lean",
@@ -308,7 +308,7 @@
   },
   {
     "id": "BTN-lex",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "LSD step strictly decreases the abs-lex rank",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Normalization.lean",
@@ -319,8 +319,8 @@
   },
   {
     "id": "BTN-carry-bound",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "3|DZ n| \u2264 |n|+1 and |q| \u2264 (B+1)/3 on |c|\u2264B",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "3|DZ n| ≤ |n|+1 and |q| ≤ (B+1)/3 on |c|≤B",
     "source": "docs/theory/normalization_complexity.md",
     "lean": "BTCalculus/Normalization.lean",
     "tests": [
@@ -330,7 +330,7 @@
   },
   {
     "id": "BTN-confluence",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "stripped coefficient rewrite is locally and globally confluent; unique NF is encodeZ(value); [-5,2] joins after stripHigh",
     "source": "docs/theory/normalization_rewrite_system.md",
     "lean": "BTCalculus/Confluence.lean",
@@ -341,7 +341,7 @@
   },
   {
     "id": "BTJ-hatD",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "value(hatD_raw(P))=D(value(P)); naive D_coeff fails on [2]",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/NormalizedDerivative.lean",
@@ -353,7 +353,7 @@
   },
   {
     "id": "BTJ-section",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "f(a+3x)=rho_a(f)+3 sectionDeriv_a f(x)",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Polynomial.lean",
@@ -364,7 +364,7 @@
   },
   {
     "id": "BTJ-product",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "twisted Leibniz for sectionDeriv of a product",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Composition.lean",
@@ -375,7 +375,7 @@
   },
   {
     "id": "BTJ-comp",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "sectionDeriv_a(f.comp g)=sectionDeriv_{rho_a g} f compose sectionDeriv_a g",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Composition.lean",
@@ -386,7 +386,7 @@
   },
   {
     "id": "BTJ-jet",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "finite-depth function-jet reconstruction along integer digits",
     "source": "docs/theory/balanced_ternary_jets.md",
     "lean": "BTCalculus/Jet.lean",
@@ -397,7 +397,7 @@
   },
   {
     "id": "BTJ-degree",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "deg sectionDeriv f = deg f for d>=1; LC = 3^{d-1} LC(f)",
     "source": "docs/theory/polynomial_jet_calculus.md",
     "lean": "BTCalculus/Polynomial.lean",
@@ -408,7 +408,7 @@
   },
   {
     "id": "BTA-equiv",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "finite-horizon equiv_k is an equivalence; recursive iff output words",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "BTCalculus/Residual.lean",
@@ -419,7 +419,7 @@
   },
   {
     "id": "BTA-x2-raw",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "R_k(x^2)=(3^k-1)/2",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -430,7 +430,7 @@
   },
   {
     "id": "BTA-x2-mn",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "M_k(x^2)=R_k(x^2)=(3^k-1)/2 for all k>=1",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -441,7 +441,7 @@
   },
   {
     "id": "BTA-x2-quad-form",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "residual of x^2 along w is 3^|w| x^2 + 2 p(w) x + DZ^|w|(p(w)^2)",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -452,7 +452,7 @@
   },
   {
     "id": "BTA-quad-mod",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "degree <= 2 polynomials are equiv_k iff coefficients agree mod 3^k",
     "source": "docs/theory/quadratic_residual_complexity.md",
     "lean": "BTCalculus/Quadratic.lean",
@@ -463,7 +463,7 @@
   },
   {
     "id": "BTA-x3-merge",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "first x^3 residual merge at k=2 is delayed distinction: equiv_2 and not equiv_3",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -474,7 +474,7 @@
   },
   {
     "id": "BTA-x4-merge",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "first x^4 residual merge at k=3 is delayed distinction: equiv_3 and not equiv_4",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -485,7 +485,7 @@
   },
   {
     "id": "BTA-fn-congr",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "f equiv_k g iff 3^k divides (f-g)(n) for every integer n",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -496,7 +496,7 @@
   },
   {
     "id": "BTA-Ik-newton",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "I_k is the set of Z[x] polynomials whose Newton coefficients are divisible by 3^k",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/NewtonKernel.lean",
@@ -507,7 +507,7 @@
   },
   {
     "id": "BTA-eval-residualAlong",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "eval x (residualAlong w f) = D^{|w|}(f(packWord w + 3^{|w|} x)) for every ordinary Z[x] polynomial",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/ResidualShift.lean",
@@ -518,7 +518,7 @@
   },
   {
     "id": "BTA-quad-vanish",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "degree <= 2 polynomials vanish as functions modulo 3^k iff all coefficients are divisible by 3^k",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -529,7 +529,7 @@
   },
   {
     "id": "BTA-cubic-vanish",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Ax^3+Bx^2+Cx+D vanishes modulo 3^k iff 3^k divides D, A+B+C, 3A+B, and 6A",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -540,7 +540,7 @@
   },
   {
     "id": "BTA-x3-x",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "x^3-x vanishes modulo 3 and its leading coefficient is not divisible by 3",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "BTCalculus/PolynomialFunctionsMod.lean",
@@ -551,7 +551,7 @@
   },
   {
     "id": "BTA-tau",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "tau(f,g)=1+min v_3(Delta^j (f-g)(0)) for distinct ordinary polynomials",
     "source": "docs/theory/polynomial_function_congruence.md",
     "lean": "",
@@ -595,7 +595,7 @@
   },
   {
     "id": "BTA-cascade",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "outputAlong(w, f.comp g)=outputAlong(outputAlong(w,g), f)",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "BTCalculus/TransducerComposition.lean",
@@ -606,7 +606,7 @@
   },
   {
     "id": "BTA-product",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "M_k(f circ g) <= M_k(f) M_k(g)",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "",
@@ -628,7 +628,7 @@
   },
   {
     "id": "BTA-hatD-B",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "bounded-B hat D is N_B then drop; not one FST on Z",
     "source": "docs/theory/residual_state_complexity.md",
     "lean": "",
@@ -639,7 +639,7 @@
   },
   {
     "id": "BTA-x3-form",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "f_w(x)=3^{2m}x^3+3^{m+1}p x^2+3p^2 x+DZ^m(p^3)",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -650,7 +650,7 @@
   },
   {
     "id": "BTA-x3-raw",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "R_k(x^3)=(3^k-1)/2",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -661,7 +661,7 @@
   },
   {
     "id": "BTA-x3-newton",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Newton coordinates of a cubic and of the residual family of x^3",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -672,7 +672,7 @@
   },
   {
     "id": "BTA-x3-section",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "cubic Newton section step N3'=9 N3, N2'=3 N2+3(a+2)N3",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -683,7 +683,7 @@
   },
   {
     "id": "BTA-x3-equiv-N",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "cubics are finite-horizon equivalent iff their Newton residues agree modulo 3^k",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -694,7 +694,7 @@
   },
   {
     "id": "BTA-x3-Fk",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "M_k(x^3)=|Im F_k| for F_k(m,p)=Phi_k(f_(m,p))",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "BTCalculus/CubicResidual.lean",
@@ -705,8 +705,8 @@
   },
   {
     "id": "BTA-x3-shallow",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "residuals of x^3 with 2m+1<k are \u2261_k-separated",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "residuals of x^3 with 2m+1<k are ≡_k-separated",
     "source": "docs/theory/cubic_residual_image.md",
     "lean": "",
     "tests": [
@@ -738,7 +738,7 @@
   },
   {
     "id": "BTA-x3-n2",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "same-depth N2 is 3^{k-m-1}|(p-q); injective on P_m if 2m+1<=k",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -749,7 +749,7 @@
   },
   {
     "id": "BTA-x3-n1fac",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "N1(p)-N1(q)=3(p-q)(p+q+3^m)",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -782,7 +782,7 @@
   },
   {
     "id": "BTA-x3-n3gate",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "cross-depth N3 agrees iff k<=2 min(m,n)+1 or m=n",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -793,7 +793,7 @@
   },
   {
     "id": "BTA-x3-sign",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "odd pair: N2 iff N1; N0 iff 3^k divides D^m(p^3)",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -804,7 +804,7 @@
   },
   {
     "id": "BTA-x3-Ckm",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "C_{k,m}=3^m whenever 2m+1<=k",
     "source": "docs/theory/cubic_residual_fibres.md",
     "lean": "BTCalculus/CubicFibres.lean",
@@ -826,8 +826,8 @@
   },
   {
     "id": "BTA-x3-deep-N",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "deepest layer: N3=N2=0, N1\u22613p^2 (k\u22652)",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "deepest layer: N3=N2=0, N1≡3p^2 (k≥2)",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "BTCalculus/CubicDeepestLayer.lean",
     "tests": [
@@ -837,8 +837,8 @@
   },
   {
     "id": "BTA-x3-deep-crit",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "deepest fibres iff p^2\u2261q^2 (mod 3^{k-1}) and N0 agrees",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "deepest fibres iff p^2≡q^2 (mod 3^{k-1}) and N0 agrees",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "BTCalculus/CubicDeepestLayer.lean",
     "tests": [
@@ -848,7 +848,7 @@
   },
   {
     "id": "BTA-x3-deep-zero",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "deepest 0-fibre is 3^{ceil((2k-1)/3)}|p",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "BTCalculus/CubicDeepestLayer.lean",
@@ -870,8 +870,8 @@
   },
   {
     "id": "BTA-x3-Ckk-1",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "C_{k,k-1}=1+\u03a3_s I_{k,s} with closed high-stratum J(k,s)",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "C_{k,k-1}=1+Σ_s I_{k,s} with closed high-stratum J(k,s)",
     "source": "docs/theory/cubic_deepest_layer.md",
     "lean": "",
     "tests": [
@@ -881,8 +881,8 @@
   },
   {
     "id": "BTA-x3-inter-N",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "m=k-2: N3=0, N2\u22612\u00b73^{k-1}p (k\u22653), N1\u22613p^2+3^{k-1}p (k\u22654)",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "m=k-2: N3=0, N2≡2·3^{k-1}p (k≥3), N1≡3p^2+3^{k-1}p (k≥4)",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "BTCalculus/CubicIntermediateLayer.lean",
     "tests": [
@@ -892,8 +892,8 @@
   },
   {
     "id": "BTA-x3-inter-crit",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "m=k-2 fibres iff p\u2261q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "m=k-2 fibres iff p≡q (mod 3) and 3^{k-1}|(p-q)(p+q+3^{k-2}) and N0 agrees",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "BTCalculus/CubicIntermediateLayer.lean",
     "tests": [
@@ -903,7 +903,7 @@
   },
   {
     "id": "BTA-x3-inter-lift",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "horizon k refines k-1 at depth k-2; unit signs split",
     "source": "docs/theory/cubic_intermediate_layer.md",
     "lean": "BTCalculus/CubicIntermediateLayer.lean",
@@ -947,8 +947,8 @@
   },
   {
     "id": "BTA-x3-vis",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "at m=k-1-r, N2 equality iff p\u2261q (mod 3^r) whenever r+1\u2264k",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "at m=k-1-r, N2 equality iff p≡q (mod 3^r) whenever r+1≤k",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "BTCalculus/CubicDeficitTwo.lean",
     "tests": [
@@ -958,8 +958,8 @@
   },
   {
     "id": "BTA-x3-def2-N",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "m=k-3: N3=0 (k\u22655), N2\u22612\u00b73^{k-2}p (k\u22655), N1\u22613p^2+3^{k-2}p (k\u22656)",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "m=k-3: N3=0 (k≥5), N2≡2·3^{k-2}p (k≥5), N1≡3p^2+3^{k-2}p (k≥6)",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "BTCalculus/CubicDeficitTwo.lean",
     "tests": [
@@ -969,8 +969,8 @@
   },
   {
     "id": "BTA-x3-def2-crit",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "m=k-3 fibres iff p\u2261q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "m=k-3 fibres iff p≡q (mod 9) and 3^{k-1}|(p-q)(p+q+3^{k-3}) and N0 agrees",
     "source": "docs/theory/cubic_deficit_two.md",
     "lean": "BTCalculus/CubicDeficitTwo.lean",
     "tests": [
@@ -1002,8 +1002,8 @@
   },
   {
     "id": "BTA-x3-n1-diff",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "after N2, N1 agrees iff 3^{k-1-r} | \u03b4(p+q+3^m)",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "after N2, N1 agrees iff 3^{k-1-r} | δ(p+q+3^m)",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
     "tests": [
@@ -1013,8 +1013,8 @@
   },
   {
     "id": "BTA-x3-n1-val",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "after N2, v3(p)<r and N1 agree imply p=q on P_m (r\u22651, r+1\u2264k)",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "after N2, v3(p)<r and N1 agree imply p=q on P_m (r≥1, r+1≤k)",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
     "tests": [
@@ -1024,8 +1024,8 @@
   },
   {
     "id": "BTA-x3-n1-unit",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "N2+N1 is injective on units of P_m for every r\u22651",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "N2+N1 is injective on units of P_m for every r≥1",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
     "tests": [
@@ -1035,7 +1035,7 @@
   },
   {
     "id": "BTA-x3-n1-fibre",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "every nontrivial N2+N1 fibre on P_m lies in 3^r Z",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
@@ -1046,7 +1046,7 @@
   },
   {
     "id": "BTA-x3-n1-sign",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "p ~ -p after N2+N1 iff 3^r | p",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
@@ -1057,8 +1057,8 @@
   },
   {
     "id": "BTA-x3-n1-scale",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k\u22652r+2",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "on p=3^r u, N1 reduces to deepest N1 at horizon k-2r when k≥2r+2",
     "source": "docs/theory/cubic_n1_valuation.md",
     "lean": "BTCalculus/CubicN1Valuation.lean",
     "tests": [
@@ -1068,8 +1068,8 @@
   },
   {
     "id": "BTA-x3-n0-scale",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "D^m((3^r u)^3) is 3^{3r-m} u^3 if m\u22643r, else D^{m-3r}(u^3)",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D^m((3^r u)^3) is 3^{3r-m} u^3 if m≤3r, else D^{m-3r}(u^3)",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
     "tests": [
@@ -1079,8 +1079,8 @@
   },
   {
     "id": "BTA-x3-n0-sign",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "N0(p)\u2261N0(-p) iff 3^k | N0(p)",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "N0(p)≡N0(-p) iff 3^k | N0(p)",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
     "tests": [
@@ -1090,7 +1090,7 @@
   },
   {
     "id": "BTA-x3-n0-vis",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "D^t(u^3) mod 3^k is determined by u mod 3^{max(1,t+k-1)}",
     "source": "docs/theory/cubic_n0_reduction.md",
     "lean": "BTCalculus/CubicN0Reduction.lean",
@@ -1112,8 +1112,8 @@
   },
   {
     "id": "BTA-x3-Q-def",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "Q_{t,K,W}(u)=D^t(u^3) mod 3^K on u\u2208P_W",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Q_{t,K,W}(u)=D^t(u^3) mod 3^K on u∈P_W",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
     "tests": [
@@ -1123,8 +1123,8 @@
   },
   {
     "id": "BTA-x3-Q-eq",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "Q(u)=Q(v) iff 3^{t+K} divides u^3-v^3-\u0394bal_t",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Q(u)=Q(v) iff 3^{t+K} divides u^3-v^3-Δbal_t",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
     "tests": [
@@ -1134,8 +1134,8 @@
   },
   {
     "id": "BTA-x3-Q-shift",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "D^t((a+3^s x)^3) expands by cubic carry when t\u2264s+1 and t\u22643s",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "D^t((a+3^s x)^3) expands by cubic carry when t≤s+1 and t≤3s",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
     "tests": [
@@ -1146,7 +1146,7 @@
   {
     "id": "BTA-x3-Q-vis",
     "tag": "REFUTED",
-    "statement": "Q-equality is u\u2261v (mod 3^s) for a fixed residue modulus",
+    "statement": "Q-equality is u≡v (mod 3^s) for a fixed residue modulus",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
     "tests": [
@@ -1156,7 +1156,7 @@
   },
   {
     "id": "BTA-x3-Q-visible",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "D^t(u^3) mod 3^K is determined by u mod 3^{max(1,t+K-1)}",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
@@ -1167,7 +1167,7 @@
   },
   {
     "id": "BTA-x3-Q-scale",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Q_t(3^s w) is 3^{3s-t} w^3 if t<=3s, else Q_{t-3s}(w)",
     "source": "docs/theory/mismatched_cubic_quotient.md",
     "lean": "BTCalculus/MismatchedCubicQuotient.lean",
@@ -1178,7 +1178,7 @@
   },
   {
     "id": "BTA-x3-stratum",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "At deficit r, N2 iff p = q (mod 3^r); N1 after N2 is the delta law; N0 is the mismatched Q on the 3^r locus",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/NewtonStratum.lean",
@@ -1189,7 +1189,7 @@
   },
   {
     "id": "BTA-x3-Q-inv-one",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "for t>=1, Q(1+3^t b)=Q(1+3^t c) iff 3^{K-1} divides b-c",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/MismatchedCubicInvariant.lean",
@@ -1200,7 +1200,7 @@
   },
   {
     "id": "BTA-x3-Q-inv-bal",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "B_t(u)=bal_t(u^3) is determined by u mod 3^s when s>=1 and t<=s+1",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/MismatchedCubicInvariant.lean",
@@ -1222,7 +1222,7 @@
   },
   {
     "id": "BTA-x3-C-easy",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "at deficit r, #{p in P_m : v3(p)<r} is 3^m-3^{m-r} (r<=m) or 3^m (r>m)",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1233,7 +1233,7 @@
   },
   {
     "id": "BTA-x3-C-core",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "3^r u in P_m iff u in P_{m-r} when r<=m; r>m forces u=0",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1244,7 +1244,7 @@
   },
   {
     "id": "BTA-x3-C-decomp",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "C_{k,k-1-r} = easy count + |Im F_k on the 3^r-core|",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1255,7 +1255,7 @@
   },
   {
     "id": "BTA-x3-C-unex",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "if k<4r+1 then C_{k,k-1-r}=3^{k-1-r}-Z+1 with Z the core zero fibre",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1266,7 +1266,7 @@
   },
   {
     "id": "BTA-x3-Q-unit-im",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "for 3 not dividing a and t>=1, G_a(b)=G_a(c) iff 3^{K-1} divides b-c",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1277,7 +1277,7 @@
   },
   {
     "id": "BTA-x3-M-spine",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "p=0 at depths 2m>=k is a single Newton class (the zero spine)",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1299,7 +1299,7 @@
   },
   {
     "id": "BTA-x3-H-A",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "on the core, N1 agrees iff u^2 agrees modulo 3^{k-2r-1}, and that exponent equals the core width W",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1310,7 +1310,7 @@
   },
   {
     "id": "BTA-x3-H-unit",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "units in P_W with the same square modulo 3^W are a sign pair",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1321,7 +1321,7 @@
   },
   {
     "id": "BTA-x3-H-n0neg",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "N0(u) agrees with N0(-u) modulo 3^k iff N0(u) vanishes modulo 3^k",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1343,7 +1343,7 @@
   },
   {
     "id": "BTA-x3-M-obstruct",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "CLOSE: after the Newton-stratum reductions, exact M_k(x^3) still requires hashing Q-vanishing / deep images on width-Theta(k) intervals; no substantially simpler closed arithmetic count exists in this framework",
     "source": "docs/theory/cubic_newton_stratum.md",
     "lean": "BTCalculus/XCubeStateComplexity.lean",
@@ -1354,7 +1354,7 @@
   },
   {
     "id": "BTL-reconstruct",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "iterated reconstruction: f(n_w + 3^k x) = sum_{i<k} rho_i 3^i + 3^k (D_w f)(x) for every word w of length k",
     "source": "docs/theory/padic_lifting_trees.md",
     "lean": "BTCalculus/PadicLifting.lean",
@@ -1365,7 +1365,7 @@
   },
   {
     "id": "BTL-zero-output",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "3^k divides f(n_w) iff every output trit of the residual machine along w is 0, so the solution tree of f(x) = 0 mod 3^k is the zero-output subtree; balanced digits are what force the partial sum below the modulus",
     "source": "docs/theory/padic_lifting_trees.md",
     "lean": "BTCalculus/PadicLifting.lean",
@@ -1389,7 +1389,7 @@
   },
   {
     "id": "BTL-trichotomy",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "KNOWN, restated: for k >= 1 a level-k node has 1 child if 3 does not divide f'(n), 3 children if 3 divides f'(n) and v_3(f(n)) >= k+1, and none otherwise; the hypothesis k >= 1 is needed, since x^2 + x has two children at the root with a unit derivative",
     "source": "docs/theory/padic_lifting_trees.md",
     "lean": "BTCalculus/PadicLifting.lean",
@@ -1401,7 +1401,7 @@
   },
   {
     "id": "BTL-phi-determinacy",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "if two residual states are congruent as functions modulo 3^r then their depth-r subtrees agree including branch trits, so Phi_r determines the depth-r subtree",
     "source": "docs/theory/padic_lifting_trees.md",
     "lean": "",
@@ -1413,7 +1413,7 @@
   },
   {
     "id": "BTL-phi-sharp",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "the horizon is sharp: Phi_{r-1} does not determine the depth-r subtree; smallest witness at r = 2 is x^2 against x^2 - 3, equal modulo 3 as functions, three surviving grandchildren against none",
     "source": "docs/theory/padic_lifting_trees.md",
     "lean": "",
@@ -1425,7 +1425,7 @@
   },
   {
     "id": "BTL-deep-linear",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "for k >= r the residual is congruent modulo 3^r to the linear state f(n_w)/3^k + f'(n_w) x, linear states are closed under the section operators with b invariant, and so the depth-r subtree is determined by the two residues (f(n_w)/3^k mod 3^r, f'(n_w) mod 3^r); SUFFICIENCY ONLY, the pair is not minimal, see BTL-unit-scaling and BTL-state-count",
     "source": "docs/theory/padic_lifting_trees.md",
     "lean": "",
@@ -1449,7 +1449,7 @@
   },
   {
     "id": "BTL-deep-valuation-shape",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "in the deep regime the residual is c + b x with c = f(n)/3^k and b = f'(n); writing m = min(v_3(c), r) and e = min(v_3(b), r), the unlabeled depth-r shape U_r is T_m if m < e and S(e, r) if m >= e, where T_j is the fully ternary tree of depth j and S(0, r) is a path of length r, S(e, r) = T_r for e >= r, and S(e, r) is two copies of T_{e-1} plus one S(e, r-1) for 1 <= e < r; so the capped valuation pair is a complete invariant of U_r; this is the Newton-polygon ramification of a linear residual, not a new Hensel theorem, and it is also verified on the complete residue system (Z/3^r)^2 for r <= 4",
     "source": "docs/theory/padic_lifting_trees.md",
     "lean": "",
@@ -1473,7 +1473,7 @@
   },
   {
     "id": "BTL-unit-scaling",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "on a surviving branch rho_a(g) = 0 the section derivative is unit-linear, D_a(lambda g) = lambda D_a g for every lambda coprime to 3, and survival is lambda-invariant, so the whole ordered trit-labelled depth-r lifting subtree is invariant under g -> lambda g",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "BTCalculus/PadicLiftingState.lean",
@@ -1497,7 +1497,7 @@
   },
   {
     "id": "BTL-orbits-not-minimal",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "unit scaling is a proper intermediate quotient: the orbit count 2*3^r - 1 = 5, 17, 53, 161, 485 strictly exceeds the behaviour count 5, 15, 43, 125, 369 from r = 2 on, so scaling explains the cause of Phi_r non-minimality but not its size",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "",
@@ -1509,7 +1509,7 @@
   },
   {
     "id": "BTL-linear-transition",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "D_a(c + b x) = D(c + a b) + b x for every integer a, the trit a survives iff 3 divides c + a b, and the child is ((c + a b)/3, b); hence b is invariant along the whole tree and e = min(v_3(b), r) is a conserved quantity of a deep-regime branch",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "BTCalculus/PadicLiftingState.lean",
@@ -1531,7 +1531,7 @@
   },
   {
     "id": "BTL-row-structure",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "in the valuation row e = v_3(b) >= 1, reduced by unit scaling to b = 3^e, the behaviour splits by m = min(v_3(c), r): for m < e branching is all-or-nothing and the behaviour is the fully ternary tree truncated at depth m, while for m >= e writing c = 3^e d the constant after j <= e steps is 3^{e-j}(d + a_1 + 3 a_2 + ... + 3^{j-1} a_j) so the first e levels are fully ternary and the behaviour depends only on d mod 3^{r-e}; the shift is the balanced value of the word and not its digit sum, see BTL-block-shift",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "",
@@ -1542,7 +1542,7 @@
   },
   {
     "id": "BTL-extreme-rows",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "three valuation rows admit direct arguments not needing the shifted-family induction: e = 0 gives 3^r by the Newton classification, e = r gives r + 1 because the derivative vanishes modulo 3^r so the behaviour is the truncated tree of depth m in 0..r, and e = 1 gives 3^{r-1} + 1 because the three child constants c/3 - 1, c/3, c/3 + 1 lie in distinct classes modulo 3 so exactly one continues at each level; the general row is BTL-shift-separation",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "",
@@ -1553,7 +1553,7 @@
   },
   {
     "id": "BTL-row-overlap",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "the valuation rows double-count exactly the truncated trees: T_j occurs in row e iff j < e, plus T_r in row r, so the excess over the r distinct truncated trees is sum_{j<r}(r-j-1) = C(r,2), and the total therefore follows from the rows",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "",
@@ -1564,7 +1564,7 @@
   },
   {
     "id": "BTL-state-count",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "the minimal deep-regime state count at horizon r is L_r = (3^{r+1} - 1)/2 + r = 5, 15, 43, 125, 369, 1099 for r = 1..6, refining to exactly 3^{r-e} + e behaviours at derivative valuation e; the rows follow from BTL-row-structure with BTL-shift-separation, the total from the rows by the C(r,2) overlap of BTL-row-overlap, and the count is attained by BTL-state-attained; also verified exhaustively over all linear states modulo 3^r for r <= 6",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "",
@@ -1576,7 +1576,7 @@
   },
   {
     "id": "BTL-state-attained",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "the count is attained by genuine lifting nodes, so it is exact and not merely an upper bound: f_{c,b}(x) = 3^r c + b x has the origin as a level-r node with residual exactly c + b x along the all-zeros word, and adding 3^r x^2 contributes 3^{2r} x^2 which is invisible modulo 3^r, so the attainment is not an artefact of degree 1",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "",
@@ -1587,7 +1587,7 @@
   },
   {
     "id": "BTL-block-shift",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "block shift law: for a word w of length j the section operators send the state (3^j d, 3^{j+i}) to (d + 3^i packWord(w), 3^{j+i}), every such word survives, and at i = 0, j = e the 3^e words of length e reach exactly the states d + t for t in the balanced window W_e = [-(3^e-1)/2, (3^e-1)/2]; the shift is the balanced value packWord(w) and NOT the digit sum, and the distinction is load bearing because W_e is a complete residue system modulo 3^e while the digit sums are only the 2e+1 values |s| <= e",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "BTCalculus/PadicLiftingState.lean",
@@ -1599,7 +1599,7 @@
   },
   {
     "id": "BTL-shift-separation",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "the shifted family separates residues: for every e >= 1 and R >= 0 the map d mod 3^R -> (B_R(d+t))_{t in W_e} is injective, where B_R is the depth-R behaviour of (d+t, 3^e) and W_e is the window of BTL-block-shift; proof by induction on R, using that W_e contains exactly one t_0 with 3^e dividing d + t_0, that t_0 is the unique window entry whose behaviour has depth at least min(e,R) when R > e, and that its entry carries the family of d' = (d+t_0)/3^e at horizon R - e; this closes the 3^{r-e} + e row count for all e, and it is false for the digit-sum window, where d = 3 and d = 6 modulo 9 collide at e = 2",
     "source": "docs/theory/lifting_state_complexity.md",
     "lean": "",
@@ -1634,8 +1634,8 @@
   },
   {
     "id": "BTC-op-fragment-nf",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "the operator-fragment tree TRS {D, I_a, S, N} without N(D(x))\u2192D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the operator-fragment tree TRS {D, I_a, S, N} without N(D(x))→D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1646,7 +1646,7 @@
   {
     "id": "BTC-op-fragment-semantic-nf",
     "tag": "REFUTED",
-    "statement": "without N(D(x))\u2192D(N(x)) as a tree rule, irreducibles of the operator fragment are unique representatives of integer functions",
+    "statement": "without N(D(x))→D(N(x)) as a tree rule, irreducibles of the operator fragment are unique representatives of integer functions",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "BTCalculus/Rewrite.lean",
     "tests": [
@@ -1658,8 +1658,8 @@
   },
   {
     "id": "BTC-op-fragment-nd-nf",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "the operator-fragment tree TRS {D, I_a, S, N} including N(D(x))\u2192D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "the operator-fragment tree TRS {D, I_a, S, N} including N(D(x))→D(N(x)) is terminating and locally confluent; every term has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "BTCalculus/OpFragNewman.lean",
     "tests": [
@@ -1671,8 +1671,8 @@
   },
   {
     "id": "BTC-op-fragment-nd-semantic",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "irreducibles of the enlarged operator-fragment TRS (tree rules plus N(D(x))\u2192D(N(x))) are unique representatives of integer operator functions on {D, I_a, S, N}",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "irreducibles of the enlarged operator-fragment TRS (tree rules plus N(D(x))→D(N(x))) are unique representatives of integer operator functions on {D, I_a, S, N}",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "BTCalculus/OpFragSemantic.lean",
     "tests": [
@@ -1685,7 +1685,7 @@
   {
     "id": "BTC-add-s-push-lc",
     "tag": "REFUTED",
-    "statement": "the unary tree TRS plus exact push-in S(x+y)\u2192S(x)+S(y) (and N through Add) is locally confluent",
+    "statement": "the unary tree TRS plus exact push-in S(x+y)→S(x)+S(y) (and N through Add) is locally confluent",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1698,7 +1698,7 @@
   {
     "id": "BTC-mul-s-push-lc",
     "tag": "REFUTED",
-    "statement": "the unary tree TRS plus exact push-in S(x*y)\u2192S(x)*y (and N through Mul) is locally confluent",
+    "statement": "the unary tree TRS plus exact push-in S(x*y)→S(x)*y (and N through Mul) is locally confluent",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1711,7 +1711,7 @@
   {
     "id": "BTC-add-n-push-semantic",
     "tag": "REFUTED",
-    "statement": "irreducibles of the unary tree TRS plus only N(x+y)\u2192N(x)+N(y) are unique representatives of integer functions",
+    "statement": "irreducibles of the unary tree TRS plus only N(x+y)→N(x)+N(y) are unique representatives of integer functions",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1724,7 +1724,7 @@
   {
     "id": "BTC-w-nd-word-lc",
     "tag": "REFUTED",
-    "statement": "the one-way word orientation N\u2218D\u2192D\u2218N together with the stock simplifying W/K3 rules (and N\u2218W\u2192W\u2218N) is locally confluent",
+    "statement": "the one-way word orientation N∘D→D∘N together with the stock simplifying W/K3 rules (and N∘W→W∘N) is locally confluent",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1736,8 +1736,8 @@
   },
   {
     "id": "BTC-unary-s-distrib-obstruction",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "any exact push-in rule that copies S or I_a through Add or Mul overlaps D\u2218S=id (resp. D\u2218I_a=id) in a peak whose other descendant is D of a sum or product of S/I terms; without an unsound D-through-binary rule that peak does not join, so {D, I_a, S, N} is maximal among complete tree cores obtained by those extensions",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "any exact push-in rule that copies S or I_a through Add or Mul overlaps D∘S=id (resp. D∘I_a=id) in a peak whose other descendant is D of a sum or product of S/I terms; without an unsound D-through-binary rule that peak does not join, so {D, I_a, S, N} is maximal among complete tree cores obtained by those extensions",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1751,7 +1751,7 @@
   {
     "id": "BTC-add-factor-binary-semantic",
     "tag": "REFUTED",
-    "statement": "irreducibles of the unary tree TRS plus finite binary factor-out Add (S(x)+S(y)\u2192S(x+y) and the exact I_a analogues) are unique representatives of integer functions even after identifying AC twins",
+    "statement": "irreducibles of the unary tree TRS plus finite binary factor-out Add (S(x)+S(y)→S(x+y) and the exact I_a analogues) are unique representatives of integer functions even after identifying AC twins",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1776,8 +1776,8 @@
   },
   {
     "id": "BTC-add-factor-cas-obstruction",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "any finite exact-on-\u2124 factor-out Add extension of the unary tree core either matches only adjacent binary summands, leaving S(x)+(S(y)+z) versus S(x+y)+z (not AC-equivalent), or, once AC-matching is granted, cannot join I+(x+y)+I+(z) versus I+(x)+I+(y+z) because I_a(x)+I_a(y) is not I_b(x+y) for any trit b; a complete form therefore requires an AC engine with constants or carry (already a CAS), so {D, I_a, S, N} remains the maximal complete tree core",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "any finite exact-on-ℤ factor-out Add extension of the unary tree core either matches only adjacent binary summands, leaving S(x)+(S(y)+z) versus S(x+y)+z (not AC-equivalent), or, once AC-matching is granted, cannot join I+(x+y)+I+(z) versus I+(x)+I+(y+z) because I_a(x)+I_a(y) is not I_b(x+y) for any trit b; a complete form therefore requires an AC engine with constants or carry (already a CAS), so {D, I_a, S, N} remains the maximal complete tree core",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1791,8 +1791,8 @@
   },
   {
     "id": "BTC-add-affine-only",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "the only exact-on-\u2124 identities U(x)+V(y)=W(x+y) for unary constructors {S, I_a, N} are the six push-in / factor-out pairs (I0 = S); every finite exact tree TRS on Add is therefore one of the already-incomplete push-in, factor-out, or N-distrib orientations, or else introduces a non-trit constant (a CAS); the unique complete finite representatives of those sums are their affine maps, equivalently evaluation then the unique BT coefficient-word NF, so Add stays out of the tree TRS",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the only exact-on-ℤ identities U(x)+V(y)=W(x+y) for unary constructors {S, I_a, N} are the six push-in / factor-out pairs (I0 = S); every finite exact tree TRS on Add is therefore one of the already-incomplete push-in, factor-out, or N-distrib orientations, or else introduces a non-trit constant (a CAS); the unique complete finite representatives of those sums are their affine maps, equivalently evaluation then the unique BT coefficient-word NF, so Add stays out of the tree TRS",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1821,8 +1821,8 @@
   },
   {
     "id": "BTC-word-simp-nf",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "the simplifying-only fragment of WORD_REWRITE_RULES (the sixteen rules with simplifying=True: cancellations, the W/K3 stock, and I0\u2192S) is terminating and locally confluent; every word has a unique syntactic normal form",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "the simplifying-only fragment of WORD_REWRITE_RULES (the sixteen rules with simplifying=True: cancellations, the W/K3 stock, and I0→S) is terminating and locally confluent; every word has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "BTCalculus/WordSimpNewman.lean",
     "tests": [
@@ -1834,8 +1834,8 @@
   },
   {
     "id": "BTC-word-wn-nf",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "the opt-in fragment WORD_WN_RULES (WORD_SIMP_RULES plus one-way N\u2218S\u2192S\u2218N, N\u2218W\u2192W\u2218N, and the exact commute N\u2218K3\u2192K3\u2218N) is terminating and locally confluent; every word has a unique syntactic normal form",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the opt-in fragment WORD_WN_RULES (WORD_SIMP_RULES plus one-way N∘S→S∘N, N∘W→W∘N, and the exact commute N∘K3→K3∘N) is terminating and locally confluent; every word has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1850,7 +1850,7 @@
   {
     "id": "BTC-word-simp-nd-lc",
     "tag": "REFUTED",
-    "statement": "WORD_SIMP_RULES plus one-way N\u2218D\u2192D\u2218N (together with N\u2218S and N\u2218K3) is locally confluent",
+    "statement": "WORD_SIMP_RULES plus one-way N∘D→D∘N (together with N∘S and N∘K3) is locally confluent",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1863,8 +1863,8 @@
   },
   {
     "id": "BTC-word-wnd-nf",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "the opt-in fragment WORD_WND_RULES (WORD_WN_RULES plus one-way N\u2218D\u2192D\u2218N and the exact sign-flips N\u2218Ip\u2192Im\u2218N, N\u2218Im\u2192Ip\u2218N) is terminating and locally confluent; every word has a unique syntactic normal form",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "the opt-in fragment WORD_WND_RULES (WORD_WN_RULES plus one-way N∘D→D∘N and the exact sign-flips N∘Ip→Im∘N, N∘Im→Ip∘N) is terminating and locally confluent; every word has a unique syntactic normal form",
     "source": "docs/theory/rewrite_calculus.md",
     "lean": "",
     "tests": [
@@ -1889,7 +1889,7 @@
   },
   {
     "id": "BTM-x3-depth",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "for every balanced-Monna endpoint pair u=zeta+2*3^n, v=zeta-2*3^n one has u^3-v^3=4*3^n(3 zeta^2+4*3^{2n}) and therefore t=v_3(u^3-v^3)=n+min(1+2 v_3(zeta), 2n), or t=3n when zeta=0; the two arguments of the minimum have opposite parity whenever zeta is nonzero",
     "source": "docs/theory/monna_endpoint_spectra.md",
     "lean": "BTCalculus/MonnaEndpointCube.lean",
@@ -1900,7 +1900,7 @@
   },
   {
     "id": "BTM-x3-spectrum",
-    "tag": "EXACT \u2014 HUMAN PROOF",
+    "tag": "EXACT — HUMAN PROOF",
     "statement": "the cubic divergence-depth spectrum at level n=0 is two pairs of depth 0; for n>=1, depth 3n occurs twice and depth n+1+2s occurs 4*3^{n-s-1} times for each 0<=s<n",
     "source": "docs/theory/monna_endpoint_spectra.md",
     "lean": "",
@@ -1911,7 +1911,7 @@
   },
   {
     "id": "BTM-x3-no-preserve",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "cubing never sends a balanced-Monna endpoint pair to an endpoint pair: 3 zeta^2+4*3^{2n} is never +/- 3^k, so u^3-v^3 is never +/- 4*3^k and B(u^3)=B(v^3) never holds",
     "source": "docs/theory/monna_endpoint_spectra.md",
     "lean": "BTCalculus/MonnaEndpointCube.lean",
@@ -1922,7 +1922,7 @@
   },
   {
     "id": "BTC-add-not-D-local",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "the next-state output D(x+y) is not D-local: there is no G such that D(x+y)=G(D(x),D(y)) for all x,y; witness D(0+0)=0 and D(1+1)=1 while D(0)=D(1)=0",
     "source": "docs/theory/rewrite_calculus_formalization.md",
     "lean": "BTCalculus/RewriteAddBoundary.lean",
@@ -1935,7 +1935,7 @@
   },
   {
     "id": "BTC-constructor-sum-class",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "for U,V,W in {S,I+,I-,N}, the identity U(x)+V(y)=W(x+y) holds for all integers iff it is one of the eight concrete triples (S,S,S), (N,N,N), (I+,S,I+), (S,I+,I+), (I-,S,I-), (S,I-,I-), (I+,I-,S), (I-,I+,S); same-sign I+ or I- and mixed N+S are not constructor identities",
     "source": "docs/theory/rewrite_calculus_formalization.md",
     "lean": "BTCalculus/RewriteAddBoundary.lean",
@@ -1949,8 +1949,8 @@
   },
   {
     "id": "BTC-push-in-S-peak",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "the named carry-free push-in system (unary D(S(t))\u2192t plus S(Add(t,u))\u2192Add(S(t),S(u)) and congruence, no D-through-Add) is not locally confluent: D(S(Add(X,Y))) has two distinct irreducibles Add(X,Y) and D(Add(S(X),S(Y))); both evaluate to X+Y",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "the named carry-free push-in system (unary D(S(t))→t plus S(Add(t,u))→Add(S(t),S(u)) and congruence, no D-through-Add) is not locally confluent: D(S(Add(X,Y))) has two distinct irreducibles Add(X,Y) and D(Add(S(X),S(Y))); both evaluate to X+Y",
     "source": "docs/theory/rewrite_calculus_formalization.md",
     "lean": "BTCalculus/RewriteAddBoundary.lean",
     "tests": [
@@ -1962,7 +1962,7 @@
   },
   {
     "id": "BTC-add-requires-carry-state",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "the packaged Add boundary combines three exact statements: D(x+y) is not D-local, same-sign I_a is not a constructor identity, and the named carry-free S-through-Add push-in extension fails local confluence",
     "source": "docs/theory/rewrite_calculus_formalization.md",
     "lean": "BTCalculus/RewriteAddBoundary.lean",
@@ -1976,8 +1976,8 @@
   },
   {
     "id": "OST-np-kernel-unreach",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, if n > 0 and n is not 0 or 12 mod 24, then the kernel family state t_n = (q_{n-1}, -q_{n-2}, 0) is not origin-reachable under unrestricted integer steps T_w",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if n > 0 and n is not 0 or 12 mod 24, then the kernel family state t_n = (q_{n-1}, -q_{n-2}, 0) is not origin-reachable under unrestricted integer steps T_w",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Reachability.lean",
     "tests": [
@@ -1987,8 +1987,8 @@
   },
   {
     "id": "OST-np-energy-step",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, the unread-tail energy E_i(s) = s1 q_{i-2} + s2 q_{i-1} + s3 q_i (with q_j = 0 for j < 0) satisfies E_{i-1}(T_w s) = E_i(s) - w q_{i-1} for i \u2265 1, equivalently the adjoint covariance u_{i-1} A = u_i",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the unread-tail energy E_i(s) = s1 q_{i-2} + s2 q_{i-1} + s3 q_i (with q_j = 0 for j < 0) satisfies E_{i-1}(T_w s) = E_i(s) - w q_{i-1} for i ≥ 1, equivalently the adjoint covariance u_{i-1} A = u_i",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -1998,8 +1998,8 @@
   },
   {
     "id": "OST-np-energy-telescope",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, after an MSD word w of length k from remaining n+k, the unread-tail energy satisfies E_n(T_w s) = E_{n+k}(s) - sum_j w_j q_{n+k-1-j}; this is the cumulative form of energy_step, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, after an MSD word w of length k from remaining n+k, the unread-tail energy satisfies E_n(T_w s) = E_{n+k}(s) - sum_j w_j q_{n+k-1-j}; this is the cumulative form of energy_step, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2009,8 +2009,8 @@
   },
   {
     "id": "OST-np-energy-ext-interval",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, the set of integer controls w such that E_{n-1}(T_w s) lies in a fixed integer interval [lo, hi] is consecutive: if w1 and w2 satisfy the bounds and w1 \u2264 w \u2264 w2 then w does too; this is energy_step plus q>0, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the set of integer controls w such that E_{n-1}(T_w s) lies in a fixed integer interval [lo, hi] is consecutive: if w1 and w2 satisfy the bounds and w1 ≤ w ≤ w2 then w does too; this is energy_step plus q>0, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2020,8 +2020,8 @@
   },
   {
     "id": "OST-np-energy-homogeneous",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, homogeneous residual motion is energy-neutral in the sliding index: E_n(A^k s) = E_{n+k}(s), equivalently energy_telescope on the zero word; this is not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, homogeneous residual motion is energy-neutral in the sliding index: E_n(A^k s) = E_{n+k}(s), equivalently energy_telescope on the zero word; this is not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2031,8 +2031,8 @@
   },
   {
     "id": "OST-np-adjoint-window-det",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP and n\u22652, the determinant of consecutive adjoints (u_n, u_{n-1}, u_{n-2}) equals 3^{n-2}, so neighboring energies invert s over Q; this is not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP and n≥2, the determinant of consecutive adjoints (u_n, u_{n-1}, u_{n-2}) equals 3^{n-2}, so neighboring energies invert s over Q; this is not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2042,8 +2042,8 @@
   },
   {
     "id": "OST-np-origin-particular",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, from the origin an MSD word ws unfolds by variation of constants: foldSteps ws origin equals the particular sum \u2212\u2211 A^{k-1-j} e3 w_j; this is not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, from the origin an MSD word ws unfolds by variation of constants: foldSteps ws origin equals the particular sum −∑ A^{k-1-j} e3 w_j; this is not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2053,8 +2053,8 @@
   },
   {
     "id": "OST-np-impulse-place",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, the origin impulse A^r e3 equals (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r) with q_j=0 for j<0; this is the place-value dictionary for origin_particular, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the origin impulse A^r e3 equals (3 q_{r-1}, 3 q_{r-2}+q_{r-1}, q_r) with q_j=0 for j<0; this is the place-value dictionary for origin_particular, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2064,8 +2064,8 @@
   },
   {
     "id": "OST-np-recurrence-word-zero",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, the MSD recurrence word B*=(1,-2,-1,-3) has consumed sum zero at every start remaining n+4: q_{n+3}-2q_{n+2}-q_{n+1}-3q_n=0; this is q_rec, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the MSD recurrence word B*=(1,-2,-1,-3) has consumed sum zero at every start remaining n+4: q_{n+3}-2q_{n+2}-q_{n+1}-3q_n=0; this is q_rec, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2075,8 +2075,8 @@
   },
   {
     "id": "OST-np-particular-s3",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, from the origin the third coordinate of the control particular equals minus the MSD consumed valuation: (particularSum ws)_3 = -consumedSum |ws| ws, so val(B)=0 iff c_B lies on F={s_3=0}; this is energy_telescope at n=0, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, from the origin the third coordinate of the control particular equals minus the MSD consumed valuation: (particularSum ws)_3 = -consumedSum |ws| ws, so val(B)=0 iff c_B lies on F={s_3=0}; this is energy_telescope at n=0, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2086,8 +2086,8 @@
   },
   {
     "id": "OST-np-consumed-sum-append",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, MSD consumed sum splits at two starts: consumedSum (n+|U|+|V|)(UV) = consumedSum (n+|U|+|V|)U + consumedSum (n+|V|)V; this is not val(U)+C val(V) and not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, MSD consumed sum splits at two starts: consumedSum (n+|U|+|V|)(UV) = consumedSum (n+|U|+|V|)U + consumedSum (n+|V|)V; this is not val(U)+C val(V) and not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2097,8 +2097,8 @@
   },
   {
     "id": "OST-np-val-concat-energy",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, complete-word concatenation satisfies val(UV)=val(V)-E_|V|(c_U), equivalently val(UV)=0 iff E_|V|(c_U)=val(V); this is particular_concat plus energy_homogeneous, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, complete-word concatenation satisfies val(UV)=val(V)-E_|V|(c_U), equivalently val(UV)=0 iff E_|V|(c_U)=val(V); this is particular_concat plus energy_homogeneous, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2119,8 +2119,8 @@
   },
   {
     "id": "OST-np-fold-s3",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, after an MSD word B from any residual s, (T_B(s))_3 = E_|B|(s) - val(B), so T_B(s) lies on F iff E_|B|(s)=val(B); this is energy_telescope at remaining 0, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, after an MSD word B from any residual s, (T_B(s))_3 = E_|B|(s) - val(B), so T_B(s) lies on F iff E_|B|(s)=val(B); this is energy_telescope at remaining 0, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2131,7 +2131,7 @@
   {
     "id": "OST-np-unnormalized-mode-bound",
     "tag": "REFUTED",
-    "statement": "on origin-live remaining-0 slices of \u0393_NP a uniform unnormalized bound |z_j|\u2264C holds, equivalently infinite liveness forces all expanding companion modes bounded",
+    "statement": "on origin-live remaining-0 slices of Γ_NP a uniform unnormalized bound |z_j|≤C holds, equivalently infinite liveness forces all expanding companion modes bounded",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "",
     "tests": [
@@ -2141,8 +2141,8 @@
   },
   {
     "id": "OST-np-reset-pow-then-hub",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, the MSD word (B*)^k \u00b7 (1,-2) has origin particular equal to the hub (-3,-1,0); this is the reset identity plus hub_nonreset, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, the MSD word (B*)^k · (1,-2) has origin particular equal to the hub (-3,-1,0); this is the reset identity plus hub_nonreset, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2153,7 +2153,7 @@
   {
     "id": "OST-np-long-words-infinite-L0",
     "tag": "REFUTED",
-    "statement": "arbitrarily long origin-accepted words of \u0393_NP force infinitely many distinct remaining-0 terminals",
+    "statement": "arbitrarily long origin-accepted words of Γ_NP force infinitely many distinct remaining-0 terminals",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "",
     "tests": [
@@ -2163,8 +2163,8 @@
   },
   {
     "id": "OST-np-unique-predecessor",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, if T_w(s)=t then s equals the integer reverse (t2-t1/3, t3+w-2 t1/3, t1/3); on F this is (b-a/3, w-2a/3, a/3). This is inversion of step, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if T_w(s)=t then s equals the integer reverse (t2-t1/3, t3+w-2 t1/3, t1/3); on F this is (b-a/3, w-2a/3, a/3). This is inversion of step, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/KernelFamily.lean",
     "tests": [
@@ -2175,7 +2175,7 @@
   {
     "id": "OST-np-extra-terminal-congruence",
     "tag": "REFUTED",
-    "statement": "origin-reachable remaining-0 terminals of \u0393_NP satisfy a congruence on F strictly stronger than 3|a, equivalently 9|a or gcd of b-coordinates >1",
+    "statement": "origin-reachable remaining-0 terminals of Γ_NP satisfy a congruence on F strictly stronger than 3|a, equivalently 9|a or gcd of b-coordinates >1",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "",
     "tests": [
@@ -2185,8 +2185,8 @@
   },
   {
     "id": "OST-np-reset-prefix",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, if T_R(0)=0 then T_{RU}(0)=T_U(0); origin-reset prefixes do not create new terminals. This is particular_concat at c_R=0, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if T_R(0)=0 then T_{RU}(0)=T_U(0); origin-reset prefixes do not create new terminals. This is particular_concat at c_R=0, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2196,8 +2196,8 @@
   },
   {
     "id": "OST-np-same-energy-same-OnF",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "for \u0393_NP, if E_|v|(s)=E_|v|(t) then T_v(s) lands on F iff T_v(t) does; length-n suffix acceptance is classified by E_n, not by residual coordinates. This is fold_on_F_iff, not a bound on L_0",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "for Γ_NP, if E_|v|(s)=E_|v|(t) then T_v(s) lands on F iff T_v(t) does; length-n suffix acceptance is classified by E_n, not by residual coordinates. This is fold_on_F_iff, not a bound on L_0",
     "source": "docs/problems/ostrowski_order_m_adder.md",
     "lean": "Problems/Ostrowski/NP/Energy.lean",
     "tests": [
@@ -2207,8 +2207,8 @@
   },
   {
     "id": "BTR-x2-safety-nonsific",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "for F(x)=x^2 and the infinite output language Y={0,+}^\u03c9 that never emits -1, the language L of trit words whose residual outputs of F all lie in {0,+} is not regular; equivalently the 3-adic preimage X=F^{-1}(Y) is not sofic. The prefixes 10^m are pairwise Myhill-Nerode inequivalent because the residual g_m(x)=3^{m+1}x^2+2x accepts w_m=(-1)^{m+1}0 while every g_n with n>m rejects it",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "for F(x)=x^2 and the infinite output language Y={0,+}^ω that never emits -1, the language L of trit words whose residual outputs of F all lie in {0,+} is not regular; equivalently the 3-adic preimage X=F^{-1}(Y) is not sofic. The prefixes 10^m are pairwise Myhill-Nerode inequivalent because the residual g_m(x)=3^{m+1}x^2+2x accepts w_m=(-1)^{m+1}0 while every g_n with n>m rejects it",
     "source": "docs/theory/regular_output_preimages.md",
     "lean": "",
     "tests": [
@@ -2220,8 +2220,8 @@
   },
   {
     "id": "BTR-x2-C-band",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "for F(x)=x^2 write C_F(m,r) for the number of \u2261_r classes among the unrestricted residuals of F at input depth m. Then C_F(m,r)=3^m whenever r\u2265m\u22650, and C_F(m,m-1)=3^m-3 for every m\u22652. The latter deficit is exactly three doubletons: for each \u03c3 in {-1,0,+1}, the two length-m extensions of \u03c3^{m-1} by a trit other than \u03c3 are \u2261_{m-1}-equivalent, and every other same-depth pair is distinguished",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "for F(x)=x^2 write C_F(m,r) for the number of ≡_r classes among the unrestricted residuals of F at input depth m. Then C_F(m,r)=3^m whenever r≥m≥0, and C_F(m,m-1)=3^m-3 for every m≥2. The latter deficit is exactly three doubletons: for each σ in {-1,0,+1}, the two length-m extensions of σ^{m-1} by a trit other than σ are ≡_{m-1}-equivalent, and every other same-depth pair is distinguished",
     "source": "docs/problems/residual_complexity.md",
     "lean": "",
     "tests": [
@@ -2231,8 +2231,8 @@
   },
   {
     "id": "BTR-x2-C-interior",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "for F(x)=x^2 and r>=1, unrestricted \u2261_r types at depth m>r inject into pairs (p mod 3^r, DZ^m(p^2) mod 3^r) for p in P_m. On the fibre p\u22610 (mod 3^r): if m=2r the second coordinate runs exactly over the quadratic residues in Z/3^r Z, hence C_{x^2}(2r,r)<3^{2r}; if m>=3r the second coordinate is all of Z/3^r Z, via p=3^r + v 3^{m-r} for v in P_r. This decides the zero fibre, not C_{x^2}(m,r) for a general fibre. Cf. BTR-x2-C-band",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "for F(x)=x^2 and r>=1, unrestricted ≡_r types at depth m>r inject into pairs (p mod 3^r, DZ^m(p^2) mod 3^r) for p in P_m. On the fibre p≡0 (mod 3^r): if m=2r the second coordinate runs exactly over the quadratic residues in Z/3^r Z, hence C_{x^2}(2r,r)<3^{2r}; if m>=3r the second coordinate is all of Z/3^r Z, via p=3^r + v 3^{m-r} for v in P_r. This decides the zero fibre, not C_{x^2}(m,r) for a general fibre. Cf. BTR-x2-C-band",
     "source": "docs/problems/residual_complexity.md",
     "lean": "",
     "tests": [
@@ -2242,8 +2242,8 @@
   },
   {
     "id": "BTR-x2-C-fibre-fill",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "for F(x)=x^2, r>=1 and m>=5r, every fibre p\u2261\u03b1 (mod 3^r) of the interior map has second coordinate all of Z/3^r Z. Explicitly, for \u03b1,u in P_r the prefix p=\u03b1 + u 3^r + 3^{m-r} lies in P_m, satisfies p\u2261\u03b1 (mod 3^r), and DZ^m(p^2)\u22612u + DZ^r(2\u03b1) (mod 3^r); the unit 2 makes u\u21a62u+const bijective. In particular no fibre stays incomplete for all m. This is not a first-saturation time of C_{x^2}(m,r). Cf. BTR-x2-C-interior",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "for F(x)=x^2, r>=1 and m>=5r, every fibre p≡α (mod 3^r) of the interior map has second coordinate all of Z/3^r Z. Explicitly, for α,u in P_r the prefix p=α + u 3^r + 3^{m-r} lies in P_m, satisfies p≡α (mod 3^r), and DZ^m(p^2)≡2u + DZ^r(2α) (mod 3^r); the unit 2 makes u↦2u+const bijective. In particular no fibre stays incomplete for all m. This is not a first-saturation time of C_{x^2}(m,r). Cf. BTR-x2-C-interior",
     "source": "docs/problems/residual_complexity.md",
     "lean": "",
     "tests": [
@@ -2253,7 +2253,7 @@
   },
   {
     "id": "BTN-doubled-closure",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "The LSD carry of normalizing the doubled trit stream 2 d_i, d_i in {-1,0,1}, stays in {-1,0,1}; 1 and -1 are reachable from 0.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
@@ -2264,7 +2264,7 @@
   },
   {
     "id": "BTN-doubled-lyapunov",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "V(c)=|c| strictly decreases under c |-> DZ(c+2d) whenever |c|>=2 and d is a trit.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
@@ -2275,7 +2275,7 @@
   },
   {
     "id": "BTN-doubled-sign",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Doubled-trit carry and output are odd: T(-c,-d)=-T(c,d) and the emitted trit negates.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
@@ -2286,7 +2286,7 @@
   },
   {
     "id": "BTN-doubled-minimality",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "The three carries -1,0,1 have pairwise distinct Mealy output signatures, so the 3-state machine is minimal.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
@@ -2297,7 +2297,7 @@
   },
   {
     "id": "BTN-carry-gain-3",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "The synthetic map T_3(c,d)=3 DZ(c+2d) satisfies c_n=3n along the all-+1 word, so the residual set is unbounded. This is not value-preserving normalization.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/FiniteStateDynamics.lean",
@@ -2308,7 +2308,7 @@
   },
   {
     "id": "BTN-expanding-lsd",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "For T(n)=3n-lsd(n), lsd(T(n))=-lsd(n) and lsd(T^k(n))=(-1)^k lsd(n). Future LSD observations depend only on lsd(n).",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2319,7 +2319,7 @@
   },
   {
     "id": "BTN-expanding-right-inverse",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Laboratory DZ is a left inverse of T: DZ(T(n))=n. Canonical T is the section I_{-lsd(n)}(n), not a constant-section I_a.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2330,7 +2330,7 @@
   },
   {
     "id": "BTN-expanding-section",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "T(I_a(x))=9x+2a and lsd(T(I_a(x)))=-a, independent of the higher-digit residual x.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2352,8 +2352,8 @@
   },
   {
     "id": "BTN-expanding-lambda",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For T_\u03bb(n)=3n-\u03bb lsd(n), lsd(T_2(n))=lsd(n) and lsd(T_3(n))=0. The observational residual remains a trit; \u03bb changes the residue map, not the need for the full integer.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For T_λ(n)=3n-λ lsd(n), lsd(T_2(n))=lsd(n) and lsd(T_3(n))=0. The observational residual remains a trit; λ changes the residue map, not the need for the full integer.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/ExpandingD.lean",
     "tests": [
@@ -2363,7 +2363,7 @@
   },
   {
     "id": "BTN-expanding-j2",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "For T(n)=3n-lsd(n), the length-2 integer jet satisfies J2(T(n))=(-lsd(n), lsd(n)). The map depends only on the first digit; every trit window (a,b) is sent to (-a,a).",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2385,7 +2385,7 @@
   },
   {
     "id": "BTN-expanding-j2-lambda",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "J2(T_2(n))=(lsd(n),0) and J2(T_3(n))=(0,0). Order-2 observation distinguishes T_2 from T, unlike the one-digit residual.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2396,7 +2396,7 @@
   },
   {
     "id": "BTN-expanding-j3",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "For T(n)=3n-lsd(n), the length-3 integer jet satisfies J3(T(n))=(-lsd(n), lsd(n), lsd(DZ(n))). Equivalently J3(T(n))=(-a,a,b) when J2(n)=(a,b). The third input digit is discarded. The map factors through J2.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2418,7 +2418,7 @@
   },
   {
     "id": "BTN-expanding-j3-lambda",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "J3(T_2(n))=(lsd(n),0,lsd(DZ(n))) and J3(T_3(n))=(0,0,lsd(DZ(n))). T_3 collapses J1 and J2 but does not collapse J3: the second input digit survives.",
     "source": "docs/problems/balanced_ternary_finite_state_dynamics.md",
     "lean": "Problems/BalancedTernary/ExpandingD.lean",
@@ -2429,7 +2429,7 @@
   },
   {
     "id": "BTN-dadd-repaired",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "D(x+y)=D(x)+D(y)+D(lsd(x)+lsd(y)). The missing state at the unary/Add boundary is D of the local digit sum.",
     "source": "docs/problems/d_add_residual.md",
     "lean": "Problems/BalancedTernary/DAddResidual.lean",
@@ -2451,7 +2451,7 @@
   },
   {
     "id": "BTN-dadd-closure",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "If s,a,b are trits then D(s+a+b) is a trit. The streaming residual of trit addition is exactly {-1,0,1}. Three values occur on D(x)=D(y)=0, so the residual is minimal.",
     "source": "docs/problems/d_add_residual.md",
     "lean": "Problems/BalancedTernary/DAddResidual.lean",
@@ -2462,7 +2462,7 @@
   },
   {
     "id": "C-shortcut-welldefined",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "The shortcut map C(n)=n/2 (even) or (3n+1)/2 (odd) is well-defined on positive integers, and {1,2} is a 2-cycle.",
     "source": "docs/problems/collatz_finite_descent.md",
     "lean": "Problems/Collatz/Shortcut.lean",
@@ -2484,8 +2484,8 @@
   },
   {
     "id": "C-no-uniform-L-descent",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For every L\u22651, n=2^L-1 realises L odd shortcut steps and C^L(n)=3^L-1>n. No residual n mod 2^L with blocks of length at most L certifies strict descent.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every L≥1, n=2^L-1 realises L odd shortcut steps and C^L(n)=3^L-1>n. No residual n mod 2^L with blocks of length at most L certifies strict descent.",
     "source": "docs/problems/collatz_finite_descent.md",
     "lean": "Problems/Collatz/Shortcut.lean",
     "tests": [
@@ -2495,7 +2495,7 @@
   },
   {
     "id": "PRC-section-I0-composite",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "I_0(x)=3x. If |x|>1 then 3|x| is composite.",
     "source": "docs/problems/prime_residual_complexity.md",
     "lean": "Problems/Primes/Residual.lean",
@@ -2506,7 +2506,7 @@
   },
   {
     "id": "PRC-sieve-mod-M",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "I_a(n) mod m depends only on n mod m.",
     "source": "docs/problems/prime_residual_complexity.md",
     "lean": "Problems/Primes/Residual.lean",
@@ -2517,8 +2517,8 @@
   },
   {
     "id": "PRC-sieve-prime-separator",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "The finite sieve residual gcd(n,210)=1 does not equal Prime: I_0(1)=3 is prime and I_0(211)=633 is composite, with 1\u2261211 (mod 210).",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "The finite sieve residual gcd(n,210)=1 does not equal Prime: I_0(1)=3 is prime and I_0(211)=633 is composite, with 1≡211 (mod 210).",
     "source": "docs/problems/prime_residual_complexity.md",
     "lean": "Problems/Primes/Residual.lean",
     "tests": [
@@ -2539,8 +2539,8 @@
   },
   {
     "id": "BTN-sdr-lambda1-radius",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For \u03bb=1 and |u|\u2264m, if |s|\u2264\u230am/2\u230b then |D(s+u)|\u2264\u230am/2\u230b. The looser radius \u2308(m+1)/2\u2309 from 3|D n|\u2264|n|+1 is not required.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For λ=1 and |u|≤m, if |s|≤⌊m/2⌋ then |D(s+u)|≤⌊m/2⌋. The looser radius ⌈(m+1)/2⌉ from 3|D n|≤|n|+1 is not required.",
     "source": "docs/problems/signed_digit_residual.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
     "tests": [
@@ -2550,8 +2550,8 @@
   },
   {
     "id": "BTN-sdr-finite-condition",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For F_{\u03bb,U_m}(s,u)=\u03bb\u00b7D(s+u) and every integer \u03bb\u22650, a finite invariant box containing 0 exists if and only if \u03bb\u22642 or m\u22641.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For F_{λ,U_m}(s,u)=λ·D(s+u) and every integer λ≥0, a finite invariant box containing 0 exists if and only if λ≤2 or m≤1.",
     "source": "docs/problems/signed_digit_residual.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
     "tests": [
@@ -2562,7 +2562,7 @@
   {
     "id": "BTN-sdr-scalar-lambda3",
     "tag": "REFUTED",
-    "statement": "Gain \u03bb=3 forces unbounded residual independently of the raw alphabet U.",
+    "statement": "Gain λ=3 forces unbounded residual independently of the raw alphabet U.",
     "source": "docs/problems/signed_digit_residual.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
     "tests": [
@@ -2583,8 +2583,8 @@
   },
   {
     "id": "BTN-sdr-multi-trit",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "r-way trit addition s'=D(s+a_1+\u22ef+a_r) is F_{1,U_r}: a trit sum of length r has absolute value at most r, so the \u03bb=1 box |s|\u2264\u230ar/2\u230b is invariant. The count 2\u230ar/2\u230b+1 equals 1,3,3,5 for r=1,2,3,4.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "r-way trit addition s'=D(s+a_1+⋯+a_r) is F_{1,U_r}: a trit sum of length r has absolute value at most r, so the λ=1 box |s|≤⌊r/2⌋ is invariant. The count 2⌊r/2⌋+1 equals 1,3,3,5 for r=1,2,3,4.",
     "source": "docs/problems/signed_digit_residual.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
     "tests": [
@@ -2594,8 +2594,8 @@
   },
   {
     "id": "BTN-sdr-escape-general",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If \u03bb\u22653 and |u|\u22652 then the constant-control orbit of F_{\u03bb,U} from 0 is unbounded: at \u03bb=3 one has s'=s+u-lsd(s+u) so each step moves by at least 1; at \u03bb\u22654 the step is strictly expanding on the matching ray.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If λ≥3 and |u|≥2 then the constant-control orbit of F_{λ,U} from 0 is unbounded: at λ=3 one has s'=s+u-lsd(s+u) so each step moves by at least 1; at λ≥4 the step is strictly expanding on the matching ray.",
     "source": "docs/problems/signed_digit_residual.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
     "tests": [
@@ -2605,8 +2605,8 @@
   },
   {
     "id": "BTN-sdr-lambda2-radius",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For \u03bb=2 and |u|\u2264m, if |s|\u22642 m.pred then |2 D(s+u)|\u22642 m.pred. This is the sharp invariant radius 2(m-1)_+.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For λ=2 and |u|≤m, if |s|≤2 m.pred then |2 D(s+u)|≤2 m.pred. This is the sharp invariant radius 2(m-1)_+.",
     "source": "docs/problems/signed_digit_residual.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
     "tests": [
@@ -2617,7 +2617,7 @@
   {
     "id": "BTN-sdr-geometry-phase",
     "tag": "REFUTED",
-    "statement": "Holes or asymmetry in the raw alphabet U change the finite/infinite residual phase at fixed (\u03bb, max|u|).",
+    "statement": "Holes or asymmetry in the raw alphabet U change the finite/infinite residual phase at fixed (λ, max|u|).",
     "source": "docs/problems/signed_digit_residual.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidual.lean",
     "tests": [
@@ -2628,7 +2628,7 @@
   {
     "id": "BTN-sdr-maxabs-mealy",
     "tag": "REFUTED",
-    "statement": "The minimal residual complexity M(\u03bb,U) is determined by (\u03bb, max|u|) alone.",
+    "statement": "The minimal residual complexity M(λ,U) is determined by (λ, max|u|) alone.",
     "source": "docs/problems/signed_digit_residual.md",
     "lean": "",
     "tests": [
@@ -2638,8 +2638,8 @@
   },
   {
     "id": "BTN-sdrg-lambda1-interval",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For \u03bb=1 and U_m, every integer s with |s|\u2264\u230am/2\u230b is reached from 0 by an admissible word. The explicit positive word is u=2,4,...,2n.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For λ=1 and U_m, every integer s with |s|≤⌊m/2⌋ is reached from 0 by an admissible word. The explicit positive word is u=2,4,...,2n.",
     "source": "docs/problems/signed_digit_residual_geometry.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
     "tests": [
@@ -2649,8 +2649,8 @@
   },
   {
     "id": "BTN-sdrg-lambda2-evens",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For \u03bb=2 and U_m, every even 2n with |n|\u2264(m-1)_+ is reached from 0 by an admissible word. The explicit nonnegative word uses letters k+2 at step k.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For λ=2 and U_m, every even 2n with |n|≤(m-1)_+ is reached from 0 by an admissible word. The explicit nonnegative word uses letters k+2 at step k.",
     "source": "docs/problems/signed_digit_residual_geometry.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
     "tests": [
@@ -2661,7 +2661,7 @@
   {
     "id": "BTN-sdrg-lattice-all-U",
     "tag": "REFUTED",
-    "statement": "For every finite U, the origin-reachable residual equals \u03bb\u2124 intersect the symmetric invariant interval.",
+    "statement": "For every finite U, the origin-reachable residual equals λℤ intersect the symmetric invariant interval.",
     "source": "docs/problems/signed_digit_residual_geometry.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidualGeometry.lean",
     "tests": [
@@ -2672,7 +2672,7 @@
   {
     "id": "BTN-sdrg-sign-mealy",
     "tag": "REFUTED",
-    "statement": "Sign symmetry of U_m forces M(\u03bb,U_m)=|R|/2.",
+    "statement": "Sign symmetry of U_m forces M(λ,U_m)=|R|/2.",
     "source": "docs/problems/signed_digit_residual_geometry.md",
     "lean": "",
     "tests": [
@@ -2682,8 +2682,8 @@
   },
   {
     "id": "BTN-sdrm-separation",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If \u03bb is not divisible by 3 and s\u2260t, the constant word of any letter of length v_3(s-t)+1 distinguishes the output streams of F_{\u03bb,U}(s,u)=\u03bb\u00b7D(s+u) with output lsd(s+u). Distinct residuals are therefore Mealy-inequivalent, so M(\u03bb,U)=|R_{\u03bb,U}| on every nonempty origin-reachable machine in this regime.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If λ is not divisible by 3 and s≠t, the constant word of any letter of length v_3(s-t)+1 distinguishes the output streams of F_{λ,U}(s,u)=λ·D(s+u) with output lsd(s+u). Distinct residuals are therefore Mealy-inequivalent, so M(λ,U)=|R_{λ,U}| on every nonempty origin-reachable machine in this regime.",
     "source": "docs/problems/signed_digit_residual_minimality.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
     "tests": [
@@ -2693,8 +2693,8 @@
   },
   {
     "id": "BTN-sdrm-lambda3-translate",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "At \u03bb=3, translation by 3k preserves every output stream: signedTrace 3 (s+3k) w = signedTrace 3 s w. This symmetry is not origin-reachable when max|u|\u22641.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "At λ=3, translation by 3k preserves every output stream: signedTrace 3 (s+3k) w = signedTrace 3 s w. This symmetry is not origin-reachable when max|u|≤1.",
     "source": "docs/problems/signed_digit_residual_minimality.md",
     "lean": "Problems/BalancedTernary/SignedDigitResidualMinimality.lean",
     "tests": [
@@ -2705,7 +2705,7 @@
   {
     "id": "BTN-sdrm-merge-exists",
     "tag": "REFUTED",
-    "statement": "Some listed finite U at \u03bb=1 or \u03bb=2 has M(\u03bb,U)<|R_{\u03bb,U}|.",
+    "statement": "Some listed finite U at λ=1 or λ=2 has M(λ,U)<|R_{λ,U}|.",
     "source": "docs/problems/signed_digit_residual_minimality.md",
     "lean": "",
     "tests": [
@@ -2726,8 +2726,8 @@
   },
   {
     "id": "BTN-sdrc-any-word",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If \u03bb is not divisible by 3 and s\u2260t, every word of length v_3(s-t)+1 distinguishes the lsd output streams of F_{\u03bb,U}(s,u)=\u03bb\u00b7D(s+u). A common cyclic letter is not required.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If λ is not divisible by 3 and s≠t, every word of length v_3(s-t)+1 distinguishes the lsd output streams of F_{λ,U}(s,u)=λ·D(s+u). A common cyclic letter is not required.",
     "source": "docs/problems/signed_digit_constrained_controls.md",
     "lean": "Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
     "tests": [
@@ -2749,7 +2749,7 @@
   {
     "id": "BTN-sdrc-residual-merge",
     "tag": "REFUTED",
-    "statement": "Some Model A\u2013D finite control constraint merges distinct residuals at the same control state.",
+    "statement": "Some Model A–D finite control constraint merges distinct residuals at the same control state.",
     "source": "docs/problems/signed_digit_constrained_controls.md",
     "lean": "",
     "tests": [
@@ -2759,8 +2759,8 @@
   },
   {
     "id": "BTN-sdrc-lambda3-symmetry",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "At \u03bb=3, translation by 3k preserves the output stream of every word, so a control-language restriction cannot destroy that symmetry.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "At λ=3, translation by 3k preserves the output stream of every word, so a control-language restriction cannot destroy that symmetry.",
     "source": "docs/problems/signed_digit_constrained_controls.md",
     "lean": "Problems/BalancedTernary/SignedDigitConstrainedControls.lean",
     "tests": [
@@ -2770,8 +2770,8 @@
   },
   {
     "id": "BTN-sdsh-truncated-mod",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If 3^L divides s-t and |w|\u2264L, then the lsd streams of F_{\u03bb,U} from s and t agree on w. A remaining-horizon L controller therefore merges (s,q_L) and (t,q_L) whenever that congruence holds.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If 3^L divides s-t and |w|≤L, then the lsd streams of F_{λ,U} from s and t agree on w. A remaining-horizon L controller therefore merges (s,q_L) and (t,q_L) whenever that congruence holds.",
     "source": "docs/problems/signed_digit_short_horizon.md",
     "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
     "tests": [
@@ -2781,8 +2781,8 @@
   },
   {
     "id": "BTN-sdsh-sep",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If \u03bb is not divisible by 3, s\u2260t, and |w|\u2265v_3(s-t)+1, then the lsd streams differ on w. Finite horizon preserves residual distinguishability exactly when a legal word of that length exists.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If λ is not divisible by 3, s≠t, and |w|≥v_3(s-t)+1, then the lsd streams differ on w. Finite horizon preserves residual distinguishability exactly when a legal word of that length exists.",
     "source": "docs/problems/signed_digit_short_horizon.md",
     "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
     "tests": [
@@ -2814,8 +2814,8 @@
   },
   {
     "id": "BTN-sdsh-maxlen",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If \u03bb is not divisible by 3 and s\u2260t, the lsd streams of F_{\u03bb,U} agree on a word w if and only if |w|\u2264v_3(s-t). A finite control language therefore merges (s,q) and (t,q) exactly when every legal word is shorter than v_3(s-t)+1.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If λ is not divisible by 3 and s≠t, the lsd streams of F_{λ,U} agree on a word w if and only if |w|≤v_3(s-t). A finite control language therefore merges (s,q) and (t,q) exactly when every legal word is shorter than v_3(s-t)+1.",
     "source": "docs/problems/signed_digit_short_horizon.md",
     "lean": "Problems/BalancedTernary/SignedDigitShortHorizon.lean",
     "tests": [
@@ -2836,8 +2836,8 @@
   },
   {
     "id": "BTN-mr-factor-through-raw",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If F(s,c)=\u03bb\u00b7D(s+h(c)) then F(s,(d1,d2))=\u03bb\u00b7D(s+d1 d2). Two-trit product residual factors through the raw contribution.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If F(s,c)=λ·D(s+h(c)) then F(s,(d1,d2))=λ·D(s+d1 d2). Two-trit product residual factors through the raw contribution.",
     "source": "docs/problems/multiplicative_residual.md",
     "lean": "Problems/BalancedTernary/MultiplicativeResidual.lean",
     "tests": [
@@ -2847,8 +2847,8 @@
   },
   {
     "id": "BTN-mr-product-closure",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For trit pairs (d1,d2) and any gain \u03bb, \u03bb\u00b7D(0+d1 d2)=0. Origin-reachable residual of two-trit product forcing is {0}, matching F_{\u03bb,U_1}.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For trit pairs (d1,d2) and any gain λ, λ·D(0+d1 d2)=0. Origin-reachable residual of two-trit product forcing is {0}, matching F_{λ,U_1}.",
     "source": "docs/problems/multiplicative_residual.md",
     "lean": "Problems/BalancedTernary/MultiplicativeResidual.lean",
     "tests": [
@@ -2880,8 +2880,8 @@
   },
   {
     "id": "J-global-defect-identity",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For every realized finite Juggler word w, n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + \u0394_w(n), where \u0394 is the recursively lifted accumulation of local floor remainders. \u0394 \u2265 0, so the power envelope is a corollary; \u0394 = 0 iff every local remainder vanishes; concatenation is the two-term power-gap lift, not an additive sum.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every realized finite Juggler word w, n^{3^{#O(w)}} = T_w(n)^{2^{|w|}} + Δ_w(n), where Δ is the recursively lifted accumulation of local floor remainders. Δ ≥ 0, so the power envelope is a corollary; Δ = 0 iff every local remainder vanishes; concatenation is the two-term power-gap lift, not an additive sum.",
     "source": "docs/problems/juggler_global_defect.md",
     "lean": "Problems/Juggler/GlobalDefect.lean",
     "tests": [
@@ -2891,8 +2891,8 @@
   },
   {
     "id": "J-first-defect-amplification",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For a realized Juggler word w, the first positive local remainder sits after a tight even or odd power-of-two prefix. That remainder contributes at least \u03c1_j^{2^j} to \u0394, and the suffix operator Amplify (later remainders dropped) is a lower bound. An odd letter lifts an inserted defect by the exact cubic (x^a+D)^3-x^{3a} \u2265 3 x^{2a} D. Mixed OOE has firstDefect \u2264 1, with \u0394 \u2265 3 T(n)^4 \u03c1_0 or \u0394 \u2265 \u03c1_1^2. These bounds do not claim \u0394 exceeds the formal surplus.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For a realized Juggler word w, the first positive local remainder sits after a tight even or odd power-of-two prefix. That remainder contributes at least ρ_j^{2^j} to Δ, and the suffix operator Amplify (later remainders dropped) is a lower bound. An odd letter lifts an inserted defect by the exact cubic (x^a+D)^3-x^{3a} ≥ 3 x^{2a} D. Mixed OOE has firstDefect ≤ 1, with Δ ≥ 3 T(n)^4 ρ_0 or Δ ≥ ρ_1^2. These bounds do not claim Δ exceeds the formal surplus.",
     "source": "docs/problems/juggler_defect_lower_bound.md",
     "lean": "Problems/Juggler/DefectLowerBound.lean",
     "tests": [
@@ -2902,8 +2902,8 @@
   },
   {
     "id": "J-normalized-relative-slack",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For a realized Juggler word, the relative slack 1+q = n^{3^{#O(w)}} / T_w(n)^{2^{|w|}} multiplies under concatenation: 1+q_{uv} = (1+q_u)^{3^{#O(v)}} (1+q_v)^{2^{|u|}}. An even letter multiplies by (1+\u03b7)^{2^k}; an odd letter multiplies by (1+q)^3 (1+\u03b7)^{2^k}. Running 1+q does not decrease under a realized extension. The surplus ratio R=\u0394/S satisfies R\u22641 iff T_w(n)\u2265n whenever S>0, so R is the endpoint comparison in other coordinates. A realized return T_w(n)=n uses the whole formal surplus.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For a realized Juggler word, the relative slack 1+q = n^{3^{#O(w)}} / T_w(n)^{2^{|w|}} multiplies under concatenation: 1+q_{uv} = (1+q_u)^{3^{#O(v)}} (1+q_v)^{2^{|u|}}. An even letter multiplies by (1+η)^{2^k}; an odd letter multiplies by (1+q)^3 (1+η)^{2^k}. Running 1+q does not decrease under a realized extension. The surplus ratio R=Δ/S satisfies R≤1 iff T_w(n)≥n whenever S>0, so R is the endpoint comparison in other coordinates. A realized return T_w(n)=n uses the whole formal surplus.",
     "source": "docs/problems/juggler_normalized_defect.md",
     "lean": "Problems/Juggler/NormalizedDefect.lean",
     "tests": [
@@ -2914,7 +2914,7 @@
   {
     "id": "J-two-block-persistent-expanding",
     "tag": "REFUTED",
-    "statement": "Two consecutive persistent expanding Juggler residual blocks are impossible. Counterexample: 365 follows OOE to 763 and 763 follows OOE to 1749; both steps are PersistentExpandingResidual. An expanding O^a E^b block has a\u22652, and a persistent residual endpoint is odd-to-odd so the next residual also has a\u22652; that state is compatible with another expanding block. The n\u226480 contracting sequels at 37 and 69 are a small-window artifact.",
+    "statement": "Two consecutive persistent expanding Juggler residual blocks are impossible. Counterexample: 365 follows OOE to 763 and 763 follows OOE to 1749; both steps are PersistentExpandingResidual. An expanding O^a E^b block has a≥2, and a persistent residual endpoint is odd-to-odd so the next residual also has a≥2; that state is compatible with another expanding block. The n≤80 contracting sequels at 37 and 69 are a small-window artifact.",
     "source": "docs/problems/juggler_two_block_residual.md",
     "lean": "Problems/Juggler/Residuals.lean",
     "tests": [
@@ -2924,8 +2924,8 @@
   },
   {
     "id": "J-expansion-block-grammar",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "The integer exponent surplus of a finite Juggler word is E(w)=3^{#O(w)}-2^{|w|}, and E(w)>0 if and only if the word is formally expanding. An expanding residual block O^a E^b with b\u22651 has b<a. On an expanding word, n^{3^{#O}}=n^{2^{|w|}+E(w)}. Relative slack multiplies under concatenation, and the slack numerator of a three-block word is n^{3^{o(v)+o(w)}}. The chain 365 --OOE--> 763 --OOE--> 1749 --OOE--> 4447 is a PersistentExpansionChain. This does not bound consecutive expanding persistent runs.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "The integer exponent surplus of a finite Juggler word is E(w)=3^{#O(w)}-2^{|w|}, and E(w)>0 if and only if the word is formally expanding. An expanding residual block O^a E^b with b≥1 has b<a. On an expanding word, n^{3^{#O}}=n^{2^{|w|}+E(w)}. Relative slack multiplies under concatenation, and the slack numerator of a three-block word is n^{3^{o(v)+o(w)}}. The chain 365 --OOE--> 763 --OOE--> 1749 --OOE--> 4447 is a PersistentExpansionChain. This does not bound consecutive expanding persistent runs.",
     "source": "docs/problems/juggler_expansion_density.md",
     "lean": "Problems/Juggler/ExpansionBlocks.lean",
     "tests": [
@@ -2936,7 +2936,7 @@
   {
     "id": "J-weighted-slack-cocycle",
     "tag": "REPARAMETERIZATION",
-    "statement": "For a realized Juggler word, the pair (A,B)=(3^{#O(w)}, 2^{|w|}) multiplies under concatenation, and n^A = T_w(n)^B + \u0394_w(n). The 1+q concatenation law is the same identity in multiplier coordinates: 1+q_{uv} = (1+q_u)^{A_v} (1+q_v)^{B_u}. In logarithms this is log T = \u03bb log n - c and the weighted cocycle y_m = \u039b_m y_0 - C_m with B_m = C_m/\u039b_m. The local comparison c < (\u03bb-1) log n is T_w(n) > n on an expanding word. These are the existing slack identities, not a new obstruction.",
+    "statement": "For a realized Juggler word, the pair (A,B)=(3^{#O(w)}, 2^{|w|}) multiplies under concatenation, and n^A = T_w(n)^B + Δ_w(n). The 1+q concatenation law is the same identity in multiplier coordinates: 1+q_{uv} = (1+q_u)^{A_v} (1+q_v)^{B_u}. In logarithms this is log T = λ log n - c and the weighted cocycle y_m = Λ_m y_0 - C_m with B_m = C_m/Λ_m. The local comparison c < (λ-1) log n is T_w(n) > n on an expanding word. These are the existing slack identities, not a new obstruction.",
     "source": "docs/problems/juggler_expansion_slack.md",
     "lean": "Problems/Juggler/ExpansionSlack.lean",
     "tests": [
@@ -2946,7 +2946,7 @@
   },
   {
     "id": "J-four-block-persistent-expanding",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Four consecutive persistent expanding Juggler residual blocks exist: 1999 follows OOE to 5169, 5169 follows OOOOEE to 50093, 50093 follows OOE to 193753, and 193753 follows OOE to 887471. Each step is PersistentExpandingResidual.",
     "source": "docs/problems/juggler_expansion_slack.md",
     "lean": "Problems/Juggler/ExpansionSlack.lean",
@@ -2958,7 +2958,7 @@
   {
     "id": "J-expansion-slack-uniform-tax",
     "tag": "REFUTED",
-    "statement": "Positive local slack, after the exact expansion weights, puts a nontrivial upper bound on the density or run length of expanding persistent residual blocks independently of T_w(n)\u2265n. In particular there is a uniform \u03b5>0 with c/(\u03bb-1)\u2265\u03b5 on every expanding persistent block, or the normalized budget B_m is bounded below independently of the endpoint tautology B_m\u2264y_0(1-1/\u039b_m). Counterexamples: the OOE block at 180370579261640036336071806107777 has 0<q<10^{-30}; B_m/B_taut reaches 10^{-9} on the n\u22644000 window; a length-5 all-expanding persistent run starts at 2183.",
+    "statement": "Positive local slack, after the exact expansion weights, puts a nontrivial upper bound on the density or run length of expanding persistent residual blocks independently of T_w(n)≥n. In particular there is a uniform ε>0 with c/(λ-1)≥ε on every expanding persistent block, or the normalized budget B_m is bounded below independently of the endpoint tautology B_m≤y_0(1-1/Λ_m). Counterexamples: the OOE block at 180370579261640036336071806107777 has 0<q<10^{-30}; B_m/B_taut reaches 10^{-9} on the n≤4000 window; a length-5 all-expanding persistent run starts at 2183.",
     "source": "docs/problems/juggler_expansion_slack.md",
     "lean": "Problems/Juggler/ExpansionSlack.lean",
     "tests": [
@@ -2968,8 +2968,8 @@
   },
   {
     "id": "J-near-tight-scale-bounds",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "The local Juggler remainder satisfies 0\u2264\u03c1<2T+1, hence \u03b7=\u03c1/T^2 < 2/T + 1/T^2 and 1+\u03b7 < ((T+1)/T)^2. For the mixed word OOE, 1+q = (1+\u03b70)^3 (1+\u03b71)^2 (1+\u03b72)^4, and 1+q is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8. The same bound at a successor start y depends only on the itinerary of y.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "The local Juggler remainder satisfies 0≤ρ<2T+1, hence η=ρ/T^2 < 2/T + 1/T^2 and 1+η < ((T+1)/T)^2. For the mixed word OOE, 1+q = (1+η0)^3 (1+η1)^2 (1+η2)^4, and 1+q is strictly below the successor-ratio product ((T0+1)/T0)^6 ((T1+1)/T1)^4 ((T2+1)/T2)^8. The same bound at a successor start y depends only on the itinerary of y.",
     "source": "docs/problems/juggler_near_tight_scale.md",
     "lean": "Problems/Juggler/NearTightScale.lean",
     "tests": [
@@ -2980,7 +2980,7 @@
   {
     "id": "J-ooe-scale-decay",
     "tag": "COMPUTATIONALLY VERIFIED",
-    "statement": "On realized odd-odd OOE starts, the last even remainder dominates the relative slack, and q_OOE(n) has order n^{-9/8}. After 329 follows OOOOOOOOE to y\u22481.80\u00b710^{32}, the next OOE block has 0<q<10^{-30} with q/y^{-9/8}\u22482.64. Persistent expanding pairs have OOE-sequel q2 tracking y^{-9/8}. Large \u03bb reduces successor q only by inflating y.",
+    "statement": "On realized odd-odd OOE starts, the last even remainder dominates the relative slack, and q_OOE(n) has order n^{-9/8}. After 329 follows OOOOOOOOE to y≈1.80·10^{32}, the next OOE block has 0<q<10^{-30} with q/y^{-9/8}≈2.64. Persistent expanding pairs have OOE-sequel q2 tracking y^{-9/8}. Large λ reduces successor q only by inflating y.",
     "source": "docs/problems/juggler_near_tight_scale.md",
     "lean": "Problems/Juggler/NearTightScale.lean",
     "tests": [
@@ -2991,7 +2991,7 @@
   {
     "id": "J-approx-equality-rigidity",
     "tag": "REFUTED",
-    "statement": "If a realized mixed word has q_w(n)\u21920 then the itinerary converges to an exact rigid monochrome tower. Counterexample: the mixed word OOE at 180370579261640036336071806107777 has 0<q<10^{-30}. Exact equality rigidity has no naive quantitative stability theorem.",
+    "statement": "If a realized mixed word has q_w(n)→0 then the itinerary converges to an exact rigid monochrome tower. Counterexample: the mixed word OOE at 180370579261640036336071806107777 has 0<q<10^{-30}. Exact equality rigidity has no naive quantitative stability theorem.",
     "source": "docs/problems/juggler_near_tight_scale.md",
     "lean": "Problems/Juggler/NearTightScale.lean",
     "tests": [
@@ -3001,8 +3001,8 @@
   },
   {
     "id": "J-expanding-block-even-bound",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "A residual-shaped word O^a E^b is formally expanding iff 2^{a+b}<3^a. For a\u22651 this is equivalent to a+b \u2264 log\u2082(3^a), or b \u2264 maxExpandingEvens(a). In particular a=2 or 3 forces b\u22641, and a=4 forces b\u22642. This is the syntactic expanding language, not a realized-orbit theorem.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "A residual-shaped word O^a E^b is formally expanding iff 2^{a+b}<3^a. For a≥1 this is equivalent to a+b ≤ log₂(3^a), or b ≤ maxExpandingEvens(a). In particular a=2 or 3 forces b≤1, and a=4 forces b≤2. This is the syntactic expanding language, not a realized-orbit theorem.",
     "source": "docs/problems/juggler_expanding_grammar.md",
     "lean": "Problems/Juggler/ExpandingGrammar.lean",
     "tests": [
@@ -3012,8 +3012,8 @@
   },
   {
     "id": "J-persistent-implies-expanding",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For n\u22652, PersistentOddResidual x y if and only if PersistentExpandingResidual x y. A contracting residual cannot overshoot, and 2^k=3^o is impossible for a nonempty residual. The expanding qualifier of a persistent residual is therefore redundant.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For n≥2, PersistentOddResidual x y if and only if PersistentExpandingResidual x y. A contracting residual cannot overshoot, and 2^k=3^o is impossible for a nonempty residual. The expanding qualifier of a persistent residual is therefore redundant.",
     "source": "docs/problems/juggler_expanding_grammar.md",
     "lean": "Problems/Juggler/ExpandingGrammar.lean",
     "tests": [
@@ -3024,7 +3024,7 @@
   {
     "id": "J-expanding-grammar-obstruction",
     "tag": "REFUTED",
-    "statement": "The expanding residual word grammar, or a finite residue-mod-8 successor automaton, is an independent obstruction to an infinite persistent expanding chain. Counterexamples: on n\u22652 persistence already is expansion, so the attack reduces to T_w(n)>n; the OOE type self-loop 365\u2192763\u21921749 exits odd-to-even at 4447; every odd class modulo 8 both continues and leaves the PE frontier. A finite run bound M is not proved and is not supplied by this grammar.",
+    "statement": "The expanding residual word grammar, or a finite residue-mod-8 successor automaton, is an independent obstruction to an infinite persistent expanding chain. Counterexamples: on n≥2 persistence already is expansion, so the attack reduces to T_w(n)>n; the OOE type self-loop 365→763→1749 exits odd-to-even at 4447; every odd class modulo 8 both continues and leaves the PE frontier. A finite run bound M is not proved and is not supplied by this grammar.",
     "source": "docs/problems/juggler_expanding_grammar.md",
     "lean": "Problems/Juggler/ExpandingGrammar.lean",
     "tests": [
@@ -3035,7 +3035,7 @@
   {
     "id": "J-landing-cell-iff",
     "tag": "REPARAMETERIZATION",
-    "statement": "T(x)=m if and only if m\u00b2\u2264F(x)<(m+1)\u00b2, with F(x)=x on the even branch and F(x)=x\u00b3 on the odd branch. The landing gap \u03c1=F(x)-m\u00b2 satisfies 0\u2264\u03c1<2T(x)+1. Odd landing is membership of F(x) in a union of odd-m cells. These are the existing inverse-floor and remainder-window lemmas under landing names.",
+    "statement": "T(x)=m if and only if m²≤F(x)<(m+1)², with F(x)=x on the even branch and F(x)=x³ on the odd branch. The landing gap ρ=F(x)-m² satisfies 0≤ρ<2T(x)+1. Odd landing is membership of F(x) in a union of odd-m cells. These are the existing inverse-floor and remainder-window lemmas under landing names.",
     "source": "docs/problems/juggler_landing_parity.md",
     "lean": "Problems/Juggler/LandingParity.lean",
     "tests": [
@@ -3046,7 +3046,7 @@
   {
     "id": "J-landing-theta-state",
     "tag": "REFUTED",
-    "statement": "The normalized landing position \u03b8=\u03c1/(2T+1) is a compact state for persistent odd-to-odd continuation: it occupies a proper subinterval of [0,1], or a coarse \u03b8-bin predicts the next landing parity better than a residue class, or \u03b8(T(x)) is a function of \u03b8(x) and the branch. Counterexamples: on odd n\u22642000, odd-odd \u03b8 occupies [0,0.997] and every tenth of [0,1]; PE-continuation landings span [0,0.995]; next-parity entropy given a \u03b8-bin is \u22480.99, matching x mod 8; \u03b8\u2192\u03b8 transitions fill essentially all bins.",
+    "statement": "The normalized landing position θ=ρ/(2T+1) is a compact state for persistent odd-to-odd continuation: it occupies a proper subinterval of [0,1], or a coarse θ-bin predicts the next landing parity better than a residue class, or θ(T(x)) is a function of θ(x) and the branch. Counterexamples: on odd n≤2000, odd-odd θ occupies [0,0.997] and every tenth of [0,1]; PE-continuation landings span [0,0.995]; next-parity entropy given a θ-bin is ≈0.99, matching x mod 8; θ→θ transitions fill essentially all bins.",
     "source": "docs/problems/juggler_landing_parity.md",
     "lean": "Problems/Juggler/LandingParity.lean",
     "tests": [
@@ -3056,8 +3056,8 @@
   },
   {
     "id": "J-odd-remainder-even",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If x is odd, T(x)=y is odd, and \u03c1=x\u00b3-y\u00b2 is the local odd remainder, then \u03c1 is even. This is the opposite parity of peakOddDefect_odd, which requires an even maximum.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If x is odd, T(x)=y is odd, and ρ=x³-y² is the local odd remainder, then ρ is even. This is the opposite parity of peakOddDefect_odd, which requires an even maximum.",
     "source": "docs/problems/juggler_sequential_mordell.md",
     "lean": "Problems/Juggler/SequentialMordell.lean",
     "tests": [
@@ -3068,7 +3068,7 @@
   {
     "id": "J-sequential-defect-oo",
     "tag": "REPARAMETERIZATION",
-    "statement": "On a realized OO word with z=T(T(x)), the sequential defect \u0393=x\u2079-z\u2074 equals globalDefect(x,[odd,odd]). The two-step polynomial (x\u00b3-\u03c1)\u00b3=(z\u00b2+\u03c3)\u00b2 is y\u2076=y\u2076. These are the existing OO slack identity and the local floor identities under sequential names.",
+    "statement": "On a realized OO word with z=T(T(x)), the sequential defect Γ=x⁹-z⁴ equals globalDefect(x,[odd,odd]). The two-step polynomial (x³-ρ)³=(z²+σ)² is y⁶=y⁶. These are the existing OO slack identity and the local floor identities under sequential names.",
     "source": "docs/problems/juggler_sequential_mordell.md",
     "lean": "Problems/Juggler/SequentialMordell.lean",
     "tests": [
@@ -3079,7 +3079,7 @@
   {
     "id": "J-peak-transports-to-oo",
     "tag": "REFUTED",
-    "statement": "The peak slack identity x\u00b3=(p^{2^r}+\u03b5)\u00b2+\u03b4, which requires an even maximum M, transports to a persistent odd-odd pair. Counterexamples: on every odd-odd start n\u22642000, including the residual chain 365, 763, 1749, the landing y=T(x) is odd, so peakOddDefect_odd does not apply and peakOddDefect(x,y) is even.",
+    "statement": "The peak slack identity x³=(p^{2^r}+ε)²+δ, which requires an even maximum M, transports to a persistent odd-odd pair. Counterexamples: on every odd-odd start n≤2000, including the residual chain 365, 763, 1749, the landing y=T(x) is odd, so peakOddDefect_odd does not apply and peakOddDefect(x,y) is even.",
     "source": "docs/problems/juggler_sequential_mordell.md",
     "lean": "Problems/Juggler/SequentialMordell.lean",
     "tests": [
@@ -3089,8 +3089,8 @@
   },
   {
     "id": "J-odd-odd-remainder-mod-eight",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If y is odd and T(y) is odd, then the local remainder \u03c1=y\u00b3-T(y)\u00b2 satisfies \u03c1\u2261y-1 (mod 8). Consequently v\u2082(\u03c1)=1 when y\u22613 or 7 (mod 8), v\u2082(\u03c1)=2 when y\u22615 (mod 8), and v\u2082(\u03c1)\u22653 when y\u22611 (mod 8) and \u03c1\u22600. The same congruences hold for any odd square below y\u00b3; the floor T(y)=\u230ay^{3/2}\u230b is not used beyond selecting an odd landing.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If y is odd and T(y) is odd, then the local remainder ρ=y³-T(y)² satisfies ρ≡y-1 (mod 8). Consequently v₂(ρ)=1 when y≡3 or 7 (mod 8), v₂(ρ)=2 when y≡5 (mod 8), and v₂(ρ)≥3 when y≡1 (mod 8) and ρ≠0. The same congruences hold for any odd square below y³; the floor T(y)=⌊y^{3/2}⌋ is not used beyond selecting an odd landing.",
     "source": "docs/problems/juggler_landing_valuation.md",
     "lean": "Problems/Juggler/LandingValuation.lean",
     "tests": [
@@ -3101,7 +3101,7 @@
   {
     "id": "J-pe-history-valuation",
     "tag": "REFUTED",
-    "statement": "Persistent-expanding residual history forces a 2-adic landing restriction stronger than y mod 8: either v\u2082(y\u00b3-T(y)\u00b2)\u2265r>1 at a PE endpoint, or y\u22611 (mod 16) forces v\u2082\u22654, or the valuation locks the next residual word. Counterexamples: 365 maps to the PE endpoint 763 with v\u2082=1; 33\u22611 (mod 16) has v\u2082=3; on odd n\u22644000 the PE valuation table is the residue law, and v\u2082=1 continues as both persistent OOE and non-persistent OOEE.",
+    "statement": "Persistent-expanding residual history forces a 2-adic landing restriction stronger than y mod 8: either v₂(y³-T(y)²)≥r>1 at a PE endpoint, or y≡1 (mod 16) forces v₂≥4, or the valuation locks the next residual word. Counterexamples: 365 maps to the PE endpoint 763 with v₂=1; 33≡1 (mod 16) has v₂=3; on odd n≤4000 the PE valuation table is the residue law, and v₂=1 continues as both persistent OOE and non-persistent OOEE.",
     "source": "docs/problems/juggler_landing_valuation.md",
     "lean": "Problems/Juggler/LandingValuation.lean",
     "tests": [
@@ -3112,7 +3112,7 @@
   {
     "id": "J-word-cylinder-exact",
     "tag": "REPARAMETERIZATION",
-    "statement": "y=T_w(x) with x realising w if and only if follows x w and image x w = y. Each letter is the existing inverse-floor cell: T(n)=m iff m\u00b2\u2264F(n)<(m+1)\u00b2 with F(n)=n on the even branch and F(n)=n\u00b3 on the odd branch. These are the itinerary and cell lemmas under cylinder names.",
+    "statement": "y=T_w(x) with x realising w if and only if follows x w and image x w = y. Each letter is the existing inverse-floor cell: T(n)=m iff m²≤F(n)<(m+1)² with F(n)=n on the even branch and F(n)=n³ on the odd branch. These are the itinerary and cell lemmas under cylinder names.",
     "source": "docs/problems/juggler_preimage_cylinders.md",
     "lean": "Problems/Juggler/PreimageCylinders.lean",
     "tests": [
@@ -3123,7 +3123,7 @@
   {
     "id": "J-pe-cylinder-next-landing",
     "tag": "REFUTED",
-    "statement": "The predecessor cylinder of a persistent-expanding residual word constrains T(y) mod 2 or the next residual grammar in a way invisible from y, y mod 8, or \u03b8(y). Counterexamples: 3461 maps under OOE to 9585 with T even and 3803 maps under OOE to 10657 with T odd; both endpoints are 1 mod 8 with \u03b8\u22480.382. On expanding overshoots n\u22644000 every PE word with at least 8 samples realises both next parities.",
+    "statement": "The predecessor cylinder of a persistent-expanding residual word constrains T(y) mod 2 or the next residual grammar in a way invisible from y, y mod 8, or θ(y). Counterexamples: 3461 maps under OOE to 9585 with T even and 3803 maps under OOE to 10657 with T odd; both endpoints are 1 mod 8 with θ≈0.382. On expanding overshoots n≤4000 every PE word with at least 8 samples realises both next parities.",
     "source": "docs/problems/juggler_preimage_cylinders.md",
     "lean": "Problems/Juggler/PreimageCylinders.lean",
     "tests": [
@@ -3133,7 +3133,7 @@
   },
   {
     "id": "J-odd-run-recursive",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "Write oddLanding y for y odd and T(y) odd, and oddRun 0 y = oddLanding y, oddRun (r+1) y = oddLanding y and oddRun r (T(y)). Then oddRun (r+1) y if and only if y is odd and oddRun r (T(y)). The odd-landing cylinder of a fixed m contains at most one integer.",
     "source": "docs/problems/juggler_odd_landing_sets.md",
     "lean": "Problems/Juggler/OddLandingSets.lean",
@@ -3145,7 +3145,7 @@
   {
     "id": "J-odd-landing-set-structure",
     "tag": "REFUTED",
-    "statement": "The iterated odd-landing sets P_r occupy shrinking arithmetic cylinders, or iteration is recognized modulo 2^m, or successive square-gap coordinates on long odd runs are constrained. Counterexamples: on odd n\u22648000 the stay fraction |P_{r+1}|/|P_r| is 0.49\u20130.53 through r=7; P_r is mostly isolated odds; every residue modulo 64 both continues and exits; \u03b8 on P_r and on the exit from P_{r-1} both occupy [0,1].",
+    "statement": "The iterated odd-landing sets P_r occupy shrinking arithmetic cylinders, or iteration is recognized modulo 2^m, or successive square-gap coordinates on long odd runs are constrained. Counterexamples: on odd n≤8000 the stay fraction |P_{r+1}|/|P_r| is 0.49–0.53 through r=7; P_r is mostly isolated odds; every residue modulo 64 both continues and exits; θ on P_r and on the exit from P_{r-1} both occupy [0,1].",
     "source": "docs/problems/juggler_odd_landing_sets.md",
     "lean": "Problems/Juggler/OddLandingSets.lean",
     "tests": [
@@ -3155,7 +3155,7 @@
   },
   {
     "id": "J-itinerary-semantics",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every natural n and finite parity word w, follows n w if and only if the actual length-|w| Juggler itinerary of n equals w. The word image equals the |w|-fold iterate, and images and realization compose under word concatenation.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/Itinerary.lean",
@@ -3166,8 +3166,8 @@
   },
   {
     "id": "J-fixed-word-image-monotone",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "If n and m realize the same finite Juggler word w and n \u2264 m, then the image of n after w is at most the image of m after w.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If n and m realize the same finite Juggler word w and n ≤ m, then the image of n after w is at most the image of m after w.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/Itinerary.lean",
     "tests": [
@@ -3177,8 +3177,8 @@
   },
   {
     "id": "J-power-envelope-contraction",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "For every finite Juggler word w realized at n, J^{|w|}(n)^{2^{|w|}} \u2264 n^{3^{#O(w)}}. If n \u2265 2 and 3^{#O(w)} < 2^{|w|}, then J^{|w|}(n) < n.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every finite Juggler word w realized at n, J^{|w|}(n)^{2^{|w|}} ≤ n^{3^{#O(w)}}. If n ≥ 2 and 3^{#O(w)} < 2^{|w|}, then J^{|w|}(n) < n.",
     "source": "docs/problems/juggler_power_composition.md",
     "lean": "Problems/Juggler/Envelope.lean",
     "tests": [
@@ -3188,8 +3188,8 @@
   },
   {
     "id": "J-inverse-cell-asymmetry",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "The even fiber J(n)=m is the parity-restricted square interval m\u00b2 \u2264 n < (m+1)\u00b2, while the odd fiber is the parity-restricted cube-to-square interval m\u00b2 \u2264 n\u00b3 < (m+1)\u00b2; any odd fiber contains at most one integer.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "The even fiber J(n)=m is the parity-restricted square interval m² ≤ n < (m+1)², while the odd fiber is the parity-restricted cube-to-square interval m² ≤ n³ < (m+1)²; any odd fiber contains at most one integer.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/Cells.lean",
     "tests": [
@@ -3199,8 +3199,8 @@
   },
   {
     "id": "J-cycle-finite-structure",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "Every nontrivial Juggler cycle word based at n \u2265 2 is formally expanding. Cycle extrema satisfy the certified parity, order, square-scale, and nested-cell constraints; a minimum-based cycle orientation cannot end in an odd letter. The path from a cycle minimum to any later even state is superquadratic. These are necessary cycle restrictions, not an exclusion of all cycles.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Every nontrivial Juggler cycle word based at n ≥ 2 is formally expanding. Cycle extrema satisfy the certified parity, order, square-scale, and nested-cell constraints; a minimum-based cycle orientation cannot end in an odd letter. The path from a cycle minimum to any later even state is superquadratic. These are necessary cycle restrictions, not an exclusion of all cycles.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/Cycles.lean",
     "tests": [
@@ -3211,8 +3211,8 @@
   },
   {
     "id": "J-ambient-odd-discrepancy",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "For S_O(N) = sum over odd n \u2264 N of (-1)^{floor(n^{3/2})}, the exact fractional-part formulation together with the classical van der Corput and Erd\u0151s\u2013Tur\u00e1n inequalities gives |S_O(N)| \u226a N^{5/6}. This is an ambient odd-input bound, not a Juggler-orbit transfer theorem.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "For S_O(N) = sum over odd n ≤ N of (-1)^{floor(n^{3/2})}, the exact fractional-part formulation together with the classical van der Corput and Erdős–Turán inequalities gives |S_O(N)| ≪ N^{5/6}. This is an ambient odd-input bound, not a Juggler-orbit transfer theorem.",
     "source": "docs/problems/juggler_odd_image_discrepancy.md",
     "lean": "",
     "tests": [
@@ -3222,8 +3222,8 @@
   },
   {
     "id": "J-automatic-descent-density",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "The odd-to-odd Juggler starts have natural density 1/4. Equivalently, the starts that admit a uniform one- or two-step FiniteProgress certificate (every even start n \u2265 2, and every odd start whose first image is even) have natural density 3/4. This is the counting corollary |OO(N)-N/4| \u226a N^{5/6} of the ambient odd-input discrepancy bound. It is a density of that uniform short-certificate class, not of all FiniteProgress, not of ReachesOne, and not a Lean counting theorem.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "The odd-to-odd Juggler starts have natural density 1/4. Equivalently, the starts that admit a uniform one- or two-step FiniteProgress certificate (every even start n ≥ 2, and every odd start whose first image is even) have natural density 3/4. This is the counting corollary |OO(N)-N/4| ≪ N^{5/6} of the ambient odd-input discrepancy bound. It is a density of that uniform short-certificate class, not of all FiniteProgress, not of ReachesOne, and not a Lean counting theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "",
     "tests": [
@@ -3234,8 +3234,8 @@
   },
   {
     "id": "J-finite-progress-boundary",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n \u2265 2 and every odd start n \u2265 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal progress.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n ≥ 2 and every odd start n ≥ 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal progress.",
     "source": "docs/problems/juggler_progress_coverage.md",
     "lean": "Problems/Juggler/Progress.lean",
     "tests": [
@@ -3245,8 +3245,8 @@
   },
   {
     "id": "J-leftover-length-six-orientations",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "Neither OOOEOE nor OOOOEE is a Juggler cycle word at any n \u2265 2. The argument is an exhaustive evaluation for n < 256 together with the last-even cell against the coarse lower envelope n^{81} > 2^{130}(n+1)^{64} for n \u2265 256. This excludes those two orientations only; the length-\u22646 census is the separate row J-small-cycle-census.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Neither OOOEOE nor OOOOEE is a Juggler cycle word at any n ≥ 2. The argument is an exhaustive evaluation for n < 256 together with the last-even cell against the coarse lower envelope n^{81} > 2^{130}(n+1)^{64} for n ≥ 256. This excludes those two orientations only; the length-≤6 census is the separate row J-small-cycle-census.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/LeftoverCycles.lean",
     "tests": [
@@ -3256,8 +3256,8 @@
   },
   {
     "id": "J-small-cycle-census",
-    "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "No word of length at most six is a Juggler cycle word at any n \u2265 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least seven. Assembly: rotation invariance of cycle words, exclusion of all-odd words by strict odd ascent, rotation to an even-terminating orientation, the formal-expansion filter, the general length-four and length-five even-terminating theorems, the odd-run threshold for O^5E, the internal-even threshold for OOEOOE, and the leftover exclusions of OOOEOE and OOOOEE (rotation targets of OEOOOE and EOOOOE). Lean theorem no_cycle_word_length_le_six. Length seven and beyond is open; this is not an exclusion of all cycles and not a halt theorem.",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "No word of length at most six is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least seven. Assembly: rotation invariance of cycle words, exclusion of all-odd words by strict odd ascent, rotation to an even-terminating orientation, the formal-expansion filter, the general length-four and length-five even-terminating theorems, the odd-run threshold for O^5E, the internal-even threshold for OOEOOE, and the leftover exclusions of OOOEOE and OOOOEE (rotation targets of OEOOOE and EOOOOE). Lean theorem no_cycle_word_length_le_six. Length seven and beyond is open; this is not an exclusion of all cycles and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/SmallCycleCensus.lean",
     "tests": [
@@ -3267,8 +3267,8 @@
   },
   {
     "id": "J-nested-parity-linearization",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "For odd n \u2265 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 \u2264 E(n) \u2264 (3/8)(n^{3/2}-1)^{-1/2} \u2264 (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} \u2265 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "For odd n ≥ 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 ≤ E(n) ≤ (3/8)(n^{3/2}-1)^{-1/2} ≤ (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} ≥ 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3278,8 +3278,8 @@
   },
   {
     "id": "J-nested-parity-discrepancy",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Each of the four joint parity classes of (floor(n^{3/2}), floor(floor(n^{3/2})^{3/2})) over odd n \u2264 N has cardinality N/8 + O(N^{23/24+eps}); in particular #{odd n \u2264 N : J(n) odd, J^2(n) even} = N/8 + O(N^{23/24+eps}), one itinerary letter beyond the ambient odd-input bound. Proof: Vaaler wave expansion, the exact linearization row J-nested-parity-linearization, one van der Corput A-process at H = N^{1/12}, constant-gap cells with an exactly split moving-endpoint expansion, and the second-derivative test per cell; exponent deliberately unoptimized. Ambient counting over all odd starts; not an orbit transfer theorem, not a frequency theorem along trajectories, and not a termination claim. Imported into the finite-dynamics note as Theorem 5.4. Lean covers only the exact floor reductions (floor_gap_eq_carry gap cells, floor_odd_iff_half_le_fract_half parity bridge); the analytic estimate is a human proof.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Each of the four joint parity classes of (floor(n^{3/2}), floor(floor(n^{3/2})^{3/2})) over odd n ≤ N has cardinality N/8 + O(N^{23/24+eps}); in particular #{odd n ≤ N : J(n) odd, J^2(n) even} = N/8 + O(N^{23/24+eps}), one itinerary letter beyond the ambient odd-input bound. Proof: Vaaler wave expansion, the exact linearization row J-nested-parity-linearization, one van der Corput A-process at H = N^{1/12}, constant-gap cells with an exactly split moving-endpoint expansion, and the second-derivative test per cell; exponent deliberately unoptimized. Ambient counting over all odd starts; not an orbit transfer theorem, not a frequency theorem along trajectories, and not a termination claim. Imported into the finite-dynamics note as Theorem 5.4. Lean covers only the exact floor reductions (floor_gap_eq_carry gap cells, floor_odd_iff_half_le_fract_half parity bridge); the analytic estimate is a human proof.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "Problems/Juggler/GapCells.lean",
     "tests": [
@@ -3289,8 +3289,8 @@
   },
   {
     "id": "J-fourth-letter-linearization",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "For odd n \u2265 3 with m = floor(n^{3/2}) and v = floor(m^{3/2}): v^{1/2} = n^{9/8} + D(n) with -(3/4) n^{-3/8} - n^{-9/8} \u2264 D(n) \u2264 0, where D(n) = -(3/4) theta n^{-3/8} - (1/2) theta_2 m^{-3/4} - E_3 - E_2 by two applications of the linearization pattern of row J-nested-parity-linearization. Every non-smooth term has decaying amplitude, so smoothing the fourth-letter phase (k/2) v^{1/2} to (k/2) n^{9/8} costs only O(k N^{5/8}) cumulatively. Validated by exact scaled-integer arithmetic through n = 10^{12}, worst ratio 0.9970 against supremum 1.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "For odd n ≥ 3 with m = floor(n^{3/2}) and v = floor(m^{3/2}): v^{1/2} = n^{9/8} + D(n) with -(3/4) n^{-3/8} - n^{-9/8} ≤ D(n) ≤ 0, where D(n) = -(3/4) theta n^{-3/8} - (1/2) theta_2 m^{-3/4} - E_3 - E_2 by two applications of the linearization pattern of row J-nested-parity-linearization. Every non-smooth term has decaying amplitude, so smoothing the fourth-letter phase (k/2) v^{1/2} to (k/2) n^{9/8} costs only O(k N^{5/8}) cumulatively. Validated by exact scaled-integer arithmetic through n = 10^{12}, worst ratio 0.9970 against supremum 1.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3300,8 +3300,8 @@
   },
   {
     "id": "J-triple-parity-discrepancy",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Each of the eight sign classes of ((-1)^m, (-1)^v, (-1)^{floor(sqrt v)}) over odd n \u2264 N, with m = floor(n^{3/2}) and v = floor(m^{3/2}), has cardinality N/16 + O(N^{23/24+eps}). Proof: the c = 0 cases are rows J-ambient-odd-discrepancy and J-nested-parity-discrepancy; for c = 1, the fourth letter is smoothed exactly by row J-fourth-letter-linearization before any differencing, pure fourth-letter modes reduce to a single smooth exponential sum (direct second-derivative test), and mixed modes rerun the depth-2 machinery with the smooth passenger (k/2) n^{9/8}, whose curvature is smaller than every retained scale by at least N^{9/8-1/24}. Even-branch fourth letter only; ambient counting; not a termination claim. Imported into the finite-dynamics note as Theorem 5.7.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Each of the eight sign classes of ((-1)^m, (-1)^v, (-1)^{floor(sqrt v)}) over odd n ≤ N, with m = floor(n^{3/2}) and v = floor(m^{3/2}), has cardinality N/16 + O(N^{23/24+eps}). Proof: the c = 0 cases are rows J-ambient-odd-discrepancy and J-nested-parity-discrepancy; for c = 1, the fourth letter is smoothed exactly by row J-fourth-letter-linearization before any differencing, pure fourth-letter modes reduce to a single smooth exponential sum (direct second-derivative test), and mixed modes rerun the depth-2 machinery with the smooth passenger (k/2) n^{9/8}, whose curvature is smaller than every retained scale by at least N^{9/8-1/24}. Even-branch fourth letter only; ambient counting; not a termination claim. Imported into the finite-dynamics note as Theorem 5.7.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3311,8 +3311,8 @@
   },
   {
     "id": "J-four-step-descent-density",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "#{n \u2264 N : n odd with itinerary OOEE} = N/16 + O(N^{23/24+eps}), and the class of starts with a certified descent within four steps \u2014 evens (one step), OE (two steps, Lean lemma floorPower_odd_even_two_step_lt), OOEE (four steps, row J-power-envelope-contraction via 3^2 < 2^4) \u2014 has cardinality 13N/16 + O(N^{23/24+eps}). Indicator algebra (1-psi_1)(1+psi_2)(1+psi_3)/8 is exactly branch-consistent: the (1+psi_2) factor vanishes precisely where J^3 would take the odd branch. Raises the certified descent density from 3/4 to 13/16. Density of a certificate class, not a termination claim; OOO* classes remain open. Imported into the finite-dynamics note as Corollary 5.9.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "#{n ≤ N : n odd with itinerary OOEE} = N/16 + O(N^{23/24+eps}), and the class of starts with a certified descent within four steps — evens (one step), OE (two steps, Lean lemma floorPower_odd_even_two_step_lt), OOEE (four steps, row J-power-envelope-contraction via 3^2 < 2^4) — has cardinality 13N/16 + O(N^{23/24+eps}). Indicator algebra (1-psi_1)(1+psi_2)(1+psi_3)/8 is exactly branch-consistent: the (1+psi_2) factor vanishes precisely where J^3 would take the odd branch. Raises the certified descent density from 3/4 to 13/16. Density of a certificate class, not a termination claim; OOO* classes remain open. Imported into the finite-dynamics note as Corollary 5.9.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3322,8 +3322,8 @@
   },
   {
     "id": "J-second-order-linearization",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Second-order exact linearization (Lemma G): for odd n \u2265 5 with X = n^{3/2}, m = floor(X): m^{3/4} = (5/32) n^{9/8} + (15/16) m n^{-3/8} - (3/32) m^2 n^{-15/8} - R3 with 0 \u2264 R3 \u2264 (5/128)(X-1)^{-9/4}, and m^{9/4} = (5/32) n^{27/8} - (9/16) m n^{15/8} + (45/32) m^2 n^{3/8} + R4 with -(15/128)(X-1)^{-3/4} \u2264 R4 \u2264 0, by Taylor to third order with the exact substitution theta = X - m in both the linear and quadratic terms. Consequently (Proposition H) the OOO* layer phase v^{3/2}, v = floor(m^{3/2}), equals a degree-(2,1) polynomial in the integer pair (m, v) with smooth coefficients, up to an error of at most (3/4) n^{-9/8}. The integer m enters quadratically with smooth coefficients and decaying remainders \u2014 the algebraic brick for the tier-2 (second growing layer) discrepancy attack. Validated by exact scaled-integer arithmetic (scale 10^{60}) through n = 10^{12}. The tier-2 discrepancy bound itself is not claimed.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Second-order exact linearization (Lemma G): for odd n ≥ 5 with X = n^{3/2}, m = floor(X): m^{3/4} = (5/32) n^{9/8} + (15/16) m n^{-3/8} - (3/32) m^2 n^{-15/8} - R3 with 0 ≤ R3 ≤ (5/128)(X-1)^{-9/4}, and m^{9/4} = (5/32) n^{27/8} - (9/16) m n^{15/8} + (45/32) m^2 n^{3/8} + R4 with -(15/128)(X-1)^{-3/4} ≤ R4 ≤ 0, by Taylor to third order with the exact substitution theta = X - m in both the linear and quadratic terms. Consequently (Proposition H) the OOO* layer phase v^{3/2}, v = floor(m^{3/2}), equals a degree-(2,1) polynomial in the integer pair (m, v) with smooth coefficients, up to an error of at most (3/4) n^{-9/8}. The integer m enters quadratically with smooth coefficients and decaying remainders — the algebraic brick for the tier-2 (second growing layer) discrepancy attack. Validated by exact scaled-integer arithmetic (scale 10^{60}) through n = 10^{12}. The tier-2 discrepancy bound was subsequently proved (row J-kernel-cancellation, Theorem R).",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3333,8 +3333,8 @@
   },
   {
     "id": "J-equidistribution-implies-density-one",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Conditional implication (Proposition J): if for every itinerary word w of length d the class count satisfies |#w(N) - 2^{-d} N| \u2264 E_d(N), then the starts with no contracting prefix of length \u2264 d number at most e^{-cd} N + 2^d E_d(N), with c = 2 (log2/log3 - 1/2)^2 > 0.0342 via Hoeffding on the odd-letter count (a word with no contracting prefix has o_d \u2265 d log2/log3). Every other start n \u2265 2 has a uniform power-envelope descent certificate within d steps (row J-power-envelope-contraction). Hence all-depth parity equidistribution with power savings (Conjecture K; proved for all words of length \u2264 3 and all words of length 4 except OOO* \u2014 rows J-triple-parity-discrepancy, J-even-branch-third-letter, J-depth4-slow-branch) implies that the set of Juggler starts admitting a finite descent certificate has natural density one \u2014 the Juggler analogue of the Terras program. E-rooted words have a contracting prefix at length 1, so only O-rooted class bounds are ever consumed. The implication is unconditional; the hypothesis is open beyond the proved cases. Not a termination claim; no unconditional density-one claim. Imported into the finite-dynamics note as Proposition 6.1.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Conditional implication (Proposition J): if for every itinerary word w of length d the class count satisfies |#w(N) - 2^{-d} N| ≤ E_d(N), then the starts with no contracting prefix of length ≤ d number at most e^{-cd} N + 2^d E_d(N), with c = 2 (log2/log3 - 1/2)^2 > 0.0342 via Hoeffding on the odd-letter count (a word with no contracting prefix has o_d ≥ d log2/log3). Every other start n ≥ 2 has a uniform power-envelope descent certificate within d steps (row J-power-envelope-contraction). Hence all-depth parity equidistribution with power savings (Conjecture K; proved unconditionally for all words of length ≤ 4 — rows J-triple-parity-discrepancy, J-even-branch-third-letter, J-depth4-slow-branch, J-depth4-complete; depth ≥ 5 open) implies that the set of Juggler starts admitting a finite descent certificate has natural density one — the Juggler analogue of the Terras program. E-rooted words have a contracting prefix at length 1, so only O-rooted class bounds are ever consumed. The implication is unconditional; the hypothesis is open beyond the proved cases. Not a termination claim; no unconditional density-one claim. Imported into the finite-dynamics note as Proposition 6.1.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3344,8 +3344,8 @@
   },
   {
     "id": "J-even-branch-third-letter",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Proposition L: |sum over odd n \u2264 N of ((-1)^m)^a psi(m^{1/2})| \u226a N^{7/8+eps} for a in {0,1}, with m = floor(n^{3/2}) and psi(x) = (-1)^{floor(x)}. Hence #OEO(N) and #OEE(N) each equal N/8 + O(N^{7/8+eps}), completing all four depth-3 itinerary word classes (OO-splits by row J-triple-parity-discrepancy). Proof: exact smoothing m^{1/2} = n^{3/4} + D1 with -(1/2)X^{-1/2} - (1/8)(X-1)^{-3/2} \u2264 D1 \u2264 0 (decaying; cumulative cost O(l N^{1/4})), then pure smooth modes with van der Corput II. Branch-consistent: the (1+(-1)^m)/2 factor vanishes exactly where J^2 takes the odd branch. Corrects an earlier overclaim that depth 3 was already fully proved. Validated to n = 10^{12} (smoothing) and n \u2264 20001 (indicator identity). Imported into the finite-dynamics note as Proposition 5.5.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Proposition L: |sum over odd n ≤ N of ((-1)^m)^a psi(m^{1/2})| ≪ N^{7/8+eps} for a in {0,1}, with m = floor(n^{3/2}) and psi(x) = (-1)^{floor(x)}. Hence #OEO(N) and #OEE(N) each equal N/8 + O(N^{7/8+eps}), completing all four depth-3 itinerary word classes (OO-splits by row J-triple-parity-discrepancy). Proof: exact smoothing m^{1/2} = n^{3/4} + D1 with -(1/2)X^{-1/2} - (1/8)(X-1)^{-3/2} ≤ D1 ≤ 0 (decaying; cumulative cost O(l N^{1/4})), then pure smooth modes with van der Corput II. Branch-consistent: the (1+(-1)^m)/2 factor vanishes exactly where J^2 takes the odd branch. Corrects an earlier overclaim that depth 3 was already fully proved. Validated to n = 10^{12} (smoothing) and n ≤ 20001 (indicator identity). Imported into the finite-dynamics note as Proposition 5.5.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3355,8 +3355,8 @@
   },
   {
     "id": "J-tier2-gap-and-shifted-forms",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Tier-2 bricks. Lemma M: for odd n \u2265 5, X = n^{3/2}, m = floor(X), integer G \u2265 0, Z = X + G: m^{3/2} = -(1/8)X^{3/2} + (3/4) m X^{1/2} + (3/8) m^2 X^{-1/2} + R5 and (m+G)^{3/2} = Z^{3/2} - (3/2)X Z^{1/2} + (3/8)X^2 Z^{-1/2} + m((3/2)Z^{1/2} - (3/4)X Z^{-1/2}) + (3/8) m^2 Z^{-1/2} + R6, with 0 \u2264 R5, R6 \u2264 (1/16)(base-1)^{-3/2} (positive third-order Taylor remainders). Lemma N: the level-2 gap satisfies g2 = v(n+2h) - v(n) = floor(DY) + [theta2 \u2265 1 - {DY}] with DY = Y(n+2h) - Y(n), Y = m^{3/2} \u2014 Lemma B one level up; on constant-g1 cells DY is a quadratic in m with smooth coefficients by Lemma M. Validated exactly to n = 10^{12} (Lemma M, gaps h in {1,2,5}) and on 3800 orbit samples (Lemma N). Bricks only; the tier-2 discrepancy bound is not claimed \u2014 the remaining obstacle is the kernel sum e(c(n){m^{3/2}}) with c of size n^{9/8} (Conjecture O; float probe shows square-root cancellation). Lean covers only the Lemma N floor identity (seq_floor_gap); Lemma M and all analytic content remain human proofs.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Tier-2 bricks. Lemma M: for odd n ≥ 5, X = n^{3/2}, m = floor(X), integer G ≥ 0, Z = X + G: m^{3/2} = -(1/8)X^{3/2} + (3/4) m X^{1/2} + (3/8) m^2 X^{-1/2} + R5 and (m+G)^{3/2} = Z^{3/2} - (3/2)X Z^{1/2} + (3/8)X^2 Z^{-1/2} + m((3/2)Z^{1/2} - (3/4)X Z^{-1/2}) + (3/8) m^2 Z^{-1/2} + R6, with 0 ≤ R5, R6 ≤ (1/16)(base-1)^{-3/2} (positive third-order Taylor remainders). Lemma N: the level-2 gap satisfies g2 = v(n+2h) - v(n) = floor(DY) + [theta2 ≥ 1 - {DY}] with DY = Y(n+2h) - Y(n), Y = m^{3/2} — Lemma B one level up; on constant-g1 cells DY is a quadratic in m with smooth coefficients by Lemma M. Validated exactly to n = 10^{12} (Lemma M, gaps h in {1,2,5}) and on 3800 orbit samples (Lemma N). Bricks for the kernel bound, subsequently proved as Theorem R (row J-kernel-cancellation). Lean covers only the Lemma N floor identity (seq_floor_gap); Lemma M and all analytic content remain human proofs.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "Problems/Juggler/GapCells.lean",
     "tests": [
@@ -3366,8 +3366,8 @@
   },
   {
     "id": "J-depth4-slow-branch",
-    "tag": "EXACT \u2014 HUMAN PROOF",
-    "statement": "Theorem Q: #OEOE(N), #OEOO(N) = N/16 + O(N^{7/8+eps}) and #OEEE(N), #OEEO(N) = N/16 + O(N^{13/16+eps}). With rows J-triple-parity-discrepancy and J-four-step-descent-density this proves every depth-4 itinerary word class except OOO*. Proof: Lemma A' gives the exact identity w^{3/2} = m^{3/4} - (3/2) m^{1/4} theta_w + E (0 \u2264 E \u2264 (3/8)(U-1)^{-1/2}, using U m^{1/4} = m^{3/4} exactly), so the fourth-letter phase is (k/2) n^{9/8} minus one growing sawtooth B theta_w with B = (3k/4) n^{3/8}; B drifts by \u2264 1 on intervals of length P^{5/8}/k, where a shifted-window Fourier expansion in U (mass O(log), partial summation for the moving coefficients) reduces to smooth modes with single-signed curvature ~ k n^{-7/8} (window T = P^{5/16} << k P^{3/8} avoids sign collision for every k \u2265 1); van der Corput II and the balance J = P^{1/8} give N^{7/8+eps}. The OEE branch has decaying amplitudes only. No differencing and no kernel: the coefficient crosses integers every P^{5/8}/k steps, unlike the OOO* weight (crossings within single steps) \u2014 the engine reaches exactly the letters whose phase coefficients grow slower than n. Ambient counting; not a termination claim; OOO* remains open (Conjecture O). Imported into the finite-dynamics note as Theorem 5.8.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Theorem Q: #OEOE(N), #OEOO(N) = N/16 + O(N^{7/8+eps}) and #OEEE(N), #OEEO(N) = N/16 + O(N^{13/16+eps}). With rows J-triple-parity-discrepancy and J-four-step-descent-density this proves every depth-4 itinerary word class except OOO*. Proof: Lemma A' gives the exact identity w^{3/2} = m^{3/4} - (3/2) m^{1/4} theta_w + E (0 ≤ E ≤ (3/8)(U-1)^{-1/2}, using U m^{1/4} = m^{3/4} exactly), so the fourth-letter phase is (k/2) n^{9/8} minus one growing sawtooth B theta_w with B = (3k/4) n^{3/8}; B drifts by ≤ 1 on intervals of length P^{5/8}/k, where a shifted-window Fourier expansion in U (mass O(log), partial summation for the moving coefficients) reduces to smooth modes with single-signed curvature ~ k n^{-7/8} (window T = P^{5/16} << k P^{3/8} avoids sign collision for every k ≥ 1); van der Corput II and the balance J = P^{1/8} give N^{7/8+eps}. The OEE branch has decaying amplitudes only. No differencing and no kernel: the coefficient crosses integers every P^{5/8}/k steps, unlike the OOO* weight (crossings within single steps) — the engine reaches exactly the letters whose phase coefficients grow slower than n. Ambient counting; not a termination claim; OOO* remains open (Conjecture O). Imported into the finite-dynamics note as Theorem 5.8.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [
@@ -3377,8 +3377,19 @@
   },
   {
     "id": "J-kernel-cancellation",
-    "tag": "CONJECTURE",
-    "statement": "Conjecture O / note Conjecture 6.2: K_c(P) = sum over odd n ~ P of e(c(n) {floor(n^{3/2})^{3/2}}) satisfies K_c(P) << P^{1-delta} for some delta > 0, uniformly over smooth coefficients c with c ~ k P^{9/8} and c' ~ k P^{1/8} (the W-shaped family produced by differencing the OOO* phase). Exact-scaled-phase probes show square-root cancellation (|K| = 51.9, 124.4, 1017.5 on 5e3, 5e4, 5e5 terms). Every reorganization of the OOO* split tried funnels into this object; a bound would complete depth-4 equidistribution and raise the certified descent density beyond 13/16. Open; no bound is claimed. The coefficient derivative c' >> 1 crosses integers within single steps, so no drift-1 interval exists and the depth-4 engine does not apply. Phase 8: a complete double-differencing DRAFT proof exists (Theorem R, working doc Part VI; delta = 1/72 uniformly for k <= P^{1/24}), resting on the exact double-gap identity (Lean seq_floor_gap_second), the branch decomposition of Delta Delta Y, and integer annihilation; its exact bricks are machine-validated and the differenced sums cancel at square-root scale. The tag stays CONJECTURE pending an adversarial review pass at the Theorem-C standard.",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Theorem R (formerly Conjecture O / note Conjecture 6.2): K_c(P) = sum over odd n ~ P of e(c(n) {floor(n^{3/2})^{3/2}}) satisfies K_c(P) << P^{1-delta}, uniformly over smooth coefficients with c^{(r)} ~ k P^{9/8-r} for r <= 4 in the monomial sign pattern (the W-shaped family produced by differencing the OOO* phase); delta = 1/64 for bounded k and delta = 1/72 uniformly for k <= P^{1/24}, deliberately unoptimized. Proof (working doc Part VI, Phases 8-9): double Weyl differencing; the exact double-gap identity Delta_2 g_2 = floor(DDY) + kappa'' + Delta_2 kappa_2 (Lean: seq_floor_gap_second); the (b, kappa)-branch decomposition DDY = F_kappa(m) exactly, with sub-unit branch derivatives and slow arc-indicator endpoints in theta; per-run van der Corput II on the combined smooth phase c(F - J); and a targeted third Weyl differencing for the mixed pieces (frozen floor times large X-mode), where the split J = F - {F} against the slow sawtooth {F(X)} with sub-unit window drift (Delta_3 c)' recovers the P^{1/8}/r^{1/6} saving. Adversarially re-derived in the Phase-9 review: two defects found and repaired (branch organization; the per-run third-derivative test replaced by the targeted differencing) with final exponents unchanged; collision inventory, sign-dominance (monomial exponents 15/8, 11/8), k-uniformity and majorant bookkeeping verified. Identities machine-validated (R1-R3); differenced kernel sums T1, T2, T3 all cancel at square-root scale. Not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "Problems/Juggler/GapCells.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-depth4-complete",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Theorem S: #OOOE(N), #OOOO(N) = N/16 + O(N^{1-1/72+eps}), completing depth-4 equidistribution: every itinerary word class of length <= 4 satisfies #w(N) = 2^{-|w|} N + O(N^{1-delta_w}) with explicit delta_w > 0 (rows J-nested-parity-discrepancy, J-triple-parity-discrepancy, J-even-branch-third-letter, J-four-step-descent-density, J-depth4-slow-branch, and this row). Proof: Vaaler expansion (truncation J3 = P^{1/24}), Proposition H reduction of the OOO* layer phase to a degree-(2,1) polynomial in (m, v); the vm- and vm^2-cross terms reduce to the Theorem-R family via xi*v*m = (xi X) v - (xi theta) v and its quadratic analogue, with every theta-cross coefficient sub-unit and every smooth v-coefficient a W-family member; v = Y - theta_2 splits into Lemma-M smooth content plus the kernel factor, and the Theorem-R engine (row J-kernel-cancellation) carries the i- and j-mode passenger phases through the established dominance hierarchy. Consequences: Conjecture K holds unconditionally at every depth <= 4, so the d <= 4 base cases of Proposition J's hypothesis (row J-equidistribution-implies-density-one) are theorems. The OOO* classes are non-contracting at depth 4 (3^3 > 2^4), so the certified-descent density stays 13/16; depth >= 5 (e.g. OOOEE) is open and needs one more differencing per growing layer. Not a termination claim.",
     "source": "docs/research/juggler_two_step_parity_lemma.md",
     "lean": "",
     "tests": [

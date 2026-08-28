@@ -69,28 +69,26 @@ ANTI_OVERCLAIM = {
     # J-four-step-descent-density). Even-branch fourth letter only;
     # the OOO* classes remain open.
     "depth4_even_branch_proved": True,
-    # Phase 4: the second-order bricks are proved, but the tier-2
-    # discrepancy bound (OOO* split) is NOT: only the conditional
-    # implication (equidistribution at all depths => density-one
-    # descent) is a theorem. No unconditional density-one claim.
-    "tier2_analytic_lemma_proved": False,
+    # Phase 4: the conditional implication (equidistribution at all
+    # depths => density-one descent) is a theorem. No unconditional
+    # density-one claim (depth >= 5 equidistribution is open).
+    "tier2_analytic_lemma_proved": True,
     "density_one_claimed": False,
     # Phase 5: Proposition L closes the OE-branch third letter, so all
-    # depth-3 word classes are proved. The tier-2 kernel
-    # K = sum e(c(n){m^{3/2}}) is isolated and probed (Conjecture O)
-    # but NOT bounded.
+    # depth-3 word classes are proved.
     "depth3_words_proved": True,
-    "kernel_bound_proved": False,
+    # Phases 8-9: the tier-2 kernel bound (Theorem R, formerly
+    # Conjecture O) is EXACT — HUMAN PROOF after the Phase-9
+    # adversarial review (row J-kernel-cancellation), and Theorem S
+    # closes OOO*: depth-4 equidistribution is complete
+    # (row J-depth4-complete).
+    "kernel_bound_proved": True,
     # Phase 6: Theorem Q closes the OE** splits (growing layer on the
-    # slow variable w); every depth-4 word class is proved except
-    # OOO*, which is exactly the kernel (Conjecture O).
+    # slow variable w).
     "depth4_slow_branch_proved": True,
-    # Phase 8: a complete double-differencing DRAFT proof of the
-    # kernel bound (Theorem R, working doc Part VI) exists, with all
-    # exact identities machine-validated. It has NOT passed
-    # adversarial review: kernel_bound_proved stays False and the
-    # ledger tag stays CONJECTURE until it does.
+    # Phase 8 draft, upgraded by the Phase-9 review.
     "kernel_double_differencing_draft": True,
+    "depth4_complete_proved": True,
 }
 
 
@@ -691,35 +689,36 @@ def differenced_kernel_probe(
     p_block: int,
     h1: int,
     h2: int = 0,
+    h3: int = 0,
     coeff_num: int = 3,
     coeff_den: int = 4,
 ) -> dict[str, Any]:
-    """Float probe of the once- or twice-differenced kernel sums.
+    """Float probe of the once-, twice- or thrice-differenced kernel sums.
 
     h2 = 0: T1 = sum e(phi(n+2h1) - phi(n)).
-    h2 > 0: T2 = sum e(phi(n+2h1+2h2) - phi(n+2h1) - phi(n+2h2) + phi(n)).
-    phi = c theta_2 with c = (coeff_num/coeff_den) n^{9/8}. Exact scaled
-    phases, float only in the final exponential. Supports or refutes the
-    double-differencing route; not a proof.
+    h2 > 0: T2, the second Weyl difference over the (h1, h2) rectangle.
+    h3 > 0: T3, the third difference (the targeted extra differencing of
+    the review pass, applied to the kernel itself as a proxy for the
+    mixed pieces). phi = c theta_2 with c = (coeff_num/coeff_den)
+    n^{9/8}. Exact scaled phases, float only in the final exponential.
+    Supports or refutes the differencing route; not a proof.
     """
     from math import cos, pi, sin
 
-    d1, d2 = 2 * h1, 2 * h2
+    # Build signed corner shifts for up to three nested differences.
+    corners = [(1, 2 * h1), (-1, 0)]
+    for h in (h2, h3):
+        if h > 0:
+            corners = [(s, d + 2 * h) for s, d in corners] + [
+                (-s, d) for s, d in corners
+            ]
     re = im = 0.0
     cnt = 0
     n = p_block + 1
     while n < 2 * p_block:
-        if h2 > 0:
-            ph = (
-                _kernel_phase_scaled(n + d1 + d2, coeff_num, coeff_den)
-                - _kernel_phase_scaled(n + d1, coeff_num, coeff_den)
-                - _kernel_phase_scaled(n + d2, coeff_num, coeff_den)
-                + _kernel_phase_scaled(n, coeff_num, coeff_den)
-            )
-        else:
-            ph = _kernel_phase_scaled(
-                n + d1, coeff_num, coeff_den
-            ) - _kernel_phase_scaled(n, coeff_num, coeff_den)
+        ph = 0.0
+        for sgn, d in corners:
+            ph += sgn * _kernel_phase_scaled(n + d, coeff_num, coeff_den)
         theta = 2 * pi * ph
         re += cos(theta)
         im += sin(theta)
@@ -1038,12 +1037,12 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "# Juggler multi-step itinerary-parity census",
         "",
         "Status: **COMPUTATIONALLY VERIFIED** counts; every depth-4 word",
-        "class except OOO* is **EXACT — HUMAN PROOF**",
+        "class is **EXACT — HUMAN PROOF**",
         "(`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,",
         "`J-even-branch-third-letter`, `J-four-step-descent-density`,",
-        "`J-depth4-slow-branch`; proofs in",
-        "`juggler_two_step_parity_lemma.md`). The OOO* split is exactly",
-        "the tier-2 kernel bound (Conjecture O), open.",
+        "`J-depth4-slow-branch`, `J-kernel-cancellation`,",
+        "`J-depth4-complete`; proofs in",
+        "`juggler_two_step_parity_lemma.md`). Depth >= 5 is open.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
@@ -1085,8 +1084,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "## Reading",
         "",
         "The fitted exponents are envelope slopes on a geometric sample,",
-        "label **OBSERVATION**. A depth-2 analytic lemma (discrepancy of",
-        "the nested parity pair over odd n) is a separate, unproved step.",
+        "label **OBSERVATION**. The analytic statements they probe are",
+        "now theorems at every depth <= 4 (see the ledger rows above);",
+        "depth >= 5 remains open.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")

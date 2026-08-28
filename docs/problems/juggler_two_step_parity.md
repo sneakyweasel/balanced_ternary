@@ -362,13 +362,13 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: does the Phase-8 double-differencing draft proof of
-Conjecture O (Theorem R, working doc Part VI, \(\delta = 1/72\)
-uniformly for \(k \le P^{1/24}\)) survive an adversarial review pass
-at the Theorem-C standard, and does its passenger-robust variant
-close the OOO\* corollary? The editorial import into the
-finite-dynamics note is done (Phase 7, consolidation); the kernel
-tag stays `CONJECTURE` until review.
+One mathematical: does the tier-3 ladder (one extra Weyl
+differencing per growing layer) close the depth-5 OOO-prefixed
+contracting words (e.g. OOOEE), which is now the only route to a
+certified-descent density above \(13/16\)? One editorial: import
+Theorems R and S into the finite-dynamics note (its Conjecture 6.2,
+Section 6 boundary text and frontier figure are superseded by
+Phases 8–9).
 
 ## Decision
 
@@ -460,18 +460,47 @@ at square-root scale). No ledger retag, no note import, no density
 claim: `kernel_bound_proved` stays `False`;
 `kernel_double_differencing_draft` flipped to `True`.
 
-Best next question: does Theorem R's bookkeeping survive an
-adversarial re-derivation of every piece (the Theorem-C treatment),
-including the sign-dominance checks and the passenger-robust OOO\*
-corollary?
+**PROMOTE** (Phase 9, review pass): every step of Theorem R
+re-derived adversarially. Two defects found and repaired with the
+part's own exact mechanisms, final exponents unchanged: (1) the
+draft's "constant-gap cells" are wild sets (the level-1 carry
+toggles every step); Lemma R3 restated over \(b\)-run intersections
+and the carry vector \((\kappa_1,\kappa_2,\kappa_{12})\), whose
+branch indicators are \(\theta\)-arcs with slow endpoints. (2) The
+draft's per-run third-derivative test on mixed pieces (frozen floor
+× large \(X\)-mode) is worthless — its second term sums to the
+trivial bound; repaired by a targeted third Weyl differencing plus
+the split \(J = F - \{F\}\), where the differenced coefficient's
+sub-unit window drift \((\Delta_3c)' \asymp kh_3P^{-7/8}\) lets the
+slow sawtooth \(\{F(X)\}\) expand with no run segmentation,
+recovering the \(P^{1/8}/r^{1/6}\) saving. Collision inventory,
+sign-dominance (monomial exponents \(15/8, 11/8 \notin \{0,1,2\}\)),
+\(k\)-uniformity and majorant bookkeeping verified; the triple
+difference \(T_3\) probes cancel at square-root scale. Theorem R
+upgraded to `EXACT — HUMAN PROOF` (row `J-kernel-cancellation`
+retagged), and Theorem S closes the OOO\* splits at
+\(N^{1-1/72+\varepsilon}\): depth-4 equidistribution is complete
+(new row `J-depth4-complete`); Conjecture K holds at every depth
+\(\le 4\) and Proposition J's base cases \(d \le 4\) are theorems.
+`kernel_bound_proved`, `tier2_analytic_lemma_proved`,
+`depth4_complete_proved` flipped. The certified-descent density
+stays \(13/16\) (OOO\* classes are non-contracting at depth 4); no
+density-one claim.
+
+Best next question: does the tier-3 ladder (one more differencing
+per growing layer, starting with the depth-5 OOO-prefixed
+contracting words such as OOOEE) close with the same exact
+identities, raising the certified-descent density above \(13/16\)?
 
 ## Publication assessment
 
-Status: `THEOREM`, imported. Exact linearization lemmas, power-saving
+Status: `THEOREM`. Exact linearization lemmas, power-saving
 joint-parity discrepancy bounds for nested floor-power sequences at
-all depths \(\le 3\) and every depth-4 word except OOO\*, outside the
-existing Piatetski-Shapiro literature, and a certified-descent
-density of \(13/16\) — now the note's Section 5 headline, replacing
-\(3/4\). The isolated kernel \(K_c\) (Conjecture O) is stated in the
-note as Conjecture 6.2, with a sharp engine/kernel regime boundary.
-No pending editorial debt.
+**every depth \(\le 4\)** — the kernel bound (Theorem R) and depth-4
+completion (Theorem S) close what the note still states as
+Conjecture 6.2 — outside the existing Piatetski-Shapiro literature,
+plus a certified-descent density of \(13/16\) and the conditional
+density-one theorem with unconditional base cases \(d \le 4\).
+Pending editorial debt: the note's Sections 5–6, the frontier
+figure, reviewer packet and bundle still present the kernel as open;
+import Theorems R/S in a consolidation phase.

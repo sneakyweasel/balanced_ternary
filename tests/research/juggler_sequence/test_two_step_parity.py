@@ -114,8 +114,13 @@ def test_anti_overclaim_flags():
     assert ANTI_OVERCLAIM["depth2_analytic_lemma_proved"] is True
     # Flipped by the Phase-3 review pass (J-triple-parity-discrepancy).
     assert ANTI_OVERCLAIM["depth4_even_branch_proved"] is True
-    # Phase 4: bricks proved, but no tier-2 bound and no density-one claim.
-    assert ANTI_OVERCLAIM["tier2_analytic_lemma_proved"] is False
+    # Flipped by the Phase-9 review pass (J-kernel-cancellation,
+    # J-depth4-complete): the tier-2 kernel bound and the depth-4
+    # completion are theorems. Density one stays unclaimed (depth >= 5
+    # equidistribution is open).
+    assert ANTI_OVERCLAIM["tier2_analytic_lemma_proved"] is True
+    assert ANTI_OVERCLAIM["kernel_bound_proved"] is True
+    assert ANTI_OVERCLAIM["depth4_complete_proved"] is True
     assert ANTI_OVERCLAIM["density_one_claimed"] is False
 
 
@@ -279,12 +284,16 @@ def test_branch_freeze():
 
 
 def test_differenced_kernel_cancels():
-    # Theorem R support: the once- and twice-differenced kernel sums
-    # cancel far below the trivial bound (loose threshold).
+    # Theorem R support: the once-, twice- and thrice-differenced kernel
+    # sums cancel far below the trivial bound (loose threshold). The
+    # third difference backs the targeted extra differencing of the
+    # Phase-9 review repair.
     t1 = differenced_kernel_probe(10**4, 1)
     t2 = differenced_kernel_probe(10**4, 1, 2)
+    t3 = differenced_kernel_probe(10**4, 1, 2, 3)
     assert t1["abs_sum"] < 0.1 * t1["count"]
     assert t2["abs_sum"] < 0.1 * t2["count"]
+    assert t3["abs_sum"] < 0.1 * t3["count"]
 
 
 def test_lemma_a_prime_w_level_linearization():
