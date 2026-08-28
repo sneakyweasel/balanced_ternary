@@ -1,14 +1,19 @@
 # Juggler finite-dynamics formalization map
 
-This page is the formal companion to
-[the finite-dynamics paper](juggler_finite_dynamics_note.md). It identifies
-the Lean objects used by the paper and records their exact scope. The
-development is in `formal/Problems/Juggler/`; it contains no `sorry` or
-`admit`.
+This page is the Lean companion to the math note
+[juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md).
+The note is written to be readable without this page. The development is
+in `formal/Problems/Juggler/`; it contains no `sorry` or `admit`.
 
 The package formalizes finite trajectories and conditional cycle structure.
 It does not prove that every positive integer reaches \(1\), that every orbit
 has a contracting prefix, or that nontrivial cycles are impossible.
+
+The paper-central one-way import graph is drawn in
+[figures/juggler_lean_layers.png](figures/juggler_lean_layers.png)
+from source [figures/juggler_lean_layers.mmd](figures/juggler_lean_layers.mmd).
+Satellite modules omitted from that figure remain in
+`formal/Problems/Juggler.lean`.
 
 ## 1. Map and iteration
 
@@ -217,9 +222,11 @@ unresolved_is_odd_odd :
   n % 2 = 1 ∧ floorPower n % 2 = 1
 ```
 
-Thus even and odd-to-even starts have automatic finite progress. The universal
-premise remains open precisely beyond that automatic coverage; the theorem
-does not assert that every odd-to-odd start eventually descends.
+Thus even and odd-to-even starts have automatic finite progress. The note's
+density-\(3/4\) corollary counts that uniform short-certificate class. It
+is not a Lean cardinality theorem, not a density of all `FiniteProgress`,
+and not a `ReachesOne` density. Odd-to-odd starts may still descend after
+a longer word. The Terras analogue on that class remains open.
 
 ## 7. Exact inverse cells
 

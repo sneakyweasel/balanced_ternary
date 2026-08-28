@@ -128,3 +128,31 @@ def test_floor_power_unchanged():
     assert floor_power(3) == 5
     assert floor_power(13) == 46
     assert floor_power(46) == 6
+
+
+def test_horizon20_first_return_n1000_observation():
+    """Pin the N=10^3 row of the math-note first-return table."""
+
+    def first_return(n: int, horizon: int) -> int | None:
+        x = n
+        for _ in range(horizon):
+            x = floor_power(x)
+            if x < n:
+                return True
+        return None
+
+    oo = 0
+    oo_drop = 0
+    all_drop = 0
+    for n in range(2, 1001):
+        is_oo = n % 2 == 1 and floor_power(n) % 2 == 1
+        if is_oo:
+            oo += 1
+        dropped = first_return(n, 20) is not None
+        if dropped:
+            all_drop += 1
+            if is_oo:
+                oo_drop += 1
+    assert oo == 252
+    assert oo_drop == 221
+    assert all_drop == 968

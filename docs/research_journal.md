@@ -8445,4 +8445,43 @@ Best next question
   or certificate map?
 ```
 
+## Juggler math-note cut
+
+- **Date:** 2026-08-28
+- **Objective:** Cut the publication draft to a standalone math note after the paper audit: one thesis, no repository tour, no Terras dressing of the \(3/4\) figure
+- **Hypotheses:** envelope, defect, uniform short certificates, and the ambient \(OO\sim N/4\) corollary can be stated without Atlas, Section 4 diaries, or unfinished cycle hunts
+- **Major results:** retitled note; FiniteProgress defined in English; Theorem 5.1 written out; short-certificate class distinguished from all descent and from `ReachesOne`; Acknowledgments no longer claim every statement is Lean or a computation; Atlas shrunk to an archive paragraph; horizon-\(20\) first-return table labelled OBSERVATION; totality window \(n\le4000\) and even residuals \(<144\) recorded
+- **Refuted ideas:** density \(3/4\) of short certificates is Terras's theorem; \(\neg\mathrm{FP}\Rightarrow\mathrm{OO}\) means odd-to-odd starts have no descent
+- **Literature:** added Everett 1977 and Weisstein MathWorld; dropped Chamberland and the Yolcu-as-same-program analogy
+- **Open:** almost-all descent on odd-to-odd starts
+- **Decision:** PROMOTE the revised math note as the paper candidate. Underlying PARK/CLOSE branch decisions unchanged. No new attack
+
+```text
+What was learned
+- The 3/4 figure is a uniform short-certificate density, not Terras
+- FiniteProgress is larger than the automatic class
+- The discrepancy proof belongs in the note, not only in a dossier
+- Atlas and closed-compression diaries do not carry a math paper
+
+Strongest theorem
+- Realized words obey the power envelope; even and odd-to-even starts
+  have uniform short certificates; odd-to-odd starts have density 1/4
+
+Strongest refutation
+- Reading unresolved_is_odd_odd as “odd-to-odd starts never descend”
+
+Reusable machinery
+- none added; the note was cut
+
+Branch status
+- PROMOTE
+
+Why
+- The audit required a single thesis and honest quantifiers. The cut
+  does that without opening a new attack.
+
+Best next question
+- do almost all odd-to-odd starts have a finite descent certificate?
+```
+
 

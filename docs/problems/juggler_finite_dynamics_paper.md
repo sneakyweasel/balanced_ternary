@@ -1,11 +1,13 @@
 # Juggler finite-dynamics paper synthesis
 
-Status: **PAPER_CANDIDATE**
+Author: Philippe Cochin. Date: 28 August 2026.
+Status: **PAPER_CANDIDATE**. The publication draft is dated 28 August 2026
+and is not submitted. After the paper audit it is a standalone math note
+(envelope, defect, short certificates, ambient discrepancy), not a
+repository tour.
 
-Umbrella synthesis of the exact Lean formalization, Word Atlas, finite
-structural branches, analytic discrepancy result, and negative knowledge. This
-branch opens no new attack and makes no claim that every positive integer
-reaches \(1\).
+This branch opens no new attack and makes no claim that every positive
+integer reaches \(1\).
 
 ## Problem
 
@@ -16,12 +18,12 @@ pointwise-progress boundary?
 ## Exact statement
 
 The paper-level target is not universal termination. It is the qualified
-synthesis:
+math note:
 
-> Finite Juggler dynamics admit a rich formal and computational description,
-> but the symbolic, residual, geometric, inverse, extremal, and statistical
-> compressions tested in the named branches do not yield a pointwise
-> termination mechanism.
+> Realized finite words obey an exact power envelope; even and odd-to-even
+> starts have uniform short descent certificates; the complementary
+> odd-to-odd class has density \(1/4\). That density is not Terras's
+> theorem and not a density of arrival at \(1\).
 
 Every substantive claim must be linked to one of:
 
@@ -161,15 +163,15 @@ The publication stack consists of:
 - [formalization map](../theory/juggler_finite_dynamics_formalization.md);
 - [curated branch ledger](../juggler_branch_ledger.md).
 
-The synthesis makes the finite-progress boundary explicit: conditional
-contraction, exact defects, inverse-cell geometry, cycle restrictions, and
-ambient discrepancy do not yet force every exact state into a descent.
+The note makes the short-certificate boundary explicit: a uniform one- or
+two-step argument covers a set of density \(3/4\). That is not a density
+of all descent certificates and not a \(\operatorname{ReachesOne}\)
+density. The Terras analogue — almost-all descent on odd-to-odd starts —
+remains open.
 
 ## Open questions
 
-Can an independently verified pointwise mechanism force every exact Juggler
-state into a contracting prefix, without merely reparameterizing the current
-integer or assuming a statistical parity law?
+Do almost all odd-to-odd starts have a finite descent certificate?
 
 ## Decision
 
@@ -179,14 +181,14 @@ original decisions. Promotion applies to the synthesis: its contribution is
 the formal/computational map and exact evidence boundary, not a termination
 claim.
 
-Best next question: can external review identify a gap in the quantifiers,
-novelty boundary, or certificate map of the publication draft?
+Best next question: do almost all odd-to-odd starts have a finite descent
+certificate?
 
 ## Publication assessment
 
 Status: `PAPER_CANDIDATE`.
 
-The candidate contains exact Lean theorems, a nontrivial validated
-computational apparatus, certified counterexamples, and a clear literature and
-scope distinction. External mathematical and prior-art review is the next
-gate.
+The candidate is a standalone math note: envelope, defect, short
+certificates, and an ambient discrepancy corollary. External mathematical
+review is the next gate. The Atlas and closed-compression diaries stay
+in the laboratory record.

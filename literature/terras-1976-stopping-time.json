@@ -1,7 +1,9 @@
 {
   "authors": ["Riho Terras"],
   "id": "terras-1976-stopping-time",
-  "identifiers": {},
+  "identifiers": {
+    "doi": "10.4064/aa-30-3-241-252"
+  },
   "notes": "docs/problems/syracuse.md",
   "problem_area": "collatz",
   "project_relationship": "known",

@@ -1,0 +1,20 @@
+{
+  "id": "everett-1977-iteration",
+  "title": "Iteration of the number-theoretic function f(2n)=n, f(2n+1)=3n+2",
+  "authors": ["C. J. Everett"],
+  "year": 1977,
+  "identifiers": {
+    "doi": "10.1016/0001-8708(77)90087-1"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1016/0001-8708(77)90087-1"
+  },
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "stopping times",
+    "almost all orbits"
+  ],
+  "project_relationship": "known",
+  "status": "classical",
+  "notes": "Independent companion to Terras 1976. Cited from the Juggler math note as a Collatz almost-all stopping-time theorem, not a Juggler theorem."
+}

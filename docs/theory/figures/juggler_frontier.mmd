@@ -1,0 +1,41 @@
+flowchart TD
+    Juggler["Juggler map"]
+    Lean["Exact Lean semantics"]
+    Atlas["Word Atlas"]
+    Covered["Even and odd-to-even<br/>finite progress"]
+    Frontier["Odd-to-odd frontier"]
+    Tests["Finite-structure tests"]
+    Words["Words"]
+    States["States"]
+    Geometry["Geometry"]
+    Cycles["Cycles"]
+    Statistics["Statistics"]
+    ClosedA["No extra grammar"]
+    ClosedB["No tested quotient"]
+    ClosedC["Exact cells only"]
+    Partial["Partial restrictions"]
+    Descriptive["Descriptive bounds"]
+    Gap["Remaining pointwise gap"]
+
+    Juggler --> Lean
+    Juggler --> Atlas
+    Lean --> Covered
+    Covered --> Frontier
+    Lean --> Tests
+    Atlas --> Tests
+    Tests --> Words
+    Tests --> States
+    Tests --> Geometry
+    Tests --> Cycles
+    Tests --> Statistics
+    Words --> ClosedA
+    States --> ClosedB
+    Geometry --> ClosedC
+    Cycles --> Partial
+    Statistics --> Descriptive
+    ClosedA --> Gap
+    ClosedB --> Gap
+    ClosedC --> Gap
+    Partial --> Gap
+    Descriptive --> Gap
+    Frontier --> Gap

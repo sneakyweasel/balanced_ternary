@@ -257,6 +257,21 @@ theorem reachesOne_of_image {n : ℕ} {w : List Branch}
     (hm : ReachesOne (image n w)) : ReachesOne n :=
   reachesOne_of_iterate (image_eq_iterate n w).symm hm
 
+/-- Boolean realization check. Definitionally recursive on the word. -/
+def followsB : ℕ → List Branch → Bool
+  | _, [] => true
+  | n, .even :: w => (n % 2 == 0) && followsB (floorPower n) w
+  | n, .odd :: w => (n % 2 == 1) && followsB (floorPower n) w
+
+theorem followsB_iff (n : ℕ) : ∀ w, followsB n w = true ↔ follows n w
+  | [] => by simp [followsB, follows]
+  | .even :: w => by
+      have ih := followsB_iff (floorPower n) w
+      simp [followsB, follows, Bool.and_eq_true, beq_iff_eq, ih]
+  | .odd :: w => by
+      have ih := followsB_iff (floorPower n) w
+      simp [followsB, follows, Bool.and_eq_true, beq_iff_eq, ih]
+
 /-- `T_w` is monotone on the realizing set of `w`. -/
 theorem image_monotone_of_follows :
     ∀ {w : List Branch} {n m : ℕ},

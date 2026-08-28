@@ -3,7 +3,9 @@
   "title": "A generalization of Hasse's generalization of the Syracuse algorithm",
   "authors": ["K. R. Matthews", "A. M. Watts"],
   "year": 1984,
-  "identifiers": {},
+  "identifiers": {
+    "doi": "10.4064/aa-43-2-167-175"
+  },
   "url": {},
   "problem_area": "collatz",
   "relevant_concepts": [

@@ -1,6 +1,6 @@
 {
   "id": "oeis-A007320",
-  "title": "Number of steps for n to reach 1 in the juggler sequence",
+  "title": "Number of steps needed for juggler sequence (A094683) started at n to reach 1",
   "authors": ["OEIS contributors"],
   "year": 1996,
   "identifiers": {

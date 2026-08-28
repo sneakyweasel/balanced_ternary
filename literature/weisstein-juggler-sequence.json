@@ -1,0 +1,18 @@
+{
+  "id": "weisstein-juggler-sequence",
+  "title": "Juggler Sequence",
+  "authors": ["Eric W. Weisstein"],
+  "year": 2026,
+  "identifiers": {},
+  "url": {
+    "reference": "https://mathworld.wolfram.com/JugglerSequence.html"
+  },
+  "problem_area": "nonlinear-integer-dynamics",
+  "relevant_concepts": [
+    "juggler sequence",
+    "floor powers"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "MathWorld article. Cites Pickover 1991, ch. 40, p. 232. Accessed 28 August 2026 from the Juggler math note."
+}

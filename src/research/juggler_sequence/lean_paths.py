@@ -37,6 +37,8 @@ LAYERS: dict[str, Path] = {
     "ExpandingGrammar": JUGGLER_DIR / "ExpandingGrammar.lean",
     "LandingParity": JUGGLER_DIR / "LandingParity.lean",
     "Cycles": JUGGLER_DIR / "Cycles.lean",
+    "LeftoverEval": JUGGLER_DIR / "LeftoverEval.lean",
+    "LeftoverCycles": JUGGLER_DIR / "LeftoverCycles.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
     "LandingValuation": JUGGLER_DIR / "LandingValuation.lean",
@@ -72,6 +74,8 @@ NEAR_TIGHT_SCALE = LAYERS["NearTightScale"]
 EXPANDING_GRAMMAR = LAYERS["ExpandingGrammar"]
 LANDING_PARITY = LAYERS["LandingParity"]
 CYCLES = LAYERS["Cycles"]
+LEFTOVER_EVAL = LAYERS["LeftoverEval"]
+LEFTOVER_CYCLES = LAYERS["LeftoverCycles"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
 LANDING_VALUATION = LAYERS["LandingValuation"]

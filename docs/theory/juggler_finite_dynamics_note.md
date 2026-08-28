@@ -1,6 +1,9 @@
-# Lean-Certified Finite Dynamics, a Word Atlas, and the Juggler Finite-Progress Boundary
-
-**Status:** publication draft.
+---
+title: Finite-word contraction and short descent certificates for the Juggler map
+author: Philippe Cochin
+date: 28 August 2026
+subtitle: Publication draft. Not submitted.
+---
 
 ## Abstract
 
@@ -15,165 +18,172 @@ J(n)=
 It is conjectured that every positive integer eventually reaches \(1\).
 We do not prove that conjecture.
 
-We instead give a unified formal and computational account of finite Juggler
-dynamics. In Lean we formalize iteration, parity itineraries, word realization,
-word images, exact floor defects, residual steps, inverse cells, finite-progress
-certificates, cycle predicates, and conditional contraction. The central
-finite-word estimate is
+For every finite parity word \(w\) realized at \(n\), the iterate satisfies
+the power envelope
 \[
-J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}},
+J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}.
 \]
-for every word \(w\) realized at \(n\); hence
-\(3^{\#O(w)}<2^{|w|}\) implies \(J^{|w|}(n)<n\) for \(n\ge2\).
-An exact global-defect identity records the slack in this envelope.
+Hence \(3^{\#O(w)}<2^{|w|}\) forces \(J^{|w|}(n)<n\) whenever \(n\ge2\).
+An exact global-defect identity records the floor slack in this comparison.
+These statements are conditional on a realized word: they do not say that
+every orbit meets a contracting word.
 
-We pair the formal layer with a CPU/GPU Word Atlas that records bounded
-realizers, arithmetic metadata, continuations, factors, and certified
-persistent-expanding blocks. The Atlas is used as a reproducible apparatus for
-testing symbolic, state, geometric, inverse, extremal, and statistical
-reductions. Several exact structures survive: fixed-word images are monotone
-on realizing sets, odd inverse cells are unique while even inverse cells are
-not, and nontrivial cycle words obey strong exponent, parity, order, and cell
-constraints. Several natural stronger reductions fail, with explicit or
-Lean-certified counterexamples.
-
-Finally, for the ambient odd-input sign sequence
+A start \(n\ge2\) has a *descent certificate* if some realized finite word
+sends it strictly below \(n\). Every even start, and every odd start whose
+first image is even, has a uniform one- or two-step certificate. A classical
+discrepancy bound
 \[
+\bigl|S_O(N)\bigr|\ll N^{5/6},\qquad
 S_O(N)=\sum_{\substack{n\le N\\n\ {\rm odd}}}
 (-1)^{\lfloor n^{3/2}\rfloor},
 \]
-a classical van der Corput--Erdős--Turán argument gives
-\(|S_O(N)|\ll N^{5/6}\). This cancellation does not automatically transfer to
-sparse Juggler-generated image sets. Taken together, the results locate a
-finite-progress boundary: finite and statistical contraction are structured
-and testable, but no pointwise all-state induction or universal exclusion of
-exceptional trajectories is obtained.
+implies that the complementary odd-to-odd starts have density \(1/4\), so
+the uniform short-certificate class has density \(3/4\). This is not a
+density of all descent certificates, and it is not a density of starts that
+reach \(1\). Odd-to-odd starts expand on the first step and may still
+descend later. The bound itself is ambient: it does not transfer to sparse
+Juggler-generated image sets.
+
+The remaining question, analogue of Terras's almost-all stopping-time
+theorem, is whether almost every odd-to-odd start has some finite descent.
+No such theorem is proved here.
 
 ## 1. Introduction
 
-The Juggler sequence was introduced as a computational integer-dynamics
-problem by Pickover [1]. Its apparent convergence is recorded, for example, in
-OEIS A007320 [2], but universal convergence remains open.
+The Juggler sequence was introduced by Pickover [1]; see also Weisstein
+[2] and OEIS A007320 [3]. Universal arrival at \(1\) remains open. In this
+repository every start \(n\le4000\) reaches \(1\), as an exact finite
+computation. That check is not a proof.
 
-The map combines a strongly contracting even branch with an expanding odd
-branch:
+The map combines a contracting even branch with an expanding odd branch,
 \[
 E(n)=\lfloor n^{1/2}\rfloor,\qquad
 O(n)=\lfloor n^{3/2}\rfloor.
 \]
-The exponents suggest a simple multiplicative model. A word of length \(k\)
-with \(o\) odd letters has ideal exponent \(3^o/2^k\). Floors, however, are
-applied after every letter, and realizability depends on the exact integer
-state. The tension between exponent arithmetic and iterated floor geometry is
-the subject of this paper.
+A word of length \(k\) with \(o\) odd letters has ideal exponent
+\(3^o/2^k\). Floors are applied after every letter, and a word is available
+only when the orbit realizes those parities. The paper records the exact
+finite-word comparison, the exact slack, the uniform short certificates,
+and the density of the class those certificates cover.
 
-Our approach is:
-\[
-\boxed{
-\text{formalize}\longrightarrow
-\text{interrogate finite dynamics}\longrightarrow
-\text{retain exact structure}\longrightarrow
-\text{eliminate false reductions}\longrightarrow
-\text{isolate the gap}.
-}
-\]
-
-The contribution is not a collection of unsuccessful attacks. It is a
-theorem-and-certificate map of finite Juggler dynamics:
-
-1. a unified Lean formalization of the finite objects used in symbolic,
-   residual, inverse, and cycle arguments;
-2. a reusable Word Atlas with independent exact-reference and native
-   validation paths;
-3. exact finite-word envelope, defect, monotonicity, inverse-cell, and cycle
-   results;
-4. reproducible counterexamples to specified stronger compression laws;
-5. an analytic discrepancy theorem for the ambient expanding branch, together
-   with a precise explanation of why it does not yet become an orbit theorem.
-
-The central qualified conclusion is:
-
-> Finite Juggler dynamics admit a rich formal and computational description,
-> but the symbolic, residual, geometric, inverse, extremal, and statistical
-> compressions tested here do not yield a pointwise termination mechanism.
-
-This says neither that the map is irreducible nor that every possible
-finite-state reduction must fail.
+The contribution is a short exact-arithmetic note, not a survey of failed
+compressions and not a description of the computational atlas used in the
+surrounding laboratory. We do not prove a Collatz theorem, and we do not
+transfer Collatz stopping-time results to \(J\).
 
 ### 1.1 Evidence discipline
 
-We distinguish five kinds of statements used in the paper.
-
-- **EXACT — LEAN VERIFIED:** a theorem checked by Lean.
+- **EXACT — LEAN VERIFIED:** a theorem checked by Lean in the software
+  archive named in Section 7.
 - **EXACT — HUMAN PROOF:** a mathematical argument not packaged in Lean.
+  Theorem 5.1 is of this kind.
 - **COMPUTATIONALLY VERIFIED:** an exact finite computation under stated
-  bounds and validation conditions.
+  bounds.
 - **OBSERVATION:** a descriptive pattern in finite data.
-- **REFUTED:** a universal candidate statement killed by a certificate or
-  counterexample.
+- **REFUTED:** a universal candidate killed by a certificate.
 
-A missing word in a bounded Atlas is only `NOT OBSERVED WITHIN SEARCH BOUND`.
 A finite check is never called a termination proof.
 
-## 2. Exact finite semantics in Lean
+### 1.2 Related maps
 
-The formal development is located in `formal/Problems/Juggler/`. Its detailed
-theorem map is given in the
-[formalization companion](juggler_finite_dynamics_formalization.md).
+The nearest published comparison is the Collatz problem. Lagarias [4,5]
+surveys parity words, stopping times, and almost-all statements that stop
+short of totality. Terras [6] and Everett [7] proved that almost every
+positive integer has a finite Collatz stopping time — some return below
+the start — without proving that every orbit reaches \(1\). Tao [8] later
+showed that almost all Collatz orbits attain almost bounded values.
 
-### 2.1 Itineraries and images
+Those results are cited as methodological cousins, not as theorems about
+\(J\). The uniform short certificates below cover a set of density
+\(3/4\) by a one- or two-step argument. Terras and Everett prove that
+almost every Collatz start has *some* finite stopping time. Those are
+different statements. The Juggler analogue of Terras would be an almost-all
+descent theorem on the odd-to-odd class. It is not proved here.
 
-Let \(\mathcal B=\{E,O\}\). For \(n\in\mathbb N\) and a finite word
-\(w\in\mathcal B^*\), `follows n w` means that the successive parities of the
-orbit of \(n\) are exactly the letters of \(w\), and `image n w` is the
-endpoint after those letters.
+Crandall [9] and Matthews–Watts [10] treat piecewise-affine
+Hasse–Syracuse maps. Juggler is not piecewise affine: the branches are
+floor powers. Prasad and Prasad [12] estimate excursion and stopping
+constants for juggler-like random walks; Section 6 keeps that comparison
+descriptive.
 
-The formal bridge is:
-\[
-\operatorname{follows}(n,w)
-\quad\Longleftrightarrow\quad
-\operatorname{word}(n,|w|)=w.
-\]
-This is `follows_iff_word`. Theorems `image_eq_iterate` and `image_append`
-prove
-\[
-\operatorname{image}(n,w)=J^{|w|}(n),\qquad
-\operatorname{image}(n,uv)=
-\operatorname{image}(\operatorname{image}(n,u),v).
-\]
-Thus the symbolic layer is definitionally tied to the integer orbit rather
-than to an idealized exponent model.
+## 2. Finite words, envelope, and defect
 
-One useful surviving property is exact fixed-word monotonicity.
+Let \(\mathcal B=\{E,O\}\). A finite word \(w\in\mathcal B^*\) is
+*realized* at \(n\in\mathbb N\) when the successive parities of the orbit
+of \(n\) are exactly the letters of \(w\). Write \(J^{|w|}(n)\) for the
+endpoint after those letters, and \(\#O(w)\) for the number of odd
+letters.
+
+The identities in this section are formalized in Lean
+(`follows_iff_word`, `image_eq_iterate`, `image_append`,
+`image_monotone_of_follows`, `power_bound_word`,
+`power_bound_contracts`, `global_defect_identity`). The proofs below are
+the ordinary integer arguments.
 
 **Theorem 2.1 (fixed-word monotonicity; EXACT — LEAN VERIFIED).**
-If \(n\le m\), and both \(n\) and \(m\) realize \(w\), then
+If \(n\le m\) and both realize \(w\), then
+\(J^{|w|}(n)\le J^{|w|}(m)\).
+
+The realizing set of a fixed word need not be an interval.
+
+**Theorem 2.2 (finite-word power envelope; EXACT — LEAN VERIFIED).**
+If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
 \[
-J^{|w|}(n)\le J^{|w|}(m).
+m^{2^{|w|}}\le n^{3^{\#O(w)}}.
 \]
 
-This is `image_monotone_of_follows`. The restriction to a common realizing
-word is essential; the theorem does not assert that the realizing set is an
-interval.
+*Proof.* Write \(k=|w|\) and \(o=\#O(w)\). The empty word is the equality
+\(n\le n\). Suppose the bound holds at a realized prefix ending at
+\(x\), and the next letter is realized.
 
-### 2.2 Defects and residuals
-
-For a single branch, the floor loss can be written exactly as
+If the next letter is even, then \(J(x)=\lfloor\sqrt x\rfloor\), so
+\(J(x)^2\le x\). Raising the inductive bound to the second power gives
 \[
-x^e=J(x)^2+\rho(x),
-\qquad
+J(x)^{2^{k+1}}=(J(x)^2)^{2^k}\le x^{2^k}\le n^{3^o}.
+\]
+The odd count is unchanged.
+
+If the next letter is odd, then \(J(x)=\lfloor x^{3/2}\rfloor\), so
+\(J(x)^2\le x^3\). Therefore
+\[
+J(x)^{2^{k+1}}=(J(x)^2)^{2^k}\le x^{3\cdot 2^k}=(x^{2^k})^3
+\le\bigl(n^{3^o}\bigr)^3=n^{3^{o+1}}.
+\]
+This is the claimed bound after one more odd letter. \(\square\)
+
+**Corollary 2.3 (exponent-gap contraction; EXACT — LEAN VERIFIED).**
+If \(n\ge2\), \(w\) is realized at \(n\), and
+\(3^{\#O(w)}<2^{|w|}\), then \(J^{|w|}(n)<n\).
+
+*Proof.* Let \(m=J^{|w|}(n)\) and \(k=|w|\). Theorem 2.2 gives
+\(m^{2^k}\le n^{3^{\#O(w)}}\). The exponent gap and \(n\ge2\) give
+\(n^{3^{\#O(w)}}<n^{2^k}\), so \(m^{2^k}<n^{2^k}\). Since \(m\ge1\), one
+has \(m<n\). \(\square\)
+
+The corollary includes familiar contracting blocks such as \(OOOEE\). It
+does not prove that every start realizes some contracting word.
+
+The floor slack is exact. For a single branch,
+\[
+x^e=J(x)^2+\rho(x),\qquad
 e=\begin{cases}1,&x\ {\rm even},\\3,&x\ {\rm odd},\end{cases}
 \]
-with \(0\le\rho(x)<2J(x)+1\). The formal development lifts these local
-remainders through a word into `globalDefect`.
+with \(0\le\rho(x)<2J(x)+1\). Lifting these remainders through a word
+gives a nonnegative global defect \(\Delta_w(n)\).
 
-Residual steps package realized blocks \(O^aE^b\), \(b\ge1\), and distinguish
-ordinary return below a start from persistent expansion. These are relations
-on exact integers, not transitions on a proposed compressed state.
+**Theorem 2.4 (global defect identity; EXACT — LEAN VERIFIED).**
+If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
+\[
+n^{3^{\#O(w)}}=m^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
+\]
 
-### 2.3 Cells and cycles
+The identity names the slack in Theorem 2.2. It does not supply a
+state-independent positive tax: persistent expanding blocks can have
+arbitrarily small observed normalized slack at large scale.
 
-The exact one-step inverse cells are
+## 3. Inverse cells and cycles
+
+The exact one-step fibers are
 \[
 J(n)=q\iff q^2\le n<(q+1)^2
 \quad(n\ {\rm even})
@@ -183,493 +193,304 @@ and
 J(n)=m\iff m^2\le n^3<(m+1)^2
 \quad(n\ {\rm odd}).
 \]
-They are formalized as `even_cell_iff` and `odd_cell_iff`. The cycle layer
-defines `CycleWord`, cycle minima and maxima, distinguished peak and return
-states, and exact remainder balances. All cycle theorems in this paper are
-conditional restrictions. No theorem in the development excludes every
-nontrivial cycle.
+An odd fiber contains at most one integer
+(`odd_cell_unique`; EXACT — LEAN VERIFIED). An even fiber is a
+parity-restricted square interval and may contain many predecessors.
 
-## 3. The Word Atlas
+A nonempty realized word \(w\) with \(J^{|w|}(n)=n\) is a cycle word.
 
-The Word Atlas is a finite census indexed by words:
-\[
-w\longleftrightarrow
-\{\text{realizers, arithmetic metadata, continuations, derived properties}\}.
-\]
-Its role is methodological. It is not merely a larger trajectory search, and
-it does not infer a global language from bounded absence.
-
-### 3.1 Stored objects
-
-The versioned schema separates:
-
-1. **words:** packed bits, length, odd/even counts, run signature, and exponent
-   surplus or deficit;
-2. **realizers:** minimum observed realizer, endpoint, and expanding-realizer
-   status;
-3. **continuations:** the observed successor mask in the rooted prefix trie;
-4. **factors and PE records:** language-qualified factors and exact host-side
-   persistent-expanding classifications.
-
-Experiment metadata and checksums bind these tables to a configured search
-window and backend. The `REALIZABLE` factor table stores rooted prefixes;
-interior substrings are queried separately. This distinction prevents a prefix
-gap from being reported as a forbidden factor.
-
-### 3.2 Native and exact-reference paths
-
-Kernel A enumerates starts and uses packed words plus `atomicMin` to retain
-minimum observed realizers. Native wide-integer overflow is explicit: affected
-starts are exported and replayed by the Python exact reference. Persistent
-expansion is classified in a host post-pass using the repository's exact
-integer predicates; the GPU does not certify PE by proxy.
-
-Validation has three layers:
-
-- fixed fixtures aligned with Lean, including `OOE` and persistent residual
-  chains;
-- a Python exact census and metadata recomputation;
-- native CPU/GPU comparison against the exact reference, allowing only
-  explicitly replayed overflow cases.
-
-The resulting artifacts are SQLite/Parquet tables, a manifest, checksums, and
-a compact scientific summary.
-
-### 3.3 Scientific census
-
-The principal stored experiment is
-`wa-20260827T200310Z-cuda-k20-n100000000`, with
-\[
-k\le20,\qquad n\le10^8,
-\]
-and a host PE scan through \(10^7\). At length \(20\), 132,398 of the
-\(2^{20}\) words were observed as rooted prefixes. The first incomplete length
-was \(6\), where `EEEEEE`, `EEEEOE`, and `EEEOEO` were not observed as rooted
-prefixes. They are not forbidden words: `EEEEEE`, for example, occurs as an
-interior factor in stored length-\(20\) trajectories.
-
-The host scan produced 715,855 `PE_CERTIFIED` blocks and 9,832 distinct PE-run
-words. For factor lengths \(r\le8\), every factor allowed by the already known
-\(O^aE^b\) block grammar was observed. This is
-**COMPUTATIONALLY VERIFIED** only within the stated window. It did not produce
-a new grammar theorem.
-
-## 4. Structural interrogation
-
-The Atlas and the exact Python probes were used to test families of reductions.
-The curated decisions and source records are listed in the
-[branch ledger](../juggler_branch_ledger.md).
-
-### 4.1 Symbolic compression
-
-PE factor complexity, realization tries, and continuation graphs were tested
-for a smaller forbidden-factor or finite-continuation law. Within the Atlas
-window, PE-run factors matched the known concatenations of \(O^aE^b\) blocks
-and yielded no additional grammar. Rooted unary corridors were explained by
-scale and landing parity; they did not become global prohibitions.
-
-The exact language does retain useful algebra: realizability is stable under
-factors, word images compose, and the existential expanding language differs
-from the syntactic exponent language. What failed was the stronger reduction
-from these facts to a finite progress law.
-
-### 4.2 State compression
-
-Residual projections based on parity, incoming odd-run length, exponent gap,
-local remainder, and cell type were tested against future residual behavior.
-Whenever a tested quotient had nontrivial fibers, examples with equal
-compressed data and different future constraints appeared, or the apparently
-predictive tuple was injective only because it still encoded the current
-integer.
-
-Future equivalence and short-horizon information-complexity probes reached the
-same boundary: finite samples can collapse, but the collapse either repackages
-the deterministic current state or depends on the chosen horizon. The
-defensible conclusion is not “the exact integer is universally necessary.”
-It is:
-
-\[
-\boxed{\text{No proper predictive quotient survived among the tested state families.}}
-\]
-
-### 4.3 Geometric and inverse compression
-
-Realizing sets, endpoint images \(Y_w\), inverse cells, cell huts, and floor
-boundaries were tested for convexity, interval structure, or a bounded inverse
-type. Exact cells survive, but their asymmetry works against a simple quotient:
-even inverse cells are long square intervals, whereas an odd inverse cell
-contains at most one integer (`odd_cell_unique`).
-
-Iterating the cells did not create a new rank beyond the forward itinerary.
-The Lean theorem `ooe_cylinder_both_next_parities` gives a particularly sharp
-separator: starts \(3461\) and \(3803\) realize `OOE` cylinders whose next
-landings have opposite parity. The tested cylinder summary is therefore not a
-complete next-parity state.
-
-### 4.4 Global finite-path compression
-
-Finite-word boundaries, first-return summaries, adversarial paths,
-accelerations, and extremal controls were tested for a uniform finite descent
-bound. They organize finite behavior but do not exclude every long
-odd-dominated path. Acceleration repackages the same exact blocks. Extremal
-frontiers describe ideal words, but admissible extremal words need not be
-realized uniformly.
-
-The explicit Lean certificate
-\[
-365\xrightarrow{OOE}763\xrightarrow{OOE}1749
-\]
-(`two_block_ooe_365`) refutes the natural claim that one persistent expanding
-residual block must be followed by contraction. Longer finite expanding chains
-are also recorded. These examples refute finite block laws; they do not
-construct a nonterminating orbit.
-
-Across the four themes the common, qualified result is that exact integer
-dependence survives the reductions that were actually tested.
-
-## 5. Exact finite contraction structure
-
-Let \(w\) be a realized word of length \(k\), with \(o=\#O(w)\), and let
-\(m=J^k(n)\).
-
-**Theorem 5.1 (finite-word power envelope; EXACT — LEAN VERIFIED).**
-\[
-m^{2^k}\le n^{3^o}.
-\]
-
-The proof is compositional. An even step squares the image bound and increments
-\(k\); an odd step compares the square of the new image with the cube of the
-current state and increments both \(k\) and \(o\).
-
-**Corollary 5.2 (exponent-gap contraction; EXACT — LEAN VERIFIED).**
-For \(n\ge2\),
-\[
-3^o<2^k\quad\Longrightarrow\quad J^k(n)<n.
-\]
-
-This is `power_bound_contracts`. It includes familiar contracting blocks such
-as `OOOEE`, but its quantifiers are conditional: the orbit must realize \(w\).
-The theorem does not prove that every start encounters a contracting word.
-
-The floor slack is itself exact.
-
-**Theorem 5.3 (global defect identity; EXACT — LEAN VERIFIED).**
-\[
-n^{3^o}=m^{2^k}+\Delta_w(n),
-\qquad \Delta_w(n)\ge0.
-\]
-
-The recursive lift \(\Delta_w(n)\) records the local floor remainders with the
-powers induced by later letters. It explains strictness and near equality, but
-it does not collapse to a state-independent “defect tax.” Indeed, persistent
-expanding blocks can have arbitrarily small observed normalized slack at large
-scale, and proposed uniform positive taxes have explicit counterexamples.
-
-The exact theorem therefore identifies both the contraction mechanism and its
-limit:
-\[
-\boxed{
-\text{negative exponent gap forces contraction, but no universal occurrence
-of such a gap is known.}
-}
-\]
-
-## 6. Cycle structure
-
-For a nonempty realized word returning to its start, the envelope is strict in
-the opposite direction.
-
-**Theorem 6.1 (cycle exponent condition; EXACT — LEAN VERIFIED).**
-Every `CycleWord n w` with \(n\ge2\) satisfies
+**Theorem 3.1 (cycle exponent condition; EXACT — LEAN VERIFIED).**
+Every cycle word at \(n\ge2\) satisfies
 \[
 2^{|w|}<3^{\#O(w)}.
 \]
 
-Thus a contracting word cannot close a nontrivial cycle. The lower-growth
-formalism also gives a word-dependent size bound
+Thus a contracting word cannot close a nontrivial cycle. The cycle
+minimum is odd and the cycle maximum is even; these are necessary
+restrictions. They do not exclude every nontrivial cycle. In particular
+the length-six orientations \(OOOEOE\) and \(OOOOEE\) remain open.
+
+## 4. Short descent certificates
+
+A start \(n\ge2\) has a *descent certificate* if there exists a realized
+finite word \(w\) with \(J^{|w|}(n)<n\), or with image \(1\). In the Lean
+development this predicate is called `FiniteProgress`. It is existential
+over all finite words, not only over words of length one or two.
+
+**Theorem 4.1 (uniform short certificates; EXACT — LEAN VERIFIED).**
+Let \(n\ge2\).
+
+1. If \(n\) is even, then the one-letter word \(E\) is a descent
+   certificate: \(J(n)=\lfloor\sqrt n\rfloor<n\).
+2. If \(n\) is odd and \(J(n)\) is even, then the two-letter word \(OE\)
+   is a descent certificate.
+
+**Theorem 4.2 (unresolved starts are odd-to-odd; EXACT — LEAN VERIFIED).**
+If \(n\ge2\) has no descent certificate, then \(n\) is odd and \(J(n)\)
+is odd.
+
+The converse is false. Theorem 4.2 does not say that odd-to-odd starts
+lack descent certificates. Many of them descend after a longer word.
+
+If every start above \(1\) has some descent certificate, ordinary strong
+induction yields arrival at \(1\) (`reachesOne_of_all_finiteProgress`).
+The hypothesis is not proved. A certificate at \(n\) only reduces the
+problem to a strictly smaller positive integer, which may itself be
+odd-to-odd.
+
+Lean also certifies a finite landing class
+(`reachesOne_of_lt_twelve`, `even_lt_sq_twelve_reachesOne`):
+
+**Theorem 4.3 (small residuals; EXACT — LEAN VERIFIED).**
+Every \(y\in\{1,\ldots,11\}\) reaches \(1\). Consequently every even
+residual strictly below \(144=12^2\) reaches \(1\).
+
+This enlarges the set of fatal landings for a hypothetical minimal
+counterexample. It does not cover all odd-to-odd starts, and it does not
+prove that every even start reaches \(1\).
+
+Independently, an exact computation gives:
+
+**Proposition 4.4 (window totality; COMPUTATIONALLY VERIFIED).**
+Every start \(1\le n\le4000\) reaches \(1\).
+
+This is a finite check, not a bound on all starts.
+
+On the complementary odd-to-odd class, first return below the start is
+frequent at a short horizon, but not automatic.
+
+**Proposition 4.5 (odd-to-odd first return; OBSERVATION).**
+For starts \(2\le n\le N\) and horizon \(20\), write \(\mathrm{OO}\) for
+the odd-to-odd starts in that range. The exact census is:
+
+| \(N\) | \(\#\mathrm{OO}\) | OO first return \(\le20\) | all starts, first return \(\le20\) |
+|------:|------------------:|--------------------------:|-----------------------------------:|
+| \(10^3\) | \(252\) | \(0.877\) | \(0.969\) |
+| \(10^4\) | \(2504\) | \(0.887\) | \(0.972\) |
+| \(10^5\) | \(24984\) | \(0.896\) | \(0.974\) |
+| \(10^6\) | \(249926\) | \(0.895\) | \(0.974\) |
+
+At \(N=10^6\), \(26{,}243\) odd-to-odd starts have no return below the
+start in \(20\) steps. None of these rows is a Lean descent certificate,
+and none is an almost-all theorem.
+
+## 5. Ambient discrepancy and the short-certificate class
+
+For odd \(n\) write \(s(n)=(-1)^{\lfloor n^{3/2}\rfloor}\) and
 \[
-n^{3^{\#O(w)}-2^{|w|}}\le \operatorname{lowerDenom}(w).
-\]
-
-The cycle-extrema stack proves that a cycle minimum is odd, a cycle maximum is
-even, and the path from the minimum to a later even state has superquadratic
-exponent demand. `cycle_distinguished_order` packages minimum, peak
-predecessor, maximum, and return landing into nested strict order and cell
-constraints. `cycle_peak_descent` identifies a canonical contracting descent
-from the maximum, while `cycle_remainder_balance` equates the accumulated odd
-and even cell gaps around the cycle.
-
-Short words and several families are excluded exactly. Two recent boundary
-lemmas sharpen minimum-based orientations:
-
-- `cycleMin_not_end_odd`: a cycle word based at its minimum cannot end in
-  \(O\);
-- `cycleMin_prefix_ooo_even_sqrt_ne`: in the stated
-  \(OOO\,E\,v\,E\) orientation, the image after the first even step cannot
-  equal the minimum.
-
-These are genuine exact restrictions, but they do not eliminate the remaining
-length-six orientations `OOOEOE` and `OOOOEE`. In particular, rotating
-`OOOOEE` reduces to the same minimum-based orientation rather than a
-contradiction. No theorem here excludes all cycles.
-
-## 7. Parity discrepancy on the expanding branch
-
-For odd inputs define
-\[
-s(n)=(-1)^{\lfloor n^{3/2}\rfloor},\qquad
 S_O(N)=\sum_{\substack{n\le N\\n\ {\rm odd}}}s(n).
 \]
-If \(D_O(N)\) is the odd-image parity discrepancy in the project convention,
-then the exact counting identity is \(S_O(N)=-2D_O(N)\).
-
-The floor sign has an exact fractional-part form:
+Let \(M(N)\) be the number of odd integers \(n\le N\), and let
 \[
-\lfloor x\rfloor\ {\rm odd}
+\operatorname{OO}(N)=\#\{n\le N:\ n\ \mathrm{odd},\ J(n)\ \mathrm{odd}\}.
+\]
+Then \(s(n)=-1\) if and only if \(J(n)\) is odd, and
+\[
+S_O(N)=M(N)-2\operatorname{OO}(N).
+\]
+Also \(M(N)=N/2+O(1)\).
+
+The floor sign has an exact fractional-part form. Write
+\(x=\lfloor x\rfloor+\{x\}\). If \(\lfloor x\rfloor\) is even then
+\(\{x/2\}<1/2\); if \(\lfloor x\rfloor\) is odd then
+\(\{x/2\}\ge1/2\). Thus
+\[
+\lfloor x\rfloor\ \text{is odd}
 \quad\Longleftrightarrow\quad
 \{x/2\}\ge\tfrac12.
 \]
-Writing \(n=2r+1\) and
+For odd \(n=2r+1\) set
 \[
-g(r)=\frac{(2r+1)^{3/2}}2,
+g(r)=\frac{(2r+1)^{3/2}}2.
 \]
-turns \(S_O(N)\) into the discrepancy of \(\{g(r)\}\) against the half
-interval \([1/2,1)\).
+Then \(s(n)=-1\) if and only if \(\{g(r)\}\ge1/2\), and \(S_O(N)\) is
+twice the interval discrepancy of the sequence \(\{g(r)\}\) against
+\([1/2,1)\).
 
-**Theorem 7.1 (ambient odd-input discrepancy; EXACT — HUMAN PROOF).**
+The following two lemmas are classical; see Kuipers–Niederreiter [11,
+Ch. 1–2].
+
+**Lemma 5.A (van der Corput, second-derivative form).**
+Let \(f\) be twice differentiable on an interval of length \(M\), with
+\(\lambda\le|f''|\le\alpha\lambda\) for some \(\alpha\ge1\). Then
+\[
+\Bigl|\sum e(f)\Bigr|\ll_\alpha M\lambda^{1/2}+\lambda^{-1/2},
+\]
+where the sum runs over the integers in the interval and
+\(e(t)=e^{2\pi it}\).
+
+**Lemma 5.B (Erdős–Turán).**
+The discrepancy of \(R\) points \(x_j\in\mathbb R/\mathbb Z\) against an
+interval satisfies
+\[
+D
+\ll
+\frac{R}{H}+\sum_{h=1}^H\frac1h\Bigl|\sum_{j=1}^R e(hx_j)\Bigr|
+\]
+for every cutoff \(H\ge1\).
+
+**Theorem 5.1 (ambient odd-input discrepancy; EXACT — HUMAN PROOF).**
 \[
 |S_O(N)|\ll N^{5/6}.
 \]
+This argument is not packaged in Lean.
 
-Here is the exponent calculation. On a dyadic block \(r\asymp M\),
-\(g''(r)\asymp M^{-1/2}\). For the \(h\)-th Fourier mode, the
-second-derivative form of van der Corput gives
+*Proof.* The second derivative is
 \[
-\left|\sum_{r\asymp M}e(hg(r))\right|
+g''(r)=\tfrac32(2r+1)^{-1/2}.
+\]
+It is positive and decreasing. On a dyadic block \(r\asymp M\) one has
+\(g''(r)\asymp M^{-1/2}\). For the \(h\)-th Fourier mode take
+\(f=hg\), so \(\lambda\asymp hM^{-1/2}\). Lemma 5.A gives
+\[
+\Bigl|\sum_{r\asymp M}e(hg(r))\Bigr|
 \ll h^{1/2}M^{3/4}+h^{-1/2}M^{1/4}.
 \]
-Erdős--Turán with cutoff \(H\) then yields
+Lemma 5.B, with \(R\asymp M\) and the relation between \(S_O\) and
+interval discrepancy, yields
 \[
-|S_O(M)|
-\ll \frac{M}{H}+M^{3/4}H^{1/2}+M^{1/4}.
+|S_O|\ll
+\frac{M}{H}+M^{3/4}H^{1/2}+M^{1/4}
 \]
-Taking \(H\asymp M^{1/6}\), and summing dyadic blocks, gives
-\(M^{5/6}\). This uses standard discrepancy tools [3]; it does not replace
-the floor by a single exponential.
+on that block: the middle term is
+\(\sum_{h\le H}h^{-1}\cdot h^{1/2}M^{3/4}\ll M^{3/4}H^{1/2}\), and the
+last term is
+\(\sum_{h\le H}h^{-1}\cdot h^{-1/2}M^{1/4}\ll M^{1/4}\).
+The choice \(H\asymp M^{1/6}\) balances the first two terms at
+\(M^{5/6}\). Summing dyadic blocks up to \(N\) preserves the exponent.
+The floor sign is not replaced by a single exponential; the exponential
+sums are those of the sequence \(\{g(r)\}\). \(\square\)
 
-The exact census through \(N=10^6\) has \(S_O(N)=146\) and running maximum
-\(256\), reached at \(985351\). A spot computation at \(10^7\) has running
-maximum \(459\). The observed growth is much smaller than \(N^{5/6}\), but the
-descriptive \(N^{1/3}\)-scale envelope is not promoted to a theorem.
-
-### 7.1 Why the bound does not transfer
-
-For a general interval \(I=[A,B]\),
+**Corollary 5.2 (short-certificate class; EXACT — HUMAN PROOF).**
+The odd-to-odd starts have natural density \(1/4\):
 \[
-D(I)=S_O(B)-S_O(A-1),
+\bigl|\operatorname{OO}(N)-N/4\bigr|\ll N^{5/6}.
 \]
-so the proved bound depends on the right endpoint \(B\), not only on
-\(|I|\). Translation-uniform sublinear bounds in \(|I|\) fail on the tested
-finite family: the certified data contain 52 consecutive odd sources with the
-same sign on \([952525,952627]\).
+Equivalently, the starts that admit the uniform one- or two-step
+certificates of Theorem 4.1 — every even start together with every
+odd-to-even start — have natural density \(3/4\).
 
-More importantly, the expanding image
-\[
-Y=J_O(O(I))
-\]
-is a sparse, strictly increasing gap set, not an interval. At source bound
-\(10^6\), its consecutive gaps range from \(4\) to \(3000\) in the recorded
-census. Some generated sets look balanced and some short ones concentrate;
-simple deterministic weights do not produce a uniform transfer law.
+This is a counting corollary of Theorem 5.1, not a Lean cardinality
+theorem. It is a density of a *uniform short-certificate class*. It is
+not the density of all starts that possess some descent certificate, and
+it is not a density of starts that reach \(1\).
 
-Therefore:
-\[
-\boxed{
-\text{ambient interval cancellation}\not\Rightarrow
-\text{Juggler-orbit or image-set cancellation}.
-}
-\]
+The exact census through \(N=10^7\) has
+\(\operatorname{OO}(N)/N=0.2499896\). Through \(N=10^6\) one has
+\(S_O(N)=146\) and running maximum \(256\), at \(n=985351\). A spot
+computation at \(10^7\) has running maximum \(459\). The observed growth
+is much smaller than \(N^{5/6}\). The descriptive \(N^{1/3}\)-scale
+envelope is not promoted to a theorem.
 
-This is a boundary statement about the present argument, not a proof that no
-sparse-sequence estimate can exist.
+The bound does not transfer from intervals to Juggler images. For a
+general interval \(I=[A,B]\) the variation of \(S_O\) depends on the
+right endpoint, not only on \(|I|\). The expanding image
+\(Y=J_O(O(I))\) is a sparse gap set. At source bound \(10^6\), recorded
+consecutive gaps in \(Y\) range from \(4\) to \(3000\). A certified
+finite concentration is the run of \(52\) consecutive odd sources of
+equal sign on \([952525,952627]\). Therefore ambient interval
+cancellation does not imply orbit or image-set cancellation. This is a
+boundary for the present argument, not a proof that no sparse-sequence
+estimate can exist.
 
-## 8. Probabilistic interpretation
+## 6. The remaining gap
 
-For large \(x\), use the diagnostic coordinate \(L(x)=\log\log x\). Ignoring
-floor errors, an odd step contributes \(\log(3/2)\) and an even step contributes
-\(\log(1/2)\). Under the fair-parity model,
-\[
-\mathbb E[\Delta L]
-=\frac12\log\frac32+\frac12\log\frac12
-=\frac12\log\frac34
-\approx-0.14384.
-\]
+Theorem 4.1 and Corollary 5.2 together say that a uniform one- or
+two-step argument covers a set of density \(3/4\). The first odd-to-odd
+image expands, so ordinary strong induction cannot fire on that class.
+Proposition 4.5 shows that most odd-to-odd starts in a finite window
+still return below the start inside twenty steps. That is an
+observation, not Terras's theorem for \(J\).
 
-The exact finite ensembles have mixed-parity mean near \(-0.144\), while
-branch-conditioned means approach the two ideal increments. Ordinary paths
-have small measured lag-one dependence; hard trajectories and record families
-are more \(O\)-rich. These observations agree qualitatively with the
-large-deviation geometry studied for juggler-like models by Prasad and Prasad
-[4].
+A mixed-parity heuristic, ignoring floors, gives mean log-log drift
+\(\tfrac12\log(3/4)<0\). Finite ensembles sit near this value; hard
+paths are more odd-rich. This agrees qualitatively with the
+juggler-like random-walk model of Prasad and Prasad [12]. Fair parity
+is an assumption, not a dynamical theorem, and typical negative drift
+is not pointwise contraction.
 
-They do not give a proof mechanism. The model's fair parity is an assumption,
-not a dynamical theorem. Empirical tail fits are not Cramér bounds, and the
-hard finite trajectories do not collapse to a deterministic arithmetic
-exceptional family beyond long odd-rich prefixes. The probabilistic layer is
-therefore descriptive:
-\[
-\boxed{\text{typical negative drift is not pointwise contraction}.}
-\]
+The gap is therefore:
 
-## 9. The finite-progress boundary
+> No theorem forces every exact integer state into a contracting
+> prefix. In particular, it is open whether almost every odd-to-odd
+> start has a finite descent certificate.
 
-The formal and computational layers meet at a precise boundary.
+That is the Juggler form of the Terras question. It is the next
+mathematical target. It is not answered by enlarging the finite-word
+atlas, by another residual quotient, or by a sharper ambient
+discrepancy exponent.
 
-`FiniteProgress n` is the existence of a finite descent certificate. Lean
-proves that universal finite progress would imply universal reachability:
-\[
-\left(\forall n>1,\ \operatorname{FiniteProgress}(n)\right)
-\Longrightarrow
-\left(\forall n\ge1,\ \operatorname{ReachesOne}(n)\right).
-\]
-This is `reachesOne_of_all_finiteProgress`; its premise is not proved.
+## 7. Software archive
 
-Two classes are covered automatically:
-\[
-\begin{aligned}
-n\ {\rm even},\ n\ge2
-&\Longrightarrow \operatorname{FiniteProgress}(n),\\
-n\ {\rm odd},\ J(n)\ {\rm even},\ n\ge2
-&\Longrightarrow \operatorname{FiniteProgress}(n).
-\end{aligned}
-\]
-These are `even_finiteProgress` and `odd_even_finiteProgress`. Consequently,
-`unresolved_is_odd_odd` proves the exact residual boundary
-\[
-\neg\operatorname{FiniteProgress}(n)
-\Longrightarrow n\ {\rm odd}\ \text{and}\ J(n)\ {\rm odd}.
-\]
-The first odd-to-odd image expands (`odd_odd_image_gt`), so ordinary strong
-induction cannot fire there. Separately, the finite residual class
-\(\{1,\ldots,11\}\) is certified to reach \(1\); this enlarges the set of fatal
-landings for a hypothetical minimal counterexample but does not cover all
-odd-to-odd starts.
+Lean proofs of the exact-arithmetic theorems, the computational checks,
+and the laboratory notes live at
+[https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/).
+The archive is not required to read the arguments above. The
+discrepancy bound is a human proof; Lean does not certify it.
 
-```mermaid
-flowchart TD
-    Juggler[JugglerMap]
-    Lean[ExactLeanSemantics]
-    Atlas[WordAtlas]
-    Tests[FiniteStructureTests]
-    Words[Words]
-    States[States]
-    Geometry[Geometry]
-    Cycles[Cycles]
-    Statistics[Statistics]
-    ClosedA[NoNewGrammar]
-    ClosedB[NoTestedQuotient]
-    ClosedC[ExactCellsOnly]
-    Partial[PartialRestrictions]
-    Descriptive[DescriptiveBounds]
-    Covered[EvenAndOddEvenFiniteProgress]
-    Frontier[OddToOddFrontier]
-    Gap[RemainingPointwiseGap]
+From a clone, the formal layer and the focused records are
 
-    Juggler --> Lean
-    Juggler --> Atlas
-    Lean --> Covered
-    Covered --> Frontier
-    Lean --> Tests
-    Atlas --> Tests
-    Tests --> Words
-    Tests --> States
-    Tests --> Geometry
-    Tests --> Cycles
-    Tests --> Statistics
-    Words --> ClosedA
-    States --> ClosedB
-    Geometry --> ClosedC
-    Cycles --> Partial
-    Statistics --> Descriptive
-    ClosedA --> Gap
-    ClosedB --> Gap
-    ClosedC --> Gap
-    Partial --> Gap
-    Descriptive --> Gap
-    Frontier --> Gap
-```
-
-The surviving exact structure is substantial:
-
-- finite itineraries and images have certified compositional semantics;
-- even and odd-to-even starts have certified finite progress;
-- fixed-word images are monotone on realizing sets;
-- exponent gap gives a universal conditional contraction theorem;
-- global defects record exact accumulated floor slack;
-- inverse cells have a sharp even/odd asymmetry;
-- residual chains and counterexamples are certifiable;
-- cycles obey strict exponent, parity, order, scale, and cell constraints;
-- the ambient odd branch has deterministic sublinear parity discrepancy.
-
-The eliminated reductions are also informative, but only with their
-quantifiers intact. Tested word grammars, residual quotients, image geometries,
-inverse summaries, defect aggregates, finite-path extremals, and probability
-models do not yield a new all-state descent induction. Their failure does not
-exclude every future reduction.
-
-The remaining gap is:
-
-> **Finite and statistical contraction are well described, but no theorem
-> forces every exact integer state into a contracting prefix, and no universal
-> exceptional-set exclusion or pointwise induction is known.**
-
-This is the finite-progress boundary. It explains why the paper stops here:
-the next advance must add a genuinely pointwise mechanism, not another
-reparameterization of the existing finite structure.
-
-## 10. Reproducibility
-
-The formal development can be checked from `formal/`:
-
-```powershell
-lake build
-```
-
-The theorem ledger and focused computational records can be checked from the
-repository root:
-
-```powershell
+```text
+pip install -e ".[dev]"
+cd formal && lake build
 python tools/render_theorem_ledger.py --check
 python -m pytest tests/unit/test_theorem_ledger.py
-python -m pytest tests/research/juggler_sequence/test_word_atlas.py tests/research/juggler_sequence/test_word_atlas_validate.py
-python -m pytest tests/research/juggler_sequence/test_global_defect.py tests/research/juggler_sequence/test_preimage_cylinders.py
-python -m pytest tests/research/juggler_sequence/test_odd_image_discrepancy.py tests/research/juggler_sequence/test_parity_discrepancy_transfer.py
+python -m pytest tests/research/juggler_sequence/test_progress_coverage.py
+python -m pytest tests/research/juggler_sequence/test_odd_image_discrepancy.py
+python -m pytest tests/research/juggler_sequence/test_global_defect.py
 ```
 
-When the native Atlas binary is built:
+A Word Atlas used in the laboratory records bounded realizers and
+persistent-expanding blocks through length \(20\) and starts
+\(n\le10^8\). It is infrastructure, not a theorem of this note. Absence
+of a word in that census means only that the word was not observed
+inside the search bound.
 
-```powershell
-juggler-atlas validate
-atlas\build\juggler-atlas-tests.exe
-```
+## Acknowledgments
 
-The principal census summary is
-`data/research/juggler/word_atlas/summaries/wa-20260827T200310Z-cuda-k20-n100000000.md`.
-The complete evidence and scope map is in the
-[reviewer packet](juggler_finite_dynamics_reviewer_packet.md).
+I used large language models extensively while drafting and revising the
+text, organizing companion notes, and as an interactive assistant for
+Lean statements, tests, and literature records. The models are not
+authors. Lean theorems and named computations are the certificates for
+those claims. The discrepancy bound (Theorem 5.1) is a human proof using
+classical analytic inequalities; it is not Lean-certified. I take full
+responsibility for the contents.
 
 ## References
 
 1. C. A. Pickover, *Computers and the Imagination: Visual Adventures Beyond
-   the Edge*, St. Martin's Press, 1991.
-   Registry id: `pickover-1991-computers-imagination`.
-2. OEIS contributors, “Number of steps for \(n\) to reach 1 in the juggler
-   sequence,” OEIS A007320.
-   Registry id: `oeis-A007320`.
-3. L. Kuipers and H. Niederreiter, *Uniform Distribution of Sequences*,
-   Wiley-Interscience, 1974.
-   Registry id: `kuipers-niederreiter-1974-uniform-distribution`.
-4. V. Prasad and M. A. Prasad, “Estimates of the maximum excursion constant
-   and stopping constant of juggler-like sequences,” preprint, 2025,
-   DOI 10.13140/RG.2.2.14110.04168.
-   Registry id: `prasad-prasad-2025-juggler-like`.
+   the Edge*, St. Martin's Press, New York, 1991, ch. 40, p. 232.
+2. E. W. Weisstein, “Juggler Sequence,” *MathWorld*,
+   https://mathworld.wolfram.com/JugglerSequence.html
+   (accessed 28 August 2026).
+3. OEIS Foundation Inc., “Number of steps needed for juggler sequence
+   (A094683) started at \(n\) to reach 1,” Sequence A007320 in *The
+   On-Line Encyclopedia of Integer Sequences*,
+   https://oeis.org/A007320 (accessed 28 August 2026).
+4. J. C. Lagarias, “The \(3x+1\) problem and its generalizations,”
+   *Amer. Math. Monthly* 92 (1985), 3–23.
+   [doi:10.1080/00029890.1985.11971528](https://doi.org/10.1080/00029890.1985.11971528).
+5. J. C. Lagarias (ed.), *The Ultimate Challenge: The \(3x+1\) Problem*,
+   American Mathematical Society, Providence, RI, 2010.
+6. R. Terras, “A stopping time problem on the positive integers,”
+   *Acta Arith.* 30 (1976), 241–252.
+   [doi:10.4064/aa-30-3-241-252](https://doi.org/10.4064/aa-30-3-241-252).
+7. C. J. Everett, “Iteration of the number-theoretic function
+   \(f(2n)=n\), \(f(2n+1)=3n+2\),” *Adv. Math.* 25 (1977), 42–45.
+   [doi:10.1016/0001-8708(77)90087-1](https://doi.org/10.1016/0001-8708(77)90087-1).
+8. T. Tao, “Almost all orbits of the Collatz map attain almost bounded
+   values,” *Forum Math. Pi* 10 (2022), e12.
+   [doi:10.1017/fmp.2022.8](https://doi.org/10.1017/fmp.2022.8).
+9. R. E. Crandall, “On the ``\(3x+1\)'' problem,” *Math. Comp.* 32
+   (1978), 1281–1292.
+   [doi:10.1090/S0025-5718-1978-0480321-3](https://doi.org/10.1090/S0025-5718-1978-0480321-3).
+10. K. R. Matthews and A. M. Watts, “A generalization of Hasse's
+    generalization of the Syracuse algorithm,” *Acta Arith.* 43 (1984),
+    167–175.
+    [doi:10.4064/aa-43-2-167-175](https://doi.org/10.4064/aa-43-2-167-175).
+11. L. Kuipers and H. Niederreiter, *Uniform Distribution of Sequences*,
+    Wiley-Interscience, New York, 1974.
+12. V. Prasad and M. A. Prasad, “Estimates of the maximum excursion
+    constant and stopping constant of juggler-like sequences,”
+    ResearchGate preprint, 2025.
+    [doi:10.13140/RG.2.2.14110.04168](https://doi.org/10.13140/RG.2.2.14110.04168).

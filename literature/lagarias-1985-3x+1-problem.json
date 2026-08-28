@@ -1,0 +1,20 @@
+{
+  "id": "lagarias-1985-3x+1-problem",
+  "title": "The 3x+1 problem and its generalizations",
+  "authors": ["Jeffrey C. Lagarias"],
+  "year": 1985,
+  "identifiers": {
+    "doi": "10.1080/00029890.1985.11971528"
+  },
+  "url": {},
+  "problem_area": "collatz",
+  "relevant_concepts": [
+    "3x+1 problem",
+    "stopping times",
+    "parity sequences",
+    "generalized Collatz maps"
+  ],
+  "project_relationship": "known",
+  "status": "survey",
+  "notes": "Classical AMM survey. Cited from the Juggler finite-dynamics note as the standard account of Collatz stopping times, parity words, and the gap between finite descent and totality. Not a Juggler theorem and not a Collatz claim."
+}

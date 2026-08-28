@@ -2,7 +2,8 @@
   "authors": ["Terence Tao"],
   "id": "tao-2019-almost-all-collatz",
   "identifiers": {
-    "doi": "10.48550/arXiv.1909.03562"
+    "doi": "10.1017/fmp.2022.8",
+    "arxiv": "1909.03562"
   },
   "notes": "docs/problems/syracuse.md",
   "problem_area": "collatz",
@@ -12,9 +13,10 @@
     "almost all orbits"
   ],
   "status": "theorem",
-  "title": "Almost all Collatz orbits attain almost bounded values",
+  "title": "Almost all orbits of the Collatz map attain almost bounded values",
   "url": {
-    "doi": "10.48550/arXiv.1909.03562"
+    "doi": "https://doi.org/10.1017/fmp.2022.8",
+    "arxiv": "https://arxiv.org/abs/1909.03562"
   },
   "year": 2019
 }

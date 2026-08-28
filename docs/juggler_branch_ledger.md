@@ -1,10 +1,13 @@
 # Juggler finite-dynamics branch ledger
 
-This appendix curates the branches used in the
-[Juggler finite-dynamics paper](theory/juggler_finite_dynamics_note.md).
-It is not a replacement for the theorem ledger. `Decision` reproduces the
-terminal `PROMOTE | PARK | CLOSE` decision in each source dossier; combining
-the branches into a paper does not retroactively change those decisions.
+This appendix curates the branches behind the
+[math note](theory/juggler_finite_dynamics_note.md).
+The note itself is a standalone exact-arithmetic paper: envelope, defect,
+short certificates, and the ambient discrepancy corollary. It does not
+recount every closed compression. This ledger remains the laboratory
+record. `Decision` reproduces the terminal `PROMOTE | PARK | CLOSE`
+decision in each source dossier; the math-note cut does not relabel those
+decisions.
 
 Evidence labels describe the strongest paper-relevant result, not every
 statement in the branch.

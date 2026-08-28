@@ -3221,6 +3221,18 @@
     "related_conjectures": []
   },
   {
+    "id": "J-automatic-descent-density",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "The odd-to-odd Juggler starts have natural density 1/4. Equivalently, the starts that admit a uniform one- or two-step FiniteProgress certificate (every even start n \u2265 2, and every odd start whose first image is even) have natural density 3/4. This is the counting corollary |OO(N)-N/4| \u226a N^{5/6} of the ambient odd-input discrepancy bound. It is a density of that uniform short-certificate class, not of all FiniteProgress, not of ReachesOne, and not a Lean counting theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_odd_image_discrepancy.py",
+      "tests/research/juggler_sequence/test_progress_coverage.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-finite-progress-boundary",
     "tag": "EXACT \u2014 LEAN VERIFIED",
     "statement": "Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n \u2265 2 and every odd start n \u2265 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal progress.",
