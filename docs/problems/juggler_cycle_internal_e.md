@@ -150,7 +150,11 @@ Classification **INTERNAL_E_BOOTSTRAP_GREEN**, with secondary
 **OOOEOE_EXCEPTION**.
 
 The generic theorem is the reusable result. `OOEOOE` is fully excluded.
-`OEOOOE` is excluded as a cycle minimum. `OOOEOE` and `OOOOEE` remain.
+`OEOOOE` is excluded as a cycle minimum. `OOOEOE` and `OOOOEE` remain
+as leftovers of this bootstrap. A later branch,
+[juggler_leftover_cycles](juggler_leftover_cycles.md), excludes both
+as `CycleWord`. That is not this branch's next-square-suffix argument;
+the `PROMOTE` here is unchanged.
 
 ## Open questions
 

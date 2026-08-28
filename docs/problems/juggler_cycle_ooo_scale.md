@@ -165,6 +165,11 @@ excluded. A branch whose surviving statements are `KNOWN` or
 Best next question: write the structure paper (Atlas +
 `FiniteProgress` leftover + cycle stack + \(N^{5/6}\)).
 
+A later branch, [juggler_leftover_cycles](juggler_leftover_cycles.md),
+excludes both leftover `CycleWord`s by a finite evaluation below
+\(256\) plus the tail \(n^{81}>2^{130}(n+1)^{64}\). That is not this
+branch's uniform-from-\(3\) attack; the `CLOSE` here is unchanged.
+
 ## Publication assessment
 
 Status: `ARCHIVED`.

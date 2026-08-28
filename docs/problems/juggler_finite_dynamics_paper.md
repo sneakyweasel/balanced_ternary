@@ -101,6 +101,9 @@ added to `bt.*`.
   **EXACT — LEAN VERIFIED**;
 - cycle exponent, extrema, order, and cell constraints —
   **EXACT — LEAN VERIFIED**;
+- leftover length-six orientations \(OOOEOE\) and \(OOOOEE\) —
+  **EXACT — LEAN VERIFIED** (recorded in the leftover-cycles branch;
+  not a length-six census);
 - Word Atlas scientific census —
   **COMPUTATIONALLY VERIFIED** within its configured bounds;
 - \(|S_O(N)|\ll N^{5/6}\) on ambient odd inputs —

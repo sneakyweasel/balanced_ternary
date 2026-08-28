@@ -8484,4 +8484,55 @@ Best next question
 - do almost all odd-to-odd starts have a finite descent certificate?
 ```
 
+## Juggler leftover length-six orientations
+
+- **Date:** 2026-08-28
+- **Objective:** Exclude the leftover legal `CycleMin` orientations `OOOEOE` and `OOOOEE` as `CycleWord` for every \(n\ge 2\)
+- **Hypotheses:** finite evaluation below \(256\) plus the last-even cell against `LowerPowerBound` yields \(n^{81}>2^{130}(n+1)^{64}\) for \(n\ge256\)
+- **Major results:** `no_cycle_word_oooeoe` and `no_cycle_word_ooooee` **EXACT — LEAN VERIFIED**. Math-note Theorem 3.2. Isolated `native_decide` in `LeftoverEval.lean`; algebra in `LeftoverCycles.lean`. Records: `docs/problems/juggler_leftover_cycles.md`
+- **Refuted ideas:** uniform extra-scale from \(n=3\) (already closed); all length-six cycle words are excluded; a halt theorem
+- **Literature:** oeis-A007320 known. Internal-E bootstrap and prefix-OOO `CLOSE` reused, not reopened
+- **Open:** almost-all descent on odd-to-odd starts. Do not open length 7
+- **Decision:** PROMOTE the two leftover exclusions. The closed uniform-from-3 extra-scale branch stays `CLOSE`. No length-six census. No halt theorem
+
+```text
+What was learned
+- The leftover orientations were not excluded by uniform extra-scale from n=3
+- A finite check below 256 plus the last-even cell against LowerPowerBound
+  is enough for both words
+- The shared tail is n^81 > 2^130 (n+1)^64 for n ≥ 256
+- OOOOEE uses LowerPowerBound on OOOO; OOOEOE cubes the OOO bound
+  across the internal even step
+- This is not a length-six census and not a halt theorem
+
+Strongest theorem
+- Neither OOOEOE nor OOOOEE is a CycleWord at any n ≥ 2
+
+Strongest refutation
+- LowerPowerBound extra-scale from n=3 excludes the leftovers
+  (already closed; first OOO overshoot at n=109)
+
+Reusable machinery
+- formal/Problems/Juggler/LeftoverEval.lean
+- formal/Problems/Juggler/LeftoverCycles.lean
+
+Prior-art status
+- leftover exclusion after the closed uniform-from-3 attack;
+  not a Juggler halt result
+
+Complexity profile
+- isolated native_decide plus algebraic tail; no cycle engine;
+  control layer not modified
+
+Branch status
+- PROMOTE
+
+Why
+- Both leftover CycleWords are excluded by a finite check plus a
+  reusable tail inequality, without claiming a length-six census.
+
+Best next question
+- do almost all odd-to-odd starts have a finite descent certificate?
+```
+
 

@@ -35,7 +35,8 @@ statement in the branch.
 | Information complexity | [Information complexity](problems/juggler_information_complexity.md) | CLOSE | **REFUTED** as a growing-state law | Fixed-sample future precision does not grow after the short itinerary separates the sample | State elimination |
 | Extremal control | [Extremal control](problems/juggler_extremal_control.md) | PARK | **EXACT — HUMAN PROOF** for the ideal model; **OBSERVATION** for realization | Ideal bang-bang maximizers are not uniformly realized by exact Juggler paths | Extremal boundary |
 | Cycle extrema | [Cycle extrema](problems/juggler_cycle_extrema.md) | PROMOTE | **EXACT — LEAN VERIFIED** | Cycle minimum/maximum parity, square-scale demand, and superquadratic min-to-even prefixes | Partial cycle structure |
-| Cycle scale closure | [Prefix-OOO extra scale](problems/juggler_cycle_ooo_scale.md) | CLOSE | **EXACT — LEAN VERIFIED** reparameterizations plus **REFUTED** scale claim | Minimum cannot end odd, but `OOOEOE` and `OOOOEE` remain unexcluded | Cycle boundary |
+| Cycle scale closure | [Prefix-OOO extra scale](problems/juggler_cycle_ooo_scale.md) | CLOSE | **EXACT — LEAN VERIFIED** reparameterizations plus **REFUTED** scale claim | Uniform extra-scale from \(n=3\) fails; leftover words were not excluded by that attack | Cycle boundary |
+| Leftover length-six orientations | [Leftover cycle words](problems/juggler_leftover_cycles.md) | PROMOTE | **EXACT — LEAN VERIFIED** | `OOOEOE` and `OOOOEE` are impossible as cycle words; not a length-six census | Cycle theorem |
 | Statistics | [Probabilistic drift](problems/juggler_probabilistic.md) | PARK | **OBSERVATION** | Mixed ensembles have negative log-log drift; hard paths are odd-rich; no pointwise exceptional-family theorem | Descriptive layer |
 | Ambient discrepancy | [Odd-image discrepancy](problems/juggler_odd_image_discrepancy.md) | PARK | **EXACT — HUMAN PROOF** | The ambient odd-input sign sum satisfies \(|S_O(N)|\ll N^{5/6}\) | Analytic theorem |
 | Dynamical transfer | [Parity discrepancy transfer](problems/juggler_parity_discrepancy_transfer.md) | CLOSE | **REFUTED** | Translation-uniform short-interval laws and automatic transfer to sparse generated images fail in the tested form | Analytic boundary |
@@ -44,8 +45,8 @@ statement in the branch.
 ## Synthesis
 
 The promoted branches provide exact finite structure: the power envelope,
-global defect, certified persistent-block counterexample, scale barriers, and
-cycle extrema. The parked Atlas, discrepancy, probabilistic, and extremal
+global defect, certified persistent-block counterexample, scale barriers,
+cycle extrema, and the two leftover length-six cycle orientations. The parked Atlas, discrepancy, probabilistic, and extremal
 branches remain reusable evidence or descriptive mathematics. The closed
 branches supply negative knowledge: specified reductions either fail on
 explicit witnesses, reproduce exact cell/itinerary semantics, or collapse only

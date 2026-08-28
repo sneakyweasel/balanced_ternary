@@ -43,7 +43,8 @@ stopping-time theorem, and it is not a density of arrival at \(1\).
 | Power envelope and exponent-gap contraction | **EXACT — LEAN VERIFIED** | conditional on a realized word |
 | Global defect identity | **EXACT — LEAN VERIFIED** | slack, not a uniform tax |
 | Odd inverse cells have at most one integer | **EXACT — LEAN VERIFIED** | one-step fibers |
-| Nontrivial cycle words are formally expanding | **EXACT — LEAN VERIFIED** | necessary condition; \(OOOEOE\), \(OOOOEE\) open |
+| Nontrivial cycle words are formally expanding | **EXACT — LEAN VERIFIED** | necessary condition; not an exclusion of all cycles |
+| Length-six orientations \(OOOEOE\) and \(OOOOEE\) | **EXACT — LEAN VERIFIED** | these two words only; not a length-six census |
 | Even and odd-to-even starts have uniform short certificates | **EXACT — LEAN VERIFIED** | not all `FiniteProgress` |
 | \(\neg\mathrm{FP}\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only |
 | \(\{1,\ldots,11\}\) and even residuals \(<144\) reach \(1\) | **EXACT — LEAN VERIFIED** | finite landing class |
@@ -63,7 +64,8 @@ stopping-time theorem, and it is not a density of arrival at \(1\).
 3. Terras–Everett prove almost-all Collatz stopping times. The note does
    not prove the Juggler analogue on odd-to-odd starts.
 4. `power_bound_contracts` requires a realized contracting word.
-5. Cycle restrictions do not exclude all cycles.
+5. Cycle restrictions do not exclude all cycles. The two leftover
+   length-six orientations are excluded; that is not a length-six census.
 6. Atlas absence, if mentioned, is `NOT OBSERVED WITHIN SEARCH BOUND`.
 
 ## What the paper does not claim
@@ -85,7 +87,8 @@ Reject or revise if:
 2. the \(3/4\) figure is called a Terras theorem or a `ReachesOne` density;
 3. Theorem 4.2 is read as “odd-to-odd starts have no descent”;
 4. Theorem 5.1 is described as Lean-certified;
-5. either remaining length-six cycle word is described as excluded;
+5. either leftover orientation is described as still open, or all
+   length-six cycle words are claimed excluded;
 6. the discrepancy proof replaces the floor by a single exponential;
 7. an interval bound is applied to a sparse image set without transfer;
 8. Proposition 4.5 is promoted from observation to theorem.
@@ -100,6 +103,7 @@ python tools/render_theorem_ledger.py --check
 python -m pytest tests/unit/test_theorem_ledger.py
 python -m pytest tests/research/juggler_sequence/test_progress_coverage.py
 python -m pytest tests/research/juggler_sequence/test_odd_image_discrepancy.py
+python -m pytest tests/research/juggler_sequence/test_cycle_leftover_words.py
 ```
 
 From `formal/`: `lake build`.

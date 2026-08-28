@@ -332,6 +332,53 @@ theorem pow_lt_of_lt_pow_mul {a b k m : ℕ} (h : a < b ^ k) (hm : m ≠ 0) :
   have := Nat.pow_lt_pow_left h hm
   rwa [← Nat.pow_mul] at this
 
+theorem cube_ooo_lower {n y : ℕ}
+    (h : n ^ 27 < 2 ^ 38 * (y + 1) ^ 16) :
+    n ^ 81 < 2 ^ 114 * (y + 1) ^ 48 := by
+  have hcube : (n ^ 27) ^ 3 < (2 ^ 38 * (y + 1) ^ 16) ^ 3 :=
+    Nat.pow_lt_pow_left h (by decide : (3 : ℕ) ≠ 0)
+  have hn81 : n ^ (27 * 3) = (n ^ 27) ^ 3 := Nat.pow_mul n 27 3
+  have h27 : (27 : ℕ) * 3 = 81 := by decide
+  rw [h27] at hn81
+  have hR : (2 ^ 38) ^ 3 * ((y + 1) ^ 16) ^ 3 =
+      2 ^ (38 * 3) * (y + 1) ^ (16 * 3) := by
+    rw [two_pow_mul, Nat.pow_mul (y + 1) 16 3]
+  have h114 : (38 : ℕ) * 3 = 114 := by decide
+  have h48 : (16 : ℕ) * 3 = 48 := by decide
+  rw [h114, h48] at hR
+  have hmul : (2 ^ 38 * (y + 1) ^ 16) ^ 3 =
+      (2 ^ 38) ^ 3 * ((y + 1) ^ 16) ^ 3 := mul_pow _ _ 3
+  rw [← hn81, hmul, hR] at hcube
+  exact hcube
+
+theorem y_succ_pow48 {y n : ℕ}
+    (h : (y + 1) ^ 3 < 2 * (n + 1) ^ 4) :
+    (y + 1) ^ 48 < 2 ^ 16 * (n + 1) ^ 64 := by
+  have hlt : ((y + 1) ^ 3) ^ 16 < (2 * (n + 1) ^ 4) ^ 16 :=
+    Nat.pow_lt_pow_left h (by decide : (16 : ℕ) ≠ 0)
+  have hL : (y + 1) ^ (3 * 16) = ((y + 1) ^ 3) ^ 16 := Nat.pow_mul (y + 1) 3 16
+  have h48 : (3 : ℕ) * 16 = 48 := by decide
+  rw [h48] at hL
+  have hR : 2 ^ 16 * (n + 1) ^ (4 * 16) = (2 * (n + 1) ^ 4) ^ 16 := by
+    rw [mul_pow, Nat.pow_mul]
+  have h64 : (4 : ℕ) * 16 = 64 := by decide
+  rw [h64] at hR
+  rw [← hL, ← hR] at hlt
+  exact hlt
+
+theorem combine_ooo_tail {n y : ℕ}
+    (h81 : n ^ 81 < 2 ^ 114 * (y + 1) ^ 48)
+    (hy48 : (y + 1) ^ 48 < 2 ^ 16 * (n + 1) ^ 64) :
+    n ^ 81 < 2 ^ 130 * (n + 1) ^ 64 := by
+  have hmid : n ^ 81 < 2 ^ 114 * (2 ^ 16 * (n + 1) ^ 64) :=
+    lt_trans h81 (Nat.mul_lt_mul_of_pos_left hy48
+      (pow_pos (by decide : (0 : ℕ) < 2) 114))
+  have hexp : 2 ^ 114 * (2 ^ 16 * (n + 1) ^ 64) = 2 ^ (114 + 16) * (n + 1) ^ 64 := by
+    rw [← mul_assoc, ← Nat.pow_add]
+  have h130 : (114 : ℕ) + 16 = 130 := by decide
+  rw [h130] at hexp
+  exact hexp ▸ hmid
+
 theorem no_cycle_word_ooooee_of_ge {n : ℕ} (hn : 256 ≤ n)
     (h : CycleWord n wordOOOOEE) : False := by
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 256) hn
@@ -424,8 +471,7 @@ theorem no_cycle_word_oooeoe_of_ge {n : ℕ} (hn : 256 ≤ n)
   have h81 := cube_ooo_lower h27
   have hy3 := oooeoe_y_cube_lt h
   have hA : 3 ≤ n + 1 :=
-    le_trans (by decide : (3 : ℕ) ≤ 257)
-      (Nat.succ_le_succ (le_trans (by decide : (1 : ℕ) ≤ 256) hn))
+    le_trans (by decide : (3 : ℕ) ≤ 257) (Nat.succ_le_succ hn)
   have hysucc : (y + 1) ^ 3 < 2 * (n + 1) ^ 4 :=
     cube_succ_lt_two_mul_of_cube_lt_pow4 hA (by simpa [y] using hy3)
   have hy48 := y_succ_pow48 hysucc

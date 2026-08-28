@@ -273,7 +273,9 @@ cylinder data as a complete next-parity state.
 Sources:
 
 - `formal/Problems/Juggler/Residuals.lean`;
-- `formal/Problems/Juggler/Cycles.lean`.
+- `formal/Problems/Juggler/Cycles.lean`;
+- `formal/Problems/Juggler/LeftoverEval.lean`;
+- `formal/Problems/Juggler/LeftoverCycles.lean`.
 
 ```text
 CycleWord n w :=
@@ -308,8 +310,19 @@ cycleMin_not_end_odd
 cycleMin_prefix_ooo_even_sqrt_ne
 ```
 
-They constrain a minimum-based orientation but do not eliminate the remaining
-`OOOEOE` or `OOOOEE` cases, all length-six words, or all cycles.
+They constrain a minimum-based orientation. The two leftover legal
+orientations are then excluded separately:
+
+```text
+no_cycle_word_oooeoe
+no_cycle_word_ooooee
+```
+
+The finite range \(n<256\) is evaluated in `LeftoverEval.lean`. The tail
+\(n\ge256\) uses the last-even cell against the coarse lower envelope
+`LowerPowerBound`, via the comparison \(n^{81}>2^{130}(n+1)^{64}\).
+This is not a length-six census, not an exclusion of odd-terminating
+cycle words, and not a halt theorem.
 
 ## 9. Evidence boundary
 

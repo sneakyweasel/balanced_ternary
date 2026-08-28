@@ -3242,5 +3242,16 @@
       "tests/research/juggler_sequence/test_progress_coverage.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-leftover-length-six-orientations",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "Neither OOOEOE nor OOOOEE is a Juggler cycle word at any n \u2265 2. The argument is an exhaustive evaluation for n < 256 together with the last-even cell against the coarse lower envelope n^{81} > 2^{130}(n+1)^{64} for n \u2265 256. This excludes those two orientations only: it is not a length-six census and not an exclusion of all cycles.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/LeftoverCycles.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
   }
 ]

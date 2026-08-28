@@ -199,6 +199,11 @@ parity-restricted square interval and may contain many predecessors.
 
 A nonempty realized word \(w\) with \(J^{|w|}(n)=n\) is a cycle word.
 
+The identities in this section are formalized in Lean
+(`cycle_word_formally_expanding`, `cycleMin_not_end_odd`,
+`no_cycle_word_oooeoe`, `no_cycle_word_ooooee`). The proofs below are
+the ordinary integer arguments.
+
 **Theorem 3.1 (cycle exponent condition; EXACT — LEAN VERIFIED).**
 Every cycle word at \(n\ge2\) satisfies
 \[
@@ -206,9 +211,65 @@ Every cycle word at \(n\ge2\) satisfies
 \]
 
 Thus a contracting word cannot close a nontrivial cycle. The cycle
-minimum is odd and the cycle maximum is even; these are necessary
-restrictions. They do not exclude every nontrivial cycle. In particular
-the length-six orientations \(OOOEOE\) and \(OOOOEE\) remain open.
+minimum is odd and the cycle maximum is even; a minimum-based
+orientation cannot end in an odd letter. These are necessary
+restrictions. They do not exclude every nontrivial cycle.
+
+The two remaining legal minimum-based length-six orientations are
+nevertheless impossible. The argument uses the last-even cell together
+with a coarse lower envelope. For \(n\ge1\),
+\[
+n<4\,\lfloor\sqrt n\rfloor^2,
+\]
+so an even step satisfies \(n\le 4\,J(n)^2\) and an odd step satisfies
+\(n^3\le 4\,J(n)^2\). Composing along a realized word \(v\) of length \(k\) with odd count
+\(o\) gives
+\[
+n^{3^{o}}\le D_v\,J^{k}(n)^{2^{k}}.
+\]
+The denominator starts at \(1\) and updates by
+\(D\mapsto D\cdot 4^{2^{j}}\) on an even letter and
+\(D\mapsto D^{3}\cdot 4^{2^{j}}\) on an odd letter, at step \(j\).
+In particular \(D_{OOO}=2^{38}\) and \(D_{OOOO}=2^{130}\). If a cycle word ends
+in an even letter, the last-even cell is
+\(J^{|w|-1}(n)<(n+1)^2\).
+
+**Theorem 3.2 (leftover length-six orientations; EXACT — LEAN VERIFIED).**
+Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle word at any \(n\ge2\).
+This is not an exclusion of every length-six word, nor of every cycle.
+
+*Proof.* First, if \(n\ge256\), then
+\[
+n^{81}>2^{130}(n+1)^{64}.
+\]
+Indeed \(257^{64}<2\cdot256^{64}\) and \(256(n+1)\le257\,n\), so
+\((n+1)^{64}<2n^{64}\). Then
+\(2^{130}(n+1)^{64}<2^{131}n^{64}\). Since \(n\ge256=2^8\), one has
+\(n^{17}\ge2^{136}\), and therefore
+\(2^{131}n^{64}<2^{136}n^{64}\le n^{81}\).
+
+For \(n<256\), neither word returns to its start: this is an exhaustive
+evaluation of the two itineraries.
+
+Now suppose \(n\ge256\) realizes \(OOOOEE\), and write
+\(z=J^4(n)\) for the image after the prefix \(OOOO\). The last two
+even letters give \(J(z)<(n+1)^2\) and \(z<(J(z)+1)^2\), hence
+\(z<(n+1)^4\). The lower envelope on \(OOOO\) is
+\(n^{81}\le2^{130}z^{16}\), so
+\(n^{81}<2^{130}(n+1)^{64}\), contradicting the tail inequality.
+
+Finally suppose \(n\ge256\) realizes \(OOOEOE\). Write
+\(z_3=J^3(n)\) and \(y=J(z_3)=\lfloor\sqrt{z_3}\rfloor\), so
+\(z_3<(y+1)^2\). The lower envelope on \(OOO\) is
+\(n^{27}\le2^{38}z_3^8<2^{38}(y+1)^{16}\). Cubing yields
+\(n^{81}<2^{114}(y+1)^{48}\). The last letters \(OE\) give the odd-cell
+bound \(y^3<(n+1)^4\). Write \(A=n+1\ge257\). Then
+\((y+1)^3<2A^4\): if \(y\le A\), this follows from
+\((A+1)^3<2A^4\); if \(y>A\), then \(y\ge4\) and
+\((y+1)^3=y^3+3y^2+3y+1<A^4+4y^2\), while \(4y^2<A^4\) because
+\(4y^3<4A^4\le yA^4\). Raising \((y+1)^3<2A^4\) to the sixteenth
+power gives \((y+1)^{48}<2^{16}(n+1)^{64}\). Combining with the cubed
+lower envelope produces again \(n^{81}<2^{130}(n+1)^{64}\). \(\square\)
 
 ## 4. Short descent certificates
 
@@ -438,6 +499,7 @@ python -m pytest tests/unit/test_theorem_ledger.py
 python -m pytest tests/research/juggler_sequence/test_progress_coverage.py
 python -m pytest tests/research/juggler_sequence/test_odd_image_discrepancy.py
 python -m pytest tests/research/juggler_sequence/test_global_defect.py
+python -m pytest tests/research/juggler_sequence/test_cycle_leftover_words.py
 ```
 
 A Word Atlas used in the laboratory records bounded realizers and
