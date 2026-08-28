@@ -3152,5 +3152,83 @@
       "tests/research/juggler_sequence/test_odd_landing_sets.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-itinerary-semantics",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "For every natural n and finite parity word w, follows n w if and only if the actual length-|w| Juggler itinerary of n equals w. The word image equals the |w|-fold iterate, and images and realization compose under word concatenation.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/Itinerary.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_layer_architecture.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-fixed-word-image-monotone",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "If n and m realize the same finite Juggler word w and n \u2264 m, then the image of n after w is at most the image of m after w.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/Itinerary.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_layer_architecture.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-power-envelope-contraction",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "For every finite Juggler word w realized at n, J^{|w|}(n)^{2^{|w|}} \u2264 n^{3^{#O(w)}}. If n \u2265 2 and 3^{#O(w)} < 2^{|w|}, then J^{|w|}(n) < n.",
+    "source": "docs/problems/juggler_power_composition.md",
+    "lean": "Problems/Juggler/Envelope.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_power_composition.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-inverse-cell-asymmetry",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "The even fiber J(n)=m is the parity-restricted square interval m\u00b2 \u2264 n < (m+1)\u00b2, while the odd fiber is the parity-restricted cube-to-square interval m\u00b2 \u2264 n\u00b3 < (m+1)\u00b2; any odd fiber contains at most one integer.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/Cells.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_floor_cells.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-finite-structure",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "Every nontrivial Juggler cycle word based at n \u2265 2 is formally expanding. Cycle extrema satisfy the certified parity, order, square-scale, and nested-cell constraints; a minimum-based cycle orientation cannot end in an odd letter. These are necessary cycle restrictions, not an exclusion of all cycles.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/Cycles.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_extrema.py",
+      "tests/research/juggler_sequence/test_cycle_ooo_scale.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-ambient-odd-discrepancy",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "For S_O(N) = sum over odd n \u2264 N of (-1)^{floor(n^{3/2})}, the exact fractional-part formulation together with the classical van der Corput and Erd\u0151s\u2013Tur\u00e1n inequalities gives |S_O(N)| \u226a N^{5/6}. This is an ambient odd-input bound, not a Juggler-orbit transfer theorem.",
+    "source": "docs/problems/juggler_odd_image_discrepancy.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_odd_image_discrepancy.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-finite-progress-boundary",
+    "tag": "EXACT \u2014 LEAN VERIFIED",
+    "statement": "Universal FiniteProgress for starts above one implies universal reachability of one. Every even start n \u2265 2 and every odd start n \u2265 2 whose first image is even has FiniteProgress; consequently, any start without FiniteProgress is odd and has an odd first image. This isolates the automatic odd-to-odd frontier without proving universal progress.",
+    "source": "docs/problems/juggler_progress_coverage.md",
+    "lean": "Problems/Juggler/Progress.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_progress_coverage.py"
+    ],
+    "related_conjectures": []
   }
 ]

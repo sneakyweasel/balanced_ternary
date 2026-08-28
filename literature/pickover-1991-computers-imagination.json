@@ -1,0 +1,21 @@
+{
+  "id": "pickover-1991-computers-imagination",
+  "title": "Computers and the Imagination: Visual Adventures Beyond the Edge",
+  "authors": ["Clifford A. Pickover"],
+  "year": 1991,
+  "identifiers": {
+    "isbn": "0312061315"
+  },
+  "url": {
+    "reference": "https://mathworld.wolfram.com/JugglerSequence.html"
+  },
+  "problem_area": "nonlinear-integer-dynamics",
+  "relevant_concepts": [
+    "juggler sequence",
+    "floor powers",
+    "computational experimentation"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Historical source for the Juggler sequence; chapter 40 and p. 232 are cited by OEIS A007320 and MathWorld."
+}

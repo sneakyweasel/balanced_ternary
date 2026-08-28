@@ -1,0 +1,23 @@
+{
+  "id": "kuipers-niederreiter-1974-uniform-distribution",
+  "title": "Uniform Distribution of Sequences",
+  "authors": ["Lauwerens Kuipers", "Harald Niederreiter"],
+  "year": 1974,
+  "identifiers": {
+    "isbn": "0471510459",
+    "mr": "MR0419394"
+  },
+  "url": {
+    "bibliography": "https://benfordonline.net/fullreference/300"
+  },
+  "problem_area": "analytic-number-theory",
+  "relevant_concepts": [
+    "uniform distribution modulo one",
+    "discrepancy",
+    "Erdos-Turan inequality",
+    "van der Corput estimates"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Standard reference for the classical discrepancy and exponential-sum tools used to derive the ambient odd-input Juggler bound; not a dynamical transfer theorem."
+}

@@ -8386,4 +8386,63 @@ Best next question
   cycle stack + N^{5/6})
 ```
 
+## Juggler finite-dynamics paper synthesis
+
+- **Date:** 2026-08-28
+- **Objective:** Consolidate the Lean formalization, Word Atlas, exact finite structure, negative compression results, cycle restrictions, ambient odd-input discrepancy, and statistical boundary into one externally reviewable paper
+- **Hypotheses:** the integrated theorem-and-certificate map is a coherent contribution even without a termination theorem; branch-level PARK/CLOSE decisions can support a promoted synthesis without being relabelled
+- **Major results:** created a publication draft, reviewer packet, formalization map, and curated branch ledger. The paper centers `power_bound_contracts`, `global_defect_identity`, `image_monotone_of_follows`, inverse-cell asymmetry, certified residual/cylinder counterexamples, partial cycle structure, and the ambient \(|S_O(N)|\ll N^{5/6}\) theorem. It explicitly separates ambient discrepancy from failed dynamical transfer and bounded Atlas absence from non-realizability
+- **Refuted ideas:** \(N^{5/6}\) is an orbit-cancellation theorem; Atlas prefix holes are forbidden words; combining branches permits a universal irreducibility or no-compression claim
+- **Literature:** Pickover 1991 and OEIS A007320 for the problem; Kuipers--Niederreiter 1974 for classical discrepancy tools; Prasad--Prasad 2025 for model context only
+- **Open:** external verification of the novelty boundary and the exact quantifiers in the integrated claim map
+- **Decision:** PROMOTE the synthesis as a PAPER_CANDIDATE. Underlying branch decisions remain unchanged. No new attack is opened
+
+```text
+What was learned
+- The finite-word envelope and global defect provide the exact contraction spine
+- Fixed-word monotonicity and inverse-cell asymmetry are useful surviving structure
+- The Atlas is strongest as a validated conjecture/counterexample apparatus
+- Closed quotient branches become negative knowledge when their tested families are stated precisely
+- Cycle restrictions are exact but leave OOOEOE and OOOOEE unexcluded
+- The N^{5/6} theorem is ambient odd-input discrepancy, not dynamical transfer
+- Statistical negative drift describes typical finite behavior, not pointwise progress
+
+Strongest theorem
+- For every realized finite word w at n>=2,
+  3^{#O(w)}<2^{|w|} implies T_w(n)<n; the exact global defect records
+  the slack in the underlying power envelope
+
+Strongest refutation
+- Ambient interval cancellation automatically transfers to sparse
+  Juggler-generated image sets
+
+Reusable machinery
+- docs/theory/juggler_finite_dynamics_note.md
+- docs/theory/juggler_finite_dynamics_reviewer_packet.md
+- docs/theory/juggler_finite_dynamics_formalization.md
+- docs/juggler_branch_ledger.md
+
+Prior-art status
+- integrated project synthesis; classical Juggler problem and discrepancy
+  tools are explicitly separated from the project-specific formalization,
+  Atlas, exact finite package, and certified counterexamples
+
+Complexity profile
+- documentation and verification only; no new dynamics engine, CUDA kernel,
+  Lean theorem attack, or visualization
+
+Branch status
+- PROMOTE
+
+Why
+- The combined stack has a defensible central thesis, exact formal results,
+  nontrivial reproducible computation, and a clear negative/positive boundary.
+  Promotion applies to the paper package, not to universal termination or to
+  relabelling the underlying PARK/CLOSE branches.
+
+Best next question
+- can external review identify a gap in the quantifiers, novelty boundary,
+  or certificate map?
+```
+
 
