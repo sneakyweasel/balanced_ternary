@@ -3037,3 +3037,113 @@ this program unless HH moves. Flags
 `pure_model_cancellation_observed`;
 `depth5_kernel_bound_proved` and `density_one_claimed` stay
 `False`. No note import, no commit.
+
+## Part XVIII: Conjecture HH outside the harmonic toolkit — the shift average and the de-randomization gap (Phase 21)
+
+Scope: attack Conjecture HH by non-harmonic methods. Outcome:
+one genuine non-harmonic theorem (Lemma II), which explains the
+Exp(1) censuses quantitatively; and a three-prong obstruction
+(Proposition JJ) showing that closing the remaining gap — the
+single point \(\lambda = 0\) — is outside every tool the
+laboratory has. No deterministic HH claim, no \(K_3\) bound.
+
+### Lemma II (shift-averaged square-root cancellation). EXACT — HUMAN PROOF
+
+**Statement.** Let \(A_1 < \dots < A_L\) be reals with
+\(|A_t - A_{t'}| \ge A'_{\min}|t - t'|\) for some
+\(A'_{\min} \ge 1\), and let \(x_1, \dots, x_L\) be *arbitrary*
+reals. For \(S_\lambda = \sum_{t \le L} e(A_t\{x_t + \lambda\})\):
+
+\[
+\Bigl|\;\int_0^1 |S_\lambda|^2\,d\lambda \;-\; L\;\Bigr|
+\;\le\; \frac{6}{\pi}\,\frac{L}{A'_{\min}}\,(\log L + 1).
+\]
+
+In particular \(|S_\lambda| \le \sqrt{L/\varepsilon}\) outside a
+shift set of measure \(\varepsilon(1 + o(1))\), and the mean of
+\(|S_\lambda|^2/L\) tends to 1 — two-sided: the shifted family
+can be neither worse nor systematically better than square-root.
+
+**Proof.** Expand the square; the diagonal gives \(L\). For
+\(t \ne t'\), \(\varphi(\lambda) = A_t\{x_t + \lambda\} -
+A_{t'}\{x_{t'} + \lambda\}\) is piecewise linear on \([0,1)\)
+with *real* slope \(A_t - A_{t'}\) on at most three arcs (jumps
+at \(1 - \{x_t\}\), \(1 - \{x_{t'}\}\)); on each arc
+\(|\int e(\varphi)| \le 1/(\pi|A_t - A_{t'}|)\). Summing,
+\(\sum_{t \ne t'} 3/(\pi A'_{\min}|t - t'|) \le
+(6/\pi)(L/A'_{\min})(\log L + 1)\). \(\square\)
+
+No characters are expanded anywhere: the mechanism is amplitude
+separation alone — \(A' \gg 1\), the very property that kills
+every harmonic method (GG-I), is exactly what makes the shift
+average trivial. The hypothesis does not mention \(B\): the
+census's \(\mathrm{Exp}(1)\) mean is forced for generic shifts
+regardless of the argument sequence. The deterministic content
+of Conjecture HH is therefore precisely the single point
+\(\lambda = 0\).
+
+Validation (`shift_average_probe`, 64 shifts × 100 blocks):
+mean \(R\) over shifts \(= 1.0042\) (\(P = 10^6\)) and
+\(0.9961\) (\(P = 10^8\)) against the prediction
+\(1 \pm 0.0003\) resp. \(1 \pm 0.00002\), within the sampling
+noise \(0.0125\).
+
+### Proposition JJ (the de-randomization obstruction). EXACT — HUMAN PROOF
+
+No tool in the laboratory transfers Lemma II to \(\lambda = 0\):
+
+**(i) No second averaging variable.** Amplitude separation
+forces any two sample points with \(|A(p) - A(q)| \le 1\) to
+satisfy \(|p - q| \le 1/A'_{\min} < 1\): the only lattice
+direction along which the amplitude freezes is the trivial one.
+Every family average available in the application (block index,
+integer base \(\mu_0\), the \(k\)-family) re-enters the
+\(T_1\)-family or the amplitude-product class itself
+(Propositions BB, GG, CC).
+
+**(ii) Inverse self-similarity.** Any concentration or
+discrepancy inverse for \(x_t = A_t\{B_t\} \bmod 1\) — e.g.
+deriving a contradiction from \(|S| \ge L/\log\) via arc
+concentration — is a statement about \(\sum_t e(j\,x_t)\),
+which is the same class with amplitude \(jA\): the class is
+closed under its own inverse theory, so no bootstrapping is
+possible.
+
+**(iii) Metric non-transfer.** \(|dS_\lambda/d\lambda| \le
+2\pi A_{\max} L\) a.e., so \(S_\lambda\) decorrelates at shift
+scale \(1/A_{\max} \asymp P^{-27/16}\) (measured: increments
+\(0.06\)–\(0.08\sqrt L\) at \(\delta = 0.1/(2\pi A)\),
+\(0.57\)–\(0.74\sqrt L\) at \(1/(2\pi A)\), saturated at ten
+times that). An almost-all-\(\lambda\) statement leaves
+\(\asymp \varepsilon A_{\max}\) bad cells among
+\(\asymp A_{\max}\); no measure-theoretic argument pins
+\(\lambda = 0\). \(\square\)
+
+The species of the residual problem is now identified: HH at
+\(\lambda = 0\) is a *specific-point-in-metric-theory* problem —
+the same gap as "almost every \(\alpha\) is normal" versus "is
+\(\sqrt2\) normal". The only known successes in that species use
+special arithmetic. The Juggler instance does carry special
+arithmetic the crystal forgets — \(A^2 = \tfrac{9}{16}k^2 z\)
+with \(z\) integer, and \(A\) is algebraically coupled to the
+argument via \(\theta_3 = v^{3/2} - z\) — but its natural
+exploitations (the pure-phase identity, quadratic-field
+periodicity) re-enter the harmonic toolkit and die by GG-II(b).
+
+### Phase-21 decision
+
+**PARK** the \(K_3\)/HH line at the de-randomization frontier.
+The line now ends in a complete, three-layer characterization:
+Proposition BB (global toolkit), Proposition GG (intra-block
+harmonic program), Proposition JJ (metric-to-deterministic
+transfer) — with the generic truth of HH *proven* (Lemma II)
+and its deterministic instance open. Ledger rows
+`J-shift-average-square-root` (EXACT — HUMAN PROOF) and
+`J-derandomization-obstruction` (EXACT — HUMAN PROOF); flags
+`pure_model_shift_average_proved`, `hh_derandomization_parked`;
+`depth5_kernel_bound_proved` and `density_one_claimed` stay
+`False`. Conjectures V, EE, HH stay open. No note import, no
+commit. The natural next work is editorial: the finite-dynamics
+note still carries the stale \(13/16\) headline and Conjecture
+6.2, and the branch's final state (harvest + three obstructions
++ the crystal + Lemma II) deserves consolidation.

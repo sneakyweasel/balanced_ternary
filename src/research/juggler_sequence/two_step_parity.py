@@ -130,6 +130,20 @@ ANTI_OVERCLAIM = {
     # sits outside every toolkit and the PS literature (A' << 1).
     "intra_block_harmonic_parked": True,
     "pure_model_cancellation_observed": True,
+    # Phase 21: Lemma II — the shift-averaged second moment of the
+    # pure model is L(1 + O(A'^{-1} log L)), two-sided, by direct
+    # integration (no characters): square-root cancellation for
+    # almost every shift of the fractional argument, for arbitrary
+    # x_t. Proposition JJ — the de-randomization to lambda = 0 is
+    # obstructed: no second averaging variable exists (amplitude
+    # separation forces Delta n = 0; family averages re-enter
+    # BB/GG), the concentration inverse is self-similar (arc
+    # discrepancy of A{B} mod 1 = the same class at amplitude jA),
+    # and the lambda-correlation scale 1/A ~ P^{-27/16} leaves
+    # ~P^{27/16} cells no measure argument can pin. HH remains open
+    # at lambda = 0; no K3 bound, no density move.
+    "pure_model_shift_average_proved": True,
+    "hh_derandomization_parked": True,
     # Phase 10: Theorem T / Corollary U close OOOEE and OOEOE;
     # certified descent density 7/8. OOOO* at depth 5 remains open.
     "depth5_contracting_proved": True,
@@ -1095,6 +1109,88 @@ def pure_model_census(
         "median_R": round(vals[n_blocks // 2], 3),
         "max_R": round(vals[-1], 2),
         "frac_R>4": round(sum(1 for x in vals if x > 4) / n_blocks, 4),
+    }
+
+
+def shift_average_probe(
+    p_block: int,
+    n_lambda: int = 64,
+    n_blocks: int = 100,
+    k: int = 1,
+) -> dict[str, Any]:
+    """Validator for Lemma II (shift average) and Proposition JJ (iii).
+
+    Lemma II: for S_lambda = sum_{t<L} e(A_t {x_t + lambda}) with
+    amplitude separation |A_t - A_t'| >= A'_min |t - t'|, direct
+    integration over the shift (no characters) gives
+    | E_lambda |S|^2 - L | <= (6/pi)(L/A'_min)(log L + 1) —
+    two-sided square-root cancellation for almost every shift,
+    for ARBITRARY x_t. The probe measures mean_R = E|S|^2/L over a
+    lambda-grid for the pure model and compares with the predicted
+    correction. It also measures the lambda-correlation scale of
+    S_lambda: increments |S_{lambda+delta} - S_lambda|/sqrt(L) at
+    delta = m/(2 pi A), m in {0.1, 1, 10} — the ~1/A stability
+    radius of Proposition JJ (iii), which is why almost-all-shift
+    results cannot pin lambda = 0. OBSERVATION for the probe; the
+    lemma itself is EXACT — HUMAN PROOF.
+    """
+    from math import cos, log, pi, sin
+
+    sc = 10**30
+    block_len = max(4, isqrt(isqrt(p_block)))
+    mu0 = isqrt(p_block**3)
+    a = 3 * isqrt(p_block)
+
+    def block_pre(base: int) -> list[tuple[int, int]]:
+        pre = []
+        for t in range(block_len):
+            mu = base + a * t
+            mu94 = isqrt(isqrt(mu**9 * sc**4))
+            pre.append((mu94 % sc, isqrt(mu94 * sc)))
+        return pre
+
+    def s_val(pre: list[tuple[int, int]], lam: int) -> complex:
+        re = im = 0.0
+        for frac, mu98 in pre:
+            x = 3 * k * mu98 * ((frac + lam) % sc) // (4 * sc) % sc
+            ph = 2 * pi * (x / sc)
+            re += cos(ph)
+            im += sin(ph)
+        return complex(re, im)
+
+    total = 0.0
+    count = 0
+    for b in range(n_blocks):
+        pre = block_pre(mu0 + 2 * a * block_len * b)
+        for j in range(n_lambda):
+            s = s_val(pre, j * sc // n_lambda)
+            total += (s.real * s.real + s.imag * s.imag) / block_len
+            count += 1
+    mean_r = total / count
+
+    # Predicted Lemma II correction: A'_min ~ (27k/32) mu^{1/8} a.
+    a_prime = (27 * k / 32) * p_block ** (3 / 16) * (3 * p_block**0.5)
+    corr = (6 / pi) * (log(block_len) + 1) / a_prime
+
+    # JJ (iii): lambda-stability at delta = m / (2 pi A).
+    pre0 = block_pre(mu0)
+    a_amp = 3 * k * pre0[block_len // 2][1] // (4 * sc)
+    s0 = s_val(pre0, 0)
+    stability = {}
+    for m_lbl, m_num, m_den in (("0.1", 1, 10), ("1", 1, 1), ("10", 10, 1)):
+        delta = sc * m_num // (int(2 * pi * a_amp) * m_den)
+        sd = s_val(pre0, delta)
+        stability[f"m={m_lbl}"] = round(
+            abs(sd - s0) / block_len**0.5, 3
+        )
+    return {
+        "block_len": block_len,
+        "n_blocks": n_blocks,
+        "n_lambda": n_lambda,
+        "mean_R_over_shifts": round(mean_r, 4),
+        "lemma_II_correction": corr,
+        "sample_noise": round(count**-0.5, 4),
+        "stability_increments": stability,
     }
 
 

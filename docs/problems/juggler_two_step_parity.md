@@ -572,21 +572,23 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical, now fully distilled: Conjecture HH (the pure
-amplitude-product model) — bound
-\(\sum_{t \le L} e(A(t)\{B(t)\})\) for smooth monomials with
-\(1 \ll A' \ll A\). Everything else is closed or reduced to it:
-obligation (γ) of Conjecture EE is discharged (Lemma FF), (β)
-is proven machinery, and (α) — the intra-block cascade — is
-obstructed at mechanism level (Proposition GG: window drift
-\(kC' \asymp P^{11/16}\) per step; amplitude transfer under
-every re-form; scale-free in the block length). Both known
-proof routes to \(K_3\) are now closed by named obstructions
-(Proposition BB globally, GG intra-block); Conjectures V, EE,
-HH all stay open with strong empirical support (Exp(1)
-censuses). One editorial: import Theorems R/S/T/X and
-Corollaries U/Y into the finite-dynamics note (its Conjecture
-6.2 and the \(13/16\) headline are superseded).
+One mathematical, now located to a single point: Conjecture HH
+at shift \(\lambda = 0\). Phase 21 *proved* the generic case —
+Lemma II gives two-sided square-root cancellation of
+\(\sum_{t \le L} e(A_t\{x_t + \lambda\})\) for almost every
+shift \(\lambda\), for arbitrary \(x_t\), by direct integration
+(no characters) — so the deterministic instance is a
+specific-point-in-metric-theory problem (the "is \(\sqrt2\)
+normal" species), and Proposition JJ shows the laboratory has
+no de-randomization tool: no second averaging variable, a
+self-similar inverse theory, and a \(1/A \asymp P^{-27/16}\)
+shift-correlation scale that measure arguments cannot resolve.
+The \(K_3\) line ends in three named obstruction layers
+(BB global, GG intra-block, JJ metric-transfer); Conjectures V,
+EE, HH stay open with strong empirical support. One editorial:
+import Theorems R/S/T/X, Corollaries U/Y, Lemma II and the
+obstruction ladder into the finite-dynamics note (its
+Conjecture 6.2 and the \(13/16\) headline are superseded).
 
 ## Decision
 
@@ -860,10 +862,38 @@ nothing above). Census: Exp(1) profile at \(P = 10^6\)–\(10^{10}\)
 conditional density-one) is final for this program unless HH
 moves. No \(K_3\) bound, no density move, no note import.
 
-Best next question: is there any nontrivial bound — even a
-single log — for \(\sum_{t \le L} e(A(t)\{B(t)\})\) with smooth
-monomials \(1 \ll A' \ll A\) (Conjecture HH), by any method
-outside the harmonic toolkit?
+**PARK** (Phase 21, the shift average and the de-randomization
+gap): the non-harmonic attack on HH produced one theorem and
+one obstruction. Lemma II (`J-shift-average-square-root`,
+EXACT — HUMAN PROOF): for amplitudes separated by
+\(|A_t - A_{t'}| \ge A'_{\min}|t-t'|\) and *arbitrary* reals
+\(x_t\), the shift-averaged second moment satisfies
+\(|\,\mathbb{E}_\lambda|S_\lambda|^2 - L\,| \le
+(6/\pi)(L/A'_{\min})(\log L + 1)\) — two-sided square-root
+cancellation for almost every shift, by direct integration of
+piecewise-linear pair phases (no characters); the amplitude
+separation that kills every harmonic method is exactly what
+trivializes the shift average. Probe: mean \(R\) over
+\(64 \times 100\) shift-block samples \(= 1.0042\)
+(\(P=10^6\)), \(0.9961\) (\(P=10^8\)) against \(1 \pm 0.0003\).
+Proposition JJ (`J-derandomization-obstruction`, EXACT — HUMAN
+PROOF): the transfer to \(\lambda = 0\) is out of reach — (i)
+no second averaging variable exists and all family averages
+re-enter BB/GG/CC-dead classes, (ii) the concentration inverse
+is the same class at amplitude \(jA\) (self-similar), (iii) the
+shift-correlation scale is \(1/A_{\max} \asymp P^{-27/16}\)
+(measured), so almost-all statements cannot pin \(\lambda = 0\).
+The \(K_3\)/HH line is **PARKED** at this frontier with the
+generic case proven and the deterministic instance identified
+as a specific-point-in-metric-theory problem. Flags
+`pure_model_shift_average_proved`, `hh_derandomization_parked`.
+No \(K_3\) bound, no density move, no note import.
+
+Best next question: consolidate — import the branch's final
+state (Theorems R/S/T/X, Corollaries U/Y, Lemma II, the
+BB/GG/JJ obstruction ladder, Conjecture HH) into the
+finite-dynamics note, whose Conjecture 6.2 and \(13/16\)
+headline are superseded.
 
 ## Publication assessment
 
@@ -889,4 +919,9 @@ its intra-block analytic program is laboratory-**PARKED**
 (Proposition GG, Part XVII) — both known proof routes to
 \(K_3\) are closed by named obstructions, and the frontier is
 the self-contained Conjecture HH (pure amplitude-product
-sums). None of this is in the note.
+sums). Phase 21 proved HH's generic (almost-every-shift) case
+by a non-harmonic argument (Lemma II) and parked the
+deterministic instance behind a third named obstruction
+(Proposition JJ, de-randomization) — the line now ends in a
+complete three-layer characterization (BB/GG/JJ). None of this
+is in the note.

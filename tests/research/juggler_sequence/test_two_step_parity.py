@@ -17,6 +17,7 @@ from research.juggler_sequence.two_step_parity import (
     carry_multiplier_probe,
     level3_block_model_check,
     pure_model_census,
+    shift_average_probe,
     deep_word_counts,
     differenced_kernel_probe,
     dispersion_spacing_census,
@@ -170,6 +171,11 @@ def test_anti_overclaim_flags():
     # (Conjecture HH census). EE, V and the bound stay open.
     assert ANTI_OVERCLAIM["intra_block_harmonic_parked"] is True
     assert ANTI_OVERCLAIM["pure_model_cancellation_observed"] is True
+    # Phase 21: shift-average square-root cancellation proved
+    # (Lemma II); de-randomization to lambda = 0 parked
+    # (Proposition JJ). HH deterministic stays open.
+    assert ANTI_OVERCLAIM["pure_model_shift_average_proved"] is True
+    assert ANTI_OVERCLAIM["hh_derandomization_parked"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
 
 
@@ -649,6 +655,16 @@ def test_pure_model_census():
     # amplitude-product model sums sit at the random-phase scale.
     r = pure_model_census(10**4, n_blocks=60, k=1)
     assert r["mean_R"] < 3.0
+
+
+def test_shift_average_probe():
+    # Lemma II validator: the shift-averaged mean square sits at the
+    # random-phase scale (two-sided), and the lambda-stability
+    # increments grow with delta (JJ (iii)).
+    r = shift_average_probe(10**4, n_lambda=16, n_blocks=30)
+    assert abs(r["mean_R_over_shifts"] - 1.0) < 0.2
+    st = r["stability_increments"]
+    assert st["m=0.1"] < st["m=10"]
 
 
 def test_carry_multiplier_probe():

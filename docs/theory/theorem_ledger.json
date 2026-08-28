@@ -3594,5 +3594,31 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-shift-average-square-root",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Lemma II (shift-averaged square-root cancellation): let A_1 < ... < A_L be reals with |A_t - A_t'| >= A'_min |t - t'| for some A'_min >= 1 and let x_1, ..., x_L be arbitrary reals. For S_lambda = sum_{t≤L} e(A_t {x_t + lambda}): | int_0^1 |S_lambda|^2 dlambda - L | <= (6/pi)(L/A'_min)(log L + 1). Two-sided square-root cancellation for almost every shift of the fractional argument, proved by direct integration — no character expansion: each pair phase is piecewise linear in lambda with real slope A_t - A_t' on at most three arcs, so the pair integral is <= 3/(pi |A_t - A_t'|). The amplitude separation A' >> 1 that kills every harmonic method (Proposition GG) is exactly what trivializes the shift average. Explains the Exp(1) census of Conjecture HH quantitatively: the deterministic content of HH is precisely the single point lambda = 0. Validated by shift_average_probe: mean R over 64 shifts x 100 blocks = 1.0042 (P = 10^6), 0.9961 (P = 10^8) against prediction 1 +- 0.0003 resp. 0.00002.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": [
+      "J-pure-model-amplitude-product"
+    ]
+  },
+  {
+    "id": "J-derandomization-obstruction",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Proposition JJ (the de-randomization obstruction): no laboratory tool transfers Lemma II from almost-every shift to lambda = 0. (i) No second averaging variable: amplitude separation forces |A(p) - A(q)| <= 1 to imply p = q, so the only amplitude-frozen lattice direction is trivial; every available family average (block index, integer base mu_0, the k-family) re-enters the T1-family or the amplitude-product class (Propositions BB, GG, CC). (ii) Inverse self-similarity: any concentration/discrepancy inverse for A{B} mod 1 is a statement about sum e(j A {B}) — the same class with amplitude jA; the class is closed under its own inverse theory. (iii) Metric non-transfer: |dS/dlambda| <= 2 pi A_max L, so S_lambda decorrelates at shift scale 1/A_max ≍ P^{-27/16} (measured: increments 0.06-0.08 sqrt(L) at delta = 0.1/(2 pi A), 0.57-0.74 sqrt(L) at 1/(2 pi A), saturated at 10x); almost-all statements leave ~ eps A_max bad cells and cannot pin lambda = 0. HH at lambda = 0 is a specific-point-in-metric-theory problem (the 'is sqrt(2) normal' species); the instance's special arithmetic A^2 = (9/16) k^2 z re-enters the harmonic toolkit via its known exploitations. Third and final layer of the K3 obstruction (after BB, GG); the K3/HH line is PARKED here.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": [
+      "J-pure-model-amplitude-product"
+    ]
   }
 ]

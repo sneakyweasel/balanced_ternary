@@ -10081,3 +10081,109 @@ Best next question
   sum e(A{B}) with smooth monomials 1 << A' << A (Conjecture
   HH), by any method outside the harmonic toolkit?
 ```
+
+## Juggler Conjecture HH generically proven; the deterministic gap named (Phase 21)
+
+The promoted question was Conjecture HH outside the harmonic
+toolkit. The answer splits cleanly in two: yes for almost every
+shift of the fractional argument - by a genuinely non-harmonic
+argument, and two-sided - and provably not transferable to the
+deterministic instance by any tool the laboratory owns. Working
+document Part XVIII.
+
+Lemma II (EXACT - HUMAN PROOF, `J-shift-average-square-root`):
+let A_1 < ... < A_L satisfy |A_t - A_t'| >= A'_min |t - t'| with
+A'_min >= 1, and let x_1, ..., x_L be ARBITRARY reals. For
+S_lambda = sum_t e(A_t {x_t + lambda}):
+
+  | E_lambda |S_lambda|^2 - L | <= (6/pi)(L/A'_min)(log L + 1).
+
+Proof by direct integration, no characters anywhere: each pair
+phase is piecewise linear in lambda with real slope A_t - A_t'
+on at most three arcs, so each pair integral is at most
+3/(pi |A_t - A_t'|), and the amplitude separation A' >> 1 - the
+very property that kills every harmonic method (GG-I) - is
+exactly what trivializes the shift average. The bound is
+two-sided: the shifted family is neither worse nor
+systematically better than square-root. It assumes nothing
+about B: the Exp(1) census profile is forced for generic shifts
+regardless of the argument sequence. Probe (shift_average_probe,
+64 shifts x 100 blocks): mean R over shifts 1.0042 (P = 10^6)
+and 0.9961 (P = 10^8) against the prediction 1 +- 0.0003 resp.
+0.00002, inside the 0.0125 sampling noise.
+
+Proposition JJ (EXACT - HUMAN PROOF,
+`J-derandomization-obstruction`): the transfer to lambda = 0 is
+out of the laboratory's reach, three prongs. (i) No second
+averaging variable: amplitude separation forces |A(p) - A(q)|
+<= 1 to imply p = q, so the only amplitude-frozen direction is
+trivial, and every family average in the application (block
+index, integer base mu_0, the k-family) re-enters the T1-family
+or the amplitude-product class (BB, GG, CC). (ii) Inverse
+self-similarity: any concentration or discrepancy inverse for
+A{B} mod 1 is a statement about sum e(j A {B}) - the same class
+at amplitude jA; the class is closed under its own inverse
+theory, so no bootstrapping. (iii) Metric non-transfer:
+|dS/dlambda| <= 2 pi A_max L, so S_lambda decorrelates at shift
+scale 1/A_max ~ P^{-27/16} (measured: increments 0.06-0.08
+sqrt(L) at delta = 0.1/(2 pi A), 0.57-0.74 sqrt(L) at
+1/(2 pi A), saturated at 10x); almost-all statements leave
+~eps A_max bad cells and cannot pin one point. The species of
+the residual problem is thereby identified: HH at lambda = 0 is
+a specific-point-in-metric-theory problem - the same gap as
+"almost every alpha is normal" versus "is sqrt(2) normal". The
+instance's special arithmetic (A^2 = (9/16) k^2 z, z integer,
+A coupled to the argument through theta_3 = v^{3/2} - z) is the
+one structure the crystal forgets, but its natural exploitations
+re-enter the harmonic toolkit and die by GG-II.
+
+The K3 line now ends in a complete three-layer characterization:
+Proposition BB (global toolkit), Proposition GG (intra-block
+harmonic program), Proposition JJ (metric-to-deterministic
+transfer) - with the generic truth of the crystal PROVEN. Rows
+`J-shift-average-square-root` and `J-derandomization-obstruction`
+(both EXACT); probe shift_average_probe with test; flags
+`pure_model_shift_average_proved`, `hh_derandomization_parked`.
+`depth5_kernel_bound_proved` and `density_one_claimed` stay
+False. Conjectures V, EE, HH stay open. No K3 bound, no density
+move, no note import, no commit.
+
+```text
+What was learned
+- the shift-averaged second moment of amplitude-product sums is
+  computable exactly by direct integration: square-root
+  cancellation for almost every shift, two-sided, arbitrary
+  arguments x_t
+- the amplitude separation that defeats harmonic methods is the
+  same mechanism that makes the shift average trivial
+- the Exp(1) censuses are now explained by a theorem, not just
+  observed
+- the deterministic gap is one point (lambda = 0) in a metric
+  theory, and the laboratory provably lacks a de-randomization
+  tool: no second variable, self-similar inverse theory,
+  1/A-scale shift decorrelation
+Strongest theorem
+- Lemma II: shift-averaged square-root cancellation - EXACT -
+  HUMAN PROOF
+Strongest refutation
+- none this phase; Proposition JJ is an obstruction, closing the
+  de-randomization routes at mechanism level
+Reusable machinery
+- shift_average_probe (shift-grid second moment with stability
+  diagnostics); the shift-average method itself (applies to any
+  amplitude-separated family, B-free)
+Branch status
+- PARK (the K3/HH line, at the de-randomization frontier; the
+  branch's theorem harvest stands)
+Why
+- the generic case is proven and the deterministic residue is a
+  named, well-understood species of hard problem
+  (specific-point-in-metric-theory) with no laboratory tool
+  applicable; a third obstruction layer after BB and GG closes
+  the line honestly
+Best next question
+- consolidate: import the branch's final state (Theorems R/S/T/X,
+  Corollaries U/Y, Lemma II, the BB/GG/JJ obstruction ladder,
+  Conjecture HH) into the finite-dynamics note, whose Conjecture
+  6.2 and 13/16 headline are superseded
+```
