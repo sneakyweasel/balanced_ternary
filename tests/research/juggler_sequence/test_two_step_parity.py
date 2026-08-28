@@ -18,6 +18,11 @@ from research.juggler_sequence.two_step_parity import (
     identity_scan,
     itinerary_word,
     juggler_step,
+    kernel_probe,
+    lemma_m_scan,
+    level2_gap_check,
+    m12_scan,
+    oe_indicator_identity_check,
     ooee_indicator_identity_check,
     ooo_indicator_identity_check,
     scan,
@@ -201,6 +206,42 @@ def test_composed_cell_obstruction():
     # two-level cell composition fails. Do not retry that route.
     result = second_gap_collision_check(10**6 + 1, 1500, 1)
     assert result["distinct_ratio"] >= 0.99
+
+
+def test_proposition_l_m12_smoothing():
+    # OE-branch third-letter brick: m^{1/2} = n^{3/4} + D1 with
+    # -(1/2)n^{-3/4} - n^{-9/4} <= D1 <= 0, exact at scale 10^30.
+    samples = tuple(range(3, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert m12_scan(samples)["holds"] is True
+
+
+def test_oe_indicator_identity():
+    # itinerary_word(n,3) == "OEE" iff m even and isqrt(m) even: the
+    # branch-consistency claim behind Proposition L (depth-3 closure).
+    assert oe_indicator_identity_check(5001)["holds"] is True
+
+
+def test_lemma_m_second_order_forms():
+    # Plain and shifted second-order forms with realized gaps G;
+    # poly - lhs = -R with R the positive Taylor remainder.
+    samples = tuple(range(5, 501, 2)) + (10**6 + 1, 10**9 + 1)
+    for h in (1, 2):
+        assert lemma_m_scan(samples, h=h)["holds"] is True
+
+
+def test_lemma_n_level2_gap():
+    # g2 = floor(DY) + [theta2 >= 1 - {DY}]: exact on orbit data,
+    # guard-band skips only.
+    result = level2_gap_check(10**6 + 1, 400, 1)
+    assert result["holds"] is True
+    assert result["matches"] >= 390
+
+
+def test_kernel_probe_cancels():
+    # Conjecture O support: the isolated tier-2 kernel exhibits strong
+    # cancellation (far below the trivial bound; loose threshold).
+    result = kernel_probe(10**4)
+    assert result["abs_sum"] < 0.1 * result["count"]
 
 
 def test_depth6_census_minimal_scale_envelope():

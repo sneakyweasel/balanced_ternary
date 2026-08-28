@@ -8929,4 +8929,103 @@ Best next question
   beyond 13/16 and the induction pattern for Conjecture K?
 ```
 
+## Juggler tier 2: depth-3 completion and the kernel (Phase 5)
+
+Attacking the promoted question — the OOO* split via differencing the
+Proposition-H polynomial phase — produced three results of different
+kinds. Working document Part IV; dossier Phase 5.
+
+First, an honest correction. Driving the reduction exposed that our
+Phase-4 wording "proved for depth <= 3" was ahead of the facts: the
+OE-branch third letter (the OEO/OEE split, psi(m^{1/2}) weighted on
+even m) had never been stated, since Theorem C covers only the OO
+branch and Theorem E covers sign classes, which are word classes only
+along OOE*. Proposition L closes it the same phase: the smoothing
+m^{1/2} = n^{3/4} + D1 has decaying amplitudes only, van der Corput II
+finishes at N^{7/8+eps}. Depth 3 is now genuinely complete
+(`J-even-branch-third-letter`), and the Proposition-J/Conjecture-K
+texts were corrected.
+
+Second, the tier-2 bricks are proved (`J-tier2-gap-and-shifted-forms`):
+Lemma M gives m^{3/2} and (m+G)^{3/2} as quadratics in m with positive
+third-order Taylor remainders O(X^{-3/2}) — small enough to absorb
+against the tier-2 weight W ~ k n^{9/8} — and Lemma N gives the
+level-2 gap g2 = floor(DY) + kappa_2, Lemma B one level up. Both
+validated exactly to n = 10^12 (a sign error in the validator window
+was caught by the n=5 sample, whose defect 9.87e-6 matched the
+predicted remainder theta^3 X^{-3/2}/16 to two digits).
+
+Third, and centrally: the reduction does NOT close, and the failure is
+now exact. After the A-process the v-block leaves (theta_2 -
+theta_2^+) W_+: a unit sawtooth carrying a smooth coefficient of size
+k n^{9/8} whose derivative k n^{1/8} >> 1 crosses integers within
+single steps, so no cell freezes its Fourier window. Four
+reorganizations — the Lemma-N split, the exact swap e(c theta_2) =
+e(cY) e(-{c}v), a second A-process, raw differencing of v^{3/2} —
+all funnel into the same object. Only the kappa_2-content is harmless
+(0/1 indicator weight; e(kappa_2 W) = 1 + kappa_2(e(W)-1) with the
+largeness in the smooth factor — the same trick that saved Theorem C).
+The obstruction is a single named kernel, K_c(P) = sum e(c(n)
+{floor(n^{3/2})^{3/2}}) with c ~ k P^{9/8}, c' ~ k P^{1/8}: a bilinear
+correlation between the fractional parts of one Piatetski-Shapiro
+layer and a smooth weight at the next layer's scale. Float probe with
+exact scaled phases: |K| = 51.9, 124.4, 1017.5 on 5e3, 5e4, 5e5 terms
+— square-root cancellation (Conjecture O).
+
+A cheaper prize surfaced along the way: the OEO* split at depth 4 has
+its growing layer riding the slow variable w = floor(m^{1/2}), which
+increments once every ~n^{1/4} steps — long constancy cells, the
+Theorem-C pattern shifted one level down. It likely closes under the
+existing engine without meeting the kernel.
+
+Refuted ideas
+- treating theta_2 W by shifted-window Vaaler directly: the window
+  drifts by k P^{5/8}/h per cell — mass, not log
+- the swap to {c(n)} v: symmetric wildness (integer v ~ P^{9/4} times
+  a sawtooth flipping every P^{-1/8} steps)
+- a second A-process: the difference transfers to either v (gaps
+  carrying the full-size W) or W (already exhausted at Delta W)
+
+```text
+What was learned
+- The Phase-4 depth-3 claim had a real gap (OE-branch third letter);
+  found by the reduction itself, closed by Proposition L same phase
+- The tier-2 bricks are cheap (Lemmas M/N: Taylor + Lemma B one level
+  up); the analytic assembly is not the hard part
+- The hard part is one object: the kernel K_c, a fractional-part /
+  smooth-weight correlation across adjacent nesting layers; every
+  reorganization funnels into it
+- 0/1-indicator wildness is free (indicator-weight trick); continuous
+  sawtooth times a fast-crossing large coefficient is the real wall
+- The OEO* split rides a slow variable with long cells - the likely
+  next theorem, and depth 4 would then be complete except OOO*
+
+Strongest theorem
+- Proposition L: #OEO(N), #OEE(N) = N/8 + O(N^{7/8+eps}) - depth 3
+  complete, EXACT — HUMAN PROOF
+
+Strongest refutation
+- our own overclaim: "proved for depth <= 3" was false as written;
+  corrected in doc, ledger row, and dossier before proving it true
+
+Reusable machinery
+- m12/lemma_m/level2_gap validators (exact to 10^12); kernel_probe
+  with exact scaled phases; the kernel definition itself as a
+  literature-searchable target
+
+Branch status
+- PROMOTE
+
+Why
+- The frontier moved from "a route sketch" to "one named conjecture
+  plus one likely-tractable split": depth 3 is finished, the tier-2
+  algebra is proved, and the obstruction is stated precisely enough
+  to search the literature or attack directly.
+
+Best next question
+- does the OEO* split at depth 4 close under the existing engine (the
+  growing layer on the slow variable w = floor(m^{1/2}) with long
+  constancy cells), settling depth 4 except OOO*?
+```
+
 

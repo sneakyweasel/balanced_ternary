@@ -245,7 +245,8 @@ the conditional density-one theorem. The tier-2 bound is not claimed.
   parity equidistribution with power savings implies density-one
   finite descent (Hoeffding, \(c > 0.0342\)) — the Juggler analogue
   of the Terras program. Implication unconditional; hypothesis open
-  beyond depth 3 and depth-4 even branch.
+  beyond depth 3 (closed by Proposition L in Phase 5) and the OOE\*
+  splits at depth 4.
 - **Census gate (depth 6)** — **COMPUTATIONALLY VERIFIED**: all 32
   words realized at \(N = 2\cdot10^6\); deviations obey the
   two-regime minimal-scale envelope
@@ -258,6 +259,52 @@ the conditional density-one theorem. The tier-2 bound is not claimed.
   growing sawtooth amplitudes (\(\asymp khn^{7/8}\)),
   third-derivative tests, one more differencing. Expected saving
   \(\delta_2 \sim 10^{-2}\).
+
+## Phase 5: depth-3 completion, tier-2 bricks, and the kernel
+
+Working document, Part IV. Scope: close a discovered gap at depth 3,
+prove the level-2 structural lemmas, and drive the tier-2 reduction
+until it closes or the obstruction is exact. It did not close; the
+obstruction is now a single named object.
+
+- **Correction note**: Phase-4 wording said depth 3 was "proved" —
+  but the OE-branch third letter (OEO/OEE split, \(\psi(m^{1/2})\) on
+  even \(m\)) had never been stated. Recorded honestly; closed the
+  same phase.
+- **Proposition L (OE-branch third letter)** — **EXACT — HUMAN
+  PROOF** (`J-even-branch-third-letter`): \(\#\mathrm{OEO}(N),
+  \#\mathrm{OEE}(N) = N/8 + O(N^{7/8+\varepsilon})\) via the decaying
+  smoothing \(m^{1/2} = n^{3/4} + D_1\) and van der Corput II. Depth
+  3 is now genuinely complete.
+- **Lemma M (plain and shifted second-order forms)** and **Lemma N
+  (level-2 gap identity)** — **EXACT — HUMAN PROOF**
+  (`J-tier2-gap-and-shifted-forms`): \(m^{3/2}\) and
+  \((m{+}G)^{3/2}\) as quadratics in \(m\) with positive
+  \(O(X^{-3/2})\) Taylor remainders; \(g_2 = \lfloor\Delta Y\rfloor +
+  \kappa_2\), Lemma B one level up. Validated to \(n = 10^{12}\).
+- **Kernel isolation** (negative knowledge with an exact core): after
+  the A-process, the \(v\)-block term \(g_2 W_+\) leaves a
+  unit sawtooth \(\theta_2\) carrying the smooth coefficient
+  \(W \asymp k n^{9/8}\) whose derivative \(\asymp k n^{1/8} \gg 1\)
+  crosses integers within single steps. Four reorganizations (Lemma-N
+  split, the exact swap \(e(c\theta_2) = e(cY)e(-\{c\}v)\), a second
+  A-process, raw differencing without Proposition H) all funnel into
+  the same object. Only the \(\kappa_2\)-content is harmless (0/1
+  indicator weight). **Kernel**: \(K_c(P) = \sum_{n \sim P}
+  e(c(n)\{\lfloor n^{3/2}\rfloor^{3/2}\})\), \(c \asymp k P^{9/8}\),
+  \(c' \asymp k P^{1/8}\).
+- **Conjecture O (kernel cancellation)**: \(K_c \ll P^{1-\delta}\).
+  Float probe with exact scaled phases: \(|K| = 51.9, 124.4, 1017.5\)
+  on \(5\cdot10^3, 5\cdot10^4, 5\cdot10^5\) terms — square-root
+  cancellation. A bilinear correlation between the fractional parts
+  of one Piatetski–Shapiro layer and a smooth weight at the next
+  layer's scale; no treatment found in the nested-floor literature.
+- **OEO\* observation**: at depth 4 after OE, the growing layer rides
+  the slow variable \(w = \lfloor m^{1/2}\rfloor\) (increments every
+  \(\asymp n^{1/4}\) steps, long constancy cells) — the Theorem-C
+  pattern shifted one level down. Likely closable by the existing
+  engine *without* meeting the kernel; would settle depth 4 except
+  OOO\*.
 
 ## Results
 
@@ -278,11 +325,13 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-Tier 2: the OOO\* split via the double-differencing route on the
-Proposition-H polynomial phase — required for any certified density
-beyond \(13/16\) (Proposition I) and the first induction step of
-Conjecture K. Separately, the editorial import of Theorems C/E and
-Corollary F into the finite-dynamics note.
+Two, ordered: (1) the OEO\*/OEE\* splits at depth 4 — the growing
+layer on the slow variable, likely within the existing engine, and
+enough to settle depth 4 except OOO\*; (2) Conjecture O, the kernel
+bound \(K_c \ll P^{1-\delta}\) — the exact remaining obstacle to
+OOO\* and every density tier beyond \(13/16\). Separately, the
+editorial import of Theorems C/E/L and Corollary F into the
+finite-dynamics note.
 
 ## Decision
 
@@ -319,18 +368,28 @@ turns all-depth equidistribution into density-one finite descent
 ledger rows added. The tier-2 analytic bound is the promoted open
 frontier, not a claim.
 
-Best next question: does the tier-2 double-differencing route close —
-i.e., does the OOO\* split \(\#OOOE(N) = N/16 + O(N^{1-\delta_2})\)
-follow from the Proposition-H polynomial phase via shifted-window
-Vaaler expansions and a second A-process, unlocking the next
-certified-density tier (\(OOOEE\) at \(1/32\), \(OOEOEE\) at
-\(1/64\), …) and the induction pattern for Conjecture K?
+**PROMOTE** (Phase 5, kernel isolation): a real gap at depth 3 was
+found and closed the same phase (Proposition L); the tier-2 bricks
+(Lemmas M/N) are proved and validated to \(10^{12}\); and the tier-2
+reduction was driven to a single irreducible obstruction, the kernel
+\(K_c\), with four dead reorganizations recorded as negative
+knowledge and a float probe showing square-root cancellation
+(Conjecture O). Two ledger rows added; the Proposition-J row
+corrected. The kernel bound is the promoted frontier, not a claim.
+
+Best next question: does the OEO\* split at depth 4 close under the
+existing engine — the growing layer riding the slow variable
+\(w = \lfloor m^{1/2}\rfloor\) with its long constancy cells — thereby
+settling every depth-4 word class except OOO\* and testing whether
+the Theorem-C pattern iterates down the scale hierarchy?
 
 ## Publication assessment
 
 Status: `THEOREM`. Exact linearization lemmas, power-saving
 joint-parity discrepancy bounds for nested floor-power sequences at
-depths 2 and 4 (even branch), outside the existing Piatetski-Shapiro
-literature, and a certified-descent density of \(13/16\) — a direct
-headline improvement over the note's current \(3/4\). Import into the
-finite-dynamics note is the pending editorial phase.
+all depths \(\le 3\) and the OOE\* splits at depth 4, outside the
+existing Piatetski-Shapiro literature, and a certified-descent
+density of \(13/16\) — a direct headline improvement over the note's
+current \(3/4\). The isolated kernel \(K_c\) (Conjecture O) is itself
+a publishable problem statement. Import into the finite-dynamics note
+is the pending editorial phase.

@@ -75,6 +75,12 @@ ANTI_OVERCLAIM = {
     # descent) is a theorem. No unconditional density-one claim.
     "tier2_analytic_lemma_proved": False,
     "density_one_claimed": False,
+    # Phase 5: Proposition L closes the OE-branch third letter, so all
+    # depth-3 word classes are proved. The tier-2 kernel
+    # K = sum e(c(n){m^{3/2}}) is isolated and probed (Conjecture O)
+    # but NOT bounded.
+    "depth3_words_proved": True,
+    "kernel_bound_proved": False,
 }
 
 
@@ -220,6 +226,167 @@ def deep_word_counts(n_max: int, depth: int) -> dict[str, int]:
         w = itinerary_word(n, depth)
         counts[w] = counts.get(w, 0) + 1
     return dict(sorted(counts.items()))
+
+
+# --- Phase 5: even-branch third letter, tier-2 bricks, kernel probe ---
+
+
+def m12_smoothing_check(n: int, scale: int = SCALE) -> tuple[int, int]:
+    """(D1(n)*scale, bound*scale) for the OE-branch third-letter smoothing.
+
+    Proposition L brick: m^{1/2} = n^{3/4} + D1(n) with
+    -(1/2) n^{-3/4} - n^{-9/4} <= D1 <= 0, where m = floor(n^{3/2}).
+    Decaying amplitudes only; same pattern as Lemma D.
+    """
+    if n < 3 or n % 2 == 0:
+        raise ValueError("odd n >= 3 required")
+    m = isqrt(n**3)
+    m12 = isqrt(m * scale * scale)
+    n34 = isqrt(isqrt(n**3 * scale**4))
+    diff = m12 - n34
+    r94 = isqrt(isqrt(n**9 * scale**4))
+    bound = scale * scale // (2 * n34) + scale * scale // r94
+    return diff, bound
+
+
+def m12_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    slack = 8
+    for n in samples:
+        diff, bound = m12_smoothing_check(n)
+        if diff > slack or diff < -bound - slack:
+            return {"holds": False, "witness": n}
+    return {"holds": True, "count": len(samples)}
+
+
+def oe_indicator_identity_check(n_max: int) -> dict[str, Any]:
+    """Branch consistency for the OE-branch third letter.
+
+    itinerary_word(n, 3) == 'OEE' iff m even and isqrt(m) even: the
+    (1+psi_1) factor restricts to even m, exactly where J^2 takes the
+    even branch, so psi(m^{1/2}) evaluates unconditionally.
+    """
+    for n in range(3, n_max + 1, 2):
+        m = isqrt(n**3)
+        if (itinerary_word(n, 3) == "OEE") != (m % 2 == 0 and isqrt(m) % 2 == 0):
+            return {"holds": False, "witness": n}
+    return {"holds": True, "n_max": n_max}
+
+
+def lemma_m_checks(n: int, big_g: int, scale: int = 10**60) -> dict[str, tuple[int, int]]:
+    """Exact scaled validation of the Lemma M second-order forms.
+
+    (i)  m^{3/2} = -(1/8) X^{3/2} + (3/4) m X^{1/2} + (3/8) m^2 X^{-1/2}
+         + R5,  0 <= R5 <= (1/16)(X-1)^{-3/2};
+    (ii) (m+G)^{3/2} = Z^{3/2} - (3/2) X Z^{1/2} + (3/8) X^2 Z^{-1/2}
+         + m [ (3/2) Z^{1/2} - (3/4) X Z^{-1/2} ] + (3/8) m^2 Z^{-1/2}
+         + R6,  0 <= R6 <= (1/16)(Z-1)^{-3/2},
+    (both remainders are the positive third-order Taylor terms of
+    t -> (X-t)^{3/2} resp. (Z-t)^{3/2}, since f''' > 0 and theta > 0)
+    with X = n^{3/2}, Z = X + G. These carry the differenced tier-2
+    phase; remainders are absorbable against the W ~ k n^{9/8} weight.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    s2 = scale * scale
+    m = isqrt(n**3)
+    xs = isqrt(n**3 * s2)                          # X * scale
+    x12 = isqrt(isqrt(n**3 * scale**4))            # X^{1/2} * scale
+    x32 = isqrt(isqrt(n**9 * scale**4))            # X^{3/2} * scale
+
+    lhs_i = isqrt(m**3 * s2)
+    poly_i = -x32 // 8 + 3 * m * x12 // 4 + 3 * m * m * s2 // (8 * x12)
+    bound_i = s2 // (14 * x32) + 4 * n**3 + 1000
+
+    zs = xs + big_g * scale                        # Z * scale
+    z12 = isqrt(zs * scale)                        # Z^{1/2} * scale
+    z32 = zs * z12 // scale                        # Z^{3/2} * scale
+    lhs_ii = isqrt((m + big_g) ** 3 * s2)
+    poly_ii = (
+        z32
+        - 3 * xs * z12 // (2 * scale)
+        + 3 * n**3 * s2 // (8 * z12)
+        + m * (3 * z12 // 2 - 3 * xs * scale // (4 * z12))
+        + 3 * m * m * s2 // (8 * z12)
+    )
+    bound_ii = s2 // (14 * z32) + 4 * n**3 + 1000
+    return {
+        "m32": (poly_i - lhs_i, bound_i),
+        "shifted": (poly_ii - lhs_ii, bound_ii),
+    }
+
+
+def lemma_m_scan(samples: tuple[int, ...], h: int = 1) -> dict[str, Any]:
+    """Check both Lemma M identities on samples with realized gaps G."""
+    for n in samples:
+        big_g = isqrt((n + 2 * h) ** 3) - isqrt(n**3)
+        res = lemma_m_checks(n, big_g)
+        # poly - lhs = -R with R the positive Taylor remainder: window [-bound, slack].
+        for which in ("m32", "shifted"):
+            diff, bound = res[which]
+            if not (-bound <= diff <= 4 * n**3 + 1000):
+                return {"holds": False, "witness": n, "which": which}
+    return {"holds": True, "count": len(samples)}
+
+
+def level2_gap_check(start: int, count: int, h: int) -> dict[str, Any]:
+    """Lemma N: g2 = floor(DY) + [theta2 >= 1 - {DY}] with DY = Y+ - Y.
+
+    Exact check on realized orbit data; boundary-ambiguous samples
+    (fractional parts within a guard band of 0/1) are skipped, as in
+    gap_decomposition_check.
+    """
+    s = 10**24
+    guard = 10**6
+    matches = skipped = 0
+    n = start if start % 2 == 1 else start + 1
+    for _ in range(count):
+        m0 = isqrt(n**3)
+        m1 = isqrt((n + 2 * h) ** 3)
+        v0, v1 = isqrt(m0**3), isqrt(m1**3)
+        y0 = isqrt(m0**3 * s * s)
+        y1 = isqrt(m1**3 * s * s)
+        dys = y1 - y0
+        fdy, frac_dy = divmod(dys, s)
+        th2 = y0 - v0 * s
+        if frac_dy < guard or frac_dy > s - guard or abs(th2 - (s - frac_dy)) < guard:
+            skipped += 1
+            n += 2
+            continue
+        kappa2 = 1 if th2 >= s - frac_dy else 0
+        if v1 - v0 != fdy + kappa2:
+            return {"holds": False, "witness": n}
+        matches += 1
+        n += 2
+    return {"holds": True, "matches": matches, "skipped": skipped}
+
+
+def kernel_probe(p_block: int, coeff_num: int = 3, coeff_den: int = 4) -> dict[str, Any]:
+    """Float probe of the isolated tier-2 kernel K = sum e(c(n) {m^{3/2}}).
+
+    c(n) = (coeff_num/coeff_den) n^{9/8}, the natural W-scale of the
+    OOO* reduction. Exact scaled phase arithmetic; float only in the
+    final exponential. Not a proof; supports or refutes Conjecture L.
+    """
+    from math import cos, pi, sin
+
+    s = 10**12
+    s30 = 10**30
+    re = im = 0.0
+    cnt = 0
+    n = p_block + 1
+    while n < 2 * p_block:
+        m = isqrt(n**3)
+        t2 = isqrt(m**3 * s * s)
+        th2 = t2 - (t2 // s) * s                     # {m^{3/2}} * s
+        r9 = _eighth_scaled(n**9, s30)               # n^{9/8} * s30
+        prod = (coeff_num * r9 * th2) // coeff_den   # c*theta2 * s30*s
+        frac = (prod % (s30 * s)) / (s30 * s)
+        ph = 2 * pi * frac
+        re += cos(ph)
+        im += sin(ph)
+        cnt += 1
+        n += 2
+    return {"count": cnt, "abs_sum": round((re * re + im * im) ** 0.5, 1)}
 
 
 # --- Phase 4: second-order linearization bricks for the OOO* layer ---
@@ -527,11 +694,13 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
     lines = [
         "# Juggler multi-step itinerary-parity census",
         "",
-        "Status: **COMPUTATIONALLY VERIFIED** counts; the depth-2 and",
-        "even-branch depth-4 analytic results are **EXACT — HUMAN PROOF**",
-        "(`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,",
+        "Status: **COMPUTATIONALLY VERIFIED** counts; all depth-3 word",
+        "classes and the even-branch depth-4 splits are **EXACT — HUMAN",
+        "PROOF** (`J-nested-parity-discrepancy`,",
+        "`J-triple-parity-discrepancy`, `J-even-branch-third-letter`,",
         "`J-four-step-descent-density`; proofs in",
-        "`juggler_two_step_parity_lemma.md`)",
+        "`juggler_two_step_parity_lemma.md`). The tier-2 kernel bound",
+        "(Conjecture O) is open.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",

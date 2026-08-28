@@ -662,7 +662,9 @@ This is the Juggler analogue of the Terras program for Collatz:
 all-depth parity equidistribution (Conjecture K below) implies that
 almost every start descends below itself. The implication is
 unconditional; only the hypothesis is open beyond the proved cases
-(\(d \le 3\) fully; \(d = 4\) even branch).
+(\(d \le 3\) fully — Theorems 5.1/C plus Proposition L of Part IV,
+which closed a gap in an earlier phrasing of this remark; at
+\(d = 4\), the OOE\* splits via Theorem E).
 
 ### Census gate at depth 6 — COMPUTATIONALLY VERIFIED
 
@@ -690,11 +692,204 @@ degrades as \(\gamma_{\min}(w)\) shrinks.
 
 For every fixed itinerary word \(w\): \(\#\{n \le N:
 \mathrm{word}(n) \text{ has prefix } w\} = 2^{-|w|}N +
-O(N^{1-\delta_w})\), \(\delta_w > 0\). Proved for \(|w| \le 3\), and
-for \(|w| = 4\) on the even branch (Theorems C/E). With
-Proposition J this implies density-one finite descent. The next
-concrete case is tier 2: the OOO\* split via the double-differencing
-route above.
+O(N^{1-\delta_w})\), \(\delta_w > 0\). Proved for \(|w| \le 3\)
+(Theorems 5.1/C, Proposition L) and for the OOE\* splits at
+\(|w| = 4\) (Theorem E). With Proposition J this implies density-one
+finite descent. The next concrete cases are the OEO\* splits
+(Part IV remark: likely within the existing engine) and tier 2, the
+OOO\* split, whose precise obstruction is isolated in Part IV.
 
 Import of Theorems C/E and Corollary F into the finite-dynamics note
 remains a separate editorial phase.
+
+## Part IV: depth-3 completion and the tier-2 kernel (Phase 5)
+
+### Correction note
+
+Earlier phrasings of the Proposition J remark and Conjecture K said
+"proved for depth \(\le 3\)". That was ahead of the facts: Theorem C
+proves the depth-3 split only on the OO branch (third letter = parity
+of \(\lfloor m^{3/2}\rfloor\), weighted on odd \(m\)), and Theorem E
+proves *sign classes* of \((\psi_1, \psi_2, \psi_3)\), which are word
+classes only along OOE\*. The OE-branch third letter — the OEO/OEE
+split, governed by \(\psi(m^{1/2})\) on even \(m\) — had not been
+stated or proved. Proposition L below closes it; the remark and
+Conjecture K are now accurate as written.
+
+### Proposition L (OE-branch third letter) — EXACT — HUMAN PROOF
+
+For \(a \in \{0,1\}\),
+
+\[
+\Bigl|\sum_{n \le N,\ n \ \mathrm{odd}} \bigl((-1)^m\bigr)^a\,
+\psi\bigl(m^{1/2}\bigr)\Bigr| \;\ll_\varepsilon\; N^{7/8+\varepsilon},
+\qquad m = \lfloor n^{3/2}\rfloor,
+\]
+
+and consequently \(\#\mathrm{OEO}(N),\ \#\mathrm{OEE}(N) = N/8 +
+O(N^{7/8+\varepsilon})\).
+
+*Proof.* Exact smoothing (validated, `m12_smoothing_check`, \(n\) to
+\(10^{12}\)): with \(X = n^{3/2}\), \(\theta = X - m\),
+
+\[
+m^{1/2} = n^{3/4} + D_1(n),
+\qquad
+-\tfrac12 X^{-1/2} - \tfrac18 (X-1)^{-3/2} \;\le\; D_1 \;\le\; 0,
+\]
+
+the Taylor expansion of \((X-\theta)^{1/2}\) with both correction
+terms one-signed. \(D_1\) is *decaying*, so replacing
+\(\tfrac l2 m^{1/2}\) by \(\tfrac l2 n^{3/4}\) inside a Vaaler mode
+costs \(\ll l \sum_{n \sim P} n^{-3/4} \ll l P^{1/4}\), absorbable at
+\(l \le 2J = 2P^{1/24}\). The mode sums are then pure:
+\(\sum_{n \sim P} e\bigl(\tfrac i2 n^{3/2} + \tfrac l2 n^{3/4}\bigr)\)
+with \(l \ne 0\). For \(i \ne 0\): \(\varphi'' = \tfrac{3i}{8}
+n^{-1/2}\bigl(1 + O(l P^{-3/4}/i)\bigr)\) is single-signed and
+\(\asymp |i| P^{-1/2}\), so van der Corput II gives \(\ll i^{1/2}
+P^{3/4} + i^{-1/2} P^{1/4}\). For \(i = 0\): \(\varphi'' \asymp
+l P^{-5/4}\), giving \(\ll l^{1/2} P^{3/8} + l^{-1/2} P^{5/8}\). The
+odd-\(n\) restriction, Vaaler majorants, truncation tails, and dyadic
+assembly are verbatim from Theorem C, and every bound is
+\(\ll P^{7/8}\) after summing mode weights. Branch consistency: the
+\((1 + (-1)^m)/2\) factor vanishes exactly on odd \(m\), where
+\(J^2\) would take the \(3/2\)-power branch, so the unconditional
+\(\psi(m^{1/2})\) is only ever weighted where it computes the true
+third letter — machine-checked (`oe_indicator_identity_check`,
+`itinerary_word(n,3) == "OEE"` iff \(m\) and
+\(\lfloor\sqrt m\rfloor\) even, all odd \(n \le 20001\)).
+\(\square\)
+
+Depth 3 is now complete: OOO, OOE (Theorem C), OEO, OEE
+(Proposition L), each \(N/8 + O(N^{1-\delta})\).
+
+### Lemma M (second-order forms, plain and shifted) — EXACT — HUMAN PROOF
+
+Let \(n \ge 5\) be odd, \(X = n^{3/2}\), \(m = \lfloor X\rfloor\),
+\(\theta = X - m\), \(G \ge 0\) an integer, \(Z = X + G\). Then
+
+\[
+m^{3/2} = -\tfrac18 X^{3/2} + \tfrac34 m X^{1/2}
++ \tfrac38 m^2 X^{-1/2} + R_5,
+\qquad 0 \le R_5 \le \tfrac1{16}(X-1)^{-3/2},
+\]
+
+\[
+(m+G)^{3/2} = Z^{3/2} - \tfrac32 X Z^{1/2} + \tfrac38 X^2 Z^{-1/2}
++ m\bigl(\tfrac32 Z^{1/2} - \tfrac34 X Z^{-1/2}\bigr)
++ \tfrac38 m^2 Z^{-1/2} + R_6,
+\]
+
+with \(0 \le R_6 \le \tfrac1{16}(Z-1)^{-3/2}\).
+
+*Proof.* Both are the second-order Taylor expansion of \(t \mapsto
+(B - t)^{3/2}\) at \(t = 0\) (base \(B = X\) resp. \(Z\)) evaluated at
+\(t = \theta\), with \(\theta = X - m\) substituted *exactly* so that
+\(\theta\) and \(\theta^2\) become polynomials in \(m\) with smooth
+coefficients. The remainder \(\tfrac16 f'''(\xi)\theta^3 =
+\tfrac1{16}(B-\xi)^{-3/2}\theta^3\), \(\xi \in (0, \theta)\), is
+positive since \(f''' > 0\), and at most \(\tfrac1{16}(B-1)^{-3/2}\).
+Coefficient sanity at \(m = X\), \(G = 0\): \(-\tfrac18 + \tfrac34 +
+\tfrac38 = 1\). Validated exactly (`lemma_m_scan`) for \(n\) up to
+\(10^{12}\) with realized gaps \(G = m(n{+}2h) - m(n)\), \(h \in
+\{1, 2, 5\}\); the observed defect at \(n = 5\) is \(9.87\cdot
+10^{-6}\), matching \(\theta^3 X^{-3/2}/16 = 0.98\cdot10^{-5}\).
+\(\square\)
+
+The point of the shifted form: on a Lemma-B cell (constant
+\(g_1 = G\)) the level-2 increment \(\Delta Y = (m{+}G)^{3/2} -
+m^{3/2}\) becomes a quadratic in \(m\) with smooth coefficients and
+remainder \(\ll P^{-9/4}\) — absorbable even against the tier-2
+weight \(W \asymp k P^{9/8}\).
+
+### Lemma N (level-2 gap identity) — EXACT — HUMAN PROOF
+
+With \(Y = m^{3/2}\), \(v = \lfloor Y\rfloor\), \(\theta_2 =
+\{Y\}\), and \(Y_+ = Y(n + 2h)\), \(\Delta Y = Y_+ - Y \ge 0\):
+
+\[
+g_2 \;=\; v(n{+}2h) - v(n)
+\;=\; \lfloor \Delta Y \rfloor + \kappa_2,
+\qquad
+\kappa_2 = \mathbb 1\bigl[\theta_2 \ge 1 - \{\Delta Y\}\bigr]
+\in \{0, 1\}.
+\]
+
+*Proof.* Identical to Lemma B with \(X \to Y\), \(\delta \to \Delta
+Y\): \(\lfloor Y + \Delta Y\rfloor = \lfloor Y\rfloor + \lfloor
+\Delta Y\rfloor + \lfloor \{Y\} + \{\Delta Y\}\rfloor\), and the last
+floor is the stated indicator. \(\square\) Validated on realized
+orbit data (`level2_gap_check`): 800/800 at \(n \sim 10^6\) for
+\(h \in \{1, 3\}\), 2995 matches and 5 guard-band skips on a wide
+window at \(n \sim 10^3\).
+
+### The kernel isolation (negative knowledge with an exact core)
+
+Differencing the Proposition-H polynomial phase (A-process, step
+\(2h\)) splits the \(v\)-block exactly as \(\Delta(vW) = g_2 W_+ +
+v\,\Delta W\), where \(W = \partial\Phi_3/\partial v \asymp
+\tfrac{3k}4 n^{9/8}\) is the smooth \(v\)-weight.
+
+- \(v\,\Delta W\) is *tame*: \(\Delta W \asymp khP^{1/8}\), and the
+  shifted-window Vaaler expansion of its \(\theta_2\)-content has
+  window drift \(< 1\) per cell (\(\Delta W\) varies by \(\asymp
+  kP^{-3/8}\) across a cell), so its mode mass is logarithmic.
+- \(g_2 W_+\) is *the wall*. The exact no-floor form \(g_2 = \Delta Y
+  + \theta_2 - \theta_2^+\) leaves \(\Delta Y\,W_+\) (quadratic in
+  \(m\) by Lemma M — handled) plus \((\theta_2 - \theta_2^+)W_+\): a
+  unit-amplitude sawtooth times a smooth coefficient of size \(\asymp
+  kP^{9/8}\) whose derivative \(\asymp kP^{1/8} \gg 1\) crosses
+  integers *within single steps of \(n\)*, so no cell of any usable
+  length freezes its Fourier window.
+
+Every reorganization tried funnels into the same object:
+splitting \(g_2\) by Lemma N instead leaves \(\{\Delta Y\}\,W_+\)
+(window drift \(kP^{5/8}/h\) per cell — same wall); the exact swap
+\(e(c\,\theta_2) = e(cY)\,e(-\{c\}v)\) (valid because
+\(\lfloor c\rfloor v\) is an integer) trades it for the fast sawtooth
+\(\{c(n)\}\) times the huge integer \(v \asymp P^{9/4}\) — symmetric
+and equally wild; a second A-process transfers the difference either
+to \(v\) (reproducing gap terms carrying the *full-size* \(W\)) or to
+\(W\) (already exhausted at \(\Delta W\)); and differencing the raw
+phase \(\tfrac k2 v^{3/2}\) without Proposition H reproduces
+\(c(n)\,g_2\) with \(c \asymp \tfrac{3k}4 v^{1/2}\). By contrast the
+\(\kappa_2\)-content is harmless: \(e(\kappa_2 W_+) = 1 +
+\kappa_2\,(e(W_+) - 1)\) splits into a 0/1 *indicator weight* —
+Vaaler-expandable in \(Y\)-modes with the exact endpoint identity
+\(e(r\{\Delta Y\}) = e(r\,\Delta Y)\) for integer \(r\) — times a
+factor whose largeness sits harmlessly in the smooth phase.
+
+**Kernel (definition).** For smooth \(c\) with \(c \asymp k P^{9/8}\)
+and \(c' \asymp k P^{1/8}\) on \(n \sim P\) (the \(W\)-shaped
+family),
+
+\[
+K_c(P) \;=\; \sum_{\substack{n \sim P \\ n\ \mathrm{odd}}}
+e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr).
+\]
+
+### Conjecture O (kernel cancellation)
+
+\(K_c(P) \ll P^{1-\delta}\) for some \(\delta > 0\), uniformly over
+the \(W\)-shaped family. Float probe with exact scaled phase
+arithmetic (`kernel_probe`, \(c = \tfrac34 n^{9/8}\)): \(|K| = 51.9,\
+124.4,\ 1017.5\) on \(5\cdot10^3,\ 5\cdot10^4,\ 5\cdot10^5\) terms —
+square-root cancellation, strongly consistent with the conjecture.
+Bounding \(K_c\) is the *precise* remaining obstacle to the OOO\*
+split, hence to any certified density beyond \(13/16\) through this
+program. The object is a bilinear correlation between the fractional
+parts of one Piatetski–Shapiro layer and a smooth weight at the scale
+of the next layer; we found no treatment of it in the nested-floor
+literature.
+
+### Remark (the OEO\* tier is easier — next target)
+
+At depth 4 after OE, the fourth letter on the OEO branch is the
+parity of \(\lfloor w^{3/2}\rfloor\) with \(w = \lfloor
+m^{1/2}\rfloor \asymp n^{3/4}\). The growing layer here rides the
+*slow* variable \(w\), which increments only once every \(\asymp
+n^{1/4}\) values of \(n\): its gap variable has long constancy cells,
+i.e. the Theorem-C pattern with the roles shifted one level down.
+This split (and the easy decaying OEE\* one) looks closable by the
+existing engine without meeting the kernel, and would settle depth 4
+entirely except OOO\*.

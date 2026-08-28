@@ -116,6 +116,10 @@
     "reopen_landing_theta": false,
     "reopen_2adic_bridge": false,
     "depth2_analytic_lemma_proved": true,
-    "depth4_even_branch_proved": true
+    "depth4_even_branch_proved": true,
+    "tier2_analytic_lemma_proved": false,
+    "density_one_claimed": false,
+    "depth3_words_proved": true,
+    "kernel_bound_proved": false
   }
 }
