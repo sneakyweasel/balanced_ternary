@@ -16,6 +16,7 @@ from research.juggler_sequence.two_step_parity import (
     branch_freeze_scan,
     carry_multiplier_probe,
     level3_block_model_check,
+    pure_model_census,
     deep_word_counts,
     differenced_kernel_probe,
     dispersion_spacing_census,
@@ -164,6 +165,11 @@ def test_anti_overclaim_flags():
     # the random-phase scale (OBSERVATION). EE and the bound open.
     assert ANTI_OVERCLAIM["level3_block_model_exact"] is True
     assert ANTI_OVERCLAIM["in_block_cancellation_observed"] is True
+    # Phase 20: the intra-block harmonic program is parked
+    # (Proposition GG); the pure model cancels empirically
+    # (Conjecture HH census). EE, V and the bound stay open.
+    assert ANTI_OVERCLAIM["intra_block_harmonic_parked"] is True
+    assert ANTI_OVERCLAIM["pure_model_cancellation_observed"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
 
 
@@ -636,6 +642,13 @@ def test_block_kernel_sum_census():
     # in-block kernel sums sit at the random-phase scale R ~ Exp(1).
     r = block_kernel_sum_census(10**4, n_blocks=60, ks=(1,))
     assert r["k=1"]["mean_R"] < 3.0
+
+
+def test_pure_model_census():
+    # Conjecture HH census (OBSERVATION guard, loose): the pure
+    # amplitude-product model sums sit at the random-phase scale.
+    r = pure_model_census(10**4, n_blocks=60, k=1)
+    assert r["mean_R"] < 3.0
 
 
 def test_carry_multiplier_probe():

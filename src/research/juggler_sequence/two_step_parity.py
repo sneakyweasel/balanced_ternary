@@ -117,6 +117,19 @@ ANTI_OVERCLAIM = {
     # EE itself and the K3 bound stay open.
     "level3_block_model_exact": True,
     "in_block_cancellation_observed": True,
+    # Phase 20: Proposition GG — the intra-block harmonic program is
+    # obstructed: the kernel product's Fourier window drifts by
+    # kC' ~ P^{11/16} per step (inner sums shorter than one step at
+    # every block length), and every algebraic re-form transfers the
+    # P^{27/16} amplitude instead of destroying it (floor-splitting,
+    # pure-phase identity -> 45/16 W-family, differencing, interval
+    # splitting). The intra-block program is PARKED; Conjectures V
+    # and EE stay open. The distilled crystal is Conjecture HH: the
+    # pure amplitude-product model sum e(A(t){B(t)}) with monomials
+    # 1 << A' << A, which cancels empirically (Exp(1) census) but
+    # sits outside every toolkit and the PS literature (A' << 1).
+    "intra_block_harmonic_parked": True,
+    "pure_model_cancellation_observed": True,
     # Phase 10: Theorem T / Corollary U close OOOEE and OOEOE;
     # certified descent density 7/8. OOOO* at depth 5 remains open.
     "depth5_contracting_proved": True,
@@ -1034,6 +1047,55 @@ def block_kernel_sum_census(
             ),
         }
     return out
+
+
+def pure_model_census(
+    p_block: int, n_blocks: int = 200, k: int = 1
+) -> dict[str, Any]:
+    """Census for Conjecture HH: the pure amplitude-product model.
+
+    The carry-free crystal of the kernel block sums: for smooth
+    monomials A(t) = (3k/4) mu(t)^{9/8} and B(t) = mu(t)^{9/4} with
+    mu(t) = mu_0 + a t (a ~ 3 P^{1/2}, the realized m-slope scale),
+    compute R(B) = |sum_{t<L} e(A(t) {B(t)})|^2 / L over blocks.
+    This is the object Proposition GG shows is untouchable by the
+    laboratory toolkit whenever 1 << A' << A (here A' ~ P^{11/16}):
+    the Piatetski-Shapiro literature handles A' << 1 only, where
+    partial summation makes the amplitude a tame passenger.
+    Conjecture HH asserts random-phase cancellation; the census
+    checks it (expect R ~ Exp(1)). Exact scaled integers;
+    OBSERVATION only.
+    """
+    from math import cos, pi, sin
+
+    sc = 10**30
+    block_len = max(4, isqrt(isqrt(p_block)))
+    mu0 = isqrt(p_block**3)
+    a = 3 * isqrt(p_block)
+    rs: list[float] = []
+    for b in range(n_blocks):
+        base = mu0 + 2 * a * block_len * b
+        re = im = 0.0
+        for t in range(block_len):
+            mu = base + a * t
+            mu94 = isqrt(isqrt(mu**9 * sc**4))
+            mu98 = isqrt(mu94 * sc)
+            frac = mu94 % sc
+            x = 3 * k * mu98 * frac // (4 * sc) % sc
+            ph = 2 * pi * (x / sc)
+            re += cos(ph)
+            im += sin(ph)
+        rs.append((re * re + im * im) / block_len)
+    vals = sorted(rs)
+    return {
+        "block_len": block_len,
+        "n_blocks": n_blocks,
+        "k": k,
+        "mean_R": round(sum(vals) / n_blocks, 3),
+        "median_R": round(vals[n_blocks // 2], 3),
+        "max_R": round(vals[-1], 2),
+        "frac_R>4": round(sum(1 for x in vals if x > 4) / n_blocks, 4),
+    }
 
 
 def transport_block_variance(

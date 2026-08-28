@@ -3572,5 +3572,27 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-intra-block-harmonic-obstruction",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Proposition GG: no intra-block harmonic method in the laboratory toolkit bounds the kernel block sums sum_{t<L} e(k C {Theta}) (C ≍ P^{27/16}, Theta the Lemma-FF phase), at any block length L ≤ P. (I) Window drift: any character expansion in the Theta-direction has its Fourier window centered at kC(t), which drifts by kC' ≍ k P^{11/16} per step, so inner sums at fixed harmonic have length < 1 — vacuous, and independent of block length since the drift is per-step in n. (II) Amplitude transfer: floor-splitting e(k floor(C){Theta}) = e(k floor(C) Theta) is exact but its residual double-Fourier collapses back onto the moving-integer phase; the exact identity C theta_3 = (3/4)(z^{1/2} v^{3/2} - z^{3/2}) converts to pure phases whose floor expansions regenerate the alpha = 45/16 W-family; differencing at any order preserves the full amplitude on theta_3-differences (cross-block variance = the T1-family, dead by Proposition BB); interval-splitting needs R ≥ kC cells and its l^1-mass equals the amplitude. Covers the carry-free case (smooth monomials). Both known proof routes to K3 (global toolkit, Proposition BB; intra-block program, this row) are now closed by named mechanisms. Conjectures V, EE, HH are not refuted. Not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-pure-model-amplitude-product",
+    "tag": "CONJECTURE",
+    "statement": "Conjecture HH (the pure amplitude-product model): for smooth monomial-type A(t), B(t) on [0, L] with 1 << A' << A (Juggler instance: A = (3k/4) mu^{9/8}, B = mu^{9/4}, mu affine, A ≍ P^{27/16}, A' ≍ P^{11/16}), the sum |sum_{t≤L} e(A(t){B(t)})| ≤ L^{1-delta}. The minimal crystal of the K3 program: all Juggler-specific structure (carries, defects, nesting) stripped. The known boundary is A' ≍ 1: for A' << 1 partial summation makes the amplitude a tame passenger (the engine and the Piatetski-Shapiro literature); for A' >> 1 no tool applies (Proposition GG). Census: R = |S|^2/L has a textbook Exp(1) profile at P = 10^6, 10^8, 10^10, k = 1, 2 (pure_model_census) — square-root cancellation, COMPUTATIONALLY unrefuted, analytically untouched.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]

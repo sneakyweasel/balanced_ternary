@@ -9980,3 +9980,104 @@ Best next question
   |S_k(B)| <= L^{1-delta} outside a power-saving exceptional
   set of blocks?
 ```
+
+## Juggler intra-block program parked; the K3 problem distilled to its crystal (Phase 20)
+
+The promoted question was the cascade itself. Run adversarially
+to its proof obligations, it dies - and the death is scale-free,
+closing the whole intra-block harmonic program, not just one
+draft. Working document Part XVII.
+
+Proposition GG (EXACT - HUMAN PROOF,
+`J-intra-block-harmonic-obstruction`): no intra-block harmonic
+method in the toolkit bounds the kernel block sums
+sum_{t<L} e(k C {Theta}), at any block length L <= P. Mechanism
+I (window drift): any character expansion in the Theta-direction
+concentrates its Fourier mass in a window centered at kC(t), and
+the center drifts by kC' ~ k P^{11/16} per step (~33000
+harmonics per step at P = 10^6): a fixed harmonic is active for
+less than one step, so the expansion's inner sums are vacuous;
+the drift is per-step in n, so longer blocks (higher-degree
+DD-models reach L = P^{(r-1/2)/(r+1)} -> P) change nothing.
+Mechanism II (amplitude transfer): every algebraic re-form moves
+the P^{27/16} amplitude, never destroys it - floor-splitting is
+exact (e(k floor(C){Theta}) = e(k floor(C) Theta)) but its
+residual double-Fourier collapses back onto the moving-integer
+phase; the exact identity C theta_3 = (3/4)(z^{1/2} v^{3/2} -
+z^{3/2}) converts to pure phases whose floor expansions
+regenerate the 45/16 W-family; differencing at any order
+preserves the amplitude on theta_3-differences (and the
+cross-block variance is the T1-family, dead by BB); interval
+splitting needs R >= kC cells and its l^1-mass equals the
+amplitude. The obstruction covers carry-free blocks - which
+explains the Phase-19 finding that rotation-resonant blocks
+cancel like the bulk: the mechanism in the data was never
+rotation entropy but fine self-equidistribution of the monomial
+against its own amplitude window.
+
+The distillate is the branch's cleanest question yet. Conjecture
+HH (`J-pure-model-amplitude-product`, CONJECTURE): for smooth
+monomials with 1 << A' << A (Juggler instance A = (3k/4)
+mu^{9/8}, B = mu^{9/4}, A ~ P^{27/16}, A' ~ P^{11/16}),
+|sum_{t<=L} e(A(t){B(t)})| <= L^{1-delta}. All Juggler-specific
+structure (carries, defects, nesting) is stripped; the known
+boundary is exactly A' ~ 1 - below it the amplitude is a tame
+passenger (partial summation; the engine and the entire
+Piatetski-Shapiro literature live there), above it nothing
+applies. Census (pure_model_census, exact scaled integers):
+R = |S|^2/L has a textbook Exp(1) profile at P = 10^6, 10^8,
+10^10 for k = 1, 2 (means 0.86-1.08, medians 0.60-0.82,
+tails matching e^{-4}) - square-root cancellation,
+computationally unrefuted, analytically untouched.
+
+With Proposition BB (global toolkit) and Proposition GG
+(intra-block program), both known proof routes to K3 are closed
+by named, mechanism-level obstructions. Conjectures V, EE and HH
+stay open with strong empirical support. The transport
+reformulation keeps its value - Lemmas DD/FF are exact and
+reduced the problem to its crystal - and the unconditional
+harvest of the branch (every depth-<=4 class, the depth-5 and
+length-7 contracting splits, certified descent 57/64, the
+conditional density-one theorem) is final for this program
+unless HH moves. Probe pure_model_census with test; rows
+`J-intra-block-harmonic-obstruction` (EXACT) and
+`J-pure-model-amplitude-product` (CONJECTURE); flags
+`intra_block_harmonic_parked`, `pure_model_cancellation_observed`.
+`depth5_kernel_bound_proved` and `density_one_claimed` stay
+False. No note import, no commit.
+
+```text
+What was learned
+- the kernel product's Fourier window drifts P^{11/16} per step:
+  character expansions have inner sums shorter than one step at
+  every block length
+- every algebraic re-form transfers the amplitude (floor-split,
+  pure-phase identity, differencing, interval-splitting); none
+  destroys it
+- the obstruction covers carry-free blocks: the cancellation
+  mechanism in the data is fine monomial self-equidistribution,
+  not rotation entropy
+- the whole K3 program distills to one self-contained question:
+  amplitude-product sums with 1 << A' << A (Conjecture HH),
+  empirically Exp(1)
+Strongest theorem
+- Proposition GG: the intra-block obstruction - EXACT - HUMAN
+  PROOF
+Strongest refutation
+- the cascade route to Conjecture EE (obligation alpha), by
+  mechanism rather than counterexample
+Reusable machinery
+- pure_model_census (the crystal's census)
+Branch status
+- PARK (the intra-block analytic program; the branch's theorem
+  harvest stands)
+Why
+- both known proof routes to K3 now end at named obstructions;
+  the honest frontier is a single clean exponential-sum problem
+  outside current technology, and pretending otherwise would be
+  machinery gravity
+Best next question
+- is there any nontrivial bound - even a single log - for
+  sum e(A{B}) with smooth monomials 1 << A' << A (Conjecture
+  HH), by any method outside the harmonic toolkit?
+```

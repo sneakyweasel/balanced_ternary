@@ -572,26 +572,21 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: Conjecture EE (the transport inductive step,
-Part XV) — for all but a power-saving fraction of
-\(P^{1/4}\)-blocks, the in-block kernel-mode sums over the
-rotation-carry substrate of Lemma DD cancel by \(L^{-\delta}\).
-Of its three obligations, (γ) is discharged (Lemma FF, Part
-XVI: the level-3 kernel phase is an explicit closed form in
-\((\mu, s, d, \{F\})\), validated to \(10^{-25}\)) and (β) is
-proven machinery; what remains is (α) in cascade form —
-harmonically-weighted linear-rotation sums with smooth carriers
-(sixth-derivative ladder inside blocks, \(\ell^1\)-bounded
-Fourier mass, Diophantine conditions at the *amplified*
-frequencies, exceptional blocks by measure). The census gate
-passed decisively: in-block sums sit at the square-root scale
-(\(R \sim \mathrm{Exp}(1)\) at \(P = 10^6, 10^8, 10^{10}\)),
-and \(\gamma\)-resonance does not predict bad blocks.
-Conjecture V (\(K_3\) cancels) remains open behind EE;
-dispersion is closed as a completion route (Proposition CC).
-One editorial: import Theorems R/S/T/X and Corollaries U/Y
-into the finite-dynamics note (its Conjecture 6.2 and the
-\(13/16\) headline are superseded).
+One mathematical, now fully distilled: Conjecture HH (the pure
+amplitude-product model) — bound
+\(\sum_{t \le L} e(A(t)\{B(t)\})\) for smooth monomials with
+\(1 \ll A' \ll A\). Everything else is closed or reduced to it:
+obligation (γ) of Conjecture EE is discharged (Lemma FF), (β)
+is proven machinery, and (α) — the intra-block cascade — is
+obstructed at mechanism level (Proposition GG: window drift
+\(kC' \asymp P^{11/16}\) per step; amplitude transfer under
+every re-form; scale-free in the block length). Both known
+proof routes to \(K_3\) are now closed by named obstructions
+(Proposition BB globally, GG intra-block); Conjectures V, EE,
+HH all stay open with strong empirical support (Exp(1)
+censuses). One editorial: import Theorems R/S/T/X and
+Corollaries U/Y into the finite-dynamics note (its Conjecture
+6.2 and the \(13/16\) headline are superseded).
 
 ## Decision
 
@@ -838,11 +833,37 @@ frequencies. Obligation (γ) of Conjecture EE discharged. Probes
 `level3_block_model_exact`, `in_block_cancellation_observed`.
 No \(K_3\) bound, no density move, no note import.
 
-Best next question: does the two-layer Fourier cascade, with van
-der Corput high-derivative tests on the smooth carriers and
-measure control of the amplified-frequency resonances, prove
-Conjecture EE's in-block bound \(|S_k(B)| \le L^{1-\delta}\)
-outside a power-saving exceptional set of blocks?
+**PARK** (Phase 20, intra-block obstruction): the cascade dies
+at mechanism level. Proposition GG
+(`J-intra-block-harmonic-obstruction`, EXACT — HUMAN PROOF):
+(I) the kernel product's Fourier window drifts by
+\(kC' \asymp P^{11/16}\) per step — about \(3.3\cdot10^4\)
+harmonics per step at \(P = 10^6\) — so character expansions
+have inner sums shorter than one step at *every* block length;
+(II) every algebraic re-form transfers the \(P^{27/16}\)
+amplitude instead of destroying it (floor-splitting circles
+back through \(e(k\lfloor C\rfloor\{\Theta\}) =
+e(k\lfloor C\rfloor\Theta)\); the exact identity
+\(C\theta_3 = \tfrac34(z^{1/2}v^{3/2} - z^{3/2})\) regenerates
+the \(45/16\) W-family; differencing preserves the amplitude;
+interval-splitting's \(\ell^1\)-mass equals the amplitude).
+The obstruction covers carry-free blocks, matching the
+Phase-19 finding that resonant blocks cancel like the bulk.
+Distillate: Conjecture HH (`J-pure-model-amplitude-product`,
+CONJECTURE) — the pure amplitude-product sum
+\(\sum e(A\{B\})\), monomials, \(1 \ll A' \ll A\); the known
+boundary is exactly \(A' \asymp 1\) (tame passengers below,
+nothing above). Census: Exp(1) profile at \(P = 10^6\)–\(10^{10}\)
+(`pure_model_census`). Flags `intra_block_harmonic_parked`,
+`pure_model_cancellation_observed`. The unconditional harvest
+(depth-\(\le 4\) completeness, contracting splits, \(57/64\),
+conditional density-one) is final for this program unless HH
+moves. No \(K_3\) bound, no density move, no note import.
+
+Best next question: is there any nontrivial bound — even a
+single log — for \(\sum_{t \le L} e(A(t)\{B(t)\})\) with smooth
+monomials \(1 \ll A' \ll A\) (Conjecture HH), by any method
+outside the harmonic toolkit?
 
 ## Publication assessment
 
@@ -861,8 +882,11 @@ the increment-first \(K_3\) attack, and X1-absorption of
 \(K_3\) are laboratory-**REFUTED**; the \(K_3\) toolkit is
 laboratory-**PARKED** (Proposition BB). Of the two post-BB
 theories, dispersion is laboratory-**REFUTED** as a completion
-route (Proposition CC) and transport is **PROMOTED** with an
-exact substrate (Lemma DD), a stated inductive step
-(Conjecture EE, Part XV), the level-3 phase model (Lemma FF,
-Part XVI), and a decisively passed census gate (square-root
-in-block cancellation). None of this is in the note.
+route (Proposition CC); transport produced the exact substrate
+(Lemma DD), the stated inductive step (Conjecture EE), the
+level-3 phase model (Lemma FF) and passing census gates, but
+its intra-block analytic program is laboratory-**PARKED**
+(Proposition GG, Part XVII) — both known proof routes to
+\(K_3\) are closed by named obstructions, and the frontier is
+the self-contained Conjecture HH (pure amplitude-product
+sums). None of this is in the note.

@@ -2915,3 +2915,125 @@ commit. The remaining analytic work is obligation (α) in cascade
 form: bound the harmonically-weighted linear-rotation sums for
 all blocks outside an exceptional set controlled by measure and
 the proven level-\(\le 2\) equidistribution.
+
+## Part XVII: the intra-block obstruction and the pure model (Phase 20)
+
+Scope: run the cascade — obligation (α) — to its proof
+obligations, adversarially. Outcome: the cascade dies, in a
+scale-free way that closes the whole intra-block harmonic
+program; the phase records the obstruction (Proposition GG),
+distills the minimal open model problem (Conjecture HH), and
+validates the model's cancellation empirically. No \(K_3\)
+bound, no density move, no note import.
+
+### Proposition GG (the intra-block obstruction). EXACT — HUMAN PROOF
+
+**Statement.** No intra-block harmonic method in the laboratory
+toolkit bounds the kernel block sums
+\(S_k(B) = \sum_{t<L} e(kC(t)\{\Theta(t)\})\)
+(\(C \asymp P^{27/16}\), \(\Theta\) the Lemma-FF phase), at any
+block length \(L \le P\). Two mechanisms:
+
+**(GG-I) Window drift.** Any character expansion of
+\(e(kC\{\Theta\})\) in the \(\Theta\)-direction has Fourier mass
+concentrated in an \(O(\log)\)-window centered at the harmonic
+\(j \approx kC(t)\). The center drifts by
+\(kC' \asymp kP^{11/16}\) *per step* (about \(3.3\cdot10^4\)
+harmonics per step at \(P = 10^6\)), so a fixed harmonic is
+active for less than one step: the expansion's inner sums have
+length \(< 1\) and the interchange is vacuous. The drift is
+per-step in \(n\), hence independent of block length —
+higher-degree polynomial models extend DD-blocks to
+\(L = P^{(r-1/2)/(r+1)} \to P\), and the mechanism is unmoved.
+
+**(GG-II) Amplitude transfer.** Every algebraic re-form moves
+the \(P^{27/16}\) amplitude; none destroys it:
+(a) *floor-splitting*: \(e(k\lfloor C\rfloor\{\Theta\})
+= e(k\lfloor C\rfloor\Theta)\) is exact (integer multiplier),
+but the residual factor \(e(k\{C\}\{\Theta\})\), double-Fourier
+expanded (coefficients \(\ell^1\)-summable since \(k\) is
+bounded), collapses by \(e(p\{C\}) = e(pC)\),
+\(e(q\{\Theta\}) = e(q\Theta)\) back onto the moving-integer
+phase \((k\lfloor C\rfloor + q)\Theta\) — whose only reductions
+are \(C - \{C\}\) (transferring the amplitude to
+\(\{C\}\Theta\), now \(\Theta \asymp P^{27/8}\) on \(\{C\}\)) or
+GG-I;
+(b) *the pure-phase identity*
+\(C\theta_3 = \tfrac34(z^{1/2}v^{3/2} - z^{3/2})\) (exact, since
+\(\theta_3 = v^{3/2} - z\)): the floor expansions of the pure
+phases spawn \(v^{9/4}\)-terms whose \((9/4)F^{5/4}e\)-content is
+the \(\alpha = 45/16\) W-family (Lemma V2), with intra-block
+numerology worse than global;
+(c) *differencing*, at any order, in \(t\) or across blocks,
+preserves the full amplitude on \(\theta_3\)-difference terms
+(\(\bar C\,\Delta\theta_3\) with \(|\bar C| \asymp P^{27/16}\));
+the cross-block variance is the \(T_1^{(3)}\)-family, dead by
+Proposition BB;
+(d) *interval-splitting* of \(\{\Theta\}\) into \(R\) cells
+needs \(R \gtrsim kC \asymp P^{27/16}\) for the per-cell
+freezing error, and its \(\ell^1\)-mass is \(R\) — the mass
+equals the amplitude, and refactoring the cell sums merely
+rederives the moving window. \(\square\)
+
+The obstruction covers the carry-free case: even for blocks with
+\(s \equiv 0\), where everything is an explicit smooth monomial,
+mechanisms I and II apply verbatim. This matches the Phase-19
+census: resonant (carry-regular) blocks cancel like the bulk, so
+the cancellation mechanism in the data was never rotation
+entropy — it is fine self-equidistribution of the monomial
+against its own amplitude window, which no tool reaches.
+
+### Conjecture HH (the pure amplitude-product model)
+
+Let \(A(t), B(t)\) be smooth monomial-type functions on
+\([0, L]\) with \(1 \ll A' \ll A\) (in the Juggler instance
+\(A = \tfrac34 k\mu^{9/8}\), \(B = \mu^{9/4}\), \(\mu\) affine;
+\(A \asymp P^{27/16}\), \(A' \asymp P^{11/16}\)). Then
+
+\[
+\Bigl|\sum_{t \le L} e\bigl(A(t)\,\{B(t)\}\bigr)\Bigr|
+\;\le\; L^{1-\delta}.
+\]
+
+This is the minimal crystal of the whole \(K_3\) program: every
+Juggler-specific structure (carries, defects, nesting) has been
+stripped, and what remains is the amplitude-product exponential
+sum. The boundary of the known is exactly \(A' \asymp 1\): for
+\(A' \ll 1\) partial summation factors the amplitude out (the
+"tame passenger" regime the engine and the Piatetski–Shapiro
+literature use); for \(A' \gg 1\) nothing in the toolkit or the
+literature applies (Beatty/bilinear results treat bounded
+amplitudes on the sawtooth terms). Census
+(`pure_model_census`, exact scaled integers, OBSERVATION):
+
+| \(P\) | \(L\) | blocks | mean \(R\) | median \(R\) | frac \(R>4\) |
+| --- | --- | --- | --- | --- | --- |
+| \(10^6\) | 31 | 300 | 0.99–1.01 | 0.67–0.76 | 1.7–3.3% |
+| \(10^8\) | 100 | 300 | 0.86–1.08 | 0.60–0.80 | 0.3–2.0% |
+| \(10^{10}\) | 316 | 120 | 1.01–1.06 | 0.63–0.82 | 1.7–2.5% |
+
+A textbook \(\mathrm{Exp}(1)\) profile at \(k = 1, 2\): the
+model cancels at the square-root scale. Conjecture HH is
+empirically comfortable and analytically untouched.
+
+### Phase-20 decision
+
+**PARK** the intra-block harmonic program (Proposition GG,
+ledger row `J-intra-block-harmonic-obstruction`). With
+Proposition BB (global toolkit) and GG (intra-block program),
+both known proof routes to \(K_3\) are now closed by named,
+mechanism-level obstructions; Conjectures V, EE and HH stay
+open, all with strong empirical support. The transport
+reformulation retains its value — Lemmas DD/FF are exact and
+reduced the problem to its crystal — but the analytic frontier
+is now precisely Conjecture HH, a self-contained exponential-sum
+problem (ledger row `J-pure-model-amplitude-product`,
+CONJECTURE). The unconditional harvest of the branch (Theorems
+C/E/L/Q/R/S/T/X, Corollaries U/Y: every depth-\(\le 4\) class,
+the depth-5 and length-7 contracting splits, certified descent
+\(57/64\), the conditional density-one theorem) is final for
+this program unless HH moves. Flags
+`intra_block_harmonic_parked`,
+`pure_model_cancellation_observed`;
+`depth5_kernel_bound_proved` and `density_one_claimed` stay
+`False`. No note import, no commit.
