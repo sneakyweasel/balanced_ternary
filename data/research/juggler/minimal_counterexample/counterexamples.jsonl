@@ -1,0 +1,6 @@
+{"claim": "predecessor_closure_from_1_is_a_new_induction", "status": "REFUTED", "witness": "PredClosure \u2194 ReachesOne; G_r = {n : \u03c4(n) \u2264 r}", "label": "COUNTEREXAMPLE"}
+{"claim": "U(B)_becomes_arithmetically_sparse", "status": "REFUTED", "witness": "U(B) = odds > B \u222a evens \u2265 (B+1)^2; density \u2192 1/2", "label": "COUNTEREXAMPLE"}
+{"claim": "one_step_closure_of_[1,B]_covers_some_odd_n>B", "status": "REFUTED", "witness": "odd n\u22653 expands, so J(n)>n>B", "label": "COUNTEREXAMPLE"}
+{"claim": "G_r_is_a_single_interval", "status": "REFUTED", "witness": {"round": 12, "N": 4000, "certified_count": 1651, "maximum_certified_interval": 24, "component_count": 1540, "largest_gap": 119}, "label": "COUNTEREXAMPLE"}
+{"claim": "visited_state_ge_nstar_is_automatically_good", "status": "REFUTED", "witness": "only automatic reduction is a visit < n*", "label": "COUNTEREXAMPLE"}
+{"claim": "Bad_H_equals_Bad", "status": "REFUTED", "witness": "finite horizon is not the orbit predicate", "label": "COUNTEREXAMPLE"}

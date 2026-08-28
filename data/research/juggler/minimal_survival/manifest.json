@@ -1,0 +1,13 @@
+{
+  "experiment": "juggler_minimal_survival",
+  "N": 4000,
+  "leftover_count": 1009,
+  "leftover_eq_oo": true,
+  "classification": "MINIMAL_SURVIVAL_COMPLEX",
+  "branch": "CLOSE",
+  "files": [
+    "signatures.csv",
+    "leftover.jsonl",
+    "manifest.json"
+  ]
+}

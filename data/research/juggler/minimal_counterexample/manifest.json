@@ -1,0 +1,16 @@
+{
+  "experiment": "juggler_minimal_counterexample",
+  "N": 4000,
+  "depth": 12,
+  "cuda_used": false,
+  "classification": "MINIMALITY_COMPLEX",
+  "branch": "CLOSE",
+  "files": [
+    "good_closure.csv",
+    "closure_layers.csv",
+    "uncovered.csv",
+    "minimality_constraints.csv",
+    "barrier_words.jsonl",
+    "counterexamples.jsonl"
+  ]
+}

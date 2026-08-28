@@ -1,0 +1,13 @@
+round,n,first_gap,predecessor_status,branch_metadata,J,J2,parity
+1,3,3,successor_inside_window_uncertified,OO,5,11,odd
+2,3,3,successor_inside_window_uncertified,OO,5,11,odd
+3,3,3,successor_inside_window_uncertified,OO,5,11,odd
+4,3,3,successor_inside_window_uncertified,OO,5,11,odd
+5,3,3,successor_certified,OO,5,11,odd
+6,9,9,successor_certified,OO,27,140,odd
+7,19,19,successor_inside_window_uncertified,OE,82,9,odd
+8,19,19,successor_certified,OE,82,9,odd
+9,25,25,successor_inside_window_uncertified,OO,125,1397,odd
+10,25,25,successor_inside_window_uncertified,OO,125,1397,odd
+11,25,25,successor_inside_window_uncertified,OO,125,1397,odd
+12,25,25,successor_inside_window_uncertified,OO,125,1397,odd

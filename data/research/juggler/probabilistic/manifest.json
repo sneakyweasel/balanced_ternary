@@ -1,20 +1,46 @@
 {
-  "experiment": "juggler_probabilistic",
+  "experiment": "juggler_probabilistic_ld",
+  "also_contains_prior_census": true,
   "n_validate": 4000,
-  "n_scale": 100000,
-  "min_L": 16,
   "cuda_used": false,
   "map_defined_by": "floor_power / stdlib isqrt",
-  "diagnostic": "natural log-log increment",
-  "classification": "STATISTICAL_ONLY",
+  "diagnostic": "natural log-log (t,Z) chart",
+  "classification": "MODEL_ONLY",
   "files": [
-    "scale_drift.csv",
-    "transition_statistics.csv",
-    "run_statistics.csv",
+    "correlation_statistics.csv",
+    "exceptional_paths.jsonl",
     "excursion_distribution.csv",
+    "excursion_statistics.csv",
+    "extremal_word_statistics.csv",
+    "increment_statistics.csv",
     "large_deviation.csv",
     "model_comparison.csv",
+    "model_parameters.json",
+    "model_residuals.csv",
+    "record_chain.csv",
+    "record_comparison.csv",
+    "record_excursions.csv",
+    "run_statistics.csv",
+    "scale_drift.csv",
+    "scale_parity_statistics.csv",
+    "transition_statistics.csv"
+  ],
+  "ld_files": [
+    "model_parameters.json",
+    "scale_parity_statistics.csv",
+    "increment_statistics.csv",
+    "correlation_statistics.csv",
+    "excursion_statistics.csv",
+    "record_comparison.csv",
+    "extremal_word_statistics.csv",
+    "model_residuals.csv",
     "exceptional_paths.jsonl",
-    "record_excursions.csv"
-  ]
+    "record_chain.csv"
+  ],
+  "exceptional_threshold": {
+    "Z_dev": 0.2,
+    "p_dev": 0.25,
+    "min_peak_steps": 8,
+    "declared_before_scan": true
+  }
 }

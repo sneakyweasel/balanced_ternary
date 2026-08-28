@@ -1,0 +1,110 @@
+[
+  {
+    "parameter": "L",
+    "value": "log log x (natural)",
+    "source": "coordinate transform",
+    "assumption_status": "MODEL_ASSUMPTION"
+  },
+  {
+    "parameter": "xi_O",
+    "value": 0.405465,
+    "source": "log(3/2)",
+    "assumption_status": "MODEL_ASSUMPTION"
+  },
+  {
+    "parameter": "xi_E",
+    "value": -0.693147,
+    "source": "log(1/2)",
+    "assumption_status": "MODEL_ASSUMPTION"
+  },
+  {
+    "parameter": "P_O_M0",
+    "value": 0.5,
+    "source": "iid fair parity",
+    "assumption_status": "MODEL_ASSUMPTION"
+  },
+  {
+    "parameter": "mu_M0",
+    "value": -0.143841,
+    "source": "0.5 log(3/4)",
+    "assumption_status": "DERIVED_FROM_M0"
+  },
+  {
+    "parameter": "p0_zero_drift",
+    "value": 0.63093,
+    "source": "log 2 / log 3",
+    "assumption_status": "DERIVED_FROM_M0"
+  },
+  {
+    "parameter": "I0",
+    "value": 0.034688185,
+    "source": "I_Ber(p0)",
+    "assumption_status": "DERIVED_FROM_M0"
+  },
+  {
+    "parameter": "p_star",
+    "value": 0.75,
+    "source": "LD optimizer; tilted p at theta=1",
+    "assumption_status": "DERIVED_FROM_M0"
+  },
+  {
+    "parameter": "a_star",
+    "value": 0.130812036,
+    "source": "(3/4) log 3 - log 2",
+    "assumption_status": "DERIVED_FROM_M0"
+  },
+  {
+    "parameter": "rho_star",
+    "value": 1.0,
+    "source": "extreme of e^{-h} tail of max L",
+    "assumption_status": "DERIVED_FROM_M0"
+  },
+  {
+    "parameter": "gamma",
+    "value": 28.828259,
+    "source": "1/I0; matches reported 28.828",
+    "assumption_status": "DERIVED_FROM_M0"
+  },
+  {
+    "parameter": "t_peak_star",
+    "value": 7.644557,
+    "source": "1/a*",
+    "assumption_status": "DERIVED_FROM_M0"
+  },
+  {
+    "parameter": "t_stop_star",
+    "value": 14.596675,
+    "source": "1/a* + 1/|mu|",
+    "assumption_status": "DERIVED_FROM_M0"
+  },
+  {
+    "parameter": "rho_pred_finite",
+    "value": "1 + loglog(n)/log n",
+    "source": "finite-size peak predictor",
+    "assumption_status": "FINITE_SAMPLE_PREDICTOR"
+  },
+  {
+    "parameter": "floor_error",
+    "value": 0.0,
+    "source": "idealized away",
+    "assumption_status": "MODEL_ASSUMPTION"
+  },
+  {
+    "parameter": "independent_increments",
+    "value": true,
+    "source": "M0",
+    "assumption_status": "MODEL_ASSUMPTION"
+  },
+  {
+    "parameter": "exceptional_Z_dev",
+    "value": 0.2,
+    "source": "a priori threshold",
+    "assumption_status": "FINITE_SAMPLE_PREDICTOR"
+  },
+  {
+    "parameter": "exceptional_p_dev",
+    "value": 0.25,
+    "source": "a priori threshold",
+    "assumption_status": "FINITE_SAMPLE_PREDICTOR"
+  }
+]

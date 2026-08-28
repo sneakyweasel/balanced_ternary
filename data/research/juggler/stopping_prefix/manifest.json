@@ -1,0 +1,15 @@
+{
+  "experiment": "juggler_stopping_prefix",
+  "N": 4000,
+  "horizon": 10000,
+  "max_tau": 80,
+  "F_tau_at_max": 4000,
+  "all_reach_one": true,
+  "classification": "STOPPING_PREFIX_COMPLEX",
+  "branch": "CLOSE",
+  "files": [
+    "prefix.csv",
+    "first_gaps.jsonl",
+    "manifest.json"
+  ]
+}

@@ -7920,4 +7920,310 @@ Best next question
 - none from this branch
 ```
 
+## Juggler exact paths versus 2025 large-deviation geometry
+
+- **Date:** 2026-08-28
+- **Objective:** Decide whether the hardest exact Juggler trajectories follow the Prasad–Prasad 2025 random-walk large-deviation geometry, and whether deviations have deterministic arithmetic structure
+- **Hypotheses:** exact extremals realize the M0 optimizer (p*=3/4, a*=(3/4)log 3-log 2, ρ*=1, γ=1/I_Ber(log 2/log 3)); the exceptional set has a named exact family beyond a long initial odd run
+- **Major results:** Independently derived a*≈0.130812, γ≈28.82826 matching the reported constants. On n<=4000 plus selected records through 99679, bulk parity is near-iid and hard-orbit increments sit on log(3/2)/log(1/2). Longest delay records have pre-peak p_O near 3/4; hard full-word p_O sits near the zero-drift value p0≈0.631. Ascent slopes are window-dependent and not stably a*. Different hardness families do not share one geometry. Exceptional set (a priori |dZ|>0.20 or |p_O-3/4|>0.25) is long initial O-runs, not a residue family. Classification MODEL_ONLY
+- **Refuted ideas:** that finite-n record constants converge to ρ*=1 or γ; that a fitted pre-peak line is a*; that the exceptional set is a new arithmetic family; that M0 tail rate I0 is the empirical H-tail slope on this window (observed rate ≈2.6 I0); that CUDA Phase 2 is justified
+- **Literature:** prasad-prasad-2025-juggler-like reconstructed, not imported as a theorem. Previous drift census remains STATISTICAL_ONLY / PARK. Closed Atlas branches not reopened. power_bound_contracts / floorPower_odd_ge unchanged
+- **Open:** none from this branch. A later theorem would be an exact constraint on long expanding odd prefixes, which is the already-closed envelope / realization problem
+- **Decision:** CLOSE as MODEL_ONLY. The model is descriptive. It is not proof-producing. Do not claim termination. Do not launch CUDA Phase 2
+
+```text
+What was learned
+- a* = (3/4)log 3 - log 2 and γ = 1/I_Ber(log 2/log 3) are the M0 optimizer, independently derived
+- Bulk exact increments match the ideal O/E terms; floor error is negligible on hard orbits
+- Ordinary orbit parity is near iid; hard/record full-word P(O) is near p0, not p*
+- Longest delay records have pre-peak p_O near 3/4, but ascent slope is window-dependent
+- Hard_duration, Hard_peak, and Hard_margin do not share one (t,Z) geometry
+- Exceptional paths are expanding odd prefixes, already visible in the itinerary
+- No statistical-to-exact bridge; no CUDA quantity
+
+Strongest theorem
+- none new; power_bound_contracts / floorPower_odd_ge remain the contraction facts
+
+Strongest refutation
+- finite-n extremals are the M0 optimal path (p*, a*, ρ*)
+  (slopes 0.02–0.28 against a*≈0.131; Hard_margin p_O=0.86)
+
+Reusable machinery
+- research.juggler_sequence.probabilistic_ld
+- reuses floor_power, first-return walks, previous increment diagnostics
+
+Prior-art status
+- exact-versus-model comparison of a known random-walk heuristic, not a halt result
+
+Complexity profile
+- unchanged flood order; no new production attack
+
+Branch status
+- CLOSE
+
+Why
+- The 2025 model identifies useful diagnostic coordinates and a
+  recognizable frequency on the longest delay records. It does not
+  isolate a dangerous exact geometry that can be forbidden. Stop.
+
+Best next question
+- none from this branch
+```
+
+## Juggler extremal control and realizability gap
+
+- **Date:** 2026-08-28
+- **Objective:** Derive the ideal first-return O/E control optimiser and measure how closely exact Juggler trajectories realize it
+- **Hypotheses:** the deterministic first-return peak maximiser is a definite combinatorial object, distinct from the 2025 large-deviation ascent; exact J either realizes it or sits a deterministic gap below it
+- **Major results:** Unique ideal optimiser is bang-bang `O^{o} E^{k-o}` with landing corridor `2^{k-1} ≤ 3^o < 2^k`. DP agrees through `k=24`. This is not `p^*=3/4`. Admissible `k≤13` are realized in `n≤4000` (`n=3` is `OOOEE`; `n=7` is `OE`; `n=5` is `OOEE`). `k∈{15,16,18,20}` have no bang-bang realizer in the window; peak gap `2 log(3/2)` at 15/16/18. Long records `193,425,2183,3889` have Hamming 14–30 and peak gaps 6–14. Selected leftover `34175` returns at `k=183` with peak gap 39.47. Floor error is negligible at ≥64 bits. Classification CONTROL_FRONTIER_GREEN
+- **Refuted ideas:** LD optimiser = control optimiser; no exact realizer of the frontier; every first-return is bang-bang (`n=9` is `OOEOE`); hard records lie on the control boundary; floor arithmetic is the long-record gap
+- **Literature:** prasad-prasad-2025-juggler-like is the LD target only. Parked statistical phase remains STATISTICAL_ONLY. Envelope `3^o` vs `2^k` is reused, not re-proved. Closed symbolic-compression branches stay closed
+- **Open:** whether every admissible bang-bang word has some positive-integer realizer
+- **Decision:** PARK. Ideal control is solved; realizability is not a uniform theorem. Do not claim termination. Do not launch Phase 2 CUDA
+
+```text
+What was learned
+- First-return peak control has a unique bang-bang optimiser and a Beatty-thin set of admissible horizons
+- That optimiser is not the large-deviation ascent p^*=3/4
+- Exact J realizes the optimiser at every admissible k≤13 in n≤4000, with A-gap equal to floor error
+- Admissible k=15,16,18 miss bang-bang in the window by two ideal O increments
+- Known hard records are realized-hardness witnesses, not control-optimal paths
+- Floor error is not the source of the long-record gap
+- No F(k) lower bound and no all-horizon gap theorem
+
+Strongest theorem
+- among ideal first-return words of length k, the unique peak maximiser is O^{o} E^{k-o} for the unique o with 2^{k-1} ≤ 3^o < 2^k, when that o exists
+
+Strongest refutation
+- the deterministic control optimiser coincides with the 2025 LD optimiser
+  (frequencies log 2/log 3 vs 3/4; LD words are not first-return)
+
+Reusable machinery
+- research.juggler_sequence.extremal_control
+- data/research/juggler/extremal_control/
+
+Prior-art status
+- new control reading of the known exponent comparison, not a halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; CUDA unused
+
+Branch status
+- PARK
+
+Why
+- The ideal side is a closed combinatorial theorem. The realizability
+  side is a finite-window measurement: small bang-bang words exist,
+  longer ones are missing in n≤4000, and hard records sit far below
+  the same-horizon optimum. That is not yet a uniform gap or an
+  unrealizability proof.
+
+Best next question
+- is there an admissible k whose bang-bang word has no positive-integer realizer?
+```
+
+## Juggler minimal counterexample and well-ordering
+
+- **Date:** 2026-08-28
+- **Objective:** Convert well-ordering of the positive integers into an exact Juggler constraint, and test whether predecessor closure of certified-good states can eliminate a hypothetical minimal bad start
+- **Hypotheses:** minimality plus exact inverse cells yields an inductive coverage law, a forbidden O/E barrier family, or a contradiction to n*; finite-N closure from {1} is a new basin geometry
+- **Major results:** `Good`/`Bad` packaged from `ReachesOne`. `PredClosure ↔ ReachesOne` **EXACT — LEAN VERIFIED** (reparameterization). One-step `U(B)` is all odds `> B` plus evens `≥ (B+1)^2` **EXACT — LEAN VERIFIED**; density → 1/2. Two-step barrier identities `OE`/`EE`/`EO` **EXACT — LEAN VERIFIED**, corollaries of floor-sqrt. On `N=4000`, depth 12, window-restricted closure matches the inverse basin of 1 inside `[1,N]` (1651 certified, 1540 components, prefix 24) and is strictly smaller than `{τ ≤ 12}`. First gap freezes at `25` (`25→125→1397→52214`). Every `n≤4000` reaches 1 forward (`max τ=80`). Classification `MINIMALITY_COMPLEX`
+- **Refuted ideas:** closure from {1} is a new induction; `U(B)` is sparse; `G_r` is an interval; finite-N closure is the stopping-time filtration; a visit `≥ n*` is automatically good; `Bad_H` is `Bad`; start-`OE` or even cells of smaller targets catch n* by a new mechanism
+- **Literature:** oeis-A007320 known computational table. Existing `MinimalNonTerm` / even-run scale barrier reused, not re-proved as new obstructions. Closed local/statistical/quotient branches not reopened
+- **Open:** whether every positive integer reaches 1. Well-ordering alone does not answer it
+- **Decision:** CLOSE as MINIMALITY_COMPLEX. Unbounded closure is `ReachesOne`. The window experiment is an escape artefact. No coverage recurrence and no contradiction to a minimal bad state. Do not launch Phase 1
+
+```text
+What was learned
+- Bad is ¬ReachesOne; Bad_H is a strictly weaker finite proxy
+- A minimal bad orbit cannot visit below n*; that is already MinimalNonTerm
+- Unbounded predecessor closure from {1} is exactly ReachesOne
+- Finite-N closure is the inverse basin of 1 inside [1,N], not the stopping-time set
+- U(B) has density 1/2; one-step closure of [1,B] adds no new odd n>B
+- Two-step OE/EE/EO barriers are floor-sqrt identities, not a new forbidden family
+- No interval-growth law; prefix stalls at 24 while components proliferate
+
+Strongest theorem
+- PredClosure n ↔ ReachesOne n
+
+Strongest refutation
+- finite-N predecessor closure equals {n : τ(n) ≤ r}
+  (25 leaves [1,4000]; 9 leaves [1,80] through 140)
+
+Reusable machinery
+- research.juggler_sequence.minimal_counterexample
+- formal/Problems/Juggler/MinimalClosure.lean
+- data/research/juggler/minimal_counterexample/
+
+Prior-art status
+- classical minimal-counterexample setup plus a reparameterization of ReachesOne
+
+Complexity profile
+- unchanged flood order; no new production attack; CUDA unused
+
+Branch status
+- CLOSE
+
+Why
+- Well-ordering supplies the already-known barrier tautology and no
+  further arithmetic leverage. Predecessor closure does not create an
+  induction that can catch n*. Stop.
+
+Best next question
+- none from this branch
+```
+
+## Juggler stopping-time prefix
+
+- **Date:** 2026-08-28
+- **Objective:** Test whether the unbounded stopping-time prefix \(F_\tau(r)=\max\{N:\max_{n\le N}\tau(n)\le r\}\) admits an interval amplification lemma, or only inverts the running-max of \(\tau\)
+- **Hypotheses:** unbounded \(F_\tau\) is a different sequence from the closed windowed inverse-basin \(F(r)\); a reusable odd first-gap mechanism would give \([1,N]\subseteq\{\tau\le r\}\Rightarrow[1,f(N)]\subseteq\{\tau\le r+k\}\)
+- **Major results:** \(F_\tau\) is the inverse of the running-max of \(\tau\) (**REPARAMETERIZATION**). On \(N=4000\), every start reaches 1, \(\max\tau=80\), so \(F_\tau(80)=4000\) (already-recorded window totality, not a theorem). Plateau fraction \(0.8625\). First gaps with \(F_\tau\ge 2\) are odd; even \(n<(F+1)^2\) satisfy \(\tau\le r+1\) (**EXACT COMPUTATION**; Lean form `even_good_of_sqrt_le`). Odd first gaps have \(T(b)\) outside the previous prefix and no uniform \(k\le 4\) entry. Superlinear densities \(\le 0.066\). Windowed \(F\) and \(F_\tau\) agree through depth 10 and split when \(\tau(25)=11\). Classification `STOPPING_PREFIX_COMPLEX`
+- **Refuted ideas:** \(F_\tau\) is a new inductive coverage law; unbounded and windowed prefixes coincide; a bounded number of layers covers the next interval
+- **Literature:** oeis-A007320 known computational table. Closed windowed \(G_r\) census not reopened. Existing `even_good_of_sqrt_le` / `odd_not_pred_of_le` cited, not restated
+- **Open:** whether every positive integer reaches 1. A finite-window prefix table does not answer it
+- **Decision:** CLOSE as STOPPING_PREFIX_COMPLEX. The prefix inverts recorded stopping times. No amplification lemma. Do not launch Phase 1
+
+```text
+What was learned
+- F_τ(r) is max{N : max_{n≤N} τ(n) ≤ r}, the inverse of running-max τ
+- Windowed inverse-basin F and unbounded F_τ agree only until the first orbit that leaves [1,N]
+- First gaps with F≥2 are odd; even n < (F+1)^2 are covered one step later
+- Odd first gaps expand: T(b) lies outside the previous prefix
+- No uniform k≤4 sends every odd first gap into [1,F]
+- Plateaus cover 69 of 80 depth steps; superlinear jump density stays below 0.07
+- F_τ(80)=4000 is window totality, not unbounded coverage
+
+Strongest theorem
+- none new; even_good_of_sqrt_le already packages the even one-step bound
+
+Strongest refutation
+- [1,N] ⊆ {τ≤r} implies [1,f(N)] ⊆ {τ≤r+k} for an explicit f(N)>N
+  and uniform k (odd first gaps 37, 77, 163, 193 do not enter in 8 steps)
+
+Reusable machinery
+- research.juggler_sequence.stopping_prefix
+- data/research/juggler/stopping_prefix/
+
+Prior-art status
+- reparameterization of recorded stopping times; OEIS A007320 known
+
+Complexity profile
+- unchanged flood order; no new production attack; CUDA unused
+
+Branch status
+- CLOSE
+
+Why
+- The only exact identity is the definition of F_τ. Odd first gaps
+  have no reusable bounded-depth route into the certified interval.
+  Stop before Lean induction.
+
+Best next question
+- none from this branch
+```
+
+## Juggler pointwise image-parity discrepancy
+
+- **Date:** 2026-08-28
+- **Objective:** Turn statistical \(P(O)\approx 1/2\) into a deterministic one-step bound \(|\#\{n\le N:J(n)\ \mathrm{odd}\}-N/2|\le E(N)\), split by floor-cell family
+- **Hypotheses:** even-start discrepancy is an elementary square-cell identity; odd-start \(\lfloor n^{3/2}\rfloor\) occupancy has an explicit \(o(N)\) envelope that could later iterate
+- **Major results:** \(O(N)=O_E(N)+O_O(N)\). Closed even-cell formula \(O_E=(Q//2)^2\) plus the last odd-\(Q\) cell; \(|D_E(N)|\le\lfloor\sqrt N\rfloor+1\) **EXACT — HUMAN PROOF**. Census \(N\le 10^6\): \(O=499927\), \(D=-73\), \(\max|D_E|=499\), \(\max|D_O|=128\); even formula matches every checkpoint. Odd-start spot \(N\le 10^7\): \(\max|D_O|=229.5\), \(\max|D_O|/N^{1/3}\approx 1.065\), no linear bias. Total \(D\) is even-cell dominated. Classification `IMAGE_PARITY_CENSUS`
+- **Refuted ideas:** total discrepancy is a new \(n^{3/2}\) law; odd-start image parity has a linear bias; flipping `parity_frequency_theorem` on a census
+- **Literature:** even_cell_iff / odd_cell_unique / floorPower_odd_macro_direction reused. Landing-θ, 2-adic bridge, and probabilistic / LD branches stay closed. Prasad–Prasad 2025 is model context only
+- **Open:** an explicit \(E_O(N)=o(N)\) for the odd-start count
+- **Decision:** PARK. Even-cell \(O(\sqrt N)\) is a rewrite of `even_cell_iff`. The \(n^{3/2}\) envelope is a named census, not a theorem. Do not claim termination
+
+```text
+What was learned
+- Image parity of J is not start parity and not orbit P(O)
+- D = D_E + D_O splits the square cells from the n^{3/2} singletons
+- D_E is elementary O(√N) from even_cell_iff
+- D_O has no linear bias and tracks a named N^{1/3} envelope
+- Total |O(N)-N/2| is even-cell dominated
+- landingParity remains tautological in T; no new Lean packaging
+- Iteration of counting estimates is not justified yet
+
+Strongest theorem
+- |D_E(N)| ≤ ⌊√N⌋ + 1
+
+Strongest refutation
+- |O(N)-N/2| is a new cube-cell law
+  (max|D_E|=499 vs max|D_O|=128 on N≤10^6)
+
+Reusable machinery
+- research.juggler_sequence.parity_discrepancy
+- data/research/juggler/parity_discrepancy/
+
+Prior-art status
+- elementary even-cell count plus an Archimedean odd-start census;
+  not a halt result and not a frequency theorem
+
+Complexity profile
+- unchanged flood order; no new production attack; CUDA unused
+
+Branch status
+- PARK
+
+Why
+- The even-cell bound is real but is a rewrite of the existing square
+  cells. The n^{3/2} count is the leftover discrepancy object and
+  only has a census exponent. Stop before Weyl machinery or
+  two-step iteration.
+
+Best next question
+- prove E_O(N) ≪ N^{1/3}(log N)^c by an Archimedean exponential-sum
+  argument, then ask whether that bound iterates
+```
+
+## Juggler minimal-bad survival signatures
+
+- **Date:** 2026-08-28
+- **Objective:** Test whether minimality plus exact inverse arithmetic yields a new \(\Phi(n)\) on a least bad state, or only the already-proved odd-to-odd leftover
+- **Hypotheses:** SurvivalSignature leftover is a new arithmetic class; inverse closure of \([1,n-1]\) is a covering mechanism stronger than first descent
+- **Major results:** On \(2\le n\le 4000\), one-step covers all 2000 evens, two-step covers 990 OE starts, leftover is 1009 OO starts and equals odd-to-odd exactly. Every leftover start drops below itself. Residues mod 8 are all four odd classes. Novelty table is KNOWN / REPARAMETERIZATION; `new_Phi` **REFUTED**. Classification `MINIMAL_SURVIVAL_COMPLEX`
+- **Refuted ideas:** minimality plus inverse arithmetic is a new mechanism; \(T(2k)=k^2\); leftover occupies one residue class
+- **Literature:** oeis-A007320 known. `MinimalNonTerm`, `unresolved_is_odd_odd`, `predClosure_iff_reachesOne` cited, not restated. Closed well-ordering and stopping-prefix branches not reopened
+- **Open:** whether every positive integer reaches 1. Well-ordering plus one-step/two-step inverse arithmetic does not answer it
+- **Decision:** CLOSE as MINIMAL_SURVIVAL_COMPLEX. SurvivalSignature is the Progress leftover. Inverse generation is first descent. Do not launch Phase 1
+
+```text
+What was learned
+- MinimalNonTerm and good-of-iterate are already Lean
+- One-step inverse from a smaller target covers exactly the evens
+- Two-step cover is OE; leftover is exactly OO
+- Inverse generation from [1,n-1] is the first descent T^k(n)<n
+- Every leftover start in the window drops; that is not a new obstruction
+- Leftover residues occupy all four odd classes mod 8
+- PredClosure from {1} remains a reparameterization of ReachesOne
+
+Strongest theorem
+- none new; unresolved_is_odd_odd already names the leftover
+
+Strongest refutation
+- minimality + exact inverse arithmetic ⇒ a new Φ(n)
+  (leftover = OO; inverse cover = first descent)
+
+Reusable machinery
+- research.juggler_sequence.minimal_survival
+- data/research/juggler/minimal_survival/
+
+Prior-art status
+- reparameterization of MinimalNonTerm / Progress leftover / first descent
+
+Complexity profile
+- unchanged flood order; no new production attack; CUDA unused
+
+Branch status
+- CLOSE
+
+Why
+- The hoped-for covering family is the already-proved even and OE
+  certificates. The leftover is odd-to-odd. Inverse closure of the
+  smaller good interval is ordinary descent. Stop before Lean modules.
+
+Best next question
+- none from this branch
+```
+
 

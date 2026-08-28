@@ -19,5 +19,5 @@
   ],
   "project_relationship": "known",
   "status": "preprint",
-  "notes": "Literature context only. Random-walk / large-deviation estimates for juggler-like maps, not a theorem on the exact floor-power Juggler map and not imported as a proof. Cited from docs/problems/juggler_probabilistic.md."
+  "notes": "Literature context only. Random-walk / large-deviation estimates for juggler-like maps, not a theorem on the exact floor-power Juggler map and not imported as a proof. Model reconstructed in docs/research/juggler_probabilistic_model.md (a*, p*, rho*=1, gamma=1/I0). Exact-versus-model comparison in docs/research/juggler_probabilistic_vs_exact.md closed as MODEL_ONLY."
 }

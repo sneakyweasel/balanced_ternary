@@ -1,0 +1,10 @@
+{
+  "n_max": 1000000,
+  "n_spot": 10000000,
+  "files": [
+    "checkpoints.csv",
+    "odd_start_spot.csv"
+  ],
+  "classification": "IMAGE_PARITY_CENSUS",
+  "note": "one-step image-parity discrepancy; even cells closed-form; odd-start n^{3/2} census; not a frequency theorem"
+}

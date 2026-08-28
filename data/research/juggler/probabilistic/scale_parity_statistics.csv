@@ -1,0 +1,17 @@
+scale_bin,ensemble,n,P_O,ci95_lo,ci95_hi,P_E,note
+1e0-1e1,one_step_uniform,8,0.5,0.215213,0.784787,0.5,
+1e1-1e2,one_step_uniform,90,0.5,0.398835,0.601165,0.5,
+1e2-1e3,one_step_uniform,900,0.5,0.467403,0.532597,0.5,
+1e3-1e4,one_step_uniform,9000,0.5,0.489672,0.510328,0.5,
+1e4-1e5,one_step_uniform,90000,0.5,0.496733,0.503267,0.5,
+1e5-1e6,one_step_uniform,1,0.0,0.0,0.793457,1.0,
+all,one_step_uniform,99999,0.499995,0.496896,0.503094,0.500005,
+bits_17_32,one_step_uniform,34465,0.499985,0.494707,0.505264,0.500015,
+bits_1_8,one_step_uniform,254,0.5,0.438969,0.561031,0.5,
+bits_9_16,one_step_uniform,65280,0.5,0.496164,0.503836,0.5,
+rand_bits_16,random_odd_even_mix,80,0.4625,,,0.5375,parity of random integers is fair by construction; see increment_statistics
+rand_bits_32,random_odd_even_mix,80,0.4375,,,0.5625,parity of random integers is fair by construction; see increment_statistics
+rand_bits_64,random_odd_even_mix,80,0.5375,,,0.4625,parity of random integers is fair by construction; see increment_statistics
+rand_bits_128,random_odd_even_mix,80,0.425,,,0.575,parity of random integers is fair by construction; see increment_statistics
+rand_bits_256,random_odd_even_mix,80,0.525,,,0.475,parity of random integers is fair by construction; see increment_statistics
+rand_bits_512,random_odd_even_mix,80,0.5125,,,0.4875,parity of random integers is fair by construction; see increment_statistics

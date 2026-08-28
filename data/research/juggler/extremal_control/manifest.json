@@ -1,0 +1,16 @@
+{
+  "phase": 0,
+  "n_max": 4000,
+  "k_ideal_max": 50,
+  "cuda_used": false,
+  "atlas_reused": "wa-20260827T200310Z-cuda-k20-n100000000 PE a_k table",
+  "files": [
+    "ideal_frontier.csv",
+    "actual_frontier.csv",
+    "control_gap.csv",
+    "near_optimal_paths.jsonl",
+    "o_run_records.csv",
+    "model_comparison.csv"
+  ],
+  "classification": "CONTROL_FRONTIER_GREEN"
+}
