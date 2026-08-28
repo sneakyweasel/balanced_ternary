@@ -3440,5 +3440,38 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-w-family-below-nine-eighths",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Corollary R': Theorem R's bound K_c(P) << P^{1-1/72+eps} holds for every monomial family c^{(r)} ≍ k P^{alpha-r} with 0 < alpha ≤ 9/8 and the same sign pattern, uniformly for k ≤ P^{1/24}. Every constraint in the Phase-9 proof is monotone in alpha on (0, 9/8]: C1 becomes k h1 h2 ≤ P^{5/4-alpha}, curvatures and window drifts shrink, and sign-dominance alpha(alpha-1)(alpha+beta-2)(alpha+beta-3) > 0 holds at beta in {1/4, 3/4} throughout the interval. The case alpha = 33/32 is the instance used by the length-7 engine splits (row J-depth7-engine-contracting). Not a bound for alpha > 9/8 (row J-scale-invariant-R-extension remains REFUTED).",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-depth7-engine-contracting",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Theorem X: each of the eight words OOEOO** and OOOEO** has cardinality N/128 + O(N^{43/48+eps}). Proof: Lemma X1 rearranges the OOEOO sixth letter p^{3/2} = -(5/4) v^{9/8} + (9/4) w v^{5/8} - (3/2) w^{3/4} theta_p + E, absorbing the naive n^{45/32} theta_w coefficient into the integer w; Lemma X2 is Lemma A' at s = floor(z^{1/2}); Lemma X3 freezes floor(Delta v^{1/2}) on runs of length ≍ P^{7/8} on the OOEO cylinder. Remaining terms are a first-letter chirp, a W-family at alpha = 33/32 < 9/8 (row J-w-family-below-nine-eighths), engine sawtooths, and an integer-smooth block on those frozen runs — all passengers on Theorem T (row J-depth5-contracting). The seventh letter is a decaying even-branch square root. OOOO* is not claimed. Ambient counting; not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-seven-step-descent-density",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Corollary Y: the class of starts carrying a uniform power-envelope descent certificate of length at most seven — evens, OE, OOEE, OOOEE, OOEOE, OOEOOEE, OOOEOEE — has natural density 57/64. Each of OOEOOEE and OOOEOEE has cardinality N/128 + O(N^{43/48+eps}) by row J-depth7-engine-contracting, and 3^4 < 2^7 forces J^7(n) < n on both words for n >= 2 (row J-power-envelope-contraction). This is the first increment past the five-step density 7/8 of Corollary U. The leftover 7/64 is the OOOO* tree (uncounted, blocked by row J-scale-invariant-R-extension) together with the expanding length-7 siblings of OOEOO** and OOOEO** (now counted). Not a density of starts that reach 1, and not a density-one statement.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]

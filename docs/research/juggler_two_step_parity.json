@@ -127,6 +127,7 @@
     "depth5_contracting_proved": true,
     "depth5_kernel_isolated": true,
     "depth5_kernel_bound_proved": false,
-    "scale_invariant_R_extension_refuted": true
+    "scale_invariant_R_extension_refuted": true,
+    "depth7_engine_contracting_proved": true
   }
 }

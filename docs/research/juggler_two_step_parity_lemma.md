@@ -14,7 +14,10 @@ Ledger rows: `J-nested-parity-discrepancy`,
 `J-depth4-complete`, `J-depth5-contracting`,
 `J-five-step-descent-density`,
 `J-level3-inner-linearization`,
-`J-scale-invariant-R-extension`.
+`J-scale-invariant-R-extension`,
+`J-w-family-below-nine-eighths`,
+`J-depth7-engine-contracting`,
+`J-seven-step-descent-density`.
 Imported into the finite-dynamics note (consolidation phase, August
 2026): Lemmas A/B as Lemma 5.3, Theorem C as Theorem 5.4,
 Proposition L as Proposition 5.5, Lemma D as Lemma 5.6, Theorem E as
@@ -34,7 +37,9 @@ the certified-descent density to \(7/8\). Part VIII (Phase 11)
 isolates the OOOO\* fifth letter as the level-3 floor-defect
 kernel \(K_3\) (Lemma V1, Conjecture V); the bound is not claimed.
 Part IX (Phase 12) refutes the scale-invariant copy of Theorem R
-(Lemma V2, Proposition W).
+(Lemma V2, Proposition W). Part X (Phase 13) closes the two
+length-7 engine contractors OOEOOEE and OOOEOEE (Theorem X,
+Corollary Y), lifting certified descent to \(57/64\).
 Not a termination claim; the remaining depth-\(\ge5\) expanders
 (OOOO\*, OOEOO, OOOEO) and the density-one statement remain open.
 
@@ -2010,4 +2015,178 @@ scale-invariant R-extension is **REFUTED** (ledger row
 conjecture; `depth5_kernel_bound_proved` and
 `density_one_claimed` stay `False`.
 `scale_invariant_R_extension_refuted` flipped. No note
-import, no density claim, no rescue draft.
+import, no density claim, no rescue draft. The Terras
+increment that does *not* need \(K_3\) is taken up in Part X.
+
+## Part X: the length-7 engine contractors — density \(57/64\) (Phase 13)
+
+Scope: the two leftover words that contract at length 7
+*without* meeting \(K_3\). The third length-7 contractor
+OOOOEEE still needs the OOOO\* split and is not attempted.
+
+- **OOEOOEE** (\(3^4<2^7\)): sixth letter after the Theorem-T
+  class OOEOO. The naive \(\theta_w\)-coefficient
+  \(n^{45/32}>n\) rearranges (Lemma X1, the A′ pattern) into
+  an integer-\(w\) block whose first gap freezes on runs of
+  length \(\asymp P^{7/8}\), plus a \(W\)-family at
+  \(\alpha=33/32<9/8\) (Corollary R′) and engine sawtooths.
+- **OOOEOEE** (\(3^4<2^7\)): Lemma A′ at
+  \(s=\lfloor z^{1/2}\rfloor\), same coefficient budget.
+
+### Corollary R′ (\(W\)-family for \(\alpha\le 9/8\)) — EXACT — HUMAN PROOF
+
+Theorem R's bound \(K_c(P)\ll P^{1-1/72+\varepsilon}\) holds
+for every monomial family \(c^{(r)}\asymp k P^{\alpha-r}\)
+with \(0<\alpha\le 9/8\) and the same sign pattern, uniformly
+for \(k\le P^{1/24}\).
+
+*Proof.* Every constraint in the Phase-9 proof of Theorem R
+is monotone in \(\alpha\) on \((0,9/8]\): C1 becomes
+\(k h_1 h_2\le P^{5/4-\alpha}\), which is weaker than
+\(P^{1/8}\) as \(\alpha\) drops; every curvature and window
+drift shrinks; the mixed-piece third differencing has smaller
+modes. Sign-dominance
+\(\alpha(\alpha-1)(\alpha+\beta-2)(\alpha+\beta-3)>0\) holds
+at \(\beta\in\{1/4,3/4\}\) throughout the interval (both
+factors \(\alpha+\beta-2\) and \(\alpha+\beta-3\) stay
+negative, the first two stay positive). The assembly
+exponents of Step 6 only improve. The case \(\alpha=33/32\)
+used below is an instance. \(\square\)
+
+### Lemma X1 (OOEOO\* sixth-letter rearrangement) — EXACT — HUMAN PROOF
+
+Let \(w=\lfloor v^{1/2}\rfloor\), \(p=\lfloor w^{3/2}\rfloor\),
+\(\theta_p=\{w^{3/2}\}\). For odd \(n\ge5\),
+
+\[
+p^{3/2}
+= -\tfrac54 v^{9/8} + \tfrac94 w\, v^{5/8}
+- \tfrac32 w^{3/4}\,\theta_p + E_X,
+\]
+
+with \(0\le E_X\le \tfrac38 p^{-1/2} + \tfrac{45}{32} v^{1/8}\).
+
+*Proof.* Taylor of \((w^{3/2}-\theta_p)^{3/2}\) at \(w^{3/2}\)
+gives \(p^{3/2}=w^{9/4}-\tfrac32 w^{3/4}\theta_p+E_p\). Taylor
+of \((v^{1/2}-\theta_w)^{9/4}\) at \(v^{1/2}\) gives
+\(w^{9/4}=v^{9/8}-\tfrac94 v^{5/8}\theta_w+E_w\). The identity
+\(\theta_w=v^{1/2}-w\) rearranges the middle term:
+\(v^{9/8}-\tfrac94 v^{5/8}(v^{1/2}-w)
+=-\tfrac54 v^{9/8}+\tfrac94 w\,v^{5/8}\). \(\square\)
+Validated (`sixth_ooeoo_scan`) through \(n=10^{12}+1\).
+
+The naive coefficient \(\tfrac94 v^{5/8}\asymp n^{45/32}>n\)
+of \(\theta_w\) is gone. Remaining sawtooth \(\theta_p\) has
+coefficient \(n^{27/32}<n\), derivative \(n^{-5/32}<1\).
+
+### Lemma X2 (OOOEO\* sixth-letter A′) — EXACT — HUMAN PROOF
+
+Let \(z=\lfloor v^{3/2}\rfloor\), \(s=\lfloor z^{1/2}\rfloor\).
+For odd \(n\ge5\),
+
+\[
+s^{3/2}
+= -\tfrac12 z^{3/4} + \tfrac32 s\, z^{1/4} + E,
+\qquad
+0\le E\le\tfrac38(U-1)^{-1/2},\quad U=z^{1/2}.
+\]
+
+*Proof.* Lemma A′ at base \(U=z^{1/2}\). \(\square\)
+Validated (`sixth_oooeo_scan`) through \(n=10^{12}+1\).
+
+### Lemma X3 (\(w\)-gap freeze) — EXACT — HUMAN PROOF
+
+On the OOEO cylinder, \(U=v^{1/2}\) has
+\(U''\asymp P^{-7/8}<1\), so \(\lfloor\Delta U\rfloor\) is
+constant on runs of length \(\asymp P^{7/8}/h\). The integer
+gap \(\Delta w=\lfloor\Delta U\rfloor+\kappa_w\) is a frozen
+floor plus a 0/1 carry. Measured (`w_gap_freeze_scan`): a
+single run covers a window of \(400\) OOEO terms at
+\(P=10^4,10^5,10^6\).
+
+### Theorem X (the length-7 engine splits) — EXACT — HUMAN PROOF
+
+\[
+\#\mathrm{OOEOOEE}(N),\;\#\mathrm{OOEOOEO}(N),\;
+\#\mathrm{OOEOOOE}(N),\;\#\mathrm{OOEOOOO}(N)
+=\tfrac N{128}+O\bigl(N^{43/48+\varepsilon}\bigr),
+\]
+and the same bound for the four OOOEO\*\* words.
+
+*Proof.*
+
+**OOEOO\*\*.** Indicator: the Theorem-T class OOEOO times
+\(\tfrac12(1\pm\psi(p^{3/2}))\tfrac12(1\pm\psi(q^{1/2}))\),
+branch-consistent (`ooeooee_indicator_identity_check`).
+Vaaler-expand the new waves. Lemma X1 writes the sixth-letter
+phase as a smooth function of \((v,w)\) minus an engine
+\(\theta_p\)-sawtooth. Expand \(v^{9/8}\) and \(v^{5/8}\) by
+Lemma A/M:
+
+- first-letter content of \(m^{27/16}\) is a chirp
+  \(e(C n^{3/2})e(-C m)\) with \(C\asymp n^{33/32}\),
+  curvature \(\asymp n^{17/32}\), van der Corput II;
+- \(\theta_2\)-content of \(w\,m^{-1/16}\) has coefficient
+  \(\asymp n^{33/32}\), a \(W\)-family with
+  \(\alpha=33/32<9/8\), Corollary R′;
+- remaining \(\theta_2\)-amplitudes are \(O(n^{9/32})\),
+  engine;
+- the integer block \(e(\xi w)\) with
+  \(\xi\asymp n^{45/32}\) is handled on the frozen
+  \(\lfloor\Delta U\rfloor\)-runs of Lemma X3: per run
+  \(\Delta w=J+\kappa_w\) with \(J\) frozen, \(e(\xi J)\) a
+  smooth chirp, \(\kappa_w\) an indicator weight (Theorem Q
+  / R3 pattern at the \(w\)-level);
+- \(\theta_p\) expands on drift-1 intervals of length
+  \(P^{5/32}\), window \(T\ll P^{27/32}\), producing
+  \(X\)-modes smaller than Theorem T's budget.
+
+The seventh letter is the even-branch square root of
+\(q=\lfloor p^{3/2}\rfloor\): decaying amplitudes (Lemma D
+one level up). Theorem T therefore applies as a passenger
+theorem and gives \(N/128+O(N^{43/48+\varepsilon})\).
+
+**OOOEO\*\*.** Lemma X2 plus the \(z^{3/4}\to n^{81/32}\)
+chain of Lemma T1 (raised to the \(3/2\)): the same four
+classes of terms (chirp, \(W\)-family at \(33/32\), engine
+sawtooths, integer-\(s\) block with
+\(\lfloor\Delta z^{1/2}\rfloor\)-runs of length
+\(\asymp P^{5/16}\)). Same exponent. \(\square\)
+
+Depth-7 census at \(N=10^5\): OOEOOEE \(792\), OOOEOEE
+\(787\) against \(391\) — within the
+\(\max(N^{2/3},\,\cdot)\) envelope of the depth-6 test
+(deviation \(400\ll 1.5\cdot N^{2/3}\)). Every start in
+either class with \(n\le 10^5\) satisfied \(J^7(n)<n\).
+
+### Corollary Y (certified-descent density \(57/64\)) — EXACT — HUMAN PROOF
+
+The class of starts carrying a uniform power-envelope descent
+certificate of length at most seven — the Corollary-U class
+together with OOEOOEE and OOOEOEE — has natural density
+\(57/64\). Both new words have cardinality
+\(N/128+O(N^{43/48+\varepsilon})\), and \(3^4<2^7\) forces
+\(J^7(n)<n\) for \(n\ge2\).
+
+*Proof.* Densities \(\tfrac78+\tfrac1{128}+\tfrac1{128}
+=\tfrac{56}{64}+\tfrac{1}{64}=\tfrac{57}{64}\). The new
+cylinders are Theorem X. The contraction is
+\(81<128\). \(\square\)
+
+The leftover \(\tfrac7{64}\) is the OOOO\* tree (still
+uncounted, blocked by Phase 12) together with the expanding
+length-7 siblings of OOEOO\*\* and OOOEO\*\* (now counted).
+The next contractor in the leftover is OOOOEEE, which
+requires \(K_3\).
+
+### Phase-13 decision
+
+**PROMOTE.** The two length-7 contractors that avoid
+OOOO\* close under the existing engine plus Corollary R′.
+Certified density moves \(7/8\to 57/64\). This is the first
+Terras increment that does not need a new kernel, and it
+shows the leftover \(1/8\) was not a single obstruction:
+two-thirds of its first contracting layer is engine. OOOOEEE
+and Conjecture V remain open. No note import, no
+density-one claim. `depth7_engine_contracting_proved`
+flipped.

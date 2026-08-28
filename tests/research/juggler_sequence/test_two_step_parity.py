@@ -29,7 +29,12 @@ from research.juggler_sequence.two_step_parity import (
     level3_reformulation_scan,
     differenced_level3_kernel_probe,
     oooo_indicator_identity_check,
+    ooeooee_indicator_identity_check,
+    oooeoee_indicator_identity_check,
+    sixth_ooeoo_scan,
+    sixth_oooeo_scan,
     v_level_cell_scan,
+    w_gap_freeze_scan,
     lemma_a_prime_scan,
     lemma_m_scan,
     level2_gap_check,
@@ -394,6 +399,7 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["depth5_kernel_isolated"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
     assert ANTI_OVERCLAIM["scale_invariant_R_extension_refuted"] is True
+    assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is True
     assert ANTI_OVERCLAIM["density_one_claimed"] is False
 
 
@@ -450,6 +456,50 @@ def test_v_level_has_no_cells():
         assert result["no_v_level_cells"] is True
         assert result["floor_dY_mean_run"] == 1.0
         assert result["dv_mean_run"] == 1.0
+
+
+def test_sixth_ooeoo_identity():
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert sixth_ooeoo_scan(samples)["holds"] is True
+
+
+def test_sixth_oooeo_identity():
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert sixth_oooeo_scan(samples)["holds"] is True
+
+
+def test_w_gap_freezes_on_ooeo():
+    result = w_gap_freeze_scan(10**4, 400)
+    assert result["frozen"] is True
+    assert result["mean_run"] >= 8
+
+
+def test_ooeooee_indicator_identity():
+    result = ooeooee_indicator_identity_check(5001)
+    assert result["holds"] is True
+    assert result["checked"] > 50
+
+
+def test_oooeoee_indicator_identity():
+    result = oooeoee_indicator_identity_check(5001)
+    assert result["holds"] is True
+    assert result["checked"] > 50
+
+
+def test_depth7_engine_contractors_descend():
+    assert 3**4 < 2**7
+    counts = deep_word_counts(20_000, 7)
+    odds = sum(counts.values())
+    expected = odds / 128
+    for w in ("OOEOOEE", "OOOEOEE"):
+        assert abs(counts[w] - expected) < 1.5 * (20_000 ** (2 / 3))
+    for n in range(3, 10_001, 2):
+        w = itinerary_word(n, 7)
+        if w in ("OOEOOEE", "OOOEOEE"):
+            x = n
+            for _ in range(7):
+                x = juggler_step(x)
+            assert x < n
 
 
 def test_depth6_census_minimal_scale_envelope():

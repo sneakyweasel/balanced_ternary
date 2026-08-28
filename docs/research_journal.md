@@ -9506,3 +9506,51 @@ Best next question
 - does any method bound W-family kernels with alpha > 9/4,
   or is 9/4 the hard ceiling?
 ```
+
+## Juggler length-7 engine contractors, certified density 57/64 (Phase 13)
+
+The leftover 1/8 first contracts at length 7. Two of the three
+contractors — OOEOOEE and OOOEOEE — avoid OOOO* and close
+under the existing engine. Working document Part X; rows
+`J-w-family-below-nine-eighths`, `J-depth7-engine-contracting`,
+`J-seven-step-descent-density`.
+
+The naive sixth-letter theta_w coefficient n^{45/32} > n
+rearranges (Lemma X1, the A' pattern) into an integer-w block
+whose floor(Delta v^{1/2}) freezes on runs of length ~ P^{7/8}
+(Lemma X3). Remaining terms are a first-letter chirp, a
+W-family at alpha = 33/32 < 9/8 (Corollary R', Theorem R
+monotone down), and engine sawtooths — passengers on
+Theorem T. OOOEOEE is Lemma A' at s = floor(z^{1/2}).
+Corollary Y: evens + OE + OOEE + OOOEE + OOEOE + OOEOOEE
++ OOOEOEE has density 57/64. Identities validated to
+n = 10^{12}; every start in either class with n <= 10^5
+descended in 7 steps. OOOOEEE still needs K3.
+
+```text
+What was learned
+- the leftover 1/8 is not a single obstruction: two-thirds
+  of its first contracting layer is engine
+- a coefficient n^{45/32} > n can be an A'-illusion; the
+  integer rearrangement leaves only alpha = 33/32 < 9/8
+- Theorem R extends downward to all alpha <= 9/8 (Corollary
+  R'); the Phase-12 wall is specifically alpha > 9/4
+- certified density 7/8 -> 57/64 is the first Terras
+  increment that does not need a new kernel
+Strongest theorem
+- Corollary Y: certified <=7-step descent density 57/64 —
+  EXACT — HUMAN PROOF
+Strongest refutation
+- none this phase; K3 / OOOOEEE remain open
+Reusable machinery
+- Lemma X1 rearrangement; w_gap_freeze_scan; Corollary R'
+Branch status
+- PROMOTE
+Why
+- two new contracting cylinders closed and the headline
+  density moved; the remaining leftover is now cleanly the
+  OOOO* tree plus counted expanders
+Best next question
+- does any method bound K3, the only remaining obstruction
+  to OOOOEEE and the next density step?
+```

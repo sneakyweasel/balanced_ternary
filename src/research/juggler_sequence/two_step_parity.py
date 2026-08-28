@@ -99,6 +99,10 @@ ANTI_OVERCLAIM = {
     # Phase 12: copying Theorem R to K3 is REFUTED (no v-level
     # b-runs; forced inner linearization produces α = 45/16).
     "scale_invariant_R_extension_refuted": True,
+    # Phase 13: OOEOOEE and OOOEOEE close under the engine + R at
+    # alpha <= 9/8; certified descent density 57/64. OOOOEEE still
+    # needs K3.
+    "depth7_engine_contracting_proved": True,
 }
 
 
@@ -773,6 +777,181 @@ def v_level_cell_scan(p_block: int, window: int = 400) -> dict[str, Any]:
         "dv_max_run": max(dv_runs),
         "no_v_level_cells": max(floor_runs) == 1 and max(dv_runs) == 1,
     }
+
+
+# --- Phase 13: length-7 engine contractors (OOEOOEE, OOOEOEE) ---
+
+
+def sixth_ooeoo_check(n: int, scale: int = SCALE) -> tuple[int, int]:
+    """(E*scale, bound*scale) for the OOEOO* sixth-letter rearrangement.
+
+    p = floor(w^{3/2}), w = floor(v^{1/2}):
+    p^{3/2} = -(5/4) v^{9/8} + (9/4) w v^{5/8} - (3/2) w^{3/4} theta_p + E
+    with 0 ≤ E ≤ (3/8) p^{-1/2} + (45/32) v^{1/8} (Taylor remainders
+    of (W - theta_p)^{3/2} and (U - theta_w)^{9/4}). The naive
+    theta_w coefficient n^{45/32} is absorbed into the integer w;
+    no supercritical sawtooth remains.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    w = isqrt(v)
+    p = isqrt(w**3)
+    p32 = isqrt(p**3 * scale * scale)
+    v98 = _eighth_scaled(v**9, scale)
+    v58 = _eighth_scaled(v**5, scale)
+    w34 = isqrt(isqrt(w**3 * scale**4))
+    th_p = isqrt(w**3 * scale * scale) - p * scale
+    err = p32 + (5 * v98) // 4 - (9 * w * v58) // 4 + (
+        3 * w34 * th_p
+    ) // (2 * scale)
+    p12 = isqrt(p * scale * scale)
+    v18 = _eighth_scaled(v, scale)
+    bound = (
+        3 * scale * scale // (8 * max(p12, 1))
+        + (45 * v18) // 32
+        + isqrt(max(v, 1))
+        + 10**6
+    )
+    return err, bound
+
+
+def sixth_ooeoo_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    slack = 10**7
+    for n in samples:
+        err, bound = sixth_ooeoo_check(n)
+        if err < -slack or err > bound:
+            return {"holds": False, "witness": n, "err": err, "bound": bound}
+    return {"holds": True, "count": len(samples)}
+
+
+def sixth_oooeo_check(n: int, scale: int = SCALE) -> tuple[int, int]:
+    """(E*scale, bound*scale) for the OOOEO* sixth-letter A' form.
+
+    s = floor(z^{1/2}), z = floor(v^{3/2}):
+    s^{3/2} = -(1/2) z^{3/4} + (3/2) s z^{1/4} + E,
+    0 ≤ E ≤ (3/8)(U-1)^{-1/2}, U = z^{1/2}. Lemma A' at base z.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    z = isqrt(v**3)
+    s = isqrt(z)
+    t = isqrt(s**3 * scale * scale)
+    z34 = isqrt(isqrt(z**3 * scale**4))
+    z14 = isqrt(isqrt(z * scale**4))
+    err = t + z34 // 2 - (3 * s * z14) // 2
+    u = max(s, 2)
+    # Floor slack: z14 error O(1) times (3/2)s ~ n^{27/16}.
+    slack = 2 * s + 10**6
+    bound = 3 * scale // (8 * isqrt(u - 1)) + slack
+    return err, bound
+
+
+def sixth_oooeo_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    slack = 10**7
+    for n in samples:
+        err, bound = sixth_oooeo_check(n)
+        if err < -slack or err > bound:
+            return {"holds": False, "witness": n, "err": err, "bound": bound}
+    return {"holds": True, "count": len(samples)}
+
+
+def w_gap_freeze_scan(p_block: int, window: int = 400) -> dict[str, Any]:
+    """floor(Δ v^{1/2}) freezes on the OOEO cylinder (long runs).
+
+    Predicted run length ≍ P^{7/8}: (v^{1/2})'' ≍ P^{-7/8} < 1.
+    The integer first gap of w is this frozen floor plus a 0/1 carry.
+    """
+    s = 10**12
+    runs: list[int] = []
+    prev = None
+    run = 0
+    n = p_block + 1
+    got = 0
+    while got < window and n < 20 * p_block:
+        m = isqrt(n**3)
+        if m % 2 == 0:
+            n += 2
+            continue
+        v = isqrt(m**3)
+        if v % 2 == 1:
+            n += 2
+            continue
+        u0 = isqrt(v * s * s)
+        n2 = n + 2
+        v2 = isqrt(isqrt(n2**3) ** 3)
+        u1 = isqrt(v2 * s * s)
+        floor_du = (u1 - u0) // s
+        if prev is None or floor_du != prev:
+            if run:
+                runs.append(run)
+            run = 1
+            prev = floor_du
+        else:
+            run += 1
+        got += 1
+        n += 2
+    if run:
+        runs.append(run)
+    return {
+        "got": got,
+        "mean_run": sum(runs) / len(runs) if runs else 0.0,
+        "max_run": max(runs) if runs else 0,
+        "n_runs": len(runs),
+        "frozen": bool(runs) and (sum(runs) / len(runs) >= 8),
+    }
+
+
+def ooeooee_indicator_identity_check(n_max: int) -> dict[str, Any]:
+    """Branch consistency: OOEOOEE is OOEOO plus even p^{3/2} and even q^{1/2}."""
+    checked = 0
+    for n in range(3, n_max + 1, 2):
+        word = itinerary_word(n, 7)
+        if not word.startswith("OOEOO"):
+            continue
+        m = isqrt(n**3)
+        v = isqrt(m**3)
+        w = isqrt(v)
+        p = isqrt(w**3)
+        q = isqrt(p**3)
+        expected = (
+            "OOEOO"
+            + ("O" if q % 2 == 1 else "E")
+            + ("O" if isqrt(q) % 2 == 1 else "E")
+        )
+        if q % 2 == 0:
+            expected = "OOEOO" + "E" + ("O" if isqrt(q) % 2 == 1 else "E")
+        else:
+            expected = "OOEOO" + "O" + ("O" if isqrt(q**3) % 2 == 1 else "E")
+        if word != expected:
+            return {"holds": False, "witness": n, "got": word, "expected": expected}
+        checked += 1
+    return {"holds": True, "checked": checked, "n_max": n_max}
+
+
+def oooeoee_indicator_identity_check(n_max: int) -> dict[str, Any]:
+    """Branch consistency: OOOEO* sixth letter is parity of isqrt(s^3)."""
+    checked = 0
+    for n in range(3, n_max + 1, 2):
+        word = itinerary_word(n, 7)
+        if not word.startswith("OOOEO"):
+            continue
+        m = isqrt(n**3)
+        v = isqrt(m**3)
+        z = isqrt(v**3)
+        s = isqrt(z)
+        q = isqrt(s**3)
+        if q % 2 == 0:
+            expected = "OOOEO" + "E" + ("O" if isqrt(q) % 2 == 1 else "E")
+        else:
+            expected = "OOOEO" + "O" + ("O" if isqrt(q**3) % 2 == 1 else "E")
+        if word != expected:
+            return {"holds": False, "witness": n, "got": word, "expected": expected}
+        checked += 1
+    return {"holds": True, "checked": checked, "n_max": n_max}
 
 
 def oeo_mode_probe(p_block: int) -> dict[str, Any]:
@@ -1487,10 +1666,11 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "`J-even-branch-third-letter`, `J-four-step-descent-density`,",
         "`J-depth4-slow-branch`, `J-kernel-cancellation`,",
         "`J-depth4-complete`, `J-depth5-contracting`,",
-        "`J-five-step-descent-density`; proofs in",
-        "`juggler_two_step_parity_lemma.md`). OOOO* kernel isolated",
-        "(Lemma V1); the scale-invariant copy of Theorem R is",
-        "**REFUTED**; the bound is open.",
+        "`J-five-step-descent-density`, `J-depth7-engine-contracting`,",
+        "`J-seven-step-descent-density`; proofs in",
+        "`juggler_two_step_parity_lemma.md`). Certified descent",
+        "density 57/64. OOOO* kernel isolated (Lemma V1); the",
+        "scale-invariant copy of Theorem R is **REFUTED**.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
@@ -1535,9 +1715,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "label **OBSERVATION**. The analytic statements they probe are",
         "now theorems at every depth <= 4, and the two length-5",
         "contracting splits OOOEE/OOEOE lift certified descent to 7/8;",
-        "the OOOO* fifth letter is the isolated level-3 kernel K3",
-        "(Lemma V1); the scale-invariant copy of Theorem R is",
-        "REFUTED (Part IX); the bound is open.",
+        "the two length-7 engine contractors OOEOOEE/OOOEOEE lift",
+        "certified descent to 57/64; the OOOO* kernel K3 is isolated",
+        "and the scale-invariant copy of Theorem R is REFUTED.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")

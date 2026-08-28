@@ -105,6 +105,9 @@ It is not required. The 2-adic / BT bridge stays closed.
   is `True`); bound not proved
 - Scale-invariant copy of Theorem R — **REFUTED** in Phase 12
   (`scale_invariant_R_extension_refuted` is `True`)
+- Length-7 engine contractors OOEOOEE/OOOEOEE — proved in
+  Phase 13 (`depth7_engine_contracting_proved` is `True`);
+  certified density \(57/64\)
 - Global halt — not claimed
 
 ## Experiments
@@ -428,6 +431,25 @@ lattices versus a new wall. The wall is real.
   by recorded mechanisms. Conjecture V (cancellation of
   \(K_3\)) is not refuted.
 
+## Phase 13: length-7 engine contractors — density \(57/64\)
+
+Working document, Part X. Scope: the two leftover words that
+contract at length 7 without \(K_3\).
+
+- **Corollary R′** — **EXACT — HUMAN PROOF**
+  (`J-w-family-below-nine-eighths`): Theorem R holds for
+  every monomial \(W\)-family with \(0<\alpha\le 9/8\).
+- **Lemma X1** — **EXACT — HUMAN PROOF**: the naive
+  \(n^{45/32}\) \(\theta_w\) coefficient rearranges into
+  an integer-\(w\) block.
+- **Lemma X3**: \(\lfloor\Delta v^{1/2}\rfloor\) freezes on
+  runs of length \(\asymp P^{7/8}\) on the OOEO cylinder.
+- **Theorem X** (`J-depth7-engine-contracting`): all eight
+  OOEOO\*\* and OOOEO\*\* words at \(N/128+O(N^{43/48+\varepsilon})\).
+- **Corollary Y** (`J-seven-step-descent-density`): certified
+  \(\le7\)-step class has density \(57/64\).
+- OOOOEEE not claimed (needs \(K_3\)).
+
 ## Results
 
 At \(N=10^7\) (4,999,999 odd starts):
@@ -447,13 +469,13 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: does any method bound \(W\)-family kernels
-with \(\alpha>9/4\), or is that the hard ceiling of the
-nested-floor engine? Conjecture V (cancellation of \(K_3\))
-is still open as a statement and closed as an R-copy.
-One editorial: import Theorems R/S/T and Corollary U into the
-finite-dynamics note (its Conjecture 6.2 and the \(13/16\)
-headline are superseded).
+One mathematical: does any method bound \(K_3\) (equivalently:
+\(W\)-family kernels with \(\alpha>9/4\)), which is the only
+remaining obstruction to OOOOEEE and the next density
+increment? Conjecture V is still open as a statement.
+One editorial: import Theorems R/S/T/X and Corollaries U/Y
+into the finite-dynamics note (its Conjecture 6.2 and the
+\(13/16\) headline are superseded).
 
 ## Decision
 
@@ -599,8 +621,18 @@ V stays a conjecture. Two ledger rows added;
 `scale_invariant_R_extension_refuted` flipped. No bound, no
 density move, no rescue draft, no note import.
 
-Best next question: does any method bound \(W\)-family kernels
-with \(\alpha>9/4\), or is \(9/4\) the hard ceiling?
+**PROMOTE** (Phase 13, length-7 engine contractors): Lemma X1
+absorbs the naive \(n^{45/32}\) \(\theta_w\) coefficient into
+the integer \(w\); Lemma X3 freezes \(\lfloor\Delta v^{1/2}\rfloor\)
+on runs of length \(\asymp P^{7/8}\); Corollary R′ extends
+Theorem R down to \(\alpha\le 9/8\). Theorem X counts all
+eight OOEOO\*\* and OOOEO\*\* words; Corollary Y lifts
+certified descent to \(57/64\). Three ledger rows added;
+`depth7_engine_contracting_proved` flipped. OOOOEEE still
+needs \(K_3\). No density-one claim, no note import.
+
+Best next question: does any method bound \(K_3\), the only
+remaining obstruction to OOOOEEE and the next density step?
 
 ## Publication assessment
 
@@ -608,7 +640,7 @@ Status: `THEOREM`. Exact linearization lemmas, power-saving
 joint-parity discrepancy bounds for nested floor-power sequences at
 **every depth \(\le 4\)** and the two length-5 contracting splits,
 outside the existing Piatetski-Shapiro literature, plus a
-certified-descent density of \(7/8\) and the conditional
+certified-descent density of \(57/64\) and the conditional
 density-one theorem with unconditional base cases \(d\le 4\).
 Pending editorial debt: the note still states Conjecture 6.2 as
 open and the headline density as \(13/16\); import Theorems R/S/T

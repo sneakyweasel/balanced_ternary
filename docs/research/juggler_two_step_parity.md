@@ -6,10 +6,11 @@ class is **EXACT — HUMAN PROOF**
 `J-even-branch-third-letter`, `J-four-step-descent-density`,
 `J-depth4-slow-branch`, `J-kernel-cancellation`,
 `J-depth4-complete`, `J-depth5-contracting`,
-`J-five-step-descent-density`; proofs in
-`juggler_two_step_parity_lemma.md`). OOOO* kernel isolated
-(Lemma V1); the scale-invariant copy of Theorem R is
-**REFUTED**; the bound is open.
+`J-five-step-descent-density`, `J-depth7-engine-contracting`,
+`J-seven-step-descent-density`; proofs in
+`juggler_two_step_parity_lemma.md`). Certified descent
+density 57/64. OOOO* kernel isolated (Lemma V1); the
+scale-invariant copy of Theorem R is **REFUTED**.
 
 Exact census of the joint parity word of the first four itinerary
 letters on odd starts. Phase-0 falsifier for iterating the one-step
@@ -51,8 +52,7 @@ contraction `3^2 < 2^4` and is a guard, not a new theorem.
 
 The fitted exponents are envelope slopes on a geometric sample,
 label **OBSERVATION**. The analytic statements they probe are
-now theorems at every depth <= 4, and the two length-5
-contracting splits OOOEE/OOEOE lift certified descent to 7/8;
-the OOOO* fifth letter is the isolated level-3 kernel K3
-(Lemma V1); the scale-invariant copy of Theorem R is
-REFUTED (Part IX); the bound is open.
+now theorems at every depth <= 4, and the two length-7 engine
+contractors OOEOOEE/OOOEOEE lift certified descent to 57/64;
+the OOOO* kernel K3 is isolated and the scale-invariant copy
+of Theorem R is REFUTED.
