@@ -10,8 +10,8 @@ class is **EXACT — HUMAN PROOF**
 `J-seven-step-descent-density`; proofs in
 `juggler_two_step_parity_lemma.md`). Certified descent
 density 57/64. OOOO* kernel isolated (Lemma V1); the
-scale-invariant copy of Theorem R and the increment-first
-K3 attack are **REFUTED**.
+scale-invariant copy of Theorem R, the increment-first
+K3 attack, and X1-absorption of K3 are **REFUTED**.
 
 Exact census of the joint parity word of the first four itinerary
 letters on odd starts. Phase-0 falsifier for iterating the one-step
@@ -55,6 +55,6 @@ The fitted exponents are envelope slopes on a geometric sample,
 label **OBSERVATION**. The analytic statements they probe are
 now theorems at every depth <= 4, and the two length-7 engine
 contractors OOEOOEE/OOOEOEE lift certified descent to 57/64;
-the OOOO* kernel K3 is isolated and both the scale-invariant
-copy of Theorem R and the increment-first K3 attack are
-REFUTED.
+the OOOO* kernel K3 is isolated and the scale-invariant
+copy of Theorem R, the increment-first K3 attack, and
+X1-absorption of K3 are REFUTED.

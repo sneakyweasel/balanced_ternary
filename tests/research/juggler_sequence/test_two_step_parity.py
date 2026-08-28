@@ -32,6 +32,7 @@ from research.juggler_sequence.two_step_parity import (
     differenced_level3_kernel_probe,
     oooo_indicator_identity_check,
     x_cell_increment_scan,
+    x1_landing_gap_scan,
     ooeooee_indicator_identity_check,
     oooeoee_indicator_identity_check,
     sixth_ooeoo_scan,
@@ -404,6 +405,7 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["scale_invariant_R_extension_refuted"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is True
     assert ANTI_OVERCLAIM["increment_first_k3_refuted"] is True
+    assert ANTI_OVERCLAIM["x1_absorption_k3_refuted"] is True
     assert ANTI_OVERCLAIM["density_one_claimed"] is False
 
 
@@ -490,6 +492,17 @@ def test_x_cells_have_no_j_runs():
         assert result["branch_j_max_run"] == 1
         assert result["b_run_max"] >= 2
         assert result["mean_abs_d_floor_dY"] > result["pred_P14"]
+
+
+def test_x1_landing_gaps_split_slow_from_fast():
+    # X1 lands on floor(F). Slow F (v^{1/2}, m^{1/2}) freeze;
+    # Y and every tested v-hybrid have run length 1.
+    for p in (10**4, 10**5, 10**6):
+        result = x1_landing_gap_scan(p, 400)
+        assert result["slow_floors_frozen"] is True
+        assert result["y_and_hybrids_unfrozen"] is True
+        assert result["floor_dY"]["max"] == 1.0
+        assert result["dv"]["max"] == 1.0
 
 
 def test_sixth_ooeoo_identity():

@@ -110,6 +110,8 @@ It is not required. The 2-adic / BT bridge stays closed.
   certified density \(57/64\)
 - Increment-first \(K_3\) attack — **REFUTED** in Phase 14
   (`increment_first_k3_refuted` is `True`); bound not proved
+- X1-absorption of \(K_3\) — **REFUTED** in Phase 15
+  (`x1_absorption_k3_refuted` is `True`); bound not proved
 - Global halt — not claimed
 
 ## Experiments
@@ -497,6 +499,39 @@ Promotion criterion     A power-saving bound on K3, or a named
 Stop criterion          Either falsifier, or machinery gravity.
 ```
 
+## Phase 15: X1 cannot land on a freezing integer
+
+Working document, Part XII. Scope: absorb \(C\theta_2\),
+\(C\asymp n^{45/16}\), by the Lemma-X1 substitution into
+an integer whose gap freezes. The landing is uniquely \(v\),
+which does not freeze.
+
+- **Lemma Z3** — **EXACT — HUMAN PROOF**
+  (`J-x1-landing-criterion`): X1 lands on \(\lfloor F\rfloor\);
+  this has cells iff \(F''<1\). Slow square-roots freeze on
+  a window of \(400\) steps; \(Y''\asymp n^{1/4}>1\) does not.
+- **Proposition AA** — hybrids \(v-w_m^3\), \(v-m w_m\),
+  \(v-w^2\) have run length \(1\); cubing T1 reproduces
+  \(3n^{45/16}\theta_2\).
+- **X1-absorption of \(K_3\)** — **REFUTED**
+  (`J-x1-absorption-K3`). Conjecture V is not refuted.
+
+```text
+Mathematical target     Can X1 absorb the 45/16 leftover into
+                        an integer whose first gap freezes?
+Novelty hypothesis      The same move that killed n^{45/32} on
+                        OOEOO lands on w, w_m, m, or s here.
+Falsifier               The landing is v (or a v-hybrid) and
+                        that integer has run length 1.
+Existing machinery      Lemma X1; Lemma Z3; V2; T1; freeze scans.
+Maximum Phase-0 scope   State the landing criterion; measure
+                        slow floors vs Y vs v-hybrids; check
+                        T1-cube remainder scale.
+Promotion criterion     An engine leftover, or a named
+                        obstruction that kills the method.
+Stop criterion          The landing has no cells.
+```
+
 ## Results
 
 At \(N=10^7\) (4,999,999 odd starts):
@@ -516,12 +551,11 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: is there an identity that absorbs the
-\(45/16\) coefficient into an integer *without* \(v\)-level
-\(J\)-runs, or is \(\alpha=9/4\) a hard ceiling for the
-\(W\)-family engine? Every method in the current toolkit
-that needs a frozen first difference of \(Y\) is dead.
-Conjecture V is still open as a statement.
+One mathematical: is \(\alpha=9/4\) a hard ceiling for the
+\(W\)-family engine, or does a nested-floor method that
+never forms the \(W\)-family bound \(K_3\)? X1-absorption
+into a freezing integer is dead (the landing is uniquely
+\(v\)). Conjecture V is still open as a statement.
 One editorial: import Theorems R/S/T/X and Corollaries U/Y
 into the finite-dynamics note (its Conjecture 6.2 and the
 \(13/16\) headline are superseded).
@@ -689,10 +723,17 @@ is the named \(45/16\) wall. The increment-first attack is
 conjecture. No bound, no density move, no rescue draft, no
 note import.
 
-Best next question: is there an identity that absorbs
-\(n^{45/16}\) into an integer without \(v\)-level \(J\)-runs,
-or is \(\alpha=9/4\) the hard ceiling of the \(W\)-family
-engine?
+**PROMOTE** (Phase 15, X1-absorption obstruction): Lemma Z3
+is the landing criterion (\(F''<1\)); the \(K_3\) leftover
+lands on \(v\); hybrids and cubing T1 stay at \(45/16\).
+X1-absorption of \(K_3\) is **REFUTED**. Two ledger rows
+added; `x1_absorption_k3_refuted` flipped. Conjecture V
+stays a conjecture. No bound, no density move, no rescue
+draft, no note import.
+
+Best next question: is \(\alpha=9/4\) the hard ceiling of
+the \(W\)-family engine, or does a nested-floor method that
+never forms the \(W\)-family bound \(K_3\)?
 
 ## Publication assessment
 
@@ -707,5 +748,6 @@ open and the headline density as \(13/16\); import Theorems R/S/T
 and Corollary U in a consolidation phase. The OOOO\* kernel
 \(K_3\) is isolated in the laboratory (Conjecture V) and is
 not in the note; the scale-invariant copy of Theorem R and
-the increment-first \(K_3\) attack are laboratory-**REFUTED**
-and likewise not in the note.
+the increment-first \(K_3\) attack, and X1-absorption of
+\(K_3\) are laboratory-**REFUTED** and likewise not in the
+note.

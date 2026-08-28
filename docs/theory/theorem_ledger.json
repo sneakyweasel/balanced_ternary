@@ -3495,5 +3495,27 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-x1-landing-criterion",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Lemma Z3: the X1 substitution C{F} = C F - C floor(F) produces a usable frozen-gap integer I = floor(F) if and only if floor(ΔF) is constant on long runs, which for unit steps requires F'' < 1. Instances: F = v^{1/2} (F'' ≍ n^{-7/8} < 1) and F = m^{1/2} (F'' ≍ n^{-5/4} < 1) freeze on a window of 400 odd steps at P = 10^4, 10^5, 10^6; F = Y = m^{3/2} (Y'' ≍ n^{1/4} > 1) has mean and max run length 1 (row J-scale-invariant-R-extension). This is the reason Lemma X1 could land on w and the reason the same move cannot land on v. Not a kernel bound.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-x1-absorption-K3",
+    "tag": "REFUTED",
+    "statement": "The OOOO* leftover C θ₂ with C ≍ n^{45/16} (row J-level3-inner-linearization) is absorbed by an X1 substitution into an integer whose first gap freezes, leaving only engine sawtooths. False: X1 lands on I = floor(Y) = v (Lemma Z3), and Y'' ≍ n^{1/4} > 1 so v has no J-runs. For every tested hybrid Q = v - P with P a polynomial in the freezing integers {w_m^3, m w_m, w^2}, ΔQ has mean and max run length 1 at P = 10^4, 10^5, 10^6. Cubing the T1 expansion of z^{1/2} after absorbing the first-letter θ produces a remainder 3 n^{27/8} m^{-3/8} θ₂ ≍ 3 n^{45/16} θ₂, the same leftover. Conjecture V is not refuted. Not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]

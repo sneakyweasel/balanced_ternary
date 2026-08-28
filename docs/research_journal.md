@@ -9609,3 +9609,52 @@ Best next question
   integer without v-level J-runs, or is α = 9/4 the hard
   ceiling of the W-family engine?
 ```
+
+## Juggler X1-absorption of K3 refuted (Phase 15)
+
+The most promising remaining attack: absorb C θ₂
+(C ~ n^{45/16}) by the Lemma-X1 substitution into an
+integer whose first gap freezes. Working document Part XII;
+rows `J-x1-landing-criterion`, `J-x1-absorption-K3`.
+
+Lemma Z3: X1 lands on floor(F) and that integer has cells
+iff F'' < 1. Slow square-roots v^{1/2} and m^{1/2} freeze
+on a window of 400 odd steps at P = 10^4, 10^5, 10^6; Y
+does not (run length 1). The V2 leftover is {Y}, so the
+landing is uniquely v. Hybrids v - w_m^3, v - m w_m,
+v - w^2 also have run length 1. Cubing T1 after absorbing
+the first-letter θ reproduces 3 n^{45/16} θ₂. Conjecture V
+untouched. `x1_absorption_k3_refuted` flipped;
+`depth5_kernel_bound_proved` stays False. No density move,
+no note import, no rescue draft.
+
+```text
+What was learned
+- X1 works iff the dangerous fractional part belongs to a
+  variable with F'' < 1
+- the K3 leftover is {Y}, Y'' ~ n^{1/4} > 1, so the landing
+  is v and v has no cells
+- subtracting a freezing polynomial from v does not create
+  a cell
+- cubing T1 is V2 in disguise
+- the same move remains available for every slow sawtooth,
+  which is why the engine contractors closed
+Strongest theorem
+- Lemma Z3: the X1 landing criterion —
+  EXACT — HUMAN PROOF
+Strongest refutation
+- X1-absorption of K3 (J-x1-absorption-K3)
+Reusable machinery
+- x1_landing_gap_scan
+Branch status
+- PROMOTE
+Why
+- the most promising attack is now a named dead end with a
+  sharp landing rule; a rescue would be a different method
+  (a bound past α = 9/4, or a nested-floor estimate that
+  never forms the W-family)
+Best next question
+- is α = 9/4 the hard ceiling of the W-family engine, or
+  does a nested-floor method that never forms the W-family
+  bound K3?
+```

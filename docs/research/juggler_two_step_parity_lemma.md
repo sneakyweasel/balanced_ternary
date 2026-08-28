@@ -19,7 +19,9 @@ Ledger rows: `J-nested-parity-discrepancy`,
 `J-depth7-engine-contracting`,
 `J-seven-step-descent-density`,
 `J-increment-linearization`,
-`J-increment-first-K3`.
+`J-increment-first-K3`,
+`J-x1-landing-criterion`,
+`J-x1-absorption-K3`.
 Imported into the finite-dynamics note (consolidation phase, August
 2026): Lemmas A/B as Lemma 5.3, Theorem C as Theorem 5.4,
 Proposition L as Proposition 5.5, Lemma D as Lemma 5.6, Theorem E as
@@ -44,6 +46,8 @@ length-7 engine contractors OOEOOEE and OOOEOEE (Theorem X,
 Corollary Y), lifting certified descent to \(57/64\).
 Part XI (Phase 14) refutes the increment-first attack on
 \(K_3\) (Lemma Z1, Proposition Z).
+Part XII (Phase 15) refutes X1-absorption of the \(K_3\)
+leftover into a freezing integer (Lemma Z3, Proposition AA).
 Not a termination claim; the remaining depth-\(\ge5\) expanders
 (OOOO\*, OOEOO, OOOEO) and the density-one statement remain open.
 
@@ -2321,7 +2325,112 @@ is the named \(45/16\) wall. The increment-first attack is
 stays a conjecture; `depth5_kernel_bound_proved` and
 `density_one_claimed` stay `False`.
 `increment_first_k3_refuted` flipped. No note import, no
-density claim, no rescue draft. The toolkit's remaining
-\(K_3\) methods are the recorded dead routes; a new attack
-needs an identity that absorbs \(n^{45/16}\) into an integer
-*without* \(v\)-level \(J\)-runs.
+density claim, no rescue draft. The X1-absorption attack
+that would land on a freezing integer is taken up — and
+refuted — in Part XII.
+
+## Part XII: X1 cannot land on a freezing integer (Phase 15)
+
+Scope: the most promising remaining attack — absorb the
+\(W\)-family leftover \(C\theta_2\), \(C\asymp n^{45/16}\),
+by the Lemma-X1 substitution into an integer whose first
+gap freezes, leaving only engine sawtooths. No bound draft.
+
+The integers whose real analogs have \(F''<1\) (so
+\(\lfloor\Delta F\rfloor\) freezes) are \(n\), \(m\) (on
+\(X\)-cells), \(w=\lfloor v^{1/2}\rfloor\),
+\(w_m=\lfloor m^{1/2}\rfloor\), and \(s=\lfloor z^{1/2}\rfloor\).
+The integer \(v=\lfloor Y\rfloor\) is not on that list.
+
+### Lemma Z3 (X1 landing criterion) — EXACT — HUMAN PROOF
+
+The substitution \(C\{F\}=CF-C\lfloor F\rfloor\) produces a
+usable frozen-gap integer \(I=\lfloor F\rfloor\) if and only
+if \(\lfloor\Delta F\rfloor\) is constant on long runs. For
+unit steps this requires \(F''<1\).
+
+*Proof.* \(\Delta I=\lfloor\Delta F\rfloor+\kappa\) with
+\(\kappa\in\{0,1\}\). The floor of the real gap freezes on
+runs of length \(\asymp 1/|F''|\) precisely when
+\(|F''|<1\); the carry is then an indicator weight (the
+Lemma-X3 / Theorem-Q pattern). If \(|F''|>1\) the real gap
+changes by \(\gg 1\) at every step and there are no
+\(I\)-runs. \(\square\)
+
+Instances, measured (`x1_landing_gap_scan`) at
+\(P=10^4,10^5,10^6\) on a window of \(400\) odd steps:
+
+- \(F=v^{1/2}\) (\(F''\asymp n^{-7/8}<1\)) and
+  \(F=m^{1/2}\) (\(F''\asymp n^{-5/4}<1\)):
+  \(\lfloor\Delta F\rfloor\) is constant on the whole
+  window (mean run \(\ge 8\));
+- \(F=Y=m^{3/2}\) (\(Y''\asymp n^{1/4}>1\)):
+  \(\lfloor\Delta Y\rfloor\) and \(\Delta v\) have mean
+  and max run length \(1\).
+
+This is why Lemma X1 could land on \(w\) (the dangerous
+sawtooth was \(\{v^{1/2}\}\), a slow variable) and why the
+same move cannot land on \(v\).
+
+### Proposition AA (no freezing landing for the \(K_3\) leftover) — EXACT — HUMAN PROOF / REFUTED method
+
+The V2 leftover is \(C\theta_2=C\{Y\}\). The X1 substitution
+is uniquely \(\theta_2=Y-v\) and lands on \(v\). Lemma Z3
+then says \(v\) has no \(J\)-runs.
+
+Rewriting \(v=P+Q\) with \(P\) a polynomial in the freezing
+integers does not help: \(\Delta P=o(\Delta v)\) or else
+\(\Delta P\asymp\Delta v\), and in either case \(Q=v-P\)
+inherits a first difference of size \(\asymp n^{5/4}\).
+Measured, each of
+
+\[
+v-w_m^3,\qquad v-m\,w_m,\qquad v-w^2
+\]
+
+has mean and max run length \(1\) at
+\(P=10^4,10^5,10^6\).
+
+Cubing Lemma T1 after absorbing the first-letter
+\(\theta\) into \(m\) produces the same leftover: the
+\(\theta_2\)-amplitude \(m^{-3/8}\) of \(z^{1/2}\),
+multiplied by \(3(n^{27/16})^2\), is
+\(3n^{27/8}m^{-3/8}\asymp 3n^{45/16}\). Cubing a decaying
+nesting does not evade V2.
+
+Therefore X1-absorption of \(K_3\) into a freezing integer
+is impossible. The attack dies by Lemma Z3, not by a new
+unnamed sum. Inherited dead routes (copy of R, V2 then
+invoke R, increment-first, composed Lemma-B cells, the
+swap \(e(c\theta_3)=e(cZ)\,e(-\{c\}z)\), a second
+A-process on \(z^{3/2}\), fibre + van der Corput II,
+shifted-window Vaaler on a full-size sawtooth) remain dead
+and were not retested.
+
+### What this does *not* refute
+
+Conjecture V is untouched. The Phase-11 probe still
+cancels. What is refuted is the method: X1-absorption
+applied to a *fast* fractional part. The criterion is
+sharp — the same move remains available for every
+sawtooth of a variable with \(F''<1\), which is why
+depth \(\le 4\) and the engine contractors closed.
+
+A bound on \(K_3\) would still not raise certified descent
+at depth 5, and a \(\delta\) that halves per nesting would
+still not give Terras. The new information is the landing
+rule: X1 can only swallow a sawtooth whose floor already
+has cells.
+
+### Phase-15 decision
+
+**PROMOTE** the obstruction. Lemma Z3 is exact; the hybrid
+gaps are measured; cubing T1 is V2 in disguise. X1-absorption
+of \(K_3\) is **REFUTED** (ledger row `J-x1-absorption-K3`).
+Conjecture V stays a conjecture;
+`depth5_kernel_bound_proved` and `density_one_claimed` stay
+`False`. `x1_absorption_k3_refuted` flipped. No note import,
+no density claim, no rescue draft. The remaining live
+attacks are a new bound for \(W\)-families with
+\(\alpha>9/4\), or a nested-floor method that never forms
+the \(W\)-family.

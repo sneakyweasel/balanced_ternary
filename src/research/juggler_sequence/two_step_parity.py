@@ -107,6 +107,11 @@ ANTI_OVERCLAIM = {
     # on X-cell b-runs, is REFUTED (no J-runs on those cells;
     # unfreezing J reintroduces α = 45/16).
     "increment_first_k3_refuted": True,
+    # Phase 15: X1-style absorption of the K3 leftover into a
+    # freezing integer is REFUTED (X1 lands on floor(F); F = Y
+    # has Y'' > 1, and v minus any polynomial in the freezing
+    # integers still has run length 1).
+    "x1_absorption_k3_refuted": True,
 }
 
 
@@ -1020,6 +1025,91 @@ def x_cell_increment_scan(
     }
 
 
+def x1_landing_gap_scan(p_block: int, window: int = 400) -> dict[str, Any]:
+    """X1 landing criterion: which integers have frozen first gaps?
+
+    X1 writes C{F} = C F - C floor(F). The integer I = floor(F)
+    has a usable frozen gap iff floor(ΔF) is constant on long
+    runs, which requires F'' < 1. Controls: floor(Δ v^{1/2}) and
+    floor(Δ m^{1/2}) freeze on the whole window (F'' < 1). The
+    K3 leftover is {Y}, Y'' ≍ P^{1/4} > 1: floor(ΔY) and Δv have
+    run length 1. Hybrids v - w_m^3, v - m w_m, v - w^2 also
+    have run length 1 — subtracting a freezing polynomial does
+    not create a v-level cell.
+    """
+    s = 10**12
+    d = 2
+
+    def tower(n: int) -> tuple[int, int, int, int]:
+        m = isqrt(n**3)
+        v = isqrt(m**3)
+        w = isqrt(v)
+        wm = isqrt(m)
+        return m, v, w, wm
+
+    def floor_d_real(a: int, b: int) -> int:
+        return (isqrt(b * s * s) - isqrt(a * s * s)) // s
+
+    keys = (
+        "floor_dY",
+        "dv",
+        "floor_dU",
+        "floor_dWm",
+        "d_v_minus_wm3",
+        "d_v_minus_m_wm",
+        "d_v_minus_w2",
+    )
+    runs: dict[str, list[int]] = {k: [] for k in keys}
+    cur = {k: 0 for k in keys}
+    last: dict[str, int | None] = {k: None for k in keys}
+    n = p_block + 1
+    for _ in range(window):
+        m, v, w, wm = tower(n)
+        m1, v1, w1, wm1 = tower(n + d)
+        deltas = {
+            "floor_dY": (isqrt(m1**3 * s * s) - isqrt(m**3 * s * s)) // s,
+            "dv": v1 - v,
+            "floor_dU": floor_d_real(v, v1),
+            "floor_dWm": floor_d_real(m, m1),
+            "d_v_minus_wm3": (v1 - wm1**3) - (v - wm**3),
+            "d_v_minus_m_wm": (v1 - m1 * wm1) - (v - m * wm),
+            "d_v_minus_w2": (v1 - w1**2) - (v - w**2),
+        }
+        for k, val in deltas.items():
+            if last[k] is None or val != last[k]:
+                if cur[k]:
+                    runs[k].append(cur[k])
+                cur[k] = 1
+                last[k] = val
+            else:
+                cur[k] += 1
+        n += 2
+    for k in keys:
+        if cur[k]:
+            runs[k].append(cur[k])
+
+    def stats(k: str) -> dict[str, float]:
+        r = runs[k]
+        return {
+            "mean": (sum(r) / len(r)) if r else 0.0,
+            "max": float(max(r)) if r else 0.0,
+        }
+
+    out: dict[str, Any] = {k: stats(k) for k in keys}
+    out["window"] = window
+    out["slow_floors_frozen"] = (
+        out["floor_dU"]["mean"] >= 8 and out["floor_dWm"]["mean"] >= 8
+    )
+    out["y_and_hybrids_unfrozen"] = (
+        out["floor_dY"]["max"] == 1.0
+        and out["dv"]["max"] == 1.0
+        and out["d_v_minus_wm3"]["max"] == 1.0
+        and out["d_v_minus_m_wm"]["max"] == 1.0
+        and out["d_v_minus_w2"]["max"] == 1.0
+    )
+    return out
+
+
 # --- Phase 13: length-7 engine contractors (OOEOOEE, OOOEOEE) ---
 
 
@@ -1911,8 +2001,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "`J-seven-step-descent-density`; proofs in",
         "`juggler_two_step_parity_lemma.md`). Certified descent",
         "density 57/64. OOOO* kernel isolated (Lemma V1); the",
-        "scale-invariant copy of Theorem R and the increment-first",
-        "K3 attack are **REFUTED**.",
+        "scale-invariant copy of Theorem R, the increment-first",
+        "K3 attack, and X1-absorption of K3 are **REFUTED**.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
@@ -1959,8 +2049,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "contracting splits OOOEE/OOEOE lift certified descent to 7/8;",
         "the two length-7 engine contractors OOEOOEE/OOOEOEE lift",
         "certified descent to 57/64; the OOOO* kernel K3 is isolated",
-        "and both the scale-invariant copy of Theorem R and the",
-        "increment-first K3 attack are REFUTED.",
+        "and the scale-invariant copy of Theorem R, the",
+        "increment-first K3 attack, and X1-absorption of K3",
+        "are REFUTED.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")
