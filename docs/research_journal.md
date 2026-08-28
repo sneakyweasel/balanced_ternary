@@ -8279,4 +8279,111 @@ Best next question
   by an effective N^{1/2+ε} estimate without a Weyl engine
 ```
 
+## Juggler parity discrepancy transfer
+
+- **Date:** 2026-08-28
+- **Objective:** Decide whether interval image-parity discrepancy \(D(I)=\sum_{n\in O(I)}(-1)^{\lfloor n^{3/2}\rfloor}\) transfers through one expanding Juggler image
+- **Hypotheses:** a translation-uniform \(|I|^\alpha\) bound exists; \(Y=J_O(O(I))\) inherits enough regularity for a one-step transfer inequality
+- **Major results:** \(D([A,B])=S_O(B)-S_O(A-1)\) is an exact identity, so the parent \(|S_O(N)|\ll N^{5/6}\) yields only a location-dependent majorant \(\ll B^{5/6}\) (**CLASSICAL ANALYTIC BOUND**, not transfer). \(|D|\le C|I|^\alpha\) uniformly in \(A\) is **REFUTED**: monochromatic records include \(L=100\) on \([813554,813653]\) with \(|D|=50=\#O(I)\), and a run of \(52\) odd sources on \([952525,952627]\). \(Y\) is strictly increasing and highly fragmented (min gap \(4\), components \(=|Y|\)). Gap parity is essentially fair (odd-gap fraction \(0.499999\)); the integer floor correction against \(3\lfloor\sqrt n\rfloor\) stays in \(\{0,1,2,3\}\) on \(N\le 10^6\). One-step \(D(Y)\) concentrates: smallest witness \(Y\) of \([1000,1099]\) has \(25\) odd points and \(|D(Y)|/\#\mathrm{odd}=0.36\); \(19\) such \(Y\) and \(12\) diagnostic \(J^2\) samples meet level \(0.25\). Large anchored \(Y\) of \([1,10^6]\) is a balanced census only (\(|D|=19\) on \(249927\) odds). Simple weights \(1,n,3\lfloor\sqrt n\rfloor\) do not rescue. Classification `TRANSFER_COMPLEX`
+- **Refuted ideas:** \(|I|\)-uniform sublinear \(D\); treating prefix differencing, monotonicity, or singleton cells as transfer; \(Y\) is an interval; unweighted one-step transfer is uniform; weight fishing
+- **Literature:** parent `ODD_IMAGE_DISCREPANCY_GREEN` reused. `odd_cell_unique` cited. Closed PE / residual / 2-adic / θ / LD / local-compression branches stay closed. No Weyl engine
+- **Open:** none from this branch
+- **Decision:** CLOSE. Interval cancellation does not survive Juggler-generated sets in a useful uniform form. Do not claim termination
+
+```text
+What was learned
+- D([A,B]) is the prefix difference of S_O, not a new object
+- the useful interval bound depends on B, not on |I| alone
+- short intervals can be monochromatic, so |I|-uniform laws fail
+- Y=J_O(O(I)) is a strictly increasing gap set, not an interval
+- gap parity is not a deterministic pairing law
+- some one-step odd-images concentrate (e.g. [1000,1099])
+- large anchored Y looking balanced is only a census
+- simple deterministic weights do not create a transfer theorem
+
+Strongest theorem
+- D([A,B]) = S_O(B) - S_O(A-1), hence |D([A,B])| << B^{5/6}
+
+Strongest refutation
+- |D(I)| <= C |I|^alpha uniformly in A
+  (monochrome L=100 on [813554,813653]; run of 52)
+- uniform transfer of D to Y=J_O(O(I))
+  (Y of [1000,1099]: 25 odd points, |D|/#odd=0.36)
+
+Reusable machinery
+- research.juggler_sequence.parity_discrepancy_transfer
+- data/research/juggler/parity_transfer/
+
+Prior-art status
+- negative transfer test on a classical interval discrepancy;
+  not a halt result and not a frequency theorem
+
+Complexity profile
+- unchanged flood order; no new production attack; CUDA unused
+
+Branch status
+- CLOSE
+
+Why
+- The interval theorem does not become a dynamical transfer law.
+  Y is fragmented, short generated images concentrate, and the
+  only proved bound is prefix differencing. Stop before a Weyl
+  engine and before more weights.
+
+Best next question
+- none from this branch
+```
+
+## Juggler prefix-OOO extra scale
+
+- **Date:** 2026-08-28
+- **Objective:** Decide whether prefix-`OOO` extra scale, or an `OOOOEE` `CycleMin` rotation, excludes `CycleWord` on the parked leftovers `OOOEOE` and `OOOOEE`
+- **Hypotheses:** \(T^3(n)\ge(n+1)^2\) plus the even cell of \(y=\mathrm{isqrt}(T^3(n))\) forces \(T(y)\ge(n+1)^2\); `OOOOEE` dies by rotation plus existing thresholds
+- **Major results:** `y=n` is `ooo_suffix_threshold` against the even cell of `n` **EXACT — LEAN VERIFIED** (`cycleMin_prefix_ooo_even_sqrt_ne`). `CycleMin` cannot end in `O` **EXACT — LEAN VERIFIED** (`cycleMin_not_end_odd`), a **REPARAMETERIZATION** of the last-odd cell plus `succ_sq_le_cube`. `LowerPowerBound` on `OOO` has `lowerDenom=2^{38}` and first forced last-even overshoot at `n=109`; it is not uniform from `n=3` (**REFUTED**). `OOOOEE` rotations reduce to `CycleMin OOOOEE` only; that word is not excluded. No `CycleWord` theorem for either leftover. Classification `OOO_SCALE_THRESHOLD_ONLY`
+- **Refuted ideas:** `LowerPowerBound` extra scale from `n=3`; `y=n` is new extra scale; `OOOOEE` is excluded by rotation
+- **Literature:** oeis-A007320 known. Internal-E bootstrap, `ooo_suffix_threshold`, last-even/odd cells, `succ_sq_le_cube` reused. Closed compose / Diophantine / Mordell / \(G_r\) branches not reopened
+- **Open:** whether every positive integer reaches 1. Extra scale on these two words is not a new uniform law
+- **Decision:** CLOSE as OOO_SCALE_THRESHOLD_ONLY. Surviving identities are reparameterizations of existing cells. Do not launch Phase 1. Do not open length 7
+
+```text
+What was learned
+- y=n after prefix OOO and an internal E is the OOO threshold plus the even cell
+- CycleMin cannot end in O: x>=n and x^3<(n+1)^2 contradict succ_sq_le_cube
+- LowerPowerBound(OOO) has D=2^38 and first forced overshoot at n=109
+- extra scale is not uniform from n=3
+- OOOOEE CycleMin orientations reduce to OOOOEE itself
+- neither leftover CycleWord is excluded
+- no n-search, no length-6 theorem, no O-terminating programme
+
+Strongest theorem
+- cycleMin_not_end_odd; cycleMin_prefix_ooo_even_sqrt_ne
+
+Strongest refutation
+- LowerPowerBound on OOO forces T(y)>=(n+1)^2 from n=3
+  (fails at n=3 and n=5; first hit n=109)
+
+Reusable machinery
+- research.juggler_sequence.cycle_ooo_scale
+- formal/Problems/Juggler/Cycles.lean (two named corollaries)
+
+Prior-art status
+- reparameterization of ooo_suffix_threshold and the last-odd cell;
+  not a halt result
+
+Complexity profile
+- unchanged flood order; no new production attack; CUDA unused
+
+Branch status
+- CLOSE
+
+Why
+- The hoped-for extra-scale law is the already-proved OOO threshold
+  on the y=n slice and an eventual LowerPowerBound comparison
+  afterwards. Rotation does not kill OOOOEE. Stop before another word.
+
+Best next question
+- write the structure paper (Atlas + FiniteProgress leftover +
+  cycle stack + N^{5/6})
+```
+
 

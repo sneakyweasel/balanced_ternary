@@ -1,0 +1,147 @@
+{
+  "experiment": "juggler_cycle_ooo_scale",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "O_terminating_cycles_impossible": false,
+    "length_six_e_cycles_impossible": false,
+    "oooEOE_excluded": false,
+    "ooooEE_excluded": false,
+    "useful_uniform_Q0": false,
+    "cycle_is_envelope_equality": false,
+    "power_bound_eq_forbids_cycles": false,
+    "extra_scale_uniform": false,
+    "all_odd_orbit": false,
+    "finite_progress_for_all": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "leftover_words": [
+      "OOOEOE",
+      "OOOOEE"
+    ],
+    "y_eq_n": {
+      "n": 5,
+      "ooo_threshold": 36,
+      "even_cell_hi": 36,
+      "incompatible": true,
+      "reason": "T^3 >= (n+1)^2 and T^3 < (n+1)^2"
+    },
+    "succ_sq_le_cube": {
+      "3": true,
+      "5": true,
+      "7": true,
+      "9": true
+    },
+    "succ_sq_le_cube_holds": true,
+    "lower_denom_ooo": 274877906944,
+    "lower_denom_oooo": 1361129467683753853853498429727072845824,
+    "lower_denom_ooo_is_2_38": true,
+    "lower_denom_oooo_is_2_130": true,
+    "extra_scale_n_max": 2000,
+    "first_ooo_forced_overshoot": 109,
+    "extra_scale_uniform_from_three": false,
+    "n3_forced": false,
+    "n5_forced": false,
+    "ooooee_rotations": [
+      {
+        "word": "OOOOEE",
+        "starts_even": false,
+        "starts_oe": false,
+        "ends_odd": false,
+        "legal_cyclemin": true,
+        "blocked_by": null
+      },
+      {
+        "word": "OOOEEO",
+        "starts_even": false,
+        "starts_oe": false,
+        "ends_odd": true,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_end_odd"
+      },
+      {
+        "word": "OOEEOO",
+        "starts_even": false,
+        "starts_oe": false,
+        "ends_odd": true,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_end_odd"
+      },
+      {
+        "word": "OEEOOO",
+        "starts_even": false,
+        "starts_oe": true,
+        "ends_odd": true,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_odd_even"
+      },
+      {
+        "word": "EEOOOO",
+        "starts_even": true,
+        "starts_oe": false,
+        "ends_odd": true,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even"
+      },
+      {
+        "word": "EOOOOE",
+        "starts_even": true,
+        "starts_oe": false,
+        "ends_odd": false,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even"
+      }
+    ],
+    "ooooee_legal_cyclemin": [
+      "OOOOEE"
+    ],
+    "ooooee_only_self": true,
+    "y_eq_n_is_ooo_threshold": true,
+    "n_search": false,
+    "length_seven": false,
+    "o_terminating_programme": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "cycleMin_not_end_odd": true,
+    "cycleMin_prefix_ooo_even_sqrt_ne": true,
+    "no_cycleMin_ooooeoe_of_sqrt_eq": true,
+    "ooo_suffix_threshold": true,
+    "odd_run_suffix_threshold": true,
+    "cycle_last_odd_interval": true,
+    "succ_sq_le_cube": true,
+    "certificate_present": true,
+    "PowerHeight_absent": true,
+    "no_global_termination_theorem": true,
+    "no_all_cycles_impossible": true,
+    "no_cycle_engine": true,
+    "no_length_six_theorem": true,
+    "no_infinite_path_type": true,
+    "FloorPower_not_rewritten": true,
+    "Progress_unchanged": true,
+    "orbit_min_not_used": true,
+    "PowerBoundEq_not_used_as_cycle_attack": true,
+    "O_terminating_not_claimed": true,
+    "no_ooooee_cycleword_theorem": true,
+    "no_ooooeoe_cycleword_theorem": true,
+    "Minimal_untouched": true
+  },
+  "decision": {
+    "classification": "OOO_SCALE_THRESHOLD_ONLY",
+    "secondary": [
+      "CYCLEMIN_NOT_END_ODD"
+    ],
+    "reason": "y=n is the OOO threshold plus the even cell; CycleMin cannot end in O by the last-odd cell plus succ_sq_le_cube; LowerPowerBound extra scale is not uniform from n=3; OOOOEE reduces to CycleMin OOOOEE and is not excluded"
+  },
+  "search_method": "exact cell/threshold identities on OOOEOE and OOOOEE; LowerPowerBound integer comparison; no cycle-state search; no length-6 census theorem"
+}

@@ -1,0 +1,15 @@
+{
+  "n_max": 1000000,
+  "files": [
+    "interval_discrepancy.csv",
+    "record_intervals.csv",
+    "image_discrepancy.csv",
+    "gap_statistics.csv",
+    "weighted_discrepancy.csv",
+    "counterexamples.jsonl"
+  ],
+  "classification": "TRANSFER_COMPLEX",
+  "branch": "CLOSE",
+  "D_convention": "D(I)=sum_{n odd in I} (-1)^{isqrt(n^3)}; image discrepancy is the same sum on a generated set",
+  "note": "N^{5/6} on prefixes is the parent theorem, not a transfer. No Weyl engine. No CUDA."
+}
