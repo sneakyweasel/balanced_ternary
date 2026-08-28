@@ -24,8 +24,10 @@ The argument is an exhaustive evaluation for \(n<256\) together with
 the last-even cell against the coarse lower envelope
 \(n^{81}>2^{130}(n+1)^{64}\) for \(n\ge256\).
 
-This is not an exclusion of every length-six word, not an exclusion of
-odd-terminating cycle words, and not a halt theorem.
+This branch proves those two exclusions only. A later consolidation
+(`J-small-cycle-census`) assembles them with existing machinery into
+the exclusion of every cycle word of length at most six. Neither is a
+halt theorem.
 
 ## Current literature
 
@@ -74,8 +76,10 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - `CycleWord` on `OOOOEE` is impossible —
   **EXACT — LEAN VERIFIED**
-- every length-six cycle word is impossible — not claimed
-- cycles ending in `O` as `CycleWord` are impossible — not claimed
+- every cycle word of length at most six is impossible —
+  **EXACT — LEAN VERIFIED** (later consolidation `J-small-cycle-census`,
+  `no_cycle_word_length_le_six`; assembly of existing exclusions)
+- cycles of length seven or more are impossible — not claimed
 - global halt — not claimed
 
 ## Experiments
@@ -108,13 +112,22 @@ facts. `formal/Problems/Juggler/LeftoverCycles.lean` proves
 
 `FloorPower`, `Progress`, and `Minimal` are not rewritten. No `sorry`.
 No halt theorem. No `no_juggler_cycle`. No `CycleSearch`. No
-`no_cycle_word_length_six`. No `no_cycle_word_ooooeoe`. No
-`PowerBoundEq` attack. No `PowerHeight`.
+`no_cycle_word_ooooeoe`. No `PowerBoundEq` attack. No `PowerHeight`.
+
+A later consolidation, `formal/Problems/Juggler/SmallCycleCensus.lean`,
+assembles the two exclusions with rotation invariance, the all-odd
+ascent argument, the expanding filter, and the existing threshold
+theorems into `no_cycle_word_length_le_six`: no cycle word of length at
+most six at any \(n\ge2\). The assembly adds no new `native_decide`
+table. Length seven stays open.
 
 ## Results
 
 Both leftover orientations are impossible as cycle words
-(**EXACT — LEAN VERIFIED**). The math note records this as Theorem 3.2.
+(**EXACT — LEAN VERIFIED**). The math note records this as Lemma 3.2,
+the key lemma of the small-cycle census (Theorem 3.3,
+`no_cycle_word_length_le_six`, ledger row `J-small-cycle-census`): no
+nontrivial Juggler cycle has length at most six.
 
 ## Open questions
 
@@ -125,9 +138,10 @@ programme.
 ## Decision
 
 **PROMOTE**. Finite evaluation below \(256\) plus the last-even cell
-against `LowerPowerBound` excludes both leftover `CycleWord`s. This is
-not the closed uniform-from-\(3\) extra-scale attack, not a length-six
-census, and not a halt theorem.
+against `LowerPowerBound` excludes both leftover `CycleWord`s, and the
+later census consolidation promotes the result to: no cycle word of
+length at most six. This is not the closed uniform-from-\(3\)
+extra-scale attack and not a halt theorem. Length seven is open.
 
 Best next question: do almost all odd-to-odd starts have a finite
 descent certificate?
@@ -137,4 +151,5 @@ descent certificate?
 Status: `THEOREM`.
 
 Named exclusion of two leftover orientations; recorded in the math
-note as Theorem 3.2. Not a Juggler totality result.
+note as Lemma 3.2 and consolidated into the small-cycle census
+(Theorem 3.3). Not a Juggler totality result.

@@ -22,9 +22,10 @@ math note:
 
 > Realized finite words obey a power envelope and an exact compositional
 > defect identity with rigid zero cases. Inverse cells impose cycle
-> restrictions and exclude two explicit length-six words. The uniform
-> short-certificate class has density \(3/4\), but this is not Terras's
-> theorem or a density of arrival at \(1\).
+> restrictions and yield a small-cycle census: no nontrivial cycle has
+> length at most six. The uniform short-certificate class has density
+> \(3/4\), but this is not Terras's theorem or a density of arrival
+> at \(1\).
 
 Every substantive claim must be linked to one of:
 
@@ -106,8 +107,17 @@ added to `bt.*`.
 - cycle exponent, extrema, order, and cell constraints —
   **EXACT — LEAN VERIFIED**;
 - leftover length-six orientations \(OOOEOE\) and \(OOOOEE\) —
-  **EXACT — LEAN VERIFIED** (recorded in the leftover-cycles branch;
-  not a length-six census);
+  **EXACT — LEAN VERIFIED** (recorded in the leftover-cycles branch);
+- small-cycle census: no cycle word of length at most six —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_six`,
+  ledger `J-small-cycle-census`; length seven open);
+- cycle surplus \(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) and the
+  per-step slack-scale bound \(x^e<(J(x)+1)^2\) —
+  **EXACT — LEAN VERIFIED** (`image_eq_start_defectRatio`,
+  `one_plus_eta_lt_succ_sq`);
+- certified four-block expanding chain
+  \(1999\to5169\to50093\to193753\to887471\) —
+  **EXACT — LEAN VERIFIED** (`four_block_pe_1999`);
 - horizon-\(20\) first-return census through \(N=10^6\) —
   **COMPUTATIONALLY VERIFIED** with exact Python integers and zero unresolved
   cases;
@@ -158,7 +168,11 @@ These refute the named candidate laws, not termination.
 
 ## Formalization
 
-No Lean theorem statement is changed by this revision. The review object is
+The census consolidation added
+`formal/Problems/Juggler/SmallCycleCensus.lean`
+(`no_cycle_word_length_le_six`), an assembly of previously verified
+exclusions with no new `native_decide` table; no existing Lean theorem
+statement changed. The review object is
 `formal/Problems/JugglerPaper.lean`. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
 The paper-central theorem metadata is recorded in
@@ -200,6 +214,7 @@ certificate?
 Status: `PAPER_CANDIDATE`.
 
 The candidate is a standalone math note: envelope, exact defect calculus,
-cycle restrictions, short certificates, and an ambient discrepancy
-corollary. The horizon-\(20\) rows are exact and uncapped; omitted ordinary
-proofs have been supplied. External mathematical review is the next gate.
+cycle restrictions with a length-\(\le6\) cycle census, short
+certificates, and an ambient discrepancy corollary. The horizon-\(20\)
+rows are exact and uncapped; omitted ordinary proofs have been supplied.
+External mathematical review is the next gate.

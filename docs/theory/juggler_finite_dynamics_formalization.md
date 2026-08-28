@@ -293,7 +293,8 @@ Sources:
 - `formal/Problems/Juggler/Residuals.lean`;
 - `formal/Problems/Juggler/Cycles.lean`;
 - `formal/Problems/Juggler/LeftoverEval.lean`;
-- `formal/Problems/Juggler/LeftoverCycles.lean`.
+- `formal/Problems/Juggler/LeftoverCycles.lean`;
+- `formal/Problems/Juggler/SmallCycleCensus.lean`.
 
 ```text
 CycleWord n w :=
@@ -360,8 +361,49 @@ The finite range \(n<256\) is evaluated in `LeftoverEval.lean`.
 finite numerical inequality \(257^{64}<2\cdot256^{64}\). The tail
 \(n\ge256\) uses the last-even cell against the coarse lower envelope
 `LowerPowerBound`, via \(n^{81}>2^{130}(n+1)^{64}\).
-This is not a length-six census, not an exclusion of odd-terminating
-cycle words, and not a halt theorem.
+
+`SmallCycleCensus.lean` assembles these exclusions into the census of
+the note's Theorem 3.3:
+
+```text
+no_cycle_word_length_le_six :
+  2 <= n -> w.length <= 6 -> ¬CycleWord n w
+```
+
+Its components are:
+
+```text
+replicate_odd_image_gt
+no_cycle_word_replicate_odd
+rotateWord_eq_drop_append_take
+exists_even_getElem_of_oddCount_lt
+cycleWord_exists_even_terminating
+no_cycle_word_len_six_ends_even
+```
+
+together with the existing `cycleWord_rotateWord`,
+`no_cycle_word_ooe`, `no_cycle_word_length_four_ends_even`,
+`no_cycle_word_length_five_ends_even`, `no_cycle_odd_run_append_even`,
+`no_cycle_word_ooeooe`, `no_cycle_word_oooeoe`, and
+`no_cycle_word_ooooee`. The census stops at length six. It is not an
+exclusion of all cycles and not a halt theorem.
+
+The cycle-surplus identity of the note's Corollary 2.7 and the
+per-step scale bound are:
+
+```text
+image_eq_start_defectRatio :
+  follows n w -> image n w = n ->
+  globalDefect n w = formalSurplus n w
+    (NormalizedDefect.lean)
+
+one_plus_eta_lt_succ_sq :
+  follows x [b] -> x ^ branchExp b < (floorPower x + 1) ^ 2
+    (NearTightScale.lean)
+```
+
+The certified four-block expanding chain named in the note's Section 6
+is `four_block_pe_1999` in `ExpansionSlack.lean`.
 
 ## 9. Evidence boundary
 

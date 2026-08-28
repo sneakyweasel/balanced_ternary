@@ -26,6 +26,10 @@ PAPER_MODULES: tuple[str, ...] = (
     "Cycles",
     "LeftoverEval",
     "LeftoverCycles",
+    "SmallCycleCensus",
+    "NormalizedDefect",
+    "ExpansionSlack",
+    "NearTightScale",
 )
 
 LAYERS: dict[str, Path] = {
@@ -58,6 +62,7 @@ LAYERS: dict[str, Path] = {
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "LeftoverEval": JUGGLER_DIR / "LeftoverEval.lean",
     "LeftoverCycles": JUGGLER_DIR / "LeftoverCycles.lean",
+    "SmallCycleCensus": JUGGLER_DIR / "SmallCycleCensus.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
     "LandingValuation": JUGGLER_DIR / "LandingValuation.lean",
@@ -95,6 +100,7 @@ LANDING_PARITY = LAYERS["LandingParity"]
 CYCLES = LAYERS["Cycles"]
 LEFTOVER_EVAL = LAYERS["LeftoverEval"]
 LEFTOVER_CYCLES = LAYERS["LeftoverCycles"]
+SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
 LANDING_VALUATION = LAYERS["LandingValuation"]

@@ -1,4 +1,4 @@
-"""Leftover length-six cycle orientations. Not a census or halt test."""
+"""Leftover length-six exclusions and the small-cycle census. Not a halt test."""
 
 from __future__ import annotations
 
@@ -7,6 +7,7 @@ from pathlib import Path
 from research.juggler_sequence.lean_paths import (
     LEFTOVER_CYCLES,
     LEFTOVER_EVAL,
+    SMALL_CYCLE_CENSUS,
     has_named,
     juggler_text,
 )
@@ -35,11 +36,30 @@ def test_leftover_cycle_theorems_present():
     assert "PowerHeight" not in leftover
 
 
-def test_note_records_theorem_32_without_open_gap():
+def test_small_cycle_census_theorems_present():
+    census = SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
+    assert "theorem no_cycle_word_length_le_six" in census
+    assert "theorem no_cycle_word_replicate_odd" in census
+    assert "theorem cycleWord_exists_even_terminating" in census
+    assert "theorem no_cycle_word_len_six_ends_even" in census
+    assert "sorry" not in census
+    assert "admit" not in census
+    # The census is an assembly of existing exclusions; it needs no new
+    # native_decide tables of its own.
+    assert "native_decide" not in census
+    assert "theorem juggler_reaches_one" not in census
+    # Scope discipline: length seven stays open.
+    assert "Length seven is open" in census
+
+
+def test_note_records_census_without_overclaim():
     note = NOTE.read_text(encoding="utf-8")
-    assert "Theorem 3.2" in note
+    assert "Lemma 3.2" in note
+    assert "Theorem 3.3" in note
     assert "remain open" not in note
     assert "OOOEOE" in note
     assert "OOOOEE" in note
+    assert "no_cycle_word_length_le_six" in note
     flat = " ".join(note.split())
-    assert "No census of all length-six words, or of all cycles, is claimed." in flat
+    assert "No exclusion of cycles of length seven or more is claimed." in flat
+    assert "no exclusion at length seven is claimed" in flat

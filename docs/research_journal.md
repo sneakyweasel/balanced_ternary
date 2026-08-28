@@ -8656,4 +8656,46 @@ Best next question
 - do almost all odd-to-odd starts have a finite descent certificate?
 ```
 
+## Juggler small-cycle census consolidation
+
+- **Date:** 2026-08-28
+- **Objective:** Assemble the existing certified cycle exclusions into a single census theorem — no nontrivial Juggler cycle of length at most six — and upgrade the math note with it, the cycle-surplus identity, the proven slack-scale bound, and a negative-knowledge record
+- **Hypotheses:** rotation invariance plus the expanding filter and the recorded thresholds already cover every word of length at most six; no new evaluation table is needed
+- **Major results:** `no_cycle_word_length_le_six` in `formal/Problems/Juggler/SmallCycleCensus.lean` (ledger `J-small-cycle-census`, EXACT — LEAN VERIFIED), assembled from rotation dispatch, the all-odd ascent exclusion, the even-terminating length-four/five theorems, the odd-run and internal-even thresholds, and the two leftover exclusions; the note states it as Theorem 3.3 with the leftover pair as Lemma 3.2, adds Corollary 2.7 (a cycle burns its whole formal surplus, `image_eq_start_defectRatio`), replaces the observational no-tax hedge with the per-step bound `one_plus_eta_lt_succ_sq`, and records the certified four-block chain `four_block_pe_1999` with five refuted finite-state reductions in Section 6
+- **Refuted ideas:** none new; the five recorded reduction failures are cited, not retested
+- **Literature:** no new citation; ledger rows `J-leftover-length-six-orientations`, `J-near-tight-scale-bounds`, `J-four-block-persistent-expanding` reused
+- **Open:** length-seven cycle words; almost-all descent on odd-to-odd starts
+- **Decision:** PROMOTE. The census is a strict strengthening with zero new axioms and no new native_decide table. No length-seven programme is opened
+
+```text
+What was learned
+- The certified exclusions were census-complete for length ≤ 6 already;
+  the missing piece was rotation dispatch, not new arithmetic
+- All-odd words die by strict odd ascent, so every remaining case is
+  even-terminating
+- EOOOOE and OEOOOE need no individual argument: they rotate onto the
+  two leftover words
+
+Strongest theorem
+- no_cycle_word_length_le_six: no cycle word of length ≤ 6 at any n ≥ 2
+
+Strongest refutation
+- none new
+
+Reusable machinery
+- SmallCycleCensus.lean: rotateWord_eq_drop_append_take,
+  cycleWord_exists_even_terminating, no_cycle_word_replicate_odd
+
+Branch status
+- PROMOTE
+
+Why
+- One assembly file turns two isolated word exclusions into a clean
+  census statement with an honest boundary at length seven, and the
+  paper's cycle section now claims exactly what Lean proves.
+
+Best next question
+- do almost all odd-to-odd starts have a finite descent certificate?
+```
+
 

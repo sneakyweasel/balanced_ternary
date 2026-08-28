@@ -32,9 +32,10 @@ claims. Theorem 5.1 is a human proof.
 
 Every realized finite Juggler word obeys a power envelope, and its local
 floor losses assemble into an exact compositional global defect with rigid
-zero cases. Inverse cells give cycle restrictions and two explicit
-length-six exclusions. As a secondary corollary, the uniform one- and
-two-step certificate class has density \(3/4\).
+zero cases. Inverse cells give cycle restrictions and a small-cycle
+census: no nontrivial cycle has length at most six. As a secondary
+corollary, the uniform one- and two-step certificate class has density
+\(3/4\).
 
 ## Claim map
 
@@ -44,7 +45,10 @@ two-step certificate class has density \(3/4\).
 | Global defect identity, vanishing, and composition | **EXACT — LEAN VERIFIED** | weighted lift, not an additive sum; not a uniform tax |
 | Odd inverse cells have at most one integer | **EXACT — LEAN VERIFIED** | one-step fibers |
 | Nontrivial cycle words are formally expanding; min-to-even prefixes are superquadratic | **EXACT — LEAN VERIFIED** | necessary condition; not an exclusion of all cycles |
-| Length-six orientations \(OOOEOE\) and \(OOOOEE\) | **EXACT — LEAN VERIFIED** | these two words only; not a length-six census |
+| Length-six orientations \(OOOEOE\) and \(OOOOEE\) (Lemma 3.2) | **EXACT — LEAN VERIFIED** | the key lemma of the census |
+| Small-cycle census: no cycle word of length \(\le6\) (Theorem 3.3) | **EXACT — LEAN VERIFIED** | lengths \(\le6\) only; length \(\ge7\) open |
+| Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists |
+| Four-block expanding chain \(1999\to\cdots\to887471\) (Section 6) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates | **EXACT — LEAN VERIFIED** | not all `FiniteProgress` |
 | \(\neg\mathrm{FP}\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only |
 | \(\{1,\ldots,11\}\) and even residuals \(<144\) reach \(1\) | **EXACT — LEAN VERIFIED** | finite landing class |
@@ -63,9 +67,9 @@ two-step certificate class has density \(3/4\).
 3. Terras–Everett prove almost-all Collatz stopping times. The note does
    not prove the Juggler analogue on odd-to-odd starts.
 4. `power_bound_contracts` requires a realized contracting word.
-5. Cycle restrictions do not exclude all cycles. The two length-six
-   orientations considered in Theorem 3.2 are excluded; that is not a
-   length-six census.
+5. Cycle restrictions do not exclude all cycles. Theorem 3.3 is a
+   census for lengths at most six only; cycles of length seven or more
+   remain possible as far as the note proves.
 6. The `native_decide` boundary checks cover both `Fin 256` itinerary
    tables and the finite inequality \(257^{64}<2\cdot256^{64}\).
 
@@ -88,8 +92,9 @@ Reject or revise if:
 2. the \(3/4\) figure is called a Terras theorem or a `ReachesOne` density;
 3. Theorem 4.2 is read as “odd-to-odd starts have no descent”;
 4. Theorem 5.1 is described as Lean-certified;
-5. either leftover orientation is described as still open, or all
-   length-six cycle words are claimed excluded;
+5. the census of Theorem 3.3 is read beyond length six, or an
+   exclusion of cycles of length seven or more is attributed to the
+   note;
 6. the discrepancy proof replaces the floor by a single exponential;
 7. an interval bound is applied to a sparse image set without transfer;
 8. Proposition 4.4 is promoted from exact finite census to an infinite theorem.

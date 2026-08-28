@@ -19,7 +19,7 @@ NODES = {
     "Towers": ("Monochrome towers", "and composition"),
     "Cells": ("Inverse cells", ""),
     "Cycles": ("Cycle restrictions", ""),
-    "Excluded": ("OOOEOE, OOOOEE", "excluded"),
+    "Excluded": ("No cycles of", "length \u2264 6"),
     "Discrepancy": ("Parity", "discrepancy"),
     "Certificates": ("One- and two-step", "certificates"),
     "Density": ("Uniform class", "density 3/4"),

@@ -13,6 +13,10 @@ import Problems.Juggler.Progress
 import Problems.Juggler.Cycles
 import Problems.Juggler.LeftoverEval
 import Problems.Juggler.LeftoverCycles
+import Problems.Juggler.SmallCycleCensus
+import Problems.Juggler.NormalizedDefect
+import Problems.Juggler.ExpansionSlack
+import Problems.Juggler.NearTightScale
 
 /-!
 # Juggler paper barrel
@@ -42,13 +46,19 @@ The note's Lean-tagged theorems are:
       `global_defect_eq_zero_implies_monochrome`,
       `power_bound_eq_iff_extremal`
 * 2.6 `global_defect_append`
+* 2.7 `image_eq_start_defectRatio`, with the per-step scale bound
+      `one_plus_eta_lt_succ_sq`
 * 3.1 `cycle_word_formally_expanding`, `odd_cell_unique`,
       `cycleMin_not_end_odd`, `square_scale_superquadratic`,
       `cycleMin_to_even_superquadratic`
-* 3.2 `no_cycle_word_oooeoe`, `no_cycle_word_ooooee`
+* 3.2 `no_cycle_word_length_le_six`, with components
+      `no_cycle_word_replicate_odd`, `cycleWord_exists_even_terminating`,
+      `no_cycle_word_len_six_ends_even`, `no_cycle_word_oooeoe`,
+      `no_cycle_word_ooooee`
 * 4.1 `even_finiteProgress`, `odd_even_finiteProgress`
 * 4.2 `unresolved_is_odd_odd`
 * 4.3 `reachesOne_of_lt_twelve`, `even_lt_sq_twelve_reachesOne`
+* §6  `four_block_pe_1999` (certified four-block expanding chain)
 
 `FiniteProgress` is a descent certificate: a realized word with image
 strictly below the start, or with image `1`. Lean packages this as
@@ -57,7 +67,8 @@ same predicate, not four different claims.
 
 This barrel does not prove that every positive integer reaches `1`,
 that every orbit meets a contracting word, or that all nontrivial
-cycles are impossible. Theorem 5.1 is a human proof and is not here.
+cycles are impossible. The cycle census stops at length six; length
+seven and beyond is open. Theorem 5.1 is a human proof and is not here.
 Proposition 4.4 is an exact uncapped Python census through horizon 20,
 not a Lean theorem.
 `FiniteCoeffStopConjecture` is a laboratory target, not a claim of

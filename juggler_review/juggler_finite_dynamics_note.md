@@ -29,7 +29,8 @@ defect. We prove its identity, vanishing classification, and composition
 law: concatenation is a two-term power-gap, and zero defect gives precisely
 the rigid monochrome towers. Exact inverse cells then yield necessary cycle
 restrictions, including superquadratic prefixes from a cycle minimum to
-later even states and the exclusion of two explicit length-six words.
+later even states, and a small-cycle census: the Juggler map has no
+nontrivial cycle of length at most six. Length seven remains open.
 
 As a secondary application, every even start and every odd start whose first
 image is even has a uniform one- or two-step descent certificate. A classical
@@ -64,8 +65,9 @@ finite-word comparison, the compositional slack, the uniform short
 certificates, and the density of the class those certificates cover.
 
 The main contribution is the exact power-envelope and defect calculus,
-together with its inverse-cell and cycle consequences. The
-short-certificate density is a secondary corollary. We do not prove a
+together with its inverse-cell and cycle consequences, chief among
+them a small-cycle census: no nontrivial cycle has length at most six.
+The short-certificate density is a secondary corollary. We do not prove a
 Collatz theorem or transfer Collatz stopping-time results to \(J\).
 
 ### 1.1 Verification convention
@@ -73,8 +75,10 @@ Collatz theorem or transfer Collatz stopping-time results to \(J\).
 Theorems in Sections 2--4 are proved both below and in Lean under the names
 listed at the start of each section. Theorem 5.1 is an ordinary human proof
 and is not formalized. Proposition 4.4 is an exact Python-integer census,
-not a theorem about an infinite set. No finite computation is used as a
-termination proof.
+not a theorem about an infinite set. The four-block chain named in
+Section 6 is Lean-certified (`four_block_pe_1999`); the failed
+reductions there are exact-integer counterexamples, not estimates. No
+finite computation is used as a termination proof.
 
 ### 1.2 Related maps
 
@@ -105,7 +109,8 @@ The identities in this section are formalized in Lean
 `power_bound_contracts`, `global_defect_identity`,
 `global_defect_eq_zero_iff_localsTight`, `global_defect_append`,
 `global_defect_eq_zero_implies_monochrome`,
-`power_bound_eq_iff_extremal`). The proofs below are the ordinary
+`power_bound_eq_iff_extremal`, `image_eq_start_defectRatio`,
+`one_plus_eta_lt_succ_sq`). The proofs below are the ordinary
 integer arguments.
 
 **Theorem 2.1 (fixed-word monotonicity).**
@@ -297,12 +302,37 @@ prefix slack to the third power, and later letters of either parity
 raise a suffix slack through \(2^{|u|}\). The naive recurrence
 \(\Delta\leftarrow\Delta+\rho\) is false.
 
-The identity does not supply a state-independent positive tax. On the
-recorded finite window, some persistent expanding blocks have very small
-normalized slack \(\Delta/n^{3^{\#O(w)}}\). The
-inequality \(\Delta_w(n)>n^{3^{\#O(w)}}-n^{2^{|w|}}\) on a formally
-expanding word is exactly \(J^{|w|}(n)<n\), so it does not forbid
-mixed expanding prefixes.
+**Corollary 2.7 (cycle surplus).**
+If \(w\) is a cycle word at \(n\), that is \(J^{|w|}(n)=n\), then
+\[
+\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}
+\]
+exactly (`image_eq_start_defectRatio`). A cycle burns its entire
+formal surplus in floor losses.
+
+*Proof.* Theorem 2.4 with \(m=n\). Nonnegativity of \(\Delta_w(n)\)
+makes the difference a genuine one. \(\square\)
+
+The identity does not supply a state-independent positive tax, and
+none exists: the single-step slack is provably squeezed by the scale
+of the state. For one realized letter at \(x\) with branch exponent
+\(e\in\{1,3\}\),
+\[
+x^{e}<(J(x)+1)^2
+\]
+(`one_plus_eta_lt_succ_sq`), so the relative slack
+\(1+\eta=x^{e}/J(x)^2\) satisfies
+\[
+\eta<\frac{2}{J(x)}+\frac{1}{J(x)^2},
+\]
+which tends to \(0\) as the state grows. A uniform per-step tax is
+therefore impossible. The recorded extreme is an \(OOE\) block at
+\(n=180370579261640036336071806107777\approx1.80\cdot10^{32}\) whose
+relative slack satisfies \(0<q<10^{-30}\); this is an exact-integer
+computation, not an estimate. The inequality
+\(\Delta_w(n)>n^{3^{\#O(w)}}-n^{2^{|w|}}\) on a formally expanding word
+is exactly \(J^{|w|}(n)<n\), so it does not forbid mixed expanding
+prefixes.
 
 ## 3. Inverse cells and cycles
 
@@ -334,8 +364,14 @@ A nonempty realized word \(w\) with \(J^{|w|}(n)=n\) is a cycle word.
 The identities in this section are formalized in Lean
 (`cycle_word_formally_expanding`, `cycleMin_not_end_odd`,
 `square_scale_superquadratic`, `cycleMin_to_even_superquadratic`,
-`no_cycle_word_oooeoe`, `no_cycle_word_ooooee`). The proofs below are
-the ordinary integer arguments.
+`no_cycle_word_oooeoe`, `no_cycle_word_ooooee`,
+`no_cycle_word_length_le_six` with components
+`no_cycle_word_replicate_odd`, `cycleWord_rotateWord`,
+`cycleWord_exists_even_terminating`,
+`no_cycle_word_length_four_ends_even`,
+`no_cycle_word_length_five_ends_even`, `no_cycle_word_ooe`,
+`no_cycle_odd_run_append_even`, `no_cycle_word_ooeooe`). The proofs
+below are the ordinary integer arguments.
 
 **Theorem 3.1 (cycle restrictions).**
 Let \(w\) be a cycle word at \(n\ge2\).
@@ -390,18 +426,15 @@ successor is at least \(n\). Thus \(n\le J(y)=\lfloor\sqrt y\rfloor\),
 so \(n^2\le y\), and the preceding argument applies to that prefix.
 \(\square\)
 
-Two length-six orientations are nevertheless impossible, and they are
-not an arbitrary pair. In a minimum-based orientation, Theorem 3.1
-forces a length-six cycle word to start odd, end even, and be formally
-expanding; that leaves \(OEOOOE\), \(OOEOOE\), \(OOOEOE\), \(OOOOEE\),
-and \(OOOOOE\). The first fails the superquadratic test of
-Theorem 3.1(iii), and the accompanying Lean development eliminates
-\(OOEOOE\) and \(OOOOOE\) by odd-run and internal-even threshold
-arguments (`no_cycleMin_ooeooe`, `no_cycle_odd_run_append_even`) not
-reproduced here. \(OOOEOE\) and \(OOOOEE\) are the two survivors of
-that elimination and require an individual argument, which uses the
-last-even cell together with a coarse lower envelope. No census of all
-length-six words, or of all cycles, is claimed.
+These restrictions assemble into a complete census of short cycles.
+Rotation reduces any cycle word to an even-terminating orientation,
+the expanding filter of Theorem 3.1(i) and threshold arguments
+eliminate every even-terminating word of length at most six except
+\(OOOEOE\) and \(OOOOEE\), and those two survivors require an
+individual argument, which uses the last-even cell together with a
+coarse lower envelope. That argument is Lemma 3.2; the census is
+Theorem 3.3. No exclusion of cycles of length seven or more is
+claimed.
 
 For \(n\ge1\),
 \[
@@ -420,7 +453,7 @@ In particular \(D_{OOO}=2^{38}\) and \(D_{OOOO}=2^{130}\). If a cycle word ends
 in an even letter, the last-even cell is
 \(J^{|w|-1}(n)<(n+1)^2\).
 
-**Theorem 3.2 (two length-six exclusions).**
+**Lemma 3.2 (two length-six exclusions).**
 Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle word at any \(n\ge2\).
 
 *Proof.* First, if \(n\ge256\), then
@@ -457,6 +490,55 @@ bound \(y^3<(n+1)^4\). Write \(A=n+1\ge257\). Then
 \(4y^3<4A^4\le yA^4\). Raising \((y+1)^3<2A^4\) to the sixteenth
 power gives \((y+1)^{48}<2^{16}(n+1)^{64}\). Combining with the cubed
 lower envelope produces again \(n^{81}<2^{130}(n+1)^{64}\). \(\square\)
+
+**Theorem 3.3 (small-cycle census).**
+No word of length at most six is a cycle word at any \(n\ge2\)
+(`no_cycle_word_length_le_six`). Equivalently, a nontrivial Juggler
+cycle, if one exists, has period at least seven.
+
+*Proof.* Rotating a cycle word by one letter moves the base point one
+step along the orbit and yields another cycle word
+(`cycleWord_rotateWord`); every state of the cycle is at least \(2\),
+because an orbit that reaches \(1\) stays at \(1\) and cannot return to
+a start \(n\ge2\).
+
+If every letter is odd, the start is odd, hence \(n\ge3\), and the odd
+branch strictly increases there: \(J(x)>x\) for odd \(x\ge3\), since
+\(x^3\ge(x+1)^2\). The orbit ascends strictly and never returns
+(`no_cycle_word_replicate_odd`). Otherwise some letter is even, and a
+rotation ending just after that letter produces an even-terminating
+cycle word \(vE\) of the same length based at a cycle state \(m\ge2\)
+(`cycleWord_exists_even_terminating`). It therefore suffices to exclude
+even-terminating cycle words of length at most six.
+
+By Theorem 3.1(i) a cycle word is formally expanding. No
+even-terminating word of length one or two is expanding (\(2<3^0\) and
+\(4<3\) both fail). For length three the only expanding candidate is
+\(OOE\): for \(m\ge5\) the next-square threshold after \(OO\) gives
+\(J^2(m)\ge(m+1)^2\), contradicting the last-even cell
+\(J^2(m)<(m+1)^2\); the only smaller odd start is \(m=3\), where
+\(J^2(3)=11\) is odd while the final even letter requires an even
+state. For length four the expanding filter leaves only \(O^3E\), and
+for length five only \(O^4E\); the threshold inherits along appended
+odd letters, and the same last-even contradiction applies
+(`no_cycle_word_length_four_ends_even`,
+`no_cycle_word_length_five_ends_even`).
+
+For length six the filter requires at least four odd letters among the
+first five, leaving \(O^5E\), \(EOOOOE\), \(OEOOOE\), \(OOEOOE\),
+\(OOOEOE\), and \(OOOOEE\). The odd-run threshold excludes \(O^5E\)
+(`no_cycle_odd_run_append_even`). For \(OOEOOE\), a minimum-based
+orientation meets the same next-square threshold at the internal even
+letter after the prefix \(OO\), with starts below \(5\) checked
+directly (`no_cycle_word_ooeooe`).
+\(EOOOOE\) rotates one step onto \(OOOOEE\), and \(OEOOOE\) rotates two
+steps onto \(OOOEOE\). The two remaining words are excluded by
+Lemma 3.2. \(\square\)
+
+The census stops at length six because length seven admits
+even-terminating expanding words with two internal even letters that
+none of the recorded thresholds reach; no exclusion at length seven is
+claimed.
 
 ## 4. Short descent certificates
 
@@ -684,6 +766,29 @@ paths are more odd-rich. This agrees qualitatively with the
 juggler-like random-walk model of Prasad and Prasad [12]. Fair parity
 is an assumption, not a dynamical theorem, and typical negative drift
 is not pointwise contraction.
+
+The gap also resists the obvious finite-state attacks, and the
+failures are recorded, not anecdotal. Lean certifies a chain of four
+consecutive expanding persistent residual blocks,
+\[
+1999\to5169\to50093\to193753\to887471
+\]
+(`four_block_pe_1999`), so no uniform run bound of four or less exists
+for expanding blocks. Around such hard paths, five natural finite-state
+reductions fail on exact-integer counterexamples: a uniform slack tax
+per expanding block fails at the \(OOE\) block near \(1.80\cdot10^{32}\)
+with relative slack below \(10^{-30}\) (Section 2); a compact state
+built from the normalized landing position \(\theta\) fails because
+\(\theta\) fills essentially all of \([0,1]\) on continuations and
+predicts the next parity no better than a residue class; recognition
+modulo \(2^m\) fails because every residue class modulo \(64\) both
+continues and exits the iterated odd-landing sets; a \(2\)-adic
+restriction from persistent-expanding history fails because the
+endpoint \(763\) has \(v_2\bigl(y^3-J(y)^2\bigr)=1\); and the expanding
+word grammar is not an independent obstruction because, on \(n\ge2\),
+persistence already implies expansion, so that attack reduces to the
+tautology \(J^{|w|}(n)>n\). Each failed reduction is an exact
+computation on named witnesses.
 
 The gap is therefore:
 
