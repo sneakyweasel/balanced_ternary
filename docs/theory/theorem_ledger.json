@@ -3200,7 +3200,7 @@
   {
     "id": "J-cycle-finite-structure",
     "tag": "EXACT \u2014 LEAN VERIFIED",
-    "statement": "Every nontrivial Juggler cycle word based at n \u2265 2 is formally expanding. Cycle extrema satisfy the certified parity, order, square-scale, and nested-cell constraints; a minimum-based cycle orientation cannot end in an odd letter. These are necessary cycle restrictions, not an exclusion of all cycles.",
+    "statement": "Every nontrivial Juggler cycle word based at n \u2265 2 is formally expanding. Cycle extrema satisfy the certified parity, order, square-scale, and nested-cell constraints; a minimum-based cycle orientation cannot end in an odd letter. The path from a cycle minimum to any later even state is superquadratic. These are necessary cycle restrictions, not an exclusion of all cycles.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/Cycles.lean",
     "tests": [

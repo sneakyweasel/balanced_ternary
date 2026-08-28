@@ -37,8 +37,9 @@ Every substantive claim must be linked to one of:
 
 - Pickover, *Computers and the Imagination*,
   `pickover-1991-computers-imagination` — historical source. **KNOWN**.
-- OEIS A007320, `oeis-A007320` — computational sequence record and statement
-  of the open totality question. **KNOWN**.
+- OEIS A094683, `oeis-A094683` — one-step Juggler map. **KNOWN**.
+- OEIS A007320, `oeis-A007320` — stopping-time table and the open totality
+  question. **KNOWN**; not the paper citation.
 - Kuipers--Niederreiter, *Uniform Distribution of Sequences*,
   `kuipers-niederreiter-1974-uniform-distribution` — classical discrepancy
   tools. **KNOWN**.

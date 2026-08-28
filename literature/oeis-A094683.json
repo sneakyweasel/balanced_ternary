@@ -1,0 +1,20 @@
+{
+  "id": "oeis-A094683",
+  "title": "Juggler sequence: if n even then floor(sqrt(n)) else floor(n^(3/2))",
+  "authors": ["OEIS contributors"],
+  "year": 2004,
+  "identifiers": {
+    "oeis": "A094683"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A094683"
+  },
+  "problem_area": "nonlinear-integer-dynamics",
+  "relevant_concepts": [
+    "juggler sequence",
+    "floor powers"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "One-step Juggler map. Paper citation [2] in docs/theory/juggler_finite_dynamics_note.md. A007320 is the stopping-time table, not the map."
+}
