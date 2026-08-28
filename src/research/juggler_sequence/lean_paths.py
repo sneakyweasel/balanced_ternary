@@ -30,6 +30,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "NormalizedDefect",
     "ExpansionSlack",
     "NearTightScale",
+    "GapCells",
 )
 
 LAYERS: dict[str, Path] = {
@@ -69,6 +70,7 @@ LAYERS: dict[str, Path] = {
     "PreimageCylinders": JUGGLER_DIR / "PreimageCylinders.lean",
     "OddLandingSets": JUGGLER_DIR / "OddLandingSets.lean",
     "WordLanguage": JUGGLER_DIR / "WordLanguage.lean",
+    "GapCells": JUGGLER_DIR / "GapCells.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -107,6 +109,7 @@ LANDING_VALUATION = LAYERS["LandingValuation"]
 PREIMAGE_CYLINDERS = LAYERS["PreimageCylinders"]
 ODD_LANDING_SETS = LAYERS["OddLandingSets"]
 WORD_LANGUAGE = LAYERS["WordLanguage"]
+GAP_CELLS = LAYERS["GapCells"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",

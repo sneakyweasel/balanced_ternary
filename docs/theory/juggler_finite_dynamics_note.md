@@ -42,7 +42,7 @@ S_O(N)=\sum_{\substack{n\le N\\n\ {\rm odd}}}
 \]
 implies that this uniform short-certificate class has density \(3/4\).
 An exact-linearization calculus for the nested floor powers extends the
-discrepancy method one level down the orbit: every itinerary word class
+discrepancy method down the orbit: every itinerary word class
 of depth at most four except \(OOO*\) has cardinality
 \(2^{-|w|}N+O(N^{1-\delta_w})\) with explicit exponents, and consequently
 the class of starts carrying a uniform descent certificate of length at
