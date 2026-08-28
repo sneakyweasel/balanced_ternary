@@ -306,6 +306,43 @@ obstruction is now a single named object.
   engine *without* meeting the kernel; would settle depth 4 except
   OOO\*.
 
+## Phase 6: the OE\*\* splits — depth 4 complete except OOO\*
+
+Working document, Part V. Scope: the promoted question — does the
+engine iterate one level down the scale hierarchy? It does, and the
+reduction is *shorter* than Theorem C.
+
+- **Lemma A′ (w-level linearization)** — **EXACT — HUMAN PROOF**:
+  since \(U m^{1/4} = m^{3/4}\) exactly (\(U = m^{1/2}\), \(w =
+  \lfloor U\rfloor\)), Lemma A collapses to \(w^{3/2} = m^{3/4} -
+  \tfrac32 m^{1/4}\theta_w + E\) with \(0 \le E \le \tfrac38
+  (U-1)^{-1/2}\). Two exact Taylor steps smooth the whole fourth
+  letter to \(n^{9/8}\) minus one growing sawtooth \(B\theta_w\),
+  \(B = \tfrac{3k}4 n^{3/8}\). Validated to \(n = 10^{12}\)
+  (`lemma_a_prime_scan`, `oeo_smoothing_scan`).
+- **Theorem Q (OE\*\* splits)** — **EXACT — HUMAN PROOF**
+  (`J-depth4-slow-branch`): \(\#\mathrm{OEOE}, \#\mathrm{OEOO} =
+  N/16 + O(N^{7/8+\varepsilon})\); \(\#\mathrm{OEEE}, \#\mathrm{OEEO}
+  = N/16 + O(N^{13/16+\varepsilon})\). No differencing: \(B\) drifts
+  by \(\le 1\) on intervals of length \(P^{5/8}/k\); shifted-window
+  Fourier expansion, sign-collision check (\(T = P^{5/16} \ll
+  kP^{3/8}\) for every \(k \ge 1\)), van der Corput II, balance
+  \(J = P^{1/8}\). Branch consistency of all four indicators
+  machine-checked (`oeo_indicator_identity_check`).
+- **Depth 4 is complete except OOO\***: six of eight odd-rooted
+  words proved (Theorems E and Q); OOO\* is exactly the kernel
+  (Conjecture O). The regime boundary is now sharp: the engine
+  reaches letters whose phase coefficients grow slower than \(n\)
+  (integer crossings slower than one per step); OOO\* sits above.
+- **Proposition J audit**: E-rooted words have a contracting prefix
+  at length 1, so the hypothesis only consumes O-rooted class bounds
+  — no further hidden gap.
+- Float sanity: the OEO mode sum tracks the coherent-cell
+  random-walk scale \(P^{5/8}\) (\(1361\) vs \(1333\) predicted at
+  \(P = 10^5\); \(6142\) vs \(5623\) at \(10^6\)), far below the
+  proven \(P^{7/8}\); the census fitted depth-4 exponent \(0.66\)
+  matches.
+
 ## Results
 
 At \(N=10^7\) (4,999,999 odd starts):
@@ -325,13 +362,13 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-Two, ordered: (1) the OEO\*/OEE\* splits at depth 4 — the growing
-layer on the slow variable, likely within the existing engine, and
-enough to settle depth 4 except OOO\*; (2) Conjecture O, the kernel
-bound \(K_c \ll P^{1-\delta}\) — the exact remaining obstacle to
-OOO\* and every density tier beyond \(13/16\). Separately, the
-editorial import of Theorems C/E/L and Corollary F into the
-finite-dynamics note.
+One mathematical: Conjecture O, the kernel bound \(K_c \ll
+P^{1-\delta}\) — the exact remaining obstacle to OOO\*, to depth-4
+completeness, and to every density tier beyond \(13/16\). One
+editorial: import of Theorems C/E/L/Q, Corollary F, Proposition J,
+and Conjecture O into the finite-dynamics note (headline: certified
+density \(13/16\); every depth-4 word class except OOO\*; a named
+open kernel).
 
 ## Decision
 
@@ -377,19 +414,30 @@ knowledge and a float probe showing square-root cancellation
 (Conjecture O). Two ledger rows added; the Proposition-J row
 corrected. The kernel bound is the promoted frontier, not a claim.
 
-Best next question: does the OEO\* split at depth 4 close under the
-existing engine — the growing layer riding the slow variable
-\(w = \lfloor m^{1/2}\rfloor\) with its long constancy cells — thereby
-settling every depth-4 word class except OOO\* and testing whether
-the Theorem-C pattern iterates down the scale hierarchy?
+**PROMOTE** (Phase 6, OE\*\* splits): the engine iterates down the
+scale hierarchy exactly as conjectured — Lemma A′ collapsed the
+reduction to two Taylor steps, Theorem Q closed all four OE\*\*
+classes at \(N^{7/8+\varepsilon}\)/\(N^{13/16+\varepsilon}\) with no
+differencing, and depth 4 is complete except OOO\*. The
+engine/kernel regime boundary is now sharp (coefficient growth
+\(n^{1}\)). One ledger row added; Proposition-J row and Conjecture-K
+texts updated.
+
+Best next question: the branch's mathematical frontier is now a
+single object — does the kernel \(K_c(P) = \sum e(c(n)\{\lfloor
+n^{3/2}\rfloor^{3/2}\})\), \(c \asymp kP^{9/8}\), admit any power
+saving (Conjecture O)? Before attacking it, the editorial import of
+the branch into the finite-dynamics note is the natural
+consolidation point.
 
 ## Publication assessment
 
 Status: `THEOREM`. Exact linearization lemmas, power-saving
 joint-parity discrepancy bounds for nested floor-power sequences at
-all depths \(\le 3\) and the OOE\* splits at depth 4, outside the
+all depths \(\le 3\) and every depth-4 word except OOO\*, outside the
 existing Piatetski-Shapiro literature, and a certified-descent
 density of \(13/16\) — a direct headline improvement over the note's
 current \(3/4\). The isolated kernel \(K_c\) (Conjecture O) is itself
-a publishable problem statement. Import into the finite-dynamics note
-is the pending editorial phase.
+a publishable problem statement, with a sharp engine/kernel regime
+boundary. Import into the finite-dynamics note is the pending
+editorial phase.

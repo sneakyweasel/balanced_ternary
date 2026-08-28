@@ -19,9 +19,13 @@ from research.juggler_sequence.two_step_parity import (
     itinerary_word,
     juggler_step,
     kernel_probe,
+    lemma_a_prime_scan,
     lemma_m_scan,
     level2_gap_check,
     m12_scan,
+    oeo_indicator_identity_check,
+    oeo_mode_probe,
+    oeo_smoothing_scan,
     oe_indicator_identity_check,
     ooee_indicator_identity_check,
     ooo_indicator_identity_check,
@@ -241,6 +245,36 @@ def test_kernel_probe_cancels():
     # Conjecture O support: the isolated tier-2 kernel exhibits strong
     # cancellation (far below the trivial bound; loose threshold).
     result = kernel_probe(10**4)
+    assert result["abs_sum"] < 0.1 * result["count"]
+
+
+def test_lemma_a_prime_w_level_linearization():
+    # Theorem Q brick: w^{3/2} = -(1/2)m^{3/4} + (3/2)w m^{1/4} + E,
+    # 0 <= E <= (3/8)(U-1)^{-1/2}, exact at scale 10^30.
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert lemma_a_prime_scan(samples)["holds"] is True
+
+
+def test_oeo_smoothing_identity():
+    # Full OEO* smoothing: w^{3/2} = n^{9/8} - (3/2) m^{1/4} theta_w
+    # + d2 with the asymmetric decaying window.
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert oeo_smoothing_scan(samples)["holds"] is True
+
+
+def test_oeo_indicator_identity():
+    # All four OE** depth-4 words match the sign data (m even, parity
+    # of w, parity of the branch-correct fourth value): the branch
+    # consistency behind Theorem Q.
+    result = oeo_indicator_identity_check(5001)
+    assert result["holds"] is True
+    assert result["checked"] > 1000
+
+
+def test_oeo_mode_probe_cancels():
+    # Theorem Q's mode sum cancels strongly (empirically ~P^{5/8},
+    # the coherent w-cell random-walk scale; loose threshold).
+    result = oeo_mode_probe(10**4)
     assert result["abs_sum"] < 0.1 * result["count"]
 
 

@@ -9028,4 +9028,78 @@ Best next question
   constancy cells), settling depth 4 except OOO*?
 ```
 
+## Juggler Phase 6: the OE** splits close — depth 4 complete except OOO*
+
+The promoted question answered affirmatively, and more cheaply than
+expected. Working document Part V; dossier Phase 6; row
+`J-depth4-slow-branch`.
+
+The reduction collapsed to two exact Taylor steps thanks to an
+algebraic gift: with U = m^{1/2} and w = floor(U), the identity
+U m^{1/4} = m^{3/4} is exact, so Lemma A at the w-level rearranges to
+w^{3/2} = m^{3/4} - (3/2) m^{1/4} theta_w + E with one-signed decaying
+E — no polynomial phase, no differencing, no cells. The fourth-letter
+mode phase is (k/2) n^{9/8} minus a single growing sawtooth B theta_w,
+B = (3k/4) n^{3/8}. Because B crosses integers only every P^{5/8}/k
+steps, drift-1 intervals exist and the shifted-window expansion works
+with logarithmic mass; the sign-collision check is uniform in k
+(window P^{5/16} << k P^{3/8} for every k >= 1); van der Corput II and
+the balance J = P^{1/8} give #OEOE, #OEOO = N/16 + O(N^{7/8+eps}).
+The OEE branch is decaying-only: N^{13/16+eps}. Validators exact to
+n = 10^12; all four indicator identities machine-checked; the float
+probe tracks the coherent-cell random-walk scale P^{5/8} (1361 vs
+1333 predicted at P = 10^5), far below the proven bound.
+
+Two structural corollaries. First, depth 4 is complete except OOO*:
+six of eight odd-rooted words proved, and the eighth pair is exactly
+the kernel (Conjecture O). The engine/kernel boundary is now sharp:
+this machinery reaches precisely the itinerary letters whose phase
+coefficients grow slower than n (integer crossings slower than one
+per step); OOO*'s weight n^{9/8} sits above the line. Second, a
+Proposition-J audit: E-rooted words have a contracting prefix at
+length 1, so the density-one implication only ever consumes O-rooted
+class bounds — no hidden gap on the even side.
+
+```text
+What was learned
+- The Theorem-C engine iterates down the scale hierarchy: a growing
+  layer on a slow variable costs two Taylor steps, not a new method
+- U m^{1/4} = m^{3/4} exactly: the w-level linearization has no
+  polynomial residue at all
+- The engine/kernel regime boundary is sharp at coefficient growth
+  n^1: below it drift-1 intervals exist, above it they do not
+- Proposition J never needs E-rooted word bounds (contracting prefix
+  at length 1) - the program is exactly the O-rooted hierarchy
+- The OEO mode sum lives at the coherent-cell scale P^{5/8}: the
+  proven 7/8 has a large true margin
+
+Strongest theorem
+- Theorem Q: all four OE** depth-4 classes at N/16 + O(N^{7/8+eps})
+  resp. O(N^{13/16+eps}) - depth 4 complete except OOO*
+
+Strongest refutation
+- none this phase; the falsifier (a sign collision in the window) was
+  checked and does not fire for any k >= 1
+
+Reusable machinery
+- lemma_a_prime/oeo_smoothing/oeo_indicator validators (exact to
+  10^12); oeo_mode_probe; the drift-1-interval + shifted-window
+  pattern as a reusable template for slow-variable growing layers
+
+Branch status
+- PROMOTE
+
+Why
+- The branch now has a complete depth-4 theory minus one word pair,
+  a sharp statement of why that pair is different, and a single
+  named conjecture carrying all remaining difficulty. This is the
+  natural consolidation point before either the editorial import or
+  a kernel attack.
+
+Best next question
+- editorial: import Theorems C/E/L/Q, Corollary F, Proposition J and
+  Conjecture O into the finite-dynamics note; mathematical: does K_c
+  admit any power saving?
+```
+
 

@@ -81,6 +81,10 @@ ANTI_OVERCLAIM = {
     # but NOT bounded.
     "depth3_words_proved": True,
     "kernel_bound_proved": False,
+    # Phase 6: Theorem Q closes the OE** splits (growing layer on the
+    # slow variable w); every depth-4 word class is proved except
+    # OOO*, which is exactly the kernel (Conjecture O).
+    "depth4_slow_branch_proved": True,
 }
 
 
@@ -226,6 +230,124 @@ def deep_word_counts(n_max: int, depth: int) -> dict[str, int]:
         w = itinerary_word(n, depth)
         counts[w] = counts.get(w, 0) + 1
     return dict(sorted(counts.items()))
+
+
+# --- Phase 6: the OEO* split (growing layer on the slow variable) ---
+
+
+def lemma_a_prime_check(n: int, scale: int = SCALE) -> tuple[int, int]:
+    """(E*scale, bound*scale) for the w-level linearization (Lemma A').
+
+    With m = floor(n^{3/2}), U = m^{1/2}, w = floor(U), theta_w = U - w:
+    w^{3/2} = -(1/2) m^{3/4} + (3/2) w m^{1/4} + E,
+    0 <= E <= (3/8)(U-1)^{-1/2}. Since U m^{1/4} = m^{3/4} exactly, this
+    rearranges to w^{3/2} = m^{3/4} - (3/2) m^{1/4} theta_w + E: the
+    entire OEO* fourth-letter phase is one decaying-smooth term plus
+    one growing sawtooth of amplitude (3/2) m^{1/4} ~ n^{3/8}.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    w = isqrt(m)
+    lhs = isqrt(w**3 * scale * scale)
+    r34m = isqrt(isqrt(m**3 * scale**4))
+    r14m = isqrt(isqrt(m * scale**4))
+    poly = -r34m // 2 + 3 * w * r14m // 2
+    bound = 3 * scale // (8 * isqrt(w - 1))
+    return lhs - poly, bound
+
+
+def lemma_a_prime_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    for n in samples:
+        diff, bound = lemma_a_prime_check(n)
+        if not (-4 * n <= diff <= bound + 4 * n):
+            return {"holds": False, "witness": n}
+    return {"holds": True, "count": len(samples)}
+
+
+def oeo_smoothing_check(n: int, scale: int = SCALE) -> tuple[int, int, int]:
+    """(d2*scale, lo*scale, hi*scale) for the full OEO* smoothing.
+
+    d2 = w^{3/2} - n^{9/8} + (3/2) m^{1/4} theta_w collects Lemma A'
+    plus the m^{3/4} -> n^{9/8} substitution:
+    -(3/4) n^{-3/8} - (3/32)(X-1)^{-5/4} <= d2 <= (3/8)(U-1)^{-1/2}.
+    All error terms decay, so the phase (k/2) w^{3/2} equals
+    (k/2) n^{9/8} - (3k/4) m^{1/4} theta_w + absorbable.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    w = isqrt(m)
+    t_w = isqrt(w**3 * scale * scale)
+    r98 = _eighth_scaled(n**9, scale)
+    r38 = _eighth_scaled(n**3, scale)
+    r14m = isqrt(isqrt(m * scale**4))
+    th_w = isqrt(m * scale * scale) - w * scale
+    d2 = t_w - r98 + 3 * (r14m * th_w) // (2 * scale)
+    lo = -(3 * scale * scale) // (4 * r38)
+    hi = 3 * scale // (8 * isqrt(w - 1))
+    return d2, lo, hi
+
+
+def oeo_smoothing_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    for n in samples:
+        d2, lo, hi = oeo_smoothing_check(n)
+        if not (lo - 4 * n <= d2 <= hi + 4 * n):
+            return {"holds": False, "witness": n}
+    return {"holds": True, "count": len(samples)}
+
+
+def oeo_indicator_identity_check(n_max: int) -> dict[str, Any]:
+    """Branch consistency for all four OE** depth-4 words.
+
+    For odd n with m = floor(n^{3/2}) even and w = isqrt(m): the word
+    is 'OE' + parity(w) + parity(isqrt(w^3) if w odd else isqrt(w)).
+    The (1-(-1)^w)/2 factor vanishes exactly where J^3 would take the
+    even branch, so psi(w^{3/2}) evaluates unconditionally.
+    """
+    checked = 0
+    for n in range(3, n_max + 1, 2):
+        m = isqrt(n**3)
+        if m % 2 == 1:
+            continue
+        w = isqrt(m)
+        if w % 2 == 1:
+            fourth = isqrt(w**3)
+        else:
+            fourth = isqrt(w)
+        expected = (
+            "OE"
+            + ("O" if w % 2 == 1 else "E")
+            + ("O" if fourth % 2 == 1 else "E")
+        )
+        if itinerary_word(n, 4) != expected:
+            return {"holds": False, "witness": n}
+        checked += 1
+    return {"holds": True, "checked": checked, "n_max": n_max}
+
+
+def oeo_mode_probe(p_block: int) -> dict[str, Any]:
+    """Float probe of the OEO* mode sum sum e((1/2) w^{3/2}) on n ~ P.
+
+    Exact scaled phase; float only in the exponential. Cancellation
+    here is what Theorem Q proves.
+    """
+    from math import cos, pi, sin
+
+    s = 10**12
+    re = im = 0.0
+    cnt = 0
+    n = p_block + 1
+    while n < 2 * p_block:
+        w = isqrt(isqrt(n**3))
+        t_w = isqrt(w**3 * s * s)
+        frac = (t_w % (2 * s)) / (2 * s)
+        ph = 2 * pi * frac
+        re += cos(ph)
+        im += sin(ph)
+        cnt += 1
+        n += 2
+    return {"count": cnt, "abs_sum": round((re * re + im * im) ** 0.5, 1)}
 
 
 # --- Phase 5: even-branch third letter, tier-2 bricks, kernel probe ---
@@ -694,13 +816,13 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
     lines = [
         "# Juggler multi-step itinerary-parity census",
         "",
-        "Status: **COMPUTATIONALLY VERIFIED** counts; all depth-3 word",
-        "classes and the even-branch depth-4 splits are **EXACT — HUMAN",
-        "PROOF** (`J-nested-parity-discrepancy`,",
-        "`J-triple-parity-discrepancy`, `J-even-branch-third-letter`,",
-        "`J-four-step-descent-density`; proofs in",
-        "`juggler_two_step_parity_lemma.md`). The tier-2 kernel bound",
-        "(Conjecture O) is open.",
+        "Status: **COMPUTATIONALLY VERIFIED** counts; every depth-4 word",
+        "class except OOO* is **EXACT — HUMAN PROOF**",
+        "(`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,",
+        "`J-even-branch-third-letter`, `J-four-step-descent-density`,",
+        "`J-depth4-slow-branch`; proofs in",
+        "`juggler_two_step_parity_lemma.md`). The OOO* split is exactly",
+        "the tier-2 kernel bound (Conjecture O), open.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",

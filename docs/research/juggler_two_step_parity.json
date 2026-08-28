@@ -120,6 +120,7 @@
     "tier2_analytic_lemma_proved": false,
     "density_one_claimed": false,
     "depth3_words_proved": true,
-    "kernel_bound_proved": false
+    "kernel_bound_proved": false,
+    "depth4_slow_branch_proved": true
   }
 }

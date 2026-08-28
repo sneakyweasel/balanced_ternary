@@ -664,7 +664,7 @@ almost every start descends below itself. The implication is
 unconditional; only the hypothesis is open beyond the proved cases
 (\(d \le 3\) fully — Theorems 5.1/C plus Proposition L of Part IV,
 which closed a gap in an earlier phrasing of this remark; at
-\(d = 4\), the OOE\* splits via Theorem E).
+\(d = 4\), every word except OOO\* via Theorems E and Q of Part V).
 
 ### Census gate at depth 6 — COMPUTATIONALLY VERIFIED
 
@@ -693,11 +693,11 @@ degrades as \(\gamma_{\min}(w)\) shrinks.
 For every fixed itinerary word \(w\): \(\#\{n \le N:
 \mathrm{word}(n) \text{ has prefix } w\} = 2^{-|w|}N +
 O(N^{1-\delta_w})\), \(\delta_w > 0\). Proved for \(|w| \le 3\)
-(Theorems 5.1/C, Proposition L) and for the OOE\* splits at
-\(|w| = 4\) (Theorem E). With Proposition J this implies density-one
-finite descent. The next concrete cases are the OEO\* splits
-(Part IV remark: likely within the existing engine) and tier 2, the
-OOO\* split, whose precise obstruction is isolated in Part IV.
+(Theorems 5.1/C, Proposition L) and for every word at \(|w| = 4\)
+except OOO\* (Theorems E and Q). With Proposition J this implies
+density-one finite descent. The only remaining depth-4 case is
+tier 2, the OOO\* split, whose precise obstruction — the kernel
+\(K_c\) — is isolated in Part IV.
 
 Import of Theorems C/E and Corollary F into the finite-dynamics note
 remains a separate editorial phase.
@@ -892,4 +892,184 @@ n^{1/4}\) values of \(n\): its gap variable has long constancy cells,
 i.e. the Theorem-C pattern with the roles shifted one level down.
 This split (and the easy decaying OEE\* one) looks closable by the
 existing engine without meeting the kernel, and would settle depth 4
-entirely except OOO\*.
+entirely except OOO\*. *(Done: Part V, Theorem Q.)*
+
+## Part V: the OE\*\* splits — depth 4 complete except OOO\* (Phase 6)
+
+Throughout: \(n\) odd, \(X = n^{3/2}\), \(m = \lfloor X\rfloor\),
+\(\theta = X - m\); on the OE branch \(m\) is even and \(J^2(n) = w =
+\lfloor U\rfloor\) with \(U = m^{1/2}\), \(\theta_w = U - w\). On the
+OEO branch (\(w\) odd) the fourth letter is the parity of \(\lfloor
+w^{3/2}\rfloor\); on the OEE branch (\(w\) even), of \(\lfloor
+w^{1/2}\rfloor\).
+
+### Lemma A′ (w-level linearization) — EXACT — HUMAN PROOF
+
+For odd \(n \ge 5\):
+
+\[
+w^{3/2} \;=\; -\tfrac12 m^{3/4} + \tfrac32 w\, m^{1/4} + E,
+\qquad 0 \le E \le \tfrac38 (U-1)^{-1/2},
+\]
+
+and since \(U m^{1/4} = m^{3/4}\) *exactly*, equivalently
+
+\[
+w^{3/2} \;=\; m^{3/4} \;-\; \tfrac32\, m^{1/4}\,\theta_w \;+\; E .
+\]
+
+*Proof.* Lemma A verbatim with base \(U\) in place of \(X\):
+\(w^{3/2} = (U - \theta_w)^{3/2} = U^{3/2} - \tfrac32\theta_w U^{1/2}
++ \tfrac38\theta_w^2(U-\xi)^{-1/2}\), substitute \(\theta_w = U - w\)
+exactly in the linear term, and note \(U^{3/2} = m^{3/4}\),
+\(U^{1/2} = m^{1/4}\). \(\square\) Validated exactly
+(`lemma_a_prime_scan`) through \(n = 10^{12}\).
+
+**Corollary (full smoothing).** With \(d_2 = w^{3/2} - n^{9/8} +
+\tfrac32 m^{1/4}\theta_w\):
+
+\[
+-\tfrac34 n^{-3/8} - \tfrac3{32}(X-1)^{-5/4}
+\;\le\; d_2 \;\le\; \tfrac38 (U-1)^{-1/2},
+\]
+
+because \(m^{3/4} - X^{3/4} = -\tfrac34\theta X^{-1/4} -
+\tfrac3{32}\theta^2(X-\xi')^{-5/4}\) (Taylor of \((X-\theta)^{3/4}\),
+both correction terms one-signed) and \(X^{3/4} = n^{9/8}\). All
+error terms decay like \(n^{-3/8}\), so for a Vaaler mode \(k\):
+
+\[
+\tfrac k2 w^{3/2} \;=\; \tfrac k2 n^{9/8}
+\;-\; B(n)\,\theta_w(n) \;+\; O\bigl(k\,n^{-3/8}\bigr),
+\qquad
+B(n) = \tfrac{3k}4\, m^{1/4} = \tfrac{3k}4 n^{3/8}\bigl(1 +
+O(n^{-3/2})\bigr),
+\]
+
+with cumulative substitution cost \(O(kP^{5/8})\) on a block
+\(n \sim P\). Validated exactly (`oeo_smoothing_scan`) through
+\(n = 10^{12}\). *One growing sawtooth remains* — amplitude
+\(\asymp k n^{3/8}\) — riding \(\theta_w = \{m^{1/2}\}\), whose
+underlying variable increments once every \(\asymp \tfrac43 n^{1/4}\)
+steps.
+
+### Theorem Q (the OE\*\* splits) — EXACT — HUMAN PROOF
+
+\[
+\#\mathrm{OEOE}(N),\ \#\mathrm{OEOO}(N) = \tfrac N{16} +
+O\bigl(N^{7/8+\varepsilon}\bigr),
+\qquad
+\#\mathrm{OEEE}(N),\ \#\mathrm{OEEO}(N) = \tfrac N{16} +
+O\bigl(N^{13/16+\varepsilon}\bigr).
+\]
+
+Together with Theorems C/E this proves every depth-4 itinerary word
+class except OOO\*.
+
+*Proof.* Indicator algebra: \(\mathrm{OEO}\ast\) is
+\(\tfrac18(1+\psi_1)(1-\psi_w)(1\pm\psi(w^{3/2}))\) with \(\psi_1 =
+(-1)^m\), \(\psi_w = (-1)^w\); branch-consistent because
+\((1+\psi_1)\) vanishes on odd \(m\) (where \(J^2\) takes the odd
+branch) and \((1-\psi_w)\) on even \(w\) (where \(J^3\) would take
+the even branch) — machine-checked for all four words
+(`oeo_indicator_identity_check`). Vaaler-expand the three waves with
+truncations \(J_1 = J_2 = J_3 = P^{1/8}\) (majorant errors
+\(3P^{7/8}\)); \(\psi_w\)-modes smooth to \(e(\tfrac j2 n^{3/4})\) by
+the Proposition L brick. The nontrivial modes are \(k \ne 0\):
+
+**Step 1 (smoothing).** By the Corollary, the mode phase is
+\(\varphi_1(n) - B(n)\theta_w(n)\) up to absorbable errors, with
+\(\varphi_1 = \tfrac i2 n^{3/2} + \tfrac j2 n^{3/4} + \tfrac k2
+n^{9/8}\) and \(B = \tfrac{3k}4 n^{3/8}\) (replacing \(m^{1/4}\) by
+\(X^{1/4}\) costs \((3k/16)\theta X^{-3/4}\,\theta_w \ll
+kn^{-9/8}\)).
+
+**Step 2 (drift-1 intervals).** \(B' \asymp k n^{-5/8}\), so \(B\)
+drifts by at most \(1\) on intervals \(I\) of length \(L_0 =
+P^{5/8}/k\); there are \(\asymp k P^{3/8}\) of them. On \(I\), expand
+\(e(-B\{U\}) = \sum_r a_r(B)\,e(rU)\) (Fourier in \(U\), Vaaler
+truncation \(|r + B| \le T = P^{5/16}\), majorant error \(\ll L_0/T\)
+per interval, \(P/T = P^{11/16}\) total). Coefficients:
+\(|a_r(B)| \le \min(1, |r+B|^{-1})\), window mass \(O(\log T)\); the
+\(n\)-dependence through \(B(n)\) has total variation
+\(\sum_r \sup_I |a_r'|\,|B'|\,L_0 \ll \sum_r |r+B|^{-2} = O(1)\),
+removed by partial summation once per mode.
+
+**Step 3 (mode sums).** Each mode is \(\sum_{n\in I}
+e(\varphi_1(n) + rU(n))\); smoothing \(rU \to r n^{3/4}\) costs
+\(\tfrac r2\theta X^{-1/2}\) pointwise, \(\ll |r| P^{-3/4}\cdot L_0
+\ll P^{1/4}\) per interval, \(kP^{5/8}\) total. Writing \(r = -B_0 +
+t\), \(|t| \le T\):
+
+\[
+\varphi'' = \tfrac{27k}{128} n^{-7/8}
+- \tfrac3{16}\bigl(t + \tfrac j2\bigr) n^{-5/4}
++ \tfrac{3i}8\, n^{-1/2}.
+\]
+
+For \(i \ne 0\) the first-listed scale is dominated: \(\lambda_2
+\asymp |i| P^{-1/2}\), single-signed since \(|i|P^{-1/2} \ge
+P^{-1/2}\) while the others are \(\le kP^{-7/8} + TP^{-5/4} \ll
+P^{-3/4}\); van der Corput II over \(I\) and summation over intervals
+give \(\ll i^{1/2}P^{3/4} + i^{-1/2}kP^{5/8}\). For \(i = 0\): the
+\(t\)-term satisfies \(|t + j/2|\,P^{-5/4} \le (T + J_2)P^{-5/4} \ll
+kP^{-7/8}\) because \(T = P^{5/16} \ll kP^{3/8}\) for every
+\(k \ge 1\); hence \(\lambda_2 \asymp k n^{-7/8}\), single-signed.
+Van der Corput II per interval: \(L_0\lambda_2^{1/2} +
+\lambda_2^{-1/2} \ll k^{-1/2}(P^{3/16} + P^{7/16})\); times
+\(kP^{3/8}\) intervals and \(O(\log)\) mode mass:
+
+\[
+S_k \;\ll\; k^{1/2} P^{13/16+\varepsilon} .
+\]
+
+**Assembly.** With Vaaler weights \(1/k\),
+\(\sum_{k\le J_3} \tfrac1k\, k^{1/2} P^{13/16} = J_3^{1/2} P^{13/16}
+= P^{7/8}\), balanced against the truncation error \(P/J_3 =
+P^{7/8}\) at \(J_3 = P^{1/8}\). The \(i\)- and \(j\)-weighted sums
+are smaller (\(\ll P^{3/4+\varepsilon}\)); absorbable inventory:
+\(kP^{5/8} \le P^{3/4}\), \(P/T = P^{11/16}\), partial-summation
+factors \(O(\log)\). Total \(\ll P^{7/8+\varepsilon}\); dyadic blocks
+sum to \(N^{7/8+\varepsilon}\).
+
+**OEE branch.** The fourth letter needs \(\psi(w^{1/2})\):
+\(w^{1/2} = (U - \theta_w)^{1/2} = U^{1/2} - \tfrac12\theta_w
+U^{-1/2} - \tfrac18\theta_w^2(U-\xi)^{-3/2}\) — *decaying* amplitudes
+only, and \(U^{1/2} = m^{1/4} \to n^{3/8}\) likewise. Pure modes
+\(e(\tfrac l2 n^{3/8})\): \(\lambda_2 \asymp l P^{-13/8}\), van der
+Corput II gives \(l^{1/2}P^{3/16} + l^{-1/2}P^{13/16}\); the mixed
+\(i, j\) cases sit in the dominance hierarchy \(iP^{-1/2} \gg
+jP^{-5/4} \gg lP^{-13/8}\) with all three second derivatives of the
+same sign (no cancellation). Total \(\ll N^{13/16+\varepsilon}\).
+\(\square\)
+
+Float sanity (`oeo_mode_probe`, exact scaled phases): \(|S| = 84.8,\
+1361.0,\ 6142.3\) on \(5\cdot10^3, 5\cdot10^4, 5\cdot10^5\) terms —
+tracking the *coherent-cell random-walk scale* \(P^{5/8}\) (\(1333,\
+5623\) predicted at the two larger sizes), far below the proven
+\(P^{7/8}\): the phase is constant on each \(w\)-cell of length
+\(\asymp \tfrac43 P^{1/4}\), and the \(\asymp P^{3/4}\) cell phases
+equidistribute.
+
+### Remark (why the kernel does not appear)
+
+The differencing-free route works because the sawtooth variable
+\(\theta_w = \{m^{1/2}\}\) and its coefficient \(B \asymp kn^{3/8}\)
+are *both slow*: \(B\) crosses integers every \(\asymp P^{5/8}/k\)
+steps, so drift-1 intervals are long enough for the shifted-window
+expansion, and the mode frequencies \(r \asymp kP^{3/8}\) keep the
+curvature \(rP^{-5/4} \ll\) the main scale. In the OOO\* kernel the
+coefficient \(W \asymp kn^{9/8}\) crosses integers *within single
+steps* (\(W' \asymp kn^{1/8} \gg 1\)) — no drift-1 interval exists.
+The boundary between the two regimes is exactly \(c' \asymp 1\),
+i.e. coefficient scale \(n\): itinerary letters whose phase
+coefficients grow slower than \(n\) are reachable by this engine;
+OOO\* sits above the line.
+
+### Remark (Proposition J needs only O-rooted words)
+
+The word classes in Proposition J range over all starts, but every
+E-rooted word has a contracting prefix at length 1 (\(3^0 < 2\)), so
+E-rooted classes never enter the exceptional set: the hypothesis only
+ever consumes O-rooted class bounds, which are exactly what Theorems
+5.1/C/E/L/Q prove. No further gap.

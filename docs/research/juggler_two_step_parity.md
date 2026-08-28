@@ -1,12 +1,12 @@
 # Juggler multi-step itinerary-parity census
 
-Status: **COMPUTATIONALLY VERIFIED** counts; all depth-3 word
-classes and the even-branch depth-4 splits are **EXACT — HUMAN
-PROOF** (`J-nested-parity-discrepancy`,
-`J-triple-parity-discrepancy`, `J-even-branch-third-letter`,
-`J-four-step-descent-density`; proofs in
-`juggler_two_step_parity_lemma.md`). The tier-2 kernel bound
-(Conjecture O) is open.
+Status: **COMPUTATIONALLY VERIFIED** counts; every depth-4 word
+class except OOO* is **EXACT — HUMAN PROOF**
+(`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,
+`J-even-branch-third-letter`, `J-four-step-descent-density`,
+`J-depth4-slow-branch`; proofs in
+`juggler_two_step_parity_lemma.md`). The OOO* split is exactly
+the tier-2 kernel bound (Conjecture O), open.
 
 Exact census of the joint parity word of the first four itinerary
 letters on odd starts. Phase-0 falsifier for iterating the one-step
