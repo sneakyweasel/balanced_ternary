@@ -1,0 +1,15 @@
+{
+  "n_max": 1000000,
+  "n_spot": 10000000,
+  "files": [
+    "odd_image_discrepancy.csv",
+    "cell_counts.csv",
+    "cell_pair_differences.csv",
+    "discrepancy_maxima.csv",
+    "structured_set_discrepancy.csv",
+    "counterexamples.jsonl"
+  ],
+  "classification": "ODD_IMAGE_DISCREPANCY_GREEN",
+  "S_O_convention": "sum (-1)^{isqrt(n^3)} over odd n<=N",
+  "note": "interval bound N^{5/6} is analytic; N^{1/3} is not promoted"
+}

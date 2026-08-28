@@ -8226,4 +8226,57 @@ Best next question
 - none from this branch
 ```
 
+## Juggler odd-image discrepancy
+
+- **Date:** 2026-08-28
+- **Objective:** Bound \(S_O(N)=\sum_{n\le N,\ n\ \mathrm{odd}}(-1)^{\lfloor n^{3/2}\rfloor}\) by an explicit sublinear \(F\), then test the same sum on Juggler-generated sets
+- **Hypotheses:** adjacent cell pairing cancels; otherwise a fractional-part discrepancy rate exists; cancellation transfers to \(J([1,N])\)
+- **Major results:** \(S_O=-2D_O\). \(c_m\in\{0,1\}\) **LEAN-CERTIFIED**. Adjacent pairing variation equals `#odds` (**REFUTED** as a sublinear bound). \(\lfloor x\rfloor\) odd iff \(\{x/2\}\ge 1/2\), so \(S_O\) is the discrepancy of \(\{n^{3/2}/2\}\). Van der Corput + Erdős–Turán give \(|S_O(N)|\ll N^{5/6}\) **EXACT — HUMAN PROOF**. Census \(N\le 10^6\): \(S_O=146\), \(\max=256\) at \(985351\); spot \(10^7\): \(\max=459\). Log-log slope of the max on \([10^3,10^6]\) is \(0.346\). \(N^{1/3}\) not promoted. Large \(J([1,N])\) and \(J^2([1,N])\) have \(|S_O(A)|/\#\mathrm{odd}(A)\) at \(10^{-4}\); \(J^2([1,100])\) concentrates (\(0.545\)). Classification `ODD_IMAGE_DISCREPANCY_GREEN`
+- **Refuted ideas:** adjacent \(c_{2r}-c_{2r+1}\) pairing; promoting \(N^{1/3}\); replacing the floor by \(e^{\pi i n^{3/2}}\) without the fractional-part identity; automatic transfer of the interval bound
+- **Literature:** parent `IMAGE_PARITY_CENSUS` reused. `odd_cell_unique` cited. Closed 2-adic / θ / LD branches stay closed. Van der Corput / Erdős–Turán are known tools
+- **Open:** a transfer theorem for \(S_O(J([1,N]))\); a sharper effective exponent
+- **Decision:** PARK. The interval rate is classical and explicit. Pairing failed. Image transfer is a census. Do not claim termination
+
+```text
+What was learned
+- S_O = -2 D_O is the exact odd-start sign sum
+- c_m is 0 or 1; occupied cells are isolated
+- Adjacent pairing has linear variation and cannot cancel
+- s(n) is exactly the discrepancy of {n^{3/2}/2} from 1/2
+- |S_O(N)| << N^{5/6} by van der Corput + Erdős–Turán
+- The census envelope tracks ~N^{1/3} and is not a theorem
+- Large J-images look balanced; J^2([1,100]) concentrates
+- Interval bounds do not transfer by themselves
+
+Strongest theorem
+- |S_O(N)| << N^{5/6}
+
+Strongest refutation
+- sum_r |c_{2r}-c_{2r+1}| is a sublinear bound
+  (equals #odds on N≤10^6)
+
+Reusable machinery
+- research.juggler_sequence.odd_image_discrepancy
+- data/research/juggler/parity_discrepancy_next/
+
+Prior-art status
+- known discrepancy method on the exact Juggler odd-image sequence;
+  not a halt result and not a frequency theorem
+
+Complexity profile
+- unchanged flood order; no new production attack; CUDA unused
+
+Branch status
+- PARK
+
+Why
+- The interval bound is real but classical, and it does not include
+  a transfer law onto Juggler-generated sets. Pairing is dead.
+  Stop before a Weyl engine.
+
+Best next question
+- prove a transfer bound for S_O on J([1,N]), or replace N^{5/6}
+  by an effective N^{1/2+ε} estimate without a Weyl engine
+```
+
 

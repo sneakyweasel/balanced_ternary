@@ -1,0 +1,25 @@
+N,S_O,max_abs_so_far,argmax,over_n13,over_n12,over_n56,normalization,method
+10,-3,3,5,1.39247665,0.9486833,0.44033978,S_O = sum s(n) over odd n<=N,exact_isqrt
+16,0,3,5,1.19055079,0.75,0.2976377,S_O = sum s(n) over odd n<=N,exact_isqrt
+32,6,6,31,1.88988157,1.06066017,0.33408702,S_O = sum s(n) over odd n<=N,exact_isqrt
+64,2,6,31,1.5,0.75,0.1875,S_O = sum s(n) over odd n<=N,exact_isqrt
+100,-2,6,31,1.29266081,0.6,0.12926608,S_O = sum s(n) over odd n<=N,exact_isqrt
+128,-10,10,127,1.98425131,0.88388348,0.1753847,S_O = sum s(n) over odd n<=N,exact_isqrt
+256,-6,15,201,2.36235197,0.9375,0.147647,S_O = sum s(n) over odd n<=N,exact_isqrt
+512,-8,15,201,1.875,0.66291261,0.08286408,S_O = sum s(n) over odd n<=N,exact_isqrt
+1000,-6,17,705,1.7,0.5375872,0.05375872,S_O = sum s(n) over odd n<=N,exact_isqrt
+1024,-2,17,705,1.68661362,0.53125,0.05270668,S_O = sum s(n) over odd n<=N,exact_isqrt
+2048,-8,42,1487,3.30729276,0.92807765,0.07308154,S_O = sum s(n) over odd n<=N,exact_isqrt
+4096,-8,42,1487,2.625,0.65625,0.04101562,S_O = sum s(n) over odd n<=N,exact_isqrt
+8192,0,47,5565,2.3314953,0.51928154,0.02575963,S_O = sum s(n) over odd n<=N,exact_isqrt
+10000,-10,47,5565,2.18154675,0.47,0.02181547,S_O = sum s(n) over odd n<=N,exact_isqrt
+16384,0,65,14901,2.55921463,0.5078125,0.01999386,S_O = sum s(n) over odd n<=N,exact_isqrt
+32768,-44,81,21497,2.53125,0.44746601,0.01398331,S_O = sum s(n) over odd n<=N,exact_isqrt
+65536,8,95,55993,2.35629844,0.37109375,0.00920429,S_O = sum s(n) over odd n<=N,exact_isqrt
+100000,30,112,74327,2.41296685,0.3541751,0.00763047,S_O = sum s(n) over odd n<=N,exact_isqrt
+131072,-52,112,74327,2.20486184,0.30935922,0.00609013,S_O = sum s(n) over odd n<=N,exact_isqrt
+262144,28,120,188911,1.875,0.234375,0.00366211,S_O = sum s(n) over odd n<=N,exact_isqrt
+524288,58,190,294263,2.35629844,0.26240291,0.00325421,S_O = sum s(n) over odd n<=N,exact_isqrt
+1000000,146,256,985351,2.56,0.256,0.00256,S_O = sum s(n) over odd n<=N,exact_isqrt
+1048576,140,256,985351,2.5198421,0.25,0.00246078,S_O = sum s(n) over odd n<=N,exact_isqrt
+10000000,208,459,6363789,2.13048927,0.14514854,0.00067372,S_O = sum s(n) over odd n<=N,exact_isqrt

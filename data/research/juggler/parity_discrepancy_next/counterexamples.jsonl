@@ -1,0 +1,3 @@
+{"claim": "adjacent cell pairing yields a sublinear variation bound", "status": "COUNTEREXAMPLE", "detail": {"occupied": 500000, "c_m_max": 1, "adjacent_occupied": 0, "pair_variation": 500000, "pair_variation_over_odds": 1.0}}
+{"claim": "observed N^{1/3} envelope is a theorem", "status": "REJECTED", "detail": {"fit": 0.34595847, "fit_range": [1000, 1000000]}}
+{"claim": "interval cancellation transfers to every Juggler image, including small N", "status": "COUNTEREXAMPLE", "detail": [{"S_O": 12, "n_odd": 22, "cardinality": 49, "diameter": 30913, "over_odd": 0.54545455, "over_card": 0.24489796, "over_diam13": 0.38235566, "over_n56": 0.00217469, "set_type": "J^2([1,N])", "source": "1..100", "N": 100, "normalization": "S_O(A)=sum s(x) over odd x in A"}]}

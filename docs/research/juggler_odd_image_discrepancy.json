@@ -1,0 +1,1186 @@
+{
+  "n_max": 1000000,
+  "n_spot": 10000000,
+  "interval": {
+    "n_max": 1000000,
+    "S_O": 146,
+    "max_abs": 256,
+    "argmax": 985351,
+    "odd_starts": 500000,
+    "O_O": 249927,
+    "identity_ok": true,
+    "checkpoints": [
+      {
+        "N": 10,
+        "S_O": -3,
+        "max_abs_so_far": 3,
+        "argmax": 5,
+        "odd_starts": 5,
+        "O_O": 4,
+        "identity_ok": true,
+        "over_n13": 1.39247665,
+        "over_n12": 0.9486833,
+        "over_n56": 0.44033978,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 16,
+        "S_O": 0,
+        "max_abs_so_far": 3,
+        "argmax": 5,
+        "odd_starts": 8,
+        "O_O": 4,
+        "identity_ok": true,
+        "over_n13": 1.19055079,
+        "over_n12": 0.75,
+        "over_n56": 0.2976377,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 32,
+        "S_O": 6,
+        "max_abs_so_far": 6,
+        "argmax": 31,
+        "odd_starts": 16,
+        "O_O": 5,
+        "identity_ok": true,
+        "over_n13": 1.88988157,
+        "over_n12": 1.06066017,
+        "over_n56": 0.33408702,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 64,
+        "S_O": 2,
+        "max_abs_so_far": 6,
+        "argmax": 31,
+        "odd_starts": 32,
+        "O_O": 15,
+        "identity_ok": true,
+        "over_n13": 1.5,
+        "over_n12": 0.75,
+        "over_n56": 0.1875,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 100,
+        "S_O": -2,
+        "max_abs_so_far": 6,
+        "argmax": 31,
+        "odd_starts": 50,
+        "O_O": 26,
+        "identity_ok": true,
+        "over_n13": 1.29266081,
+        "over_n12": 0.6,
+        "over_n56": 0.12926608,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 128,
+        "S_O": -10,
+        "max_abs_so_far": 10,
+        "argmax": 127,
+        "odd_starts": 64,
+        "O_O": 37,
+        "identity_ok": true,
+        "over_n13": 1.98425131,
+        "over_n12": 0.88388348,
+        "over_n56": 0.1753847,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 256,
+        "S_O": -6,
+        "max_abs_so_far": 15,
+        "argmax": 201,
+        "odd_starts": 128,
+        "O_O": 67,
+        "identity_ok": true,
+        "over_n13": 2.36235197,
+        "over_n12": 0.9375,
+        "over_n56": 0.147647,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 512,
+        "S_O": -8,
+        "max_abs_so_far": 15,
+        "argmax": 201,
+        "odd_starts": 256,
+        "O_O": 132,
+        "identity_ok": true,
+        "over_n13": 1.875,
+        "over_n12": 0.66291261,
+        "over_n56": 0.08286408,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 1000,
+        "S_O": -6,
+        "max_abs_so_far": 17,
+        "argmax": 705,
+        "odd_starts": 500,
+        "O_O": 253,
+        "identity_ok": true,
+        "over_n13": 1.7,
+        "over_n12": 0.5375872,
+        "over_n56": 0.05375872,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 1024,
+        "S_O": -2,
+        "max_abs_so_far": 17,
+        "argmax": 705,
+        "odd_starts": 512,
+        "O_O": 257,
+        "identity_ok": true,
+        "over_n13": 1.68661362,
+        "over_n12": 0.53125,
+        "over_n56": 0.05270668,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 2048,
+        "S_O": -8,
+        "max_abs_so_far": 42,
+        "argmax": 1487,
+        "odd_starts": 1024,
+        "O_O": 516,
+        "identity_ok": true,
+        "over_n13": 3.30729276,
+        "over_n12": 0.92807765,
+        "over_n56": 0.07308154,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 4096,
+        "S_O": -8,
+        "max_abs_so_far": 42,
+        "argmax": 1487,
+        "odd_starts": 2048,
+        "O_O": 1028,
+        "identity_ok": true,
+        "over_n13": 2.625,
+        "over_n12": 0.65625,
+        "over_n56": 0.04101562,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 8192,
+        "S_O": 0,
+        "max_abs_so_far": 47,
+        "argmax": 5565,
+        "odd_starts": 4096,
+        "O_O": 2048,
+        "identity_ok": true,
+        "over_n13": 2.3314953,
+        "over_n12": 0.51928154,
+        "over_n56": 0.02575963,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 10000,
+        "S_O": -10,
+        "max_abs_so_far": 47,
+        "argmax": 5565,
+        "odd_starts": 5000,
+        "O_O": 2505,
+        "identity_ok": true,
+        "over_n13": 2.18154675,
+        "over_n12": 0.47,
+        "over_n56": 0.02181547,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 16384,
+        "S_O": 0,
+        "max_abs_so_far": 65,
+        "argmax": 14901,
+        "odd_starts": 8192,
+        "O_O": 4096,
+        "identity_ok": true,
+        "over_n13": 2.55921463,
+        "over_n12": 0.5078125,
+        "over_n56": 0.01999386,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 32768,
+        "S_O": -44,
+        "max_abs_so_far": 81,
+        "argmax": 21497,
+        "odd_starts": 16384,
+        "O_O": 8214,
+        "identity_ok": true,
+        "over_n13": 2.53125,
+        "over_n12": 0.44746601,
+        "over_n56": 0.01398331,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 65536,
+        "S_O": 8,
+        "max_abs_so_far": 95,
+        "argmax": 55993,
+        "odd_starts": 32768,
+        "O_O": 16380,
+        "identity_ok": true,
+        "over_n13": 2.35629844,
+        "over_n12": 0.37109375,
+        "over_n56": 0.00920429,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 100000,
+        "S_O": 30,
+        "max_abs_so_far": 112,
+        "argmax": 74327,
+        "odd_starts": 50000,
+        "O_O": 24985,
+        "identity_ok": true,
+        "over_n13": 2.41296685,
+        "over_n12": 0.3541751,
+        "over_n56": 0.00763047,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 131072,
+        "S_O": -52,
+        "max_abs_so_far": 112,
+        "argmax": 74327,
+        "odd_starts": 65536,
+        "O_O": 32794,
+        "identity_ok": true,
+        "over_n13": 2.20486184,
+        "over_n12": 0.30935922,
+        "over_n56": 0.00609013,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 262144,
+        "S_O": 28,
+        "max_abs_so_far": 120,
+        "argmax": 188911,
+        "odd_starts": 131072,
+        "O_O": 65522,
+        "identity_ok": true,
+        "over_n13": 1.875,
+        "over_n12": 0.234375,
+        "over_n56": 0.00366211,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 524288,
+        "S_O": 58,
+        "max_abs_so_far": 190,
+        "argmax": 294263,
+        "odd_starts": 262144,
+        "O_O": 131043,
+        "identity_ok": true,
+        "over_n13": 2.35629844,
+        "over_n12": 0.26240291,
+        "over_n56": 0.00325421,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 1000000,
+        "S_O": 146,
+        "max_abs_so_far": 256,
+        "argmax": 985351,
+        "odd_starts": 500000,
+        "O_O": 249927,
+        "identity_ok": true,
+        "over_n13": 2.56,
+        "over_n12": 0.256,
+        "over_n56": 0.00256,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      }
+    ],
+    "records": [
+      {
+        "n": 984093,
+        "S_O": 217,
+        "max_abs": 217
+      },
+      {
+        "n": 984095,
+        "S_O": 218,
+        "max_abs": 218
+      },
+      {
+        "n": 984097,
+        "S_O": 219,
+        "max_abs": 219
+      },
+      {
+        "n": 984099,
+        "S_O": 220,
+        "max_abs": 220
+      },
+      {
+        "n": 984101,
+        "S_O": 221,
+        "max_abs": 221
+      },
+      {
+        "n": 984103,
+        "S_O": 222,
+        "max_abs": 222
+      },
+      {
+        "n": 984105,
+        "S_O": 223,
+        "max_abs": 223
+      },
+      {
+        "n": 984107,
+        "S_O": 224,
+        "max_abs": 224
+      },
+      {
+        "n": 984109,
+        "S_O": 225,
+        "max_abs": 225
+      },
+      {
+        "n": 984111,
+        "S_O": 226,
+        "max_abs": 226
+      },
+      {
+        "n": 984113,
+        "S_O": 227,
+        "max_abs": 227
+      },
+      {
+        "n": 984115,
+        "S_O": 228,
+        "max_abs": 228
+      },
+      {
+        "n": 984437,
+        "S_O": 229,
+        "max_abs": 229
+      },
+      {
+        "n": 984451,
+        "S_O": 230,
+        "max_abs": 230
+      },
+      {
+        "n": 984465,
+        "S_O": 231,
+        "max_abs": 231
+      },
+      {
+        "n": 984471,
+        "S_O": 232,
+        "max_abs": 232
+      },
+      {
+        "n": 984497,
+        "S_O": 233,
+        "max_abs": 233
+      },
+      {
+        "n": 984503,
+        "S_O": 234,
+        "max_abs": 234
+      },
+      {
+        "n": 984509,
+        "S_O": 235,
+        "max_abs": 235
+      },
+      {
+        "n": 984515,
+        "S_O": 236,
+        "max_abs": 236
+      },
+      {
+        "n": 984521,
+        "S_O": 237,
+        "max_abs": 237
+      },
+      {
+        "n": 984679,
+        "S_O": 238,
+        "max_abs": 238
+      },
+      {
+        "n": 984773,
+        "S_O": 239,
+        "max_abs": 239
+      },
+      {
+        "n": 984827,
+        "S_O": 240,
+        "max_abs": 240
+      },
+      {
+        "n": 984861,
+        "S_O": 241,
+        "max_abs": 241
+      },
+      {
+        "n": 984871,
+        "S_O": 242,
+        "max_abs": 242
+      },
+      {
+        "n": 984937,
+        "S_O": 243,
+        "max_abs": 243
+      },
+      {
+        "n": 984943,
+        "S_O": 244,
+        "max_abs": 244
+      },
+      {
+        "n": 984949,
+        "S_O": 245,
+        "max_abs": 245
+      },
+      {
+        "n": 984955,
+        "S_O": 246,
+        "max_abs": 246
+      },
+      {
+        "n": 984961,
+        "S_O": 247,
+        "max_abs": 247
+      },
+      {
+        "n": 984967,
+        "S_O": 248,
+        "max_abs": 248
+      },
+      {
+        "n": 984973,
+        "S_O": 249,
+        "max_abs": 249
+      },
+      {
+        "n": 985255,
+        "S_O": 250,
+        "max_abs": 250
+      },
+      {
+        "n": 985277,
+        "S_O": 251,
+        "max_abs": 251
+      },
+      {
+        "n": 985343,
+        "S_O": 252,
+        "max_abs": 252
+      },
+      {
+        "n": 985345,
+        "S_O": 253,
+        "max_abs": 253
+      },
+      {
+        "n": 985347,
+        "S_O": 254,
+        "max_abs": 254
+      },
+      {
+        "n": 985349,
+        "S_O": 255,
+        "max_abs": 255
+      },
+      {
+        "n": 985351,
+        "S_O": 256,
+        "max_abs": 256
+      }
+    ],
+    "run": {
+      "n_runs": 250000,
+      "max_run": 52,
+      "mean_run": 2.0,
+      "n_len1": 125978,
+      "n_len_ge3": 41202
+    },
+    "jumps": {
+      "odd_delta": 249999,
+      "even_delta": 250000,
+      "odd_frac": 0.499999
+    },
+    "cells": {
+      "occupied": 500000,
+      "c_m_max": 1,
+      "adjacent_occupied": 0,
+      "pair_variation": 500000,
+      "pair_variation_over_odds": 1.0
+    },
+    "fit_max_abs": 0.34595847,
+    "fit_range": [
+      1000,
+      1000000
+    ]
+  },
+  "spot": {
+    "n_max": 10000000,
+    "S_O": 208,
+    "max_abs": 459,
+    "argmax": 6363789,
+    "over_n13": 2.13048927,
+    "over_n56": 0.00067372,
+    "checkpoints": [
+      {
+        "N": 10,
+        "S_O": -3,
+        "max_abs_so_far": 3,
+        "argmax": 5,
+        "odd_starts": 5,
+        "O_O": 4,
+        "identity_ok": true,
+        "over_n13": 1.39247665,
+        "over_n12": 0.9486833,
+        "over_n56": 0.44033978,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 16,
+        "S_O": 0,
+        "max_abs_so_far": 3,
+        "argmax": 5,
+        "odd_starts": 8,
+        "O_O": 4,
+        "identity_ok": true,
+        "over_n13": 1.19055079,
+        "over_n12": 0.75,
+        "over_n56": 0.2976377,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 32,
+        "S_O": 6,
+        "max_abs_so_far": 6,
+        "argmax": 31,
+        "odd_starts": 16,
+        "O_O": 5,
+        "identity_ok": true,
+        "over_n13": 1.88988157,
+        "over_n12": 1.06066017,
+        "over_n56": 0.33408702,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 64,
+        "S_O": 2,
+        "max_abs_so_far": 6,
+        "argmax": 31,
+        "odd_starts": 32,
+        "O_O": 15,
+        "identity_ok": true,
+        "over_n13": 1.5,
+        "over_n12": 0.75,
+        "over_n56": 0.1875,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 100,
+        "S_O": -2,
+        "max_abs_so_far": 6,
+        "argmax": 31,
+        "odd_starts": 50,
+        "O_O": 26,
+        "identity_ok": true,
+        "over_n13": 1.29266081,
+        "over_n12": 0.6,
+        "over_n56": 0.12926608,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 128,
+        "S_O": -10,
+        "max_abs_so_far": 10,
+        "argmax": 127,
+        "odd_starts": 64,
+        "O_O": 37,
+        "identity_ok": true,
+        "over_n13": 1.98425131,
+        "over_n12": 0.88388348,
+        "over_n56": 0.1753847,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 256,
+        "S_O": -6,
+        "max_abs_so_far": 15,
+        "argmax": 201,
+        "odd_starts": 128,
+        "O_O": 67,
+        "identity_ok": true,
+        "over_n13": 2.36235197,
+        "over_n12": 0.9375,
+        "over_n56": 0.147647,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 512,
+        "S_O": -8,
+        "max_abs_so_far": 15,
+        "argmax": 201,
+        "odd_starts": 256,
+        "O_O": 132,
+        "identity_ok": true,
+        "over_n13": 1.875,
+        "over_n12": 0.66291261,
+        "over_n56": 0.08286408,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 1000,
+        "S_O": -6,
+        "max_abs_so_far": 17,
+        "argmax": 705,
+        "odd_starts": 500,
+        "O_O": 253,
+        "identity_ok": true,
+        "over_n13": 1.7,
+        "over_n12": 0.5375872,
+        "over_n56": 0.05375872,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 1024,
+        "S_O": -2,
+        "max_abs_so_far": 17,
+        "argmax": 705,
+        "odd_starts": 512,
+        "O_O": 257,
+        "identity_ok": true,
+        "over_n13": 1.68661362,
+        "over_n12": 0.53125,
+        "over_n56": 0.05270668,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 2048,
+        "S_O": -8,
+        "max_abs_so_far": 42,
+        "argmax": 1487,
+        "odd_starts": 1024,
+        "O_O": 516,
+        "identity_ok": true,
+        "over_n13": 3.30729276,
+        "over_n12": 0.92807765,
+        "over_n56": 0.07308154,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 4096,
+        "S_O": -8,
+        "max_abs_so_far": 42,
+        "argmax": 1487,
+        "odd_starts": 2048,
+        "O_O": 1028,
+        "identity_ok": true,
+        "over_n13": 2.625,
+        "over_n12": 0.65625,
+        "over_n56": 0.04101562,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 8192,
+        "S_O": 0,
+        "max_abs_so_far": 47,
+        "argmax": 5565,
+        "odd_starts": 4096,
+        "O_O": 2048,
+        "identity_ok": true,
+        "over_n13": 2.3314953,
+        "over_n12": 0.51928154,
+        "over_n56": 0.02575963,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 10000,
+        "S_O": -10,
+        "max_abs_so_far": 47,
+        "argmax": 5565,
+        "odd_starts": 5000,
+        "O_O": 2505,
+        "identity_ok": true,
+        "over_n13": 2.18154675,
+        "over_n12": 0.47,
+        "over_n56": 0.02181547,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 16384,
+        "S_O": 0,
+        "max_abs_so_far": 65,
+        "argmax": 14901,
+        "odd_starts": 8192,
+        "O_O": 4096,
+        "identity_ok": true,
+        "over_n13": 2.55921463,
+        "over_n12": 0.5078125,
+        "over_n56": 0.01999386,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 32768,
+        "S_O": -44,
+        "max_abs_so_far": 81,
+        "argmax": 21497,
+        "odd_starts": 16384,
+        "O_O": 8214,
+        "identity_ok": true,
+        "over_n13": 2.53125,
+        "over_n12": 0.44746601,
+        "over_n56": 0.01398331,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 65536,
+        "S_O": 8,
+        "max_abs_so_far": 95,
+        "argmax": 55993,
+        "odd_starts": 32768,
+        "O_O": 16380,
+        "identity_ok": true,
+        "over_n13": 2.35629844,
+        "over_n12": 0.37109375,
+        "over_n56": 0.00920429,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 100000,
+        "S_O": 30,
+        "max_abs_so_far": 112,
+        "argmax": 74327,
+        "odd_starts": 50000,
+        "O_O": 24985,
+        "identity_ok": true,
+        "over_n13": 2.41296685,
+        "over_n12": 0.3541751,
+        "over_n56": 0.00763047,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 131072,
+        "S_O": -52,
+        "max_abs_so_far": 112,
+        "argmax": 74327,
+        "odd_starts": 65536,
+        "O_O": 32794,
+        "identity_ok": true,
+        "over_n13": 2.20486184,
+        "over_n12": 0.30935922,
+        "over_n56": 0.00609013,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 262144,
+        "S_O": 28,
+        "max_abs_so_far": 120,
+        "argmax": 188911,
+        "odd_starts": 131072,
+        "O_O": 65522,
+        "identity_ok": true,
+        "over_n13": 1.875,
+        "over_n12": 0.234375,
+        "over_n56": 0.00366211,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 524288,
+        "S_O": 58,
+        "max_abs_so_far": 190,
+        "argmax": 294263,
+        "odd_starts": 262144,
+        "O_O": 131043,
+        "identity_ok": true,
+        "over_n13": 2.35629844,
+        "over_n12": 0.26240291,
+        "over_n56": 0.00325421,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 1000000,
+        "S_O": 146,
+        "max_abs_so_far": 256,
+        "argmax": 985351,
+        "odd_starts": 500000,
+        "O_O": 249927,
+        "identity_ok": true,
+        "over_n13": 2.56,
+        "over_n12": 0.256,
+        "over_n56": 0.00256,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 1048576,
+        "S_O": 140,
+        "max_abs_so_far": 256,
+        "argmax": 985351,
+        "odd_starts": 524288,
+        "O_O": 262074,
+        "identity_ok": true,
+        "over_n13": 2.5198421,
+        "over_n12": 0.25,
+        "over_n56": 0.00246078,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      },
+      {
+        "N": 10000000,
+        "S_O": 208,
+        "max_abs_so_far": 459,
+        "argmax": 6363789,
+        "odd_starts": 5000000,
+        "O_O": 2499896,
+        "identity_ok": true,
+        "over_n13": 2.13048927,
+        "over_n12": 0.14514854,
+        "over_n56": 0.00067372,
+        "normalization": "S_O = sum s(n) over odd n<=N",
+        "method": "exact_isqrt"
+      }
+    ],
+    "fit_max_abs": 0.33977902
+  },
+  "cells": {
+    "m_max": 8000,
+    "value_counts": {
+      "0": 7800,
+      "1": 200,
+      "ge2": 0
+    },
+    "c_m_le_1": true,
+    "pair_variation": 200
+  },
+  "structured": {
+    "rows": [
+      {
+        "S_O": 3,
+        "n_odd": 29,
+        "cardinality": 58,
+        "diameter": 985,
+        "over_odd": 0.10344828,
+        "over_card": 0.05172414,
+        "over_diam13": 0.30151518,
+        "over_n56": 0.00960707,
+        "set_type": "J([1,N])",
+        "source": "1..100",
+        "N": 100,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": 12,
+        "n_odd": 22,
+        "cardinality": 49,
+        "diameter": 30913,
+        "over_odd": 0.54545455,
+        "over_card": 0.24489796,
+        "over_diam13": 0.38235566,
+        "over_n56": 0.00217469,
+        "set_type": "J^2([1,N])",
+        "source": "1..100",
+        "N": 100,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": 19,
+        "n_odd": 265,
+        "cardinality": 526,
+        "diameter": 31575,
+        "over_odd": 0.07169811,
+        "over_card": 0.03612167,
+        "over_diam13": 0.60113565,
+        "over_n56": 0.00338299,
+        "set_type": "J([1,N])",
+        "source": "1..1000",
+        "N": 1000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -14,
+        "n_odd": 192,
+        "cardinality": 394,
+        "diameter": 5610674,
+        "over_odd": 0.07291667,
+        "over_card": 0.03553299,
+        "over_diam13": 0.07878733,
+        "over_n56": 3.326e-05,
+        "set_type": "J^2([1,N])",
+        "source": "1..1000",
+        "N": 1000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -7,
+        "n_odd": 2551,
+        "cardinality": 5089,
+        "diameter": 999850,
+        "over_odd": 0.00274402,
+        "over_card": 0.00137552,
+        "over_diam13": 0.0700035,
+        "over_n56": 7.001e-05,
+        "set_type": "J([1,N])",
+        "source": "1..10000",
+        "N": 10000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -63,
+        "n_odd": 1707,
+        "cardinality": 3408,
+        "diameter": 996178937,
+        "over_odd": 0.03690685,
+        "over_card": 0.01848592,
+        "over_diam13": 0.06308045,
+        "over_n56": 2e-06,
+        "set_type": "J^2([1,N])",
+        "source": "1..10000",
+        "N": 10000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -48,
+        "n_odd": 25132,
+        "cardinality": 50293,
+        "diameter": 31622302,
+        "over_odd": 0.00190992,
+        "over_card": 0.00095441,
+        "over_diam13": 0.15179009,
+        "over_n56": 2.699e-05,
+        "set_type": "J([1,N])",
+        "source": "1..100000",
+        "N": 100000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": 92,
+        "n_odd": 15202,
+        "cardinality": 30344,
+        "diameter": 177815932888,
+        "over_odd": 0.00605184,
+        "over_card": 0.0030319,
+        "over_diam13": 0.01636054,
+        "over_n56": 4e-08,
+        "set_type": "J^2([1,N])",
+        "source": "1..100000",
+        "N": 100000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -29,
+        "n_odd": 250401,
+        "cardinality": 500950,
+        "diameter": 999998500,
+        "over_odd": 0.00011581,
+        "over_card": 5.789e-05,
+        "over_diam13": 0.02900001,
+        "over_n56": 9.2e-07,
+        "set_type": "J([1,N])",
+        "source": "1..1000000",
+        "N": 1000000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -32,
+        "n_odd": 140416,
+        "cardinality": 280771,
+        "diameter": 31619005707956,
+        "over_odd": 0.00022789,
+        "over_card": 0.00011397,
+        "over_diam13": 0.00101197,
+        "over_n56": 0.0,
+        "set_type": "J^2([1,N])",
+        "source": "1..1000000",
+        "N": 1000000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -5,
+        "n_odd": 2505,
+        "cardinality": 5000,
+        "diameter": 999850,
+        "over_odd": 0.00199601,
+        "over_card": 0.001,
+        "over_diam13": 0.0500025,
+        "over_n56": 5.001e-05,
+        "set_type": "T_O",
+        "source": "follows O in 1..10000",
+        "N": 10000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -2,
+        "n_odd": 50,
+        "cardinality": 100,
+        "diameter": 100,
+        "over_odd": 0.04,
+        "over_card": 0.02,
+        "over_diam13": 0.43088694,
+        "over_n56": 0.04308869,
+        "set_type": "T_E",
+        "source": "follows E in 1..10000",
+        "N": 10000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -7,
+        "n_odd": 451,
+        "cardinality": 902,
+        "diameter": 999,
+        "over_odd": 0.01552106,
+        "over_card": 0.00776053,
+        "over_diam13": 0.70023349,
+        "over_n56": 0.02215441,
+        "set_type": "T_OE",
+        "source": "follows OE in 1..10000",
+        "N": 10000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -53,
+        "n_odd": 1255,
+        "cardinality": 2505,
+        "diameter": 996178937,
+        "over_odd": 0.04223108,
+        "over_card": 0.02115768,
+        "over_diam13": 0.05306768,
+        "over_n56": 1.68e-06,
+        "set_type": "T_OO",
+        "source": "follows OO in 1..10000",
+        "N": 10000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": 4,
+        "n_odd": 26,
+        "cardinality": 50,
+        "diameter": 985,
+        "over_odd": 0.15384615,
+        "over_card": 0.08,
+        "over_diam13": 0.40202024,
+        "over_n56": 0.01280943,
+        "set_type": "T_EO",
+        "source": "follows EO in 1..10000",
+        "N": 10000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -3,
+        "n_odd": 633,
+        "cardinality": 1250,
+        "diameter": 31548,
+        "over_odd": 0.00473934,
+        "over_card": 0.0024,
+        "over_diam13": 0.09494322,
+        "over_n56": 0.00053454,
+        "set_type": "T_OOE",
+        "source": "follows OOE in 1..10000",
+        "N": 10000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      },
+      {
+        "S_O": -5,
+        "n_odd": 153,
+        "cardinality": 317,
+        "diameter": 2367,
+        "over_odd": 0.03267974,
+        "over_card": 0.01577287,
+        "over_diam13": 0.3751779,
+        "over_n56": 0.00771149,
+        "set_type": "T_OOOEE",
+        "source": "follows OOOEE in 1..10000",
+        "N": 10000,
+        "normalization": "S_O(A)=sum s(x) over odd x in A"
+      }
+    ],
+    "image_n_max": 1000000,
+    "word_n_max": 10000
+  },
+  "lean": {
+    "sorry_free": true,
+    "odd_cell_unique": true,
+    "odd_cell_iff": true,
+    "floorPower_odd_macro_direction": true,
+    "landingParity_odd_iff": true,
+    "no_forbidden_engines": true
+  },
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "n13_is_a_theorem": false,
+    "floor_replaced_by_complex_exponential": false,
+    "interval_bound_transfers_to_arbitrary_sets": false,
+    "iterate_from_numerics": false,
+    "reopen_probabilistic_ld": false,
+    "reopen_2adic_bridge": false,
+    "cuda_census": false,
+    "weyl_engine": false
+  },
+  "decision": {
+    "classification": "ODD_IMAGE_DISCREPANCY_GREEN",
+    "branch": "PARK",
+    "reason": "S_O(N) = -2 D_O(N) and the cell rewrite S_O = sum_m (-1)^m c_m with c_m in {0,1} are exact. Adjacent pairing has linear variation and is not a cancellation theorem. The fractional-part identity plus van der Corput / Erd\u0151s\u2013Tur\u00e1n give the explicit interval bound |S_O(N)| << N^{5/6}. The observed N^{1/3} envelope is not promoted. One-step Juggler images stay small relative to |A_odd|; that is a census, not a transfer theorem.",
+    "interval_bound": "N^{5/6}",
+    "pairing_useful": false,
+    "n13_promoted": false,
+    "image_concentrated": false,
+    "image_balanced": true,
+    "odd_start_proof": true
+  }
+}
