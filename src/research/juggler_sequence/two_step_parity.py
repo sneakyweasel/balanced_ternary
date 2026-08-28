@@ -8,10 +8,14 @@ and with what empirical discrepancy exponent?
 Not a Research Engine control-layer experiment. Not a frequency
 theorem, not a predictive-state claim (theta bins and residue states
 stay REFUTED/CLOSE), and not a termination theorem. The census gated
-the depth-2 analytic lemma; that lemma is now proved (ledger rows
-J-nested-parity-linearization and J-nested-parity-discrepancy, proof
-in docs/research/juggler_two_step_parity_lemma.md), and this module
-also hosts the exact validators used by its review pass.
+the depth-2 analytic lemma; that lemma is now proved, and the depth-4
+extension (triple parity discrepancy, OOEE density N/16, certified
+four-step descent class 13/16) is proved as well (ledger rows
+J-nested-parity-linearization, J-nested-parity-discrepancy,
+J-fourth-letter-linearization, J-triple-parity-discrepancy,
+J-four-step-descent-density; proofs in
+docs/research/juggler_two_step_parity_lemma.md). This module also
+hosts the exact validators used by both review passes.
 """
 
 from __future__ import annotations
@@ -60,6 +64,17 @@ ANTI_OVERCLAIM = {
     # PROOF (ledger row J-nested-parity-discrepancy). Ambient counting
     # only; the flags above stay False.
     "depth2_analytic_lemma_proved": True,
+    # Flipped by the Phase-3 review pass: Theorem E and Corollary F
+    # are EXACT — HUMAN PROOF (rows J-triple-parity-discrepancy,
+    # J-four-step-descent-density). Even-branch fourth letter only;
+    # the OOO* classes remain open.
+    "depth4_even_branch_proved": True,
+    # Phase 4: the second-order bricks are proved, but the tier-2
+    # discrepancy bound (OOO* split) is NOT: only the conditional
+    # implication (equidistribution at all depths => density-one
+    # descent) is a theorem. No unconditional density-one claim.
+    "tier2_analytic_lemma_proved": False,
+    "density_one_claimed": False,
 }
 
 
@@ -141,6 +156,207 @@ def smooth_cancellation_check(n: int, h: int) -> float:
     n74 = _quartic_scaled(n**7, scale)
     # A1'' ~ d2 / (4 * scale); ratio = |A1''| n^{7/4} / h^2.
     return abs(d2) * n74 / (4 * scale * scale * h * h)
+
+
+def _eighth_scaled(x: int, scale: int = SCALE) -> int:
+    """floor(x^{1/8} * scale) in exact integer arithmetic."""
+    return isqrt(isqrt(isqrt(x * scale**8)))
+
+
+def fourth_letter_smoothing_check(n: int, scale: int = SCALE) -> tuple[int, int]:
+    """(D(n)*scale, bound*scale) for the fourth-letter linearization.
+
+    Lemma D: v^{1/2} = n^{9/8} + D(n) with
+    -(3/4) n^{-3/8} - n^{-9/8} <= D(n) <= 0, where m = floor(n^{3/2}),
+    v = floor(m^{3/2}). Composition of the exact linearizations of
+    m^{3/4} and (m^{3/2} - theta_2)^{1/2}; all amplitudes decay.
+    """
+    if n < 3 or n % 2 == 0:
+        raise ValueError("odd n >= 3 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    v12 = _sqrt_scaled(v, scale)
+    n98 = _eighth_scaled(n**9, scale)
+    diff = v12 - n98
+    n38 = _eighth_scaled(n**3, scale)
+    bound = (3 * scale * scale) // (4 * n38) + (scale * scale) // n98
+    return diff, bound
+
+
+def fourth_letter_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    """Check -(3/4) n^{-3/8} - n^{-9/8} <= D(n) <= 0 on odd samples."""
+    slack = 8
+    worst_ratio = 0.0
+    for n in samples:
+        diff, bound = fourth_letter_smoothing_check(n)
+        if diff > slack or diff < -bound - slack:
+            return {"holds": False, "witness": n}
+        if bound > 0:
+            worst_ratio = max(worst_ratio, -diff / bound)
+    return {"holds": True, "count": len(samples), "worst_ratio": round(worst_ratio, 6)}
+
+
+def ooee_indicator_identity_check(n_max: int) -> dict[str, Any]:
+    """Exact branch-consistency check of the OOEE sign algebra.
+
+    itinerary_word(n, 4) == 'OOEE' iff ((-1)^m, (-1)^v, (-1)^isqrt(v))
+    equals (-1, +1, +1) with m = isqrt(n^3), v = isqrt(m^3): the
+    (1+psi_2) factor restricts to even v, exactly where J^3 takes the
+    even branch, so psi_3 may be evaluated unconditionally.
+    """
+    for n in range(3, n_max + 1, 2):
+        m = isqrt(n**3)
+        v = isqrt(m**3)
+        signs = (m % 2 == 1, v % 2 == 0, isqrt(v) % 2 == 0)
+        if (itinerary_word(n, 4) == "OOEE") != all(signs):
+            return {"holds": False, "witness": n}
+    return {"holds": True, "n_max": n_max}
+
+
+def deep_word_counts(n_max: int, depth: int) -> dict[str, int]:
+    """Exact census of length-`depth` itinerary words on odd starts."""
+    counts: dict[str, int] = {}
+    for n in range(3, n_max + 1, 2):
+        w = itinerary_word(n, depth)
+        counts[w] = counts.get(w, 0) + 1
+    return dict(sorted(counts.items()))
+
+
+# --- Phase 4: second-order linearization bricks for the OOO* layer ---
+
+SCALE2 = 10**60
+
+
+def _eighth_scaled2(x: int, scale: int = SCALE2) -> int:
+    return isqrt(isqrt(isqrt(x * scale**8)))
+
+
+def second_order_checks(n: int, scale: int = SCALE2) -> dict[str, tuple[int, int]]:
+    """Exact scaled validation of the three Lemma G / Proposition H identities.
+
+    (a) m^{3/4} = (5/32) n^{9/8} + (15/16) m n^{-3/8} - (3/32) m^2 n^{-15/8} - R3,
+        0 <= R3 <= (5/128)(n^{3/2}-1)^{-9/4};
+    (b) m^{9/4} = (5/32) n^{27/8} - (9/16) m n^{15/8} + (45/32) m^2 n^{3/8} + R4,
+        -(15/128)(n^{3/2}-1)^{-3/4} <= R4 <= 0;
+    (c) v^{3/2} = -(5/64) n^{27/8} + (9/32) m n^{15/8} - (45/64) m^2 n^{3/8}
+        + (15/64) v n^{9/8} + (45/32) v m n^{-3/8} - (9/64) v m^2 n^{-15/8} + err,
+        |err| <= (3/4) n^{-9/8}.
+
+    Returns {name: (diff_scaled, bound_scaled)} at SCALE2 (needed because the
+    identities cancel to n^{-9/8} out of n^{27/8}-size terms).
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    s2 = scale * scale
+    r3 = _eighth_scaled2(n**3, scale)      # n^{3/8}  * scale
+    r9 = _eighth_scaled2(n**9, scale)      # n^{9/8}  * scale
+    r15 = _eighth_scaled2(n**15, scale)    # n^{15/8} * scale
+    r27 = _eighth_scaled2(n**27, scale)    # n^{27/8} * scale
+
+    # Negative powers are computed as direct divisions by the scaled
+    # roots (never as products with a scaled inverse): the floor error
+    # is then relative ~1/(n^a * scale) instead of absolute, keeping
+    # every term's rounding at O(n^3) scaled units.
+    m34 = isqrt(isqrt(m**3 * scale**4))
+    poly_a = 5 * r9 // 32 + 15 * m * s2 // (16 * r3) - 3 * m * m * s2 // (32 * r15)
+    bound_a = 5 * s2 // (128 * r27) + n + 100
+
+    m94 = isqrt(isqrt(m**9 * scale**4))
+    poly_b = 5 * r27 // 32 - 9 * m * r15 // 16 + 45 * m * m * r3 // 32
+    bound_b = 15 * s2 // (128 * r9) + n + 100
+
+    v32 = isqrt(v**3 * scale * scale)
+    poly_c = (
+        -(5 * r27) // 64
+        + 9 * m * r15 // 32
+        - 45 * m * m * r3 // 64
+        + 15 * v * r9 // 64
+        + 45 * v * m * s2 // (32 * r3)
+        - 9 * v * m * m * s2 // (64 * r15)
+    )
+    bound_c = 3 * s2 // (4 * r9) + n + 100
+
+    return {
+        "m34": (poly_a - m34, bound_a),
+        "m94": (m94 - poly_b, bound_b),
+        "v32": (v32 - poly_c, bound_c),
+    }
+
+
+def second_order_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    """Check R3 in [0, bound], R4 in [-bound, 0], |err| <= bound on samples.
+
+    Slack covers integer-division rounding: each term contributes up to
+    ~(45/32) m^2 = O(n^3) scaled units of floor error, so 4 n^3 covers
+    the sum; that is <= 10^{-23} in value for n <= 10^{12}, far below
+    the n^{-9/8}-scale remainder bounds.
+    """
+    for n in samples:
+        slack = 4 * n**3 + 1000
+        res = second_order_checks(n)
+        da, ba = res["m34"]
+        if not (-slack <= da <= ba + slack):
+            return {"holds": False, "witness": n, "which": "m34"}
+        db, bb = res["m94"]
+        if not (-bb - slack <= db <= slack):
+            return {"holds": False, "witness": n, "which": "m94"}
+        dc, bc = res["v32"]
+        if abs(dc) > bc + slack:
+            return {"holds": False, "witness": n, "which": "v32"}
+    return {"holds": True, "count": len(samples)}
+
+
+def ooo_indicator_identity_check(n_max: int) -> dict[str, Any]:
+    """Branch consistency of the OOO* sign algebra.
+
+    itinerary_word(n, 4) == 'OOOE' iff m odd, v odd, isqrt(v^3) even:
+    the (1-psi_2) factor restricts to odd v, exactly where J^3 takes
+    the odd branch, so psi_4 = psi(v^{3/2}) evaluates unconditionally.
+    """
+    for n in range(3, n_max + 1, 2):
+        m = isqrt(n**3)
+        v = isqrt(m**3)
+        signs = (m % 2 == 1, v % 2 == 1, isqrt(v**3) % 2 == 0)
+        if (itinerary_word(n, 4) == "OOOE") != all(signs):
+            return {"holds": False, "witness": n}
+    return {"holds": True, "n_max": n_max}
+
+
+def second_gap_collision_check(start: int, count: int, h: int) -> dict[str, Any]:
+    """Quantify the composed-cell obstruction.
+
+    On maximal runs (cells) where g1 = m(n+2h) - m(n) is constant, count
+    the distinct values of g2 = v(n+2h) - v(n). Ratio near 1 means g2
+    changes at almost every point of the cell: there is no usable
+    second-level cell structure, so the naive composition of Lemma B
+    across two growing layers fails.
+    """
+    cells: list[tuple[int, int]] = []  # (cell length, distinct g2 count)
+    prev_g1 = None
+    g2_set: set[int] = set()
+    length = 0
+    n = start if start % 2 == 1 else start + 1
+    for _ in range(count):
+        m0, m1 = isqrt(n**3), isqrt((n + 2 * h) ** 3)
+        g1 = m1 - m0
+        g2 = isqrt(m1**3) - isqrt(m0**3)
+        if g1 != prev_g1 and prev_g1 is not None:
+            cells.append((length, len(g2_set)))
+            g2_set, length = set(), 0
+        prev_g1 = g1
+        g2_set.add(g2)
+        length += 1
+        n += 2
+    interior = cells[1:] if len(cells) > 2 else cells
+    total_len = sum(c[0] for c in interior)
+    total_distinct = sum(c[1] for c in interior)
+    return {
+        "cells": len(interior),
+        "mean_cell_length": round(total_len / max(1, len(interior)), 2),
+        "distinct_ratio": round(total_distinct / max(1, total_len), 4),
+    }
 
 
 def gap_decomposition_check(start: int, count: int, h: int) -> dict[str, Any]:
@@ -311,9 +527,11 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
     lines = [
         "# Juggler multi-step itinerary-parity census",
         "",
-        "Status: **COMPUTATIONALLY VERIFIED** counts; the depth-2 analytic",
-        "lemma is now **EXACT — HUMAN PROOF** (`J-nested-parity-discrepancy`,",
-        "proof in `juggler_two_step_parity_lemma.md`)",
+        "Status: **COMPUTATIONALLY VERIFIED** counts; the depth-2 and",
+        "even-branch depth-4 analytic results are **EXACT — HUMAN PROOF**",
+        "(`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,",
+        "`J-four-step-descent-density`; proofs in",
+        "`juggler_two_step_parity_lemma.md`)",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",

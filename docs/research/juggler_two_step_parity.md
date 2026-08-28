@@ -1,8 +1,10 @@
 # Juggler multi-step itinerary-parity census
 
-Status: **COMPUTATIONALLY VERIFIED** counts; the depth-2 analytic
-lemma is now **EXACT — HUMAN PROOF** (`J-nested-parity-discrepancy`,
-proof in `juggler_two_step_parity_lemma.md`)
+Status: **COMPUTATIONALLY VERIFIED** counts; the depth-2 and
+even-branch depth-4 analytic results are **EXACT — HUMAN PROOF**
+(`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,
+`J-four-step-descent-density`; proofs in
+`juggler_two_step_parity_lemma.md`)
 
 Exact census of the joint parity word of the first four itinerary
 letters on odd starts. Phase-0 falsifier for iterating the one-step

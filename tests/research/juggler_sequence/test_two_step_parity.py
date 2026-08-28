@@ -10,12 +10,19 @@ from research.juggler_sequence.two_step_parity import (
     CONTRACTING_TARGET,
     SCALE,
     WORDS4,
+    deep_word_counts,
+    fourth_letter_scan,
+    fourth_letter_smoothing_check,
     gap_decomposition_check,
     identity_error_scaled,
     identity_scan,
     itinerary_word,
     juggler_step,
+    ooee_indicator_identity_check,
+    ooo_indicator_identity_check,
     scan,
+    second_gap_collision_check,
+    second_order_scan,
     word_counts,
 )
 
@@ -92,6 +99,11 @@ def test_anti_overclaim_flags():
     assert ANTI_OVERCLAIM["predictive_state_claim"] is False
     # Flipped by the Phase-2 review pass (J-nested-parity-discrepancy).
     assert ANTI_OVERCLAIM["depth2_analytic_lemma_proved"] is True
+    # Flipped by the Phase-3 review pass (J-triple-parity-discrepancy).
+    assert ANTI_OVERCLAIM["depth4_even_branch_proved"] is True
+    # Phase 4: bricks proved, but no tier-2 bound and no density-one claim.
+    assert ANTI_OVERCLAIM["tier2_analytic_lemma_proved"] is False
+    assert ANTI_OVERCLAIM["density_one_claimed"] is False
 
 
 def test_smooth_cancellation_constant():
@@ -133,3 +145,80 @@ def test_lemma_b_gap_decomposition():
         result = gap_decomposition_check(100_001, 400, h)
         assert result["holds"] is True
         assert result["matches"] >= 398
+
+
+def test_lemma_d_fourth_letter_smoothing():
+    # Lemma D: v^{1/2} = n^{9/8} + D(n), -(3/4) n^{-3/8} - n^{-9/8} <= D <= 0.
+    samples = tuple(range(3, 1001, 2)) + (10**6 + 1, 10**9 + 1)
+    result = fourth_letter_scan(samples)
+    assert result["holds"] is True
+    # The supremum of |D| / bound is 1, approached as theta -> 1.
+    assert result["worst_ratio"] < 1.0
+
+
+def test_lemma_d_single_value_shape():
+    diff, bound = fourth_letter_smoothing_check(101)
+    assert -bound <= diff <= 0
+    assert 0 < bound < SCALE
+
+
+def test_ooee_indicator_identity():
+    # itinerary_word(n,4) == "OOEE" iff (psi1, psi2, psi3) = (-1,+1,+1):
+    # the branch-consistency claim behind Corollary F.
+    result = ooee_indicator_identity_check(5001)
+    assert result["holds"] is True
+
+
+def test_lemma_g_coefficient_identities():
+    # Both Lemma G identities and the Proposition H polynomial recover
+    # the nominal value at (m, v) = (X, X^{3/2}).
+    from fractions import Fraction as F
+
+    assert F(5, 32) + F(15, 16) - F(3, 32) == 1
+    assert F(5, 32) - F(9, 16) + F(45, 32) == 1
+    assert (
+        -F(5, 64) + F(9, 32) - F(45, 64) + F(15, 64) + F(45, 32) - F(9, 64)
+    ) == 1
+
+
+def test_lemma_g_second_order_scan():
+    # Second-order linearization bricks, exact at scale 10^60.
+    samples = tuple(range(5, 501, 2)) + (10**6 + 1, 10**9 + 1)
+    result = second_order_scan(samples)
+    assert result["holds"] is True
+
+
+def test_ooo_indicator_identity():
+    # itinerary_word(n,4) == "OOOE" iff (psi1, psi2, psi4) = (-1,-1,+1):
+    # the branch-consistency claim for the tier-2 target class.
+    result = ooo_indicator_identity_check(5001)
+    assert result["holds"] is True
+
+
+def test_composed_cell_obstruction():
+    # Negative knowledge: on Lemma-B cells the second-level gap g2
+    # takes a new value at essentially every point, so the naive
+    # two-level cell composition fails. Do not retry that route.
+    result = second_gap_collision_check(10**6 + 1, 1500, 1)
+    assert result["distinct_ratio"] >= 0.99
+
+
+def test_depth6_census_minimal_scale_envelope():
+    # All 32 depth-6 words realized; deviations obey the two-regime
+    # envelope max((N/2) N^{-gamma_min}, N^{2/3}) with constant <= 1.5.
+    n_max = 100_000
+    counts = deep_word_counts(n_max, 6)
+    assert len(counts) == 32
+    odds = sum(counts.values())
+    expected = odds / 32
+
+    def gamma_min(word: str) -> float:
+        g, gm = 1.0, float("inf")
+        for ch in word:
+            g *= 1.5 if ch == "O" else 0.5
+            gm = min(gm, g)
+        return gm
+
+    for w, c in counts.items():
+        envelope = max((n_max / 2) * n_max ** (-gamma_min(w)), n_max ** (2 / 3))
+        assert abs(c - expected) <= 1.5 * envelope

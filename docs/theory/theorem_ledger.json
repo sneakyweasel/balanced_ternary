@@ -3286,5 +3286,60 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-fourth-letter-linearization",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "For odd n \u2265 3 with m = floor(n^{3/2}) and v = floor(m^{3/2}): v^{1/2} = n^{9/8} + D(n) with -(3/4) n^{-3/8} - n^{-9/8} \u2264 D(n) \u2264 0, where D(n) = -(3/4) theta n^{-3/8} - (1/2) theta_2 m^{-3/4} - E_3 - E_2 by two applications of the linearization pattern of row J-nested-parity-linearization. Every non-smooth term has decaying amplitude, so smoothing the fourth-letter phase (k/2) v^{1/2} to (k/2) n^{9/8} costs only O(k N^{5/8}) cumulatively. Validated by exact scaled-integer arithmetic through n = 10^{12}, worst ratio 0.9970 against supremum 1.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-triple-parity-discrepancy",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "Each of the eight sign classes of ((-1)^m, (-1)^v, (-1)^{floor(sqrt v)}) over odd n \u2264 N, with m = floor(n^{3/2}) and v = floor(m^{3/2}), has cardinality N/16 + O(N^{23/24+eps}). Proof: the c = 0 cases are rows J-ambient-odd-discrepancy and J-nested-parity-discrepancy; for c = 1, the fourth letter is smoothed exactly by row J-fourth-letter-linearization before any differencing, pure fourth-letter modes reduce to a single smooth exponential sum (direct second-derivative test), and mixed modes rerun the depth-2 machinery with the smooth passenger (k/2) n^{9/8}, whose curvature is smaller than every retained scale by at least N^{9/8-1/24}. Even-branch fourth letter only; ambient counting; not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-four-step-descent-density",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "#{n \u2264 N : n odd with itinerary OOEE} = N/16 + O(N^{23/24+eps}), and the class of starts with a certified descent within four steps \u2014 evens (one step), OE (two steps, Lean lemma floorPower_odd_even_two_step_lt), OOEE (four steps, row J-power-envelope-contraction via 3^2 < 2^4) \u2014 has cardinality 13N/16 + O(N^{23/24+eps}). Indicator algebra (1-psi_1)(1+psi_2)(1+psi_3)/8 is exactly branch-consistent: the (1+psi_2) factor vanishes precisely where J^3 would take the odd branch. Raises the certified descent density from 3/4 to 13/16. Density of a certificate class, not a termination claim; OOO* classes remain open.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-second-order-linearization",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "Second-order exact linearization (Lemma G): for odd n \u2265 5 with X = n^{3/2}, m = floor(X): m^{3/4} = (5/32) n^{9/8} + (15/16) m n^{-3/8} - (3/32) m^2 n^{-15/8} - R3 with 0 \u2264 R3 \u2264 (5/128)(X-1)^{-9/4}, and m^{9/4} = (5/32) n^{27/8} - (9/16) m n^{15/8} + (45/32) m^2 n^{3/8} + R4 with -(15/128)(X-1)^{-3/4} \u2264 R4 \u2264 0, by Taylor to third order with the exact substitution theta = X - m in both the linear and quadratic terms. Consequently (Proposition H) the OOO* layer phase v^{3/2}, v = floor(m^{3/2}), equals a degree-(2,1) polynomial in the integer pair (m, v) with smooth coefficients, up to an error of at most (3/4) n^{-9/8}. The integer m enters quadratically with smooth coefficients and decaying remainders \u2014 the algebraic brick for the tier-2 (second growing layer) discrepancy attack. Validated by exact scaled-integer arithmetic (scale 10^{60}) through n = 10^{12}. The tier-2 discrepancy bound itself is not claimed.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-equidistribution-implies-density-one",
+    "tag": "EXACT \u2014 HUMAN PROOF",
+    "statement": "Conditional implication (Proposition J): if for every itinerary word w of length d the class count satisfies |#w(N) - 2^{-d} N| \u2264 E_d(N), then the starts with no contracting prefix of length \u2264 d number at most e^{-cd} N + 2^d E_d(N), with c = 2 (log2/log3 - 1/2)^2 > 0.0342 via Hoeffding on the odd-letter count (a word with no contracting prefix has o_d \u2265 d log2/log3). Every other start n \u2265 2 has a uniform power-envelope descent certificate within d steps (row J-power-envelope-contraction). Hence all-depth parity equidistribution with power savings (Conjecture K; proved for depth \u2264 3 and depth-4 even branch) implies that the set of Juggler starts admitting a finite descent certificate has natural density one \u2014 the Juggler analogue of the Terras program. The implication is unconditional; the hypothesis is open beyond the proved cases. Not a termination claim; no unconditional density-one claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]

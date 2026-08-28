@@ -95,8 +95,10 @@ It is not required. The 2-adic / BT bridge stays closed.
 - OOEE class fraction \(0.125039\) with zero four-step descent
   violations (guard for the exact contraction \(x^{16}\le n^9\)) —
   **COMPUTATIONALLY VERIFIED**
-- Depth-2 analytic lemma — not claimed; `depth2_analytic_lemma_proved`
-  stays `False`
+- Depth-2 analytic lemma — proved in Phase 1–2
+  (`depth2_analytic_lemma_proved` is `True`)
+- Even-branch depth-4 results — proved in Phase 3
+  (`depth4_even_branch_proved` is `True`)
 - Global halt — not claimed
 
 ## Experiments
@@ -174,6 +176,89 @@ added; `depth2_analytic_lemma_proved` flipped to `True`. Ambient
 counting only: not an orbit transfer, not a frequency theorem along
 trajectories, not a termination claim.
 
+## Phase 3: the depth-4 extension
+
+Same working document, Part II. The structural surprise: depth 4 is
+*easier* than depth 2, because after Lemma A's pattern is applied
+twice more, every non-smooth term of the fourth-letter phase has
+decaying amplitude.
+
+- **Lemma D (fourth-letter linearization)** — **EXACT — HUMAN PROOF**
+  (`J-fourth-letter-linearization`): \(v^{1/2} = n^{9/8} + D(n)\) with
+  \(-\tfrac34 n^{-3/8} - n^{-9/8} \le D(n) \le 0\), where
+  \(v = \lfloor m^{3/2}\rfloor\). Smoothing the fourth letter costs
+  only \(O(kN^{5/8})\) cumulatively, so it happens *before* any
+  differencing. Validated exactly through \(n = 10^{12}+1\); worst
+  ratio \(0.9970\) against supremum \(1\).
+- **Theorem E (triple parity discrepancy)** — **EXACT — HUMAN PROOF**
+  (`J-triple-parity-discrepancy`): all eight sign classes of
+  \(((-1)^m, (-1)^v, (-1)^{\lfloor\sqrt v\rfloor})\) on odd
+  \(n \le N\) have cardinality \(N/16 + O(N^{23/24+\varepsilon})\).
+  Pure fourth-letter modes reduce to a single smooth exponential sum;
+  mixed modes rerun the Theorem C machinery with a smooth passenger
+  whose curvature is smaller than every retained scale by
+  \(\ge N^{9/8-1/24}\).
+- **Corollary F (four-step descent density)** — **EXACT — HUMAN
+  PROOF** (`J-four-step-descent-density`):
+  \(\#\mathrm{OOEE}(N) = N/16 + O(N^{23/24+\varepsilon})\), and the
+  certified \(\le 4\)-step descent class (evens, OE, OOEE) has density
+  \(13/16\) — up from the paper's \(3/4\). Branch consistency of the
+  indicator algebra \((1-\psi_1)(1+\psi_2)(1+\psi_3)/8\) verified
+  exactly (`ooee_indicator_identity_check`).
+
+Review record in the working document (Phase-3 section): Lemma D's
+remainder chain re-derived, the absorption order checked (smoothing
+precedes differencing, so no \(\theta\)-dependence reaches the van
+der Corput stage), curvature sign and dominance margins verified for
+both mode cases, float sanity on \(|S_{0,0,1}|\). No step failed.
+
+## Phase 4: beyond depth 4 — tier structure and the density-one program
+
+Same working document, Part III. Scope: what generalizes, what the
+ceiling is, the algebraic bricks for tier 2, route obstructions, and
+the conditional density-one theorem. The tier-2 bound is not claimed.
+
+- **Proposition I (one-growing-layer ceiling)** — **EXACT — HUMAN
+  PROOF**: the machinery of Parts I–II certifies exactly \(E\),
+  \(OE\), \(OOEE\) among contracting prefixes; \(13/16\) is the exact
+  ceiling of the method. Every further certified start needs a second
+  growing nesting layer (an odd letter at position \(\ge 3\)).
+- **Lemma G (second-order exact linearization)** — **EXACT — HUMAN
+  PROOF** (`J-second-order-linearization`): exact quadratic-in-\(m\)
+  forms of \(m^{3/4}\) and \(m^{9/4}\) with decaying remainders, by
+  substituting \(\theta = X - m\) into both the linear and quadratic
+  Taylor terms. Validated at scale \(10^{60}\) through
+  \(n = 10^{12}\).
+- **Proposition H (polynomial phase)** — **EXACT — HUMAN PROOF**: the
+  OOO\* layer phase \(v^{3/2}\) equals a degree-\((2,1)\) polynomial
+  in the integer pair \((m, v)\) with smooth coefficients, up to
+  \(\tfrac34 n^{-9/8}\). The tier-2 analogue of Lemma A's linear
+  structure. Branch algebra for OOO\* machine-checked.
+- **Obstructions recorded**: (i) composed Lemma-B cells fail — the
+  second-level gap changes at essentially every point of a cell
+  (distinct ratio \(1.0000\)); (ii) the fiber transform to
+  \(m\)-space strips one nesting level but loses to the sparsity
+  exponent \(1/3 \gg 1/24\); the \(r = 1\) fiber mode is fatal. Both
+  routes parked permanently.
+- **Proposition J (conditional density-one)** — **EXACT — HUMAN
+  PROOF** (`J-equidistribution-implies-density-one`): all-depth
+  parity equidistribution with power savings implies density-one
+  finite descent (Hoeffding, \(c > 0.0342\)) — the Juggler analogue
+  of the Terras program. Implication unconditional; hypothesis open
+  beyond depth 3 and depth-4 even branch.
+- **Census gate (depth 6)** — **COMPUTATIONALLY VERIFIED**: all 32
+  words realized at \(N = 2\cdot10^6\); deviations obey the
+  two-regime minimal-scale envelope
+  \(|D_w| \le 1.1\max((N/2)N^{-\gamma_{\min}}, N^{2/3})\) across
+  \(N = 10^5, 5\cdot10^5, 2\cdot10^6\). E-heavy words are
+  boundary-dominated (deep values reach single digits), not biased.
+- **Conjecture K**: all-depth equidistribution. The concrete next
+  case is tier 2 (OOO\* split) via the double-differencing route:
+  A-process on the polynomial phase, shifted-window Vaaler for the
+  growing sawtooth amplitudes (\(\asymp khn^{7/8}\)),
+  third-derivative tests, one more differencing. Expected saving
+  \(\delta_2 \sim 10^{-2}\).
+
 ## Results
 
 At \(N=10^7\) (4,999,999 odd starts):
@@ -193,11 +278,11 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-The depth-4 extension via the decaying-amplitude identity
-\(m^{3/4} = \tfrac34 m n^{-3/8} + \tfrac14 n^{9/8} + O(n^{-15/8})\),
-targeting the OOEE density \(1/16 + o(1)\) and a certified descent
-class of density \(13/16\). Separately, the editorial import of
-Theorem C into the finite-dynamics note.
+Tier 2: the OOO\* split via the double-differencing route on the
+Proposition-H polynomial phase — required for any certified density
+beyond \(13/16\) (Proposition I) and the first induction step of
+Conjecture K. Separately, the editorial import of Theorems C/E and
+Corollary F into the finite-dynamics note.
 
 ## Decision
 
@@ -215,21 +300,37 @@ proof of the depth-2 power saving \(N^{23/24+\varepsilon}\)
 re-derived adversarially; the one delicate cancellation confirmed to
 its exact constant \(81/256\); three presentational repairs applied;
 ledger rows added and the module flag flipped. The theorem is
-settled at project standard. Two follow-on phases open and stay
-separate: the note import (editorial), and the depth-4 extension
-(OOEE density \(1/16\), certified descent class \(13/16\)) via the
-decaying-amplitude identity.
+settled at project standard.
 
-Best next question: does the depth-4 extension close — i.e., do the
-linearizations at \(m^{3/4}\)-scale and the same cell machinery give
-\(\#\mathrm{OOEE}(N) = N/16 + O(N^{1-\delta})\), lifting the
-certified descent class to density \(13/16\)?
+**PROMOTE** (Phase 3, depth-4 extension): Lemma D closed the fourth
+letter with decaying amplitudes, Theorem E extended the discrepancy
+bound to all eight triple-parity classes at the same exponent
+\(23/24\), and Corollary F lifted the certified \(\le 4\)-step
+descent class to density \(13/16\). Three ledger rows added;
+`depth4_even_branch_proved` flipped to `True`.
+
+**PROMOTE** (Phase 4, beyond depth 4): the generalization question
+was answered structurally. Proposition I fixes \(13/16\) as the exact
+ceiling of the one-growing-layer method; Lemma G and Proposition H
+provide the proved algebraic bricks for the second growing layer;
+two tempting shortcut routes were refuted and recorded; Proposition J
+turns all-depth equidistribution into density-one finite descent
+(the Juggler Terras program), unconditionally as an implication. Two
+ledger rows added. The tier-2 analytic bound is the promoted open
+frontier, not a claim.
+
+Best next question: does the tier-2 double-differencing route close —
+i.e., does the OOO\* split \(\#OOOE(N) = N/16 + O(N^{1-\delta_2})\)
+follow from the Proposition-H polynomial phase via shifted-window
+Vaaler expansions and a second A-process, unlocking the next
+certified-density tier (\(OOOEE\) at \(1/32\), \(OOEOEE\) at
+\(1/64\), …) and the induction pattern for Conjecture K?
 
 ## Publication assessment
 
-Status: `THEOREM`. An exact linearization lemma and a power-saving
-joint-parity discrepancy bound for a nested floor-power sequence,
-outside the existing Piatetski-Shapiro literature, plus the census.
-Import into the finite-dynamics note is a pending editorial phase;
-after the depth-4 extension this material strengthens the paper's
-Section 5 (certified density above \(3/4\)).
+Status: `THEOREM`. Exact linearization lemmas, power-saving
+joint-parity discrepancy bounds for nested floor-power sequences at
+depths 2 and 4 (even branch), outside the existing Piatetski-Shapiro
+literature, and a certified-descent density of \(13/16\) — a direct
+headline improvement over the note's current \(3/4\). Import into the
+finite-dynamics note is the pending editorial phase.
