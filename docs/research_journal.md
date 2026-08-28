@@ -9405,3 +9405,53 @@ Best next question
 - does the OOOO* fifth letter admit a scale-invariant extension
   of Theorem R with delta(alpha) polynomial in alpha = 27/16?
 ```
+
+## Juggler OOOO* kernel isolated, bound open (Phase 11)
+
+The promoted question — is the OOOO* fifth letter a scale-invariant
+extension of the Theorem-R kernel, or a new obstruction? — answered
+as isolation, not a bound. Working document Part VIII.
+
+Lemma V1 (Taylor of (z + theta_3)^{3/2} at z) writes the fifth
+letter as the level-3 local floor defect: K3 = sum e(c {v^{3/2}})
+with c ~ k n^{27/16}. Identity exact, validated to n = 10^{12}.
+The smooth model G(n) = n^{27/8} has G''' ~ P^{3/8} >> 1 >
+P^{-5/8} ~ G^{(4)}, so the R-numerology iterates: three Weyl
+steps instead of two. The discrete Z is wild (|Δ⁴ Z| >> 1);
+the branch set is a product of two Lemma-R3 lattices, not a
+copy of R. Probe cancels at square-root scale (30, 60, 424 on
+2.5e3 / 2.5e4 / 1e5 terms). Conjecture V is the bound; not
+claimed. A depth-5 count would not raise certified density
+(81 > 32); first OOOO-prefixed contractor is OOOOEEE.
+
+```text
+What was learned
+- the OOOO* fifth letter is the same object as Theorem R one
+  nesting deeper, not an unnamed new sum
+- smooth numerology iterates (one extra differencing per unit
+  of derivative growth); raw Δ⁴ Z does not freeze
+- the carry lattice is a product of two R3 lattices, so a
+  bound is not a copy-paste of Theorem R
+- proving K3 at depth 5 would complete equidistribution of
+  all 16 words but would not move the 7/8 descent density
+- delta that halves per nesting still does not give Terras
+Strongest theorem
+- Lemma V1: K3 is the level-3 local floor defect —
+  EXACT — HUMAN PROOF
+Strongest refutation
+- raw freeze of Δ⁴ Z (the Phase-8 falsifier one layer up)
+Reusable machinery
+- level3_reformulation_scan (exact to 10^{12}); K3 and
+  differenced-K3 probes; raw-gap wildness scan; OOOO
+  indicator check
+Branch status
+- PROMOTE
+Why
+- the supercritical object is named and the numerology
+  iterates; the bound is a different phase because the
+  nested carry product is the actual remaining question
+Best next question
+- does the product of the two carry lattices still kill
+  every full-size sawtooth coefficient in K3, or is there
+  a new wall at the v-level?
+```

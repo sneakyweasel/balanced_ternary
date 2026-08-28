@@ -28,9 +28,11 @@ by the Phase-9 adversarial review (record in Part VI); ledger rows
 note's Conjecture 6.2 paragraph is superseded and awaits editorial
 consolidation. Part VII (Phase 10) closes the two length-5
 contracting splits OOOEE and OOEOE (Theorem T, Corollary U), lifting
-the certified-descent density to \(7/8\). Not a termination claim;
-the remaining depth-\(\ge5\) expanders (OOOO\*, OOEOO, OOOEO) and
-the density-one statement remain open.
+the certified-descent density to \(7/8\). Part VIII (Phase 11)
+isolates the OOOO\* fifth letter as the level-3 floor-defect
+kernel \(K_3\) (Lemma V1, Conjecture V); the bound is not claimed.
+Not a termination claim; the remaining depth-\(\ge5\) expanders
+(OOOO\*, OOEOO, OOOEO) and the density-one statement remain open.
 
 Throughout, \(n\) is odd, \(X = n^{3/2}\), \(m = m(n) = \lfloor
 n^{3/2}\rfloor = \operatorname{isqrt}(n^3)\), \(\theta = \theta_n =
@@ -1750,3 +1752,139 @@ no all-depth claim. The next mathematical question is whether
 the OOOO\* fifth letter (coefficient \(n^{27/16}>n\)) admits a
 scale-invariant extension of Theorem R, which is the first
 rung of a Terras induction; that is a different phase.
+
+## Part VIII: the OOOO\* kernel — isolation (Phase 11)
+
+Scope: name the supercritical fifth-letter object and decide
+whether Theorem R's numerology iterates. No bound, no density
+claim, no triple-differencing draft.
+
+Notation as in Part VI, plus \(Z = v^{3/2}\), \(z = \lfloor Z\rfloor\),
+\(\theta_3 = Z - z\). After four odds the fifth letter is the
+parity of \(\lfloor z^{3/2}\rfloor\). Branch consistency is
+machine-checked (`oooo_indicator_identity_check`).
+
+### Lemma V1 (level-3 kernel reformulation) — EXACT — HUMAN PROOF
+
+For odd \(n \ge 5\),
+
+\[
+\tfrac12\bigl(v^{9/4} - z^{3/2}\bigr)
+- \tfrac34\, z^{1/2}\theta_3 \;=\; R_3,
+\qquad
+0 \le R_3 \le \tfrac3{16}\, z^{-1/2}.
+\]
+
+Consequently the central kernel phase \(c\,\theta_3\) with
+\(c = \tfrac{3k}4 z^{1/2}\) equals \(\tfrac k2\bigl(Z^{3/2} -
+\lfloor Z\rfloor^{3/2}\bigr)\) up to \(k R_3 \ll k n^{-27/16}\):
+**the OOOO\* kernel is the exponential sum of the level-3 local
+floor defect**, Lemma R1 with \((m,v)\) replaced by \((v,z)\).
+Since \(z \asymp n^{27/8}\), the coefficient is
+\(c \asymp k n^{27/16} > n\).
+
+*Proof.* Taylor of \((z + \theta_3)^{3/2}\) at \(z\):
+\(Z^{3/2} = z^{3/2} + \tfrac32 z^{1/2}\theta_3 +
+\tfrac38 (z+\xi)^{-1/2}\theta_3^2\) with \(\xi \in (0,\theta_3)\),
+and \(Z^{3/2} = v^{9/4}\). \(\square\) Validated in exact scaled
+integers (`level3_reformulation_scan`): odd samples through
+\(n = 10^{12}+1\), remainder one-signed in the stated envelope.
+
+### Kernel (definition)
+
+For smooth \(c\) with \(c \asymp k P^{27/16}\) and
+\(c' \asymp k P^{11/16}\) on \(n \sim P\) (the \(z^{1/2}\)-shaped
+family),
+
+\[
+K_3(P) \;=\; \sum_{\substack{n \sim P \\ n\ \mathrm{odd}}}
+e\bigl(c(n)\,\{\lfloor\lfloor n^{3/2}\rfloor^{3/2}\rfloor^{3/2}\}
+\bigr).
+\]
+
+This is the \(W\)-family of Theorem R with one extra nesting:
+coefficient \(\alpha = 27/16\) in place of \(9/8\).
+
+### Smooth numerology iterates
+
+The smooth model \(G(n) = n^{27/8}\) (replacing every floor by
+the real power) has
+
+\[
+G''' \asymp P^{3/8} \gg 1 > P^{-5/8} \asymp G^{(4)}.
+\]
+
+Theorem R used \(Y'' \asymp P^{1/4} \gg 1 > P^{-3/4} \asymp Y'''\)
+and two Weyl steps. The same "one extra differencing per unit of
+derivative growth" therefore predicts **three** Weyl steps here.
+This is the scale-invariant pattern, not a new analytic idea.
+
+Closed form only; the derivatives are elementary. A float check
+of \(n^{27/8}\) at \(P = 10^4\) matches \(G'''\) and \(G^{(4)}\)
+to relative error \(< 1\%\).
+
+### Negative knowledge: raw \(\Delta^4 Z\) is not frozen
+
+The discrete \(Z = v^{3/2}\) inherits jumps from both inner
+floors. At \(P = 10^4, 10^5, 10^6\), the mean
+\(|\Delta^3 Z|\) is \(10^4\)–\(10^7\) times the smooth
+\(G'''\), and \(|\Delta^4 Z|\) is \(10^8\)–\(10^{11}\) rather
+than \(\ll 1\) (`level3_raw_gap_wildness`). A freeze argument
+that ignores the nested carry lattice — level-1 carries of
+\(m = \lfloor n^{3/2}\rfloor\) and level-2 carries of
+\(v = \lfloor m^{3/2}\rfloor\) — is dead on arrival. This is
+the Phase-8 raw-freeze falsifier one layer up, recorded now so
+it is not rediscovered as a "new" obstruction.
+
+The branch set is a *product* of two Lemma-R3 lattices, not a
+copy of Lemma R3. The inner variable \(v\) jumps by
+\(\asymp n^{5/4}\) per step of \(n\). Inherited Phase-5 dead
+routes (composed Lemma-B cells, the swap
+\(e(c\theta_3) = e(cZ)\,e(-\{c\}z)\), a second A-process on
+\(z^{3/2}\), fibre + van der Corput II, shifted-window Vaaler
+on a full-size sawtooth) remain dead; they were not retested.
+
+### Float support
+
+Exact scaled phases (`level3_kernel_probe`,
+\(c = \tfrac34 z^{1/2}\)): \(|K_3| = 30.1,\ 59.5,\ 423.7\) on
+\(2.5\cdot10^3,\ 2.5\cdot10^4,\ 10^5\) terms — square-root
+scale (predicted \(\sqrt N = 50,\ 158,\ 316\)). On the OOOO
+cylinder at \(P = 10^5\): \(|K_3| = 59.1\) on \(6207\) terms
+(\(\sqrt N = 79\)). Differenced probes at \(P = 2\cdot10^4\):
+\(|T_1| = 182\), \(|T_2| = 47\), \(|T_3| = 62\) on \(10^4\)
+terms (\(\sqrt N = 100\)).
+
+### What a bound would *not* do
+
+Even a power-saving bound on \(K_3\) at depth 5 only *counts*
+OOOOE and OOOOO. Neither contracts:
+\(3^4 = 81 > 32 = 2^5\). Certified descent stays \(7/8\).
+The first OOOO-prefixed contractor is OOOOEEE
+(\(81 < 128 = 2^7\)), a length-7 word, not this phase.
+
+A saving \(\delta\) that halves per extra nesting
+(\(1/72 \to 1/144 \to \cdots\)) does **not** feed the
+Hoeffding argument of Proposition J at all depths. Terras
+still needs \(\delta\) uniform in the depth or at least
+\(\ge c/d^2\). Isolation of \(K_3\) is the first rung of
+that program, not the program.
+
+### Conjecture V (level-3 kernel cancellation)
+
+\(K_3(P) \ll P^{1-\delta}\) for some \(\delta > 0\), uniformly
+over the \(z^{1/2}\)-shaped family \(c \asymp k P^{27/16}\),
+\(k \le P^{\varepsilon}\). Supported by the probe; not claimed.
+
+### Phase-11 decision
+
+**PROMOTE** the isolation. Lemma V1 is exact; the object is
+named; the smooth numerology iterates; the probe cancels; the
+raw-freeze route is recorded dead; no new unnamed wild sum
+appeared. The bound is a different phase: it must show that
+the *product* of the two carry lattices still kills every
+full-size sawtooth coefficient, or exhibit a new wall.
+
+`depth5_kernel_isolated` flipped; `depth5_kernel_bound_proved`
+and `density_one_claimed` stay `False`. No ledger row (no
+bound, no density increment). No note import.

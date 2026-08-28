@@ -23,6 +23,11 @@ from research.juggler_sequence.two_step_parity import (
     itinerary_word,
     juggler_step,
     kernel_probe,
+    level3_kernel_probe,
+    level3_raw_gap_wildness,
+    level3_reformulation_scan,
+    differenced_level3_kernel_probe,
+    oooo_indicator_identity_check,
     lemma_a_prime_scan,
     lemma_m_scan,
     level2_gap_check,
@@ -384,7 +389,47 @@ def test_depth5_contracting_words_near_product():
 
 def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["depth5_contracting_proved"] is True
+    assert ANTI_OVERCLAIM["depth5_kernel_isolated"] is True
+    assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
     assert ANTI_OVERCLAIM["density_one_claimed"] is False
+
+
+def test_level3_reformulation_identity():
+    # Lemma V1: (1/2)(v^{9/4} - z^{3/2}) - (3/4) z^{1/2} theta_3 lies
+    # in [0, (3/16) z^{-1/2}]; exact scaled integers through 10^12.
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert level3_reformulation_scan(samples)["holds"] is True
+
+
+def test_level3_kernel_probe_cancels():
+    # Conjecture V support: the isolated level-3 kernel exhibits
+    # square-root-scale cancellation (loose threshold).
+    result = level3_kernel_probe(10**4)
+    assert result["count"] > 1000
+    assert result["abs_sum"] < 0.1 * result["count"]
+
+
+def test_differenced_level3_kernel_cancels():
+    t1 = differenced_level3_kernel_probe(10**4, 1)
+    t2 = differenced_level3_kernel_probe(10**4, 1, 2)
+    t3 = differenced_level3_kernel_probe(10**4, 1, 2, 3)
+    assert t1["abs_sum"] < 0.1 * t1["count"]
+    assert t2["abs_sum"] < 0.1 * t2["count"]
+    assert t3["abs_sum"] < 0.1 * t3["count"]
+
+
+def test_level3_raw_gap_is_wild():
+    # Negative knowledge: raw Δ⁴ Z is not frozen. The smooth model
+    # G^{(4)} ≪ 1 does not descend to the discrete nested floor.
+    result = level3_raw_gap_wildness(10**4, 80)
+    assert result["raw_d4_wild"] is True
+    assert result["d3_above_smooth"] is True
+
+
+def test_oooo_indicator_identity():
+    result = oooo_indicator_identity_check(5001)
+    assert result["holds"] is True
+    assert result["checked"] > 100
 
 
 def test_depth6_census_minimal_scale_envelope():

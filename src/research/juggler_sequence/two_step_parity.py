@@ -92,6 +92,10 @@ ANTI_OVERCLAIM = {
     # Phase 10: Theorem T / Corollary U close OOOEE and OOEOE;
     # certified descent density 7/8. OOOO* at depth 5 remains open.
     "depth5_contracting_proved": True,
+    # Phase 11: the OOOO* fifth letter is the isolated level-3
+    # floor-defect kernel K3 (Lemma V1). No bound, no density move.
+    "depth5_kernel_isolated": True,
+    "depth5_kernel_bound_proved": False,
 }
 
 
@@ -500,6 +504,182 @@ def oooee_mode_probe(p_block: int) -> dict[str, Any]:
         cnt += 1
         n += 2
     return {"count": cnt, "abs_sum": round((re * re + im * im) ** 0.5, 1)}
+
+
+# --- Phase 11: OOOO* kernel isolation (level-3 floor defect) ---
+
+
+def level3_reformulation_check(n: int, scale: int = 10**40) -> tuple[int, int]:
+    """(diff*scale, bound*scale) for the level-3 kernel reformulation.
+
+    With Z = v^{3/2}, z = floor(Z), theta_3 = Z - z:
+    (1/2)(v^{9/4} - z^{3/2}) - (3/4) z^{1/2} theta_3 = R3 in
+    [0, (3/16) z^{-1/2}] (Taylor of (z + theta_3)^{3/2} at z, one-signed
+    remainder). Hence the central kernel phase c*theta_3 with
+    c = (3k/4) z^{1/2} equals (k/2)(v^{9/4} - z^{3/2}) up to k R3:
+    the OOOO* kernel is the exponential sum of the level-3 local
+    floor defect. Lemma R1 with (m, v) replaced by (v, z).
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    z = isqrt(v**3)
+    v94 = isqrt(isqrt(v**9 * scale**4))
+    z32 = isqrt(z**3 * scale * scale)
+    z12 = isqrt(z * scale * scale)
+    th3 = isqrt(v**3 * scale * scale) - z * scale
+    diff = (v94 - z32) // 2 - (3 * z12 * th3) // (4 * scale)
+    # Floor slack: z12 and th3 each carry O(1) scaled-unit error;
+    # the cross product propagates them at z^{1/2} ~ n^{27/16} units.
+    slack = isqrt(z) + 10**6
+    bound = (3 * scale * scale) // (16 * z12) + slack
+    return diff, bound
+
+
+def level3_reformulation_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    """Check 0 <= diff <= bound on odd samples (slack folded into bound)."""
+    slack = 10**7
+    for n in samples:
+        diff, bound = level3_reformulation_check(n)
+        if diff < -slack or diff > bound:
+            return {"holds": False, "witness": n}
+    return {"holds": True, "count": len(samples)}
+
+
+def _level3_phase_scaled(n: int, coeff_num: int, coeff_den: int) -> float:
+    """{c(n) theta_3(n)} with c = (num/den) z^{1/2}, exact scaled ints."""
+    s = 10**12
+    s30 = 10**30
+    v = isqrt(isqrt(n**3) ** 3)
+    z = isqrt(v**3)
+    t3 = isqrt(v**3 * s * s)
+    th3 = t3 - (t3 // s) * s
+    z12 = isqrt(z * s30 * s30)
+    prod = (coeff_num * z12 * th3) // coeff_den
+    return (prod % (s30 * s)) / (s30 * s)
+
+
+def level3_kernel_probe(
+    p_block: int, coeff_num: int = 3, coeff_den: int = 4
+) -> dict[str, Any]:
+    """Float probe of the isolated level-3 kernel K3 = sum e(c {v^{3/2}}).
+
+    c(n) = (coeff_num/coeff_den) z^{1/2}, the natural z^{1/2}-scale of
+    the OOOO* reduction (z = floor(v^{3/2}) ~ n^{27/8}, so
+    c ~ n^{27/16}). Exact scaled phase arithmetic; float only in the
+    final exponential. Not a proof; supports or refutes Conjecture V.
+    """
+    from math import cos, pi, sin
+
+    re = im = 0.0
+    cnt = 0
+    n = p_block + 1
+    while n < 2 * p_block:
+        frac = _level3_phase_scaled(n, coeff_num, coeff_den)
+        ph = 2 * pi * frac
+        re += cos(ph)
+        im += sin(ph)
+        cnt += 1
+        n += 2
+    return {"count": cnt, "abs_sum": round((re * re + im * im) ** 0.5, 1)}
+
+
+def differenced_level3_kernel_probe(
+    p_block: int,
+    h1: int,
+    h2: int = 0,
+    h3: int = 0,
+    coeff_num: int = 3,
+    coeff_den: int = 4,
+) -> dict[str, Any]:
+    """Once-, twice- or thrice-differenced level-3 kernel sums.
+
+    Same corner construction as differenced_kernel_probe; phase is
+    c theta_3 with c = (coeff_num/coeff_den) z^{1/2}. Not a proof.
+    """
+    from math import cos, pi, sin
+
+    corners = [(1, 2 * h1), (-1, 0)]
+    for h in (h2, h3):
+        if h > 0:
+            corners = [(s, d + 2 * h) for s, d in corners] + [
+                (-s, d) for s, d in corners
+            ]
+    re = im = 0.0
+    cnt = 0
+    n = p_block + 1
+    while n < 2 * p_block:
+        ph = 0.0
+        for sgn, d in corners:
+            ph += sgn * _level3_phase_scaled(n + d, coeff_num, coeff_den)
+        theta = 2 * pi * ph
+        re += cos(theta)
+        im += sin(theta)
+        cnt += 1
+        n += 2
+    return {
+        "count": cnt,
+        "abs_sum": round((re * re + im * im) ** 0.5, 1),
+        "sqrt_count": round(cnt**0.5, 1),
+    }
+
+
+def level3_raw_gap_wildness(p_block: int, window: int = 80) -> dict[str, Any]:
+    """Raw third/fourth differences of Z = v^{3/2} are not frozen.
+
+    The smooth model G(n) = n^{27/8} has G''' ≍ P^{3/8} ≫ 1 and
+    G^{(4)} ≍ P^{-5/8} ≪ 1, so three Weyl steps freeze the smooth
+    content. The discrete Z inherits jumps from both inner floors
+    (m and v), and |Δ⁴ Z| stays ≫ 1 — the Phase-8 raw-freeze
+    falsifier one layer up. A freeze argument that ignores the
+    nested carry lattice is dead on arrival.
+    """
+    s = 10**12
+    step = 2
+
+    def z_real(x: int) -> float:
+        v = isqrt(isqrt(x**3) ** 3)
+        return isqrt(v**3 * s * s) / s
+
+    d3s: list[float] = []
+    d4s: list[float] = []
+    n = p_block + 1
+    for _ in range(window):
+        vals = [z_real(n + k * step) for k in range(5)]
+        d3s.append(abs(vals[3] - 3 * vals[2] + 3 * vals[1] - vals[0]))
+        d4s.append(
+            abs(vals[4] - 4 * vals[3] + 6 * vals[2] - 4 * vals[1] + vals[0])
+        )
+        n += 2
+    d3_mean = sum(d3s) / len(d3s)
+    d4_mean = sum(d4s) / len(d4s)
+    pred3 = (27 / 8) * (19 / 8) * (11 / 8) * p_block ** (3 / 8) * step**3
+    return {
+        "window": window,
+        "d3_mean": round(d3_mean, 3),
+        "d4_mean": round(d4_mean, 3),
+        "smooth_d3_pred": round(pred3, 3),
+        "raw_d4_wild": d4_mean > 1.0,
+        "d3_above_smooth": d3_mean > 10 * pred3,
+    }
+
+
+def oooo_indicator_identity_check(n_max: int) -> dict[str, Any]:
+    """Branch consistency: OOOO* fifth letter is parity of isqrt(z^3)."""
+    checked = 0
+    for n in range(3, n_max + 1, 2):
+        word = itinerary_word(n, 5)
+        if not word.startswith("OOOO"):
+            continue
+        m = isqrt(n**3)
+        v = isqrt(m**3)
+        z = isqrt(v**3)
+        expected = "OOOO" + ("O" if isqrt(z**3) % 2 == 1 else "E")
+        if word != expected:
+            return {"holds": False, "witness": n}
+        checked += 1
+    return {"holds": True, "checked": checked, "n_max": n_max}
 
 
 def oeo_mode_probe(p_block: int) -> dict[str, Any]:
@@ -1215,7 +1395,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "`J-depth4-slow-branch`, `J-kernel-cancellation`,",
         "`J-depth4-complete`, `J-depth5-contracting`,",
         "`J-five-step-descent-density`; proofs in",
-        "`juggler_two_step_parity_lemma.md`). OOOO* at depth 5 is open.",
+        "`juggler_two_step_parity_lemma.md`). OOOO* kernel isolated",
+        "(Lemma V1); the bound is open.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
@@ -1260,7 +1441,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "label **OBSERVATION**. The analytic statements they probe are",
         "now theorems at every depth <= 4, and the two length-5",
         "contracting splits OOOEE/OOEOE lift certified descent to 7/8;",
-        "OOOO* at depth 5 remains open.",
+        "the OOOO* fifth letter is the isolated level-3 kernel K3",
+        "(Lemma V1); the bound is open.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")

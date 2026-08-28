@@ -101,6 +101,8 @@ It is not required. The 2-adic / BT bridge stays closed.
   (`depth4_even_branch_proved` is `True`)
 - Depth-5 contracting splits OOOEE/OOEOE — proved in Phase 10
   (`depth5_contracting_proved` is `True`); certified density \(7/8\)
+- OOOO\* kernel isolated — Phase 11 (`depth5_kernel_isolated`
+  is `True`); bound not proved
 - Global halt — not claimed
 
 ## Experiments
@@ -116,7 +118,10 @@ Research Engine modification.
 
 ## Conjectures
 
-None opened. Envelope exponents are observations.
+- **Conjecture V** (level-3 kernel cancellation): \(K_3(P)\ll
+  P^{1-\delta}\) for the \(z^{1/2}\)-shaped family
+  \(c\asymp k P^{27/16}\). Isolated in Phase 11; bound open.
+  Envelope exponents remain observations.
 
 ## Counterexamples
 
@@ -365,6 +370,33 @@ certified-descent density. Neither meets a new kernel.
   OOOEE, OOEOE) has density \(7/8\).
 - OOOO\* not claimed (coefficient \(n^{27/16}>n\)).
 
+## Phase 11: OOOO\* kernel isolation
+
+Working document, Part VIII. Scope: name the supercritical
+fifth-letter object and test whether Theorem R's numerology
+iterates. No bound, no density claim.
+
+- **Lemma V1** — **EXACT — HUMAN PROOF**:
+  \(\tfrac12(v^{9/4}-z^{3/2})-\tfrac34 z^{1/2}\theta_3=R_3\)
+  one-signed, \(0\le R_3\le\tfrac3{16}z^{-1/2}\). The OOOO\*
+  kernel is the level-3 local floor defect. Validated to
+  \(n=10^{12}\).
+- **Kernel \(K_3\)**: \(\sum e(c(n)\{v^{3/2}\})\),
+  \(c\asymp k n^{27/16}\).
+- **Smooth numerology iterates**: \(G(n)=n^{27/8}\) has
+  \(G'''\asymp P^{3/8}\gg 1>P^{-5/8}\asymp G^{(4)}\) — three
+  Weyl steps, the same "one extra differencing per unit of
+  derivative growth."
+- **Raw \(\Delta^4 Z\) is wild** (negative knowledge):
+  \(|\Delta^4 Z|\gg 1\). The branch set is a product of two
+  Lemma-R3 lattices, not a copy of R. Inherited Phase-5
+  routes remain dead.
+- **Probe**: \(|K_3|\) at square-root scale through
+  \(10^5\) terms; OOOO-cylinder and differenced probes agree.
+- **Conjecture V**: \(K_3\ll P^{1-\delta}\). Not claimed.
+- A bound at depth 5 would not raise certified density
+  (\(3^4>2^5\)); first OOOO-prefixed contractor is OOOOEEE.
+
 ## Results
 
 At \(N=10^7\) (4,999,999 odd starts):
@@ -384,11 +416,13 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: does the OOOO\* fifth letter (coefficient
-\(\asymp n^{27/16}>n\)) admit a scale-invariant extension of
-Theorem R, the first rung of a Terras induction? One editorial:
-import Theorems R/S/T and Corollary U into the finite-dynamics note
-(its Conjecture 6.2 and the \(13/16\) headline are superseded).
+One mathematical: does the product of the two carry lattices
+still kill every full-size sawtooth coefficient in \(K_3\), or
+does a new wall appear at the \(v\)-level? (Conjecture V.)
+A \(\delta\) that halves per nesting still does not give Terras.
+One editorial: import Theorems R/S/T and Corollary U into the
+finite-dynamics note (its Conjecture 6.2 and the \(13/16\)
+headline are superseded).
 
 ## Decision
 
@@ -518,10 +552,17 @@ density \(7/8\). Two ledger rows added;
 `depth5_contracting_proved` flipped. OOOO\* (coefficient
 \(n^{27/16}>n\)) is not claimed. No density-one claim.
 
-Best next question: does the OOOO\* fifth letter — the first
-supercritical coefficient beyond the \(W\)-family of Theorem R —
-admit a scale-invariant kernel bound \(\delta(\alpha)\) polynomial
-in \(\alpha=27/16\), which is the first rung of a Terras induction?
+**PROMOTE** (Phase 11, OOOO\* isolation): Lemma V1 identifies
+the fifth letter as the level-3 floor defect \(K_3\); the
+smooth numerology iterates (three Weyl steps); the probe
+cancels at square-root scale; raw \(\Delta^4 Z\) is recorded
+wild. Conjecture V is the bound, not a claim.
+`depth5_kernel_isolated` flipped; no ledger row, no density
+move, no note import.
+
+Best next question: does the product of the two carry lattices
+still annihilate every full-size sawtooth coefficient in
+\(K_3\), or is there a new wall at the \(v\)-level?
 
 ## Publication assessment
 
@@ -533,4 +574,6 @@ certified-descent density of \(7/8\) and the conditional
 density-one theorem with unconditional base cases \(d\le 4\).
 Pending editorial debt: the note still states Conjecture 6.2 as
 open and the headline density as \(13/16\); import Theorems R/S/T
-and Corollary U in a consolidation phase.
+and Corollary U in a consolidation phase. The OOOO\* kernel
+\(K_3\) is isolated in the laboratory (Conjecture V) and is
+not in the note.
