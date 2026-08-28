@@ -99,6 +99,8 @@ It is not required. The 2-adic / BT bridge stays closed.
   (`depth2_analytic_lemma_proved` is `True`)
 - Even-branch depth-4 results — proved in Phase 3
   (`depth4_even_branch_proved` is `True`)
+- Depth-5 contracting splits OOOEE/OOEOE — proved in Phase 10
+  (`depth5_contracting_proved` is `True`); certified density \(7/8\)
 - Global halt — not claimed
 
 ## Experiments
@@ -343,6 +345,26 @@ reduction is *shorter* than Theorem C.
   proven \(P^{7/8}\); the census fitted depth-4 exponent \(0.66\)
   matches.
 
+## Phase 10: length-5 contracting splits — density \(7/8\)
+
+Working document, Part VII. Scope: the two words that move the
+certified-descent density. Neither meets a new kernel.
+
+- **Lemma T1** — **EXACT — HUMAN PROOF**: \(z^{1/2}=n^{27/16}
+  -\tfrac98 n^{3/16}\theta+D_5\) with \(D_5\) decaying. One slow
+  sawtooth of coefficient \(n^{3/16}<n\).
+- **Lemma T2** — **EXACT — HUMAN PROOF**: Lemma A′ at
+  \(w=\lfloor v^{1/2}\rfloor\), two engine sawtooths
+  (\(n^{3/16}\) and \(n^{9/16}\)).
+- **Theorem T** (`J-depth5-contracting`) — **EXACT — HUMAN
+  PROOF**: OOOEE/OOOEO at \(N/32+O(N^{1-1/72+\varepsilon})\)
+  (tame passenger on Theorem S); OOEOE/OOEOO at
+  \(N/32+O(N^{43/48+\varepsilon})\) (Theorem-Q argument).
+- **Corollary U** (`J-five-step-descent-density`) — **EXACT —
+  HUMAN PROOF**: certified \(\le5\)-step class (evens, OE, OOEE,
+  OOOEE, OOEOE) has density \(7/8\).
+- OOOO\* not claimed (coefficient \(n^{27/16}>n\)).
+
 ## Results
 
 At \(N=10^7\) (4,999,999 odd starts):
@@ -362,13 +384,11 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: does the tier-3 ladder (one extra Weyl
-differencing per growing layer) close the depth-5 OOO-prefixed
-contracting words (e.g. OOOEE), which is now the only route to a
-certified-descent density above \(13/16\)? One editorial: import
-Theorems R and S into the finite-dynamics note (its Conjecture 6.2,
-Section 6 boundary text and frontier figure are superseded by
-Phases 8–9).
+One mathematical: does the OOOO\* fifth letter (coefficient
+\(\asymp n^{27/16}>n\)) admit a scale-invariant extension of
+Theorem R, the first rung of a Terras induction? One editorial:
+import Theorems R/S/T and Corollary U into the finite-dynamics note
+(its Conjecture 6.2 and the \(13/16\) headline are superseded).
 
 ## Decision
 
@@ -487,20 +507,30 @@ retagged), and Theorem S closes the OOO\* splits at
 stays \(13/16\) (OOO\* classes are non-contracting at depth 4); no
 density-one claim.
 
-Best next question: does the tier-3 ladder (one more differencing
-per growing layer, starting with the depth-5 OOO-prefixed
-contracting words such as OOOEE) close with the same exact
-identities, raising the certified-descent density above \(13/16\)?
+**PROMOTE** (Phase 10, length-5 contracting splits): Lemma T1
+smooths the OOOE\* fifth letter to a slow sawtooth of coefficient
+\(n^{3/16}<n\), a tame passenger on Theorem S; Lemma T2 is
+Lemma A′ at \(w=\lfloor v^{1/2}\rfloor\), coefficient
+\(n^{9/16}<n\), and a Theorem-Q argument closes OOEO\* at
+\(N^{43/48+\varepsilon}\). Theorem T counts all four words;
+Corollary U lifts the certified \(\le5\)-step descent class to
+density \(7/8\). Two ledger rows added;
+`depth5_contracting_proved` flipped. OOOO\* (coefficient
+\(n^{27/16}>n\)) is not claimed. No density-one claim.
+
+Best next question: does the OOOO\* fifth letter — the first
+supercritical coefficient beyond the \(W\)-family of Theorem R —
+admit a scale-invariant kernel bound \(\delta(\alpha)\) polynomial
+in \(\alpha=27/16\), which is the first rung of a Terras induction?
 
 ## Publication assessment
 
 Status: `THEOREM`. Exact linearization lemmas, power-saving
 joint-parity discrepancy bounds for nested floor-power sequences at
-**every depth \(\le 4\)** — the kernel bound (Theorem R) and depth-4
-completion (Theorem S) close what the note still states as
-Conjecture 6.2 — outside the existing Piatetski-Shapiro literature,
-plus a certified-descent density of \(13/16\) and the conditional
-density-one theorem with unconditional base cases \(d \le 4\).
-Pending editorial debt: the note's Sections 5–6, the frontier
-figure, reviewer packet and bundle still present the kernel as open;
-import Theorems R/S in a consolidation phase.
+**every depth \(\le 4\)** and the two length-5 contracting splits,
+outside the existing Piatetski-Shapiro literature, plus a
+certified-descent density of \(7/8\) and the conditional
+density-one theorem with unconditional base cases \(d\le 4\).
+Pending editorial debt: the note still states Conjecture 6.2 as
+open and the headline density as \(13/16\); import Theorems R/S/T
+and Corollary U in a consolidation phase.

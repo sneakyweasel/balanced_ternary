@@ -5,8 +5,9 @@ class is **EXACT — HUMAN PROOF**
 (`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,
 `J-even-branch-third-letter`, `J-four-step-descent-density`,
 `J-depth4-slow-branch`, `J-kernel-cancellation`,
-`J-depth4-complete`; proofs in
-`juggler_two_step_parity_lemma.md`). Depth >= 5 is open.
+`J-depth4-complete`, `J-depth5-contracting`,
+`J-five-step-descent-density`; proofs in
+`juggler_two_step_parity_lemma.md`). OOOO* at depth 5 is open.
 
 Exact census of the joint parity word of the first four itinerary
 letters on odd starts. Phase-0 falsifier for iterating the one-step
@@ -48,5 +49,6 @@ contraction `3^2 < 2^4` and is a guard, not a new theorem.
 
 The fitted exponents are envelope slopes on a geometric sample,
 label **OBSERVATION**. The analytic statements they probe are
-now theorems at every depth <= 4 (see the ledger rows above);
-depth >= 5 remains open.
+now theorems at every depth <= 4, and the two length-5
+contracting splits OOOEE/OOEOE lift certified descent to 7/8;
+OOOO* at depth 5 remains open.

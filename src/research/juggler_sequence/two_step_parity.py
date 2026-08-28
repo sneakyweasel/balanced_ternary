@@ -89,6 +89,9 @@ ANTI_OVERCLAIM = {
     # Phase 8 draft, upgraded by the Phase-9 review.
     "kernel_double_differencing_draft": True,
     "depth4_complete_proved": True,
+    # Phase 10: Theorem T / Corollary U close OOOEE and OOEOE;
+    # certified descent density 7/8. OOOO* at depth 5 remains open.
+    "depth5_contracting_proved": True,
 }
 
 
@@ -328,6 +331,175 @@ def oeo_indicator_identity_check(n_max: int) -> dict[str, Any]:
             return {"holds": False, "witness": n}
         checked += 1
     return {"holds": True, "checked": checked, "n_max": n_max}
+
+
+def _sixteenth_scaled(x: int, scale: int = SCALE) -> int:
+    """floor(x^{1/16} * scale) via four nested isqrts."""
+    return isqrt(isqrt(isqrt(isqrt(x * scale**16))))
+
+
+def oooee_smoothing_check(n: int, scale: int = SCALE) -> tuple[int, int]:
+    """(d5*scale, bound*scale) for the OOOE* fifth-letter smoothing.
+
+    z = floor(v^{3/2}), v = floor(m^{3/2}), m = floor(n^{3/2}):
+    z^{1/2} = n^{27/16} - (9/8) n^{3/16} theta + D5, with D5 decaying
+    (the theta_2 and theta_z amplitudes are O(n^{-9/16})). The only
+    growing sawtooth has coefficient n^{3/16} < n — engine side.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    z = isqrt(v**3)
+    z12 = isqrt(z * scale * scale)
+    r27 = _sixteenth_scaled(n**27, scale)
+    r3 = _sixteenth_scaled(n**3, scale)
+    th = isqrt(n**3 * scale * scale) - m * scale
+    d5 = z12 - r27 + 9 * (r3 * th) // (8 * scale)
+    # Decaying envelope: (3/4) m^{-3/8} + (1/2) v^{-3/4} + (9/128) n^{-7/16}.
+    r38m = isqrt(isqrt(isqrt(m**3 * scale**8)))
+    r34v = isqrt(isqrt(v**3 * scale**4))
+    r7 = _sixteenth_scaled(n**7, scale)
+    bound = 3 * scale * scale // (4 * r38m) + scale * scale // (2 * r34v) + 9 * scale * scale // (128 * r7)
+    return d5, bound
+
+
+def oooee_smoothing_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    for n in samples:
+        d5, bound = oooee_smoothing_check(n)
+        if not (-bound - 8 * n <= d5 <= bound + 8 * n):
+            return {"holds": False, "witness": n, "d5": d5, "bound": bound}
+    return {"holds": True, "count": len(samples)}
+
+
+def ooeoe_smoothing_check(n: int, scale: int = SCALE) -> tuple[int, int]:
+    """(d5*scale, bound*scale) for the OOEO* fifth-letter linearization.
+
+    w = floor(v^{1/2}), v = floor(m^{3/2}): Lemma A' at the w-level
+    plus the v^{3/4} -> n^{27/16} chain gives
+    w^{3/2} = n^{27/16} - (9/8) n^{3/16} theta - (3/2) v^{1/4} theta_w + D,
+    D decaying. Two engine sawtooths: coeff n^{3/16} (theta) and
+    n^{9/16} (theta_w); both grow slower than n.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    w = isqrt(v)
+    t_w = isqrt(w**3 * scale * scale)
+    r27 = _sixteenth_scaled(n**27, scale)
+    r3 = _sixteenth_scaled(n**3, scale)
+    th = isqrt(n**3 * scale * scale) - m * scale
+    r14v = isqrt(isqrt(v * scale**4))
+    th_w = isqrt(v * scale * scale) - w * scale
+    d5 = t_w - r27 + 9 * (r3 * th) // (8 * scale) + 3 * (r14v * th_w) // (2 * scale)
+    r38m = isqrt(isqrt(isqrt(m**3 * scale**8)))
+    bound = 3 * scale * scale // (4 * r38m) + 3 * scale // (8 * isqrt(max(w, 2) - 1))
+    return d5, bound
+
+
+def ooeoe_smoothing_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    for n in samples:
+        d5, bound = ooeoe_smoothing_check(n)
+        if not (-bound - 8 * n <= d5 <= bound + 8 * n):
+            return {"holds": False, "witness": n, "d5": d5, "bound": bound}
+    return {"holds": True, "count": len(samples)}
+
+
+def oooee_indicator_identity_check(n_max: int) -> dict[str, Any]:
+    """Branch consistency: OOOE* fifth letter is parity of isqrt(z)."""
+    checked = 0
+    for n in range(3, n_max + 1, 2):
+        word = itinerary_word(n, 5)
+        if not word.startswith("OOOE"):
+            continue
+        m = isqrt(n**3)
+        v = isqrt(m**3)
+        z = isqrt(v**3)
+        expected = "OOOE" + ("O" if isqrt(z) % 2 == 1 else "E")
+        if word != expected:
+            return {"holds": False, "witness": n}
+        checked += 1
+    return {"holds": True, "checked": checked, "n_max": n_max}
+
+
+def ooeoe_indicator_identity_check(n_max: int) -> dict[str, Any]:
+    """Branch consistency: OOEO* fifth letter is parity of isqrt(w^3)."""
+    checked = 0
+    for n in range(3, n_max + 1, 2):
+        word = itinerary_word(n, 5)
+        if not word.startswith("OOEO"):
+            continue
+        m = isqrt(n**3)
+        v = isqrt(m**3)
+        w = isqrt(v)
+        expected = "OOEO" + ("O" if isqrt(w**3) % 2 == 1 else "E")
+        if word != expected:
+            return {"holds": False, "witness": n}
+        checked += 1
+    return {"holds": True, "checked": checked, "n_max": n_max}
+
+
+def ooeoe_mode_probe(p_block: int) -> dict[str, Any]:
+    """Float probe of sum e((1/2) w^{3/2}) on the OOEO cylinder, n ~ P."""
+    from math import cos, pi, sin
+
+    s = 10**12
+    re = im = 0.0
+    cnt = 0
+    n = p_block + 1
+    while n < 2 * p_block:
+        m = isqrt(n**3)
+        if m % 2 == 0:
+            n += 2
+            continue
+        v = isqrt(m**3)
+        if v % 2 == 1:
+            n += 2
+            continue
+        w = isqrt(v)
+        if w % 2 == 0:
+            n += 2
+            continue
+        t_w = isqrt(w**3 * s * s)
+        frac = (t_w % (2 * s)) / (2 * s)
+        ph = 2 * pi * frac
+        re += cos(ph)
+        im += sin(ph)
+        cnt += 1
+        n += 2
+    return {"count": cnt, "abs_sum": round((re * re + im * im) ** 0.5, 1)}
+
+
+def oooee_mode_probe(p_block: int) -> dict[str, Any]:
+    """Float probe of sum e((1/2) z^{1/2}) on the OOOE cylinder, n ~ P."""
+    from math import cos, pi, sin
+
+    s = 10**12
+    re = im = 0.0
+    cnt = 0
+    n = p_block + 1
+    while n < 2 * p_block:
+        m = isqrt(n**3)
+        if m % 2 == 0:
+            n += 2
+            continue
+        v = isqrt(m**3)
+        if v % 2 == 0:
+            n += 2
+            continue
+        z = isqrt(v**3)
+        if z % 2 == 1:
+            n += 2
+            continue
+        t = isqrt(z * s * s)
+        frac = (t % (2 * s)) / (2 * s)
+        ph = 2 * pi * frac
+        re += cos(ph)
+        im += sin(ph)
+        cnt += 1
+        n += 2
+    return {"count": cnt, "abs_sum": round((re * re + im * im) ** 0.5, 1)}
 
 
 def oeo_mode_probe(p_block: int) -> dict[str, Any]:
@@ -1041,8 +1213,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "(`J-nested-parity-discrepancy`, `J-triple-parity-discrepancy`,",
         "`J-even-branch-third-letter`, `J-four-step-descent-density`,",
         "`J-depth4-slow-branch`, `J-kernel-cancellation`,",
-        "`J-depth4-complete`; proofs in",
-        "`juggler_two_step_parity_lemma.md`). Depth >= 5 is open.",
+        "`J-depth4-complete`, `J-depth5-contracting`,",
+        "`J-five-step-descent-density`; proofs in",
+        "`juggler_two_step_parity_lemma.md`). OOOO* at depth 5 is open.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
@@ -1085,8 +1258,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "",
         "The fitted exponents are envelope slopes on a geometric sample,",
         "label **OBSERVATION**. The analytic statements they probe are",
-        "now theorems at every depth <= 4 (see the ledger rows above);",
-        "depth >= 5 remains open.",
+        "now theorems at every depth <= 4, and the two length-5",
+        "contracting splits OOOEE/OOEOE lift certified descent to 7/8;",
+        "OOOO* at depth 5 remains open.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")

@@ -10,7 +10,9 @@ Ledger rows: `J-nested-parity-discrepancy`,
 `J-four-step-descent-density`, `J-second-order-linearization`,
 `J-equidistribution-implies-density-one`,
 `J-even-branch-third-letter`, `J-tier2-gap-and-shifted-forms`,
-`J-depth4-slow-branch`, `J-kernel-cancellation`.
+`J-depth4-slow-branch`, `J-kernel-cancellation`,
+`J-depth4-complete`, `J-depth5-contracting`,
+`J-five-step-descent-density`.
 Imported into the finite-dynamics note (consolidation phase, August
 2026): Lemmas A/B as Lemma 5.3, Theorem C as Theorem 5.4,
 Proposition L as Proposition 5.5, Lemma D as Lemma 5.6, Theorem E as
@@ -24,8 +26,11 @@ Lean-verified in `formal/Problems/Juggler/GapCells.lean`. Part VI
 by the Phase-9 adversarial review (record in Part VI); ledger rows
 `J-kernel-cancellation` (retagged) and `J-depth4-complete`. The
 note's Conjecture 6.2 paragraph is superseded and awaits editorial
-consolidation. Not a termination claim; the depth-\(\ge5\) tiers and
-the density-one statement remain conditional.
+consolidation. Part VII (Phase 10) closes the two length-5
+contracting splits OOOEE and OOEOE (Theorem T, Corollary U), lifting
+the certified-descent density to \(7/8\). Not a termination claim;
+the remaining depth-\(\ge5\) expanders (OOOO\*, OOEOO, OOOEO) and
+the density-one statement remain open.
 
 Throughout, \(n\) is odd, \(X = n^{3/2}\), \(m = m(n) = \lfloor
 n^{3/2}\rfloor = \operatorname{isqrt}(n^3)\), \(\theta = \theta_n =
@@ -1573,6 +1578,175 @@ Phase 9 (review): **PROMOTE** — every step re-derived; two defects
 found and repaired (review record above); Theorem R and Theorem S
 tagged `EXACT — HUMAN PROOF` (ledger rows `J-kernel-cancellation`
 retagged, `J-depth4-complete` added); `kernel_bound_proved` and
-`depth4_complete_proved` flipped. The remaining mathematical
-frontier of the branch is the depth-5 tier (three differencings);
-the remaining editorial debt is the note import.
+`depth4_complete_proved` flipped. Depth 5 is taken up in Part VII.
+
+## Part VII: the length-5 contracting splits — density \(7/8\) (Phase 10)
+
+Scope: the two words that raise the certified-descent density above
+\(13/16\). Neither is a third growing layer of kernel type.
+
+- **OOOEE** (\(3^3<2^5\)): fifth letter even after OOOE. Decaying
+  nestings plus one slow sawtooth of coefficient \(n^{3/16}<n\),
+  carried as a tame passenger on Theorem S.
+- **OOEOE** (\(3^3<2^5\)): fifth letter odd after OOEO. Lemma A′ at
+  \(w=\lfloor v^{1/2}\rfloor\asymp n^{9/8}\) leaves a sawtooth of
+  coefficient \(n^{9/16}<n\) — engine side of the Phase-6 line.
+  No kernel.
+
+The expanding siblings OOOEO and OOEOO come free with the same
+splits. OOOO\* (fifth letter odd after four odds) has coefficient
+\(\asymp n^{27/16}>n\) and is **not** attempted: that is a new
+supercritical kernel, not this phase.
+
+### Lemma T1 (OOOE\* fifth-letter smoothing) — EXACT — HUMAN PROOF
+
+Let \(z=\lfloor v^{3/2}\rfloor\). For odd \(n\ge5\),
+
+\[
+z^{1/2}
+= n^{27/16}-\tfrac98 n^{3/16}\,\theta+D_5,
+\qquad
+|D_5|\le\tfrac34 m^{-3/8}+\tfrac12 v^{-3/4}+\tfrac9{128}n^{-7/16}.
+\]
+
+*Proof.* Three one-signed Taylor steps:
+\(z^{1/2}=(v^{3/2}-\theta_z)^{1/2}=v^{3/4}-\tfrac12\theta_z v^{-3/4}
++O(v^{-9/4})\);
+\(v^{3/4}=(m^{3/2}-\theta_2)^{3/4}=m^{9/8}-\tfrac34\theta_2 m^{-3/8}
++O(m^{-15/8})\);
+\(m^{9/8}=(X-\theta)^{9/8}=n^{27/16}-\tfrac98\theta n^{3/16}
++\tfrac9{128}\theta^2(X-\xi)^{-7/8}\).
+The \(\theta_z\) and \(\theta_2\) amplitudes decay
+(\(v^{-3/4}\asymp n^{-27/32}\), \(m^{-3/8}\asymp n^{-9/16}\)).
+\(\square\) Validated (`oooee_smoothing_scan`) through
+\(n=10^{12}\). The remaining sawtooth has coefficient
+\(\asymp kn^{3/16}<n\), derivative \(\asymp kn^{-13/16}\ll1\), so
+drift-1 intervals of length \(\asymp P^{13/16}/k\) exist.
+
+### Lemma T2 (OOEO\* fifth-letter linearization) — EXACT — HUMAN PROOF
+
+Let \(w=\lfloor v^{1/2}\rfloor\), \(\theta_w=\{v^{1/2}\}\). For odd
+\(n\ge5\),
+
+\[
+w^{3/2}
+= n^{27/16}-\tfrac98 n^{3/16}\,\theta
+-\tfrac32 v^{1/4}\,\theta_w+D_5',
+\]
+
+with \(D_5'\) decaying (\(|D_5'|\le\tfrac34 m^{-3/8}
++\tfrac38(U-1)^{-1/2}\), \(U=v^{1/2}\)).
+
+*Proof.* Lemma A′ at base \(U\): \(w^{3/2}=v^{3/4}
+-\tfrac32 v^{1/4}\theta_w+E\), \(0\le E\le\tfrac38(U-1)^{-1/2}\).
+The \(v^{3/4}\to n^{27/16}\) chain is Lemma T1's second and third
+steps. \(\square\) Validated (`ooeoe_smoothing_scan`) through
+\(n=10^{12}\). Two engine sawtooths: coefficient \(n^{3/16}\) on
+\(\theta\) and \(n^{9/16}\) on \(\theta_w\); both grow slower than
+\(n\).
+
+### Theorem T (the length-5 contracting splits) — EXACT — HUMAN PROOF
+
+\[
+\#\mathrm{OOOEE}(N),\;\#\mathrm{OOOEO}(N)
+=\tfrac N{32}+O\bigl(N^{1-1/72+\varepsilon}\bigr),
+\qquad
+\#\mathrm{OOEOE}(N),\;\#\mathrm{OOEOO}(N)
+=\tfrac N{32}+O\bigl(N^{43/48+\varepsilon}\bigr).
+\]
+
+*Proof.*
+
+**OOOE\*.** Indicator algebra: OOOE\(*\) is the Theorem-S class
+indicator times \(\tfrac12(1\pm\psi(z^{1/2}))\), branch-consistent
+because after OOOE the image \(z=J^3(n)\) is even, so the fifth
+letter is the even-branch value \(\lfloor\sqrt z\rfloor\) —
+machine-checked (`oooee_indicator_identity_check`). Vaaler-expand
+the fifth wave at truncation \(J_5=P^{1/24}\). Lemma T1 replaces
+\(\tfrac l2 z^{1/2}\) by \(\tfrac l2 n^{27/16}
+-\tfrac{9l}{16}n^{3/16}\theta\) at absorbable decaying cost.
+The \(\theta\)-sawtooth has coefficient \(C\asymp l P^{3/16}<P\);
+its shifted-window expansion (drift-1 length \(P^{13/16}/l\),
+window \(T=P^{1/8}\ll l P^{3/16}\) for every \(l\ge1\)) produces
+\(X\)-modes of size \(\asymp l P^{3/16}\), which are ordinary
+first-letter passengers of Theorem S (strictly smaller than the
+\(i\le P^{1/24}\) budget already carried). The smooth chirp
+\(e(\tfrac l2 n^{27/16})\) has curvature \(\asymp l P^{-5/16}\),
+subdominant to every retained Theorem-S scale. Theorem S therefore
+applies verbatim and gives \(N/32+O(N^{1-1/72+\varepsilon})\).
+
+**OOEO\*.** Indicator: \(\mathrm{OOEO}\ast
+=\tfrac1{16}(1-\psi(m))(1+\psi(v))(1-\psi(w))
+(1\pm\psi(w^{3/2}))\), branch-consistent on the OOEO cylinder
+(`ooeoe_indicator_identity_check`). Vaaler-expand the four waves.
+The \(k=0\) cases are Theorem E. For \(k\ne0\), Lemma T2 writes
+the fifth-letter phase as \(\tfrac k2 n^{27/16}-C\theta-B\theta_w\)
+with \(B=\tfrac{3k}4 v^{1/4}\asymp k n^{9/16}\) and
+\(C=\tfrac{9k}{16}n^{3/16}\).
+
+Expand \(e(-B\theta_w)=e(-B\{v^{1/2}\})\) on drift-1 intervals of
+length \(L_B=P^{7/16}/k\) (there are \(\asymp k P^{9/16}\) of
+them; \(B'\asymp k n^{-7/16}\)). Window \(T_w=P^{1/4}\ll
+k P^{9/16}\) for every \(k\ge1\); majorant \(P/T_w=P^{3/4}\).
+At frequency \(\ell=-B+t\), \(|t|\le T_w\), the combined phase
+is \(-\tfrac k4 v^{3/4}+t\,v^{1/2}\) plus passengers. Linearizing
+\(v^{3/4}\) and \(v^{1/2}\) by Lemmas T1/T2, the \(\theta\)
+coefficients from the two expansions cancel at the window centre
+up to a residual \(C_{\mathrm{net}}\asymp k n^{3/16}\). One slow
+\(\theta\)-sawtooth remains.
+
+Expand \(e(-C_{\mathrm{net}}\theta)\) on the same intervals
+(\(C_{\mathrm{net}}\) drifts by \(P^{-3/8}\ll1\) on each \(I\);
+window \(T_\theta=P^{1/8}\ll k P^{3/16}\); majorant \(P^{7/8}\)).
+The resulting smooth phase has curvature
+\[
+\lambda_2
+=\Bigl(-\tfrac{297k}{1024}+\tfrac{27k}{128}+O(T_w P^{-7/8})
++O(JP^{-1/2})\Bigr)n^{-5/16}
+\asymp k\,n^{-5/16},
+\]
+single-signed: the two leading coefficients are
+\(-0.290k+0.211k=-0.079k\neq0\), and the \(t\)- and \(i\)-errors
+are \(O(P^{-5/8})\) and \(O(P^{-3/8})\). Van der Corput II on
+each \(I\): \(L_B\lambda_2^{1/2}+\lambda_2^{-1/2}
+\ll k^{-1/2}P^{21/32}\). Times \(k P^{3/16}\) intervals:
+\(S_k\ll k^{1/2}P^{27/32+\varepsilon}\). Balance
+\(J_5^{1/2}P^{27/32}=P/J_5\) at \(J_5=P^{5/48}\) gives
+\(P^{43/48}\). Dyadic blocks sum to
+\(N^{43/48+\varepsilon}\). \(\square\)
+
+Float sanity: `oooee_mode_probe` / `ooeoe_mode_probe` at
+\(P=10^4\) give \(|S|=16.3\) on \(636\) OOOE terms and
+\(|S|=32.5\) on \(618\) OOEO terms — far below the cylinder
+size. Depth-5 census at \(N=10^5\): the four classes lie in
+\([3138,3181]\) against \(3125\).
+
+### Corollary U (certified-descent density \(7/8\)) — EXACT — HUMAN PROOF
+
+The class of starts carrying a uniform power-envelope descent
+certificate of length at most five — evens, OE, OOEE, OOOEE,
+OOEOE — has natural density \(7/8\). Each of OOOEE and OOEOE
+has cardinality \(N/32+O(N^{43/48+\varepsilon})\), and
+\(3^3<2^5\) forces \(J^5(n)<n\) on both words for \(n\ge2\).
+
+*Proof.* Densities \(\tfrac12+\tfrac14+\tfrac1{16}+\tfrac1{32}
++\tfrac1{32}=\tfrac78\). The new cylinders are Theorem T. The
+contraction is Corollary 2.3 of the finite-dynamics note
+(\(3^3=27<32=2^5\)). \(\square\)
+
+This is the first increment past the one-growing-layer ceiling of
+Proposition I. The leftover \(1/8\) is the expanding length-5
+tree OOEOO \(\cup\) OOOEO \(\cup\) OOOO\*. Of those, OOEOO and
+OOOEO are now *counted* (Theorem T) and still do not contract;
+OOOO\* is uncounted and supercritical.
+
+### Phase-10 decision
+
+**PROMOTE.** Both contracting length-5 words close under the
+existing engine: OOOEE is a tame passenger on Theorem S, OOEOE
+is a Theorem-Q argument at coefficient \(n^{9/16}\). Certified
+density moves \(13/16\to7/8\). No new kernel, no note import,
+no all-depth claim. The next mathematical question is whether
+the OOOO\* fifth letter (coefficient \(n^{27/16}>n\)) admits a
+scale-invariant extension of Theorem R, which is the first
+rung of a Terras induction; that is a different phase.

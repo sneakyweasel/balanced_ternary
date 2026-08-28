@@ -9352,3 +9352,56 @@ Best next question
 - does the tier-3 ladder (three differencings, same exact identities)
   close OOOEE, the shortest contracting word beyond depth 4?
 ```
+
+## Juggler depth 5: OOOEE and OOEOE close, certified density 7/8 (Phase 10)
+
+The promoted question — do the two length-5 contracting words close
+under the existing engine? — answered affirmatively. Working document
+Part VII; rows `J-depth5-contracting`, `J-five-step-descent-density`.
+
+OOOEE is a decaying fifth letter on the Theorem-S class: three
+one-signed Taylor steps leave a single slow sawtooth of coefficient
+n^{3/16} < n, which expands to ordinary X-modes of size l P^{3/16}
+and rides as a tame passenger on the kernel engine (Lemma T1,
+Theorem T). OOEOE is Lemma A' at w = floor(v^{1/2}) ~ n^{9/8}:
+coefficient n^{9/16} < n, two engine sawtooths, a Theorem-Q
+shifted-window argument balancing at J = P^{5/48} gives
+N^{43/48+eps} (Lemma T2, Theorem T). The expanding siblings
+OOOEO and OOEOO come free. Corollary U: evens + OE + OOEE + OOOEE
++ OOEOE has density 7/8. Identities validated to n = 10^{12};
+branch consistency machine-checked; mode probes cancel; depth-5
+census at 10^5 sits on N/32.
+
+OOOO* (coefficient n^{27/16} > n) was not attempted — that is a
+new supercritical kernel, the first scale-invariant question, not
+a third copy of Theorem R's 9/8 numerology. No note import, no
+density-one claim.
+
+```text
+What was learned
+- the first density increment past 13/16 does not need a third
+  growing layer or a new kernel: OOOEE is a passenger, OOEOE is
+  below the Phase-6 line
+- coefficient n^{9/16} still has drift-1 intervals; the theta
+  terms from v^{3/4} and the Fourier window of theta_w cancel at
+  leading order, leaving a slow n^{3/16} sawtooth
+- OOOO* is a different object (alpha = 27/16 > 9/8), not a
+  routine extra differencing
+Strongest theorem
+- Corollary U: certified <=5-step descent density 7/8 —
+  EXACT — HUMAN PROOF
+Strongest refutation
+- none this phase; the OOOO* kernel was excluded, not refuted
+Reusable machinery
+- oooee/ooeoe smoothing scans (exact to 10^{12}); cylinder
+  indicator checks; fifth-letter mode probes
+Branch status
+- PROMOTE
+Why
+- both contracting length-5 words closed under existing methods
+  and the headline density moved; the leftover 1/8 is now a
+  named mix of counted expanders and one supercritical split
+Best next question
+- does the OOOO* fifth letter admit a scale-invariant extension
+  of Theorem R with delta(alpha) polynomial in alpha = 27/16?
+```

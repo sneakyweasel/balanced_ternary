@@ -3396,5 +3396,27 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-depth5-contracting",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Theorem T: #OOOEE(N), #OOOEO(N) = N/32 + O(N^{1-1/72+eps}) and #OOEOE(N), #OOEOO(N) = N/32 + O(N^{43/48+eps}). Proof: Lemma T1 smooths the OOOE* fifth letter z^{1/2} = n^{27/16} - (9/8) n^{3/16} theta + D5 with D5 decaying, leaving a slow sawtooth of coefficient n^{3/16} < n which expands to ordinary X-modes of size l P^{3/16} and is a tame passenger on Theorem S (row J-depth4-complete). Lemma T2 is Lemma A' at w = floor(v^{1/2}): w^{3/2} = n^{27/16} - (9/8) n^{3/16} theta - (3/2) v^{1/4} theta_w + D5', two engine sawtooths (coefficients n^{3/16} and n^{9/16}, both < n); a shifted-window expansion of e(-B theta_w) reduces the phase to a multiple of v^{3/4} whose remaining theta-sawtooth has coefficient k n^{3/16}; van der Corput II on drift-1 intervals of length P^{7/16}/k balances at J = P^{5/48} and gives N^{43/48+eps}. No new kernel: both fifth-letter coefficients grow slower than n. The expanding siblings OOOEO and OOEOO are counted but do not contract. OOOO* (coefficient n^{27/16} > n) is not claimed. Ambient counting; not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-five-step-descent-density",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Corollary U: the class of starts carrying a uniform power-envelope descent certificate of length at most five — evens, OE, OOEE, OOOEE, OOEOE — has natural density 7/8. Each of OOOEE and OOEOE has cardinality N/32 + O(N^{43/48+eps}) by row J-depth5-contracting, and 3^3 < 2^5 forces J^5(n) < n on both words for n >= 2 (row J-power-envelope-contraction). This is the first increment past the one-growing-layer ceiling 13/16 of Corollary 5.9 / Proposition I. The leftover 1/8 is OOEOO ∪ OOOEO ∪ OOOO*; the first two are counted and expanding, OOOO* is uncounted and supercritical. Not a density of starts that reach 1, and not a density-one statement.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]

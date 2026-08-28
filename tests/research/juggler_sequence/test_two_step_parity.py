@@ -33,6 +33,12 @@ from research.juggler_sequence.two_step_parity import (
     oe_indicator_identity_check,
     ooee_indicator_identity_check,
     ooo_indicator_identity_check,
+    oooee_indicator_identity_check,
+    oooee_mode_probe,
+    oooee_smoothing_scan,
+    ooeoe_indicator_identity_check,
+    ooeoe_mode_probe,
+    ooeoe_smoothing_scan,
     scan,
     second_gap_collision_check,
     second_order_scan,
@@ -324,6 +330,61 @@ def test_oeo_mode_probe_cancels():
     # the coherent w-cell random-walk scale; loose threshold).
     result = oeo_mode_probe(10**4)
     assert result["abs_sum"] < 0.1 * result["count"]
+
+
+def test_oooee_smoothing_identity():
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert oooee_smoothing_scan(samples)["holds"] is True
+
+
+def test_ooeoe_smoothing_identity():
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert ooeoe_smoothing_scan(samples)["holds"] is True
+
+
+def test_oooee_indicator_identity():
+    result = oooee_indicator_identity_check(5001)
+    assert result["holds"] is True
+    assert result["checked"] > 100
+
+
+def test_ooeoe_indicator_identity():
+    result = ooeoe_indicator_identity_check(5001)
+    assert result["holds"] is True
+    assert result["checked"] > 100
+
+
+def test_oooee_mode_probe_cancels():
+    result = oooee_mode_probe(10**4)
+    assert result["count"] > 100
+    assert result["abs_sum"] < 0.1 * result["count"]
+
+
+def test_ooeoe_mode_probe_cancels():
+    result = ooeoe_mode_probe(10**4)
+    assert result["count"] > 100
+    assert result["abs_sum"] < 0.1 * result["count"]
+
+
+def test_depth5_contracting_words_near_product():
+    counts = deep_word_counts(100_000, 5)
+    odds = sum(counts.values())
+    expected = odds / 16
+    for w in ("OOOEE", "OOEOE", "OOOEO", "OOEOO"):
+        assert abs(counts[w] - expected) < 80
+    # Guard: every OOOEE / OOEOE start in the window descends in 5 steps.
+    for n in range(3, 10_001, 2):
+        w = itinerary_word(n, 5)
+        if w in ("OOOEE", "OOEOE"):
+            x = n
+            for _ in range(5):
+                x = juggler_step(x)
+            assert x < n
+
+
+def test_anti_overclaim_depth5_flag():
+    assert ANTI_OVERCLAIM["depth5_contracting_proved"] is True
+    assert ANTI_OVERCLAIM["density_one_claimed"] is False
 
 
 def test_depth6_census_minimal_scale_envelope():

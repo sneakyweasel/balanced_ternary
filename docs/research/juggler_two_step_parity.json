@@ -123,6 +123,7 @@
     "kernel_bound_proved": true,
     "depth4_slow_branch_proved": true,
     "kernel_double_differencing_draft": true,
-    "depth4_complete_proved": true
+    "depth4_complete_proved": true,
+    "depth5_contracting_proved": true
   }
 }
