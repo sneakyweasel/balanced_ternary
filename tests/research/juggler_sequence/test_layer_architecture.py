@@ -89,7 +89,7 @@ def test_paper_barrel_is_the_named_review_object():
         assert token not in body, token
     imported = IMPORT_RE.findall(body)
     assert imported == list(PAPER_MODULES)
-    assert "FiniteCoeffStopConjecture" not in body.split("not a claim")[0]
+    assert "laboratory target, not a claim" in body
     assert "lake build Problems.JugglerPaper" in body
     assert "no_cycle_word_oooeoe" in body
     assert "no_cycle_word_ooooee" in body

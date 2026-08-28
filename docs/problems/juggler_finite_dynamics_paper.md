@@ -151,7 +151,8 @@ These refute the named candidate laws, not termination.
 
 ## Formalization
 
-No Lean source is added by this synthesis. The formal map is
+No Lean source is added by this synthesis. The review object is
+`formal/Problems/JugglerPaper.lean`. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
 The paper-central theorem metadata is recorded in
 `docs/theory/theorem_ledger.json` and the generated ledger. No `sorry` or
