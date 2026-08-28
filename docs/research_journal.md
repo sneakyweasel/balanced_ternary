@@ -8535,4 +8535,51 @@ Best next question
 - do almost all odd-to-odd starts have a finite descent certificate?
 ```
 
+## Juggler odd-to-odd descent density
+
+- **Date:** 2026-08-28
+- **Objective:** Decide whether any fixed finite certificate family covers almost all odd-to-odd starts
+- **Hypotheses:** leftover of `OOOEE`, `OOEOE`, or a fixed first-return horizon \(K\in\{5,10,20,40\}\) is \(o(|\mathrm{OO}|)\); or every fixed family has a positive leftover plateau
+- **Major results:** Classification **FIXED_FAMILY_POSITIVE_LEFTOVER**. At \(N=10^6\), \(\#\mathrm{OO}=249926\); `OOOEE` leftover \(0.875\); word union leftover \(0.750\); horizon \(20\) leftover \(0.105\) (Proposition 4.5 reproduced, \(26243\) leftovers); horizon \(40\) leftover \(0.0239\), already \(0.0244\) at \(N=10^4\). Records: `docs/research/juggler_oo_descent_density.md`, `docs/problems/juggler_oo_descent_density.md`
+- **Refuted ideas:** `OOOEE` or `OOOEE∪OOEOE` covers almost all of `OO`; fixed horizon \(20\) or \(40\) has leftover \(o(|OO|)\); Terras cylinder-sum copies to \(J\); a halt theorem
+- **Literature:** Terras–Everett known, not imported. Corollary 5.2 and `floorPower_oooee_of_follows` reused. Image-discrepancy transfer stays REFUTED
+- **Open:** a measure on unbounded Juggler words, weaker than residue classes, on which contracting words cover almost every OO start. Do not start that here
+- **Decision:** CLOSE the finite-family attack. The almost-all FiniteProgress question remains, but it is unbounded-length and has no 2-adic measure. Do not fish horizons past \(K=40\)
+
+```text
+What was learned
+- OOOEE and OOEOE together cover only a quarter of OO
+- Horizon 20 leftover is 10.5% and matches Proposition 4.5
+- Horizon 40 leftover is 2.4% already at N=10^4 and does not fall
+- No tested fixed family has leftover o(|OO|)
+- Terras-style finite cylinders do not copy to Juggler OO
+
+Strongest theorem
+- none; this branch is a density gate, not a new exact theorem
+
+Strongest refutation
+- a fixed finite certificate family covers almost all of OO
+
+Reusable machinery
+- research.juggler_sequence.oo_descent_density
+
+Prior-art status
+- negative gate after Corollary 5.2; not a halt result
+
+Complexity profile
+- one CPU pass to N=10^6; no Lean; no CUDA; control layer not modified
+
+Branch status
+- CLOSE
+
+Why
+- Every tested fixed family has a stable leftover fraction bounded
+  away from 0. That kills the finite-cylinder copy. The remaining
+  Terras analogue needs an unbounded-length measure.
+
+Best next question
+- is there a measure on unbounded Juggler words, weaker than residue
+  classes, on which contracting words cover almost every OO start?
+```
+
 
