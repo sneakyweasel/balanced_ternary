@@ -22,7 +22,9 @@ Review object for the math note
 
 This file imports only the modules named by that note. It does not
 copy proofs. Laboratory satellites stay in `Problems.Juggler` and are
-not the review object.
+not the review object. Certificates and Cycles still compile their
+existing dependencies (`FirstPassage`, `Collapse`, `Residuals`); those
+files are not imported here as review targets.
 
 Build from `formal/`:
 

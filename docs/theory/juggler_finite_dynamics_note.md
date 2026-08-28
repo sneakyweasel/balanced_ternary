@@ -52,8 +52,8 @@ No such theorem is proved here.
 
 ## 1. Introduction
 
-The Juggler sequence was introduced by Pickover [1]; see also Weisstein
-[2] and OEIS A007320 [3]. Universal arrival at \(1\) remains open. In this
+The Juggler sequence was introduced by Pickover [1]; see also OEIS A007320
+[2]. Universal arrival at \(1\) remains open. In this
 repository every start \(n\le4000\) reaches \(1\), as an exact finite
 computation. That check is not a proof.
 
@@ -88,11 +88,11 @@ A finite check is never called a termination proof.
 
 ### 1.2 Related maps
 
-The nearest published comparison is the Collatz problem. Lagarias [4,5]
+The nearest published comparison is the Collatz problem. Lagarias [3,4]
 surveys parity words, stopping times, and almost-all statements that stop
-short of totality. Terras [6] and Everett [7] proved that almost every
+short of totality. Terras [5] and Everett [6] proved that almost every
 positive integer has a finite Collatz stopping time — some return below
-the start — without proving that every orbit reaches \(1\). Tao [8] later
+the start — without proving that every orbit reaches \(1\). Tao [7] later
 showed that almost all Collatz orbits attain almost bounded values.
 
 Those results are cited as methodological cousins, not as theorems about
@@ -102,9 +102,9 @@ almost every Collatz start has *some* finite stopping time. Those are
 different statements. The Juggler analogue of Terras would be an almost-all
 descent theorem on the odd-to-odd class. It is not proved here.
 
-Crandall [9] and Matthews–Watts [10] treat piecewise-affine
+Crandall [8] and Matthews–Watts [9] treat piecewise-affine
 Hasse–Syracuse maps. Juggler is not piecewise affine: the branches are
-floor powers. Prasad and Prasad [12] estimate excursion and stopping
+floor powers. Prasad and Prasad [11] estimate excursion and stopping
 constants for juggler-like random walks; Section 6 keeps that comparison
 descriptive.
 
@@ -492,7 +492,7 @@ Then \(s(n)=-1\) if and only if \(\{g(r)\}\ge1/2\), and \(S_O(N)\) is
 twice the interval discrepancy of the sequence \(\{g(r)\}\) against
 \([1/2,1)\).
 
-The following two lemmas are classical; see Kuipers–Niederreiter [11,
+The following two lemmas are classical; see Kuipers–Niederreiter [10,
 Ch. 1–2].
 
 **Lemma 5.A (van der Corput, second-derivative form).**
@@ -590,7 +590,7 @@ observation, not Terras's theorem for \(J\).
 A mixed-parity heuristic, ignoring floors, gives mean log-log drift
 \(\tfrac12\log(3/4)<0\). Finite ensembles sit near this value; hard
 paths are more odd-rich. This agrees qualitatively with the
-juggler-like random-walk model of Prasad and Prasad [12]. Fair parity
+juggler-like random-walk model of Prasad and Prasad [11]. Fair parity
 is an assumption, not a dynamical theorem, and typical negative drift
 is not pointwise contraction.
 
@@ -650,37 +650,34 @@ responsibility for the contents.
 
 1. C. A. Pickover, *Computers and the Imagination: Visual Adventures Beyond
    the Edge*, St. Martin's Press, New York, 1991, ch. 40, p. 232.
-2. E. W. Weisstein, “Juggler Sequence,” *MathWorld*,
-   https://mathworld.wolfram.com/JugglerSequence.html
-   (accessed 28 August 2026).
-3. OEIS Foundation Inc., “Number of steps needed for juggler sequence
+2. OEIS Foundation Inc., “Number of steps needed for juggler sequence
    (A094683) started at \(n\) to reach 1,” Sequence A007320 in *The
    On-Line Encyclopedia of Integer Sequences*,
    https://oeis.org/A007320 (accessed 28 August 2026).
-4. J. C. Lagarias, “The \(3x+1\) problem and its generalizations,”
+3. J. C. Lagarias, “The \(3x+1\) problem and its generalizations,”
    *Amer. Math. Monthly* 92 (1985), 3–23.
    [doi:10.1080/00029890.1985.11971528](https://doi.org/10.1080/00029890.1985.11971528).
-5. J. C. Lagarias (ed.), *The Ultimate Challenge: The \(3x+1\) Problem*,
+4. J. C. Lagarias (ed.), *The Ultimate Challenge: The \(3x+1\) Problem*,
    American Mathematical Society, Providence, RI, 2010.
-6. R. Terras, “A stopping time problem on the positive integers,”
+5. R. Terras, “A stopping time problem on the positive integers,”
    *Acta Arith.* 30 (1976), 241–252.
    [doi:10.4064/aa-30-3-241-252](https://doi.org/10.4064/aa-30-3-241-252).
-7. C. J. Everett, “Iteration of the number-theoretic function
+6. C. J. Everett, “Iteration of the number-theoretic function
    \(f(2n)=n\), \(f(2n+1)=3n+2\),” *Adv. Math.* 25 (1977), 42–45.
    [doi:10.1016/0001-8708(77)90087-1](https://doi.org/10.1016/0001-8708(77)90087-1).
-8. T. Tao, “Almost all orbits of the Collatz map attain almost bounded
+7. T. Tao, “Almost all orbits of the Collatz map attain almost bounded
    values,” *Forum Math. Pi* 10 (2022), e12.
    [doi:10.1017/fmp.2022.8](https://doi.org/10.1017/fmp.2022.8).
-9. R. E. Crandall, “On the ``\(3x+1\)'' problem,” *Math. Comp.* 32
+8. R. E. Crandall, “On the ``\(3x+1\)'' problem,” *Math. Comp.* 32
    (1978), 1281–1292.
    [doi:10.1090/S0025-5718-1978-0480321-3](https://doi.org/10.1090/S0025-5718-1978-0480321-3).
-10. K. R. Matthews and A. M. Watts, “A generalization of Hasse's
+9. K. R. Matthews and A. M. Watts, “A generalization of Hasse's
     generalization of the Syracuse algorithm,” *Acta Arith.* 43 (1984),
     167–175.
     [doi:10.4064/aa-43-2-167-175](https://doi.org/10.4064/aa-43-2-167-175).
-11. L. Kuipers and H. Niederreiter, *Uniform Distribution of Sequences*,
+10. L. Kuipers and H. Niederreiter, *Uniform Distribution of Sequences*,
     Wiley-Interscience, New York, 1974.
-12. V. Prasad and M. A. Prasad, “Estimates of the maximum excursion
+11. V. Prasad and M. A. Prasad, “Estimates of the maximum excursion
     constant and stopping constant of juggler-like sequences,”
     ResearchGate preprint, 2025.
     [doi:10.13140/RG.2.2.14110.04168](https://doi.org/10.13140/RG.2.2.14110.04168).

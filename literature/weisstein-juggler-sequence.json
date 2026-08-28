@@ -14,5 +14,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "MathWorld article. Cites Pickover 1991, ch. 40, p. 232. Accessed 28 August 2026 from the Juggler math note."
+  "notes": "MathWorld article. Cites Pickover 1991, ch. 40, p. 232. Dropped from the publication draft: encyclopedia restatement of Pickover and OEIS A007320; the 2006 10^6 check is unused."
 }
