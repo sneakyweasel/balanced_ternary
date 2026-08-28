@@ -23,12 +23,15 @@ from research.juggler_sequence.two_step_parity import (
     itinerary_word,
     juggler_step,
     kernel_probe,
+    increment_j_derivative_scan,
+    increment_linearization_scan,
     level3_inner_linearization_scan,
     level3_kernel_probe,
     level3_raw_gap_wildness,
     level3_reformulation_scan,
     differenced_level3_kernel_probe,
     oooo_indicator_identity_check,
+    x_cell_increment_scan,
     ooeooee_indicator_identity_check,
     oooeoee_indicator_identity_check,
     sixth_ooeoo_scan,
@@ -400,6 +403,7 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
     assert ANTI_OVERCLAIM["scale_invariant_R_extension_refuted"] is True
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is True
+    assert ANTI_OVERCLAIM["increment_first_k3_refuted"] is True
     assert ANTI_OVERCLAIM["density_one_claimed"] is False
 
 
@@ -456,6 +460,36 @@ def test_v_level_has_no_cells():
         assert result["no_v_level_cells"] is True
         assert result["floor_dY_mean_run"] == 1.0
         assert result["dv_mean_run"] == 1.0
+
+
+def test_increment_linearization_identity():
+    # Lemma Z1: F_J(v) = F_J(Y) - F_J'(Y) theta_2 + R, remainder
+    # one-signed in (3/8) v^{-1/2}; exact scaled integers through 10^12.
+    samples = tuple(range(5, 1001, 2)) + (10**6 + 1, 10**9 + 1, 10**12 + 1)
+    assert increment_linearization_scan(samples)["holds"] is True
+
+
+def test_increment_j_derivative_is_forty_five_sixteenths():
+    # Unfreezing J by 1 reproduces the Phase-12 leftover:
+    # c (F_{J+1}-F_J) / ((9/8) n^{45/16}) -> 1.
+    samples = (10**4 + 1, 10**6 + 1, 10**8 + 1, 10**10 + 1)
+    result = increment_j_derivative_scan(samples)
+    assert result["holds"] is True
+    assert result["count"] == 4
+
+
+def test_x_cells_have_no_j_runs():
+    # Increment-first falsifier: on genuine floor(ΔX) b-runs, both
+    # the raw increment and the κ-fixed branch increment of Y have
+    # run length 1. X-cells do not create v-level J-runs.
+    for p in (10**4, 10**5, 10**6):
+        result = x_cell_increment_scan(p, 400)
+        assert result["no_j_runs_on_x_cells"] is True
+        assert result["floor_dY_mean_run"] == 1.0
+        assert result["dv_mean_run"] == 1.0
+        assert result["branch_j_max_run"] == 1
+        assert result["b_run_max"] >= 2
+        assert result["mean_abs_d_floor_dY"] > result["pred_P14"]
 
 
 def test_sixth_ooeoo_identity():

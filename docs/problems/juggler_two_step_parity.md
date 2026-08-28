@@ -108,6 +108,8 @@ It is not required. The 2-adic / BT bridge stays closed.
 - Length-7 engine contractors OOEOOEE/OOOEOEE — proved in
   Phase 13 (`depth7_engine_contracting_proved` is `True`);
   certified density \(57/64\)
+- Increment-first \(K_3\) attack — **REFUTED** in Phase 14
+  (`increment_first_k3_refuted` is `True`); bound not proved
 - Global halt — not claimed
 
 ## Experiments
@@ -450,6 +452,51 @@ contract at length 7 without \(K_3\).
   \(\le7\)-step class has density \(57/64\).
 - OOOOEEE not claimed (needs \(K_3\)).
 
+## Phase 14: increment-first dies on the \(X\)-cells
+
+Working document, Part XI. Scope: difference \(c\,\theta_3\)
+first on \(X\)-cell \(b\)-runs, then increment-linearize at
+a frozen \(J=\lfloor\Delta Y\rfloor\). The leftover would be
+\(\alpha=29/16\), inside Theorem R. \(J\) does not freeze.
+
+- **Lemma Z1** — **EXACT — HUMAN PROOF**
+  (`J-increment-linearization`):
+  \(F_J(v)=F_J(Y)-F_J'(Y)\theta_2+R_J\),
+  \(-\tfrac38 v^{-1/2}\le R_J\le 0\). Algebraic leftover
+  \(c F_J'\asymp n^{29/16}\). Validated to \(n=10^{12}\).
+- **Proposition Z** — no \(J\)-runs on genuine
+  \(\lfloor\Delta X\rfloor\) \(b\)-runs (raw
+  \(\lfloor\Delta Y\rfloor\), \(\Delta v\), and the
+  \(\kappa\)-fixed branch increment all have max run
+  length \(1\) at \(P=10^4,10^5,10^6\), while the
+  \(b\)-runs themselves have length \(\asymp P^{1/2}\));
+  and \(\partial F_J/\partial J\) reintroduces
+  \(\alpha=45/16\) (\(c(F_{J+1}-F_J)/(\tfrac98 n^{45/16})\to 1\)).
+- **Increment-first \(K_3\)** — **REFUTED**
+  (`J-increment-first-K3`). Both ingredients die by
+  recorded mechanisms (missing \(v\)-level cells; the
+  Phase-12 wall; Phase-5 full-size sawtooth). Conjecture V
+  is not refuted.
+
+```text
+Mathematical target     Does differencing K3 first on X-cell
+                        b-runs, then increment-linearizing at
+                        frozen J = floor(ΔY), bound K3?
+Novelty hypothesis      Frozen J makes the leftover α = 29/16,
+                        inside Theorem R's Weyl and engine lines,
+                        evading the V2-first wall at 45/16.
+Falsifier               J has run length 1 on those cells, or
+                        unfreezing J reintroduces α ≥ 9/4.
+Existing machinery      Theorem R; Lemmas V1/V2; X-cell b-runs;
+                        increment identity (Z1).
+Maximum Phase-0 scope   Validate Z1; measure J-runs on genuine
+                        floor(ΔX) b-runs; measure the J-derivative
+                        scale. Bound only if both inputs hold.
+Promotion criterion     A power-saving bound on K3, or a named
+                        obstruction that kills the method.
+Stop criterion          Either falsifier, or machinery gravity.
+```
+
 ## Results
 
 At \(N=10^7\) (4,999,999 odd starts):
@@ -469,10 +516,12 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: does any method bound \(K_3\) (equivalently:
-\(W\)-family kernels with \(\alpha>9/4\)), which is the only
-remaining obstruction to OOOOEEE and the next density
-increment? Conjecture V is still open as a statement.
+One mathematical: is there an identity that absorbs the
+\(45/16\) coefficient into an integer *without* \(v\)-level
+\(J\)-runs, or is \(\alpha=9/4\) a hard ceiling for the
+\(W\)-family engine? Every method in the current toolkit
+that needs a frozen first difference of \(Y\) is dead.
+Conjecture V is still open as a statement.
 One editorial: import Theorems R/S/T/X and Corollaries U/Y
 into the finite-dynamics note (its Conjecture 6.2 and the
 \(13/16\) headline are superseded).
@@ -631,8 +680,19 @@ certified descent to \(57/64\). Three ledger rows added;
 `depth7_engine_contracting_proved` flipped. OOOOEEE still
 needs \(K_3\). No density-one claim, no note import.
 
-Best next question: does any method bound \(K_3\), the only
-remaining obstruction to OOOOEEE and the next density step?
+**PROMOTE** (Phase 14, increment-first obstruction): Lemma Z1
+is the exact increment Taylor (leftover \(\alpha=29/16\));
+\(X\)-cell \(b\)-runs do not freeze \(J\); the \(J\)-derivative
+is the named \(45/16\) wall. The increment-first attack is
+**REFUTED**. Two ledger rows added;
+`increment_first_k3_refuted` flipped. Conjecture V stays a
+conjecture. No bound, no density move, no rescue draft, no
+note import.
+
+Best next question: is there an identity that absorbs
+\(n^{45/16}\) into an integer without \(v\)-level \(J\)-runs,
+or is \(\alpha=9/4\) the hard ceiling of the \(W\)-family
+engine?
 
 ## Publication assessment
 
@@ -646,5 +706,6 @@ Pending editorial debt: the note still states Conjecture 6.2 as
 open and the headline density as \(13/16\); import Theorems R/S/T
 and Corollary U in a consolidation phase. The OOOO\* kernel
 \(K_3\) is isolated in the laboratory (Conjecture V) and is
-not in the note; the scale-invariant copy of Theorem R is
-laboratory-**REFUTED** and likewise not in the note.
+not in the note; the scale-invariant copy of Theorem R and
+the increment-first \(K_3\) attack are laboratory-**REFUTED**
+and likewise not in the note.

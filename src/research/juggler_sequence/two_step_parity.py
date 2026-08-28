@@ -103,6 +103,10 @@ ANTI_OVERCLAIM = {
     # alpha <= 9/8; certified descent density 57/64. OOOOEEE still
     # needs K3.
     "depth7_engine_contracting_proved": True,
+    # Phase 14: differencing K3 first, then increment-linearizing
+    # on X-cell b-runs, is REFUTED (no J-runs on those cells;
+    # unfreezing J reintroduces α = 45/16).
+    "increment_first_k3_refuted": True,
 }
 
 
@@ -776,6 +780,243 @@ def v_level_cell_scan(p_block: int, window: int = 400) -> dict[str, Any]:
         "dv_mean_run": sum(dv_runs) / len(dv_runs),
         "dv_max_run": max(dv_runs),
         "no_v_level_cells": max(floor_runs) == 1 and max(dv_runs) == 1,
+    }
+
+
+def increment_linearization_check(
+    n: int, scale: int = 10**24
+) -> tuple[int, int]:
+    """(E*scale, bound*scale) for the increment identity (Z1).
+
+    F_J(y) = (y+J)^{3/2} - y^{3/2} at J = Δv (step 2). Taylor in the
+    single variable θ₂ = {Y} at fixed J:
+
+        F_J(v) = F_J(Y) - F_J'(Y) θ₂ + R_J,
+
+    equivalently E = F_J(Y) - F_J(v) - F_J'(Y) θ₂ satisfies
+    0 ≤ E ≤ (3/8) v^{-1/2} (F_J'' < 0, ξ ≥ v). Restoring
+    c ≍ k z^{1/2} leaves a W-family C θ₂ with
+    C = c F_J'(Y) ≍ k n^{29/16} at the identity-step gap, plus an
+    engine-side remainder. An algebraic identity only: it does not
+    produce runs on which J is frozen.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    d = 2
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    J = isqrt(isqrt((n + d) ** 3) ** 3) - v
+    if J <= 0:
+        raise ValueError("positive increment J required")
+    ys = isqrt(m**3 * scale * scale)
+    fv = isqrt((v + J) ** 3 * scale * scale) - isqrt(v**3 * scale * scale)
+    fy = isqrt((ys + J * scale) ** 3 // scale) - isqrt(ys**3 // scale)
+    y12 = isqrt(ys * scale)
+    yj12 = isqrt((ys + J * scale) * scale)
+    fp = (3 * (yj12 - y12)) // 2
+    th2 = ys - v * scale
+    err = fy - fv - (fp * th2) // scale
+    v12 = isqrt(v * scale * scale)
+    slack = isqrt(max(v, 1)) + 10**6
+    bound = (3 * scale * scale) // (8 * max(v12, 1)) + slack
+    return err, bound
+
+
+def increment_linearization_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    slack = 10**7
+    checked = 0
+    for n in samples:
+        try:
+            err, bound = increment_linearization_check(n)
+        except ValueError:
+            continue
+        if err < -slack or err > bound:
+            return {"holds": False, "witness": n, "err": err, "bound": bound}
+        checked += 1
+    return {"holds": True, "count": checked}
+
+
+def increment_j_derivative_check(n: int) -> dict[str, float]:
+    """c (F_{J+1}(v) - F_J(v)) / n^{45/16} against the limit 9/8.
+
+    ∂F_J/∂J = (3/2)(v+J)^{1/2}, so unfreezing J by 1 produces the
+    Phase-12 leftover c · (3/2) v^{1/2} ≍ n^{45/16}. Scaled integers
+    (float only in the final ratio).
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+    m = isqrt(n**3)
+    v = isqrt(m**3)
+    z = isqrt(v**3)
+    J = isqrt(isqrt((n + 2) ** 3) ** 3) - v
+    if J <= 0:
+        raise ValueError("positive increment J required")
+    s = 10**12
+    df = isqrt((v + J + 1) ** 3 * s * s) - isqrt((v + J) ** 3 * s * s)
+    c = (3 * isqrt(z * s * s)) // 4
+    phase = c * df
+    # n^{45/16} s^2 = n^2 n^{13/16} s^2
+    n13s = isqrt(isqrt(isqrt(isqrt(n**13 * s**16))))
+    target = (9 * (n**2) * n13s * s) // 8
+    ratio = phase / target if target else 0.0
+    return {
+        "n": float(n),
+        "J": float(J),
+        "ratio": ratio,
+        "limit": 1.0,
+    }
+
+
+def increment_j_derivative_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    """The J-derivative ratio stays near 9/8 through the sample."""
+    ratios = []
+    for n in samples:
+        try:
+            row = increment_j_derivative_check(n)
+        except ValueError:
+            continue
+        if not (0.99 <= row["ratio"] <= 1.02):
+            return {"holds": False, "witness": n, "ratio": row["ratio"]}
+        ratios.append(row["ratio"])
+    return {"holds": True, "count": len(ratios), "ratios": ratios}
+
+
+def x_cell_increment_scan(
+    p_block: int, window: int = 400, h: int = 1
+) -> dict[str, Any]:
+    """Run lengths of floor(ΔY) and Δv *inside* X-cell b-runs.
+
+    The increment-first attack needs frozen J = floor(ΔY) on
+    b-runs of floor(Δ_h X) (length ≍ P^{1/2}/h). On those cells
+    m advances by b ≍ h P^{1/2} per step, while the m-freeze
+    length of floor((m+b)^{3/2}-m^{3/2}) is ≍ P^{1/4}/h, and
+    P^{1/2} > P^{1/4}: J changes at every in-cell step. Measured
+    mean and max run 1, with mean |Δ floor(ΔY)| ≍ P^{1/4}.
+    """
+    d = 2 * h
+    s = 10**12
+
+    def floor_dx(n: int) -> int:
+        # Real gap floor(ΔX), not Δm = floor(ΔX)+κ (the carry flickers).
+        return (
+            isqrt((n + d) ** 3 * s * s) - isqrt(n**3 * s * s)
+        ) // s
+
+    def floor_dy(n: int) -> int:
+        m = isqrt(n**3)
+        m1 = isqrt((n + d) ** 3)
+        return (isqrt(m1**3 * s * s) - isqrt(m**3 * s * s)) // s
+
+    def dv_of(n: int) -> int:
+        return isqrt(isqrt((n + d) ** 3) ** 3) - isqrt(isqrt(n**3) ** 3)
+
+    def branch_floor(m: int, gap: int) -> int:
+        return (isqrt((m + gap) ** 3 * s * s) - isqrt(m**3 * s * s)) // s
+
+    floor_runs: list[int] = []
+    dv_runs: list[int] = []
+    b_runs: list[int] = []
+    branch_runs: dict[int, list[int]] = {0: [], 1: []}
+    dy_changes: list[int] = []
+    current_b: int | None = None
+    b_run = 0
+    prev_f = prev_dv = None
+    prev_br: dict[int, int | None] = {0: None, 1: None}
+    br_run = {0: 0, 1: 0}
+    f_run = dv_run = 0
+    last_dy: int | None = None
+    n = p_block + 1
+    for _ in range(window):
+        b = floor_dx(n)
+        if current_b is None:
+            current_b = b
+            b_run = 1
+        elif b != current_b:
+            if f_run:
+                floor_runs.append(f_run)
+            if dv_run:
+                dv_runs.append(dv_run)
+            if b_run:
+                b_runs.append(b_run)
+            for kap in (0, 1):
+                if br_run[kap]:
+                    branch_runs[kap].append(br_run[kap])
+                br_run[kap] = 0
+                prev_br[kap] = None
+            f_run = dv_run = 0
+            prev_f = prev_dv = None
+            last_dy = None
+            current_b = b
+            b_run = 1
+        else:
+            b_run += 1
+        fdY = floor_dy(n)
+        dvt = dv_of(n)
+        m = isqrt(n**3)
+        if last_dy is not None:
+            dy_changes.append(abs(fdY - last_dy))
+        last_dy = fdY
+        if prev_f is None or fdY != prev_f:
+            if f_run:
+                floor_runs.append(f_run)
+            f_run = 1
+            prev_f = fdY
+        else:
+            f_run += 1
+        if prev_dv is None or dvt != prev_dv:
+            if dv_run:
+                dv_runs.append(dv_run)
+            dv_run = 1
+            prev_dv = dvt
+        else:
+            dv_run += 1
+        for kap in (0, 1):
+            bf = branch_floor(m, b + kap)
+            if prev_br[kap] is None or bf != prev_br[kap]:
+                if br_run[kap]:
+                    branch_runs[kap].append(br_run[kap])
+                br_run[kap] = 1
+                prev_br[kap] = bf
+            else:
+                br_run[kap] += 1
+        n += 2
+    if f_run:
+        floor_runs.append(f_run)
+    if dv_run:
+        dv_runs.append(dv_run)
+    if b_run:
+        b_runs.append(b_run)
+    for kap in (0, 1):
+        if br_run[kap]:
+            branch_runs[kap].append(br_run[kap])
+    branch_max = max(
+        (max(branch_runs[k]) for k in (0, 1) if branch_runs[k]),
+        default=0,
+    )
+    return {
+        "window": window,
+        "n_b_runs": len(b_runs),
+        "b_run_max": max(b_runs) if b_runs else 0,
+        "b_run_mean": (sum(b_runs) / len(b_runs)) if b_runs else 0.0,
+        "floor_dY_mean_run": (
+            sum(floor_runs) / len(floor_runs) if floor_runs else 0.0
+        ),
+        "floor_dY_max_run": max(floor_runs) if floor_runs else 0,
+        "dv_mean_run": sum(dv_runs) / len(dv_runs) if dv_runs else 0.0,
+        "dv_max_run": max(dv_runs) if dv_runs else 0,
+        "branch_j_max_run": branch_max,
+        "mean_abs_d_floor_dY": (
+            sum(dy_changes) / len(dy_changes) if dy_changes else 0.0
+        ),
+        "pred_P14": p_block**0.25,
+        "no_j_runs_on_x_cells": (
+            bool(floor_runs)
+            and bool(dv_runs)
+            and max(floor_runs) == 1
+            and max(dv_runs) == 1
+            and branch_max == 1
+            and max(b_runs) >= 2
+        ),
     }
 
 
@@ -1670,7 +1911,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "`J-seven-step-descent-density`; proofs in",
         "`juggler_two_step_parity_lemma.md`). Certified descent",
         "density 57/64. OOOO* kernel isolated (Lemma V1); the",
-        "scale-invariant copy of Theorem R is **REFUTED**.",
+        "scale-invariant copy of Theorem R and the increment-first",
+        "K3 attack are **REFUTED**.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
@@ -1717,7 +1959,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "contracting splits OOOEE/OOEOE lift certified descent to 7/8;",
         "the two length-7 engine contractors OOEOOEE/OOOEOEE lift",
         "certified descent to 57/64; the OOOO* kernel K3 is isolated",
-        "and the scale-invariant copy of Theorem R is REFUTED.",
+        "and both the scale-invariant copy of Theorem R and the",
+        "increment-first K3 attack are REFUTED.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")

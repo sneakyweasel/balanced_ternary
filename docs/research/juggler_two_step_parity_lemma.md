@@ -17,7 +17,9 @@ Ledger rows: `J-nested-parity-discrepancy`,
 `J-scale-invariant-R-extension`,
 `J-w-family-below-nine-eighths`,
 `J-depth7-engine-contracting`,
-`J-seven-step-descent-density`.
+`J-seven-step-descent-density`,
+`J-increment-linearization`,
+`J-increment-first-K3`.
 Imported into the finite-dynamics note (consolidation phase, August
 2026): Lemmas A/B as Lemma 5.3, Theorem C as Theorem 5.4,
 Proposition L as Proposition 5.5, Lemma D as Lemma 5.6, Theorem E as
@@ -40,6 +42,8 @@ Part IX (Phase 12) refutes the scale-invariant copy of Theorem R
 (Lemma V2, Proposition W). Part X (Phase 13) closes the two
 length-7 engine contractors OOEOOEE and OOOEOEE (Theorem X,
 Corollary Y), lifting certified descent to \(57/64\).
+Part XI (Phase 14) refutes the increment-first attack on
+\(K_3\) (Lemma Z1, Proposition Z).
 Not a termination claim; the remaining depth-\(\ge5\) expanders
 (OOOO\*, OOEOO, OOOEO) and the density-one statement remain open.
 
@@ -2174,10 +2178,10 @@ cylinders are Theorem X. The contraction is
 \(81<128\). \(\square\)
 
 The leftover \(\tfrac7{64}\) is the OOOO\* tree (still
-uncounted, blocked by Phase 12) together with the expanding
-length-7 siblings of OOEOO\*\* and OOOEO\*\* (now counted).
-The next contractor in the leftover is OOOOEEE, which
-requires \(K_3\).
+uncounted, blocked by Phase 12 and Phase 14) together with
+the expanding length-7 siblings of OOEOO\*\* and OOOEO\*\*
+(now counted). The next contractor in the leftover is
+OOOOEEE, which requires \(K_3\).
 
 ### Phase-13 decision
 
@@ -2189,4 +2193,135 @@ shows the leftover \(1/8\) was not a single obstruction:
 two-thirds of its first contracting layer is engine. OOOOEEE
 and Conjecture V remain open. No note import, no
 density-one claim. `depth7_engine_contracting_proved`
-flipped.
+flipped. The increment-first attack on \(K_3\) is taken up
+— and refuted — in Part XI.
+
+## Part XI: increment-first dies on the \(X\)-cells (Phase 14)
+
+Scope: the remaining method that is not a copy of Theorem R
+and not V2-first — difference the whole phase
+\(c\,\theta_3\) on \(X\)-cell \(b\)-runs, then Taylor the
+increment \(F_J(v)=(v+J)^{3/2}-v^{3/2}\) in the single
+variable \(\theta_2\) at a frozen \(J=\lfloor\Delta Y\rfloor\).
+If \(J\) froze, the leftover would be a \(W\)-family at
+\(\alpha=29/16<2<9/4\), inside Theorem R's Weyl and engine
+lines. It does not freeze. No bound draft.
+
+### Lemma Z1 (increment linearization) — EXACT — HUMAN PROOF
+
+Let \(J=\Delta v\) at step \(2\) (\(J\ge 1\)) and
+\(F_J(y)=(y+J)^{3/2}-y^{3/2}\). For odd \(n\ge 5\),
+
+\[
+F_J(v)
+= F_J(Y) - F_J'(Y)\,\theta_2 + R_J,
+\qquad
+-\tfrac38\, v^{-1/2} \le R_J \le 0,
+\]
+
+where \(F_J'(Y)=\tfrac32\bigl((Y+J)^{1/2}-Y^{1/2}\bigr)\).
+
+*Proof.* Taylor of \(F_J(Y-\theta_2)\) at \(Y\):
+\(F_J''<0\) and \(\xi\ge v\) give the one-sided remainder
+\(\tfrac12 F_J''(\xi)\theta_2^2\), bounded by
+\(\tfrac38 v^{-1/2}\). \(\square\) Validated
+(`increment_linearization_scan`) through \(n=10^{12}+1\).
+
+Restoring \(c\asymp k z^{1/2}\asymp k n^{27/16}\), the
+leftover \(c F_J'(Y)\) is a \(W\)-family of size
+\(\asymp k n^{29/16}\) at the identity-step gap (since
+\(F_J'(Y)\asymp J Y^{-1/2}\asymp n^{1/8}\)). The remainder
+\(c R_J\asymp k n^{9/16}\) is engine-side. The identity is
+not the wall. Frozen \(J\) is.
+
+### Proposition Z (no \(J\)-runs on \(X\)-cells; \(\partial F/\partial J\) is \(45/16\)) — EXACT — HUMAN PROOF / REFUTED method
+
+Two independent deaths of "difference first, then
+increment-linearize on \(X\)-cells."
+
+**(i) No \(J\)-runs.** Theorem R's \(X\)-cells are
+\(b\)-runs of \(\lfloor\Delta_h X\rfloor\), length
+\(\asymp P^{1/2}/h\). On those cells \(m\) advances by
+\(b\asymp h P^{1/2}\) per step. The increment
+\(F(m)=(m+b)^{3/2}-m^{3/2}\) has \(F'(m)\asymp P^{-1/4}<1\),
+so its floor would freeze for \(\Delta m\asymp P^{1/4}\).
+Each cell step is \(\Delta m\asymp P^{1/2}>P^{1/4}\): the
+\(n\)-orbit jumps past the \(m\)-freeze in a single step.
+Measured (`x_cell_increment_scan`) at
+\(P=10^4,10^5,10^6\), on genuine \(\lfloor\Delta X\rfloor\)
+\(b\)-runs of mean length \(33,80,200\):
+
+- raw \(\lfloor\Delta Y\rfloor\) and \(\Delta v\) have mean
+  and max run length \(1\), with mean
+  \(|\Delta\lfloor\Delta Y\rfloor|\asymp P^{3/4}\) (the
+  level-1 carry flicker of \(Y\), the Phase-8 raw-freeze
+  phenomenon one layer up);
+- the \(\kappa\)-fixed branch increment
+  \(\lfloor(m+b+\kappa)^{3/2}-m^{3/2}\rfloor\) also has max
+  run length \(1\) (per-step change \(\asymp P^{1/4}\gg 1\)).
+
+Restricting to \(X\)-cells does not create \(v\)-level
+cells. Lemma R3 cannot be restated for the first
+difference of \(Y\).
+
+**(ii) The \(J\)-derivative is the \(45/16\) family.**
+\(\partial F_J/\partial J=\tfrac32(v+J)^{1/2}\). Changing
+the frozen integer by \(1\) changes the increment phase by
+
+\[
+c\cdot\tfrac32(v+J)^{1/2}\asymp k n^{45/16}.
+\]
+
+Measured (`increment_j_derivative_scan`):
+\(c\bigl(F_{J+1}(v)-F_J(v)\bigr)\big/\bigl(\tfrac98 n^{45/16}\bigr)\to 1\)
+through \(n=10^{10}+1\). This is Lemma V2's leftover
+(Proposition W(ii)) read as a derivative in \(J\). Replacing
+frozen \(J\) by \(J=\Delta Y-\{\Delta Y\}+\kappa\) expands
+\(e\bigl(c F_J\{\Delta Y\}\bigr)\) as a full-size sawtooth
+of the slow form \(\Delta Y\) — the recorded Phase-5 dead
+route (shifted-window Vaaler on a coefficient \(>n\) with
+derivative \(\gg 1\)).
+
+The two Phase-14 ingredients therefore die by recorded
+mechanisms, not by a new unnamed sum:
+
+- frozen-\(J\) increment on \(X\)-cells: dies by (i);
+- unfrozen \(J\) (or \(\{\Delta Y\}\) expansion): dies by
+  (ii), which is the Phase-12 wall.
+
+Inherited dead routes (composed Lemma-B cells, the swap
+\(e(c\theta_3)=e(cZ)\,e(-\{c\}z)\), a second A-process on
+\(z^{3/2}\), fibre + van der Corput II, copy of R one
+nesting up, V2 then invoke R) remain dead and were not
+retested.
+
+### What this does *not* refute
+
+Conjecture V — that \(K_3\) itself cancels — is untouched.
+The Phase-11 probe still shows square-root cancellation.
+What is refuted is the *method*: difference-first plus
+increment linearization on \(X\)-cells. The leftover
+\(\alpha=29/16\) is real as an algebraic coefficient and
+unreachable as a Weyl input, because the runs on which the
+Taylor is legitimate have length \(1\).
+
+A bound on \(K_3\) would still not raise certified descent
+at depth 5 (\(3^4>2^5\)), and a \(\delta\) that halves per
+nesting would still not give Terras. The new information is
+sharper: every route that needs a frozen first difference
+of \(Y\), whether as a \(v\)-level \(b\)-run or as an
+\(X\)-cell increment, is the same missing cell.
+
+### Phase-14 decision
+
+**PROMOTE** the obstruction. Lemma Z1 is exact; the missing
+\(J\)-runs on \(X\)-cells are measured; the \(J\)-derivative
+is the named \(45/16\) wall. The increment-first attack is
+**REFUTED** (ledger row `J-increment-first-K3`). Conjecture V
+stays a conjecture; `depth5_kernel_bound_proved` and
+`density_one_claimed` stay `False`.
+`increment_first_k3_refuted` flipped. No note import, no
+density claim, no rescue draft. The toolkit's remaining
+\(K_3\) methods are the recorded dead routes; a new attack
+needs an identity that absorbs \(n^{45/16}\) into an integer
+*without* \(v\)-level \(J\)-runs.

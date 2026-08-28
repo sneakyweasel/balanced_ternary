@@ -9554,3 +9554,58 @@ Best next question
 - does any method bound K3, the only remaining obstruction
   to OOOOEEE and the next density step?
 ```
+
+## Juggler increment-first K3 attack refuted (Phase 14)
+
+The remaining method that is not a copy of Theorem R and
+not V2-first: difference the whole phase c θ₃ on X-cell
+b-runs, then Taylor the increment
+F_J(v) = (v+J)^{3/2} - v^{3/2} in θ₂ at a frozen
+J = floor(ΔY). If J froze, the leftover would be a
+W-family at α = 29/16, inside Theorem R. It does not
+freeze. Working document Part XI; rows
+`J-increment-linearization`, `J-increment-first-K3`.
+
+Lemma Z1 is exact (validated to n = 10^{12}). On genuine
+floor(ΔX) b-runs of length ≍ P^{1/2}, both the raw
+increment and the κ-fixed branch increment of Y have run
+length 1 at P = 10^4, 10^5, 10^6 (raw jumps ≍ P^{3/4}
+from the level-1 carry; branched change ≍ P^{1/4} ≫ 1).
+Unfreezing J by 1 reproduces the Phase-12 leftover:
+c (F_{J+1}-F_J) / ((9/8) n^{45/16}) → 1. Expanding
+{ΔY} is the recorded Phase-5 full-size sawtooth.
+Conjecture V is untouched. `increment_first_k3_refuted`
+flipped; `depth5_kernel_bound_proved` stays False. No
+density move, no note import, no rescue draft.
+
+```text
+What was learned
+- the increment identity is exact and the algebraic leftover
+  is α = 29/16, inside R's Weyl and engine lines
+- X-cell b-runs do not freeze J: each step advances m by
+  P^{1/2}, past the m-freeze length P^{1/4}
+- even the κ-fixed branch increment has run length 1
+- unfreezing J by 1 is the 45/16 wall (∂F/∂J)
+- increment-first is not a new route; it is V2 plus a
+  missing cell
+Strongest theorem
+- Lemma Z1: the increment linearization —
+  EXACT — HUMAN PROOF
+Strongest refutation
+- increment-first attack on K3
+  (J-increment-first-K3)
+Reusable machinery
+- increment_linearization_scan; increment_j_derivative_scan;
+  x_cell_increment_scan
+Branch status
+- PROMOTE
+Why
+- the last method in the current toolkit that was not a
+  recorded dead route is now a named dead end with an
+  exact identity and a measured obstruction; a rescue
+  would be a different method, not a repair
+Best next question
+- is there an identity that absorbs n^{45/16} into an
+  integer without v-level J-runs, or is α = 9/4 the hard
+  ceiling of the W-family engine?
+```
