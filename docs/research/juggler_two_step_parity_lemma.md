@@ -2639,3 +2639,160 @@ dispersion second (tactical, aims at \(K_3\) proper). Flags
 (OBSERVATION); `depth5_kernel_bound_proved` and
 `density_one_claimed` stay `False`. No ledger rows (no theorem, no
 refutation — census-gate precedent). No note import, no commit.
+
+## Part XV: the transport inductive step — statement, substrate, and the dispersion verdict (Phase 18)
+
+Scope: state the transport inductive step precisely and determine
+whether its proof obligations reduce to proven machinery or to
+recorded walls; settle the dispersion route's status as a
+completion method at the same time. No \(K_3\) bound, no density
+move, no note import.
+
+### Proposition CC (dispersion cannot complete the count). REFUTED as a completion route
+
+**Statement.** No family-averaging method (double large sieve,
+dispersion, large-sieve amplification over the mode index \(k\))
+can, by itself, bound the depth-5 class count \(\#OOOO{*}(N)\).
+
+**Proof.** The fifth-letter count is accessed through
+\(\psi(z^{3/2})\), and every Fourier-type expansion of the bounded
+function \(\psi\) (Vaaler or otherwise) places weight
+\(\asymp 1/k\) on the \(k\)-th harmonic; the count error is
+controlled only if \(|K_3(k)| = o(N)\) *for each bounded* \(k\) —
+the \(k = 1\) term alone carries weight one. A dispersion bound
+controls \(k\)-averages such as \(\sum_{k \le J}|K_3(k)|^2\);
+since the family phase is exactly \(k\,u(n)\), the family members
+are Fourier coefficients of the distribution of \(u\), and no
+average over \(k \le J\) constrains the \(k = 1\) coefficient
+individually. There is also no amplification family: the phase
+\(u(n)\) has no auxiliary bilinear parameter. Finally, the one
+analytic obligation dispersion does generate — an upper bound on
+the near-coincidence pair count at scale \(1/J\) — is circular:
+the Selberg-majorant expansion of that count is
+\(\sum_{|t| \le J}\hat s_t\,|\sum_n e(t\,u(n))|^2\), the kernel
+family itself. \(\square\)
+
+The Phase-17 spacing statistics stand as OBSERVATION; the route is
+closed as a way to finish the count. (For the record, the same
+argument shows the transport route *must* deliver per-\(k\) bounds
+at bounded \(k\); it aims to, via per-block bounds.)
+
+Two more negatives, recorded because they eliminate the naive
+transport forms: (i) the plain block variance
+\(\sum_B |S_B|^2\) expands into the \(h\)-averaged once-differenced
+level-3 kernel — the \(T_1^{(3)}\)-family, dead by both BB
+mechanisms, so the variance cannot be paid against level-3 pair
+statistics; (ii) the fiber transform to the \(m\)- or \(v\)-variable
+is exact (the fifth letter is a function of \(v\) alone, and the
+Piatetski–Shapiro image weights are slow \(m^{2/3}\)-modes), but
+the image is sparse: the needed saving at the \(k\)-th fiber level
+is \(1 - (2/3)^k \ge 1/3\), against the engine's \(1/72\). The
+sparsity wall of the Phase-5 record is quantitative and permanent.
+
+### Lemma DD (block carry models). EXACT — HUMAN PROOF
+
+Let \(P \le n_0 < 2P\) be odd, \(L = \lfloor P^{1/4}\rfloor\), and
+write \(X_0 = n_0^{3/2}\), \(D = (n_0+2)^{3/2} - n_0^{3/2}\). For
+\(0 \le t < L\):
+
+**(i) (affine \(m\)-model).**
+\(m(n_0 + 2t) = \lfloor X_0 + D\,t \rfloor + O(1)\).
+*Proof.* The second difference of \(X = n^{3/2}\) over step 2 is
+\(4X'' + O(P^{-3/2}) = 3n^{-1/2} + O(P^{-3/2})\), so the
+accumulated quadratic drift is at most
+\(\tfrac32 t^2 P^{-1/2} \le \tfrac32\) for \(t \le P^{1/4}\); the
+floor moves by at most \(2\). \(\square\)
+
+**(ii) (amplified \(v\)-model).** Let \(A = m(n_0+2) - m(n_0)\),
+\(\mu(t) = m_0 + A\,t\), and \(s(t) = m(t) - \mu(t)\) (the realized
+carry sequence; \(0 \le s \le \{D\}t + O(1)\), and by (i)
+\(s(t) = \lfloor \{X_0\} + \gamma t\rfloor + O(1)\) with
+\(\gamma = D - A \in [0,1)\) — a one-dimensional rotation carry).
+Then
+
+\[
+v(n_0+2t)
+ = \Bigl\lfloor \mu(t)^{3/2}
+   + \tfrac32\,\mu(t)^{1/2}\, s(t) \Bigr\rfloor + O(1).
+\]
+
+*Proof.* Taylor at \(\mu(t)\):
+\((\mu + s)^{3/2} = \mu^{3/2} + \tfrac32\mu^{1/2}s
++ \tfrac38\xi^{-1/2}s^2\) with \(\xi \in (\mu, \mu+s)\); the
+remainder is at most
+\(\tfrac38 P^{-3/4}(L+2)^2 \asymp P^{-1/4} < 1\). \(\square\)
+
+Validators `block_m_affine_model_check` and
+`block_v_amplified_model_check` (exact scaled integers, 50 blocks
+per scale): the measured defect of (i) is \(\le 2\) at every
+\(P \in \{10^4, 10^6, 10^8, 10^{10}\}\), and of (ii) is \(0\) for
+\(P \le 10^8\) and \(1\) at \(P = 10^{10}\).
+
+**What the lemma buys.** On \(P^{1/4}\)-blocks the nested level-2
+data collapses, with \(O(1)\) exactness, to a *bounded-complexity
+system*: a smooth function of an integer-affine base, plus the
+carry orbit of a single circle rotation \(t \mapsto \{\gamma t +
+\theta_0\}\), amplified by \(W(t) = \tfrac32\mu(t)^{1/2} \asymp
+P^{3/4}\). The nesting has been traded for block parameters
+\((\theta_0, \gamma, m_0, A)\) whose joint distribution across
+blocks is a level-\(\le 2\) statistic — inside the proven engine.
+Two supporting facts: the cross-block pair terms carry
+\(\theta_2\)-sawtooths with coefficients \(\asymp P^{1/8}|t-t'|
+\le P^{3/8}\), far below the engine line \(P^{9/4}\); and the
+pair-decay multiplier \(\beta = \{c\,((v+1)^{3/2} - v^{3/2})\}\)
+equidistributes at the noise floor (`carry_multiplier_probe`:
+\(|{\rm mean}\ e(\beta)| = 0.004\)–\(0.017\) at floor
+\(0.007\)–\(0.014\); OBSERVATION).
+
+### Conjecture EE (the transport inductive step)
+
+There exist \(\delta, \delta' > 0\) such that for every bounded
+\(k \ge 1\), all but \(O(P^{3/4 - \delta'})\) of the
+\(P^{3/4}\)-many blocks satisfy
+
+\[
+|S_k(B)| \;=\;
+\Bigl| \sum_{t=0}^{L-1} e\bigl(k\,u(n_0 + 2t)\bigr) \Bigr|
+\;\le\; L^{1-\delta},
+\]
+
+where, by Lemma DD(ii), the phase on \(B\) is an explicit function
+of \((t, s(t))\) — a smooth amplification of the rotation orbit —
+up to \(O(1)\) floor defects, themselves indicator content in the
+rotation and in one further DD-type model at level 3. Summing over
+blocks, Conjecture EE implies \(|K_3(k)| \ll P^{1-\delta''}\) for
+each bounded \(k\), hence the OOOO\(*\) splits and (with Theorem S
+and Proposition J) the density-one program.
+
+**Obligations, each named.** (α) *In-block*: cancellation in
+exponential sums over rotation orbits with smooth
+\(P^{3/4}\)-amplified weights — Ostrowski/continued-fraction
+territory (Denjoy–Koksma-type bounds; the quality of \(\gamma\)'s
+continued fraction enters, with bad-\(\gamma\) blocks controlled
+by measure). (β) *Cross-block*: equidistribution of the block data
+\((\theta_0, \gamma, W\text{-fractions})\) — level-\(\le 2\),
+proven machinery (Theorems C/R). (γ) *Level-3 carries*: a DD-type
+model one level up (\(z\) on blocks: amplification
+\(\asymp P^{9/8}\) of the level-2 carry orbit), plus the
+multiplier non-degeneracy already observed.
+
+**Why this is outside Proposition BB.** No frozen \(\lfloor
+\Delta Y\rfloor\) is required — the model *tracks* the
+\(P^{1/4}\)-scale gap jumps exactly through \(s(t)\) (BB mechanism
+I is bypassed, not repaired). No \(\theta_2\)-linearization is
+performed — \(v\) enters as an exact integer model, so no
+\(W\)-family at \(\alpha = 45/16\) is spawned (mechanism II never
+engages). The randomness source is a classical rotation, not a
+nested sawtooth.
+
+### Phase-18 decision
+
+**CLOSE** the dispersion branch as a completion route
+(Proposition CC; ledger row `J-dispersion-count-route`, REFUTED).
+**PROMOTE** the transport branch to its analytic phase with
+Conjecture EE as the target and Lemma DD as its proven substrate
+(ledger row `J-block-carry-models`, EXACT — HUMAN PROOF). Flags
+`dispersion_count_route_refuted` and `transport_substrate_exact`
+flipped; `depth5_kernel_bound_proved` and `density_one_claimed`
+stay `False`. Conjecture V is open; Conjecture EE is a conjecture.
+No note import, no commit.

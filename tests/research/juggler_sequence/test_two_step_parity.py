@@ -10,7 +10,10 @@ from research.juggler_sequence.two_step_parity import (
     CONTRACTING_TARGET,
     SCALE,
     WORDS4,
+    block_m_affine_model_check,
+    block_v_amplified_model_check,
     branch_freeze_scan,
+    carry_multiplier_probe,
     deep_word_counts,
     differenced_kernel_probe,
     dispersion_spacing_census,
@@ -151,6 +154,10 @@ def test_anti_overclaim_flags():
     # fire (OBSERVATION); no K3 bound and no density-one claim.
     assert ANTI_OVERCLAIM["dispersion_phase0_alive"] is True
     assert ANTI_OVERCLAIM["transport_phase0_alive"] is True
+    # Phase 18: dispersion closed as a completion route; the transport
+    # substrate is exact but Conjecture EE and the K3 bound stay open.
+    assert ANTI_OVERCLAIM["dispersion_count_route_refuted"] is True
+    assert ANTI_OVERCLAIM["transport_substrate_exact"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
 
 
@@ -587,6 +594,28 @@ def test_depth6_census_minimal_scale_envelope():
     for w, c in counts.items():
         envelope = max((n_max / 2) * n_max ** (-gamma_min(w)), n_max ** (2 / 3))
         assert abs(c - expected) <= 1.5 * envelope
+
+
+def test_block_carry_models():
+    # Lemma DD: on blocks of L = P^{1/4} odd steps, (i) m is affine in
+    # the block position up to a bounded defect, and (ii) v is the
+    # floor of the affine base's 3/2-power plus the W-amplified carry
+    # sequence, up to a bounded defect. Exact scaled integers.
+    a = block_m_affine_model_check(10**4, n_blocks=30)
+    assert a["max_defect"] <= 2
+    b = block_v_amplified_model_check(10**4, n_blocks=30)
+    assert b["max_defect"] <= 1
+    a6 = block_m_affine_model_check(10**6, n_blocks=10)
+    assert a6["max_defect"] <= 2
+    b6 = block_v_amplified_model_check(10**6, n_blocks=10)
+    assert b6["max_defect"] <= 1
+
+
+def test_carry_multiplier_probe():
+    # Transport pair-decay multiplier equidistributes (OBSERVATION
+    # guard, loose threshold).
+    r = carry_multiplier_probe(10**4, sample_cap=5000)
+    assert r["mean_abs"] < 0.1
 
 
 def test_dispersion_spacing_census():

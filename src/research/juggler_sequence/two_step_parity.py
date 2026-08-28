@@ -96,6 +96,18 @@ ANTI_OVERCLAIM = {
     # claimed.
     "dispersion_phase0_alive": True,
     "transport_phase0_alive": True,
+    # Phase 18: Proposition CC — the dispersion route cannot complete
+    # the depth-5 count (Vaaler weights concentrate at bounded k where
+    # family averages are vacuous; the Selberg pair-count route is
+    # circular). Dispersion CLOSED as a completion method; its spacing
+    # statistics stand as observations.
+    "dispersion_count_route_refuted": True,
+    # Phase 18: Lemma DD — on blocks of L = P^{1/4} odd steps the
+    # level-2 data collapses exactly (O(1) defects) to an affine base
+    # plus rotation carries amplified by W ~ P^{3/4}. The transport
+    # inductive step (Conjecture EE) is stated on this substrate.
+    # No K3 bound, no density move; Conjecture V stays open.
+    "transport_substrate_exact": True,
     # Phase 10: Theorem T / Corollary U close OOOEE and OOEOE;
     # certified descent density 7/8. OOOO* at depth 5 remains open.
     "depth5_contracting_proved": True,
@@ -737,6 +749,114 @@ def dispersion_spacing_census(
         "coincidence_ratio": round(ratio, 4),
         "lag_concentration": lag_r,
         "noise_floor": round(count**-0.5, 4),
+    }
+
+
+def block_m_affine_model_check(
+    p_block: int, n_blocks: int = 50
+) -> dict[str, Any]:
+    """Lemma DD(i) validator: on blocks of L = P^{1/4} odd steps,
+    m(t) = floor(X_0 + D t) + defect with |defect| bounded.
+
+    X_0, D are the scaled value and first increment of X = n^{3/2} at
+    the block start; the X-quadratic over the block is O(1)
+    ((3/2) t^2 P^{-1/2} <= 3/2 at t = P^{1/4}), so the affine model
+    is exact up to a bounded defect. Exact scaled integers.
+    """
+    s = 10**12
+    block_len = max(4, isqrt(isqrt(p_block)))
+    worst = 0
+    n0 = p_block + 1
+    for _ in range(n_blocks):
+        x0 = isqrt(n0**3 * s * s)
+        d = isqrt((n0 + 2) ** 3 * s * s) - x0
+        for t in range(block_len):
+            m_true = isqrt((n0 + 2 * t) ** 3)
+            m_model = (x0 + d * t) // s
+            worst = max(worst, abs(m_true - m_model))
+        n0 += 2 * block_len
+    return {
+        "block_len": block_len,
+        "n_blocks": n_blocks,
+        "max_defect": worst,
+    }
+
+
+def block_v_amplified_model_check(
+    p_block: int, n_blocks: int = 50
+) -> dict[str, Any]:
+    """Lemma DD(ii) validator: on blocks of L = P^{1/4} odd steps,
+    v(t) = floor(mu(t)^{3/2} + (3/2) mu(t)^{1/2} s(t)) + defect,
+    |defect| bounded, where mu(t) = m_0 + A t is the affine base
+    (A the realized first m-gap) and s(t) = m(t) - mu(t) is the
+    realized rotation-carry sequence.
+
+    The level-2 block data is a smooth function of the affine base
+    plus the one-dimensional carry sequence amplified by
+    W = (3/2) mu^{1/2} ~ P^{3/4}: the transport substrate. The
+    Taylor remainder (3/8) xi^{-1/2} s^2 ~ P^{-3/4} P^{1/2} < 1.
+    Exact scaled integers.
+    """
+    s = 10**12
+    block_len = max(4, isqrt(isqrt(p_block)))
+    worst = 0
+    worst_s = 0
+    n0 = p_block + 1
+    for _ in range(n_blocks):
+        m0 = isqrt(n0**3)
+        a = isqrt((n0 + 2) ** 3) - m0
+        for t in range(block_len):
+            m_true = isqrt((n0 + 2 * t) ** 3)
+            mu = m0 + a * t
+            st = m_true - mu
+            worst_s = max(worst_s, abs(st))
+            v_true = isqrt(m_true**3)
+            y_mu = isqrt(mu**3 * s * s)
+            w_mu = 3 * isqrt(mu * s * s) // 2
+            v_model = (y_mu + w_mu * st) // s
+            worst = max(worst, abs(v_true - v_model))
+        n0 += 2 * block_len
+    return {
+        "block_len": block_len,
+        "n_blocks": n_blocks,
+        "max_defect": worst,
+        "max_carry": worst_s,
+    }
+
+
+def carry_multiplier_probe(p_block: int, sample_cap: int = 20_000) -> dict[str, Any]:
+    """Equidistribution probe for the transport pair-decay multiplier.
+
+    A unit carry in v changes the kernel phase c theta_3 by
+    beta = {c ((v+1)^{3/2} - v^{3/2})} mod 1 (c = (3/4) z^{1/2}, the
+    k = 1 family member). The entropy mechanism of the transport
+    inductive step needs beta to be non-degenerate on average:
+    |mean e(beta)| at the noise floor. Exact scaled integers;
+    OBSERVATION only.
+    """
+    from math import cos, pi, sin
+
+    s24 = 10**24
+    s30 = 10**30
+    re = im = 0.0
+    cnt = 0
+    n = p_block + 1
+    while n < 2 * p_block and cnt < sample_cap:
+        v = isqrt(isqrt(n**3) ** 3)
+        z = isqrt(v**3)
+        jump = isqrt((v + 1) ** 3 * s24 * s24) - isqrt(v**3 * s24 * s24)
+        z12 = isqrt(z * s30 * s30)
+        prod = (3 * z12 * jump) // 4
+        beta = (prod % (s30 * s24)) / (s30 * s24)
+        ph = 2 * pi * beta
+        re += cos(ph)
+        im += sin(ph)
+        cnt += 1
+        n += 2
+    return {
+        "count": cnt,
+        "mean_abs": round((re * re + im * im) ** 0.5 / cnt, 4),
+        "noise_floor": round(cnt**-0.5, 4),
     }
 
 

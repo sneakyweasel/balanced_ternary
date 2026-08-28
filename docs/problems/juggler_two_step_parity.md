@@ -572,16 +572,19 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: Conjecture V (\(K_3\) cancels) is still open;
-the old toolkit is dead (Proposition BB), but both post-BB
-theories passed their Phase-0 falsifiers (Part XIV): the L²
-transport needs its inductive step (approximate
-block-independence of level-3 data conditioned on the level-2
-carry lattice), and the bilinear dispersion needs a spacing
-bound for the nested-floor amplitude \(u=(3/4)z^{1/2}\theta_3\).
-One editorial: import Theorems R/S/T/X and Corollaries U/Y
-into the finite-dynamics note (its Conjecture 6.2 and the
-\(13/16\) headline are superseded).
+One mathematical: Conjecture EE (the transport inductive step,
+Part XV) — for all but a power-saving fraction of
+\(P^{1/4}\)-blocks, the in-block kernel-mode sums over the
+rotation-carry substrate of Lemma DD cancel by \(L^{-\delta}\).
+Its obligations are named: (α) exponential sums over circle
+rotation orbits with smooth \(P^{3/4}\)-amplified weights
+(Ostrowski/Denjoy–Koksma territory), (β) cross-block
+equidistribution of block data (proven, level \(\le 2\)),
+(γ) the level-3 DD-type model. Conjecture V (\(K_3\) cancels)
+remains open behind it; dispersion is closed as a completion
+route (Proposition CC). One editorial: import Theorems R/S/T/X
+and Corollaries U/Y into the finite-dynamics note (its
+Conjecture 6.2 and the \(13/16\) headline are superseded).
 
 ## Decision
 
@@ -783,10 +786,33 @@ no note import. Conjecture V stays a conjecture; the
 Phase-16 PARK of the *old toolkit* stands — these are new
 theories, not repairs.
 
-Best next question: can the transport theory state and prove
-its inductive step — approximate block-independence of level-3
-data conditioned on the level-2 carry lattice, with the
-variance paid against proven depth-\(\le4\) statistics?
+**CLOSE dispersion / PROMOTE transport** (Phase 18, inductive
+step): Proposition CC refutes dispersion as a completion route —
+Vaaler weights put weight one on \(k=1\), family averages cannot
+constrain any individual bounded-\(k\) coefficient, no
+amplification family exists, and the Selberg pair-count route is
+circular. The naive transport forms also die (plain block variance
+= the \(T_1^{(3)}\)-family, BB-dead; fiber transform = sparsity
+wall, needs \(1-(2/3)^k \ge 1/3\) versus the engine's \(1/72\)).
+But Lemma DD (EXACT — HUMAN PROOF) collapses the level-2 data on
+\(P^{1/4}\)-blocks to an affine base plus one circle-rotation
+carry orbit amplified by \(W\asymp P^{3/4}\), with \(O(1)\)
+defects (measured \(\le 2\) and \(\le 1\) at
+\(P=10^4\)–\(10^{10}\)) — trading nested floors for
+bounded-complexity structure with block parameters at proven
+levels, bypassing both BB mechanisms rather than repairing them.
+Conjecture EE states the inductive step on this substrate with
+three named obligations. Two ledger rows
+(`J-dispersion-count-route` REFUTED, `J-block-carry-models`
+EXACT); probes `block_m_affine_model_check`,
+`block_v_amplified_model_check`, `carry_multiplier_probe`; flags
+`dispersion_count_route_refuted`, `transport_substrate_exact`.
+No \(K_3\) bound, no density move, no note import.
+
+Best next question: does a Denjoy–Koksma/Ostrowski argument give
+\(L^{-\delta}\) cancellation for the in-block sums
+\(\sum_{t<L} e(k\,\Phi_B(t, s(t)))\) of Conjecture EE for all
+\(\gamma\) outside a measure-\(P^{-\delta'}\) exceptional set?
 
 ## Publication assessment
 
@@ -803,6 +829,8 @@ and Corollary U in a consolidation phase. The OOOO\* kernel
 not in the note; the scale-invariant copy of Theorem R and
 the increment-first \(K_3\) attack, and X1-absorption of
 \(K_3\) are laboratory-**REFUTED**; the \(K_3\) toolkit is
-laboratory-**PARKED** (Proposition BB). Two post-BB theories
-(L² transport, bilinear dispersion) passed Phase 0
-(OBSERVATION, Part XIV). None of this is in the note.
+laboratory-**PARKED** (Proposition BB). Of the two post-BB
+theories, dispersion is laboratory-**REFUTED** as a completion
+route (Proposition CC) and transport is **PROMOTED** with an
+exact substrate (Lemma DD) and a stated inductive step
+(Conjecture EE, Part XV). None of this is in the note.

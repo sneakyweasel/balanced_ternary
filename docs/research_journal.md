@@ -9784,3 +9784,106 @@ Best next question
   the level-2 carry lattice, with variance paid against proven
   depth-<=4 statistics?
 ```
+
+## Juggler transport inductive step stated on an exact block substrate; dispersion closed (Phase 18)
+
+The promoted question was the transport inductive step. Working it
+to precise obligations produced one decisive negative and one new
+exact structure. Working document Part XV.
+
+The negative first. Proposition CC (REFUTED,
+`J-dispersion-count-route`): the dispersion route cannot complete
+the depth-5 count. Every Fourier expansion of the parity puts
+weight ~ 1/k on the k-th harmonic, so the count needs
+|K3(k)| = o(N) for each bounded k - the k = 1 term alone carries
+weight one - while dispersion controls only k-averages, which
+constrain no individual bounded-k coefficient (the family members
+are Fourier coefficients of the distribution of u). There is no
+auxiliary amplification family, and the Selberg-majorant route to
+the pair-count obligation expands into the kernel family itself.
+The Phase-17 spacing statistics stand as OBSERVATION; the route is
+closed as a completion method. Two further negatives eliminate the
+naive transport forms: the plain block variance expands into the
+h-averaged once-differenced level-3 kernel (the T1-family, dead by
+both BB mechanisms), and the fiber transform to the m- or
+v-variable - exact, since the fifth letter is a function of v
+alone and the Piatetski-Shapiro image weights are slow
+m^{2/3}-modes - hits the sparsity wall quantitatively: the needed
+saving at the k-th fiber level is 1 - (2/3)^k >= 1/3, against the
+engine's 1/72.
+
+The positive. Lemma DD (EXACT - HUMAN PROOF,
+`J-block-carry-models`): on blocks of L = P^{1/4} consecutive odd
+steps, (i) m(n0+2t) = floor(X0 + D t) + O(1) (the X-quadratic
+drift is <= 3/2 over the block), and (ii) with mu(t) = m0 + At and
+the realized carry sequence s(t) = m(t) - mu(t) - a circle-rotation
+carry floor({X0} + gamma t) + O(1), gamma = D - A - one has
+v(n0+2t) = floor(mu^{3/2} + (3/2) mu^{1/2} s(t)) + O(1). Validated
+in exact scaled integers at P = 10^4 through 10^10: defects <= 2
+and <= 1 (mostly 0). On P^{1/4}-blocks the nested level-2 data
+collapses to a bounded-complexity system - a smooth affine base
+plus one rotation orbit amplified by W ~ P^{3/4} - with block
+parameters (theta_0, gamma, m0, A) whose joint distribution is a
+proven level-<=2 statistic. The cross-block pair terms carry
+theta_2-sawtooths at coefficients ~ P^{1/8}|t-t'| <= P^{3/8}, far
+inside the engine line; the pair-decay multiplier
+beta = {c((v+1)^{3/2} - v^{3/2})} equidistributes at the noise
+floor (carry_multiplier_probe, OBSERVATION).
+
+Conjecture EE (the transport inductive step): for every bounded k,
+all but O(P^{3/4-delta'}) blocks satisfy |sum_{t<L} e(k u)| <=
+L^{1-delta}, where the in-block phase is the explicit smooth
+amplification of the rotation orbit given by Lemma DD. Summed over
+blocks this gives |K3(k)| << P^{1-delta''} for each bounded k,
+hence the OOOO* splits and, with Theorem S and Proposition J, the
+density-one program. Named obligations: (alpha) in-block
+cancellation for exponential sums over rotation orbits with smooth
+P^{3/4}-amplified weights (Ostrowski / Denjoy-Koksma territory,
+bad-gamma blocks controlled by measure); (beta) cross-block
+equidistribution of block data (proven, level <= 2); (gamma) a
+DD-type model at level 3. Why this is outside Proposition BB: no
+frozen floor(Delta Y) is required - the model tracks the
+P^{1/4}-scale jumps exactly through s(t) - and no
+theta_2-linearization is performed, so the 45/16 W-family is never
+spawned. The randomness source is a classical rotation, not a
+nested sawtooth.
+
+Probes block_m_affine_model_check, block_v_amplified_model_check,
+carry_multiplier_probe with tests; rows `J-dispersion-count-route`
+(REFUTED) and `J-block-carry-models` (EXACT); flags
+`dispersion_count_route_refuted`, `transport_substrate_exact`.
+Conjectures V and EE stay open; `depth5_kernel_bound_proved` and
+`density_one_claimed` stay False. No note import, no commit.
+
+```text
+What was learned
+- dispersion is structurally unable to finish the count: the
+  k = 1 harmonic carries weight one and no family average
+  reaches it; the pair-count obligation is circular
+- the plain variance and fiber forms of transport reduce to the
+  T1-family (BB-dead) and the sparsity wall (need 1/3, have 1/72)
+- on P^{1/4}-blocks the level-2 nesting collapses exactly to an
+  affine base plus one rotation-carry orbit amplified by P^{3/4}
+- the block parameters live at proven levels; both BB mechanisms
+  are bypassed, not repaired
+Strongest theorem
+- Lemma DD: the block carry models - EXACT - HUMAN PROOF
+Strongest refutation
+- Proposition CC: dispersion as a completion route
+  (J-dispersion-count-route)
+Reusable machinery
+- block_m_affine_model_check, block_v_amplified_model_check
+  (exact block substrates), carry_multiplier_probe
+Branch status
+- PROMOTE (transport to its analytic phase); CLOSE (dispersion
+  as a completion route)
+Why
+- the inductive step is now a precise conjecture on an exact,
+  validated substrate whose remaining analytic obligation is a
+  classical-flavoured rotation-sum estimate, not a nested-floor
+  estimate; that is a genuinely new theory, as Phase 16 demanded
+Best next question
+- does a Denjoy-Koksma / Ostrowski argument give L^{-delta}
+  cancellation for the in-block sums of Conjecture EE for all
+  gamma outside a measure-P^{-delta'} exceptional set?
+```

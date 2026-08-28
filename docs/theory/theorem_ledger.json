@@ -3539,5 +3539,27 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-dispersion-count-route",
+    "tag": "REFUTED",
+    "statement": "Proposition CC: no family-averaging method (double large sieve, dispersion, amplification over the mode index k) can by itself bound the depth-5 class count. Every Fourier expansion of the parity places weight ≍ 1/k on the k-th harmonic, so the count needs |K3(k)| = o(N) for each bounded k — the k = 1 term carries weight one — while dispersion controls only k-averages, which do not constrain any individual bounded-k coefficient; the phase u(n) admits no auxiliary amplification family; and the Selberg-majorant route to the pair-count obligation expands into the kernel family itself (circular). The Phase-17 spacing statistics stand as OBSERVATION. Refutes the dispersion route as a completion method, not any equidistribution statement.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-block-carry-models",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Lemma DD: on blocks of L = P^{1/4} consecutive odd steps starting at n0, (i) m(n0+2t) = floor(X0 + D t) + O(1) with X0 = n0^{3/2}, D the first X-increment (quadratic drift ≤ 3/2, so defect ≤ 2); (ii) with mu(t) = m0 + A t (A the realized first m-gap) and s(t) = m(t) - mu(t) — a circle-rotation carry sequence floor({X0} + gamma t) + O(1), gamma = D - A — one has v(n0+2t) = floor(mu(t)^{3/2} + (3/2) mu(t)^{1/2} s(t)) + O(1) (Taylor remainder ≍ P^{-1/4}). On P^{1/4}-blocks the nested level-2 data collapses to a bounded-complexity system: smooth affine base plus one rotation orbit amplified by W ≍ P^{3/4}, with block parameters distributed by proven level-≤2 statistics. Substrate of Conjecture EE (the transport inductive step); measured defects ≤ 2 and ≤ 1 at P = 10^4..10^10. Not a K3 bound; Conjectures V and EE stay open.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]
