@@ -21,7 +21,9 @@ Ledger rows: `J-nested-parity-discrepancy`,
 `J-increment-linearization`,
 `J-increment-first-K3`,
 `J-x1-landing-criterion`,
-`J-x1-absorption-K3`.
+`J-x1-absorption-K3`,
+`J-nested-floor-without-W-family`,
+`J-k3-toolkit-obstruction`.
 Imported into the finite-dynamics note (consolidation phase, August
 2026): Lemmas A/B as Lemma 5.3, Theorem C as Theorem 5.4,
 Proposition L as Proposition 5.5, Lemma D as Lemma 5.6, Theorem E as
@@ -48,6 +50,8 @@ Part XI (Phase 14) refutes the increment-first attack on
 \(K_3\) (Lemma Z1, Proposition Z).
 Part XII (Phase 15) refutes X1-absorption of the \(K_3\)
 leftover into a freezing integer (Lemma Z3, Proposition AA).
+Part XIII (Phase 16) unifies the obstruction and parks the
+toolkit (Proposition BB).
 Not a termination claim; the remaining depth-\(\ge5\) expanders
 (OOOO\*, OOEOO, OOOEO) and the density-one statement remain open.
 
@@ -2430,7 +2434,115 @@ of \(K_3\) is **REFUTED** (ledger row `J-x1-absorption-K3`).
 Conjecture V stays a conjecture;
 `depth5_kernel_bound_proved` and `density_one_claimed` stay
 `False`. `x1_absorption_k3_refuted` flipped. No note import,
-no density claim, no rescue draft. The remaining live
-attacks are a new bound for \(W\)-families with
-\(\alpha>9/4\), or a nested-floor method that never forms
-the \(W\)-family.
+no density claim, no rescue draft. The two remaining
+candidate attacks — extend R past \(9/4\), or replace
+nested floors by a smooth model — are taken up and closed
+in Part XIII.
+
+## Part XIII: the toolkit obstruction (Phase 16)
+
+Scope: decide whether either leftover attack bounds
+\(K_3\). Neither does. The bound program is parked.
+
+```text
+Mathematical target     Does extending R past 9/4, or a
+                        smooth nested-floor comparison,
+                        bound K3?
+Novelty hypothesis      45/16 might still be Weyl-accessible,
+                        or the floor defect might be a
+                        remainder against van der Corput
+                        on n^{27/8}.
+Falsifier               C' >> 1 at α = 45/16, or the defect
+                        equals the W-family leftover.
+Existing machinery      Theorem R C1; Lemmas V1/V2; Z3.
+Maximum Phase-0 scope   Measure C(n+2)-C(n); identify the
+                        defect with V1/V2; write the
+                        unification. No new kernel draft.
+Promotion criterion     A bound, or a named exhaustion of
+                        the toolkit.
+Stop criterion          Both leftover attacks die by
+                        recorded mechanisms.
+```
+
+### The amplitude is not slowly varying
+
+The V2 leftover coefficient is
+\(C=\tfrac98 z^{1/2}m^{3/4}\asymp n^{45/16}\). Then
+
+\[
+C(n+2)-C(n)
+\sim \tfrac{405}{64}\, n^{29/16}\gg 1.
+\]
+
+Measured (`v2_amplitude_drift_scan`): the ratio tends to
+\(6.328125\) at \(n=10^4,10^6,10^8\). Theorem R's
+shifted-window and C1 bookkeeping treat \(C\) as
+quasi-static on the Weyl gaps. That hypothesis fails
+here: \(C\) jumps by \(\gg 1\) at every odd step. Extending
+the engine line from \(9/4\) toward \(2\) would not
+repair it. The spawned Step-3 coefficient at
+\(\alpha=45/16\) is \(\asymp kh_1h_2 n^{25/16}>n\) already
+at \(h_1=h_2=1\) (Proposition W(ii)).
+
+### Smooth comparison is circular
+
+Replacing a nested floor by the corresponding real power
+has pointwise phase defect equal to the leftover of
+Lemma V1 or V2, not an absorbable remainder:
+
+- \(Y^{3/2}-v^{3/2}=\tfrac32 m^{3/4}\theta_2-E_2\)
+  (Lemma V2), coefficient \(n^{45/16}\) after restoring
+  \(c\);
+- \(v^{9/4}-z^{3/2}\) is the \(K_3\) phase itself
+  (Lemma V1).
+
+A van der Corput bound on \(\sum e(\alpha n^{27/8})\)
+therefore differs from the nested-floor sum by a
+\(W\)-family we cannot estimate. Bounding the error is
+bounding \(K_3\). This is **REFUTED** as a method
+(`J-nested-floor-without-W-family`).
+
+### Proposition BB (toolkit obstruction) — EXACT — HUMAN PROOF
+
+Every method in the laboratory toolkit for \(K_3\) dies
+by one of two mechanisms.
+
+**(I) Missing \(Y\)-cells.** The method needs a frozen
+first difference of \(Y=m^{3/2}\). \(Y''\asymp n^{1/4}>1\),
+so there are no such cells. This kills the scale-invariant
+copy of Theorem R, increment-first on \(X\)-cells, and
+X1-absorption into \(v\) or a \(v\)-hybrid
+(Propositions W, Z, AA).
+
+**(II) A \(W\)-family past the engine line, with a
+fast amplitude.** The method produces
+\(e(C\theta_2)\) with \(C\asymp n^{45/16}>n^{9/4}\) and
+\(C'\asymp n^{29/16}\gg 1\). This kills V2-then-R and
+every smooth-model replacement (Proposition W(ii) and
+the paragraph above).
+
+Inherited Phase-5 dead routes remain dead and were not
+retested. Conjecture V is not refuted: the Phase-11
+probe still cancels at square-root scale. What is
+exhausted is the *toolkit*, not the cancellation.
+
+A bound on \(K_3\) would still not raise certified
+descent at depth 5, and a \(\delta\) that halves per
+nesting would still not give Terras. Further progress
+needs a theory that is not a repair of R, X1, or
+increment-first.
+
+### Phase-16 decision
+
+**PARK** the \(K_3\) bound. Proposition BB is exact;
+both leftover attacks die by recorded mechanisms; the
+amplitude drift is measured. Rows
+`J-nested-floor-without-W-family` (REFUTED) and
+`J-k3-toolkit-obstruction` (EXACT). Conjecture V stays
+a conjecture; `depth5_kernel_bound_proved` and
+`density_one_claimed` stay `False`.
+`k3_toolkit_parked` flipped. No note import, no density
+claim, no rescue draft. The two-step-parity theorems
+through Corollary Y are untouched. The next density
+step is still OOOOEEE, and it still needs a method
+that does not exist in this toolkit.

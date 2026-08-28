@@ -9658,3 +9658,48 @@ Best next question
   does a nested-floor method that never forms the W-family
   bound K3?
 ```
+
+## Juggler K3 toolkit parked (Phase 16)
+
+The two leftover attacks both die. Extending R past 9/4
+cannot reach α = 45/16: the V2 amplitude C satisfies
+C(n+2)-C(n) ~ (405/64) n^{29/16} >> 1, so R's windows
+are not quasi-static (measured at n = 10^4, 10^6, 10^8).
+Replacing nested floors by the smooth model is circular:
+the pointwise defect is Lemmas V1/V2, i.e. the W-family
+leftover itself. Proposition BB unifies every toolkit
+death into two mechanisms — missing Y-cells, or a
+W-family past 9/4 with a fast amplitude. Working document
+Part XIII; rows `J-nested-floor-without-W-family`,
+`J-k3-toolkit-obstruction`. Conjecture V untouched.
+`k3_toolkit_parked` flipped; `depth5_kernel_bound_proved`
+stays False. No density move, no note import, no rescue.
+
+```text
+What was learned
+- 45/16 is past the engine line and the amplitude is not
+  slowly varying (C' >> 1)
+- a smooth nested-floor comparison is V1/V2, not a new
+  estimate
+- every toolkit method dies by missing Y-cells or this
+  leftover
+- Conjecture V is still open; the toolkit is what ended
+Strongest theorem
+- Proposition BB: the K3 toolkit obstruction —
+  EXACT — HUMAN PROOF
+Strongest refutation
+- nested-floor without a W-family
+  (J-nested-floor-without-W-family)
+Reusable machinery
+- v2_amplitude_drift_scan
+Branch status
+- PARK
+Why
+- the bound program has a named exhaustion, not an
+  unfinished attack; further work is a different theory
+  or a different question
+Best next question
+- a theory that is not a repair of R, X1, or
+  increment-first — or a Juggler question that does
+  not need K3
+```

@@ -33,6 +33,7 @@ from research.juggler_sequence.two_step_parity import (
     oooo_indicator_identity_check,
     x_cell_increment_scan,
     x1_landing_gap_scan,
+    v2_amplitude_drift_scan,
     ooeooee_indicator_identity_check,
     oooeoee_indicator_identity_check,
     sixth_ooeoo_scan,
@@ -406,6 +407,7 @@ def test_anti_overclaim_depth5_flag():
     assert ANTI_OVERCLAIM["depth7_engine_contracting_proved"] is True
     assert ANTI_OVERCLAIM["increment_first_k3_refuted"] is True
     assert ANTI_OVERCLAIM["x1_absorption_k3_refuted"] is True
+    assert ANTI_OVERCLAIM["k3_toolkit_parked"] is True
     assert ANTI_OVERCLAIM["density_one_claimed"] is False
 
 
@@ -492,6 +494,16 @@ def test_x_cells_have_no_j_runs():
         assert result["branch_j_max_run"] == 1
         assert result["b_run_max"] >= 2
         assert result["mean_abs_d_floor_dY"] > result["pred_P14"]
+
+
+def test_v2_amplitude_jumps_each_step():
+    # The V2 leftover coefficient C ≍ n^{45/16} has
+    # C(n+2)-C(n) ~ (405/64) n^{29/16} >> 1. R's windows
+    # cannot be quasi-static at this α.
+    samples = (10**4 + 1, 10**6 + 1, 10**8 + 1)
+    result = v2_amplitude_drift_scan(samples)
+    assert result["holds"] is True
+    assert result["count"] == 3
 
 
 def test_x1_landing_gaps_split_slow_from_fast():

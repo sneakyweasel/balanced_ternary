@@ -130,6 +130,7 @@
     "scale_invariant_R_extension_refuted": true,
     "depth7_engine_contracting_proved": true,
     "increment_first_k3_refuted": true,
-    "x1_absorption_k3_refuted": true
+    "x1_absorption_k3_refuted": true,
+    "k3_toolkit_parked": true
   }
 }

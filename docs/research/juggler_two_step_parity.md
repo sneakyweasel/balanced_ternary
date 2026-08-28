@@ -11,7 +11,8 @@ class is **EXACT — HUMAN PROOF**
 `juggler_two_step_parity_lemma.md`). Certified descent
 density 57/64. OOOO* kernel isolated (Lemma V1); the
 scale-invariant copy of Theorem R, the increment-first
-K3 attack, and X1-absorption of K3 are **REFUTED**.
+K3 attack, and X1-absorption of K3 are **REFUTED**;
+the K3 toolkit is **PARKED**.
 
 Exact census of the joint parity word of the first four itinerary
 letters on odd starts. Phase-0 falsifier for iterating the one-step
@@ -57,4 +58,5 @@ now theorems at every depth <= 4, and the two length-7 engine
 contractors OOEOOEE/OOOEOEE lift certified descent to 57/64;
 the OOOO* kernel K3 is isolated and the scale-invariant
 copy of Theorem R, the increment-first K3 attack, and
-X1-absorption of K3 are REFUTED.
+X1-absorption of K3 are REFUTED; the K3 toolkit is
+PARKED.

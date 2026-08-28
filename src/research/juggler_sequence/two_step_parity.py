@@ -112,6 +112,9 @@ ANTI_OVERCLAIM = {
     # has Y'' > 1, and v minus any polynomial in the freezing
     # integers still has run length 1).
     "x1_absorption_k3_refuted": True,
+    # Phase 16: the R/X1/increment toolkit cannot bound K3.
+    # Conjecture V stays open; the bound program is parked.
+    "k3_toolkit_parked": True,
 }
 
 
@@ -1110,6 +1113,40 @@ def x1_landing_gap_scan(p_block: int, window: int = 400) -> dict[str, Any]:
     return out
 
 
+def v2_amplitude_drift_check(n: int) -> dict[str, float]:
+    """ΔC / n^{29/16} against (405/64) = 6.328125.
+
+    C = (9/8) z^{1/2} m^{3/4} is the V2 leftover coefficient
+    (α = 45/16). Then C(n+2)-C(n) ~ 2 C' ~ (45/8)(9/8) n^{29/16}
+    = (405/64) n^{29/16}. The amplitude itself jumps by
+    ≫ 1 per step, so Theorem R's quasi-static window
+    bookkeeping cannot be run at this α, even if the engine
+    line moved from 9/4 toward 2.
+    """
+    if n < 5 or n % 2 == 0:
+        raise ValueError("odd n >= 5 required")
+
+    def coeff(x: int) -> float:
+        m = isqrt(x**3)
+        v = isqrt(m**3)
+        z = isqrt(v**3)
+        return (9 / 8) * (z**0.5) * (m**0.75)
+
+    delta = coeff(n + 2) - coeff(n)
+    ratio = delta / n ** (29 / 16)
+    return {"n": float(n), "ratio": ratio, "limit": 405 / 64}
+
+
+def v2_amplitude_drift_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    ratios = []
+    for n in samples:
+        row = v2_amplitude_drift_check(n)
+        if not (6.0 <= row["ratio"] <= 6.6):
+            return {"holds": False, "witness": n, "ratio": row["ratio"]}
+        ratios.append(row["ratio"])
+    return {"holds": True, "count": len(ratios), "ratios": ratios}
+
+
 # --- Phase 13: length-7 engine contractors (OOEOOEE, OOOEOEE) ---
 
 
@@ -2002,7 +2039,8 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "`juggler_two_step_parity_lemma.md`). Certified descent",
         "density 57/64. OOOO* kernel isolated (Lemma V1); the",
         "scale-invariant copy of Theorem R, the increment-first",
-        "K3 attack, and X1-absorption of K3 are **REFUTED**.",
+        "K3 attack, and X1-absorption of K3 are **REFUTED**;",
+        "the K3 toolkit is **PARKED**.",
         "",
         "Exact census of the joint parity word of the first four itinerary",
         "letters on odd starts. Phase-0 falsifier for iterating the one-step",
@@ -2051,7 +2089,7 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "certified descent to 57/64; the OOOO* kernel K3 is isolated",
         "and the scale-invariant copy of Theorem R, the",
         "increment-first K3 attack, and X1-absorption of K3",
-        "are REFUTED.",
+        "are REFUTED; the K3 toolkit is PARKED.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")

@@ -112,6 +112,8 @@ It is not required. The 2-adic / BT bridge stays closed.
   (`increment_first_k3_refuted` is `True`); bound not proved
 - X1-absorption of \(K_3\) — **REFUTED** in Phase 15
   (`x1_absorption_k3_refuted` is `True`); bound not proved
+- \(K_3\) toolkit — **PARKED** in Phase 16
+  (`k3_toolkit_parked` is `True`); Conjecture V open
 - Global halt — not claimed
 
 ## Experiments
@@ -532,6 +534,25 @@ Promotion criterion     An engine leftover, or a named
 Stop criterion          The landing has no cells.
 ```
 
+## Phase 16: the toolkit obstruction — PARK
+
+Working document, Part XIII. Scope: the two leftover
+attacks. Both die. The bound program is parked.
+
+- **Amplitude drift** — \(C=\tfrac98 z^{1/2}m^{3/4}\)
+  satisfies \(C(n+2)-C(n)\sim\tfrac{405}{64}n^{29/16}\gg 1\)
+  (`v2_amplitude_drift_scan`). R-windows cannot run at
+  \(\alpha=45/16\).
+- **Smooth comparison** — **REFUTED**
+  (`J-nested-floor-without-W-family`): the pointwise
+  defect *is* Lemmas V1/V2.
+- **Proposition BB** (`J-k3-toolkit-obstruction`) —
+  **EXACT — HUMAN PROOF**: every toolkit method dies by
+  missing \(Y\)-cells or a \(W\)-family past \(9/4\) with
+  fast amplitude.
+- **PARK** the \(K_3\) bound (`k3_toolkit_parked`).
+  Conjecture V stays a conjecture.
+
 ## Results
 
 At \(N=10^7\) (4,999,999 odd starts):
@@ -551,11 +572,10 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: is \(\alpha=9/4\) a hard ceiling for the
-\(W\)-family engine, or does a nested-floor method that
-never forms the \(W\)-family bound \(K_3\)? X1-absorption
-into a freezing integer is dead (the landing is uniquely
-\(v\)). Conjecture V is still open as a statement.
+One mathematical: Conjecture V (\(K_3\) cancels) is still
+open, but every method in the laboratory toolkit is
+dead (Proposition BB). A bound needs a theory that is
+not a repair of R, X1, or increment-first.
 One editorial: import Theorems R/S/T/X and Corollaries U/Y
 into the finite-dynamics note (its Conjecture 6.2 and the
 \(13/16\) headline are superseded).
@@ -731,9 +751,16 @@ added; `x1_absorption_k3_refuted` flipped. Conjecture V
 stays a conjecture. No bound, no density move, no rescue
 draft, no note import.
 
-Best next question: is \(\alpha=9/4\) the hard ceiling of
-the \(W\)-family engine, or does a nested-floor method that
-never forms the \(W\)-family bound \(K_3\)?
+**PARK** (Phase 16, toolkit obstruction): \(C'\gg 1\) at
+\(\alpha=45/16\); smooth comparison is V1/V2; Proposition BB
+unifies every toolkit death. Two ledger rows added;
+`k3_toolkit_parked` flipped. Conjecture V stays a
+conjecture. No bound, no density move, no rescue draft,
+no note import.
+
+Best next question: a theory that is not a repair of R,
+X1, or increment-first — or a different Juggler question
+that does not need \(K_3\).
 
 ## Publication assessment
 
@@ -749,5 +776,6 @@ and Corollary U in a consolidation phase. The OOOO\* kernel
 \(K_3\) is isolated in the laboratory (Conjecture V) and is
 not in the note; the scale-invariant copy of Theorem R and
 the increment-first \(K_3\) attack, and X1-absorption of
-\(K_3\) are laboratory-**REFUTED** and likewise not in the
-note.
+\(K_3\) are laboratory-**REFUTED**; the \(K_3\) toolkit is
+laboratory-**PARKED** (Proposition BB). None of this is
+in the note.

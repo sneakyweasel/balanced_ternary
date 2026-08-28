@@ -3517,5 +3517,27 @@
       "tests/research/juggler_sequence/test_two_step_parity.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-nested-floor-without-W-family",
+    "tag": "REFUTED",
+    "statement": "The nested-floor fifth-letter sum differs from the smooth model e(α n^{81/16}) (or e(α m^{27/8}), or e(α v^{9/4})) by an absorbable error, so K3 can be bounded without forming a W-family. False: Lemma V2 says the pointwise phase defect Y^{3/2} - v^{3/2} is (3/2) m^{3/4} θ₂ + E₂, and restoring the outer coefficient produces the W-family at α = 45/16; Lemma V1 says the outer defect v^{9/4} - z^{3/2} is the K3 phase itself. The error sum is the obstruction, not a remainder. A comparison to the smooth van der Corput sum is therefore circular. Conjecture V is not refuted.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-k3-toolkit-obstruction",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Proposition BB: every method in the laboratory toolkit for K3 dies by one of two mechanisms. (I) It needs a frozen first difference of Y = m^{3/2} (copy of R one nesting up; increment-first on X-cells; X1 landing on v or a v-hybrid). Those cells do not exist (Y'' ≍ n^{1/4} > 1; rows J-scale-invariant-R-extension, J-increment-first-K3, J-x1-absorption-K3). (II) It produces a W-family e(C θ₂) with C ≍ n^{45/16} (V2 then invoke R; replace nested floors by smooth powers). This α exceeds Theorem R's engine line 9/4, the spawned Step-3 coefficient is ≍ n^{25/16} > n, and the amplitude itself satisfies C(n+2)-C(n) ~ (405/64) n^{29/16} >> 1, so R's quasi-static windows cannot run even if the engine line moved toward 2. Therefore the toolkit cannot bound K3. Conjecture V (that K3 cancels) is not refuted. Not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]
