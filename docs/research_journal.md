@@ -9703,3 +9703,84 @@ Best next question
   increment-first — or a Juggler question that does
   not need K3
 ```
+
+## Juggler post-BB theories: both Phase-0 falsifiers pass (Phase 17)
+
+Proposition BB closed the old toolkit, and the ranked review of
+admissible successors identified exactly two theory families that
+are not repairs of R, X1 or increment-first: L2 transport (propagate
+the conditional distribution of the nested defect one level at a
+time, pay in a variance over blocks, tolerate exceptional blocks -
+the shape of Tao's almost-all Collatz result) and bilinear
+dispersion (never bound a single K3(k); square and swap the
+k-family and count near-coincidences of the amplitude, the
+Bombieri-Iwaniec skeleton). Each got its cheapest falsifier before
+any theory work. Working document Part XIV.
+
+Falsifier (a), dispersion: the amplitude u = (3/4) z^{1/2} theta_3
+mod 1 (the K3 phase at k = 1) was computed in exact scaled integers
+(theta_3 at scale 10^24, since z^{1/2} ~ 10^10 amplifies its error;
+result exact to ~10^-13, cross-checked against 60-digit decimal).
+Pair statistics at P = 10^5 (N = 49000) and P = 10^6 (N = 10^5):
+near-coincidence counts at circular scales 1/16, 1/32, 1/64 match
+the Poisson prediction N^2/J to four digits (ratios 0.9999-1.0000);
+short-lag differences u(n+2h) - u(n), h <= 4, show concentration
+0.001-0.005 against noise floors 0.0032-0.0045. No resonance
+structure, no rigidity. Did not fire.
+
+Falsifier (b), transport: level-3 defects must be block-random for
+the variance route to have a chance. Per-block mode sums
+|sum e(r theta_3)|^2 / L for r in {1,2,4,8} and the fifth letter
+eps5 = psi(z^{3/2}) over blocks of 256 and 1024 odd n at P = 10^5,
+10^6: mode variance ratios 0.90-1.29 (inside the chi^2 band for
+48-200 blocks), fifth-letter block variance 1.05-1.11, letter
+autocorrelation at lags 1-8 at the noise floor. Did not fire.
+(Recorded caveat: the letter ratios sit 5-11% above 1 with a
+consistent sign across all four configurations - within 1 sigma,
+but the transport phase should re-measure at more blocks.)
+
+Both statistics are OBSERVATION. They establish only that the
+structure each theory would exploit is present: the actual work is
+(a) a spacing bound for nested-floor amplitudes, where the
+Bombieri-Iwaniec spacing lemmas lean on rational structure the
+nested floors may not have, and (b) the transport inductive step -
+approximate block-independence of level-3 data conditioned on the
+level-2 carry lattice, with the variance paid against proven
+depth-<=4 statistics. Probes `dispersion_spacing_census` and
+`transport_block_variance` with tests; flags
+`dispersion_phase0_alive`, `transport_phase0_alive` set;
+`depth5_kernel_bound_proved` and `density_one_claimed` stay False.
+No ledger rows (census-gate precedent), no note import, no commit.
+Conjecture V untouched; the Phase-16 PARK of the old toolkit
+stands.
+
+```text
+What was learned
+- the dispersion amplitude has Poissonian pair statistics to four
+  digits at every tested scale and no short-lag rigidity
+- level-3 defects are block-random: variances at the random-phase
+  scale, autocorrelations at noise
+- both post-BB theories therefore survive Phase 0; the toolkit
+  died but the statistics it failed to reach look exactly as the
+  new theories need them
+Strongest theorem
+- none this phase (Phase-0 gate; OBSERVATION only)
+Strongest refutation
+- none; both falsifiers explicitly did not fire
+Reusable machinery
+- dispersion_spacing_census (exact u to 10^-13, circular
+  two-pointer pair counts); transport_block_variance (block mode
+  variances, fifth-letter statistics)
+Branch status
+- PROMOTE (to the transport theory phase first, dispersion second)
+Why
+- the census gate is exactly what Phase-0 is for: both theories'
+  minimal prerequisites hold empirically, so a theory phase is
+  justified; transport ranks first because it aims at the
+  density-one statement, where exceptional sets are affordable
+Best next question
+- can the transport inductive step be stated and proved:
+  approximate block-independence of level-3 data conditioned on
+  the level-2 carry lattice, with variance paid against proven
+  depth-<=4 statistics?
+```

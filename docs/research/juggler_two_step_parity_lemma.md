@@ -2546,3 +2546,96 @@ claim, no rescue draft. The two-step-parity theorems
 through Corollary Y are untouched. The next density
 step is still OOOOEEE, and it still needs a method
 that does not exist in this toolkit.
+
+## Part XIV: Phase-0 falsifiers for the two post-BB theories (Phase 17)
+
+Scope: Proposition BB admits exactly two theory families that are
+not repairs of R, X1 or increment-first — they change what is
+*averaged* (L² transport of distributions) or what is *counted*
+(bilinear dispersion / double large sieve on the \(k\)-family).
+Before any theory phase, each gets its cheapest falsifier. No
+theory drafts, no kernel bounds, no density claims.
+
+### Falsifier (a): pair statistics of the dispersion amplitude
+
+The dispersion route never bounds a single \(K_3(k)\): it treats
+\(\sum_k k^{-1}|K_3(k)|\) by squaring and swapping, which converts
+the problem into counting near-coincidences of the amplitude
+
+\[
+u(n) = \tfrac34\, z^{1/2}\theta_3 \bmod 1
+\qquad (\text{the } K_3 \text{ phase at } k = 1,\ \text{family
+phase} = k\,u).
+\]
+
+It needs (i) near-Poissonian pair counts at scale \(1/J\) —
+\(\#\{\|u_i - u_j\| < 1/J\} \approx N^2/J\) — and (ii) no
+short-lag rigidity: \(u(n+2h) - u(n)\) equidistributed, since no
+sieve decouples nearby terms. Probe
+(`dispersion_spacing_census`, \(u\) exact to \(\sim10^{-13}\) via
+\(\theta_3\) at scale \(10^{24}\); two-pointer circular
+coincidence count):
+
+| \(P\) | \(N\) | ratio \(J{=}16\) | \(J{=}32\) | \(J{=}64\) | \(\max_h R_h\), \(h \le 4\) | noise floor |
+| --- | --- | --- | --- | --- | --- | --- |
+| \(10^5\) | 49000 | 1.0000 | 1.0000 | 0.9999 | 0.0043 | 0.0045 |
+| \(10^6\) | 100000 | 1.0000 | 1.0000 | 1.0000 | 0.0051 | 0.0032 |
+
+Poissonian to four digits at every scale; lag concentration at or
+below the \(N^{-1/2}\) noise floor. **The falsifier did not
+fire.** (The \(h{=}4\) value at \(P = 10^6\) is \(1.6\times\) the
+floor — within ordinary fluctuation for four trials; recorded, not
+alarming.)
+
+### Falsifier (b): block randomness of level-3 defects
+
+The transport route never forms a nested Weyl sum: it propagates
+the *conditional distribution* of the level-3 data one nesting at
+a time and pays in a variance over blocks, tolerating exceptional
+blocks — admissible for density-one (Terras) conclusions though
+not for exact class counts. It needs level-3 defects to be
+block-random: for consecutive blocks \(B\) of odd \(n\),
+\(\mathbb E_B\,|\sum_{n\in B} e(r\theta_3)|^2 \approx |B|\), the
+fifth letter \(\varepsilon_5 = \psi(z^{3/2})\) at block variance
+\(\approx |B|\), and no short-lag autocorrelation. Probe
+(`transport_block_variance`):
+
+| \(P\) | \(L\) | blocks | mode ratios \(r \in \{1,2,4,8\}\) | letter ratio | \(\max_h |A(h)|\) | noise floor |
+| --- | --- | --- | --- | --- | --- | --- |
+| \(10^5\) | 256 | 195 | 0.94–1.05 | 1.09 | 0.0051 | 0.0045 |
+| \(10^5\) | 1024 | 48 | 0.94–1.29 | 1.11 | 0.0046 | 0.0045 |
+| \(10^6\) | 256 | 200 | 0.90–1.02 | 1.08 | 0.0046 | 0.0044 |
+| \(10^6\) | 1024 | 200 | 0.91–1.07 | 1.05 | 0.0038 | 0.0022 |
+
+All variance ratios inside the \(\chi^2\) fluctuation band for the
+block counts; autocorrelations at noise. **The falsifier did not
+fire.** (Letter ratios sit \(5\)–\(11\%\) above 1 across all four
+configurations — within \(1\sigma\) of the \(\chi^2\) spread at
+these block counts, but consistent in sign; the transport phase
+should re-measure at more blocks before leaning on exact
+constants.)
+
+### What Phase 0 does and does not say
+
+Both statistics are **OBSERVATION**. They say the two theories'
+*minimal empirical prerequisites* hold — the structure each method
+would exploit is present in the data. They do not touch the actual
+work: for dispersion, proving a spacing bound for nested-floor
+amplitudes (the B–I spacing lemmas lean on rational structure of
+smooth monomial phases); for transport, proving approximate
+block-independence of level-3 data from level-2 inputs (the
+composed-cell obstruction shows the naive conditioning fails; the
+transport must condition on the carry lattice, not on a smooth
+model). Conjecture V is untouched. No BB mechanism is contradicted:
+both routes live outside the toolkit that Proposition BB exhausted.
+
+### Phase-17 decision
+
+**PROMOTE** both theories past Phase 0; neither falsifier fired.
+Ranking for the theory phases: transport first (it aims at the
+Terras statement itself, where exceptional sets are affordable),
+dispersion second (tactical, aims at \(K_3\) proper). Flags
+`dispersion_phase0_alive`, `transport_phase0_alive` set
+(OBSERVATION); `depth5_kernel_bound_proved` and
+`density_one_claimed` stay `False`. No ledger rows (no theorem, no
+refutation — census-gate precedent). No note import, no commit.

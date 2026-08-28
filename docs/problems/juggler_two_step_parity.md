@@ -572,10 +572,13 @@ counts, **OBSERVATION** exponents.
 
 ## Open questions
 
-One mathematical: Conjecture V (\(K_3\) cancels) is still
-open, but every method in the laboratory toolkit is
-dead (Proposition BB). A bound needs a theory that is
-not a repair of R, X1, or increment-first.
+One mathematical: Conjecture V (\(K_3\) cancels) is still open;
+the old toolkit is dead (Proposition BB), but both post-BB
+theories passed their Phase-0 falsifiers (Part XIV): the L²
+transport needs its inductive step (approximate
+block-independence of level-3 data conditioned on the level-2
+carry lattice), and the bilinear dispersion needs a spacing
+bound for the nested-floor amplitude \(u=(3/4)z^{1/2}\theta_3\).
 One editorial: import Theorems R/S/T/X and Corollaries U/Y
 into the finite-dynamics note (its Conjecture 6.2 and the
 \(13/16\) headline are superseded).
@@ -758,9 +761,32 @@ unifies every toolkit death. Two ledger rows added;
 conjecture. No bound, no density move, no rescue draft,
 no note import.
 
-Best next question: a theory that is not a repair of R,
-X1, or increment-first — or a different Juggler question
-that does not need \(K_3\).
+**PROMOTE** (Phase 17, post-BB Phase-0 falsifiers): the two
+admissible theory families — L² transport of conditional
+distributions (Terras-type, tolerates exceptional blocks) and
+bilinear dispersion on the \(k\)-family (double large sieve,
+counts coincidences instead of differencing) — each got its
+cheapest falsifier. Neither fired: the dispersion amplitude
+\(u=(3/4)z^{1/2}\theta_3\bmod 1\) has Poissonian pair statistics
+to four digits at scales \(1/16\)–\(1/64\) and no short-lag
+rigidity (\(P=10^5,10^6\); \(u\) exact to \(10^{-13}\)), and
+level-3 defects are block-random (mode and fifth-letter block
+variances at the random-phase scale, autocorrelation at noise;
+blocks of 256 and 1024). Both theories promote to dedicated
+phases: transport first (aims at the density-one statement,
+where exceptional sets are affordable), dispersion second
+(aims at \(K_3\) proper). Working doc Part XIV; probes
+`dispersion_spacing_census`, `transport_block_variance`;
+flags `dispersion_phase0_alive`, `transport_phase0_alive`
+(OBSERVATION). No ledger rows, no bound, no density move,
+no note import. Conjecture V stays a conjecture; the
+Phase-16 PARK of the *old toolkit* stands — these are new
+theories, not repairs.
+
+Best next question: can the transport theory state and prove
+its inductive step — approximate block-independence of level-3
+data conditioned on the level-2 carry lattice, with the
+variance paid against proven depth-\(\le4\) statistics?
 
 ## Publication assessment
 
@@ -777,5 +803,6 @@ and Corollary U in a consolidation phase. The OOOO\* kernel
 not in the note; the scale-invariant copy of Theorem R and
 the increment-first \(K_3\) attack, and X1-absorption of
 \(K_3\) are laboratory-**REFUTED**; the \(K_3\) toolkit is
-laboratory-**PARKED** (Proposition BB). None of this is
-in the note.
+laboratory-**PARKED** (Proposition BB). Two post-BB theories
+(L² transport, bilinear dispersion) passed Phase 0
+(OBSERVATION, Part XIV). None of this is in the note.

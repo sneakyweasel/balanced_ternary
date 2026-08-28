@@ -13,6 +13,7 @@ from research.juggler_sequence.two_step_parity import (
     branch_freeze_scan,
     deep_word_counts,
     differenced_kernel_probe,
+    dispersion_spacing_census,
     double_gap_identity_check,
     fourth_letter_scan,
     fourth_letter_smoothing_check,
@@ -59,6 +60,7 @@ from research.juggler_sequence.two_step_parity import (
     scan,
     second_gap_collision_check,
     second_order_scan,
+    transport_block_variance,
     word_counts,
 )
 
@@ -145,6 +147,11 @@ def test_anti_overclaim_flags():
     assert ANTI_OVERCLAIM["kernel_bound_proved"] is True
     assert ANTI_OVERCLAIM["depth4_complete_proved"] is True
     assert ANTI_OVERCLAIM["density_one_claimed"] is False
+    # Phase 17: Phase-0 falsifiers for the post-BB theories did not
+    # fire (OBSERVATION); no K3 bound and no density-one claim.
+    assert ANTI_OVERCLAIM["dispersion_phase0_alive"] is True
+    assert ANTI_OVERCLAIM["transport_phase0_alive"] is True
+    assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
 
 
 def test_smooth_cancellation_constant():
@@ -580,3 +587,27 @@ def test_depth6_census_minimal_scale_envelope():
     for w, c in counts.items():
         envelope = max((n_max / 2) * n_max ** (-gamma_min(w)), n_max ** (2 / 3))
         assert abs(c - expected) <= 1.5 * envelope
+
+
+def test_dispersion_spacing_census():
+    # Phase-17 falsifier (a): the dispersion amplitude u = (3/4) z^{1/2}
+    # theta_3 mod 1 has near-Poissonian pair statistics at scale 1/J and
+    # no short-lag rigidity. OBSERVATION guard, loose thresholds.
+    r = dispersion_spacing_census(10**4, sample_cap=3000, j_scale=32)
+    assert r["count"] == 3000
+    assert 0.9 < r["coincidence_ratio"] < 1.1
+    for val in r["lag_concentration"].values():
+        assert val < 0.1
+
+
+def test_transport_block_variance():
+    # Phase-17 falsifier (b): level-3 defects are block-random — mode and
+    # fifth-letter block variances at the random-phase scale, autocorr at
+    # noise. OBSERVATION guard, loose thresholds.
+    r = transport_block_variance(10**4, block_len=64, max_blocks=40)
+    assert r["n_blocks"] == 40
+    for val in r["mode_variance_ratio"].values():
+        assert 0.4 < val < 2.5
+    assert 0.4 < r["letter_variance_ratio"] < 2.5
+    for val in r["letter_autocorr"].values():
+        assert abs(val) < 0.15

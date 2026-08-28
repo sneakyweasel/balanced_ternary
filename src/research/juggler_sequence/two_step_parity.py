@@ -89,6 +89,13 @@ ANTI_OVERCLAIM = {
     # Phase 8 draft, upgraded by the Phase-9 review.
     "kernel_double_differencing_draft": True,
     "depth4_complete_proved": True,
+    # Phase 17: Phase-0 falsifiers for the two post-BB theories.
+    # OBSERVATION only — pair statistics of the dispersion amplitude
+    # are Poissonian and level-3 defects are block-random. Neither
+    # theory is proved; Conjecture V stays open and no K3 bound is
+    # claimed.
+    "dispersion_phase0_alive": True,
+    "transport_phase0_alive": True,
     # Phase 10: Theorem T / Corollary U close OOOEE and OOEOE;
     # certified descent density 7/8. OOOO* at depth 5 remains open.
     "depth5_contracting_proved": True,
@@ -641,6 +648,163 @@ def differenced_level3_kernel_probe(
         "count": cnt,
         "abs_sum": round((re * re + im * im) ** 0.5, 1),
         "sqrt_count": round(cnt**0.5, 1),
+    }
+
+
+_U_SCALE = 10**15
+
+
+def _dispersion_amplitude_scaled(n: int) -> int:
+    """floor({(3/4) z^{1/2} theta_3} * 10^15), exact scaled integers.
+
+    The dispersion amplitude u(n) = (3/4) z^{1/2} theta_3 mod 1: the
+    K3 phase at k = 1, so the k-family phase is k*u. theta_3 is
+    computed at scale 10^24 because the z^{1/2} ~ n^{27/16} factor
+    amplifies theta_3 error by ~10^10; the result is exact to ~10^-13
+    at n = 10^6, far below the census resolution 1/J.
+    """
+    s24 = 10**24
+    s30 = 10**30
+    v = isqrt(isqrt(n**3) ** 3)
+    z = isqrt(v**3)
+    t3 = isqrt(v**3 * s24 * s24)
+    th3 = t3 - z * s24
+    z12 = isqrt(z * s30 * s30)
+    prod = (3 * z12 * th3) // 4
+    return (prod % (s30 * s24)) // (s30 * s24 // _U_SCALE)
+
+
+def dispersion_spacing_census(
+    p_block: int,
+    sample_cap: int = 50_000,
+    j_scale: int = 32,
+    lags: tuple[int, ...] = (1, 2, 3, 4),
+) -> dict[str, Any]:
+    """Phase-0 falsifier for the bilinear-dispersion attack on K3.
+
+    The dispersion route (double large sieve on the k-family) needs
+    (a) near-Poissonian pair statistics of u(n) mod 1 at scale 1/J:
+        #{pairs with ||u_i - u_j|| < 1/J} ~ N^2/J, and
+    (b) no short-lag rigidity: u(n+2h) - u(n) mod 1 equidistributed
+        (|mean e(u(n+2h)-u(n))| at the sqrt-N noise floor), since a
+        sieve cannot decouple nearby terms.
+    Coincidence excess or lag concentration kills the route.
+    OBSERVATION-level evidence only; not a proof either way.
+    """
+    from math import cos, pi, sin
+
+    max_lag = max(lags)
+    us: list[int] = []
+    n = p_block + 1
+    while n < 2 * p_block and len(us) < sample_cap + max_lag:
+        us.append(_dispersion_amplitude_scaled(n))
+        n += 2
+    count = min(len(us) - max_lag, sample_cap)
+
+    # (a) near-coincidence pairs at circular scale eps = 1/j_scale.
+    # Extended-array two-pointer: each unordered pair with circular
+    # gap < eps is counted exactly once (eps << 1/2).
+    eps = _U_SCALE // j_scale
+    vals = sorted(us[:count])
+    ext = vals + [x + _U_SCALE for x in vals]
+    near = 0
+    j = 0
+    for i in range(count):
+        if j < i + 1:
+            j = i + 1
+        while j < i + count and ext[j] - vals[i] < eps:
+            j += 1
+        near += j - i - 1
+    expected = count * (count - 1) / j_scale
+    ratio = near / expected if expected else 0.0
+
+    # (b) short-lag difference concentration.
+    lag_r: dict[str, float] = {}
+    for h in lags:
+        re = im = 0.0
+        for i in range(count):
+            d = (us[i + h] - us[i]) / _U_SCALE
+            ph = 2 * pi * d
+            re += cos(ph)
+            im += sin(ph)
+        lag_r[f"h={h}"] = round((re * re + im * im) ** 0.5 / count, 4)
+
+    return {
+        "count": count,
+        "j_scale": j_scale,
+        "near_pairs": near,
+        "poisson_expected": round(expected, 1),
+        "coincidence_ratio": round(ratio, 4),
+        "lag_concentration": lag_r,
+        "noise_floor": round(count**-0.5, 4),
+    }
+
+
+def transport_block_variance(
+    p_block: int,
+    block_len: int = 256,
+    max_blocks: int = 200,
+    r_modes: tuple[int, ...] = (1, 2, 4, 8),
+    auto_lags: tuple[int, ...] = (1, 2, 4, 8),
+) -> dict[str, Any]:
+    """Phase-0 falsifier for the L2-transport attack (block randomness).
+
+    The transport route needs level-3 defects to be block-random: for
+    most consecutive blocks B of odd n, (a) the block mode sums
+    S_r(B) = sum_{n in B} e(r theta_3) have mean square ~ |B| (the
+    random-phase scale), and (b) the fifth letter eps5 = parity of
+    floor(z^{3/2}) has block variance ~ |B| and no short-lag
+    autocorrelation. Systematic block coherence (variance ratio >> 1)
+    kills the route. OBSERVATION-level evidence only.
+    """
+    from math import cos, pi, sin
+
+    s12 = 10**12
+    max_lag = max(auto_lags)
+    need = block_len * max_blocks + max_lag
+    th3s: list[float] = []
+    eps5: list[int] = []
+    n = p_block + 1
+    while n < 2 * p_block and len(th3s) < need:
+        v = isqrt(isqrt(n**3) ** 3)
+        z = isqrt(v**3)
+        t3 = isqrt(v**3 * s12 * s12)
+        th3s.append((t3 - z * s12) / s12)
+        eps5.append(1 if isqrt(z**3) % 2 == 1 else -1)
+        n += 2
+    n_blocks = min(max_blocks, (len(th3s) - max_lag) // block_len)
+    total = n_blocks * block_len
+
+    var_ratio: dict[str, float] = {}
+    for r in r_modes:
+        acc = 0.0
+        for b in range(n_blocks):
+            re = im = 0.0
+            for i in range(b * block_len, (b + 1) * block_len):
+                ph = 2 * pi * r * th3s[i]
+                re += cos(ph)
+                im += sin(ph)
+            acc += re * re + im * im
+        var_ratio[f"r={r}"] = round(acc / (n_blocks * block_len), 3)
+
+    acc = 0.0
+    for b in range(n_blocks):
+        t = sum(eps5[b * block_len : (b + 1) * block_len])
+        acc += t * t
+    letter_ratio = acc / (n_blocks * block_len)
+
+    autocorr: dict[str, float] = {}
+    for h in auto_lags:
+        a = sum(eps5[i] * eps5[i + h] for i in range(total))
+        autocorr[f"h={h}"] = round(a / total, 4)
+
+    return {
+        "block_len": block_len,
+        "n_blocks": n_blocks,
+        "mode_variance_ratio": var_ratio,
+        "letter_variance_ratio": round(letter_ratio, 3),
+        "letter_autocorr": autocorr,
+        "noise_floor": round(total**-0.5, 4),
     }
 
 
