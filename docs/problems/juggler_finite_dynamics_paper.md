@@ -1,7 +1,7 @@
 # Juggler finite-dynamics paper synthesis
 
-Author: Philippe Cochin. Date: 28 August 2026.
-Status: **PAPER_CANDIDATE**. The publication draft is dated 28 August 2026
+Author: Philippe Cochin. Date: 29 August 2026.
+Status: **PAPER_CANDIDATE**. The publication draft is dated 29 August 2026
 and is not submitted. After the publication audit it is a standalone math
 note centered on the envelope, defect calculus, and cycle restrictions;
 short certificates and ambient discrepancy are secondary.
@@ -175,9 +175,10 @@ exclusions with no new `native_decide` table; no existing Lean theorem
 statement changed. The discrepancy consolidation added
 `formal/Problems/Juggler/GapCells.lean`
 (`floor_add_eq_add_carry`, `floor_gap_eq_carry`, `seq_floor_gap`,
-`floor_odd_iff_half_le_fract_half`): the exact floor reductions under
-Section 5, over the reals; the analytic estimates themselves are human
-proofs and stay outside Lean. The review object is
+`seq_floor_gap_second`, `floor_odd_iff_half_le_fract_half`): the exact
+floor reductions under Sections 5–6, over the reals, including the
+double-gap identity used by the kernel theorem; the analytic estimates
+themselves are human proofs and stay outside Lean. The review object is
 `formal/Problems/JugglerPaper.lean`. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
 The paper-central theorem metadata is recorded in
@@ -194,21 +195,27 @@ The publication stack consists of:
 - [curated branch ledger](../juggler_branch_ledger.md).
 
 The note makes the certificate boundary explicit: uniform one- and
-two-step arguments cover density \(3/4\), and the imported
-parity-discrepancy calculus (Section 5, consolidation phase) raises the
-uniformly certified class to density \(13/16\) at four steps — the
-exact ceiling of the one-growing-layer method. Neither is a density of
-all descent certificates nor a \(\operatorname{ReachesOne}\) density.
-Proposition 6.1 reduces the Terras analogue to all-depth parity
-equidistribution, proved through depth 4 except \(OOO*\); the precise
-remaining depth-4 obstacle is the kernel of Conjecture 6.2.
+two-step arguments cover density \(3/4\); the imported
+parity-discrepancy calculus with the kernel theorem (Theorems
+5.11–5.13, second consolidation phase) completes depth-4
+equidistribution and, with the contracting splits of lengths five and
+seven (Theorems 5.14–5.15), raises the uniformly certified class to
+\(13/16\) at four steps, \(7/8\) at five, and \(57/64\) at seven.
+None is a density of all descent certificates nor a
+\(\operatorname{ReachesOne}\) density. Proposition 6.1 reduces the
+Terras analogue to all-depth parity equidistribution, now a theorem
+for \(d\le4\); the first open case is the level-3 kernel
+(Conjecture 6.3), with its shifted model proven to cancel
+(Theorem 6.4) and its deterministic crystal stated as
+Conjecture 6.5.
 
 ## Open questions
 
 Do almost all odd-to-odd starts have a finite descent certificate?
 Equivalently, by Proposition 6.1, does parity equidistribution hold at
-all depths — beginning with the \(OOO*\) kernel bound
-(Conjecture 6.2)?
+all depths — beginning with the level-3 kernel bound
+(Conjecture 6.3), whose distilled deterministic form is the pure
+amplitude-product model (Conjecture 6.5)?
 
 ## Decision
 
@@ -227,8 +234,12 @@ Status: `PAPER_CANDIDATE`.
 
 The candidate is a standalone math note: envelope, exact defect calculus,
 cycle restrictions with a length-\(\le6\) cycle census, short
-certificates, and a parity-discrepancy calculus through depth four with
-certified-descent densities \(3/4\) and \(13/16\), a conditional
-density-one theorem, and a named open kernel. The horizon-\(20\)
-rows are exact and uncapped; omitted ordinary proofs have been supplied.
-External mathematical review is the next gate.
+certificates, and a parity-discrepancy calculus that is complete
+through depth four (via the kernel theorem, adversarially reviewed)
+and covers the contracting words of lengths five and seven, with
+certified-descent densities \(3/4\), \(13/16\), \(7/8\), \(57/64\), a
+conditional density-one theorem with unconditional base cases
+\(d\le4\), a proved shift-average theorem for the remaining kernel's
+model form, and a named open kernel with its distilled crystal. The
+horizon-\(20\) rows are exact and uncapped; omitted ordinary proofs
+have been supplied. External mathematical review is the next gate.

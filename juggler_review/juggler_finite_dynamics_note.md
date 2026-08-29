@@ -1,7 +1,7 @@
 ---
 title: Power envelopes, exact defects, and cycle restrictions for the Juggler map
 author: Philippe Cochin
-date: 28 August 2026
+date: 29 August 2026
 subtitle: Publication draft. Not submitted.
 ---
 
@@ -42,16 +42,25 @@ S_O(N)=\sum_{\substack{n\le N\\n\ {\rm odd}}}
 \]
 implies that this uniform short-certificate class has density \(3/4\).
 An exact-linearization calculus for the nested floor powers extends the
-discrepancy method down the orbit: every itinerary word class
-of depth at most four except \(OOO*\) has cardinality
-\(2^{-|w|}N+O(N^{1-\delta_w})\) with explicit exponents, and consequently
-the class of starts carrying a uniform descent certificate of length at
-most four has natural density \(13/16\). An unconditional counting
-argument shows that parity equidistribution at all depths would give the
-set of starts with some finite descent certificate density one; the
-precise remaining obstacle at depth four is an explicit exponential-sum
-kernel, stated here as an open problem. None of these densities is a
-density of starts that reach \(1\).
+discrepancy method down the orbit: **every** itinerary word class of
+depth at most four has cardinality \(2^{-|w|}N+O(N^{1-\delta_w})\) with
+explicit exponents. The last and hardest case, the \(OOO*\) split, rests
+on a kernel theorem proved here: the exponential sum of the level-2
+floor defect against smooth weights of scale \(n^{9/8}\) exhibits a
+power saving, obtained by double Weyl differencing over an exact
+carry-branch decomposition. The same engine counts the contracting
+words of lengths five and seven, so the class of starts carrying a
+uniform descent certificate of length at most four, five, seven has
+natural density \(13/16\), \(7/8\), \(57/64\) respectively. An
+unconditional counting argument shows that parity equidistribution at
+all depths would give the set of starts with some finite descent
+certificate density one; the base cases of depth at most four are now
+unconditional. The remaining obstacle is the level-3 kernel — the same
+sum one nesting deeper, where the weight scale \(n^{27/16}\) exceeds
+\(n\) — stated here as an open problem together with a proved
+almost-every-shift form and a precise record of what blocks the
+deterministic case. None of these densities is a density of starts
+that reach \(1\).
 
 All finite-word statements are conditional on the realized itinerary. The
 remaining pointwise question is whether almost every odd-to-odd start has
@@ -71,27 +80,31 @@ A word of length \(k\) with \(o\) odd letters has ideal exponent
 \(3^o/2^k\). Floors are applied after every letter, and a word is available
 only when the orbit realizes those parities. The paper records the exact
 finite-word comparison, the compositional slack, the uniform short
-certificates, and the densities of the classes those certificates cover,
-through itinerary depth four.
+certificates, and the densities of the classes those certificates cover:
+all of itinerary depth four, and the contracting words of lengths five
+and seven.
 
 The main contribution is the exact power-envelope and defect calculus,
 together with its inverse-cell and cycle consequences, chief among
 them a small-cycle census: no nontrivial cycle has length at most six.
 The certified-descent densities — \(3/4\) at two steps, \(13/16\) at
-four — are secondary corollaries. We do not prove a Collatz theorem or
-transfer Collatz stopping-time results to \(J\).
+four, \(7/8\) at five, \(57/64\) at seven — are secondary corollaries.
+We do not prove a Collatz theorem or transfer Collatz stopping-time
+results to \(J\).
 
 ### 1.1 Verification convention
 
 Theorems in Sections 2--4 are proved both below and in Lean under the names
-listed at the start of each section. The analytic estimates of Section 5
-(Theorems 5.1, 5.4, 5.7, 5.8, Proposition 5.5) and Proposition 6.1 are
-ordinary human proofs and are not formalized; the exact floor reductions
-beneath them — the parity bridge \(\lfloor x\rfloor\) odd iff
-\(\{x/2\}\ge1/2\), and the gap-cell identity — are Lean-verified
-(`floor_odd_iff_half_le_fract_half`, `floor_gap_eq_carry`,
-`seq_floor_gap` in `GapCells.lean`). The exact-linearization lemmas of
-Section 5 are additionally validated by scaled-integer computations
+listed at the start of each section. The analytic estimates of Sections 5
+and 6 (Theorems 5.1, 5.4, 5.7, 5.8, 5.11, 5.13--5.15, 6.4,
+Propositions 5.5, 6.1, Corollaries 5.12 and 5.16) are ordinary human
+proofs and are not formalized; the exact floor reductions beneath them
+— the parity bridge \(\lfloor x\rfloor\) odd iff \(\{x/2\}\ge1/2\), the
+gap-cell identity, and the double-gap identity used by the kernel
+theorem — are Lean-verified (`floor_odd_iff_half_le_fract_half`,
+`floor_gap_eq_carry`, `seq_floor_gap`, `seq_floor_gap_second` in
+`GapCells.lean`). The exact-linearization lemmas of
+Sections 5 and 6 are additionally validated by scaled-integer computations
 recorded in the repository; those validations are checks, not proofs.
 Proposition 4.4 is an exact Python-integer census,
 not a theorem about an infinite set. The four-block chain named in
@@ -662,9 +675,13 @@ This section counts itinerary word classes. It proves the ambient
 depth-1 estimate (Theorem 5.1) with its density-\(3/4\) corollary, then
 extends the method through itinerary depth four by exact linearization
 of the nested floor powers: depth 2 and 3 completely (Theorem 5.4,
-Proposition 5.5), and depth 4 completely except the \(OOO*\) split
-(Theorems 5.7 and 5.8), giving the certified-descent density \(13/16\)
-(Corollary 5.9). All estimates here are human proofs; the exact floor
+Proposition 5.5), depth 4 except the \(OOO*\) split (Theorems 5.7 and
+5.8), giving the certified-descent density \(13/16\) (Corollary 5.9);
+then the \(OOO*\) split itself through a kernel theorem for the level-2
+floor defect (Theorems 5.11 and 5.13), completing depth 4; and finally
+the contracting words of lengths five and seven (Theorems 5.14 and
+5.15), raising the certified density to \(7/8\) and \(57/64\)
+(Corollary 5.16). All estimates here are human proofs; the exact floor
 reductions beneath them are Lean-verified (Section 1.1).
 
 For odd \(n\) write \(s(n)=(-1)^{\lfloor n^{3/2}\rfloor}\) and
@@ -1135,14 +1152,411 @@ three classes are disjoint. The remaining depth-\(\le4\) prefixes are
 Theorem 5.1 (depth 1), Theorem 5.4 and Proposition 5.5 (depths 2–3),
 and Theorems 5.7–5.8 (depth 4). \(\square\)
 
-The density \(13/16\) is the exact ceiling of this machinery: a word
-contracts iff \(3^{o}<2^{\ell}\), the method proves letters at
-positions 1–3 of any word plus further letters along even branches
-only, and the contracting minimal words with all odd letters at
-positions \(\le2\) are exactly \(E\), \(OE\), and \(OOEE\), of total
-density \(\tfrac12+\tfrac14+\tfrac1{16}=\tfrac{13}{16}\). Any further
-certified density requires the \(OOO*\) split — a second growing
-layer — whose precise obstruction is isolated in Section 6.
+The density \(13/16\) is the exact ceiling of this one-growing-layer
+machinery: a word contracts iff \(3^{o}<2^{\ell}\), the method so far
+proves letters at positions 1–3 of any word plus further letters along
+even branches only, and the contracting minimal words with all odd
+letters at positions \(\le2\) are exactly \(E\), \(OE\), and \(OOEE\),
+of total density \(\tfrac12+\tfrac14+\tfrac1{16}=\tfrac{13}{16}\). Any
+further certified density requires the \(OOO*\) split — a second
+growing layer, where the fourth-letter phase coefficient
+\(W\asymp kn^{9/8}\) crosses integers within single steps and no
+drift-1 interval exists. The rest of this section closes that split
+and harvests the contracting words it unlocks.
+
+Every reorganization of the \(OOO*\) phase funnels into one object:
+for smooth weights \(c\) of scale \(kP^{9/8}\) on \(n\sim P\),
+\[
+K_c(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
+e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr).
+\]
+The next lemma collects the exact reductions behind its treatment:
+the kernel phase is the level-2 local floor defect; the second
+difference of the level-2 integer obeys an exact floor identity; and
+on an explicit carry-branch decomposition that second difference is
+a smooth function with a frozen floor.
+
+**Lemma 5.10 (level-2 defect, double gap, and branch freeze).**
+Fix shifts \(d_1=2h_1\), \(d_2=2h_2\) and write \(\Delta_1\),
+\(\Delta_2\), \(\Delta\Delta\) for the corresponding difference
+operators in \(n\), and \(W=\Delta_1Y\).
+
+(i) For odd \(n\ge3\),
+\[
+\tfrac34\,v^{1/2}\theta_2
+=\tfrac12\bigl(m^{9/4}-v^{3/2}\bigr)-R,
+\qquad 0\le R\le\tfrac3{16}\,v^{-1/2}.
+\]
+Hence for \(c=\tfrac{3k}4v^{1/2}\) the kernel phase \(c\,\theta_2\)
+equals \(\tfrac k2(Y^{3/2}-v^{3/2})\) up to \(kR\ll kP^{-9/8}\) per
+term: the kernel is the exponential sum of the level-2 local floor
+defect.
+
+(ii) Exactly, with \(g_2=\Delta_1v\),
+\[
+\Delta_2g_2=\lfloor\Delta\Delta Y\rfloor+\kappa''+\Delta_2\kappa_2,
+\qquad
+\kappa_2=\bigl[\theta_2\ge1-\{W\}\bigr],\quad
+\kappa''=\bigl[\{W\}\ge1-\{\Delta\Delta Y\}\bigr],
+\]
+and every carry is a difference of unit sawtooths:
+\(\bigl[\{A\}+\{B\}\ge1\bigr]=\{A\}+\{B\}-\{A{+}B\}\)
+(Lean: `seq_floor_gap_second`).
+
+(iii) Write \(b_1=\lfloor\Delta_1X\rfloor\),
+\(b_2=\lfloor\Delta_2X\rfloor\), \(b_{12}=\lfloor\Delta_{12}X\rfloor\)
+(shift \(d_1{+}d_2\)) — each constant on runs of length
+\(\asymp P^{1/2}/h\) — and let
+\(\boldsymbol\kappa=(\kappa_1,\kappa_2,\kappa_{12})\in\{0,1\}^3\) be
+the level-1 carries, so that the shifted values of \(m\) are
+\(m+b_1+\kappa_1\), \(m+b_2+\kappa_2\), \(m+b_{12}+\kappa_{12}\). On
+each \(b\)-run intersection and carry branch,
+\[
+\Delta\Delta Y=F_{\boldsymbol\kappa}(m),
+\qquad
+F_{\boldsymbol\kappa}(m)=(m{+}b_{12}{+}\kappa_{12})^{3/2}
+-(m{+}b_1{+}\kappa_1)^{3/2}-(m{+}b_2{+}\kappa_2)^{3/2}+m^{3/2}
+\]
+exactly. The net offset
+\(j=(b_{12}{+}\kappa_{12})-(b_1{+}\kappa_1)-(b_2{+}\kappa_2)\)
+satisfies \(|j|\le3\) for \(h_1h_2\le P^{1/2}/3\), and
+\[
+F_{\boldsymbol\kappa}\asymp\tfrac32|j|P^{3/4}+h_1h_2P^{1/4},
+\qquad
+F_{\boldsymbol\kappa}'(m)\asymp|j|P^{-3/4}+h_1h_2P^{-5/4}<1,
+\]
+so \(\lfloor F_{\boldsymbol\kappa}(X(n))\rfloor\) is constant on runs
+of length \(\asymp\min(P^{1/4}/|j|,\,P^{3/4}/(h_1h_2))\). The branch
+indicator is a finite union of arcs in the single variable \(\theta\)
+with slowly moving endpoints (drifts \(\asymp hP^{-1/2}\)): exactly
+the moving-endpoint pattern of Step 4 of Theorem 5.4.
+
+*Proof.* (i) Taylor of \((v+\theta_2)^{3/2}\) at \(v\), with
+\(Y^{3/2}=m^{9/4}\). (ii) The gap identity of Lemma 5.3(ii) applied
+twice — to \(Y\) at shift \(d_1\), then to the real sequence
+\(n\mapsto W(n)\) at shift \(d_2\), with \(\Delta_2W=\Delta\Delta Y\);
+the sawtooth form of the carry is the Lean-verified floor-carry
+identity rearranged. (iii) The corner identities are Lemma 5.3(ii) at
+the three shifts. The offset bound follows from
+\(|\Delta\Delta X|\le4h_1h_2\sup|X''|=3h_1h_2P^{-1/2}\). The
+derivative bound is the mean value theorem on the second difference
+of \(\tfrac32m^{1/2}\) plus \(\tfrac34j(m+\xi)^{-1/2}\). \(\square\)
+
+One warning, recorded as negative knowledge: \(\lfloor\Delta\Delta
+Y\rfloor\) itself is *not* frozen. The level-1 carry toggles at
+essentially every step and shifts \(\Delta\Delta Y\) by
+\(\tfrac32j_1m^{1/2}\); in exact windows its mean run length is
+\(1.5\) with jumps of size \(\tfrac32P^{3/4}\). The branch
+organization of (iii), which carries the flicker inside the
+indicator, is forced.
+
+**Theorem 5.11 (kernel cancellation).**
+Let \(c\) be smooth on \((P,2P]\) with \(c^{(r)}\asymp kP^{9/8-r}\)
+for \(r=0,\ldots,4\), derivative signs following the monomial pattern
+(e.g. \(c=\tfrac{3k}4n^{9/8}\)). Then
+\[
+K_c(P)\ll P^{1-\delta+\varepsilon},
+\qquad
+\delta=\tfrac1{64}\ \text{for}\ k\ll P^{\varepsilon},
+\qquad
+\delta=\tfrac1{72}\ \text{uniformly for}\ k\le P^{1/24}.
+\]
+
+*Proof.* Work on a dyadic block \(n\sim P\), odd.
+
+*Step 1 (double Weyl differencing).* With \(H_1=P^a\), \(H_2=P^b\)
+chosen in Step 6,
+\[
+|K_c|^2\ll\frac{P^2}{H_1}+\frac P{H_1}\sum_{h_1\le H_1}|T_1(h_1)|,
+\qquad
+|T_1|^2\ll\frac{P^2}{H_2}+\frac P{H_2}\sum_{h_2\le H_2}|T_2(h_1,h_2)|,
+\]
+where \(T_2=\sum_ne(\varphi_2)\) and
+\(\varphi_2=\Delta\Delta(c\,\theta_2)
+=\Delta\Delta(cY)-\Delta\Delta(cv)\): an exact split into a
+real-analytic block and an integer block.
+
+*Step 2 (exact product rule).* For both blocks,
+\[
+\Delta\Delta(cf)=c_{11}\,\Delta\Delta f
++(\Delta_2c)(n{+}d_1)\,\Delta_1f
++(\Delta_1c)(n{+}d_2)\,\Delta_2f
++(\Delta\Delta c)\,f,
+\]
+with \(\Delta_ic\asymp kh_iP^{1/8}\) and
+\(\Delta\Delta c\asymp kh_1h_2P^{-7/8}\).
+
+*Step 3 (the \(Y\)-block).* Split into the \(O((h_1{+}h_2)P^{1/2})\)
+cell intersections of Lemma 5.3(ii); within a cell every shifted
+\(Y\)-value is a smooth function of the single variable
+\(m=X-\theta\), so no \(\Delta\theta\) cross-terms arise. The
+\((\Delta\Delta c)Y\) and \((\Delta_ic)\Delta_jY\) pieces have smooth
+curvature \(\asymp kh_1h_2P^{-5/8}\) and \(\theta\)-coefficients
+\(\asymp kh_1h_2P^{-1/8}<1\) under the constraint (C1)
+\(kh_1h_2\le P^{1/8}\); sub-unit sawtooths are expanded in Fourier
+modes of \(\theta\) at multiplicative mode-mass \(O(\log P)\). The
+\(c_{11}\Delta\Delta Y\) piece splits over the branches of
+Lemma 5.10(iii): per branch the smooth part
+\(c\,F_{\boldsymbol\kappa}(X)\) has curvature
+\(\asymp k|j|P^{-1/8}+kh_1h_2P^{-5/8}<1\), and the \(\theta\)-content
+\(cF'\theta\) has coefficient \(\asymp k|j|P^{3/8}\) with window
+drift \((cF')'\asymp k|j|P^{-5/8}<1\); a shifted-window expansion
+produces \(X\)-modes of size \(s\asymp k|j|P^{3/8}\) with curvature
+\(sX''\asymp k|j|P^{-1/8}<1\), handled by van der Corput II.
+
+*Step 4 (the \(v\)-block).* \(v\) is an integer, so no fractional
+part of \(c\) is ever split off. The \((\Delta\Delta c)v\) piece
+reduces to Step 3 plus a \(\theta_2\)-coefficient
+\(\asymp kh_1h_2P^{-7/8}<1\). The \((\Delta_2c)\Delta_1v\) piece is
+\(\Delta_2c\,(W-\{W\})\) plus a carry: \(\Delta_2c\cdot W\) is smooth
+per cell; the sawtooth \(-\Delta_2c\,\{W\}\) has window drift
+\((\Delta_2c)'\asymp kh_2P^{-7/8}<1\) and expands into \(W\)-modes
+\(r\lesssim kh_2P^{1/8}\), each again smooth per cell; the carry
+weight \(\kappa_2=\{Y\}+\{W\}-\{Y{+}W\}\) (Lemma 5.10(ii)) expands
+into unit sawtooths of \(Y\)- and \(W\)-forms with Vaaler windows
+\(|r|\le R=P^{\rho}\) at majorant cost \(P/R\) per layer; the
+\(Y\)-modes linearize (Lemma 5.3(i) pattern) to \(X\)-modes
+\(s\asymp RP^{3/4}\) of curvature \(sX''\asymp RP^{1/4}\gg1\) —
+pieces without a frozen-floor factor take the third-derivative test
+over full ranges (\(\lambda_3=sX'''\asymp RP^{-3/4}<1\), saving
+\(P^{1/8}/R^{1/6}\)); pieces riding a frozen floor are the mixed
+class of Step 5. The main piece
+\(c_{11}\Delta\Delta v=c_{11}\Delta_2g_2\) is Lemma 5.10(ii): per
+branch the frozen integer
+\(J_F=\lfloor F_{\boldsymbol\kappa}(X(n))\rfloor\) combines with the
+\(c_{11}\Delta\Delta Y\)-content into the smooth per-run phase
+\(c(F_{\boldsymbol\kappa}-J_F)\), of curvature
+\(\asymp k|j|P^{-1/8}+kh_1h_2P^{-5/8}\), single-signed per branch;
+the carries \(\kappa''\) and \(\Delta_2\kappa_2\) are indicator
+weights times \(e(\mp c)\).
+
+*Step 5 (dominance and mode assembly).* The final pieces fall into
+four classes. (i) *Pure smooth pieces*: van der Corput II per frozen
+run; the leading curvature per branch is a double difference of one
+smooth function, so the double mean value theorem gives a single
+sign — for the monomial family the composite check is
+\(\alpha(\alpha{-}1)(\alpha{+}\beta{-}2)(\alpha{+}\beta{-}3)>0\) at
+\(\alpha=\tfrac98\), \(\beta\in\{\tfrac14,\tfrac34\}\), with
+composite exponents \(\tfrac{15}8,\tfrac{11}8\notin\{0,1,2\}\).
+Per-run application is legitimate because
+\(\lambda_2^{-1/2}\asymp P^{1/16}\ll P^{1/4}\asymp\) run length;
+saving \(\ge P^{1/16}/(k|j|)^{1/2}\). (ii) *Slow-mode pieces*: van
+der Corput II over full ranges; dominance is clean because the
+colliding curvature scale \(s^*\asymp kP^{3/8}\) lies outside every
+mode window. (iii) *Mixed pieces* — a frozen-floor factor times a
+large \(X\)-mode \(s\asymp rP^{3/4}\): van der Corput II fails there
+(\(\lambda_2\gg1\)) and the per-run third-derivative test returns
+only the trivial bound. The repair is one *targeted third Weyl
+differencing* (shift \(2h_3\), \(h_3\le H_3\)) followed by the split
+\(J_F=F-\{F\}\): the differenced coefficient
+\(\Delta_3c\asymp kh_3P^{1/8}\) has window drift \(<1\) against the
+*slow* sawtooth \(\{F(X)\}\) (drift \(\asymp P^{-1/4}\)), so the
+shifted-window expansion applies with no run segmentation;
+\(\Delta_3\lfloor F\rfloor\) is bounded with slow indicators; and
+the differenced mode curvature
+\(s(\Delta_3X)''\asymp rh_3P^{-3/4}<1\) is single-signed and
+dominant. Van der Corput II over full ranges and the balance
+\(H_3=r^{-1/3}P^{1/4}\) recover the class-(iv) saving. (iv)
+*Carry-mode pieces without a frozen floor*: the third-derivative
+test over full ranges, \(\lambda_3\asymp rP^{-3/4}\), saving
+\(P^{1/8}/r^{1/6}\).
+
+*Step 6 (assembly).* Sub-unit sawtooths cost multiplicative
+mode-mass \(O(\log P)\) only; mode masses multiply over at most four
+expansion layers plus the targeted differencing:
+\(P^{\varepsilon}\). With \(R=P^{1/16}\), the savings
+\(P^{1/16}/(k|j|)^{1/2}\) and \(P^{1/8-1/96}\) and the truncation
+\(P^{-1/16}\) balance at \(|T_2|\ll P^{1-1/16+\varepsilon}\) under
+(C1) and \(h_1h_2\le P^{1/2}/3\). Unwinding the two differencings:
+with \(k\le P^{\kappa_0}\) and \(a+b\le\tfrac18-\kappa_0\),
+\(|K_c|\ll P(P^{-a/2}+P^{-b/4}+P^{-1/64})\). For
+\(\kappa_0=\varepsilon\): \(a=\tfrac1{32}\), \(b=\tfrac1{16}\),
+\(\delta=\tfrac1{64}\). For \(\kappa_0=\tfrac1{24}\):
+\(a=\tfrac1{36}\), \(b=\tfrac1{18}\), \(\delta=\tfrac1{72}\).
+Exponents deliberately unoptimized. \(\square\)
+
+The proof was re-derived adversarially step by step; exact-phase
+probes at the first, second, and third differenced levels show
+square-root cancellation throughout (repository), far stronger than
+the bound claims.
+
+**Corollary 5.12 (low-exponent families).**
+The bound of Theorem 5.11 holds for every monomial-pattern family
+\(c^{(r)}\asymp kP^{\alpha-r}\) with \(0<\alpha\le\tfrac98\),
+uniformly for \(k\le P^{1/24}\).
+
+*Proof.* Every constraint in the proof is monotone in \(\alpha\) on
+\((0,\tfrac98]\): (C1) relaxes to \(kh_1h_2\le P^{5/4-\alpha}\);
+every curvature and window drift shrinks; the sign-dominance product
+\(\alpha(\alpha{-}1)(\alpha{+}\beta{-}2)(\alpha{+}\beta{-}3)>0\)
+holds at \(\beta\in\{\tfrac14,\tfrac34\}\) throughout the interval;
+the assembly exponents only improve. \(\square\)
+
+**Theorem 5.13 (the OOO\* splits; depth four complete).**
+For \(w\in\{OOOE,OOOO\}\),
+\[
+\#\{n\le N\ \text{odd}:\ \mathrm{word}_4(n)=w\}
+=\tfrac N{16}+O\bigl(N^{1-1/72+\varepsilon}\bigr).
+\]
+Hence **every** itinerary word class of depth at most four satisfies
+\(\#\{n\le N\}=2^{-|w|}N+O(N^{1-\delta_w})\) with explicit
+\(\delta_w>0\): depth-4 parity equidistribution is complete.
+
+*Proof.* The class indicator expands (Vaaler, truncation
+\(J_3=P^{1/24}\), error \(P/J_3\)) into mode sums
+\(S_{ijk}=\sum_ne(\tfrac i2X+\tfrac j2Y+\tfrac k2v^{3/2})\) over
+dyadic blocks. Three applications of the Taylor pattern of
+Lemma 5.3(i), taken to second order, give the exact identity (odd
+\(n\ge5\))
+\[
+v^{3/2}=-\tfrac5{64}n^{27/8}+\tfrac9{32}mn^{15/8}
+-\tfrac{45}{64}m^2n^{3/8}+\tfrac{15}{64}vn^{9/8}
++\tfrac{45}{32}vmn^{-3/8}-\tfrac9{64}vm^2n^{-15/8}
++\mathrm{err},
+\]
+\(|\mathrm{err}|\le\tfrac34n^{-9/8}\): the fourth-letter phase is a
+polynomial of degree \((2,1)\) in the integer pair \((m,v)\) with
+smooth coefficients. Its \(v\)-linear part is \(vW\) with \(W\) in
+the family of Theorem 5.11; the \(vm\)- and \(vm^2\)-cross terms
+reduce to the same family by \(\xi vm=\xi X\,v-\xi\theta\,v\) and
+\(\xi_2vm^2=\xi_2X^2\,v-2\xi_2X\theta\,v+\xi_2\theta^2v\), whose
+\(\theta\)-cross coefficients are sub-unit and whose smooth
+\(v\)-coefficients \(\xi X,\xi_2X^2\asymp kP^{9/8}\) are family
+members. Writing \(v=Y-\theta_2\) splits each family term into a
+smooth-in-\(m\) part and a kernel factor \(e(-c\,\theta_2)\). The
+double differencing of Theorem 5.11 applied to the whole mode phase
+carries the passengers along: the pure-\(m\) polynomial phases
+difference into the Step-3 classes; the \(\tfrac i2X\)- and
+\(\tfrac j2Y\)-passengers difference to curvatures
+\(\ll ih_1h_2P^{-5/2}\) and \(\asymp jP^{-5/4}\), subdominant in the
+established hierarchy; the kernel factor is handled by Steps 2–5
+verbatim. Assembly and summation over \(k\le J_3\) with
+\(1/k\)-weights give
+\(\sum_k\tfrac1kP^{1-1/72}+P^{1-1/24}\ll P^{1-1/72+\varepsilon}\);
+dyadic blocks sum to \(N^{1-1/72+\varepsilon}\). \(\square\)
+
+The certified-descent density stays \(13/16\) at four steps —
+\(OOO*\) is non-contracting at depth 4 (\(3^3>2^4\)) — but the
+kernel theorem opens the contracting words at depths five and
+seven.
+
+**Theorem 5.14 (the length-5 contracting splits).**
+\[
+\#\mathrm{OOOEE}(N),\ \#\mathrm{OOOEO}(N)
+=\tfrac N{32}+O\bigl(N^{1-1/72+\varepsilon}\bigr),
+\qquad
+\#\mathrm{OOEOE}(N),\ \#\mathrm{OOEOO}(N)
+=\tfrac N{32}+O\bigl(N^{43/48+\varepsilon}\bigr).
+\]
+
+*Proof.* *OOOE\(*\).* The class indicator is the Theorem-5.13
+indicator times \(\tfrac12(1\pm\psi(z^{1/2}))\), \(z=J^3(n)\):
+branch-consistent because on the OOOE cylinder \(z\) is even, so the
+fifth letter is the even-branch value. Vaaler-expand the fifth wave
+at truncation \(P^{1/24}\). The Lemma 5.3(i) pattern along the chain
+replaces \(\tfrac l2z^{1/2}\) by
+\(\tfrac l2n^{27/16}-\tfrac{9l}{16}n^{3/16}\theta\) at absorbable
+decaying cost. The \(\theta\)-sawtooth has coefficient
+\(\asymp lP^{3/16}<P\); its shifted-window expansion (drift-1 length
+\(P^{13/16}/l\), window \(T=P^{1/8}\ll lP^{3/16}\)) produces
+\(X\)-modes of size \(\asymp lP^{3/16}\) — ordinary first-letter
+passengers within Theorem 5.13's budget — and the smooth chirp
+\(e(\tfrac l2n^{27/16})\) has curvature \(\asymp lP^{-5/16}\),
+subdominant to every retained scale. Theorem 5.13 applies verbatim.
+
+*OOEO\(*\).* On the OOEO cylinder the fifth-letter phase is
+\(\tfrac k2w^{3/2}\) with \(w=J^3(n)\) odd. Exact linearization
+writes it as \(\tfrac k2n^{27/16}-C\theta-B\theta_w\) with
+\(B=\tfrac{3k}4v^{1/4}\asymp kn^{9/16}\),
+\(C=\tfrac{9k}{16}n^{3/16}\), and \(\theta_w=\{v^{1/2}\}\). Expand
+\(e(-B\theta_w)\) on drift-1 intervals of length \(P^{7/16}/k\)
+(there are \(\asymp kP^{9/16}\) of them; window \(T_w=P^{1/4}\ll
+kP^{9/16}\), majorant \(P^{3/4}\)). At frequency \(-B+t\),
+\(|t|\le T_w\), the combined phase is
+\(-\tfrac k4v^{3/4}+t\,v^{1/2}\) plus passengers; linearizing both
+powers, the \(\theta\)-coefficients cancel at the window centre up
+to a residual \(\asymp kn^{3/16}\), leaving one slow
+\(\theta\)-sawtooth, expanded on the same intervals (window
+\(P^{1/8}\), majorant \(P^{7/8}\)). The resulting smooth phase has
+curvature
+\(\lambda_2=(-\tfrac{297}{1024}+\tfrac{27}{128})k\,n^{-5/16}
+(1+o(1))\asymp kn^{-5/16}\), single-signed since
+\(-0.290k+0.211k\ne0\). Van der Corput II on each interval gives
+\(\ll k^{-1/2}P^{9/32}\); over \(\asymp kP^{9/16}\) intervals,
+\(S_k\ll k^{1/2}P^{27/32+\varepsilon}\). Balancing
+\(J_5^{1/2}P^{27/32}=P/J_5\) at \(J_5=P^{5/48}\) gives
+\(P^{43/48}\); dyadic blocks sum to \(N^{43/48+\varepsilon}\).
+\(\square\)
+
+**Theorem 5.15 (the length-7 engine splits).**
+All eight classes
+\[
+\#\mathrm{OOEOO}{*}{*}(N),\ \#\mathrm{OOOEO}{*}{*}(N)
+=\tfrac N{128}+O\bigl(N^{43/48+\varepsilon}\bigr).
+\]
+
+*Proof.* *OOEOO\(**\).* With \(w=J^3(n)\) odd,
+\(p=\lfloor w^{3/2}\rfloor\), \(\theta_p=\{w^{3/2}\}\), the exact
+rearrangement
+\[
+p^{3/2}=-\tfrac54v^{9/8}+\tfrac94w\,v^{5/8}
+-\tfrac32w^{3/4}\theta_p+E,
+\qquad
+0\le E\le\tfrac38p^{-1/2}+\tfrac{45}{32}v^{1/8},
+\]
+obtained from two Taylor steps and the identity
+\(\theta_w=v^{1/2}-w\), eliminates the supercritical naive
+coefficient \(\tfrac94v^{5/8}\asymp n^{45/32}>n\) of \(\theta_w\);
+the remaining sawtooth \(\theta_p\) has coefficient
+\(\asymp n^{27/32}<n\) and derivative \(<1\). Expanding the smooth
+powers of \(v\) by the linearization pattern: the first-letter
+content is a chirp of curvature \(\asymp n^{17/32}\) (van der
+Corput II); the leading \(\theta_2\)-content has coefficient
+\(\asymp n^{33/32}\) — a family of Corollary 5.12 at
+\(\alpha=\tfrac{33}{32}<\tfrac98\); the remaining
+\(\theta_2\)-amplitudes are \(O(n^{9/32})\), inside the engine. The
+integer block \(e(\xi w)\) with \(\xi\asymp n^{45/32}\) is handled
+on frozen gap runs: on the OOEO cylinder \(U=v^{1/2}\) has
+\(U''\asymp P^{-7/8}<1\), so \(\lfloor\Delta U\rfloor\) is constant
+on runs of length \(\asymp P^{7/8}/h\), and per run
+\(\Delta w=J_U+\kappa_w\) with \(J_U\) frozen, \(e(\xi J_U)\) a
+smooth chirp, and \(\kappa_w\) an indicator weight — the
+Lemma 5.10(iii) pattern one level up. The sawtooth \(\theta_p\)
+expands on drift-1 intervals of length \(P^{5/32}\) with window
+\(T\ll P^{27/32}\), producing \(X\)-modes within Theorem 5.14's
+budget. The seventh letter is the even-branch square root of
+\(q=\lfloor p^{3/2}\rfloor\), with decaying amplitudes only.
+Theorem 5.14 applies as a passenger theorem.
+
+*OOOEO\(**\).* The analogous rearrangement at base \(z^{1/2}\)
+(\(s=\lfloor z^{1/2}\rfloor\):
+\(s^{3/2}=-\tfrac12z^{3/4}+\tfrac32s\,z^{1/4}+E\)) plus the
+\(z^{3/4}\to n^{81/32}\) linearization chain gives the same four
+classes of terms — chirp, Corollary-5.12 family at
+\(\alpha=\tfrac{33}{32}\), engine sawtooths, and an integer-\(s\)
+block on \(\lfloor\Delta z^{1/2}\rfloor\)-runs of length
+\(\asymp P^{5/16}\). Same exponent. \(\square\)
+
+**Corollary 5.16 (certified-descent densities \(7/8\) and \(57/64\)).**
+The class of starts carrying a uniform power-envelope descent
+certificate of length at most five — evens, \(OE\), \(OOEE\),
+\(OOOEE\), \(OOEOE\) — has natural density \(7/8\); adding the
+length-7 words \(OOEOOEE\) and \(OOOEOEE\) raises the density of the
+length-\(\le7\) certified class to \(57/64\).
+
+*Proof.* Densities
+\(\tfrac12+\tfrac14+\tfrac1{16}+\tfrac1{32}+\tfrac1{32}=\tfrac78\)
+and \(\tfrac78+\tfrac1{128}+\tfrac1{128}=\tfrac{57}{64}\). The
+cylinders are disjoint, and each new cylinder is counted with a
+power saving by Theorems 5.14 and 5.15. Contraction is
+Corollary 2.3: \(3^3=27<32=2^5\) on the length-5 words and
+\(3^4=81<128=2^7\) on the length-7 words. \(\square\)
+
+The leftover \(\tfrac7{64}\) is the \(OOOO*\) tree (uncounted)
+together with the expanding siblings of the counted words. Every
+uncounted contracting word now passes through \(OOOO*\), whose
+fifth letter carries the level-3 kernel isolated in Section 6; the
+first such contractor is \(OOOOEEE\).
 
 As with Corollary 5.2, these are densities of uniform
 certificate classes. They are not densities of all descent
@@ -1151,12 +1565,13 @@ certificates and not densities of starts that reach \(1\).
 ## 6. The remaining gap
 
 Theorem 4.1 and Corollary 5.2 say that a uniform one- or two-step
-argument covers a set of density \(3/4\); Corollary 5.9 raises the
-uniformly certified class to density \(13/16\) at four steps. The
-first odd-to-odd image expands, so ordinary strong induction cannot
-fire on the complement. Proposition 4.4 shows that most odd-to-odd
-starts in a finite window still return below the start inside twenty
-steps. That is an observation, not Terras's theorem for \(J\).
+argument covers a set of density \(3/4\); Corollaries 5.9 and 5.16
+raise the uniformly certified class to \(13/16\) at four steps,
+\(7/8\) at five, and \(57/64\) at seven. The first odd-to-odd image
+expands, so ordinary strong induction cannot fire on the complement.
+Proposition 4.4 shows that most odd-to-odd starts in a finite window
+still return below the start inside twenty steps. That is an
+observation, not Terras's theorem for \(J\).
 
 The depth-by-depth counting of Section 5 does assemble into a
 conditional Terras-style statement, and the reduction is unconditional:
@@ -1194,34 +1609,144 @@ follows by letting \(d\to\infty\) slowly with \(N\) (any
 
 Every E-rooted word has a contracting prefix at length one
 (\(3^0<2\)), so the hypothesis only ever consumes O-rooted class
-bounds — exactly what Section 5 proves through depth 4, except
-\(OOO*\). The hypothesis beyond that is open, and its first open
-case has an exact shape. Differencing the \(OOO*\) phase funnels, in
-every reorganization tried, into one object: for smooth \(c\) with
-\(c\asymp kP^{9/8}\) and \(c'\asymp kP^{1/8}\) on \(n\sim P\),
+bounds. Section 5 now proves it *unconditionally at every depth
+\(d\le4\)* (Theorems 5.4–5.13), so the base cases of Proposition 6.1
+are theorems. The first open case is depth 5: the \(OOOO*\) split.
+It has an exact shape, one nesting deeper than Theorem 5.11. Write
+\(Z=v^{3/2}\), \(z=\lfloor Z\rfloor\), \(\theta_3=Z-z\); after four
+odd letters the fifth is the parity of \(\lfloor z^{3/2}\rfloor\).
+
+**Lemma 6.2 (level-3 kernel reformulation).**
+For odd \(n\ge5\),
 \[
-K_c(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
-e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr).
+\tfrac12\bigl(v^{9/4}-z^{3/2}\bigr)-\tfrac34\,z^{1/2}\theta_3=R_3,
+\qquad
+0\le R_3\le\tfrac3{16}\,z^{-1/2}.
+\]
+Consequently the fifth-letter phase is, up to \(kR_3\ll kn^{-27/16}\)
+per term, the exponential sum of the level-3 local floor defect, with
+coefficient \(c=\tfrac{3k}4z^{1/2}\asymp kn^{27/16}\): Lemma 5.10(i)
+with \((m,v)\) replaced by \((v,z)\).
+
+*Proof.* Taylor of \((z+\theta_3)^{3/2}\) at \(z\), with
+\(Z^{3/2}=v^{9/4}\). \(\square\)
+
+For smooth \(c\) with \(c\asymp kP^{27/16}\) and
+\(c'\asymp kP^{11/16}\) on \(n\sim P\) (the \(z^{1/2}\)-shaped
+family), define
+\[
+K_3(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
+e\bigl(c(n)\,\{\lfloor\lfloor
+n^{3/2}\rfloor^{3/2}\rfloor^{3/2}\}\bigr).
 \]
 
-**Conjecture 6.2 (kernel cancellation).**
-\(K_c(P)\ll P^{1-\delta}\) for some \(\delta>0\), uniformly over the
-family above. Exact-phase probes show square-root cancellation
-(\(|K|\approx51.9,\ 124.4,\ 1017.5\) on \(5\cdot10^3,\ 5\cdot10^4,\
-5\cdot10^5\) terms), but no proof is claimed.
+**Conjecture 6.3 (level-3 kernel cancellation).**
+\(K_3(P)\ll P^{1-\delta}\) for some \(\delta>0\), uniformly over the
+family above with \(k\le P^{\varepsilon}\). Exact-phase probes show
+square-root cancellation (\(|K_3|\approx30.1,\ 59.5,\ 423.7\) on
+\(2.5\cdot10^3,\ 2.5\cdot10^4,\ 10^5\) terms), but no proof is
+claimed.
 
-The boundary is quantitative: the Section 5 engine reaches every
-itinerary letter whose phase coefficient grows slower than \(n\)
-(the \(OE\!*\!*\) coefficient \(B\asymp kn^{3/8}\) crosses integers
-every \(\asymp P^{5/8}/k\) steps, so drift-1 intervals exist), while
-the \(OOO*\) coefficient \(W\asymp kn^{9/8}\) crosses integers within
-single steps (\(W'\asymp kn^{1/8}\gg1\)) and no drift-1 interval
-exists. Bounding \(K_c\) is the precise remaining obstacle to the
-\(OOO*\) split, hence to any certified density beyond \(13/16\)
-through this program. \(K_c\) is a bilinear correlation between the
-fractional parts of one nested-floor layer and a smooth weight at the
-scale of the next layer; we found no treatment of such an object in
-the nested-floor literature.
+The boundary between Theorem 5.11 and Conjecture 6.3 is quantitative
+and sharper than a derivative count. The smooth model iterates: where
+Theorem 5.11 used two Weyl differencings against
+\(Y''\asymp P^{1/4}\gg1>P^{-3/4}\asymp Y'''\), the level-3 model
+\(n^{27/8}\) has \(G'''\asymp P^{3/8}\gg1>P^{-5/8}\asymp G^{(4)}\)
+and predicts three. But the prediction does not descend to the nested
+floors. The kernel weight now has \(c'\asymp kP^{11/16}\gg1\), so no
+drift-1 interval exists for any expansion of the weight itself; the
+branch decomposition of Lemma 5.10(iii) has no analogue at the
+\(v\)-level, because \(v\) jumps by \(\asymp n^{5/4}\) per step and
+the branch set is a *product* of two carry lattices, not a copy of
+one; and the forced inner linearization
+\(v^{3/2}=m^{9/4}-\tfrac32m^{3/4}\theta_2+E_2\) trades \(\theta_3\)
+for a sawtooth family at coefficient scale \(kn^{45/16}\), *above*
+the \(9/4\) threshold where every method of this paper stops. Three
+routes — a scale-invariant copy of Theorem 5.11, differencing the
+increment first, and absorbing the leftover into a freezing integer
+— fail at exactly characterized points; the failures are recorded in
+the repository as exact statements, not anecdotes.
+
+What survives at the frontier is a model problem and one theorem
+about it. Stripping every Juggler-specific structure (carries,
+defects, nesting) from \(K_3\) leaves the *amplitude-product* sums
+\[
+S=\sum_{t\le L}e\bigl(A(t)\,\{B(t)\}\bigr),
+\qquad
+1\ll A'\ll A,
+\]
+with smooth monomial-type \(A,B\) (the Juggler instance has
+\(A\asymp P^{27/16}\), \(A'\asymp P^{11/16}\)). For \(A'\ll1\)
+partial summation makes the amplitude a tame passenger and the
+classical Piatetski–Shapiro machinery applies; for \(A'\gg1\) we
+know of no nontrivial deterministic bound by any method. The generic
+statement, however, is a theorem — and its proof uses no harmonic
+analysis at all:
+
+**Theorem 6.4 (shift-averaged square-root cancellation).**
+Let \(A_1<\cdots<A_L\) be reals with
+\(|A_t-A_{t'}|\ge A'_{\min}|t-t'|\) for some \(A'_{\min}\ge1\), and
+let \(x_1,\ldots,x_L\) be arbitrary reals. For
+\(S_\lambda=\sum_{t\le L}e\bigl(A_t\{x_t+\lambda\}\bigr)\),
+\[
+\Bigl|\int_0^1|S_\lambda|^2\,d\lambda-L\Bigr|
+\le\frac6\pi\,\frac L{A'_{\min}}\,(\log L+1).
+\]
+In particular \(|S_\lambda|\le\sqrt{L/\varepsilon}\) outside a shift
+set of measure \(\varepsilon(1+o(1))\): two-sided square-root
+cancellation for almost every shift of the fractional argument,
+regardless of the sequence \(B\).
+
+*Proof.* Expand the square; the diagonal gives \(L\). For
+\(t\ne t'\), the function
+\(\varphi(\lambda)=A_t\{x_t+\lambda\}-A_{t'}\{x_{t'}+\lambda\}\) is
+piecewise linear on \([0,1)\) with *real* slope \(A_t-A_{t'}\) on at
+most three arcs (jumps at \(1-\{x_t\}\) and \(1-\{x_{t'}\}\)); on
+each arc \(|\int e(\varphi)\,d\lambda|\le1/(\pi|A_t-A_{t'}|)\).
+Summing,
+\(\sum_{t\ne t'}3/(\pi A'_{\min}|t-t'|)
+\le(6/\pi)(L/A'_{\min})(\log L+1)\). \(\square\)
+
+The mechanism deserves note: the amplitude separation \(A'\gg1\) —
+the very property that defeats every character expansion, since a
+Fourier window centred at the amplitude drifts by \(A'\) harmonics
+per step — is exactly what makes the shift average trivial. The
+theorem also forces the empirical profile: censuses of
+\(R=|S|^2/L\) for the Juggler instance at \(P=10^6\)–\(10^{10}\)
+show a textbook \(\mathrm{Exp}(1)\) distribution, now explained
+rather than merely observed. What remains of Conjecture 6.3 after
+Theorem 6.4 is a de-randomization: the deterministic sum is the
+single shift \(\lambda=0\) in a family that cancels almost surely.
+
+**Conjecture 6.5 (the pure amplitude-product model).**
+\(|S|\le L^{1-\delta}\) for some \(\delta>0\), for smooth
+monomial-type \(A,B\) with \(1\ll A'\ll A\) as above.
+
+Three structural facts locate the difficulty of the
+de-randomization, each a short rigorous argument recorded in the
+repository. No second averaging variable exists: amplitude
+separation forces any two sample points with \(|A(p)-A(q)|\le1\) to
+coincide, and every family average available in the application
+re-enters either the differenced-kernel class or the
+amplitude-product class itself. The inverse theory is self-similar:
+any concentration or discrepancy inverse for \(A\{B\}\bmod1\) is a
+statement about \(\sum e(jA\{B\})\) — the same class with amplitude
+\(jA\) — so the class is closed under its own inverse theorems and
+no bootstrapping is possible. And the metric statement does not
+transfer: \(|dS_\lambda/d\lambda|\le2\pi A_{\max}L\) almost
+everywhere, so \(S_\lambda\) decorrelates at shift scale
+\(1/A_{\max}\) (\(\asymp P^{-27/16}\) in the instance, confirmed by
+measurement), and an almost-all-\(\lambda\) theorem leaves
+\(\asymp\varepsilon A_{\max}\) exceptional cells among
+\(\asymp A_{\max}\) — no measure argument pins \(\lambda=0\). The
+deterministic content of Conjecture 6.5 is a
+specific-point-in-metric-theory problem, the same species as the
+normality of \(\sqrt2\): a class whose known successes all use
+special arithmetic. The instance does carry arithmetic the model
+forgets — \(A^2=\tfrac9{16}k^2z\) with \(z\) integer, coupled to the
+argument through \(\theta_3=v^{3/2}-z\) — but its natural
+exploitations (a pure-phase identity, quadratic-field periodicity)
+re-enter the harmonic toolkit and fail at the recorded points.
 
 A mixed-parity heuristic, ignoring floors, gives mean log-log drift
 \(\tfrac12\log(3/4)<0\). Finite ensembles sit near this value; hard
@@ -1253,42 +1778,54 @@ persistence already implies expansion, so that attack reduces to the
 tautology \(J^{|w|}(n)>n\). Each failed reduction is an exact
 computation on named witnesses.
 
-Two analytic routes around Conjecture 6.2 also fail, and the failures
-are recorded. Composing gap cells across two levels fails: on a cell
-where the first-level gap is constant, the second-level gap takes a
-new value at essentially every point (distinct-value ratio
-\(1.0000\) in exact windows), so no usable sub-cell survives.
-Reindexing by the image \(m\) (each \(m\) has at most one odd
-preimage) strips one nesting level but introduces a fiber indicator
-of density \(\asymp m^{-1/3}\), whose sawtooth produces mode sums
-that must beat the sparsity exponent \(1/3\) while the engine saves
-only \(1/24\); already the first mode is fatal. Both routes are
-parked as negative knowledge, not retried.
+The analytic routes around Conjecture 6.3 fail at recorded points as
+well. Composing gap cells across two levels fails: on a cell where
+the first-level gap is constant, the second-level gap takes a new
+value at essentially every point (distinct-value ratio \(1.0000\) in
+exact windows), so no usable sub-cell survives. Reindexing by the
+image \(m\) (each \(m\) has at most one odd preimage) strips one
+nesting level but introduces a fiber indicator of density
+\(\asymp m^{-1/3}\), whose sawtooth produces mode sums that must beat
+the sparsity exponent \(1/3\) while the engine saves only \(1/24\);
+already the first mode is fatal. At level 3, every character
+expansion of the kernel product has its Fourier window centred at
+the amplitude \(kc(t)\), which drifts by \(kc'\asymp kP^{11/16}\)
+harmonics per step, so inner sums at fixed harmonic are shorter than
+one step at every block length; and every algebraic re-form —
+floor-splitting, the pure-phase identity, differencing at any order,
+interval-splitting — transfers the \(P^{27/16}\) amplitude instead
+of destroying it. All routes are parked as negative knowledge, not
+retried.
 
 The gap is therefore:
 
 > No theorem forces every exact integer state into a contracting
 > prefix. In particular, it is open whether almost every odd-to-odd
 > start has a finite descent certificate. By Proposition 6.1 that
-> would follow from all-depth parity equidistribution, whose first
-> open case is the \(OOO*\) kernel of Conjecture 6.2.
+> would follow from all-depth parity equidistribution, which is now
+> a theorem through depth four; the first open case is the
+> \(OOOO*\) kernel of Conjecture 6.3, whose model form cancels for
+> almost every shift (Theorem 6.4) and whose deterministic instance
+> is Conjecture 6.5.
 
-![The theorem flow of the note. Exact finite-word identities yield contraction, rigidity, and cycle restrictions; the discrepancy calculus counts the uniform certificate classes through depth four (density 13/16) but leaves the OOO* kernel, and with it almost-all descent, open.](figures/juggler_frontier.png){width=100%}
+![The theorem flow of the note. Exact finite-word identities yield contraction, rigidity, and cycle restrictions; the discrepancy calculus with the kernel theorem counts every itinerary class through depth four and the contracting words of lengths five and seven (certified density 57/64), leaving the level-3 kernel — generically cancelling by the shift-average theorem — and with it almost-all descent, open.](figures/juggler_frontier.png){width=100%}
 
 That is the Juggler form of the Terras question. A sharper ambient
 discrepancy exponent does not answer it; by Proposition 6.1 the
 question now rests on equidistribution at growing depth, beginning
-with Conjecture 6.2.
+with Conjecture 6.3.
 
 ## 7. Software archive
 
 Lean proofs of the exact-arithmetic theorems live at
 [https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/).
 The archive is not required to read the arguments above. The analytic
-estimates of Section 5 and Proposition 6.1 are human proofs; Lean
-certifies only the exact floor reductions beneath them
-(`GapCells.lean`) and the exact-arithmetic theorems of Sections 2–4.
-The scaled-integer validators for the linearization lemmas live in
+estimates of Sections 5 and 6 are human proofs; Lean certifies only
+the exact floor reductions beneath them (`GapCells.lean`, including
+the double-gap identity `seq_floor_gap_second` used by Theorem 5.11)
+and the exact-arithmetic theorems of Sections 2–4. The scaled-integer
+validators for the linearization lemmas, the kernel probes, and the
+shift-average and pure-model censuses live in
 `src/research/juggler_sequence/two_step_parity.py` with pinned tests.
 
 From a clone, the review object is
@@ -1303,10 +1840,10 @@ I used large language models extensively while drafting and revising the
 text, organizing companion notes, and as an interactive assistant for
 Lean statements, tests, and literature records. The models are not
 authors. Lean theorems and named computations are the certificates for
-those claims. The discrepancy estimates of Section 5 and
-Proposition 6.1 are human proofs using classical analytic
-inequalities; they are not Lean-certified. I take full
-responsibility for the contents.
+those claims. The discrepancy estimates of Sections 5 and 6,
+including the kernel theorem, and Proposition 6.1 are human proofs
+using classical analytic inequalities; they are not Lean-certified.
+I take full responsibility for the contents.
 
 ## References
 

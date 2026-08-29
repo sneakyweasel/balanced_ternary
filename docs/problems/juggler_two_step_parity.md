@@ -585,10 +585,12 @@ self-similar inverse theory, and a \(1/A \asymp P^{-27/16}\)
 shift-correlation scale that measure arguments cannot resolve.
 The \(K_3\) line ends in three named obstruction layers
 (BB global, GG intra-block, JJ metric-transfer); Conjectures V,
-EE, HH stay open with strong empirical support. One editorial:
-import Theorems R/S/T/X, Corollaries U/Y, Lemma II and the
-obstruction ladder into the finite-dynamics note (its
-Conjecture 6.2 and the \(13/16\) headline are superseded).
+EE, HH stay open with strong empirical support. The editorial
+debt is discharged: the second consolidation phase imported
+Theorems R/S/T/X, Corollaries U/Y, Lemma II, and the obstruction
+ladder into the finite-dynamics note (its old Conjecture 6.2 and
+\(13/16\) headline are superseded; the note's open items are now
+Conjectures 6.3 and 6.5).
 
 ## Decision
 
@@ -889,39 +891,48 @@ as a specific-point-in-metric-theory problem. Flags
 `pure_model_shift_average_proved`, `hh_derandomization_parked`.
 No \(K_3\) bound, no density move, no note import.
 
-Best next question: consolidate — import the branch's final
-state (Theorems R/S/T/X, Corollaries U/Y, Lemma II, the
-BB/GG/JJ obstruction ladder, Conjecture HH) into the
-finite-dynamics note, whose Conjecture 6.2 and \(13/16\)
-headline are superseded.
+**PROMOTE** (second consolidation, 29 August 2026): the branch's
+final state is imported into the finite-dynamics note at
+publication quality. New note items: Lemma 5.10 (R1/R2/R3),
+Theorem 5.11 (Theorem R, condensed six-step proof), Corollary 5.12
+(R′), Theorem 5.13 (S), Theorem 5.14 (T), Theorem 5.15 (X),
+Corollary 5.16 (U+Y, densities \(7/8\) and \(57/64\)), Lemma 6.2
+(V1), Conjecture 6.3 (V), Theorem 6.4 (Lemma II, full proof),
+Conjecture 6.5 (HH), and condensed BB/GG/JJ negative knowledge in
+Section 6. Abstract, introduction, verification convention,
+Section-5 preamble, frontier figure (57/64, level-3 kernel),
+Section 7, and acknowledgments updated; reviewer packet,
+formalization map, paper dossier, and bundle synced; PDF rebuilt
+(26 pages) and hash-checked across the three copies.
+
+Best next question: external review of the consolidated note, or
+any genuinely new idea on Conjecture 6.5 (the pure
+amplitude-product model) from outside the parked toolkits.
 
 ## Publication assessment
 
-Status: `THEOREM`. Exact linearization lemmas, power-saving
-joint-parity discrepancy bounds for nested floor-power sequences at
-**every depth \(\le 4\)** and the two length-5 contracting splits,
-outside the existing Piatetski-Shapiro literature, plus a
-certified-descent density of \(57/64\) and the conditional
-density-one theorem with unconditional base cases \(d\le 4\).
-Pending editorial debt: the note still states Conjecture 6.2 as
-open and the headline density as \(13/16\); import Theorems R/S/T
-and Corollary U in a consolidation phase. The OOOO\* kernel
-\(K_3\) is isolated in the laboratory (Conjecture V) and is
-not in the note; the scale-invariant copy of Theorem R and
-the increment-first \(K_3\) attack, and X1-absorption of
-\(K_3\) are laboratory-**REFUTED**; the \(K_3\) toolkit is
-laboratory-**PARKED** (Proposition BB). Of the two post-BB
-theories, dispersion is laboratory-**REFUTED** as a completion
-route (Proposition CC); transport produced the exact substrate
-(Lemma DD), the stated inductive step (Conjecture EE), the
-level-3 phase model (Lemma FF) and passing census gates, but
-its intra-block analytic program is laboratory-**PARKED**
-(Proposition GG, Part XVII) — both known proof routes to
-\(K_3\) are closed by named obstructions, and the frontier is
-the self-contained Conjecture HH (pure amplitude-product
-sums). Phase 21 proved HH's generic (almost-every-shift) case
-by a non-harmonic argument (Lemma II) and parked the
-deterministic instance behind a third named obstruction
-(Proposition JJ, de-randomization) — the line now ends in a
-complete three-layer characterization (BB/GG/JJ). None of this
-is in the note.
+Status: `THEOREM`, **consolidated into the note** (second
+consolidation phase, 29 August 2026). Exact linearization lemmas,
+power-saving joint-parity discrepancy bounds for nested floor-power
+sequences at **every depth \(\le 4\)** and the length-5 and length-7
+contracting splits, outside the existing Piatetski-Shapiro
+literature, plus a certified-descent density of \(57/64\) and the
+conditional density-one theorem with unconditional base cases
+\(d\le 4\). The note now carries the full harvest: Theorem R is
+the note's Theorem 5.11 (with Corollary R′ as Corollary 5.12 and
+Lemmas R1/R2/R3 as Lemma 5.10), Theorem S is Theorem 5.13,
+Theorem T is Theorem 5.14, Theorem X is Theorem 5.15, Corollaries
+U/Y are Corollary 5.16, Lemma V1 is Lemma 6.2, Conjecture V is
+Conjecture 6.3, Lemma II is Theorem 6.4, Conjecture HH is
+Conjecture 6.5, and the BB/GG/JJ obstruction ladder is condensed
+into Section 6's negative-knowledge paragraphs. The laboratory
+retains the full statements: the scale-invariant copy of Theorem R,
+the increment-first \(K_3\) attack, and X1-absorption are
+laboratory-**REFUTED**; the \(K_3\) toolkit is
+laboratory-**PARKED** (Proposition BB); dispersion is
+laboratory-**REFUTED** as a completion route (Proposition CC);
+transport produced Lemmas DD/FF and Conjecture EE but its
+intra-block analytic program is laboratory-**PARKED**
+(Proposition GG); the de-randomization of Lemma II is
+laboratory-**PARKED** (Proposition JJ). No editorial debt
+remains.

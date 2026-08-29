@@ -10187,3 +10187,68 @@ Best next question
   Conjecture HH) into the finite-dynamics note, whose Conjecture
   6.2 and 13/16 headline are superseded
 ```
+
+## Juggler note second consolidation: the full harvest at publication quality
+
+Editorial phase; no new mathematics. The finite-dynamics note is
+brought up to the branch's final state, at publication quality.
+
+Content moves. Section 5 gains the second growing layer: Lemma 5.10
+collects the exact level-2 reductions (kernel = level-2 floor defect,
+the double-gap identity with its Lean row seq_floor_gap_second, and
+the carry-branch decomposition with the freeze scales, plus the
+recorded raw-freeze warning); Theorem 5.11 is the kernel theorem
+(Theorem R) with a condensed but complete six-step proof (double Weyl
+differencing, exact product rule, Y-block, v-block, the four
+dominance classes including the targeted third differencing, and the
+assembly with delta = 1/64 and 1/72); Corollary 5.12 extends it to
+monomial families with alpha <= 9/8 (Corollary R'); Theorem 5.13
+closes OOO* and completes depth-4 equidistribution (Theorem S, with
+the degree-(2,1) polynomial identity displayed); Theorems 5.14-5.15
+import the length-5 and length-7 contracting splits (Theorems T and
+X); Corollary 5.16 records the certified densities 7/8 and 57/64.
+Section 6 is rewritten around the new frontier: Lemma 6.2 isolates
+the level-3 kernel (Lemma V1), Conjecture 6.3 states its
+cancellation (Conjecture V), Theorem 6.4 is the shift-average
+theorem with its full proof (Lemma II - the one non-harmonic theorem
+of the program), Conjecture 6.5 is the pure amplitude-product model
+(Conjecture HH), and the negative-knowledge paragraphs condense the
+BB/GG/JJ obstruction ladder and the refuted routes at levels 2 and 3.
+Abstract, introduction, verification convention (now naming Theorems
+5.11, 5.13-5.15, 6.4 and Corollaries 5.12, 5.16 as human proofs over
+Lean floor reductions), Section 7, and acknowledgments updated.
+
+Artifacts. Frontier figure re-rendered (parity discrepancy + kernel
+theorem; one- to seven-step certificates; certified density 57/64;
+level-3 kernel open). Reviewer packet rewritten (claim map now
+carries the kernel theorem, depth-4 completion, contracting splits,
+densities, Lemma 6.2, Theorem 6.4, and the two open conjectures,
+with matching falsifiers). Formalization map sections 6, 9, 10
+updated. Paper dossier and bundle README updated. PDF rebuilt (26
+pages), copied to the reviewer bundle and repository root,
+hash-identical across the three copies. Branch dossier: editorial
+debt discharged; decision PROMOTE for the consolidation. No claim
+tags changed; no ledger rows added.
+
+```text
+What was learned
+- (editorial phase) the branch's full harvest fits the note without
+  unbalancing it: one lemma, three theorems, two corollaries in
+  Section 5; one lemma, one theorem, two conjectures in Section 6
+Strongest theorem
+- unchanged (Theorem 5.11 = Theorem R, now in the note)
+Strongest refutation
+- none this phase
+Reusable machinery
+- none new; all artifacts synced
+Branch status
+- PROMOTE (consolidation complete; the note is the review object)
+Why
+- every proven result of the two-step-parity program is now stated,
+  numbered, and evidence-labelled in the publication draft, and the
+  open frontier is stated as two conjectures with a proved generic
+  case and recorded obstructions
+Best next question
+- external review of the consolidated note; mathematically, any new
+  idea on Conjecture 6.5 from outside the parked toolkits
+```

@@ -241,13 +241,16 @@ unresolved_is_odd_odd :
 ```
 
 Thus even and odd-to-even starts have automatic finite progress. The note's
-density corollaries (\(3/4\) at two steps, \(13/16\) at four) count
-uniform certificate classes. They are not Lean cardinality theorems, not
-densities of all `FiniteProgress`, and not `ReachesOne` densities.
-Odd-to-odd starts may still descend after a longer word. The Terras
-analogue remains open; the note's Proposition 6.1 reduces it to
-all-depth parity equidistribution, which is proved through depth 4
-except the \(OOO*\) split.
+density corollaries (\(3/4\) at two steps, \(13/16\) at four, \(7/8\)
+at five, \(57/64\) at seven) count uniform certificate classes. They
+are not Lean cardinality theorems, not densities of all
+`FiniteProgress`, and not `ReachesOne` densities. Odd-to-odd starts
+may still descend after a longer word. The Terras analogue remains
+open; the note's Proposition 6.1 reduces it to all-depth parity
+equidistribution, which is now proved at every depth \(\le4\)
+(including the \(OOO*\) split via the kernel theorem, the note's
+Theorems 5.11 and 5.13); the first open case is the \(OOOO*\) split
+(the note's Conjecture 6.3).
 
 ## 7. Exact inverse cells
 
@@ -437,9 +440,11 @@ seq_floor_gap_second : (the double-gap identity: the second
 
 The first is the parity bridge that converts parity sums into interval
 discrepancies (Section 5's fractional-part form). The gap identities
-are the cell structure of the note's Lemma 5.3(ii) and of the
-companion's Lemmas B and N: the increment of a floored smooth sequence
-is the floor of the smooth increment plus a 0/1 sawtooth carry. No
+are the cell structure of the note's Lemma 5.3(ii) and Lemma 5.10(ii)
+and of the companion's Lemmas B, N, and R2: the increment of a floored
+smooth sequence is the floor of the smooth increment plus a 0/1
+sawtooth carry, and the second difference composes two such
+identities (used by the kernel theorem, the note's Theorem 5.11). No
 Vaaler, van der Corput, or Erdős–Turán content is formalized.
 
 ## 10. Evidence boundary
@@ -448,12 +453,17 @@ Lean certifies the definitions and theorem statements above. It does not
 certify:
 
 - Proposition 4.4's exact Python-integer horizon-\(20\) census;
-- the analytic discrepancy estimates of Section 5 (Theorems 5.1, 5.4,
-  5.7, 5.8, Proposition 5.5, Corollary 5.9), Proposition 6.1, or the
-  kernel bound and depth-4 completion (working-doc Theorems R and S,
-  ledger rows `J-kernel-cancellation`, `J-depth4-complete` — human
-  proofs resting on the Lean floor reductions above);
+- the analytic discrepancy estimates of Sections 5 and 6 (Theorems
+  5.1, 5.4, 5.7, 5.8, Proposition 5.5, Corollary 5.9; the kernel
+  theorem 5.11 with Corollary 5.12; the depth-4 completion 5.13 and
+  the contracting splits 5.14–5.15 with Corollary 5.16 — ledger rows
+  `J-kernel-cancellation`, `J-depth4-complete`,
+  `J-five-step-descent-density`, `J-depth7-engine-contracting`;
+  Proposition 6.1; and the shift-average theorem 6.4, ledger row
+  `J-shift-average-square-root` — all human proofs resting on the
+  Lean floor reductions above);
 - the scaled-integer validators for the exact-linearization lemmas
+  and the kernel, shift-average, and pure-model probes
   (those are pytest-pinned computations, not proofs);
 - statistical drift estimates;
 - universal Juggler termination.

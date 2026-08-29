@@ -20,10 +20,10 @@ NODES = {
     "Cells": ("Inverse cells", ""),
     "Cycles": ("Cycle restrictions", ""),
     "Excluded": ("No cycles of", "length \u2264 6"),
-    "Discrepancy": ("Parity discrepancy", "depths \u2264 4"),
-    "Certificates": ("One- to four-step", "certificates"),
-    "Density": ("Certified class", "density 13/16"),
-    "Kernel": ("OOO* kernel", "(open)"),
+    "Discrepancy": ("Parity discrepancy", "+ kernel theorem"),
+    "Certificates": ("One- to seven-step", "certificates"),
+    "Density": ("Certified class", "density 57/64"),
+    "Kernel": ("Level-3 kernel", "(open)"),
     "Open": ("Open", "almost-all descent?"),
 }
 

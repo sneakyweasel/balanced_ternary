@@ -1,6 +1,6 @@
 # Juggler finite-dynamics reviewer bundle
 
-Author: Philippe Cochin. Date: 28 August 2026.
+Author: Philippe Cochin. Date: 29 August 2026.
 Status: publication draft, not submitted.
 
 This folder is a snapshot of the files to send for external review. It
@@ -33,9 +33,11 @@ lake build Problems.JugglerPaper
 
 Repository: https://github.com/sneakyweasel/balanced_ternary/
 
-The analytic estimates of Section 5 and Proposition 6.1 are human
+The analytic estimates of Sections 5 and 6 (including the kernel
+theorem and the shift-average theorem) and Proposition 6.1 are human
 proofs and are not in Lean; only their exact floor reductions are
-(`GapCells.lean`).
+(`GapCells.lean`, including the double-gap identity
+`seq_floor_gap_second`).
 
 ## What is not here
 
