@@ -7,6 +7,7 @@ from pathlib import Path
 from research.juggler_sequence.lean_paths import (
     LEFTOVER_CYCLES,
     LEFTOVER_EVAL,
+    LEFTOVER_TWO_EVEN,
     SMALL_CYCLE_CENSUS,
     has_named,
     juggler_text,
@@ -33,10 +34,19 @@ def test_leftover_cycle_theorems_present():
     assert has_named(text, "no_cycle_word_oooooee")
     assert has_named(text, "no_cycle_word_ooooooeee")
     assert has_named(text, "cycle_trailing_evens_lt")
+    assert has_named(text, "no_cycle_word_two_even_ee")
+    assert has_named(text, "no_cycle_word_two_even_eoe")
+    two_even = LEFTOVER_TWO_EVEN.read_text(encoding="utf-8")
+    assert "theorem no_cycle_word_two_even_ee" in two_even
+    assert "theorem no_cycle_word_two_even_eoe" in two_even
+    assert "theorem no_cycle_word_length_eight" not in two_even
+    assert "theorem no_cycle_word_length_le_eight" not in two_even
     assert "sorry" not in leftover
     assert "admit" not in leftover
     assert "sorry" not in eval_src
     assert "admit" not in eval_src
+    assert "sorry" not in two_even
+    assert "admit" not in two_even
     assert "native_decide" in eval_src
     assert "theorem juggler_reaches_one" not in leftover
     assert "def CycleSearch" not in leftover

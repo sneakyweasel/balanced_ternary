@@ -62,6 +62,7 @@ LAYERS: dict[str, Path] = {
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "LeftoverEval": JUGGLER_DIR / "LeftoverEval.lean",
     "LeftoverCycles": JUGGLER_DIR / "LeftoverCycles.lean",
+    "LeftoverTwoEven": JUGGLER_DIR / "LeftoverTwoEven.lean",
     "SmallCycleCensus": JUGGLER_DIR / "SmallCycleCensus.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
@@ -101,6 +102,7 @@ LANDING_PARITY = LAYERS["LandingParity"]
 CYCLES = LAYERS["Cycles"]
 LEFTOVER_EVAL = LAYERS["LeftoverEval"]
 LEFTOVER_CYCLES = LAYERS["LeftoverCycles"]
+LEFTOVER_TWO_EVEN = LAYERS["LeftoverTwoEven"]
 SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]

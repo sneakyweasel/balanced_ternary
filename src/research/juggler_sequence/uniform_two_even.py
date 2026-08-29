@@ -70,6 +70,10 @@ LEAN_THEOREMS = (
     "no_cycle_word_oooooee",
     "no_cycle_word_ooooeoe",
     "no_cycle_word_length_le_seven",
+    "no_cycle_word_two_even_ee",
+    "no_cycle_word_two_even_eoe",
+    "shared_two_even_tail",
+    "denomBits",
 )
 
 
@@ -225,6 +229,9 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycle_word_ooooee"]
         and lean["no_cycle_word_oooooee"]
         and lean["no_cycle_word_length_le_seven"]
+        and lean["no_cycle_word_two_even_ee"]
+        and lean["no_cycle_word_two_even_eoe"]
+        and lean["shared_two_even_tail"]
         and lean["no_length_eight_theorem"]
         and lean["length_eight_open_in_census"]
         and lean["no_all_cycles_impossible"]
@@ -266,11 +273,11 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     return {
         "classification": CLASS_GREEN,
         "reason": (
-            "both two-even leftover families share n^{3^{k-2}} > "
-            "2^{e_{k-2}}(n+1)^{2^k} with e_a=2*3^a-2^{a+1}; the "
-            "comparison never holds for n<=4 and first fires at "
-            "N0(6)=205, then 14,8,6,6, and N0=5 for every k>=11; "
-            "EOE adds no extra cutoff; tables below N0 are empty"
+            "both leftover families are Lean-excluded for every "
+            "k>=6 and n>=2 by the shared tail at n>=256 plus the "
+            "seven-odd obstruction and three Fin 256 tables below "
+            "256; N0(6)=205 then 14,8,6,6 and N0=5 for k>=11; not "
+            "a length-8 census"
         ),
     }
 
@@ -284,6 +291,7 @@ def probe_payload() -> dict[str, Any]:
         {
             "cycles_impossible": False,
             "two_even_cycles_impossible": False,
+            "two_even_leftover_families_excluded": True,
             "length_eight_census": False,
             "induction_on_period": False,
             "induction_on_n": False,
@@ -298,10 +306,10 @@ def probe_payload() -> dict[str, Any]:
         "lean": lean,
         "decision": decision,
         "search_method": (
-            "shared two-even leftover comparison for k=6..24; exact "
-            "integer cutoff through k=8; log cutoff afterwards; "
-            "EOE y-succ auxiliary; empty follows+image table below N0; "
-            "no length-8 census; no three-even; no Lean edit"
+            "shared two-even leftover comparison for k=6..24; Lean "
+            "exclusion of both families for every k>=6 at n>=256 "
+            "plus seven-odd/Fin 256 tables below 256; no length-8 "
+            "census; no three-even; no halt"
         ),
     }
 
@@ -396,10 +404,10 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             decision["reason"] + ".",
             "",
-            "This is not a halt result, not a length-8 census, and not",
-            "an exclusion of every two-even CycleWord in Lean. The",
-            "shared tail is bounded in k. Three-even leftovers were",
-            "not opened.",
+            "This is not a halt result and not a length-8 census.",
+            "The two leftover families are Lean-excluded for every",
+            "k>=6. Other two-even words and three-even leftovers",
+            "were not opened.",
             "",
         ]
     )

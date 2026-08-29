@@ -3314,6 +3314,30 @@
     "related_conjectures": []
   },
   {
+    "id": "J-two-even-leftover-ee",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every k ≥ 6 and every n ≥ 2, the even-terminating two-even leftover O^{k-2}EE is not a Juggler cycle word. Large n uses the shared tail n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} at the uniform algebraic cutoff n ≥ 256, obtained by cubing the length-6 comparison; e_a = 2(3^a-2^a) = log2(lowerDenom(O^a)). Below 256 the argument is the existing k=6,7 leftovers, a Fin 256 table at k=8, and the fact that n ≥ 2 does not follow seven consecutive odds. Lean theorem no_cycle_word_two_even_ee. This excludes that one family only; it is not a length-8 census and not a halt theorem.",
+    "source": "docs/problems/juggler_uniform_two_even.md",
+    "lean": "Problems/Juggler/LeftoverTwoEven.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_uniform_two_even.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-two-even-leftover-eoe",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every k ≥ 6 and every n ≥ 2, the leftover O^{k-3}EOE is not a Juggler cycle word. The last-odd cube trick plus (y+1)^3 < 2(n+1)^4 reduces to the same shared tail as O^{k-2}EE. Large n is n ≥ 256; below 256 the argument is the existing k=6,7 leftovers, Fin 256 tables at k=8,9, and the seven-odd obstruction for k ≥ 10. Lean theorem no_cycle_word_two_even_eoe. This excludes that one family only; it is not a length-8 census and not a halt theorem.",
+    "source": "docs/problems/juggler_uniform_two_even.md",
+    "lean": "Problems/Juggler/LeftoverTwoEven.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_uniform_two_even.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-nested-parity-linearization",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "For odd n ≥ 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 ≤ E(n) ≤ (3/8)(n^{3/2}-1)^{-1/2} ≤ (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} ≥ 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",

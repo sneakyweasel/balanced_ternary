@@ -11,6 +11,7 @@
     "floating_point_verdict": false,
     "cycles_impossible": false,
     "two_even_cycles_impossible": false,
+    "two_even_leftover_families_excluded": true,
     "length_eight_census": false,
     "induction_on_period": false,
     "induction_on_n": false,
@@ -734,6 +735,10 @@
     "no_cycle_word_oooooee": true,
     "no_cycle_word_ooooeoe": true,
     "no_cycle_word_length_le_seven": true,
+    "no_cycle_word_two_even_ee": true,
+    "no_cycle_word_two_even_eoe": true,
+    "shared_two_even_tail": true,
+    "denomBits": true,
     "no_global_termination_theorem": true,
     "no_all_cycles_impossible": true,
     "no_cycle_engine": true,
@@ -745,7 +750,7 @@
   },
   "decision": {
     "classification": "TWO_EVEN_UNIFORM_TAIL_GREEN",
-    "reason": "both two-even leftover families share n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} with e_a=2*3^a-2^{a+1}; the comparison never holds for n<=4 and first fires at N0(6)=205, then 14,8,6,6, and N0=5 for every k>=11; EOE adds no extra cutoff; tables below N0 are empty"
+    "reason": "both leftover families are Lean-excluded for every k>=6 and n>=2 by the shared tail at n>=256 plus the seven-odd obstruction and three Fin 256 tables below 256; N0(6)=205 then 14,8,6,6 and N0=5 for k>=11; not a length-8 census"
   },
-  "search_method": "shared two-even leftover comparison for k=6..24; exact integer cutoff through k=8; log cutoff afterwards; EOE y-succ auxiliary; empty follows+image table below N0; no length-8 census; no three-even; no Lean edit"
+  "search_method": "shared two-even leftover comparison for k=6..24; Lean exclusion of both families for every k>=6 at n>=256 plus seven-odd/Fin 256 tables below 256; no length-8 census; no three-even; no halt"
 }

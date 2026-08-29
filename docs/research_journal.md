@@ -11057,3 +11057,43 @@ Best next question
   shared tail at the uniform algebraic cutoff n>=256
 ```
 
+## Juggler uniform two-even leftovers in Lean
+
+- **Date:** 2026-08-30
+- **Objective:** Lean-exclude `CycleWord` on \(O^{k-2}EE\) and \(O^{k-3}EOE\) for every \(k\ge 6\) and \(n\ge 2\)
+- **Hypotheses:** the length-6 tail cubes in \(k\) for \(n\ge 256\); below 256 the longest odd run on \(n\ge 2\) has length 6, so only three tables are needed
+- **Major results:** `no_cycle_word_two_even_ee` and `no_cycle_word_two_even_eoe` (**EXACT — LEAN VERIFIED**, ledger `J-two-even-leftover-ee`, `J-two-even-leftover-eoe`). Shared tail `shared_two_even_tail`. `lowerDenom(O^a)=2^{denomBits a}` with `denomBits a = 2(3^a-2^a)`. Small \(n\): existing \(k=6,7\), `Fin 256` tables at EE \(k=8\) and EOE \(k=8,9\), seven-odd obstruction thereafter. Not a length-8 census. Paper A not edited
+- **Refuted ideas:** a length-8 Lean census as an automatic corollary; induction on \(n\) or on the period
+- **Literature:** Paper A Lemmas 3.5 and 3.7 reused as the \(k=6,7\) instances
+- **Open:** first-E transport for three-even leftovers with second gap \(\ge 2\), or bunched-tail cells. Length 8 still open
+- **Decision:** PROMOTE the uniform Lean exclusion of both leftover families. Not a length-8 census and not a halt theorem
+
+```text
+What was learned
+- The k=6 comparison n^81 > 2^130 (n+1)^64 cubes in k once
+  (n+1)^2 > 2, which holds for every n >= 256
+- lowerDenom(O^a) = 2^{2(3^a-2^a)} is now a Lean identity
+- EOE reduces to the same tail by the last-odd cube and
+  (y+1)^3 < 2(n+1)^4
+- Below 256, n >= 2 never follows seven odds, so only three
+  leftover tables are needed
+- This kills the two leftover families for every k>=6; it does
+  not assemble a length-8 census
+Strongest theorem
+- no_cycle_word_two_even_ee / no_cycle_word_two_even_eoe:
+  neither leftover family is a CycleWord at n>=2, k>=6
+Strongest refutation
+- none new; N0 tends to 2 remains refuted
+Reusable machinery
+- LeftoverTwoEven.lean: denomBits, shared_two_even_tail,
+  cycle_eoe_suffix_y_cube_lt
+Branch status
+- PROMOTE
+Why
+- both infinite leftover families are now one Lean type, not a
+  period-by-period case-split
+Best next question
+- first-E transport of the uniform two-even tail for three-even
+  leftovers with second gap a1>=2, or bunched-tail cells
+```
+

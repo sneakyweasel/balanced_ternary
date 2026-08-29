@@ -27,6 +27,7 @@ import Problems.Juggler.LandingParity
 import Problems.Juggler.Cycles
 import Problems.Juggler.LeftoverEval
 import Problems.Juggler.LeftoverCycles
+import Problems.Juggler.LeftoverTwoEven
 import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.CycleDiophantine
 import Problems.Juggler.SequentialMordell

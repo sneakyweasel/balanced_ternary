@@ -61,4 +61,38 @@ theorem cycleWordB_ooooooeee_lt128 :
     ∀ n : Fin 128, cycleWordB n.val wordOOOOOOEEE = false := by
   native_decide
 
+/-! Uniform two-even leftovers. Below `256` no start `n ≥ 2` realizes
+seven consecutive odds, so only `k = 8` (EE) and `k = 8,9` (EOE)
+need tables. -/
+
+def sevenOdds : List Branch :=
+  List.replicate 7 Branch.odd
+
+def wordTwoEvenEE8 : List Branch :=
+  List.replicate 6 Branch.odd ++ [Branch.even, Branch.even]
+
+def wordTwoEvenEOE8 : List Branch :=
+  List.replicate 5 Branch.odd ++
+    [Branch.even, Branch.odd, Branch.even]
+
+def wordTwoEvenEOE9 : List Branch :=
+  List.replicate 6 Branch.odd ++
+    [Branch.even, Branch.odd, Branch.even]
+
+theorem followsB_seven_odds_of_lt256 :
+    ∀ n : Fin 256, 2 ≤ n.val → followsB n.val sevenOdds = false := by
+  native_decide
+
+theorem cycleWordB_two_even_ee8_lt256 :
+    ∀ n : Fin 256, cycleWordB n.val wordTwoEvenEE8 = false := by
+  native_decide
+
+theorem cycleWordB_two_even_eoe8_lt256 :
+    ∀ n : Fin 256, cycleWordB n.val wordTwoEvenEOE8 = false := by
+  native_decide
+
+theorem cycleWordB_two_even_eoe9_lt256 :
+    ∀ n : Fin 256, cycleWordB n.val wordTwoEvenEOE9 = false := by
+  native_decide
+
 end Problems.Juggler

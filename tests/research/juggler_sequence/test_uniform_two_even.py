@@ -114,6 +114,8 @@ def test_classify_uniform_tail_green():
             "anti_overclaim": {
                 **dict(ANTI_OVERCLAIM),
                 "cycles_impossible": False,
+                "two_even_cycles_impossible": False,
+                "two_even_leftover_families_excluded": True,
                 "length_eight_census": False,
             },
         }
@@ -131,6 +133,8 @@ def test_committed_artifacts_schema():
     assert data["engine_control_layer_modified"] is False
     assert data["decision"]["classification"] == CLASS_GREEN
     assert data["anti_overclaim"]["cycles_impossible"] is False
+    assert data["anti_overclaim"]["two_even_cycles_impossible"] is False
+    assert data["anti_overclaim"]["two_even_leftover_families_excluded"] is True
     assert data["anti_overclaim"]["length_eight_census"] is False
     assert data["lean"]["no_length_eight_theorem"] is True
     assert data["scan"]["max_n0"] == 205

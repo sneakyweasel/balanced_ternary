@@ -26,7 +26,7 @@ Maximum Phase-0 scope   N0(k) for k=6..24; empty tables;
 - classification: **TWO_EVEN_UNIFORM_TAIL_GREEN**
 - sorry-free: `True`
 
-both two-even leftover families share n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} with e_a=2*3^a-2^{a+1}; the comparison never holds for n<=4 and first fires at N0(6)=205, then 14,8,6,6, and N0=5 for every k>=11; EOE adds no extra cutoff; tables below N0 are empty.
+both leftover families are Lean-excluded for every k>=6 and n>=2 by the shared tail at n>=256 plus the seven-odd obstruction and three Fin 256 tables below 256; N0(6)=205 then 14,8,6,6 and N0=5 for k>=11; not a length-8 census.
 
 ## Shared tail
 
@@ -72,6 +72,10 @@ both two-even leftover families share n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} with 
 - `no_cycle_word_oooooee`: `True`
 - `no_cycle_word_ooooeoe`: `True`
 - `no_cycle_word_length_le_seven`: `True`
+- `no_cycle_word_two_even_ee`: `True`
+- `no_cycle_word_two_even_eoe`: `True`
+- `shared_two_even_tail`: `True`
+- `denomBits`: `True`
 - length eight open in census: `True`
 - no length-eight theorem: `True`
 - no all-cycles-impossible theorem: `True`
@@ -89,6 +93,7 @@ both two-even leftover families share n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} with 
 - floating_point_verdict: `False`
 - cycles_impossible: `False`
 - two_even_cycles_impossible: `False`
+- two_even_leftover_families_excluded: `True`
 - length_eight_census: `False`
 - induction_on_period: `False`
 - induction_on_n: `False`
@@ -98,10 +103,10 @@ both two-even leftover families share n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} with 
 
 **TWO_EVEN_UNIFORM_TAIL_GREEN**
 
-both two-even leftover families share n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} with e_a=2*3^a-2^{a+1}; the comparison never holds for n<=4 and first fires at N0(6)=205, then 14,8,6,6, and N0=5 for every k>=11; EOE adds no extra cutoff; tables below N0 are empty.
+both leftover families are Lean-excluded for every k>=6 and n>=2 by the shared tail at n>=256 plus the seven-odd obstruction and three Fin 256 tables below 256; N0(6)=205 then 14,8,6,6 and N0=5 for k>=11; not a length-8 census.
 
-This is not a halt result, not a length-8 census, and not
-an exclusion of every two-even CycleWord in Lean. The
-shared tail is bounded in k. Three-even leftovers were
-not opened.
+This is not a halt result and not a length-8 census.
+The two leftover families are Lean-excluded for every
+k>=6. Other two-even words and three-even leftovers
+were not opened.
 
