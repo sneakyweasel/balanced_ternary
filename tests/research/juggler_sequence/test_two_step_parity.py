@@ -731,6 +731,35 @@ def test_depth8_mode_probe():
         assert r[w]["ratio"] < 0.25
 
 
+def test_master_identity():
+    # Phase-25 gate: the master identity DD(c theta_2) = (DD c) theta_2
+    # + (D2 c)({W}-k2) + (D1 c)({W'}-k2') + c11({DDY}-k''-D2 k2),
+    # exact scaled integers (Paper B, Lemma 5.1(iv)).
+    from research.juggler_sequence.two_step_parity import (
+        master_identity_check,
+    )
+
+    for h1, h2 in ((1, 1), (2, 3), (5, 7)):
+        result = master_identity_check(10**6 + 1, 200, h1, h2)
+        assert result["holds"] is True
+        assert result["matches"] >= 180
+
+
+def test_kernel_margin_scan():
+    # Phase-25 gates m1/m2: the differenced-kernel main curvature is the
+    # 3:2 composite -(9/32) beta n^{-5/4}, and the window-centre
+    # composite (945/512 - 27/64) k j n^{-1/8} is single-signed at
+    # ratio 4.375 (Paper B, standing estimate E6 and Step 5a).
+    from research.juggler_sequence.two_step_parity import (
+        kernel_margin_scan,
+    )
+
+    r = kernel_margin_scan(10**8)
+    assert 0.9 < r["m1"]["ratio"] < 1.1
+    assert abs(r["m2"]["ratio"] - 4.375) < 1e-9
+    assert 1.41 < r["m2"]["sum_over_kj"] < 1.43
+
+
 def test_transport_block_variance():
     # Phase-17 falsifier (b): level-3 defects are block-random — mode and
     # fifth-letter block variances at the random-phase scale, autocorr at

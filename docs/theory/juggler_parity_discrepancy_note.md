@@ -22,9 +22,10 @@ enters the phase linearly with a smooth coefficient. Deeper patterns
 then funnel into a single *kernel*: the exponential sum of the level-2
 floor defect \(\{\lfloor n^{3/2}\rfloor^{3/2}\}\) against smooth weights
 of scale \(n^{9/8}\). The central result (Theorem 5.3) is a power-saving
-bound for that kernel, by double Weyl differencing over an exact
-carry-branch decomposition, with a targeted third differencing for the
-mixed pieces (Lemma 5.2).
+bound for that kernel, \(K_c\ll P^{1-1/96+\varepsilon}\), by double Weyl
+differencing over an exact carry-branch decomposition and master
+identity, with a targeted third differencing for the exact level-2 wave
+pieces (Lemma 5.2).
 
 The sequences arise as the itineraries of the Juggler map
 \(J(n)=\lfloor\sqrt n\rfloor\) (\(n\) even), \(\lfloor n^{3/2}\rfloor\)
@@ -88,11 +89,13 @@ Two ideas carry the paper.
    e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr),
    \qquad c\asymp kP^{9/8}.
    \]
-   We prove \(K_c(P)\ll P^{1-1/72+\varepsilon}\) by double Weyl
-   differencing over an exact carry-branch decomposition
-   (Lemma 5.1), with a targeted third differencing for the mixed
-   pieces (Lemma 5.2). This is the hardest result of the paper, and
-   Section 5 is written so that it can be checked without reference to
+   We prove \(K_c(P)\ll P^{1-1/96+\varepsilon}\), uniformly for
+   \(k\le P^{1/24}\), by double Weyl differencing over an exact
+   carry-branch decomposition and master identity (Lemma 5.1), with a
+   targeted third differencing for the level-2 wave pieces
+   (Lemma 5.2). This is the hardest result of the paper, and
+   Section 5 is written at full length — every estimate displayed
+   with its constant — so that it can be checked without reference to
    anything outside this manuscript.
 
 With the kernel theorem, depth-4 parity equidistribution is complete
@@ -1464,190 +1467,320 @@ run-boundary cost \((h/u)^{1/2}P^{7/8}\), summed against the
 **Theorem 5.3 (kernel cancellation).**
 Let \(c\) be smooth on \((P,2P]\) with \(c^{(r)}\asymp kP^{9/8-r}\)
 for \(r=0,\ldots,4\), derivative signs following the monomial pattern
-(e.g. \(c=\tfrac{3k}4n^{9/8}\)). Then
+(e.g. \(c=\tfrac{3k}4n^{9/8}\)), and \(1\le k\le P^{1/24}\). Then
 \[
-K_c(P)\ll P^{1-\delta+\varepsilon},
-\qquad
-\delta=\tfrac1{64}\ \text{for}\ k\ll P^{\varepsilon},
-\qquad
-\delta=\tfrac1{72}\ \text{uniformly for}\ k\le P^{1/24}.
+K_c(P)\ll P^{1-1/96+\varepsilon},
 \]
+uniformly in \(k\).
 
 *Proof.* Work on a dyadic block \(n\sim P\), odd.
 
-*Step 1 (double Weyl differencing).* With \(H_1=P^a\), \(H_2=P^b\)
-chosen in Step 6,
+*Step 1 (double Weyl differencing).* Set \(H_1=P^{1/48}\),
+\(H_2=P^{1/24}\). The classical inequality
+\(|\sum_na_n|^2\le\tfrac{P+2H}{H}\sum_{|h|<H}
+(1-\tfrac{|h|}H)\sum_na_{n+2h}\overline{a_n}\) applied twice gives
 \[
-|K_c|^2\ll\frac{P^2}{H_1}+\frac P{H_1}\sum_{h_1\le H_1}|T_1(h_1)|,
+|K_c|^2\le\frac{2P^2}{H_1}+\frac{4P}{H_1}
+\sum_{h_1=1}^{H_1}|T_1(h_1)|,
 \qquad
-|T_1|^2\ll\frac{P^2}{H_2}+\frac P{H_2}\sum_{h_2\le H_2}|T_2(h_1,h_2)|,
+|T_1|^2\le\frac{2P^2}{H_2}+\frac{4P}{H_2}
+\sum_{h_2=1}^{H_2}|T_2(h_1,h_2)|,
 \]
-where \(T_2=\sum_ne(\varphi_2)\) and
-\(\varphi_2=\Delta\Delta(c\,\theta_2)
-=\Delta\Delta(cY)-\Delta\Delta(cv)\): an exact split into a
-real-analytic block and an integer block.
-
-*Step 2 (exact product rule).* For both blocks,
+with \(T_2=\sum_ne(\varphi_2)\),
+\(\varphi_2=\Delta\Delta(c\,\theta_2)\). For all
+\(h_1\le H_1\), \(h_2\le H_2\), \(k\le P^{1/24}\):
+\(kh_1h_2\le P^{1/24+1/48+1/24}=P^{5/48}\le P^{1/8}\), so
+(C1)–(C3) hold with room \(P^{-1/48}\). We prove
 \[
-\Delta\Delta(cf)=c_{11}\,\Delta\Delta f
-+(\Delta_2c)(n{+}d_1)\,\Delta_1f
-+(\Delta_1c)(n{+}d_2)\,\Delta_2f
-+(\Delta\Delta c)\,f,
+|T_2|\ll P^{23/24+\varepsilon}
+\quad\text{uniformly in }h_1,h_2,k;
 \]
-with \(\Delta_ic\asymp kh_iP^{1/8}\) and
-\(\Delta\Delta c\asymp kh_1h_2P^{-7/8}\). Here \(c_{11}\) denotes the
-doubly shifted weight.
+then \(|T_1|\ll P^{1-1/48+\varepsilon}\) and
+\(|K_c|\ll P^{1-1/96+\varepsilon}\), the three savings balancing
+exactly at the chosen \(H_1,H_2\).
 
-*Step 3 (the \(Y\)-block).* Split into the \(O((h_1{+}h_2)P^{1/2})\)
-cell intersections of Lemma 4.3(ii); within a cell every shifted
-\(Y\)-value is a smooth function of the single variable
-\(m=X-\theta\), so no \(\Delta\theta\) cross-terms arise.
+*Step 2 (master identity; the trivial piece).* By Lemma 5.1(iv),
+exactly,
+\[
+\varphi_2=\underbrace{(\Delta\Delta c)\,\theta_2}_{M_1}
++\underbrace{(\Delta_2c)(n{+}d_1)(\{W\}-\kappa_2)}_{M_2}
++\underbrace{(\Delta_1c)(n{+}d_2)(\{W'\}-\kappa_2')}_{M_3}
++\underbrace{c_{11}(\{\Delta\Delta Y\}-\kappa''
+-\Delta_2\kappa_2)}_{M_4}.
+\]
+By (E4), \(|M_1|\le0.43\,kh_1h_2P^{-7/8}\), so
+\(|e(M_1)-1|\le2.7\,kh_1h_2P^{-7/8}\) and deleting \(M_1\) changes
+\(T_2\) by at most \(2.7\,kh_1h_2P^{1/8}\le2.7\,P^{1/4}\) by (C1).
+No growing smooth part remains: every other bracket is bounded
+by \(2\).
 
-- \((\Delta\Delta c)\,Y\): smooth part of curvature
-  \(\asymp kh_1h_2P^{-5/8}\); the \(\theta\)-coefficient
-  \(\tfrac32(\Delta\Delta c)X^{1/2}\asymp kh_1h_2P^{-1/8}\) is
-  sub-unit under the standing constraint
+*Step 3 (the expansion inventory).* The three remaining pieces are
+expanded as follows; all truncations, masses, and error costs are
+displayed here once and summed in Step 6.
+
+(3a) *\(M_2\), sawtooth part \((\Delta_2c)(n{+}d_1)\{W\}\).* The
+coefficient \(B(n)=\Delta_2c(n{+}d_1)\in(1.68,1.85)kh_2P^{1/8}\)
+drifts by \(|B'|\le0.22kh_2P^{-7/8}\) per step: freeze it on at most
+\(2kh_2P^{1/4}{+}1\) windows on which it moves by \(\le P^{-1/8}\)
+(residual cost
+\(\sum_n|e((B{-}B_0)\{W\})-1|\le6.3P^{-1/8}\cdot P=6.3P^{7/8}\)).
+Per window, Lemma 3.8 at the centre \(B_0\) with
+\(T=P^{1/2}/(2h_1)\), \(J=P^{1/4}\): flat cost in total
+\(\le8(1{+}1.85kh_2P^{1/8})\cdot2h_1P^{1/2}
+\le16h_1P^{1/2}+30\,kh_1h_2P^{5/8}\le46P^{3/4}\) by (C1); the
+majorant \(\Delta_J\)-part costs \(\le2\cdot4P/J=8P^{3/4}\) plus
+\(J\)-mode sums at coefficients \(\le1/(J{+}1)\); modes \(e(uW)\)
+with mass \(\le C\log P\) and \(u\le1.85kh_2P^{1/8}+P^{1/2}/(2h_1)\),
+so that \(uh_1\le1.85P^{1/4}+P^{1/2}/2\le P^{1/2}\): every mode is a
+Lemma 5.2(i) object at shift \(h_1\le P^{1/48}\). Window boundaries
+cost \(\le2kh_2P^{1/4}\cdot3.4P^{3/8}\le7P^{17/24}\).
+
+(3b) *\(M_2\), carry part \((\Delta_2c)(n{+}d_1)\kappa_2\).* Here
+\(\kappa_2\in\{0,1\}\) is an integer, so exactly
+\(e(-(\Delta_2c)\kappa_2)=1+\kappa_2\bigl(e(-\Delta_2c)-1\bigr)\):
+the large coefficient never multiplies a sawtooth inside an
+exponential. The factor \(e(-\Delta_2c(n{+}d_1))\) is a smooth phase
+with \(|(\Delta_2c)''|\le2h_2\sup|c'''|\le0.19kh_2P^{-15/8}\):
+class (D3). The weight \(\kappa_2=\{Y\}+\{W\}-\{Y{+}W\}\)
+(Lemma 5.1(ii)) is expanded *additively* as real numbers, each unit
+sawtooth by finite Fourier (Lemma 3.5) at truncation
+\(J_2=P^{1/24}\), coefficients \(\le1/(\pi|q|)\), majorant cost
+\(\le4P/J_2=4P^{23/24}\) per layer plus \(J_2\)-mode averages. Since
+\(Y{+}W=Y(n{+}d_1)\) exactly, the resulting modes are \(e(qY(n))\),
+\(e(qY(n{+}d_1))\) — Lemma 5.2(ii) objects — and \(e(qW)\) —
+Lemma 5.2(i) objects.
+
+(3c) *\(M_3\).* The mirror of (3a)–(3b) with \(h_1\leftrightarrow
+h_2\), producing \(e(qY(n{+}d_2))\), \(e(qW')\)-modes.
+
+(3d) *\(M_4\), carries.* \(\kappa''=\{W\}+\{\Delta\Delta Y\}
+-\{W{+}\Delta\Delta Y\}\) with \(W{+}\Delta\Delta Y=W(n{+}d_2)\)
+exactly, and \(\Delta_2\kappa_2=\kappa_2(n{+}d_2)-\kappa_2(n)\) with
+each \(\kappa_2\) expanded as in (3b) at its base. The smooth
+factors \(e(\mp c_{11})\) have \(|c''|\le0.11kP^{-7/8}\): class
+(D3). New mode species: \(e(q\{\Delta\Delta Y\}\)-content\()\) —
+slow modes, treated in Step 5 — and \(e(qY(n{+}d))\) for
+\(d\in\{0,d_2,d_1{+}d_2\}\), \(e(qW(n{+}d_2))\): Lemma 5.2 objects
+again.
+
+(3e) *\(M_4\), the anchor.* The factor
+\(e(c_{11}\{\Delta\Delta Y\})\) is never expanded away. On the
+branch decomposition of Lemma 5.1(iii) (arcs absorbed by the exact
+shift device at \(O(\log P)\) mass and \(4P^{3/4}\) majorant, as in
+Theorem 4.4, Step 4), \(\{\Delta\Delta Y\}=G-J_F\) with
+\(G=F_{\boldsymbol\kappa}(X{-}\theta)\) and
+\(J_F=\lfloor G\rfloor\) frozen on the runs of (E6). The anchor
+phase \(c_{11}(G-J_F)\) is present in **every** final piece; its
+curvature scale ((E6), gate m2) is what orders the whole
+classification of Step 5.
+
+After (3a)–(3e), every final piece of \(T_2\) has the exact form
+\[
+e\Bigl(\ \underbrace{c_{11}(G-J_F)}_{\text{anchor}}
++\underbrace{\textstyle\sum_iq_iY(n{+}e_i)}_{\text{waves},\
+e_i\in\mathcal D}
++\underbrace{u\,W\text{- and }u'W'\text{-modes}}_{\text{differenced
+waves}}
++\underbrace{\text{slow modes}+\varphi}_{\text{(D3)-smooth}}\Bigr)
+\]
+with at most one mode from each expansion layer (three layers), and
+piece weights whose total mass is \(O(\log^3P)\) beyond the
+displayed majorant and flat costs.
+
+*Step 4 (pieces with wave content: Lemma 5.2(ii)).* Let
+\(t=\sum_iq_i\) be the total wave frequency,
+\(|t|\le3J_2\le P^{1/16}\).
+
+If \(t\ne0\): telescoping,
+\(\sum_iq_iY(n{+}e_i)=t\,Y(n{+}e_1)+\sum_{i\ge2}q_i\,
+\Delta_{e_i-e_1}Y(n{+}\min(e_1,e_i))\), and after the targeted
+differencing of Lemma 5.2(ii) the differenced-wave remainders and
+the \(u,u'\)-modes become (D1) decorations, the anchor becomes the
+(D2) decoration, and the smooth content is (D3): Lemma 5.2(ii)
+applies and gives \(\ll|t|^{-1/6}P^{23/24+\varepsilon}\) per piece.
+The weight sum is
+\[
+\sum_{t\ne0}\ \sum_{q_1+q_2+q_3=t}
+\frac1{\pi^3\max(1,|q_1|)\max(1,|q_2|)\max(1,|q_3|)}
+\,|t|^{-1/6}
+\ll\sum_{t\ge1}\frac{\log^2(2{+}t)}{t^{7/6}}\ll1,
+\]
+so the total wave-piece contribution is
+\(\ll P^{23/24+\varepsilon}\).
+
+If \(t=0\): the wave content collapses exactly to differenced
+waves — e.g. \(q(Y(n{+}d_2)-Y(n))=q\,W'(n)\) — i.e. to
+(D1)-type resonant decorations of the remaining piece; these are
+handled in Step 5. This exactness is the reason no near-resonant
+analysis is ever needed for the wave frequencies: the resonant
+combination is an identity, not an approximation.
+
+*Step 5 (pieces without wave content: the anchor classes).*
+The remaining pieces carry the anchor, at most two differenced-wave
+modes \(u\,W\), \(u'W'\) (including the resonant remnants of
+Step 4, which by Lemma 5.1(iii) are smooth-per-branch with sub-unit
+\(\theta\)-coefficients), slow modes, and (D3)-smooth content.
+Split by the anchor branch type.
+
+**(5a) Offset branches (\(j\ne0\)).** The anchor curvature is,
+by (E6) and the window-centre composite,
+\[
+\lambda_a=\tfrac{729}{512}\,k|j|\,n^{-1/8}\,(1+O(P^{-1/8}))
+\ \in\ [1.2,\,1.5]\,k|j|P^{-1/8},
+\]
+where \(\tfrac{729}{512}=\tfrac{945}{512}-\tfrac{27}{64}\) is the
+sum of the smooth part \((cF)''\) and the window-centre mode
+\(uX''\) at \(u=-B(n_0)\): single-signed with ratio
+\(\tfrac{945}{512}:\tfrac{27}{64}=4.375\) (machine gate m2 of
+`kernel_margin_scan`). Every competitor is dominated at a displayed
+margin: differenced-wave modes
+\(\le0.84\,uh_1P^{-3/4}\le0.51P^{-1/4}\) (since \(uh_1\le0.6P^{1/2}\)),
+ratio \(\le0.43P^{-1/8}\) against \(\lambda_a\ge1.2P^{-1/8}\);
+resonant (D1) content \(\le6\,|q'|P^{-5/4}\cdot P^{1/16}\)-scale,
+ratio \(\le5P^{-9/16}\); slow modes
+\(\le3J_2|j|P^{-5/4}\), ratio \(\le8P^{1/24-9/8}\); (D3) content,
+ratio \(\le3h_1h_2P^{-1/2}\le P^{-1/4}\). The \(\theta\)-sawtooth of
+the anchor has coefficient \(\tfrac9{16}k|j|P^{3/8}\)-scale with
+per-step drift \(\le0.2k|j|P^{-5/8}<1\): at most
+\(1.2k|j|P^{3/8}{+}1\) windows of length \(\ge0.8P^{5/8}/(k|j|)\),
+window-boundary cost
+\(\le1.2k|j|P^{3/8}\cdot0.92(k|j|)^{-1/2}P^{1/16}
+\le1.1(k|j|)^{1/2}P^{7/16}\). Off the collision band, window modes
+\(w\) are dominated at margin \(\ge4\) either way and ride along or
+are estimated by Lemma 3.3 at their own scale with \(1/|w{+}B_0|\)
+weights (\(\ll P^{7/8}\log P\) in total); on the collision band
+\(|wX''|\in[\tfrac14,4]\lambda_a\), Lemma 3.9 with
+\((\alpha,\beta)=(\tfrac{15}8,\tfrac32)\) and
+\(M\le1.5k|j|P^{-1/8}\) gives, per window and summed with the
+\(O(\log P)\) band mass,
+\(\ll\bigl((k|j|)^{1/2}P^{15/16}+(k|j|)^{-1/2}P^{1/16}
+\cdot k|j|P^{3/8}+(k|j|)^{1/6}P^{1-3/16}
++(k|j|)^{-1/6}P^{1/2+3/16}\bigr)\log P
+\ll(k|j|)^{1/2}P^{15/16}\log P\).
+The main estimate is Lemma 3.3 per frozen run at scale
+\(\lambda_a\): run lengths \(\ge\tfrac1{22}P^{1/4}/(|j|{+}1)\)
+(Lemma 5.1(iii)), and
+\(\lambda_a^{-1/2}\le0.92(k|j|)^{-1/2}P^{1/16}\ll\) run length, so
+\[
+\sum_{\text{runs}}\bigl(\ell\lambda_a^{1/2}+\lambda_a^{-1/2}\bigr)
+\le1.3\,(k|j|)^{1/2}P^{15/16}
++21\,(|j|{+}1)|j|^{-1/2}k^{-1/2}P^{13/16}.
+\]
+Summed over the eight carry branches and \(|j|\le3\) with the
+\(O(\log^3P)\) piece masses:
+\(\ll(k)^{1/2}P^{15/16+\varepsilon}
+\le1.8\,P^{1/48}P^{15/16+\varepsilon}=1.8\,P^{23/24+\varepsilon}\)
+at \(k\le P^{1/24}\) — the absorbed \((k|j|)^{1/2}\) loss, exactly
+at the bottleneck.
+
+**(5b) Zero-offset branches (\(j=0\)).** Anchor curvature
+\(\lambda_0\in[0.2,0.9]\,kh_1h_2P^{-5/8}\) (composite exponent
+\(\tfrac{11}8\)), runs of length
+\(\ge\tfrac1{22}P^{3/4}/(h_1h_2)\). Let
+\(\mu=0.84\max(uh_1,u'h_2)P^{-3/4}\) be the strongest
+differenced-wave scale present. Three regimes.
+
+- *Anchor-dominant* (\(60\mu\le\lambda_0\)): Lemma 3.3 per run at
+  \(\lambda_0\), all else dominated at margin \(\ge20\):
+  \(\le1.3(kh_1h_2)^{1/2}P^{11/16}
+  +49\,(h_1h_2/k)^{1/2}P^{9/16}\).
+- *Mode-dominant* (\(\mu\ge60\lambda_0\), i.e.
+  \(uh_1\ge60\,kh_1h_2P^{1/8}\)-form): Lemma 5.2(i) with the
+  undifferenced anchor as decoration: its run boundaries number
+  \(\le22h_1h_2P^{1/4}\le22P^{5/16}\), cost
+  \(\le22P^{5/16}\cdot3.4(uh_1)^{-1/2}P^{3/8}\le75P^{11/16}\); its
+  smooth part is dominated at margin \(\ge20\) by hypothesis; its
+  \(\theta\)-coefficient \(\le1.2kh_1h_2P^{3/8}\le1.2P^{1/2}\)
+  produces at most \(1.2P^{1/2}\) windows (boundary cost
+  \(\le1.2P^{1/2}\cdot3.4(uh_1)^{-1/2}P^{3/8}\le4.1P^{7/8}
+  (uh_1)^{-1/2}\)) whose centre modes \(w\) are treated exactly as
+  in Lemma 5.2(i), Stage 5. Total
+  \(\ll\bigl((uh_1)^{1/2}P^{5/8}+(h_1/u)^{1/2}P^{7/8}
+  +P^{7/8}\bigr)P^{\varepsilon}\).
+- *Middle band* (\(\tfrac1{60}\le\mu/\lambda_0\le60\); coefficient
+  mass \(O(1)\) per layer): here up to three curvature scales meet
+  — the \(u\)- and \(u'\)-modes merge into a single
+  \(\nu^{3/4}\)-term with frozen coefficient
+  \(\tfrac32(uG_1{+}u'G_2)\) per cell intersection (at most
+  \(1.5(h_1{+}h_2)P^{1/2}{+}2\) cells), the anchor is the
+  \(\nu^{11/8}\)-term, and the window modes are
+  \(\nu^{3/2}\)-terms. Lemma 3.10 with
+  \((\alpha,\beta,\gamma)=(\tfrac34,\tfrac{11}8,\tfrac32)\) and
+  \(M\ge0.2kh_1h_2P^{-5/8}\ge0.2P^{-5/8}\) gives, per cell and
+  summed,
   \[
-  \text{(C1)}\qquad kh_1h_2\le P^{1/8},
+  \ll\Bigl(P\,M^{1/2}
+  +(h_1{+}h_2)P^{1/2}M^{-1/2}
+  +P(M/P)^{1/6}+P^{1/2}(M/P)^{-1/6}
+  +P(M/P^2)^{1/14}+P^{3/4}(M/P^2)^{-1/14}\Bigr)\log P,
   \]
-  so the sawtooth is expanded in Fourier modes of \(\theta\) at
-  multiplicative mode-mass cost \(O(\log P)\), not absorbed.
-- \((\Delta_2c)\,\Delta_1Y\) and its mirror: on the cell
-  \(\Delta_1Y=(m{+}G_1)^{3/2}-m^{3/2}\); the \(\theta\)-coefficient
-  is \(\asymp(\Delta_2c)\,G_1X^{-1/2}\asymp kh_1h_2P^{-1/8}<1\)
-  under (C1), the smooth curvature \(\asymp kh_1h_2P^{-5/8}\).
-- \(c_{11}\,\Delta\Delta Y\): split over the branches of
-  Lemma 5.1(iii). Per branch with net offset \(j\), the smooth part
-  \(c\,F_{\boldsymbol\kappa}(X)\) has curvature
-  \(\asymp k|j|P^{-1/8}+kh_1h_2P^{-5/8}<1\) and combines with the
-  frozen floor of Step 4 into the per-run phase of class (i) below;
-  the \(\theta\)-content \(cF'\theta\) has coefficient
-  \(\asymp k|j|P^{3/8}+kh_1h_2P^{-1/8}\) with window drift
-  \((cF')'\asymp k|j|P^{-5/8}<1\), so a shifted-window expansion
-  produces \(X\)-modes of size \(s\asymp k|j|P^{3/8}\) with curvature
-  \(sX''\asymp k|j|P^{-1/8}<1\), handled by Lemma 3.3.
+  and with \(M\in[0.2P^{-5/8},1.35P^{-1/4}]\) every term is
+  \(\le1.3P^{15/16}\): in order,
+  \(\le1.2P^{7/8}\); \(\le2.3(h_1{+}h_2)P^{1/2+5/16}\le
+  5P^{1/24+13/16}\le5P^{7/8}\); \(\le P^{1-13/48}\);
+  \(\le1.3P^{1/2+13/48}\le1.3P^{37/48}\); \(\le P^{1-3/16}\);
+  \(\le1.2P^{3/4+3/16}=1.2P^{15/16}\).
 
-*Step 4 (the \(v\)-block).* \(v\) is an integer, so no fractional
-part of \(c\) is ever split off.
+In all three regimes the \(j=0\) pieces total
+\(\ll P^{15/16+\varepsilon}\ll P^{23/24}\).
 
-- \((\Delta\Delta c)\,v=(\Delta\Delta c)(Y-\theta_2)\): the
-  \(Y\)-part as in Step 3; the \(\theta_2\)-part has coefficient
-  \(\asymp kh_1h_2P^{-7/8}<1\).
-- \((\Delta_2c)\,\Delta_1v\): by Lemma 4.3(ii) applied to \(Y\),
-  \(\Delta_1v=\lfloor W\rfloor+\kappa_2=W-\{W\}+\kappa_2\). The
-  piece \((\Delta_2c)\,W\) is smooth per cell (curvature
-  \(\asymp kh_1h_2P^{-5/8}\), \(\theta\)-coefficient
-  \(\asymp kh_1h_2P^{-1/8}<1\)). The sawtooth
-  \(-(\Delta_2c)\,\{W\}\) has window drift
-  \((\Delta_2c)'\asymp kh_2P^{-7/8}<1\) and expands into \(W\)-modes
-  \(r\lesssim kh_2P^{1/8}\), each again smooth per cell
-  (\(\theta\)-coefficient \(\asymp rh_1P^{-1/4}\le
-  kh_1h_2P^{-1/8}<1\), curvature \(\asymp kh_1h_2P^{-5/8}\)). The
-  carry factor \(e((\Delta_2c)\kappa_2)=1+\kappa_2
-  (e(\Delta_2c)-1)\) is an indicator weight times a smooth factor;
-  \(\kappa_2=\{Y\}+\{W\}-\{Y{+}W\}\) (Lemma 5.1(ii)) expands into
-  unit sawtooths of \(Y\)-, \(W\)-, and \(Y{+}W\)-forms with
-  \(O(1)\) coefficients — Vaaler windows \(|r|\le R\),
-  \(R=P^{\rho}\), majorant error \(P/R\) per layer. The \(Y\)-modes
-  linearize (Lemma 4.3(i) with base \(Y\)) to \(X\)-modes of size
-  \(s\asymp rP^{3/4}\) and curvature \(sX''\asymp rP^{1/4}\gg1\):
-  pieces without a frozen-floor factor take the third-derivative
-  test over full ranges (\(\lambda_3=sX'''\asymp rP^{-3/4}<1\),
-  saving \(P^{1/8}/r^{1/6}\)); pieces riding a frozen floor are the
-  mixed class, Lemma 5.2.
-- \(c_{11}\,\Delta\Delta v=c_{11}\,\Delta_2g_2\): Lemma 5.1(ii). Per
-  branch of Lemma 5.1(iii), the frozen integer
-  \(J_F=\lfloor F_{\boldsymbol\kappa}(X(n))\rfloor\) (boundary
-  toggles are slow-sawtooth indicators in \(\{F(X)\}\) and
-  \(\theta\)) combines with the \(c_{11}\Delta\Delta Y\)-content of
-  Step 3 into the smooth per-run phase
-  \(c\,(F_{\boldsymbol\kappa}-J_F)\), of curvature
-  \(\asymp k|j|P^{-1/8}+kh_1h_2P^{-5/8}<1\), single-signed per
-  branch (class (i)); per frozen run and summed over runs this
-  gives
-  \[
-  \ll(k|j|)^{1/2}P^{15/16}+|j|^{3/2}k^{-1/2}P^{13/16}
-  \quad(j\ne0),
-  \qquad
-  \ll(kh_1h_2)^{1/2}P^{11/16}+(h_1h_2/k)^{1/2}P^{9/16}
-  \quad(j=0).
-  \]
-  The carries \(\kappa''\) (\(W\)- and \(\Delta W\)-content only:
-  slow modes, class (ii)) and \(\Delta_2\kappa_2\)
-  (\(\theta_2\)-content: classes (iii)–(iv)) are indicator weights
-  times \(e(\mp c)\), the latter smooth of curvature
-  \(c''\asymp kP^{-7/8}\).
-
-*Step 5 (dominance and mode assembly).* The final pieces fall into
-four classes.
-
-- **(i) Pure smooth pieces**, curvature
-  \(\lambda_2\asymp k|j|P^{-1/8}\) or \(kh_1h_2P^{-5/8}\): the
-  leading curvature per branch is a genuine double difference of a
-  single smooth function per run (the \(c_{11}\Delta\Delta Y\)- and
-  \(-c\lfloor\Delta\Delta Y\rfloor\)-contents combine per run into
-  \(c\,(F_{\boldsymbol\kappa}-J_F)\)), so the double mean value
-  theorem gives a single sign. For the monomial-pattern family the
-  composite sign check is
-  \(\alpha(\alpha{-}1)(\alpha{+}\beta{-}2)(\alpha{+}\beta{-}3)>0\)
-  at \(\alpha=\tfrac98\) with \(\beta=\tfrac34\) (offset branches,
-  \(cF\asymp k\,|j|\,n^{15/8}\)) and \(\beta=\tfrac14\) (zero-offset
-  composites, \(cF\asymp kh_1h_2n^{11/8}\)): the composite exponents
-  \(\tfrac{15}8,\tfrac{11}8\notin\{0,1,2\}\), so no factor
-  vanishes. Per-run application of Lemma 3.3 is legitimate because
-  \(\lambda_2^{-1/2}\asymp P^{1/16}\ll P^{1/4}\asymp\) run length;
-  the saving is \(\ge P^{1/16}/(k|j|)^{1/2}\).
-- **(ii) Slow-mode pieces** (\(W\)-, \(\Delta W\)-, \(F\)-modes and
-  small \(\theta\)-modes, no \(\theta_2\)-content): Lemma 3.3 over
-  full ranges at the dominant curvature scale. Dominance is clean
-  because the only curvature scale that could collide,
-  \(s^*\asymp kP^{3/8}\), lies outside every mode window: window
-  centres exceed window widths by construction, and the small-mode
-  truncations are capped at \(P^{1/16}\ll kP^{3/8}\).
-- **(iii) Mixed pieces** — a frozen-floor factor times a large
-  \(X\)-mode \(s\asymp rP^{3/4}\) regenerated by the
-  \(\theta_2\)-carries: Lemma 3.3 fails there
-  (\(\lambda_2\asymp rP^{1/4}\gg1\)) and the per-run
-  third-derivative test returns only the trivial bound. This class
-  is exactly Lemma 5.2, with saving \(P^{1/8}/r^{1/6}\).
-- **(iv) Carry-mode pieces without a frozen floor**: the
-  third-derivative test over full ranges,
-  \(\lambda_3\asymp rP^{-3/4}\), saving \(P^{1/8}/r^{1/6}\).
-
-*Step 6 (assembly).* Sub-unit sawtooths cost multiplicative
-mode-mass \(O(\log P)\) only; mode masses multiply over at most four
-expansion layers plus the targeted differencing of Lemma 5.2:
-\(P^{\varepsilon}\) in total. Majorant truncations cost \(P/R\) per
-layer. With \(R=P^{\rho}\), \(\rho=\tfrac1{16}\), the savings
-\(P^{1/16}/(k|j|)^{1/2}\) (class (i)), \(P^{1/8-\rho/6}\) (classes
-(iii)–(iv) at \(r\le R\)), and the truncation loss \(P^{-\rho}\)
-balance at
+*Step 6 (assembly).* Additive costs: the \(M_1\) deletion
+(\(2.7P^{1/4}\)); majorants (\(\le3\) sawtooth layers at
+\(4P/J_2=4P^{23/24}\) each, plus \(8P^{3/4}\), \(46P^{3/4}\), and
+the displayed window residuals \(\le7P^{7/8}\)); flat costs
+(\(\le46P^{3/4}\) per layer). Multiplicative costs: mode masses over
+at most three expansion layers plus the shift devices,
+\(O(\log^3P)=P^{\varepsilon}\). Piece totals: Step 4,
+\(\ll P^{23/24+\varepsilon}\); Step 5a,
+\(\le1.8P^{23/24+\varepsilon}\); Step 5b,
+\(\ll P^{15/16+\varepsilon}\); slow modes and (D3) remnants,
+\(\ll P^{7/8+\varepsilon}\). Hence
+\(|T_2|\ll P^{23/24+\varepsilon}\), and by Step 1
 \[
-|T_2|\ll P^{1-1/16+\varepsilon}
-\qquad\text{under (C1) and } h_1h_2\le P^{1/2}/3 .
+|T_1|^2\le2P^{2-1/24}+CP^{1+23/24+\varepsilon}
+\ \Rightarrow\ |T_1|\ll P^{1-1/48+\varepsilon},
+\qquad
+|K_c|^2\le2P^{2-1/48}+CP^{2-1/48+\varepsilon},
 \]
-Unwinding the two differencings: with \(k\le P^{\kappa_0}\) and
-\(a+b\le\tfrac18-\kappa_0\) (so that (C1) holds for all
-\(h_1\le H_1\), \(h_2\le H_2\)),
-\[
-|K_c|\ll P\bigl(P^{-a/2}+P^{-b/4}+P^{-1/64}\bigr).
-\]
-For \(\kappa_0=\varepsilon\): \(a=\tfrac1{32}\), \(b=\tfrac1{16}\),
-\(\delta=\tfrac1{64}\). For \(\kappa_0=\tfrac1{24}\):
-\(a=\tfrac1{36}\), \(b=\tfrac1{18}\), \(\delta=\tfrac1{72}\).
-Exponents deliberately unoptimized. \(\square\)
+so \(|K_c|\ll P^{1-1/96+\varepsilon}\). Exponents deliberately
+unoptimized. \(\square\)
+
+Two remarks on the constants. First, the \(k\)-range is sharp for
+this assembly: the class-(5a) loss \((k|j|)^{1/2}P^{15/16}\) meets
+the wave-piece bottleneck \(P^{23/24}\) exactly at \(k=P^{1/24}\),
+which is why the theorem is uniform on the original range with no
+\(k\)-explicit statement needed. Second, the exponent
+\(\tfrac1{96}=\tfrac14\cdot\tfrac1{24}\) traces entirely to the
+depth-2 strength \(P^{23/24}\) of the exact level-2 waves
+(Lemma 5.2(ii)); any improvement of the wave bound improves
+\(\delta\) proportionally.
 
 **Corollary 5.4 (low-exponent families).**
-The bound of Theorem 5.3 holds for every monomial-pattern family
-\(c^{(r)}\asymp kP^{\alpha-r}\) with \(0<\alpha\le\tfrac98\),
+Fix a finite set
+\(\mathcal A\subset(0,\tfrac98]\setminus\{\tfrac14,\tfrac34\}\).
+The bound of Theorem 5.3 holds, with constants depending on
+\(\mathcal A\), for every monomial-pattern family
+\(c^{(r)}\asymp kP^{\alpha-r}\) with \(\alpha\in\mathcal A\),
 uniformly for \(k\le P^{1/24}\).
 
-*Proof.* Every constraint in the proof is monotone in \(\alpha\) on
-\((0,\tfrac98]\): (C1) relaxes to \(kh_1h_2\le P^{5/4-\alpha}\);
-every curvature and window drift shrinks; the sign-dominance product
-\(\alpha(\alpha{-}1)(\alpha{+}\beta{-}2)(\alpha{+}\beta{-}3)>0\)
-holds at \(\beta\in\{\tfrac14,\tfrac34\}\) throughout the interval;
-the assembly exponents only improve. \(\square\)
+*Proof.* Every constraint of the proof is monotone in \(\alpha\) on
+\((0,\tfrac98]\): (C1) relaxes to \(kh_1h_2\le P^{5/4-\alpha}\), and
+every coefficient size, window drift, and flat cost shrinks. The
+anchor composites have exponents \(\alpha{+}\tfrac34\) (offset
+branches) and \(\alpha{+}\tfrac14\) (zero-offset); the single-sign
+requirement is \((\alpha{+}\tfrac34)(\alpha{-}\tfrac14)\ne0\) resp.
+\((\alpha{+}\tfrac14)(\alpha{-}\tfrac34)\ne0\), i.e.
+\(\alpha\notin\{\tfrac14,\tfrac34\}\). Where the window-centre
+composite margin degenerates (the analogue of
+\(\tfrac{945}{512}-\tfrac{27}{64}\) can vanish at one interior
+\(\alpha_0=(\sqrt{10}-1)/4\)), the collision is covered by Lemma 3.9
+with the pair \((\alpha{+}\tfrac34,\tfrac32)\), valid since
+\(\alpha{+}\tfrac34\ne\tfrac32\) on \(\mathcal A\); Lemma 3.10 runs
+with \((\tfrac34,\alpha{+}\tfrac14,\tfrac32)\), pairwise distinct
+for \(\alpha\notin\{\tfrac14,\tfrac34\}\). The exponent sets
+\(E\) of Lemmas 3.9–3.10 are enlarged to include
+\(\alpha{+}\tfrac34\), \(\alpha{+}\tfrac14\) for
+\(\alpha\in\mathcal A\), a finite set. \(\square\)
 
 ## 6. Applications: depth four complete, and deeper contracting words
 
@@ -1655,14 +1788,15 @@ the assembly exponents only improve. \(\square\)
 For \(w\in\{OOOE,OOOO\}\),
 \[
 \#\{n\le N\ \text{odd}:\ \mathrm{word}_4(n)=w\}
-=\tfrac N{16}+O\bigl(N^{1-1/72+\varepsilon}\bigr).
+=\tfrac N{16}+O\bigl(N^{1-1/96+\varepsilon}\bigr).
 \]
 Hence **every** itinerary word class of depth at most four satisfies
 \(\#\{n\le N\}=2^{-|w|}N+O(N^{1-\delta_w})\) with explicit
 \(\delta_w>0\): depth-4 parity equidistribution is complete.
 
 *Proof.* The class indicator expands (Lemma 3.6, then Lemma 3.5 at
-truncation \(J_3=P^{1/24}\), error \(P/J_3\)) into mode sums
+truncation \(J_3=P^{1/96}\), error \(P/J_3=P^{1-1/96}\)) into mode
+sums
 \(S_{ijk}=\sum_ne(\tfrac i2X+\tfrac j2Y+\tfrac k2v^{3/2})\) over
 dyadic blocks. Three applications of the Taylor pattern of
 Lemma 4.3(i), taken to second order, give the exact identity (odd
@@ -1685,20 +1819,22 @@ members. Writing \(v=Y-\theta_2\) splits each family term into a
 smooth-in-\(m\) part and a kernel factor \(e(-c\,\theta_2)\). The
 double differencing of Theorem 5.3 applied to the whole mode phase
 carries the passengers along: the pure-\(m\) polynomial phases
-difference into the Step-3 classes (their \((\Delta\Delta\mu)m\)
-content is sub-unit under (C1), the crosses are smooth per cell, and
-\(\mu\,\Delta\Delta m\) produces the bounded-offset branch phases of
-Step 3 with curvature \(\asymp k|j|P^{-1/8}\), single-signed by the
-same monomial-exponent check); the \(\tfrac i2X\)- and
+difference into the anchor classes of Step 5 (their
+\((\Delta\Delta\mu)m\) content is sub-unit under (C1), the crosses
+are smooth per cell, and \(\mu\,\Delta\Delta m\) produces the
+bounded-offset branch phases with curvature
+\(\asymp k|j|P^{-1/8}\), single-signed by the same
+monomial-exponent check); the \(\tfrac i2X\)- and
 \(\tfrac j2Y\)-passengers difference to curvatures
 \(\ll ih_1h_2P^{-5/2}\) and \(\asymp jh_1h_2P^{-5/4}\), each smaller
 than every retained curvature scale of Step 5 by a fixed power of
-\(P\); and the kernel factor is handled by Steps 2–5 of Theorem 5.3
-without change, since those steps use only the derivative pattern of
-\(c\), not its specific form. Assembly and summation over
-\(k\le J_3\) with \(1/k\)-weights give
-\(\sum_k\tfrac1kP^{1-1/72}+P^{1-1/24}\ll P^{1-1/72+\varepsilon}\);
-dyadic blocks sum to \(N^{1-1/72+\varepsilon}\). \(\square\)
+\(P\), and the differenced \(\tfrac j2Y\)-passenger's wave content
+is exactly a (D1) decoration; and the kernel factor is handled by
+Steps 2–6 of Theorem 5.3 without change, since those steps use only
+the derivative pattern of \(c\), not its specific form. Assembly and
+summation over \(k\le J_3\) with \(1/k\)-weights give
+\(\sum_k\tfrac1kP^{1-1/96}+P^{1-1/96}\ll P^{1-1/96+\varepsilon}\);
+dyadic blocks sum to \(N^{1-1/96+\varepsilon}\). \(\square\)
 
 The certified-descent density stays \(13/16\) at four steps —
 \(OOO*\) is non-contracting at depth 4 (\(3^3>2^4\)) — but the
@@ -1708,7 +1844,7 @@ and eight.
 **Theorem 6.2 (the length-5 contracting splits).**
 \[
 \#\mathrm{OOOEE}(N),\ \#\mathrm{OOOEO}(N)
-=\tfrac N{32}+O\bigl(N^{1-1/72+\varepsilon}\bigr),
+=\tfrac N{32}+O\bigl(N^{1-1/96+\varepsilon}\bigr),
 \qquad
 \#\mathrm{OOEOE}(N),\ \#\mathrm{OOEOO}(N)
 =\tfrac N{32}+O\bigl(N^{43/48+\varepsilon}\bigr).
@@ -1758,7 +1894,7 @@ coefficients do not cancel. Lemma 3.3 on each interval gives
 All eight classes
 \[
 \#\mathrm{OOEOO}{*}{*}(N),\ \#\mathrm{OOOEO}{*}{*}(N)
-=\tfrac N{128}+O\bigl(N^{43/48+\varepsilon}\bigr).
+=\tfrac N{128}+O\bigl(N^{1-1/96+\varepsilon}\bigr).
 \]
 
 *Proof.* *OOEOO\(**\).* With \(w=J^3(n)\) odd,
@@ -1801,14 +1937,18 @@ Theorem 6.2 applies as a passenger theorem.
 classes of terms — chirp, Corollary-5.4 family at
 \(\alpha=\tfrac{33}{32}\), engine sawtooths, and an integer-\(s\)
 block on \(\lfloor\Delta z^{1/2}\rfloor\)-runs of length
-\(\asymp P^{5/16}\). Same exponent. \(\square\)
+\(\asymp P^{5/16}\). Same classes of terms. In both cases the
+binding budget is the Corollary-5.4 family (and, for the
+\(OOOEO\)-prefix, the parent kernel budget of Theorem 6.1), i.e.
+\(N^{1-1/96+\varepsilon}\); the engine's own \(N^{43/48}\) sits
+below it. \(\square\)
 
 **Theorem 6.4 (the length-8 engine quartet).**
 The four contracting length-8 classes satisfy
 \[
 \#\mathrm{OOEOOEOE}(N),\ \#\mathrm{OOEOOOEE}(N),\
 \#\mathrm{OOOEOEOE}(N),\ \#\mathrm{OOOEOOEE}(N)
-=\tfrac N{256}+O\bigl(N^{1-1/48+\varepsilon}\bigr).
+=\tfrac N{256}+O\bigl(N^{1-1/96+\varepsilon}\bigr).
 \]
 
 *Proof.* These are exactly the contracting length-8
@@ -1844,10 +1984,10 @@ curvature \(\lambda\asymp kn^{-13/128}\). On the intersected
 windows (length \(\ge n^{29/128}\gg\lambda^{-1/2}\)) Lemma 3.3
 gives \(\ll k^{1/2}n^{45/256}\) per window, hence
 \(S_k\ll k^{1/2}P^{243/256}\); balancing the Vaaler majorant
-\(P/J_8\) at \(J_8=P^{13/384}\) gives \(P^{1-13/384}\), stated
-unoptimized as \(N^{1-1/48+\varepsilon}\). Letters one through
-seven ride as passengers with the budgets of
-Theorems 6.1–6.3. \(\square\)
+\(P/J_8\) at \(J_8=P^{13/384}\) gives \(P^{1-13/384}\) for the
+eighth-letter wave. Letters one through seven ride as passengers
+with the budgets of Theorems 6.1–6.3, and the parent budget
+\(N^{1-1/96+\varepsilon}\) dominates. \(\square\)
 
 **Corollary 6.5 (certified-descent densities \(7/8\), \(57/64\), and \(29/32\)).**
 The class of starts carrying a uniform power-envelope descent

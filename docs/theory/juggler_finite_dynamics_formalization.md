@@ -462,8 +462,8 @@ certify:
 - finite first-return counts used in the laboratory (exact Python
   integers; not a claim of Paper A);
 - the analytic discrepancy estimates of Paper B (Theorems 4.1, 4.4,
-  4.7, 4.8, Proposition 4.5, Corollary 4.9; the mixed-piece Lemma 5.2
-  and the kernel Theorem 5.3 with Corollary 5.4; the depth-4
+  4.7, 4.8, Proposition 4.5, Corollary 4.9; the level-2 wave
+  Lemma 5.2 and the kernel Theorem 5.3 with Corollary 5.4; the depth-4
   completion Theorem 6.1 and the contracting splits Theorems 6.2–6.4
   with Corollary 6.5 — ledger rows `J-kernel-cancellation`,
   `J-depth4-complete`, `J-five-step-descent-density`,

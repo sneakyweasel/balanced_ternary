@@ -200,8 +200,9 @@ standalone checkability. The stack now consists of:
   is an independent check; no density claims; submission candidate;
 - [Paper B](../theory/juggler_parity_discrepancy_note.md) — parity
   equidistribution of nested floor powers: exact linearization,
-  the kernel theorem (Theorem 5.3, with the mixed-piece Lemma 5.2 as
-  a standalone statement), depth-4 completeness (Theorem 6.1),
+  the kernel theorem (Theorem 5.3, \(\delta=1/96\), at
+  Graham–Kolesnik length with the level-2 wave Lemma 5.2 as a
+  standalone statement), depth-4 completeness (Theorem 6.1),
   contracting splits of lengths five, seven, eight (Theorems
   6.2–6.4), densities \(3/4\), \(13/16\), \(7/8\), \(57/64\),
   \(29/32\) as corollaries (4.2, 4.9, 6.5), the Terras-style
@@ -227,22 +228,24 @@ the pure amplitude-product model (Conjecture 7.5)?
 
 ## Decision
 
-**PROMOTE** Paper A as the submission candidate. **PARK** Paper B at
-working-draft status pending the remaining referee-hardening pass:
-the kernel write-up now has the mixed-piece step as a standalone
-lemma with explicit differencing and dominance computations, but a
-full Graham–Kolesnik-length expansion of Steps 3–5 (every implicit
-constant and window inventory in display) is still owed before
-submission. The individual Atlas, discrepancy, probabilistic, and
+**PROMOTE** Paper A as the submission candidate. **PROMOTE** Paper B
+to submission-candidate status: the Graham–Kolesnik-length expansion
+of the kernel proof (Phase 25 of the two-step-parity branch) is done —
+every estimate carries a displayed constant — and it corrected the
+mixed-piece bound in the process: the mixed pieces are exact level-2
+waves \(e(qY)\), bounded at the honest depth-2 strength
+\(q^{-1/6}P^{23/24+\varepsilon}\) (Lemma 5.2), lowering the kernel
+saving from \(\delta=1/72\) to \(\delta=1/96\) with no density
+changes. The individual Atlas, discrepancy, probabilistic, and
 closed-compression branches keep their original decisions.
 
-Best next question: expand Theorem 5.3's Steps 3–5 of Paper B to
-referee-checkable length (every piece with its own displayed bound),
-or find a shorter proof of the kernel bound.
+Best next question: external review of Paper B as rewritten, or a
+shorter proof of the kernel bound.
 
 ## Publication assessment
 
-Status: Paper A `PAPER_CANDIDATE`; Paper B `WORKING_DRAFT`.
+Status: Paper A `PAPER_CANDIDATE`; Paper B `PAPER_CANDIDATE`
+(post-Phase-25; kernel proof at full length, \(\delta=1/96\)).
 
 Paper A is a standalone Lean-backed math note: envelope, exact defect
 calculus, cycle restrictions with a length-\(\le6\) cycle census,
@@ -253,11 +256,15 @@ review judged this half publishable as-is.
 Paper B carries the analytic novelty (exact linearization of nested
 floor powers; the level-2 kernel theorem) and the risk: external
 review judged the previous six-step kernel sketch "a plan, not a
-proof". The split version isolates the mixed-piece repair as
+proof". The split version isolates the level-2 wave bound as
 Lemma 5.2 with the explicit third differencing, balance, and
 dominance checks, adds the branch-consistency identity as a proved
 lemma, adds a real related-work section (Piatetski–Shapiro, Leitmann,
 Rivat–Sargos, Rivat–Wu, Mauduit–Rivat, Morgenbesser, Baker et al.,
 Beatty), moves every density after the theorems, and confines
-numerics to a software note. Remaining gate: the full expansion of
-the kernel proof's piece inventory.
+numerics to a software note. The former gate — the full expansion of
+the kernel proof's piece inventory — was discharged in Phase 25 at
+Graham–Kolesnik length; the expansion corrected the mixed-piece
+model and the kernel exponent (\(\delta=1/72\to1/96\)), with the
+master identity, standing estimates, and sign-margin machine gates
+(`master_identity_check`, `kernel_margin_scan`) now in print.

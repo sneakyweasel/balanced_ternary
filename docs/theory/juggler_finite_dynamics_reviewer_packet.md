@@ -33,9 +33,9 @@ not required reading for the proofs.
 global-defect, and cycle arguments correct at their stated
 quantifiers? For Paper B: are the depth-1–4 estimates (exponents
 \(5/6\) to \(23/24\)) sound; is the kernel theorem (Theorem 5.3,
-double Weyl differencing over the carry-branch decomposition of
-Lemma 5.1, with the mixed-piece Lemma 5.2, \(\delta=1/72\)) a
-complete proof a stranger can check; are the applications (Theorems
+double Weyl differencing over the carry-branch decomposition and
+master identity of Lemma 5.1, with the level-2 wave Lemma 5.2,
+\(\delta=1/96\)) a complete proof a stranger can check; are the applications (Theorems
 6.1–6.4) correctly reduced to it; and are the densities (Corollaries
 4.2, 4.9, 6.5) kept distinct from existential descent and
 \(\operatorname{ReachesOne}\)?
@@ -113,11 +113,11 @@ kernel of Conjecture 7.3, whose shifted model provably cancels
 | Triple parity discrepancy \(N^{23/24+\varepsilon}\) (Theorem 4.7) | **EXACT — HUMAN PROOF** | OOE\(*\) depth-4 words |
 | OE\(**\) splits \(N^{7/8+\varepsilon}\), \(N^{13/16+\varepsilon}\) (Theorem 4.8) | **EXACT — HUMAN PROOF** | depth 4 except OOO\(*\) |
 | Certified-descent density \(13/16\) (Corollary 4.9) | **EXACT — HUMAN PROOF** | uniform four-step class; ceiling of the one-growing-layer method |
-| Mixed-piece bound (Lemma 5.2) | **EXACT — HUMAN PROOF** | targeted third differencing; standalone statement |
-| Kernel cancellation \(K_c(P)\ll P^{1-1/72+\varepsilon}\) (Theorem 5.3, Corollary 5.4) | **EXACT — HUMAN PROOF** | \(W\)-shaped families \(\alpha\le9/8\), \(k\le P^{1/24}\) |
+| Level-2 wave bound \(q^{-1/6}P^{23/24+\varepsilon}\) (Lemma 5.2) | **EXACT — HUMAN PROOF** | targeted third differencing; standalone statement; corrects the earlier frozen-coefficient model |
+| Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3, Corollary 5.4) | **EXACT — HUMAN PROOF** | \(W\)-shaped families, finite \(\alpha\)-sets in \((0,9/8]\setminus\{1/4,3/4\}\), \(k\le P^{1/24}\); \(\delta\) corrected from \(1/72\) |
 | OOO\(*\) splits; depth 4 complete (Theorem 6.1) | **EXACT — HUMAN PROOF** | all sixteen depth-4 classes with power savings |
-| Length-5 and length-7 contracting splits (Theorems 6.2–6.3) | **EXACT — HUMAN PROOF** | exponents \(1-1/72\) and \(43/48\) |
-| Length-8 engine quartet (Theorem 6.4) | **EXACT — HUMAN PROOF** | all-subcritical chains; exponent \(1-1/48\), unoptimized |
+| Length-5 and length-7 contracting splits (Theorems 6.2–6.3) | **EXACT — HUMAN PROOF** | exponents \(1-1/96\) and \(43/48\) (length 5), \(1-1/96\) (length 7) |
+| Length-8 engine quartet (Theorem 6.4) | **EXACT — HUMAN PROOF** | all-subcritical chains; parent budget \(1-1/96\) dominates |
 | Certified-descent densities \(7/8\), \(57/64\), \(29/32\) (Corollary 6.5) | **EXACT — HUMAN PROOF** | uniform five-, seven-, and eight-step classes |
 | Equidistribution \(\Rightarrow\) density-one descent (Proposition 7.1) | **EXACT — HUMAN PROOF** | unconditional implication; hypothesis a theorem for \(d\le4\), open beyond |
 | Level-3 kernel reformulation (Lemma 7.2) | **EXACT — HUMAN PROOF** | exact Taylor identity; validated in scaled integers |

@@ -10508,3 +10508,85 @@ Best next question
 - still Paper B: expand Theorem 5.3 Steps 3-5 to displayed
   estimates
 ```
+
+## Paper B kernel at Graham-Kolesnik length: delta corrected 1/72 -> 1/96
+
+Phase 25 of the two-step-parity branch. The requested full-length
+expansion of Theorem 5.3's Steps 3-5 — every \(\ll\) with its own
+displayed constant — was executed, and the expansion did what such
+expansions are for: it found a wrong estimate.
+
+The correction. The Phase-8/9 record modelled the mixed pieces as
+\(e(sX)\) with a frozen real coefficient \(s \asymp qP^{3/4}\).
+Written exactly, they are level-2 waves \(e(qY)\), possibly riding a
+frozen floor, and the frozen model silently discards the sawtooth
+\(-\tfrac32 qX^{1/2}\theta\) of amplitude \(\asymp qP^{3/4}\) inside
+\(qY = q(X-\theta)^{3/2}\). The exact treatment (new Lemma 5.2:
+part (i) differenced waves as the engine, part (ii) waves via
+targeted third differencing at \(H_3 = t^{1/3}P^{1/12}\)) yields the
+honest depth-2 bound \(q^{-1/6}P^{23/24+\varepsilon}\), not the
+recorded \(q^{1/6}P^{7/8+\varepsilon}\). The kernel saving drops
+from \(\delta = 1/72\) (and \(1/64\) at bounded \(k\)) to
+\(\delta = 1/96\), uniform for \(k \le P^{1/24}\). A second,
+previously undisplayed loss — the offset-branch factor
+\((k|j|)^{1/2}P^{15/16}\) — turns out to meet the new \(P^{23/24}\)
+bottleneck exactly at \(k = P^{1/24}\), so the original \(k\)-range
+survives unchanged. No density moves: \(13/16\), \(7/8\),
+\(57/64\), \(29/32\) all stand; only the error exponents in
+Theorems 6.1-6.4 shift to \(1-1/96\) where the kernel budget binds.
+
+New machinery in print (Paper B): the master identity
+\(\Delta\Delta(c\,\theta_2) = (\Delta\Delta c)\theta_2 +
+(\Delta_2c)(\{W\}-\kappa_2) + (\Delta_1c)(\{W'\}-\kappa_2') +
+c_{11}(\{\Delta\Delta Y\}-\kappa''-\Delta_2\kappa_2)\) — exact, all
+brackets bounded by 2, no unbounded smooth part survives the
+differencing (Lemma 5.1(iv)); standing estimates (E1)-(E6) with
+displayed constants under (C1)-(C3); preliminaries 3.7-3.10
+(third-derivative test, shifted-window Fourier expansion for
+coefficients exceeding 1, two- and three-term monomial tests for
+curvature collisions, Vandermonde invertibility as the mechanism);
+the six-step kernel proof with a displayed dominance margin at every
+sign-critical composite. New validators in
+`research.juggler_sequence.two_step_parity`: `master_identity_check`
+(12,000 exact scaled-integer samples, shift pairs (1,1), (2,3),
+(5,7)) and `kernel_margin_scan` (gates m1, m2: margins 3:2 and
+4.375:1). Ledger rows corrected: `J-kernel-cancellation`,
+`J-depth4-complete`, `J-depth5-contracting`,
+`J-w-family-below-nine-eighths`, `J-depth7-engine-contracting`,
+`J-depth8-engine-quartet`, and the two descent-density rows;
+packet and dossier synced.
+
+```text
+What was learned
+- the mixed-piece model e(sX) with frozen s was wrong: the exact
+  object is a level-2 wave e(qY), and its sawtooth of amplitude
+  qP^{3/4} costs a factor q^{-1/6}P^{1/24} against the old claim
+- a depth-2 object receives exactly depth-2 strength (P^{23/24});
+  the kernel exponent 1/96 = (1/4)(1/24) traces entirely to it
+- the offset-branch loss (k|j|)^{1/2} was real but sits exactly at
+  the new bottleneck at k = P^{1/24}: the k-range was right for a
+  reason the old record never displayed
+- the master identity removes the Y-block/v-block split: four
+  bounded brackets, no unbounded smooth part, one exact product rule
+Strongest theorem
+- Theorem 5.3: K_c(P) << P^{1-1/96+eps} uniformly for k <= P^{1/24},
+  at Graham-Kolesnik length
+Strongest refutation
+- the Phase-9 mixed-piece bound q^{1/6}P^{7/8+eps} (the frozen
+  coefficient model does not survive exact treatment)
+Reusable machinery
+- Lemmas 3.8-3.10 (shifted-window expansion; two- and three-term
+  monomial tests) are problem-independent exponential-sum tools
+- master_identity_check, kernel_margin_scan
+Branch status
+- PROMOTE: Paper B's single remaining blocker is discharged; the
+  paper is a submission candidate pending one external read
+Why
+- the expansion was the review's condition for Paper B, and the
+  corrected proof is stronger evidence than the old exponent: every
+  estimate now has a displayed constant and a machine gate where
+  sign-critical
+Best next question
+- external review of Paper B as rewritten (is Lemma 5.2(ii)'s
+  targeted differencing checkable by a stranger?)
+```

@@ -1,5 +1,20 @@
 # The nested parity discrepancy lemma (two-step parity)
 
+> **Phase-25 correction (29 August 2026).** The Part-VI mixed-piece
+> bound recorded below (frozen-coefficient model \(e(sX)\),
+> \(s\asymp rP^{3/4}\), saving \(P^{1/8}/r^{1/6}\)) is **wrong**: the
+> mixed pieces are exact level-2 waves \(e(qY)\), and the frozen model
+> discards the sawtooth \(-\tfrac32 qX^{1/2}\theta\) of amplitude
+> \(\asymp qP^{3/4}\) inside \(qY=q(X-\theta)^{3/2}\). The corrected
+> bound is \(q^{-1/6}P^{23/24+\varepsilon}\) (depth-2 strength), and
+> Theorem R's saving is \(\delta=1/96\) uniformly for
+> \(k\le P^{1/24}\), not \(1/64\)/\(1/72\); downstream exponents
+> \(1-1/72\) in Theorems S/T/X/AA become \(1-1/96\); **no density
+> changes**. The authoritative full-length record is Paper B,
+> Section 5
+> ([juggler_parity_discrepancy_note.md](../theory/juggler_parity_discrepancy_note.md));
+> this document's Part VI is kept as history and negative knowledge.
+
 Analytic document for the promoted two-step parity branch, revised by
 the Phase-2 review pass (see the review record after Theorem C) and
 extended by the Phase-3 depth-4 part (Lemma D, Theorem E,

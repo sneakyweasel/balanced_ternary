@@ -941,6 +941,43 @@ Section-5 preamble, Section-6 opening, leftover decomposition
 Flags `depth8_engine_quartet_proved`, `depth8_chains_subcritical`.
 No \(K_3\) claim; `density_one_claimed` stays `False`.
 
+**PROMOTE with correction** (Phase 25, the Graham–Kolesnik
+expansion of the kernel, 29 August 2026): the requested full-length
+rewrite of Paper B's Section 5 (every \(\ll\) with its own displayed
+constant) found one wrong estimate and one undisplayed loss in the
+Phase-8/9 record, both now repaired in print. (1) **Correction**:
+the mixed pieces are not \(e(sX)\) with a frozen real coefficient
+\(s \asymp qP^{3/4}\) — that model silently discards the sawtooth
+\(-\tfrac32 qX^{1/2}\theta\) of amplitude \(\asymp qP^{3/4}\) inside
+\(qY = q(X-\theta)^{3/2}\). Treated exactly as level-2 waves, the
+targeted third differencing survives but yields the honest depth-2
+bound \(q^{-1/6}P^{23/24+\varepsilon}\) (new Lemma 5.2(ii)), not
+the recorded \(q^{1/6}P^{7/8+\varepsilon}\); the kernel saving drops
+from \(\delta = 1/72\) (and \(1/64\) at bounded \(k\)) to
+\(\delta = 1/96\), uniformly for \(k \le P^{1/24}\). (2)
+**Absorbed loss**: the offset-branch pieces carry a
+\((k|j|)^{1/2}P^{15/16}\) factor the old record never displayed; it
+meets the new \(P^{23/24}\) bottleneck exactly at \(k = P^{1/24}\),
+so the original \(k\)-range survives with no \(k\)-explicit
+statement. New machinery in print: the master identity
+\(\Delta\Delta(c\,\theta_2)\) decomposed exactly into four bounded
+brackets (Lemma 5.1(iv), machine gate `master_identity_check`,
+12,000 exact scaled-integer samples over three shift pairs),
+standing estimates (E1)–(E6) with displayed constants, sign-margin
+gates m1/m2 (`kernel_margin_scan`), and preliminaries 3.7–3.10
+(third-derivative test, shifted-window expansion, two- and
+three-term monomial tests for curvature collisions). Downstream
+exponents synced: Theorems 6.1–6.4 now \(N^{1-1/96+\varepsilon}\)
+where the kernel budget binds (the engine's own \(43/48\) is
+unaffected); **no density changes** — \(13/16\), \(7/8\),
+\(57/64\), \(29/32\) all stand. Ledger rows
+`J-kernel-cancellation`, `J-depth4-complete`,
+`J-depth5-contracting`, `J-w-family-below-nine-eighths`,
+`J-depth7-engine-contracting`, `J-depth8-engine-quartet`,
+`J-seven-step-descent-density`, `J-eight-step-descent-density`
+corrected. The editorial debt of the assessment below is
+discharged.
+
 ## Publication assessment
 
 Status: `THEOREM`, **consolidated into the standalone
@@ -974,7 +1011,8 @@ laboratory-**REFUTED** as a completion route (Proposition CC);
 transport produced Lemmas DD/FF and Conjecture EE but its
 intra-block analytic program is laboratory-**PARKED**
 (Proposition GG); the de-randomization of Lemma II is
-laboratory-**PARKED** (Proposition JJ). Remaining editorial debt:
-Paper B's kernel Steps 3–5 still owe a Graham–Kolesnik-length
-expansion (every piece with its own displayed bound) before
-submission.
+laboratory-**PARKED** (Proposition JJ). The former editorial debt — a
+Graham–Kolesnik-length expansion of the kernel proof — was
+discharged in Phase 25, which corrected the mixed-piece bound
+(\(\delta = 1/72 \to 1/96\), densities unchanged); Section 5 of
+Paper B is now the full-length record.
