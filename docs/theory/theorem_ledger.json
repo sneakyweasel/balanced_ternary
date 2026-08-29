@@ -3338,6 +3338,30 @@
     "related_conjectures": []
   },
   {
+    "id": "J-first-e-transport-ee",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 4, the gapped three-even leftover O^a E O^b EE is not a Juggler CycleMin at n. CycleMin puts the remainder O^b EE at y = T_{O^a E}(n) ≥ n. The leftover cell is measured against n, so y ≥ n tightens it against the shared two-even tail at y. Large y is the uniform cutoff y ≥ 256; below 256 the argument is seven consecutive odds on the prefix or the remainder, or a Fin 256 table on the short-gap window 2 ≤ a ≤ 6, 4 ≤ b ≤ 6. Lean theorem no_cycleMin_gapped_three_even_ee. This excludes gapped CycleMins only; it is not a CycleWord theorem at a non-minimum start, not a bunched-tail attack, not a length-8 or length-9 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_first_e_transport.md",
+    "lean": "Problems/Juggler/FirstETransport.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_first_e_transport.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-first-e-transport-eoe",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler CycleMin at n. The same first-E transport applies: y ≥ n tightens the leftover cell against the shared two-even tail at y, using the last-odd cube reduction already used for O^{k-3}EOE. Large y is y ≥ 256; below 256 the argument is seven-odd or a Fin 256 table on 2 ≤ a ≤ 6, 3 ≤ b ≤ 6. Lean theorem no_cycleMin_gapped_three_even_eoe. This excludes gapped CycleMins only; it is not a CycleWord theorem at a non-minimum start, not a bunched-tail attack, not a length-8 or length-9 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_first_e_transport.md",
+    "lean": "Problems/Juggler/FirstETransport.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_first_e_transport.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-nested-parity-linearization",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "For odd n ≥ 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 ≤ E(n) ≤ (3/8)(n^{3/2}-1)^{-1/2} ≤ (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} ≥ 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",

@@ -80,7 +80,9 @@ def test_lean_api_without_census_or_transport_theorem():
     assert lean["sorry_free"] is True
     for name in LEAN_THEOREMS:
         assert lean[name] is True, name
-    assert lean["no_first_e_transport_theorem"] is True
+    assert lean["no_first_e_transport_theorem"] is False
+    assert lean["no_cycleMin_gapped_three_even_ee"] is True
+    assert lean["no_cycleMin_gapped_three_even_eoe"] is True
     assert lean["no_length_eight_theorem"] is True
     assert lean["no_length_nine_theorem"] is True
     assert lean["length_eight_open_in_census"] is True
@@ -100,7 +102,7 @@ def test_classify_render_and_artifacts():
                 **dict(ANTI_OVERCLAIM),
                 "cycles_impossible": False,
                 "length_nine_census": False,
-                "first_e_transport_lean": False,
+                "first_e_transport_lean": True,
             },
         }
     )
@@ -113,7 +115,10 @@ def test_classify_render_and_artifacts():
     assert data["experiment"] == "juggler_first_e_transport"
     assert data["decision"]["classification"] == CLASS_GREEN
     assert data["anti_overclaim"]["cycles_impossible"] is False
-    assert data["lean"]["no_first_e_transport_theorem"] is True
+    assert data["lean"]["no_first_e_transport_theorem"] is False
+    assert data["anti_overclaim"]["first_e_transport_lean"] is True
+    assert data["lean"]["no_cycleMin_gapped_three_even_ee"] is True
+    assert data["lean"]["no_cycleMin_gapped_three_even_eoe"] is True
 
 
 def test_dossier_boundary():
@@ -129,6 +134,7 @@ def test_dossier_boundary():
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
+    assert "no_cycleMin_gapped_three_even_ee" in dossier
     assert "no_cycle_word_length_eight" in dossier
     assert "no_cycle_word_length_nine" in dossier
     assert "not a length-8" in dossier or "not a length-8/9" in dossier

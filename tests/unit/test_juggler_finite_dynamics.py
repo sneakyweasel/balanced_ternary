@@ -1,12 +1,14 @@
 """Finite-dynamics companion instantiates the note; it does not halt."""
 
 from visualization.juggler_finite_dynamics import (
+    CYCLE_WORD_MAX,
     LEFTOVER_CUTOFF,
     NOTE_ORBIT_3,
     NOTE_PEAK_37,
     WORD_MAX,
     classify_word,
     compose_view,
+    cycle_class_view,
     descent_view,
     descent_window,
     envelope_view,
@@ -17,7 +19,10 @@ from visualization.juggler_finite_dynamics import (
     length_eight_open_words,
     next_square_view,
     odd_cell_view,
+    parse_cycle_word,
     parse_word,
+    rotate_cycle_word,
+    try_cycle_word,
     walk_orbit,
 )
 
@@ -152,6 +157,78 @@ def test_parse_word_rejects_overlong_and_junk():
     assert parse_word("") == ""
     assert parse_word("OX") is None
     assert parse_word("O" * (WORD_MAX + 1)) is None
+
+
+def test_parse_cycle_word_allows_two_even_lengths():
+    assert parse_cycle_word("ooooooee") == "OOOOOOEE"
+    assert parse_cycle_word("O" * CYCLE_WORD_MAX) == "O" * CYCLE_WORD_MAX
+    assert parse_cycle_word("O" * (CYCLE_WORD_MAX + 1)) is None
+    assert parse_cycle_word("OX") is None
+
+
+def test_oeo_rotates_onto_ooe_and_is_excluded():
+    assert rotate_cycle_word("OEO", 1) == "EOO"
+    assert rotate_cycle_word("OEO", 2) == "OOE"
+    view = cycle_class_view("OEO", 0)
+    assert view.current == "OEO"
+    assert view.current_kind == "odd-terminating"
+    assert "OOE" in view.current_reason
+    assert view.legal_reps == ("OOE",)
+    assert view.verdict == "excluded"
+    assert view.steps[-1].status == "blocks"
+    rotated = cycle_class_view("OEO", 2)
+    assert rotated.current == "OOE"
+    assert rotated.current_kind == "threshold"
+    assert rotated.current_legal
+    assert rotated.verdict == "excluded"
+
+
+def test_eooooe_rotates_onto_leftover():
+    view = cycle_class_view("EOOOOE", 0)
+    assert view.current_kind == "rotation"
+    assert "OOOOEE" in view.current_reason
+    assert view.verdict == "excluded"
+    leftover = cycle_class_view("EOOOOE", 1)
+    assert leftover.current == "OOOOEE"
+    assert leftover.current_kind == "leftover"
+    assert leftover.current_legal
+
+
+def test_oeoooe_rotates_onto_eoe_leftover():
+    view = cycle_class_view("OEOOOE", 0)
+    assert view.current_kind == "not CycleMin"
+    assert "OOOEOE" in view.current_reason
+    assert view.verdict == "excluded"
+
+
+def test_two_even_length_eight_is_excluded():
+    view = cycle_class_view("OOOOOOEE", 0)
+    assert view.verdict == "excluded"
+    assert view.current_kind == "two-even leftover"
+    assert view.ledger == "J-two-even-leftover-ee"
+
+
+def test_length_eight_bootstrap_shape_stays_open():
+    view = cycle_class_view("OOEOOOOE", 0)
+    assert view.verdict == "open"
+    assert view.current_kind == "open"
+    assert view.steps[-1].status == "open"
+
+
+def test_all_odd_cannot_close():
+    view = cycle_class_view("OOOOOO", 0)
+    assert view.verdict == "excluded"
+    assert view.current_kind == "all-odd"
+
+
+def test_try_cycle_word_records_a_miss_and_a_nonreturn():
+    miss = try_cycle_word(3, "OEO")
+    assert not miss.follows
+    assert miss.fail_index == 1
+    walk = try_cycle_word(3, "OOOEEE")
+    assert walk.follows
+    assert walk.returned is False
+    assert walk.image == 1
 
 
 def test_bit_cap_refuses_a_huge_start():

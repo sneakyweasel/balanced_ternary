@@ -42,7 +42,7 @@ the least-significant digit $a_0$.
 3. **Operators** — domain, involution, and integer/word agreement for each map.
 4. **Rewrite calculus** — unary stepper and Add/carry witnesses from the paper candidate.
 5. **Residual explorer** — prefix tree, Newton classes, and depth-deficit visibility.
-6. **Finite dynamics** — Juggler note companion: orbit, envelope, census leftovers.
+6. **Finite dynamics** — Juggler note companion: orbit, envelope, cycle words, leftovers.
 7. Collatz pages stay available as one application of the same words.
                 """
             )

@@ -21,6 +21,8 @@ from typing import Any
 from research.juggler_sequence.cycle_word import follows_word, image_after
 from research.juggler_sequence.lean_paths import (
     CYCLES,
+    FIRST_E_TRANSPORT,
+    FIRST_E_TRANSPORT_EVAL,
     LEFTOVER_TWO_EVEN,
     MINIMAL,
     SMALL_CYCLE_CENSUS,
@@ -62,6 +64,8 @@ LEAN_THEOREMS = (
     "no_cycle_word_two_even_eoe",
     "no_cycleMin_internal_even_threshold",
     "no_cycle_word_length_le_seven",
+    "no_cycleMin_gapped_three_even_ee",
+    "no_cycleMin_gapped_three_even_eoe",
 )
 
 
@@ -302,6 +306,8 @@ def run_probe() -> dict[str, Any]:
 def lean_api_present() -> dict[str, bool]:
     combined = (
         LEFTOVER_TWO_EVEN.read_text(encoding="utf-8")
+        + FIRST_E_TRANSPORT.read_text(encoding="utf-8")
+        + FIRST_E_TRANSPORT_EVAL.read_text(encoding="utf-8")
         + CYCLES.read_text(encoding="utf-8")
         + SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
         + juggler_text()
@@ -340,7 +346,9 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["CycleMin"]
         and lean["no_length_eight_theorem"]
         and lean["length_eight_open_in_census"]
-        and lean["no_first_e_transport_theorem"]
+        and lean["no_cycleMin_gapped_three_even_ee"]
+        and lean["no_cycleMin_gapped_three_even_eoe"]
+        and not lean["no_first_e_transport_theorem"]
         and lean["no_all_cycles_impossible"]
     )
     if not lean_ok:
@@ -373,10 +381,11 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     return {
         "classification": CLASS_GREEN,
         "reason": (
-            "gapped three-even CycleMins reduce to the two-even tail "
-            "at y>=n; the finite window k=9..16 has empty CycleWord "
-            "tables below 256; for k>=17 small n is seven-odd on the "
-            "prefix or the remainder; bunched a1-short leftovers remain"
+            "Lean excludes gapped three-even CycleMins by first-E "
+            "transport of the two-even tail at y>=n; the finite window "
+            "k=9..16 has empty CycleWord tables below 256; for k>=17 "
+            "small n is seven-odd on the prefix or the remainder; "
+            "bunched a1-short leftovers remain"
         ),
     }
 
@@ -392,7 +401,7 @@ def probe_payload() -> dict[str, Any]:
             "three_even_cycles_impossible": False,
             "length_eight_census": False,
             "length_nine_census": False,
-            "first_e_transport_lean": False,
+            "first_e_transport_lean": True,
             "induction_on_period": False,
             "induction_on_n": False,
         }
@@ -408,7 +417,8 @@ def probe_payload() -> dict[str, Any]:
             "CycleMin first-E transport of the uniform two-even tail; "
             "gapped leftovers only (b>=4 EE, b>=3 EOE); CycleWord "
             "tables for k=9..16 below 256; seven-odd seal for k>=17; "
-            "no bunched-tail attack; no length-8/9 census; no Lean"
+            "no bunched-tail attack; no length-8/9 census; Lean "
+            "CycleMin exclusion at y>=256"
         ),
     }
 
@@ -436,8 +446,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Novelty hypothesis      y>=n tightens the leftover cell",
         "Falsifier               A CycleMin hit, or a k>=17 leak",
         "Existing machinery      uniform two-even Lean; CycleMin",
-        "Maximum Phase-0 scope   classify; chain; k=9..16 tables;",
-        "                        k>=17 seven-odd; no Lean, no census",
+        "Maximum Phase-1 scope   Lean CycleMin exclusion; tables;",
+        "                        seven-odd; no census, no bunched",
         "```",
         "",
         "## Metadata",

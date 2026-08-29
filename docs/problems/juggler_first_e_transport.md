@@ -90,6 +90,9 @@ Stop criterion          A realization; chain gap; a census;
                         bunched-tail machinery
 ```
 
+Phase 1 (this branch): Lean-exclude both gapped `CycleMin`
+families. No length-8/9 census, no bunched tails, no halt.
+
 ## Balanced-ternary formulation
 
 None required. The map is on ordinary positive integers.
@@ -107,7 +110,8 @@ It is not required.
   **EXACT — HUMAN PROOF**
 - `CycleMin` gives \(y\ge n\), which tightens the leftover cell
   and contradicts the shared tail at \(y\) once \(y\ge 256\) —
-  **EXACT — HUMAN PROOF**
+  **EXACT — LEAN VERIFIED** (`no_cycleMin_gapped_three_even_ee`,
+  `no_cycleMin_gapped_three_even_eoe`)
 - transport requires \(y\ge n\); it does not exclude a
   non-minimum `CycleWord` start —
   **EXACT — HUMAN PROOF**
@@ -115,8 +119,9 @@ It is not required.
   so \(n<256\) dies by seven odds —
   **EXACT — HUMAN PROOF**
 - 72 gapped words at lengths \(9\le k\le 16\) have no `CycleWord`
-  on \(2\le n<256\) —
-  **COMPUTATIONALLY VERIFIED**
+  on \(2\le n<256\); the Lean tables cover the short-gap
+  \(a,b\le 6\) window, and longer gaps are seven-odd —
+  **EXACT — LEAN VERIFIED**
 - bunched remainder is \(b\le 3\) (EE) or \(b\le 2\) (EOE),
   independent of \(k\) —
   **EXACT — HUMAN PROOF**
@@ -132,7 +137,8 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_first_e_transport.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length-8 or length-9 census.
-- No bunched-tail Lean. No Paper A edit.
+- Gapped `CycleMin` Lean is in `FirstETransport.lean`. No
+  bunched-tail Lean. No Paper A edit.
 
 ## Conjectures
 
@@ -157,12 +163,16 @@ stronger claims that remain false or unproved:
 
 ## Formalization
 
-None added. The two-even families and `CycleMin` already exist.
-There is no `no_cycleMin_gapped_three_even` and no
-`no_cycle_min_first_e_transport`. `SmallCycleCensus.lean` still
-assembles only through length seven. No
-`no_cycle_word_length_eight`. No `no_cycle_word_length_nine`.
-No `sorry`. No halt theorem. Paper A is not edited.
+`formal/Problems/Juggler/FirstETransport.lean` excludes the gapped
+`CycleMin`s: `no_cycleMin_gapped_three_even_ee` and
+`no_cycleMin_gapped_three_even_eoe`. Large \(y\) is the shared
+two-even tail at the leftover start; \(n<256\) is seven-odd or
+the short-gap `native_decide` tables in
+`FirstETransportEval.lean`. This is not a `CycleWord` theorem at
+a non-minimum start. `SmallCycleCensus.lean` still assembles only
+through length seven. No `no_cycle_word_length_eight`. No
+`no_cycle_word_length_nine`. No bunched-tail Lean. No `sorry`.
+No halt theorem. Paper A is not edited.
 
 ## Results
 
@@ -170,12 +180,10 @@ Classification **FIRST_E_TRANSPORT_GREEN**.
 
 Gapped three-even leftovers are one type: the remainder after the
 first \(E\) is a uniform two-even leftover, and `CycleMin` puts
-that remainder at \(y\ge n\). The leftover cell is taken against
-\(n\), so it is at most as large as the shared-tail cell at \(y\).
-Once \(y\ge 256\) the two-even tail contradicts. Below \(256\),
-length \(k=9,\ldots,16\) is a finite list of 72 words with empty
-`CycleWord` tables; from \(k=17\) a gapped leftover has seven
-leading odds on the prefix or on the remainder.
+that remainder at \(y\ge n\). Lean now excludes both families as
+`CycleMin` for every \(n\ge 2\). Large \(y\) is the shared
+two-even tail; below \(256\), short gaps are tables and long
+gaps are seven-odd.
 
 The bunched remainder is independent of \(k\): EE leftovers with
 \(b\le 3\) and EOE leftovers with \(b\le 2\). At length 9 those
@@ -186,25 +194,26 @@ no-cycles theorem.
 
 ## Open questions
 
-Lean-exclude the gapped three-even `CycleMin`s by this transport.
-Do not assemble `no_cycle_word_length_eight` or
-`no_cycle_word_length_nine`. Do not open bunched-tail cells as
-part of that phase. Do not claim halt.
+Bunched-tail cells for the \(a_1\)-short remainder, or first-E
+transport at \(e\ge 4\). Do not assemble
+`no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
+Do not claim halt.
 
 ## Decision
 
-**PROMOTE**. First-E transport is a real reduction from gapped
-\(e=3\) leftovers to the uniform \(e=2\) tail. It is not a
-period-by-period can. The bunched \(a_1\)-short leftovers are a
-named remainder, not a failure of the reduction.
+**PROMOTE**. First-E transport is now a Lean exclusion of every
+gapped three-even `CycleMin`. It is not a period-by-period can.
+The bunched \(a_1\)-short leftovers are a named remainder, not a
+failure of the reduction.
 
-Best next question: Lean-exclude the gapped three-even `CycleMin`s
-by first-E transport at the uniform cutoff \(n\ge 256\).
+Best next question: bunched-tail cells for the \(a_1\)-short
+remainder (\(b\le 3\) EE, \(b\le 2\) EOE), or first-E transport
+at \(e\ge 4\).
 
 ## Publication assessment
 
 Status: `EXPLORATORY`.
 
-A Phase-0 reduction for gapped three-even cycle minima, not a
-paper candidate and not a Juggler totality result. Paper A is not
-edited.
+A Lean `CycleMin` exclusion for gapped three-even leftovers, not
+a paper candidate and not a Juggler totality result. Paper A is
+not edited.

@@ -15,8 +15,8 @@ Mathematical target     Do gapped three-even CycleMins die
 Novelty hypothesis      y>=n tightens the leftover cell
 Falsifier               A CycleMin hit, or a k>=17 leak
 Existing machinery      uniform two-even Lean; CycleMin
-Maximum Phase-0 scope   classify; chain; k=9..16 tables;
-                        k>=17 seven-odd; no Lean, no census
+Maximum Phase-1 scope   Lean CycleMin exclusion; tables;
+                        seven-odd; no census, no bunched
 ```
 
 ## Metadata
@@ -29,7 +29,7 @@ Maximum Phase-0 scope   classify; chain; k=9..16 tables;
 - tables empty: `True`
 - k>=17 small-n sealed: `True`
 
-gapped three-even CycleMins reduce to the two-even tail at y>=n; the finite window k=9..16 has empty CycleWord tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain.
+Lean excludes gapped three-even CycleMins by first-E transport of the two-even tail at y>=n; the finite window k=9..16 has empty CycleWord tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain.
 
 ## Length-9 transport words
 
@@ -57,7 +57,9 @@ gapped three-even CycleMins reduce to the two-even tail at y>=n; the finite wind
 - `no_cycle_word_two_even_eoe`: `True`
 - `no_cycleMin_internal_even_threshold`: `True`
 - `no_cycle_word_length_le_seven`: `True`
-- no first-E transport theorem: `True`
+- `no_cycleMin_gapped_three_even_ee`: `True`
+- `no_cycleMin_gapped_three_even_eoe`: `True`
+- no first-E transport theorem: `False`
 - length eight open in census: `True`
 - no length-nine theorem: `True`
 
@@ -74,7 +76,7 @@ gapped three-even CycleMins reduce to the two-even tail at y>=n; the finite wind
 - three_even_cycles_impossible: `False`
 - length_eight_census: `False`
 - length_nine_census: `False`
-- first_e_transport_lean: `False`
+- first_e_transport_lean: `True`
 - induction_on_period: `False`
 - induction_on_n: `False`
 
@@ -82,7 +84,7 @@ gapped three-even CycleMins reduce to the two-even tail at y>=n; the finite wind
 
 **FIRST_E_TRANSPORT_GREEN**
 
-gapped three-even CycleMins reduce to the two-even tail at y>=n; the finite window k=9..16 has empty CycleWord tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain.
+Lean excludes gapped three-even CycleMins by first-E transport of the two-even tail at y>=n; the finite window k=9..16 has empty CycleWord tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain.
 
 This is not a halt result, not a length-8/9 census, and
 not an exclusion of bunched three-even leftovers.

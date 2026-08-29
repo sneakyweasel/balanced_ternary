@@ -9,6 +9,8 @@ import streamlit as st
 from visualization.juggler_finite_dynamics import (
     CENSUS_LEDGER_IDS,
     CLAIM_ROWS,
+    CYCLE_WORD_MAX,
+    CYCLE_WORD_PRESETS,
     DESCENT_WINDOW_MAX,
     LEFTOVER_CUTOFF,
     N_PRESETS,
@@ -20,6 +22,7 @@ from visualization.juggler_finite_dynamics import (
     census_inventory,
     classify_word,
     compose_view,
+    cycle_class_view,
     descent_view,
     descent_window,
     envelope_view,
@@ -31,7 +34,9 @@ from visualization.juggler_finite_dynamics import (
     length_eight_open_words,
     next_square_view,
     odd_cell_view,
+    parse_cycle_word,
     parse_word,
+    try_cycle_word,
     walk_orbit,
 )
 from visualization.theorem_ledger import badge_payload
@@ -42,13 +47,10 @@ def _init_state() -> None:
         "juggler_view": "Orbit",
         "juggler_n": 3,
         "juggler_word": "OOE",
+        "juggler_cycle_word": "OEO",
+        "juggler_cycle_shift": 0,
         "juggler_steps": 20,
         "juggler_split": 1,
-        "juggler_q": 6,
-        "juggler_m": 11,
-        "juggler_prefix": "OO",
-        "juggler_leftover": "OOOEOE",
-        "juggler_window": 80,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -131,6 +133,38 @@ def _word_controls() -> str:
             icon=":material/warning:",
         )
         return "OOE"
+    return word
+
+
+def _cycle_word_controls() -> str:
+    def _apply_preset() -> None:
+        name = st.session_state.get("juggler_cycle_preset")
+        if name:
+            st.session_state.juggler_cycle_word = name
+            st.session_state.juggler_cycle_shift = 0
+
+    st.pills(
+        "Cycle-word presets",
+        list(CYCLE_WORD_PRESETS),
+        selection_mode="single",
+        key="juggler_cycle_preset",
+        on_change=_apply_preset,
+    )
+    raw = st.text_input(
+        "Cycle word",
+        key="juggler_cycle_word",
+        help=(
+            f"Letters O and E only, length at most {CYCLE_WORD_MAX}. "
+            "Rotations are the same cyclic class."
+        ),
+    )
+    word = parse_cycle_word(raw)
+    if word is None:
+        st.warning(
+            f"Use only O and E, with length at most {CYCLE_WORD_MAX}.",
+            icon=":material/warning:",
+        )
+        return "OEO"
     return word
 
 
@@ -256,18 +290,24 @@ def _envelope() -> None:
     st.caption(
         "Theorem 2.6: concatenation is a two-term power-gap, not a sum of remainders."
     )
-    if st.session_state.juggler_split > len(word):
-        st.session_state.juggler_split = len(word)
-    split = int(
-        st.slider(
-            "Split after this many letters",
-            min_value=0,
-            max_value=max(len(word), 0),
-            key="juggler_split",
+    if len(word) < 1:
+        st.caption("Enter a nonempty word to split the composition.")
+        composed = None
+    else:
+        if st.session_state.juggler_split > len(word):
+            st.session_state.juggler_split = len(word)
+        split = int(
+            st.slider(
+                "Split after this many letters",
+                min_value=0,
+                max_value=len(word),
+                key="juggler_split",
+            )
         )
-    )
-    composed = compose_view(n, word[:split], word[split:])
-    if not composed.follows:
+        composed = compose_view(n, word[:split], word[split:])
+    if composed is None:
+        pass
+    elif not composed.follows:
         st.caption("The concatenated word is not realized at this start.")
     elif composed.too_large:
         st.caption("The composition gaps are too large to instantiate.")
@@ -299,7 +339,7 @@ def _cells() -> None:
     with left:
         with st.container(border=True):
             st.subheader("Even cell")
-            q = int(st.number_input("Image q", min_value=0, step=1, key="juggler_q"))
+            q = int(st.number_input("Image q", min_value=0, step=1, value=6, key="juggler_q"))
             cell = even_cell_view(q)
             st.metric("Interval", f"[{cell.lo}, {cell.hi})", border=True)
             st.caption(f"{cell.even_count} even predecessors.")
@@ -313,7 +353,7 @@ def _cells() -> None:
     with right:
         with st.container(border=True):
             st.subheader("Odd cell")
-            m = int(st.number_input("Image m", min_value=0, step=1, key="juggler_m"))
+            m = int(st.number_input("Image m", min_value=0, step=1, value=11, key="juggler_m"))
             odd = odd_cell_view(m)
             st.metric("Integers", len(odd.integers), border=True)
             if odd.integers:
@@ -339,6 +379,7 @@ def _cells() -> None:
     prefix = st.segmented_control(
         "Next-square prefix",
         ["OO", "OOO"],
+        default="OO",
         key="juggler_prefix",
     )
     if prefix is None:
@@ -365,7 +406,12 @@ def _cells() -> None:
         "These are finite evaluations, not a halt proof."
     )
     with st.form("juggler_leftover_form"):
-        leftover = st.selectbox("Leftover word", leftover_words(), key="juggler_leftover")
+        leftover = st.selectbox(
+            "Leftover word",
+            leftover_words(),
+            index=0,
+            key="juggler_leftover",
+        )
         submitted = st.form_submit_button("Replay leftover table", icon=":material/table:")
     if submitted:
         table = leftover_table(leftover)
@@ -425,6 +471,7 @@ def _descent() -> None:
             "Window n_max",
             min_value=2,
             max_value=DESCENT_WINDOW_MAX,
+            value=80,
             key="juggler_window",
         )
     )
@@ -474,6 +521,155 @@ def _descent() -> None:
         )
 
 
+def _cycle_words() -> None:
+    st.caption(
+        "A cycle word is a cyclic object. Type a parity word, rotate it, "
+        "and read the recorded obstruction. Lean is the authority. This "
+        "view does not invent exclusions: length eight beyond the two-even "
+        "leftovers remains open, and arrival at 1 is not claimed."
+    )
+    _badge("J-cycle-finite-structure")
+    _badge("J-small-cycle-census-seven")
+    word = _cycle_word_controls()
+    if len(word) >= 2:
+        if st.session_state.juggler_cycle_shift >= len(word):
+            st.session_state.juggler_cycle_shift = 0
+        rotate_row = st.container(horizontal=True)
+        with rotate_row:
+            if st.button("Rotate left", icon=":material/rotate_left:", key="juggler_rot_left"):
+                st.session_state.juggler_cycle_shift = (
+                    int(st.session_state.juggler_cycle_shift) + 1
+                ) % len(word)
+                st.rerun()
+            if st.button("Rotate right", icon=":material/rotate_right:", key="juggler_rot_right"):
+                st.session_state.juggler_cycle_shift = (
+                    int(st.session_state.juggler_cycle_shift) - 1
+                ) % len(word)
+                st.rerun()
+        shift = int(
+            st.slider(
+                "Left rotation",
+                min_value=0,
+                max_value=len(word) - 1,
+                key="juggler_cycle_shift",
+                help="The same cyclic class; only the base letter changes.",
+            )
+        )
+    else:
+        shift = 0
+    view = cycle_class_view(word, shift)
+    metrics = st.container(horizontal=True)
+    with metrics:
+        st.metric("Spelling", view.current or "—", border=True)
+        st.metric("#O / #E", f"{view.odd} / {view.even}", border=True)
+        st.metric("Expanding", "yes" if view.expanding else "no", border=True)
+        st.metric(
+            "This class",
+            "cannot exist" if view.verdict == "excluded" else view.verdict,
+            border=True,
+        )
+    if view.ledger:
+        _badge(view.ledger)
+    if view.verdict == "excluded":
+        st.error(view.verdict_reason, icon=":material/block:")
+    elif view.verdict == "open":
+        st.warning(view.verdict_reason, icon=":material/help:")
+    else:
+        st.info("Enter a nonempty O/E word.", icon=":material/info:")
+
+    st.subheader("This spelling")
+    spelling = st.container(horizontal=True)
+    with spelling:
+        st.metric("Kind", view.current_kind, border=True)
+        st.metric("CycleMin", "yes" if view.current_legal else "no", border=True)
+        st.metric(
+            "Blocked by",
+            view.current_blocked_by or "—",
+            border=True,
+        )
+    st.caption(view.current_reason)
+
+    st.subheader("Why this class cannot exist")
+    for step in view.steps:
+        with st.container(border=True):
+            status_color = {
+                "ok": "green",
+                "blocks": "red",
+                "open": "orange",
+                "info": "gray",
+            }.get(step.status, "gray")
+            head = st.container(horizontal=True)
+            with head:
+                st.markdown(f"**{step.title}**")
+                st.badge(step.status, color=status_color)
+            st.caption(step.body)
+            if step.ledger:
+                _badge(step.ledger)
+
+    st.subheader("Rotations")
+    st.dataframe(
+        pd.DataFrame(
+            [
+                {
+                    "shift": row.shift,
+                    "word": row.word,
+                    "ends E": row.even_terminating,
+                    "expanding": row.expanding,
+                    "CycleMin": row.legal_cyclemin,
+                    "blocked by": row.blocked_by or "—",
+                    "kind": row.kind,
+                    "reason": row.reason,
+                    "selected": row.selected,
+                }
+                for row in view.rotations
+            ]
+        ),
+        hide_index=True,
+        width="stretch",
+    )
+
+    st.subheader("Try this spelling at n")
+    st.caption(
+        "If the word were a cycle at the shared start n, the image after "
+        "the word would equal n. A missed letter or a non-return is a "
+        "witness at this n only, not a census."
+    )
+    trial = try_cycle_word(int(st.session_state.juggler_n), view.current)
+    try_row = st.container(horizontal=True)
+    with try_row:
+        st.metric("Realized", "yes" if trial.follows else "no", border=True)
+        st.metric(
+            "Image",
+            format_int(trial.image) if trial.image is not None else "—",
+            border=True,
+        )
+        st.metric(
+            "Returned",
+            "yes" if trial.returned else "no" if trial.returned is False else "—",
+            border=True,
+        )
+    if trial.bit_capped:
+        st.warning(
+            "A state exceeded the display bit cap. The walk stopped.",
+            icon=":material/warning:",
+        )
+    elif not trial.follows and trial.fail_index is not None:
+        st.caption(
+            f"Letter {trial.fail_index} fails at state "
+            f"{format_int(trial.fail_state) if trial.fail_state is not None else '—'}."
+        )
+    elif trial.returned:
+        st.error(
+            "Unexpected return at this n. The recorded census claims none.",
+            icon=":material/block:",
+        )
+    elif trial.follows:
+        st.success(
+            "This spelling is realized at n and does not return.",
+            icon=":material/check:",
+        )
+
+
 def juggler_finite_dynamics_page() -> None:
     _init_state()
     st.caption(
@@ -483,7 +679,7 @@ def juggler_finite_dynamics_page() -> None:
     )
     view = st.segmented_control(
         "View",
-        ["Claim map", "Orbit", "Envelope", "Cells and census", "Descent"],
+        ["Claim map", "Orbit", "Envelope", "Cells and census", "Cycle words", "Descent"],
         key="juggler_view",
     )
     _n_controls()
@@ -495,6 +691,8 @@ def juggler_finite_dynamics_page() -> None:
         _envelope()
     elif view == "Cells and census":
         _cells()
+    elif view == "Cycle words":
+        _cycle_words()
     else:
         _descent()
 

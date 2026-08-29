@@ -15,6 +15,7 @@ from research.juggler_sequence.cycle_length_seven import (
     cycle_word_hits,
     orbit_until_fail,
 )
+from research.juggler_sequence.cycle_ooo_scale import cyclemin_orientation
 from research.juggler_sequence.cycle_word import follows_word, image_after
 from research.juggler_sequence.envelope_defect import BIT_LIMIT, tiny_deficit
 from research.juggler_sequence.expansion_slack import FOUR_BLOCK
@@ -32,6 +33,7 @@ ORBIT_STEPS_MAX = 80
 DISPLAY_BITS_MAX = 256
 DEFECT_BITS = BIT_LIMIT
 WORD_MAX = 8
+CYCLE_WORD_MAX = 16
 LEFTOVER_REPLAY_MAX = 256
 DESCENT_WINDOW_MAX = 500
 EVEN_CELL_LIST_MAX = 40
@@ -49,6 +51,36 @@ WORD_PRESETS: tuple[str, ...] = (
     "OOOOEE",
     "OOOOEOE",
     "OOOOOEE",
+)
+
+CYCLE_WORD_PRESETS: tuple[str, ...] = (
+    "OEO",
+    "OOE",
+    "EOOOOE",
+    "OEOOOE",
+    "OOOEOE",
+    "OOOOEE",
+    "OOEOOE",
+    "OOOOOOEE",
+    "OOEOOOOE",
+    "OOOOOO",
+)
+
+THREE_EVEN_LEFTOVER = "OOOOOOEEE"
+
+_EXCLUDING_KINDS = frozenset(
+    {
+        "all-odd",
+        "all-even",
+        "not expanding",
+        "odd-run",
+        "threshold",
+        "bootstrap",
+        "leftover",
+        "two-even leftover",
+        "three-even leftover",
+        "excluded",
+    }
 )
 
 NOTE_PEAK_37 = 24_906_114_455_136
@@ -152,6 +184,43 @@ def parse_word(raw: str) -> str | None:
     if word and any(letter not in {"O", "E"} for letter in word):
         return None
     return word
+
+
+def parse_cycle_word(raw: str) -> str | None:
+    """Return a canonical O/E cycle word, allowing the two-even lengths."""
+
+    word = "".join(raw.split()).upper()
+    if len(word) > CYCLE_WORD_MAX:
+        return None
+    if word and any(letter not in {"O", "E"} for letter in word):
+        return None
+    return word
+
+
+def rotate_cycle_word(word: str, shift: int = 1) -> str:
+    """Rotate `word` left by `shift` letters."""
+
+    if not word:
+        return word
+    step = shift % len(word)
+    return word[step:] + word[:step]
+
+
+def cycle_rotations(word: str) -> tuple[str, ...]:
+    if not word:
+        return ("",)
+    return tuple(rotate_cycle_word(word, index) for index in range(len(word)))
+
+
+def two_even_family(word: str) -> str | None:
+    length = len(word)
+    if length < 6:
+        return None
+    if word == "O" * (length - 2) + "EE":
+        return "EE"
+    if word == "O" * (length - 3) + "EOE":
+        return "EOE"
+    return None
 
 
 def format_int(value: int) -> str:
@@ -680,3 +749,368 @@ def four_block_replay() -> tuple[ChainStep, ...]:
 
 def leftover_words() -> tuple[str, ...]:
     return tuple(LEFTOVER_CUTOFF)
+
+
+@dataclass(frozen=True)
+class ArgumentStep:
+    title: str
+    body: str
+    status: str
+    ledger: str | None = None
+
+
+@dataclass(frozen=True)
+class RotationRow:
+    shift: int
+    word: str
+    even_terminating: bool
+    expanding: bool
+    legal_cyclemin: bool
+    blocked_by: str | None
+    kind: str
+    reason: str
+    selected: bool
+
+
+@dataclass(frozen=True)
+class CycleTryView:
+    n: int
+    word: str
+    follows: bool
+    fail_index: int | None
+    fail_state: int | None
+    image: int | None
+    returned: bool | None
+    bit_capped: bool
+
+
+@dataclass(frozen=True)
+class CycleClassView:
+    word: str
+    current: str
+    shift: int
+    length: int
+    odd: int
+    even: int
+    expanding: bool
+    verdict: str
+    verdict_reason: str
+    ledger: str | None
+    steps: tuple[ArgumentStep, ...]
+    rotations: tuple[RotationRow, ...]
+    legal_reps: tuple[str, ...]
+    current_kind: str
+    current_reason: str
+    current_legal: bool
+    current_blocked_by: str | None
+
+
+def _is_odd_run(word: str) -> bool:
+    return (
+        len(word) >= 4
+        and word.endswith("E")
+        and word[:-1] == "O" * (len(word) - 1)
+    )
+
+
+def _orientation_ledger(kind: str, word: str) -> str | None:
+    if kind in {"all-odd", "all-even", "not expanding", "odd-terminating"}:
+        return "J-cycle-finite-structure"
+    if kind == "odd-run":
+        return "J-small-cycle-census-seven" if len(word) <= 7 else "J-cycle-finite-structure"
+    if kind == "leftover":
+        if word in {"OOOEOE", "OOOOEE"}:
+            return "J-leftover-length-six-orientations"
+        if word in {"OOOOEOE", "OOOOOEE"}:
+            return "J-leftover-length-seven-orientations"
+        return "J-small-cycle-census-seven"
+    if kind == "two-even leftover":
+        return "J-two-even-leftover-ee" if word.endswith("EE") else "J-two-even-leftover-eoe"
+    if kind == "three-even leftover":
+        return "J-leftover-ooooooeee"
+    if kind in {"threshold", "bootstrap", "rotation", "excluded", "not CycleMin"}:
+        return "J-small-cycle-census-seven" if len(word) <= 7 else "J-small-cycle-census"
+    return None
+
+
+def _base_kind(word: str) -> tuple[str, str]:
+    """Classify one spelling without chasing a rotation target."""
+
+    if not word:
+        return "empty", "empty word"
+    if all(letter == "O" for letter in word):
+        return "all-odd", "an all-odd word is a strict ascent and cannot close"
+    if all(letter == "E" for letter in word):
+        return "all-even", "Theorem 3.2(i): a cycle word is formally expanding"
+    if not expanding(word):
+        return "not expanding", "Theorem 3.2(i): a cycle word is formally expanding"
+    if not word.endswith("E"):
+        return "odd-terminating", "census reduces to an even-terminating rotation"
+    if _is_odd_run(word):
+        odds = len(word) - 1
+        return "odd-run", f"no_cycle_odd_run_append_even for O^{odds}E, a ≥ 3"
+    if word == THREE_EVEN_LEFTOVER:
+        return "three-even leftover", "OOOOOOEEE is excluded (no_cycle_word_ooooooeee)"
+    named = _WORD_CLASS.get(word)
+    if named is not None and named[0] != "rotation":
+        return named
+    family = two_even_family(word)
+    if family == "EE":
+        return (
+            "two-even leftover",
+            f"O^{len(word) - 2}EE is excluded for every k ≥ 6 "
+            "(no_cycle_word_two_even_ee)",
+        )
+    if family == "EOE":
+        return (
+            "two-even leftover",
+            f"O^{len(word) - 3}EOE is excluded for every k ≥ 6 "
+            "(no_cycle_word_two_even_eoe)",
+        )
+    if word.startswith("E"):
+        return "rotation", "rotate the leading evens onto an even-terminating spelling"
+    if word.startswith("OE"):
+        return "not CycleMin", "cycleMin_not_odd_even"
+    if named is not None:
+        return named
+    if len(word) <= 7:
+        return "excluded", "note census of length ≤ 7"
+    return "open", "not excluded by the recorded census"
+
+
+def _preferred_target(word: str) -> str | None:
+    named: list[str] = []
+    legal: list[str] = []
+    even_term: list[str] = []
+    for rotated in cycle_rotations(word):
+        kind, _reason = _base_kind(rotated)
+        if rotated.endswith("E") and kind in _EXCLUDING_KINDS:
+            named.append(rotated)
+        orientation = cyclemin_orientation(rotated)
+        if orientation["legal_cyclemin"] and expanding(rotated):
+            legal.append(rotated)
+        if rotated.endswith("E"):
+            even_term.append(rotated)
+    if named:
+        return named[0]
+    if legal:
+        return legal[0]
+    if even_term:
+        return even_term[0]
+    return None
+
+
+def _orientation_kind(word: str) -> tuple[str, str]:
+    kind, reason = _base_kind(word)
+    if kind in {"odd-terminating", "rotation", "not CycleMin"}:
+        target = _preferred_target(word)
+        if target and target != word:
+            if kind == "odd-terminating":
+                return kind, f"rotate onto the even-terminating spelling {target}"
+            if kind == "rotation":
+                return kind, f"rotates onto {target}"
+            return kind, f"cycleMin_not_odd_even; the even-terminating target is {target}"
+    return kind, reason
+
+
+def orientation_obstruction(word: str) -> tuple[str, str, str | None]:
+    parsed = parse_cycle_word(word)
+    if parsed is None:
+        raise ValueError("orientation_obstruction requires an O/E word of length ≤ 16")
+    kind, reason = _orientation_kind(parsed)
+    return kind, reason, _orientation_ledger(kind, parsed)
+
+
+def try_cycle_word(n: int, word: str) -> CycleTryView:
+    if n < 1:
+        raise ValueError("try_cycle_word requires n ≥ 1")
+    parsed = parse_cycle_word(word)
+    if parsed is None:
+        raise ValueError("try_cycle_word requires an O/E word of length ≤ 16")
+    if n.bit_length() > DISPLAY_BITS_MAX:
+        return CycleTryView(n, parsed, False, None, None, None, None, True)
+    current = n
+    for index, letter in enumerate(parsed):
+        if current.bit_length() > DISPLAY_BITS_MAX:
+            return CycleTryView(n, parsed, False, index, current, None, None, True)
+        parity_ok = (letter == "O" and current % 2 == 1) or (
+            letter == "E" and current % 2 == 0
+        )
+        if not parity_ok:
+            return CycleTryView(n, parsed, False, index, current, None, None, False)
+        nxt = floor_power(current)
+        if nxt.bit_length() > DISPLAY_BITS_MAX:
+            return CycleTryView(n, parsed, False, index, current, None, None, True)
+        current = nxt
+    return CycleTryView(
+        n=n,
+        word=parsed,
+        follows=True,
+        fail_index=None,
+        fail_state=None,
+        image=current,
+        returned=current == n,
+        bit_capped=False,
+    )
+
+
+def _class_verdict(
+    word: str,
+    legal: tuple[str, ...],
+) -> tuple[str, str, str | None]:
+    if not word:
+        return "empty", "empty word", None
+    kind, reason = _orientation_kind(word)
+    if kind in {"all-odd", "all-even", "not expanding"}:
+        return "excluded", reason, _orientation_ledger(kind, word)
+    if not legal:
+        return (
+            "excluded",
+            "no legal CycleMin orientation exists in this rotation class",
+            "J-cycle-finite-structure",
+        )
+    open_reps = []
+    excluded_reps = []
+    for rep in legal:
+        rep_kind, rep_reason = _orientation_kind(rep)
+        if rep_kind == "open":
+            open_reps.append((rep, rep_reason))
+        elif rep_kind in _EXCLUDING_KINDS:
+            excluded_reps.append((rep, rep_kind, rep_reason))
+        else:
+            open_reps.append((rep, rep_reason))
+    if open_reps:
+        sample = open_reps[0][0]
+        return (
+            "open",
+            f"{sample} is a legal CycleMin spelling that the recorded census does not exclude",
+            None,
+        )
+    if not excluded_reps:
+        return "open", "not excluded by the recorded census", None
+    first = excluded_reps[0]
+    return "excluded", first[2], _orientation_ledger(first[1], first[0])
+
+
+def cycle_class_view(word: str, shift: int = 0) -> CycleClassView:
+    parsed = parse_cycle_word(word)
+    if parsed is None:
+        raise ValueError("cycle_class_view requires an O/E word of length ≤ 16")
+    word = parsed
+    current = rotate_cycle_word(word, shift) if word else ""
+    current_kind, current_reason = _orientation_kind(current)
+    current_orient = (
+        cyclemin_orientation(current)
+        if current
+        else {
+            "legal_cyclemin": False,
+            "blocked_by": None,
+        }
+    )
+    rows: list[RotationRow] = []
+    legal: list[str] = []
+    for index, rotated in enumerate(cycle_rotations(word)):
+        kind, reason = _orientation_kind(rotated)
+        orientation = (
+            cyclemin_orientation(rotated)
+            if rotated
+            else {"legal_cyclemin": False, "blocked_by": None}
+        )
+        if orientation["legal_cyclemin"] and expanding(rotated):
+            legal.append(rotated)
+        rows.append(
+            RotationRow(
+                shift=index,
+                word=rotated,
+                even_terminating=bool(rotated) and rotated.endswith("E"),
+                expanding=expanding(rotated) if rotated else False,
+                legal_cyclemin=bool(orientation["legal_cyclemin"]),
+                blocked_by=orientation["blocked_by"],
+                kind=kind,
+                reason=reason,
+                selected=rotated == current,
+            )
+        )
+    legal_reps = tuple(dict.fromkeys(legal))
+    verdict, verdict_reason, ledger = _class_verdict(word, legal_reps)
+    odds = odd_count(word)
+    evens = word.count("E")
+    is_exp = expanding(word) if word else False
+    mixed = bool(word) and not (odds in {0, len(word)})
+    even_term_reps = tuple(row.word for row in rows if row.even_terminating)
+    steps = (
+        ArgumentStep(
+            title="Formal expansion",
+            body=(
+                f"2^{len(word)} = {2 ** len(word)} compared with "
+                f"3^{odds} = {3 ** odds}. A nontrivial cycle word is "
+                "formally expanding."
+                if word
+                else "Enter a nonempty word."
+            ),
+            status="blocks" if word and not is_exp else "ok" if word else "info",
+            ledger="J-cycle-finite-structure" if word and not is_exp else None,
+        ),
+        ArgumentStep(
+            title="Mixed word",
+            body=(
+                "An all-odd word is a strict ascent and cannot return. "
+                "An all-even word is not expanding. A cycle word is mixed."
+                if word
+                else "Empty word."
+            ),
+            status=(
+                "blocks"
+                if word and not mixed
+                else "ok"
+                if mixed
+                else "info"
+            ),
+            ledger="J-cycle-finite-structure" if word and not mixed else None,
+        ),
+        ArgumentStep(
+            title="Rotate to even-terminating",
+            body=(
+                "Cycle words are cyclic: if n follows w and returns, every "
+                "rotation is a cycle word at a rotated start. The even-"
+                f"terminating spellings are {', '.join(even_term_reps) or '—'}."
+            ),
+            status="ok" if even_term_reps else "info",
+            ledger="J-cycle-finite-structure",
+        ),
+        ArgumentStep(
+            title="CycleMin filter",
+            body=(
+                "A cycle-minimum orientation cannot start even, start OE, "
+                "or end odd. Legal CycleMin spellings in this class: "
+                f"{', '.join(legal_reps) or 'none'}."
+            ),
+            status="blocks" if word and mixed and is_exp and not legal_reps else "ok",
+            ledger="J-cycle-finite-structure",
+        ),
+        ArgumentStep(
+            title="Named obstruction",
+            body=verdict_reason,
+            status="blocks" if verdict == "excluded" else "open" if verdict == "open" else "info",
+            ledger=ledger,
+        ),
+    )
+    return CycleClassView(
+        word=word,
+        current=current,
+        shift=(shift % len(word)) if word else 0,
+        length=len(word),
+        odd=odds,
+        even=evens,
+        expanding=is_exp,
+        verdict=verdict,
+        verdict_reason=verdict_reason,
+        ledger=ledger,
+        steps=steps,
+        rotations=tuple(rows),
+        legal_reps=legal_reps,
+        current_kind=current_kind,
+        current_reason=current_reason,
+        current_legal=bool(current_orient["legal_cyclemin"]),
+        current_blocked_by=current_orient["blocked_by"],
+    )

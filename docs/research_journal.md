@@ -11138,3 +11138,41 @@ Best next question
   transport at the uniform cutoff n>=256
 ```
 
+## Juggler first-E transport in Lean
+
+- **Date:** 2026-08-30
+- **Objective:** Lean-exclude gapped three-even `CycleMin`s by first-E transport of the uniform two-even tail
+- **Hypotheses:** \(y\ge n\) plus the shared tail at \(y\) is one argument once \(y\ge 256\); \(n<256\) is seven-odd or a short-gap table
+- **Major results:** `no_cycleMin_gapped_three_even_ee` and `no_cycleMin_gapped_three_even_eoe` (**EXACT — LEAN VERIFIED**, ledger `J-first-e-transport-ee`, `J-first-e-transport-eoe`). Large \(y\) reuses `shared_two_even_tail`. Short gaps \(a,b\le 6\) are `native_decide` tables in `FirstETransportEval.lean`; longer gaps are seven-odd. Not a `CycleWord` theorem at a non-minimum start. Not a length-8/9 census. Paper A not edited
+- **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; transport as a `CycleWord` theorem at every start
+- **Literature:** uniform two-even Lean and `CycleMin` reused
+- **Open:** bunched-tail cells (\(b\le 3\) EE, \(b\le 2\) EOE), or first-E transport at \(e\ge 4\). Length 8 still open
+- **Decision:** PROMOTE the Lean exclusion of both gapped `CycleMin` families. Not a length-9 census and not a halt theorem
+
+```text
+What was learned
+- y>=n plus the two-even tail at y is one Lean argument; it
+  does not require n>=256, only y>=256
+- Below 256, only the short-gap window a,b<=6 needs tables;
+  a>=7 or b>=7 is seven-odd
+- The same chain fails if y<n, so this stays CycleMin-only
+- Bunched a1-short leftovers are untouched
+- Paper A and the length-7 census are untouched
+Strongest theorem
+- no_cycleMin_gapped_three_even_ee / _eoe: neither gapped
+  three-even leftover is a CycleMin at n>=2
+Strongest refutation
+- none new; transport as CycleWord at a non-minimum start
+  remains false
+Reusable machinery
+- FirstETransport.lean, FirstETransportEval.lean
+Branch status
+- PROMOTE
+Why
+- gapped e=3 CycleMins are now one Lean type, reduced to the
+  e=2 tail; the bunched remainder is still named and open
+Best next question
+- bunched-tail cells for the a1-short remainder, or first-E
+  transport at e>=4
+```
+
