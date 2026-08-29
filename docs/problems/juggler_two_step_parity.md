@@ -1046,8 +1046,10 @@ paper now claims exactly: exact linearization; depths 1–3; the
 \(OE*\) splits; the kernel bound \(K_c\ll P^{1-1/96+\varepsilon}\)
 (Theorem 5.3, full-length Section 5); the \(OOO*\) splits with a
 complete passenger inventory (Theorem 6.1); certified-descent density
-\(13/16\) (Corollary 4.9); the conditional density-one implication
-(Proposition 7.1) with unconditional O-rooted base cases \(d\le4\);
+\(13/16\) (Corollary 4.9, the three classes \(E\), \(OE\),
+\(OOEE\) only); the conditional density-one implication
+(Proposition 7.1, \(O\)-rooted hypothesis) with unconditional
+base cases \(d\le4\);
 and the level-3 obstruction with the shift-averaged \(L^2\) bound
 (Proposition 7.4). Paper B numbering: Theorem R is Theorem 5.3
 (mixed-piece repair as Lemma 5.2, Lemmas R1/R2/R3 as Lemma 5.1),

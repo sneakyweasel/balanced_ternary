@@ -1,0 +1,18 @@
+{
+  "id": "smith-1992-juggler-letter",
+  "title": "Letter to C. A. Pickover on juggler numbers",
+  "authors": ["Harry J. Smith"],
+  "year": 1992,
+  "identifiers": {},
+  "url": {
+    "archive": "https://web.archive.org/web/20091027155431/geocities.com/hjsmithh/Juggler/Juggle3L.html"
+  },
+  "problem_area": "nonlinear-integer-dynamics",
+  "relevant_concepts": [
+    "juggler sequence",
+    "height record"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "27 June 1992. Records the 48443 peak of 972463 digits. Dropped from Paper A; the published height record is cited via OEIS A094716."
+}

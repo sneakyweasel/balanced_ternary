@@ -414,7 +414,7 @@ one_plus_eta_lt_succ_sq :
     (NearTightScale.lean)
 ```
 
-The certified four-block expanding chain named in Paper A's Section 5
+The certified four-block expanding chain named in Paper A's Section 4
 is `four_block_pe_1999` in `ExpansionSlack.lean`.
 
 ## 9. Exact floor reductions for the discrepancy paper

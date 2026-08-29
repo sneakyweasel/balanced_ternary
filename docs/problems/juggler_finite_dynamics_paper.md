@@ -2,9 +2,10 @@
 
 Author: Philippe Cochin. Date: 29 August 2026.
 Status: **PAPER_CANDIDATE**. The publication draft is dated 29 August 2026
-and is not submitted. After the publication audit it is a standalone math
-note centered on the envelope, defect calculus, and cycle restrictions;
-short certificates and ambient discrepancy are secondary.
+and is not submitted. After the publication-readiness rewrite it is a
+standalone math note titled *Small cycles of the Juggler map*, centered
+on the length-\(\le 6\) census; the envelope is the tool, the defect is
+exact bookkeeping, and the short certificates are a remark.
 
 This branch opens no new attack and makes no claim that every positive
 integer reaches \(1\).
@@ -232,15 +233,16 @@ the pure amplitude-product model (Conjecture 7.5)?
 ## Decision
 
 **PROMOTE** Paper A as the submission candidate. Paper B stays a
-**working draft with a frozen claim set** after the Phase-26 referee
-response: the review found the Step-5b assembly error (repaired by
-global sublevel splitting), the false quantification of the old
-Theorem 7.4 (restated as Proposition 7.4), and the
-reduction-by-slogan proofs of Theorems 6.2–6.4 (withdrawn with
-Corollaries 5.4 and 6.5; densities revert to \(13/16\)). Theorem 4.4
-and Theorem 6.1 are now full staged proofs. The individual Atlas,
-discrepancy, probabilistic, and closed-compression branches keep
-their original decisions.
+**working draft with a frozen claim set**. A later write-up closed
+the publication-readiness gaps that did not change the theorems:
+Step 5b now names the interpolant
+\(\Phi=a\nu^{5/4}+b\nu^{11/8}+w\nu^{3/2}\) and expands the
+\(J_F\) replacement in the second derivative, not in the phase;
+Theorem 6.1 Step E estimates the decorated composites at
+\(\lambda_a'\) and \(\lambda_0'\); Corollary 4.9 is restricted to
+\(E\), \(OE\), \(OOEE\); Proposition 7.1 is \(O\)-rooted;
+Proposition 3.1 is written out; Vaaler, Weyl, and
+\(T\ge8(1+|B|)\) are aligned. The claim set is unchanged.
 
 Best next question: one independent human check of Paper B's
 Section 5 by someone who did not write it.
@@ -252,11 +254,14 @@ Status: Paper A `PAPER_CANDIDATE`; Paper B `WORKING_DRAFT`
 implication, \(\delta=1/96\); pending one independent check of
 Section 5).
 
-Paper A is a standalone Lean-backed math note: envelope, exact defect
-calculus, cycle restrictions with a length-\(\le6\) cycle census,
-short certificates, the finite-state negative knowledge, and an
-explicit pointer to the companion for all density questions. External
-review judged this half publishable as-is.
+Paper A is a standalone Lean-backed math note titled *Small cycles
+of the Juggler map*: the length-\(\le6\) census is the theorem; the
+envelope, cells, and thresholds are the tools; the defect identity
+is exact bookkeeping, not a uniform tax. Short certificates and the
+remaining gap are remarks. Related work now includes Pickover 2002,
+Weisstein, and OEIS A094716. The Smith letter and the 2026 webpage
+record through \(7\,110\,200\) were dropped from the note. Python
+listings were removed from the body.
 
 Paper B carries the analytic novelty (exact linearization of nested
 floor powers; the level-2 kernel theorem) and the risk: external

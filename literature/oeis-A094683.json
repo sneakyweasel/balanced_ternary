@@ -16,5 +16,5 @@
   ],
   "project_relationship": "known",
   "status": "classical-source",
-  "notes": "One-step Juggler map. Paper citation [2] in docs/theory/juggler_finite_dynamics_note.md. A007320 is the stopping-time table, not the map."
+  "notes": "One-step Juggler map. Paper A citation [3] in docs/theory/juggler_finite_dynamics_note.md. A007320 is the stopping-time table, not the map."
 }

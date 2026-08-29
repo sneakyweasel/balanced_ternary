@@ -10750,3 +10750,156 @@ Best next question
   errors were caught by expansion and by external review; assume
   there is another)
 ```
+
+## Paper A publication-readiness rewrite
+
+- **Date:** 2026-08-29
+- **Objective:** Rewrite Paper A so a journal referee can accept it as a short note
+- **Major results:** Retitled *Small cycles of the Juggler map*. The census is the theorem; the envelope is the tool; the defect is exact bookkeeping used once on mixed cycle words. Lemma 3.1 written strictly; Theorem 2.2 induction uses prefix length \(\ell\); Lemma 3.4(v) records the already-proved odd-run exclusion \(O^aE\) (\(a\ge 3\)). Related work now includes Pickover 2002, Weisstein, Smith 1992, A094716, and the 2026 computational record through \(7\,110\,200\). Python listings removed. Certificates and the remaining gap are remarks. Theorem numbers 2.1--4.1 unchanged.
+- **Refuted ideas:** none (editorial)
+- **Literature:** pickover-2002-mathematics-of-oz, weisstein-juggler-sequence, smith-1992-juggler-letter, oeis-A094716, derneueschwan-2026-juggler added or retagged as Paper A citations
+- **Open:** length \(\ge 7\) cycles; universal arrival at \(1\)
+- **Decision:** PROMOTE the rewritten note as the submission draft. No new theorem attack.
+
+```text
+What was learned
+- a length-6 census can carry a note if the literature and the
+  contribution sentence are honest
+- the defect calculus stays in the paper as an identity, not as the
+  title claim
+- the computational record through 7.11e6 is a cycle-location
+  statement, not a period bound
+Strongest theorem
+- unchanged: no nontrivial cycle of length at most six
+Strongest refutation
+- none
+Reusable machinery
+- none new
+Branch status
+- PROMOTE
+Why
+- the previous review's blockers were scholarship, centre, and
+  laboratory residue, not a false theorem
+Best next question
+- submit the note, or push the leftover length-7 internal-even shapes
+```
+
+## Paper B publication-readiness write-up
+
+- **Date:** 2026-08-29
+- **Objective:** Close the gaps that blocked treating Paper B as
+  checkable, without changing the claim set
+- **Major results:** Step 5b interpolant written as
+  \(\Lambda=\Phi''+r\) with
+  \(\Phi=a\nu^{5/4}+b\nu^{11/8}+w\nu^{3/2}\),
+  \(a=-\tfrac{27}{10}(uh_1+u'h_2)\), \(b=\tfrac{81}{22}kh_1h_2\);
+  the \(J_F\) replacement is in the expanded second derivative, not
+  in the phase. Zero-offset curvature corrected to
+  \(\lambda_0\in[1.0,5.0]kh_1h_2P^{-5/8}\) from the same expansion
+  (old \([0.2,0.9]\) was inconsistent). Theorem 6.1 Step E now
+  displays competitor ratios at \(\lambda_a'\) and the three
+  regimes at \(\lambda_0'\). Corollary 4.9 restricted to \(E\),
+  \(OE\), \(OOEE\); Proposition 7.1 is \(O\)-rooted;
+  Proposition 3.1 induction written out. Vaaler coefficients,
+  Weyl \(A\)-process, and \(T\ge8(1+|B|)\) aligned. \(P_0\)
+  recorded as ineffective.
+- **Refuted ideas:** none (the \(j=0\) \(\theta\)-coefficient
+  \(kh_1h_2P^{3/8}\) was a copied offset formula; corrected to
+  the sub-unit \(kh_1h_2P^{-1/8}\))
+- **Literature:** none
+- **Open:** independent check of Section 5; Conjectures 7.3, 7.5
+- **Decision:** PROMOTE the write-up inside the frozen claim set.
+  Paper B stays a working draft until an independent line-check.
+
+```text
+What was learned
+- replacing J_F by G-1/2 in the phase kills the j=0 curvature;
+  the same replacement in the expanded second derivative keeps it
+- the old λ_0 interval [0.2, 0.9] did not match (cF)''-c''F
+- Corollary 4.9's census sentence was wider than the proof
+- a costs table for Lemma 5.2 is what makes the decoration
+  budget checkable
+Strongest theorem
+- unchanged: kernel K_c ≪ P^{1-1/96+ε}; certified density 13/16
+Strongest refutation
+- the j=0 large-B window inventory (offset formula used at j=0)
+Reusable machinery
+- none new
+Branch status
+- PROMOTE the write-up; Paper B remains WORKING_DRAFT
+Why
+- the theorems did not change; the proofs are now the thing a
+  stranger was asked to check
+Best next question
+- one independent human check of Section 5
+```
+
+## Paper A Zenodo deposit kit
+
+- **Date:** 2026-08-29
+- **Objective:** Give Paper A a public DOI without an arXiv math endorser
+- **Major results:** Deposit folder `juggler_review/zenodo_paper_a/` with the current Paper A PDF, paste-ready Zenodo fields, and a journal-policy note. Integers is out while the LLM acknowledgment stands. Paper B is not in the upload.
+- **Refuted ideas:** none
+- **Literature:** none
+- **Open:** the DOI, then [22] in Paper B
+- **Decision:** PROMOTE the kit. Do not auto-submit anywhere.
+
+```text
+What was learned
+- Integers' AI rule blocks a truthful submission of the current note
+- Zenodo does not need an endorser or an affiliation
+Strongest theorem
+- unchanged
+Strongest refutation
+- none
+Reusable machinery
+- none
+Branch status
+- PROMOTE the deposit kit
+Why
+- a DOI unblocks citation of Paper A; it does not replace a journal
+Best next question
+- publish the Zenodo record and put the DOI in Paper B [22]
+```
+
+## Juggler length-7 cycle-word inventory
+
+- **Date:** 2026-08-29
+- **Objective:** Apply the Paper A cycle filters to even-terminating expanding length-7 words and test whether the Lemma 3.5 leftover tails exclude the two predicted leftovers
+- **Hypotheses:** length 7 is the same two-even type as length 6; bootstrap kills `OOEOOOE` / `OOOEOOE`; leftover tails kill `OOOOOEE` / `OOOOEOE`
+- **Major results:** Classification **LENGTH_SEVEN_LEFTOVER_TAIL_GREEN**. The seven-word family is exactly `OOOOOOE`, `EOOOOOE`, `OEOOOOE`, `OOEOOOE`, `OOOEOOE`, `OOOOEOE`, `OOOOOEE`. Odd-run and internal-E bootstrap cover five of them up to rotation. Both leftovers satisfy \(n^{243}>2^{422}(n+1)^{128}\) for \(n\ge 14\), and the exact tables on \(2\le n<14\) have zero realizations. Records: `docs/problems/juggler_length_seven_cycles.md`, `docs/research/juggler_cycle_length_seven.md`. No Lean. No Paper A edit
+- **Refuted ideas:** a third leftover shape; a tail that never fires; reopening Paper B length-7 densities; a halt theorem
+- **Literature:** oeis-A007320 known. Internal-E bootstrap, leftover length-six orientations, and the small-cycle census reused, not reopened
+- **Open:** Lean exclusion of the two leftovers; length-7 census assembly. Length 8 is the same two-even type and was not opened. Length 9 is the first three-even length
+- **Decision:** PROMOTE the inventory and leftover-tail computation. A later Lean phase is justified and is not automatic. No halt theorem
+
+```text
+What was learned
+- Length 7 has the same two-even geometry as length 6: one odd-run
+  word, a bootstrap pair, and two leftover families O^{k-2}EE and
+  O^{k-3}EOE
+- OOEOOOE / OOOEOOE die as CycleMin by the existing internal-E
+  bootstrap; n=3 is a parity failure (11 odd, 6 even)
+- The refined leftover tail is n^243 > 2^422 (n+1)^128 and first
+  fires at N0=14, smaller than the length-6 cutoff 256
+- Neither leftover is even realized on 2 ≤ n < 14
+- Length 8 is the same two-even type; length 9 is the first
+  three-even length. Neither was opened
+Strongest theorem
+- none new in Lean; computationally, neither OOOOOEE nor OOOOEOE
+  is a CycleWord at any n ≥ 2 by the N0=14 tail plus an empty table
+Strongest refutation
+- none; the inventory matched the prediction
+Reusable machinery
+- src/research/juggler_sequence/cycle_length_seven.py
+Branch status
+- PROMOTE
+Why
+- both leftover tails fire and the finite tables are empty, so the
+  Lemma 3.5 method reaches the first open length
+Best next question
+- Lean-exclude CycleWord on OOOOOEE and OOOOEOE by the tail
+  n^243 > 2^422 (n+1)^128 for n ≥ 14, then assemble
+  no_cycle_word_length_seven
+```
+

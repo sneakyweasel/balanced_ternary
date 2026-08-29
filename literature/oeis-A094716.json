@@ -1,0 +1,20 @@
+{
+  "id": "oeis-A094716",
+  "title": "Largest value in trajectory of n under the juggler map of A094683",
+  "authors": ["OEIS contributors"],
+  "year": 2004,
+  "identifiers": {
+    "oeis": "A094716"
+  },
+  "url": {
+    "oeis": "https://oeis.org/A094716"
+  },
+  "problem_area": "nonlinear-integer-dynamics",
+  "relevant_concepts": [
+    "juggler sequence",
+    "height record"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Records Smith heights for 30817 and 48443. Paper A citation [6]."
+}

@@ -3,6 +3,8 @@ title: Parity equidistribution of nested floor powers, with descent applications
 author: Philippe Cochin
 date: 29 August 2026
 subtitle: Working draft. Not submitted.
+header-includes:
+  - \AtBeginDocument{\author{Philippe Cochin \\ \texttt{philippe@cochin.fr}}}
 ---
 
 ## Abstract
@@ -120,8 +122,9 @@ introduced by Pickover [1] (OEIS A094683 [2]); universal arrival at
 their own, and the paper is organized so that they do. The exact
 finite-word calculus of \(J\) — the power envelope
 \(J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}\), the defect identity, and a
-small-cycle census — is a companion manuscript [22]; here we import
-only the contraction criterion (Proposition 3.1). The dynamical payoff
+small-cycle census — is a companion manuscript [22]; here we use
+only the contraction criterion (Proposition 3.1), whose short
+induction is written out below. The dynamical payoff
 of the counting theorems is one *certified-descent density*: the set
 of starts guaranteed to drop below their starting value within four
 steps has natural density \(13/16\) (Corollary 4.9), and
@@ -267,11 +270,24 @@ If the word \(w\) is realized at \(n\ge2\) (the orbit's parities are
 the letters of \(w\)) and \(3^{\#O(w)}<2^{|w|}\), then
 \(J^{|w|}(n)<n\).
 
-*Proof.* Induction along the word gives
-\(J^{|w|}(n)^{2^{|w|}}\le n^{3^{\#O(w)}}\): an even letter squares to
-at most the state, an odd letter squares to at most the cube. The
-exponent gap and \(n\ge2\) force \(J^{|w|}(n)^{2^{|w|}}<n^{2^{|w|}}\).
-\(\square\)
+*Proof.* Write \(k=|w|\) and \(m=J^k(n)\). We first prove the
+envelope \(m^{2^k}\le n^{3^{\#O(w)}}\), by induction on prefix
+length. The empty prefix is \(n\le n\). Suppose a realized prefix
+of length \(\ell\) with odd count \(o\) ends at \(x\) and satisfies
+\(x^{2^\ell}\le n^{3^o}\), and the next letter is realized. If that
+letter is even, then \(J(x)^2\le x\), so
+\(J(x)^{2^{\ell+1}}=(J(x)^2)^{2^\ell}\le x^{2^\ell}\le n^{3^o}\). If
+it is odd, then \(J(x)^2\le x^3\), so
+\(J(x)^{2^{\ell+1}}=(J(x)^2)^{2^\ell}\le x^{3\cdot 2^\ell}
+=(x^{2^\ell})^3\le(n^{3^o})^3=n^{3^{o+1}}\). This is the envelope
+at \(w\). The exponent gap and \(n\ge2\) give
+\(n^{3^{\#O(w)}}<n^{2^k}\), hence \(m^{2^k}<n^{2^k}\). Since
+\(m\ge1\), one has \(m<n\). \(\square\)
+
+The companion [22] develops the same envelope as a finite-word
+identity with an exact defect; only the contraction criterion is
+used below. The induction is recorded here so that the criterion
+does not depend on an unpublished text.
 
 A word \(w\) with \(3^{\#O(w)}<2^{|w|}\) is *contracting*; realizing a
 contracting word is a *descent certificate* of length \(|w|\).
@@ -297,6 +313,24 @@ Let \(f\) be twice differentiable on an interval of length \(M\), with
 \]
 the sum over the integers of the interval.
 
+The Weyl \(A\)-process used in Theorems 4.4 and 5.3 and in
+Lemma 5.2 is the following form, applied to a unimodular sequence
+on the odd integers of a block of length \(\asymp P\)
+(equivalently, in the \(r\)-variable of Lemma 3.10, with shift
+\(h\) in \(r\) equal to shift \(2h\) in \(n\)). For
+\(1\le H\le P\),
+\[
+\Bigl|\sum a_n\Bigr|^2
+\le\frac{2P^2}H+\frac{4P}H\sum_{1\le h<H}
+\Bigl|\sum a_{n+2h}\overline{a_n}\Bigr|.
+\]
+This is the classical inequality
+\(|\sum a_n|^2\le\tfrac{P+2H}H\sum_{|h|<H}(1-\tfrac{|h|}H)
+\sum a_{n+h}\overline{a_n}\) with the even-shift restriction and
+with the weights \(1-|h|/H\le1\) absorbed in the absolute
+constants. Every later appeal to “the classical inequality” is
+this display.
+
 **Lemma 3.4 (Erdős–Turán [8]).**
 The discrepancy of \(R\) points \(x_j\in\mathbb R/\mathbb Z\) against
 an interval satisfies, for every \(H\ge1\),
@@ -309,7 +343,7 @@ For every \(J\ge1\) there are trigonometric polynomials
 \(V_J(t)=\sum_{0<|q|\le J}a_qe(qt)\) with
 \(|a_q|\le\min(1,\tfrac2{|q|})\) and a nonnegative trigonometric
 polynomial \(\Delta_J\ge0\) of degree \(J\) with constant term and
-coefficients \(O(1/J)\), such that the period-2 square wave satisfies
+coefficients at most \(1/(J+1)\), such that the period-2 square wave satisfies
 \(\psi(x)=V_J(x/2)+O(\Delta_J(x/2))\). For products,
 \(|\psi_1\psi_2-V^{(1)}V^{(2)}|\le\Delta^{(1)}+\Delta^{(2)}
 +\Delta^{(1)}\Delta^{(2)}\), and each error term is again a
@@ -556,6 +590,10 @@ intervals of total length
 (ii) \(I\setminus\Omega_V\) is a union of at most \(C(E)\) intervals,
 on each of which \(f''\) is single-signed with
 \(V\le|f''|\le C(E)\,S\).
+If one of \(a,b,c\) vanishes the claim reduces to Lemma 3.8; if two
+vanish, to Lemma 3.3. The application in Theorem 5.3, Step 5b, uses
+the three-term statement when a window mode is present and the
+two-term reduction when \(w=0\).
 
 *Proof.* Write \(A,B,C\) for the three curvature terms
 \(a\alpha(\alpha-1)n^{\alpha-2}\) etc., so that
@@ -686,13 +724,20 @@ g(n)=\lfloor\delta(n)\rfloor+\kappa(n),
 \]
 
 *Proof.* (i) Let \(f(t)=(X-t)^{3/2}\) on \([0,\theta]\), so
-\(f(\theta)=m^{3/2}\). Taylor with Lagrange remainder at \(0\) gives
-\(f(\theta)=X^{3/2}-\tfrac32X^{1/2}\theta
-+\tfrac38(X-\xi)^{-1/2}\theta^2\) for some \(\xi\in(0,\theta)\).
+\(f(\theta)=m^{3/2}\). Then \(f'(t)=-\tfrac32(X-t)^{1/2}\) and
+\(f''(t)=\tfrac38(X-t)^{-1/2}\). Taylor with Lagrange remainder at
+\(0\) gives
+\(f(\theta)=f(0)+f'(0)\theta+\tfrac12 f''(\xi)\theta^2
+=X^{3/2}-\tfrac32X^{1/2}\theta
++\tfrac3{16}(X-\xi)^{-1/2}\theta^2\) for some \(\xi\in(0,\theta)\).
 Substituting \(\theta=X-m\) in the linear term yields
-\(-\tfrac12X^{3/2}+\tfrac32mX^{1/2}=-\tfrac12n^{9/4}+\tfrac32mn^{3/4}\),
-and the remainder lies in \([0,\tfrac38(X-1)^{-1/2}]\), with
-\((X-1)^{-1/2}\le\tfrac43X^{-1/2}\) already for \(n\ge3\). (ii)
+\(-\tfrac12X^{3/2}+\tfrac32mX^{1/2}=-\tfrac12n^{9/4}+\tfrac32mn^{3/4}\).
+Since \(\theta\in[0,1)\) and \(f''>0\), the remainder \(E(n)\) lies
+in \(\bigl[0,\tfrac3{16}(X-1)^{-1/2}\bigr]\). The coarser bound
+\(\tfrac38(X-1)^{-1/2}\) used in the statement absorbs the missing
+factor of \(2\) against \(\theta^2\le1\), and
+\((X-1)^{-1/2}\le\tfrac43X^{-1/2}\) already for \(n\ge3\), whence
+\(E(n)\le\tfrac12 n^{-3/4}\). (ii)
 \(g=\lfloor X+\delta\rfloor-\lfloor X\rfloor
 =\lfloor\delta\rfloor+\lfloor\{X\}+\{\delta\}\rfloor\), and the last
 floor is \(1\) precisely when \(\{X\}+\{\delta\}\ge1\). \(\square\)
@@ -760,12 +805,10 @@ changes each summand by a phase of modulus
 \(2\pi\tfrac j4\sum_{n\sim P}n^{-3/4}\le2jP^{1/4}\le4P^{7/24}\).
 Call the linearized phase \(\Phi\).
 
-*Step 3 (Weyl differencing).* For \(H=P^{1/12}\), the classical
-inequality (applied to the odd integers of the block, i.e. in the
-\(r\)-variable of Lemma 3.10, with shift \(h\) in \(r\) equal to
-shift \(2h\) in \(n\)) gives
+*Step 3 (Weyl differencing).* For \(H=P^{1/12}\), the \(A\)-process
+recorded after Lemma 3.3 gives
 \[
-|S_{i,j}|^2\le\frac{2P^2}H+\frac{2P}H
+|S_{i,j}|^2\le\frac{2P^2}H+\frac{4P}H
 \sum_{1\le h<H}|T_h|,
 \qquad
 T_h=\sum_{\substack{n,\,n+2h\in(P,2P]\\ n\ \mathrm{odd}}}
@@ -884,8 +927,8 @@ uniformly in the modes (for the last step:
 \(j\le2P^{1/24}\), \(h^{1/2}\le P^{1/24}\)). Hence
 \[
 |S_{i,j}|^2\le\frac{2P^2}H
-+\frac{2P}H\cdot C'\log P\sum_{h<H}P^{7/8}(1+h^{1/2})
-\le2P^{23/12}+3C'P^{15/8}H^{1/2}\log P
++\frac{4P}H\cdot C'\log P\sum_{h<H}P^{7/8}(1+h^{1/2})
+\le2P^{23/12}+6C'P^{15/8}H^{1/2}\log P
 \ll P^{23/12+\varepsilon}
 \]
 at \(H=P^{1/12}\), so \(|S_{i,j}|\ll P^{23/24+\varepsilon}\). Summing
@@ -1058,35 +1101,47 @@ dominance hierarchy \(iP^{-1/2}\gg jP^{-5/4}\gg lP^{-13/8}\) with all
 three second derivatives of the same sign. Total
 \(\ll N^{13/16+\varepsilon}\). \(\square\)
 
-**Corollary 4.9 (depth-4 census below the kernel; density \(13/16\)).**
-Every itinerary word class of depth at most four except \(OOO*\)
-satisfies
-\(\#\{n\le N:\mathrm{word}(n)\ \text{has prefix}\ w\}
-=2^{-|w|}N+O(N^{1-\delta_w})\) with the explicit exponents above. In
-particular
+**Corollary 4.9 (certified-descent density \(13/16\)).**
+The three uniform certificate classes
 \[
-\#\{n\le N:n\ \text{odd},\ \text{itinerary }OOEE\}
-=\tfrac N{16}+O(N^{23/24+\varepsilon}),
+E,\qquad OE,\qquad OOEE
 \]
-and the class of starts with a certified descent within four steps —
-evens (one step), \(OE\) (two steps), \(OOEE\) (four steps) — has
-cardinality
+are disjoint, and
+\[
+\#\{n\le N:\mathrm{word}(n)\ \text{has prefix }E\}
+=\bigl\lfloor\tfrac N2\bigr\rfloor,
+\]
+\[
+\bigl|\#\{n\le N:\mathrm{word}(n)\ \text{has prefix }OE\}-\tfrac N4\bigr|
+\ll N^{5/6},
+\]
+\[
+\bigl|\#\{n\le N:\mathrm{word}(n)\ \text{has prefix }OOEE\}-\tfrac N{16}\bigr|
+\ll_\varepsilon N^{23/24+\varepsilon}.
+\]
+Hence the class of starts with a certified descent within four
+steps has cardinality
 \[
 \tfrac N2+\tfrac N4+\tfrac N{16}+O(N^{23/24+\varepsilon})
 =\tfrac{13N}{16}+O(N^{23/24+\varepsilon}).
 \]
+No other depth-\(\le4\) word class is used. In particular this is
+not a census of \(E\)-rooted words of length \(\ge2\), and it is
+not a census of every \(O\)-rooted word of length four (the
+classes \(OOO*\) are Theorem 6.1, and they are non-contracting at
+this depth).
 
-*Proof.* For \(OOEE\), Lemma 3.6 gives
+*Proof.* Every even start realizes \(E\), so the first count is
+elementary. The \(OE\) count is Corollary 4.2. For \(OOEE\),
+Lemma 3.6 gives
 \(\#OOEE=\tfrac18\sum_{n\le N\ \mathrm{odd}}
 (1-\psi_1)(1+\psi_2)(1+\psi_3)\) with
 \(\psi_1=\psi(n^{3/2})\), \(\psi_2=\psi(m^{3/2})\),
-\(\psi_3=\psi(v^{1/2})\); expanding gives the main term and seven
-sign sums bounded by Theorem 4.7. Every \(OOEE\) start descends
-within four steps by Proposition 3.1: \(3^2<2^4\). The even class
-and the \(OE\) class carry the one- and two-step certificates, and
-the three classes are disjoint. The remaining depth-\(\le4\) prefixes
-are Theorem 4.1 (depth 1), Theorem 4.4 and Proposition 4.5 (depths
-2–3), and Theorems 4.7–4.8 (depth 4). \(\square\)
+\(\psi_3=\psi(v^{1/2})\); expanding gives the main term \(N/16\)
+and seven sign sums bounded by Theorem 4.7. Every \(OOEE\) start
+descends within four steps by Proposition 3.1: \(3^2<2^4\). The
+three classes are disjoint because they are distinct prefixes.
+\(\square\)
 
 The density \(13/16\) is the exact ceiling of this one-growing-layer
 machinery: a word contracts iff \(3^{o}<2^{\ell}\), the method so far
@@ -1364,6 +1419,13 @@ the composite second derivative then keeps the sign and, up to the
 factor \(1+CP^{-\rho}\), the size of \(B\), so Lemma 3.3 applies at
 \(B\)'s scale.
 
+Every numerical margin in this section is claimed only for
+\(P\ge P_0\), with an absolute but ineffective \(P_0\). Several
+comparisons (for instance
+\(54P^{-25/24}\le0.1P^{-5/6}\) in Step 5b) force \(P_0\) to be
+large; the constants are not asserted to be sharp, and no
+effective threshold is computed.
+
 The proof of the kernel theorem classifies the differenced pieces
 into four classes; three are handled by standard tests, and the
 fourth — an exact level-2 wave \(e(qY)\), possibly riding a frozen
@@ -1435,7 +1497,8 @@ may take \(t\ge1\). Fix \(e_1\in\mathcal D\) with
 \]
 and the second sum is a set of at most three decoration seeds with
 shifts \(|d-e_1|/2\le h_1{+}h_2\le2P^{1/24}\). Weyl differencing at
-shift \(2h_3\), \(1\le h_3\le H_3:=\lceil t^{1/3}P^{1/12}\rceil\):
+shift \(2h_3\), \(1\le h_3\le H_3:=\lceil t^{1/3}P^{1/12}\rceil\),
+by the \(A\)-process recorded after Lemma 3.3:
 \[
 |U|^2\le\frac{P^2}{H_3}
 +\frac{2P}{H_3}\sum_{h_3=1}^{H_3}
@@ -1516,7 +1579,9 @@ endpoint's smooth part contributes the exact phase
 
 *Stage 3 (the \(\theta\)-sawtooth).* Two regimes.
 (s1) If \(uh\le P^{3/16}\) then \(|B|\le2.25P^{-1/16}<\tfrac12\) for
-\(P\ge P_0\): Lemma 3.7 with \(T=P^{1/2}\), \(J=R_0\) expands
+\(P\ge P_0\): Lemma 3.7 with \(T=P^{1/2}\), \(J=R_0\)
+(hypothesis \(T\ge8(1+|B|)\): \(P^{1/2}\ge9\) for \(P\ge P_0\))
+expands
 \(e(-B_0\{\nu^{3/2}\}\dots)\) per window (here one window: the total
 drift of \(B\) is \(\le0.6uhP^{-1/4}\le0.6P^{-1/16}<1\)) into the
 same two mode families at coefficient factor
@@ -1526,7 +1591,8 @@ same two mode families at coefficient factor
 \(B\) drifts by at most \(1\) on windows of length
 \(\ge P^{5/4}/(0.6uh)\ge1.2P^{3/4}\): at most \(0.6P^{1/4}+1\)
 windows. Per window Lemma 3.7 at the centre \(B_0\)
-(\(T=P^{1/2}\): flat cost \(\le8(1{+}2.25P^{1/4})P^{1/2}
+(\(T=P^{1/2}\ge8(1+2.25P^{1/4})\) for \(P\ge P_0\), since
+\(P^{1/4}\ge19\); flat cost \(\le8(1{+}2.25P^{1/4})P^{1/2}
 \le27P^{3/4}\) in total) produces modes \(e(w\nu^{3/2})\) whose
 coefficients decay as
 \(\min(2,\tfrac1{\pi|w+B_0|})+\min(2,\tfrac1{\pi|w|})\); the
@@ -1669,7 +1735,27 @@ C\Bigl((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+P^{7/8}
 \]
 and the fourth term is \(\le P^{1/24}\cdot(h/u)^{1/2}P^{1/2}\), 
 absorbed by the second. This is (i) up to the stated
-\(P^{\varepsilon}\). \(\square\)
+\(P^{\varepsilon}\).
+
+*Costs collected.* Each class contributes to \(V\) as follows,
+all times \(P^{\varepsilon}\).
+
+| Class | Bound contributed to \(V\) | Absorbed by |
+|---|---|---|
+| Stage 1 remainder \(u\Delta E\) | \(P^{3/4}\) | \(P^{7/8}\) |
+| Stage 2 majorant / shift device | \(P^{3/4}\) | \(P^{7/8}\) |
+| Stage 3 (s1) sawtooth | \(P^{3/4}\) | \(P^{7/8}\) |
+| Stage 3 (s2) windows / collision | \((uh)^{1/2}P^{5/8}+P^{7/8}\) | (i) |
+| Stage 4, \(r=w=0\) | \((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}\) | (i) |
+| Stage 5, non-collision modes | \(P^{7/8}\) | (i) |
+| (D1) curvature | dominated at \(P^{-1/4}\) | Stage 4 |
+| (D1) run boundaries | \((h/u)^{1/2}P^{7/8}+h'(uh)^{-1/2}P^{7/8}\) | (i); \(H_3\)-average |
+| (D2)(a) smooth / sawtooth | dominated; \(P^{7/8}\) flat | Stage 4; (i) |
+| (D2)(b) gap / carry | dominated; \(P^{7/8}\) majorant | Stage 4; (i) |
+| (D3) | dominated at \(P^{-3/4}\) | Stage 4 |
+
+No decoration class is used later unless it appears in this
+table. \(\square\)
 
 The balance to keep in mind: with the trivial bound
 \(|V_{h_3}|\le P\), part (ii)'s differencing returns nothing beyond
@@ -1695,9 +1781,8 @@ uniformly in \(k\).
 *Proof.* Work on a dyadic block \(n\sim P\), odd.
 
 *Step 1 (double Weyl differencing).* Set \(H_1=P^{1/48}\),
-\(H_2=P^{1/24}\). The classical inequality
-\(|\sum_na_n|^2\le\tfrac{P+2H}{H}\sum_{|h|<H}
-(1-\tfrac{|h|}H)\sum_na_{n+2h}\overline{a_n}\) applied twice gives
+\(H_2=P^{1/24}\). The \(A\)-process recorded after Lemma 3.3,
+applied twice, gives
 \[
 |K_c|^2\le\frac{2P^2}{H_1}+\frac{4P}{H_1}
 \sum_{h_1=1}^{H_1}|T_1(h_1)|,
@@ -1744,7 +1829,11 @@ drifts by \(|B'|\le0.22kh_2P^{-7/8}\) per step: freeze it on at most
 (residual cost
 \(\sum_n|e((B{-}B_0)\{W\})-1|\le6.3P^{-1/8}\cdot P=6.3P^{7/8}\)).
 Per window, Lemma 3.7 at the centre \(B_0\) with
-\(T=P^{1/2}/(2h_1)\), \(J=P^{1/4}\): flat cost in total
+\(T=P^{1/2}/(2h_1)\), \(J=P^{1/4}\)
+(hypothesis \(T\ge8(1+|B|)\):
+\(P^{1/2}/(2h_1)\ge\tfrac12 P^{23/48}\) and
+\(8(1+|B|)\le15\,kh_2P^{1/8}\le15P^{10/48}\), so the inequality
+holds for \(P\ge P_0\)): flat cost in total
 \(\le8(1{+}1.85kh_2P^{1/8})\cdot2h_1P^{1/2}
 \le16h_1P^{1/2}+30\,kh_1h_2P^{5/8}\le46P^{3/4}\) by (C1); the
 majorant \(\Delta_J\)-part costs \(\le2\cdot4P/J=8P^{3/4}\) plus
@@ -1913,28 +2002,35 @@ Summed over the eight carry branches and \(|j|\le3\) with the
 at \(k\le P^{1/24}\) — the absorbed \((k|j|)^{1/2}\) loss, exactly
 at the bottleneck.
 
-**(5b) Zero-offset branches (\(j=0\)).** Anchor curvature
-\(\lambda_0\in[0.2,0.9]\,kh_1h_2P^{-5/8}\) (composite exponent
-\(\tfrac{11}8\)), runs of length
+**(5b) Zero-offset branches (\(j=0\)).** The expanded interpolant
+below gives the anchor curvature
+\(\lambda_0\in[1.0,5.0]\,kh_1h_2P^{-5/8}\) (leading coefficient
+\(\tfrac{243}{128}\), times the \((E2)\) variation of the gaps and
+the dyadic range of \(\nu^{-5/8}\)). Runs of length
 \(\ge\tfrac1{22}P^{3/4}/(h_1h_2)\). Let
 \(\mu=0.84\max(uh_1,u'h_2)P^{-3/4}\) be the strongest
 differenced-wave scale present. Three regimes.
 
 - *Anchor-dominant* (\(60\mu\le\lambda_0\)): Lemma 3.3 per run at
   \(\lambda_0\), all else dominated at margin \(\ge20\):
-  \(\le1.3(kh_1h_2)^{1/2}P^{11/16}
-  +49\,(h_1h_2/k)^{1/2}P^{9/16}\).
+  \(\le3.0(kh_1h_2)^{1/2}P^{11/16}
+  +25\,(h_1h_2/k)^{1/2}P^{9/16}\).
 - *Mode-dominant* (\(\mu\ge60\lambda_0\), i.e.
   \(uh_1\ge60\,kh_1h_2P^{1/8}\)-form): Lemma 5.2(i) with the
   undifferenced anchor as decoration: its run boundaries number
   \(\le22h_1h_2P^{1/4}\le22P^{5/16}\), cost
   \(\le22P^{5/16}\cdot3.4(uh_1)^{-1/2}P^{3/8}\le75P^{11/16}\); its
-  smooth part is dominated at margin \(\ge20\) by hypothesis; its
-  \(\theta\)-coefficient \(\le1.2kh_1h_2P^{3/8}\le1.2P^{1/2}\)
-  produces at most \(1.2P^{1/2}\) windows (boundary cost
-  \(\le1.2P^{1/2}\cdot3.4(uh_1)^{-1/2}P^{3/8}\le4.1P^{7/8}
-  (uh_1)^{-1/2}\)) whose centre modes \(w\) are treated exactly as
-  in Lemma 5.2(i), Stage 5. Total
+  smooth part is dominated at margin \(\ge20\) by hypothesis. On a
+  zero-offset branch the anchor's \(\theta\)-coefficient is
+  \(c\,\partial_m F=\tfrac34 c\cdot\bigl(-\tfrac12\beta_1\beta_2
+  (m+\xi)^{-3/2}\bigr)\), hence
+  \(\lvert B\rvert\le1.2\,kh_1h_2P^{-1/8}\le1.2P^{-1/48}<1\) by
+  (C1): the sawtooth is sub-unit, Lemma 3.7 applies in a single
+  window at \(T=P^{1/2}\) (hypothesis \(T\ge8(1+|B|)\) is
+  immediate), and there is no large-\(B\) window inventory. (The
+  offset-scale amplitude \(kh_1h_2P^{3/8}\) does not occur at
+  \(j=0\).) Centre modes \(w\) are treated as in Lemma 5.2(i),
+  Stage 5. Total
   \(\ll\bigl((uh_1)^{1/2}P^{5/8}+(h_1/u)^{1/2}P^{7/8}
   +P^{7/8}\bigr)P^{\varepsilon}\).
 - *Middle band* (\(\tfrac1{60}\le\mu/\lambda_0\le60\); coefficient
@@ -1948,9 +2044,9 @@ differenced-wave scale present. Three regimes.
   (Lemma 3.9).
 
   *Inventory.* In this band
-  \(0.84\,uh_1P^{-3/4}=\mu\le60\lambda_0\le54\,kh_1h_2P^{-5/8}\)
-  forces \(u\le65\,kh_2P^{1/8}\le65\,P^{5/24}\), and likewise
-  \(u'\le65\,kh_1P^{1/8}\le65\,P^{5/24}\). The phase's second
+  \(0.84\,uh_1P^{-3/4}=\mu\le60\lambda_0\le300\,kh_1h_2P^{-5/8}\)
+  forces \(u\le360\,kh_2P^{1/8}\le360\,P^{5/24}\), and likewise
+  \(u'\le360\,kh_1P^{1/8}\le360\,P^{5/24}\). The phase's second
   derivative \(f''\) is smooth on the common refinement of the gap
   cells of both shifts (at most \(1.5(h_1{+}h_2)P^{1/2}+2\le
   3.1P^{13/24}\)), the anchor runs (\(\le22h_1h_2P^{1/4}\le
@@ -1965,29 +2061,118 @@ differenced-wave scale present. Three regimes.
   with \(G_1,G_2,J_F\) (and the \(\beta_i\) inside \(G_F\)) frozen
   integers.
 
-  *Model.* Let \(\Lambda(\nu)\) be \(f''\) with every frozen integer
-  replaced by its smooth interpolant: \(G_i\to\delta_{h_i}(\nu)\),
-  \(\beta_i\to\Delta_iX(\nu)\), \(J_F\to G_F-\tfrac12\). Each
-  replacement moves its argument by at most \(1\), so
+  *Interpolant.* Write
+  \(\delta_h(\nu)=(\nu{+}2h)^{3/2}-\nu^{3/2}\) and
+  \(F_{\mathrm{sm}}(\nu)=\tfrac34\,(\Delta_1X(\nu))(\Delta_2X(\nu))\,
+  X(\nu)^{-1/2}\), the \(j=0\) branch function of Lemma 5.1(iii)
+  with each frozen \(\beta_i\) replaced by the smooth gap
+  \(\Delta_iX\). The second derivative on a cell is
+  \[
+  f''
+  =-\tfrac9{32}\Bigl(uG_1(\nu{+}2h_1)^{-5/4}
+  +u'G_2(\nu{+}2h_2)^{-5/4}\Bigr)
+  +\bigl(c_{11}(G_F-J_F)\bigr)''
+  +wX''+O(\rho_0\text{-small}),
+  \]
+  with \(G_i,J_F\) frozen. Expand the anchor *before* interpolating:
+  since \(J_F\) is constant on the run,
+  \[
+  \bigl(c_{11}(G_F-J_F)\bigr)''
+  =2c'G_F'+c\,G_F''+c''(G_F-J_F).
+  \]
+  The last summand is \(O(|c''|)\) because \(\lvert G_F-J_F\rvert<1\).
+  Define the interpolant by replacing the remaining frozen integers
+  in this expanded expression:
+  \[
+  \begin{aligned}
+  \Lambda(\nu)
+  &=-\tfrac9{32}u\,\delta_{h_1}(\nu)\,(\nu{+}2h_1)^{-5/4}
+  -\tfrac9{32}u'\,\delta_{h_2}(\nu)\,(\nu{+}2h_2)^{-5/4}\\
+  &\qquad
+  +2c'(\nu)F_{\mathrm{sm}}'(\nu)+c(\nu)F_{\mathrm{sm}}''(\nu)
+  +\tfrac12 c''(\nu)
+  +wX''(\nu).
+  \end{aligned}
+  \]
+  The replacement \(J_F\mapsto F_{\mathrm{sm}}-\tfrac12\) is made
+  only in the already-expanded \(c''\)-term, and produces the
+  displayed \(\tfrac12 c''\). It is *not* a replacement in the
+  phase \(c(G-J_F)\), which would collapse the anchor to
+  \(c/2\) and destroy the curvature.
+
+  Each replacement moves its argument by at most \(1\), so
   \[
   |f''-\Lambda|
   \le\tfrac9{32}(u{+}u')P^{-5/4}
-  +\tfrac12\,|c_{11}''|+8k(h_1{+}h_2)P^{-9/8}
-  \le38P^{-25/24}+0.06P^{-5/6}+16P^{-25/24}
-  \le0.1P^{-5/6}.
+  +\lvert c_{11}''\rvert
+  +8k(h_1{+}h_2)P^{-9/8}
+  \le203P^{-25/24}+0.11P^{-5/6}+16P^{-25/24}
+  \le0.1P^{-5/6}
   \]
-  Expanding the interpolants exactly, \(\Lambda\) is the second
-  derivative of a three-term monomial model phase with exponents
-  \((\alpha,\beta,\gamma)=(\tfrac54,\tfrac{11}8,\tfrac32)\subset E\):
-  the \(u,u'\)-content contributes
-  \(-\tfrac{27}{32}(uh_1{+}u'h_2)\nu^{-3/4}\) (an exponent-\(\tfrac54\)
-  curvature) plus relative corrections \(O(hP^{-1/2})\); the anchor
-  content is the single-signed exponent-\(\tfrac{11}8\) composite of
-  (E6) at scale \(kh_1h_2P^{-5/8}\), with relative corrections
-  \(O(P^{-1/4})\); the window mode contributes \(\tfrac34w\nu^{-1/2}\)
-  exactly. All corrections satisfy the \(\rho_0(E)\)-perturbation
-  bounds of Lemma 3.9 for \(P\ge P_0\), and the scale satisfies
-  \(0.2P^{-5/8}\le0.2\,kh_1h_2P^{-5/8}\le S\le110\,P^{-1/2}\).
+  for \(P\ge P_0\).
+
+  *Leading monomials.* Mean-value expansion gives
+  \(\delta_h(\nu)=3h\,\xi^{1/2}\) with \(\xi\in(\nu,\nu{+}2h)\),
+  hence
+  \(\delta_h(\nu)\,(\nu{+}2h)^{-5/4}=3h\,\nu^{-3/4}\bigl(1+O(hP^{-1})\bigr)\),
+  and
+  \[
+  -\tfrac9{32}u\,\delta_{h_1}(\nu)\,(\nu{+}2h_1)^{-5/4}
+  =-\tfrac{27}{32}uh_1\,\nu^{-3/4}\bigl(1+O(h_1P^{-1})\bigr),
+  \]
+  and likewise for \(u'\). For the anchor,
+  \(\Delta_iX=3h_i\nu^{1/2}(1+O(h_iP^{-1}))\) and
+  \(X^{-1/2}=\nu^{-3/4}\), so
+  \(F_{\mathrm{sm}}=\tfrac{27}{4}h_1h_2\nu^{1/4}(1+O(hP^{-1}))\).
+  With \(c=\tfrac{3k}4\nu^{9/8}\),
+  \[
+  2c'F_{\mathrm{sm}}'+c\,F_{\mathrm{sm}}''
+  =\tfrac{243}{128}\,kh_1h_2\,\nu^{-5/8}\bigl(1+O(hP^{-1})\bigr):
+  \]
+  indeed \(cF_{\mathrm{sm}}=\tfrac{81k}{16}h_1h_2\nu^{11/8}
+  (1+O(hP^{-1}))\), so
+  \((cF_{\mathrm{sm}})''=\tfrac{2673}{1024}kh_1h_2\nu^{-5/8}
+  (1+O(hP^{-1}))\) and
+  \(c''F_{\mathrm{sm}}=\tfrac{729}{1024}kh_1h_2\nu^{-5/8}
+  (1+O(hP^{-1}))\), and the difference is
+  \(2c'F'+cF''=(cF)''-c''F\). The term \(\tfrac12 c''\) is
+  \(O(kP^{-7/8})\) and is absorbed in the perturbation below.
+  The window mode is exactly \(wX''=\tfrac34 w\nu^{-1/2}\).
+
+  Thus \(\Lambda=\Phi''+r\), where
+  \[
+  \Phi(\nu)
+  =a\,\nu^{5/4}+b\,\nu^{11/8}+w\,\nu^{3/2},
+  \qquad
+  a=-\tfrac{27}{10}(uh_1+u'h_2),\quad
+  b=\tfrac{81}{22}\,kh_1h_2,
+  \]
+  and the remainder \(r\) collects the relative
+  \(O(hP^{-1})\) expansions, the \(\tfrac12 c''\) term, and the
+  \(O(\rho_0)\) decorations. (Check:
+  \(\Phi''\) has leading coefficients
+  \(a\cdot\tfrac54\cdot\tfrac14=-\tfrac{27}{32}(uh_1+u'h_2)\) and
+  \(b\cdot\tfrac{11}8\cdot\tfrac38=\tfrac{243}{128}kh_1h_2\).)
+  The exponents \(\bigl(\tfrac54,\tfrac{11}8,\tfrac32\bigr)\) lie in
+  \(E\) and are pairwise distinct. If \(w=0\), drop the third term
+  and apply Lemma 3.8 (or Lemma 3.3 if only one of \(a,b\) is
+  present). In all cases the perturbation satisfies the
+  \(\rho_0(E)\) bounds of Lemma 3.8/3.9 for \(P\ge P_0\): each
+  relative error is \(O(P^{-1/4})\), and
+  \(\lvert\tfrac12 c''\rvert/B_{\mathrm{lead}}=O(P^{-1/4})\)
+  whenever \(kh_1h_2\ge1\). The scale is
+  \[
+  S
+  =\max\bigl(\lvert uh_1+u'h_2\rvert P^{-3/4},\,
+  kh_1h_2P^{-5/8},\,\lvert w\rvert P^{-1/2}\bigr),
+  \]
+  and the middle-band constraints give
+  \(1.0P^{-5/8}\le S\le300\,P^{-1/2}\): the lower bound is the
+  anchor when \(kh_1h_2\ge1\), and the upper bound uses
+  \(kh_1h_2\le P^{1/8}\) from (C1) together with
+  \(\mu\le60\lambda_0\le300\,kh_1h_2P^{-5/8}\) and the
+  collision-band restriction
+  \(\lvert wX''\rvert\ll P^{-1/2}\).
 
   *Splitting.* Choose \(V:=3S^{1/2}P^{-11/24}\), so that
   \(V/S\le6.7P^{-7/48}\) (hence \(V\le c_7S/2\) for \(P\ge P_0\)) and
@@ -2009,8 +2194,8 @@ differenced-wave scale present. Three regimes.
   \[
   \text{good pieces (Lemma 3.3):}\quad
   \sum\ell\,(1.1\,C(E)S)^{1/2}
-  \le C'(E)\,P\cdot(110)^{1/2}P^{-1/4}
-  \le11\,C'(E)\,P^{3/4}.
+  \le C'(E)\,P\cdot(300)^{1/2}P^{-1/4}
+  \le18\,C'(E)\,P^{3/4}.
   \]
   The middle band therefore totals
   \(\le C(E)\,P^{89/96}\log P\le P^{15/16}\) for \(P\ge P_0\).
@@ -2202,14 +2387,30 @@ The window-centre mode therefore carries
 \qquad\text{ratio }945:540=7:4,
 \]
 single-signed with
-\(\lambda_a'\in[0.72,\,0.80]\,k|j|P^{-1/8}(1+O(P^{-1/8}))\). Step 5a
-of Theorem 5.3 runs with \(\lambda_a\) replaced by \(\lambda_a'\):
-every displayed competitor ratio there weakens by at most a factor
-\(2\) and remains \(\le P^{-1/8}\)-small, the window count grows by
-the factor \(\tfrac{45/32}{9/16}=2.5\), and the run estimate becomes
-\(\le1.7(k|j|)^{1/2}P^{15/16}\): the \((k|j|)^{1/2}P^{15/16}\)
-bottleneck is unchanged, and \(k\le2P^{1/96}\) sits far inside the
-admissible range \(k\le P^{1/24}\).
+\(\lambda_a'\in[0.72,\,0.80]\,k|j|P^{-1/8}(1+O(P^{-1/8}))\). The
+competitors of Step 5a, now read against
+\(\lambda_a'\ge0.72\,k|j|P^{-1/8}\ge0.72P^{-1/8}\), remain dominated:
+differenced-wave modes
+\(\le0.84\,uh_1P^{-3/4}\le0.51P^{-1/4}\), ratio
+\(\le0.71P^{-1/8}\); resonant (D1) content, ratio
+\(\le7P^{-9/16}\); slow modes
+\(\le3J_2|j|P^{-5/4}\), ratio
+\(\le5P^{1/24-5/4+1/8}=5P^{-13/12}\); (D3) content, ratio
+\(\le4h_1h_2P^{-1/2}\le P^{-1/4}\). The window count grows by
+\(\tfrac{45/32}{9/16}=2.5\), so at most
+\(3.0\,k|j|P^{3/8}+1\) windows; the collision-band Lemma 3.8 sum
+is then \(\le4.0\,(k|j|)^{1/2}P^{15/16}\log P\). Run lengths are
+unchanged, and
+\[
+\sum_{\mathrm{runs}}\bigl(\ell\lambda_a'^{1/2}+\lambda_a'^{-1/2}\bigr)
+\le1.7\,(k|j|)^{1/2}P^{15/16}
++26\,(|j|{+}1)|j|^{-1/2}k^{-1/2}P^{13/16}.
+\]
+Summed over the eight branches and \(\lvert j\rvert\le3\) with the
+\(O(\log^3P)\) piece masses:
+\(\ll k^{1/2}P^{15/16+\varepsilon}\le P^{1/48}P^{15/16+\varepsilon}
+=P^{23/24+\varepsilon}\) already at the kernel's \(k\le P^{1/24}\);
+the actual range \(k\le2P^{1/96}\) sits strictly inside.
 
 *Zero-offset branches (\(j=0\)).* The model \(h_1h_2\)-content of
 the total differenced phase is
@@ -2224,11 +2425,41 @@ its curvature is
 positive and single-signed, so
 \(\lambda_0'\in[4.5,\,8.5]\,kh_1h_2P^{-5/8}\) replaces
 \(\lambda_0\in[0.2,0.9]kh_1h_2P^{-5/8}\). The three-regime split of
-Step 5b runs verbatim at the new scale: the regime thresholds
-(factor \(60\)) are scale-free, the middle-band model of Lemma 3.9
-gains the constant \(8.27\) in its \(\beta\)-term, and every
-displayed bound there improves (larger \(S\) shrinks both \(V/S\)
-and \(V^{-1/2}\) at the balanced choice).
+Step 5b is read at this scale. The thresholds (factor \(60\)) are
+scale-free. In the anchor-dominant regime, Lemma 3.3 per run gives
+\(\le4.0(kh_1h_2)^{1/2}P^{11/16}
++12\,(h_1h_2/k)^{1/2}P^{9/16}\)
+(the first term grows like \(\lambda_0'^{1/2}\), the second
+shrinks). In the mode-dominant regime the undifferenced-anchor
+decoration is the same as in Step 5b, and the \(j=0\)
+\(\theta\)-coefficient remains sub-unit. In the middle band the
+interpolant of Step 5b is reused with \(B_{\mathrm{lead}}\)
+replaced by \(8.27\,kh_1h_2\nu^{-5/8}\): the phase is still
+\(\Phi=a\nu^{5/4}+b'\nu^{11/8}+w\nu^{3/2}\) with
+\(b'=8.27\cdot\tfrac{64}{33}kh_1h_2\), the \(\rho_0(E)\) bounds
+are unchanged, and
+\[
+S
+\le\max\bigl(60\lambda_0',\,\lambda_0',\,\lvert w\rvert P^{-1/2}\bigr)
+\le520\,P^{-1/2}
+\]
+by (C1) and the collision-band restriction. The balanced choice
+\(V=3S^{1/2}P^{-11/24}\) still satisfies \(V\le c_7S/2\) and
+\(V\ge10\lvert f''-\Lambda\rvert\) for \(P\ge P_0\). Transition
+length and piece-boundary costs shrink (larger \(S\) shrinks
+\(V/S\) and \(V^{-1/2}\)); good pieces cost
+\(\le P\cdot(520)^{1/2}P^{-1/4}\le23P^{3/4}\). The middle band
+therefore remains \(\ll P^{15/16+\varepsilon}\).
+
+The passengers of Step D are inside these estimates: the
+\(\tfrac i2X\)-term is (D3) as listed; the \(\tfrac j2Y\)-term
+shifts each \(q_d\) by at most \(P^{1/96}\), keeping
+\(\lvert q_d\rvert\le P^{1/16}\) and \(uh_1\le0.6P^{1/2}\); the
+pure-\(m\) smooth pieces add a relative \(O(P^{-1})\) to
+\(\lambda_a'\) and \(\lambda_0'\), already present in the
+\(O(P^{-1/8})\) and \(O(hP^{-1/2})\) factors; the sub-unit
+\(\theta\)-coefficients of those pieces are among the slow modes
+already bounded.
 
 *Step F (assembly).* With the inventory of Step D and the
 composites of Step E, Steps 2–6 of Theorem 5.3 give
@@ -2255,8 +2486,8 @@ The depth-by-depth counting assembles into a conditional
 Terras-style statement, and the reduction is unconditional:
 
 **Proposition 7.1 (equidistribution implies density-one descent).**
-Let \(d\ge1\) and suppose that for every itinerary word \(w\) of
-length \(d\) (over all starts, first letter the parity of \(n\)),
+Let \(d\ge1\) and suppose that for every *\(O\)-rooted* itinerary
+word \(w\) of length \(d\),
 \[
 \bigl|\#\{n\le N:\mathrm{word}_d(n)=w\}-2^{-d}N\bigr|\le E_d(N).
 \]
@@ -2273,23 +2504,24 @@ Proposition 3.1. Consequently, if \(E_d(N)=O_d(N^{1-\delta_d})\) with
 \(\delta_d>0\) for every \(d\), the set of starts admitting a finite
 descent certificate has natural density \(1\).
 
-*Proof.* A word \(w\) of length \(d\) has a contracting prefix iff
+*Proof.* Every \(E\)-rooted word has a contracting prefix at length
+one (\(3^0<2\)), so the starts with no contracting prefix of length
+\(\le d\) all realize an \(O\)-rooted word of length \(d\). A word
+\(w\) of length \(d\) has a contracting prefix iff
 \(3^{o_t}<2^t\) for some \(t\le d\), where \(o_t\) counts odd letters
 among the first \(t\). If \(w\) has no contracting prefix then
 \(3^{o_d}\ge2^d\), i.e. \(o_d\ge\beta d\) with
 \(\beta=\log2/\log3=0.6309\ldots\) The number of such words is at
 most \(2^d\Pr[\mathrm{Bin}(d,\tfrac12)\ge\beta d]\le
-2^de^{-2(\beta-1/2)^2d}\) by Hoeffding's inequality. Each word class
-has at most \(2^{-d}N+E_d(N)\) members; summing over the
-non-contracting words gives the count. The density-one statement
+2^de^{-2(\beta-1/2)^2d}\) by Hoeffding's inequality. Each such class
+has at most \(2^{-d}N+E_d(N)\) members by the \(O\)-rooted
+hypothesis; summing gives the count. The density-one statement
 follows by letting \(d\to\infty\) slowly with \(N\) (any
 \(d(N)\to\infty\) with \(2^dE_d(N)/N\to0\)). \(\square\)
 
-Every E-rooted word has a contracting prefix at length one
-(\(3^0<2\)), so the hypothesis only ever consumes O-rooted class
-bounds. Sections 4–6 prove it *unconditionally at every depth
-\(d\le4\)*, so the base cases of Proposition 7.1 are theorems. The
-first open case is depth 5: the \(OOOO*\) split. It has an exact
+Sections 4–6 prove the hypothesis at every depth \(d\le4\), so the
+conclusion of Proposition 7.1 is unconditional for those depths.
+The first open case is depth 5: the \(OOOO*\) split. It has an exact
 shape, one nesting deeper than Theorem 5.3. Write
 \(Z=v^{3/2}\), \(z=\lfloor Z\rfloor\), \(\theta_3=Z-z\); after four
 odd letters the fifth is the parity of \(\lfloor z^{3/2}\rfloor\).
@@ -2455,7 +2687,8 @@ and 7.2, and exact-phase numerical probes of the sums \(K_c\),
 of which exhibit cancellation at square-root scale — stronger than
 the theorems claim and stronger than they need. Probes and
 validations are checks, not proofs, and no statement in this paper
-depends on them.
+depends on them. In particular they are not evidence for
+Conjecture 7.3 or Conjecture 7.5.
 
 ## Acknowledgments
 
@@ -2525,8 +2758,8 @@ take full responsibility for the contents.
     Beatty sequences,” *Math. Res. Lett.* 13 (2006), 539–547.
 21. D. Glasscock, “Solutions to certain linear equations in
     Piatetski-Shapiro sequences,” *Acta Arith.* 177 (2017), 39–52.
-22. P. Cochin, “Power envelopes, exact defects, and cycle
-    restrictions for the Juggler map,” companion manuscript, 2026.
+22. P. Cochin, “Small cycles of the Juggler map,” companion
+    manuscript, 2026.
 23. C. Müllner and L. Spiegelhofer, “Normality of the Thue–Morse
     sequence along Piatetski-Shapiro sequences, II,” *Israel J. Math.*
     220 (2017), 691–738.

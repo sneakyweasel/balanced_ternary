@@ -1,0 +1,20 @@
+{
+  "id": "pickover-2002-mathematics-of-oz",
+  "title": "The Mathematics of Oz: Mental Gymnastics from Beyond the Edge",
+  "authors": ["Clifford A. Pickover"],
+  "year": 2002,
+  "identifiers": {
+    "isbn": "9780521016780"
+  },
+  "url": {
+    "reference": "https://mathworld.wolfram.com/JugglerSequence.html"
+  },
+  "problem_area": "nonlinear-integer-dynamics",
+  "relevant_concepts": [
+    "juggler sequence",
+    "floor powers"
+  ],
+  "project_relationship": "known",
+  "status": "classical-source",
+  "notes": "Chapter 45, pp. 102-106. Later Pickover exposition of the Juggler sequence. Paper A citation [2]."
+}

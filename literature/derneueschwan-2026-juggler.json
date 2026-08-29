@@ -1,0 +1,18 @@
+{
+  "id": "derneueschwan-2026-juggler",
+  "title": "Juggler Sequences",
+  "authors": ["derneueschwan.ch"],
+  "year": 2026,
+  "identifiers": {},
+  "url": {
+    "reference": "https://derneueschwan.ch/juggler/"
+  },
+  "problem_area": "nonlinear-integer-dynamics",
+  "relevant_concepts": [
+    "juggler sequence",
+    "computational verification"
+  ],
+  "project_relationship": "known",
+  "status": "computational-record",
+  "notes": "Page dated 12 May 2026. Reports every start through 7110200 reaches 1. Dropped from Paper A: personal webpage, not used in any proof."
+}

@@ -9,8 +9,9 @@ is not the laboratory. No termination theorem is claimed.
 ## Read this first
 
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
-   — **Paper A**: power envelopes, exact defects, cycle restrictions,
-   the small-cycle census. Lean-backed throughout; no density claims.
+   — **Paper A**: *Small cycles of the Juggler map*. Envelope, exact
+   defect, inverse cells, and the length-\(\le 6\) census. Lean-backed
+   throughout; no density claims.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
    kernel theorem, depth-4 completeness over odd starts, and the
@@ -39,6 +40,9 @@ the repository and from `formal/` run
 ```text
 lake build Problems.JugglerPaper
 ```
+
+Paper A Zenodo deposit kit (one PDF, paste-ready fields):
+[zenodo_paper_a/](zenodo_paper_a/).
 
 Repository: https://github.com/sneakyweasel/balanced_ternary/
 

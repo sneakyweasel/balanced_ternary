@@ -65,7 +65,7 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 4.1 `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:
       `no_finiteProgress_implies_odd_odd`
-* §5  `four_block_pe_1999` (certified four-block expanding chain)
+* §4  `four_block_pe_1999` (certified four-block expanding chain)
 
 `FiniteProgress` is a descent certificate: a realized word with image
 strictly below the start. Lean packages this as `DescentCertificate`.

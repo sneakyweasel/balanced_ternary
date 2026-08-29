@@ -7,16 +7,16 @@ The former single note has been split into two manuscripts:
 
 - **Paper A** —
   [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md):
-  *Power envelopes, exact defects, and cycle restrictions for the
-  Juggler map.* Exact word calculus, defect identity, inverse cells,
-  the small-cycle census (no nontrivial cycle of length at most six),
-  and the uniform one- and two-step certificates. The arguments of
-  Sections 2--4 are written in the note. Lean is an independent
-  check. Lemma 3.3 is an elementary envelope used by Lemma 3.5.
-  Lemma 3.4 writes the next-square thresholds that assemble
-  Theorem 3.6. No density result is stated. After Theorem 4.1, the
-  complement of the uniform short certificates is the odd-to-odd
-  class.
+  *Small cycles of the Juggler map.* Exact word calculus, defect
+  identity, inverse cells, the small-cycle census (no nontrivial
+  cycle of length at most six), and the uniform one- and two-step
+  certificates. The arguments of Sections 2--4 are written in the
+  note. Lean is an independent check. Lemma 3.3 is an elementary
+  envelope used by Lemma 3.5. Lemma 3.4 writes the next-square
+  thresholds, including the odd-run exclusion \(O^aE\) for
+  \(a\ge 3\), that assemble Theorem 3.6. No density result is
+  stated. After Theorem 4.1, the complement of the uniform short
+  certificates is the odd-to-odd class.
 - **Paper B** —
   [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md):
   *Parity equidistribution of nested floor powers, with descent
@@ -97,12 +97,12 @@ says nothing about the deterministic shift).
 | Global defect identity, vanishing, and composition | **EXACT — LEAN VERIFIED** | weighted lift, not an additive sum; not a uniform tax |
 | Odd inverse cells have at most one integer (Lemma 3.1) | **EXACT — LEAN VERIFIED** | one-step fibers |
 | Nontrivial cycle words are formally expanding; min-to-even prefixes are superquadratic (Theorem 3.2) | **EXACT — LEAN VERIFIED** | necessary condition; not an exclusion of all cycles |
-| Coarse lower envelope \(C_v\) (Lemma 3.3) | **EXACT — HUMAN PROOF** | one-step \(n<4\lfloor\sqrt n\rfloor^2\) and composition; used by Lemma 3.5 |
-| Next-square thresholds (Lemma 3.4) | **EXACT — LEAN VERIFIED** | \(OO\) at \(q\ge5\), \(OOO\) at \(q\ge3\), odd inheritance, last-even cell |
-| Length-six orientations \(OOOEOE\) and \(OOOOEE\) (Lemma 3.5) | **EXACT — LEAN VERIFIED** | the key leftover lemma of the census; cutoff \(257^{64}<2\cdot256^{64}\) by \((1+1/256)^{64}<e^{1/4}<2\) |
+| Coarse lower envelope \(C_v\) (Lemma 3.3) | **EXACT — LEAN VERIFIED** | one-step \(n<4\lfloor\sqrt n\rfloor^2\) and composition; used by Lemma 3.5; Lean `lower_growth_word` |
+| Next-square thresholds (Lemma 3.4) | **EXACT — LEAN VERIFIED** | \(OO\) at \(q\ge5\), \(OOO\) at \(q\ge3\), odd inheritance, last-even cell, and \(O^aE\) for \(a\ge3\) |
+| Length-six orientations \(OOOEOE\) and \(OOOOEE\) (Lemma 3.5) | **EXACT — LEAN VERIFIED** | the only two leftover even-terminating length-six words; \(n<256\) is a \(254\)-start table, not a census of all words; tail \(n\ge256\) by \(n^{81}>2^{130}(n+1)^{64}\) |
 | Small-cycle census: no cycle word of length \(\le6\) (Theorem 3.6) | **EXACT — LEAN VERIFIED** | lengths \(\le6\) only; length \(\ge7\) open |
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists |
-| Four-block expanding chain \(1999\to\cdots\to887471\) (Section 5) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
+| Four-block expanding chain \(1999\to\cdots\to887471\) (Section 4) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Theorem 4.1) | **EXACT — LEAN VERIFIED** | not all descent certificates |
 | No descent certificate \(\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only; complement of Theorem 4.1 |
 
@@ -118,12 +118,12 @@ says nothing about the deterministic shift).
 | OE-branch third letter \(N^{7/8+\varepsilon}\) (Proposition 4.5) | **EXACT — HUMAN PROOF** | completes depth 3 |
 | Triple parity discrepancy \(N^{23/24+\varepsilon}\) (Theorem 4.7) | **EXACT — HUMAN PROOF** | OOE\(*\) depth-4 words |
 | OE\(**\) splits \(N^{7/8+\varepsilon}\), \(N^{13/16+\varepsilon}\) (Theorem 4.8) | **EXACT — HUMAN PROOF** | depth 4 except OOO\(*\) |
-| Certified-descent density \(13/16\) (Corollary 4.9) | **EXACT — HUMAN PROOF** | uniform four-step class; ceiling of the one-growing-layer method |
+| Certified-descent density \(13/16\) (Corollary 4.9) | **EXACT — HUMAN PROOF** | only the three classes \(E\), \(OE\), \(OOEE\); not an \(E\)-rooted census |
 | Level-2 wave bound \(q^{-1/6}P^{23/24+\varepsilon}\) (Lemma 5.2) | **EXACT — HUMAN PROOF** | targeted third differencing; standalone statement; corrects the earlier frozen-coefficient model |
-| Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3) | **EXACT — HUMAN PROOF** | \(W\)-shaped family at \(\alpha=9/8\), \(k\le P^{1/24}\); \(\delta\) corrected from \(1/72\); Step 5b via global sublevel splitting (Lemma 3.9) |
-| OOO\(*\) splits; depth 4 complete over odd starts (Theorem 6.1) | **EXACT — HUMAN PROOF** | the eight O-rooted length-4 classes; full passenger inventory with recomputed composites |
+| Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3) | **EXACT — HUMAN PROOF** | \(W\)-shaped family at \(\alpha=9/8\), \(k\le P^{1/24}\); Step 5b interpolant expanded (\(\Phi=a\nu^{5/4}+b\nu^{11/8}+w\nu^{3/2}\)); \(P_0\) ineffective |
+| OOO\(*\) splits; depth 4 complete over odd starts (Theorem 6.1) | **EXACT — HUMAN PROOF** | eight O-rooted length-4 classes; Step E estimates the decorated phase at \(\lambda_a'\) and \(\lambda_0'\), not by slogan |
 | Length-5/7/8 contracting splits and densities \(7/8\), \(57/64\), \(29/32\) (withdrawn) | **CONJECTURE** | withdrawn from the paper in Phase 26; holes recorded in the ledger (growing remainder, \(E'\) control, passenger budgets) |
-| Equidistribution \(\Rightarrow\) density-one descent (Proposition 7.1) | **EXACT — HUMAN PROOF** | unconditional implication; hypothesis a theorem for \(d\le4\), open beyond |
+| Equidistribution \(\Rightarrow\) density-one descent (Proposition 7.1) | **EXACT — HUMAN PROOF** | \(O\)-rooted hypothesis; conclusion unconditional for \(d\le4\); open beyond |
 | Level-3 kernel reformulation (Lemma 7.2) | **EXACT — HUMAN PROOF** | exact Taylor identity; validated in scaled integers |
 | Level-3 kernel cancellation \(K_3(P)\ll P^{1-\delta}\) (Conjecture 7.3) | **CONJECTURE** | not claimed; square-root cancellation observed in exact probes |
 | Shift-averaged \(L^2\) bound (Proposition 7.4) | **EXACT — HUMAN PROOF** | almost-every-shift, square-root times \(\sqrt{\log L}\) in general; no claim at \(\lambda=0\) |
