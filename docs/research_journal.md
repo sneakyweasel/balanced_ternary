@@ -11020,3 +11020,40 @@ Best next question
   OOOOOEOEE
 ```
 
+## Juggler uniform two-even leftover tails
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether both two-even leftover tails fire for every \(k\ge 6\) with \(N_0\) bounded independently of \(k\)
+- **Hypotheses:** \(O^{k-2}EE\) and \(O^{k-3}EOE\) share one comparison; cutoffs get easier; EOE adds no extra cutoff; \(N_0\) cannot tend to 2
+- **Major results:** Classification **TWO_EVEN_UNIFORM_TAIL_GREEN**. Closed form \(e_a=2\cdot 3^a-2^{a+1}\). Shared tail never holds for \(n\le 4\). First-fire \(N_0(6)=205\), then \(14,8,6,6\), and \(N_0=5\) for every \(11\le k\le 24\). EOE auxiliary from \(n=2\). Tables below the cutoffs empty, including length-8 leftovers on \(2\le n<8\). Records: `docs/problems/juggler_uniform_two_even.md`, `docs/research/juggler_uniform_two_even.md`. No Lean. No length-8 census. No Paper A edit
+- **Refuted ideas:** \(N_0\to 2\); a new leftover shape at each length; induction on period
+- **Literature:** Paper A Lemmas 3.5 and 3.7 reused as the \(k=6,7\) instances
+- **Open:** Lean exclusion of both families for every \(k\ge 6\) at a uniform algebraic cutoff. Length-8 census not automatic. Three-even bunched tails not opened
+- **Decision:** PROMOTE the uniform two-even tail. Not a length-8 census and not a halt theorem
+
+```text
+What was learned
+- The EE last-even cell and the EOE last-odd cube trick are the
+  same comparison n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k}
+- e_a = 2*3^a - 2^{a+1} is log2(lowerDenom(O^a))
+- Leading 3^{k-2} coefficients forbid n<=4 at every k, so N0
+  cannot tend to 2
+- First-fire N0 drops 205,14,8,6,6 and plateaus at 5 for k>=11
+- EOE adds no extra cutoff; tables below N0 are empty
+Strongest theorem
+- none new in Lean; computationally, neither leftover family is
+  a CycleWord at any tested k>=6
+Strongest refutation
+- N0 tends to 2
+Reusable machinery
+- src/research/juggler_sequence/uniform_two_even.py
+Branch status
+- PROMOTE
+Why
+- two-even leftovers are one type with a bounded cutoff, not a
+  period-by-period case-split
+Best next question
+- Lean-exclude both leftover families for every k>=6 by the
+  shared tail at the uniform algebraic cutoff n>=256
+```
+
