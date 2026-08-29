@@ -26,9 +26,13 @@ def test_leftover_cycle_theorems_present():
     assert "theorem no_cycle_word_ooooee" in leftover
     assert "theorem no_cycle_word_ooooeoe" in leftover
     assert "theorem no_cycle_word_oooooee" in leftover
+    assert "theorem no_cycle_word_ooooooeee" in leftover
     assert "theorem no_cycle_word_length_six" not in leftover
+    assert "theorem no_cycle_word_length_nine" not in leftover
     assert has_named(text, "no_cycle_word_ooooeoe")
     assert has_named(text, "no_cycle_word_oooooee")
+    assert has_named(text, "no_cycle_word_ooooooeee")
+    assert has_named(text, "cycle_trailing_evens_lt")
     assert "sorry" not in leftover
     assert "admit" not in leftover
     assert "sorry" not in eval_src
@@ -43,6 +47,7 @@ def test_small_cycle_census_theorems_present():
     census = SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
     assert "theorem no_cycle_word_length_le_six" in census
     assert "theorem no_cycle_word_length_le_seven" in census
+    assert "theorem no_cycle_word_length_nine" not in census
     assert "theorem no_cycle_word_replicate_odd" in census
     assert "theorem cycleWord_exists_even_terminating" in census
     assert "theorem no_cycle_word_len_six_ends_even" in census

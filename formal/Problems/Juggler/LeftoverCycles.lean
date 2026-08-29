@@ -4,7 +4,7 @@ import Problems.Juggler.LeftoverEval
 namespace Problems.Juggler
 
 /-!
-# Leftover cycle orientations at lengths six and seven
+# Leftover cycle orientations at lengths six, seven, and `OOOOOOEEE`
 
 `OOOEOE` and `OOOOEE` are the remaining legal `CycleMin` orientations
 among the expanding length-six even-terminating words. Uniform extra
@@ -15,6 +15,11 @@ scale from `n = 3` fails. The argument is a finite evaluation below
 `OOOOEOE` and `OOOOOEE` are the corresponding length-seven leftovers.
 The argument is a finite evaluation below `14` plus
 `n^243 > 2^422 (n+1)^128` for `n ≥ 14`.
+
+`OOOOOOEEE` is the first three-even leftover: prefix `O^6` against
+the three-even cell `z < (n+1)^8`. Finite evaluation below `128`
+plus `n^729 > 2^1330 (n+1)^512` for `n ≥ 128`. This is not a
+length-nine census.
 
 This is not an exclusion of odd-terminating cycle words and not a
 halt theorem. The length-six and length-seven censuses are assembled
@@ -850,5 +855,171 @@ theorem no_cycle_word_ooooeoe {n : ℕ} (_hn : 2 ≤ n) :
   cases lt_or_ge n 14 with
   | inl hlt => exact no_cycle_word_ooooeoe_of_lt hlt h
   | inr hge => exact no_cycle_word_ooooeoe_of_ge hge h
+
+/-! Length-9 leftover `OOOOOOEEE`. Finite evaluation below `128`
+plus `n^729 > 2^1330 (n+1)^512` for `n ≥ 128`. The prefix-cell
+comparison first fires at `73`; `128` is the algebraic cutoff.
+Not a length-nine census. -/
+
+set_option exponentiation.threshold 2048
+set_option maxRecDepth 2048
+
+theorem no_cycle_word_ooooooeee_of_lt {n : ℕ} (hn : n < 128) :
+    ¬CycleWord n wordOOOOOOEEE := by
+  intro h
+  have hfalse := cycleWordB_ooooooeee_lt128 ⟨n, hn⟩
+  have htrue : cycleWordB n wordOOOOOOEEE = true := cycleWordB_iff.mpr h
+  rw [hfalse] at htrue
+  exact Bool.false_ne_true htrue
+
+theorem lowerDenom_oooooo :
+    lowerDenom
+      [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+        Branch.odd] = 2 ^ 1330 := by
+  rw [lowerDenom, lowerDenomFrom_odd_cons]
+  have s0 : (1 : ℕ) ^ 3 * 4 ^ (2 ^ 0) = 2 ^ 2 := by decide
+  rw [s0, lowerDenomFrom_odd_cons]
+  have s1 : (2 ^ 2) ^ 3 * 4 ^ (2 ^ 1) = 2 ^ 10 := by
+    rw [two_pow_mul, four_pow_two_pow, ← Nat.pow_add]
+    rfl
+  rw [s1, lowerDenomFrom_odd_cons]
+  have s2 : (2 ^ 10) ^ 3 * 4 ^ (2 ^ 2) = 2 ^ 38 := by
+    rw [two_pow_mul, four_pow_two_pow, ← Nat.pow_add]
+    rfl
+  rw [s2, lowerDenomFrom_odd_cons]
+  have s3 : (2 ^ 38) ^ 3 * 4 ^ (2 ^ 3) = 2 ^ 130 := by
+    rw [two_pow_mul, four_pow_two_pow, ← Nat.pow_add]
+    rfl
+  rw [s3, lowerDenomFrom_odd_cons]
+  have s4 : (2 ^ 130) ^ 3 * 4 ^ (2 ^ 4) = 2 ^ 422 := by
+    rw [two_pow_mul, four_pow_two_pow, ← Nat.pow_add]
+    rfl
+  rw [s4, lowerDenomFrom_odd_cons]
+  have s5 : (2 ^ 422) ^ 3 * 4 ^ (2 ^ 5) = 2 ^ 1330 := by
+    rw [two_pow_mul, four_pow_two_pow, ← Nat.pow_add]
+    rfl
+  rw [s5, lowerDenomFrom_nil]
+
+theorem oddCount_oooooo :
+    oddCount
+      [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+        Branch.odd] = 6 :=
+  rfl
+
+theorem oooooo_lower_growth {n : ℕ} (hn : 1 ≤ n)
+    (hw : follows n
+      [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+        Branch.odd]) :
+    n ^ 729 ≤ 2 ^ 1330 *
+      image n
+        [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+          Branch.odd] ^ 64 := by
+  have hL := lower_growth_word hn hw
+  rw [LowerPowerBound, oddCount_oooooo, lowerDenom_oooooo] at hL
+  have hlen :
+      ([Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+          Branch.odd] : List Branch).length = 6 :=
+    rfl
+  rw [hlen] at hL
+  have h3 : (3 : ℕ) ^ 6 = 729 := by decide
+  have h2 : (2 : ℕ) ^ 6 = 64 := by decide
+  rw [h3, h2] at hL
+  exact hL
+
+theorem two_pow_128 : (128 : ℕ) = 2 ^ 7 := by
+  decide
+
+theorem succ_pow512_lt {n : ℕ} (hn : 128 ≤ n) :
+    (n + 1) ^ 512 < 64 * n ^ 512 := by
+  have hlin : 128 * (n + 1) ≤ 129 * n := by omega
+  have hpow : (128 * (n + 1)) ^ 512 ≤ (129 * n) ^ 512 :=
+    Nat.pow_le_pow_left hlin 512
+  rw [mul_pow, mul_pow] at hpow
+  have hn0 : 0 < n := lt_of_lt_of_le (by decide : (0 : ℕ) < 128) hn
+  have hstrict : 129 ^ 512 * n ^ 512 < 64 * 128 ^ 512 * n ^ 512 :=
+    Nat.mul_lt_mul_of_pos_right pow129_512_lt_64_mul_pow128_512
+      (pow_pos hn0 512)
+  have hmid : 128 ^ 512 * (n + 1) ^ 512 < 64 * 128 ^ 512 * n ^ 512 :=
+    lt_of_le_of_lt hpow hstrict
+  have hRHS : 64 * 128 ^ 512 * n ^ 512 = 128 ^ 512 * (64 * n ^ 512) :=
+    calc
+      64 * 128 ^ 512 * n ^ 512 = 64 * (128 ^ 512 * n ^ 512) := by
+        rw [mul_assoc]
+      _ = (128 ^ 512 * n ^ 512) * 64 := by rw [mul_comm]
+      _ = 128 ^ 512 * (n ^ 512 * 64) := by rw [mul_assoc]
+      _ = 128 ^ 512 * (64 * n ^ 512) := by rw [mul_comm (n ^ 512)]
+  have hpos : 0 < 128 ^ 512 := pow_pos (by decide : (0 : ℕ) < 128) 512
+  exact (Nat.mul_lt_mul_left hpos).mp (hmid.trans_eq hRHS)
+
+theorem pow729_gt_two_pow1330_succ_pow512 {n : ℕ} (hn : 128 ≤ n) :
+    2 ^ 1330 * (n + 1) ^ 512 < n ^ 729 := by
+  have hsucc := succ_pow512_lt hn
+  have hmul : 2 ^ 1330 * (n + 1) ^ 512 < 2 ^ 1330 * (64 * n ^ 512) :=
+    Nat.mul_lt_mul_of_pos_left hsucc
+      (pow_pos (by decide : (0 : ℕ) < 2) 1330)
+  have h64 : (64 : ℕ) = 2 ^ 6 := by decide
+  have hexp : 2 ^ 1330 * (64 * n ^ 512) = 2 ^ 1336 * n ^ 512 := by
+    rw [h64, ← mul_assoc, ← Nat.pow_add]
+  have h1336 : 2 ^ 1330 * (n + 1) ^ 512 < 2 ^ 1336 * n ^ 512 :=
+    hmul.trans_eq hexp
+  have hn217 : 2 ^ 1519 ≤ n ^ 217 := by
+    have hpow : (128 : ℕ) ^ 217 ≤ n ^ 217 := Nat.pow_le_pow_left hn 217
+    have h128 : (128 : ℕ) ^ 217 = 2 ^ 1519 := by
+      rw [two_pow_128, ← Nat.pow_mul]
+    exact h128 ▸ hpow
+  have hn0 : 0 < n := lt_of_lt_of_le (by decide : (0 : ℕ) < 128) hn
+  have h1519 : 2 ^ 1336 * n ^ 512 < 2 ^ 1519 * n ^ 512 :=
+    Nat.mul_lt_mul_of_pos_right
+      (Nat.pow_lt_pow_right (by decide : (1 : ℕ) < 2)
+        (by decide : (1336 : ℕ) < 1519))
+      (pow_pos hn0 512)
+  have hle : 2 ^ 1519 * n ^ 512 ≤ n ^ 217 * n ^ 512 :=
+    Nat.mul_le_mul_right _ hn217
+  have h729 : n ^ 217 * n ^ 512 = n ^ 729 := by
+    rw [← Nat.pow_add]
+  exact (h1336.trans h1519).trans_le (hle.trans_eq h729)
+
+theorem wordOOOOOOEEE_split :
+    wordOOOOOOEEE =
+      [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+          Branch.odd] ++
+        List.replicate 3 Branch.even :=
+  rfl
+
+theorem no_cycle_word_ooooooeee_of_ge {n : ℕ} (hn : 128 ≤ n)
+    (h : CycleWord n wordOOOOOOEEE) : False := by
+  have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 128) hn
+  have hsplit := wordOOOOOOEEE_split
+  have hC : CycleWord n
+      ([Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+          Branch.odd] ++
+        List.replicate 3 Branch.even) := by
+    simpa [hsplit] using h
+  have hz := cycle_trailing_evens_lt (r := 3) (by decide) hC
+  have hOOOOOO :
+      follows n
+        [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+          Branch.odd] :=
+    follows_of_append_left (v := List.replicate 3 Branch.even)
+      (by simpa [hsplit] using h.1)
+  have hpow := oooooo_lower_growth hn1 hOOOOOO
+  have hz64 :
+      image n
+          [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+            Branch.odd] ^ 64 <
+        (n + 1) ^ 512 := by
+    have := pow_lt_of_lt_pow_mul (k := 8) (m := 64) hz (by decide)
+    simpa using this
+  have hlt : n ^ 729 < 2 ^ 1330 * (n + 1) ^ 512 :=
+    lt_of_le_of_lt hpow (Nat.mul_lt_mul_of_pos_left hz64
+      (pow_pos (by decide : (0 : ℕ) < 2) 1330))
+  exact (not_lt_of_gt (pow729_gt_two_pow1330_succ_pow512 hn)) hlt
+
+theorem no_cycle_word_ooooooeee {n : ℕ} (_hn : 2 ≤ n) :
+    ¬CycleWord n wordOOOOOOEEE := by
+  intro h
+  cases lt_or_ge n 128 with
+  | inl hlt => exact no_cycle_word_ooooooeee_of_lt hlt h
+  | inr hge => exact no_cycle_word_ooooooeee_of_ge hge h
 
 end Problems.Juggler

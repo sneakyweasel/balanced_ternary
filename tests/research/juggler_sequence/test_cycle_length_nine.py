@@ -26,6 +26,7 @@ from research.juggler_sequence.cycle_length_nine import (
     run_probe,
     suffix_after_last_internal_e_has_e,
     tail_fires,
+    z_upper_cells_ee,
 )
 from research.juggler_sequence.cycle_length_seven import (
     suffix_after_last_internal_e,
@@ -77,6 +78,15 @@ def test_filters_split_bootstrap_from_nine_leftovers():
     assert set(TRANSPORT_WORDS) == set(TRANSPORT_REMAINING)
 
 
+def test_three_trailing_evens_use_eighth_power_cell():
+    """OOOOOOEEE is O^6 EEE: z < (n+1)^8, not the two-even (n+1)^4."""
+    assert z_upper_cells_ee(16, 0) == 17**8 - 1
+    assert z_upper_cells_ee(16, 0) != 17**4 - 1
+    assert tail_fires(8, 6, 0, 0) is False
+    assert tail_fires(72, 6, 0, 0) is False
+    assert tail_fires(73, 6, 0, 0) is True
+
+
 def test_prefix_cell_cutoffs_and_empty_tables():
     assert odd_log2_C(3) == 38
     assert odd_log2_C(4) == 130
@@ -84,7 +94,7 @@ def test_prefix_cell_cutoffs_and_empty_tables():
     assert odd_log2_C(6) == 1330
     assert lower_denom("OOOOO") == 1 << 422
     expected_n0 = {
-        "OOOOOOEEE": 8,
+        "OOOOOOEEE": 73,
         "OOOOOEOEE": 89,
         "OOOOOEEOE": 60,
         "OOOOEOOEE": 120,
@@ -115,6 +125,8 @@ def test_lean_api_without_length_nine_census():
     assert lean["no_length_nine_theorem"] is True
     assert lean["length_eight_open_in_census"] is True
     assert lean["no_cycle_word_length_le_seven"] is True
+    assert lean["cycle_trailing_evens_lt"] is True
+    assert lean["no_cycle_word_ooooooeee"] is True
     from research.juggler_sequence.cycle_length_nine import CYCLES, SMALL_CYCLE_CENSUS
 
     src = CYCLES.read_text(encoding="utf-8")
@@ -177,8 +189,14 @@ def test_committed_artifacts_schema():
     assert data["anti_overclaim"]["induction_on_period"] is False
     assert data["lean"]["no_length_nine_theorem"] is True
     assert data["lean"]["length_eight_open_in_census"] is True
+    assert data["lean"]["cycle_trailing_evens_lt"] is True
+    assert data["lean"]["no_cycle_word_ooooooeee"] is True
     assert data["scan"]["three_even_count"] == 28
     assert data["scan"]["tails"]["max_n0"] == 374
+    ooooooeee = next(
+        row for row in data["scan"]["tails"]["rows"] if row["word"] == "OOOOOOEEE"
+    )
+    assert ooooooeee["n0"] == 73
     assert data["scan"]["length_ten"] is False
 
 
@@ -196,7 +214,10 @@ def test_dossier_boundary():
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
     assert "no_cycle_word_length_nine" in dossier
+    assert "no_cycle_word_ooooooeee" in dossier
+    assert "cycle_trailing_evens_lt" in dossier
     assert "not a Lean census" in dossier or "not this phase" in dossier
+    assert "N_0=73" in dossier or "N0=73" in dossier
     assert "theorem no_cycle_word_length_nine" not in note
     assert "No exclusion of cycles of length eight or more is claimed." in " ".join(
         note.split()

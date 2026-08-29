@@ -48,4 +48,17 @@ theorem cycleWordB_ooooeoe_lt14 :
     ∀ n : Fin 14, cycleWordB n.val wordOOOOEOE = false := by
   native_decide
 
+def wordOOOOOOEEE : List Branch :=
+  [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+    Branch.even, Branch.even, Branch.even]
+
+/-- `(1 + 1/128)^{512} < 64`, used by the `n ≥ 128` tail for `OOOOOOEEE`. -/
+theorem pow129_512_lt_64_mul_pow128_512 :
+    (129 : ℕ) ^ 512 < 64 * 128 ^ 512 := by
+  native_decide
+
+theorem cycleWordB_ooooooeee_lt128 :
+    ∀ n : Fin 128, cycleWordB n.val wordOOOOOOEEE = false := by
+  native_decide
+
 end Problems.Juggler

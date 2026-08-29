@@ -222,6 +222,53 @@ theorem cycle_last_even_interval {n : ℕ} {u : List Branch}
     simpa [image] using this
   exact (floorPower_even_eq_iff_sq_interval he).mp hz
 
+/-- If a cycle word ends with `r ≥ 1` even letters, the state before
+that even run satisfies `T_v(n) < (n+1)^{2^r}`. The case `r = 1` is
+the last-even cell; `r = 2` is the two-even bound used by Lemma 3.5
+on `OOOOEE`; `r = 3` is the three-even bound for `OOOOOOEEE`. -/
+theorem cycle_trailing_evens_lt {n : ℕ} {v : List Branch} :
+    ∀ {r : ℕ}, 1 ≤ r →
+      CycleWord n (v ++ List.replicate r Branch.even) →
+      image n v < (n + 1) ^ (2 ^ r) := by
+  intro r hr h
+  induction r generalizing v with
+  | zero => exact (Nat.not_succ_le_zero 0 hr).elim
+  | succ r ih =>
+    match r with
+    | 0 =>
+      have h1 : CycleWord n (v ++ [Branch.even]) := by
+        simpa [List.replicate] using h
+      exact (cycle_last_even_interval h1).2
+    | r' + 1 =>
+      have hsplit :
+          v ++ List.replicate (r' + 2) Branch.even =
+            (v ++ [Branch.even]) ++ List.replicate (r' + 1) Branch.even := by
+        simp [List.replicate_succ, List.append_assoc]
+      have hC : CycleWord n
+          ((v ++ [Branch.even]) ++ List.replicate (r' + 1) Branch.even) := by
+        simpa [hsplit] using h
+      have ih' := ih (v := v ++ [Branch.even]) (by omega) hC
+      have he : image n v % 2 = 0 := by
+        have hf : follows (image n v)
+            (List.replicate (r' + 2) Branch.even) :=
+          follows_of_append_right (u := v) h.1
+        simpa [List.replicate_succ] using hf.1
+      have hfp : image n v < (floorPower (image n v) + 1) ^ 2 :=
+        ((floorPower_even_eq_iff_sq_interval he).mp rfl).2
+      have himg : image n (v ++ [Branch.even]) = floorPower (image n v) := by
+        simp [image_append, image]
+      have hsucc : floorPower (image n v) + 1 ≤ (n + 1) ^ (2 ^ (r' + 1)) :=
+        Nat.succ_le_of_lt (by simpa [himg] using ih')
+      have hsq :
+          (floorPower (image n v) + 1) ^ 2 ≤
+            ((n + 1) ^ (2 ^ (r' + 1))) ^ 2 :=
+        Nat.pow_le_pow_left hsucc 2
+      have hexp :
+          ((n + 1) ^ (2 ^ (r' + 1))) ^ 2 = (n + 1) ^ (2 ^ (r' + 2)) := by
+        rw [← Nat.pow_mul]
+        exact congrArg (fun e => (n + 1) ^ e) (Nat.pow_succ 2 (r' + 1)).symm
+      exact lt_of_lt_of_le hfp (hexp ▸ hsq)
+
 theorem cycle_last_even_ne_odd_sq {n : ℕ} {u : List Branch}
     (hodd : n % 2 = 1) (h : CycleWord n (u ++ [.even])) :
     image n u ≠ n ^ 2 :=

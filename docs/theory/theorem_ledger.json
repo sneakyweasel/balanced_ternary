@@ -3290,6 +3290,30 @@
     "related_conjectures": []
   },
   {
+    "id": "J-cycle-trailing-evens",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If a Juggler cycle word based at n ends with r ≥ 1 even letters, the state immediately before that trailing even run is strictly less than (n+1)^{2^r}. The case r = 1 is the last-even cell; r = 2 is the two-even bound of Paper A Lemma 3.5 on OOOOEE; r = 3 is the three-even bound for OOOOOOEEE. Lean theorem cycle_trailing_evens_lt. This is a cell identity, not a leftover exclusion and not a halt theorem.",
+    "source": "docs/problems/juggler_length_nine_three_even.md",
+    "lean": "Problems/Juggler/Cycles.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_length_nine.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-leftover-ooooooeee",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "OOOOOOEEE is not a Juggler cycle word at any n ≥ 2. The argument is an exhaustive evaluation for n < 128 together with the three-even cell z < (n+1)^8 against the coarse lower envelope n^{729} > 2^{1330}(n+1)^{512} for n ≥ 128. The computational prefix-cell first fires at N0 = 73; 128 is the algebraic cutoff. This excludes that one three-even leftover only; it is not a length-9 census, not an exclusion of the remaining eight leftovers, and not a halt theorem. Lean theorem no_cycle_word_ooooooeee.",
+    "source": "docs/problems/juggler_length_nine_three_even.md",
+    "lean": "Problems/Juggler/LeftoverCycles.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_length_nine.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-nested-parity-linearization",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "For odd n ≥ 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 ≤ E(n) ≤ (3/8)(n^{3/2}-1)^{-1/2} ≤ (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} ≥ 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",

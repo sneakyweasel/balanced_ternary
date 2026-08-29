@@ -957,14 +957,14 @@
           "remaining": "EE",
           "remaining_expanding": false,
           "remaining_is_lemma35": false,
-          "n0": 8,
+          "n0": 73,
           "fires_at_n0": true,
           "fails_before_n0": true,
           "table": {
             "word": "OOOOOOEEE",
             "n_lo": 2,
-            "n_hi": 8,
-            "checked": 6,
+            "n_hi": 73,
+            "checked": 71,
             "follows": 0,
             "follow_starts": [],
             "hits": [],
@@ -1260,12 +1260,14 @@
     "cycleMin_not_odd_even": true,
     "cycleMin_not_start_even": true,
     "cycle_last_even_interval": true,
+    "cycle_trailing_evens_lt": true,
     "no_cycle_word_length_le_six": true,
     "no_cycle_word_oooeoe": true,
     "no_cycle_word_ooooee": true,
     "no_cycle_word_oooooee": true,
     "no_cycle_word_ooooeoe": true,
     "no_cycle_word_length_le_seven": true,
+    "no_cycle_word_ooooooeee": true,
     "no_global_termination_theorem": true,
     "no_all_cycles_impossible": true,
     "no_cycle_engine": true,
@@ -1284,5 +1286,5 @@
     ],
     "reason": "length 9 has 28 three-even even-terminating expanding words; last-internal suffix is always O^c so bootstrap still kills c>=2; the nine leftovers O^a E O^b E O^c E with a>=2 and c in {0,1} die by the odd-prefix cell tail (N0<=374) with empty CycleWord tables; a=2 remainders are the Lemma 3.5 words OOOOEE / OOOEOE"
   },
-  "search_method": "structural inventory of even-terminating expanding length-9 words; last-internal vs first-E split; odd-prefix cell tails on the nine three-even leftovers; exact follows+image table below N0 only; no cycle-state search; no length-10; no Lean"
+  "search_method": "structural inventory of even-terminating expanding length-9 words; last-internal vs first-E split; odd-prefix cell tails on the nine three-even leftovers; exact follows+image table below N0 only; Lean excludes OOOOOOEEE only; no length-9 census; no cycle-state search; no length-10"
 }

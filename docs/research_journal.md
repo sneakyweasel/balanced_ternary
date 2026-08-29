@@ -10981,3 +10981,42 @@ Best next question
   expanding length-8 word, or does a new leftover shape appear?
 ```
 
+## Juggler trailing-even cell and `OOOOOOEEE`
+
+- **Date:** 2026-08-30
+- **Objective:** Lean-exclude the first three-even leftover `OOOOOOEEE` by a uniform trailing-even cell, after repairing the Phase-0 two-even bound
+- **Hypotheses:** \(r\) trailing evens on a cycle word give \(T_v(n)<(n+1)^{2^r}\); for `OOOOOOEEE` the prefix image sits before three square roots, so \(z<(n+1)^8\); the envelope \(n^{729}>2^{1330}(n+1)^{512}\) plus a finite table excludes the word
+- **Major results:** `cycle_trailing_evens_lt` (**EXACT — LEAN VERIFIED**, ledger `J-cycle-trailing-evens`); `no_cycle_word_ooooooeee` (**EXACT — LEAN VERIFIED**, ledger `J-leftover-ooooooeee`). Computational cutoff \(N_0=73\); Lean algebraic cutoff \(n\ge 128\) plus `Fin 128`. Not a length-9 census. Paper A not edited. The remaining eight leftovers were not opened
+- **Refuted ideas:** treating `OOOOOOEEE` as a two-even tail \(z<(n+1)^4\) (spurious \(N_0=8\)); a length-9 Lean census; induction on \(n\) or on the period
+- **Literature:** Paper A Lemma 3.5 last-even cell reused. Length-7 Lean census reused, not reopened
+- **Open:** the remaining eight three-even leftovers. Length 8 still open. No `no_cycle_word_length_nine`
+- **Decision:** PROMOTE the trailing-even cell and the one leftover. Not a length-9 census and not a halt theorem
+
+```text
+What was learned
+- Three trailing evens are one cell z < (n+1)^{8}, obtained by
+  iterating the last-even square-interval
+- The Phase-0 two-even cell on OOOOOOEEE was false: the prefix
+  image is before three square roots, not two
+- The repaired computational tail first fires at N0=73; the
+  Lean argument uses the cleaner cutoff n ≥ 128
+- lowerDenom(O^6) = 2^1330 and the comparison
+  n^729 > 2^1330 (n+1)^512 close the large-n case
+- This kills one leftover only; eight remain; length 8 is still
+  the first open even-terminating expanding length
+Strongest theorem
+- no_cycle_word_ooooooeee: OOOOOOEEE is not a CycleWord at n ≥ 2
+Strongest refutation
+- z < (n+1)^4 as the OOOOOOEEE prefix-cell (spurious N0=8)
+Reusable machinery
+- cycle_trailing_evens_lt in Cycles.lean
+Branch status
+- PROMOTE
+Why
+- the three-even cell is now a named Lean identity and the first
+  leftover is excluded; a census is a later assembly
+Best next question
+- Lean-exclude the remaining eight leftovers, starting with
+  OOOOOEOEE
+```
+

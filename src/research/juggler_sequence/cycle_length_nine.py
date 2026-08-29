@@ -97,13 +97,15 @@ LEAN_THEOREMS = (
     "cycleMin_not_odd_even",
     "cycleMin_not_start_even",
     "cycle_last_even_interval",
+    "cycle_trailing_evens_lt",
     "no_cycle_word_length_le_six",
-        "no_cycle_word_oooeoe",
-        "no_cycle_word_ooooee",
-        "no_cycle_word_oooooee",
-        "no_cycle_word_ooooeoe",
-        "no_cycle_word_length_le_seven",
-    )
+    "no_cycle_word_oooeoe",
+    "no_cycle_word_ooooee",
+    "no_cycle_word_oooooee",
+    "no_cycle_word_ooooeoe",
+    "no_cycle_word_length_le_seven",
+    "no_cycle_word_ooooooeee",
+)
 
 N0_SEARCH_CAP = 500
 
@@ -231,12 +233,14 @@ def ymax_from_odd_bound(c_bits: int, rhs: int, odd_exp: int) -> int:
 def z_upper_cells_ee(n: int, b: int) -> int:
     """Upper bound on T_{O^a}(n) for a CycleWord tail E O^b EE.
 
-    Last two evens give p < (n+1)^4. If b = 0 then z = p. If b >= 1
-    then y^{3^b} <= C_{O^b} p^{2^b} and z < (y+1)^2.
+    Last two evens give p < (n+1)^4. The tail always starts with E,
+    so z --E--> y --O^b--> p. If b = 0 the tail is EEE and
+    z < (p+1)^2 < (n+1)^8, not z = p. If b >= 1 then
+    y^{3^b} <= C_{O^b} p^{2^b} and z < (y+1)^2.
     """
     cap = (n + 1) ** 4
     if b == 0:
-        return cap - 1
+        return (n + 1) ** 8 - 1
     ymax = ymax_from_odd_bound(odd_log2_C(b), cap ** (1 << b), 3**b)
     return (ymax + 1) ** 2 - 1
 
@@ -403,8 +407,7 @@ def lean_api_present() -> dict[str, bool]:
         and "def CycleStates" not in combined,
         "length_eight_open_in_census": "Length eight is open" in census,
         "no_length_nine_theorem": "theorem no_cycle_word_length_nine"
-        not in combined
-        and "theorem no_cycle_word_ooooooeee" not in leftover,
+        not in combined,
         "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text()
         and "CycleMin" not in engine_floor_text(),
         "orbit_min_not_used": "MinimalNonTerm" not in text,
@@ -459,6 +462,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_length_nine_theorem"]
         and lean["length_eight_open_in_census"]
         and lean["no_cycle_word_length_le_seven"]
+        and lean["cycle_trailing_evens_lt"]
+        and lean["no_cycle_word_ooooooeee"]
         and lean["no_cycle_engine"]
         and lean["no_all_cycles_impossible"]
     )
@@ -551,7 +556,8 @@ def probe_payload() -> dict[str, Any]:
             "structural inventory of even-terminating expanding length-9 "
             "words; last-internal vs first-E split; odd-prefix cell tails "
             "on the nine three-even leftovers; exact follows+image table "
-            "below N0 only; no cycle-state search; no length-10; no Lean"
+            "below N0 only; Lean excludes OOOOOOEEE only; no length-9 "
+            "census; no cycle-state search; no length-10"
         ),
     }
 
@@ -679,7 +685,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             "This is not a halt result and not a length-9 census.",
             "Two-even length-9 leftovers were not opened. Length 10 and",
-            "four-even words were not opened. Lean was not edited.",
+            "four-even words were not opened. Lean excludes `OOOOOOEEE`",
+            "only (`cycle_trailing_evens_lt`, `no_cycle_word_ooooooeee`).",
             "",
         ]
     )

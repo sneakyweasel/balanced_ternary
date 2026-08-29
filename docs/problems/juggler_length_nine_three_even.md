@@ -67,6 +67,13 @@ This is not a Lean census and not a halt theorem.
   **EXACT — LEAN VERIFIED** (`no_cycle_word_oooooee`,
   `no_cycle_word_ooooeoe`, `no_cycle_word_length_le_seven`).
   Length eight is open. Not reopened.
+- Trailing-even cell (`cycle_trailing_evens_lt`) —
+  **EXACT — LEAN VERIFIED**. If a cycle word ends with
+  \(r\ge 1\) evens then \(T_v(n)<(n+1)^{2^r}\).
+- Leftover `OOOOOOEEE` —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_ooooooeee`).
+  Finite table below \(128\) plus
+  \(n^{729}>2^{1330}(n+1)^{512}\). Not a length-9 census.
 - Prefix-OOO extra scale from \(n=3\) —
   **REFUTED**. That `CLOSE` is not reopened.
 
@@ -96,7 +103,28 @@ Promotion criterion     A named argument that computationally excludes
                         all nine leftovers, not a rewrite of induction
 Stop criterion          A leftover whose tail never fires; a table hit;
                         machinery gravity (census engine, length 10,
-                        Paper A, Lean)
+                        Paper A). Phase 0 did not add Lean.
+```
+
+Phase-1 budget (one leftover, not a census):
+
+```text
+Mathematical target     Does the trailing-even cell plus the O^6
+                        envelope exclude CycleWord on OOOOOOEEE
+                        for every n ≥ 2?
+Novelty hypothesis      Three trailing evens are one cell
+                        z < (n+1)^8, not two last-even cells
+Falsifier               A CycleWord realization, or the algebraic
+                        tail n^729 > 2^1330 (n+1)^512 failing
+Existing machinery      cycle_last_even_interval; leftover 6/7
+                        tables; lowerDenom(O^6)=2^1330
+Maximum Phase-1 scope   cycle_trailing_evens_lt and
+                        no_cycle_word_ooooooeee. No remaining
+                        eight leftovers, no length-9 census,
+                        no Paper A, no length 8/10, no halt
+Promotion criterion     Lean theorem no_cycle_word_ooooooeee
+Stop criterion          remaining eight leftovers; census;
+                        length 8; halt
 ```
 
 ## Balanced-ternary formulation
@@ -124,10 +152,17 @@ It is not required.
   (`OOOOEE` / `OOOEOE`) —
   **COMPUTATIONALLY VERIFIED**
 - odd-prefix cell tails fire at
-  \(N_0\in\{8,60,81,89,120,126,188,250,374\}\) —
+  \(N_0\in\{60,73,81,89,120,126,188,250,374\}\),
+  with `OOOOOOEEE` at \(N_0=73\) after the three-even
+  cell \(z<(n+1)^8\) —
   **COMPUTATIONALLY VERIFIED**
+- the two-even cell \(z<(n+1)^4\) on `OOOOOOEEE` is
+  a spurious cutoff \(N_0=8\) —
+  **REFUTED**
 - no leftover is a `CycleWord` on \(2\le n<N_0\) —
   **COMPUTATIONALLY VERIFIED**
+- `OOOOOOEEE` is not a `CycleWord` at any \(n\ge 2\) —
+  **EXACT — LEAN VERIFIED**
 - `OOOEOOOEE` is realized at \(n=183\) but returns \(1664\), not \(183\) —
   **COMPUTATIONALLY VERIFIED**
 - every length-9 cycle word is impossible — not claimed
@@ -140,10 +175,15 @@ It is not required.
 - Probe: `research.juggler_sequence.cycle_length_nine`
 - Records: [juggler_cycle_length_nine.md](../research/juggler_cycle_length_nine.md),
   [juggler_cycle_length_nine.json](../research/juggler_cycle_length_nine.json)
-- Tests: `tests/research/juggler_sequence/test_cycle_length_nine.py`
+- Tests: `tests/research/juggler_sequence/test_cycle_length_nine.py`,
+  `tests/research/juggler_sequence/test_cycle_leftover_words.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length 10. No four-even programme.
-- No Lean file.
+- Phase 1 Lean: `cycle_trailing_evens_lt` in
+  `formal/Problems/Juggler/Cycles.lean` and
+  `no_cycle_word_ooooooeee` in
+  `formal/Problems/Juggler/LeftoverCycles.lean`.
+  No `no_cycle_word_length_nine`. Paper A is not edited.
 
 ## Conjectures
 
@@ -164,18 +204,30 @@ claims that remain false or unproved:
 - “a general no-cycle induction on \(n\)” — still the census of
   odd-to-odd cycle minima.
 - “every length-9 word is Lean-excluded” — not claimed.
+- “`OOOOOOEEE` is a two-even tail \(z<(n+1)^4\)” —
+  **REFUTED**. The prefix image sits before three square
+  roots, so \(z<(n+1)^8\). The old cell produced a
+  spurious \(N_0=8\).
 
 ## Formalization
 
-None added. `SmallCycleCensus.lean` already assembles length seven
-(`no_cycle_word_length_le_seven`) and records that length eight is
-open. No `no_cycle_word_length_nine`. No `sorry`. No halt theorem.
-No `CycleSearch`. FloorPower, Progress, and Minimal are not
-rewritten.
+`cycle_trailing_evens_lt` in `Cycles.lean`: if a cycle word ends
+with \(r\ge 1\) even letters then the state before that run is
+strictly less than \((n+1)^{2^r}\). The case \(r=3\) is the
+three-even cell for `OOOOOOEEE`.
 
-A later Lean phase, if opened, would follow `LeftoverCycles.lean`
-on the nine tails, starting with `OOOOOOEEE` at \(N_0=8\). That is
-not this phase.
+`no_cycle_word_ooooooeee` in `LeftoverCycles.lean`: finite
+evaluation on `Fin 128` plus
+\(n^{729}>2^{1330}(n+1)^{512}\) for \(n\ge 128\). The
+computational prefix-cell first fires at \(N_0=73\); \(128\) is
+the algebraic cutoff.
+
+`SmallCycleCensus.lean` still assembles only through length
+seven and records that length eight is open. No
+`no_cycle_word_length_nine`. The remaining eight leftovers are
+not Lean-excluded. No `sorry`. No halt theorem. No
+`CycleSearch`. FloorPower, Progress, and Minimal are not
+rewritten. Paper A is not edited. This is not a Lean census.
 
 ## Results
 
@@ -193,9 +245,12 @@ with the extra even kept in the cell chain, not in `lowerDenom`.
 Naive `cycle_pow_le_lowerDenom` on the full word inflates the
 constant through the internal \(E\)s (\(N_0\) in the thousands). The
 refined comparison uses \(C_{O^a}\) only and bounds \(T_{O^a}(n)\)
-by last-even / last-odd cells through \(EO^bEO^cE\). All nine tails
-fire, with largest cutoff \(N_0=374\) on `OOEOOOOEE`, and the exact
-tables below the cutoffs have zero returns.
+by last-even / last-odd cells through \(EO^bEO^cE\). The unique
+leftover with three trailing evens (`OOOOOOEEE`, \(b=c=0\)) uses
+the cell \(z<(n+1)^8\), not the two-even cell \(z<(n+1)^4\). All
+nine tails fire, with `OOOOOOEEE` at \(N_0=73\) and largest cutoff
+\(N_0=374\) on `OOEOOOOEE`; the exact tables below the cutoffs have
+zero returns. Lean excludes `OOOOOOEEE` only.
 
 For the two \(a=2\) leftovers the remainder after the first \(E\) is
 exactly a length-6 leftover. On a cycle minimum that remainder starts
@@ -203,31 +258,34 @@ at \(y\ge n\), so Lemma 3.5 transports at \(256\). The prefix-cell
 bound already excludes those two words as `CycleWord`, so the
 transport is a CycleMin simplification, not a second method.
 
-This is a computational exclusion of the nine leftover `CycleWord`s,
-not a Lean census and not a no-cycles theorem.
+This is a computational exclusion of the nine leftover `CycleWord`s
+and a Lean exclusion of one leftover, not a Lean census and not a
+no-cycles theorem.
 
 ## Open questions
 
-Lean-exclude the nine three-even leftovers by the prefix-cell tails,
-starting with `OOOOOOEEE` at \(N_0=8\). Do not open length 10 or
-four-even words automatically. A uniform two-even theorem for
-lengths 6–8 remains a later distill. Do not start an O-terminating
-`CycleWord` programme. Do not claim halt.
+Lean-exclude the remaining eight three-even leftovers by the
+prefix-cell tails. Do not open length 8, length 10, or four-even
+words automatically. A uniform two-even theorem for lengths 6–8
+remains a later distill. Do not start an O-terminating
+`CycleWord` programme. Do not claim halt. Do not assemble
+`no_cycle_word_length_nine`.
 
 ## Decision
 
-**PROMOTE**. The three-even gap is a finite leftover list with a
-named exclusion path: odd-prefix LowerPowerBound against a mixed-tail
-cell bound. All nine tails fire and the finite tables are empty.
-That is the Lemma 3.5 method with one extra even, not induction on
-\(n\) or on the period. A length-9 Lean census is not automatic.
+**PROMOTE**. Phase 0 named the three-even leftover list and fired
+all nine prefix-cell tails. Phase 1 repaired the three-trailing-even
+cell (\(z<(n+1)^8\), computational \(N_0=73\)) and Lean-excluded
+`OOOOOOEEE`. That is one leftover, not a length-9 census and not
+induction on \(n\) or on the period.
 
-Best next question: Lean-exclude `CycleWord` on `OOOOOOEEE` by the
-prefix-cell tail at \(N_0=8\), then the remaining eight leftovers.
+Best next question: Lean-exclude the remaining eight leftovers,
+starting with the next EE leftover `OOOOOEOEE`.
 
 ## Publication assessment
 
 Status: `EXPLORATORY`.
 
-A Phase-0 inventory and leftover-tail computation, not a paper
-candidate and not a Juggler totality result. Paper A is not edited.
+A Phase-0 inventory plus a Phase-1 Lean exclusion of one leftover,
+not a paper candidate, not a length-9 census, and not a Juggler
+totality result. Paper A is not edited.

@@ -46,7 +46,7 @@ length 9 has 28 three-even even-terminating expanding words; last-internal suffi
 
 ## Three-even leftovers
 
-- `OOOOOOEEE` abc=`[6, 0, 0]` Cbits=`1330` v=`EE` v_exp=`False` lemma35=`False` N0=`8` follows=`0` hits=`[]`
+- `OOOOOOEEE` abc=`[6, 0, 0]` Cbits=`1330` v=`EE` v_exp=`False` lemma35=`False` N0=`73` follows=`0` hits=`[]`
 - `OOOOOEOEE` abc=`[5, 1, 0]` Cbits=`422` v=`OEE` v_exp=`False` lemma35=`False` N0=`89` follows=`0` hits=`[]`
 - `OOOOOEEOE` abc=`[5, 0, 1]` Cbits=`422` v=`EOE` v_exp=`False` lemma35=`False` N0=`60` follows=`0` hits=`[]`
 - `OOOOEOOEE` abc=`[4, 2, 0]` Cbits=`130` v=`OOEE` v_exp=`False` lemma35=`False` N0=`120` follows=`0` hits=`[]`
@@ -83,12 +83,14 @@ length 9 has 28 three-even even-terminating expanding words; last-internal suffi
 - `cycleMin_not_odd_even`: `True`
 - `cycleMin_not_start_even`: `True`
 - `cycle_last_even_interval`: `True`
+- `cycle_trailing_evens_lt`: `True`
 - `no_cycle_word_length_le_six`: `True`
 - `no_cycle_word_oooeoe`: `True`
 - `no_cycle_word_ooooee`: `True`
 - `no_cycle_word_oooooee`: `True`
 - `no_cycle_word_ooooeoe`: `True`
 - `no_cycle_word_length_le_seven`: `True`
+- `no_cycle_word_ooooooeee`: `True`
 - length eight open in census: `True`
 - no length-nine theorem: `True`
 - no all-cycles-impossible theorem: `True`
@@ -120,5 +122,6 @@ length 9 has 28 three-even even-terminating expanding words; last-internal suffi
 
 This is not a halt result and not a length-9 census.
 Two-even length-9 leftovers were not opened. Length 10 and
-four-even words were not opened. Lean was not edited.
+four-even words were not opened. Lean excludes `OOOOOOEEE`
+only (`cycle_trailing_evens_lt`, `no_cycle_word_ooooooeee`).
 
