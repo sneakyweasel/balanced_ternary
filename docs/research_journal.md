@@ -10329,3 +10329,86 @@ Best next question
   (exact characterization of blocked roots beyond OOOO), giving
   the supremum of K3-free certified density as a closed form?
 ```
+
+## Juggler manuscript split: Paper A ships, Paper B rewritten standalone
+
+Phase 24 of the paper branch. An external review of the single
+manuscript returned "not ready as one paper": Sections 2-4 are a
+finished Lean-backed note, Sections 5-6 are the novel analytic
+content but written as a compressed lab diary, and the kernel proof
+(old Theorem 5.11) is "a plan, not a proof" — six telegram steps
+with the mixed-piece repair, the exact place the Phase-9 review
+found a hole, compressed to one paragraph. Verdict: ship Paper A;
+rewrite Paper B until a stranger can check the mixed-piece step
+without the repo.
+
+Executed the split.
+
+Paper A stays at docs/theory/juggler_finite_dynamics_note.md:
+power envelope, exact defect calculus, inverse cells, the
+no-cycle-of-length-<=6 census, even/OE certificates, the finite-state
+obstruction record, and a short "remaining gap" section pointing to
+the companion. All density claims, discrepancy material, and
+analytic references removed; abstract and introduction rewritten to
+the finite scope. Every theorem in Paper A has a Lean certificate or
+a self-contained elementary proof.
+
+Paper B is new: docs/theory/juggler_parity_discrepancy_note.md,
+"Parity equidistribution of nested floor powers, with descent
+applications to the Juggler map". Standalone structure: related work
+(Piatetski-Shapiro through Glasscock, with a precise statement of
+what the single-floor literature does not cover), setup and exact
+floor calculus with the branch-consistency indicator algebra now a
+proved lemma (3.6) instead of "machine-checked on windows", the
+one-growing-layer theory, then the kernel section rewritten for
+strangers: Lemma 5.1 (carry-branch decomposition), Lemma 5.2 (the
+mixed-piece bound as a standalone lemma — explicit third
+differencing, balance H3 = r^{-1/3} P^{1/4}, per-class dominance
+inventory with displayed exponents), Theorem 5.3 (kernel,
+delta = 1/72), Corollary 5.4. Applications follow as Section 6
+(depth-4 complete, length-5/7/8 splits, densities 13/16, 7/8,
+57/64, 29/32 stated after the theorems, not in the abstract's
+climax), frontier as Section 7 (level-3 kernel, shift-average
+theorem, pure model conjecture, negative knowledge cut to three
+sentences). Terras/Tao comparisons trimmed to one paragraph; the
+map is called niche in the introduction; densities are labeled
+certified-descent, never arrival-at-1.
+
+Companions synced: reviewer packet rewritten for two papers with
+separate claim maps and falsifiers; formalization map, theorem
+ledger rows (old 5.x numbering -> Paper B numbering), paper and
+two-step-parity dossiers, branch ledger, bundle README updated;
+both PDFs built (xelatex) and hash-verified across docs/theory,
+juggler_review, and the root copy; ledger renders clean; ledger and
+juggler test suites pass.
+
+```text
+What was learned
+- the manuscript was two papers sharing a title; the reviewer's
+  split is the correct decomposition, not a criticism to argue with
+- the kernel proof's weakest joint was known internally (Phase-9
+  mixed-piece hole) and still under-written; a standalone lemma
+  with displayed constants was owed
+- "machine-checked on windows" is not glue a referee accepts; the
+  indicator algebra had a short human proof all along
+Strongest theorem
+- unchanged mathematics; the deliverable is Paper A at submission
+  quality and Paper B as a self-contained working draft
+Strongest refutation
+- none (editorial phase)
+Reusable machinery
+- the two-paper artifact layout: A (Lean-backed finite dynamics),
+  B (analytic discrepancy), one shared reviewer packet and bundle
+Branch status
+- PROMOTE for Paper A (submission candidate); Paper B remains a
+  working draft until kernel Steps 3-5 are at Graham-Kolesnik
+  length
+Why
+- the review's fatal objection was presentation and verifiability,
+  not mathematics; the split isolates the checkable from the
+  still-owed
+Best next question
+- expand Theorem 5.3's Steps 3-5 so every dominance claim carries
+  its own displayed estimate — the single remaining blocker for
+  Paper B
+```

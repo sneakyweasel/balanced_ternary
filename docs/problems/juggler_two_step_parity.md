@@ -943,31 +943,38 @@ No \(K_3\) claim; `density_one_claimed` stays `False`.
 
 ## Publication assessment
 
-Status: `THEOREM`, **consolidated into the note** (second
-consolidation phase plus the Phase-23 quartet, 29 August 2026).
-Exact linearization lemmas,
+Status: `THEOREM`, **consolidated into the standalone
+parity-discrepancy paper** (Paper B,
+[juggler_parity_discrepancy_note.md](../theory/juggler_parity_discrepancy_note.md)),
+created 29 August 2026 when external review split the former single
+note ("ship Paper A; rewrite Paper B until a stranger can check the
+mixed-piece step"). Exact linearization lemmas,
 power-saving joint-parity discrepancy bounds for nested floor-power
 sequences at **every depth \(\le 4\)** and the length-5, length-7,
 and length-8 contracting splits, outside the existing
 Piatetski-Shapiro literature, plus a certified-descent density of
 \(29/32\) and the
 conditional density-one theorem with unconditional base cases
-\(d\le 4\). The note now carries the full harvest: Theorem R is
-the note's Theorem 5.11 (with Corollary R′ as Corollary 5.12 and
-Lemmas R1/R2/R3 as Lemma 5.10), Theorem S is Theorem 5.13,
-Theorem T is Theorem 5.14, Theorem X is Theorem 5.15, Theorem AA
-is Theorem 5.16, Corollaries U/Y/AB are Corollary 5.17, Lemma V1
-is Lemma 6.2, Conjecture V is
-Conjecture 6.3, Lemma II is Theorem 6.4, Conjecture HH is
-Conjecture 6.5, and the BB/GG/JJ obstruction ladder is condensed
-into Section 6's negative-knowledge paragraphs. The laboratory
-retains the full statements: the scale-invariant copy of Theorem R,
-the increment-first \(K_3\) attack, and X1-absorption are
-laboratory-**REFUTED**; the \(K_3\) toolkit is
+\(d\le 4\). Paper B numbering: Theorem R is Theorem 5.3 (with the
+mixed-piece repair promoted to standalone Lemma 5.2 — explicit third
+differencing, balance \(H_3=r^{-1/3}P^{1/4}\), and dominance checks
+— Corollary R′ as Corollary 5.4, Lemmas R1/R2/R3 as Lemma 5.1),
+Theorem S is Theorem 6.1, Theorem T is Theorem 6.2, Theorem X is
+Theorem 6.3, Theorem AA is Theorem 6.4, Corollaries U/Y/AB are
+Corollary 6.5, Lemma V1 is Lemma 7.2, Conjecture V is
+Conjecture 7.3, Lemma II is Theorem 7.4, Conjecture HH is
+Conjecture 7.5, the branch-consistency indicator algebra is now a
+proved lemma (3.6), and the BB/GG/JJ obstruction ladder is condensed
+to three sentences in Section 7 with the full record staying here.
+The laboratory retains the full statements: the scale-invariant copy
+of Theorem R, the increment-first \(K_3\) attack, and X1-absorption
+are laboratory-**REFUTED**; the \(K_3\) toolkit is
 laboratory-**PARKED** (Proposition BB); dispersion is
 laboratory-**REFUTED** as a completion route (Proposition CC);
 transport produced Lemmas DD/FF and Conjecture EE but its
 intra-block analytic program is laboratory-**PARKED**
 (Proposition GG); the de-randomization of Lemma II is
-laboratory-**PARKED** (Proposition JJ). No editorial debt
-remains.
+laboratory-**PARKED** (Proposition JJ). Remaining editorial debt:
+Paper B's kernel Steps 3–5 still owe a Graham–Kolesnik-length
+expansion (every piece with its own displayed bound) before
+submission.

@@ -1,10 +1,14 @@
 # Juggler finite-dynamics formalization map
 
-This page is the Lean companion to the math note
-[juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md).
-The note is written to be readable without this page. The development is
-in `formal/Problems/Juggler/`; it contains no `sorry` or `admit`.
-The review object for the math note is the paper barrel
+This page is the Lean companion to the two manuscripts: **Paper A**,
+[juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md)
+(finite dynamics; every theorem Lean-backed), and **Paper B**,
+[juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md)
+(parity discrepancy; human proofs over Lean-verified floor
+identities). Both are written to be readable without this page.
+Unqualified references to "the note" below mean Paper A. The
+development is in `formal/Problems/Juggler/`; it contains no `sorry`
+or `admit`. The review object for the papers is the paper barrel
 `formal/Problems/JugglerPaper.lean` (`lake build Problems.JugglerPaper`).
 That file imports only the modules named below. Laboratory satellites
 remain in `formal/Problems/Juggler.lean` and are not the review object.
@@ -240,18 +244,18 @@ unresolved_is_odd_odd :
   n % 2 = 1 ∧ floorPower n % 2 = 1
 ```
 
-Thus even and odd-to-even starts have automatic finite progress. The note's
-density corollaries (\(3/4\) at two steps, \(13/16\) at four, \(7/8\)
-at five, \(57/64\) at seven, \(29/32\) at eight) count uniform
-certificate classes. They
+Thus even and odd-to-even starts have automatic finite progress. The
+density corollaries of the companion discrepancy paper (\(3/4\) at two
+steps, \(13/16\) at four, \(7/8\) at five, \(57/64\) at seven,
+\(29/32\) at eight) count uniform certificate classes. They
 are not Lean cardinality theorems, not densities of all
 `FiniteProgress`, and not `ReachesOne` densities. Odd-to-odd starts
 may still descend after a longer word. The Terras analogue remains
-open; the note's Proposition 6.1 reduces it to all-depth parity
+open; Paper B's Proposition 7.1 reduces it to all-depth parity
 equidistribution, which is now proved at every depth \(\le4\)
-(including the \(OOO*\) split via the kernel theorem, the note's
-Theorems 5.11 and 5.13); the first open case is the \(OOOO*\) split
-(the note's Conjecture 6.3).
+(including the \(OOO*\) split via the kernel theorem, Paper B's
+Theorems 5.3 and 6.1); the first open case is the \(OOOO*\) split
+(Paper B's Conjecture 7.3).
 
 ## 7. Exact inverse cells
 
@@ -409,14 +413,14 @@ one_plus_eta_lt_succ_sq :
     (NearTightScale.lean)
 ```
 
-The certified four-block expanding chain named in the note's Section 6
+The certified four-block expanding chain named in Paper A's Section 5
 is `four_block_pe_1999` in `ExpansionSlack.lean`.
 
-## 9. Exact floor reductions for the discrepancy section
+## 9. Exact floor reductions for the discrepancy paper
 
 Source: `formal/Problems/Juggler/GapCells.lean`.
 
-The analytic estimates of the note's Section 5 are human proofs. The
+Every analytic estimate of Paper B is a human proof. The
 exact floor reductions beneath them are Lean-verified over the reals:
 
 ```text
@@ -440,28 +444,31 @@ seq_floor_gap_second : (the double-gap identity: the second
 ```
 
 The first is the parity bridge that converts parity sums into interval
-discrepancies (Section 5's fractional-part form). The gap identities
-are the cell structure of the note's Lemma 5.3(ii) and Lemma 5.10(ii)
-and of the companion's Lemmas B, N, and R2: the increment of a floored
-smooth sequence is the floor of the smooth increment plus a 0/1
-sawtooth carry, and the second difference composes two such
-identities (used by the kernel theorem, the note's Theorem 5.11). No
-Vaaler, van der Corput, or Erdős–Turán content is formalized.
+discrepancies (Paper B's fractional-part form, Lemma 3.2). The gap
+identities are the cell structure of Paper B's Lemma 4.3(ii) and
+Lemma 5.1(ii) and of the working document's Lemmas B, N, and R2: the
+increment of a floored smooth sequence is the floor of the smooth
+increment plus a 0/1 sawtooth carry, and the second difference
+composes two such identities (used by the kernel theorem, Paper B's
+Theorem 5.3). No Vaaler, van der Corput, or Erdős–Turán content is
+formalized.
 
 ## 10. Evidence boundary
 
 Lean certifies the definitions and theorem statements above. It does not
 certify:
 
-- Proposition 4.4's exact Python-integer horizon-\(20\) census;
-- the analytic discrepancy estimates of Sections 5 and 6 (Theorems
-  5.1, 5.4, 5.7, 5.8, Proposition 5.5, Corollary 5.9; the kernel
-  theorem 5.11 with Corollary 5.12; the depth-4 completion 5.13 and
-  the contracting splits 5.14–5.16 with Corollary 5.17 — ledger rows
-  `J-kernel-cancellation`, `J-depth4-complete`,
-  `J-five-step-descent-density`, `J-depth7-engine-contracting`,
-  `J-depth8-engine-quartet`, `J-eight-step-descent-density`;
-  Proposition 6.1; and the shift-average theorem 6.4, ledger row
+- Proposition 4.4's exact Python-integer horizon-\(20\) census
+  (Paper A);
+- the analytic discrepancy estimates of Paper B (Theorems 4.1, 4.4,
+  4.7, 4.8, Proposition 4.5, Corollary 4.9; the mixed-piece Lemma 5.2
+  and the kernel Theorem 5.3 with Corollary 5.4; the depth-4
+  completion Theorem 6.1 and the contracting splits Theorems 6.2–6.4
+  with Corollary 6.5 — ledger rows `J-kernel-cancellation`,
+  `J-depth4-complete`, `J-five-step-descent-density`,
+  `J-depth7-engine-contracting`, `J-depth8-engine-quartet`,
+  `J-eight-step-descent-density`; Proposition 7.1; and the
+  shift-average Theorem 7.4, ledger row
   `J-shift-average-square-root` — all human proofs resting on the
   Lean floor reductions above);
 - the scaled-integer validators for the exact-linearization lemmas

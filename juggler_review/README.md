@@ -1,7 +1,7 @@
-# Juggler finite-dynamics reviewer bundle
+# Juggler reviewer bundle (two manuscripts)
 
 Author: Philippe Cochin. Date: 29 August 2026.
-Status: publication draft, not submitted.
+Status: Paper A is a submission candidate; Paper B is a working draft.
 
 This folder is a snapshot of the files to send for external review. It
 is not the laboratory. No termination theorem is claimed.
@@ -9,13 +9,20 @@ is not the laboratory. No termination theorem is claimed.
 ## Read this first
 
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
-   — the math note (the review object).
-2. [juggler_finite_dynamics_reviewer_packet.md](juggler_finite_dynamics_reviewer_packet.md)
-   — claim map and falsifiers. Optional for the proofs.
+   — **Paper A**: power envelopes, exact defects, cycle restrictions,
+   the small-cycle census. Lean-backed throughout; no density claims.
+2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
+   — **Paper B**: parity equidistribution of nested floor powers, the
+   kernel theorem, depth-4 completeness, contracting words, and the
+   certified-descent densities. Human proofs.
+3. [juggler_finite_dynamics_reviewer_packet.md](juggler_finite_dynamics_reviewer_packet.md)
+   — claim map and falsifiers for both papers. Optional for the proofs.
 
-The Markdown source of the note is
-[juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md).
-The Section 6 figure is [figures/juggler_frontier.png](figures/juggler_frontier.png).
+Markdown sources:
+[juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md) and
+[juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md).
+Paper B's Section 7 figure is
+[figures/juggler_frontier.png](figures/juggler_frontier.png).
 
 ## Optional Lean map
 
@@ -33,13 +40,14 @@ lake build Problems.JugglerPaper
 
 Repository: https://github.com/sneakyweasel/balanced_ternary/
 
-The analytic estimates of Sections 5 and 6 (including the kernel
-theorem and the shift-average theorem) and Proposition 6.1 are human
-proofs and are not in Lean; only their exact floor reductions are
-(`GapCells.lean`, including the double-gap identity
+Every theorem of Paper A is in Lean. Every analytic estimate of
+Paper B (including the kernel theorem and the shift-average theorem)
+is a human proof and is not in Lean; only the exact floor reductions
+beneath them are (`GapCells.lean`, including the double-gap identity
 `seq_floor_gap_second`).
 
 ## What is not here
 
 The full `Problems.Juggler` laboratory stack, the Word Atlas, pytest
-records, and internal dossiers. Those are not required to read the note.
+records, and internal dossiers. Those are not required to read either
+paper.

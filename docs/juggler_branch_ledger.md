@@ -1,13 +1,14 @@
 # Juggler finite-dynamics branch ledger
 
-This appendix curates the branches behind the
-[math note](theory/juggler_finite_dynamics_note.md).
-The note itself is a standalone exact-arithmetic paper: envelope, defect,
-short certificates, and the ambient discrepancy corollary. It does not
-recount every closed compression. This ledger remains the laboratory
-record. `Decision` reproduces the terminal `PROMOTE | PARK | CLOSE`
-decision in each source dossier; the math-note cut does not relabel those
-decisions.
+This appendix curates the branches behind the two manuscripts:
+[Paper A](theory/juggler_finite_dynamics_note.md) (finite dynamics:
+envelope, defect, cycle census, short certificates; Lean-backed) and
+[Paper B](theory/juggler_parity_discrepancy_note.md) (parity
+discrepancy of nested floor powers: exact linearization, the kernel
+theorem, densities). Neither paper recounts every closed compression.
+This ledger remains the laboratory record. `Decision` reproduces the
+terminal `PROMOTE | PARK | CLOSE` decision in each source dossier;
+the paper cut does not relabel those decisions.
 
 Evidence labels describe the strongest paper-relevant result, not every
 statement in the branch.

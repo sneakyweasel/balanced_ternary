@@ -187,61 +187,76 @@ The paper-central theorem metadata is recorded in
 
 ## Results
 
-The publication stack consists of:
+The publication stack was split into two manuscripts on external
+review (August 2026): the single note tried to be both a Lean-backed
+finite-dynamics note and an analytic discrepancy paper, and the
+review's verdict was to ship the former and rewrite the latter to
+standalone checkability. The stack now consists of:
 
-- [publication draft](../theory/juggler_finite_dynamics_note.md);
-- [reviewer packet](../theory/juggler_finite_dynamics_reviewer_packet.md);
+- [Paper A](../theory/juggler_finite_dynamics_note.md) — power
+  envelopes, exact defects, cycle restrictions, the small-cycle
+  census, short certificates. Lean-backed; no density claims;
+  submission candidate;
+- [Paper B](../theory/juggler_parity_discrepancy_note.md) — parity
+  equidistribution of nested floor powers: exact linearization,
+  the kernel theorem (Theorem 5.3, with the mixed-piece Lemma 5.2 as
+  a standalone statement), depth-4 completeness (Theorem 6.1),
+  contracting splits of lengths five, seven, eight (Theorems
+  6.2–6.4), densities \(3/4\), \(13/16\), \(7/8\), \(57/64\),
+  \(29/32\) as corollaries (4.2, 4.9, 6.5), the Terras-style
+  reduction (Proposition 7.1), and the level-3 frontier
+  (Conjectures 7.3/7.5, Theorem 7.4). Includes a proved
+  branch-consistency lemma (3.6) and a genuine related-work section;
+  no laboratory narration inside proofs. Working draft;
+- [reviewer packet](../theory/juggler_finite_dynamics_reviewer_packet.md)
+  (two-paper claim map);
 - [formalization map](../theory/juggler_finite_dynamics_formalization.md);
 - [curated branch ledger](../juggler_branch_ledger.md).
 
-The note makes the certificate boundary explicit: uniform one- and
-two-step arguments cover density \(3/4\); the imported
-parity-discrepancy calculus with the kernel theorem (Theorems
-5.11–5.13, second consolidation phase) completes depth-4
-equidistribution and, with the contracting splits of lengths five,
-seven, and eight (Theorems 5.14–5.16), raises the uniformly certified
-class to \(13/16\) at four steps, \(7/8\) at five, \(57/64\) at
-seven, and \(29/32\) at eight.
-None is a density of all descent certificates nor a
-\(\operatorname{ReachesOne}\) density. Proposition 6.1 reduces the
-Terras analogue to all-depth parity equidistribution, now a theorem
-for \(d\le4\); the first open case is the level-3 kernel
-(Conjecture 6.3), with its shifted model proven to cancel
-(Theorem 6.4) and its deterministic crystal stated as
-Conjecture 6.5.
+None of the densities is a density of all descent certificates nor a
+\(\operatorname{ReachesOne}\) density.
 
 ## Open questions
 
 Do almost all odd-to-odd starts have a finite descent certificate?
-Equivalently, by Proposition 6.1, does parity equidistribution hold at
-all depths — beginning with the level-3 kernel bound
-(Conjecture 6.3), whose distilled deterministic form is the pure
-amplitude-product model (Conjecture 6.5)?
+Equivalently, by Paper B's Proposition 7.1, does parity
+equidistribution hold at all depths — beginning with the level-3
+kernel bound (Conjecture 7.3), whose distilled deterministic form is
+the pure amplitude-product model (Conjecture 7.5)?
 
 ## Decision
 
-**PROMOTE** the corrected document stack as a paper candidate. The individual
-Atlas, discrepancy, probabilistic, and closed-compression branches keep their
-original decisions. Promotion applies to the synthesis: its contribution is
-the formal/computational map and exact evidence boundary, not a termination
-claim.
+**PROMOTE** Paper A as the submission candidate. **PARK** Paper B at
+working-draft status pending the remaining referee-hardening pass:
+the kernel write-up now has the mixed-piece step as a standalone
+lemma with explicit differencing and dominance computations, but a
+full Graham–Kolesnik-length expansion of Steps 3–5 (every implicit
+constant and window inventory in display) is still owed before
+submission. The individual Atlas, discrepancy, probabilistic, and
+closed-compression branches keep their original decisions.
 
-Best next question: do almost all odd-to-odd starts have a finite descent
-certificate?
+Best next question: expand Theorem 5.3's Steps 3–5 of Paper B to
+referee-checkable length (every piece with its own displayed bound),
+or find a shorter proof of the kernel bound.
 
 ## Publication assessment
 
-Status: `PAPER_CANDIDATE`.
+Status: Paper A `PAPER_CANDIDATE`; Paper B `WORKING_DRAFT`.
 
-The candidate is a standalone math note: envelope, exact defect calculus,
-cycle restrictions with a length-\(\le6\) cycle census, short
-certificates, and a parity-discrepancy calculus that is complete
-through depth four (via the kernel theorem, adversarially reviewed)
-and covers the contracting words of lengths five, seven, and eight,
-with certified-descent densities \(3/4\), \(13/16\), \(7/8\),
-\(57/64\), \(29/32\), a
-conditional density-one theorem with unconditional base cases
-\(d\le4\), a proved shift-average theorem for the remaining kernel's
-model form, and a named open kernel with its distilled crystal. The
-horizon-\(20\) rows are exact and uncapped; omitted ordinary proofs
-have been supplied. External mathematical review is the next gate.
+Paper A is a standalone Lean-backed math note: envelope, exact defect
+calculus, cycle restrictions with a length-\(\le6\) cycle census,
+short certificates, the finite-state negative knowledge, and an
+explicit pointer to the companion for all density questions. External
+review judged this half publishable as-is.
+
+Paper B carries the analytic novelty (exact linearization of nested
+floor powers; the level-2 kernel theorem) and the risk: external
+review judged the previous six-step kernel sketch "a plan, not a
+proof". The split version isolates the mixed-piece repair as
+Lemma 5.2 with the explicit third differencing, balance, and
+dominance checks, adds the branch-consistency identity as a proved
+lemma, adds a real related-work section (Piatetski–Shapiro, Leitmann,
+Rivat–Sargos, Rivat–Wu, Mauduit–Rivat, Morgenbesser, Baker et al.,
+Beatty), moves every density after the theorems, and confines
+numerics to a software note. Remaining gate: the full expansion of
+the kernel proof's piece inventory.
