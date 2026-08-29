@@ -1,0 +1,1465 @@
+{
+  "experiment": "juggler_first_e_transport",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "three_even_cycles_impossible": false,
+    "length_eight_census": false,
+    "length_nine_census": false,
+    "first_e_transport_lean": false,
+    "induction_on_period": false,
+    "induction_on_n": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "k_min": 9,
+    "k_finite_max": 16,
+    "k_max": 24,
+    "n_cutoff": 256,
+    "remaining_ee_is_family": true,
+    "remaining_eoe_is_family": true,
+    "length_nine_transport_words": [
+      "OOEOOOOEE",
+      "OOEOOOEOE"
+    ],
+    "chain_samples": [
+      {
+        "n": 256,
+        "y": 256,
+        "leftover_k": 6,
+        "tail_at_y": true,
+        "contradiction": true,
+        "y_ge_n": true
+      },
+      {
+        "n": 256,
+        "y": 300,
+        "leftover_k": 6,
+        "tail_at_y": true,
+        "contradiction": true,
+        "y_ge_n": true
+      },
+      {
+        "n": 256,
+        "y": 256,
+        "leftover_k": 8,
+        "tail_at_y": true,
+        "contradiction": true,
+        "y_ge_n": true
+      },
+      {
+        "n": 205,
+        "y": 256,
+        "leftover_k": 6,
+        "tail_at_y": true,
+        "contradiction": true,
+        "y_ge_n": true
+      },
+      {
+        "n": 14,
+        "y": 256,
+        "leftover_k": 7,
+        "tail_at_y": true,
+        "contradiction": true,
+        "y_ge_n": true
+      },
+      {
+        "n": 100,
+        "y": 80,
+        "leftover_k": 6,
+        "tail_at_y": false,
+        "contradiction": false,
+        "y_ge_n": false
+      }
+    ],
+    "chain_needs_y_ge_n": true,
+    "finite_rows": [
+      {
+        "k": 9,
+        "kind": "ee",
+        "a": 2,
+        "b": 4,
+        "word": "OOEOOOOEE",
+        "remaining": "OOOOEE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOEOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 9,
+        "kind": "eoe",
+        "a": 2,
+        "b": 3,
+        "word": "OOEOOOEOE",
+        "remaining": "OOOEOE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOEOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 10,
+        "kind": "ee",
+        "a": 2,
+        "b": 5,
+        "word": "OOEOOOOOEE",
+        "remaining": "OOOOOEE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOEOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 10,
+        "kind": "ee",
+        "a": 3,
+        "b": 4,
+        "word": "OOOEOOOOEE",
+        "remaining": "OOOOEE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOEOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 10,
+        "kind": "eoe",
+        "a": 2,
+        "b": 4,
+        "word": "OOEOOOOEOE",
+        "remaining": "OOOOEOE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOEOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 10,
+        "kind": "eoe",
+        "a": 3,
+        "b": 3,
+        "word": "OOOEOOOEOE",
+        "remaining": "OOOEOE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOEOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 11,
+        "kind": "ee",
+        "a": 2,
+        "b": 6,
+        "word": "OOEOOOOOOEE",
+        "remaining": "OOOOOOEE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOEOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 11,
+        "kind": "ee",
+        "a": 3,
+        "b": 5,
+        "word": "OOOEOOOOOEE",
+        "remaining": "OOOOOEE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOEOOOOOEE",
+          "follows": 1,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 11,
+        "kind": "ee",
+        "a": 4,
+        "b": 4,
+        "word": "OOOOEOOOOEE",
+        "remaining": "OOOOEE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOEOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 11,
+        "kind": "eoe",
+        "a": 2,
+        "b": 5,
+        "word": "OOEOOOOOEOE",
+        "remaining": "OOOOOEOE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOEOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 11,
+        "kind": "eoe",
+        "a": 3,
+        "b": 4,
+        "word": "OOOEOOOOEOE",
+        "remaining": "OOOOEOE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOEOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 11,
+        "kind": "eoe",
+        "a": 4,
+        "b": 3,
+        "word": "OOOOEOOOEOE",
+        "remaining": "OOOEOE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOEOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 12,
+        "kind": "ee",
+        "a": 2,
+        "b": 7,
+        "word": "OOEOOOOOOOEE",
+        "remaining": "OOOOOOOEE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOEOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 12,
+        "kind": "ee",
+        "a": 3,
+        "b": 6,
+        "word": "OOOEOOOOOOEE",
+        "remaining": "OOOOOOEE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOEOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 12,
+        "kind": "ee",
+        "a": 4,
+        "b": 5,
+        "word": "OOOOEOOOOOEE",
+        "remaining": "OOOOOEE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOEOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 12,
+        "kind": "ee",
+        "a": 5,
+        "b": 4,
+        "word": "OOOOOEOOOOEE",
+        "remaining": "OOOOEE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOEOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 12,
+        "kind": "eoe",
+        "a": 2,
+        "b": 6,
+        "word": "OOEOOOOOOEOE",
+        "remaining": "OOOOOOEOE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOEOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 12,
+        "kind": "eoe",
+        "a": 3,
+        "b": 5,
+        "word": "OOOEOOOOOEOE",
+        "remaining": "OOOOOEOE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOEOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 12,
+        "kind": "eoe",
+        "a": 4,
+        "b": 4,
+        "word": "OOOOEOOOOEOE",
+        "remaining": "OOOOEOE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOEOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 12,
+        "kind": "eoe",
+        "a": 5,
+        "b": 3,
+        "word": "OOOOOEOOOEOE",
+        "remaining": "OOOEOE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOEOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "ee",
+        "a": 2,
+        "b": 8,
+        "word": "OOEOOOOOOOOEE",
+        "remaining": "OOOOOOOOEE",
+        "leftover_k": 10,
+        "table": {
+          "word": "OOEOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "ee",
+        "a": 3,
+        "b": 7,
+        "word": "OOOEOOOOOOOEE",
+        "remaining": "OOOOOOOEE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOOEOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "ee",
+        "a": 4,
+        "b": 6,
+        "word": "OOOOEOOOOOOEE",
+        "remaining": "OOOOOOEE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOOEOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "ee",
+        "a": 5,
+        "b": 5,
+        "word": "OOOOOEOOOOOEE",
+        "remaining": "OOOOOEE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOOEOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "ee",
+        "a": 6,
+        "b": 4,
+        "word": "OOOOOOEOOOOEE",
+        "remaining": "OOOOEE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOOEOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "eoe",
+        "a": 2,
+        "b": 7,
+        "word": "OOEOOOOOOOEOE",
+        "remaining": "OOOOOOOEOE",
+        "leftover_k": 10,
+        "table": {
+          "word": "OOEOOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "eoe",
+        "a": 3,
+        "b": 6,
+        "word": "OOOEOOOOOOEOE",
+        "remaining": "OOOOOOEOE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOOEOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "eoe",
+        "a": 4,
+        "b": 5,
+        "word": "OOOOEOOOOOEOE",
+        "remaining": "OOOOOEOE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOOEOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "eoe",
+        "a": 5,
+        "b": 4,
+        "word": "OOOOOEOOOOEOE",
+        "remaining": "OOOOEOE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOOEOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 13,
+        "kind": "eoe",
+        "a": 6,
+        "b": 3,
+        "word": "OOOOOOEOOOEOE",
+        "remaining": "OOOEOE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOOEOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "ee",
+        "a": 2,
+        "b": 9,
+        "word": "OOEOOOOOOOOOEE",
+        "remaining": "OOOOOOOOOEE",
+        "leftover_k": 11,
+        "table": {
+          "word": "OOEOOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "ee",
+        "a": 3,
+        "b": 8,
+        "word": "OOOEOOOOOOOOEE",
+        "remaining": "OOOOOOOOEE",
+        "leftover_k": 10,
+        "table": {
+          "word": "OOOEOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "ee",
+        "a": 4,
+        "b": 7,
+        "word": "OOOOEOOOOOOOEE",
+        "remaining": "OOOOOOOEE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOOOEOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "ee",
+        "a": 5,
+        "b": 6,
+        "word": "OOOOOEOOOOOOEE",
+        "remaining": "OOOOOOEE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOOOEOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "ee",
+        "a": 6,
+        "b": 5,
+        "word": "OOOOOOEOOOOOEE",
+        "remaining": "OOOOOEE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOOOEOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "ee",
+        "a": 7,
+        "b": 4,
+        "word": "OOOOOOOEOOOOEE",
+        "remaining": "OOOOEE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOOOEOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "eoe",
+        "a": 2,
+        "b": 8,
+        "word": "OOEOOOOOOOOEOE",
+        "remaining": "OOOOOOOOEOE",
+        "leftover_k": 11,
+        "table": {
+          "word": "OOEOOOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "eoe",
+        "a": 3,
+        "b": 7,
+        "word": "OOOEOOOOOOOEOE",
+        "remaining": "OOOOOOOEOE",
+        "leftover_k": 10,
+        "table": {
+          "word": "OOOEOOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "eoe",
+        "a": 4,
+        "b": 6,
+        "word": "OOOOEOOOOOOEOE",
+        "remaining": "OOOOOOEOE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOOOEOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "eoe",
+        "a": 5,
+        "b": 5,
+        "word": "OOOOOEOOOOOEOE",
+        "remaining": "OOOOOEOE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOOOEOOOOOEOE",
+          "follows": 1,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "eoe",
+        "a": 6,
+        "b": 4,
+        "word": "OOOOOOEOOOOEOE",
+        "remaining": "OOOOEOE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOOOEOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 14,
+        "kind": "eoe",
+        "a": 7,
+        "b": 3,
+        "word": "OOOOOOOEOOOEOE",
+        "remaining": "OOOEOE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOOOEOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "ee",
+        "a": 2,
+        "b": 10,
+        "word": "OOEOOOOOOOOOOEE",
+        "remaining": "OOOOOOOOOOEE",
+        "leftover_k": 12,
+        "table": {
+          "word": "OOEOOOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "ee",
+        "a": 3,
+        "b": 9,
+        "word": "OOOEOOOOOOOOOEE",
+        "remaining": "OOOOOOOOOEE",
+        "leftover_k": 11,
+        "table": {
+          "word": "OOOEOOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "ee",
+        "a": 4,
+        "b": 8,
+        "word": "OOOOEOOOOOOOOEE",
+        "remaining": "OOOOOOOOEE",
+        "leftover_k": 10,
+        "table": {
+          "word": "OOOOEOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "ee",
+        "a": 5,
+        "b": 7,
+        "word": "OOOOOEOOOOOOOEE",
+        "remaining": "OOOOOOOEE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOOOOEOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "ee",
+        "a": 6,
+        "b": 6,
+        "word": "OOOOOOEOOOOOOEE",
+        "remaining": "OOOOOOEE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOOOOEOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "ee",
+        "a": 7,
+        "b": 5,
+        "word": "OOOOOOOEOOOOOEE",
+        "remaining": "OOOOOEE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOOOOEOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "ee",
+        "a": 8,
+        "b": 4,
+        "word": "OOOOOOOOEOOOOEE",
+        "remaining": "OOOOEE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOOOOEOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "eoe",
+        "a": 2,
+        "b": 9,
+        "word": "OOEOOOOOOOOOEOE",
+        "remaining": "OOOOOOOOOEOE",
+        "leftover_k": 12,
+        "table": {
+          "word": "OOEOOOOOOOOOEOE",
+          "follows": 1,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "eoe",
+        "a": 3,
+        "b": 8,
+        "word": "OOOEOOOOOOOOEOE",
+        "remaining": "OOOOOOOOEOE",
+        "leftover_k": 11,
+        "table": {
+          "word": "OOOEOOOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "eoe",
+        "a": 4,
+        "b": 7,
+        "word": "OOOOEOOOOOOOEOE",
+        "remaining": "OOOOOOOEOE",
+        "leftover_k": 10,
+        "table": {
+          "word": "OOOOEOOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "eoe",
+        "a": 5,
+        "b": 6,
+        "word": "OOOOOEOOOOOOEOE",
+        "remaining": "OOOOOOEOE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOOOOEOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "eoe",
+        "a": 6,
+        "b": 5,
+        "word": "OOOOOOEOOOOOEOE",
+        "remaining": "OOOOOEOE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOOOOEOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "eoe",
+        "a": 7,
+        "b": 4,
+        "word": "OOOOOOOEOOOOEOE",
+        "remaining": "OOOOEOE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOOOOEOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 15,
+        "kind": "eoe",
+        "a": 8,
+        "b": 3,
+        "word": "OOOOOOOOEOOOEOE",
+        "remaining": "OOOEOE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOOOOEOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "ee",
+        "a": 2,
+        "b": 11,
+        "word": "OOEOOOOOOOOOOOEE",
+        "remaining": "OOOOOOOOOOOEE",
+        "leftover_k": 13,
+        "table": {
+          "word": "OOEOOOOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "ee",
+        "a": 3,
+        "b": 10,
+        "word": "OOOEOOOOOOOOOOEE",
+        "remaining": "OOOOOOOOOOEE",
+        "leftover_k": 12,
+        "table": {
+          "word": "OOOEOOOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "ee",
+        "a": 4,
+        "b": 9,
+        "word": "OOOOEOOOOOOOOOEE",
+        "remaining": "OOOOOOOOOEE",
+        "leftover_k": 11,
+        "table": {
+          "word": "OOOOEOOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "ee",
+        "a": 5,
+        "b": 8,
+        "word": "OOOOOEOOOOOOOOEE",
+        "remaining": "OOOOOOOOEE",
+        "leftover_k": 10,
+        "table": {
+          "word": "OOOOOEOOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "ee",
+        "a": 6,
+        "b": 7,
+        "word": "OOOOOOEOOOOOOOEE",
+        "remaining": "OOOOOOOEE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOOOOOEOOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "ee",
+        "a": 7,
+        "b": 6,
+        "word": "OOOOOOOEOOOOOOEE",
+        "remaining": "OOOOOOEE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOOOOOEOOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "ee",
+        "a": 8,
+        "b": 5,
+        "word": "OOOOOOOOEOOOOOEE",
+        "remaining": "OOOOOEE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOOOOOEOOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "ee",
+        "a": 9,
+        "b": 4,
+        "word": "OOOOOOOOOEOOOOEE",
+        "remaining": "OOOOEE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOOOOOEOOOOEE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "eoe",
+        "a": 2,
+        "b": 10,
+        "word": "OOEOOOOOOOOOOEOE",
+        "remaining": "OOOOOOOOOOEOE",
+        "leftover_k": 13,
+        "table": {
+          "word": "OOEOOOOOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "eoe",
+        "a": 3,
+        "b": 9,
+        "word": "OOOEOOOOOOOOOEOE",
+        "remaining": "OOOOOOOOOEOE",
+        "leftover_k": 12,
+        "table": {
+          "word": "OOOEOOOOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "eoe",
+        "a": 4,
+        "b": 8,
+        "word": "OOOOEOOOOOOOOEOE",
+        "remaining": "OOOOOOOOEOE",
+        "leftover_k": 11,
+        "table": {
+          "word": "OOOOEOOOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "eoe",
+        "a": 5,
+        "b": 7,
+        "word": "OOOOOEOOOOOOOEOE",
+        "remaining": "OOOOOOOEOE",
+        "leftover_k": 10,
+        "table": {
+          "word": "OOOOOEOOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "eoe",
+        "a": 6,
+        "b": 6,
+        "word": "OOOOOOEOOOOOOEOE",
+        "remaining": "OOOOOOEOE",
+        "leftover_k": 9,
+        "table": {
+          "word": "OOOOOOEOOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "eoe",
+        "a": 7,
+        "b": 5,
+        "word": "OOOOOOOEOOOOOEOE",
+        "remaining": "OOOOOEOE",
+        "leftover_k": 8,
+        "table": {
+          "word": "OOOOOOOEOOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "eoe",
+        "a": 8,
+        "b": 4,
+        "word": "OOOOOOOOEOOOOEOE",
+        "remaining": "OOOOEOE",
+        "leftover_k": 7,
+        "table": {
+          "word": "OOOOOOOOEOOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      },
+      {
+        "k": 16,
+        "kind": "eoe",
+        "a": 9,
+        "b": 3,
+        "word": "OOOOOOOOOEOOOEOE",
+        "remaining": "OOOEOE",
+        "leftover_k": 6,
+        "table": {
+          "word": "OOOOOOOOOEOOOEOE",
+          "follows": 0,
+          "hits": [],
+          "hit_count": 0
+        }
+      }
+    ],
+    "finite_count": 72,
+    "all_finite_tables_empty": true,
+    "large_k_small_n_sealed": true,
+    "seven_odd_from": 17,
+    "bunched": {
+      "rows": [
+        {
+          "k": 9,
+          "bunched_ee": [
+            "OOOEOOOEE",
+            "OOOOEOOEE",
+            "OOOOOEOEE",
+            "OOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOEOOEOE",
+            "OOOOEOEOE",
+            "OOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 2
+        },
+        {
+          "k": 10,
+          "bunched_ee": [
+            "OOOOEOOOEE",
+            "OOOOOEOOEE",
+            "OOOOOOEOEE",
+            "OOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOEOOEOE",
+            "OOOOOEOEOE",
+            "OOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 4
+        },
+        {
+          "k": 11,
+          "bunched_ee": [
+            "OOOOOEOOOEE",
+            "OOOOOOEOOEE",
+            "OOOOOOOEOEE",
+            "OOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOEOOEOE",
+            "OOOOOOEOEOE",
+            "OOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 6
+        },
+        {
+          "k": 12,
+          "bunched_ee": [
+            "OOOOOOEOOOEE",
+            "OOOOOOOEOOEE",
+            "OOOOOOOOEOEE",
+            "OOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOEOOEOE",
+            "OOOOOOOEOEOE",
+            "OOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 8
+        },
+        {
+          "k": 13,
+          "bunched_ee": [
+            "OOOOOOOEOOOEE",
+            "OOOOOOOOEOOEE",
+            "OOOOOOOOOEOEE",
+            "OOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOEOOEOE",
+            "OOOOOOOOEOEOE",
+            "OOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 10
+        },
+        {
+          "k": 14,
+          "bunched_ee": [
+            "OOOOOOOOEOOOEE",
+            "OOOOOOOOOEOOEE",
+            "OOOOOOOOOOEOEE",
+            "OOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOEOOEOE",
+            "OOOOOOOOOEOEOE",
+            "OOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 12
+        },
+        {
+          "k": 15,
+          "bunched_ee": [
+            "OOOOOOOOOEOOOEE",
+            "OOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOEOOEOE",
+            "OOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 14
+        },
+        {
+          "k": 16,
+          "bunched_ee": [
+            "OOOOOOOOOOEOOOEE",
+            "OOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOOEOOEOE",
+            "OOOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 16
+        },
+        {
+          "k": 17,
+          "bunched_ee": [
+            "OOOOOOOOOOOEOOOEE",
+            "OOOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOOOEOOEOE",
+            "OOOOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 18
+        },
+        {
+          "k": 18,
+          "bunched_ee": [
+            "OOOOOOOOOOOOEOOOEE",
+            "OOOOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOOOOEOOEOE",
+            "OOOOOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 20
+        },
+        {
+          "k": 19,
+          "bunched_ee": [
+            "OOOOOOOOOOOOOEOOOEE",
+            "OOOOOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOOOOOEOOEOE",
+            "OOOOOOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 22
+        },
+        {
+          "k": 20,
+          "bunched_ee": [
+            "OOOOOOOOOOOOOOEOOOEE",
+            "OOOOOOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOOOOOOEOOEOE",
+            "OOOOOOOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 24
+        },
+        {
+          "k": 21,
+          "bunched_ee": [
+            "OOOOOOOOOOOOOOOEOOOEE",
+            "OOOOOOOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOOOOOOOEOOEOE",
+            "OOOOOOOOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 26
+        },
+        {
+          "k": 22,
+          "bunched_ee": [
+            "OOOOOOOOOOOOOOOOEOOOEE",
+            "OOOOOOOOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOOOOOOOOEOOEOE",
+            "OOOOOOOOOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 28
+        },
+        {
+          "k": 23,
+          "bunched_ee": [
+            "OOOOOOOOOOOOOOOOOEOOOEE",
+            "OOOOOOOOOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOOOOOOOOOEOOEOE",
+            "OOOOOOOOOOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 30
+        },
+        {
+          "k": 24,
+          "bunched_ee": [
+            "OOOOOOOOOOOOOOOOOOEOOOEE",
+            "OOOOOOOOOOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOOOOOOOOOOEEE"
+          ],
+          "bunched_eoe": [
+            "OOOOOOOOOOOOOOOOOOEOOEOE",
+            "OOOOOOOOOOOOOOOOOOOEOEOE",
+            "OOOOOOOOOOOOOOOOOOOOEEOE"
+          ],
+          "bunched_count": 7,
+          "gapped_count": 32
+        }
+      ],
+      "shapes_independent_of_k": true,
+      "ee_b_max_bunched": 3,
+      "eoe_b_max_bunched": 2
+    },
+    "length_eight_census": false,
+    "length_nine_census": false,
+    "bunched_attack": false,
+    "induction_on_period": false,
+    "induction_on_n": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_ge": true,
+    "cycle_trailing_evens_lt": true,
+    "shared_two_even_tail": true,
+    "no_cycle_word_two_even_ee": true,
+    "no_cycle_word_two_even_eoe": true,
+    "no_cycleMin_internal_even_threshold": true,
+    "no_cycle_word_length_le_seven": true,
+    "no_global_termination_theorem": true,
+    "no_all_cycles_impossible": true,
+    "no_cycle_engine": true,
+    "length_eight_open_in_census": true,
+    "no_length_eight_theorem": true,
+    "no_length_nine_theorem": true,
+    "no_first_e_transport_theorem": true,
+    "FloorPower_not_rewritten": true,
+    "Minimal_untouched": true
+  },
+  "decision": {
+    "classification": "FIRST_E_TRANSPORT_GREEN",
+    "reason": "gapped three-even CycleMins reduce to the two-even tail at y>=n; the finite window k=9..16 has empty CycleWord tables below 256; for k>=17 small n is seven-odd on the prefix or the remainder; bunched a1-short leftovers remain"
+  },
+  "search_method": "CycleMin first-E transport of the uniform two-even tail; gapped leftovers only (b>=4 EE, b>=3 EOE); CycleWord tables for k=9..16 below 256; seven-odd seal for k>=17; no bunched-tail attack; no length-8/9 census; no Lean"
+}

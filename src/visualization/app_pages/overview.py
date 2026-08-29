@@ -42,7 +42,8 @@ the least-significant digit $a_0$.
 3. **Operators** — domain, involution, and integer/word agreement for each map.
 4. **Rewrite calculus** — unary stepper and Add/carry witnesses from the paper candidate.
 5. **Residual explorer** — prefix tree, Newton classes, and depth-deficit visibility.
-6. Collatz pages stay available as one application of the same words.
+6. **Finite dynamics** — Juggler note companion: orbit, envelope, census leftovers.
+7. Collatz pages stay available as one application of the same words.
                 """
             )
 
@@ -68,6 +69,11 @@ the least-significant digit $a_0$.
                 "layer": "Residual calculus",
                 "object": "Prefix residuals, Newton classes, fibres, depth deficit",
                 "status": "Visualized; Lean remains the proof authority",
+            },
+            {
+                "layer": "Juggler finite dynamics",
+                "object": "Floor-power envelope, defect, inverse cells, small-cycle census",
+                "status": "Paper companion; Lean remains the proof authority",
             },
             {
                 "layer": "Finite-state Collatz",

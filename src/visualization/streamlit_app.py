@@ -72,6 +72,14 @@ pages = {
             url_path="residual-explorer",
         ),
     ],
+    "Juggler research": [
+        st.Page(
+            str(_PAGES / "juggler_finite_dynamics.py"),
+            title="Finite dynamics",
+            icon=":material/repeat:",
+            url_path="juggler-finite-dynamics",
+        ),
+    ],
     "Collatz research": [
         st.Page(
             str(_PAGES / "number.py"),

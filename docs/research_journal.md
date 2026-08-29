@@ -11097,3 +11097,44 @@ Best next question
   leftovers with second gap a1>=2, or bunched-tail cells
 ```
 
+## Juggler first-E transport of the two-even tail
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether gapped three-even `CycleMin`s die by transporting the uniform two-even tail across the first even letter
+- **Hypotheses:** \(y\ge n\) tightens the leftover cell against the shared tail at \(y\); \(k\ge 17\) small-\(n\) is seven-odd on the prefix or the remainder; bunched \(a_1\)-short leftovers are a named remainder
+- **Major results:** Classification **FIRST_E_TRANSPORT_GREEN**. Remainder after the first \(E\) of a leftover with \(c\in\{0,1\}\) is a two-even family. Transport is `CycleMin`-only. 72 gapped words at lengths \(9\le k\le 16\) have empty `CycleWord` tables below 256. From \(k=17\) a gapped leftover has \(a\ge 7\) or \(b\ge 7\). Bunched remainder is \(b\le 3\) (EE) or \(b\le 2\) (EOE), independent of \(k\). Records: `docs/problems/juggler_first_e_transport.md`. No Lean. No length-8/9 census. No Paper A edit
+- **Refuted ideas:** transport as a `CycleWord` theorem at a non-minimum start; rotation of a gapped leftover staying gapped; induction on period
+- **Literature:** uniform two-even Lean and `CycleMin` reused. Length-9 \(a=2\) words are the first gapped cases
+- **Open:** Lean exclusion of the gapped `CycleMin`s. Bunched-tail cells not opened
+- **Decision:** PROMOTE the `CycleMin` reduction. Not a length-9 census and not a halt theorem
+
+```text
+What was learned
+- After the first E of a leftover O^a E O^b E O^c E with c in
+  {0,1}, the remainder is a two-even leftover family
+- CycleMin puts that remainder at y>=n, which tightens the
+  leftover cell and contradicts the shared tail at y
+- The same chain fails if y<n, so this is not a CycleWord
+  theorem at a non-minimum start
+- Lengths 9..16 are a finite window of 72 gapped words with
+  empty tables; k>=17 is seven-odd
+- The bunched remainder is b<=3 (EE) or b<=2 (EOE), a finite
+  list of shapes, not a new shape at each length
+Strongest theorem
+- none new in Lean; on a CycleMin, a gapped three-even leftover
+  contradicts the two-even tail once y>=256
+Strongest refutation
+- first-E transport excludes the word as CycleWord at every
+  start (false when y<n)
+Reusable machinery
+- src/research/juggler_sequence/first_e_transport.py
+Branch status
+- PROMOTE
+Why
+- gapped e=3 leftovers reduce to the e=2 tail; the bunched
+  remainder is named and finite in the gap, not in the period
+Best next question
+- Lean-exclude the gapped three-even CycleMins by first-E
+  transport at the uniform cutoff n>=256
+```
+

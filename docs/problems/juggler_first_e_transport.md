@@ -1,0 +1,210 @@
+# Juggler first-E transport of the two-even tail
+
+Status: **EXPLORATORY**
+
+Standalone application phase on the Juggler floor-power map. It is
+**not** a Research Engine control-layer experiment and not a claim that
+every positive integer reaches 1. It is not a length-8 or length-9
+census, not a bunched-tail programme, and not induction on \(n\) or
+on the period.
+
+## Problem
+
+Once both two-even leftover families are excluded, do three-even
+leftovers with a long second gap die as `CycleMin` by transporting
+that tail across the first even letter?
+
+## Exact statement
+
+On a `CycleMin` the even-terminating word is
+\(O^{a_0}EO^{a_1}\cdots EO^{a_{e-1}}E\). Bootstrap already kills
+\(a_{e-1}\ge 2\). A three-even leftover has \(a_0\ge 2\) and
+\(a_2\in\{0,1\}\). It is **gapped** when the remainder after the
+first \(E\) is a two-even leftover family:
+
+- \(O^aEO^bEE\) with \(a\ge 2\), \(b\ge 4\) (remainder \(O^bEE\),
+  length \(b+2\ge 6\));
+- \(O^aEO^bEOE\) with \(a\ge 2\), \(b\ge 3\) (remainder \(O^bEOE\),
+  length \(b+3\ge 6\)).
+
+Write \(y=T_{O^aE}(n)\). `CycleMin` gives \(y\ge n\). The leftover
+cell is measured against the cycle start \(n\), so
+
+\[
+y^{3^{\ell-2}}<2^{e_{\ell-2}}(n+1)^{2^\ell}
+\le 2^{e_{\ell-2}}(y+1)^{2^\ell},
+\]
+
+where \(\ell\) is the remainder length. The shared two-even tail at
+\(y\) is the opposite inequality. Phase 0 asks whether this
+contradiction fires whenever \(y\ge 256\), whether \(2\le n<256\)
+is empty on the finite window \(k=9,\ldots,16\), and whether
+\(k\ge 17\) is sealed by seven consecutive odds.
+
+This is not a `CycleWord` theorem on those words (a non-minimum
+start may have \(y<n\)). It is not a length-8 or length-9 census
+and not a halt theorem. There is no
+`no_cycle_word_length_eight` and no `no_cycle_word_length_nine`.
+
+## Current literature
+
+- Leftover length-six and length-seven orientations —
+  **EXACT — LEAN VERIFIED**.
+- Uniform two-even leftover families —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_two_even_ee`,
+  `no_cycle_word_two_even_eoe`, `shared_two_even_tail`).
+- Internal-E bootstrap —
+  **EXACT — LEAN VERIFIED**. Last gap \(a_{e-1}\ge 2\).
+- `CycleMin` scale barrier —
+  **EXACT — LEAN VERIFIED**. \(y\ge n\) after any prefix.
+- Length-9 three-even leftovers —
+  **COMPUTATIONALLY VERIFIED** as prefix-cell tails. The two
+  \(a=2\) words are the \(k=9\) gapped cases; transport was
+  recorded there as a `CycleMin` simplification, not a method.
+- Prefix-OOO extra scale from \(n=3\) —
+  **REFUTED**. That `CLOSE` is not reopened.
+
+Project relationship: **extended**. This is step (ii) of the
+even-count attack, after the uniform \(e=2\) families.
+
+## Branch budget
+
+```text
+Mathematical target     Do gapped three-even CycleMins die by
+                        first-E transport of the two-even tail?
+Novelty hypothesis      y≥n tightens the leftover cell against
+                        the shared tail at y; k≥17 small-n is
+                        seven-odd on the prefix or the remainder
+Falsifier               A CycleMin realization; y≥n failing to
+                        close the tail; a k≥17 small-n leak
+Existing machinery      uniform two-even Lean; CycleMin;
+                        trailing-even / last-odd cells
+Maximum Phase-0 scope   classify gapped vs bunched; verify the
+                        chain; CycleWord tables for k=9..16
+                        below 256; seven-odd split for k≥17.
+                        No Lean, no length-8/9 census, no
+                        bunched-tail attack, no halt
+Promotion criterion     Chain valid, finite window empty, k≥17
+                        sealed; bunched remainder named
+Stop criterion          A realization; chain gap; a census;
+                        bunched-tail machinery
+```
+
+## Balanced-ternary formulation
+
+None required. The map is on ordinary positive integers.
+
+## Why BT may be relevant
+
+It is not required.
+
+## Candidate operations / invariants
+
+- remainder after the first \(E\) of a leftover with \(c\in\{0,1\}\)
+  is \(O^bEE\) or \(O^bEOE\) —
+  **EXACT — HUMAN PROOF**
+- gapped iff \(b\ge 4\) (EE) or \(b\ge 3\) (EOE) —
+  **EXACT — HUMAN PROOF**
+- `CycleMin` gives \(y\ge n\), which tightens the leftover cell
+  and contradicts the shared tail at \(y\) once \(y\ge 256\) —
+  **EXACT — HUMAN PROOF**
+- transport requires \(y\ge n\); it does not exclude a
+  non-minimum `CycleWord` start —
+  **EXACT — HUMAN PROOF**
+- for \(k\ge 17\), a gapped leftover has \(a\ge 7\) or \(b\ge 7\),
+  so \(n<256\) dies by seven odds —
+  **EXACT — HUMAN PROOF**
+- 72 gapped words at lengths \(9\le k\le 16\) have no `CycleWord`
+  on \(2\le n<256\) —
+  **COMPUTATIONALLY VERIFIED**
+- bunched remainder is \(b\le 3\) (EE) or \(b\le 2\) (EOE),
+  independent of \(k\) —
+  **EXACT — HUMAN PROOF**
+- every three-even cycle word is impossible — not claimed
+- no cycle of length eight or nine — not claimed
+- global halt — not claimed
+
+## Experiments
+
+- Probe: `research.juggler_sequence.first_e_transport`
+- Records: [juggler_first_e_transport.md](../research/juggler_first_e_transport.md),
+  [juggler_first_e_transport.json](../research/juggler_first_e_transport.json)
+- Tests: `tests/research/juggler_sequence/test_first_e_transport.py`
+- The Research Engine control layer is not modified.
+- No cycle-state search. No length-8 or length-9 census.
+- No bunched-tail Lean. No Paper A edit.
+
+## Conjectures
+
+None opened.
+
+## Counterexamples
+
+None to the transport chain or to the empty finite window. The
+stronger claims that remain false or unproved:
+
+- “first-E transport excludes the word as `CycleWord` at a
+  non-minimum start” — false as stated; \(y<n\) loosens the cell.
+- “rotation of a gapped leftover is again gapped” — false.
+  Length-9 leftovers with \(b\ge 2\) share a necklace with a
+  bootstrap word.
+- “induction on the period reduces \(e=3\) to \(e=2\)” — still
+  false. This is a `CycleMin` reduction on even-count, not on
+  period.
+- “every three-even leftover dies” — not claimed. Bunched
+  \(a_1\)-short leftovers remain.
+- “\(N_0\) tends to 2” — still **REFUTED** on the two-even tail.
+
+## Formalization
+
+None added. The two-even families and `CycleMin` already exist.
+There is no `no_cycleMin_gapped_three_even` and no
+`no_cycle_min_first_e_transport`. `SmallCycleCensus.lean` still
+assembles only through length seven. No
+`no_cycle_word_length_eight`. No `no_cycle_word_length_nine`.
+No `sorry`. No halt theorem. Paper A is not edited.
+
+## Results
+
+Classification **FIRST_E_TRANSPORT_GREEN**.
+
+Gapped three-even leftovers are one type: the remainder after the
+first \(E\) is a uniform two-even leftover, and `CycleMin` puts
+that remainder at \(y\ge n\). The leftover cell is taken against
+\(n\), so it is at most as large as the shared-tail cell at \(y\).
+Once \(y\ge 256\) the two-even tail contradicts. Below \(256\),
+length \(k=9,\ldots,16\) is a finite list of 72 words with empty
+`CycleWord` tables; from \(k=17\) a gapped leftover has seven
+leading odds on the prefix or on the remainder.
+
+The bunched remainder is independent of \(k\): EE leftovers with
+\(b\le 3\) and EOE leftovers with \(b\le 2\). At length 9 those
+are the seven leftovers that are not `OOEOOOOEE` / `OOEOOOEOE`.
+
+This is a `CycleMin` reduction, not a length-9 census and not a
+no-cycles theorem.
+
+## Open questions
+
+Lean-exclude the gapped three-even `CycleMin`s by this transport.
+Do not assemble `no_cycle_word_length_eight` or
+`no_cycle_word_length_nine`. Do not open bunched-tail cells as
+part of that phase. Do not claim halt.
+
+## Decision
+
+**PROMOTE**. First-E transport is a real reduction from gapped
+\(e=3\) leftovers to the uniform \(e=2\) tail. It is not a
+period-by-period can. The bunched \(a_1\)-short leftovers are a
+named remainder, not a failure of the reduction.
+
+Best next question: Lean-exclude the gapped three-even `CycleMin`s
+by first-E transport at the uniform cutoff \(n\ge 256\).
+
+## Publication assessment
+
+Status: `EXPLORATORY`.
+
+A Phase-0 reduction for gapped three-even cycle minima, not a
+paper candidate and not a Juggler totality result. Paper A is not
+edited.

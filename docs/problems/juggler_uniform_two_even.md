@@ -162,8 +162,8 @@ length-8 census and not a no-cycles theorem.
 
 ## Open questions
 
-First-E transport of the uniform two-even tail for three-even
-leftovers with second gap \(a_1\ge 2\), or bunched-tail cells.
+First-E transport is now a separate branch
+([juggler_first_e_transport.md](juggler_first_e_transport.md)).
 Do not assemble `no_cycle_word_length_eight` automatically. Do not
 claim halt.
 
