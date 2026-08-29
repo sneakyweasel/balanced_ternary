@@ -24,7 +24,7 @@ math note:
 > Realized finite words obey a power envelope and an exact compositional
 > defect identity with rigid zero cases. Inverse cells impose cycle
 > restrictions and yield a small-cycle census: no nontrivial cycle has
-> length at most six. Even and odd-to-even starts carry uniform short
+> length at most seven. Even and odd-to-even starts carry uniform short
 > certificates. No density result is stated in Paper A.
 
 Every substantive claim must be linked to one of:
@@ -108,9 +108,12 @@ added to `bt.*`.
   **EXACT — LEAN VERIFIED**;
 - leftover length-six orientations \(OOOEOE\) and \(OOOOEE\) —
   **EXACT — LEAN VERIFIED** (recorded in the leftover-cycles branch);
-- small-cycle census: no cycle word of length at most six —
+- leftover length-seven orientations \(OOOOEOE\) and \(OOOOOEE\) —
+  **EXACT — LEAN VERIFIED** (ledger `J-leftover-length-seven-orientations`);
+- small-cycle census: no cycle word of length at most seven —
   **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_six`,
-  ledger `J-small-cycle-census`; length seven open);
+  `no_cycle_word_length_le_seven`, ledgers `J-small-cycle-census` and
+  `J-small-cycle-census-seven`; length eight open);
 - cycle surplus \(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) and the
   per-step slack-scale bound \(x^e<(J(x)+1)^2\) —
   **EXACT — LEAN VERIFIED** (`image_eq_start_defectRatio`,
@@ -170,9 +173,10 @@ These refute the named candidate laws, not termination.
 
 The census consolidation added
 `formal/Problems/Juggler/SmallCycleCensus.lean`
-(`no_cycle_word_length_le_six`), an assembly of previously verified
-exclusions with no new `native_decide` table; no existing Lean theorem
-statement changed. The discrepancy consolidation added
+(`no_cycle_word_length_le_six`, later `no_cycle_word_length_le_seven`).
+The length-seven leftovers reuse `LeftoverEval.lean` / `LeftoverCycles.lean`
+with a `Fin 14` table; the census assembly itself adds no
+`native_decide` table. The discrepancy consolidation added
 `formal/Problems/Juggler/GapCells.lean`
 (`floor_add_eq_add_carry`, `floor_gap_eq_carry`, `seq_floor_gap`,
 `seq_floor_gap_second`, `floor_odd_iff_half_le_fract_half`): the exact
@@ -196,7 +200,7 @@ standalone checkability. The stack now consists of:
 
 - [Paper A](../theory/juggler_finite_dynamics_note.md) — power
   envelopes, exact defects, cycle restrictions, the small-cycle
-  census (Theorem 3.6), short certificates (Theorem 4.1). The
+  census (Theorems 3.6 and 3.8), short certificates (Theorem 4.1). The
   complement of those certificates is the odd-to-odd class. Lean
   is an independent check; no density claims; submission candidate;
 - [Paper B](../theory/juggler_parity_discrepancy_note.md) — parity

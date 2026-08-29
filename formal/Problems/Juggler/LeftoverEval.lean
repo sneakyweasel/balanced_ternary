@@ -27,4 +27,25 @@ theorem cycleWordB_ooooee_lt256 :
     ∀ n : Fin 256, cycleWordB n.val wordOOOOEE = false := by
   native_decide
 
+def wordOOOOOEE : List Branch :=
+  [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.odd,
+    Branch.even, Branch.even]
+
+def wordOOOOEOE : List Branch :=
+  [Branch.odd, Branch.odd, Branch.odd, Branch.odd, Branch.even,
+    Branch.odd, Branch.even]
+
+/-- Base comparison for the length-7 leftover tail: `n ≥ 14`. -/
+theorem pow14_243_gt_two_pow422_pow15_128 :
+    (2 : ℕ) ^ 422 * 15 ^ 128 < 14 ^ 243 := by
+  native_decide
+
+theorem cycleWordB_oooooee_lt14 :
+    ∀ n : Fin 14, cycleWordB n.val wordOOOOOEE = false := by
+  native_decide
+
+theorem cycleWordB_ooooeoe_lt14 :
+    ∀ n : Fin 14, cycleWordB n.val wordOOOOEOE = false := by
+  native_decide
+
 end Problems.Juggler

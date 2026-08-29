@@ -112,14 +112,18 @@ facts. `formal/Problems/Juggler/LeftoverCycles.lean` proves
 
 `FloorPower`, `Progress`, and `Minimal` are not rewritten. No `sorry`.
 No halt theorem. No `no_juggler_cycle`. No `CycleSearch`. No
-`no_cycle_word_ooooeoe`. No `PowerBoundEq` attack. No `PowerHeight`.
+`PowerBoundEq` attack. No `PowerHeight`. The length-six leftover
+file later also hosts the length-seven leftovers
+`no_cycle_word_ooooeoe` and `no_cycle_word_oooooee`.
 
 A later consolidation, `formal/Problems/Juggler/SmallCycleCensus.lean`,
 assembles the two exclusions with rotation invariance, the all-odd
 ascent argument, the expanding filter, and the existing threshold
 theorems into `no_cycle_word_length_le_six`: no cycle word of length at
 most six at any \(n\ge2\). The assembly adds no new `native_decide`
-table. Length seven stays open.
+table. A subsequent length-7 branch added `no_cycle_word_ooooeoe` and
+`no_cycle_word_oooooee` to the same leftover file and assembled
+`no_cycle_word_length_le_seven`.
 
 ## Results
 
@@ -132,8 +136,8 @@ nontrivial Juggler cycle has length at most six.
 ## Open questions
 
 Whether almost every odd-to-odd start has a finite descent certificate.
-Do not open length 7. Do not start an O-terminating `CycleWord`
-programme.
+Length 7 was taken up by a later branch. Do not start an
+O-terminating `CycleWord` programme.
 
 ## Decision
 
@@ -141,7 +145,8 @@ programme.
 against `LowerPowerBound` excludes both leftover `CycleWord`s, and the
 later census consolidation promotes the result to: no cycle word of
 length at most six. This is not the closed uniform-from-\(3\)
-extra-scale attack and not a halt theorem. Length seven is open.
+extra-scale attack and not a halt theorem. Length seven was later
+closed by the length-7 leftover branch.
 
 Best next question: do almost all odd-to-odd starts have a finite
 descent certificate?

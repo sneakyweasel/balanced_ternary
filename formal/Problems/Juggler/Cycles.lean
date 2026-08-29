@@ -739,6 +739,94 @@ theorem no_cycle_word_ooeooe {n : ℕ} (hn : 2 ≤ n) :
   · exact cycleMin_not_odd_even hnk (by simpa [h1] using hm)
   · exact cycleMin_not_start_even hnk (by simpa [h2] using hm)
 
+def wordOOEOOOE : List Branch :=
+  [.odd, .odd, .even, .odd, .odd, .odd, .even]
+
+def wordOOOEOOE : List Branch :=
+  [.odd, .odd, .odd, .even, .odd, .odd, .even]
+
+theorem wordOOEOOOE_split :
+    wordOOEOOOE =
+      [.odd, .odd] ++ [.even] ++ [.odd, .odd, .odd] ++ [.even] :=
+  rfl
+
+theorem wordOOOEOOE_split :
+    wordOOOEOOE =
+      [.odd, .odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even] :=
+  rfl
+
+theorem no_cycleMin_ooeoooe {n : ℕ} (hn : 2 ≤ n)
+    (h : CycleMin n wordOOEOOOE) : False := by
+  have hn3 : 3 ≤ n := by
+    have : n % 2 = 1 := h.1.1.1
+    omega
+  have hsplit :
+      CycleMin n ([.odd, .odd] ++ [.even] ++ [.odd, .odd, .odd] ++ [.even]) := by
+    simpa [wordOOEOOOE] using h
+  refine no_cycleMin_internal_even_threshold (N := 3) ?_ hn3 hsplit
+  intro m hm hf
+  simpa [image_eq_iterate] using ooo_suffix_threshold hm hf
+
+theorem no_followsB_3_oooeooe : followsB 3 wordOOOEOOE = false := by
+  native_decide
+
+theorem no_follows_3_oooeooe : ¬follows 3 wordOOOEOOE := by
+  intro hf
+  have htrue : followsB 3 wordOOOEOOE = true := (followsB_iff 3 _).mpr hf
+  rw [no_followsB_3_oooeooe] at htrue
+  exact Bool.false_ne_true htrue
+
+theorem no_cycleMin_oooeooe {n : ℕ} (hn : 2 ≤ n)
+    (h : CycleMin n wordOOOEOOE) : False := by
+  have hodd : n % 2 = 1 := h.1.1.1
+  cases lt_or_ge n 5 with
+  | inl hlt =>
+      have hn3 : n = 3 := by omega
+      subst hn3
+      exact no_follows_3_oooeooe h.1.1
+  | inr hge =>
+      have hsplit :
+          CycleMin n
+            ([.odd, .odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even]) := by
+        simpa [wordOOOEOOE] using h
+      refine no_cycleMin_internal_even_threshold (N := 5) ?_ hge hsplit
+      intro m hm hf
+      simpa [image_eq_iterate] using oo_suffix_threshold hm hf
+
+theorem rotate_ooeoooe :
+    ∀ k, k < 7 →
+      rotateWord wordOOEOOOE k = wordOOEOOOE ∨
+        rotateWord wordOOEOOOE k = wordOOOEOOE ∨
+          rotateWord wordOOEOOOE k =
+              [.odd, .even, .odd, .odd, .odd, .even, .odd] ∨
+            rotateWord wordOOEOOOE k =
+                [.even, .odd, .odd, .odd, .even, .odd, .odd] ∨
+              rotateWord wordOOEOOOE k =
+                  [.odd, .odd, .even, .odd, .odd, .even, .odd] ∨
+                rotateWord wordOOEOOOE k =
+                    [.odd, .even, .odd, .odd, .even, .odd, .odd] ∨
+                  rotateWord wordOOEOOOE k =
+                    [.even, .odd, .odd, .even, .odd, .odd, .odd] := by
+  intro k hk
+  interval_cases k <;> simp [wordOOEOOOE, wordOOOEOOE, rotateWord]
+
+theorem rotate_oooeooe :
+    ∀ k, k < 7 →
+      rotateWord wordOOOEOOE k = wordOOOEOOE ∨
+        rotateWord wordOOOEOOE k = wordOOEOOOE ∨
+          rotateWord wordOOOEOOE k =
+              [.odd, .odd, .even, .odd, .odd, .even, .odd] ∨
+            rotateWord wordOOOEOOE k =
+                [.odd, .even, .odd, .odd, .even, .odd, .odd] ∨
+              rotateWord wordOOOEOOE k =
+                  [.even, .odd, .odd, .even, .odd, .odd, .odd] ∨
+                rotateWord wordOOOEOOE k =
+                    [.odd, .even, .odd, .odd, .odd, .even, .odd] ∨
+                  rotateWord wordOOOEOOE k =
+                    [.even, .odd, .odd, .odd, .even, .odd, .odd] := by
+  intro k hk
+  interval_cases k <;> simp [wordOOOEOOE, wordOOEOOOE, rotateWord]
+
 /-- A cycle minimum cannot end in `O`: the last-odd cell is
 `n^2 ≤ x^3 < (n+1)^2`, while `x ≥ n` forces `n^3 < (n+1)^2`. -/
 theorem cycleMin_not_end_odd {n : ℕ} {u : List Branch}
@@ -751,6 +839,64 @@ theorem cycleMin_not_end_odd {n : ℕ} {u : List Branch}
     simpa [image_eq_iterate] using cycleMin_ge h hlen
   have hcube : n ^ 3 ≤ image n u ^ 3 := Nat.pow_le_pow_left hx 3
   exact (not_lt_of_ge (succ_sq_le_cube hn3)) (lt_of_le_of_lt hcube hI.2)
+
+theorem no_cycle_word_ooeoooe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleWord n wordOOEOOOE := by
+  intro h
+  have ⟨k, hk, hm⟩ := exists_cycleMin hn h
+  have hlen : wordOOEOOOE.length = 7 := rfl
+  rw [hlen] at hk
+  have hnk : 2 ≤ floorPower^[k] n :=
+    cycleWord_iterate_ge_two hn h (by omega)
+  rcases rotate_ooeoooe k hk with h0 | h1 | h2 | h3 | h4 | h5 | h6
+  · exact no_cycleMin_ooeoooe hnk (by simpa [h0] using hm)
+  · exact no_cycleMin_oooeooe hnk (by simpa [h1] using hm)
+  · have heq :
+        [Branch.odd, Branch.even, Branch.odd, Branch.odd, Branch.odd, Branch.even, Branch.odd] =
+          [Branch.odd, Branch.even, Branch.odd, Branch.odd, Branch.odd, Branch.even] ++
+            [Branch.odd] :=
+      rfl
+    rw [h2, heq] at hm
+    exact cycleMin_not_end_odd hnk hm
+  · exact cycleMin_not_start_even hnk (by simpa [h3] using hm)
+  · have heq :
+        [Branch.odd, Branch.odd, Branch.even, Branch.odd, Branch.odd, Branch.even, Branch.odd] =
+          [Branch.odd, Branch.odd, Branch.even, Branch.odd, Branch.odd, Branch.even] ++
+            [Branch.odd] :=
+      rfl
+    rw [h4, heq] at hm
+    exact cycleMin_not_end_odd hnk hm
+  · exact cycleMin_not_odd_even hnk (by simpa [h5] using hm)
+  · exact cycleMin_not_start_even hnk (by simpa [h6] using hm)
+
+theorem no_cycle_word_oooeooe {n : ℕ} (hn : 2 ≤ n) :
+    ¬CycleWord n wordOOOEOOE := by
+  intro h
+  have ⟨k, hk, hm⟩ := exists_cycleMin hn h
+  have hlen : wordOOOEOOE.length = 7 := rfl
+  rw [hlen] at hk
+  have hnk : 2 ≤ floorPower^[k] n :=
+    cycleWord_iterate_ge_two hn h (by omega)
+  rcases rotate_oooeooe k hk with h0 | h1 | h2 | h3 | h4 | h5 | h6
+  · exact no_cycleMin_oooeooe hnk (by simpa [h0] using hm)
+  · exact no_cycleMin_ooeoooe hnk (by simpa [h1] using hm)
+  · have heq :
+        [Branch.odd, Branch.odd, Branch.even, Branch.odd, Branch.odd, Branch.even, Branch.odd] =
+          [Branch.odd, Branch.odd, Branch.even, Branch.odd, Branch.odd, Branch.even] ++
+            [Branch.odd] :=
+      rfl
+    rw [h2, heq] at hm
+    exact cycleMin_not_end_odd hnk hm
+  · exact cycleMin_not_odd_even hnk (by simpa [h3] using hm)
+  · exact cycleMin_not_start_even hnk (by simpa [h4] using hm)
+  · have heq :
+        [Branch.odd, Branch.even, Branch.odd, Branch.odd, Branch.odd, Branch.even, Branch.odd] =
+          [Branch.odd, Branch.even, Branch.odd, Branch.odd, Branch.odd, Branch.even] ++
+            [Branch.odd] :=
+      rfl
+    rw [h5, heq] at hm
+    exact cycleMin_not_end_odd hnk hm
+  · exact cycleMin_not_start_even hnk (by simpa [h6] using hm)
 
 def wordOOOEOE : List Branch :=
   [Branch.odd, Branch.odd, Branch.odd, Branch.even, Branch.odd, Branch.even]

@@ -1,9 +1,9 @@
 """Length-7 even-terminating expanding cycle-word inventory.
 
 Not a Research Engine control-layer experiment. Not a halt theorem.
-Does not search unbounded cycle states and does not prove a length-7
-census. Applies the Paper A filters to length 7 only, then tests the
-Lemma 3.5 leftover-tail method on the two predicted leftovers.
+Does not search unbounded cycle states. Records the Paper A filters
+on length 7, the leftover-tail computation, and the Lean census
+`no_cycle_word_length_le_seven`.
 """
 
 from __future__ import annotations
@@ -80,6 +80,11 @@ LEAN_THEOREMS = (
     "cycleMin_not_start_even",
     "cycle_last_even_interval",
     "no_cycle_word_length_le_six",
+    "no_cycle_word_ooeoooe",
+    "no_cycle_word_oooeooe",
+    "no_cycle_word_oooooee",
+    "no_cycle_word_ooooeoe",
+    "no_cycle_word_length_le_seven",
 )
 
 CERTIFICATE_UNCHANGED = (
@@ -388,11 +393,12 @@ def lean_api_present() -> dict[str, bool]:
         "no_all_cycles_impossible": "theorem no_juggler_cycle" not in combined,
         "no_cycle_engine": "def CycleSearch" not in combined
         and "def CycleStates" not in combined,
-        "length_seven_open_in_census": "Length seven is open" in census,
-        "no_length_seven_theorem": "theorem no_cycle_word_length_seven"
+        "length_eight_open_in_census": "Length eight is open" in census,
+        "has_length_seven_census": "theorem no_cycle_word_length_le_seven"
+        in census,
+        "no_length_eight_theorem": "theorem no_cycle_word_length_le_eight"
         not in combined
-        and "theorem no_cycle_word_ooooeeo" not in combined
-        and "theorem no_cycle_word_ooooeoe" not in leftover,
+        and "theorem no_cycle_word_length_eight" not in combined,
         "no_infinite_path_type": "coinductive" not in combined.lower()
         and "def InfinitePath" not in combined,
         "FloorPower_not_rewritten": "CycleWord" not in floor
@@ -451,8 +457,12 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycle_odd_run_append_even"]
         and lean["no_cycleMin_internal_even_threshold"]
         and lean["no_cycle_word_length_le_six"]
-        and lean["no_length_seven_theorem"]
-        and lean["length_seven_open_in_census"]
+        and lean["no_cycle_word_length_le_seven"]
+        and lean["no_cycle_word_oooooee"]
+        and lean["no_cycle_word_ooooeoe"]
+        and lean["has_length_seven_census"]
+        and lean["length_eight_open_in_census"]
+        and lean["no_length_eight_theorem"]
         and lean["no_cycle_engine"]
         and lean["FloorPower_not_rewritten"]
         and lean["orbit_min_not_used"]
@@ -529,7 +539,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two "
             f"leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 "
             f"for n >= {tails['n0_OOOOOEE']} together with empty finite "
-            "tables below the cutoffs"
+            "tables below the cutoffs; Lean packages both leftovers and "
+            "assembles no_cycle_word_length_le_seven"
         ),
     }
 
@@ -541,8 +552,8 @@ def probe_payload() -> dict[str, Any]:
     anti = dict(ANTI_OVERCLAIM)
     anti["cycles_impossible"] = False
     anti["O_terminating_cycles_impossible"] = False
-    anti["length_seven_cycles_impossible"] = False
-    anti["length_seven_lean_census"] = False
+    anti["length_seven_cycles_impossible"] = True
+    anti["length_seven_lean_census"] = True
     anti["useful_uniform_Q0"] = False
     anti["cycle_is_envelope_equality"] = False
     anti["power_bound_eq_forbids_cycles"] = False
@@ -559,8 +570,8 @@ def probe_payload() -> dict[str, Any]:
         "search_method": (
             "structural inventory of even-terminating expanding length-7 "
             "words; Paper A filters; leftover-tail cutoffs; exact "
-            "follows+image table below N0 only; no cycle-state search; "
-            "no length-7 Lean census"
+            "follows+image table below N0; Lean leftover exclusions and "
+            "no_cycle_word_length_le_seven; no cycle-state search"
         ),
     }
 
@@ -576,7 +587,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"Status: **{decision['classification']}**",
         "",
         "Standalone application phase. Not a Research Engine experiment",
-        "and not a termination theorem. Length 7 only; not a Lean census.",
+        "and not a termination theorem. Length 7 only; length 8 is open.",
         "",
         "## Branch budget",
         "",
@@ -688,8 +699,9 @@ def render_markdown(payload: dict[str, Any]) -> str:
         [
             f"- certificate unchanged: `{lean.get('certificate_present')}`",
             f"- FloorPower not rewritten: `{lean.get('FloorPower_not_rewritten')}`",
-            f"- length seven open in census: `{lean.get('length_seven_open_in_census')}`",
-            f"- no length-seven theorem: `{lean.get('no_length_seven_theorem')}`",
+            f"- length eight open in census: `{lean.get('length_eight_open_in_census')}`",
+            f"- length-seven census present: `{lean.get('has_length_seven_census')}`",
+            f"- no length-eight theorem: `{lean.get('no_length_eight_theorem')}`",
             f"- orbit-min hypothesis unused: `{lean.get('orbit_min_not_used')}`",
             f"- PowerBoundEq not used as cycle attack: `{lean.get('PowerBoundEq_not_used_as_cycle_attack')}`",
             f"- O-terminating not claimed: `{lean.get('O_terminating_not_claimed')}`",
@@ -712,7 +724,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             decision["reason"] + ".",
             "",
-            "This is not a halt result. Length-7 cycles are not Lean-excluded.",
+            "This is not a halt result. Length-7 cycle words are Lean-excluded.",
             "Cycles ending in O as CycleWord are not treated separately:",
             "mixed words rotate to an even-terminating orientation.",
             "Length 8 and 9 were not opened.",

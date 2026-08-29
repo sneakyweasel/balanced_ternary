@@ -146,10 +146,13 @@ says nothing about the deterministic shift).
    case: the depth-5 \(OOOO*\) split, Conjecture 7.3).
 4. `power_bound_contracts` requires a realized contracting word.
 5. Cycle restrictions do not exclude all cycles. Paper A Theorem 3.6
-   is a census for lengths at most six only; cycles of length seven
-   or more remain possible as far as the papers prove.
-6. The `native_decide` boundary checks cover both `Fin 256` itinerary
-   tables and the finite inequality \(257^{64}<2\cdot256^{64}\).
+   is a census for lengths at most six; Theorem 3.8 extends it to
+   lengths at most seven. Cycles of length eight or more remain
+   possible as far as the papers prove.
+6. The `native_decide` boundary checks cover the `Fin 256` length-six
+   leftover tables and \(257^{64}<2\cdot256^{64}\), and the `Fin 14`
+   length-seven leftover tables together with
+   \(2^{422}15^{128}<14^{243}\).
 
 ## What the papers do not claim
 
@@ -181,9 +184,9 @@ Reject or revise if:
    `ReachesOne` density;
 3. Paper A Theorem 4.1 is read as “odd-to-odd starts have no descent”;
 4. any analytic estimate of Paper B is described as Lean-certified;
-5. the census of Paper A Theorem 3.6 is read beyond length six, or an
-   exclusion of cycles of length seven or more is attributed to either
-   paper;
+5. the census of Paper A Theorem 3.6 is read beyond length six, or
+   Theorem 3.8 beyond length seven, or an exclusion of cycles of
+   length eight or more is attributed to either paper;
 6. a discrepancy proof replaces a floor by a single exponential, or
    an exact linearization (Paper B Lemmas 4.3(i), 4.6, 5.1, 7.2) is
    quoted without its one-signed remainder bounds;

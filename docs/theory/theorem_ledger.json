@@ -3257,11 +3257,35 @@
   {
     "id": "J-small-cycle-census",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most six is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least seven (Paper A Theorem 3.6). Assembly: rotation invariance of cycle words, exclusion of all-odd words by strict odd ascent, rotation to an even-terminating orientation, the formal-expansion filter, the next-square thresholds of Lemma 3.4, the leftover exclusions of OOOEOE and OOOOEE (Lemma 3.5; rotation targets of OEOOOE and EOOOOE). Lean theorem no_cycle_word_length_le_six. Length seven and beyond is open; this is not an exclusion of all cycles and not a halt theorem.",
+    "statement": "No word of length at most six is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least seven (Paper A Theorem 3.6). Assembly: rotation invariance of cycle words, exclusion of all-odd words by strict odd ascent, rotation to an even-terminating orientation, the formal-expansion filter, the next-square thresholds of Lemma 3.4, the leftover exclusions of OOOEOE and OOOOEE (Lemma 3.5; rotation targets of OEOOOE and EOOOOE). Lean theorem no_cycle_word_length_le_six. Strengthened by J-small-cycle-census-seven; this row is the length-≤6 statement only. This is not an exclusion of all cycles and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/SmallCycleCensus.lean",
     "tests": [
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-leftover-length-seven-orientations",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Neither OOOOEOE nor OOOOOEE is a Juggler cycle word at any n ≥ 2 (Paper A Lemma 3.7). The argument is an exhaustive evaluation for n < 14 together with the last-even cell against the coarse lower envelope n^{243} > 2^{422}(n+1)^{128} for n ≥ 14. This excludes those two orientations only; the length-≤7 census is the separate row J-small-cycle-census-seven.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/LeftoverCycles.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py",
+      "tests/research/juggler_sequence/test_cycle_length_seven.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-small-cycle-census-seven",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "No word of length at most seven is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eight (Paper A Theorem 3.8). Assembly: the length-≤6 census, the formal-expansion filter on length seven, the odd-run exclusion of O^6E, the internal-E bootstrap exclusions of OOEOOOE and OOOEOOE, rotation of EOOOOOE and OEOOOOE onto the leftovers, and the leftover exclusions of OOOOEOE and OOOOOEE (Lemma 3.7). Lean theorem no_cycle_word_length_le_seven. Length eight and beyond is open; this is not an exclusion of all cycles and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/SmallCycleCensus.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py",
+      "tests/research/juggler_sequence/test_cycle_length_seven.py"
     ],
     "related_conjectures": []
   },

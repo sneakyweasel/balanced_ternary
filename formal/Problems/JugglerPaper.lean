@@ -62,6 +62,10 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       `no_cycle_word_replicate_odd`, `cycleWord_exists_even_terminating`,
       `no_cycle_word_len_six_ends_even`, `no_cycle_word_oooeoe`,
       `no_cycle_word_ooooee`
+* 3.7 `no_cycle_word_ooooeoe`, `no_cycle_word_oooooee`
+* 3.8 `no_cycle_word_length_le_seven`, with components
+      `no_cycle_word_len_seven_ends_even`, `no_cycle_word_ooeoooe`,
+      `no_cycle_word_oooeooe`
 * 4.1 `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:
       `no_finiteProgress_implies_odd_odd`
@@ -72,8 +76,8 @@ strictly below the start. Lean packages this as `DescentCertificate`.
 
 This barrel does not prove that every positive integer reaches `1`,
 that every orbit meets a contracting word, or that all nontrivial
-cycles are impossible. The cycle census stops at length six; length
-seven and beyond is open.
+cycles are impossible. The cycle census stops at length seven;
+length eight and beyond is open.
 `FiniteCoeffStopConjecture` is a laboratory target, not a claim of
 the note.
 -/

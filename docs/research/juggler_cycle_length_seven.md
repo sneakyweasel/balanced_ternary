@@ -3,7 +3,7 @@
 Status: **LENGTH_SEVEN_LEFTOVER_TAIL_GREEN**
 
 Standalone application phase. Not a Research Engine experiment
-and not a termination theorem. Length 7 only; not a Lean census.
+and not a termination theorem. Length 7 only; length 8 is open.
 
 ## Branch budget
 
@@ -28,7 +28,7 @@ Maximum Phase-0 scope   inventory + N0 + finite table; no Lean
 - secondary: `['TWO_EVEN_TYPE_THROUGH_EIGHT']`
 - sorry-free: `True`
 
-length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs.
+length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs; Lean packages both leftovers and assembles no_cycle_word_length_le_seven.
 
 ## Even-terminating expanding length-7 words
 
@@ -95,10 +95,16 @@ length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, i
 - `cycleMin_not_start_even`: `True`
 - `cycle_last_even_interval`: `True`
 - `no_cycle_word_length_le_six`: `True`
+- `no_cycle_word_ooeoooe`: `True`
+- `no_cycle_word_oooeooe`: `True`
+- `no_cycle_word_oooooee`: `True`
+- `no_cycle_word_ooooeoe`: `True`
+- `no_cycle_word_length_le_seven`: `True`
 - certificate unchanged: `True`
 - FloorPower not rewritten: `True`
-- length seven open in census: `True`
-- no length-seven theorem: `True`
+- length eight open in census: `True`
+- length-seven census present: `True`
+- no length-eight theorem: `True`
 - orbit-min hypothesis unused: `True`
 - PowerBoundEq not used as cycle attack: `True`
 - O-terminating not claimed: `True`
@@ -117,8 +123,8 @@ length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, i
 - floating_point_verdict: `False`
 - cycles_impossible: `False`
 - O_terminating_cycles_impossible: `False`
-- length_seven_cycles_impossible: `False`
-- length_seven_lean_census: `False`
+- length_seven_cycles_impossible: `True`
+- length_seven_lean_census: `True`
 - useful_uniform_Q0: `False`
 - cycle_is_envelope_equality: `False`
 - power_bound_eq_forbids_cycles: `False`
@@ -130,9 +136,9 @@ length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, i
 
 **LENGTH_SEVEN_LEFTOVER_TAIL_GREEN**
 
-length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs.
+length 7 has the same two-even geometry as length 6: odd-run excludes OOOOOOE, internal-E bootstrap excludes CycleMin of OOEOOOE and OOOEOOE (n=3 is a parity failure), and the two leftovers die by the Lemma 3.5 tail n^243 > 2^422 (n+1)^128 for n >= 14 together with empty finite tables below the cutoffs; Lean packages both leftovers and assembles no_cycle_word_length_le_seven.
 
-This is not a halt result. Length-7 cycles are not Lean-excluded.
+This is not a halt result. Length-7 cycle words are Lean-excluded.
 Cycles ending in O as CycleWord are not treated separately:
 mixed words rotate to an even-terminating orientation.
 Length 8 and 9 were not opened.

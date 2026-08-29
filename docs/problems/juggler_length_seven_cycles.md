@@ -41,15 +41,16 @@ n^{243}>2^{422}(n+1)^{128}
 for all \(n\ge N_0\), with no `CycleWord` realization on
 \(2\le n<N_0\).
 
-This is not a Lean census and not a halt theorem.
+This is now a Lean census (`no_cycle_word_length_le_seven`) and
+not a halt theorem.
 
 ## Current literature
 
 - OEIS A007320 (`oeis-A007320`): step counts to 1. **known**. Totality
   is not claimed.
-- Small-cycle census (Paper A Theorem 3.6) —
-  **EXACT — LEAN VERIFIED**. No cycle word of length at most six.
-  Length seven was the stated boundary.
+- Small-cycle census (Paper A Theorems 3.6 and 3.8) —
+  **EXACT — LEAN VERIFIED**. No cycle word of length at most seven.
+  Length eight is the stated boundary.
 - Internal-E bootstrap —
   **EXACT — LEAN VERIFIED**. Length-6 leftovers were `OOOEOE` and
   `OOOOEE`.
@@ -61,8 +62,8 @@ This is not a Lean census and not a halt theorem.
 - Paper B length-7 contracting splits `OOEOOEE` / `OOOEOEE` —
   withdrawn density claims. Not this branch.
 
-Project relationship: **extended**. The first open length after the
-small-cycle census.
+Project relationship: **extended**. Length seven is closed; length
+eight is the first open even-terminating expanding length.
 
 ## Branch budget
 
@@ -124,7 +125,13 @@ It is not required.
   three-even length —
   **OBSERVATION** (not implemented)
 - every length-7 cycle word is impossible —
-  not claimed in Lean
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_seven`)
+- leftover orientations `OOOOOEE` and `OOOOEOE` —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_oooooee`,
+  `no_cycle_word_ooooeoe`)
+- bootstrap pair `OOEOOOE` / `OOOEOOE` —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_ooeoooe`,
+  `no_cycle_word_oooeooe`)
 - cycles of length eight or more are impossible — not claimed
 - global halt — not claimed
 
@@ -136,7 +143,8 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_cycle_length_seven.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length 8. No O-terminating programme.
-- No Lean file.
+- Lean: `LeftoverEval.lean`, `LeftoverCycles.lean`, `Cycles.lean`,
+  `SmallCycleCensus.lean`. No `sorry`.
 
 ## Conjectures
 
@@ -149,22 +157,23 @@ claims that remain false or unproved:
 
 - “`LowerPowerBound` extra scale from \(n=3\) excludes the leftovers”
   — still the closed prefix-OOO branch.
-- “every length-7 word is Lean-excluded” — not claimed.
+- “every length-8 word is Lean-excluded” — not claimed.
 - “a uniform defect tax excludes length 7” — still false; slack
   tends to 0.
 
 ## Formalization
 
-None added. `SmallCycleCensus.lean` still records that length seven
-is open. No `no_cycle_word_length_seven`. No `sorry`. No halt
-theorem. No `CycleSearch`. No `PowerBoundEq` attack. No
-`PowerHeight`. FloorPower, Progress, and Minimal are not rewritten.
-
-A later Lean phase, if opened, would follow
-`LeftoverCycles.lean`: isolate a `native_decide` table for
-\(2\le n<14\) and prove the tail \(n^{243}>2^{422}(n+1)^{128}\) for
-\(n\ge 14\), then assemble `no_cycle_word_length_seven`. That is not
-this phase.
+`formal/Problems/Juggler/LeftoverEval.lean` isolates the `Fin 14`
+tables and `2^{422}15^{128}<14^{243}`.
+`formal/Problems/Juggler/LeftoverCycles.lean` proves
+`no_cycle_word_oooooee` and `no_cycle_word_ooooeoe`.
+`formal/Problems/Juggler/Cycles.lean` proves the bootstrap pair
+`no_cycle_word_ooeoooe` and `no_cycle_word_oooeooe`.
+`formal/Problems/Juggler/SmallCycleCensus.lean` assembles
+`no_cycle_word_length_le_seven`. No `sorry`. No halt theorem. No
+`CycleSearch`. No `PowerBoundEq` attack. No `PowerHeight`.
+FloorPower, Progress, and Minimal are not rewritten. Length eight
+is open.
 
 ## Results
 
@@ -179,33 +188,32 @@ cutoff \(N_0=14\), and the exact tables on \(2\le n<14\) have zero
 realizations and zero returns. The naive `OOOOEOE` comparison
 \(n^{243}>2^{550}(n+1)^{128}\) also fires, at \(N_0=29\).
 
-This is a computational exclusion of the two leftover `CycleWord`s,
-not a Lean census.
+The Lean phase packages both leftovers and the bootstrap pair, then
+assembles `no_cycle_word_length_le_seven` (**EXACT — LEAN VERIFIED**,
+Paper A Lemma 3.7 and Theorem 3.8; ledger rows
+`J-leftover-length-seven-orientations` and
+`J-small-cycle-census-seven`).
 
 ## Open questions
 
-Lean-exclude `OOOOOEE` and `OOOOEOE` by the \(N_0=14\) tail, then
-assemble a length-7 census. Do not open length 8 automatically.
 Length 8 is the same two-even type; length 9 is the first three-even
-length. Do not start an O-terminating `CycleWord` programme. Do not
-claim halt.
+length. Do not open length 8 automatically. Do not start an
+O-terminating `CycleWord` programme. Do not claim halt.
 
 ## Decision
 
 **PROMOTE**. The inventory is the length-6 geometry with one extra
-odd letter, not a rewrite without an exclusion path: both leftover
-tails fire at \(N_0=14\) and the finite tables are empty. That is
-the Lemma 3.5 method reaching the first open length. A later Lean
-assembly is justified and is not automatic. This is not a halt
-theorem and not a length-8 programme.
+odd letter. Both leftover tails fire at \(N_0=14\), the finite
+tables are empty, and Lean now excludes every length-7 cycle word.
+This is not a halt theorem and not a length-8 programme.
 
-Best next question: Lean-exclude `CycleWord` on `OOOOOEE` and
-`OOOOEOE` by the tail \(n^{243}>2^{422}(n+1)^{128}\) for \(n\ge 14\),
-then assemble `no_cycle_word_length_seven`.
+Best next question: do the same two leftover families exclude every
+even-terminating expanding length-8 word, or does a new leftover
+shape appear?
 
 ## Publication assessment
 
 Status: `EXPLORATORY`.
 
-A Phase-0 inventory and leftover-tail computation, not a paper
-candidate and not a Juggler totality result. Paper A is not edited.
+The length-7 census is now a theorem of Paper A (Theorem 3.8). It
+is not a Juggler totality result.

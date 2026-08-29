@@ -3,16 +3,16 @@ import Problems.Juggler.LeftoverCycles
 namespace Problems.Juggler
 
 /-!
-# Small-cycle census: no cycle word of length at most six
+# Small-cycle census: no cycle word of length at most seven
 
 Assembly of existing certified exclusions, not a new engine. Rotation
 moves any cycle word to an even-terminating orientation. The formal
 expansion filter, the all-odd growth argument, the general length-four
 and length-five even-terminating theorems, the odd-run threshold, and
-the named exclusions `no_cycle_word_{ooe,ooeooe,oooeoe,ooooee}` then
-cover every word of length at most six.
+the named exclusions of the length-six and length-seven leftovers then
+cover every word of length at most seven.
 
-This is a census for lengths `≤ 6` only. Length seven is open. Not a
+This is a census for lengths `≤ 7` only. Length eight is open. Not a
 halt theorem and not an exclusion of all cycles.
 -/
 
@@ -159,7 +159,8 @@ theorem no_cycle_word_len_six_ends_even {m : ℕ} {v : List Branch}
            (cycleWord_rotate_cons (cycleWord_rotate_cons h)))
 
 /-- **Small-cycle census.** No `n ≥ 2` realizes a cycle word of length
-at most six. Length seven and beyond is open. -/
+at most six. Length seven is the separate strengthening
+`no_cycle_word_length_le_seven`. -/
 theorem no_cycle_word_length_le_six {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length ≤ 6) : ¬CycleWord n w := by
   intro h
@@ -185,6 +186,78 @@ theorem no_cycle_word_length_le_six {n : ℕ} {w : List Branch}
     · exact no_cycle_word_len_six_ends_even hm (by simp) hC
     · exfalso
       simp only [List.length_cons] at hv5
+      omega
+  · have hrep := eq_replicate_odd_of_oddCount_eq_length heq
+    rw [hrep] at h
+    exact no_cycle_word_replicate_odd hne hn h
+
+/-- Every even-terminating length-seven cycle word is impossible. The
+expanding filter leaves seven candidates; odd-run, internal-E
+bootstrap, and the two leftover exclusions cover them up to rotation. -/
+theorem no_cycle_word_len_seven_ends_even {m : ℕ} {v : List Branch}
+    (hm : 2 ≤ m) (hv : v.length = 6) :
+    ¬CycleWord m (v ++ [Branch.even]) := by
+  intro h
+  rcases v with _ | ⟨a, v⟩; · simp at hv
+  rcases v with _ | ⟨b, v⟩; · simp at hv
+  rcases v with _ | ⟨c, v⟩; · simp at hv
+  rcases v with _ | ⟨d, v⟩; · simp at hv
+  rcases v with _ | ⟨e, v⟩; · simp at hv
+  rcases v with _ | ⟨f, v⟩; · simp at hv
+  rcases v with _ | ⟨g, v⟩
+  swap
+  · simp only [List.length_cons] at hv
+    omega
+  cases a <;> cases b <;> cases c <;> cases d <;> cases e <;> cases f <;>
+    first
+      | exact absurd (cycle_word_formally_expanding hm h) (by decide)
+      | exact no_cycle_odd_run_append_even (a := 6)
+          (by decide : (3 : ℕ) ≤ 6) hm h
+      | exact no_cycle_word_ooeoooe hm h
+      | exact no_cycle_word_oooeooe hm h
+      | exact no_cycle_word_ooooeoe hm h
+      | exact no_cycle_word_oooooee hm h
+      | -- EOOOOOE rotates once onto OOOOOEE
+        (have h1 : 2 ≤ floorPower m := by
+          have := cycleWord_iterate_ge_two (i := 1) hm h (by decide)
+          simpa using this
+         exact no_cycle_word_oooooee h1 (cycleWord_rotate_cons h))
+      | -- OEOOOOE rotates twice onto OOOOEOE
+        (have h2 : 2 ≤ floorPower (floorPower m) := by
+          have := cycleWord_iterate_ge_two (i := 2) hm h (by decide)
+          simpa [Function.iterate_succ_apply'] using this
+         exact no_cycle_word_ooooeoe h2
+           (cycleWord_rotate_cons (cycleWord_rotate_cons h)))
+
+/-- **Small-cycle census.** No `n ≥ 2` realizes a cycle word of length
+at most seven. Length eight and beyond is open. -/
+theorem no_cycle_word_length_le_seven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length ≤ 7) : ¬CycleWord n w := by
+  intro h
+  have hne : 1 ≤ w.length := h.2.2
+  rcases lt_or_eq_of_le (oddCount_le_length w) with hlt | heq
+  · obtain ⟨m, v, hm, hv, hC⟩ := cycleWord_exists_even_terminating hn h hlt
+    have hv6 : v.length ≤ 6 := by omega
+    rcases v with _ | ⟨a, v⟩
+    · exact absurd (cycle_word_formally_expanding hm hC) (by decide)
+    rcases v with _ | ⟨b, v⟩
+    · cases a <;>
+        exact absurd (cycle_word_formally_expanding hm hC) (by decide)
+    rcases v with _ | ⟨c, v⟩
+    · cases a <;> cases b <;>
+        first
+          | exact absurd (cycle_word_formally_expanding hm hC) (by decide)
+          | exact no_cycle_word_ooe hm hC
+    rcases v with _ | ⟨d, v⟩
+    · exact no_cycle_word_length_four_ends_even hm (by simp) hC
+    rcases v with _ | ⟨e, v⟩
+    · exact no_cycle_word_length_five_ends_even hm (by simp) hC
+    rcases v with _ | ⟨f, v⟩
+    · exact no_cycle_word_len_six_ends_even hm (by simp) hC
+    rcases v with _ | ⟨g, v⟩
+    · exact no_cycle_word_len_seven_ends_even hm (by simp) hC
+    · exfalso
+      simp only [List.length_cons] at hv6
       omega
   · have hrep := eq_replicate_odd_of_oddCount_eq_length heq
     rw [hrep] at h

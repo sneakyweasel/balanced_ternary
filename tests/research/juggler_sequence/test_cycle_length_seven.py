@@ -76,15 +76,16 @@ def test_refined_tail_cutoff_is_fourteen():
             assert image_after(n, word) != n or not follows_word(n, word)
 
 
-def test_lean_api_without_length_seven_census():
+def test_lean_api_with_length_seven_census():
     lean = lean_api_present()
     assert lean["sorry_free"] is True
     for name in LEAN_THEOREMS:
         assert lean[name] is True, name
     assert lean["no_all_cycles_impossible"] is True
     assert lean["no_cycle_engine"] is True
-    assert lean["no_length_seven_theorem"] is True
-    assert lean["length_seven_open_in_census"] is True
+    assert lean["has_length_seven_census"] is True
+    assert lean["length_eight_open_in_census"] is True
+    assert lean["no_length_eight_theorem"] is True
     assert lean["FloorPower_not_rewritten"] is True
     assert lean["orbit_min_not_used"] is True
     assert lean["PowerBoundEq_not_used_as_cycle_attack"] is True
@@ -95,9 +96,9 @@ def test_lean_api_without_length_seven_census():
     assert "sorry" not in src
     assert "admit" not in src
     assert "theorem juggler_reaches_one" not in src
-    assert "theorem no_cycle_word_length_seven" not in src
-    assert "theorem no_cycle_word_length_seven" not in census
-    assert "Length seven is open" in census
+    assert "theorem no_cycle_word_length_le_seven" in census
+    assert "theorem no_cycle_word_length_le_eight" not in census
+    assert "Length eight is open" in census
     assert "def CycleSearch" not in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
@@ -133,8 +134,8 @@ def test_classify_leftover_tail_green():
             "anti_overclaim": {
                 **dict(ANTI_OVERCLAIM),
                 "cycles_impossible": False,
-                "length_seven_cycles_impossible": False,
-                "length_seven_lean_census": False,
+                "length_seven_cycles_impossible": True,
+                "length_seven_lean_census": True,
             },
         }
     )
@@ -153,12 +154,13 @@ def test_committed_artifacts_schema():
     assert data["engine_control_layer_modified"] is False
     assert data["decision"]["classification"] == CLASS_GREEN
     assert data["anti_overclaim"]["cycles_impossible"] is False
-    assert data["anti_overclaim"]["length_seven_cycles_impossible"] is False
-    assert data["anti_overclaim"]["length_seven_lean_census"] is False
+    assert data["anti_overclaim"]["length_seven_cycles_impossible"] is True
+    assert data["anti_overclaim"]["length_seven_lean_census"] is True
     assert data["anti_overclaim"]["paper_b_length_seven_density"] is False
     assert data["lean"]["sorry_free"] is True
-    assert data["lean"]["no_length_seven_theorem"] is True
-    assert data["lean"]["length_seven_open_in_census"] is True
+    assert data["lean"]["has_length_seven_census"] is True
+    assert data["lean"]["length_eight_open_in_census"] is True
+    assert data["lean"]["no_length_eight_theorem"] is True
     assert data["scan"]["expanding_e_words"] == list(EXPECTED_WORDS)
     assert data["scan"]["tails"]["n0_OOOOOEE"] == 14
     assert data["scan"]["n_search"] is False
@@ -178,9 +180,10 @@ def test_dossier_and_note_boundary():
     assert "## Branch budget" in dossier
     assert "## Decision" in dossier
     assert "PROMOTE" in dossier
-    assert "no_cycle_word_length_seven" in dossier
-    assert "not this phase" in dossier or "not a Lean census" in dossier
-    assert "No exclusion of cycles of length seven or more is claimed." in " ".join(
+    assert "no_cycle_word_length_le_seven" in dossier
+    assert "EXACT — LEAN VERIFIED" in dossier
+    assert "No exclusion of cycles of length eight or more is claimed." in " ".join(
         note.split()
     )
-    assert "theorem no_cycle_word_length_seven" not in note
+    assert "no_cycle_word_length_le_seven" in note
+    assert "theorem no_cycle_word_length_nine" not in note

@@ -1,0 +1,1288 @@
+{
+  "experiment": "juggler_cycle_length_nine",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_nine_cycles_impossible": false,
+    "length_nine_lean_census": false,
+    "four_even_opened": false,
+    "induction_on_period": false,
+    "induction_on_n": false,
+    "no_escape_orbits": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "expanding_e_words": [
+      "OOOOOOOOE",
+      "OOOOOOOEE",
+      "OOOOOOEOE",
+      "OOOOOOEEE",
+      "OOOOOEOOE",
+      "OOOOOEOEE",
+      "OOOOOEEOE",
+      "OOOOEOOOE",
+      "OOOOEOOEE",
+      "OOOOEOEOE",
+      "OOOOEEOOE",
+      "OOOEOOOOE",
+      "OOOEOOOEE",
+      "OOOEOOEOE",
+      "OOOEOEOOE",
+      "OOOEEOOOE",
+      "OOEOOOOOE",
+      "OOEOOOOEE",
+      "OOEOOOEOE",
+      "OOEOOEOOE",
+      "OOEOEOOOE",
+      "OOEEOOOOE",
+      "OEOOOOOOE",
+      "OEOOOOOEE",
+      "OEOOOOEOE",
+      "OEOOOEOOE",
+      "OEOOEOOOE",
+      "OEOEOOOOE",
+      "OEEOOOOOE",
+      "EOOOOOOOE",
+      "EOOOOOOEE",
+      "EOOOOOEOE",
+      "EOOOOEOOE",
+      "EOOOEOOOE",
+      "EOOEOOOOE",
+      "EOEOOOOOE",
+      "EEOOOOOOE"
+    ],
+    "expanding_count": 37,
+    "three_even_count": 28,
+    "two_even_count": 8,
+    "candidates": [
+      {
+        "word": "OOOOOOOOE",
+        "length": 9,
+        "odd_count": 8,
+        "even_count": 1,
+        "abc": null,
+        "suffix_after_internal_e": null,
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": null,
+        "remaining_is_lemma35": false,
+        "named_filter": "no_cycle_odd_run_append_even",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOOOOOOOO|OEOOOOOOO|OOEOOOOOO|OOOEOOOOO|OOOOEOOOO|OOOOOEOOO|OOOOOOEOO|OOOOOOOEO|OOOOOOOOE"
+      },
+      {
+        "word": "OOOOOOOEE",
+        "length": 9,
+        "odd_count": 7,
+        "even_count": 2,
+        "abc": null,
+        "suffix_after_internal_e": "",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": null,
+        "remaining_is_lemma35": false,
+        "named_filter": "two_even_leftover_EE",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEOOOOOOO|EOOOOOOOE|OEEOOOOOO|OOEEOOOOO|OOOEEOOOO|OOOOEEOOO|OOOOOEEOO|OOOOOOEEO|OOOOOOOEE"
+      },
+      {
+        "word": "OOOOOOEOE",
+        "length": 9,
+        "odd_count": 7,
+        "even_count": 2,
+        "abc": null,
+        "suffix_after_internal_e": "O",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": null,
+        "remaining_is_lemma35": false,
+        "named_filter": "two_even_leftover_EOE",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOEOOOOOO|EOOOOOOEO|OEOEOOOOO|OEOOOOOOE|OOEOEOOOO|OOOEOEOOO|OOOOEOEOO|OOOOOEOEO|OOOOOOEOE"
+      },
+      {
+        "word": "OOOOOOEEE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          6,
+          0,
+          0
+        ],
+        "suffix_after_internal_e": "",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "EE",
+        "remaining_is_lemma35": false,
+        "named_filter": "leftover_prefix_cell_EE",
+        "leftover": true,
+        "bootstrap": false,
+        "rotation_class": "EEEOOOOOO|EEOOOOOOE|EOOOOOOEE|OEEEOOOOO|OOEEEOOOO|OOOEEEOOO|OOOOEEEOO|OOOOOEEEO|OOOOOOEEE"
+      },
+      {
+        "word": "OOOOOEOOE",
+        "length": 9,
+        "odd_count": 7,
+        "even_count": 2,
+        "abc": null,
+        "suffix_after_internal_e": "OO",
+        "suffix_contains_E": false,
+        "existing_threshold": "oo_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": null,
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_oo_suffix_threshold",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOOEOOOOO|EOOOOOEOO|OEOOEOOOO|OEOOOOOEO|OOEOOEOOO|OOEOOOOOE|OOOEOOEOO|OOOOEOOEO|OOOOOEOOE"
+      },
+      {
+        "word": "OOOOOEOEE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          5,
+          1,
+          0
+        ],
+        "suffix_after_internal_e": "",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OEE",
+        "remaining_is_lemma35": false,
+        "named_filter": "leftover_prefix_cell_EE",
+        "leftover": true,
+        "bootstrap": false,
+        "rotation_class": "EEOOOOOEO|EOEEOOOOO|EOOOOOEOE|OEEOOOOOE|OEOEEOOOO|OOEOEEOOO|OOOEOEEOO|OOOOEOEEO|OOOOOEOEE"
+      },
+      {
+        "word": "OOOOOEEOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          5,
+          0,
+          1
+        ],
+        "suffix_after_internal_e": "O",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "EOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "leftover_prefix_cell_EOE",
+        "leftover": true,
+        "bootstrap": false,
+        "rotation_class": "EEOEOOOOO|EOEOOOOOE|EOOOOOEEO|OEEOEOOOO|OEOOOOOEE|OOEEOEOOO|OOOEEOEOO|OOOOEEOEO|OOOOOEEOE"
+      },
+      {
+        "word": "OOOOEOOOE",
+        "length": 9,
+        "odd_count": 7,
+        "even_count": 2,
+        "abc": null,
+        "suffix_after_internal_e": "OOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "ooo_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": null,
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_ooo_suffix_threshold",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOOOEOOOO|EOOOOEOOO|OEOOOEOOO|OEOOOOEOO|OOEOOOEOO|OOEOOOOEO|OOOEOOOEO|OOOEOOOOE|OOOOEOOOE"
+      },
+      {
+        "word": "OOOOEOOEE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          4,
+          2,
+          0
+        ],
+        "suffix_after_internal_e": "",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OOEE",
+        "remaining_is_lemma35": false,
+        "named_filter": "leftover_prefix_cell_EE",
+        "leftover": true,
+        "bootstrap": false,
+        "rotation_class": "EEOOOOEOO|EOOEEOOOO|EOOOOEOOE|OEEOOOOEO|OEOOEEOOO|OOEEOOOOE|OOEOOEEOO|OOOEOOEEO|OOOOEOOEE"
+      },
+      {
+        "word": "OOOOEOEOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          4,
+          1,
+          1
+        ],
+        "suffix_after_internal_e": "O",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OEOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "leftover_prefix_cell_EOE",
+        "leftover": true,
+        "bootstrap": false,
+        "rotation_class": "EOEOEOOOO|EOEOOOOEO|EOOOOEOEO|OEOEOEOOO|OEOEOOOOE|OEOOOOEOE|OOEOEOEOO|OOOEOEOEO|OOOOEOEOE"
+      },
+      {
+        "word": "OOOOEEOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          4,
+          0,
+          2
+        ],
+        "suffix_after_internal_e": "OO",
+        "suffix_contains_E": false,
+        "existing_threshold": "oo_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "EOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_oo_suffix_threshold",
+        "leftover": false,
+        "bootstrap": true,
+        "rotation_class": "EEOOEOOOO|EOOEOOOOE|EOOOOEEOO|OEEOOEOOO|OEOOOOEEO|OOEEOOEOO|OOEOOOOEE|OOOEEOOEO|OOOOEEOOE"
+      },
+      {
+        "word": "OOOEOOOOE",
+        "length": 9,
+        "odd_count": 7,
+        "even_count": 2,
+        "abc": null,
+        "suffix_after_internal_e": "OOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "odd_run_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": null,
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_odd_run_suffix_threshold",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOOOEOOOO|EOOOOEOOO|OEOOOEOOO|OEOOOOEOO|OOEOOOEOO|OOEOOOOEO|OOOEOOOEO|OOOEOOOOE|OOOOEOOOE"
+      },
+      {
+        "word": "OOOEOOOEE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          3,
+          3,
+          0
+        ],
+        "suffix_after_internal_e": "",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OOOEE",
+        "remaining_is_lemma35": false,
+        "named_filter": "leftover_prefix_cell_EE",
+        "leftover": true,
+        "bootstrap": false,
+        "rotation_class": "EEOOOEOOO|EOOOEEOOO|EOOOEOOOE|OEEOOOEOO|OEOOOEEOO|OOEEOOOEO|OOEOOOEEO|OOOEEOOOE|OOOEOOOEE"
+      },
+      {
+        "word": "OOOEOOEOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          3,
+          2,
+          1
+        ],
+        "suffix_after_internal_e": "O",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OOEOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "leftover_prefix_cell_EOE",
+        "leftover": true,
+        "bootstrap": false,
+        "rotation_class": "EOEOOOEOO|EOOEOEOOO|EOOOEOOEO|OEOEOOOEO|OEOOEOEOO|OEOOOEOOE|OOEOEOOOE|OOEOOEOEO|OOOEOOEOE"
+      },
+      {
+        "word": "OOOEOEOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          3,
+          1,
+          2
+        ],
+        "suffix_after_internal_e": "OO",
+        "suffix_contains_E": false,
+        "existing_threshold": "oo_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OEOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_oo_suffix_threshold",
+        "leftover": false,
+        "bootstrap": true,
+        "rotation_class": "EOEOOEOOO|EOOEOOOEO|EOOOEOEOO|OEOEOOEOO|OEOOEOOOE|OEOOOEOEO|OOEOEOOEO|OOEOOOEOE|OOOEOEOOE"
+      },
+      {
+        "word": "OOOEEOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          3,
+          0,
+          3
+        ],
+        "suffix_after_internal_e": "OOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "ooo_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "EOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_ooo_suffix_threshold",
+        "leftover": false,
+        "bootstrap": true,
+        "rotation_class": "EEOOOEOOO|EOOOEEOOO|EOOOEOOOE|OEEOOOEOO|OEOOOEEOO|OOEEOOOEO|OOEOOOEEO|OOOEEOOOE|OOOEOOOEE"
+      },
+      {
+        "word": "OOEOOOOOE",
+        "length": 9,
+        "odd_count": 7,
+        "even_count": 2,
+        "abc": null,
+        "suffix_after_internal_e": "OOOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "odd_run_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": null,
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_odd_run_suffix_threshold",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOOEOOOOO|EOOOOOEOO|OEOOEOOOO|OEOOOOOEO|OOEOOEOOO|OOEOOOOOE|OOOEOOEOO|OOOOEOOEO|OOOOOEOOE"
+      },
+      {
+        "word": "OOEOOOOEE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          2,
+          4,
+          0
+        ],
+        "suffix_after_internal_e": "",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OOOOEE",
+        "remaining_is_lemma35": true,
+        "named_filter": "leftover_prefix_cell_EE",
+        "leftover": true,
+        "bootstrap": false,
+        "rotation_class": "EEOOEOOOO|EOOEOOOOE|EOOOOEEOO|OEEOOEOOO|OEOOOOEEO|OOEEOOEOO|OOEOOOOEE|OOOEEOOEO|OOOOEEOOE"
+      },
+      {
+        "word": "OOEOOOEOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          2,
+          3,
+          1
+        ],
+        "suffix_after_internal_e": "O",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OOOEOE",
+        "remaining_is_lemma35": true,
+        "named_filter": "leftover_prefix_cell_EOE",
+        "leftover": true,
+        "bootstrap": false,
+        "rotation_class": "EOEOOEOOO|EOOEOOOEO|EOOOEOEOO|OEOEOOEOO|OEOOEOOOE|OEOOOEOEO|OOEOEOOEO|OOEOOOEOE|OOOEOEOOE"
+      },
+      {
+        "word": "OOEOOEOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          2,
+          2,
+          2
+        ],
+        "suffix_after_internal_e": "OO",
+        "suffix_contains_E": false,
+        "existing_threshold": "oo_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OOEOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_oo_suffix_threshold",
+        "leftover": false,
+        "bootstrap": true,
+        "rotation_class": "EOOEOOEOO|OEOOEOOEO|OOEOOEOOE"
+      },
+      {
+        "word": "OOEOEOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          2,
+          1,
+          3
+        ],
+        "suffix_after_internal_e": "OOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "ooo_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "OEOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_ooo_suffix_threshold",
+        "leftover": false,
+        "bootstrap": true,
+        "rotation_class": "EOEOOOEOO|EOOEOEOOO|EOOOEOOEO|OEOEOOOEO|OEOOEOEOO|OEOOOEOOE|OOEOEOOOE|OOEOOEOEO|OOOEOOEOE"
+      },
+      {
+        "word": "OOEEOOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          2,
+          0,
+          4
+        ],
+        "suffix_after_internal_e": "OOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "odd_run_suffix_threshold",
+        "legal_cyclemin": true,
+        "blocked_by": null,
+        "remaining_after_first_e": "EOOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "bootstrap_odd_run_suffix_threshold",
+        "leftover": false,
+        "bootstrap": true,
+        "rotation_class": "EEOOOOEOO|EOOEEOOOO|EOOOOEOOE|OEEOOOOEO|OEOOEEOOO|OOEEOOOOE|OOEOOEEOO|OOOEOOEEO|OOOOEOOEE"
+      },
+      {
+        "word": "OEOOOOOOE",
+        "length": 9,
+        "odd_count": 7,
+        "even_count": 2,
+        "abc": null,
+        "suffix_after_internal_e": "OOOOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_odd_even",
+        "remaining_after_first_e": null,
+        "remaining_is_lemma35": false,
+        "named_filter": "cycleMin_not_odd_even",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOEOOOOOO|EOOOOOOEO|OEOEOOOOO|OEOOOOOOE|OOEOEOOOO|OOOEOEOOO|OOOOEOEOO|OOOOOEOEO|OOOOOOEOE"
+      },
+      {
+        "word": "OEOOOOOEE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          1,
+          5,
+          0
+        ],
+        "suffix_after_internal_e": "",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_odd_even",
+        "remaining_after_first_e": "OOOOOEE",
+        "remaining_is_lemma35": false,
+        "named_filter": "cycleMin_not_odd_even",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEOEOOOOO|EOEOOOOOE|EOOOOOEEO|OEEOEOOOO|OEOOOOOEE|OOEEOEOOO|OOOEEOEOO|OOOOEEOEO|OOOOOEEOE"
+      },
+      {
+        "word": "OEOOOOEOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          1,
+          4,
+          1
+        ],
+        "suffix_after_internal_e": "O",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_odd_even",
+        "remaining_after_first_e": "OOOOEOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "cycleMin_not_odd_even",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOEOEOOOO|EOEOOOOEO|EOOOOEOEO|OEOEOEOOO|OEOEOOOOE|OEOOOOEOE|OOEOEOEOO|OOOEOEOEO|OOOOEOEOE"
+      },
+      {
+        "word": "OEOOOEOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          1,
+          3,
+          2
+        ],
+        "suffix_after_internal_e": "OO",
+        "suffix_contains_E": false,
+        "existing_threshold": "oo_suffix_threshold",
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_odd_even",
+        "remaining_after_first_e": "OOOEOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "cycleMin_not_odd_even",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOEOOOEOO|EOOEOEOOO|EOOOEOOEO|OEOEOOOEO|OEOOEOEOO|OEOOOEOOE|OOEOEOOOE|OOEOOEOEO|OOOEOOEOE"
+      },
+      {
+        "word": "OEOOEOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          1,
+          2,
+          3
+        ],
+        "suffix_after_internal_e": "OOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "ooo_suffix_threshold",
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_odd_even",
+        "remaining_after_first_e": "OOEOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "cycleMin_not_odd_even",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOEOOEOOO|EOOEOOOEO|EOOOEOEOO|OEOEOOEOO|OEOOEOOOE|OEOOOEOEO|OOEOEOOEO|OOEOOOEOE|OOOEOEOOE"
+      },
+      {
+        "word": "OEOEOOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          1,
+          1,
+          4
+        ],
+        "suffix_after_internal_e": "OOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "odd_run_suffix_threshold",
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_odd_even",
+        "remaining_after_first_e": "OEOOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "cycleMin_not_odd_even",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EOEOEOOOO|EOEOOOOEO|EOOOOEOEO|OEOEOEOOO|OEOEOOOOE|OEOOOOEOE|OOEOEOEOO|OOOEOEOEO|OOOOEOEOE"
+      },
+      {
+        "word": "OEEOOOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          1,
+          0,
+          5
+        ],
+        "suffix_after_internal_e": "OOOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "odd_run_suffix_threshold",
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_odd_even",
+        "remaining_after_first_e": "EOOOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "cycleMin_not_odd_even",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEOOOOOEO|EOEEOOOOO|EOOOOOEOE|OEEOOOOOE|OEOEEOOOO|OOEOEEOOO|OOOEOEEOO|OOOOEOEEO|OOOOOEOEE"
+      },
+      {
+        "word": "EOOOOOOOE",
+        "length": 9,
+        "odd_count": 7,
+        "even_count": 2,
+        "abc": null,
+        "suffix_after_internal_e": "OOOOOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even",
+        "remaining_after_first_e": null,
+        "remaining_is_lemma35": false,
+        "named_filter": "rotate_onto_two_even_leftover",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEOOOOOOO|EOOOOOOOE|OEEOOOOOO|OOEEOOOOO|OOOEEOOOO|OOOOEEOOO|OOOOOEEOO|OOOOOOEEO|OOOOOOOEE"
+      },
+      {
+        "word": "EOOOOOOEE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          0,
+          6,
+          0
+        ],
+        "suffix_after_internal_e": "",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even",
+        "remaining_after_first_e": "OOOOOOEE",
+        "remaining_is_lemma35": false,
+        "named_filter": "starts_E",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEEOOOOOO|EEOOOOOOE|EOOOOOOEE|OEEEOOOOO|OOEEEOOOO|OOOEEEOOO|OOOOEEEOO|OOOOOEEEO|OOOOOOEEE"
+      },
+      {
+        "word": "EOOOOOEOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          0,
+          5,
+          1
+        ],
+        "suffix_after_internal_e": "O",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even",
+        "remaining_after_first_e": "OOOOOEOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "starts_E",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEOOOOOEO|EOEEOOOOO|EOOOOOEOE|OEEOOOOOE|OEOEEOOOO|OOEOEEOOO|OOOEOEEOO|OOOOEOEEO|OOOOOEOEE"
+      },
+      {
+        "word": "EOOOOEOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          0,
+          4,
+          2
+        ],
+        "suffix_after_internal_e": "OO",
+        "suffix_contains_E": false,
+        "existing_threshold": "oo_suffix_threshold",
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even",
+        "remaining_after_first_e": "OOOOEOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "starts_E",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEOOOOEOO|EOOEEOOOO|EOOOOEOOE|OEEOOOOEO|OEOOEEOOO|OOEEOOOOE|OOEOOEEOO|OOOEOOEEO|OOOOEOOEE"
+      },
+      {
+        "word": "EOOOEOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          0,
+          3,
+          3
+        ],
+        "suffix_after_internal_e": "OOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "ooo_suffix_threshold",
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even",
+        "remaining_after_first_e": "OOOEOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "starts_E",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEOOOEOOO|EOOOEEOOO|EOOOEOOOE|OEEOOOEOO|OEOOOEEOO|OOEEOOOEO|OOEOOOEEO|OOOEEOOOE|OOOEOOOEE"
+      },
+      {
+        "word": "EOOEOOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          0,
+          2,
+          4
+        ],
+        "suffix_after_internal_e": "OOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "odd_run_suffix_threshold",
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even",
+        "remaining_after_first_e": "OOEOOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "starts_E",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEOOEOOOO|EOOEOOOOE|EOOOOEEOO|OEEOOEOOO|OEOOOOEEO|OOEEOOEOO|OOEOOOOEE|OOOEEOOEO|OOOOEEOOE"
+      },
+      {
+        "word": "EOEOOOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          0,
+          1,
+          5
+        ],
+        "suffix_after_internal_e": "OOOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": "odd_run_suffix_threshold",
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even",
+        "remaining_after_first_e": "OEOOOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "starts_E",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEOEOOOOO|EOEOOOOOE|EOOOOOEEO|OEEOEOOOO|OEOOOOOEE|OOEEOEOOO|OOOEEOEOO|OOOOEEOEO|OOOOOEEOE"
+      },
+      {
+        "word": "EEOOOOOOE",
+        "length": 9,
+        "odd_count": 6,
+        "even_count": 3,
+        "abc": [
+          0,
+          0,
+          6
+        ],
+        "suffix_after_internal_e": "OOOOOO",
+        "suffix_contains_E": false,
+        "existing_threshold": null,
+        "legal_cyclemin": false,
+        "blocked_by": "cycleMin_not_start_even",
+        "remaining_after_first_e": "EOOOOOOE",
+        "remaining_is_lemma35": false,
+        "named_filter": "starts_E",
+        "leftover": false,
+        "bootstrap": false,
+        "rotation_class": "EEEOOOOOO|EEOOOOOOE|EOOOOOOEE|OEEEOOOOO|OOEEEOOOO|OOOEEEOOO|OOOOEEEOO|OOOOOEEEO|OOOOOOEEE"
+      }
+    ],
+    "leftover_words": [
+      "OOOOOOEEE",
+      "OOOOOEOEE",
+      "OOOOOEEOE",
+      "OOOOEOOEE",
+      "OOOOEOEOE",
+      "OOOEOOOEE",
+      "OOOEOOEOE",
+      "OOEOOOOEE",
+      "OOEOOOEOE"
+    ],
+    "leftovers_are_predicted": true,
+    "bootstrap_words": [
+      "OOOOEEOOE",
+      "OOOEOEOOE",
+      "OOOEEOOOE",
+      "OOEOOEOOE",
+      "OOEOEOOOE",
+      "OOEEOOOOE"
+    ],
+    "bootstrap_are_predicted": true,
+    "odd_run_words": [
+      "OOOOOOOOE"
+    ],
+    "unclassified": [],
+    "last_internal_suffix_never_contains_E": true,
+    "bootstrap_small_n": {
+      "OOOOEEOOE": {
+        "n3": {
+          "realizes": false,
+          "fail_index": 3,
+          "fail_state": 36
+        },
+        "n5": {
+          "realizes": false,
+          "fail_index": 2,
+          "fail_state": 36
+        }
+      },
+      "OOOEOEOOE": {
+        "n3": {
+          "realizes": false,
+          "fail_index": 4,
+          "fail_state": 6
+        },
+        "n5": {
+          "realizes": false,
+          "fail_index": 2,
+          "fail_state": 36
+        }
+      },
+      "OOOEEOOOE": {
+        "n3": {
+          "realizes": false,
+          "fail_index": 5,
+          "fail_state": 2
+        },
+        "n5": {
+          "realizes": false,
+          "fail_index": 2,
+          "fail_state": 36
+        }
+      },
+      "OOEOOEOOE": {
+        "n3": {
+          "realizes": false,
+          "fail_index": 2,
+          "fail_state": 11
+        },
+        "n5": {
+          "realizes": false,
+          "fail_index": 3,
+          "fail_state": 6
+        }
+      },
+      "OOEOEOOOE": {
+        "n3": {
+          "realizes": false,
+          "fail_index": 2,
+          "fail_state": 11
+        },
+        "n5": {
+          "realizes": false,
+          "fail_index": 3,
+          "fail_state": 6
+        }
+      },
+      "OOEEOOOOE": {
+        "n3": {
+          "realizes": false,
+          "fail_index": 2,
+          "fail_state": 11
+        },
+        "n5": {
+          "realizes": false,
+          "fail_index": 4,
+          "fail_state": 2
+        }
+      }
+    },
+    "tails": {
+      "rows": [
+        {
+          "word": "OOOOOOEEE",
+          "abc": [
+            6,
+            0,
+            0
+          ],
+          "prefix_C_bits": 1330,
+          "full_C_bits": 2226,
+          "remaining": "EE",
+          "remaining_expanding": false,
+          "remaining_is_lemma35": false,
+          "n0": 8,
+          "fires_at_n0": true,
+          "fails_before_n0": true,
+          "table": {
+            "word": "OOOOOOEEE",
+            "n_lo": 2,
+            "n_hi": 8,
+            "checked": 6,
+            "follows": 0,
+            "follow_starts": [],
+            "hits": [],
+            "hit_count": 0
+          }
+        },
+        {
+          "word": "OOOOOEOEE",
+          "abc": [
+            5,
+            1,
+            0
+          ],
+          "prefix_C_bits": 422,
+          "full_C_bits": 2354,
+          "remaining": "OEE",
+          "remaining_expanding": false,
+          "remaining_is_lemma35": false,
+          "n0": 89,
+          "fires_at_n0": true,
+          "fails_before_n0": true,
+          "table": {
+            "word": "OOOOOEOEE",
+            "n_lo": 2,
+            "n_hi": 89,
+            "checked": 87,
+            "follows": 0,
+            "follow_starts": [],
+            "hits": [],
+            "hit_count": 0
+          }
+        },
+        {
+          "word": "OOOOOEEOE",
+          "abc": [
+            5,
+            0,
+            1
+          ],
+          "prefix_C_bits": 422,
+          "full_C_bits": 2610,
+          "remaining": "EOE",
+          "remaining_expanding": false,
+          "remaining_is_lemma35": false,
+          "n0": 60,
+          "fires_at_n0": true,
+          "fails_before_n0": true,
+          "table": {
+            "word": "OOOOOEEOE",
+            "n_lo": 2,
+            "n_hi": 60,
+            "checked": 58,
+            "follows": 0,
+            "follow_starts": [],
+            "hits": [],
+            "hit_count": 0
+          }
+        },
+        {
+          "word": "OOOOEOOEE",
+          "abc": [
+            4,
+            2,
+            0
+          ],
+          "prefix_C_bits": 130,
+          "full_C_bits": 2546,
+          "remaining": "OOEE",
+          "remaining_expanding": false,
+          "remaining_is_lemma35": false,
+          "n0": 120,
+          "fires_at_n0": true,
+          "fails_before_n0": true,
+          "table": {
+            "word": "OOOOEOOEE",
+            "n_lo": 2,
+            "n_hi": 120,
+            "checked": 118,
+            "follows": 0,
+            "follow_starts": [],
+            "hits": [],
+            "hit_count": 0
+          }
+        },
+        {
+          "word": "OOOOEOEOE",
+          "abc": [
+            4,
+            1,
+            1
+          ],
+          "prefix_C_bits": 130,
+          "full_C_bits": 2802,
+          "remaining": "OEOE",
+          "remaining_expanding": false,
+          "remaining_is_lemma35": false,
+          "n0": 81,
+          "fires_at_n0": true,
+          "fails_before_n0": true,
+          "table": {
+            "word": "OOOOEOEOE",
+            "n_lo": 2,
+            "n_hi": 81,
+            "checked": 79,
+            "follows": 0,
+            "follow_starts": [],
+            "hits": [],
+            "hit_count": 0
+          }
+        },
+        {
+          "word": "OOOEOOOEE",
+          "abc": [
+            3,
+            3,
+            0
+          ],
+          "prefix_C_bits": 38,
+          "full_C_bits": 2834,
+          "remaining": "OOOEE",
+          "remaining_expanding": false,
+          "remaining_is_lemma35": false,
+          "n0": 188,
+          "fires_at_n0": true,
+          "fails_before_n0": true,
+          "table": {
+            "word": "OOOEOOOEE",
+            "n_lo": 2,
+            "n_hi": 188,
+            "checked": 186,
+            "follows": 1,
+            "follow_starts": [
+              183
+            ],
+            "hits": [],
+            "hit_count": 0
+          }
+        },
+        {
+          "word": "OOOEOOEOE",
+          "abc": [
+            3,
+            2,
+            1
+          ],
+          "prefix_C_bits": 38,
+          "full_C_bits": 3090,
+          "remaining": "OOEOE",
+          "remaining_expanding": false,
+          "remaining_is_lemma35": false,
+          "n0": 126,
+          "fires_at_n0": true,
+          "fails_before_n0": true,
+          "table": {
+            "word": "OOOEOOEOE",
+            "n_lo": 2,
+            "n_hi": 126,
+            "checked": 124,
+            "follows": 0,
+            "follow_starts": [],
+            "hits": [],
+            "hit_count": 0
+          }
+        },
+        {
+          "word": "OOEOOOOEE",
+          "abc": [
+            2,
+            4,
+            0
+          ],
+          "prefix_C_bits": 10,
+          "full_C_bits": 3266,
+          "remaining": "OOOOEE",
+          "remaining_expanding": true,
+          "remaining_is_lemma35": true,
+          "n0": 374,
+          "fires_at_n0": true,
+          "fails_before_n0": true,
+          "table": {
+            "word": "OOEOOOOEE",
+            "n_lo": 2,
+            "n_hi": 374,
+            "checked": 372,
+            "follows": 0,
+            "follow_starts": [],
+            "hits": [],
+            "hit_count": 0
+          }
+        },
+        {
+          "word": "OOEOOOEOE",
+          "abc": [
+            2,
+            3,
+            1
+          ],
+          "prefix_C_bits": 10,
+          "full_C_bits": 3522,
+          "remaining": "OOOEOE",
+          "remaining_expanding": true,
+          "remaining_is_lemma35": true,
+          "n0": 250,
+          "fires_at_n0": true,
+          "fails_before_n0": true,
+          "table": {
+            "word": "OOEOOOEOE",
+            "n_lo": 2,
+            "n_hi": 250,
+            "checked": 248,
+            "follows": 0,
+            "follow_starts": [],
+            "hits": [],
+            "hit_count": 0
+          }
+        }
+      ],
+      "all_tails_fire": true,
+      "all_tables_empty": true,
+      "max_n0": 374,
+      "follows_witness": {
+        "word": "OOOEOOOEE",
+        "n": 183,
+        "image": 1664
+      }
+    },
+    "even_type": [
+      {
+        "length": 6,
+        "o_min": 4,
+        "max_evens_if_expanding": 2,
+        "three_even_possible": false,
+        "four_even_possible": false
+      },
+      {
+        "length": 7,
+        "o_min": 5,
+        "max_evens_if_expanding": 2,
+        "three_even_possible": false,
+        "four_even_possible": false
+      },
+      {
+        "length": 8,
+        "o_min": 6,
+        "max_evens_if_expanding": 2,
+        "three_even_possible": false,
+        "four_even_possible": false
+      },
+      {
+        "length": 9,
+        "o_min": 6,
+        "max_evens_if_expanding": 3,
+        "three_even_possible": true,
+        "four_even_possible": false
+      },
+      {
+        "length": 10,
+        "o_min": 7,
+        "max_evens_if_expanding": 3,
+        "three_even_possible": true,
+        "four_even_possible": false
+      },
+      {
+        "length": 11,
+        "o_min": 7,
+        "max_evens_if_expanding": 4,
+        "three_even_possible": true,
+        "four_even_possible": true
+      },
+      {
+        "length": 12,
+        "o_min": 8,
+        "max_evens_if_expanding": 4,
+        "three_even_possible": true,
+        "four_even_possible": true
+      }
+    ],
+    "n_search": false,
+    "length_ten": false,
+    "four_even": false,
+    "o_terminating_programme": false,
+    "cycle_state_search": false,
+    "induction_on_period": false,
+    "induction_on_n": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "cycle_word_formally_expanding": true,
+    "no_cycle_odd_run_append_even": true,
+    "oo_suffix_threshold": true,
+    "ooo_suffix_threshold": true,
+    "no_cycleMin_internal_even_threshold": true,
+    "cycleMin_not_odd_even": true,
+    "cycleMin_not_start_even": true,
+    "cycle_last_even_interval": true,
+    "no_cycle_word_length_le_six": true,
+    "no_cycle_word_oooeoe": true,
+    "no_cycle_word_ooooee": true,
+    "no_cycle_word_oooooee": true,
+    "no_cycle_word_ooooeoe": true,
+    "no_cycle_word_length_le_seven": true,
+    "no_global_termination_theorem": true,
+    "no_all_cycles_impossible": true,
+    "no_cycle_engine": true,
+    "length_eight_open_in_census": true,
+    "no_length_nine_theorem": true,
+    "FloorPower_not_rewritten": true,
+    "orbit_min_not_used": true,
+    "PowerBoundEq_not_used_as_cycle_attack": true,
+    "Minimal_untouched": true
+  },
+  "decision": {
+    "classification": "THREE_EVEN_PREFIX_CELL_GREEN",
+    "secondary": [
+      "FIRST_E_TRANSPORT_FOR_A2",
+      "LAST_INTERNAL_SUFFIX_ALWAYS_O_RUN"
+    ],
+    "reason": "length 9 has 28 three-even even-terminating expanding words; last-internal suffix is always O^c so bootstrap still kills c>=2; the nine leftovers O^a E O^b E O^c E with a>=2 and c in {0,1} die by the odd-prefix cell tail (N0<=374) with empty CycleWord tables; a=2 remainders are the Lemma 3.5 words OOOOEE / OOOEOE"
+  },
+  "search_method": "structural inventory of even-terminating expanding length-9 words; last-internal vs first-E split; odd-prefix cell tails on the nine three-even leftovers; exact follows+image table below N0 only; no cycle-state search; no length-10; no Lean"
+}

@@ -397,8 +397,33 @@ together with the existing `cycleWord_rotateWord`,
 `no_cycle_word_ooe`, `no_cycle_word_length_four_ends_even`,
 `no_cycle_word_length_five_ends_even`, `no_cycle_odd_run_append_even`,
 `no_cycle_word_ooeooe`, `no_cycle_word_oooeoe`, and
-`no_cycle_word_ooooee`. The census stops at length six. It is not an
-exclusion of all cycles and not a halt theorem.
+`no_cycle_word_ooooee`.
+
+The same file then strengthens the census to the note's Theorem 3.8:
+
+```text
+no_cycle_word_length_le_seven :
+  2 <= n -> w.length <= 7 -> ¬CycleWord n w
+```
+
+The length-seven leftovers are evaluated in `LeftoverEval.lean`
+(`Fin 14` tables and `2^422 * 15^128 < 14^243`) and excluded in
+`LeftoverCycles.lean`:
+
+```text
+no_cycle_word_oooooee
+no_cycle_word_ooooeoe
+```
+
+The internal-E bootstrap pair is excluded in `Cycles.lean`:
+
+```text
+no_cycle_word_ooeoooe
+no_cycle_word_oooeooe
+```
+
+The census stops at length seven. It is not an exclusion of all
+cycles and not a halt theorem. Length eight is open.
 
 The cycle-surplus identity of the note's Corollary 2.7 and the
 per-step scale bound are:

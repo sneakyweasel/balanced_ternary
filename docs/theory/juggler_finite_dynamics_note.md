@@ -26,15 +26,19 @@ It is conjectured that every positive integer eventually reaches \(1\).
 We do not prove that conjecture.
 
 The main theorem is a small-cycle census: the Juggler map has no
-nontrivial cycle of length at most six. The argument is elementary.
+nontrivial cycle of length at most seven. The argument is elementary.
 A realized parity word \(w\) obeys the power envelope
 \(\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}\le n^{3^{\#O(w)}}\), so a cycle word is
 formally expanding. Inverse cells and two next-square thresholds
 exclude every even-terminating expanding word of length at most six
 except two leftover shapes, \(OOOEOE\) and \(OOOOEE\). Those two
 are excluded by a tail inequality for \(n\ge 256\) and a check of
-the \(254\) starts \(2\le n<256\). Length seven is the first
-combinatorial shape the thresholds do not reach.
+the \(254\) starts \(2\le n<256\). Length seven is the same two-even
+type: the recorded thresholds and one internal-even bootstrap leave
+two leftover shapes, \(OOOOEOE\) and \(OOOOOEE\), excluded by a
+sharper tail for \(n\ge 14\) and a check of the \(12\) starts
+\(2\le n<14\). Length eight is the first open even-terminating
+expanding length.
 
 The same envelope gives an exact global defect by keeping the floor
 remainders. Zero defect characterizes the monochrome power towers;
@@ -68,7 +72,8 @@ A word of length \(k\) with \(o\) odd letters has ideal exponent
 available only when the orbit realizes those parities.
 
 The main theorem of the note is the census: there is no
-nontrivial cycle of period at most six (Theorem 3.6). The tool is the
+nontrivial cycle of period at most six (Theorem 3.6), and none of
+period at most seven (Theorem 3.8). The tool is the
 finite-word envelope (Theorem 2.2), together with the inverse cells
 and two next-square thresholds. The exact defect (Theorems 2.4--2.6)
 is the same recurrence with remainders kept rather than dropped. It
@@ -110,7 +115,9 @@ assistance. An independent Lean check of those arguments lives in the
 repository named in Section 4; the corresponding theorem names are
 collected in Appendix A. Lemma 3.5 uses a table of \(254\) six-step
 evaluations for \(2\le n<256\), one table for each of the two leftover
-words. That table is a finite computation, not a termination proof.
+words. Lemma 3.7 uses a table of \(12\) seven-step evaluations for
+\(2\le n<14\). Those tables are finite computations, not a
+termination proof.
 
 ## 2. Envelope and defect
 
@@ -587,14 +594,78 @@ is realized at \(y\), and Lemma 3.4(i) gives
 Lemma 3.4(iv) gives \(J^2(y)<(m+1)^2\). \(\square\)
 
 Lemma 3.4(v) excludes every odd-run-then-even word \(O^aE\) with
-\(a\ge 3\), of any length. Length seven is the first
-even-terminating expanding length whose surviving candidates have an
-internal even letter (five odd letters among the first six). Those
-shapes are not reached by the recorded thresholds. No exclusion of
-cycles of length seven or more is claimed. The census stops at
-length six because length seven admits even-terminating expanding
-words with an internal even letter that none of the recorded
-thresholds reach; no exclusion at length seven is claimed.
+\(a\ge 3\), of any length.
+
+**Lemma 3.7 (two length-seven exclusions).**
+Neither \(OOOOEOE\) nor \(OOOOOEE\) is a cycle word at any \(n\ge 2\).
+
+*Proof.* First, if \(n\ge 14\), then
+\[
+n^{243}>2^{422}(n+1)^{128}.
+\]
+Indeed \(14(n+1)\le 15n\), so
+\((n+1)^{128}\le(15/14)^{128}n^{128}\). The finite comparison
+\(2^{422}15^{128}<14^{243}\) then yields
+\(2^{422}(n+1)^{128}<14^{115}n^{128}\le n^{243}\).
+
+For \(2\le n<14\), neither word is realized: at every such start,
+some letter fails to match the current parity. The same finite check
+is the Lean `native_decide` evaluation behind
+`no_cycle_word_ooooeoe` and `no_cycle_word_oooooee` (Appendix A).
+
+Now suppose \(OOOOOEE\) is a cycle word at \(n\ge 14\), and write
+\(z=J^5(n)\) for the image after the prefix \(OOOOO\). Lemma 3.4(iv)
+on the last even letter, together with the preceding even letter,
+gives \(z<(n+1)^4\). Lemma 3.3 on \(OOOOO\) gives
+\(n^{243}\le 2^{422}z^{32}\), so
+\(n^{243}<2^{422}(n+1)^{128}\), contradicting the tail inequality.
+
+Finally suppose \(OOOOEOE\) is a cycle word at \(n\ge 14\). Write
+\(z_4=J^4(n)\) and \(y=J(z_4)=\lfloor\sqrt{z_4}\rfloor\), so
+\(z_4<(y+1)^2\). Lemma 3.3 on \(OOOO\) gives
+\(n^{81}\le 2^{130}z_4^{16}<2^{130}(y+1)^{32}\). Cubing yields
+\(n^{243}<2^{390}(y+1)^{96}\). The last letters \(OE\) give the odd-cell
+bound \(y^3<(n+1)^4\). Write \(A=n+1\ge 15\). The same comparison
+\((y+1)^3<2A^4\) as in Lemma 3.5 holds at this smaller scale. Raising
+to the thirty-second power gives
+\((y+1)^{96}<2^{32}(n+1)^{128}\). Combining with the cubed lower
+envelope produces again \(n^{243}<2^{422}(n+1)^{128}\). \(\square\)
+
+**Theorem 3.8 (small-cycle census through length seven).**
+No word of length at most seven is a cycle word at any \(n\ge 2\).
+Equivalently, a nontrivial Juggler cycle, if one exists, has period at
+least eight.
+
+*Proof.* The reduction of Theorem 3.6 applies at every length: an
+all-odd word cannot return, and every mixed cycle word rotates to an
+even-terminating cycle word based at a cycle state \(m\ge 2\).
+Lengths at most six are Theorem 3.6. It remains to exclude
+even-terminating cycle words of length seven.
+
+By Theorem 3.2(i) a cycle word is formally expanding. The
+even-terminating expanding length-seven words are exactly
+\(O^6E\), \(EO^5E\), \(OEO^4E\), \(OOEO^3E\), \(O^3EO^2E\),
+\(O^4EOE\), and \(O^5EE\). Lemma 3.4(v) excludes \(O^6E\). The word
+\(EO^5E\) rotates one step onto \(O^5EE\), and \(OEO^4E\) starts
+\(OE\), so it cannot be a cycle minimum (Theorem 3.2(iii)) and
+rotates two steps onto \(O^4EOE\); both leftovers are excluded by
+Lemma 3.7.
+
+It remains to exclude \(OOEO^3E\) and \(O^3EO^2E\). Rotate either
+word to a cycle minimum \(m\ge 2\). For \(OOEO^3E\) the minimum
+orientation retains the internal even letter followed by the suffix
+\(OOO\). Then \(m\ge 3\), the prefix through that even letter is
+realized, and Lemma 3.4(ii) at threshold \(3\) contradicts the last
+even cell. For \(O^3EO^2E\) the same bootstrap applies with suffix
+\(OO\) and threshold \(5\), once \(m=3\) is removed: at \(m=3\) the
+state after \(OOO\) is even, so the next even letter is not
+realized. \(\square\)
+
+Length eight is the same two-even type as lengths six and seven.
+Length nine is the first even-terminating expanding length that
+admits three even letters. No exclusion of cycles of length eight
+or more is claimed. The census stops at length seven; no exclusion
+at length eight is claimed.
 
 ## 4. Remarks
 
@@ -639,7 +710,7 @@ state (Section 2).
 
 > No theorem forces every exact integer state into a contracting
 > prefix. In particular, it is open whether every start reaches
-> \(1\), and open whether a nontrivial cycle of length seven or more
+> \(1\), and open whether a nontrivial cycle of length eight or more
 > exists.
 
 Lean proofs of the theorems of Sections 2--4 are in the
@@ -670,6 +741,8 @@ names are the corresponding Lean theorems in
 | Lemma 3.4 | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append`, `cycle_last_even_interval`, `no_cycle_odd_run_append_even` |
 | Lemma 3.5 | `no_cycle_word_oooeoe`, `no_cycle_word_ooooee` |
 | Theorem 3.6 | `no_cycle_word_length_le_six` |
+| Lemma 3.7 | `no_cycle_word_ooooeoe`, `no_cycle_word_oooooee` |
+| Theorem 3.8 | `no_cycle_word_length_le_seven`, with `no_cycle_word_ooeoooe`, `no_cycle_word_oooeooe` |
 | Theorem 4.1 | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |

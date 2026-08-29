@@ -10903,3 +10903,81 @@ Best next question
   no_cycle_word_length_seven
 ```
 
+## Juggler length-9 three-even leftovers
+
+- **Date:** 2026-08-29
+- **Objective:** Name the argument that excludes even-terminating expanding length-9 words with three evens, after the two leftover families \(O^{k-2}EE\) and \(O^{k-3}EOE\) stop covering
+- **Hypotheses:** last-internal suffix is always \(O^c\); leftovers are the nine words \(O^aEO^bEO^cE\) with \(a\ge 2\) and \(c\in\{0,1\}\); odd-prefix plus mixed-tail cells replace those two families; this is not induction on \(n\) or on the period
+- **Major results:** Classification **THREE_EVEN_PREFIX_CELL_GREEN**. Length 9 has 37 even-terminating expanding words: 1 odd-run, 8 two-even, 28 three-even. The 28 split as 7 start \(E\), 6 start \(OE\), 6 last-internal bootstrap, 9 leftovers. All nine prefix-cell tails fire (\(N_0\le 374\)); exact tables below the cutoffs have zero returns. The \(a=2\) remainders are the Lemma 3.5 words `OOOOEE` / `OOOEOE`. Records: `docs/problems/juggler_length_nine_three_even.md`, `docs/research/juggler_cycle_length_nine.md`. No Lean. No Paper A edit. Length 10 and four-even words were not opened
+- **Refuted ideas:** last two \(E\)s separated by a suffix containing \(E\); induction on period as a reduction; a general no-cycle induction on \(n\); naive full-word `lowerDenom` as the leftover tail
+- **Literature:** oeis-A007320 known. Internal-E bootstrap, Lemma 3.5, and the length-7 Lean census reused, not reopened
+- **Open:** Lean exclusion of the nine leftovers, starting with `OOOOOOEEE` at \(N_0=8\). Uniform two-even theorem for lengths 6–8 not opened
+- **Decision:** PROMOTE the argument and the computational exclusion of the nine leftovers. Not a length-9 census and not a halt theorem
+
+```text
+What was learned
+- An even-terminating three-even word is O^a E O^b E O^c E with
+  a+b+c = 6; the last-internal suffix is always O^c
+- Bootstrap still kills c>=2; the new leftovers are nine words,
+  not a new inductive step
+- Naive full-word lowerDenom inflates C through the internal E's
+  (N0 in the thousands); the refined tail keeps those E's in the
+  last-even / last-odd cell chain
+- All nine prefix-cell tails fire at N0 <= 374; tables are empty
+- For a=2 the remainder after the first E is a length-6 leftover;
+  first-E transport is a CycleMin simplification of the same tail
+Strongest theorem
+- none new in Lean; computationally, none of the nine leftovers is
+  a CycleWord at any n >= 2
+Strongest refutation
+- "the last two E's may be separated by OE..." is false for an
+  even-terminating word; that gap is first-E, not last-internal
+Reusable machinery
+- src/research/juggler_sequence/cycle_length_nine.py
+Branch status
+- PROMOTE
+Why
+- the three-even gap is a finite leftover list with a named
+  Lemma 3.5-style exclusion path that fires for every leftover
+Best next question
+- Lean-exclude CycleWord on OOOOOOEEE by the prefix-cell tail at
+  N0=8, then the remaining eight leftovers
+```
+
+## Juggler length-7 Lean census
+
+- **Date:** 2026-08-29
+- **Objective:** Lean-exclude the two length-7 leftovers and assemble `no_cycle_word_length_le_seven`
+- **Hypotheses:** the \(N_0=14\) tail plus `Fin 14` tables exclude `OOOOOEE` and `OOOOEOE`; internal-E bootstrap excludes `OOEOOOE` / `OOOEOOE`; the existing census assembly extends from length 6 to 7
+- **Major results:** `no_cycle_word_oooooee`, `no_cycle_word_ooooeoe` (**EXACT — LEAN VERIFIED**, Paper A Lemma 3.7, ledger `J-leftover-length-seven-orientations`); `no_cycle_word_ooeoooe`, `no_cycle_word_oooeooe`; `no_cycle_word_length_le_seven` (**EXACT — LEAN VERIFIED**, Paper A Theorem 3.8, ledger `J-small-cycle-census-seven`). Paper A boundary moved to length eight. No halt theorem. Length 8 was not opened
+- **Refuted ideas:** a third leftover shape; a uniform defect tax at length 7; a halt theorem
+- **Literature:** Paper A Theorems 3.6–3.8. Length-6 leftover method reused
+- **Open:** length-8 two-even leftovers; length-9 three-even Lean census. Neither opened here
+- **Decision:** PROMOTE the Lean census into Paper A and the ledger. Not a length-8 programme and not a halt theorem
+
+```text
+What was learned
+- Length 7 is the same two-even geometry as length 6, now Lean-certified
+- The leftover tail n^243 > 2^422 (n+1)^128 at n ≥ 14 plus Fin 14
+  tables exclude OOOOOEE and OOOOEOE
+- OOEOOOE / OOOEOOE die by the existing internal-E bootstrap;
+  n=3 on OOOEOOE is a parity failure
+- The census assembly is the length-6 argument with one extra
+  even-terminating layer
+- Length 8 is the first open even-terminating expanding length
+Strongest theorem
+- no_cycle_word_length_le_seven: no CycleWord of length ≤ 7 at n ≥ 2
+Strongest refutation
+- none; the Phase-0 leftover inventory was exactly the Lean cases
+Reusable machinery
+- LeftoverEval Fin 14 tables; leftover tail pow243_gt_two_pow422
+Branch status
+- PROMOTE
+Why
+- both leftovers and the bootstrap pair are Lean-excluded, so the
+  first open length after Paper A's original census is now closed
+Best next question
+- do the same two leftover families exclude every even-terminating
+  expanding length-8 word, or does a new leftover shape appear?
+```
+
