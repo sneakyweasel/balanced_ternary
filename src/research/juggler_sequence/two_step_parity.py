@@ -2490,6 +2490,119 @@ def branch_freeze_scan(
     return out
 
 
+def master_identity_check(
+    start: int, count: int, h1: int, h2: int
+) -> dict[str, Any]:
+    """Paper B Section 5 master identity (Phase 25 gate).
+
+    With c any weight (here c = n, exact), theta_2 = {m^{3/2}},
+    W = D1 Y, kappa_2 = [theta_2 >= 1 - {W}],
+    kappa'' = [{W} >= 1 - {DD Y}]:
+
+    DD(c theta_2) = (DD c) theta_2
+                  + (D2 c)(n+d1) ({W} - kappa_2)
+                  + (D1 c)(n+d2) ({W'} - kappa_2')
+                  + c_11 ({DD Y} - kappa'' - D2 kappa_2),
+
+    where W' = D2 Y and kappa_2' is the d2-analogue. Exact scaled
+    integers; boundary-ambiguous samples skipped. This is the exact
+    rearrangement of level2_gap_check + double_gap_identity_check
+    used by the rewritten kernel proof; the gate catches bookkeeping
+    slips in the assembly.
+    """
+    s = 10**24
+    guard = 10**6
+    matches = skipped = 0
+    n = start if start % 2 == 1 else start + 1
+    d1, d2 = 2 * h1, 2 * h2
+
+    def y_scaled(x: int) -> int:
+        return isqrt(isqrt(x**3) ** 3 * s * s)
+
+    for _ in range(count):
+        y00, y10 = y_scaled(n), y_scaled(n + d1)
+        y01, y11 = y_scaled(n + d2), y_scaled(n + d1 + d2)
+        th = {key: y - (y // s) * s for key, y in
+              (("00", y00), ("10", y10), ("01", y01), ("11", y11))}
+        w0, w1 = y10 - y00, y11 - y01          # W(n), W(n+d2), scaled
+        wp0 = y01 - y00                        # W'(n) = D2 Y, scaled
+        ddy = w1 - w0                          # DD Y, scaled
+        frac_w0, frac_w1 = w0 % s, w1 % s
+        frac_wp0 = wp0 % s
+        frac_ddy = ddy % s
+        fracs = (th["00"], th["10"], th["01"], th["11"],
+                 frac_w0, frac_w1, frac_wp0, frac_ddy)
+        pairs = (
+            (th["00"], s - frac_w0), (th["01"], s - frac_w1),
+            (th["00"], s - frac_wp0), (frac_w0, s - frac_ddy),
+        )
+        if any(f < guard or f > s - guard for f in fracs) or any(
+            abs(a - b) < guard for a, b in pairs
+        ):
+            skipped += 1
+            n += 2
+            continue
+        k2_0 = 1 if th["00"] >= s - frac_w0 else 0
+        k2_1 = 1 if th["01"] >= s - frac_w1 else 0
+        k2p = 1 if th["00"] >= s - frac_wp0 else 0
+        kdd = 1 if frac_w0 >= s - frac_ddy else 0
+        c00, c10, c01, c11 = n * n, (n + d1) ** 2, (n + d2) ** 2, (n + d1 + d2) ** 2
+        lhs = (c11 * th["11"] - c01 * th["01"]
+               - c10 * th["10"] + c00 * th["00"])
+        ddc = c11 - c01 - c10 + c00
+        # product rule: DD(cf) = c11 DD f + (D2 c)(n+d1) D1 f
+        #               + (D1 c)(n+d2) D2 f + (DD c) f
+        d1_th2 = frac_w0 - k2_0 * s            # D1 theta_2 = {W} - kappa_2
+        d2_th2 = frac_wp0 - k2p * s            # D2 theta_2 = {W'} - kappa_2'
+        dd_th2 = frac_ddy - (kdd + k2_1 - k2_0) * s
+        rhs = (c11 * dd_th2 + (c11 - c10) * d1_th2
+               + (c11 - c01) * d2_th2 + ddc * th["00"])
+        if lhs != rhs:
+            return {"holds": False, "witness": n}
+        matches += 1
+        n += 2
+    return {"holds": True, "matches": matches, "skipped": skipped}
+
+
+def kernel_margin_scan(p_block: int, h3: int = 1, k: int = 1) -> dict[str, Any]:
+    """Numerical gate for the two displayed sign margins (Phase 25).
+
+    (m1) differenced-kernel main curvature: with beta = exact level-1
+    gap at shift 2*h3, G(n) = W3(X(n)) = (X+beta)^{3/2} - X^{3/2},
+    the proof displays G'' = -(9/32) beta n^{-5/4} (1+o(1)), i.e.
+    -(27/32) h3 n^{-3/4} at beta ~ 3 h3 n^{1/2}: the two contributions
+    (9/16) beta n^{-5/4} and -(27/32) beta n^{-5/4} do not cancel.
+
+    (m2) window-centre composite for the class-(i) decoration:
+    lambda_2 = (c F)'' + u X'' at u = -B(n0) is
+    (945/512 - 27/64) k j n^{-1/8} (1+o(1)) ~ 1.42 k j n^{-1/8}:
+    single-signed with ratio 945/512 : 27/64 = 4.375.
+    """
+    out: dict[str, Any] = {}
+    n = float(p_block) * 1.5
+    x = n**1.5
+    beta = float(isqrt((int(n) + 2 * h3) ** 3) - isqrt(int(n) ** 3))
+    w3p = 1.5 * ((x + beta) ** 0.5 - x**0.5)
+    w3pp = 0.75 * ((x + beta) ** -0.5 - x**-0.5)
+    xp, xpp = 1.5 * n**0.5, 0.75 * n**-0.5
+    g2 = w3pp * xp * xp + w3p * xpp
+    out["m1"] = {
+        "computed": g2,
+        "predicted": -(9.0 / 32.0) * beta * n**-1.25,
+        "ratio": g2 / (-(9.0 / 32.0) * beta * n**-1.25),
+    }
+    j = 1
+    cf_pp = (945.0 / 512.0) * k * j * n**-0.125
+    u_term = -(27.0 / 64.0) * k * j * n**-0.125
+    out["m2"] = {
+        "cf_pp": cf_pp,
+        "u_term": u_term,
+        "sum_over_kj": (cf_pp + u_term) / (k * j * n**-0.125),
+        "ratio": abs(cf_pp / u_term),
+    }
+    return out
+
+
 def _kernel_phase_scaled(n: int, coeff_num: int, coeff_den: int) -> float:
     """{c(n) theta_2(n)} with c = (num/den) n^{9/8}, exact scaled ints."""
     s = 10**12

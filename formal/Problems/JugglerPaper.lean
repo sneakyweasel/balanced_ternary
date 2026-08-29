@@ -17,12 +17,11 @@ import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionSlack
 import Problems.Juggler.NearTightScale
-import Problems.Juggler.GapCells
 
 /-!
-# Juggler paper barrel
+# Juggler paper barrel (Paper A)
 
-Review object for the math note
+Review object for the finite-dynamics note
 `docs/theory/juggler_finite_dynamics_note.md`.
 
 This file imports only the modules named by that note. It does not
@@ -31,13 +30,16 @@ not the review object. Certificates and Cycles still compile their
 existing dependencies (`FirstPassage`, `Collapse`, `Residuals`); those
 files are not imported here as review targets.
 
+The exact floor reductions used by the companion discrepancy
+manuscript (`GapCells.lean`) are not part of this review object.
+
 Build from `formal/`:
 
 ```text
 lake build Problems.JugglerPaper
 ```
 
-The note's Lean-tagged theorems are:
+The note's Lean-tagged theorems are listed in its Appendix A:
 
 * 2.1 `image_monotone_of_follows`
 * 2.2 `power_bound_word`
@@ -49,36 +51,29 @@ The note's Lean-tagged theorems are:
 * 2.6 `global_defect_append`
 * 2.7 `image_eq_start_defectRatio`, with the per-step scale bound
       `one_plus_eta_lt_succ_sq`
-* 3.1 `cycle_word_formally_expanding`, `odd_cell_unique`,
-      `cycleMin_not_end_odd`, `square_scale_superquadratic`,
-      `cycleMin_to_even_superquadratic`
-* 3.2 `no_cycle_word_length_le_six`, with components
+* 3.1 `odd_cell_unique`
+* 3.2 `cycle_word_formally_expanding`, `cycleMin_not_end_odd`,
+      `square_scale_superquadratic`, `cycleMin_to_even_superquadratic`
+* 3.3 `lower_growth_word`
+* 3.4 `oo_suffix_threshold`, `ooo_suffix_threshold`,
+      `threshold_inherits_odd_append`
+* 3.5 `no_cycle_word_oooeoe`, `no_cycle_word_ooooee`
+* 3.6 `no_cycle_word_length_le_six`, with components
       `no_cycle_word_replicate_odd`, `cycleWord_exists_even_terminating`,
       `no_cycle_word_len_six_ends_even`, `no_cycle_word_oooeoe`,
       `no_cycle_word_ooooee`
 * 4.1 `even_finiteProgress`, `odd_even_finiteProgress`
-* 4.2 `unresolved_is_odd_odd`
-* 4.3 `reachesOne_of_lt_twelve`, `even_lt_sq_twelve_reachesOne`
-* §5  exact floor reductions only: `floor_odd_iff_half_le_fract_half`
-      (parity bridge), `floor_add_eq_add_carry`, `floor_gap_eq_carry`,
-      `seq_floor_gap` (gap cells). The analytic estimates of §5
-      (Theorems 5.1, 5.4, 5.7, 5.8, Proposition 5.5, Corollary 5.9)
-      and Proposition 6.1 are human proofs, not Lean theorems.
-* §6  `four_block_pe_1999` (certified four-block expanding chain)
+* no certificate implies odd-to-odd:
+      `no_finiteProgress_implies_odd_odd`
+* §5  `four_block_pe_1999` (certified four-block expanding chain)
 
 `FiniteProgress` is a descent certificate: a realized word with image
-strictly below the start, or with image `1`. Lean packages this as
-`DescentCertificate`. The four constructors are proof forms of that
-same predicate, not four different claims.
+strictly below the start. Lean packages this as `DescentCertificate`.
 
 This barrel does not prove that every positive integer reaches `1`,
 that every orbit meets a contracting word, or that all nontrivial
 cycles are impossible. The cycle census stops at length six; length
-seven and beyond is open. The discrepancy estimates of the note's
-Section 5 are human proofs and are not here; only their exact floor
-reductions (`GapCells`) are.
-Proposition 4.4 is an exact uncapped Python census through horizon 20,
-not a Lean theorem.
+seven and beyond is open.
 `FiniteCoeffStopConjecture` is a laboratory target, not a claim of
 the note.
 -/

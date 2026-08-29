@@ -30,7 +30,6 @@ PAPER_MODULES: tuple[str, ...] = (
     "NormalizedDefect",
     "ExpansionSlack",
     "NearTightScale",
-    "GapCells",
 )
 
 LAYERS: dict[str, Path] = {

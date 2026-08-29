@@ -10412,3 +10412,99 @@ Best next question
   its own displayed estimate — the single remaining blocker for
   Paper B
 ```
+
+## Paper A review pass: horizon vs odd-to-odd, remarks, barrel cut
+
+Editorial application of the post-split review of Paper A
+(`docs/theory/juggler_finite_dynamics_note.md`). No new theorem.
+Paper B was not edited.
+
+The note now distinguishes the short-certificate horizon from the
+odd-to-odd class: Theorem 4.2 is titled as the one-direction
+implication, and Section 5 no longer says that unresolved starts
+are exactly the odd-to-odd class. The former Theorems 4.3 and
+Proposition 4.4 are remarks. Section 5 keeps only the four-block
+chain, the slack-tax failure, and a pointer to the companion in
+preparation. Related work cites A007320 and records that no
+published cycle bound for \(J\) is known; Terras/Tao are not used.
+The coarse lower envelope is Lemma 3.A; Lemma 3.2 proves
+\(257^{64}<2\cdot256^{64}\) by
+\((1+1/256)^{64}<e^{1/4}<2\), isolates \((y+1)^3<2A^4\), and
+exhibits the defect at \(n=3\), \(w=O\). Lean names sit in
+Appendix A.
+
+`Problems.JugglerPaper` now matches Paper A only: `GapCells` is
+dropped from the barrel and from `PAPER_MODULES`. The reviewer
+packet, formalization map, paper dossier, and `juggler_review/`
+snapshot were synced to that wording.
+
+```text
+What was learned
+- the remaining referee objections were wording and scope, not
+  missing lemmas: "unresolved" had been used for two different
+  sets
+- a paper barrel that still imported GapCells advertised the old
+  combined manuscript
+Strongest theorem
+- unchanged (Theorem 3.3; Theorem 4.2 as one implication)
+Strongest refutation
+- none (editorial phase)
+Reusable machinery
+- none; Paper A barrel no longer lists GapCells
+Branch status
+- PROMOTE (Paper A remains the submission candidate)
+Why
+- every listed review item is now in the note or the barrel, and
+  no density, kernel, or length-7 material was imported
+Best next question
+- still Paper B: expand Theorem 5.3 Steps 3-5 to displayed
+  estimates
+```
+
+## Paper A written as a note: census proofs, renumbering, lab voice cut
+
+Editorial pass applying the post-review punch list to Paper A.
+No new theorem. Paper B was not edited.
+
+Theorem 3.6 now contains the next-square lemmas (Lemma 3.4: \(OO\)
+at \(q\ge5\), \(OOO\) at \(q\ge3\), odd inheritance, last-even
+cell) and named cases for \(OOE\), \(O^3E\), \(O^4E\), \(O^5E\),
+and \(OOEOOE\), including the \(m=3\) checks as numbers. The coarse
+envelope is Lemma 3.3 with constant \(C_v\) and a one-line proof of
+\(n<4\lfloor\sqrt n\rfloor^2\). The leftover pair is Lemma 3.5.
+Odd cells are Lemma 3.1; cycle restrictions are Theorem 3.2.
+Theorem 4.2 is a sentence after Theorem 4.1. The first-return
+table, pytest path, constructor preamble, small-residuals remark,
+and residual-block jargon are gone. Related work cites
+Prasad–Prasad and A007320; the companion is named once. Lean
+renames the implication `no_finiteProgress_implies_odd_odd` and
+keeps `unresolved_is_odd_odd` as an alias.
+
+Final read-through corrected a false parity adjective in the
+\(OOEOOE\) case: the state after \(OOE\) realizes the following
+\(OO\), so it is odd, not even; the proof uses only its minimality
+bound. The \(n<256\) check is now reproduced by complete exact
+`isqrt` pseudocode, Lemma 3.4 uses rational inequalities rather than
+decimals, the four-block chain displays its words, and the short-note
+PDF omits the table of contents.
+
+```text
+What was learned
+- the census was Lean-backed but not self-contained; the missing
+  write-up was the next-square lemma already in Cells.lean
+- laboratory voice (table, constructors, pytest) was still
+  advertising the repo after the previous cut
+Strongest theorem
+- Theorem 3.6, now written as a human proof
+Strongest refutation
+- none (editorial pass)
+Reusable machinery
+- none
+Branch status
+- PROMOTE (Paper A remains the submission candidate)
+Why
+- a stranger can now check the census from the PDF
+Best next question
+- still Paper B: expand Theorem 5.3 Steps 3-5 to displayed
+  estimates
+```

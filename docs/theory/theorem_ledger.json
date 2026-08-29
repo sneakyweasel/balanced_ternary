@@ -3246,7 +3246,7 @@
   {
     "id": "J-leftover-length-six-orientations",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "Neither OOOEOE nor OOOOEE is a Juggler cycle word at any n ≥ 2. The argument is an exhaustive evaluation for n < 256 together with the last-even cell against the coarse lower envelope n^{81} > 2^{130}(n+1)^{64} for n ≥ 256. This excludes those two orientations only; the length-≤6 census is the separate row J-small-cycle-census.",
+    "statement": "Neither OOOEOE nor OOOOEE is a Juggler cycle word at any n ≥ 2 (Paper A Lemma 3.5). The argument is an exhaustive evaluation for n < 256 together with the last-even cell against the coarse lower envelope n^{81} > 2^{130}(n+1)^{64} for n ≥ 256. This excludes those two orientations only; the length-≤6 census is the separate row J-small-cycle-census.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/LeftoverCycles.lean",
     "tests": [
@@ -3257,7 +3257,7 @@
   {
     "id": "J-small-cycle-census",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most six is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least seven. Assembly: rotation invariance of cycle words, exclusion of all-odd words by strict odd ascent, rotation to an even-terminating orientation, the formal-expansion filter, the general length-four and length-five even-terminating theorems, the odd-run threshold for O^5E, the internal-even threshold for OOEOOE, and the leftover exclusions of OOOEOE and OOOOEE (rotation targets of OEOOOE and EOOOOE). Lean theorem no_cycle_word_length_le_six. Length seven and beyond is open; this is not an exclusion of all cycles and not a halt theorem.",
+    "statement": "No word of length at most six is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least seven (Paper A Theorem 3.6). Assembly: rotation invariance of cycle words, exclusion of all-odd words by strict odd ascent, rotation to an even-terminating orientation, the formal-expansion filter, the next-square thresholds of Lemma 3.4, the leftover exclusions of OOOEOE and OOOOEE (Lemma 3.5; rotation targets of OEOOOE and EOOOOE). Lean theorem no_cycle_word_length_le_six. Length seven and beyond is open; this is not an exclusion of all cycles and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/SmallCycleCensus.lean",
     "tests": [

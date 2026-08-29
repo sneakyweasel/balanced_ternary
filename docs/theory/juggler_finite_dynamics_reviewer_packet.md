@@ -10,9 +10,13 @@ The former single note has been split into two manuscripts:
   *Power envelopes, exact defects, and cycle restrictions for the
   Juggler map.* Exact word calculus, defect identity, inverse cells,
   the small-cycle census (no nontrivial cycle of length at most six),
-  and the uniform one- and two-step certificates. Everything is
-  Lean-backed except the horizon-20 census (exact Python integers).
-  No density result is stated.
+  and the uniform one- and two-step certificates. The arguments of
+  Sections 2--4 are written in the note. Lean is an independent
+  check. Lemma 3.3 is an elementary envelope used by Lemma 3.5.
+  Lemma 3.4 writes the next-square thresholds that assemble
+  Theorem 3.6. No density result is stated. After Theorem 4.1, the
+  complement of the uniform short certificates is the odd-to-odd
+  class.
 - **Paper B** —
   [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md):
   *Parity equidistribution of nested floor powers, with descent
@@ -63,7 +67,9 @@ envelope, and its local floor losses assemble into an exact
 compositional global defect with rigid zero cases. Inverse cells give
 cycle restrictions and a small-cycle census: no nontrivial cycle has
 length at most six. Even and odd-to-even starts carry uniform short
-certificates; the unresolved starts are exactly the odd-to-odd class.
+certificates; the starts not covered by those certificates are
+exactly the odd-to-odd class, not the starts with no descent of any
+length. The small-cycle census is Theorem 3.6.
 
 **Paper B.** An exact-linearization discrepancy calculus with a
 kernel theorem for the level-2 floor defect proves **every**
@@ -83,16 +89,16 @@ kernel of Conjecture 7.3, whose shifted model provably cancels
 |---|---|---|
 | Power envelope and exponent-gap contraction | **EXACT — LEAN VERIFIED** | conditional on a realized word |
 | Global defect identity, vanishing, and composition | **EXACT — LEAN VERIFIED** | weighted lift, not an additive sum; not a uniform tax |
-| Odd inverse cells have at most one integer | **EXACT — LEAN VERIFIED** | one-step fibers |
-| Nontrivial cycle words are formally expanding; min-to-even prefixes are superquadratic | **EXACT — LEAN VERIFIED** | necessary condition; not an exclusion of all cycles |
-| Length-six orientations \(OOOEOE\) and \(OOOOEE\) (Lemma 3.2) | **EXACT — LEAN VERIFIED** | the key lemma of the census |
-| Small-cycle census: no cycle word of length \(\le6\) (Theorem 3.3) | **EXACT — LEAN VERIFIED** | lengths \(\le6\) only; length \(\ge7\) open |
+| Odd inverse cells have at most one integer (Lemma 3.1) | **EXACT — LEAN VERIFIED** | one-step fibers |
+| Nontrivial cycle words are formally expanding; min-to-even prefixes are superquadratic (Theorem 3.2) | **EXACT — LEAN VERIFIED** | necessary condition; not an exclusion of all cycles |
+| Coarse lower envelope \(C_v\) (Lemma 3.3) | **EXACT — HUMAN PROOF** | one-step \(n<4\lfloor\sqrt n\rfloor^2\) and composition; used by Lemma 3.5 |
+| Next-square thresholds (Lemma 3.4) | **EXACT — LEAN VERIFIED** | \(OO\) at \(q\ge5\), \(OOO\) at \(q\ge3\), odd inheritance, last-even cell |
+| Length-six orientations \(OOOEOE\) and \(OOOOEE\) (Lemma 3.5) | **EXACT — LEAN VERIFIED** | the key leftover lemma of the census; cutoff \(257^{64}<2\cdot256^{64}\) by \((1+1/256)^{64}<e^{1/4}<2\) |
+| Small-cycle census: no cycle word of length \(\le6\) (Theorem 3.6) | **EXACT — LEAN VERIFIED** | lengths \(\le6\) only; length \(\ge7\) open |
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists |
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 5) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
-| Even and odd-to-even starts have uniform short certificates | **EXACT — LEAN VERIFIED** | not all `FiniteProgress` |
-| \(\neg\mathrm{FP}\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only |
-| \(\{1,\ldots,11\}\) and even residuals \(<144\) reach \(1\) | **EXACT — LEAN VERIFIED** | finite landing class |
-| Proposition 4.4 horizon-\(20\) first-return census | **COMPUTATIONALLY VERIFIED** | exact Python integers, zero unresolved cases; not Lean or almost-all |
+| Even and odd-to-even starts have uniform short certificates (Theorem 4.1) | **EXACT — LEAN VERIFIED** | not all descent certificates |
+| No descent certificate \(\Rightarrow\) odd-to-odd | **EXACT — LEAN VERIFIED** | one direction only; complement of Theorem 4.1 |
 
 ## Claim map — Paper B
 
@@ -121,10 +127,9 @@ kernel of Conjecture 7.3, whose shifted model provably cancels
 
 ## Quantifier checks
 
-1. `FiniteProgress` is `DescentCertificate`: four constructors, one
-   predicate (image \(<n\) or image \(1\)). Paper A Theorems 4.1–4.2
-   isolate a uniform short subclass. They do not say that odd-to-odd
-   starts lack descent.
+1. A descent certificate is a realized word with image strictly
+   below the start. Paper A Theorem 4.1 isolates a uniform short
+   subclass. It does not say that odd-to-odd starts lack descent.
 2. Paper B Corollaries 4.2, 4.9, and 6.5 are densities of uniform
    subclasses (\(3/4\) at two steps, \(13/16\) at four, \(7/8\) at
    five, \(57/64\) at seven, \(29/32\) at eight). None is a density
@@ -135,7 +140,7 @@ kernel of Conjecture 7.3, whose shifted model provably cancels
    hypothesis is a theorem for \(d\le4\) and open beyond (first open
    case: the depth-5 \(OOOO*\) split, Conjecture 7.3).
 4. `power_bound_contracts` requires a realized contracting word.
-5. Cycle restrictions do not exclude all cycles. Paper A Theorem 3.3
+5. Cycle restrictions do not exclude all cycles. Paper A Theorem 3.6
    is a census for lengths at most six only; cycles of length seven
    or more remain possible as far as the papers prove.
 6. The `native_decide` boundary checks cover both `Fin 256` itinerary
@@ -167,17 +172,16 @@ Reject or revise if:
 1. a Lean theorem is quoted with stronger quantifiers than its statement;
 2. the \(3/4\) or \(13/16\) figure is called a Terras theorem or a
    `ReachesOne` density;
-3. Paper A Theorem 4.2 is read as “odd-to-odd starts have no descent”;
+3. Paper A Theorem 4.1 is read as “odd-to-odd starts have no descent”;
 4. any analytic estimate of Paper B is described as Lean-certified;
-5. the census of Paper A Theorem 3.3 is read beyond length six, or an
+5. the census of Paper A Theorem 3.6 is read beyond length six, or an
    exclusion of cycles of length seven or more is attributed to either
    paper;
 6. a discrepancy proof replaces a floor by a single exponential, or
    an exact linearization (Paper B Lemmas 4.3(i), 4.6, 5.1, 7.2) is
    quoted without its one-signed remainder bounds;
 7. an interval bound is applied to a sparse image set without transfer;
-8. Proposition 4.4 is promoted from exact finite census to an infinite
-   theorem;
+8. a finite first-return count is promoted to an infinite theorem;
 9. Proposition 7.1 is quoted without its equidistribution hypothesis,
    or Conjecture 7.3 or 7.5 is cited as a theorem;
 10. Theorem 7.4 is quoted as a bound at the deterministic shift

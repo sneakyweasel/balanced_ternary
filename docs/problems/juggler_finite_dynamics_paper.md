@@ -23,9 +23,8 @@ math note:
 > Realized finite words obey a power envelope and an exact compositional
 > defect identity with rigid zero cases. Inverse cells impose cycle
 > restrictions and yield a small-cycle census: no nontrivial cycle has
-> length at most six. The uniform short-certificate class has density
-> \(3/4\), but this is not Terras's theorem or a density of arrival
-> at \(1\).
+> length at most six. Even and odd-to-even starts carry uniform short
+> certificates. No density result is stated in Paper A.
 
 Every substantive claim must be linked to one of:
 
@@ -176,10 +175,11 @@ statement changed. The discrepancy consolidation added
 `formal/Problems/Juggler/GapCells.lean`
 (`floor_add_eq_add_carry`, `floor_gap_eq_carry`, `seq_floor_gap`,
 `seq_floor_gap_second`, `floor_odd_iff_half_le_fract_half`): the exact
-floor reductions under Sections 5–6, over the reals, including the
+floor reductions under Paper B, over the reals, including the
 double-gap identity used by the kernel theorem; the analytic estimates
-themselves are human proofs and stay outside Lean. The review object is
-`formal/Problems/JugglerPaper.lean`. The formal map is
+themselves are human proofs and stay outside Lean. The Paper A review
+object is `formal/Problems/JugglerPaper.lean` and does not import
+`GapCells`. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
 The paper-central theorem metadata is recorded in
 `docs/theory/theorem_ledger.json` and the generated ledger. No `sorry` or
@@ -195,8 +195,9 @@ standalone checkability. The stack now consists of:
 
 - [Paper A](../theory/juggler_finite_dynamics_note.md) — power
   envelopes, exact defects, cycle restrictions, the small-cycle
-  census, short certificates. Lean-backed; no density claims;
-  submission candidate;
+  census (Theorem 3.6), short certificates (Theorem 4.1). The
+  complement of those certificates is the odd-to-odd class. Lean
+  is an independent check; no density claims; submission candidate;
 - [Paper B](../theory/juggler_parity_discrepancy_note.md) — parity
   equidistribution of nested floor powers: exact linearization,
   the kernel theorem (Theorem 5.3, with the mixed-piece Lemma 5.2 as

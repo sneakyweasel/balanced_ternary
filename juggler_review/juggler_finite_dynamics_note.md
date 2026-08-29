@@ -2,7 +2,7 @@
 title: Power envelopes, exact defects, and cycle restrictions for the Juggler map
 author: Philippe Cochin
 date: 29 August 2026
-subtitle: Publication draft. Not submitted.
+subtitle: Short note. Not submitted.
 ---
 
 ## Abstract
@@ -33,16 +33,12 @@ later even states, and a small-cycle census: the Juggler map has no
 nontrivial cycle of length at most six. Length seven remains open.
 
 As a secondary application, every even start and every odd start whose
-first image is even has a uniform one- or two-step descent certificate;
-the starts with no certificate at that horizon are exactly the
-odd-to-odd class. The densities of itinerary word classes and of
-certified-descent classes — the analytic side of the problem — are
-developed in a companion manuscript [7]; no density result is stated
-or used here.
+first image is even has a uniform one- or two-step descent certificate.
+The starts not covered by those two certificates are exactly the
+odd-to-odd class; many of those starts still descend after a longer
+word. No density result is stated or used here.
 
-All finite-word statements are conditional on the realized itinerary. The
-remaining pointwise question is whether almost every odd-to-odd start has
-some finite descent; no such theorem is proved here or in the companion.
+All finite-word statements are conditional on the realized itinerary.
 
 ## 1. Introduction
 
@@ -63,34 +59,36 @@ certificates.
 The main contribution is the exact power-envelope and defect calculus,
 together with its inverse-cell and cycle consequences, chief among
 them a small-cycle census: no nontrivial cycle has length at most six.
-The densities of the classes the certificates cover are the subject of
-a companion manuscript [7], which imports from this paper only the
-contraction criterion of Corollary 2.3.
-We do not prove a Collatz theorem or transfer Collatz stopping-time
-results to \(J\).
+To the best of our knowledge, the global-defect identity and composition
+law (Theorems 2.4 and 2.6) and the cycle census (Theorem 3.6) are new
+for the exact Juggler map.
+Section 2 records the envelope and defect calculus. Section 3 proves
+the cycle restrictions and the census. Section 4 records the uniform
+short certificates. Section 5 states the remaining gap.
 
 ### 1.1 Verification convention
 
-Every theorem in Sections 2--4 is proved both below and in Lean under
-the names listed at the start of each section.
-Proposition 4.4 is an exact Python-integer census,
-not a theorem about an infinite set. The four-block chain named in
-Section 5 is Lean-certified (`four_block_pe_1999`); the failed
-reductions recorded there are exact-integer counterexamples, not
-estimates. No finite computation is used as a termination proof.
+The arguments of Sections 2--4 are written below and may be read
+without Lean. Lean supplies an independent check of those arguments;
+the corresponding names are collected in Appendix A. Lemma 3.5 uses a
+table of \(254\) six-step evaluations for \(2\le n<256\); that table is
+a finite computation, not a termination proof. The four-block chain
+in Section 5 is Lean-certified.
 
-### 1.2 Related maps
+### 1.2 Related work
 
-The nearest published comparison is the Collatz problem, surveyed by
-Lagarias [3,4]. That literature is methodologically adjacent — parity
-words, almost-all statements short of totality — but proves nothing
-about \(J\); Crandall [5] and Matthews–Watts [6] treat
-piecewise-affine Hasse–Syracuse maps, while the Juggler branches are
-floor powers, not affine. The Juggler analogue of Terras's almost-all
-stopping-time theorem would be an almost-all descent theorem on the
-odd-to-odd class; the companion manuscript [7] develops the
-parity-discrepancy program toward that statement and reviews the
-analytic literature it builds on.
+The map is Pickover's [1]. The one-step sequence is OEIS A094683 [2];
+the stopping-time table is A007320 [8]. We know of no published
+exclusion of nontrivial cycles for \(J\). Prasad–Prasad [9] estimate
+excursion and stopping constants for juggler-like maps by a
+random-walk large-deviation model; those estimates do not apply to
+the exact floor-power map. Small-cycle censuses are a standard first
+layer for Collatz-like maps, surveyed by Lagarias [3,4]; those
+results do not apply here, because the branches are floor powers
+rather than affine maps (Crandall [5], Matthews–Watts [6]).
+Itinerary-class densities are the subject of a companion manuscript
+in preparation [7], which imports from this note only Corollary 2.3;
+the present arguments do not use it.
 
 ## 2. Finite words, envelope, and defect
 
@@ -100,15 +98,8 @@ of \(n\) are exactly the letters of \(w\). Write \(J^{|w|}(n)\) for the
 endpoint after those letters, and \(\#O(w)\) for the number of odd
 letters.
 
-The identities in this section are formalized in Lean
-(`follows_iff_word`, `image_eq_iterate`, `image_append`,
-`image_monotone_of_follows`, `power_bound_word`,
-`power_bound_contracts`, `global_defect_identity`,
-`global_defect_eq_zero_iff_localsTight`, `global_defect_append`,
-`global_defect_eq_zero_implies_monochrome`,
-`power_bound_eq_iff_extremal`, `image_eq_start_defectRatio`,
-`one_plus_eta_lt_succ_sq`). The proofs below are the ordinary
-integer arguments.
+The identities in this section are formalized in Lean; names are in
+Appendix A. The proofs below are the ordinary integer arguments.
 
 **Theorem 2.1 (fixed-word monotonicity).**
 If \(n\le m\) and both realize \(w\), then
@@ -224,6 +215,12 @@ x^{3\cdot 2^k}
 \]
 which is the odd update. \(\square\)
 
+For a one-letter illustration, take \(n=3\) and \(w=O\). Then
+\(J(3)=5\) and \(3^3=27=5^2+2\), so \(\Delta_O(3)=2\). The local
+remainder is \(\rho=2\), and the global defect equals that remainder
+only because the word has length one; after a later letter the lift
+is a power-gap, not a sum of remainders.
+
 **Theorem 2.5 (vanishing).**
 If \(w\) is realized at \(n\), the following are equivalent.
 
@@ -253,8 +250,7 @@ even. If \(w=O^k\), unique factorization applied to
 divisible by \(2\). Iterating this valuation relation shows that every
 prime valuation of \(n=x_0\) is divisible by \(2^k\), hence
 \(n=a^{2^k}\) for an odd \(a\). Conversely, these even and odd towers
-make every local remainder zero. This is the extremal classification
-`power_bound_eq_iff_extremal`. \(\square\)
+make every local remainder zero. \(\square\)
 
 **Theorem 2.6 (composition).**
 If \(u\) is realized at \(n\) and \(v\) is realized at
@@ -304,8 +300,7 @@ If \(w\) is a cycle word at \(n\), that is \(J^{|w|}(n)=n\), then
 \[
 \Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}
 \]
-exactly (`image_eq_start_defectRatio`). A cycle burns its entire
-formal surplus in floor losses.
+exactly. A cycle burns its entire formal surplus in floor losses.
 
 *Proof.* Theorem 2.4 with \(m=n\). Nonnegativity of \(\Delta_w(n)\)
 makes the difference a genuine one. \(\square\)
@@ -317,7 +312,7 @@ of the state. For one realized letter at \(x\) with branch exponent
 \[
 x^{e}<(J(x)+1)^2
 \]
-(`one_plus_eta_lt_succ_sq`), so the relative slack
+so the relative slack
 \(1+\eta=x^{e}/J(x)^2\) satisfies
 \[
 \eta<\frac{2}{J(x)}+\frac{1}{J(x)^2},
@@ -325,7 +320,11 @@ x^{e}<(J(x)+1)^2
 which tends to \(0\) as the state grows. A uniform per-step tax is
 therefore impossible. The recorded extreme is an \(OOE\) block at
 \(n=180370579261640036336071806107777\approx1.80\cdot10^{32}\) whose
-relative slack satisfies \(0<q<10^{-30}\); this is an exact-integer
+word-relative slack
+\[
+q_w(n)=\frac{n^{3^{\#O(w)}}}{J^{|w|}(n)^{2^{|w|}}}-1
+\]
+satisfies \(0<q_{OOE}(n)<10^{-30}\); this is an exact-integer
 computation, not an estimate. The inequality
 \(\Delta_w(n)>n^{3^{\#O(w)}}-n^{2^{|w|}}\) on a formally expanding word
 is exactly \(J^{|w|}(n)<n\), so it does not forbid mixed expanding
@@ -343,55 +342,45 @@ and
 J(n)=m\iff m^2\le n^3<(m+1)^2
 \quad(n\ {\rm odd}).
 \]
-An odd fiber contains at most one integer (`odd_cell_unique`). Indeed,
-suppose \(a<b\) lie in the same odd cell indexed by \(m\). Then
-\((a+1)^3\le b^3<(m+1)^2\) and \(m^2\le a^3\). Subtracting the latter
-lower bound from the former upper bound gives
+
+**Lemma 3.1 (odd cells are unique).**
+An odd fiber contains at most one integer. An even fiber is a
+parity-restricted square interval and may contain many predecessors.
+
+*Proof.* Suppose \(a<b\) lie in the same odd cell indexed by \(m\).
+Then \((a+1)^3\le b^3<(m+1)^2\) and \(m^2\le a^3\). Subtracting the
+latter lower bound from the former upper bound gives
 \[
 3a^2+3a+1=(a+1)^3-a^3<(m+1)^2-m^2=2m+1,
 \]
 and hence \(3a^2\le2m\). If \(a=0\), then \(m=0\) and the displayed
 strict inequality is already impossible. If \(a>0\), squaring and using
 \(m^2\le a^3\) gives \(9a^4\le4m^2\le4a^3\), contradicting
-\(4a^3<9a^4\). An even fiber is a parity-restricted square interval and
-may contain many predecessors.
+\(4a^3<9a^4\). \(\square\)
 
 A nonempty realized word \(w\) with \(J^{|w|}(n)=n\) is a cycle word.
+The identities in this section are formalized in Lean; names are in
+Appendix A. The proofs below are the ordinary integer arguments.
 
-The identities in this section are formalized in Lean
-(`cycle_word_formally_expanding`, `cycleMin_not_end_odd`,
-`square_scale_superquadratic`, `cycleMin_to_even_superquadratic`,
-`no_cycle_word_oooeoe`, `no_cycle_word_ooooee`,
-`no_cycle_word_length_le_six` with components
-`no_cycle_word_replicate_odd`, `cycleWord_rotateWord`,
-`cycleWord_exists_even_terminating`,
-`no_cycle_word_length_four_ends_even`,
-`no_cycle_word_length_five_ends_even`, `no_cycle_word_ooe`,
-`no_cycle_odd_run_append_even`, `no_cycle_word_ooeooe`). The proofs
-below are the ordinary integer arguments.
-
-**Theorem 3.1 (cycle restrictions).**
+**Theorem 3.2 (cycle restrictions).**
 Let \(w\) be a cycle word at \(n\ge2\).
 
 (i) The word is formally expanding:
 \[
-2^{|w|}<3^{\#O(w)}
+2^{|w|}<3^{\#O(w)}.
 \]
-(`cycle_word_formally_expanding`). A contracting word cannot close a
-nontrivial cycle.
+A contracting word cannot close a nontrivial cycle.
 
 (ii) The cycle minimum is odd and the cycle maximum is even. A
-minimum-based orientation cannot end in an odd letter
-(`cycleMin_not_end_odd`).
+minimum-based orientation cannot end in an odd letter.
 
 (iii) A realized word \(v\) is *superquadratic* if
 \[
 3^{\#O(v)}\ge 2^{|v|+1}.
 \]
 Any realized path from a start \(n\ge2\) to a state at least \(n^2\)
-is superquadratic (`square_scale_superquadratic`). On a cycle minimum
-the path to any later even state is superquadratic
-(`cycleMin_to_even_superquadratic`). The prefix \(OOE\) is expanding
+is superquadratic. On a cycle minimum the path to any later even
+state is superquadratic. The prefix \(OOE\) is expanding
 (\(9>8\)) but not superquadratic (\(9<16\)), so it cannot carry the
 minimum to square scale.
 
@@ -423,136 +412,192 @@ successor is at least \(n\). Thus \(n\le J(y)=\lfloor\sqrt y\rfloor\),
 so \(n^2\le y\), and the preceding argument applies to that prefix.
 \(\square\)
 
-These restrictions assemble into a complete census of short cycles.
-Rotation reduces any cycle word to an even-terminating orientation,
-the expanding filter of Theorem 3.1(i) and threshold arguments
-eliminate every even-terminating word of length at most six except
-\(OOOEOE\) and \(OOOOEE\), and those two survivors require an
-individual argument, which uses the last-even cell together with a
-coarse lower envelope. That argument is Lemma 3.2; the census is
-Theorem 3.3. No exclusion of cycles of length seven or more is
-claimed.
-
-For \(n\ge1\),
+**Lemma 3.3 (coarse lower envelope).**
+For \(n\ge1\), write \(q=\lfloor\sqrt n\rfloor\). Then
+\(q^2\le n<(q+1)^2\). For \(q\ge1\) one has
+\((q+1)^2\le4q^2\), and the second inequality is strict for \(q\ge2\),
+while for \(q=1\) one has \(n<4\). In all cases
 \[
-n<4\,\lfloor\sqrt n\rfloor^2,
+n<4\,\lfloor\sqrt n\rfloor^2.
 \]
-so an even step satisfies \(n\le 4\,J(n)^2\) and an odd step satisfies
-\(n^3\le 4\,J(n)^2\). Composing along a realized word \(v\) of length \(k\) with odd count
-\(o\) gives
+Thus an even step satisfies \(n\le 4\,J(n)^2\) and an odd step
+satisfies \(n^3\le 4\,J(n)^2\). Composing along a realized word \(v\) of
+length \(k\) with odd count \(o\) gives
 \[
-n^{3^{o}}\le D_v\,J^{k}(n)^{2^{k}}.
+n^{3^{o}}\le C_v\,J^{k}(n)^{2^{k}}.
 \]
-The denominator starts at \(1\) and updates by
-\(D\mapsto D\cdot 4^{2^{j}}\) on an even letter and
-\(D\mapsto D^{3}\cdot 4^{2^{j}}\) on an odd letter, at step \(j\).
-In particular \(D_{OOO}=2^{38}\) and \(D_{OOOO}=2^{130}\). If a cycle word ends
-in an even letter, the last-even cell is
-\(J^{|w|-1}(n)<(n+1)^2\).
+The constant starts at \(1\) and updates by
+\(C\mapsto C\cdot 4^{2^{j}}\) on an even letter and
+\(C\mapsto C^{3}\cdot 4^{2^{j}}\) on an odd letter, at step \(j\).
+In particular \(C_{OOO}=2^{38}\) and \(C_{OOOO}=2^{130}\).
 
-**Lemma 3.2 (two length-six exclusions).**
+*Proof.* The comparison \(n<4q^2\) is the paragraph above. The
+composition law is the same recurrence as the proof of Theorem 2.2,
+with a factor \(4^{2^j}\) inserted at each letter. The values
+\(C_{OOO}\) and \(C_{OOOO}\) are the result of that recurrence on
+those two words. \(\square\)
+
+**Lemma 3.4 (next-square thresholds).**
+(i) If \(q\ge5\) realizes \(OO\), then \(J^2(q)\ge(q+1)^2\).
+(ii) If \(q\ge3\) realizes \(OOO\), then \(J^3(q)\ge(q+1)^2\).
+(iii) If a realized word \(v\) satisfies \(J^{|v|}(q)\ge(q+1)^2\) and
+the next realized letter is odd, then
+\(J^{|v|+1}(q)\ge(q+1)^2\).
+(iv) If \(vE\) is a cycle word at \(n\), then
+\(J^{|v|}(n)<(n+1)^2\).
+
+*Proof.* For (i), write \(m=\lfloor q^{3/2}\rfloor\). The bound
+\(J^2(q)\ge(q+1)^2\) follows from \(m^3\ge(q+1)^4\), because then
+\(\lfloor m^{3/2}\rfloor\ge(q+1)^2\). If \(q=5\), then
+\(11^2=121\le125=5^3<144=12^2\), so \(m=11\), and
+\(11^3=1331\ge6^4=1296\). If \(q\ge7\), then \(m\ge q^{3/2}-1\), so it
+is enough that \((q^{3/2}-1)^3\ge(q+1)^4\). Expanding the left side
+and dropping the positive remainder \(3q^{3/2}-1\) reduces this to
+\(q^{9/2}-3q^3\ge(q+1)^4\), or equivalently
+\(\sqrt q-3/q\ge(1+1/q)^4\). The left side increases for \(q\ge7\) and
+the right side decreases, so the case \(q=7\) suffices:
+\[
+\sqrt7-\frac37>\frac52-\frac37=\frac{29}{14}
+  >\frac{4096}{2401}=\left(\frac87\right)^4,
+\]
+where \(\sqrt7>5/2\) follows from \(25/4<7\).
+
+For (ii), the orbit \(3\to5\to11\to36\) gives \(J^3(3)=36\ge16\). If
+\(q\ge5\) realizes \(OOO\), then it realizes \(OO\), so (i) gives
+\(J^2(q)\ge(q+1)^2\). The third letter is odd, hence
+\(J^3(q)=J(J^2(q))\ge J^2(q)\).
+
+For (iii), the image after \(v\) is odd and at least \((q+1)^2\ge4\),
+so the odd branch does not decrease it.
+
+For (iv), the last letter is even, so the preimage \(z=J^{|v|}(n)\)
+is even and satisfies \(n^2\le z<(n+1)^2\). \(\square\)
+
+**Lemma 3.5 (two length-six exclusions).**
 Neither \(OOOEOE\) nor \(OOOOEE\) is a cycle word at any \(n\ge2\).
 
 *Proof.* First, if \(n\ge256\), then
 \[
 n^{81}>2^{130}(n+1)^{64}.
 \]
-Indeed \(257^{64}<2\cdot256^{64}\) and \(256(n+1)\le257\,n\), so
-\((n+1)^{64}<2n^{64}\). Then
+Indeed \(257^{64}<2\cdot256^{64}\) because
+\((1+1/256)^{64}<e^{64/256}=e^{1/4}<2\), and
+\(256(n+1)\le257\,n\), so \((n+1)^{64}<2n^{64}\). Then
 \(2^{130}(n+1)^{64}<2^{131}n^{64}\). Since \(n\ge256=2^8\), one has
 \(n^{17}\ge2^{136}\), and therefore
 \(2^{131}n^{64}<2^{136}n^{64}\le n^{81}\).
 
-For \(n<256\), neither word returns to its start. Lean checks both
-itinerary-and-return tables by `native_decide` on `Fin 256`; the same
-mechanism also verifies the finite numerical inequality
-\(257^{64}<2\cdot256^{64}\) used at the cutoff.
+For \(2\le n<256\), neither word returns to its start. This is a
+table of \(254\) evaluations of a six-step integer map and a return
+test. The complete exact check is the following pseudocode, where
+`isqrt` denotes the integer square root:
+
+```python
+from math import isqrt
+
+def J(x):
+    return isqrt(x) if x % 2 == 0 else isqrt(x**3)
+
+for w in ("OOOEOE", "OOOOEE"):
+    for n in range(2, 256):
+        x = n
+        realized = True
+        for b in w:
+            if ("E" if x % 2 == 0 else "O") != b:
+                realized = False
+                break
+            x = J(x)
+        assert not realized or x != n
+```
 
 Now suppose \(n\ge256\) realizes \(OOOOEE\), and write
-\(z=J^4(n)\) for the image after the prefix \(OOOO\). The last two
-even letters give \(J(z)<(n+1)^2\) and \(z<(J(z)+1)^2\), hence
-\(z<(n+1)^4\). The lower envelope on \(OOOO\) is
+\(z=J^4(n)\) for the image after the prefix \(OOOO\). Lemma 3.4(iv)
+gives \(J(z)<(n+1)^2\), and the preceding even letter gives
+\(z<(J(z)+1)^2\), hence \(z<(n+1)^4\). Lemma 3.3 on \(OOOO\) gives
 \(n^{81}\le2^{130}z^{16}\), so
 \(n^{81}<2^{130}(n+1)^{64}\), contradicting the tail inequality.
 
 Finally suppose \(n\ge256\) realizes \(OOOEOE\). Write
 \(z_3=J^3(n)\) and \(y=J(z_3)=\lfloor\sqrt{z_3}\rfloor\), so
-\(z_3<(y+1)^2\). The lower envelope on \(OOO\) is
+\(z_3<(y+1)^2\). Lemma 3.3 on \(OOO\) gives
 \(n^{27}\le2^{38}z_3^8<2^{38}(y+1)^{16}\). Cubing yields
 \(n^{81}<2^{114}(y+1)^{48}\). The last letters \(OE\) give the odd-cell
-bound \(y^3<(n+1)^4\). Write \(A=n+1\ge257\). Then
-\((y+1)^3<2A^4\): if \(y\le A\), this follows from
-\((A+1)^3<2A^4\); if \(y>A\), then \(y\ge4\) and
+bound \(y^3<(n+1)^4\). Write \(A=n+1\ge257\). We claim
+\((y+1)^3<2A^4\). If \(y\le A\), this is \((A+1)^3<2A^4\). If
+\(y>A\), then \(y\ge4\) and
 \((y+1)^3=y^3+3y^2+3y+1<A^4+4y^2\), while \(4y^2<A^4\) because
 \(4y^3<4A^4\le yA^4\). Raising \((y+1)^3<2A^4\) to the sixteenth
 power gives \((y+1)^{48}<2^{16}(n+1)^{64}\). Combining with the cubed
 lower envelope produces again \(n^{81}<2^{130}(n+1)^{64}\). \(\square\)
 
-**Theorem 3.3 (small-cycle census).**
-No word of length at most six is a cycle word at any \(n\ge2\)
-(`no_cycle_word_length_le_six`). Equivalently, a nontrivial Juggler
-cycle, if one exists, has period at least seven.
+**Theorem 3.6 (small-cycle census).**
+No word of length at most six is a cycle word at any \(n\ge2\).
+Equivalently, a nontrivial Juggler cycle, if one exists, has period at
+least seven.
 
 *Proof.* Rotating a cycle word by one letter moves the base point one
-step along the orbit and yields another cycle word
-(`cycleWord_rotateWord`); every state of the cycle is at least \(2\),
-because an orbit that reaches \(1\) stays at \(1\) and cannot return to
-a start \(n\ge2\).
+step along the orbit and yields another cycle word; every state of
+the cycle is at least \(2\), because an orbit that reaches \(1\) stays
+at \(1\) and cannot return to a start \(n\ge2\).
 
 If every letter is odd, the start is odd, hence \(n\ge3\), and the odd
 branch strictly increases there: \(J(x)>x\) for odd \(x\ge3\), since
-\(x^3\ge(x+1)^2\). The orbit ascends strictly and never returns
-(`no_cycle_word_replicate_odd`). Otherwise some letter is even, and a
-rotation ending just after that letter produces an even-terminating
-cycle word \(vE\) of the same length based at a cycle state \(m\ge2\)
-(`cycleWord_exists_even_terminating`). It therefore suffices to exclude
-even-terminating cycle words of length at most six.
+\(x^3\ge(x+1)^2\). The orbit ascends strictly and never returns.
+Otherwise some letter is even, and a rotation ending just after that
+letter produces an even-terminating cycle word \(vE\) of the same
+length based at a cycle state \(m\ge2\). It therefore suffices to
+exclude even-terminating cycle words of length at most six.
 
-By Theorem 3.1(i) a cycle word is formally expanding. No
-even-terminating word of length one or two is expanding (\(2<3^0\) and
-\(4<3\) both fail). For length three the only expanding candidate is
-\(OOE\): for \(m\ge5\) the next-square threshold after \(OO\) gives
-\(J^2(m)\ge(m+1)^2\), contradicting the last-even cell
-\(J^2(m)<(m+1)^2\); the only smaller odd start is \(m=3\), where
-\(J^2(3)=11\) is odd while the final even letter requires an even
-state. For length four the expanding filter leaves only \(O^3E\), and
-for length five only \(O^4E\); the threshold inherits along appended
-odd letters, and the same last-even contradiction applies
-(`no_cycle_word_length_four_ends_even`,
-`no_cycle_word_length_five_ends_even`).
+By Theorem 3.2(i) a cycle word is formally expanding. No
+even-terminating word of length one or two is expanding (\(2>3^0\) and
+\(4>3\)).
 
-For length six the filter requires at least four odd letters among the
+Length three: the only expanding candidate is \(OOE\). If \(m\ge5\)
+realizes \(OO\), Lemma 3.4(i) gives \(J^2(m)\ge(m+1)^2\), contradicting
+Lemma 3.4(iv). The only smaller odd start is \(m=3\), where
+\(J^2(3)=11\) is odd, so the final even letter is not realized.
+
+Length four: the expanding filter requires three odd letters among the
+first three, leaving only \(O^3E\). Lemma 3.4(ii) and (iv) give
+\(J^3(m)\ge(m+1)^2\) and \(J^3(m)<(m+1)^2\).
+
+Length five: the filter requires four odd letters among the first
+four, leaving only \(O^4E\). Lemma 3.4(ii) and (iii) give
+\(J^4(m)\ge(m+1)^2\), again contradicting (iv).
+
+Length six: the filter requires at least four odd letters among the
 first five, leaving \(O^5E\), \(EOOOOE\), \(OEOOOE\), \(OOEOOE\),
-\(OOOEOE\), and \(OOOOEE\). The odd-run threshold excludes \(O^5E\)
-(`no_cycle_odd_run_append_even`). For \(OOEOOE\), a minimum-based
-orientation meets the same next-square threshold at the internal even
-letter after the prefix \(OO\), with starts below \(5\) checked
-directly (`no_cycle_word_ooeooe`).
-\(EOOOOE\) rotates one step onto \(OOOOEE\), and \(OEOOOE\) rotates two
-steps onto \(OOOEOE\). The two remaining words are excluded by
-Lemma 3.2. \(\square\)
+\(OOOEOE\), and \(OOOOEE\). For \(O^5E\), Lemma 3.4(ii) and (iii)
+give \(J^5(m)\ge(m+1)^2\), contradicting (iv). The word \(EOOOOE\)
+rotates one step onto \(OOOOEE\), and \(OEOOOE\) rotates two steps
+onto \(OOOEOE\); both are excluded by Lemma 3.5.
 
-The census stops at length six because length seven admits
-even-terminating expanding words with two internal even letters that
-none of the recorded thresholds reach; no exclusion at length seven is
-claimed.
+It remains to exclude \(OOEOOE\). Let this word be a cycle word at
+some start, and rotate to a cycle minimum \(m\ge2\). The three
+alignments of the two even letters are \(OOEOOE\), \(OEOOEO\), and
+\(EOOEOO\). The last starts even, so it cannot be a minimum, by
+Theorem 3.2(ii). The middle starts \(OE\): the first image is even
+and strictly below \(m^2\), whereas every even state after a cycle
+minimum is at least \(m^2\), as proved in Theorem 3.2(iii). Thus the minimum
+orientation is \(OOEOOE\). In particular \(m\) is odd, so \(m\ge3\).
+The prefix \(OOE\) must be realized. If \(m=3\), then
+\(3\to5\to11\) and \(11\) is odd, so \(OOE\) is not realized. Hence
+\(m\ge5\). Write \(y=J^3(m)\) for the state after \(OOE\). Then
+\(y\ge m\) by minimality, so \(y\ge5\). The suffix \(OO\)
+is realized at \(y\), and Lemma 3.4(i) gives
+\(J^2(y)\ge(y+1)^2\ge(m+1)^2\). The last letter is even, so
+Lemma 3.4(iv) gives \(J^2(y)<(m+1)^2\). \(\square\)
+
+No exclusion of cycles of length seven or more is claimed. The census
+stops at length six because length seven admits even-terminating
+expanding words with two internal even letters that none of the
+recorded thresholds reach; no exclusion at length seven is claimed.
 
 ## 4. Short descent certificates
 
 A start \(n\ge2\) has a *descent certificate* if there exists a realized
-finite word \(w\) with \(J^{|w|}(n)<n\), or with image \(1\). Lean
-packages this predicate as `FiniteProgress`, an abbreviation of
-`DescentCertificate`. The four constructors of that type are proof forms
-of the same predicate, not four different claims. The predicate is
-existential over all finite words, not only over words of length one or
-two.
-
-The theorems in this section are formalized in Lean
-(`even_finiteProgress`, `odd_even_finiteProgress`,
-`unresolved_is_odd_odd`, `reachesOne_of_all_finiteProgress`,
-`reachesOne_of_lt_twelve`, `even_lt_sq_twelve_reachesOne`). The proofs
-below are the ordinary integer arguments. Proposition 4.4 is the exact
-census of Section 1.1, not a Lean theorem.
+finite word \(w\) with \(J^{|w|}(n)<n\). The predicate is existential
+over all finite words, not only over words of length one or two.
 
 **Theorem 4.1 (uniform short certificates).**
 Let \(n\ge2\).
@@ -570,114 +615,81 @@ J^2(n)=\bigl\lfloor\sqrt{\lfloor n^{3/2}\rfloor}\bigr\rfloor
 \]
 for \(n\ge2\). \(\square\)
 
-**Theorem 4.2 (unresolved starts are odd-to-odd).**
-If \(n\ge2\) has no descent certificate, then \(n\) is odd and \(J(n)\)
-is odd.
-
-*Proof.* Contrapositive of Theorem 4.1: an even start and an
-odd-to-even start each carry a short certificate. \(\square\)
-
-The converse is false: many odd-to-odd starts descend after a longer
-word.
+The starts not covered by Theorem 4.1 are exactly the odd-to-odd
+starts: \(n\) odd and \(J(n)\) odd. In particular, if \(n\ge2\) has no
+descent certificate of any length, then \(n\) is odd-to-odd. The
+converse is false: many odd-to-odd starts descend after a longer word.
 
 If every start above \(1\) has some descent certificate, ordinary strong
-induction yields arrival at \(1\) (`reachesOne_of_all_finiteProgress`).
-The hypothesis is not proved. A certificate at \(n\) only reduces the
-problem to a strictly smaller positive integer, which may itself be
-odd-to-odd.
-
-Lean also certifies a finite landing class:
-
-**Theorem 4.3 (small residuals).**
-Every \(y\in\{1,\ldots,11\}\) reaches \(1\). Consequently every even
-residual strictly below \(144=12^2\) reaches \(1\).
-
-*Proof.* The orbits are finite and merge quickly:
-\(2\to1\), \(4\to2\), \(6\to2\), \(8\to2\),
-\(3\to5\to11\to36\to6\), \(7\to18\to4\),
-\(9\to27\to140\to11\), and \(10\to3\). Each chain ends on a start
-already settled, so every \(y\le11\) reaches \(1\). For the second claim, an even
-\(y<144\) has \(J(y)=\lfloor\sqrt y\rfloor\le11\), which lands in the
-verified set. (Lean evaluates the same finite orbits in
-`reachesOne_of_lt_twelve` and `even_lt_sq_twelve_reachesOne`.)
-\(\square\)
-
-This enlarges the set of fatal landings for a hypothetical minimal
-counterexample.
-
-On the complementary odd-to-odd class, first return below the start is
-frequent at a short horizon, but not automatic.
-
-**Proposition 4.4 (odd-to-odd first-return census).**
-For starts \(2\le n\le N\) and horizon \(20\), write \(\mathrm{OO}\) for
-the odd-to-odd starts in that range. The exact census is:
-
-| \(N\) | \(\#\mathrm{OO}\) | OO first return \(\le20\) | all starts, first return \(\le20\) |
-|------:|------------------:|--------------------------:|-----------------------------------:|
-| \(10^3\) | \(252\) | \(221/252\) (\(0.877\)) | \(968/999\) (\(0.969\)) |
-| \(10^4\) | \(2504\) | \(2220/2504\) (\(0.887\)) | \(9715/9999\) (\(0.972\)) |
-| \(10^5\) | \(24984\) | \(22379/24984\) (\(0.896\)) | \(97394/99999\) (\(0.974\)) |
-| \(10^6\) | \(249926\) | \(223683/249926\) (\(0.895\)) | \(973756/999999\) (\(0.974\)) |
-
-At \(N=10^6\), \(26{,}243\) odd-to-odd starts have no return below the
-start in \(20\) steps. These rows use exact Python integer arithmetic with
-no size cutoff through step \(20\); the unresolved count is zero in every
-row. They are not Lean-certified and do not constitute an almost-all
-theorem.
+induction yields arrival at \(1\). The hypothesis is not proved. A
+certificate at \(n\) only reduces the problem to a strictly smaller
+positive integer, which may itself be odd-to-odd.
 
 ## 5. The remaining gap
 
 Theorem 4.1 covers every even start and every odd-to-even start with a
-uniform one- or two-step certificate, and Theorem 4.2 says the
-unresolved starts are exactly the odd-to-odd class. The first
-odd-to-odd image expands, so ordinary strong induction cannot fire on
-the complement. Proposition 4.4 shows that most odd-to-odd starts in a
-finite window still return below the start inside twenty steps; that
-is an observation, not a theorem about an infinite set.
+uniform one- or two-step certificate. The first odd-to-odd image
+expands, so ordinary strong induction cannot fire on the complement.
 
-The gap resists the obvious finite-state attacks, and the failures are
-exact computations on named witnesses, not estimates. Lean certifies a
-chain of four consecutive expanding persistent residual blocks,
+The gap resists a uniform run bound on expanding blocks. Lean
+certifies a chain of four consecutive expanding blocks,
 \[
-1999\to5169\to50093\to193753\to887471
+1999\xrightarrow{OOE}5169
+\xrightarrow{OOOOEE}50093
+\xrightarrow{OOE}193753
+\xrightarrow{OOE}887471.
 \]
-(`four_block_pe_1999`), so no uniform run bound of four or less exists
-for expanding blocks. Around such hard paths, five natural finite-state
-reductions fail on exact-integer counterexamples: a uniform slack tax
-per expanding block fails at the \(OOE\) block near \(1.80\cdot10^{32}\)
-with relative slack below \(10^{-30}\) (Section 2); a compact state
-built from the normalized landing position \(\theta\) fails because
-\(\theta\) fills essentially all of \([0,1]\) on continuations and
-predicts the next parity no better than a residue class; recognition
-modulo \(2^m\) fails because every residue class modulo \(64\) both
-continues and exits the iterated odd-landing sets; a \(2\)-adic
-restriction from persistent-expanding history fails because the
-endpoint \(763\) has \(v_2\bigl(y^3-J(y)^2\bigr)=1\); and the expanding
-word grammar is not an independent obstruction because, on \(n\ge2\),
-persistence already implies expansion, so that attack reduces to the
-tautology \(J^{|w|}(n)>n\).
-
-The analytic route — parity discrepancy for the nested floor powers,
-counting itinerary word classes, and the densities of
-certified-descent classes — is the subject of the companion
-manuscript [7]. It imports from this note only the contraction
-criterion of Corollary 2.3, and this note claims none of its results.
+Thus expanding runs of length four occur. A uniform slack tax
+per expanding block is likewise impossible: the relative slack of a
+single letter tends to \(0\) with the state (Section 2), and the
+\(OOE\) example recorded there near \(1.80\cdot10^{32}\) has relative
+slack below \(10^{-30}\).
 
 > No theorem forces every exact integer state into a contracting
-> prefix. In particular, it is open whether almost every odd-to-odd
-> start has a finite descent certificate, and open whether every
-> start reaches \(1\).
+> prefix. In particular, it is open whether every start reaches
+> \(1\), and open whether a nontrivial cycle of length seven or more
+> exists.
 
 ## 6. Software archive
 
-Lean proofs of the theorems of Sections 2--4 live at
-[https://github.com/sneakyweasel/balanced_ternary/](https://github.com/sneakyweasel/balanced_ternary/).
+Lean proofs of the theorems of Sections 2--4 are in the
+[project repository](https://github.com/sneakyweasel/balanced_ternary/).
 The archive is not required to read the arguments above. From a clone,
-the review object is
+the review object for this note is
 
 ```text
 cd formal && lake build Problems.JugglerPaper
 ```
+
+That barrel imports only the modules named by this note (Appendix A).
+
+## Appendix A. Lean names
+
+The proofs in the text are ordinary integer arguments. The following
+names are the corresponding Lean theorems in
+`formal/Problems/Juggler/`, imported by `Problems.JugglerPaper`.
+
+| Text | Lean |
+|---|---|
+| itinerary semantics | `follows_iff_word`, `image_eq_iterate`, `image_append` |
+| Theorem 2.1 | `image_monotone_of_follows` |
+| Theorem 2.2 | `power_bound_word` |
+| Corollary 2.3 | `power_bound_contracts` |
+| Theorem 2.4 | `global_defect_identity` |
+| Theorem 2.5 | `global_defect_eq_zero_iff_localsTight`, `global_defect_eq_zero_implies_monochrome`, `power_bound_eq_iff_extremal` |
+| Theorem 2.6 | `global_defect_append` |
+| Corollary 2.7 | `image_eq_start_defectRatio` |
+| per-step slack | `one_plus_eta_lt_succ_sq` |
+| Lemma 3.1 | `odd_cell_unique` |
+| Theorem 3.2 | `cycle_word_formally_expanding`, `cycleMin_not_end_odd`, `square_scale_superquadratic`, `cycleMin_to_even_superquadratic` |
+| Lemma 3.3 | `lower_growth_word` |
+| Lemma 3.4 | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append` |
+| Lemma 3.5 | `no_cycle_word_oooeoe`, `no_cycle_word_ooooee` |
+| Theorem 3.6 | `no_cycle_word_length_le_six` |
+| Theorem 4.1 | `even_finiteProgress`, `odd_even_finiteProgress` |
+| no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
+| induction to \(1\) | `reachesOne_of_all_finiteProgress` |
+| four-block chain | `four_block_pe_1999` |
 
 ## Acknowledgments
 
@@ -710,4 +722,12 @@ contents.
     [doi:10.4064/aa-43-2-167-175](https://doi.org/10.4064/aa-43-2-167-175).
 7. P. Cochin, “Parity equidistribution of nested floor powers, with
    descent applications to the Juggler map,” companion manuscript,
-   2026.
+   in preparation, 2026.
+8. OEIS Foundation Inc., “Number of steps needed for n to reach 1 in
+   the juggler sequence,” Sequence A007320 in *The On-Line
+   Encyclopedia of Integer Sequences*,
+   https://oeis.org/A007320 (accessed 29 August 2026).
+9. V. Prasad and M. A. Prasad, “Estimates of the maximum excursion
+   constant and stopping constant of juggler-like sequences,”
+   preprint, 2025.
+   [doi:10.13140/rg.2.2.14110.04168](https://doi.org/10.13140/rg.2.2.14110.04168).

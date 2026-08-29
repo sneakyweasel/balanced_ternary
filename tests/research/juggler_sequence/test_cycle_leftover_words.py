@@ -54,8 +54,8 @@ def test_small_cycle_census_theorems_present():
 
 def test_note_records_census_without_overclaim():
     note = NOTE.read_text(encoding="utf-8")
-    assert "Lemma 3.2" in note
-    assert "Theorem 3.3" in note
+    assert "Lemma 3.5" in note
+    assert "Theorem 3.6" in note
     assert "remain open" not in note
     assert "OOOEOE" in note
     assert "OOOOEE" in note

@@ -124,8 +124,8 @@ table. Length seven stays open.
 ## Results
 
 Both leftover orientations are impossible as cycle words
-(**EXACT — LEAN VERIFIED**). The math note records this as Lemma 3.2,
-the key lemma of the small-cycle census (Theorem 3.3,
+(**EXACT — LEAN VERIFIED**). The math note records this as Lemma 3.5,
+the key leftover lemma of the small-cycle census (Theorem 3.6,
 `no_cycle_word_length_le_six`, ledger row `J-small-cycle-census`): no
 nontrivial Juggler cycle has length at most six.
 
@@ -151,5 +151,5 @@ descent certificate?
 Status: `THEOREM`.
 
 Named exclusion of two leftover orientations; recorded in the math
-note as Lemma 3.2 and consolidated into the small-cycle census
-(Theorem 3.3). Not a Juggler totality result.
+note as Lemma 3.5 and consolidated into the small-cycle census
+(Theorem 3.6). Not a Juggler totality result.

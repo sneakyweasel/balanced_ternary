@@ -8,9 +8,10 @@ This page is the Lean companion to the two manuscripts: **Paper A**,
 identities). Both are written to be readable without this page.
 Unqualified references to "the note" below mean Paper A. The
 development is in `formal/Problems/Juggler/`; it contains no `sorry`
-or `admit`. The review object for the papers is the paper barrel
+or `admit`. The review object for **Paper A** is the paper barrel
 `formal/Problems/JugglerPaper.lean` (`lake build Problems.JugglerPaper`).
-That file imports only the modules named below. Laboratory satellites
+That file imports only the modules named by Paper A (Appendix A of
+the note). It does not import `GapCells.lean`. Laboratory satellites
 remain in `formal/Problems/Juggler.lean` and are not the review object.
 
 The package formalizes finite trajectories and conditional cycle structure.
@@ -239,7 +240,7 @@ odd_even_finiteProgress :
   2 <= n -> n % 2 = 1 -> floorPower n % 2 = 0 ->
   FiniteProgress n
 
-unresolved_is_odd_odd :
+no_finiteProgress_implies_odd_odd :
   2 <= n -> ¬FiniteProgress n ->
   n % 2 = 1 ∧ floorPower n % 2 = 1
 ```
@@ -374,7 +375,7 @@ finite numerical inequality \(257^{64}<2\cdot256^{64}\). The tail
 `LowerPowerBound`, via \(n^{81}>2^{130}(n+1)^{64}\).
 
 `SmallCycleCensus.lean` assembles these exclusions into the census of
-the note's Theorem 3.3:
+the note's Theorem 3.6:
 
 ```text
 no_cycle_word_length_le_six :
@@ -458,8 +459,8 @@ formalized.
 Lean certifies the definitions and theorem statements above. It does not
 certify:
 
-- Proposition 4.4's exact Python-integer horizon-\(20\) census
-  (Paper A);
+- finite first-return counts used in the laboratory (exact Python
+  integers; not a claim of Paper A);
 - the analytic discrepancy estimates of Paper B (Theorems 4.1, 4.4,
   4.7, 4.8, Proposition 4.5, Corollary 4.9; the mixed-piece Lemma 5.2
   and the kernel Theorem 5.3 with Corollary 5.4; the depth-4

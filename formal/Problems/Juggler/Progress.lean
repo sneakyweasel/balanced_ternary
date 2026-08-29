@@ -88,11 +88,17 @@ theorem finiteProgress_of_not_odd_odd {n : ℕ} (hn : 2 ≤ n)
     · exact (h ⟨hodd, hTo⟩).elim
 
 /-- If `n ≥ 2` has no finite-progress certificate, it is odd-to-odd. -/
-theorem unresolved_is_odd_odd {n : ℕ} (hn : 2 ≤ n)
+theorem no_finiteProgress_implies_odd_odd {n : ℕ} (hn : 2 ≤ n)
     (h : ¬FiniteProgress n) :
     n % 2 = 1 ∧ floorPower n % 2 = 1 := by
   by_contra hnot
   exact h (finiteProgress_of_not_odd_odd hn hnot)
+
+/-- Legacy name of `no_finiteProgress_implies_odd_odd`. -/
+theorem unresolved_is_odd_odd {n : ℕ} (hn : 2 ≤ n)
+    (h : ¬FiniteProgress n) :
+    n % 2 = 1 ∧ floorPower n % 2 = 1 :=
+  no_finiteProgress_implies_odd_odd hn h
 
 /-- The first odd-to-odd image expands. Induction cannot fire there. -/
 theorem odd_odd_image_gt {n : ℕ} (hn : 3 ≤ n) (hodd : n % 2 = 1)

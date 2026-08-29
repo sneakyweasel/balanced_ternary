@@ -323,6 +323,204 @@ permits the unconditional Vaaler expansion of the product: off the
 cylinder, the vanishing of an earlier factor kills the term, and on
 the cylinder every factor computes the true letter.
 
+The last three preliminaries are the remaining analytic tools of
+Section 5: the third-derivative test, a finite Fourier expansion for
+sawtooth phases whose coefficient may exceed \(1\), and a
+second/third-derivative test for two-term monomial phases that is
+applied where two curvature scales can collide.
+
+**Lemma 3.7 (van der Corput, third-derivative form [11, Thm. 2.6]).**
+Let \(f\) be three times differentiable on an interval of length
+\(M\), with \(\lambda_3\le|f'''|\le\alpha\lambda_3\). Then
+\[
+\Bigl|\sum e(f)\Bigr|\ll_\alpha M\lambda_3^{1/6}+M^{1/2}\lambda_3^{-1/6},
+\]
+the sum over the integers of the interval.
+
+**Lemma 3.8 (finite Fourier expansion with a shifted window).**
+Let \(B\in\mathbb R\), and let \(T,J\) be integers with \(J\ge1\) and
+\(T\ge8(1+|B|)\). There exist coefficients \((b_u)_{|u|\le T}\) with
+\[
+|b_u|\le\min\Bigl(2,\tfrac1{\pi|u+B|}\Bigr)
++\min\Bigl(2,\tfrac1{\pi|u|}\Bigr),
+\qquad
+\sum_{|u|\le T}|b_u|\ll\log(2+|B|),
+\]
+and coefficients \((v_q)_{0<|q|\le J}\) with
+\(|v_q|\le\min(2,2\pi|B|)/|q|\), such that for every \(t\in\mathbb R\)
+\[
+\Bigl|e(-B\{t\})-\sum_{|u|\le T}b_ue(ut)
+-\sum_{0<|q|\le J}v_qe(qt)\Bigr|
+\le\min(2,2\pi|B|)\,\Delta_J(t)+\frac{8(1+|B|)}T,
+\]
+where \(\Delta_J\ge0\) is a trigonometric polynomial of degree \(J\)
+with constant term and coefficients at most \(1/(J+1)\).
+
+*Proof.* Write \(f(t)=e(-B\{t\})\) and
+\(\sigma(t)=\tfrac12-\{t\}\), the sawtooth with jump \(+1\) at the
+integers. The jump of \(f\) at the integers is \(1-e(-B)\), so
+\(g:=f-(1-e(-B))\,\sigma\) is continuous, \(1\)-periodic, and
+piecewise \(C^1\). Its Fourier coefficients are, for \(u\ne0\),
+\[
+\hat g(u)=\frac{1-e(-B)}{2\pi i}
+\Bigl(\frac1{u+B}-\frac1u\Bigr)
+=-\frac{(1-e(-B))\,B}{2\pi i\,u(u+B)},
+\qquad
+|\hat g(u)|\le\frac{\min(2,2\pi|B|)}{2\pi}\,\frac{|B|}{|u||u+B|},
+\]
+together with \(|\hat g(0)|\le1\); in particular
+\(|\hat g(u)|\le\min(2,\tfrac1{\pi|u+B|})+\min(2,\tfrac1{\pi|u|})\)
+and, by partial fractions,
+\(\sum_u|\hat g(u)|\ll\log(2+|B|)\): the series converges absolutely,
+so \(g\) equals its Fourier series everywhere, and the tail beyond
+\(|u|\le T\ge8(1+|B|)\) satisfies (using \(|u+B|\ge|u|/2\) there)
+\[
+\sum_{|u|>T}|\hat g(u)|
+\le\frac{2|B|}{\pi}\sum_{|u|>T}\frac1{u^2}\cdot2
+\le\frac{8|B|}{\pi T}\le\frac{8(1+|B|)}T .
+\]
+Take \(b_u=\hat g(u)\). For the sawtooth part, Vaaler's theorem in
+its original form [10] provides a trigonometric polynomial
+\(V^*_J(t)=\sum_{0<|q|\le J}a^*_qe(qt)\) with \(|a^*_q|\ll1/|q|\) and
+\(|\sigma(t)-V^*_J(t)|\le\Delta_J(t)\) with \(\Delta_J\) as stated;
+multiply by \(1-e(-B)\), whose modulus is
+\(2|\sin\pi B|\le\min(2,2\pi|B|)\), and set
+\(v_q=(1-e(-B))a^*_q\). \(\square\)
+
+When the lemma is applied with \(t=G(n)\) along a block, the
+\(\Delta_J\)-term is a nonnegative majorant: its sum over the block
+is \(P/(J+1)\) plus \(J\)-truncated mode sums of \(G\) with
+coefficients \(\le1/(J+1)\), and the flat term contributes
+\(8(1+|B|)P/T\). Both costs are displayed at each application below.
+
+**Lemma 3.9 (two-term monomial test).**
+Let \(E\subset\mathbb Q\cap[-4,4]\) be a fixed finite set disjoint
+from \(\{0,1,2,3\}\), let \(\alpha\ne\beta\) lie in \(E\), let
+\(I\subseteq(P,2P]\), and let
+\[
+f(n)=a\,n^\alpha+b\,n^\beta+g(n),
+\qquad
+M:=\max\bigl(|a|P^{\alpha-2},\,|b|P^{\beta-2}\bigr)\le1,
+\quad ab\neq0,
+\]
+where the perturbation satisfies, for every \(n\in I\),
+\[
+|g''(n)|\le\rho\,\bigl(|a|n^{\alpha-2}+|b|n^{\beta-2}\bigr),
+\qquad
+|g'''(n)|\le\rho\,\bigl(|a|n^{\alpha-3}+|b|n^{\beta-3}\bigr),
+\]
+with \(\rho\le\rho_0(E)\) sufficiently small in terms of \(E\) alone.
+Then
+\[
+\Bigl|\sum_{n\in I}e(f(n))\Bigr|
+\ll_E |I|\,M^{1/2}+M^{-1/2}
++|I|\,(M/P)^{1/6}+|I|^{1/2}\,(M/P)^{-1/6}.
+\]
+
+*Proof.* Write \(A(n)=a\,\alpha(\alpha-1)\,n^{\alpha-2}\) and
+\(B(n)=b\,\beta(\beta-1)\,n^{\beta-2}\), so that
+\[
+f''=A+B+g'',
+\qquad
+n\,f'''=(\alpha-2)A+(\beta-2)B+n\,g''' .
+\]
+On the block, \(|A(n)|\asymp_E|a|P^{\alpha-2}\) and
+\(|B(n)|\asymp_E|b|P^{\beta-2}\). The ratio
+\(|A/B|=|a\alpha(\alpha-1)/(b\beta(\beta-1))|\,n^{\alpha-\beta}\) is
+strictly monotone in \(n\), so for any threshold \(K=K(E)\ge3\) the
+block splits into at most three consecutive intervals: \(I_1\) where
+\(|A/B|\ge K\), \(I_2\) where \(|A/B|\le1/K\), and a middle
+\(I_0\).
+
+On \(I_1\): \(|f''|\ge(1-\tfrac1K)|A|-|g''|\ge\tfrac12|A|
+\gg_EM\)-scale, with \(\sup|f''|/\inf|f''|\le C(E)\); Lemma 3.3
+gives \(\ll_E |I|M^{1/2}+M^{-1/2}\). Symmetrically on \(I_2\).
+
+On \(I_0\), \(|A|\asymp_K|B|\). If \(A\) and \(B\) have the same
+sign there, \(|f''|\ge|A|+|B|-|g''|\ge|A|\) and Lemma 3.3 applies
+as before. If they have opposite signs, write \(B=-sA\) with
+\(s=s(n)\in[1/K,K]\), monotone in \(n\). Then
+\[
+f''=A\,(1-s)+g'',
+\qquad
+n\,f'''=A\,\bigl((\alpha-2)-s(\beta-2)\bigr)+n\,g''' .
+\]
+The two affine functions \(s\mapsto1-s\) and
+\(s\mapsto(\alpha-2)-s(\beta-2)\) have distinct zeros: \(s=1\) and
+\(s=(\alpha-2)/(\beta-2)\ne1\) (here \(\alpha\ne\beta\) and
+\(\beta\ne2\) are used). Hence
+\[
+c_6(E):=\min_{s>0}\ \max\bigl(|1-s|,\;|(\alpha-2)-s(\beta-2)|\bigr)>0,
+\]
+so at every \(n\in I_0\) either \(|f''|\ge\tfrac12c_6|A|\) or
+\(|n f'''|\ge\tfrac12c_6|A|\), after absorbing \(g\) by
+\(\rho_0(E)\le c_6/8\). Since \(s(n)\) is monotone, the set where
+\(|1-s(n)|\ge c_6\) is the complement of a single interval, so
+\(I_0\) splits into at most three consecutive intervals, each either
+entirely second-derivative-good (Lemma 3.3 at scale
+\(\gg_EM\)-normalized: \(\ll |I|M^{1/2}+M^{-1/2}\)) or entirely
+third-derivative-good (Lemma 3.7 at scale
+\(|f'''|\gg_EM/P\)-normalized:
+\(\ll |I|(M/P)^{1/6}+|I|^{1/2}(M/P)^{-1/6}\)).
+Summing the \(O_E(1)\) contributions proves the lemma. \(\square\)
+
+The proof's only content is that the second and third derivatives of
+a two-term monomial phase cannot both be small on the same
+subinterval — the linear system with matrix
+\(\bigl(\begin{smallmatrix}1&1\\ \alpha-2&\beta-2\end{smallmatrix}\bigr)\)
+is invertible — so the interval splits into boundedly many pieces on
+which one of the two classical tests runs at full scale. All
+applications in Section 5 use exponent pairs from
+\(E=\{\tfrac34,\tfrac{11}8,\tfrac32,\tfrac{15}8\}\). One corner of
+Section 5 (three curvature scales meeting on a zero-offset branch)
+needs the three-term extension, with the fourth-derivative test as
+the final fallback.
+
+**Lemma 3.10 (three-term monomial test).**
+Let \(E\) be as in Lemma 3.9 and let \(\alpha,\beta,\gamma\in E\) be
+pairwise distinct, \(I\subseteq(P,2P]\), and
+\[
+f(n)=a\,n^\alpha+b\,n^\beta+c\,n^\gamma+g(n),
+\qquad
+M:=\max\bigl(|a|P^{\alpha-2},|b|P^{\beta-2},|c|P^{\gamma-2}\bigr)
+\le1,
+\]
+with \(abc\ne0\) and \(g\) satisfying the analogues of the
+perturbation bounds of Lemma 3.9 for the second, third, *and fourth*
+derivatives, at some \(\rho\le\rho_0(E)\). Then
+\[
+\Bigl|\sum_{n\in I}e(f(n))\Bigr|
+\ll_E |I|\,M^{1/2}+M^{-1/2}
++|I|\,(M/P)^{1/6}+|I|^{1/2}\,(M/P)^{-1/6}
++|I|\,(M/P^2)^{1/14}+|I|^{3/4}\,(M/P^2)^{-1/14}.
+\]
+
+*Proof.* As in Lemma 3.9, with the \(2\times2\) system replaced by
+the \(3\times3\) system
+\[
+f''=A+B+C+g'',\quad
+nf'''=(\alpha{-}2)A+(\beta{-}2)B+(\gamma{-}2)C+ng''',
+\]
+\[
+n^2f''''=(\alpha{-}2)(\alpha{-}3)A+(\beta{-}2)(\beta{-}3)B
++(\gamma{-}2)(\gamma{-}3)C+n^2g'''',
+\]
+where \(A,B,C\) are the three curvature terms. The coefficient
+matrix is the Vandermonde-type matrix in the distinct values
+\(\alpha{-}2,\beta{-}2,\gamma{-}2\) (rows \(1\), \(x\),
+\(x(x{-}1)\)), hence invertible with inverse bounded in terms of
+\(E\): at every point,
+\(\max(|f''|,\,|nf'''|,\,|n^2f''''|)\ge c_7(E)\max(|A|,|B|,|C|)
+\ge c_7(E)\,\tilde M\), \(\tilde M\asymp_EM\)-normalized, after
+absorbing \(g\) by \(\rho_0\le c_7/8\). The ratios \(A/B\), \(B/C\),
+\(A/C\) are monotone, so \(I\) splits into \(O_E(1)\) consecutive
+intervals on each of which one fixed derivative order
+\(r\in\{2,3,4\}\) is good at full scale; Lemma 3.3
+(\(r=2\)), Lemma 3.7 (\(r=3\)), or the fourth-derivative test
+[11, Thm. 2.6, \(k=4\)]
+\(\bigl(\ll|I|\lambda_4^{1/14}+|I|^{3/4}\lambda_4^{-1/14}\) at
+\(\lambda_4\asymp_EM/P^2\bigr)\) finishes each piece. \(\square\)
+
 ## 4. Exact linearization and depths one to four
 
 For odd \(n\) write \(s(n)=\psi(n^{3/2})=(-1)^m\) and
@@ -697,16 +895,47 @@ for smooth weights \(c\) of scale \(kP^{9/8}\) on \(n\sim P\),
 K_c(P)=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
 e\bigl(c(n)\,\{\lfloor n^{3/2}\rfloor^{3/2}\}\bigr).
 \]
-The next lemma collects the exact reductions behind its treatment:
-the kernel phase is the level-2 local floor defect; the second
-difference of the level-2 integer obeys an exact floor identity; and
-on an explicit carry-branch decomposition that second difference is
-a smooth function with a frozen floor.
+This section proves the kernel bound at full length: every estimate
+that the proof uses is displayed, with its dependence on the mode
+\(k\), the differencing shifts \(h_1,h_2,h_3\), the branch offset
+\(j\), and the expansion frequencies made explicit, and with
+numerical constants displayed at each of the sign-critical
+dominance checks. The expansion corrects one estimate of the
+earlier laboratory record and absorbs a second. First, the
+correction: the mixed pieces were previously modelled as
+\(e(sX)\) with a frozen real coefficient \(s\asymp qP^{3/4}\); in
+exact form they are level-2 waves \(e(qY)\) times an optional
+frozen-floor factor, and the frozen model silently discards the
+sawtooth of amplitude \(\asymp qP^{3/4}\) hidden in
+\(Y=(X-\theta)^{3/2}\). Treated exactly — by the same exact
+linearization that proves Theorem 4.4 — the targeted third
+differencing survives, but the honest bound is
+\(q^{-1/6}P^{23/24+\varepsilon}\) (Lemma 5.2), not
+\(q^{1/6}P^{7/8+\varepsilon}\): the mixed piece is a depth-2 object
+and receives exactly depth-2 strength. The kernel saving therefore
+drops from the formerly claimed \(\delta=\tfrac1{72}\) to
+\(\delta=\tfrac1{96}\); every downstream exponent
+\(1-\tfrac1{72}\) becomes \(1-\tfrac1{96}\), and no density
+changes. Second, the absorbed observation: the pure smooth pieces
+of Step 4 carry a factor \((k|j|)^{1/2}\) that the earlier record
+did not display; since
+\((k|j|)^{1/2}P^{15/16}\le P^{23/24}\) exactly on the standing
+range \(k\le P^{1/24}\), this loss sits below the new mixed-piece
+bottleneck and the corrected bound remains uniform in \(k\) on the
+original range.
 
-**Lemma 5.1 (level-2 defect, double gap, and branch freeze).**
+The next lemma collects the exact reductions behind the treatment:
+the kernel phase is the level-2 local floor defect; the second
+difference of the level-2 integer obeys an exact floor identity; on
+an explicit carry-branch decomposition that second difference is a
+smooth function with a frozen floor; and the doubly differenced
+kernel phase decomposes exactly into four bounded pieces — the
+master identity — with no growing smooth part left to estimate.
+
+**Lemma 5.1 (level-2 defect, double gap, branch freeze, and the master identity).**
 Fix shifts \(d_1=2h_1\), \(d_2=2h_2\) and write \(\Delta_1\),
 \(\Delta_2\), \(\Delta\Delta\) for the corresponding difference
-operators in \(n\), and \(W=\Delta_1Y\).
+operators in \(n\), and \(W=\Delta_1Y\), \(W'=\Delta_2Y\).
 
 (i) For odd \(n\ge3\),
 \[
@@ -736,39 +965,102 @@ and every carry is a difference of unit sawtooths:
 \(\asymp P^{1/2}/h\) — and let
 \(\boldsymbol\kappa=(\kappa_1,\kappa_2,\kappa_{12})\in\{0,1\}^3\) be
 the level-1 carries, so that the shifted values of \(m\) are
-\(m+b_1+\kappa_1\), \(m+b_2+\kappa_2\), \(m+b_{12}+\kappa_{12}\). On
-each \(b\)-run intersection and carry branch,
+\(m+\beta_1\), \(m+\beta_2\), \(m+\beta_{12}\) with
+\(\beta_i=b_i+\kappa_i\). On each \(b\)-run intersection and carry
+branch,
 \[
 \Delta\Delta Y=F_{\boldsymbol\kappa}(m),
 \qquad
-F_{\boldsymbol\kappa}(m)=(m{+}b_{12}{+}\kappa_{12})^{3/2}
--(m{+}b_1{+}\kappa_1)^{3/2}-(m{+}b_2{+}\kappa_2)^{3/2}+m^{3/2}
+F_{\boldsymbol\kappa}(m)=(m{+}\beta_{12})^{3/2}
+-(m{+}\beta_1)^{3/2}-(m{+}\beta_2)^{3/2}+m^{3/2}
 \]
 exactly. The net offset
-\(j=(b_{12}{+}\kappa_{12})-(b_1{+}\kappa_1)-(b_2{+}\kappa_2)\)
-satisfies \(|j|\le3\) for \(h_1h_2\le P^{1/2}/3\), and
+\(j=\beta_{12}-\beta_1-\beta_2\)
+satisfies \(|j|\le3\) for \(h_1h_2\le P^{1/2}/3\), and \(F\) splits
+exactly into an offset term and a genuine second difference: for
+some \(\xi_1\) between \(0\) and \(j\) and some
+\(\xi_2\in(0,\beta_1+\beta_2)\),
 \[
-F_{\boldsymbol\kappa}\asymp\tfrac32|j|P^{3/4}+h_1h_2P^{1/4},
-\qquad
-F_{\boldsymbol\kappa}'(m)\asymp|j|P^{-3/4}+h_1h_2P^{-5/4}<1,
+F_{\boldsymbol\kappa}(m)
+=\tfrac32\,j\,(m+\beta_1+\beta_2+\xi_1)^{1/2}
++\tfrac34\,\beta_1\beta_2\,(m+\xi_2)^{-1/2}.
 \]
-so \(\lfloor F_{\boldsymbol\kappa}(X(n))\rfloor\) is constant on runs
-of length \(\asymp\min(P^{1/4}/|j|,\,P^{3/4}/(h_1h_2))\). The branch
-indicator is a finite union of arcs in the single variable \(\theta\)
-with slowly moving endpoints (drifts \(\asymp hP^{-1/2}\)): exactly
-the moving-endpoint pattern of Step 4 of Theorem 4.4, absorbed by the
-same exact shift device at \(O(\log P)\) mode-mass cost.
+Consequently, with \(G:=F_{\boldsymbol\kappa}\circ X\),
+\[
+\tfrac32|j|P^{3/4}\le\Bigl|\tfrac32j(\cdot)^{1/2}\Bigr|
+\le2.6\,|j|P^{3/4},
+\qquad
+1.4\,h_1h_2P^{1/4}\le\tfrac34\beta_1\beta_2(\cdot)^{-1/2}
+\le15\,h_1h_2P^{1/4},
+\]
+\[
+|G'(n)|\le2|j|P^{-1/4}+20\,h_1h_2P^{-3/4}<1,
+\qquad
+|G''(n)|\le2|j|P^{-5/4}+25\,h_1h_2P^{-7/4},
+\]
+so \(\lfloor G(n)\rfloor\) is constant on runs of length
+\(\ge\tfrac1{22}\min\bigl(P^{1/4}/(|j|{+}1),\,P^{3/4}/(h_1h_2)\bigr)\).
+The branch indicator is a finite union of arcs in the single
+variable \(\theta\) with slowly moving endpoints (drifts
+\(\le1.5hP^{-1/2}\) per step): exactly the moving-endpoint pattern of
+Step 4 of Theorem 4.4, absorbed by the same exact shift device at
+\(O(\log P)\) mode-mass cost.
+
+(iv) *(Master identity.)* With
+\(\kappa_2=[\theta_2\ge1-\{W\}]\), \(\kappa_2'=[\theta_2\ge1-\{W'\}]\)
+the level-2 carries at the two shifts, and \(\kappa''\),
+\(\Delta_2\kappa_2\) as in (ii), the doubly differenced kernel phase
+decomposes exactly:
+\[
+\Delta\Delta(c\,\theta_2)
+=(\Delta\Delta c)\,\theta_2
++(\Delta_2c)(n{+}d_1)\,\bigl(\{W\}-\kappa_2\bigr)
++(\Delta_1c)(n{+}d_2)\,\bigl(\{W'\}-\kappa_2'\bigr)
++c_{11}\,\bigl(\{\Delta\Delta Y\}-\kappa''-\Delta_2\kappa_2\bigr),
+\]
+where \(c_{11}\) is the doubly shifted weight. Every bracket is
+bounded by \(2\) in absolute value: no unbounded smooth part
+survives the differencing.
 
 *Proof.* (i) Taylor of \((v+\theta_2)^{3/2}\) at \(v\), with
 \(Y^{3/2}=m^{9/4}\). (ii) The gap identity of Lemma 4.3(ii) applied
 twice — to \(Y\) at shift \(d_1\), then to the real sequence
 \(n\mapsto W(n)\) at shift \(d_2\), with \(\Delta_2W=\Delta\Delta Y\);
 the sawtooth form of the carry is the Lean-verified floor-carry
-identity rearranged. (iii) The corner identities are Lemma 4.3(ii) at
-the three shifts. The offset bound follows from
-\(|\Delta\Delta X|\le4h_1h_2\sup|X''|=3h_1h_2P^{-1/2}\). The
-derivative bound is the mean value theorem on the second difference
-of \(\tfrac32m^{1/2}\) plus \(\tfrac34j(m+\xi)^{-1/2}\). \(\square\)
+identity rearranged. (iii) The corner identities are Lemma 4.3(ii)
+at the three shifts, and the offset bound follows from
+\(|\Delta\Delta X|\le4h_1h_2\sup|X''|=3h_1h_2P^{-1/2}<1\). For the
+split, group
+\(F=\bigl[(m{+}\beta_1{+}\beta_2{+}j)^{3/2}-(m{+}\beta_1{+}\beta_2)^{3/2}\bigr]
++\bigl[(m{+}\beta_1{+}\beta_2)^{3/2}-(m{+}\beta_1)^{3/2}
+-(m{+}\beta_2)^{3/2}+m^{3/2}\bigr]\): the first bracket is
+\(\tfrac32j(\cdot)^{1/2}\) by the mean value theorem, the second is
+\(\beta_1\beta_2\,f''(m+\xi_2)\) for \(f=x^{3/2}\) by the double mean
+value theorem. The displayed numerical bounds use
+\(m\in(P^{3/2}{-}1,2^{3/2}P^{3/2}]\),
+\(\beta_i\in[3h_iP^{1/2}{-}1,\,3\sqrt2\,h_iP^{1/2}{+}1]\)
+(from \(\Delta_iX=2h_iX'(\xi)\) and (E1) below), and
+\(G'=F'(X)X'\), \(G''=F''(X)X'^2+F'(X)X''\) with
+\(F'=\tfrac34j(\cdot)^{-1/2}-\tfrac38\beta_1\beta_2(\cdot)^{-3/2}\),
+\(F''=-\tfrac38j(\cdot)^{-3/2}+\tfrac9{16}\beta_1\beta_2(\cdot)^{-5/2}\).
+(iv) By (ii) and the definitions:
+\(\Delta_1\theta_2=\Delta_1Y-\Delta_1v=W-(\lfloor W\rfloor+\kappa_2)
+=\{W\}-\kappa_2\) (Lemma 4.3(ii) applied to \(Y\)), likewise
+\(\Delta_2\theta_2=\{W'\}-\kappa_2'\), and
+\(\Delta\Delta\theta_2=\Delta\Delta Y-\Delta_2g_2
+=\{\Delta\Delta Y\}-\kappa''-\Delta_2\kappa_2\) by (ii). Substitute
+these into the exact product rule
+\[
+\Delta\Delta(cf)=c_{11}\,\Delta\Delta f
++(\Delta_2c)(n{+}d_1)\,\Delta_1f
++(\Delta_1c)(n{+}d_2)\,\Delta_2f
++(\Delta\Delta c)\,f .
+\]
+The identity is machine-validated on \(12{,}000\) exact
+scaled-integer samples across shift pairs
+\((h_1,h_2)\in\{(1,1),(2,3),(5,7)\}\)
+(`master_identity_check`), on top of the Lean-anchored constituents
+(`seq_floor_gap`, `seq_floor_gap_second`). \(\square\)
 
 One warning, essential to the organization: \(\lfloor\Delta\Delta
 Y\rfloor\) itself is *not* frozen. The level-1 carry toggles at
@@ -779,128 +1071,395 @@ indicator over the eight carry branches, is therefore forced: no
 decomposition conditioning on the *values* of the level-1 gaps
 produces sets on which the second difference is smooth.
 
+### Standing estimates
+
+All estimates of this section take place on a dyadic block
+\(n\in(P,2P]\), \(n\) odd, under the standing constraints
+\[
+\text{(C1)}\quad kh_1h_2\le P^{1/8},
+\qquad
+\text{(C2)}\quad h_1h_2\le P^{1/2}/3,
+\qquad
+\text{(C3)}\quad 1\le k\le P^{1/24},
+\]
+and every displayed constant below is valid for
+\(P\ge P_0\) with an absolute \(P_0\). The base derivatives are
+\[
+\text{(E1)}\quad
+X'=\tfrac32n^{1/2}\in(1.5,2.13]\,P^{1/2},\quad
+X''=\tfrac34n^{-1/2}\in[0.53,0.75)\,P^{-1/2},
+\]
+\[
+\phantom{\text{(E1)}}\quad
+-X'''=\tfrac38n^{-3/2}\in[0.13,0.375)\,P^{-3/2},\quad
+X''''=\tfrac9{16}n^{-5/2}\le0.57\,P^{-5/2},
+\]
+and \(m=X-\theta\in(P^{3/2}-1,\,2.83\,P^{3/2}]\). Every gap is a
+mean value: for any shift \(2h\),
+\[
+\text{(E2)}\quad
+\Delta X=2hX'(\xi)\in(3hP^{1/2},\,4.3hP^{1/2}),
+\qquad
+\beta:=\lfloor\Delta X\rfloor+\kappa
+\in(3hP^{1/2}-1,\,4.3hP^{1/2}+1),
+\]
+so that every level-1 gap integer at shift \(2h\) is
+\(\asymp hP^{1/2}\) with the displayed constants. For the monomial
+weight \(c=\tfrac{3k}4n^{9/8}\) (the general \(c\) of Theorem 5.3
+changes only the absolute constants),
+\[
+\text{(E3)}\quad
+c'=\tfrac{27}{32}kn^{1/8},\quad
+c''=\tfrac{27}{256}kn^{-7/8},\quad
+c'''=-\tfrac{189}{2048}kn^{-15/8},\quad
+c''''=\tfrac{2835}{16384}kn^{-23/8},
+\]
+\[
+\text{(E4)}\quad
+\Delta_ic=2h_ic'(\xi)\in(1.68,1.85)\,kh_iP^{1/8},
+\qquad
+\Delta\Delta c=4h_1h_2c''(\xi)\in(0.22,0.43)\,kh_1h_2P^{-7/8}.
+\]
+On the level-2 side, with \(\beta_i\) as in Lemma 5.1(iii),
+\[
+\text{(E5)}\quad
+W=\Delta_1Y\in(4.4,11)\,h_1P^{5/4},
+\qquad
+\bigl|(W\circ\text{cell})'\bigr|
+=\bigl|W_1'(m)\,X'\bigr|\in(2.2,10.4)\,h_1P^{1/4},
+\]
+where \(W_1(m)=(m+\beta_1)^{3/2}-m^{3/2}\), so \(\{W\}\) is a *fast*
+sawtooth (its argument moves by \(\gg1\) per step), while \(\theta\),
+\(\{\Delta_iX\}\), and \(\{\Delta\Delta Y\}\) are slow. The branch
+bounds of Lemma 5.1(iii) give, per branch with offset \(j\),
+\[
+\text{(E6)}\quad
+\bigl|(cF)''\bigr|
+=\tfrac{945}{512}\,k|j|\,n^{-1/8}\,(1+O(P^{-1/4}))
++O\bigl(kh_1h_2P^{-5/8}\bigr),
+\]
+the two shapes being the composite monomials \(kjn^{15/8}\)
+(offset branches) and \(kh_1h_2\)-scale \(n^{11/8}\) (zero-offset),
+with sign product
+\(\alpha(\alpha-1)(\alpha+\beta-2)(\alpha+\beta-3)>0\) at
+\(\alpha=\tfrac98\), \(\beta\in\{\tfrac34,\tfrac14\}\). Finally, the
+run and cell inventories: level-1 gap cells at shift \(2h\) number
+at most \(1.5hP^{1/2}+1\) with lengths in
+\([\tfrac23,\,0.95]\,P^{1/2}/h\), and the frozen-floor runs of
+\(\lfloor F_{\boldsymbol\kappa}(X)\rfloor\) number at most
+\(22(|j|+1)P^{3/4}\) by the derivative bound of Lemma 5.1(iii).
+
+Throughout, "\(A\) is dominated by \(B\) at margin \(P^{-\rho}\)"
+means \(\sup|A|/\inf|B|\le CP^{-\rho}\) with the displayed \(C\):
+the composite second derivative then keeps the sign and, up to the
+factor \(1+CP^{-\rho}\), the size of \(B\), so Lemma 3.3 applies at
+\(B\)'s scale.
+
 The proof of the kernel theorem classifies the differenced pieces
 into four classes; three are handled by standard tests, and the
-fourth — a frozen floor multiplied by a large regenerated mode — is
-the genuinely new difficulty. We isolate it as a standalone lemma
-with its own differencing, so that it can be checked independently.
+fourth — an exact level-2 wave \(e(qY)\), possibly riding a frozen
+floor — is the genuinely new difficulty. We isolate it as a
+standalone lemma with its own differencing, so that it can be
+checked independently.
 
-**Lemma 5.2 (the mixed-piece bound).**
-Let \(P\ge2\), \(k\le P^{1/24}\), \(|j|\le3\), and \(h_1,h_2\ge1\)
-with \(kh_1h_2\le P^{1/8}\). Let \(c\) be as in Theorem 5.3, let
-\(F=F_{\boldsymbol\kappa}\) be a branch function of Lemma 5.1(iii)
-with offset \(j\), let \(r\) be an integer with \(1\le r\le P^{1/16}\),
-let \(s\in\mathbb R\) with \(|s|\asymp rP^{3/4}\), and let \(\varphi\)
-be smooth with \(|\varphi''|\ll kh_1h_2P^{-5/8}\) and
-\(|\varphi'''|\ll kh_1h_2P^{-13/8}\). Then
+**Lemma 5.2 (level-2 waves: the mixed-piece bound).**
+Assume (C1)–(C3), write \(\mathcal D=\{0,d_1,d_2,d_1{+}d_2\}\), and
+call a *decoration* any sum \(\rho\) of at most four terms of the
+classes
+
+- (D1) \(q'\,\Delta_{2h}\Delta_{2h'}Y(n{+}d')\) with
+  \(|q'|\le P^{1/16}\), \(1\le h'\le P^{1/24}\),
+  \(d'\in\mathcal D\);
+- (D2) \(-\Delta_{2h}\bigl(c\,\lfloor
+  F_{\boldsymbol\kappa}(X)\rfloor\bigr)(n)\), with
+  \(F_{\boldsymbol\kappa}\) a branch function of Lemma 5.1(iii),
+  offset \(|j|\le3\);
+- (D3) a smooth \(\varphi\) with \(|\varphi''|\le3kh_1h_2P^{-5/8}\)
+  and \(|\varphi'''|\le3kh_1h_2P^{-13/8}\);
+
+here \(2h\) is the shift of part (i), and in part (ii) the
+decorations are read after the differencing there. Then, for sums
+over \(n\in(P,2P]\), \(n\) odd:
+
+(i) *(differenced wave)* for all integers \(u,h\ge1\) with
+\(h\le P^{1/8}\), \(uh\le P^{1/2}\), and \(d\in\mathcal D\),
 \[
-U:=\sum_{\substack{n\sim P\\ n\ \mathrm{odd}}}
-e\bigl(s\,X(n)-c(n)\lfloor F(X(n))\rfloor+\varphi(n)\bigr)
-\;\ll\; r^{1/6}\,P^{7/8+\varepsilon}.
+V:=\Bigl|\sum_n
+e\bigl(u\,\Delta_{2h}Y(n{+}d)+\rho(n)\bigr)\Bigr|
+\;\ll\;
+\Bigl((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+P^{7/8}\Bigr)
+P^{\varepsilon};
 \]
 
-*Proof.* Apply one further Weyl differencing with shift \(2h_3\),
-\(h_3\le H_3:=\lceil r^{-1/3}P^{1/4}\rceil\):
+(ii) *(wave)* for all integers \(q,q'\) with
+\(|q|,|q'|\le P^{1/16}\) and \(t:=q+q'\ne0\), all
+\(d\ne d'\in\mathcal D\), \(\varepsilon_0\in\{0,1\}\), and \(\varphi\)
+of class (D3),
 \[
-|U|^2\ll\frac{P^2}{H_3}
-+\frac P{H_3}\sum_{1\le h_3\le H_3}|U_3(h_3)|,
+U:=\Bigl|\sum_n
+e\bigl(q\,Y(n{+}d)+q'\,Y(n{+}d')
+-\varepsilon_0\,c(n)\lfloor F_{\boldsymbol\kappa}(X(n))\rfloor
++\varphi(n)\bigr)\Bigr|
+\;\ll\;|t|^{-1/6}\,P^{23/24+\varepsilon}.
+\]
+
+Part (ii) is the mixed-piece bound proper: the level-2 wave
+\(e(qY)\), possibly riding a frozen floor. Part (i) is the engine
+that (ii)'s targeted differencing feeds, and is also used directly
+for the \(\{W\}\)-content of the kernel proof. The exponent
+\(\tfrac{23}{24}\) is not an accident: written exactly, the wave
+\(e(qY)\) is the depth-2 object of Theorem 4.4, and part (ii)
+recovers exactly the depth-2 strength — no more. The earlier
+laboratory record modelled \(U\) as \(e(sX)\) with \(s\) frozen of
+size \(qP^{3/4}\) and claimed \(q^{1/6}P^{7/8+\varepsilon}\); that
+model discards the sawtooth \(-\tfrac32qX^{1/2}\theta\) of amplitude
+\(\asymp qP^{3/4}\) inside \(qY=q(X-\theta)^{3/2}\), and the claim
+does not survive the exact treatment.
+
+*Proof of (ii) from (i).* Replacing the summand by its conjugate we
+may take \(t\ge1\). Write, exactly,
+\[
+qY(n{+}d)+q'Y(n{+}d')
+=t\,Y(n{+}d)+q'\,\Delta_{|d'-d|}Y(n{+}\min(d,d')),
+\]
+so the second term is a decoration seed. Weyl differencing at shift
+\(2h_3\), \(1\le h_3\le H_3:=\lceil t^{1/3}P^{1/12}\rceil\):
+\[
+|U|^2\le\frac{P^2}{H_3}
++\frac{2P}{H_3}\sum_{h_3=1}^{H_3}
+\bigl|V_{h_3}\bigr|,
 \qquad
-U_3=\sum_n e\bigl(\Delta_3\Phi(n)\bigr),
+V_{h_3}
+=\sum_ne\bigl(t\,\Delta_{2h_3}Y(n{+}d)+\rho_{h_3}(n)\bigr),
 \]
-where \(\Phi\) is the phase of \(U\) and \(\Delta_3\) is the
-difference at shift \(2h_3\). We show
-\(|U_3|\ll(rh_3)^{1/2}P^{5/8+\varepsilon}\) for each \(h_3\); the
-lemma then follows from
+where \(\rho_{h_3}\) collects
+\(q'\Delta_{2h_3}\Delta_{|d'-d|}Y\) (class (D1) with
+\(h'=|d'-d|/2\le h_1{+}h_2\le P^{1/24}\cdot2\)),
+\(-\varepsilon_0\Delta_{2h_3}(c\lfloor F(X)\rfloor)\) (class (D2)),
+and \(\Delta_{2h_3}\varphi\) (class (D3):
+\(|(\Delta_{2h_3}\varphi)''|\le2h_3\sup|\varphi'''|
+\le6kh_1h_2h_3P^{-13/8}\le3kh_1h_2P^{-5/8}\) since
+\(h_3\le P^{1/4}\)). The hypothesis of (i) holds:
+\(th_3\le t\cdot2t^{1/3}P^{1/12}=2t^{4/3}P^{1/12}
+\le2P^{1/12+1/12}\le P^{1/2}\). Part (i) gives
 \[
-|U|^2\ll\frac{P^2}{H_3}+r^{1/2}H_3^{1/2}P^{13/8+\varepsilon}
-\ll r^{1/3}P^{7/4+\varepsilon}
-\quad\text{at}\quad H_3=r^{-1/3}P^{1/4}.
+|U|^2\le\frac{P^2}{H_3}
++\Bigl(4t^{1/2}H_3^{1/2}P^{13/8}
++4t^{-1/2}H_3^{1/2}P^{15/8}
++4P^{15/8}\Bigr)P^{\varepsilon},
 \]
+and at \(H_3=\lceil t^{1/3}P^{1/12}\rceil\) the four terms are, in
+order, \(\le t^{-1/3}P^{23/12}\);
+\(\le6t^{2/3}P^{5/3}=6\,(tP^{-1/4})\,t^{-1/3}P^{23/12}
+\le6P^{1/16-1/4}\cdot t^{-1/3}P^{23/12}\);
+\(\le6t^{-1/3}P^{1/24}P^{15/8}=6t^{-1/3}P^{23/12}\); and
+\(\le4\,(t^{1/3}P^{-1/24})\,t^{-1/3}P^{23/12}
+\le4P^{1/48-1/24}\,t^{-1/3}P^{23/12}\). Hence
+\(|U|^2\ll t^{-1/3}P^{23/12+\varepsilon}\), which is (ii).
 
-*The main curvature.* \(\Delta_3(sX)''=s\,\Delta_3(X'')\), and since
-\(X'''=-\tfrac38n^{-3/2}\) has fixed sign,
-\(|\Delta_3(sX)''|\asymp|s|h_3P^{-3/2}\asymp rh_3P^{-3/4}\) with a
-single sign determined by the signs of \(s\) and \(X'''\). It is
-sub-unit: \(rH_3P^{-3/4}=r^{2/3}P^{-1/2}\le P^{-1/2+1/24}<1\).
+*Proof of (i).* Six stages; write \(\nu=n+d\) (a shift of the block
+by at most \(d_1{+}d_2\le P^{1/2}\), harmless in every estimate) and
+\(\Delta=\Delta_{2h}\).
 
-*The floor content.* Split \(\lfloor F\rfloor=F-\{F\}\), so
+*Stage 1 (the \(m\)-linear form).* By Lemma 4.3(i) at the bases
+\(\nu\) and \(\nu{+}2h\),
 \[
-\Delta_3\bigl(c\lfloor F\circ X\rfloor\bigr)
-=\Delta_3\bigl(cF\circ X\bigr)
--c\,\Delta_3\{F\circ X\}
--(\Delta_3c)\,\{F(X(n{+}2h_3))\}.
+u\,\Delta Y
+=u\,A_h(\nu)
++\tfrac{3u}2\,g(\nu)\,(\nu{+}2h)^{3/4}
+-\tfrac{3u}2\,\theta_\nu\,\Delta(\nu^{3/4})
++u\,\Delta E,
 \]
-Each of the three terms is handled in turn; throughout, write
-\(F\) for \(F\circ X\), a slow function: \(F'\ll|j|P^{-1/4}
-+h_1h_2P^{-3/4}\) and \(F''\ll|j|P^{-5/4}\).
-
-(a) *The smooth term.* \((cF)''\asymp k|j|P^{-1/8}+kh_1h_2P^{-5/8}\)
-and \((cF)'''\asymp k|j|P^{-9/8}+kh_1h_2P^{-13/8}\), so
-\(|(\Delta_3(cF))''|\ll h_3\sup|(cF)'''|\ll h_3k|j|P^{-9/8}\ll
-k|j|P^{-7/8}\). Against the main curvature \(rh_3P^{-3/4}\ge
-P^{-3/4}\), the ratio is \(\ll k|j|P^{-1/8}\le3P^{1/24-1/8}\to0\):
-dominated. The same computation with \(\varphi\) in place of \(cF\)
-uses the hypothesis on \(\varphi'''\) and is smaller still.
-
-(b) *The differenced sawtooth.* \(\Delta_3\{F\}=\Delta_3F
--\Delta_3\lfloor F\rfloor\), and by the gap identity
-(Lemma 4.3(ii) applied to the sequence \(F\)),
-\(\Delta_3\lfloor F\rfloor=\lfloor\Delta_3F\rfloor+\kappa_F\) with
-\(\kappa_F\in\{0,1\}\). Here \(|\Delta_3F|\ll h_3(|j|P^{-1/4}
-+h_1h_2P^{-3/4})\ll P^{1/4}\cdot P^{-1/4}=O(1)\), so
-\(\lfloor\Delta_3F\rfloor\) takes \(O(1)\) values, on level sets
-whose boundaries move with the slow function \(\Delta_3F\) (drift
-per step \(\ll h_3\sup|(F\circ X)''|\ll h_3|j|P^{-5/4}\le3P^{-1}\));
-the term \(c\,\Delta_3F\) is smooth
-with third-derivative ratio to the main curvature \(\to0\) as in
-(a); the term \(c\lfloor\Delta_3F\rfloor\) contributes, per level
-set, the phase \(-qc(n)\) with \(q=O(1)\), of curvature
-\(\ll kP^{-7/8}\le P^{1/24-7/8}\ll P^{-3/4}\): dominated. The carry
-\(\kappa_F=\{F\}+\{\Delta_3F\}-\{F+\Delta_3F\}\) is a difference of
-unit sawtooths in slow variables (drifts \(<1\) per step by the
-bounds on \(F'\)); each expands by Lemma 3.5 at truncation
-\(P^{1/16}\) (majorant cost \(P^{1-1/16}\), inside the target) into
-modes \(e(q'F)\) with \(O(\log P)\) mass, and each mode phase
-\(q'F\) has curvature \(q'\,|(F\circ X)''|\ll P^{1/16}|j|P^{-5/4}
-\ll P^{-3/4}\): dominated.
-
-(c) *The coefficient term.* \(\Delta_3c\asymp kh_3P^{1/8}\) may
-exceed \(1\), but its derivative \((\Delta_3c)'\asymp kh_3P^{-7/8}\)
-is sub-unit, so \(\Delta_3c\) drifts by at most \(1\) on windows of
-length \(P^{7/8}/(kh_3)\), of which there are \(\asymp kh_3P^{1/8}\).
-On each window, freeze \(\Delta_3c\) at its centre value \(B_0\);
-the residual \(e(-(\Delta_3c-B_0)\{F\})\) has total variation
-\(O(1)\) on the window and is removed by partial summation. Expand
-\(e(-B_0\{F\})\) in Fourier modes of \(F\) (Vaaler truncation
-\(|q''+B_0|\le P^{1/16}\), majorant cost \(P^{1-1/16}\) summed over
-windows): each retained mode phase \(q''F\) has curvature
-\(\ll(kh_3P^{1/8}+P^{1/16})\,|j|P^{-5/4}
-\ll P^{1/24+1/4+1/8}\cdot3P^{-5/4}\ll P^{-3/4}\): dominated.
-
-*Conclusion.* After (a)–(c), every piece of \(U_3\) is an
-exponential sum whose second derivative is
-\(\asymp rh_3P^{-3/4}\) with a single sign (the main curvature, with
-every competitor smaller by a fixed power of \(P\)), possibly
-multiplied by \(O(\log P)\)-mass mode weights and \(O(1)\)-variation
-window factors. Lemma 3.3 over the full block gives, per piece,
+with \(g=m(\nu{+}2h)-m(\nu)\), \(|u\Delta E|\le uP^{-3/4}\) (total
+cost over the block \(\le2\pi uP^{1/4}\le2\pi P^{3/4}\)), and
 \[
-\ll P\,(rh_3P^{-3/4})^{1/2}+(rh_3P^{-3/4})^{-1/2}
-\ll(rh_3)^{1/2}P^{5/8}+P^{3/8},
+A_h(\nu)=\tfrac32\nu^{3/2}\Delta(\nu^{3/4})
+-\tfrac12\Delta(\nu^{9/4})
+=-\tfrac{27}8h^2\nu^{1/4}\bigl(1+O(hP^{-1})\bigr):
 \]
-and the mode masses and majorant costs multiply this by
-\(P^{\varepsilon}\) and add \(P^{1-1/16}\), both inside the claimed
-bound. \(\square\)
+the two \(\nu^{5/4}\)-scale contributions cancel exactly at leading
+order (both equal \(\tfrac94h\nu^{5/4}\)), leaving
+\(|uA_h''|\le0.64\,uh^2P^{-7/4}\). The sawtooth coefficient is
+\[
+B(\nu):=\tfrac{3u}2\,\Delta(\nu^{3/4})
+=\tfrac94\,uh\,\xi^{-1/4}\in(1.89,2.25]\,uhP^{-1/4}.
+\]
 
-The reader may check the balance: with the trivial bound
-\(|U_3|\le P\) the differencing would return \(|U|\ll P/H_3^{1/2}\),
-i.e. nothing beyond the choice of \(H_3\); the content of the lemma
-is that the floor and coefficient bookkeeping in (a)–(c) survives the
-third differencing with the main curvature intact, which is what
-fails if one attempts the third-derivative test per frozen run
-instead (the run length \(P^{1/4}\) is too short: the test's second
-term, summed over \(P^{3/4}\) runs, returns the trivial bound). That
-failure is why the differencing must be *targeted at the piece*, not
-applied per run.
+*Stage 2 (gap cells and the exact shift device).* Split into the
+level sets of \(\lfloor\delta_h\rfloor\),
+\(\delta_h(\nu)=(\nu{+}2h)^{3/2}-\nu^{3/2}\): at most
+\(1.5hP^{1/2}+1\) cells of length in
+\([\tfrac23,\,0.95]\,P^{1/2}/h\) (E1). On a cell \(g=G+\kappa\) with
+\(G=\lfloor\delta_h\rfloor\) frozen and
+\(\kappa=[\theta_\nu\ge1-\{\delta_h\}]\); Vaaler-expand \(\kappa\)
+at truncation \(R_0=P^{1/4}\) (majorant cost \(\le4P/R_0=4P^{3/4}\)).
+The moving endpoint costs nothing: as in Theorem 4.4, Step 4, the
+endpoint's smooth part contributes the exact phase
+\(r\delta_h(\nu)\), and
+\(e(r\nu^{3/2}+r\delta_h(\nu))=e(r(\nu{+}2h)^{3/2})\), so every
+\(r\)-term falls into the two smooth families \(e(r\nu^{3/2})\),
+\(e(r(\nu{+}2h)^{3/2})\), \(0<|r|\le R_0\), with weights
+\(\le1/|r|\); the in-cell variation of the coefficient is exactly
+\(1\) and one Abel summation absorbs it at a factor \(\le2{+}2\pi\).
+
+*Stage 3 (the \(\theta\)-sawtooth).* Two regimes.
+(s1) If \(uh\le P^{3/16}\) then \(|B|\le2.25P^{-1/16}<\tfrac12\) for
+\(P\ge P_0\): Lemma 3.8 with \(T=P^{1/2}\), \(J=R_0\) expands
+\(e(-B_0\{\nu^{3/2}\}\dots)\) per window (here one window: the total
+drift of \(B\) is \(\le0.6uhP^{-1/4}\le0.6P^{-1/16}<1\)) into the
+same two mode families at coefficient factor
+\(\min(2,2\pi|B|)\le14P^{-1/16}\), mass \(O(\log P)\), flat cost
+\(\le12P^{1/2}\), majorant \(\le14P^{-1/16}\cdot4P^{3/4}\).
+(s2) If \(P^{3/16}<uh\le P^{1/2}\) then \(|B|\le2.25P^{1/4}\) and
+\(B\) drifts by at most \(1\) on windows of length
+\(\ge P^{5/4}/(0.6uh)\ge1.2P^{3/4}\): at most \(0.6P^{1/4}+1\)
+windows. Per window Lemma 3.8 at the centre \(B_0\)
+(\(T=P^{1/2}\): flat cost \(\le8(1{+}2.25P^{1/4})P^{1/2}
+\le27P^{3/4}\) in total) produces modes \(e(w\nu^{3/2})\) whose
+coefficients decay as
+\(\min(2,\tfrac1{\pi|w+B_0|})+\min(2,\tfrac1{\pi|w|})\); the
+window-boundary cost is, using \(uh>P^{3/16}\),
+\(\le(0.6P^{1/4}{+}1)\cdot1.83\,(0.30\,uh)^{-1/2}P^{3/8}
+\le2.1\,P^{1/4-3/32+3/8}=2.1\,P^{17/32}\le P^{5/8}\). Modes with
+\(|w|\) in the collision window are treated in Stage 5.
+
+*Stage 4 (the main curvature, \(r=w=0\)).* On a cell the remaining
+phase is \(\tfrac{3u}2G(\nu{+}2h)^{3/4}+uA_h+(\text{smooth
+decorations})\), with second derivative
+\[
+-\tfrac9{32}\,uG\,(\nu{+}2h)^{-5/4}
+\in-[0.30,\,1.35]\,uh\,P^{-3/4}
+\qquad(\text{E2}),
+\]
+single-signed with in-cell ratio \(\sup/\inf\le4.5\); this is the
+composite whose two contributions
+\(-\tfrac{27}{32}\beta n^{-5/4}\) and \(+\tfrac9{16}\beta n^{-5/4}\)
+(net \(-\tfrac9{32}\beta n^{-5/4}\), margin \(3{:}2\)) are
+machine-validated (`kernel_margin_scan`, gate m1). The competitor
+\(uA_h''\) has ratio
+\(\le0.64uh^2P^{-7/4}/(0.30uhP^{-3/4})\le2.2hP^{-1}\le2.2P^{-3/4}\);
+decoration competitors are bounded in Stage 6. Lemma 3.3 per cell
+and summation give
+\[
+\sum_{\text{cells}}
+\Bigl(\ell_i\lambda^{1/2}+\lambda^{-1/2}\Bigr)
+\le2.3\,(uh)^{1/2}P^{5/8}
++2.8\,(h/u)^{1/2}P^{7/8}.
+\]
+
+*Stage 5 (nonzero modes and collisions).* A mode \(w\ne0\) (or
+\(r\ne0\); identical treatment with weight \(1/|r|\)) adds the phase
+\(w\nu^{3/2}\) of curvature \(\ge0.53|w|P^{-1/2}\).
+If \(0.53|w|P^{-1/2}\ge4\cdot1.35uhP^{-3/4}\), i.e.
+\(|w|\ge10.2\,uhP^{-1/4}\), the mode curvature dominates at margin
+\(\ge4\): Lemma 3.3 over the full block gives
+\(\le1.4|w|^{1/2}P^{3/4}+1.4|w|^{-1/2}P^{1/4}\), and the
+coefficient-weighted sums are
+\(\le3R_0^{1/2}P^{3/4}\log P=3P^{7/8}\log P\) (families of Stage 2,
+regime (s1)) and \(\le CP^{7/8}\log P\) (regime (s2) tails). If
+\(|w|\le0.1\,uhP^{-1/4}\) the main curvature dominates at margin
+\(\ge4\) and the mode rides along at Stage 4's scale, weight
+summable to \(O(\log P)\). In the remaining collision window
+\(0.1\,uhP^{-1/4}\le|w|\le10.2\,uhP^{-1/4}\) (nonempty only in
+regime (s2)), the two curvatures can cancel: there the phase is the
+two-term monomial
+\(a\nu^{3/4}+w\nu^{3/2}\) with \(a=\tfrac{3u}2G\asymp uh P^{1/2}\)
+plus perturbations already shown \(\rho_0\)-small, and Lemma 3.9
+with \((\alpha,\beta)=(\tfrac34,\tfrac32)\) applies per window with
+\(M\le1.35uhP^{-3/4}\le1.35P^{-1/4}\):
+\[
+\le|I_w|M^{1/2}+M^{-1/2}
++|I_w|(M/P)^{1/6}+|I_w|^{1/2}(M/P)^{-1/6},
+\]
+which, summed over windows with the \(O(\log P)\) collision-window
+coefficient mass, is
+\(\le C\bigl((uh)^{1/2}P^{5/8}+(uh)^{1/6}P^{17/24}
++(uh)^{-1/6}P^{19/24}+P^{5/8}\bigr)\log P\le CP^{7/8}\log P\)
+(using \(uh\le P^{1/2}\)).
+
+*Stage 6 (decorations).* Each class is dominated at a displayed
+margin against the Stage-4 curvature
+\(\ge0.30uhP^{-3/4}\).
+
+- (D1). On the branch decomposition of Lemma 5.1(iii) at the shift
+  pair \((h_3\text{-role }h,\,h')\): the arcs are absorbed by the
+  shift device (log mass); the \(b\)-run boundaries add
+  \(\le1.5(h{+}2h')P^{1/2}+2\) cells, at boundary cost
+  \(\le1.5(h{+}2h')P^{1/2}\cdot1.83(0.30uh)^{-1/2}P^{3/8}
+  \le5.1(h/u)^{1/2}P^{7/8}+10.3\,h'(uh)^{-1/2}P^{7/8}\)
+  (the second term is what the \(H_3\)-averaging of part (ii)
+  absorbs: it contributes
+  \(\le2h't^{-2/3}P^{43/24}\le P^{1/24-1/8}\,t^{-1/3}P^{23/12}\)
+  there). The \(\theta\)-coefficient of the decoration is
+  \(\le|q'|\bigl(2|j'|P^{-1/4}+20hh'P^{-3/4}\bigr)
+  \le6P^{1/16-1/4}+20P^{1/16+1/4+1/24-3/4}<1\): sub-unit, expanded
+  in the Stage-2 families. Its smooth curvature has ratio
+  \(\le|q'|\bigl(2|j'|P^{-5/4}+25hh'P^{-7/4}\bigr)
+  /(0.30uhP^{-3/4})\le20P^{1/16}P^{-1/2}+84P^{1/16+1/24}P^{-1}
+  \le P^{-1/4}\): dominated.
+- (D2). Write
+  \(\Delta(c\lfloor F\rfloor)
+  =(\Delta c)\lfloor F\rfloor+c_+\Delta\lfloor F\rfloor\)
+  with \(c_+=c(\cdot{+}2h)\).
+  (a) \((\Delta c)\lfloor F\rfloor=(\Delta c)F-(\Delta c)\{F\}\):
+  the smooth part has curvature
+  \(\le\bigl((\Delta c)F\bigr)''\le7kh|j|P^{-9/8}
+  +28khh_1h_2P^{-13/8}\), ratio to the main curvature
+  \(\le24k|j|P^{-3/8}/u\le72P^{1/24-3/8}\): dominated. The sawtooth
+  part has coefficient
+  \(\Delta c\in(1.68,1.85)\,khP^{1/8}\), handled per windows of
+  drift \(\le1\): at most \(2khP^{1/8}{+}1\) windows, at boundary
+  cost
+  \(\le2khP^{1/8}\cdot1.83\,(0.30\,uh)^{-1/2}P^{3/8}
+  \le7k\,(h/u)^{1/2}P^{1/2}\). Per window, Lemma 3.8 at
+  \(T=P^{1/2}\) yields modes \(e(q''(F\circ X))\) of curvature
+  \(\le(2khP^{1/8}{+}P^{1/2})\cdot3|j|P^{-5/4}\le18P^{-3/4}
+  \cdot P^{-1/16}\), ratio to the main curvature
+  \(\le60P^{-1/16}\): dominated. The flat cost is, per point,
+  \(8(1{+}B_0)/T\), so in total
+  \(\le8\bigl(1{+}1.85khP^{1/8}\bigr)P^{1/2}
+  \le8P^{1/2}+15\,khP^{5/8}\le23\,P^{1/24+1/8+5/8}
+  =23\,P^{19/24}\le P^{7/8}\), using \(h\le P^{1/8}\) and (C3).
+  (b) \(c_+\Delta\lfloor F\rfloor\): by the gap identity applied to
+  the sequence \(F\circ X\),
+  \(\Delta\lfloor F\rfloor=\lfloor\Delta F\rfloor+\kappa_F\).
+  \(\Delta F\) has total drift
+  \(\le P\cdot2h\sup|(F\circ X)''|\le P\cdot2h(2|j|P^{-5/4}
+  +25h_1h_2P^{-7/4})\le13hP^{-1/4}+50h\,h_1h_2P^{-3/4}<1\), so
+  \(\lfloor\Delta F\rfloor\) takes at most two values, on at most
+  two intervals; per value the phase \(-q_0c_+\) (\(|q_0|\le
+  2{+}6hP^{-1/4}\le3\)) has curvature \(\le0.4kP^{-7/8}\), ratio
+  \(\le1.4kP^{-1/8}/(uh)\le1.4P^{1/24-1/8}\): dominated. The carry
+  \(\kappa_F=\{F\}+\{\Delta F\}-\{F{+}\Delta F\}\) is a sum of unit
+  sawtooths in slow variables (all drifts \(<1\) per step): Lemma
+  3.5 at truncation \(P^{1/8}\) (majorant \(\le3\cdot4P^{7/8}\))
+  gives modes \(e(q''(F\circ X))\)-type of curvature
+  \(\le P^{1/8}\cdot3|j|P^{-5/4}\le9P^{-9/8}\), ratio
+  \(\le30P^{-3/8}\): dominated.
+- (D3). Ratio
+  \(\le2h\sup|\varphi'''|/(0.30uhP^{-3/4})
+  \le20kh_1h_2P^{-7/8}/u\le20P^{1/8-7/8}\): dominated.
+
+*Totals.* Stages 1–6 bound \(V\) by
+\[
+C\Bigl((uh)^{1/2}P^{5/8}+(h/u)^{1/2}P^{7/8}+P^{7/8}
++k\,(h/u)^{1/2}P^{1/2}\Bigr)\log^3P,
+\]
+and the fourth term is \(\le P^{1/24}\cdot(h/u)^{1/2}P^{1/2}\), 
+absorbed by the second. This is (i) up to the stated
+\(P^{\varepsilon}\). \(\square\)
+
+The balance to keep in mind: with the trivial bound
+\(|V_{h_3}|\le P\), part (ii)'s differencing returns nothing beyond
+the choice of \(H_3\); the content of the lemma is that the floor,
+coefficient, and carry bookkeeping of Stages 3–6 survives the
+targeted differencing with the Stage-4 curvature intact. What is
+*not* available is the frozen-coefficient shortcut: per frozen run
+the run length \(P^{1/4}\) is shorter than
+\(\lambda^{-1/2}\asymp(uh)^{-1/2}P^{3/8}\) for small \(uh\), and the
+run-boundary cost \((h/u)^{1/2}P^{7/8}\), summed against the
+\(H_3\)-average, is exactly what pins the final exponent at
+\(\tfrac{23}{24}\).
 
 **Theorem 5.3 (kernel cancellation).**
 Let \(c\) be smooth on \((P,2P]\) with \(c^{(r)}\asymp kP^{9/8-r}\)
