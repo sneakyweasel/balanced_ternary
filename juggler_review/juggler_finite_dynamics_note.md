@@ -112,7 +112,8 @@ on the odd branch it follows from monotonicity of \(x\mapsto x^3\) followed
 by the integer square root. Apply the induction hypothesis to the prefix
 and then the appropriate branch inequality. \(\square\)
 
-The realizing set of a fixed word need not be an interval.
+The realizing set of a fixed word need not be an interval: \(OE\) is
+realized at \(7\) and at \(11\) but not at \(9\).
 
 **Theorem 2.2 (finite-word power envelope).**
 If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
@@ -325,7 +326,19 @@ word-relative slack
 q_w(n)=\frac{n^{3^{\#O(w)}}}{J^{|w|}(n)^{2^{|w|}}}-1
 \]
 satisfies \(0<q_{OOE}(n)<10^{-30}\); this is an exact-integer
-computation, not an estimate. The inequality
+computation, not an estimate:
+
+```python
+from math import isqrt
+
+n = 180370579261640036336071806107777
+def J(x):
+    return isqrt(x) if x % 2 == 0 else isqrt(x**3)
+x = J(J(J(n)))  # OOE realized; x = 1941719144218166368455510841464890645
+print(0 < (n**9 - x**8) * 10**30 < x**8)  # True
+```
+
+The inequality
 \(\Delta_w(n)>n^{3^{\#O(w)}}-n^{2^{|w|}}\) on a formally expanding word
 is exactly \(J^{|w|}(n)<n\), so it does not forbid mixed expanding
 prefixes.
@@ -450,11 +463,12 @@ the next realized letter is odd, then
 \(J^2(q)\ge(q+1)^2\) follows from \(m^3\ge(q+1)^4\), because then
 \(\lfloor m^{3/2}\rfloor\ge(q+1)^2\). If \(q=5\), then
 \(11^2=121\le125=5^3<144=12^2\), so \(m=11\), and
-\(11^3=1331\ge6^4=1296\). If \(q\ge7\), then \(m\ge q^{3/2}-1\), so it
+\(11^3=1331\ge6^4=1296\). Since \(q\) realizes \(OO\), it is odd, so
+the only remaining case is \(q\ge7\). Then \(m\ge q^{3/2}-1\), so it
 is enough that \((q^{3/2}-1)^3\ge(q+1)^4\). Expanding the left side
 and dropping the positive remainder \(3q^{3/2}-1\) reduces this to
 \(q^{9/2}-3q^3\ge(q+1)^4\), or equivalently
-\(\sqrt q-3/q\ge(1+1/q)^4\). The left side increases for \(q\ge7\) and
+\(\sqrt q-3/q\ge(1+1/q)^4\). The left side increases for \(q>0\) and
 the right side decreases, so the case \(q=7\) suffices:
 \[
 \sqrt7-\frac37>\frac52-\frac37=\frac{29}{14}
@@ -498,6 +512,7 @@ from math import isqrt
 def J(x):
     return isqrt(x) if x % 2 == 0 else isqrt(x**3)
 
+bad = []
 for w in ("OOOEOE", "OOOOEE"):
     for n in range(2, 256):
         x = n
@@ -507,24 +522,26 @@ for w in ("OOOEOE", "OOOOEE"):
                 realized = False
                 break
             x = J(x)
-        assert not realized or x != n
+        if realized and x == n:
+            bad.append((w, n))
+print(bad)  # []
 ```
 
-Now suppose \(n\ge256\) realizes \(OOOOEE\), and write
+Now suppose \(OOOOEE\) is a cycle word at \(n\ge256\), and write
 \(z=J^4(n)\) for the image after the prefix \(OOOO\). Lemma 3.4(iv)
 gives \(J(z)<(n+1)^2\), and the preceding even letter gives
 \(z<(J(z)+1)^2\), hence \(z<(n+1)^4\). Lemma 3.3 on \(OOOO\) gives
 \(n^{81}\le2^{130}z^{16}\), so
 \(n^{81}<2^{130}(n+1)^{64}\), contradicting the tail inequality.
 
-Finally suppose \(n\ge256\) realizes \(OOOEOE\). Write
+Finally suppose \(OOOEOE\) is a cycle word at \(n\ge256\). Write
 \(z_3=J^3(n)\) and \(y=J(z_3)=\lfloor\sqrt{z_3}\rfloor\), so
 \(z_3<(y+1)^2\). Lemma 3.3 on \(OOO\) gives
 \(n^{27}\le2^{38}z_3^8<2^{38}(y+1)^{16}\). Cubing yields
 \(n^{81}<2^{114}(y+1)^{48}\). The last letters \(OE\) give the odd-cell
 bound \(y^3<(n+1)^4\). Write \(A=n+1\ge257\). We claim
 \((y+1)^3<2A^4\). If \(y\le A\), this is \((A+1)^3<2A^4\). If
-\(y>A\), then \(y\ge4\) and
+\(y>A\), then \(y\ge258\), so \(3y+1<y^2\) and hence
 \((y+1)^3=y^3+3y^2+3y+1<A^4+4y^2\), while \(4y^2<A^4\) because
 \(4y^3<4A^4\le yA^4\). Raising \((y+1)^3<2A^4\) to the sixteenth
 power gives \((y+1)^{48}<2^{16}(n+1)^{64}\). Combining with the cubed
@@ -639,11 +656,11 @@ certifies a chain of four consecutive expanding blocks,
 \xrightarrow{OOE}193753
 \xrightarrow{OOE}887471.
 \]
-Thus expanding runs of length four occur. A uniform slack tax
-per expanding block is likewise impossible: the relative slack of a
-single letter tends to \(0\) with the state (Section 2), and the
-\(OOE\) example recorded there near \(1.80\cdot10^{32}\) has relative
-slack below \(10^{-30}\).
+Thus four consecutive expanding blocks between odd states occur. A
+uniform slack tax per expanding block is likewise impossible: the
+relative slack of a single letter tends to \(0\) with the state
+(Section 2), and the \(OOE\) example recorded there near
+\(1.80\cdot10^{32}\) has relative slack below \(10^{-30}\).
 
 > No theorem forces every exact integer state into a contracting
 > prefix. In particular, it is open whether every start reaches

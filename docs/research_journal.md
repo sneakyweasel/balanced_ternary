@@ -10590,3 +10590,163 @@ Best next question
 - external review of Paper B as rewritten (is Lemma 5.2(ii)'s
   targeted differencing checkable by a stranger?)
 ```
+
+## Paper A second review pass: quantifier hygiene in Lemma 3.5
+
+Editorial application of the second brutal review of Paper A. No new
+theorem; no numbering change; the Lean barrel is untouched.
+
+Two rigor slips fixed. (1) Lemma 3.5's case split "q = 5 / q >= 7"
+was complete only because a start realizing OO is odd; the note now
+says so. (2) Both length-six exclusions began "suppose n >= 256
+realizes w" and then silently used the return J^6(n) = n through
+Lemma 3.4(iv) and the odd-cell bound; the supposition is now "w is a
+cycle word at n >= 256", which is what those tools require.
+
+Three reproducibility/clarity fixes. The 10^-30 slack example now
+carries its own four-line exact check (verified: 0 < (n^9 - x^8) *
+10^30 < x^8 at the recorded n, with the correct numerator n^9 =
+n^{3^{#O(OOE)}}); the Lemma 3.5 pseudocode collects and prints
+counterexamples instead of a bare assert (robust under python -O);
+the Theorem 2.1 remark gains its example (OE realized at 7 and 11,
+not at 9; verified). Minor: sqrt(q) - 3/q increases for q > 0, not
+just q >= 7; the vacuous "y >= 4" in the OOOEOE case replaced by
+y >= 258 with the needed 3y + 1 < y^2 made explicit; "expanding runs
+of length four" is now "four consecutive expanding blocks between odd
+states".
+
+PDF rebuilt (12 pp.) and hash-synced across docs/theory,
+juggler_review, and the root copy; juggler guard tests pass.
+
+```text
+What was learned
+- the two weakest joints were quantifier mismatches between a
+  supposition ("realizes") and the tools applied to it (Lemma 3.4(iv)
+  and the odd-cell bound, both needing the return); a referee reads
+  exactly those joints
+- the slack example survived audit only after the auditor's own
+  exponent error (27 vs 9) was caught; reproducible pseudocode is
+  cheaper than re-derivation
+Strongest theorem
+- unchanged mathematics; Lemma 3.5 is now referee-tight
+Strongest refutation
+- none (editorial pass)
+Reusable machinery
+- none
+Branch status
+- PROMOTE (Paper A remains the submission candidate)
+Why
+- every issue from the second review is closed; the note's claims,
+  pseudocode, and PDF agree and are hash-synced
+Best next question
+- external review of Paper B as rewritten (is Lemma 5.2(ii)'s
+  targeted differencing checkable by a stranger?)
+```
+
+## Paper B referee response: freeze at 13/16, repair Step 5b, withdraw the harvest
+
+Phase 26 of the two-step-parity branch. The requested external review
+arrived as a full referee report with the verdict "do not submit
+this", two mathematical errors, three reductions-by-slogan, and a
+framing list. All items are now closed; the paper's claim set is
+frozen at the referee's recommendation.
+
+The two errors were real. (1) Step 5b of Theorem 5.3 applied the
+three-term monomial test per cell and summed the inverse-power van
+der Corput terms as if the phase were smooth on the whole block: on
+cells of length \(P^{1/2}/h\) the third-derivative term alone sums
+to more than \(P\). Repair: a *global* sublevel splitting. The new
+Lemma 3.9 is measure-theoretic, not an exponential-sum test — for a
+three-term monomial model of \(f''\) it bounds the number and total
+length of the intervals where \(|f''|\) is below a threshold \(V\)
+(Vandermonde mechanism); the transition set gets the trivial bound,
+the good pieces get Lemma 3.3, and the balanced total is
+\(\ll P^{15/16+\varepsilon}\), inside the \(P^{23/24}\) budget. The
+companion repair is the new Lemma 3.8 (two-term test): trivial bound
+on the short transition where second and third derivatives cancel,
+never an inverse-power term summed per cell. (2) The old
+Theorem 7.4's "in particular" was false as quantified — Markov
+leaves an \(O(\log L)\) factor in the exceptional measure, so the
+statement is square-root times \(\sqrt{\log L}\) unless
+\(A'_{\min}\gg\log L\). Restated honestly as Proposition 7.4, and
+the "generically cancelling" slogan is gone.
+
+Also real: the factor-4 Jacobian. Section 5 applied Lemma 3.3 to
+odd-\(n\) sums in the \(n\)-variable; the new Lemma 3.10 (parity
+reindexing) states exactly what survives \(n = 2r+1\) — ratios and
+signs of derivatives are invariant, and the displayed \(n\)-variable
+constants dominate the reindexed bounds — so every displayed margin
+now covers the reindexed sum by citation rather than by silence.
+
+The harvest is withdrawn. Theorem 6.3's rearrangement discards a
+Taylor remainder \(\tfrac{45}{32}v^{1/8}\) that grows like
+\(n^{9/32}\) (discarding costs \(kP^{1+9/32}\), worse than trivial);
+Theorem 6.4 has \(|E|<1\) but no control of \(E'\); Theorem 6.2
+rides passenger modes of size \(lP^{3/16}\) that exceed the
+decoration budget as literally stated; Corollary 5.4 was
+proof-by-monotonicity, never rerun at any \(\alpha\). Theorems
+6.2–6.4, Corollary 6.5, and Corollary 5.4 are deleted from Paper B
+and retagged CONJECTURE in the ledger with the holes recorded. The
+densities \(7/8\), \(57/64\), \(29/32\) revert to conjectures; the
+paper claims \(13/16\) (Corollary 4.9) only.
+
+What replaced the slogans. Theorem 4.4 is now a seven-step staged
+proof (wave expansion, linearization, Weyl differencing, exact
+differenced phase, cells and shift device, per-cell curvature,
+assembly), each step with displayed costs — the skeleton a referee
+can check before believing Lemma 5.2(i). Theorem 6.1 is rewritten
+with the full passenger inventory: explicit mode ranges
+\(|i|,|j|,|k|\le2P^{1/96}\); corner exactness
+\(\theta(n{+}d)=\theta+\delta_d(\nu)-\beta_d\) on each carry branch,
+which kills the \(\theta^2\)-content exactly in the \((+,-,-,+)\)
+pattern; every passenger classified with a budget check; and both
+sign-critical composites recomputed for the decorated phase — the
+offset composite is \((945/512-540/512)=405/512\,kj\nu^{-1/8}\)
+(the passengers' \(\theta\)-coefficients multiply the window-centre
+term by 2.5, shrinking the margin from \(4.375{:}1\) to \(7{:}4\),
+still single-signed), and the zero-offset composite is
+\(8.27\,kh_1h_2\nu^{-5/8}\), positive from the fourth derivative of
+the smooth model. Machine gates, Lean identifiers, sample counts,
+and the laboratory-record paragraph are stripped from the analytic
+text; the master identity and both margin derivations are printed as
+algebra. Framing: O-rooted scope stated everywhere, package novelty
+(not Taylor-step novelty) claimed, related work expanded
+(digital-vs-convex outer functions, Beatty compositions,
+Bergelson–Leibman non-applicability, Müllner–Spiegelhofer),
+Prasad–Prasad dropped, Iwaniec–Kowalski and Lagarias cited where
+used.
+
+```text
+What was learned
+- per-cell summation of inverse-power van der Corput terms is
+  invalid when cells are short: transitions need trivial bounds and
+  splittings need to be global (measure-theoretic), not per cell
+- decorating a kernel changes its sign-critical composites: the
+  depth-4 passengers multiply the window-centre term by 2.5 and the
+  offset margin survives at 7:4, but only a recomputation shows it
+- a growing Taylor remainder (n^{9/32}) cannot be discarded in
+  decaying-remainder style; the length-7/8 harvest dies on it
+- Markov off an L^2 identity gives sqrt(log) losses; "almost every
+  shift, square-root" was the theorem we wished we had
+Strongest theorem
+- Theorem 5.3 as repaired: Step 5b now assembles via global
+  sublevel splitting, << P^{15/16+eps} in the middle band
+Strongest refutation
+- the Phase-24/25 middle-band assembly and the length-5/7/8
+  passenger reductions: withdrawn as proofs, recorded as routes
+Reusable machinery
+- Lemma 3.8 (trivial transition), Lemma 3.9 (sublevel splitting),
+  Lemma 3.10 (parity reindexing): problem-independent tools
+Branch status
+- PROMOTE for the frozen claim set (Paper B at 13/16 + kernel +
+  conditional implication); the withdrawn harvest is PARKED as
+  ledger conjectures with recorded holes
+Why
+- the referee's freeze is the correct trade: the paper is stronger
+  as depth 4 + kernel + implication than with four contested
+  theorems buying 3/32 of density
+Best next question
+- one independent human check of Section 5 (the last two structural
+  errors were caught by expansion and by external review; assume
+  there is another)
+```

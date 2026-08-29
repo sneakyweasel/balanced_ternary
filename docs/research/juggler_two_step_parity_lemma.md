@@ -1,5 +1,27 @@
 # The nested parity discrepancy lemma (two-step parity)
 
+> **Phase-26 withdrawals (29 August 2026, referee response).** A
+> referee-style review of Paper B found real holes in the deeper
+> harvest, and the corresponding ledger rows are retagged
+> `CONJECTURE`: **Theorem T** (length-5 splits; the OOOE\* passenger
+> modes of size \(\asymp lP^{3/16}\) exceed the kernel decoration
+> budget as stated and the dominances were never rerun), **Theorem X**
+> (length-7 splits; the rearrangement's Taylor remainder
+> \(\tfrac{45}{32}v^{1/8}\asymp n^{9/32}\) *grows* and was discarded
+> in decaying-remainder style — discarding costs \(kP^{1+9/32}\)),
+> **Theorem AA** (length-8 quartet; \(|E|<1\) without control of
+> \(E'\)), **Corollary R'** (proof-by-monotonicity, never rerun at
+> any specific \(\alpha\)), and **Corollaries U/Y/AB** (densities
+> \(7/8\), \(57/64\), \(29/32\), which inherit the holes). The
+> certified density of Paper B is \(13/16\). Also repaired in
+> Paper B: Step 5b of Theorem R (the per-cell summation of
+> inverse-power van der Corput terms was invalid; replaced by global
+> sublevel splitting with a trivial transition bound), the
+> parity-reindexing Jacobian (new Lemma 3.10), and the old
+> Theorem 7.4's false "in particular" (now Proposition 7.4 with the
+> \(\sqrt{\log L}\) factor). Parts VII, X, and XI below are kept as
+> **routes**, not proofs.
+
 > **Phase-25 correction (29 August 2026).** The Part-VI mixed-piece
 > bound recorded below (frozen-coefficient model \(e(sX)\),
 > \(s\asymp rP^{3/4}\), saving \(P^{1/8}/r^{1/6}\)) is **wrong**: the

@@ -13,8 +13,10 @@ is not the laboratory. No termination theorem is claimed.
    the small-cycle census. Lean-backed throughout; no density claims.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
-   kernel theorem, depth-4 completeness, contracting words, and the
-   certified-descent densities. Human proofs.
+   kernel theorem, depth-4 completeness over odd starts, and the
+   certified-descent density \(13/16\). Human proofs. (The former
+   length-5/7/8 splits and deeper densities were withdrawn after
+   referee review and are not claimed.)
 3. [juggler_finite_dynamics_reviewer_packet.md](juggler_finite_dynamics_reviewer_packet.md)
    — claim map and falsifiers for both papers. Optional for the proofs.
 

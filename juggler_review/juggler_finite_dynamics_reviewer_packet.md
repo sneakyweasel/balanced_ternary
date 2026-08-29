@@ -21,10 +21,13 @@ The former single note has been split into two manuscripts:
   [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md):
   *Parity equidistribution of nested floor powers, with descent
   applications to the Juggler map.* The exact-linearization
-  discrepancy calculus, the kernel theorem, depth-4 completeness, the
-  contracting words of lengths five, seven, and eight, the
-  certified-descent densities, and the level-3 frontier. Human
-  proofs; only the exact floor identities beneath them are in Lean.
+  discrepancy calculus, the kernel theorem, depth-4 completeness over
+  odd starts, the certified-descent density \(13/16\), and the
+  level-3 frontier. Human proofs; only the exact floor identities
+  beneath them are in Lean. (The former length-5/7/8 contracting
+  splits and their densities \(7/8\), \(57/64\), \(29/32\) were
+  withdrawn in the Phase-26 referee response and are laboratory
+  conjectures, not paper claims.)
 
 Each paper is written to be self-contained. This page is a claim map,
 not required reading for the proofs.
@@ -35,15 +38,18 @@ quantifiers? For Paper B: are the depth-1–4 estimates (exponents
 \(5/6\) to \(23/24\)) sound; is the kernel theorem (Theorem 5.3,
 double Weyl differencing over the carry-branch decomposition and
 master identity of Lemma 5.1, with the level-2 wave Lemma 5.2,
-\(\delta=1/96\)) a complete proof a stranger can check; are the applications (Theorems
-6.1–6.4) correctly reduced to it; and are the densities (Corollaries
-4.2, 4.9, 6.5) kept distinct from existential descent and
-\(\operatorname{ReachesOne}\)?
+\(\delta=1/96\), and the Step-5b sublevel splitting of Lemma 3.9) a
+complete proof a stranger can check; is Theorem 6.1's passenger
+inventory (explicit mode ranges, recomputed composites \(405/512\)
+and \(8.27\,kh_1h_2\nu^{-5/8}\)) correctly reduced to it; and are the
+densities (Corollaries 4.2, 4.9) kept distinct from existential
+descent and \(\operatorname{ReachesOne}\)?
 
 No termination theorem is claimed anywhere. The level-3 kernel bound
 (Paper B, Conjecture 7.3) and the pure amplitude-product model
-(Conjecture 7.5) are open, and the paper says so; the shift-average
-theorem (Theorem 7.4) is proved.
+(Conjecture 7.5) are open, and the paper says so; the shift-averaged
+\(L^2\) bound (Proposition 7.4) is proved, and is an average-only
+statement carrying a \(\sqrt{\log L}\) factor in general.
 
 Large language models were used extensively in drafting. They are not
 authors. Lean theorems and named computations certify the
@@ -72,16 +78,16 @@ exactly the odd-to-odd class, not the starts with no descent of any
 length. The small-cycle census is Theorem 3.6.
 
 **Paper B.** An exact-linearization discrepancy calculus with a
-kernel theorem for the level-2 floor defect proves **every**
-itinerary word class of depth at most four equidistributed with power
-savings, plus the contracting words of lengths five, seven, and
-eight, so the uniform certificate classes have densities \(3/4\)
-(two steps), \(13/16\) (four), \(7/8\) (five), \(57/64\) (seven), and
-\(29/32\) (eight); all-depth equidistribution would imply density-one
-finite descent (Proposition 7.1), with the base cases \(d\le4\) now
+kernel theorem for the level-2 floor defect proves every *O-rooted*
+itinerary word class of depth at most four (the eight length-4 words
+over odd starts) equidistributed with power savings, so the uniform
+certificate classes have densities \(3/4\) (two steps) and \(13/16\)
+(four); all-depth equidistribution would imply density-one finite
+descent (Proposition 7.1), with the base cases \(d\le4\) now
 unconditional, and the precise remaining obstacle is the level-3
-kernel of Conjecture 7.3, whose shifted model provably cancels
-(Theorem 7.4) and whose deterministic crystal is Conjecture 7.5.
+kernel of Conjecture 7.3, whose deterministic model instance is
+Conjecture 7.5 (the shift-averaged \(L^2\) bound of Proposition 7.4
+says nothing about the deterministic shift).
 
 ## Claim map — Paper A
 
@@ -114,15 +120,13 @@ kernel of Conjecture 7.3, whose shifted model provably cancels
 | OE\(**\) splits \(N^{7/8+\varepsilon}\), \(N^{13/16+\varepsilon}\) (Theorem 4.8) | **EXACT — HUMAN PROOF** | depth 4 except OOO\(*\) |
 | Certified-descent density \(13/16\) (Corollary 4.9) | **EXACT — HUMAN PROOF** | uniform four-step class; ceiling of the one-growing-layer method |
 | Level-2 wave bound \(q^{-1/6}P^{23/24+\varepsilon}\) (Lemma 5.2) | **EXACT — HUMAN PROOF** | targeted third differencing; standalone statement; corrects the earlier frozen-coefficient model |
-| Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3, Corollary 5.4) | **EXACT — HUMAN PROOF** | \(W\)-shaped families, finite \(\alpha\)-sets in \((0,9/8]\setminus\{1/4,3/4\}\), \(k\le P^{1/24}\); \(\delta\) corrected from \(1/72\) |
-| OOO\(*\) splits; depth 4 complete (Theorem 6.1) | **EXACT — HUMAN PROOF** | all sixteen depth-4 classes with power savings |
-| Length-5 and length-7 contracting splits (Theorems 6.2–6.3) | **EXACT — HUMAN PROOF** | exponents \(1-1/96\) and \(43/48\) (length 5), \(1-1/96\) (length 7) |
-| Length-8 engine quartet (Theorem 6.4) | **EXACT — HUMAN PROOF** | all-subcritical chains; parent budget \(1-1/96\) dominates |
-| Certified-descent densities \(7/8\), \(57/64\), \(29/32\) (Corollary 6.5) | **EXACT — HUMAN PROOF** | uniform five-, seven-, and eight-step classes |
+| Kernel cancellation \(K_c(P)\ll P^{1-1/96+\varepsilon}\) (Theorem 5.3) | **EXACT — HUMAN PROOF** | \(W\)-shaped family at \(\alpha=9/8\), \(k\le P^{1/24}\); \(\delta\) corrected from \(1/72\); Step 5b via global sublevel splitting (Lemma 3.9) |
+| OOO\(*\) splits; depth 4 complete over odd starts (Theorem 6.1) | **EXACT — HUMAN PROOF** | the eight O-rooted length-4 classes; full passenger inventory with recomputed composites |
+| Length-5/7/8 contracting splits and densities \(7/8\), \(57/64\), \(29/32\) (withdrawn) | **CONJECTURE** | withdrawn from the paper in Phase 26; holes recorded in the ledger (growing remainder, \(E'\) control, passenger budgets) |
 | Equidistribution \(\Rightarrow\) density-one descent (Proposition 7.1) | **EXACT — HUMAN PROOF** | unconditional implication; hypothesis a theorem for \(d\le4\), open beyond |
 | Level-3 kernel reformulation (Lemma 7.2) | **EXACT — HUMAN PROOF** | exact Taylor identity; validated in scaled integers |
 | Level-3 kernel cancellation \(K_3(P)\ll P^{1-\delta}\) (Conjecture 7.3) | **CONJECTURE** | not claimed; square-root cancellation observed in exact probes |
-| Shift-averaged square-root cancellation (Theorem 7.4) | **EXACT — HUMAN PROOF** | almost-every-shift statement; no claim at \(\lambda=0\) |
+| Shift-averaged \(L^2\) bound (Proposition 7.4) | **EXACT — HUMAN PROOF** | almost-every-shift, square-root times \(\sqrt{\log L}\) in general; no claim at \(\lambda=0\) |
 | Pure amplitude-product model (Conjecture 7.5) | **CONJECTURE** | not claimed; Exp(1) censuses at \(P=10^6\)–\(10^{10}\) |
 
 ## Quantifier checks
@@ -130,10 +134,11 @@ kernel of Conjecture 7.3, whose shifted model provably cancels
 1. A descent certificate is a realized word with image strictly
    below the start. Paper A Theorem 4.1 isolates a uniform short
    subclass. It does not say that odd-to-odd starts lack descent.
-2. Paper B Corollaries 4.2, 4.9, and 6.5 are densities of uniform
-   subclasses (\(3/4\) at two steps, \(13/16\) at four, \(7/8\) at
-   five, \(57/64\) at seven, \(29/32\) at eight). None is a density
-   of `FiniteProgress` nor of `ReachesOne`.
+2. Paper B Corollaries 4.2 and 4.9 are densities of uniform
+   subclasses (\(3/4\) at two steps, \(13/16\) at four). Neither is a
+   density of `FiniteProgress` nor of `ReachesOne`. The former
+   \(7/8\), \(57/64\), \(29/32\) figures are withdrawn conjectures,
+   not paper claims.
 3. Terras–Everett prove almost-all Collatz stopping times. Neither
    paper proves the Juggler analogue; Proposition 7.1 is an
    unconditional *implication* from all-depth equidistribution, whose
@@ -149,10 +154,12 @@ kernel of Conjecture 7.3, whose shifted model provably cancels
 ## What the papers do not claim
 
 - Every positive integer reaches \(1\).
-- Three-quarters (or \(13/16\), \(7/8\), \(57/64\), \(29/32\)) of
-  starts reach \(1\).
+- Three-quarters (or \(13/16\)) of starts reach \(1\).
 - Those densities as *complete* certificate inventories: they count
   uniform classes.
+- The withdrawn length-5/7/8 splits or their densities \(7/8\),
+  \(57/64\), \(29/32\) (laboratory conjectures since Phase 26).
+- E-rooted (even-start) word classes at any depth.
 - A Collatz theorem, or a transfer of Terras's theorem to \(J\).
 - Density-one finite descent (Proposition 7.1 is conditional on
   all-depth equidistribution; only \(d\le4\) is proved).
@@ -184,9 +191,12 @@ Reject or revise if:
 8. a finite first-return count is promoted to an infinite theorem;
 9. Proposition 7.1 is quoted without its equidistribution hypothesis,
    or Conjecture 7.3 or 7.5 is cited as a theorem;
-10. Theorem 7.4 is quoted as a bound at the deterministic shift
-    \(\lambda=0\), or any numerical probe or repository validation is
-    treated as a proof step.
+10. Proposition 7.4 is quoted as a bound at the deterministic shift
+    \(\lambda=0\), as pure square-root cancellation without the
+    \(\sqrt{\log L}\) caveat, or any numerical probe or repository
+    validation is treated as a proof step;
+11. a withdrawn claim (Theorems 6.2–6.4, Corollaries 5.4 or 6.5 of
+    the pre-Phase-26 drafts) is cited as a theorem of Paper B.
 
 ## Verification
 

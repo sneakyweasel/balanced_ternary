@@ -202,14 +202,17 @@ standalone checkability. The stack now consists of:
   equidistribution of nested floor powers: exact linearization,
   the kernel theorem (Theorem 5.3, \(\delta=1/96\), at
   Graham–Kolesnik length with the level-2 wave Lemma 5.2 as a
-  standalone statement), depth-4 completeness (Theorem 6.1),
-  contracting splits of lengths five, seven, eight (Theorems
-  6.2–6.4), densities \(3/4\), \(13/16\), \(7/8\), \(57/64\),
-  \(29/32\) as corollaries (4.2, 4.9, 6.5), the Terras-style
-  reduction (Proposition 7.1), and the level-3 frontier
-  (Conjectures 7.3/7.5, Theorem 7.4). Includes a proved
-  branch-consistency lemma (3.6) and a genuine related-work section;
-  no laboratory narration inside proofs. Working draft;
+  standalone statement and Step 5b repaired by global sublevel
+  splitting), depth-4 completeness over odd starts (Theorem 6.1,
+  full passenger inventory), densities \(3/4\) and \(13/16\) as
+  corollaries (4.2, 4.9), the Terras-style reduction
+  (Proposition 7.1), and the level-3 frontier (Conjectures 7.3/7.5,
+  Proposition 7.4). The former length-5/7/8 splits and densities
+  \(7/8\), \(57/64\), \(29/32\) were withdrawn in the Phase-26
+  referee response (ledger `CONJECTURE` rows with recorded holes).
+  Includes a proved branch-consistency lemma (3.6) and a genuine
+  related-work section; no laboratory narration or machine gates
+  inside proofs. Working draft;
 - [reviewer packet](../theory/juggler_finite_dynamics_reviewer_packet.md)
   (two-paper claim map);
 - [formalization map](../theory/juggler_finite_dynamics_formalization.md);
@@ -228,24 +231,26 @@ the pure amplitude-product model (Conjecture 7.5)?
 
 ## Decision
 
-**PROMOTE** Paper A as the submission candidate. **PROMOTE** Paper B
-to submission-candidate status: the Graham–Kolesnik-length expansion
-of the kernel proof (Phase 25 of the two-step-parity branch) is done —
-every estimate carries a displayed constant — and it corrected the
-mixed-piece bound in the process: the mixed pieces are exact level-2
-waves \(e(qY)\), bounded at the honest depth-2 strength
-\(q^{-1/6}P^{23/24+\varepsilon}\) (Lemma 5.2), lowering the kernel
-saving from \(\delta=1/72\) to \(\delta=1/96\) with no density
-changes. The individual Atlas, discrepancy, probabilistic, and
-closed-compression branches keep their original decisions.
+**PROMOTE** Paper A as the submission candidate. Paper B stays a
+**working draft with a frozen claim set** after the Phase-26 referee
+response: the review found the Step-5b assembly error (repaired by
+global sublevel splitting), the false quantification of the old
+Theorem 7.4 (restated as Proposition 7.4), and the
+reduction-by-slogan proofs of Theorems 6.2–6.4 (withdrawn with
+Corollaries 5.4 and 6.5; densities revert to \(13/16\)). Theorem 4.4
+and Theorem 6.1 are now full staged proofs. The individual Atlas,
+discrepancy, probabilistic, and closed-compression branches keep
+their original decisions.
 
-Best next question: external review of Paper B as rewritten, or a
-shorter proof of the kernel bound.
+Best next question: one independent human check of Paper B's
+Section 5 by someone who did not write it.
 
 ## Publication assessment
 
-Status: Paper A `PAPER_CANDIDATE`; Paper B `PAPER_CANDIDATE`
-(post-Phase-25; kernel proof at full length, \(\delta=1/96\)).
+Status: Paper A `PAPER_CANDIDATE`; Paper B `WORKING_DRAFT`
+(post-Phase-26; claim set frozen at depth 4 + kernel + conditional
+implication, \(\delta=1/96\); pending one independent check of
+Section 5).
 
 Paper A is a standalone Lean-backed math note: envelope, exact defect
 calculus, cycle restrictions with a length-\(\le6\) cycle census,
@@ -260,11 +265,16 @@ proof". The split version isolates the level-2 wave bound as
 Lemma 5.2 with the explicit third differencing, balance, and
 dominance checks, adds the branch-consistency identity as a proved
 lemma, adds a real related-work section (Piatetski–Shapiro, Leitmann,
-Rivat–Sargos, Rivat–Wu, Mauduit–Rivat, Morgenbesser, Baker et al.,
-Beatty), moves every density after the theorems, and confines
-numerics to a software note. The former gate — the full expansion of
-the kernel proof's piece inventory — was discharged in Phase 25 at
-Graham–Kolesnik length; the expansion corrected the mixed-piece
-model and the kernel exponent (\(\delta=1/72\to1/96\)), with the
-master identity, standing estimates, and sign-margin machine gates
-(`master_identity_check`, `kernel_margin_scan`) now in print.
+Rivat–Sargos, Rivat–Wu, Mauduit–Rivat, Morgenbesser,
+Müllner–Spiegelhofer, Bergelson–Leibman, Baker et al., Beatty),
+moves every density after the theorems, and confines numerics to a
+software note. The Phase-25 expansion corrected the mixed-piece
+model and the kernel exponent (\(\delta=1/72\to1/96\)); the Phase-26
+referee response repaired Step 5b (global sublevel splitting with a
+trivial transition bound), added the parity-reindexing lemma,
+rewrote Theorems 4.4 and 6.1 as full proofs, withdrew the
+length-5/7/8 harvest, corrected Proposition 7.4's quantification,
+and stripped every machine gate and Lean identifier from the
+analytic text (the validators `master_identity_check` and
+`kernel_margin_scan` remain repository checks). Remaining gate
+before candidate status: one independent human check of Section 5.

@@ -978,31 +978,86 @@ unaffected); **no density changes** — \(13/16\), \(7/8\),
 corrected. The editorial debt of the assessment below is
 discharged.
 
+**PARK the harvest, freeze the claim** (Phase 26, referee-report
+response, 29 August 2026): a full referee-style review of Paper B
+("do not submit this") found two mathematical errors in print, three
+proofs that were reductions by slogan, and a set of framing
+overclaims. All are now repaired or withdrawn. **Errors fixed in
+print**: (1) Step 5b of Theorem 5.3 summed inverse-power van der
+Corput terms per cell as if the phase were smooth on the whole block
+(the per-cell third-derivative term sums to \(> P\)); repaired by a
+global sublevel-splitting argument — new Lemma 3.9 bounds the measure
+of the transition set \(\Omega_V\) where the three-term monomial
+model of \(f''\) is small, \(\Omega_V\) gets the trivial bound, good
+pieces get Lemma 3.3, total \(\ll P^{15/16+\varepsilon}\). (2) The
+old Theorem 7.4 "in particular" was false as quantified: Markov gives
+\(\sqrt{L/\varepsilon}\cdot\sqrt{1+O(\log L/A'_{\min})}\) off measure
+\(\varepsilon\), i.e. square-root times \(\sqrt{\log L}\) unless
+\(A'_{\min}\gg\log L\); restated honestly as Proposition 7.4.
+**Withdrawn from Paper B** (retagged `CONJECTURE` in the ledger with
+the holes recorded): Theorems 6.2–6.4 and Corollary 6.5 — the
+length-7 rearrangement discards a Taylor remainder that *grows* like
+\(n^{9/32}\) (cost \(kP^{1+9/32}\), worse than trivial); the length-8
+chain has \(|E|<1\) but no control of \(E'\); the length-5 split
+rides passenger modes of size \(lP^{3/16}>P^{1/16}\) that were never
+rerun against the kernel dominances; Corollary 5.4
+(proof-by-monotonicity, never rerun at any specific \(\alpha\)) is
+deleted with them. Certified densities \(7/8\), \(57/64\), \(29/32\)
+revert to conjectures; the paper's density claim is \(13/16\) only.
+**Rewritten as full proofs**: Theorem 4.4 (seven staged steps, every
+cost displayed — the skeleton of Lemma 5.2(i)); Theorem 6.1 with a
+complete passenger inventory — explicit mode ranges
+\(|i|,|j|,|k|\le2P^{1/96}\), corner exactness
+\(\theta(n{+}d)=\theta+\delta_d-\beta_d\) with exact
+\(\theta^2\)-cancellation in the \((+,-,-,+)\) pattern, and both
+sign-critical composites recomputed for the decorated phase (offset:
+\(945/512-540/512=405/512\), ratio \(7{:}4\), single-signed;
+zero-offset: \(8.27\,kh_1h_2\nu^{-5/8}\), positive). **New
+preliminaries**: Lemma 3.8 (two-term test with trivial transition
+bound), Lemma 3.9 (three-term sublevel splitting), Lemma 3.10 (parity
+reindexing — the factor-4 Jacobian of \(n=2r+1\) made explicit, so
+odd-\(n\) sums are no longer treated as consecutive). **Framing**:
+machine gates, Lean identifiers, sample counts, and the
+laboratory-record confession stripped from the analytic text (checks
+stay in the repository and are labelled as such); scope narrowed to
+O-rooted words over odd starts everywhere; "exact linearization" and
+"carry-branch decomposition" no longer claimed as new — the *package*
+is; related work expanded (digital vs. convex outer functions,
+Beatty compositions, Bergelson–Leibman and why generalized
+polynomials do not apply); Prasad–Prasad citation dropped,
+Iwaniec–Kowalski and Lagarias now cited where used;
+Müllner–Spiegelhofer added. Ledger rows `J-depth5-contracting`,
+`J-five-step-descent-density`, `J-w-family-below-nine-eighths`,
+`J-depth7-engine-contracting`, `J-seven-step-descent-density`,
+`J-depth8-engine-quartet`, `J-eight-step-descent-density` retagged
+`CONJECTURE`; `J-kernel-cancellation`, `J-depth4-complete`,
+`J-shift-average-square-root` rewritten. The remaining external
+debt is the referee's item 6: one independent human check of
+Section 5.
+
 ## Publication assessment
 
-Status: `THEOREM`, **consolidated into the standalone
-parity-discrepancy paper** (Paper B,
+Status: `THEOREM` for the frozen claim set, **consolidated into the
+standalone parity-discrepancy paper** (Paper B,
 [juggler_parity_discrepancy_note.md](../theory/juggler_parity_discrepancy_note.md)),
 created 29 August 2026 when external review split the former single
-note ("ship Paper A; rewrite Paper B until a stranger can check the
-mixed-piece step"). Exact linearization lemmas,
-power-saving joint-parity discrepancy bounds for nested floor-power
-sequences at **every depth \(\le 4\)** and the length-5, length-7,
-and length-8 contracting splits, outside the existing
-Piatetski-Shapiro literature, plus a certified-descent density of
-\(29/32\) and the
-conditional density-one theorem with unconditional base cases
-\(d\le 4\). Paper B numbering: Theorem R is Theorem 5.3 (with the
-mixed-piece repair promoted to standalone Lemma 5.2 — explicit third
-differencing, balance \(H_3=r^{-1/3}P^{1/4}\), and dominance checks
-— Corollary R′ as Corollary 5.4, Lemmas R1/R2/R3 as Lemma 5.1),
-Theorem S is Theorem 6.1, Theorem T is Theorem 6.2, Theorem X is
-Theorem 6.3, Theorem AA is Theorem 6.4, Corollaries U/Y/AB are
-Corollary 6.5, Lemma V1 is Lemma 7.2, Conjecture V is
-Conjecture 7.3, Lemma II is Theorem 7.4, Conjecture HH is
-Conjecture 7.5, the branch-consistency indicator algebra is now a
-proved lemma (3.6), and the BB/GG/JJ obstruction ladder is condensed
-to three sentences in Section 7 with the full record staying here.
+note, then **frozen in Phase 26** after a referee-style review. The
+paper now claims exactly: exact linearization; depths 1–3; the
+\(OE*\) splits; the kernel bound \(K_c\ll P^{1-1/96+\varepsilon}\)
+(Theorem 5.3, full-length Section 5); the \(OOO*\) splits with a
+complete passenger inventory (Theorem 6.1); certified-descent density
+\(13/16\) (Corollary 4.9); the conditional density-one implication
+(Proposition 7.1) with unconditional O-rooted base cases \(d\le4\);
+and the level-3 obstruction with the shift-averaged \(L^2\) bound
+(Proposition 7.4). Paper B numbering: Theorem R is Theorem 5.3
+(mixed-piece repair as Lemma 5.2, Lemmas R1/R2/R3 as Lemma 5.1),
+Theorem S is Theorem 6.1, Lemma V1 is Lemma 7.2, Conjecture V is
+Conjecture 7.3, Lemma II is Proposition 7.4 (quantification corrected
+in Phase 26), Conjecture HH is Conjecture 7.5. The former Theorems
+6.2–6.4, Corollaries 6.5 and 5.4 (Theorem T, Theorem X, Theorem AA,
+Corollaries U/Y/AB, Corollary R′) are **withdrawn from the paper**
+and retagged `CONJECTURE` in the ledger with their holes recorded;
+their drafted arguments remain in the laboratory record as routes.
 The laboratory retains the full statements: the scale-invariant copy
 of Theorem R, the increment-first \(K_3\) attack, and X1-absorption
 are laboratory-**REFUTED**; the \(K_3\) toolkit is
@@ -1010,9 +1065,9 @@ laboratory-**PARKED** (Proposition BB); dispersion is
 laboratory-**REFUTED** as a completion route (Proposition CC);
 transport produced Lemmas DD/FF and Conjecture EE but its
 intra-block analytic program is laboratory-**PARKED**
-(Proposition GG); the de-randomization of Lemma II is
-laboratory-**PARKED** (Proposition JJ). The former editorial debt — a
-Graham–Kolesnik-length expansion of the kernel proof — was
-discharged in Phase 25, which corrected the mixed-piece bound
-(\(\delta = 1/72 \to 1/96\), densities unchanged); Section 5 of
-Paper B is now the full-length record.
+(Proposition GG); the de-randomization of Proposition 7.4 is
+laboratory-**PARKED** (Proposition JJ). Remaining external debt
+before submission: one independent human check of Section 5 (the
+Phase-25 structural error was caught in-house; the Phase-26 Step-5b
+error was caught by external review — there is no reason to assume
+it was the last).
