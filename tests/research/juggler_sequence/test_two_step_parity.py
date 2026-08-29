@@ -177,6 +177,10 @@ def test_anti_overclaim_flags():
     assert ANTI_OVERCLAIM["pure_model_shift_average_proved"] is True
     assert ANTI_OVERCLAIM["hh_derandomization_parked"] is True
     assert ANTI_OVERCLAIM["depth5_kernel_bound_proved"] is False
+    # Phase 23: the length-8 engine quartet (Theorem AA / Corollary
+    # AB): certified descent 29/32. K3 untouched, density one open.
+    assert ANTI_OVERCLAIM["depth8_engine_quartet_proved"] is True
+    assert ANTI_OVERCLAIM["depth8_chains_subcritical"] is True
 
 
 def test_smooth_cancellation_constant():
@@ -683,6 +687,48 @@ def test_dispersion_spacing_census():
     assert 0.9 < r["coincidence_ratio"] < 1.1
     for val in r["lag_concentration"].values():
         assert val < 0.1
+
+
+def test_depth8_quartet_census():
+    # Theorem AA guard: the four contracting length-8 words appear at
+    # the product density N_odd/128 within a loose envelope, and every
+    # member satisfies the eight-step certificate J^8(n) < n.
+    from research.juggler_sequence.two_step_parity import (
+        depth8_quartet_census,
+    )
+
+    r = depth8_quartet_census(50000)
+    assert r["descent_violations"] == 0
+    assert r["max_abs_normalized_deviation"] < 4.0
+    for w, c in r["counts"].items():
+        assert c > 0, w
+
+
+def test_depth8_chain_scan():
+    # Lemma AA1 validator: the OOEOOEO eighth-letter composite chain
+    # identity holds exactly with one-signed envelopes, and every
+    # sawtooth coefficient is subcritical (exponent < 1).
+    from research.juggler_sequence.two_step_parity import (
+        depth8_chain_scan,
+    )
+
+    samples = tuple(range(51, 300, 2)) + (10**4 + 1, 10**6 + 1)
+    r = depth8_chain_scan(samples)
+    assert r["holds"] is True
+    assert r["max_exponent"] < 1.0
+
+
+def test_depth8_mode_probe():
+    # Theorem AA mode gate: eighth-wave sums on the four parent
+    # cylinders cancel well below cylinder size (OBSERVATION guard).
+    from research.juggler_sequence.two_step_parity import (
+        depth8_mode_probe,
+    )
+
+    r = depth8_mode_probe(50000, k=1)
+    for w in ("OOEOOEO", "OOEOOOE", "OOOEOEO", "OOOEOOE"):
+        assert r[w]["members"] > 0
+        assert r[w]["ratio"] < 0.25
 
 
 def test_transport_block_variance():

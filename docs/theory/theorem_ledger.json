@@ -3620,5 +3620,27 @@
     "related_conjectures": [
       "J-pure-model-amplitude-product"
     ]
+  },
+  {
+    "id": "J-depth8-engine-quartet",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Theorem AA (the note's Theorem 5.16): each of the four contracting length-8 words OOEOOEOE, OOEOOOEE, OOOEOEOE, OOOEOOEE has cardinality N/256 + O(N^{1-1/48+eps}). These are exactly the contracting length-8 children of the Theorem-X classes (row J-depth7-engine-contracting). Lemma AA1: on each parent the eighth-letter phase argument linearizes down all seven levels with one-signed remainders |E| < 1, and every sawtooth coefficient is subcritical — the complete inventory of growing coefficients is (27/16) x3^{11/32} ≍ n^{99/128}, (3/2) x6^{1/4} ≍ n^{81/128}, (81/64) n^{51/128}, and (9/8) x4^{3/16} or (9/8) x4^{1/16} ≍ n^{27/128} — because the interleaved even letters keep every intermediate state below the n^{9/4} kernel frontier. Drift-1 window expansions (budget T = P^{1/16}) plus van der Corput II on the chirp (k/2) n^{243/128} give S_k << k^{1/2} P^{243/256}; Vaaler truncation at J_8 = P^{13/384} balances. Validated: exact composite chain identity in scaled integers through n = 3*10^7 (eighth_letter_chain_check), exact censuses at N = 2*10^5 and 10^6 within 1.8 normalized deviations, mode-sum ratios 0.002-0.045 (depth8_mode_probe). No letter of the quartet sees a kernel; OOOO* is not claimed. Ambient counting; not a termination claim.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-eight-step-descent-density",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Corollary AB (the note's Corollary 5.17): the class of starts carrying a uniform power-envelope descent certificate of length at most eight — evens, OE, OOEE, OOOEE, OOEOE, OOEOOEE, OOOEOEE, OOEOOEOE, OOEOOOEE, OOOEOEOE, OOOEOOEE — has natural density 29/32. Each quartet word has cardinality N/256 + O(N^{1-1/48+eps}) by row J-depth8-engine-quartet, and 3^5 = 243 < 256 = 2^8 forces J^8(n) < n on all four words (row J-power-envelope-contraction; census guard: zero violations). The leftover 3/32 decomposes exactly: the OOOO* tree (1/16, blocked at its root by the level-3 kernel, rows J-level3-kernel-reformulation and J-k3-toolkit-obstruction), the expanding O-children of the quartet splits (4/256), and the six-odd trees OOEOOOO*, OOOEOOO* (4/256). Structural law: an odd letter at state scale n^sigma has letter-phase coefficient ≍ n^{sigma/2}; the engine plus Corollary R' covers sigma <= 9/4, even letters halve sigma, odd letters multiply by 3/2 — the non-OOOO leftover keeps thinning by engine theorems while the OOOO tree stays blocked. Not a density of starts that reach 1, and not a density-one statement.",
+    "source": "docs/research/juggler_two_step_parity_lemma.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_two_step_parity.py"
+    ],
+    "related_conjectures": []
   }
 ]

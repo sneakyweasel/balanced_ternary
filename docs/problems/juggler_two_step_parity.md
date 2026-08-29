@@ -114,6 +114,9 @@ It is not required. The 2-adic / BT bridge stays closed.
   (`x1_absorption_k3_refuted` is `True`); bound not proved
 - \(K_3\) toolkit — **PARKED** in Phase 16
   (`k3_toolkit_parked` is `True`); Conjecture V open
+- Length-8 engine quartet OOEOOEOE/OOEOOOEE/OOOEOEOE/OOOEOOEE —
+  proved in Phase 23 (`depth8_engine_quartet_proved` is `True`);
+  certified density \(29/32\)
 - Global halt — not claimed
 
 ## Experiments
@@ -909,20 +912,52 @@ Best next question: external review of the consolidated note, or
 any genuinely new idea on Conjecture 6.5 (the pure
 amplitude-product model) from outside the parked toolkits.
 
+**PROMOTE** (Phase 23, the length-8 engine quartet, 29 August
+2026): re-examining the frontier found a consolidation overclaim
+("every uncounted contracting word passes through \(OOOO*\)" —
+false: \(OOEOOOEE\) is a counterexample; fixed) and a provable
+depth-8 ring. Theorem AA (`J-depth8-engine-quartet`, EXACT —
+HUMAN PROOF): the four contracting length-8 words
+\(OOEOOEOE\), \(OOEOOOEE\), \(OOOEOEOE\), \(OOOEOOEE\) — exactly
+the contracting children of the Theorem-X classes — each have
+cardinality \(N/256 + O(N^{1-1/48+\varepsilon})\). Lemma AA1:
+their eighth-letter chains are fully subcritical (top coefficient
+\(\tfrac{27}{16}x_3^{11/32} \asymp n^{99/128}\), drift
+\(n^{-29/128} < 1\)) because the interleaved even letters keep
+every state below the \(n^{9/4}\) kernel frontier; validated in
+exact scaled integers through \(n = 3\cdot10^7\)
+(`eighth_letter_chain_check`), censuses within \(1.8\) normalized
+deviations, mode ratios \(0.002\)–\(0.045\)
+(`depth8_quartet_census`, `depth8_mode_probe`). Corollary AB
+(`J-eight-step-descent-density`): certified descent density
+\(57/64 \to 29/32\). Structural law exposed: odd letters at state
+scale \(n^\sigma\) cost \(n^{\sigma/2}\), covered iff
+\(\sigma \le 9/4\) — the non-\(OOOO\) leftover thins forever by
+engine work, the \(OOOO\) tree (\(1/16\)) stays blocked by
+\(K_3\). Imported into the note as Theorem 5.16 and Corollary
+5.17 (old Corollary 5.16 renumbered); abstract, introduction,
+Section-5 preamble, Section-6 opening, leftover decomposition
+(\(3/32\), exact), figure, packet, formalization map synced.
+Flags `depth8_engine_quartet_proved`, `depth8_chains_subcritical`.
+No \(K_3\) claim; `density_one_claimed` stays `False`.
+
 ## Publication assessment
 
 Status: `THEOREM`, **consolidated into the note** (second
-consolidation phase, 29 August 2026). Exact linearization lemmas,
+consolidation phase plus the Phase-23 quartet, 29 August 2026).
+Exact linearization lemmas,
 power-saving joint-parity discrepancy bounds for nested floor-power
-sequences at **every depth \(\le 4\)** and the length-5 and length-7
-contracting splits, outside the existing Piatetski-Shapiro
-literature, plus a certified-descent density of \(57/64\) and the
+sequences at **every depth \(\le 4\)** and the length-5, length-7,
+and length-8 contracting splits, outside the existing
+Piatetski-Shapiro literature, plus a certified-descent density of
+\(29/32\) and the
 conditional density-one theorem with unconditional base cases
 \(d\le 4\). The note now carries the full harvest: Theorem R is
 the note's Theorem 5.11 (with Corollary R′ as Corollary 5.12 and
 Lemmas R1/R2/R3 as Lemma 5.10), Theorem S is Theorem 5.13,
-Theorem T is Theorem 5.14, Theorem X is Theorem 5.15, Corollaries
-U/Y are Corollary 5.16, Lemma V1 is Lemma 6.2, Conjecture V is
+Theorem T is Theorem 5.14, Theorem X is Theorem 5.15, Theorem AA
+is Theorem 5.16, Corollaries U/Y/AB are Corollary 5.17, Lemma V1
+is Lemma 6.2, Conjecture V is
 Conjecture 6.3, Lemma II is Theorem 6.4, Conjecture HH is
 Conjecture 6.5, and the BB/GG/JJ obstruction ladder is condensed
 into Section 6's negative-knowledge paragraphs. The laboratory

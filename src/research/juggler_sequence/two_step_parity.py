@@ -170,6 +170,15 @@ ANTI_OVERCLAIM = {
     # Phase 16: the R/X1/increment toolkit cannot bound K3.
     # Conjecture V stays open; the bound program is parked.
     "k3_toolkit_parked": True,
+    # Phase 23: the four contracting length-8 words (OOEOOEOE,
+    # OOEOOOEE, OOOEOEOE, OOOEOOEE) close under the engine alone:
+    # interleaved even letters keep every eighth-letter chain
+    # coefficient subcritical (top scale n^{99/128}, drift
+    # n^{-29/128} < 1). Theorem AA / Corollary AB: certified
+    # descent density 29/32. K3 untouched; the OOOO tree (1/16)
+    # stays blocked at its root.
+    "depth8_engine_quartet_proved": True,
+    "depth8_chains_subcritical": True,
 }
 
 
@@ -1192,6 +1201,204 @@ def shift_average_probe(
         "sample_noise": round(count**-0.5, 4),
         "stability_increments": stability,
     }
+
+
+# --- Phase 23: the length-8 engine quartet (depth-8 contracting ring) ---
+
+DEPTH8_QUARTET = ("OOEOOEOE", "OOEOOOEE", "OOOEOEOE", "OOOEOOEE")
+
+
+def word_orbit(n: int, word: str) -> list[int]:
+    """Word-dictated floor compositions x_1 = n, x_{t+1} = branch(x_t).
+
+    Applies floor(x^{3/2}) on 'O' letters and floor(sqrt(x)) on 'E'
+    letters following `word`, regardless of actual parities; on the
+    cylinder of `word` this is exactly the Juggler orbit.
+    """
+    xs = [n]
+    for c in word[:-1]:
+        xs.append(isqrt(xs[-1] ** 3) if c == "O" else isqrt(xs[-1]))
+    return xs
+
+
+def depth8_quartet_census(n_max: int) -> dict[str, Any]:
+    """Exact census of the four contracting length-8 words.
+
+    Each word extends a counted expanding length-7 cylinder
+    (Theorem X) by one letter and contracts (3^5 = 243 < 256 = 2^8).
+    Expected density: odds/128 per word, odds/64 per parent. Guard:
+    J^8(n) < n on every quartet member (Corollary 2.3 instance).
+    """
+    counts = {w: 0 for w in DEPTH8_QUARTET}
+    parents = {w[:7]: 0 for w in DEPTH8_QUARTET}
+    odds = 0
+    descent_violations = 0
+    for n in range(3, n_max + 1, 2):
+        odds += 1
+        w = itinerary_word(n, 8)
+        if w[:7] in parents:
+            parents[w[:7]] += 1
+        if w in counts:
+            counts[w] += 1
+            x = n
+            for _ in range(8):
+                x = juggler_step(x)
+            if x >= n and n > 2:
+                descent_violations += 1
+    expected = odds / 128
+    deviations = {
+        w: round((c - expected) / max(expected, 1) ** 0.5, 3)
+        for w, c in counts.items()
+    }
+    return {
+        "n_max": n_max,
+        "odds": odds,
+        "counts": counts,
+        "parent_counts": parents,
+        "expected_per_word": round(expected, 1),
+        "normalized_deviations": deviations,
+        "max_abs_normalized_deviation": max(
+            abs(d) for d in deviations.values()
+        ),
+        "descent_violations": descent_violations,
+    }
+
+
+def _pow2root_scaled(x: int, num: int, den: int, scale: int = SCALE) -> int:
+    """floor(x^{num/den} * scale) for den a power of two, exact isqrt only."""
+    val = x**num * scale**den
+    while den > 1:
+        val = isqrt(val)
+        den //= 2
+    return val
+
+
+def eighth_letter_chain_check(n: int, scale: int = SCALE) -> dict[str, Any]:
+    """Exact scaled validation of the OOEOOEO* eighth-letter chain.
+
+    On the OOEOOEO pattern (x_t via word_orbit) the eighth-letter
+    phase argument x8 = x7^{3/2} linearizes down all six levels:
+
+      x8 = n^{243/128}
+           - (81/64) n^{51/128} theta_1      (theta_1 = n^{3/2} - x2)
+           - (27/32) Y2^{-5/32}  theta_2     (Y2 = x2^{3/2}, x3 = floor(Y2))
+           - (27/16) U3^{11/16}  theta_3     (U3 = x3^{1/2}, x4 = floor(U3))
+           - (9/8)   Y4^{1/8}    theta_4     (Y4 = x4^{3/2}, x5 = floor(Y4))
+           - (3/4)   Y5^{-1/4}   theta_5     (Y5 = x5^{3/2}, x6 = floor(Y5))
+           - (3/2)   x6^{1/4}    theta_6     (U6 = x6^{1/2}, x7 = floor(U6))
+           + E,
+
+    where E is a sum of six one-signed second-order Taylor remainders,
+    |E| < 1 for all n >= 51. Every sawtooth coefficient is subcritical:
+    the largest is (27/16) U3^{11/16} ~ n^{99/128} << n, with drift
+    n^{-29/128} < 1. Returns the scaled residual, the two-sided
+    envelope, and the measured coefficient exponents.
+    """
+    if n < 51 or n % 2 == 0:
+        raise ValueError("odd n >= 51 required")
+    xs = word_orbit(n, "OOEOOEO" + "E")
+    x2, x3, x4, x5, x6, x7 = xs[1], xs[2], xs[3], xs[4], xs[5], xs[6]
+
+    th1 = isqrt(n**3 * scale * scale) - x2 * scale
+    th2 = isqrt(x2**3 * scale * scale) - x3 * scale
+    th3 = isqrt(x3 * scale * scale) - x4 * scale
+    th4 = isqrt(x4**3 * scale * scale) - x5 * scale
+    th5 = isqrt(x5**3 * scale * scale) - x6 * scale
+    th6 = isqrt(x6 * scale * scale) - x7 * scale
+
+    main = _pow2root_scaled(n, 243, 128, scale)
+    c1 = _pow2root_scaled(n, 51, 128, scale)
+    t1 = 81 * c1 * th1 // (64 * scale)
+    y2_532 = _pow2root_scaled(x2, 15, 64, scale)
+    t2 = 27 * th2 * scale // (32 * y2_532)
+    c3 = _pow2root_scaled(x3, 11, 32, scale)
+    t3 = 27 * c3 * th3 // (16 * scale)
+    c4 = _pow2root_scaled(x4, 3, 16, scale)
+    t4 = 9 * c4 * th4 // (8 * scale)
+    y5_14 = _pow2root_scaled(x5, 3, 8, scale)
+    t5 = 3 * th5 * scale // (4 * y5_14)
+    c6 = _pow2root_scaled(x6, 1, 4, scale)
+    t6 = 3 * c6 * th6 // (2 * scale)
+
+    x8 = isqrt(x7**3 * scale * scale)
+    residual = x8 - (main - t1 - t2 - t3 - t4 - t5 - t6)
+
+    # One-signed remainder envelopes (E1, E3, E4, E6 >= 0; E2, E5 <= 0).
+    pos_env = (
+        3 * scale // (8 * isqrt(x7 - 1))
+        + 9 * scale // (128 * _pow2root_scaled(x5 - 1, 7, 8, 1))
+        + 297 * scale // (512 * _pow2root_scaled(x4 - 1, 5, 16, 1))
+        + 1377 * scale // (8192 * _pow2root_scaled(x2 - 1, 47, 64, 1))
+    )
+    neg_env = (
+        3 * scale // (32 * _pow2root_scaled(x6 - 1, 5, 4, 1))
+        + 135 * scale // (2048 * _pow2root_scaled(x3 - 1, 37, 32, 1))
+    )
+    slack = 64 * ((c1 + c3 + c4 + c6) // scale + 8)
+    ln = log(n)
+    exponents = {
+        "theta1": round(log(81 * c1 / (64 * scale)) / ln, 4),
+        "theta3": round(log(27 * c3 / (16 * scale)) / ln, 4),
+        "theta4": round(log(9 * c4 / (8 * scale)) / ln, 4),
+        "theta6": round(log(3 * c6 / (2 * scale)) / ln, 4),
+    }
+    return {
+        "holds": -neg_env - slack <= residual <= pos_env + slack,
+        "residual_scaled": residual,
+        "pos_env_scaled": pos_env,
+        "neg_env_scaled": neg_env,
+        "coefficient_exponents": exponents,
+        "all_subcritical": max(exponents.values()) < 1.0,
+    }
+
+
+def depth8_chain_scan(samples: tuple[int, ...]) -> dict[str, Any]:
+    """Run the eighth-letter chain check over odd samples."""
+    worst_exp = 0.0
+    for n in samples:
+        row = eighth_letter_chain_check(n)
+        if not row["holds"] or not row["all_subcritical"]:
+            return {"holds": False, "witness": n, "row": row}
+        worst_exp = max(worst_exp, max(row["coefficient_exponents"].values()))
+    return {"holds": True, "count": len(samples), "max_exponent": worst_exp}
+
+
+def depth8_mode_probe(n_max: int, k: int = 1) -> dict[str, Any]:
+    """Eighth-wave mode sums on the four parent cylinders.
+
+    For each counted expanding length-7 cylinder, sums
+    e((k/2) X7(n)) over cylinder members n <= n_max, where
+    X7 = x7^{3/2} (seventh letter O) or x7^{1/2} (seventh letter E)
+    is the real number whose floor parity is the eighth letter.
+    Cancellation (|S| << members) is the Phase-0 gate for the
+    engine bound; ratio near 1 is the falsifier.
+    """
+    from math import cos, pi, sin
+
+    sc = SCALE
+    out: dict[str, Any] = {"n_max": n_max, "k": k}
+    sums = {w[:7]: [0.0, 0.0, 0] for w in DEPTH8_QUARTET}
+    for n in range(3, n_max + 1, 2):
+        w7 = itinerary_word(n, 7)
+        if w7 not in sums:
+            continue
+        x = n
+        for _ in range(6):
+            x = juggler_step(x)
+        x7sc = isqrt(x**3 * sc * sc) if w7[6] == "O" else isqrt(x * sc * sc)
+        frac = (k * x7sc) % (2 * sc)
+        ph = pi * frac / sc
+        acc = sums[w7]
+        acc[0] += cos(ph)
+        acc[1] += sin(ph)
+        acc[2] += 1
+    for w7, (re, im, cnt) in sums.items():
+        out[w7] = {
+            "members": cnt,
+            "abs_sum": round((re * re + im * im) ** 0.5, 2),
+            "ratio": round((re * re + im * im) ** 0.5 / max(cnt, 1), 4),
+        }
+    return out
 
 
 def transport_block_variance(
@@ -2704,7 +2911,9 @@ def write_docs(row: dict[str, Any], path: Path = DOC_PATH) -> None:
         "now theorems at every depth <= 4, and the two length-5",
         "contracting splits OOOEE/OOEOE lift certified descent to 7/8;",
         "the two length-7 engine contractors OOEOOEE/OOOEOEE lift",
-        "certified descent to 57/64; the OOOO* kernel K3 is isolated",
+        "certified descent to 57/64; the length-8 engine quartet",
+        "OOEOOEOE/OOEOOOEE/OOOEOEOE/OOOEOOEE lifts it to 29/32;",
+        "the OOOO* kernel K3 is isolated",
         "and the scale-invariant copy of Theorem R, the",
         "increment-first K3 attack, and X1-absorption of K3",
         "are REFUTED; the K3 toolkit is PARKED.",

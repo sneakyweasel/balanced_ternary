@@ -198,9 +198,10 @@ The note makes the certificate boundary explicit: uniform one- and
 two-step arguments cover density \(3/4\); the imported
 parity-discrepancy calculus with the kernel theorem (Theorems
 5.11–5.13, second consolidation phase) completes depth-4
-equidistribution and, with the contracting splits of lengths five and
-seven (Theorems 5.14–5.15), raises the uniformly certified class to
-\(13/16\) at four steps, \(7/8\) at five, and \(57/64\) at seven.
+equidistribution and, with the contracting splits of lengths five,
+seven, and eight (Theorems 5.14–5.16), raises the uniformly certified
+class to \(13/16\) at four steps, \(7/8\) at five, \(57/64\) at
+seven, and \(29/32\) at eight.
 None is a density of all descent certificates nor a
 \(\operatorname{ReachesOne}\) density. Proposition 6.1 reduces the
 Terras analogue to all-depth parity equidistribution, now a theorem
@@ -236,8 +237,9 @@ The candidate is a standalone math note: envelope, exact defect calculus,
 cycle restrictions with a length-\(\le6\) cycle census, short
 certificates, and a parity-discrepancy calculus that is complete
 through depth four (via the kernel theorem, adversarially reviewed)
-and covers the contracting words of lengths five and seven, with
-certified-descent densities \(3/4\), \(13/16\), \(7/8\), \(57/64\), a
+and covers the contracting words of lengths five, seven, and eight,
+with certified-descent densities \(3/4\), \(13/16\), \(7/8\),
+\(57/64\), \(29/32\), a
 conditional density-one theorem with unconditional base cases
 \(d\le4\), a proved shift-average theorem for the remaining kernel's
 model form, and a named open kernel with its distilled crystal. The

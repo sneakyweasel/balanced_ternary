@@ -10252,3 +10252,80 @@ Best next question
 - external review of the consolidated note; mathematically, any new
   idea on Conjecture 6.5 from outside the parked toolkits
 ```
+
+## Juggler length-8 engine quartet: certified descent 29/32 without touching K3
+
+Phase 23 of the two-step-parity branch. Asked to break the frontier,
+the phase first re-derived every known route into K3/HH once more
+(pure-phase surd identities, Bombieri-Iwaniec-style arcs,
+floor-split window tricks, 2-adic and fiber reformulations) — each
+re-enters a recorded obstruction (BB, GG, CC, JJ), confirming the
+obstruction propositions. The deep dive then found two real items.
+
+First, a consolidation overclaim: the note asserted "every uncounted
+contracting word passes through OOOO*". False — OOEOOOEE (five odd
+letters, 3^5 = 243 < 256 = 2^8) contracts, has no OOOO factor, and
+was uncounted. Fixed in both copies, then superseded by the theorem
+below.
+
+Second, the theorem the K3 fixation had hidden. The six counted
+expanding length-7 cylinders have exactly four contracting length-8
+children: OOEOOEOE, OOEOOOEE, OOOEOEOE, OOOEOOEE. Tracing the full
+seven-level linearization chain of the eighth-letter phase argument
+on each parent shows every sawtooth coefficient subcritical — the
+complete growing inventory is (27/16) x3^{11/32} ~ n^{99/128},
+(3/2) x6^{1/4} ~ n^{81/128}, (81/64) n^{51/128}, (9/8) x4^{3/16} or
+x4^{1/16} ~ n^{27/128} — because the interleaved even letters keep
+every state below the n^{9/4} kernel frontier. Lemma AA1 (chains,
+validated exactly in scaled integers through n = 3*10^7,
+eighth_letter_chain_check), Theorem AA (each class N/256 +
+O(N^{1-1/48+eps}), Theorem Q/T/X engine pattern; censuses within
+1.8 normalized deviations at N = 2*10^5 and 10^6, mode ratios
+0.002-0.045), Corollary AB (certified descent 57/64 -> 29/32; zero
+descent violations in census). Ledger rows J-depth8-engine-quartet,
+J-eight-step-descent-density (both EXACT — HUMAN PROOF); flags
+depth8_engine_quartet_proved, depth8_chains_subcritical; note
+Theorem 5.16 and Corollary 5.17 (old 5.16 renumbered), leftover
+paragraph replaced by the exact 3/32 decomposition; figure, packet,
+formalization map, dossiers, branch ledger, bundle, PDFs synced.
+
+The structural law distilled: an odd letter at state scale n^sigma
+costs a letter-phase coefficient n^{sigma/2}; the engine plus R'
+covers sigma <= 9/4; even letters halve sigma, odd letters multiply
+by 3/2. So the non-OOOO leftover thins at every depth under further
+engine work (diminishing increments), while the OOOO tree (1/16) is
+monolithically blocked at its root by K3. Certified density can
+grow past 29/32 but never reach 1 - 1/16 + anything without K3.
+
+```text
+What was learned
+- the certified-density ceiling was not 57/64: four contracting
+  length-8 words close under the existing engine with no kernel
+- E-interleaving is the mechanism: even letters halve the state
+  exponent, keeping all chain coefficients subcritical; O-heavy
+  roots (OOOO and deeper) are the only blocked objects
+- the consolidation had one overclaim (OOEOOOEE), now fixed —
+  adversarial re-reading of one's own consolidation pays
+- every re-derivable K3 route still dies in BB/GG/CC/JJ, as the
+  obstruction propositions predict
+Strongest theorem
+- Theorem AA: all four contracting length-8 classes have density
+  2^{-8} with power savings; Corollary AB: certified descent 29/32
+Strongest refutation
+- none this phase (the overclaim fix is editorial)
+Reusable machinery
+- word_orbit, depth8_quartet_census, eighth_letter_chain_check,
+  depth8_chain_scan, depth8_mode_probe; the state-exponent law
+  sigma -> sigma/2 as the engine/kernel boundary test
+Branch status
+- PROMOTE (Theorem 5.16 / Corollary 5.17 in the note; publication
+  quality maintained)
+Why
+- a real density increment past the previous ceiling, proved with
+  existing machinery, plus a structural characterization of where
+  the engine ends and K3 begins
+Best next question
+- does the engine-countable language have a computable boundary
+  (exact characterization of blocked roots beyond OOOO), giving
+  the supremum of K3-free certified density as a closed form?
+```

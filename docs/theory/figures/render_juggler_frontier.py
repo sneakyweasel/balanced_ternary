@@ -21,8 +21,8 @@ NODES = {
     "Cycles": ("Cycle restrictions", ""),
     "Excluded": ("No cycles of", "length \u2264 6"),
     "Discrepancy": ("Parity discrepancy", "+ kernel theorem"),
-    "Certificates": ("One- to seven-step", "certificates"),
-    "Density": ("Certified class", "density 57/64"),
+    "Certificates": ("One- to eight-step", "certificates"),
+    "Density": ("Certified class", "density 29/32"),
     "Kernel": ("Level-3 kernel", "(open)"),
     "Open": ("Open", "almost-all descent?"),
 }

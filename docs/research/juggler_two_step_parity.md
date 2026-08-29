@@ -7,9 +7,10 @@ class is **EXACT — HUMAN PROOF**
 `J-depth4-slow-branch`, `J-kernel-cancellation`,
 `J-depth4-complete`, `J-depth5-contracting`,
 `J-five-step-descent-density`, `J-depth7-engine-contracting`,
-`J-seven-step-descent-density`; proofs in
+`J-seven-step-descent-density`, `J-depth8-engine-quartet`,
+`J-eight-step-descent-density`; proofs in
 `juggler_two_step_parity_lemma.md`). Certified descent
-density 57/64. OOOO* kernel isolated (Lemma V1); the
+density 29/32. OOOO* kernel isolated (Lemma V1); the
 scale-invariant copy of Theorem R, the increment-first
 K3 attack, and X1-absorption of K3 are **REFUTED**;
 the K3 toolkit is **PARKED**.
@@ -56,7 +57,8 @@ The fitted exponents are envelope slopes on a geometric sample,
 label **OBSERVATION**. The analytic statements they probe are
 now theorems at every depth <= 4, and the two length-7 engine
 contractors OOEOOEE/OOOEOEE lift certified descent to 57/64;
-the OOOO* kernel K3 is isolated and the scale-invariant
-copy of Theorem R, the increment-first K3 attack, and
-X1-absorption of K3 are REFUTED; the K3 toolkit is
+the length-8 engine quartet OOEOOEOE/OOEOOOEE/OOOEOEOE/OOOEOOEE
+lifts it to 29/32; the OOOO* kernel K3 is isolated and the
+scale-invariant copy of Theorem R, the increment-first K3
+attack, and X1-absorption of K3 are REFUTED; the K3 toolkit is
 PARKED.

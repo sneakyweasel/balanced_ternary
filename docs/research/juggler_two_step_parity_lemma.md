@@ -3147,3 +3147,172 @@ commit. The natural next work is editorial: the finite-dynamics
 note still carries the stale \(13/16\) headline and Conjecture
 6.2, and the branch's final state (harvest + three obstructions
 + the crystal + Lemma II) deserves consolidation.
+
+## Part XIX: the length-8 engine quartet — breaking the density ceiling without \(K_3\) (Phase 23)
+
+Phase 22 consolidated the branch into the note at certified
+density \(57/64\). Phase 23 re-examined the frontier itself and
+found two things: an overclaim introduced during consolidation,
+and a provable depth-8 ring the \(K_3\) fixation had hidden.
+
+**The overclaim (fixed).** The consolidated note asserted "every
+uncounted contracting word passes through \(OOOO*\)". False:
+\(OOEOOOEE\) (five odd letters, \(3^5 = 243 < 256 = 2^8\)) is
+contracting, contains no \(OOOO\) factor, and was uncounted —
+only its length-7 prefix was (Theorem X). The sentence is
+corrected in both copies of the note; the fix is subsumed by the
+theorem below, which counts that word.
+
+**The observation.** The six counted expanding length-7
+cylinders (Theorem X) have exactly four contracting length-8
+children — appending \(E\) to the four five-odd words:
+
+\[
+OOEOOEOE,\quad OOEOOOEE,\quad OOOEOEOE,\quad OOOEOOEE
+\]
+
+(the two six-odd words \(OOEOOOO\), \(OOOEOOO\) need length
+\(\ge 10\)). Each has \(3^5 = 243 < 256\): a uniform eight-step
+descent certificate. The eighth letter is the parity of
+\(x_8 = J^7(n)\), and the itineraries interleave enough even
+letters that the full seven-level linearization chain of its
+phase argument stays **subcritical** — no letter of the quartet
+sees a kernel.
+
+### Lemma AA1 (the four eighth-letter chains). EXACT — HUMAN PROOF
+
+Write \(x_1 = n\), \(x_{t+1} = \lfloor x_t^{3/2}\rfloor\) on odd
+letters, \(x_{t+1} = \lfloor x_t^{1/2}\rfloor\) on even letters,
+following each word; let \(X_7\) be the real number with
+\(x_8 = \lfloor X_7 \rfloor\) (so \(X_7 = x_7^{3/2}\) when the
+seventh letter is \(O\), \(x_7^{1/2}\) when it is \(E\)). Then
+for each quartet parent, expanding every level by the two-term
+Taylor identity with one-signed second-order remainder
+(\(|E| < 1\) for \(n \ge 51\)),
+
+\[
+X_7 \;=\; n^{243/128} \;-\; \sum_{i} B_i(n)\,\theta_i \;+\; E,
+\]
+
+where each \(\theta_i \in [0,1)\) is the floor defect at level
+\(i\) and every coefficient \(B_i\) is **subcritical**: the
+complete inventory of growing coefficients is
+
+| parent | growing coefficients \(B_i\) |
+| --- | --- |
+| \(OOEOOEO\) | \(\tfrac{27}{16}x_3^{11/32} \asymp n^{99/128}\), \(\tfrac32 x_6^{1/4} \asymp n^{81/128}\), \(\tfrac{81}{64}n^{51/128}\), \(\tfrac98 x_4^{3/16} \asymp n^{27/128}\) |
+| \(OOEOOOE\) | \(\tfrac{27}{16}x_3^{11/32} \asymp n^{99/128}\), \(\tfrac{81}{64}n^{51/128}\), \(\tfrac98 x_4^{3/16} \asymp n^{27/128}\) |
+| \(OOOEOEO\) | \(\tfrac32 x_6^{1/4} \asymp n^{81/128}\), \(\tfrac{81}{64}n^{51/128}\), \(\tfrac98 x_4^{1/16} \asymp n^{27/128}\) |
+| \(OOOEOOE\) | \(\tfrac{81}{64}n^{51/128}\), \(\tfrac98 x_4^{1/16} \asymp n^{27/128}\) |
+
+(all remaining coefficients decay in \(n\)). The largest
+coefficient anywhere is \(\asymp n^{99/128}\), with drift
+\(\asymp n^{-29/128} < 1\): every sawtooth admits drift-one
+windows of length \(\ge n^{29/128}\).
+
+*Proof.* Word-by-word composition of the two-term Taylor
+identities \((Y-\theta)^p = Y^p - pY^{p-1}\theta + E_p\) at the
+exponents \(p \in \{\tfrac{81}{64}, \tfrac{27}{32},
+\tfrac{27}{16}, \tfrac98, \tfrac{9}{16}, \tfrac34, \tfrac32,
+\tfrac12\}\) dictated by the letters, with
+\(E_p = \tfrac{p(p-1)}2 \xi^{p-2}\theta^2\) one-signed
+(positive for \(p > 1\), negative for \(p < 1\)) and bounded by
+the stated envelopes. The key structural fact is that the even
+letters interpose square roots that keep every intermediate
+exponent below \(2\) — no state on these words reaches the
+\(\lfloor \cdot^{3/2}\rfloor\)-map at scale \(> n^{9/4}\), so no
+coefficient reaches \(n\), in contrast to \(OOOO*\) where the
+fifth-letter coefficient is \(n^{27/16}\cdot k\) (Lemma V1).
+\(\square\)
+
+Validation: `eighth_letter_chain_check` verifies the hardest
+composite identity (\(OOEOOEO\), six levels, scale \(10^{30}\))
+exactly, residual inside the one-signed envelope on 46 samples
+through \(n = 3\cdot10^7 + 1\), measured coefficient exponents
+all \(< 1\) (max \(0.91\) at small \(n\), decreasing toward
+\(99/128 = 0.773\)).
+
+### Theorem AA (the length-8 engine quartet). EXACT — HUMAN PROOF
+
+For each \(w\) in the quartet,
+\(\#\{n \le N : n \in C_w\} = 2^{-8}N + O(N^{1-1/48+\varepsilon})\).
+
+*Proof sketch (Theorem Q/T/X pattern).* The class indicator is
+the product of the eight half-wave factors; letters one through
+seven are the counted Theorem-X classes. The eighth wave
+expands in Vaaler modes \(e((k/2)X_7)\), \(k \le J_8\). By
+Lemma AA1 the mode phase is a fixed chirp
+\((k/2)n^{243/128}\) minus subcritical sawtooth terms. On each
+sawtooth, split into drift-one windows (length \(\ge
+n^{29/128}\)), expand the product against the frozen window
+centre; the centre value recombines with the chirp, and the
+residual modes carry curvature \(\le T\cdot n^{-7/8}\) with
+window budget \(T = P^{1/16}\), subdominant to the chirp
+curvature \(\lambda \asymp k n^{-13/128}\). Intersecting the
+(at most four) window systems leaves intervals of length
+\(L_0 \ge n^{29/128} \gg \lambda^{-1/2}\); van der Corput II
+gives \(L_0\lambda^{1/2} + \lambda^{-1/2} \ll
+k^{1/2}n^{45/256}\) per interval — summed over the
+\(\asymp P^{99/128}\) intervals,
+\(|S_k| \ll k^{1/2} P^{243/256}\). Truncating at
+\(J_8 = P^{13/384}\) balances the majorant \(P/J_8\):
+total \(O(P^{1-13/384+\varepsilon})\), stated as
+\(O(N^{1-1/48+\varepsilon})\) without optimization. The
+passenger waves (letters two through seven) carry the budgets
+already established in Theorems S/T/X; every new cross term is
+subcritical by Lemma AA1. \(\square\)
+
+Validation: `depth8_quartet_census` (\(N = 2\cdot10^5\) and
+\(10^6\)): all four classes within \(1.8\) normalized deviations
+of \(N_{\mathrm{odd}}/128\), zero descent violations.
+`depth8_mode_probe` (\(k = 1, 2, 3\)): eighth-wave mode sums on
+all four parents at ratio \(0.002\)–\(0.045\) of cylinder size
+at \(N = 2\cdot10^5\), shrinking to \(0.006\)–\(0.011\) at
+\(N = 10^6\) — square-root scale.
+
+### Corollary AB (certified descent density 29/32). EXACT — HUMAN PROOF
+
+The quartet words each carry the uniform certificate
+\(J^8(n) < n\) (\(3^5 < 2^8\), Corollary 2.3). Adding their
+densities \(4 \cdot 2^{-8} = 1/64\) to Corollary Y:
+
+\[
+\frac{57}{64} + \frac1{64} \;=\; \frac{29}{32}
+\]
+
+of all starts admit a descent certificate of length at most
+eight. The leftover \(3/32\) is: the \(OOOO*\) tree (\(1/16\),
+blocked at its root by \(K_3\)), the expanding \(O\)-children of
+the quartet splits (\(4/256\)), and the two six-odd trees
+\(OOEOOOO*\), \(OOOEOOO*\) (\(4/256\)).
+
+### The structural law exposed
+
+The quartet is not an accident. An odd letter applied at state
+scale \(n^\sigma\) produces a kernel coefficient \(\asymp
+n^{\sigma/2}\); the engine plus Theorem R′ covers
+\(\sigma/2 \le 9/8\), i.e. \(\sigma \le 9/4\). Even letters
+halve \(\sigma\), odd letters multiply it by \(3/2\): the
+blocked roots are exactly the \(O\)-heavy prefixes that push an
+odd state past \(n^{9/4}\) — \(OOOO\) (state \(n^{27/8}\),
+coefficient \(n^{27/16}\): Lemma V1) and its deeper analogues —
+while every \(E\)-interleaved word stays countable. The
+non-\(OOOO\) leftover therefore thins at every depth
+(a geometric tail of engine theorems), whereas the \(OOOO\) tree
+(\(1/16\)) is monolithically blocked by \(K_3\). The certified
+density can be pushed beyond \(29/32\) by more engine work with
+strictly diminishing increments, but never past
+\(1 - 1/16 - (\text{deeper blocked roots})\) without \(K_3\).
+
+### Phase-23 decision
+
+**PROMOTE.** Theorem AA and Corollary AB enter the note as
+Theorem 5.16 and the extended Corollary 5.17 (certified-descent
+densities \(7/8\), \(57/64\), \(29/32\)); the overclaim sentence
+is replaced by the exact leftover decomposition. Ledger rows
+`J-depth8-engine-quartet` and `J-eight-step-descent-density`
+(both EXACT — HUMAN PROOF); flags
+`depth8_engine_quartet_proved`, `depth8_chains_subcritical`.
+`depth5_kernel_bound_proved` and `density_one_claimed` stay
+`False`: nothing here touches \(K_3\), and the structural law
+says the \(OOOO\) tree is where the remaining \(1/16\) lives.

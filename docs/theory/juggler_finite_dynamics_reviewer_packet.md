@@ -14,10 +14,10 @@ discrepancy proofs sound — the depth-1–4 estimates (exponents \(5/6\)
 to \(23/24\)), the kernel theorem (Theorem 5.11, double Weyl
 differencing over the carry-branch decomposition, \(\delta=1/72\)),
 the depth-4 completion (Theorem 5.13), and the contracting splits at
-lengths five and seven (Theorems 5.14–5.15); and are the secondary
-densities (\(3/4\) at two steps, \(13/16\) at four, \(7/8\) at five,
-\(57/64\) at seven) kept distinct from existential descent and
-\(\operatorname{ReachesOne}\)?
+lengths five, seven, and eight (Theorems 5.14–5.16); and are the
+secondary densities (\(3/4\) at two steps, \(13/16\) at four, \(7/8\)
+at five, \(57/64\) at seven, \(29/32\) at eight) kept distinct from
+existential descent and \(\operatorname{ReachesOne}\)?
 
 No termination theorem is claimed. The level-3 kernel bound
 (Conjecture 6.3) and the pure amplitude-product model (Conjecture
@@ -49,9 +49,9 @@ census: no nontrivial cycle has length at most six. As secondary
 corollaries, an exact-linearization discrepancy calculus with a kernel
 theorem for the level-2 floor defect proves **every** itinerary word
 class of depth at most four equidistributed with power savings, plus
-the contracting words of lengths five and seven, so the uniform
+the contracting words of lengths five, seven, and eight, so the uniform
 certificate classes have densities \(3/4\) (two steps), \(13/16\)
-(four), \(7/8\) (five), and \(57/64\) (seven); all-depth
+(four), \(7/8\) (five), \(57/64\) (seven), and \(29/32\) (eight); all-depth
 equidistribution would imply density-one finite descent
 (Proposition 6.1), with the base cases \(d\le4\) now unconditional,
 and the precise remaining obstacle is the level-3 kernel of
@@ -85,7 +85,8 @@ and whose deterministic crystal is Conjecture 6.5.
 | Kernel cancellation \(K_c(P)\ll P^{1-1/72+\varepsilon}\) (Theorem 5.11, Corollary 5.12) | **EXACT — HUMAN PROOF** | \(W\)-shaped families \(\alpha\le9/8\), \(k\le P^{1/24}\); adversarially reviewed |
 | OOO\(*\) splits; depth 4 complete (Theorem 5.13) | **EXACT — HUMAN PROOF** | all sixteen depth-4 classes with power savings |
 | Length-5 and length-7 contracting splits (Theorems 5.14–5.15) | **EXACT — HUMAN PROOF** | exponents \(1-1/72\) and \(43/48\) |
-| Certified-descent densities \(7/8\), \(57/64\) (Corollary 5.16) | **EXACT — HUMAN PROOF** | uniform five- and seven-step classes |
+| Length-8 engine quartet (Theorem 5.16) | **EXACT — HUMAN PROOF** | all-subcritical chains; exponent \(1-1/48\), unoptimized |
+| Certified-descent densities \(7/8\), \(57/64\), \(29/32\) (Corollary 5.17) | **EXACT — HUMAN PROOF** | uniform five-, seven-, and eight-step classes |
 | Equidistribution \(\Rightarrow\) density-one descent (Proposition 6.1) | **EXACT — HUMAN PROOF** | unconditional implication; hypothesis now a theorem for \(d\le4\), open beyond |
 | Level-3 kernel reformulation (Lemma 6.2) | **EXACT — HUMAN PROOF** | exact Taylor identity; validated in scaled integers |
 | Level-3 kernel cancellation \(K_3(P)\ll P^{1-\delta}\) (Conjecture 6.3) | **CONJECTURE** | not claimed; square-root cancellation observed in exact probes |
@@ -98,10 +99,10 @@ and whose deterministic crystal is Conjecture 6.5.
    predicate (image \(<n\) or image \(1\)). Theorems 4.1–4.2 isolate a
    uniform short subclass. They do not say that odd-to-odd starts lack
    descent.
-2. Corollaries 5.2, 5.9, and 5.16 are densities of uniform
+2. Corollaries 5.2, 5.9, and 5.17 are densities of uniform
    subclasses (\(3/4\) at two steps, \(13/16\) at four, \(7/8\) at
-   five, \(57/64\) at seven). None is a density of `FiniteProgress`
-   nor of `ReachesOne`.
+   five, \(57/64\) at seven, \(29/32\) at eight). None is a density
+   of `FiniteProgress` nor of `ReachesOne`.
 3. Terras–Everett prove almost-all Collatz stopping times. The note does
    not prove the Juggler analogue; Proposition 6.1 is an unconditional
    *implication* from all-depth equidistribution, whose hypothesis is
@@ -117,8 +118,8 @@ and whose deterministic crystal is Conjecture 6.5.
 ## What the paper does not claim
 
 - Every positive integer reaches \(1\).
-- Three-quarters (or \(13/16\), \(7/8\), \(57/64\)) of starts reach
-  \(1\).
+- Three-quarters (or \(13/16\), \(7/8\), \(57/64\), \(29/32\)) of
+  starts reach \(1\).
 - Those densities as *complete* certificate inventories: they count
   uniform classes.
 - A Collatz theorem, or a transfer of Terras's theorem to \(J\).

@@ -49,9 +49,10 @@ on a kernel theorem proved here: the exponential sum of the level-2
 floor defect against smooth weights of scale \(n^{9/8}\) exhibits a
 power saving, obtained by double Weyl differencing over an exact
 carry-branch decomposition. The same engine counts the contracting
-words of lengths five and seven, so the class of starts carrying a
-uniform descent certificate of length at most four, five, seven has
-natural density \(13/16\), \(7/8\), \(57/64\) respectively. An
+words of lengths five, seven, and eight, so the class of starts
+carrying a uniform descent certificate of length at most four, five,
+seven, eight has natural density \(13/16\), \(7/8\), \(57/64\),
+\(29/32\) respectively. An
 unconditional counting argument shows that parity equidistribution at
 all depths would give the set of starts with some finite descent
 certificate density one; the base cases of depth at most four are now
@@ -81,14 +82,15 @@ A word of length \(k\) with \(o\) odd letters has ideal exponent
 only when the orbit realizes those parities. The paper records the exact
 finite-word comparison, the compositional slack, the uniform short
 certificates, and the densities of the classes those certificates cover:
-all of itinerary depth four, and the contracting words of lengths five
-and seven.
+all of itinerary depth four, and the contracting words of lengths five,
+seven, and eight.
 
 The main contribution is the exact power-envelope and defect calculus,
 together with its inverse-cell and cycle consequences, chief among
 them a small-cycle census: no nontrivial cycle has length at most six.
 The certified-descent densities — \(3/4\) at two steps, \(13/16\) at
-four, \(7/8\) at five, \(57/64\) at seven — are secondary corollaries.
+four, \(7/8\) at five, \(57/64\) at seven, \(29/32\) at eight — are
+secondary corollaries.
 We do not prove a Collatz theorem or transfer Collatz stopping-time
 results to \(J\).
 
@@ -96,8 +98,8 @@ results to \(J\).
 
 Theorems in Sections 2--4 are proved both below and in Lean under the names
 listed at the start of each section. The analytic estimates of Sections 5
-and 6 (Theorems 5.1, 5.4, 5.7, 5.8, 5.11, 5.13--5.15, 6.4,
-Propositions 5.5, 6.1, Corollaries 5.12 and 5.16) are ordinary human
+and 6 (Theorems 5.1, 5.4, 5.7, 5.8, 5.11, 5.13--5.16, 6.4,
+Propositions 5.5, 6.1, Corollaries 5.12 and 5.17) are ordinary human
 proofs and are not formalized; the exact floor reductions beneath them
 — the parity bridge \(\lfloor x\rfloor\) odd iff \(\{x/2\}\ge1/2\), the
 gap-cell identity, and the double-gap identity used by the kernel
@@ -679,9 +681,9 @@ Proposition 5.5), depth 4 except the \(OOO*\) split (Theorems 5.7 and
 5.8), giving the certified-descent density \(13/16\) (Corollary 5.9);
 then the \(OOO*\) split itself through a kernel theorem for the level-2
 floor defect (Theorems 5.11 and 5.13), completing depth 4; and finally
-the contracting words of lengths five and seven (Theorems 5.14 and
-5.15), raising the certified density to \(7/8\) and \(57/64\)
-(Corollary 5.16). All estimates here are human proofs; the exact floor
+the contracting words of lengths five, seven, and eight (Theorems
+5.14--5.16), raising the certified density to \(7/8\), \(57/64\), and
+\(29/32\) (Corollary 5.17). All estimates here are human proofs; the exact floor
 reductions beneath them are Lean-verified (Section 1.1).
 
 For odd \(n\) write \(s(n)=(-1)^{\lfloor n^{3/2}\rfloor}\) and
@@ -1537,26 +1539,84 @@ classes of terms — chirp, Corollary-5.12 family at
 block on \(\lfloor\Delta z^{1/2}\rfloor\)-runs of length
 \(\asymp P^{5/16}\). Same exponent. \(\square\)
 
-**Corollary 5.16 (certified-descent densities \(7/8\) and \(57/64\)).**
+**Theorem 5.16 (the length-8 engine quartet).**
+The four contracting length-8 classes satisfy
+\[
+\#\mathrm{OOEOOEOE}(N),\ \#\mathrm{OOEOOOEE}(N),\
+\#\mathrm{OOOEOEOE}(N),\ \#\mathrm{OOOEOOEE}(N)
+=\tfrac N{256}+O\bigl(N^{1-1/48+\varepsilon}\bigr).
+\]
+
+*Proof sketch.* These are exactly the contracting length-8
+children of the classes counted by Theorem 5.15 (appending \(E\)
+to the four five-odd words; the six-odd words need length
+\(\ge10\)). Write \(x_1=n\) and \(x_{t+1}=\lfloor
+x_t^{3/2}\rfloor\) or \(\lfloor x_t^{1/2}\rfloor\) as the letters
+dictate; the eighth-letter wave has phase argument \(X_7\), the
+real number with \(x_8=\lfloor X_7\rfloor\). On each of the four
+parents, applying the two-term Taylor identity with one-signed
+remainder at every one of the seven levels gives the exact chain
+\[
+X_7=n^{243/128}-\sum_iB_i(n)\,\theta_i+E,\qquad|E|<1
+\ \ (n\ge51),
+\]
+with \(\theta_i\in[0,1)\) the level-\(i\) floor defect and every
+coefficient subcritical: the complete inventory of growing
+coefficients over the four words is
+\(\tfrac{27}{16}x_3^{11/32}\asymp n^{99/128}\),
+\(\tfrac32x_6^{1/4}\asymp n^{81/128}\),
+\(\tfrac{81}{64}n^{51/128}\), and
+\(\tfrac98x_4^{3/16}\) resp.\ \(\tfrac98x_4^{1/16}\asymp
+n^{27/128}\); all other coefficients decay. The interleaved even
+letters keep every intermediate state below the scale \(n^{9/4}\)
+at which an odd letter would produce a supercritical
+(kernel-class) coefficient — no letter of the quartet sees a
+kernel. Every sawtooth has coefficient drift \(\le n^{-29/128}<1\):
+expand each on drift-1 windows with budget \(T=P^{1/16}\)
+(majorant \(P^{15/16}\)); the window-centre values recombine with
+the smooth chirp \((k/2)n^{243/128}\), and the residual modes
+carry curvature \(\le Tn^{-7/8}\), subdominant to the chirp
+curvature \(\lambda\asymp kn^{-13/128}\). On the intersected
+windows (length \(\ge n^{29/128}\gg\lambda^{-1/2}\)) van der
+Corput II gives \(\ll k^{1/2}n^{45/256}\) per window, hence
+\(S_k\ll k^{1/2}P^{243/256}\); balancing the Vaaler majorant
+\(P/J_8\) at \(J_8=P^{13/384}\) gives \(P^{1-13/384}\), stated
+unoptimized as \(N^{1-1/48+\varepsilon}\). Letters one through
+seven ride as passengers with the budgets of
+Theorems 5.13--5.15. \(\square\)
+
+**Corollary 5.17 (certified-descent densities \(7/8\), \(57/64\), and \(29/32\)).**
 The class of starts carrying a uniform power-envelope descent
 certificate of length at most five — evens, \(OE\), \(OOEE\),
 \(OOOEE\), \(OOEOE\) — has natural density \(7/8\); adding the
 length-7 words \(OOEOOEE\) and \(OOOEOEE\) raises the density of the
-length-\(\le7\) certified class to \(57/64\).
+length-\(\le7\) certified class to \(57/64\); adding the length-8
+quartet of Theorem 5.16 raises the length-\(\le8\) certified class
+to \(29/32\).
 
 *Proof.* Densities
-\(\tfrac12+\tfrac14+\tfrac1{16}+\tfrac1{32}+\tfrac1{32}=\tfrac78\)
-and \(\tfrac78+\tfrac1{128}+\tfrac1{128}=\tfrac{57}{64}\). The
+\(\tfrac12+\tfrac14+\tfrac1{16}+\tfrac1{32}+\tfrac1{32}=\tfrac78\),
+\(\tfrac78+\tfrac1{128}+\tfrac1{128}=\tfrac{57}{64}\), and
+\(\tfrac{57}{64}+\tfrac4{256}=\tfrac{29}{32}\). The
 cylinders are disjoint, and each new cylinder is counted with a
-power saving by Theorems 5.14 and 5.15. Contraction is
-Corollary 2.3: \(3^3=27<32=2^5\) on the length-5 words and
-\(3^4=81<128=2^7\) on the length-7 words. \(\square\)
+power saving by Theorems 5.14--5.16. Contraction is
+Corollary 2.3: \(3^3=27<32=2^5\) on the length-5 words,
+\(3^4=81<128=2^7\) on the length-7 words, and
+\(3^5=243<256=2^8\) on the length-8 words. \(\square\)
 
-The leftover \(\tfrac7{64}\) is the \(OOOO*\) tree (uncounted)
-together with the expanding siblings of the counted words. Every
-uncounted contracting word now passes through \(OOOO*\), whose
-fifth letter carries the level-3 kernel isolated in Section 6; the
-first such contractor is \(OOOOEEE\).
+The leftover \(\tfrac3{32}\) decomposes exactly: the \(OOOO*\)
+tree (\(\tfrac1{16}\), blocked at its root by the level-3 kernel
+of Section 6, first contracting word \(OOOOEEE\)), the expanding
+\(O\)-children of the quartet splits (\(\tfrac4{256}\)), and the
+two six-odd trees \(OOEOOOO*\), \(OOOEOOO*\) (\(\tfrac4{256}\)).
+The split is structural: an odd letter applied at state scale
+\(n^\sigma\) produces a letter-phase coefficient \(\asymp
+n^{\sigma/2}\), the engine and Corollary 5.12 cover
+\(\sigma\le9/4\), and even letters halve \(\sigma\) while odd
+letters multiply it by \(3/2\). The non-\(OOOO\) leftover
+therefore keeps thinning at every depth by further engine
+theorems with diminishing increments, while the \(OOOO\) tree is
+monolithically blocked by the level-3 kernel.
 
 As with Corollary 5.2, these are densities of uniform
 certificate classes. They are not densities of all descent
@@ -1565,9 +1625,10 @@ certificates and not densities of starts that reach \(1\).
 ## 6. The remaining gap
 
 Theorem 4.1 and Corollary 5.2 say that a uniform one- or two-step
-argument covers a set of density \(3/4\); Corollaries 5.9 and 5.16
+argument covers a set of density \(3/4\); Corollaries 5.9 and 5.17
 raise the uniformly certified class to \(13/16\) at four steps,
-\(7/8\) at five, and \(57/64\) at seven. The first odd-to-odd image
+\(7/8\) at five, \(57/64\) at seven, and \(29/32\) at eight. The
+first odd-to-odd image
 expands, so ordinary strong induction cannot fire on the complement.
 Proposition 4.4 shows that most odd-to-odd starts in a finite window
 still return below the start inside twenty steps. That is an
@@ -1808,7 +1869,7 @@ The gap is therefore:
 > almost every shift (Theorem 6.4) and whose deterministic instance
 > is Conjecture 6.5.
 
-![The theorem flow of the note. Exact finite-word identities yield contraction, rigidity, and cycle restrictions; the discrepancy calculus with the kernel theorem counts every itinerary class through depth four and the contracting words of lengths five and seven (certified density 57/64), leaving the level-3 kernel — generically cancelling by the shift-average theorem — and with it almost-all descent, open.](figures/juggler_frontier.png){width=100%}
+![The theorem flow of the note. Exact finite-word identities yield contraction, rigidity, and cycle restrictions; the discrepancy calculus with the kernel theorem counts every itinerary class through depth four and the contracting words of lengths five through eight (certified density 29/32), leaving the level-3 kernel — generically cancelling by the shift-average theorem — and with it almost-all descent, open.](figures/juggler_frontier.png){width=100%}
 
 That is the Juggler form of the Terras question. A sharper ambient
 discrepancy exponent does not answer it; by Proposition 6.1 the

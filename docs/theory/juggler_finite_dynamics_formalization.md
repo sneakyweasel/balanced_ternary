@@ -242,7 +242,8 @@ unresolved_is_odd_odd :
 
 Thus even and odd-to-even starts have automatic finite progress. The note's
 density corollaries (\(3/4\) at two steps, \(13/16\) at four, \(7/8\)
-at five, \(57/64\) at seven) count uniform certificate classes. They
+at five, \(57/64\) at seven, \(29/32\) at eight) count uniform
+certificate classes. They
 are not Lean cardinality theorems, not densities of all
 `FiniteProgress`, and not `ReachesOne` densities. Odd-to-odd starts
 may still descend after a longer word. The Terras analogue remains
@@ -456,9 +457,10 @@ certify:
 - the analytic discrepancy estimates of Sections 5 and 6 (Theorems
   5.1, 5.4, 5.7, 5.8, Proposition 5.5, Corollary 5.9; the kernel
   theorem 5.11 with Corollary 5.12; the depth-4 completion 5.13 and
-  the contracting splits 5.14–5.15 with Corollary 5.16 — ledger rows
+  the contracting splits 5.14–5.16 with Corollary 5.17 — ledger rows
   `J-kernel-cancellation`, `J-depth4-complete`,
-  `J-five-step-descent-density`, `J-depth7-engine-contracting`;
+  `J-five-step-descent-density`, `J-depth7-engine-contracting`,
+  `J-depth8-engine-quartet`, `J-eight-step-descent-density`;
   Proposition 6.1; and the shift-average theorem 6.4, ledger row
   `J-shift-average-square-root` — all human proofs resting on the
   Lean floor reductions above);
