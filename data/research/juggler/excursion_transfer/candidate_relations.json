@@ -1,0 +1,122 @@
+{
+  "classification": "EXCURSION_TRANSFER_CLOSED",
+  "reason": "Return B is the Q-source chain; every tested one-step, two-step, compensation, and weighted inequality has a counterexample; growth can follow growth; r-bin envelopes stay under the formal 3^r/2^{r+1} scale; no exact source recurrence",
+  "holdout_stable": true,
+  "envelope_dominated": true,
+  "all_integer_candidates_fail": true,
+  "candidate_ce": {
+    "L2_lt_L0": {
+      "n": 37,
+      "L0": 37,
+      "H": 86818724,
+      "L1": 9317,
+      "L2": 2233,
+      "r0": 4,
+      "r1": 3
+    },
+    "L2_lt_L1": {
+      "n": 89,
+      "L0": 89,
+      "H": 24302,
+      "L1": 155,
+      "L2": 291,
+      "r0": 2,
+      "r1": 2
+    },
+    "L0_L2_lt_L1_sq": {
+      "n": 89,
+      "L0": 89,
+      "H": 24302,
+      "L1": 155,
+      "L2": 291,
+      "r0": 2,
+      "r1": 2
+    },
+    "L2_sq_lt_L0_L1": {
+      "n": 37,
+      "L0": 37,
+      "H": 86818724,
+      "L1": 9317,
+      "L2": 2233,
+      "r0": 4,
+      "r1": 3
+    },
+    "L1_L2_lt_L0_cu": {
+      "n": 37,
+      "L0": 37,
+      "H": 86818724,
+      "L1": 9317,
+      "L2": 2233,
+      "r0": 4,
+      "r1": 3
+    },
+    "grow_then_L2_lt_L0": {
+      "n": 37,
+      "L0": 37,
+      "H": 86818724,
+      "L1": 9317,
+      "L2": 2233,
+      "r0": 4,
+      "r1": 3
+    },
+    "eta_ge_L2_then_L2_lt_L0": {
+      "n": 37,
+      "L0": 37,
+      "H": 86818724,
+      "L1": 9317,
+      "L2": 2233,
+      "r0": 4,
+      "r1": 3
+    },
+    "r_ge_4_then_L2_lt_L0": {
+      "n": 37,
+      "L0": 37,
+      "H": 86818724,
+      "L1": 9317,
+      "L2": 2233,
+      "r0": 4,
+      "r1": 3
+    },
+    "r_ge_4_then_next_r_lt_4": {
+      "n": 193,
+      "L0": 122959442649427,
+      "H": 98657321694562501675205021287898285557337718595933234431125663931221095309446056660456573695238852474571940,
+      "L1": 314097630832457094601796592567466624850923021672186263,
+      "L2": 50959183530485503485198639535818032319035928338337423375592984269127,
+      "r0": 5,
+      "r1": 4
+    },
+    "rho_gt_2_then_next_rho_lt_1": {
+      "n": 173,
+      "L0": 329,
+      "H": 32533545863179570755492129120411963721630316057459884067704058780,
+      "L1": 180370579261640036336071806107777,
+      "L2": 1941719144218166368455510841464890645,
+      "r0": 8,
+      "r1": 2
+    },
+    "u_gt_1_then_v_lt_1": {
+      "n": 89,
+      "L0": 89,
+      "H": 24302,
+      "L1": 155,
+      "L2": 291,
+      "r0": 2,
+      "r1": 2
+    }
+  },
+  "candidate_fail_count": {
+    "L2_lt_L0": 2320902,
+    "L2_lt_L1": 1751940,
+    "L0_L2_lt_L1_sq": 2194501,
+    "L2_sq_lt_L0_L1": 1869894,
+    "L1_L2_lt_L0_cu": 1775769,
+    "grow_then_L2_lt_L0": 2118862,
+    "eta_ge_L2_then_L2_lt_L0": 2169788,
+    "r_ge_4_then_L2_lt_L0": 973170,
+    "r_ge_4_then_next_r_lt_4": 150131,
+    "rho_gt_2_then_next_rho_lt_1": 1237616,
+    "u_gt_1_then_v_lt_1": 1237620
+  },
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND"
+}

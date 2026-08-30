@@ -72,6 +72,19 @@ def main(argv: list[str] | None = None) -> int:
         default="cpu",
     )
 
+    p_harv = sub.add_parser(
+        "harvest",
+        help="first-descent leftover-class histogram (not a word-atlas recensus)",
+    )
+    p_harv.add_argument("--k-max", type=int, default=20)
+    p_harv.add_argument("--n-max", type=int, default=400)
+    p_harv.add_argument("--n-begin", type=int, default=2)
+    p_harv.add_argument(
+        "--backend",
+        choices=("python", "cpu", "cuda"),
+        default="python",
+    )
+
     args = parser.parse_args(argv)
     if args.cmd == "build":
         payload = api.build(
@@ -152,6 +165,29 @@ def main(argv: list[str] | None = None) -> int:
             "histogram": rows,
         }
         _print_run(payload, args.data_dir)
+        return 0
+    if args.cmd == "harvest":
+        from research.juggler_sequence.certificate_harvest import probe_payload
+
+        payload = probe_payload(
+            n_max=args.n_max,
+            k_max=args.k_max,
+            backend=args.backend,
+            data_dir=args.data_dir,
+        )
+        _print_run(
+            {
+                "experiment_id": None,
+                "k_max": args.k_max,
+                "n_max": args.n_max,
+                "backend": args.backend,
+                "configuration": {"mode": "harvest", "n_begin": args.n_begin},
+                "search_limits": {"n_begin": args.n_begin, "n_max": args.n_max},
+                "record_counts": payload["scan"]["coarse"],
+                "decision": payload["decision"],
+            },
+            args.data_dir,
+        )
         return 0
     if args.cmd == "benchmark":
         payload = api.benchmark(

@@ -29,6 +29,7 @@ endif()
 
 add_library(juggler_atlas_cpu STATIC
     cpp/census.cpp
+    cpp/harvest.cpp
 )
 
 add_executable(juggler-atlas-census
@@ -37,7 +38,10 @@ add_executable(juggler-atlas-census
 target_link_libraries(juggler-atlas-census PRIVATE juggler_atlas_cpu)
 
 if(JUGGLER_ATLAS_HAVE_CUDA)
-    target_sources(juggler-atlas-census PRIVATE cuda/trajectory_kernel.cu)
+    target_sources(juggler-atlas-census PRIVATE
+        cuda/trajectory_kernel.cu
+        cuda/harvest_kernel.cu
+    )
     target_compile_definitions(juggler-atlas-census PRIVATE JUGGLER_ATLAS_CUDA=1)
     set_target_properties(juggler-atlas-census PROPERTIES
         CUDA_ARCHITECTURES "${JA_CUDA_ARCH}"
@@ -50,6 +54,7 @@ add_executable(juggler-atlas-tests
     tests/test_packed_word.cpp
     tests/test_juggler_map.cpp
     tests/test_census.cpp
+    tests/test_harvest.cpp
 )
 target_include_directories(juggler-atlas-tests PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/tests)
 target_link_libraries(juggler-atlas-tests PRIVATE juggler_atlas_cpu)

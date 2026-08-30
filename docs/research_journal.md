@@ -14666,4 +14666,37 @@ Best next question
 - none from nested start-set occupancy
 ```
 
+## Juggler long-excursion transfer
+
+- **Date:** 2026-08-30
+- **Objective:** Measure numerical transfer \((L,H,L')\) of complete record excursions and test whether a hold-out-stable two-step, compensation, or weighted law exists beyond `EnvelopeState`
+- **Hypotheses:** the peak \(H\) constrains the next source; expanding excursions cannot concatenate freely
+- **Major results:** Classification **EXCURSION_TRANSFER_CLOSED**. Odd \(n\le 2\cdot 10^7\): \(9\,999\,999\) starts, \(16\,333\,230\) excursions, \(6\,352\,626\) pairs. Return B is the \(Q\)-source chain (\(37\to 9317\to 2233\); \(365\) climb). Every tested integer inequality fails (first CEs on \(37,89,173,193\); \(1.5\cdot 10^5\)–\(2.3\cdot 10^6\) further CEs). Growth-then-growth pairs \(1\,237\,620\). \(r\)-bin \(\sup c=3^{r}/2^{r+1}\) for \(r\le 10\). Hold-out split \(10^7\) does not raise that envelope. Exact source recurrence \(0\). No new Lean file. No atlas language tag. Paper A unchanged. No halt theorem. No ledger theorem row
+- **Refuted ideas:** a new excursion map; two-step source descent (already `J-two-episode-source-descent`); high-peak compensation; long-then-short runs; bilinear/cubic product bounds; a transfer law beyond the formal \(r\)-scale
+- **Literature:** `q_blocks`; `EnvelopeState`; `J-two-episode-source-descent`; `juggler_macro_event.md`; `juggler_odd_source_return.md`
+- **Open:** none from excursion transfer. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. Transfer is the \(Q\)-source chain; the only stable envelope is `EnvelopeState`
+
+```text
+What was learned
+- Return B is the existing Q-source chain
+- Return A differs when extra evens follow the peak
+- every tested A/B/C/D inequality has many CEs
+- 1.2e6 pairs grow then grow
+- r-bin sup c equals 3^r/2^{r+1} for r<=10
+Strongest theorem
+- none new
+Strongest refutation
+- the peak H forces a smaller next source
+Reusable machinery
+- none; no new Lean primitive; compact transfer counts only
+Branch status
+- CLOSE
+Why
+- the numerical triple is Q plus EnvelopeState;
+  concatenation of expanding episodes is free
+Best next question
+- none from excursion transfer
+```
+
 

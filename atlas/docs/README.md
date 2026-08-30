@@ -18,7 +18,11 @@ under `CUDA\v*`. CUDA 12.8+ compiles native `sm_120`; 12.6 emits
 
 ```text
 atlas/build/juggler-atlas-census --k-max 12 --n-max 1000000 --backend cpu --output census.tsv
+atlas/build/juggler-atlas-census --mode harvest --k-max 20 --n-max 1000000 --backend cuda --output harvest.tsv
 ```
+
+`--mode harvest` walks each start to the first descent and writes a leftover-class
+histogram only. It does not rebuild the word atlas.
 
 ## Semantics
 

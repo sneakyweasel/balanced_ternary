@@ -130,6 +130,126 @@ def parse_census_tsv(path: Path) -> dict[str, object]:
     }
 
 
+def run_harvest(
+    *,
+    k_max: int,
+    n_max: int,
+    n_begin: int = 2,
+    backend: str = "cpu",
+    output: Path,
+    binary: Path | None = None,
+) -> dict[str, str | int]:
+    exe = binary or find_binary()
+    if exe is None:
+        raise FileNotFoundError("juggler-atlas-census is not built")
+    output.parent.mkdir(parents=True, exist_ok=True)
+    cmd = [
+        str(exe),
+        "--mode",
+        "harvest",
+        "--k-max",
+        str(k_max),
+        "--n-max",
+        str(n_max),
+        "--n-begin",
+        str(n_begin),
+        "--backend",
+        backend,
+        "--output",
+        str(output),
+    ]
+    proc = subprocess.run(cmd, check=True, capture_output=True, text=True)
+    return {
+        "binary": str(exe),
+        "backend": backend,
+        "returncode": proc.returncode,
+        "stdout": proc.stdout,
+        "stderr": proc.stderr,
+    }
+
+
+def parse_harvest_tsv(path: Path) -> dict[str, object]:
+    """Parse a leftover-class harvest TSV."""
+
+    from research.juggler_sequence.atlas.packed import dense_index, dense_size
+
+    meta: dict[str, object] = {
+        "k_max": 0,
+        "n_max": 0,
+        "n_begin": 2,
+        "backend": "cpu",
+        "count_skip": 0,
+        "count_e": 0,
+        "count_oe": 0,
+        "count_ooee": 0,
+        "count_leftover": 0,
+        "count_uncapped": 0,
+        "count_overflow": 0,
+        "overflow_truncated": False,
+        "uncapped_truncated": False,
+    }
+    rows: list[tuple[int, int, int, int | None]] = []
+    with path.open(encoding="utf-8") as fh:
+        for raw in fh:
+            line = raw.rstrip("\n\r")
+            if not line.strip():
+                continue
+            if line.startswith("#"):
+                body = line[1:].strip()
+                if "=" in body:
+                    key, val = body.split("=", 1)
+                    if key in {
+                        "k_max",
+                        "n_max",
+                        "n_begin",
+                        "count_skip",
+                        "count_e",
+                        "count_oe",
+                        "count_ooee",
+                        "count_leftover",
+                        "count_uncapped",
+                        "count_overflow",
+                    }:
+                        meta[key] = int(val)
+                    elif key == "backend":
+                        meta[key] = val
+                    elif key in {"overflow_truncated", "uncapped_truncated"}:
+                        meta[key] = val == "1"
+                continue
+            if line.startswith("length"):
+                continue
+            parts = line.split("\t")
+            if len(parts) < 3:
+                continue
+            length = int(parts[0])
+            packed = int(parts[1])
+            count = int(parts[2])
+            min_n = int(parts[3]) if len(parts) > 3 and parts[3] else None
+            rows.append((length, packed, count, min_n))
+    k_max = int(meta["k_max"])
+    size = dense_size(k_max)
+    hist = [0] * size
+    min_n_tbl: list[int | None] = [None] * size
+    for length, packed, count, min_n in rows:
+        idx = dense_index(length, packed)
+        hist[idx] = count
+        min_n_tbl[idx] = min_n
+    overflow_n, overflow_trunc = parse_overflow_file(path.with_name(path.name + ".overflow"))
+    uncapped_n, uncapped_trunc = parse_overflow_file(path.with_name(path.name + ".uncapped"))
+    meta.update(
+        {
+            "hist": hist,
+            "min_n": min_n_tbl,
+            "overflow_n": overflow_n,
+            "uncapped_n": uncapped_n,
+            "overflow_truncated": bool(meta["overflow_truncated"]) or overflow_trunc,
+            "uncapped_truncated": bool(meta["uncapped_truncated"]) or uncapped_trunc,
+            "rows": rows,
+        }
+    )
+    return meta
+
+
 def parse_overflow_file(path: Path) -> tuple[list[int], bool]:
     if not path.is_file():
         return [], False

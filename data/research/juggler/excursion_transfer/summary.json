@@ -1,0 +1,13 @@
+{
+  "classification": "EXCURSION_TRANSFER_CLOSED",
+  "reason": "Return B is the Q-source chain; every tested one-step, two-step, compensation, and weighted inequality has a counterexample; growth can follow growth; r-bin envelopes stay under the formal 3^r/2^{r+1} scale; no exact source recurrence",
+  "n_max": 20000000,
+  "starts": 9999999,
+  "excursions": 16333230,
+  "pairs": 6352626,
+  "growth_growth": 1237620,
+  "envelope_dominated": true,
+  "holdout_stable": true,
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND",
+  "git": "3a134a81d010fd95ea5bbdc96cc3f78f3af016ae"
+}

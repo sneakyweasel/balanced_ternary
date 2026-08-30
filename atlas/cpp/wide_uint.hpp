@@ -55,6 +55,15 @@ JA_HD bool w8_gt_u64(const Wide8& a, uint64_t n) {
     return a.d[0] > n;
 }
 
+JA_HD bool w8_lt_u64(const Wide8& a, uint64_t n) {
+    for (int i = 1; i < 8; ++i) {
+        if (a.d[i] != 0) {
+            return false;
+        }
+    }
+    return a.d[0] < n;
+}
+
 JA_HD void w8_add(Wide8& a, const Wide8& b) {
     uint64_t carry = 0;
     for (int i = 0; i < 8; ++i) {
@@ -115,6 +124,77 @@ JA_HD void mul_u64(uint64_t a, uint64_t b, uint64_t& lo, uint64_t& hi) {
     lo = (p0 & 0xffffffffull) | (mid << 32);
     hi = p3 + (p1 >> 32) + (p2 >> 32) + (mid >> 32);
 #endif
+}
+
+JA_HD uint64_t isqrt_u64(uint64_t n) {
+    if (n < 2) {
+        return n;
+    }
+    uint64_t rem = n;
+    uint64_t res = 0;
+    uint64_t bit = 1ull << 62;
+    while (bit > rem) {
+        bit >>= 2;
+    }
+    while (bit != 0) {
+        if (rem >= res + bit) {
+            rem -= res + bit;
+            res = (res >> 1) + bit;
+        } else {
+            res >>= 1;
+        }
+        bit >>= 2;
+    }
+    return res;
+}
+
+JA_HD uint64_t isqrt_u128(uint64_t lo, uint64_t hi) {
+    if (hi == 0) {
+        return isqrt_u64(lo);
+    }
+    if (hi > 0xfffffffffffffffeull || (hi == 0xfffffffffffffffeull && lo >= 1ull)) {
+        return ~0ull;
+    }
+    uint64_t left = 1;
+    uint64_t right = ~0ull;
+    while (left < right) {
+        const uint64_t mid = left + ((right - left + 1ull) >> 1);
+        uint64_t sq_lo = 0;
+        uint64_t sq_hi = 0;
+        mul_u64(mid, mid, sq_lo, sq_hi);
+        const bool le = (sq_hi < hi) || (sq_hi == hi && sq_lo <= lo);
+        if (le) {
+            left = mid;
+        } else {
+            right = mid - 1ull;
+        }
+    }
+    return left;
+}
+
+JA_HD bool floor_power_u64_ok(uint64_t n, uint64_t& out) {
+    if ((n & 1ull) == 0) {
+        out = isqrt_u64(n);
+        return true;
+    }
+    uint64_t lo2 = 0;
+    uint64_t hi2 = 0;
+    mul_u64(n, n, lo2, hi2);
+    uint64_t lo3 = 0;
+    uint64_t c1 = 0;
+    mul_u64(lo2, n, lo3, c1);
+    uint64_t mid = 0;
+    uint64_t hi3 = 0;
+    mul_u64(hi2, n, mid, hi3);
+    const uint64_t mid2 = mid + c1;
+    if (mid2 < mid) {
+        hi3 += 1;
+    }
+    if (hi3 != 0) {
+        return false;
+    }
+    out = isqrt_u128(lo3, mid2);
+    return true;
 }
 
 JA_HD bool w8_mul(const Wide8& a, const Wide8& b, Wide8& out) {
