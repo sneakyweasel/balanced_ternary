@@ -546,6 +546,17 @@ theorem cycleMin_ge {n : ℕ} {w : List Branch} {j : ℕ}
     (h : CycleMin n w) (hj : j < w.length) : n ≤ floorPower^[j] n :=
   h.2 j hj
 
+/-- A cycle minimum is minimum-relative: interior states are `≥ n`
+by the ge-filter, and the endpoint is `n` by closure. -/
+theorem aboveAnchor_of_cycleMin {n : ℕ} {w : List Branch}
+    (h : CycleMin n w) : AboveAnchor n w := by
+  refine ⟨h.1.1, ?_⟩
+  intro i hi
+  rcases lt_or_eq_of_le hi with hlt | heq
+  · exact cycleMin_ge h hlt
+  · have himg : floorPower^[w.length] n = n := cycle_iterate_period h.1
+    simpa [heq, himg]
+
 theorem cycle_iterate_mul_length {n : ℕ} {w : List Branch}
     (h : CycleWord n w) : ∀ q, floorPower^[q * w.length] n = n
   | 0 => by simp
@@ -576,26 +587,19 @@ theorem cycleMin_succ_ge {n : ℕ} {w : List Branch} {i : ℕ}
   | inr heq =>
       rw [← Nat.succ_eq_add_one, heq, cycle_iterate_period h.1]
 
-/-- Even cycle states sit at or above `n^2`. Parity on the realized cycle. -/
+/-- Even cycle states sit at or above `n^2`. The next-state lower
+bound is the shared `AboveAnchor` cell, including the closing
+return `T_w(n)=n`. -/
 theorem cycleMin_even_ge_sq {n : ℕ} {w : List Branch} {i : ℕ}
     (_hn : 2 ≤ n) (h : CycleMin n w) (hi : i < w.length)
     (he : floorPower^[i] n % 2 = 0) :
-    n ^ 2 ≤ floorPower^[i] n := by
-  have hy := cycleMin_succ_ge h hi
-  have hz : floorPower (floorPower^[i] n) = (floorPower^[i] n).sqrt :=
-    floorPower_even_eq he
-  rw [hz] at hy
-  exact (by simpa [pow_two] using Nat.le_sqrt.mp hy)
+    n ^ 2 ≤ floorPower^[i] n :=
+  even_ge_sq_of_aboveAnchor (aboveAnchor_of_cycleMin h)
+    (Nat.succ_le_of_lt hi) he
 
 theorem floorPower_odd_lt_sq {n : ℕ} (hn : 2 ≤ n) (hodd : n % 2 = 1) :
-    floorPower n < n ^ 2 := by
-  rw [floorPower_odd_eq hodd]
-  refine Nat.sqrt_lt.mpr ?_
-  have hn1 : 1 < n := lt_of_lt_of_le (by decide : (1 : ℕ) < 2) hn
-  have hpow : n ^ 3 < n ^ 4 :=
-    Nat.pow_lt_pow_right hn1 (by decide : (3 : ℕ) < 4)
-  have h4 : n ^ 4 = n ^ 2 * n ^ 2 := Nat.pow_add n 2 2
-  simpa [h4] using hpow
+    floorPower n < n ^ 2 :=
+  odd_floor_lt_sq hn hodd
 
 theorem cycleMin_start_odd {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n w) : n % 2 = 1 := by

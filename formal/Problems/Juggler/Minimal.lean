@@ -194,6 +194,11 @@ theorem minimal_counterexample_normal_form {n : ℕ} {w : List Branch}
     fun heven =>
       minimal_nonterm_even_ge_sq h (image_eq_iterate n w).symm heven⟩
 
+/-- A minimal non-1 start has no finite-progress certificate. -/
+theorem minimal_nonterm_not_finiteProgress {n : ℕ}
+    (h : MinimalNonTerm n) : ¬FiniteProgress n :=
+  fun hfp => h.not_reachesOne (reachesOne_of_finiteProgress h.below hfp)
+
 /-- Finite coefficient stopping time contradicts minimality. -/
 theorem coeffStop_contradicts_minimal {n : ℕ}
     (h : MinimalNonTerm n) (hτ : HasFiniteCoeffStop n) : False := by

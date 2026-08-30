@@ -4662,5 +4662,27 @@
       "tests/research/juggler_sequence/test_k5_post_l_ooe.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-odd-k5-y-fourth",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE and x_5 = T_{W_5}(n) is odd, then y = T(x_5) satisfies y^{2^{30}} ≤ n^{3^{20}}. The cube cell fails (3^{20} > 3·2^{30}) and the fourth-power cell holds (3^{20} < 4·2^{30}), hence y < n^{3^{20}/2^{30}} < n^4. The inherited ceiling is below the generic 9/2 (3^{20} < 9·2^{29}). If y is even then z = T(y) satisfies z < n^{3^{20}/2^{31}} < n^2 and y cannot start L; even y is not FiniteProgress (3^{20} > 2^{31}). The word OEE contracts versus n (3^{20} < 2^{32}); E, OE, OOE, and OOOE do not. A second O from odd y stays below n^5 (3^{21} < 5·2^{31}). This is a near-cube replacement of C_3, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_odd_k5_leak.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_odd_k5_leak.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-odd-k5-generic",
+    "tag": "REFUTED",
+    "statement": "The odd k=5 next O has only the generic y < n^{9/2} bound, stays in C_3, and an even y opens a new scale hierarchy; the short words E, OE, OOE, OOOE recover from x_5. False. The inherited envelope is y < n^{3^{20}/2^{30}} < n^4, which is below 9/2 and not below n^3 (3^{20} > 3·2^{30}). Even y returns to z < n^2 (3^{20} < 2^{32}) and does not drop below n. OEE contracts; E, OE, OOE, and OOOE do not. 501 never follows W_5. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_odd_k5_leak.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_odd_k5_leak.py"
+    ],
+    "related_conjectures": []
   }
 ]

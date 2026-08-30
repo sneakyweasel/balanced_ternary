@@ -13344,4 +13344,42 @@ Best next question
   landing the leftover?
 ```
 
+## Juggler odd k=5 leak
+
+- **Date:** 2026-08-30
+- **Objective:** Analyze the odd \(k=5\) leak and determine whether its next `O` remains in a controlled \(n\)-relative corridor
+- **Hypotheses:** only generic \(y<n^{9/2}\); \(y\) stays in \(C_3\); even \(y\) opens a new hierarchy; `E`/`OE`/`OOE`/`OOOE` recover
+- **Major results:** Classification **ODD_K5_LEAK_GREEN**. \(y^{2^{30}}\le n^{3^{20}}\) and \(y<n^{3^{20}/2^{30}}<n^4\); cube fails; ceiling below \(9/2\); even \(y\) resets to \(z<n^2\); `OEE` contracts — **EXACT — HUMAN PROOF** (`J-cyclemin-odd-k5-y-fourth`). Generic \(9/2\) / stays in \(C_3\) / even hierarchy / short `OOE` recovery — **REFUTED** (`J-cyclemin-odd-k5-generic`). Leftover is odd \(y\) (second `OO` below \(n^5\)). `501` never reaches \(W_5\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** only generic \(9/2\); \(y\) forced into \(C_3\); even \(y\) is a new hierarchy; `E`/`OE`/`OOE`/`OOOE` drop
+- **Literature:** \(W_5\) cube cell; `power_bound_word`
+- **Open:** if \(y\) is odd, does the second `O` stay below \(n^4\) under an inherited constraint, or is the first post-\(L\) fifth-power landing the leftover? Do not build a \(p\)-adic system
+- **Decision:** PROMOTE the inherited fourth-power corridor and the even-\(y\) \(C_1\) reset. Do not claim that the odd leak dies after one `O`
+
+```text
+What was learned
+- W_5+O gives y^{2^{30}} <= n^{3^{20}} and y < n^4
+- the cube cell fails; crossing n^3 is possible, not forced
+- the inherited ceiling is below the generic 9/2
+- even y resets below n^2; OEE contracts; E/OE/OOE/OOOE do not
+- odd y starts a second OO below n^5; 501 never reaches W_5
+Strongest theorem
+- y < n^{3^{20}/2^{30}} < n^4; even landing
+  returns to T < n^2; OEE is FiniteProgress
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- only generic 9/2 / y stays in C_3 / even opens a
+  new hierarchy / short OOE recovers
+Reusable machinery
+- odd_k5_leak.py inherited y-gaps and OEE recovery
+Branch status
+- PROMOTE
+Why
+- the odd leak is a near-cube fourth-power corridor
+  with an even reset to C_1, not a new unbounded regime
+Best next question
+- if y is odd, does the second O stay below n^4 under
+  an inherited constraint, or is the first post-L
+  fifth-power landing the leftover?
+```
+
 

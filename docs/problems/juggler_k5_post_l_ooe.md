@@ -217,12 +217,12 @@ assembler, and not a halt theorem.
 ## Open questions
 
 Lean-package \(3^{19}<3\cdot 2^{29}\) and the even
-\(n^{3/2}\) reset. The odd \(k=5\) next-`O` residual
-(whether it stays in \(C_2\) or enters \(C_3\), and
-whether that `O` can start \(L\)) is open. Do not
-reopen bunched-short cells. Do not write \(Z_5\). Do not
-assemble `no_cycle_word_length_eleven`. Do not build a
-\(p\)-adic system.
+\(n^{3/2}\) reset. The odd \(k=5\) next-`O` residual is
+the separate branch
+[juggler_odd_k5_leak.md](juggler_odd_k5_leak.md).
+Do not reopen bunched-short cells. Do not write \(Z_5\).
+Do not assemble `no_cycle_word_length_eleven`. Do not
+build a \(p\)-adic system.
 
 ## Decision
 

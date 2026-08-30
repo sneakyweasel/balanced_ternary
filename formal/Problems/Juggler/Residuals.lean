@@ -1,5 +1,5 @@
 import Problems.Juggler.DefectLowerBound
-import Problems.Juggler.Scale
+import Problems.Juggler.MinimumRelative
 
 namespace Problems.Juggler
 
