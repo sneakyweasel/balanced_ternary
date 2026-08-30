@@ -19,7 +19,8 @@ per-length minimum bound n_max(L) exactly for L <= 10^5, verifies a
 descent-induction floor (every n <= N0 reaches 1), and stress-tests
 the per-step bound eps_i <= (6/5)/x_{i+1} on real orbit segments.
 A verified floor N0 excludes every length with n_max(L) <= N0.
-Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_ten).
+Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_eighteen,
+cycle_word_length_nineteen_or_ge_thirty).
 """
 
 from __future__ import annotations
@@ -81,12 +82,22 @@ EXISTING_LEAN = (
     "cycle_finance_min_thirteen",
     "no_cycle_word_length_le_ten",
     "cycle_word_length_eleven_or_ge_fourteen",
+    "reachesOne_of_lt_fifty_three",
+    "cycle_finance_min_fifty_three",
+    "finance_excludes_length_eleven",
+    "no_cycle_word_length_le_eleven",
+    "cycle_word_length_ge_fourteen",
+    "finance_excludes_length_fourteen",
+    "no_cycle_word_length_le_eighteen",
+    "cycle_word_length_nineteen_or_ge_thirty",
+    "cycle_word_length_nineteen_or_ge_twenty",
 )
 
 FORBIDDEN_THEOREMS = (
     "juggler_reaches_one",
     "no_cycle_word_any_length",
     "no_juggler_escape",
+    "no_cycle_word_length_eleven",
 )
 
 FORBIDDEN_NEW_API = (

@@ -26,7 +26,9 @@ rotations onto those families.
 
 The laboratory theorem `no_cycle_word_even_count_le_three` excludes
 every such `CycleWord`. The corollary `cycle_word_length_ge_eleven`
-is the expansion demand after four evens.
+is the expansion demand after four evens. The laboratory leftover
+is the finance residual (`cycle_word_length_nineteen_or_ge_thirty`
+in `CycleFinance.lean`); this file does not import finance.
 
 A free leftover corollary: the return-to-\(n\) cell of
 `minimal_first_even_dichotomy` is an even-count-1 cycle word, so it
@@ -115,7 +117,9 @@ It is not required.
 - no cycle word has even-count \(\le 3\) —
   **EXACT — LEAN VERIFIED** (`no_cycle_word_even_count_le_three`)
 - a nontrivial cycle word has length at least 11 —
-  **EXACT — LEAN VERIFIED** (`cycle_word_length_ge_eleven`)
+  **EXACT — LEAN VERIFIED** (`cycle_word_length_ge_eleven`);
+  the finance leftover (period \(19\) or \(\ge 30\)) is
+  independent and lives in `CycleFinance.lean`
 - first even residual overshoots on `MinimalNonTerm` /
   `CycleMin` —
   **EXACT — LEAN VERIFIED**
@@ -177,9 +181,10 @@ Paper A is unchanged.
 Classification **EVEN_COUNT_THREE_GREEN**.
 
 No \(n\ge 2\) realizes a cycle word with at most three even letters.
-A nontrivial cycle, if one exists, has period at least eleven. On a
-leftover start the first even residual overshoots; return-to-\(n\)
-is dead. The extrema corollary is \(M\ge(m+1)^2\). This is an
+A nontrivial cycle, if one exists, has period at least eleven by
+even-count; the laboratory leftover is the finance residual
+(period \(19\) or \(\ge 30\)). On a leftover start the first even
+residual overshoots; return-to-\(n\) is dead. The extrema corollary is \(M\ge(m+1)^2\). This is an
 even-count theorem, not a four-even exclusion, not a length-9
 census, not a published Paper A theorem, and not a halt theorem.
 

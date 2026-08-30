@@ -5139,7 +5139,7 @@
   {
     "id": "J-small-cycle-census-ten",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most ten is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_word_length_nine, no_cycle_word_length_ten, packaged as no_cycle_word_length_le_ten). This is not a length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem. Paper A is unchanged.",
+    "statement": "No word of length at most ten is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_word_length_nine, no_cycle_word_length_ten, packaged as no_cycle_word_length_le_ten). Strengthened by J-small-cycle-census-eleven. This is not a leftover-word length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem. Paper A is unchanged.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
@@ -5150,7 +5150,62 @@
   {
     "id": "J-cycle-word-length-eleven-or-ge-fourteen",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 11 or at least 14. Lengths ≤ 10 are J-small-cycle-census-ten; lengths 12 and 13 are excluded by the same finance comparison (no_cycle_word_length_twelve, no_cycle_word_length_thirteen); length 16 is likewise excluded (no_cycle_word_length_sixteen) but is absorbed into the ≥ 14 residual. Lean theorem cycle_word_length_eleven_or_ge_fourteen. This is not an exclusion of length 11, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 11 or at least 14. Lengths ≤ 10 are J-small-cycle-census-ten; lengths 12 and 13 are excluded by the same finance comparison (no_cycle_word_length_twelve, no_cycle_word_length_thirteen); length 16 is likewise excluded (no_cycle_word_length_sixteen) but is absorbed into the ≥ 14 residual. Lean theorem cycle_word_length_eleven_or_ge_fourteen. Strengthened by J-cycle-word-length-ge-fourteen, which kills the length-11 disjunct. This is not a leftover-word length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-residual-floor-fifty-three",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Every positive integer strictly below 53 reaches 1 under the Juggler map (reachesOne_of_lt_fifty_three). Evens below 144 already reduce to the residual class {1,…,11}; the odd seeds 13,15,…,51 are finite orbit certificates. This is a finite certificate, not a halt theorem. Combined with cycleMin_finance it excludes cycle length 11.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/Termination.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-small-cycle-census-eleven",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "No word of length at most eleven is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least twelve, and in fact at least fourteen by J-cycle-word-length-ge-fourteen. Strengthened by J-small-cycle-census-eighteen. Length 11 is the first near-convergent (2^11 < 3^7); the residual floor 53 plus cycle_finance_min_fifty_three excludes it (finance_excludes_length_eleven, packaged as no_cycle_word_length_le_eleven). This is not a leftover-word census of the thirty length-11 short-gap families, not a theorem named no_cycle_word_length_eleven, not a no-cycle-of-any-length theorem, and not a halt theorem. Paper A is unchanged.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-word-length-ge-fourteen",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is at least 14. Strengthened by J-small-cycle-census-eighteen and J-cycle-word-length-nineteen-or-ge-thirty: lengths 14–18 and 20–29 are excluded at the residual floor 53, so the laboratory leftover is period 19 or at least 30. Lean theorem cycle_word_length_ge_fourteen. This is not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-small-cycle-census-eighteen",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "No word of length at most 18 is a Juggler cycle word at any n ≥ 2, except that length 19 is not excluded here. Lengths ≤ 11 are J-small-cycle-census-eleven; lengths 12, 13, and 16 remain excluded at the residual floor 12; lengths 14, 15, 17, and 18 are excluded by cycle_finance_min_fifty_three (finance_excludes_length_fourteen and companions, packaged as no_cycle_word_length_le_eighteen). This is not a leftover-word census, not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem. Paper A is unchanged.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-word-length-nineteen-or-ge-thirty",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 19 or at least 30. Lengths ≤ 18 are J-small-cycle-census-eighteen; lengths 20–29 are excluded by the same floor-53 finance comparison. Length 19 is the next near-convergent (2^19 < 3^12) and survives 371/2; length 30 also survives 371/2. Lean theorems cycle_word_length_nineteen_or_ge_thirty and the weaker corollary cycle_word_length_nineteen_or_ge_twenty. This is not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [

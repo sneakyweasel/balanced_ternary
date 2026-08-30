@@ -16,18 +16,21 @@ whole-cycle log unroll gives, for any `CycleMin` start `n`,
 
 `n * log n * (3^o - 2^L) ≤ L * 3^o`.
 
-Every cycle state is at least `12` (`cycleWord_iterate_not_lt_twelve`)
+Every cycle state is at least `53` (`cycleWord_iterate_not_lt_fifty_three`)
 and the rotated minimum is odd (`cycleMin_start_odd`), so the
-minimum is at least `13` and `n * log n ≥ 13 * log 13 > 65/2`.
-This excludes cycle lengths wholesale: lengths `9`, `10`, `12`,
-`13`, and `16` die here without any word census, and together with
+minimum is at least `53` and `n * log n ≥ 53 * log 53 > 371/2`.
+This excludes cycle lengths wholesale: lengths `9`, `10`, `11`,
+`12`, `13`, and `16` die here without any leftover-word census.
+The residual floor `53` (`reachesOne_of_lt_fifty_three`) kills
+the near-convergent length `11`. Together with
 `no_cycle_word_length_le_eight` the census extends to
-`no_cycle_word_length_le_ten`.
+`no_cycle_word_length_le_eighteen`, and any remaining cycle has
+period `19` or at least `30`.
 
 Dossier: `docs/problems/juggler_cycle_finance.md`. This is not a
-halt theorem and not a claim that every cycle length is excluded:
-lengths `11`, `14`, `15` and the near-convergent lengths require a
-larger verified floor than `12`.
+halt theorem and not a leftover-word census named
+`no_cycle_word_length_eleven`. Length `19` is the next
+near-convergent and still needs a larger verified floor.
 -/
 
 /-- The dyadic-cell logarithm bound: if `z < (y+1)^2` then
@@ -555,12 +558,194 @@ theorem no_cycle_word_length_le_eleven {n : ℕ} {w : List Branch}
   · exact finance_excludes_length_eleven hn (by omega) h
 
 /-- If a nontrivial cycle exists, its period is at least `14`.
-Lengths `≤ 11` are the finance census; `12` and `13` remain
-impossible by the length-`13` floor comparison. -/
+Corollary of the floor-`53` leftover; lengths `14`–`18` and
+`20`–`29` are excluded separately. -/
 theorem cycle_word_length_ge_fourteen {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleWord n w) : 14 ≤ w.length := by
   rcases cycle_word_length_eleven_or_ge_fourteen hn h with h11 | h14
   · exact absurd h (finance_excludes_length_eleven hn h11)
   · exact h14
+
+/-- Formal expansion forces more odds than any `o0` with `3^{o0} ≤ 2^L`. -/
+theorem cycle_oddCount_gt_of_three_pow_le {n : ℕ} {w : List Branch} {o0 : ℕ}
+    (hn : 2 ≤ n) (h : CycleWord n w)
+    (hle : 3 ^ o0 ≤ 2 ^ w.length) : o0 < oddCount w := by
+  have hexp := cycle_word_formally_expanding hn h
+  have : 3 ^ o0 < 3 ^ oddCount w := lt_of_le_of_lt hle hexp
+  exact (Nat.pow_lt_pow_iff_right (by norm_num : (1 : ℕ) < 3)).mp this
+
+/-- If the floor-`53` comparison already fails at the minimal
+admissible `3^{o0}`, it fails for every larger odd count. Requires
+`L < 371/2` so the comparison is increasing in `3^o`. -/
+theorem finance_contradicts_min_fifty_three {n : ℕ} {w : List Branch}
+    {L o0 : ℕ} (hn : 2 ≤ n) (h : CycleWord n w)
+    (hlen : w.length = L) (hL : (L : ℝ) < 371 / 2)
+    (ho : o0 ≤ oddCount w)
+    (hnum : (371 / 2 : ℝ) * ((3 : ℝ) ^ o0 - (2 : ℝ) ^ L) >
+      (L : ℝ) * (3 : ℝ) ^ o0) : False := by
+  have hfin := cycle_finance_min_fifty_three hn h
+  rw [hlen] at hfin
+  have hA : (3 : ℝ) ^ o0 ≤ (3 : ℝ) ^ oddCount w := by
+    have : (3 : ℕ) ^ o0 ≤ 3 ^ oddCount w :=
+      Nat.pow_le_pow_right (by norm_num) ho
+    exact_mod_cast this
+  have hc : (0 : ℝ) < 371 / 2 - L := sub_pos.mpr hL
+  have hnum' : (371 / 2 - (L : ℝ)) * (3 : ℝ) ^ o0 >
+      (371 / 2) * (2 : ℝ) ^ L := by nlinarith
+  have hfin' : (371 / 2 - (L : ℝ)) * (3 : ℝ) ^ oddCount w ≤
+      (371 / 2) * (2 : ℝ) ^ L := by nlinarith
+  have hleA : (3 : ℝ) ^ oddCount w ≤ (3 : ℝ) ^ o0 :=
+    le_of_mul_le_mul_left (le_trans hfin' hnum'.le) hc
+  have heq : (3 : ℝ) ^ oddCount w = (3 : ℝ) ^ o0 := le_antisymm hleA hA
+  rw [heq] at hfin'
+  exact not_le_of_gt hnum' hfin'
+
+/-- Instantiate the floor-`53` comparison at a concrete length. -/
+theorem finance_excludes_at {n : ℕ} {w : List Branch} {L oPred : ℕ}
+    (hn : 2 ≤ n) (hlen : w.length = L)
+    (hL : (L : ℝ) < 371 / 2)
+    (hpred : 3 ^ oPred ≤ 2 ^ L)
+    (hnum : (371 / 2 : ℝ) * ((3 : ℝ) ^ (oPred + 1) - (2 : ℝ) ^ L) >
+      (L : ℝ) * (3 : ℝ) ^ (oPred + 1)) :
+    ¬CycleWord n w := by
+  intro h
+  have hpred' : 3 ^ oPred ≤ 2 ^ w.length := by simpa [hlen] using hpred
+  have ho : oPred + 1 ≤ oddCount w :=
+    Nat.succ_le_of_lt (cycle_oddCount_gt_of_three_pow_le hn h hpred')
+  exact finance_contradicts_min_fifty_three hn h hlen hL ho hnum
+
+theorem finance_excludes_length_fourteen {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 14) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 8 ≤ 2 ^ 14) (by norm_num)
+
+theorem finance_excludes_length_fifteen {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 15) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 9 ≤ 2 ^ 15) (by norm_num)
+
+theorem finance_excludes_length_seventeen {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 17) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 10 ≤ 2 ^ 17) (by norm_num)
+
+theorem finance_excludes_length_eighteen {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 18) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 11 ≤ 2 ^ 18) (by norm_num)
+
+theorem finance_excludes_length_twenty {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 20) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 12 ≤ 2 ^ 20) (by norm_num)
+
+theorem finance_excludes_length_twentyone {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 21) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 13 ≤ 2 ^ 21) (by norm_num)
+
+theorem finance_excludes_length_twentytwo {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 22) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 13 ≤ 2 ^ 22) (by norm_num)
+
+theorem finance_excludes_length_twentythree {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 23) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 14 ≤ 2 ^ 23) (by norm_num)
+
+theorem finance_excludes_length_twentyfour {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 24) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 15 ≤ 2 ^ 24) (by norm_num)
+
+theorem finance_excludes_length_twentyfive {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 25) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 15 ≤ 2 ^ 25) (by norm_num)
+
+theorem finance_excludes_length_twentysix {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 26) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 16 ≤ 2 ^ 26) (by norm_num)
+
+theorem finance_excludes_length_twentyseven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 27) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 17 ≤ 2 ^ 27) (by norm_num)
+
+theorem finance_excludes_length_twentyeight {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 28) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 17 ≤ 2 ^ 28) (by norm_num)
+
+theorem finance_excludes_length_twentynine {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 29) : ¬CycleWord n w :=
+  finance_excludes_at hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 18 ≤ 2 ^ 29) (by norm_num)
+
+/-- Census extension: no cycle word of length at most `18`.
+Length `11` is the near-convergent killed by the floor `53`;
+`14`–`18` die by the same comparison. -/
+theorem no_cycle_word_length_le_eighteen {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length ≤ 18) : ¬CycleWord n w := by
+  intro h
+  rcases Nat.lt_or_ge w.length 12 with h11 | h12
+  · exact no_cycle_word_length_le_eleven hn (Nat.lt_succ_iff.mp h11) h
+  · have hsplit : w.length = 12 ∨ w.length = 13 ∨ w.length = 14 ∨
+        w.length = 15 ∨ w.length = 16 ∨ w.length = 17 ∨ w.length = 18 := by
+      omega
+    rcases hsplit with hL | hL | hL | hL | hL | hL | hL
+    · exact no_cycle_word_length_twelve hn hL h
+    · exact no_cycle_word_length_thirteen hn hL h
+    · exact finance_excludes_length_fourteen hn hL h
+    · exact finance_excludes_length_fifteen hn hL h
+    · exact no_cycle_word_length_sixteen hn hL h
+    · exact finance_excludes_length_seventeen hn hL h
+    · exact finance_excludes_length_eighteen hn hL h
+
+/-- No cycle word of length below `30` except possibly `19`. -/
+theorem no_cycle_word_length_lt_thirty_ne_nineteen {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hLt : w.length < 30) (hne : w.length ≠ 19) :
+    ¬CycleWord n w := by
+  intro h
+  rcases Nat.lt_or_ge w.length 19 with h18 | h19
+  · exact no_cycle_word_length_le_eighteen hn (Nat.le_of_lt_succ h18) h
+  · have hge : 20 ≤ w.length :=
+      Nat.succ_le_of_lt (lt_of_le_of_ne h19 hne.symm)
+    have hsplit : w.length = 20 ∨ w.length = 21 ∨ w.length = 22 ∨
+        w.length = 23 ∨ w.length = 24 ∨ w.length = 25 ∨ w.length = 26 ∨
+        w.length = 27 ∨ w.length = 28 ∨ w.length = 29 := by
+      omega
+    rcases hsplit with hL | hL | hL | hL | hL | hL | hL | hL | hL | hL
+    · exact finance_excludes_length_twenty hn hL h
+    · exact finance_excludes_length_twentyone hn hL h
+    · exact finance_excludes_length_twentytwo hn hL h
+    · exact finance_excludes_length_twentythree hn hL h
+    · exact finance_excludes_length_twentyfour hn hL h
+    · exact finance_excludes_length_twentyfive hn hL h
+    · exact finance_excludes_length_twentysix hn hL h
+    · exact finance_excludes_length_twentyseven hn hL h
+    · exact finance_excludes_length_twentyeight hn hL h
+    · exact finance_excludes_length_twentynine hn hL h
+
+/-- If a nontrivial cycle exists, its period is `19` or at least `30`.
+The gap `20..29` dies by finance at the residual floor `53`; `19` is
+the next near-convergent (`2^19 < 3^12`). -/
+theorem cycle_word_length_nineteen_or_ge_thirty {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    w.length = 19 ∨ 30 ≤ w.length := by
+  by_contra hc
+  push Not at hc
+  obtain ⟨h19, h30⟩ := hc
+  exact no_cycle_word_length_lt_thirty_ne_nineteen hn (by omega) h19 h
+
+/-- Weaker leftover: period is `19` or at least `20`. -/
+theorem cycle_word_length_nineteen_or_ge_twenty {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    w.length = 19 ∨ 20 ≤ w.length := by
+  rcases cycle_word_length_nineteen_or_ge_thirty hn h with h19 | h30
+  · exact Or.inl h19
+  · exact Or.inr (le_trans (by decide : (20 : ℕ) ≤ 30) h30)
 
 end Problems.Juggler

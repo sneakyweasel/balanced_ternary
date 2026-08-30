@@ -8,8 +8,9 @@ theorem, not an escape/divergence statement, not a corridor
 extension past depth 13, not a reopen of any windowed population
 census, and not a claim that every positive integer reaches 1.
 
-The census line (`no_cycle_word_length_le_ten`) excludes cycle
-words length by length through \(10\). This phase asks a
+The census line (`no_cycle_word_length_le_eighteen`) excludes cycle
+words length by length through \(18\), except the near-convergent
+\(19\). This phase asks a
 transversal question:
 does the exact defect bookkeeping around a hypothetical cycle bound
 the cycle **minimum** as a function of the cycle **length**, so that
@@ -209,11 +210,18 @@ It is not required.
   **EXACT — LEAN VERIFIED** (`cycleMin_finance`)
 - Weaker form \(n\ln n\le\frac65 L\,3^o/(3^o-2^L)\) —
   **EXACT — HUMAN PROOF** (Phase-0 computational table)
-- No cycle word of length \(\le 10\) —
-  **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_ten`)
-- Period is \(11\) or \(\ge 14\) —
+- No cycle word of length \(\le 18\) except possibly \(19\) —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_eighteen`)
+- Period is \(19\) or \(\ge 30\) —
   **EXACT — LEAN VERIFIED**
-  (`cycle_word_length_eleven_or_ge_fourteen`)
+  (`cycle_word_length_nineteen_or_ge_thirty`);
+  \(20\)–\(29\) die at the floor \(53\); \(L=30\) survives
+  \(371/2\)
+- Period is \(\ge 14\) —
+  **EXACT — LEAN VERIFIED** (`cycle_word_length_ge_fourteen`),
+  a corollary of the stronger leftover
+- Residual floor \(n<53\) reaches \(1\) —
+  **EXACT — LEAN VERIFIED** (`reachesOne_of_lt_fifty_three`)
 - Per-length exclusion given a verified floor —
   **COMPUTATIONALLY VERIFIED** at the Phase-0 window (below)
 - No cycle of any length — not claimed
@@ -231,8 +239,9 @@ arithmetic; floor verification by first-passage descent induction
 for all \(2\le n\le 10^6\); slack stress on named hard seeds
 (including \(30817\)). Tests use \(L\le 400\) and floor \(2000\).
 No CLI. Lean: `CycleFinance.lean` (`cycleMin_finance`,
-`cycle_finance_min_thirteen`, `no_cycle_word_length_le_ten`,
-`cycle_word_length_eleven_or_ge_fourteen`). Paper A is unchanged.
+`cycle_finance_min_fifty_three`, `no_cycle_word_length_le_eighteen`,
+`cycle_word_length_nineteen_or_ge_thirty`) and `Termination.lean`
+(`reachesOne_of_lt_fifty_three`). Paper A is unchanged.
 
 ## Conjectures
 
@@ -249,14 +258,17 @@ every measured step; see Results.
 `CycleFinance.lean` sits on `CycleCore` and `LengthEightCensus`.
 The cell logarithm bound is `log_le_two_log_add`; the unrolled
 envelope is `cycleMin_log_envelope`; the inequality is
-`cycleMin_finance`. The residual floor `12` plus oddness of the
-rotated minimum gives `cycle_finance_min_thirteen`, hence
-`no_cycle_word_length_le_ten` (census `8` plus finance at
-`9` and `10`) and the residual
-`cycle_word_length_eleven_or_ge_fourteen` (also `12`, `13`;
-`16` is excluded separately). No `sorry`. Paper A is unchanged.
-Not a halt theorem and not `no_cycle_word_any_length`. The
-Python floor \(N_0=10^6\) is still
+`cycleMin_finance`. The residual floor `53`
+(`reachesOne_of_lt_fifty_three`) gives
+`cycle_finance_min_fifty_three`, hence
+`no_cycle_word_length_le_eighteen` and the leftover
+`cycle_word_length_nineteen_or_ge_thirty`. Lengths `14`–`18` and
+`20`–`29` die by the same comparison (`finance_excludes_at`).
+`L=30` survives `371/2`. There is no theorem named
+`no_cycle_word_length_eleven`: that name is reserved by the
+parked leftover-word probes. No `sorry`. Paper A is unchanged.
+Not a halt theorem and not `no_cycle_word_any_length`.
+The Python floor \(N_0=10^6\) is still
 **COMPUTATIONALLY VERIFIED**, not Lean.
 
 ## Results
@@ -274,12 +286,19 @@ and `data/research/juggler/cycle_finance/`.
   exactly (relative error \(\le 2\cdot10^{-16}\)); real orbits use
   only \(0.22\)–\(0.47\) of the financing budget (mean defect
   ratio \(d/(2x')\approx 0.5\)).
+- **Lean residual floor \(53\)** — **EXACT — LEAN VERIFIED**
+  (`reachesOne_of_lt_fifty_three`): every \(1\le n<53\) reaches
+  \(1\). Evens below \(144\) already reduce to \(\{1,\dots,11\}\);
+  the odd seeds \(13,15,\dots,51\) are finite orbit certificates
+  (the longest is \(37\), seventeen steps, peak
+  \(\approx 2.5\cdot10^{13}\)).
 - **Lean census extension** — **EXACT — LEAN VERIFIED**: no cycle
-  word of length \(\le 10\); isolated exclusions of lengths
-  \(12\), \(13\), and \(16\); any remaining cycle has period
-  \(11\) or \(\ge 14\). The Lean residual floor is still
-  \(n\le 11\) reaches \(1\), so lengths \(11\), \(14\), and
-  \(15\) are not Lean-excluded.
+  word of length \(\le 18\) except the near-convergent \(19\);
+  lengths \(20\)–\(29\) die at the same floor-\(53\) comparison;
+  any remaining cycle has period \(19\) or \(\ge 30\). Length
+  \(11\) dies by finance at the floor \(53\)
+  (`finance_excludes_length_eleven`), not by a leftover-word
+  census. Length \(30\) survives \(\tfrac{371}{2}\).
 - **Floor** — **COMPUTATIONALLY VERIFIED**: every
   \(2\le n\le 10^6\) has a finite first passage below its start,
   hence by strong induction reaches \(1\). Max first-passage length
@@ -290,10 +309,10 @@ and `data/research/juggler/cycle_finance/`.
   gap table \(L\le10^5\), conservative rounding): with the floor
   \(N_0=10^6\), **no Juggler cycle of length \(L\le 1053\)
   exists**, and no cycle of any length \(L\le 10^5\) outside an
-  explicit set of \(397\) exceptional lengths.   The Lean census now reaches \(L\le 10\) (finance at \(9\) and
-  \(10\)); the computational finance route multiplies the
-  excluded range by \(\approx 130\) with one inequality and one
-  Python floor.
+  explicit set of \(397\) exceptional lengths. The Lean census now reaches \(L\le 18\) except \(19\) (finance
+  at \(9\)–\(11\), \(14\)–\(18\), and \(20\)–\(29\)); the
+  computational finance route multiplies the excluded range by
+  \(\approx 130\) with one inequality and one Python floor.
 - **Exceptional structure**: the \(397\) exceptions are exactly the
   near-convergent lengths — the \(94\) multiples of \(1054\) plus
   combinations such as \(23757=22\cdot1054+569\). The record
@@ -313,9 +332,10 @@ and `data/research/juggler/cycle_finance/`.
 
 ## Open questions
 
-- Length \(11\) is the first remaining Lean residual
-  (\(2^{11}<3^7\), \(n_{\max}\approx52\)). A Lean-checked floor
-  past \(52\) would kill it; a word-specific argument would too.
+- The Lean leftover is \(L=19\) or \(L\ge 30\). The next
+  near-convergent is \(L=19\) (\(n_{\max}\approx297\)); a Lean
+  floor past \(297\) would kill it. \(L=30\) survives
+  \(\tfrac{371}{2}\) at the current floor.
 - The exceptional near-convergent lengths need either a larger
   verified floor (each factor of \(10^3\) in floor pushes the
   frontier roughly one convergent out), a Baker-type lower bound on
@@ -325,26 +345,22 @@ and `data/research/juggler/cycle_finance/`.
 
 ## Decision
 
-**PROMOTE**. The Lean formalization succeeded: `cycleMin_finance`
-is `EXACT — LEAN VERIFIED` with no `sorry`, the census extends
-from length \(8\) to length \(10\), and lengths \(12\), \(13\),
-and \(16\) die by the same comparison. The Python floor
-\(N_0=10^6\) (excluding all \(L\le1053\)) remains
-**COMPUTATIONALLY VERIFIED**, not Lean. The falsifier did not
-fire. Paper A is unchanged.
+**PROMOTE**. The floor-\(53\) comparison already excluded lengths
+\(14\), \(15\), \(17\), \(18\), and \(20\)–\(29\). The
+Lean-verified leftover is period \(19\) or \(\ge 30\). This is
+not a leftover-word census. The Python floor \(N_0=10^6\) remains
+**COMPUTATIONALLY VERIFIED**. Paper A is unchanged.
 
-Best next question: can length \(11\) (the first remaining
-near-convergent: \(2^{11}<3^7\), \(n_{\max}\approx 52\)) be
-excluded in Lean, either by raising the residual floor past
-\(52\) or by a word-specific argument?
+Best next question: can the residual floor be raised past \(297\)
+so that finance kills the next convergent \(L=19\)?
 
 ## Publication assessment
 
 Status: `THEOREM`. One exact inequality (`cycleMin_finance`,
 **EXACT — LEAN VERIFIED**) with a genuinely new consequence
-(wholesale cycle-length exclusion: Lean census \(\le10\),
-computational prefix \(\le1053\)) and a clear literature
-distinction: the Simons–de Weger financing-versus-gap template
-transferred to a floor-power map where defects are relatively
-\(O(1/x)\) in logarithms. Not a totality result; the escape half
-is untouched.
+(wholesale cycle-length exclusion: Lean leftover \(19\) or
+\(\ge 30\), computational prefix \(\le1053\)) and a clear
+literature distinction: the Simons–de Weger financing-versus-gap
+template transferred to a floor-power map where defects are
+relatively \(O(1/x)\) in logarithms. Not a totality result; the
+escape half is untouched.

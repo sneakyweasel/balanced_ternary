@@ -33,7 +33,14 @@ Dynamics → Iteration → Termination → Itinerary → WordStats
                                  Scale            CycleObstructions
                                     ↓                 ↓
                               Residuals          CycleExtrema / leftover
+                                                      ↓
+                                                CycleFinance
 ```
+
+`CycleFinance` is a cycle leaf under `CycleCore` / leftover census
+(wholesale length exclusion from the finance inequality). It is not
+a corridor primitive and is not imported by `Corridor`,
+`EvenCountThree`, or `Problems.JugglerPaper`.
 
 `CycleCore` imports `Envelope` + `Cells` + `MinimumRelative`, not
 `Residuals`. `Cycles.lean` re-exports Core + Obstructions + Extrema.
@@ -55,6 +62,7 @@ Dynamics → Iteration → Termination → Itinerary → WordStats
 | Consumer | `CycleMin` + `aboveAnchor_of_cycleMin` | `CycleCore.lean` |
 | Consumer | `MinimalNonTerm` + `aboveAnchor_of_minimalNonTerm` | `Minimal.lean` |
 | Consumer | named `no_cycle_word_*` / isolated CycleMin wrappers | `CycleObstructions.lean` |
+| Consumer | cycle finance leftover (`L=19` or `L≥30`) | `CycleFinance.lean` |
 | Consumer | `ReturnBelow` | `Residuals.lean` |
 
 `EscapeEpisode` is Python-only. Do not merge `HasFiniteStop` with

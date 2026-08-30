@@ -14915,4 +14915,70 @@ Best next question
   word-specific argument?
 ```
 
+## Juggler cycle finance length 11
+
+- **Date:** 2026-08-31
+- **Objective:** Exclude length-11 cycle words in Lean, the first near-convergent residual after the finance census \(\le10\)
+- **Hypotheses:** raising the residual floor past \(n_{\max}(11)\approx52\) lets `cycleMin_finance` kill \(L=11\) without a leftover-word census
+- **Major results:** `reachesOne_of_lt_fifty_three` is **EXACT — LEAN VERIFIED** (evens \(<144\) already reduce to \(\{1,\dots,11\}\); odd seeds \(13,\dots,51\) are finite certificates; \(37\) takes 17 steps). `finance_excludes_length_eleven` and `no_cycle_word_length_le_eleven` are **EXACT — LEAN VERIFIED**. Residual `cycle_word_length_ge_fourteen`. Ledger rows `J-residual-floor-fifty-three`, `J-small-cycle-census-eleven`, `J-cycle-word-length-ge-fourteen`. No theorem named `no_cycle_word_length_eleven`. Paper A unchanged. Not a leftover census of the thirty length-11 short-gap families
+- **Refuted ideas:** none; the floor raise closed
+- **Literature:** `juggler_cycle_finance`; `cycle_word_length_ge_eleven` (even-count \(\ge4\)); parked leftover-word attacks at length 11
+- **Open:** lengths \(14\), \(15\); next convergent \(L=19\) needs a floor past \(\approx297\)
+- **Decision:** PROMOTE. Length 11 dies by finance plus a finite residual floor
+
+```text
+What was learned
+- L=11 is the first near-convergent: 2^11 < 3^7, n_max ~ 45-52
+- the existing even residual even n < 144 already reaches 1
+- a finite odd-orbit table through 51 raises the Lean floor to 53
+- 53 log 53 > 371/2 is enough to finance-exclude L=11
+- the leftover-census name no_cycle_word_length_eleven stays unused
+Strongest theorem
+- no_cycle_word_length_le_eleven (EXACT — LEAN VERIFIED);
+  any remaining cycle has period >= 14
+Strongest refutation
+- none
+Reusable machinery
+- reachesOne_of_lt_fifty_three in Termination.lean
+Branch status
+- PROMOTE
+Why
+- first near-convergent length killed formally, by finance,
+  not by assembling the thirty leftover words
+Best next question
+- can lengths 14 and 15 be excluded in Lean, or can the
+  residual floor be raised past 297 so finance kills L=19?
+```
+
+## Juggler cycle finance leftover at floor 53
+
+- **Date:** 2026-08-31
+- **Objective:** Connect `cycle_finance_min_fifty_three` to every length it already excludes, and name the residual leftover
+- **Hypotheses:** the unused floor-`53` comparison kills \(L\in\{14,15,17,18\}\) at \(o_{\min}\), so the leftover is \(19\) or \(\ge 20\)
+- **Major results:** `finance_excludes_at` packages the comparison. Lengths \(14\), \(15\), \(17\), \(18\), and \(20\)–\(29\) are **EXACT — LEAN VERIFIED**. `no_cycle_word_length_le_eighteen` and leftover `cycle_word_length_nineteen_or_ge_thirty` (weaker corollary `nineteen_or_ge_twenty`). \(L=30\) survives \(\tfrac{371}{2}\), so the optional leftover \(19\) or \(\ge 38\) is false at this floor. Ledger rows `J-small-cycle-census-eighteen`, `J-cycle-word-length-nineteen-or-ge-thirty`. `EvenCountThree` does not import finance; `cycle_word_length_ge_eleven` remains the even-count bound. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** leftover \(19\) or \(\ge 38\) at floor \(53\) — \(L=30\) survives
+- **Literature:** `cycle_finance_min_fifty_three`; `cycle_word_length_ge_fourteen`
+- **Open:** \(L=19\) needs a floor past \(\approx 297\); \(L=30\) needs a larger floor or a different argument
+- **Decision:** PROMOTE. The floor already in the file now matches the leftover statement
+
+```text
+What was learned
+- floor 53 already kills 14, 15, 17, 18 with no new inequality
+- 20-29 die by the same comparison; 30 survives 371/2
+- leftover is 19 or >= 30, not >= 14
+- EvenCountThree stays independent (period >= 11)
+Strongest theorem
+- cycle_word_length_nineteen_or_ge_thirty (EXACT — LEAN VERIFIED)
+Strongest refutation
+- L=30 survives the floor-53 finance comparison
+Reusable machinery
+- finance_excludes_at in CycleFinance.lean
+Branch status
+- PROMOTE
+Why
+- unused comparison is now the leftover
+Best next question
+- can the residual floor be raised past 297 so finance kills L=19?
+```
+
 
