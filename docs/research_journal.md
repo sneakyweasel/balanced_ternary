@@ -14600,4 +14600,37 @@ Best next question
 - none from macro-event coupling
 ```
 
+## Juggler formal vs realized AboveAnchor language
+
+- **Date:** 2026-08-30
+- **Objective:** Measure \(\mathcal D_N=\mathcal L_{\mathrm{formal}}(N)\setminus\mathcal L_{\mathrm{realized,AA}}(N)\) and test whether minimal unobserved prefixes share a simple exact \(P\)
+- **Hypotheses:** the shared prefix-NC filter forgets one arithmetic feature that uniformly kills a stable family of AboveAnchor histories
+- **Major results:** Classification **FORMAL_REALIZED_GAP_CLOSED**. Formal language is `prefixNoncontracting`. AA language fills through \(N=16\) for odd \(n\le 10^6\) (\(R_N=1\)). First holes at \(N=17\) (\(3\) words). At \(N=20\): formal \(27328\), AA \(16822\), dead \(10506\), \(\lvert\mathcal F_j\rvert=8498\), no distinctive exact \(P\). Hold-out later fraction \(0.504\). Atlas `REALIZABLE` missing-by-\(N\) is \(0\) through length \(20\). No new Lean file. No atlas language tag. Paper A unchanged. No halt theorem. No ledger theorem row
+- **Refuted ideas:** a stable minimal forbidden history with a simple exact \(P\); a follows-language hole inside prefix-NC at \(k\le 20\); hold-out-stable unobserved prefixes
+- **Literature:** `prefixNoncontracting`; `aboveAnchor_not_envelope_drop`; `juggler_parity_balance.md`; `juggler_word_language.md`; `juggler_word_atlas.md`
+- **Open:** none from this word language. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. Later dead prefixes are window or scale artefacts, not a new formal law
+
+```text
+What was learned
+- L_formal is prefixNoncontracting
+- AA fills through N=16 at n<=10^6
+- first AA holes at N=17; no common exact P
+- half of low-n F_j realize in the hold-out half
+- every formal word of length <=20 is atlas REALIZABLE
+Strongest theorem
+- none new
+Strongest refutation
+- a simple exact P for every minimal unobserved AA prefix
+Reusable machinery
+- none; no new Lean primitive; compact AA bitsets only
+Branch status
+- CLOSE
+Why
+- the word filter is already the shared envelope;
+  the AA gap is hold-out unstable and has no P
+Best next question
+- none from this word language
+```
+
 

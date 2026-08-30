@@ -1,0 +1,2498 @@
+{
+  "experiment": "juggler_formal_realized_gap",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "global_non_realizability": false,
+    "forbidden_factor_theorem": false,
+    "search_horizon_is_L": false,
+    "cyclemin_in_language": false,
+    "formal_realized_lean": false,
+    "new_atlas_language": false,
+    "letter_chain": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "k_max": 20,
+    "n_max": 1000000,
+    "hold_split": 500000,
+    "scanned": 499999,
+    "gaps": [
+      {
+        "N": 1,
+        "formal": 1,
+        "realized_aa": 1,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 2,
+        "formal": 1,
+        "realized_aa": 1,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 3,
+        "formal": 2,
+        "realized_aa": 2,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 4,
+        "formal": 3,
+        "realized_aa": 3,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 5,
+        "formal": 4,
+        "realized_aa": 4,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 6,
+        "formal": 8,
+        "realized_aa": 8,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 7,
+        "formal": 13,
+        "realized_aa": 13,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 8,
+        "formal": 19,
+        "realized_aa": 19,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 9,
+        "formal": 38,
+        "realized_aa": 38,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 10,
+        "formal": 64,
+        "realized_aa": 64,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 11,
+        "formal": 128,
+        "realized_aa": 128,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 12,
+        "formal": 226,
+        "realized_aa": 226,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 13,
+        "formal": 367,
+        "realized_aa": 367,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 14,
+        "formal": 734,
+        "realized_aa": 734,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 15,
+        "formal": 1295,
+        "realized_aa": 1295,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 16,
+        "formal": 2114,
+        "realized_aa": 2114,
+        "dead": 0,
+        "R_N": 1.0,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 17,
+        "formal": 4228,
+        "realized_aa": 4225,
+        "dead": 3,
+        "R_N": 0.9992904446546831,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 18,
+        "formal": 7495,
+        "realized_aa": 7338,
+        "dead": 157,
+        "R_N": 0.9790527018012009,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 19,
+        "formal": 14990,
+        "realized_aa": 12763,
+        "dead": 2227,
+        "R_N": 0.8514342895263509,
+        "extra_aa_not_formal": 0
+      },
+      {
+        "N": 20,
+        "formal": 27328,
+        "realized_aa": 16822,
+        "dead": 10506,
+        "R_N": 0.6155591334894613,
+        "extra_aa_not_formal": 0
+      }
+    ],
+    "last": {
+      "N": 20,
+      "formal": 27328,
+      "realized_aa": 16822,
+      "dead": 10506,
+      "R_N": 0.6155591334894613,
+      "extra_aa_not_formal": 0
+    },
+    "n_minimal": 8498,
+    "minimal_sample": [
+      {
+        "word": "OOOEOOEOEOOOEEOOO",
+        "length": 17,
+        "packed": 118455,
+        "word_id": 73014562487,
+        "odd_count": 12,
+        "even_count": 5,
+        "odd_runs": [
+          3,
+          2,
+          1,
+          3,
+          3
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 400369,
+        "run_signature": "O3,E1,O2,E1,O1,E1,O3,E2,O3",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOOEOOOOEOEOOEOO",
+        "length": 17,
+        "packed": 112111,
+        "word_id": 73014556143,
+        "odd_count": 13,
+        "even_count": 4,
+        "odd_runs": [
+          4,
+          4,
+          1,
+          2,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 1463251,
+        "run_signature": "O4,E1,O4,E1,O1,E1,O2,E1,O2",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOOOOOOOOEEOOOEO",
+        "length": 17,
+        "packed": 95231,
+        "word_id": 73014539263,
+        "odd_count": 14,
+        "even_count": 3,
+        "odd_runs": [
+          10,
+          3,
+          1
+        ],
+        "even_runs": [
+          2,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 4651897,
+        "run_signature": "O10,E2,O3,E1,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOEOEOOOOEOE",
+        "length": 18,
+        "packed": 96987,
+        "word_id": 77309508315,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          2,
+          2,
+          2,
+          1,
+          4,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 11,
+        "envelope_slack": 269297,
+        "run_signature": "O2,E1,O2,E1,O2,E1,O1,E1,O4,E1,O1,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOEOOOOOOEEO",
+        "length": 18,
+        "packed": 163547,
+        "word_id": 77309574875,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          2,
+          2,
+          6,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 9,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O2,E1,O2,E1,O6,E2,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOOEOOOOEOOE",
+        "length": 18,
+        "packed": 114139,
+        "word_id": 77309525467,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          2,
+          3,
+          4,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 6,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O2,E1,O3,E1,O4,E1,O2,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOOEOOOOOOOE",
+        "length": 18,
+        "packed": 130523,
+        "word_id": 77309541851,
+        "odd_count": 14,
+        "even_count": 4,
+        "odd_runs": [
+          2,
+          2,
+          3,
+          7
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 6,
+        "envelope_slack": 4520825,
+        "run_signature": "O2,E1,O2,E1,O3,E1,O7,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOOOEOOOEOOE",
+        "length": 18,
+        "packed": 113627,
+        "word_id": 77309524955,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          2,
+          4,
+          3,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 6,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O2,E1,O4,E1,O3,E1,O2,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOOOEOOOOEOE",
+        "length": 18,
+        "packed": 97243,
+        "word_id": 77309508571,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          2,
+          4,
+          4,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 6,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O2,E1,O4,E1,O4,E1,O1,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOOOOEEOOEOO",
+        "length": 18,
+        "packed": 223195,
+        "word_id": 77309634523,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          2,
+          5,
+          2,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          2,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 6,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O2,E1,O5,E2,O2,E1,O2",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOOOOEEOOOEE",
+        "length": 18,
+        "packed": 59355,
+        "word_id": 77309470683,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          2,
+          2,
+          5,
+          3
+        ],
+        "even_runs": [
+          1,
+          1,
+          2,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 6,
+        "envelope_slack": 269297,
+        "run_signature": "O2,E1,O2,E1,O5,E2,O3,E2",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOOOOEOEEOEO",
+        "length": 18,
+        "packed": 169947,
+        "word_id": 77309581275,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          2,
+          2,
+          5,
+          1,
+          1,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          2,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 6,
+        "envelope_slack": 269297,
+        "run_signature": "O2,E1,O2,E1,O5,E1,O1,E2,O1,E1,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOOOOOEEEOOE",
+        "length": 18,
+        "packed": 102363,
+        "word_id": 77309513691,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          2,
+          2,
+          6,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          3,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 6,
+        "envelope_slack": 269297,
+        "run_signature": "O2,E1,O2,E1,O6,E3,O2,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOEOOOOOOEOOOOE",
+        "length": 18,
+        "packed": 126939,
+        "word_id": 77309538267,
+        "odd_count": 14,
+        "even_count": 4,
+        "odd_runs": [
+          2,
+          2,
+          6,
+          4
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 6,
+        "envelope_slack": 4520825,
+        "run_signature": "O2,E1,O2,E1,O6,E1,O4,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOEOOEOOOEOOEO",
+        "length": 18,
+        "packed": 187835,
+        "word_id": 77309599163,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          3,
+          2,
+          3,
+          2,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O3,E1,O2,E1,O3,E1,O2,E1,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOEOOOEOOEEOOE",
+        "length": 18,
+        "packed": 105403,
+        "word_id": 77309516731,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          2,
+          3,
+          3,
+          2,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          2,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 269297,
+        "run_signature": "O2,E1,O3,E1,O3,E1,O2,E2,O2,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOEOOOOEOOOOEE",
+        "length": 18,
+        "packed": 63419,
+        "word_id": 77309474747,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          3,
+          4,
+          4
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O3,E1,O4,E1,O4,E2",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOEOOOOOEOEEOE",
+        "length": 18,
+        "packed": 77755,
+        "word_id": 77309489083,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          2,
+          3,
+          5,
+          1,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          2,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 269297,
+        "run_signature": "O2,E1,O3,E1,O5,E1,O1,E2,O1,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOEOOOOOEOEOEO",
+        "length": 18,
+        "packed": 176059,
+        "word_id": 77309587387,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          3,
+          5,
+          1,
+          1,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O3,E1,O5,E1,O1,E1,O1,E1,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOEEOOOOEEOEO",
+        "length": 18,
+        "packed": 171643,
+        "word_id": 77309582971,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          2,
+          4,
+          4,
+          1,
+          1
+        ],
+        "even_runs": [
+          1,
+          2,
+          2,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 269297,
+        "run_signature": "O2,E1,O4,E2,O4,E2,O1,E1,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOEEOOOOEOEOO",
+        "length": 18,
+        "packed": 220795,
+        "word_id": 77309632123,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          4,
+          4,
+          1,
+          2
+        ],
+        "even_runs": [
+          1,
+          2,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O4,E2,O4,E1,O1,E1,O2",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOEOEEOOOOEOE",
+        "length": 18,
+        "packed": 96635,
+        "word_id": 77309507963,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          2,
+          4,
+          1,
+          4,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          2,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 269297,
+        "run_signature": "O2,E1,O4,E1,O1,E2,O4,E1,O1,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOEOEOOOOOEEO",
+        "length": 18,
+        "packed": 163195,
+        "word_id": 77309574523,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          4,
+          1,
+          5,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O4,E1,O1,E1,O5,E2,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOEOOEOOOOEEO",
+        "length": 18,
+        "packed": 162683,
+        "word_id": 77309574011,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          4,
+          2,
+          4,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O4,E1,O2,E1,O4,E2,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOEOOOOEEEOOE",
+        "length": 18,
+        "packed": 102267,
+        "word_id": 77309513595,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          2,
+          4,
+          4,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          3,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 269297,
+        "run_signature": "O2,E1,O4,E1,O4,E3,O2,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOEOOOOOOOEEO",
+        "length": 18,
+        "packed": 163707,
+        "word_id": 77309575035,
+        "odd_count": 14,
+        "even_count": 4,
+        "odd_runs": [
+          2,
+          4,
+          7,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 4520825,
+        "run_signature": "O2,E1,O4,E1,O7,E2,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOEEOOEOOOEO",
+        "length": 18,
+        "packed": 191739,
+        "word_id": 77309603067,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          5,
+          2,
+          3,
+          1
+        ],
+        "even_runs": [
+          1,
+          2,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O5,E2,O2,E1,O3,E1,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOEEOOOEOOOO",
+        "length": 18,
+        "packed": 253179,
+        "word_id": 77309664507,
+        "odd_count": 14,
+        "even_count": 4,
+        "odd_runs": [
+          2,
+          5,
+          3,
+          4
+        ],
+        "even_runs": [
+          1,
+          2,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 4520825,
+        "run_signature": "O2,E1,O5,E2,O3,E1,O4",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOEOEOOOEOEO",
+        "length": 18,
+        "packed": 178939,
+        "word_id": 77309590267,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          5,
+          1,
+          3,
+          1,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O5,E1,O1,E1,O3,E1,O1,E1,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOEOOOOEEEOO",
+        "length": 18,
+        "packed": 204539,
+        "word_id": 77309615867,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          5,
+          4,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          3
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O5,E1,O4,E3,O2",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOEOOOOOOEEO",
+        "length": 18,
+        "packed": 163579,
+        "word_id": 77309574907,
+        "odd_count": 14,
+        "even_count": 4,
+        "odd_runs": [
+          2,
+          5,
+          6,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 4520825,
+        "run_signature": "O2,E1,O5,E1,O6,E2,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOEOOOOOOOEO",
+        "length": 18,
+        "packed": 196347,
+        "word_id": 77309607675,
+        "odd_count": 15,
+        "even_count": 3,
+        "odd_runs": [
+          2,
+          5,
+          7,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 14086763,
+        "run_signature": "O2,E1,O5,E1,O7,E1,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOOEOOEEOOEO",
+        "length": 18,
+        "packed": 183803,
+        "word_id": 77309595131,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          6,
+          2,
+          2,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          2,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O6,E1,O2,E2,O2,E1,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOOEOOOOEOOO",
+        "length": 18,
+        "packed": 245243,
+        "word_id": 77309656571,
+        "odd_count": 15,
+        "even_count": 3,
+        "odd_runs": [
+          2,
+          6,
+          4,
+          3
+        ],
+        "even_runs": [
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 14086763,
+        "run_signature": "O2,E1,O6,E1,O4,E1,O3",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOOOEEOEOOOE",
+        "length": 18,
+        "packed": 119803,
+        "word_id": 77309531131,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          7,
+          1,
+          3
+        ],
+        "even_runs": [
+          1,
+          2,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O7,E2,O1,E1,O3,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOOOEOEEOOOE",
+        "length": 18,
+        "packed": 117755,
+        "word_id": 77309529083,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          2,
+          7,
+          1,
+          3
+        ],
+        "even_runs": [
+          1,
+          1,
+          2,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 1332179,
+        "run_signature": "O2,E1,O7,E1,O1,E2,O3,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOOOEOEOOOOE",
+        "length": 18,
+        "packed": 125947,
+        "word_id": 77309537275,
+        "odd_count": 14,
+        "even_count": 4,
+        "odd_runs": [
+          2,
+          7,
+          1,
+          4
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 4520825,
+        "run_signature": "O2,E1,O7,E1,O1,E1,O4,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOEOOOOOOOOOOOOEEE",
+        "length": 18,
+        "packed": 32763,
+        "word_id": 77309444091,
+        "odd_count": 14,
+        "even_count": 4,
+        "odd_runs": [
+          2,
+          12
+        ],
+        "even_runs": [
+          1,
+          3
+        ],
+        "first_oo": 0,
+        "first_ooo": 3,
+        "envelope_slack": 4520825,
+        "run_signature": "O2,E1,O12,E3",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOEOOEOOEOOOEOE",
+        "length": 18,
+        "packed": 95959,
+        "word_id": 77309507287,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          3,
+          1,
+          2,
+          2,
+          3,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 269297,
+        "run_signature": "O3,E1,O1,E1,O2,E1,O2,E1,O3,E1,O1,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOEOOOEOEOOOOOO",
+        "length": 18,
+        "packed": 259543,
+        "word_id": 77309670871,
+        "odd_count": 14,
+        "even_count": 4,
+        "odd_runs": [
+          3,
+          1,
+          3,
+          1,
+          6
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 4520825,
+        "run_signature": "O3,E1,O1,E1,O3,E1,O1,E1,O6",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOEOOOOOEOOEOOE",
+        "length": 18,
+        "packed": 112599,
+        "word_id": 77309523927,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          3,
+          1,
+          5,
+          2,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 1332179,
+        "run_signature": "O3,E1,O1,E1,O5,E1,O2,E1,O2,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOEOOOOOOEOEEEO",
+        "length": 18,
+        "packed": 143319,
+        "word_id": 77309554647,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          3,
+          1,
+          6,
+          1,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          3
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 269297,
+        "run_signature": "O3,E1,O1,E1,O6,E1,O1,E3,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOOEOEOEOOOOEOE",
+        "length": 18,
+        "packed": 96951,
+        "word_id": 77309508279,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          3,
+          2,
+          1,
+          1,
+          4,
+          1
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 269297,
+        "run_signature": "O3,E1,O2,E1,O1,E1,O1,E1,O4,E1,O1,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOOEOEOOOOEOOEE",
+        "length": 18,
+        "packed": 57015,
+        "word_id": 77309468343,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          3,
+          2,
+          1,
+          4,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          1,
+          1,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 269297,
+        "run_signature": "O3,E1,O2,E1,O1,E1,O4,E1,O2,E2",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOOEOOOOOEEEOOE",
+        "length": 18,
+        "packed": 102327,
+        "word_id": 77309513655,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          3,
+          2,
+          5,
+          2
+        ],
+        "even_runs": [
+          1,
+          1,
+          3,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 269297,
+        "run_signature": "O3,E1,O2,E1,O5,E3,O2,E1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOOEOOOOOOOOOEE",
+        "length": 18,
+        "packed": 65463,
+        "word_id": 77309476791,
+        "odd_count": 14,
+        "even_count": 4,
+        "odd_runs": [
+          3,
+          2,
+          9
+        ],
+        "even_runs": [
+          1,
+          1,
+          2
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 4520825,
+        "run_signature": "O3,E1,O2,E1,O9,E2",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOOOEEOOEOOOEOO",
+        "length": 18,
+        "packed": 226935,
+        "word_id": 77309638263,
+        "odd_count": 13,
+        "even_count": 5,
+        "odd_runs": [
+          3,
+          3,
+          2,
+          3,
+          2
+        ],
+        "even_runs": [
+          1,
+          2,
+          1,
+          1
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 1332179,
+        "run_signature": "O3,E1,O3,E2,O2,E1,O3,E1,O2",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      },
+      {
+        "word": "OOOEOOOEEOOOOOEEEO",
+        "length": 18,
+        "packed": 147063,
+        "word_id": 77309558391,
+        "odd_count": 12,
+        "even_count": 6,
+        "odd_runs": [
+          3,
+          3,
+          5,
+          1
+        ],
+        "even_runs": [
+          1,
+          2,
+          3
+        ],
+        "first_oo": 0,
+        "first_ooo": 0,
+        "envelope_slack": 269297,
+        "run_signature": "O3,E1,O3,E2,O5,E3,O1",
+        "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+      }
+    ],
+    "minimal_by_length": {
+      "17": 3,
+      "18": 151,
+      "19": 1913,
+      "20": 6431
+    },
+    "property": {
+      "found": false,
+      "name": null,
+      "reason": "no exact predicate holds on all F_j and fails on some formal word",
+      "distinctive": [],
+      "counts": {
+        "n_minimal": 8498,
+        "lengths": {
+          "17": 3,
+          "18": 151,
+          "19": 1913,
+          "20": 6431
+        },
+        "end_E": 3886,
+        "one_E": 8,
+        "o_then_e": 1,
+        "start_OOE": 1521,
+        "start_OOO": 6977,
+        "slack_le_1": 0,
+        "first_oo": {
+          "0": 8498
+        },
+        "first_E": {
+          "4": 1595,
+          "3": 1591,
+          "2": 1521,
+          "5": 1287,
+          "6": 912,
+          "7": 650,
+          "8": 409,
+          "9": 246
+        },
+        "top_signatures": [
+          [
+            "O3,E1,O2,E1,O1,E1,O3,E2,O3",
+            1
+          ],
+          [
+            "O4,E1,O4,E1,O1,E1,O2,E1,O2",
+            1
+          ],
+          [
+            "O10,E2,O3,E1,O1",
+            1
+          ],
+          [
+            "O2,E1,O2,E1,O2,E1,O1,E1,O4,E1,O1,E1",
+            1
+          ],
+          [
+            "O2,E1,O2,E1,O2,E1,O6,E2,O1",
+            1
+          ],
+          [
+            "O2,E1,O2,E1,O3,E1,O4,E1,O2,E1",
+            1
+          ],
+          [
+            "O2,E1,O2,E1,O3,E1,O7,E1",
+            1
+          ],
+          [
+            "O2,E1,O2,E1,O4,E1,O3,E1,O2,E1",
+            1
+          ]
+        ]
+      }
+    },
+    "holdout": {
+      "n_hold_minimal": 11012,
+      "n_later": 5553,
+      "later_fraction": 0.5042680711950599,
+      "later_sample": [
+        "OOEOOEOOEOEOOOOEE",
+        "OOEOOEOOEOOOOOOEE",
+        "OOEOOEOOOEOOOEEOO",
+        "OOEOOEOOOEOOOEOOO",
+        "OOEOOEOOOEOOOOOEE",
+        "OOEOOEOOOOEOOOEOO",
+        "OOEOOEOOOOOEEEOOO",
+        "OOEOOEOOOOOEOOOOE",
+        "OOEOOOEOOOEEOOOEO",
+        "OOEOOOOEOEOOOOOEE",
+        "OOEOOOOEOOEOEOOEE",
+        "OOEOOOOEOOEOOEEOO",
+        "OOEOOOOEOOOEOOEOE",
+        "OOEOOOOEOOOOOEOOE",
+        "OOEOOOOOEEEOOEOOO",
+        "OOEOOOOOEEOOOEOEO",
+        "OOEOOOOOEOEOOOEOE",
+        "OOEOOOOOEOOEOOEEE",
+        "OOEOOOOOEOOOOEEEO",
+        "OOEOOOOOOEOOOOEOO",
+        "OOEOOOOOOOEEOEOOO",
+        "OOEOOOOOOOEOEEOOE",
+        "OOOEOEOOOOOOEEOOE",
+        "OOOEOOEOOEEOOOOEO",
+        "OOOEOOEOOOEOOOEEO",
+        "OOOEOOEOOOOOEEOEE",
+        "OOOEOOOEEOOOOOOOE",
+        "OOOEOOOEOOOOEEOEE",
+        "OOOEOOOOOEOEOEOEO",
+        "OOOEOOOOOOEOEOEEO",
+        "OOOOEEOOEOOOEOOEO",
+        "OOOOEEOOOEEOOOEOO",
+        "OOOOEEOOOOEOOEEOE",
+        "OOOOEOEOEOOEOOEOO",
+        "OOOOEOEOEOOOOEEOO",
+        "OOOOEOEOOOEOOOOOO",
+        "OOOOEOOEOEOOOEOOO",
+        "OOOOEOOOEEOEOEOOE",
+        "OOOOEOOOEOEOOOEOO",
+        "OOOOEOOOOEOOOOOOO",
+        "OOOOOEEOEOOEOOEOO",
+        "OOOOOEEOOEEOOEOOO",
+        "OOOOOEEOOEOOOOOOE",
+        "OOOOOEOEOEOOEOOEO",
+        "OOOOOEOEOOEOOOEEE",
+        "OOOOOEOEOOOEEEOOO",
+        "OOOOOEOEOOOEEOEOE",
+        "OOOOOEOOOOEOOOEOE"
+      ],
+      "hold_sample": [
+        "OOEOOEOOEOEOOOOEE",
+        "OOEOOEOOEOOOOOOEE",
+        "OOEOOEOOOEOOOEEOO",
+        "OOEOOEOOOEOOOEOOO",
+        "OOEOOEOOOEOOOOOEE",
+        "OOEOOEOOOOEOOOEOO",
+        "OOEOOEOOOOOEEEOOO",
+        "OOEOOEOOOOOEOOOOE",
+        "OOEOOOEOOOEEOOOEO",
+        "OOEOOOOEOEOOOOOEE",
+        "OOEOOOOEOOEOEOOEE",
+        "OOEOOOOEOOEOOEEOO",
+        "OOEOOOOEOOOEOOEOE",
+        "OOEOOOOEOOOOOEOOE",
+        "OOEOOOOOEEEOOEOOO",
+        "OOEOOOOOEEOOOEOEO",
+        "OOEOOOOOEOEOOOEOE",
+        "OOEOOOOOEOOEOOEEE",
+        "OOEOOOOOEOOOOEEEO",
+        "OOEOOOOOOEOOOOEOO",
+        "OOEOOOOOOOEEOEOOO",
+        "OOEOOOOOOOEOEEOOE",
+        "OOOEOEOOOOOOEEOOE",
+        "OOOEOOEOEOOOEEOOO",
+        "OOOEOOEOOEEOOOOEO",
+        "OOOEOOEOOOEOOOEEO",
+        "OOOEOOEOOOOOEEOEE",
+        "OOOEOOOEEOOOOOOOE",
+        "OOOEOOOEOOOOEEOEE",
+        "OOOEOOOOOEOEOEOEO",
+        "OOOEOOOOOOEOEOEEO",
+        "OOOOEEOOEOOOEOOEO",
+        "OOOOEEOOOEEOOOEOO",
+        "OOOOEEOOOOEOOEEOE",
+        "OOOOEOEOEOOEOOEOO",
+        "OOOOEOEOEOOOOEEOO",
+        "OOOOEOEOOOEOOOOOO",
+        "OOOOEOOEOEOOOEOOO",
+        "OOOOEOOOEEOEOEOOE",
+        "OOOOEOOOEOEOOOEOO",
+        "OOOOEOOOOEOEOOEOO",
+        "OOOOEOOOOEOOOOOOO",
+        "OOOOOEEOEOOEOOEOO",
+        "OOOOOEEOOEEOOEOOO",
+        "OOOOOEEOOEOOOOOOE",
+        "OOOOOEOEOEOOEOOEO",
+        "OOOOOEOEOOEOOOEEE",
+        "OOOOOEOEOOOEEEOOO"
+      ]
+    },
+    "hard": {
+      "n_hard": 32,
+      "hard_words_at_k": 32,
+      "ordinary_R": 0.6155591334894613,
+      "hard_R": 0.00117096018735363,
+      "hard_thinner": true
+    },
+    "hard_starts": [
+      {
+        "n": 163,
+        "S": 20,
+        "word": "OOOOOOEOEEOOOEOEOEOE",
+        "leftover": false
+      },
+      {
+        "n": 173,
+        "S": 20,
+        "word": "OOEOOOOOOOOEOOEOOEEO",
+        "leftover": false
+      },
+      {
+        "n": 193,
+        "S": 20,
+        "word": "OOOEOOOOOOOEOOOEEOEE",
+        "leftover": false
+      },
+      {
+        "n": 229,
+        "S": 20,
+        "word": "OOEOOOOOOOOOEOEEEEOE",
+        "leftover": false
+      },
+      {
+        "n": 241,
+        "S": 20,
+        "word": "OOOOOEOOOOOEOEOOEOEE",
+        "leftover": false
+      },
+      {
+        "n": 265,
+        "S": 20,
+        "word": "OOOOOEOOOEEEOOOEEOEO",
+        "leftover": false
+      },
+      {
+        "n": 293,
+        "S": 20,
+        "word": "OOOOOOOOEEEOOOOOEOEO",
+        "leftover": false
+      },
+      {
+        "n": 321,
+        "S": 20,
+        "word": "OOOEOOEOOEOOOOEEOOOE",
+        "leftover": false
+      },
+      {
+        "n": 329,
+        "S": 20,
+        "word": "OOOOOOOOEOOEOOEEOEEO",
+        "leftover": false
+      },
+      {
+        "n": 357,
+        "S": 20,
+        "word": "OOOOOOOOOOEEEEEOOEOO",
+        "leftover": false
+      },
+      {
+        "n": 425,
+        "S": 20,
+        "word": "OOOOOOOEOOEEOOOEOEEO",
+        "leftover": false
+      },
+      {
+        "n": 427,
+        "S": 20,
+        "word": "OOOOOEEOOOEEOEOOEOOE",
+        "leftover": false
+      },
+      {
+        "n": 451,
+        "S": 20,
+        "word": "OOOOOOOOOEOEEEEOEOOE",
+        "leftover": false
+      },
+      {
+        "n": 477,
+        "S": 20,
+        "word": "OOOOOOOEEOOEOOOOEOEO",
+        "leftover": false
+      },
+      {
+        "n": 501,
+        "S": 20,
+        "word": "OOEOOOEOOEEOOEOOEOOE",
+        "leftover": true
+      },
+      {
+        "n": 539,
+        "S": 20,
+        "word": "OOOOEEOOOEOOOEOEEOEO",
+        "leftover": false
+      },
+      {
+        "n": 557,
+        "S": 20,
+        "word": "OOOOOEOOOOOOOOEOEOEE",
+        "leftover": false
+      },
+      {
+        "n": 565,
+        "S": 20,
+        "word": "OOEOOEOOOOOOOOOEEEOE",
+        "leftover": false
+      },
+      {
+        "n": 659,
+        "S": 20,
+        "word": "OOOEOOOOOOOOEOEOEEEO",
+        "leftover": false
+      },
+      {
+        "n": 663,
+        "S": 20,
+        "word": "OOOOOOOOOOOEEOEOEEEO",
+        "leftover": false
+      },
+      {
+        "n": 669,
+        "S": 20,
+        "word": "OOOOOEOOEEOOEOOOOEOE",
+        "leftover": false
+      },
+      {
+        "n": 673,
+        "S": 20,
+        "word": "OOOOOOEEOOOOEEEOOOOE",
+        "leftover": false
+      },
+      {
+        "n": 677,
+        "S": 20,
+        "word": "OOOOOEEOOOOEEOOEOEEO",
+        "leftover": false
+      },
+      {
+        "n": 693,
+        "S": 20,
+        "word": "OOEOOOOEEOEOOOEOEOOO",
+        "leftover": false
+      },
+      {
+        "n": 761,
+        "S": 20,
+        "word": "OOOOOOOOOEEOEOEEOOEE",
+        "leftover": false
+      },
+      {
+        "n": 799,
+        "S": 20,
+        "word": "OOOOOEOOOOOOEEOEOOEO",
+        "leftover": false
+      },
+      {
+        "n": 805,
+        "S": 20,
+        "word": "OOOEOOOOEOEOOOOOEOOE",
+        "leftover": false
+      },
+      {
+        "n": 807,
+        "S": 20,
+        "word": "OOOEOOEOOOOOOOOOEOEE",
+        "leftover": false
+      },
+      {
+        "n": 837,
+        "S": 20,
+        "word": "OOOEOOOOOEOEOOEOOEEE",
+        "leftover": false
+      },
+      {
+        "n": 877,
+        "S": 20,
+        "word": "OOOOOOOOEEOEOEEOOEEO",
+        "leftover": false
+      },
+      {
+        "n": 899,
+        "S": 20,
+        "word": "OOOOOEOEOOOEOOOEOOOE",
+        "leftover": false
+      },
+      {
+        "n": 1011,
+        "S": 20,
+        "word": "OOOOEEOOEOOOOOOOEOOE",
+        "leftover": false
+      }
+    ],
+    "leftovers": {
+      "5": {
+        "S": 3,
+        "word": "OOE",
+        "formal": true,
+        "above_anchor": true
+      },
+      "37": {
+        "S": 14,
+        "word": "OOOOEOOOEEOOEE",
+        "formal": true,
+        "above_anchor": true
+      },
+      "365": {
+        "S": 14,
+        "word": "OOEOOEOOEOOEOE",
+        "formal": true,
+        "above_anchor": true
+      }
+    },
+    "leftover_S": {
+      "37": 14,
+      "365": 14,
+      "501": 22,
+      "1517": 15,
+      "6187": 12
+    },
+    "leftover_formal": true,
+    "controls": [
+      {
+        "word": "OOOEOOEOEOOOEEOOO",
+        "features": {
+          "word": "OOOEOOEOEOOOEEOOO",
+          "length": 17,
+          "packed": 118455,
+          "word_id": 73014562487,
+          "odd_count": 12,
+          "even_count": 5,
+          "odd_runs": [
+            3,
+            2,
+            1,
+            3,
+            3
+          ],
+          "even_runs": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "first_oo": 0,
+          "first_ooo": 0,
+          "envelope_slack": 400369,
+          "run_signature": "O3,E1,O2,E1,O1,E1,O3,E2,O3",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOEEEEE",
+            "OOOOOOOOOOOEOEEEE",
+            "OOOOOOOOOOEOOEEEE",
+            "OOOOOOOOOEOOOEEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOOEOOEOEOOOEEOOE",
+            "OOOOOOEOEOOOEEOOO",
+            "OOOEOOOOEOOOEEOOO",
+            "OOOEOOEOOOOOEEOOO"
+          ],
+          "n_same_counts": 1690,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 6
+        }
+      },
+      {
+        "word": "OOOOEOOOOEOEOOEOO",
+        "features": {
+          "word": "OOOOEOOOOEOEOOEOO",
+          "length": 17,
+          "packed": 112111,
+          "word_id": 73014556143,
+          "odd_count": 13,
+          "even_count": 4,
+          "odd_runs": [
+            4,
+            4,
+            1,
+            2,
+            2
+          ],
+          "even_runs": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "first_oo": 0,
+          "first_ooo": 0,
+          "envelope_slack": 1463251,
+          "run_signature": "O4,E1,O4,E1,O1,E1,O2,E1,O2",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOOEEEE",
+            "OOOOOOOOOOOOEOEEE",
+            "OOOOOOOOOOOEOOEEE",
+            "OOOOOOOOOOEOOOEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOOOEOOOOEOEOOEOE",
+            "OOOOEOOOOEOEOOEEO",
+            "OOOOEOOOOEOEOEEOO",
+            "OOOOEOOOOEOEEOEOO"
+          ],
+          "n_same_counts": 1049,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 13
+        }
+      },
+      {
+        "word": "OOOOOOOOOOEEOOOEO",
+        "features": {
+          "word": "OOOOOOOOOOEEOOOEO",
+          "length": 17,
+          "packed": 95231,
+          "word_id": 73014539263,
+          "odd_count": 14,
+          "even_count": 3,
+          "odd_runs": [
+            10,
+            3,
+            1
+          ],
+          "even_runs": [
+            2,
+            1
+          ],
+          "first_oo": 0,
+          "first_ooo": 0,
+          "envelope_slack": 4651897,
+          "run_signature": "O10,E2,O3,E1,O1",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOOOEEE",
+            "OOOOOOOOOOOOOEOEE",
+            "OOOOOOOOOOOOEOOEE",
+            "OOOOOOOOOOOEOOOEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOOOOOOOOOEEOOOEE",
+            "OOOOOOOOOOEEOOEEO",
+            "OOOOOOOOOOEEOEOEO",
+            "OOOOOOOOOOEEEOOEO"
+          ],
+          "n_same_counts": 407,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 15
+        }
+      },
+      {
+        "word": "OOEOOEOOEOEOOOOEOE",
+        "features": {
+          "word": "OOEOOEOOEOEOOOOEOE",
+          "length": 18,
+          "packed": 96987,
+          "word_id": 77309508315,
+          "odd_count": 12,
+          "even_count": 6,
+          "odd_runs": [
+            2,
+            2,
+            2,
+            1,
+            4,
+            1
+          ],
+          "even_runs": [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "first_oo": 0,
+          "first_ooo": 11,
+          "envelope_slack": 269297,
+          "run_signature": "O2,E1,O2,E1,O2,E1,O1,E1,O4,E1,O1,E1",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOEEEEEE",
+            "OOOOOOOOOOOEOEEEEE",
+            "OOOOOOOOOOEOOEEEEE",
+            "OOOOOOOOOEOOOEEEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOOOOEOOEOEOOOOEOE",
+            "OOEOOOOOEOEOOOOEOE",
+            "OOEOOEOOEOOOOOOEOE",
+            "OOEOOEOOEOEOOOOOOE"
+          ],
+          "n_same_counts": 2594,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 5
+        }
+      },
+      {
+        "word": "OOEOOEOOEOOOOOOEEO",
+        "features": {
+          "word": "OOEOOEOOEOOOOOOEEO",
+          "length": 18,
+          "packed": 163547,
+          "word_id": 77309574875,
+          "odd_count": 13,
+          "even_count": 5,
+          "odd_runs": [
+            2,
+            2,
+            2,
+            6,
+            1
+          ],
+          "even_runs": [
+            1,
+            1,
+            1,
+            2
+          ],
+          "first_oo": 0,
+          "first_ooo": 9,
+          "envelope_slack": 1332179,
+          "run_signature": "O2,E1,O2,E1,O2,E1,O6,E2,O1",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOOEEEEE",
+            "OOOOOOOOOOOOEOEEEE",
+            "OOOOOOOOOOOEOOEEEE",
+            "OOOOOOOOOOEOOOEEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOEOOEOOEOOOOOOEEE",
+            "OOEOOEOOEOOOOOEEEO",
+            "OOEOOEOOEOOOOEOEEO",
+            "OOEOOEOOEOOOEOOEEO"
+          ],
+          "n_same_counts": 2686,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 10
+        }
+      },
+      {
+        "word": "OOEOOEOOOEOOOOEOOE",
+        "features": {
+          "word": "OOEOOEOOOEOOOOEOOE",
+          "length": 18,
+          "packed": 114139,
+          "word_id": 77309525467,
+          "odd_count": 13,
+          "even_count": 5,
+          "odd_runs": [
+            2,
+            2,
+            3,
+            4,
+            2
+          ],
+          "even_runs": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "first_oo": 0,
+          "first_ooo": 6,
+          "envelope_slack": 1332179,
+          "run_signature": "O2,E1,O2,E1,O3,E1,O4,E1,O2,E1",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOOEEEEE",
+            "OOOOOOOOOOOOEOEEEE",
+            "OOOOOOOOOOOEOOEEEE",
+            "OOOOOOOOOOEOOOEEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOEOOEOOOEOOOOEOEE",
+            "OOEOOEOOOEOOOOEEOE",
+            "OOEOOEOOOEOOOEEOOE",
+            "OOEOOEOOOEOOEOEOOE"
+          ],
+          "n_same_counts": 2686,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 10
+        }
+      },
+      {
+        "word": "OOEOOEOOOEOOOOOOOE",
+        "features": {
+          "word": "OOEOOEOOOEOOOOOOOE",
+          "length": 18,
+          "packed": 130523,
+          "word_id": 77309541851,
+          "odd_count": 14,
+          "even_count": 4,
+          "odd_runs": [
+            2,
+            2,
+            3,
+            7
+          ],
+          "even_runs": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "first_oo": 0,
+          "first_ooo": 6,
+          "envelope_slack": 4520825,
+          "run_signature": "O2,E1,O2,E1,O3,E1,O7,E1",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOOOEEEE",
+            "OOOOOOOOOOOOOEOEEE",
+            "OOOOOOOOOOOOEOOEEE",
+            "OOOOOOOOOOOEOOOEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOEOOEOOOEOOOOOOEE",
+            "OOEOOEOOOEOOOOOEOE",
+            "OOEOOEOOOEOOOEOOOE",
+            "OOEOOEOOOEOOEOOOOE"
+          ],
+          "n_same_counts": 1429,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 10
+        }
+      },
+      {
+        "word": "OOEOOEOOOOEOOOEOOE",
+        "features": {
+          "word": "OOEOOEOOOOEOOOEOOE",
+          "length": 18,
+          "packed": 113627,
+          "word_id": 77309524955,
+          "odd_count": 13,
+          "even_count": 5,
+          "odd_runs": [
+            2,
+            2,
+            4,
+            3,
+            2
+          ],
+          "even_runs": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "first_oo": 0,
+          "first_ooo": 6,
+          "envelope_slack": 1332179,
+          "run_signature": "O2,E1,O2,E1,O4,E1,O3,E1,O2,E1",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOOEEEEE",
+            "OOOOOOOOOOOOEOEEEE",
+            "OOOOOOOOOOOEOOEEEE",
+            "OOOOOOOOOOEOOOEEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOEOOEOOOOEOOOEOEE",
+            "OOEOOEOOOOEOOOEEOE",
+            "OOEOOEOOOOEOOEEOOE",
+            "OOEOOEOOOOEOEOEOOE"
+          ],
+          "n_same_counts": 2686,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 12
+        }
+      },
+      {
+        "word": "OOEOOEOOOOEOOOOEOE",
+        "features": {
+          "word": "OOEOOEOOOOEOOOOEOE",
+          "length": 18,
+          "packed": 97243,
+          "word_id": 77309508571,
+          "odd_count": 13,
+          "even_count": 5,
+          "odd_runs": [
+            2,
+            2,
+            4,
+            4,
+            1
+          ],
+          "even_runs": [
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          "first_oo": 0,
+          "first_ooo": 6,
+          "envelope_slack": 1332179,
+          "run_signature": "O2,E1,O2,E1,O4,E1,O4,E1,O1,E1",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOOEEEEE",
+            "OOOOOOOOOOOOEOEEEE",
+            "OOOOOOOOOOOEOOEEEE",
+            "OOOOOOOOOOEOOOEEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOEOOEOOOOEOOOOEEE",
+            "OOEOOEOOOOEOOOEEOE",
+            "OOEOOEOOOOEOOEOEOE",
+            "OOEOOEOOOOEOEOOEOE"
+          ],
+          "n_same_counts": 2686,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 11
+        }
+      },
+      {
+        "word": "OOEOOEOOOOOEEOOEOO",
+        "features": {
+          "word": "OOEOOEOOOOOEEOOEOO",
+          "length": 18,
+          "packed": 223195,
+          "word_id": 77309634523,
+          "odd_count": 13,
+          "even_count": 5,
+          "odd_runs": [
+            2,
+            2,
+            5,
+            2,
+            2
+          ],
+          "even_runs": [
+            1,
+            1,
+            2,
+            1
+          ],
+          "first_oo": 0,
+          "first_ooo": 6,
+          "envelope_slack": 1332179,
+          "run_signature": "O2,E1,O2,E1,O5,E2,O2,E1,O2",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOOEEEEE",
+            "OOOOOOOOOOOOEOEEEE",
+            "OOOOOOOOOOOEOOEEEE",
+            "OOOOOOOOOOEOOOEEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOEOOEOOOOOEEOOEOE",
+            "OOEOOEOOOOOEEOOEEO",
+            "OOOOOEOOOOOEEOOEOO",
+            "OOEOOOOOOOOEEOOEOO"
+          ],
+          "n_same_counts": 2686,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 7
+        }
+      },
+      {
+        "word": "OOEOOEOOOOOEEOOOEE",
+        "features": {
+          "word": "OOEOOEOOOOOEEOOOEE",
+          "length": 18,
+          "packed": 59355,
+          "word_id": 77309470683,
+          "odd_count": 12,
+          "even_count": 6,
+          "odd_runs": [
+            2,
+            2,
+            5,
+            3
+          ],
+          "even_runs": [
+            1,
+            1,
+            2,
+            2
+          ],
+          "first_oo": 0,
+          "first_ooo": 6,
+          "envelope_slack": 269297,
+          "run_signature": "O2,E1,O2,E1,O5,E2,O3,E2",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOEEEEEE",
+            "OOOOOOOOOOOEOEEEEE",
+            "OOOOOOOOOOEOOEEEEE",
+            "OOOOOOOOOEOOOEEEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOOOOEOOOOOEEOOOEE",
+            "OOEOOOOOOOOEEOOOEE",
+            "OOEOOEOOOOOOEOOOEE",
+            "OOEOOEOOOOOEOOOOEE"
+          ],
+          "n_same_counts": 2594,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 6
+        }
+      },
+      {
+        "word": "OOEOOEOOOOOEOEEOEO",
+        "features": {
+          "word": "OOEOOEOOOOOEOEEOEO",
+          "length": 18,
+          "packed": 169947,
+          "word_id": 77309581275,
+          "odd_count": 12,
+          "even_count": 6,
+          "odd_runs": [
+            2,
+            2,
+            5,
+            1,
+            1,
+            1
+          ],
+          "even_runs": [
+            1,
+            1,
+            1,
+            2,
+            1
+          ],
+          "first_oo": 0,
+          "first_ooo": 6,
+          "envelope_slack": 269297,
+          "run_signature": "O2,E1,O2,E1,O5,E1,O1,E2,O1,E1,O1",
+          "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+        },
+        "controls": {
+          "same_counts": [
+            "OOOOOOOOOOOOEEEEEE",
+            "OOOOOOOOOOOEOEEEEE",
+            "OOOOOOOOOOEOOEEEEE",
+            "OOOOOOOOOEOOOEEEEE"
+          ],
+          "same_run_multiset": [],
+          "same_signature": [],
+          "hamming1": [
+            "OOOOOEOOOOOEOEEOEO",
+            "OOEOOOOOOOOEOEEOEO",
+            "OOEOOEOOOOOOOEEOEO",
+            "OOEOOEOOOOOEOOEOEO"
+          ],
+          "n_same_counts": 2594,
+          "n_same_run_multiset": 0,
+          "n_same_signature": 0,
+          "n_hamming1": 6
+        }
+      }
+    ],
+    "atlas": {
+      "available": true,
+      "experiment_id": "wa-20260827T200310Z-cuda-k20-n100000000",
+      "language": "REALIZABLE",
+      "missing_by_N": {
+        "1": 0,
+        "2": 0,
+        "3": 0,
+        "4": 0,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0,
+        "10": 0,
+        "11": 0,
+        "12": 0,
+        "13": 0,
+        "14": 0,
+        "15": 0,
+        "16": 0,
+        "17": 0,
+        "18": 0,
+        "19": 0,
+        "20": 0
+      },
+      "sample": []
+    },
+    "extra_aa_not_formal": 0,
+    "git_commit": "06797c5d33924511610cf87629c5d27052a74bc7",
+    "letter_chain": false,
+    "cyclemin_in_language": false,
+    "formal_realized_lean": false,
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "new_atlas_language": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "prefixNoncontracting": true,
+    "aboveAnchor_not_envelope_drop": true,
+    "aboveAnchor_not_odd_even": true,
+    "isolatedOddSurvival_bound": true,
+    "AboveAnchor": true,
+    "power_bound_word": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_FormalLanguage": false,
+    "has_api_FormalRealizedGap": false,
+    "has_api_AboveAnchorLanguage": false,
+    "has_api_SurvivalLanguage": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "no_atlas_lang_formal": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "FORMAL_REALIZED_GAP_CLOSED",
+    "reason": "F_j from the low-n half realizes later; remaining unobserved prefixes are window or scale artefacts, not a new exact P"
+  },
+  "search_method": "prefixNoncontracting enumeration; AA walk until T^j < n; k<=20, odd n<=1000000, leftovers [37, 365, 501, 1517, 6187]; hold-out split; matched Hamming/run controls; no CycleMin words"
+}

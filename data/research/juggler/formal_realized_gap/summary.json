@@ -1,0 +1,16 @@
+{
+  "classification": "FORMAL_REALIZED_GAP_CLOSED",
+  "reason": "F_j from the low-n half realizes later; remaining unobserved prefixes are window or scale artefacts, not a new exact P",
+  "k_max": 20,
+  "n_max": 1000000,
+  "R_N": 0.6155591334894613,
+  "formal": 27328,
+  "realized_aa": 16822,
+  "dead": 10506,
+  "n_minimal": 8498,
+  "property": null,
+  "property_found": false,
+  "holdout_later_fraction": 0.5042680711950599,
+  "hard_thinner": true,
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND"
+}
