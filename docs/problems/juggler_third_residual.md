@@ -157,8 +157,10 @@ Classification **THIRD_RESIDUAL_GREEN**.
 
 A CE that follows `OOEOOE` follows `OOEOOEOO`, and that image is
 below \(n^{3}\). A completed third `OOE` is below \(n^{2}\); an
-even landing is descent. The completed third residual is not
-uniformly a drop and not uniformly PE.
+even landing is descent —
+**EXACT — LEAN VERIFIED** (`J-ce-third-residual-cells`).
+The completed third residual is not uniformly a drop and not
+uniformly PE — **REFUTED** (`J-third-residual-drop-or-pe`).
 
 This is not a halt theorem and not a finite PE-run bound.
 

@@ -13089,4 +13089,41 @@ Best next question
   recovery forced, or can t pay a later first OOO?
 ```
 
+## Juggler third residual after forced OO
+
+- **Date:** 2026-08-30
+- **Objective:** After the CE `OOEOOE` trap forces `OOEOOEOO`, decide whether the completed third residual drops below \(n\) or stays PE
+- **Hypotheses:** the cube/square envelopes survive without CycleMin return; the third residual is uniformly PE, or uniformly a drop
+- **Major results:** Classification **THIRD_RESIDUAL_GREEN**. \(T_{\mathtt{OOEOOEOO}}(n)<n^{3}\) (\(729<768\)); \(T_{\mathtt{OOEOOEOOE}}(n)<n^{2}\) (\(729<1024\)); a CE following `OOEOOE` follows `OOEOOEOO`; a CE third-`OOE` landing is odd — **EXACT — LEAN VERIFIED** (`J-ce-third-residual-cells`). Uniform drop or uniform PE — **REFUTED** (`J-third-residual-drop-or-pe`): \(365\to 4447\) is PE; \(429\to 5595\) is `OOE` not odd-odd and \(T(5595)=418504\ge 429^{2}\); \(565\) is \(a=9\) above \(n^{2}\) and not PE. Window drops \(2177,2185,3565\) are contracting. Laboratory barrel only. Paper A unchanged. No halt theorem
+- **Refuted ideas:** the third residual always drops; the third residual always stays PE; \(y\ge n\) after a third `OOE` is already odd-odd
+- **Literature:** `minimal_ooeooe_forces_oo`; odd-`OOE` landing square gap; expanding-concat CLOSE
+- **Open:** after a third-`OOE` landing such as \(429\to 5595\) with even \(T(y)\ge n^{2}\), is there a CE-capable constraint on that escaped even, or is the leftover an \(a\ge 3\) third residual? Do not auto-continue. Do not reopen the expanding-grammar obstruction
+- **Decision:** PROMOTE the CE cube/square transfer. Do not claim that escape is impossible. Do not claim that every third residual is `OOE`
+
+```text
+What was learned
+- OOEOOEOO lies below n^3 (729 < 768)
+- a completed third OOE lies below n^2 (729 < 1024)
+- on a CE that landing cannot be even
+- 365 is PE; 429 is OOE and not PE
+- 565 overshoots n^2 and is not PE
+Strongest theorem
+- MinimalNonTerm n and follows OOEOOEOOE =>
+  odd landing below n^2
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- the third residual always drops, or always stays PE
+  (365 PE; 429/565 not PE)
+Reusable machinery
+- wordOOEOOEOO / wordOOEOOEOOE in Escape.lean
+Branch status
+- PROMOTE
+Why
+- the envelopes constrain CE third residuals without
+  CycleMin return; the dichotomy is decided, not uniform
+Best next question
+- after 429-type third OOE with even T(y) >= n^2,
+  is there a CE-capable constraint on that escaped even?
+```
+
 
