@@ -1,0 +1,148 @@
+{
+  "experiment": "juggler_minimum_relative",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "no_escape": false,
+    "above_anchor_is_closure": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "witnesses": [
+      {
+        "n": 1,
+        "drop_index": null,
+        "prefix_len": 12,
+        "above_anchor_before_drop": true,
+        "follows": true,
+        "image": 1
+      },
+      {
+        "n": 5,
+        "drop_index": 4,
+        "prefix_len": 4,
+        "above_anchor_before_drop": true,
+        "follows": true,
+        "image": 2
+      },
+      {
+        "n": 69,
+        "drop_index": 7,
+        "prefix_len": 7,
+        "above_anchor_before_drop": true,
+        "follows": true,
+        "image": 14
+      },
+      {
+        "n": 89,
+        "drop_index": 8,
+        "prefix_len": 8,
+        "above_anchor_before_drop": true,
+        "follows": true,
+        "image": 70
+      },
+      {
+        "n": 365,
+        "drop_index": 15,
+        "prefix_len": 15,
+        "above_anchor_before_drop": true,
+        "follows": true,
+        "image": 34
+      },
+      {
+        "n": 501,
+        "drop_index": 23,
+        "prefix_len": 23,
+        "above_anchor_before_drop": true,
+        "follows": true,
+        "image": 34
+      },
+      {
+        "n": 6187,
+        "drop_index": 13,
+        "prefix_len": 13,
+        "above_anchor_before_drop": true,
+        "follows": true,
+        "image": 1087
+      }
+    ],
+    "negative": {
+      "n": 9,
+      "word": "OOEOE",
+      "follows": true,
+      "image": 6,
+      "above_anchor": false,
+      "survives_exponent": false,
+      "image_lt_n": true
+    },
+    "ooe_five": {
+      "n": 5,
+      "word": "OOE",
+      "follows": true,
+      "image": 6,
+      "above_anchor": true,
+      "survives_exponent": true
+    },
+    "even_trap_69": {
+      "n": 69,
+      "word": "OOEOOE",
+      "follows": true,
+      "x": 212,
+      "x_even": true,
+      "x_below_sq": true,
+      "drop": true,
+      "above_anchor": true
+    },
+    "remaining_gap": {
+      "coincide": false,
+      "leftover": "odd-landing corridors that stay AboveAnchor on every finite prefix, never land even below n^2, never realize a scale-gap isolated prefix, and do not eventually cycle",
+      "examples": [
+        365,
+        501,
+        6187,
+        1517
+      ],
+      "not_a_halt": true,
+      "not_no_cycle": true
+    },
+    "one_is_cycle": true,
+    "paper_a_modified": false,
+    "halt_theorem": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "AboveAnchor": true,
+    "aboveAnchor_of_cycleMin": true,
+    "aboveAnchor_of_minimalNonTerm": true,
+    "finiteProgress_of_prefix_drop": true,
+    "even_below_square_drop": true,
+    "even_below_anchor_pow": true,
+    "finiteProgress_of_even_below_square": true,
+    "isolatedOddSurvival_bound": true,
+    "aboveAnchor_isolated_two": true,
+    "finiteProgress_of_ooe_oe": true,
+    "finiteProgress_of_ooeooe_even_landing": true,
+    "finiteProgress_of_aboveAnchor_returnBelow": true,
+    "no_nontrivial_cycle_no_bounded_nonterm": true,
+    "minimal_nonterm_not_finiteProgress": true,
+    "has_juggler_reaches_one": false,
+    "has_all_finiteProgress": false,
+    "has_no_juggler_cycle": false,
+    "has_no_juggler_escape": false,
+    "in_laboratory_barrel": true,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "MINIMUM_RELATIVE_GREEN",
+    "reason": "AboveAnchor serves CycleMin and MinimalNonTerm; isolated survival and the OOEOOE even-trap produce FiniteProgress; no-cycle implies no bounded nonterm; odd-landing escape corridors remain"
+  },
+  "search_method": "shared AboveAnchor checks on cycles, CE-style prefixes, 501/6187 drop prefixes, and a follows-without-anchor negative"
+}

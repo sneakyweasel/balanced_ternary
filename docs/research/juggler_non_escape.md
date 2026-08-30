@@ -78,6 +78,8 @@ not an unbounded orbit.
 - `follows_ooeooeo_image_lt_sq`: `True`
 - `minimal_ooeooe_not_even_landing`: `True`
 - `minimal_ooeooe_forces_oo`: `True`
+- `finiteProgress_of_ooeooe_even_landing`: `True`
+- `no_nontrivial_cycle_no_bounded_nonterm`: `True`
 
 ## Anti-overclaim
 

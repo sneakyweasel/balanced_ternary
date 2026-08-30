@@ -98,6 +98,12 @@ in the window. Families with `r >= 2` exist and still obey
 - `isolated_oe_lt_of_scale_gap`: `True`
 - `no_cycleMin_prefix_ooe_oe`: `True`
 - `isolated_oe_r_max_two`: `True`
+- `AboveAnchor`: `True`
+- `isolatedOddSurvival_bound`: `True`
+- `aboveAnchor_isolated_two`: `True`
+- `finiteProgress_of_ooe_oe`: `True`
+- `cycleMin_isolated_two`: `True`
+- `minimal_isolated_two`: `True`
 
 ## Anti-overclaim
 

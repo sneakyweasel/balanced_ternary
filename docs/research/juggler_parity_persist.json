@@ -1,0 +1,307 @@
+{
+  "experiment": "juggler_parity_persist",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "finite_odd_run_k": false,
+    "inherited_forces_even": false,
+    "twadic_shrink": false,
+    "w5_realized": false,
+    "episode_automaton": false,
+    "new_power_cell": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "word_l": "OOEOOOEOOEE",
+    "l_window": [
+      501,
+      6187,
+      11233,
+      11853,
+      15169,
+      15785,
+      17245,
+      19835,
+      19855,
+      21531,
+      27569,
+      28367,
+      29371,
+      33391,
+      36085,
+      36365,
+      36821,
+      37023,
+      37367,
+      39061,
+      40065,
+      42311,
+      48149
+    ],
+    "rows": [
+      {
+        "n": 501,
+        "t": 763,
+        "run": 2,
+        "kind": "OO",
+        "follows_w5": false
+      },
+      {
+        "n": 6187,
+        "t": 11189,
+        "run": 1,
+        "kind": "OE",
+        "follows_w5": false
+      },
+      {
+        "n": 11233,
+        "t": 21154,
+        "run": 0,
+        "kind": "E",
+        "follows_w5": false
+      },
+      {
+        "n": 11853,
+        "t": 22403,
+        "run": 1,
+        "kind": "OE",
+        "follows_w5": false
+      },
+      {
+        "n": 15169,
+        "t": 29155,
+        "run": 1,
+        "kind": "OE",
+        "follows_w5": false
+      },
+      {
+        "n": 15785,
+        "t": 30421,
+        "run": 1,
+        "kind": "OE",
+        "follows_w5": false
+      },
+      {
+        "n": 17245,
+        "t": 33435,
+        "run": 2,
+        "kind": "OO",
+        "follows_w5": false
+      },
+      {
+        "n": 19835,
+        "t": 38823,
+        "run": 1,
+        "kind": "OE",
+        "follows_w5": false
+      },
+      {
+        "n": 19855,
+        "t": 38865,
+        "run": 1,
+        "kind": "OE",
+        "follows_w5": false
+      },
+      {
+        "n": 21531,
+        "t": 42379,
+        "run": 1,
+        "kind": "OE",
+        "follows_w5": false
+      },
+      {
+        "n": 27569,
+        "t": 55181,
+        "run": 1,
+        "kind": "OE",
+        "follows_w5": false
+      },
+      {
+        "n": 28367,
+        "t": 56889,
+        "run": 4,
+        "kind": "OO",
+        "follows_w5": false
+      },
+      {
+        "n": 29371,
+        "t": 59041,
+        "run": 3,
+        "kind": "OO",
+        "follows_w5": false
+      },
+      {
+        "n": 33391,
+        "t": 67709,
+        "run": 5,
+        "kind": "OO",
+        "follows_w5": false
+      },
+      {
+        "n": 36085,
+        "t": 73559,
+        "run": 2,
+        "kind": "OO",
+        "follows_w5": false
+      },
+      {
+        "n": 36365,
+        "t": 74168,
+        "run": 0,
+        "kind": "E",
+        "follows_w5": false
+      },
+      {
+        "n": 36821,
+        "t": 75162,
+        "run": 0,
+        "kind": "E",
+        "follows_w5": false
+      },
+      {
+        "n": 37023,
+        "t": 75602,
+        "run": 0,
+        "kind": "E",
+        "follows_w5": false
+      },
+      {
+        "n": 37367,
+        "t": 76353,
+        "run": 1,
+        "kind": "OE",
+        "follows_w5": false
+      },
+      {
+        "n": 39061,
+        "t": 80055,
+        "run": 3,
+        "kind": "OO",
+        "follows_w5": false
+      },
+      {
+        "n": 40065,
+        "t": 82254,
+        "run": 0,
+        "kind": "E",
+        "follows_w5": false
+      },
+      {
+        "n": 42311,
+        "t": 87187,
+        "run": 2,
+        "kind": "OO",
+        "follows_w5": false
+      },
+      {
+        "n": 48149,
+        "t": 100092,
+        "run": 0,
+        "kind": "E",
+        "follows_w5": false
+      }
+    ],
+    "summary": {
+      "n_l": 23,
+      "n_odd_t": 17,
+      "runs": {
+        "1": 9,
+        "2": 4,
+        "3": 2,
+        "4": 1,
+        "5": 1
+      },
+      "stay1": 8,
+      "stay1_den": 17,
+      "max_run": 5,
+      "w5_hits": 0,
+      "mod8": {
+        "stay_classes": 4,
+        "exit_classes": 4,
+        "both_classes": 4,
+        "only_stay": [],
+        "only_exit": []
+      }
+    },
+    "long_run": {
+      "n": 33391,
+      "t": 67709,
+      "run": 5,
+      "kind": "OO",
+      "follows_w5": false
+    },
+    "run4": {
+      "n": 28367,
+      "t": 56889,
+      "run": 4,
+      "kind": "OO",
+      "follows_w5": false
+    },
+    "run2": {
+      "n": 501,
+      "t": 763,
+      "run": 2,
+      "kind": "OO",
+      "follows_w5": false
+    },
+    "row_501": {
+      "n": 501,
+      "s": 1749,
+      "r": 4447,
+      "oe": 12707,
+      "oe_kind": "OE",
+      "max_k": 2,
+      "follows_w5": false,
+      "follows_m": true,
+      "s_lt_n2": true,
+      "r_lt_n2": true,
+      "oe_lt_n2": true
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "leftover_suffix_retest": false,
+    "terminal_cluster_reopen": false,
+    "residue_automaton": false,
+    "p_adic_system": false,
+    "theta_reopen": false,
+    "episode_automaton": false,
+    "new_power_cell": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "power_bound_word": true,
+    "power_bound_contracts": true,
+    "ooo_residual_ge_cube": true,
+    "odd_cell_unique": true,
+    "no_cycleMin_ooeoooe": true,
+    "floorPower_oooee_five_step_lt": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "no_new_lean": true
+  },
+  "decision": {
+    "classification": "PARITY_PERSIST_PARK",
+    "reason": "Inherited L-landings do not force an even output. 33391 has a length-5 odd run from 67709. Stay is 8/17. Every odd class mod 8 both continues and exits. W_5 is absent. No finite K. No 2-adic shrink"
+  },
+  "search_method": "named L-followers below 50000; odd-run lengths from t; mod-8 stay/exit diagnostic only; no theta, no residue automaton, no Z5, no length-11, no new power cell"
+}

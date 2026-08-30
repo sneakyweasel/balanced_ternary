@@ -208,13 +208,13 @@ assembler, and not a halt theorem.
 ## Open questions
 
 Lean-package \(3^{23}<11\cdot 2^{33}\) and the even-\(v\)
-sixth-power reset. The odd-\(v\) residual is open, but
-another integer cell is the wrong primary invariant:
-repeated `O` multiplies \(\alpha\) by \(3/2\). Do not
-reopen bunched-short cells. Do not write \(Z_5\). Do not
-assemble `no_cycle_word_length_eleven`. Do not build a
-\(p\)-adic system. Do not add another power-bound phase
-unless a parity constraint forces an even landing.
+sixth-power reset. The parity-persistence question is the
+separate branch
+[juggler_parity_persist.md](juggler_parity_persist.md).
+Do not reopen bunched-short cells. Do not write \(Z_5\).
+Do not assemble `no_cycle_word_length_eleven`. Do not
+build a \(p\)-adic system. Do not add another power-bound
+phase.
 
 ## Decision
 

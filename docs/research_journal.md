@@ -13458,4 +13458,83 @@ Best next question
   the leftover become an unconstrained odd run?
 ```
 
+## Juggler minimum-relative consolidation
+
+- **Date:** 2026-08-30
+- **Objective:** Extract the common minimum-relative trajectory geometry and make CycleMin and MinimalNonTerm consume the same Lean primitives
+- **Hypotheses:** several CycleMin lemmas use only \(x_i\ge n\), not \(T_w(n)=n\); those lemmas already constrain CEs and can emit `FiniteProgress`
+- **Major results:** Classification **MINIMUM_RELATIVE_GREEN**. `AboveAnchor` is implied by `CycleMin` and by every `MinimalNonTerm` prefix; isolated-`OE` survival and the `OOEOOE` even-trap are prefix theorems; `OOE OE` and even `OOEOOE` landings are `FiniteProgress`; no nontrivial cycle implies no bounded nontermination — **EXACT — LEAN VERIFIED** (`J-above-anchor`, `J-no-cycle-no-bounded-nonterm`). “`follows` alone implies isolated survival” — **REFUTED** (`5` follows `OOEOE` and drops). Leftover classes coincide — **REFUTED**: odd-landing escape corridors remain. Laboratory barrel only. Paper A unchanged. No halt theorem
+- **Refuted ideas:** AboveAnchor is only a rename of CycleMin; follows implies survival (`9` follows `OOEOE`); no-cycle proves halt; the leftover classes coincide
+- **Literature:** first-internal-`OO` \(r\le R(a_0)\); CE `OOEOOE` trap; cycle-or-escape split
+- **Open:** which odd-landing corridor on a `MinimalNonTerm` start first fails a shared `AboveAnchor` obstruction, if any? Do not continue CycleMin-only lemmas that do not import as shared obstructions
+- **Decision:** PROMOTE the shared layer and the FiniteProgress bridge. Do not claim termination. Do not claim that all cycles are impossible
+
+```text
+What was learned
+- AboveAnchor is the shared prefix hypothesis
+- CycleMin and MinimalNonTerm are consumers
+- isolated-OE survival and the square trap do not use closure
+- OOE OE and even OOEOOE landings are FiniteProgress
+- no-cycle kills only bounded nontermination
+- odd-landing escape corridors remain
+Strongest theorem
+- CycleMin n w => AboveAnchor n w, and
+  MinimalNonTerm n => AboveAnchor on every
+  realized prefix; a scale-gap or even-below-
+  square landing is FiniteProgress
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- follows alone implies isolated survival (9);
+  leftover classes coincide
+Reusable machinery
+- MinimumRelative.lean; AboveAnchor;
+  isolatedOddSurvival_bound;
+  finiteProgress_of_even_below_square
+Branch status
+- PROMOTE
+Why
+- the current research results are now proved
+  once, at the prefix/anchor level
+Best next question
+- which odd-landing corridor on a
+  MinimalNonTerm start first fails a shared
+  AboveAnchor obstruction, if any?
+```
+
+## Juggler parity persistence
+
+- **Date:** 2026-08-30
+- **Objective:** Determine whether parity persistence is bounded along the inherited post-\(L\) chain, rather than adding another integer power cell
+- **Hypotheses:** inherited history forces even within finite \(K\); stay is not generic; residues modulo \(8\) shrink
+- **Major results:** Classification **PARITY_PERSIST_PARK**. Among \(23\) \(L\)-followers below \(50000\), odd-run lengths from \(t\) are \(1^{9}2^{4}3^{2}4^{1}5^{1}\); stay \(8/17\); \(33391\to 67709\) has run \(5\) — **COMPUTATIONALLY VERIFIED** (`J-cyclemin-l-image-odd-run-five`). Inherited even-forcing / \(K=2\) / \(2\)-adic shrink — **REFUTED** (`J-cyclemin-parity-persist-budget`). \(W_5\) is absent. No Lean. No \(\theta\) reopen. No \(p\)-adic system. No episode automaton. Paper A unchanged
+- **Refuted ideas:** inherited \(\Rightarrow T(t)\) even; post-\(L\) odd runs are \(\mathtt{OOE}\) only; modulo-\(8\) shrink
+- **Literature:** odd-landing sets CLOSE; landing valuation CLOSE; \(2\)-adic bridge CLOSE
+- **Open:** is \(k\) unbounded on \(T_L(n)\) as \(n\to\infty\)? Do not resume integer cells. Do not open a modulus census
+- **Decision:** PARK. History does not force an even landing and does not yield a finite \(K\)
+
+```text
+What was learned
+- inherited L-landings stay odd-to-odd at 8/17
+- odd runs from t reach length 5 (33391 -> 67709)
+- OOE is not a bound: 29371 has 3, 28367 has 4
+- every odd class mod 8 both continues and exits
+- W_5 is absent below 50000
+Strongest theorem
+- 33391 follows L to 67709 and then OOOOOE
+  (COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- inherited history forces even / K=2 / 2-adic shrink
+Reusable machinery
+- parity_persist.py named L-window and odd_run_len
+Branch status
+- PARK
+Why
+- parity remains broad after conditioning on the
+  inherited L-family; no finite K; no 2-adic shrink
+Best next question
+- is there a Diophantine obstruction to arbitrarily
+  long odd runs from T_L(n), or is k unbounded
+  on the L-family?
+```
+
 
