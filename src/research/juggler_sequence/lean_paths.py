@@ -28,6 +28,7 @@ PAPER_MODULES: tuple[str, ...] = (
     "LeftoverCycles",
     "LeftoverTwoEven",
     "FirstETransport",
+    "GappedCycleWord",
     "BunchedEEE",
     "BunchedEOEE",
     "BunchedEOOEE",
@@ -74,6 +75,7 @@ LAYERS: dict[str, Path] = {
     "LeftoverTwoEven": JUGGLER_DIR / "LeftoverTwoEven.lean",
     "FirstETransportEval": JUGGLER_DIR / "FirstETransportEval.lean",
     "FirstETransport": JUGGLER_DIR / "FirstETransport.lean",
+    "GappedCycleWord": JUGGLER_DIR / "GappedCycleWord.lean",
     "BunchedEEE": JUGGLER_DIR / "BunchedEEE.lean",
     "BunchedEOEEEval": JUGGLER_DIR / "BunchedEOEEEval.lean",
     "BunchedEOEE": JUGGLER_DIR / "BunchedEOEE.lean",
@@ -130,6 +132,7 @@ LEFTOVER_CYCLES = LAYERS["LeftoverCycles"]
 LEFTOVER_TWO_EVEN = LAYERS["LeftoverTwoEven"]
 FIRST_E_TRANSPORT_EVAL = LAYERS["FirstETransportEval"]
 FIRST_E_TRANSPORT = LAYERS["FirstETransport"]
+GAPPED_CYCLE_WORD = LAYERS["GappedCycleWord"]
 BUNCHED_EEE = LAYERS["BunchedEEE"]
 BUNCHED_EOEE_EVAL = LAYERS["BunchedEOEEEval"]
 BUNCHED_EOEE = LAYERS["BunchedEOEE"]

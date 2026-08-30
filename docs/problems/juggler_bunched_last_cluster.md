@@ -207,8 +207,9 @@ claims that remain false or unproved:
 - “every bunched leftover is one Lean theorem
   `no_cycle_word_bunched`” — not claimed. The seven families
   are seven theorems.
-- “every three-even leftover is Lean-excluded” — not claimed.
-  Gapped three-even words are excluded only as `CycleMin`s.
+- “every three-even leftover is Lean-excluded” — not claimed
+  beyond the seven bunched families and the two gapped
+  `CycleWord` families of Theorem 3.21.
 - no cycle of length eight or nine — not claimed.
 
 ## Formalization
@@ -252,10 +253,10 @@ length-9 census and not a no-cycles theorem.
 
 ## Open questions
 
-`CycleWord` exclusion of gapped three-even leftovers at a
-non-minimum start. Do not assemble
-`no_cycle_word_length_eight` or `no_cycle_word_length_nine`. Do
-not open first-E at \(e\ge 4\). Do not claim halt.
+Gapped `CycleWord` exclusion is now Paper A Theorem 3.21. Do not
+assemble `no_cycle_word_length_eight` or
+`no_cycle_word_length_nine`. Do not open first-E at \(e\ge 4\).
+Do not claim halt.
 
 ## Decision
 
@@ -264,8 +265,7 @@ not open first-E at \(e\ge 4\). Do not claim halt.
 stays **REFUTED**; those four use a tight last-odd cell. Not a
 length-8/9 census and not a halt theorem.
 
-Best next question: `CycleWord` exclusion of gapped three-even
-leftovers at a non-minimum start, or stop.
+Best next question: first-E transport at \(e\ge 4\), or stop.
 
 ## Publication assessment
 

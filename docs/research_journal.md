@@ -11404,3 +11404,40 @@ Best next question
   non-minimum start, or stop
 ```
 
+## Juggler gapped leftovers as CycleWords
+
+- **Date:** 2026-08-30
+- **Objective:** Upgrade the gapped three-even leftovers from `CycleMin` to `CycleWord` by rotation, without a length-8/9 census
+- **Hypotheses:** every rotation of \(O^aEO^bEE\) (\(a\ge 2\), \(b\ge 4\)) or \(O^aEO^bEOE\) (\(a\ge 2\), \(b\ge 3\)) is an already-excluded `CycleMin` orientation, so \(y<n\) is irrelevant
+- **Major results:** `no_cycle_word_gapped_three_even_ee`, `no_cycle_word_gapped_three_even_eoe` (**EXACT — LEAN VERIFIED**, ledgers `J-gapped-cycle-word-ee`, `J-gapped-cycle-word-eoe`). Paper A Theorem 3.21. Probe: 1099 rotations, 0 forbidden. Theorem 3.13 stays CycleMin-only. Not a length-8/9 census. No `no_cycle_word_bunched`
+- **Refuted ideas:** a bunched or unclassified rotation of a gapped leftover; a length-8 or length-9 Lean census as an automatic corollary
+- **Literature:** first-E CycleMin (Theorem 3.13), last-gap bootstrap, end-odd / start-even / start-`OE`
+- **Open:** first-E transport at \(e\ge 4\), or stop. Length 8 still open as a census
+- **Decision:** PROMOTE the Lean `CycleWord` upgrade of both gapped families. Not a census theorem and not a halt theorem
+
+```text
+What was learned
+- y<n blocks first-E transport but not exists_cycleMin
+- every gapped rotation is first-E, bootstrap, ends-odd,
+  starts-even, or starts-OE; none is bunched
+- bootstrap at k=a+1 is last-gap >=2: OOO at N=3, or OO at
+  N=5 with n=3 failing four odds (EOE b=3 reaches 6 after OOOE)
+- Theorem 3.13 stays CycleMin-only; 3.21 is the CycleWord
+  upgrade, not a rewrite of first-E quantifiers
+Strongest theorem
+- no_cycle_word_gapped_three_even_ee / eoe: both gapped
+  leftovers are not CycleWords at n>=2
+Strongest refutation
+- a bunched rotation of a gapped leftover (none found)
+Reusable machinery
+- GappedCycleWord.lean: rotation cons/snoc, letter-at-index
+  lemmas, bootstrap last-gap, both CycleWord theorems
+Branch status
+- PROMOTE
+Why
+- both families are Lean CycleWords by rotation of already
+  excluded CycleMin orientations; recorded as Paper A 3.21
+Best next question
+- first-E transport at e>=4, or stop
+```
+

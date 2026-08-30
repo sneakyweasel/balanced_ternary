@@ -10,12 +10,12 @@ The former single note has been split into two manuscripts:
   *Small cycles of the Juggler map.* Exact word calculus, defect
   identity, inverse cells, the small-cycle census (no nontrivial
   cycle of length at most seven), the uniform leftover families
-  (Theorems 3.12--3.20), and the uniform one- and two-step
+  (Theorems 3.12--3.21), and the uniform one- and two-step
   certificates. The arguments of Sections 2--4 are written in the
   note. Lean is an independent check. Lemma 3.3 is an elementary
   envelope used by Lemma 3.5. Lemma 3.4 writes the next-square
   thresholds, including the odd-run exclusion \(O^aE\) for
-  \(a\ge 3\), that assemble Theorem 3.6. Theorems 3.12--3.20
+  \(a\ge 3\), that assemble Theorem 3.6. Theorems 3.12--3.21
   exclude leftover families by even-count; they are not a census
   at length eight or nine. No density result is
   stated. After Theorem 4.1, the complement of the uniform short
@@ -77,12 +77,13 @@ compositional global defect with rigid zero cases. Inverse cells give
 cycle restrictions and a small-cycle census: no nontrivial cycle has
 length at most seven. After the census, two leftover two-even
 families are excluded at every expanding length, gapped three-even
-leftovers are excluded on a cycle minimum, and the seven bunched
-three-even families are excluded. Even and odd-to-even starts carry
+leftovers are excluded on a cycle minimum, the seven bunched
+three-even families are excluded, and both gapped leftovers are
+excluded as cycle words. Even and odd-to-even starts carry
 uniform short certificates; the starts not covered by those
 certificates are exactly the odd-to-odd class, not the starts with
 no descent of any length. The small-cycle census is Theorems 3.6
-and 3.8; the family theorems are 3.12--3.20.
+and 3.8; the family theorems are 3.12--3.21.
 
 **Paper B.** An exact-linearization discrepancy calculus with a
 kernel theorem for the level-2 floor defect proves every *O-rooted*
@@ -114,6 +115,7 @@ says nothing about the deterministic shift).
 | Two-even leftover families (Theorem 3.12) | **EXACT — LEAN VERIFIED** | \(O^{k-2}EE\) and \(O^{k-3}EOE\) for every \(k\ge6\); not a length-8 census |
 | First-even transport (Theorem 3.13) | **EXACT — LEAN VERIFIED** | minimum-based starts only; not a `CycleWord` theorem at a non-minimum start |
 | Bunched families \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\), \(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\) (Theorems 3.14--3.20) | **EXACT — LEAN VERIFIED** | seven families only; not a length-8 or length-9 census |
+| Gapped leftovers as cycle words (Theorem 3.21) | **EXACT — LEAN VERIFIED** | both gapped families; rotation of already-excluded CycleMins; not first-E at a non-minimum start; not a length-8 or length-9 census |
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists |
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 4) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Theorem 4.1) | **EXACT — LEAN VERIFIED** | not all descent certificates |
@@ -160,7 +162,7 @@ says nothing about the deterministic shift).
 4. `power_bound_contracts` requires a realized contracting word.
 5. Cycle restrictions do not exclude all cycles. Paper A Theorem 3.6
    is a census for lengths at most six; Theorem 3.8 extends it to
-   lengths at most seven. Theorems 3.12--3.20 exclude leftover
+   lengths at most seven. Theorems 3.12--3.21 exclude leftover
    families, not every word of length eight
    or nine. Cycles of
    length eight or more remain possible as far as the papers prove.
@@ -200,7 +202,7 @@ Reject or revise if:
 3. Paper A Theorem 4.1 is read as “odd-to-odd starts have no descent”;
 4. any analytic estimate of Paper B is described as Lean-certified;
 5. the census of Paper A Theorem 3.6 is read beyond length six, or
-   Theorem 3.8 beyond length seven, or Theorems 3.12--3.20 are
+   Theorem 3.8 beyond length seven, or Theorems 3.12--3.21 are
    read as a length-8 or length-9 census, or Theorem 3.13 is read
    as a cycle-word exclusion at a non-minimum start, or an
    exclusion of cycles of length eight or more is attributed to

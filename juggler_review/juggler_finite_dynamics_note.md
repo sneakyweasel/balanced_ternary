@@ -88,8 +88,10 @@ finite-word envelope (Theorem 2.2), together with the inverse cells
 and two next-square thresholds. After the census, the same cells
 exclude two infinite leftover families at every expanding length
 (Theorem 3.12), transport that comparison across a first even letter
-on a cycle minimum (Theorem 3.13), and exclude the seven bunched
-three-even families (Theorems 3.14--3.20). The exact defect
+on a cycle minimum (Theorem 3.13), exclude the seven bunched
+three-even families (Theorems 3.14--3.20), and upgrade both
+gapped leftovers from cycle minima to cycle words
+(Theorem 3.21). The exact defect
 (Theorems 2.4--2.6) is the same recurrence with remainders kept
 rather than dropped. It classifies the rigid zero cases and shows
 that a uniform per-step slack tax is impossible; it is not needed
@@ -815,7 +817,7 @@ The hypothesis that the start is a cycle minimum is essential. If
 \(y<n\), the leftover cell is measured against a larger start and
 need not contradict the tail at \(y\). In particular, Theorem 3.13
 does not assert that those words fail to be cycle words at a
-non-minimum start.
+non-minimum start. That upgrade is Theorem 3.21.
 
 **Theorem 3.14 (three trailing evens).**
 Let \(a\ge 6\) and \(n\ge 2\). The word \(O^aEEE\) is not a cycle
@@ -1021,11 +1023,47 @@ that window; this is the Lean `native_decide` evaluation behind
 `no_cycle_word_three_even_eooeoe` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 
+**Theorem 3.21 (gapped leftovers as cycle words).**
+Let \(n\ge 2\). No cycle word at \(n\) has the form \(O^aEO^bEE\)
+with \(a\ge 2\) and \(b\ge 4\), or the form \(O^aEO^bEOE\) with
+\(a\ge 2\) and \(b\ge 3\).
+
+*Proof.* Every cycle word has a minimum-based rotation. It is
+therefore enough to check that every cyclic shift of either word
+is an already-excluded cycle-minimum orientation.
+
+Write \(w\) for the gapped word. In the first family,
+\(\lvert w\rvert=a+b+3\). The rotation by \(k=0\) is the original
+word, excluded as a cycle minimum by Theorem 3.13. The rotation
+by \(k=a+1\) is the bootstrap word \(O^bEEO^aE\). That word has
+an internal even letter and last gap at least \(2\). If
+\(a\ge 3\), the last-gap threshold of Lemma 3.4 at \(OOO\) and
+\(N=3\) excludes it. If \(a=2\), the same lemma at \(OO\) and
+\(N=5\) excludes every start \(n\ge 5\); the remaining odd start
+\(n=3\) does not realize four consecutive odd letters, so it
+cannot follow \(O^b\) for \(b\ge 4\). The rotation by
+\(k=a+b+2\) begins with the last even letter of \(w\), which
+Theorem 3.2 forbids at a cycle minimum. Every other rotation
+ends with an odd letter, likewise forbidden at a cycle minimum.
+
+In the second family, \(\lvert w\rvert=a+b+4\). The same four
+classes appear: the original word is Theorem 3.13; the rotation
+by \(k=a+1\) is \(O^bEOEO^aE\), excluded by the same last-gap
+thresholds, with the remaining start \(n=3\) and \(a=2\) either
+failing to realize four odds or, when \(b=3\), reaching \(6\)
+after \(OOOE\) and then meeting an odd letter; the rotation by
+\(k=a+b+2\) begins \(OE\), forbidden by Theorem 3.2; and every
+other rotation ends odd.
+
+The original start need not be a cycle minimum. After rotation
+the start is a minimum, so the hypothesis \(y<n\) that blocked
+Theorem 3.13 does not arise. \(\square\)
+
 Length eight remains the first even-terminating expanding length
 outside the census. Theorem 3.12 excludes its two leftover
 orientations, but the census assembly of Theorem 3.8 is not
 extended. Length nine is the first even-terminating expanding
-length that admits three even letters; Theorems 3.13--3.20 treat
+length that admits three even letters; Theorems 3.13--3.21 treat
 infinite families of those leftovers, not every length-nine word.
 A single coarse successor power \((n+1)^K\) cannot exclude the
 four families of Theorems 3.17--3.20 by the same cell used for
@@ -1123,6 +1161,7 @@ names are the corresponding Lean theorems in
 | Theorem 3.18 | `no_cycle_word_three_even_eeoe` |
 | Theorem 3.19 | `no_cycle_word_three_even_eoeoe` |
 | Theorem 3.20 | `no_cycle_word_three_even_eooeoe` |
+| Theorem 3.21 | `no_cycle_word_gapped_three_even_ee`, `no_cycle_word_gapped_three_even_eoe` |
 | Theorem 4.1 | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |
@@ -1135,7 +1174,7 @@ the text, organizing companion notes, and as an interactive assistant
 for Lean statements, tests, and literature records. The models are
 not authors. Lean theorems and named computations are the
 certificates for the claims of Sections 2--4, including the family
-theorems 3.12--3.20. I take full
+theorems 3.12--3.21. I take full
 responsibility for the contents.
 
 ## References

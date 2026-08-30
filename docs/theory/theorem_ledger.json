@@ -3446,6 +3446,30 @@
     "related_conjectures": []
   },
   {
+    "id": "J-gapped-cycle-word-ee",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 4, the gapped three-even leftover O^a E O^b EE is not a Juggler cycle word. Every CycleWord has a CycleMin rotation. The k=0 rotation is the first-E CycleMin exclusion; the rotation at k=a+1 is the bootstrap word O^b EE O^a E, excluded by last-gap ≥ 2 (OOO at N=3, or OO at N=5 with n=3 failing to follow four odds); the last even starts even; every other rotation ends odd. Lean theorem no_cycle_word_gapped_three_even_ee. This upgrades the CycleMin theorem to CycleWord; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/GappedCycleWord.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_gapped_cycle_word.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-gapped-cycle-word-eoe",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler cycle word. The same rotation classes apply: first-E CycleMin at k=0; bootstrap O^b EOE O^a E at k=a+1 (last-gap ≥ 2, with n=3 and b=3 failing after OOOE at 6); start OE at k=a+b+2; every other rotation ends odd. Lean theorem no_cycle_word_gapped_three_even_eoe. This upgrades the CycleMin theorem to CycleWord; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/GappedCycleWord.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_gapped_cycle_word.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-nested-parity-linearization",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "For odd n ≥ 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 ≤ E(n) ≤ (3/8)(n^{3/2}-1)^{-1/2} ≤ (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} ≥ 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",

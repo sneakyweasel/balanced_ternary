@@ -194,10 +194,12 @@ no-cycles theorem.
 
 ## Open questions
 
-Bunched-tail cells for the \(a_1\)-short remainder, or first-E
-transport at \(e\ge 4\). Do not assemble
-`no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
-Do not claim halt.
+`CycleWord` exclusion of these gapped leftovers is now Paper A
+Theorem 3.21 (`no_cycle_word_gapped_three_even_ee`,
+`no_cycle_word_gapped_three_even_eoe`). Theorem 3.13 remains
+CycleMin-only. Remaining: first-E transport at \(e\ge 4\), or
+stop. Do not assemble `no_cycle_word_length_eight` or
+`no_cycle_word_length_nine`. Do not claim halt.
 
 ## Decision
 

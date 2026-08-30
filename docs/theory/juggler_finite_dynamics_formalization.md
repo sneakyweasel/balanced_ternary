@@ -452,10 +452,13 @@ no_cycle_word_three_even_eoooee  (Theorem 3.17)
 no_cycle_word_three_even_eeoe    (Theorem 3.18)
 no_cycle_word_three_even_eoeoe   (Theorem 3.19)
 no_cycle_word_three_even_eooeoe  (Theorem 3.20)
+no_cycle_word_gapped_three_even_ee
+no_cycle_word_gapped_three_even_eoe (Theorem 3.21)
 ```
 
 Theorem 3.13 is a minimum-based exclusion. It is not a `CycleWord`
-theorem at a non-minimum start. Theorems 3.12--3.20 do not assemble
+theorem at a non-minimum start. Theorem 3.21 upgrades those same
+words to `CycleWord`s by rotation. Theorems 3.12--3.21 do not assemble
 `no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
 
 The cycle-surplus identity of the note's Corollary 2.7 and the

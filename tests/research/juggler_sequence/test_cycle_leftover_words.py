@@ -13,6 +13,7 @@ from research.juggler_sequence.lean_paths import (
     BUNCHED_EOOEOE,
     BUNCHED_EOOOEE,
     FIRST_E_TRANSPORT,
+    GAPPED_CYCLE_WORD,
     LEFTOVER_CYCLES,
     LEFTOVER_EVAL,
     LEFTOVER_TWO_EVEN,
@@ -54,6 +55,15 @@ def test_leftover_cycle_theorems_present():
     assert "theorem no_cycleMin_gapped_three_even_eoe" in transport
     assert "theorem no_cycle_word_length_eight" not in transport
     assert "theorem no_cycle_word_length_nine" not in transport
+    gapped = GAPPED_CYCLE_WORD.read_text(encoding="utf-8")
+    assert "theorem no_cycle_word_gapped_three_even_ee" in gapped
+    assert "theorem no_cycle_word_gapped_three_even_eoe" in gapped
+    assert "theorem no_cycle_word_length_eight" not in gapped
+    assert "theorem no_cycle_word_length_nine" not in gapped
+    assert "sorry" not in gapped
+    assert "admit" not in gapped
+    assert has_named(text, "no_cycle_word_gapped_three_even_ee")
+    assert has_named(text, "no_cycle_word_gapped_three_even_eoe")
     bunched = BUNCHED_EEE.read_text(encoding="utf-8")
     assert "theorem no_cycle_word_three_even_eee" in bunched
     assert "theorem three_even_eee_tail" in bunched
@@ -152,6 +162,7 @@ def test_note_records_census_without_overclaim():
     assert "Theorem 3.18" in note
     assert "Theorem 3.19" in note
     assert "Theorem 3.20" in note
+    assert "Theorem 3.21" in note
     assert "remain open" not in note
     assert "OOOEOE" in note
     assert "OOOOEE" in note
@@ -167,6 +178,8 @@ def test_note_records_census_without_overclaim():
     assert "no_cycle_word_three_even_eeoe" in note
     assert "no_cycle_word_three_even_eoeoe" in note
     assert "no_cycle_word_three_even_eooeoe" in note
+    assert "no_cycle_word_gapped_three_even_ee" in note
+    assert "no_cycle_word_gapped_three_even_eoe" in note
     assert "theorem no_cycle_word_length_eight" not in note
     assert "theorem no_cycle_word_length_nine" not in note
     flat = " ".join(note.split())

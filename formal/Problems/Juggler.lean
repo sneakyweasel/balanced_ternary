@@ -30,6 +30,7 @@ import Problems.Juggler.LeftoverCycles
 import Problems.Juggler.LeftoverTwoEven
 import Problems.Juggler.FirstETransportEval
 import Problems.Juggler.FirstETransport
+import Problems.Juggler.GappedCycleWord
 import Problems.Juggler.BunchedEEE
 import Problems.Juggler.BunchedEOEEEval
 import Problems.Juggler.BunchedEOEE

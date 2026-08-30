@@ -5,7 +5,7 @@ Status: **PAPER_CANDIDATE**. The publication draft is dated 30 August 2026
 and is not submitted. After the publication-readiness rewrite it is a
 standalone math note titled *Small cycles of the Juggler map*, centered
 on the length-\(\le 7\) census; leftover families by even-count
-(Theorems 3.12--3.20) sit after that census and do not extend it.
+(Theorems 3.12--3.21) sit after that census and do not extend it.
 The envelope is the tool, the defect is exact bookkeeping, and the
 short certificates are a remark.
 
@@ -129,6 +129,8 @@ added to `bt.*`.
 - bunched families \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\),
   \(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\) —
   **EXACT — LEAN VERIFIED** (Paper A Theorems 3.14--3.20);
+- gapped leftovers as cycle words —
+  **EXACT — LEAN VERIFIED** (Paper A Theorem 3.21);
 - cycle surplus \(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) and the
   per-step slack-scale bound \(x^e<(J(x)+1)^2\) —
   **EXACT — LEAN VERIFIED** (`image_eq_start_defectRatio`,
@@ -218,7 +220,7 @@ standalone checkability. The stack now consists of:
 - [Paper A](../theory/juggler_finite_dynamics_note.md) — power
   envelopes, exact defects, cycle restrictions, the small-cycle
   census (Theorems 3.6 and 3.8), leftover families
-  (Theorems 3.12--3.20), short certificates (Theorem 4.1). The
+  (Theorems 3.12--3.21), short certificates (Theorem 4.1). The
   complement of those certificates is the odd-to-odd class. Lean
   is an independent check; no density claims; no length-8 or
   length-9 census; submission candidate;
@@ -280,7 +282,7 @@ Section 5).
 Paper A is a standalone Lean-backed math note titled *Small cycles
 of the Juggler map*: the length-\(\le7\) census is the theorem; the
 envelope, cells, and thresholds are the tools; leftover families
-by even-count (Theorems 3.12--3.20) sit after the census and do
+by even-count (Theorems 3.12--3.21) sit after the census and do
 not extend it; the defect identity is exact bookkeeping, not a
 uniform tax. Short certificates and the remaining gap are remarks.
 Related work now includes Pickover 2002, Weisstein, and OEIS
