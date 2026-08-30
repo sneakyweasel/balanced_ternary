@@ -145,9 +145,10 @@ This is not a halt theorem and not a length-11 cycle census.
 
 ## Open questions
 
-After \(1517\to 124475\), does the second `O` of that new `OO`
-stay below \(n^{2}\), or is that the first lost square-cell
-letter? Do not open a length-11 assembler.
+Answered in
+[juggler_second_o_lost_sq.md](juggler_second_o_lost_sq.md): the
+second `O` loses the square cell and \(1517\) lands odd in
+\([n^{2},n^{3})\). Do not open a length-11 assembler.
 
 ## Decision
 
@@ -155,8 +156,8 @@ letter? Do not open a length-11 assembler.
 escaped even on this step. Do not claim that escape is
 impossible.
 
-Best next question: after \(1517\to 124475\), does the second
-`O` of the new `OO` still lie below \(n^{2}\)?
+Best next question: answered in
+[juggler_second_o_lost_sq.md](juggler_second_o_lost_sq.md).
 
 ## Publication assessment
 

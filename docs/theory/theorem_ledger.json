@@ -4618,5 +4618,49 @@
       "tests/research/juggler_sequence/test_second_post_l_ooe.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-ce-second-o-cube",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "The word OOEOOEOOEOEOO loses the square-cell gap (19683 > 16384). If n ≥ 2 follows that word, then T(n) < n^3 because u^{8192} ≤ n^{19683} forbids n^3 ≤ u (24576 > 19683). A CE that follows OOEOOEOOEOE follows OOEOOEOOEOEOO. This is not a proof that the image stays below n^2, not a length-11 cycle census, and not a halt theorem.",
+    "source": "docs/problems/juggler_second_o_lost_sq.md",
+    "lean": "Problems/Juggler/Escape.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_second_o_lost_sq.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-second-o-below-square",
+    "tag": "REFUTED",
+    "statement": "After 1517 → 124475, the second O of the new OO still lies below n^2. False. 1517 follows OOEOOEOOEOEOO to 43916043, which is odd and satisfies 1517^2 = 2301289 ≤ 43916043 < 1517^3. The 13-letter word already lacks a square-cell gap (19683 > 16384). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_second_o_lost_sq.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_second_o_lost_sq.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-k5-post-l-cube",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If n ≥ 2 follows W_5 = M(OOE)^5 with M = OOEOOOEOOEEOOE, then W_5 has length 29 and 19 odds, so x_5 = T_{W_5}(n) satisfies x_5^{2^{29}} ≤ n^{3^{19}}. The square cell fails (2^{30} < 3^{19}) and the cube cell holds (3^{19} < 3·2^{29}), hence x_5 < n^{3^{19}/2^{29}} < n^3. The k=4 ceiling lies below 2 (3^{17} < 2^{27}); the k=5 ceiling lies above 2; the exponent ratios differ by exactly 9/8. If x_5 is even then T(x_5) < n^{3/2} < n^2 (same comparison 3^{19} < 3·2^{29}) and x_5 cannot start L; even x_5 is not FiniteProgress (3^{19} > 2^{30}). If x_5 is odd then the next O satisfies T(x_5) < n^4 (3^{20} < 4·2^{30}). This is a near-square replacement of the square cell, not a halt bound, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_k5_post_l_ooe.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_k5_post_l_ooe.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-k5-post-l-hierarchy",
+    "tag": "REFUTED",
+    "statement": "The k=5 post-L OOE escape has no useful finite upper power bound below n^4, the even branch creates a new scale hierarchy, and x_5 ≥ n^2 is forced by the square-cell failure. False. 3^{19} < 3·2^{29} gives x_5 < n^3. Even x_5 returns to T < n^{3/2} < n^2 and does not drop below n (3^{19} > 2^{30}). The k=5/k=4 exponent ratios differ by exactly 9/8; the first integer threshold is n^3, not n^4. Losing the square ceiling does not create a square floor. 501 never follows W_5 (max k=2, landing 12707 starts OE). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_k5_post_l_ooe.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_k5_post_l_ooe.py"
+    ],
+    "related_conjectures": []
   }
 ]

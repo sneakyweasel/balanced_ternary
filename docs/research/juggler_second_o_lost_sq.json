@@ -1,0 +1,70 @@
+{
+  "experiment": "juggler_second_o_lost_sq",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "no_escape": false,
+    "cycles_impossible": false,
+    "second_o_below_sq": false,
+    "length_eleven_census": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "loses_square": true,
+    "cube_gap": true,
+    "restores_square_on_e": true,
+    "witness_1517": {
+      "n": 1517,
+      "q": 124475,
+      "u": 43916043,
+      "follows": true,
+      "image": 43916043,
+      "ge_sq": true,
+      "lt_cube": true,
+      "u_odd": true
+    },
+    "row_1517": {
+      "n": 1517,
+      "q": 124475,
+      "u": 43916043,
+      "u_odd": true,
+      "ge_sq": true,
+      "lt_sq": false,
+      "lt_cube": true,
+      "in_cube_corridor": true
+    },
+    "second_o_below_sq": false,
+    "length_eleven_census": false,
+    "expanding_grammar_reopen": false,
+    "halt_claim": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "wordOOEOOEOOEOEOO": true,
+    "ooeooeooeoeoo_loses_square": true,
+    "follows_ooeooeooeoeoo_image_lt_cube": true,
+    "minimal_ooeooeooeoeo_follows_o": true,
+    "minimal_ooeooeooeoeo_not_even": true,
+    "has_no_juggler_escape": false,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_cycle": false,
+    "has_no_cycle_word_length_eleven": false,
+    "escape_has_cube": true,
+    "escape_has_lost_sq": true,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "SECOND_O_LOST_SQ_GREEN",
+    "reason": "the second O loses the square cell (19683 > 16384) and keeps the cube (19683 < 24576); 1517 lands odd in [n^2, n^3)"
+  },
+  "search_method": "13-letter square/cube gaps; 1517 second O; Lean cube envelope; no halt"
+}

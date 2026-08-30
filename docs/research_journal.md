@@ -13271,4 +13271,77 @@ Best next question
   new OO still lie below n^2?
 ```
 
+## Juggler second O loses the square cell
+
+- **Date:** 2026-08-30
+- **Objective:** After \(1517\to 124475\), decide whether the second `O` of the new `OO` still lies below \(n^{2}\)
+- **Hypotheses:** the square-cell chain continues; or \(19683>16384\) is the first lost square and the cube survives
+- **Major results:** Classification **SECOND_O_LOST_SQ_GREEN**. The 13-letter word loses the square cell (\(19683>16384\)) and keeps the cube (\(19683<24576\)); a CE following the odd `OE` follows `OOEOOEOOEOEOO` — **EXACT — LEAN VERIFIED** (`J-ce-second-o-cube`). Second `O` still below \(n^{2}\) — **REFUTED** (`J-second-o-below-square`): \(1517\to 43916043\) is odd in \([1517^{2},1517^{3})\). Square-cell letter chain stopped. Laboratory barrel only. Paper A unchanged. No halt theorem
+- **Refuted ideas:** the second `O` stays below \(n^{2}\); another same-trap square transfer
+- **Literature:** CE next-`O` square (`J-ce-oe-next-oo`); lost-square / cube after `OOEOOOEO`
+- **Open:** after an odd cube-corridor landing such as \(1517\to 43916043\), is there a unifying CE-capable invariant, or only another one-step envelope? Do not auto-continue. Do not resume the letter-by-letter square chain
+- **Decision:** PROMOTE the lost-square / cube split. Stop the square-cell letter chain. Do not claim that escape is impossible
+
+```text
+What was learned
+- the 13-letter word loses the square cell (19683 > 16384)
+- the cube gap survives (19683 < 24576)
+- 1517 lands odd in [n^2, n^3) at 43916043
+- this is the first lost square on the CE spine
+- the letter-by-letter square chain stops here
+Strongest theorem
+- follows OOEOOEOOEOEOO => image < n^3
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- the second O still lies below n^2 (1517)
+Reusable machinery
+- wordOOEOOEOOEOEOO; cube envelope in Escape.lean
+Branch status
+- PROMOTE
+Why
+- the square-cell chain ends with a genuine cube leftover,
+  not another copied even-trap
+Best next question
+- after odd u in [n^2, n^3), is there a unifying
+  CE-capable invariant, or only another one-step envelope?
+```
+
+## Juggler k=5 post-L OOE escape
+
+- **Date:** 2026-08-30
+- **Objective:** Characterize the exact scale corridor created by the first \(k=5\) post-\(L\) `OOE` escape and determine what parity does next
+- **Hypotheses:** no useful bound below \(n^4\); even branch opens a new hierarchy; \(x_5\ge n^2\) is forced; even \(x_5\) drops
+- **Major results:** Classification **K5_POST_L_OOE_GREEN**. \(W_5=M(\mathtt{OOE})^5\) has \(x_5^{2^{29}}\le n^{3^{19}}\) and \(x_5<n^{3^{19}/2^{29}}<n^3\); square fails (\(2^{30}<3^{19}\)); \(k=4\) vs \(k=5\) ratios differ by \(9/8\); even \(x_5\) resets to \(T<n^{3/2}\) and cannot start \(L\) — **EXACT — HUMAN PROOF** (`J-cyclemin-k5-post-l-cube`). No useful bound / even hierarchy / forced \(x_5\ge n^2\) — **REFUTED** (`J-cyclemin-k5-post-l-hierarchy`). Even is not FiniteProgress. Odd next-`O` is below \(n^4\) and may enter \(C_3\). `501` never reaches \(k=5\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** \(k=5\) has no cube bound; even branch is a new hierarchy; square failure forces \(x_5\ge n^2\); even \(x_5\) drops; \(501\) realizes \(W_5\)
+- **Literature:** second post-\(L\) square budget \(k\le 4\); `power_bound_word`
+- **Open:** if \(x_5\) is odd, does the next `O` stay below \(n^3\) under an inherited constraint, or is the first post-\(L\) \(C_3\) landing the leftover? Do not build a \(p\)-adic system
+- **Decision:** PROMOTE the cube replacement corridor and the even reset. Do not claim that \(k=5\) is contradictory
+
+```text
+What was learned
+- W_5 gives x_5^{2^{29}} <= n^{3^{19}} and x_5 < n^3
+- the square cell fails; the first integer replacement is n^3
+- k=5/k=4 exponent ratios differ by exactly 9/8
+- even x_5 resets below n^{3/2} and cannot start L
+- odd x_5 has next-O image below n^4; 501 never reaches k=5
+Strongest theorem
+- x_5 < n^{3^{19}/2^{29}} < n^3; even landing
+  returns to T < n^{3/2}
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- no useful bound below n^4 / even opens a new hierarchy /
+  square failure forces x_5 >= n^2
+Reusable machinery
+- k5_post_l_ooe.py cube gap and even-reset comparisons
+Branch status
+- PROMOTE
+Why
+- k=5 is a near-square leak into the cube corridor with
+  an even reset to a known C_1 band, not a new hierarchy
+Best next question
+- if x_5 is odd, does the next O stay below n^3 under an
+  inherited constraint, or is the first post-L C_3
+  landing the leftover?
+```
+
 

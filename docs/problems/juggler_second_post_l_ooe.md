@@ -176,8 +176,10 @@ assembler, and not a halt theorem.
 ## Open questions
 
 Lean-package \(2^{18}>3^{11}\) and the \(k\le 4\) gap.
+The first \(k=5\) square failure is the separate branch
+[juggler_k5_post_l_ooe.md](juggler_k5_post_l_ooe.md).
 The residual after a second `OO` landing (\(501\to 4447\))
-and the first \(k=5\) square failure are open. Do not
+that dies at \(k=2\) is not that escape. Do not
 reopen bunched-short cells. Do not write \(Z_5\). Do not
 assemble `no_cycle_word_length_eleven`. Do not build a
 \(p\)-adic system.

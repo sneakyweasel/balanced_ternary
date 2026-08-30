@@ -13,7 +13,8 @@ image below `n^2`, is descent and is impossible on a CE. After the
 forced `OO`, the third residual `OOEOOEOO` lies below `n^3` and a
 completed third `OOE` lies below `n^2`. The escaped-even `OE`
 `OOEOOEOOEOE` still lies below `n^2`. The next `O` after an odd
-`OE` landing still lies below `n^2`.
+`OE` landing still lies below `n^2`. The following second `O`
+loses the square cell and stays below `n^3`.
 
 This is not a halt theorem. It does not prove
 `∀ n, ¬EscapesToInfinity n`. It does not prove that every cycle is
@@ -498,5 +499,55 @@ theorem minimal_ooeooeooeoeo_not_even {n : ℕ}
     (even_floorPower_lt_iff he).mpr hlt
   exact minimal_nonterm_no_descent h
     ⟨follows_ooeooeooeoeo_even hf he, by simpa [image_ooeooeooeoeo_even] using hdrop⟩
+
+def wordOOEOOEOOEOEOO : List Branch :=
+  wordOOEOOEOOEOEO ++ [Branch.odd]
+
+theorem wordOOEOOEOOEOEOO_length : wordOOEOOEOOEOEOO.length = 13 := by
+  simp [wordOOEOOEOOEOEOO, wordOOEOOEOOEOEO, wordOOEOOEOOEOE, wordOOEOOEOOEO,
+    wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+
+theorem wordOOEOOEOOEOEOO_oddCount : oddCount wordOOEOOEOOEOEOO = 9 := by
+  simp [wordOOEOOEOOEOEOO, wordOOEOOEOOEOEO, wordOOEOOEOOEOE, wordOOEOOEOOEO,
+    wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+
+theorem follows_wordOOEOOEOOEOEOO_of_forced_oo {n : ℕ}
+    (h : follows n wordOOEOOEOOEOEO ∧ image n wordOOEOOEOOEOEO % 2 = 1) :
+    follows n wordOOEOOEOOEOEOO := by
+  simpa [wordOOEOOEOOEOEOO] using follows_append h.1 (follows_singleton_odd h.2)
+
+theorem minimal_ooeooeooeoeo_follows_o {n : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOEOE) :
+    follows n wordOOEOOEOOEOEOO :=
+  follows_wordOOEOOEOOEOEOO_of_forced_oo (minimal_ooeooeooeoeo_not_even h hw)
+
+theorem ooeooeooeoeoo_loses_square : ¬(3 ^ 9 < 2 ^ (13 + 1)) := by
+  decide
+
+set_option exponentiation.threshold 24576
+
+theorem follows_ooeooeooeoeoo_pow {n : ℕ} (hw : follows n wordOOEOOEOOEOEOO) :
+    (image n wordOOEOOEOOEOEOO) ^ 8192 ≤ n ^ 19683 := by
+  have h := power_bound_word hw
+  rw [wordOOEOOEOOEOEOO_length, wordOOEOOEOOEOEOO_oddCount] at h
+  rw [image_eq_iterate, wordOOEOOEOOEOEOO_length]
+  convert h <;> norm_num
+
+/-- The second `O` after the new `OO` loses the square cell
+(`19683 > 16384`) but keeps the cube-cell gap `24576 > 19683`. -/
+theorem follows_ooeooeooeoeoo_image_lt_cube {n : ℕ} (hn : 2 ≤ n)
+    (hw : follows n wordOOEOOEOOEOEOO) :
+    image n wordOOEOOEOOEOEOO < n ^ 3 := by
+  have hpow := follows_ooeooeooeoeoo_pow hw
+  refine Nat.lt_of_not_ge fun hge => ?_
+  have hleft : n ^ 24576 ≤ (image n wordOOEOOEOOEOEOO) ^ 8192 := by
+    calc
+      n ^ 24576 = n ^ (3 * 8192) := by norm_num
+      _ = (n ^ 3) ^ 8192 := Nat.pow_mul n 3 8192
+      _ ≤ (image n wordOOEOOEOOEOEOO) ^ 8192 := Nat.pow_le_pow_left hge 8192
+  have hle : n ^ 24576 ≤ n ^ 19683 := le_trans hleft hpow
+  have hlt : n ^ 19683 < n ^ 24576 :=
+    pow_lt_of_two_le hn (by decide : 19683 < 24576)
+  exact (not_le_of_gt hlt) hle
 
 end Problems.Juggler
