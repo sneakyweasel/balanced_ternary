@@ -14088,4 +14088,43 @@ Best next question
   to a Q-block
 ```
 
+## Juggler mixed OE cell
+
+- **Date:** 2026-08-30
+- **Objective:** After a cube-scale odd lift, decide whether \(x^{3}\approx y^{2}\) followed by an even square step is a new mixed cell or only composed envelopes
+- **Hypotheses:** \(T^{2}(x)<n^{2}\) iff \(x^{3}<n^{8}\); leftover first lifts sit below; defect becomes informative
+- **Major results:** Classification **MIXED_OE_CELL_GREEN**. Mixed OE iff \(z<n^{2}\Leftrightarrow x^{3}<n^{8}\) — **EXACT — LEAN VERIFIED** (`J-mixed-oe-eighth`). Leftover first lifts of \(365,501,1517,6187\) sit below \(n^{8}\); \(501\) later landing sits above and not below \(n^{2}\) — **COMPUTATIONALLY VERIFIED**. History-sensitive defect cut — **REFUTED** (`J-mixed-oe-defect-gap`). No \(Q\)-return. Paper A unchanged. No halt theorem
+- **Refuted ideas:** cube-scale conditioning restricts \(\theta=\delta/(2y+1)\) to a proper subinterval
+- **Literature:** `even_below_fourth`; `cube_lift_even_reset_fourth`; `J-cube-odd-even-below-square`
+- **Open:** does every leftover first cube-odd landing satisfy \(x^{3}<n^{8}\), or only the four first hits?
+- **Decision:** PROMOTE the mixed OE iff. Do not claim a first-return section
+
+```text
+What was learned
+- odd cube plus even square is x^3 < n^8
+- that is sharper than z^4 < n^9 from x < n^3
+- leftover first lifts sit in the eighth cell
+- 501 later landing is the complementary side
+- defect stays full-range on the cube-band
+Strongest theorem
+- T(x) even and x odd =>
+  T^2(x) < n^2 iff x^3 < n^8
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- cube-scale defect excludes an interval
+Reusable machinery
+- odd_even_eighth_lt_sq;
+  finiteProgress_of_odd_even_eighth
+Branch status
+- PROMOTE
+Why
+- the leftover / 501 split is now a
+  named mixed cell, not another
+  one-step envelope
+Best next question
+- on an AboveAnchor leftover, does
+  the first cube-odd landing always
+  satisfy x^3 < n^8?
+```
+
 

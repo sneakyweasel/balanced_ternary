@@ -268,4 +268,18 @@ theorem minimal_cube_odd_even_not_even_below_square
   exact minimal_nonterm_not_finiteProgress h
     (finiteProgress_of_cube_odd_even_below_square hw hc he he2 hz)
 
+/-- On a CE, an eighth-cell even lift cannot return even. The
+square comparison is the mixed OE cell `x^3 < n^8`. -/
+theorem minimal_odd_even_eighth_forces_odd_return
+    {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w)
+    (hodd : image n w % 2 = 1)
+    (he : floorPower (image n w) % 2 = 0)
+    (hx : image n w ^ 3 < n ^ 8) :
+    floorPower (floorPower (image n w)) % 2 = 1 := by
+  by_contra heven
+  have he2 : floorPower (floorPower (image n w)) % 2 = 0 := by omega
+  exact minimal_nonterm_not_finiteProgress h
+    (finiteProgress_of_odd_even_eighth hw hodd he hx he2)
+
 end Problems.Juggler

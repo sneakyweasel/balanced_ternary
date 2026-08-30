@@ -232,6 +232,55 @@ theorem cube_lift_even_reset_fourth {x n : ℕ}
     _ ≤ floorPower x ^ 2 := Nat.pow_le_pow_left hsq 2
     _ < n ^ 9 := hy2
 
+/-- Mixed OE cell: an odd cube step followed by an even square
+step is the eighth-power comparison. This is strictly sharper
+than composing `x < n^3` into `T^2(x) < n^{9/4}`. Not a
+one-step envelope and not a defect restriction. -/
+theorem odd_even_eighth_lt_sq {x n : ℕ}
+    (hodd : x % 2 = 1) (he : floorPower x % 2 = 0) :
+    floorPower (floorPower x) < n ^ 2 ↔ x ^ 3 < n ^ 8 := by
+  have hy2 : floorPower x ^ 2 ≤ x ^ 3 := floorPower_odd_sq_le_cube hodd
+  have hxlt : x ^ 3 < (floorPower x + 1) ^ 2 := by
+    rw [floorPower_odd_eq hodd]
+    simpa [pow_two, Nat.succ_eq_add_one] using Nat.lt_succ_sqrt (x ^ 3)
+  constructor
+  · intro hz
+    have hy : floorPower x < n ^ 4 := (even_below_fourth he).mp hz
+    have hle : (floorPower x + 1) ^ 2 ≤ n ^ 8 := by
+      have : floorPower x + 1 ≤ n ^ 4 := Nat.succ_le_of_lt hy
+      have hsq : (floorPower x + 1) ^ 2 ≤ (n ^ 4) ^ 2 :=
+        Nat.pow_le_pow_left this 2
+      have h8 : (n ^ 4) ^ 2 = n ^ 8 := (Nat.pow_mul n 4 2).symm
+      rwa [h8] at hsq
+    exact lt_of_lt_of_le hxlt hle
+  · intro hx
+    have hy : floorPower x < n ^ 4 := by
+      have : floorPower x ^ 2 < n ^ 8 := lt_of_le_of_lt hy2 hx
+      have h8 : n ^ 8 = (n ^ 4) ^ 2 := Nat.pow_mul n 4 2
+      exact (Nat.pow_lt_pow_iff_left (by decide : (2 : ℕ) ≠ 0)).1
+        (by rwa [h8] at this)
+    exact (even_below_fourth he).mpr hy
+
+/-- `OEE` after an eighth-cell even lift is `FiniteProgress`. -/
+theorem finiteProgress_of_odd_even_eighth {n : ℕ} {w : List Branch}
+    (hw : follows n w) (hodd : image n w % 2 = 1)
+    (he : floorPower (image n w) % 2 = 0)
+    (hx : image n w ^ 3 < n ^ 8)
+    (he2 : floorPower (floorPower (image n w)) % 2 = 0) :
+    FiniteProgress n := by
+  have hw1 : follows n (w ++ [Branch.odd]) :=
+    follows_append hw ⟨hodd, trivial⟩
+  have himg1 : image n (w ++ [Branch.odd]) = floorPower (image n w) := by
+    simp [image_append, image]
+  have he' : image n (w ++ [Branch.odd]) % 2 = 0 := by
+    simpa [himg1] using he
+  exact finiteProgress_of_even_below_square
+    (follows_append hw1 (follows_even_letter he'))
+    (by simpa [image_append, image] using he2)
+    (by
+      have hz := (odd_even_eighth_lt_sq hodd he).mpr hx
+      simpa [image_append, image] using hz)
+
 /-- Odd continuation after an odd cube lift rises above the source. -/
 theorem cube_lift_odd_continues {x n : ℕ} (hn : 2 ≤ n)
     (h : CubeOddLanding n x) (hodd1 : floorPower x % 2 = 1) :
