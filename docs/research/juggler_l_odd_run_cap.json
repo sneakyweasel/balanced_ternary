@@ -1,0 +1,80 @@
+{
+  "experiment": "juggler_l_odd_run_cap",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "envelope_caps_k": false,
+    "k_unbounded": false,
+    "word_census": false,
+    "new_power_cell": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "word_l": "OOEOOOEOOEE",
+    "gaps": {
+      "l_num": 2187,
+      "l_den": 2048,
+      "never_drops": true,
+      "drop0": false,
+      "drop1": false,
+      "drop5": false,
+      "drop16": false,
+      "slack0": 139,
+      "slack5": 465905
+    },
+    "long_run": {
+      "n": 33391,
+      "t": 67709,
+      "run": 5,
+      "kind": "OO",
+      "follows_w5": false
+    },
+    "follows_w5_33391": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "leftover_suffix_retest": false,
+    "terminal_cluster_reopen": false,
+    "residue_automaton": false,
+    "p_adic_system": false,
+    "theta_reopen": false,
+    "word_census": false,
+    "new_power_cell": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "power_bound_word": true,
+    "power_bound_contracts": true,
+    "odd_run_suffix_threshold": true,
+    "no_cycle_odd_run_append_even": true,
+    "odd_cell_unique": true,
+    "no_cycleMin_ooeoooe": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "no_new_lean": true
+  },
+  "decision": {
+    "classification": "L_ODD_RUN_CAP_PARK",
+    "reason": "The L-envelope never compose-drops O^k from t (2187 * 3^k > 2048 * 2^k for every k). A finite K cannot come from power_bound_contracts. 33391 realizes k=5. Boundedness of realization of L+O^k remains open"
+  },
+  "search_method": "L-envelope compose test for O^k; 33391 run 5; no L+O^k census, no theta, no residue automaton, no Z5, no length-11"
+}

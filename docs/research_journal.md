@@ -13537,4 +13537,40 @@ Best next question
   on the L-family?
 ```
 
+## Juggler L-odd-run cap
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether the inherited \(L\)-envelope forbids arbitrarily long odd runs from \(t=T_L(n)\), or whether any finite \(K\) must come from non-realization of \(L+\mathtt{O}^k\)
+- **Hypotheses:** \(2187/2048\) supplies a finite \(K\); cycle-suffix theorems cap the path
+- **Major results:** Classification **L_ODD_RUN_CAP_PARK**. \(2187\cdot 3^{k}>2048\cdot 2^{k}\) for every \(k\ge 0\), so the compose test never drops — **EXACT — HUMAN PROOF** (`J-cyclemin-l-odd-run-envelope`). Envelope / cycle-suffix cap — **REFUTED** (`J-cyclemin-l-odd-run-envelope-caps`). \(33391\) realizes \(k=5\). Realization of \(L+\mathtt{O}^k\) remains open. No word census. No Lean. No \(Z_5\). Paper A unchanged
+- **Refuted ideas:** \(L\)-envelope compose-drops \(\mathtt{O}^k\); `no_cycle_odd_run_append_even` is a path cap
+- **Literature:** oneshot recovery compose; parity-persist \(k=5\); `odd_run_suffix_threshold`
+- **Open:** is there a preimage obstruction to \(L+\mathtt{O}^k\) for large \(k\), other than a follower search? Do not census words
+- **Decision:** PARK. The envelope is not a cap. Boundedness is a realization question
+
+```text
+What was learned
+- 2187 * 3^k > 2048 * 2^k for every k >= 0
+- the L-envelope never compose-drops an odd run from t
+- cycle-suffix theorems do not cap L+O^k paths
+- 33391 still realizes k=5
+- any finite K must be a realization obstruction
+Strongest theorem
+- t^{2048} <= n^{2187} and t follows O^k do not
+  force T_{O^k}(t) < n
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- the L-envelope supplies a finite K
+Reusable machinery
+- l_odd_run_cap.py compose test
+Branch status
+- PARK
+Why
+- the candidate Diophantine cap fails; boundedness
+  is now a preimage question, not an exponent one
+Best next question
+- is there a preimage obstruction to L+O^k for
+  large k, other than a search for more followers?
+```
+
 

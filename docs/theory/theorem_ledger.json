@@ -4772,5 +4772,27 @@
       "tests/research/juggler_sequence/test_parity_persist.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-l-odd-run-envelope",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If t^{2048} ≤ n^{2187} and t follows O^k, then T_{O^k}(t) < n would require 2187·3^k < 2048·2^k. That inequality fails for every k ≥ 0 because 2187 > 2048 and 3^k ≥ 2^k. Slack at k = 0 is 139 and increases. Therefore the inherited L-envelope never compose-drops an odd continuation. This is not a finite-K theorem, not an unboundedness theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_l_odd_run_cap.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_l_odd_run_cap.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-l-odd-run-envelope-caps",
+    "tag": "REFUTED",
+    "statement": "The inherited envelope t^{2048} ≤ n^{2187} supplies a finite odd-run budget K from t = T_L(n), or no_cycle_odd_run_append_even caps those paths. False. 2187·3^k > 2048·2^k for every k ≥ 0, so the compose test never drops. no_cycle_odd_run_append_even is a CycleWord obstruction, not a path obstruction. 33391 follows L to 67709 and then OOOOOE. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_l_odd_run_cap.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_l_odd_run_cap.py"
+    ],
+    "related_conjectures": []
   }
 ]

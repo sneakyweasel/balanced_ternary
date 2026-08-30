@@ -176,10 +176,10 @@ assembler, and not a halt theorem.
 ## Open questions
 
 Whether \(k\) is unbounded as \(n\to\infty\) on \(L\)-followers
-remains open. That is a Diophantine question about long
-odd runs from \(T_L(n)\), not another power cell and not a
-modulus census. Do not reopen \(\theta\), valuation, or
-predecessor cylinders. Do not write \(Z_5\). Do not assemble
+is the separate branch
+[juggler_l_odd_run_cap.md](juggler_l_odd_run_cap.md).
+Do not reopen \(\theta\), valuation, or predecessor
+cylinders. Do not write \(Z_5\). Do not assemble
 `no_cycle_word_length_eleven`. Do not build a \(p\)-adic
 system.
 
