@@ -12004,3 +12004,39 @@ Best next question
   leftover other than O^7 EEEE, not another Delta vs G
 ```
 
+## Juggler O^6 EEEOE +1-chain gap
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether the \(O^7\) +1-chain kills the unique \((3,1)\) leftover `OOOOOOEEEOE`
+- **Hypotheses:** \(T^6(n)\) sits above the EEEOE inverse cell at the first \(O^6\) start, not at leftover \(N_0\sim 4\cdot 10^8\)
+- **Major results:** Classification **O6EEEOE_GAP_PROVED**. On an \(O^6\) run, \(n^{1995}<(n+1)^{1266}(T^6(n)+1)^{64}\). The EEEOE cell is \(z<(v+1)^8\) with \(v^3<(n+1)^4\). For \(n\ge 25\), \(n^{1995}>(n+1)^{1970}\) and \((v_{\max}+1)^8<(n+1)^{11}\) (\(898^8<164^{11}\) at \(n=163\)). First \(O^6\) start is \(163\); pin \(n<10^4\) has 170 starts, all above the cell, min ratio \(37.3\). Leftover \(N_0=437\,599\,552\) unused. Ledger row `J-o6eeeoe-gap`. No Lean. Not a length-11 census and not a halt theorem
+- **Refuted ideas:** this shape needs the leftover \(4\)-fudge; Amplify-versus-surplus is the method
+- **Literature:** `no_cycle_word_oooooooeeee`; \(Z_4\) `PARK`; Amplify `CLOSE`
+- **Open:** Lean this word, or the five `(1,3)` leftovers. Do not scan the other twenty-eight automatically
+- **Decision:** PROMOTE. Exact one-word exclusion at the first \(O^6\) start
+
+```text
+What was learned
+- OOOOOOEEEOE is the unique (3,1) even-run leftover
+- the O^6 +1-chain is n^{1995} < (n+1)^{1266}(T^6+1)^{64}
+- the EEEOE cell is z < (v+1)^8 with v^3 < (n+1)^4
+- that comparison fires at n=163, not at 4e8
+- leftover 4-fudge is again the threshold obstruction
+Strongest theorem
+- T^6(n) lies above the EEEOE inverse of n;
+  OOOOOOEEEOE is not a cycle word
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- this word requires leftover N0 ~ 4e8
+Reusable machinery
+- o6eeeoe_gap.py; no Lean
+Branch status
+- PROMOTE
+Why
+- the same exact successor cell that killed O^7 EEEE
+  kills the nearest surviving even-run signature
+Best next question
+- Lean no_cycle_word_ooooooeeeoe, or the five
+  (1,3) words O^a E O^{7-a} EEE
+```
+
