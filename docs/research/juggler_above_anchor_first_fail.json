@@ -1,0 +1,447 @@
+{
+  "experiment": "juggler_above_anchor_first_fail",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "new_shared_obstruction": false,
+    "tautological_square_is_new_cell": false,
+    "first_fail_lean": false,
+    "eighth_reopen": false,
+    "sigma_automaton": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "tables": {
+      "37": {
+        "n": 37,
+        "drop": 15,
+        "word": "OOOOEOOOEEOOEEE",
+        "iso": {
+          "a": 4,
+          "r": 0,
+          "prefix": "OOOOE"
+        },
+        "iso_gap": false,
+        "first_strong": {
+          "i": 13,
+          "tag": "cube_even_even",
+          "band": "cube",
+          "x": 5854,
+          "tags": [
+            "cube_even_even"
+          ]
+        },
+        "tautological_only": false,
+        "drop_from": {
+          "band": "square",
+          "x": 76,
+          "parity": "E"
+        },
+        "events": [
+          {
+            "i": 13,
+            "band": "cube",
+            "parity": "E",
+            "x": 5854,
+            "tags": [
+              "cube_even_even"
+            ]
+          },
+          {
+            "i": 14,
+            "band": "square",
+            "parity": "E",
+            "x": 76,
+            "tags": [
+              "k2_envelope_even",
+              "even_below_square"
+            ]
+          }
+        ]
+      },
+      "69": {
+        "n": 69,
+        "drop": 7,
+        "word": "OOEOOEE",
+        "iso": {
+          "a": 2,
+          "r": 0,
+          "prefix": "OOE"
+        },
+        "iso_gap": false,
+        "first_strong": {
+          "i": 4,
+          "tag": "eighth_oee",
+          "band": "square",
+          "x": 1265,
+          "tags": [
+            "eighth_oee"
+          ]
+        },
+        "tautological_only": false,
+        "drop_from": {
+          "band": "square",
+          "x": 212,
+          "parity": "E"
+        },
+        "events": [
+          {
+            "i": 4,
+            "band": "square",
+            "parity": "O",
+            "x": 1265,
+            "tags": [
+              "eighth_oee"
+            ]
+          },
+          {
+            "i": 5,
+            "band": "cube",
+            "parity": "E",
+            "x": 44992,
+            "tags": [
+              "cube_even_even"
+            ]
+          },
+          {
+            "i": 6,
+            "band": "square",
+            "parity": "E",
+            "x": 212,
+            "tags": [
+              "k2_envelope_even",
+              "even_below_square"
+            ]
+          }
+        ]
+      },
+      "89": {
+        "n": 89,
+        "drop": 8,
+        "word": "OOEOOEOE",
+        "iso": {
+          "a": 2,
+          "r": 0,
+          "prefix": "OOE"
+        },
+        "iso_gap": false,
+        "first_strong": null,
+        "tautological_only": true,
+        "drop_from": {
+          "band": "square",
+          "x": 4964,
+          "parity": "E"
+        },
+        "events": [
+          {
+            "i": 6,
+            "band": "square",
+            "parity": "O",
+            "x": 291,
+            "tags": [
+              "square_odd_even_drop"
+            ]
+          },
+          {
+            "i": 7,
+            "band": "square",
+            "parity": "E",
+            "x": 4964,
+            "tags": [
+              "k2_envelope_even",
+              "even_below_square"
+            ]
+          }
+        ]
+      },
+      "365": {
+        "n": 365,
+        "drop": 15,
+        "word": "OOEOOEOOEOOEOEE",
+        "iso": {
+          "a": 2,
+          "r": 0,
+          "prefix": "OOE"
+        },
+        "iso_gap": false,
+        "first_strong": {
+          "i": 12,
+          "tag": "eighth_oee",
+          "band": "square",
+          "x": 12707,
+          "tags": [
+            "eighth_oee"
+          ]
+        },
+        "tautological_only": false,
+        "drop_from": {
+          "band": "square",
+          "x": 1196,
+          "parity": "E"
+        },
+        "events": [
+          {
+            "i": 12,
+            "band": "square",
+            "parity": "O",
+            "x": 12707,
+            "tags": [
+              "eighth_oee"
+            ]
+          },
+          {
+            "i": 13,
+            "band": "cube",
+            "parity": "E",
+            "x": 1432400,
+            "tags": [
+              "cube_even_even"
+            ]
+          },
+          {
+            "i": 14,
+            "band": "square",
+            "parity": "E",
+            "x": 1196,
+            "tags": [
+              "k2_envelope_even",
+              "even_below_square"
+            ]
+          }
+        ]
+      },
+      "501": {
+        "n": 501,
+        "drop": 23,
+        "word": "OOEOOOEOOEEOOEOOEOOEOEE",
+        "iso": {
+          "a": 2,
+          "r": 0,
+          "prefix": "OOE"
+        },
+        "iso_gap": false,
+        "first_strong": {
+          "i": 20,
+          "tag": "eighth_oee",
+          "band": "square",
+          "x": 12707,
+          "tags": [
+            "eighth_oee"
+          ]
+        },
+        "tautological_only": false,
+        "drop_from": {
+          "band": "square",
+          "x": 1196,
+          "parity": "E"
+        },
+        "events": [
+          {
+            "i": 20,
+            "band": "square",
+            "parity": "O",
+            "x": 12707,
+            "tags": [
+              "eighth_oee"
+            ]
+          },
+          {
+            "i": 21,
+            "band": "cube",
+            "parity": "E",
+            "x": 1432400,
+            "tags": [
+              "cube_even_even"
+            ]
+          },
+          {
+            "i": 22,
+            "band": "square",
+            "parity": "E",
+            "x": 1196,
+            "tags": [
+              "k2_envelope_even",
+              "even_below_square"
+            ]
+          }
+        ]
+      },
+      "1517": {
+        "n": 1517,
+        "drop": 16,
+        "word": "OOEOOEOOEOEOOOEE",
+        "iso": {
+          "a": 2,
+          "r": 0,
+          "prefix": "OOE"
+        },
+        "iso_gap": false,
+        "first_strong": {
+          "i": 13,
+          "tag": "cube_odd_even_below_square",
+          "band": "cube",
+          "x": 43916043,
+          "tags": [
+            "cube_odd_even_below_square",
+            "eighth_oee"
+          ]
+        },
+        "tautological_only": false,
+        "drop_from": {
+          "band": "square",
+          "x": 539470,
+          "parity": "E"
+        },
+        "events": [
+          {
+            "i": 13,
+            "band": "cube",
+            "parity": "O",
+            "x": 43916043,
+            "tags": [
+              "cube_odd_even_below_square",
+              "eighth_oee"
+            ]
+          },
+          {
+            "i": 14,
+            "band": "fourth",
+            "parity": "E",
+            "x": 291028018566,
+            "tags": [
+              "two_even_below_fourth_not_cube"
+            ]
+          },
+          {
+            "i": 15,
+            "band": "square",
+            "parity": "E",
+            "x": 539470,
+            "tags": [
+              "k2_envelope_even",
+              "even_below_square"
+            ]
+          }
+        ]
+      },
+      "6187": {
+        "n": 6187,
+        "drop": 13,
+        "word": "OOEOOOEOOEEOE",
+        "iso": {
+          "a": 2,
+          "r": 0,
+          "prefix": "OOE"
+        },
+        "iso_gap": false,
+        "first_strong": null,
+        "tautological_only": true,
+        "drop_from": {
+          "band": "square",
+          "x": 1183550,
+          "parity": "E"
+        },
+        "events": [
+          {
+            "i": 11,
+            "band": "square",
+            "parity": "O",
+            "x": 11189,
+            "tags": [
+              "square_odd_even_drop"
+            ]
+          },
+          {
+            "i": 12,
+            "band": "square",
+            "parity": "E",
+            "x": 1183550,
+            "tags": [
+              "k2_envelope_even",
+              "even_below_square"
+            ]
+          }
+        ]
+      }
+    },
+    "leftover_strong": {
+      "365": "eighth_oee",
+      "501": "eighth_oee",
+      "1517": "cube_odd_even_below_square",
+      "6187": null
+    },
+    "contrast_strong": {
+      "69": "eighth_oee",
+      "89": null
+    },
+    "lab_strong": "cube_even_even",
+    "pins_ok": true,
+    "envelope_leak": false,
+    "leftover_has_new_cell": false,
+    "tautological_leftover": true,
+    "tautological_contrast": true,
+    "named_leftover_kills": true,
+    "window_hi": 201,
+    "window_count": 56,
+    "window_hist": {
+      "cube_odd_even_below_square": 8,
+      "eighth_oee": 26,
+      "isolated_scale_gap": 11,
+      "cube_even_even": 4,
+      "none": 3,
+      "two_even_below_fourth_not_cube": 4
+    },
+    "window_tautological": [
+      89,
+      111,
+      163
+    ],
+    "window_isolated": 11,
+    "window_unknown": [],
+    "no_unknown_window_tag": true,
+    "letter_chain": false,
+    "eighth_reopen": false,
+    "sigma_automaton": false,
+    "first_fail_lean": false,
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "gap_reopen": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "AboveAnchor": true,
+    "aboveAnchor_not_envelope_drop": true,
+    "aboveAnchor_not_odd_even": true,
+    "aboveAnchor_isolated_two": true,
+    "even_below_square_drop": true,
+    "two_even_below_fourth": true,
+    "finiteProgress_of_cube_even_even": true,
+    "finiteProgress_of_cube_odd_even_below_square": true,
+    "finiteProgress_of_odd_even_eighth": true,
+    "finiteProgress_of_even_power_bound_square": true,
+    "finiteProgress_of_ooe_oe": true,
+    "odd_even_eighth_lt_sq": true,
+    "CubeOddLanding": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_FirstAnchorFail": false,
+    "has_api_SharedObstruction": false,
+    "has_api_OddLandingKill": false,
+    "has_api_AboveAnchorFail": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "FIRST_ANCHOR_FAIL_CLOSED",
+    "reason": "non-tautological first kills are eighth_oee, cube_even_even, or cube_odd_even_below_square; 6187 and 89 fail only the last even-below-square step after a square-odd OE"
+  },
+  "search_method": "first named shared AboveAnchor kill on 37/69/89/365/501/1517/6187; odd window < 201; tautological last even-below-square excluded"
+}

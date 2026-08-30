@@ -1,0 +1,547 @@
+{
+  "experiment": "juggler_cumulative_floor_loss",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "new_cumulative_obstruction": false,
+    "floor_loss_lean": false,
+    "padic": false,
+    "analytic_nt": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "runs": {
+      "37": {
+        "n": 37,
+        "odds": [
+          37,
+          225,
+          3375,
+          196069
+        ],
+        "odd_count": 4,
+        "even": 86818724,
+        "post": 9317,
+        "word": "OOOO",
+        "steps": [
+          {
+            "x": 37,
+            "y": 225,
+            "delta": 28,
+            "width": 451,
+            "eps": "28/451",
+            "eps_float": 0.06208425720620843,
+            "zero": false
+          },
+          {
+            "x": 225,
+            "y": 3375,
+            "delta": 0,
+            "width": 6751,
+            "eps": "0",
+            "eps_float": 0.0,
+            "zero": true
+          },
+          {
+            "x": 3375,
+            "y": 196069,
+            "delta": 306614,
+            "width": 392139,
+            "eps": "27874/35649",
+            "eps_float": 0.7819013156049258,
+            "zero": false
+          },
+          {
+            "x": 196069,
+            "y": 86818724,
+            "delta": 74808333,
+            "width": 173637449,
+            "eps": "74808333/173637449",
+            "eps_float": 0.430830638383774,
+            "zero": false
+          }
+        ]
+      },
+      "69": {
+        "n": 69,
+        "odds": [
+          69,
+          573
+        ],
+        "odd_count": 2,
+        "even": 13716,
+        "post": 117,
+        "word": "OO",
+        "steps": [
+          {
+            "x": 69,
+            "y": 573,
+            "delta": 180,
+            "width": 1147,
+            "eps": "180/1147",
+            "eps_float": 0.15693112467306017,
+            "zero": false
+          },
+          {
+            "x": 573,
+            "y": 13716,
+            "delta": 3861,
+            "width": 27433,
+            "eps": "3861/27433",
+            "eps_float": 0.14074290088579447,
+            "zero": false
+          }
+        ]
+      },
+      "89": {
+        "n": 89,
+        "odds": [
+          89,
+          839
+        ],
+        "odd_count": 2,
+        "even": 24302,
+        "post": 155,
+        "word": "OO",
+        "steps": [
+          {
+            "x": 89,
+            "y": 839,
+            "delta": 1048,
+            "width": 1679,
+            "eps": "1048/1679",
+            "eps_float": 0.6241810601548541,
+            "zero": false
+          },
+          {
+            "x": 839,
+            "y": 24302,
+            "delta": 2515,
+            "width": 48605,
+            "eps": "503/9721",
+            "eps_float": 0.051743647772862875,
+            "zero": false
+          }
+        ]
+      },
+      "365": {
+        "n": 365,
+        "odds": [
+          365,
+          6973
+        ],
+        "odd_count": 2,
+        "even": 582276,
+        "post": 763,
+        "word": "OO",
+        "steps": [
+          {
+            "x": 365,
+            "y": 6973,
+            "delta": 4396,
+            "width": 13947,
+            "eps": "4396/13947",
+            "eps_float": 0.31519323151932316,
+            "zero": false
+          },
+          {
+            "x": 6973,
+            "y": 582276,
+            "delta": 949141,
+            "width": 1164553,
+            "eps": "32729/40157",
+            "eps_float": 0.8150260228602735,
+            "zero": false
+          }
+        ]
+      },
+      "501": {
+        "n": 501,
+        "odds": [
+          501,
+          11213
+        ],
+        "odd_count": 2,
+        "even": 1187360,
+        "post": 1089,
+        "word": "OO",
+        "steps": [
+          {
+            "x": 501,
+            "y": 11213,
+            "delta": 20132,
+            "width": 22427,
+            "eps": "20132/22427",
+            "eps_float": 0.8976679894769697,
+            "zero": false
+          },
+          {
+            "x": 11213,
+            "y": 1187360,
+            "delta": 2070997,
+            "width": 2374721,
+            "eps": "2070997/2374721",
+            "eps_float": 0.8721011857814034,
+            "zero": false
+          }
+        ]
+      },
+      "1517": {
+        "n": 1517,
+        "odds": [
+          1517,
+          59085
+        ],
+        "odd_count": 2,
+        "even": 14362030,
+        "post": 3789,
+        "word": "OO",
+        "steps": [
+          {
+            "x": 1517,
+            "y": 59085,
+            "delta": 18188,
+            "width": 118171,
+            "eps": "18188/118171",
+            "eps_float": 0.15391255045654179,
+            "zero": false
+          },
+          {
+            "x": 59085,
+            "y": 14362030,
+            "delta": 28718225,
+            "width": 28724061,
+            "eps": "28718225/28724061",
+            "eps_float": 0.9997968253862154,
+            "zero": false
+          }
+        ]
+      },
+      "6187": {
+        "n": 6187,
+        "odds": [
+          6187,
+          486653
+        ],
+        "odd_count": 2,
+        "even": 339491658,
+        "post": 18425,
+        "word": "OO",
+        "steps": [
+          {
+            "x": 6187,
+            "y": 486653,
+            "delta": 838794,
+            "width": 973307,
+            "eps": "838794/973307",
+            "eps_float": 0.8617979733013325,
+            "zero": false
+          },
+          {
+            "x": 486653,
+            "y": 339491658,
+            "delta": 95178113,
+            "width": 678983317,
+            "eps": "95178113/678983317",
+            "eps_float": 0.14017739555153164,
+            "zero": false
+          }
+        ]
+      }
+    },
+    "budgets": {
+      "37": {
+        "n": 37,
+        "word": "OOOO",
+        "image": 86818724,
+        "image_ge_n": true,
+        "measurable": true,
+        "Delta": 157723133986183006597097975676369680051242343259883706182372578654481984849308210765514339114086772402272102487957828065266661,
+        "surplus": 10576443395647390520360180616660771824428973257439343593502671045186354963336302674950091264648696359849669906254728350775452196,
+        "R_gt_1": false,
+        "mechanism_A": false,
+        "ratio_matches_survival": true
+      },
+      "69": {
+        "n": 69,
+        "word": "OO",
+        "image": 13716,
+        "image_ge_n": true,
+        "measurable": true,
+        "Delta": 59696627209893,
+        "surplus": 35452087812909108,
+        "R_gt_1": false,
+        "mechanism_A": false,
+        "ratio_matches_survival": true
+      },
+      "89": {
+        "n": 89,
+        "word": "OO",
+        "image": 24302,
+        "image_ge_n": true,
+        "measurable": true,
+        "Delta": 1563158178947593,
+        "surplus": 350356403644742968,
+        "R_gt_1": false,
+        "mechanism_A": false,
+        "ratio_matches_survival": true
+      },
+      "365": {
+        "n": 365,
+        "word": "OO",
+        "image": 582276,
+        "image_ge_n": true,
+        "measurable": true,
+        "Delta": 31825094526207867149,
+        "surplus": 114983567789568018677500,
+        "R_gt_1": false,
+        "mechanism_A": false,
+        "ratio_matches_survival": true
+      },
+      "501": {
+        "n": 501,
+        "word": "OO",
+        "image": 1187360,
+        "image_ge_n": true,
+        "measurable": true,
+        "Delta": 960755116231624844501,
+        "surplus": 1988563816445322507502500,
+        "R_gt_1": false,
+        "mechanism_A": false,
+        "ratio_matches_survival": true
+      },
+      "1517": {
+        "n": 1517,
+        "word": "OO",
+        "image": 14362030,
+        "image_ge_n": true,
+        "measurable": true,
+        "Delta": 676840830837961629519997,
+        "surplus": 42547125771316923614395268476,
+        "R_gt_1": false,
+        "mechanism_A": false,
+        "ratio_matches_survival": true
+      },
+      "6187": {
+        "n": 6187,
+        "word": "OO",
+        "image": 339491658,
+        "image_ge_n": true,
+        "measurable": true,
+        "Delta": 141163764185571974400565859131,
+        "surplus": 13283760723585476568512764704749466,
+        "R_gt_1": false,
+        "mechanism_A": false,
+        "ratio_matches_survival": true
+      }
+    },
+    "proposed_products": {
+      "37": false,
+      "69": false,
+      "89": false,
+      "365": false,
+      "501": false,
+      "1517": false,
+      "6187": false
+    },
+    "global_identities": {
+      "37": true,
+      "69": true,
+      "89": true,
+      "365": true,
+      "501": true,
+      "1517": true,
+      "6187": true
+    },
+    "amplifications": {
+      "37": {
+        "n": 37,
+        "d0": 28,
+        "d1": 0,
+        "D2": 215401904452,
+        "naive": 28,
+        "amplified": true,
+        "identity": true
+      },
+      "69": {
+        "n": 69,
+        "d0": 180,
+        "d1": 3861,
+        "D2": 59696627209893,
+        "naive": 4041,
+        "amplified": true,
+        "identity": true
+      },
+      "89": {
+        "n": 89,
+        "d0": 1048,
+        "d1": 2515,
+        "D2": 1563158178947593,
+        "naive": 3563,
+        "amplified": true,
+        "identity": true
+      },
+      "365": {
+        "n": 365,
+        "d0": 4396,
+        "d1": 949141,
+        "D2": 31825094526207867149,
+        "naive": 953537,
+        "amplified": true,
+        "identity": true
+      },
+      "501": {
+        "n": 501,
+        "d0": 20132,
+        "d1": 2070997,
+        "D2": 960755116231624844501,
+        "naive": 2091129,
+        "amplified": true,
+        "identity": true
+      },
+      "1517": {
+        "n": 1517,
+        "d0": 18188,
+        "d1": 28718225,
+        "D2": 676840830837961629519997,
+        "naive": 28736413,
+        "amplified": true,
+        "identity": true
+      },
+      "6187": {
+        "n": 6187,
+        "d0": 838794,
+        "d1": 95178113,
+        "D2": 141163764185571974400565859131,
+        "naive": 96016907,
+        "amplified": true,
+        "identity": true
+      }
+    },
+    "zero_defect": {
+      "n": 9,
+      "first_delta_zero": true,
+      "odd_count": 2
+    },
+    "long_runs": {
+      "37": {
+        "n": 37,
+        "source": 37,
+        "odd_count": 4,
+        "min_eps": 0.0,
+        "max_eps": 0.7819013156049258,
+        "any_zero": true,
+        "post_ge_source": true,
+        "even_ge_source": true,
+        "word": "OOOO",
+        "measurable": true
+      },
+      "241": {
+        "n": 241,
+        "source": 241,
+        "odd_count": 5,
+        "min_eps": 0.12940345811593285,
+        "max_eps": 0.8967344521840641,
+        "any_zero": false,
+        "post_ge_source": true,
+        "even_ge_source": true,
+        "word": "OOOOO",
+        "measurable": true
+      },
+      "329": {
+        "n": 329,
+        "source": 329,
+        "odd_count": 8,
+        "min_eps": 0.024973450386664337,
+        "max_eps": 0.928115571761933,
+        "any_zero": false,
+        "post_ge_source": true,
+        "even_ge_source": true,
+        "word": "OOOOOOOO",
+        "measurable": false
+      },
+      "33391": {
+        "n": 33391,
+        "source": 67709,
+        "odd_count": 5,
+        "min_eps": 0.0820000378923647,
+        "max_eps": 0.708466137035831,
+        "any_zero": false,
+        "post_ge_source": true,
+        "even_ge_source": true,
+        "word": "OOOOO",
+        "measurable": false
+      }
+    },
+    "window_zero": [
+      9,
+      25,
+      49,
+      81,
+      121,
+      169
+    ],
+    "window_tiny_eps": [
+      9,
+      25,
+      49,
+      81,
+      121,
+      169
+    ],
+    "dictionary_ok": true,
+    "proposed_product_false": true,
+    "global_identity_true": true,
+    "leftover_first_ooe": true,
+    "no_mechanism_A": true,
+    "ratio_is_survival": true,
+    "amplification_exists": true,
+    "zero_first_defect": true,
+    "long_runs_survive": true,
+    "long_runs_not_measurable": true,
+    "letter_chain": false,
+    "padic": false,
+    "analytic_nt": false,
+    "floor_loss_lean": false,
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "gap_reopen": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "localDefectOdd": true,
+    "localDefectEven": true,
+    "globalDefect": true,
+    "global_defect_identity": true,
+    "globalDefect_eq_powerDeficit": true,
+    "onePlusSlack_concat": true,
+    "defectRatio_le_one_iff_image_ge": true,
+    "amplifyDefect": true,
+    "sequentialDefect": true,
+    "oddMordellStep": true,
+    "EnvelopeState": true,
+    "AboveAnchor": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_FloorLoss": false,
+    "has_api_CumulativeLoss": false,
+    "has_api_odd_run_cumulative_defect": false,
+    "has_api_odd_run_loss_bound": false,
+    "has_api_LossBudget": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "CUMULATIVE_FLOOR_LOSS_CLOSED",
+    "reason": "the proposed rho-product omits the cubic slack lift; Delta_r is globalDefect; R>1 is T<n; delta_0 vanishes on odd squares; leftovers are OOE; long runs survive"
+  },
+  "search_method": "map Delta_r / product / R to globalDefect and 1+q; named first odd runs; 9; 329/33391 local eps; no huge powers"
+}

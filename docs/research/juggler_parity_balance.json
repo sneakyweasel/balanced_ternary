@@ -1,0 +1,1794 @@
+{
+  "experiment": "juggler_parity_balance",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "independent_odd_density_upper_bound": false,
+    "universal_odd_density": false,
+    "numerical_parity_contradiction": false,
+    "cyclemin_in_language": false,
+    "parity_balance_lean": false,
+    "letter_chain": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "n_opt": 18,
+    "by_length": {
+      "1": {
+        "length": 1,
+        "optimizer": {
+          "length": 1,
+          "max_odd": 1,
+          "min_odd": 1,
+          "max_word": "O",
+          "min_word": "O",
+          "max_mixed_odd": null,
+          "max_mixed_word": null,
+          "admissible_odd_counts": [
+            1
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "O",
+            "length": 1,
+            "odd_count": 1,
+            "two_pow": 2,
+            "three_pow": 3,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2/3"
+          },
+          "O^{N-1}E": {
+            "word": "O",
+            "length": 1,
+            "odd_count": 1,
+            "two_pow": 2,
+            "three_pow": 3,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2/3"
+          },
+          "(OOE)*": {
+            "word": "O",
+            "length": 1,
+            "odd_count": 1,
+            "two_pow": 2,
+            "three_pow": 3,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2/3"
+          },
+          "optimizer_max": {
+            "word": "O",
+            "length": 1,
+            "odd_count": 1,
+            "two_pow": 2,
+            "three_pow": 3,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2/3"
+          },
+          "optimizer_min": {
+            "word": "O",
+            "length": 1,
+            "odd_count": 1,
+            "two_pow": 2,
+            "three_pow": 3,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2/3"
+          }
+        }
+      },
+      "2": {
+        "length": 2,
+        "optimizer": {
+          "length": 2,
+          "max_odd": 2,
+          "min_odd": 2,
+          "max_word": "OO",
+          "min_word": "OO",
+          "max_mixed_odd": null,
+          "max_mixed_word": null,
+          "admissible_odd_counts": [
+            2
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OO",
+            "length": 2,
+            "odd_count": 2,
+            "two_pow": 4,
+            "three_pow": 9,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4/9"
+          },
+          "O^{N-1}E": {
+            "word": "OE",
+            "length": 2,
+            "odd_count": 1,
+            "two_pow": 4,
+            "three_pow": 3,
+            "survives": false,
+            "prefix_survives": false,
+            "two_over_three": "4/3"
+          },
+          "(OOE)*": {
+            "word": "OO",
+            "length": 2,
+            "odd_count": 2,
+            "two_pow": 4,
+            "three_pow": 9,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4/9"
+          },
+          "optimizer_max": {
+            "word": "OO",
+            "length": 2,
+            "odd_count": 2,
+            "two_pow": 4,
+            "three_pow": 9,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4/9"
+          },
+          "optimizer_min": {
+            "word": "OO",
+            "length": 2,
+            "odd_count": 2,
+            "two_pow": 4,
+            "three_pow": 9,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4/9"
+          }
+        }
+      },
+      "3": {
+        "length": 3,
+        "optimizer": {
+          "length": 3,
+          "max_odd": 3,
+          "min_odd": 2,
+          "max_word": "OOO",
+          "min_word": "OOE",
+          "max_mixed_odd": 2,
+          "max_mixed_word": "OOE",
+          "admissible_odd_counts": [
+            2,
+            3
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOO",
+            "length": 3,
+            "odd_count": 3,
+            "two_pow": 8,
+            "three_pow": 27,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8/27"
+          },
+          "O^{N-1}E": {
+            "word": "OOE",
+            "length": 3,
+            "odd_count": 2,
+            "two_pow": 8,
+            "three_pow": 9,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8/9"
+          },
+          "(OOE)*": {
+            "word": "OOE",
+            "length": 3,
+            "odd_count": 2,
+            "two_pow": 8,
+            "three_pow": 9,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8/9"
+          },
+          "optimizer_max": {
+            "word": "OOO",
+            "length": 3,
+            "odd_count": 3,
+            "two_pow": 8,
+            "three_pow": 27,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8/27"
+          },
+          "optimizer_min": {
+            "word": "OOE",
+            "length": 3,
+            "odd_count": 2,
+            "two_pow": 8,
+            "three_pow": 9,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8/9"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOE",
+            "length": 3,
+            "odd_count": 2,
+            "two_pow": 8,
+            "three_pow": 9,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8/9"
+          }
+        }
+      },
+      "4": {
+        "length": 4,
+        "optimizer": {
+          "length": 4,
+          "max_odd": 4,
+          "min_odd": 3,
+          "max_word": "OOOO",
+          "min_word": "OOEO",
+          "max_mixed_odd": 3,
+          "max_mixed_word": "OOOE",
+          "admissible_odd_counts": [
+            3,
+            4
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOO",
+            "length": 4,
+            "odd_count": 4,
+            "two_pow": 16,
+            "three_pow": 81,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16/81"
+          },
+          "O^{N-1}E": {
+            "word": "OOOE",
+            "length": 4,
+            "odd_count": 3,
+            "two_pow": 16,
+            "three_pow": 27,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16/27"
+          },
+          "(OOE)*": {
+            "word": "OOEO",
+            "length": 4,
+            "odd_count": 3,
+            "two_pow": 16,
+            "three_pow": 27,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16/27"
+          },
+          "optimizer_max": {
+            "word": "OOOO",
+            "length": 4,
+            "odd_count": 4,
+            "two_pow": 16,
+            "three_pow": 81,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16/81"
+          },
+          "optimizer_min": {
+            "word": "OOEO",
+            "length": 4,
+            "odd_count": 3,
+            "two_pow": 16,
+            "three_pow": 27,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16/27"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOE",
+            "length": 4,
+            "odd_count": 3,
+            "two_pow": 16,
+            "three_pow": 27,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16/27"
+          }
+        }
+      },
+      "5": {
+        "length": 5,
+        "optimizer": {
+          "length": 5,
+          "max_odd": 5,
+          "min_odd": 4,
+          "max_word": "OOOOO",
+          "min_word": "OOEOO",
+          "max_mixed_odd": 4,
+          "max_mixed_word": "OOOOE",
+          "admissible_odd_counts": [
+            4,
+            5
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOO",
+            "length": 5,
+            "odd_count": 5,
+            "two_pow": 32,
+            "three_pow": 243,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32/243"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOE",
+            "length": 5,
+            "odd_count": 4,
+            "two_pow": 32,
+            "three_pow": 81,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32/81"
+          },
+          "(OOE)*": {
+            "word": "OOEOO",
+            "length": 5,
+            "odd_count": 4,
+            "two_pow": 32,
+            "three_pow": 81,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32/81"
+          },
+          "optimizer_max": {
+            "word": "OOOOO",
+            "length": 5,
+            "odd_count": 5,
+            "two_pow": 32,
+            "three_pow": 243,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32/243"
+          },
+          "optimizer_min": {
+            "word": "OOEOO",
+            "length": 5,
+            "odd_count": 4,
+            "two_pow": 32,
+            "three_pow": 81,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32/81"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOE",
+            "length": 5,
+            "odd_count": 4,
+            "two_pow": 32,
+            "three_pow": 81,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32/81"
+          }
+        }
+      },
+      "6": {
+        "length": 6,
+        "optimizer": {
+          "length": 6,
+          "max_odd": 6,
+          "min_odd": 4,
+          "max_word": "OOOOOO",
+          "min_word": "OOEOOE",
+          "max_mixed_odd": 5,
+          "max_mixed_word": "OOOOOE",
+          "admissible_odd_counts": [
+            4,
+            5,
+            6
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOO",
+            "length": 6,
+            "odd_count": 6,
+            "two_pow": 64,
+            "three_pow": 729,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "64/729"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOE",
+            "length": 6,
+            "odd_count": 5,
+            "two_pow": 64,
+            "three_pow": 243,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "64/243"
+          },
+          "(OOE)*": {
+            "word": "OOEOOE",
+            "length": 6,
+            "odd_count": 4,
+            "two_pow": 64,
+            "three_pow": 81,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "64/81"
+          },
+          "optimizer_max": {
+            "word": "OOOOOO",
+            "length": 6,
+            "odd_count": 6,
+            "two_pow": 64,
+            "three_pow": 729,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "64/729"
+          },
+          "optimizer_min": {
+            "word": "OOEOOE",
+            "length": 6,
+            "odd_count": 4,
+            "two_pow": 64,
+            "three_pow": 81,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "64/81"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOE",
+            "length": 6,
+            "odd_count": 5,
+            "two_pow": 64,
+            "three_pow": 243,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "64/243"
+          }
+        }
+      },
+      "7": {
+        "length": 7,
+        "optimizer": {
+          "length": 7,
+          "max_odd": 7,
+          "min_odd": 5,
+          "max_word": "OOOOOOO",
+          "min_word": "OOEOOEO",
+          "max_mixed_odd": 6,
+          "max_mixed_word": "OOOOOOE",
+          "admissible_odd_counts": [
+            5,
+            6,
+            7
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOO",
+            "length": 7,
+            "odd_count": 7,
+            "two_pow": 128,
+            "three_pow": 2187,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "128/2187"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOE",
+            "length": 7,
+            "odd_count": 6,
+            "two_pow": 128,
+            "three_pow": 729,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "128/729"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEO",
+            "length": 7,
+            "odd_count": 5,
+            "two_pow": 128,
+            "three_pow": 243,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "128/243"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOO",
+            "length": 7,
+            "odd_count": 7,
+            "two_pow": 128,
+            "three_pow": 2187,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "128/2187"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEO",
+            "length": 7,
+            "odd_count": 5,
+            "two_pow": 128,
+            "three_pow": 243,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "128/243"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOE",
+            "length": 7,
+            "odd_count": 6,
+            "two_pow": 128,
+            "three_pow": 729,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "128/729"
+          }
+        }
+      },
+      "8": {
+        "length": 8,
+        "optimizer": {
+          "length": 8,
+          "max_odd": 8,
+          "min_odd": 6,
+          "max_word": "OOOOOOOO",
+          "min_word": "OOEOOEOO",
+          "max_mixed_odd": 7,
+          "max_mixed_word": "OOOOOOOE",
+          "admissible_odd_counts": [
+            6,
+            7,
+            8
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOO",
+            "length": 8,
+            "odd_count": 8,
+            "two_pow": 256,
+            "three_pow": 6561,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "256/6561"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOE",
+            "length": 8,
+            "odd_count": 7,
+            "two_pow": 256,
+            "three_pow": 2187,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "256/2187"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOO",
+            "length": 8,
+            "odd_count": 6,
+            "two_pow": 256,
+            "three_pow": 729,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "256/729"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOO",
+            "length": 8,
+            "odd_count": 8,
+            "two_pow": 256,
+            "three_pow": 6561,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "256/6561"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOO",
+            "length": 8,
+            "odd_count": 6,
+            "two_pow": 256,
+            "three_pow": 729,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "256/729"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOE",
+            "length": 8,
+            "odd_count": 7,
+            "two_pow": 256,
+            "three_pow": 2187,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "256/2187"
+          }
+        }
+      },
+      "9": {
+        "length": 9,
+        "optimizer": {
+          "length": 9,
+          "max_odd": 9,
+          "min_odd": 6,
+          "max_word": "OOOOOOOOO",
+          "min_word": "OOEOOEOOE",
+          "max_mixed_odd": 8,
+          "max_mixed_word": "OOOOOOOOE",
+          "admissible_odd_counts": [
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOO",
+            "length": 9,
+            "odd_count": 9,
+            "two_pow": 512,
+            "three_pow": 19683,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "512/19683"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOE",
+            "length": 9,
+            "odd_count": 8,
+            "two_pow": 512,
+            "three_pow": 6561,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "512/6561"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOE",
+            "length": 9,
+            "odd_count": 6,
+            "two_pow": 512,
+            "three_pow": 729,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "512/729"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOO",
+            "length": 9,
+            "odd_count": 9,
+            "two_pow": 512,
+            "three_pow": 19683,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "512/19683"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOE",
+            "length": 9,
+            "odd_count": 6,
+            "two_pow": 512,
+            "three_pow": 729,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "512/729"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOE",
+            "length": 9,
+            "odd_count": 8,
+            "two_pow": 512,
+            "three_pow": 6561,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "512/6561"
+          }
+        }
+      },
+      "10": {
+        "length": 10,
+        "optimizer": {
+          "length": 10,
+          "max_odd": 10,
+          "min_odd": 7,
+          "max_word": "OOOOOOOOOO",
+          "min_word": "OOEOOEOOEO",
+          "max_mixed_odd": 9,
+          "max_mixed_word": "OOOOOOOOOE",
+          "admissible_odd_counts": [
+            7,
+            8,
+            9,
+            10
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOOO",
+            "length": 10,
+            "odd_count": 10,
+            "two_pow": 1024,
+            "three_pow": 59049,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "1024/59049"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOOE",
+            "length": 10,
+            "odd_count": 9,
+            "two_pow": 1024,
+            "three_pow": 19683,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "1024/19683"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOEO",
+            "length": 10,
+            "odd_count": 7,
+            "two_pow": 1024,
+            "three_pow": 2187,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "1024/2187"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOOO",
+            "length": 10,
+            "odd_count": 10,
+            "two_pow": 1024,
+            "three_pow": 59049,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "1024/59049"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOEO",
+            "length": 10,
+            "odd_count": 7,
+            "two_pow": 1024,
+            "three_pow": 2187,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "1024/2187"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOOE",
+            "length": 10,
+            "odd_count": 9,
+            "two_pow": 1024,
+            "three_pow": 19683,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "1024/19683"
+          }
+        }
+      },
+      "11": {
+        "length": 11,
+        "optimizer": {
+          "length": 11,
+          "max_odd": 11,
+          "min_odd": 7,
+          "max_word": "OOOOOOOOOOO",
+          "min_word": "OOEOOEOOEOE",
+          "max_mixed_odd": 10,
+          "max_mixed_word": "OOOOOOOOOOE",
+          "admissible_odd_counts": [
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOOOO",
+            "length": 11,
+            "odd_count": 11,
+            "two_pow": 2048,
+            "three_pow": 177147,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2048/177147"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOOOE",
+            "length": 11,
+            "odd_count": 10,
+            "two_pow": 2048,
+            "three_pow": 59049,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2048/59049"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOEOO",
+            "length": 11,
+            "odd_count": 8,
+            "two_pow": 2048,
+            "three_pow": 6561,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2048/6561"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOOOO",
+            "length": 11,
+            "odd_count": 11,
+            "two_pow": 2048,
+            "three_pow": 177147,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2048/177147"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOEOE",
+            "length": 11,
+            "odd_count": 7,
+            "two_pow": 2048,
+            "three_pow": 2187,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2048/2187"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOOOE",
+            "length": 11,
+            "odd_count": 10,
+            "two_pow": 2048,
+            "three_pow": 59049,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "2048/59049"
+          }
+        }
+      },
+      "12": {
+        "length": 12,
+        "optimizer": {
+          "length": 12,
+          "max_odd": 12,
+          "min_odd": 8,
+          "max_word": "OOOOOOOOOOOO",
+          "min_word": "OOEOOEOOEOEO",
+          "max_mixed_odd": 11,
+          "max_mixed_word": "OOOOOOOOOOOE",
+          "admissible_odd_counts": [
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOOOOO",
+            "length": 12,
+            "odd_count": 12,
+            "two_pow": 4096,
+            "three_pow": 531441,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4096/531441"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOOOOE",
+            "length": 12,
+            "odd_count": 11,
+            "two_pow": 4096,
+            "three_pow": 177147,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4096/177147"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOEOOE",
+            "length": 12,
+            "odd_count": 8,
+            "two_pow": 4096,
+            "three_pow": 6561,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4096/6561"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOOOOO",
+            "length": 12,
+            "odd_count": 12,
+            "two_pow": 4096,
+            "three_pow": 531441,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4096/531441"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOEOEO",
+            "length": 12,
+            "odd_count": 8,
+            "two_pow": 4096,
+            "three_pow": 6561,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4096/6561"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOOOOE",
+            "length": 12,
+            "odd_count": 11,
+            "two_pow": 4096,
+            "three_pow": 177147,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "4096/177147"
+          }
+        }
+      },
+      "13": {
+        "length": 13,
+        "optimizer": {
+          "length": 13,
+          "max_odd": 13,
+          "min_odd": 9,
+          "max_word": "OOOOOOOOOOOOO",
+          "min_word": "OOEOOEOOEOEOO",
+          "max_mixed_odd": 12,
+          "max_mixed_word": "OOOOOOOOOOOOE",
+          "admissible_odd_counts": [
+            9,
+            10,
+            11,
+            12,
+            13
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOOOOOO",
+            "length": 13,
+            "odd_count": 13,
+            "two_pow": 8192,
+            "three_pow": 1594323,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8192/1594323"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOOOOOE",
+            "length": 13,
+            "odd_count": 12,
+            "two_pow": 8192,
+            "three_pow": 531441,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8192/531441"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOEOOEO",
+            "length": 13,
+            "odd_count": 9,
+            "two_pow": 8192,
+            "three_pow": 19683,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8192/19683"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOOOOOO",
+            "length": 13,
+            "odd_count": 13,
+            "two_pow": 8192,
+            "three_pow": 1594323,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8192/1594323"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOEOEOO",
+            "length": 13,
+            "odd_count": 9,
+            "two_pow": 8192,
+            "three_pow": 19683,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8192/19683"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOOOOOE",
+            "length": 13,
+            "odd_count": 12,
+            "two_pow": 8192,
+            "three_pow": 531441,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "8192/531441"
+          }
+        }
+      },
+      "14": {
+        "length": 14,
+        "optimizer": {
+          "length": 14,
+          "max_odd": 14,
+          "min_odd": 9,
+          "max_word": "OOOOOOOOOOOOOO",
+          "min_word": "OOEOOEOOEOEOOE",
+          "max_mixed_odd": 13,
+          "max_mixed_word": "OOOOOOOOOOOOOE",
+          "admissible_odd_counts": [
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOOOOOOO",
+            "length": 14,
+            "odd_count": 14,
+            "two_pow": 16384,
+            "three_pow": 4782969,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16384/4782969"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOOOOOOE",
+            "length": 14,
+            "odd_count": 13,
+            "two_pow": 16384,
+            "three_pow": 1594323,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16384/1594323"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOEOOEOO",
+            "length": 14,
+            "odd_count": 10,
+            "two_pow": 16384,
+            "three_pow": 59049,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16384/59049"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOOOOOOO",
+            "length": 14,
+            "odd_count": 14,
+            "two_pow": 16384,
+            "three_pow": 4782969,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16384/4782969"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOEOEOOE",
+            "length": 14,
+            "odd_count": 9,
+            "two_pow": 16384,
+            "three_pow": 19683,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16384/19683"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOOOOOOE",
+            "length": 14,
+            "odd_count": 13,
+            "two_pow": 16384,
+            "three_pow": 1594323,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "16384/1594323"
+          }
+        }
+      },
+      "15": {
+        "length": 15,
+        "optimizer": {
+          "length": 15,
+          "max_odd": 15,
+          "min_odd": 10,
+          "max_word": "OOOOOOOOOOOOOOO",
+          "min_word": "OOEOOEOOEOEOOEO",
+          "max_mixed_odd": 14,
+          "max_mixed_word": "OOOOOOOOOOOOOOE",
+          "admissible_odd_counts": [
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOOOOOOOO",
+            "length": 15,
+            "odd_count": 15,
+            "two_pow": 32768,
+            "three_pow": 14348907,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32768/14348907"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOOOOOOOE",
+            "length": 15,
+            "odd_count": 14,
+            "two_pow": 32768,
+            "three_pow": 4782969,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32768/4782969"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOEOOEOOE",
+            "length": 15,
+            "odd_count": 10,
+            "two_pow": 32768,
+            "three_pow": 59049,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32768/59049"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOOOOOOOO",
+            "length": 15,
+            "odd_count": 15,
+            "two_pow": 32768,
+            "three_pow": 14348907,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32768/14348907"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOEOEOOEO",
+            "length": 15,
+            "odd_count": 10,
+            "two_pow": 32768,
+            "three_pow": 59049,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32768/59049"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOOOOOOOE",
+            "length": 15,
+            "odd_count": 14,
+            "two_pow": 32768,
+            "three_pow": 4782969,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "32768/4782969"
+          }
+        }
+      },
+      "16": {
+        "length": 16,
+        "optimizer": {
+          "length": 16,
+          "max_odd": 16,
+          "min_odd": 11,
+          "max_word": "OOOOOOOOOOOOOOOO",
+          "min_word": "OOEOOEOOEOEOOEOO",
+          "max_mixed_odd": 15,
+          "max_mixed_word": "OOOOOOOOOOOOOOOE",
+          "admissible_odd_counts": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOOOOOOOOO",
+            "length": 16,
+            "odd_count": 16,
+            "two_pow": 65536,
+            "three_pow": 43046721,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "65536/43046721"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOOOOOOOOE",
+            "length": 16,
+            "odd_count": 15,
+            "two_pow": 65536,
+            "three_pow": 14348907,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "65536/14348907"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOEOOEOOEO",
+            "length": 16,
+            "odd_count": 11,
+            "two_pow": 65536,
+            "three_pow": 177147,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "65536/177147"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOOOOOOOOO",
+            "length": 16,
+            "odd_count": 16,
+            "two_pow": 65536,
+            "three_pow": 43046721,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "65536/43046721"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOEOEOOEOO",
+            "length": 16,
+            "odd_count": 11,
+            "two_pow": 65536,
+            "three_pow": 177147,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "65536/177147"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOOOOOOOOE",
+            "length": 16,
+            "odd_count": 15,
+            "two_pow": 65536,
+            "three_pow": 14348907,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "65536/14348907"
+          }
+        }
+      },
+      "17": {
+        "length": 17,
+        "optimizer": {
+          "length": 17,
+          "max_odd": 17,
+          "min_odd": 11,
+          "max_word": "OOOOOOOOOOOOOOOOO",
+          "min_word": "OOEOOEOOEOEOOEOOE",
+          "max_mixed_odd": 16,
+          "max_mixed_word": "OOOOOOOOOOOOOOOOE",
+          "admissible_odd_counts": [
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOOOOOOOOOO",
+            "length": 17,
+            "odd_count": 17,
+            "two_pow": 131072,
+            "three_pow": 129140163,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "131072/129140163"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOOOOOOOOOE",
+            "length": 17,
+            "odd_count": 16,
+            "two_pow": 131072,
+            "three_pow": 43046721,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "131072/43046721"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOEOOEOOEOO",
+            "length": 17,
+            "odd_count": 12,
+            "two_pow": 131072,
+            "three_pow": 531441,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "131072/531441"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOOOOOOOOOO",
+            "length": 17,
+            "odd_count": 17,
+            "two_pow": 131072,
+            "three_pow": 129140163,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "131072/129140163"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOEOEOOEOOE",
+            "length": 17,
+            "odd_count": 11,
+            "two_pow": 131072,
+            "three_pow": 177147,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "131072/177147"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOOOOOOOOOE",
+            "length": 17,
+            "odd_count": 16,
+            "two_pow": 131072,
+            "three_pow": 43046721,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "131072/43046721"
+          }
+        }
+      },
+      "18": {
+        "length": 18,
+        "optimizer": {
+          "length": 18,
+          "max_odd": 18,
+          "min_odd": 12,
+          "max_word": "OOOOOOOOOOOOOOOOOO",
+          "min_word": "OOEOOEOOEOEOOEOOEO",
+          "max_mixed_odd": 17,
+          "max_mixed_word": "OOOOOOOOOOOOOOOOOE",
+          "admissible_odd_counts": [
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ]
+        },
+        "families": {
+          "O*": {
+            "word": "OOOOOOOOOOOOOOOOOO",
+            "length": 18,
+            "odd_count": 18,
+            "two_pow": 262144,
+            "three_pow": 387420489,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "262144/387420489"
+          },
+          "O^{N-1}E": {
+            "word": "OOOOOOOOOOOOOOOOOE",
+            "length": 18,
+            "odd_count": 17,
+            "two_pow": 262144,
+            "three_pow": 129140163,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "262144/129140163"
+          },
+          "(OOE)*": {
+            "word": "OOEOOEOOEOOEOOEOOE",
+            "length": 18,
+            "odd_count": 12,
+            "two_pow": 262144,
+            "three_pow": 531441,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "262144/531441"
+          },
+          "optimizer_max": {
+            "word": "OOOOOOOOOOOOOOOOOO",
+            "length": 18,
+            "odd_count": 18,
+            "two_pow": 262144,
+            "three_pow": 387420489,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "262144/387420489"
+          },
+          "optimizer_min": {
+            "word": "OOEOOEOOEOEOOEOOEO",
+            "length": 18,
+            "odd_count": 12,
+            "two_pow": 262144,
+            "three_pow": 531441,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "262144/531441"
+          },
+          "optimizer_max_mixed": {
+            "word": "OOOOOOOOOOOOOOOOOE",
+            "length": 18,
+            "odd_count": 17,
+            "two_pow": 262144,
+            "three_pow": 129140163,
+            "survives": true,
+            "prefix_survives": true,
+            "two_over_three": "262144/129140163"
+          }
+        }
+      }
+    },
+    "max_odd_equals_length": true,
+    "mixed_max_is_n_minus_one": true,
+    "isolated": {
+      "a_max": 12,
+      "checked": 169,
+      "mismatches": [],
+      "identity_holds": true,
+      "sample": [
+        {
+          "a": 1,
+          "r": 0,
+          "length": 2,
+          "odd_count": 1,
+          "ok": false
+        },
+        {
+          "a": 1,
+          "r": 1,
+          "length": 4,
+          "odd_count": 2,
+          "ok": false
+        },
+        {
+          "a": 1,
+          "r": 2,
+          "length": 6,
+          "odd_count": 3,
+          "ok": false
+        },
+        {
+          "a": 2,
+          "r": 0,
+          "length": 3,
+          "odd_count": 2,
+          "ok": true
+        },
+        {
+          "a": 2,
+          "r": 1,
+          "length": 5,
+          "odd_count": 3,
+          "ok": false
+        },
+        {
+          "a": 2,
+          "r": 2,
+          "length": 7,
+          "odd_count": 4,
+          "ok": false
+        },
+        {
+          "a": 3,
+          "r": 0,
+          "length": 4,
+          "odd_count": 3,
+          "ok": true
+        },
+        {
+          "a": 3,
+          "r": 1,
+          "length": 6,
+          "odd_count": 4,
+          "ok": true
+        },
+        {
+          "a": 3,
+          "r": 2,
+          "length": 8,
+          "odd_count": 5,
+          "ok": false
+        }
+      ]
+    },
+    "cycles": [
+      {
+        "word": "O",
+        "length": 1,
+        "odd_count": 1,
+        "two_pow": 2,
+        "three_pow": 3,
+        "survives": true,
+        "prefix_survives": true,
+        "two_over_three": "2/3",
+        "nonnegative_cycle": true,
+        "positive_cycle": true
+      },
+      {
+        "word": "E",
+        "length": 1,
+        "odd_count": 0,
+        "two_pow": 2,
+        "three_pow": 1,
+        "survives": false,
+        "prefix_survives": false,
+        "two_over_three": "2",
+        "nonnegative_cycle": false,
+        "positive_cycle": false
+      },
+      {
+        "word": "OE",
+        "length": 2,
+        "odd_count": 1,
+        "two_pow": 4,
+        "three_pow": 3,
+        "survives": false,
+        "prefix_survives": false,
+        "two_over_three": "4/3",
+        "nonnegative_cycle": false,
+        "positive_cycle": false
+      },
+      {
+        "word": "OO",
+        "length": 2,
+        "odd_count": 2,
+        "two_pow": 4,
+        "three_pow": 9,
+        "survives": true,
+        "prefix_survives": true,
+        "two_over_three": "4/9",
+        "nonnegative_cycle": true,
+        "positive_cycle": true
+      },
+      {
+        "word": "OOE",
+        "length": 3,
+        "odd_count": 2,
+        "two_pow": 8,
+        "three_pow": 9,
+        "survives": true,
+        "prefix_survives": true,
+        "two_over_three": "8/9",
+        "nonnegative_cycle": true,
+        "positive_cycle": true
+      },
+      {
+        "word": "OOO",
+        "length": 3,
+        "odd_count": 3,
+        "two_pow": 8,
+        "three_pow": 27,
+        "survives": true,
+        "prefix_survives": true,
+        "two_over_three": "8/27",
+        "nonnegative_cycle": true,
+        "positive_cycle": true
+      },
+      {
+        "word": "OOEE",
+        "length": 4,
+        "odd_count": 2,
+        "two_pow": 16,
+        "three_pow": 9,
+        "survives": false,
+        "prefix_survives": false,
+        "two_over_three": "16/9",
+        "nonnegative_cycle": false,
+        "positive_cycle": false
+      },
+      {
+        "word": "OOOE",
+        "length": 4,
+        "odd_count": 3,
+        "two_pow": 16,
+        "three_pow": 27,
+        "survives": true,
+        "prefix_survives": true,
+        "two_over_three": "16/27",
+        "nonnegative_cycle": true,
+        "positive_cycle": true
+      },
+      {
+        "word": "OOOEE",
+        "length": 5,
+        "odd_count": 3,
+        "two_pow": 32,
+        "three_pow": 27,
+        "survives": false,
+        "prefix_survives": false,
+        "two_over_three": "32/27",
+        "nonnegative_cycle": false,
+        "positive_cycle": false
+      },
+      {
+        "word": "OOOOE",
+        "length": 5,
+        "odd_count": 4,
+        "two_pow": 32,
+        "three_pow": 81,
+        "survives": true,
+        "prefix_survives": true,
+        "two_over_three": "32/81",
+        "nonnegative_cycle": true,
+        "positive_cycle": true
+      },
+      {
+        "word": "OOOOEE",
+        "length": 6,
+        "odd_count": 4,
+        "two_pow": 64,
+        "three_pow": 81,
+        "survives": true,
+        "prefix_survives": true,
+        "two_over_three": "64/81",
+        "nonnegative_cycle": true,
+        "positive_cycle": true
+      },
+      {
+        "word": "OEOE",
+        "length": 4,
+        "odd_count": 2,
+        "two_pow": 16,
+        "three_pow": 9,
+        "survives": false,
+        "prefix_survives": false,
+        "two_over_three": "16/9",
+        "nonnegative_cycle": false,
+        "positive_cycle": false
+      }
+    ],
+    "leftovers": {
+      "365": {
+        "word": "OOEOOEOOEOOEOEE",
+        "last_above_k": 14,
+        "last_above_O": 9,
+        "last_two_pow": 16384,
+        "last_three_pow": 19683,
+        "last_survives": true,
+        "drop_k": 15,
+        "drop_two_pow": 32768,
+        "drop_three_pow": 19683,
+        "drop_contracts": true
+      },
+      "501": {
+        "word": "OOEOOOEOOEEOOEOOEOOEOEE",
+        "last_above_k": 22,
+        "last_above_O": 14,
+        "last_two_pow": 4194304,
+        "last_three_pow": 4782969,
+        "last_survives": true,
+        "drop_k": 23,
+        "drop_two_pow": 8388608,
+        "drop_three_pow": 4782969,
+        "drop_contracts": true
+      },
+      "1517": {
+        "word": "OOEOOEOOEOEOOOEE",
+        "last_above_k": 15,
+        "last_above_O": 10,
+        "last_two_pow": 32768,
+        "last_three_pow": 59049,
+        "last_survives": true,
+        "drop_k": 16,
+        "drop_two_pow": 65536,
+        "drop_three_pow": 59049,
+        "drop_contracts": true
+      },
+      "6187": {
+        "word": "OOEOOOEOOEEOE",
+        "last_above_k": 12,
+        "last_above_O": 8,
+        "last_two_pow": 4096,
+        "last_three_pow": 6561,
+        "last_survives": true,
+        "drop_k": 13,
+        "drop_two_pow": 8192,
+        "drop_three_pow": 6561,
+        "drop_contracts": true
+      }
+    },
+    "leftover_envelope_ok": true,
+    "o_star": {
+      "word": "OOOOOOOOOOOOOOOOOO",
+      "length": 18,
+      "odd_count": 18,
+      "two_pow": 262144,
+      "three_pow": 387420489,
+      "survives": true,
+      "prefix_survives": true,
+      "two_over_three": "262144/387420489"
+    },
+    "o_then_e": {
+      "word": "OOOOOOOOOOOOOOOOOE",
+      "length": 18,
+      "odd_count": 17,
+      "two_pow": 262144,
+      "three_pow": 129140163,
+      "survives": true,
+      "prefix_survives": true,
+      "two_over_three": "262144/129140163"
+    },
+    "ooe": {
+      "word": "OOE",
+      "length": 3,
+      "odd_count": 2,
+      "two_pow": 8,
+      "three_pow": 9,
+      "survives": true,
+      "prefix_survives": true,
+      "two_over_three": "8/9"
+    },
+    "ooe_positive": true,
+    "shared_patterns": [
+      "every prefix obeys 2^|u| <= 3^oddCount(u)",
+      "initial OE: instance of the prefix envelope",
+      "isolated O^a E (OE)^r: same exponents as the prefix envelope"
+    ],
+    "cycle_only_patterns": [
+      "no_cycle_word_* leftover cells",
+      "even_count_le_three",
+      "leftover_prefix_cell",
+      "small-cycle census"
+    ],
+    "termination_patterns": [
+      "aboveAnchor_of_minimalNonTerm",
+      "minimal_ooeooe_forces_oo",
+      "minimal_isolated_two"
+    ],
+    "falsifier_a": true,
+    "falsifier_c": true,
+    "letter_chain": false,
+    "cyclemin_in_language": false,
+    "parity_balance_lean": false,
+    "paper_a_modified": false,
+    "halt_theorem": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "aboveAnchor_not_envelope_drop": true,
+    "aboveAnchor_not_odd_even": true,
+    "isolatedOddSurvival_bound": true,
+    "isolatedOESurvives": true,
+    "power_bound_word": true,
+    "AboveAnchor": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_ParityBalance": false,
+    "has_api_SurvivalLanguage": false,
+    "has_api_OddDensity": false,
+    "has_api_EnvelopeBudget": false,
+    "has_api_WordSurvivalBudget": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "PARITY_BALANCE_CLOSED",
+    "reason": "shared language is the prefix envelope 2^|w| <= 3^oddCount(w); rho_max = 1 via O* and (N-1)/N via O^{N-1}E; OOE has 9 > 8 so the cycle mean is positive"
+  },
+  "search_method": "integer 2^ell vs 3^o on every prefix; optimizer N<= 18; isolated identity a,r<= 12; leftovers 365/501/1517/6187; no CycleMin words"
+}

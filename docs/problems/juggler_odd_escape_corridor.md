@@ -250,10 +250,9 @@ events. \(\Gamma\) is not a Lyapunov function: leftovers sit at
 width \(1\), the \(37\) laboratory oscillates, and corridor
 types recur while \(x\) grows. A branch of that kind is a close.
 
-Best next question: which odd-landing corridor on a
-`MinimalNonTerm` start first fails a shared `AboveAnchor`
-obstruction, if any? The residual hole is still a cube cell
-without a square cell.
+Best next question: taken up and closed in
+[juggler_above_anchor_first_fail.md](juggler_above_anchor_first_fail.md).
+The residual hole is still a cube cell without a square cell.
 
 ## Publication assessment
 

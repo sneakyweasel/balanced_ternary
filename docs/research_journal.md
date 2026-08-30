@@ -14335,6 +14335,39 @@ Best next question
   shared AboveAnchor obstruction, if any?
 ```
 
+## Juggler first shared AboveAnchor failure
+
+- **Date:** 2026-08-30
+- **Objective:** Classify the first named shared `AboveAnchor` kill on leftover odd-landing corridors, excluding the tautological last even-below-square step
+- **Hypotheses:** a leftover first-fails a missed shared lemma, or a new first-kill cell appears
+- **Major results:** Classification **FIRST_ANCHOR_FAIL_CLOSED**. \(365,501\) first-fail eighth `OEE` at the merged \(12707\). \(1517\) first-fails cube-odd even-below-square at \(43916043\). \(37\) first-fails cube `EE` at \(5854\). \(69\) first-fails eighth `OEE` at \(1265\). \(6187\) and contrast \(89\) fail only `even_below_square` after square-odd `OE` (\(11189\), \(291\)). Odd-odd \(n<201\) stays inside the same catalog; tautological-only extras are \(111,163\). Isolated `OOEOE` is `aboveAnchor_isolated_two`. No `FirstAnchorFail.lean`. Paper A unchanged. No halt theorem. No ledger row
+- **Refuted ideas:** a new shared first-kill cell; the last square even as a new corridor; a uniform missed lemma that kills the leftover class
+- **Literature:** `J-above-anchor`; `J-mixed-oe-eighth`; `J-cube-even-is-progress`; `J-leftover-first-eighth`; `J-minimal-anchor-leftover-spine`; `juggler_odd_escape_corridor.md`
+- **Open:** none from first-kill classification. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. Non-tautological first kills are already named; \(6187\) dies only on the tautological square trap
+
+```text
+What was learned
+- 365/501 die on eighth OEE at 12707
+- 1517 dies on the named cube-odd witness
+- 6187 and 89 never hit a longer named cell
+- isolated OOEOE is already isolated_two
+- no window tag leaves the catalog
+Strongest theorem
+- none new
+Strongest refutation
+- a new shared first-kill corridor
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- first kills restate eighth OEE, cube EE,
+  cube-odd-OEE, or even_below_square
+Best next question
+- none from first-kill classification
+```
+
 ## Juggler Lean spine cleanup
 
 - **Date:** 2026-08-30
@@ -14466,6 +14499,105 @@ Why
   floorPower_odd_even_two_step_lt, and EnvelopeState
 Best next question
 - none from the odd-to-even reset interface
+```
+
+## Juggler infinite AboveAnchor parity balance
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether already-proved shared AboveAnchor restrictions force the opposite envelope inequality \(2^{|w|}>3^{\operatorname{oddCount}(w)}\) on long surviving prefixes
+- **Hypotheses:** isolated-OE / first-OO / even-reset lemmas compose into \(o\le\rho\ell+C\) with \(\rho<\log 2/\log 3\)
+- **Major results:** Classification **PARITY_BALANCE_CLOSED**. Survival \(2^{|w|}\le 3^{o}\) is `aboveAnchor_not_envelope_drop`. Isolated \(2^{a+2r+1}\le 3^{a+r}\) is the same pair of exponents. Optimizer through length \(18\): \(\rho_{\max}=1\) by \(O^*\); mixed \(\rho_{\max}=(N-1)/N\) by \(O^{N-1}E\). `OOE` has \(9>8\). Leftovers \(365,501,1517,6187\) stay noncontracting until a formally contracting extra even. No `ParityBalance.lean`. Paper A unchanged. No halt theorem
+- **Refuted ideas:** shared language forces a density gap below \(\log 2/\log 3\); isolated-OE is an independent odd-density cap; shared cycle means are negative
+- **Literature:** `J-power-envelope-contraction`; `J-above-anchor`; `J-cyclemin-first-oo-r-bound`; `J-prefix-retention-budget`; `J-odd-run-itinerary-grammar`; `J-expansion-block-grammar`
+- **Open:** none from shared parity balance
+- **Decision:** CLOSE. Falsifiers A and C. The residual is the already-named noncontracting envelope language
+
+```text
+What was learned
+- 2^|w| <= 3^oddCount(w) is the existing envelope plus AboveAnchor
+- isolated OE and initial OE are instances of that comparison
+- shared ρ_max = 1; mixed (N-1)/N; OOE has 9 > 8
+- local exclusions raise odd density, they do not cap it
+- CycleMin leftover cells were not used and are not needed for the gap
+Strongest theorem
+- none new
+Strongest refutation
+- shared restrictions force 2^|w| > 3^oddCount(w)
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- the shared language is the prefix envelope;
+  O*, O^{N-1}E, and (OOE)* survive it
+Best next question
+- none from existing shared exclusions
+```
+
+## Juggler cumulative floor loss
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether exact floor remainders discarded by `EnvelopeState` accumulate past the `AboveAnchor` survival margin
+- **Hypotheses:** amplified \(\Delta_r\) exceeds formal surplus independently of \(T<n\); the proposed \(\rho\)-product is exact; the first even reset becomes non-generic
+- **Major results:** Classification **CUMULATIVE_FLOOR_LOSS_CLOSED**. \(\Delta_r\) is `globalDefect` on \(O^r\). The proposed weighted \(\rho\)-product is **REFUTED** for \(r\ge 2\): it omits the cubic lift of running slack, already `accumulateOdd` / `onePlusSlack_concat`. \(R>1\) is \(T_w(n)<n\). Odd squares have \(\delta_O=0\); \(37\) hits the odd square \(225\). Leftover first runs are `OOE`. \(329\) keeps \(\varepsilon\) down to \(0.025\) and survives. Mechanism B is the already-closed generic `OE` reset. No `FloorLoss.lean`. Paper A unchanged. No halt theorem. No ledger row
+- **Refuted ideas:** independent cumulative-loss obstruction; exactness of the weighted \(\rho\)-product; forced positive first defect
+- **Literature:** `J-global-defect-identity`; `defectRatio_le_one_iff_image_ge`; `sequentialDefect`; `J-prefix-retention-budget`; `juggler_normalized_defect.md`; `juggler_odd_even_reset.md`; `juggler_defect_lower_bound.md`
+- **Open:** none from cumulative floor loss. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. The forgotten floor is `globalDefect`; the budget comparison is \(T\ge n\)
+
+```text
+What was learned
+- Delta_r is globalDefect
+- the proposed rho-product misses the cubic slack lift
+- R>1 is T<n
+- odd squares have delta_O=0
+- 329 survives with small eps
+Strongest theorem
+- none new
+Strongest refutation
+- the weighted rho-product as an odd-run identity
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- every proposed comparison is already
+  globalDefect, 1+q, or T>=n
+Best next question
+- none from cumulative floor loss
+```
+
+## Juggler cumulative floor loss
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether exact floor remainders discarded by `EnvelopeState` accumulate past the `AboveAnchor` survival margin
+- **Hypotheses:** amplified \(\Delta_r\) exceeds formal surplus independently of \(T<n\); the proposed \(\rho\)-product is exact; the first even reset becomes non-generic
+- **Major results:** Classification **CUMULATIVE_FLOOR_LOSS_CLOSED**. \(\Delta_r\) is `globalDefect` on \(O^r\). The proposed weighted \(\rho\)-product is **REFUTED** for \(r\ge 2\): it omits the cubic lift of running slack, already `accumulateOdd` / `onePlusSlack_concat`. \(R>1\) is \(T_w(n)<n\). Odd squares have \(\delta_O=0\); \(37\) hits the odd square \(225\). Leftover first runs are `OOE`. \(329\) keeps \(\varepsilon\) down to \(0.025\) and survives. Mechanism B is the already-closed generic `OE` reset. No `FloorLoss.lean`. Paper A unchanged. No halt theorem. No ledger row
+- **Refuted ideas:** independent cumulative-loss obstruction; exactness of the weighted \(\rho\)-product; forced positive first defect
+- **Literature:** `J-global-defect-identity`; `defectRatio_le_one_iff_image_ge`; `sequentialDefect`; `J-prefix-retention-budget`; `juggler_normalized_defect.md`; `juggler_odd_even_reset.md`; `juggler_defect_lower_bound.md`
+- **Open:** none from cumulative floor loss. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. The forgotten floor is `globalDefect`; the budget comparison is \(T\ge n\)
+
+```text
+What was learned
+- Delta_r is globalDefect
+- the proposed rho-product misses the cubic slack lift
+- R>1 is T<n
+- odd squares have delta_O=0
+- 329 survives with small eps
+Strongest theorem
+- none new
+Strongest refutation
+- the weighted rho-product as an odd-run identity
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- every proposed comparison is already
+  globalDefect, 1+q, or T>=n
+Best next question
+- none from cumulative floor loss
 ```
 
 
