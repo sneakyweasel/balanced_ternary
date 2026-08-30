@@ -53,3 +53,6 @@ _atlas_gpu_check/
 Thumbs.db
 Desktop.ini
 .DS_Store
+data/research/juggler/certificate_harvest/harvest-100000000.tsv.uncapped
+data/research/juggler/certificate_harvest/harvest-100000000.tsv.overflow
+data/research/juggler/certificate_harvest/harvest-100000000.tsv

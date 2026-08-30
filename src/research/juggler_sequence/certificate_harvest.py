@@ -174,6 +174,8 @@ def empty_tables(k_max: int) -> dict[str, Any]:
         "count_uncapped": 0,
         "count_overflow": 0,
         "count_long": 0,
+        "replayed_overflow": 0,
+        "replayed_uncapped": 0,
         "overflow_truncated": False,
         "uncapped_truncated": False,
         "hist": [0] * size,
@@ -277,21 +279,29 @@ def tables_from_native(raw: dict[str, object], *, finish: bool = True) -> dict[s
     tables["count_ooee"] = int(raw["count_ooee"])
     tables["count_leftover"] = int(raw["count_leftover"])
     tables["count_uncapped"] = 0
-    tables["count_overflow"] = int(raw["count_overflow"])
+    tables["count_overflow"] = 0
     tables["overflow_truncated"] = bool(raw["overflow_truncated"])
     tables["uncapped_truncated"] = bool(raw["uncapped_truncated"])
     tables["hist"] = list(raw["hist"])  # type: ignore[arg-type]
     tables["min_n"] = list(raw["min_n"])  # type: ignore[arg-type]
+    overflow_n = list(raw.get("overflow_n") or [])
+    uncapped_n = list(raw.get("uncapped_n") or [])
+    native_overflow = int(raw["count_overflow"])
+    native_uncapped = int(raw["count_uncapped"])
     if finish:
-        merge_unresolved(tables, list(raw.get("overflow_n") or []), k_max=k_max)
-        merge_unresolved(tables, list(raw.get("uncapped_n") or []), k_max=k_max)
-        native_uncapped = int(raw["count_uncapped"])
-        stored = len(list(raw.get("uncapped_n") or []))
-        if native_uncapped > stored:
-            tables["count_uncapped"] += native_uncapped - stored
+        merge_unresolved(tables, overflow_n, k_max=k_max)
+        merge_unresolved(tables, uncapped_n, k_max=k_max)
+        tables["count_overflow"] = max(0, native_overflow - len(overflow_n))
+        if native_uncapped > len(uncapped_n):
+            tables["count_uncapped"] += native_uncapped - len(uncapped_n)
             tables["uncapped_truncated"] = True
+        tables["replayed_overflow"] = len(overflow_n)
+        tables["replayed_uncapped"] = len(uncapped_n)
     else:
-        tables["count_uncapped"] = int(raw["count_uncapped"])
+        tables["count_overflow"] = native_overflow
+        tables["count_uncapped"] = native_uncapped
+        tables["replayed_overflow"] = 0
+        tables["replayed_uncapped"] = 0
     return tables
 
 
@@ -371,6 +381,8 @@ def coarse_of(tables: dict[str, Any]) -> dict[str, int]:
         "uncapped": int(tables["count_uncapped"]),
         "overflow": int(tables["count_overflow"]),
         "long": int(tables["count_long"]),
+        "replayed_overflow": int(tables.get("replayed_overflow") or 0),
+        "replayed_uncapped": int(tables.get("replayed_uncapped") or 0),
     }
 
 
@@ -574,8 +586,10 @@ def _merge_tables(left: dict[str, Any], right: dict[str, Any]) -> dict[str, Any]
         "count_uncapped",
         "count_overflow",
         "count_long",
+        "replayed_overflow",
+        "replayed_uncapped",
     ):
-        out[key] = int(left[key]) + int(right[key])
+        out[key] = int(left.get(key) or 0) + int(right.get(key) or 0)
     out["overflow_truncated"] = bool(left.get("overflow_truncated") or right.get("overflow_truncated"))
     out["uncapped_truncated"] = bool(left.get("uncapped_truncated") or right.get("uncapped_truncated"))
     for i, (a, b) in enumerate(zip(left["hist"], right["hist"], strict=True)):

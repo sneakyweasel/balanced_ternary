@@ -242,6 +242,7 @@ def _print_run(payload: dict[str, Any], data_dir: Path) -> None:
             "markdown_path",
             "p_r",
             "p_pe",
+            "decision",
         )
         if k in payload
     }

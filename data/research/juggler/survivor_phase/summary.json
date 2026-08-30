@@ -1,0 +1,24 @@
+{
+  "classification": "SURVIVOR_PHASE_CLOSED",
+  "reason": "long-AA u_O / u_E histograms match scale-matched generic integers and ordinary survivors; lag-1 independence gap is not larger for long survivors; the unit interval stays occupied; already localDefect",
+  "n_max": 20000000,
+  "starts": 9999999,
+  "s_counts": {
+    "ordinary": 5000067,
+    "mid": 3516206,
+    "long": 1341492
+  },
+  "D": {
+    "long_vs_ctrl_odd": 0.009008843878729744,
+    "long_vs_ctrl_even": 0.005899644209069299,
+    "long_vs_ordinary_odd": 0.005745019296994891,
+    "long_vs_ordinary_even": 0.0006109301404305656,
+    "mid_vs_ordinary_odd": 0.004499997330474681,
+    "train_vs_hold_long": 0.001387209493532049,
+    "train_vs_ctrl": 0.008714813056433901,
+    "hold_vs_ctrl": 0.009681569574995774,
+    "max": 0.009008843878729744
+  },
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND",
+  "git": "9767c506bfc559156d6600df8a083b3fd7087445"
+}

@@ -14699,4 +14699,37 @@ Best next question
 - none from excursion transfer
 ```
 
+## Juggler survivor rounding-phase distribution
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether long `AboveAnchor` survivors occupy a scale-matched exceptional region of the square/cube rounding interval \(u_O,u_E\)
+- **Hypotheses:** long survival requires repeated near-power alignments or avoids a rounding configuration
+- **Major results:** Classification **SURVIVOR_PHASE_CLOSED**. Odd \(n\le 2\cdot 10^7\): \(9\,999\,999\) starts; \(S\)-bins ordinary \(5.00\cdot 10^6\), mid \(3.52\cdot 10^6\), long \(1.34\cdot 10^6\). Long-vs-control \(D_{\mathrm{odd}}=0.009\); long-vs-ordinary \(0.006\); train-vs-hold \(0.001\). Edge rates \(0.101/0.102/0.102\). Lag-1 indep \(D=0.0002\) for both. Unit interval occupied. No `FloorPhase.lean`. Paper A unchanged. No halt theorem. No ledger theorem row
+- **Refuted ideas:** hard-state concentration in \(u\); edge avoidance; small-\(d_O\) excess as a hard law; extra lag-1 dependence among long survivors
+- **Literature:** `localDefectOdd` / `localDefectEven`; `J-mixed-oe-defect-gap`; `CUMULATIVE_FLOOR_LOSS_CLOSED`; `EXCURSION_TRANSFER_CLOSED`
+- **Open:** none from rounding-phase occupancy. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. Floor positions of long survivors are generic after scale matching
+
+```text
+What was learned
+- u_O and u_E are localDefect* / (2y+1)
+- long vs generic D_odd = 0.009 after scale matching
+- long vs ordinary D_odd = 0.006
+- edge rates equal 2 epsilon
+- lag-1 independence is the same for long and ordinary
+Strongest theorem
+- none new
+Strongest refutation
+- long survival requires exceptional near-power alignment
+Reusable machinery
+- none; no new Lean primitive; compact histograms only
+Branch status
+- CLOSE
+Why
+- the rounding interval of long AA states is generic;
+  already localDefect
+Best next question
+- none from rounding-phase occupancy
+```
+
 

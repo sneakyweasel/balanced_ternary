@@ -1,0 +1,1138 @@
+{
+  "experiment": "juggler_survivor_phase",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "histogram_is_theorem": false,
+    "pvalue_is_theorem": false,
+    "density_theorem": false,
+    "floor_phase_lean": false,
+    "excursion_reopen": false,
+    "defect_cut_reopen": false,
+    "word_language_reopen": false,
+    "global_non_realizability": false
+  },
+  "scan": {
+    "n_max": 20000000,
+    "hold_split": 10000000,
+    "step_cap": 80,
+    "bit_cap": 1024,
+    "starts": 9999999,
+    "bit_cap_n": 142234,
+    "horizon_n": 477,
+    "s_max": 80,
+    "s_counts": {
+      "ordinary": 5000067,
+      "mid": 3516206,
+      "long": 1341492
+    },
+    "counts": {
+      "ordinary": {
+        "odd": 5000067,
+        "even": 5000067
+      },
+      "mid": {
+        "odd": 8873061,
+        "even": 3232268
+      },
+      "long": {
+        "odd": 5288156,
+        "even": 1327603
+      }
+    },
+    "control_n": {
+      "odd": 77603,
+      "even": 38801
+    },
+    "D": {
+      "long_vs_ctrl_odd": 0.009008843878729744,
+      "long_vs_ctrl_even": 0.005899644209069299,
+      "long_vs_ordinary_odd": 0.005745019296994891,
+      "long_vs_ordinary_even": 0.0006109301404305656,
+      "mid_vs_ordinary_odd": 0.004499997330474681,
+      "train_vs_hold_long": 0.001387209493532049,
+      "train_vs_ctrl": 0.008714813056433901,
+      "hold_vs_ctrl": 0.009681569574995774,
+      "max": 0.009008843878729744
+    },
+    "indep_d": {
+      "long": 0.00016533069921945316,
+      "ordinary": 0.00017424774188922777
+    },
+    "edge": {
+      "long": 0.10120365630005566,
+      "ordinary": 0.10169593727444053,
+      "control": 0.10229029930242947
+    },
+    "small_d_rate": {
+      "long": 0.000147688532637842,
+      "ordinary": 0.0,
+      "control": 0.0011210906794840406
+    },
+    "long_odd_hist": [
+      0.052201561376025975,
+      0.0504860295346809,
+      0.04988052546104918,
+      0.05110552714405551,
+      0.050478654563140726,
+      0.050087591969677145,
+      0.049931393854492946,
+      0.04940701446780314,
+      0.049335533974413766,
+      0.0498328717987896,
+      0.050404904847738984,
+      0.05004447675144228,
+      0.04947679304468325,
+      0.04948681544190451,
+      0.04945618094473764,
+      0.04901084612481175,
+      0.049959380925978736,
+      0.05045520593567966,
+      0.0495929015709824,
+      0.049365790267911915
+    ],
+    "ordinary_odd_hist": [
+      0.055013062824958145,
+      0.05118331414359047,
+      0.049943930751327935,
+      0.05271029368206466,
+      0.05104671597400595,
+      0.049897731370399635,
+      0.04973893349829112,
+      0.04883974554740966,
+      0.04861514855700934,
+      0.049675734345159775,
+      0.05122631356739819,
+      0.050088528813713895,
+      0.04899234350259706,
+      0.0485013500819089,
+      0.04839195154784926,
+      0.04770836070796651,
+      0.05003532952658434,
+      0.05074112006899108,
+      0.049040942851365794,
+      0.048609148637408256
+    ],
+    "control_odd_hist": [
+      0.05669883896241125,
+      0.05133822146051055,
+      0.0486579127095602,
+      0.05374792211641303,
+      0.05222736234423927,
+      0.05056505547465948,
+      0.04952128139376055,
+      0.049830547788100976,
+      0.047150239037150626,
+      0.05024290298055487,
+      0.05057794157442367,
+      0.04926355939847686,
+      0.04971457289022332,
+      0.04825844361687048,
+      0.04801360772135098,
+      0.046235325953893534,
+      0.049508395293996366,
+      0.05247219823975877,
+      0.04827132971663466,
+      0.047704341327010555
+    ],
+    "fills_unit_interval": true,
+    "hold_stable_generic": true,
+    "hold_stable_exception": false,
+    "u_37": 0.06208425720620843,
+    "u_225": 0.0,
+    "labs": [
+      {
+        "n": 37,
+        "status": "RETURNED",
+        "S": 15,
+        "min_u": 0.0,
+        "max_u": 0.9667846412096931,
+        "min_d_odd": 0,
+        "phases": [
+          {
+            "u": 0.062084,
+            "odd": true,
+            "d": 28,
+            "y_bits": 8
+          },
+          {
+            "u": 0.0,
+            "odd": true,
+            "d": 0,
+            "y_bits": 12
+          },
+          {
+            "u": 0.781901,
+            "odd": true,
+            "d": 306614,
+            "y_bits": 18
+          },
+          {
+            "u": 0.430831,
+            "odd": true,
+            "d": 74808333,
+            "y_bits": 27
+          },
+          {
+            "u": 0.65656,
+            "odd": false,
+            "d": 12235,
+            "y_bits": 14
+          },
+          {
+            "u": 0.775171,
+            "odd": true,
+            "d": 1394252,
+            "y_bits": 20
+          },
+          {
+            "u": 0.59726,
+            "odd": true,
+            "d": 1018741718,
+            "y_bits": 30
+          },
+          {
+            "u": 0.643676,
+            "odd": true,
+            "d": null,
+            "y_bits": 45
+          },
+          {
+            "u": 0.614428,
+            "odd": false,
+            "d": 6132732,
+            "y_bits": 23
+          },
+          {
+            "u": 0.965525,
+            "odd": false,
+            "d": 4313,
+            "y_bits": 12
+          },
+          {
+            "u": 0.587455,
+            "odd": true,
+            "d": 123976,
+            "y_bits": 17
+          },
+          {
+            "u": 0.966785,
+            "odd": true,
+            "d": 66275915,
+            "y_bits": 26
+          },
+          {
+            "u": 0.6103,
+            "odd": false,
+            "d": 7146,
+            "y_bits": 13
+          },
+          {
+            "u": 0.509804,
+            "odd": false,
+            "d": 78,
+            "y_bits": 7
+          },
+          {
+            "u": 0.705882,
+            "odd": false,
+            "d": 12,
+            "y_bits": 4
+          }
+        ]
+      },
+      {
+        "n": 69,
+        "status": "RETURNED",
+        "S": 7,
+        "min_u": 0.05068622548202478,
+        "max_u": 0.5517241379310345,
+        "min_d_odd": 180,
+        "phases": [
+          {
+            "u": 0.156931,
+            "odd": true,
+            "d": 180,
+            "y_bits": 10
+          },
+          {
+            "u": 0.140743,
+            "odd": true,
+            "d": 3861,
+            "y_bits": 14
+          },
+          {
+            "u": 0.114894,
+            "odd": false,
+            "d": 27,
+            "y_bits": 7
+          },
+          {
+            "u": 0.5484,
+            "odd": true,
+            "d": 1388,
+            "y_bits": 11
+          },
+          {
+            "u": 0.050686,
+            "odd": true,
+            "d": 4561,
+            "y_bits": 16
+          },
+          {
+            "u": 0.112941,
+            "odd": false,
+            "d": 48,
+            "y_bits": 8
+          },
+          {
+            "u": 0.551724,
+            "odd": false,
+            "d": 16,
+            "y_bits": 4
+          }
+        ]
+      },
+      {
+        "n": 89,
+        "status": "RETURNED",
+        "S": 8,
+        "min_u": 0.051743647772862875,
+        "max_u": 0.8906752411575563,
+        "min_d_odd": 875,
+        "phases": [
+          {
+            "u": 0.624181,
+            "odd": true,
+            "d": 1048,
+            "y_bits": 10
+          },
+          {
+            "u": 0.051744,
+            "odd": true,
+            "d": 2515,
+            "y_bits": 15
+          },
+          {
+            "u": 0.890675,
+            "odd": false,
+            "d": 277,
+            "y_bits": 8
+          },
+          {
+            "u": 0.734387,
+            "odd": true,
+            "d": 2834,
+            "y_bits": 11
+          },
+          {
+            "u": 0.417864,
+            "odd": true,
+            "d": 70805,
+            "y_bits": 17
+          },
+          {
+            "u": 0.070326,
+            "odd": false,
+            "d": 41,
+            "y_bits": 9
+          },
+          {
+            "u": 0.088126,
+            "odd": true,
+            "d": 875,
+            "y_bits": 13
+          },
+          {
+            "u": 0.453901,
+            "odd": false,
+            "d": 64,
+            "y_bits": 7
+          }
+        ]
+      },
+      {
+        "n": 365,
+        "status": "RETURNED",
+        "S": 15,
+        "min_u": 0.011784730434544845,
+        "max_u": 0.9328841545870797,
+        "min_d_odd": 1724,
+        "phases": [
+          {
+            "u": 0.315193,
+            "odd": true,
+            "d": 4396,
+            "y_bits": 13
+          },
+          {
+            "u": 0.815026,
+            "odd": true,
+            "d": 949141,
+            "y_bits": 20
+          },
+          {
+            "u": 0.070072,
+            "odd": false,
+            "d": 107,
+            "y_bits": 10
+          },
+          {
+            "u": 0.932884,
+            "odd": true,
+            "d": 39322,
+            "y_bits": 15
+          },
+          {
+            "u": 0.462957,
+            "odd": true,
+            "d": 2832839,
+            "y_bits": 22
+          },
+          {
+            "u": 0.144327,
+            "odd": false,
+            "d": 505,
+            "y_bits": 11
+          },
+          {
+            "u": 0.011785,
+            "odd": true,
+            "d": 1724,
+            "y_bits": 17
+          },
+          {
+            "u": 0.321418,
+            "odd": true,
+            "d": 12716761,
+            "y_bits": 25
+          },
+          {
+            "u": 0.730635,
+            "odd": false,
+            "d": 6499,
+            "y_bits": 13
+          },
+          {
+            "u": 0.888584,
+            "odd": true,
+            "d": 527022,
+            "y_bits": 19
+          },
+          {
+            "u": 0.63472,
+            "odd": true,
+            "d": 205003495,
+            "y_bits": 28
+          },
+          {
+            "u": 0.922093,
+            "odd": false,
+            "d": 23435,
+            "y_bits": 14
+          },
+          {
+            "u": 0.766979,
+            "odd": true,
+            "d": 2197243,
+            "y_bits": 21
+          },
+          {
+            "u": 0.829085,
+            "odd": false,
+            "d": 1984,
+            "y_bits": 11
+          },
+          {
+            "u": 0.57971,
+            "odd": false,
+            "d": 40,
+            "y_bits": 6
+          }
+        ]
+      },
+      {
+        "n": 501,
+        "status": "RETURNED",
+        "S": 23,
+        "min_u": 0.0,
+        "max_u": 0.9328841545870797,
+        "min_d_odd": 0,
+        "phases": [
+          {
+            "u": 0.897668,
+            "odd": true,
+            "d": 20132,
+            "y_bits": 14
+          },
+          {
+            "u": 0.872101,
+            "odd": true,
+            "d": 2070997,
+            "y_bits": 21
+          },
+          {
+            "u": 0.660395,
+            "odd": false,
+            "d": 1439,
+            "y_bits": 11
+          },
+          {
+            "u": 0.0,
+            "odd": true,
+            "d": 0,
+            "y_bits": 16
+          },
+          {
+            "u": 0.478345,
+            "odd": true,
+            "d": 6517544,
+            "y_bits": 23
+          },
+          {
+            "u": 0.489367,
+            "odd": true,
+            "d": 17403396073,
+            "y_bits": 35
+          },
+          {
+            "u": 0.391387,
+            "odd": false,
+            "d": 104381,
+            "y_bits": 18
+          },
+          {
+            "u": 0.289448,
+            "odd": true,
+            "d": 28188698,
+            "y_bits": 26
+          },
+          {
+            "u": 0.144376,
+            "odd": true,
+            "d": 98115244651,
+            "y_bits": 39
+          },
+          {
+            "u": 0.238478,
+            "odd": false,
+            "d": 278026,
+            "y_bits": 20
+          },
+          {
+            "u": 0.489194,
+            "odd": false,
+            "d": 747,
+            "y_bits": 10
+          },
+          {
+            "u": 0.932884,
+            "odd": true,
+            "d": 39322,
+            "y_bits": 15
+          },
+          {
+            "u": 0.462957,
+            "odd": true,
+            "d": 2832839,
+            "y_bits": 22
+          },
+          {
+            "u": 0.144327,
+            "odd": false,
+            "d": 505,
+            "y_bits": 11
+          },
+          {
+            "u": 0.011785,
+            "odd": true,
+            "d": 1724,
+            "y_bits": 17
+          },
+          {
+            "u": 0.321418,
+            "odd": true,
+            "d": 12716761,
+            "y_bits": 25
+          },
+          {
+            "u": 0.730635,
+            "odd": false,
+            "d": 6499,
+            "y_bits": 13
+          },
+          {
+            "u": 0.888584,
+            "odd": true,
+            "d": 527022,
+            "y_bits": 19
+          },
+          {
+            "u": 0.63472,
+            "odd": true,
+            "d": 205003495,
+            "y_bits": 28
+          },
+          {
+            "u": 0.922093,
+            "odd": false,
+            "d": 23435,
+            "y_bits": 14
+          },
+          {
+            "u": 0.766979,
+            "odd": true,
+            "d": 2197243,
+            "y_bits": 21
+          },
+          {
+            "u": 0.829085,
+            "odd": false,
+            "d": 1984,
+            "y_bits": 11
+          },
+          {
+            "u": 0.57971,
+            "odd": false,
+            "d": 40,
+            "y_bits": 6
+          }
+        ]
+      },
+      {
+        "n": 1517,
+        "status": "RETURNED",
+        "S": 16,
+        "min_u": 0.037640740566259955,
+        "max_u": 0.9997968253862154,
+        "min_d_odd": 18188,
+        "phases": [
+          {
+            "u": 0.153913,
+            "odd": true,
+            "d": 18188,
+            "y_bits": 16
+          },
+          {
+            "u": 0.999797,
+            "odd": true,
+            "d": 28718225,
+            "y_bits": 24
+          },
+          {
+            "u": 0.726877,
+            "odd": false,
+            "d": 5509,
+            "y_bits": 12
+          },
+          {
+            "u": 0.340237,
+            "odd": true,
+            "d": 158708,
+            "y_bits": 18
+          },
+          {
+            "u": 0.611909,
+            "odd": true,
+            "d": 137846767,
+            "y_bits": 27
+          },
+          {
+            "u": 0.037641,
+            "odd": false,
+            "d": 799,
+            "y_bits": 14
+          },
+          {
+            "u": 0.058249,
+            "odd": true,
+            "d": 127372,
+            "y_bits": 21
+          },
+          {
+            "u": 0.137249,
+            "odd": true,
+            "d": 313816125,
+            "y_bits": 31
+          },
+          {
+            "u": 0.770877,
+            "odd": false,
+            "d": 52129,
+            "y_bits": 16
+          },
+          {
+            "u": 0.127953,
+            "odd": true,
+            "d": 1590987,
+            "y_bits": 23
+          },
+          {
+            "u": 0.408863,
+            "odd": false,
+            "d": 2039,
+            "y_bits": 12
+          },
+          {
+            "u": 0.367671,
+            "odd": true,
+            "d": 91532,
+            "y_bits": 17
+          },
+          {
+            "u": 0.078491,
+            "odd": true,
+            "d": 6894026,
+            "y_bits": 26
+          },
+          {
+            "u": 0.738392,
+            "odd": true,
+            "d": 429785435151,
+            "y_bits": 39
+          },
+          {
+            "u": 0.127594,
+            "odd": false,
+            "d": 137666,
+            "y_bits": 20
+          },
+          {
+            "u": 0.486045,
+            "odd": false,
+            "d": 714,
+            "y_bits": 10
+          }
+        ]
+      },
+      {
+        "n": 6187,
+        "status": "RETURNED",
+        "S": 13,
+        "min_u": 0.14017739555153164,
+        "max_u": 0.9258785049713639,
+        "min_d_odd": 838794,
+        "phases": [
+          {
+            "u": 0.861798,
+            "odd": true,
+            "d": 838794,
+            "y_bits": 19
+          },
+          {
+            "u": 0.140177,
+            "odd": true,
+            "d": 95178113,
+            "y_bits": 29
+          },
+          {
+            "u": 0.299395,
+            "odd": false,
+            "d": 11033,
+            "y_bits": 15
+          },
+          {
+            "u": 0.908722,
+            "odd": true,
+            "d": 4545400,
+            "y_bits": 22
+          },
+          {
+            "u": 0.925879,
+            "odd": true,
+            "d": 7324038656,
+            "y_bits": 32
+          },
+          {
+            "u": 0.499318,
+            "odd": true,
+            "d": null,
+            "y_bits": 48
+          },
+          {
+            "u": 0.632236,
+            "odd": false,
+            "d": 19942709,
+            "y_bits": 24
+          },
+          {
+            "u": 0.791705,
+            "odd": true,
+            "d": 99175867930,
+            "y_bits": 36
+          },
+          {
+            "u": 0.226311,
+            "odd": true,
+            "d": null,
+            "y_bits": 54
+          },
+          {
+            "u": 0.253628,
+            "odd": false,
+            "d": 63509236,
+            "y_bits": 27
+          },
+          {
+            "u": 0.344922,
+            "odd": false,
+            "d": 7719,
+            "y_bits": 14
+          },
+          {
+            "u": 0.820315,
+            "odd": true,
+            "d": 1941769,
+            "y_bits": 21
+          },
+          {
+            "u": 0.910805,
+            "odd": false,
+            "d": 1981,
+            "y_bits": 11
+          }
+        ]
+      },
+      {
+        "n": 329,
+        "status": "RETURNED",
+        "S": 23,
+        "min_u": 0.024973450386664337,
+        "max_u": 0.9474828975390511,
+        "min_d_odd": 6200,
+        "phases": [
+          {
+            "u": 0.519481,
+            "odd": true,
+            "d": 6200,
+            "y_bits": 13
+          },
+          {
+            "u": 0.024973,
+            "odd": true,
+            "d": 23022,
+            "y_bits": 19
+          },
+          {
+            "u": 0.928116,
+            "odd": true,
+            "d": 580875560,
+            "y_bits": 29
+          },
+          {
+            "u": 0.644191,
+            "odd": true,
+            "d": null,
+            "y_bits": 43
+          },
+          {
+            "u": 0.695204,
+            "odd": true,
+            "d": null,
+            "y_bits": 64
+          },
+          {
+            "u": 0.240649,
+            "odd": true,
+            "d": null,
+            "y_bits": 96
+          },
+          {
+            "u": 0.382327,
+            "odd": true,
+            "d": null,
+            "y_bits": 143
+          },
+          {
+            "u": 0.111822,
+            "odd": true,
+            "d": null,
+            "y_bits": 215
+          },
+          {
+            "u": 0.113449,
+            "odd": false,
+            "d": null,
+            "y_bits": 108
+          },
+          {
+            "u": 0.409756,
+            "odd": true,
+            "d": null,
+            "y_bits": 161
+          },
+          {
+            "u": 0.29661,
+            "odd": true,
+            "d": null,
+            "y_bits": 242
+          },
+          {
+            "u": 0.329759,
+            "odd": false,
+            "d": null,
+            "y_bits": 121
+          },
+          {
+            "u": 0.831099,
+            "odd": true,
+            "d": null,
+            "y_bits": 181
+          },
+          {
+            "u": 0.329317,
+            "odd": true,
+            "d": null,
+            "y_bits": 272
+          },
+          {
+            "u": 0.755169,
+            "odd": false,
+            "d": null,
+            "y_bits": 136
+          },
+          {
+            "u": 0.596139,
+            "odd": false,
+            "d": null,
+            "y_bits": 68
+          },
+          {
+            "u": 0.707359,
+            "odd": true,
+            "d": null,
+            "y_bits": 102
+          },
+          {
+            "u": 0.947483,
+            "odd": false,
+            "d": null,
+            "y_bits": 51
+          },
+          {
+            "u": 0.15388,
+            "odd": false,
+            "d": 13891609,
+            "y_bits": 26
+          },
+          {
+            "u": 0.522016,
+            "odd": true,
+            "d": 316608630405,
+            "y_bits": 39
+          },
+          {
+            "u": 0.576065,
+            "odd": false,
+            "d": 634462,
+            "y_bits": 20
+          },
+          {
+            "u": 0.082155,
+            "odd": false,
+            "d": 122,
+            "y_bits": 10
+          },
+          {
+            "u": 0.236364,
+            "odd": false,
+            "d": 13,
+            "y_bits": 5
+          }
+        ]
+      },
+      {
+        "n": 33391,
+        "status": "RETURNED",
+        "S": 39,
+        "min_u": 0.048778610967171815,
+        "max_u": 0.9997275824798865,
+        "min_d_odd": 4632100,
+        "phases": [
+          {
+            "u": 0.689937,
+            "odd": true,
+            "d": 8419446,
+            "y_bits": 23
+          },
+          {
+            "u": 0.457808,
+            "odd": true,
+            "d": 13800010125,
+            "y_bits": 34
+          },
+          {
+            "u": 0.402431,
+            "odd": false,
+            "d": 98811,
+            "y_bits": 17
+          },
+          {
+            "u": 0.353347,
+            "odd": true,
+            "d": 30398662,
+            "y_bits": 26
+          },
+          {
+            "u": 0.888602,
+            "odd": true,
+            "d": 501384556682,
+            "y_bits": 39
+          },
+          {
+            "u": 0.88547,
+            "odd": true,
+            "d": null,
+            "y_bits": 58
+          },
+          {
+            "u": 0.811088,
+            "odd": false,
+            "d": 627946977,
+            "y_bits": 29
+          },
+          {
+            "u": 0.886127,
+            "odd": true,
+            "d": null,
+            "y_bits": 43
+          },
+          {
+            "u": 0.447694,
+            "odd": true,
+            "d": null,
+            "y_bits": 65
+          },
+          {
+            "u": 0.250577,
+            "odd": false,
+            "d": 2297602142,
+            "y_bits": 33
+          },
+          {
+            "u": 0.828429,
+            "odd": false,
+            "d": 112185,
+            "y_bits": 17
+          },
+          {
+            "u": 0.131455,
+            "odd": true,
+            "d": 4632100,
+            "y_bits": 25
+          },
+          {
+            "u": 0.082,
+            "odd": true,
+            "d": 12128258454,
+            "y_bits": 37
+          },
+          {
+            "u": 0.602827,
+            "odd": true,
+            "d": null,
+            "y_bits": 55
+          },
+          {
+            "u": 0.708466,
+            "odd": true,
+            "d": null,
+            "y_bits": 82
+          },
+          {
+            "u": 0.669724,
+            "odd": true,
+            "d": null,
+            "y_bits": 122
+          },
+          {
+            "u": 0.766352,
+            "odd": false,
+            "d": null,
+            "y_bits": 61
+          },
+          {
+            "u": 0.996749,
+            "odd": false,
+            "d": 2953221263,
+            "y_bits": 31
+          },
+          {
+            "u": 0.35657,
+            "odd": true,
+            "d": null,
+            "y_bits": 46
+          },
+          {
+            "u": 0.901668,
+            "odd": true,
+            "d": null,
+            "y_bits": 69
+          },
+          {
+            "u": 0.743843,
+            "odd": true,
+            "d": null,
+            "y_bits": 103
+          },
+          {
+            "u": 0.753191,
+            "odd": false,
+            "d": null,
+            "y_bits": 52
+          },
+          {
+            "u": 0.106632,
+            "odd": true,
+            "d": null,
+            "y_bits": 78
+          },
+          {
+            "u": 0.624564,
+            "odd": true,
+            "d": null,
+            "y_bits": 116
+          }
+        ]
+      }
+    ],
+    "git": "9767c506bfc559156d6600df8a083b3fd7087445",
+    "letter_chain": false,
+    "word_language_reopen": false,
+    "excursion_reopen": false,
+    "defect_cut_reopen": false,
+    "halt_theorem": false,
+    "floor_phase_lean": false,
+    "claim": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  "lean": {
+    "sorry_free": true,
+    "localDefectOdd": true,
+    "localDefectEven": true,
+    "localDefectOdd_lt_succ": true,
+    "AboveAnchor": true,
+    "EnvelopeState": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_FloorPhase": false,
+    "has_api_RoundingPhase": false,
+    "has_api_SurvivalPhase": false,
+    "has_api_PhaseDrift": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "no_atlas_lang": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "SURVIVOR_PHASE_CLOSED",
+    "reason": "long-AA u_O / u_E histograms match scale-matched generic integers and ordinary survivors; lag-1 independence gap is not larger for long survivors; the unit interval stays occupied; already localDefect"
+  },
+  "search_method": "streamed u_O/u_E on AA prefixes; S-bins vs scale-matched generic integers; n<=20000000, hold-out 10000000"
+}

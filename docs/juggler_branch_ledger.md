@@ -66,6 +66,7 @@ statement in the branch.
 | Formal vs AA language | [Formal realized gap](problems/juggler_formal_realized_gap.md) | CLOSE | **COMPUTATIONALLY VERIFIED** bounded census | Prefix-NC fills as follows through length \(20\) on the atlas and as `AboveAnchor` through length \(16\) for \(n\le 10^6\); later \(\mathcal F_j\) has no exact \(P\) and is hold-out unstable | Language elimination |
 | Nested start sets | [Anchor cylinders](problems/juggler_anchor_cylinders.md) | CLOSE | **COMPUTATIONALLY VERIFIED** bounded census | \(|A_w(X)|\) follows generic \(\sim X/2^k\) occupancy; hard chains are not thinner than \(M_k\); short leftovers keep a scale-stable positive fraction; late uniqueness is \(k\sim\log_2 X\) | Support elimination |
 | Excursion transfer | [Long-excursion transfer](problems/juggler_excursion_transfer.md) | CLOSE | **COMPUTATIONALLY VERIFIED** bounded census | Return B is the \(Q\)-source chain; every tested one-step / two-step / compensation / weighted inequality fails; growth-then-growth is free; the only hold-out-stable envelope is the formal \(3^{r}/2^{r+1}\) scale | Transfer elimination |
+| Survivor rounding phase | [Survivor phase](problems/juggler_survivor_phase.md) | CLOSE | **COMPUTATIONALLY VERIFIED** bounded census | Long-AA \(u_O,u_E\) match scale-matched generic integers and ordinary survivors (\(D\le 0.009\)); edge rates are \(2\varepsilon\); lag-1 independence is not larger for long paths | Phase elimination |
 
 ## Synthesis
 
