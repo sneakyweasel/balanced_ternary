@@ -12217,3 +12217,36 @@ Best next question
 - stop; do not open e=5; do not Lean the 367-word pin
 ```
 
+## Juggler CycleMin necklace slack
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether slack \(139\) plus a bounded pin excludes every length-11 CycleMin-shaped four-even word (the 56)
+- **Hypotheses:** extra rotations are \(a_3\ge 2\) spellings of the same identity; \(e\ge 5\) is contracting, so a census would be a corollary
+- **Major results:** Classification **CYCLEMIN_NECKLACE_REFUTED**. Slack is identically \(139\) on all 56. \(A\) reaches \(30705>13905\). `OOEEEOOOOOE` has first prefix start \(5\) and chain \(N_0=55\). `OOOEEEOOOOE` has first prefix start \(3\) and chain \(N_0=42\). The other 24 extra words fire (including `OOEEOEOOOOE` at \(77625\)). Ledger row `J-cyclemin-necklace`. No Lean. Not a length-11 census and not a halt theorem
+- **Refuted ideas:** rotate-to-CycleMin plus slack \(139\) excludes the 56; a two-word pin is the next assembler
+- **Literature:** `J-cyclemin-fudge`; `J-cyclemin-slack`; first-E \(e=4\) `CLOSE`; length-11 non-pullback `CLOSE`
+- **Open:** stop. Do not pin the two misses. Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** CLOSE. The uniform pin is false; a rescue is the stop criterion
+
+```text
+What was learned
+- the 56 are 30 leftovers plus 26 extra start-OO orientations
+- slack stays 139 on every necklace spelling
+- early evens inflate A to 30705
+- OOEEEOOOOOE and OOOEEEOOOOE start below their N0
+- the other 24 extra words fire
+Strongest theorem
+- none; slack 139 is already J-cyclemin-slack
+Strongest refutation
+- slack 139 plus a bounded pin excludes the 56
+Reusable machinery
+- cyclemin_necklace.py; no Lean
+Branch status
+- CLOSE
+Why
+- two extra words have prefix starts 3 and 5 below
+  chain N0 42 and 55; pinning them is the rescue
+Best next question
+- stop; do not pin the two misses; do not open e=5
+```
+
