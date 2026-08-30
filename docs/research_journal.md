@@ -14127,4 +14127,41 @@ Best next question
   satisfy x^3 < n^8?
 ```
 
+## Juggler leftover first-lift eighth cell
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether every leftover first cube-odd even lift is forced into \(x^{3}<n^{8}\)
+- **Hypotheses:** `AboveAnchor` plus first leftover lift inherit an envelope ratio at most \(8/3\); later landings may cross
+- **Major results:** Classification **FIRST_LIFT_EIGHTH_REFUTED**. Preferred first-lift theorem — **REFUTED** (`J-leftover-first-eighth`, \(n=4309\), \(x=22357213525\), word `OOEOOEOO`; long leftover \(n=5791\)). Named leftovers \(365,501,1517,6187\) stay safe because \(3^{o+1}<8\cdot 2^{|w|}\); the gap is lost exactly at the third `OOE` block (\(2187>2048\)). Exact boundary \(x^{3}=n^{8}\) forces \(T(x)\) odd. First lift is not a later landing. No new Lean. Paper A unchanged. No halt theorem
+- **Refuted ideas:** every leftover-generated first cube-odd even lift sits below \(n^{8}\); `AboveAnchor` alone; leftover \(O^{a}E\) structure alone
+- **Literature:** `J-mixed-oe-eighth`; `J-cube-odd-even-below-square`; `EnvelopeState`
+- **Open:** is every first cube-odd even lift of `OOEOOEOO` forced above \(n^{8}\)?
+- **Decision:** PARK. The preferred shared lemma is false; named leftovers are word-level envelope, not a first-lift theorem
+
+```text
+What was learned
+- 4309 is a leftover-generated first-lift falsifier
+- 5791 is a long leftover on the same word
+- named leftovers keep 3^{o+1} < 8*2^{|w|}
+- OOEOOEOO is the first PE prefix that loses the gap
+- later 501 landing is still not a first lift
+Strongest theorem
+- EnvelopeState with 3B < 8A implies x^3 < n^8
+  (word algebra; not a new exponent)
+Strongest refutation
+- first leftover cube-odd even lift
+  always below n^8 (4309 / OOEOOEOO)
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- PARK
+Why
+- the mixed cell is not inherited by
+  every leftover first lift; the loss
+  is the third OOE block
+Best next question
+- is every OOEOOEOO first cube-odd
+  even lift forced above n^8?
+```
+
 

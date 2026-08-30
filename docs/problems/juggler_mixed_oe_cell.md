@@ -137,9 +137,10 @@ This is not a halt theorem and not a first-return section.
 
 ## Open questions
 
-The leftover first lifts sit in the eighth cell and return
-below \(n^{2}\). The complementary high even lifts do not.
-Do not resume a first-return \(Q\)-map. Do not reopen W_5.
+The leftover first-lift question is answered in
+[juggler_first_lift_eighth.md](juggler_first_lift_eighth.md):
+the preferred first-lift theorem is **REFUTED**. Do not resume
+a first-return \(Q\)-map. Do not reopen W_5.
 
 ## Decision
 
@@ -148,9 +149,8 @@ MinimalNonTerm consume the same geometry. Do not claim that
 every leftover orbit stays in the eighth cell. Do not claim
 termination.
 
-Best next question: on an `AboveAnchor` leftover, does the
-first cube-odd landing always satisfy \(x^{3}<n^{8}\), or is
-that only the first-hit observation?
+Best next question: taken up and parked in
+[juggler_first_lift_eighth.md](juggler_first_lift_eighth.md).
 
 ## Publication assessment
 
