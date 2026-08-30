@@ -45,6 +45,22 @@ theorem aboveAnchor_not_lt {n : ℕ} {w : List Branch}
     (h : AboveAnchor n w) : ¬image n w < n :=
   fun hlt => (not_le_of_gt hlt) (aboveAnchor_image_ge h)
 
+/-- Corollary D: a contracting word envelope forbids `AboveAnchor`. -/
+theorem aboveAnchor_not_envelope_drop {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hw : follows n w)
+    (hgap : 3 ^ oddCount w < 2 ^ w.length) :
+    ¬AboveAnchor n w :=
+  fun h => aboveAnchor_not_lt h (by
+    have hlt := power_bound_lt_pow (k := 1) hn hw (by simpa using hgap)
+    simpa [image_eq_iterate] using hlt)
+
+/-- A drop after a prefix forbids `AboveAnchor` on the combined word. -/
+theorem aboveAnchor_not_continuation_drop {n : ℕ} {u v : List Branch}
+    (h : AboveAnchor n (u ++ v))
+    (hlt : image (image n u) v < n) : False := by
+  have : image n (u ++ v) = image (image n u) v := image_append n u v
+  exact aboveAnchor_not_lt h (this ▸ hlt)
+
 theorem aboveAnchor_of_prefix {n : ℕ} {u v : List Branch}
     (h : AboveAnchor n (u ++ v)) : AboveAnchor n u :=
   ⟨follows_of_append_left h.1, fun i hi =>
@@ -299,12 +315,11 @@ theorem finiteProgress_of_cube_odd_even_below_square
 theorem finiteProgress_of_cube_even_even {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hw : follows n w)
     (he : image n w % 2 = 0) (hlt : image n w < n ^ 3)
-    (he2 : floorPower (image n w) % 2 = 0) : FiniteProgress n :=
-  finiteProgress_of_imageLt
-    (follows_append hw (⟨he, he2, trivial⟩ : follows (image n w) [.even, .even]))
-    (by
-      have hdrop := two_even_below_cube hn he he2 hlt
-      simpa [image_append, image] using hdrop)
+    (he2 : floorPower (image n w) % 2 = 0) : FiniteProgress n := by
+  have hv : follows (image n w) [.even, .even] := ⟨he, he2, trivial⟩
+  have hdrop := two_even_below_cube hn he he2 hlt
+  refine finiteProgress_of_imageLt (follows_append hw hv) ?_
+  simpa [image_append, image] using hdrop
 
 theorem even_ge_sq_of_succ_ge {x n : ℕ} (he : x % 2 = 0)
     (hge : n ≤ floorPower x) : n ^ 2 ≤ x := by
@@ -320,6 +335,28 @@ theorem even_ge_sq_of_aboveAnchor {n : ℕ} {w : List Branch} {i : ℕ}
   even_ge_sq_of_succ_ge he (by
     have := aboveAnchor_iterate_ge h hi
     simpa [Function.iterate_succ_apply'] using this)
+
+/-- Corollary E: an anchor prefix that finishes with `r` evens sits
+at least `n^{2^r}` before the run. -/
+theorem aboveAnchor_even_run_ge_pow {n : ℕ} {u : List Branch} {r : ℕ}
+    (h : AboveAnchor n (u ++ List.replicate r Branch.even)) :
+    n ^ (2 ^ r) ≤ image n u := by
+  have hw : follows (image n u) (List.replicate r Branch.even) :=
+    follows_of_append_right h.1
+  have hpow := even_run_pow_le hw
+  have hexit := aboveAnchor_image_ge h
+  have himg :
+      image n (u ++ List.replicate r Branch.even) =
+        floorPower^[r] (image n u) := by
+    calc image n (u ++ List.replicate r Branch.even)
+        = image (image n u) (List.replicate r Branch.even) :=
+          image_append n u _
+      _ = floorPower^[(List.replicate r Branch.even).length] (image n u) :=
+          image_eq_iterate _ _
+      _ = floorPower^[r] (image n u) := by rw [List.length_replicate]
+  have hge : n ≤ floorPower^[r] (image n u) := by
+    rwa [himg] at hexit
+  exact le_trans (Nat.pow_le_pow_left hge _) hpow
 
 theorem odd_floor_lt_sq {n : ℕ} (hn : 2 ≤ n) (hodd : n % 2 = 1) :
     floorPower n < n ^ 2 := by

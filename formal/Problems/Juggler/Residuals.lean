@@ -59,16 +59,6 @@ theorem even_floorPower_gt_iff {z n : ℕ} (heven : z % 2 = 0) :
     have : ¬floorPower z < n + 1 := hiff.not.mpr (Nat.not_lt.mpr h)
     exact Nat.lt_of_succ_le (Nat.le_of_not_lt this)
 
-theorem odd_sq_odd {n : ℕ} (hodd : n % 2 = 1) : n ^ 2 % 2 = 1 := by
-  have : n * n % 2 = 1 := by simp [Nat.mul_mod, hodd]
-  simpa [pow_two] using this
-
-theorem even_ne_odd_square {z n : ℕ} (heven : z % 2 = 0)
-    (hodd : n % 2 = 1) : z ≠ n ^ 2 := by
-  intro h
-  have : z % 2 = 1 := by simpa [h] using odd_sq_odd hodd
-  omega
-
 theorem even_ge_sq_image_ge {z n : ℕ} (heven : z % 2 = 0)
     (h : n ^ 2 ≤ z) : n ≤ floorPower z := by
   rw [floorPower_even_eq heven]

@@ -88,28 +88,6 @@ theorem minimal_nonterm_odd {n : ℕ} (h : MinimalNonTerm n) : n % 2 = 1 := by
     exact (h.not_reachesOne (reachesOne_of_iterate (k := 1) rfl hr)).elim
   · omega
 
-theorem even_run_pow_le {m : ℕ} :
-    ∀ {r : ℕ}, follows m (List.replicate r Branch.even) →
-      (floorPower^[r] m) ^ (2 ^ r) ≤ m := by
-  intro r
-  induction r generalizing m with
-  | zero =>
-      intro _
-      simp
-  | succ r ih =>
-      intro hw
-      rw [List.replicate_succ] at hw
-      have ih' := ih hw.2
-      have hstep := floorPower_even_sq_le hw.1
-      have hexp :
-          (floorPower^[r] (floorPower m)) ^ (2 ^ (r + 1)) =
-            ((floorPower^[r] (floorPower m)) ^ (2 ^ r)) ^ 2 := by
-        have hr2 : 2 ^ (r + 1) = 2 ^ r * 2 := by
-          rw [two_pow_succ, mul_comm]
-        rw [hr2, Nat.pow_mul]
-      rw [iterate_cons m r, hexp]
-      exact le_trans (Nat.pow_le_pow_left ih' 2) hstep
-
 theorem even_run_exit_ge {n m k r : ℕ} (h : MinimalNonTerm n)
     (hk : floorPower^[k] n = m)
     (_hw : follows m (List.replicate r Branch.even)) :
@@ -124,9 +102,16 @@ theorem even_run_scale_barrier {n m k r : ℕ} (h : MinimalNonTerm n)
     (hk : floorPower^[k] n = m)
     (hw : follows m (List.replicate r Branch.even)) :
     n ^ (2 ^ r) ≤ m := by
-  have hexit := even_run_exit_ge h hk hw
-  have hpow := even_run_pow_le hw
-  exact le_trans (Nat.pow_le_pow_left hexit (2 ^ r)) hpow
+  have hu : follows n (word n k) := follows_word_self n k
+  have himg : image n (word n k) = m := by
+    simpa [image_word] using hk
+  have hfull :
+      follows n (word n k ++ List.replicate r Branch.even) :=
+    follows_append hu (by simpa [himg] using hw)
+  have ha : AboveAnchor n (word n k ++ List.replicate r Branch.even) :=
+    ⟨hfull, fun i _ => minimal_nonterm_iterate_ge h i⟩
+  have := aboveAnchor_even_run_ge_pow ha
+  simpa [himg] using this
 
 theorem even_run_scale_barrier_of_image {n : ℕ} {u : List Branch} {r : ℕ}
     (h : MinimalNonTerm n) (_hu : follows n u)

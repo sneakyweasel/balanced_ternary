@@ -1,4 +1,6 @@
-import Problems.Juggler.Residuals
+import Problems.Juggler.Cells
+import Problems.Juggler.Envelope
+import Problems.Juggler.MinimumRelative
 
 namespace Problems.Juggler
 
@@ -791,11 +793,62 @@ theorem no_cycleMin_internal_even_threshold {u v : List Branch} {N : ℕ}
     le_trans (Nat.pow_le_pow_left (Nat.succ_le_succ hy_ge) 2) hth'
   exact (not_le_of_gt hI.2) hy2
 
-def wordOOEOOE : List Branch :=
-  [.odd, .odd, .even, .odd, .odd, .even]
+/-- A cycle minimum cannot end in `O`: the last-odd cell is
+`n^2 ≤ x^3 < (n+1)^2`, while `x ≥ n` forces `n^3 < (n+1)^2`. -/
+theorem cycleMin_not_end_odd {n : ℕ} {u : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n (u ++ [Branch.odd])) : False := by
+  have hodd := cycleMin_start_odd hn h
+  have hn3 : 3 ≤ n := by omega
+  have hI := cycle_last_odd_interval h.1
+  have hlen : u.length < (u ++ [Branch.odd]).length := by simp
+  have hx : n ≤ image n u := by
+    simpa [image_eq_iterate] using cycleMin_ge h hlen
+  have hcube : n ^ 3 ≤ image n u ^ 3 := Nat.pow_le_pow_left hx 3
+  exact (not_lt_of_ge (succ_sq_le_cube hn3)) (lt_of_le_of_lt hcube hI.2)
 
-def wordOEOOOE : List Branch :=
-  [.odd, .even, .odd, .odd, .odd, .even]
+/-- Prefix `OOO` plus an internal even step cannot land at the cycle
+minimum: `T^3(n) ≥ (n+1)^2` and `isqrt(T^3(n)) = n` are incompatible. -/
+theorem cycleMin_prefix_ooo_even_sqrt_ne {n : ℕ} {v : List Branch}
+    (hn : 2 ≤ n)
+    (h : CycleMin n
+      ([Branch.odd, Branch.odd, Branch.odd] ++ [Branch.even] ++
+        v ++ [Branch.even])) :
+    image n ([Branch.odd, Branch.odd, Branch.odd] ++ [Branch.even]) ≠ n := by
+  intro hy
+  have hOOO : follows n [Branch.odd, Branch.odd, Branch.odd] :=
+    follows_of_append_left (by simpa [List.append_assoc] using h.1.1)
+  have hn3 : 3 ≤ n := by
+    have : n % 2 = 1 := h.1.1.1
+    omega
+  have hth : (n + 1) ^ 2 ≤ floorPower^[3] n :=
+    ooo_suffix_threshold hn3 hOOO
+  have hfE :
+      follows (image n [Branch.odd, Branch.odd, Branch.odd]) [Branch.even] :=
+    follows_of_append_right (u := [Branch.odd, Branch.odd, Branch.odd])
+      (follows_of_append_left (v := v ++ [Branch.even])
+        (by simpa [List.append_assoc] using h.1.1))
+  have he : image n [Branch.odd, Branch.odd, Branch.odd] % 2 = 0 := hfE.1
+  have himg3 : image n [Branch.odd, Branch.odd, Branch.odd] = floorPower^[3] n :=
+    image_eq_iterate n [Branch.odd, Branch.odd, Branch.odd]
+  have hfp : floorPower (image n [Branch.odd, Branch.odd, Branch.odd]) = n := by
+    have himg :
+        image n ([Branch.odd, Branch.odd, Branch.odd] ++ [Branch.even]) =
+          floorPower (image n [Branch.odd, Branch.odd, Branch.odd]) := by
+      simp [image]
+    exact himg ▸ hy
+  have hI := (floorPower_even_eq_iff_sq_interval he).mp hfp
+  rw [himg3] at hI
+  exact (not_le_of_gt hI.2) hth
+
+/-!
+## Named word exclusions
+
+Historical short-word CycleMin / CycleWord refutations live in
+`CycleObstructions`. This file keeps cycle foundations only.
+-/
+
+end Problems.Juggler
+
 
 theorem wordOOEOOE_split :
     wordOOEOOE = [.odd, .odd] ++ [.even] ++ [.odd, .odd] ++ [.even] :=

@@ -454,6 +454,29 @@ theorem even_word_contracts {n k : ℕ} (hn : 2 ≤ n) (hk : 1 ≤ k)
     exact Nat.pos_iff_ne_zero.mp hk
   simpa [List.length_replicate] using h hgap
 
+/-- Even-run envelope: `T^r(m)^{2^r} ≤ m`. No minimality. -/
+theorem even_run_pow_le {m : ℕ} :
+    ∀ {r : ℕ}, follows m (List.replicate r Branch.even) →
+      (floorPower^[r] m) ^ (2 ^ r) ≤ m := by
+  intro r
+  induction r generalizing m with
+  | zero =>
+      intro _
+      simp
+  | succ r ih =>
+      intro hw
+      rw [List.replicate_succ] at hw
+      have ih' := ih hw.2
+      have hstep := floorPower_even_sq_le hw.1
+      have hexp :
+          (floorPower^[r] (floorPower m)) ^ (2 ^ (r + 1)) =
+            ((floorPower^[r] (floorPower m)) ^ (2 ^ r)) ^ 2 := by
+        have hr2 : 2 ^ (r + 1) = 2 ^ r * 2 := by
+          rw [two_pow_succ, mul_comm]
+        rw [hr2, Nat.pow_mul]
+      rw [iterate_cons m r, hexp]
+      exact le_trans (Nat.pow_le_pow_left ih' 2) hstep
+
 theorem floorPower_iterate_odd_nondecreasing {m k : ℕ} (hm : 1 ≤ m)
     (hw : follows m (List.replicate k Branch.odd)) :
     m ≤ floorPower^[k] m := by

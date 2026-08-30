@@ -99,6 +99,16 @@ theorem two_even_below_fourth {x n : ℕ}
     floorPower (floorPower x) < n :=
   even_below_square_drop he2 ((even_below_fourth he).mpr hlt)
 
+theorem odd_sq_odd {n : ℕ} (hodd : n % 2 = 1) : n ^ 2 % 2 = 1 := by
+  have : n * n % 2 = 1 := by simp [Nat.mul_mod, hodd]
+  simpa [pow_two] using this
+
+theorem even_ne_odd_square {z n : ℕ} (heven : z % 2 = 0)
+    (hodd : n % 2 = 1) : z ≠ n ^ 2 := by
+  intro h
+  have : z % 2 = 1 := by simpa [h] using odd_sq_odd hodd
+  omega
+
 /-- Cube specialization of `two_even_below_fourth`. -/
 theorem two_even_below_cube {x n : ℕ} (hn : 2 ≤ n)
     (he : x % 2 = 0) (he2 : floorPower x % 2 = 0)
