@@ -13782,4 +13782,42 @@ Best next question
   by alpha
 ```
 
+## Juggler maximal odd-run itinerary
+
+- **Date:** 2026-08-30
+- **Objective:** Determine exact transition constraints on maximal odd-run lengths under `AboveAnchor`
+- **Hypotheses:** some later \((a,b)\) are forbidden; long run forces short successor; \(\Lambda\) predicts drop; the itinerary determines the next run
+- **Major results:** Classification **ODD_RUN_ITINERARY_PARK**. Leftover itineraries `365=(2,2,2,2,1)`, `1517=(2,2,2,1,3)`; first \((2,1)\) never stays on \(n<2001\); later \((2,1)\) can stay — **COMPUTATIONALLY VERIFIED** (`J-odd-run-itinerary-shape`). Later forbidden pairs / burst tradeoff / \(\Lambda\)-drop / itinerary-as-state — **REFUTED** (`J-odd-run-itinerary-grammar`). Isolated-`OE` \(r=0\) not restated as a new grammar. No run automaton. No new Lean. Paper A unchanged. No halt theorem
+- **Refuted ideas:** later \((2,1)\) is FiniteProgress; long run forces short next run; \(\Lambda>1\) forbids drop; \((2,2,2)\) determines \(a_3\)
+- **Literature:** isolated-`OE` \(R(2)=0\); `finiteProgress_of_ooe_oe`; PE-walk PARK
+- **Open:** none from run-length pairs. Do not build a run automaton. Do not split \(365/1517\) by residues
+- **Decision:** PARK. The only exact pair constraint is the known first-block isolated `OE`
+
+```text
+What was learned
+- leftover itineraries are (2,2,2,2,1) and (2,2,2,1,3)
+- first (2,1) is the known isolated-OE drop
+- later (2,1) can stay AboveAnchor
+- (5,5) and (8,2) kill the burst tradeoff
+- Lambda is not a drop law
+Strongest theorem
+- first (2,1) never stays on odd n<2001;
+  365 later maps 12707 to 1196 by OE
+  (COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- later (a,b) forbidden; long run forces
+  short next; Lambda predicts drop
+Reusable machinery
+- odd_run_itinerary.py run_itinerary,
+  prefix_lambda
+Branch status
+- PARK
+Why
+- run length is still too coarse; the
+  next a is the landing's forward parity
+Best next question
+- none from run-length pairs; do not
+  build a symbolic automaton
+```
+
 

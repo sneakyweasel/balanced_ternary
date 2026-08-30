@@ -8,7 +8,9 @@ namespace Problems.Juggler
 
 One-sided floor-power composition on realized finite words.
 The invariant is `PowerBound m n k o`, i.e. `m^{2^k} ≤ n^{3^o}`.
+`EnvelopeState n x` is the free-exponent form `x^A ≤ n^B`.
 Named words are corollaries of `power_bound_contracts`.
+`power_bound_contracts` is the `k = 1` case of `power_bound_lt_pow`.
 -/
 /-- Named expansion of the OOOEE envelope `n5 ^ 32 ≤ n ^ 27`. -/
 theorem floorPower_oooee_pow_chain
@@ -171,6 +173,83 @@ theorem power_bound_follows {n : ℕ} {w : List Branch} (hw : follows n w) :
 theorem power_bound_word {n : ℕ} {w : List Branch} (hw : follows n w) :
     (floorPower^[w.length] n) ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w) :=
   power_bound_follows hw
+
+/-- Free-exponent envelope `x^A ≤ n^B`. `PowerBound` is the special
+case `A = 2^k`, `B = 3^o`. Word algebra only. -/
+structure EnvelopeState (n x : ℕ) where
+  A : ℕ
+  B : ℕ
+  le : x ^ A ≤ n ^ B
+
+/-- Even letter: `(A, B) → (2A, B)` from `T(x)^2 ≤ x`. -/
+def EnvelopeState.even {n x : ℕ} (h : EnvelopeState n x) (heven : x % 2 = 0) :
+    EnvelopeState n (floorPower x) where
+  A := 2 * h.A
+  B := h.B
+  le := by
+    have hsq : floorPower x ^ 2 ≤ x := floorPower_even_sq_le heven
+    calc
+      floorPower x ^ (2 * h.A) = (floorPower x ^ 2) ^ h.A := Nat.pow_mul _ 2 h.A
+      _ ≤ x ^ h.A := Nat.pow_le_pow_left hsq h.A
+      _ ≤ n ^ h.B := h.le
+
+/-- Odd letter: `(A, B) → (2A, 3B)` from `T(x)^2 ≤ x^3`. -/
+def EnvelopeState.odd {n x : ℕ} (h : EnvelopeState n x) (hodd : x % 2 = 1) :
+    EnvelopeState n (floorPower x) where
+  A := 2 * h.A
+  B := 3 * h.B
+  le := by
+    have hsq : floorPower x ^ 2 ≤ x ^ 3 := floorPower_odd_sq_le_cube hodd
+    calc
+      floorPower x ^ (2 * h.A)
+          = (floorPower x ^ 2) ^ h.A := Nat.pow_mul _ 2 h.A
+      _ ≤ (x ^ 3) ^ h.A := Nat.pow_le_pow_left hsq h.A
+      _ = x ^ (3 * h.A) := (Nat.pow_mul x 3 h.A).symm
+      _ = (x ^ h.A) ^ 3 := by rw [Nat.mul_comm, Nat.pow_mul]
+      _ ≤ (n ^ h.B) ^ 3 := Nat.pow_le_pow_left h.le 3
+      _ = n ^ (h.B * 3) := (Nat.pow_mul n h.B 3).symm
+      _ = n ^ (3 * h.B) := by rw [Nat.mul_comm]
+
+def EnvelopeState.of_powerBound {m n k o : ℕ} (h : PowerBound m n k o) :
+    EnvelopeState n m :=
+  ⟨2 ^ k, 3 ^ o, h⟩
+
+def EnvelopeState.of_follows {n : ℕ} {w : List Branch} (hw : follows n w) :
+    EnvelopeState n (image n w) where
+  A := 2 ^ w.length
+  B := 3 ^ oddCount w
+  le := by
+    simpa [image_eq_iterate] using power_bound_word hw
+
+/-- Cell comparison: `x^A ≤ n^B` and `B < k·A` force `x < n^k`. -/
+theorem envelope_lt_pow {x n A B k : ℕ}
+    (hn : 2 ≤ n) (hA : 0 < A) (h : x ^ A ≤ n ^ B) (hgap : B < k * A) :
+    x < n ^ k := by
+  refine Nat.lt_of_not_ge fun hge => ?_
+  have hleft : n ^ (k * A) ≤ x ^ A := by
+    calc
+      n ^ (k * A) = (n ^ k) ^ A := (Nat.pow_mul n k A).symm
+      _ ≤ x ^ A := Nat.pow_le_pow_left hge A
+  have hle : n ^ (k * A) ≤ n ^ B := le_trans hleft h
+  have hlt : n ^ B < n ^ (k * A) := pow_lt_of_two_le hn hgap
+  exact (not_le_of_gt hlt) hle
+
+theorem EnvelopeState.lt_pow {n x : ℕ} (h : EnvelopeState n x) {k : ℕ}
+    (hn : 2 ≤ n) (hA : 0 < h.A) (hgap : h.B < k * h.A) :
+    x < n ^ k :=
+  envelope_lt_pow hn hA h.le hgap
+
+/-- Word-stat form: `3^{oddCount w} < k · 2^{|w|}` yields `T_w(n) < n^k`.
+`power_bound_contracts` is the `k = 1` case and is not rewritten. -/
+theorem power_bound_lt_pow {n : ℕ} {w : List Branch} {k : ℕ}
+    (hn : 2 ≤ n) (hw : follows n w)
+    (hgap : 3 ^ oddCount w < k * 2 ^ w.length) :
+    image n w < n ^ k := by
+  have hA : 0 < 2 ^ w.length := Nat.pow_pos (by decide : (0 : ℕ) < 2) _
+  have hpow := power_bound_word hw
+  have himg : image n w = floorPower^[w.length] n := image_eq_iterate n w
+  rw [himg]
+  exact envelope_lt_pow hn hA hpow hgap
 
 /-- Strict block contraction from the exponent gap. Domain `n ≥ 2`.
 Not a claim that every trajectory meets a negative-drift word. -/

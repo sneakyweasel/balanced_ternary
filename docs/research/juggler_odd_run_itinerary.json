@@ -1,0 +1,621 @@
+{
+  "experiment": "juggler_odd_run_itinerary",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "run_graph_grammar": false,
+    "lambda_balance_theorem": false,
+    "burst_tradeoff": false,
+    "residue_automaton": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "controls": [
+      {
+        "n": 365,
+        "runs": [
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "landings": [
+          763,
+          1749,
+          4447,
+          12707,
+          1196
+        ],
+        "pairs": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "lambda": "19683/16384",
+        "lambda_gt_one": true,
+        "dropped": false
+      },
+      {
+        "n": 501,
+        "runs": [
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "landings": [
+          1089,
+          133347,
+          582916,
+          1749,
+          4447,
+          12707,
+          1196
+        ],
+        "pairs": [
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "lambda": "4782969/2097152",
+        "lambda_gt_one": true,
+        "dropped": false
+      },
+      {
+        "n": 1517,
+        "runs": [
+          2,
+          2,
+          2,
+          1,
+          3
+        ],
+        "landings": [
+          3789,
+          10613,
+          33811,
+          2493,
+          539470
+        ],
+        "pairs": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "lambda": "59049/32768",
+        "lambda_gt_one": true,
+        "dropped": false
+      },
+      {
+        "n": 6187,
+        "runs": [
+          2,
+          3,
+          2,
+          1
+        ],
+        "landings": [
+          18425,
+          15771571,
+          125201440,
+          1087
+        ],
+        "pairs": [
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "lambda": "6561/4096",
+        "lambda_gt_one": true,
+        "dropped": true
+      }
+    ],
+    "contrasts": [
+      {
+        "n": 69,
+        "runs": [
+          2,
+          2
+        ],
+        "landings": [
+          117,
+          212
+        ],
+        "pairs": [
+          [
+            2,
+            2
+          ]
+        ],
+        "lambda": "81/64",
+        "lambda_gt_one": true,
+        "dropped": false
+      },
+      {
+        "n": 89,
+        "runs": [
+          2,
+          2,
+          1
+        ],
+        "landings": [
+          155,
+          291,
+          70
+        ],
+        "pairs": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "lambda": "243/256",
+        "lambda_gt_one": false,
+        "dropped": true
+      },
+      {
+        "n": 173,
+        "runs": [
+          2,
+          8,
+          2,
+          2,
+          1,
+          1
+        ],
+        "landings": [
+          329,
+          180370579261640036336071806107777,
+          1941719144218166368455510841464890645,
+          66712883764762247269829202867154107730208,
+          2037410982152330,
+          550686
+        ],
+        "pairs": [
+          [
+            2,
+            8
+          ],
+          [
+            8,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "lambda": "43046721/4194304",
+        "lambda_gt_one": true,
+        "dropped": false
+      },
+      {
+        "n": 193,
+        "runs": [
+          3,
+          7,
+          3,
+          1,
+          6,
+          3,
+          2,
+          5,
+          4,
+          2,
+          2,
+          1,
+          2,
+          2,
+          1
+        ],
+        "landings": [
+          7191,
+          888034721042973822495186607446955,
+          39854332035251980213616686928301336592840441915742885292,
+          708236533445388045812,
+          236668589336127665517520421120577323003128066695245021786800,
+          11180611962307083575217341,
+          15119024536657748178420491404,
+          314097630832457094601796592567466624850923021672186263,
+          2596838386093704983313619934858270260857283101413188539169861885993119954311353932889478620864296962621529725679291208002594811422120338,
+          14812394452319739342096359104262517685112913351551700183034075687474470449139,
+          49198677340905062662939811560682886197562765750845239150698459413028788350877727154825,
+          18576550413379851667686344304414416320877109761453842042916361298,
+          1416748795742678484878115560718916573,
+          46795539511637680387807540852770826335698,
+          1783719959439042
+        ],
+        "pairs": [
+          [
+            3,
+            7
+          ],
+          [
+            7,
+            3
+          ],
+          [
+            3,
+            1
+          ],
+          [
+            1,
+            6
+          ],
+          [
+            6,
+            3
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            2,
+            5
+          ],
+          [
+            5,
+            4
+          ],
+          [
+            4,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "lambda": "984770902183611232881/576460752303423488",
+        "lambda_gt_one": true,
+        "dropped": false
+      },
+      {
+        "n": 241,
+        "runs": [
+          5,
+          5,
+          1,
+          2,
+          1,
+          2,
+          1
+        ],
+        "landings": [
+          1106938949,
+          21847766990457375588000644842347719,
+          56827073543522429303415669,
+          94161789385672044875891127133,
+          5375341087212485800664,
+          1672450952912,
+          195
+        ],
+        "pairs": [
+          [
+            5,
+            5
+          ],
+          [
+            5,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            1
+          ]
+        ],
+        "lambda": "129140163/16777216",
+        "lambda_gt_one": true,
+        "dropped": true
+      },
+      {
+        "n": 565,
+        "runs": [
+          2,
+          2,
+          9,
+          1,
+          1
+        ],
+        "landings": [
+          1247,
+          3039,
+          8788662750819242731650197832418778521398298773482436302971548396314,
+          3564392530628,
+          50932
+        ],
+        "pairs": [
+          [
+            2,
+            2
+          ],
+          [
+            2,
+            9
+          ],
+          [
+            9,
+            1
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "lambda": "14348907/1048576",
+        "lambda_gt_one": true,
+        "dropped": false
+      }
+    ],
+    "window": {
+      "n_hi": 2001,
+      "max_run": 11,
+      "pair_count": 699,
+      "first_pairs": {
+        "2,1": 66,
+        "2,2": 28,
+        "2,3": 22,
+        "2,4": 3,
+        "2,5": 6,
+        "2,6": 2,
+        "2,8": 1,
+        "2,9": 2,
+        "3,1": 24,
+        "3,2": 13,
+        "3,3": 11,
+        "3,4": 3,
+        "3,5": 2,
+        "3,6": 1,
+        "3,7": 1,
+        "3,8": 1,
+        "3,9": 1,
+        "4,1": 35,
+        "4,2": 10,
+        "4,3": 6,
+        "4,4": 3,
+        "4,6": 1,
+        "4,7": 1,
+        "5,1": 9,
+        "5,2": 5,
+        "5,3": 4,
+        "5,4": 1,
+        "5,5": 1,
+        "5,6": 1,
+        "5,8": 1,
+        "6,1": 7,
+        "6,2": 3,
+        "6,3": 1,
+        "6,4": 1,
+        "7,1": 2,
+        "7,2": 4,
+        "7,3": 1,
+        "8,1": 2,
+        "8,2": 1,
+        "8,5": 1,
+        "9,1": 2,
+        "10,2": 1,
+        "11,1": 1
+      },
+      "later_pairs": {
+        "1,1": 82,
+        "1,2": 34,
+        "1,3": 27,
+        "1,4": 4,
+        "1,5": 5,
+        "1,6": 2,
+        "1,7": 1,
+        "2,1": 49,
+        "2,2": 36,
+        "2,3": 14,
+        "2,4": 9,
+        "2,5": 2,
+        "2,7": 1,
+        "2,9": 2,
+        "3,1": 44,
+        "3,2": 17,
+        "3,3": 9,
+        "3,4": 4,
+        "3,5": 1,
+        "3,6": 1,
+        "4,1": 14,
+        "4,2": 7,
+        "4,3": 3,
+        "4,4": 2,
+        "5,1": 10,
+        "5,2": 4,
+        "5,4": 1,
+        "5,5": 1,
+        "5,7": 1,
+        "6,1": 5,
+        "6,3": 2,
+        "7,1": 2,
+        "7,2": 2,
+        "7,3": 1,
+        "8,1": 2,
+        "8,2": 1,
+        "9,1": 4,
+        "9,3": 1
+      },
+      "distinct_first": 43,
+      "distinct_later": 38,
+      "first_21": 66,
+      "later_21": 49,
+      "first_21_stay": 0,
+      "later_21_stay": 37,
+      "burst_long_long": 6,
+      "prefix_222_next": {
+        "1": 3,
+        "2": 1
+      },
+      "prefix_222_branching": true
+    },
+    "summary": {
+      "365": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "501": [
+        2,
+        3,
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "1517": [
+        2,
+        2,
+        2,
+        1,
+        3
+      ],
+      "6187": [
+        2,
+        3,
+        2,
+        1
+      ],
+      "same_222_prefix": true,
+      "365_1517_split": true,
+      "isolated_two_r1_forbidden": true
+    },
+    "mu_one_contracts": true,
+    "mu_two_expands": true,
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "residue_automaton": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "isolatedOddSurvival_bound": true,
+    "aboveAnchor_isolated_two": true,
+    "finiteProgress_of_ooe_oe": true,
+    "oe_block_contracts": true,
+    "AboveAnchor": true,
+    "has_RunItinerary": false,
+    "has_OddRunGraph": false,
+    "has_RunBalance": false,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "new_lean_file": false,
+    "paper_a_has_new_api": false,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "ODD_RUN_ITINERARY_PARK",
+    "reason": "run-length transitions are unrestricted after the first block; the only exact (2,1) ban is the known isolated-OE drop from the anchor; later (2,1) can stay; 365 and 1517 share (2,2,2) then split; long runs need not force short successors"
+  },
+  "search_method": "run itineraries on 365/501/1517/6187; (a,b) first vs later on odd n<2001; Lambda; isolated OE (2,1); 222 branching"
+}
