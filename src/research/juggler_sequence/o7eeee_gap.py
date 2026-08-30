@@ -53,13 +53,13 @@ LEAN_THEOREMS = (
     "leftover_prefix_cell",
     "cycle_trailing_evens_lt",
     "odd_cell_unique",
+    "o7_image_ge_succ_pow16",
+    "no_cycle_word_oooooooeeee",
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_oooooooeeee",
     "no_cycle_word_length_eleven",
     "no_cycle_word_four_even",
-    "o7_image_ge_succ_pow16",
     "juggler_reaches_one",
 )
 
@@ -75,10 +75,10 @@ def elementary_comparisons() -> dict[str, bool]:
         "plus_exp": sum(steps[:-1]) == PLUS_EXP,
         "left_exp": 3**ODD_RUN + PLUS_EXP == LEFT_EXP,
         "right_exp": PLUS_EXP + 16 * 128 == RIGHT_EXP,
-        "three_lt_768": 257 < 3 * 256,
+        "three_mul_pow256": 257**256 < 3 * 256**256,
         "three_pow24_lt_two_pow40": 3**24 < 2**40,
+        "split_6038": 256 * 23 + 150 == 6038,
         "cutoff_is_256": SEVEN_ODD_CUTOFF == 256,
-        "cutoff_cross_eq": 256 * 257 == 257 * 256,
     }
 
 
@@ -142,8 +142,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["no_follows_seven_odds_of_lt256"]
-        and lean["no_cycle_word_oooooooeeee"]
         and lean["o7_image_ge_succ_pow16"]
+        and lean["no_cycle_word_oooooooeeee"]
         and lean["paper_a_has_no_o7eeee"]
     )
     if not lean_ok or not all(elem.values()):
@@ -206,8 +206,9 @@ def probe_payload() -> dict[str, Any]:
         "search_method": (
             "exact (T+1)^2 > x^3 +1-chain with x_k >= n; "
             "n<256 by no_follows_seven_odds_of_lt256; "
-            "256^{6177} > 257^{6038} by 257<768 and 3^{24}<2^{40}; "
-            "no Lean theorem, no Z5, no thirty-word census"
+            "256^{6177} > 257^{6038} by 257^{256}<3*256^{256} and 3^{24}<2^{40}; "
+            "Lean o7_image_ge_succ_pow16 and no_cycle_word_oooooooeeee; "
+            "no Paper A import, no Z5, no thirty-word census"
         ),
     }
 
@@ -291,23 +292,23 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "comparison reduces to 256^{6177} > 257^{6038}:",
         "",
         "- (n+1)/n <= 257/256, because 256(n+1) <= 257 n iff n >= 256;",
-        "- (257/256)^{6038} = (257/256)^{256*23+190} < 3^{24}, because",
-        "  257 < 3*256 so (257/256)^{256} < 3;",
+        "- (257/256)^{6038} = (257/256)^{256*23+150} < 3^{24}, because",
+        "  257^{256} < 3 * 256^{256};",
         "- 3^{24} < 2^{40}, because 27^8 < 32^8;",
         "- 256^{139} = 2^{1112} > 2^{40}.",
         "",
         "Thus 256^{139} > (257/256)^{6038}, hence 256^{6177} > 257^{6038},",
-        "and the same holds for every larger n. Lean already has",
-        "no_follows_seven_odds_of_lt256, so every O^7 start has",
-        "T^7(n) >= (n+1)^{16}. The EEEE inverse cell [n^{16}, (n+1)^{16})",
-        "is empty, and O^7 EEEE is not a cycle word.",
+        "and the same holds for every larger n. Lean has",
+        "no_follows_seven_odds_of_lt256, o7_image_ge_succ_pow16, and",
+        "no_cycle_word_oooooooeeee. The EEEE inverse cell",
+        "[n^{16}, (n+1)^{16}) is empty, and O^7 EEEE is not a cycle word.",
         "",
         "This is not leftover_prefix_cell: that comparison uses the",
         "factor 2^{4118} and first fires at n = 828484409. The +1-chain",
         "replaces the 4-fudge by the exact successor cell.",
         "",
-        "There is no Lean theorem no_cycle_word_oooooooeeee and no",
-        "o7_image_ge_succ_pow16. This is not a length-11 census.",
+        "Paper A does not import these theorems. This is not a",
+        "length-11 census.",
         "",
         "## Lean",
         "",

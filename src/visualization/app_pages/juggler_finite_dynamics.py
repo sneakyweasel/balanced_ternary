@@ -241,6 +241,7 @@ def _n_controls() -> int:
                 step=1,
                 key="juggler_n",
                 width=160,
+                persist_state="session",
                 help="Positive integer. Shared with the rest of the laboratory.",
             )
         )
@@ -253,6 +254,11 @@ def _word_controls() -> str:
         name = st.session_state.get("juggler_word_preset")
         if name:
             st.session_state.juggler_word = name
+
+    if not str(st.session_state.get("juggler_word") or "").strip():
+        st.session_state.juggler_word = (
+            st.session_state.get("juggler_word_preset") or "OOE"
+        )
 
     row = st.container(horizontal=True, vertical_alignment="bottom", gap="small")
     with row:
@@ -285,6 +291,11 @@ def _cycle_word_controls() -> str:
             st.session_state.juggler_cycle_word = name
             st.session_state.juggler_cycle_shift = 0
             st.session_state.juggler_cycle_slider = 0
+
+    if not str(st.session_state.get("juggler_cycle_word") or "").strip():
+        st.session_state.juggler_cycle_word = (
+            st.session_state.get("juggler_cycle_example") or "OEO"
+        )
 
     row = st.container(horizontal=True, vertical_alignment="bottom", gap="small")
     with row:
@@ -826,45 +837,57 @@ def _cycle_words() -> None:
                     icon=":material/check:",
                 )
 
-    with st.expander("Why this loop is excluded", icon=":material/rule:"):
-        st.caption("The census argument, one filter at a time.")
-        st.dataframe(
-            pd.DataFrame(
-                [
-                    {
-                        "check": step.title,
-                        "status": step.status,
-                        "why": step.body,
-                    }
-                    for step in view.steps
-                ]
-            ),
-            hide_index=True,
-            width="stretch",
-        )
+    why = _lazy_expander(
+        "Why this loop is excluded",
+        icon=":material/rule:",
+        key="juggler_why",
+    )
+    if why.open:
+        with why:
+            st.caption("The census argument, one filter at a time.")
+            st.dataframe(
+                pd.DataFrame(
+                    [
+                        {
+                            "check": step.title,
+                            "status": step.status,
+                            "why": step.body,
+                        }
+                        for step in view.steps
+                    ]
+                ),
+                hide_index=True,
+                width="stretch",
+            )
 
-    with st.expander("All rotations", icon=":material/360:"):
-        st.caption("Every starting letter of the same loop.")
-        st.dataframe(
-            pd.DataFrame(
-                [
-                    {
-                        "shift": row.shift,
-                        "word": row.word,
-                        "ends E": row.even_terminating,
-                        "expanding": row.expanding,
-                        "CycleMin": row.legal_cyclemin,
-                        "blocked by": row.blocked_by or "—",
-                        "kind": row.kind,
-                        "why": row.reason,
-                        "selected": row.selected,
-                    }
-                    for row in view.rotations
-                ]
-            ),
-            hide_index=True,
-            width="stretch",
-        )
+    rotations = _lazy_expander(
+        "All rotations",
+        icon=":material/360:",
+        key="juggler_rotations",
+    )
+    if rotations.open:
+        with rotations:
+            st.caption("Every starting letter of the same loop.")
+            st.dataframe(
+                pd.DataFrame(
+                    [
+                        {
+                            "shift": row.shift,
+                            "word": row.word,
+                            "ends E": row.even_terminating,
+                            "expanding": row.expanding,
+                            "CycleMin": row.legal_cyclemin,
+                            "blocked by": row.blocked_by or "—",
+                            "kind": row.kind,
+                            "why": row.reason,
+                            "selected": row.selected,
+                        }
+                        for row in view.rotations
+                    ]
+                ),
+                hide_index=True,
+                width="stretch",
+            )
 
 
 def _open_cycle_word(word: str) -> None:
@@ -975,6 +998,7 @@ def juggler_finite_dynamics_page() -> None:
         key="juggler_view",
         format_func=lambda name: VIEW_LABEL.get(name, name),
         label_visibility="collapsed",
+        persist_state="session",
     )
     if view is None:
         view = "Orbit"

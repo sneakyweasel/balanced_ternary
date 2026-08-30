@@ -37,7 +37,7 @@ no O^7 below 256; +1-chain gives T^7(n) >= (n+1)^16 for n>=256; pin n<10000 has 
 - comparison n^6177 > (n+1)^6038
 - seven-odd cutoff: `256`
 - leftover-cell N0: `828484409`
-- elementary checks: `{'exponents_match': True, 'plus_exp': True, 'left_exp': True, 'right_exp': True, 'three_lt_768': True, 'three_pow24_lt_two_pow40': True, 'cutoff_is_256': True, 'cutoff_cross_eq': True}`
+- elementary checks: `{'exponents_match': True, 'plus_exp': True, 'left_exp': True, 'right_exp': True, 'three_mul_pow256': True, 'three_pow24_lt_two_pow40': True, 'split_6038': True, 'cutoff_is_256': True}`
 
 ## Pin
 
@@ -65,23 +65,23 @@ x_7+1 > (n+1)^{16}, so x_7 >= (n+1)^{16}. For n >= 256 this
 comparison reduces to 256^{6177} > 257^{6038}:
 
 - (n+1)/n <= 257/256, because 256(n+1) <= 257 n iff n >= 256;
-- (257/256)^{6038} = (257/256)^{256*23+190} < 3^{24}, because
-  257 < 3*256 so (257/256)^{256} < 3;
+- (257/256)^{6038} = (257/256)^{256*23+150} < 3^{24}, because
+  257^{256} < 3 * 256^{256};
 - 3^{24} < 2^{40}, because 27^8 < 32^8;
 - 256^{139} = 2^{1112} > 2^{40}.
 
 Thus 256^{139} > (257/256)^{6038}, hence 256^{6177} > 257^{6038},
-and the same holds for every larger n. Lean already has
-no_follows_seven_odds_of_lt256, so every O^7 start has
-T^7(n) >= (n+1)^{16}. The EEEE inverse cell [n^{16}, (n+1)^{16})
-is empty, and O^7 EEEE is not a cycle word.
+and the same holds for every larger n. Lean has
+no_follows_seven_odds_of_lt256, o7_image_ge_succ_pow16, and
+no_cycle_word_oooooooeeee. The EEEE inverse cell
+[n^{16}, (n+1)^{16}) is empty, and O^7 EEEE is not a cycle word.
 
 This is not leftover_prefix_cell: that comparison uses the
 factor 2^{4118} and first fires at n = 828484409. The +1-chain
 replaces the 4-fudge by the exact successor cell.
 
-There is no Lean theorem no_cycle_word_oooooooeeee and no
-o7_image_ge_succ_pow16. This is not a length-11 census.
+Paper A does not import these theorems. This is not a
+length-11 census.
 
 ## Lean
 
@@ -89,10 +89,10 @@ o7_image_ge_succ_pow16. This is not a length-11 census.
 - `leftover_prefix_cell`: `True`
 - `cycle_trailing_evens_lt`: `True`
 - `odd_cell_unique`: `True`
-- no `no_cycle_word_oooooooeeee`: `True`
+- `o7_image_ge_succ_pow16`: `True`
+- `no_cycle_word_oooooooeeee`: `True`
 - no `no_cycle_word_length_eleven`: `True`
 - no `no_cycle_word_four_even`: `True`
-- no `o7_image_ge_succ_pow16`: `True`
 - no `juggler_reaches_one`: `True`
 - Paper A has no O^7 EEEE theorem: `True`
 - FloorPower not rewritten: `True`

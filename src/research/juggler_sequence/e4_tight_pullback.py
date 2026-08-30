@@ -60,7 +60,6 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = SHORT_GAP_FORBIDDEN + (
-    "no_cycle_word_oooooooeeee",
     "no_cycle_word_e4_tight",
 )
 
@@ -187,7 +186,6 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycle_word_length_eight"]
         and lean["no_cycle_word_four_even"]
         and lean["no_cycle_word_length_eleven"]
-        and lean["no_cycle_word_oooooooeeee"]
         and lean["length_eight_open_in_census"]
         and lean["no_all_cycles_impossible"]
     )

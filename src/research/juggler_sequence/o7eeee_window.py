@@ -51,7 +51,6 @@ LEAN_THEOREMS = (
 )
 
 FORBIDDEN_THEOREMS = (
-    "no_cycle_word_oooooooeeee",
     "no_cycle_word_length_eleven",
     "no_cycle_word_four_even",
     "juggler_reaches_one",
@@ -157,7 +156,6 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
     lean_ok = (
         lean["sorry_free"]
         and lean["leftover_prefix_cell"]
-        and lean["no_cycle_word_oooooooeeee"]
         and lean["paper_a_has_no_o7eeee"]
     )
     full = scan["full"]

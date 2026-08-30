@@ -65,7 +65,6 @@
     "no_cycle_word_length_nine": true,
     "no_cycle_word_length_eleven": true,
     "no_cycle_word_four_even": true,
-    "no_cycle_word_oooooooeeee": true,
     "no_cycle_word_length11_nonpullback": true,
     "no_juggler_cycle": true,
     "no_all_cycles_impossible": true,

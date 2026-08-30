@@ -22,8 +22,9 @@ T^7(n)\ge(n+1)^{16}.
 \]
 
 In particular \(T^7(n)\notin[n^{16},(n+1)^{16})\), so
-\(O^7\mathrm{EEEE}\) is not a cycle word. There is no
-`no_cycle_word_oooooooeeee` in Lean.
+\(O^7\mathrm{EEEE}\) is not a cycle word. Lean theorems
+`o7_image_ge_succ_pow16` and `no_cycle_word_oooooooeeee`
+live in `O7EEEEGap.lean`. They are not Paper A theorems.
 
 ## Current literature
 
@@ -75,14 +76,13 @@ It is not required.
 - no seven-odd run below \(256\) —
   **EXACT — LEAN VERIFIED**
 - \(n^{6177}<(n+1)^{3990}(T^7(n)+1)^{128}\) on an \(O^7\) run —
-  **EXACT — HUMAN PROOF**
+  **EXACT — LEAN VERIFIED**
 - \(n^{6177}>(n+1)^{6038}\) for every \(n\ge 256\) —
-  **EXACT — HUMAN PROOF**
+  **EXACT — LEAN VERIFIED**
 - \(T^7(n)\ge(n+1)^{16}\) on every \(O^7\) start —
-  **EXACT — HUMAN PROOF**
+  **EXACT — LEAN VERIFIED** (`o7_image_ge_succ_pow16`)
 - \(O^7\mathrm{EEEE}\) is not a cycle word —
-  **EXACT — HUMAN PROOF**
-- `no_cycle_word_oooooooeeee` — not claimed in Lean
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_oooooooeeee`)
 - no cycle of length 11 — not claimed
 - global halt — not claimed
 
@@ -93,8 +93,9 @@ It is not required.
   [juggler_o7eeee_gap.json](../research/juggler_o7eeee_gap.json)
 - Tests: `tests/research/juggler_sequence/test_o7eeee_gap.py`
 - The Research Engine control layer is not modified.
-- Finite checks: \(257<768\), \(3^{24}<2^{40}\), pin \(n<10^4\).
-- No Lean. No Paper A theorem.
+- Finite checks: \(257^{256}<3\cdot256^{256}\), \(3^{24}<2^{40}\),
+  pin \(n<10^4\).
+- Lean: `Problems/Juggler/O7EEEEGap.lean`. Not imported by Paper A.
 
 ## Conjectures
 
@@ -107,15 +108,16 @@ None to the gap. The stronger claims that fail:
 - “the leftover \(4\)-fudge is necessary for this word” — the
   exact successor cell fires at the existing seven-odd cutoff.
 - “this is a length-11 census” — one word.
-- “this is `no_cycle_word_oooooooeeee` in Lean” — the theorem
-  name is absent.
+- “this is a Paper A theorem” — `JugglerPaper` does not import
+  `O7EEEEGap.lean`.
 
 ## Formalization
 
-None new. Existing `no_follows_seven_odds_of_lt256`,
-`leftover_prefix_cell`, and `cycle_trailing_evens_lt` are
-unchanged. No `sorry`. No `no_cycle_word_oooooooeeee`. No
-`o7_image_ge_succ_pow16`. Paper A is unchanged.
+`formal/Problems/Juggler/O7EEEEGap.lean`. Theorems
+`o7_image_ge_succ_pow16` and `no_cycle_word_oooooooeeee`.
+Existing `no_follows_seven_odds_of_lt256` and
+`cycle_trailing_evens_lt` are reused. No `sorry`. Paper A is
+unchanged.
 
 ## Results
 
@@ -124,9 +126,10 @@ Classification **O7EEEE_GAP_PROVED**.
 On an \(O^7\) run the exact cells \(x_k^3<(x_{k+1}+1)^2\) and the
 comparisons \(x_k\ge n\) compose to
 \(n^{6177}<(n+1)^{3990}(T^7(n)+1)^{128}\). For \(n\ge 256\) one
-has \(n^{6177}>(n+1)^{6038}\) because \(256^{139}>2^{40}>3^{24}
->(257/256)^{6038}\). Lean excludes seven-odd runs below \(256\).
-Therefore \(T^7(n)\ge(n+1)^{16}\) on every \(O^7\) start, and
+has \(n^{6177}>(n+1)^{6038}\) because \(257^{256}<3\cdot256^{256}\)
+and \(256^{139}>2^{40}>3^{24}>(257/256)^{6038}\). Lean excludes
+seven-odd runs below \(256\). Therefore
+\(T^7(n)\ge(n+1)^{16}\) on every \(O^7\) start, and
 \(O^7\mathrm{EEEE}\) is not a cycle word.
 
 The leftover envelope \(2^{4118}(n+1)^{2048}<n^{2187}\) is a
@@ -135,18 +138,18 @@ strictly weaker comparison. It is not used.
 ## Open questions
 
 Do not scan the other twenty-nine leftovers automatically. Do not
-write \(Z_5\). Lean packaging of this one inequality is a later
-question, not a census.
+write \(Z_5\). The same \(+1\)-chain is not automatically a method
+for the other leftovers.
 
 ## Decision
 
-**PROMOTE** the \(+1\)-chain gap. The leftover \(4\)-fudge was the
+**PROMOTE** the Lean \(+1\)-chain. The leftover \(4\)-fudge was the
 obstruction to a small threshold, not a missing inverse-cell
 phenomenon. This is not a halt result and not an exclusion of the
 other twenty-nine words.
 
-Best next question: Lean `T^7(n)\ge(n+1)^{16}` on \(O^7\), not
-\(Z_5\) and not the other twenty-nine words.
+Best next question: stop. Do not open the other twenty-nine
+leftovers from this theorem.
 
 ## Publication assessment
 

@@ -33,7 +33,8 @@ there. Phase 0 asks whether any odd \(n\) with \(3\le n<N_0\)
 lands in that inverse cell.
 
 This is one word. It is not a length-11 census and not a halt
-theorem. There is no `no_cycle_word_oooooooeeee` in Lean.
+theorem. The later satellite `O7EEEEGap.lean` has
+`no_cycle_word_oooooooeeee`.
 
 ## Current literature
 
@@ -92,7 +93,8 @@ It is not required.
   **COMPUTATIONALLY VERIFIED**
 - closest ratio \(T^7(n)/(n+1)^{16}=445.01\) at \(n=289\) —
   **COMPUTATIONALLY VERIFIED**
-- `no_cycle_word_oooooooeeee` — not claimed
+- `no_cycle_word_oooooooeeee` — later Lean, see
+  [juggler_o7eeee_gap](juggler_o7eeee_gap.md)
 - no cycle of length 11 — not claimed
 - global halt — not claimed
 
@@ -120,9 +122,9 @@ None to emptiness. The stronger claims that fail:
 
 ## Formalization
 
-None. Existing `leftover_prefix_cell`, `cycle_trailing_evens_lt`,
-and `odd_cell_unique` are unchanged. No `sorry`. No
-`no_cycle_word_oooooooeeee`. Paper A is unchanged.
+The later laboratory satellite `O7EEEEGap.lean` now has
+`no_cycle_word_oooooooeeee`. This window page remains a
+computational scan. Paper A is unchanged.
 
 ## Results
 

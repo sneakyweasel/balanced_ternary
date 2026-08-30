@@ -11934,3 +11934,73 @@ Best next question
   and not the other twenty-nine words
 ```
 
+## Juggler O^7 EEEE +1-chain Lean
+
+- **Date:** 2026-08-30
+- **Objective:** Formalize \(T^7(n)\ge(n+1)^{16}\) on \(O^7\) starts
+- **Hypotheses:** the exact successor cell and \(x_k\ge n\) close in Lean at the existing seven-odd cutoff
+- **Major results:** `o7_image_ge_succ_pow16` and `no_cycle_word_oooooooeeee` in `O7EEEEGap.lean`, sorry-free. Ledger row `J-o7eeee-gap` retagged `EXACT — LEAN VERIFIED`. The comparison \(257^{256}<3\cdot256^{256}\) replaces the incorrect \(257<768\) justification. Remainder in \(6038=256\cdot23+150\). Not imported by Paper A. Not a length-11 census and not a halt theorem
+- **Refuted ideas:** \(257<768\) proves \((1+1/256)^{256}<3\)
+- **Literature:** `no_follows_seven_odds_of_lt256`; `cycle_trailing_evens_lt`; human +1-chain `PROMOTE`
+- **Open:** stop. Do not open the other twenty-nine leftovers from this theorem
+- **Decision:** PROMOTE. One-word Lean exclusion
+
+```text
+What was learned
+- the +1-chain formalizes without the 4-fudge
+- 257^256 < 3*256^256 is the real (1+1/n)^n bound
+- 6038 = 256*23 + 150, not +190
+- n=1 follows O^7 but not EEEE
+- Paper A stays unchanged
+Strongest theorem
+- o7_image_ge_succ_pow16
+  (EXACT — LEAN VERIFIED)
+- no_cycle_word_oooooooeeee
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- 257 < 768 implies (257/256)^256 < 3
+Reusable machinery
+- O7EEEEGap.lean; not imported by JugglerPaper
+Branch status
+- PROMOTE
+Why
+- the sharp leftover equation is now a laboratory
+  Lean theorem at the existing seven-odd cutoff
+Best next question
+- stop
+```
+
+## Juggler Amplify versus surplus on the thirty length-11 leftovers
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether first-defect Amplify beats the formal surplus \(G=n^{2187}-n^{2048}\) on the thirty length-11 four-even leftovers below the leftover-cell cutoff
+- **Hypotheses:** the cubic lift of the first remainder eats the \(n^{139}\) surplus earlier than \(Z=(n+1)^{16}\)
+- **Major results:** Classification **AMPLIFY_SURPLUS_REFUTED**. Linear Amplify exponent is 2184 (\(\rho=1\)) or 2185.5 (max \(\rho\)) on every short-gap shape; even letters leave \(2^{k+1}x\) invariant. \(\rho=1\) misses \(G\) at every \(n\ge 12\). Optimistic max-\(\rho\) Amplify already misses at the seven-odd cutoff 256. Realized followers \(n\le 400\) have Amplify \(<G\). No Lean. Not a length-11 census and not a halt theorem
+- **Refuted ideas:** first-defect Amplify repairs the length-11 leak; interleaved evens strengthen Amplify; later remainders dropped from Amplify are a small error
+- **Literature:** `amplifyDefect`; compensated contraction; \(Z_4\) `PARK`; E4 tight pullback `CLOSE`; `no_cycle_word_oooooooeeee` (a different comparison)
+- **Open:** stop. Do not write an Amplify assembler. Do not automatically scan the other twenty-nine leftovers
+- **Decision:** CLOSE. Amplify is \(T_w<n\) with the later remainders dropped, and those remainders are the \(n^3\) gap
+
+```text
+What was learned
+- surplus on every length-11 four-even word is n^{2187}
+- first odd inserts rho; six later odds give exponent 2184
+- even letters do not change 2^{k+1} x
+- D stays n^3 behind the scale x^{2^k}
+- leftover cells and the +1-chain bound the image, not rho
+Strongest theorem
+- none; the exponent gap is the obstruction
+Strongest refutation
+- Amplify > G on a length-11 leftover below leftover N0
+Reusable machinery
+- amplify_surplus.py; no Lean
+Branch status
+- CLOSE
+Why
+- the first remainder cannot pay the surplus; the later
+  floors are the gap the leftover path already knew
+Best next question
+- a word-equation or inverse-cell argument for a named
+  leftover other than O^7 EEEE, not another Delta vs G
+```
+

@@ -7,6 +7,7 @@ import json
 from research.juggler_sequence.o7eeee_gap import (
     CLASS_PROVED,
     FORBIDDEN_THEOREMS,
+    LEAN_THEOREMS,
     JSON_PATH,
     LEFT_EXP,
     PLUS_EXP,
@@ -33,7 +34,8 @@ def test_exponents_and_elementary():
     assert SEVEN_ODD_CUTOFF == 256
     assert 3**7 + PLUS_EXP == LEFT_EXP
     assert PLUS_EXP + 16 * 128 == RIGHT_EXP
-    assert 257 < 768
+    assert 257**256 < 3 * 256**256
+    assert 256 * 23 + 150 == 6038
     assert 3**24 < 2**40
     elem = elementary_comparisons()
     assert all(elem.values()), elem
@@ -52,11 +54,11 @@ def test_first_seven_odd_and_pin_above_cell():
     assert z is not None and z >= hi
 
 
-def test_lean_has_seven_odd_cutoff_and_no_o7eeee_theorem():
+def test_lean_has_o7eeee_gap_theorems():
     lean = lean_api_present()
     assert lean["sorry_free"] is True
-    assert lean["no_follows_seven_odds_of_lt256"] is True
-    assert lean["leftover_prefix_cell"] is True
+    for name in LEAN_THEOREMS:
+        assert lean[name] is True, name
     for name in FORBIDDEN_THEOREMS:
         assert lean[name] is True, name
     assert lean["paper_a_has_no_o7eeee"] is True
