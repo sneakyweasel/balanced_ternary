@@ -14874,4 +14874,45 @@ Best next question
   Lean-checked floor?
 ```
 
+## Juggler cycle finance Lean formalization
+
+- **Date:** 2026-08-31
+- **Objective:** Formalize the cycle finance inequality in Lean over the existing `follows`/`image`/`CycleWord` machinery (`Real.log` form) and extract wholesale length exclusions from the residual floor `reachesOne_of_lt_twelve`
+- **Hypotheses:** the dyadic-cell bound \(\log z\le 2\log y+2/y\) unrolls on a `CycleMin` to \(n\log n\cdot(3^o-2^L)\le L\cdot 3^o\), and \(13\log 13>65/2\) excludes lengths \(9\) and \(10\) (and isolated \(12\), \(13\), \(16\)) without a word census
+- **Major results:** `CycleFinance.lean` is `sorry`-free. `cycleMin_finance` and `cycle_finance_min_thirteen` are **EXACT — LEAN VERIFIED**. Census extension `no_cycle_word_length_le_ten` is **EXACT — LEAN VERIFIED**. Isolated exclusions of lengths \(12\), \(13\), and \(16\); residual `cycle_word_length_eleven_or_ge_fourteen`. Ledger rows `J-cycle-finance-inequality`, `J-small-cycle-census-ten`, `J-cycle-word-length-eleven-or-ge-fourteen`. Paper A unchanged. The Python floor \(N_0=10^6\) (all \(L\le1053\)) remains **COMPUTATIONALLY VERIFIED**, not Lean. Not a halt theorem
+- **Refuted ideas:** none; the Lean unroll did not stall
+- **Literature:** Phase-0 dossier `juggler_cycle_finance`; `no_cycle_word_length_le_eight`; `cycle_word_formally_expanding`; `reachesOne_of_lt_twelve`; `simons-de-weger-2005-collatz-m-cycles`
+- **Open:** length \(11\) (near-convergent \(2^{11}<3^7\), \(n_{\max}\approx52\)) and lengths \(\ge14\) except \(16\) still need a larger Lean floor or a word-specific argument
+- **Decision:** PROMOTE. The inequality and the length-\(\le10\) census enter the laboratory stack
+
+```text
+What was learned
+- the cell form log z <= 2 log y + 2/y gives constant 1,
+  sharper than the Phase-0 6/5 bound
+- CycleMin plus the residual floor 12 plus oddness of the
+  rotated minimum yields 13 log 13 > 65/2
+- that numeric comparison excludes L = 9, 10, 12, 13, 16
+  with no word census
+- the Lean-verified census is now L <= 10; any remaining
+  cycle has period 11 or >= 14
+- the computational 1053-exclusion is still a Python floor,
+  not a Lean floor
+Strongest theorem
+- cycleMin_finance: n log n (3^o - 2^L) <= L 3^o
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- none
+Reusable machinery
+- formal/Problems/Juggler/CycleFinance.lean on the lab barrel
+Branch status
+- PROMOTE
+Why
+- first wholesale (length-indexed, word-free) cycle exclusion
+  in the formal stack; census 8 -> 10 plus isolated 12, 13, 16
+Best next question
+- can length 11 (2^11 < 3^7, n_max ~ 52) be excluded in Lean,
+  either by raising the residual floor past 52 or by a
+  word-specific argument?
+```
+
 

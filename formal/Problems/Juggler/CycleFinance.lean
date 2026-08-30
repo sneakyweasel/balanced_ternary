@@ -99,7 +99,7 @@ theorem cycleMin_prefix_pow_le {n : ℕ} {w : List Branch}
     ∀ k, k ≤ w.length → 2 ^ k ≤ 3 ^ oddCount (w.take k) := by
   intro k hk
   by_contra hc
-  push_neg at hc
+  push Not at hc
   have hf : follows n (w.take k) := follows_take w k h.1.1
   have hlen : (w.take k).length = k := by
     simp [List.length_take, Nat.min_eq_left hk]
@@ -325,7 +325,7 @@ theorem no_cycle_word_length_nine {n : ℕ} {w : List Branch}
   rw [hlen] at hfin hexp
   have ho : 6 ≤ oddCount w := by
     by_contra hc
-    push_neg at hc
+    push Not at hc
     have hle : (3 : ℕ) ^ oddCount w ≤ 3 ^ 5 :=
       Nat.pow_le_pow_right (by norm_num) (by omega)
     have : (2 : ℕ) ^ 9 < 3 ^ 5 := lt_of_lt_of_le hexp hle
@@ -347,7 +347,7 @@ theorem no_cycle_word_length_ten {n : ℕ} {w : List Branch}
   rw [hlen] at hfin hexp
   have ho : 7 ≤ oddCount w := by
     by_contra hc
-    push_neg at hc
+    push Not at hc
     have hle : (3 : ℕ) ^ oddCount w ≤ 3 ^ 6 :=
       Nat.pow_le_pow_right (by norm_num) (by omega)
     have : (2 : ℕ) ^ 10 < 3 ^ 6 := lt_of_lt_of_le hexp hle
@@ -369,7 +369,7 @@ theorem no_cycle_word_length_twelve {n : ℕ} {w : List Branch}
   rw [hlen] at hfin hexp
   have ho : 8 ≤ oddCount w := by
     by_contra hc
-    push_neg at hc
+    push Not at hc
     have hle : (3 : ℕ) ^ oddCount w ≤ 3 ^ 7 :=
       Nat.pow_le_pow_right (by norm_num) (by omega)
     have : (2 : ℕ) ^ 12 < 3 ^ 7 := lt_of_lt_of_le hexp hle
@@ -391,7 +391,7 @@ theorem no_cycle_word_length_thirteen {n : ℕ} {w : List Branch}
   rw [hlen] at hfin hexp
   have ho : 9 ≤ oddCount w := by
     by_contra hc
-    push_neg at hc
+    push Not at hc
     have hle : (3 : ℕ) ^ oddCount w ≤ 3 ^ 8 :=
       Nat.pow_le_pow_right (by norm_num) (by omega)
     have : (2 : ℕ) ^ 13 < 3 ^ 8 := lt_of_lt_of_le hexp hle
@@ -413,7 +413,7 @@ theorem no_cycle_word_length_sixteen {n : ℕ} {w : List Branch}
   rw [hlen] at hfin hexp
   have ho : 11 ≤ oddCount w := by
     by_contra hc
-    push_neg at hc
+    push Not at hc
     have hle : (3 : ℕ) ^ oddCount w ≤ 3 ^ 10 :=
       Nat.pow_le_pow_right (by norm_num) (by omega)
     have : (2 : ℕ) ^ 16 < 3 ^ 10 := lt_of_lt_of_le hexp hle
@@ -443,7 +443,7 @@ theorem cycle_word_length_eleven_or_ge_fourteen {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleWord n w) :
     w.length = 11 ∨ 14 ≤ w.length := by
   by_contra hc
-  push_neg at hc
+  push Not at hc
   obtain ⟨h11, h14⟩ := hc
   have hsplit : w.length ≤ 10 ∨ w.length = 12 ∨ w.length = 13 := by omega
   rcases hsplit with hle | h12 | h13

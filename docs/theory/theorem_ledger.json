@@ -3292,7 +3292,7 @@
   {
     "id": "J-small-cycle-census-eight",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most eight is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least nine. Assembly: the length-≤7 census, the formal-expansion filter on length eight, the odd-run exclusion of O^7E, Theorem 3.12 at k=8, rotation of EOOOOOOE and OEOOOOOE onto those leftovers, and the internal-E bootstrap exclusions of OOOOEOOE, OOOEOOOE, and OOEOOOOE. Lean theorem no_cycle_word_length_le_eight in LengthEightCensus.lean. This is a laboratory strengthening of Paper A Theorem 3.8, not a published Paper A theorem, not a length-9 census, and not a halt theorem.",
+    "statement": "No word of length at most eight is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least nine. Assembly: the length-≤7 census, the formal-expansion filter on length eight, the odd-run exclusion of O^7E, Theorem 3.12 at k=8, rotation of EOOOOOOE and OEOOOOOE onto those leftovers, and the internal-E bootstrap exclusions of OOOOEOOE, OOOEOOOE, and OOEOOOOE. Lean theorem no_cycle_word_length_le_eight in LengthEightCensus.lean. Strengthened by J-small-cycle-census-ten. This is a laboratory strengthening of Paper A Theorem 3.8, not a published Paper A theorem, not a length-9 census, and not a halt theorem.",
     "source": "docs/problems/juggler_length_eight_cycles.md",
     "lean": "Problems/Juggler/LengthEightCensus.lean",
     "tests": [
@@ -5122,6 +5122,39 @@
     "lean": "",
     "tests": [
       "tests/research/juggler_sequence/test_parity_balance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-finance-inequality",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "On a Juggler CycleMin start n ≥ 2 with word w of length L and oddCount o, the dyadic-cell logarithm bound log z ≤ 2 log y + 2/y unrolls to n · log n · (3^o − 2^L) ≤ L · 3^o (Lean cycleMin_finance). Every cycle state is at least 12 and the rotated minimum is odd, so the minimum is at least 13 and 13 log 13 > 65/2, hence (65/2)(3^o − 2^L) ≤ L · 3^o for every CycleWord (cycle_finance_min_thirteen). This is the whole-cycle financing of the formal expansion 2^L < 3^o by relative floor defects. It is not a halt theorem, not an exclusion of every length, and not the computational 6/5 table used for L ≤ 10^5.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-small-cycle-census-ten",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "No word of length at most ten is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_word_length_nine, no_cycle_word_length_ten, packaged as no_cycle_word_length_le_ten). This is not a length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem. Paper A is unchanged.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-word-length-eleven-or-ge-fourteen",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 11 or at least 14. Lengths ≤ 10 are J-small-cycle-census-ten; lengths 12 and 13 are excluded by the same finance comparison (no_cycle_word_length_twelve, no_cycle_word_length_thirteen); length 16 is likewise excluded (no_cycle_word_length_sixteen) but is absorbed into the ≥ 14 residual. Lean theorem cycle_word_length_eleven_or_ge_fourteen. This is not an exclusion of length 11, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
     ],
     "related_conjectures": []
   }
