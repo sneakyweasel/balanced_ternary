@@ -161,10 +161,11 @@ This is not a halt theorem and not a length-11 cycle census.
 
 ## Open questions
 
-After the odd `OE` landing \(1517\to 2493\), is the next letter
-forced into another `OO`, or can a further even escape \(n^{2}\)
-again? Do not open a length-11 assembler. Do not reopen the
-first-`OOO` language envelope.
+Answered in [juggler_oe_next_oo.md](juggler_oe_next_oo.md): the
+next `O` stays below \(n^{2}\); another escaped even is
+impossible; \(1517\) starts another `OO`. Do not open a
+length-11 assembler. Do not reopen the first-`OOO` language
+envelope.
 
 ## Decision
 
@@ -172,9 +173,8 @@ first-`OOO` language envelope.
 **REFUTE** that every escaped even drops. Do not claim that
 escape is impossible. Do not claim a length-11 census.
 
-Best next question: after the odd `OE` landing \(1517\to 2493\),
-does the next image stay odd (another `OO`) or produce another
-escaped even?
+Best next question: answered in
+[juggler_oe_next_oo.md](juggler_oe_next_oo.md).
 
 ## Publication assessment
 

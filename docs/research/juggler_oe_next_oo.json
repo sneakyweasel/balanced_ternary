@@ -1,0 +1,99 @@
+{
+  "experiment": "juggler_oe_next_oo",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "no_escape": false,
+    "cycles_impossible": false,
+    "another_escaped_even": false,
+    "length_eleven_census": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_hi": 8001,
+    "square_gap": true,
+    "oeoe_contracting": true,
+    "window": {
+      "n_hi": 8001,
+      "odd_w": 2,
+      "another_oo": 1,
+      "even_drop": 1,
+      "escaped_again": 0,
+      "q_ge_sq": 0,
+      "samples": [
+        {
+          "n": 1517,
+          "w": 2493,
+          "q": 124475,
+          "q_odd": true,
+          "q_lt_sq": true,
+          "q_ge_n": true,
+          "q_ge_sq": false,
+          "another_oo": true,
+          "even_drop": false
+        },
+        {
+          "n": 7653,
+          "w": 14041,
+          "q": 1663784,
+          "q_odd": false,
+          "q_lt_sq": true,
+          "q_ge_n": true,
+          "q_ge_sq": false,
+          "another_oo": false,
+          "even_drop": true
+        }
+      ]
+    },
+    "witness_1517": {
+      "n": 1517,
+      "w": 2493,
+      "q": 124475,
+      "q_odd": true,
+      "follows": true,
+      "image": 124475
+    },
+    "witness_7653": {
+      "n": 7653,
+      "w": 14041,
+      "q": 1663784,
+      "q_even": true,
+      "drop": 1289,
+      "drop_lt_n": true,
+      "follows": true,
+      "image": 1663784
+    },
+    "another_escaped_even": false,
+    "length_eleven_census": false,
+    "expanding_grammar_reopen": false,
+    "halt_claim": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "wordOOEOOEOOEOEO": true,
+    "follows_ooeooeooeoeo_image_lt_sq": true,
+    "minimal_ooeooeooeoe_follows_o": true,
+    "minimal_ooeooeooeoeo_not_even": true,
+    "minimal_ooeooeooeoe_not_even_landing": true,
+    "has_no_juggler_escape": false,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_cycle": false,
+    "has_no_cycle_word_length_eleven": false,
+    "escape_has_next_sq": true,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "OE_NEXT_OO_GREEN",
+    "reason": "OOEOOEOOEOEO < n^2 so another escaped even is impossible; CE forces the next image odd; 1517 starts OO; 7653 drops"
+  },
+  "search_method": "odd-w escaped-even landings; next O square gap; Lean CE even-trap; no halt"
+}

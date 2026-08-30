@@ -13198,4 +13198,77 @@ Best next question
   (another OO) or another escaped even?
 ```
 
+## Juggler second post-L OOE residual
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether the second post-\(L\) `OOE` still has an \(n\)-relative square cell and how far \(M(\mathtt{OOE})^k\) keeps it
+- **Hypotheses:** \(M+\mathtt{OOE}\) occupies \([n,n^2)\); even \(r\) drops; `OE` drops; \(k\) is unbounded
+- **Major results:** Classification **SECOND_POST_L_OOE_GREEN**. \(r^{131072}\le n^{177147}\) and \(r<n^2\) (\(2^{18}>3^{11}\)); even \(r\) drops; \(M(\mathtt{OOE})^k\) has the square gap iff \(k\le 4\) — **EXACT — HUMAN PROOF** (`J-cyclemin-second-post-l-ooe-square`). `OE` after the second block drops, and the cell persists for all \(k\) — **REFUTED** (`J-cyclemin-second-post-l-ooe-oe-drops`): \(3^{12}>2^{19}\); first failure at \(k=5\). `501\to 1749\to 4447` starts another `OO`. Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** `OE` after \(M+\mathtt{OOE}\) is FiniteProgress; square cell for all \(k\); generic `OOE` with no \(n\)-relative cell
+- **Literature:** first post-\(L\) \(M\)-envelope; \((\mathtt{OOE})^k\) square max \(5\); `power_bound_word`
+- **Open:** at \(k=5\), what corridor replaces the square cell? Do not build a \(p\)-adic system
+- **Decision:** PROMOTE the second-post-\(L\) square cell and the finite \(k\le 4\) budget. Do not claim that every residual dies at \(k=5\)
+
+```text
+What was learned
+- M+OOE gives r^{131072} <= n^{177147} and r < n^2
+- even r drops; OE after the second OOE does not
+- M+(OOE)^k stays in the square cell iff k <= 4
+- the cell is lost at k=5 (2^{30} < 3^{19})
+- 501 lands at 4447 and starts another OO
+Strongest theorem
+- M(OOE)^k has a square cell iff k <= 4;
+  even landing after M+OOE is FiniteProgress
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- OE after the second OOE drops / k unbounded
+  (531441 > 524288; k=5 fails)
+Reusable machinery
+- second_post_l_ooe.py k-budget and M2 split
+Branch status
+- PROMOTE
+Why
+- the residual is a finite square-cell corridor with a
+  known first failure, not an unbounded OOE copy of L
+Best next question
+- at k=5, when the square cell fails, what exact
+  corridor replaces it?
+```
+
+## Juggler next letter after odd OE
+
+- **Date:** 2026-08-30
+- **Objective:** After the odd `OE` landing \(1517\to 2493\), decide whether the next image is odd (another `OO`) or another escaped even
+- **Hypotheses:** \(6561<8192\) keeps the next `O` below \(n^{2}\); another escaped even can occur
+- **Major results:** Classification **OE_NEXT_OO_GREEN**. \(T_{\mathtt{OOEOOEOOEOEO}}(n)<n^{2}\) (\(6561<8192\)); a CE following an odd `OE` follows the next `O` with odd image — **EXACT — LEAN VERIFIED** (`J-ce-oe-next-oo`). Another escaped even on this step — **REFUTED** (`J-oe-next-escaped-even`): \(1517\to 124475\) is odd in \([n,n^{2})\); \(7653\to 1663784\to 1289\) is the even drop. Not a length-11 census. Laboratory barrel only. Paper A unchanged. No halt theorem
+- **Refuted ideas:** the next `O` can escape \(n^{2}\); another escaped even is the leftover
+- **Literature:** escaped-even `OE` square cell; \(1517\) odd-\(w\) leftover
+- **Open:** after \(1517\to 124475\), does the second `O` of the new `OO` still lie below \(n^{2}\)? Do not auto-continue. Do not open a length-11 assembler
+- **Decision:** PROMOTE the CE next-`O` square trap. Do not claim that escape is impossible
+
+```text
+What was learned
+- OOEOOEOOEOEO lies below n^2 (6561 < 8192)
+- another escaped even is impossible on this step
+- on a CE the next image is odd
+- 1517 starts another OO at 124475
+- 7653 drops on an even image
+Strongest theorem
+- MinimalNonTerm n and follows OOEOOEOOEOE =>
+  follows OOEOOEOOEOEO and the image is odd
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- the next image can be another escaped even
+Reusable machinery
+- wordOOEOOEOOEOEO in Escape.lean
+Branch status
+- PROMOTE
+Why
+- the new square gap forbids escaped even here and
+  forces the CE leftover onto another OO
+Best next question
+- after 1517 -> 124475, does the second O of the
+  new OO still lie below n^2?
+```
+
 

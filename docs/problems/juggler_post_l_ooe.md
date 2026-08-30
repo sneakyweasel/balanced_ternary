@@ -183,10 +183,11 @@ assembler, and not a halt theorem.
 
 Lean-package \(19683<32768\) and \(59049<65536\) after
 `OOEOOOEOOEEOOE`. The residual is a second post-\(L\)
-`OOE` (\(501\to 1749\)). Do not reopen bunched-short
-cells. Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not build a \(p\)-adic
-system.
+`OOE` (\(501\to 1749\)), now the separate branch
+[juggler_second_post_l_ooe.md](juggler_second_post_l_ooe.md).
+Do not reopen bunched-short cells. Do not write \(Z_5\).
+Do not assemble `no_cycle_word_length_eleven`. Do not
+build a \(p\)-adic system.
 
 ## Decision
 

@@ -1,0 +1,87 @@
+{
+  "experiment": "juggler_second_post_l_ooe",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "k_unbounded": false,
+    "second_oe_drops": false,
+    "generic_ooe_only": false,
+    "anchor_induction": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_min": 12,
+    "n_hi": 801,
+    "word_m": "OOEOOOEOOEEOOE",
+    "word_m2": "OOEOOOEOOEEOOEOOE",
+    "gaps": {
+      "M2_square": true,
+      "M2_contracts": false,
+      "M2_even_drops": true,
+      "M2_oe_contracts": false,
+      "M2_oe_square": true,
+      "M2_oee_contracts": true,
+      "k0_square": true,
+      "k4_square": true,
+      "k5_square": false,
+      "k_max": 4
+    },
+    "second_oo": {
+      "n": 501,
+      "s": 1749,
+      "s1": 73145,
+      "s2": 19782308,
+      "r": 4447,
+      "r_kind": "OO",
+      "r_lt_n2": true,
+      "r_ge_n": true,
+      "follows_M2": true,
+      "follows_L_s": false,
+      "follows_L_r": false,
+      "s_walk_exit": "drop",
+      "s_second_ooo": false,
+      "second_oo_s": null
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "leftover_suffix_retest": false,
+    "terminal_cluster_reopen": false,
+    "residue_automaton": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "power_bound_word": true,
+    "power_bound_contracts": true,
+    "ooo_residual_ge_cube": true,
+    "no_cycleMin_ooeoooe": true,
+    "floorPower_oooee_five_step_lt": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "no_new_lean": true
+  },
+  "decision": {
+    "classification": "SECOND_POST_L_OOE_GREEN",
+    "reason": "M+(OOE)^k stays below n^2 for k<=4 and loses the square cell at k=5. The second OOE has r < n^2; even r drops; OE after it does not contract. 501 lands at 4447 and starts another OO"
+  },
+  "search_method": "M+(OOE)^k square gaps only; second-OOE parity split; 501 residual; no terminal cell, no residue automaton, no Z5, no length-11"
+}

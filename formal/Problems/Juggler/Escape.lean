@@ -12,7 +12,8 @@ the `CycleMin` return hypothesis: an even landing, or an even next
 image below `n^2`, is descent and is impossible on a CE. After the
 forced `OO`, the third residual `OOEOOEOO` lies below `n^3` and a
 completed third `OOE` lies below `n^2`. The escaped-even `OE`
-`OOEOOEOOEOE` still lies below `n^2`.
+`OOEOOEOOEOE` still lies below `n^2`. The next `O` after an odd
+`OE` landing still lies below `n^2`.
 
 This is not a halt theorem. It does not prove
 `∀ n, ¬EscapesToInfinity n`. It does not prove that every cycle is
@@ -421,5 +422,81 @@ theorem minimal_ooeooeooeoe_not_even_landing {n : ℕ}
     (even_floorPower_lt_iff he).mpr hlt
   exact minimal_nonterm_no_descent h
     ⟨follows_ooeooeooeoe_even hw he, by simpa [image_ooeooeooeoe_even] using hdrop⟩
+
+def wordOOEOOEOOEOEO : List Branch :=
+  wordOOEOOEOOEOE ++ [Branch.odd]
+
+theorem wordOOEOOEOOEOEO_length : wordOOEOOEOOEOEO.length = 12 := by
+  simp [wordOOEOOEOOEOEO, wordOOEOOEOOEOE, wordOOEOOEOOEO, wordOOEOOEOOE,
+    wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+
+theorem wordOOEOOEOOEOEO_oddCount : oddCount wordOOEOOEOOEOEO = 8 := by
+  simp [wordOOEOOEOOEOEO, wordOOEOOEOOEOE, wordOOEOOEOOEO, wordOOEOOEOOE,
+    wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+
+theorem follows_wordOOEOOEOOEOEO_of_odd_oe {n : ℕ}
+    (hw : follows n wordOOEOOEOOEOE) (hodd : image n wordOOEOOEOOEOE % 2 = 1) :
+    follows n wordOOEOOEOOEOEO := by
+  simpa [wordOOEOOEOOEOEO] using follows_append hw (follows_singleton_odd hodd)
+
+theorem minimal_ooeooeooeoe_follows_o {n : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOEOE) :
+    follows n wordOOEOOEOOEOEO :=
+  follows_wordOOEOOEOOEOEO_of_odd_oe hw
+    (minimal_ooeooeooeoe_not_even_landing h hw)
+
+set_option exponentiation.threshold 8192
+
+theorem follows_ooeooeooeoeo_pow {n : ℕ} (hw : follows n wordOOEOOEOOEOEO) :
+    (image n wordOOEOOEOOEOEO) ^ 4096 ≤ n ^ 6561 := by
+  have h := power_bound_word hw
+  rw [wordOOEOOEOOEOEO_length, wordOOEOOEOOEOEO_oddCount] at h
+  rw [image_eq_iterate, wordOOEOOEOOEOEO_length]
+  convert h <;> norm_num
+
+/-- After an odd `OE` landing the next `O` still has the square-cell
+gap `8192 > 6561`. Another escaped even is impossible on this step. -/
+theorem follows_ooeooeooeoeo_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
+    (hw : follows n wordOOEOOEOOEOEO) :
+    image n wordOOEOOEOOEOEO < n ^ 2 := by
+  have hpow := follows_ooeooeooeoeo_pow hw
+  refine Nat.lt_of_not_ge fun hge => ?_
+  have hleft : n ^ 8192 ≤ (image n wordOOEOOEOOEOEO) ^ 4096 := by
+    calc
+      n ^ 8192 = n ^ (2 * 4096) := by norm_num
+      _ = (n ^ 2) ^ 4096 := Nat.pow_mul n 2 4096
+      _ ≤ (image n wordOOEOOEOOEOEO) ^ 4096 := Nat.pow_le_pow_left hge 4096
+  have hle : n ^ 8192 ≤ n ^ 6561 := le_trans hleft hpow
+  have hlt : n ^ 6561 < n ^ 8192 := pow_lt_of_two_le hn (by decide : 6561 < 8192)
+  exact (not_le_of_gt hlt) hle
+
+theorem follows_ooeooeooeoeo_even {n : ℕ} (hw : follows n wordOOEOOEOOEOEO)
+    (he : image n wordOOEOOEOOEOEO % 2 = 0) :
+    follows n (wordOOEOOEOOEOEO ++ [Branch.even]) :=
+  follows_append hw (follows_singleton_even he)
+
+theorem image_ooeooeooeoeo_even (n : ℕ) :
+    image n (wordOOEOOEOOEOEO ++ [Branch.even]) =
+      floorPower (image n wordOOEOOEOOEOEO) := by
+  rw [image_append]
+  rfl
+
+/-- On a CE, the next image after an odd `OE` landing is odd and
+below `n^2`. An even image would be descent. This is not a halt
+theorem. -/
+theorem minimal_ooeooeooeoeo_not_even {n : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOEOE) :
+    follows n wordOOEOOEOOEOEO ∧ image n wordOOEOOEOOEOEO % 2 = 1 := by
+  have hf := minimal_ooeooeooeoe_follows_o h hw
+  refine ⟨hf, ?_⟩
+  have hn2 : 2 ≤ n :=
+    le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
+  have hlt := follows_ooeooeooeoeo_image_lt_sq hn2 hf
+  by_contra heven
+  have he : image n wordOOEOOEOOEOEO % 2 = 0 := by omega
+  have hdrop : floorPower (image n wordOOEOOEOOEOEO) < n :=
+    (even_floorPower_lt_iff he).mpr hlt
+  exact minimal_nonterm_no_descent h
+    ⟨follows_ooeooeooeoeo_even hf he, by simpa [image_ooeooeooeoeo_even] using hdrop⟩
 
 end Problems.Juggler
