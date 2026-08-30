@@ -28,6 +28,7 @@ BOXED = (
     "FiniteProgress",
     "MinimalNonTerm",
     "MinimalImpliesCoeffStop",
+    "AboveAnchor",
     "follows_iff_word",
     "coeffStop_implies_stop",
 )

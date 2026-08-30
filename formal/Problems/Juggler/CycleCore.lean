@@ -555,7 +555,8 @@ theorem aboveAnchor_of_cycleMin {n : ℕ} {w : List Branch}
   rcases lt_or_eq_of_le hi with hlt | heq
   · exact cycleMin_ge h hlt
   · have himg : floorPower^[w.length] n = n := cycle_iterate_period h.1
-    simpa [heq, himg]
+    rw [heq]
+    exact le_of_eq himg.symm
 
 theorem cycle_iterate_mul_length {n : ℕ} {w : List Branch}
     (h : CycleWord n w) : ∀ q, floorPower^[q * w.length] n = n
@@ -626,15 +627,8 @@ theorem cycleMin_not_start_even {n : ℕ} {v : List Branch}
 
 /-- A cycle minimum cannot start `OE`: the first even residual is `< n^2`. -/
 theorem cycleMin_not_odd_even {n : ℕ} {v : List Branch}
-    (hn : 2 ≤ n) (h : CycleMin n (.odd :: .even :: v)) : False := by
-  have hodd : n % 2 = 1 := h.1.1.1
-  have he : floorPower n % 2 = 0 := h.1.1.2.1
-  have hlt := floorPower_odd_lt_sq hn hodd
-  have hlen : (1 : ℕ) < (.odd :: .even :: v).length := by simp
-  have hsq := cycleMin_even_ge_sq hn h hlen (by simpa using he)
-  have : floorPower^[1] n = floorPower n := by simp
-  rw [this] at hsq
-  exact (not_le_of_gt hlt) hsq
+    (hn : 2 ≤ n) (h : CycleMin n (.odd :: .even :: v)) : False :=
+  aboveAnchor_not_odd_even hn (aboveAnchor_of_cycleMin h)
 
 def rotateWord : List Branch → ℕ → List Branch
   | w, 0 => w

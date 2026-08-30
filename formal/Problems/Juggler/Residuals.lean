@@ -239,6 +239,14 @@ theorem finiteProgress_of_returnBelow {n : ℕ} {u : List Branch}
   refine finiteProgress_of_imageLt (follows_append hu hw) ?_
   simpa [image_append] using hlt
 
+/-- Shared interface: an anchor prefix plus a later return below `n`
+is finite progress. The `AboveAnchor` hypothesis records that the
+prefix itself did not already drop. -/
+theorem finiteProgress_of_aboveAnchor_returnBelow {n : ℕ} {u : List Branch}
+    (h : AboveAnchor n u) (hr : ReturnBelow n (image n u)) :
+    FiniteProgress n :=
+  finiteProgress_of_returnBelow h.1 hr
+
 /-- First full excursion `O^a E^b` with image below `n` is progress. -/
 theorem finiteProgress_of_oddEven_lt {n a b : ℕ}
     (hw : follows n (oddEvenBlock a b))

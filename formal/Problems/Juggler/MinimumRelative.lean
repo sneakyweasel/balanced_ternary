@@ -44,7 +44,9 @@ theorem aboveAnchor_image_ge {n : ℕ} {w : List Branch}
 theorem aboveAnchor_of_prefix {n : ℕ} {u v : List Branch}
     (h : AboveAnchor n (u ++ v)) : AboveAnchor n u :=
   ⟨follows_of_append_left h.1, fun i hi =>
-    h.2 i (le_trans hi (by simp [List.length_append]; omega))⟩
+    h.2 i (by
+      simp only [List.length_append]
+      exact le_trans hi (Nat.le_add_right _ _))⟩
 
 /-- A minimal non-1 orbit stays `≥ n` at every iterate, so every
 realized finite prefix is minimum-relative. Not a cycle hypothesis. -/
@@ -77,7 +79,9 @@ theorem even_below_square_drop {x n : ℕ} (he : x % 2 = 0)
 theorem even_below_anchor_pow {x n k : ℕ} (he : x % 2 = 0) :
     floorPower x < n ^ k ↔ x < n ^ (2 * k) := by
   have h := even_below_square_iff (n := n ^ k) he
-  simpa [pow_two, Nat.pow_mul] using h
+  have hsq : (n ^ k) ^ 2 = n ^ (2 * k) := by
+    rw [pow_two, ← Nat.pow_add, Nat.two_mul]
+  simpa [hsq] using h
 
 /-- If an even image sits below `n^2`, one more even letter is a
 descent certificate. -/
@@ -301,19 +305,20 @@ theorem three_pow_lt_two_pow_isolated_two :
       have ih := three_pow_lt_two_pow_isolated_two r
       have hpos : 0 < 2 ^ (2 * r + 5) :=
         pow_pos (by decide : (0 : ℕ) < 2) _
+      have h3 : r + 1 + 3 = (r + 3) + 1 := by omega
+      have h2 : 2 * (r + 1) + 5 = (2 * r + 5) + 2 := by omega
       calc
         3 ^ (r + 1 + 3)
-            = 3 * 3 ^ (r + 3) := by
-              have : r + 1 + 3 = (r + 3) + 1 := by omega
-              rw [this, pow_succ]
+            = 3 ^ (r + 3) * 3 := by rw [h3, pow_succ]
+        _ = 3 * 3 ^ (r + 3) := mul_comm _ _
         _ < 3 * 2 ^ (2 * r + 5) :=
             Nat.mul_lt_mul_of_pos_left ih (by decide)
         _ < 4 * 2 ^ (2 * r + 5) :=
             Nat.mul_lt_mul_of_pos_right (by decide : (3 : ℕ) < 4) hpos
-        _ = 2 ^ (2 * (r + 1) + 5) := by
-            have : 2 * (r + 1) + 5 = (2 * r + 5) + 2 := by omega
-            rw [this, Nat.pow_add, pow_two]
-            ring
+        _ = 2 ^ 2 * 2 ^ (2 * r + 5) := by norm_num
+        _ = 2 ^ (2 * r + 5) * 2 ^ 2 := mul_comm _ _
+        _ = 2 ^ ((2 * r + 5) + 2) := (Nat.pow_add 2 (2 * r + 5) 2).symm
+        _ = 2 ^ (2 * (r + 1) + 5) := by rw [h2]
 
 theorem not_isolatedOESurvives_two_succ (r : ℕ) :
     ¬isolatedOESurvives 2 (r + 1) := by

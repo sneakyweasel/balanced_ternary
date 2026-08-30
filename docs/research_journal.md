@@ -13382,4 +13382,80 @@ Best next question
   fifth-power landing the leftover?
 ```
 
+## Juggler W_5 second OO
+
+- **Date:** 2026-08-30
+- **Objective:** Determine the inherited envelope after the second `OO` on the odd \(W_5\) branch and identify the first exact integer threshold it crosses
+- **Hypotheses:** completed `OO` occupies \(n^5\); two further odds raise the integer ceiling by one; only generic \(3/2\) survives; even \(z\) opens a new hierarchy
+- **Major results:** Classification **W5_SECOND_OO_GREEN**. Odd \(y\) gives \(z^{2^{31}}\le n^{3^{21}}\) and \(z<n^{3^{21}/2^{31}}<n^5\); even \(z\) resets below \(n^{5/2}\) — **EXACT — HUMAN PROOF** (`J-cyclemin-w5-second-oo-z-fifth`). Completed second `OO` is fifth-power / one-rung-per-two-odds — **REFUTED** (`J-cyclemin-w5-second-oo-u-fifth`): if \(z\) is odd then \(u<n^8\), not \(n^5\) (\(3^{22}>5\cdot 2^{32}\)). Even \(u\) resets below \(n^4\). `501` never reaches \(W_5\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** \(u<n^5\); two odds add one integer rung; only generic \(3/2\); even \(z\) is a new hierarchy; `OE`/`OOE`/`OEE` from \(y\) drop
+- **Literature:** odd \(k=5\) \(y\)-fourth; `power_bound_word`
+- **Open:** if \(u\) is odd, does the next `O` stay below a tighter inherited ceiling than \(n^{11}\)? Do not build a \(p\)-adic system. Do not formulate an arbitrary-word rung theorem
+- **Decision:** PROMOTE the first \(n^5\) cell for \(z\) and the \(n^8\) cell for odd-\(z\) \(u\). Do not claim the odd branch dies after one more `OO`
+
+```text
+What was learned
+- W_5+OO gives z^{2^{31}} <= n^{3^{21}} and z < n^5
+- the first n^5 corridor is the first extra O from odd y
+- if z is odd, u < n^8; n^5 fails (3^{22} > 5 * 2^{32})
+- even z resets below n^{5/2}; even u resets below n^4
+- two further odds do not add exactly one integer rung
+Strongest theorem
+- z < n^{3^{21}/2^{31}} < n^5; even z returns to
+  T < n^{5/2}; odd-z u < n^8
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- completed second OO is n^5 / two odds add one rung
+Reusable machinery
+- w5_second_oo.py z/u integer cells and even pullbacks
+Branch status
+- PROMOTE
+Why
+- the first extra O is a genuine n^5 cell; completing
+  the OO is an n^8 cell with even resets to known bands
+Best next question
+- if u is odd, does the next O stay below a tighter
+  inherited ceiling than n^{11}, or is that
+  eleventh-power landing the leftover?
+```
+
+## Juggler odd-u next O
+
+- **Date:** 2026-08-30
+- **Objective:** If \(u\) is odd, characterize the next `O` from \(u^{2^{32}}\le n^{3^{22}}\) and identify the exact corridor that replaces \(n^8\)
+- **Hypotheses:** only generic \(v<n^{12}\); even \(v\) resets to \(C_1\)–\(C_4\); \(n^{11}\) is a new structural rung; finite rational-exponent states
+- **Major results:** Classification **ODD_U_NEXT_O_GREEN**. \(v^{2^{33}}\le n^{3^{23}}\) and \(v<n^{3^{23}/2^{33}}<n^{11}\) (\(3^{23}<11\cdot 2^{33}\), not \(10\)); inherited beats generic \(12\); even \(v\) resets below \(n^6\), not \(n^4\); integers \(3,4,5,8,11\) are crossings of \((3/2)^k\cdot 3^{19}/2^{29}\) — **EXACT — HUMAN PROOF** (`J-cyclemin-odd-u-v-eleventh`). Generic \(12\) / even to \(C_1\)–\(C_4\) / new rung / finite exponent states — **REFUTED** (`J-cyclemin-odd-u-generic`). `501` never reaches \(W_5\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** only generic \(12\); even \(v\) returns to \(C_1\)–\(C_4\); \(n^{11}\) is a new rung law; finite exponent-state set; `OE`/`OOE`/`OEE` from \(u\) drop
+- **Literature:** \(W_5\) second `OO` \(z<n^5\), \(u<n^8\); `power_bound_word`
+- **Open:** does a parity constraint force the odd-\(u\) run to hit even before \(\alpha\) grows another \(3/2\)? Do not add another power-bound phase unless that constraint appears. Do not build a \(p\)-adic system
+- **Decision:** PROMOTE the inherited eleventh-power cell and the even \(n^6\) reset. Do not claim a finite exponent-state system
+
+```text
+What was learned
+- W_5+OOOO gives v^{2^{33}} <= n^{3^{23}} and v < n^{11}
+- n^{10} fails; inherited beats generic n^{12}
+- even v resets below n^6, not to C_1-C_4
+- integers 3,4,5,8,11 are crossings of (3/2)^k * 3^{19}/2^{29}
+- repeated O multiplies the rational ceiling by 3/2
+Strongest theorem
+- v < n^{3^{23}/2^{33}} < n^{11}; even landing
+  returns to T < n^6
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- only generic 12 / even resets to C_1-C_4 /
+  n^{11} is a new structural rung / finite
+  exponent-state set
+Reusable machinery
+- odd_u_next_o.py v-gaps and extra-odd crossings
+Branch status
+- PROMOTE
+Why
+- the inherited constraint survives one more O, but
+  the even reset has left the named C_1-C_4 bands
+Best next question
+- does a parity constraint force the odd-u run to
+  hit even before alpha grows another 3/2, or has
+  the leftover become an unconstrained odd run?
+```
+
 

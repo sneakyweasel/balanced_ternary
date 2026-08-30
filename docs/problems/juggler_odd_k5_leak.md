@@ -197,12 +197,12 @@ assembler, and not a halt theorem.
 ## Open questions
 
 Lean-package \(3^{20}<4\cdot 2^{30}\) and the even-\(y\)
-square reset. The odd-\(y\) second-`OO` residual (whether
-an inherited constraint keeps it below \(n^4\), and whether
-that state can start \(L\)) is open. Do not reopen
-bunched-short cells. Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not build a \(p\)-adic
-system.
+square reset. The odd-\(y\) second-`OO` residual is the
+separate branch
+[juggler_w5_second_oo.md](juggler_w5_second_oo.md).
+Do not reopen bunched-short cells. Do not write \(Z_5\).
+Do not assemble `no_cycle_word_length_eleven`. Do not
+build a \(p\)-adic system.
 
 ## Decision
 

@@ -97,6 +97,38 @@ theorem minimal_nonterm_cycle_values_ge {n i : ℕ}
     (h : MinimalNonTerm n) : n ≤ floorPower^[i] n :=
   minimal_nonterm_iterate_ge h i
 
+theorem cycleWord_of_repeat {n i j : ℕ} (hij : i < j)
+    (heq : floorPower^[i] n = floorPower^[j] n) :
+    CycleWord (floorPower^[i] n) (word (floorPower^[i] n) (j - i)) := by
+  have hlen : 1 ≤ (word (floorPower^[i] n) (j - i)).length := by
+    simpa [word_length] using Nat.succ_le_of_lt (Nat.sub_pos_of_lt hij)
+  refine ⟨follows_word_self _ _, ?_, hlen⟩
+  have hsum : i + (j - i) = j := Nat.add_sub_of_le (Nat.le_of_lt hij)
+  have himg :
+      image (floorPower^[i] n) (word (floorPower^[i] n) (j - i)) =
+        floorPower^[j - i] (floorPower^[i] n) :=
+    image_word _ _
+  rw [himg, ← iterate_add_right, hsum, heq]
+
+/-- No nontrivial cycle implies no bounded nontermination. This is
+not a no-cycle theorem and not a halt theorem: unbounded escape
+remains. -/
+theorem no_nontrivial_cycle_no_bounded_nonterm
+    (hno : ∀ (m : ℕ) (w : List Branch), 2 ≤ m → ¬CycleWord m w)
+    {n : ℕ} (hn : 2 ≤ n) (hnt : ¬ReachesOne n) :
+    EscapesToInfinity n := by
+  cases cycles_or_escapes n with
+  | inr hesc => exact hesc
+  | inl hcyc =>
+      obtain ⟨i, j, hij, heq⟩ := hcyc
+      have hC := cycleWord_of_repeat hij heq
+      have hpos : 1 ≤ floorPower^[i] n :=
+        floorPower_iterate_pos (le_trans (by decide : (1 : ℕ) ≤ 2) hn) i
+      have hne1 : floorPower^[i] n ≠ 1 := fun h1 => hnt ⟨i, h1⟩
+      have hm2 : 2 ≤ floorPower^[i] n :=
+        Nat.succ_le_of_lt (lt_of_le_of_ne hpos hne1.symm)
+      exact (hno _ _ hm2 hC).elim
+
 theorem wordOOEOOE_length : wordOOEOOE.length = 6 := rfl
 
 theorem wordOOEOOE_oddCount : oddCount wordOOEOOE = 4 := by
@@ -172,19 +204,23 @@ theorem image_ooeooe_even (n : ℕ) :
   rw [image_append]
   rfl
 
+/-- Even `OOEOOE` landing is the shared square trap, hence
+`FiniteProgress`. No cycle-return hypothesis. -/
+theorem finiteProgress_of_ooeooe_even_landing {n : ℕ}
+    (hn : 2 ≤ n) (hw : follows n wordOOEOOE)
+    (he : image n wordOOEOOE % 2 = 0) : FiniteProgress n :=
+  finiteProgress_of_even_below_square hw he (follows_ooeooe_image_lt_sq hn hw)
+
 /-- Even `OOEOOE` landing is descent, hence impossible on a CE. -/
 theorem minimal_ooeooe_not_even_landing {n : ℕ}
     (h : MinimalNonTerm n) (hw : follows n wordOOEOOE) :
     image n wordOOEOOE % 2 = 1 := by
   have hn2 : 2 ≤ n :=
     le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
-  have hlt := follows_ooeooe_image_lt_sq hn2 hw
   by_contra heven
   have he : image n wordOOEOOE % 2 = 0 := by omega
-  have hdrop : floorPower (image n wordOOEOOE) < n :=
-    (even_floorPower_lt_iff he).mpr hlt
-  exact minimal_nonterm_no_descent h
-    ⟨follows_ooeooe_even hw he, by simpa [image_ooeooe_even] using hdrop⟩
+  exact minimal_nonterm_not_finiteProgress h
+    (finiteProgress_of_ooeooe_even_landing hn2 hw he)
 
 theorem follows_wordOOEOOEO_of_odd_landing {n : ℕ}
     (hw : follows n wordOOEOOE) (hodd : image n wordOOEOOE % 2 = 1) :
@@ -215,10 +251,8 @@ theorem minimal_ooeooe_forces_oo {n : ℕ}
   have hzlt := follows_ooeooeo_image_lt_sq hn2 hf
   by_contra heven
   have he : image n wordOOEOOEO % 2 = 0 := by omega
-  have hdrop : floorPower (image n wordOOEOOEO) < n :=
-    (even_floorPower_lt_iff he).mpr hzlt
-  exact minimal_nonterm_no_descent h
-    ⟨follows_ooeooeo_even hf he, by simpa [image_ooeooeo_even] using hdrop⟩
+  exact minimal_nonterm_not_finiteProgress h
+    (finiteProgress_of_even_below_square hf he hzlt)
 
 /-- A CE never realizes a formally contracting word. Contrapositive of
 `power_bound_contracts`. -/

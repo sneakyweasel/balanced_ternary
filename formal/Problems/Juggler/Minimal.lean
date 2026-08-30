@@ -197,7 +197,7 @@ theorem minimal_counterexample_normal_form {n : ℕ} {w : List Branch}
 /-- A minimal non-1 start has no finite-progress certificate. -/
 theorem minimal_nonterm_not_finiteProgress {n : ℕ}
     (h : MinimalNonTerm n) : ¬FiniteProgress n :=
-  fun hfp => h.not_reachesOne (reachesOne_of_finiteProgress h.below hfp)
+  fun hfp => h.not_reachesOne (reachesOne_of_finiteProgress h.2.2 hfp)
 
 /-- Finite coefficient stopping time contradicts minimality. -/
 theorem coeffStop_contradicts_minimal {n : ℕ}

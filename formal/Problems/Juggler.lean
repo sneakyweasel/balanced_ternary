@@ -17,6 +17,7 @@ import Problems.Juggler.Progress
 import Problems.Juggler.Minimal
 import Problems.Juggler.MinimalClosure
 import Problems.Juggler.Scale
+import Problems.Juggler.MinimumRelative
 import Problems.Juggler.Residuals
 import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionBlocks

@@ -24,6 +24,7 @@ from research.juggler_sequence.lean_paths import (
     ENVELOPE,
     FIRST_INTERNAL_OO,
     JUGGLER_PAPER_BARREL,
+    MINIMUM_RELATIVE,
     SCALE,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
@@ -76,6 +77,12 @@ LEAN_THEOREMS = (
     "isolated_oe_lt_of_scale_gap",
     "no_cycleMin_prefix_ooe_oe",
     "isolated_oe_r_max_two",
+    "AboveAnchor",
+    "isolatedOddSurvival_bound",
+    "aboveAnchor_isolated_two",
+    "finiteProgress_of_ooe_oe",
+    "cycleMin_isolated_two",
+    "minimal_isolated_two",
 )
 
 FORBIDDEN_THEOREMS = (
@@ -470,10 +477,13 @@ def lean_api_present() -> dict[str, bool]:
         combined += ENVELOPE.read_text(encoding="utf-8")
     if FIRST_INTERNAL_OO.is_file():
         combined += FIRST_INTERNAL_OO.read_text(encoding="utf-8")
+    if MINIMUM_RELATIVE.is_file():
+        combined += MINIMUM_RELATIVE.read_text(encoding="utf-8")
     named = {name: has_named(combined, name) for name in LEAN_THEOREMS}
     forbidden = {name: has_named(combined, name) for name in FORBIDDEN_THEOREMS}
     paper = JUGGLER_PAPER_BARREL.read_text(encoding="utf-8")
     first_oo = FIRST_INTERNAL_OO.read_text(encoding="utf-8") if FIRST_INTERNAL_OO.is_file() else ""
+    shared = MINIMUM_RELATIVE.read_text(encoding="utf-8") if MINIMUM_RELATIVE.is_file() else ""
     return {
         "sorry_free": "sorry" not in combined
         and "admit" not in combined
@@ -483,11 +493,13 @@ def lean_api_present() -> dict[str, bool]:
         **{f"has_{name}": present for name, present in forbidden.items()},
         "no_global_termination_theorem": "theorem juggler_reaches_one"
         not in combined,
-        "not_in_paper_barrel": "FirstInternalOO" not in paper,
+        "not_in_paper_barrel": "FirstInternalOO" not in paper
+        and "MinimumRelative" not in paper,
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
         "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
-        "first_oo_lean": "theorem isolated_oe_ge_implies_exponent" in first_oo
+        "first_oo_lean": "theorem isolated_oe_ge_implies_exponent" in shared
+        and "theorem isolatedOddSurvival_bound" in shared
         and "theorem no_cycleMin_prefix_ooe_oe" in first_oo,
     }
 

@@ -55,6 +55,8 @@ LEAN_THEOREMS = (
     "follows_ooeooeo_image_lt_sq",
     "minimal_ooeooe_not_even_landing",
     "minimal_ooeooe_forces_oo",
+    "finiteProgress_of_ooeooe_even_landing",
+    "no_nontrivial_cycle_no_bounded_nonterm",
 )
 
 FORBIDDEN_THEOREMS = (
