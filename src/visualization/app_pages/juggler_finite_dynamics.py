@@ -49,6 +49,7 @@ def _init_state() -> None:
         "juggler_word": "OOE",
         "juggler_cycle_word": "OEO",
         "juggler_cycle_shift": 0,
+        "juggler_cycle_slider": 0,
         "juggler_steps": 20,
         "juggler_split": 1,
     }
@@ -142,6 +143,7 @@ def _cycle_word_controls() -> str:
         if name:
             st.session_state.juggler_cycle_word = name
             st.session_state.juggler_cycle_shift = 0
+            st.session_state.juggler_cycle_slider = 0
 
     st.pills(
         "Cycle-word presets",
@@ -534,27 +536,48 @@ def _cycle_words() -> None:
     if len(word) >= 2:
         if st.session_state.juggler_cycle_shift >= len(word):
             st.session_state.juggler_cycle_shift = 0
+        st.session_state.juggler_cycle_slider = int(st.session_state.juggler_cycle_shift)
+
+        def _sync_slider() -> None:
+            st.session_state.juggler_cycle_shift = int(
+                st.session_state.juggler_cycle_slider
+            )
+
+        def _rotate_left() -> None:
+            nxt = (int(st.session_state.juggler_cycle_shift) + 1) % len(word)
+            st.session_state.juggler_cycle_shift = nxt
+            st.session_state.juggler_cycle_slider = nxt
+
+        def _rotate_right() -> None:
+            nxt = (int(st.session_state.juggler_cycle_shift) - 1) % len(word)
+            st.session_state.juggler_cycle_shift = nxt
+            st.session_state.juggler_cycle_slider = nxt
+
         rotate_row = st.container(horizontal=True)
         with rotate_row:
-            if st.button("Rotate left", icon=":material/rotate_left:", key="juggler_rot_left"):
-                st.session_state.juggler_cycle_shift = (
-                    int(st.session_state.juggler_cycle_shift) + 1
-                ) % len(word)
-                st.rerun()
-            if st.button("Rotate right", icon=":material/rotate_right:", key="juggler_rot_right"):
-                st.session_state.juggler_cycle_shift = (
-                    int(st.session_state.juggler_cycle_shift) - 1
-                ) % len(word)
-                st.rerun()
+            st.button(
+                "Rotate left",
+                icon=":material/rotate_left:",
+                key="juggler_rot_left",
+                on_click=_rotate_left,
+            )
+            st.button(
+                "Rotate right",
+                icon=":material/rotate_right:",
+                key="juggler_rot_right",
+                on_click=_rotate_right,
+            )
         shift = int(
             st.slider(
                 "Left rotation",
                 min_value=0,
                 max_value=len(word) - 1,
-                key="juggler_cycle_shift",
+                key="juggler_cycle_slider",
+                on_change=_sync_slider,
                 help="The same cyclic class; only the base letter changes.",
             )
         )
+        st.session_state.juggler_cycle_shift = shift
     else:
         shift = 0
     view = cycle_class_view(word, shift)
@@ -589,7 +612,7 @@ def _cycle_words() -> None:
         )
     st.caption(view.current_reason)
 
-    st.subheader("Why this class cannot exist")
+    st.subheader("Census argument")
     for step in view.steps:
         with st.container(border=True):
             status_color = {
@@ -658,12 +681,12 @@ def _cycle_words() -> None:
             f"Letter {trial.fail_index} fails at state "
             f"{format_int(trial.fail_state) if trial.fail_state is not None else '—'}."
         )
-    elif trial.returned:
+    elif trial.returned and trial.word:
         st.error(
             "Unexpected return at this n. The recorded census claims none.",
             icon=":material/block:",
         )
-    elif trial.follows:
+    elif trial.follows and trial.word:
         st.success(
             "This spelling is realized at n and does not return.",
             icon=":material/check:",

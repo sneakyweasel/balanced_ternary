@@ -11176,3 +11176,41 @@ Best next question
   transport at e>=4
 ```
 
+## Juggler bunched last-cluster leftover tails
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether the seven bunched last-cluster leftovers fire as prefix-cell tails for every expanding \(a\), with \(N_0\) bounded in \(a\)
+- **Hypotheses:** a fixed mixed tail plus \(C_{O^a}\) gets easier as \(a\) grows; \(n\le 4\) never fires; `EEE` cubes from `OOOOOOEEE`
+- **Major results:** Classification **BUNCHED_LAST_CLUSTER_GREEN**. First-fire \(N_0\in\{188,120,126,89,81,73,60\}\) at the first expanding \(a\), then the \(n=5\) plateau through \(a=20\). `EEE` coarse cell cubes from \(a=6\) at \(n\ge 73\). Tables empty. Records: `docs/problems/juggler_bunched_last_cluster.md`. No Lean. No length-8/9 census. No Paper A edit
+- **Refuted ideas:** a length-8 or length-9 census as an automatic corollary; first-E at \(e\ge 4\) as the next bunched attack; \(N_0\) tends to 2
+- **Literature:** length-9 prefix-cell leftovers reused as the first expanding instance of each family; `OOOOOOEEE` is the `EEE` base
+- **Open:** Lean exclusion of the seven families, starting with \(O^a\texttt{EEE}\) by cubing. Length 8 still open as a census
+- **Decision:** PROMOTE the uniform bunched tail. Not a Lean exclusion and not a halt theorem
+
+```text
+What was learned
+- The bunched remainder is seven families O^a ++ tail, not a
+  new leftover at each length
+- All seven prefix-cell tails fire; N0 drops to 5, same plateau
+  as the two-even families
+- n<=4 never fires; the 3^a coefficients force n>4
+- EEE cubes from a=6 at n>=73, so the Lean instance OOOOOOEEE
+  is the base of an infinite family
+- First-E at e>=4 does not take this remainder
+Strongest theorem
+- none new in Lean; computationally, each bunched family has
+  bounded N0 through a=20
+Strongest refutation
+- none new; N0 tends to 2 remains refuted
+Reusable machinery
+- src/research/juggler_sequence/bunched_last_cluster.py
+Branch status
+- PROMOTE
+Why
+- bunched e=3 leftovers are one type with a bounded cutoff, as
+  the two-even families were before Lean
+Best next question
+- Lean-exclude O^a EEE for every expanding a by cubing the
+  three-even cell from OOOOOOEEE
+```
+

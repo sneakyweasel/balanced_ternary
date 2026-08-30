@@ -229,6 +229,9 @@ def test_try_cycle_word_records_a_miss_and_a_nonreturn():
     assert walk.follows
     assert walk.returned is False
     assert walk.image == 1
+    empty = try_cycle_word(3, "")
+    assert empty.follows
+    assert empty.returned is False
 
 
 def test_bit_cap_refuses_a_huge_start():

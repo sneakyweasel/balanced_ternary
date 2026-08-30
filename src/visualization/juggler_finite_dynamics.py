@@ -886,8 +886,7 @@ def _preferred_target(word: str) -> str | None:
         kind, _reason = _base_kind(rotated)
         if rotated.endswith("E") and kind in _EXCLUDING_KINDS:
             named.append(rotated)
-        orientation = cyclemin_orientation(rotated)
-        if orientation["legal_cyclemin"] and expanding(rotated):
+        if rotated and cyclemin_orientation(rotated)["legal_cyclemin"] and expanding(rotated):
             legal.append(rotated)
         if rotated.endswith("E"):
             even_term.append(rotated)
@@ -900,17 +899,22 @@ def _preferred_target(word: str) -> str | None:
     return None
 
 
+def _with_target(kind: str, reason: str, word: str) -> tuple[str, str]:
+    if kind not in {"odd-terminating", "rotation", "not CycleMin"}:
+        return kind, reason
+    target = _preferred_target(word)
+    if not target or target == word:
+        return kind, reason
+    if kind == "odd-terminating":
+        return kind, f"rotate onto the even-terminating spelling {target}"
+    if kind == "rotation":
+        return kind, f"rotates onto {target}"
+    return kind, f"cycleMin_not_odd_even; the even-terminating target is {target}"
+
+
 def _orientation_kind(word: str) -> tuple[str, str]:
     kind, reason = _base_kind(word)
-    if kind in {"odd-terminating", "rotation", "not CycleMin"}:
-        target = _preferred_target(word)
-        if target and target != word:
-            if kind == "odd-terminating":
-                return kind, f"rotate onto the even-terminating spelling {target}"
-            if kind == "rotation":
-                return kind, f"rotates onto {target}"
-            return kind, f"cycleMin_not_odd_even; the even-terminating target is {target}"
-    return kind, reason
+    return _with_target(kind, reason, word)
 
 
 def orientation_obstruction(word: str) -> tuple[str, str, str | None]:
@@ -949,7 +953,7 @@ def try_cycle_word(n: int, word: str) -> CycleTryView:
         fail_index=None,
         fail_state=None,
         image=current,
-        returned=current == n,
+        returned=bool(parsed) and current == n,
         bit_capped=False,
     )
 

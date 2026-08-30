@@ -19,6 +19,7 @@ st.set_page_config(
     page_title="Balanced ternary laboratory",
     page_icon=":material/calculate:",
     layout="wide",
+    initial_sidebar_state="auto",
 )
 
 if "shared_odd_n" not in st.session_state:
@@ -150,9 +151,14 @@ pages = {
     ],
 }
 
-page = st.navigation(pages, position="sidebar", expanded=False)
+page = st.navigation(pages, position="hidden")
 
 with st.sidebar:
+    for section, section_pages in pages.items():
+        active = any(entry.url_path == page.url_path for entry in section_pages)
+        with st.expander(section, expanded=active, type="compact"):
+            for entry in section_pages:
+                st.page_link(entry, width="stretch")
     st.caption(
         "Digits: + = +1, 0 = 0, - = -1. Words display the most-significant "
         "digit first."
