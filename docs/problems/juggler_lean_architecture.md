@@ -208,7 +208,8 @@ Compatibility layer:
 - `JugglerPaper.lean` comments do not mention `EnvelopeState`
 - After the Residuals cut, consumers that used the old re-export
   take one extra import: `FirstInternalOO` imports `Minimal`,
-  `CycleExtrema` imports `Scale`, `Escape` imports `Residuals`
+  `CycleExtrema` imports `Scale`, and `Escape` / `EvenCountThree` /
+  `LandingValuation` import `Residuals`
 
 Research exclusions (do not reopen from this dossier):
 

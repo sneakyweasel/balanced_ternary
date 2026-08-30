@@ -66,7 +66,8 @@ Dynamics → Iteration → Termination → Itinerary → WordStats
 - `CycleCore` sees `Progress` only transitively through
   `MinimumRelative`. It does not import `Residuals` or `Minimal`.
   `FirstInternalOO` imports `Minimal`; `CycleExtrema` imports
-  `Scale`; `Escape` imports `Residuals`.
+  `Scale`; `Escape`, `EvenCountThree`, and `LandingValuation`
+  import `Residuals`.
 
 ## What this note is not
 

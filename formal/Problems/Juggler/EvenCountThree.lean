@@ -1,5 +1,6 @@
 import Problems.Juggler.LeftoverFamilies
 import Problems.Juggler.CycleExtrema
+import Problems.Juggler.Residuals
 
 namespace Problems.Juggler
 

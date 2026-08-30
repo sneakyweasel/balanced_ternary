@@ -1,6 +1,7 @@
 import Mathlib.Data.Nat.Prime.Basic
 import Mathlib.NumberTheory.Padics.PadicVal.Basic
 import Problems.Juggler.SequentialMordell
+import Problems.Juggler.Residuals
 
 namespace Problems.Juggler
 
