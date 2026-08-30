@@ -13660,4 +13660,87 @@ Best next question
   new episode rank?
 ```
 
+## Juggler empty-odd-cell PE landings
+
+- **Date:** 2026-08-30
+- **Objective:** Characterize PE landings with empty odd predecessor cells and decide whether emptiness forces a forward transition law
+- **Hypotheses:** exact cube emptiness; next-parity rigidity; square-cell subinterval; empty-to-empty persistence; finite consecutive-empty bound
+- **Major results:** Classification **EMPTY_ODD_CELL_PARK**. Type 0 iff \(k^3\ge(x+1)^2\) for \(k=\lceil x^{2/3}\rceil\); `OddPredEmpty` iff Type 0 or Type 1 — **EXACT — HUMAN PROOF** (`J-odd-pred-empty-cube`). Leftover PE landings all Type 0; ambient Type 0 share \(>4/5\); `69` Type 1 at `117`; `89` Type 2 at `70` — **COMPUTATIONALLY VERIFIED** (`J-empty-odd-pe-landings`). Next-parity / square-subinterval / orbit persistence / finite-K beyond generic width — **REFUTED** (`J-empty-odd-pe-forward`). No new Lean. `PredClosure` not reopened. Paper A unchanged. No halt theorem
+- **Refuted ideas:** empty \(\Rightarrow\) next even; empty \(\Rightarrow\) forced subinterval of \([x^2,(x+1)^2)\); emptiness persists along the orbit; leftover Type 0 is non-generic
+- **Literature:** `odd_cell_unique`; leftover spine `763,1749,4447,12707`; escape-episode PARK
+- **Open:** none from emptiness itself. Do not count empty cells. Do not attach a residue to the cube gap
+- **Decision:** PARK. The criterion is exact; it has no forward dynamical content beyond generic cell width
+
+```text
+What was learned
+- Type 0 iff k^3 >= (x+1)^2 for k = ceil(x^{2/3})
+- OddPredEmpty is Type 0 or Type 1
+- leftover PE landings are Type 0, and so is ~95% of x
+- an odd step always makes T(x) Type 2
+- next parity and square-cell offset are unrestricted
+Strongest theorem
+- the odd cell of x is empty iff
+  ceil_cbrt(x^2)^3 >= (x+1)^2
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- empty PE landing => next-parity,
+  square subinterval, or persistent
+  emptiness
+Reusable machinery
+- empty_odd_cell.py odd_cell_kind,
+  odd_pred_empty, pe_landings
+Branch status
+- PARK
+Why
+- emptiness is an exact backward gap
+  statement; leftover Type 0 is the
+  ambient type; no forward lever
+Best next question
+- none from emptiness itself; the
+  leftover remains an odd-landing PE
+  walk whose landings are generically
+  Type 0
+```
+
+## Juggler PE-cell intersection
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether \(I_y\cap J(n)=\varnothing\) is a PE-specific Diophantine obstruction at leftover odd PE landings
+- **Hypotheses:** history-sensitive empty intersection; Type I/II/III; \(n\ge N_0\) empty PE cells
+- **Major results:** Classification **PE_CELL_INTERSECTION_PARK**. PE predecessor \(z\) occupies the even square cell of \(y\) and never meets \(I_y\); leftover landings are Type I; OOE below \(4000\) has a Type II family and no Type III — **COMPUTATIONALLY VERIFIED** (`J-pe-cell-intersection-shape`). \(I_y\cap J(n)=\varnothing\) as a new PE obstruction, and \(n\ge N_0\) empty PE cells — **REFUTED** (`J-pe-cell-intersection`). Empty-cell forward laws not re-tested. No \(R_{b,c}\). No new Lean. Paper A unchanged. No halt theorem
+- **Refuted ideas:** PE landing \(y=\lfloor z^{3/2}\rfloor\); empty intersection is PE-specific rather than even-versus-odd cells; all large PE odd cells are empty
+- **Literature:** `odd_cell_unique`; `even_cell_iff`; `J-odd-pred-empty-cube`; `J-empty-odd-pe-forward` (REFUTED, not re-tested)
+- **Open:** none from odd-cell intersection. Do not reopen \(R_{b,c}\) or empty-cell counting
+- **Decision:** PARK. The PE envelope and the odd cell live at different scales
+
+```text
+What was learned
+- PE words end in E; y = isqrt(z), not z^{3/2}
+- z is in the even cell of y, never in I_y
+- leftover PE landings are Type I
+- OOE has a Type II family (199, 483, ...)
+- Type III occurs only for odd-produced images
+Strongest theorem
+- on leftover PE landings z is even,
+  y^2 <= z < (y+1)^2, and z is not in I_y
+  (COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- I_y ∩ J(n) empty is a new PE
+  Diophantine obstruction; n >= N0
+  empties all PE odd cells
+Reusable machinery
+- pe_cell_intersection.py
+  intersection_type, ooe_scan
+Branch status
+- PARK
+Why
+- the intersection is even-versus-odd
+  cells; leftover Type I is cube-gap
+  sparsity; Type II is an unrelated
+  cube-root
+Best next question
+- none from odd-cell intersection;
+  do not reopen R_{b,c}
+```
+
 

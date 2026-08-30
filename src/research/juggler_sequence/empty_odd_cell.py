@@ -56,8 +56,7 @@ FORBIDDEN_THEOREMS = (
 
 FORBIDDEN_NEW_API = (
     "OddPredEmpty",
-    "EscapeEpisode",
-    "PredClosure",
+    "EmptyOddCell",
 )
 
 NEW_LEAN_FILES = (
@@ -207,7 +206,7 @@ def control_row(n: int) -> dict[str, Any]:
     offsets = [row["offset"] / row["width"] for row in rows]
     next_parities = [int(row["next_odd"]) for row in rows if row["landing_odd"]]
     intermediates_type2 = all(
-        row["landing_odd"] and row["next_kind"] == 2 for row in rows
+        row["next_kind"] == 2 for row in rows if row["landing_odd"]
     )
     return {
         "n": n,
