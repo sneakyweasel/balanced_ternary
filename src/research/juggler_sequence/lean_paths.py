@@ -64,6 +64,7 @@ LAYERS: dict[str, Path] = {
     "ExpandingGrammar": JUGGLER_DIR / "ExpandingGrammar.lean",
     "LandingParity": JUGGLER_DIR / "LandingParity.lean",
     "CycleCore": JUGGLER_DIR / "CycleCore.lean",
+    "CycleObstructions": JUGGLER_DIR / "CycleObstructions.lean",
     "CycleExtrema": JUGGLER_DIR / "CycleExtrema.lean",
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "LeftoverEval": JUGGLER_DIR / "LeftoverEval.lean",
@@ -127,6 +128,7 @@ NEAR_TIGHT_SCALE = LAYERS["NearTightScale"]
 EXPANDING_GRAMMAR = LAYERS["ExpandingGrammar"]
 LANDING_PARITY = LAYERS["LandingParity"]
 CYCLE_CORE = LAYERS["CycleCore"]
+CYCLE_OBSTRUCTIONS = LAYERS["CycleObstructions"]
 CYCLE_EXTREMA = LAYERS["CycleExtrema"]
 CYCLES_BARREL = LAYERS["Cycles"]
 
@@ -138,7 +140,11 @@ class _CycleKernel:
         return cycle_kernel_text()
 
     def is_file(self) -> bool:
-        return CYCLE_CORE.is_file() and CYCLE_EXTREMA.is_file()
+        return (
+            CYCLE_CORE.is_file()
+            and CYCLE_OBSTRUCTIONS.is_file()
+            and CYCLE_EXTREMA.is_file()
+        )
 
 
 CYCLES = _CycleKernel()
@@ -210,9 +216,13 @@ def juggler_text() -> str:
 
 
 def cycle_kernel_text() -> str:
-    """`Cycles.lean` is a barrel. Kernel declarations live in Core + Extrema."""
-    return CYCLE_CORE.read_text(encoding="utf-8") + "\n" + CYCLE_EXTREMA.read_text(
-        encoding="utf-8"
+    """`Cycles.lean` is a barrel. Kernel declarations live in Core + named words + Extrema."""
+    return (
+        CYCLE_CORE.read_text(encoding="utf-8")
+        + "\n"
+        + CYCLE_OBSTRUCTIONS.read_text(encoding="utf-8")
+        + "\n"
+        + CYCLE_EXTREMA.read_text(encoding="utf-8")
     )
 
 

@@ -27,6 +27,7 @@ import Problems.Juggler.NearTightScale
 import Problems.Juggler.ExpandingGrammar
 import Problems.Juggler.LandingParity
 import Problems.Juggler.CycleCore
+import Problems.Juggler.CycleObstructions
 import Problems.Juggler.CycleExtrema
 import Problems.Juggler.Cycles
 import Problems.Juggler.LeftoverEval

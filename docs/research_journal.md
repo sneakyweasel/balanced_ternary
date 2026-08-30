@@ -14199,4 +14199,40 @@ Best next question
 - none from the eighth-gap lower bound
 ```
 
+## Juggler envelope / corridor spine
+
+- **Date:** 2026-08-30
+- **Objective:** Finish the EnvelopeState / AboveAnchor spine: composition API, two-sided corridor, generic even-run barrier, Residuals-free CycleCore, named-word extract
+- **Hypotheses:** the missing object is Corollary A (corridor collision) and Corollary E (even-run lower barrier), not another named word
+- **Major results:** Dossier [juggler_lean_architecture.md](problems/juggler_lean_architecture.md). `EnvelopeState.of_follows` is `map_word` on `refl`. New `Corridor.lean` holds `PowerCorridor`, `envelope_corridor_contradiction`, `even_below_anchor_pow`, `two_even_below_fourth`. Cube-band even/even progress is `two_even_below_cube` plus `finiteProgress_of_imageLt`. `aboveAnchor_even_run_ge_pow` is the generic lower barrier; CE wrappers stay in `Minimal.lean`. `CycleCore` imports Envelope + Cells + MinimumRelative, not Residuals. Named tail `wordOOEOOE`… lives in `CycleObstructions`. `hasFiniteStop_of_imageLt` / `hasFiniteStop_of_power_bound_lt_pow` in FirstPassage. Paper A unchanged. No new ledger row
+- **Refuted ideas:** CycleCore needs Residuals / Minimal; cube-band needs a second exponent chain; even-run scale barrier is CE-only
+- **Literature:** `J-envelope-lt-pow`; `J-above-anchor`; `J-cube-not-square-split`; prior spine audit
+- **Open:** none from this packaging. Do not resume an odd-lift letter chain
+- **Decision:** PROMOTE the architecture as the live spine. CLOSE as a research attack (reparameterization; no new Juggler dynamics)
+
+```text
+What was learned
+- map_word is the composition engine; PowerBound is the word-stat face
+- two-sided corridor is a genuine boundary; reset stays even_below_anchor_pow
+- cube two-even drop is n^3 < n^4 plus two_even_below_fourth
+- CycleCore used Residuals only as an accidental import
+- named OOEOOE-family exclusions split cleanly after the foundations
+- HasFiniteStop already had the drop; it needed the image / k=1 bridges
+Strongest theorem
+- envelope_corridor_contradiction (Corollary A)
+Strongest refutation
+- CycleCore required Residuals
+Reusable machinery
+- formal/Problems/Juggler/Corridor.lean
+- formal/Problems/Juggler/CycleObstructions.lean
+- docs/problems/juggler_lean_architecture.md
+Branch status
+- PROMOTE the architecture; CLOSE as a research attack
+Why
+- the six corollaries compile as shared lemmas; lake
+  stays green; no new Juggler dynamics
+Best next question
+- none from this packaging
+```
+
 

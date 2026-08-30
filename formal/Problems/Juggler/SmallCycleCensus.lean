@@ -1,4 +1,5 @@
 import Problems.Juggler.CycleCore
+import Problems.Juggler.CycleObstructions
 import Problems.Juggler.LeftoverShort
 
 namespace Problems.Juggler

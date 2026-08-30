@@ -1,4 +1,5 @@
 import Problems.Juggler.CycleCore
+import Problems.Juggler.CycleObstructions
 import Problems.Juggler.LeftoverEval
 import Problems.Juggler.LeftoverCell
 

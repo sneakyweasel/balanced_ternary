@@ -40,6 +40,12 @@ AboveAnchor serves CycleMin and MinimalNonTerm; isolated survival and the OOEOOE
 - `EnvelopeState`: `True`
 - `envelope_lt_pow`: `True`
 - `power_bound_lt_pow`: `True`
+- `PowerCorridor`: `True`
+- `power_corridor_contradiction`: `True`
+- `envelope_corridor_contradiction`: `True`
+- `two_even_below_fourth`: `True`
+- `aboveAnchor_even_run_ge_pow`: `True`
+- `aboveAnchor_not_envelope_drop`: `True`
 - `isolatedOddSurvival_bound`: `True`
 - `aboveAnchor_isolated_two`: `True`
 - `finiteProgress_of_ooe_oe`: `True`
