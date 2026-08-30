@@ -188,11 +188,12 @@ def _claim_map() -> None:
         "It does not prove arrival at 1."
     )
     _badge("J-small-cycle-census-seven")
+    _badge("J-small-cycle-census-eight")
     _badge("J-gapped-cycle-word-ee")
     cards = st.container(horizontal=True)
     with cards:
-        st.metric("Census", "period ≥ 8", border=True)
-        st.metric("Length ≤ 7", "LEAN", border=True)
+        st.metric("Census", "period ≥ 9", border=True)
+        st.metric("Length ≤ 8", "LEAN", border=True)
         st.metric("Leftovers 3.12–3.21", "LEAN", border=True)
         st.metric("Length 11 toolkit", "closed", border=True)
         st.metric("ReachesOne", "not claimed", border=True)
@@ -204,9 +205,9 @@ def _claim_map() -> None:
     )
     st.info(
         "No density result is stated or used in the note. Finite leftover "
-        "tables are checks, not a termination proof. Length eight remains "
-        "open as a census. The thirty length-11 short-gap words are a lab "
-        "gate, not a Paper A theorem.",
+        "tables are checks, not a termination proof. The laboratory census "
+        "excludes lengths ≤ 8; Paper A still states ≤ 7. The thirty "
+        "length-11 short-gap words are a lab gate, not a Paper A theorem.",
         icon=":material/info:",
     )
 
@@ -351,8 +352,9 @@ def _envelope() -> None:
 def _cells() -> None:
     st.caption(
         "Even fibers are parity-restricted square intervals. An odd fiber "
-        "contains at most one integer. The census excludes every even-terminating "
-        "expanding word of length at most seven."
+        "contains at most one integer. The laboratory census excludes every "
+        "even-terminating expanding word of length at most eight. Paper A "
+        "still states the published bound ≤ 7."
     )
     for theorem_id in CENSUS_LEDGER_IDS:
         _badge(theorem_id)
@@ -464,9 +466,9 @@ def _cells() -> None:
         st.caption(
             "Two-even leftovers of length eight are Theorem 3.12. The "
             "square spellings OOOOEOOE = OO(OOE)² and OOOEOOOE = (OOOE)² "
-            "are OO/OOO bootstrap, not leftovers. Named filters cover "
-            "every even-terminating expanding length-eight word. This is "
-            "not a length-eight census."
+            "are OO/OOO bootstrap, not leftovers. The laboratory assembler "
+            "no_cycle_word_length_le_eight covers every even-terminating "
+            "expanding length-eight word. Paper A still stops at seven."
         )
         st.dataframe(
             pd.DataFrame(length_eight_status_rows()),
@@ -551,12 +553,13 @@ def _cycle_words() -> None:
         "A cycle word is a cyclic object. Type a parity word, rotate it, "
         "and read the recorded obstruction. Lean is the authority through "
         "Theorems 3.12–3.21. Length-8 squares OOOOEOOE and OOOEOOOE "
-        "are OO/OOO bootstrap, not leftovers. Length eight remains "
-        "open as a census. The thirty length-11 short-gap leftovers are open "
-        "as CycleMins; arrival at 1 is not claimed."
+        "are OO/OOO bootstrap, not leftovers. The laboratory census "
+        "excludes length ≤ 8. The thirty length-11 short-gap leftovers are "
+        "open as CycleMins; arrival at 1 is not claimed."
     )
     _badge("J-cycle-finite-structure")
     _badge("J-small-cycle-census-seven")
+    _badge("J-small-cycle-census-eight")
     _badge("J-gapped-cycle-word-ee")
     word = _cycle_word_controls()
     if len(word) >= 2:
@@ -732,9 +735,9 @@ def _leftover_families() -> None:
         "CycleMin theorems (3.12–3.21). Length-8 squares OOOOEOOE and "
         "OOOEOOOE are OO/OOO bootstrap, not leftovers. The thirty "
         "first-expanding four-even short-gap words are a lab gate: Z4 "
-        "PARK, last-cluster and non-pullback CLOSE. Not a length-8 or "
-        "length-11 census and not a halt claim. leftover_prefix_cell "
-        "is packaging, not a new family."
+        "PARK, last-cluster and non-pullback CLOSE. Laboratory census "
+        "is now ≤ 8. Not a length-11 census and not a halt claim. "
+        "leftover_prefix_cell is packaging, not a new family."
     )
     for theorem_id in LEFTOVER_FAMILY_LEDGER_IDS:
         _badge(theorem_id)

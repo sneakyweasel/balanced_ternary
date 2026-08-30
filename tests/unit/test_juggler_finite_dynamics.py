@@ -87,17 +87,19 @@ def test_leftover_words_are_the_note_four():
     assert leftover_words() == ("OOOEOE", "OOOOEE", "OOOOEOE", "OOOOOEE")
 
 
-def test_classify_leftovers_and_open_length_eight():
+def test_classify_leftovers_and_open_length_nine():
     assert classify_word("OOOEOE").kind == "leftover"
     assert classify_word("OOOOEE").kind == "leftover"
     assert classify_word("OOOOEOE").kind == "leftover"
     assert classify_word("OOOOOEE").kind == "leftover"
     assert classify_word("OOOOOE").kind == "odd-run"
     assert classify_word("OOE").kind == "threshold"
-    open_word = length_eight_open_words()[0]
-    info = classify_word(open_word)
-    assert info.kind == "open"
-    assert "open" in info.reason
+    for word in length_eight_open_words():
+        info = classify_word(word)
+        assert info.kind != "open", word
+        assert "open" not in info.reason
+    open_view = cycle_class_view(EEEE_WORD, 0)
+    assert open_view.verdict == "open"
 
 
 def test_length_eight_open_list_is_expanding_and_even_terminating():

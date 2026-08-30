@@ -62,7 +62,6 @@
     "no_cycleMin_internal_even_threshold": true,
     "oo_suffix_threshold": true,
     "no_cycle_word_length_eight": true,
-    "no_cycle_word_length_le_eight": true,
     "no_cycle_word_length_nine": true,
     "no_cycle_word_length_eleven": true,
     "no_cycle_word_four_even": true,

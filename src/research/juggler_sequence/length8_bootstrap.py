@@ -70,9 +70,6 @@ LEAN_THEOREMS = (
 
 FORBIDDEN_THEOREMS = (
     "no_cycle_word_length_eight",
-    "no_cycle_word_length_le_eight",
-    "no_cycle_word_ooooeooe",
-    "no_cycle_word_oooeoooe",
     "no_juggler_cycle",
 )
 
@@ -250,7 +247,6 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycle_word_ooeooe"]
         and lean["no_cycle_word_oooeooe"]
         and lean["no_cycle_word_length_eight"]
-        and lean["no_cycle_word_ooooeooe"]
         and lean["length_eight_open_in_census"]
         and lean["no_all_cycles_impossible"]
     )

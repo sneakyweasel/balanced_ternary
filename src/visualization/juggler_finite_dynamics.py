@@ -156,6 +156,14 @@ _WORD_CLASS: dict[str, tuple[str, str]] = {
     "OOOEOOE": ("bootstrap", "Lemma 3.4(i) at threshold 5"),
     "OOOOEOE": ("leftover", "Lemma 3.7"),
     "OOOOOEE": ("leftover", "Lemma 3.7"),
+    "OOOOOOOE": ("odd-run", "Lemma 3.4(v) at a=7"),
+    "EOOOOOOE": ("rotation", "rotates onto OOOOOOEE"),
+    "OEOOOOOE": ("rotation", "rotates onto OOOOOEOE"),
+    "OOOOEOOE": ("bootstrap", "internal E plus OO next-square"),
+    "OOOEOOOE": ("bootstrap", "internal E plus OOO next-square"),
+    "OOEOOOOE": ("bootstrap", "internal E plus O^4 odd-run threshold"),
+    "OOOOOEOE": ("two-even leftover", "Theorem 3.12 at k=8"),
+    "OOOOOOEE": ("two-even leftover", "Theorem 3.12 at k=8"),
 }
 
 CLAIM_ROWS: tuple[dict[str, str], ...] = (
@@ -205,6 +213,11 @@ CLAIM_ROWS: tuple[dict[str, str], ...] = (
         "ledger": "J-small-cycle-census-seven",
     },
     {
+        "text": "Laboratory census length ≤ 8",
+        "lean": "no_cycle_word_length_le_eight",
+        "ledger": "J-small-cycle-census-eight",
+    },
+    {
         "text": "Theorem 3.12 two-even leftovers",
         "lean": "no_cycle_word_two_even_ee / no_cycle_word_two_even_eoe",
         "ledger": "J-two-even-leftover-ee",
@@ -234,6 +247,7 @@ CLAIM_ROWS: tuple[dict[str, str], ...] = (
 CENSUS_LEDGER_IDS: tuple[str, ...] = (
     "J-small-cycle-census",
     "J-small-cycle-census-seven",
+    "J-small-cycle-census-eight",
     "J-leftover-length-six-orientations",
     "J-leftover-length-seven-orientations",
 )
@@ -275,13 +289,19 @@ LAB_LEFTOVER_DECISIONS: tuple[dict[str, str], ...] = (
         "branch": "Lean leftover merge",
         "decision": "PROMOTE",
         "tag": "packaging",
-        "note": "leftover_prefix_cell; families in LeftoverFamilies; census still ≤7",
+        "note": "leftover_prefix_cell; families in LeftoverFamilies; Paper A census ≤7",
     },
     {
         "branch": "Length-8 two-even squares",
         "decision": "CLOSE",
         "tag": "REPARAMETERIZATION",
         "note": "OOOOEOOE=OO(OOE)^2 and OOOEOOOE=(OOOE)^2 are OO/OOO bootstrap, not leftovers",
+    },
+    {
+        "branch": "Length-8 census",
+        "decision": "PROMOTE",
+        "tag": "EXACT — LEAN VERIFIED",
+        "note": "no_cycle_word_length_le_eight; Paper A still ≤7; not a halt theorem",
     },
 )
 
@@ -432,7 +452,7 @@ def length11_inventory() -> tuple[dict[str, Any], ...]:
 
 def length_eight_status_rows() -> tuple[dict[str, str], ...]:
     notes = {
-        "odd_run": "odd-run O^7E; named filter, not a census theorem",
+        "odd_run": "odd-run O^7E; laboratory census ≤ 8",
         "two_even_ee": "Theorem 3.12 two-even EE",
         "two_even_eoe": "Theorem 3.12 two-even EOE",
         "bootstrap_oo_suffix_threshold": "internal E plus OO next-square; not a leftover",
@@ -447,7 +467,7 @@ def length_eight_status_rows() -> tuple[dict[str, str], ...]:
         rows.append(
             {
                 "word": word,
-                "status": "named filter",
+                "status": "census ≤ 8",
                 "note": notes.get(named, named),
             }
         )
@@ -816,10 +836,10 @@ def classify_word(word: str) -> WordClass:
         )
     elif two_even_bootstrap_kind(word) is not None:
         kind, reason = two_even_bootstrap_kind(word)
-    elif len(word) <= 7:
-        kind, reason = "excluded", "note census of length ≤ 7"
+    elif len(word) <= 8:
+        kind, reason = "excluded", "laboratory census of length ≤ 8"
     else:
-        kind, reason = "open", "length eight is the first open even-terminating expanding length"
+        kind, reason = "open", "length nine is the first open even-terminating expanding length"
     return WordClass(
         word=word,
         length=len(word),
@@ -831,7 +851,7 @@ def classify_word(word: str) -> WordClass:
     )
 
 
-def census_inventory(*, max_len: int = 7) -> tuple[dict[str, Any], ...]:
+def census_inventory(*, max_len: int = 8) -> tuple[dict[str, Any], ...]:
     rows: list[dict[str, Any]] = []
     for length in range(3, max_len + 1):
         for prefix in product("OE", repeat=length - 1):
@@ -1088,9 +1108,11 @@ def _orientation_ledger(kind: str, word: str) -> str | None:
                 return _BUNCHED_LEDGER.get(name)
         return "J-three-even-eee"
     if kind in {"threshold", "bootstrap", "rotation", "excluded", "not CycleMin"}:
-        if kind == "bootstrap" and len(word) >= 8:
-            return "J-cycle-finite-structure"
-        return "J-small-cycle-census-seven" if len(word) <= 7 else "J-small-cycle-census"
+        if len(word) <= 7:
+            return "J-small-cycle-census-seven"
+        if len(word) <= 8:
+            return "J-small-cycle-census-eight"
+        return "J-cycle-finite-structure"
     return None
 
 
@@ -1140,8 +1162,8 @@ def _base_kind(word: str) -> tuple[str, str]:
         return "not CycleMin", "cycleMin_not_odd_even"
     if named is not None:
         return named
-    if len(word) <= 7:
-        return "excluded", "note census of length ≤ 7"
+    if len(word) <= 8:
+        return "excluded", "laboratory census of length ≤ 8"
     return "open", "not excluded by the recorded census"
 
 

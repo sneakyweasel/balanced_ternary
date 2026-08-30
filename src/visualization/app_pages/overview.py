@@ -72,8 +72,8 @@ the least-significant digit $a_0$.
             },
             {
                 "layer": "Juggler finite dynamics",
-                "object": "Floor-power envelope, leftover families 3.12–3.21, census ≤7",
-                "status": "Paper companion through 3.21; length-11 leftover toolkit closed",
+                "object": "Floor-power envelope, leftover families 3.12–3.21, census ≤8",
+                "status": "Paper companion through 3.21; laboratory census ≤8",
             },
             {
                 "layer": "Finite-state Collatz",

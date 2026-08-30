@@ -1,0 +1,76 @@
+{
+  "experiment": "juggler_cycle_length_eight",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eight_cycles_impossible": true,
+    "length_eight_lean_census": true,
+    "length_nine_census": false,
+    "paper_a_length_eight": false,
+    "halt": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "expanding_e_words": [
+      "OOOOOOOE",
+      "OOOOOOEE",
+      "OOOOOEOE",
+      "OOOOEOOE",
+      "OOOEOOOE",
+      "OOEOOOOE",
+      "OEOOOOOE",
+      "EOOOOOOE"
+    ],
+    "unique_family": true,
+    "filters": {
+      "OOOOOOOE": "odd_run",
+      "OOOOOOEE": "two_even_ee",
+      "OOOOOEOE": "two_even_eoe",
+      "OOOOEOOE": "bootstrap_oo_suffix_threshold",
+      "OOOEOOOE": "bootstrap_ooo_suffix_threshold",
+      "OOEOOOOE": "bootstrap_odd_run_suffix_threshold",
+      "OEOOOOOE": "cycleMin_not_odd_even",
+      "EOOOOOOE": "rotate_start_even"
+    },
+    "all_named": true,
+    "length_nine": false,
+    "halt": false,
+    "paper_a_edit": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "no_cycle_word_ooooeooe": true,
+    "no_cycle_word_oooeoooe": true,
+    "no_cycle_word_ooeooooe": true,
+    "no_cycle_word_ooooooee": true,
+    "no_cycle_word_oooooeeoe": true,
+    "no_cycle_word_len_eight_ends_even": true,
+    "no_cycle_word_length_le_eight": true,
+    "no_cycle_word_length_le_seven": true,
+    "no_cycle_word_two_even_ee": true,
+    "no_cycle_odd_run_append_even": true,
+    "no_cycle_word_length_eight": true,
+    "no_cycle_word_length_nine": true,
+    "no_cycle_word_length_le_nine": true,
+    "no_juggler_cycle": true,
+    "juggler_reaches_one": true,
+    "paper_a_length_eight_open": true,
+    "laboratory_assembler_present": true,
+    "paper_a_has_no_le_eight": true,
+    "no_all_cycles_impossible": true
+  },
+  "decision": {
+    "classification": "LENGTH_EIGHT_CENSUS_GREEN",
+    "reason": "no_cycle_word_length_le_eight assembles the named length-8 filters; Paper A census file still stops at seven"
+  },
+  "search_method": "Laboratory assembler of named filters already in Lean; no leftover cell and no Paper A theorem number"
+}

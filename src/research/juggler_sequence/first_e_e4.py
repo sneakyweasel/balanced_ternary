@@ -89,7 +89,6 @@ LEAN_THEOREMS = (
 
 FORBIDDEN_THEOREMS = (
     "no_cycle_word_length_eight",
-    "no_cycle_word_length_le_eight",
     "no_cycle_word_length_nine",
     "no_cycle_word_four_even",
     "no_cycleMin_four_even",

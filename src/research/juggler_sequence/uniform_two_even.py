@@ -212,8 +212,7 @@ def lean_api_present() -> dict[str, bool]:
         and "def CycleStates" not in combined,
         "length_eight_open_in_census": "Length eight is open" in census,
         "no_length_eight_theorem": "theorem no_cycle_word_length_eight"
-        not in combined
-        and "theorem no_cycle_word_length_le_eight" not in combined,
+        not in combined,
         "no_length_nine_theorem": "theorem no_cycle_word_length_nine"
         not in combined,
         "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),

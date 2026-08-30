@@ -11674,3 +11674,39 @@ Best next question
   filters, or stop
 ```
 
+## Juggler length-8 cycle-word census
+
+- **Date:** 2026-08-30
+- **Objective:** Assemble `no_cycle_word_length_le_eight` from named filters already in Lean
+- **Hypotheses:** packaging moves the laboratory census bound from 7 to 8; no new leftover cell is required
+- **Major results:** Lean `no_cycle_word_length_le_eight` in `LengthEightCensus.lean`. CycleWord theorems for `OOOOEOOE`, `OOOEOOOE`, and `OOEOOOOE`. Paper A barrel and note unchanged. Ledger row `J-small-cycle-census-eight`. Not a halt theorem
+- **Refuted ideas:** none; the eight expanding even-terminating words were already named
+- **Literature:** Paper A Theorem 3.8; Theorem 3.12 at \(k=8\); `no_cycleMin_internal_even_threshold`; length-8 bootstrap `CLOSE`
+- **Open:** length 9. Do not assemble automatically
+- **Decision:** PROMOTE. Sorry-free laboratory assembler. Not a Paper A theorem and not a halt theorem
+
+```text
+What was learned
+- OOOOEOOE and OOEOOOOE are one necklace
+- OOOEOOOE has period 4
+- Theorem 3.12 already excludes the two k=8 leftovers
+- the assembler is the length-7 pattern plus one letter
+- Paper A can stay at ≤7 while the laboratory moves to ≤8
+Strongest theorem
+- no_cycle_word_length_le_eight
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- none
+Reusable machinery
+- LengthEightCensus.lean; not imported by JugglerPaper
+Branch status
+- PROMOTE
+Why
+- every even-terminating expanding length-8 word already
+  had a named filter; the missing CycleWord theorems and
+  the assembler are now sorry-free
+Best next question
+- assemble no_cycle_word_length_le_nine from named leftover
+  families, or stop
+```
+

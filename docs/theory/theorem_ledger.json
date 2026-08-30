@@ -3248,7 +3248,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "Neither OOOEOE nor OOOOEE is a Juggler cycle word at any n ≥ 2 (Paper A Lemma 3.5). The argument is an exhaustive evaluation for n < 256 together with the last-even cell against the coarse lower envelope n^{81} > 2^{130}(n+1)^{64} for n ≥ 256. This excludes those two orientations only; the length-≤6 census is the separate row J-small-cycle-census.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/LeftoverCycles.lean",
+    "lean": "Problems/Juggler/LeftoverShort.lean",
     "tests": [
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
     ],
@@ -3270,7 +3270,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "Neither OOOOEOE nor OOOOOEE is a Juggler cycle word at any n ≥ 2 (Paper A Lemma 3.7). The argument is an exhaustive evaluation for n < 14 together with the last-even cell against the coarse lower envelope n^{243} > 2^{422}(n+1)^{128} for n ≥ 14. This excludes those two orientations only; the length-≤7 census is the separate row J-small-cycle-census-seven.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/LeftoverCycles.lean",
+    "lean": "Problems/Juggler/LeftoverShort.lean",
     "tests": [
       "tests/research/juggler_sequence/test_cycle_leftover_words.py",
       "tests/research/juggler_sequence/test_cycle_length_seven.py"
@@ -3280,12 +3280,24 @@
   {
     "id": "J-small-cycle-census-seven",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most seven is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eight (Paper A Theorem 3.8). Assembly: the length-≤6 census, the formal-expansion filter on length seven, the odd-run exclusion of O^6E, the internal-E bootstrap exclusions of OOEOOOE and OOOEOOE, rotation of EOOOOOE and OEOOOOE onto the leftovers, and the leftover exclusions of OOOOEOE and OOOOOEE (Lemma 3.7). Lean theorem no_cycle_word_length_le_seven. Length eight and beyond is open; this is not an exclusion of all cycles and not a halt theorem.",
+    "statement": "No word of length at most seven is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eight (Paper A Theorem 3.8). Assembly: the length-≤6 census, the formal-expansion filter on length seven, the odd-run exclusion of O^6E, the internal-E bootstrap exclusions of OOEOOOE and OOOEOOE, rotation of EOOOOOE and OEOOOOE onto the leftovers, and the leftover exclusions of OOOOEOE and OOOOOEE (Lemma 3.7). Lean theorem no_cycle_word_length_le_seven. This row is the Paper A length-≤7 statement; the laboratory strengthening is J-small-cycle-census-eight. This is not an exclusion of all cycles and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/SmallCycleCensus.lean",
     "tests": [
       "tests/research/juggler_sequence/test_cycle_leftover_words.py",
       "tests/research/juggler_sequence/test_cycle_length_seven.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-small-cycle-census-eight",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "No word of length at most eight is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least nine. Assembly: the length-≤7 census, the formal-expansion filter on length eight, the odd-run exclusion of O^7E, Theorem 3.12 at k=8, rotation of EOOOOOOE and OEOOOOOE onto those leftovers, and the internal-E bootstrap exclusions of OOOOEOOE, OOOEOOOE, and OOEOOOOE. Lean theorem no_cycle_word_length_le_eight in LengthEightCensus.lean. This is a laboratory strengthening of Paper A Theorem 3.8, not a published Paper A theorem, not a length-9 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_length_eight_cycles.md",
+    "lean": "Problems/Juggler/LengthEightCensus.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_length_eight.py",
+      "tests/unit/test_juggler_finite_dynamics.py"
     ],
     "related_conjectures": []
   },
@@ -3306,7 +3318,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "OOOOOOEEE is not a Juggler cycle word at any n ≥ 2. The argument is an exhaustive evaluation for n < 128 together with the three-even cell z < (n+1)^8 against the coarse lower envelope n^{729} > 2^{1330}(n+1)^{512} for n ≥ 128. The computational prefix-cell first fires at N0 = 73; 128 is the algebraic cutoff. This excludes that one three-even leftover only; it is not a length-9 census, not an exclusion of the remaining eight leftovers, and not a halt theorem. Lean theorem no_cycle_word_ooooooeee.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/LeftoverCycles.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_cycle_length_nine.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3318,7 +3330,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every k ≥ 6 and every n ≥ 2, the even-terminating two-even leftover O^{k-2}EE is not a Juggler cycle word. Large n uses the shared tail n^{3^{k-2}} > 2^{e_{k-2}}(n+1)^{2^k} at the uniform algebraic cutoff n ≥ 256, obtained by cubing the length-6 comparison; e_a = 2(3^a-2^a) = log2(lowerDenom(O^a)). Below 256 the argument is the existing k=6,7 leftovers, a Fin 256 table at k=8, and the fact that n ≥ 2 does not follow seven consecutive odds. Lean theorem no_cycle_word_two_even_ee. This excludes that one family only; it is not a length-8 census and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/LeftoverTwoEven.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_uniform_two_even.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3330,7 +3342,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every k ≥ 6 and every n ≥ 2, the leftover O^{k-3}EOE is not a Juggler cycle word. The last-odd cube trick plus (y+1)^3 < 2(n+1)^4 reduces to the same shared tail as O^{k-2}EE. Large n is n ≥ 256; below 256 the argument is the existing k=6,7 leftovers, Fin 256 tables at k=8,9, and the seven-odd obstruction for k ≥ 10. Lean theorem no_cycle_word_two_even_eoe. This excludes that one family only; it is not a length-8 census and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/LeftoverTwoEven.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_uniform_two_even.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3342,7 +3354,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 4, the gapped three-even leftover O^a E O^b EE is not a Juggler CycleMin at n. CycleMin puts the remainder O^b EE at y = T_{O^a E}(n) ≥ n. The leftover cell is measured against n, so y ≥ n tightens it against the shared two-even tail at y. Large y is the uniform cutoff y ≥ 256; below 256 the argument is seven consecutive odds on the prefix or the remainder, or a Fin 256 table on the short-gap window 2 ≤ a ≤ 6, 4 ≤ b ≤ 6. Lean theorem no_cycleMin_gapped_three_even_ee. This excludes gapped CycleMins only; it is not a CycleWord theorem at a non-minimum start, not a bunched-tail attack, not a length-8 or length-9 census, and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/FirstETransport.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_first_e_transport.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3354,7 +3366,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler CycleMin at n. The same first-E transport applies: y ≥ n tightens the leftover cell against the shared two-even tail at y, using the last-odd cube reduction already used for O^{k-3}EOE. Large y is y ≥ 256; below 256 the argument is seven-odd or a Fin 256 table on 2 ≤ a ≤ 6, 3 ≤ b ≤ 6. Lean theorem no_cycleMin_gapped_three_even_eoe. This excludes gapped CycleMins only; it is not a CycleWord theorem at a non-minimum start, not a bunched-tail attack, not a length-8 or length-9 census, and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/FirstETransport.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_first_e_transport.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3366,7 +3378,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every a ≥ 6 and every n ≥ 2, the bunched leftover O^a EEE is not a Juggler cycle word. Large n uses the three-even cell z < (n+1)^8 against C_{O^a}, which is the tail n^{3^a} > 2^{e_a}(n+1)^{2^{a+3}} at the algebraic cutoff n ≥ 128, obtained by cubing the OOOOOOEEE comparison; e_a = 2(3^a-2^a) = log2(lowerDenom(O^a)). Below 128 the argument is the existing a=6 table and the fact that n ≥ 2 does not follow seven consecutive odds. Lean theorem no_cycle_word_three_even_eee. This excludes that one bunched family only; it is not the other six bunched tails, not a length-8 or length-9 census, and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/BunchedEEE.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_bunched_last_cluster.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3378,7 +3390,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every a ≥ 5 and every n ≥ 2, the bunched leftover O^a EOEE is not a Juggler cycle word. For n ≥ 4 the mixed cell is z < (n+1)^6: two trailing evens give p < (n+1)^4, the one-odd envelope gives y^3 ≤ 4p^2, and n ≥ 4 upgrades that to y < (n+1)^3. Large n at a = 5 uses the tail n^{3^a} > 2^{e_a}(n+1)^{6·2^a} at the algebraic cutoff n ≥ 314, obtained by persisting the comparison at 314 and cubing in a; e_a = 2(3^a-2^a). At a = 6 the same cell already fires at n ≥ 16. Below those cutoffs the argument is the a = 5 table, the a = 6 table, and seven consecutive odds. Lean theorem no_cycle_word_three_even_eoee. This excludes that one bunched family only; a uniform coarse (n+1)^K cell for all six remaining bunched families is false; it is not a length-8 or length-9 census and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/BunchedEOEE.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_bunched_last_cluster.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3390,7 +3402,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every a ≥ 4 and every n ≥ 2, the bunched leftover O^a EOOEE is not a Juggler cycle word. For n ≥ 32 the mixed cell is z < (n+1)^4: two trailing evens give p < (n+1)^4, the two-odd envelope gives y^9 ≤ 1024 p^4, and n ≥ 32 upgrades that to y < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. Below 256 the argument is Fin 256 tables at a = 4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_word_three_even_eooee. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/BunchedEOOEE.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_bunched_last_cluster.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3402,7 +3414,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every a ≥ 3 and every n ≥ 2, the bunched leftover O^a EOOOEE is not a Juggler cycle word. For a ≥ 4 and n ≥ 3 the mixed cell is z < (n+1)^4: two trailing evens give p < (n+1)^4, the three-odd envelope gives y^{27} ≤ 2^{38} p^8, and n ≥ 3 upgrades that to y < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. At a = 3 the coarse exponent is impossible, so the argument uses the tight cell z < (y+1)^2 against C_{O^3}: y < 39 contradicts n ≥ 24, and y ≥ 39 reduces to n^{729} > 2^{1650}(n+1)^{512} from n ≥ 197. Below 256 the argument is Fin 256 tables at a = 3,4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_word_three_even_eoooee. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/BunchedEOOOEE.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_bunched_last_cluster.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3414,7 +3426,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every a ≥ 5 and every n ≥ 2, the bunched leftover O^a EEOE is not a Juggler cycle word. For n ≥ 4 the mixed cell is z < (n+1)^6: the last-odd cube gives y^3 < (n+1)^4, two leading evens give z < (y+1)^4, and n ≥ 4 upgrades that to z < (n+1)^6. The resulting comparison is the EOEE tail n^{3^a} > 2^{e_a}(n+1)^{6·2^a}, already proved for a ≥ 5. Large n at a = 5 is n ≥ 314; at a = 6 the same cell already fires at n ≥ 16. Below those cutoffs the argument is the a = 5 table, the a = 6 table, and seven consecutive odds. Lean theorem no_cycle_word_three_even_eeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/BunchedEEOE.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_bunched_last_cluster.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3426,7 +3438,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every a ≥ 4 and every n ≥ 2, the bunched leftover O^a EOEOE is not a Juggler cycle word. For n ≥ 32 the mixed cell is z < (n+1)^4: the last-odd cube gives y^3 < (n+1)^4, the one-odd envelope on the first gap upgrades to w < (n+1)^2, and the even cell at z then gives z < (n+1)^4. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. Below 256 the argument is Fin 256 tables at a = 4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_word_three_even_eoeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/BunchedEOEOE.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_bunched_last_cluster.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3438,7 +3450,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every a ≥ 3 and every n ≥ 2, the bunched leftover O^a EOOEOE is not a Juggler cycle word. For a ≥ 4 and n ≥ 4 the mixed cell is z < (n+1)^4: last-odd plus two-odd give u^9 < 1024(y+1)^8 and (y+1)^3 < 2(n+1)^4, hence u^{27} < 2^{38}(n+1)^{32} and u < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. At a = 3 the same tight split as O^3 EOOOEE applies with u in place of y. Below 256 the argument is Fin 256 tables at a = 3,4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_word_three_even_eooeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/BunchedEOOEOE.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_bunched_last_cluster.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3450,7 +3462,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 4, the gapped three-even leftover O^a E O^b EE is not a Juggler cycle word. Every CycleWord has a CycleMin rotation. The k=0 rotation is the first-E CycleMin exclusion; the rotation at k=a+1 is the bootstrap word O^b EE O^a E, excluded by last-gap ≥ 2 (OOO at N=3, or OO at N=5 with n=3 failing to follow four odds); the last even starts even; every other rotation ends odd. Lean theorem no_cycle_word_gapped_three_even_ee. This upgrades the CycleMin theorem to CycleWord; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/GappedCycleWord.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_gapped_cycle_word.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"
@@ -3462,7 +3474,7 @@
     "tag": "EXACT — LEAN VERIFIED",
     "statement": "For every n ≥ 2, a ≥ 2, and b ≥ 3, the gapped three-even leftover O^a E O^b EOE is not a Juggler cycle word. The same rotation classes apply: first-E CycleMin at k=0; bootstrap O^b EOE O^a E at k=a+1 (last-gap ≥ 2, with n=3 and b=3 failing after OOOE at 6); start OE at k=a+b+2; every other rotation ends odd. Lean theorem no_cycle_word_gapped_three_even_eoe. This upgrades the CycleMin theorem to CycleWord; it is not first-E transport at a non-minimum start, not a bunched-tail theorem, not a length-8 or length-9 census, and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
-    "lean": "Problems/Juggler/GappedCycleWord.lean",
+    "lean": "Problems/Juggler/LeftoverFamilies.lean",
     "tests": [
       "tests/research/juggler_sequence/test_gapped_cycle_word.py",
       "tests/research/juggler_sequence/test_cycle_leftover_words.py"

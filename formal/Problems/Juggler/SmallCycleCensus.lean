@@ -13,8 +13,10 @@ and length-five even-terminating theorems, the odd-run threshold, and
 the named exclusions of the length-six and length-seven leftovers then
 cover every word of length at most seven.
 
-This is a census for lengths `≤ 7` only. Length eight is open. Not a
-halt theorem and not an exclusion of all cycles.
+This is a census for lengths `≤ 7` only. Length eight is open
+in this assembly (Paper A Theorem 3.8). The laboratory
+strengthening is `no_cycle_word_length_le_eight`. Not a halt
+theorem and not an exclusion of all cycles.
 -/
 
 /-- On an all-odd realized word from an odd start `n ≥ 3`, the image

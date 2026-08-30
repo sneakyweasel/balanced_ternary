@@ -77,6 +77,7 @@ LAYERS: dict[str, Path] = {
     "BunchedEOOEOEEval": JUGGLER_DIR / "BunchedEOOEOEEval.lean",
     "LeftoverFamilies": JUGGLER_DIR / "LeftoverFamilies.lean",
     "SmallCycleCensus": JUGGLER_DIR / "SmallCycleCensus.lean",
+    "LengthEightCensus": JUGGLER_DIR / "LengthEightCensus.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
     "LandingValuation": JUGGLER_DIR / "LandingValuation.lean",
@@ -153,6 +154,7 @@ BUNCHED_EOOOEE = LEFTOVER_FAMILIES
 BUNCHED_EOOEOE_EVAL = LAYERS["BunchedEOOEOEEval"]
 BUNCHED_EOOEOE = LEFTOVER_FAMILIES
 SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
+LENGTH_EIGHT_CENSUS = LAYERS["LengthEightCensus"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
 LANDING_VALUATION = LAYERS["LandingValuation"]

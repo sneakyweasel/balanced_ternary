@@ -396,9 +396,8 @@ def lean_api_present() -> dict[str, bool]:
         "length_eight_open_in_census": "Length eight is open" in census,
         "has_length_seven_census": "theorem no_cycle_word_length_le_seven"
         in census,
-        "no_length_eight_theorem": "theorem no_cycle_word_length_le_eight"
-        not in combined
-        and "theorem no_cycle_word_length_eight" not in combined,
+        "no_length_eight_theorem": "theorem no_cycle_word_length_eight"
+        not in combined,
         "no_infinite_path_type": "coinductive" not in combined.lower()
         and "def InfinitePath" not in combined,
         "FloorPower_not_rewritten": "CycleWord" not in floor

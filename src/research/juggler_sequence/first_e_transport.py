@@ -324,8 +324,7 @@ def lean_api_present() -> dict[str, bool]:
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
         "no_length_eight_theorem": "theorem no_cycle_word_length_eight"
-        not in combined
-        and "theorem no_cycle_word_length_le_eight" not in combined,
+        not in combined,
         "no_length_nine_theorem": "theorem no_cycle_word_length_nine"
         not in combined,
         "no_first_e_transport_theorem": "theorem no_cycleMin_gapped_three_even"

@@ -39,9 +39,12 @@ The same words as transients are not excluded by repeated-block
 scale: \(69\xrightarrow{(\mathrm{OOE})^2}212\) and
 \(225\xrightarrow{(\mathrm{OOOE})^2}4990602\).
 
-This is not a `CycleWord` theorem and not a length-8 census. There
-is no `no_cycle_word_length_eight`, no `no_cycle_word_ooooeooe`,
-and no `no_cycle_word_oooeoooe`.
+This CLOSE is not a leftover cell and not itself a census. A later
+laboratory branch assembled `no_cycle_word_length_le_eight` from
+these named filters; that packaging is
+[juggler_length_eight_cycles.md](juggler_length_eight_cycles.md).
+There is still no `no_cycle_word_length_eight` (the Paper A name
+was not used) and no halt theorem.
 
 ## Current literature
 
@@ -132,10 +135,11 @@ claims that fail:
 
 ## Formalization
 
-None new. `no_cycleMin_internal_even_threshold` already exists.
-`SmallCycleCensus.lean` still assembles only through length seven
-and records that length eight is open. No
-`no_cycle_word_length_eight`. No `sorry`. No halt theorem. Paper A
+None in this CLOSE. `no_cycleMin_internal_even_threshold` already
+existed. `SmallCycleCensus.lean` still assembles only through
+length seven and records that length eight is open in that Paper A
+assembly. The later laboratory file `LengthEightCensus.lean`
+packages the named filters. No `sorry`. No halt theorem. Paper A
 is unchanged.
 
 ## Results
@@ -150,10 +154,10 @@ expanding length-8 word. That is not a census theorem.
 
 ## Open questions
 
-A length-8 census is now a packaging question: assemble the named
-filters already in Lean. Do not assemble
-`no_cycle_word_length_eight` automatically from this `CLOSE`. Do
-not claim halt. Do not reopen the thirty length-11 leftovers.
+Answered by the laboratory census
+[juggler_length_eight_cycles.md](juggler_length_eight_cycles.md):
+`no_cycle_word_length_le_eight`. Do not claim halt. Do not reopen
+the thirty length-11 leftovers.
 
 ## Decision
 
@@ -162,8 +166,8 @@ bootstrap, not a leftover cell. Repeated-block scale still does
 not exclude the same words as transients. It is not a length-8
 census and not a halt theorem.
 
-Best next question: assemble `no_cycle_word_length_eight` from
-the named filters, or stop.
+Best next question: answered by the length-8 census; stop this
+leftover-novelty branch.
 
 ## Publication assessment
 
