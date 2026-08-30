@@ -17,8 +17,8 @@ Novelty hypothesis      Fixed mixed tail plus C_{O^a};
                         cutoffs drop as a grows
 Falsifier               A tail whose N0 grows with a
 Existing machinery      prefix-cell Z; denomBits; OOOOOOEEE
-Maximum Phase-0 scope   N0(a) for seven families; tables;
-                        no Lean, no census, no e>=4
+Maximum Phase-1 scope   Lean O^a EEE by cubing;
+                        no other bunched, no census
 ```
 
 ## Metadata
@@ -33,7 +33,7 @@ Maximum Phase-0 scope   N0(a) for seven families; tables;
 - tables empty: `True`
 - EEE cubes from 73: `True`
 
-seven bunched last-cluster families fire with N0 bounded in a: first-fire 188,120,126,89,81,73,60 then drop to the n=5 plateau; EEE cubes from a=6 at n>=73; tables empty; gapped complement is first-E; no Lean.
+seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE for every a>=6 by cubing the three-even cell from OOOOOOEEE at n>=128; the other six families remain computational; not a length-8/9 census.
 
 ## Families
 
@@ -55,6 +55,8 @@ seven bunched last-cluster families fire with N0 bounded in a: first-fire 188,12
 - `no_cycleMin_gapped_three_even_eoe`: `True`
 - `no_cycle_word_length_le_seven`: `True`
 - `CycleMin`: `True`
+- `no_cycle_word_three_even_eee`: `True`
+- `three_even_eee_tail`: `True`
 - no bunched-tail theorem: `True`
 - length eight open in census: `True`
 - no length-nine theorem: `True`
@@ -71,6 +73,7 @@ seven bunched last-cluster families fire with N0 bounded in a: first-fire 188,12
 - cycles_impossible: `False`
 - three_even_cycles_impossible: `False`
 - bunched_lean: `False`
+- eee_lean: `True`
 - length_eight_census: `False`
 - length_nine_census: `False`
 - first_e_at_four: `False`
@@ -81,8 +84,8 @@ seven bunched last-cluster families fire with N0 bounded in a: first-fire 188,12
 
 **BUNCHED_LAST_CLUSTER_GREEN**
 
-seven bunched last-cluster families fire with N0 bounded in a: first-fire 188,120,126,89,81,73,60 then drop to the n=5 plateau; EEE cubes from a=6 at n>=73; tables empty; gapped complement is first-E; no Lean.
+seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE for every a>=6 by cubing the three-even cell from OOOOOOEEE at n>=128; the other six families remain computational; not a length-8/9 census.
 
 This is not a halt result, not a length-8/9 census, and
-not a Lean exclusion of the bunched families.
+not a Lean exclusion of the other six bunched families.
 

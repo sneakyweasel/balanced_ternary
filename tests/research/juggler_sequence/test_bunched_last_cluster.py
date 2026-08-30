@@ -99,6 +99,8 @@ def test_lean_api_without_bunched_or_census_theorem():
     assert lean["sorry_free"] is True
     for name in LEAN_THEOREMS:
         assert lean[name] is True, name
+    assert lean["no_cycle_word_three_even_eee"] is True
+    assert lean["three_even_eee_tail"] is True
     assert lean["no_bunched_tail_theorem"] is True
     assert lean["no_length_eight_theorem"] is True
     assert lean["no_length_nine_theorem"] is True
@@ -120,11 +122,13 @@ def test_classify_render_and_artifacts():
                 "cycles_impossible": False,
                 "length_nine_census": False,
                 "bunched_lean": False,
+                "eee_lean": True,
             },
         }
     )
     assert CLASS_GREEN in text
     assert "OOOOOOEEE" in text or "EEE" in text
+    assert "no_cycle_word_three_even_eee" in text
     from research.juggler_sequence.bunched_last_cluster import JSON_PATH
 
     assert JSON_PATH.is_file()
@@ -133,7 +137,9 @@ def test_classify_render_and_artifacts():
     assert data["decision"]["classification"] == CLASS_GREEN
     assert data["anti_overclaim"]["cycles_impossible"] is False
     assert data["lean"]["no_bunched_tail_theorem"] is True
+    assert data["lean"]["no_cycle_word_three_even_eee"] is True
     assert data["anti_overclaim"]["bunched_lean"] is False
+    assert data["anti_overclaim"]["eee_lean"] is True
     assert data["scan"]["max_n0"] == 188
 
 
@@ -152,6 +158,7 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "no_cycle_word_length_eight" in dossier
     assert "no_cycle_word_length_nine" in dossier
+    assert "no_cycle_word_three_even_eee" in dossier
     assert "not a length-8" in dossier or "not a length-8/9" in dossier
     assert "theorem no_cycle_word_length_eight" not in note
     assert "theorem no_cycle_word_length_nine" not in note

@@ -11214,3 +11214,41 @@ Best next question
   three-even cell from OOOOOOEEE
 ```
 
+## Juggler bunched O^a EEE in Lean
+
+- **Date:** 2026-08-30
+- **Objective:** Lean-exclude `CycleWord` on \(O^a\texttt{EEE}\) for every \(a\ge 6\) and \(n\ge 2\)
+- **Hypotheses:** the \(a=6\) three-even cell cubes in \(a\) for \(n\ge 128\); below 128, \(a=6\) is the existing table and \(a\ge 7\) is seven-odd
+- **Major results:** `no_cycle_word_three_even_eee` (**EXACT — LEAN VERIFIED**, ledger `J-three-even-eee`). Tail `three_even_eee_tail`. Large \(n\) cubes \(n^{729}>2^{1330}(n+1)^{512}\) using \(e_a=2(3^a-2^a)\). Small \(n\): `no_cycle_word_ooooooeee` at \(a=6\), seven-odd thereafter. Not the other six bunched families. Not a length-8/9 census. Paper A not edited
+- **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; Lean of all seven bunched families as one theorem
+- **Literature:** `OOOOOOEEE` reused as the \(a=6\) instance; `denomBits` and seven-odd from the two-even layer
+- **Open:** the other six bunched families (`EOEE` and the rest), or a uniform mixed-tail cell. Length 8 still open as a census
+- **Decision:** PROMOTE the Lean exclusion of the `EEE` family. Not a bunched-tail census and not a halt theorem
+
+```text
+What was learned
+- The a=6 comparison n^729 > 2^1330 (n+1)^512 cubes in a once
+  (n+1)^4 > 2, which holds for every n >= 128
+- The three-even cell z < (n+1)^8 is the only new comparison;
+  denomBits and seven-odd are reused
+- Below 128, a=6 is the existing table and a>=7 is seven-odd,
+  so no new native_decide table is needed
+- This kills one bunched family for every a>=6; it does not
+  exclude EOEE or assemble a length-8 census
+Strongest theorem
+- no_cycle_word_three_even_eee: O^a EEE is not a CycleWord
+  at n>=2, a>=6
+Strongest refutation
+- none new; N0 tends to 2 remains refuted
+Reusable machinery
+- BunchedEEE.lean: three_even_eee_tail
+Branch status
+- PROMOTE
+Why
+- the first bunched family is now one Lean type, cubed from
+  the existing OOOOOOEEE instance
+Best next question
+- Lean-exclude O^a EOEE, or a uniform mixed-tail cell for
+  the remaining six families
+```
+

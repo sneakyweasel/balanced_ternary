@@ -65,6 +65,7 @@ LAYERS: dict[str, Path] = {
     "LeftoverTwoEven": JUGGLER_DIR / "LeftoverTwoEven.lean",
     "FirstETransportEval": JUGGLER_DIR / "FirstETransportEval.lean",
     "FirstETransport": JUGGLER_DIR / "FirstETransport.lean",
+    "BunchedEEE": JUGGLER_DIR / "BunchedEEE.lean",
     "SmallCycleCensus": JUGGLER_DIR / "SmallCycleCensus.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
@@ -107,6 +108,7 @@ LEFTOVER_CYCLES = LAYERS["LeftoverCycles"]
 LEFTOVER_TWO_EVEN = LAYERS["LeftoverTwoEven"]
 FIRST_E_TRANSPORT_EVAL = LAYERS["FirstETransportEval"]
 FIRST_E_TRANSPORT = LAYERS["FirstETransport"]
+BUNCHED_EEE = LAYERS["BunchedEEE"]
 SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]

@@ -45,8 +45,10 @@ tail. Phase 0 asks whether each family first fires at some
 no `CycleWord` on \(2\le n<N_0(a)\). The `EEE` family is also
 checked against the coarse cell \(z<(n+1)^8\) and cubing in \(a\).
 
-This is not a Lean exclusion and not a halt theorem. There is no
-`no_cycle_word_length_eight` and no `no_cycle_word_length_nine`.
+`O^a`EEE is now Lean-excluded for every expanding \(a\ge 6\).
+The other six bunched families remain computational. This is not
+a halt theorem. There is no `no_cycle_word_length_eight` and no
+`no_cycle_word_length_nine`.
 
 ## Current literature
 
@@ -57,7 +59,10 @@ This is not a Lean exclusion and not a halt theorem. There is no
   `no_cycleMin_gapped_three_even_eoe`).
 - Leftover `OOOOOOEEE` —
   **EXACT — LEAN VERIFIED**. Computational \(N_0=73\); Lean
-  algebraic cutoff \(n\ge 128\).
+  algebraic cutoff \(n\ge 128\). This is the \(a=6\) instance
+  of the `EEE` family.
+- Uniform bunched `O^a`EEE —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_three_even_eee`).
 - Length-9 three-even leftovers —
   **COMPUTATIONALLY VERIFIED** as prefix-cell tails. Those nine
   words are the first expanding instance of each bunched family
@@ -84,8 +89,12 @@ Maximum Phase-0 scope   N0(a) for the seven families; empty tables
 Promotion criterion     All seven fire with N0 bounded and an
                         algebraic reason (n≤4 never; plateau at 5)
 Stop criterion          A family that never fires; unbounded N0;
-                        a census; e≥4 machinery; Lean
+                        a census; e≥4 machinery
 ```
+
+Phase 1 (this branch): Lean-exclude \(O^a\texttt{EEE}\) for every
+\(a\ge 6\) by cubing the three-even cell. No other bunched
+family, no length-8/9 census, no halt.
 
 ## Balanced-ternary formulation
 
@@ -110,7 +119,10 @@ It is not required.
   **COMPUTATIONALLY VERIFIED**
 - `EEE` coarse cell \(n^{3^a}>2^{e_a}(n+1)^{2^{a+3}}\) cubes
   from \(a=6\) at \(n\ge 73\) —
-  **COMPUTATIONALLY VERIFIED**
+  **COMPUTATIONALLY VERIFIED**; Lean uses the same cell at the
+  algebraic cutoff \(n\ge 128\)
+- `O^a`EEE is not a `CycleWord` for \(a\ge 6\), \(n\ge 2\) —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_three_even_eee`)
 - no bunched family is a `CycleWord` on \(2\le n<N_0(a)\)
   for expanding \(a\le 20\) —
   **COMPUTATIONALLY VERIFIED**
@@ -126,7 +138,8 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_bunched_last_cluster.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length-8 or length-9 census.
-- No bunched-tail Lean. No Paper A edit.
+- `EEE` Lean is in `BunchedEEE.lean`. No Lean for the other
+  six bunched families. No Paper A edit.
 
 ## Conjectures
 
@@ -143,15 +156,21 @@ claims that remain false or unproved:
 - “first-E transport at \(e\ge 4\) reduces bunched last clusters”
   — not claimed. A bunched last cluster is exactly the remainder
   that last-cluster two-even transport does not take.
+- “every bunched leftover is Lean-excluded” — not claimed.
+  Only `O^a`EEE is Lean; the other six families remain
+  computational.
 - “every three-even leftover is Lean-excluded” — not claimed.
 - no cycle of length eight or nine — not claimed.
 
 ## Formalization
 
-None added. `no_cycle_word_ooooooeee` already excludes the first
-`EEE` instance. There is no `no_cycle_word_bunched` and no
-`no_cycleMin_bunched`. `SmallCycleCensus.lean` still assembles
-only through length seven. No `no_cycle_word_length_eight`. No
+`formal/Problems/Juggler/BunchedEEE.lean` excludes the `EEE`
+family: `no_cycle_word_three_even_eee`. Large \(n\) cubes the
+three-even cell from `OOOOOOEEE` at \(n\ge 128\). Below \(128\),
+\(a=6\) is the existing table and \(a\ge 7\) is seven-odd. There
+is no `no_cycle_word_bunched` and no `no_cycleMin_bunched`.
+`SmallCycleCensus.lean` still assembles only through length
+seven. No `no_cycle_word_length_eight`. No
 `no_cycle_word_length_nine`. No `sorry`. No halt theorem. Paper A
 is not edited.
 
@@ -163,33 +182,37 @@ The seven bunched last-cluster leftovers are one type: a fixed
 short tail against \(C_{O^a}\). All seven fire at the first
 expanding \(a\), with largest cutoff \(N_0=188\) on
 `OOOEOOOEE`. Cutoffs then drop to the same \(n=5\) plateau as the
-two-even families. The `EEE` coarse cell cubes from \(a=6\) at
-\(n\ge 73\). Tables below each cutoff are empty through \(a=20\).
+two-even families. Lean now excludes `O^a`EEE for every
+\(a\ge 6\) and \(n\ge 2\): the three-even cell cubes from
+`OOOOOOEEE` at \(n\ge 128\); below \(128\) the argument is the
+\(a=6\) table or seven-odd. The other six families remain
+computational. Tables below each cutoff are empty through
+\(a=20\).
 
-This is a computational uniform tail, not a Lean exclusion and
-not a length-9 census.
+This is a one-family Lean exclusion, not a length-9 census and
+not a no-cycles theorem.
 
 ## Open questions
 
-Lean-exclude the seven families at a uniform algebraic cutoff,
-starting with \(O^a\texttt{EEE}\) by cubing `no_cycle_word_ooooooeee`.
-Do not assemble `no_cycle_word_length_eight` or
-`no_cycle_word_length_nine`. Do not open first-E at \(e\ge 4\) as
-part of that phase. Do not claim halt.
+Lean-exclude the next bunched family (`O^a`EOEE), or a uniform
+mixed-tail cell for the remaining six. Do not assemble
+`no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
+Do not open first-E at \(e\ge 4\) as part of that phase. Do not
+claim halt.
 
 ## Decision
 
-**PROMOTE**. The bunched remainder is seven families with bounded
-\(N_0\), not a new shape at each length. It is the same kind of
-fact as the uniform two-even tail, before Lean.
+**PROMOTE**. `O^a`EEE is now one Lean type, cubed from the
+existing `OOOOOOEEE` comparison. The other six bunched families
+are still computational.
 
-Best next question: Lean-exclude \(O^a\texttt{EEE}\) for every
-expanding \(a\) by cubing the three-even cell from `OOOOOOEEE`.
+Best next question: Lean-exclude `O^a`EOEE, or find a uniform
+mixed-tail cell for the remaining six families.
 
 ## Publication assessment
 
 Status: `EXPLORATORY`.
 
-A Phase-0 uniform tail for bunched last-cluster leftovers, not a
+A one-family Lean exclusion inside the bunched remainder, not a
 paper candidate and not a Juggler totality result. Paper A is not
 edited.

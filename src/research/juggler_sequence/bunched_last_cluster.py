@@ -32,6 +32,7 @@ from research.juggler_sequence.cycle_length_nine import (
     z_upper,
 )
 from research.juggler_sequence.lean_paths import (
+    BUNCHED_EEE,
     CYCLES,
     FIRST_E_TRANSPORT,
     LEFTOVER_CYCLES,
@@ -76,6 +77,8 @@ LEAN_THEOREMS = (
     "no_cycleMin_gapped_three_even_eoe",
     "no_cycle_word_length_le_seven",
     "CycleMin",
+    "no_cycle_word_three_even_eee",
+    "three_even_eee_tail",
 )
 
 
@@ -238,6 +241,7 @@ def run_probe() -> dict[str, Any]:
 def lean_api_present() -> dict[str, bool]:
     combined = (
         LEFTOVER_CYCLES.read_text(encoding="utf-8")
+        + BUNCHED_EEE.read_text(encoding="utf-8")
         + FIRST_E_TRANSPORT.read_text(encoding="utf-8")
         + CYCLES.read_text(encoding="utf-8")
         + SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
@@ -275,6 +279,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycle_word_ooooooeee"]
         and lean["no_cycle_word_two_even_ee"]
         and lean["no_cycleMin_gapped_three_even_ee"]
+        and lean["no_cycle_word_three_even_eee"]
+        and lean["three_even_eee_tail"]
         and lean["no_length_eight_theorem"]
         and lean["length_eight_open_in_census"]
         and lean["no_bunched_tail_theorem"]
@@ -318,9 +324,9 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         "classification": CLASS_GREEN,
         "reason": (
             "seven bunched last-cluster families fire with N0 bounded "
-            "in a: first-fire 188,120,126,89,81,73,60 then drop to the "
-            "n=5 plateau; EEE cubes from a=6 at n>=73; tables empty; "
-            "gapped complement is first-E; no Lean"
+            "in a; Lean excludes O^a EEE for every a>=6 by cubing the "
+            "three-even cell from OOOOOOEEE at n>=128; the other six "
+            "families remain computational; not a length-8/9 census"
         ),
     }
 
@@ -335,6 +341,7 @@ def probe_payload() -> dict[str, Any]:
             "cycles_impossible": False,
             "three_even_cycles_impossible": False,
             "bunched_lean": False,
+            "eee_lean": True,
             "length_eight_census": False,
             "length_nine_census": False,
             "first_e_at_four": False,
@@ -352,8 +359,8 @@ def probe_payload() -> dict[str, Any]:
         "search_method": (
             "prefix-cell N0(a) for the seven bunched last-cluster "
             "families through a=20; empty CycleWord tables below N0; "
-            "EEE coarse cubing from n>=73; no Lean; no length-8/9 "
-            "census; no e>=4 transport"
+            "EEE coarse cubing from n>=73; Lean O^a EEE for a>=6; "
+            "no other bunched Lean; no length-8/9 census"
         ),
     }
 
@@ -382,8 +389,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        cutoffs drop as a grows",
         "Falsifier               A tail whose N0 grows with a",
         "Existing machinery      prefix-cell Z; denomBits; OOOOOOEEE",
-        "Maximum Phase-0 scope   N0(a) for seven families; tables;",
-        "                        no Lean, no census, no e>=4",
+        "Maximum Phase-1 scope   Lean O^a EEE by cubing;",
+        "                        no other bunched, no census",
         "```",
         "",
         "## Metadata",
@@ -439,7 +446,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             decision["reason"] + ".",
             "",
             "This is not a halt result, not a length-8/9 census, and",
-            "not a Lean exclusion of the bunched families.",
+            "not a Lean exclusion of the other six bunched families.",
             "",
         ]
     )
