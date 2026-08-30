@@ -1,0 +1,490 @@
+{
+  "experiment": "juggler_minimal_anchor_closure",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "smaller_bad_descent": false,
+    "good_interval_closure": false,
+    "corridor_rank_potential": false,
+    "predclosure_reopened": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "controls": [
+      {
+        "n": 365,
+        "word": "OOEOOEOOEOOEOEE",
+        "drop_index": 15,
+        "drop": 34,
+        "path": [
+          365,
+          6973,
+          582276,
+          763,
+          21075,
+          3059506,
+          1749,
+          73145,
+          19782308,
+          4447,
+          296551,
+          161491284,
+          12707,
+          1432400,
+          1196,
+          34
+        ],
+        "max_state": 161491284,
+        "first_overshoot": 6973,
+        "first_overshoot_odd": true,
+        "above_anchor_before_drop": true,
+        "structured_from_overshoot": {
+          "E": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          },
+          "OE": {
+            "follows": true,
+            "image": 763,
+            "below_anchor": false
+          },
+          "OOE": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          },
+          "OOOE": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          }
+        },
+        "any_high_structured_return": false,
+        "high_odd_preds": {
+          "smaller": [],
+          "empty_odd_high": [
+            763,
+            1749,
+            4447,
+            12707
+          ],
+          "first_overshoot_unique_odd_pred": true
+        },
+        "high_merge": null,
+        "smaller_full_word": [],
+        "smaller_prefix": [],
+        "follows_L": false,
+        "ranks": {
+          "ranks": [
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            3,
+            4,
+            2,
+            3,
+            2,
+            1
+          ],
+          "max_rank": 4,
+          "monotone_nonincreasing": false,
+          "first_reset": {
+            "path_index": 2,
+            "state": 582276,
+            "next": 763,
+            "rank": 3,
+            "next_rank": 2,
+            "next_below_anchor": false
+          }
+        },
+        "even_below_square_before_last": false
+      },
+      {
+        "n": 501,
+        "word": "OOEOOOEOOEEOOEOOEOOEOEE",
+        "drop_index": 23,
+        "drop": 34,
+        "path": [
+          501,
+          11213,
+          1187360,
+          1089,
+          35937,
+          6812597,
+          17781526790,
+          133347,
+          48693935,
+          339791341082,
+          582916,
+          763,
+          21075,
+          3059506,
+          1749,
+          73145,
+          19782308,
+          4447,
+          296551,
+          161491284,
+          12707,
+          1432400,
+          1196,
+          34
+        ],
+        "max_state": 339791341082,
+        "first_overshoot": 11213,
+        "first_overshoot_odd": true,
+        "above_anchor_before_drop": true,
+        "structured_from_overshoot": {
+          "E": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          },
+          "OE": {
+            "follows": true,
+            "image": 1089,
+            "below_anchor": false
+          },
+          "OOE": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          },
+          "OOOE": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          }
+        },
+        "any_high_structured_return": false,
+        "high_odd_preds": {
+          "smaller": [],
+          "empty_odd_high": [
+            1089,
+            133347,
+            763,
+            1749,
+            4447,
+            12707
+          ],
+          "first_overshoot_unique_odd_pred": true
+        },
+        "high_merge": {
+          "path_index": 11,
+          "state": 763,
+          "m": 365,
+          "steps_from_m": 3
+        },
+        "smaller_full_word": [],
+        "smaller_prefix": [],
+        "follows_L": true,
+        "ranks": {
+          "ranks": [
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            4,
+            2,
+            3,
+            5,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            3,
+            4,
+            2,
+            3,
+            2,
+            1
+          ],
+          "max_rank": 5,
+          "monotone_nonincreasing": false,
+          "first_reset": {
+            "path_index": 2,
+            "state": 1187360,
+            "next": 1089,
+            "rank": 3,
+            "next_rank": 2,
+            "next_below_anchor": false
+          }
+        },
+        "even_below_square_before_last": false
+      },
+      {
+        "n": 1517,
+        "word": "OOEOOEOOEOEOOOEE",
+        "drop_index": 16,
+        "drop": 734,
+        "path": [
+          1517,
+          59085,
+          14362030,
+          3789,
+          233231,
+          112636568,
+          10613,
+          1093345,
+          1143235850,
+          33811,
+          6217088,
+          2493,
+          124475,
+          43916043,
+          291028018566,
+          539470,
+          734
+        ],
+        "max_state": 291028018566,
+        "first_overshoot": 59085,
+        "first_overshoot_odd": true,
+        "above_anchor_before_drop": true,
+        "structured_from_overshoot": {
+          "E": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          },
+          "OE": {
+            "follows": true,
+            "image": 3789,
+            "below_anchor": false
+          },
+          "OOE": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          },
+          "OOOE": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          }
+        },
+        "any_high_structured_return": false,
+        "high_odd_preds": {
+          "smaller": [],
+          "empty_odd_high": [
+            3789,
+            10613,
+            33811,
+            2493
+          ],
+          "first_overshoot_unique_odd_pred": true
+        },
+        "high_merge": null,
+        "smaller_full_word": [],
+        "smaller_prefix": [],
+        "follows_L": false,
+        "ranks": {
+          "ranks": [
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            2,
+            3,
+            2,
+            2,
+            3,
+            4,
+            2,
+            1
+          ],
+          "max_rank": 4,
+          "monotone_nonincreasing": false,
+          "first_reset": {
+            "path_index": 2,
+            "state": 14362030,
+            "next": 3789,
+            "rank": 3,
+            "next_rank": 2,
+            "next_below_anchor": false
+          }
+        },
+        "even_below_square_before_last": false
+      },
+      {
+        "n": 6187,
+        "word": "OOEOOOEOOEEOE",
+        "drop_index": 13,
+        "drop": 1087,
+        "path": [
+          6187,
+          486653,
+          339491658,
+          18425,
+          2500985,
+          3955183437,
+          248742471750750,
+          15771571,
+          62634329559,
+          15675400641582836,
+          125201440,
+          11189,
+          1183550,
+          1087
+        ],
+        "max_state": 15675400641582836,
+        "first_overshoot": 486653,
+        "first_overshoot_odd": true,
+        "above_anchor_before_drop": true,
+        "structured_from_overshoot": {
+          "E": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          },
+          "OE": {
+            "follows": true,
+            "image": 18425,
+            "below_anchor": false
+          },
+          "OOE": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          },
+          "OOOE": {
+            "follows": false,
+            "image": null,
+            "below_anchor": false
+          }
+        },
+        "any_high_structured_return": true,
+        "high_odd_preds": {
+          "smaller": [],
+          "empty_odd_high": [
+            18425,
+            15771571,
+            11189
+          ],
+          "first_overshoot_unique_odd_pred": true
+        },
+        "high_merge": null,
+        "smaller_full_word": [],
+        "smaller_prefix": [
+          501
+        ],
+        "follows_L": true,
+        "ranks": {
+          "ranks": [
+            2,
+            2,
+            3,
+            2,
+            2,
+            3,
+            4,
+            2,
+            3,
+            5,
+            3,
+            2,
+            2,
+            1
+          ],
+          "max_rank": 5,
+          "monotone_nonincreasing": false,
+          "first_reset": {
+            "path_index": 2,
+            "state": 339491658,
+            "next": 18425,
+            "rank": 3,
+            "next_rank": 2,
+            "next_below_anchor": false
+          }
+        },
+        "even_below_square_before_last": false
+      }
+    ],
+    "contrast_69": {
+      "n": 69,
+      "word": "OOEOOE",
+      "landing": 212,
+      "landing_even": true,
+      "landing_below_square": true,
+      "drop": 14,
+      "shared_square_trap": true
+    },
+    "contrast_89": {
+      "n": 89,
+      "word": "OOEOOEOE",
+      "drop": 70,
+      "high_merge": null,
+      "smaller_drop_hits": true
+    },
+    "summary": {
+      "generators": [
+        365,
+        1517,
+        6187
+      ],
+      "inherited": [
+        501
+      ],
+      "short_structured_return": false,
+      "rank_is_potential": false,
+      "6187_L_image_OE_drop": true,
+      "6187_L_image": 11189,
+      "501_merges_365": true,
+      "first_overshoot_oe_stays": true
+    },
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "predclosure_reopened": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "AboveAnchor": true,
+    "finiteProgress_of_aboveAnchor_returnBelow": true,
+    "predClosure_iff_good": true,
+    "odd_cell_unique": true,
+    "Good": true,
+    "Bad": true,
+    "has_EscapeEpisode": false,
+    "has_EscapeSignature": false,
+    "has_MinimalBad": false,
+    "has_GoodClosure": false,
+    "has_bad_predecessor_of_escape": false,
+    "has_escape_implies_smaller_bad": false,
+    "has_good_interval_closed_under_escape": false,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "new_lean_file": false,
+    "paper_a_has_new_api": false,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "MINIMAL_ANCHOR_PARK",
+    "reason": "365 and 1517 have a unique odd spine with no smaller predecessor and no short structured return; 501 inherits 365 at 763; 6187 exits by OE from the L-image 11189; corridor rank is not a potential; minimality adds nothing beyond AboveAnchor"
+  },
+  "search_method": "leftover controls 365/501/1517/6187: first obstruction-free episode, structured Pred of E/OE/OOE/OOOE, unique odd spine, smaller-start merge, corridor rank; 69 square-trap contrast"
+}

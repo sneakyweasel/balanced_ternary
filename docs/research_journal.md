@@ -13573,4 +13573,47 @@ Best next question
   large k, other than a search for more followers?
 ```
 
+## Juggler minimal-anchor closure
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether a leftover odd-escape corridor of a minimal-bad-looking anchor encodes a strictly smaller bad start or a short structured predecessor of `[1, n-1]`
+- **Hypotheses:** Route A smaller-bad descent; Route B \(\operatorname{Pred}_{E,OE,OOE,OOOE}(G)\); corridor-rank potential
+- **Major results:** Classification **MINIMAL_ANCHOR_PARK**. Unique odd spine on `365` and `1517`; empty odd cells at PE landings; `501` merges into `365` at `763`; `6187` exits by `OE` from the \(L\)-image `11189` — **COMPUTATIONALLY VERIFIED** (`J-minimal-anchor-leftover-spine`). Smaller-bad descent / short structured return on `365`/`1517` / rank potential — **REFUTED** (`J-minimal-anchor-closure`). `PredClosure` from `{1}` not reopened. No new Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged. No halt theorem
+- **Refuted ideas:** leftover first overshoot returns under `E`/`OE`/`OOE`/`OOOE`; every leftover corridor inherits a smaller same-word start; corridor rank is well-founded; minimality gives a new reduction beyond `AboveAnchor`
+- **Literature:** `AboveAnchor`; `PredClosure \leftrightarrow ReachesOne` (CLOSED); overshoot-return suffix scatter; leftover odd-landing gap
+- **Open:** is there a Diophantine constraint on empty-odd-cell PE landings that is not another word/scale census? Do not reopen interval closure
+- **Decision:** PARK. Minimality adds nothing beyond `AboveAnchor` on the leftover corridor
+
+```text
+What was learned
+- leftover generators 365 and 1517 are unique odd spines
+- first overshoot has odd pred n only; OE stays above n
+- PE landings often have empty odd cells
+- 501 inherits 365 at 763; 6187 exits by OE after L
+- corridor rank oscillates after a reset
+Strongest theorem
+- on 365, 501, 1517, 6187 the AboveAnchor
+  corridor has no odd predecessor < n;
+  501 hits T^3(365)=763; 6187 takes OE
+  from 11189 to 1087
+  (COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- leftover escape => smaller bad, or first
+  overshoot in Pred_{E,OE,OOE,OOOE}([1,n-1]),
+  or rank decreases through each reset
+Reusable machinery
+- minimal_anchor_closure.py episode_row,
+  high_merge, structured_from, corridor_rank
+Branch status
+- PARK
+Why
+- the proposed termination-by-minimality
+  attack fails on the actual leftover
+  controls; Pred^*(G) is ReturnBelow again
+Best next question
+- is there a Diophantine constraint on
+  empty-odd-cell PE landings that is not
+  another word or scale census?
+```
+
 
