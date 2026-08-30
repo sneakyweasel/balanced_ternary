@@ -39,6 +39,8 @@ import Problems.Juggler.BunchedEOOOEEEval
 import Problems.Juggler.BunchedTight
 import Problems.Juggler.BunchedEOOEOEEval
 import Problems.Juggler.LeftoverFamilies
+import Problems.Juggler.PrefixTwoEvenEval
+import Problems.Juggler.PrefixTwoEven
 import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.LengthEightCensus
 import Problems.Juggler.EvenCountThree

@@ -1,0 +1,239 @@
+{
+  "experiment": "juggler_prefix_two_even",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "bunched_short_attack": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_cutoff": 256,
+    "k_ee_short": [
+      6,
+      7,
+      8
+    ],
+    "k_eoe_short": [
+      6,
+      7,
+      8,
+      9
+    ],
+    "path_rows": [
+      {
+        "kind": "ee",
+        "k": 6,
+        "word": "OOOOEE",
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "kind": "ee",
+        "k": 7,
+        "word": "OOOOOEE",
+        "follows": 3,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 3,
+        "overshoots": [
+          {
+            "y": 115,
+            "n": 8165
+          },
+          {
+            "y": 129,
+            "n": 10156
+          },
+          {
+            "y": 209,
+            "n": 25384
+          }
+        ]
+      },
+      {
+        "kind": "ee",
+        "k": 8,
+        "word": "OOOOOOEE",
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "kind": "eoe",
+        "k": 6,
+        "word": "OOOEOE",
+        "follows": 3,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 3,
+        "overshoots": [
+          {
+            "y": 77,
+            "n": 243
+          },
+          {
+            "y": 81,
+            "n": 260
+          },
+          {
+            "y": 87,
+            "n": 284
+          }
+        ]
+      },
+      {
+        "kind": "eoe",
+        "k": 7,
+        "word": "OOOOEOE",
+        "follows": 2,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 2,
+        "overshoots": [
+          {
+            "y": 103,
+            "n": 6623
+          },
+          {
+            "y": 205,
+            "n": 24473
+          }
+        ]
+      },
+      {
+        "kind": "eoe",
+        "k": 8,
+        "word": "OOOOOEOE",
+        "follows": 1,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 1,
+        "overshoots": [
+          {
+            "y": 165,
+            "n": 2062772
+          }
+        ]
+      },
+      {
+        "kind": "eoe",
+        "k": 9,
+        "word": "OOOOOOEOE",
+        "follows": 1,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 1,
+        "overshoots": [
+          {
+            "y": 163,
+            "n": 2813831564
+          }
+        ]
+      }
+    ],
+    "path_hit_count": 0,
+    "path_follows_count": 10,
+    "all_path_tables_empty": true,
+    "algebra_fail_k6": 2375,
+    "algebra_seals_small_y": false,
+    "seven_odd_sealed": true,
+    "chain_samples": [
+      {
+        "n": 256,
+        "y": 256,
+        "leftover_k": 6,
+        "tail_at_y": true,
+        "contradiction": true,
+        "y_ge_n": true
+      },
+      {
+        "n": 12,
+        "y": 256,
+        "leftover_k": 6,
+        "tail_at_y": true,
+        "contradiction": true,
+        "y_ge_n": true
+      },
+      {
+        "n": 205,
+        "y": 256,
+        "leftover_k": 6,
+        "tail_at_y": true,
+        "contradiction": true,
+        "y_ge_n": true
+      },
+      {
+        "n": 14,
+        "y": 256,
+        "leftover_k": 7,
+        "tail_at_y": true,
+        "contradiction": true,
+        "y_ge_n": true
+      },
+      {
+        "n": 100,
+        "y": 80,
+        "leftover_k": 6,
+        "tail_at_y": false,
+        "contradiction": false,
+        "y_ge_n": false
+      },
+      {
+        "n": 199,
+        "y": 200,
+        "leftover_k": 6,
+        "tail_at_y": false,
+        "contradiction": false,
+        "y_ge_n": true
+      }
+    ],
+    "chain_needs_y_ge_n": true,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "bunched_short_attack": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_ge": true,
+    "cycle_trailing_evens_lt": true,
+    "shared_two_even_tail": true,
+    "no_cycle_word_two_even_ee": true,
+    "no_cycle_word_two_even_eoe": true,
+    "no_cycleMin_gapped_three_even_ee": true,
+    "no_cycleMin_gapped_three_even_eoe": true,
+    "returnsIntoB": true,
+    "no_cycleMin_prefix_two_even_ee": true,
+    "no_cycleMin_prefix_two_even_eoe": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "PREFIX_TWO_EVEN_GREEN",
+    "reason": "Lean excludes CycleMin n (u ++ two-even leftover) for every prefix u; large y is the shared tail at y; below 256 no start follows the leftover and returns into [2, y]; k>=9 EE and k>=10 EOE are seven-odd on the remainder; bunched-short last cluster remains"
+  },
+  "search_method": "CycleMin last two-even leftover after arbitrary prefix u; path tables for short leftovers below 256; seven-odd on the remainder thereafter; shared tail at y>=256; no tables-for-all-u; no bunched-short attack; no Z5"
+}

@@ -4013,5 +4013,27 @@
       "tests/research/juggler_sequence/test_cyclemin_obstruction.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-prefix-two-even-ee",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every n ≥ 2, every k ≥ 6, and every prefix u, the word u ++ O^{k-2}EE is not a Juggler CycleMin at n. CycleMin puts the leftover at y = T_u(n) ≥ n. The leftover cell is measured against n, so y ≥ n tightens it against the shared two-even tail at y. Large y is y ≥ 256. Below 256, no start follows the leftover and lands in [2, y] (Fin 256 returnsIntoB tables at k = 6,7,8; seven consecutive odds on the remainder for k ≥ 9). The case y = n reduces to no_cycle_word_two_even_ee. Lean theorem no_cycleMin_prefix_two_even_ee. First-E transport is the special case u = O^a E. This excludes that one last-cluster class only; it is not a CycleWord theorem at a non-minimum start, not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_prefix_two_even.md",
+    "lean": "Problems/Juggler/PrefixTwoEven.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_prefix_two_even.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-prefix-two-even-eoe",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every n ≥ 2, every k ≥ 6, and every prefix u, the word u ++ O^{k-3}EOE is not a Juggler CycleMin at n. The same prefix transport applies: y ≥ n tightens the leftover cell against the shared two-even tail at y, using the last-odd cube reduction already used for O^{k-3}EOE. Large y is y ≥ 256. Below 256 the argument is returnsIntoB tables at k = 6,7,8,9 and seven-odd for k ≥ 10. The case y = n reduces to no_cycle_word_two_even_eoe. Lean theorem no_cycleMin_prefix_two_even_eoe. This excludes that one last-cluster class only; it is not a CycleWord theorem at a non-minimum start, not a bunched-short attack, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_prefix_two_even.md",
+    "lean": "Problems/Juggler/PrefixTwoEven.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_prefix_two_even.py"
+    ],
+    "related_conjectures": []
   }
 ]

@@ -70,8 +70,10 @@ in the front. There is no `no_cycle_word_length_eleven`, no
 - Even-count \(\le 3\) —
   **EXACT — LEAN VERIFIED**. Period \(\ge 11\).
 - Two-even leftovers and gapped three-even first-E transport —
-  **EXACT — LEAN VERIFIED** for prefix \(O^aE\), not yet for an
-  arbitrary CycleMin prefix \(u\).
+  **EXACT — LEAN VERIFIED** for prefix \(O^aE\). The same leftovers
+  after an arbitrary CycleMin prefix \(u\) are now
+  **EXACT — LEAN VERIFIED**
+  ([juggler_prefix_two_even.md](juggler_prefix_two_even.md)).
 - Seven bunched last-cluster families —
   **EXACT — LEAN VERIFIED**.
 - Four-even short-gap leftovers at the first expanding layer —
@@ -194,10 +196,11 @@ theorem.
 
 ## Open questions
 
-The essential remaining lemma is the last two-even leftover as a
-suffix after an *arbitrary* CycleMin prefix \(u\), not only after
-\(O^aE\). Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`.
+The last two-even leftover after an arbitrary prefix is now a
+separate promoted branch
+([juggler_prefix_two_even.md](juggler_prefix_two_even.md)). The
+residual named here is still bunched-short last cluster. Do not
+write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
 
 ## Decision
 
@@ -205,8 +208,9 @@ suffix after an *arbitrary* CycleMin prefix \(u\), not only after
 second-`OO` transport. The residual is named: bunched-short last
 cluster. Do not claim that every cycle word is impossible.
 
-Best next question: generalize `no_cycleMin_gapped_three_even_ee`
-from prefix \(O^aE\) to an arbitrary CycleMin prefix \(u\).
+Best next question: that prefix lemma is now a separate branch
+([juggler_prefix_two_even.md](juggler_prefix_two_even.md)). The
+residual here remains bunched-short last cluster.
 
 ## Publication assessment
 

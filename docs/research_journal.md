@@ -12353,3 +12353,38 @@ Best next question
 - stop
 ```
 
+## Juggler last two-even leftover after an arbitrary prefix
+
+- **Date:** 2026-08-30
+- **Objective:** Exclude `CycleMin n (u ++ twoEvenEE/EOE k)` for an arbitrary prefix `u`, not only after `O^a E`
+- **Hypotheses:** `y = T_u(n) ≥ n` tightens the leftover cell against the shared tail at `y`; below 256 the seal is a path table on `y`, not tables-for-all-`u` and not the loose `n`-cell algebra
+- **Major results:** Classification **PREFIX_TWO_EVEN_GREEN**. Lean theorems `no_cycleMin_prefix_two_even_ee`, `no_cycleMin_prefix_two_even_eoe`. Large `y` is `shared_two_even_tail` at `y`. Below 256, no start follows a short leftover into `[2, y]` (`returnsIntoB` tables); longer leftovers are seven-odd on the remainder. `y = n` reduces to the existing cycle-word exclusions. The comparison `y^{3^{k-2}} > 2^e (n+1)^{2^k}` fails for some `12 ≤ n < y < 256` at `k=6` — **REFUTED** as a small-`y` seal. Ledger rows `J-cyclemin-prefix-two-even-ee`, `J-cyclemin-prefix-two-even-eoe`. Residual is still bunched-short last cluster. No `Z_5`. No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** the loose `n`-cell algebra seals every `n < y < 256`; first-E tables-for-`(a,b)` are required for a general prefix
+- **Literature:** `J-two-even-leftover-ee`; `J-first-e-transport-ee`; last-cluster `PROMOTE`
+- **Open:** bunched-short last cluster after an arbitrary prefix. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** PROMOTE. The last two-even leftover is now a CycleMin theorem for every prefix
+
+```text
+What was learned
+- first-E transport is the special case u = O^a E
+- y >= n plus the shared tail at y is the large-y engine
+- the n-cell algebra leaks when y is near n at k=6
+- no y < 256 follows a short leftover and returns into [2, y]
+- those few follows overshoot y; CycleMin forbids that
+Strongest theorem
+- CycleMin n (u ++ twoEvenEE k) and CycleMin n (u ++ twoEvenEOE k)
+  are impossible for every n >= 2, k >= 6, and every prefix u
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- y^{3^{k-2}} > 2^e (n+1)^{2^k} whenever 12 <= n < y < 256
+Reusable machinery
+- PrefixTwoEven.lean; returnsIntoB tables; prefix_two_even.py
+Branch status
+- PROMOTE
+Why
+- the last-cluster class is now a CycleMin theorem for every
+  prefix, not a first-E reparameterization
+Best next question
+- last three-even bunched suffix after an arbitrary prefix u
+```
+
