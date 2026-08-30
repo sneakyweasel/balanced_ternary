@@ -192,10 +192,12 @@ assembler, and not a halt theorem.
 ## Open questions
 
 Lean-package \(2187<4096\) and \(6561<8192\) after
-`OOEOOOEOOEE`. The residual is the `OO` post-\(L\) branch
-(\(501\)). Do not reopen bunched-short cells. Do not write
-\(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
-Do not build a \(p\)-adic system.
+`OOEOOOEOOEE`. The residual is the `OO` post-\(L\) branch,
+now the separate branch
+[juggler_post_l_ooe.md](juggler_post_l_ooe.md).
+Do not reopen bunched-short cells. Do not write \(Z_5\).
+Do not assemble `no_cycle_word_length_eleven`. Do not
+build a \(p\)-adic system.
 
 ## Decision
 

@@ -13126,4 +13126,76 @@ Best next question
   is there a CE-capable constraint on that escaped even?
 ```
 
+## Juggler post-L OOE residual
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether a post-\(L\) `OOE` residual regenerates the \(L\)-entrance or is a different episode
+- **Hypotheses:** \(M=L+\mathtt{OOE}\) has a square cell; `M+E`/`M+OE` drop; \(t\) can re-enter \(L\); the step is generic `OOE`
+- **Major results:** Classification **POST_L_OOE_GREEN**. \(T_M(n)^{16384}\le n^{19683}\) and \(s<n^2\) (\(19683<32768\)); `M+E` and `M+OE` contract versus \(n\) — **EXACT — HUMAN PROOF** (`J-cyclemin-post-l-ooe-me-drop`). Immediate death, \(L\)-re-entry, and generic-`OOE`-only — **REFUTED** (`J-cyclemin-post-l-ooe-reenters-l`): `501\to 763\to 1749` starts `OO` and never pays a first `OOO`; `17245\to 122949\xrightarrow{\mathtt{OE}}6565`. A second `OOE` then `OE` does not contract (\(3^{12}>2^{19}\)). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** post-\(L\) `OOE` always drops; \(t\) re-enters \(L\); `OOE` from \(t\) compose-drops; `L+(\mathtt{OOE})^2\mathtt{OE}` contracts versus \(n\)
+- **Literature:** `power_bound_word`; \(t^{2048}\le n^{2187}\); oneshot `E`/`OE` drop
+- **Open:** after \(L+\mathtt{OOE}\), if \(s\) starts `OO`, is there still an exact \(n\)-relative split? Do not build a \(p\)-adic system
+- **Decision:** PROMOTE the \(M\)-envelope and the non-`OO` drop after one post-\(L\) `OOE`. The second `OOE` is not closed
+
+```text
+What was learned
+- L+OOE gives s^{16384} <= n^{19683} and s < n^2
+- M+E and M+OE contract versus n
+- 17245 is the OE-after-M drop
+- 501 continues OO at 1749 and never re-enters L
+- a second OOE then OE does not contract versus n
+Strongest theorem
+- post-L OOE landing even or OE => FiniteProgress
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- post-L OOE always dies, or re-enters L
+  (501 -> 1749 starts OO; 17245 OE-drop)
+Reusable machinery
+- post_l_ooe.py M-envelope and residual rows
+Branch status
+- PROMOTE
+Why
+- one post-L OOE is a square-cell episode with an exact
+  non-OO FiniteProgress split, not a second L
+Best next question
+- after L+OOE, if s starts OO, does the second OOE
+  still admit an n-relative E/OE split?
+```
+
+## Juggler escaped even after third OOE
+
+- **Date:** 2026-08-30
+- **Objective:** After a \(429\)-type third `OOE` with even \(T(y)\ge n^{2}\), decide whether that escaped even still has a CE-capable constraint
+- **Hypotheses:** the `OE` landing stays below \(n^{2}\); every escaped even drops
+- **Major results:** Classification **ESCAPED_EVEN_GREEN**. \(T_{\mathtt{OOEOOEOOEOE}}(n)<n^{2}\) (\(2187<4096\)); a CE following a third `OOE` follows the next `O`; a CE `OE` landing is odd — **EXACT — LEAN VERIFIED** (`J-ce-escaped-even-oe-cell`). Every escaped even drops — **REFUTED** (`J-escaped-even-always-drops`): \(429\to 646\to 25\) is the even-\(w\) drop; \(1517\to 2493\) is odd in \([n,n^{2})\) with escaped even \(6217088\). Not a length-11 census. Laboratory barrel only. Paper A unchanged. No halt theorem
+- **Refuted ideas:** the escaped even of \(429\) is a CE leftover; every escaped even drops
+- **Literature:** third-`OOE` square cell; late-`OE` after \(k\ge 3\); `OOEOOEOOEOEE` contracts
+- **Open:** after the odd `OE` landing \(1517\to 2493\), is the next image odd (another `OO`) or another escaped even? Do not auto-continue. Do not open a length-11 assembler
+- **Decision:** PROMOTE the CE `OE` square trap. Do not claim that escape is impossible
+
+```text
+What was learned
+- OOEOOEOOEOE lies below n^2 (2187 < 4096)
+- on a CE that OE landing cannot be even
+- 429 dies by even w then E to 25
+- 1517 survives with odd w = 2493
+- 365 is not this branch (third OOE is odd-odd)
+Strongest theorem
+- MinimalNonTerm n and follows OOEOOEOOEOE =>
+  odd landing below n^2
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- every escaped even drops (1517 odd w)
+Reusable machinery
+- wordOOEOOEOOEOE in Escape.lean
+Branch status
+- PROMOTE
+Why
+- the escaped even still has a CE-capable OE trap;
+  429 is the drop, 1517 is the leftover
+Best next question
+- after 1517 -> 2493, is the next image odd
+  (another OO) or another escaped even?
+```
+
 

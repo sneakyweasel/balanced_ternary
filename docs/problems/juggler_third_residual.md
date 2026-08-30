@@ -166,10 +166,9 @@ This is not a halt theorem and not a finite PE-run bound.
 
 ## Open questions
 
-After a third-`OOE` odd landing that is not odd-odd (\(429\)), the
-next even already escapes \(n^{2}\). Is there any CE-capable
-constraint on that escaped even, or on an \(a\ge 3\) third residual
-other than the contracting-word ban? Do not reopen the
+Answered in [juggler_escaped_even.md](juggler_escaped_even.md):
+the escaped-even `OE` still lands below \(n^{2}\); even \(w\) drops
+(\(429\)); odd \(w\) survives (\(1517\)). Do not reopen the
 expanding-grammar obstruction. Do not claim a uniform PE-run bound.
 
 ## Decision
@@ -178,9 +177,8 @@ expanding-grammar obstruction. Do not claim a uniform PE-run bound.
 trap. **REFUTE** both uniforms. Do not claim that escape is
 impossible. Do not claim that every third residual is `OOE`.
 
-Best next question: after a third-`OOE` landing such as \(429\to 5595\)
-with even \(T(y)\ge n^{2}\), is there a CE-capable constraint on
-that escaped even, or is the leftover an \(a\ge 3\) third residual?
+Best next question: answered in
+[juggler_escaped_even.md](juggler_escaped_even.md).
 
 ## Publication assessment
 

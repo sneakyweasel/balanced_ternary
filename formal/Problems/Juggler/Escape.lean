@@ -11,7 +11,8 @@ the `1`-cycle. The `OOEOOE` square-cell trap survives after dropping
 the `CycleMin` return hypothesis: an even landing, or an even next
 image below `n^2`, is descent and is impossible on a CE. After the
 forced `OO`, the third residual `OOEOOEOO` lies below `n^3` and a
-completed third `OOE` lies below `n^2`.
+completed third `OOE` lies below `n^2`. The escaped-even `OE`
+`OOEOOEOOEOE` still lies below `n^2`.
 
 This is not a halt theorem. It does not prove
 `∀ n, ¬EscapesToInfinity n`. It does not prove that every cycle is
@@ -337,5 +338,88 @@ theorem minimal_ooeooeooe_not_even_landing {n : ℕ}
     (even_floorPower_lt_iff he).mpr hlt
   exact minimal_nonterm_no_descent h
     ⟨follows_ooeooeooe_even hw he, by simpa [image_ooeooeooe_even] using hdrop⟩
+
+def wordOOEOOEOOEO : List Branch :=
+  wordOOEOOEOOE ++ [Branch.odd]
+
+def wordOOEOOEOOEOE : List Branch :=
+  wordOOEOOEOOEO ++ [Branch.even]
+
+theorem wordOOEOOEOOEO_length : wordOOEOOEOOEO.length = 10 := by
+  simp [wordOOEOOEOOEO, wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+
+theorem wordOOEOOEOOEO_oddCount : oddCount wordOOEOOEOOEO = 7 := by
+  simp [wordOOEOOEOOEO, wordOOEOOEOOE, wordOOEOOEOO, wordOOEOOEO, wordOOEOOE]
+
+theorem wordOOEOOEOOEOE_length : wordOOEOOEOOEOE.length = 11 := by
+  simp [wordOOEOOEOOEOE, wordOOEOOEOOEO, wordOOEOOEOOE, wordOOEOOEOO,
+    wordOOEOOEO, wordOOEOOE]
+
+theorem wordOOEOOEOOEOE_oddCount : oddCount wordOOEOOEOOEOE = 7 := by
+  simp [wordOOEOOEOOEOE, wordOOEOOEOOEO, wordOOEOOEOOE, wordOOEOOEOO,
+    wordOOEOOEO, wordOOEOOE]
+
+theorem follows_wordOOEOOEOOEO_of_odd_third {n : ℕ}
+    (hw : follows n wordOOEOOEOOE) (hodd : image n wordOOEOOEOOE % 2 = 1) :
+    follows n wordOOEOOEOOEO := by
+  simpa [wordOOEOOEOOEO] using follows_append hw (follows_singleton_odd hodd)
+
+theorem minimal_ooeooeooe_follows_o {n : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOE) :
+    follows n wordOOEOOEOOEO :=
+  follows_wordOOEOOEOOEO_of_odd_third hw
+    (minimal_ooeooeooe_not_even_landing h hw)
+
+set_option exponentiation.threshold 4096
+
+theorem follows_ooeooeooeoe_pow {n : ℕ} (hw : follows n wordOOEOOEOOEOE) :
+    (image n wordOOEOOEOOEOE) ^ 2048 ≤ n ^ 2187 := by
+  have h := power_bound_word hw
+  rw [wordOOEOOEOOEOE_length, wordOOEOOEOOEOE_oddCount] at h
+  rw [image_eq_iterate, wordOOEOOEOOEOE_length]
+  convert h <;> norm_num
+
+/-- The escaped-even `OE` after a third `OOE` has the square-cell gap
+`4096 > 2187`. This is not a length-11 cycle census. -/
+theorem follows_ooeooeooeoe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
+    (hw : follows n wordOOEOOEOOEOE) :
+    image n wordOOEOOEOOEOE < n ^ 2 := by
+  have hpow := follows_ooeooeooeoe_pow hw
+  refine Nat.lt_of_not_ge fun hge => ?_
+  have hleft : n ^ 4096 ≤ (image n wordOOEOOEOOEOE) ^ 2048 := by
+    calc
+      n ^ 4096 = n ^ (2 * 2048) := by norm_num
+      _ = (n ^ 2) ^ 2048 := Nat.pow_mul n 2 2048
+      _ ≤ (image n wordOOEOOEOOEOE) ^ 2048 := Nat.pow_le_pow_left hge 2048
+  have hle : n ^ 4096 ≤ n ^ 2187 := le_trans hleft hpow
+  have hlt : n ^ 2187 < n ^ 4096 := pow_lt_of_two_le hn (by decide : 2187 < 4096)
+  exact (not_le_of_gt hlt) hle
+
+theorem follows_ooeooeooeoe_even {n : ℕ} (hw : follows n wordOOEOOEOOEOE)
+    (he : image n wordOOEOOEOOEOE % 2 = 0) :
+    follows n (wordOOEOOEOOEOE ++ [Branch.even]) :=
+  follows_append hw (follows_singleton_even he)
+
+theorem image_ooeooeooeoe_even (n : ℕ) :
+    image n (wordOOEOOEOOEOE ++ [Branch.even]) =
+      floorPower (image n wordOOEOOEOOEOE) := by
+  rw [image_append]
+  rfl
+
+/-- On a CE, the `OE` landing after a third `OOE` cannot be even.
+The landing is below `n^2`, so an even landing is descent. This does
+not kill an odd landing such as `1517`. -/
+theorem minimal_ooeooeooeoe_not_even_landing {n : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n wordOOEOOEOOEOE) :
+    image n wordOOEOOEOOEOE % 2 = 1 := by
+  have hn2 : 2 ≤ n :=
+    le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
+  have hlt := follows_ooeooeooeoe_image_lt_sq hn2 hw
+  by_contra heven
+  have he : image n wordOOEOOEOOEOE % 2 = 0 := by omega
+  have hdrop : floorPower (image n wordOOEOOEOOEOE) < n :=
+    (even_floorPower_lt_iff he).mpr hlt
+  exact minimal_nonterm_no_descent h
+    ⟨follows_ooeooeooeoe_even hw he, by simpa [image_ooeooeooeoe_even] using hdrop⟩
 
 end Problems.Juggler

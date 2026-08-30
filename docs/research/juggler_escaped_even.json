@@ -1,0 +1,126 @@
+{
+  "experiment": "juggler_escaped_even",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "no_escape": false,
+    "cycles_impossible": false,
+    "uniform_escaped_drop": false,
+    "length_eleven_census": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_hi": 4001,
+    "square_gap": true,
+    "ee_contracting": true,
+    "window": {
+      "n_hi": 4001,
+      "third_ooe": 7,
+      "escaped_even": 3,
+      "even_w": 2,
+      "odd_w": 1,
+      "w_ge_sq": 0,
+      "samples": [
+        {
+          "n": 365,
+          "y": 4447,
+          "z": 296551,
+          "w": 161491284,
+          "third_ooe_odd": true,
+          "z_even": false,
+          "w_even": true,
+          "z_ge_sq": true,
+          "w_lt_sq": false,
+          "w_ge_n": true,
+          "drop": false,
+          "escaped_even": false,
+          "ce_shaped_odd_w": false
+        },
+        {
+          "n": 429,
+          "y": 5595,
+          "z": 418504,
+          "w": 646,
+          "third_ooe_odd": true,
+          "z_even": true,
+          "w_even": true,
+          "z_ge_sq": true,
+          "w_lt_sq": true,
+          "w_ge_n": true,
+          "drop": false,
+          "escaped_even": true,
+          "ce_shaped_odd_w": false
+        },
+        {
+          "n": 1517,
+          "y": 33811,
+          "z": 6217088,
+          "w": 2493,
+          "third_ooe_odd": true,
+          "z_even": true,
+          "w_even": false,
+          "z_ge_sq": true,
+          "w_lt_sq": true,
+          "w_ge_n": true,
+          "drop": false,
+          "escaped_even": true,
+          "ce_shaped_odd_w": true
+        }
+      ]
+    },
+    "witness_429": {
+      "n": 429,
+      "y": 5595,
+      "z": 418504,
+      "w": 646,
+      "drop": 25,
+      "word_oe": "OOEOOEOOEOE",
+      "image_oe": 646,
+      "image_ee": 25,
+      "follows_oe": true
+    },
+    "witness_1517": {
+      "n": 1517,
+      "y": 33811,
+      "z": 6217088,
+      "w": 2493,
+      "w_odd": true,
+      "w_ge_n": true,
+      "w_lt_sq": true,
+      "follows_oe": true,
+      "image_oe": 2493
+    },
+    "uniform_escaped_drop": false,
+    "length_eleven_census": false,
+    "expanding_grammar_reopen": false,
+    "halt_claim": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "wordOOEOOEOOEOE": true,
+    "follows_ooeooeooeoe_image_lt_sq": true,
+    "minimal_ooeooeooe_follows_o": true,
+    "minimal_ooeooeooeoe_not_even_landing": true,
+    "minimal_ooeooeooe_not_even_landing": true,
+    "has_no_juggler_escape": false,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_cycle": false,
+    "has_no_cycle_word_length_eleven": false,
+    "escape_has_oe_sq": true,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "ESCAPED_EVEN_GREEN",
+    "reason": "OOEOOEOOEOE < n^2; CE even OE landing drops; 429 dies by even w; 1517 survives with odd w"
+  },
+  "search_method": "third-OOE odd landings; escaped-even OE landings; 11-letter square gap; Lean CE even-trap; no halt"
+}
