@@ -14,6 +14,7 @@
     "bunched_lean": false,
     "eee_lean": true,
     "eoee_lean": true,
+    "eooee_lean": true,
     "uniform_coarse_K": false,
     "length_eight_census": false,
     "length_nine_census": false,
@@ -3125,6 +3126,8 @@
     "eee_coarse_n0_at_six": 73,
     "eoee_cubes": true,
     "eoee_coarse_n0_at_five": 314,
+    "eooee_cubes": true,
+    "eooee_coarse_n0_at_four": 205,
     "uniform_coarse_K": false,
     "length_eight_census": false,
     "length_nine_census": false,
@@ -3146,6 +3149,8 @@
     "three_even_eee_tail": true,
     "no_cycle_word_three_even_eoee": true,
     "three_even_eoee_tail_of_five": true,
+    "no_cycle_word_three_even_eooee": true,
+    "three_even_eooee_tail": true,
     "no_global_termination_theorem": true,
     "no_all_cycles_impossible": true,
     "no_cycle_engine": true,
@@ -3158,7 +3163,7 @@
   },
   "decision": {
     "classification": "BUNCHED_LAST_CLUSTER_GREEN",
-    "reason": "seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE and O^a EOEE; a uniform coarse (n+1)^K cell for all six remaining families is refuted; the other five families remain computational; not a length-8/9 census"
+    "reason": "seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE, EOEE, and EOOEE; a uniform coarse (n+1)^K cell for all remaining families is refuted; the other four families remain computational; not a length-8/9 census"
   },
-  "search_method": "prefix-cell N0(a) for the seven bunched last-cluster families through a=20; empty CycleWord tables below N0; EEE coarse cubing from n>=73; Lean O^a EEE for a>=6; EOEE coarse cubing from n>=314; Lean O^a EOEE for a>=5; uniform coarse K refuted; no length-8/9 census"
+  "search_method": "prefix-cell N0(a) for the seven bunched last-cluster families through a=20; empty CycleWord tables below N0; EEE coarse cubing from n>=73; Lean O^a EEE for a>=6; EOEE coarse cubing from n>=314; Lean O^a EOEE for a>=5; EOOEE coarse cubing from n>=205, Lean via the two-even tail at n>=256; uniform coarse K refuted; no length-8/9 census"
 }

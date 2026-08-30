@@ -1,11 +1,13 @@
 # Juggler finite-dynamics paper synthesis
 
-Author: Philippe Cochin. Date: 29 August 2026.
-Status: **PAPER_CANDIDATE**. The publication draft is dated 29 August 2026
+Author: Philippe Cochin. Date: 30 August 2026.
+Status: **PAPER_CANDIDATE**. The publication draft is dated 30 August 2026
 and is not submitted. After the publication-readiness rewrite it is a
 standalone math note titled *Small cycles of the Juggler map*, centered
-on the length-\(\le 6\) census; the envelope is the tool, the defect is
-exact bookkeeping, and the short certificates are a remark.
+on the length-\(\le 7\) census; leftover families by even-count
+(Theorems 3.12--3.16) sit after that census and do not extend it.
+The envelope is the tool, the defect is exact bookkeeping, and the
+short certificates are a remark.
 
 This branch opens no new attack and makes no claim that every positive
 integer reaches \(1\).
@@ -24,8 +26,12 @@ math note:
 > Realized finite words obey a power envelope and an exact compositional
 > defect identity with rigid zero cases. Inverse cells impose cycle
 > restrictions and yield a small-cycle census: no nontrivial cycle has
-> length at most seven. Even and odd-to-even starts carry uniform short
-> certificates. No density result is stated in Paper A.
+> length at most seven. The same cells exclude two leftover two-even
+> families at every expanding length, transport that comparison across
+> a first even letter on a cycle minimum, and exclude two bunched
+> three-even families. Even and odd-to-even starts carry uniform short
+> certificates. No density result is stated in Paper A. No length-8
+> or length-9 census is stated.
 
 Every substantive claim must be linked to one of:
 
@@ -113,7 +119,15 @@ added to `bt.*`.
 - small-cycle census: no cycle word of length at most seven —
   **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_six`,
   `no_cycle_word_length_le_seven`, ledgers `J-small-cycle-census` and
-  `J-small-cycle-census-seven`; length eight open);
+  `J-small-cycle-census-seven`; length eight open as a census);
+- two-even leftover families \(O^{k-2}EE\) and \(O^{k-3}EOE\) —
+  **EXACT — LEAN VERIFIED** (Paper A Theorem 3.12; ledgers
+  `J-two-even-leftover-ee`, `J-two-even-leftover-eoe`);
+- first-even transport of gapped three-even leftovers on a cycle
+  minimum —
+  **EXACT — LEAN VERIFIED** (Paper A Theorem 3.13; CycleMin only);
+- bunched families \(O^aEEE\), \(O^aEOEE\), and \(O^aEOOEE\) —
+  **EXACT — LEAN VERIFIED** (Paper A Theorems 3.14--3.16);
 - cycle surplus \(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) and the
   per-step slack-scale bound \(x^e<(J(x)+1)^2\) —
   **EXACT — LEAN VERIFIED** (`image_eq_start_defectRatio`,
@@ -184,7 +198,9 @@ floor reductions under Paper B, over the reals, including the
 double-gap identity used by the kernel theorem; the analytic estimates
 themselves are human proofs and stay outside Lean. The Paper A review
 object is `formal/Problems/JugglerPaper.lean` and does not import
-`GapCells`. The formal map is
+`GapCells`. It now also imports the leftover-family modules
+`LeftoverTwoEven`, `FirstETransport`, `BunchedEEE`, `BunchedEOEE`,
+and `BunchedEOOEE`. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
 The paper-central theorem metadata is recorded in
 `docs/theory/theorem_ledger.json` and the generated ledger. No `sorry` or
@@ -200,9 +216,11 @@ standalone checkability. The stack now consists of:
 
 - [Paper A](../theory/juggler_finite_dynamics_note.md) — power
   envelopes, exact defects, cycle restrictions, the small-cycle
-  census (Theorems 3.6 and 3.8), short certificates (Theorem 4.1). The
+  census (Theorems 3.6 and 3.8), leftover families
+  (Theorems 3.12--3.16), short certificates (Theorem 4.1). The
   complement of those certificates is the odd-to-odd class. Lean
-  is an independent check; no density claims; submission candidate;
+  is an independent check; no density claims; no length-8 or
+  length-9 census; submission candidate;
 - [Paper B](../theory/juggler_parity_discrepancy_note.md) — parity
   equidistribution of nested floor powers: exact linearization,
   the kernel theorem (Theorem 5.3, \(\delta=1/96\), at
@@ -259,13 +277,15 @@ implication, \(\delta=1/96\); pending one independent check of
 Section 5).
 
 Paper A is a standalone Lean-backed math note titled *Small cycles
-of the Juggler map*: the length-\(\le6\) census is the theorem; the
-envelope, cells, and thresholds are the tools; the defect identity
-is exact bookkeeping, not a uniform tax. Short certificates and the
-remaining gap are remarks. Related work now includes Pickover 2002,
-Weisstein, and OEIS A094716. The Smith letter and the 2026 webpage
-record through \(7\,110\,200\) were dropped from the note. Python
-listings were removed from the body.
+of the Juggler map*: the length-\(\le7\) census is the theorem; the
+envelope, cells, and thresholds are the tools; leftover families
+by even-count (Theorems 3.12--3.16) sit after the census and do
+not extend it; the defect identity is exact bookkeeping, not a
+uniform tax. Short certificates and the remaining gap are remarks.
+Related work now includes Pickover 2002, Weisstein, and OEIS
+A094716. The Smith letter and the 2026 webpage record through
+\(7\,110\,200\) were dropped from the note. Python listings were
+removed from the body.
 
 Paper B carries the analytic novelty (exact linearization of nested
 floor powers; the level-2 kernel theorem) and the risk: external

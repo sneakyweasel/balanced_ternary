@@ -114,7 +114,8 @@ It is not required.
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length-8 census. No three-even programme.
 - Lean: `formal/Problems/Juggler/LeftoverTwoEven.lean`, imported by
-  `Problems.Juggler` only. Paper A is not edited.
+  `Problems.Juggler` only. Paper A records the families as
+  Theorem 3.12. No `no_cycle_word_length_eight`.
 
 ## Conjectures
 
@@ -182,4 +183,5 @@ bunched-tail cells.
 Status: `EXPLORATORY`.
 
 A uniform Lean exclusion of the two leftover families, not a paper
-candidate and not a Juggler totality result. Paper A is not edited.
+candidate and not a Juggler totality result. Paper A records
+Theorem 3.12 without assembling a length-8 census.

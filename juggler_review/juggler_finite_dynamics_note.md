@@ -1,7 +1,7 @@
 ---
 title: Small cycles of the Juggler map
 author: Philippe Cochin
-date: 29 August 2026
+date: 30 August 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -26,15 +26,27 @@ It is conjectured that every positive integer eventually reaches \(1\).
 We do not prove that conjecture.
 
 The main theorem is a small-cycle census: the Juggler map has no
-nontrivial cycle of length at most six. The argument is elementary.
+nontrivial cycle of length at most seven. The argument is elementary.
 A realized parity word \(w\) obeys the power envelope
 \(\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}\le n^{3^{\#O(w)}}\), so a cycle word is
 formally expanding. Inverse cells and two next-square thresholds
 exclude every even-terminating expanding word of length at most six
 except two leftover shapes, \(OOOEOE\) and \(OOOOEE\). Those two
 are excluded by a tail inequality for \(n\ge 256\) and a check of
-the \(254\) starts \(2\le n<256\). Length seven is the first
-combinatorial shape the thresholds do not reach.
+the \(254\) starts \(2\le n<256\). Length seven is the same two-even
+type: the recorded thresholds and one internal-even bootstrap leave
+two leftover shapes, \(OOOOEOE\) and \(OOOOOEE\), excluded by a
+sharper tail for \(n\ge 14\) and a check of the \(12\) starts
+\(2\le n<14\). Length eight is the first even-terminating expanding
+length outside that census.
+
+The leftover even-terminating two-even words form two infinite
+families, \(O^{k-2}EE\) and \(O^{k-3}EOE\). Both are excluded at
+every length \(k\ge 6\). On a cycle minimum, a three-even leftover
+with a sufficiently long second gap reduces to those families.
+Three bunched three-even families, \(O^aEEE\), \(O^aEOEE\), and
+\(O^aEOOEE\), are likewise excluded. These are family exclusions,
+not a census at length eight or nine.
 
 The same envelope gives an exact global defect by keeping the floor
 remainders. Zero defect characterizes the monochrome power towers;
@@ -68,14 +80,19 @@ A word of length \(k\) with \(o\) odd letters has ideal exponent
 available only when the orbit realizes those parities.
 
 The main theorem of the note is the census: there is no
-nontrivial cycle of period at most six (Theorem 3.6). The tool is the
+nontrivial cycle of period at most six (Theorem 3.6), and none of
+period at most seven (Theorem 3.8). The tool is the
 finite-word envelope (Theorem 2.2), together with the inverse cells
-and two next-square thresholds. The exact defect (Theorems 2.4--2.6)
-is the same recurrence with remainders kept rather than dropped. It
-classifies the rigid zero cases and shows that a uniform per-step
-slack tax is impossible; it is not needed for the length-six
-exclusion beyond a short alternative to the exponent comparison on
-mixed words.
+and two next-square thresholds. After the census, the same cells
+exclude two infinite leftover families at every expanding length
+(Theorem 3.12), transport that comparison across a first even letter
+on a cycle minimum (Theorem 3.13), and exclude three bunched
+three-even families (Theorems 3.14--3.16). The exact defect
+(Theorems 2.4--2.6) is the same recurrence with remainders kept
+rather than dropped. It classifies the rigid zero cases and shows
+that a uniform per-step slack tax is impossible; it is not needed
+for the length-six exclusion beyond a short alternative to the
+exponent comparison on mixed words.
 
 Throughout, \(\mathbb N=\{1,2,3,\ldots\}\). Write \(J^k\) for the
 \(k\)-fold iterate. A nonempty realized word \(w\) with
@@ -110,7 +127,15 @@ assistance. An independent Lean check of those arguments lives in the
 repository named in Section 4; the corresponding theorem names are
 collected in Appendix A. Lemma 3.5 uses a table of \(254\) six-step
 evaluations for \(2\le n<256\), one table for each of the two leftover
-words. That table is a finite computation, not a termination proof.
+words. Lemma 3.7 uses a table of \(12\) seven-step evaluations for
+\(2\le n<14\). Lemma 3.11 uses the same window to record that no
+start \(2\le n<256\) realizes seven consecutive odd letters.
+Theorem 3.12 adds two \(254\)-start tables at length eight and one
+at length nine; Theorem 3.14 reuses the length-nine table for
+\(OOOOOOEEE\) below \(128\); Theorem 3.15 uses tables below \(314\)
+and below \(16\); Theorem 3.16 reuses the \(254\)-start window at
+prefix lengths \(4,5,6\). Those tables are finite computations, not a
+termination proof.
 
 ## 2. Envelope and defect
 
@@ -587,14 +612,302 @@ is realized at \(y\), and Lemma 3.4(i) gives
 Lemma 3.4(iv) gives \(J^2(y)<(m+1)^2\). \(\square\)
 
 Lemma 3.4(v) excludes every odd-run-then-even word \(O^aE\) with
-\(a\ge 3\), of any length. Length seven is the first
-even-terminating expanding length whose surviving candidates have an
-internal even letter (five odd letters among the first six). Those
-shapes are not reached by the recorded thresholds. No exclusion of
-cycles of length seven or more is claimed. The census stops at
-length six because length seven admits even-terminating expanding
-words with an internal even letter that none of the recorded
-thresholds reach; no exclusion at length seven is claimed.
+\(a\ge 3\), of any length.
+
+**Lemma 3.7 (two length-seven exclusions).**
+Neither \(OOOOEOE\) nor \(OOOOOEE\) is a cycle word at any \(n\ge 2\).
+
+*Proof.* First, if \(n\ge 14\), then
+\[
+n^{243}>2^{422}(n+1)^{128}.
+\]
+Indeed \(14(n+1)\le 15n\), so
+\((n+1)^{128}\le(15/14)^{128}n^{128}\). The finite comparison
+\(2^{422}15^{128}<14^{243}\) then yields
+\(2^{422}(n+1)^{128}<14^{115}n^{128}\le n^{243}\).
+
+For \(2\le n<14\), neither word is realized: at every such start,
+some letter fails to match the current parity. The same finite check
+is the Lean `native_decide` evaluation behind
+`no_cycle_word_ooooeoe` and `no_cycle_word_oooooee` (Appendix A).
+
+Now suppose \(OOOOOEE\) is a cycle word at \(n\ge 14\), and write
+\(z=J^5(n)\) for the image after the prefix \(OOOOO\). Lemma 3.4(iv)
+on the last even letter, together with the preceding even letter,
+gives \(z<(n+1)^4\). Lemma 3.3 on \(OOOOO\) gives
+\(n^{243}\le 2^{422}z^{32}\), so
+\(n^{243}<2^{422}(n+1)^{128}\), contradicting the tail inequality.
+
+Finally suppose \(OOOOEOE\) is a cycle word at \(n\ge 14\). Write
+\(z_4=J^4(n)\) and \(y=J(z_4)=\lfloor\sqrt{z_4}\rfloor\), so
+\(z_4<(y+1)^2\). Lemma 3.3 on \(OOOO\) gives
+\(n^{81}\le 2^{130}z_4^{16}<2^{130}(y+1)^{32}\). Cubing yields
+\(n^{243}<2^{390}(y+1)^{96}\). The last letters \(OE\) give the odd-cell
+bound \(y^3<(n+1)^4\). Write \(A=n+1\ge 15\). The same comparison
+\((y+1)^3<2A^4\) as in Lemma 3.5 holds at this smaller scale. Raising
+to the thirty-second power gives
+\((y+1)^{96}<2^{32}(n+1)^{128}\). Combining with the cubed lower
+envelope produces again \(n^{243}<2^{422}(n+1)^{128}\). \(\square\)
+
+**Theorem 3.8 (small-cycle census through length seven).**
+No word of length at most seven is a cycle word at any \(n\ge 2\).
+Equivalently, a nontrivial Juggler cycle, if one exists, has period at
+least eight.
+
+*Proof.* The reduction of Theorem 3.6 applies at every length: an
+all-odd word cannot return, and every mixed cycle word rotates to an
+even-terminating cycle word based at a cycle state \(m\ge 2\).
+Lengths at most six are Theorem 3.6. It remains to exclude
+even-terminating cycle words of length seven.
+
+By Theorem 3.2(i) a cycle word is formally expanding. The
+even-terminating expanding length-seven words are exactly
+\(O^6E\), \(EO^5E\), \(OEO^4E\), \(OOEO^3E\), \(O^3EO^2E\),
+\(O^4EOE\), and \(O^5EE\). Lemma 3.4(v) excludes \(O^6E\). The word
+\(EO^5E\) rotates one step onto \(O^5EE\), and \(OEO^4E\) starts
+\(OE\), so it cannot be a cycle minimum (Theorem 3.2(iii)) and
+rotates two steps onto \(O^4EOE\); both leftovers are excluded by
+Lemma 3.7.
+
+It remains to exclude \(OOEO^3E\) and \(O^3EO^2E\). Rotate either
+word to a cycle minimum \(m\ge 2\). For \(OOEO^3E\) the minimum
+orientation retains the internal even letter followed by the suffix
+\(OOO\). Then \(m\ge 3\), the prefix through that even letter is
+realized, and Lemma 3.4(ii) at threshold \(3\) contradicts the last
+even cell. For \(O^3EO^2E\) the same bootstrap applies with suffix
+\(OO\) and threshold \(5\), once \(m=3\) is removed: at \(m=3\) the
+state after \(OOO\) is even, so the next even letter is not
+realized. \(\square\)
+
+The census of Theorems 3.6 and 3.8 is a statement about period. The
+same cells organise leftover words by even-count. Write
+\[
+e_a=2\bigl(3^a-2^a\bigr)
+\]
+for \(a\ge 0\).
+
+**Lemma 3.9 (trailing even run).**
+If a cycle word based at \(n\) ends with \(r\ge 1\) even letters,
+the state immediately before that run is strictly less than
+\((n+1)^{2^r}\).
+
+*Proof.* The case \(r=1\) is Lemma 3.4(iv). Suppose the claim holds
+for some \(r\ge 1\), and let \(vE^{r+1}\) be a cycle word at \(n\).
+Write \(z=J^{|v|}(n)\). The inductive hypothesis applied to the
+suffix \(E^r\) after the first of those even letters gives
+\(J(z)<(n+1)^{2^r}\). The state \(z\) is even, so
+\(z<(J(z)+1)^2\le\bigl((n+1)^{2^r}\bigr)^2=(n+1)^{2^{r+1}}\).
+\(\square\)
+
+**Lemma 3.10 (odd-run lower envelope).**
+If \(n\ge 1\) realizes \(O^a\), then
+\[
+n^{3^a}\le 2^{e_a}\,J^a(n)^{2^a}.
+\]
+
+*Proof.* Lemma 3.3 supplies a multiplicative constant \(C_v\) along
+any realized word, with \(C_\varepsilon=1\),
+\(C\mapsto C\cdot 4^{2^j}\) on an even letter, and
+\(C\mapsto C^3\cdot 4^{2^j}\) on an odd letter, at step \(j\). On
+the pure odd word \(O^a\) every letter is odd, so
+\(C_{O^{a+1}}=C_{O^a}^3\cdot 4^{2^a}\). Writing
+\(C_{O^a}=2^{e_a}\) with \(e_0=0\) yields the recurrence
+\(e_{a+1}=3e_a+2^{a+1}\), because \(4^{2^a}=2^{2^{a+1}}\). The closed
+form \(e_a=2(3^a-2^a)\) satisfies the recurrence and the initial
+value. \(\square\)
+
+**Lemma 3.11 (seven-odd window).**
+No integer \(n\) with \(2\le n<256\) realizes the word \(O^7\).
+
+*Proof.* This is a table of \(254\) seven-step evaluations: at every
+such start, some letter fails to match the current parity. The same
+finite check is the Lean `native_decide` evaluation behind
+`no_follows_seven_odds_of_lt256` (Appendix A). \(\square\)
+
+**Theorem 3.12 (two-even leftover families).**
+Let \(k\ge 6\) and \(n\ge 2\). Neither \(O^{k-2}EE\) nor
+\(O^{k-3}EOE\) is a cycle word at \(n\).
+
+*Proof.* First, if \(n\ge 256\), then
+\[
+n^{3^{k-2}}>2^{e_{k-2}}(n+1)^{2^k}.
+\]
+The case \(k=6\) is the tail inequality of Lemma 3.5. If the display
+holds at some \(k\ge 6\), cubing both sides produces
+\[
+n^{3^{k-1}}
+>
+2^{3e_{k-2}}(n+1)^{3\cdot 2^k}.
+\]
+The recurrence of Lemma 3.10 gives \(e_{k-1}=3e_{k-2}+2^{k-1}\), so
+the desired comparison at length \(k+1\) reduces to
+\(2^{2^{k-1}}<(n+1)^{2^k}\). Equivalently \(2<(n+1)^2\), which holds
+for every \(n\ge 256\).
+
+Now suppose \(O^{k-2}EE\) is a cycle word at such an \(n\). Write
+\(z=J^{k-2}(n)\). Lemma 3.9 with \(r=2\) gives \(z<(n+1)^4\).
+Lemma 3.10 on the prefix \(O^{k-2}\) gives
+\(n^{3^{k-2}}\le 2^{e_{k-2}}z^{2^{k-2}}\), hence
+\(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\), contradicting the tail.
+
+Finally suppose \(O^{k-3}EOE\) is a cycle word at such an \(n\).
+Write \(z=J^{k-3}(n)\) and \(y=\lfloor\sqrt z\rfloor\), so
+\(z<(y+1)^2\). Lemma 3.10 on \(O^{k-3}\) and cubing produce
+\(n^{3^{k-2}}<2^{3e_{k-3}}(y+1)^{3\cdot 2^{k-2}}\). The last letters
+\(OE\) give the odd-cell bound \(y^3<(n+1)^4\). The comparison
+\((y+1)^3<2(n+1)^4\) of Lemma 3.5 applies at this scale. Raising it
+to the power \(2^{k-2}\) and using \(e_{k-2}=3e_{k-3}+2^{k-2}\)
+recovers again \(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\).
+
+For \(2\le n<256\), the cases \(k=6\) and \(k=7\) are Lemmas 3.5
+and 3.7. The remaining short words \(O^6EE\), \(O^5EOE\), and
+\(O^6EOE\) fail to return on the same \(254\)-start window; this is
+the Lean `native_decide` evaluation behind
+`no_cycle_word_two_even_ee` and `no_cycle_word_two_even_eoe`
+(Appendix A). Any longer leftover of either family begins with
+seven consecutive odd letters, which Lemma 3.11 forbids on this
+window. \(\square\)
+
+A cycle word \(w\) at \(n\) is *minimum-based* when \(n\) is a
+cycle minimum: \(J^j(n)\ge n\) for every \(0\le j<|w|\). The
+remainder after a proper prefix of a cycle word need not itself be
+a cycle word at the prefix endpoint. The next statement therefore
+transports the tail inequality of Theorem 3.12, not the cycle-word
+exclusion at a later start.
+
+**Theorem 3.13 (first-even transport).**
+Let \(n\ge 2\). No minimum-based cycle word at \(n\) has the form
+\(O^aEO^bEE\) with \(a\ge 2\) and \(b\ge 4\), or the form
+\(O^aEO^bEOE\) with \(a\ge 2\) and \(b\ge 3\).
+
+*Proof.* Write \(y=J^{a+1}(n)\) for the state after the first even
+letter. Minimum-basedness gives \(y\ge n\). In the first family the
+remainder after that letter is \(O^bEE\) with \(b+2\ge 6\); in the
+second it is \(O^bEOE\) with \(b+3\ge 6\). The trailing-even and
+last-odd cells of those remainders are measured against the cycle
+start \(n\). Combined with Lemma 3.10 at the remainder start \(y\),
+the same algebra as in Theorem 3.12 produces
+\[
+y^{3^{\ell-2}}
+<
+2^{e_{\ell-2}}(n+1)^{2^\ell}
+\le
+2^{e_{\ell-2}}(y+1)^{2^\ell},
+\]
+where \(\ell\) is the remainder length. If \(y\ge 256\), the first
+paragraph of Theorem 3.12 supplies the opposite inequality at \(y\).
+
+If \(y<256\), then \(n\le y<256\). A gapped leftover of total
+length at least \(17\) has \(a\ge 7\) or \(b\ge 7\), so either the
+prefix or the remainder realizes seven consecutive odd letters,
+contradicting Lemma 3.11. The finitely many short-gap words with
+\(2\le a\le 6\) and \(b\le 6\) fail to be minimum-based cycle words
+on the window \(2\le n<256\); this is the Lean `native_decide`
+evaluation behind `no_cycleMin_gapped_three_even_ee` and
+`no_cycleMin_gapped_three_even_eoe` (Appendix A). \(\square\)
+
+The hypothesis that the start is a cycle minimum is essential. If
+\(y<n\), the leftover cell is measured against a larger start and
+need not contradict the tail at \(y\). In particular, Theorem 3.13
+does not assert that those words fail to be cycle words at a
+non-minimum start.
+
+**Theorem 3.14 (three trailing evens).**
+Let \(a\ge 6\) and \(n\ge 2\). The word \(O^aEEE\) is not a cycle
+word at \(n\).
+
+*Proof.* Write \(z=J^a(n)\). Lemma 3.9 with \(r=3\) gives
+\(z<(n+1)^8\). Lemma 3.10 then yields
+\(n^{3^a}<2^{e_a}(n+1)^{2^{a+3}}\) on any such cycle word. For
+\(n\ge 128\) the opposite comparison
+\[
+n^{3^a}>2^{e_a}(n+1)^{2^{a+3}}
+\]
+holds. The case \(a=6\) is
+\(n^{729}>2^{1330}(n+1)^{512}\). Indeed, for \(n\ge 128\) one has
+\((n+1)^{512}<(129/128)^{512}n^{512}<e^4 n^{512}<64\,n^{512}\), so
+the claimed bound reduces to \(n^{217}>2^{1336}\). Since
+\(n\ge 128=2^7\), the left side is at least \(2^{1519}\). Cubing
+the \(a=6\) comparison produces the general case: the recurrence of
+Lemma 3.10 reduces the inductive step to \((n+1)^4>2\), which holds
+for every \(n\ge 128\).
+
+For \(2\le n<128\), the case \(a=6\) is a table of evaluations of
+\(OOOOOOEEE\): at every such start the word fails to return. The
+same finite check is the Lean `native_decide` evaluation behind
+`no_cycle_word_ooooooeee` (Appendix A). For \(a\ge 7\) the prefix
+contains seven consecutive odd letters, which Lemma 3.11 forbids
+on this window. \(\square\)
+
+**Theorem 3.15 (mixed bunched family \(EOEE\)).**
+Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEOEE\) is not a cycle
+word at \(n\).
+
+*Proof.* First let \(n\ge 4\), and write \(z=J^a(n)\),
+\(y=\lfloor\sqrt z\rfloor\), and \(p=J(y)\). Lemma 3.9 with
+\(r=2\) after the prefix \(O^aEO\) gives \(p<(n+1)^4\). The letter
+after \(y\) is odd, so Lemma 3.10 at length one yields
+\(y^3\le 4p^2<4(n+1)^8\). For \(n\ge 4\) one has
+\(4(n+1)^8<(n+1)^9\), hence \(y<(n+1)^3\). The even cell at \(z\)
+then gives \(z<(y+1)^2\le(n+1)^6\). Combined with Lemma 3.10,
+any such cycle word would satisfy
+\[
+n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
+\]
+
+For \(a=5\) and \(n\ge 314\), the opposite comparison
+\(n^{243}>2^{422}(n+1)^{192}\) holds. The base instance is the
+finite inequality \(2^{422}315^{192}<314^{243}\). If the display
+holds at some \(n\ge 1\), the elementary comparison
+\(n(n+2)<(n+1)^2\) upgrades it to the same display at \(n+1\).
+Cubing then produces the comparison at \(a+1\), once
+\((n+1)^6>4\). In particular the case \(a=6\) already holds for
+every \(n\ge 16\).
+
+For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
+\(a=6\), the word fails to return; these are the Lean
+`native_decide` evaluations behind `no_cycle_word_three_even_eoee`
+(Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies. For
+\(a\ge 6\) and \(n\ge 16\), the tail of the previous paragraph
+applies. \(\square\)
+
+**Theorem 3.16 (mixed bunched family \(EOOEE\)).**
+Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOOEE\) is not a
+cycle word at \(n\).
+
+*Proof.* First let \(n\ge 32\), and write \(z=J^a(n)\),
+\(y=\lfloor\sqrt z\rfloor\), and \(p\) for the image after the
+prefix \(O^aEOO\). Lemma 3.9 with \(r=2\) gives \(p<(n+1)^4\).
+The two letters after \(y\) are odd, so Lemma 3.10 at length two
+yields \(y^9\le 2^{10}p^4<2^{10}(n+1)^{16}\). For \(n\ge 32\) one
+has \(2^{10}<(n+1)^2\), hence \(y<(n+1)^2\). The even cell at
+\(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
+Lemma 3.10, any such cycle word would satisfy
+\[
+n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
+\]
+For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
+shared tail of Theorem 3.12 at length \(k=a+2\).
+
+For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
+window; this is the Lean `native_decide` evaluation behind
+`no_cycle_word_three_even_eooee` (Appendix A). For \(a\ge 7\),
+Lemma 3.11 applies. \(\square\)
+
+Length eight remains the first even-terminating expanding length
+outside the census. Theorem 3.12 excludes its two leftover
+orientations, but the census assembly of Theorem 3.8 is not
+extended. Length nine is the first even-terminating expanding
+length that admits three even letters; Theorems 3.13--3.16 treat
+infinite families of those leftovers, not every length-nine word.
+Four other bunched last-cluster families
+(\(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), \(O^aEOOEOE\)) are not
+treated here. A single coarse successor power \((n+1)^K\) cannot
+exclude all of them: at the first expanding prefix length, the
+exponent \(K\cdot 2^a\) meets or exceeds \(3^a\) for those four
+words. No exclusion of cycles of length eight or more is claimed. The
+census stops at length seven; no exclusion at length eight is
+claimed.
 
 ## 4. Remarks
 
@@ -639,7 +952,7 @@ state (Section 2).
 
 > No theorem forces every exact integer state into a contracting
 > prefix. In particular, it is open whether every start reaches
-> \(1\), and open whether a nontrivial cycle of length seven or more
+> \(1\), and open whether a nontrivial cycle of length eight or more
 > exists.
 
 Lean proofs of the theorems of Sections 2--4 are in the
@@ -670,6 +983,16 @@ names are the corresponding Lean theorems in
 | Lemma 3.4 | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append`, `cycle_last_even_interval`, `no_cycle_odd_run_append_even` |
 | Lemma 3.5 | `no_cycle_word_oooeoe`, `no_cycle_word_ooooee` |
 | Theorem 3.6 | `no_cycle_word_length_le_six` |
+| Lemma 3.7 | `no_cycle_word_ooooeoe`, `no_cycle_word_oooooee` |
+| Theorem 3.8 | `no_cycle_word_length_le_seven`, with `no_cycle_word_ooeoooe`, `no_cycle_word_oooeooe` |
+| Lemma 3.9 | `cycle_trailing_evens_lt` |
+| Lemma 3.10 | `lowerDenom_replicate_odd`, `odd_run_lower_growth` |
+| Lemma 3.11 | `no_follows_seven_odds_of_lt256` |
+| Theorem 3.12 | `no_cycle_word_two_even_ee`, `no_cycle_word_two_even_eoe` |
+| Theorem 3.13 | `no_cycleMin_gapped_three_even_ee`, `no_cycleMin_gapped_three_even_eoe` |
+| Theorem 3.14 | `no_cycle_word_three_even_eee`, with `no_cycle_word_ooooooeee` |
+| Theorem 3.15 | `no_cycle_word_three_even_eoee` |
+| Theorem 3.16 | `no_cycle_word_three_even_eooee` |
 | Theorem 4.1 | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |
@@ -681,7 +1004,8 @@ I used large language models extensively while drafting and revising
 the text, organizing companion notes, and as an interactive assistant
 for Lean statements, tests, and literature records. The models are
 not authors. Lean theorems and named computations are the
-certificates for the claims of Sections 2--4. I take full
+certificates for the claims of Sections 2--4, including the family
+theorems 3.12--3.16. I take full
 responsibility for the contents.
 
 ## References

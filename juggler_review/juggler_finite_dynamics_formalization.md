@@ -306,6 +306,11 @@ Sources:
 - `formal/Problems/Juggler/Cycles.lean`;
 - `formal/Problems/Juggler/LeftoverEval.lean`;
 - `formal/Problems/Juggler/LeftoverCycles.lean`;
+- `formal/Problems/Juggler/LeftoverTwoEven.lean`;
+- `formal/Problems/Juggler/FirstETransport.lean`;
+- `formal/Problems/Juggler/BunchedEEE.lean`;
+- `formal/Problems/Juggler/BunchedEOEE.lean`;
+- `formal/Problems/Juggler/BunchedEOOEE.lean`;
 - `formal/Problems/Juggler/SmallCycleCensus.lean`.
 
 ```text
@@ -397,8 +402,53 @@ together with the existing `cycleWord_rotateWord`,
 `no_cycle_word_ooe`, `no_cycle_word_length_four_ends_even`,
 `no_cycle_word_length_five_ends_even`, `no_cycle_odd_run_append_even`,
 `no_cycle_word_ooeooe`, `no_cycle_word_oooeoe`, and
-`no_cycle_word_ooooee`. The census stops at length six. It is not an
-exclusion of all cycles and not a halt theorem.
+`no_cycle_word_ooooee`.
+
+The same file then strengthens the census to the note's Theorem 3.8:
+
+```text
+no_cycle_word_length_le_seven :
+  2 <= n -> w.length <= 7 -> ¬CycleWord n w
+```
+
+The length-seven leftovers are evaluated in `LeftoverEval.lean`
+(`Fin 14` tables and `2^422 * 15^128 < 14^243`) and excluded in
+`LeftoverCycles.lean`:
+
+```text
+no_cycle_word_oooooee
+no_cycle_word_ooooeoe
+```
+
+The internal-E bootstrap pair is excluded in `Cycles.lean`:
+
+```text
+no_cycle_word_ooeoooe
+no_cycle_word_oooeooe
+```
+
+The census stops at length seven. It is not an exclusion of all
+cycles and not a halt theorem. Length eight is open as a census.
+
+The note's family theorems after the census are:
+
+```text
+cycle_trailing_evens_lt          (Lemma 3.9)
+lowerDenom_replicate_odd
+odd_run_lower_growth             (Lemma 3.10)
+no_follows_seven_odds_of_lt256   (Lemma 3.11)
+no_cycle_word_two_even_ee
+no_cycle_word_two_even_eoe       (Theorem 3.12)
+no_cycleMin_gapped_three_even_ee
+no_cycleMin_gapped_three_even_eoe (Theorem 3.13; CycleMin only)
+no_cycle_word_three_even_eee     (Theorem 3.14)
+no_cycle_word_three_even_eoee    (Theorem 3.15)
+no_cycle_word_three_even_eooee   (Theorem 3.16)
+```
+
+Theorem 3.13 is a minimum-based exclusion. It is not a `CycleWord`
+theorem at a non-minimum start. Theorems 3.12--3.16 do not assemble
+`no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
 
 The cycle-surplus identity of the note's Corollary 2.7 and the
 per-step scale bound are:

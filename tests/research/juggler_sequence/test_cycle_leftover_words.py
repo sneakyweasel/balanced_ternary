@@ -7,6 +7,7 @@ from pathlib import Path
 from research.juggler_sequence.lean_paths import (
     BUNCHED_EEE,
     BUNCHED_EOEE,
+    BUNCHED_EOOEE,
     FIRST_E_TRANSPORT,
     LEFTOVER_CYCLES,
     LEFTOVER_EVAL,
@@ -64,6 +65,13 @@ def test_leftover_cycle_theorems_present():
     assert "sorry" not in eoee
     assert "admit" not in eoee
     assert has_named(text, "no_cycle_word_three_even_eoee")
+    eooee = BUNCHED_EOOEE.read_text(encoding="utf-8")
+    assert "theorem no_cycle_word_three_even_eooee" in eooee
+    assert "theorem no_cycle_word_length_eight" not in eooee
+    assert "theorem no_cycle_word_length_nine" not in eooee
+    assert "sorry" not in eooee
+    assert "admit" not in eooee
+    assert has_named(text, "no_cycle_word_three_even_eooee")
     assert "sorry" not in transport
     assert "admit" not in transport
     assert "sorry" not in leftover
@@ -103,6 +111,11 @@ def test_note_records_census_without_overclaim():
     assert "Theorem 3.6" in note
     assert "Lemma 3.7" in note
     assert "Theorem 3.8" in note
+    assert "Theorem 3.12" in note
+    assert "Theorem 3.13" in note
+    assert "Theorem 3.14" in note
+    assert "Theorem 3.15" in note
+    assert "Theorem 3.16" in note
     assert "remain open" not in note
     assert "OOOEOE" in note
     assert "OOOOEE" in note
@@ -110,6 +123,12 @@ def test_note_records_census_without_overclaim():
     assert "OOOOOEE" in note
     assert "no_cycle_word_length_le_six" in note
     assert "no_cycle_word_length_le_seven" in note
+    assert "no_cycle_word_two_even_ee" in note
+    assert "no_cycle_word_three_even_eee" in note
+    assert "no_cycle_word_three_even_eoee" in note
+    assert "no_cycle_word_three_even_eooee" in note
+    assert "theorem no_cycle_word_length_eight" not in note
+    assert "theorem no_cycle_word_length_nine" not in note
     flat = " ".join(note.split())
     assert "No exclusion of cycles of length eight or more is claimed." in flat
     assert "no exclusion at length eight is claimed" in flat

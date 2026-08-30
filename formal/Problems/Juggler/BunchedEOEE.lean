@@ -26,7 +26,7 @@ is seven consecutive odds.
 
 This excludes that one bunched family only. It is not the other
 five bunched tails, not a length-8 or length-9 census, and not a
-halt theorem. Paper A is not edited.
+halt theorem. Paper A records the family as Theorem 3.15.
 -/
 
 def threeEvenEOEE (a : ℕ) : List Branch :=

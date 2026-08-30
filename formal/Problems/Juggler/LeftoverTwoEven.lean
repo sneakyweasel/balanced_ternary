@@ -16,7 +16,7 @@ Below `256` the longest odd run on `n ≥ 2` has length 6, so only
 seven consecutive odds.
 
 This is not a length-8 census, not a three-even programme, and not
-a halt theorem. Paper A is not edited.
+a halt theorem. Paper A records the families as Theorem 3.12.
 -/
 
 def denomBits (a : ℕ) : ℕ :=

@@ -183,7 +183,9 @@ It is not required.
   `formal/Problems/Juggler/Cycles.lean` and
   `no_cycle_word_ooooooeee` in
   `formal/Problems/Juggler/LeftoverCycles.lean`.
-  No `no_cycle_word_length_nine`. Paper A is not edited.
+  No `no_cycle_word_length_nine`. Paper A records the trailing-even
+  cell as Lemma 3.9 and \(OOOOOOEEE\) as the \(a=6\) case of
+  Theorem 3.14.
 
 ## Conjectures
 
@@ -227,7 +229,8 @@ seven and records that length eight is open. No
 `no_cycle_word_length_nine`. The remaining eight leftovers are
 not Lean-excluded. No `sorry`. No halt theorem. No
 `CycleSearch`. FloorPower, Progress, and Minimal are not
-rewritten. Paper A is not edited. This is not a Lean census.
+rewritten. Paper A records Lemma 3.9 and Theorem 3.14. This is
+not a Lean census.
 
 ## Results
 
@@ -288,4 +291,5 @@ Status: `EXPLORATORY`.
 
 A Phase-0 inventory plus a Phase-1 Lean exclusion of one leftover,
 not a paper candidate, not a length-9 census, and not a Juggler
-totality result. Paper A is not edited.
+totality result. Paper A records the trailing-even cell and the
+\(O^aEEE\) family, not a length-9 census.

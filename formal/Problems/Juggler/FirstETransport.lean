@@ -15,8 +15,8 @@ gaps are tables and long gaps are seven-odd.
 
 This excludes gapped `CycleMin`s only. It is not a `CycleWord`
 theorem at a non-minimum start, not a bunched-tail attack, not a
-length-8 or length-9 census, and not a halt theorem. Paper A is
-not edited.
+length-8 or length-9 census, and not a halt theorem. Paper A
+records the transport as Theorem 3.13.
 -/
 
 theorem four_mul_two_pow (b : ℕ) : 4 * 2 ^ b = 2 ^ (b + 2) := by

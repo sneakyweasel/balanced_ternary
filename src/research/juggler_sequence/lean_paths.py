@@ -26,6 +26,11 @@ PAPER_MODULES: tuple[str, ...] = (
     "Cycles",
     "LeftoverEval",
     "LeftoverCycles",
+    "LeftoverTwoEven",
+    "FirstETransport",
+    "BunchedEEE",
+    "BunchedEOEE",
+    "BunchedEOOEE",
     "SmallCycleCensus",
     "NormalizedDefect",
     "ExpansionSlack",
@@ -68,6 +73,8 @@ LAYERS: dict[str, Path] = {
     "BunchedEEE": JUGGLER_DIR / "BunchedEEE.lean",
     "BunchedEOEEEval": JUGGLER_DIR / "BunchedEOEEEval.lean",
     "BunchedEOEE": JUGGLER_DIR / "BunchedEOEE.lean",
+    "BunchedEOOEEEval": JUGGLER_DIR / "BunchedEOOEEEval.lean",
+    "BunchedEOOEE": JUGGLER_DIR / "BunchedEOOEE.lean",
     "SmallCycleCensus": JUGGLER_DIR / "SmallCycleCensus.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
@@ -113,6 +120,8 @@ FIRST_E_TRANSPORT = LAYERS["FirstETransport"]
 BUNCHED_EEE = LAYERS["BunchedEEE"]
 BUNCHED_EOEE_EVAL = LAYERS["BunchedEOEEEval"]
 BUNCHED_EOEE = LAYERS["BunchedEOEE"]
+BUNCHED_EOOEE_EVAL = LAYERS["BunchedEOOEEEval"]
+BUNCHED_EOOEE = LAYERS["BunchedEOOEE"]
 SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]

@@ -13,6 +13,11 @@ import Problems.Juggler.Progress
 import Problems.Juggler.Cycles
 import Problems.Juggler.LeftoverEval
 import Problems.Juggler.LeftoverCycles
+import Problems.Juggler.LeftoverTwoEven
+import Problems.Juggler.FirstETransport
+import Problems.Juggler.BunchedEEE
+import Problems.Juggler.BunchedEOEE
+import Problems.Juggler.BunchedEOOEE
 import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionSlack
@@ -66,6 +71,15 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 3.8 `no_cycle_word_length_le_seven`, with components
       `no_cycle_word_len_seven_ends_even`, `no_cycle_word_ooeoooe`,
       `no_cycle_word_oooeooe`
+* 3.9 `cycle_trailing_evens_lt`
+* 3.10 `lowerDenom_replicate_odd`, `odd_run_lower_growth`
+* 3.11 `no_follows_seven_odds_of_lt256`
+* 3.12 `no_cycle_word_two_even_ee`, `no_cycle_word_two_even_eoe`
+* 3.13 `no_cycleMin_gapped_three_even_ee`,
+      `no_cycleMin_gapped_three_even_eoe`
+* 3.14 `no_cycle_word_three_even_eee`
+* 3.15 `no_cycle_word_three_even_eoee`
+* 3.16 `no_cycle_word_three_even_eooee`
 * 4.1 `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:
       `no_finiteProgress_implies_odd_odd`
@@ -77,7 +91,8 @@ strictly below the start. Lean packages this as `DescentCertificate`.
 This barrel does not prove that every positive integer reaches `1`,
 that every orbit meets a contracting word, or that all nontrivial
 cycles are impossible. The cycle census stops at length seven;
-length eight and beyond is open.
+length eight and beyond is open as a census. Theorems 3.12--3.16
+exclude leftover families, not every word of those lengths.
 `FiniteCoeffStopConjecture` is a laboratory target, not a claim of
 the note.
 -/

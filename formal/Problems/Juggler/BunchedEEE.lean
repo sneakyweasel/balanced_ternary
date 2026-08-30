@@ -16,7 +16,7 @@ and `a ≥ 7` is seven consecutive odds.
 
 This excludes that one bunched family only. It is not the other six
 bunched tails, not a length-8 or length-9 census, and not a halt
-theorem. Paper A is not edited.
+theorem. Paper A records the family as Theorem 3.14.
 -/
 
 def threeEvenEEE (a : ℕ) : List Branch :=

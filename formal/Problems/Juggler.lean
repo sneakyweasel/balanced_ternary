@@ -33,6 +33,8 @@ import Problems.Juggler.FirstETransport
 import Problems.Juggler.BunchedEEE
 import Problems.Juggler.BunchedEOEEEval
 import Problems.Juggler.BunchedEOEE
+import Problems.Juggler.BunchedEOOEEEval
+import Problems.Juggler.BunchedEOOEE
 import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.CycleDiophantine
 import Problems.Juggler.SequentialMordell

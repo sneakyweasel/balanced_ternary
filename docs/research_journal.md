@@ -11292,3 +11292,37 @@ Best next question
   from n>=205
 ```
 
+## Paper A leftover-family revision
+
+- **Date:** 2026-08-30
+- **Objective:** Record the Lean leftover-family theorems in Paper A at publication standard, without extending the length-7 census
+- **Hypotheses:** Theorems 3.12--3.15 are ordinary integer arguments already in Lean; the census boundary at length seven is unchanged if the family statements keep their quantifiers
+- **Major results:** Paper A dated 30 August 2026 now states the trailing-even cell (Lemma 3.9), the odd-run constant \(e_a\) (Lemma 3.10), the seven-odd window (Lemma 3.11), the two-even leftover families (Theorem 3.12), first-even transport on a cycle minimum (Theorem 3.13), and the bunched families \(O^aEEE\), \(O^aEOEE\), and \(O^aEOOEE\) (Theorems 3.14--3.16). `Problems.JugglerPaper` imports the corresponding modules. No `no_cycle_word_length_eight` and no `no_cycle_word_length_nine`. No halt theorem. Reviewer packet, formalization map, ledger sources, and paper dossier synced
+- **Refuted ideas:** reading the family theorems as a length-8 or length-9 census; reading Theorem 3.13 as a cycle-word exclusion at a non-minimum start
+- **Literature:** existing Paper A citations unchanged
+- **Open:** five remaining bunched families; length-8 and length-9 census assembly; totality
+- **Decision:** PROMOTE the paper revision. The mathematical next question is unchanged: Lean-exclude \(O^a\texttt{EOOEE}\), or assemble a length-8 census only after the remaining orientations are named
+
+```text
+What was learned
+- the leftover work after the census is one even-count section,
+  not a period-by-period appendix
+- first-E transport must stay CycleMin-only in the published
+  statement
+- five bunched families stay outside the note
+Strongest theorem
+- unchanged Lean statements; the deliverable is the note
+Strongest refutation
+- none new
+Reusable machinery
+- none; JugglerPaper now names the family modules
+Branch status
+- PROMOTE
+Why
+- the theorems already survived Lean; the note now states them
+  with the same quantifiers a referee can check
+Best next question
+- Lean-exclude O^a EOOEE by the K=4 coarse cell that cubes
+  from n>=205
+```
+

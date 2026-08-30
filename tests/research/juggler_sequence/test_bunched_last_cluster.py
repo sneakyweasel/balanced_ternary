@@ -14,6 +14,8 @@ from research.juggler_sequence.bunched_last_cluster import (
     eee_cubes_from,
     eoee_coarse_holds,
     eoee_cubes_from,
+    eooee_coarse_holds,
+    eooee_cubes_from,
     expanding_family,
     family_word,
     first_cutoff,
@@ -74,6 +76,9 @@ def test_first_cutoffs_and_n_le_4():
     assert eoee_coarse_holds(314, 5) is True
     assert eoee_coarse_holds(313, 5) is False
     assert eoee_cubes_from() is True
+    assert eooee_coarse_holds(205, 4) is True
+    assert eooee_coarse_holds(204, 4) is False
+    assert eooee_cubes_from() is True
 
 
 def test_probe_and_classify_green():
@@ -90,6 +95,8 @@ def test_probe_and_classify_green():
     assert scan["eee_coarse_n0_at_six"] == 73
     assert scan["eoee_cubes"] is True
     assert scan["eoee_coarse_n0_at_five"] == 314
+    assert scan["eooee_cubes"] is True
+    assert scan["eooee_coarse_n0_at_four"] == 205
     assert scan["uniform_coarse_K"] is False
     assert scan["length_eight_census"] is False
     assert scan["length_nine_census"] is False
@@ -111,6 +118,8 @@ def test_lean_api_without_bunched_or_census_theorem():
     assert lean["three_even_eee_tail"] is True
     assert lean["no_cycle_word_three_even_eoee"] is True
     assert lean["three_even_eoee_tail_of_five"] is True
+    assert lean["no_cycle_word_three_even_eooee"] is True
+    assert lean["three_even_eooee_tail"] is True
     assert lean["no_bunched_tail_theorem"] is True
     assert lean["no_length_eight_theorem"] is True
     assert lean["no_length_nine_theorem"] is True
@@ -134,6 +143,7 @@ def test_classify_render_and_artifacts():
                 "bunched_lean": False,
                 "eee_lean": True,
                 "eoee_lean": True,
+                "eooee_lean": True,
                 "uniform_coarse_K": False,
             },
         }
@@ -142,6 +152,7 @@ def test_classify_render_and_artifacts():
     assert "OOOOOOEEE" in text or "EEE" in text
     assert "no_cycle_word_three_even_eee" in text
     assert "no_cycle_word_three_even_eoee" in text
+    assert "no_cycle_word_three_even_eooee" in text
     from research.juggler_sequence.bunched_last_cluster import JSON_PATH
 
     assert JSON_PATH.is_file()
@@ -155,6 +166,8 @@ def test_classify_render_and_artifacts():
     assert data["anti_overclaim"]["eee_lean"] is True
     assert data["lean"]["no_cycle_word_three_even_eoee"] is True
     assert data["anti_overclaim"]["eoee_lean"] is True
+    assert data["lean"]["no_cycle_word_three_even_eooee"] is True
+    assert data["anti_overclaim"]["eooee_lean"] is True
     assert data["anti_overclaim"]["uniform_coarse_K"] is False
     assert data["scan"]["max_n0"] == 188
 
@@ -176,6 +189,7 @@ def test_dossier_boundary():
     assert "no_cycle_word_length_nine" in dossier
     assert "no_cycle_word_three_even_eee" in dossier
     assert "no_cycle_word_three_even_eoee" in dossier
+    assert "no_cycle_word_three_even_eooee" in dossier
     assert "not a length-8" in dossier or "not a length-8/9" in dossier
     assert "theorem no_cycle_word_length_eight" not in note
     assert "theorem no_cycle_word_length_nine" not in note

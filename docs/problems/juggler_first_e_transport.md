@@ -138,7 +138,7 @@ It is not required.
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length-8 or length-9 census.
 - Gapped `CycleMin` Lean is in `FirstETransport.lean`. No
-  bunched-tail Lean. No Paper A edit.
+  bunched-tail Lean. Paper A records the transport as Theorem 3.13.
 
 ## Conjectures
 
@@ -172,7 +172,7 @@ the short-gap `native_decide` tables in
 a non-minimum start. `SmallCycleCensus.lean` still assembles only
 through length seven. No `no_cycle_word_length_eight`. No
 `no_cycle_word_length_nine`. No bunched-tail Lean. No `sorry`.
-No halt theorem. Paper A is not edited.
+No halt theorem. Paper A records Theorem 3.13 as CycleMin-only.
 
 ## Results
 
@@ -214,6 +214,6 @@ at \(e\ge 4\).
 
 Status: `EXPLORATORY`.
 
-A Lean `CycleMin` exclusion for gapped three-even leftovers, not
-a paper candidate and not a Juggler totality result. Paper A is
-not edited.
+A Lean `CycleMin` exclusion for gapped three-even leftovers,
+recorded in Paper A as Theorem 3.13, not a length-9 census and
+not a Juggler totality result.
