@@ -66,18 +66,19 @@
     "odd_cell_unique": true,
     "o7_image_ge_succ_pow16": true,
     "no_cycle_word_oooooooeeee": true,
+    "no_cycleMin_ooooooeeeoe": true,
+    "no_cycle_word_ooooooeeeoe": true,
     "no_cycle_word_length_eleven": true,
     "no_cycle_word_four_even": true,
-    "no_cycle_word_ooooooeeeoe": true,
     "juggler_reaches_one": true,
     "paper_a_has_no_o6eeeoe": true,
     "length_eight_open_in_census": true,
     "FloorPower_not_rewritten": true,
-    "no_o6eeeoe_lean": true
+    "o6eeeoe_lean": true
   },
   "decision": {
     "classification": "O6EEEOE_GAP_PROVED",
     "reason": "no O^6 below 163; +1-chain gives T^6(n) >= (v_max+1)^8 for n>=25, with (v_max+1)^8 < (n+1)^11 and n^1995 > (n+1)^1970; pin n<10000 has 170 O^6 starts, zero cell hits, min ratio 37.3179317038586 at n=163; leftover N0=437599552"
   },
-  "search_method": "exact (T+1)^2 > x^3 +1-chain on O^6 versus the EEEOE inverse cell z < (v+1)^8, v^3 < (n+1)^4; first O^6 at 163; leftover N0=437599552 unused; no Lean, no 29-word census"
+  "search_method": "exact (T+1)^2 > x^3 +1-chain on O^6 versus the EEEOE inverse cell z < (v+1)^8, v^3 < (n+1)^4; first O^6 at 163; leftover N0=437599552 unused; CycleMinFudge Lean; no 29-word census"
 }

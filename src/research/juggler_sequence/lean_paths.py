@@ -81,6 +81,7 @@ LAYERS: dict[str, Path] = {
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "EvenCountThree": JUGGLER_DIR / "EvenCountThree.lean",
     "O7EEEEGap": JUGGLER_DIR / "O7EEEEGap.lean",
+    "CycleMinFudge": JUGGLER_DIR / "CycleMinFudge.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
     "LandingValuation": JUGGLER_DIR / "LandingValuation.lean",
     "PreimageCylinders": JUGGLER_DIR / "PreimageCylinders.lean",
@@ -159,6 +160,7 @@ SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
 LENGTH_EIGHT_CENSUS = LAYERS["LengthEightCensus"]
 EVEN_COUNT_THREE = LAYERS["EvenCountThree"]
 O7EEEE_GAP = LAYERS["O7EEEEGap"]
+CYCLEMIN_FUDGE = LAYERS["CycleMinFudge"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
 LANDING_VALUATION = LAYERS["LandingValuation"]

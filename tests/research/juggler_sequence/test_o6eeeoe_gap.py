@@ -75,7 +75,7 @@ def test_lean_has_o7_and_no_o6_census():
         assert lean[name] is True, name
     for name in FORBIDDEN_THEOREMS:
         assert lean[name] is True, name
-    assert lean["no_o6eeeoe_lean"] is True
+    assert lean["o6eeeoe_lean"] is True
     assert lean["paper_a_has_no_o6eeeoe"] is True
 
 

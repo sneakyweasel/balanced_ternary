@@ -18,8 +18,9 @@ Falsifier               an O^6 image inside the EEEOE cell, or
                         the chain still needs n ~ 10^8
 Existing machinery      (T+1)^2 > x^3; cycle_trailing_evens;
                         O^7 +1-chain; 30-word list
-Maximum Phase-0 scope   one word OOOOOOEEEOE; no Lean, no
-                        (1,3) family, no 29-word scan
+Maximum Phase-0 scope   one word OOOOOOEEEOE; CycleMin
+                        Lean corollary; no (1,3) family,
+                        no 29-word scan
 ```
 
 ## Metadata
@@ -73,11 +74,12 @@ separate job.
 - `odd_cell_unique`: `True`
 - `o7_image_ge_succ_pow16`: `True`
 - `no_cycle_word_oooooooeeee`: `True`
+- `no_cycleMin_ooooooeeeoe`: `True`
+- `no_cycle_word_ooooooeeeoe`: `True`
 - no `no_cycle_word_length_eleven`: `True`
 - no `no_cycle_word_four_even`: `True`
-- no `no_cycle_word_ooooooeeeoe`: `True`
 - no `juggler_reaches_one`: `True`
-- no O^6 EEEOE theorem: `True`
+- O^6 EEEOE theorem: `True`
 - Paper A has no O^6 EEEOE: `True`
 
 ## Anti-overclaim

@@ -53,12 +53,13 @@ LEAN_THEOREMS = (
     "odd_cell_unique",
     "o7_image_ge_succ_pow16",
     "no_cycle_word_oooooooeeee",
+    "no_cycleMin_ooooooeeeoe",
+    "no_cycle_word_ooooooeeeoe",
 )
 
 FORBIDDEN_THEOREMS = (
     "no_cycle_word_length_eleven",
     "no_cycle_word_four_even",
-    "no_cycle_word_ooooooeeeoe",
     "juggler_reaches_one",
 )
 
@@ -175,7 +176,7 @@ def lean_api_present() -> dict[str, bool]:
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
         "FloorPower_not_rewritten": "o6eeeoe" not in engine_floor_text(),
-        "no_o6eeeoe_lean": "theorem no_cycle_word_ooooooeeeoe" not in combined,
+        "o6eeeoe_lean": has_named(combined, "no_cycle_word_ooooooeeeoe"),
     }
 
 
@@ -186,7 +187,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         lean["sorry_free"]
         and lean["cycle_trailing_evens_lt"]
         and lean["no_cycle_word_oooooooeeee"]
-        and lean["no_o6eeeoe_lean"]
+        and lean["no_cycle_word_ooooooeeeoe"]
+        and lean["o6eeeoe_lean"]
         and lean["no_cycle_word_length_eleven"]
         and lean["paper_a_has_no_o6eeeoe"]
     )
@@ -262,7 +264,8 @@ def probe_payload() -> dict[str, Any]:
         "search_method": (
             "exact (T+1)^2 > x^3 +1-chain on O^6 versus the EEEOE "
             "inverse cell z < (v+1)^8, v^3 < (n+1)^4; first O^6 at 163; "
-            "leftover N0=437599552 unused; no Lean, no 29-word census"
+            "leftover N0=437599552 unused; CycleMinFudge Lean; "
+            "no 29-word census"
         ),
     }
 
@@ -294,8 +297,9 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        the chain still needs n ~ 10^8",
         "Existing machinery      (T+1)^2 > x^3; cycle_trailing_evens;",
         "                        O^7 +1-chain; 30-word list",
-        "Maximum Phase-0 scope   one word OOOOOOEEEOE; no Lean, no",
-        "                        (1,3) family, no 29-word scan",
+        "Maximum Phase-0 scope   one word OOOOOOEEEOE; CycleMin",
+        "                        Lean corollary; no (1,3) family,",
+        "                        no 29-word scan",
         "```",
         "",
         "## Metadata",
@@ -357,7 +361,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         lines.append(f"- no `{name}`: `{lean.get(name)}`")
     lines.extend(
         [
-            f"- no O^6 EEEOE theorem: `{lean.get('no_o6eeeoe_lean')}`",
+            f"- O^6 EEEOE theorem: `{lean.get('o6eeeoe_lean')}`",
             f"- Paper A has no O^6 EEEOE: `{lean.get('paper_a_has_no_o6eeeoe')}`",
             "",
             "## Anti-overclaim",

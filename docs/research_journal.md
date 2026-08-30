@@ -12040,3 +12040,108 @@ Best next question
   (1,3) words O^a E O^{7-a} EEE
 ```
 
+## Juggler (1,3) EEE +1-chain gap
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether the exact mixed +1-chain kills the five `(1,3)` leftovers \(O^{a}EO^{7-a}\mathrm{EEE}\)
+- **Hypotheses:** prefix images sit above the EEE cell at the first prefix starts, not at leftover \(N_0\sim 10^{9}\)–\(10^{12}\)
+- **Major results:** Classification **ONE_THREE_EEE_GAP_PROVED**. A cell hit plus the mixed +1-chain is \(n^{2187}<(n+1)^{2048}(1+1/v)^{E}\), i.e. \(3^{7}>2^{11}\) with slack \(139\). Leading-chain bounds \(v\ge V\) at first starts \(37,113,163,173,241\) contradict the cell. Pin \(n<10^{4}\) empty, closest ratio \(5.73\) at \(n=37\) on `OOOOEOOOEEE`. Leftover \(N_0\) unused. Ledger row `J-one-three-eee-gap`. No Lean. Not a length-11 census and not a halt theorem
+- **Refuted ideas:** these shapes need leftover \(N_0\sim 10^{9}\); Amplify-versus-surplus is the method; this is a length-11 census
+- **Literature:** `no_cycle_word_oooooooeeee`; `J-o6eeeoe-gap`; \(Z_4\) `PARK`; Amplify `CLOSE`
+- **Open:** Lean the five words, or the three `(2,2)` leftovers. Do not scan the other twenty-three automatically
+- **Decision:** PROMOTE. Exact five-word exclusion at the first prefix starts
+
+```text
+What was learned
+- the five (1,3) words are O^a E O^{7-a} EEE
+- mixed +1-chain reduces to 3^7 > 2^{11}
+- that comparison fires at n=37,113,163,173,241
+- leftover 4-fudge is again the threshold obstruction
+- OOOOOOEOEEE is also a corollary of T^6 >= (n+1)^11
+Strongest theorem
+- the five (1,3) leftovers are not cycle words
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- these words require leftover N0 ~ 1e9 to 1e12
+Reusable machinery
+- one_three_eee_gap.py; no Lean
+Branch status
+- PROMOTE
+Why
+- the same exact successor cell that killed O^7 EEEE
+  and OOOOOOEEEOE kills the next even-run signature
+Best next question
+- the three (2,2) leftovers, or Lean the (1,3) family
+```
+
+## Juggler CycleMin fudge versus leftover 2-bound
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether CycleMin \((x+1)/x\le(n+1)/n\) keeps slack \(139\) on the thirty first-expanding leftovers and fires at the first prefix start
+- **Hypotheses:** leftover \(N_0\) is the \(2\)-bound; even placement does not eat slack once the crossing is CycleMin
+- **Major results:** Classification **CYCLEMIN_FUDGE_LAYER_PROVED**. Slack is identically \(3^{7}-2^{11}=139\) on every 7-odd word that starts \(O\). Chain \(N_0\le 29\). Pin \(n<30\) empty. First prefix starts \(37\) through \(2935\). The thirty length-11 short-gap leftovers are not cycle words. Ledger row `J-cyclemin-fudge`. No Lean. Not a length-11 census and not a halt theorem
+- **Refuted ideas:** even placement eats slack \(139\); the layer needs leftover \(N_0\sim 10^{8}\); a 23-word hunt is required
+- **Literature:** `absorb_odd_step`; `J-o7eeee-gap`; `J-o6eeeoe-gap`; `J-one-three-eee-gap`; \(Z_4\) `PARK`
+- **Open:** Lean `absorb_even_step` and the slack identity, or the \(a_0\ge 8\) tails. Do not write \(Z_5\)
+- **Decision:** PROMOTE. The leftover \(2\)-bound was the threshold obstruction
+
+```text
+What was learned
+- leftover 2-fudge is (x+1)/x <= 2; CycleMin is (n+1)/n
+- slack is identically 139 on every 7-odd word starting O
+- even placement does not eat that slack
+- chain N0 is 16..29, not 1e8
+- the thirty length-11 leftovers die as one comparison
+Strongest theorem
+- the thirty first-expanding short-gap leftovers
+  are not cycle words (EXACT — HUMAN PROOF)
+Strongest refutation
+- even placement eats slack 139; the layer needs leftover N0
+Reusable machinery
+- cyclemin_fudge.py; absorb_even exponent update; no Lean
+Branch status
+- PROMOTE
+Why
+- one crossing estimate replaces a 23-word hunt and the
+  leftover 4-fudge at length 11
+Best next question
+- Lean absorb_even_step and the slack identity, or the
+  a0>=8 tails by the same machine
+```
+
+## Consolidation: CycleMin fudge Lean
+
+- **Date:** 2026-08-30
+- **Objective:** Package the CycleMin \((n+1)/n\) harvest in Lean, sorry-free, with the named corollaries
+- **Hypotheses:** the even sibling, slack identity, pin, and \(n\ge 30\) comparison cover the thirty leftovers as `CycleMin` words; unique-rotation leftovers upgrade to `CycleWord`
+- **Major results:** `Problems/Juggler/CycleMinFudge.lean` builds. `absorb_even_step`, `family_slack139`, `no_cycleMin_cyclemin_fudge`, named `no_cycleMin_*` for all thirty leftovers, and unique-rotation `no_cycle_word_*` including `no_cycle_word_ooooooeeeoe` and `no_cycle_word_ooooooeoeee`. Ledger `J-cyclemin-fudge` retagged **EXACT — LEAN VERIFIED**. The twenty-two leftovers with extra CycleMin-shaped 4-even rotations outside the thirty are not upgraded to `CycleWord`. `J-o6eeeoe-gap` and `J-one-three-eee-gap` keep their cell arguments as **EXACT — HUMAN PROOF**. No `no_cycle_word_length_eleven`. No `no_cycle_word_four_even`. Paper A unchanged
+- **Refuted ideas:** the thirty leftovers are Lean-excluded as cycle words; a length-11 census is the next assembler
+- **Literature:** `J-cyclemin-fudge`; `J-o6eeeoe-gap`; `J-one-three-eee-gap`; `J-o7eeee-gap`
+- **Open:** the \(a_0\ge 8\) tails. Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** PROMOTE. The Lean layer matches the honest English: thirty `CycleMin` exclusions and eight unique-rotation cycle-word exclusions
+
+```text
+What was learned
+- leftover cells pay (x+1)/x <= 2; CycleMin pays (n+1)/n
+- slack is identically 139 on every 7-odd word starting O
+- Lean covers CycleMin for all 30 first-expanding leftovers
+- only 8 leftovers have a unique CycleMin-shaped rotation
+- extra rotations of the other 22 leave the 30-word family
+Strongest theorem
+- the thirty first-expanding leftovers are not CycleMin
+  words; the eight unique-rotation leftovers are not
+  cycle words (EXACT — LEAN VERIFIED)
+Strongest refutation
+- a single no_cycle_word_cyclemin_fudge / length-11 census
+Reusable machinery
+- CycleMinFudge.lean; absorb_even_step; family_slack139
+Branch status
+- PROMOTE
+Why
+- the Lean file covers the English it claims and stops
+  short of a census or a four-even assembler
+Best next question
+- the a0>=8 tails by the same crossing, not Z5 and not
+  a length-11 census
+```
+
