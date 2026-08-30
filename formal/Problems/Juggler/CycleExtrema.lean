@@ -143,15 +143,6 @@ theorem cycleMin_max_gt_sq {n : ℕ} {w : List Branch}
   have hodd := cycleMin_start_odd hn h
   exact lt_of_le_of_ne hsq (even_ne_odd_square heven hodd).symm
 
-theorem cycleMin_max_sqrt_ge {n : ℕ} {w : List Branch} {i : ℕ}
-    (_hn : 2 ≤ n) (h : CycleMin n w) (hi : i < w.length)
-    (he : floorPower^[i] n % 2 = 0) :
-    n ≤ (floorPower^[i] n).sqrt := by
-  have hy := cycleMin_succ_ge h hi
-  have hz : floorPower (floorPower^[i] n) = (floorPower^[i] n).sqrt :=
-    floorPower_even_eq he
-  simpa [hz] using hy
-
 theorem cycleMax_return_cell {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
     n % 2 = 0 ∧ n.sqrt ^ 2 ≤ n ∧ n < (n.sqrt + 1) ^ 2 := by
@@ -886,7 +877,8 @@ theorem cycleMax_not_cycleMin {n : ℕ} {w : List Branch}
   have ho := cycleMin_start_odd hn hm
   omega
 
-/-- On a cycle maximum the rotated minimum satisfies `m^2 < M`. -/
+/-- On a cycle maximum the rotated minimum satisfies `m^2 < M`.
+The laboratory sharpening is `cycleMax_min_succ_sq_le`. -/
 theorem cycleMax_min_sq_lt {n : ℕ} {w : List Branch} {k : ℕ}
     (hn : 2 ≤ n) (h : CycleMax n w) (hk : k < w.length)
     (hmin : CycleMin (floorPower^[k] n) (rotateWord w k)) :
@@ -918,11 +910,15 @@ theorem cycleMax_min_sq_lt {n : ℕ} {w : List Branch} {k : ℕ}
   simpa [heq] using hgt
 
 /-- Distinguished cycle order: minimum, top landing, peak predecessor,
-maximum. Scale compositions beyond this package are envelope
-repackaging. -/
+maximum. The rotation witness is included so the laboratory
+sharpening `(m+1)^2 ≤ M` is a one-line corollary. Scale
+compositions beyond this package are envelope repackaging. -/
 theorem cycle_distinguished_order {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
-    ∃ m p x r, 2 ≤ m ∧ 2 ≤ p ∧
+    ∃ k m p x r, k < w.length ∧
+      CycleMin (floorPower^[k] n) (rotateWord w k) ∧
+      m = floorPower^[k] n ∧
+      2 ≤ m ∧ 2 ≤ p ∧
       m % 2 = 1 ∧ p % 2 = 1 ∧
         m ≤ p ∧ p < x ∧ x < n ∧
           m ^ 2 < n ∧
@@ -958,29 +954,9 @@ theorem cycle_distinguished_order {n : ℕ} {w : List Branch}
     | cons _ _ =>
         simp [hwu]
   have hm_le_p : floorPower^[k] n ≤ p := by
-    have hlen : (rotateWord w k).length = w.length := rotateWord_length w k
-    let j := (r + (w.length - k)) % w.length
-    have hj : j < (rotateWord w k).length := by
-      simpa [j, hlen] using
-        Nat.mod_lt (r + (w.length - k))
-          (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.1.2.2)
-    have himg_j :
-        floorPower^[j] (floorPower^[k] n) = floorPower^[k + j] n := by
-      simpa [Nat.add_comm] using
-        (Function.iterate_add_apply floorPower j k n).symm
-    have hmodkj : (k + j) % w.length = r := by
-      have hL : 0 < w.length :=
-        lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.1.2.2
-      have hsum : k + (r + (w.length - k)) = r + w.length := by omega
-      have : (k + (r + (w.length - k)) % w.length) % w.length =
-          (r + w.length) % w.length := by
-        rw [Nat.add_mod_mod, hsum]
-      simpa [j, Nat.add_mod, Nat.mod_self, Nat.mod_eq_of_lt hrlt] using this
-    have hpj : floorPower^[k + j] n = floorPower^[r] n := by
-      rw [cycle_iterate_mod h.1, cycle_iterate_mod (k := r) h.1, hmodkj,
-        Nat.mod_eq_of_lt hrlt]
-    have hge := cycleMin_ge hmin hj
-    simpa [himg_j, hpj, hpdef] using hge
+    have : floorPower^[k] n ≤ floorPower^[r] n :=
+      cycleMin_le_cycle_state h.1 hk hrlt hmin
+    simpa [hpdef] using this
   have hfourth : floorPower^[k] n ^ 4 < x ^ 3 := by
     have hpow : (floorPower^[k] n ^ 2) ^ 2 < n ^ 2 :=
       Nat.pow_lt_pow_left hMsq (by decide : (2 : ℕ) ≠ 0)
@@ -989,8 +965,8 @@ theorem cycle_distinguished_order {n : ℕ} {w : List Branch}
     have : floorPower^[k] n ^ 4 < n ^ 2 := by
       simpa [h4] using hpow
     exact lt_of_lt_of_le this hcell'.1
-  exact ⟨floorPower^[k] n, p, x, r, hm, hp2, hmodd, hpodd, hm_le_p, hpx, hxn,
-    hMsq, hr1, hwin, hhi, hcell'.1, hcell'.2, hfourth⟩
+  exact ⟨k, floorPower^[k] n, p, x, r, hk, hmin, rfl, hm, hp2, hmodd, hpodd,
+    hm_le_p, hpx, hxn, hMsq, hr1, hwin, hhi, hcell'.1, hcell'.2, hfourth⟩
 
 /-!
 ## Exact local remainders on a cycle

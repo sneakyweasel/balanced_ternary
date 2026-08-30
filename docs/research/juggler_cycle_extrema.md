@@ -57,7 +57,6 @@ common transient `OE` collapse before square scale.
 - `exists_cycle_max_even`: `True`
 - `cycleMax_start_even`: `True`
 - `cycleMin_max_gt_sq`: `True`
-- `cycleMin_max_sqrt_ge`: `True`
 - `cycleMax_return_cell`: `True`
 - `square_scale_superquadratic`: `True`
 - `cycleMin_to_even_superquadratic`: `True`
@@ -67,6 +66,7 @@ common transient `OE` collapse before square scale.
 - `cycleMax_min_succ_sq_le`: `True`
 - `cycleMax_landing_gt_min`: `True`
 - `cycleMax_exists_min_succ_sq`: `True`
+- `cycle_distinguished_order_succ_sq`: `True`
 - certificate unchanged: `True`
 - FloorPower not rewritten: `True`
 - no length-6 theorem: `True`

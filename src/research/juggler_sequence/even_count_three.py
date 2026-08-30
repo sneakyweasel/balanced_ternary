@@ -77,6 +77,7 @@ LEAN_THEOREMS = (
     "cycleMax_min_succ_sq_le",
     "cycleMax_landing_gt_min",
     "cycleMax_exists_min_succ_sq",
+    "cycle_distinguished_order_succ_sq",
     "no_cycle_word_two_even_ee",
     "no_cycle_word_two_even_eoe",
     "no_cycle_word_three_even_eee",
@@ -292,6 +293,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["cycleMin_first_even_overshoots"]
         and lean["cycleMin_max_ge_succ_sq"]
         and lean["cycleMax_min_succ_sq_le"]
+        and lean["cycle_distinguished_order_succ_sq"]
         and lean["laboratory_assembler_present"]
         and lean["paper_a_has_no_even_count"]
         and lean["no_cycle_word_length_nine"]

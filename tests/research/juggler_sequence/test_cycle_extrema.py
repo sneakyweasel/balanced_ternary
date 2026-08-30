@@ -71,6 +71,8 @@ def test_lean_api_extrema_without_census():
     assert "theorem cycleMax_min_succ_sq_le" in even
     assert "theorem cycleMax_landing_gt_min" in even
     assert "theorem cycleMax_exists_min_succ_sq" in even
+    assert "theorem cycle_distinguished_order_succ_sq" in even
+    assert "theorem cycleMin_max_sqrt_ge" not in src
     assert "theorem no_cycle_word_length_six" not in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src

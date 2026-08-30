@@ -846,6 +846,33 @@ theorem ooo_suffix_threshold {q : ℕ} (hq : 3 ≤ q)
         simpa [Function.iterate_succ_apply] using floorPower_odd_ge hodd2
       exact le_trans h2 hge
 
+/-- An odd state at or above `(n+1)^2` has odd-step image at least
+`(n+1)^3`. This is the exact one-odd lift of a next-square residual,
+not an asymptotic. -/
+theorem odd_ge_succ_sq_floorPower_ge_cube {z n : ℕ}
+    (hodd : z % 2 = 1) (hz : (n + 1) ^ 2 ≤ z) :
+    (n + 1) ^ 3 ≤ floorPower z := by
+  rw [floorPower_odd_eq hodd]
+  refine Nat.le_sqrt.mpr ?_
+  have hpow : ((n + 1) ^ 2) ^ 3 ≤ z ^ 3 := Nat.pow_le_pow_left hz 3
+  have hexp : ((n + 1) ^ 3) ^ 2 = ((n + 1) ^ 2) ^ 3 := by
+    simp [← Nat.pow_mul]
+  have : ((n + 1) ^ 3) ^ 2 ≤ z ^ 3 := by
+    rwa [hexp]
+  simpa [pow_two] using this
+
+/-- On `OOO` at `q ≥ 5` the residual is at least `(q+1)^3`, not merely
+the next-square bound inherited by `ooo_suffix_threshold`. -/
+theorem ooo_residual_ge_cube {q : ℕ} (hq : 5 ≤ q)
+    (hw : follows q [.odd, .odd, .odd]) :
+    (q + 1) ^ 3 ≤ floorPower^[3] q := by
+  have hoo := follows_oo_of_ooo hw
+  have h2 := oo_suffix_threshold hq hoo
+  have hodd2 : floorPower^[2] q % 2 = 1 := by
+    simpa [Function.iterate_succ_apply] using hw.2.2.1
+  have hcube := odd_ge_succ_sq_floorPower_ge_cube hodd2 h2
+  simpa [Function.iterate_succ_apply] using hcube
+
 /-!
 ## Coarse lower growth
 

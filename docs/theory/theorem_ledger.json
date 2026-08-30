@@ -3972,12 +3972,45 @@
   {
     "id": "J-cyclemax-succ-sq",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "On a CycleMin start n ≥ 2 the cycle maximum satisfies (n+1)^2 ≤ M. Equivalently, on a CycleMax the rotated minimum m satisfies (m+1)^2 ≤ M, so T(M) > m. The first-cell family m^2 < M < (m+1)^2 is impossible. Corollary of cycleMin_first_even_overshoots: the first even residual already sits at or above (n+1)^2 and is a cycle state. Lean: cycleMin_max_ge_succ_sq, cycleMax_min_succ_sq_le, cycleMax_landing_gt_min, cycleMax_exists_min_succ_sq in EvenCountThree.lean. Not a first-cell census, not a leftover exclusion, and not a halt theorem. Not imported by JugglerPaper.",
+    "statement": "On a CycleMin start n ≥ 2 the cycle maximum satisfies (n+1)^2 ≤ M. Equivalently, on a CycleMax the rotated minimum m satisfies (m+1)^2 ≤ M, so T(M) > m. The first-cell family m^2 < M < (m+1)^2 is impossible. cycle_distinguished_order_succ_sq is the distinguished-order package with that scale. Corollary of cycleMin_first_even_overshoots: the first even residual already sits at or above (n+1)^2 and is a cycle state. Lean: cycleMin_max_ge_succ_sq, cycleMax_min_succ_sq_le, cycleMax_landing_gt_min, cycleMax_exists_min_succ_sq, cycle_distinguished_order_succ_sq in EvenCountThree.lean. Not a first-cell census, not a leftover exclusion, and not a halt theorem. Not imported by JugglerPaper.",
     "source": "docs/problems/juggler_cycle_extrema.md",
     "lean": "Problems/Juggler/EvenCountThree.lean",
     "tests": [
       "tests/research/juggler_sequence/test_cycle_extrema.py",
       "tests/research/juggler_sequence/test_even_count_three.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-ooo-residual-cube",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "An odd state z ≥ (n+1)^2 has odd-step image at least (n+1)^3. Consequently, on OOO at q ≥ 5 the residual is T^3(q) ≥ (q+1)^3, not merely the next-square bound of ooo_suffix_threshold. On a CycleMin whose first odd run has length at least three, the first three-odd residual is at least (n+1)^3. Lean: odd_ge_succ_sq_floorPower_ge_cube, ooo_residual_ge_cube in Cells.lean; cycleMin_ooo_residual_ge_cube in CycleMinObstruction.lean. The smallest universal local-overshoot A on CycleMin is 2, not 3. Not a halt theorem and not a contained-run prohibition.",
+    "source": "docs/problems/juggler_cyclemin_obstruction.md",
+    "lean": "Problems/Juggler/CycleMinObstruction.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cyclemin_obstruction.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-transport-oo",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "On a CycleMin, after the first O^a E with a ≥ 2, an immediate odd run of length at least two overshoots the landing y = T_{O^a E}(n) > n: the next two-odd residual is at least (y+1)^2, hence at least (n+2)^2. Lean: cycleMin_transport_second_oo, cycleMin_transport_second_oo_ge in CycleMinObstruction.lean. The second residual lies outside the last-even cell when it is not the last even letter. Not a halt theorem, not a four-even assembler, and not a claim that two short odd runs close a cycle.",
+    "source": "docs/problems/juggler_cyclemin_obstruction.md",
+    "lean": "Problems/Juggler/CycleMinObstruction.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cyclemin_obstruction.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-last-cluster",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "Every CycleMin-shaped even-terminating word O^{a0} E ⋯ E with a0 ≥ 2 and e ≥ 4 has last gap in {0,1} or is bootstrap. If the last gap is in {0,1}, the last two-even suffix is an excluded two-even leftover, or the last three-even suffix is an excluded bunched family, or the last cluster is one of the seven bunched-short pairs (b,c) ∈ {(0,0),(1,0),(2,0),(3,0),(0,1),(1,1),(2,1)}. This is a finite last-cluster split, not a word list. The expanding window 4 ≤ e ≤ 6, 7 ≤ o ≤ 14 is computationally empty of missed shapes. The residual family is the bunched-short last cluster. Not a length-11 census, not Z5, not no_cycleMin_four_even, and not a halt theorem.",
+    "source": "docs/problems/juggler_cyclemin_obstruction.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cyclemin_obstruction.py"
     ],
     "related_conjectures": []
   }

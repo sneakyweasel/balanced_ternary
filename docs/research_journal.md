@@ -12283,3 +12283,73 @@ Best next question
 - stop; do not open a first-cell census or dual slack
 ```
 
+## Juggler CycleMin / first-even obstruction
+
+- **Date:** 2026-08-30
+- **Objective:** Globalize the cycle-minimum / first-even obstruction to an unavoidable last-cluster pattern, with exact odd-run and transport inequalities
+- **Hypotheses:** \(A=3\) is not the CycleMin odd-run bound; every CycleMin-shaped word is bootstrap, a last leftover suffix, or a bunched-short last cluster; internal `OO` transports a strict scale bump
+- **Major results:** Classification **CYCLEMIN_OBSTRUCTION_GREEN**. Smallest universal local-overshoot \(A\) is \(2\). `OOO` at \(n\ge 5\) gives \(T^3(n)\ge(n+1)^3\) **EXACT — LEAN VERIFIED**. Internal `OO` after the first even event gives second residual \(\ge(y+1)^2\ge(n+2)^2\) **EXACT — LEAN VERIFIED**. Last-cluster split of every CycleMin-shaped expanding word **EXACT — HUMAN PROOF**; window \(e=4..6\), \(o=7..14\) empty of missed shapes **COMPUTATIONALLY VERIFIED**. Residual family is the seven bunched-short last-cluster types. Ledger rows `J-ooo-residual-cube`, `J-cyclemin-transport-oo`, `J-cyclemin-last-cluster`. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** \(A=3\) is the universal CycleMin odd-run bound; some finite \(A\) forbids contained \(O^aE\) as a prefix; two consecutive short odd runs close a cycle by themselves; \(x/n\) is monotone on every admissible block
+- **Literature:** `J-first-even-overshoots`; `J-even-count-le-three`; first-E \(e=4\) `CLOSE`; necklace slack `REFUTED`; leftover \(Z_4\) `PARK`
+- **Open:** last two-even leftover after an arbitrary CycleMin prefix \(u\). Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** PROMOTE. The split names the residual; the cube and transport inequalities are new exact scale laws, not leftover-cell reparameterizations
+
+```text
+What was learned
+- A=2 already overshoots on CycleMin; A=3 is the n=3 threshold
+- OOO at n>=5 lifts the residual from (n+1)^2 to (n+1)^3
+- internal OO after the first E transports to (y+1)^2
+- transport does not close the cycle when more evens follow
+- the residual is bunched-short last cluster, seven types
+Strongest theorem
+- follows OOO and n>=5 implies T^3(n) >= (n+1)^3;
+  CycleMin plus later OO implies second residual >= (n+2)^2
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- A=3 is the universal CycleMin odd-run bound; contained
+  O^a E is forbidden for some finite A
+Reusable machinery
+- CycleMinObstruction.lean; cube lemmas in Cells.lean;
+  cyclemin_obstruction.py
+Branch status
+- PROMOTE
+Why
+- finite last-cluster split plus two exact inequalities
+  that are not leftover cells
+Best next question
+- last two-even leftover after an arbitrary CycleMin prefix u
+```
+
+## Juggler Lean extrema cleanup
+
+- **Date:** 2026-08-30
+- **Objective:** Apply the extrema/even-count Lean housekeeping: drop the dead lemma, remove the closed-module import, alias the duplicate length helper, and package the sharp distinguished order
+- **Hypotheses:** none; this is placement and corollary packaging of existing theorems
+- **Major results:** `cycleMin_le_cycle_state` / `cycle_min_value_unique` in `CycleCore.lean`. `cycle_distinguished_order` now returns the min rotation. `cycle_distinguished_order_succ_sq` is the `(m+1)^2 ≤ M` package. `cycleMin_max_sqrt_ge` removed. `EvenCountThree` imports `CycleExtrema`, not `CycleDiophantine`. `oddEvenBlock_length` is `length_oddEvenBlock`. Ledger `J-cyclemax-succ-sq` updated. Paper A unchanged
+- **Refuted ideas:** none
+- **Literature:** `J-cyclemax-succ-sq`; cycle extrema `PROMOTE`
+- **Open:** stop. Do not assemble length 11 or four-even
+- **Decision:** PROMOTE. Housekeeping of the already-promoted extrema package
+
+```text
+What was learned
+- the min-orbit comparison was duplicated inside distinguished_order
+- the Diophantine import on EvenCountThree was unused
+- cycleMin_max_sqrt_ge had no callers
+- distinguished_order can carry the rotation witness
+Strongest theorem
+- cycle_distinguished_order_succ_sq: (m+1)^2 ≤ M
+  in the distinguished package
+Strongest refutation
+- none
+Reusable machinery
+- cycleMin_le_cycle_state; cycle_min_value_unique
+Branch status
+- PROMOTE
+Why
+- the Lean layer now states the sharp scale where the
+  package lives, without a new cell
+Best next question
+- stop
+```
+

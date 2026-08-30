@@ -1,5 +1,5 @@
 import Problems.Juggler.LeftoverFamilies
-import Problems.Juggler.CycleDiophantine
+import Problems.Juggler.CycleExtrema
 
 namespace Problems.Juggler
 
@@ -65,6 +65,11 @@ theorem evenCount_add_oddCount : ∀ w : List Branch,
       have ih := evenCount_add_oddCount w
       simp [List.length_cons]
       omega
+
+theorem oddCount_eq_length_sub_evenCount (w : List Branch) :
+    oddCount w = w.length - evenCount w := by
+  have := evenCount_add_oddCount w
+  omega
 
 theorem eq_replicate_odd_of_evenCount_zero {w : List Branch}
     (h : evenCount w = 0) : w = List.replicate w.length Branch.odd := by
@@ -558,8 +563,8 @@ theorem evenCount_oddEvenBlock (a b : ℕ) :
     evenCount_replicate_even]
 
 theorem oddEvenBlock_length (a b : ℕ) :
-    (oddEvenBlock a b).length = a + b := by
-  simp [oddEvenBlock, List.length_append, List.length_replicate]
+    (oddEvenBlock a b).length = a + b :=
+  length_oddEvenBlock a b
 
 /-- Return on the first `O^a E` is an even-count-1 cycle word. -/
 theorem no_cycle_word_oddEvenBlock_one {n a : ℕ} (hn : 2 ≤ n)
@@ -662,7 +667,7 @@ theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
           (n + 1) ^ 2 ≤ floorPower^[i] n := by
   obtain ⟨a, v, hw⟩ := cycleMin_exists_oddEven_split hn h
   have hover := cycleMin_first_even_overshoots hn (by simpa [hw] using h)
-  have ⟨i, hi, hmax, heven, _hgt⟩ := cycleMin_max_gt_sq hn h
+  have ⟨i, hi, hmax, heven⟩ := exists_cycle_max_even hn h.1
   refine ⟨i, hi, hmax, heven, ?_⟩
   have ha : a < w.length := by
     rw [hw, List.length_append, oddEvenBlock_length]
@@ -726,5 +731,24 @@ theorem cycleMax_exists_min_succ_sq {n : ℕ} {w : List Branch}
         (floorPower^[k] n + 1) ^ 2 ≤ n := by
   obtain ⟨k, hk, hmin⟩ := exists_cycleMin hn h.1
   exact ⟨k, hk, hmin, cycleMax_min_succ_sq_le hn h hk hmin⟩
+
+/-- Laboratory sharpening of `cycle_distinguished_order`: first-even
+overshoot replaces `m^2 < M` by `(m+1)^2 ≤ M`. -/
+theorem cycle_distinguished_order_succ_sq {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ m p x r, 2 ≤ m ∧ 2 ≤ p ∧
+      m % 2 = 1 ∧ p % 2 = 1 ∧
+        m ≤ p ∧ p < x ∧ x < n ∧
+          (m + 1) ^ 2 ≤ n ∧
+            1 ≤ r ∧
+              p ^ (2 ^ r) < n ∧ n < (p + 1) ^ (2 ^ r) ∧
+                n ^ 2 ≤ x ^ 3 ∧ x ^ 3 < (n + 1) ^ 2 ∧
+                  m ^ 4 < x ^ 3 := by
+  obtain ⟨k, m, p, x, r, hk, hmin, hm_eq, hm, hp2, hmodd, hpodd, hmlep, hpx,
+      hxn, _hMsq, hr1, hwin, hhi, hxlo, hxhi, hfourth⟩ :=
+    cycle_distinguished_order hn h
+  refine ⟨m, p, x, r, hm, hp2, hmodd, hpodd, hmlep, hpx, hxn, ?_, hr1, hwin,
+    hhi, hxlo, hxhi, hfourth⟩
+  simpa [hm_eq] using cycleMax_min_succ_sq_le hn h hk hmin
 
 end Problems.Juggler

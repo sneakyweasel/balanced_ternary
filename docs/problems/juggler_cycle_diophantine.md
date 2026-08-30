@@ -163,8 +163,9 @@ Added:
 - `topEvenDefect_add` / `_pos` / `_lt` / `_odd`
 - `peak_diophantine_compose` / `peak_diophantine_slack`
 - `cycle_peak_diophantine` / `cycle_peak_diophantine_slack`
-- `cycleWord_not_reachesOne` / `cycleWord_iterate_not_lt_twelve` /
-  `cycle_top_landing_ge_thirteen`
+- `cycle_top_landing_ge_thirteen`
+- `cycleWord_not_reachesOne` / `cycleWord_iterate_not_lt_twelve`
+  (cycle facts; live in `CycleCore.lean`)
 
 Not added: a modular lemma beyond odd/odd, `RemainderDynamics`,
 `Energy`, `OddLanding`, `MilestoneGraph`, `CycleEngine`,

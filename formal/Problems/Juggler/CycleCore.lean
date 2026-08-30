@@ -693,6 +693,76 @@ theorem exists_cycleMin {n : ℕ} {w : List Branch}
   rw [himg, cycle_iterate_mod (k := i + j) h]
   exact hle _ (Nat.mod_lt _ (lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2))
 
+/-- A `CycleMin` rotation starts at a global minimum of the orbit. -/
+theorem cycleMin_le_cycle_state {n : ℕ} {w : List Branch} {k j : ℕ}
+    (h : CycleWord n w) (hk : k < w.length) (hj : j < w.length)
+    (hmin : CycleMin (floorPower^[k] n) (rotateWord w k)) :
+    floorPower^[k] n ≤ floorPower^[j] n := by
+  have hlen : (rotateWord w k).length = w.length := rotateWord_length w k
+  have hL : 0 < w.length :=
+    lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2
+  let t := (j + (w.length - k)) % w.length
+  have ht : t < (rotateWord w k).length := by
+    simpa [t, hlen] using Nat.mod_lt (j + (w.length - k)) hL
+  have himg : floorPower^[t] (floorPower^[k] n) = floorPower^[k + t] n := by
+    simpa [Nat.add_comm] using
+      (Function.iterate_add_apply floorPower t k n).symm
+  have hmod : (k + t) % w.length = j := by
+    have hsum : k + (j + (w.length - k)) = j + w.length := by omega
+    have hred : (k + t) % w.length = (j + w.length) % w.length := by
+      simp only [t]
+      rw [Nat.add_mod_mod, hsum]
+    have hr : (j + w.length) % w.length = j := by
+      rw [Nat.add_mod, Nat.mod_self, Nat.add_zero, Nat.mod_mod]
+      exact Nat.mod_eq_of_lt hj
+    exact hred.trans hr
+  have hpj : floorPower^[k + t] n = floorPower^[j] n := by
+    rw [cycle_iterate_mod h, cycle_iterate_mod (k := j) h, hmod,
+      Nat.mod_eq_of_lt hj]
+  have hge := cycleMin_ge hmin ht
+  simpa [himg, hpj] using hge
+
+theorem cycle_min_value_unique {n : ℕ} {w : List Branch} {k k' : ℕ}
+    (h : CycleWord n w) (hk : k < w.length) (hk' : k' < w.length)
+    (hmin : CycleMin (floorPower^[k] n) (rotateWord w k))
+    (hmin' : CycleMin (floorPower^[k'] n) (rotateWord w k')) :
+    floorPower^[k] n = floorPower^[k'] n :=
+  le_antisymm
+    (cycleMin_le_cycle_state h hk hk' hmin)
+    (cycleMin_le_cycle_state h hk' hk hmin')
+
+/-- A nontrivial cycle cannot reach 1. -/
+theorem cycleWord_not_reachesOne {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) : ¬ReachesOne n := by
+  intro ⟨k, hk⟩
+  have hmod : floorPower^[k] n = floorPower^[k % w.length] n :=
+    cycle_iterate_mod h
+  rw [hmod] at hk
+  have hlenpos : 0 < w.length :=
+    lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2
+  have hlt : k % w.length < w.length := Nat.mod_lt k hlenpos
+  have hge := cycleWord_iterate_ge_two hn h hlt
+  omega
+
+/-- Residual class `R = {1,…,11}` is disjoint from a nontrivial cycle. -/
+theorem cycleWord_iterate_not_lt_twelve {n : ℕ} {w : List Branch} {i : ℕ}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    12 ≤ floorPower^[i] n := by
+  by_contra h12
+  have hmod : floorPower^[i] n = floorPower^[i % w.length] n :=
+    cycle_iterate_mod h
+  have hlenpos : 0 < w.length :=
+    lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2
+  have hlt : i % w.length < w.length := Nat.mod_lt i hlenpos
+  have hge := cycleWord_iterate_ge_two hn h hlt
+  have hpos : 1 ≤ floorPower^[i] n := by
+    have : 2 ≤ floorPower^[i % w.length] n := hge
+    exact le_trans (by decide : (1 : ℕ) ≤ 2) (by simpa [hmod] using this)
+  have hy : floorPower^[i] n < 12 := Nat.lt_of_not_ge h12
+  have hR : ReachesOne (floorPower^[i] n) :=
+    reachesOne_of_lt_twelve hpos hy
+  exact cycleWord_not_reachesOne hn h (reachesOne_of_iterate rfl hR)
+
 /-- Internal `E` plus a next-square suffix contradicts the last-even cell
 on a cycle minimum. `y ≥ n` is enough; `y > n` is not required. -/
 theorem no_cycleMin_internal_even_threshold {u v : List Branch} {N : ℕ}

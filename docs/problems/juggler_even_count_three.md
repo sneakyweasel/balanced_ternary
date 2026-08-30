@@ -124,7 +124,8 @@ It is not required.
 - cycle maximum sits at or above \((m+1)^2\) —
   **EXACT — LEAN VERIFIED**
   (`cycleMin_max_ge_succ_sq`, `cycleMax_min_succ_sq_le`,
-  `cycleMax_landing_gt_min`)
+  `cycleMax_landing_gt_min`,
+  `cycle_distinguished_order_succ_sq`)
 - cycles of length 11 or more are impossible — not claimed
 - four-even leftovers die — not claimed
 - global halt — not claimed
@@ -163,8 +164,9 @@ stronger claims that remain unproved:
 `cycleMin_first_even_overshoots`,
 `cycleMin_max_ge_succ_sq`,
 `cycleMax_min_succ_sq_le`,
-`cycleMax_landing_gt_min`, and
-`cycleMax_exists_min_succ_sq`. `SmallCycleCensus.lean` still
+`cycleMax_landing_gt_min`,
+`cycleMax_exists_min_succ_sq`, and
+`cycle_distinguished_order_succ_sq`. `SmallCycleCensus.lean` still
 assembles only through length seven. `LengthEightCensus.lean` remains
 the laboratory length-8 assembler. No `no_cycle_word_length_nine`.
 No `no_cycle_word_length_le_nine`. No `sorry`. No halt theorem.

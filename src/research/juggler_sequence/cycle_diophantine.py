@@ -163,8 +163,16 @@ def lean_api_present() -> dict[str, bool]:
     floor = engine_floor_text()
     progress = PROGRESS_PATH.read_text(encoding="utf-8")
     combined = text + cycle + corpus + progress
+    core_cycle_facts = {
+        "cycleWord_not_reachesOne",
+        "cycleWord_iterate_not_lt_twelve",
+    }
     named = {
-        name: f"theorem {name}" in text or f"def {name}" in text
+        name: (
+            f"theorem {name}" in text
+            or f"def {name}" in text
+            or (name in core_cycle_facts and f"theorem {name}" in corpus)
+        )
         for name in LEAN_THEOREMS
     }
     return {

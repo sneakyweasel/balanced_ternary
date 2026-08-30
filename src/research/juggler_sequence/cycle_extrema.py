@@ -45,7 +45,6 @@ LEAN_THEOREMS = (
     "exists_cycle_max_even",
     "cycleMax_start_even",
     "cycleMin_max_gt_sq",
-    "cycleMin_max_sqrt_ge",
     "cycleMax_return_cell",
     "square_scale_superquadratic",
     "cycleMin_to_even_superquadratic",
@@ -58,6 +57,7 @@ SUCC_SQ_THEOREMS = (
     "cycleMax_min_succ_sq_le",
     "cycleMax_landing_gt_min",
     "cycleMax_exists_min_succ_sq",
+    "cycle_distinguished_order_succ_sq",
 )
 
 CERTIFICATE_UNCHANGED = (
@@ -256,6 +256,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["cycleMax_min_succ_sq_le"]
         and lean["cycleMax_landing_gt_min"]
         and lean["cycleMax_exists_min_succ_sq"]
+        and lean["cycle_distinguished_order_succ_sq"]
         and lean["no_length_six_theorem"]
         and lean["no_cycle_engine"]
         and lean["FloorPower_not_rewritten"]

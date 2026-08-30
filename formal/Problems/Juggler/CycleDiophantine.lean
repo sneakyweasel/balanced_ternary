@@ -148,38 +148,6 @@ theorem cycle_peak_diophantine_slack {n : ℕ} {w : List Branch}
   refine ⟨r, p, x, hr1, hpdef, hxdef, ?_⟩
   exact peak_diophantine_slack hxodd hTx (by simpa [hpdef] using hlo)
 
-/-- A nontrivial cycle cannot reach 1. -/
-theorem cycleWord_not_reachesOne {n : ℕ} {w : List Branch}
-    (hn : 2 ≤ n) (h : CycleWord n w) : ¬ReachesOne n := by
-  intro ⟨k, hk⟩
-  have hmod : floorPower^[k] n = floorPower^[k % w.length] n :=
-    cycle_iterate_mod h
-  rw [hmod] at hk
-  have hlenpos : 0 < w.length :=
-    lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2
-  have hlt : k % w.length < w.length := Nat.mod_lt k hlenpos
-  have hge := cycleWord_iterate_ge_two hn h hlt
-  omega
-
-/-- Residual class `R = {1,…,11}` is disjoint from a nontrivial cycle. -/
-theorem cycleWord_iterate_not_lt_twelve {n : ℕ} {w : List Branch} {i : ℕ}
-    (hn : 2 ≤ n) (h : CycleWord n w) :
-    12 ≤ floorPower^[i] n := by
-  by_contra h12
-  have hmod : floorPower^[i] n = floorPower^[i % w.length] n :=
-    cycle_iterate_mod h
-  have hlenpos : 0 < w.length :=
-    lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2
-  have hlt : i % w.length < w.length := Nat.mod_lt i hlenpos
-  have hge := cycleWord_iterate_ge_two hn h hlt
-  have hpos : 1 ≤ floorPower^[i] n := by
-    have : 2 ≤ floorPower^[i % w.length] n := hge
-    exact le_trans (by decide : (1 : ℕ) ≤ 2) (by simpa [hmod] using this)
-  have hy : floorPower^[i] n < 12 := Nat.lt_of_not_ge h12
-  have hR : ReachesOne (floorPower^[i] n) :=
-    reachesOne_of_lt_twelve hpos hy
-  exact cycleWord_not_reachesOne hn h (reachesOne_of_iterate rfl hR)
-
 /-- Cycle-only upgrade `2 ≤ p` to `13 ≤ p`. Not a modular obstruction. -/
 theorem cycle_top_landing_ge_thirteen {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleMax n w) :
