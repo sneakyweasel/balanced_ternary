@@ -11787,3 +11787,39 @@ Best next question
 - stop
 ```
 
+## Juggler leftover-cell lag
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether the leftover-cell lag of \(O^{a_*(e)}E^e\) stays 1 as \(e\) grows, or grows
+- **Hypotheses:** lag grows with \(e\), so leftover induction is permanently parked for \(e\ge 4\)
+- **Major results:** classification **LEFTOVER_CELL_LAG_STAYS_ONE**. Lags on \(e=2..16\) are \(0,0,1,1,0,1,1,0,0,1,1,0,1,1,0\). Max lag 1. \(N_0(a_*+1)\le 59\). \(e=4\) recovers \(N_0(7)=828\,484\,409\), \(N_0(8)=37\). No Lean. No \(Z_5\). Not a halt theorem
+- **Refuted ideas:** leftover-cell lag grows with \(e\); leftover induction is a step on the even count
+- **Literature:** `leftover_prefix_cell`; two-even \(N_0=205\); four-even short-gap `PARK`; tight \(Z_4\) `CLOSE`
+- **Open:** stop on leftover-cell induction. Remaining cycle target is \(O^7\mathrm{EEEE}\)
+- **Decision:** CLOSE. Growth is false on the window. Raising \(e\) is a census, not a method
+
+```text
+What was learned
+- a_*(e) is the first a with 2^{a+e} < 3^a
+- the trailing-evens cell is leftover_prefix_cell
+  with Z=(n+1)^{2^e}
+- lag is 0 or 1 through e=16; it does not grow
+- a_*+1 always fires with N0<=59
+- e=4 is the known leak, not a new pattern
+- leftover induction remains a per-e census
+Strongest theorem
+- none; the table is COMPUTATIONALLY VERIFIED
+Strongest refutation
+- leftover-cell lag grows with e
+Reusable machinery
+- leftover_cell_lag.py; no Lean
+Branch status
+- CLOSE
+Why
+- the fork is decided: lag stays 1, so leftover
+  cells do not become an induction by raising e
+Best next question
+- inverse cells or a modular empty window for
+  O^7 EEEE, not Z5
+```
+
