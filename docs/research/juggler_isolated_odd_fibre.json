@@ -1,0 +1,199 @@
+{
+  "experiment": "juggler_isolated_odd_fibre",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_min": 12,
+    "n_hi": 151,
+    "a0_max": 8,
+    "e_min": 5,
+    "e_max": 6,
+    "four_even_excluded": true,
+    "window": {
+      "word_count": 588,
+      "e_counts": {
+        "5": 196,
+        "6": 392
+      },
+      "follows": 34,
+      "stay": 0,
+      "fibre": 0,
+      "cycle_count": 0,
+      "fibre_stay": 0,
+      "fibre_dip": 0,
+      "pair_counts": {},
+      "cycles": [],
+      "dip_samples": [],
+      "stay_samples": [],
+      "follow_samples": [
+        {
+          "n": 25,
+          "word": "OOOEEOEOEE",
+          "a0": 3,
+          "y0": 228,
+          "y": 7,
+          "img": 2,
+          "path_min": 2,
+          "stayed": false
+        },
+        {
+          "n": 25,
+          "word": "OOOEEOEOEEE",
+          "a0": 3,
+          "y0": 228,
+          "y": 4,
+          "img": 1,
+          "path_min": 1,
+          "stayed": false
+        },
+        {
+          "n": 33,
+          "word": "OOEEOEEE",
+          "a0": 2,
+          "y0": 50,
+          "y": 4,
+          "img": 1,
+          "path_min": 1,
+          "stayed": false
+        },
+        {
+          "n": 35,
+          "word": "OOEEOEEE",
+          "a0": 2,
+          "y0": 54,
+          "y": 4,
+          "img": 1,
+          "path_min": 1,
+          "stayed": false
+        },
+        {
+          "n": 39,
+          "word": "OOOEEOEOOEOE",
+          "a0": 3,
+          "y0": 482,
+          "y": 9,
+          "img": 6,
+          "path_min": 6,
+          "stayed": false
+        },
+        {
+          "n": 49,
+          "word": "OOEOEEOOEE",
+          "a0": 2,
+          "y0": 79,
+          "y": 5,
+          "img": 2,
+          "path_min": 2,
+          "stayed": false
+        },
+        {
+          "n": 59,
+          "word": "OOOEEOEOEE",
+          "a0": 3,
+          "y0": 972,
+          "y": 13,
+          "img": 2,
+          "path_min": 2,
+          "stayed": false
+        },
+        {
+          "n": 59,
+          "word": "OOOEEOEOEEE",
+          "a0": 3,
+          "y0": 972,
+          "y": 6,
+          "img": 1,
+          "path_min": 1,
+          "stayed": false
+        },
+        {
+          "n": 73,
+          "word": "OOEEOEEE",
+          "a0": 2,
+          "y0": 124,
+          "y": 6,
+          "img": 1,
+          "path_min": 1,
+          "stayed": false
+        },
+        {
+          "n": 75,
+          "word": "OOOEEEEE",
+          "a0": 3,
+          "y0": 1458,
+          "y": 6,
+          "img": 1,
+          "path_min": 1,
+          "stayed": false
+        },
+        {
+          "n": 81,
+          "word": "OOOEOEEEE",
+          "a0": 3,
+          "y0": 1661,
+          "y": 16,
+          "img": 2,
+          "path_min": 2,
+          "stayed": false
+        },
+        {
+          "n": 81,
+          "word": "OOOEOEEEEE",
+          "a0": 3,
+          "y0": 1661,
+          "y": 4,
+          "img": 1,
+          "path_min": 1,
+          "stayed": false
+        }
+      ],
+      "a0_follows": {
+        "2": 21,
+        "3": 10,
+        "5": 3
+      }
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "leftover_suffix_retest": false,
+    "preimage_enumerator": false,
+    "raise_above_retest": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_ge_twelve": true,
+    "cycleMin_first_even_overshoots": true,
+    "oe_block_contracts": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "no_new_lean": true
+  },
+  "decision": {
+    "classification": "ISO_FIBRE_PARK",
+    "reason": "no isolated-odd e=5,6 prefix landed in the exact short-tail fibre on 13 <= n < 151; the 34 follows all drop below n (a0 in {2,3,5}) by isolated OE/EE contraction, so they are not CycleMin; that is a finite empty window, not a transport theorem, and e=4 stays the parked four-even cell"
+  },
+  "search_method": "forward isolated-odd bunched-short words with e=5,6; exact tail return scored as fibre membership; e=4 excluded as the parked four-even cell; no leftover-suffix, no Z5, no length-11"
+}

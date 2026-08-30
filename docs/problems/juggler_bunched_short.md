@@ -156,6 +156,8 @@ The first-even-overshoot plus later-`OO` attack is also parked
 ([juggler_front_overshoot.md](juggler_front_overshoot.md)).
 The exact-return attack \(S_{b,c}(y)=n\) is also parked
 ([juggler_bunched_short_return.md](juggler_bunched_short_return.md)).
+The isolated-odd prefix attack is **CLOSE**
+([juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)).
 Do not write \(Z_5\). Do not assemble
 `no_cycle_word_length_eleven`. Do not reopen four-even cells.
 
@@ -169,7 +171,8 @@ cycle word is impossible.
 Best next question: answered in
 [juggler_bunched_short_front.md](juggler_bunched_short_front.md),
 [juggler_front_overshoot.md](juggler_front_overshoot.md),
-and [juggler_bunched_short_return.md](juggler_bunched_short_return.md).
+[juggler_bunched_short_return.md](juggler_bunched_short_return.md),
+and [juggler_isolated_odd_return.md](juggler_isolated_odd_return.md).
 
 ## Publication assessment
 

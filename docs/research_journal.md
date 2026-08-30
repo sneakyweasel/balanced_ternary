@@ -12597,3 +12597,71 @@ Best next question
 - isolated-odd CycleMin prefix landing in the (eps, eta) fibre
 ```
 
+## Juggler isolated-odd prefixes versus the exact short-tail fibre
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether an isolated-odd CycleMin prefix (no `OO` between the first even and the last cluster) can land in the exact short-tail fibre while staying `≥ n`
+- **Hypotheses:** isolated-odd `OE`/`EE` transport after the first-even overshoot cannot hit the `(eps, eta)` fibre on a CycleMin
+- **Major results:** Classification **ISO_FIBRE_PARK**. 588 words with `e∈{5,6}`; on odd `13≤n<151` there are 34 follows, 0 paths stay `≥ n`, 0 fibre hits, 0 CycleMin returns — **COMPUTATIONALLY VERIFIED** (`J-cyclemin-iso-odd-fibre`). Follows only at `a0∈{2,3,5}`; after the first-even overshoot the isolated middle collapses below `n`. `e=4` is the parked four-even cell and was not reopened. No Lean. No `Z_5`. No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** an isolated-odd `e≥5` CycleMin-shaped word stays `≥ n` through a short tail in this window; those prefixes hit the exact fibre
+- **Literature:** defect-closure `PARK`; leftover-suffix / predecessor / front overshoot `PARK`; four-even short-gap `PARK`; `oe_block_contracts`
+- **Open:** none on this line. Do not reopen four-even cells. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** PARK. An empty finite window is not a Lean transport theorem
+
+```text
+What was learned
+- isolated-odd e>=5 is a genuine word class (588 shapes in the cut)
+- 34 follows all drop below n after the first-even overshoot
+- none land in the exact fibre; none are CycleMin
+- follows occur only at a0 in {2,3,5}
+- e=4 isolated-odd stays the parked four-even cell
+Strongest theorem
+- none; the window is COMPUTATIONALLY VERIFIED empty
+Strongest refutation
+- 81 follows OOOEOEEEE and drops to min 2, extending the
+  parked 81 -> 16 leftover return
+Reusable machinery
+- isolated_odd_fibre.py forward iso-odd scan
+Branch status
+- PARK
+Why
+- the fibre is empty in a finite window and every follow
+  contracts below n; that is not a parameterized exclusion
+Best next question
+- none on this line; do not reopen four-even cells
+```
+
+## Juggler isolated-odd prefixes versus short-tail return fibres
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether an isolated-odd CycleMin prefix can land in \(R_{b,c}(n)\)
+- **Hypotheses:** isolated-odd block structure imposes a landing signature that exact short-tail closure cannot satisfy
+- **Major results:** Classification **ISO_ODD_RETURN_CLOSE**. \(B=T_{OE}\) always contracts (`oe_block_contracts`). The only isolated-odd CycleMin prefixes are empty and `O`. Those plus a short tail are CycleWords of length \(\le 6\) (`no_cycle_word_length_le_six`). Through odd \(12\le n<64\) the 170-word isolated-odd family has 52 landings, all on empty or `O`, and 0 fibre hits. Ledger row `J-cyclemin-iso-odd-return`. No new Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** \(B\) can expand or fix an odd start; \((OE)^r\) or \(OEE\cdots\) can stay CycleMin; \(P_{\mathrm{iso}}\) is large enough to meet the abundant `EE` fibre
+- **Literature:** `oe_block_contracts`; length-\(\le 6\) census; exact-return `PARK`; defect `PARK`
+- **Open:** CycleMin prefixes with \(a_0\ge 2\). Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** CLOSE. The empty intersection is a reparameterization of two existing Lean lemmas
+
+```text
+What was learned
+- B(x)=T_OE(x)<x whenever OE follows (Lean, and 43/43 through 200)
+- an isolated-odd prefix that contains OE is not CycleMin
+- P_iso(n) = {n, T_O(n)}
+- n is odd, so n is not in the even EE fibre
+- empty or O plus a short tail is a CycleWord of length <= 6
+Strongest theorem
+- P_iso(n) ∩ R_{b,c}(n) = ∅ (REPARAMETERIZATION)
+Strongest refutation
+- B can expand; (OE)^r stays CycleMin
+Reusable machinery
+- isolated_odd_return.py family generator and forward R test
+Branch status
+- CLOSE
+Why
+- the preferred exclusion is true, but it is exactly
+  oe_block_contracts plus no_cycle_word_length_le_six
+Best next question
+- the a0>=2 isolated-odd-after-first-E line is already PARK;
+  do not reopen four-even cells
+```
+

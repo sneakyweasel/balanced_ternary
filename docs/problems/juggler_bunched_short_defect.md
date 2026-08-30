@@ -192,10 +192,12 @@ theorem.
 
 ## Open questions
 
-The leftover residual is still a bunched-short last cluster,
-now with an explicit surviving algebraic family: the `EE` fibre
-parametrized by \((\varepsilon,\eta)\), and the thin last-odd
-layer for \(c=1\). Do not write \(Z_5\). Do not assemble
+Prefixes with no `OO` at all cannot occupy the fibre
+([juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)).
+Prefixes with \(a_0\ge 2\) that stay isolated-odd after the
+first even are parked
+([juggler_isolated_odd_fibre.md](juggler_isolated_odd_fibre.md)).
+Do not write \(Z_5\). Do not assemble
 `no_cycle_word_length_eleven`. Do not reopen leftover-suffix
 tables, raise-above, or \(y\)-preimage enumeration.
 
@@ -206,9 +208,9 @@ is satisfiable with ordinary unrestricted defects. It is the
 leftover `EE` cell in other coordinates, not a new obstruction.
 Do not claim that every cycle word is impossible.
 
-Best next question: can an isolated-odd `CycleMin` prefix land
-in the surviving \((\varepsilon,\eta)\) family — transport into
-the exact fibre, not another defect rewrite.
+Best next question: answered in
+[juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)
+and [juggler_isolated_odd_fibre.md](juggler_isolated_odd_fibre.md).
 
 ## Publication assessment
 

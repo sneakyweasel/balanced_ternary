@@ -201,6 +201,8 @@ all parked
 [juggler_bunched_short_front.md](juggler_bunched_short_front.md),
 [juggler_front_overshoot.md](juggler_front_overshoot.md),
 [juggler_bunched_short_return.md](juggler_bunched_short_return.md)).
+The isolated-odd prefix attack is **CLOSE**
+([juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)).
 The leftover residual is a bunched-short last cluster with no
 later \(OO\).
 

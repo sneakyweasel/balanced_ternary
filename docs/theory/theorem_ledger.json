@@ -4233,5 +4233,27 @@
       "tests/research/juggler_sequence/test_bunched_short_defect.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-iso-odd-return",
+    "tag": "REPARAMETERIZATION",
+    "statement": "An isolated-odd CycleMin prefix u (every maximal odd run has length 1) cannot land in a bunched-short return fibre R_{b,c}(n). Any such u that completes OE contracts below n by oe_block_contracts, so the only CycleMin-admissible isolated-odd prefixes are empty and O. Those plus O^b E O^c E are CycleWords of length at most 6, excluded by no_cycle_word_length_le_six. Therefore P_iso(n) ∩ R_{b,c}(n) is empty. This is not a new obstruction, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_isolated_odd_return.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_isolated_odd_return.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-iso-odd-fibre",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "On odd 13 ≤ n < 151, no isolated-odd bunched-short word with e in {5,6} and 2 ≤ a0 ≤ 8 lands in the exact short-tail fibre T_{O^b E O^c E}(y) = n. There are 588 such words. 34 follow; all drop below n (a0 in {2,3,5}); none stay ≥ n; none are CycleMin. The e=4 isolated-odd remainder is the parked four-even cell and is not included. This is a finite window, not a parameterized Lean transport theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_isolated_odd_fibre.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_isolated_odd_fibre.py"
+    ],
+    "related_conjectures": []
   }
 ]

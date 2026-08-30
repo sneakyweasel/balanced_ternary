@@ -229,6 +229,8 @@ defect-closure attacks remain parked
 [juggler_bunched_short_front.md](juggler_bunched_short_front.md),
 [juggler_front_overshoot.md](juggler_front_overshoot.md),
 [juggler_bunched_short_defect.md](juggler_bunched_short_defect.md)).
+The isolated-odd prefix attack is **CLOSE**
+([juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)).
 Do not write \(Z_5\). Do not assemble
 `no_cycle_word_length_eleven`. Do not reopen four-even cells
 or the interval seal \(S\notin[n,y]\).
@@ -242,11 +244,11 @@ reusable A/B/C exclusion. Terminal arithmetic alone does not
 control the seven-family class. Do not claim that every cycle
 word is impossible.
 
-Best next question: answered in part by
-[juggler_bunched_short_defect.md](juggler_bunched_short_defect.md)
-(exact closure is an ordinary defect identity). The leftover
-question is still whether an isolated-odd `CycleMin` prefix can
-land in the surviving \((\varepsilon,\eta)\) fibre.
+Best next question: answered in
+[juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)
+and [juggler_isolated_odd_fibre.md](juggler_isolated_odd_fibre.md).
+Isolated-odd prefixes cannot land in \(R_{b,c}(n)\). The leftover
+question is a `CycleMin` prefix with \(a_0\ge 2\).
 
 ## Publication assessment
 

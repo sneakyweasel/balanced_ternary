@@ -1,0 +1,144 @@
+{
+  "experiment": "juggler_isolated_odd_return",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "block": {
+      "x_max": 200,
+      "follows": 43,
+      "contracts": 43,
+      "expands": 0,
+      "fixed": 0,
+      "odd_landings": 19,
+      "even_landings": 24,
+      "samples": [
+        {
+          "x": 7,
+          "B": 4
+        },
+        {
+          "x": 11,
+          "B": 6
+        },
+        {
+          "x": 13,
+          "B": 6
+        },
+        {
+          "x": 15,
+          "B": 7
+        },
+        {
+          "x": 17,
+          "B": 8
+        },
+        {
+          "x": 19,
+          "B": 9
+        }
+      ],
+      "always_contracts": true
+    },
+    "census": {
+      "n_max": 64,
+      "family_size": 170,
+      "landing_count": 52,
+      "admissible_words": [
+        "",
+        "O"
+      ],
+      "extra_cyclemin_prefixes": 0,
+      "hits": [],
+      "hit_count": 0,
+      "landings_head": [
+        {
+          "n": 13,
+          "u": "",
+          "y": 13,
+          "r_blocks": 0,
+          "ends_odd": false
+        },
+        {
+          "n": 13,
+          "u": "O",
+          "y": 46,
+          "r_blocks": 0,
+          "ends_odd": true
+        },
+        {
+          "n": 15,
+          "u": "",
+          "y": 15,
+          "r_blocks": 0,
+          "ends_odd": false
+        },
+        {
+          "n": 15,
+          "u": "O",
+          "y": 58,
+          "r_blocks": 0,
+          "ends_odd": true
+        },
+        {
+          "n": 17,
+          "u": "",
+          "y": 17,
+          "r_blocks": 0,
+          "ends_odd": false
+        },
+        {
+          "n": 17,
+          "u": "O",
+          "y": 70,
+          "r_blocks": 0,
+          "ends_odd": true
+        }
+      ]
+    },
+    "short": {
+      "empty_hits": 0,
+      "single_o_hits": 0,
+      "composed_len_max": 6
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "interval_census": false,
+    "fibre_enumeration": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "oe_block_contracts": true,
+    "oe_block_scale": true,
+    "no_cycle_word_length_le_six": true,
+    "CycleMin": true,
+    "cycleMin_ge_twelve": true,
+    "CycleWord": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "ISO_ODD_RETURN_CLOSE",
+    "reason": "OE contracts below the CycleMin floor, so the only isolated-odd prefixes are empty and O; those plus a short tail are CycleWords of length at most 6"
+  },
+  "search_method": "OE block map; isolated-odd family landings; forward membership in R_{b,c}; no fibre enumeration"
+}

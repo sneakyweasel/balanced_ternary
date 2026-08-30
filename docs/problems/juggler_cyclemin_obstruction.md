@@ -210,6 +210,8 @@ exact-return attacks on bunched-short are parked
 [juggler_bunched_short_front.md](juggler_bunched_short_front.md),
 [juggler_front_overshoot.md](juggler_front_overshoot.md),
 [juggler_bunched_short_return.md](juggler_bunched_short_return.md)).
+The isolated-odd prefix attack is **CLOSE**
+([juggler_isolated_odd_return.md](juggler_isolated_odd_return.md)).
 The residual named here is still bunched-short last cluster. Do not
 write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
 
