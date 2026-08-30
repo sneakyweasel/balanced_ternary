@@ -12979,4 +12979,78 @@ Best next question
   still give a finite even/odd trap?
 ```
 
+## Juggler hidden state of the coarse scale loop
+
+- **Date:** 2026-08-30
+- **Objective:** Find the smallest exact refinement that breaks the apparent \(C_2\to C_4\to C_2\to C_1\) recurrence
+- **Hypotheses:** a hidden carry/defect/\(2\)-adic state drifts; the exact signature can repeat; scale+parity is Markov
+- **Major results:** Classification **SCALE_LOOP_GREEN**. Even-even \(C_2\to C_4\to C_2\to C_1\) is the one-shot word `OOEOOOEOOEE`; \(C_1^{\mathrm{pre}}=C_1^{\mathrm{post}}\) iff \(t=n\) — **EXACT — HUMAN PROOF** (`J-cyclemin-scale-loop-oneshot`). Exact signature repeat, scale+parity Markov, and a distinguished \(2\)-adic hidden state — **REFUTED** (`J-cyclemin-scale-loop-signature-repeats`): `501\to 763` then drop to `34`; `6187\to 11189\to 1087`; `501` versus `763` are the same \(C_1\)-odd with different futures. Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** Outcome A (signature repeats); \((C_1,\mathrm{odd})\) determines the next first-`OOO`; \(2\)-adic carry as the missing state; one-way defect \(\Phi\)
+- **Literature:** second-`OO` envelopes; `q^{256}\le n^{729}`; `OOEOOOEOOEE` does not contract
+- **Open:** after \(C_1^{\mathrm{post}}\), does the \(2187/2048\) envelope force the `OE` drop of \(6187\)? Do not build a \(p\)-adic system
+- **Decision:** PROMOTE the pre/post refinement. The coarse cycle is a projection artifact
+
+```text
+What was learned
+- C2-C4-C2-C1 is the word OOEOOOEOOEE, not a repeating machine
+- C1-pre and C1-post coincide iff t = n
+- 501 vs 763: same scale+parity, different futures
+- 6187 returns and drops by OE; each orbit has one coarse hit
+- 2-adic digits are not a distinguished hidden state
+Strongest theorem
+- even-even scale loop = OOEOOOEOOEE;
+  C1-post = C1-pre iff t = n
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- signature repeat / scale+parity Markov / 2-adic H
+  (501 -> 763 -> 34; 6187 -> 11189 -> 1087)
+Reusable machinery
+- scale_loop_hidden.py loop records and C1 collision
+Branch status
+- PROMOTE
+Why
+- the scale graph cycled because it forgot word-progress;
+  the refined pre/post bit makes the return one-way
+Best next question
+- after C1-post, does 2187/2048 force the 6187 OE drop,
+  or can a 501-type OOE continuation pay a later OOO?
+```
+
+## Juggler expanding-residual concatenation
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether infinite PE concatenation without a contracting word is a stricter class than `MinimalNonTerm`
+- **Hypotheses:** either a CE realizes a contracting concatenation, or the leftover is the same unbounded CE branch
+- **Major results:** Classification **EXPANDING_CONCAT_CE_CLOSE**. Expanding words are closed under concatenation — **EXACT — LEAN VERIFIED** (`J-exponent-expanding-append`). A CE never realizes an exponent-gap word, so every realized prefix is prefix-noncontracting — **EXACT — LEAN VERIFIED** (`J-minimal-prefix-noncontracting`). Infinite PE concatenation without a contracting word is the unbounded CE leftover rewritten — **REPARAMETERIZATION** (`J-expanding-concat-is-ce`). Window \(n<801\): \(87/87\) persistent blocks expand; concatenations stay expanding; \(83\) later residuals stay above the original start while contracting versus their own \(x\) (not PE). Prefix \(365\to 763\to 1749\to 4447\) is three expanding `OOE`. Laboratory barrel only. Paper A unchanged. No halt theorem. No finite PE-run bound
+- **Refuted ideas:** the leftover is a stricter combinatorial PE class; formal contraction kills a PE concatenation; \(y\ge n\) is already persistence
+- **Literature:** `exponentExpanding`; `power_bound_contracts`; `minimal_nonterm_no_descent`; `EXPANDING_GRAMMAR_IS_PERSISTENCE`; non-escape spine
+- **Open:** after the CE `OOEOOE` trap forces `OOEOOEOO`, does the completed third residual drop below \(n\) or remain a PE block? Do not auto-continue. Do not reopen the expanding-grammar obstruction
+- **Decision:** CLOSE the leftover as a reparameterization of `MinimalNonTerm`. Do not claim that PE chains are finite. Do not claim that escape is impossible
+
+```text
+What was learned
+- expanding words are closed under concatenation
+- a CE never realizes an exponent-gap word
+- every realized CE prefix is prefix-noncontracting
+- 87/87 persistent blocks in n<801 expand
+- y >= n with a contracting block is not PE
+Strongest theorem
+- exponentExpanding u and exponentExpanding v =>
+  exponentExpanding (u ++ v)
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- infinite PE concat without a contracting word is a
+  stricter class than MinimalNonTerm
+Reusable machinery
+- exponentExpanding_append; CE prefix-NC in Escape.lean
+Branch status
+- CLOSE
+Why
+- the new exact facts identify the leftover with the
+  unbounded CE branch; they do not shrink it
+Best next question
+- after the CE OOEOOE trap forces OOEOOEOO, does the
+  completed third residual drop below n or remain PE?
+```
+
 

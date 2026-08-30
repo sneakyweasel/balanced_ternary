@@ -69,15 +69,13 @@ def concat_expanding(blocks: list[tuple[int, int]]) -> bool:
 
 def chain_blocks(n: int) -> list[dict[str, Any]]:
     rows = []
-    blocks: list[tuple[int, int]] = []
-    contracting_stay = 0
+    pe_blocks: list[tuple[int, int]] = []
     for row in residual_chain(n, max_steps=CHAIN_CAP):
         a, b = int(row["a"]), int(row["b"])
         expanding = is_expanding(a, a + b)
-        stay = row["y"] >= n
-        if stay and not expanding:
-            contracting_stay += 1
-        blocks.append((a, b))
+        persistent = bool(row["persistent"])
+        if persistent:
+            pe_blocks.append((a, b))
         rows.append(
             {
                 "x": row["x"],
@@ -85,20 +83,24 @@ def chain_blocks(n: int) -> list[dict[str, Any]]:
                 "b": b,
                 "y": row["y"],
                 "expanding": expanding,
-                "stay": stay,
-                "persistent": row["persistent"],
-                "concat_expanding": concat_expanding(blocks),
+                "stay": row["y"] >= n,
+                "persistent": persistent,
+                "concat_expanding": (
+                    concat_expanding(pe_blocks) if pe_blocks else True
+                ),
             }
         )
     return rows
 
 
 def scan_window(n_hi: int = N_HI) -> dict[str, Any]:
-    stay_blocks = 0
-    expanding_stay = 0
-    contracting_stay = 0
+    pe_blocks = 0
+    expanding_pe = 0
+    contracting_pe = 0
     concat_fail = 0
     pe_runs = 0
+    stay_above_start = 0
+    contracting_above_start = 0
     samples: list[dict[str, Any]] = []
     for n in range(13, n_hi, 2):
         rows = chain_blocks(n)
@@ -107,26 +109,31 @@ def scan_window(n_hi: int = N_HI) -> dict[str, Any]:
         pe = 0
         for row in rows:
             if row["stay"]:
-                stay_blocks += 1
-                if row["expanding"]:
-                    expanding_stay += 1
-                else:
-                    contracting_stay += 1
-                if not row["concat_expanding"]:
-                    concat_fail += 1
+                stay_above_start += 1
+                if not row["expanding"]:
+                    contracting_above_start += 1
             if row["persistent"]:
                 pe += 1
+                pe_blocks += 1
+                if row["expanding"]:
+                    expanding_pe += 1
+                else:
+                    contracting_pe += 1
+                if not row["concat_expanding"]:
+                    concat_fail += 1
         if pe:
             pe_runs += 1
         if n in ESCAPE_PREFIX or (len(samples) < 6 and pe >= 2):
             samples.append({"n": n, "blocks": rows[:4], "pe": pe})
     return {
         "n_hi": n_hi,
-        "stay_blocks": stay_blocks,
-        "expanding_stay": expanding_stay,
-        "contracting_stay": contracting_stay,
+        "pe_blocks": pe_blocks,
+        "expanding_pe": expanding_pe,
+        "contracting_pe": contracting_pe,
         "concat_fail": concat_fail,
         "pe_runs": pe_runs,
+        "stay_above_start": stay_above_start,
+        "contracting_above_start": contracting_above_start,
         "samples": samples,
     }
 
@@ -194,10 +201,10 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         return {"classification": CLASS_INCOMPLETE, "reason": "out-of-scope search"}
     window = scan["window"]
     prefix = scan["prefix_365"]
-    if window["contracting_stay"] or window["concat_fail"]:
+    if window["contracting_pe"] or window["concat_fail"]:
         return {
             "classification": CLASS_REMAINS,
-            "reason": "a stay-above residual block was formally contracting",
+            "reason": "a persistent residual block was formally contracting",
         }
     if not prefix["each_expanding"] or not prefix["concat_expanding"]:
         return {
@@ -240,8 +247,8 @@ def probe_payload() -> dict[str, Any]:
         "lean": lean,
         "decision": decision,
         "search_method": (
-            "residual chains on odd starts; stay-above blocks checked "
-            "for 2^{a+b} < 3^a; concatenations checked; Lean append "
+            "residual chains on odd starts; persistent blocks checked "
+            "for 2^{a+b} < 3^a; PE concatenations checked; Lean append "
             "and CE prefix-NC; no halt theorem"
         ),
     }
@@ -281,9 +288,10 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"- engine control layer modified: `{payload['engine_control_layer_modified']}`",
         f"- classification: **{decision['classification']}**",
         f"- sorry-free: `{lean['sorry_free']}`",
-        f"- stay blocks expanding: `{window['expanding_stay']}` / `{window['stay_blocks']}`",
-        f"- contracting stay: `{window['contracting_stay']}`",
+        f"- PE blocks expanding: `{window['expanding_pe']}` / `{window['pe_blocks']}`",
+        f"- contracting PE: `{window['contracting_pe']}`",
         f"- concat fail: `{window['concat_fail']}`",
+        f"- contracting above start (not PE): `{window['contracting_above_start']}`",
         f"- 365 blocks: `{prefix['blocks']}`",
         "",
         decision["reason"] + ".",
@@ -345,8 +353,8 @@ def main() -> None:
     print(decision["classification"])
     print(decision["reason"])
     print(
-        f"stay={window['stay_blocks']} expanding={window['expanding_stay']} "
-        f"contract={window['contracting_stay']}"
+        f"pe={window['pe_blocks']} expanding={window['expanding_pe']} "
+        f"contract={window['contracting_pe']}"
     )
 
 

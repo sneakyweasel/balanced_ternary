@@ -9,6 +9,7 @@ from research.juggler_sequence.expanding_residual_concat import (
     ESCAPE_PREFIX,
     FORBIDDEN_THEOREMS,
     LEAN_THEOREMS,
+    chain_blocks,
     classify,
     concat_expanding,
     is_expanding,
@@ -41,11 +42,19 @@ def test_probe_and_classify_close():
     decision = classify(scan, lean)
     assert decision["classification"] == CLASS_CLOSE
     window = scan["window"]
-    assert window["contracting_stay"] == 0
+    assert window["contracting_pe"] == 0
     assert window["concat_fail"] == 0
-    assert window["expanding_stay"] == window["stay_blocks"]
+    assert window["expanding_pe"] == window["pe_blocks"]
+    assert window["contracting_above_start"] > 0
     assert scan["smaller_class"] is False
     assert scan["expanding_grammar_reopen"] is False
+
+
+def test_stay_above_start_is_not_pe():
+    rows = chain_blocks(173)
+    descent = next(row for row in rows if not row["expanding"])
+    assert descent["stay"] is True
+    assert descent["persistent"] is False
 
 
 def test_lean_api_without_halt():

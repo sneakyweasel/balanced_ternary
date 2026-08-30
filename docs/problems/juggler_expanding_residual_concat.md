@@ -88,9 +88,12 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - every realized prefix of a CE is prefix-noncontracting —
   **EXACT — LEAN VERIFIED**
-- scanned PE blocks that stay \(\ge n\) are expanding, and their
-  concatenations stay expanding —
+- scanned persistent residual blocks (\(y>x\)) are expanding, and
+  their concatenations stay expanding —
   **COMPUTATIONALLY VERIFIED**
+- a later residual may stay \(\ge\) the original start while
+  contracting versus its own \(x\) — that is not a PE block —
+  **OBSERVATION**
 - infinite PE concatenation is a strictly smaller class than
   `MinimalNonTerm` —
   **REPARAMETERIZATION**
@@ -138,11 +141,18 @@ type. Paper A is unchanged.
 
 Classification **EXPANDING_CONCAT_CE_CLOSE**.
 
-Expanding words are closed under concatenation. A `MinimalNonTerm`
-start never realizes an exponent-gap word, so every realized prefix
-is prefix-noncontracting. Therefore an infinite PE concatenation
-without a contracting word is not a smaller class: it is the
-unbounded CE branch already isolated by the non-escape spine.
+Expanding words are closed under concatenation —
+**EXACT — LEAN VERIFIED** (`J-exponent-expanding-append`). A
+`MinimalNonTerm` start never realizes an exponent-gap word, so
+every realized prefix is prefix-noncontracting —
+**EXACT — LEAN VERIFIED** (`J-minimal-prefix-noncontracting`).
+Therefore an infinite PE concatenation without a contracting word
+is not a smaller class: it is the unbounded CE branch already
+isolated by the non-escape spine —
+**REPARAMETERIZATION** (`J-expanding-concat-is-ce`). Window
+\(n<801\): \(87/87\) persistent blocks expand; \(83\) later
+residuals stay above the original start while contracting versus
+their own \(x\).
 
 This is not a halt theorem and not a finite-run bound.
 

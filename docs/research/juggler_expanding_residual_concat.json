@@ -1,0 +1,455 @@
+{
+  "experiment": "juggler_expanding_residual_concat",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "no_escape": false,
+    "cycles_impossible": false,
+    "finite_pe_run_bound": false,
+    "smaller_than_minimal_nonterm": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_hi": 801,
+    "ooe_expanding": true,
+    "ooe_ooe_concat": true,
+    "window": {
+      "n_hi": 801,
+      "pe_blocks": 87,
+      "expanding_pe": 87,
+      "contracting_pe": 0,
+      "concat_fail": 0,
+      "pe_runs": 56,
+      "stay_above_start": 269,
+      "contracting_above_start": 83,
+      "samples": [
+        {
+          "n": 173,
+          "blocks": [
+            {
+              "x": 173,
+              "a": 2,
+              "b": 1,
+              "y": 329,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 329,
+              "a": 8,
+              "b": 1,
+              "y": 180370579261640036336071806107777,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 180370579261640036336071806107777,
+              "a": 2,
+              "b": 1,
+              "y": 1941719144218166368455510841464890645,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 1941719144218166368455510841464890645,
+              "a": 2,
+              "b": 2,
+              "y": 258288373266707936943,
+              "expanding": false,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            }
+          ],
+          "pe": 3
+        },
+        {
+          "n": 193,
+          "blocks": [
+            {
+              "x": 193,
+              "a": 3,
+              "b": 1,
+              "y": 7191,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 7191,
+              "a": 7,
+              "b": 1,
+              "y": 888034721042973822495186607446955,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 888034721042973822495186607446955,
+              "a": 3,
+              "b": 2,
+              "y": 6313028752924540594327544385,
+              "expanding": false,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            },
+            {
+              "x": 6313028752924540594327544385,
+              "a": 1,
+              "b": 2,
+              "y": 26612713755,
+              "expanding": false,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            }
+          ],
+          "pe": 5
+        },
+        {
+          "n": 293,
+          "blocks": [
+            {
+              "x": 293,
+              "a": 8,
+              "b": 3,
+              "y": 79950971,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 79950971,
+              "a": 5,
+              "b": 1,
+              "y": 1013990526908278356763853712011,
+              "expanding": true,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            },
+            {
+              "x": 1013990526908278356763853712011,
+              "a": 1,
+              "b": 1,
+              "y": 31954014155786708621395,
+              "expanding": false,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            },
+            {
+              "x": 31954014155786708621395,
+              "a": 5,
+              "b": 4,
+              "y": 47957744079,
+              "expanding": false,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            }
+          ],
+          "pe": 2
+        },
+        {
+          "n": 321,
+          "blocks": [
+            {
+              "x": 321,
+              "a": 3,
+              "b": 1,
+              "y": 16971,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 16971,
+              "a": 2,
+              "b": 1,
+              "y": 57335,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 57335,
+              "a": 2,
+              "b": 1,
+              "y": 225539,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 225539,
+              "a": 4,
+              "b": 2,
+              "y": 5958969,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            }
+          ],
+          "pe": 4
+        },
+        {
+          "n": 329,
+          "blocks": [
+            {
+              "x": 329,
+              "a": 8,
+              "b": 1,
+              "y": 180370579261640036336071806107777,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 180370579261640036336071806107777,
+              "a": 2,
+              "b": 1,
+              "y": 1941719144218166368455510841464890645,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 1941719144218166368455510841464890645,
+              "a": 2,
+              "b": 2,
+              "y": 258288373266707936943,
+              "expanding": false,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            },
+            {
+              "x": 258288373266707936943,
+              "a": 1,
+              "b": 2,
+              "y": 45137689,
+              "expanding": false,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            }
+          ],
+          "pe": 2
+        },
+        {
+          "n": 357,
+          "blocks": [
+            {
+              "x": 357,
+              "a": 10,
+              "b": 5,
+              "y": 39807,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 39807,
+              "a": 2,
+              "b": 1,
+              "y": 149607,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 149607,
+              "a": 2,
+              "b": 1,
+              "y": 663469,
+              "expanding": true,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            },
+            {
+              "x": 663469,
+              "a": 1,
+              "b": 4,
+              "y": 3,
+              "expanding": false,
+              "stay": false,
+              "persistent": false,
+              "concat_expanding": true
+            }
+          ],
+          "pe": 2
+        },
+        {
+          "n": 365,
+          "blocks": [
+            {
+              "x": 365,
+              "a": 2,
+              "b": 1,
+              "y": 763,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 763,
+              "a": 2,
+              "b": 1,
+              "y": 1749,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 1749,
+              "a": 2,
+              "b": 1,
+              "y": 4447,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 4447,
+              "a": 2,
+              "b": 1,
+              "y": 12707,
+              "expanding": true,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            }
+          ],
+          "pe": 3
+        },
+        {
+          "n": 763,
+          "blocks": [
+            {
+              "x": 763,
+              "a": 2,
+              "b": 1,
+              "y": 1749,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 1749,
+              "a": 2,
+              "b": 1,
+              "y": 4447,
+              "expanding": true,
+              "stay": true,
+              "persistent": true,
+              "concat_expanding": true
+            },
+            {
+              "x": 4447,
+              "a": 2,
+              "b": 1,
+              "y": 12707,
+              "expanding": true,
+              "stay": true,
+              "persistent": false,
+              "concat_expanding": true
+            },
+            {
+              "x": 12707,
+              "a": 1,
+              "b": 3,
+              "y": 5,
+              "expanding": false,
+              "stay": false,
+              "persistent": false,
+              "concat_expanding": true
+            }
+          ],
+          "pe": 2
+        }
+      ]
+    },
+    "prefix_365": {
+      "chain": [
+        365,
+        763,
+        1749,
+        4447
+      ],
+      "blocks": [
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          2,
+          1
+        ]
+      ],
+      "each_expanding": true,
+      "concat_expanding": true,
+      "unbounded_orbit": false
+    },
+    "smaller_class": false,
+    "expanding_grammar_reopen": false,
+    "finite_pe_bound": false,
+    "halt_claim": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "exponentExpanding_append": true,
+    "minimal_nonterm_not_exponentGap": true,
+    "minimal_nonterm_prefix_noncontracting": true,
+    "minimal_ooeooe_forces_oo": true,
+    "exponentExpanding": true,
+    "exponentGap": true,
+    "has_no_juggler_escape": false,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_cycle": false,
+    "word_stats_has_append": true,
+    "escape_has_prefix_nc": true,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "EXPANDING_CONCAT_CE_CLOSE",
+    "reason": "expanding concatenations stay expanding; a CE never realizes an exponent gap; the leftover is MinimalNonTerm, not a stricter PE class"
+  },
+  "search_method": "residual chains on odd starts; persistent blocks checked for 2^{a+b} < 3^a; PE concatenations checked; Lean append and CE prefix-NC; no halt theorem"
+}

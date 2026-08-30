@@ -208,11 +208,12 @@ assembler, and not a halt theorem.
 ## Open questions
 
 Lean-package \(2187<2560\) and \(6561<7168\). The residual
-after even \(u\) is the landing
-\(s\in[n^{3/2},n^{2187/1024})\). Do not reopen bunched-short
-cells. Do not write \(Z_5\). Do not assemble
-`no_cycle_word_length_eleven`. Do not treat the \(501\)
-scale return as a numerical cycle.
+after the apparent \(C_2\to C_4\to C_2\to C_1\) return is
+the hidden-state refinement
+[juggler_scale_loop_hidden.md](juggler_scale_loop_hidden.md).
+Do not reopen bunched-short cells. Do not write \(Z_5\).
+Do not assemble `no_cycle_word_length_eleven`. Do not
+treat the \(501\) scale return as a numerical cycle.
 
 ## Decision
 

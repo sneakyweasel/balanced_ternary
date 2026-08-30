@@ -198,7 +198,9 @@ This is not a halt theorem, not a cycle-exclusion theorem, and not
 Answered in
 [juggler_expanding_residual_concat.md](juggler_expanding_residual_concat.md):
 infinite PE concatenation without a contracting word is not a
-stricter class than `MinimalNonTerm`. Do not reopen Paper B,
+stricter class than `MinimalNonTerm`. Leftover: after the CE
+`OOEOOE` trap forces `OOEOOEOO`, does the completed third residual
+drop below \(n\) or remain a PE block? Do not reopen Paper B,
 bunched-short cells, escape-margin \(M\), or a length-11 census.
 
 ## Decision
@@ -208,8 +210,9 @@ bunched-short cells, escape-margin \(M\), or a length-11 census.
 claim that escape is impossible. Do not claim that all cycles are
 impossible. Do not claim termination.
 
-Best next question: answered in
-[juggler_expanding_residual_concat.md](juggler_expanding_residual_concat.md).
+Best next question: after the CE `OOEOOE` trap forces `OOEOOEOO`,
+does the completed third residual drop below \(n\) or remain a
+persistent expanding block?
 
 ## Publication assessment
 

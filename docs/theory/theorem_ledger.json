@@ -4431,5 +4431,60 @@
       "tests/research/juggler_sequence/test_second_oo_cube.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-scale-loop-oneshot",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "An inherited even-even second-OO return C2 → C4 → C2 → C1 is the word OEE on the odd cube-corridor state q, equivalently OOEOOOEOOEE on n. The image t satisfies t^{2048} ≤ n^{2187}. The refined C1 states C1-pre (CycleMin start, first OOO unpaid) and C1-post (image of OOEOOOEOOEE) coincide if and only if t = n. Scale plus parity therefore does not identify the return with the start unless the numerical state closes. This is not a proof that t = n is impossible, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_scale_loop_hidden.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_scale_loop_hidden.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-scale-loop-signature-repeats",
+    "tag": "REFUTED",
+    "statement": "The coarse loop C2 → C4 → C2 → C1 repeats with the same exact signature, scale plus parity is a Markov state, and the missing state is 2-adic or a one-way defect Φ. False. 501 follows OOEOOOEOOEE to 763 with one coarse hit, then (OOE)^3 OE E to 34; 763 is C1-odd relative to 501 but walk_language exits by drop, not OOO. 6187 follows OOEOOOEOOEE to 11189 and drops by OE to 1087. Neither return pays a second first-OOO. On the inherited odd-q sample, 2^e is not a distinguished predictor among {2,3,5,7}. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_scale_loop_hidden.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_scale_loop_hidden.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-exponent-expanding-append",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If u and v are expanding words (2^{|u|} < 3^{#O(u)} and 2^{|v|} < 3^{#O(v)}), then u ++ v is expanding: 2^{|u|+|v|} = 2^{|u|} 2^{|v|} < 3^{#O(u)} 3^{#O(v)}. A concatenation of expanding residual blocks is never an exponent-gap certificate. This is not a finite PE-run bound and not a halt theorem.",
+    "source": "docs/problems/juggler_expanding_residual_concat.md",
+    "lean": "Problems/Juggler/WordStats.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_expanding_residual_concat.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-minimal-prefix-noncontracting",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If MinimalNonTerm n and n follows w, then w is not an exponent-gap word, and every prefix of w is noncontracting. Contrapositive of power_bound_contracts plus minimal_nonterm_no_descent. Concatenating expanding residual blocks therefore cannot create an exponent certificate on a CE. This is not a proof that escape is impossible and not a halt theorem.",
+    "source": "docs/problems/juggler_expanding_residual_concat.md",
+    "lean": "Problems/Juggler/Escape.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_expanding_residual_concat.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-expanding-concat-is-ce",
+    "tag": "REPARAMETERIZATION",
+    "statement": "An infinite concatenation of expanding residual blocks with no contracting word is not a strictly smaller class than MinimalNonTerm. A CE never realizes an exponent-gap word, and expanding concatenations stay expanding, so the leftover is the unbounded CE branch already isolated by the non-escape spine. Window n < 801: 87/87 persistent residual blocks expand; 83 later residuals stay above the original start while contracting versus their own x, which is not PE. This is not a finite PE-run bound and not a halt theorem.",
+    "source": "docs/problems/juggler_expanding_residual_concat.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_expanding_residual_concat.py"
+    ],
+    "related_conjectures": []
   }
 ]
