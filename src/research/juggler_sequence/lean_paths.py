@@ -25,17 +25,9 @@ PAPER_MODULES: tuple[str, ...] = (
     "Progress",
     "Cycles",
     "LeftoverEval",
-    "LeftoverCycles",
-    "LeftoverTwoEven",
-    "FirstETransport",
-    "GappedCycleWord",
-    "BunchedEEE",
-    "BunchedEOEE",
-    "BunchedEOOEE",
-    "BunchedEEOE",
-    "BunchedEOEOE",
-    "BunchedEOOOEE",
-    "BunchedEOOEOE",
+    "LeftoverCell",
+    "LeftoverShort",
+    "LeftoverFamilies",
     "SmallCycleCensus",
     "NormalizedDefect",
     "ExpansionSlack",
@@ -69,27 +61,21 @@ LAYERS: dict[str, Path] = {
     "NearTightScale": JUGGLER_DIR / "NearTightScale.lean",
     "ExpandingGrammar": JUGGLER_DIR / "ExpandingGrammar.lean",
     "LandingParity": JUGGLER_DIR / "LandingParity.lean",
+    "CycleCore": JUGGLER_DIR / "CycleCore.lean",
+    "CycleExtrema": JUGGLER_DIR / "CycleExtrema.lean",
     "Cycles": JUGGLER_DIR / "Cycles.lean",
     "LeftoverEval": JUGGLER_DIR / "LeftoverEval.lean",
-    "LeftoverCycles": JUGGLER_DIR / "LeftoverCycles.lean",
-    "LeftoverTwoEven": JUGGLER_DIR / "LeftoverTwoEven.lean",
+    "LeftoverCell": JUGGLER_DIR / "LeftoverCell.lean",
+    "LeftoverShort": JUGGLER_DIR / "LeftoverShort.lean",
     "FirstETransportEval": JUGGLER_DIR / "FirstETransportEval.lean",
-    "FirstETransport": JUGGLER_DIR / "FirstETransport.lean",
-    "GappedCycleWord": JUGGLER_DIR / "GappedCycleWord.lean",
-    "BunchedEEE": JUGGLER_DIR / "BunchedEEE.lean",
     "BunchedEOEEEval": JUGGLER_DIR / "BunchedEOEEEval.lean",
-    "BunchedEOEE": JUGGLER_DIR / "BunchedEOEE.lean",
     "BunchedEOOEEEval": JUGGLER_DIR / "BunchedEOOEEEval.lean",
-    "BunchedEOOEE": JUGGLER_DIR / "BunchedEOOEE.lean",
     "BunchedEEOEEval": JUGGLER_DIR / "BunchedEEOEEval.lean",
-    "BunchedEEOE": JUGGLER_DIR / "BunchedEEOE.lean",
     "BunchedEOEOEEval": JUGGLER_DIR / "BunchedEOEOEEval.lean",
-    "BunchedEOEOE": JUGGLER_DIR / "BunchedEOEOE.lean",
     "BunchedEOOOEEEval": JUGGLER_DIR / "BunchedEOOOEEEval.lean",
     "BunchedTight": JUGGLER_DIR / "BunchedTight.lean",
-    "BunchedEOOOEE": JUGGLER_DIR / "BunchedEOOOEE.lean",
     "BunchedEOOEOEEval": JUGGLER_DIR / "BunchedEOOEOEEval.lean",
-    "BunchedEOOEOE": JUGGLER_DIR / "BunchedEOOEOE.lean",
+    "LeftoverFamilies": JUGGLER_DIR / "LeftoverFamilies.lean",
     "SmallCycleCensus": JUGGLER_DIR / "SmallCycleCensus.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
@@ -126,27 +112,46 @@ EXPANSION_SLACK = LAYERS["ExpansionSlack"]
 NEAR_TIGHT_SCALE = LAYERS["NearTightScale"]
 EXPANDING_GRAMMAR = LAYERS["ExpandingGrammar"]
 LANDING_PARITY = LAYERS["LandingParity"]
-CYCLES = LAYERS["Cycles"]
+CYCLE_CORE = LAYERS["CycleCore"]
+CYCLE_EXTREMA = LAYERS["CycleExtrema"]
+CYCLES_BARREL = LAYERS["Cycles"]
+
+
+class _CycleKernel:
+    """`Cycles.lean` is a barrel. Probes that read `CYCLES` still see the kernel."""
+
+    def read_text(self, encoding: str = "utf-8") -> str:
+        return cycle_kernel_text()
+
+    def is_file(self) -> bool:
+        return CYCLE_CORE.is_file() and CYCLE_EXTREMA.is_file()
+
+
+CYCLES = _CycleKernel()
 LEFTOVER_EVAL = LAYERS["LeftoverEval"]
-LEFTOVER_CYCLES = LAYERS["LeftoverCycles"]
-LEFTOVER_TWO_EVEN = LAYERS["LeftoverTwoEven"]
+LEFTOVER_CELL = LAYERS["LeftoverCell"]
+LEFTOVER_SHORT = LAYERS["LeftoverShort"]
+LEFTOVER_FAMILIES = LAYERS["LeftoverFamilies"]
+# Historical names: leftover proofs now live in Short / Families.
+LEFTOVER_CYCLES = LEFTOVER_SHORT
+LEFTOVER_TWO_EVEN = LEFTOVER_FAMILIES
 FIRST_E_TRANSPORT_EVAL = LAYERS["FirstETransportEval"]
-FIRST_E_TRANSPORT = LAYERS["FirstETransport"]
-GAPPED_CYCLE_WORD = LAYERS["GappedCycleWord"]
-BUNCHED_EEE = LAYERS["BunchedEEE"]
+FIRST_E_TRANSPORT = LEFTOVER_FAMILIES
+GAPPED_CYCLE_WORD = LEFTOVER_FAMILIES
+BUNCHED_EEE = LEFTOVER_FAMILIES
 BUNCHED_EOEE_EVAL = LAYERS["BunchedEOEEEval"]
-BUNCHED_EOEE = LAYERS["BunchedEOEE"]
+BUNCHED_EOEE = LEFTOVER_FAMILIES
 BUNCHED_EOOEE_EVAL = LAYERS["BunchedEOOEEEval"]
-BUNCHED_EOOEE = LAYERS["BunchedEOOEE"]
+BUNCHED_EOOEE = LEFTOVER_FAMILIES
 BUNCHED_EEOE_EVAL = LAYERS["BunchedEEOEEval"]
-BUNCHED_EEOE = LAYERS["BunchedEEOE"]
+BUNCHED_EEOE = LEFTOVER_FAMILIES
 BUNCHED_EOEOE_EVAL = LAYERS["BunchedEOEOEEval"]
-BUNCHED_EOEOE = LAYERS["BunchedEOEOE"]
+BUNCHED_EOEOE = LEFTOVER_FAMILIES
 BUNCHED_EOOOEE_EVAL = LAYERS["BunchedEOOOEEEval"]
 BUNCHED_TIGHT = LAYERS["BunchedTight"]
-BUNCHED_EOOOEE = LAYERS["BunchedEOOOEE"]
+BUNCHED_EOOOEE = LEFTOVER_FAMILIES
 BUNCHED_EOOEOE_EVAL = LAYERS["BunchedEOOEOEEval"]
-BUNCHED_EOOEOE = LAYERS["BunchedEOOEOE"]
+BUNCHED_EOOEOE = LEFTOVER_FAMILIES
 SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]
@@ -177,6 +182,13 @@ def juggler_sources() -> list[Path]:
 
 def juggler_text() -> str:
     return "\n".join(path.read_text(encoding="utf-8") for path in juggler_sources())
+
+
+def cycle_kernel_text() -> str:
+    """`Cycles.lean` is a barrel. Kernel declarations live in Core + Extrema."""
+    return CYCLE_CORE.read_text(encoding="utf-8") + "\n" + CYCLE_EXTREMA.read_text(
+        encoding="utf-8"
+    )
 
 
 def engine_juggler_gone() -> bool:

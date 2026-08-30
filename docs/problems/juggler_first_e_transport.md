@@ -197,9 +197,14 @@ no-cycles theorem.
 `CycleWord` exclusion of these gapped leftovers is now Paper A
 Theorem 3.21 (`no_cycle_word_gapped_three_even_ee`,
 `no_cycle_word_gapped_three_even_eoe`). Theorem 3.13 remains
-CycleMin-only. Remaining: first-E transport at \(e\ge 4\), or
-stop. Do not assemble `no_cycle_word_length_eight` or
-`no_cycle_word_length_nine`. Do not claim halt.
+CycleMin-only. First-E at \(e=4\) is `CLOSE` as a
+reparameterization ([first-E at four evens](juggler_first_e_e4.md)).
+The thirty-shape remainder is `PARK`
+([four-even short-first-gap](juggler_four_even_short_gap.md)).
+Remaining: a method other than last-cluster pullback for the
+thirty length-11 leftovers, or stop. Do not assemble
+`no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
+Do not claim halt.
 
 ## Decision
 

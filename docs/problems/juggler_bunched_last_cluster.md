@@ -253,10 +253,13 @@ length-9 census and not a no-cycles theorem.
 
 ## Open questions
 
-Gapped `CycleWord` exclusion is now Paper A Theorem 3.21. Do not
-assemble `no_cycle_word_length_eight` or
-`no_cycle_word_length_nine`. Do not open first-E at \(e\ge 4\).
-Do not claim halt.
+Gapped `CycleWord` exclusion is now Paper A Theorem 3.21.
+First-E at \(e=4\) is `CLOSE` as a reparameterization
+([first-E at four evens](juggler_first_e_e4.md)). The
+thirty-shape remainder is `PARK`
+([four-even short-first-gap](juggler_four_even_short_gap.md)).
+Do not assemble `no_cycle_word_length_eight` or
+`no_cycle_word_length_nine`. Do not claim halt.
 
 ## Decision
 

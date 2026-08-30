@@ -11441,3 +11441,161 @@ Best next question
 - first-E transport at e>=4, or stop
 ```
 
+## Juggler first-E transport at four evens
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether leftover `CycleMin`s with four even letters die by first-E transport of an excluded three-even family, without a length-8/9 census
+- **Hypotheses:** a new infinite \(e=4\) layer, not a restatement of Theorems 3.13--3.20
+- **Major results:** classification **FIRST_E_E4_REPARAMETERIZATION**. Through odd-count \(16\): \(1185\) expanding leftovers split as \(570\) gapped last-cluster (Theorem 3.13 on the last two-even suffix), \(315\) bunched remainder (Theorems 3.14--3.20 at \(y\)), and \(300\) short-first-gap leftovers in \(30\) shapes. No Lean. No Paper A theorem. Not a length-8/9 census
+- **Refuted ideas:** first-E at \(e=4\) excludes four-even leftovers; gapped last-cluster at \(e=4\) is a new theorem; bunched remainder transport is a new tail; a length-8 or length-9 Lean census as an automatic corollary
+- **Literature:** first-E CycleMin (Theorem 3.13), bunched last-cluster (Theorems 3.14--3.20), gapped CycleWord (Theorem 3.21)
+- **Open:** four-even leftovers with bunched last cluster and short first remainder gap, or stop. Length 8 still open as a census
+- **Decision:** CLOSE. Every transportable class is a reparameterization of Theorems 3.13--3.20. Thirty short-first-gap shapes remain. Not a census theorem and not a halt theorem
+
+```text
+What was learned
+- first-E of a four-even leftover is not first-E of a
+  two-even remainder; the remainder after the first E
+  has three evens
+- gapped last-cluster is Theorem 3.13 on the suffix
+  after the penultimate E, at any even count
+- long-a1 bunched remainder is the existing bunched tail
+  at y after CycleMin tightens Z(n)<=Z(y)
+- the method is empty at the first expanding odd-count
+  o=7; bunched remainder appears at o=8 (OOEOOOOOOEEE)
+- 30 short-first-gap shapes remain, each infinite in a0;
+  example O^a EEEE for a>=7
+Strongest theorem
+- none; the transportable classes are REPARAMETERIZATION
+  of Theorems 3.13--3.20
+Strongest refutation
+- every four-even leftover dies by first-E (30 remainder
+  shapes, e.g. O^7 EEEE)
+Reusable machinery
+- first_e_e4.py: leftover partition and 30-shape remainder
+  list; no Lean
+Branch status
+- CLOSE
+Why
+- every transportable class restates 3.13--3.20; first-E
+  at e=4 does not finish even-count leftovers
+Best next question
+- four-even leftovers with bunched last cluster and short
+  first remainder gap, or stop
+```
+
+## Juggler four-even short-first-gap prefix-cell
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether the thirty four-even short-first-gap leftovers fire as one prefix-cell, without a thirty-family Lean list or a length-8/9/11 census
+- **Hypotheses:** \(Z_4\) is the three-even last-cluster bound pulled back through \(E O^{a_1}\), and fires at the first expanding \(a_0\) with bounded \(N_0\)
+- **Major results:** classification **FOUR_EVEN_SHORT_GAP_PARK**. All thirty first-expanding words have length 11. \(Z_4\) misses \(n\le 800\) there; log-cutoffs are \(4\cdot 10^8\) to \(1.6\cdot 10^{15}\). At \(a_0+1\) every shape fires with \(N_0\le 180\); at \(a_0+2\), with \(N_0\le 22\). No Lean. No Paper A theorem. Not a length-8/9/11 census
+- **Refuted ideas:** \(Z_4\) fires at the first expanding \(a_0\) with a practical cutoff; the thirty shapes need thirty different cells; a length-11 Lean census as an automatic corollary
+- **Literature:** bunched last-cluster \(Z\) (Theorems 3.14--3.20), first-E at \(e=4\) `CLOSE`
+- **Open:** a tighter last-cluster pullback that fires at the thirty length-11 words, or stop. Length 8 still open as a census
+- **Decision:** PARK. One unifying cell kills the infinite tails after one extra odd, and leaks at the first expanding layer. A thirty-file Lean list is the wrong next step
+
+```text
+What was learned
+- the 30 shapes are one cell: three-even Z pulled back
+  through E O^{a1}
+- first expanding four-even leftover has odd-count 7 and
+  length 11
+- at those 30 words Z4 has N0 from 4e8 to 1.6e15
+- one more leading odd drops every N0 to at most 180;
+  two more, to at most 22
+- three-even bunched fired at first expanding (N0<=188);
+  the extra even spends that margin
+Strongest theorem
+- none; Z4 is an OBSERVATION, not a Lean exclusion
+Strongest refutation
+- Z4 fires at the first expanding a0 with a practical
+  cutoff (thirty length-11 words leak)
+Reusable machinery
+- four_even_short_gap.py: log Z4 and the 30-word list;
+  no Lean
+Branch status
+- PARK
+Why
+- unifying cell exists and fires after first expanding;
+  the layer the even-count programme must hit first
+  leaks; 30 Lean files would be machinery gravity
+Best next question
+- a tighter last-cluster pullback that fires at the
+  thirty length-11 words, or stop
+```
+
+## Juggler tighter last-cluster pullback at length 11
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether a tighter last-cluster cell fires at the thirty length-11 four-even short-gap leftovers
+- **Hypotheses:** slack is in the \(Z_4\) pullback, not in the last-cluster bound
+- **Major results:** classification **E4_TIGHT_PULLBACK_REFUTED**. \(O^7\mathrm{EEEE}\) already uses `cycle_trailing_evens_lt` at \(r=4\). The ideal cell \(Z=n^{16}\) is \(n^{139}>2^{4118}\), first fire at \(n=828\,484\,394\). All thirty length-11 words miss \(n\le 800\). No Lean. No Paper A theorem. Not a length-11 census
+- **Refuted ideas:** a tighter last-cluster pullback fires at all thirty length-11 words; \(Z_4\) is loose on `EEEE` because of a pullback
+- **Literature:** `cycle_trailing_evens_lt`; four-even short-gap `PARK`
+- **Open:** a method other than last-cluster pullback for the thirty length-11 leftovers, or stop. Length 8 still open as a census
+- **Decision:** CLOSE. The last-cluster cell on `EEEE` is already sharp and still needs \(n>2^{4118/139}\). Not a census theorem and not a halt theorem
+
+```text
+What was learned
+- O^7 EEEE has no Z4 pullback: four trailing evens,
+  cycle_trailing_evens at r=4
+- the strongest comparison of that type is n^{139}>2^{4118}
+- that first holds at n=828484394 and fails at 256 and 1e8
+- the Lean cell Z=(n+1)^{16} is weaker and also fails there
+- all 30 length-11 words still miss n<=800 under Z4
+Strongest theorem
+- n^{139}>2^{4118} for the ideal EEEE cell
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- a tighter last-cluster pullback fires at all 30
+  length-11 words (EEEE is already sharp)
+Reusable machinery
+- e4_tight_pullback.py: ideal EEEE threshold; no Lean
+Branch status
+- CLOSE
+Why
+- the length-11 leak is not slack in Z4; last-cluster
+  methods cannot hit EEEE below 8.28e8
+Best next question
+- a method other than last-cluster pullback for the
+  thirty length-11 leftovers, or stop
+```
+
+## Juggler cycle Lean leftover merge
+
+- **Date:** 2026-08-30
+- **Objective:** Re-layer the existing cycle Lean around one leftover-cell-versus-tail lemma and a thin length-≤7 census
+- **Hypotheses:** none — packaging of theorems that already survived
+- **Major results:** `leftover_prefix_cell` in `LeftoverCell.lean`; two-even and the seven bunched `_of_ge` proofs are instances in `LeftoverFamilies.lean`; first-E transport and gapped CycleWord are sections of the same module; `CycleCore` / `CycleExtrema` split; census still `no_cycle_word_length_le_six` / `_seven`. Same theorem names. No Paper A edit. No new ledger rows
+- **Refuted ideas:** none; this branch did not reopen leftover mathematics
+- **Literature:** leftover families already **EXACT — LEAN VERIFIED** (Theorems 3.12--3.21); census already length ≤7
+- **Open:** length 8 as a census; four-even leftovers as already recorded. Not opened here
+- **Decision:** PROMOTE as packaging. The leftover programme was already one argument; the files now match it
+
+```text
+What was learned
+- leftover_prefix_cell is the shared contradiction
+- two-even, bunched of_ge proofs are instances of that cell
+- first-E is the same comparison at y on CycleMin
+- gapped CycleWord is rotation, not a cell instance
+- census imports only CycleCore and LeftoverShort
+Strongest theorem
+- leftover_prefix_cell (packaging of existing
+  EXACT — LEAN VERIFIED exclusions)
+Strongest refutation
+- none; no new family was tested
+Reusable machinery
+- CycleCore, CycleExtrema, LeftoverCell,
+  LeftoverShort, LeftoverFamilies; eval tables
+  unchanged
+Branch status
+- PROMOTE
+Why
+- packaging of theorems that already survived;
+  same exclusions; census still ≤7; no halt language
+Best next question
+- a method other than last-cluster pullback for the
+  thirty length-11 leftovers, or stop
+```
+

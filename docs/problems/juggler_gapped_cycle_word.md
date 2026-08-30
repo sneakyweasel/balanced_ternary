@@ -150,7 +150,12 @@ no-cycles theorem.
 
 ## Open questions
 
-First-E transport at \(e\ge 4\), or stop. Do not assemble
+First-E at \(e=4\) is `CLOSE` as a reparameterization
+([first-E at four evens](juggler_first_e_e4.md)). The
+thirty-shape remainder is `PARK`
+([four-even short-first-gap](juggler_four_even_short_gap.md)).
+Remaining: a method other than last-cluster pullback for the
+thirty length-11 leftovers, or stop. Do not assemble
 `no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
 Do not claim halt.
 

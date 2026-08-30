@@ -1,4 +1,5 @@
-import Problems.Juggler.LeftoverCycles
+import Problems.Juggler.CycleCore
+import Problems.Juggler.LeftoverShort
 
 namespace Problems.Juggler
 
@@ -51,27 +52,6 @@ theorem no_cycle_word_replicate_odd {a n : ℕ} (ha : 1 ≤ a) (hn : 2 ≤ n) :
   have hgt := replicate_odd_image_gt a' hn3 hodd h.1
   have himg := h.2.1
   omega
-
-/-- `rotateWord` is the cyclic shift `drop k ++ take k` for `k` up to
-the length. -/
-theorem rotateWord_eq_drop_append_take :
-    ∀ (w : List Branch) (k : ℕ), k ≤ w.length →
-      rotateWord w k = w.drop k ++ w.take k
-  | _w, 0, _ => by simp [rotateWord]
-  | [], k + 1, hk => by simp at hk
-  | b :: rest, k + 1, hk => by
-      have hkr : k ≤ rest.length := by
-        simp only [List.length_cons] at hk
-        omega
-      have hk' : k ≤ (rest ++ [b]).length := by
-        simp only [List.length_append, List.length_cons, List.length_nil]
-        omega
-      show rotateWord (rest ++ [b]) k =
-        (b :: rest).drop (k + 1) ++ (b :: rest).take (k + 1)
-      rw [rotateWord_eq_drop_append_take (rest ++ [b]) k hk']
-      rw [List.drop_append_of_le_length hkr,
-        List.take_append_of_le_length hkr]
-      simp [List.append_assoc]
 
 /-- A word with fewer odd letters than its length contains an even
 letter at some index. -/

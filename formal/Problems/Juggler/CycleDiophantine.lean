@@ -1,4 +1,4 @@
-import Problems.Juggler.Cycles
+import Problems.Juggler.CycleExtrema
 
 namespace Problems.Juggler
 

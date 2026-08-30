@@ -5,18 +5,10 @@ from __future__ import annotations
 from pathlib import Path
 
 from research.juggler_sequence.lean_paths import (
-    BUNCHED_EEE,
-    BUNCHED_EEOE,
-    BUNCHED_EOEE,
-    BUNCHED_EOEOE,
-    BUNCHED_EOOEE,
-    BUNCHED_EOOEOE,
-    BUNCHED_EOOOEE,
-    FIRST_E_TRANSPORT,
-    GAPPED_CYCLE_WORD,
-    LEFTOVER_CYCLES,
+    LEFTOVER_CELL,
     LEFTOVER_EVAL,
-    LEFTOVER_TWO_EVEN,
+    LEFTOVER_FAMILIES,
+    LEFTOVER_SHORT,
     SMALL_CYCLE_CENSUS,
     has_named,
     juggler_text,
@@ -28,7 +20,9 @@ NOTE = REPO_ROOT / "docs" / "theory" / "juggler_finite_dynamics_note.md"
 
 def test_leftover_cycle_theorems_present():
     text = juggler_text()
-    leftover = LEFTOVER_CYCLES.read_text(encoding="utf-8")
+    leftover = LEFTOVER_SHORT.read_text(encoding="utf-8")
+    families = LEFTOVER_FAMILIES.read_text(encoding="utf-8")
+    cell = LEFTOVER_CELL.read_text(encoding="utf-8")
     eval_src = LEFTOVER_EVAL.read_text(encoding="utf-8")
     assert has_named(text, "no_cycle_word_oooeoe")
     assert has_named(text, "no_cycle_word_ooooee")
@@ -36,7 +30,8 @@ def test_leftover_cycle_theorems_present():
     assert "theorem no_cycle_word_ooooee" in leftover
     assert "theorem no_cycle_word_ooooeoe" in leftover
     assert "theorem no_cycle_word_oooooee" in leftover
-    assert "theorem no_cycle_word_ooooooeee" in leftover
+    assert "theorem no_cycle_word_ooooooeee" in families
+    assert "theorem leftover_prefix_cell" in cell
     assert "theorem no_cycle_word_length_six" not in leftover
     assert "theorem no_cycle_word_length_nine" not in leftover
     assert has_named(text, "no_cycle_word_ooooeoe")
@@ -45,83 +40,40 @@ def test_leftover_cycle_theorems_present():
     assert has_named(text, "cycle_trailing_evens_lt")
     assert has_named(text, "no_cycle_word_two_even_ee")
     assert has_named(text, "no_cycle_word_two_even_eoe")
-    two_even = LEFTOVER_TWO_EVEN.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_two_even_ee" in two_even
-    assert "theorem no_cycle_word_two_even_eoe" in two_even
-    assert "theorem no_cycle_word_length_eight" not in two_even
-    assert "theorem no_cycle_word_length_le_eight" not in two_even
-    transport = FIRST_E_TRANSPORT.read_text(encoding="utf-8")
-    assert "theorem no_cycleMin_gapped_three_even_ee" in transport
-    assert "theorem no_cycleMin_gapped_three_even_eoe" in transport
-    assert "theorem no_cycle_word_length_eight" not in transport
-    assert "theorem no_cycle_word_length_nine" not in transport
-    gapped = GAPPED_CYCLE_WORD.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_gapped_three_even_ee" in gapped
-    assert "theorem no_cycle_word_gapped_three_even_eoe" in gapped
-    assert "theorem no_cycle_word_length_eight" not in gapped
-    assert "theorem no_cycle_word_length_nine" not in gapped
-    assert "sorry" not in gapped
-    assert "admit" not in gapped
+    assert "theorem no_cycle_word_two_even_ee" in families
+    assert "theorem no_cycle_word_two_even_eoe" in families
+    assert "theorem no_cycle_word_length_eight" not in families
+    assert "theorem no_cycle_word_length_le_eight" not in families
+    assert "theorem no_cycleMin_gapped_three_even_ee" in families
+    assert "theorem no_cycleMin_gapped_three_even_eoe" in families
+    assert "theorem no_cycle_word_length_nine" not in families
+    assert "theorem no_cycle_word_gapped_three_even_ee" in families
+    assert "theorem no_cycle_word_gapped_three_even_eoe" in families
+    assert "sorry" not in families
+    assert "admit" not in families
     assert has_named(text, "no_cycle_word_gapped_three_even_ee")
     assert has_named(text, "no_cycle_word_gapped_three_even_eoe")
-    bunched = BUNCHED_EEE.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_three_even_eee" in bunched
-    assert "theorem three_even_eee_tail" in bunched
-    assert "theorem no_cycle_word_length_eight" not in bunched
-    assert "theorem no_cycle_word_length_nine" not in bunched
-    assert "sorry" not in bunched
-    assert "admit" not in bunched
+    assert "theorem no_cycle_word_three_even_eee" in families
+    assert "theorem three_even_eee_tail" in families
     assert has_named(text, "no_cycle_word_three_even_eee")
-    eoee = BUNCHED_EOEE.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_three_even_eoee" in eoee
-    assert "theorem no_cycle_word_length_eight" not in eoee
-    assert "theorem no_cycle_word_length_nine" not in eoee
-    assert "sorry" not in eoee
-    assert "admit" not in eoee
+    assert "theorem no_cycle_word_three_even_eoee" in families
     assert has_named(text, "no_cycle_word_three_even_eoee")
-    eooee = BUNCHED_EOOEE.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_three_even_eooee" in eooee
-    assert "theorem no_cycle_word_length_eight" not in eooee
-    assert "theorem no_cycle_word_length_nine" not in eooee
-    assert "sorry" not in eooee
-    assert "admit" not in eooee
+    assert "theorem no_cycle_word_three_even_eooee" in families
     assert has_named(text, "no_cycle_word_three_even_eooee")
-    eeoe = BUNCHED_EEOE.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_three_even_eeoe" in eeoe
-    assert "theorem no_cycle_word_length_eight" not in eeoe
-    assert "theorem no_cycle_word_length_nine" not in eeoe
-    assert "sorry" not in eeoe
-    assert "admit" not in eeoe
+    assert "theorem no_cycle_word_three_even_eeoe" in families
     assert has_named(text, "no_cycle_word_three_even_eeoe")
-    eoeoe = BUNCHED_EOEOE.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_three_even_eoeoe" in eoeoe
-    assert "theorem no_cycle_word_length_eight" not in eoeoe
-    assert "theorem no_cycle_word_length_nine" not in eoeoe
-    assert "sorry" not in eoeoe
-    assert "admit" not in eoeoe
+    assert "theorem no_cycle_word_three_even_eoeoe" in families
     assert has_named(text, "no_cycle_word_three_even_eoeoe")
-    eoooee = BUNCHED_EOOOEE.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_three_even_eoooee" in eoooee
-    assert "theorem no_cycle_word_length_eight" not in eoooee
-    assert "theorem no_cycle_word_length_nine" not in eoooee
-    assert "sorry" not in eoooee
-    assert "admit" not in eoooee
+    assert "theorem no_cycle_word_three_even_eoooee" in families
     assert has_named(text, "no_cycle_word_three_even_eoooee")
-    eooeoe = BUNCHED_EOOEOE.read_text(encoding="utf-8")
-    assert "theorem no_cycle_word_three_even_eooeoe" in eooeoe
-    assert "theorem no_cycle_word_length_eight" not in eooeoe
-    assert "theorem no_cycle_word_length_nine" not in eooeoe
-    assert "sorry" not in eooeoe
-    assert "admit" not in eooeoe
+    assert "theorem no_cycle_word_three_even_eooeoe" in families
     assert has_named(text, "no_cycle_word_three_even_eooeoe")
-    assert "sorry" not in transport
-    assert "admit" not in transport
     assert "sorry" not in leftover
     assert "admit" not in leftover
     assert "sorry" not in eval_src
     assert "admit" not in eval_src
-    assert "sorry" not in two_even
-    assert "admit" not in two_even
+    assert "sorry" not in cell
+    assert "admit" not in cell
     assert "native_decide" in eval_src
     assert "theorem juggler_reaches_one" not in leftover
     assert "def CycleSearch" not in leftover

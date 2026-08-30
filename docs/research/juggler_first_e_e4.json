@@ -1,0 +1,547 @@
+{
+  "experiment": "juggler_first_e_e4",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "three_even_cycles_impossible": false,
+    "four_even_cycles_impossible": false,
+    "length_eight_census": false,
+    "length_nine_census": false,
+    "first_e_e4_lean": false,
+    "four_even_bunched_attack": false,
+    "induction_on_period": false,
+    "induction_on_n": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "o_min": 7,
+    "o_max": 16,
+    "leftover_count": 1185,
+    "unclassified": 0,
+    "class_counts": {
+      "gapped_last_cluster": 570,
+      "short_bunched_remainder": 160,
+      "leading_OE": 70,
+      "leading_even": 70,
+      "bunched_remainder": 315
+    },
+    "counts_by_odd": {
+      "7": {
+        "gapped_last_cluster": 6,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      },
+      "8": {
+        "gapped_last_cluster": 12,
+        "bunched_remainder": 7,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      },
+      "9": {
+        "gapped_last_cluster": 20,
+        "bunched_remainder": 14,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      },
+      "10": {
+        "gapped_last_cluster": 30,
+        "bunched_remainder": 21,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      },
+      "11": {
+        "gapped_last_cluster": 42,
+        "bunched_remainder": 28,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      },
+      "12": {
+        "gapped_last_cluster": 56,
+        "bunched_remainder": 35,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      },
+      "13": {
+        "gapped_last_cluster": 72,
+        "bunched_remainder": 42,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      },
+      "14": {
+        "gapped_last_cluster": 90,
+        "bunched_remainder": 49,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      },
+      "15": {
+        "gapped_last_cluster": 110,
+        "bunched_remainder": 56,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      },
+      "16": {
+        "gapped_last_cluster": 132,
+        "bunched_remainder": 63,
+        "short_bunched_remainder": 16,
+        "leading_OE": 7,
+        "leading_even": 7
+      }
+    },
+    "remainder_count": 300,
+    "transportable_count": 885,
+    "remainder_shape_count": 30,
+    "remainder_shapes_expand": true,
+    "remainder_shapes": [
+      {
+        "a1": 0,
+        "a2": 0,
+        "a3": 0,
+        "family": "EEE",
+        "a_min": 6,
+        "kind": "leading_even",
+        "first_expanding_a0": 7,
+        "example": "OOOOOOOEEEE",
+        "remainder": "EEE"
+      },
+      {
+        "a1": 1,
+        "a2": 0,
+        "a3": 0,
+        "family": "EEE",
+        "a_min": 6,
+        "kind": "leading_OE",
+        "first_expanding_a0": 6,
+        "example": "OOOOOOEOEEE",
+        "remainder": "OEEE"
+      },
+      {
+        "a1": 2,
+        "a2": 0,
+        "a3": 0,
+        "family": "EEE",
+        "a_min": 6,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 5,
+        "example": "OOOOOEOOEEE",
+        "remainder": "OOEEE"
+      },
+      {
+        "a1": 3,
+        "a2": 0,
+        "a3": 0,
+        "family": "EEE",
+        "a_min": 6,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 4,
+        "example": "OOOOEOOOEEE",
+        "remainder": "OOOEEE"
+      },
+      {
+        "a1": 4,
+        "a2": 0,
+        "a3": 0,
+        "family": "EEE",
+        "a_min": 6,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 3,
+        "example": "OOOEOOOOEEE",
+        "remainder": "OOOOEEE"
+      },
+      {
+        "a1": 5,
+        "a2": 0,
+        "a3": 0,
+        "family": "EEE",
+        "a_min": 6,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 2,
+        "example": "OOEOOOOOEEE",
+        "remainder": "OOOOOEEE"
+      },
+      {
+        "a1": 0,
+        "a2": 0,
+        "a3": 1,
+        "family": "EEOE",
+        "a_min": 5,
+        "kind": "leading_even",
+        "first_expanding_a0": 6,
+        "example": "OOOOOOEEEOE",
+        "remainder": "EEOE"
+      },
+      {
+        "a1": 1,
+        "a2": 0,
+        "a3": 1,
+        "family": "EEOE",
+        "a_min": 5,
+        "kind": "leading_OE",
+        "first_expanding_a0": 5,
+        "example": "OOOOOEOEEOE",
+        "remainder": "OEEOE"
+      },
+      {
+        "a1": 2,
+        "a2": 0,
+        "a3": 1,
+        "family": "EEOE",
+        "a_min": 5,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 4,
+        "example": "OOOOEOOEEOE",
+        "remainder": "OOEEOE"
+      },
+      {
+        "a1": 3,
+        "a2": 0,
+        "a3": 1,
+        "family": "EEOE",
+        "a_min": 5,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 3,
+        "example": "OOOEOOOEEOE",
+        "remainder": "OOOEEOE"
+      },
+      {
+        "a1": 4,
+        "a2": 0,
+        "a3": 1,
+        "family": "EEOE",
+        "a_min": 5,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 2,
+        "example": "OOEOOOOEEOE",
+        "remainder": "OOOOEEOE"
+      },
+      {
+        "a1": 0,
+        "a2": 1,
+        "a3": 0,
+        "family": "EOEE",
+        "a_min": 5,
+        "kind": "leading_even",
+        "first_expanding_a0": 6,
+        "example": "OOOOOOEEOEE",
+        "remainder": "EOEE"
+      },
+      {
+        "a1": 1,
+        "a2": 1,
+        "a3": 0,
+        "family": "EOEE",
+        "a_min": 5,
+        "kind": "leading_OE",
+        "first_expanding_a0": 5,
+        "example": "OOOOOEOEOEE",
+        "remainder": "OEOEE"
+      },
+      {
+        "a1": 2,
+        "a2": 1,
+        "a3": 0,
+        "family": "EOEE",
+        "a_min": 5,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 4,
+        "example": "OOOOEOOEOEE",
+        "remainder": "OOEOEE"
+      },
+      {
+        "a1": 3,
+        "a2": 1,
+        "a3": 0,
+        "family": "EOEE",
+        "a_min": 5,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 3,
+        "example": "OOOEOOOEOEE",
+        "remainder": "OOOEOEE"
+      },
+      {
+        "a1": 4,
+        "a2": 1,
+        "a3": 0,
+        "family": "EOEE",
+        "a_min": 5,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 2,
+        "example": "OOEOOOOEOEE",
+        "remainder": "OOOOEOEE"
+      },
+      {
+        "a1": 0,
+        "a2": 1,
+        "a3": 1,
+        "family": "EOEOE",
+        "a_min": 4,
+        "kind": "leading_even",
+        "first_expanding_a0": 5,
+        "example": "OOOOOEEOEOE",
+        "remainder": "EOEOE"
+      },
+      {
+        "a1": 1,
+        "a2": 1,
+        "a3": 1,
+        "family": "EOEOE",
+        "a_min": 4,
+        "kind": "leading_OE",
+        "first_expanding_a0": 4,
+        "example": "OOOOEOEOEOE",
+        "remainder": "OEOEOE"
+      },
+      {
+        "a1": 2,
+        "a2": 1,
+        "a3": 1,
+        "family": "EOEOE",
+        "a_min": 4,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 3,
+        "example": "OOOEOOEOEOE",
+        "remainder": "OOEOEOE"
+      },
+      {
+        "a1": 3,
+        "a2": 1,
+        "a3": 1,
+        "family": "EOEOE",
+        "a_min": 4,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 2,
+        "example": "OOEOOOEOEOE",
+        "remainder": "OOOEOEOE"
+      },
+      {
+        "a1": 0,
+        "a2": 2,
+        "a3": 0,
+        "family": "EOOEE",
+        "a_min": 4,
+        "kind": "leading_even",
+        "first_expanding_a0": 5,
+        "example": "OOOOOEEOOEE",
+        "remainder": "EOOEE"
+      },
+      {
+        "a1": 1,
+        "a2": 2,
+        "a3": 0,
+        "family": "EOOEE",
+        "a_min": 4,
+        "kind": "leading_OE",
+        "first_expanding_a0": 4,
+        "example": "OOOOEOEOOEE",
+        "remainder": "OEOOEE"
+      },
+      {
+        "a1": 2,
+        "a2": 2,
+        "a3": 0,
+        "family": "EOOEE",
+        "a_min": 4,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 3,
+        "example": "OOOEOOEOOEE",
+        "remainder": "OOEOOEE"
+      },
+      {
+        "a1": 3,
+        "a2": 2,
+        "a3": 0,
+        "family": "EOOEE",
+        "a_min": 4,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 2,
+        "example": "OOEOOOEOOEE",
+        "remainder": "OOOEOOEE"
+      },
+      {
+        "a1": 0,
+        "a2": 2,
+        "a3": 1,
+        "family": "EOOEOE",
+        "a_min": 3,
+        "kind": "leading_even",
+        "first_expanding_a0": 4,
+        "example": "OOOOEEOOEOE",
+        "remainder": "EOOEOE"
+      },
+      {
+        "a1": 1,
+        "a2": 2,
+        "a3": 1,
+        "family": "EOOEOE",
+        "a_min": 3,
+        "kind": "leading_OE",
+        "first_expanding_a0": 3,
+        "example": "OOOEOEOOEOE",
+        "remainder": "OEOOEOE"
+      },
+      {
+        "a1": 2,
+        "a2": 2,
+        "a3": 1,
+        "family": "EOOEOE",
+        "a_min": 3,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 2,
+        "example": "OOEOOEOOEOE",
+        "remainder": "OOEOOEOE"
+      },
+      {
+        "a1": 0,
+        "a2": 3,
+        "a3": 0,
+        "family": "EOOOEE",
+        "a_min": 3,
+        "kind": "leading_even",
+        "first_expanding_a0": 4,
+        "example": "OOOOEEOOOEE",
+        "remainder": "EOOOEE"
+      },
+      {
+        "a1": 1,
+        "a2": 3,
+        "a3": 0,
+        "family": "EOOOEE",
+        "a_min": 3,
+        "kind": "leading_OE",
+        "first_expanding_a0": 3,
+        "example": "OOOEOEOOOEE",
+        "remainder": "OEOOOEE"
+      },
+      {
+        "a1": 2,
+        "a2": 3,
+        "a3": 0,
+        "family": "EOOOEE",
+        "a_min": 3,
+        "kind": "short_bunched_remainder",
+        "first_expanding_a0": 2,
+        "example": "OOEOOEOOOEE",
+        "remainder": "OOEOOOEE"
+      }
+    ],
+    "z_monotone": true,
+    "bunched_tail_at_n0": [
+      {
+        "family": "EEE",
+        "a1": 6,
+        "a2": 0,
+        "a3": 0,
+        "n0": 73,
+        "tail_holds": true
+      },
+      {
+        "family": "EOEE",
+        "a1": 5,
+        "a2": 1,
+        "a3": 0,
+        "n0": 89,
+        "tail_holds": true
+      },
+      {
+        "family": "EOOEE",
+        "a1": 4,
+        "a2": 2,
+        "a3": 0,
+        "n0": 120,
+        "tail_holds": true
+      },
+      {
+        "family": "EOOOEE",
+        "a1": 3,
+        "a2": 3,
+        "a3": 0,
+        "n0": 188,
+        "tail_holds": true
+      },
+      {
+        "family": "EEOE",
+        "a1": 5,
+        "a2": 0,
+        "a3": 1,
+        "n0": 60,
+        "tail_holds": true
+      },
+      {
+        "family": "EOEOE",
+        "a1": 4,
+        "a2": 1,
+        "a3": 1,
+        "n0": 81,
+        "tail_holds": true
+      },
+      {
+        "family": "EOOEOE",
+        "a1": 3,
+        "a2": 2,
+        "a3": 1,
+        "n0": 126,
+        "tail_holds": true
+      }
+    ],
+    "all_bunched_tails_hold": true,
+    "first_bunched_remainder_odd": 8,
+    "example_gapped_last": "OOEEOOOOEE",
+    "example_bunched_remainder": "OOEOOOOOOEEE",
+    "example_leading_even": "OOOOOOOEEEE",
+    "example_leading_OE": "OOOOOOEOEEE",
+    "example_short_bunched": "OOEOOOOOEEE",
+    "length_eight_census": false,
+    "length_nine_census": false,
+    "four_even_bunched_attack": false,
+    "induction_on_period": false,
+    "induction_on_n": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "no_cycleMin_gapped_three_even_ee": true,
+    "no_cycleMin_gapped_three_even_eoe": true,
+    "no_cycle_word_gapped_three_even_ee": true,
+    "no_cycle_word_three_even_eee": true,
+    "no_cycle_word_three_even_eoee": true,
+    "no_cycle_word_three_even_eooee": true,
+    "no_cycle_word_three_even_eoooee": true,
+    "no_cycle_word_three_even_eeoe": true,
+    "no_cycle_word_three_even_eoeoe": true,
+    "no_cycle_word_three_even_eooeoe": true,
+    "no_cycle_word_length_eight": true,
+    "no_cycle_word_length_le_eight": true,
+    "no_cycle_word_length_nine": true,
+    "no_cycle_word_four_even": true,
+    "no_cycleMin_four_even": true,
+    "no_cycle_word_first_e_e4": true,
+    "no_cycleMin_first_e_e4": true,
+    "no_cycle_word_bunched": true,
+    "no_all_cycles_impossible": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "Minimal_untouched": true
+  },
+  "decision": {
+    "classification": "FIRST_E_E4_REPARAMETERIZATION",
+    "reason": "gapped last-cluster is Theorem 3.13 on the last two-even suffix; long-a1 bunched remainder is the existing bunched tail at y after y>=n tightens Z(n)<=Z(y); 30 short-first-gap shapes remain; not a new e=4 theorem"
+  },
+  "search_method": "classify expanding e=4 leftovers through odd-count 16; gapped last-cluster vs bunched remainder vs short first gap; no length-8/9 census and no four-even tail list"
+}

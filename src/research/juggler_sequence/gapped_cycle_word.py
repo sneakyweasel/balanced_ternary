@@ -26,6 +26,7 @@ from research.juggler_sequence.first_e_transport import (
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     FIRST_E_TRANSPORT,
+    GAPPED_CYCLE_WORD,
     MINIMAL,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
@@ -160,14 +161,11 @@ def run_probe() -> dict[str, Any]:
 
 
 def lean_api_present() -> dict[str, bool]:
-    gapped = Path(
-        __file__
-    ).resolve().parents[3] / "formal" / "Problems" / "Juggler" / "GappedCycleWord.lean"
     combined = (
         FIRST_E_TRANSPORT.read_text(encoding="utf-8")
         + CYCLES.read_text(encoding="utf-8")
         + SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
-        + (gapped.read_text(encoding="utf-8") if gapped.is_file() else "")
+        + GAPPED_CYCLE_WORD.read_text(encoding="utf-8")
         + juggler_text()
     )
     named = {name: has_named(combined, name) for name in LEAN_THEOREMS}

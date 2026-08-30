@@ -1,4 +1,5 @@
-import Problems.Juggler.BunchedEOEE
+import Problems.Juggler.LeftoverCell
+import Problems.Juggler.LeftoverShort
 import Problems.Juggler.BunchedEOOOEEEval
 
 namespace Problems.Juggler
