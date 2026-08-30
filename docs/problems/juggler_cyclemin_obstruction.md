@@ -204,12 +204,13 @@ leftover after an arbitrary prefix are now separate promoted
 branches
 ([juggler_prefix_two_even.md](juggler_prefix_two_even.md),
 [juggler_prefix_bunched.md](juggler_prefix_bunched.md)). The
-leftover-suffix, predecessor-cell, and front-overshoot attacks
-on bunched-short are parked
+leftover-suffix, predecessor-cell, front-overshoot, and
+exact-return attacks on bunched-short are parked
 ([juggler_bunched_short.md](juggler_bunched_short.md),
 [juggler_bunched_short_front.md](juggler_bunched_short_front.md),
-[juggler_front_overshoot.md](juggler_front_overshoot.md)). The
-residual named here is still bunched-short last cluster. Do not
+[juggler_front_overshoot.md](juggler_front_overshoot.md),
+[juggler_bunched_short_return.md](juggler_bunched_short_return.md)).
+The residual named here is still bunched-short last cluster. Do not
 write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
 
 ## Decision

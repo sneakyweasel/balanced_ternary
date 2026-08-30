@@ -4178,5 +4178,60 @@
       "tests/research/juggler_sequence/test_front_overshoot.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-short-even-not-square",
+    "tag": "REFUTED",
+    "statement": "If T_E(z) = n then z = n^2, so every short-cluster cycle equation has last even landing exactly n^2. False. floorPower on an even z equals n if and only if n^2 ≤ z < (n+1)^2, an interval of length 2n+1. For odd n the point n^2 is odd and is excluded by cycle_last_even_ne_odd_sq. Witness: n = 13 has even preimages {170, 172, …, 194}. This is not a CycleMin exclusion, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_bunched_short_return.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_short_return.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-short-odd-square-cell",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "The odd floor cell of m = n^2 contains at most one integer (odd_cell_unique). For 2 ≤ n ≤ 500 that cell is empty for 477 values, contains a unique even integer for 10 values, and contains a unique odd integer for 12 values: (n, z) in {(6,11), (15,37), (27,81), (79,339), (125,625), (150,797), (165,905), (168,927), (188,1077), (273,1771), (276,1797), (343,2401)}. On a CycleMin the start n is odd, so n^2 is not in the last-even cell and this square-edge list is not the last-odd layer of an EOE tail. This is a finite census, not a parameterized Lean emptiness theorem, not a Z5 family, and not a halt theorem.",
+    "source": "docs/problems/juggler_bunched_short_return.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_short_return.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-short-return-census",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "Exact preimages R_{b,c}(n) = {y ≥ n : T_{O^b E O^c E}(y) = n} split by the last gap c. For c = 0 the EE fibre has order n^3 (|R_{0,0}(12)| = 2041, |R_{0,0}(13)| = 2379). For c = 1 return factors through the last-odd layer of the last-even cell; that layer is empty for 15 values of 2 ≤ n ≤ 48 and has size at most 2. Through n ≤ 48, |R_{1,1}(12)| = 2 and R_{2,1} is nonempty only at n = 6 (y = 9). On odd 12 ≤ n < 64, two-even CycleMin-shaped prefixes O^{a0} E O^a E yield one landing (37 → 4990602 on OOOOEOOOE) and no short tail follows it, hence no exact return. This is not an interval seal, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_bunched_short_return.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_short_return.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-short-ee-compose",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If T_EE(y) = n with y even, write t = T_E(y), eps = localDefectEven(t) = t - n^2, and eta = localDefectEven(y) = y - t^2. Then y = n^4 + 2 eps n^2 + eps^2 + eta. For odd CycleMin n, eps is odd and at least 1, so y - n^4 >= 2n^2 + 1. The b = 1,2,3 short tails are this EE fibre after b ordinary odd-step defects. This is the leftover EE cell in defect coordinates, not a CycleMin exclusion, not a Z5 family, and not a halt theorem.",
+    "source": "docs/problems/juggler_bunched_short_defect.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_short_defect.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-short-defect-obstruction",
+    "tag": "REFUTED",
+    "statement": "Exact short-cluster closure T_{O^b E O^c E}(y) = n forces an impossible defect equation: a tiny gap z^3 = n^4 + delta, a wrong parity, or a finite algebraic signature that CycleMin prefixes cannot meet. False. For odd n the last-odd equation is z^3 = (n^2 + eps)^2 + delta with eps >= 1 odd and 0 < delta <= 2t, delta odd; the gap from n^4 is at least 2n^2+1. The EE fibre at n = 13 has 2366 states and all 16 admissible (eps, eta) mod 8 pairs. Last-odd hits for odd 13 <= n < 49 occupy all odd classes mod 8. The composed 1+Q is the leftover EE cell. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_bunched_short_defect.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_short_defect.py"
+    ],
+    "related_conjectures": []
   }
 ]

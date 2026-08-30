@@ -81,6 +81,58 @@
       "odd_sq_even_blocked": 10,
       "odd_sq_odd_hits": 12,
       "odd_sq_first_hit": 6,
+      "odd_sq_last_hit": 343,
+      "odd_sq_hits": [
+        {
+          "n": 6,
+          "z": 11
+        },
+        {
+          "n": 15,
+          "z": 37
+        },
+        {
+          "n": 27,
+          "z": 81
+        },
+        {
+          "n": 79,
+          "z": 339
+        },
+        {
+          "n": 125,
+          "z": 625
+        },
+        {
+          "n": 150,
+          "z": 797
+        },
+        {
+          "n": 165,
+          "z": 905
+        },
+        {
+          "n": 168,
+          "z": 927
+        },
+        {
+          "n": 188,
+          "z": 1077
+        },
+        {
+          "n": 273,
+          "z": 1771
+        },
+        {
+          "n": 276,
+          "z": 1797
+        },
+        {
+          "n": 343,
+          "z": 2401
+        }
+      ],
+      "odd_sq_hits_match_table": true,
       "odd_sq_samples": [
         {
           "n": 6,
@@ -179,7 +231,8 @@
           "integer_width": 1
         }
       ],
-      "last_odd_empty_layers": 22,
+      "last_odd_empty_layers": 15,
+      "last_odd_max": 2,
       "last_odd_layers_head": [
         {
           "n": 2,
@@ -320,70 +373,85 @@
       }
     ],
     "counts": {
-      "n_max": 80,
+      "n_max": 48,
+      "n_list": 16,
       "rows": [
         {
           "b": 0,
           "c": 0,
           "first_n": 2,
-          "nonempty_n": 79,
-          "max_count": 524961,
+          "nonempty_n": 47,
+          "exact_n": 47,
+          "max_count": 115297,
           "count_at_12": 2041,
-          "count_at_13": 2379
+          "count_at_13": 2379,
+          "fat_ee_unlisted": false
         },
         {
           "b": 1,
           "c": 0,
           "first_n": 2,
-          "nonempty_n": 79,
-          "max_count": 518,
+          "nonempty_n": 15,
+          "exact_n": 15,
+          "max_count": 38,
           "count_at_12": 24,
-          "count_at_13": 23
+          "count_at_13": 23,
+          "fat_ee_unlisted": true
         },
         {
           "b": 2,
           "c": 0,
           "first_n": 2,
-          "nonempty_n": 66,
-          "max_count": 6,
+          "nonempty_n": 9,
+          "exact_n": 15,
+          "max_count": 4,
           "count_at_12": 1,
-          "count_at_13": 0
+          "count_at_13": 0,
+          "fat_ee_unlisted": true
         },
         {
           "b": 3,
           "c": 0,
           "first_n": 2,
-          "nonempty_n": 5,
+          "nonempty_n": 2,
+          "exact_n": 15,
           "max_count": 1,
           "count_at_12": 0,
-          "count_at_13": 0
+          "count_at_13": 0,
+          "fat_ee_unlisted": true
         },
         {
           "b": 0,
           "c": 1,
           "first_n": 4,
-          "nonempty_n": 57,
-          "max_count": 909,
+          "nonempty_n": 32,
+          "exact_n": 47,
+          "max_count": 356,
           "count_at_12": 29,
-          "count_at_13": 31
+          "count_at_13": 31,
+          "fat_ee_unlisted": false
         },
         {
           "b": 1,
           "c": 1,
           "first_n": 4,
-          "nonempty_n": 52,
-          "max_count": 10,
+          "nonempty_n": 28,
+          "exact_n": 47,
+          "max_count": 4,
           "count_at_12": 2,
-          "count_at_13": 0
+          "count_at_13": 0,
+          "fat_ee_unlisted": false
         },
         {
           "b": 2,
           "c": 1,
           "first_n": 6,
-          "nonempty_n": 9,
+          "nonempty_n": 5,
+          "exact_n": 47,
           "max_count": 1,
           "count_at_12": 0,
-          "count_at_13": 0
+          "count_at_13": 0,
+          "fat_ee_unlisted": false
         }
       ],
       "first_ge_n": {
@@ -395,6 +463,100 @@
         "1,1": 4,
         "2,1": 6
       },
+      "listed_small": {
+        "0,0": {
+          "6": [
+            1296,
+            1298,
+            1300,
+            1302,
+            1304,
+            1306,
+            1308,
+            1310
+          ],
+          "12": [
+            20736,
+            20738,
+            20740,
+            20742,
+            20744,
+            20746,
+            20748,
+            20750
+          ]
+        },
+        "1,0": {
+          "6": [
+            119,
+            123,
+            139,
+            141,
+            147,
+            149,
+            159,
+            167
+          ],
+          "12": [
+            759,
+            771,
+            783,
+            785,
+            787,
+            789,
+            797,
+            803
+          ]
+        },
+        "2,0": {
+          "6": [],
+          "12": [
+            85
+          ]
+        },
+        "3,0": {
+          "6": [],
+          "12": []
+        },
+        "0,1": {
+          "6": [
+            122,
+            124,
+            126,
+            128,
+            130,
+            132,
+            134,
+            136
+          ],
+          "12": [
+            842,
+            844,
+            846,
+            848,
+            850,
+            852,
+            854,
+            856
+          ]
+        },
+        "1,1": {
+          "6": [
+            27,
+            31
+          ],
+          "12": [
+            91,
+            93
+          ]
+        },
+        "2,1": {
+          "6": [
+            9
+          ],
+          "12": []
+        }
+      },
       "abundant": {
         "0,0": true,
         "1,0": true,
@@ -405,6 +567,16 @@
     },
     "cyclemin": {
       "n_max": 64,
+      "landing_count": 1,
+      "landings": [
+        {
+          "n": 37,
+          "y": 4990602,
+          "u": "OOOOEOOOE",
+          "a0": 4,
+          "a": 3
+        }
+      ],
       "follows": 0,
       "exact_hits": [],
       "exact_count": 0
@@ -433,7 +605,7 @@
   },
   "decision": {
     "classification": "SHORT_RETURN_PARK",
-    "reason": "even inverse is an interval of length 2n+1, not {n^2}; odd cells of n^2 are almost always empty, but the last-even cell still has odd preimages and c=0 return sets are abundant; no CycleMin exact hit below the front cutoff"
+    "reason": "even inverse is an interval of length 2n+1, not {n^2}; odd cells of n^2 are almost always empty, but CycleMin n is odd so n^2 is not in the last-even cell; that cell still has a last-odd layer of size at most 2; (0,0) return sets are abundant (order n^3); no CycleMin exact hit below the front cutoff"
   },
   "search_method": "exact even/odd floorPower inverses; odd_cell of n^2; last-odd layer of the last-even cell; |R_{b,c}(n)| counts; CycleMin-shaped fronts with exact image n; no interval census"
 }

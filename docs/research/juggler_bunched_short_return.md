@@ -31,10 +31,11 @@ Maximum Phase-0 scope   exact inverses; R counts; CycleMin
 - even inverse singleton n^2: `False`
 - odd cells of n^2 empty: `477` / `500`
 - odd cells of n^2 with an odd integer: `12`
-- last-odd empty layers: `22`
+- last-odd empty layers: `15` / max `2`
+- CycleMin e=2 landings: `1`
 - CycleMin exact hits: `0`
 
-even inverse is an interval of length 2n+1, not {n^2}; odd cells of n^2 are almost always empty, but the last-even cell still has odd preimages and c=0 return sets are abundant; no CycleMin exact hit below the front cutoff.
+even inverse is an interval of length 2n+1, not {n^2}; odd cells of n^2 are almost always empty, but CycleMin n is odd so n^2 is not in the last-even cell; that cell still has a last-odd layer of size at most 2; (0,0) return sets are abundant (order n^3); no CycleMin exact hit below the front cutoff.
 
 ## Attack 1 — even inverse
 
@@ -54,29 +55,35 @@ The singleton `z = n^2` is false. On a CycleMin, `n` is odd, so
 
 By `odd_cell_unique` there is at most one integer in the odd cell of `m = n^2`. Through `n <= 500`: empty=`477`, even-blocked=`10`, odd hits=`12`.
 
-The last odd step of an `EOE` tail must hit some even in `[n^2, (n+1)^2)`, not necessarily `n^2`.
+On a CycleMin the start `n` is odd, so `n^2` is odd and is not in the last-even cell. The square-edge equation `floor(z^{3/2}) = n^2` is therefore not the CycleMin last-odd condition. The last odd step of an `EOE` tail must hit some even in `[n^2, (n+1)^2)`.
 
-Odd-cell hits at `m = n^2`:
-- n=`6` integers=`[11]` odd=`[11]`
-- n=`15` integers=`[37]` odd=`[37]`
-- n=`27` integers=`[81]` odd=`[81]`
-- n=`79` integers=`[339]` odd=`[339]`
-- n=`125` integers=`[625]` odd=`[625]`
-- n=`150` integers=`[797]` odd=`[797]`
+All odd-cell hits at `m = n^2` through the cutoff:
+- n=`6` z=`11`
+- n=`15` z=`37`
+- n=`27` z=`81`
+- n=`79` z=`339`
+- n=`125` z=`625`
+- n=`150` z=`797`
+- n=`165` z=`905`
+- n=`168` z=`927`
+- n=`188` z=`1077`
+- n=`273` z=`1771`
+- n=`276` z=`1797`
+- n=`343` z=`2401`
 
 ## Return counts
 
-- (b,c)=`(0,0)` first=`2` nonempty=`79` max=`524961` at12=`2041` at13=`2379`
-- (b,c)=`(1,0)` first=`2` nonempty=`79` max=`518` at12=`24` at13=`23`
-- (b,c)=`(2,0)` first=`2` nonempty=`66` max=`6` at12=`1` at13=`0`
-- (b,c)=`(3,0)` first=`2` nonempty=`5` max=`1` at12=`0` at13=`0`
-- (b,c)=`(0,1)` first=`4` nonempty=`57` max=`909` at12=`29` at13=`31`
-- (b,c)=`(1,1)` first=`4` nonempty=`52` max=`10` at12=`2` at13=`0`
-- (b,c)=`(2,1)` first=`6` nonempty=`9` max=`1` at12=`0` at13=`0`
+- (b,c)=`(0,0)` first=`2` nonempty=`47` max=`115297` at12=`2041` at13=`2379`
+- (b,c)=`(1,0)` first=`2` nonempty=`15` max=`38` at12=`24` at13=`23` (EE fibre unlisted above n_list)
+- (b,c)=`(2,0)` first=`2` nonempty=`9` max=`4` at12=`1` at13=`0` (EE fibre unlisted above n_list)
+- (b,c)=`(3,0)` first=`2` nonempty=`2` max=`1` at12=`0` at13=`0` (EE fibre unlisted above n_list)
+- (b,c)=`(0,1)` first=`4` nonempty=`32` max=`356` at12=`29` at13=`31`
+- (b,c)=`(1,1)` first=`4` nonempty=`28` max=`4` at12=`2` at13=`0`
+- (b,c)=`(2,1)` first=`6` nonempty=`5` max=`1` at12=`0` at13=`0`
 
 ## CycleMin exact fronts
 
-- follows=`0` exact=`0`
+- landings=`1` follows=`0` exact=`0`
 
 ## Lean
 
@@ -106,7 +113,7 @@ Odd-cell hits at `m = n^2`:
 
 **SHORT_RETURN_PARK**
 
-even inverse is an interval of length 2n+1, not {n^2}; odd cells of n^2 are almost always empty, but the last-even cell still has odd preimages and c=0 return sets are abundant; no CycleMin exact hit below the front cutoff.
+even inverse is an interval of length 2n+1, not {n^2}; odd cells of n^2 are almost always empty, but CycleMin n is odd so n^2 is not in the last-even cell; that cell still has a last-odd layer of size at most 2; (0,0) return sets are abundant (order n^3); no CycleMin exact hit below the front cutoff.
 
 This is not a halt result, not a Z5 exclusion, and not a
 length-11 assembler.

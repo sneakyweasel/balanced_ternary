@@ -154,6 +154,8 @@ branch
 ([juggler_bunched_short_front.md](juggler_bunched_short_front.md)).
 The first-even-overshoot plus later-`OO` attack is also parked
 ([juggler_front_overshoot.md](juggler_front_overshoot.md)).
+The exact-return attack \(S_{b,c}(y)=n\) is also parked
+([juggler_bunched_short_return.md](juggler_bunched_short_return.md)).
 Do not write \(Z_5\). Do not assemble
 `no_cycle_word_length_eleven`. Do not reopen four-even cells.
 
@@ -165,8 +167,9 @@ now with an explicit return family. Do not claim that every
 cycle word is impossible.
 
 Best next question: answered in
-[juggler_bunched_short_front.md](juggler_bunched_short_front.md)
-and [juggler_front_overshoot.md](juggler_front_overshoot.md).
+[juggler_bunched_short_front.md](juggler_bunched_short_front.md),
+[juggler_front_overshoot.md](juggler_front_overshoot.md),
+and [juggler_bunched_short_return.md](juggler_bunched_short_return.md).
 
 ## Publication assessment
 

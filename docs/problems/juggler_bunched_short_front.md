@@ -183,9 +183,12 @@ assembler, and not a halt theorem.
 
 ## Open questions
 
-The first-even-overshoot plus later-`OO` attack is now a
-separate parked branch
+The first-even-overshoot plus later-`OO` attack is a separate
+parked branch
 ([juggler_front_overshoot.md](juggler_front_overshoot.md)).
+The exact-return attack \(S_{b,c}(y)=n\) is a separate parked
+branch
+([juggler_bunched_short_return.md](juggler_bunched_short_return.md)).
 Do not write \(Z_5\). Do not assemble
 `no_cycle_word_length_eleven`. Do not reopen four-even cells.
 

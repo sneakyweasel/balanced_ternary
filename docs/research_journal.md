@@ -12529,3 +12529,71 @@ Best next question
   first-even landing; not a leftover cell
 ```
 
+## Juggler exact short-cluster return sets
+
+- **Date:** 2026-08-30
+- **Objective:** Characterize \(R_{b,c}(n)=\{y\ge n:T_{O^bEO^cE}(y)=n\}\) from `floorPower` and test exact cycle closure against CycleMin prefixes; not the parked interval statement \(S\notin[n,y]\)
+- **Hypotheses:** the seven short tails have extremely narrow exact preimage sets, incompatible with the constraints already imposed on \(y=T_u(n)\)
+- **Major results:** Classification **SHORT_RETURN_PARK**. Even inverse is the interval \([n^2,(n+1)^2)\cap 2\mathbb{Z}\), not \(\{n^2\}\) — **REFUTED** (`J-cyclemin-short-even-not-square`). Odd cell of \(n^2\) through 500: 477 empty, 10 even-blocked, 12 odd hits — **COMPUTATIONALLY VERIFIED** (`J-cyclemin-short-odd-square-cell`). CycleMin \(n\) is odd, so \(n^2\) is not in the last-even cell; last-odd layer of that cell has size \(\le 2\) for \(n\le 48\). \(R_{0,0}\) has order \(n^3\); \(R_{2,1}\) is almost empty. One two-even CycleMin landing below 64, no short tail follows, no exact hit — **COMPUTATIONALLY VERIFIED** (`J-cyclemin-short-return-census`). No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** last even landing is \(n^2\); \(\lfloor z^{3/2}\rfloor=n^2\) is the CycleMin last-odd equation; every \(R_{b,c}\) is tiny; terminal exact arithmetic alone empties \(R\cap P\)
+- **Literature:** leftover-suffix `PARK`; predecessor cells `PARK`; front overshoot `PARK`; last-cluster `PROMOTE`; prefix two-even and prefix bunched `PROMOTE`; `odd_cell_unique` / even-cell Lean
+- **Open:** isolated-odd CycleMin prefix landing in \(R_{b,c}(n)\). Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`. Do not reopen the interval seal
+- **Decision:** PARK. Exact return is characterized and is fat at `EE`; there is no reusable A/B/C exclusion
+
+```text
+What was learned
+- T_E(z)=n is an even interval of length 2n+1, not z=n^2
+- CycleMin n odd forbids the square-edge last-odd equation
+- odd cells of n^2 are almost empty (12 hits through 500)
+- the real c=1 object is the last-odd layer (size <=2 for n<=48)
+- R_{0,0} is abundant (order n^3); R_{2,1} is almost empty
+- one e=2 CycleMin landing below 64; no short tail follows it
+Strongest theorem
+- none new; even/odd inverses are the existing Lean cell lemmas
+Strongest refutation
+- T_E(z)=n forces z=n^2; |R_{0,0}(12)|=2041
+Reusable machinery
+- bunched_short_return.py exact pullback of the seven tails
+Branch status
+- PARK
+Why
+- terminal exact arithmetic names R_{b,c}(n) but does not empty
+  R ∩ P; the EE fibre is an infinite abundant family
+Best next question
+- can an isolated-odd CycleMin prefix land in R_{b,c}(n)?
+```
+
+## Juggler exact short-cluster closure via defect
+
+- **Date:** 2026-08-30
+- **Objective:** Rewrite \(T_{O^bEO^cE}(y)=n\) as a local floor-defect identity and test whether that identity is impossible for a CycleMin prefix
+- **Hypotheses:** exact closure forces a tiny gap \(z^3=n^4+\delta\), a wrong parity, or a finite algebraic signature
+- **Major results:** Classification **SHORT_DEFECT_PARK**. EE identity \(y=n^4+2\varepsilon n^2+\varepsilon^2+\eta\) **EXACT — HUMAN PROOF** (`J-cyclemin-short-ee-compose`). The obstruction hypothesis is **REFUTED** (`J-cyclemin-short-defect-obstruction`): for odd \(n\) the last-odd gap from \(n^4\) is at least \(2n^2+1\); last-odd \(\delta\) is ordinary and odd; the EE fibre at \(n=13\) has 2366 states and all 16 admissible 8-adic pairs; composed \(1+Q\) is the leftover EE cell. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** tiny-gap last-odd equation; impossible EE defect; last-odd parity mismatch; finite EE signatures; \(1+Q\) is a new sign obstruction
+- **Literature:** exact-return `PARK`; leftover-suffix / predecessor / front overshoot `PARK`; `localDefect*` and `odd_remainder_even` Lean
+- **Open:** isolated-odd CycleMin prefix landing in the \((\varepsilon,\eta)\) fibre. Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** PARK. Exact closure is a satisfiable ordinary-defect identity, not a new obstruction
+
+```text
+What was learned
+- c=0 and c=1 are two identities, not seven theories
+- y = n^4 + 2 eps n^2 + eps^2 + eta is the leftover EE cell
+- odd n forbids the tiny-gap equation z^3 = n^4 + delta
+- last-odd delta is odd, ordinary, and occupies all odd classes mod 8
+- EE signatures are unrestricted on the admissible 8-adic lattice
+Strongest theorem
+- T_EE(y)=n iff y = n^4 + 2 eps n^2 + eps^2 + eta
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- n=13, eps=1, eta=0 gives y=28900 and T_EE(y)=13
+Reusable machinery
+- bunched_short_defect.py closure identities
+Branch status
+- PARK
+Why
+- the defect rewrite is real and the required defects are the
+  ordinary successor windows; no CycleMin contradiction
+Best next question
+- isolated-odd CycleMin prefix landing in the (eps, eta) fibre
+```
+
