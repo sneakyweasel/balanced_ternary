@@ -12250,3 +12250,36 @@ Best next question
 - stop; do not pin the two misses; do not open e=5
 ```
 
+## Juggler CycleMax first-cell exclusion
+
+- **Date:** 2026-08-30
+- **Objective:** Package the CycleMax scale sharpening \(M\ge(m+1)^2\) as a corollary of first-even overshoot
+- **Hypotheses:** on a `CycleMin` the first even residual already sits at or above \((m+1)^2\), hence so does the maximum; the first-cell family is then empty
+- **Major results:** `cycleMin_max_ge_succ_sq`, `cycleMax_min_succ_sq_le`, `cycleMax_landing_gt_min`, `cycleMax_exists_min_succ_sq` in `EvenCountThree.lean`. Ledger row `J-cyclemax-succ-sq` tagged **EXACT — LEAN VERIFIED**. First-cell maxima are impossible and \(T(M)>m\). No first-cell census. Paper A unchanged
+- **Refuted ideas:** dual slack 139 on a `CycleMax`; a leftover rescue of the two necklace misses via the maximum
+- **Literature:** `J-first-even-overshoots`; `J-cycle-finite-structure`; cycle extrema `PROMOTE`
+- **Open:** stop. Do not reopen peak finance, Diophantine moduli, or a first-cell census
+- **Decision:** PROMOTE. The extrema package now includes the first-cell exclusion as a named Lean corollary
+
+```text
+What was learned
+- first-even overshoot already places a cycle state at (m+1)^2
+- the cycle maximum is at least that state
+- first-cell maxima M in (m^2, (m+1)^2) are impossible
+- T(M) > m: the max cannot collapse to the min in one even
+- dual slack on CycleMax points the wrong way
+Strongest theorem
+- On CycleMin, (m+1)^2 ≤ M; on CycleMax, T(M) > m
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- none; the previous unclaimed first-cell family is now excluded
+Reusable machinery
+- four lemmas in EvenCountThree.lean; no new probe
+Branch status
+- PROMOTE
+Why
+- the increment is a corollary of existing Lean, not a new cell
+Best next question
+- stop; do not open a first-cell census or dual slack
+```
+

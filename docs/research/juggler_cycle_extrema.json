@@ -16,7 +16,7 @@
     "cycle_is_envelope_equality": false,
     "power_bound_eq_forbids_cycles": false,
     "word_independent_obstruction": false,
-    "max_first_cell_impossible": false,
+    "max_first_cell_impossible": true,
     "all_odd_orbit": false,
     "finite_progress_for_all": false
   },
@@ -601,6 +601,11 @@
     "square_scale_superquadratic": true,
     "cycleMin_to_even_superquadratic": true,
     "cycleMin_to_max_superquadratic": true,
+    "cycleMin_max_ge_succ_sq": true,
+    "cycleMin_max_not_first_cell": true,
+    "cycleMax_min_succ_sq_le": true,
+    "cycleMax_landing_gt_min": true,
+    "cycleMax_exists_min_succ_sq": true,
     "certificate_present": true,
     "PowerHeight_absent": true,
     "no_global_termination_theorem": true,
@@ -620,7 +625,7 @@
     "secondary": [
       "ASCENDING_SUPERQUADRATIC_GREEN"
     ],
-    "reason": "every nontrivial cycle has odd min, even max, and M > m^2; any realized path from m to an even cycle state is superquadratic. Ordinary stay-above-min transients often drop before m^2, so the cycle constraint is not vacuous"
+    "reason": "every nontrivial cycle has odd min, even max, and M >= (m+1)^2; any realized path from m to an even cycle state is superquadratic. First-cell maxima are impossible. Ordinary stay-above-min transients often drop before m^2, so the cycle constraint is not vacuous"
   },
   "search_method": "stay-above-min transient calibration; no cycle-state search; no cycle-word census; exact integer cells only"
 }

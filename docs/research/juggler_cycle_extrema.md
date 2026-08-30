@@ -8,11 +8,11 @@ and not a termination theorem. Word-independent extrema, not a census.
 ## Branch budget
 
 ```text
-Mathematical target     extrema force M > m^2 and a superquadratic min-to-even path
-Novelty hypothesis      max even + PowerBound give a prefix law stronger than 2^r < 3^o
-Falsifier               a path to ≥ m^2 with 3^o < 2^{k+1}; or max odd on a cycle
-Existing machinery      CycleMin, power_bound_word, floorPower_odd_gt / even_lt
-Maximum Phase-0 scope   CycleMax; M > m^2; square-scale superquadratic; transient calibration
+Mathematical target     extrema force M >= (m+1)^2 and a superquadratic min-to-even path
+Novelty hypothesis      first-even overshoot excludes first-cell maxima
+Falsifier               a CycleMin whose max sits below (m+1)^2
+Existing machinery      CycleMin, cycleMin_first_even_overshoots, cycleMin_max_gt_sq
+Maximum Phase-0 scope   CycleMax; M >= (m+1)^2; square-scale superquadratic
 ```
 
 ## Metadata
@@ -23,7 +23,7 @@ Maximum Phase-0 scope   CycleMax; M > m^2; square-scale superquadratic; transien
 - secondary: `['ASCENDING_SUPERQUADRATIC_GREEN']`
 - sorry-free: `True`
 
-every nontrivial cycle has odd min, even max, and M > m^2; any realized path from m to an even cycle state is superquadratic. Ordinary stay-above-min transients often drop before m^2, so the cycle constraint is not vacuous.
+every nontrivial cycle has odd min, even max, and M >= (m+1)^2; any realized path from m to an even cycle state is superquadratic. First-cell maxima are impossible. Ordinary stay-above-min transients often drop before m^2, so the cycle constraint is not vacuous.
 
 A cycle cannot drop below `m` and therefore cannot use the
 common transient `OE` collapse before square scale.
@@ -62,6 +62,11 @@ common transient `OE` collapse before square scale.
 - `square_scale_superquadratic`: `True`
 - `cycleMin_to_even_superquadratic`: `True`
 - `cycleMin_to_max_superquadratic`: `True`
+- `cycleMin_max_ge_succ_sq`: `True`
+- `cycleMin_max_not_first_cell`: `True`
+- `cycleMax_min_succ_sq_le`: `True`
+- `cycleMax_landing_gt_min`: `True`
+- `cycleMax_exists_min_succ_sq`: `True`
 - certificate unchanged: `True`
 - FloorPower not rewritten: `True`
 - no length-6 theorem: `True`
@@ -87,7 +92,7 @@ common transient `OE` collapse before square scale.
 - cycle_is_envelope_equality: `False`
 - power_bound_eq_forbids_cycles: `False`
 - word_independent_obstruction: `False`
-- max_first_cell_impossible: `False`
+- max_first_cell_impossible: `True`
 - all_odd_orbit: `False`
 - finite_progress_for_all: `False`
 
@@ -95,9 +100,9 @@ common transient `OE` collapse before square scale.
 
 **CYCLE_EXTREMES_GREEN**
 
-every nontrivial cycle has odd min, even max, and M > m^2; any realized path from m to an even cycle state is superquadratic. Ordinary stay-above-min transients often drop before m^2, so the cycle constraint is not vacuous.
+every nontrivial cycle has odd min, even max, and M >= (m+1)^2; any realized path from m to an even cycle state is superquadratic. First-cell maxima are impossible. Ordinary stay-above-min transients often drop before m^2, so the cycle constraint is not vacuous.
 
 This is not a halt result. Growth-versus-collapse coexistence
 is not refuted. The first-cell family M in [m^2, (m+1)^2) is
-not excluded.
+excluded by first-even overshoot: M >= (m+1)^2 and T(M) > m.
 

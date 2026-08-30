@@ -17,6 +17,7 @@ from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 from research.juggler_sequence.lean_paths import (
     CYCLES,
     ENVELOPE,
+    EVEN_COUNT_THREE,
     MINIMAL,
     PROGRESS,
     juggler_text,
@@ -49,6 +50,14 @@ LEAN_THEOREMS = (
     "square_scale_superquadratic",
     "cycleMin_to_even_superquadratic",
     "cycleMin_to_max_superquadratic",
+)
+
+SUCC_SQ_THEOREMS = (
+    "cycleMin_max_ge_succ_sq",
+    "cycleMin_max_not_first_cell",
+    "cycleMax_min_succ_sq_le",
+    "cycleMax_landing_gt_min",
+    "cycleMax_exists_min_succ_sq",
 )
 
 CERTIFICATE_UNCHANGED = (
@@ -146,6 +155,13 @@ def lean_api_present() -> dict[str, bool]:
     for name in LEAN_THEOREMS:
         token = f"def {name}" if name == "CycleMax" else f"theorem {name}"
         named[name] = token in text
+    even = (
+        EVEN_COUNT_THREE.read_text(encoding="utf-8")
+        if EVEN_COUNT_THREE.is_file()
+        else ""
+    )
+    for name in SUCC_SQ_THEOREMS:
+        named[name] = f"theorem {name}" in even
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **named,
@@ -236,6 +252,10 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["square_scale_superquadratic"]
         and lean["cycleMin_to_even_superquadratic"]
         and lean["cycleMin_to_max_superquadratic"]
+        and lean["cycleMin_max_ge_succ_sq"]
+        and lean["cycleMax_min_succ_sq_le"]
+        and lean["cycleMax_landing_gt_min"]
+        and lean["cycleMax_exists_min_succ_sq"]
         and lean["no_length_six_theorem"]
         and lean["no_cycle_engine"]
         and lean["FloorPower_not_rewritten"]
@@ -268,10 +288,11 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         "classification": CLASS_EXTREMES,
         "secondary": [CLASS_ASCEND],
         "reason": (
-            "every nontrivial cycle has odd min, even max, and M > m^2; "
-            "any realized path from m to an even cycle state is "
-            "superquadratic. Ordinary stay-above-min transients often "
-            "drop before m^2, so the cycle constraint is not vacuous"
+            "every nontrivial cycle has odd min, even max, and "
+            "M >= (m+1)^2; any realized path from m to an even cycle "
+            "state is superquadratic. First-cell maxima are impossible. "
+            "Ordinary stay-above-min transients often drop before m^2, "
+            "so the cycle constraint is not vacuous"
         ),
     }
 
@@ -288,7 +309,7 @@ def probe_payload() -> dict[str, Any]:
     anti["cycle_is_envelope_equality"] = False
     anti["power_bound_eq_forbids_cycles"] = False
     anti["word_independent_obstruction"] = False
-    anti["max_first_cell_impossible"] = False
+    anti["max_first_cell_impossible"] = True
     anti["all_odd_orbit"] = False
     anti["finite_progress_for_all"] = False
     return {
@@ -320,11 +341,11 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "## Branch budget",
         "",
         "```text",
-        "Mathematical target     extrema force M > m^2 and a superquadratic min-to-even path",
-        "Novelty hypothesis      max even + PowerBound give a prefix law stronger than 2^r < 3^o",
-        "Falsifier               a path to ≥ m^2 with 3^o < 2^{k+1}; or max odd on a cycle",
-        "Existing machinery      CycleMin, power_bound_word, floorPower_odd_gt / even_lt",
-        "Maximum Phase-0 scope   CycleMax; M > m^2; square-scale superquadratic; transient calibration",
+        "Mathematical target     extrema force M >= (m+1)^2 and a superquadratic min-to-even path",
+        "Novelty hypothesis      first-even overshoot excludes first-cell maxima",
+        "Falsifier               a CycleMin whose max sits below (m+1)^2",
+        "Existing machinery      CycleMin, cycleMin_first_even_overshoots, cycleMin_max_gt_sq",
+        "Maximum Phase-0 scope   CycleMax; M >= (m+1)^2; square-scale superquadratic",
         "```",
         "",
         "## Metadata",
@@ -371,6 +392,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
     )
     for name in LEAN_THEOREMS:
         lines.append(f"- `{name}`: `{lean.get(name)}`")
+    for name in SUCC_SQ_THEOREMS:
+        lines.append(f"- `{name}`: `{lean.get(name)}`")
     lines.extend(
         [
             f"- certificate unchanged: `{lean.get('certificate_present')}`",
@@ -399,7 +422,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             "",
             "This is not a halt result. Growth-versus-collapse coexistence",
             "is not refuted. The first-cell family M in [m^2, (m+1)^2) is",
-            "not excluded.",
+            "excluded by first-even overshoot: M >= (m+1)^2 and T(M) > m.",
             "",
         ]
     )

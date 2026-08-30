@@ -19,11 +19,14 @@ minimum state and \(M\) for a maximum state. Then:
 
 - \(m\) is odd,
 - \(M\) is even,
-- \(M>m^2\).
+- \(M>m^2\),
+- \(M\ge(m+1)^2\).
 
-The last inequality is strict because \(m^2\) is odd. Equivalently,
-\(T(M)=\lfloor\sqrt M\rfloor\ge m\), so \(M\ge m^2\), and parity
-forbids equality.
+The first scale inequality is strict because \(m^2\) is odd.
+Equivalently, \(T(M)=\lfloor\sqrt M\rfloor\ge m\), so \(M\ge m^2\),
+and parity forbids equality. First-even overshoot on a `CycleMin`
+then places the first even residual at or above \((m+1)^2\), so the
+maximum satisfies \(M\ge(m+1)^2\) and \(T(M)>m\).
 
 Any realized finite word from a start \(n\ge 2\) to a state at least
 \(n^2\) is superquadratic:
@@ -46,7 +49,8 @@ M\in[q^2,(q+1)^2),\qquad q\ge m.
 \]
 
 This does not force \(q=m\). The first-cell family
-\(M\in(m^2,(m+1)^2)\) is not excluded.
+\(M\in(m^2,(m+1)^2)\) is excluded: \(M\ge(m+1)^2\). The landing
+satisfies \(q>m\).
 
 This says nothing about cycles ending in a particular letter. Do not
 prove that every cycle word is impossible. Do not prove totality.
@@ -68,11 +72,11 @@ of word length. Totality remains unclaimed.
 ## Branch budget
 
 ```text
-Mathematical target     extrema force M > m^2 and a superquadratic min-to-even path
-Novelty hypothesis      max even + PowerBound give a prefix law stronger than 2^r < 3^o
-Falsifier               a path to ≥ m^2 with 3^o < 2^{k+1}; or max odd on a cycle
-Existing machinery      CycleMin, power_bound_word, floorPower_odd_gt / even_lt
-Maximum Phase-0 scope   CycleMax; M > m^2; square-scale superquadratic; transient calibration
+Mathematical target     extrema force M ≥ (m+1)^2 and a superquadratic min-to-even path
+Novelty hypothesis      first-even overshoot excludes first-cell maxima
+Falsifier               a CycleMin whose max sits below (m+1)^2
+Existing machinery      CycleMin, cycleMin_first_even_overshoots, cycleMin_max_gt_sq
+Maximum Phase-0 scope   CycleMax; M ≥ (m+1)^2; square-scale superquadratic; transient calibration
 Promotion criterion     reusable extrema package, or a genuine prefix law
 Stop criterion          cycle engine; word census; FloorPower rewrite; first-cell census
 ```
@@ -91,12 +95,17 @@ It is not required.
   **EXACT — LEAN VERIFIED**
 - \(M>m^2\) on a cycle minimum —
   **EXACT — LEAN VERIFIED**
+- \(M\ge(m+1)^2\) on a cycle minimum, equivalently first-cell
+  maxima are impossible —
+  **EXACT — LEAN VERIFIED**
+  (`cycleMin_max_ge_succ_sq`, `cycleMax_min_succ_sq_le`)
+- \(T(M)>m\) —
+  **EXACT — LEAN VERIFIED** (`cycleMax_landing_gt_min`)
 - square-scale image implies superquadratic word —
   **EXACT — LEAN VERIFIED**
 - min-to-even (hence min-to-max) prefixes are superquadratic —
   **EXACT — LEAN VERIFIED**
 - growth and collapse cannot coexist — not claimed
-- first-cell maxima are impossible — not claimed
 - every cycle word is impossible — not claimed
 - global halt — not claimed
 
@@ -124,7 +133,8 @@ None to the extrema package. The stronger claims that fail:
   expanding and not superquadratic.
 - “\(M=m^2\) is possible” — \(m\) odd makes \(m^2\) odd.
 - “the maximum must collapse to the minimum” — the return cell
-  permits \(q>m\).
+  permits \(q>m\); first-even overshoot now forces \(q>m\).
+- “first-cell maxima survive” — \(M\ge(m+1)^2\).
 
 ## Formalization
 
@@ -132,6 +142,9 @@ None to the extrema package. The stronger claims that fail:
 
 - `CycleMax` / `exists_cycle_max_even` / `cycleMax_start_even`
 - `cycleMin_max_gt_sq` / `cycleMin_max_sqrt_ge` / `cycleMax_return_cell`
+- later, in `EvenCountThree.lean`: `cycleMin_max_ge_succ_sq` /
+  `cycleMax_min_succ_sq_le` / `cycleMax_landing_gt_min` /
+  `cycleMax_exists_min_succ_sq`
 - `square_scale_superquadratic`
 - `cycleMin_to_even_superquadratic` / `cycleMin_to_max_superquadratic`
 
@@ -147,7 +160,9 @@ Classification **CYCLE_EXTREMES_GREEN**, with secondary
 
 The package is reusable and word-independent. It is not a
 growth-versus-collapse obstruction. Ordinary transients often drop
-before square scale, so the cycle demand \(M>m^2\) is not vacuous.
+before square scale, so the cycle demand \(M\ge(m+1)^2\) is not
+vacuous. First-cell maxima are excluded by first-even overshoot,
+not by a cell census.
 
 ## Open questions
 
@@ -159,9 +174,10 @@ survive. Do not start a first-cell census. Do not reopen length 7.
 
 ## Decision
 
-**PROMOTE** the extrema package and the square-scale prefix law. Do
-not claim that growth and collapse cannot coexist. Do not claim that
-first-cell maxima are impossible. Do not claim termination.
+**PROMOTE** the extrema package, the square-scale prefix law, and
+the first-cell exclusion \(M\ge(m+1)^2\). Do not claim that growth
+and collapse cannot coexist. Do not claim termination. Do not start
+a first-cell census.
 
 Best next question: answered in
 [juggler_cycle_top_excursion.md](juggler_cycle_top_excursion.md).

@@ -7,8 +7,11 @@ namespace Problems.Juggler
 
 The extrema of any nontrivial cycle are word-independent: the
 minimum is odd, the maximum is even, and `M > m^2`. A realized path
-from `m` to any even cycle state is therefore superquadratic. The
-maximum begins a finite even run `E^r` onto an odd landing `p`, with
+from `m` to any even cycle state is therefore superquadratic. After
+the even-count-3 assembler, first-even overshoot sharpens the scale
+to `M ≥ (m+1)^2` (`cycleMin_max_ge_succ_sq` in `EvenCountThree`):
+the first-cell family is impossible and `T(M) > m`. The maximum
+begins a finite even run `E^r` onto an odd landing `p`, with
 `p^{2^r} ≤ M < (p+1)^{2^r}`. The predecessor `x` of `M` is odd and
 strictly between the landing and the maximum: `p < x < M`, with
 `M^2 ≤ x^3 < (M+1)^2` and `x^3 ≥ p^{2^{r+1}}`. The peak block

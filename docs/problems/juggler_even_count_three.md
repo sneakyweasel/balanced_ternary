@@ -34,8 +34,10 @@ is excluded. On `MinimalNonTerm` or `CycleMin` the first even
 residual therefore overshoots
 (`minimal_first_even_overshoots`,
 `cycleMin_first_even_overshoots`). That sharpens the leftover
-start. It does not exclude a four-even word and is not a halt
-theorem.
+start, and the cycle-extrema corollary is \(M\ge(m+1)^2\)
+(`cycleMin_max_ge_succ_sq`, `cycleMax_min_succ_sq_le`): first-cell
+maxima are impossible and \(T(M)>m\). It does not exclude a
+four-even word and is not a halt theorem.
 
 This is not a length-9 or length-10 census. Paper A still states
 the length-\(\le 7\) census. There is no
@@ -119,6 +121,10 @@ It is not required.
   **EXACT — LEAN VERIFIED**
   (`minimal_first_even_overshoots`,
   `cycleMin_first_even_overshoots`)
+- cycle maximum sits at or above \((m+1)^2\) —
+  **EXACT — LEAN VERIFIED**
+  (`cycleMin_max_ge_succ_sq`, `cycleMax_min_succ_sq_le`,
+  `cycleMax_landing_gt_min`)
 - cycles of length 11 or more are impossible — not claimed
 - four-even leftovers die — not claimed
 - global halt — not claimed
@@ -153,8 +159,12 @@ stronger claims that remain unproved:
 `no_cycle_word_even_count_le_three`,
 `cycle_word_even_count_ge_four`,
 `cycle_word_length_ge_eleven`,
-`minimal_first_even_overshoots`, and
-`cycleMin_first_even_overshoots`. `SmallCycleCensus.lean` still
+`minimal_first_even_overshoots`,
+`cycleMin_first_even_overshoots`,
+`cycleMin_max_ge_succ_sq`,
+`cycleMax_min_succ_sq_le`,
+`cycleMax_landing_gt_min`, and
+`cycleMax_exists_min_succ_sq`. `SmallCycleCensus.lean` still
 assembles only through length seven. `LengthEightCensus.lean` remains
 the laboratory length-8 assembler. No `no_cycle_word_length_nine`.
 No `no_cycle_word_length_le_nine`. No `sorry`. No halt theorem.
@@ -167,9 +177,9 @@ Classification **EVEN_COUNT_THREE_GREEN**.
 No \(n\ge 2\) realizes a cycle word with at most three even letters.
 A nontrivial cycle, if one exists, has period at least eleven. On a
 leftover start the first even residual overshoots; return-to-\(n\)
-is dead. This is an even-count theorem, not a four-even exclusion,
-not a length-9 census, not a published Paper A theorem, and not a
-halt theorem.
+is dead. The extrema corollary is \(M\ge(m+1)^2\). This is an
+even-count theorem, not a four-even exclusion, not a length-9
+census, not a published Paper A theorem, and not a halt theorem.
 
 ## Open questions
 

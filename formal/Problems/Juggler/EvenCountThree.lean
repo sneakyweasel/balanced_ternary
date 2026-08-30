@@ -15,7 +15,8 @@ leftovers (Theorems 3.13 and 3.21).
 
 This is an even-count theorem, not a length-9 or length-10 census.
 It is not imported by `Problems.JugglerPaper`. Not a halt theorem
-and not an exclusion of four-even leftovers.
+and not an exclusion of four-even leftovers. First-even overshoot
+sharpens the extrema package to `M ≥ (m+1)^2`.
 -/
 
 def evenCount : List Branch → ℕ
@@ -619,5 +620,111 @@ theorem cycleMin_first_even_overshoots {n a : ℕ} {v : List Branch}
         have : n < floorPower (image n (List.replicate a Branch.odd)) := by
           simpa [himg] using hlt
         exact (even_floorPower_gt_iff hz).mp this
+
+theorem evenCount_pos_of_getLast_even {w : List Branch}
+    (h : w.getLast? = some Branch.even) : 1 ≤ evenCount w := by
+  induction w with
+  | nil => simp at h
+  | cons b rest ih =>
+      cases rest with
+      | nil =>
+          cases b with
+          | even => simp [evenCount]
+          | odd => simp [List.getLast?] at h
+      | cons c t =>
+          have hrest : (c :: t).getLast? = some Branch.even := by
+            simpa [List.getLast?] using h
+          have ih' := ih hrest
+          cases b with
+          | even => simp [evenCount]
+          | odd => simpa [evenCount] using ih'
+
+theorem cycleMin_evenCount_pos {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) : 1 ≤ evenCount w :=
+  evenCount_pos_of_getLast_even (cycleMin_getLast_even hn h)
+
+/-- Every `CycleMin` word is a first-even block plus a nonempty tail. -/
+theorem cycleMin_exists_oddEven_split {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ a v, w = oddEvenBlock a 1 ++ v := by
+  obtain ⟨a, v, hw⟩ := exists_first_even (cycleMin_evenCount_pos hn h)
+  refine ⟨a, v, ?_⟩
+  simp [oddEvenBlock, hw]
+
+/-- On a cycle minimum the maximum sits at or above `(n+1)^2`. The
+first even residual already overshoots, so the first-cell family
+`n^2 < M < (n+1)^2` is impossible. Not a halt theorem. -/
+theorem cycleMin_max_ge_succ_sq {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ i < w.length,
+      (∀ j < w.length, floorPower^[j] n ≤ floorPower^[i] n) ∧
+        floorPower^[i] n % 2 = 0 ∧
+          (n + 1) ^ 2 ≤ floorPower^[i] n := by
+  obtain ⟨a, v, hw⟩ := cycleMin_exists_oddEven_split hn h
+  have hover := cycleMin_first_even_overshoots hn (by simpa [hw] using h)
+  have ⟨i, hi, hmax, heven, _hgt⟩ := cycleMin_max_gt_sq hn h
+  refine ⟨i, hi, hmax, heven, ?_⟩
+  have ha : a < w.length := by
+    rw [hw, List.length_append, oddEvenBlock_length]
+    omega
+  have hz : (n + 1) ^ 2 ≤ floorPower^[a] n := by
+    simpa [image_odd_run] using hover.1
+  exact hz.trans (hmax a ha)
+
+theorem cycleMin_max_not_first_cell {n : ℕ} {w : List Branch}
+    {i : ℕ} (hn : 2 ≤ n) (h : CycleMin n w) (hi : i < w.length)
+    (hmax : ∀ j < w.length, floorPower^[j] n ≤ floorPower^[i] n) :
+    (n + 1) ^ 2 ≤ floorPower^[i] n := by
+  obtain ⟨i0, hi0, hmax0, _, hge⟩ := cycleMin_max_ge_succ_sq hn h
+  have heq : floorPower^[i] n = floorPower^[i0] n :=
+    le_antisymm (hmax0 i hi) (hmax i0 hi0)
+  simpa [heq] using hge
+
+/-- On a cycle maximum the rotated minimum satisfies `(m+1)^2 ≤ M`. -/
+theorem cycleMax_min_succ_sq_le {n : ℕ} {w : List Branch} {k : ℕ}
+    (hn : 2 ≤ n) (h : CycleMax n w) (hk : k < w.length)
+    (hmin : CycleMin (floorPower^[k] n) (rotateWord w k)) :
+    (floorPower^[k] n + 1) ^ 2 ≤ n := by
+  have hk0 : k ≠ 0 := by
+    intro hk0
+    have : CycleMin n w := by
+      simpa [hk0, rotateWord] using hmin
+    exact cycleMax_not_cycleMin hn h this
+  have hm2 : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h.1 hk
+  have ⟨i, hi, hmax, _, hge⟩ :=
+    cycleMin_max_ge_succ_sq (n := floorPower^[k] n) hm2 hmin
+  have hlen : (rotateWord w k).length = w.length := rotateWord_length w k
+  have hle : floorPower^[i] (floorPower^[k] n) ≤ n := by
+    have himg : floorPower^[i] (floorPower^[k] n) = floorPower^[k + i] n := by
+      simpa [Nat.add_comm] using
+        (Function.iterate_add_apply floorPower i k n).symm
+    simpa [himg] using cycleMax_iterate_le h (k + i)
+  have hfrom : floorPower^[w.length - k] (floorPower^[k] n) = n := by
+    have hsum : w.length - k + k = w.length := Nat.sub_add_cancel (Nat.le_of_lt hk)
+    have hiter := Function.iterate_add_apply floorPower (w.length - k) k n
+    rw [← hiter, hsum, cycle_iterate_period h.1]
+  have hidx : w.length - k < (rotateWord w k).length := by
+    rw [hlen]
+    omega
+  have hnle : n ≤ floorPower^[i] (floorPower^[k] n) := by
+    simpa [hfrom] using hmax (w.length - k) hidx
+  have heq : floorPower^[i] (floorPower^[k] n) = n := le_antisymm hle hnle
+  simpa [heq] using hge
+
+/-- The maximum cannot collapse to the minimum in one even step. -/
+theorem cycleMax_landing_gt_min {n : ℕ} {w : List Branch} {k : ℕ}
+    (hn : 2 ≤ n) (h : CycleMax n w) (hk : k < w.length)
+    (hmin : CycleMin (floorPower^[k] n) (rotateWord w k)) :
+    floorPower^[k] n < floorPower n := by
+  have he := cycleMax_start_even hn h
+  exact (even_floorPower_gt_iff he).mpr (cycleMax_min_succ_sq_le hn h hk hmin)
+
+theorem cycleMax_exists_min_succ_sq {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMax n w) :
+    ∃ k < w.length,
+      CycleMin (floorPower^[k] n) (rotateWord w k) ∧
+        (floorPower^[k] n + 1) ^ 2 ≤ n := by
+  obtain ⟨k, hk, hmin⟩ := exists_cycleMin hn h.1
+  exact ⟨k, hk, hmin, cycleMax_min_succ_sq_le hn h hk hmin⟩
 
 end Problems.Juggler

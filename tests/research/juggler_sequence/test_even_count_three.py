@@ -77,6 +77,10 @@ def test_lean_even_count_assembler_and_paper_a_boundary():
     assert "theorem cycle_word_length_ge_eleven" in even
     assert "theorem minimal_first_even_overshoots" in even
     assert "theorem cycleMin_first_even_overshoots" in even
+    assert "theorem cycleMin_max_ge_succ_sq" in even
+    assert "theorem cycleMax_min_succ_sq_le" in even
+    assert "theorem cycleMax_landing_gt_min" in even
+    assert "theorem cycleMax_exists_min_succ_sq" in even
     assert "sorry" not in even
     assert "admit" not in even
     assert "theorem no_cycle_word_even_count_le_three" not in census7
@@ -123,6 +127,8 @@ def test_dossier_boundary():
     assert "cycle_word_length_ge_eleven" in dossier
     assert "minimal_first_even_overshoots" in dossier
     assert "cycleMin_first_even_overshoots" in dossier
+    assert "cycleMin_max_ge_succ_sq" in dossier
+    assert "cycleMax_min_succ_sq_le" in dossier
     assert "no_cycle_word_length_nine" in dossier
     assert "not a length-9" in dossier
     assert "theorem no_cycle_word_even_count_le_three" not in note

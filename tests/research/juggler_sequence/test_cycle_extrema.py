@@ -6,6 +6,7 @@ from research.juggler_sequence.cycle_extrema import (
     CLASS_ASCEND,
     CLASS_EXTREMES,
     LEAN_THEOREMS,
+    SUCC_SQ_THEOREMS,
     cell_vs_sq,
     classify,
     expanding,
@@ -45,6 +46,8 @@ def test_lean_api_extrema_without_census():
     assert lean["sorry_free"] is True
     for name in LEAN_THEOREMS:
         assert lean[name] is True, name
+    for name in SUCC_SQ_THEOREMS:
+        assert lean[name] is True, name
     assert lean["no_all_cycles_impossible"] is True
     assert lean["no_cycle_engine"] is True
     assert lean["no_length_six_theorem"] is True
@@ -61,6 +64,13 @@ def test_lean_api_extrema_without_census():
     assert "def CycleMax" in src
     assert "theorem square_scale_superquadratic" in src
     assert "theorem cycleMin_to_max_superquadratic" in src
+    from research.juggler_sequence.lean_paths import EVEN_COUNT_THREE
+
+    even = EVEN_COUNT_THREE.read_text(encoding="utf-8")
+    assert "theorem cycleMin_max_ge_succ_sq" in even
+    assert "theorem cycleMax_min_succ_sq_le" in even
+    assert "theorem cycleMax_landing_gt_min" in even
+    assert "theorem cycleMax_exists_min_succ_sq" in even
     assert "theorem no_cycle_word_length_six" not in src
     assert "PowerBoundEq" not in src
     assert "MinimalNonTerm" not in src
@@ -89,7 +99,7 @@ def test_classify_extrema_green():
                 **dict(ANTI_OVERCLAIM),
                 "cycles_impossible": False,
                 "word_independent_obstruction": False,
-                "max_first_cell_impossible": False,
+                "max_first_cell_impossible": True,
             },
         }
     )
@@ -110,7 +120,7 @@ def test_committed_artifacts_schema():
     assert data["decision"]["classification"] == CLASS_EXTREMES
     assert data["anti_overclaim"]["cycles_impossible"] is False
     assert data["anti_overclaim"]["word_independent_obstruction"] is False
-    assert data["anti_overclaim"]["max_first_cell_impossible"] is False
+    assert data["anti_overclaim"]["max_first_cell_impossible"] is True
     assert data["lean"]["sorry_free"] is True
     assert data["lean"]["square_scale_superquadratic"] is True
     assert data["lean"]["no_length_six_theorem"] is True

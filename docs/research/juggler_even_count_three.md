@@ -46,6 +46,10 @@ every even-terminating expanding word with e<=3 at lengths 9..16 hits a named fi
 - `cycle_word_length_ge_eleven`: `True`
 - `minimal_first_even_overshoots`: `True`
 - `cycleMin_first_even_overshoots`: `True`
+- `cycleMin_max_ge_succ_sq`: `True`
+- `cycleMax_min_succ_sq_le`: `True`
+- `cycleMax_landing_gt_min`: `True`
+- `cycleMax_exists_min_succ_sq`: `True`
 - `no_cycle_word_two_even_ee`: `True`
 - `no_cycle_word_two_even_eoe`: `True`
 - `no_cycle_word_three_even_eee`: `True`
