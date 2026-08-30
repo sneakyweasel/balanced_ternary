@@ -4112,5 +4112,16 @@
       "tests/research/juggler_sequence/test_prefix_bunched.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-bunched-short-path",
+    "tag": "REFUTED",
+    "statement": "The leftover-suffix path table that excludes expanding bunched leftovers after an arbitrary prefix also excludes the bunched-short residual a < a_min: no y follows O^a ++ tail and lands in [12, y]. False. Below 256 there are 18 such returns, including 129 → 100 on OOOOOEEE and 81 → 16 on OOOEOEE, and no short leftover overshoots y. Isolated-odd bunched-short shapes with e ≥ 5 exist in the expanding window. A return is not a CycleMin. This is not a Z5 family, not a length-11 census, not a four-even cell, and not a halt theorem.",
+    "source": "docs/problems/juggler_bunched_short.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_short.py"
+    ],
+    "related_conjectures": []
   }
 ]

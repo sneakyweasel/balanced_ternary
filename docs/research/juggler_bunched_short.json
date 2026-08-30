@@ -1,0 +1,597 @@
+{
+  "experiment": "juggler_bunched_short",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_cutoff": 256,
+    "n_min": 12,
+    "families": [
+      "EEE",
+      "EOEE",
+      "EOOEE",
+      "EOOOEE",
+      "EEOE",
+      "EOEOE",
+      "EOOEOE"
+    ],
+    "short_count": 30,
+    "path_rows": [
+      {
+        "name": "EEE",
+        "a": 0,
+        "word": "EEE",
+        "expanding": false,
+        "follows": 21,
+        "hit_count": 0,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 21
+      },
+      {
+        "name": "EEE",
+        "a": 1,
+        "word": "OEEE",
+        "expanding": false,
+        "follows": 19,
+        "hit_count": 15,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 4
+      },
+      {
+        "name": "EEE",
+        "a": 2,
+        "word": "OOEEE",
+        "expanding": false,
+        "follows": 9,
+        "hit_count": 8,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 1
+      },
+      {
+        "name": "EEE",
+        "a": 3,
+        "word": "OOOEEE",
+        "expanding": false,
+        "follows": 3,
+        "hit_count": 2,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 1
+      },
+      {
+        "name": "EEE",
+        "a": 4,
+        "word": "OOOOEEE",
+        "expanding": false,
+        "follows": 0,
+        "hit_count": 0,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EEE",
+        "a": 5,
+        "word": "OOOOOEEE",
+        "expanding": false,
+        "follows": 2,
+        "hit_count": 2,
+        "hit_n12_count": 2,
+        "hits_n12": [
+          {
+            "y": 129,
+            "n": 100
+          },
+          {
+            "y": 209,
+            "n": 159
+          }
+        ],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOEE",
+        "a": 0,
+        "word": "EOEE",
+        "expanding": false,
+        "follows": 31,
+        "hit_count": 31,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOEE",
+        "a": 1,
+        "word": "OEOEE",
+        "expanding": false,
+        "follows": 13,
+        "hit_count": 13,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOEE",
+        "a": 2,
+        "word": "OOEOEE",
+        "expanding": false,
+        "follows": 7,
+        "hit_count": 7,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOEE",
+        "a": 3,
+        "word": "OOOEOEE",
+        "expanding": false,
+        "follows": 2,
+        "hit_count": 2,
+        "hit_n12_count": 2,
+        "hits_n12": [
+          {
+            "y": 81,
+            "n": 16
+          },
+          {
+            "y": 87,
+            "n": 16
+          }
+        ],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOEE",
+        "a": 4,
+        "word": "OOOOEOEE",
+        "expanding": false,
+        "follows": 0,
+        "hit_count": 0,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOEE",
+        "a": 0,
+        "word": "EOOEE",
+        "expanding": false,
+        "follows": 5,
+        "hit_count": 5,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOEE",
+        "a": 1,
+        "word": "OEOOEE",
+        "expanding": false,
+        "follows": 6,
+        "hit_count": 6,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOEE",
+        "a": 2,
+        "word": "OOEOOEE",
+        "expanding": false,
+        "follows": 2,
+        "hit_count": 2,
+        "hit_n12_count": 2,
+        "hits_n12": [
+          {
+            "y": 69,
+            "n": 14
+          },
+          {
+            "y": 109,
+            "n": 19
+          }
+        ],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOEE",
+        "a": 3,
+        "word": "OOOEOOEE",
+        "expanding": false,
+        "follows": 2,
+        "hit_count": 2,
+        "hit_n12_count": 2,
+        "hits_n12": [
+          {
+            "y": 99,
+            "n": 78
+          },
+          {
+            "y": 247,
+            "n": 186
+          }
+        ],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOOEE",
+        "a": 0,
+        "word": "EOOOEE",
+        "expanding": false,
+        "follows": 3,
+        "hit_count": 3,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOOEE",
+        "a": 1,
+        "word": "OEOOOEE",
+        "expanding": false,
+        "follows": 3,
+        "hit_count": 3,
+        "hit_n12_count": 3,
+        "hits_n12": [
+          {
+            "y": 135,
+            "n": 21
+          },
+          {
+            "y": 231,
+            "n": 31
+          },
+          {
+            "y": 233,
+            "n": 31
+          }
+        ],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOOEE",
+        "a": 2,
+        "word": "OOEOOOEE",
+        "expanding": false,
+        "follows": 1,
+        "hit_count": 1,
+        "hit_n12_count": 1,
+        "hits_n12": [
+          {
+            "y": 105,
+            "n": 82
+          }
+        ],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EEOE",
+        "a": 0,
+        "word": "EEOE",
+        "expanding": false,
+        "follows": 0,
+        "hit_count": 0,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EEOE",
+        "a": 1,
+        "word": "OEEOE",
+        "expanding": false,
+        "follows": 10,
+        "hit_count": 10,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EEOE",
+        "a": 2,
+        "word": "OOEEOE",
+        "expanding": false,
+        "follows": 11,
+        "hit_count": 11,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EEOE",
+        "a": 3,
+        "word": "OOOEEOE",
+        "expanding": false,
+        "follows": 3,
+        "hit_count": 3,
+        "hit_n12_count": 1,
+        "hits_n12": [
+          {
+            "y": 59,
+            "n": 13
+          }
+        ],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EEOE",
+        "a": 4,
+        "word": "OOOOEEOE",
+        "expanding": false,
+        "follows": 0,
+        "hit_count": 0,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOEOE",
+        "a": 0,
+        "word": "EOEOE",
+        "expanding": false,
+        "follows": 15,
+        "hit_count": 15,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOEOE",
+        "a": 1,
+        "word": "OEOEOE",
+        "expanding": false,
+        "follows": 3,
+        "hit_count": 3,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOEOE",
+        "a": 2,
+        "word": "OOEOEOE",
+        "expanding": false,
+        "follows": 3,
+        "hit_count": 3,
+        "hit_n12_count": 3,
+        "hits_n12": [
+          {
+            "y": 97,
+            "n": 17
+          },
+          {
+            "y": 137,
+            "n": 22
+          },
+          {
+            "y": 157,
+            "n": 24
+          }
+        ],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOEOE",
+        "a": 3,
+        "word": "OOOEOEOE",
+        "expanding": false,
+        "follows": 0,
+        "hit_count": 0,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOEOE",
+        "a": 0,
+        "word": "EOOEOE",
+        "expanding": false,
+        "follows": 9,
+        "hit_count": 9,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOEOE",
+        "a": 1,
+        "word": "OEOOEOE",
+        "expanding": false,
+        "follows": 2,
+        "hit_count": 2,
+        "hit_n12_count": 0,
+        "hits_n12": [],
+        "overshoot_count": 0,
+        "basin_count": 0
+      },
+      {
+        "name": "EOOEOE",
+        "a": 2,
+        "word": "OOEOOEOE",
+        "expanding": false,
+        "follows": 2,
+        "hit_count": 2,
+        "hit_n12_count": 2,
+        "hits_n12": [
+          {
+            "y": 89,
+            "n": 70
+          },
+          {
+            "y": 111,
+            "n": 86
+          }
+        ],
+        "overshoot_count": 0,
+        "basin_count": 0
+      }
+    ],
+    "path_follows_count": 187,
+    "path_hit_count": 160,
+    "path_hit_n12_count": 18,
+    "path_overshoot_count": 0,
+    "all_path_tables_empty": false,
+    "window_split": {
+      "counts": {
+        "e4_oo": 176,
+        "e4_iso": 64,
+        "e5_oo": 1212,
+        "e5_iso": 96,
+        "e6_oo": 4662,
+        "e6_iso": 128
+      },
+      "iso_examples": [
+        {
+          "runs": [
+            4,
+            1,
+            1,
+            1
+          ],
+          "word": "OOOOEOEOEOE"
+        },
+        {
+          "runs": [
+            5,
+            0,
+            1,
+            1
+          ],
+          "word": "OOOOOEEOEOE"
+        },
+        {
+          "runs": [
+            5,
+            1,
+            0,
+            1
+          ],
+          "word": "OOOOOEOEEOE"
+        },
+        {
+          "runs": [
+            5,
+            1,
+            1,
+            0
+          ],
+          "word": "OOOOOEOEOEE"
+        },
+        {
+          "runs": [
+            6,
+            0,
+            0,
+            1
+          ],
+          "word": "OOOOOOEEEOE"
+        },
+        {
+          "runs": [
+            6,
+            0,
+            1,
+            0
+          ],
+          "word": "OOOOOOEEOEE"
+        },
+        {
+          "runs": [
+            6,
+            1,
+            0,
+            0
+          ],
+          "word": "OOOOOOEOEEE"
+        },
+        {
+          "runs": [
+            7,
+            0,
+            0,
+            0
+          ],
+          "word": "OOOOOOOEEEE"
+        }
+      ],
+      "e4_iso": 64,
+      "e5_iso": 96,
+      "e6_iso": 128,
+      "e5_oo": 1212,
+      "e6_oo": 4662
+    },
+    "isolated_odd_e_ge_5_exists": true,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_ge_twelve": true,
+    "no_cycleMin_prefix_eee": true,
+    "no_cycleMin_prefix_eoooee": true,
+    "no_cycleMin_prefix_two_even_ee": true,
+    "no_cycle_word_even_count_le_three": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "BUNCHED_SHORT_PARK",
+    "reason": "short leftovers return into [12, y]; the leftover-suffix path table is not a seal; isolated-odd e>=5 shapes exist; e=4 short-first-gap is already PARK; no new cell"
+  },
+  "search_method": "path census of O^a ++ bunched tail for a < a_min; window split isolated-odd vs internal OO; no leftover cells, no Z5, no length-11 assembler"
+}

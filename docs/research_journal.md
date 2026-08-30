@@ -12423,3 +12423,37 @@ Best next question
 - bunched-short last cluster after an arbitrary CycleMin prefix
 ```
 
+## Juggler bunched-short leftover-suffix path table
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether the leftover-suffix path table that excluded expanding bunched leftovers also excludes the bunched-short residual `a < a_min`
+- **Hypotheses:** no start `y` follows a short leftover and lands in `[12, y]`
+- **Major results:** Classification **BUNCHED_SHORT_PARK**. The hypothesis is **REFUTED**: 18 returns with `12 ≤ n ≤ y < 256`, including `129 → 100` on `OOOOOEEE` and `81 → 16` on `OOOEOEE`. Zero overshoots below 256. Isolated-odd bunched-short shapes exist at `e=5` (96) and `e=6` (128) in the expanding window. Ledger row `J-cyclemin-bunched-short-path`. No Lean. No `Z_5`. No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** leftover-suffix path tables seal bunched-short; short leftovers overshoot like expanding leftovers; every `e≥5` bunched-short word has an internal `OO`
+- **Literature:** last-cluster `PROMOTE`; prefix bunched `PROMOTE`; four-even short-gap `PARK`; first-E at `e=4` `CLOSE`
+- **Open:** a front invariant that is not a leftover cell. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** PARK. The leftover-suffix method is the wrong tool for the residual
+
+```text
+What was learned
+- expanding leftovers overshoot; short leftovers return
+- 18 CycleMin-scale returns below 256 kill the path-table seal
+- isolated-odd e>=5 shapes exist; the residual is not only e=4
+- e=4 short-first-gap stays the parked four-even cell
+- a return y -> n is not a CycleMin
+Strongest theorem
+- none; the leftover-suffix seal for a < a_min is REFUTED
+Strongest refutation
+- 129 follows OOOOOEEE and lands at 100
+Reusable machinery
+- bunched_short.py path census
+Branch status
+- PARK
+Why
+- the method that killed classes 2 and 3 does not kill class 4,
+  and no new inequality is in hand
+Best next question
+- first-even overshoot plus a later OO versus an undershoot
+  return through a short last cluster; not a leftover cell
+```
+

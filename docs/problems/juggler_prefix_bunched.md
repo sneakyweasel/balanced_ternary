@@ -180,10 +180,10 @@ length-11 census, and not a halt theorem.
 
 ## Open questions
 
-The remaining last-cluster class is bunched-short
-\((b,c)\in\{(0,0),(1,0),(2,0),(3,0),(0,1),(1,1),(2,1)\}\) after
-an arbitrary CycleMin prefix, now with a short last cluster
-rather than an excluded leftover. Do not write \(Z_5\). Do not
+The leftover-suffix attack on bunched-short is now a separate
+parked branch
+([juggler_bunched_short.md](juggler_bunched_short.md)). Short
+leftovers return into \([12,y]\). Do not write \(Z_5\). Do not
 assemble `no_cycle_word_length_eleven`.
 
 ## Decision
@@ -194,8 +194,9 @@ The small-\(y\) seal is a path table. The \(a=3\) seal is the
 existing tight split at \(y\). Do not claim that every cycle
 word is impossible.
 
-Best next question: the bunched-short last-cluster residual
-itself. Do not open \(Z_5\), length 11, or four-even leftovers.
+Best next question: a front invariant on a bunched-short
+`CycleMin`, not a leftover cell. The leftover-suffix test is
+parked ([juggler_bunched_short.md](juggler_bunched_short.md)).
 
 ## Publication assessment
 
