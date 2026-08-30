@@ -37,7 +37,7 @@ def test_last_cluster_split_covers_examples():
     assert classify_runs((2, 0, 5, 0)) == "last_two_even_ee"
     assert classify_runs((2, 0, 3, 1)) == "last_two_even_eoe"
     assert classify_runs((2, 6, 0, 0)) == "last_three_even_bunched"
-    assert classify_runs((2, 2, 2, 0)) == "bootstrap_last_gap"
+    assert classify_runs((2, 2, 2, 2)) == "bootstrap_last_gap"
     assert classify_runs((2, 1, 1, 0)) == "bunched_short_last_cluster"
     assert word_from_runs((2, 1, 1, 0)) == "OOEOEOEE"
 

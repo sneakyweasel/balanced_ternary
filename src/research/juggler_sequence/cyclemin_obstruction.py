@@ -15,7 +15,6 @@ from __future__ import annotations
 import json
 from collections import Counter, defaultdict
 from itertools import product
-from math import isqrt
 from pathlib import Path
 from typing import Any, Iterator
 
