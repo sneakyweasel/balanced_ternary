@@ -12457,3 +12457,75 @@ Best next question
   return through a short last cluster; not a leftover cell
 ```
 
+## Juggler bunched-short predecessor cells
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether every CycleMin short tail \(O^bEO^cE\), \((b,c)\in S\), forces a predecessor cell at \(y=T_u(n)\) disjoint from the backward-feasible cell of that tail
+- **Hypotheses:** suffix re-rooting merges every short cluster into an already-forbidden leftover; the seven families share one predecessor/cell intersection; \(Q(b,c)\) reduces them to the excluded \((3,1)\) corner
+- **Major results:** Classification **BUNCHED_SHORT_FRONT_PARK**. Re-rooting never hits an excluded leftover **EXACT — HUMAN PROOF** (`J-cyclemin-short-reroot`). \((3,1)\) is the unique expanding pair in the short rectangle and is already `O^3EOE` **EXACT — HUMAN PROOF** (`J-cyclemin-short-31-exponent`). The 18 leftover-suffix returns are predecessor-infeasible; no CycleMin \(u{+}{+}O^bEO^cE\) on \(12\le n<256\) with \(e_u\in\{2,3\}\) **COMPUTATIONALLY VERIFIED** (`J-cyclemin-short-front-census`). Four interval leaks with \(S>n\) scatter across predecessor types and ranks; trailing-even overflow is \(S\ge n+1\), not a new cell. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** unavoidable concatenation into an excluded leftover; \(Q\) obstructs the short tails; the 18 returns are CycleMin fronts; \(S_{b,c}(y)\notin[n,y]\) for every CycleMin-shaped front; trailing-even overflow is a new invariant
+- **Literature:** leftover-suffix `PARK`; last-cluster `PROMOTE`; prefix two-even and prefix bunched `PROMOTE`; four-even short-gap `PARK`
+- **Open:** a symbolic \(S_{b,c}(y)=n\) obstruction at a CycleMin front. Do not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** PARK. Predecessor infeasibility of the 18 returns and an empty cycle window are not yet a parameterized cell-intersection
+
+```text
+What was learned
+- re-rooting cannot change the last cluster; concatenation is not an obstruction
+- (3,1) is the leftover corner of the contracting rectangle, not a monotone kill
+- the 18 leftover-suffix returns cannot sit on a CycleMin front
+- no short-cluster cycle appears below 256 for e_u in {2,3}
+- four interval leaks exist, all S>n and c=0, with no shared rank
+Strongest theorem
+- no even-landing suffix of a bunched-short word is an excluded leftover
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- 37 follows OOOOEOOOEE then OOEE and lands at 76 in [37, 2233]
+Reusable machinery
+- bunched_short_front.py predecessor census
+Branch status
+- PARK
+Why
+- the designated front invariant is named and the 18 returns are
+  infeasible, but the seven families still lack one empty cell
+Best next question
+- a symbolic S_{b,c}(y)=n obstruction at a CycleMin front, not
+  an interval table and not seven per-word inequalities
+```
+
+## Juggler front overshoot versus short-cluster undershoot
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether one internal `OO` after the first-even overshoot raises the state above every cell from which a bunched-short tail can still undershoot on a `CycleMin`
+- **Hypotheses:** first-even overshoot plus a later `OO` permanently raises the return floor above short-cluster contraction; the existing transport already disjoints the seven remaining exact-return cells
+- **Major results:** Classification **FRONT_OVERSHOOT_PARK**. The raise-above invariant is **REFUTED** (`J-cyclemin-front-oo-raise`): the prefix-independent floor `(n+2)^2` is compatible with all seven remaining scales, and three interval leaks with a later `OO` exist (`37 → 76`, `113 → 1942`, `205 → 598`). Finite scan **COMPUTATIONALLY VERIFIED** (`J-cyclemin-front-oo-scan`): `T_OO` after first-even never lands in `[n^8,(n+1)^8)` on `13≤n<501`, `2≤a0≤8` (27 below, 4 above); no exact Case A/B `CycleMin` return. All 18 parked suffix returns start below `n^2`. No Lean. No `Z_5`. No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** later `OO` permanently raises the return floor above every short-tail cell; `T_remaining` after that `OO` cannot land in `[n,y]`; `T_OO` is uniformly above the EEE cell; cell depth after `OO` drops by at most a uniform `C` on a short tail
+- **Literature:** leftover-suffix `PARK`; predecessor cells `PARK`; last-cluster `PROMOTE`; prefix two-even and prefix bunched `PROMOTE`
+- **Open:** bunched-short last cluster with no later `OO` after the first-even landing. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** PARK. The raise-above invariant is false, and never-inside plus an empty exact-return scan is not a parameterized Lean theorem
+
+```text
+What was learned
+- the strongest prefix-independent OO floor is (n+2)^2 and sits
+  below every short-tail exact-return cell
+- the useful contrast is never-inside, split by a0, not always-above
+- three interval leaks with later OO do not share a post-OO depth
+- parked suffix returns all start below n^2; they are not CycleMin
+- no exact Case A/B CycleMin return appears in the scan
+Strongest theorem
+- none; the raise-above invariant is REFUTED
+Strongest refutation
+- 113 follows OOOEOOOOOEEE and lands at 1942 in [113, 2913]
+  after a later OO
+Reusable machinery
+- front_overshoot.py first-even / first-OO geometry
+Branch status
+- PARK
+Why
+- the same front lower bound is compatible with all seven short
+  tails, and the interval form fails on named leaks; a Lean cell
+  theorem would fragment by a0 and by leftover word
+Best next question
+- bunched-short last cluster with no later OO after the
+  first-even landing; not a leftover cell
+```
+

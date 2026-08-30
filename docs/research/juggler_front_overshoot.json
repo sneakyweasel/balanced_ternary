@@ -1,0 +1,335 @@
+{
+  "experiment": "juggler_front_overshoot",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_min": 12,
+    "n_a": 201,
+    "n_eee": 501,
+    "real_power": {
+      "2": {
+        "num": 81,
+        "den": 32,
+        "vs_ee": "below",
+        "vs_eee": "below"
+      },
+      "3": {
+        "num": 243,
+        "den": 64,
+        "vs_ee": "below",
+        "vs_eee": "below"
+      },
+      "4": {
+        "num": 729,
+        "den": 128,
+        "vs_ee": "above",
+        "vs_eee": "below"
+      },
+      "5": {
+        "num": 2187,
+        "den": 256,
+        "vs_ee": "above",
+        "vs_eee": "above"
+      }
+    },
+    "remaining_scale": {
+      "0,0": {
+        "num": 8,
+        "den": 1
+      },
+      "1,0": {
+        "num": 16,
+        "den": 3
+      },
+      "2,0": {
+        "num": 32,
+        "den": 9
+      },
+      "3,0": {
+        "num": 64,
+        "den": 27
+      },
+      "0,1": {
+        "num": 16,
+        "den": 3
+      },
+      "1,1": {
+        "num": 32,
+        "den": 9
+      },
+      "2,1": {
+        "num": 64,
+        "den": 27
+      }
+    },
+    "weak_floor_compatible_all_tails": true,
+    "case_a": {
+      "oo_count": 11,
+      "ee": {
+        "above": 1,
+        "below": 10
+      },
+      "eee": {
+        "below": 11
+      },
+      "weak_ee": {
+        "above": 1,
+        "below": 10
+      },
+      "weak_eee": {
+        "below": 11
+      },
+      "remaining": {
+        "0,0_nofollow": 9,
+        "1,0_nofollow": 9,
+        "2,0_nofollow": 11,
+        "3,0_nofollow": 11,
+        "0,1_nofollow": 10,
+        "1,1_nofollow": 11,
+        "2,1_nofollow": 11,
+        "0,0_follow": 2,
+        "0,0_below_n": 2,
+        "1,0_follow": 2,
+        "1,0_below_n": 2,
+        "0,1_follow": 1,
+        "0,1_below_n": 1
+      },
+      "exact_remaining": [],
+      "above_eee_samples": [],
+      "under_samples": [],
+      "never_inside_ee": true,
+      "never_inside_eee": true,
+      "raises_above_eee_uniform": false,
+      "weak_disjoint_ee": false,
+      "weak_disjoint_eee": true
+    },
+    "eee": {
+      "oo_count": 31,
+      "eee": {
+        "below": 27,
+        "above": 4
+      },
+      "never_inside_eee": true,
+      "raises_above_eee_uniform": false,
+      "above_eee_samples": [
+        {
+          "n": 241,
+          "a0": 5,
+          "y": 1106938949,
+          "w": 223500374418097824377
+        },
+        {
+          "n": 265,
+          "a0": 5,
+          "y": 1586843685,
+          "w": 502576100966477058449
+        },
+        {
+          "n": 329,
+          "a0": 8,
+          "y": 180370579261640036336071806107777,
+          "w": 3770273235023328364461642790668920055748143087755094285582942047206226296
+        },
+        {
+          "n": 425,
+          "a0": 7,
+          "y": 28449478377792766313063,
+          "w": 332404728459652093438283466731903400760886863666464
+        }
+      ]
+    },
+    "words_a": {
+      "follows": 8,
+      "stay": 1,
+      "cycle_count": 0,
+      "interval_count": 1,
+      "cycles": [],
+      "interval": [
+        {
+          "n": 113,
+          "a0": 3,
+          "a1": 5,
+          "b": 0,
+          "c": 0,
+          "word": "OOOEOOOOOEEE",
+          "y0": 2913,
+          "img": 1942
+        }
+      ]
+    },
+    "words_b": {
+      "follows": 4,
+      "stay": 0,
+      "cycle_count": 0,
+      "interval_count": 0,
+      "cycles": [],
+      "interval": []
+    },
+    "leaks": {
+      "count": 4,
+      "later_oo": 3,
+      "inside_tail": 1,
+      "cycle_count": 0,
+      "interval_count": 4,
+      "cases": {
+        "A": 2,
+        "B": 1
+      },
+      "depth_w": {
+        "29166": 1,
+        "7782": 1,
+        "86346": 1
+      },
+      "shared_geometry": false,
+      "rows": [
+        {
+          "n": 37,
+          "word": "OOOOEOOOEEOOEE",
+          "runs": [
+            4,
+            3,
+            0,
+            2,
+            0
+          ],
+          "image": 76,
+          "y0": 9317,
+          "overshoot": 9280,
+          "depth_y0": 59,
+          "cycle": false,
+          "interval": true,
+          "oo_case": "A",
+          "oo_run_index": 1,
+          "oo_yi": 9317,
+          "oo_w": 852846071,
+          "depth_yi": 59,
+          "depth_w": 29166,
+          "weak_floor": 86825124,
+          "later_oo_before_tail": true
+        },
+        {
+          "n": 103,
+          "word": "OOOOEOEOOOEE",
+          "runs": [
+            4,
+            1,
+            3,
+            0
+          ],
+          "image": 1674,
+          "y0": 124381,
+          "overshoot": 124278,
+          "depth_y0": 249,
+          "cycle": false,
+          "interval": true,
+          "oo_case": "inside_tail",
+          "oo_run_index": 2,
+          "oo_yi": 6623,
+          "oo_w": 395705667,
+          "depth_yi": -1,
+          "depth_w": 19789,
+          "weak_floor": 43877376,
+          "later_oo_before_tail": false
+        },
+        {
+          "n": 113,
+          "word": "OOOEOOOOOEEE",
+          "runs": [
+            3,
+            5,
+            0,
+            0
+          ],
+          "image": 1942,
+          "y0": 2913,
+          "overshoot": 2800,
+          "depth_y0": -1,
+          "cycle": false,
+          "interval": true,
+          "oo_case": "A",
+          "oo_run_index": 1,
+          "oo_yi": 2913,
+          "oo_w": 62339861,
+          "depth_yi": -1,
+          "depth_w": 7782,
+          "weak_floor": 8491396,
+          "later_oo_before_tail": true
+        },
+        {
+          "n": 205,
+          "word": "OOOOEOEOOEOOEE",
+          "runs": [
+            4,
+            1,
+            2,
+            2,
+            0
+          ],
+          "image": 598,
+          "y0": 710537,
+          "overshoot": 710332,
+          "depth_y0": 637,
+          "cycle": false,
+          "interval": true,
+          "oo_case": "B",
+          "oo_run_index": 2,
+          "oo_yi": 24473,
+          "oo_w": 7491110616,
+          "depth_yi": -1,
+          "depth_w": 86346,
+          "weak_floor": 598976676,
+          "later_oo_before_tail": true
+        }
+      ]
+    },
+    "witnesses": {
+      "count": 18,
+      "depth_start": {
+        "-1": 18
+      },
+      "all_start_below_square": true,
+      "internal_oo": 10
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "leftover_suffix_retest": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_ge_twelve": true,
+    "cycleMin_first_even_overshoots": true,
+    "cycleMin_transport_second_oo": true,
+    "oo_suffix_threshold": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "no_new_lean": true
+  },
+  "decision": {
+    "classification": "FRONT_OVERSHOOT_PARK",
+    "reason": "the prefix-independent OO transport floor (n+2)^2 sits below every short-tail exact-return cell, so the same front lower bound is compatible with all seven families; T_OO(first-even y) is never inside the EEE cell in the scan (below for small a0, above for large) and no exact Case A/B return appears, but three interval leaks with later OO do not share a cell depth and the raise-above invariant is false"
+  },
+  "search_method": "first-even landing plus first later OO scored against EE/EEE exact-return cells and the seven remaining short tails; Case A e=4 and Case B e=5 CycleMin-shaped words; diagnostic leaks and the 18 parked suffix returns; no leftover-suffix retest, no Z5, no length-11"
+}

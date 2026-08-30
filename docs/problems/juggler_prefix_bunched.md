@@ -194,9 +194,13 @@ The small-\(y\) seal is a path table. The \(a=3\) seal is the
 existing tight split at \(y\). Do not claim that every cycle
 word is impossible.
 
-Best next question: a front invariant on a bunched-short
-`CycleMin`, not a leftover cell. The leftover-suffix test is
-parked ([juggler_bunched_short.md](juggler_bunched_short.md)).
+Best next question: the leftover-suffix, predecessor-cell, and
+front-overshoot attacks on bunched-short are all parked
+([juggler_bunched_short.md](juggler_bunched_short.md),
+[juggler_bunched_short_front.md](juggler_bunched_short_front.md),
+[juggler_front_overshoot.md](juggler_front_overshoot.md)).
+The leftover residual is a bunched-short last cluster with no
+later \(OO\).
 
 ## Publication assessment
 

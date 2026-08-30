@@ -1,0 +1,924 @@
+{
+  "experiment": "juggler_bunched_short_front",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_cutoff": 256,
+    "n_min": 12,
+    "reroot": {
+      "short_spec_rows": [
+        {
+          "word": "EEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OEEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOEEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOOEEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOOOEEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOOOOEEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "EOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OEOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOEOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOOEOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOOOEOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "EOOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OEOOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOEOOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOOEOOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "EOOOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OEOOOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOEOOOEE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "EEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OEEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOEEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOOEEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOOOEEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "EOEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OEOEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOEOEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOOEOEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "EOOEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OEOOEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        },
+        {
+          "word": "OOEOOEOE",
+          "suffix_count": 2,
+          "forbidden_count": 0,
+          "forbidden": []
+        }
+      ],
+      "short_spec_forbidden_total": 0,
+      "window_words": 6338,
+      "window_forbidden": 0,
+      "concatenation_unavoidable": false,
+      "lemma": "Every even-landing suffix of a bunched-short word keeps the same last cluster (b,c) and the same last three-even gap a < a_min, or is shorter than three evens. None is an excluded leftover."
+    },
+    "cells": {
+      "tails": [
+        {
+          "b": 0,
+          "c": 0,
+          "tail": "EE",
+          "exponent_num": 1,
+          "exponent_den": 4,
+          "expanding": false,
+          "follows": 63,
+          "in_interval": 60,
+          "n12": 0,
+          "overshoots": 0,
+          "basin": 3,
+          "samples": [],
+          "z_rows": 63,
+          "z_in_return_cell": 60
+        },
+        {
+          "b": 1,
+          "c": 0,
+          "tail": "OEE",
+          "exponent_num": 3,
+          "exponent_den": 8,
+          "expanding": false,
+          "follows": 32,
+          "in_interval": 32,
+          "n12": 0,
+          "overshoots": 0,
+          "basin": 0,
+          "samples": [],
+          "z_rows": 32,
+          "z_in_return_cell": 32
+        },
+        {
+          "b": 2,
+          "c": 0,
+          "tail": "OOEE",
+          "exponent_num": 9,
+          "exponent_den": 16,
+          "expanding": false,
+          "follows": 22,
+          "in_interval": 22,
+          "n12": 14,
+          "overshoots": 0,
+          "basin": 0,
+          "samples": [
+            {
+              "y": 85,
+              "n": 12
+            },
+            {
+              "y": 117,
+              "n": 14
+            },
+            {
+              "y": 121,
+              "n": 14
+            }
+          ],
+          "z_rows": 22,
+          "z_in_return_cell": 22
+        },
+        {
+          "b": 3,
+          "c": 0,
+          "tail": "OOOEE",
+          "exponent_num": 27,
+          "exponent_den": 32,
+          "expanding": false,
+          "follows": 7,
+          "in_interval": 7,
+          "n12": 6,
+          "overshoots": 0,
+          "basin": 0,
+          "samples": [
+            {
+              "y": 25,
+              "n": 15
+            },
+            {
+              "y": 39,
+              "n": 21
+            },
+            {
+              "y": 59,
+              "n": 31
+            }
+          ],
+          "z_rows": 7,
+          "z_in_return_cell": 7
+        },
+        {
+          "b": 0,
+          "c": 1,
+          "tail": "EOE",
+          "exponent_num": 3,
+          "exponent_den": 8,
+          "expanding": false,
+          "follows": 46,
+          "in_interval": 46,
+          "n12": 0,
+          "overshoots": 0,
+          "basin": 0,
+          "samples": [],
+          "z_rows": 0,
+          "z_in_return_cell": 0
+        },
+        {
+          "b": 1,
+          "c": 1,
+          "tail": "OEOE",
+          "exponent_num": 9,
+          "exponent_den": 16,
+          "expanding": false,
+          "follows": 18,
+          "in_interval": 18,
+          "n12": 10,
+          "overshoots": 0,
+          "basin": 0,
+          "samples": [
+            {
+              "y": 91,
+              "n": 12
+            },
+            {
+              "y": 93,
+              "n": 12
+            },
+            {
+              "y": 143,
+              "n": 16
+            }
+          ],
+          "z_rows": 0,
+          "z_in_return_cell": 0
+        },
+        {
+          "b": 2,
+          "c": 1,
+          "tail": "OOEOE",
+          "exponent_num": 27,
+          "exponent_den": 32,
+          "expanding": false,
+          "follows": 12,
+          "in_interval": 12,
+          "n12": 11,
+          "overshoots": 0,
+          "basin": 0,
+          "samples": [
+            {
+              "y": 49,
+              "n": 26
+            },
+            {
+              "y": 95,
+              "n": 46
+            },
+            {
+              "y": 97,
+              "n": 47
+            }
+          ],
+          "z_rows": 0,
+          "z_in_return_cell": 0
+        }
+      ],
+      "rectangle": [
+        {
+          "b": 0,
+          "c": 0,
+          "in_S": true,
+          "exponent_num": 1,
+          "exponent_den": 4,
+          "expanding": false,
+          "two_even_leftover": false
+        },
+        {
+          "b": 0,
+          "c": 1,
+          "in_S": true,
+          "exponent_num": 3,
+          "exponent_den": 8,
+          "expanding": false,
+          "two_even_leftover": false
+        },
+        {
+          "b": 1,
+          "c": 0,
+          "in_S": true,
+          "exponent_num": 3,
+          "exponent_den": 8,
+          "expanding": false,
+          "two_even_leftover": false
+        },
+        {
+          "b": 1,
+          "c": 1,
+          "in_S": true,
+          "exponent_num": 9,
+          "exponent_den": 16,
+          "expanding": false,
+          "two_even_leftover": false
+        },
+        {
+          "b": 2,
+          "c": 0,
+          "in_S": true,
+          "exponent_num": 9,
+          "exponent_den": 16,
+          "expanding": false,
+          "two_even_leftover": false
+        },
+        {
+          "b": 2,
+          "c": 1,
+          "in_S": true,
+          "exponent_num": 27,
+          "exponent_den": 32,
+          "expanding": false,
+          "two_even_leftover": false
+        },
+        {
+          "b": 3,
+          "c": 0,
+          "in_S": true,
+          "exponent_num": 27,
+          "exponent_den": 32,
+          "expanding": false,
+          "two_even_leftover": false
+        },
+        {
+          "b": 3,
+          "c": 1,
+          "in_S": false,
+          "exponent_num": 81,
+          "exponent_den": 64,
+          "expanding": true,
+          "two_even_leftover": true
+        }
+      ],
+      "expanding_in_rectangle": [
+        {
+          "b": 3,
+          "c": 1,
+          "in_S": false,
+          "exponent_num": 81,
+          "exponent_den": 64,
+          "expanding": true,
+          "two_even_leftover": true
+        }
+      ],
+      "missing_31_is_leftover": true,
+      "missing_31_is_unique_expanding": true,
+      "q_monotone_toward_leftover": true,
+      "q_does_not_obstruct_short": true,
+      "interval_hits": 197,
+      "overshoots": 0
+    },
+    "census_a": {
+      "count": 18,
+      "even_n": 11,
+      "odd_n": 7,
+      "first_e_feasible_y3": 0,
+      "first_e_feasible_enter": 0,
+      "front_feasible_y3": 0,
+      "front_feasible_enter": 0,
+      "cyclemin_feasible": 0,
+      "pred_counts": {
+        "a_ge2": 15,
+        "a1": 3
+      },
+      "rank_enter_counts": {
+        "0": 13,
+        "19": 1,
+        "25": 1,
+        "28": 1,
+        "10057": 1,
+        "25226": 1
+      },
+      "rows": [
+        {
+          "word": "OOOOOEEE",
+          "y3": 129,
+          "n": 100,
+          "y_enter": 103162534,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 10057,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOOOOEEE",
+          "y3": 209,
+          "n": 159,
+          "y_enter": 644363658,
+          "pred_type": "a_ge2",
+          "n_odd": true,
+          "rank_enter": 25226,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOOEOEE",
+          "y3": 81,
+          "n": 16,
+          "y_enter": 1661,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 25,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOOEOEE",
+          "y3": 87,
+          "n": 16,
+          "y_enter": 1873,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 28,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOEOOEE",
+          "y3": 69,
+          "n": 14,
+          "y_enter": 117,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOEOOEE",
+          "y3": 109,
+          "n": 19,
+          "y_enter": 195,
+          "pred_type": "a_ge2",
+          "n_odd": true,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOOEOOEE",
+          "y3": 99,
+          "n": 78,
+          "y_enter": 2331,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOOEOOEE",
+          "y3": 247,
+          "n": 186,
+          "y_enter": 10903,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OEOOOEE",
+          "y3": 135,
+          "n": 21,
+          "y_enter": 39,
+          "pred_type": "a1",
+          "n_odd": true,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OEOOOEE",
+          "y3": 231,
+          "n": 31,
+          "y_enter": 59,
+          "pred_type": "a1",
+          "n_odd": true,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OEOOOEE",
+          "y3": 233,
+          "n": 31,
+          "y_enter": 59,
+          "pred_type": "a1",
+          "n_odd": true,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOEOOOEE",
+          "y3": 105,
+          "n": 82,
+          "y_enter": 187,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOOEEOE",
+          "y3": 59,
+          "n": 13,
+          "y_enter": 972,
+          "pred_type": "a_ge2",
+          "n_odd": true,
+          "rank_enter": 19,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOEOEOE",
+          "y3": 97,
+          "n": 17,
+          "y_enter": 171,
+          "pred_type": "a_ge2",
+          "n_odd": true,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOEOEOE",
+          "y3": 137,
+          "n": 22,
+          "y_enter": 253,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOEOEOE",
+          "y3": 157,
+          "n": 24,
+          "y_enter": 295,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOEOOEOE",
+          "y3": 89,
+          "n": 70,
+          "y_enter": 155,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        },
+        {
+          "word": "OOEOOEOE",
+          "y3": 111,
+          "n": 86,
+          "y_enter": 199,
+          "pred_type": "a_ge2",
+          "n_odd": false,
+          "rank_enter": 0,
+          "cyclemin_feasible": false,
+          "front_feasible_y3": false,
+          "front_feasible_enter": false
+        }
+      ]
+    },
+    "census_b": {
+      "follows": 24,
+      "survivor_count": 4,
+      "cycle_count": 0,
+      "cycles": [],
+      "survivors_head": [
+        {
+          "n": 37,
+          "y": 2233,
+          "s": 76,
+          "u": "OOOOEOOOEE",
+          "a0": 4,
+          "a": 0,
+          "g": 3,
+          "b": 2,
+          "c": 0,
+          "evens_u": 3,
+          "pred_type": "a0",
+          "rank": 11,
+          "cycle": false
+        },
+        {
+          "n": 103,
+          "y": 6623,
+          "s": 1674,
+          "u": "OOOOEOE",
+          "a0": 4,
+          "a": 1,
+          "g": null,
+          "b": 3,
+          "c": 0,
+          "evens_u": 2,
+          "pred_type": "a1",
+          "rank": 0,
+          "cycle": false
+        },
+        {
+          "n": 113,
+          "y": 14245160192996,
+          "s": 1942,
+          "u": "OOOEOOOOOE",
+          "a0": 3,
+          "a": 5,
+          "g": null,
+          "b": 0,
+          "c": 0,
+          "evens_u": 2,
+          "pred_type": "a_ge2",
+          "rank": 3774164,
+          "cycle": false
+        },
+        {
+          "n": 205,
+          "y": 86551,
+          "s": 598,
+          "u": "OOOOEOEOOE",
+          "a0": 4,
+          "a": 2,
+          "g": 1,
+          "b": 2,
+          "c": 0,
+          "evens_u": 3,
+          "pred_type": "a_ge2",
+          "rank": 90,
+          "cycle": false
+        }
+      ],
+      "cluster_rows": [
+        {
+          "pred_type": "a0",
+          "b": 2,
+          "c": 0,
+          "rank": 11,
+          "count": 1
+        },
+        {
+          "pred_type": "a1",
+          "b": 3,
+          "c": 0,
+          "rank": 0,
+          "count": 1
+        },
+        {
+          "pred_type": "a_ge2",
+          "b": 0,
+          "c": 0,
+          "rank": 3774164,
+          "count": 1
+        },
+        {
+          "pred_type": "a_ge2",
+          "b": 2,
+          "c": 0,
+          "rank": 90,
+          "count": 1
+        }
+      ],
+      "cluster_count": 4,
+      "pred_counts": {
+        "a0": 1,
+        "a1": 1,
+        "a_ge2": 2
+      },
+      "rank_counts": {
+        "0": 1,
+        "11": 1,
+        "90": 1,
+        "3774164": 1
+      },
+      "pair_counts": {
+        "0,0": 1,
+        "2,0": 2,
+        "3,0": 1
+      },
+      "shared_geometry": false,
+      "all_leaks_s_gt_n": true,
+      "all_leaks_c0": true,
+      "leak_geometry": [
+        {
+          "n": 37,
+          "y": 2233,
+          "s": 76,
+          "u": "OOOOEOOOEE",
+          "b": 2,
+          "c": 0,
+          "pred_type": "a0",
+          "rank": 11,
+          "s_gt_n": true,
+          "all_c0": true,
+          "z": 34276462,
+          "trailing_overflow": true,
+          "overflow_eq_s_ge_succ": true
+        },
+        {
+          "n": 103,
+          "y": 6623,
+          "s": 1674,
+          "u": "OOOOEOE",
+          "b": 3,
+          "c": 0,
+          "pred_type": "a1",
+          "rank": 0,
+          "s_gt_n": true,
+          "all_c0": true,
+          "z": 7871516405498,
+          "trailing_overflow": true,
+          "overflow_eq_s_ge_succ": true
+        },
+        {
+          "n": 113,
+          "y": 14245160192996,
+          "s": 1942,
+          "u": "OOOEOOOOOE",
+          "b": 0,
+          "c": 0,
+          "pred_type": "a_ge2",
+          "rank": 3774164,
+          "s_gt_n": true,
+          "all_c0": true,
+          "z": 14245160192996,
+          "trailing_overflow": true,
+          "overflow_eq_s_ge_succ": true
+        },
+        {
+          "n": 205,
+          "y": 86551,
+          "s": 598,
+          "u": "OOOOEOEOOE",
+          "b": 2,
+          "c": 0,
+          "pred_type": "a_ge2",
+          "rank": 90,
+          "s_gt_n": true,
+          "all_c0": true,
+          "z": 128487885014,
+          "trailing_overflow": true,
+          "overflow_eq_s_ge_succ": true
+        }
+      ],
+      "empty_intersection": false,
+      "empty_cycle_intersection": true
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "leftover_suffix_retest": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_ge": true,
+    "cycleMin_ge_twelve": true,
+    "cycleMin_first_even_overshoots": true,
+    "cycleMin_transport_second_oo": true,
+    "cycle_trailing_evens_lt": true,
+    "cycle_last_odd_interval": true,
+    "oe_block_contracts": true,
+    "no_cycleMin_prefix_two_even_eoe": true,
+    "no_cycleMin_prefix_eee": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "BUNCHED_SHORT_FRONT_PARK",
+    "reason": "the 18 leftover-suffix returns are predecessor-infeasible and no CycleMin word u ++ O^b E O^c E appears below 256, but four interval leaks with S > n scatter across predecessor types and ranks; trailing-even overflow is equivalent to S >= n+1, not a new cell; no single empty cell-intersection kills the class"
+  },
+  "search_method": "suffix re-rooting of bunched-short words; exact S_{b,c} cells and Q(b,c)=3^{b+c}/2^{b+c+2}; predecessor feasibility of the 18 n>=12 returns; CycleMin-shaped fronts with 2 or 3 evens below 256; no leftover-suffix retest, no Z5, no length-11"
+}

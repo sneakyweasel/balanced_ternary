@@ -1,0 +1,439 @@
+{
+  "experiment": "juggler_bunched_short_return",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "inverse": {
+      "even_singleton_n2": false,
+      "even_rows": [
+        {
+          "n": 2,
+          "lo": 4,
+          "hi": 9,
+          "count": 3,
+          "contains_n2": true,
+          "singleton_n2": false,
+          "n2_even": true
+        },
+        {
+          "n": 3,
+          "lo": 9,
+          "hi": 16,
+          "count": 3,
+          "contains_n2": false,
+          "singleton_n2": false,
+          "n2_even": false
+        },
+        {
+          "n": 12,
+          "lo": 144,
+          "hi": 169,
+          "count": 13,
+          "contains_n2": true,
+          "singleton_n2": false,
+          "n2_even": true
+        },
+        {
+          "n": 13,
+          "lo": 169,
+          "hi": 196,
+          "count": 13,
+          "contains_n2": false,
+          "singleton_n2": false,
+          "n2_even": false
+        },
+        {
+          "n": 37,
+          "lo": 1369,
+          "hi": 1444,
+          "count": 37,
+          "contains_n2": false,
+          "singleton_n2": false,
+          "n2_even": false
+        },
+        {
+          "n": 100,
+          "lo": 10000,
+          "hi": 10201,
+          "count": 101,
+          "contains_n2": true,
+          "singleton_n2": false,
+          "n2_even": true
+        }
+      ],
+      "odd_sq_n_max": 500,
+      "odd_sq_empty": 477,
+      "odd_sq_even_blocked": 10,
+      "odd_sq_odd_hits": 12,
+      "odd_sq_first_hit": 6,
+      "odd_sq_samples": [
+        {
+          "n": 6,
+          "m": 36,
+          "integers": [
+            11
+          ],
+          "odd_preimages": [
+            11
+          ],
+          "empty": false,
+          "even_blocked": false,
+          "singleton_odd": [
+            11
+          ],
+          "integer_width": 1
+        },
+        {
+          "n": 15,
+          "m": 225,
+          "integers": [
+            37
+          ],
+          "odd_preimages": [
+            37
+          ],
+          "empty": false,
+          "even_blocked": false,
+          "singleton_odd": [
+            37
+          ],
+          "integer_width": 1
+        },
+        {
+          "n": 27,
+          "m": 729,
+          "integers": [
+            81
+          ],
+          "odd_preimages": [
+            81
+          ],
+          "empty": false,
+          "even_blocked": false,
+          "singleton_odd": [
+            81
+          ],
+          "integer_width": 1
+        },
+        {
+          "n": 79,
+          "m": 6241,
+          "integers": [
+            339
+          ],
+          "odd_preimages": [
+            339
+          ],
+          "empty": false,
+          "even_blocked": false,
+          "singleton_odd": [
+            339
+          ],
+          "integer_width": 1
+        },
+        {
+          "n": 125,
+          "m": 15625,
+          "integers": [
+            625
+          ],
+          "odd_preimages": [
+            625
+          ],
+          "empty": false,
+          "even_blocked": false,
+          "singleton_odd": [
+            625
+          ],
+          "integer_width": 1
+        },
+        {
+          "n": 150,
+          "m": 22500,
+          "integers": [
+            797
+          ],
+          "odd_preimages": [
+            797
+          ],
+          "empty": false,
+          "even_blocked": false,
+          "singleton_odd": [
+            797
+          ],
+          "integer_width": 1
+        }
+      ],
+      "last_odd_empty_layers": 22,
+      "last_odd_layers_head": [
+        {
+          "n": 2,
+          "even_count": 3,
+          "odd_pred_count": 0,
+          "n2_in_even_cell": true
+        },
+        {
+          "n": 3,
+          "even_count": 3,
+          "odd_pred_count": 0,
+          "n2_in_even_cell": false
+        },
+        {
+          "n": 4,
+          "even_count": 5,
+          "odd_pred_count": 1,
+          "n2_in_even_cell": true
+        },
+        {
+          "n": 5,
+          "even_count": 5,
+          "odd_pred_count": 0,
+          "n2_in_even_cell": false
+        },
+        {
+          "n": 6,
+          "even_count": 7,
+          "odd_pred_count": 2,
+          "n2_in_even_cell": true
+        },
+        {
+          "n": 7,
+          "even_count": 7,
+          "odd_pred_count": 1,
+          "n2_in_even_cell": false
+        },
+        {
+          "n": 8,
+          "even_count": 9,
+          "odd_pred_count": 1,
+          "n2_in_even_cell": true
+        },
+        {
+          "n": 9,
+          "even_count": 9,
+          "odd_pred_count": 2,
+          "n2_in_even_cell": false
+        }
+      ],
+      "last_odd_nonzero": [
+        {
+          "n": 4,
+          "even_count": 5,
+          "odd_pred_count": 1,
+          "n2_in_even_cell": true
+        },
+        {
+          "n": 6,
+          "even_count": 7,
+          "odd_pred_count": 2,
+          "n2_in_even_cell": true
+        },
+        {
+          "n": 7,
+          "even_count": 7,
+          "odd_pred_count": 1,
+          "n2_in_even_cell": false
+        },
+        {
+          "n": 8,
+          "even_count": 9,
+          "odd_pred_count": 1,
+          "n2_in_even_cell": true
+        },
+        {
+          "n": 9,
+          "even_count": 9,
+          "odd_pred_count": 2,
+          "n2_in_even_cell": false
+        },
+        {
+          "n": 10,
+          "even_count": 11,
+          "odd_pred_count": 1,
+          "n2_in_even_cell": true
+        },
+        {
+          "n": 11,
+          "even_count": 11,
+          "odd_pred_count": 1,
+          "n2_in_even_cell": false
+        },
+        {
+          "n": 12,
+          "even_count": 13,
+          "odd_pred_count": 1,
+          "n2_in_even_cell": true
+        }
+      ],
+      "cycle_last_even_ne_odd_sq": true
+    },
+    "equations": [
+      {
+        "b": 0,
+        "c": 0,
+        "condition": "y even, y in union of even cells of even w in [n^2,(n+1)^2)"
+      },
+      {
+        "b": 1,
+        "c": 0,
+        "condition": "T_O(y) even in the EE-preimage of n"
+      },
+      {
+        "b": 2,
+        "c": 0,
+        "condition": "T_{OO}(y) even in the EE-preimage of n"
+      },
+      {
+        "b": 3,
+        "c": 0,
+        "condition": "T_{OOO}(y) even in the EE-preimage of n"
+      },
+      {
+        "b": 0,
+        "c": 1,
+        "condition": "T_E(y) odd in the odd-preimage of some even w in [n^2,(n+1)^2)"
+      },
+      {
+        "b": 1,
+        "c": 1,
+        "condition": "T_O(y) even, T_{OE}(y) odd in that last-odd layer"
+      },
+      {
+        "b": 2,
+        "c": 1,
+        "condition": "T_{OO}(y) even, T_{OOE}(y) odd in that last-odd layer"
+      }
+    ],
+    "counts": {
+      "n_max": 80,
+      "rows": [
+        {
+          "b": 0,
+          "c": 0,
+          "first_n": 2,
+          "nonempty_n": 79,
+          "max_count": 524961,
+          "count_at_12": 2041,
+          "count_at_13": 2379
+        },
+        {
+          "b": 1,
+          "c": 0,
+          "first_n": 2,
+          "nonempty_n": 79,
+          "max_count": 518,
+          "count_at_12": 24,
+          "count_at_13": 23
+        },
+        {
+          "b": 2,
+          "c": 0,
+          "first_n": 2,
+          "nonempty_n": 66,
+          "max_count": 6,
+          "count_at_12": 1,
+          "count_at_13": 0
+        },
+        {
+          "b": 3,
+          "c": 0,
+          "first_n": 2,
+          "nonempty_n": 5,
+          "max_count": 1,
+          "count_at_12": 0,
+          "count_at_13": 0
+        },
+        {
+          "b": 0,
+          "c": 1,
+          "first_n": 4,
+          "nonempty_n": 57,
+          "max_count": 909,
+          "count_at_12": 29,
+          "count_at_13": 31
+        },
+        {
+          "b": 1,
+          "c": 1,
+          "first_n": 4,
+          "nonempty_n": 52,
+          "max_count": 10,
+          "count_at_12": 2,
+          "count_at_13": 0
+        },
+        {
+          "b": 2,
+          "c": 1,
+          "first_n": 6,
+          "nonempty_n": 9,
+          "max_count": 1,
+          "count_at_12": 0,
+          "count_at_13": 0
+        }
+      ],
+      "first_ge_n": {
+        "0,0": 2,
+        "1,0": 2,
+        "2,0": 2,
+        "3,0": 2,
+        "0,1": 4,
+        "1,1": 4,
+        "2,1": 6
+      },
+      "abundant": {
+        "0,0": true,
+        "1,0": true,
+        "2,0": true,
+        "0,1": true,
+        "1,1": true
+      }
+    },
+    "cyclemin": {
+      "n_max": 64,
+      "follows": 0,
+      "exact_hits": [],
+      "exact_count": 0
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "interval_census": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "floorPower_even_eq_iff_sq_interval": true,
+    "floorPower_odd_eq_iff_cube_interval": true,
+    "odd_cell_unique": true,
+    "cycle_last_even_ne_odd_sq": true,
+    "cycle_trailing_evens_lt": true,
+    "CycleMin": true,
+    "cycleMin_ge_twelve": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "SHORT_RETURN_PARK",
+    "reason": "even inverse is an interval of length 2n+1, not {n^2}; odd cells of n^2 are almost always empty, but the last-even cell still has odd preimages and c=0 return sets are abundant; no CycleMin exact hit below the front cutoff"
+  },
+  "search_method": "exact even/odd floorPower inverses; odd_cell of n^2; last-odd layer of the last-even cell; |R_{b,c}(n)| counts; CycleMin-shaped fronts with exact image n; no interval census"
+}

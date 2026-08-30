@@ -149,9 +149,11 @@ not a length-11 census, and not a halt theorem.
 
 ## Open questions
 
-A front invariant that is not a leftover cell: whether
-first-even overshoot plus a later odd run of length \(\ge 2\)
-contradicts an undershoot return through a short last cluster.
+The front / predecessor-cell attack is a separate parked
+branch
+([juggler_bunched_short_front.md](juggler_bunched_short_front.md)).
+The first-even-overshoot plus later-`OO` attack is also parked
+([juggler_front_overshoot.md](juggler_front_overshoot.md)).
 Do not write \(Z_5\). Do not assemble
 `no_cycle_word_length_eleven`. Do not reopen four-even cells.
 
@@ -162,9 +164,9 @@ the residual. The residual remains bunched-short last cluster,
 now with an explicit return family. Do not claim that every
 cycle word is impossible.
 
-Best next question: a min-relative or transport contradiction
-on the front of a bunched-short `CycleMin`, not a leftover
-cell.
+Best next question: answered in
+[juggler_bunched_short_front.md](juggler_bunched_short_front.md)
+and [juggler_front_overshoot.md](juggler_front_overshoot.md).
 
 ## Publication assessment
 
