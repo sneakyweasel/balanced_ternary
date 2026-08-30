@@ -13616,4 +13616,48 @@ Best next question
   another word or scale census?
 ```
 
+## Juggler escape-episode descent
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether a completed leftover `AboveAnchor` escape episode lowers a well-founded quantity or exactly recurs
+- **Hypotheses:** even-reset / rank-return / first-below-anchor cuts; return-rank descent; record-min dichotomy; exact episode recurrence
+- **Major results:** Classification **ESCAPE_EPISODE_PARK**. Even-reset equals rank-return; rank-2 episodes return to rank 2; `365` PE climb `763, 1749, 4447, 12707`; `1517` oscillates through `2493` then `539470`; global \(L_k=n\) until the drop; first-below-anchor is the terminal `HasFiniteStop` — **COMPUTATIONALLY VERIFIED** (`J-escape-episode-shape`). Episode-descent dichotomy / frozen record min implies recurrence / even reset lowers rank-2 return rank — **REFUTED** (`J-escape-episode-dichotomy`). Smaller-bad descent not re-tested. No new Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged. No halt theorem
+- **Refuted ideas:** every completed escape episode lowers the anchor-relative complexity or exactly recurs; if successive episode record mins stay equal then the orbit is recurrent; even reset lowers the rank-2 return rank
+- **Literature:** `AboveAnchor`; `ReturnBelow`; `HasFiniteStop`; `even_below_anchor_pow`; `J-minimal-anchor-closure` (REFUTED, not re-tested)
+- **Open:** is there a Diophantine obstruction at an empty-odd-cell PE landing that forces a later even-below-square, without a new episode rank?
+- **Decision:** PARK. Weak episodes climb or oscillate in the rank-2 band; strong episodes are `HasFiniteStop` again; `69`/`89` show the same pattern
+
+```text
+What was learned
+- even-reset and rank-return are the same cut
+- rank-2 leftover episodes do not lower return rank
+- PE landings climb (365) or oscillate (1517)
+- global record min is frozen at n
+- first-below-anchor is the existing drop
+- 69/89 already have the same rank-2 return
+Strongest theorem
+- on 365, 501, 1517, 6187 even-reset
+  equals rank-return, rank-2 returns stay
+  at rank 2, and L_k = n until the drop
+  (COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- completed escape episode =>
+  lower-anchor state or exact recurrence;
+  equal successive L => recurrent
+Reusable machinery
+- escape_episode.py even_reset_cuts,
+  rank_return_cuts, control_row
+Branch status
+- PARK
+Why
+- weak episodes neither descend nor recur;
+  strong episodes restate HasFiniteStop;
+  the pattern is not leftover-specific
+Best next question
+- is there a Diophantine obstruction at
+  an empty-odd-cell PE landing that forces
+  a later even-below-square, without a
+  new episode rank?
+```
+
 

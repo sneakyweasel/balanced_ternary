@@ -1,0 +1,2572 @@
+{
+  "experiment": "juggler_escape_episode",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "episode_descent_dichotomy": false,
+    "record_min_implies_recurrence": false,
+    "even_reset_lowers_return_rank": false,
+    "smaller_bad_descent": false,
+    "predclosure_reopened": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "controls": [
+      {
+        "n": 365,
+        "path": [
+          365,
+          6973,
+          582276,
+          763,
+          21075,
+          3059506,
+          1749,
+          73145,
+          19782308,
+          4447,
+          296551,
+          161491284,
+          12707,
+          1432400,
+          1196,
+          34
+        ],
+        "drop": 34,
+        "drop_index": 15,
+        "max_state": 161491284,
+        "max_rank": 4,
+        "global_record_min_frozen": true,
+        "rank_return_equals_even_reset": true,
+        "even_reset": {
+          "definition": "even_reset",
+          "episode_count": 6,
+          "above_anchor_count": 5,
+          "rank2_count": 5,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 365,
+              "landing": 763,
+              "max_state": 582276,
+              "episode_min": 365,
+              "reset_state": 582276,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                365,
+                582276
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 6,
+              "start": 763,
+              "landing": 1749,
+              "max_state": 3059506,
+              "episode_min": 763,
+              "reset_state": 3059506,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                763,
+                3059506
+              ]
+            },
+            {
+              "start_index": 6,
+              "end_index": 9,
+              "start": 1749,
+              "landing": 4447,
+              "max_state": 19782308,
+              "episode_min": 1749,
+              "reset_state": 19782308,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                1749,
+                19782308
+              ]
+            },
+            {
+              "start_index": 9,
+              "end_index": 12,
+              "start": 4447,
+              "landing": 12707,
+              "max_state": 161491284,
+              "episode_min": 4447,
+              "reset_state": 161491284,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                4447,
+                161491284
+              ]
+            },
+            {
+              "start_index": 12,
+              "end_index": 14,
+              "start": 12707,
+              "landing": 1196,
+              "max_state": 1432400,
+              "episode_min": 1196,
+              "reset_state": 1432400,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OE",
+              "signature": [
+                12707,
+                1432400
+              ]
+            },
+            {
+              "start_index": 14,
+              "end_index": 15,
+              "start": 1196,
+              "landing": 34,
+              "max_state": 1196,
+              "episode_min": 34,
+              "reset_state": 1196,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "E",
+              "signature": [
+                1196,
+                1196
+              ]
+            }
+          ],
+          "rank2_landings": [
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 365,
+              "to_start": 763,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 763,
+              "to_start": 1749,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 1749,
+              "to_start": 4447,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 4447,
+              "to_start": 12707,
+              "rank_after_descends": false,
+              "landing_descends": true,
+              "episode_min_descends": true,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            3,
+            3,
+            4,
+            3
+          ]
+        },
+        "rank_return": {
+          "definition": "rank_return",
+          "episode_count": 6,
+          "above_anchor_count": 5,
+          "rank2_count": 5,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 365,
+              "landing": 763,
+              "max_state": 582276,
+              "episode_min": 365,
+              "reset_state": 582276,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                365,
+                582276
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 6,
+              "start": 763,
+              "landing": 1749,
+              "max_state": 3059506,
+              "episode_min": 763,
+              "reset_state": 3059506,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                763,
+                3059506
+              ]
+            },
+            {
+              "start_index": 6,
+              "end_index": 9,
+              "start": 1749,
+              "landing": 4447,
+              "max_state": 19782308,
+              "episode_min": 1749,
+              "reset_state": 19782308,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                1749,
+                19782308
+              ]
+            },
+            {
+              "start_index": 9,
+              "end_index": 12,
+              "start": 4447,
+              "landing": 12707,
+              "max_state": 161491284,
+              "episode_min": 4447,
+              "reset_state": 161491284,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                4447,
+                161491284
+              ]
+            },
+            {
+              "start_index": 12,
+              "end_index": 14,
+              "start": 12707,
+              "landing": 1196,
+              "max_state": 1432400,
+              "episode_min": 1196,
+              "reset_state": 1432400,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OE",
+              "signature": [
+                12707,
+                1432400
+              ]
+            },
+            {
+              "start_index": 14,
+              "end_index": 15,
+              "start": 1196,
+              "landing": 34,
+              "max_state": 1196,
+              "episode_min": 34,
+              "reset_state": 1196,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "E",
+              "signature": [
+                1196,
+                1196
+              ]
+            }
+          ],
+          "rank2_landings": [
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 365,
+              "to_start": 763,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 763,
+              "to_start": 1749,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 1749,
+              "to_start": 4447,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 4447,
+              "to_start": 12707,
+              "rank_after_descends": false,
+              "landing_descends": true,
+              "episode_min_descends": true,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            3,
+            3,
+            4,
+            3
+          ]
+        },
+        "first_below_anchor": {
+          "definition": "first_below_anchor",
+          "episode_count": 1,
+          "above_anchor_count": 0,
+          "rank2_count": 0,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 15,
+              "start": 365,
+              "landing": 34,
+              "max_state": 161491284,
+              "episode_min": 34,
+              "reset_state": 1196,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 4,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OOEOOEOOEOOEOEE",
+              "signature": [
+                365,
+                1196
+              ]
+            }
+          ],
+          "rank2_landings": [],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [],
+          "peak_ranks": []
+        }
+      },
+      {
+        "n": 501,
+        "path": [
+          501,
+          11213,
+          1187360,
+          1089,
+          35937,
+          6812597,
+          17781526790,
+          133347,
+          48693935,
+          339791341082,
+          582916,
+          763,
+          21075,
+          3059506,
+          1749,
+          73145,
+          19782308,
+          4447,
+          296551,
+          161491284,
+          12707,
+          1432400,
+          1196,
+          34
+        ],
+        "drop": 34,
+        "drop_index": 23,
+        "max_state": 339791341082,
+        "max_rank": 5,
+        "global_record_min_frozen": true,
+        "rank_return_equals_even_reset": true,
+        "even_reset": {
+          "definition": "even_reset",
+          "episode_count": 9,
+          "above_anchor_count": 8,
+          "rank2_count": 7,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 501,
+              "landing": 1089,
+              "max_state": 1187360,
+              "episode_min": 501,
+              "reset_state": 1187360,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                501,
+                1187360
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 7,
+              "start": 1089,
+              "landing": 133347,
+              "max_state": 17781526790,
+              "episode_min": 1089,
+              "reset_state": 17781526790,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOOE",
+              "signature": [
+                1089,
+                17781526790
+              ]
+            },
+            {
+              "start_index": 7,
+              "end_index": 10,
+              "start": 133347,
+              "landing": 582916,
+              "max_state": 339791341082,
+              "episode_min": 133347,
+              "reset_state": 339791341082,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 3,
+              "peak_rank": 5,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                133347,
+                339791341082
+              ]
+            },
+            {
+              "start_index": 10,
+              "end_index": 11,
+              "start": 582916,
+              "landing": 763,
+              "max_state": 582916,
+              "episode_min": 763,
+              "reset_state": 582916,
+              "reset_even": true,
+              "rank_before": 3,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "E",
+              "signature": [
+                582916,
+                582916
+              ]
+            },
+            {
+              "start_index": 11,
+              "end_index": 14,
+              "start": 763,
+              "landing": 1749,
+              "max_state": 3059506,
+              "episode_min": 763,
+              "reset_state": 3059506,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                763,
+                3059506
+              ]
+            },
+            {
+              "start_index": 14,
+              "end_index": 17,
+              "start": 1749,
+              "landing": 4447,
+              "max_state": 19782308,
+              "episode_min": 1749,
+              "reset_state": 19782308,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                1749,
+                19782308
+              ]
+            },
+            {
+              "start_index": 17,
+              "end_index": 20,
+              "start": 4447,
+              "landing": 12707,
+              "max_state": 161491284,
+              "episode_min": 4447,
+              "reset_state": 161491284,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                4447,
+                161491284
+              ]
+            },
+            {
+              "start_index": 20,
+              "end_index": 22,
+              "start": 12707,
+              "landing": 1196,
+              "max_state": 1432400,
+              "episode_min": 1196,
+              "reset_state": 1432400,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OE",
+              "signature": [
+                12707,
+                1432400
+              ]
+            },
+            {
+              "start_index": 22,
+              "end_index": 23,
+              "start": 1196,
+              "landing": 34,
+              "max_state": 1196,
+              "episode_min": 34,
+              "reset_state": 1196,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "E",
+              "signature": [
+                1196,
+                1196
+              ]
+            }
+          ],
+          "rank2_landings": [
+            1089,
+            133347,
+            582916,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "high_even_starts": [
+            582916
+          ],
+          "high_even_landings": [
+            763
+          ],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 501,
+              "to_start": 1089,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 1089,
+              "to_start": 133347,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 133347,
+              "to_start": 763,
+              "rank_after_descends": true,
+              "landing_descends": true,
+              "episode_min_descends": true,
+              "same_signature": false
+            },
+            {
+              "from_start": 763,
+              "to_start": 1749,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 1749,
+              "to_start": 4447,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 4447,
+              "to_start": 12707,
+              "rank_after_descends": false,
+              "landing_descends": true,
+              "episode_min_descends": true,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            4,
+            5,
+            3,
+            3,
+            4,
+            3
+          ]
+        },
+        "rank_return": {
+          "definition": "rank_return",
+          "episode_count": 9,
+          "above_anchor_count": 8,
+          "rank2_count": 7,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 501,
+              "landing": 1089,
+              "max_state": 1187360,
+              "episode_min": 501,
+              "reset_state": 1187360,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                501,
+                1187360
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 7,
+              "start": 1089,
+              "landing": 133347,
+              "max_state": 17781526790,
+              "episode_min": 1089,
+              "reset_state": 17781526790,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOOE",
+              "signature": [
+                1089,
+                17781526790
+              ]
+            },
+            {
+              "start_index": 7,
+              "end_index": 10,
+              "start": 133347,
+              "landing": 582916,
+              "max_state": 339791341082,
+              "episode_min": 133347,
+              "reset_state": 339791341082,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 3,
+              "peak_rank": 5,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                133347,
+                339791341082
+              ]
+            },
+            {
+              "start_index": 10,
+              "end_index": 11,
+              "start": 582916,
+              "landing": 763,
+              "max_state": 582916,
+              "episode_min": 763,
+              "reset_state": 582916,
+              "reset_even": true,
+              "rank_before": 3,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "E",
+              "signature": [
+                582916,
+                582916
+              ]
+            },
+            {
+              "start_index": 11,
+              "end_index": 14,
+              "start": 763,
+              "landing": 1749,
+              "max_state": 3059506,
+              "episode_min": 763,
+              "reset_state": 3059506,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                763,
+                3059506
+              ]
+            },
+            {
+              "start_index": 14,
+              "end_index": 17,
+              "start": 1749,
+              "landing": 4447,
+              "max_state": 19782308,
+              "episode_min": 1749,
+              "reset_state": 19782308,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                1749,
+                19782308
+              ]
+            },
+            {
+              "start_index": 17,
+              "end_index": 20,
+              "start": 4447,
+              "landing": 12707,
+              "max_state": 161491284,
+              "episode_min": 4447,
+              "reset_state": 161491284,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                4447,
+                161491284
+              ]
+            },
+            {
+              "start_index": 20,
+              "end_index": 22,
+              "start": 12707,
+              "landing": 1196,
+              "max_state": 1432400,
+              "episode_min": 1196,
+              "reset_state": 1432400,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OE",
+              "signature": [
+                12707,
+                1432400
+              ]
+            },
+            {
+              "start_index": 22,
+              "end_index": 23,
+              "start": 1196,
+              "landing": 34,
+              "max_state": 1196,
+              "episode_min": 34,
+              "reset_state": 1196,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "E",
+              "signature": [
+                1196,
+                1196
+              ]
+            }
+          ],
+          "rank2_landings": [
+            1089,
+            133347,
+            582916,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "high_even_starts": [
+            582916
+          ],
+          "high_even_landings": [
+            763
+          ],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 501,
+              "to_start": 1089,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 1089,
+              "to_start": 133347,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 133347,
+              "to_start": 763,
+              "rank_after_descends": true,
+              "landing_descends": true,
+              "episode_min_descends": true,
+              "same_signature": false
+            },
+            {
+              "from_start": 763,
+              "to_start": 1749,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 1749,
+              "to_start": 4447,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 4447,
+              "to_start": 12707,
+              "rank_after_descends": false,
+              "landing_descends": true,
+              "episode_min_descends": true,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            4,
+            5,
+            3,
+            3,
+            4,
+            3
+          ]
+        },
+        "first_below_anchor": {
+          "definition": "first_below_anchor",
+          "episode_count": 1,
+          "above_anchor_count": 0,
+          "rank2_count": 0,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 23,
+              "start": 501,
+              "landing": 34,
+              "max_state": 339791341082,
+              "episode_min": 34,
+              "reset_state": 1196,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 5,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OOEOOOEOOEEOOEOOEOOEOEE",
+              "signature": [
+                501,
+                1196
+              ]
+            }
+          ],
+          "rank2_landings": [],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [],
+          "peak_ranks": []
+        }
+      },
+      {
+        "n": 1517,
+        "path": [
+          1517,
+          59085,
+          14362030,
+          3789,
+          233231,
+          112636568,
+          10613,
+          1093345,
+          1143235850,
+          33811,
+          6217088,
+          2493,
+          124475,
+          43916043,
+          291028018566,
+          539470,
+          734
+        ],
+        "drop": 734,
+        "drop_index": 16,
+        "max_state": 291028018566,
+        "max_rank": 4,
+        "global_record_min_frozen": true,
+        "rank_return_equals_even_reset": true,
+        "even_reset": {
+          "definition": "even_reset",
+          "episode_count": 6,
+          "above_anchor_count": 5,
+          "rank2_count": 5,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 1517,
+              "landing": 3789,
+              "max_state": 14362030,
+              "episode_min": 1517,
+              "reset_state": 14362030,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                1517,
+                14362030
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 6,
+              "start": 3789,
+              "landing": 10613,
+              "max_state": 112636568,
+              "episode_min": 3789,
+              "reset_state": 112636568,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                3789,
+                112636568
+              ]
+            },
+            {
+              "start_index": 6,
+              "end_index": 9,
+              "start": 10613,
+              "landing": 33811,
+              "max_state": 1143235850,
+              "episode_min": 10613,
+              "reset_state": 1143235850,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                10613,
+                1143235850
+              ]
+            },
+            {
+              "start_index": 9,
+              "end_index": 11,
+              "start": 33811,
+              "landing": 2493,
+              "max_state": 6217088,
+              "episode_min": 2493,
+              "reset_state": 6217088,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OE",
+              "signature": [
+                33811,
+                6217088
+              ]
+            },
+            {
+              "start_index": 11,
+              "end_index": 15,
+              "start": 2493,
+              "landing": 539470,
+              "max_state": 291028018566,
+              "episode_min": 2493,
+              "reset_state": 291028018566,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOOE",
+              "signature": [
+                2493,
+                291028018566
+              ]
+            },
+            {
+              "start_index": 15,
+              "end_index": 16,
+              "start": 539470,
+              "landing": 734,
+              "max_state": 539470,
+              "episode_min": 734,
+              "reset_state": 539470,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "E",
+              "signature": [
+                539470,
+                539470
+              ]
+            }
+          ],
+          "rank2_landings": [
+            3789,
+            10613,
+            33811,
+            2493,
+            539470
+          ],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 1517,
+              "to_start": 3789,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 3789,
+              "to_start": 10613,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 10613,
+              "to_start": 33811,
+              "rank_after_descends": false,
+              "landing_descends": true,
+              "episode_min_descends": true,
+              "same_signature": false
+            },
+            {
+              "from_start": 33811,
+              "to_start": 2493,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            3,
+            3,
+            3,
+            4
+          ]
+        },
+        "rank_return": {
+          "definition": "rank_return",
+          "episode_count": 6,
+          "above_anchor_count": 5,
+          "rank2_count": 5,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 1517,
+              "landing": 3789,
+              "max_state": 14362030,
+              "episode_min": 1517,
+              "reset_state": 14362030,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                1517,
+                14362030
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 6,
+              "start": 3789,
+              "landing": 10613,
+              "max_state": 112636568,
+              "episode_min": 3789,
+              "reset_state": 112636568,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                3789,
+                112636568
+              ]
+            },
+            {
+              "start_index": 6,
+              "end_index": 9,
+              "start": 10613,
+              "landing": 33811,
+              "max_state": 1143235850,
+              "episode_min": 10613,
+              "reset_state": 1143235850,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                10613,
+                1143235850
+              ]
+            },
+            {
+              "start_index": 9,
+              "end_index": 11,
+              "start": 33811,
+              "landing": 2493,
+              "max_state": 6217088,
+              "episode_min": 2493,
+              "reset_state": 6217088,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OE",
+              "signature": [
+                33811,
+                6217088
+              ]
+            },
+            {
+              "start_index": 11,
+              "end_index": 15,
+              "start": 2493,
+              "landing": 539470,
+              "max_state": 291028018566,
+              "episode_min": 2493,
+              "reset_state": 291028018566,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOOE",
+              "signature": [
+                2493,
+                291028018566
+              ]
+            },
+            {
+              "start_index": 15,
+              "end_index": 16,
+              "start": 539470,
+              "landing": 734,
+              "max_state": 539470,
+              "episode_min": 734,
+              "reset_state": 539470,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "E",
+              "signature": [
+                539470,
+                539470
+              ]
+            }
+          ],
+          "rank2_landings": [
+            3789,
+            10613,
+            33811,
+            2493,
+            539470
+          ],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 1517,
+              "to_start": 3789,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 3789,
+              "to_start": 10613,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 10613,
+              "to_start": 33811,
+              "rank_after_descends": false,
+              "landing_descends": true,
+              "episode_min_descends": true,
+              "same_signature": false
+            },
+            {
+              "from_start": 33811,
+              "to_start": 2493,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            3,
+            3,
+            3,
+            4
+          ]
+        },
+        "first_below_anchor": {
+          "definition": "first_below_anchor",
+          "episode_count": 1,
+          "above_anchor_count": 0,
+          "rank2_count": 0,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 16,
+              "start": 1517,
+              "landing": 734,
+              "max_state": 291028018566,
+              "episode_min": 734,
+              "reset_state": 539470,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 4,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OOEOOEOOEOEOOOEE",
+              "signature": [
+                1517,
+                539470
+              ]
+            }
+          ],
+          "rank2_landings": [],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [],
+          "peak_ranks": []
+        }
+      },
+      {
+        "n": 6187,
+        "path": [
+          6187,
+          486653,
+          339491658,
+          18425,
+          2500985,
+          3955183437,
+          248742471750750,
+          15771571,
+          62634329559,
+          15675400641582836,
+          125201440,
+          11189,
+          1183550,
+          1087
+        ],
+        "drop": 1087,
+        "drop_index": 13,
+        "max_state": 15675400641582836,
+        "max_rank": 5,
+        "global_record_min_frozen": true,
+        "rank_return_equals_even_reset": true,
+        "even_reset": {
+          "definition": "even_reset",
+          "episode_count": 5,
+          "above_anchor_count": 4,
+          "rank2_count": 3,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 6187,
+              "landing": 18425,
+              "max_state": 339491658,
+              "episode_min": 6187,
+              "reset_state": 339491658,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                6187,
+                339491658
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 7,
+              "start": 18425,
+              "landing": 15771571,
+              "max_state": 248742471750750,
+              "episode_min": 18425,
+              "reset_state": 248742471750750,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOOE",
+              "signature": [
+                18425,
+                248742471750750
+              ]
+            },
+            {
+              "start_index": 7,
+              "end_index": 10,
+              "start": 15771571,
+              "landing": 125201440,
+              "max_state": 15675400641582836,
+              "episode_min": 15771571,
+              "reset_state": 15675400641582836,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 3,
+              "peak_rank": 5,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                15771571,
+                15675400641582836
+              ]
+            },
+            {
+              "start_index": 10,
+              "end_index": 11,
+              "start": 125201440,
+              "landing": 11189,
+              "max_state": 125201440,
+              "episode_min": 11189,
+              "reset_state": 125201440,
+              "reset_even": true,
+              "rank_before": 3,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "E",
+              "signature": [
+                125201440,
+                125201440
+              ]
+            },
+            {
+              "start_index": 11,
+              "end_index": 13,
+              "start": 11189,
+              "landing": 1087,
+              "max_state": 1183550,
+              "episode_min": 1087,
+              "reset_state": 1183550,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OE",
+              "signature": [
+                11189,
+                1183550
+              ]
+            }
+          ],
+          "rank2_landings": [
+            18425,
+            15771571,
+            125201440
+          ],
+          "high_even_starts": [
+            125201440
+          ],
+          "high_even_landings": [
+            11189
+          ],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": true,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 6187,
+              "to_start": 18425,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 18425,
+              "to_start": 15771571,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            4,
+            5
+          ]
+        },
+        "rank_return": {
+          "definition": "rank_return",
+          "episode_count": 5,
+          "above_anchor_count": 4,
+          "rank2_count": 3,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 6187,
+              "landing": 18425,
+              "max_state": 339491658,
+              "episode_min": 6187,
+              "reset_state": 339491658,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                6187,
+                339491658
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 7,
+              "start": 18425,
+              "landing": 15771571,
+              "max_state": 248742471750750,
+              "episode_min": 18425,
+              "reset_state": 248742471750750,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 4,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOOE",
+              "signature": [
+                18425,
+                248742471750750
+              ]
+            },
+            {
+              "start_index": 7,
+              "end_index": 10,
+              "start": 15771571,
+              "landing": 125201440,
+              "max_state": 15675400641582836,
+              "episode_min": 15771571,
+              "reset_state": 15675400641582836,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 3,
+              "peak_rank": 5,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                15771571,
+                15675400641582836
+              ]
+            },
+            {
+              "start_index": 10,
+              "end_index": 11,
+              "start": 125201440,
+              "landing": 11189,
+              "max_state": 125201440,
+              "episode_min": 11189,
+              "reset_state": 125201440,
+              "reset_even": true,
+              "rank_before": 3,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "E",
+              "signature": [
+                125201440,
+                125201440
+              ]
+            },
+            {
+              "start_index": 11,
+              "end_index": 13,
+              "start": 11189,
+              "landing": 1087,
+              "max_state": 1183550,
+              "episode_min": 1087,
+              "reset_state": 1183550,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OE",
+              "signature": [
+                11189,
+                1183550
+              ]
+            }
+          ],
+          "rank2_landings": [
+            18425,
+            15771571,
+            125201440
+          ],
+          "high_even_starts": [
+            125201440
+          ],
+          "high_even_landings": [
+            11189
+          ],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": true,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 6187,
+              "to_start": 18425,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            },
+            {
+              "from_start": 18425,
+              "to_start": 15771571,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            4,
+            5
+          ]
+        },
+        "first_below_anchor": {
+          "definition": "first_below_anchor",
+          "episode_count": 1,
+          "above_anchor_count": 0,
+          "rank2_count": 0,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 13,
+              "start": 6187,
+              "landing": 1087,
+              "max_state": 15675400641582836,
+              "episode_min": 1087,
+              "reset_state": 1183550,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 5,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OOEOOOEOOEEOE",
+              "signature": [
+                6187,
+                1183550
+              ]
+            }
+          ],
+          "rank2_landings": [],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [],
+          "peak_ranks": []
+        }
+      }
+    ],
+    "contrast": [
+      {
+        "n": 69,
+        "path": [
+          69,
+          573,
+          13716,
+          117,
+          1265,
+          44992,
+          212,
+          14
+        ],
+        "drop": 14,
+        "drop_index": 7,
+        "max_state": 44992,
+        "max_rank": 3,
+        "global_record_min_frozen": true,
+        "rank_return_equals_even_reset": true,
+        "even_reset": {
+          "definition": "even_reset",
+          "episode_count": 3,
+          "above_anchor_count": 2,
+          "rank2_count": 2,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 69,
+              "landing": 117,
+              "max_state": 13716,
+              "episode_min": 69,
+              "reset_state": 13716,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                69,
+                13716
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 6,
+              "start": 117,
+              "landing": 212,
+              "max_state": 44992,
+              "episode_min": 117,
+              "reset_state": 44992,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                117,
+                44992
+              ]
+            },
+            {
+              "start_index": 6,
+              "end_index": 7,
+              "start": 212,
+              "landing": 14,
+              "max_state": 212,
+              "episode_min": 14,
+              "reset_state": 212,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "E",
+              "signature": [
+                212,
+                212
+              ]
+            }
+          ],
+          "rank2_landings": [
+            117,
+            212
+          ],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": true,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 69,
+              "to_start": 117,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            3
+          ]
+        },
+        "rank_return": {
+          "definition": "rank_return",
+          "episode_count": 3,
+          "above_anchor_count": 2,
+          "rank2_count": 2,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 69,
+              "landing": 117,
+              "max_state": 13716,
+              "episode_min": 69,
+              "reset_state": 13716,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                69,
+                13716
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 6,
+              "start": 117,
+              "landing": 212,
+              "max_state": 44992,
+              "episode_min": 117,
+              "reset_state": 44992,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                117,
+                44992
+              ]
+            },
+            {
+              "start_index": 6,
+              "end_index": 7,
+              "start": 212,
+              "landing": 14,
+              "max_state": 212,
+              "episode_min": 14,
+              "reset_state": 212,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "E",
+              "signature": [
+                212,
+                212
+              ]
+            }
+          ],
+          "rank2_landings": [
+            117,
+            212
+          ],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": true,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 69,
+              "to_start": 117,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            3
+          ]
+        },
+        "first_below_anchor": {
+          "definition": "first_below_anchor",
+          "episode_count": 1,
+          "above_anchor_count": 0,
+          "rank2_count": 0,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 7,
+              "start": 69,
+              "landing": 14,
+              "max_state": 44992,
+              "episode_min": 14,
+              "reset_state": 212,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 3,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OOEOOEE",
+              "signature": [
+                69,
+                212
+              ]
+            }
+          ],
+          "rank2_landings": [],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [],
+          "peak_ranks": []
+        }
+      },
+      {
+        "n": 89,
+        "path": [
+          89,
+          839,
+          24302,
+          155,
+          1929,
+          84722,
+          291,
+          4964,
+          70
+        ],
+        "drop": 70,
+        "drop_index": 8,
+        "max_state": 84722,
+        "max_rank": 3,
+        "global_record_min_frozen": true,
+        "rank_return_equals_even_reset": true,
+        "even_reset": {
+          "definition": "even_reset",
+          "episode_count": 3,
+          "above_anchor_count": 2,
+          "rank2_count": 2,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 89,
+              "landing": 155,
+              "max_state": 24302,
+              "episode_min": 89,
+              "reset_state": 24302,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                89,
+                24302
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 6,
+              "start": 155,
+              "landing": 291,
+              "max_state": 84722,
+              "episode_min": 155,
+              "reset_state": 84722,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                155,
+                84722
+              ]
+            },
+            {
+              "start_index": 6,
+              "end_index": 8,
+              "start": 291,
+              "landing": 70,
+              "max_state": 4964,
+              "episode_min": 70,
+              "reset_state": 4964,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OE",
+              "signature": [
+                291,
+                4964
+              ]
+            }
+          ],
+          "rank2_landings": [
+            155,
+            291
+          ],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": true,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 89,
+              "to_start": 155,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            3
+          ]
+        },
+        "rank_return": {
+          "definition": "rank_return",
+          "episode_count": 3,
+          "above_anchor_count": 2,
+          "rank2_count": 2,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 3,
+              "start": 89,
+              "landing": 155,
+              "max_state": 24302,
+              "episode_min": 89,
+              "reset_state": 24302,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                89,
+                24302
+              ]
+            },
+            {
+              "start_index": 3,
+              "end_index": 6,
+              "start": 155,
+              "landing": 291,
+              "max_state": 84722,
+              "episode_min": 155,
+              "reset_state": 84722,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 2,
+              "peak_rank": 3,
+              "rank_after_lt_before": false,
+              "landing_lt_start": false,
+              "landing_lt_anchor": false,
+              "above_anchor": true,
+              "word": "OOE",
+              "signature": [
+                155,
+                84722
+              ]
+            },
+            {
+              "start_index": 6,
+              "end_index": 8,
+              "start": 291,
+              "landing": 70,
+              "max_state": 4964,
+              "episode_min": 70,
+              "reset_state": 4964,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 2,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OE",
+              "signature": [
+                291,
+                4964
+              ]
+            }
+          ],
+          "rank2_landings": [
+            155,
+            291
+          ],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": true,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [
+            {
+              "from_start": 89,
+              "to_start": 155,
+              "rank_after_descends": false,
+              "landing_descends": false,
+              "episode_min_descends": false,
+              "same_signature": false
+            }
+          ],
+          "peak_ranks": [
+            3,
+            3
+          ]
+        },
+        "first_below_anchor": {
+          "definition": "first_below_anchor",
+          "episode_count": 1,
+          "above_anchor_count": 0,
+          "rank2_count": 0,
+          "episodes": [
+            {
+              "start_index": 0,
+              "end_index": 8,
+              "start": 89,
+              "landing": 70,
+              "max_state": 84722,
+              "episode_min": 70,
+              "reset_state": 4964,
+              "reset_even": true,
+              "rank_before": 2,
+              "rank_after": 1,
+              "peak_rank": 3,
+              "rank_after_lt_before": true,
+              "landing_lt_start": true,
+              "landing_lt_anchor": true,
+              "above_anchor": false,
+              "word": "OOEOOEOE",
+              "signature": [
+                89,
+                4964
+              ]
+            }
+          ],
+          "rank2_landings": [],
+          "high_even_starts": [],
+          "high_even_landings": [],
+          "landings_strictly_decreasing": false,
+          "landings_strictly_increasing": false,
+          "any_rank2_return_drop": false,
+          "high_even_chain_drops": true,
+          "any_exact_recurrence": false,
+          "successive": [],
+          "peak_ranks": []
+        }
+      }
+    ],
+    "summary": {
+      "rank2_episode_counts": {
+        "365": 5,
+        "501": 7,
+        "1517": 5,
+        "6187": 3
+      },
+      "landings_365": [
+        763,
+        1749,
+        4447,
+        12707,
+        1196
+      ],
+      "landings_1517": [
+        3789,
+        10613,
+        33811,
+        2493,
+        539470
+      ],
+      "landings_increasing": {
+        "365": false,
+        "501": false,
+        "1517": false,
+        "6187": true
+      },
+      "any_landing_descent_law": false,
+      "any_rank2_return_drop": false,
+      "high_even_chain_drops": true,
+      "any_exact_recurrence": false,
+      "global_record_min_frozen": true,
+      "rank_return_equals_even_reset": true,
+      "first_below_is_terminal_drop": true,
+      "1517_oscillates": true,
+      "365_pe_climb": true
+    },
+    "contrast_summary": {
+      "69_landings": [
+        117,
+        212
+      ],
+      "89_landings": [
+        155,
+        291
+      ],
+      "same_rank2_return": true,
+      "generic_not_leftover_only": true
+    },
+    "machinery": {
+      "AboveAnchor": "every finite prefix of a leftover laboratory stays >= n",
+      "ReturnBelow": "first later word with image < n; the terminal drop only",
+      "HasFiniteStop": "the same terminal drop; FirstPassage does not cut mid-corridor",
+      "even_below_anchor_pow": "an even high state drops its own rank; the return stays rank 2",
+      "FiniteProgress": "emitted only by the terminal drop on these laboratories",
+      "orbitExponentGap": "Drift is a word-exponent predicate, not an episode rank",
+      "collapse_on_pow_two": "Collapse is an even-tower identity, not a PE landing law",
+      "cycles_or_escapes": "bounded recurrence is already a cycle; leftover prefixes are not recurrent"
+    },
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "predclosure_reopened": false,
+    "smaller_bad_retested": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "AboveAnchor": true,
+    "ReturnBelow": true,
+    "HasFiniteStop": true,
+    "FiniteProgress": true,
+    "even_below_anchor_pow": true,
+    "finiteProgress_of_aboveAnchor_returnBelow": true,
+    "cycles_or_escapes": true,
+    "orbitExponentGap": true,
+    "collapse_on_pow_two": true,
+    "has_EscapeEpisode": false,
+    "has_EpisodeRank": false,
+    "has_RecordMinimum": false,
+    "has_escape_dichotomy": false,
+    "has_episode_finite_progress": false,
+    "has_escape_implies_smaller_bad": false,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_no_juggler_cycle": false,
+    "new_lean_file": false,
+    "paper_a_has_new_api": false,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "ESCAPE_EPISODE_PARK",
+    "reason": "even-reset and rank-return coincide and return to rank 2; PE landings climb or oscillate; global record min is frozen at n; first-below-anchor is the existing terminal drop; no exact episode recurrence; 69/89 show the same pattern"
+  },
+  "search_method": "leftover 365/501/1517/6187 and contrast 69/89: even-reset, rank-return, and first-below-anchor partitions; return rank, episode landings, frozen global min, exact (start, reset) recurrence; no new Lean"
+}
