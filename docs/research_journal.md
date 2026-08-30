@@ -12665,3 +12665,38 @@ Best next question
   do not reopen four-even cells
 ```
 
+## Juggler first internal OO after isolated OE transport
+
+- **Date:** 2026-08-30
+- **Objective:** Decide what constraint the first internal `OO` creates on a CycleMin-shaped word \(O^{a_0}E(OE)^r O^b E v\), without reading the terminal cluster
+- **Hypotheses:** first-even overshoot plus isolated `OE` plus the first `OO` forces `FiniteProgress` or an existing obstruction; or at least \(r\le R(a_0)\)
+- **Major results:** Classification **FIRST_OO_GREEN**. If \(O^{a_0}E\) follows at \(n\), \((OE)^r\) follows at \(x_1\), and \(B^r(x_1)\ge n\), then \(2^{2r+a_0+1}\le 3^{a_0+r}\) — **EXACT — HUMAN PROOF** (`J-cyclemin-first-oo-r-bound`). \(R(2)=0\), so an \(a_0=2\) CycleMin cannot complete one isolated `OE` after the first even. Irreversible surplus / \(r\to\infty\) / instant kill — **REFUTED** (`J-cyclemin-first-oo-surplus`): \(193\) stays \(66\) steps; `OOE` lands \(\ge n\); \(r=2\) witnesses exist and obey \(R(a_0)\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** isolated `OE` can continue arbitrarily far while \(\ge n\); the first `OO` is an instant kill; `OOE` itself drops below \(n\); first `OO` is uniformly stronger than \((x_j+1)^2\)
+- **Literature:** isolated-odd **CLOSE**; iso-odd fibre / front overshoot / bunched-short **PARK** and frozen; `power_bound_word`; `repeated_oe_scale`; first-even overshoot
+- **Open:** Lean the exponent comparison. Does \(a_0=2\), \(r=0\), \(b=2\) force `FiniteProgress` or an existing obstruction? Do not reopen bunched-short cells
+- **Decision:** PROMOTE the \(r\)-bound. The first-`OO` dichotomy is not a theorem
+
+```text
+What was learned
+- first-OO words decompose as O^{a0}E (OE)^r O^b E v
+- B^r(x1) >= n forces 2^{2r+a0+1} <= 3^{a0+r}
+- R(2)=0, R(3)=1, R(4)=3; r -> infinity is impossible
+- a0=2 CycleMin cannot complete one isolated OE after the first even
+- first OO is not an instant kill; OOE lands >= n
+Strongest theorem
+- r <= R(a0) on a CycleMin isolated-OE prefix
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- n=193 stays 66 steps after its first OO
+Reusable machinery
+- first_internal_oo.py decomposition and R(a0)
+Branch status
+- PROMOTE
+Why
+- the r-bound is a parameterized theorem in the first-OO
+  variables and does not use the terminal cluster
+Best next question
+- does a0=2, r=0, b=2 force FiniteProgress or an
+  existing obstruction?
+```
+

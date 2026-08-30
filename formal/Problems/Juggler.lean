@@ -47,6 +47,7 @@ import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.LengthEightCensus
 import Problems.Juggler.EvenCountThree
 import Problems.Juggler.CycleMinObstruction
+import Problems.Juggler.FirstInternalOO
 import Problems.Juggler.O7EEEEGap
 import Problems.Juggler.CycleMinFudge
 import Problems.Juggler.CycleDiophantine
