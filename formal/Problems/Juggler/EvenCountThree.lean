@@ -1,0 +1,554 @@
+import Problems.Juggler.LeftoverFamilies
+import Problems.Juggler.CycleDiophantine
+
+namespace Problems.Juggler
+
+/-!
+# Laboratory assembler: no cycle word with even-count at most three
+
+Every `CycleWord` has a `CycleMin` rotation. A cycle minimum starts
+`OO`, ends `E`, and is formally expanding. The even-terminating
+expanding words with at most three evens are the odd-run family, the
+two-even leftovers (Theorem 3.12), the internal-E bootstrap, the
+seven bunched leftovers (Theorems 3.14--3.20), and the gapped
+leftovers (Theorems 3.13 and 3.21).
+
+This is an even-count theorem, not a length-9 or length-10 census.
+It is not imported by `Problems.JugglerPaper`. Not a halt theorem
+and not an exclusion of four-even leftovers.
+-/
+
+def evenCount : List Branch → ℕ
+  | [] => 0
+  | .even :: w => evenCount w + 1
+  | .odd :: w => evenCount w
+
+@[simp] theorem evenCount_nil : evenCount [] = 0 := rfl
+
+@[simp] theorem evenCount_even_cons (w : List Branch) :
+    evenCount (.even :: w) = evenCount w + 1 := rfl
+
+@[simp] theorem evenCount_odd_cons (w : List Branch) :
+    evenCount (.odd :: w) = evenCount w := rfl
+
+theorem evenCount_append : ∀ u v : List Branch,
+    evenCount (u ++ v) = evenCount u + evenCount v
+  | [], _ => by simp
+  | .even :: u, v => by
+      have ih := evenCount_append u v
+      simp [ih]
+      omega
+  | .odd :: u, v => by
+      simp [evenCount_append u v]
+
+theorem evenCount_replicate_odd (k : ℕ) :
+    evenCount (List.replicate k Branch.odd) = 0 := by
+  induction k with
+  | zero => simp
+  | succ k ih => simp [List.replicate_succ, ih]
+
+theorem evenCount_replicate_even (k : ℕ) :
+    evenCount (List.replicate k Branch.even) = k := by
+  induction k with
+  | zero => simp
+  | succ k ih => simp [List.replicate_succ, ih]
+
+theorem evenCount_add_oddCount : ∀ w : List Branch,
+    evenCount w + oddCount w = w.length
+  | [] => rfl
+  | .even :: w => by
+      have ih := evenCount_add_oddCount w
+      simp [List.length_cons]
+      omega
+  | .odd :: w => by
+      have ih := evenCount_add_oddCount w
+      simp [List.length_cons]
+      omega
+
+theorem eq_replicate_odd_of_evenCount_zero {w : List Branch}
+    (h : evenCount w = 0) : w = List.replicate w.length Branch.odd := by
+  induction w with
+  | nil => simp
+  | cons b rest ih =>
+      cases b with
+      | odd =>
+          have hrest : evenCount rest = 0 := by simpa using h
+          simpa [List.replicate_succ] using
+            congrArg (List.cons Branch.odd) (ih hrest)
+      | even =>
+          simp at h
+
+theorem evenCount_rotateWord : ∀ (w : List Branch) (k : ℕ),
+    evenCount (rotateWord w k) = evenCount w
+  | _w, 0 => rfl
+  | [], _k + 1 => rfl
+  | b :: rest, k + 1 => by
+      have ih := evenCount_rotateWord (rest ++ [b]) k
+      have hswap : evenCount (rest ++ [b]) = evenCount (b :: rest) := by
+        cases b <;> simp [evenCount_append]
+      simpa [rotateWord, hswap] using ih
+
+theorem exists_first_even {w : List Branch} (h : 1 ≤ evenCount w) :
+    ∃ a v, w = List.replicate a Branch.odd ++ Branch.even :: v := by
+  induction w with
+  | nil => simp [evenCount] at h
+  | cons b rest ih =>
+      cases b with
+      | even => exact ⟨0, rest, by simp⟩
+      | odd =>
+          have hrest : 1 ≤ evenCount rest := by simpa [evenCount] using h
+          obtain ⟨a, v, hv⟩ := ih hrest
+          exact ⟨a + 1, v, by simp [List.replicate_succ, hv]⟩
+
+theorem getLast?_append_cons {α : Type*} (u : List α) (b : α) (v : List α) :
+    (u ++ b :: v).getLast? = (b :: v).getLast? := by
+  induction u with
+  | nil => simp
+  | cons x xs ih =>
+      have hne : xs ++ b :: v ≠ [] := by
+        cases xs <;> simp
+      simpa [List.cons_append, List.getLast?_cons_of_ne_nil
+        (List.append_ne_nil_of_right_ne_nil xs (List.cons_ne_nil b v))] using ih
+
+theorem cycleMin_starts_two_odds {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∃ rest, w = Branch.odd :: Branch.odd :: rest := by
+  match w with
+  | [] =>
+      exact (Nat.not_succ_le_zero 0 h.1.2.2).elim
+  | .even :: rest =>
+      exact (cycleMin_not_start_even hn h).elim
+  | .odd :: rest =>
+      match rest with
+      | [] =>
+          exact (cycleMin_not_end_odd (u := []) hn (by simpa using h)).elim
+      | .even :: rest' =>
+          exact (cycleMin_not_odd_even hn h).elim
+      | .odd :: rest' =>
+          exact ⟨rest', rfl⟩
+
+theorem cycleMin_getLast_even {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    w.getLast? = some Branch.even := by
+  have hwne : w ≠ [] := List.ne_nil_of_length_pos h.1.2.2
+  rw [← List.dropLast_append_getLast hwne] at h
+  cases hlast : w.getLast hwne with
+  | odd =>
+      exact (cycleMin_not_end_odd hn (by simpa [hlast] using h)).elim
+  | even =>
+      rw [List.getLast?_eq_some_getLast hwne, hlast]
+
+theorem cycleMin_ge_twelve {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) : 12 ≤ n :=
+  cycleWord_iterate_not_lt_twelve (i := 0) hn h.1
+
+theorem expanding_two_even_ee {a : ℕ} (h : 2 ^ (a + 2) < 3 ^ a) : 4 ≤ a := by
+  by_contra hlt
+  have : a ≤ 3 := Nat.lt_succ_iff.mp (Nat.lt_of_not_ge hlt)
+  interval_cases a <;> exact absurd h (by decide)
+
+theorem expanding_two_even_eoe {a : ℕ} (h : 2 ^ (a + 3) < 3 ^ (a + 1)) : 3 ≤ a := by
+  by_contra hlt
+  have : a ≤ 2 := Nat.lt_succ_iff.mp (Nat.lt_of_not_ge hlt)
+  interval_cases a <;> exact absurd h (by decide)
+
+theorem expanding_eee {a : ℕ} (h : 2 ^ (a + 3) < 3 ^ a) : 6 ≤ a := by
+  by_contra hlt
+  have : a ≤ 5 := Nat.lt_succ_iff.mp (Nat.lt_of_not_ge hlt)
+  interval_cases a <;> exact absurd h (by decide)
+
+theorem expanding_eoee {a : ℕ} (h : 2 ^ (a + 4) < 3 ^ (a + 1)) : 5 ≤ a := by
+  by_contra hlt
+  have : a ≤ 4 := Nat.lt_succ_iff.mp (Nat.lt_of_not_ge hlt)
+  interval_cases a <;> exact absurd h (by decide)
+
+theorem expanding_eooee {a : ℕ} (h : 2 ^ (a + 5) < 3 ^ (a + 2)) : 4 ≤ a := by
+  by_contra hlt
+  have : a ≤ 3 := Nat.lt_succ_iff.mp (Nat.lt_of_not_ge hlt)
+  interval_cases a <;> exact absurd h (by decide)
+
+theorem expanding_eoooee {a : ℕ} (h : 2 ^ (a + 6) < 3 ^ (a + 3)) : 3 ≤ a := by
+  by_contra hlt
+  have : a ≤ 2 := Nat.lt_succ_iff.mp (Nat.lt_of_not_ge hlt)
+  interval_cases a <;> exact absurd h (by decide)
+
+theorem two_pow_lt_three_pow_sub_four {k : ℕ}
+    (hk : 4 ≤ k) (h : 2 ^ k < 3 ^ (k - 4)) : 11 ≤ k := by
+  by_contra hlt
+  have : k ≤ 10 := Nat.lt_succ_iff.mp (Nat.lt_of_not_ge hlt)
+  revert h
+  interval_cases k <;> decide
+
+theorem two_odds_of_odd_even_split {a : ℕ} {tail rest : List Branch}
+    (h : List.replicate a Branch.odd ++ Branch.even :: tail =
+      Branch.odd :: Branch.odd :: rest) : 2 ≤ a := by
+  match a with
+  | 0 => simp at h
+  | 1 => simp [List.replicate_succ] at h
+  | _a + 2 => omega
+
+theorem replicate_odd_getLast? {k : ℕ} (hk : 1 ≤ k) :
+    (List.replicate k Branch.odd).getLast? = some Branch.odd := by
+  cases k with
+  | zero => omega
+  | succ k =>
+      simp [List.getLast?_replicate]
+
+theorem no_cycleMin_odd_run {n a : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
+    (h : CycleMin n (List.replicate a Branch.odd ++ [Branch.even])) : False := by
+  have hC : CycleWord n (List.replicate a Branch.odd ++ [Branch.even]) := h.1
+  cases lt_or_ge a 3 with
+  | inr ha3 =>
+      exact no_cycle_odd_run_append_even ha3 hn hC
+  | inl ha2 =>
+      have : a = 2 := by omega
+      subst this
+      exact no_cycle_word_ooe hn (by simpa [wordOOE] using hC)
+
+theorem no_cycleMin_bootstrap_last_gap {n : ℕ} {u : List Branch} {c : ℕ}
+    (hn : 2 ≤ n) (hc : 2 ≤ c)
+    (h : CycleMin n
+      (u ++ [Branch.even] ++ List.replicate c Branch.odd ++ [Branch.even])) :
+    False := by
+  have hn12 : 12 ≤ n := cycleMin_ge_twelve hn h
+  have hn5 : 5 ≤ n := le_trans (by decide : (5 : ℕ) ≤ 12) hn12
+  cases lt_or_ge c 3 with
+  | inl hc2 =>
+      have : c = 2 := by omega
+      subst this
+      refine no_cycleMin_internal_even_threshold (N := 5) ?_ hn5 h
+      intro m hm hf
+      have hlist : List.replicate 2 Branch.odd = [Branch.odd, Branch.odd] := rfl
+      rw [hlist] at hf ⊢
+      simpa [image_eq_iterate] using oo_suffix_threshold hm hf
+  | inr hc3 =>
+      exact no_cycleMin_internal_even_threshold
+        (odd_run_suffix_threshold hc3)
+        (le_trans (by decide : (3 : ℕ) ≤ 5) hn5) h
+
+theorem eq_two_even_form {w : List Branch}
+    (h2 : evenCount w = 2) (hend : w.getLast? = some Branch.even) :
+    ∃ a c, w =
+      List.replicate a Branch.odd ++ [.even] ++
+        List.replicate c Branch.odd ++ [.even] := by
+  have hpos : 1 ≤ evenCount w := by omega
+  obtain ⟨a, v, rfl⟩ := exists_first_even hpos
+  have hv1 : evenCount v = 1 := by
+    have : evenCount (List.replicate a Branch.odd ++ .even :: v) =
+        evenCount v + 1 := by
+      simp [evenCount_append, evenCount_replicate_odd]
+    omega
+  obtain ⟨c, t, rfl⟩ := exists_first_even (by omega : 1 ≤ evenCount v)
+  have ht0 : evenCount t = 0 := by
+    have : evenCount (List.replicate c Branch.odd ++ .even :: t) =
+        evenCount t + 1 := by
+      simp [evenCount_append, evenCount_replicate_odd]
+    omega
+  have ht : t = List.replicate t.length Branch.odd :=
+    eq_replicate_odd_of_evenCount_zero ht0
+  cases t with
+  | nil =>
+      exact ⟨a, c, by simp [List.append_assoc]⟩
+  | cons b rest =>
+      have hoddlast :
+          (List.replicate a Branch.odd ++ Branch.even ::
+              (List.replicate c Branch.odd ++ Branch.even :: b :: rest)).getLast? =
+            some Branch.odd := by
+        have hne :
+            List.replicate c Branch.odd ++ Branch.even :: (b :: rest) ≠ [] :=
+          List.append_ne_nil_of_right_ne_nil _ (List.cons_ne_nil _ _)
+        rw [getLast?_append_cons, List.getLast?_cons_of_ne_nil hne,
+          getLast?_append_cons, ht]
+        exact replicate_odd_getLast? (Nat.succ_le_of_lt (Nat.succ_pos _))
+      cases hend.symm.trans hoddlast
+
+theorem eq_three_even_form {w : List Branch}
+    (h3 : evenCount w = 3) (hend : w.getLast? = some Branch.even) :
+    ∃ a b c, w =
+      List.replicate a Branch.odd ++ [.even] ++
+        List.replicate b Branch.odd ++ [.even] ++
+          List.replicate c Branch.odd ++ [.even] := by
+  have hpos : 1 ≤ evenCount w := by omega
+  obtain ⟨a, v, rfl⟩ := exists_first_even hpos
+  have hv2 : evenCount v = 2 := by
+    have : evenCount (List.replicate a Branch.odd ++ .even :: v) =
+        evenCount v + 1 := by
+      simp [evenCount_append, evenCount_replicate_odd]
+    omega
+  have hendv : v.getLast? = some Branch.even := by
+    have hvne : v ≠ [] := by
+      intro hv
+      subst hv
+      simp [evenCount] at hv2
+    rw [getLast?_append_cons, List.getLast?_cons_of_ne_nil hvne] at hend
+    exact hend
+  obtain ⟨b, c, hv⟩ := eq_two_even_form hv2 hendv
+  exact ⟨a, b, c, by simp [hv, List.append_assoc]⟩
+
+theorem no_cycleMin_two_even {n a c : ℕ} (hn : 2 ≤ n) (_ha : 2 ≤ a)
+    (h : CycleMin n
+      (List.replicate a Branch.odd ++ [.even] ++
+        List.replicate c Branch.odd ++ [.even])) : False := by
+  have hC : CycleWord n
+      (List.replicate a Branch.odd ++ [.even] ++
+        List.replicate c Branch.odd ++ [.even]) := h.1
+  have hexp := cycle_word_formally_expanding hn hC
+  have hodd : oddCount
+      (List.replicate a Branch.odd ++ [.even] ++
+        List.replicate c Branch.odd ++ [.even]) = a + c := by
+    simp [oddCount_append, oddCount_replicate_odd]
+  have hlen :
+      (List.replicate a Branch.odd ++ [Branch.even] ++
+        List.replicate c Branch.odd ++ [Branch.even]).length = a + c + 2 := by
+    simp [List.length_append]
+    omega
+  rw [hodd, hlen] at hexp
+  cases lt_or_ge c 2 with
+  | inr hc =>
+      exact no_cycleMin_bootstrap_last_gap hn hc h
+  | inl hc =>
+      interval_cases c
+      · have ha4 : 4 ≤ a := expanding_two_even_ee (by simpa using hexp)
+        have hk : 6 ≤ a + 2 := by omega
+        have hform :
+            List.replicate a Branch.odd ++ [.even] ++
+              List.replicate 0 Branch.odd ++ [.even] =
+              List.replicate (a + 2 - 2) Branch.odd ++
+                List.replicate 2 Branch.even := by
+          simp
+        exact no_cycle_word_two_even_ee hn hk (by simpa [hform] using hC)
+      · have ha3 : 3 ≤ a := expanding_two_even_eoe (by simpa using hexp)
+        have hk : 6 ≤ a + 3 := by omega
+        have hform :
+            List.replicate a Branch.odd ++ [.even] ++
+              List.replicate 1 Branch.odd ++ [.even] =
+              List.replicate (a + 3 - 3) Branch.odd ++
+                [Branch.even, Branch.odd, Branch.even] := by
+          simp [List.replicate_succ]
+        exact no_cycle_word_two_even_eoe hn hk (by simpa [hform] using hC)
+
+theorem no_cycleMin_three_even {n a b c : ℕ} (hn : 2 ≤ n) (ha : 2 ≤ a)
+    (h : CycleMin n
+      (List.replicate a Branch.odd ++ [.even] ++
+        List.replicate b Branch.odd ++ [.even] ++
+          List.replicate c Branch.odd ++ [.even])) : False := by
+  have hC : CycleWord n
+      (List.replicate a Branch.odd ++ [.even] ++
+        List.replicate b Branch.odd ++ [.even] ++
+          List.replicate c Branch.odd ++ [.even]) := h.1
+  have hexp := cycle_word_formally_expanding hn hC
+  have hodd : oddCount
+      (List.replicate a Branch.odd ++ [.even] ++
+        List.replicate b Branch.odd ++ [.even] ++
+          List.replicate c Branch.odd ++ [.even]) = a + b + c := by
+    simp [oddCount_append, oddCount_replicate_odd]
+    omega
+  have hlen :
+      (List.replicate a Branch.odd ++ [Branch.even] ++
+        List.replicate b Branch.odd ++ [Branch.even] ++
+          List.replicate c Branch.odd ++ [Branch.even]).length =
+        a + b + c + 3 := by
+    simp [List.length_append]
+    omega
+  rw [hodd, hlen] at hexp
+  cases lt_or_ge c 2 with
+  | inr hc =>
+      exact no_cycleMin_bootstrap_last_gap (u :=
+        List.replicate a Branch.odd ++ [.even] ++ List.replicate b Branch.odd)
+        hn hc (by simpa [List.append_assoc] using h)
+  | inl hc =>
+      interval_cases c
+      · cases lt_or_ge b 4 with
+        | inr hb =>
+            exact no_cycle_word_gapped_three_even_ee hn ha hb
+              (by
+                have hform :
+                    List.replicate a Branch.odd ++ [Branch.even] ++
+                      List.replicate b Branch.odd ++ [Branch.even] ++
+                        List.replicate 0 Branch.odd ++ [Branch.even] =
+                      gappedThreeEvenEE a b := by
+                  simp [gappedThreeEvenEE, firstEPrefix, List.replicate_zero,
+                    List.append_nil, List.append_assoc]
+                exact hform ▸ hC)
+        | inl hb =>
+            interval_cases b
+            · have ha6 : 6 ≤ a := expanding_eee (by simpa using hexp)
+              exact no_cycle_word_three_even_eee hn ha6
+                (by
+                  have hform :
+                      List.replicate a Branch.odd ++ [.even] ++
+                        List.replicate 0 Branch.odd ++ [.even] ++
+                          List.replicate 0 Branch.odd ++ [.even] =
+                        threeEvenEEE a := by
+                    simp [threeEvenEEE, List.replicate_succ]
+                  simpa [hform] using hC)
+            · have ha5 : 5 ≤ a := expanding_eoee (by simpa using hexp)
+              exact no_cycle_word_three_even_eoee hn ha5
+                (by
+                  have hform :
+                      List.replicate a Branch.odd ++ [.even] ++
+                        List.replicate 1 Branch.odd ++ [.even] ++
+                          List.replicate 0 Branch.odd ++ [.even] =
+                        threeEvenEOEE a := by
+                    simp [threeEvenEOEE, List.replicate_succ]
+                  simpa [hform] using hC)
+            · have ha4 : 4 ≤ a := expanding_eooee (by simpa using hexp)
+              exact no_cycle_word_three_even_eooee hn ha4
+                (by
+                  have hform :
+                      List.replicate a Branch.odd ++ [.even] ++
+                        List.replicate 2 Branch.odd ++ [.even] ++
+                          List.replicate 0 Branch.odd ++ [.even] =
+                        threeEvenEOOEE a := by
+                    simp [threeEvenEOOEE, List.replicate_succ]
+                  simpa [hform] using hC)
+            · have ha3 : 3 ≤ a := expanding_eoooee (by simpa using hexp)
+              exact no_cycle_word_three_even_eoooee hn ha3
+                (by
+                  have hform :
+                      List.replicate a Branch.odd ++ [.even] ++
+                        List.replicate 3 Branch.odd ++ [.even] ++
+                          List.replicate 0 Branch.odd ++ [.even] =
+                        threeEvenEOOOEE a := by
+                    simp [threeEvenEOOOEE, List.replicate_succ]
+                  simpa [hform] using hC)
+      · cases lt_or_ge b 3 with
+        | inr hb =>
+            exact no_cycle_word_gapped_three_even_eoe hn ha hb
+              (by
+                have hform :
+                    List.replicate a Branch.odd ++ [Branch.even] ++
+                      List.replicate b Branch.odd ++ [Branch.even] ++
+                        List.replicate 1 Branch.odd ++ [Branch.even] =
+                      gappedThreeEvenEOE a b := by
+                  simp [gappedThreeEvenEOE, firstEPrefix, List.replicate_succ,
+                    List.append_assoc]
+                exact hform ▸ hC)
+        | inl hb =>
+            interval_cases b
+            · have ha5 : 5 ≤ a := expanding_eoee (by simpa using hexp)
+              exact no_cycle_word_three_even_eeoe hn ha5
+                (by
+                  have hform :
+                      List.replicate a Branch.odd ++ [.even] ++
+                        List.replicate 0 Branch.odd ++ [.even] ++
+                          List.replicate 1 Branch.odd ++ [.even] =
+                        threeEvenEEOE a := by
+                    simp [threeEvenEEOE, List.replicate_succ]
+                  simpa [hform] using hC)
+            · have ha4 : 4 ≤ a := expanding_eooee (by simpa using hexp)
+              exact no_cycle_word_three_even_eoeoe hn ha4
+                (by
+                  have hform :
+                      List.replicate a Branch.odd ++ [.even] ++
+                        List.replicate 1 Branch.odd ++ [.even] ++
+                          List.replicate 1 Branch.odd ++ [.even] =
+                        threeEvenEOEOE a := by
+                    simp [threeEvenEOEOE, List.replicate_succ]
+                  simpa [hform] using hC)
+            · have ha3 : 3 ≤ a := expanding_eoooee (by simpa using hexp)
+              exact no_cycle_word_three_even_eooeoe hn ha3
+                (by
+                  have hform :
+                      List.replicate a Branch.odd ++ [.even] ++
+                        List.replicate 2 Branch.odd ++ [.even] ++
+                          List.replicate 1 Branch.odd ++ [.even] =
+                        threeEvenEOOEOE a := by
+                    simp [threeEvenEOOEOE, List.replicate_succ]
+                  simpa [hform] using hC)
+
+theorem no_cycleMin_even_count_le_three {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) (he : evenCount w ≤ 3) : False := by
+  obtain ⟨rest, hw⟩ := cycleMin_starts_two_odds hn h
+  have hend := cycleMin_getLast_even hn h
+  have hpos : 1 ≤ evenCount w := by
+    by_contra hz
+    have h0 : evenCount w = 0 := by omega
+    have hrep := eq_replicate_odd_of_evenCount_zero h0
+    have hlast : w.getLast? = some Branch.odd := by
+      rw [hrep]
+      exact replicate_odd_getLast? h.1.2.2
+    simp [hend] at hlast
+  match heq : evenCount w with
+  | 0 => omega
+  | 1 =>
+      obtain ⟨a, v, hv⟩ := exists_first_even (by omega : 1 ≤ evenCount w)
+      have hv0 : evenCount v = 0 := by
+        have : evenCount (List.replicate a Branch.odd ++ .even :: v) =
+            evenCount v + 1 := by
+          simp [evenCount_append, evenCount_replicate_odd]
+        rw [← hv, heq] at this
+        omega
+      have : v = [] := by
+        cases v with
+        | nil => rfl
+        | cons b t =>
+            have ht := eq_replicate_odd_of_evenCount_zero hv0
+            have hlast : w.getLast? = some Branch.odd := by
+              have : 1 ≤ (b :: t).length := by simp
+              rw [hv, getLast?_append_cons, ht]
+              exact replicate_odd_getLast? this
+            simp [hend] at hlast
+      subst this
+      have ha2 : 2 ≤ a :=
+        two_odds_of_odd_even_split (tail := []) (by
+          simpa using hv.symm.trans hw)
+      exact no_cycleMin_odd_run hn ha2 (by simpa [hv] using h)
+  | 2 =>
+      obtain ⟨a, c, hv⟩ := eq_two_even_form heq hend
+      have ha2 : 2 ≤ a :=
+        two_odds_of_odd_even_split
+          (tail := List.replicate c Branch.odd ++ [Branch.even])
+          (by simpa [List.append_assoc] using hv.symm.trans hw)
+      exact no_cycleMin_two_even hn ha2 (by simpa [hv] using h)
+  | 3 =>
+      obtain ⟨a, b, c, hv⟩ := eq_three_even_form heq hend
+      have ha2 : 2 ≤ a :=
+        two_odds_of_odd_even_split
+          (tail :=
+            List.replicate b Branch.odd ++ [Branch.even] ++
+              List.replicate c Branch.odd ++ [Branch.even])
+          (by simpa [List.append_assoc] using hv.symm.trans hw)
+      exact no_cycleMin_three_even hn ha2 (by simpa [hv] using h)
+  | _n + 4 =>
+      omega
+
+/-- **Even-count assembler.** No `n ≥ 2` realizes a cycle word with
+at most three even letters. This is not a length census and not a
+halt theorem. -/
+theorem no_cycle_word_even_count_le_three {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) (he : evenCount w ≤ 3) : False := by
+  obtain ⟨k, hk, hm⟩ := exists_cycleMin hn h
+  have hnk : 2 ≤ floorPower^[k] n := cycleWord_iterate_ge_two hn h hk
+  have he' : evenCount (rotateWord w k) ≤ 3 := by
+    simpa [evenCount_rotateWord] using he
+  exact no_cycleMin_even_count_le_three hnk hm he'
+
+theorem cycle_word_even_count_ge_four {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) : 4 ≤ evenCount w := by
+  by_contra hlt
+  exact no_cycle_word_even_count_le_three hn h (Nat.le_of_lt_succ (Nat.lt_of_not_ge hlt))
+
+/-- A nontrivial cycle word has length at least eleven: four evens
+plus the expansion demand \(2^{|w|}<3^{\#O}\). -/
+theorem cycle_word_length_ge_eleven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) : 11 ≤ w.length := by
+  have he : 4 ≤ evenCount w := cycle_word_even_count_ge_four hn h
+  have hexp := cycle_word_formally_expanding hn h
+  have hsum := evenCount_add_oddCount w
+  have hodd : oddCount w = w.length - evenCount w := by omega
+  have hk4 : 4 ≤ w.length := by
+    have := Nat.le_add_right (evenCount w) (oddCount w)
+    rw [hsum] at this
+    exact le_trans he this
+  have hpow : 2 ^ w.length < 3 ^ (w.length - evenCount w) := by
+    simpa [hodd] using hexp
+  have hle : w.length - evenCount w ≤ w.length - 4 :=
+    Nat.sub_le_sub_left he w.length
+  have hbound : 3 ^ (w.length - evenCount w) ≤ 3 ^ (w.length - 4) :=
+    Nat.pow_le_pow_right (by decide : (1 : ℕ) ≤ 3) hle
+  have hbound' : 2 ^ w.length < 3 ^ (w.length - 4) :=
+    lt_of_lt_of_le hpow hbound
+  exact two_pow_lt_three_pow_sub_four hk4 hbound'
+
+end Problems.Juggler

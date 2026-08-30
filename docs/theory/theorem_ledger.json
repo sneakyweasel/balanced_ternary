@@ -3482,6 +3482,17 @@
     "related_conjectures": []
   },
   {
+    "id": "J-even-count-le-three",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "No n ≥ 2 realizes a Juggler cycle word with at most three even letters. Every CycleWord has a CycleMin rotation that starts OO, ends E, and is formally expanding; those words are the odd-run family, the two-even leftovers (Theorem 3.12), the internal-E bootstrap, the seven bunched leftovers (Theorems 3.14–3.20), or the gapped leftovers (Theorems 3.13 and 3.21). The laboratory corollary is that a nontrivial cycle word has length at least eleven. Lean theorems no_cycle_word_even_count_le_three and cycle_word_length_ge_eleven in EvenCountThree.lean. This is an even-count assembler, not a length-9 or length-10 census, not a published Paper A theorem, and not a halt theorem.",
+    "source": "docs/problems/juggler_even_count_three.md",
+    "lean": "Problems/Juggler/EvenCountThree.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_even_count_three.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-nested-parity-linearization",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "For odd n ≥ 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 ≤ E(n) ≤ (3/8)(n^{3/2}-1)^{-1/2} ≤ (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} ≥ 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",

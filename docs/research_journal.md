@@ -11710,3 +11710,41 @@ Best next question
   families, or stop
 ```
 
+## Juggler even-count ≤ 3 cycle words
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether every cycle word with at most three even letters is already excluded by named filters, so a nontrivial cycle has period at least 11
+- **Hypotheses:** Theorems 3.12--3.21 plus odd-run, bootstrap, and start-E/OE rotation partition e≤3; lengths 9 and 10 add no new leftover geometry
+- **Major results:** Necklace inventory of 604 even-terminating expanding words with e≤3 at lengths 9..16 (226 necklaces), all named. Lean `no_cycle_word_even_count_le_three` and `cycle_word_length_ge_eleven` in `EvenCountThree.lean`. Ledger row `J-even-count-le-three`. Paper A barrel and note unchanged. Not a length-9 census and not a halt theorem
+- **Refuted ideas:** induction on the period reduces length 9 to length 8; leftover cells automatically kill the next even-count
+- **Literature:** Paper A Theorems 3.12--3.21; laboratory length-8 census; four-even short-gap `PARK`
+- **Open:** e≥4 leftover cells remain parked. Do not assemble a length-9 or length-10 census
+- **Decision:** PROMOTE. Sorry-free even-count assembler. Not a Paper A theorem and not a halt theorem
+
+```text
+What was learned
+- every e≤3 even-terminating expanding word at
+  lengths 9..16 hits a named filter or start-E/OE glue
+- lengths 9 and 10 are the same leftover geometry as
+  the family theorems; e=4 first appears at length 11
+- CycleMin starts OO, ends E, and sits at n≥12
+- leftover-cell induction is not the next step
+Strongest theorem
+- no_cycle_word_even_count_le_three
+  (EXACT — LEAN VERIFIED)
+- cycle_word_length_ge_eleven
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- none in the inventory; e=4 cell lag remains the wall
+Reusable machinery
+- EvenCountThree.lean; even_count_three.py
+- not imported by JugglerPaper
+Branch status
+- PROMOTE
+Why
+- the leftover families were already an even-count
+  partition; the missing glue is now a single theorem
+Best next question
+- a new method for e≥4, not a length-11 census
+```
+

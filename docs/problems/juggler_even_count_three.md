@@ -1,0 +1,175 @@
+# Juggler even-count ≤ 3 cycle words
+
+Status: **EXPLORATORY**
+
+Standalone laboratory assembly on the Juggler floor-power map. It is
+**not** a Research Engine control-layer experiment and not a claim that
+every positive integer reaches 1. It is not a length-9 or length-10
+census, not first-E transport at \(e\ge 4\), and not induction on
+\(n\) or on the period.
+
+## Problem
+
+Is every cycle word with at most three even letters already excluded
+by the named leftover families, so that a nontrivial cycle — if one
+exists — has at least four evens and therefore period at least eleven?
+
+## Exact statement
+
+Every mixed cycle word has a `CycleMin` rotation. A cycle minimum
+starts `OO`, ends `E`, and is formally expanding. The even-terminating
+expanding words with even-count \(e\le 3\) are exactly the odd-run
+family, the two-even leftovers (Theorem 3.12), the internal-E
+bootstrap, the seven bunched leftovers (Theorems 3.14--3.20), and the
+gapped leftovers (Theorems 3.13 and 3.21), or start-`E`/`OE`
+rotations onto those families.
+
+The laboratory theorem `no_cycle_word_even_count_le_three` excludes
+every such `CycleWord`. The corollary `cycle_word_length_ge_eleven`
+is the expansion demand after four evens. This is not a length-9 or
+length-10 census. Paper A still states the length-\(\le 7\) census.
+There is no `no_cycle_word_length_nine` and no halt theorem.
+
+## Current literature
+
+- Small-cycle census (Paper A Theorems 3.6 and 3.8) —
+  **EXACT — LEAN VERIFIED**. No cycle word of length at most seven.
+- Laboratory length-8 census —
+  **EXACT — LEAN VERIFIED**. Period \(\ge 9\) in the laboratory.
+  Not reopened as a length census.
+- Uniform two-even leftover families (Paper A Theorem 3.12) —
+  **EXACT — LEAN VERIFIED**.
+- Gapped three-even leftovers (Theorems 3.13 and 3.21) —
+  **EXACT — LEAN VERIFIED**.
+- Seven bunched last-cluster families (Theorems 3.14--3.20) —
+  **EXACT — LEAN VERIFIED**.
+- Internal-E bootstrap —
+  **EXACT — LEAN VERIFIED**.
+- Four-even short-first-gap —
+  **PARK**. The leftover-cell path leaks at the first expanding
+  \(a_0\). That `PARK` is not reopened.
+
+Project relationship: **extended**. The leftover families are one
+even-count partition, not a new shape at each length.
+
+## Branch budget
+
+```text
+Mathematical target     Is every cycle word with at most three
+                        even letters already excluded by named
+                        filters (so any nontrivial cycle has
+                        length at least 11)?
+Novelty hypothesis      Theorems 3.12--3.21 plus bootstrap and
+                        rotation already partition e≤3; length
+                        9 and 10 add no new leftover geometry
+Falsifier               An even-terminating expanding word with
+                        e≤3 whose necklace misses every named
+                        filter (start-E/OE glue fails)
+Existing machinery      leftover_prefix_cell; Thms 3.12--3.21;
+                        no_cycleMin_internal_even_threshold;
+                        rotation; expansion filter
+Maximum Phase-0 scope   Necklace inventory of even-terminating
+                        expanding words with e≤3 for lengths
+                        9..16; one Lean even-count theorem.
+                        No length-9 Lean census, no e=4 cells,
+                        no Paper A edit
+Promotion criterion     Every such necklace hits a named filter;
+                        then a single Lean theorem
+                        no_cycle_word_even_count_le_three
+Stop criterion          A missed necklace; or the work becomes
+                        per-length assembler files
+```
+
+## Balanced-ternary formulation
+
+None required. The map is on ordinary positive integers.
+
+## Why BT may be relevant
+
+It is not required.
+
+## Candidate operations / invariants
+
+- every even-terminating expanding word with \(e\le 3\) at
+  lengths 9..16 hits a named filter or start-`E`/`OE` glue —
+  **COMPUTATIONALLY VERIFIED**
+- `e=0` all-odd and `e=1` odd-run are excluded —
+  **EXACT — LEAN VERIFIED**
+- `e=2` is Theorem 3.12 or last-gap bootstrap —
+  **EXACT — LEAN VERIFIED**
+- `e=3` is bootstrap, bunched, or gapped —
+  **EXACT — LEAN VERIFIED**
+- no cycle word has even-count \(\le 3\) —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_even_count_le_three`)
+- a nontrivial cycle word has length at least 11 —
+  **EXACT — LEAN VERIFIED** (`cycle_word_length_ge_eleven`)
+- cycles of length 11 or more are impossible — not claimed
+- four-even leftovers die — not claimed
+- global halt — not claimed
+
+## Experiments
+
+- Probe: `research.juggler_sequence.even_count_three`
+- Records: [juggler_even_count_three.md](../research/juggler_even_count_three.md),
+  [juggler_even_count_three.json](../research/juggler_even_count_three.json)
+- Tests: `tests/research/juggler_sequence/test_even_count_three.py`
+- Lean: `formal/Problems/Juggler/EvenCountThree.lean`. Not imported
+  by `Problems.JugglerPaper`. No `sorry`. No halt theorem.
+
+## Conjectures
+
+None opened.
+
+## Counterexamples
+
+None to the necklace inventory or to the even-count assembler. The
+stronger claims that remain unproved:
+
+- “every length-9 word is Lean-excluded as a census” — not claimed.
+- “there are no Juggler cycles” — not claimed.
+- “leftover cells kill \(e=4\)” — **REFUTED** at the first
+  expanding layer (four-even short-gap `PARK`).
+
+## Formalization
+
+`formal/Problems/Juggler/EvenCountThree.lean` proves
+`no_cycleMin_even_count_le_three`,
+`no_cycle_word_even_count_le_three`,
+`cycle_word_even_count_ge_four`, and
+`cycle_word_length_ge_eleven`. `SmallCycleCensus.lean` still
+assembles only through length seven. `LengthEightCensus.lean` remains
+the laboratory length-8 assembler. No `no_cycle_word_length_nine`.
+No `no_cycle_word_length_le_nine`. No `sorry`. No halt theorem.
+Paper A is unchanged.
+
+## Results
+
+Classification **EVEN_COUNT_THREE_GREEN**.
+
+No \(n\ge 2\) realizes a cycle word with at most three even letters.
+A nontrivial cycle, if one exists, has period at least eleven. This
+is an even-count theorem, not a length-9 census, not a published
+Paper A theorem, and not a halt theorem.
+
+## Open questions
+
+The leftover-cell path is parked at four evens. Do not assemble
+`no_cycle_word_length_le_nine` or `no_cycle_word_length_le_ten`.
+Do not open \(e=5\) cells. Do not claim halt.
+
+## Decision
+
+**PROMOTE**. The \(e\le 3\) necklace inventory at lengths 9..16 is
+complete, and the Lean assembler excludes every such `CycleWord`.
+Period \(\ge 11\) is the expansion corollary. This is not a halt
+theorem and not a length census.
+
+Best next question: a new method for \(e\ge 4\), not a length-11
+census.
+
+## Publication assessment
+
+Status: `EXPLORATORY`.
+
+A laboratory even-count strengthening. Not imported into Paper A.
+Not a Juggler totality result.
