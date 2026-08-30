@@ -4321,5 +4321,27 @@
       "tests/research/juggler_sequence/test_odd_ooe_landing.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-ooo-second-step-square",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If n ≥ 3, then isqrt(n^3)^3 ≥ n^4. Hence if x ≥ n is odd and T(x) is odd, T^2(x) ≥ n^2. A first post-first-OO OOO entered from a CycleMin state therefore loses the square-cell ceiling at the second odd letter. For k ≤ 5 the word (OOE)^k still has the square-cell gap 2^{3k+1} > 3^{2k}, so that entrance lies in [n, n^2). OOEOOO is the first OOO-prefix that loses the gap; completed OOEOOOE restores it (256 > 243). This is not an OOO-inevitability theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_first_ooo_escape.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_first_ooo_escape.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-ooo-inevitable",
+    "tag": "REFUTED",
+    "statement": "Every CycleMin continuation in OOE.{OE,OOE}* must reach a first OOO. False. Witness: 365 follows (OOE)^4 then OE then E and drops to 34, never producing OOO. After k ≥ 3 a following OE may survive one step because the even intermediate already lies above n^2 (365: 12707 → 1432400 → 1196; also 429). Early OE after one or two OOE still drops. A bounded OOE-count is not a theorem: the formal exponent 9/8 > 1 gives no r-bound analogue. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_first_ooo_escape.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_first_ooo_escape.py"
+    ],
+    "related_conjectures": []
   }
 ]

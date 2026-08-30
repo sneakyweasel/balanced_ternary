@@ -1,0 +1,202 @@
+{
+  "experiment": "juggler_first_ooo_escape",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "ooo_inevitable": false,
+    "bounded_ooe_count": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_min": 12,
+    "n_hi": 801,
+    "square_max": 5,
+    "gaps": {
+      "OOEO": true,
+      "OOEOE": true,
+      "OOEOOE": true,
+      "OOEOOO": false,
+      "OOEOOOE": true,
+      "OOEOOEOOE": true,
+      "OOEOOEOOO": false,
+      "OOEOOEOOOE": false,
+      "ooe_k_le_5": true,
+      "ooe_k_6": false,
+      "next_o_k_le_2": true,
+      "next_o_k_3": false,
+      "lang_q5": true,
+      "lang_q6": false,
+      "lang_q6_p1": true
+    },
+    "cube": {
+      "n_hi": 2001,
+      "cube_fail": 0,
+      "oo_ok": 505,
+      "oo_fail": 0
+    },
+    "window": {
+      "n_hi": 801,
+      "exits": {
+        "drop": 92,
+        "OOO": 12
+      },
+      "ooo_ooe": {
+        "1": 11,
+        "2": 1
+      },
+      "ooo_oe": {
+        "0": 12
+      },
+      "drop_ooe": {
+        "1": 81,
+        "2": 8,
+        "3": 2,
+        "4": 1
+      },
+      "early_oe_drop": 30,
+      "late_oe_survive": 3,
+      "ooo_pre_lt": 12,
+      "ooo_t2_ge": 12,
+      "ooo_t3_ge": 12,
+      "ooo_pre_fail": 0,
+      "second_fail": 0,
+      "cube_fail": 0,
+      "max_ooe": 4,
+      "cap_hits": 0,
+      "samples": [
+        {
+          "n": 105,
+          "n_ooe": 1,
+          "n_oe": 0,
+          "pre3": 187
+        },
+        {
+          "n": 173,
+          "n_ooe": 1,
+          "n_oe": 0,
+          "pre3": 329
+        },
+        {
+          "n": 229,
+          "n_ooe": 1,
+          "n_oe": 0,
+          "pre3": 451
+        },
+        {
+          "n": 269,
+          "n_ooe": 1,
+          "n_oe": 0,
+          "pre3": 541
+        },
+        {
+          "n": 319,
+          "n_ooe": 1,
+          "n_oe": 0,
+          "pre3": 655
+        },
+        {
+          "n": 483,
+          "n_ooe": 1,
+          "n_oe": 0,
+          "pre3": 1045
+        }
+      ]
+    },
+    "no_ooo": {
+      "n": 365,
+      "exit": "drop",
+      "n_oe": 1,
+      "n_ooe": 4,
+      "blocks": "OOEOOEOOEOOEOEE",
+      "last": 34
+    },
+    "ooo_escape": {
+      "n": 565,
+      "exit": "OOO",
+      "n_oe": 0,
+      "n_ooe": 2,
+      "blocks": "OOEOOEOOO",
+      "pre3": 3039,
+      "t2": 68571361,
+      "pre3_lt_sq": true,
+      "t2_ge_sq": true,
+      "t3_ge_sq": true
+    },
+    "early_oe": {
+      "n": 89,
+      "exit": "drop",
+      "n_oe": 1,
+      "n_ooe": 2,
+      "blocks": "OOEOOEOE",
+      "last": 70,
+      "oe_even_ge_sq": false,
+      "pre_oe": 291
+    },
+    "late_oe": {
+      "n": 429,
+      "exit": "drop",
+      "n_oe": 1,
+      "n_ooe": 3,
+      "blocks": "OOEOOEOOEOEE",
+      "last": 25
+    },
+    "ooo_after_one": {
+      "n": 105,
+      "exit": "OOO",
+      "n_oe": 0,
+      "n_ooe": 1,
+      "blocks": "OOEOOO",
+      "pre3": 187,
+      "t2": 129299,
+      "pre3_lt_sq": true,
+      "t2_ge_sq": true,
+      "t3_ge_sq": true
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "leftover_suffix_retest": false,
+    "terminal_cluster_reopen": false,
+    "residue_automaton": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_not_end_odd": true,
+    "power_bound_word": true,
+    "power_bound_contracts": true,
+    "oe_block_contracts": true,
+    "no_cycleMin_ooeooe": true,
+    "no_cycleMin_ooeoooe": true,
+    "no_cycleMin_prefix_ooe_oe": true,
+    "no_cycle_word_ooe": true,
+    "ooo_suffix_threshold": true,
+    "isolated_oe_r_max_two": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "no_new_lean": true
+  },
+  "decision": {
+    "classification": "FIRST_OOO_GREEN",
+    "reason": "first OOO from x >= n has T^2(x) >= n^2; (OOE)^k stays below n^2 iff k <= 5; early OE drops; OOO is not inevitable"
+  },
+  "search_method": "language OOE.{OE,OOE}* until first OOO or drop; second-odd square lemma from isqrt(n^3)^3 >= n^4; no terminal cell, no residue automaton, no Z5, no length-11"
+}

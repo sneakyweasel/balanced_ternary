@@ -12803,4 +12803,39 @@ Best next question
   repeat the even/odd trap?
 ```
 
+## Juggler first OOO after controlled OOE
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether `OOE.{OE,OOE}*` can remain CycleMin indefinitely, and what constraint the first later `OOO` satisfies
+- **Hypotheses:** the no-`OOO` language has a common envelope; first `OOO` is forced; the entrance state lies in a narrow corridor
+- **Major results:** Classification **FIRST_OOO_GREEN**. If \(x\ge n\) follows `OO`, then \(T^2(x)\ge n^2\) because \(\mathrm{isqrt}(n^3)^3\ge n^4\) — **EXACT — HUMAN PROOF** (`J-cyclemin-ooo-second-step-square`). \((OOE)^k\) stays below \(n^2\) iff \(k\le 5\). First `OOO` is not inevitable, and late `OE` after \(k\ge 3\) need not drop — **REFUTED** (`J-cyclemin-ooo-inevitable`): `365` does \((OOE)^4\) then `OE` and drops; `565` enters `OOO` from \(3039\in[565,565^2)\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** every no-`OOO` continuation must reach `OOO`; every later `OE` drops
+- **Literature:** `OOEOOE` square cell; next-`O` envelope; `no_cycleMin_prefix_ooe_oe`; `no_cycleMin_ooeoooe`
+- **Open:** after first `OOO` from \(C_3(n)\), does completed `OOOE` force progress or an existing obstruction? Do not reopen bunched-short cells
+- **Decision:** PROMOTE the second-odd escape and the entrance corridor. Inevitability and a bounded `OOE`-count are not theorems
+
+```text
+What was learned
+- (OOE)^k has the square-cell gap iff k <= 5
+- {OE,OOE}* has no common sub-n^2 envelope
+- first OOO from x >= n loses n^2 at the second odd letter
+- 365 never reaches OOO; late OE after k >= 3 can survive
+- 565 enters OOO from 3039 in [n, n^2)
+Strongest theorem
+- x >= n follows OO => T^2(x) >= n^2
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- 365 does (OOE)^4 OE E and drops; OOO is not inevitable
+Reusable machinery
+- first_ooo_escape.py language walk and second-odd lemma
+Branch status
+- PROMOTE
+Why
+- the first OOO is a constrained entrance event, not a
+  generic odd-run, and it is not forced
+Best next question
+- after first OOO from C_3(n), does completed OOOE force
+  FiniteProgress or an existing obstruction?
+```
+
 

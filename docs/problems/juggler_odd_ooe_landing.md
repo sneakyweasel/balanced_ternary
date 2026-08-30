@@ -176,8 +176,9 @@ assembler, and not a halt theorem.
 ## Open questions
 
 Lean-package the next-`O` envelope \(243<256\). The Case B
-residual is another `OO` after `OOEOOEO`: either a second
-`OOE` (still below \(n^2\)) or a longer odd run (can escape).
+residual — first later `OOO` after the controlled `OOE`
+language — is the separate branch
+[juggler_first_ooo_escape.md](juggler_first_ooo_escape.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\). Do not
 assemble `no_cycle_word_length_eleven`.
 
