@@ -3493,6 +3493,17 @@
     "related_conjectures": []
   },
   {
+    "id": "J-first-even-overshoots",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "On a MinimalNonTerm or CycleMin start, the first even residual always overshoots: T(O^a E)(n) > n and the even residual sits at or above (n+1)^2. The return-to-n cell of the first-even dichotomy is an even-count-1 cycle word, now excluded by no_cycle_word_even_count_le_three. Lean theorems minimal_first_even_overshoots and cycleMin_first_even_overshoots in EvenCountThree.lean. This is not a halt theorem and not a ReturnBelow law.",
+    "source": "docs/problems/juggler_overshoot_return.md",
+    "lean": "Problems/Juggler/EvenCountThree.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_overshoot_return.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-nested-parity-linearization",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "For odd n ≥ 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 ≤ E(n) ≤ (3/8)(n^{3/2}-1)^{-1/2} ≤ (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} ≥ 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",

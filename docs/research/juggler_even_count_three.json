@@ -244,6 +244,8 @@
     "no_cycle_word_even_count_le_three": true,
     "cycle_word_even_count_ge_four": true,
     "cycle_word_length_ge_eleven": true,
+    "minimal_first_even_overshoots": true,
+    "cycleMin_first_even_overshoots": true,
     "no_cycle_word_two_even_ee": true,
     "no_cycle_word_two_even_eoe": true,
     "no_cycle_word_three_even_eee": true,

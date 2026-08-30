@@ -551,4 +551,73 @@ theorem cycle_word_length_ge_eleven {n : ℕ} {w : List Branch}
     lt_of_lt_of_le hpow hbound
   exact two_pow_lt_three_pow_sub_four hk4 hbound'
 
+theorem evenCount_oddEvenBlock (a b : ℕ) :
+    evenCount (oddEvenBlock a b) = b := by
+  simp [oddEvenBlock, evenCount_append, evenCount_replicate_odd,
+    evenCount_replicate_even]
+
+theorem oddEvenBlock_length (a b : ℕ) :
+    (oddEvenBlock a b).length = a + b := by
+  simp [oddEvenBlock, List.length_append, List.length_replicate]
+
+/-- Return on the first `O^a E` is an even-count-1 cycle word. -/
+theorem no_cycle_word_oddEvenBlock_one {n a : ℕ} (hn : 2 ≤ n)
+    (h : CycleWord n (oddEvenBlock a 1)) : False :=
+  no_cycle_word_even_count_le_three hn h (by simp [evenCount_oddEvenBlock])
+
+/-- On a `MinimalNonTerm` start the first even residual always
+overshoots. The return cell is an even-count-1 cycle word. This is
+not a halt theorem. -/
+theorem minimal_first_even_overshoots {n a : ℕ}
+    (h : MinimalNonTerm n) (hw : follows n (oddEvenBlock a 1)) :
+    (n + 1) ^ 2 ≤ image n (List.replicate a Branch.odd) ∧
+      n < image n (oddEvenBlock a 1) := by
+  rcases minimal_first_even_dichotomy h hw with hret | hover
+  · have hn2 : 2 ≤ n :=
+      le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
+    have hlen : 1 ≤ (oddEvenBlock a 1).length := by
+      simp [oddEvenBlock_length]
+    exact (no_cycle_word_oddEvenBlock_one hn2 ⟨hw, hret.1, hlen⟩).elim
+  · exact hover
+
+theorem cycleMin_oddEvenBlock_starts_two_odds {n a : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n (oddEvenBlock a 1 ++ v)) : 2 ≤ a := by
+  obtain ⟨rest, hrest⟩ := cycleMin_starts_two_odds hn h
+  refine two_odds_of_odd_even_split (tail := v) (rest := rest) ?_
+  have : List.replicate a Branch.odd ++ Branch.even :: v =
+      oddEvenBlock a 1 ++ v := by
+    simp [oddEvenBlock]
+  exact this.trans hrest
+
+/-- On a `CycleMin` the first even residual overshoots. Return would
+be an even-count-1 cycle word. -/
+theorem cycleMin_first_even_overshoots {n a : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n (oddEvenBlock a 1 ++ v)) :
+    (n + 1) ^ 2 ≤ image n (List.replicate a Branch.odd) ∧
+      n < image n (oddEvenBlock a 1) := by
+  have ha2 : 2 ≤ a := cycleMin_oddEvenBlock_starts_two_odds hn h
+  have hw : follows n (oddEvenBlock a 1) :=
+    follows_of_append_left h.1.1
+  cases v with
+  | nil =>
+      exact (no_cycleMin_odd_run hn ha2 (by simpa [oddEvenBlock] using h)).elim
+  | cons b t =>
+      have hj : a + 1 < (oddEvenBlock a 1 ++ b :: t).length := by
+        simp [oddEvenBlock_length]
+      have hy : n ≤ image n (oddEvenBlock a 1) := by
+        have := cycleMin_ge (j := a + 1) h (by simpa using hj)
+        simpa [image_oddEvenBlock_iterate] using this
+      have hz := odd_run_even_residual hw
+      have himg : image n (oddEvenBlock a 1) =
+          floorPower (image n (List.replicate a Branch.odd)) := by
+        simp [image_oddEvenBlock, image]
+      rcases le_iff_eq_or_lt.mp hy with heq | hlt
+      · have hlen : 1 ≤ (oddEvenBlock a 1).length := by
+          simp [oddEvenBlock_length]
+        exact (no_cycle_word_oddEvenBlock_one hn ⟨hw, heq.symm, hlen⟩).elim
+      · refine ⟨?_, hlt⟩
+        have : n < floorPower (image n (List.replicate a Branch.odd)) := by
+          simpa [himg] using hlt
+        exact (even_floorPower_gt_iff hz).mp this
+
 end Problems.Juggler

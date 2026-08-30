@@ -38,8 +38,11 @@ If `MinimalNonTerm n`, the even-state barrier plus parity give
 ((n+1)^2\le z\land T(z)>n).
 \]
 
-The first disjunct is a directed cycle. It is not excluded. The
-second is strict overshoot.
+The first disjunct is a directed cycle. After
+`no_cycle_word_even_count_le_three` it is excluded:
+`minimal_first_even_overshoots` and `cycleMin_first_even_overshoots`
+in `EvenCountThree.lean`. The leftover is strict overshoot. See
+[juggler_overshoot_return.md](juggler_overshoot_return.md).
 
 Do not prove `FiniteProgress` for overshoot. Do not prove that cycles
 are impossible. Do not prove totality.
@@ -164,8 +167,11 @@ two excursions do not always return below \(n\).
 ## Decision
 
 **PROMOTE** the residual trichotomy and the CE dichotomy. Do not
-claim that overshoot progresses. Do not claim that return-to-\(n\)
-is impossible. Do not claim termination.
+claim that overshoot progresses. Do not claim termination. The
+return-to-\(n\) disjunct was later excluded by the even-count
+assembler; that is recorded in
+[juggler_overshoot_return.md](juggler_overshoot_return.md), not as a
+new claim of this dossier.
 
 Best next question: answered in
 [juggler_post_overshoot.md](juggler_post_overshoot.md).

@@ -11748,3 +11748,42 @@ Best next question
 - a new method for e≥4, not a length-11 census
 ```
 
+## Juggler later ReturnBelow after forced overshoot
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether every first-E overshoot with even \(y\) admits a uniform later word from \(y>n\) that lands below the original \(n\)
+- **Hypotheses:** after \(e\le 3\) the first even always overshoots; the even-\(y\) class then has one later contractor, giving FiniteProgress on that class
+- **Major results:** Lean `minimal_first_even_overshoots` and `cycleMin_first_even_overshoots` in `EvenCountThree.lean`. Ledger row `J-first-even-overshoots`. On \(n\le 10^4\), \(a\in\{2,3\}\) even-\(y\) first excursions all descend (Paper B replay). The expanding class \(a\ge 4\) has 317 overshoots: first excursion not uniform (147 descend, 170 stay, \(N_0=9883\)); next excursion not uniform; 96 ReturnBelow suffixes after \(O^a\mathrm{EE}\), lengths 7..115. Classification **EVEN_Y_RETURN_SUFFIX_SCATTER**. Paper A barrel and note unchanged. Not a halt theorem
+- **Refuted ideas:** a uniform later contractor for \(a\ge 4\) even-\(y\) overshoots; first excursion \(O^a E^b\) is that contractor; 37 and 77 are even-\(y\) stays
+- **Literature:** FiniteProgress spine; ReturnBelow; two-excursion REFUTED (odd \(y\)); Paper B 29/32; \(K_3\) parked; `no_cycle_word_even_count_le_three`
+- **Open:** stop. Do not open odd-\(y\), \(K_3\), or another non-OOOO engine
+- **Decision:** PARK. The overshoot corollary is recorded. The Phase-0 halt question fails by suffix scatter. Not a halt theorem and not a longer cycle bound
+
+```text
+What was learned
+- after e<=3 the first even always overshoots on
+  MinimalNonTerm and CycleMin
+- halt on that leftover is ReturnBelow from y>n,
+  not the first odd-to-odd image
+- a=2,3 even-y is Paper B (OOEE / OOOEE)
+- a>=4 even-y is expanding O^a EE inside OOOO*
+- 317 such overshoots at n<=10^4; 96 later suffixes
+- return lengths 7..115; second excursion is not uniform
+Strongest theorem
+- minimal_first_even_overshoots
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- a uniform later contractor for a>=4 even-y
+Reusable machinery
+- EvenCountThree overshoot corollaries; overshoot_return.py
+- not imported by JugglerPaper
+Branch status
+- PARK
+Why
+- the leftover upgrade is real; the named-class halt
+  fragment is not: suffixes scatter and no later
+  comparison is uniform
+Best next question
+- stop
+```
+

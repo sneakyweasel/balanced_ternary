@@ -71,6 +71,8 @@ LEAN_THEOREMS = (
     "no_cycle_word_even_count_le_three",
     "cycle_word_even_count_ge_four",
     "cycle_word_length_ge_eleven",
+    "minimal_first_even_overshoots",
+    "cycleMin_first_even_overshoots",
     "no_cycle_word_two_even_ee",
     "no_cycle_word_two_even_eoe",
     "no_cycle_word_three_even_eee",
