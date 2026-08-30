@@ -14567,37 +14567,37 @@ Best next question
 - none from cumulative floor loss
 ```
 
-## Juggler cumulative floor loss
+## Juggler macro-event coupling
 
 - **Date:** 2026-08-30
-- **Objective:** Test whether exact floor remainders discarded by `EnvelopeState` accumulate past the `AboveAnchor` survival margin
-- **Hypotheses:** amplified \(\Delta_r\) exceeds formal surplus independently of \(T<n\); the proposed \(\rho\)-product is exact; the first even reset becomes non-generic
-- **Major results:** Classification **CUMULATIVE_FLOOR_LOSS_CLOSED**. \(\Delta_r\) is `globalDefect` on \(O^r\). The proposed weighted \(\rho\)-product is **REFUTED** for \(r\ge 2\): it omits the cubic lift of running slack, already `accumulateOdd` / `onePlusSlack_concat`. \(R>1\) is \(T_w(n)<n\). Odd squares have \(\delta_O=0\); \(37\) hits the odd square \(225\). Leftover first runs are `OOE`. \(329\) keeps \(\varepsilon\) down to \(0.025\) and survives. Mechanism B is the already-closed generic `OE` reset. No `FloorLoss.lean`. Paper A unchanged. No halt theorem. No ledger row
-- **Refuted ideas:** independent cumulative-loss obstruction; exactness of the weighted \(\rho\)-product; forced positive first defect
-- **Literature:** `J-global-defect-identity`; `defectRatio_le_one_iff_image_ge`; `sequentialDefect`; `J-prefix-retention-budget`; `juggler_normalized_defect.md`; `juggler_odd_even_reset.md`; `juggler_defect_lower_bound.md`
-- **Open:** none from cumulative floor loss. The leftover hole is still a cube cell without a square cell
-- **Decision:** CLOSE. The forgotten floor is `globalDefect`; the budget comparison is \(T\ge n\)
+- **Objective:** Test whether consecutive expansion/reset episodes carry an exact pair or triple law absent from a single episode
+- **Hypotheses:** a two-sided source interval, a bilinear triple, or long-forces-short
+- **Major results:** Classification **MACRO_EVENT_CLOSED**. The intrinsic episode is the existing \(Q\)-block. Sources of \(37\) are \(37,9317,2233\); \(3375\) is interior. \(365\) climbs \(365\to763\to1749\to4447\to12707\) as \((2,2,2,2,1)\). No tested triple inequality is universal. Long-then-long occurs: \(241=(5,5)\), \(183=(3,3)\), \(113=(3,5)\); eleven such pairs for odd \(n<401\). Extra evens occur mid-orbit. No `ExpansionEpisode.lean`. Paper A unchanged. No halt theorem. No ledger row
+- **Refuted ideas:** \(3375\) as a source; universal two-episode descent; long forces short; a surviving bilinear triple
+- **Literature:** `J-two-episode-source-descent`; `juggler_odd_source_return.md`; `juggler_odd_run_itinerary.md`; `juggler_block_map_q.md`; `juggler_two_block_residual.md`
+- **Open:** none from macro-event coupling. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. The episode sequence is a concatenation of \(Q\)-blocks
 
 ```text
 What was learned
-- Delta_r is globalDefect
-- the proposed rho-product misses the cubic slack lift
-- R>1 is T<n
-- odd squares have delta_O=0
-- 329 survives with small eps
+- episodes are Q-blocks
+- 3375 is interior to 37 -> 9317
+- 365 climbs four OOE blocks
+- no named triple law survives
+- long can follow long, including 3->5
 Strongest theorem
 - none new
 Strongest refutation
-- the weighted rho-product as an odd-run identity
+- long episode forces a shorter next episode
 Reusable machinery
 - none; no new Lean primitive
 Branch status
 - CLOSE
 Why
-- every proposed comparison is already
-  globalDefect, 1+q, or T>=n
+- every coupling is Q, an already-refuted
+  descent, or fails on the laboratories
 Best next question
-- none from cumulative floor loss
+- none from macro-event coupling
 ```
 
 

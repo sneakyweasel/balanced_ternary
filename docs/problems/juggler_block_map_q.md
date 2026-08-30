@@ -224,7 +224,9 @@ Best next question: a global, not locally finite-state,
 property of an infinite residual \(Q\)-orbit — if one exists —
 that would force either exact endpoint recurrence or an
 endpoint below the anchor. Do not search for another scalar
-Lyapunov function.
+Lyapunov function. The episode-sequence restatement of that
+question is closed in
+[juggler_macro_event.md](juggler_macro_event.md).
 
 ## Publication assessment
 

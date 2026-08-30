@@ -151,7 +151,8 @@ split \(365\) from \(1517\).
 
 Best next question: none from run-length pairs. The leftover next
 letter is still the landing's forward parity, which is the
-existing residual.
+existing residual. Consecutive-episode length coupling is closed
+in [juggler_macro_event.md](juggler_macro_event.md).
 
 ## Publication assessment
 

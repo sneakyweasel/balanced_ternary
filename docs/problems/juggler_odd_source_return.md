@@ -154,7 +154,9 @@ false. The induced object is a reparameterization of \(Q\),
 already parked as having no exact compressed transition law.
 
 Best next question: none from induced sources. The leftover is
-still an odd-to-odd cube lift interior to a \(Q\)-block.
+still an odd-to-odd cube lift interior to a \(Q\)-block. The
+sequence-of-episodes restatement is closed in
+[juggler_macro_event.md](juggler_macro_event.md).
 
 ## Publication assessment
 
