@@ -1,5 +1,6 @@
 import Problems.Juggler.CycleCore
 import Problems.Juggler.LengthEightCensus
+import Problems.Juggler.Termination
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Analysis.Complex.ExponentialBounds
 
@@ -450,5 +451,116 @@ theorem cycle_word_length_eleven_or_ge_fourteen {n : ℕ} {w : List Branch}
   · exact no_cycle_word_length_le_ten hn hle h
   · exact no_cycle_word_length_twelve hn h12 h
   · exact no_cycle_word_length_thirteen hn h13 h
+
+/-- Residual class `{1,…,52}` is disjoint from a nontrivial cycle. -/
+theorem cycleWord_iterate_not_lt_fifty_three {n : ℕ} {w : List Branch} {i : ℕ}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    53 ≤ floorPower^[i] n := by
+  by_contra h53
+  have hmod : floorPower^[i] n = floorPower^[i % w.length] n :=
+    cycle_iterate_mod h
+  have hlenpos : 0 < w.length :=
+    lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2
+  have hlt : i % w.length < w.length := Nat.mod_lt i hlenpos
+  have hge := cycleWord_iterate_ge_two hn h hlt
+  have hpos : 1 ≤ floorPower^[i] n := by
+    have : 2 ≤ floorPower^[i % w.length] n := hge
+    exact le_trans (by decide : (1 : ℕ) ≤ 2) (by simpa [hmod] using this)
+  have hy : floorPower^[i] n < 53 := Nat.lt_of_not_ge h53
+  have hR : ReachesOne (floorPower^[i] n) :=
+    reachesOne_of_lt_fifty_three hpos hy
+  exact cycleWord_not_reachesOne hn h (reachesOne_of_iterate rfl hR)
+
+/-- Numeric certificate `log 53 > 7/2`, via `e < 3` and `3^7 < 53^2`. -/
+theorem log_fifty_three_gt : (7 / 2 : ℝ) < Real.log 53 := by
+  rw [Real.lt_log_iff_exp_lt (by norm_num : (0 : ℝ) < 53)]
+  have hsq : Real.exp (7 / 2) ^ 2 = Real.exp 7 := by
+    rw [sq, ← Real.exp_add]
+    norm_num
+  have hpow : Real.exp 1 ^ (7 : ℕ) = Real.exp 7 := by
+    rw [← Real.exp_nat_mul]
+    norm_num
+  have hlt : Real.exp 1 ^ (7 : ℕ) < (3 : ℝ) ^ (7 : ℕ) := by
+    gcongr
+    exact Real.exp_one_lt_three
+  have hnum : (3 : ℝ) ^ (7 : ℕ) < (53 : ℝ) ^ 2 := by norm_num
+  have h2809 : Real.exp (7 / 2) ^ 2 < (53 : ℝ) ^ 2 := by
+    rw [hsq, ← hpow]
+    linarith
+  nlinarith [Real.exp_pos (7 / 2 : ℝ), h2809,
+    sq_nonneg (Real.exp (7 / 2) - 53)]
+
+/-- Finance at the rotated odd minimum after the residual floor `53`:
+`(371/2)(3^o - 2^L) ≤ L 3^o`, because the minimum is at least `53`
+and `53 log 53 > 371/2`. -/
+theorem cycle_finance_min_fifty_three {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    (371 / 2 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) ≤
+      (w.length : ℝ) * (3 : ℝ) ^ oddCount w := by
+  obtain ⟨k, hkL, hmin⟩ := exists_cycleMin hn h
+  have hm53 : 53 ≤ floorPower^[k] n :=
+    cycleWord_iterate_not_lt_fifty_three hn h
+  have hm2 : 2 ≤ floorPower^[k] n := by omega
+  have hfin := cycleMin_finance hm2 hmin
+  rw [rotateWord_length, oddCount_rotateWord] at hfin
+  have hexpand : (2 : ℝ) ^ w.length < (3 : ℝ) ^ oddCount w := by
+    exact_mod_cast cycle_word_formally_expanding hn h
+  have hm53R : (53 : ℝ) ≤ (floorPower^[k] n : ℝ) := by exact_mod_cast hm53
+  have hlog : (7 / 2 : ℝ) ≤ Real.log (floorPower^[k] n) := by
+    have hmono : Real.log (53 : ℝ) ≤ Real.log (floorPower^[k] n) := by
+      gcongr
+    linarith [log_fifty_three_gt]
+  have hmlog : (371 / 2 : ℝ) ≤
+      (floorPower^[k] n : ℝ) * Real.log (floorPower^[k] n) := by
+    have h1 : (53 : ℝ) * (7 / 2) ≤
+        (floorPower^[k] n : ℝ) * Real.log (floorPower^[k] n) :=
+      mul_le_mul hm53R hlog (by norm_num) (by linarith)
+    linarith
+  calc (371 / 2 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length)
+      ≤ (floorPower^[k] n : ℝ) * Real.log (floorPower^[k] n) *
+          ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) :=
+        mul_le_mul_of_nonneg_right hmlog (by linarith)
+    _ ≤ (w.length : ℝ) * (3 : ℝ) ^ oddCount w := hfin
+
+/-- Finance excludes length `11`: `o ≥ 7` forces
+`(371/2)(3^o - 2048) > 11 · 3^o`. Not a leftover-word census. -/
+theorem finance_excludes_length_eleven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 11) : ¬CycleWord n w := by
+  intro h
+  have hfin := cycle_finance_min_fifty_three hn h
+  have hexp := cycle_word_formally_expanding hn h
+  rw [hlen] at hfin hexp
+  have ho : 7 ≤ oddCount w := by
+    by_contra hc
+    push Not at hc
+    have hle : (3 : ℕ) ^ oddCount w ≤ 3 ^ 6 :=
+      Nat.pow_le_pow_right (by norm_num) (by omega)
+    have : (2 : ℕ) ^ 11 < 3 ^ 6 := lt_of_lt_of_le hexp hle
+    norm_num at this
+  have hA : (2187 : ℕ) ≤ 3 ^ oddCount w := by
+    calc (2187 : ℕ) = 3 ^ 7 := by norm_num
+      _ ≤ 3 ^ oddCount w := Nat.pow_le_pow_right (by norm_num) ho
+  have hAR : (2187 : ℝ) ≤ (3 : ℝ) ^ oddCount w := by exact_mod_cast hA
+  norm_num at hfin
+  linarith
+
+/-- Census extension: no cycle word of length at most `11`.
+Lengths `≤ 10` are the prior census; `11` is finance at the
+residual floor `53`. -/
+theorem no_cycle_word_length_le_eleven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length ≤ 11) : ¬CycleWord n w := by
+  intro h
+  rcases Nat.lt_or_ge w.length 11 with h11 | h11
+  · exact no_cycle_word_length_le_ten hn (by omega) h
+  · exact finance_excludes_length_eleven hn (by omega) h
+
+/-- If a nontrivial cycle exists, its period is at least `14`.
+Lengths `≤ 11` are the finance census; `12` and `13` remain
+impossible by the length-`13` floor comparison. -/
+theorem cycle_word_length_ge_fourteen {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) : 14 ≤ w.length := by
+  rcases cycle_word_length_eleven_or_ge_fourteen hn h with h11 | h14
+  · exact absurd h (finance_excludes_length_eleven hn h11)
+  · exact h14
 
 end Problems.Juggler

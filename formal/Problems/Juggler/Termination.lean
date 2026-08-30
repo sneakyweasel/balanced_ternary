@@ -1,3 +1,4 @@
+import Mathlib.Tactic
 import Problems.Juggler.Iteration
 
 namespace Problems.Juggler
@@ -104,5 +105,110 @@ theorem even_lt_sq_twelve_reachesOne {n : ℕ} (heven : n % 2 = 0)
     exact hsqrt
   exact reachesOne_of_iterate (k := 1) rfl
     (reachesOne_of_lt_twelve (floorPower_pos hpos) himg)
+
+theorem thirteen_reachesOne : ReachesOne 13 :=
+  ⟨4, floorPower_thirteen_reaches_one⟩
+
+theorem fifteen_reachesOne : ReachesOne 15 :=
+  ⟨6, by native_decide⟩
+
+theorem seventeen_reachesOne : ReachesOne 17 :=
+  ⟨4, by native_decide⟩
+
+theorem nineteen_reachesOne : ReachesOne 19 :=
+  ⟨9, by native_decide⟩
+
+theorem twentyone_reachesOne : ReachesOne 21 :=
+  ⟨9, by native_decide⟩
+
+theorem twentythree_reachesOne : ReachesOne 23 :=
+  ⟨9, by native_decide⟩
+
+theorem twentyfive_reachesOne : ReachesOne 25 :=
+  ⟨11, by native_decide⟩
+
+theorem twentyseven_reachesOne : ReachesOne 27 :=
+  ⟨6, by native_decide⟩
+
+theorem twentynine_reachesOne : ReachesOne 29 :=
+  ⟨9, by native_decide⟩
+
+theorem thirtyone_reachesOne : ReachesOne 31 :=
+  ⟨6, by native_decide⟩
+
+theorem thirtythree_reachesOne : ReachesOne 33 :=
+  ⟨8, by native_decide⟩
+
+theorem thirtyfive_reachesOne : ReachesOne 35 :=
+  ⟨8, by native_decide⟩
+
+theorem thirtyseven_reachesOne : ReachesOne 37 :=
+  ⟨17, by native_decide⟩
+
+theorem thirtynine_reachesOne : ReachesOne 39 :=
+  ⟨14, by native_decide⟩
+
+theorem fortyone_reachesOne : ReachesOne 41 :=
+  ⟨5, by native_decide⟩
+
+theorem fortythree_reachesOne : ReachesOne 43 :=
+  ⟨6, by native_decide⟩
+
+theorem fortyfive_reachesOne : ReachesOne 45 :=
+  ⟨6, by native_decide⟩
+
+theorem fortyseven_reachesOne : ReachesOne 47 :=
+  ⟨6, by native_decide⟩
+
+theorem fortynine_reachesOne : ReachesOne 49 :=
+  ⟨11, by native_decide⟩
+
+theorem fiftyone_reachesOne : ReachesOne 51 :=
+  ⟨11, by native_decide⟩
+
+/-- Every positive residual strictly below `53` is `ReachesOne`.
+This is a finite certificate, not a halt theorem. Combined with
+`cycleMin_finance` it excludes cycle length `11`. -/
+theorem reachesOne_of_lt_fifty_three {y : ℕ} (hpos : 1 ≤ y) (hy : y < 53) :
+    ReachesOne y := by
+  cases Nat.mod_two_eq_zero_or_one y with
+  | inl heven =>
+      exact even_lt_sq_twelve_reachesOne heven hpos
+        (lt_trans hy (by norm_num : (53 : ℕ) < 144))
+  | inr hodd =>
+      interval_cases y <;> first
+        | exact reachesOne_one
+        | exact three_reachesOne
+        | exact five_reachesOne
+        | exact seven_reachesOne
+        | exact nine_reachesOne
+        | exact eleven_reachesOne
+        | exact thirteen_reachesOne
+        | exact fifteen_reachesOne
+        | exact seventeen_reachesOne
+        | exact nineteen_reachesOne
+        | exact twentyone_reachesOne
+        | exact twentythree_reachesOne
+        | exact twentyfive_reachesOne
+        | exact twentyseven_reachesOne
+        | exact twentynine_reachesOne
+        | exact thirtyone_reachesOne
+        | exact thirtythree_reachesOne
+        | exact thirtyfive_reachesOne
+        | exact thirtyseven_reachesOne
+        | exact thirtynine_reachesOne
+        | exact fortyone_reachesOne
+        | exact fortythree_reachesOne
+        | exact fortyfive_reachesOne
+        | exact fortyseven_reachesOne
+        | exact fortynine_reachesOne
+        | exact fiftyone_reachesOne
+        | omega
+
+/-- A positive non-`ReachesOne` value cannot lie in `{1,…,52}`. -/
+theorem non_reachesOne_ge_fifty_three {n : ℕ} (hn : 1 ≤ n)
+    (hfail : ¬ReachesOne n) : 53 ≤ n := by
+  by_contra h
+  exact hfail (reachesOne_of_lt_fifty_three hn (Nat.not_le.mp h))
 
 end Problems.Juggler
