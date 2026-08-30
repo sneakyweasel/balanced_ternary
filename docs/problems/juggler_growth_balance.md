@@ -59,6 +59,8 @@ This is not a halt theorem.
 - Weighted floor product
   \(n^{3^{O_k}}=x_k^{2^k}+\Delta_w(n)\) —
   **EXACT — LEAN VERIFIED** (`J-global-defect-identity`)
+- Log-slack comparison \(c<(\lambda-1)\log n\) is \(T_w(n)>n\) —
+  **REPARAMETERIZATION** (`J-weighted-slack-cocycle`)
 - Compensated contraction \(\Delta>n^{3^O}-n^{2^k}\Rightarrow x_k<n\) —
   **EXACT — LEAN VERIFIED** (`power_bound_compensated_contracts`)
 - Naive path-sum of local defects —

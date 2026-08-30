@@ -14268,4 +14268,37 @@ Best next question
 - none from first-return sections of Q
 ```
 
+## Juggler prefix growth / retention balance
+
+- **Date:** 2026-08-30
+- **Objective:** Find a prefix-level growth/retention law that constrains infinite AboveAnchor orbits independently of the word envelope
+- **Hypotheses:** \(F_k\ge n^{2^k-3^{O_k}}\) is a new budget; leftover prefixes separate min \(F\) from max \(F\)
+- **Major results:** Classification **GROWTH_BALANCE_CLOSED**. Required retention \(F_k\ge n^{2^k-3^{O_k}}\) is \(x_k\ge n\) — **REPARAMETERIZATION** (`J-prefix-retention-budget`). Growth law \(3^{O_k}\ge 2^k\) is `power_bound_word` plus `AboveAnchor`. Weighted \(\rho\)-product is `globalDefect`. Leftovers \(365,501,1517,6187\) stay noncontracting until a formally contracting extra even step. No `GrowthBalance.lean`. Paper A unchanged. No halt theorem
+- **Refuted ideas:** an independent prefix retention budget; aggregate \(\Gamma_k\) as a new survival law
+- **Literature:** `J-power-envelope-contraction`; `J-global-defect-identity`; `J-weighted-slack-cocycle`; `J-above-anchor`; `aboveAnchor_not_envelope_drop`
+- **Open:** none from prefix growth/retention balance
+- **Decision:** CLOSE. Every proposed aggregate is KNOWN or a reparameterization of the envelope
+
+```text
+What was learned
+- F >= n^{2^k-3^O} is x_k >= n
+- 3^O >= 2^k is the existing envelope plus AboveAnchor
+- leftovers drop by one extra even letter
+- mean odd-run length restates the same comparison
+- the two bounds never separate because they are the same
+Strongest theorem
+- none new
+Strongest refutation
+- independent prefix retention budget
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- prefix balance rewrites power_bound_word
+  and x_k >= n
+Best next question
+- none from prefix growth/retention balance
+```
+
 

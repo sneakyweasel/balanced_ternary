@@ -45,7 +45,7 @@ def test_gamma_is_integer_exponent_compare():
 
 def test_365_stays_noncontracting_until_formal_drop():
     table = prefix_table(365)
-    assert table["word"] == "OOEOOEOOEOOEOE"
+    assert table["word"] == "OOEOOEOOEOOEOEE"
     assert table["runs"] == [2, 2, 2, 2, 1]
     assert table["above_gamma_fail"] == []
     assert table["identity_fail"] == []

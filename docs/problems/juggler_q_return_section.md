@@ -164,9 +164,11 @@ It is not a reparameterization of `ReturnBelow`.
 
 ## Open questions
 
-None from leftover Poincaré sections. Do not build
-`ReturnSection.lean`. Do not reopen \(Q\)-descriptors. Do not
-open a nested-section hierarchy. Do not reopen W_5.
+None from leftover Poincaré sections. The subsequent
+prefix-balance attack is **CLOSE** in
+[juggler_growth_balance.md](juggler_growth_balance.md). Do not
+build `ReturnSection.lean`. Do not reopen \(Q\)-descriptors. Do
+not open a nested-section hierarchy. Do not reopen W_5.
 
 ## Decision
 

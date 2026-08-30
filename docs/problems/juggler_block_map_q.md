@@ -205,10 +205,12 @@ a descent-versus-recurrence theorem for \(Q\).
 The global first-return-section question is answered in
 [juggler_q_return_section.md](juggler_q_return_section.md):
 Poincaré \(Q\)-returns do not supply a well-founded leftover
-order. Do not build a finite-state machine on block
-descriptors. Do not reopen cells, residues, \(Z_5\),
-length-11, or four-even branches to split \(4447\) from
-\(33811\).
+order. The subsequent prefix growth/retention budget is
+**CLOSE** in
+[juggler_growth_balance.md](juggler_growth_balance.md). Do not
+build a finite-state machine on block descriptors. Do not
+reopen cells, residues, \(Z_5\), length-11, or four-even
+branches to split \(4447\) from \(33811\).
 
 ## Decision
 
