@@ -98,7 +98,7 @@ def test_lean_api_without_halt_or_z5():
     for name in FORBIDDEN_THEOREMS:
         assert lean[f"has_{name}"] is False, name
     assert lean["not_in_paper_barrel"] is True
-    assert lean["no_new_lean"] is True
+    assert lean["first_oo_lean"] is True
 
 
 def test_classify_render_and_artifacts():

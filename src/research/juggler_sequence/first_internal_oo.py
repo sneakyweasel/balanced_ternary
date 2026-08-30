@@ -22,6 +22,7 @@ from typing import Any
 from research.juggler_sequence.cycle_word import follows_word, image_after
 from research.juggler_sequence.lean_paths import (
     ENVELOPE,
+    FIRST_INTERNAL_OO,
     JUGGLER_PAPER_BARREL,
     SCALE,
     SMALL_CYCLE_CENSUS,
@@ -66,6 +67,15 @@ LEAN_THEOREMS = (
     "oe_block_scale",
     "repeated_oe_scale",
     "power_bound_word",
+    "isolatedPrefix",
+    "firstOOState",
+    "firstInternalOOWord",
+    "FirstInternalOO",
+    "firstInternalOO_decomp",
+    "isolated_oe_ge_implies_exponent",
+    "isolated_oe_lt_of_scale_gap",
+    "no_cycleMin_prefix_ooe_oe",
+    "isolated_oe_r_max_two",
 )
 
 FORBIDDEN_THEOREMS = (
@@ -458,11 +468,17 @@ def lean_api_present() -> dict[str, bool]:
         combined += SCALE.read_text(encoding="utf-8")
     if ENVELOPE.is_file():
         combined += ENVELOPE.read_text(encoding="utf-8")
+    if FIRST_INTERNAL_OO.is_file():
+        combined += FIRST_INTERNAL_OO.read_text(encoding="utf-8")
     named = {name: has_named(combined, name) for name in LEAN_THEOREMS}
     forbidden = {name: has_named(combined, name) for name in FORBIDDEN_THEOREMS}
     paper = JUGGLER_PAPER_BARREL.read_text(encoding="utf-8")
+    first_oo = FIRST_INTERNAL_OO.read_text(encoding="utf-8") if FIRST_INTERNAL_OO.is_file() else ""
     return {
-        "sorry_free": "sorry" not in combined and "admit" not in combined,
+        "sorry_free": "sorry" not in combined
+        and "admit" not in combined
+        and "sorry" not in first_oo
+        and "admit" not in first_oo,
         **named,
         **{f"has_{name}": present for name, present in forbidden.items()},
         "no_global_termination_theorem": "theorem juggler_reaches_one"
@@ -471,7 +487,8 @@ def lean_api_present() -> dict[str, bool]:
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
         "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
-        "no_new_lean": True,
+        "first_oo_lean": "theorem isolated_oe_ge_implies_exponent" in first_oo
+        and "theorem no_cycleMin_prefix_ooe_oe" in first_oo,
     }
 
 
@@ -487,7 +504,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and not lean["has_no_cycleMin_four_even"]
         and not lean["has_no_juggler_cycle"]
         and lean["not_in_paper_barrel"]
-        and lean["no_new_lean"]
+        and lean["first_oo_lean"]
     )
     if not lean_ok:
         return {"classification": CLASS_INCOMPLETE, "reason": f"lean_ok={lean_ok}"}
@@ -596,7 +613,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "Existing machinery      power_bound_word; repeated_oe_scale;",
         "                        first-even overshoot; oe_block_contracts",
         "Maximum Phase-0 scope   first-OO decomposition; r-bound;",
-        "                        forward geometry; no Lean",
+        "                        forward geometry; Lean scale",
         "```",
         "",
         "## Metadata",

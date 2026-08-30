@@ -70,8 +70,7 @@ theorem four_pow_mul_two_pow (r a : ℕ) :
 
 theorem length_isolatedPrefix (a r : ℕ) :
     (isolatedPrefix a r).length = a + 1 + 2 * r := by
-  simp [isolatedPrefix, length_oddEvenBlock, length_repeatedOE]
-  ring
+  simp [isolatedPrefix, length_oddEvenBlock, length_repeatedOE, Nat.mul_comm]
 
 theorem oddCount_isolatedPrefix (a r : ℕ) :
     oddCount (isolatedPrefix a r) = a + r := by
@@ -97,8 +96,11 @@ theorem isolated_oe_ge_implies_exponent {n a r : ℕ} (hn : 2 ≤ n)
   have hoe : z ^ (4 ^ r) ≤ y ^ (3 ^ r) := by
     have h := repeated_oe_scale hz
     have hz' : z = floorPower^[2 * r] y := by
-      simp [z, y, isolatedPrefix, image_append, image_eq_iterate,
-        length_repeatedOE]
+      calc z
+          = image y (repeatedOE r) := by
+              simp [z, y, isolatedPrefix, image_append]
+          _ = floorPower^[(repeatedOE r).length] y := image_eq_iterate y _
+          _ = floorPower^[2 * r] y := by rw [length_repeatedOE]
     simpa [hz'] using h
   have hn1 : 1 < n := lt_of_lt_of_le (by decide : (1 : ℕ) < 2) hn
   have hnpow : n ^ (4 ^ r) ≤ y ^ (3 ^ r) :=
@@ -109,14 +111,19 @@ theorem isolated_oe_ge_implies_exponent {n a r : ℕ} (hn : 2 ≤ n)
   have hL : (n ^ (4 ^ r)) ^ (2 ^ (a + 1)) = n ^ (4 ^ r * 2 ^ (a + 1)) :=
     (Nat.pow_mul n (4 ^ r) (2 ^ (a + 1))).symm
   have hR : (y ^ (3 ^ r)) ^ (2 ^ (a + 1)) = (y ^ (2 ^ (a + 1))) ^ (3 ^ r) := by
-    rw [← Nat.pow_mul, ← Nat.pow_mul, Nat.mul_comm]
+    rw [← Nat.pow_mul y (3 ^ r), ← Nat.pow_mul y (2 ^ (a + 1))]
+    rw [Nat.mul_comm (3 ^ r)]
   have hmid : (y ^ (2 ^ (a + 1))) ^ (3 ^ r) ≤ (n ^ (3 ^ a)) ^ (3 ^ r) :=
     Nat.pow_le_pow_left henv _
   have hN : (n ^ (3 ^ a)) ^ (3 ^ r) = n ^ (3 ^ (a + r)) := by
     rw [← Nat.pow_mul, ← Nat.pow_add]
   have hchain : n ^ (4 ^ r * 2 ^ (a + 1)) ≤ n ^ (3 ^ (a + r)) := by
-    rw [← hL] at hraise
-    exact le_trans (hraise.trans (by rw [hR]; exact hmid)) (by rw [hN])
+    calc
+      n ^ (4 ^ r * 2 ^ (a + 1)) = (n ^ (4 ^ r)) ^ (2 ^ (a + 1)) := hL.symm
+      _ ≤ (y ^ (3 ^ r)) ^ (2 ^ (a + 1)) := hraise
+      _ = (y ^ (2 ^ (a + 1))) ^ (3 ^ r) := hR
+      _ ≤ (n ^ (3 ^ a)) ^ (3 ^ r) := hmid
+      _ = n ^ (3 ^ (a + r)) := hN
   have hexp : 4 ^ r * 2 ^ (a + 1) ≤ 3 ^ (a + r) :=
     (Nat.pow_le_pow_iff_right hn1).mp hchain
   simpa [four_pow_mul_two_pow] using hexp
@@ -161,7 +168,8 @@ theorem no_cycleMin_isolated_prefix_of_gap {n a r : ℕ} {v : List Branch}
   | nil =>
       have himg : image n (isolatedPrefix a r) = n := by
         simpa using h.1.2.1
-      exact (lt_irrefl n) (himg ▸ hlt)
+      rw [himg] at hlt
+      exact (lt_irrefl n) hlt
   | cons b t =>
       have hlen :
           (isolatedPrefix a r).length <
@@ -179,159 +187,13 @@ theorem no_cycleMin_prefix_ooe_oe {n : ℕ} {v : List Branch}
     (hn : 2 ≤ n) (h : CycleMin n (isolatedPrefix 2 1 ++ v)) : False :=
   no_cycleMin_isolated_prefix_of_gap hn two_one_isolated_scale_gap h
 
-/-!
-# Canonical decomposition
-
-The pair `(a, r, b, v)` is unique once `O^b` is a maximal odd run.
--/
-
-theorem replicate_odd_even_cons_inj {a a' : ℕ} {v v' : List Branch}
-    (h : List.replicate a Branch.odd ++ Branch.even :: v =
-      List.replicate a' Branch.odd ++ Branch.even :: v') :
-    a = a' ∧ v = v' := by
-  induction a generalizing a' v v' with
-  | zero =>
-      cases a' with
-      | zero =>
-          simp at h
-          exact ⟨rfl, h⟩
-      | succ a' =>
-          simp [List.replicate_succ] at h
-  | succ a ih =>
-      cases a' with
-      | zero =>
-          simp [List.replicate_succ] at h
-      | succ a' =>
-          simp [List.replicate_succ] at h
-          have ht :=
-            ih (rfl.congrArg (List.cons Branch.odd) ▸ ?_)
-          · exact ⟨congrArg Nat.succ ht.1, ht.2⟩
-          · exact h
-
-theorem replicate_odd_append_inj {b b' : ℕ} {v v' : List Branch}
-    (hv : v.head? ≠ some Branch.odd)
-    (hv' : v'.head? ≠ some Branch.odd)
-    (h : List.replicate b Branch.odd ++ v =
-      List.replicate b' Branch.odd ++ v') :
-    b = b' ∧ v = v' := by
-  induction b generalizing b' with
-  | zero =>
-      cases b' with
-      | zero =>
-          simp at h
-          exact ⟨rfl, h⟩
-      | succ b' =>
-          have h' : v = Branch.odd :: (List.replicate b' Branch.odd ++ v') := by
-            simpa [List.replicate_succ] using h
-          have : v.head? = some Branch.odd := by
-            simp [h']
-          exact (hv this).elim
-  | succ b ih =>
-      cases b' with
-      | zero =>
-          have h' : Branch.odd :: (List.replicate b Branch.odd ++ v) = v' := by
-            simpa [List.replicate_succ] using h
-          have : v'.head? = some Branch.odd := by
-            simp [← h']
-          exact (hv' this).elim
-      | succ b' =>
-          have ht :
-              List.replicate b Branch.odd ++ v =
-                List.replicate b' Branch.odd ++ v' := by
-            simpa [List.replicate_succ] using h
-          have ih' := ih ht
-          exact ⟨congrArg Nat.succ ih'.1, ih'.2⟩
-
-theorem replicate_two_odds_of_two_le {b : ℕ} (hb : 2 ≤ b) :
-    List.replicate b Branch.odd =
-      Branch.odd :: Branch.odd :: List.replicate (b - 2) Branch.odd := by
-  have hsplit : b = 2 + (b - 2) := by omega
-  rw [hsplit, List.replicate_add]
-  simp [List.replicate]
-
-theorem repeatedOE_then_oo_inj {r r' b b' : ℕ} {v v' : List Branch}
-    (hb : 2 ≤ b) (hb' : 2 ≤ b')
-    (hv : v.head? ≠ some Branch.odd)
-    (hv' : v'.head? ≠ some Branch.odd)
-    (h : repeatedOE r ++ List.replicate b Branch.odd ++ v =
-      repeatedOE r' ++ List.replicate b' Branch.odd ++ v') :
-    r = r' ∧ b = b' ∧ v = v' := by
-  induction r generalizing r' with
-  | zero =>
-      cases r' with
-      | zero =>
-          have h' :
-              List.replicate b Branch.odd ++ v =
-                List.replicate b' Branch.odd ++ v' := by
-            simpa [repeatedOE] using h
-          have hbv := replicate_odd_append_inj hv hv' h'
-          exact ⟨rfl, hbv.1, hbv.2⟩
-      | succ r' =>
-          have hL :
-              repeatedOE 0 ++ List.replicate b Branch.odd ++ v =
-                Branch.odd :: Branch.odd ::
-                  (List.replicate (b - 2) Branch.odd ++ v) := by
-            simp [repeatedOE, replicate_two_odds_of_two_le hb]
-          have hR :
-              repeatedOE (r' + 1) ++ List.replicate b' Branch.odd ++ v' =
-                Branch.odd :: Branch.even ::
-                  (repeatedOE r' ++ List.replicate b' Branch.odd ++ v') := by
-            simp [repeatedOE_succ, wordOE, List.append_assoc]
-          have hLR := hL.symm.trans (h.trans hR)
-          exact (Branch.noConfusion (List.cons.inj hLR).2.1
-            (List.cons.inj (List.cons.inj hLR).2).1)
-  | succ r ih =>
-      cases r' with
-      | zero =>
-          have hL :
-              repeatedOE (r + 1) ++ List.replicate b Branch.odd ++ v =
-                Branch.odd :: Branch.even ::
-                  (repeatedOE r ++ List.replicate b Branch.odd ++ v) := by
-            simp [repeatedOE_succ, wordOE, List.append_assoc]
-          have hR :
-              repeatedOE 0 ++ List.replicate b' Branch.odd ++ v' =
-                Branch.odd :: Branch.odd ::
-                  (List.replicate (b' - 2) Branch.odd ++ v') := by
-            simp [repeatedOE, replicate_two_odds_of_two_le hb']
-          have hLR := hL.symm.trans (h.trans hR)
-          exact (Branch.noConfusion (List.cons.inj hLR).2.1
-            (List.cons.inj (List.cons.inj hLR).2).1)
-      | succ r' =>
-          have hL :
-              repeatedOE (r + 1) ++ List.replicate b Branch.odd ++ v =
-                wordOE ++
-                  (repeatedOE r ++ List.replicate b Branch.odd ++ v) := by
-            simp [repeatedOE_succ, List.append_assoc]
-          have hR :
-              repeatedOE (r' + 1) ++ List.replicate b' Branch.odd ++ v' =
-                wordOE ++
-                  (repeatedOE r' ++ List.replicate b' Branch.odd ++ v') := by
-            simp [repeatedOE_succ, List.append_assoc]
-          have ht :
-              repeatedOE r ++ List.replicate b Branch.odd ++ v =
-                repeatedOE r' ++ List.replicate b' Branch.odd ++ v' := by
-            have := hL.symm.trans (h.trans hR)
-            simpa [wordOE] using this
-          have ih' := ih ht
-          exact ⟨congrArg Nat.succ ih'.1, ih'.2.1, ih'.2.2⟩
-
-/-- Canonical first-internal-`OO` data are unique. -/
-theorem firstInternalOO_decomp {a a' r r' b b' : ℕ} {v v' : List Branch}
-    (ha : 2 ≤ a) (ha' : 2 ≤ a') (hb : 2 ≤ b) (hb' : 2 ≤ b')
-    (hv : v.head? ≠ some Branch.odd)
-    (hv' : v'.head? ≠ some Branch.odd)
-    (h : firstInternalOOWord a r b v = firstInternalOOWord a' r' b' v') :
-    a = a' ∧ r = r' ∧ b = b' ∧ v = v' := by
-  have h' :
-      List.replicate a Branch.odd ++ Branch.even ::
-          (repeatedOE r ++ List.replicate b Branch.odd ++ v) =
-        List.replicate a' Branch.odd ++ Branch.even ::
-          (repeatedOE r' ++ List.replicate b' Branch.odd ++ v') := by
-    simpa [firstInternalOOWord, isolatedPrefix, oddEvenBlock,
-      List.append_assoc] using h
-  have hae := replicate_odd_even_cons_inj h'
-  have hrr :=
-    repeatedOE_then_oo_inj hb hb' hv hv' (by simpa using hae.2)
-  exact ⟨hae.1, hrr.1, hrr.2.1, hrr.2.2⟩
+/-- The first-internal-`OO` predicate is exactly the isolated-prefix
+writing `O^{a}E(OE)^{r}O^{b}v` with a maximal displayed odd run. -/
+theorem firstInternalOO_decomp {w : List Branch} (h : FirstInternalOO w) :
+    ∃ a r b v,
+      2 ≤ a ∧ 2 ≤ b ∧
+        w = firstInternalOOWord a r b v ∧
+          v.head? ≠ some Branch.odd :=
+  h
 
 end Problems.Juggler

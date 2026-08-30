@@ -12700,3 +12700,72 @@ Best next question
   existing obstruction?
 ```
 
+## Juggler minimal first-OO corridor OOEOOE
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether the weakest \(a_0=2\) first-OO prefix `OOEOOE` forces `FiniteProgress` or an existing obstruction
+- **Hypotheses:** two minimal `OOE` blocks from the CycleMin minimum create a new constraint, preferably FiniteProgress for every suffix
+- **Major results:** Classification **MINIMAL_OOE_GREEN**. If \(n\ge 2\) follows `OOEOOE` then \(T_{OOEOOE}(n)<n^2\) — **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-square-cell`). An even landing drops on the next `E`. A CycleMin prefix therefore continues with `O` (empty `v` is already `no_cycleMin_ooeooe`). `CycleMin(n,OOEOOE v)\Rightarrow` FiniteProgress for every \(v\) — **REFUTED** (`J-cyclemin-ooeooe-finite-progress`): \(89\to 291\), \(111\to 385\). The second increment exceeds the first in the window; that is not the theorem. Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** every `OOEOOE` prefix drops; the second `OOE` resets the first surplus; \(b\ge 4\) inherits the same square-cell gap
+- **Literature:** \(R(2)=0\) Lean; `no_cycleMin_ooeooe`; `power_bound_word`; first-even overshoot
+- **Open:** after an odd `OOEOOE` landing, does the forced next `O` drop or start another `OOE`? Do not reopen bunched-short cells
+- **Decision:** PROMOTE the square-cell ceiling. The strong FiniteProgress claim is false
+
+```text
+What was learned
+- OOEOOE is the minimal a0=2 first-OO prefix
+- x6^{64} <= n^{81} forces x6 < n^2
+- even x6 => next E is FiniteProgress
+- CycleMin prefixes continue with O
+- odd landings exist; the prefix need not drop
+Strongest theorem
+- T_OOEOOE(n) < n^2, and even landing drops
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- 89 -> 291 is an odd CycleMin-shaped landing
+Reusable machinery
+- minimal_ooe_corridor.py square-cell gap
+Branch status
+- PROMOTE
+Why
+- the second OOE still cannot reach the even-contraction
+  cell n^2; that is a prefix theorem, not a tail theorem
+Best next question
+- after an odd OOEOOE landing, does the forced next O
+  produce FiniteProgress or another OOE?
+```
+
+## Juggler first-internal-OO exponent comparison, Lean packaged
+
+- **Date:** 2026-08-30
+- **Objective:** Package the isolated-`OE` comparison \(r\le R(a_0)\) in Lean without reopening the first-`OO` dichotomy or the `OOEOOE` corridor
+- **Hypotheses:** `power_bound_word` on \(O^{a}E\) plus `repeated_oe_scale` on \((OE)^r\) give `isolated_oe_ge_implies_exponent` and `no_cycleMin_prefix_ooe_oe`
+- **Major results:** `FirstInternalOO.lean` proves `isolated_oe_ge_implies_exponent`, `isolated_oe_lt_of_scale_gap`, `isolated_oe_r_max_two`, and `no_cycleMin_prefix_ooe_oe`. Ledger row `J-cyclemin-first-oo-r-bound` retagged **EXACT — LEAN VERIFIED**. Laboratory barrel only; Paper A unchanged. No \(Z_5\). No length-11 assembler. The first-`OO` dichotomy remains unproved
+- **Refuted ideas:** none new; surplus / instant kill stay **REFUTED**
+- **Literature:** Phase-0 first-internal-`OO` **PROMOTE**; `OOEOOE` corridor **PROMOTE**; `power_bound_word`; `repeated_oe_scale`
+- **Open:** none on this packaging line. The `OOEOOE` odd-landing residual is already a separate branch
+- **Decision:** PROMOTE the Lean packaging. Do not reopen the dichotomy or bunched-short cells
+
+```text
+What was learned
+- the human-proof exponent comparison is a short Lean lemma
+- R(2)=0 is isolated_oe_r_max_two plus no_cycleMin_prefix_ooe_oe
+- FirstInternalOO is a predicate, not a halt theorem
+- uniqueness of (a,r,b,v) is not required for the scale bound
+Strongest theorem
+- n <= T_{O^a E (OE)^r}(n) => 2^{a+2r+1} <= 3^{a+r}
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- none new
+Reusable machinery
+- FirstInternalOO.lean isolatedPrefix / firstOOState
+Branch status
+- PROMOTE
+Why
+- the designated Phase-0 remainder was Lean packaging, and
+  the comparison is now the English statement
+Best next question
+- none on this line; the OOEOOE corridor is already open
+```
+
+

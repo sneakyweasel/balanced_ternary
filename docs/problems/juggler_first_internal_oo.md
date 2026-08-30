@@ -52,6 +52,8 @@ decomposition.
   **EXACT — LEAN VERIFIED**.
 - `OE` contracts; `OE` scale; repeated `OE` scale; `power_bound_word`
   — **EXACT — LEAN VERIFIED**.
+- Isolated-`OE` exponent comparison after the first even —
+  **EXACT — LEAN VERIFIED** (`J-cyclemin-first-oo-r-bound`).
 
 Project relationship: **extended**. The structural cut after the
 isolated-odd **CLOSE**, independent of the frozen terminal-cluster
@@ -74,8 +76,9 @@ Existing machinery      power_bound_word; repeated_oe_scale;
                         cycleMin_transport_second_oo;
                         oe_block_contracts
 Maximum Phase-0 scope   first-OO decomposition; r-bound;
-                        forward first-OO geometry; no Lean;
-                        no terminal-cell reopen
+                        forward first-OO geometry; Lean
+                        scale comparison; no terminal-cell
+                        reopen
 Promotion criterion     a parameterized theorem in (a0, r, b)
 Stop criterion          KNOWN / REPARAMETERIZATION only;
                         leftover table; Z5 / length-11 /
@@ -94,13 +97,14 @@ It is not required.
 
 - \(B^r(x_1)\ge n\) after \(O^{a_0}E\) forces
   \(2^{2r+a_0+1}\le 3^{a_0+r}\) —
-  **EXACT — HUMAN PROOF**. Combine `power_bound_word` on
+  **EXACT — LEAN VERIFIED**. Combine `power_bound_word` on
   \(O^{a_0}E\) with `repeated_oe_scale` on \((OE)^r\). Write
   \(R(a_0)\) for the largest admissible \(r\). Then
   \(R(2)=0\), \(R(3)=1\), \(R(4)=3\).
 - \(a_0=2\) and isolated `OE` after the first even, while staying
   \(\ge n\) —
-  **EXACT — HUMAN PROOF**. Impossible. The first internal `OO`
+  **EXACT — LEAN VERIFIED**. Impossible
+  (`no_cycleMin_prefix_ooe_oe`). The first internal `OO`
   on an \(a_0=2\) CycleMin, if it exists, is immediate (\(r=0\)).
 - first `OO` at \(x_j\ge n\) forces `FiniteProgress` —
   not claimed. `OOE` lands \(\ge n\) on every \(b=2\) event in
@@ -127,7 +131,8 @@ It is not required.
 - Records: [juggler_first_internal_oo.md](../research/juggler_first_internal_oo.md),
   [juggler_first_internal_oo.json](../research/juggler_first_internal_oo.json)
 - Tests: `tests/research/juggler_sequence/test_first_internal_oo.py`
-- No Lean. Not imported by `Problems.JugglerPaper`. No
+- Lean: `formal/Problems/Juggler/FirstInternalOO.lean`, imported
+  by the laboratory barrel, not by `Problems.JugglerPaper`. No
   `sorry`. No halt theorem.
 
 ## Conjectures
@@ -166,10 +171,14 @@ The stronger claims that remain false or unproved:
 
 ## Formalization
 
-None. Existing `Envelope.lean` and `Scale.lean` lemmas are cited,
-not rewritten. No `no_cycleMin_first_oo`. No
-`no_cycleMin_four_even`. No `no_cycle_word_length_eleven`. No
-`no_juggler_cycle`. Paper A is unchanged.
+`FirstInternalOO.lean` defines `isolatedPrefix`, `firstOOState`,
+`firstInternalOOWord`, and `FirstInternalOO`, and proves
+`isolated_oe_ge_implies_exponent`, `isolated_oe_lt_of_scale_gap`,
+`isolated_oe_r_max_two`, and `no_cycleMin_prefix_ooe_oe`. Existing
+`power_bound_word` and `repeated_oe_scale` are cited, not rewritten.
+No `no_cycleMin_first_oo`. No `no_cycleMin_four_even`. No
+`no_cycle_word_length_eleven`. No `no_juggler_cycle`. Paper A is
+unchanged.
 
 ## Results
 
@@ -183,9 +192,10 @@ follows at \(n\), \((OE)^r\) follows at \(x_1\), and
 \]
 Hence \(r\le R(a_0)\) with \(R(2)=0\). On a CycleMin, an
 \(a_0=2\) word cannot complete one isolated `OE` after the first
-even. Combined with the already-closed no-later-`OO` branch, the
-\(a_0=2\) residual is immediate first `OO` (\(r=0\)) or an
-even continuation after the first \(E\) (outside this corridor).
+even (`no_cycleMin_prefix_ooe_oe`). Combined with the already-closed
+no-later-`OO` branch, the \(a_0=2\) residual is immediate first
+`OO` (\(r=0\)) or an even continuation after the first \(E\)
+(outside this corridor).
 
 On odd \(13\le n<801\): \(99\) isolated-corridor starts, \(52\)
 first-`OO` events (\(46\) with \(r=0\), \(6\) with \(r=1\)), no
@@ -207,12 +217,10 @@ assembler, and not a halt theorem.
 
 ## Open questions
 
-Lean-package the exponent comparison. The critical remaining
-\(a_0=2\) cut on this corridor is immediate first `OO`
-(\(r=0\), begin with \(b=2\)): does
-\(O^{2}EO^{2}E\,v\) force finite progress or an already-known
-obstruction from the inherited first-even overshoot? Do not
-reopen bunched-short cells. Do not write \(Z_5\). Do not
+The exponent comparison is in `FirstInternalOO.lean`. The
+\(a_0=2\), \(r=0\), \(b=2\) cut is a separate branch
+([juggler_minimal_ooe_corridor.md](juggler_minimal_ooe_corridor.md)).
+Do not reopen bunched-short cells. Do not write \(Z_5\). Do not
 assemble `no_cycle_word_length_eleven`. The \(x_1\)-even residual
 is a separate corridor.
 
@@ -223,8 +231,10 @@ parameterized theorem in the first-`OO` variables, independent of
 the terminal cluster. The irreversible-surplus dichotomy is not
 a theorem and is not claimed.
 
-Best next question: does \(a_0=2\), \(r=0\), \(b=2\) force
-`FiniteProgress` or an existing obstruction?
+Best next question: the \(a_0=2\), \(r=0\), \(b=2\) corridor is
+already a separate branch
+([juggler_minimal_ooe_corridor.md](juggler_minimal_ooe_corridor.md)).
+Do not reopen it here.
 
 ## Publication assessment
 
