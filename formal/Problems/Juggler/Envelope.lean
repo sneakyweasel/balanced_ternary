@@ -223,12 +223,12 @@ def EnvelopeState.of_follows {n : ℕ} {w : List Branch} (hw : follows n w) :
 
 /-- Cell comparison: `x^A ≤ n^B` and `B < k·A` force `x < n^k`. -/
 theorem envelope_lt_pow {x n A B k : ℕ}
-    (hn : 2 ≤ n) (hA : 0 < A) (h : x ^ A ≤ n ^ B) (hgap : B < k * A) :
+    (hn : 2 ≤ n) (_hA : 0 < A) (h : x ^ A ≤ n ^ B) (hgap : B < k * A) :
     x < n ^ k := by
   refine Nat.lt_of_not_ge fun hge => ?_
   have hleft : n ^ (k * A) ≤ x ^ A := by
     calc
-      n ^ (k * A) = (n ^ k) ^ A := (Nat.pow_mul n k A).symm
+      n ^ (k * A) = (n ^ k) ^ A := Nat.pow_mul n k A
       _ ≤ x ^ A := Nat.pow_le_pow_left hge A
   have hle : n ^ (k * A) ≤ n ^ B := le_trans hleft h
   have hlt : n ^ B < n ^ (k * A) := pow_lt_of_two_le hn hgap
@@ -245,7 +245,7 @@ theorem power_bound_lt_pow {n : ℕ} {w : List Branch} {k : ℕ}
     (hn : 2 ≤ n) (hw : follows n w)
     (hgap : 3 ^ oddCount w < k * 2 ^ w.length) :
     image n w < n ^ k := by
-  have hA : 0 < 2 ^ w.length := Nat.pow_pos (by decide : (0 : ℕ) < 2) _
+  have hA : 0 < 2 ^ w.length := Nat.pow_pos (by decide : (0 : ℕ) < 2)
   have hpow := power_bound_word hw
   have himg : image n w = floorPower^[w.length] n := image_eq_iterate n w
   rw [himg]

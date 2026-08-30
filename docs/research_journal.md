@@ -13820,4 +13820,83 @@ Best next question
   build a symbolic automaton
 ```
 
+## Juggler maximal odd-run block map Q
+
+- **Date:** 2026-08-30
+- **Objective:** Determine the smallest exact state on which \(Q(x)=T_{O^{a(x)}E}(x)\) has a transition law on residual `AboveAnchor` landings
+- **Hypotheses:** \((x,Q(x))\) or a two-block relation predicts the next run; \(Q>x\) or \(Q<x\) forces a later stricter class; a finite descriptor coarser than \(x\) removes the `365`/`1517` ambiguity
+- **Major results:** Classification **BLOCK_MAP_Q_PARK**. Leftover odd \(Q\)-orbits pinned; \(Q^3(365)=4447\) (\(a=2\)) versus \(Q^3(1517)=33811\) (\(a=1\)); no repeated integer endpoint on leftovers or odd \(n<2001\) — **COMPUTATIONALLY VERIFIED** (`J-block-map-q-orbits`). Compressed descriptors, two-block return laws, and \((a,\mathrm{sign})\) / defect / remainder predictors — **REFUTED** (`J-block-map-q-state`). Isolated-`OE` contracts not restated. No \(Q\)-automaton. No new Lean. Paper A unchanged. No halt theorem
+- **Refuted ideas:** a finite intrinsic state predicts \(Q\); \(Q<x\) and \(Q\ge n\) forces \(Q^2<n\); \(Q>x\) forces \(Q^2\) descent; \((2,2)\) determines the next run
+- **Literature:** `oe_block_contracts`; isolated-`OE` \(R(2)=0\); PE-walk PARK; odd-run itinerary PARK
+- **Open:** none from local \(Q\)-descriptors. Do not build a block automaton. Do not split \(4447/33811\) by residues
+- **Decision:** PARK. The residual \(Q\)-orbit is still the raw integer landing; there is no small exact state
+
+```text
+What was learned
+- Q maps odd x to the landing after O^{a(x)}E
+- 365 and 1517 split at 4447 versus 33811
+- those landings share no tested intrinsic coordinate
+- contraction need not precede descent
+- no exact endpoint repeats on n<2001
+Strongest theorem
+- leftover Q-orbits and the Q^3 collision
+  4447 (a=2) versus 33811 (a=1);
+  no repeated endpoint on n<2001
+  (COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- any tested descriptor coarser than x
+  predicts the next block; two-block
+  return inequalities
+Reusable machinery
+- block_map_q.py a_of, block_map, q_blocks
+Branch status
+- PARK
+Why
+- Q is deterministic on the integer and
+  on nothing smaller that was tested
+Best next question
+- a global property of an infinite
+  residual Q-orbit, not another local
+  finite-state compression
+```
+
+## Juggler envelope spine
+
+- **Date:** 2026-08-30
+- **Objective:** Make word-algebra composition and cell comparison one generic `EnvelopeState` / `envelope_lt_pow` primitive so the leftover odd-escape gap is a missing cell hypothesis
+- **Hypotheses:** `power_bound_contracts` is the \(k=1\) case of \(x^A\le n^B\land B<kA\Rightarrow x<n^k\); Escape square/cube proofs are \(k=2,3\); the leftover corridor is “have \(k=3\), need \(k=2\)”
+- **Major results:** Classification **MINIMUM_RELATIVE_GREEN**. `EnvelopeState`, `envelope_lt_pow`, `power_bound_lt_pow`; even/odd composition; Escape cells are instances; `even_below_fourth` / `even_below_cube`; `aboveAnchor_not_lt`; square-cell FiniteProgress pipeline — **EXACT — LEAN VERIFIED** (`J-envelope-lt-pow`). Leftover `OOEOOEOOEOEOO` has cube gap \(3^9<3\cdot 2^{13}\) and not square gap \(3^9<2\cdot 2^{13}\). Cube-cell even landing is not `FiniteProgress`. Paper A unchanged. No halt theorem
+- **Refuted ideas:** a cube cell plus even landing is FiniteProgress; EnvelopeState is a third unused encoding
+- **Literature:** `power_bound_word`; `power_bound_contracts`; `AboveAnchor`; `even_below_anchor_pow`
+- **Open:** \(\operatorname{AboveAnchor}(n,w)\land\operatorname{image}<n^3\land\neg(\operatorname{image}<n^2)\Rightarrow{?}\)
+- **Decision:** PROMOTE the envelope spine. Do not claim the residual odd-escape theorem
+
+```text
+What was learned
+- EnvelopeState is x^A <= n^B; PowerBound is the word-stat case
+- envelope_lt_pow is the shared cell comparison
+- Escape square/cube proofs are k=2,3 instances
+- OOEOOEOOEOEOO has cube and not square
+- cube-cell even landing is not FiniteProgress
+Strongest theorem
+- n>=2, A>0, x^A <= n^B, B < k*A => x < n^k
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- cube cell plus even landing is descent
+Reusable machinery
+- EnvelopeState; envelope_lt_pow;
+  power_bound_lt_pow;
+  finiteProgress_of_even_power_bound_square
+Branch status
+- PROMOTE
+Why
+- the leftover hole is now a failed
+  square-cell comparison, not another
+  handwritten exponent calc
+Best next question
+- AboveAnchor(n,w) and image < n^3
+  and not image < n^2 imply which
+  certificate, if any?
+```
+
 

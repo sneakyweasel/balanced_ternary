@@ -1,0 +1,512 @@
+{
+  "experiment": "juggler_block_map_q",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "block_transition_theorem": false,
+    "finite_q_descriptor": false,
+    "two_block_return_law": false,
+    "run_length_graph": false,
+    "residue_automaton": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "controls": {
+      "365": [
+        {
+          "x": 365,
+          "a": 2,
+          "Q": 763,
+          "prev": null,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 4396,
+          "rem": 107,
+          "Q_minus_x": 398
+        },
+        {
+          "x": 763,
+          "a": 2,
+          "Q": 1749,
+          "prev": 365,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 39322,
+          "rem": 505,
+          "Q_minus_x": 986
+        },
+        {
+          "x": 1749,
+          "a": 2,
+          "Q": 4447,
+          "prev": 763,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 1724,
+          "rem": 6499,
+          "Q_minus_x": 2698
+        },
+        {
+          "x": 4447,
+          "a": 2,
+          "Q": 12707,
+          "prev": 1749,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 527022,
+          "rem": 23435,
+          "Q_minus_x": 8260
+        },
+        {
+          "x": 12707,
+          "a": 1,
+          "Q": 1196,
+          "prev": 4447,
+          "expands": false,
+          "contracts": true,
+          "below_n": false,
+          "first_def": 2197243,
+          "rem": 1984,
+          "Q_minus_x": -11511
+        }
+      ],
+      "501": [
+        {
+          "x": 501,
+          "a": 2,
+          "Q": 1089,
+          "prev": null,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 20132,
+          "rem": 1439,
+          "Q_minus_x": 588
+        },
+        {
+          "x": 1089,
+          "a": 3,
+          "Q": 133347,
+          "prev": 501,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 0,
+          "rem": 104381,
+          "Q_minus_x": 132258
+        },
+        {
+          "x": 133347,
+          "a": 2,
+          "Q": 582916,
+          "prev": 1089,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 28188698,
+          "rem": 278026,
+          "Q_minus_x": 449569
+        },
+        {
+          "x": 763,
+          "a": 2,
+          "Q": 1749,
+          "prev": 133347,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 39322,
+          "rem": 505,
+          "Q_minus_x": 986
+        },
+        {
+          "x": 1749,
+          "a": 2,
+          "Q": 4447,
+          "prev": 763,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 1724,
+          "rem": 6499,
+          "Q_minus_x": 2698
+        },
+        {
+          "x": 4447,
+          "a": 2,
+          "Q": 12707,
+          "prev": 1749,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 527022,
+          "rem": 23435,
+          "Q_minus_x": 8260
+        },
+        {
+          "x": 12707,
+          "a": 1,
+          "Q": 1196,
+          "prev": 4447,
+          "expands": false,
+          "contracts": true,
+          "below_n": false,
+          "first_def": 2197243,
+          "rem": 1984,
+          "Q_minus_x": -11511
+        }
+      ],
+      "1517": [
+        {
+          "x": 1517,
+          "a": 2,
+          "Q": 3789,
+          "prev": null,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 18188,
+          "rem": 5509,
+          "Q_minus_x": 2272
+        },
+        {
+          "x": 3789,
+          "a": 2,
+          "Q": 10613,
+          "prev": 1517,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 158708,
+          "rem": 799,
+          "Q_minus_x": 6824
+        },
+        {
+          "x": 10613,
+          "a": 2,
+          "Q": 33811,
+          "prev": 3789,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 127372,
+          "rem": 52129,
+          "Q_minus_x": 23198
+        },
+        {
+          "x": 33811,
+          "a": 1,
+          "Q": 2493,
+          "prev": 10613,
+          "expands": false,
+          "contracts": true,
+          "below_n": false,
+          "first_def": 1590987,
+          "rem": 2039,
+          "Q_minus_x": -31318
+        },
+        {
+          "x": 2493,
+          "a": 3,
+          "Q": 539470,
+          "prev": 33811,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 91532,
+          "rem": 137666,
+          "Q_minus_x": 536977
+        }
+      ],
+      "6187": [
+        {
+          "x": 6187,
+          "a": 2,
+          "Q": 18425,
+          "prev": null,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 838794,
+          "rem": 11033,
+          "Q_minus_x": 12238
+        },
+        {
+          "x": 18425,
+          "a": 3,
+          "Q": 15771571,
+          "prev": 6187,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 4545400,
+          "rem": 19942709,
+          "Q_minus_x": 15753146
+        },
+        {
+          "x": 15771571,
+          "a": 2,
+          "Q": 125201440,
+          "prev": 18425,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 99175867930,
+          "rem": 63509236,
+          "Q_minus_x": 109429869
+        },
+        {
+          "x": 11189,
+          "a": 1,
+          "Q": 1087,
+          "prev": 15771571,
+          "expands": false,
+          "contracts": true,
+          "below_n": true,
+          "first_def": 1941769,
+          "rem": 1981,
+          "Q_minus_x": -10102
+        }
+      ]
+    },
+    "contrasts": {
+      "69": [
+        {
+          "x": 69,
+          "a": 2,
+          "Q": 117,
+          "prev": null,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 180,
+          "rem": 27,
+          "Q_minus_x": 48
+        },
+        {
+          "x": 117,
+          "a": 2,
+          "Q": 212,
+          "prev": 69,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 1388,
+          "rem": 48,
+          "Q_minus_x": 95
+        }
+      ],
+      "89": [
+        {
+          "x": 89,
+          "a": 2,
+          "Q": 155,
+          "prev": null,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 1048,
+          "rem": 277,
+          "Q_minus_x": 66
+        },
+        {
+          "x": 155,
+          "a": 2,
+          "Q": 291,
+          "prev": 89,
+          "expands": true,
+          "contracts": false,
+          "below_n": false,
+          "first_def": 2834,
+          "rem": 41,
+          "Q_minus_x": 136
+        },
+        {
+          "x": 291,
+          "a": 1,
+          "Q": 70,
+          "prev": 155,
+          "expands": false,
+          "contracts": true,
+          "below_n": true,
+          "first_def": 875,
+          "rem": 64,
+          "Q_minus_x": -221
+        }
+      ]
+    },
+    "collision": {
+      "index": 3,
+      "365": {
+        "x": 4447,
+        "a": 2,
+        "Q": 12707,
+        "prev": 1749,
+        "expands": true,
+        "contracts": false,
+        "below_n": false,
+        "first_def": 527022,
+        "rem": 23435,
+        "Q_minus_x": 8260
+      },
+      "1517": {
+        "x": 33811,
+        "a": 1,
+        "Q": 2493,
+        "prev": 10613,
+        "expands": false,
+        "contracts": true,
+        "below_n": false,
+        "first_def": 1590987,
+        "rem": 2039,
+        "Q_minus_x": -31318
+      },
+      "prefix_runs": [
+        2,
+        2,
+        2
+      ],
+      "prefix_lambda": "729/512",
+      "intrinsic_equal": {
+        "x": false,
+        "a": false,
+        "Q": false,
+        "prev": false,
+        "first_def": false,
+        "rem": false,
+        "Q_minus_x": false
+      },
+      "any_intrinsic_shared": false,
+      "next_a": {
+        "365": 2,
+        "1517": 1
+      },
+      "minimal_predictor": "the integer landing Q^3(n)"
+    },
+    "window": {
+      "n_hi": 2001,
+      "n_with_blocks": 999,
+      "total_blocks": 1698,
+      "repeated_endpoints_on_orbit": 0,
+      "a1_expands": 0,
+      "a_ge2_contracts": 0,
+      "expand_then_q2_lt_x": 169,
+      "expand_then_q2_gt_q": 210,
+      "contract_stay_then_q2_below": 11,
+      "contract_stay_then_q2_stay": 144,
+      "a_sign_ambiguous": 9,
+      "pair_a_ambiguous": 24,
+      "first_def_ambiguous_a": 13,
+      "rem_ambiguous_next_a": 6,
+      "next_from_2_expand": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "next_from_pair_22": [
+        1,
+        2,
+        3,
+        4,
+        9
+      ],
+      "prefix_222_next": {
+        "1": 3,
+        "2": 1
+      },
+      "prefix_222_branching": true
+    },
+    "summary": {
+      "365_starts": [
+        365,
+        763,
+        1749,
+        4447,
+        12707
+      ],
+      "1517_starts": [
+        1517,
+        3789,
+        10613,
+        33811,
+        2493
+      ],
+      "501_starts": [
+        501,
+        1089,
+        133347,
+        763,
+        1749,
+        4447,
+        12707
+      ],
+      "6187_starts": [
+        6187,
+        18425,
+        15771571,
+        11189
+      ],
+      "365_runs": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "1517_runs": [
+        2,
+        2,
+        2,
+        1,
+        3
+      ],
+      "no_repeated_endpoint": true,
+      "q3_365": 4447,
+      "q3_1517": 33811,
+      "contract_then_expand_1517": true,
+      "mu_one_contracts": true,
+      "mu_two_expands": true
+    },
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "residue_automaton": false,
+    "run_length_graph": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "oe_block_contracts": true,
+    "isolatedOddSurvival_bound": true,
+    "finiteProgress_of_ooe_oe": true,
+    "AboveAnchor": true,
+    "has_BlockMapQ": false,
+    "has_QOrbit": false,
+    "has_BlockPotential": false,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "new_lean_file": false,
+    "paper_a_has_new_api": false,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "BLOCK_MAP_Q_PARK",
+    "reason": "Q on D_n is no more predictive than the raw landing: after (2,2,2) the states 4447 and 33811 share no intrinsic coordinate, (a,sign) and (prev a,a) do not determine the next run, first-odd defect and even remainder collide, Q>x need not force Q^2 descent, and Q<x with Q>=n need not force Q^2 below the anchor; no exact endpoint repeats"
+  },
+  "search_method": "define Q = T^{a(x)+1} on leftover D_n; compare Q^3(365) with Q^3(1517); search repeated endpoints and compressed descriptors on odd n<2001"
+}

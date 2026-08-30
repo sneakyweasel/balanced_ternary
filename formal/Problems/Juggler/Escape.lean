@@ -151,17 +151,10 @@ theorem follows_ooeooe_pow {n : ℕ} (hw : follows n wordOOEOOE) :
 no `CycleMin` return hypothesis. -/
 theorem follows_ooeooe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
     (hw : follows n wordOOEOOE) :
-    image n wordOOEOOE < n ^ 2 := by
-  have hpow := follows_ooeooe_pow hw
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have hleft : n ^ 128 ≤ (image n wordOOEOOE) ^ 64 := by
-    calc
-      n ^ 128 = n ^ (2 * 64) := by norm_num
-      _ = (n ^ 2) ^ 64 := Nat.pow_mul n 2 64
-      _ ≤ (image n wordOOEOOE) ^ 64 := Nat.pow_le_pow_left hge 64
-  have hle : n ^ 128 ≤ n ^ 81 := le_trans hleft hpow
-  have hlt : n ^ 81 < n ^ 128 := pow_lt_of_two_le hn (by decide : 81 < 128)
-  exact (not_le_of_gt hlt) hle
+    image n wordOOEOOE < n ^ 2 :=
+  power_bound_lt_pow (k := 2) hn hw (by
+    rw [wordOOEOOE_length, wordOOEOOE_oddCount]
+    decide)
 
 theorem follows_ooeooeo_pow {n : ℕ} (hw : follows n wordOOEOOEO) :
     (image n wordOOEOOEO) ^ 128 ≤ n ^ 243 := by
@@ -173,17 +166,10 @@ theorem follows_ooeooeo_pow {n : ℕ} (hw : follows n wordOOEOOEO) :
 /-- The word `OOEOOEO` has the square-cell gap `256 > 243`. -/
 theorem follows_ooeooeo_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
     (hw : follows n wordOOEOOEO) :
-    image n wordOOEOOEO < n ^ 2 := by
-  have hpow := follows_ooeooeo_pow hw
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have hleft : n ^ 256 ≤ (image n wordOOEOOEO) ^ 128 := by
-    calc
-      n ^ 256 = n ^ (2 * 128) := by norm_num
-      _ = (n ^ 2) ^ 128 := Nat.pow_mul n 2 128
-      _ ≤ (image n wordOOEOOEO) ^ 128 := Nat.pow_le_pow_left hge 128
-  have hle : n ^ 256 ≤ n ^ 243 := le_trans hleft hpow
-  have hlt : n ^ 243 < n ^ 256 := pow_lt_of_two_le hn (by decide : 243 < 256)
-  exact (not_le_of_gt hlt) hle
+    image n wordOOEOOEO < n ^ 2 :=
+  power_bound_lt_pow (k := 2) hn hw (by
+    rw [wordOOEOOEO_length, wordOOEOOEO_oddCount]
+    decide)
 
 theorem follows_singleton_even {m : ℕ} (he : m % 2 = 0) :
     follows m [Branch.even] :=
@@ -313,17 +299,10 @@ theorem follows_ooeooeoo_pow {n : ℕ} (hw : follows n wordOOEOOEOO) :
 /-- The word `OOEOOEOO` has the cube-cell gap `768 > 729`. -/
 theorem follows_ooeooeoo_image_lt_cube {n : ℕ} (hn : 2 ≤ n)
     (hw : follows n wordOOEOOEOO) :
-    image n wordOOEOOEOO < n ^ 3 := by
-  have hpow := follows_ooeooeoo_pow hw
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have hleft : n ^ 768 ≤ (image n wordOOEOOEOO) ^ 256 := by
-    calc
-      n ^ 768 = n ^ (3 * 256) := by norm_num
-      _ = (n ^ 3) ^ 256 := Nat.pow_mul n 3 256
-      _ ≤ (image n wordOOEOOEOO) ^ 256 := Nat.pow_le_pow_left hge 256
-  have hle : n ^ 768 ≤ n ^ 729 := le_trans hleft hpow
-  have hlt : n ^ 729 < n ^ 768 := pow_lt_of_two_le hn (by decide : 729 < 768)
-  exact (not_le_of_gt hlt) hle
+    image n wordOOEOOEOO < n ^ 3 :=
+  power_bound_lt_pow (k := 3) hn hw (by
+    rw [wordOOEOOEOO_length, wordOOEOOEOO_oddCount]
+    decide)
 
 set_option exponentiation.threshold 1024
 
@@ -337,17 +316,10 @@ theorem follows_ooeooeooe_pow {n : ℕ} (hw : follows n wordOOEOOEOOE) :
 /-- The completed third `OOE` has the square-cell gap `1024 > 729`. -/
 theorem follows_ooeooeooe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
     (hw : follows n wordOOEOOEOOE) :
-    image n wordOOEOOEOOE < n ^ 2 := by
-  have hpow := follows_ooeooeooe_pow hw
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have hleft : n ^ 1024 ≤ (image n wordOOEOOEOOE) ^ 512 := by
-    calc
-      n ^ 1024 = n ^ (2 * 512) := by norm_num
-      _ = (n ^ 2) ^ 512 := Nat.pow_mul n 2 512
-      _ ≤ (image n wordOOEOOEOOE) ^ 512 := Nat.pow_le_pow_left hge 512
-  have hle : n ^ 1024 ≤ n ^ 729 := le_trans hleft hpow
-  have hlt : n ^ 729 < n ^ 1024 := pow_lt_of_two_le hn (by decide : 729 < 1024)
-  exact (not_le_of_gt hlt) hle
+    image n wordOOEOOEOOE < n ^ 2 :=
+  power_bound_lt_pow (k := 2) hn hw (by
+    rw [wordOOEOOEOOE_length, wordOOEOOEOOE_oddCount]
+    decide)
 
 theorem follows_ooeooeooe_even {n : ℕ} (hw : follows n wordOOEOOEOOE)
     (he : image n wordOOEOOEOOE % 2 = 0) :
@@ -419,17 +391,10 @@ theorem follows_ooeooeooeoe_pow {n : ℕ} (hw : follows n wordOOEOOEOOEOE) :
 `4096 > 2187`. This is not a length-11 cycle census. -/
 theorem follows_ooeooeooeoe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
     (hw : follows n wordOOEOOEOOEOE) :
-    image n wordOOEOOEOOEOE < n ^ 2 := by
-  have hpow := follows_ooeooeooeoe_pow hw
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have hleft : n ^ 4096 ≤ (image n wordOOEOOEOOEOE) ^ 2048 := by
-    calc
-      n ^ 4096 = n ^ (2 * 2048) := by norm_num
-      _ = (n ^ 2) ^ 2048 := Nat.pow_mul n 2 2048
-      _ ≤ (image n wordOOEOOEOOEOE) ^ 2048 := Nat.pow_le_pow_left hge 2048
-  have hle : n ^ 4096 ≤ n ^ 2187 := le_trans hleft hpow
-  have hlt : n ^ 2187 < n ^ 4096 := pow_lt_of_two_le hn (by decide : 2187 < 4096)
-  exact (not_le_of_gt hlt) hle
+    image n wordOOEOOEOOEOE < n ^ 2 :=
+  power_bound_lt_pow (k := 2) hn hw (by
+    rw [wordOOEOOEOOEOE_length, wordOOEOOEOOEOE_oddCount]
+    decide)
 
 theorem follows_ooeooeooeoe_even {n : ℕ} (hw : follows n wordOOEOOEOOEOE)
     (he : image n wordOOEOOEOOEOE % 2 = 0) :
@@ -493,17 +458,10 @@ theorem follows_ooeooeooeoeo_pow {n : ℕ} (hw : follows n wordOOEOOEOOEOEO) :
 gap `8192 > 6561`. Another escaped even is impossible on this step. -/
 theorem follows_ooeooeooeoeo_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
     (hw : follows n wordOOEOOEOOEOEO) :
-    image n wordOOEOOEOOEOEO < n ^ 2 := by
-  have hpow := follows_ooeooeooeoeo_pow hw
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have hleft : n ^ 8192 ≤ (image n wordOOEOOEOOEOEO) ^ 4096 := by
-    calc
-      n ^ 8192 = n ^ (2 * 4096) := by norm_num
-      _ = (n ^ 2) ^ 4096 := Nat.pow_mul n 2 4096
-      _ ≤ (image n wordOOEOOEOOEOEO) ^ 4096 := Nat.pow_le_pow_left hge 4096
-  have hle : n ^ 8192 ≤ n ^ 6561 := le_trans hleft hpow
-  have hlt : n ^ 6561 < n ^ 8192 := pow_lt_of_two_le hn (by decide : 6561 < 8192)
-  exact (not_le_of_gt hlt) hle
+    image n wordOOEOOEOOEOEO < n ^ 2 :=
+  power_bound_lt_pow (k := 2) hn hw (by
+    rw [wordOOEOOEOOEOEO_length, wordOOEOOEOOEOEO_oddCount]
+    decide)
 
 theorem follows_ooeooeooeoeo_even {n : ℕ} (hw : follows n wordOOEOOEOOEOEO)
     (he : image n wordOOEOOEOOEOEO % 2 = 0) :
@@ -568,20 +526,15 @@ theorem follows_ooeooeooeoeoo_pow {n : ℕ} (hw : follows n wordOOEOOEOOEOEOO) :
   convert h <;> norm_num
 
 /-- The second `O` after the new `OO` loses the square cell
-(`19683 > 16384`) but keeps the cube-cell gap `24576 > 19683`. -/
+(`19683 > 16384`) but keeps the cube-cell gap `24576 > 19683`.
+The square comparison `3^9 < 2 · 2^13` fails; see
+`ooeooeooeoeoo_loses_square`. A cube-cell even landing is therefore
+not `FiniteProgress`. -/
 theorem follows_ooeooeooeoeoo_image_lt_cube {n : ℕ} (hn : 2 ≤ n)
     (hw : follows n wordOOEOOEOOEOEOO) :
-    image n wordOOEOOEOOEOEOO < n ^ 3 := by
-  have hpow := follows_ooeooeooeoeoo_pow hw
-  refine Nat.lt_of_not_ge fun hge => ?_
-  have hleft : n ^ 24576 ≤ (image n wordOOEOOEOOEOEOO) ^ 8192 := by
-    calc
-      n ^ 24576 = n ^ (3 * 8192) := by norm_num
-      _ = (n ^ 3) ^ 8192 := Nat.pow_mul n 3 8192
-      _ ≤ (image n wordOOEOOEOOEOEOO) ^ 8192 := Nat.pow_le_pow_left hge 8192
-  have hle : n ^ 24576 ≤ n ^ 19683 := le_trans hleft hpow
-  have hlt : n ^ 19683 < n ^ 24576 :=
-    pow_lt_of_two_le hn (by decide : 19683 < 24576)
-  exact (not_le_of_gt hlt) hle
+    image n wordOOEOOEOOEOEOO < n ^ 3 :=
+  power_bound_lt_pow (k := 3) hn hw (by
+    rw [wordOOEOOEOOEOEOO_length, wordOOEOOEOOEOEOO_oddCount]
+    decide)
 
 end Problems.Juggler

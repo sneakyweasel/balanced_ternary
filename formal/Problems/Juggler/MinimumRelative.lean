@@ -41,6 +41,11 @@ theorem aboveAnchor_image_ge {n : ℕ} {w : List Branch}
     (h : AboveAnchor n w) : n ≤ image n w := by
   simpa [image_eq_iterate] using h.2 w.length le_rfl
 
+/-- An anchor-relative prefix cannot drop. The image is at least `n`. -/
+theorem aboveAnchor_not_lt {n : ℕ} {w : List Branch}
+    (h : AboveAnchor n w) : ¬image n w < n :=
+  fun hlt => (not_le_of_gt hlt) (aboveAnchor_image_ge h)
+
 theorem aboveAnchor_of_prefix {n : ℕ} {u v : List Branch}
     (h : AboveAnchor n (u ++ v)) : AboveAnchor n u :=
   ⟨follows_of_append_left h.1, fun i hi =>
@@ -83,6 +88,16 @@ theorem even_below_anchor_pow {x n k : ℕ} (he : x % 2 = 0) :
     rw [pow_two, ← Nat.pow_add, Nat.two_mul]
   simpa [hsq] using h
 
+/-- `k = 2`: even `x < n^4` gives `T(x) < n^2`. -/
+theorem even_below_fourth {x n : ℕ} (he : x % 2 = 0) :
+    floorPower x < n ^ 2 ↔ x < n ^ 4 :=
+  even_below_anchor_pow (k := 2) he
+
+/-- `k = 3`: even `x < n^6` gives `T(x) < n^3`. -/
+theorem even_below_cube {x n : ℕ} (he : x % 2 = 0) :
+    floorPower x < n ^ 3 ↔ x < n ^ 6 := by
+  simpa [show (2 : ℕ) * 3 = 6 from rfl] using even_below_anchor_pow (k := 3) he
+
 /-- If an even image sits below `n^2`, one more even letter is a
 descent certificate. -/
 theorem finiteProgress_of_even_below_square {n : ℕ} {w : List Branch}
@@ -93,6 +108,22 @@ theorem finiteProgress_of_even_below_square {n : ℕ} {w : List Branch}
     (by
       have hdrop := even_below_square_drop he hlt
       simpa [image_append, image] using hdrop)
+
+/-- `k = 1` envelope gap is a descent certificate. -/
+theorem finiteProgress_of_power_bound_lt_pow {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hw : follows n w)
+    (hgap : 3 ^ oddCount w < 2 ^ w.length) : FiniteProgress n :=
+  finiteProgress_of_prefix_drop hw (by
+    have hlt := power_bound_lt_pow (k := 1) hn hw (by simpa using hgap)
+    simpa [image_eq_iterate] using hlt)
+
+/-- Square-cell pipeline: `power_bound_lt_pow (k := 2)` plus an even
+image is `FiniteProgress`. -/
+theorem finiteProgress_of_even_power_bound_square {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hw : follows n w) (he : image n w % 2 = 0)
+    (hgap : 3 ^ oddCount w < 2 * 2 ^ w.length) : FiniteProgress n :=
+  finiteProgress_of_even_below_square hw he
+    (power_bound_lt_pow (k := 2) hn hw hgap)
 
 theorem even_ge_sq_of_succ_ge {x n : ℕ} (he : x % 2 = 0)
     (hge : n ≤ floorPower x) : n ^ 2 ≤ x := by
@@ -139,7 +170,12 @@ theorem minimal_nonterm_not_follow_odd_even {n : ℕ} {v : List Branch}
     (aboveAnchor_of_minimalNonTerm h hw)
 
 /-!
-## Isolated-`OE` survival relative to the anchor
+## First internal `OO`
+
+A. Syntax: `isolatedPrefix` / `firstOOState` / `FirstInternalOO`.
+B. Algebra: `isolated_oe_ge_implies_exponent` / `isolated_oe_r_bound`.
+C. Semantics: CycleMin / MinimalNonTerm consumers stay in
+`FirstInternalOO.lean`.
 
 The comparison `2^{a+2r+1} ≤ 3^{a+r}` is a survival bound for
 `O^a E (OE)^r`. It does not use cycle return.

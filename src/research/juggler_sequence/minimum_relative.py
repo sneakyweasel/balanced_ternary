@@ -36,10 +36,18 @@ LEAN_THEOREMS = (
     "AboveAnchor",
     "aboveAnchor_of_cycleMin",
     "aboveAnchor_of_minimalNonTerm",
+    "aboveAnchor_not_lt",
     "finiteProgress_of_prefix_drop",
     "even_below_square_drop",
     "even_below_anchor_pow",
+    "even_below_fourth",
+    "even_below_cube",
     "finiteProgress_of_even_below_square",
+    "finiteProgress_of_power_bound_lt_pow",
+    "finiteProgress_of_even_power_bound_square",
+    "EnvelopeState",
+    "envelope_lt_pow",
+    "power_bound_lt_pow",
     "isolatedOddSurvival_bound",
     "aboveAnchor_isolated_two",
     "finiteProgress_of_ooe_oe",
@@ -163,8 +171,9 @@ def remaining_gap() -> dict[str, Any]:
         "coincide": False,
         "leftover": (
             "odd-landing corridors that stay AboveAnchor on every finite "
-            "prefix, never land even below n^2, never realize a scale-gap "
-            "isolated prefix, and do not eventually cycle"
+            "prefix, never land even below n^2, may sit in a cube cell "
+            "(image < n^3) without a square cell, never realize a "
+            "scale-gap isolated prefix, and do not eventually cycle"
         ),
         "examples": (365, 501, 6187, 1517),
         "not_a_halt": True,

@@ -102,6 +102,9 @@ It is not required.
 - even \(x<n^{2}\) gives \(T(x)<n\), and \(x<n^{2k}\) gives
   \(T(x)<n^{k}\) —
   **EXACT — LEAN VERIFIED**
+- \(x^{A}\le n^{B}\) and \(B<kA\) give \(x<n^{k}\); Escape
+  square/cube cells are instances —
+  **EXACT — LEAN VERIFIED** (`J-envelope-lt-pow`)
 - isolated-`OE` survival is an anchor theorem, not a cycle theorem —
   **EXACT — LEAN VERIFIED**
 - `OOE OE` and even `OOEOOE` landings are `FiniteProgress` —
@@ -141,14 +144,18 @@ None to the shared-layer implications. The stronger claims that fail:
 below `Residuals` / `CycleCore`. Added:
 
 - `AboveAnchor` / `aboveAnchor_of_minimalNonTerm` /
-  `aboveAnchor_of_cycleMin`
+  `aboveAnchor_of_cycleMin` / `aboveAnchor_not_lt`
 - `even_below_square_iff` / `even_below_anchor_pow` /
+  `even_below_fourth` / `even_below_cube` /
   `finiteProgress_of_even_below_square`
 - `isolatedOddSurvival_bound` / `aboveAnchor_isolated_two` /
   `finiteProgress_of_ooe_oe`
 - `finiteProgress_of_aboveAnchor_returnBelow`
 - `no_nontrivial_cycle_no_bounded_nonterm`
 
+Word algebra in `Envelope.lean`: `EnvelopeState`, `envelope_lt_pow`,
+`power_bound_lt_pow`. Escape square/cube cells are instances.
+`power_bound_contracts` is the `k = 1` case and was not rewritten.
 `CycleMin` wrappers stay in `CycleCore` / `FirstInternalOO`.
 `FiniteProgress` is not redefined. Paper A is unchanged. No `sorry`.
 No halt theorem.
@@ -164,28 +171,42 @@ no-cycle theorem would kill only bounded nontermination.
 
 The leftover termination class is **odd-landing corridors** that
 remain `AboveAnchor` on every finite prefix, never land even below
-\(n^{2}\), never realize a scale-gap isolated prefix, and do not
-eventually cycle. That class does not coincide with the current
-CycleMin exclusions.
+\(n^{2}\), may sit in a cube cell \(T_w(n)<n^{3}\) without a square
+cell, never realize a scale-gap isolated prefix, and do not
+eventually cycle. The word `OOEOOEOOEOEOO` is the named instance:
+\(3^{9}<3\cdot 2^{13}\) and \(\neg(3^{9}<2\cdot 2^{13})\). A
+cube-cell even landing is not `FiniteProgress`.
 
 This is not a halt theorem and not a cycle-exclusion theorem.
 
 ## Open questions
 
-The leftover class is the true termination target. Do not continue
-proving CycleMin-only lemmas that do not import as shared
-obstructions. Do not claim that no-cycle proves halt. Do not reopen
-bunched-short cells, escape-margin \(M\), or a length-11 census.
+The leftover class is the true termination target. The envelope
+spine makes the hole one missing cell:
+
+\[
+\operatorname{AboveAnchor}(n,w)\land\operatorname{image}<n^{3}
+\land\neg(\operatorname{image}<n^{2})
+\;\Rightarrow\;
+{?}
+\]
+
+Do not continue proving CycleMin-only lemmas that do not import as
+shared obstructions. Do not claim that no-cycle proves halt. Do not
+reopen bunched-short cells, escape-margin \(M\), or a length-11
+census.
 
 ## Decision
 
-**PROMOTE** the shared `AboveAnchor` layer and the FiniteProgress
-bridge. CycleMin remains about closure. MinimalNonTerm remains about
-refusing descent. Do not claim termination.
+**PROMOTE** the shared `AboveAnchor` layer, the `EnvelopeState` /
+`envelope_lt_pow` spine, and the FiniteProgress bridge. CycleMin
+remains about closure. MinimalNonTerm remains about refusing
+descent. Do not claim termination.
 
 Best next question: which odd-landing corridor on a
 `MinimalNonTerm` start first fails a shared `AboveAnchor`
-obstruction, if any?
+obstruction, if any? The residual hole is a cube cell without a
+square cell.
 
 ## Publication assessment
 

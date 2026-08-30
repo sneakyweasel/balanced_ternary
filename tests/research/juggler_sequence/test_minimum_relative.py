@@ -78,6 +78,12 @@ def test_remaining_gap_is_unbounded_escape():
     assert 365 in gap["examples"]
 
 
+def test_leftover_word_has_cube_not_square_gap():
+    """OOEOOEOOEOEOO: 3^9 < 3·2^13 (cube) and not 3^9 < 2·2^13 (square)."""
+    assert 3**9 < 3 * 2**13
+    assert not (3**9 < 2 * 2**13)
+
+
 def test_probe_and_classify_green():
     scan = run_probe()
     lean = lean_api_present()
