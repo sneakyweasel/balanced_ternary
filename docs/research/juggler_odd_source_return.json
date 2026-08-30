@@ -1,0 +1,115 @@
+{
+  "experiment": "juggler_odd_source_return",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "two_episode_source_descent": false,
+    "new_source_map": false,
+    "power_census": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "lab_sources": {
+      "37": [
+        37,
+        9317,
+        2233
+      ],
+      "69": [
+        69,
+        117
+      ],
+      "89": [
+        89,
+        155,
+        291
+      ],
+      "365": [
+        365,
+        763,
+        1749,
+        4447,
+        12707
+      ],
+      "501": [
+        501,
+        1089,
+        133347,
+        763,
+        1749,
+        4447,
+        12707
+      ],
+      "1517": [
+        1517,
+        3789,
+        10613,
+        33811,
+        2493
+      ],
+      "6187": [
+        6187,
+        18425,
+        15771571,
+        11189
+      ]
+    },
+    "lab_cube_sources": {
+      "37": [
+        9317,
+        2233
+      ],
+      "69": [],
+      "89": [],
+      "365": [],
+      "501": [],
+      "1517": [],
+      "6187": []
+    },
+    "witness_37_sources": [
+      37,
+      9317,
+      2233
+    ],
+    "interior_3375": true,
+    "two_episode_37_fails": true,
+    "two_episode_365_fails": true,
+    "cube_321": [
+      225539,
+      5958969,
+      520655
+    ],
+    "cube_321_two_episode_fails": true,
+    "leftover_cube_sources_empty": true,
+    "q_reparameterization": true,
+    "power_census": false,
+    "w5_reopen": false,
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "new_lean_theorem": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "AboveAnchor": true,
+    "cube_lift_even_reset": true,
+    "finiteProgress_of_ooe_oe": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_NextOddSource": false,
+    "has_OddEpisode": false,
+    "has_source_relation_well_founded": false,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "ODD_SOURCE_RETURN_CLOSED",
+    "reason": "induced odd sources are Q-landings; 3375 is interior to 37; two-episode descent fails on 37->9317->2233 and on 365->763->1749; cube-odd two-episode fails on 321"
+  },
+  "search_method": "q_blocks odd-run starts on 37/69/89/365/501/1517/6187 and cube-odd filter; 321 cube triple"
+}

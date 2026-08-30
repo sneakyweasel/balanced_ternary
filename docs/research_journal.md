@@ -14052,4 +14052,40 @@ Best next question
   still an odd-to-odd cube lift
 ```
 
+## Juggler induced odd-source return
+
+- **Date:** 2026-08-30
+- **Objective:** Find an exact pair or triple relation on successive odd expansion sources
+- **Hypotheses:** two-episode descent \(x_{i+2}<x_i\); a \(\Phi\) that is not generic \(Q\)-growth
+- **Major results:** Classification **ODD_SOURCE_RETURN_CLOSED**. Induced sources are maximal odd-run starts, hence \(Q\) when the landing is odd — **REPARAMETERIZATION**. \(3375\) is interior to the \(37\)-episode — **COMPUTATIONALLY VERIFIED**. Two-episode descent — **REFUTED** (`J-two-episode-source-descent`, \(37\to9317\to2233\) and \(365\to763\to1749\); cube-odd \(321\colon 520655>225539\)). Leftover cube-odd states are interior, not sources. No new Lean. No source automaton. Paper A unchanged. No halt theorem
+- **Refuted ideas:** \(3375\to9317\to2233\) is an induced-source triple; every two-episode block descends
+- **Literature:** `J-block-map-q-orbits`; `J-episode-source-descent`
+- **Open:** none from induced sources
+- **Decision:** CLOSE. The induced object is the parked \(Q\)-map; two-episode descent is false
+
+```text
+What was learned
+- a source is a maximal odd-run start
+- NextOddSource is Q when Q is odd
+- 3375 is interior, not a source
+- 37 -> 9317 -> 2233 has 2233 > 37
+- 365 sources climb until drop
+Strongest theorem
+- none new; Q already named
+Strongest refutation
+- two-episode source descent
+  (37 and 365)
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- the relation attack reopens Q;
+  the new two-episode law is false
+Best next question
+- none from induced sources; the
+  leftover cube-odd lift is interior
+  to a Q-block
+```
+
 
