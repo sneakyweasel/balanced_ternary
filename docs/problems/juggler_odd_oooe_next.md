@@ -185,9 +185,11 @@ assembler, and not a halt theorem.
 ## Open questions
 
 Lean-package \(729<768\) and `OOEOOOEOEE` contraction.
-The residual after odd \(q\) is a second `OO` from
-\([n^2,n^3)\). Do not reopen bunched-short cells. Do not
-write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
+The residual after odd \(q\) is the second `OO` from
+\([n^2,n^3)\), now the separate branch
+[juggler_second_oo_cube.md](juggler_second_oo_cube.md).
+Do not reopen bunched-short cells. Do not write \(Z_5\).
+Do not assemble `no_cycle_word_length_eleven`.
 
 ## Decision
 

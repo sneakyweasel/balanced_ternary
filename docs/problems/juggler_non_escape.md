@@ -195,11 +195,11 @@ This is not a halt theorem, not a cycle-exclusion theorem, and not
 
 ## Open questions
 
-Can a `MinimalNonTerm` itinerary concatenate infinitely many
-expanding residual blocks without ever realizing a contracting
-word? That is still the global problem. Do not auto-continue into
-it. Do not reopen Paper B, bunched-short cells, escape-margin \(M\),
-or a length-11 census.
+Answered in
+[juggler_expanding_residual_concat.md](juggler_expanding_residual_concat.md):
+infinite PE concatenation without a contracting word is not a
+stricter class than `MinimalNonTerm`. Do not reopen Paper B,
+bunched-short cells, escape-margin \(M\), or a length-11 census.
 
 ## Decision
 
@@ -208,9 +208,8 @@ or a length-11 census.
 claim that escape is impossible. Do not claim that all cycles are
 impossible. Do not claim termination.
 
-Best next question: can a `MinimalNonTerm` itinerary concatenate
-infinitely many expanding residual blocks without realizing a
-contracting word?
+Best next question: answered in
+[juggler_expanding_residual_concat.md](juggler_expanding_residual_concat.md).
 
 ## Publication assessment
 

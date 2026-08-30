@@ -12944,4 +12944,39 @@ Best next question
   many expanding residual blocks without a contracting word?
 ```
 
+## Juggler second OO from the cube corridor
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether an inherited odd \(q\in[n^2,n^3)\) constrains its next `OO` beyond generic \(3/2\) growth
+- **Hypotheses:** raising \(q^{256}\le n^{729}\) beats generic power growth; \(T^2(q)\) stays in \(C_2\cup C_3\); the scale graph is acyclic; consecutive defects are narrow
+- **Major results:** Classification **SECOND_OO_GREEN**. \(u^{512}\le n^{2187}\) so \(n^3\le T(q)<n^{2187/512}\) — **EXACT — HUMAN PROOF** (`J-cyclemin-second-oo-envelope`). Sharper than generic \(n^{9/2}\) (\(2187<2304\)). Even \(u\) lands in \([n^{3/2},n^{2187/1024})\); odd \(u\) continues with \(v^{1024}\le n^{6561}\). \(T^2(q)\) in \(C_2\cup C_3\), acyclic scale graph, even-\(u\) drop, and a narrow defect \(\Phi\) — **REFUTED** (`J-cyclemin-second-oo-scale-acyclic`): `491` has \(s=558757\) in \(C_2\); `1181` has \(v\) in \(C_6\); `501` returns to \(C_1\) at \(763\); `OOEOOOEOOEE` does not contract (\(2187>2048\)). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** generic \(3/2\) is the only envelope; \(T^2(q)\in C_2\cup C_3\); acyclic scale automaton; even \(u\) is FiniteProgress; narrow two-step defects
+- **Literature:** odd-`OOOE` cube corridor; `q^{256}\le n^{729}`; cube lemma; `no_cycleMin_ooeoooe`
+- **Open:** after even \(u\), does \(s\in[n^{3/2},n^{2187/1024})\) still give a finite even/odd trap? Do not reopen bunched-short cells
+- **Decision:** PROMOTE the inherited second-`OO` envelopes. The scale graph is not a no-cycle proof
+
+```text
+What was learned
+- q^{256} <= n^{729} raises to u^{512} <= n^{2187}
+- n^3 <= T(q) < n^{2187/512}, sharper than n^{9/2}
+- even u lands in [n^{3/2}, n^{2187/1024}); not below n^2
+- odd u continues with v^{1024} <= n^{6561}
+- 501 returns C_2 -> C_4 -> C_2 -> C_1; the scale graph cycles
+Strongest theorem
+- inherited odd q => n^3 <= T(q) < n^{2187/512}
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- 501 returns to C_1; 1181 reaches C_6
+Reusable machinery
+- second_oo_cube.py envelopes and scale-band split
+Branch status
+- PROMOTE
+Why
+- the inherited envelope is a genuine non-generic constraint
+  on the second OO; the scale automaton is not acyclic
+Best next question
+- after even u, does s in [n^{3/2}, n^{2187/1024})
+  still give a finite even/odd trap?
+```
+
 

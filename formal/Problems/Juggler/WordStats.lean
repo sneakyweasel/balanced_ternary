@@ -110,4 +110,21 @@ theorem exponentExpanding_not_gap {w : List Branch}
 def prefixNoncontracting (w : List Branch) : Prop :=
   ∀ k, k ≤ w.length → ¬exponentGap (w.take k)
 
+/-- Expanding words are closed under concatenation. A concatenation of
+expanding residual blocks is never an exponent-gap certificate. -/
+theorem exponentExpanding_append {u v : List Branch}
+    (hu : exponentExpanding u) (hv : exponentExpanding v) :
+    exponentExpanding (u ++ v) := by
+  unfold exponentExpanding at *
+  rw [List.length_append, oddCount_append]
+  have h2 : 2 ^ (u.length + v.length) = 2 ^ u.length * 2 ^ v.length :=
+    Nat.pow_add 2 _ _
+  have h3 : 3 ^ (oddCount u + oddCount v) = 3 ^ oddCount u * 3 ^ oddCount v :=
+    Nat.pow_add 3 _ _
+  rw [h2, h3]
+  have hpos2 : 0 < 2 ^ v.length := Nat.two_pow_pos v.length
+  have hpos3 : 0 < 3 ^ oddCount u := Nat.pow_pos (by decide : (0 : ℕ) < 3)
+  exact lt_trans (Nat.mul_lt_mul_of_pos_right hu hpos2)
+    (Nat.mul_lt_mul_of_pos_left hv hpos3)
+
 end Problems.Juggler

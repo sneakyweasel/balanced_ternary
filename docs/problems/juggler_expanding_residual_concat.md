@@ -1,0 +1,172 @@
+# Juggler expanding-residual concatenation
+
+Status: **EXPLORATORY**
+
+Standalone application phase on the Juggler floor-power map. It is
+**not** a Research Engine control-layer experiment, not an
+expanding-grammar reopen, not Paper B, not escape-margin \(M\), and
+not a claim that every positive integer reaches 1.
+
+This is the leftover of [juggler_non_escape.md](juggler_non_escape.md):
+can a `MinimalNonTerm` itinerary concatenate infinitely many expanding
+residual blocks without a contracting word?
+
+## Problem
+
+Is “infinite expanding-residual concatenation without a contracting
+word” a strictly smaller class than a minimal non-1 start, or is it
+the same leftover?
+
+## Exact statement
+
+A word is expanding when \(2^{|w|}<3^{\#O(w)}\) and contracting when
+\(3^{\#O(w)}<2^{|w|}\). Phase 0 asks:
+
+1. whether expanding words are closed under concatenation;
+2. whether a `MinimalNonTerm` start can realize any contracting word;
+3. whether those two facts identify the leftover with the unbounded
+   `MinimalNonTerm` branch already named in
+   [juggler_non_escape.md](juggler_non_escape.md).
+
+Do not prove that a PE chain is finite. Do not prove
+\(\neg\operatorname{EscapesToInfinity}\). Do not reopen
+`EXPANDING_GRAMMAR_IS_PERSISTENCE`.
+
+## Current literature
+
+- `exponentExpanding` / `exponentGap` —
+  **EXACT — LEAN VERIFIED**.
+- Persistence equals expansion on \(n\ge 2\) —
+  **CLOSE** (`EXPANDING_GRAMMAR_IS_PERSISTENCE`).
+- Two, three, and four consecutive PE blocks exist
+  (\(365\to 763\to 1749\to 4447\); length-5 run at \(2183\)) —
+  **REFUTED** as a two-block prohibition.
+- `power_bound_contracts` and `minimal_nonterm_no_descent` —
+  **EXACT — LEAN VERIFIED**.
+- Cycle-or-escape and the CE `OOEOOE` trap —
+  **EXACT — LEAN VERIFIED** (`J-orbit-cycle-or-escape`,
+  `J-minimal-ooeooe-escape-trap`).
+
+Project relationship: **extended**. The non-escape leftover is
+identified, not solved.
+
+## Branch budget
+
+```text
+Mathematical target     Is infinite PE concatenation without a
+                        contracting word a stricter class than
+                        MinimalNonTerm?
+Novelty hypothesis      either a CE realizes a contracting
+                        concatenation, or the leftover is the
+                        same unbounded CE branch
+Falsifier               a CE-shaped contracting word; or the
+                        identification is already written
+Existing machinery      exponentExpanding; power_bound_contracts;
+                        minimal_nonterm_no_descent; residual_chain
+Maximum Phase-0 scope   expanding_append; CE prefix-NC; chain
+                        scan; no halt; no grammar reopen
+Promotion criterion     a new exact lemma that is not the
+                        envelope contraposed, and a genuine
+                        smaller subclass
+Stop criterion          REPARAMETERIZATION of MinimalNonTerm;
+                        EXPANDING_GRAMMAR_IS_PERSISTENCE; halt
+```
+
+## Balanced-ternary formulation
+
+None required. The map is on ordinary positive integers.
+
+## Why BT may be relevant
+
+It is not required.
+
+## Candidate operations / invariants
+
+- expanding words are closed under concatenation —
+  **EXACT — LEAN VERIFIED**
+- a CE never realizes an exponent-gap word —
+  **EXACT — LEAN VERIFIED**
+- every realized prefix of a CE is prefix-noncontracting —
+  **EXACT — LEAN VERIFIED**
+- scanned PE blocks that stay \(\ge n\) are expanding, and their
+  concatenations stay expanding —
+  **COMPUTATIONALLY VERIFIED**
+- infinite PE concatenation is a strictly smaller class than
+  `MinimalNonTerm` —
+  **REPARAMETERIZATION**
+- PE chains are finite — not claimed
+- no trajectory escapes — not claimed
+- global halt — not claimed
+
+## Experiments
+
+- Probe: `research.juggler_sequence.expanding_residual_concat`
+- Records:
+  [juggler_expanding_residual_concat.md](../research/juggler_expanding_residual_concat.md),
+  [juggler_expanding_residual_concat.json](../research/juggler_expanding_residual_concat.json)
+- Tests: `tests/research/juggler_sequence/test_expanding_residual_concat.py`
+- Lean: `exponentExpanding_append` in `WordStats.lean`;
+  `minimal_nonterm_not_exponentGap` and
+  `minimal_nonterm_prefix_noncontracting` in `Escape.lean`.
+  Laboratory barrel only. No `sorry`. No halt theorem.
+
+## Conjectures
+
+None opened.
+
+## Counterexamples
+
+None to concatenation closure or to CE prefix-NC. The stronger
+claims that fail:
+
+- “two consecutive PE blocks are impossible” — already refuted by
+  \(365\to 763\to 1749\).
+- “the leftover is a stricter combinatorial class” — a CE cannot
+  realize a contracting word, so PE concatenation without a
+  contracting word is the CE leftover rewritten.
+- “formal contraction kills a PE concatenation” — concatenation of
+  expanding words stays expanding.
+
+## Formalization
+
+`WordStats.lean` adds `exponentExpanding_append`. `Escape.lean` adds
+the CE prefix-NC pair. `FloorPower` and `MinimalNonTerm` are not
+rewritten. No `sorry`. No `no_juggler_escape`. No infinite-path
+type. Paper A is unchanged.
+
+## Results
+
+Classification **EXPANDING_CONCAT_CE_CLOSE**.
+
+Expanding words are closed under concatenation. A `MinimalNonTerm`
+start never realizes an exponent-gap word, so every realized prefix
+is prefix-noncontracting. Therefore an infinite PE concatenation
+without a contracting word is not a smaller class: it is the
+unbounded CE branch already isolated by the non-escape spine.
+
+This is not a halt theorem and not a finite-run bound.
+
+## Open questions
+
+After the CE `OOEOOE` trap forces a third `OO`, does the completed
+third residual drop below \(n\) or stay a PE block? Do not reopen
+the expanding-grammar obstruction. Do not claim a uniform PE-run
+bound.
+
+## Decision
+
+**CLOSE** the leftover as a reparameterization of `MinimalNonTerm`.
+The new exact facts are concatenation closure and CE prefix-NC; they
+identify the class, they do not shrink it. Do not claim that PE
+chains are finite. Do not claim that escape is impossible.
+
+Best next question: after the CE `OOEOOE` trap forces `OOEOOEOO`,
+does the completed third residual drop below \(n\) or remain a
+persistent expanding block?
+
+## Publication assessment
+
+Status: `EXPLORATORY`.
+
+A leftover identification, not a paper candidate and not a Juggler
+totality result.

@@ -4409,5 +4409,27 @@
       "tests/research/juggler_sequence/test_non_escape.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-second-oo-envelope",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If n ≥ 2 follows OOEOOOE, w = T_OOEOOOE(n) is odd in [n, n^2), and q = T(w) is odd, then q^{256} ≤ n^{729}. The next image u = T(q) satisfies u^{512} ≤ n^{2187} < n^{2560} = (n^5)^{512}, and q ≥ n^2 forces u ≥ n^3, so n^3 ≤ u < n^{2187/512}. This is sharper than the generic bound u < n^{9/2} from q < n^3 (2187 < 2304); u < n^4 is not inherited (2187 > 2048). If u is even, the landing s = isqrt(u) satisfies n^{3/2} ≤ s < n^{2187/1024}. If u is odd, v = T(u) satisfies v^{1024} ≤ n^{6561} < n^{7168} = (n^7)^{1024} and v ≥ n^{9/2}, so n^{9/2} ≤ v < n^{6561/1024}, sharper than generic n^{27/4} (6561 < 6912). This is not a C_2 ∪ C_3 location theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_second_oo_cube.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_second_oo_cube.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-second-oo-scale-acyclic",
+    "tag": "REFUTED",
+    "statement": "The second OO from an inherited odd cube-corridor q stays in C_2 ∪ C_3, the scale/parity graph is acyclic, even u drops, and consecutive odd defects obey a narrow relation. False. 491 has u = 312209649122 in C_4 and s = 558757 odd in C_2. 1181 has odd u and v = 48329349373548636613 in C_6. 501 has even u, even s = 582916, and t = 763 in C_1 with t ≥ 501, so C_2 → C_4 → C_2 → C_1 is realized. The word OOEOOOEOOEE does not contract versus n (2187 > 2048). Inherited-window defects satisfy 0.04 < δ_0/(2q) < 0.75. This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_second_oo_cube.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_second_oo_cube.py"
+    ],
+    "related_conjectures": []
   }
 ]

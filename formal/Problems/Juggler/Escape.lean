@@ -215,4 +215,25 @@ theorem minimal_ooeooe_forces_oo {n : ℕ}
   exact minimal_nonterm_no_descent h
     ⟨follows_ooeooeo_even hf he, by simpa [image_ooeooeo_even] using hdrop⟩
 
+/-- A CE never realizes a formally contracting word. Contrapositive of
+`power_bound_contracts`. -/
+theorem minimal_nonterm_not_exponentGap {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w) : ¬exponentGap w := by
+  intro hg
+  have hn : 2 ≤ n :=
+    le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
+  have hlt := power_bound_contracts hn hw hg
+  exact minimal_nonterm_no_descent h
+    ⟨hw, by simpa [image_eq_iterate] using hlt⟩
+
+/-- Every realized prefix of a CE is prefix-noncontracting. Concatenating
+expanding residual blocks therefore cannot create an exponent certificate
+on a CE. This is not a halt theorem. -/
+theorem minimal_nonterm_prefix_noncontracting {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w) : prefixNoncontracting w := by
+  intro k _hk hg
+  have hw' : follows n (w.take k ++ w.drop k) := by
+    simpa [List.take_append_drop] using hw
+  exact minimal_nonterm_not_exponentGap h (follows_of_append_left hw') hg
+
 end Problems.Juggler
