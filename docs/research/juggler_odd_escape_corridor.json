@@ -1,0 +1,4306 @@
+{
+  "experiment": "juggler_odd_escape_corridor",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "independent_corridor_gap": false,
+    "new_odd_lower": false,
+    "sigma_automaton": false,
+    "scale_reopen": false,
+    "pivot_corridor_reopen": false,
+    "corridor_lean": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "tables": {
+      "37": {
+        "n": 37,
+        "drop_i": 15,
+        "x_drop": 8,
+        "word": "OOOOEOOOEEOOEEE",
+        "first_L_gt_1": {
+          "i": 2,
+          "x": 3375,
+          "event": "cube_odd",
+          "L": 2,
+          "U": 3,
+          "Gamma": 1,
+          "parity": "O"
+        },
+        "odd_nontrivial_count": 7,
+        "even_nontrivial_count": 5,
+        "new_odd_lowers": [],
+        "new_even_lowers": [],
+        "collision_count": 0,
+        "even_reset_count": 3,
+        "known_even_reset_count": 3,
+        "novel_even_reset_count": 0,
+        "gamma_shrinks": true,
+        "gamma_holds": true,
+        "gamma_widens": true,
+        "grew_x_shrunk_gamma": [],
+        "type_repeat_growth": [
+          {
+            "L": 2,
+            "U": 3,
+            "parity": "O",
+            "count": 3,
+            "min_x": 2233,
+            "max_x": 9317
+          },
+          {
+            "L": 3,
+            "U": 4,
+            "parity": "O",
+            "count": 3,
+            "min_x": 105519,
+            "max_x": 899319
+          }
+        ],
+        "states": [
+          {
+            "i": 0,
+            "x": 37,
+            "parity": "O",
+            "event": "O",
+            "A": 1,
+            "B": 1,
+            "odd_count": 0,
+            "U_int": 2,
+            "U_rat": "1",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 1,
+            "x": 225,
+            "parity": "O",
+            "event": "O",
+            "A": 2,
+            "B": 3,
+            "odd_count": 1,
+            "U_int": 2,
+            "U_rat": "3/2",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 2,
+            "x": 3375,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 4,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 3,
+            "U_rat": "9/4",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 3,
+            "x": 196069,
+            "parity": "O",
+            "event": "cube_lift",
+            "A": 8,
+            "B": 27,
+            "odd_count": 3,
+            "U_int": 4,
+            "U_rat": "27/8",
+            "L_event": 3,
+            "U_cell": 4,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "cube_odd_lift"
+            ],
+            "above": true
+          },
+          {
+            "i": 4,
+            "x": 86818724,
+            "parity": "E",
+            "event": "cube_oo",
+            "A": 16,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 6,
+            "U_rat": "81/16",
+            "L_event": 4,
+            "U_cell": 6,
+            "Gamma": 2,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_lift_odd_ge_fourth",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 5,
+            "x": 9317,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 32,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 3,
+            "U_rat": "81/32",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 6,
+            "x": 899319,
+            "parity": "O",
+            "event": "cube_lift",
+            "A": 64,
+            "B": 243,
+            "odd_count": 5,
+            "U_int": 4,
+            "U_rat": "243/64",
+            "L_event": 3,
+            "U_cell": 4,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "cube_odd_lift"
+            ],
+            "above": true
+          },
+          {
+            "i": 7,
+            "x": 852846071,
+            "parity": "O",
+            "event": "cube_oo",
+            "A": 128,
+            "B": 729,
+            "odd_count": 6,
+            "U_int": 6,
+            "U_rat": "729/128",
+            "L_event": 4,
+            "U_cell": 6,
+            "Gamma": 2,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "cube_lift_odd_ge_fourth"
+            ],
+            "above": true
+          },
+          {
+            "i": 8,
+            "x": 24906114455136,
+            "parity": "E",
+            "event": "even_run_r",
+            "A": 256,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 9,
+            "U_rat": "2187/256",
+            "L_event": 4,
+            "U_cell": 9,
+            "Gamma": 5,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 2,
+            "sources": [
+              "aboveAnchor_even_run_ge_pow"
+            ],
+            "above": true
+          },
+          {
+            "i": 9,
+            "x": 4990602,
+            "parity": "E",
+            "event": "E",
+            "A": 512,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 5,
+            "U_rat": "2187/512",
+            "L_event": 2,
+            "U_cell": 5,
+            "Gamma": 3,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 1,
+            "sources": [
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 10,
+            "x": 2233,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 1024,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 3,
+            "U_rat": "2187/1024",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 11,
+            "x": 105519,
+            "parity": "O",
+            "event": "cube_lift",
+            "A": 2048,
+            "B": 6561,
+            "odd_count": 8,
+            "U_int": 4,
+            "U_rat": "6561/2048",
+            "L_event": 3,
+            "U_cell": 4,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "cube_odd_lift"
+            ],
+            "above": true
+          },
+          {
+            "i": 12,
+            "x": 34276462,
+            "parity": "E",
+            "event": "cube_oo",
+            "A": 4096,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 5,
+            "U_rat": "19683/4096",
+            "L_event": 4,
+            "U_cell": 5,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 2,
+            "sources": [
+              "cube_lift_odd_ge_fourth",
+              "aboveAnchor_even_run_ge_pow"
+            ],
+            "above": true
+          },
+          {
+            "i": 13,
+            "x": 5854,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 8192,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 3,
+            "U_rat": "19683/8192",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 14,
+            "x": 76,
+            "parity": "E",
+            "event": "E",
+            "A": 16384,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 2,
+            "U_rat": "19683/16384",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 15,
+            "x": 8,
+            "parity": "E",
+            "event": "reset_below_n",
+            "A": 32768,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 1,
+            "U_rat": "19683/32768",
+            "L_event": 1,
+            "U_cell": 1,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": true,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": false
+          }
+        ],
+        "transitions": [
+          {
+            "i": 1,
+            "from": {
+              "x": 225,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 3375,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 2,
+            "from": {
+              "x": 3375,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 196069,
+              "L": 3,
+              "U": 4,
+              "parity": "O",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 3,
+            "from": {
+              "x": 196069,
+              "L": 3,
+              "U": 4,
+              "parity": "O",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 86818724,
+              "L": 4,
+              "U": 6,
+              "parity": "E",
+              "event": "cube_oo",
+              "Gamma": 2
+            },
+            "x_grew": true,
+            "gamma_change": 1
+          },
+          {
+            "i": 4,
+            "from": {
+              "x": 86818724,
+              "L": 4,
+              "U": 6,
+              "parity": "E",
+              "event": "cube_oo",
+              "Gamma": 2
+            },
+            "to": {
+              "x": 9317,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": false,
+            "gamma_change": -1
+          },
+          {
+            "i": 5,
+            "from": {
+              "x": 9317,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 899319,
+              "L": 3,
+              "U": 4,
+              "parity": "O",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 6,
+            "from": {
+              "x": 899319,
+              "L": 3,
+              "U": 4,
+              "parity": "O",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 852846071,
+              "L": 4,
+              "U": 6,
+              "parity": "O",
+              "event": "cube_oo",
+              "Gamma": 2
+            },
+            "x_grew": true,
+            "gamma_change": 1
+          },
+          {
+            "i": 7,
+            "from": {
+              "x": 852846071,
+              "L": 4,
+              "U": 6,
+              "parity": "O",
+              "event": "cube_oo",
+              "Gamma": 2
+            },
+            "to": {
+              "x": 24906114455136,
+              "L": 4,
+              "U": 9,
+              "parity": "E",
+              "event": "even_run_r",
+              "Gamma": 5
+            },
+            "x_grew": true,
+            "gamma_change": 3
+          },
+          {
+            "i": 8,
+            "from": {
+              "x": 24906114455136,
+              "L": 4,
+              "U": 9,
+              "parity": "E",
+              "event": "even_run_r",
+              "Gamma": 5
+            },
+            "to": {
+              "x": 4990602,
+              "L": 2,
+              "U": 5,
+              "parity": "E",
+              "event": "E",
+              "Gamma": 3
+            },
+            "x_grew": false,
+            "gamma_change": -2
+          },
+          {
+            "i": 9,
+            "from": {
+              "x": 4990602,
+              "L": 2,
+              "U": 5,
+              "parity": "E",
+              "event": "E",
+              "Gamma": 3
+            },
+            "to": {
+              "x": 2233,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": false,
+            "gamma_change": -2
+          },
+          {
+            "i": 10,
+            "from": {
+              "x": 2233,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 105519,
+              "L": 3,
+              "U": 4,
+              "parity": "O",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 11,
+            "from": {
+              "x": 105519,
+              "L": 3,
+              "U": 4,
+              "parity": "O",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 34276462,
+              "L": 4,
+              "U": 5,
+              "parity": "E",
+              "event": "cube_oo",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 12,
+            "from": {
+              "x": 34276462,
+              "L": 4,
+              "U": 5,
+              "parity": "E",
+              "event": "cube_oo",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 5854,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": false,
+            "gamma_change": 0
+          },
+          {
+            "i": 13,
+            "from": {
+              "x": 5854,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 76,
+              "L": 1,
+              "U": 2,
+              "parity": "E",
+              "event": "E",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          }
+        ]
+      },
+      "69": {
+        "n": 69,
+        "drop_i": 7,
+        "x_drop": 14,
+        "word": "OOEOOEE",
+        "first_L_gt_1": {
+          "i": 2,
+          "x": 13716,
+          "event": "cube_even",
+          "L": 2,
+          "U": 3,
+          "Gamma": 1,
+          "parity": "E"
+        },
+        "odd_nontrivial_count": 0,
+        "even_nontrivial_count": 2,
+        "new_odd_lowers": [],
+        "new_even_lowers": [],
+        "collision_count": 0,
+        "even_reset_count": 2,
+        "known_even_reset_count": 2,
+        "novel_even_reset_count": 0,
+        "gamma_shrinks": false,
+        "gamma_holds": true,
+        "gamma_widens": false,
+        "grew_x_shrunk_gamma": [],
+        "type_repeat_growth": [
+          {
+            "L": 2,
+            "U": 3,
+            "parity": "E",
+            "count": 2,
+            "min_x": 13716,
+            "max_x": 44992
+          }
+        ],
+        "states": [
+          {
+            "i": 0,
+            "x": 69,
+            "parity": "O",
+            "event": "O",
+            "A": 1,
+            "B": 1,
+            "odd_count": 0,
+            "U_int": 2,
+            "U_rat": "1",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 1,
+            "x": 573,
+            "parity": "O",
+            "event": "O",
+            "A": 2,
+            "B": 3,
+            "odd_count": 1,
+            "U_int": 2,
+            "U_rat": "3/2",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 2,
+            "x": 13716,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 4,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 3,
+            "U_rat": "9/4",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 3,
+            "x": 117,
+            "parity": "O",
+            "event": "O",
+            "A": 8,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 2,
+            "U_rat": "9/8",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 4,
+            "x": 1265,
+            "parity": "O",
+            "event": "O",
+            "A": 16,
+            "B": 27,
+            "odd_count": 3,
+            "U_int": 2,
+            "U_rat": "27/16",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 5,
+            "x": 44992,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 32,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 3,
+            "U_rat": "81/32",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 6,
+            "x": 212,
+            "parity": "E",
+            "event": "E",
+            "A": 64,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 2,
+            "U_rat": "81/64",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 7,
+            "x": 14,
+            "parity": "E",
+            "event": "reset_below_n",
+            "A": 128,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 1,
+            "U_rat": "81/128",
+            "L_event": 1,
+            "U_cell": 1,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": true,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": false
+          }
+        ],
+        "transitions": [
+          {
+            "i": 1,
+            "from": {
+              "x": 573,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 13716,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 2,
+            "from": {
+              "x": 13716,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 117,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 4,
+            "from": {
+              "x": 1265,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 44992,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 5,
+            "from": {
+              "x": 44992,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 212,
+              "L": 1,
+              "U": 2,
+              "parity": "E",
+              "event": "E",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          }
+        ]
+      },
+      "89": {
+        "n": 89,
+        "drop_i": 8,
+        "x_drop": 70,
+        "word": "OOEOOEOE",
+        "first_L_gt_1": {
+          "i": 2,
+          "x": 24302,
+          "event": "cube_even",
+          "L": 2,
+          "U": 3,
+          "Gamma": 1,
+          "parity": "E"
+        },
+        "odd_nontrivial_count": 0,
+        "even_nontrivial_count": 2,
+        "new_odd_lowers": [],
+        "new_even_lowers": [],
+        "collision_count": 0,
+        "even_reset_count": 2,
+        "known_even_reset_count": 2,
+        "novel_even_reset_count": 0,
+        "gamma_shrinks": false,
+        "gamma_holds": true,
+        "gamma_widens": false,
+        "grew_x_shrunk_gamma": [],
+        "type_repeat_growth": [
+          {
+            "L": 2,
+            "U": 3,
+            "parity": "E",
+            "count": 2,
+            "min_x": 24302,
+            "max_x": 84722
+          }
+        ],
+        "states": [
+          {
+            "i": 0,
+            "x": 89,
+            "parity": "O",
+            "event": "O",
+            "A": 1,
+            "B": 1,
+            "odd_count": 0,
+            "U_int": 2,
+            "U_rat": "1",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 1,
+            "x": 839,
+            "parity": "O",
+            "event": "O",
+            "A": 2,
+            "B": 3,
+            "odd_count": 1,
+            "U_int": 2,
+            "U_rat": "3/2",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 2,
+            "x": 24302,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 4,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 3,
+            "U_rat": "9/4",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 3,
+            "x": 155,
+            "parity": "O",
+            "event": "O",
+            "A": 8,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 2,
+            "U_rat": "9/8",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 4,
+            "x": 1929,
+            "parity": "O",
+            "event": "O",
+            "A": 16,
+            "B": 27,
+            "odd_count": 3,
+            "U_int": 2,
+            "U_rat": "27/16",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 5,
+            "x": 84722,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 32,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 3,
+            "U_rat": "81/32",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 6,
+            "x": 291,
+            "parity": "O",
+            "event": "O",
+            "A": 64,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 2,
+            "U_rat": "81/64",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 7,
+            "x": 4964,
+            "parity": "E",
+            "event": "E",
+            "A": 128,
+            "B": 243,
+            "odd_count": 5,
+            "U_int": 2,
+            "U_rat": "243/128",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 8,
+            "x": 70,
+            "parity": "E",
+            "event": "reset_below_n",
+            "A": 256,
+            "B": 243,
+            "odd_count": 5,
+            "U_int": 1,
+            "U_rat": "243/256",
+            "L_event": 1,
+            "U_cell": 1,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": true,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": false
+          }
+        ],
+        "transitions": [
+          {
+            "i": 1,
+            "from": {
+              "x": 839,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 24302,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 2,
+            "from": {
+              "x": 24302,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 155,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 4,
+            "from": {
+              "x": 1929,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 84722,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 5,
+            "from": {
+              "x": 84722,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 291,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          }
+        ]
+      },
+      "365": {
+        "n": 365,
+        "drop_i": 15,
+        "x_drop": 34,
+        "word": "OOEOOEOOEOOEOEE",
+        "first_L_gt_1": {
+          "i": 2,
+          "x": 582276,
+          "event": "cube_even",
+          "L": 2,
+          "U": 3,
+          "Gamma": 1,
+          "parity": "E"
+        },
+        "odd_nontrivial_count": 1,
+        "even_nontrivial_count": 5,
+        "new_odd_lowers": [],
+        "new_even_lowers": [],
+        "collision_count": 0,
+        "even_reset_count": 5,
+        "known_even_reset_count": 5,
+        "novel_even_reset_count": 0,
+        "gamma_shrinks": false,
+        "gamma_holds": true,
+        "gamma_widens": false,
+        "grew_x_shrunk_gamma": [],
+        "type_repeat_growth": [
+          {
+            "L": 2,
+            "U": 3,
+            "parity": "E",
+            "count": 4,
+            "min_x": 582276,
+            "max_x": 19782308
+          }
+        ],
+        "states": [
+          {
+            "i": 0,
+            "x": 365,
+            "parity": "O",
+            "event": "O",
+            "A": 1,
+            "B": 1,
+            "odd_count": 0,
+            "U_int": 2,
+            "U_rat": "1",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 1,
+            "x": 6973,
+            "parity": "O",
+            "event": "O",
+            "A": 2,
+            "B": 3,
+            "odd_count": 1,
+            "U_int": 2,
+            "U_rat": "3/2",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 2,
+            "x": 582276,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 4,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 3,
+            "U_rat": "9/4",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 3,
+            "x": 763,
+            "parity": "O",
+            "event": "O",
+            "A": 8,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 2,
+            "U_rat": "9/8",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 4,
+            "x": 21075,
+            "parity": "O",
+            "event": "O",
+            "A": 16,
+            "B": 27,
+            "odd_count": 3,
+            "U_int": 2,
+            "U_rat": "27/16",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 5,
+            "x": 3059506,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 32,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 3,
+            "U_rat": "81/32",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 6,
+            "x": 1749,
+            "parity": "O",
+            "event": "O",
+            "A": 64,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 2,
+            "U_rat": "81/64",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 7,
+            "x": 73145,
+            "parity": "O",
+            "event": "O",
+            "A": 128,
+            "B": 243,
+            "odd_count": 5,
+            "U_int": 2,
+            "U_rat": "243/128",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 8,
+            "x": 19782308,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 256,
+            "B": 729,
+            "odd_count": 6,
+            "U_int": 3,
+            "U_rat": "729/256",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 9,
+            "x": 4447,
+            "parity": "O",
+            "event": "O",
+            "A": 512,
+            "B": 729,
+            "odd_count": 6,
+            "U_int": 2,
+            "U_rat": "729/512",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 10,
+            "x": 296551,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 1024,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 3,
+            "U_rat": "2187/1024",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 11,
+            "x": 161491284,
+            "parity": "E",
+            "event": "cube_lift",
+            "A": 2048,
+            "B": 6561,
+            "odd_count": 8,
+            "U_int": 4,
+            "U_rat": "6561/2048",
+            "L_event": 3,
+            "U_cell": 4,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_odd_lift",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 12,
+            "x": 12707,
+            "parity": "O",
+            "event": "O",
+            "A": 4096,
+            "B": 6561,
+            "odd_count": 8,
+            "U_int": 2,
+            "U_rat": "6561/4096",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 13,
+            "x": 1432400,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 8192,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 3,
+            "U_rat": "19683/8192",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 14,
+            "x": 1196,
+            "parity": "E",
+            "event": "E",
+            "A": 16384,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 2,
+            "U_rat": "19683/16384",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 15,
+            "x": 34,
+            "parity": "E",
+            "event": "reset_below_n",
+            "A": 32768,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 1,
+            "U_rat": "19683/32768",
+            "L_event": 1,
+            "U_cell": 1,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": true,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": false
+          }
+        ],
+        "transitions": [
+          {
+            "i": 1,
+            "from": {
+              "x": 6973,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 582276,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 2,
+            "from": {
+              "x": 582276,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 763,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 4,
+            "from": {
+              "x": 21075,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 3059506,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 5,
+            "from": {
+              "x": 3059506,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 1749,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 7,
+            "from": {
+              "x": 73145,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 19782308,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 8,
+            "from": {
+              "x": 19782308,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 4447,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 9,
+            "from": {
+              "x": 4447,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 296551,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 10,
+            "from": {
+              "x": 296551,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 161491284,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 11,
+            "from": {
+              "x": 161491284,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 12707,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 12,
+            "from": {
+              "x": 12707,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 1432400,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 13,
+            "from": {
+              "x": 1432400,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 1196,
+              "L": 1,
+              "U": 2,
+              "parity": "E",
+              "event": "E",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          }
+        ]
+      },
+      "501": {
+        "n": 501,
+        "drop_i": 23,
+        "x_drop": 34,
+        "word": "OOEOOOEOOEEOOEOOEOOEOEE",
+        "first_L_gt_1": {
+          "i": 2,
+          "x": 1187360,
+          "event": "cube_even",
+          "L": 2,
+          "U": 3,
+          "Gamma": 1,
+          "parity": "E"
+        },
+        "odd_nontrivial_count": 3,
+        "even_nontrivial_count": 8,
+        "new_odd_lowers": [],
+        "new_even_lowers": [],
+        "collision_count": 0,
+        "even_reset_count": 8,
+        "known_even_reset_count": 8,
+        "novel_even_reset_count": 0,
+        "gamma_shrinks": false,
+        "gamma_holds": true,
+        "gamma_widens": false,
+        "grew_x_shrunk_gamma": [],
+        "type_repeat_growth": [
+          {
+            "L": 2,
+            "U": 3,
+            "parity": "E",
+            "count": 5,
+            "min_x": 582916,
+            "max_x": 19782308
+          },
+          {
+            "L": 2,
+            "U": 3,
+            "parity": "O",
+            "count": 3,
+            "min_x": 296551,
+            "max_x": 48693935
+          },
+          {
+            "L": 3,
+            "U": 4,
+            "parity": "E",
+            "count": 2,
+            "min_x": 161491284,
+            "max_x": 17781526790
+          }
+        ],
+        "states": [
+          {
+            "i": 0,
+            "x": 501,
+            "parity": "O",
+            "event": "O",
+            "A": 1,
+            "B": 1,
+            "odd_count": 0,
+            "U_int": 2,
+            "U_rat": "1",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 1,
+            "x": 11213,
+            "parity": "O",
+            "event": "O",
+            "A": 2,
+            "B": 3,
+            "odd_count": 1,
+            "U_int": 2,
+            "U_rat": "3/2",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 2,
+            "x": 1187360,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 4,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 3,
+            "U_rat": "9/4",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 3,
+            "x": 1089,
+            "parity": "O",
+            "event": "O",
+            "A": 8,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 2,
+            "U_rat": "9/8",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 4,
+            "x": 35937,
+            "parity": "O",
+            "event": "O",
+            "A": 16,
+            "B": 27,
+            "odd_count": 3,
+            "U_int": 2,
+            "U_rat": "27/16",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 5,
+            "x": 6812597,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 32,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 3,
+            "U_rat": "81/32",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 6,
+            "x": 17781526790,
+            "parity": "E",
+            "event": "cube_lift",
+            "A": 64,
+            "B": 243,
+            "odd_count": 5,
+            "U_int": 4,
+            "U_rat": "243/64",
+            "L_event": 3,
+            "U_cell": 4,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_odd_lift",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 7,
+            "x": 133347,
+            "parity": "O",
+            "event": "O",
+            "A": 128,
+            "B": 243,
+            "odd_count": 5,
+            "U_int": 2,
+            "U_rat": "243/128",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 8,
+            "x": 48693935,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 256,
+            "B": 729,
+            "odd_count": 6,
+            "U_int": 3,
+            "U_rat": "729/256",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 9,
+            "x": 339791341082,
+            "parity": "E",
+            "event": "cube_lift",
+            "A": 512,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 5,
+            "U_rat": "2187/512",
+            "L_event": 4,
+            "U_cell": 5,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 2,
+            "sources": [
+              "cube_odd_lift",
+              "aboveAnchor_even_run_ge_pow"
+            ],
+            "above": true
+          },
+          {
+            "i": 10,
+            "x": 582916,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 1024,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 3,
+            "U_rat": "2187/1024",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 11,
+            "x": 763,
+            "parity": "O",
+            "event": "O",
+            "A": 2048,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 2,
+            "U_rat": "2187/2048",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 12,
+            "x": 21075,
+            "parity": "O",
+            "event": "O",
+            "A": 4096,
+            "B": 6561,
+            "odd_count": 8,
+            "U_int": 2,
+            "U_rat": "6561/4096",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 13,
+            "x": 3059506,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 8192,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 3,
+            "U_rat": "19683/8192",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 14,
+            "x": 1749,
+            "parity": "O",
+            "event": "O",
+            "A": 16384,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 2,
+            "U_rat": "19683/16384",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 15,
+            "x": 73145,
+            "parity": "O",
+            "event": "O",
+            "A": 32768,
+            "B": 59049,
+            "odd_count": 10,
+            "U_int": 2,
+            "U_rat": "59049/32768",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 16,
+            "x": 19782308,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 65536,
+            "B": 177147,
+            "odd_count": 11,
+            "U_int": 3,
+            "U_rat": "177147/65536",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 17,
+            "x": 4447,
+            "parity": "O",
+            "event": "O",
+            "A": 131072,
+            "B": 177147,
+            "odd_count": 11,
+            "U_int": 2,
+            "U_rat": "177147/131072",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 18,
+            "x": 296551,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 262144,
+            "B": 531441,
+            "odd_count": 12,
+            "U_int": 3,
+            "U_rat": "531441/262144",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 19,
+            "x": 161491284,
+            "parity": "E",
+            "event": "cube_lift",
+            "A": 524288,
+            "B": 1594323,
+            "odd_count": 13,
+            "U_int": 4,
+            "U_rat": "1594323/524288",
+            "L_event": 3,
+            "U_cell": 4,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_odd_lift",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 20,
+            "x": 12707,
+            "parity": "O",
+            "event": "O",
+            "A": 1048576,
+            "B": 1594323,
+            "odd_count": 13,
+            "U_int": 2,
+            "U_rat": "1594323/1048576",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 21,
+            "x": 1432400,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 2097152,
+            "B": 4782969,
+            "odd_count": 14,
+            "U_int": 3,
+            "U_rat": "4782969/2097152",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 22,
+            "x": 1196,
+            "parity": "E",
+            "event": "E",
+            "A": 4194304,
+            "B": 4782969,
+            "odd_count": 14,
+            "U_int": 2,
+            "U_rat": "4782969/4194304",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 23,
+            "x": 34,
+            "parity": "E",
+            "event": "reset_below_n",
+            "A": 8388608,
+            "B": 4782969,
+            "odd_count": 14,
+            "U_int": 1,
+            "U_rat": "4782969/8388608",
+            "L_event": 1,
+            "U_cell": 1,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": true,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": false
+          }
+        ],
+        "transitions": [
+          {
+            "i": 1,
+            "from": {
+              "x": 11213,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 1187360,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 2,
+            "from": {
+              "x": 1187360,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 1089,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 4,
+            "from": {
+              "x": 35937,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 6812597,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 5,
+            "from": {
+              "x": 6812597,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 17781526790,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 6,
+            "from": {
+              "x": 17781526790,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 133347,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 7,
+            "from": {
+              "x": 133347,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 48693935,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 8,
+            "from": {
+              "x": 48693935,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 339791341082,
+              "L": 4,
+              "U": 5,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 9,
+            "from": {
+              "x": 339791341082,
+              "L": 4,
+              "U": 5,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 582916,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": false,
+            "gamma_change": 0
+          },
+          {
+            "i": 10,
+            "from": {
+              "x": 582916,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 763,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 12,
+            "from": {
+              "x": 21075,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 3059506,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 13,
+            "from": {
+              "x": 3059506,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 1749,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 15,
+            "from": {
+              "x": 73145,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 19782308,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 16,
+            "from": {
+              "x": 19782308,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 4447,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 17,
+            "from": {
+              "x": 4447,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 296551,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 18,
+            "from": {
+              "x": 296551,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 161491284,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 19,
+            "from": {
+              "x": 161491284,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 12707,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 20,
+            "from": {
+              "x": 12707,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 1432400,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 21,
+            "from": {
+              "x": 1432400,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 1196,
+              "L": 1,
+              "U": 2,
+              "parity": "E",
+              "event": "E",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          }
+        ]
+      },
+      "1517": {
+        "n": 1517,
+        "drop_i": 16,
+        "x_drop": 734,
+        "word": "OOEOOEOOEOEOOOEE",
+        "first_L_gt_1": {
+          "i": 2,
+          "x": 14362030,
+          "event": "cube_even",
+          "L": 2,
+          "U": 3,
+          "Gamma": 1,
+          "parity": "E"
+        },
+        "odd_nontrivial_count": 1,
+        "even_nontrivial_count": 5,
+        "new_odd_lowers": [],
+        "new_even_lowers": [],
+        "collision_count": 0,
+        "even_reset_count": 5,
+        "known_even_reset_count": 5,
+        "novel_even_reset_count": 0,
+        "gamma_shrinks": false,
+        "gamma_holds": true,
+        "gamma_widens": false,
+        "grew_x_shrunk_gamma": [],
+        "type_repeat_growth": [
+          {
+            "L": 2,
+            "U": 3,
+            "parity": "E",
+            "count": 4,
+            "min_x": 6217088,
+            "max_x": 1143235850
+          }
+        ],
+        "states": [
+          {
+            "i": 0,
+            "x": 1517,
+            "parity": "O",
+            "event": "O",
+            "A": 1,
+            "B": 1,
+            "odd_count": 0,
+            "U_int": 2,
+            "U_rat": "1",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 1,
+            "x": 59085,
+            "parity": "O",
+            "event": "O",
+            "A": 2,
+            "B": 3,
+            "odd_count": 1,
+            "U_int": 2,
+            "U_rat": "3/2",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 2,
+            "x": 14362030,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 4,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 3,
+            "U_rat": "9/4",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 3,
+            "x": 3789,
+            "parity": "O",
+            "event": "O",
+            "A": 8,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 2,
+            "U_rat": "9/8",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 4,
+            "x": 233231,
+            "parity": "O",
+            "event": "O",
+            "A": 16,
+            "B": 27,
+            "odd_count": 3,
+            "U_int": 2,
+            "U_rat": "27/16",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 5,
+            "x": 112636568,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 32,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 3,
+            "U_rat": "81/32",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 6,
+            "x": 10613,
+            "parity": "O",
+            "event": "O",
+            "A": 64,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 2,
+            "U_rat": "81/64",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 7,
+            "x": 1093345,
+            "parity": "O",
+            "event": "O",
+            "A": 128,
+            "B": 243,
+            "odd_count": 5,
+            "U_int": 2,
+            "U_rat": "243/128",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 8,
+            "x": 1143235850,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 256,
+            "B": 729,
+            "odd_count": 6,
+            "U_int": 3,
+            "U_rat": "729/256",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 9,
+            "x": 33811,
+            "parity": "O",
+            "event": "O",
+            "A": 512,
+            "B": 729,
+            "odd_count": 6,
+            "U_int": 2,
+            "U_rat": "729/512",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 10,
+            "x": 6217088,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 1024,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 3,
+            "U_rat": "2187/1024",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 11,
+            "x": 2493,
+            "parity": "O",
+            "event": "O",
+            "A": 2048,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 2,
+            "U_rat": "2187/2048",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 12,
+            "x": 124475,
+            "parity": "O",
+            "event": "O",
+            "A": 4096,
+            "B": 6561,
+            "odd_count": 8,
+            "U_int": 2,
+            "U_rat": "6561/4096",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 13,
+            "x": 43916043,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 8192,
+            "B": 19683,
+            "odd_count": 9,
+            "U_int": 3,
+            "U_rat": "19683/8192",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 14,
+            "x": 291028018566,
+            "parity": "E",
+            "event": "cube_lift",
+            "A": 16384,
+            "B": 59049,
+            "odd_count": 10,
+            "U_int": 4,
+            "U_rat": "59049/16384",
+            "L_event": 3,
+            "U_cell": 4,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_odd_lift",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 15,
+            "x": 539470,
+            "parity": "E",
+            "event": "E",
+            "A": 32768,
+            "B": 59049,
+            "odd_count": 10,
+            "U_int": 2,
+            "U_rat": "59049/32768",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 16,
+            "x": 734,
+            "parity": "E",
+            "event": "reset_below_n",
+            "A": 65536,
+            "B": 59049,
+            "odd_count": 10,
+            "U_int": 1,
+            "U_rat": "59049/65536",
+            "L_event": 1,
+            "U_cell": 1,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": true,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": false
+          }
+        ],
+        "transitions": [
+          {
+            "i": 1,
+            "from": {
+              "x": 59085,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 14362030,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 2,
+            "from": {
+              "x": 14362030,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 3789,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 4,
+            "from": {
+              "x": 233231,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 112636568,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 5,
+            "from": {
+              "x": 112636568,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 10613,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 7,
+            "from": {
+              "x": 1093345,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 1143235850,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 8,
+            "from": {
+              "x": 1143235850,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 33811,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 9,
+            "from": {
+              "x": 33811,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 6217088,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 10,
+            "from": {
+              "x": 6217088,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 2493,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 12,
+            "from": {
+              "x": 124475,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 43916043,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 13,
+            "from": {
+              "x": 43916043,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 291028018566,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 14,
+            "from": {
+              "x": 291028018566,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 539470,
+              "L": 1,
+              "U": 2,
+              "parity": "E",
+              "event": "E",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          }
+        ]
+      },
+      "6187": {
+        "n": 6187,
+        "drop_i": 13,
+        "x_drop": 1087,
+        "word": "OOEOOOEOOEEOE",
+        "first_L_gt_1": {
+          "i": 2,
+          "x": 339491658,
+          "event": "cube_even",
+          "L": 2,
+          "U": 3,
+          "Gamma": 1,
+          "parity": "E"
+        },
+        "odd_nontrivial_count": 2,
+        "even_nontrivial_count": 4,
+        "new_odd_lowers": [],
+        "new_even_lowers": [],
+        "collision_count": 0,
+        "even_reset_count": 4,
+        "known_even_reset_count": 4,
+        "novel_even_reset_count": 0,
+        "gamma_shrinks": false,
+        "gamma_holds": true,
+        "gamma_widens": false,
+        "grew_x_shrunk_gamma": [],
+        "type_repeat_growth": [
+          {
+            "L": 2,
+            "U": 3,
+            "parity": "E",
+            "count": 2,
+            "min_x": 125201440,
+            "max_x": 339491658
+          },
+          {
+            "L": 2,
+            "U": 3,
+            "parity": "O",
+            "count": 2,
+            "min_x": 3955183437,
+            "max_x": 62634329559
+          }
+        ],
+        "states": [
+          {
+            "i": 0,
+            "x": 6187,
+            "parity": "O",
+            "event": "O",
+            "A": 1,
+            "B": 1,
+            "odd_count": 0,
+            "U_int": 2,
+            "U_rat": "1",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 1,
+            "x": 486653,
+            "parity": "O",
+            "event": "O",
+            "A": 2,
+            "B": 3,
+            "odd_count": 1,
+            "U_int": 2,
+            "U_rat": "3/2",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 2,
+            "x": 339491658,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 4,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 3,
+            "U_rat": "9/4",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 3,
+            "x": 18425,
+            "parity": "O",
+            "event": "O",
+            "A": 8,
+            "B": 9,
+            "odd_count": 2,
+            "U_int": 2,
+            "U_rat": "9/8",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 4,
+            "x": 2500985,
+            "parity": "O",
+            "event": "O",
+            "A": 16,
+            "B": 27,
+            "odd_count": 3,
+            "U_int": 2,
+            "U_rat": "27/16",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 5,
+            "x": 3955183437,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 32,
+            "B": 81,
+            "odd_count": 4,
+            "U_int": 3,
+            "U_rat": "81/32",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 6,
+            "x": 248742471750750,
+            "parity": "E",
+            "event": "cube_lift",
+            "A": 64,
+            "B": 243,
+            "odd_count": 5,
+            "U_int": 4,
+            "U_rat": "243/64",
+            "L_event": 3,
+            "U_cell": 4,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_odd_lift",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 7,
+            "x": 15771571,
+            "parity": "O",
+            "event": "O",
+            "A": 128,
+            "B": 243,
+            "odd_count": 5,
+            "U_int": 2,
+            "U_rat": "243/128",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 8,
+            "x": 62634329559,
+            "parity": "O",
+            "event": "cube_odd",
+            "A": 256,
+            "B": 729,
+            "odd_count": 6,
+            "U_int": 3,
+            "U_rat": "729/256",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [
+              "CubeOddLanding"
+            ],
+            "above": true
+          },
+          {
+            "i": 9,
+            "x": 15675400641582836,
+            "parity": "E",
+            "event": "cube_lift",
+            "A": 512,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 5,
+            "U_rat": "2187/512",
+            "L_event": 4,
+            "U_cell": 5,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 2,
+            "sources": [
+              "cube_odd_lift",
+              "aboveAnchor_even_run_ge_pow"
+            ],
+            "above": true
+          },
+          {
+            "i": 10,
+            "x": 125201440,
+            "parity": "E",
+            "event": "cube_even",
+            "A": 1024,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 3,
+            "U_rat": "2187/1024",
+            "L_event": 2,
+            "U_cell": 3,
+            "Gamma": 1,
+            "trivial_anchor": false,
+            "collision": false,
+            "even_reset_fires": true,
+            "even_run_r": 1,
+            "sources": [
+              "cube_even_cell",
+              "even_ge_sq"
+            ],
+            "above": true
+          },
+          {
+            "i": 11,
+            "x": 11189,
+            "parity": "O",
+            "event": "O",
+            "A": 2048,
+            "B": 2187,
+            "odd_count": 7,
+            "U_int": 2,
+            "U_rat": "2187/2048",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 12,
+            "x": 1183550,
+            "parity": "E",
+            "event": "E",
+            "A": 4096,
+            "B": 6561,
+            "odd_count": 8,
+            "U_int": 2,
+            "U_rat": "6561/4096",
+            "L_event": 1,
+            "U_cell": 2,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": false,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": true
+          },
+          {
+            "i": 13,
+            "x": 1087,
+            "parity": "O",
+            "event": "reset_below_n",
+            "A": 8192,
+            "B": 6561,
+            "odd_count": 8,
+            "U_int": 1,
+            "U_rat": "6561/8192",
+            "L_event": 1,
+            "U_cell": 1,
+            "Gamma": null,
+            "trivial_anchor": true,
+            "collision": true,
+            "even_reset_fires": false,
+            "even_run_r": 0,
+            "sources": [],
+            "above": false
+          }
+        ],
+        "transitions": [
+          {
+            "i": 1,
+            "from": {
+              "x": 486653,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 339491658,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 2,
+            "from": {
+              "x": 339491658,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 18425,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 4,
+            "from": {
+              "x": 2500985,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 3955183437,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 5,
+            "from": {
+              "x": 3955183437,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 248742471750750,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 6,
+            "from": {
+              "x": 248742471750750,
+              "L": 3,
+              "U": 4,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 15771571,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          },
+          {
+            "i": 7,
+            "from": {
+              "x": 15771571,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "to": {
+              "x": 62634329559,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": null
+          },
+          {
+            "i": 8,
+            "from": {
+              "x": 62634329559,
+              "L": 2,
+              "U": 3,
+              "parity": "O",
+              "event": "cube_odd",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 15675400641582836,
+              "L": 4,
+              "U": 5,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "x_grew": true,
+            "gamma_change": 0
+          },
+          {
+            "i": 9,
+            "from": {
+              "x": 15675400641582836,
+              "L": 4,
+              "U": 5,
+              "parity": "E",
+              "event": "cube_lift",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 125201440,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "x_grew": false,
+            "gamma_change": 0
+          },
+          {
+            "i": 10,
+            "from": {
+              "x": 125201440,
+              "L": 2,
+              "U": 3,
+              "parity": "E",
+              "event": "cube_even",
+              "Gamma": 1
+            },
+            "to": {
+              "x": 11189,
+              "L": 1,
+              "U": 2,
+              "parity": "O",
+              "event": "O",
+              "Gamma": null
+            },
+            "x_grew": false,
+            "gamma_change": null
+          }
+        ]
+      }
+    },
+    "first_L_gt_1": {
+      "37": {
+        "i": 2,
+        "x": 3375,
+        "event": "cube_odd",
+        "L": 2,
+        "U": 3,
+        "Gamma": 1,
+        "parity": "O"
+      },
+      "69": {
+        "i": 2,
+        "x": 13716,
+        "event": "cube_even",
+        "L": 2,
+        "U": 3,
+        "Gamma": 1,
+        "parity": "E"
+      },
+      "89": {
+        "i": 2,
+        "x": 24302,
+        "event": "cube_even",
+        "L": 2,
+        "U": 3,
+        "Gamma": 1,
+        "parity": "E"
+      },
+      "365": {
+        "i": 2,
+        "x": 582276,
+        "event": "cube_even",
+        "L": 2,
+        "U": 3,
+        "Gamma": 1,
+        "parity": "E"
+      },
+      "501": {
+        "i": 2,
+        "x": 1187360,
+        "event": "cube_even",
+        "L": 2,
+        "U": 3,
+        "Gamma": 1,
+        "parity": "E"
+      },
+      "1517": {
+        "i": 2,
+        "x": 14362030,
+        "event": "cube_even",
+        "L": 2,
+        "U": 3,
+        "Gamma": 1,
+        "parity": "E"
+      },
+      "6187": {
+        "i": 2,
+        "x": 339491658,
+        "event": "cube_even",
+        "L": 2,
+        "U": 3,
+        "Gamma": 1,
+        "parity": "E"
+      }
+    },
+    "chain_37": [
+      {
+        "x": 3375,
+        "i": 2,
+        "event": "cube_odd",
+        "parity": "O",
+        "L": 2,
+        "U": 3,
+        "Gamma": 1,
+        "trivial_anchor": false,
+        "U_rat": "9/4",
+        "even_reset_fires": false,
+        "sources": [
+          "CubeOddLanding"
+        ]
+      },
+      {
+        "x": 196069,
+        "i": 3,
+        "event": "cube_lift",
+        "parity": "O",
+        "L": 3,
+        "U": 4,
+        "Gamma": 1,
+        "trivial_anchor": false,
+        "U_rat": "27/8",
+        "even_reset_fires": false,
+        "sources": [
+          "cube_odd_lift"
+        ]
+      },
+      {
+        "x": 86818724,
+        "i": 4,
+        "event": "cube_oo",
+        "parity": "E",
+        "L": 4,
+        "U": 6,
+        "Gamma": 2,
+        "trivial_anchor": false,
+        "U_rat": "81/16",
+        "even_reset_fires": true,
+        "sources": [
+          "cube_lift_odd_ge_fourth",
+          "even_ge_sq"
+        ]
+      },
+      {
+        "x": 9317,
+        "i": 5,
+        "event": "cube_odd",
+        "parity": "O",
+        "L": 2,
+        "U": 3,
+        "Gamma": 1,
+        "trivial_anchor": false,
+        "U_rat": "81/32",
+        "even_reset_fires": false,
+        "sources": [
+          "CubeOddLanding"
+        ]
+      }
+    ],
+    "chain_37_growth_vs_gap": {
+      "present": true,
+      "x_grew": true,
+      "gamma_shrunk": false,
+      "gamma_held": true,
+      "from_L_U": [
+        2,
+        3
+      ],
+      "to_L_U": [
+        2,
+        3
+      ],
+      "from_Gamma": 1,
+      "to_Gamma": 1
+    },
+    "new_odd_lowers": [],
+    "new_even_lowers": [],
+    "collision_count": 0,
+    "novel_even_reset_count": 0,
+    "type_repeat_growth": [
+      {
+        "n": 37,
+        "L": 2,
+        "U": 3,
+        "parity": "O",
+        "count": 3,
+        "min_x": 2233,
+        "max_x": 9317
+      },
+      {
+        "n": 37,
+        "L": 3,
+        "U": 4,
+        "parity": "O",
+        "count": 3,
+        "min_x": 105519,
+        "max_x": 899319
+      },
+      {
+        "n": 69,
+        "L": 2,
+        "U": 3,
+        "parity": "E",
+        "count": 2,
+        "min_x": 13716,
+        "max_x": 44992
+      },
+      {
+        "n": 89,
+        "L": 2,
+        "U": 3,
+        "parity": "E",
+        "count": 2,
+        "min_x": 24302,
+        "max_x": 84722
+      },
+      {
+        "n": 365,
+        "L": 2,
+        "U": 3,
+        "parity": "E",
+        "count": 4,
+        "min_x": 582276,
+        "max_x": 19782308
+      },
+      {
+        "n": 501,
+        "L": 2,
+        "U": 3,
+        "parity": "E",
+        "count": 5,
+        "min_x": 582916,
+        "max_x": 19782308
+      },
+      {
+        "n": 501,
+        "L": 2,
+        "U": 3,
+        "parity": "O",
+        "count": 3,
+        "min_x": 296551,
+        "max_x": 48693935
+      },
+      {
+        "n": 501,
+        "L": 3,
+        "U": 4,
+        "parity": "E",
+        "count": 2,
+        "min_x": 161491284,
+        "max_x": 17781526790
+      },
+      {
+        "n": 1517,
+        "L": 2,
+        "U": 3,
+        "parity": "E",
+        "count": 4,
+        "min_x": 6217088,
+        "max_x": 1143235850
+      },
+      {
+        "n": 6187,
+        "L": 2,
+        "U": 3,
+        "parity": "E",
+        "count": 2,
+        "min_x": 125201440,
+        "max_x": 339491658
+      },
+      {
+        "n": 6187,
+        "L": 2,
+        "U": 3,
+        "parity": "O",
+        "count": 2,
+        "min_x": 3955183437,
+        "max_x": 62634329559
+      }
+    ],
+    "grew_x_shrunk_gamma": [],
+    "all_odd_nontrivial_named": true,
+    "no_new_odd_lower": true,
+    "no_new_even_lower": true,
+    "no_realized_collision": true,
+    "even_reset_only_known": true,
+    "letter_chain": false,
+    "scale_reopen": false,
+    "sigma_automaton": false,
+    "corridor_lean": false,
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "pivot_corridor_reopen": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "EnvelopeState": true,
+    "PowerCorridor": true,
+    "envelope_corridor_contradiction": true,
+    "even_below_anchor_pow": true,
+    "AboveAnchor": true,
+    "even_ge_sq_of_aboveAnchor": true,
+    "aboveAnchor_even_run_ge_pow": true,
+    "CubeOddLanding": true,
+    "cube_odd_lift": true,
+    "cube_lift_odd_ge_fourth": true,
+    "FiniteProgress": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_OddEscapeCorridor": false,
+    "has_api_CorridorGap": false,
+    "has_api_PowerCorridorState": false,
+    "has_api_corridor_of_bounds": false,
+    "has_api_corridor_even_reset": false,
+    "has_api_corridor_collision": false,
+    "has_api_SigmaCorridor": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "ODD_ESCAPE_CORRIDOR_CLOSED",
+    "reason": "odd L>1 is CubeOddLanding / cube_odd_lift / cube_lift_odd_ge_fourth; even L>1 is even_ge_sq or even-run; collisions do not occur on realized prefixes; even-reset U<2L is the existing cube-even cell"
+  },
+  "search_method": "proved event lowers + EnvelopeState U_int on 37/69/89/365/501/1517/6187; pinned 3375 chain"
+}

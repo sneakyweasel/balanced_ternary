@@ -14301,4 +14301,38 @@ Best next question
 - none from prefix growth/retention balance
 ```
 
+## Juggler odd-escape two-sided corridor
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether proved event lowers plus the inherited `EnvelopeState` upper give a two-sided corridor that constrains leftover odd escape beyond either side alone
+- **Hypotheses:** \(\Gamma=U-L\) is a new progress variable; an odd residual has some \(L>1\) that is not already `cube_odd_lift` / fourth
+- **Major results:** Classification **ODD_ESCAPE_CORRIDOR_CLOSED**. Generic odd states are `trivial_anchor` until the \(i=2\) `OO` landing. Leftovers first hit cube-even \([2,3)\); \(37\) hits cube-odd. The \(3375\to9317\) pair stays in \([2,3)\) with \(\Gamma=1\) while \(x\) grows. Word envelope tightens `cube_odd_lift` from \(U=5\) to \(U=4\) at \(196069\). No realized collision. Even-reset \(U<2L\) is `even_below_anchor_pow` on named cells. Corridor types recur with growing \(x\) (scale recurrence, not `CycleMin`). No `OddEscapeCorridor.lean`. Paper A unchanged. No halt theorem. No ledger row
+- **Refuted ideas:** independent corridor gap \(\Gamma\); generic odd \(L>1\); \(x\) grows while \(\Gamma\) shrinks on \(3375\to9317\); corridor-type recurrence is arithmetic recurrence
+- **Literature:** `J-envelope-lt-pow`; `J-above-anchor`; `J-cube-not-square-split`; `J-cube-odd-even-reset`; `juggler_corridor.md` (`CORRIDOR_REPACKAGING`); `J-source-relative-odd-reset`
+- **Open:** none from two-sided corridor width. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. Every nontrivial cell is a named cube/even lemma plus `envelope_lt_pow`
+
+```text
+What was learned
+- first L>1 is always the OO landing at i=2
+- leftover nontrivial cells have width 1
+- 37 oscillates Gamma and repeats [2,3) odd at 3375, 9317, 2233
+- 3375->9317 grows x and holds Gamma
+- even-reset U<2L is even_below_anchor_pow
+Strongest theorem
+- none new
+Strongest refutation
+- independent two-sided gap on leftover odd escape
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- the corridor restates CubeOddLanding,
+  cube_odd_lift, even_ge_sq, and the envelope
+Best next question
+- which odd-landing corridor first fails a
+  shared AboveAnchor obstruction, if any?
+```
+
 
