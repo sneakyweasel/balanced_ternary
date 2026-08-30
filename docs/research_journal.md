@@ -11823,3 +11823,114 @@ Best next question
   O^7 EEEE, not Z5
 ```
 
+## Juggler O^7 EEEE inverse-cell window
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether \(T_{O^7\mathrm{EEEE}}(n)=n\) is empty on the leftover-cell window \(n<N_0\)
+- **Hypotheses:** the EEEE inverse cell \([n^{16},(n+1)^{16})\) contains no seven-odd image below \(N_0=828\,484\,409\)
+- **Major results:** classification **O7EEEE_WINDOW_EMPTY**. Exact scan of \(3\le n<N_0\): \(6\,473\,954\) \(O^7\) starts, \(3\,234\,088\) even \(T^7\), zero below or in the cell, zero returns. Closest ratio \(445.01\) at \(n=289\). Ledger row `J-o7eeee-window`. No Lean. Not a length-11 census and not a halt theorem
+- **Refuted ideas:** a hit exists below \(N_0\); the leftover cell is the sharp obstruction in the window
+- **Literature:** `leftover_prefix_cell`; trailing evens \(r=4\); leftover-cell lag `CLOSE`; four-even short-gap `PARK`; tight \(Z_4\) `CLOSE`
+- **Open:** a proof that \(O^7\) even images stay above the EEEE cell. Do not scan the other twenty-nine automatically
+- **Decision:** PROMOTE. One-word empty window. The actual miss is a factor \(445\), not the \(N_0\sim 8\cdot 10^8\) cell
+
+```text
+What was learned
+- a cycle O^7 EEEE is T^7(n) in [n^16,(n+1)^16)
+- leftover_prefix_cell forbids only n>=828484409
+- the window below N0 is empty
+- T^7 never entered the inverse cell
+- closest miss is 445x at n=289
+- the envelope cell is not the real obstruction
+Strongest theorem
+- no O^7 EEEE cycle word for n>=3
+  (COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- the leftover cell is sharp in the window
+Reusable machinery
+- o7eeee_window.py; no Lean
+Branch status
+- PROMOTE
+Why
+- the sharp leftover equation is empty; the gap
+  is large enough to justify a later proof, not
+  a thirty-word scan
+Best next question
+- prove T^7(n)>(n+1)^16 on O^7 even landings,
+  not Z5 and not the other twenty-nine words
+```
+
+## Juggler first-even overshoot corollary
+
+- **Date:** 2026-08-30
+- **Objective:** Package the free leftover corollary that the return-to-\(n\) cell of `minimal_first_even_dichotomy` is dead after \(e\le 3\)
+- **Hypotheses:** return on the first \(O^a E\) is an even-count-1 cycle word, so `MinimalNonTerm` / `CycleMin` must overshoot
+- **Major results:** Lean `minimal_first_even_overshoots` and `cycleMin_first_even_overshoots` in `EvenCountThree.lean`. Ledger row `J-first-even-overshoots` recorded on the even-count dossier. No new file. Paper A unchanged. Not a four-even exclusion and not a halt theorem
+- **Refuted ideas:** the first-even dichotomy still has a live return-to-\(n\) cell on a leftover start
+- **Literature:** `minimal_first_even_dichotomy`; `no_cycle_word_even_count_le_three`
+- **Open:** stop. Do not open ReturnBelow, \(K_3\), or a four-even leftover on this corollary
+- **Decision:** PROMOTE. Named leftover-start upgrade. It sharpens the halt setup and does not kill a four-even word
+
+```text
+What was learned
+- return on the first O^a E is an e=1 cycle word
+- after e<=3 that cell is empty
+- leftover starts overshoot at the first even
+- the leftover is then y>n, not T(z)=n
+- this does not exclude O^7 EEEE or any e=4 word
+Strongest theorem
+- minimal_first_even_overshoots
+  (EXACT — LEAN VERIFIED)
+- cycleMin_first_even_overshoots
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- return-to-n remains live on MinimalNonTerm / CycleMin
+Reusable machinery
+- two lemmas in EvenCountThree.lean; no new module
+- not imported by JugglerPaper
+Branch status
+- PROMOTE
+Why
+- the dichotomy leftover is now a theorem, recorded
+  on the existing even-count dossier
+Best next question
+- stop
+```
+
+## Juggler O^7 EEEE +1-chain gap
+
+- **Date:** 2026-08-30
+- **Objective:** Prove \(T^7(n)\ge(n+1)^{16}\) on \(O^7\) starts, replacing the leftover-cell scan
+- **Hypotheses:** the leftover \(4\)-fudge is the slack; the exact successor cell \((T+1)^2>x^3\) with \(x_k\ge n\) fires at the existing seven-odd cutoff \(256\)
+- **Major results:** classification **O7EEEE_GAP_PROVED**. On an \(O^7\) run, \(n^{6177}<(n+1)^{3990}(T^7(n)+1)^{128}\). For \(n\ge 256\), \(n^{6177}>(n+1)^{6038}\) by \(256^{139}>2^{40}>3^{24}>(257/256)^{6038}\). Combined with `no_follows_seven_odds_of_lt256`, every \(O^7\) image sits at or above \((n+1)^{16}\), so \(O^7\mathrm{EEEE}\) is not a cycle word. Ledger row `J-o7eeee-gap`. No Lean. First \(O^7\) start is \(n=289\). Not a length-11 census and not a halt theorem
+- **Refuted ideas:** the leftover \(4\)-fudge is necessary for this word; the gap still needs a pin near \(10^8\)
+- **Literature:** `no_follows_seven_odds_of_lt256`; leftover_prefix_cell; inverse-cell window `PROMOTE`
+- **Open:** Lean packaging of this one inequality. Do not scan the other twenty-nine automatically
+- **Decision:** PROMOTE. Exact one-word exclusion. The \(4\)-fudge was the threshold obstruction
+
+```text
+What was learned
+- leftover_prefix_cell spends a factor 2^{4118}
+- the exact odd cell is (T+1)^2 > x^3
+- x_k >= n on an odd run
+- those compose to n^{6177} < (n+1)^{3990}(T^7(n)+1)^{128}
+- n>=256 already beats (n+1)^{6038}
+- seven odds below 256 are already impossible
+Strongest theorem
+- T^7(n) >= (n+1)^{16} on every O^7 start;
+  O^7 EEEE is not a cycle word
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- the leftover 4-fudge is necessary for this word
+Reusable machinery
+- o7eeee_gap.py; no Lean
+Branch status
+- PROMOTE
+Why
+- the sharp leftover equation is now an elementary
+  +1-chain at the existing seven-odd cutoff
+Best next question
+- Lean T^7(n)>=(n+1)^{16} on O^7, not Z5
+  and not the other twenty-nine words
+```
+

@@ -1,0 +1,86 @@
+{
+  "experiment": "juggler_o7eeee_window",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycle_impossible": false,
+    "length_eleven_census": false,
+    "four_even_impossible": false,
+    "finite_progress_for_all": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "word": "OOOOOOOEEEE",
+    "n0_cell": 828484409,
+    "n0_matches_lag": true,
+    "cell_holds_at_n0": true,
+    "cell_holds_before": false,
+    "pin": {
+      "n_lo": 3,
+      "n_hi": 10000,
+      "hits": [],
+      "o7_count": 84,
+      "even_z": 45,
+      "below_cell": 0,
+      "in_cell": 0,
+      "above_cell": 45,
+      "min_ratio": 445.01033356279396,
+      "min_n": 289
+    },
+    "near": {
+      "n_lo": 3,
+      "n_hi": 10000000,
+      "hits": [],
+      "o7_count": 77692,
+      "even_z": 38734,
+      "below_cell": 0,
+      "in_cell": 0,
+      "above_cell": 38734,
+      "min_ratio": 445.01033356279396,
+      "min_n": 289
+    },
+    "full": {
+      "n_lo": 3,
+      "n_hi": 828484409,
+      "hits": [],
+      "o7_count": 6473954,
+      "even_z": 3234088,
+      "below_cell": 0,
+      "in_cell": 0,
+      "above_cell": 3234088,
+      "min_ratio": 445.01033356279396,
+      "min_n": 289
+    },
+    "length_eleven_census": false,
+    "z5_cell": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "leftover_prefix_cell": true,
+    "cycle_trailing_evens_lt": true,
+    "odd_cell_unique": true,
+    "even_cell_iff": true,
+    "cycle_word_length_ge_eleven": true,
+    "no_cycle_word_oooooooeeee": true,
+    "no_cycle_word_length_eleven": true,
+    "no_cycle_word_four_even": true,
+    "juggler_reaches_one": true,
+    "paper_a_has_no_o7eeee": true,
+    "cell_schema_present": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "O7EEEE_WINDOW_EMPTY",
+    "reason": "no O^7 EEEE cycle on 3<=n<828484409; T^7 never entered the EEEE cell (below=0, in=0, above=3234088); closest ratio 445.01033356279396 at n=289"
+  },
+  "search_method": "exact forward O^7 then EEEE inverse cell [n^16,(n+1)^16); window 3<=n<828484409; leftover_prefix_cell above N0; no Z5, no thirty-word census, no halt theorem"
+}

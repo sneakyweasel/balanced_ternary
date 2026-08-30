@@ -284,6 +284,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         lean["sorry_free"]
         and lean["no_cycle_word_even_count_le_three"]
         and lean["cycle_word_length_ge_eleven"]
+        and lean["minimal_first_even_overshoots"]
+        and lean["cycleMin_first_even_overshoots"]
         and lean["laboratory_assembler_present"]
         and lean["paper_a_has_no_even_count"]
         and lean["no_cycle_word_length_nine"]

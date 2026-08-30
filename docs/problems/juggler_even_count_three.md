@@ -26,9 +26,20 @@ rotations onto those families.
 
 The laboratory theorem `no_cycle_word_even_count_le_three` excludes
 every such `CycleWord`. The corollary `cycle_word_length_ge_eleven`
-is the expansion demand after four evens. This is not a length-9 or
-length-10 census. Paper A still states the length-\(\le 7\) census.
-There is no `no_cycle_word_length_nine` and no halt theorem.
+is the expansion demand after four evens.
+
+A free leftover corollary: the return-to-\(n\) cell of
+`minimal_first_even_dichotomy` is an even-count-1 cycle word, so it
+is excluded. On `MinimalNonTerm` or `CycleMin` the first even
+residual therefore overshoots
+(`minimal_first_even_overshoots`,
+`cycleMin_first_even_overshoots`). That sharpens the leftover
+start. It does not exclude a four-even word and is not a halt
+theorem.
+
+This is not a length-9 or length-10 census. Paper A still states
+the length-\(\le 7\) census. There is no
+`no_cycle_word_length_nine` and no halt theorem.
 
 ## Current literature
 
@@ -103,6 +114,11 @@ It is not required.
   **EXACT — LEAN VERIFIED** (`no_cycle_word_even_count_le_three`)
 - a nontrivial cycle word has length at least 11 —
   **EXACT — LEAN VERIFIED** (`cycle_word_length_ge_eleven`)
+- first even residual overshoots on `MinimalNonTerm` /
+  `CycleMin` —
+  **EXACT — LEAN VERIFIED**
+  (`minimal_first_even_overshoots`,
+  `cycleMin_first_even_overshoots`)
 - cycles of length 11 or more are impossible — not claimed
 - four-even leftovers die — not claimed
 - global halt — not claimed
@@ -135,8 +151,10 @@ stronger claims that remain unproved:
 `formal/Problems/Juggler/EvenCountThree.lean` proves
 `no_cycleMin_even_count_le_three`,
 `no_cycle_word_even_count_le_three`,
-`cycle_word_even_count_ge_four`, and
-`cycle_word_length_ge_eleven`. `SmallCycleCensus.lean` still
+`cycle_word_even_count_ge_four`,
+`cycle_word_length_ge_eleven`,
+`minimal_first_even_overshoots`, and
+`cycleMin_first_even_overshoots`. `SmallCycleCensus.lean` still
 assembles only through length seven. `LengthEightCensus.lean` remains
 the laboratory length-8 assembler. No `no_cycle_word_length_nine`.
 No `no_cycle_word_length_le_nine`. No `sorry`. No halt theorem.
@@ -147,9 +165,11 @@ Paper A is unchanged.
 Classification **EVEN_COUNT_THREE_GREEN**.
 
 No \(n\ge 2\) realizes a cycle word with at most three even letters.
-A nontrivial cycle, if one exists, has period at least eleven. This
-is an even-count theorem, not a length-9 census, not a published
-Paper A theorem, and not a halt theorem.
+A nontrivial cycle, if one exists, has period at least eleven. On a
+leftover start the first even residual overshoots; return-to-\(n\)
+is dead. This is an even-count theorem, not a four-even exclusion,
+not a length-9 census, not a published Paper A theorem, and not a
+halt theorem.
 
 ## Open questions
 

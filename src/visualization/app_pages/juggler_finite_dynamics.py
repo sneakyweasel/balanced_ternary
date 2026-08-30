@@ -51,6 +51,88 @@ from visualization.juggler_finite_dynamics import (
 )
 from visualization.theorem_ledger import badge_payload
 
+VIEWS = (
+    "Claim map",
+    "Orbit",
+    "Envelope",
+    "Cells and census",
+    "Cycle words",
+    "Leftover families",
+    "Descent",
+)
+VIEW_LABEL = {
+    "Claim map": "Status",
+    "Orbit": "Orbit",
+    "Envelope": "Envelope",
+    "Cells and census": "Cells",
+    "Cycle words": "Cycle",
+    "Leftover families": "Leftovers",
+    "Descent": "Descent",
+}
+VIEWS_WITH_START = frozenset(
+    {"Orbit", "Envelope", "Cells and census", "Cycle words", "Descent"}
+)
+VIEW_BLURB = {
+    "Claim map": (
+        "A scoreboard of what is proved. Lean is the authority. "
+        "This page never claims every number reaches 1."
+    ),
+    "Orbit": (
+        "Start at **n** and apply the Juggler map. **O** is an odd step "
+        "(the number grows); **E** is an even step (it shrinks). The "
+        "word is just that sequence of steps."
+    ),
+    "Envelope": (
+        "Type a short **O/E** recipe. If your start actually follows it, "
+        "a proved bound says the result cannot be too large. Slack **Δ** "
+        "is how much room is left."
+    ),
+    "Cells and census": (
+        "Work backwards: which numbers land on a given image? Then see "
+        "which short loop-shapes are already ruled out."
+    ),
+    "Cycle words": (
+        "A **cycle word** is a loop of **O** and **E** letters. Rotating "
+        "it is the same loop started at a different letter. The page "
+        "says whether that loop is already impossible."
+    ),
+    "Leftover families": (
+        "Leftovers are the shapes the easy filters did not kill. Most "
+        "are now theorems. Thirty long four-even words are still open "
+        "as loops."
+    ),
+    "Descent": (
+        "Even starts drop in one even step. Odd-then-even starts drop "
+        "in two. The leftovers are the odd-to-odd cases. A count in a "
+        "window is not a density proof."
+    ),
+}
+CLAIM_PLAIN = {
+    "J-fixed-word-image-monotone": "Same word, bigger start never finishes smaller.",
+    "J-power-envelope-contraction": "After a word, the result cannot outrun a known power bound.",
+    "J-global-defect-identity": "The leftover slack after a word can be written exactly.",
+    "J-inverse-cell-asymmetry": "Going backwards, an odd image has at most one odd parent.",
+    "J-cycle-finite-structure": "A real loop must mix O and E, and grow more than it shrinks.",
+    "J-leftover-length-six-orientations": "The two leftover length-6 loops cannot close.",
+    "J-small-cycle-census": "No loop of length 6 or less.",
+    "J-leftover-length-seven-orientations": "The two leftover length-7 loops cannot close.",
+    "J-small-cycle-census-seven": "No loop of length 7 or less.",
+    "J-small-cycle-census-eight": "No loop of length 8 or less (laboratory; Paper A still stops at 7).",
+    "J-two-even-leftover-ee": "The two-even leftover families cannot close.",
+    "J-first-e-transport-ee": "Gapped three-even CycleMin loops cannot close.",
+    "J-three-even-eee": "Bunched last-cluster leftovers cannot close.",
+    "J-gapped-cycle-word-ee": "Gapped three-even CycleWord loops cannot close.",
+    "J-finite-progress-boundary": "Even starts drop in one step; odd-then-even starts drop in two.",
+}
+_BADGE_COLOR = {
+    "exact": "green",
+    "computed": "blue",
+    "conjecture": "orange",
+    "refuted": "red",
+    "reparameterization": "violet",
+    "other": "gray",
+}
+
 
 def _init_state() -> None:
     defaults = {
@@ -70,23 +152,66 @@ def _init_state() -> None:
     st.session_state.shared_integer = int(st.session_state.juggler_n)
 
 
-def _badge(theorem_id: str) -> None:
-    payload = badge_payload(theorem_id)
-    if not payload:
+def _blurb(view: str) -> None:
+    st.caption(VIEW_BLURB[view])
+
+
+def _lazy_expander(label: str, *, icon: str, key: str):
+    return st.expander(
+        label,
+        icon=icon,
+        key=key,
+        on_change="rerun",
+        type="compact",
+    )
+
+
+def _glossary() -> None:
+    box = _lazy_expander("Word list", icon=":material/menu_book:", key="juggler_glossary")
+    if not box.open:
         return
-    kind = payload["kind"]
-    color = {
-        "exact": "green",
-        "computed": "blue",
-        "conjecture": "orange",
-        "refuted": "red",
-        "reparameterization": "violet",
-        "other": "gray",
-    }.get(kind, "gray")
-    st.badge(payload["tag"], color=color)
-    lean = payload.get("lean") or ""
-    extra = f" · Lean `{lean}`" if lean else ""
-    st.caption(f"{payload['id']}{extra}")
+    with box:
+        st.markdown(
+            """
+- **O / E** — odd step (cube, then floor) / even step (square root, then floor).
+- **Cycle word** — a loop of those letters. Rotating it is the same loop
+  started at a different letter.
+- **Expanding** — more odd letters than the even shrinks can cancel. A
+  real loop must be expanding.
+- **Leftover** — a word the easy filters did not kill. It needs a leftover
+  cell or a finite table.
+- **N0** — the first start n ≥ 2 where that leftover inequality starts
+  holding. Lean often uses a larger algebraic cutoff.
+- **CycleMin** — the rotation that starts at the smallest value on the loop.
+- **Reached 1** — this walk hit 1. That is not a proof that every start does.
+            """
+        )
+
+
+def _proof_tags(*theorem_ids: str) -> None:
+    payloads = [badge_payload(tid) for tid in theorem_ids]
+    payloads = [payload for payload in payloads if payload]
+    if not payloads:
+        return
+    box = st.expander(
+        "Proof tags",
+        icon=":material/verified:",
+        type="compact",
+    )
+    with box:
+        for payload in payloads:
+            color = _BADGE_COLOR.get(payload["kind"], "gray")
+            lean = ""
+            if payload.get("lean"):
+                lean = f" · Lean `{payload['lean']}`"
+            row = st.container(
+                horizontal=True,
+                vertical_alignment="center",
+                gap="small",
+            )
+            with row:
+                st.badge(payload["tag"], color=color)
+                st.caption(f"{payload['id']}{lean}")
 
 
 def _set_n(n: int) -> None:
@@ -100,22 +225,25 @@ def _n_controls() -> int:
         if name:
             _set_n(N_PRESETS[name])
 
-    st.pills(
-        "Start presets",
-        list(N_PRESETS),
-        selection_mode="single",
-        key="juggler_n_preset",
-        on_change=_apply_preset,
-    )
-    n = int(
-        st.number_input(
-            "Start n",
-            min_value=1,
-            step=1,
-            key="juggler_n",
-            help="Positive integer. Shared with the rest of the laboratory.",
+    row = st.container(horizontal=True, vertical_alignment="bottom", gap="small")
+    with row:
+        st.pills(
+            "Start presets",
+            list(N_PRESETS),
+            selection_mode="single",
+            key="juggler_n_preset",
+            on_change=_apply_preset,
         )
-    )
+        n = int(
+            st.number_input(
+                "Start n",
+                min_value=1,
+                step=1,
+                key="juggler_n",
+                width=160,
+                help="Positive integer. Shared with the rest of the laboratory.",
+            )
+        )
     st.session_state.shared_integer = n
     return n
 
@@ -126,18 +254,20 @@ def _word_controls() -> str:
         if name:
             st.session_state.juggler_word = name
 
-    st.pills(
-        "Word presets",
-        list(WORD_PRESETS),
-        selection_mode="single",
-        key="juggler_word_preset",
-        on_change=_apply_preset,
-    )
-    raw = st.text_input(
-        "Parity word",
-        key="juggler_word",
-        help=f"Letters O and E only, length at most {WORD_MAX}.",
-    )
+    row = st.container(horizontal=True, vertical_alignment="bottom", gap="small")
+    with row:
+        st.pills(
+            "Word presets",
+            list(WORD_PRESETS),
+            selection_mode="single",
+            key="juggler_word_preset",
+            on_change=_apply_preset,
+        )
+        raw = st.text_input(
+            "Parity word",
+            key="juggler_word",
+            help=f"Letters O and E only, length at most {WORD_MAX}.",
+        )
     word = parse_word(raw)
     if word is None:
         st.warning(
@@ -150,27 +280,29 @@ def _word_controls() -> str:
 
 def _cycle_word_controls() -> str:
     def _apply_preset() -> None:
-        name = st.session_state.get("juggler_cycle_preset")
+        name = st.session_state.get("juggler_cycle_example")
         if name:
             st.session_state.juggler_cycle_word = name
             st.session_state.juggler_cycle_shift = 0
             st.session_state.juggler_cycle_slider = 0
 
-    st.pills(
-        "Cycle-word presets",
-        list(CYCLE_WORD_PRESETS),
-        selection_mode="single",
-        key="juggler_cycle_preset",
-        on_change=_apply_preset,
-    )
-    raw = st.text_input(
-        "Cycle word",
-        key="juggler_cycle_word",
-        help=(
-            f"Letters O and E only, length at most {CYCLE_WORD_MAX}. "
-            "Rotations are the same cyclic class."
-        ),
-    )
+    row = st.container(horizontal=True, vertical_alignment="bottom", gap="small")
+    with row:
+        st.selectbox(
+            "Example loop",
+            list(CYCLE_WORD_PRESETS),
+            key="juggler_cycle_example",
+            on_change=_apply_preset,
+            width=220,
+        )
+        raw = st.text_input(
+            "Cycle word",
+            key="juggler_cycle_word",
+            help=(
+                f"Letters O and E only, length at most {CYCLE_WORD_MAX}. "
+                "Rotations are the same loop."
+            ),
+        )
     word = parse_cycle_word(raw)
     if word is None:
         st.warning(
@@ -181,44 +313,48 @@ def _cycle_word_controls() -> str:
     return word
 
 
+def _yes_no(flag: bool | None) -> str:
+    if flag is True:
+        return "yes"
+    if flag is False:
+        return "no"
+    return "—"
+
+
 def _claim_map() -> None:
-    st.caption(
-        "Lean is the proof authority. This page instantiates the finite-dynamics "
-        "note through Theorem 3.21. Leftover families share leftover_prefix_cell. "
-        "It does not prove arrival at 1."
+    _blurb("Claim map")
+    _proof_tags(
+        "J-small-cycle-census-seven",
+        "J-small-cycle-census-eight",
+        "J-gapped-cycle-word-ee",
     )
-    _badge("J-small-cycle-census-seven")
-    _badge("J-small-cycle-census-eight")
-    _badge("J-gapped-cycle-word-ee")
     cards = st.container(horizontal=True)
     with cards:
-        st.metric("Census", "period ≥ 9", border=True)
-        st.metric("Length ≤ 8", "LEAN", border=True)
-        st.metric("Leftovers 3.12–3.21", "LEAN", border=True)
-        st.metric("Length 11 toolkit", "closed", border=True)
-        st.metric("ReachesOne", "not claimed", border=True)
-    st.dataframe(
-        pd.DataFrame(CLAIM_ROWS),
-        hide_index=True,
-        width="stretch",
-        height="content",
-    )
-    st.info(
-        "No density result is stated or used in the note. Finite leftover "
-        "tables are checks, not a termination proof. The laboratory census "
-        "excludes lengths ≤ 8; Paper A still states ≤ 7. The thirty "
-        "length-11 short-gap words are a lab gate, not a Paper A theorem.",
-        icon=":material/info:",
-    )
+        st.metric("Shortest open period", "≥ 9", border=True)
+        st.metric("Length ≤ 8", "ruled out", border=True)
+        st.metric("Leftovers 3.12–3.21", "ruled out", border=True)
+        st.metric("Arrival at 1", "not claimed", border=True)
+    rows = [
+        {
+            "in plain English": CLAIM_PLAIN.get(row["ledger"], row["text"]),
+            "theorem": row["text"],
+            "Lean": row["lean"],
+        }
+        for row in CLAIM_ROWS
+    ]
+    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch", height=280)
+    with st.expander("What this does not claim", icon=":material/info:"):
+        st.caption(
+            "No density result is used. Finite leftover tables are checks, "
+            "not a halt proof. The laboratory census excludes lengths ≤ 8; "
+            "Paper A still states ≤ 7. The thirty length-11 short-gap words "
+            "are a lab gate, not a Paper A theorem."
+        )
 
 
 def _orbit() -> None:
-    st.caption(
-        "The orbit of 3 is 3, 5, 11, 36, 6, 2, 1. The orbit of 37 peaks at "
-        f"{NOTE_PEAK_37}. Walks stop at 1, at the step cap, or when a state "
-        "exceeds the display bit cap."
-    )
-    _badge("J-itinerary-semantics")
+    _blurb("Orbit")
+    _proof_tags("J-itinerary-semantics")
     n = int(st.session_state.juggler_n)
     steps = int(
         st.slider(
@@ -226,22 +362,23 @@ def _orbit() -> None:
             min_value=1,
             max_value=ORBIT_STEPS_MAX,
             key="juggler_steps",
+            help="Stop after this many steps, or sooner at 1.",
         )
     )
     view = walk_orbit(n, steps)
     metrics = st.container(horizontal=True)
     with metrics:
-        st.metric("Word", view.word or "—", border=True)
-        st.metric("Steps recorded", len(view.states) - 1, border=True)
-        st.metric("Reached 1", "yes" if view.reached_one else "no", border=True)
-        st.metric("Last state", format_int(view.states[-1]), border=True)
+        st.metric("Word so far", view.word or "—", border=True)
+        st.metric("Steps", len(view.states) - 1, border=True)
+        st.metric("Hit 1?", _yes_no(view.reached_one), border=True)
+        st.metric("Last value", format_int(view.states[-1]), border=True)
     if view.too_large or view.bit_capped:
         st.warning(
-            "A state exceeded the display bit cap. The walk stopped.",
+            "A value got too big to display. The walk stopped.",
             icon=":material/warning:",
         )
     if n == 3 and view.states[: len(NOTE_ORBIT_3)] == NOTE_ORBIT_3:
-        st.success("This is the note orbit of 3.", icon=":material/check:")
+        st.success("This is the note orbit of 3: 3, 5, 11, 36, 6, 2, 1.", icon=":material/check:")
     if n == 37 and NOTE_PEAK_37 in view.states:
         st.success("The recorded peak of 37 is on this walk.", icon=":material/check:")
     chart_df = pd.DataFrame(view.rows)
@@ -250,31 +387,32 @@ def _orbit() -> None:
         .mark_line(point=True)
         .encode(
             x=alt.X("step:Q", title="step"),
-            y=alt.Y("state:Q", title="state", scale=alt.Scale(type="log")),
+            y=alt.Y("state:Q", title="value", scale=alt.Scale(type="log")),
             color=alt.Color("parity:N", title="parity"),
             tooltip=["step", "state", "letter", "bits"],
         )
     )
     st.altair_chart(chart, width="stretch")
-    st.dataframe(chart_df, hide_index=True, width="stretch")
+    with st.expander("Step table", icon=":material/table:"):
+        st.dataframe(chart_df, hide_index=True, width="stretch")
 
 
 def _envelope() -> None:
-    st.caption(
-        "On a realized word, $J^{|w|}(n)^{2^{|w|}}\\le n^{3^{\\#O(w)}}$. "
-        "The exact slack is $\\Delta_w(n)$. Powers are instantiated only "
-        "inside the existing defect bit budget."
-    )
-    _badge("J-power-envelope-contraction")
-    _badge("J-global-defect-identity")
+    _blurb("Envelope")
+    _proof_tags("J-power-envelope-contraction", "J-global-defect-identity")
     n = int(st.session_state.juggler_n)
     word = _word_controls()
     view = envelope_view(n, word)
     metrics = st.container(horizontal=True)
     with metrics:
-        st.metric("#O", view.odd, border=True)
+        st.metric("Odd letters", view.odd, border=True, help="How many O steps in the word.")
         st.metric("Regime", view.regime, border=True)
-        st.metric("Realized", "yes" if view.follows else "no", border=True)
+        st.metric(
+            "Follows this word?",
+            _yes_no(view.follows),
+            border=True,
+            help="Does the walk from n actually take these O/E steps?",
+        )
         st.metric(
             "Image vs n",
             f"{format_int(view.image)} {view.compared} {n}" if view.image is not None else "—",
@@ -282,41 +420,52 @@ def _envelope() -> None:
         )
     if not view.follows:
         st.warning(
-            f"Letter {view.fail_index} fails at state {view.fail_state}.",
+            f"Letter {view.fail_index} fails at {view.fail_state}. "
+            "The start is the wrong parity for that letter.",
             icon=":material/warning:",
         )
     slack_row = st.container(horizontal=True)
     with slack_row:
         if view.slack is not None:
-            st.metric("Envelope slack Δ", format_int(view.slack), border=True)
+            slack_value = format_int(view.slack)
         elif view.slack_too_large:
-            st.metric("Envelope slack Δ", "too large to instantiate", border=True)
+            slack_value = "too large"
         else:
-            st.metric("Envelope slack Δ", "—", border=True)
+            slack_value = "—"
         if view.delta is not None:
-            st.metric("Recurrence Δ", format_int(view.delta), border=True)
+            delta_value = format_int(view.delta)
         elif view.delta_too_large:
-            st.metric("Recurrence Δ", "too large to instantiate", border=True)
+            delta_value = "too large"
         else:
-            st.metric("Recurrence Δ", "—", border=True)
+            delta_value = "—"
+        st.metric(
+            "Envelope slack Δ",
+            slack_value,
+            border=True,
+            help="Room left under the proved power bound.",
+        )
+        st.metric(
+            "Recurrence Δ",
+            delta_value,
+            border=True,
+            help="The exact leftover after composing the steps.",
+        )
         st.metric("Vanishing", view.vanishing, border=True)
     if view.follows and view.slack is not None and view.delta is not None:
         if view.slack == view.delta:
-            st.success(
-                "The identity $n^{3^{\\#O}}=m^{2^{k}}+\\Delta$ holds on this pair.",
-                icon=":material/check:",
-            )
+            st.success("The two Δ numbers match on this pair.", icon=":material/check:")
     if view.steps:
-        st.dataframe(pd.DataFrame(view.steps), hide_index=True, width="stretch")
+        with st.expander("Step-by-step slack", icon=":material/table:"):
+            st.dataframe(pd.DataFrame(view.steps), hide_index=True, width="stretch")
 
-    st.subheader("Composition")
-    st.caption(
-        "Theorem 2.6: concatenation is a two-term power-gap, not a sum of remainders."
-    )
-    if len(word) < 1:
-        st.caption("Enter a nonempty word to split the composition.")
-        composed = None
-    else:
+    with st.expander("Split the word", icon=":material/content_cut:"):
+        st.caption(
+            "Cut the recipe in two. The leftover of the whole word is not "
+            "just the sum of the two leftovers — it is a two-term power gap."
+        )
+        if not word:
+            st.caption("Enter a nonempty word to split it.")
+            return
         if st.session_state.juggler_split > len(word):
             st.session_state.juggler_split = len(word)
         split = int(
@@ -328,41 +477,33 @@ def _envelope() -> None:
             )
         )
         composed = compose_view(n, word[:split], word[split:])
-    if composed is None:
-        pass
-    elif not composed.follows:
-        st.caption("The concatenated word is not realized at this start.")
-    elif composed.too_large:
-        st.caption("The composition gaps are too large to instantiate.")
-    else:
-        row = st.container(horizontal=True)
-        with row:
-            st.metric("Δ(u)", composed.delta_u, border=True)
-            st.metric("Δ(v)", composed.delta_v, border=True)
-            st.metric("Δ(uv)", composed.delta_uv, border=True)
-            st.metric(
-                "Compose formula",
-                composed.composed if composed.composed is not None else "—",
-                border=True,
-            )
-        if composed.composed is not None and composed.composed == composed.delta_uv:
-            st.success("The two-term power-gap equals Δ(uv).", icon=":material/check:")
+        if not composed.follows:
+            st.caption("The concatenated word is not realized at this start.")
+        elif composed.too_large:
+            st.caption("The composition gaps are too large to show.")
+        else:
+            row = st.container(horizontal=True)
+            with row:
+                st.metric("Δ first half", composed.delta_u, border=True)
+                st.metric("Δ second half", composed.delta_v, border=True)
+                st.metric("Δ whole word", composed.delta_uv, border=True)
+                st.metric(
+                    "Compose formula",
+                    composed.composed if composed.composed is not None else "—",
+                    border=True,
+                )
+            if composed.composed is not None and composed.composed == composed.delta_uv:
+                st.success("The two-term formula matches Δ of the whole word.", icon=":material/check:")
 
 
 def _cells() -> None:
-    st.caption(
-        "Even fibers are parity-restricted square intervals. An odd fiber "
-        "contains at most one integer. The laboratory census excludes every "
-        "even-terminating expanding word of length at most eight. Paper A "
-        "still states the published bound ≤ 7."
-    )
-    for theorem_id in CENSUS_LEDGER_IDS:
-        _badge(theorem_id)
-
-    left, right = st.columns(2)
+    _blurb("Cells and census")
+    _proof_tags(*CENSUS_LEDGER_IDS)
+    left, right = st.columns(2, gap="small")
     with left:
-        with st.container(border=True):
-            st.subheader("Even cell")
+        with st.container(border=True, gap="small"):
+            st.markdown("**Even cell**")
+            st.caption("Even parents of an image sit in one square interval.")
             q = int(st.number_input("Image q", min_value=0, step=1, value=6, key="juggler_q"))
             cell = even_cell_view(q)
             st.metric("Interval", f"[{cell.lo}, {cell.hi})", border=True)
@@ -371,131 +512,148 @@ def _cells() -> None:
                 pd.DataFrame({"even n": list(cell.evens)}),
                 hide_index=True,
                 width="stretch",
+                height=160,
             )
             if cell.truncated:
                 st.caption("List truncated.")
     with right:
-        with st.container(border=True):
-            st.subheader("Odd cell")
+        with st.container(border=True, gap="small"):
+            st.markdown("**Odd cell**")
+            st.caption("An odd image has at most one odd parent.")
             m = int(st.number_input("Image m", min_value=0, step=1, value=11, key="juggler_m"))
             odd = odd_cell_view(m)
-            st.metric("Integers", len(odd.integers), border=True)
+            st.metric("Odd parents", len(odd.integers), border=True)
             if odd.integers:
                 st.dataframe(
                     pd.DataFrame({"odd n": list(odd.integers)}),
                     hide_index=True,
                     width="stretch",
+                    height=160,
                 )
             else:
-                st.caption("Empty odd fiber.")
+                st.caption("Empty odd cell.")
 
-    st.subheader("Word playground")
-    word = _word_controls()
-    info = classify_word(word)
-    kind_row = st.container(horizontal=True)
-    with kind_row:
-        st.metric("Expanding", "yes" if info.expanding else "no", border=True)
-        st.metric("Ends even", "yes" if info.even_terminating else "no", border=True)
-        st.metric("Kind", info.kind, border=True)
-    st.caption(info.reason)
-
-    n = int(st.session_state.juggler_n)
-    prefix = st.segmented_control(
-        "Next-square prefix",
-        ["OO", "OOO"],
-        default="OO",
-        key="juggler_prefix",
-    )
-    if prefix is None:
-        prefix = "OO"
-    square = next_square_view(n, prefix)
-    sq_row = st.container(horizontal=True)
-    with sq_row:
-        st.metric("Realizes prefix", "yes" if square.follows else "no", border=True)
-        st.metric(
-            "Image",
-            format_int(square.image) if square.image is not None else "—",
-            border=True,
+    with st.expander("Word playground", icon=":material/tune:"):
+        st.caption(
+            "Classify a short word, then test the next-square prefix from "
+            "the shared start n."
         )
-        st.metric("Threshold (n+1)²", square.threshold, border=True)
-        st.metric(
-            "Image ≥ threshold",
-            "yes" if square.met else "no" if square.met is False else "—",
-            border=True,
+        word = _word_controls()
+        info = classify_word(word)
+        kind_row = st.container(horizontal=True)
+        with kind_row:
+            st.metric("Expanding?", _yes_no(info.expanding), border=True)
+            st.metric("Ends even?", _yes_no(info.even_terminating), border=True)
+            st.metric("Kind", info.kind, border=True)
+        st.caption(info.reason)
+        n = int(st.session_state.juggler_n)
+        prefix = st.segmented_control(
+            "Next-square prefix",
+            ["OO", "OOO"],
+            default="OO",
+            key="juggler_prefix",
         )
-
-    st.subheader("Leftover tables")
-    st.caption(
-        "Lemma 3.5 checks 2 ≤ n < 256. Lemma 3.7 checks 2 ≤ n < 14. "
-        "These are finite evaluations, not a halt proof."
-    )
-    with st.form("juggler_leftover_form"):
-        leftover = st.selectbox(
-            "Leftover word",
-            leftover_words(),
-            index=0,
-            key="juggler_leftover",
-        )
-        submitted = st.form_submit_button("Replay leftover table", icon=":material/table:")
-    if submitted:
-        table = leftover_table(leftover)
-        hits = st.container(horizontal=True)
-        with hits:
-            st.metric("Checked", table.checked, border=True)
-            st.metric("Realized", table.follows, border=True)
-            st.metric("Returns", len(table.hits), border=True)
-            st.metric("Cutoff n", table.n_hi, border=True)
-        if table.hits:
-            st.error(f"Unexpected return at {table.hits}.", icon=":material/block:")
-        else:
-            st.success(
-                f"No return on 2 ≤ n < {table.n_hi} for {table.word}.",
-                icon=":material/check:",
+        if prefix is None:
+            prefix = "OO"
+        square = next_square_view(n, prefix)
+        sq_row = st.container(horizontal=True)
+        with sq_row:
+            st.metric("Follows prefix?", _yes_no(square.follows), border=True)
+            st.metric(
+                "Image",
+                format_int(square.image) if square.image is not None else "—",
+                border=True,
             )
-        st.dataframe(pd.DataFrame(table.rows), hide_index=True, width="stretch")
-    else:
-        st.caption(
-            "Submit the form to evaluate "
-            + ", ".join(f"{word} below {cut}" for word, cut in LEFTOVER_CUTOFF.items())
-            + "."
-        )
+            st.metric("Threshold (n+1)²", square.threshold, border=True)
+            st.metric("Image ≥ threshold?", _yes_no(square.met), border=True)
 
-    st.subheader("Census inventory")
-    st.dataframe(pd.DataFrame(census_inventory()), hide_index=True, width="stretch")
-    with st.expander("Length-eight expanding even-terminating words"):
+    with st.expander("Leftover tables", icon=":material/table:"):
         st.caption(
-            "Two-even leftovers of length eight are Theorem 3.12. The "
-            "square spellings OOOOEOOE = OO(OOE)² and OOOEOOOE = (OOOE)² "
-            "are OO/OOO bootstrap, not leftovers. The laboratory assembler "
-            "no_cycle_word_length_le_eight covers every even-terminating "
-            "expanding length-eight word. Paper A still stops at seven."
+            "Replay the finite checks under the cutoff. "
+            "Lemma 3.5 uses 2 ≤ n < 256. Lemma 3.7 uses 2 ≤ n < 14. "
+            "These are tables, not a halt proof."
         )
-        st.dataframe(
-            pd.DataFrame(length_eight_status_rows()),
-            hide_index=True,
-            width="stretch",
-        )
+        with st.form("juggler_leftover_form", border=False):
+            leftover = st.selectbox(
+                "Leftover word",
+                leftover_words(),
+                index=0,
+                key="juggler_leftover",
+            )
+            submitted = st.form_submit_button("Replay leftover table", icon=":material/table:")
+        if submitted:
+            table = leftover_table(leftover)
+            hits = st.container(horizontal=True)
+            with hits:
+                st.metric("Checked", table.checked, border=True)
+                st.metric("Followed the word", table.follows, border=True)
+                st.metric("Returned to n", len(table.hits), border=True)
+                st.metric("Cutoff n", table.n_hi, border=True)
+            if table.hits:
+                st.error(f"Unexpected return at {table.hits}.", icon=":material/block:")
+            else:
+                st.success(
+                    f"No return on 2 ≤ n < {table.n_hi} for {table.word}.",
+                    icon=":material/check:",
+                )
+            st.dataframe(pd.DataFrame(table.rows), hide_index=True, width="stretch")
+        else:
+            st.caption(
+                "Submit to evaluate "
+                + ", ".join(f"{word} below {cut}" for word, cut in LEFTOVER_CUTOFF.items())
+                + "."
+            )
+
+    census = _lazy_expander(
+        "Census inventory",
+        icon=":material/inventory_2:",
+        key="juggler_census",
+    )
+    if census.open:
+        with census:
+            st.caption(
+                "Every even-ending expanding word of length at most 8, and why "
+                "it cannot be a loop. Paper A still publishes the bound ≤ 7."
+            )
+            st.dataframe(
+                pd.DataFrame(census_inventory()),
+                hide_index=True,
+                width="stretch",
+            )
+            st.markdown("**Length-eight expanding even-terminating words**")
+            st.caption(
+                "Two-even leftovers of length eight are Theorem 3.12. The "
+                "square spellings OOOOEOOE and OOOEOOOE are OO/OOO bootstrap, "
+                "not leftovers."
+            )
+            st.dataframe(
+                pd.DataFrame(length_eight_status_rows()),
+                hide_index=True,
+                width="stretch",
+            )
 
 
 def _descent() -> None:
-    st.caption(
-        "Even starts have the one-letter certificate E. Odd-to-even starts "
-        "have OE. The leftover class is odd-to-odd. A window count is not "
-        "a density theorem."
-    )
-    _badge("J-finite-progress-boundary")
+    _blurb("Descent")
+    _proof_tags("J-finite-progress-boundary")
     n = int(st.session_state.juggler_n)
     view = descent_view(n)
+    bucket_plain = {
+        "EVEN_PROGRESS": "even start — drops in one E",
+        "OE_PROGRESS": "odd-to-even — drops in OE",
+        "ODD_ODD": "odd-to-odd leftover",
+    }.get(view.bucket, view.bucket)
     row = st.container(horizontal=True)
     with row:
-        st.metric("Bucket", view.bucket, border=True)
+        st.metric("This n", bucket_plain, border=True)
         st.metric("Short certificate", view.certificate, border=True)
     if view.residual:
-        st.dataframe(pd.DataFrame([view.residual]), hide_index=True, width="stretch")
+        with st.expander("Residual after the first even", icon=":material/more_horiz:"):
+            st.dataframe(pd.DataFrame([view.residual]), hide_index=True, width="stretch")
 
     window = int(
         st.slider(
-            "Window n_max",
+            "Count starts up to",
             min_value=2,
             max_value=DESCENT_WINDOW_MAX,
             value=80,
@@ -517,50 +675,45 @@ def _descent() -> None:
         hide_index=True,
         width="stretch",
     )
-    st.caption("Bounded window counts. The note states no density result.")
+    st.caption("Bounded window counts only. Not a density theorem.")
 
-    st.subheader("Four-block chain at 1999")
-    st.caption(
-        "An existence example of four consecutive expanding blocks. "
-        "It is not a uniform run bound."
-    )
-    chain = four_block_replay()
-    st.dataframe(
-        pd.DataFrame(
-            [
-                {
-                    "start": step.start,
-                    "word": step.word,
-                    "image": step.image,
-                    "realized": step.follows,
-                    "matches note": step.matches,
-                }
-                for step in chain
-            ]
-        ),
-        hide_index=True,
-        width="stretch",
-    )
-    if all(step.matches for step in chain):
-        st.success(
-            "1999 —OOE→ 5169 —OOOOEE→ 50093 —OOE→ 193753 —OOE→ 887471.",
-            icon=":material/check:",
+    with st.expander("Four-block chain at 1999", icon=":material/link:"):
+        st.caption(
+            "One example of four expanding blocks in a row. It is not a "
+            "uniform run bound."
         )
+        chain = four_block_replay()
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    {
+                        "start": step.start,
+                        "word": step.word,
+                        "image": step.image,
+                        "followed the word": step.follows,
+                        "matches note": step.matches,
+                    }
+                    for step in chain
+                ]
+            ),
+            hide_index=True,
+            width="stretch",
+        )
+        if all(step.matches for step in chain):
+            st.success(
+                "1999 —OOE→ 5169 —OOOOEE→ 50093 —OOE→ 193753 —OOE→ 887471.",
+                icon=":material/check:",
+            )
 
 
 def _cycle_words() -> None:
-    st.caption(
-        "A cycle word is a cyclic object. Type a parity word, rotate it, "
-        "and read the recorded obstruction. Lean is the authority through "
-        "Theorems 3.12–3.21. Length-8 squares OOOOEOOE and OOOEOOOE "
-        "are OO/OOO bootstrap, not leftovers. The laboratory census "
-        "excludes length ≤ 8. The thirty length-11 short-gap leftovers are "
-        "open as CycleMins; arrival at 1 is not claimed."
+    _blurb("Cycle words")
+    _proof_tags(
+        "J-cycle-finite-structure",
+        "J-small-cycle-census-seven",
+        "J-small-cycle-census-eight",
+        "J-gapped-cycle-word-ee",
     )
-    _badge("J-cycle-finite-structure")
-    _badge("J-small-cycle-census-seven")
-    _badge("J-small-cycle-census-eight")
-    _badge("J-gapped-cycle-word-ee")
     word = _cycle_word_controls()
     if len(word) >= 2:
         if st.session_state.juggler_cycle_shift >= len(word):
@@ -582,13 +735,14 @@ def _cycle_words() -> None:
             st.session_state.juggler_cycle_shift = nxt
             st.session_state.juggler_cycle_slider = nxt
 
-        rotate_row = st.container(horizontal=True)
+        rotate_row = st.container(horizontal=True, vertical_alignment="bottom", gap="small")
         with rotate_row:
             st.button(
                 "Rotate left",
                 icon=":material/rotate_left:",
                 key="juggler_rot_left",
                 on_click=_rotate_left,
+                help="Same loop, started one letter later.",
             )
             st.button(
                 "Rotate right",
@@ -596,32 +750,30 @@ def _cycle_words() -> None:
                 key="juggler_rot_right",
                 on_click=_rotate_right,
             )
-        shift = int(
-            st.slider(
-                "Left rotation",
-                min_value=0,
-                max_value=len(word) - 1,
-                key="juggler_cycle_slider",
-                on_change=_sync_slider,
-                help="The same cyclic class; only the base letter changes.",
+            shift = int(
+                st.slider(
+                    "Left rotation",
+                    min_value=0,
+                    max_value=len(word) - 1,
+                    key="juggler_cycle_slider",
+                    on_change=_sync_slider,
+                    help="The same cyclic class; only the base letter changes.",
+                )
             )
-        )
         st.session_state.juggler_cycle_shift = shift
     else:
         shift = 0
     view = cycle_class_view(word, shift)
     metrics = st.container(horizontal=True)
     with metrics:
-        st.metric("Spelling", view.current or "—", border=True)
-        st.metric("#O / #E", f"{view.odd} / {view.even}", border=True)
-        st.metric("Expanding", "yes" if view.expanding else "no", border=True)
+        st.metric("This spelling", view.current or "—", border=True)
+        st.metric("Odds / evens", f"{view.odd} / {view.even}", border=True)
+        st.metric("Expanding?", _yes_no(view.expanding), border=True)
         st.metric(
-            "This class",
+            "This loop",
             "cannot exist" if view.verdict == "excluded" else view.verdict,
             border=True,
         )
-    if view.ledger:
-        _badge(view.ledger)
     if view.verdict == "excluded":
         st.error(view.verdict_reason, icon=":material/block:")
     elif view.verdict == "open":
@@ -629,96 +781,89 @@ def _cycle_words() -> None:
     else:
         st.info("Enter a nonempty O/E word.", icon=":material/info:")
 
-    st.subheader("This spelling")
-    spelling = st.container(horizontal=True)
+    spelling, trial_col = st.columns(2, gap="small")
     with spelling:
-        st.metric("Kind", view.current_kind, border=True)
-        st.metric("CycleMin", "yes" if view.current_legal else "no", border=True)
-        st.metric(
-            "Blocked by",
-            view.current_blocked_by or "—",
-            border=True,
-        )
-    st.caption(view.current_reason)
+        with st.container(border=True, gap="small"):
+            st.markdown("**This spelling**")
+            st.caption("One way of writing the loop, after the current rotation.")
+            st.metric("Kind", view.current_kind, border=True)
+            st.metric("Legal CycleMin?", _yes_no(view.current_legal), border=True)
+            st.metric("Blocked by", view.current_blocked_by or "—", border=True)
+            st.caption(view.current_reason)
+    with trial_col:
+        with st.container(border=True, gap="small"):
+            st.markdown("**Try at the shared start n**")
+            st.caption(
+                "If this spelling were a loop at n, the image after the "
+                "word would equal n. A miss here is only a witness at this n."
+            )
+            trial = try_cycle_word(int(st.session_state.juggler_n), view.current)
+            st.metric("Followed the word?", _yes_no(trial.follows), border=True)
+            st.metric(
+                "Image",
+                format_int(trial.image) if trial.image is not None else "—",
+                border=True,
+            )
+            st.metric("Returned to n?", _yes_no(trial.returned), border=True)
+            if trial.bit_capped:
+                st.warning(
+                    "A value got too big to display. The walk stopped.",
+                    icon=":material/warning:",
+                )
+            elif not trial.follows and trial.fail_index is not None:
+                st.caption(
+                    f"Letter {trial.fail_index} fails at "
+                    f"{format_int(trial.fail_state) if trial.fail_state is not None else '—'}."
+                )
+            elif trial.returned and trial.word:
+                st.error(
+                    "Unexpected return at this n. The recorded census claims none.",
+                    icon=":material/block:",
+                )
+            elif trial.follows and trial.word:
+                st.success(
+                    "This spelling is realized at n and does not return.",
+                    icon=":material/check:",
+                )
 
-    st.subheader("Census argument")
-    for step in view.steps:
-        with st.container(border=True):
-            status_color = {
-                "ok": "green",
-                "blocks": "red",
-                "open": "orange",
-                "info": "gray",
-            }.get(step.status, "gray")
-            head = st.container(horizontal=True)
-            with head:
-                st.markdown(f"**{step.title}**")
-                st.badge(step.status, color=status_color)
-            st.caption(step.body)
-            if step.ledger:
-                _badge(step.ledger)
+    with st.expander("Why this loop is excluded", icon=":material/rule:"):
+        st.caption("The census argument, one filter at a time.")
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    {
+                        "check": step.title,
+                        "status": step.status,
+                        "why": step.body,
+                    }
+                    for step in view.steps
+                ]
+            ),
+            hide_index=True,
+            width="stretch",
+        )
 
-    st.subheader("Rotations")
-    st.dataframe(
-        pd.DataFrame(
-            [
-                {
-                    "shift": row.shift,
-                    "word": row.word,
-                    "ends E": row.even_terminating,
-                    "expanding": row.expanding,
-                    "CycleMin": row.legal_cyclemin,
-                    "blocked by": row.blocked_by or "—",
-                    "kind": row.kind,
-                    "reason": row.reason,
-                    "selected": row.selected,
-                }
-                for row in view.rotations
-            ]
-        ),
-        hide_index=True,
-        width="stretch",
-    )
-
-    st.subheader("Try this spelling at n")
-    st.caption(
-        "If the word were a cycle at the shared start n, the image after "
-        "the word would equal n. A missed letter or a non-return is a "
-        "witness at this n only, not a census."
-    )
-    trial = try_cycle_word(int(st.session_state.juggler_n), view.current)
-    try_row = st.container(horizontal=True)
-    with try_row:
-        st.metric("Realized", "yes" if trial.follows else "no", border=True)
-        st.metric(
-            "Image",
-            format_int(trial.image) if trial.image is not None else "—",
-            border=True,
-        )
-        st.metric(
-            "Returned",
-            "yes" if trial.returned else "no" if trial.returned is False else "—",
-            border=True,
-        )
-    if trial.bit_capped:
-        st.warning(
-            "A state exceeded the display bit cap. The walk stopped.",
-            icon=":material/warning:",
-        )
-    elif not trial.follows and trial.fail_index is not None:
-        st.caption(
-            f"Letter {trial.fail_index} fails at state "
-            f"{format_int(trial.fail_state) if trial.fail_state is not None else '—'}."
-        )
-    elif trial.returned and trial.word:
-        st.error(
-            "Unexpected return at this n. The recorded census claims none.",
-            icon=":material/block:",
-        )
-    elif trial.follows and trial.word:
-        st.success(
-            "This spelling is realized at n and does not return.",
-            icon=":material/check:",
+    with st.expander("All rotations", icon=":material/360:"):
+        st.caption("Every starting letter of the same loop.")
+        st.dataframe(
+            pd.DataFrame(
+                [
+                    {
+                        "shift": row.shift,
+                        "word": row.word,
+                        "ends E": row.even_terminating,
+                        "expanding": row.expanding,
+                        "CycleMin": row.legal_cyclemin,
+                        "blocked by": row.blocked_by or "—",
+                        "kind": row.kind,
+                        "why": row.reason,
+                        "selected": row.selected,
+                    }
+                    for row in view.rotations
+                ]
+            ),
+            hide_index=True,
+            width="stretch",
         )
 
 
@@ -730,41 +875,21 @@ def _open_cycle_word(word: str) -> None:
 
 
 def _leftover_families() -> None:
-    st.caption(
-        "Two-even, bunched, and gapped leftovers are Lean CycleWord or "
-        "CycleMin theorems (3.12–3.21). Length-8 squares OOOOEOOE and "
-        "OOOEOOOE are OO/OOO bootstrap, not leftovers. The thirty "
-        "first-expanding four-even short-gap words are a lab gate: Z4 "
-        "PARK, last-cluster and non-pullback CLOSE. Laboratory census "
-        "is now ≤ 8. Not a length-11 census and not a halt claim. "
-        "leftover_prefix_cell is packaging, not a new family."
-    )
-    for theorem_id in LEFTOVER_FAMILY_LEDGER_IDS:
-        _badge(theorem_id)
+    _blurb("Leftover families")
+    _proof_tags(*LEFTOVER_FAMILY_LEDGER_IDS)
     cards = st.container(horizontal=True)
     with cards:
-        st.metric("Two-even / bunched / gapped", "LEAN", border=True)
-        st.metric("Length-11 short-gap words", "30", border=True)
-        st.metric("Z4 at first expanding", "misses", border=True)
-        st.metric("Internal-E closest", INTERNAL_E_MARGIN, border=True)
-        st.metric("ReachesOne", "not claimed", border=True)
+        st.metric("Two-even / bunched / gapped", "ruled out", border=True)
+        st.metric("Length-11 short-gap words", "30 still open", border=True)
+        st.metric("Arrival at 1", "not claimed", border=True)
 
-    st.subheader("Lab decisions")
-    st.dataframe(pd.DataFrame(LAB_LEFTOVER_DECISIONS), hide_index=True, width="stretch")
-
-    st.subheader("Length-11 first-expanding leftovers")
-    st.caption(
-        "Each word is already a surviving CycleMin spelling, so rotation "
-        "cannot exclude it. Every internal-E suffix has "
-        r"$3^{\#O}<2^{\mathrm{len}+1}$. "
-        f"{EEEE_WORD} is the sharp r=4 cell {EEEE_THRESHOLD}, first at "
-        f"n={EEEE_N0:,}."
-    )
-    inventory = length11_inventory()
-    st.dataframe(pd.DataFrame(inventory), hide_index=True, width="stretch")
-
-    with st.container(border=True):
+    with st.container(border=True, gap="small"):
         st.markdown("**Inspect a length-11 spelling**")
+        st.caption(
+            "Each of these is already a surviving CycleMin spelling, so "
+            "rotation cannot kill it. Open one in Cycle words to spin it."
+        )
+        inventory = length11_inventory()
         words = [row["word"] for row in inventory]
         default = words.index(EEEE_WORD) if EEEE_WORD in words else 0
         chosen = st.selectbox(
@@ -782,7 +907,7 @@ def _leftover_families() -> None:
                 border=True,
             )
             st.metric(
-                "EEEE cell",
+                "Cell",
                 EEEE_THRESHOLD if chosen == EEEE_WORD else "Z4 pullback",
                 border=True,
             )
@@ -794,29 +919,44 @@ def _leftover_families() -> None:
             args=(chosen,),
         )
 
-    gate = st.container(horizontal=True)
-    with gate:
-        with st.container(border=True):
-            st.markdown("**EEEE last-cluster**")
+    leftovers = _lazy_expander(
+        "The thirty first-expanding leftovers",
+        icon=":material/table:",
+        key="juggler_length11",
+    )
+    if leftovers.open:
+        with leftovers:
             st.caption(
-                f"`{EEEE_WORD}` uses `cycle_trailing_evens_lt` at r=4. "
-                f"Ideal cell {EEEE_THRESHOLD}; first fire n={EEEE_N0:,}. "
-                "Not slack in a Z4 pullback."
+                f"{EEEE_WORD} is the sharp r=4 cell {EEEE_THRESHOLD}, first at "
+                f"n={EEEE_N0:,}. That n is N0: the first start where the cell holds."
             )
-        with st.container(border=True):
-            st.markdown("**Internal-E next-square**")
-            st.caption(
-                f"Closest suffix `{BEST_V}` on `{INTERNAL_E_WORD}` is "
-                f"{INTERNAL_E_MARGIN}. At m={SPOT_WITNESS:,} the image "
-                "still undershoots (m+1)²."
-            )
-        with st.container(border=True):
-            st.markdown("**Rotation**")
-            st.caption(
-                "Theorem 3.21 upgrades an excluded CycleMin class. These "
-                "thirty words are the open CycleMin spellings, in 30 "
-                "distinct necklaces."
-            )
+            st.dataframe(pd.DataFrame(inventory), hide_index=True, width="stretch")
+
+    with st.expander("Lab decisions", icon=":material/gavel:"):
+        st.dataframe(pd.DataFrame(LAB_LEFTOVER_DECISIONS), hide_index=True, width="stretch")
+
+    with st.expander("Why these 30 remain", icon=":material/help:"):
+        gate = st.container(horizontal=True)
+        with gate:
+            with st.container(border=True, gap="small"):
+                st.markdown("**EEEE last-cluster**")
+                st.caption(
+                    f"`{EEEE_WORD}` uses the r=4 trailing-even cell. "
+                    f"Ideal cell {EEEE_THRESHOLD}; first fire n={EEEE_N0:,}."
+                )
+            with st.container(border=True, gap="small"):
+                st.markdown("**Internal-E next-square**")
+                st.caption(
+                    f"Closest suffix `{BEST_V}` on `{INTERNAL_E_WORD}` is "
+                    f"{INTERNAL_E_MARGIN}. At m={SPOT_WITNESS:,} the image "
+                    "still undershoots (m+1)²."
+                )
+            with st.container(border=True, gap="small"):
+                st.markdown("**Rotation**")
+                st.caption(
+                    "These thirty words are the open CycleMin spellings, "
+                    "in 30 distinct necklaces."
+                )
 
 
 def juggler_finite_dynamics_page() -> None:
@@ -824,24 +964,22 @@ def juggler_finite_dynamics_page() -> None:
     if st.session_state.pop("juggler_goto_cycle", False):
         st.session_state.juggler_view = "Cycle words"
     st.caption(
-        "Paper companion for Small cycles of the Juggler map. Lean is the "
-        "proof authority through Theorem 3.21. This UI only instantiates "
-        "witnesses. Arrival at 1 is not claimed."
+        "Walk the Juggler map, then test whether a loop of odd/even steps "
+        "can close. Lean is the proof authority through Theorem 3.21. "
+        "Arrival at 1 is not claimed."
     )
+    _glossary()
     view = st.segmented_control(
         "View",
-        [
-            "Claim map",
-            "Orbit",
-            "Envelope",
-            "Cells and census",
-            "Cycle words",
-            "Leftover families",
-            "Descent",
-        ],
+        VIEWS,
         key="juggler_view",
+        format_func=lambda name: VIEW_LABEL.get(name, name),
+        label_visibility="collapsed",
     )
-    _n_controls()
+    if view is None:
+        view = "Orbit"
+    if view in VIEWS_WITH_START:
+        _n_controls()
     if view == "Claim map":
         _claim_map()
     elif view == "Orbit":

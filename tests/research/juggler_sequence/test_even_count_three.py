@@ -75,6 +75,8 @@ def test_lean_even_count_assembler_and_paper_a_boundary():
     paper = JUGGLER_PAPER_BARREL.read_text(encoding="utf-8")
     assert "theorem no_cycle_word_even_count_le_three" in even
     assert "theorem cycle_word_length_ge_eleven" in even
+    assert "theorem minimal_first_even_overshoots" in even
+    assert "theorem cycleMin_first_even_overshoots" in even
     assert "sorry" not in even
     assert "admit" not in even
     assert "theorem no_cycle_word_even_count_le_three" not in census7
@@ -119,6 +121,8 @@ def test_dossier_boundary():
     assert "PROMOTE" in dossier
     assert "no_cycle_word_even_count_le_three" in dossier
     assert "cycle_word_length_ge_eleven" in dossier
+    assert "minimal_first_even_overshoots" in dossier
+    assert "cycleMin_first_even_overshoots" in dossier
     assert "no_cycle_word_length_nine" in dossier
     assert "not a length-9" in dossier
     assert "theorem no_cycle_word_even_count_le_three" not in note

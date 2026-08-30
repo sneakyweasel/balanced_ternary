@@ -137,9 +137,9 @@ unifying method and not a reason to write \(Z_5\).
 
 ## Open questions
 
-Stop on leftover-cell induction. The remaining cycle target is
-the length-11 equation \(T_{O^7\mathrm{EEEE}}(n)=n\), not
-another \(Z_e\).
+Answered in [juggler_o7eeee_window.md](juggler_o7eeee_window.md):
+the \(O^7\mathrm{EEEE}\) inverse-cell window is empty. Do not
+write \(Z_5\).
 
 ## Decision
 
@@ -147,8 +147,8 @@ another \(Z_e\).
 Leftover induction does not become a theorem by raising \(e\).
 This is not a halt result and not a five-even cell.
 
-Best next question: inverse cells or a modular empty window
-for \(O^7\mathrm{EEEE}\), not \(Z_5\).
+Best next question: answered in
+[juggler_o7eeee_window.md](juggler_o7eeee_window.md).
 
 ## Publication assessment
 

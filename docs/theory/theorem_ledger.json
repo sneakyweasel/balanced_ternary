@@ -3493,13 +3493,35 @@
     "related_conjectures": []
   },
   {
+    "id": "J-o7eeee-gap",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If n ≥ 2 follows the Juggler word O^7, then T^7(n) ≥ (n+1)^16. In particular the EEEE inverse cell [n^16, (n+1)^16) is empty of seven-odd images, so O^7 EEEE is not a cycle word. Proof: no_follows_seven_odds_of_lt256 excludes n < 256; on an O^7 run the exact cells x_k^3 < (x_{k+1}+1)^2 and x_k ≥ n compose to n^{6177} < (n+1)^{3990} (T^7(n)+1)^{128}; for n ≥ 256 one has n^{6177} > (n+1)^{6038} because 256^{139} > 2^{40} > 3^{24} > (257/256)^{6038}. This replaces the leftover 4-fudge (first fire at 828484409) by the exact successor cell. Not a Lean theorem, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_o7eeee_gap.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_o7eeee_gap.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-o7eeee-window",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "No n ≥ 3 realizes the Juggler cycle word O^7 EEEE. On 3 ≤ n < 828484409 the seven-odd image never enters the EEEE inverse cell [n^16, (n+1)^16): 6473954 O^7 starts, 3234088 even images, all strictly above the cell, closest ratio T^7(n)/(n+1)^16 = 445.01 at n=289. For n ≥ 828484409 the leftover prefix-cell n^{3^7} > 2^{denomBits(7)} (n+1)^{2^{11}} forbids a return. This is a one-word empty-window scan, not a Lean theorem, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_o7eeee_window.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_o7eeee_window.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-first-even-overshoots",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "On a MinimalNonTerm or CycleMin start, the first even residual always overshoots: T(O^a E)(n) > n and the even residual sits at or above (n+1)^2. The return-to-n cell of the first-even dichotomy is an even-count-1 cycle word, now excluded by no_cycle_word_even_count_le_three. Lean theorems minimal_first_even_overshoots and cycleMin_first_even_overshoots in EvenCountThree.lean. This is not a halt theorem and not a ReturnBelow law.",
-    "source": "docs/problems/juggler_overshoot_return.md",
+    "statement": "On a MinimalNonTerm or CycleMin start, the first even residual always overshoots: T(O^a E)(n) > n and the even residual sits at or above (n+1)^2. The return-to-n cell of the first-even dichotomy is an even-count-1 cycle word, now excluded by no_cycle_word_even_count_le_three. Lean theorems minimal_first_even_overshoots and cycleMin_first_even_overshoots in EvenCountThree.lean. This sharpens the leftover start. It is not a four-even exclusion, not a halt theorem, and not a ReturnBelow law.",
+    "source": "docs/problems/juggler_even_count_three.md",
     "lean": "Problems/Juggler/EvenCountThree.lean",
     "tests": [
-      "tests/research/juggler_sequence/test_overshoot_return.py"
+      "tests/research/juggler_sequence/test_even_count_three.py"
     ],
     "related_conjectures": []
   },

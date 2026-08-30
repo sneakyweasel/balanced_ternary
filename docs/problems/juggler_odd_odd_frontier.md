@@ -42,7 +42,7 @@ The first disjunct is a directed cycle. After
 `no_cycle_word_even_count_le_three` it is excluded:
 `minimal_first_even_overshoots` and `cycleMin_first_even_overshoots`
 in `EvenCountThree.lean`. The leftover is strict overshoot. See
-[juggler_overshoot_return.md](juggler_overshoot_return.md).
+[juggler_even_count_three.md](juggler_even_count_three.md).
 
 Do not prove `FiniteProgress` for overshoot. Do not prove that cycles
 are impossible. Do not prove totality.
@@ -170,7 +170,7 @@ two excursions do not always return below \(n\).
 claim that overshoot progresses. Do not claim termination. The
 return-to-\(n\) disjunct was later excluded by the even-count
 assembler; that is recorded in
-[juggler_overshoot_return.md](juggler_overshoot_return.md), not as a
+[juggler_even_count_three.md](juggler_even_count_three.md), not as a
 new claim of this dossier.
 
 Best next question: answered in
