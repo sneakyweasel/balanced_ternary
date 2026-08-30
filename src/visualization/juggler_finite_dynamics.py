@@ -14,8 +14,10 @@ from typing import Any
 
 from research.juggler_sequence.bunched_last_cluster import FAMILIES
 from research.juggler_sequence.cycle_length_seven import (
+    THRESHOLD_BY_SUFFIX,
     cycle_word_hits,
     orbit_until_fail,
+    suffix_after_last_internal_e,
 )
 from research.juggler_sequence.cycle_ooo_scale import cyclemin_orientation
 from research.juggler_sequence.cycle_word import follows_word, image_after
@@ -41,6 +43,7 @@ from research.juggler_sequence.length11_nonpullback import (
     EEEE_WORD,
     SPOT_WITNESS,
 )
+from research.juggler_sequence.length8_bootstrap import named_length8_filter
 from research.juggler_sequence.power_words import floor_power, odd_count, regime_of
 from research.juggler_sequence.progress_coverage import coverage_bucket, first_even_residual
 
@@ -274,6 +277,12 @@ LAB_LEFTOVER_DECISIONS: tuple[dict[str, str], ...] = (
         "tag": "packaging",
         "note": "leftover_prefix_cell; families in LeftoverFamilies; census still ≤7",
     },
+    {
+        "branch": "Length-8 two-even squares",
+        "decision": "CLOSE",
+        "tag": "REPARAMETERIZATION",
+        "note": "OOOOEOOE=OO(OOE)^2 and OOOEOOOE=(OOOE)^2 are OO/OOO bootstrap, not leftovers",
+    },
 )
 
 
@@ -323,6 +332,23 @@ def two_even_family(word: str) -> str | None:
     if word == "O" * (length - 3) + "EOE":
         return "EOE"
     return None
+
+
+def two_even_bootstrap_kind(word: str) -> tuple[str, str] | None:
+    """Name an internal-E next-square two-even spelling, or None."""
+
+    suffix = suffix_after_last_internal_e(word)
+    threshold = THRESHOLD_BY_SUFFIX.get(suffix or "")
+    if threshold is None:
+        return None
+    if not cyclemin_orientation(word)["legal_cyclemin"]:
+        return None
+    name, n0 = threshold
+    return (
+        "bootstrap",
+        f"internal E plus {suffix} next-square ({name} at N={n0}); "
+        "not a leftover cell",
+    )
 
 
 def leftover_family_kind(word: str) -> tuple[str, str] | None:
@@ -405,16 +431,26 @@ def length11_inventory() -> tuple[dict[str, Any], ...]:
 
 
 def length_eight_status_rows() -> tuple[dict[str, str], ...]:
+    notes = {
+        "odd_run": "odd-run O^7E; named filter, not a census theorem",
+        "two_even_ee": "Theorem 3.12 two-even EE",
+        "two_even_eoe": "Theorem 3.12 two-even EOE",
+        "bootstrap_oo_suffix_threshold": "internal E plus OO next-square; not a leftover",
+        "bootstrap_ooo_suffix_threshold": "internal E plus OOO next-square; not a leftover",
+        "bootstrap_odd_run_suffix_threshold": "internal E plus O^4 odd-run threshold",
+        "cycleMin_not_odd_even": "starts OE; rotates onto OOOOOEOE",
+        "rotate_start_even": "starts even; rotates onto OOOOOOEE",
+    }
     rows = []
     for word in length_eight_open_words():
-        family = two_even_family(word)
-        if family is None:
-            status = "open"
-            note = "not a two-even leftover; length eight remains open as a census"
-        else:
-            status = "excluded"
-            note = f"Theorem 3.12 two-even {family}"
-        rows.append({"word": word, "status": status, "note": note})
+        named = named_length8_filter(word)
+        rows.append(
+            {
+                "word": word,
+                "status": "named filter",
+                "note": notes.get(named, named),
+            }
+        )
     return tuple(rows)
 
 
@@ -778,6 +814,8 @@ def classify_word(word: str) -> WordClass:
             "two-even leftover",
             f"Theorem 3.12 excludes O^*{family} for every k ≥ 6",
         )
+    elif two_even_bootstrap_kind(word) is not None:
+        kind, reason = two_even_bootstrap_kind(word)
     elif len(word) <= 7:
         kind, reason = "excluded", "note census of length ≤ 7"
     else:
@@ -1050,6 +1088,8 @@ def _orientation_ledger(kind: str, word: str) -> str | None:
                 return _BUNCHED_LEDGER.get(name)
         return "J-three-even-eee"
     if kind in {"threshold", "bootstrap", "rotation", "excluded", "not CycleMin"}:
+        if kind == "bootstrap" and len(word) >= 8:
+            return "J-cycle-finite-structure"
         return "J-small-cycle-census-seven" if len(word) <= 7 else "J-small-cycle-census"
     return None
 
@@ -1078,6 +1118,9 @@ def _base_kind(word: str) -> tuple[str, str]:
     leftover = leftover_family_kind(word)
     if leftover is not None:
         return leftover
+    bootstrap = two_even_bootstrap_kind(word)
+    if bootstrap is not None:
+        return bootstrap
     family = two_even_family(word)
     if family == "EE":
         return (

@@ -1,0 +1,295 @@
+{
+  "experiment": "juggler_length8_bootstrap",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eight_census": false,
+    "new_leftover_cell": false,
+    "induction_on_period": false,
+    "induction_on_n": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "word_count": 8,
+    "words": [
+      "OOOOOOOE",
+      "OOOOOOEE",
+      "OOOOOEOE",
+      "OOOOEOOE",
+      "OOOEOOOE",
+      "OOEOOOOE",
+      "OEOOOOOE",
+      "EOOOOOOE"
+    ],
+    "rows": [
+      {
+        "word": "OOOOOOOE",
+        "odd": 7,
+        "even": 1,
+        "parts": null,
+        "internal_e": null,
+        "suffix": null,
+        "next_square": false,
+        "threshold": null,
+        "threshold_n": null,
+        "legal_cyclemin": true,
+        "named_filter": "odd_run",
+        "square": null
+      },
+      {
+        "word": "OOOOOOEE",
+        "odd": 6,
+        "even": 2,
+        "parts": [
+          6,
+          0
+        ],
+        "internal_e": 6,
+        "suffix": "",
+        "next_square": false,
+        "threshold": null,
+        "threshold_n": null,
+        "legal_cyclemin": true,
+        "named_filter": "two_even_ee",
+        "square": null
+      },
+      {
+        "word": "OOOOOEOE",
+        "odd": 6,
+        "even": 2,
+        "parts": [
+          5,
+          1
+        ],
+        "internal_e": 5,
+        "suffix": "O",
+        "next_square": false,
+        "threshold": null,
+        "threshold_n": null,
+        "legal_cyclemin": true,
+        "named_filter": "two_even_eoe",
+        "square": null
+      },
+      {
+        "word": "OOOOEOOE",
+        "odd": 6,
+        "even": 2,
+        "parts": [
+          4,
+          2
+        ],
+        "internal_e": 4,
+        "suffix": "OO",
+        "next_square": true,
+        "threshold": "oo_suffix_threshold",
+        "threshold_n": 5,
+        "legal_cyclemin": true,
+        "named_filter": "bootstrap_oo_suffix_threshold",
+        "square": "OO + (OOE)^2"
+      },
+      {
+        "word": "OOOEOOOE",
+        "odd": 6,
+        "even": 2,
+        "parts": [
+          3,
+          3
+        ],
+        "internal_e": 3,
+        "suffix": "OOO",
+        "next_square": true,
+        "threshold": "ooo_suffix_threshold",
+        "threshold_n": 3,
+        "legal_cyclemin": true,
+        "named_filter": "bootstrap_ooo_suffix_threshold",
+        "square": "(OOOE)^2"
+      },
+      {
+        "word": "OOEOOOOE",
+        "odd": 6,
+        "even": 2,
+        "parts": [
+          2,
+          4
+        ],
+        "internal_e": 2,
+        "suffix": "OOOO",
+        "next_square": true,
+        "threshold": "odd_run_suffix_threshold",
+        "threshold_n": 3,
+        "legal_cyclemin": true,
+        "named_filter": "bootstrap_odd_run_suffix_threshold",
+        "square": null
+      },
+      {
+        "word": "OEOOOOOE",
+        "odd": 6,
+        "even": 2,
+        "parts": [
+          1,
+          5
+        ],
+        "internal_e": 1,
+        "suffix": "OOOOO",
+        "next_square": true,
+        "threshold": "odd_run_suffix_threshold",
+        "threshold_n": 3,
+        "legal_cyclemin": false,
+        "named_filter": "cycleMin_not_odd_even",
+        "square": null
+      },
+      {
+        "word": "EOOOOOOE",
+        "odd": 6,
+        "even": 2,
+        "parts": [
+          0,
+          6
+        ],
+        "internal_e": 0,
+        "suffix": "OOOOOO",
+        "next_square": true,
+        "threshold": null,
+        "threshold_n": null,
+        "legal_cyclemin": false,
+        "named_filter": "rotate_start_even",
+        "square": null
+      }
+    ],
+    "all_named": true,
+    "leftover_count": 0,
+    "square_eooe": "OOOOEOOE",
+    "square_eoooe": "OOOEOOOE",
+    "square_eooe_is_oo_ooe2": true,
+    "square_eoooe_is_oooe2": true,
+    "known_eooe": [
+      "OOEOOE",
+      "OOOEOOE"
+    ],
+    "known_eoooe": [
+      "OOEOOOE"
+    ],
+    "squares": [
+      {
+        "word": "OOOOEOOE",
+        "odd": 6,
+        "even": 2,
+        "parts": [
+          4,
+          2
+        ],
+        "internal_e": 4,
+        "suffix": "OO",
+        "next_square": true,
+        "threshold": "oo_suffix_threshold",
+        "threshold_n": 5,
+        "legal_cyclemin": true,
+        "named_filter": "bootstrap_oo_suffix_threshold",
+        "square": "OO + (OOE)^2"
+      },
+      {
+        "word": "OOOEOOOE",
+        "odd": 6,
+        "even": 2,
+        "parts": [
+          3,
+          3
+        ],
+        "internal_e": 3,
+        "suffix": "OOO",
+        "next_square": true,
+        "threshold": "ooo_suffix_threshold",
+        "threshold_n": 3,
+        "legal_cyclemin": true,
+        "named_filter": "bootstrap_ooo_suffix_threshold",
+        "square": "(OOOE)^2"
+      }
+    ],
+    "both_squares_next_square": true,
+    "both_squares_legal": true,
+    "filters": {
+      "OOOOOOOE": "odd_run",
+      "OOOOOOEE": "two_even_ee",
+      "OOOOOEOE": "two_even_eoe",
+      "OOOOEOOE": "bootstrap_oo_suffix_threshold",
+      "OOOEOOOE": "bootstrap_ooo_suffix_threshold",
+      "OOEOOOOE": "bootstrap_odd_run_suffix_threshold",
+      "OEOOOOOE": "cycleMin_not_odd_even",
+      "EOOOOOOE": "rotate_start_even"
+    },
+    "small_n": [
+      {
+        "word": "OOOOEOOE",
+        "follows": [],
+        "returns": []
+      },
+      {
+        "word": "OOOEOOOE",
+        "follows": [],
+        "returns": []
+      }
+    ],
+    "small_n_no_return": true,
+    "transients": [
+      {
+        "n": 69,
+        "word": "OOEOOE",
+        "follows": true,
+        "image": 212,
+        "returned": false,
+        "expanded": true
+      },
+      {
+        "n": 225,
+        "word": "OOOEOOOE",
+        "follows": true,
+        "image": 4990602,
+        "returned": false,
+        "expanded": true
+      }
+    ],
+    "transients_expand_and_do_not_return": true,
+    "length_eight_census": false,
+    "new_leftover_cell": false,
+    "induction_on_period": false,
+    "induction_on_n": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "no_cycleMin_internal_even_threshold": true,
+    "oo_suffix_threshold": true,
+    "ooo_suffix_threshold": true,
+    "odd_run_suffix_threshold": true,
+    "no_cycle_odd_run_append_even": true,
+    "no_cycle_word_two_even_ee": true,
+    "no_cycle_word_two_even_eoe": true,
+    "no_cycle_word_ooeooe": true,
+    "no_cycle_word_oooeooe": true,
+    "no_cycle_word_ooeoooe": true,
+    "no_cycle_word_length_le_seven": true,
+    "exists_cycleMin": true,
+    "no_cycle_word_length_eight": true,
+    "no_cycle_word_length_le_eight": true,
+    "no_cycle_word_ooooeooe": true,
+    "no_cycle_word_oooeoooe": true,
+    "no_juggler_cycle": true,
+    "no_all_cycles_impossible": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "Minimal_untouched": true
+  },
+  "decision": {
+    "classification": "LENGTH8_BOOTSTRAP_REPARAMETERIZATION",
+    "reason": "OOOOEOOE = OO(OOE)^2 and OOOEOOOE = (OOOE)^2 are the next OO/OOO bootstrap instances, not leftovers; every even-terminating expanding length-8 word has a named filter; not a length-8 census"
+  },
+  "search_method": "Named filters on the eight even-terminating expanding length-8 words; suffix between the internal E and the last E; square reading; small-n follows; recorded repeated-block transients"
+}

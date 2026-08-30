@@ -11638,3 +11638,39 @@ Best next question
 - stop
 ```
 
+## Juggler length-8 two-even bootstrap
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether OOOOEOOE and OOOEOOOE are new leftovers or the next OO/OOO bootstrap instances
+- **Hypotheses:** the square reading OO(OOE)^2 / (OOOE)^2 is a new leftover last cluster
+- **Major results:** classification **LENGTH8_BOOTSTRAP_REPARAMETERIZATION**. All eight even-terminating expanding length-8 words have a named filter. The two squares have next-square suffixes OO and OOO. Repeated-block transients 69 and 225 follow and do not return. No Lean. No Paper A theorem. Not a length-8 census
+- **Refuted ideas:** OOOOEOOE and OOOEOOOE are leftovers; the square reading is a new cycle obstruction
+- **Literature:** `no_cycleMin_internal_even_threshold`; `no_cycle_word_ooeooe`; Theorem 3.12; repeated-block `PROMOTE` with expanding transients
+- **Open:** a length-8 census is packaging of named filters. Not assembled here
+- **Decision:** CLOSE. The suspected new leftovers are the existing internal-E bootstrap. Not a census theorem and not a halt theorem
+
+```text
+What was learned
+- OOOOEOOE = OO(OOE)^2 and OOOEOOOE = (OOOE)^2
+- the suffix between the internal E and the last E is
+  OO or OOO, already next-square
+- OOEOOOOE is the O^4 odd-run suffix threshold
+- every even-terminating expanding length-8 word is named
+- repeated-block transients still expand and do not return
+Strongest theorem
+- none; the exclusions are instances of
+  no_cycleMin_internal_even_threshold
+Strongest refutation
+- OOOOEOOE and OOOEOOOE are new leftovers
+Reusable machinery
+- length8_bootstrap.py: eight-word inventory; no Lean
+Branch status
+- CLOSE
+Why
+- square reading is the bootstrap split already used at
+  lengths 6 and 7; leftover_prefix_cell is not needed
+Best next question
+- assemble no_cycle_word_length_eight from the named
+  filters, or stop
+```
+

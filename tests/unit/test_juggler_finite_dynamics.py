@@ -211,11 +211,11 @@ def test_two_even_length_eight_is_excluded():
     assert view.ledger == "J-two-even-leftover-ee"
 
 
-def test_length_eight_bootstrap_shape_stays_open():
+def test_length_eight_bootstrap_shapes_are_excluded():
     view = cycle_class_view("OOEOOOOE", 0)
-    assert view.verdict == "open"
-    assert view.current_kind == "open"
-    assert view.steps[-1].status == "open"
+    assert view.verdict == "excluded"
+    assert view.current_kind == "bootstrap"
+    assert view.steps[-1].status == "blocks"
 
 
 def test_gapped_and_bunched_three_even_are_excluded():
@@ -252,9 +252,17 @@ def test_length11_inventory_is_thirty_first_expanding_words():
 def test_classify_word_marks_two_even_length_eight():
     info = classify_word("OOOOOOEE")
     assert info.kind == "two-even leftover"
-    rows = {row["word"]: row["status"] for row in length_eight_status_rows()}
-    assert rows["OOOOOOEE"] == "excluded"
-    assert rows["OOEOOOOE"] == "open"
+    rows = {row["word"]: row for row in length_eight_status_rows()}
+    assert rows["OOOOOOEE"]["note"].startswith("Theorem 3.12")
+    assert "odd-run threshold" in rows["OOEOOOOE"]["note"]
+    assert "not a leftover" in rows["OOOOEOOE"]["note"]
+    assert "not a leftover" in rows["OOOEOOOE"]["note"]
+    squares = cycle_class_view("OOOOEOOE", 0)
+    assert squares.current_kind == "bootstrap"
+    assert squares.verdict == "excluded"
+    copy = cycle_class_view("OOOEOOOE", 0)
+    assert copy.current_kind == "bootstrap"
+    assert copy.verdict == "excluded"
 
 
 def test_all_odd_cannot_close():

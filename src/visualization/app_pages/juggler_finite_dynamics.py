@@ -462,9 +462,11 @@ def _cells() -> None:
     st.dataframe(pd.DataFrame(census_inventory()), hide_index=True, width="stretch")
     with st.expander("Length-eight expanding even-terminating words"):
         st.caption(
-            "Two-even leftovers of length eight are Theorem 3.12. The other "
-            "expanding even-terminating length-eight words remain open. This "
-            "is not a length-eight census."
+            "Two-even leftovers of length eight are Theorem 3.12. The "
+            "square spellings OOOOEOOE = OO(OOE)² and OOOEOOOE = (OOOE)² "
+            "are OO/OOO bootstrap, not leftovers. Named filters cover "
+            "every even-terminating expanding length-eight word. This is "
+            "not a length-eight census."
         )
         st.dataframe(
             pd.DataFrame(length_eight_status_rows()),
@@ -548,8 +550,9 @@ def _cycle_words() -> None:
     st.caption(
         "A cycle word is a cyclic object. Type a parity word, rotate it, "
         "and read the recorded obstruction. Lean is the authority through "
-        "Theorems 3.12–3.21. Length eight beyond the two-even leftovers "
-        "remains open. The thirty length-11 short-gap leftovers are open "
+        "Theorems 3.12–3.21. Length-8 squares OOOOEOOE and OOOEOOOE "
+        "are OO/OOO bootstrap, not leftovers. Length eight remains "
+        "open as a census. The thirty length-11 short-gap leftovers are open "
         "as CycleMins; arrival at 1 is not claimed."
     )
     _badge("J-cycle-finite-structure")
@@ -726,10 +729,12 @@ def _open_cycle_word(word: str) -> None:
 def _leftover_families() -> None:
     st.caption(
         "Two-even, bunched, and gapped leftovers are Lean CycleWord or "
-        "CycleMin theorems (3.12–3.21). The thirty first-expanding "
-        "four-even short-gap words are a lab gate: Z4 PARK, last-cluster "
-        "and non-pullback CLOSE. Not a length-11 census and not a halt "
-        "claim. leftover_prefix_cell is packaging, not a new family."
+        "CycleMin theorems (3.12–3.21). Length-8 squares OOOOEOOE and "
+        "OOOEOOOE are OO/OOO bootstrap, not leftovers. The thirty "
+        "first-expanding four-even short-gap words are a lab gate: Z4 "
+        "PARK, last-cluster and non-pullback CLOSE. Not a length-8 or "
+        "length-11 census and not a halt claim. leftover_prefix_cell "
+        "is packaging, not a new family."
     )
     for theorem_id in LEFTOVER_FAMILY_LEDGER_IDS:
         _badge(theorem_id)
