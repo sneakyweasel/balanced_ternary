@@ -14800,4 +14800,78 @@ Best next question
 - none from certificate-transition closure
 ```
 
+## Juggler survival-set inverse mass
+
+- **Date:** 2026-08-30
+- **Objective:** Measure \(B_k(N;X)\) and windowed inverse mass and test whether \(S_{k+1}/S_k\) admits a stable \(\rho<1\) beyond the even leak
+- **Hypotheses:** the survivor population cannot sustain itself under \(T^{-1}\) even though individuals look generic
+- **Major results:** Classification **SURVIVAL_SET_CLOSED**. Anchors \(2,3,5,10,50,100,1000\); windows \(5\cdot 10^5\)–\(4\cdot 10^6\); \(k\le 40\). \(S_1\) equals \(S_0\) minus the even cut \(n<N^2\) at every pair. No uniform \(\rho<1\); late \(R\) is \(0.91\)–\(0.93\) and rises with \(X\). \(S_k/X\) grows with \(X\). \(|B_{40}(2;4\cdot 10^6)|=183380\). Windowed \(P_E\sim X/2\), \(P_O\sim X^{2/3}\). No `SurvivalSet.lean`. Paper A unchanged. No halt theorem. Density is not emptiness. No ledger theorem row
+- **Refuted ideas:** a new first-step \(\rho\); uniform inverse contraction; a finite \(X\)-independent core; odd-dominated windowed preimages
+- **Literature:** `even_word_contracts`; `juggler_progress_coverage.md`; `SURVIVOR_PHASE_CLOSED`
+- **Open:** none from windowed inverse mass. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. The leak is the even FiniteProgress cut; later rarity is a scale artefact
+
+```text
+What was learned
+- S1 is exactly the even cut n < N^2
+- later R_k is 0.91-0.93 and rises with X
+- S_k/X grows when X grows
+- B_40(2;X) scales up, not to a finite core
+- windowed P_E is ~X/2 and P_O is ~X^{2/3}
+Strongest theorem
+- none new
+Strongest refutation
+- a uniform rho<1 inverse-mass contraction
+Reusable machinery
+- none; no new Lean primitive; compact S_k tables only
+Branch status
+- CLOSE
+Why
+- the only exact contraction is even_word_contracts;
+  density is not emptiness
+Best next question
+- none from survival-set inverse mass
+```
+
+## Juggler cycle finance inequality
+
+- **Date:** 2026-08-31
+- **Objective:** Bound the minimum of a hypothetical Juggler cycle as a function of its length by financing the formal expansion \(2^L<3^o\) with the exact floor defects, Simons–de Weger style
+- **Hypotheses:** the whole-cycle log financing identity forces \(n\ln n\le\frac65 L\,3^o/(3^o-2^L)\), so one verified floor excludes every length at once outside near-convergent exceptions
+- **Major results:** Classification **CYCLE_FINANCE_GREEN**. The finance inequality is **EXACT — HUMAN PROOF** (dossier): unroll \(x_{i+1}^2=x_i^{e_i}-d_i\), \(0\le d_i\le 2x_{i+1}\), in logs around the cycle; per-step \(\varepsilon_i\le(6/5)/x_{i+1}\) for states \(\ge12\). Exact gap table \(L\le10^5\); descent-induction floor: every \(2\le n\le10^6\) reaches 1 (**COMPUTATIONALLY VERIFIED**; max first passage 253 steps at seed 78901, peak value \(6.3\cdot10^6\) bits). Consequences: no Juggler cycle of length \(\le1053\); none of length \(\le10^5\) outside 397 explicit near-convergent lengths (94 multiples of 1054 plus combinations); record lengths \(1,3,11,19,84,569,1054,25781,50508\) track the convergents of \(\ln2/\ln3\); a \(10^9\) floor would clear all \(L\le10^5\). Census cross-check: finance + the Lean residual floor independently kill \(L\in\{1,2,4,5,7,8\}\), leaving \(\{3,6\}\) census-only. Slack on real orbits: worst per-step margin \(\ge0.17\), identity exact to \(2\cdot10^{-16}\), orbits use \(0.22\)–\(0.47\) of budget. No new Lean file. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** none; the falsifier (per-step bound violation on real orbit data) did not fire
+- **Literature:** `simons-de-weger-2005-collatz-m-cycles`; `no_cycle_word_length_le_eight`; `global_defect_identity`; `cycle_peak_finance`
+- **Open:** the near-convergent exceptional lengths need a growing floor, a Baker-type gap bound, or near-tight rigidity to cover all \(L\)
+- **Decision:** PROMOTE. Promotion is to Lean formalization of the inequality over `pathDefectSum`/`global_defect_identity`
+
+```text
+What was learned
+- a cycle's expansion gap must be financed by floor defects
+  that are relatively O(1/x) in logs, giving
+  n ln n <= (6/5) L 3^o/(3^o - 2^L)
+- one floor excludes lengths wholesale: 10^6 kills all L <= 1053
+  versus the census L <= 8
+- exceptional lengths are exactly the near-convergent ones;
+  10^9 would clear every L <= 10^5
+- finance + the Lean floor rederive most of the small census
+  ({1,2,4,5,7,8}) transversally; {3,6} stay census-only
+- real orbits satisfy the per-step bound with a factor-2 margin
+Strongest theorem
+- the cycle finance inequality (EXACT — HUMAN PROOF)
+Strongest refutation
+- none; the falsifier did not fire
+Reusable machinery
+- research.juggler_sequence.cycle_finance: exact gap table,
+  descent-induction floor, orbit slack bookkeeping
+Branch status
+- PROMOTE
+Why
+- first wholesale cycle-length exclusion mechanism; reduces the
+  cycle half of cycles_or_escapes to floor versus convergents
+Best next question
+- can the finance inequality be formalized over pathDefectSum so
+  that no-cycle-of-length-<=1053 becomes Lean-verified modulo a
+  Lean-checked floor?
+```
+
 

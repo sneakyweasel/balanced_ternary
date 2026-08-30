@@ -1,0 +1,86 @@
+[
+  {
+    "seed": 25,
+    "steps": 11,
+    "checked_states": 7,
+    "reached_one": true,
+    "step_bound_ok": true,
+    "defect_bound_ok": true,
+    "worst_margin": 0.23411895717852127,
+    "identity_rel_err": 1.8395209342721222e-16,
+    "tightness": 0.21663838713415964,
+    "mean_defect_ratio": 0.38409371778286333
+  },
+  {
+    "seed": 27,
+    "steps": 6,
+    "checked_states": 2,
+    "reached_one": true,
+    "step_bound_ok": true,
+    "defect_bound_ok": true,
+    "worst_margin": 0.6002808777566255,
+    "identity_rel_err": 1.1102230246251565e-16,
+    "tightness": 0.37563881168052354,
+    "mean_defect_ratio": 0.39126984126984127
+  },
+  {
+    "seed": 37,
+    "steps": 17,
+    "checked_states": 14,
+    "reached_one": true,
+    "step_bound_ok": true,
+    "defect_bound_ok": true,
+    "worst_margin": 0.19434614329683209,
+    "identity_rel_err": 2.1356176692099453e-16,
+    "tightness": 0.3504592274728705,
+    "mean_defect_ratio": 0.586112901604063
+  },
+  {
+    "seed": 365,
+    "steps": 21,
+    "checked_states": 16,
+    "reached_one": true,
+    "step_bound_ok": true,
+    "defect_bound_ok": true,
+    "worst_margin": 0.22261250544787503,
+    "identity_rel_err": 2.1147143017600236e-16,
+    "tightness": 0.4383444981193724,
+    "mean_defect_ratio": 0.5575440191873838
+  },
+  {
+    "seed": 1999,
+    "steps": 31,
+    "checked_states": 27,
+    "reached_one": true,
+    "step_bound_ok": true,
+    "defect_bound_ok": true,
+    "worst_margin": 0.17932542548877473,
+    "identity_rel_err": 1.6414863224101518e-16,
+    "tightness": 0.4689392291943967,
+    "mean_defect_ratio": 0.45444828785594155
+  },
+  {
+    "seed": 30817,
+    "steps": 93,
+    "checked_states": 90,
+    "reached_one": true,
+    "step_bound_ok": true,
+    "defect_bound_ok": true,
+    "worst_margin": 0.1741304765328029,
+    "identity_rel_err": 2.088501970359447e-16,
+    "tightness": 0.45604818309390616,
+    "mean_defect_ratio": 0.5093674715546821
+  },
+  {
+    "seed": 1000003,
+    "steps": 8,
+    "checked_states": 5,
+    "reached_one": true,
+    "step_bound_ok": true,
+    "defect_bound_ok": true,
+    "worst_margin": 0.2935487603165071,
+    "identity_rel_err": 1.7159055776743934e-16,
+    "tightness": 0.4747001815724094,
+    "mean_defect_ratio": 0.606328853520963
+  }
+]

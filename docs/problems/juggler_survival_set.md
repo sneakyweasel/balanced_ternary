@@ -111,11 +111,18 @@ It is not required.
 - \(B_{k+1}=[N,\infty)\cap T^{-1}(B_k)\) —
   **KNOWN** as set algebra
 - Even leak \(n<N^2\Rightarrow T(n)<N\) —
-  **EXACT — LEAN VERIFIED** (`even_word_contracts`)
-- \(S_k\), \(R_k\), densities, weights —
-  **COMPUTATIONALLY VERIFIED** as a bounded observation
-- Uniform \(\rho<1\) inverse contraction — tested in Phase 0
-- Finite survivor core — tested in Phase 0
+  **EXACT — LEAN VERIFIED** (`even_word_contracts`);
+  this is exactly \(S_0-S_1\) at every tested \((N,X)\)
+- Uniform \(\rho<1\) inverse contraction —
+  **REFUTED** at the Phase-0 windows (\(R_k\) after the
+  first step is not bounded by a stable \(\rho<0.95\);
+  late \(R\) rises toward \(1\) as \(X\) grows)
+- Finite survivor core —
+  **REFUTED** as a window-independent statement:
+  \(|B_{40}(2;X)|\) grows with \(X\)
+- Density of \(B_k\) as \(X\) scales —
+  **OBSERVATION**: \(S_k/X\) increases with \(X\) at
+  many depths (finite-window decay is not asymptotic)
 - Global halt — not claimed
 
 ## Experiments
@@ -127,8 +134,8 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_survival_set.py`
 
 Science window: anchors \(2,3,5,10,50,100,1000\); windows
-up to a few million; \(k\le 40\). Tests use \(X\le 200\),
-\(k\le 12\). No CLI. No Lean.
+\(5\cdot 10^5,10^6,2\cdot 10^6,4\cdot 10^6\); \(k\le 40\).
+Tests use \(X\le 160\), \(k\le 12\). No CLI. No Lean.
 
 ## Conjectures
 
@@ -136,7 +143,19 @@ None opened.
 
 ## Counterexamples
 
-Recorded after the science window.
+- “\(S_1=S_0\cdot\rho\) for a new \(\rho\).” False:
+  \(S_0-S_1\) equals the even count in \([N,\min(X,N^2))\),
+  already `even_word_contracts`.
+- “\(R_k\le\rho<1\) uniformly in \(k\) and \(X\).” False:
+  late ratios sit near \(0.91\)–\(0.93\) and rise with
+  \(X\) (e.g. \(N=2\): \(0.913\to 0.924\)).
+- “\(S_k/X\) is nonincreasing in \(X\).” False: density
+  grows with \(X\) at many depths for every tested \(N\).
+- “\(B_{40}(N;X)\) is a finite core independent of \(X\).”
+  False: \(|B_{40}(2;4\cdot 10^6)|=183380\), about
+  \(4.5\) times \(|B_{40}(2;5\cdot 10^5)|\).
+- “Windowed \(P([N,X])\) is odd-dominated.” False:
+  \(P_E\sim X/2\) and \(P_O\sim X^{2/3}\).
 
 ## Formalization
 
@@ -146,19 +165,50 @@ No `sorry`. Paper A is unchanged.
 
 ## Results
 
-Recorded after the science window. Classification is produced
-by `survival_set.classify`.
+Classification **SURVIVAL_SET_CLOSED**.
+
+Science window: anchors \(2,3,5,10,50,100,1000\), windows
+\(5\cdot 10^5\)–\(4\cdot 10^6\), \(k\le 40\)
+(`COMPUTATIONALLY VERIFIED` as a bounded observation;
+density is not emptiness):
+
+- \(S_1=S_0-\#\{\text{evens }n\in[N,X]:n<N^2\}\) at every
+  pair. The first leak is `even_word_contracts`.
+- No uniform \(\rho<1\). Late \(R_k\) is \(0.91\)–\(0.93\)
+  and increases with \(X\).
+- \(S_k/X\) grows with \(X\) at many \(k\) (Falsifier A
+  for a window-free exponential).
+- Windowed inverse mass of \([N,X]\): even branch
+  \(\sim X/2\), odd branch \(\sim X^{2/3}\). The even
+  preimages live near scale \(X^2\) and only the slice
+  \(n\ge N^2\) stays in the window.
+- \(|B_{40}(2;4\cdot 10^6)|=183380\). The depth-\(40\)
+  set scales up, not down to a finite core.
+
+This is the even-leak reparameterization and the
+scale-artefact falsifier. User PARK labels “only density
+/ generic branching / no route to emptiness” are this
+close.
 
 ## Open questions
 
-Whether a population inverse-mass contraction exists that
-can be upgraded from density to arithmetic emptiness.
+None from windowed inverse mass at this scope. Do not
+upgrade \(S_k/X\to 0\) to \(B_\infty=\varnothing\). Do
+not add `SurvivalSet.lean`. The leftover residual is
+still the cube cell without a square cell.
 
 ## Decision
 
-Pending the Phase-0 science window. The branch will end in
-exactly one of PROMOTE, PARK, or CLOSE after the multi-anchor
-survival-set census.
+**CLOSE**. The only exact first-step contraction is the
+already-proved even cut \(n<N^2\). Later ratios are not
+a stable \(\rho<1\). Densities grow when the window
+grows. A density statement cannot be promoted to
+arithmetic emptiness. A branch whose new statements are
+`KNOWN` or `REPARAMETERIZATION` is a close.
+
+Best next question: none from survival-set inverse mass.
+The leftover hole is still a cube cell without a square
+cell.
 
 ## Publication assessment
 

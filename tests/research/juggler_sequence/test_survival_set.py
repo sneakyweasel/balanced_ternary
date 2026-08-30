@@ -106,6 +106,7 @@ def test_dossier_boundary():
     assert "## Publication assessment" in dossier
     assert "SURVIVOR_PHASE_CLOSED" in dossier
     assert "even_word_contracts" in dossier
+    assert "**CLOSE**" in dossier
     assert "SurvivalSet" not in paper
     assert "theorem no_juggler_escape" not in dossier
     assert "LANG_SURVIVAL" not in dossier
