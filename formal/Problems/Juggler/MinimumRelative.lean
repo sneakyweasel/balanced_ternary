@@ -1,4 +1,6 @@
-import Problems.Juggler.Scale
+import Problems.Juggler.Envelope
+import Problems.Juggler.Progress
+import Problems.Juggler.WordStats
 
 namespace Problems.Juggler
 
@@ -11,17 +13,14 @@ namespace Problems.Juggler
 follows n w  ∧  ∀ i ≤ |w|,  n ≤ T^i(n).
 ```
 
-`CycleMin` and `MinimalNonTerm` are consumers: a cycle minimum
-realizes it by the ge-filter plus return `T_w(n)=n`, and a
-minimal non-1 start realizes it on every finite prefix because
-the whole orbit stays `≥ n`. This file does not mention cycle
-closure except as a hypothesis of `aboveAnchor_of_minimalNonTerm`
-(which uses only the orbit lower bound). Cycle wrappers live in
-`CycleCore` / `FirstInternalOO`.
+This file does not import `Scale` or `Minimal`. `CycleMin` and
+`MinimalNonTerm` consume `AboveAnchor` downward: cycle wrappers
+live in `CycleCore` / `FirstInternalOO`; CE wrappers live in
+`Minimal.lean`.
 
-Symbolic word envelopes stay in `Envelope` / `Scale`. The
-semantic output of a drop is the existing `FiniteProgress`
-certificate. This is not a halt theorem.
+Symbolic word envelopes stay in `Envelope`. The semantic output
+of a drop is the existing `FiniteProgress` certificate. This is
+not a halt theorem.
 -/
 
 /-- Every realized state along `w`, including the endpoint, is at
@@ -52,12 +51,6 @@ theorem aboveAnchor_of_prefix {n : ℕ} {u v : List Branch}
     h.2 i (by
       simp only [List.length_append]
       exact le_trans hi (Nat.le_add_right _ _))⟩
-
-/-- A minimal non-1 orbit stays `≥ n` at every iterate, so every
-realized finite prefix is minimum-relative. Not a cycle hypothesis. -/
-theorem aboveAnchor_of_minimalNonTerm {n : ℕ} {w : List Branch}
-    (h : MinimalNonTerm n) (hw : follows n w) : AboveAnchor n w :=
-  ⟨hw, fun i _ => minimal_nonterm_iterate_ge h i⟩
 
 /-- Naming alias of `finiteProgress_of_imageLt`. A realized drop
 below the start is the standard finite-progress certificate. -/
@@ -154,6 +147,137 @@ theorem odd_ge_sq_floor_ge_cube {x n : ℕ} (hodd : x % 2 = 1)
   have : (n ^ 3) ^ 2 ≤ x ^ 3 := by rwa [hexp]
   simpa [pow_two] using this
 
+/-- Odd cube-band state: the leftover of `even_cube_not_square`. -/
+def CubeOddLanding (n x : ℕ) : Prop :=
+  n ^ 2 ≤ x ∧ x < n ^ 3 ∧ x % 2 = 1
+
+theorem cube_odd_landing_two_le {x n : ℕ} (hn : 2 ≤ n)
+    (h : CubeOddLanding n x) : 2 ≤ x := by
+  have h4 : (2 : ℕ) ^ 2 ≤ n ^ 2 := Nat.pow_le_pow_left hn 2
+  have : (4 : ℕ) ≤ n ^ 2 := by simpa using h4
+  exact le_trans (by decide : (2 : ℕ) ≤ 4) (le_trans this h.1)
+
+theorem cube_odd_landing_three_le {x n : ℕ} (hn : 2 ≤ n)
+    (h : CubeOddLanding n x) : 3 ≤ x := by
+  have h4 : (2 : ℕ) ^ 2 ≤ n ^ 2 := Nat.pow_le_pow_left hn 2
+  have : (4 : ℕ) ≤ n ^ 2 := by simpa using h4
+  exact le_trans (by decide : (3 : ℕ) ≤ 4) (le_trans this h.1)
+
+/-- Generic odd-lift envelope from the cube cell: `T(x)^2 < n^9`. -/
+theorem odd_lt_cube_floor_sq_lt_nine {x n : ℕ}
+    (hodd : x % 2 = 1) (hlt : x < n ^ 3) :
+    floorPower x ^ 2 < n ^ 9 := by
+  have hle : floorPower x ^ 2 ≤ x ^ 3 := floorPower_odd_sq_le_cube hodd
+  have hx : x ^ 3 < (n ^ 3) ^ 3 :=
+    Nat.pow_lt_pow_left hlt (by decide : (3 : ℕ) ≠ 0)
+  have h9 : (n ^ 3) ^ 3 = n ^ 9 := (Nat.pow_mul n 3 3).symm
+  have : x ^ 3 < n ^ 9 := by rwa [h9] at hx
+  exact lt_of_le_of_lt hle this
+
+/-- Weak integer form of `T(x) < n^{9/2}`: `T(x) < n^5`. -/
+theorem odd_lt_cube_floor_lt_five {x n : ℕ} (hn : 2 ≤ n)
+    (hodd : x % 2 = 1) (hlt : x < n ^ 3) :
+    floorPower x < n ^ 5 := by
+  have hy2 : floorPower x ^ 2 < n ^ 9 := odd_lt_cube_floor_sq_lt_nine hodd hlt
+  have h9 : n ^ 9 < n ^ 10 := pow_lt_of_two_le hn (by decide : (9 : ℕ) < 10)
+  have h10 : n ^ 10 = (n ^ 5) ^ 2 := Nat.pow_mul n 5 2
+  have : floorPower x ^ 2 < (n ^ 5) ^ 2 := lt_trans hy2 (h10 ▸ h9)
+  exact (Nat.pow_lt_pow_iff_left (by decide : (2 : ℕ) ≠ 0)).1 this
+
+/-- Odd cube landing lifts into `[n^3, n^5)`. -/
+theorem cube_odd_lift {x n : ℕ} (hn : 2 ≤ n) (h : CubeOddLanding n x) :
+    n ^ 3 ≤ floorPower x ∧ floorPower x < n ^ 5 :=
+  ⟨odd_ge_sq_floor_ge_cube h.2.2 h.1, odd_lt_cube_floor_lt_five hn h.2.2 h.2.1⟩
+
+/-- Even return after an odd cube lift is strictly below the source.
+This is `floorPower_odd_even_two_step_lt` on the cube-band state, plus
+the square-trap converse `T^2(x) ≥ n`. Not a claim that `T^2(x) < n^2`. -/
+theorem cube_lift_even_reset {x n : ℕ} (hn : 2 ≤ n)
+    (h : CubeOddLanding n x) (he : floorPower x % 2 = 0) :
+    n ≤ floorPower (floorPower x) ∧ floorPower (floorPower x) < x := by
+  have hx2 := cube_odd_landing_two_le hn h
+  have hsqrt : (x ^ 3).sqrt % 2 = 0 := by
+    simpa [floorPower_odd_eq h.2.2] using he
+  have hzlt := floorPower_odd_even_two_step_lt hx2 h.2.2 hsqrt
+  have hy := odd_ge_sq_floor_ge_cube h.2.2 h.1
+  have hn2n3 : n ^ 2 ≤ n ^ 3 :=
+    Nat.pow_le_pow_right (lt_of_lt_of_le (by decide : (0 : ℕ) < 2) hn)
+      (by decide : (2 : ℕ) ≤ 3)
+  have hyn2 : n ^ 2 ≤ floorPower x := le_trans hn2n3 hy
+  have hzge : n ≤ floorPower (floorPower x) := by
+    refine Nat.le_of_not_gt fun hdrop => ?_
+    exact (not_le_of_gt ((even_below_square_iff he).mp hdrop)) hyn2
+  exact ⟨hzge, hzlt⟩
+
+/-- Even reset after an odd cube lift re-enters the cube-or-below corridor. -/
+theorem cube_lift_even_reset_lt_cube {x n : ℕ} (hn : 2 ≤ n)
+    (h : CubeOddLanding n x) (he : floorPower x % 2 = 0) :
+    floorPower (floorPower x) < n ^ 3 :=
+  lt_trans (cube_lift_even_reset hn h he).2 h.2.1
+
+/-- Scale form of the even return: `T^2(x)^4 < n^9`, i.e. below `n^{9/4}`. -/
+theorem cube_lift_even_reset_fourth {x n : ℕ}
+    (h : CubeOddLanding n x) (he : floorPower x % 2 = 0) :
+    floorPower (floorPower x) ^ 4 < n ^ 9 := by
+  have hsq : floorPower (floorPower x) ^ 2 ≤ floorPower x :=
+    floorPower_even_sq_le he
+  have hy2 : floorPower x ^ 2 < n ^ 9 :=
+    odd_lt_cube_floor_sq_lt_nine h.2.2 h.2.1
+  have hz4 : floorPower (floorPower x) ^ 4 =
+      (floorPower (floorPower x) ^ 2) ^ 2 :=
+    Nat.pow_mul _ 2 2
+  calc
+    floorPower (floorPower x) ^ 4
+        = (floorPower (floorPower x) ^ 2) ^ 2 := hz4
+    _ ≤ floorPower x ^ 2 := Nat.pow_le_pow_left hsq 2
+    _ < n ^ 9 := hy2
+
+/-- Odd continuation after an odd cube lift rises above the source. -/
+theorem cube_lift_odd_continues {x n : ℕ} (hn : 2 ≤ n)
+    (h : CubeOddLanding n x) (hodd1 : floorPower x % 2 = 1) :
+    x < floorPower (floorPower x) := by
+  have hx3 := cube_odd_landing_three_le hn h
+  have hsqrt : (x ^ 3).sqrt % 2 = 1 := by
+    simpa [floorPower_odd_eq h.2.2] using hodd1
+  exact floorPower_odd_odd_two_step_gt hx3 h.2.2 hsqrt
+
+/-- Odd continuation from a cube-band lift is at least `n^4`. -/
+theorem cube_lift_odd_ge_fourth {x n : ℕ} (hn : 2 ≤ n)
+    (h : CubeOddLanding n x) (hodd1 : floorPower x % 2 = 1) :
+    n ^ 4 ≤ floorPower (floorPower x) := by
+  have hy := odd_ge_sq_floor_ge_cube h.2.2 h.1
+  rw [floorPower_odd_eq hodd1]
+  refine Nat.le_sqrt.mpr ?_
+  have hpow : (n ^ 3) ^ 3 ≤ (floorPower x) ^ 3 := Nat.pow_le_pow_left hy 3
+  have h9 : (n ^ 3) ^ 3 = n ^ 9 := (Nat.pow_mul n 3 3).symm
+  have h8 : (n ^ 4) ^ 2 = n ^ 8 := (Nat.pow_mul n 4 2).symm
+  have h89 : n ^ 8 ≤ n ^ 9 :=
+    Nat.pow_le_pow_right (lt_of_lt_of_le (by decide : (0 : ℕ) < 2) hn)
+      (by decide : (8 : ℕ) ≤ 9)
+  have : (n ^ 4) ^ 2 ≤ (floorPower x) ^ 3 :=
+    le_trans (h8 ▸ h89) (h9 ▸ hpow)
+  simpa [pow_two] using this
+
+/-- `OEE` after a cube-odd landing drops if the even reset is even
+and already below `n^2`. Not a claim that every even reset is. -/
+theorem finiteProgress_of_cube_odd_even_below_square
+    {n : ℕ} {w : List Branch} (hw : follows n w)
+    (h : CubeOddLanding n (image n w))
+    (he : floorPower (image n w) % 2 = 0)
+    (he2 : floorPower (floorPower (image n w)) % 2 = 0)
+    (hz : floorPower (floorPower (image n w)) < n ^ 2) :
+    FiniteProgress n := by
+  have hw1 : follows n (w ++ [Branch.odd]) :=
+    follows_append hw ⟨h.2.2, trivial⟩
+  have himg1 : image n (w ++ [Branch.odd]) = floorPower (image n w) := by
+    simp [image_append, image]
+  have he' : image n (w ++ [Branch.odd]) % 2 = 0 := by
+    simpa [himg1] using he
+  exact finiteProgress_of_even_below_square
+    (follows_append hw1 (follows_even_letter he'))
+    (by simpa [image_append, image] using he2)
+    (by simpa [image_append, image] using hz)
+
 /-- Two evens after a cube-cell even landing drop below `n`. -/
 theorem finiteProgress_of_cube_even_even {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hw : follows n w)
@@ -163,18 +287,6 @@ theorem finiteProgress_of_cube_even_even {n : ℕ} {w : List Branch}
     (follows_append hw (follows_even_letter he))
     (by simpa [image_append, image] using he2)
     (by simpa [image_append, image] using even_below_cube_cell hn he hlt)
-
-/-- On a CE, a cube-cell even landing is followed by an odd image. -/
-theorem minimal_cube_even_forces_odd_image {n : ℕ} {w : List Branch}
-    (h : MinimalNonTerm n) (hw : follows n w)
-    (he : image n w % 2 = 0) (hlt : image n w < n ^ 3) :
-    floorPower (image n w) % 2 = 1 := by
-  have hn : 2 ≤ n :=
-    le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
-  by_contra heven
-  have he2 : floorPower (image n w) % 2 = 0 := by omega
-  exact minimal_nonterm_not_finiteProgress h
-    (finiteProgress_of_cube_even_even hn hw he hlt he2)
 
 theorem even_ge_sq_of_succ_ge {x n : ℕ} (he : x % 2 = 0)
     (hge : n ≤ floorPower x) : n ^ 2 ≤ x := by
@@ -213,12 +325,6 @@ theorem aboveAnchor_not_odd_even {n : ℕ} {v : List Branch}
   have : floorPower^[1] n = floorPower n := by simp
   rw [this] at hsq
   exact (not_le_of_gt hlt) hsq
-
-theorem minimal_nonterm_not_follow_odd_even {n : ℕ} {v : List Branch}
-    (h : MinimalNonTerm n) (hw : follows n (.odd :: .even :: v)) : False :=
-  aboveAnchor_not_odd_even
-    (le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h))
-    (aboveAnchor_of_minimalNonTerm h hw)
 
 /-!
 ## First internal `OO`

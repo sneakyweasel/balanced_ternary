@@ -77,4 +77,5 @@ Do not continue past a red gate. Mathematical behaviour must not change.
 - [Experiments](experiments.md)
 - [Conjectures](conjectures.md)
 - [Formalization](formalization.md)
+- [Juggler Lean spine](juggler_lean_spine.md)
 - [Literature](literature.md)

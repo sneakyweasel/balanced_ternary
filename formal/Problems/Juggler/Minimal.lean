@@ -1,5 +1,6 @@
 import Problems.Juggler.GlobalDefect
 import Problems.Juggler.Progress
+import Problems.Juggler.MinimumRelative
 
 namespace Problems.Juggler
 
@@ -229,5 +230,42 @@ theorem minimal_nonterm_global_defect_le_surplus {n : ℕ} {w : List Branch}
       globalDefect n w + image n w ^ (2 ^ w.length) :=
     Nat.add_le_add_left hpow _
   exact le_trans this (add_comm (globalDefect n w) _ ▸ hid.symm.le)
+
+/-- A minimal non-1 orbit stays `≥ n` at every iterate, so every
+realized finite prefix is minimum-relative. Not a cycle hypothesis. -/
+theorem aboveAnchor_of_minimalNonTerm {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w) : AboveAnchor n w :=
+  ⟨hw, fun i _ => minimal_nonterm_iterate_ge h i⟩
+
+theorem minimal_nonterm_not_follow_odd_even {n : ℕ} {v : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n (.odd :: .even :: v)) : False :=
+  aboveAnchor_not_odd_even
+    (le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h))
+    (aboveAnchor_of_minimalNonTerm h hw)
+
+/-- On a CE, a cube-cell even landing is followed by an odd image. -/
+theorem minimal_cube_even_forces_odd_image {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w)
+    (he : image n w % 2 = 0) (hlt : image n w < n ^ 3) :
+    floorPower (image n w) % 2 = 1 := by
+  have hn : 2 ≤ n :=
+    le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
+  by_contra heven
+  have he2 : floorPower (image n w) % 2 = 0 := by omega
+  exact minimal_nonterm_not_finiteProgress h
+    (finiteProgress_of_cube_even_even hn hw he hlt he2)
+
+/-- On a CE, an odd cube lift with even first image cannot return
+even below `n^2`. The return may still sit in `[n^2, n^3)`. -/
+theorem minimal_cube_odd_even_not_even_below_square
+    {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w)
+    (hc : CubeOddLanding n (image n w))
+    (he : floorPower (image n w) % 2 = 0) :
+    ¬(floorPower (floorPower (image n w)) % 2 = 0 ∧
+        floorPower (floorPower (image n w)) < n ^ 2) := by
+  intro ⟨he2, hz⟩
+  exact minimal_nonterm_not_finiteProgress h
+    (finiteProgress_of_cube_odd_even_below_square hw hc he he2 hz)
 
 end Problems.Juggler

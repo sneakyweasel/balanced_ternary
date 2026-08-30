@@ -127,4 +127,108 @@ theorem exponentExpanding_append {u v : List Branch}
   exact lt_trans (Nat.mul_lt_mul_of_pos_right hu hpos2)
     (Nat.mul_lt_mul_of_pos_left hv hpos3)
 
+def wordOE : List Branch := [.odd, .even]
+
+def repeatedOE : ℕ → List Branch
+  | 0 => []
+  | r + 1 => wordOE ++ repeatedOE r
+
+theorem wordOE_length : wordOE.length = 2 := rfl
+
+theorem oddCount_wordOE : oddCount wordOE = 1 := rfl
+
+theorem repeatedOE_zero : repeatedOE 0 = [] := rfl
+
+theorem repeatedOE_succ (r : ℕ) : repeatedOE (r + 1) = wordOE ++ repeatedOE r :=
+  rfl
+
+theorem length_repeatedOE : ∀ r, (repeatedOE r).length = 2 * r
+  | 0 => rfl
+  | r + 1 => by
+      rw [repeatedOE_succ, List.length_append, wordOE_length, length_repeatedOE]
+      omega
+
+theorem oddCount_repeatedOE : ∀ r, oddCount (repeatedOE r) = r
+  | 0 => rfl
+  | r + 1 => by
+      rw [repeatedOE_succ, oddCount_append, oddCount_wordOE, oddCount_repeatedOE]
+      omega
+
+theorem four_pow_eq_two_pow_two_mul (r : ℕ) : 4 ^ r = 2 ^ (2 * r) := by
+  rw [show (4 : ℕ) = 2 ^ 2 from rfl, Nat.pow_mul]
+
+theorem two_pow_succ_le_three_of_two_le :
+    ∀ {a : ℕ}, 2 ≤ a → 2 ^ (a + 1) ≤ 3 ^ a
+  | 0, h => by omega
+  | 1, h => by omega
+  | 2, _ => by decide
+  | a + 3, _ => by
+      have ih : 2 ^ (a + 3) ≤ 3 ^ (a + 2) :=
+        two_pow_succ_le_three_of_two_le (a := a + 2) (by omega)
+      have h2 : 2 * 2 ^ (a + 3) ≤ 2 * 3 ^ (a + 2) :=
+        Nat.mul_le_mul_left 2 ih
+      have h3 : 2 * 3 ^ (a + 2) ≤ 3 * 3 ^ (a + 2) :=
+        Nat.mul_le_mul_right _ (by decide : (2 : ℕ) ≤ 3)
+      have hL : 2 ^ (a + 4) = 2 * 2 ^ (a + 3) := by
+        rw [pow_succ, mul_comm]
+      have hR : 3 ^ (a + 3) = 3 * 3 ^ (a + 2) := by
+        rw [pow_succ, mul_comm]
+      rw [hL, hR]
+      exact le_trans h2 h3
+
+theorem two_pow_succ_le_three_pow_iff {a : ℕ} :
+    2 ^ (a + 1) ≤ 3 ^ a ↔ 2 ≤ a := by
+  constructor
+  · intro h
+    cases a with
+    | zero =>
+        have : ¬(2 : ℕ) ^ 1 ≤ 3 ^ 0 := by decide
+        exact (this h).elim
+    | succ a =>
+        cases a with
+        | zero =>
+            have : ¬(2 : ℕ) ^ 2 ≤ 3 ^ 1 := by decide
+            exact (this h).elim
+        | succ _ => omega
+  · exact two_pow_succ_le_three_of_two_le
+
+def oddEvenBlock (a b : ℕ) : List Branch :=
+  List.replicate a Branch.odd ++ List.replicate b Branch.even
+
+theorem length_oddEvenBlock (a b : ℕ) :
+    (oddEvenBlock a b).length = a + b := by
+  simp [oddEvenBlock, List.length_append, List.length_replicate]
+
+theorem oddCount_oddEvenBlock (a b : ℕ) :
+    oddCount (oddEvenBlock a b) = a := by
+  simp [oddEvenBlock, oddCount_append, oddCount_replicate_odd,
+    oddCount_replicate_even]
+
+theorem odd_run_even_residual {x a : ℕ}
+    (hw : follows x (oddEvenBlock a 1)) :
+    image x (List.replicate a Branch.odd) % 2 = 0 :=
+  (follows_of_append_right (u := List.replicate a Branch.odd) hw).1
+
+theorem exponentExpanding_oddEvenBlock (a b : ℕ) :
+    exponentExpanding (oddEvenBlock a b) ↔ 2 ^ (a + b) < 3 ^ a := by
+  simp [exponentExpanding, length_oddEvenBlock, oddCount_oddEvenBlock]
+
+/-- An expanding residual block has at least two odd letters. -/
+theorem expanding_oddEvenBlock_two_le_odds {a b : ℕ} (hb : 1 ≤ b)
+    (h : exponentExpanding (oddEvenBlock a b)) : 2 ≤ a := by
+  rw [exponentExpanding_oddEvenBlock] at h
+  match a with
+  | 0 =>
+      rw [Nat.zero_add, pow_zero] at h
+      exact (not_lt_of_ge (Nat.one_le_two_pow (n := b)) h).elim
+  | 1 =>
+      have hb' : 2 ≤ 1 + b := by omega
+      have h4 : 2 ^ 2 ≤ 2 ^ (1 + b) :=
+        Nat.pow_le_pow_right (by decide : (1 : ℕ) ≤ 2) hb'
+      have : ¬2 ^ (1 + b) < 3 := fun hlt =>
+        (by decide : ¬(4 : ℕ) < 3) (lt_of_le_of_lt h4 hlt)
+      exact (this h).elim
+  | _a + 2 =>
+      omega
+
 end Problems.Juggler

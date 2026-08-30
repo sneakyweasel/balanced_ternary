@@ -140,13 +140,6 @@ theorem wordOOEOOEO_length : wordOOEOOEO.length = 7 := by
 theorem wordOOEOOEO_oddCount : oddCount wordOOEOOEO = 5 := by
   simp [wordOOEOOEO, wordOOEOOE]
 
-theorem follows_ooeooe_pow {n : ℕ} (hw : follows n wordOOEOOE) :
-    (image n wordOOEOOE) ^ 64 ≤ n ^ 81 := by
-  have h := power_bound_word hw
-  rw [wordOOEOOE_length, wordOOEOOE_oddCount] at h
-  rw [image_eq_iterate, wordOOEOOE_length]
-  convert h <;> norm_num
-
 /-- Same square-cell comparison as the human `OOEOOE` corridor, with
 no `CycleMin` return hypothesis. -/
 theorem follows_ooeooe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
@@ -155,13 +148,6 @@ theorem follows_ooeooe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
   power_bound_lt_pow (k := 2) hn hw (by
     rw [wordOOEOOE_length, wordOOEOOE_oddCount]
     decide)
-
-theorem follows_ooeooeo_pow {n : ℕ} (hw : follows n wordOOEOOEO) :
-    (image n wordOOEOOEO) ^ 128 ≤ n ^ 243 := by
-  have h := power_bound_word hw
-  rw [wordOOEOOEO_length, wordOOEOOEO_oddCount] at h
-  rw [image_eq_iterate, wordOOEOOEO_length]
-  convert h <;> norm_num
 
 /-- The word `OOEOOEO` has the square-cell gap `256 > 243`. -/
 theorem follows_ooeooeo_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
@@ -289,13 +275,6 @@ theorem minimal_ooeooe_follows_ooeooeoo {n : ℕ}
     follows n wordOOEOOEOO :=
   follows_wordOOEOOEOO_of_forced_oo (minimal_ooeooe_forces_oo h hw)
 
-theorem follows_ooeooeoo_pow {n : ℕ} (hw : follows n wordOOEOOEOO) :
-    (image n wordOOEOOEOO) ^ 256 ≤ n ^ 729 := by
-  have h := power_bound_word hw
-  rw [wordOOEOOEOO_length, wordOOEOOEOO_oddCount] at h
-  rw [image_eq_iterate, wordOOEOOEOO_length]
-  convert h <;> norm_num
-
 /-- The word `OOEOOEOO` has the cube-cell gap `768 > 729`. -/
 theorem follows_ooeooeoo_image_lt_cube {n : ℕ} (hn : 2 ≤ n)
     (hw : follows n wordOOEOOEOO) :
@@ -303,15 +282,6 @@ theorem follows_ooeooeoo_image_lt_cube {n : ℕ} (hn : 2 ≤ n)
   power_bound_lt_pow (k := 3) hn hw (by
     rw [wordOOEOOEOO_length, wordOOEOOEOO_oddCount]
     decide)
-
-set_option exponentiation.threshold 1024
-
-theorem follows_ooeooeooe_pow {n : ℕ} (hw : follows n wordOOEOOEOOE) :
-    (image n wordOOEOOEOOE) ^ 512 ≤ n ^ 729 := by
-  have h := power_bound_word hw
-  rw [wordOOEOOEOOE_length, wordOOEOOEOOE_oddCount] at h
-  rw [image_eq_iterate, wordOOEOOEOOE_length]
-  convert h <;> norm_num
 
 /-- The completed third `OOE` has the square-cell gap `1024 > 729`. -/
 theorem follows_ooeooeooe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
@@ -378,15 +348,6 @@ theorem minimal_ooeooeooe_follows_o {n : ℕ}
   follows_wordOOEOOEOOEO_of_odd_third hw
     (minimal_ooeooeooe_not_even_landing h hw)
 
-set_option exponentiation.threshold 4096
-
-theorem follows_ooeooeooeoe_pow {n : ℕ} (hw : follows n wordOOEOOEOOEOE) :
-    (image n wordOOEOOEOOEOE) ^ 2048 ≤ n ^ 2187 := by
-  have h := power_bound_word hw
-  rw [wordOOEOOEOOEOE_length, wordOOEOOEOOEOE_oddCount] at h
-  rw [image_eq_iterate, wordOOEOOEOOEOE_length]
-  convert h <;> norm_num
-
 /-- The escaped-even `OE` after a third `OOE` has the square-cell gap
 `4096 > 2187`. This is not a length-11 cycle census. -/
 theorem follows_ooeooeooeoe_image_lt_sq {n : ℕ} (hn : 2 ≤ n)
@@ -444,15 +405,6 @@ theorem minimal_ooeooeooeoe_follows_o {n : ℕ}
     follows n wordOOEOOEOOEOEO :=
   follows_wordOOEOOEOOEOEO_of_odd_oe hw
     (minimal_ooeooeooeoe_not_even_landing h hw)
-
-set_option exponentiation.threshold 8192
-
-theorem follows_ooeooeooeoeo_pow {n : ℕ} (hw : follows n wordOOEOOEOOEOEO) :
-    (image n wordOOEOOEOOEOEO) ^ 4096 ≤ n ^ 6561 := by
-  have h := power_bound_word hw
-  rw [wordOOEOOEOOEOEO_length, wordOOEOOEOOEOEO_oddCount] at h
-  rw [image_eq_iterate, wordOOEOOEOOEOEO_length]
-  convert h <;> norm_num
 
 /-- After an odd `OE` landing the next `O` still has the square-cell
 gap `8192 > 6561`. Another escaped even is impossible on this step. -/
@@ -515,15 +467,6 @@ theorem minimal_ooeooeooeoeo_follows_o {n : ℕ}
 
 theorem ooeooeooeoeoo_loses_square : ¬(3 ^ 9 < 2 ^ (13 + 1)) := by
   decide
-
-set_option exponentiation.threshold 24576
-
-theorem follows_ooeooeooeoeoo_pow {n : ℕ} (hw : follows n wordOOEOOEOOEOEOO) :
-    (image n wordOOEOOEOOEOEOO) ^ 8192 ≤ n ^ 19683 := by
-  have h := power_bound_word hw
-  rw [wordOOEOOEOOEOEOO_length, wordOOEOOEOOEOEOO_oddCount] at h
-  rw [image_eq_iterate, wordOOEOOEOOEOEOO_length]
-  convert h <;> norm_num
 
 /-- The second `O` after the new `OO` loses the square cell
 (`19683 > 16384`) but keeps the cube-cell gap `24576 > 19683`.

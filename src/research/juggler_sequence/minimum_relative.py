@@ -16,6 +16,7 @@ from research.juggler_sequence.lean_paths import (
     ESCAPE,
     FIRST_INTERNAL_OO,
     JUGGLER_PAPER_BARREL,
+    MINIMAL,
     MINIMUM_RELATIVE,
     engine_floor_text,
     has_named,
@@ -203,6 +204,8 @@ def lean_api_present() -> dict[str, bool]:
     combined = juggler_text()
     if MINIMUM_RELATIVE.is_file():
         combined += MINIMUM_RELATIVE.read_text(encoding="utf-8")
+    if MINIMAL.is_file():
+        combined += MINIMAL.read_text(encoding="utf-8")
     if ESCAPE.is_file():
         combined += ESCAPE.read_text(encoding="utf-8")
     if FIRST_INTERNAL_OO.is_file():

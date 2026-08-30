@@ -13941,4 +13941,115 @@ Best next question
   another one-step envelope?
 ```
 
+## Juggler Lean spine audit
+
+- **Date:** 2026-08-30
+- **Objective:** Classify the live Juggler Lean tree as primitive / derived / wrapper and fix the confirmed import inversion plus the unused `EnvelopeState` path
+- **Hypotheses:** the leftover class is already expressible; remaining debt is import direction and a dead `EnvelopeState` API
+- **Major results:** Architecture note [juggler_lean_spine.md](architecture/juggler_lean_spine.md). `wordOE` / `repeatedOE` / `oddEvenBlock` moved to `WordStats`; `MinimumRelative` imports `Envelope` + `Progress` + `WordStats`, not `Scale`. CE consumers `aboveAnchor_of_minimalNonTerm`, `minimal_nonterm_not_follow_odd_even`, `minimal_cube_even_forces_odd_image` live in `Minimal.lean`. `power_bound_lt_pow` is `EnvelopeState.of_follows.lt_pow`; `power_bound_contracts` is the `k=1` case. Unused Escape `follows_*_pow` theorems deleted. Paper A unchanged. No new ledger row. No halt theorem
+- **Refuted ideas:** `AboveAnchor` must sit above `MinimalNonTerm`; `EnvelopeState` is a parallel unused encoding
+- **Literature:** `J-envelope-lt-pow`; `J-above-anchor`; `J-cube-not-square-split`
+- **Open:** none from this audit. Do not rename wrappers. Do not resume the odd-lift letter chain
+- **Decision:** PROMOTE the import split and the single envelope engine. Do not claim a new cell theorem
+
+```text
+What was learned
+- AboveAnchor imported Minimal through Scale
+- word combinators belong in WordStats
+- CE wrappers belong in Minimal.lean
+- EnvelopeState now implements power_bound_lt_pow
+- unused Escape *_pow unfolds were leftover envelopes
+Strongest theorem
+- none new; import direction and one engine
+Strongest refutation
+- MinimumRelative must import Minimal/CycleCore
+Reusable machinery
+- docs/architecture/juggler_lean_spine.md
+Branch status
+- PROMOTE
+Why
+- the two red flags are fixed; wrappers
+  kept their names; Paper A untouched
+Best next question
+- after an odd lift T(x) >= n^3 from
+  a cube-not-square odd landing, is
+  there a shared cell other than
+  another one-step envelope?
+```
+
+## Juggler cube-odd return
+
+- **Date:** 2026-08-30
+- **Objective:** After an odd cube-band lift \(T(x)\ge n^{3}\), name the first return rather than another power ceiling
+- **Hypotheses:** even \(y\) returns to a known corridor; odd \(y\) continues above the source; even return below \(n^{2}\)
+- **Major results:** Classification **CUBE_ODD_RETURN_GREEN**. Odd \(x<n^{3}\) gives \(T(x)^{2}<n^{9}\) and \(T(x)<n^{5}\); even \(y\) returns \(n\le T^{2}(x)<x<n^{3}\) and \(T^{2}(x)^{4}<n^{9}\); odd \(y\) continues \(T^{2}(x)>x\) and \(T^{2}(x)\ge n^{4}\); `OEE` below \(n^{2}\) is `FiniteProgress` — **EXACT — LEAN VERIFIED** (`J-cube-odd-even-reset`). Even return below \(n^{2}\) — **REFUTED** (`J-cube-odd-even-below-square`, \(n=501\), later \(x=48693935\), \(z=582916\)). First leftover lifts of \(365,501,1517,6187\) even-reset below \(n^{2}\); \(1517\) then drops. No power census. No W_5. Paper A unchanged. No halt theorem
+- **Refuted ideas:** even high lift after an odd cube landing returns below \(n^{2}\)
+- **Literature:** `J-cube-not-square-split`; `floorPower_odd_even_two_step_lt`; `floorPower_odd_odd_two_step_gt`
+- **Open:** after an odd cube lift whose first image is odd, does the first later even letter still return below the original cube-band source?
+- **Decision:** PROMOTE the even-reset return theorem. Do not resume an \(n^{6}\) envelope
+
+```text
+What was learned
+- odd cube lift is a two-sided transition
+- even y returns strictly below the source
+- that return sits in [n, n^3) and z^4 < n^9
+- odd y continues above x and at least n^4
+- even return below n^2 is false (501 later)
+Strongest theorem
+- cube-odd + even T(x) => n <= T^2(x) < x
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- even lift returns below n^2
+  (501, later x=48693935)
+Reusable machinery
+- CubeOddLanding; cube_odd_lift;
+  cube_lift_even_reset;
+  cube_lift_odd_continues;
+  finiteProgress_of_cube_odd_even_below_square
+Branch status
+- PROMOTE
+Why
+- the odd cube residual is now a named
+  return map, not another power cell
+Best next question
+- if the first image after an odd cube
+  lift is odd, does the first later even
+  letter still return below that source?
+```
+
+## Juggler source-relative odd reset
+
+- **Date:** 2026-08-30
+- **Objective:** If a cube-odd lift stays odd, does the first later even still fall below the source?
+- **Hypotheses:** persistent odd postpones \(e<x^{2}\) then \(T(e)<x\); episode sources decrease
+- **Major results:** Classification **SOURCE_RELATIVE_ODD_CLOSED**. Two odd steps give \(e^{4}\le x^{9}\) (\(9>8\)) — **REPARAMETERIZATION** of `EnvelopeState`. First even below \(x^{2}\) — **REFUTED** (`J-source-relative-odd-reset`, \(n=37\), \(x=3375\), \(e=86818724\), \(T(e)=9317\)). Episode-source descent — **REFUTED** (`J-episode-source-descent`, sources \(3375,9317,2233\)). Leftover first lifts of \(365,501,1517,6187\) have \(\tau=1\). No new Lean. No \(n^{6}\) census. No W_5. Paper A unchanged. No halt theorem
+- **Refuted ideas:** persistent-odd first even below \(x^{2}\); monotone episode-source descent
+- **Literature:** `J-cube-odd-even-reset`; `floorPower_odd_even_two_step_lt`; `EnvelopeState`
+- **Open:** none from this reset. The leftover is still an odd-to-odd cube lift
+- **Decision:** CLOSE. The \(\tau=1\) theorem is sharp; do not iterate episode anchors
+
+```text
+What was learned
+- tau=1 source-relative reset is sharp
+- two odds give e^4 <= x^9, and 9 > 8
+- 37 has first even above x^2 and T(e) >= x
+- leftover first cube-odd landings are tau=1
+- episode sources 3375, 9317, 2233 oscillate
+Strongest theorem
+- none new; tau=1 reset already named
+Strongest refutation
+- persistent-odd first even below x^2
+  (37, x=3375, e=86818724)
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- postponed source-relative reset is false;
+  the envelope is existing EnvelopeState
+Best next question
+- none from this reset; the leftover is
+  still an odd-to-odd cube lift
+```
+
 

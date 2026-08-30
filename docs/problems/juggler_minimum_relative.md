@@ -140,8 +140,10 @@ None to the shared-layer implications. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Juggler/MinimumRelative.lean`, above `Scale` and
-below `Residuals` / `CycleCore`. Added:
+`formal/Problems/Juggler/MinimumRelative.lean` imports `Envelope` +
+`Progress` + `WordStats`, not `Scale` / `Minimal`. `CycleMin` and
+`MinimalNonTerm` consume `AboveAnchor` downward (`CycleCore`,
+`Minimal.lean`). Below `Residuals` / `CycleCore`. Added:
 
 - `AboveAnchor` / `aboveAnchor_of_minimalNonTerm` /
   `aboveAnchor_of_cycleMin` / `aboveAnchor_not_lt`
@@ -154,11 +156,12 @@ below `Residuals` / `CycleCore`. Added:
 - `no_nontrivial_cycle_no_bounded_nonterm`
 
 Word algebra in `Envelope.lean`: `EnvelopeState`, `envelope_lt_pow`,
-`power_bound_lt_pow`. Escape square/cube cells are instances.
-`power_bound_contracts` is the `k = 1` case and was not rewritten.
-`CycleMin` wrappers stay in `CycleCore` / `FirstInternalOO`.
+`power_bound_lt_pow` (`EnvelopeState.of_follows.lt_pow`).
+Escape square/cube cells are instances. `power_bound_contracts`
+is the `k = 1` case of that theorem. `CycleMin` wrappers stay in
+`CycleCore` / `FirstInternalOO`. CE wrappers stay in `Minimal.lean`.
 `FiniteProgress` is not redefined. Paper A is unchanged. No `sorry`.
-No halt theorem.
+No halt theorem. Spine: [juggler_lean_spine.md](../architecture/juggler_lean_spine.md).
 
 ## Results
 

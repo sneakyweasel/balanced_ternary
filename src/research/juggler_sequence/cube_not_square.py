@@ -17,6 +17,7 @@ from typing import Any
 from research.juggler_sequence.cycle_word import follows_word, image_after
 from research.juggler_sequence.lean_paths import (
     JUGGLER_PAPER_BARREL,
+    MINIMAL,
     MINIMUM_RELATIVE,
     engine_floor_text,
     has_named,
@@ -144,6 +145,8 @@ def lean_api_present() -> dict[str, bool]:
     combined = juggler_text()
     if MINIMUM_RELATIVE.is_file():
         combined += MINIMUM_RELATIVE.read_text(encoding="utf-8")
+    if MINIMAL.is_file():
+        combined += MINIMAL.read_text(encoding="utf-8")
     named = {name: has_named(combined, name) for name in LEAN_THEOREMS}
     forbidden = {name: has_named(combined, name) for name in FORBIDDEN_THEOREMS}
     paper = JUGGLER_PAPER_BARREL.read_text(encoding="utf-8")
