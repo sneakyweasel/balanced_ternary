@@ -13743,4 +13743,43 @@ Best next question
   do not reopen R_{b,c}
 ```
 
+## Juggler PE-block walk
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether repeated residual blocks \(O^a E\) move a forward predictive anchor-relative quantity
+- **Hypotheses:** landing/\(n\) Lyapunov; square-remainder Lyapunov; inherited envelope predicts the next PE block
+- **Major results:** Classification **PE_WALK_PARK**. Leftover corridors are \(O^a E\) walks; `365` is \((\mathtt{OOE})^4\mathtt{OE}\,\mathtt{E}\); `1517` dips `33811\to2493\ge1517` — **COMPUTATIONALLY VERIFIED** (`J-pe-walk-shape`). Monotone landing/\(n\) / remainder / envelope-as-predictor — **REFUTED** (`J-pe-walk-predictors`): after three `OOE` both starts have \(\alpha=729/512\), then `365` continues `OOE` and `1517` takes `OE`. Isolated `OE`-contracts not reopened as halt. Empty-cell and episode-rank not re-tested. No new Lean. Paper A unchanged. No halt theorem
+- **Refuted ideas:** landing/\(n\) climbs until drop; \(\alpha\) determines the next block; `OE` recovery falls below the original anchor
+- **Literature:** `oe_block_contracts`; `power_bound_word`; two-block PE `365\to763\to1749`; empty-cell PARK; episode-rank PARK
+- **Open:** none from these PE scalars. Do not attach a residue automaton to the next letter
+- **Decision:** PARK. The PE-walk language is the residual; the proposed predictors fail
+
+```text
+What was learned
+- leftover residual is an O^a E walk
+- 365 climbs four OOE then OE E
+- 1517 shares 729/512 with 365 then splits
+- OE can drop the state and stay above n
+- landing/n and remainder are not Lyapunov
+Strongest theorem
+- 365 and 1517 both have alpha 729/512
+  after three OOE; next blocks are OOE
+  and OE
+  (COMPUTATIONALLY VERIFIED)
+Strongest refutation
+- landing/n, remainder, or envelope
+  predicts the next PE landing
+Reusable machinery
+- pe_walk.py pe_blocks, block_multiplier
+Branch status
+- PARK
+Why
+- same envelope, different next block;
+  isolated OE-contracts is not a halt law
+Best next question
+- none from these PE scalars; the
+  leftover next letter is not determined
+  by alpha
+```
+
 
