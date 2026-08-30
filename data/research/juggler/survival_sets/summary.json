@@ -1,0 +1,24 @@
+{
+  "classification": "SURVIVAL_SET_CLOSED",
+  "reason": "the first-step leak is the even FiniteProgress cut n<N^2; later R_k is not a uniform rho<1; density of B_k grows with X or late ratios return toward 1; no route from windowed rarity to arithmetic emptiness",
+  "anchors": [
+    2,
+    3,
+    5,
+    10,
+    50,
+    100,
+    1000
+  ],
+  "windows": [
+    500000,
+    1000000,
+    2000000,
+    4000000
+  ],
+  "uniform_rho": false,
+  "only_even_s1": true,
+  "density_grows_with_X": true,
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND",
+  "git": "550ab99a229821977538d530dd4a724e9ef4729b"
+}

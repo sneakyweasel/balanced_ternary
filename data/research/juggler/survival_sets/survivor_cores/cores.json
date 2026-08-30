@@ -1,0 +1,1850 @@
+[
+  {
+    "N": 2,
+    "X": 500000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 2,
+    "X": 1000000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 2,
+    "X": 2000000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 2,
+    "X": 4000000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 3,
+    "X": 500000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 3,
+    "X": 1000000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 3,
+    "X": 2000000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 3,
+    "X": 4000000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 5,
+    "X": 500000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 5,
+    "X": 1000000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 5,
+    "X": 2000000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 5,
+    "X": 4000000,
+    "core": [
+      {
+        "n": 163,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 669,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 805,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 891,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 10,
+    "X": 500000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 10,
+    "X": 1000000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 10,
+    "X": 2000000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 10,
+    "X": 4000000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 625,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 50,
+    "X": 500000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1953,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 50,
+    "X": 1000000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1953,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 50,
+    "X": 2000000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1953,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 50,
+    "X": 4000000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1953,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 100,
+    "X": 500000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1953,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 100,
+    "X": 1000000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1953,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 100,
+    "X": 2000000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1953,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 100,
+    "X": 4000000,
+    "core": [
+      {
+        "n": 193,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 293,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 425,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 761,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 807,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1119,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1121,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1155,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1953,
+        "tau": 40,
+        "status": "HORIZON"
+      }
+    ]
+  },
+  {
+    "N": 1000,
+    "X": 500000,
+    "core": [
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2183,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 2247,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2555,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 2681,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2859,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3085,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3151,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 3271,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3431,
+        "tau": 40,
+        "status": "BIT_CAP"
+      }
+    ]
+  },
+  {
+    "N": 1000,
+    "X": 1000000,
+    "core": [
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2183,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 2247,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2555,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 2681,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2859,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3085,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3151,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 3271,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3431,
+        "tau": 40,
+        "status": "BIT_CAP"
+      }
+    ]
+  },
+  {
+    "N": 1000,
+    "X": 2000000,
+    "core": [
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2183,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 2247,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2555,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 2681,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2859,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3085,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3151,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 3271,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3431,
+        "tau": 40,
+        "status": "BIT_CAP"
+      }
+    ]
+  },
+  {
+    "N": 1000,
+    "X": 4000000,
+    "core": [
+      {
+        "n": 1181,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1721,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 1773,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2183,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 2247,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2555,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 2681,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 2859,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3085,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3151,
+        "tau": 40,
+        "status": "BIT_CAP"
+      },
+      {
+        "n": 3271,
+        "tau": 40,
+        "status": "HORIZON"
+      },
+      {
+        "n": 3431,
+        "tau": 40,
+        "status": "BIT_CAP"
+      }
+    ]
+  }
+]

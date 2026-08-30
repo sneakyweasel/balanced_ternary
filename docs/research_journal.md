@@ -14765,4 +14765,39 @@ Best next question
 - none from this leftover-class histogram
 ```
 
+## Juggler certificate-transition closure
+
+- **Date:** 2026-08-30
+- **Objective:** Iterate existing first-descent certificates \(\{E,OE,OOEE,R\}\) from each landing and test whether the residual graph closes under composition
+- **Hypotheses:** residual-to-next has missing edges or a bounded \(\tau_R\), giving a certificate calculus beyond \(T<n\)
+- **Major results:** Classification **CERTIFICATE_TRANSITIONS_CLOSED**. CPU iterator \(n\le 2\cdot 10^4\): all 16 transitions present; first-certificate counts \(E=10000\), \(OE=4989\), \(OOEE=1225\), \(R=3785\); Q-itinerary identity on every first word; \(R\to R=1113\); Type A/B from residual starts \(3073/712\); \(\max\tau_R=4\) at \(1891\to 895\to 309\to 37\); one SCC \(\{E,OE,OOEE,R\}\) as a decreasing landing quotient; labs all have \(\tau_R=1\); \(365\) and \(501\) share \(R\,E\,OOEE\,E\) and merge at \(34\); no forced composition pair; no graph-absorbing certificate. No Lean. No atlas language tag. Paper A unchanged. No halt theorem. No ledger theorem row
+- **Refuted ideas:** residual remains AboveAnchor after the leftover word; first residual certificate is not a \(Q\)-itinerary; some \(C_i\to C_j\) is impossible at this alphabet; \(R\to R\) is a numerical cycle; a pair of certificates forces a unique third
+- **Literature:** `even_finiteProgress`; `odd_even_finiteProgress`; `finiteProgress_of_imageLt`; `juggler_certificate_harvest.md`; `q_blocks`
+- **Open:** none from certificate-transition composition
+- **Decision:** CLOSE. The layer is a 4-letter label on successive first descents / \(Q\)-itineraries; every leftover word is already `FiniteProgress`
+
+```text
+What was learned
+- every realized descent, including R, is already FiniteProgress
+- the first certificate word is the Q-itinerary
+- all 16 certificate transitions occur in-window
+- R->R is a strictly decreasing landing quotient
+- 365 and 501 share R E OOEE E and merge at 34
+- max tau_R is 4 at 1891, which lands on laboratory 37
+Strongest theorem
+- none new
+Strongest refutation
+- residual is an unresolved AboveAnchor state whose
+  leftover word is not a Q-block
+Reusable machinery
+- none; no new Lean primitive; compact transition tables only
+Branch status
+- CLOSE
+Why
+- the certificate iterator relabels T<n;
+  composition adds no semantic calculus
+Best next question
+- none from certificate-transition closure
+```
+
 

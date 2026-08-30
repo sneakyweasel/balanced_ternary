@@ -1,0 +1,655 @@
+{
+  "experiment": "juggler_certificate_transitions",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "certificate_automaton": false,
+    "density_theorem": false,
+    "source_descent_theorem": false
+  },
+  "scan": {
+    "n_max": 20000,
+    "scan": {
+      "n_begin": 2,
+      "n_max": 20000,
+      "starts": 19999,
+      "first_counts": {
+        "E": 10000,
+        "R": 3785,
+        "OOEE": 1225,
+        "OE": 4989
+      },
+      "q_identity": 19999,
+      "q_identity_all": true,
+      "support": {
+        "E": {
+          "E": 1,
+          "OE": 1,
+          "OOEE": 1,
+          "R": 1
+        },
+        "OE": {
+          "E": 1,
+          "OE": 1,
+          "OOEE": 1,
+          "R": 1
+        },
+        "OOEE": {
+          "E": 1,
+          "OE": 1,
+          "OOEE": 1,
+          "R": 1
+        },
+        "R": {
+          "E": 1,
+          "OE": 1,
+          "OOEE": 1,
+          "R": 1
+        }
+      },
+      "counts": {
+        "E": {
+          "E": 30996,
+          "OE": 6139,
+          "OOEE": 2726,
+          "R": 7592
+        },
+        "OE": {
+          "E": 12016,
+          "OE": 4649,
+          "OOEE": 707,
+          "R": 2942
+        },
+        "OOEE": {
+          "E": 2763,
+          "OE": 1804,
+          "OOEE": 171,
+          "R": 509
+        },
+        "R": {
+          "E": 11677,
+          "OE": 2733,
+          "OOEE": 418,
+          "R": 1113
+        }
+      },
+      "tau_hist": {
+        "0": 16214,
+        "1": 3073,
+        "2": 603,
+        "3": 100,
+        "4": 9
+      },
+      "d_hist": {
+        "1": 1,
+        "2": 5,
+        "3": 37,
+        "4": 1618,
+        "5": 10011,
+        "6": 6189,
+        "7": 1948,
+        "8": 175,
+        "9": 15
+      },
+      "max_tau_R": 4,
+      "max_tau_n": 1891,
+      "max_d_C": 9,
+      "max_R_run": 4,
+      "max_R_run_n": 1891,
+      "residual_starts": 3785,
+      "type_a": 3073,
+      "type_b": 712,
+      "sccs": [
+        [
+          "E",
+          "OE",
+          "OOEE",
+          "R"
+        ]
+      ],
+      "nonterminal_residual_scc": [],
+      "all_transitions_present": true,
+      "top_first_words": [
+        [
+          "E",
+          10000
+        ],
+        [
+          "OE",
+          4989
+        ],
+        [
+          "OOEE",
+          1225
+        ],
+        [
+          "OOEOE",
+          641
+        ],
+        [
+          "OOOEE",
+          637
+        ],
+        [
+          "OOOOEEE",
+          159
+        ],
+        [
+          "OOEOOEE",
+          153
+        ],
+        [
+          "OOOEOEE",
+          134
+        ],
+        [
+          "OOEOOOEE",
+          84
+        ],
+        [
+          "OOOOOEEE",
+          81
+        ],
+        [
+          "OOOEOOEE",
+          80
+        ],
+        [
+          "OOOOEOEE",
+          80
+        ]
+      ]
+    },
+    "labs": [
+      {
+        "n": 37,
+        "classes": "R E E",
+        "tau_R": 1,
+        "d_C": 3,
+        "d_uniform": 2,
+        "reached_one": true,
+        "first_word": "OOOOEOOOEEOOEEE",
+        "q_blocks": 3,
+        "landings": [
+          8,
+          2,
+          1
+        ]
+      },
+      {
+        "n": 69,
+        "classes": "R E R E",
+        "tau_R": 1,
+        "d_C": 4,
+        "d_uniform": 2,
+        "reached_one": true,
+        "first_word": "OOEOOEE",
+        "q_blocks": 2,
+        "landings": [
+          14,
+          3,
+          2,
+          1
+        ]
+      },
+      {
+        "n": 89,
+        "classes": "R E E E",
+        "tau_R": 1,
+        "d_C": 4,
+        "d_uniform": 2,
+        "reached_one": true,
+        "first_word": "OOEOOEOE",
+        "q_blocks": 3,
+        "landings": [
+          70,
+          8,
+          2,
+          1
+        ]
+      },
+      {
+        "n": 365,
+        "classes": "R E OOEE E",
+        "tau_R": 1,
+        "d_C": 4,
+        "d_uniform": 2,
+        "reached_one": true,
+        "first_word": "OOEOOEOOEOOEOEE",
+        "q_blocks": 5,
+        "landings": [
+          34,
+          5,
+          2,
+          1
+        ]
+      },
+      {
+        "n": 501,
+        "classes": "R E OOEE E",
+        "tau_R": 1,
+        "d_C": 4,
+        "d_uniform": 2,
+        "reached_one": true,
+        "first_word": "OOEOOOEOOEEOOEOOEOOEOEE",
+        "q_blocks": 7,
+        "landings": [
+          34,
+          5,
+          2,
+          1
+        ]
+      },
+      {
+        "n": 1517,
+        "classes": "R E OE OE E E",
+        "tau_R": 1,
+        "d_C": 6,
+        "d_uniform": 2,
+        "reached_one": true,
+        "first_word": "OOEOOEOOEOEOOOEE",
+        "q_blocks": 5,
+        "landings": [
+          734,
+          27,
+          11,
+          6,
+          2,
+          1
+        ]
+      },
+      {
+        "n": 6187,
+        "classes": "R OE OE E OE E E",
+        "tau_R": 1,
+        "d_C": 7,
+        "d_uniform": 2,
+        "reached_one": true,
+        "first_word": "OOEOOOEOOEEOE",
+        "q_blocks": 4,
+        "landings": [
+          1087,
+          189,
+          50,
+          7,
+          4,
+          2,
+          1
+        ]
+      }
+    ],
+    "growth": [
+      {
+        "X": 200,
+        "max_tau_R": 2,
+        "max_tau_n": 163,
+        "max_R_run": 2,
+        "type_b": 3,
+        "residual_starts": 36
+      },
+      {
+        "X": 2000,
+        "max_tau_R": 4,
+        "max_tau_n": 1891,
+        "max_R_run": 4,
+        "type_b": 70,
+        "residual_starts": 381
+      },
+      {
+        "X": 20000,
+        "max_tau_R": 4,
+        "max_tau_n": 1891,
+        "max_R_run": 4,
+        "type_b": 712,
+        "residual_starts": 3785
+      }
+    ],
+    "compositions": [
+      {
+        "left": "E",
+        "right": "E",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.7038799414348462,
+        "total": 2732
+      },
+      {
+        "left": "E",
+        "right": "OE",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.6409495548961425,
+        "total": 1348
+      },
+      {
+        "left": "E",
+        "right": "OOEE",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.6923076923076923,
+        "total": 598
+      },
+      {
+        "left": "E",
+        "right": "R",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.8100558659217877,
+        "total": 716
+      },
+      {
+        "left": "OE",
+        "right": "E",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.7911646586345381,
+        "total": 2241
+      },
+      {
+        "left": "OE",
+        "right": "OE",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.6804469273743017,
+        "total": 895
+      },
+      {
+        "left": "OE",
+        "right": "OOEE",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.5051546391752577,
+        "total": 97
+      },
+      {
+        "left": "OE",
+        "right": "R",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.8192955589586524,
+        "total": 653
+      },
+      {
+        "left": "OOEE",
+        "right": "E",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.7009966777408638,
+        "total": 301
+      },
+      {
+        "left": "OOEE",
+        "right": "OE",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.593607305936073,
+        "total": 219
+      },
+      {
+        "left": "OOEE",
+        "right": "OOEE",
+        "forced_next": "",
+        "top_next": "OE",
+        "top_share": 0.4666666666666667,
+        "total": 30
+      },
+      {
+        "left": "OOEE",
+        "right": "R",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.8762886597938144,
+        "total": 194
+      },
+      {
+        "left": "R",
+        "right": "E",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.7764540995094604,
+        "total": 1427
+      },
+      {
+        "left": "R",
+        "right": "OE",
+        "forced_next": "",
+        "top_next": "OE",
+        "top_share": 0.3986175115207373,
+        "total": 434
+      },
+      {
+        "left": "R",
+        "right": "OOEE",
+        "forced_next": "",
+        "top_next": "OE",
+        "top_share": 0.4470588235294118,
+        "total": 85
+      },
+      {
+        "left": "R",
+        "right": "R",
+        "forced_next": "",
+        "top_next": "E",
+        "top_share": 0.6476683937823834,
+        "total": 193
+      }
+    ],
+    "forced_compositions": [],
+    "exceptional": [
+      {
+        "src": "E",
+        "dst": "E",
+        "present": 1,
+        "count": 30996,
+        "justification": "even_finiteProgress; landing is a smaller state",
+        "lean_uniform_pair": 1,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "E",
+        "dst": "OE",
+        "present": 1,
+        "count": 6139,
+        "justification": "even_finiteProgress; landing is a smaller state",
+        "lean_uniform_pair": 1,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "E",
+        "dst": "OOEE",
+        "present": 1,
+        "count": 2726,
+        "justification": "even_finiteProgress; landing is a smaller state",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "E",
+        "dst": "R",
+        "present": 1,
+        "count": 7592,
+        "justification": "even_finiteProgress; landing is a smaller state",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "OE",
+        "dst": "E",
+        "present": 1,
+        "count": 12016,
+        "justification": "odd_even_finiteProgress; landing is a smaller state",
+        "lean_uniform_pair": 1,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "OE",
+        "dst": "OE",
+        "present": 1,
+        "count": 4649,
+        "justification": "odd_even_finiteProgress; landing is a smaller state",
+        "lean_uniform_pair": 1,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "OE",
+        "dst": "OOEE",
+        "present": 1,
+        "count": 707,
+        "justification": "odd_even_finiteProgress; landing is a smaller state",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "OE",
+        "dst": "R",
+        "present": 1,
+        "count": 2942,
+        "justification": "odd_even_finiteProgress; landing is a smaller state",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "OOEE",
+        "dst": "E",
+        "present": 1,
+        "count": 2763,
+        "justification": "finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (E)",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "OOEE",
+        "dst": "OE",
+        "present": 1,
+        "count": 1804,
+        "justification": "finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (OE)",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "OOEE",
+        "dst": "OOEE",
+        "present": 1,
+        "count": 171,
+        "justification": "finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (OOEE)",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "OOEE",
+        "dst": "R",
+        "present": 1,
+        "count": 509,
+        "justification": "finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (R)",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "R",
+        "dst": "E",
+        "present": 1,
+        "count": 11677,
+        "justification": "finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (E)",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "R",
+        "dst": "OE",
+        "present": 1,
+        "count": 2733,
+        "justification": "finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (OE)",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "R",
+        "dst": "OOEE",
+        "present": 1,
+        "count": 418,
+        "justification": "finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (OOEE)",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      },
+      {
+        "src": "R",
+        "dst": "R",
+        "present": 1,
+        "count": 1113,
+        "justification": "finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (R)",
+        "lean_uniform_pair": 0,
+        "unobserved": 0,
+        "lean_forced": 0
+      }
+    ],
+    "r_to_r": 1113,
+    "q_identity_all": true,
+    "all_transitions_present": true,
+    "max_tau_R": 4,
+    "tau_grows": true,
+    "type_b": 712,
+    "sccs": [
+      [
+        "E",
+        "OE",
+        "OOEE",
+        "R"
+      ]
+    ],
+    "nonterminal_residual_scc": [],
+    "every_descent_is_fp": true,
+    "git": "550ab99a229821977538d530dd4a724e9ef4729b",
+    "letter_chain": false,
+    "word_language_reopen": false,
+    "halt_theorem": false,
+    "atlas_language_tag": false,
+    "certificate_automaton_lean": false,
+    "source_descent_reopen": false,
+    "claim": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  "lean": {
+    "sorry_free": true,
+    "even_finiteProgress": true,
+    "odd_even_finiteProgress": true,
+    "finiteProgress_of_imageLt": true,
+    "ReturnBelow": true,
+    "FiniteProgress": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_CertificateTransition": false,
+    "has_api_CertificateAutomaton": false,
+    "has_api_ResidualSCC": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "no_atlas_lang": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "CERTIFICATE_TRANSITIONS_CLOSED",
+    "reason": "every first descent is already FiniteProgress via finiteProgress_of_imageLt; the first certificate word is the Q-itinerary; R->R is a strictly decreasing landing quotient; the layer is a 4-letter label on T<n"
+  },
+  "search_method": "iterate first-descent certificates {E,OE,OOEE,R} from landings; n<=20000; labs [37, 69, 89, 365, 501, 1517, 6187]",
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND"
+}

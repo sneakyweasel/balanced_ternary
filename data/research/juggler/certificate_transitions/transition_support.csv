@@ -1,0 +1,17 @@
+src,dst,present
+E,E,1
+E,OE,1
+E,OOEE,1
+E,R,1
+OE,E,1
+OE,OE,1
+OE,OOEE,1
+OE,R,1
+OOEE,E,1
+OOEE,OE,1
+OOEE,OOEE,1
+OOEE,R,1
+R,E,1
+R,OE,1
+R,OOEE,1
+R,R,1

@@ -20,6 +20,7 @@ statement in the branch.
 | Symbolic language | [Word language](problems/juggler_word_language.md) | CLOSE | **EXACT — LEAN VERIFIED** plus bounded census | Realizable-language factor closure survives; no extra PE grammar survives beyond the known block description in the tested families | Structural elimination |
 | Computational apparatus | [Word Atlas](problems/juggler_word_atlas.md) | PARK | **COMPUTATIONALLY VERIFIED** | Exact-reference/native validated census with witnesses, continuations, factors, PE records, and manifests | Methodological centerpiece |
 | Computational apparatus | [Certificate harvest](problems/juggler_certificate_harvest.md) | PARK | **COMPUTATIONALLY VERIFIED** bounded census | First-descent leftover histogram to \(10^9\): \(E/OE/OOEE\) take \(13/16\); leftover mass is a short mixed `OOOEE`/`OOEOE` block list with TV \(0.013\); not a density theorem | Methodological leftover census |
+| Computational apparatus | [Certificate transitions](problems/juggler_certificate_transitions.md) | CLOSE | **REPARAMETERIZATION** | Iterating \(\{E,OE,OOEE,R\}\) is a 4-letter label on successive first descents / \(Q\)-itineraries; all 16 edges occur; \(R\to R\) is a decreasing landing quotient; every leftover word is already `FiniteProgress` | Semantic-layer elimination |
 | Realization geometry | [Realization geometry](problems/juggler_realization_geometry.md) | CLOSE | **REFUTED** / **REPARAMETERIZATION** | Unary corridors and prefix holes are explained by scale and landing parity, not a new interval law | Geometric elimination |
 | Residual state | [Residual-state sufficiency](problems/juggler_residual_state.md) | CLOSE | **REFUTED** within the stated finite family | Intrinsic future needs the current landing \(y\); incoming history does not supply a useful proper quotient | State elimination |
 | Residual equivalence | [Residual minimization](problems/juggler_residual_minimize.md) | CLOSE | **COMPUTATIONALLY VERIFIED** / **REPARAMETERIZATION** | Finite-horizon class collapse is a shared halt word or finite-sample effect, not a new residual state | State elimination |
@@ -76,8 +77,8 @@ global defect, certified persistent-block counterexample, scale barriers,
 cycle extrema, and the two leftover length-six cycle orientations. The parked Atlas, discrepancy, probabilistic, and extremal
 branches remain reusable evidence or descriptive mathematics. The closed
 branches supply negative knowledge: specified reductions either fail on
-explicit witnesses, reproduce exact cell/itinerary semantics, or collapse only
-on a bounded sample.
+explicit witnesses, reproduce exact cell/itinerary semantics, collapse only
+on a bounded sample, or relabel first descent as a 4-letter certificate chain.
 
 The common conclusion is deliberately limited:
 

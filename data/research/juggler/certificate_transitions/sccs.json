@@ -1,0 +1,12 @@
+{
+  "sccs": [
+    [
+      "E",
+      "OE",
+      "OOEE",
+      "R"
+    ]
+  ],
+  "nonterminal_residual_scc": [],
+  "note": "landings strictly decrease; SCC is a quotient"
+}

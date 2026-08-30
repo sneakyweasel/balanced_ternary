@@ -1,0 +1,17 @@
+src,dst,present,count,justification,lean_uniform_pair,unobserved,lean_forced
+E,E,1,30996,even_finiteProgress; landing is a smaller state,1,0,0
+E,OE,1,6139,even_finiteProgress; landing is a smaller state,1,0,0
+E,OOEE,1,2726,even_finiteProgress; landing is a smaller state,0,0,0
+E,R,1,7592,even_finiteProgress; landing is a smaller state,0,0,0
+OE,E,1,12016,odd_even_finiteProgress; landing is a smaller state,1,0,0
+OE,OE,1,4649,odd_even_finiteProgress; landing is a smaller state,1,0,0
+OE,OOEE,1,707,odd_even_finiteProgress; landing is a smaller state,0,0,0
+OE,R,1,2942,odd_even_finiteProgress; landing is a smaller state,0,0,0
+OOEE,E,1,2763,finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (E),0,0,0
+OOEE,OE,1,1804,finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (OE),0,0,0
+OOEE,OOEE,1,171,finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (OOEE),0,0,0
+OOEE,R,1,509,finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (R),0,0,0
+R,E,1,11677,finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (E),0,0,0
+R,OE,1,2733,finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (OE),0,0,0
+R,OOEE,1,418,finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (OOEE),0,0,0
+R,R,1,1113,finiteProgress_of_imageLt at the current state; next class is the first-descent label of the landing (R),0,0,0
