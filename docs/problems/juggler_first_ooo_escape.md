@@ -189,8 +189,9 @@ assembler, and not a halt theorem.
 
 Lean-package \(\lfloor n^{3/2}\rfloor^3\ge n^4\) and the
 second-odd escape. The residual after a first `OOO` from
-\(C_3(n)\) is a separate branch: either a completed `OOOE`
-still below \(n^2\) (the `OOEOOOE` gap), or a longer odd run.
+\(C_3(n)\) — completed `OOOE` versus a longer odd run — is
+the separate branch
+[juggler_post_ooo_crossing.md](juggler_post_ooo_crossing.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\). Do
 not assemble `no_cycle_word_length_eleven`.
 

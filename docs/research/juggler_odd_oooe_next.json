@@ -1,0 +1,187 @@
+{
+  "experiment": "juggler_odd_oooe_next",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "even_q_always_drops": false,
+    "corridor_always_shrinks": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_min": 12,
+    "n_hi": 801,
+    "exponents_ok": true,
+    "ooeoooeeoe_contracts": true,
+    "gaps": {
+      "OOEOOOE": true,
+      "OOEOOOEO": false,
+      "OOEOOOEOE": true,
+      "OOEOOOEOO": false,
+      "OOEOOOEOOE": false,
+      "OOEOOOEOEE": true,
+      "q_lt_n3": true,
+      "ooeoooeeoe_contracts": true,
+      "next_o_refines_square": false
+    },
+    "window": {
+      "n_hi": 801,
+      "firsts": {
+        "even_odd_O": 2,
+        "odd_OOE": 2,
+        "even_even_drop": 1
+      },
+      "q_fail": 0,
+      "r_fail": 0,
+      "cube_fail": 0,
+      "even_even_survive": 0,
+      "samples": [
+        {
+          "n": 319,
+          "branch": "even_q",
+          "first": "even_even_drop",
+          "q_lt_cube": true
+        },
+        {
+          "n": 483,
+          "branch": "even_q",
+          "first": "even_odd_O",
+          "q_lt_cube": true
+        },
+        {
+          "n": 491,
+          "branch": "odd_q",
+          "first": "odd_OOE",
+          "q_lt_cube": true
+        },
+        {
+          "n": 497,
+          "branch": "even_q",
+          "first": "even_odd_O",
+          "q_lt_cube": true
+        },
+        {
+          "n": 501,
+          "branch": "odd_q",
+          "first": "odd_OOE",
+          "q_lt_cube": true
+        }
+      ]
+    },
+    "even_even": {
+      "n": 319,
+      "w": 56545,
+      "q": 13445944,
+      "branch": "even_q",
+      "first": "even_even_drop",
+      "q_ge_sq": true,
+      "q_lt_cube": true,
+      "r": 3666,
+      "r_lt_three_halves": true,
+      "next": 60,
+      "land": null,
+      "land_lt_sq": null,
+      "second": null
+    },
+    "even_odd": {
+      "n": 483,
+      "w": 124381,
+      "q": 43866306,
+      "branch": "even_q",
+      "first": "even_odd_O",
+      "q_ge_sq": true,
+      "q_lt_cube": true,
+      "r": 6623,
+      "r_lt_three_halves": true,
+      "next": null,
+      "land": null,
+      "land_lt_sq": null,
+      "second": null
+    },
+    "odd_above": {
+      "n": 491,
+      "w": 128423,
+      "q": 46021865,
+      "branch": "odd_q",
+      "first": "odd_OOE",
+      "q_ge_sq": true,
+      "q_lt_cube": true,
+      "r": null,
+      "r_lt_three_halves": null,
+      "next": null,
+      "land": 558757,
+      "land_lt_sq": false,
+      "second": null
+    },
+    "odd_long": {
+      "n": 501,
+      "w": 133347,
+      "q": 48693935,
+      "branch": "odd_q",
+      "first": "odd_OOE",
+      "q_ge_sq": true,
+      "q_lt_cube": true,
+      "r": null,
+      "r_lt_three_halves": null,
+      "next": null,
+      "land": 582916,
+      "land_lt_sq": false,
+      "second": null
+    },
+    "ooo_at_w": {
+      "n": 1181,
+      "w": 679765,
+      "q": 560451711,
+      "branch": "odd_q",
+      "first": "odd_OOO",
+      "q_ge_sq": true,
+      "q_lt_cube": true,
+      "r": null,
+      "r_lt_three_halves": null,
+      "next": null,
+      "land": null,
+      "land_lt_sq": null,
+      "second": 679765
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "leftover_suffix_retest": false,
+    "terminal_cluster_reopen": false,
+    "residue_automaton": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "power_bound_word": true,
+    "power_bound_contracts": true,
+    "ooo_residual_ge_cube": true,
+    "no_cycleMin_ooeoooe": true,
+    "floorPower_oooee_five_step_lt": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "no_new_lean": true
+  },
+  "decision": {
+    "classification": "ODD_OOOE_GREEN",
+    "reason": "after an odd OOEOOOE landing, q lies in [n^2, n^3); even q returns to [n, n^{3/2}); odd q starts a second OO above n^2. OOEOOOEO is the first lost square-cell word"
+  },
+  "search_method": "odd OOEOOOE landings only; inherited 243/128 envelope raised through one O; 729 < 768 for q < n^3; no terminal cell, no residue automaton, no Z5, no length-11"
+}

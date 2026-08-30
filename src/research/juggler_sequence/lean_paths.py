@@ -94,6 +94,7 @@ LAYERS: dict[str, Path] = {
     "OddLandingSets": JUGGLER_DIR / "OddLandingSets.lean",
     "WordLanguage": JUGGLER_DIR / "WordLanguage.lean",
     "GapCells": JUGGLER_DIR / "GapCells.lean",
+    "Escape": JUGGLER_DIR / "Escape.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -180,6 +181,7 @@ PREIMAGE_CYLINDERS = LAYERS["PreimageCylinders"]
 ODD_LANDING_SETS = LAYERS["OddLandingSets"]
 WORD_LANGUAGE = LAYERS["WordLanguage"]
 GAP_CELLS = LAYERS["GapCells"]
+ESCAPE = LAYERS["Escape"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",

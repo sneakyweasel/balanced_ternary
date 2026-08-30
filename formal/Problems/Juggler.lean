@@ -57,6 +57,7 @@ import Problems.Juggler.PreimageCylinders
 import Problems.Juggler.OddLandingSets
 import Problems.Juggler.WordLanguage
 import Problems.Juggler.GapCells
+import Problems.Juggler.Escape
 
 /-!
 # Juggler laboratory barrel

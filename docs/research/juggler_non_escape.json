@@ -1,0 +1,203 @@
+{
+  "experiment": "juggler_non_escape",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "no_escape": false,
+    "length_eleven_census": false,
+    "escape_margin_is_new_progress": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_min": 12,
+    "n_hi": 801,
+    "square_cell_64_81": true,
+    "square_cell_128_243": true,
+    "window": {
+      "n_hi": 801,
+      "follows": 12,
+      "even_land": 4,
+      "even_survive": 0,
+      "odd_land": 8,
+      "case_a": 4,
+      "a_survive": 0,
+      "case_b": 4,
+      "x_ge_sq": 0,
+      "z_ge_sq": 0,
+      "firsts": {
+        "even_landing_drop": 4,
+        "even_z_drop": 4,
+        "forced_oo": 4
+      },
+      "samples": [
+        {
+          "n": 69,
+          "x": 212,
+          "z": 14,
+          "x_even": true,
+          "forced_oo": false
+        },
+        {
+          "n": 89,
+          "x": 291,
+          "z": 4964,
+          "x_even": false,
+          "forced_oo": false
+        },
+        {
+          "n": 109,
+          "x": 376,
+          "z": 19,
+          "x_even": true,
+          "forced_oo": false
+        },
+        {
+          "n": 111,
+          "x": 385,
+          "z": 7554,
+          "x_even": false,
+          "forced_oo": false
+        },
+        {
+          "n": 349,
+          "x": 1651,
+          "z": 67084,
+          "x_even": false,
+          "forced_oo": false
+        },
+        {
+          "n": 365,
+          "x": 1749,
+          "z": 73145,
+          "x_even": false,
+          "forced_oo": true
+        },
+        {
+          "n": 429,
+          "x": 2145,
+          "z": 99343,
+          "x_even": false,
+          "forced_oo": true
+        },
+        {
+          "n": 431,
+          "x": 2156,
+          "z": 46,
+          "x_even": true,
+          "forced_oo": false
+        }
+      ]
+    },
+    "escape_prefix": {
+      "chain": [
+        365,
+        763,
+        1749,
+        4447
+      ],
+      "follows_ooeooe": true,
+      "landing": 1749,
+      "landing_is_1749": true,
+      "monotone": true,
+      "unbounded_orbit": false,
+      "steps": [
+        {
+          "from": 365,
+          "to": 763,
+          "grows": true
+        },
+        {
+          "from": 763,
+          "to": 1749,
+          "grows": true
+        },
+        {
+          "from": 1749,
+          "to": 4447,
+          "grows": true
+        }
+      ]
+    },
+    "case_a_89": {
+      "n": 89,
+      "x": 291,
+      "z": 4964,
+      "z_even": true,
+      "z_below_sq": true,
+      "x_cube_lt_n4": true,
+      "case": "A",
+      "next": 70,
+      "drop": true,
+      "first": "even_drop"
+    },
+    "case_b_365": {
+      "n": 365,
+      "x": 1749,
+      "z": 73145,
+      "z_even": false,
+      "z_below_sq": true,
+      "x_cube_lt_n4": true,
+      "case": "B",
+      "w": 19782308,
+      "first": "second_ooe",
+      "land": 4447,
+      "land_below_sq": true,
+      "land_drop": false
+    },
+    "even_landing_69": {
+      "n": 69,
+      "x1": 573,
+      "x2": 13716,
+      "x3": 117,
+      "x4": 1265,
+      "x5": 44992,
+      "x6": 212
+    },
+    "one_cycles": true,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "paper_b_reopen": false,
+    "escape_margin_m": false,
+    "expanding_grammar": false,
+    "bunched_short_reopen": false,
+    "finite_coeff_stop_theorem": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "EscapesToInfinity": true,
+    "EventuallyCycles": true,
+    "not_escapes_iff_bounded": true,
+    "bounded_orbit_eventually_cycles": true,
+    "cycles_or_escapes": true,
+    "reachesOne_implies_eventually_cycles": true,
+    "minimal_nonterm_cycles_or_escapes": true,
+    "follows_ooeooe_image_lt_sq": true,
+    "follows_ooeooeo_image_lt_sq": true,
+    "minimal_ooeooe_not_even_landing": true,
+    "minimal_ooeooe_forces_oo": true,
+    "has_no_juggler_escape": false,
+    "has_juggler_reaches_one": false,
+    "has_all_finiteProgress": false,
+    "has_no_juggler_cycle": false,
+    "has_no_cycle_word_length_eleven": false,
+    "in_laboratory_barrel": true,
+    "not_in_paper_barrel": true,
+    "no_halt_theorem": true,
+    "no_coeff_stop_theorem": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "NON_ESCAPE_SPINE_GREEN",
+    "reason": "every scanned OOEOOE follower either drops on an even landing or even z, or is forced onto another OO; 365->4447 is a finite escape prefix, not an unbounded orbit"
+  },
+  "search_method": "OOEOOE followers in an odd window; even-trap and forced-OO split; 365 residual prefix recorded as finite; Lean Escape module only; no halt theorem"
+}

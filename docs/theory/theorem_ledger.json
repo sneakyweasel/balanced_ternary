@@ -4343,5 +4343,71 @@
       "tests/research/juggler_sequence/test_first_ooo_escape.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-post-ooo-oooe",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If n ≥ 2 follows OOE and the next odd run at x = T_OOE(n) is a first OOO, then x^8 ≤ n^9 and T^3(x)^8 ≤ x^{27} give T^3(x)^{64} ≤ n^{243} < n^{256} = (n^4)^{64}, so u = T^3(x) < n^4. The cube lemma gives u ≥ (x+1)^3. Whenever u is even, the completed OOOE landing w = isqrt(u) satisfies n ≤ w < n^2. If w is even, OOEOOOEE contracts versus n (243 < 256) and the next E is at most n-1 (FiniteProgress). If w is odd, a CycleMin continuation begins with O from a state still in [n, n^2). The word OOEOOOE has the same square-cell gap 256 > 243. This is not an OOO-fatality theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_post_ooo_crossing.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_post_ooo_crossing.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-post-ooo-always-drop",
+    "tag": "REFUTED",
+    "statement": "Every first OOO from C_3(n) recovers by FiniteProgress, and a second OOO requires a strictly stronger entrance. False. An odd OOOE landing continues: 483 → w = 124381 odd in [483, 483^2), then a second OOO at 6623 still in C_3(483). A second OOO can also start above n^2: 491 → 558757. A longer odd run is a residual (173 after one OOE; 565 after two). Even completed OOOE landings still drop (105 → 6818 → 82). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_post_ooo_crossing.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_post_ooo_crossing.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-odd-oooe-next-o",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If n ≥ 2 follows OOEOOOE and w = T_OOEOOOE(n) is odd, then w^{128} ≤ n^{243}. The next image q = T(w) satisfies q^{256} ≤ n^{729} < n^{768} = (n^3)^{256}, so q < n^3. Combined with w ≥ isqrt((n+1)^3) and isqrt((n+1)^3)^3 ≥ (n+1)^4, one has n^2 ≤ q < n^3. The word OOEOOOEO loses the square-cell gap (512 < 729); OOEOOOEOE restores it (1024 > 729). If q is even, the OE landing r lies in [n, n^{3/2}). If r is even, OOEOOOEOEE contracts versus n (729 < 1024) and FiniteProgress follows. If q is odd, a second OO starts from [n^2, n^3). This is not a uniform shrinking-cell theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_odd_oooe_next.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_odd_oooe_next.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-odd-oooe-even-q-drops",
+    "tag": "REFUTED",
+    "statement": "After an odd OOEOOOE landing, even q = T(w) gives FiniteProgress, and every surviving branch shrinks inside n^2. False. Even q need not drop: 483 has q = 43866306 even and r = 6623 odd in [483, 483^{3/2}). Odd q leaves the square cell: 491 has q = 46021865 in [491^2, 491^3). Both 483 and 491 have w/n^2 ≈ 0.533; the split is the parity of q, not the cell position. Even-even still drops (319 → 60 via OOEOOOEOEE). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_odd_oooe_next.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_odd_oooe_next.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-orbit-cycle-or-escape",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Every n satisfies EventuallyCycles n or EscapesToInfinity n. A uniformly bounded orbit repeats: if T^k(n) ≤ M for every k, then some i < j have T^i(n) = T^j(n). ReachesOne n implies EventuallyCycles n because T(1) = 1. On MinimalNonTerm n a cycle value stays ≥ n. This is not a proof that escape is impossible, not a cycle-exclusion theorem, and not a halt theorem.",
+    "source": "docs/problems/juggler_non_escape.md",
+    "lean": "Problems/Juggler/Escape.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_non_escape.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-minimal-ooeooe-escape-trap",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If n ≥ 2 follows OOEOOE, then T_OOEOOE(n) < n^2 because x^{64} ≤ n^{81} forbids n^2 ≤ x. If n follows OOEOOEO, then the next image is < n^2 because z^{128} ≤ n^{243} forbids n^2 ≤ z. On MinimalNonTerm n the OOEOOE landing is odd, and the forced next O is followed by another O: an even landing or an even next image below n^2 is descent. The argument does not use a CycleMin return image = n. This is not a proof that escape is impossible, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_non_escape.md",
+    "lean": "Problems/Juggler/Escape.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_non_escape.py"
+    ],
+    "related_conjectures": []
   }
 ]

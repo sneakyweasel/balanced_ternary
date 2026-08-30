@@ -12838,4 +12838,110 @@ Best next question
   FiniteProgress or an existing obstruction?
 ```
 
+## Juggler post-OOO square-ceiling crossing
+
+- **Date:** 2026-08-30
+- **Objective:** Bound the completed `OOOE` landing after a first `OOO` from \(C_3(n)\) and decide whether CycleMin can recover
+- **Hypotheses:** \(T^3(x)<n^4\) after one `OOE`; even `OOOE` drops; odd `OOOE` stays in \(C_3(n)\)
+- **Major results:** Classification **POST_OOO_GREEN**. After one `OOE`, \(u^{64}\le n^{243}<n^{256}\) so \(T^3(x)<n^4\), and a completed `OOOE` landing satisfies \(n\le w<n^2\) — **EXACT — HUMAN PROOF** (`J-cyclemin-post-ooo-oooe`). Even \(w\) is FiniteProgress (`105\to6818\to82`); `OOEOOOEE` contracts because \(243<256\). Every post-`OOO` drops, and a second `OOO` is a stronger entrance — **REFUTED** (`J-cyclemin-post-ooo-always-drop`): `483` re-enters \(C_3\); `491` re-enters above \(n^2\); `565` is a long odd run. Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** every post-`OOO` recovery is FiniteProgress; two `OOO` events require a strictly stronger entrance; `OOO` is the unique visit to a state \(\ge n^2\)
+- **Literature:** second-odd escape; `ooo_residual_ge_cube`; `no_cycleMin_ooeoooe`; `floorPower_oooee_five_step_lt`
+- **Open:** after an odd `OOOE` landing in \(C_3(n)\), does the next `O` repeat the even/odd trap? Do not reopen bunched-short cells
+- **Decision:** PROMOTE the k=1 `OOOE` dichotomy. Fatality and monotone second-`OOO` strengthening are not theorems
+
+```text
+What was learned
+- after one OOE, T^3(x) < n^4 by the same 243 < 256
+- completed OOOE lands in [n, n^2)
+- even w => FiniteProgress; odd w => forced O in C_3(n)
+- 105 is Case A; 483 is Case B with a second OOO in C_3
+- a longer odd run (173, 565) is a residual
+Strongest theorem
+- CycleMin(n, OOEOOOE v) => FiniteProgress or v starts with O
+  and w in [n, n^2)  (EXACT — HUMAN PROOF)
+Strongest refutation
+- 483 survives odd OOOE; 491 second OOO is above n^2
+Reusable machinery
+- post_ooo_crossing.py OOOE event split
+Branch status
+- PROMOTE
+Why
+- the completed OOOE landing after one OOE is a
+  finite-transition dichotomy under the exact envelope
+Best next question
+- after an odd OOOE landing in C_3(n), does the next O
+  repeat the even/odd trap?
+```
+
+## Juggler next O after an odd OOOE landing
+
+- **Date:** 2026-08-30
+- **Objective:** Decide what the forced next `O` does after an odd `OOEOOOE` landing in \([n,n^2)\)
+- **Hypotheses:** the inherited \(243/128\) envelope still forces \(q<n^2\); even \(q\) drops; the corridor shrinks
+- **Major results:** Classification **ODD_OOOE_GREEN**. `OOEOOOEO` loses the square-cell gap (\(512<729\)). The next-`O` square refinement fails (\(729>512\)), but \(q^{256}\le n^{729}<n^{768}\) so \(n^2\le q<n^3\) — **EXACT — HUMAN PROOF** (`J-cyclemin-odd-oooe-next-o`). Even \(q\) returns to \([n,n^{3/2})\); even–even drops (`319\to 60`). Even \(q\) always drops, and every branch shrinks — **REFUTED** (`J-cyclemin-odd-oooe-even-q-drops`): `483` has odd \(r=6623\); `491` has odd \(q\) in \([n^2,n^3)\). Both have \(w/n^2\approx 0.533\). Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** even \(q\) is FiniteProgress; a uniform descending cell hierarchy; \(483/491\) split by cell position
+- **Literature:** post-`OOO` `OOOE` envelope; cube lemma; `no_cycleMin_ooeoooe`
+- **Open:** after odd \(q\in[n^2,n^3)\), does the second `OO` still carry a cube-relative envelope? Do not reopen bunched-short cells
+- **Decision:** PROMOTE the three-way next-`O` split. Uniform shrinking is not a theorem
+
+```text
+What was learned
+- OOEOOOEO is the first lost square-cell word after OOEOOOE
+- q lies in [n^2, n^3) by 729 < 768
+- even q returns to [n, n^{3/2}); even-even drops
+- 483/491 share w/n^2 and split by parity of q
+- odd q leaves the square cell; the hierarchy does not always shrink
+Strongest theorem
+- odd OOEOOOE landing => n^2 <= T(w) < n^3
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- 483 even q survives; 491 odd q starts OO above n^2
+Reusable machinery
+- odd_oooe_next.py next-O split and cube corridor
+Branch status
+- PROMOTE
+Why
+- the inherited envelope still gives an exact cube corridor
+  and a three-way finite transition, not a generic 3/2 bound
+Best next question
+- after odd q in [n^2, n^3), does the second OO still
+  carry an exact cube-relative envelope?
+```
+
+## Juggler non-escape spine
+
+- **Date:** 2026-08-30
+- **Objective:** Start a non-escape proof by packaging the cycle-or-escape split and transferring the `OOEOOE` even-trap from `CycleMin` onto `MinimalNonTerm`
+- **Hypotheses:** CycleMin corridor lemmas survive after dropping the return hypothesis, so they constrain escapers, not only cyclers
+- **Major results:** Classification **NON_ESCAPE_SPINE_GREEN**. Every orbit eventually cycles or escapes — **EXACT — LEAN VERIFIED** (`J-orbit-cycle-or-escape`). If \(n\ge 2\) follows `OOEOOE` then \(T(n)<n^{2}\); on `MinimalNonTerm` the landing is odd and the forced next `O` is followed by another `O` — **EXACT — LEAN VERIFIED** (`J-minimal-ooeooe-escape-trap`). The even trap does not use `image = n`. The chain \(365\to 763\to 1749\to 4447\) is a finite escape prefix, not an unbounded orbit. Laboratory barrel only. Paper A unchanged. No halt theorem. No `FiniteCoeffStopConjecture` theorem
+- **Refuted ideas:** the transfer needs a cycle return; a finite growing residual prefix is already escape
+- **Literature:** `bounded_prefix_not_nodup`; `minimal_nonterm_iterate_ge`; `wordOOEOOE`; `even_floorPower_lt_iff`; residual-path unbounded leftover
+- **Open:** can a `MinimalNonTerm` itinerary concatenate infinitely many expanding residual blocks without realizing a contracting word? Do not auto-continue. Do not reopen Paper B, escape-margin \(M\), or bunched-short cells
+- **Decision:** PROMOTE the Lean split and the escape-capable `OOEOOE` trap. Do not claim that escape is impossible
+
+```text
+What was learned
+- every orbit eventually cycles or escapes
+- ReachesOne is the 1-cycle case of EventuallyCycles
+- MinimalNonTerm cycle values stay >= n
+- OOEOOE and OOEOOEO have square-cell gaps without CycleMin
+- on a CE, OOEOOE forces another OO
+Strongest theorem
+- MinimalNonTerm n and follows n OOEOOE =>
+  follows OOEOOEO and the next image is odd
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- none new; 365->4447 is a finite prefix, not a counterexample
+Reusable machinery
+- Escape.lean; non_escape.py
+Branch status
+- PROMOTE
+Why
+- the even trap constrains escapers, not only cyclers,
+  and it does not restate residual_path pigeonhole alone
+Best next question
+- can a MinimalNonTerm itinerary concatenate infinitely
+  many expanding residual blocks without a contracting word?
+```
+
 
