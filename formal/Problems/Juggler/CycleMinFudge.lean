@@ -9,9 +9,10 @@ namespace Problems.Juggler
 Laboratory satellite. On a `CycleMin` every later state is `≥ n`, so
 `(x+1)/x ≤ (n+1)/n`. The even sibling of `absorb_odd_step` plus that
 crossing keeps slack `3^7 - 2^11 = 139` on every 7-odd word that
-starts `O`. The thirty first-expanding short-gap leftovers are not
-`CycleMin` words. The eight leftovers whose only CycleMin-shaped
-rotation is themselves are not cycle words.
+starts `O`. On any start-`O` four-even word with `o ≥ 7` odds the
+slack is `3^o - 2^{o+4}`. The thirty first-expanding short-gap
+leftovers are not `CycleMin` words. The eight leftovers whose only
+CycleMin-shaped rotation is themselves are not cycle words.
 
 Not imported by `Problems.JugglerPaper`. Not a length-11 census, not
 `no_cycle_word_four_even`, and not a halt theorem.
@@ -290,6 +291,65 @@ theorem exponents_starts_odd :
               ring
 
 theorem family_slack139 : (3 : ℕ) ^ 7 - 2 ^ 11 = 139 := by decide
+
+/-- Slack of a start-`O` four-even word with `o` odds: `3^o - 2^{o+4}`. -/
+def familySlack (o : ℕ) : ℕ := 3 ^ o - 2 ^ (o + 4)
+
+theorem familySlack_seven : familySlack 7 = 139 := family_slack139
+
+theorem familySlack_eight : familySlack 8 = 2465 := by decide
+
+theorem two_pow_add_four_le_three_pow {o : ℕ} (ho : 7 ≤ o) :
+    2 ^ (o + 4) ≤ 3 ^ o := by
+  obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le ho
+  clear ho
+  induction k with
+  | zero =>
+      decide
+  | succ k ih =>
+      have h2 : 2 ^ (7 + (k + 1) + 4) = 2 * 2 ^ (7 + k + 4) := by
+        rw [show 7 + (k + 1) + 4 = 7 + k + 4 + 1 by omega, pow_succ,
+          Nat.mul_comm]
+      have h3 : 3 ^ (7 + (k + 1)) = 3 * 3 ^ (7 + k) := by
+        rw [show 7 + (k + 1) = 7 + k + 1 by omega, pow_succ, Nat.mul_comm]
+      rw [h2, h3]
+      exact (Nat.mul_le_mul_left 2 ih).trans
+        (Nat.mul_le_mul_right _ (by decide : (2 : ℕ) ≤ 3))
+
+theorem familySlack_add {o : ℕ} (ho : 7 ≤ o) :
+    familySlack o + 2 ^ (o + 4) = 3 ^ o :=
+  Nat.sub_add_cancel (two_pow_add_four_le_three_pow ho)
+
+/-- On any start-`O` word the leftover of `A` versus the trailing-even
+cell is `3^{#O} - 2^{|pref|+r}`. -/
+theorem exponents_slack_add {pref : List Branch} {r : ℕ}
+    (h0 : pref.head? = some .odd) :
+    (exponentsAfter pref).A + 2 ^ (pref.length + r) =
+      (exponentsAfter pref).B + (exponentsAfter pref).gamma * 2 ^ r +
+        3 ^ oddCount pref := by
+  obtain ⟨hγ, hA⟩ := exponents_starts_odd pref h0
+  rw [hA, hγ, Nat.pow_add]
+  ac_rfl
+
+theorem exponents_slack {pref : List Branch} {r : ℕ}
+    (h0 : pref.head? = some .odd)
+    (hge : 2 ^ (pref.length + r) ≤ 3 ^ oddCount pref) :
+    (exponentsAfter pref).A =
+      (exponentsAfter pref).B + (exponentsAfter pref).gamma * 2 ^ r +
+        (3 ^ oddCount pref - 2 ^ (pref.length + r)) := by
+  have hadd := exponents_slack_add (pref := pref) (r := r) h0
+  rw [← Nat.add_sub_assoc hge, ← hadd, Nat.add_sub_cancel]
+
+theorem slack_of_four_even {pref : List Branch} {r o : ℕ}
+    (h0 : pref.head? = some .odd) (hodd : oddCount pref = o)
+    (hlen : pref.length + r = o + 4) (ho : 7 ≤ o) :
+    (exponentsAfter pref).A =
+      (exponentsAfter pref).B + (exponentsAfter pref).gamma * 2 ^ r +
+        familySlack o := by
+  have hge : 2 ^ (pref.length + r) ≤ 3 ^ oddCount pref := by
+    rw [hlen, hodd]
+    exact two_pow_add_four_le_three_pow ho
+  simpa [hodd, hlen, familySlack] using exponents_slack h0 hge
 
 theorem dropTrailing_snoc_even (u : List Branch) :
     dropTrailingEvens (u ++ [.even]) = dropTrailingEvens u := by
@@ -655,23 +715,42 @@ theorem plus_one_vs_trailing {n : ℕ} {pref : List Branch} {r : ℕ}
     (Nat.pow_add _ _ _).symm
   exact hchain.trans_le (hle.trans_eq hjoin)
 
+theorem four_even_length {w : List Branch} (he : evenCount w = 4) :
+    w.length = oddCount w + 4 := by
+  have := evenCount_add_oddCount w
+  omega
+
+theorem slack_of_four_even_word {w : List Branch}
+    (h0 : (dropTrailingEvens w).head? = some .odd)
+    (he : evenCount w = 4) (ho : 7 ≤ oddCount w) :
+    let pref := dropTrailingEvens w
+    let r := trailingEvenCount w
+    (exponentsAfter pref).A =
+      (exponentsAfter pref).B + (exponentsAfter pref).gamma * 2 ^ r +
+        familySlack (oddCount w) := by
+  have hoddP : oddCount (dropTrailingEvens w) = oddCount w :=
+    pref_oddCount_of_trailing w
+  have hlen : (dropTrailingEvens w).length + trailingEvenCount w =
+      oddCount w + 4 := by
+    have hsplit := congrArg List.length (split_trailing_evens w)
+    simp at hsplit
+    have := four_even_length he
+    omega
+  simpa [hoddP] using slack_of_four_even h0 hoddP hlen ho
+
 theorem slack139_of_seven_odd_length_eleven {pref : List Branch} {r : ℕ}
     (h0 : pref.head? = some .odd) (hodd : oddCount pref = 7)
     (hlen : pref.length + r = 11) :
     let s := exponentsAfter pref
     s.A = s.B + s.gamma * 2 ^ r + 139 := by
-  have ⟨hγ, hA⟩ := exponents_starts_odd pref h0
-  have hγ' : (exponentsAfter pref).gamma * 2 ^ r = 2 ^ 11 := by
-    rw [hγ, ← Nat.pow_add, hlen]
-  have hAB : (exponentsAfter pref).A = (exponentsAfter pref).B + 2187 := by
-    simpa [hodd] using hA
-  have : (3 : ℕ) ^ 7 = 2187 := by decide
-  have : (2 : ℕ) ^ 11 = 2048 := by decide
-  omega
+  have hlen' : pref.length + r = 7 + 4 := by
+    simpa using hlen
+  simpa [familySlack_seven] using
+    slack_of_four_even h0 hodd hlen' (by decide : (7 : ℕ) ≤ 7)
 
 theorem no_cycleMin_slack139 {n : ℕ} {w : List Branch}
     (hready : fudgeReady w = true) (h : CycleMin n w) : False := by
-  obtain ⟨h0, hend, hodd7, hlen11, hA, hr1, hpin, hne⟩ := fudgeReady_dest hready
+  obtain ⟨h0, _, hodd7, hlen11, hA, hr1, hpin, hne⟩ := fudgeReady_dest hready
   have hsplit := split_trailing_evens w
   have h0p : (dropTrailingEvens w).head? = some .odd := by
     have hw' := h0
@@ -694,7 +773,6 @@ theorem no_cycleMin_slack139 {n : ℕ} {w : List Branch}
     | 0 => exact (not_follows_zero_of_odd_head h0 h.1.1).elim
     | 1 => exact (not_follows_one_of_even he4 h.1.1).elim
     | _n + 2 => omega
-  have hn12 : 12 ≤ n := cycleMin_ge_twelve hn2 h
   have hn1 : 1 ≤ n := le_trans (by decide : (1 : ℕ) ≤ 2) hn2
   have hC : CycleMin n
       (dropTrailingEvens w ++

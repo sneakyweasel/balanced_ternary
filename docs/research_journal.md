@@ -12145,3 +12145,75 @@ Best next question
   a length-11 census
 ```
 
+## Juggler CycleMin tails
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether the CycleMin \((n+1)/n\) exponent machine kills every four-even short-gap tail \(a_0>a_0^*\) through \(a_0=16\)
+- **Hypotheses:** slack \(3^{o}-2^{o+4}\) grows and CycleMin beats leftover \(Z_4\) (\(N_0\le 180\) at \(a_0^*+1\))
+- **Major results:** Classification **CYCLEMIN_TAILS_PROVED**. 367 words, slack identically \(3^{o}-2^{o+4}\ge 2465\), chain \(N_0\le 7\), pin \(n<8\) empty. First tail layer (thirty words, eight odds) fires at starts \(37\) through \(4481\). Leftover \(Z_4\) unused. Ledger row `J-cyclemin-tails`. No Lean. Not a four-even assembler and not a halt theorem
+- **Refuted ideas:** the tails still need leftover \(N_0\le 180\); this is \(Z_5\) or a four-even assembler
+- **Literature:** `J-cyclemin-fudge`; \(Z_4\) `PARK`
+- **Open:** Lean the slack identity for \(o\ge 8\), or stop. Do not write \(Z_5\)
+- **Decision:** PROMOTE. The first-expanding layer was the hard case; the tails are easier
+
+```text
+What was learned
+- first-expanding leftovers have 7 odds; tails have o >= 8
+- slack is 3^o - 2^{o+4}, not 139
+- chain N0 drops to 3..7, not leftover 180
+- pin n<8 is empty on all 367 scanned words
+- leftover Z4 is unused
+Strongest theorem
+- 367 tails a0*+1..16 are not CycleMin words
+  (COMPUTATIONALLY VERIFIED); slack 3^o-2^{o+4}
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- the tails need leftover N0 <= 180
+Reusable machinery
+- cyclemin_tails.py; family_slack(o); no Lean
+Branch status
+- PROMOTE
+Why
+- the same crossing that killed the thirty length-11
+  leftovers kills the scanned infinite tails earlier
+Best next question
+- Lean the slack identity for o>=8, or stop; do not
+  open e=5
+```
+
+## Consolidation: CycleMin slack identity Lean
+
+- **Date:** 2026-08-30
+- **Objective:** Package the start-\(O\) four-even slack identity \(3^{o}-2^{o+4}\) in Lean, sorry-free, with the length-11 case as a corollary
+- **Hypotheses:** `exponents_starts_odd` plus \(2^{o+4}\le 3^{o}\) for \(o\ge 7\) give \(A=B+\gamma\cdot 2^{r}+\mathrm{familySlack}\,o\) on every start-\(O\) four-even word
+- **Major results:** `familySlack`, `two_pow_add_four_le_three_pow`, `exponents_slack_add`, `slack_of_four_even`, `slack_of_four_even_word` in `CycleMinFudge.lean`. `slack139_of_seven_odd_length_eleven` is now a corollary. `familySlack 7 = 139` and `familySlack 8 = 2465`. Ledger row `J-cyclemin-slack` tagged **EXACT — LEAN VERIFIED**. `J-cyclemin-tails` stays **COMPUTATIONALLY VERIFIED** for the 367-word pin. No `no_cycleMin_four_even`. Paper A unchanged
+- **Refuted ideas:** a per-word Lean pin of the tails; a four-even assembler
+- **Literature:** `J-cyclemin-slack`; `J-cyclemin-tails`; `J-cyclemin-fudge`
+- **Open:** stop. Do not write \(Z_5\). Do not Lean the 367-word pin
+- **Decision:** PROMOTE. The Lean file covers the English slack identity and stops short of a tail census
+
+```text
+What was learned
+- slack on a start-O four-even word is 3^o-2^{o+4}
+- the inequality 2^{o+4} <= 3^o holds for every o >= 7
+- length 11 is the o=7 case (slack 139)
+- eight odds is slack 2465
+- the 367-word pin is still computational
+Strongest theorem
+- A = B + gamma * 2^r + (3^o - 2^{o+4}) on every
+  start-O four-even word with o >= 7
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- a Lean no_cycleMin of the 367 tails, or
+  no_cycleMin_four_even
+Reusable machinery
+- familySlack; slack_of_four_even; two_pow_add_four_le
+Branch status
+- PROMOTE
+Why
+- the identity is the same exponent arithmetic as
+  family_slack139, now for every o >= 7
+Best next question
+- stop; do not open e=5; do not Lean the 367-word pin
+```
+

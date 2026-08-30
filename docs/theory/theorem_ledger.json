@@ -3935,5 +3935,27 @@
       "tests/research/juggler_sequence/test_cyclemin_fudge.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-tails",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "On every four-even short-gap tail O^{a0} E O^{a1} E O^{a2} E O^{a3} E with a0 > a0* and a0 <= 16 (367 words, 8 through 21 odds) the CycleMin exponent machine has slack identically 3^o-2^{o+4} >= 2465 and chain N0 <= 7. No n < 8 follows any of those prefixes. The first tail layer (thirty words, eight odds) fires at the first prefix start (37 through 4481). Leftover Z4 (N0 <= 180 at a0*+1) is unused. The slack identity is Lean (J-cyclemin-slack). The 367-word pin and N0 scan is not Lean. Not a four-even assembler, not Z5, not no_cycleMin_four_even, and not a halt theorem.",
+    "source": "docs/problems/juggler_cyclemin_tails.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cyclemin_tails.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-slack",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "On every start-O four-even Juggler word with o >= 7 odds, the CycleMin exponent machine has slack identically 3^o - 2^{o+4}. After a start-O prefix, A = B + gamma * 2^r + familySlack o, and familySlack o + 2^{o+4} = 3^o because 2^{o+4} <= 3^o. The length-11 case is familySlack 7 = 139. Lean: familySlack, two_pow_add_four_le_three_pow, exponents_slack_add, slack_of_four_even, slack_of_four_even_word in CycleMinFudge.lean. Not a CycleMin exclusion of the tails, not no_cycleMin_four_even, and not a halt theorem. Not imported by JugglerPaper.",
+    "source": "docs/problems/juggler_cyclemin_tails.md",
+    "lean": "Problems/Juggler/CycleMinFudge.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cyclemin_tails.py"
+    ],
+    "related_conjectures": []
   }
 ]

@@ -110,7 +110,8 @@ It is not required.
   **COMPUTATIONALLY VERIFIED**
 - no cycle of length 11 — not claimed
 - no four-even cycle — not claimed
-- the \(a_0\ge 8\) tails die — not claimed
+- the tails \(a_0>a_0^*\) —
+  taken up by [juggler_cyclemin_tails](juggler_cyclemin_tails.md)
 - global halt — not claimed
 
 ## Experiments
@@ -164,14 +165,14 @@ exists below \(30\). The thirty length-11 short-gap leftovers
 are not `CycleMin` words. The eight unique-rotation leftovers
 are not cycle words.
 
-This is not a four-even assembler. The infinite tails
-\(a_0\ge 8\) still sit on \(Z_4\) (\(N_0\le 180\) at \(a_0+1\)).
+This is not a four-even assembler. The tails \(a_0>a_0^*\)
+were taken up by [juggler_cyclemin_tails](juggler_cyclemin_tails.md).
 
 ## Open questions
 
-The \(a_0\ge 8\) tails by the same crossing (not by a
-thirty-file leftover list). Do not write \(Z_5\). Do not
-assemble `no_cycle_word_length_eleven`.
+The tails \(a_0>a_0^*\) are recorded in
+[juggler_cyclemin_tails](juggler_cyclemin_tails.md). Do not
+write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
 
 ## Decision
 
@@ -180,8 +181,8 @@ the first-expanding slack once \((x+1)/x\le 2\) is replaced by
 \((x+1)/x\le(n+1)/n\). This is not a halt result and not a
 length-11 census.
 
-Best next question: the \(a_0\ge 8\) tails by the same
-crossing, not a length-11 census.
+Best next question: stop. The tail slack identity is Lean
+(`J-cyclemin-slack`). Do not open \(e=5\).
 
 ## Publication assessment
 
