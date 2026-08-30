@@ -3398,6 +3398,54 @@
     "related_conjectures": []
   },
   {
+    "id": "J-three-even-eoooee",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every a ≥ 3 and every n ≥ 2, the bunched leftover O^a EOOOEE is not a Juggler cycle word. For a ≥ 4 and n ≥ 3 the mixed cell is z < (n+1)^4: two trailing evens give p < (n+1)^4, the three-odd envelope gives y^{27} ≤ 2^{38} p^8, and n ≥ 3 upgrades that to y < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. At a = 3 the coarse exponent is impossible, so the argument uses the tight cell z < (y+1)^2 against C_{O^3}: y < 39 contradicts n ≥ 24, and y ≥ 39 reduces to n^{729} > 2^{1650}(n+1)^{512} from n ≥ 197. Below 256 the argument is Fin 256 tables at a = 3,4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_word_three_even_eoooee. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/BunchedEOOOEE.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-three-even-eeoe",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every a ≥ 5 and every n ≥ 2, the bunched leftover O^a EEOE is not a Juggler cycle word. For n ≥ 4 the mixed cell is z < (n+1)^6: the last-odd cube gives y^3 < (n+1)^4, two leading evens give z < (y+1)^4, and n ≥ 4 upgrades that to z < (n+1)^6. The resulting comparison is the EOEE tail n^{3^a} > 2^{e_a}(n+1)^{6·2^a}, already proved for a ≥ 5. Large n at a = 5 is n ≥ 314; at a = 6 the same cell already fires at n ≥ 16. Below those cutoffs the argument is the a = 5 table, the a = 6 table, and seven consecutive odds. Lean theorem no_cycle_word_three_even_eeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/BunchedEEOE.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-three-even-eoeoe",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every a ≥ 4 and every n ≥ 2, the bunched leftover O^a EOEOE is not a Juggler cycle word. For n ≥ 32 the mixed cell is z < (n+1)^4: the last-odd cube gives y^3 < (n+1)^4, the one-odd envelope on the first gap upgrades to w < (n+1)^2, and the even cell at z then gives z < (n+1)^4. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. Below 256 the argument is Fin 256 tables at a = 4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_word_three_even_eoeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/BunchedEOEOE.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-three-even-eooeoe",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every a ≥ 3 and every n ≥ 2, the bunched leftover O^a EOOEOE is not a Juggler cycle word. For a ≥ 4 and n ≥ 4 the mixed cell is z < (n+1)^4: last-odd plus two-odd give u^9 < 1024(y+1)^8 and (y+1)^3 < 2(n+1)^4, hence u^{27} < 2^{38}(n+1)^{32} and u < (n+1)^2. The resulting comparison is the shared two-even tail at length a+2, which holds for n ≥ 256. At a = 3 the same tight split as O^3 EOOOEE applies with u in place of y. Below 256 the argument is Fin 256 tables at a = 3,4,5,6 and seven consecutive odds thereafter. Lean theorem no_cycle_word_three_even_eooeoe. This excludes that one bunched family only; it is not a length-8 or length-9 census and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "Problems/Juggler/BunchedEOOEOE.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-nested-parity-linearization",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "For odd n ≥ 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 ≤ E(n) ≤ (3/8)(n^{3/2}-1)^{-1/2} ≤ (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} ≥ 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",

@@ -11326,3 +11326,81 @@ Best next question
   from n>=205
 ```
 
+## Juggler bunched O^a EOOEE in Lean
+
+- **Date:** 2026-08-30
+- **Objective:** Lean-exclude `CycleWord` on \(O^a\texttt{EOOEE}\) for every \(a\ge 4\) and \(n\ge 2\)
+- **Hypotheses:** \(z<(n+1)^4\) for \(n\ge 32\); the resulting comparison is the shared two-even tail at length \(a+2\), already proved for \(n\ge 256\)
+- **Major results:** `no_cycle_word_three_even_eooee` (**EXACT — LEAN VERIFIED**, ledger `J-three-even-eooee`). Mixed cell \(z<(n+1)^4\). Large \(n\) is `shared_two_even_tail` at \(k=a+2\). Below 256: `Fin 256` tables at \(a=4,5,6\), seven-odd thereafter. Paper A Theorem 3.16 is no longer a forward reference. Not a length-8/9 census. Four bunched families remain computational
+- **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; a uniform coarse \(K\) for the remaining four families (already **REFUTED**)
+- **Literature:** `OOOOEOOEE` is the \(a=4\) instance; the two-even tail and seven-odd reused; Paper A already named the family as Theorem 3.16
+- **Open:** the other four bunched families (`EOOOEE`, `EEOE`, `EOEOE`, `EOOEOE`), all of whose coarse exponents are impossible. Length 8 still open as a census
+- **Decision:** PROMOTE the Lean exclusion of the `EOOEE` family. Not a bunched-tail census and not a halt theorem
+
+```text
+What was learned
+- z < (n+1)^4 for n>=32: two trailing evens, two-odd
+  envelope y^9 <= 1024 p^4, then 1024 < (n+1)^2
+- The coarse comparison is exactly the shared two-even tail
+  at k=a+2; no new large-n induction is needed
+- Below 256, a=4,5,6 is one Fin 256 x Fin 3 table; a>=7
+  is seven-odd
+- This kills the last bunched family whose coarse K is
+  possible; the remaining four need a tight Z
+Strongest theorem
+- no_cycle_word_three_even_eooee: O^a EOOEE is not a
+  CycleWord at n>=2, a>=4
+Strongest refutation
+- none new; uniform coarse K remains refuted
+Reusable machinery
+- BunchedEOOEE.lean: threeEvenEOOEE_z_lt, three_even_eooee_tail
+Branch status
+- PROMOTE
+Why
+- EOOEE is now one Lean type, reduced to the existing
+  two-even tail after a K=4 cell
+Best next question
+- Lean-exclude O^a EOOOEE via tight Z, or a tight-Z Lean
+  for EEOE / EOEOE / EOOEOE
+```
+
+## Juggler bunched remaining four families in Lean
+
+- **Date:** 2026-08-30
+- **Objective:** Lean-exclude `CycleWord` on \(O^a\texttt{EOOOEE}\), \(O^a\texttt{EEOE}\), \(O^a\texttt{EOEOE}\), and \(O^a\texttt{EOOEOE}\) for every expanding prefix length
+- **Hypotheses:** `EEOE` reuses the `EOEE` cell \(z<(n+1)^6\); `EOEOE` reuses the `EOOEE` cell \(z<(n+1)^4\); `EOOOEE` and `EOOEOE` reuse that cell for \(a\ge 4\) and need a tight last-odd split at \(a=3\)
+- **Major results:** `no_cycle_word_three_even_eoooee`, `no_cycle_word_three_even_eeoe`, `no_cycle_word_three_even_eoeoe`, `no_cycle_word_three_even_eooeoe` (**EXACT — LEAN VERIFIED**, ledgers `J-three-even-eoooee`, `J-three-even-eeoe`, `J-three-even-eoeoe`, `J-three-even-eooeoe`). All seven bunched families are now Lean `CycleWord` exclusions. Paper A Theorems 3.17--3.20. Uniform coarse \(K\) stays **REFUTED**. Not a length-8/9 census. No `no_cycle_word_bunched`
+- **Refuted ideas:** a length-8 or length-9 Lean census as an automatic corollary; a single `no_cycle_word_bunched` theorem
+- **Literature:** the three already-Lean bunched families and the two-even tail reused; tight last-odd cells at \(a=3\) for `EOOOEE` and `EOOEOE`
+- **Open:** `CycleWord` exclusion of gapped three-even leftovers at a non-minimum start. Length 8 still open as a census
+- **Decision:** PROMOTE the Lean exclusion of the remaining four bunched families. Not a bunched-tail census theorem and not a halt theorem
+
+```text
+What was learned
+- EEOE is the EOEE cell after two leading evens; EOEOE is
+  the EOOEE cell after a last-odd plus one-odd envelope
+- EOOOEE and EOOEOE reuse K=4 for a>=4; at a=3 the coarse
+  exponent is impossible, so the argument splits on y<39
+  versus y>=39 against C_{O^3}
+- Heavy 27th-power algebra must live in BunchedTight.lean;
+  family files stay at exponentiation.threshold 16
+- All seven bunched leftovers are now one Lean type each;
+  there is still no no_cycle_word_bunched
+Strongest theorem
+- no_cycle_word_three_even_eoooee / eeoe / eoeoe / eooeoe:
+  the last four bunched families are not CycleWords
+Strongest refutation
+- none new; uniform coarse K remains refuted
+Reusable machinery
+- BunchedTight.lean: eoooee_small_y_false,
+  eoooee_large_y_false, eooeoe_u_pow27
+Branch status
+- PROMOTE
+Why
+- the bunched last-cluster remainder is now seven Lean
+  family theorems, recorded as Paper A 3.14--3.20
+Best next question
+- CycleWord exclusion of gapped three-even leftovers at a
+  non-minimum start, or stop
+```
+

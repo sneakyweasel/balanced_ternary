@@ -31,6 +31,10 @@ PAPER_MODULES: tuple[str, ...] = (
     "BunchedEEE",
     "BunchedEOEE",
     "BunchedEOOEE",
+    "BunchedEEOE",
+    "BunchedEOEOE",
+    "BunchedEOOOEE",
+    "BunchedEOOEOE",
     "SmallCycleCensus",
     "NormalizedDefect",
     "ExpansionSlack",
@@ -75,6 +79,15 @@ LAYERS: dict[str, Path] = {
     "BunchedEOEE": JUGGLER_DIR / "BunchedEOEE.lean",
     "BunchedEOOEEEval": JUGGLER_DIR / "BunchedEOOEEEval.lean",
     "BunchedEOOEE": JUGGLER_DIR / "BunchedEOOEE.lean",
+    "BunchedEEOEEval": JUGGLER_DIR / "BunchedEEOEEval.lean",
+    "BunchedEEOE": JUGGLER_DIR / "BunchedEEOE.lean",
+    "BunchedEOEOEEval": JUGGLER_DIR / "BunchedEOEOEEval.lean",
+    "BunchedEOEOE": JUGGLER_DIR / "BunchedEOEOE.lean",
+    "BunchedEOOOEEEval": JUGGLER_DIR / "BunchedEOOOEEEval.lean",
+    "BunchedTight": JUGGLER_DIR / "BunchedTight.lean",
+    "BunchedEOOOEE": JUGGLER_DIR / "BunchedEOOOEE.lean",
+    "BunchedEOOEOEEval": JUGGLER_DIR / "BunchedEOOEOEEval.lean",
+    "BunchedEOOEOE": JUGGLER_DIR / "BunchedEOOEOE.lean",
     "SmallCycleCensus": JUGGLER_DIR / "SmallCycleCensus.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
     "SequentialMordell": JUGGLER_DIR / "SequentialMordell.lean",
@@ -122,6 +135,15 @@ BUNCHED_EOEE_EVAL = LAYERS["BunchedEOEEEval"]
 BUNCHED_EOEE = LAYERS["BunchedEOEE"]
 BUNCHED_EOOEE_EVAL = LAYERS["BunchedEOOEEEval"]
 BUNCHED_EOOEE = LAYERS["BunchedEOOEE"]
+BUNCHED_EEOE_EVAL = LAYERS["BunchedEEOEEval"]
+BUNCHED_EEOE = LAYERS["BunchedEEOE"]
+BUNCHED_EOEOE_EVAL = LAYERS["BunchedEOEOEEval"]
+BUNCHED_EOEOE = LAYERS["BunchedEOEOE"]
+BUNCHED_EOOOEE_EVAL = LAYERS["BunchedEOOOEEEval"]
+BUNCHED_TIGHT = LAYERS["BunchedTight"]
+BUNCHED_EOOOEE = LAYERS["BunchedEOOOEE"]
+BUNCHED_EOOEOE_EVAL = LAYERS["BunchedEOOEOEEval"]
+BUNCHED_EOOEOE = LAYERS["BunchedEOOEOE"]
 SMALL_CYCLE_CENSUS = LAYERS["SmallCycleCensus"]
 CYCLE_DIOPHANTINE = LAYERS["CycleDiophantine"]
 SEQUENTIAL_MORDELL = LAYERS["SequentialMordell"]

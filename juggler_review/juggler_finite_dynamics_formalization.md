@@ -311,6 +311,10 @@ Sources:
 - `formal/Problems/Juggler/BunchedEEE.lean`;
 - `formal/Problems/Juggler/BunchedEOEE.lean`;
 - `formal/Problems/Juggler/BunchedEOOEE.lean`;
+- `formal/Problems/Juggler/BunchedEEOE.lean`;
+- `formal/Problems/Juggler/BunchedEOEOE.lean`;
+- `formal/Problems/Juggler/BunchedEOOOEE.lean`;
+- `formal/Problems/Juggler/BunchedEOOEOE.lean`;
 - `formal/Problems/Juggler/SmallCycleCensus.lean`.
 
 ```text
@@ -444,10 +448,14 @@ no_cycleMin_gapped_three_even_eoe (Theorem 3.13; CycleMin only)
 no_cycle_word_three_even_eee     (Theorem 3.14)
 no_cycle_word_three_even_eoee    (Theorem 3.15)
 no_cycle_word_three_even_eooee   (Theorem 3.16)
+no_cycle_word_three_even_eoooee  (Theorem 3.17)
+no_cycle_word_three_even_eeoe    (Theorem 3.18)
+no_cycle_word_three_even_eoeoe   (Theorem 3.19)
+no_cycle_word_three_even_eooeoe  (Theorem 3.20)
 ```
 
 Theorem 3.13 is a minimum-based exclusion. It is not a `CycleWord`
-theorem at a non-minimum start. Theorems 3.12--3.16 do not assemble
+theorem at a non-minimum start. Theorems 3.12--3.20 do not assemble
 `no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
 
 The cycle-surplus identity of the note's Corollary 2.7 and the

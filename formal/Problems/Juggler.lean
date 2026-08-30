@@ -35,6 +35,15 @@ import Problems.Juggler.BunchedEOEEEval
 import Problems.Juggler.BunchedEOEE
 import Problems.Juggler.BunchedEOOEEEval
 import Problems.Juggler.BunchedEOOEE
+import Problems.Juggler.BunchedEEOEEval
+import Problems.Juggler.BunchedEEOE
+import Problems.Juggler.BunchedEOEOEEval
+import Problems.Juggler.BunchedEOEOE
+import Problems.Juggler.BunchedEOOOEEEval
+import Problems.Juggler.BunchedTight
+import Problems.Juggler.BunchedEOOOEE
+import Problems.Juggler.BunchedEOOEOEEval
+import Problems.Juggler.BunchedEOOEOE
 import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.CycleDiophantine
 import Problems.Juggler.SequentialMordell

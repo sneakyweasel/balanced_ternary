@@ -20,7 +20,7 @@ for every `a ≥ 4`. Below `256`, `4 ≤ a ≤ 6` is a table and
 `a ≥ 7` is seven consecutive odds.
 
 This excludes that one bunched family only. It is not the other
-four bunched tails, not a length-8 or length-10 census, and not a
+four bunched tails, not a length-8 or length-9 census, and not a
 halt theorem. Paper A records the family as Theorem 3.16.
 -/
 

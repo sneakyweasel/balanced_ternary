@@ -44,9 +44,11 @@ The leftover even-terminating two-even words form two infinite
 families, \(O^{k-2}EE\) and \(O^{k-3}EOE\). Both are excluded at
 every length \(k\ge 6\). On a cycle minimum, a three-even leftover
 with a sufficiently long second gap reduces to those families.
-Three bunched three-even families, \(O^aEEE\), \(O^aEOEE\), and
-\(O^aEOOEE\), are likewise excluded. These are family exclusions,
-not a census at length eight or nine.
+Seven bunched three-even families,
+\(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\), \(O^aEOOOEE\),
+\(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\), are likewise
+excluded. These are family exclusions, not a census at length
+eight or nine.
 
 The same envelope gives an exact global defect by keeping the floor
 remainders. Zero defect characterizes the monochrome power towers;
@@ -86,8 +88,8 @@ finite-word envelope (Theorem 2.2), together with the inverse cells
 and two next-square thresholds. After the census, the same cells
 exclude two infinite leftover families at every expanding length
 (Theorem 3.12), transport that comparison across a first even letter
-on a cycle minimum (Theorem 3.13), and exclude three bunched
-three-even families (Theorems 3.14--3.16). The exact defect
+on a cycle minimum (Theorem 3.13), and exclude the seven bunched
+three-even families (Theorems 3.14--3.20). The exact defect
 (Theorems 2.4--2.6) is the same recurrence with remainders kept
 rather than dropped. It classifies the rigid zero cases and shows
 that a uniform per-step slack tax is impossible; it is not needed
@@ -134,7 +136,10 @@ Theorem 3.12 adds two \(254\)-start tables at length eight and one
 at length nine; Theorem 3.14 reuses the length-nine table for
 \(OOOOOOEEE\) below \(128\); Theorem 3.15 uses tables below \(314\)
 and below \(16\); Theorem 3.16 reuses the \(254\)-start window at
-prefix lengths \(4,5,6\). Those tables are finite computations, not a
+prefix lengths \(4,5,6\); Theorem 3.18 uses the same two windows as
+Theorem 3.15; Theorems 3.17, 3.19, and 3.20 reuse the
+\(254\)-start window at the short expanding prefixes of those
+families. Those tables are finite computations, not a
 termination proof.
 
 ## 2. Envelope and defect
@@ -894,20 +899,141 @@ window; this is the Lean `native_decide` evaluation behind
 `no_cycle_word_three_even_eooee` (Appendix A). For \(a\ge 7\),
 Lemma 3.11 applies. \(\square\)
 
+**Theorem 3.17 (mixed bunched family \(EOOOEE\)).**
+Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOOEE\) is not a
+cycle word at \(n\).
+
+*Proof.* First let \(a\ge 4\) and \(n\ge 3\), and write
+\(z=J^a(n)\), \(y=\lfloor\sqrt z\rfloor\), and \(p\) for the image
+after the prefix \(O^aEOOO\). Lemma 3.9 with \(r=2\) gives
+\(p<(n+1)^4\). The three letters after \(y\) are odd, so
+Lemma 3.10 at length three yields
+\(y^{27}\le 2^{38}p^8<2^{38}(n+1)^{32}\). For \(n\ge 3\) one has
+\(2^{38}<(n+1)^{22}\), hence \(y<(n+1)^2\). The even cell at
+\(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
+Lemma 3.10, any such cycle word would satisfy
+\[
+n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
+\]
+For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
+shared tail of Theorem 3.12 at length \(k=a+2\), already used in
+Theorem 3.16.
+
+Now let \(a=3\) and \(n\ge 256\). The same two-even cell gives
+\(z<(y+1)^2\), so Lemma 3.10 at the prefix \(O^3\) yields
+\(n^{27}<2^{38}(y+1)^{16}\). The three-odd envelope on \(y\) still
+gives \(y^{27}<2^{38}(n+1)^{32}\).
+
+If \(y<39\), then \(n^{27}<2^{38}\cdot 39^{16}\). The numerical
+comparison \(2^{38}\cdot 39^{16}<24^{27}\) contradicts
+\(n\ge 24\).
+
+If \(y\ge 39\), the numerical comparison \(40^{27}<2\cdot 39^{27}\)
+upgrades to \((y+1)^{27}<2y^{27}\), hence
+\((y+1)^{27}<2^{39}(n+1)^{32}\). Cubing the prefix bound three
+times produces \(n^{729}<2^{1026}(y+1)^{432}\). Raising the
+successor bound to the sixteenth power produces
+\((y+1)^{432}<2^{624}(n+1)^{512}\). Combining these displays
+yields \(n^{729}<2^{1650}(n+1)^{512}\). The opposite comparison
+holds at \(n=197\) and persists to every larger start by the
+elementary comparison \(n(n+2)<(n+1)^2\) already used in
+Theorem 3.15.
+
+For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
+that window; this is the Lean `native_decide` evaluation behind
+`no_cycle_word_three_even_eoooee` (Appendix A). For \(a\ge 7\),
+Lemma 3.11 applies. \(\square\)
+
+**Theorem 3.18 (mixed bunched family \(EEOE\)).**
+Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEEOE\) is not a
+cycle word at \(n\).
+
+*Proof.* First let \(n\ge 4\), and write \(z=J^a(n)\) and \(y\)
+for the last odd letter of \(O^aEEOE\). The suffix \(EOE\) is a
+cycle suffix, so the last-odd cube of Theorem 3.15 gives
+\(y^3<(n+1)^4\). The two letters between \(z\) and \(y\) are
+even, so \(z<(y+1)^4\). For \(n\ge 4\) the successor comparison
+\((y+1)^3<2(n+1)^4\) upgrades this to \(z<(n+1)^6\). Combined
+with Lemma 3.10, any such cycle word would satisfy the same
+display as Theorem 3.15:
+\[
+n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
+\]
+The opposite comparison is therefore the tail of Theorem 3.15:
+it holds for \(a=5\) and \(n\ge 314\), and already for \(a=6\)
+and \(n\ge 16\).
+
+For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
+\(a=6\), the word fails to return; these are the Lean
+`native_decide` evaluations behind `no_cycle_word_three_even_eeoe`
+(Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies.
+For \(a\ge 6\) and \(n\ge 16\), the tail of the previous
+paragraph applies. \(\square\)
+
+**Theorem 3.19 (mixed bunched family \(EOEOE\)).**
+Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOEOE\) is not a
+cycle word at \(n\).
+
+*Proof.* First let \(n\ge 32\), and write \(z=J^a(n)\),
+\(w=\lfloor\sqrt z\rfloor\), and \(y\) for the last odd letter.
+The suffix \(EOE\) again gives \(y^3<(n+1)^4\). The one-odd
+envelope on \(w\) yields \(w^3\le 4s^2\), where \(s\) is the
+image after \(O^aEO\). The last-odd cell and \(n\ge 32\) upgrade
+this to \(w<(n+1)^2\), hence \(z<(w+1)^2\le(n+1)^4\). Combined
+with Lemma 3.10, any such cycle word would satisfy
+\[
+n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
+\]
+For \(n\ge 256\) and \(a\ge 4\), this is the shared tail already
+used in Theorem 3.16.
+
+For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
+window; this is the Lean `native_decide` evaluation behind
+`no_cycle_word_three_even_eoeoe` (Appendix A). For \(a\ge 7\),
+Lemma 3.11 applies. \(\square\)
+
+**Theorem 3.20 (mixed bunched family \(EOOEOE\)).**
+Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOEOE\) is not a
+cycle word at \(n\).
+
+*Proof.* First let \(a\ge 4\) and \(n\ge 4\), and write
+\(z=J^a(n)\), \(u=\lfloor\sqrt z\rfloor\), and \(y\) for the last
+odd letter. The suffix \(EOE\) gives \(y^3<(n+1)^4\), hence
+\((y+1)^3<2(n+1)^4\). The two letters after \(u\) are odd, so
+Lemma 3.10 at length two yields
+\(u^9\le 2^{10}s^4<2^{10}(y+1)^8\). Cubing that display against
+the last-odd successor bound produces
+\(u^{27}<2^{38}(n+1)^{32}\). The same comparison as in
+Theorem 3.17 then gives \(u<(n+1)^2\), hence
+\(z<(u+1)^2\le(n+1)^4\). Combined with Lemma 3.10, any such
+cycle word would satisfy the shared two-even tail of
+Theorem 3.16.
+
+Now let \(a=3\) and \(n\ge 256\). The prefix \(O^3\) against
+\(z<(u+1)^2\) yields \(n^{27}<2^{38}(u+1)^{16}\), and the
+two-odd plus last-odd geometry of the previous paragraph yields
+\(u^{27}<2^{38}(n+1)^{32}\). These are the same two displays as
+in the \(a=3\) case of Theorem 3.17, with \(u\) in place of
+\(y\), and the same small/large split applies.
+
+For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
+that window; this is the Lean `native_decide` evaluation behind
+`no_cycle_word_three_even_eooeoe` (Appendix A). For \(a\ge 7\),
+Lemma 3.11 applies. \(\square\)
+
 Length eight remains the first even-terminating expanding length
 outside the census. Theorem 3.12 excludes its two leftover
 orientations, but the census assembly of Theorem 3.8 is not
 extended. Length nine is the first even-terminating expanding
-length that admits three even letters; Theorems 3.13--3.16 treat
+length that admits three even letters; Theorems 3.13--3.20 treat
 infinite families of those leftovers, not every length-nine word.
-Four other bunched last-cluster families
-(\(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), \(O^aEOOEOE\)) are not
-treated here. A single coarse successor power \((n+1)^K\) cannot
-exclude all of them: at the first expanding prefix length, the
+A single coarse successor power \((n+1)^K\) cannot exclude the
+four families of Theorems 3.17--3.20 by the same cell used for
+Theorems 3.15 and 3.16: at the first expanding prefix length, the
 exponent \(K\cdot 2^a\) meets or exceeds \(3^a\) for those four
-words. No exclusion of cycles of length eight or more is claimed. The
-census stops at length seven; no exclusion at length eight is
-claimed.
+words, so those arguments use a tight last-odd cell. No exclusion
+of cycles of length eight or more is claimed. The census stops at
+length seven; no exclusion at length eight is claimed.
 
 ## 4. Remarks
 
@@ -993,6 +1119,10 @@ names are the corresponding Lean theorems in
 | Theorem 3.14 | `no_cycle_word_three_even_eee`, with `no_cycle_word_ooooooeee` |
 | Theorem 3.15 | `no_cycle_word_three_even_eoee` |
 | Theorem 3.16 | `no_cycle_word_three_even_eooee` |
+| Theorem 3.17 | `no_cycle_word_three_even_eoooee` |
+| Theorem 3.18 | `no_cycle_word_three_even_eeoe` |
+| Theorem 3.19 | `no_cycle_word_three_even_eoeoe` |
+| Theorem 3.20 | `no_cycle_word_three_even_eooeoe` |
 | Theorem 4.1 | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |
@@ -1005,7 +1135,7 @@ the text, organizing companion notes, and as an interactive assistant
 for Lean statements, tests, and literature records. The models are
 not authors. Lean theorems and named computations are the
 certificates for the claims of Sections 2--4, including the family
-theorems 3.12--3.16. I take full
+theorems 3.12--3.20. I take full
 responsibility for the contents.
 
 ## References

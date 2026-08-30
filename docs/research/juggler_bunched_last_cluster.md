@@ -17,8 +17,8 @@ Novelty hypothesis      Fixed mixed tail plus C_{O^a};
                         cutoffs drop as a grows
 Falsifier               A tail whose N0 grows with a
 Existing machinery      prefix-cell Z; denomBits; OOOOOOEEE
-Maximum Phase-1 scope   Lean O^a EOOEE by z<(n+1)^4
-                        plus the two-even tail; no census
+Maximum Phase-1 scope   Lean all seven bunched families;
+                        no length-8/9 census
 ```
 
 ## Metadata
@@ -35,7 +35,7 @@ Maximum Phase-1 scope   Lean O^a EOOEE by z<(n+1)^4
 - EOEE cubes from 314: `True`
 - EOOEE cubes from 205: `True`
 
-seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE, EOEE, and EOOEE; a uniform coarse (n+1)^K cell for all remaining families is refuted; the other four families remain computational; not a length-8/9 census.
+seven bunched last-cluster families fire with N0 bounded in a; Lean excludes all seven as CycleWord families; a uniform coarse (n+1)^K cell for the last four is refuted and those four use a tight last-odd cell; not a length-8/9 census.
 
 ## Families
 
@@ -63,6 +63,10 @@ seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a
 - `three_even_eoee_tail_of_five`: `True`
 - `no_cycle_word_three_even_eooee`: `True`
 - `three_even_eooee_tail`: `True`
+- `no_cycle_word_three_even_eoooee`: `True`
+- `no_cycle_word_three_even_eeoe`: `True`
+- `no_cycle_word_three_even_eoeoe`: `True`
+- `no_cycle_word_three_even_eooeoe`: `True`
 - no bunched-tail theorem: `True`
 - length eight open in census: `True`
 - no length-nine theorem: `True`
@@ -82,6 +86,10 @@ seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a
 - eee_lean: `True`
 - eoee_lean: `True`
 - eooee_lean: `True`
+- eoooee_lean: `True`
+- eeoe_lean: `True`
+- eoeoe_lean: `True`
+- eooeoe_lean: `True`
 - uniform_coarse_K: `False`
 - length_eight_census: `False`
 - length_nine_census: `False`
@@ -93,8 +101,8 @@ seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a
 
 **BUNCHED_LAST_CLUSTER_GREEN**
 
-seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE, EOEE, and EOOEE; a uniform coarse (n+1)^K cell for all remaining families is refuted; the other four families remain computational; not a length-8/9 census.
+seven bunched last-cluster families fire with N0 bounded in a; Lean excludes all seven as CycleWord families; a uniform coarse (n+1)^K cell for the last four is refuted and those four use a tight last-odd cell; not a length-8/9 census.
 
 This is not a halt result, not a length-8/9 census, and
-not a Lean exclusion of the other four bunched families.
+not a Lean theorem no_cycle_word_bunched.
 

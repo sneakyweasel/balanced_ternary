@@ -33,8 +33,13 @@ from research.juggler_sequence.cycle_length_nine import (
 )
 from research.juggler_sequence.lean_paths import (
     BUNCHED_EEE,
+    BUNCHED_EEOE,
     BUNCHED_EOEE,
+    BUNCHED_EOEOE,
     BUNCHED_EOOEE,
+    BUNCHED_EOOEOE,
+    BUNCHED_EOOOEE,
+    BUNCHED_TIGHT,
     CYCLES,
     FIRST_E_TRANSPORT,
     LEFTOVER_CYCLES,
@@ -89,6 +94,10 @@ LEAN_THEOREMS = (
     "three_even_eoee_tail_of_five",
     "no_cycle_word_three_even_eooee",
     "three_even_eooee_tail",
+    "no_cycle_word_three_even_eoooee",
+    "no_cycle_word_three_even_eeoe",
+    "no_cycle_word_three_even_eoeoe",
+    "no_cycle_word_three_even_eooeoe",
 )
 
 
@@ -297,6 +306,11 @@ def lean_api_present() -> dict[str, bool]:
         + BUNCHED_EEE.read_text(encoding="utf-8")
         + BUNCHED_EOEE.read_text(encoding="utf-8")
         + BUNCHED_EOOEE.read_text(encoding="utf-8")
+        + BUNCHED_EEOE.read_text(encoding="utf-8")
+        + BUNCHED_EOEOE.read_text(encoding="utf-8")
+        + BUNCHED_EOOOEE.read_text(encoding="utf-8")
+        + BUNCHED_TIGHT.read_text(encoding="utf-8")
+        + BUNCHED_EOOEOE.read_text(encoding="utf-8")
         + FIRST_E_TRANSPORT.read_text(encoding="utf-8")
         + CYCLES.read_text(encoding="utf-8")
         + SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
@@ -340,6 +354,10 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["three_even_eoee_tail_of_five"]
         and lean["no_cycle_word_three_even_eooee"]
         and lean["three_even_eooee_tail"]
+        and lean["no_cycle_word_three_even_eoooee"]
+        and lean["no_cycle_word_three_even_eeoe"]
+        and lean["no_cycle_word_three_even_eoeoe"]
+        and lean["no_cycle_word_three_even_eooeoe"]
         and lean["no_length_eight_theorem"]
         and lean["length_eight_open_in_census"]
         and lean["no_bunched_tail_theorem"]
@@ -400,9 +418,9 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         "classification": CLASS_GREEN,
         "reason": (
             "seven bunched last-cluster families fire with N0 bounded "
-            "in a; Lean excludes O^a EEE, EOEE, and EOOEE; a uniform "
-            "coarse (n+1)^K cell for all remaining families is refuted; "
-            "the other four families remain computational; not a "
+            "in a; Lean excludes all seven as CycleWord families; a "
+            "uniform coarse (n+1)^K cell for the last four is refuted "
+            "and those four use a tight last-odd cell; not a "
             "length-8/9 census"
         ),
     }
@@ -421,6 +439,10 @@ def probe_payload() -> dict[str, Any]:
             "eee_lean": True,
             "eoee_lean": True,
             "eooee_lean": True,
+            "eoooee_lean": True,
+            "eeoe_lean": True,
+            "eoeoe_lean": True,
+            "eooeoe_lean": True,
             "uniform_coarse_K": False,
             "length_eight_census": False,
             "length_nine_census": False,
@@ -442,8 +464,9 @@ def probe_payload() -> dict[str, Any]:
             "EEE coarse cubing from n>=73; Lean O^a EEE for a>=6; "
             "EOEE coarse cubing from n>=314; Lean O^a EOEE for a>=5; "
             "EOOEE coarse cubing from n>=205, Lean via the two-even "
-            "tail at n>=256; uniform coarse K refuted; no length-8/9 "
-            "census"
+            "tail at n>=256; Lean O^a EEOE, EOEOE, EOOOEE, EOOEOE "
+            "by the same cells or a tight last-odd split at a=3; "
+            "uniform coarse K refuted; no length-8/9 census"
         ),
     }
 
@@ -472,8 +495,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        cutoffs drop as a grows",
         "Falsifier               A tail whose N0 grows with a",
         "Existing machinery      prefix-cell Z; denomBits; OOOOOOEEE",
-        "Maximum Phase-1 scope   Lean O^a EOOEE by z<(n+1)^4",
-        "                        plus the two-even tail; no census",
+        "Maximum Phase-1 scope   Lean all seven bunched families;",
+        "                        no length-8/9 census",
         "```",
         "",
         "## Metadata",
@@ -531,7 +554,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             decision["reason"] + ".",
             "",
             "This is not a halt result, not a length-8/9 census, and",
-            "not a Lean exclusion of the other four bunched families.",
+            "not a Lean theorem no_cycle_word_bunched.",
             "",
         ]
     )

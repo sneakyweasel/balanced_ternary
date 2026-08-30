@@ -120,6 +120,10 @@ def test_lean_api_without_bunched_or_census_theorem():
     assert lean["three_even_eoee_tail_of_five"] is True
     assert lean["no_cycle_word_three_even_eooee"] is True
     assert lean["three_even_eooee_tail"] is True
+    assert lean["no_cycle_word_three_even_eoooee"] is True
+    assert lean["no_cycle_word_three_even_eeoe"] is True
+    assert lean["no_cycle_word_three_even_eoeoe"] is True
+    assert lean["no_cycle_word_three_even_eooeoe"] is True
     assert lean["no_bunched_tail_theorem"] is True
     assert lean["no_length_eight_theorem"] is True
     assert lean["no_length_nine_theorem"] is True
@@ -144,6 +148,10 @@ def test_classify_render_and_artifacts():
                 "eee_lean": True,
                 "eoee_lean": True,
                 "eooee_lean": True,
+                "eoooee_lean": True,
+                "eeoe_lean": True,
+                "eoeoe_lean": True,
+                "eooeoe_lean": True,
                 "uniform_coarse_K": False,
             },
         }
@@ -153,6 +161,10 @@ def test_classify_render_and_artifacts():
     assert "no_cycle_word_three_even_eee" in text
     assert "no_cycle_word_three_even_eoee" in text
     assert "no_cycle_word_three_even_eooee" in text
+    assert "no_cycle_word_three_even_eoooee" in text
+    assert "no_cycle_word_three_even_eeoe" in text
+    assert "no_cycle_word_three_even_eoeoe" in text
+    assert "no_cycle_word_three_even_eooeoe" in text
     from research.juggler_sequence.bunched_last_cluster import JSON_PATH
 
     assert JSON_PATH.is_file()
@@ -168,6 +180,14 @@ def test_classify_render_and_artifacts():
     assert data["anti_overclaim"]["eoee_lean"] is True
     assert data["lean"]["no_cycle_word_three_even_eooee"] is True
     assert data["anti_overclaim"]["eooee_lean"] is True
+    assert data["lean"]["no_cycle_word_three_even_eoooee"] is True
+    assert data["anti_overclaim"]["eoooee_lean"] is True
+    assert data["lean"]["no_cycle_word_three_even_eeoe"] is True
+    assert data["anti_overclaim"]["eeoe_lean"] is True
+    assert data["lean"]["no_cycle_word_three_even_eoeoe"] is True
+    assert data["anti_overclaim"]["eoeoe_lean"] is True
+    assert data["lean"]["no_cycle_word_three_even_eooeoe"] is True
+    assert data["anti_overclaim"]["eooeoe_lean"] is True
     assert data["anti_overclaim"]["uniform_coarse_K"] is False
     assert data["scan"]["max_n0"] == 188
 
@@ -190,6 +210,10 @@ def test_dossier_boundary():
     assert "no_cycle_word_three_even_eee" in dossier
     assert "no_cycle_word_three_even_eoee" in dossier
     assert "no_cycle_word_three_even_eooee" in dossier
+    assert "no_cycle_word_three_even_eoooee" in dossier
+    assert "no_cycle_word_three_even_eeoe" in dossier
+    assert "no_cycle_word_three_even_eoeoe" in dossier
+    assert "no_cycle_word_three_even_eooeoe" in dossier
     assert "not a length-8" in dossier or "not a length-8/9" in dossier
     assert "theorem no_cycle_word_length_eight" not in note
     assert "theorem no_cycle_word_length_nine" not in note

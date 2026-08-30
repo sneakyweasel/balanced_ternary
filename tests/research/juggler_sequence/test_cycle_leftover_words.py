@@ -6,8 +6,12 @@ from pathlib import Path
 
 from research.juggler_sequence.lean_paths import (
     BUNCHED_EEE,
+    BUNCHED_EEOE,
     BUNCHED_EOEE,
+    BUNCHED_EOEOE,
     BUNCHED_EOOEE,
+    BUNCHED_EOOEOE,
+    BUNCHED_EOOOEE,
     FIRST_E_TRANSPORT,
     LEFTOVER_CYCLES,
     LEFTOVER_EVAL,
@@ -72,6 +76,34 @@ def test_leftover_cycle_theorems_present():
     assert "sorry" not in eooee
     assert "admit" not in eooee
     assert has_named(text, "no_cycle_word_three_even_eooee")
+    eeoe = BUNCHED_EEOE.read_text(encoding="utf-8")
+    assert "theorem no_cycle_word_three_even_eeoe" in eeoe
+    assert "theorem no_cycle_word_length_eight" not in eeoe
+    assert "theorem no_cycle_word_length_nine" not in eeoe
+    assert "sorry" not in eeoe
+    assert "admit" not in eeoe
+    assert has_named(text, "no_cycle_word_three_even_eeoe")
+    eoeoe = BUNCHED_EOEOE.read_text(encoding="utf-8")
+    assert "theorem no_cycle_word_three_even_eoeoe" in eoeoe
+    assert "theorem no_cycle_word_length_eight" not in eoeoe
+    assert "theorem no_cycle_word_length_nine" not in eoeoe
+    assert "sorry" not in eoeoe
+    assert "admit" not in eoeoe
+    assert has_named(text, "no_cycle_word_three_even_eoeoe")
+    eoooee = BUNCHED_EOOOEE.read_text(encoding="utf-8")
+    assert "theorem no_cycle_word_three_even_eoooee" in eoooee
+    assert "theorem no_cycle_word_length_eight" not in eoooee
+    assert "theorem no_cycle_word_length_nine" not in eoooee
+    assert "sorry" not in eoooee
+    assert "admit" not in eoooee
+    assert has_named(text, "no_cycle_word_three_even_eoooee")
+    eooeoe = BUNCHED_EOOEOE.read_text(encoding="utf-8")
+    assert "theorem no_cycle_word_three_even_eooeoe" in eooeoe
+    assert "theorem no_cycle_word_length_eight" not in eooeoe
+    assert "theorem no_cycle_word_length_nine" not in eooeoe
+    assert "sorry" not in eooeoe
+    assert "admit" not in eooeoe
+    assert has_named(text, "no_cycle_word_three_even_eooeoe")
     assert "sorry" not in transport
     assert "admit" not in transport
     assert "sorry" not in leftover
@@ -116,6 +148,10 @@ def test_note_records_census_without_overclaim():
     assert "Theorem 3.14" in note
     assert "Theorem 3.15" in note
     assert "Theorem 3.16" in note
+    assert "Theorem 3.17" in note
+    assert "Theorem 3.18" in note
+    assert "Theorem 3.19" in note
+    assert "Theorem 3.20" in note
     assert "remain open" not in note
     assert "OOOEOE" in note
     assert "OOOOEE" in note
@@ -127,6 +163,10 @@ def test_note_records_census_without_overclaim():
     assert "no_cycle_word_three_even_eee" in note
     assert "no_cycle_word_three_even_eoee" in note
     assert "no_cycle_word_three_even_eooee" in note
+    assert "no_cycle_word_three_even_eoooee" in note
+    assert "no_cycle_word_three_even_eeoe" in note
+    assert "no_cycle_word_three_even_eoeoe" in note
+    assert "no_cycle_word_three_even_eooeoe" in note
     assert "theorem no_cycle_word_length_eight" not in note
     assert "theorem no_cycle_word_length_nine" not in note
     flat = " ".join(note.split())

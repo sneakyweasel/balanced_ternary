@@ -5,7 +5,7 @@ Status: **PAPER_CANDIDATE**. The publication draft is dated 30 August 2026
 and is not submitted. After the publication-readiness rewrite it is a
 standalone math note titled *Small cycles of the Juggler map*, centered
 on the length-\(\le 7\) census; leftover families by even-count
-(Theorems 3.12--3.16) sit after that census and do not extend it.
+(Theorems 3.12--3.20) sit after that census and do not extend it.
 The envelope is the tool, the defect is exact bookkeeping, and the
 short certificates are a remark.
 
@@ -28,7 +28,7 @@ math note:
 > restrictions and yield a small-cycle census: no nontrivial cycle has
 > length at most seven. The same cells exclude two leftover two-even
 > families at every expanding length, transport that comparison across
-> a first even letter on a cycle minimum, and exclude two bunched
+> a first even letter on a cycle minimum, and exclude the seven bunched
 > three-even families. Even and odd-to-even starts carry uniform short
 > certificates. No density result is stated in Paper A. No length-8
 > or length-9 census is stated.
@@ -126,8 +126,9 @@ added to `bt.*`.
 - first-even transport of gapped three-even leftovers on a cycle
   minimum —
   **EXACT — LEAN VERIFIED** (Paper A Theorem 3.13; CycleMin only);
-- bunched families \(O^aEEE\), \(O^aEOEE\), and \(O^aEOOEE\) —
-  **EXACT — LEAN VERIFIED** (Paper A Theorems 3.14--3.16);
+- bunched families \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\),
+  \(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\) —
+  **EXACT — LEAN VERIFIED** (Paper A Theorems 3.14--3.20);
 - cycle surplus \(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) and the
   per-step slack-scale bound \(x^e<(J(x)+1)^2\) —
   **EXACT — LEAN VERIFIED** (`image_eq_start_defectRatio`,
@@ -217,7 +218,7 @@ standalone checkability. The stack now consists of:
 - [Paper A](../theory/juggler_finite_dynamics_note.md) — power
   envelopes, exact defects, cycle restrictions, the small-cycle
   census (Theorems 3.6 and 3.8), leftover families
-  (Theorems 3.12--3.16), short certificates (Theorem 4.1). The
+  (Theorems 3.12--3.20), short certificates (Theorem 4.1). The
   complement of those certificates is the odd-to-odd class. Lean
   is an independent check; no density claims; no length-8 or
   length-9 census; submission candidate;
@@ -279,7 +280,7 @@ Section 5).
 Paper A is a standalone Lean-backed math note titled *Small cycles
 of the Juggler map*: the length-\(\le7\) census is the theorem; the
 envelope, cells, and thresholds are the tools; leftover families
-by even-count (Theorems 3.12--3.16) sit after the census and do
+by even-count (Theorems 3.12--3.20) sit after the census and do
 not extend it; the defect identity is exact bookkeeping, not a
 uniform tax. Short certificates and the remaining gap are remarks.
 Related work now includes Pickover 2002, Weisstein, and OEIS

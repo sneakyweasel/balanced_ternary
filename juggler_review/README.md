@@ -11,7 +11,7 @@ is not the laboratory. No termination theorem is claimed.
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
    — **Paper A**: *Small cycles of the Juggler map*. Envelope, exact
    defect, inverse cells, the length-\(\le 7\) census, and leftover
-   families (Theorems 3.12--3.15). Lean-backed throughout; no
+   families (Theorems 3.12--3.20). Lean-backed throughout; no
    density claims; no length-8 or length-9 census.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the

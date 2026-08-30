@@ -18,6 +18,10 @@ import Problems.Juggler.FirstETransport
 import Problems.Juggler.BunchedEEE
 import Problems.Juggler.BunchedEOEE
 import Problems.Juggler.BunchedEOOEE
+import Problems.Juggler.BunchedEEOE
+import Problems.Juggler.BunchedEOEOE
+import Problems.Juggler.BunchedEOOOEE
+import Problems.Juggler.BunchedEOOEOE
 import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionSlack
@@ -80,6 +84,10 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 3.14 `no_cycle_word_three_even_eee`
 * 3.15 `no_cycle_word_three_even_eoee`
 * 3.16 `no_cycle_word_three_even_eooee`
+* 3.17 `no_cycle_word_three_even_eoooee`
+* 3.18 `no_cycle_word_three_even_eeoe`
+* 3.19 `no_cycle_word_three_even_eoeoe`
+* 3.20 `no_cycle_word_three_even_eooeoe`
 * 4.1 `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:
       `no_finiteProgress_implies_odd_odd`
@@ -91,7 +99,7 @@ strictly below the start. Lean packages this as `DescentCertificate`.
 This barrel does not prove that every positive integer reaches `1`,
 that every orbit meets a contracting word, or that all nontrivial
 cycles are impossible. The cycle census stops at length seven;
-length eight and beyond is open as a census. Theorems 3.12--3.16
+length eight and beyond is open as a census. Theorems 3.12--3.20
 exclude leftover families, not every word of those lengths.
 `FiniteCoeffStopConjecture` is a laboratory target, not a claim of
 the note.
