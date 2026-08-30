@@ -1,0 +1,82 @@
+{
+  "experiment": "juggler_length11_nonpullback",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "four_even_cycles_impossible": false,
+    "length_eight_census": false,
+    "length_nine_census": false,
+    "length_eleven_census": false,
+    "four_even_lean": false,
+    "induction_on_period": false,
+    "induction_on_n": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "shape_count": 30,
+    "all_length_eleven": true,
+    "all_cyclemin_legal": true,
+    "eeee_in_list": true,
+    "necklace_count": 30,
+    "all_necklaces_have_surviving_orientation": true,
+    "self_is_surviving_orientation": true,
+    "split_count": 90,
+    "next_square_count": 0,
+    "all_splits_sub_next_square": true,
+    "best_v": "OOOOOEE",
+    "best_word": "OOEOOOOOEEE",
+    "best_margin": "243/256",
+    "best_is_243_over_256": true,
+    "best_v_is_oooooee": true,
+    "spot": {
+      "v": "OOOOOEE",
+      "m": 1000215,
+      "image": 245924753167,
+      "target": 1000432046656,
+      "undershoot": true
+    },
+    "spot_undershoot": true,
+    "orientation_cannot_kill_open_cyclemin": true,
+    "length_eight_census": false,
+    "length_nine_census": false,
+    "length_eleven_census": false,
+    "four_even_lean": false,
+    "induction_on_period": false,
+    "induction_on_n": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "exists_cycleMin": true,
+    "cycleMin_not_end_odd": true,
+    "cycleMin_not_start_even": true,
+    "cycleMin_not_odd_even": true,
+    "no_cycleMin_internal_even_threshold": true,
+    "oo_suffix_threshold": true,
+    "no_cycle_word_length_eight": true,
+    "no_cycle_word_length_le_eight": true,
+    "no_cycle_word_length_nine": true,
+    "no_cycle_word_length_eleven": true,
+    "no_cycle_word_four_even": true,
+    "no_cycle_word_oooooooeeee": true,
+    "no_cycle_word_length11_nonpullback": true,
+    "no_juggler_cycle": true,
+    "no_all_cycles_impossible": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "Minimal_untouched": true
+  },
+  "decision": {
+    "classification": "LENGTH11_NONPULLBACK_REFUTED",
+    "reason": "rotation cannot exclude an open CycleMin leftover; every internal-E suffix on the 30 words has 3^{#O} < 2^{len+1}, closest 243/256 on v=OOOOOEE; not a length-11 census"
+  },
+  "search_method": "CycleMin-legal rotations of the 30 first-expanding short-gap words; next-square exponent of every suffix between an internal E and the last E; one large follower undershoot of OOOOOEE"
+}

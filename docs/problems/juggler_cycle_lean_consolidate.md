@@ -129,9 +129,11 @@ already recorded (`PARK` / `CLOSE`), not as a Lean merge.
 instances; the files now say that. Same exclusions, same census
 bound, no Paper A theorem numbers, no new ledger rows.
 
-Best next question: a method other than last-cluster pullback for
-the thirty length-11 leftovers, or stop. That question is already
-recorded; this branch does not open it.
+Best next question: stop. Rotation and internal-E on the
+thirty length-11 leftovers are now `CLOSE`
+([length-11 non-pullback](juggler_length11_nonpullback.md)).
+That question was already recorded; this packaging branch did
+not open it.
 
 ## Publication assessment
 

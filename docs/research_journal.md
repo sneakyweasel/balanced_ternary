@@ -11599,3 +11599,42 @@ Best next question
   thirty length-11 leftovers, or stop
 ```
 
+## Juggler length-11 non-pullback leftover attacks
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether rotation or internal-E next-square excludes any of the thirty length-11 four-even short-gap leftovers
+- **Hypotheses:** a mixed word dies by orientation like Theorem 3.21, or an internal E bootstraps a next-square suffix
+- **Major results:** classification **LENGTH11_NONPULLBACK_REFUTED**. All thirty words are `CycleMin`-legal and are thirty distinct necklaces; each is its own surviving short-gap orientation, so `exists_cycleMin` upgrades nothing. All ninety internal-E suffixes satisfy \(3^{\#O}<2^{\mathrm{len}+1}\); closest margin \(243/256\) on \(v=\mathrm{OOOOOEE}\) from `OOEOOOOOEEE`, undershoot at \(m=1\,000\,215\). No Lean. No Paper A theorem. Not a length-11 census
+- **Refuted ideas:** rotation excludes an open `CycleMin` leftover; an internal-E next-square suffix exists on one of the thirty length-11 words
+- **Literature:** `exists_cycleMin`; `no_cycleMin_internal_even_threshold`; gapped CycleWord 3.21; four-even short-gap `PARK`; EEEE tight pullback `CLOSE`
+- **Open:** stop on the thirty length-11 leftovers as a leftover-path target. Length 8 still open as a census
+- **Decision:** CLOSE. Rotation is the 3.21 upgrade, not a method for leftovers that are still open as `CycleMin`s. Internal-E is exponent-obstructed on every split. Not a census theorem and not a halt theorem
+
+```text
+What was learned
+- rotation upgrades CycleMin to CycleWord only after the
+  CycleMin class is already excluded
+- the thirty length-11 leftovers are already those open
+  CycleMin spellings; 30 distinct necklaces
+- internal-E needs 3^{#O(v)} >= 2^{len(v)+1}
+- every suffix between an internal E and the last E is
+  strictly below that; closest 243/256
+- OOOOOEE at m=1000215 still undershoots (m+1)^2
+Strongest theorem
+- 3^{#O(v)} < 2^{len(v)+1} for every internal-E suffix
+  of the thirty length-11 leftovers
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- rotation or internal-E excludes one of the thirty
+Reusable machinery
+- length11_nonpullback.py: necklace and exponent scan;
+  no Lean
+Branch status
+- CLOSE
+Why
+- both unused leftover-path methods fail independently
+  of Z4 slack; the leftover toolkit is exhausted here
+Best next question
+- stop
+```
+

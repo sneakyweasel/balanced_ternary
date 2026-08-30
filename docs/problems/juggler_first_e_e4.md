@@ -179,10 +179,11 @@ The thirty-shape prefix-cell is `PARK`
 ([four-even short-first-gap](juggler_four_even_short_gap.md)).
 A tighter last-cluster pullback is `CLOSE`
 ([e4 tight pullback](juggler_e4_tight_pullback.md)).
-Remaining: a method other than last-cluster pullback for the
-thirty length-11 leftovers, or stop. Do not assemble
-`no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
-Do not claim halt.
+Rotation and internal-E next-square are `CLOSE`
+([length-11 non-pullback](juggler_length11_nonpullback.md)).
+Stop on the thirty length-11 leftovers as a leftover-path
+target. Do not assemble `no_cycle_word_length_eight` or
+`no_cycle_word_length_nine`. Do not claim halt.
 
 ## Decision
 

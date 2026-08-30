@@ -173,10 +173,12 @@ length \(11\) leaks is machinery gravity.
 A tighter last-cluster pullback is `CLOSE`
 ([e4 tight pullback](juggler_e4_tight_pullback.md)):
 \(O^7\mathrm{EEEE}\) already uses the sharp \(r=4\) cell.
-Remaining: a method other than last-cluster pullback for the
-thirty length-11 leftovers, or stop. Do not assemble
-`no_cycle_word_length_eight`, `no_cycle_word_length_nine`, or
-`no_cycle_word_length_eleven`. Do not claim halt.
+Rotation and internal-E next-square are `CLOSE`
+([length-11 non-pullback](juggler_length11_nonpullback.md)).
+Stop on the thirty length-11 leftovers as a leftover-path
+target. Do not assemble `no_cycle_word_length_eight`,
+`no_cycle_word_length_nine`, or `no_cycle_word_length_eleven`.
+Do not claim halt.
 
 ## Decision
 
@@ -186,8 +188,8 @@ expanding layer — the thirty length-11 words that the
 even-count programme is supposed to hit first. A thirty-file
 Lean list of the later tails is the wrong next step.
 
-Best next question: a tighter last-cluster pullback that fires
-at the thirty length-11 words, or stop.
+Best next question: stop. The tighter last-cluster cell is
+`CLOSE`, and so are rotation and internal-E.
 
 ## Publication assessment
 

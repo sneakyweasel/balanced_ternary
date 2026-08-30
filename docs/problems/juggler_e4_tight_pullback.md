@@ -166,11 +166,13 @@ methods.
 
 ## Open questions
 
-A method other than last-cluster pullback for the thirty
-length-11 leftovers, or stop. Do not assemble
-`no_cycle_word_length_eight`, `no_cycle_word_length_nine`, or
-`no_cycle_word_length_eleven`. Do not claim halt. Do not start
-a thirty-family Lean list from this `CLOSE`.
+Rotation and internal-E next-square are `CLOSE`
+([length-11 non-pullback](juggler_length11_nonpullback.md)).
+Stop on the thirty length-11 leftovers as a leftover-path
+target. Do not assemble `no_cycle_word_length_eight`,
+`no_cycle_word_length_nine`, or `no_cycle_word_length_eleven`.
+Do not claim halt. Do not start a thirty-family Lean list from
+this `CLOSE`.
 
 ## Decision
 
@@ -180,8 +182,8 @@ uses the sharp even-tower cell and still needs
 \(n>2^{4118/139}\). That kills the method. It is not a
 length-11 census and not a halt theorem.
 
-Best next question: a method other than last-cluster pullback
-for the thirty length-11 leftovers, or stop.
+Best next question: stop. Rotation and internal-E are
+`CLOSE` on these thirty words.
 
 ## Publication assessment
 
