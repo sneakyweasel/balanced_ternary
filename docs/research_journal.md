@@ -12388,3 +12388,38 @@ Best next question
 - last three-even bunched suffix after an arbitrary prefix u
 ```
 
+## Juggler last three-even bunched leftover after an arbitrary prefix
+
+- **Date:** 2026-08-30
+- **Objective:** Exclude `CycleMin n (u ++ threeEvenXXX a)` for each of the seven bunched families after an arbitrary prefix `u`, not only as a cycle word
+- **Hypotheses:** `y = T_u(n) ≥ n` tightens the leftover cell against the family tail at `y`; below cutoff the seal is a path table on `y`; at `a=3` the existing tight split applies with `n := y`
+- **Major results:** Classification **PREFIX_BUNCHED_GREEN**. Lean theorems `no_cycleMin_prefix_eee`, `no_cycleMin_prefix_eoee`, `no_cycleMin_prefix_eooee`, `no_cycleMin_prefix_eoooee`, `no_cycleMin_prefix_eeoe`, `no_cycleMin_prefix_eoeoe`, `no_cycleMin_prefix_eooeoe`. Large `y` is the existing family tail at `y`. Below cutoff, no start follows a short leftover into `[2, y]` (`returnsIntoB` tables); longer leftovers are seven-odd. `a=3` uses `eoooee_small_y_false` / `eoooee_large_y_false` at `y`. The coarse comparison `Y^{27} > 2^{38}(Y+1)^{32}` never fires — **REFUTED** as an `a=3` seal. Ledger rows `J-cyclemin-prefix-bunched-*`. Residual is still bunched-short last cluster. No `Z_5`. No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** the coarse `a=3` comparison seals EOOOEE/EOOEOE; tables-for-all-`u` are required for a general prefix
+- **Literature:** `J-three-even-eee` through `J-three-even-eooeoe`; last-cluster `PROMOTE`; prefix two-even `PROMOTE`
+- **Open:** bunched-short last cluster. Do not write `Z_5`. Do not assemble `no_cycle_word_length_eleven`
+- **Decision:** PROMOTE. The last three-even bunched leftover is now a CycleMin theorem for every prefix
+
+```text
+What was learned
+- CycleWord exclusions are the special case u empty
+- y >= n plus the family tail at y is the large-y engine
+- a=3 never fires the coarse (n+1)^4 cell; the tight split at y does
+- no y below cutoff follows a short leftover and returns into [2, y]
+- those few follows overshoot y; CycleMin forbids that
+Strongest theorem
+- CycleMin n (u ++ threeEvenXXX a) is impossible for every n >= 2,
+  every expanding a, every prefix u, and all seven bunched families
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- Y^{27} > 2^{38}(Y+1)^{32} seals a=3 EOOOEE / EOOEOE
+Reusable machinery
+- PrefixBunched.lean; returnsIntoB tables; prefix_bunched.py
+Branch status
+- PROMOTE
+Why
+- the last-cluster bunched class is now a CycleMin theorem for
+  every prefix, not a CycleWord reparameterization
+Best next question
+- bunched-short last cluster after an arbitrary CycleMin prefix
+```
+

@@ -78,6 +78,8 @@ LAYERS: dict[str, Path] = {
     "LeftoverFamilies": JUGGLER_DIR / "LeftoverFamilies.lean",
     "PrefixTwoEvenEval": JUGGLER_DIR / "PrefixTwoEvenEval.lean",
     "PrefixTwoEven": JUGGLER_DIR / "PrefixTwoEven.lean",
+    "PrefixBunchedEval": JUGGLER_DIR / "PrefixBunchedEval.lean",
+    "PrefixBunched": JUGGLER_DIR / "PrefixBunched.lean",
     "SmallCycleCensus": JUGGLER_DIR / "SmallCycleCensus.lean",
     "LengthEightCensus": JUGGLER_DIR / "LengthEightCensus.lean",
     "CycleDiophantine": JUGGLER_DIR / "CycleDiophantine.lean",
@@ -141,6 +143,8 @@ LEFTOVER_SHORT = LAYERS["LeftoverShort"]
 LEFTOVER_FAMILIES = LAYERS["LeftoverFamilies"]
 PREFIX_TWO_EVEN_EVAL = LAYERS["PrefixTwoEvenEval"]
 PREFIX_TWO_EVEN = LAYERS["PrefixTwoEven"]
+PREFIX_BUNCHED_EVAL = LAYERS["PrefixBunchedEval"]
+PREFIX_BUNCHED = LAYERS["PrefixBunched"]
 # Historical names: leftover proofs now live in Short / Families.
 LEFTOVER_CYCLES = LEFTOVER_SHORT
 LEFTOVER_TWO_EVEN = LEFTOVER_FAMILIES

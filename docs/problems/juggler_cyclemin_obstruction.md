@@ -75,7 +75,10 @@ in the front. There is no `no_cycle_word_length_eleven`, no
   **EXACT — LEAN VERIFIED**
   ([juggler_prefix_two_even.md](juggler_prefix_two_even.md)).
 - Seven bunched last-cluster families —
-  **EXACT — LEAN VERIFIED**.
+  **EXACT — LEAN VERIFIED** as cycle words. The same leftovers
+  after an arbitrary CycleMin prefix \(u\) are now
+  **EXACT — LEAN VERIFIED**
+  ([juggler_prefix_bunched.md](juggler_prefix_bunched.md)).
 - Four-even short-gap leftovers at the first expanding layer —
   **EXACT — LEAN VERIFIED** (`J-cyclemin-fudge`).
 - First-E at \(e=4\) as a new method —
@@ -196,9 +199,11 @@ theorem.
 
 ## Open questions
 
-The last two-even leftover after an arbitrary prefix is now a
-separate promoted branch
-([juggler_prefix_two_even.md](juggler_prefix_two_even.md)). The
+The last two-even leftover and the last three-even bunched
+leftover after an arbitrary prefix are now separate promoted
+branches
+([juggler_prefix_two_even.md](juggler_prefix_two_even.md),
+[juggler_prefix_bunched.md](juggler_prefix_bunched.md)). The
 residual named here is still bunched-short last cluster. Do not
 write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
 
@@ -208,8 +213,10 @@ write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
 second-`OO` transport. The residual is named: bunched-short last
 cluster. Do not claim that every cycle word is impossible.
 
-Best next question: that prefix lemma is now a separate branch
-([juggler_prefix_two_even.md](juggler_prefix_two_even.md)). The
+Best next question: those prefix lemmas are now separate
+branches
+([juggler_prefix_two_even.md](juggler_prefix_two_even.md),
+[juggler_prefix_bunched.md](juggler_prefix_bunched.md)). The
 residual here remains bunched-short last cluster.
 
 ## Publication assessment

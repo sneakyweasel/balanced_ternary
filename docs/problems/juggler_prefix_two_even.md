@@ -165,10 +165,12 @@ theorem.
 
 ## Open questions
 
-The remaining last-cluster class is bunched-short
-\((b,c)\in\{(0,0),(1,0),(2,0),(3,0),(0,1),(1,1),(2,1)\}\) after
-an arbitrary CycleMin prefix. Do not write \(Z_5\). Do not
-assemble `no_cycle_word_length_eleven`.
+The last three-even bunched leftover after an arbitrary prefix
+is now a separate promoted branch
+([juggler_prefix_bunched.md](juggler_prefix_bunched.md)). The
+remaining last-cluster class is bunched-short
+\((b,c)\in\{(0,0),(1,0),(2,0),(3,0),(0,1),(1,1),(2,1)\}\). Do
+not write \(Z_5\). Do not assemble `no_cycle_word_length_eleven`.
 
 ## Decision
 
@@ -177,9 +179,9 @@ theorem for every prefix, not only after \(O^aE\). The small-\(y\)
 seal is a path table, not the loose \(n\)-cell algebra. Do not
 claim that every cycle word is impossible.
 
-Best next question: last three-even bunched suffix after an
-arbitrary CycleMin prefix \(u\), or the bunched-short residual
-itself. Do not open both.
+Best next question: the bunched-short last-cluster residual.
+The bunched-suffix prefix lemma is now a separate branch
+([juggler_prefix_bunched.md](juggler_prefix_bunched.md)).
 
 ## Publication assessment
 

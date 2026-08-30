@@ -1,0 +1,430 @@
+{
+  "experiment": "juggler_prefix_bunched",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "bunched_short_attack": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_cutoff": 256,
+    "eoee_five_cutoff": 314,
+    "families": [
+      "EEE",
+      "EOEE",
+      "EOOEE",
+      "EOOOEE",
+      "EEOE",
+      "EOEOE",
+      "EOOEOE"
+    ],
+    "path_rows": [
+      {
+        "name": "EEE",
+        "a": 6,
+        "word": "OOOOOOEEE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOEE",
+        "a": 5,
+        "word": "OOOOOEOEE",
+        "cutoff": 314,
+        "follows": 1,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 1,
+        "overshoots": [
+          {
+            "y": 165,
+            "n": 1436
+          }
+        ]
+      },
+      {
+        "name": "EOEE",
+        "a": 6,
+        "word": "OOOOOOEOEE",
+        "cutoff": 256,
+        "follows": 1,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 1,
+        "overshoots": [
+          {
+            "y": 163,
+            "n": 53045
+          }
+        ]
+      },
+      {
+        "name": "EOOEE",
+        "a": 4,
+        "word": "OOOOEOOEE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOOEE",
+        "a": 5,
+        "word": "OOOOOEOOEE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOOEE",
+        "a": 6,
+        "word": "OOOOOOEOOEE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOOOEE",
+        "a": 3,
+        "word": "OOOEOOOEE",
+        "cutoff": 256,
+        "follows": 2,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 2,
+        "overshoots": [
+          {
+            "y": 183,
+            "n": 1664
+          },
+          {
+            "y": 225,
+            "n": 2233
+          }
+        ]
+      },
+      {
+        "name": "EOOOEE",
+        "a": 4,
+        "word": "OOOOEOOOEE",
+        "cutoff": 256,
+        "follows": 1,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 1,
+        "overshoots": [
+          {
+            "y": 37,
+            "n": 2233
+          }
+        ]
+      },
+      {
+        "name": "EOOOEE",
+        "a": 5,
+        "word": "OOOOOEOOOEE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOOOEE",
+        "a": 6,
+        "word": "OOOOOOEOOOEE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EEOE",
+        "a": 5,
+        "word": "OOOOOEEOE",
+        "cutoff": 314,
+        "follows": 1,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 1,
+        "overshoots": [
+          {
+            "y": 115,
+            "n": 858
+          }
+        ]
+      },
+      {
+        "name": "EEOE",
+        "a": 6,
+        "word": "OOOOOOEEOE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOEOE",
+        "a": 4,
+        "word": "OOOOEOEOE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOEOE",
+        "a": 5,
+        "word": "OOOOOEOEOE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOEOE",
+        "a": 6,
+        "word": "OOOOOOEOEOE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOOEOE",
+        "a": 3,
+        "word": "OOOEOOEOE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOOEOE",
+        "a": 4,
+        "word": "OOOOEOOEOE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOOEOE",
+        "a": 5,
+        "word": "OOOOOEOOEOE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      },
+      {
+        "name": "EOOEOE",
+        "a": 6,
+        "word": "OOOOOOEOOEOE",
+        "cutoff": 256,
+        "follows": 0,
+        "hit_count": 0,
+        "hits": [],
+        "overshoot_count": 0,
+        "overshoots": []
+      }
+    ],
+    "path_hit_count": 0,
+    "path_follows_count": 6,
+    "all_path_tables_empty": true,
+    "coarse": {
+      "rows": [
+        {
+          "name": "EEE",
+          "a": 6,
+          "first_n": 73
+        },
+        {
+          "name": "EEE",
+          "a": 7,
+          "first_n": 13
+        },
+        {
+          "name": "EEE",
+          "a": 8,
+          "first_n": 8
+        },
+        {
+          "name": "EOEE",
+          "a": 5,
+          "first_n": 314
+        },
+        {
+          "name": "EOEE",
+          "a": 6,
+          "first_n": 16
+        },
+        {
+          "name": "EOEE",
+          "a": 7,
+          "first_n": 8
+        },
+        {
+          "name": "EOOEE",
+          "a": 4,
+          "first_n": 205
+        },
+        {
+          "name": "EOOEE",
+          "a": 5,
+          "first_n": 14
+        },
+        {
+          "name": "EOOEE",
+          "a": 6,
+          "first_n": 8
+        },
+        {
+          "name": "EOOOEE",
+          "a": 3,
+          "first_n": null
+        },
+        {
+          "name": "EOOOEE",
+          "a": 4,
+          "first_n": 205
+        },
+        {
+          "name": "EOOOEE",
+          "a": 5,
+          "first_n": 14
+        },
+        {
+          "name": "EEOE",
+          "a": 5,
+          "first_n": 314
+        },
+        {
+          "name": "EEOE",
+          "a": 6,
+          "first_n": 16
+        },
+        {
+          "name": "EEOE",
+          "a": 7,
+          "first_n": 8
+        },
+        {
+          "name": "EOEOE",
+          "a": 4,
+          "first_n": 205
+        },
+        {
+          "name": "EOEOE",
+          "a": 5,
+          "first_n": 14
+        },
+        {
+          "name": "EOEOE",
+          "a": 6,
+          "first_n": 8
+        },
+        {
+          "name": "EOOEOE",
+          "a": 3,
+          "first_n": null
+        },
+        {
+          "name": "EOOEOE",
+          "a": 4,
+          "first_n": 205
+        },
+        {
+          "name": "EOOEOE",
+          "a": 5,
+          "first_n": 14
+        }
+      ],
+      "eee_from_128": true,
+      "eoee_five_from_314": true,
+      "eoee_six_from_16": true,
+      "eeoe_five_from_314": true,
+      "eooee_from_256": true,
+      "eoooee_four_from_256": true,
+      "eoooee_three_never": true,
+      "eooeoe_three_never": true
+    },
+    "coarse_a3_impossible": true,
+    "seven_odd_sealed": true,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "bunched_short_attack": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_ge": true,
+    "cycle_trailing_evens_lt": true,
+    "three_even_eee_tail": true,
+    "three_even_eoee_tail_of_five": true,
+    "three_even_eoee_tail_of_six": true,
+    "three_even_eooee_tail": true,
+    "returnsIntoB": true,
+    "no_cycleMin_prefix_eee": true,
+    "no_cycleMin_prefix_eoee": true,
+    "no_cycleMin_prefix_eooee": true,
+    "no_cycleMin_prefix_eoooee": true,
+    "no_cycleMin_prefix_eeoe": true,
+    "no_cycleMin_prefix_eoeoe": true,
+    "no_cycleMin_prefix_eooeoe": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "PREFIX_BUNCHED_GREEN",
+    "reason": "Lean excludes CycleMin n (u ++ bunched leftover) for every prefix u and all seven families; large y is the family tail at y; below cutoff no start follows the leftover into [2, y]; a=3 uses the tight split at y; bunched-short last cluster remains"
+  },
+  "search_method": "CycleMin last three-even bunched leftover after arbitrary prefix u; path tables for short leftovers below the family cutoff; seven-odd on the remainder; family tail at large y; tight a=3 split at y; no tables-for-all-u; no bunched-short attack; no Z5"
+}
