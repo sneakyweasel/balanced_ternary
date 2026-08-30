@@ -1,0 +1,191 @@
+{
+  "experiment": "juggler_odd_ooe_landing",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cycles_impossible": false,
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false
+  },
+  "scan": {
+    "basin": [
+      1
+    ],
+    "n_min": 12,
+    "n_hi": 801,
+    "exponents_ok": true,
+    "gaps": {
+      "OOEOOE": true,
+      "OOEOOEO": true,
+      "OOEOOEOE": true,
+      "OOEOOEOOE": true,
+      "OOEOOEOO": false
+    },
+    "window": {
+      "n_hi": 801,
+      "case_a": 4,
+      "case_b": 4,
+      "a_drop": 4,
+      "a_survive": 0,
+      "z_ge_sq": 0,
+      "cube_fail": 0,
+      "second_ooe": 3,
+      "second_below": 3,
+      "ooo": 1,
+      "ooo_escape": 1,
+      "firsts": {
+        "even_drop": 4,
+        "second_ooe": 3,
+        "ooo_b9": 1
+      },
+      "samples": [
+        {
+          "n": 89,
+          "x": 291,
+          "z": 4964,
+          "case": "A",
+          "first": "even_drop"
+        },
+        {
+          "n": 111,
+          "x": 385,
+          "z": 7554,
+          "case": "A",
+          "first": "even_drop"
+        },
+        {
+          "n": 349,
+          "x": 1651,
+          "z": 67084,
+          "case": "A",
+          "first": "even_drop"
+        },
+        {
+          "n": 365,
+          "x": 1749,
+          "z": 73145,
+          "case": "B",
+          "first": "second_ooe"
+        },
+        {
+          "n": 429,
+          "x": 2145,
+          "z": 99343,
+          "case": "B",
+          "first": "second_ooe"
+        },
+        {
+          "n": 565,
+          "x": 3039,
+          "z": 167531,
+          "case": "B",
+          "first": "ooo_b9"
+        },
+        {
+          "n": 637,
+          "x": 3537,
+          "z": 210354,
+          "case": "A",
+          "first": "even_drop"
+        },
+        {
+          "n": 763,
+          "x": 4447,
+          "z": 296551,
+          "case": "B",
+          "first": "second_ooe"
+        }
+      ],
+      "escapes": [
+        {
+          "n": 565,
+          "x": 3039,
+          "z": 167531,
+          "b": 9
+        }
+      ]
+    },
+    "case_a": {
+      "n": 89,
+      "x": 291,
+      "z": 4964,
+      "case": "A",
+      "first": "even_drop",
+      "matches": true,
+      "z_below_sq": true,
+      "drop": true,
+      "next": 70,
+      "expected_drop": 70
+    },
+    "case_a2": {
+      "n": 111,
+      "x": 385,
+      "z": 7554,
+      "case": "A",
+      "first": "even_drop",
+      "matches": true,
+      "z_below_sq": true,
+      "drop": true,
+      "next": 86,
+      "expected_drop": 86
+    },
+    "case_b_ooe": {
+      "n": 365,
+      "x": 1749,
+      "z": 73145,
+      "case": "B",
+      "first": "second_ooe",
+      "matches": true,
+      "z_below_sq": true,
+      "escaped": false,
+      "land_below": true
+    },
+    "case_b_ooo": {
+      "n": 565,
+      "x": 3039,
+      "z": 167531,
+      "case": "B",
+      "first": "ooo_b9",
+      "matches": true,
+      "z_below_sq": true,
+      "escaped": true,
+      "land_below": false
+    },
+    "length_eleven_census": false,
+    "z5_cells": false,
+    "four_even_assembler": false,
+    "leftover_suffix_retest": false,
+    "terminal_cluster_reopen": false,
+    "residue_automaton": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CycleMin": true,
+    "cycleMin_ge_twelve": true,
+    "cycleMin_not_end_odd": true,
+    "power_bound_word": true,
+    "no_cycleMin_ooeooe": true,
+    "oo_suffix_threshold": true,
+    "has_no_cycle_word_length_eleven": false,
+    "has_no_cycleMin_four_even": false,
+    "has_no_cycleMin_five_even": false,
+    "has_no_juggler_cycle": false,
+    "no_global_termination_theorem": true,
+    "not_in_paper_barrel": true,
+    "length_eight_open_in_census": true,
+    "FloorPower_not_rewritten": true,
+    "no_new_lean": true
+  },
+  "decision": {
+    "classification": "ODD_OOE_GREEN",
+    "reason": "after an odd OOEOOE landing, x^3 < n^4 so z < n^2; even z drops on the next E; odd z starts another OO. A later OOO run can escape n^2, so the ceiling is not eternal"
+  },
+  "search_method": "odd OOEOOE landings only; first event after the forced O; exponent comparison 243 < 256 from power_bound_word; no terminal cell, no residue automaton, no Z5, no length-11"
+}

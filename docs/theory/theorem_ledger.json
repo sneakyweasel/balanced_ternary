@@ -4299,5 +4299,27 @@
       "tests/research/juggler_sequence/test_minimal_ooe_corridor.py"
     ],
     "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-ooeooe-next-o",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "If n ≥ 2 follows OOEOOE and x = T_OOEOOE(n) is odd, then x^{64} ≤ n^{81} implies x^3 < n^4 (because 243 < 256), so z = ⌊x^{3/2}⌋ satisfies z < n^2. If z is even, T(z) ≤ n-1 (FiniteProgress). If z is odd, a CycleMin continuation after the forced O must begin with O, i.e. another OO. Empty continuation is excluded by cycleMin_not_end_odd. The word OOEOOEO has the same square-cell gap 256 > 243. This is not an indefinite-odd-survival theorem, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_odd_ooe_landing.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_odd_ooe_landing.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cyclemin-ooeooe-next-o-always-drop",
+    "tag": "REFUTED",
+    "statement": "After an odd OOEOOE landing, the forced next O always gives FiniteProgress, and every later odd run stays below n^2. False. Case B exists: 365 → z = 73145 odd, then a second OOE lands at 4447 still below 365^2. A long odd run can escape n^2: 565 follows OOEOOEO by O^9 and leaves the square cell. Even z still drops (89 → 4964 → 70). This is not a leftover-suffix retest, not a Z5 family, not a length-11 census, and not a halt theorem.",
+    "source": "docs/problems/juggler_odd_ooe_landing.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_odd_ooe_landing.py"
+    ],
+    "related_conjectures": []
   }
 ]

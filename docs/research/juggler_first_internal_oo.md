@@ -19,7 +19,7 @@ Novelty hypothesis      first OO creates an irreversible
 Existing machinery      power_bound_word; repeated_oe_scale;
                         first-even overshoot; oe_block_contracts
 Maximum Phase-0 scope   first-OO decomposition; r-bound;
-                        forward geometry; no Lean
+                        forward geometry; Lean scale
 ```
 
 ## Metadata
@@ -89,6 +89,15 @@ in the window. Families with `r >= 2` exist and still obey
 - `oe_block_scale`: `True`
 - `repeated_oe_scale`: `True`
 - `power_bound_word`: `True`
+- `isolatedPrefix`: `True`
+- `firstOOState`: `True`
+- `firstInternalOOWord`: `True`
+- `FirstInternalOO`: `True`
+- `firstInternalOO_decomp`: `True`
+- `isolated_oe_ge_implies_exponent`: `True`
+- `isolated_oe_lt_of_scale_gap`: `True`
+- `no_cycleMin_prefix_ooe_oe`: `True`
+- `isolated_oe_r_max_two`: `True`
 
 ## Anti-overclaim
 

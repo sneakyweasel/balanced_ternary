@@ -12768,4 +12768,39 @@ Best next question
 - none on this line; the OOEOOE corridor is already open
 ```
 
+## Juggler odd landing after OOEOOE
+
+- **Date:** 2026-08-30
+- **Objective:** Decide what the forced next `O` does after an odd `OOEOOE` landing in \([n,n^2)\)
+- **Hypotheses:** \(x^{64}\le n^{81}\) forces the next image \(z<n^2\); even \(z\) drops; odd \(z\) starts another `OO`
+- **Major results:** Classification **ODD_OOE_GREEN**. \(x^3<n^4\) because \(243<256\), hence \(z<n^2\) — **EXACT — HUMAN PROOF** (`J-cyclemin-ooeooe-next-o`). Even \(z\) is FiniteProgress (`89\to4964\to70`). Odd \(z\) forces another `OO`. Every next `O` drops, and every later odd run stays below \(n^2\) — **REFUTED** (`J-cyclemin-ooeooe-next-o-always-drop`): `365` starts a second `OOE`; `565` escapes \(n^2\) by a long odd run. Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** the next `O` always drops; the sub-\(n^2\) ceiling is eternal under every odd continuation
+- **Literature:** `OOEOOE` square cell; `power_bound_word`; `cycleMin_not_end_odd`
+- **Open:** after Case B, does a second completed `OOE` repeat the even/odd trap? Do not reopen bunched-short cells
+- **Decision:** PROMOTE the next-`O` dichotomy. Indefinite odd survival is not a theorem
+
+```text
+What was learned
+- the 81/64 envelope upgrades to x^3 < n^4
+- the next odd image z stays below n^2
+- even z => FiniteProgress; odd z => another OO
+- 89 and 111 are Case A, not long survivors
+- a later OOO run can escape n^2
+Strongest theorem
+- CycleMin(n, OOEOOE O v) => FiniteProgress or v starts with O
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- 365 starts a second OOE; 565 escapes n^2
+Reusable machinery
+- odd_ooe_landing.py next-O event split
+Branch status
+- PROMOTE
+Why
+- the forced next O is a finite-transition dichotomy
+  under the exact envelope, not a tail census
+Best next question
+- after Case B starts another OO, does a second OOE
+  repeat the even/odd trap?
+```
+
 

@@ -201,11 +201,10 @@ assembler, and not a halt theorem.
 
 ## Open questions
 
-Lean-package the square-cell ceiling. The surviving residual on
-this corridor is an odd landing: `OOEOOEO\(\cdots\)`. Does the
-next odd run force finite progress, a third `OOE`, or an
-already-known obstruction? Do not reopen bunched-short cells.
-Do not write \(Z_5\). Do not assemble
+The odd-landing residual is treated in
+[juggler_odd_ooe_landing.md](juggler_odd_ooe_landing.md).
+Lean-package the square-cell ceiling. Do not reopen bunched-short
+cells. Do not write \(Z_5\). Do not assemble
 `no_cycle_word_length_eleven`.
 
 ## Decision

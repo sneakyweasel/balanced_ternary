@@ -274,6 +274,15 @@
     "oe_block_scale": true,
     "repeated_oe_scale": true,
     "power_bound_word": true,
+    "isolatedPrefix": true,
+    "firstOOState": true,
+    "firstInternalOOWord": true,
+    "FirstInternalOO": true,
+    "firstInternalOO_decomp": true,
+    "isolated_oe_ge_implies_exponent": true,
+    "isolated_oe_lt_of_scale_gap": true,
+    "no_cycleMin_prefix_ooe_oe": true,
+    "isolated_oe_r_max_two": true,
     "has_no_cycle_word_length_eleven": false,
     "has_no_cycleMin_four_even": false,
     "has_no_cycleMin_five_even": false,
@@ -282,7 +291,7 @@
     "not_in_paper_barrel": true,
     "length_eight_open_in_census": true,
     "FloorPower_not_rewritten": true,
-    "no_new_lean": true
+    "first_oo_lean": true
   },
   "decision": {
     "classification": "FIRST_OO_GREEN",
