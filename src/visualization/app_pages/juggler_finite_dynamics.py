@@ -7,16 +7,25 @@ import pandas as pd
 import streamlit as st
 
 from visualization.juggler_finite_dynamics import (
+    BEST_V,
     CENSUS_LEDGER_IDS,
     CLAIM_ROWS,
     CYCLE_WORD_MAX,
     CYCLE_WORD_PRESETS,
     DESCENT_WINDOW_MAX,
+    EEEE_N0,
+    EEEE_THRESHOLD,
+    EEEE_WORD,
+    INTERNAL_E_MARGIN,
+    INTERNAL_E_WORD,
+    LAB_LEFTOVER_DECISIONS,
     LEFTOVER_CUTOFF,
+    LEFTOVER_FAMILY_LEDGER_IDS,
     N_PRESETS,
     NOTE_ORBIT_3,
     NOTE_PEAK_37,
     ORBIT_STEPS_MAX,
+    SPOT_WITNESS,
     WORD_MAX,
     WORD_PRESETS,
     census_inventory,
@@ -31,7 +40,8 @@ from visualization.juggler_finite_dynamics import (
     four_block_replay,
     leftover_table,
     leftover_words,
-    length_eight_open_words,
+    length11_inventory,
+    length_eight_status_rows,
     next_square_view,
     odd_cell_view,
     parse_cycle_word,
@@ -52,6 +62,7 @@ def _init_state() -> None:
         "juggler_cycle_slider": 0,
         "juggler_steps": 20,
         "juggler_split": 1,
+        "juggler_goto_cycle": False,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -173,20 +184,29 @@ def _cycle_word_controls() -> str:
 def _claim_map() -> None:
     st.caption(
         "Lean is the proof authority. This page instantiates the finite-dynamics "
-        "note. It does not prove arrival at 1."
+        "note through Theorem 3.21. Leftover families share leftover_prefix_cell. "
+        "It does not prove arrival at 1."
     )
     _badge("J-small-cycle-census-seven")
+    _badge("J-gapped-cycle-word-ee")
     cards = st.container(horizontal=True)
     with cards:
         st.metric("Census", "period ≥ 8", border=True)
         st.metric("Length ≤ 7", "LEAN", border=True)
-        st.metric("Length 8", "open", border=True)
+        st.metric("Leftovers 3.12–3.21", "LEAN", border=True)
+        st.metric("Length 11 toolkit", "closed", border=True)
         st.metric("ReachesOne", "not claimed", border=True)
-    st.dataframe(pd.DataFrame(CLAIM_ROWS), hide_index=True, width="stretch")
+    st.dataframe(
+        pd.DataFrame(CLAIM_ROWS),
+        hide_index=True,
+        width="stretch",
+        height="content",
+    )
     st.info(
         "No density result is stated or used in the note. Finite leftover "
-        "tables are checks, not a termination proof. Length eight is the "
-        "first open even-terminating expanding length.",
+        "tables are checks, not a termination proof. Length eight remains "
+        "open as a census. The thirty length-11 short-gap words are a lab "
+        "gate, not a Paper A theorem.",
         icon=":material/info:",
     )
 
@@ -442,11 +462,12 @@ def _cells() -> None:
     st.dataframe(pd.DataFrame(census_inventory()), hide_index=True, width="stretch")
     with st.expander("Length-eight expanding even-terminating words"):
         st.caption(
-            "Open list only. The note does not exclude cycles of length eight."
+            "Two-even leftovers of length eight are Theorem 3.12. The other "
+            "expanding even-terminating length-eight words remain open. This "
+            "is not a length-eight census."
         )
-        open_words = length_eight_open_words()
         st.dataframe(
-            pd.DataFrame({"word": list(open_words), "status": ["open"] * len(open_words)}),
+            pd.DataFrame(length_eight_status_rows()),
             hide_index=True,
             width="stretch",
         )
@@ -526,12 +547,14 @@ def _descent() -> None:
 def _cycle_words() -> None:
     st.caption(
         "A cycle word is a cyclic object. Type a parity word, rotate it, "
-        "and read the recorded obstruction. Lean is the authority. This "
-        "view does not invent exclusions: length eight beyond the two-even "
-        "leftovers remains open, and arrival at 1 is not claimed."
+        "and read the recorded obstruction. Lean is the authority through "
+        "Theorems 3.12–3.21. Length eight beyond the two-even leftovers "
+        "remains open. The thirty length-11 short-gap leftovers are open "
+        "as CycleMins; arrival at 1 is not claimed."
     )
     _badge("J-cycle-finite-structure")
     _badge("J-small-cycle-census-seven")
+    _badge("J-gapped-cycle-word-ee")
     word = _cycle_word_controls()
     if len(word) >= 2:
         if st.session_state.juggler_cycle_shift >= len(word):
@@ -693,16 +716,121 @@ def _cycle_words() -> None:
         )
 
 
+def _open_cycle_word(word: str) -> None:
+    st.session_state.juggler_cycle_word = word
+    st.session_state.juggler_cycle_shift = 0
+    st.session_state.juggler_cycle_slider = 0
+    st.session_state.juggler_goto_cycle = True
+
+
+def _leftover_families() -> None:
+    st.caption(
+        "Two-even, bunched, and gapped leftovers are Lean CycleWord or "
+        "CycleMin theorems (3.12–3.21). The thirty first-expanding "
+        "four-even short-gap words are a lab gate: Z4 PARK, last-cluster "
+        "and non-pullback CLOSE. Not a length-11 census and not a halt "
+        "claim. leftover_prefix_cell is packaging, not a new family."
+    )
+    for theorem_id in LEFTOVER_FAMILY_LEDGER_IDS:
+        _badge(theorem_id)
+    cards = st.container(horizontal=True)
+    with cards:
+        st.metric("Two-even / bunched / gapped", "LEAN", border=True)
+        st.metric("Length-11 short-gap words", "30", border=True)
+        st.metric("Z4 at first expanding", "misses", border=True)
+        st.metric("Internal-E closest", INTERNAL_E_MARGIN, border=True)
+        st.metric("ReachesOne", "not claimed", border=True)
+
+    st.subheader("Lab decisions")
+    st.dataframe(pd.DataFrame(LAB_LEFTOVER_DECISIONS), hide_index=True, width="stretch")
+
+    st.subheader("Length-11 first-expanding leftovers")
+    st.caption(
+        "Each word is already a surviving CycleMin spelling, so rotation "
+        "cannot exclude it. Every internal-E suffix has "
+        r"$3^{\#O}<2^{\mathrm{len}+1}$. "
+        f"{EEEE_WORD} is the sharp r=4 cell {EEEE_THRESHOLD}, first at "
+        f"n={EEEE_N0:,}."
+    )
+    inventory = length11_inventory()
+    st.dataframe(pd.DataFrame(inventory), hide_index=True, width="stretch")
+
+    with st.container(border=True):
+        st.markdown("**Inspect a length-11 spelling**")
+        words = [row["word"] for row in inventory]
+        default = words.index(EEEE_WORD) if EEEE_WORD in words else 0
+        chosen = st.selectbox(
+            "Length-11 leftover",
+            words,
+            index=default,
+            key="juggler_length11_word",
+        )
+        inspect = st.container(horizontal=True)
+        with inspect:
+            st.metric("Spelling", chosen, border=True)
+            st.metric(
+                "Family",
+                next(row["family"] for row in inventory if row["word"] == chosen),
+                border=True,
+            )
+            st.metric(
+                "EEEE cell",
+                EEEE_THRESHOLD if chosen == EEEE_WORD else "Z4 pullback",
+                border=True,
+            )
+        st.button(
+            "Open in cycle words",
+            icon=":material/rotate_right:",
+            key="juggler_open_length11",
+            on_click=_open_cycle_word,
+            args=(chosen,),
+        )
+
+    gate = st.container(horizontal=True)
+    with gate:
+        with st.container(border=True):
+            st.markdown("**EEEE last-cluster**")
+            st.caption(
+                f"`{EEEE_WORD}` uses `cycle_trailing_evens_lt` at r=4. "
+                f"Ideal cell {EEEE_THRESHOLD}; first fire n={EEEE_N0:,}. "
+                "Not slack in a Z4 pullback."
+            )
+        with st.container(border=True):
+            st.markdown("**Internal-E next-square**")
+            st.caption(
+                f"Closest suffix `{BEST_V}` on `{INTERNAL_E_WORD}` is "
+                f"{INTERNAL_E_MARGIN}. At m={SPOT_WITNESS:,} the image "
+                "still undershoots (m+1)²."
+            )
+        with st.container(border=True):
+            st.markdown("**Rotation**")
+            st.caption(
+                "Theorem 3.21 upgrades an excluded CycleMin class. These "
+                "thirty words are the open CycleMin spellings, in 30 "
+                "distinct necklaces."
+            )
+
+
 def juggler_finite_dynamics_page() -> None:
     _init_state()
+    if st.session_state.pop("juggler_goto_cycle", False):
+        st.session_state.juggler_view = "Cycle words"
     st.caption(
         "Paper companion for Small cycles of the Juggler map. Lean is the "
-        "proof authority. This UI only instantiates witnesses. Arrival at 1 "
-        "is not claimed."
+        "proof authority through Theorem 3.21. This UI only instantiates "
+        "witnesses. Arrival at 1 is not claimed."
     )
     view = st.segmented_control(
         "View",
-        ["Claim map", "Orbit", "Envelope", "Cells and census", "Cycle words", "Descent"],
+        [
+            "Claim map",
+            "Orbit",
+            "Envelope",
+            "Cells and census",
+            "Cycle words",
+            "Leftover families",
+            "Descent",
+        ],
         key="juggler_view",
     )
     _n_controls()
@@ -716,6 +844,8 @@ def juggler_finite_dynamics_page() -> None:
         _cells()
     elif view == "Cycle words":
         _cycle_words()
+    elif view == "Leftover families":
+        _leftover_families()
     else:
         _descent()
 

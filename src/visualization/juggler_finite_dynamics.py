@@ -6,11 +6,13 @@ the authority. Bit caps keep Streamlit reruns bounded.
 
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass
 from functools import lru_cache
 from itertools import product
 from typing import Any
 
+from research.juggler_sequence.bunched_last_cluster import FAMILIES
 from research.juggler_sequence.cycle_length_seven import (
     cycle_word_hits,
     orbit_until_fail,
@@ -19,12 +21,25 @@ from research.juggler_sequence.cycle_ooo_scale import cyclemin_orientation
 from research.juggler_sequence.cycle_word import follows_word, image_after
 from research.juggler_sequence.envelope_defect import BIT_LIMIT, tiny_deficit
 from research.juggler_sequence.expansion_slack import FOUR_BLOCK
+from research.juggler_sequence.first_e_e4 import (
+    FAMILY_NAME,
+    GAPPED_EE_MIN,
+    GAPPED_EOE_MIN,
+    classify_leftover,
+    remainder_shapes,
+    word_e4,
+)
 from research.juggler_sequence.floor_cells import even_cell, odd_cell_integers
 from research.juggler_sequence.global_defect import (
     compose_formula,
     is_monochrome,
     local_defect,
     pow_gap,
+)
+from research.juggler_sequence.length11_nonpullback import (
+    BEST_V,
+    EEEE_WORD,
+    SPOT_WITNESS,
 )
 from research.juggler_sequence.power_words import floor_power, odd_count, regime_of
 from research.juggler_sequence.progress_coverage import coverage_bucket, first_even_residual
@@ -62,6 +77,10 @@ CYCLE_WORD_PRESETS: tuple[str, ...] = (
     "OOOOEE",
     "OOEOOE",
     "OOOOOOEE",
+    "OOOOOOEEE",
+    "OOEOOOOEE",
+    "OOOOOOOEEEE",
+    "OOEOOOOOEEE",
     "OOEOOOOE",
     "OOOOOO",
 )
@@ -79,9 +98,31 @@ _EXCLUDING_KINDS = frozenset(
         "leftover",
         "two-even leftover",
         "three-even leftover",
+        "gapped leftover",
+        "bunched leftover",
+        "four-even gapped",
+        "four-even bunched",
         "excluded",
     }
 )
+
+_THREE_EVEN_RE = re.compile(r"^(O+)E(O*)E(O*)E$")
+_FOUR_EVEN_RE = re.compile(r"^(O+)E(O*)E(O*)E(O*)E$")
+_BUNCHED_META = {(int(row["b"]), int(row["c"])): row for row in FAMILIES}
+_BUNCHED_LEDGER = {
+    "EEE": "J-three-even-eee",
+    "EOEE": "J-three-even-eoee",
+    "EOOEE": "J-three-even-eooee",
+    "EOOOEE": "J-three-even-eoooee",
+    "EEOE": "J-three-even-eeoe",
+    "EOEOE": "J-three-even-eoeoe",
+    "EOOEOE": "J-three-even-eooeoe",
+}
+
+EEEE_THRESHOLD = "n^{139} > 2^{4118}"
+EEEE_N0 = 828_484_394
+INTERNAL_E_MARGIN = "243/256"
+INTERNAL_E_WORD = "OOEOOOOOEEE"
 
 NOTE_PEAK_37 = 24_906_114_455_136
 NOTE_ORBIT_3: tuple[int, ...] = (3, 5, 11, 36, 6, 2, 1)
@@ -161,6 +202,26 @@ CLAIM_ROWS: tuple[dict[str, str], ...] = (
         "ledger": "J-small-cycle-census-seven",
     },
     {
+        "text": "Theorem 3.12 two-even leftovers",
+        "lean": "no_cycle_word_two_even_ee / no_cycle_word_two_even_eoe",
+        "ledger": "J-two-even-leftover-ee",
+    },
+    {
+        "text": "Theorem 3.13 gapped three-even CycleMin",
+        "lean": "no_cycleMin_gapped_three_even_ee / _eoe",
+        "ledger": "J-first-e-transport-ee",
+    },
+    {
+        "text": "Theorems 3.14–3.20 bunched last-cluster",
+        "lean": "no_cycle_word_three_even_*",
+        "ledger": "J-three-even-eee",
+    },
+    {
+        "text": "Theorem 3.21 gapped three-even CycleWord",
+        "lean": "no_cycle_word_gapped_three_even_ee / _eoe",
+        "ledger": "J-gapped-cycle-word-ee",
+    },
+    {
         "text": "Theorem 4.1 uniform short certificates",
         "lean": "even_finiteProgress / odd_even_finiteProgress",
         "ledger": "J-finite-progress-boundary",
@@ -172,6 +233,47 @@ CENSUS_LEDGER_IDS: tuple[str, ...] = (
     "J-small-cycle-census-seven",
     "J-leftover-length-six-orientations",
     "J-leftover-length-seven-orientations",
+)
+
+LEFTOVER_FAMILY_LEDGER_IDS: tuple[str, ...] = (
+    "J-two-even-leftover-ee",
+    "J-two-even-leftover-eoe",
+    "J-first-e-transport-ee",
+    "J-gapped-cycle-word-ee",
+    "J-three-even-eee",
+)
+
+LAB_LEFTOVER_DECISIONS: tuple[dict[str, str], ...] = (
+    {
+        "branch": "First-E at four evens",
+        "decision": "CLOSE",
+        "tag": "REPARAMETERIZATION",
+        "note": "Gapped last-cluster restates 3.13; long-a1 bunched restates 3.14–3.20 at y",
+    },
+    {
+        "branch": "Four-even short-gap Z4",
+        "decision": "PARK",
+        "tag": "OBSERVATION",
+        "note": "One pullback cell fires at a0+1 with N0≤180; leaks at the 30 length-11 words",
+    },
+    {
+        "branch": "EEEE tight pullback",
+        "decision": "CLOSE",
+        "tag": "REFUTED",
+        "note": f"{EEEE_WORD} already uses r=4 trailing evens; {EEEE_THRESHOLD} first at n={EEEE_N0}",
+    },
+    {
+        "branch": "Length-11 non-pullback",
+        "decision": "CLOSE",
+        "tag": "REFUTED",
+        "note": f"Rotation cannot kill an open CycleMin; internal-E closest {INTERNAL_E_MARGIN} on {BEST_V}",
+    },
+    {
+        "branch": "Lean leftover merge",
+        "decision": "PROMOTE",
+        "tag": "packaging",
+        "note": "leftover_prefix_cell; families in LeftoverFamilies; census still ≤7",
+    },
 )
 
 
@@ -221,6 +323,99 @@ def two_even_family(word: str) -> str | None:
     if word == "O" * (length - 3) + "EOE":
         return "EOE"
     return None
+
+
+def leftover_family_kind(word: str) -> tuple[str, str] | None:
+    """Name a recorded leftover family, or None if the spelling is not one."""
+
+    three = _THREE_EVEN_RE.fullmatch(word)
+    if three:
+        a0, a1, a2 = (len(group) for group in three.groups())
+        if a0 < 2:
+            return None
+        if a2 >= 2:
+            return (
+                "bootstrap",
+                f"last odd-run {a2} is the OO/OOO bootstrap of Theorem 3.21",
+            )
+        if a2 == 0 and a1 >= GAPPED_EE_MIN:
+            return (
+                "gapped leftover",
+                f"O^{a0}EO^{a1}EE is a CycleWord exclusion (Theorem 3.21)",
+            )
+        if a2 == 1 and a1 >= GAPPED_EOE_MIN:
+            return (
+                "gapped leftover",
+                f"O^{a0}EO^{a1}EOE is a CycleWord exclusion (Theorem 3.21)",
+            )
+        meta = _BUNCHED_META.get((a1, a2))
+        if meta is not None and a0 >= int(meta["a_min"]):
+            name = str(meta["name"])
+            return (
+                "bunched leftover",
+                f"O^{a0}{name} is excluded (Theorems 3.14–3.20)",
+            )
+        return None
+    four = _FOUR_EVEN_RE.fullmatch(word)
+    if four:
+        a0, a1, a2, a3 = (len(group) for group in four.groups())
+        if a0 < 2 or a3 not in {0, 1}:
+            return None
+        slice_kind = classify_leftover(a0, a1, a2, a3)
+        family = FAMILY_NAME.get((a2, a3), "last cluster")
+        if slice_kind == "gapped_last_cluster":
+            return (
+                "four-even gapped",
+                f"last cluster of {family} is Theorem 3.13 as CycleMin",
+            )
+        if slice_kind == "bunched_remainder":
+            return (
+                "four-even bunched",
+                f"first-E of bunched {family} at y (Theorems 3.14–3.20)",
+            )
+        return (
+            "four-even short-gap",
+            "short first gap: Z4 PARK at first expanding (length 11); "
+            "rotation and internal-E CLOSE; not a Lean exclusion",
+        )
+    return None
+
+
+@lru_cache(maxsize=1)
+def length11_inventory() -> tuple[dict[str, Any], ...]:
+    rows = []
+    for shape in remainder_shapes():
+        a0 = int(shape["first_expanding_a0"])
+        a1 = int(shape["a1"])
+        a2 = int(shape["a2"])
+        a3 = int(shape["a3"])
+        word = word_e4(a0, a1, a2, a3)
+        rows.append(
+            {
+                "word": word,
+                "family": shape["family"],
+                "a0": a0,
+                "a1": a1,
+                "kind": shape["kind"],
+                "Z4 at first expanding": "misses n≤800",
+                "toolkit": "closed",
+            }
+        )
+    return tuple(rows)
+
+
+def length_eight_status_rows() -> tuple[dict[str, str], ...]:
+    rows = []
+    for word in length_eight_open_words():
+        family = two_even_family(word)
+        if family is None:
+            status = "open"
+            note = "not a two-even leftover; length eight remains open as a census"
+        else:
+            status = "excluded"
+            note = f"Theorem 3.12 two-even {family}"
+        rows.append({"word": word, "status": status, "note": note})
+    return tuple(rows)
 
 
 def format_int(value: int) -> str:
@@ -577,6 +772,12 @@ def classify_word(word: str) -> WordClass:
         kind, reason = "not expanding", "Theorem 3.2(i): a cycle word is formally expanding"
     elif word in _WORD_CLASS:
         kind, reason = _WORD_CLASS[word]
+    elif two_even_family(word) is not None:
+        family = two_even_family(word)
+        kind, reason = (
+            "two-even leftover",
+            f"Theorem 3.12 excludes O^*{family} for every k ≥ 6",
+        )
     elif len(word) <= 7:
         kind, reason = "excluded", "note census of length ≤ 7"
     else:
@@ -828,6 +1029,26 @@ def _orientation_ledger(kind: str, word: str) -> str | None:
         return "J-two-even-leftover-ee" if word.endswith("EE") else "J-two-even-leftover-eoe"
     if kind == "three-even leftover":
         return "J-leftover-ooooooeee"
+    if kind == "gapped leftover":
+        return "J-gapped-cycle-word-eoe" if word.endswith("OE") else "J-gapped-cycle-word-ee"
+    if kind == "bunched leftover":
+        three = _THREE_EVEN_RE.fullmatch(word)
+        if three:
+            _a0, a1, a2 = (len(group) for group in three.groups())
+            meta = _BUNCHED_META.get((a1, a2))
+            if meta is not None:
+                return _BUNCHED_LEDGER.get(str(meta["name"]))
+        return "J-three-even-eee"
+    if kind == "four-even gapped":
+        return "J-first-e-transport-eoe" if word.endswith("OE") else "J-first-e-transport-ee"
+    if kind == "four-even bunched":
+        four = _FOUR_EVEN_RE.fullmatch(word)
+        if four:
+            _a0, _a1, a2, a3 = (len(group) for group in four.groups())
+            name = FAMILY_NAME.get((a2, a3))
+            if name is not None:
+                return _BUNCHED_LEDGER.get(name)
+        return "J-three-even-eee"
     if kind in {"threshold", "bootstrap", "rotation", "excluded", "not CycleMin"}:
         return "J-small-cycle-census-seven" if len(word) <= 7 else "J-small-cycle-census"
     return None
@@ -854,6 +1075,9 @@ def _base_kind(word: str) -> tuple[str, str]:
     named = _WORD_CLASS.get(word)
     if named is not None and named[0] != "rotation":
         return named
+    leftover = leftover_family_kind(word)
+    if leftover is not None:
+        return leftover
     family = two_even_family(word)
     if family == "EE":
         return (
@@ -984,10 +1208,13 @@ def _class_verdict(
         else:
             open_reps.append((rep, rep_reason))
     if open_reps:
-        sample = open_reps[0][0]
+        sample, _sample_reason = open_reps[0]
+        leftover = leftover_family_kind(sample)
+        if leftover is not None and leftover[0] == "four-even short-gap":
+            return "open", leftover[1], None
         return (
             "open",
-            f"{sample} is a legal CycleMin spelling that the recorded census does not exclude",
+            f"{sample} is a legal CycleMin spelling that Lean does not exclude",
             None,
         )
     if not excluded_reps:

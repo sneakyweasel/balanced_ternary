@@ -2,6 +2,7 @@
 
 from visualization.juggler_finite_dynamics import (
     CYCLE_WORD_MAX,
+    EEEE_WORD,
     LEFTOVER_CUTOFF,
     NOTE_ORBIT_3,
     NOTE_PEAK_37,
@@ -16,7 +17,9 @@ from visualization.juggler_finite_dynamics import (
     four_block_replay,
     leftover_table,
     leftover_words,
+    length11_inventory,
     length_eight_open_words,
+    length_eight_status_rows,
     next_square_view,
     odd_cell_view,
     parse_cycle_word,
@@ -213,6 +216,45 @@ def test_length_eight_bootstrap_shape_stays_open():
     assert view.verdict == "open"
     assert view.current_kind == "open"
     assert view.steps[-1].status == "open"
+
+
+def test_gapped_and_bunched_three_even_are_excluded():
+    gapped = cycle_class_view("OOEOOOOEE", 0)
+    assert gapped.verdict == "excluded"
+    assert gapped.current_kind == "gapped leftover"
+    assert gapped.ledger == "J-gapped-cycle-word-ee"
+    bunched = cycle_class_view("OOOOOOOEEE", 0)
+    assert bunched.verdict == "excluded"
+    assert bunched.current_kind == "bunched leftover"
+    assert bunched.ledger == "J-three-even-eee"
+
+
+def test_length11_short_gap_stays_open_as_cyclemin():
+    view = cycle_class_view(EEEE_WORD, 0)
+    assert view.current_kind == "four-even short-gap"
+    assert view.verdict == "open"
+    assert view.current_legal
+    assert view.ledger is None
+    mixed = cycle_class_view("OOEOOOOOEEE", 0)
+    assert mixed.current_kind == "four-even short-gap"
+    assert mixed.verdict == "open"
+
+
+def test_length11_inventory_is_thirty_first_expanding_words():
+    rows = length11_inventory()
+    assert len(rows) == 30
+    words = {row["word"] for row in rows}
+    assert EEEE_WORD in words
+    assert "OOEOOOOOEEE" in words
+    assert all(len(row["word"]) == 11 for row in rows)
+
+
+def test_classify_word_marks_two_even_length_eight():
+    info = classify_word("OOOOOOEE")
+    assert info.kind == "two-even leftover"
+    rows = {row["word"]: row["status"] for row in length_eight_status_rows()}
+    assert rows["OOOOOOEE"] == "excluded"
+    assert rows["OOEOOOOE"] == "open"
 
 
 def test_all_odd_cannot_close():
