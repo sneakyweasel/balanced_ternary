@@ -13053,4 +13053,40 @@ Best next question
   completed third residual drop below n or remain PE?
 ```
 
+## Juggler recovery after the one-shot OOEOOOEOOEE loop
+
+- **Date:** 2026-08-30
+- **Objective:** Decide what resource `OOEOOOEOOEE` spends and whether \(t=L(n)\) can re-enter the same entrance without FiniteProgress
+- **Hypotheses:** even \(t\) or `OE` drops by composed exponents; \(t\) can re-enter \(L\); every recovery is `OE`; remainders are Lyapunov
+- **Major results:** Classification **ONESHOT_RECOVERY_GREEN**. If \(t^{2048}\le n^{2187}\) and \(t\) follows \(W\) with \(2187\cdot 3^{\#O(W)}<2048\cdot 2^{|W|}\), then \(T_W(t)<n\). Even \(t\) drops (\(2187<4096\)); `OE` drops (\(6561<8192\)) — **EXACT — HUMAN PROOF** (`J-cyclemin-oneshot-oe-drop`). Those states cannot start `OOE`. Re-entry, uniform `OE` recovery, and remainder Lyapunov — **REFUTED** (`J-cyclemin-oneshot-reenters`): `11233\to 21154\to 145` by `E`; `6187` and `11853` by `OE`; `501\to 763` still starts `OOE` but recovers by `OOEOOEOOEOEE` to `34`. Terminal clusters frozen. No Lean. No \(Z_5\). No length-11 assembler. Paper A unchanged
+- **Refuted ideas:** \(t\) re-enters \(L\); every recovery is `OE`; \(\varepsilon(s)\) forces the drop; `OOE` or a second \(L\) compose-drops
+- **Literature:** `power_bound_word`; `t^{2048}\le n^{2187}`; scale-loop pre/post bit
+- **Open:** after \(L\), if \(t\) starts `OO`, is a compose-contracting recovery still forced? Do not build a \(p\)-adic system
+- **Decision:** PROMOTE the `E`/`OE` composition drop. The `OO` residual is not closed
+
+```text
+What was learned
+- 2187 * 3^{#O} < 2048 * 2^{|W|} forces T_W(t) < n
+- even t drops (2187 < 4096); OE drops (6561 < 8192)
+- those images cannot start OOE, so they miss the L entrance
+- 11233 is the even-t witness; 501 is the OO residual
+- a second L does not compose-drop
+Strongest theorem
+- post-L even or OE => FiniteProgress
+  (EXACT — HUMAN PROOF)
+Strongest refutation
+- t re-enters L / every recovery is OE
+  (11233 E-drop; 501 OO-recovery to 34)
+Reusable machinery
+- oneshot_recovery.py compose-below-anchor
+Branch status
+- PROMOTE
+Why
+- the non-OO post-L branch is an exact entrance exclusion
+  plus FiniteProgress, not merely the old 2187/2048 envelope
+Best next question
+- after L, if t starts OO, is a compose-contracting
+  recovery forced, or can t pay a later first OOO?
+```
+
 

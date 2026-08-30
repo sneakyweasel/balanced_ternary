@@ -158,10 +158,11 @@ This is not a halt theorem and not a finite-run bound.
 
 ## Open questions
 
-After the CE `OOEOOE` trap forces a third `OO`, does the completed
-third residual drop below \(n\) or stay a PE block? Do not reopen
-the expanding-grammar obstruction. Do not claim a uniform PE-run
-bound.
+Answered in
+[juggler_third_residual.md](juggler_third_residual.md): the
+completed third residual is not uniformly a drop and not uniformly
+PE. Do not reopen the expanding-grammar obstruction. Do not claim
+a uniform PE-run bound.
 
 ## Decision
 
@@ -170,9 +171,8 @@ The new exact facts are concatenation closure and CE prefix-NC; they
 identify the class, they do not shrink it. Do not claim that PE
 chains are finite. Do not claim that escape is impossible.
 
-Best next question: after the CE `OOEOOE` trap forces `OOEOOEOO`,
-does the completed third residual drop below \(n\) or remain a
-persistent expanding block?
+Best next question: answered in
+[juggler_third_residual.md](juggler_third_residual.md).
 
 ## Publication assessment
 

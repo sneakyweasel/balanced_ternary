@@ -191,8 +191,9 @@ assembler, and not a halt theorem.
 
 Lean-package the identification of even-even
 \(C_2\to C_4\to C_2\to C_1\) with `OOEOOOEOOEE`.
-The residual after \(C_1^{\mathrm{post}}\) is the split
-`OE`-drop (\(6187\)) versus `OOE`-continuation (\(501\)).
+The residual after \(C_1^{\mathrm{post}}\) is the
+post-\(L\) recovery
+[juggler_oneshot_recovery.md](juggler_oneshot_recovery.md).
 Do not reopen bunched-short cells. Do not write \(Z_5\).
 Do not assemble `no_cycle_word_length_eleven`. Do not
 build a \(p\)-adic dynamical system.
