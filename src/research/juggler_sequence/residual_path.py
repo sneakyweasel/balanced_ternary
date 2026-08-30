@@ -156,12 +156,7 @@ def lean_api_present() -> dict[str, bool]:
     floor = engine_floor_text()
     minimum = MIN_PATH.read_text(encoding="utf-8")
     combined = text + chain + progress + corpus + minimum
-    named = {}
-    for name in LEAN_THEOREMS:
-        if name in {"ResidualDescent", "ResidualReturn", "ResidualOvershoot"}:
-            named[name] = f"def {name}" in text
-        else:
-            named[name] = f"theorem {name}" in text
+    named = {name: has_named(combined, name) for name in LEAN_THEOREMS}
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,
         **named,

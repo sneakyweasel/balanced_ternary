@@ -35,6 +35,7 @@ from research.juggler_sequence.cyclic_feasibility import (
     propagate_cycle,
     render_markdown,
     word_class,
+    write_artifacts,
 )
 from research.juggler_sequence.power_words import floor_power
 
@@ -103,6 +104,8 @@ def test_probe_and_classify_vocabulary():
     }
     assert payload["decision"]["classification"] == CLASS_CLOSED
     assert payload["decision"]["classification"] != CLASS_INCOMPLETE
+    written = write_artifacts(payload)
+    assert written["decision"]["classification"] == CLASS_CLOSED
     text = render_markdown(payload)
     assert "NOT OBSERVED WITHIN SEARCH BOUND" in text
     lean = lean_api_present()

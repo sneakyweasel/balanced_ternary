@@ -106,7 +106,7 @@ def test_probe_and_classify_vocabulary():
     ]["classification"]
 
 
-def test_lean_api_without_new_layer():
+def test_lean_api_finance_layer():
     lean = lean_api_present()
     assert lean["sorry_free"] is True
     for name in EXISTING_LEAN:
@@ -115,7 +115,8 @@ def test_lean_api_without_new_layer():
         assert lean[f"has_{name}"] is False, name
     for name in FORBIDDEN_NEW_API:
         assert lean[f"has_api_{name}"] is False, name
-    assert lean["new_lean_file"] is False
+    assert lean["cycle_finance_present"] is True
+    assert lean["no_extra_finance_file"] is True
     assert lean["not_in_paper_barrel"] is True
 
 

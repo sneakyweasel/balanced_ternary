@@ -1,7 +1,7 @@
 """Cycle finance inequality for the Juggler floor-power map.
 
 Not a halt theorem, not an escape statement, not a corridor
-extension, and not a windowed population census. No new Lean file.
+extension, and not a windowed population census.
 
 A hypothetical cycle word is formally expanding (2^L < 3^o) yet the
 orbit returns exactly, so the multiplicative surplus is financed by
@@ -19,6 +19,7 @@ per-length minimum bound n_max(L) exactly for L <= 10^5, verifies a
 descent-induction floor (every n <= N0 reaches 1), and stress-tests
 the per-step bound eps_i <= (6/5)/x_{i+1} on real orbit segments.
 A verified floor N0 excludes every length with n_max(L) <= N0.
+Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_ten).
 """
 
 from __future__ import annotations
@@ -32,6 +33,7 @@ from pathlib import Path
 from typing import Any
 
 from research.juggler_sequence.lean_paths import (
+    CYCLE_FINANCE,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     has_named,
@@ -75,6 +77,10 @@ EXISTING_LEAN = (
     "no_cycle_word_length_le_eight",
     "reachesOne_of_lt_twelve",
     "cycle_peak_finance",
+    "cycleMin_finance",
+    "cycle_finance_min_thirteen",
+    "no_cycle_word_length_le_ten",
+    "cycle_word_length_eleven_or_ge_fourteen",
 )
 
 FORBIDDEN_THEOREMS = (
@@ -84,15 +90,13 @@ FORBIDDEN_THEOREMS = (
 )
 
 FORBIDDEN_NEW_API = (
-    "CycleFinance",
     "FinanceInequality",
     "FinanceBound",
 )
 
-NEW_LEAN_FILES = (
-    JUGGLER_DIR / "CycleFinance.lean",
-    JUGGLER_DIR / "Finance.lean",
-)
+REQUIRED_LEAN_FILES = (CYCLE_FINANCE,)
+FORBIDDEN_LEAN_FILES = (JUGGLER_DIR / "Finance.lean",)
+PAPER_FORBIDDEN = ("CycleFinance", "FinanceInequality", "FinanceBound")
 
 
 def git_commit() -> str:
@@ -326,10 +330,13 @@ def lean_api_present() -> dict[str, bool]:
             f"has_api_{name}": has_named(combined, name)
             for name in FORBIDDEN_NEW_API
         },
-        "new_lean_file": any(path.is_file() for path in NEW_LEAN_FILES),
-        "not_in_paper_barrel": all(
-            name not in paper for name in FORBIDDEN_NEW_API
+        "cycle_finance_present": all(
+            path.is_file() for path in REQUIRED_LEAN_FILES
         ),
+        "no_extra_finance_file": not any(
+            path.is_file() for path in FORBIDDEN_LEAN_FILES
+        ),
+        "not_in_paper_barrel": all(name not in paper for name in PAPER_FORBIDDEN),
     }
 
 
@@ -375,7 +382,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and all(lean[name] for name in EXISTING_LEAN)
         and not any(lean[f"has_{name}"] for name in FORBIDDEN_THEOREMS)
         and not any(lean[f"has_api_{name}"] for name in FORBIDDEN_NEW_API)
-        and not lean["new_lean_file"]
+        and lean["cycle_finance_present"]
+        and lean["no_extra_finance_file"]
         and lean["not_in_paper_barrel"]
     )
     if not lean_ok:
@@ -447,7 +455,7 @@ def probe_payload(
             "escape_claim": False,
             "corridor_extension": False,
             "population_census_reopen": False,
-            "lean_finance_added": False,
+            "lean_finance_added": True,
             "floor_is_lean_verified": False,
         },
         "scan": scan,

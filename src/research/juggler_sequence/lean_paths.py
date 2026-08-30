@@ -99,6 +99,7 @@ LAYERS: dict[str, Path] = {
     "WordLanguage": JUGGLER_DIR / "WordLanguage.lean",
     "GapCells": JUGGLER_DIR / "GapCells.lean",
     "Escape": JUGGLER_DIR / "Escape.lean",
+    "CycleFinance": JUGGLER_DIR / "CycleFinance.lean",
 }
 
 DYNAMICS = LAYERS["Dynamics"]
@@ -192,6 +193,7 @@ ODD_LANDING_SETS = LAYERS["OddLandingSets"]
 WORD_LANGUAGE = LAYERS["WordLanguage"]
 GAP_CELLS = LAYERS["GapCells"]
 ESCAPE = LAYERS["Escape"]
+CYCLE_FINANCE = LAYERS["CycleFinance"]
 
 DELETED_ENGINE = (
     ENGINE_DIR / "FloorPower.lean",
@@ -208,12 +210,29 @@ DELETED_ENGINE = (
 )
 
 
-def juggler_sources() -> list[Path]:
-    return [JUGGLER_BARREL, JUGGLER_PAPER_BARREL, *LAYERS.values()]
+def juggler_sources(*, exclude: tuple[str, ...] = ()) -> list[Path]:
+    skip = set(exclude)
+    return [
+        JUGGLER_BARREL,
+        JUGGLER_PAPER_BARREL,
+        *[path for name, path in LAYERS.items() if name not in skip],
+    ]
 
 
-def juggler_text() -> str:
-    return "\n".join(path.read_text(encoding="utf-8") for path in juggler_sources())
+def juggler_text(*, exclude: tuple[str, ...] = ()) -> str:
+    return "\n".join(
+        path.read_text(encoding="utf-8") for path in juggler_sources(exclude=exclude)
+    )
+
+
+def pre_finance_text() -> str:
+    """Laboratory corpus without CycleFinance.lean.
+
+    Older leftover/census probes treat length-9/10 absence as “this
+    branch did not add a census.” Finance later proved those lengths
+    by a different inequality; they must not flip those probes.
+    """
+    return juggler_text(exclude=("CycleFinance",))
 
 
 def cycle_kernel_text() -> str:

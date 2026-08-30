@@ -1,0 +1,27 @@
+{
+  "classification": "CYCLIC_FEASIBILITY_CLOSED",
+  "reason": "cheap cyclic filters are the existing CycleWord layer (envelope, odd_word_expands, even-count <= 3, length >= 11); interval and phi-product never fire; the residue is the already-studied e>=4 leftover family",
+  "summary": {
+    "by_status": {
+      "INFEASIBLE": 69
+    },
+    "by_filter": {
+      "power_bound_contracts": 55,
+      "no_cycle_word_even_count_le_three": 14
+    },
+    "known_dead": 69,
+    "new_joint_hits": 0,
+    "interval_hits": 0,
+    "phi_hits": 0,
+    "m2_scan_hits": 0,
+    "leftover_count": 0,
+    "leftover_unresolved": 0,
+    "leftover_unresolved_words": [],
+    "exact_cycles": [],
+    "known_filters_only": true
+  },
+  "k_max": 8,
+  "n_max": 160,
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND",
+  "git": "9c628ac930c99e1432e1ff5aa8036f1ef51f956a"
+}

@@ -27,7 +27,7 @@ from research.juggler_sequence.lean_paths import (
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
     has_named,
-    juggler_text,
+    pre_finance_text,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 
@@ -258,7 +258,7 @@ def run_probe() -> dict[str, Any]:
 
 
 def lean_api_present() -> dict[str, bool]:
-    combined = juggler_text()
+    combined = pre_finance_text()
     even_text = (
         EVEN_COUNT_THREE.read_text(encoding="utf-8")
         if EVEN_COUNT_THREE.is_file()

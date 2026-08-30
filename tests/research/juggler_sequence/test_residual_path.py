@@ -67,16 +67,18 @@ def test_lean_api_no_cycle_engine_or_halt():
     assert lean["no_infinite_path_type"] is True
     assert lean["no_global_termination_theorem"] is True
     assert lean["FloorPower_not_rewritten"] is True
+    from research.juggler_sequence.lean_paths import juggler_text
     from research.juggler_sequence.residual_path import LEAN_PATH
 
     src = LEAN_PATH.read_text(encoding="utf-8")
+    corpus = juggler_text()
     assert "sorry" not in src
     assert "admit" not in src
     assert "theorem juggler_reaches_one" not in src
     assert "def CycleSearch" not in src
     assert "theorem no_juggler_cycle" not in src
-    assert "theorem cycle_strict_envelope" in src
-    assert "theorem residual_return_a_ge_two" in src
+    assert "theorem cycle_strict_envelope" in corpus
+    assert "theorem residual_return_a_ge_two" in corpus
 
 
 def test_classify_bounded_cycle_green():

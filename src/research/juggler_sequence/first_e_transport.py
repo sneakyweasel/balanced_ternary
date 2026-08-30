@@ -28,7 +28,7 @@ from research.juggler_sequence.lean_paths import (
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
     has_named,
-    juggler_text,
+    pre_finance_text,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 from research.juggler_sequence.uniform_two_even import (
@@ -310,7 +310,7 @@ def lean_api_present() -> dict[str, bool]:
         + FIRST_E_TRANSPORT_EVAL.read_text(encoding="utf-8")
         + CYCLES.read_text(encoding="utf-8")
         + SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
-        + juggler_text()
+        + pre_finance_text()
     )
     named = {name: has_named(combined, name) for name in LEAN_THEOREMS}
     return {

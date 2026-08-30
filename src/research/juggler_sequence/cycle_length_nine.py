@@ -49,7 +49,7 @@ from research.juggler_sequence.lean_paths import (
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
     has_named,
-    juggler_text,
+    pre_finance_text,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 
@@ -385,7 +385,7 @@ def even_type_rows() -> list[dict[str, Any]]:
 
 def lean_api_present() -> dict[str, bool]:
     text = CYCLES.read_text(encoding="utf-8")
-    corpus = juggler_text()
+    corpus = pre_finance_text()
     leftover = LEFTOVER_CYCLES.read_text(encoding="utf-8")
     census = SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
     combined = (

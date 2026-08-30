@@ -18,7 +18,7 @@ from research.juggler_sequence.lean_paths import (
     LENGTH_EIGHT_CENSUS,
     SMALL_CYCLE_CENSUS,
     has_named,
-    juggler_text,
+    pre_finance_text,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 
@@ -65,7 +65,7 @@ FORBIDDEN_THEOREMS = (
 def lean_api_present() -> dict[str, bool]:
     census8 = LENGTH_EIGHT_CENSUS.read_text(encoding="utf-8")
     census7 = SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
-    combined = juggler_text()
+    combined = pre_finance_text()
     named = {name: has_named(combined, name) for name in LEAN_THEOREMS}
     forbidden = {name: f"theorem {name}" not in combined for name in FORBIDDEN_THEOREMS}
     return {

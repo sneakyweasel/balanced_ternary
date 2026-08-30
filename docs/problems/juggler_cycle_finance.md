@@ -206,7 +206,8 @@ Science window: gap table \(L\le 10^5\) with exact bignum
 arithmetic; floor verification by first-passage descent induction
 for all \(2\le n\le 10^6\); slack stress on named hard seeds
 (including \(30817\)). Tests use \(L\le 400\) and floor \(2000\).
-No CLI. No new Lean.
+No CLI. Lean: `CycleFinance.lean` (`cycleMin_finance`,
+`no_cycle_word_length_le_ten`). Paper A is unchanged.
 
 ## Conjectures
 
@@ -220,12 +221,14 @@ every measured step; see Results.
 
 ## Formalization
 
-None added in Phase 0. The inequality is designed to sit on
-existing Lean structures: the step identity is `Defect.lean`, the
-composed identity is `global_defect_identity`, and the cycle-side
-bookkeeping is `pathDefectSum`/`pathPows` in `CycleExtrema.lean`.
-A Lean port needs `Real.log` arithmetic on top of these. No
-`CycleFinance.lean` exists. No `sorry`. Paper A is unchanged.
+`CycleFinance.lean` sits on `CycleCore` and `LengthEightCensus`.
+The log unroll is `cycleMin_finance`; the residual floor `12`
+plus oddness of the rotated minimum gives
+`cycle_finance_min_thirteen`, hence
+`no_cycle_word_length_le_ten` and the residual
+`cycle_word_length_eleven_or_ge_fourteen`. No `sorry`. Paper A
+is unchanged. Not a halt theorem and not
+`no_cycle_word_any_length`.
 
 ## Results
 

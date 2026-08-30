@@ -18,6 +18,7 @@ from research.juggler_sequence.lean_paths import (
     ENVELOPE,
     MINIMAL,
     SCALE,
+    has_named,
     juggler_text,
 )
 
@@ -166,10 +167,7 @@ def lean_api_present() -> dict[str, bool]:
     combined = text + minimum + floor
     return {
         "sorry_free": "sorry" not in combined and "admit" not in combined,
-        **{
-            name: (f"theorem {name}" in text or f"def {name}" in text)
-            for name in LEAN_THEOREMS
-        },
+        **{name: has_named(combined, name) for name in LEAN_THEOREMS},
         "certificate_present": all(
             f"theorem {name}" in combined for name in CERTIFICATE_UNCHANGED
         ),

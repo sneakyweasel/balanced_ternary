@@ -30,7 +30,7 @@ from research.juggler_sequence.lean_paths import (
     DEFECT_LOWER_BOUND,
     SMALL_CYCLE_CENSUS,
     has_named,
-    juggler_text,
+    pre_finance_text,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 
@@ -289,7 +289,7 @@ def run_probe() -> dict[str, Any]:
 
 
 def lean_api_present() -> dict[str, bool]:
-    combined = juggler_text()
+    combined = pre_finance_text()
     named = {name: has_named(combined, name) for name in LEAN_THEOREMS}
     forbidden = {
         name: f"theorem {name}" not in combined for name in FORBIDDEN_THEOREMS

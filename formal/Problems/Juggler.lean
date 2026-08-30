@@ -62,6 +62,7 @@ import Problems.Juggler.OddLandingSets
 import Problems.Juggler.WordLanguage
 import Problems.Juggler.GapCells
 import Problems.Juggler.Escape
+import Problems.Juggler.CycleFinance
 
 /-!
 # Juggler laboratory barrel

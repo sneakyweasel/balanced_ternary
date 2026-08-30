@@ -19,6 +19,7 @@ from research.juggler_sequence.power_words import ANTI_OVERCLAIM, floor_power
 from research.juggler_sequence.lean_paths import (
     ENVELOPE,
     MINIMAL,
+    has_named,
     juggler_text,
 )
 
@@ -193,14 +194,10 @@ def first_image_parity(*, n_max: int = N_MAX) -> dict[str, Any]:
 def lean_api_present() -> dict[str, bool]:
     text = LEAN_PATH.read_text(encoding="utf-8")
     floor = juggler_text()
+    combined = text + floor
     return {
-        "sorry_free": "sorry" not in text and "admit" not in text
-        and "sorry" not in floor
-        and "admit" not in floor,
-        **{
-            name: (f"theorem {name}" in text or f"def {name}" in text)
-            for name in LEAN_THEOREMS
-        },
+        "sorry_free": "sorry" not in combined and "admit" not in combined,
+        **{name: has_named(combined, name) for name in LEAN_THEOREMS},
         "certificate_present": all(f"theorem {name}" in floor for name in CERTIFICATE_UNCHANGED),
         "PowerHeight_absent": "PowerHeight" not in text and "PowerHeight" not in floor,
         "no_lower_envelope_structure": "structure LowerEnvelope" not in text
