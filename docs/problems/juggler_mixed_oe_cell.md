@@ -117,9 +117,9 @@ near \(1\).
 
 ## Formalization
 
-`MinimumRelative.lean` adds `odd_even_eighth_lt_sq` and
-`finiteProgress_of_odd_even_eighth`. `Minimal.lean` adds
-`minimal_odd_even_eighth_forces_odd_return`. No new Lean file.
+`CubeCorridor.lean` adds `odd_even_eighth_lt_sq`.
+`Progress.lean` adds `finiteProgress_of_odd_even_eighth`.
+`Minimal.lean` adds `minimal_odd_even_eighth_forces_odd_return`.
 Paper A is unchanged. No `sorry`. No halt theorem.
 
 ## Results

@@ -117,11 +117,12 @@ then drops: \(T(4)=2<3\).
 
 ## Formalization
 
-`MinimumRelative.lean` adds `even_below_cube_cell`,
-`even_cube_not_square`, `odd_ge_sq_floor_ge_cube`,
-`finiteProgress_of_cube_even_even`, and
-`minimal_cube_even_forces_odd_image`. No new Lean file. Paper A
-is unchanged. No `sorry`. No halt theorem.
+`Corridor.lean` already has `even_below_cube_cell`.
+`CubeCorridor.lean` adds `even_cube_not_square` and
+`odd_ge_sq_floor_ge_cube`. `Progress.lean` adds
+`finiteProgress_of_cube_even_even`. `Minimal.lean` adds
+`minimal_cube_even_forces_odd_image`. Paper A is unchanged. No
+`sorry`. No halt theorem.
 
 ## Results
 

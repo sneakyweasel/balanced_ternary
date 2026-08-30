@@ -14335,4 +14335,137 @@ Best next question
   shared AboveAnchor obstruction, if any?
 ```
 
+## Juggler Lean spine cleanup
+
+- **Date:** 2026-08-30
+- **Objective:** Shrink the canonical Lean spine so shared theorems do not import `Minimal` or `CycleCore` unless they use them
+- **Hypotheses:** none new; architecture only
+- **Major results:** `MinimumRelative` is `AboveAnchor` only. Cube geometry moved to `CubeCorridor`. Isolated-prefix envelopes moved to `FirstInternalOO` (below `MinimumRelative`). Finite-progress bridges moved to `Progress`. Isolated CycleMin wrappers moved to `CycleObstructions`. `minimal_isolated_two` moved to `Minimal`. `Minimal` no longer imports `GlobalDefect`; the CE defect wrapper lives in `Residuals`. `SequentialMordell` imports `GlobalDefect` directly. Paper A unchanged. No `sorry`. No new theorem
+- **Refuted ideas:** none
+- **Literature:** existing envelope / anchor / isolated-OE packaging
+- **Open:** none from this cleanup
+- **Decision:** PROMOTE the cleaned spine. CLOSE as a research attack: no new Juggler dynamics
+
+```text
+What was learned
+- isolated-prefix algebra does not need AboveAnchor
+- cube-band geometry does not need AboveAnchor
+- FiniteProgress bridges do not need AboveAnchor
+- Minimal imported GlobalDefect only for a T_w(n) >= n rewrite
+- same-namespace Lean names cannot be aliased after a move
+Strongest theorem
+- none new
+Strongest refutation
+- none
+Reusable machinery
+- CubeCorridor.lean; FirstInternalOO as a mid-spine module
+Branch status
+- PROMOTE (spine) / CLOSE (research)
+Why
+- the dependency direction is now arithmetic → envelope →
+  progress → isolated prefix → AboveAnchor → consumers
+Best next question
+- none from this packaging
+```
+
+## Juggler cube-boundary crossing
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether \(x^3=y^2+\delta\) plus the source cell \(n^2\le x<n^3\) restricts the first re-entry to the odd cube band
+- **Hypotheses:** source-cell position or the defect couples to \(F(x)\); a missing hypothesis reuses the even-return theorem after one more odd step
+- **Major results:** Classification **CUBE_CROSSING_CLOSED**. Ten named crossings. Contrast \(69,89\) empty. Leftover first lifts are even (\(\tau=1\)). Only \(37\) has odd lifts. \(\delta\equiv x-1\pmod 8\) is generic odd-odd. Unique preimage is `odd_cell_unique`. \(F\) defined on 5 of 10, moves both ways, not periodic. The even-return theorem cannot apply after an odd lift because \(y\ge n^3\). No `CubeCrossing.lean`. Paper A unchanged. No halt theorem. No ledger row
+- **Refuted ideas:** independent crossing defect; stable crossing map \(F\); missing hypothesis that keeps \(y\) a cube-band source; forced cube-odd-to-cube-odd return
+- **Literature:** `J-cube-odd-even-reset`; `J-cube-odd-even-below-square`; `J-source-relative-odd-reset`; `odd_cell_unique`; `juggler_odd_escape_corridor.md`
+- **Open:** none from local crossing arithmetic
+- **Decision:** CLOSE. The boundary crossing adds no local arithmetic beyond existing cube-odd and odd-cell lemmas
+
+```text
+What was learned
+- leftover first crossings are the known even reset
+- 37 is the only named odd-lift laboratory
+- delta mod 8 is generic odd-odd
+- F is partial and two-sided
+- the even-return theorem cannot apply to y >= n^3
+Strongest theorem
+- none new
+Strongest refutation
+- reusable first-reentry restriction from x^3 = y^2 + delta
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- local crossing arithmetic restates
+  cube_odd_lift, odd_cell_unique, and
+  generic odd-odd parity
+Best next question
+- none from local cube-boundary arithmetic
+```
+
+## Juggler long odd-chain minimality
+
+- **Date:** 2026-08-30
+- **Objective:** Test whether a whole odd chain compresses to a smaller bad state or a good-set contradiction
+- **Hypotheses:** coupled near-power equations manufacture \(m<x_0\); closure depth grows with run length
+- **Major results:** Classification **ODD_CHAIN_MINIMALITY_CLOSED**. Unique odd inverse of a chain is the chain (`odd_cell_unique`). Run-start odd cells are empty. Shift-by-\(2\) never couples. \(\delta\equiv x-1\pmod 8\) is generic odd-odd. Growth is `floorPower_odd_gt`. \(3375\to 9317\to 2233\) is not an odd chain. Long finite runs exist (\(329\) length \(8\); \(33391\) after \(L\) length \(5\)) with the same structure. No `OddChain.lean`. Paper A unchanged. No halt theorem. No ledger row
+- **Refuted ideas:** chain compression; smaller-than-anchor odd pred from the chain; shift coupling; closure depth \(f(r)\)
+- **Literature:** `floorPower_odd_gt`; `odd_cell_unique`; `odd_run_power_bound`; `J-minimal-anchor-closure`; `J-odd-run-recursive`; `juggler_cube_crossing.md`
+- **Open:** none from whole-chain compression
+- **Decision:** CLOSE. The odd chain is not a Diophantine compression problem
+
+```text
+What was learned
+- unique inverse recovers the chain then an empty cell
+- leftover first step pred is the start
+- later leftover run starts have empty odd cells
+- 37/241/329 and the L-lab have the same local structure
+- 3375->9317->2233 is the crossing map, not an odd run
+Strongest theorem
+- none new
+Strongest refutation
+- long odd chain => smaller bad state
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- the chain restates odd_cell_unique,
+  floorPower_odd_gt, and EnvelopeState
+Best next question
+- none from odd-chain compression
+```
+
+## Juggler odd-to-even reset interface
+
+- **Date:** 2026-08-30
+- **Objective:** Identify arithmetic created at an odd-to-even reset that is not already the odd chain or generic `EnvelopeState`
+- **Hypotheses:** the pair \((\delta,\varepsilon)\) or \(\Psi=x_r^3-s^4\) is constrained beyond generic `OE`; the episode source \(x\) sharpens \(s^A\le x^B\); two resets give well-founded progress
+- **Major results:** Classification **ODD_EVEN_RESET_CLOSED**. Exact identity \(x_r^3-s^4=2\varepsilon s^2+\varepsilon^2+\delta\) holds on every named reset and on generic odd-to-even \(m<201\). Strict \(s^4<x_r^3\) is `oe_block_scale` plus OE parity. \(s<x_r\) is `floorPower_odd_even_two_step_lt`. \(s<x\) fails whenever \(r\ge 2\) (\(37\to9317\); leftover first runs \(365\to763\), \(501\to1089\), \(1517\to3789\), \(6187\to18425\)). \(s^4\le x^3\) is false on those runs. An even reset does not force a second-even `FiniteProgress` (\(9317\to4990602\to2233\)). Two-episode descent remains false (\(37\to9317\to2233\)). No `OddEvenReset.lean`. Paper A unchanged. No halt theorem. No ledger row
+- **Refuted ideas:** independent reset identity; source-side bound \(s^A\le x^B\) sharper than the envelope; leftover first reset is a contracting `OE`; even \(s\) implies `FiniteProgress`
+- **Literature:** `oe_block_scale`; `floorPower_odd_even_two_step_lt`; `EnvelopeState`; `J-source-relative-odd-reset`; `J-two-episode-source-descent`; `juggler_odd_chain_minimality.md`
+- **Open:** none from the odd-to-even reset interface
+- **Decision:** CLOSE. The interface is generic `OE` composition already in Lean
+
+```text
+What was learned
+- Psi is the two floor identities, and generic OE has it
+- s^4 < x_r^3 and s < x_r are existing OE lemmas
+- leftover first episodes are OOE with s > x
+- even s need not give a second-even FiniteProgress
+- two-episode sources still move 37 -> 9317 -> 2233
+Strongest theorem
+- none new
+Strongest refutation
+- a non-generic reset relation between x_r and s
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- CLOSE
+Why
+- the reset restates oe_block_scale,
+  floorPower_odd_even_two_step_lt, and EnvelopeState
+Best next question
+- none from the odd-to-even reset interface
+```
+
 

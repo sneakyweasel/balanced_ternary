@@ -140,10 +140,11 @@ None to the shared-layer implications. The stronger claims that fail:
 
 ## Formalization
 
-`formal/Problems/Juggler/MinimumRelative.lean` imports `Envelope` +
-`Progress` + `WordStats`, not `Scale` / `Minimal`. `CycleMin` and
-`MinimalNonTerm` consume `AboveAnchor` downward (`CycleCore`,
-`Minimal.lean`). Below `Residuals` / `CycleCore`. Added:
+`formal/Problems/Juggler/MinimumRelative.lean` imports `Corridor` +
+`FirstInternalOO`, not `Scale` / `Minimal` / `CycleCore`. `CycleMin`
+and `MinimalNonTerm` consume `AboveAnchor` downward (`CycleCore`,
+`Minimal.lean`). Isolated-prefix envelopes live in
+`FirstInternalOO`; cube geometry lives in `CubeCorridor`. Added:
 
 - `AboveAnchor` / `aboveAnchor_of_minimalNonTerm` /
   `aboveAnchor_of_cycleMin` / `aboveAnchor_not_lt`
@@ -158,8 +159,8 @@ None to the shared-layer implications. The stronger claims that fail:
 Word algebra in `Envelope.lean`: `EnvelopeState`, `envelope_lt_pow`,
 `power_bound_lt_pow` (`EnvelopeState.of_follows.lt_pow`).
 Escape square/cube cells are instances. `power_bound_contracts`
-is the `k = 1` case of that theorem. `CycleMin` wrappers stay in
-`CycleCore` / `FirstInternalOO`. CE wrappers stay in `Minimal.lean`.
+is the `k = 1` case of that theorem. Isolated CycleMin wrappers
+stay in `CycleObstructions`. CE wrappers stay in `Minimal.lean`.
 `FiniteProgress` is not redefined. Paper A is unchanged. No `sorry`.
 No halt theorem. Spine: [juggler_lean_spine.md](../architecture/juggler_lean_spine.md).
 

@@ -171,14 +171,17 @@ The stronger claims that remain false or unproved:
 
 ## Formalization
 
-`MinimumRelative.lean` now owns `isolatedPrefix`, `firstOOState`,
+`FirstInternalOO.lean` owns `isolatedPrefix`, `firstOOState`,
 `firstInternalOOWord`, `FirstInternalOO`, and the Type B theorems
 `isolatedOddSurvival_bound` / `isolated_oe_ge_implies_exponent`,
 `isolated_oe_lt_of_scale_gap`, and `isolated_oe_r_max_two`.
-`FirstInternalOO.lean` keeps the CycleMin consumers
-`no_cycleMin_prefix_ooe_oe` and `cycleMin_isolated_two`, plus the
-CE wrapper `minimal_isolated_two`. Existing `power_bound_word` and
-`repeated_oe_scale` are cited, not rewritten. No
+`MinimumRelative.lean` keeps the `AboveAnchor` wrappers
+`aboveAnchor_isolatedOddSurvival` / `aboveAnchor_isolated_two`.
+`CycleObstructions.lean` keeps the CycleMin consumers
+`no_cycleMin_prefix_ooe_oe` and `cycleMin_isolated_two`.
+`Minimal.lean` keeps the CE wrapper `minimal_isolated_two`.
+Existing `power_bound_word` and `repeated_oe_scale` are cited, not
+rewritten. No
 `no_cycleMin_first_oo`. No `no_cycleMin_four_even`. No
 `no_cycle_word_length_eleven`. No `no_juggler_cycle`. Paper A is
 unchanged.
@@ -220,7 +223,7 @@ assembler, and not a halt theorem.
 
 ## Open questions
 
-The exponent comparison is in `MinimumRelative.lean`. The
+The exponent comparison is in `FirstInternalOO.lean`. The
 \(a_0=2\), \(r=0\), \(b=2\) cut is a separate branch
 ([juggler_minimal_ooe_corridor.md](juggler_minimal_ooe_corridor.md)).
 Do not reopen bunched-short cells. Do not write \(Z_5\). Do not

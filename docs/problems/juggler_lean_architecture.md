@@ -114,16 +114,22 @@ Lean modules, no `sorry`:
   `map_word`, `of_follows`, cycle-envelope family
 - `formal/Problems/Juggler/Corridor.lean` — `PowerCorridor`,
   Corollaries A–C, even-reset family
+- `formal/Problems/Juggler/CubeCorridor.lean` — cube-band
+  arithmetic; no `AboveAnchor`
+- `formal/Problems/Juggler/Progress.lean` — `FiniteProgress` and
+  geometric descent bridges
+- `formal/Problems/Juggler/FirstInternalOO.lean` — isolated-prefix
+  syntax and Corollary F
 - `formal/Problems/Juggler/MinimumRelative.lean` — `AboveAnchor`,
-  Corollaries D–F
+  Corollaries D–E
 - `formal/Problems/Juggler/CycleCore.lean` — cycle foundations;
   imports `Envelope` + `Cells` + `MinimumRelative`, not `Residuals`
 - `formal/Problems/Juggler/CycleObstructions.lean` — named-word
-  exclusions
+  exclusions and isolated CycleMin wrappers
 - `formal/Problems/Juggler/FirstPassage.lean` —
   `hasFiniteStop_of_imageLt`, `hasFiniteStop_of_power_bound_lt_pow`
 - `formal/Problems/Juggler/Minimal.lean` — CE wrappers of the
-  generic even-run barrier
+  generic even-run barrier; no `GlobalDefect` import
 
 Paper A comments are not edited.
 
@@ -137,8 +143,14 @@ Dynamics → Iteration → Termination → Itinerary → WordStats
                                            Envelope
                                               ↓
                                            Corridor
-                                    ↓                 ↓
-                              Progress          MinimumRelative
+                                              ↓
+                                         CubeCorridor
+                                              ↓
+                                           Progress
+                                              ↓
+                                        FirstInternalOO
+                                              ↓
+                                        MinimumRelative
                                     ↓                 ↓
                                  Minimal          CycleCore
                                     ↓                 ↓
@@ -158,14 +170,16 @@ Canonical primitives:
 | Primitive | `floorPower` / `follows` / words | Dynamics, Itinerary, WordStats |
 | Primitive | `EnvelopeState` / `map_word` / `envelope_lt_pow` | Envelope |
 | Primitive | `PowerCorridor` | Corridor |
+| Primitive | cube-band geometry | CubeCorridor |
 | Primitive | `AboveAnchor` | MinimumRelative |
+| Primitive | isolated-prefix envelope | FirstInternalOO |
 | Primitive | `HasFiniteStop` | FirstPassage |
 | Primitive | `DescentCertificate` / `FiniteProgress` | Certificates, Progress |
 | Derived | `PowerBound` as \(A=2^{\|w\|}\), \(B=3^{\#O}\) | Envelope |
 | Derived | `even_below_anchor_pow` / `two_even_below_fourth` | Corridor |
 | Consumer | `CycleMin` / `aboveAnchor_of_cycleMin` | CycleCore |
 | Consumer | `MinimalNonTerm` / `aboveAnchor_of_minimalNonTerm` | Minimal |
-| Consumer | named `no_cycle_word_*` | CycleObstructions |
+| Consumer | named `no_cycle_word_*` / isolated CycleMin wrappers | CycleObstructions |
 | Legacy aliases | `power_bound_word`, `power_bound_contracts`, `unresolved_is_odd_odd`, `finiteProgress_of_descent`, `isolated_oe_ge_implies_exponent`, `floorPower_odd_lt_sq` | keep; do not use in new proofs |
 
 Envelope / anchor / progress APIs:
@@ -191,7 +205,7 @@ Extracted corollaries:
 | C | `two_even_below_fourth`; cube is `two_even_below_cube` via \(n^3<n^4\) | Corridor |
 | D | `aboveAnchor_not_envelope_drop` | MinimumRelative |
 | E | `aboveAnchor_even_run_ge_pow` | MinimumRelative |
-| F | `isolatedOddSurvival_bound` | MinimumRelative |
+| F | `isolatedOddSurvival_bound` | FirstInternalOO |
 
 Compatibility layer:
 
@@ -207,9 +221,12 @@ Compatibility layer:
   are listed in `minimum_relative.LEAN_THEOREMS`
 - `JugglerPaper.lean` comments do not mention `EnvelopeState`
 - After the Residuals cut, consumers that used the old re-export
-  take one extra import: `FirstInternalOO` imports `Minimal`,
-  `CycleExtrema` imports `Scale`, and `Escape` / `EvenCountThree` /
-  `LandingValuation` import `Residuals`
+  take one extra import: `CycleExtrema` imports `Scale`, and
+  `Escape` / `EvenCountThree` / `LandingValuation` import
+  `Residuals`. Isolated CycleMin wrappers live in
+  `CycleObstructions`; the CE wrapper `minimal_isolated_two`
+  lives in `Minimal`. `SequentialMordell` imports `GlobalDefect`
+  directly.
 
 Research exclusions (do not reopen from this dossier):
 

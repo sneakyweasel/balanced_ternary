@@ -1,12 +1,15 @@
 import Problems.Juggler.CycleCore
+import Problems.Juggler.FirstInternalOO
 
 namespace Problems.Juggler
 
 /-!
 # Named CycleMin / CycleWord exclusions
 
-Historical short-word refutations. Cycle foundations stay in
-`CycleCore`. This file is not a halt theorem.
+Why particular trajectories cannot be cycles. Cycle foundations
+(`CycleWord`, `CycleMin`, extrema, last-even cell) stay in
+`CycleCore`. Isolated-prefix algebra stays in `FirstInternalOO`.
+This file is not a halt theorem.
 -/
 
 def wordOOEOOE : List Branch :=
@@ -240,5 +243,24 @@ theorem no_cycleMin_ooooeoe_of_sqrt_eq {n : ℕ} (hn : 2 ≤ n)
         [Branch.odd] ++ [Branch.even]) := by
     simpa [wordOOOEOE] using h
   exact cycleMin_prefix_ooo_even_sqrt_ne hn hsplit hy
+
+theorem no_cycleMin_isolated_prefix_of_gap {n a r : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (hgap : 3 ^ (a + r) < 2 ^ (a + 2 * r + 1))
+    (h : CycleMin n (isolatedPrefix a r ++ v)) : False :=
+  forbidden_isolated_under_anchor hn (Nat.not_le.mpr hgap)
+    (aboveAnchor_of_prefix (aboveAnchor_of_cycleMin h))
+
+/-- An `a₀ = 2` CycleMin cannot complete one isolated `OE` after the
+first even letter. The first internal `OO`, if it exists on this
+corridor, is immediate (`r = 0`). -/
+theorem no_cycleMin_prefix_ooe_oe {n : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n (isolatedPrefix 2 1 ++ v)) : False :=
+  no_cycleMin_isolated_prefix_of_gap hn two_one_isolated_scale_gap h
+
+/-- Cycle application of the shared `r ≤ R(2)` bound. -/
+theorem cycleMin_isolated_two {n r : ℕ} {v : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n (isolatedPrefix 2 r ++ v)) : r = 0 :=
+  aboveAnchor_isolated_two hn
+    (aboveAnchor_of_prefix (aboveAnchor_of_cycleMin h))
 
 end Problems.Juggler

@@ -163,11 +163,10 @@ Ordinary terminating orbits, not `MinimalNonTerm` witnesses.
 
 ## Formalization
 
-No new Lean module. `oe_block_contracts`, isolated-`OE`, and
-`finiteProgress_of_ooe_oe` stay in `Scale.lean` /
-`FirstInternalOO.lean` / `MinimumRelative.lean`. Not imported
-by `Problems.JugglerPaper`. No `sorry`. No `BlockMapQ` API.
-No `juggler_reaches_one`.
+No new Lean module. `oe_block_contracts` stays in `Scale.lean`.
+Isolated-`OE` and `finiteProgress_of_ooe_oe` stay in
+`FirstInternalOO.lean`. Not imported by `Problems.JugglerPaper`.
+No `sorry`. No `BlockMapQ` API. No `juggler_reaches_one`.
 
 ## Results
 

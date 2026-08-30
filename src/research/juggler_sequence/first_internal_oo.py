@@ -21,6 +21,7 @@ from typing import Any
 
 from research.juggler_sequence.cycle_word import follows_word, image_after
 from research.juggler_sequence.lean_paths import (
+    CYCLE_OBSTRUCTIONS,
     ENVELOPE,
     FIRST_INTERNAL_OO,
     JUGGLER_PAPER_BARREL,
@@ -484,6 +485,11 @@ def lean_api_present() -> dict[str, bool]:
     paper = JUGGLER_PAPER_BARREL.read_text(encoding="utf-8")
     first_oo = FIRST_INTERNAL_OO.read_text(encoding="utf-8") if FIRST_INTERNAL_OO.is_file() else ""
     shared = MINIMUM_RELATIVE.read_text(encoding="utf-8") if MINIMUM_RELATIVE.is_file() else ""
+    cycle_obs = (
+        CYCLE_OBSTRUCTIONS.read_text(encoding="utf-8")
+        if CYCLE_OBSTRUCTIONS.is_file()
+        else ""
+    )
     return {
         "sorry_free": "sorry" not in combined
         and "admit" not in combined
@@ -498,9 +504,10 @@ def lean_api_present() -> dict[str, bool]:
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
         "FloorPower_not_rewritten": "CycleWord" not in engine_floor_text(),
-        "first_oo_lean": "theorem isolated_oe_ge_implies_exponent" in shared
-        and "theorem isolatedOddSurvival_bound" in shared
-        and "theorem no_cycleMin_prefix_ooe_oe" in first_oo,
+        "first_oo_lean": "theorem isolated_oe_ge_implies_exponent" in first_oo
+        and "theorem isolatedOddSurvival_bound" in first_oo
+        and "theorem aboveAnchor_isolated_two" in shared
+        and "theorem no_cycleMin_prefix_ooe_oe" in cycle_obs,
     }
 
 

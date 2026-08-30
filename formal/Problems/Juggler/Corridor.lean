@@ -14,8 +14,9 @@ n^L ≤ x < n^U.
 ```
 
 The collision `U ≤ L` is impossible for `n ≥ 2`. Even reset is the
-one-step map `x < n^{2k} ⇒ T(x) < n^k`. This file does not know
-`AboveAnchor`, `CycleMin`, or `MinimalNonTerm`.
+one-step map `x < n^{2k} ⇒ T(x) < n^k`. Cube-band specializations
+live in `CubeCorridor`. This file does not know `AboveAnchor`,
+`CycleMin`, or `MinimalNonTerm`.
 -/
 
 /-- Integer two-sided cell `n^lower ≤ x < n^upper`. -/
@@ -116,5 +117,20 @@ theorem two_even_below_cube {x n : ℕ} (hn : 2 ≤ n)
     floorPower (floorPower x) < n :=
   two_even_below_fourth he he2
     (lt_trans hlt (pow_lt_of_two_le hn (by decide : (3 : ℕ) < 4)))
+
+theorem even_ge_sq_of_succ_ge {x n : ℕ} (he : x % 2 = 0)
+    (hge : n ≤ floorPower x) : n ^ 2 ≤ x := by
+  rw [floorPower_even_eq he] at hge
+  exact (by simpa [pow_two] using Nat.le_sqrt.mp hge)
+
+theorem odd_floor_lt_sq {n : ℕ} (hn : 2 ≤ n) (hodd : n % 2 = 1) :
+    floorPower n < n ^ 2 := by
+  rw [floorPower_odd_eq hodd]
+  refine Nat.sqrt_lt.mpr ?_
+  have hn1 : 1 < n := lt_of_lt_of_le (by decide : (1 : ℕ) < 2) hn
+  have hpow : n ^ 3 < n ^ 4 :=
+    Nat.pow_lt_pow_right hn1 (by decide : (3 : ℕ) < 4)
+  have h4 : n ^ 4 = n ^ 2 * n ^ 2 := Nat.pow_add n 2 2
+  simpa [h4] using hpow
 
 end Problems.Juggler

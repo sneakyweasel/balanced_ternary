@@ -120,9 +120,9 @@ Ordinary terminating orbits, not `MinimalNonTerm` witnesses.
 ## Formalization
 
 No new Lean module. Isolated-`OE` and `finiteProgress_of_ooe_oe`
-stay in `MinimumRelative.lean` / `FirstInternalOO.lean`. Not
-imported by `Problems.JugglerPaper`. No `sorry`. No
-`RunItinerary` API. No `juggler_reaches_one`.
+stay in `FirstInternalOO.lean`. Not imported by
+`Problems.JugglerPaper`. No `sorry`. No `RunItinerary` API. No
+`juggler_reaches_one`.
 
 ## Results
 

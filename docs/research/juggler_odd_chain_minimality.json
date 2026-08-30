@@ -1,0 +1,1310 @@
+{
+  "experiment": "juggler_odd_chain_minimality",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "chain_compression": false,
+    "smaller_bad_witness": false,
+    "odd_chain_lean": false,
+    "universal_odd_run_bound": false,
+    "cube_crossing_reopen": false,
+    "z5_reopen": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "tables": {
+      "37": {
+        "n": 37,
+        "run_count": 3,
+        "max_length": 4,
+        "runs": [
+          {
+            "n": 37,
+            "x0": 37,
+            "length": 4,
+            "steps": 3,
+            "chain": [
+              37,
+              225,
+              3375,
+              196069
+            ],
+            "even_reset": 86818724,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 37,
+                "next": 225,
+                "delta": 28,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              },
+              {
+                "x": 225,
+                "next": 3375,
+                "delta": 0,
+                "delta_mod8": 0,
+                "mod8_predicted": 0,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              },
+              {
+                "x": 3375,
+                "next": 196069,
+                "delta": 306614,
+                "delta_mod8": 6,
+                "mod8_predicted": 6,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 37,
+            "x0": 9317,
+            "length": 3,
+            "steps": 2,
+            "chain": [
+              9317,
+              899319,
+              852846071
+            ],
+            "even_reset": 24906114455136,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 9317,
+                "next": 899319,
+                "delta": 1394252,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              },
+              {
+                "x": 899319,
+                "next": 852846071,
+                "delta": 1018741718,
+                "delta_mod8": 6,
+                "mod8_predicted": 6,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 37,
+            "x0": 2233,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              2233,
+              105519
+            ],
+            "even_reset": 34276462,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 2233,
+                "next": 105519,
+                "delta": 123976,
+                "delta_mod8": 0,
+                "mod8_predicted": 0,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          }
+        ],
+        "any_pred0_below_anchor": false,
+        "any_shift_coupled": false,
+        "all_unique_preds": true,
+        "all_monotone": true,
+        "all_mod8_ok": true
+      },
+      "69": {
+        "n": 69,
+        "run_count": 2,
+        "max_length": 2,
+        "runs": [
+          {
+            "n": 69,
+            "x0": 69,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              69,
+              573
+            ],
+            "even_reset": 13716,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 69,
+                "next": 573,
+                "delta": 180,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 69,
+            "x0": 117,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              117,
+              1265
+            ],
+            "even_reset": 44992,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 117,
+                "next": 1265,
+                "delta": 1388,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          }
+        ],
+        "any_pred0_below_anchor": false,
+        "any_shift_coupled": false,
+        "all_unique_preds": true,
+        "all_monotone": true,
+        "all_mod8_ok": true
+      },
+      "89": {
+        "n": 89,
+        "run_count": 3,
+        "max_length": 2,
+        "runs": [
+          {
+            "n": 89,
+            "x0": 89,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              89,
+              839
+            ],
+            "even_reset": 24302,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 89,
+                "next": 839,
+                "delta": 1048,
+                "delta_mod8": 0,
+                "mod8_predicted": 0,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 89,
+            "x0": 155,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              155,
+              1929
+            ],
+            "even_reset": 84722,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 155,
+                "next": 1929,
+                "delta": 2834,
+                "delta_mod8": 2,
+                "mod8_predicted": 2,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 89,
+            "x0": 291,
+            "length": 1,
+            "steps": 0,
+            "chain": [
+              291
+            ],
+            "even_reset": 4964,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": []
+          }
+        ],
+        "any_pred0_below_anchor": false,
+        "any_shift_coupled": false,
+        "all_unique_preds": true,
+        "all_monotone": true,
+        "all_mod8_ok": true
+      },
+      "365": {
+        "n": 365,
+        "run_count": 5,
+        "max_length": 2,
+        "runs": [
+          {
+            "n": 365,
+            "x0": 365,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              365,
+              6973
+            ],
+            "even_reset": 582276,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 365,
+                "next": 6973,
+                "delta": 4396,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 365,
+            "x0": 763,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              763,
+              21075
+            ],
+            "even_reset": 3059506,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 763,
+                "next": 21075,
+                "delta": 39322,
+                "delta_mod8": 2,
+                "mod8_predicted": 2,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 365,
+            "x0": 1749,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              1749,
+              73145
+            ],
+            "even_reset": 19782308,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 1749,
+                "next": 73145,
+                "delta": 1724,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 365,
+            "x0": 4447,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              4447,
+              296551
+            ],
+            "even_reset": 161491284,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 4447,
+                "next": 296551,
+                "delta": 527022,
+                "delta_mod8": 6,
+                "mod8_predicted": 6,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 365,
+            "x0": 12707,
+            "length": 1,
+            "steps": 0,
+            "chain": [
+              12707
+            ],
+            "even_reset": 1432400,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": []
+          }
+        ],
+        "any_pred0_below_anchor": false,
+        "any_shift_coupled": false,
+        "all_unique_preds": true,
+        "all_monotone": true,
+        "all_mod8_ok": true
+      },
+      "501": {
+        "n": 501,
+        "run_count": 7,
+        "max_length": 3,
+        "runs": [
+          {
+            "n": 501,
+            "x0": 501,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              501,
+              11213
+            ],
+            "even_reset": 1187360,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 501,
+                "next": 11213,
+                "delta": 20132,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 501,
+            "x0": 1089,
+            "length": 3,
+            "steps": 2,
+            "chain": [
+              1089,
+              35937,
+              6812597
+            ],
+            "even_reset": 17781526790,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 1089,
+                "next": 35937,
+                "delta": 0,
+                "delta_mod8": 0,
+                "mod8_predicted": 0,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              },
+              {
+                "x": 35937,
+                "next": 6812597,
+                "delta": 6517544,
+                "delta_mod8": 0,
+                "mod8_predicted": 0,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 501,
+            "x0": 133347,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              133347,
+              48693935
+            ],
+            "even_reset": 339791341082,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 133347,
+                "next": 48693935,
+                "delta": 28188698,
+                "delta_mod8": 2,
+                "mod8_predicted": 2,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 501,
+            "x0": 763,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              763,
+              21075
+            ],
+            "even_reset": 3059506,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 763,
+                "next": 21075,
+                "delta": 39322,
+                "delta_mod8": 2,
+                "mod8_predicted": 2,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 501,
+            "x0": 1749,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              1749,
+              73145
+            ],
+            "even_reset": 19782308,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 1749,
+                "next": 73145,
+                "delta": 1724,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 501,
+            "x0": 4447,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              4447,
+              296551
+            ],
+            "even_reset": 161491284,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 4447,
+                "next": 296551,
+                "delta": 527022,
+                "delta_mod8": 6,
+                "mod8_predicted": 6,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 501,
+            "x0": 12707,
+            "length": 1,
+            "steps": 0,
+            "chain": [
+              12707
+            ],
+            "even_reset": 1432400,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": []
+          }
+        ],
+        "any_pred0_below_anchor": false,
+        "any_shift_coupled": false,
+        "all_unique_preds": true,
+        "all_monotone": true,
+        "all_mod8_ok": true
+      },
+      "1517": {
+        "n": 1517,
+        "run_count": 5,
+        "max_length": 3,
+        "runs": [
+          {
+            "n": 1517,
+            "x0": 1517,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              1517,
+              59085
+            ],
+            "even_reset": 14362030,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 1517,
+                "next": 59085,
+                "delta": 18188,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 1517,
+            "x0": 3789,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              3789,
+              233231
+            ],
+            "even_reset": 112636568,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 3789,
+                "next": 233231,
+                "delta": 158708,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 1517,
+            "x0": 10613,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              10613,
+              1093345
+            ],
+            "even_reset": 1143235850,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 10613,
+                "next": 1093345,
+                "delta": 127372,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 1517,
+            "x0": 33811,
+            "length": 1,
+            "steps": 0,
+            "chain": [
+              33811
+            ],
+            "even_reset": 6217088,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": []
+          },
+          {
+            "n": 1517,
+            "x0": 2493,
+            "length": 3,
+            "steps": 2,
+            "chain": [
+              2493,
+              124475,
+              43916043
+            ],
+            "even_reset": 291028018566,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 2493,
+                "next": 124475,
+                "delta": 91532,
+                "delta_mod8": 4,
+                "mod8_predicted": 4,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              },
+              {
+                "x": 124475,
+                "next": 43916043,
+                "delta": 6894026,
+                "delta_mod8": 2,
+                "mod8_predicted": 2,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          }
+        ],
+        "any_pred0_below_anchor": false,
+        "any_shift_coupled": false,
+        "all_unique_preds": true,
+        "all_monotone": true,
+        "all_mod8_ok": true
+      },
+      "6187": {
+        "n": 6187,
+        "run_count": 4,
+        "max_length": 3,
+        "runs": [
+          {
+            "n": 6187,
+            "x0": 6187,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              6187,
+              486653
+            ],
+            "even_reset": 339491658,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 6187,
+                "next": 486653,
+                "delta": 838794,
+                "delta_mod8": 2,
+                "mod8_predicted": 2,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 6187,
+            "x0": 18425,
+            "length": 3,
+            "steps": 2,
+            "chain": [
+              18425,
+              2500985,
+              3955183437
+            ],
+            "even_reset": 248742471750750,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 18425,
+                "next": 2500985,
+                "delta": 4545400,
+                "delta_mod8": 0,
+                "mod8_predicted": 0,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              },
+              {
+                "x": 2500985,
+                "next": 3955183437,
+                "delta": 7324038656,
+                "delta_mod8": 0,
+                "mod8_predicted": 0,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 6187,
+            "x0": 15771571,
+            "length": 2,
+            "steps": 1,
+            "chain": [
+              15771571,
+              62634329559
+            ],
+            "even_reset": 15675400641582836,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": [
+              {
+                "x": 15771571,
+                "next": 62634329559,
+                "delta": 99175867930,
+                "delta_mod8": 2,
+                "mod8_predicted": 2,
+                "mod8_match": true,
+                "unique_pred_of_next": true,
+                "grows": true
+              }
+            ]
+          },
+          {
+            "n": 6187,
+            "x0": 11189,
+            "length": 1,
+            "steps": 0,
+            "chain": [
+              11189
+            ],
+            "even_reset": 1183550,
+            "monotone": true,
+            "unique_preds": true,
+            "mod8_ok": true,
+            "pred0": null,
+            "pred0_below_anchor": false,
+            "pred0_is_start": false,
+            "shift_coupled": false,
+            "step_rows": []
+          }
+        ],
+        "any_pred0_below_anchor": false,
+        "any_shift_coupled": false,
+        "all_unique_preds": true,
+        "all_monotone": true,
+        "all_mod8_ok": true
+      }
+    },
+    "long_odd": {
+      "37": {
+        "n": 37,
+        "x0": 37,
+        "length": 4,
+        "steps": 3,
+        "chain": [
+          37,
+          225,
+          3375,
+          196069
+        ],
+        "even_reset": 86818724,
+        "monotone": true,
+        "unique_preds": true,
+        "mod8_ok": true,
+        "pred0": null,
+        "pred0_below_anchor": false,
+        "pred0_is_start": false,
+        "shift_coupled": false,
+        "step_rows": [
+          {
+            "x": 37,
+            "next": 225,
+            "delta": 28,
+            "delta_mod8": 4,
+            "mod8_predicted": 4,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 225,
+            "next": 3375,
+            "delta": 0,
+            "delta_mod8": 0,
+            "mod8_predicted": 0,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 3375,
+            "next": 196069,
+            "delta": 306614,
+            "delta_mod8": 6,
+            "mod8_predicted": 6,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          }
+        ]
+      },
+      "241": {
+        "n": 241,
+        "x0": 241,
+        "length": 5,
+        "steps": 4,
+        "chain": [
+          241,
+          3741,
+          228813,
+          109451329,
+          1145068740593
+        ],
+        "even_reset": 1225313838630510914,
+        "monotone": true,
+        "unique_preds": true,
+        "mod8_ok": true,
+        "pred0": null,
+        "pred0_below_anchor": false,
+        "pred0_is_start": false,
+        "shift_coupled": false,
+        "step_rows": [
+          {
+            "x": 241,
+            "next": 3741,
+            "delta": 2440,
+            "delta_mod8": 0,
+            "mod8_predicted": 0,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 3741,
+            "next": 228813,
+            "delta": 209052,
+            "delta_mod8": 4,
+            "mod8_predicted": 4,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 228813,
+            "next": 109451329,
+            "delta": 196297556,
+            "delta_mod8": 4,
+            "mod8_predicted": 4,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 109451329,
+            "next": 1145068740593,
+            "delta": 775953692640,
+            "delta_mod8": 0,
+            "mod8_predicted": 0,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          }
+        ]
+      },
+      "329": {
+        "n": 329,
+        "x0": 329,
+        "length": 8,
+        "steps": 7,
+        "chain": [
+          329,
+          5967,
+          460929,
+          312932773,
+          5535751327289,
+          13024613938403266721,
+          47005349798456946840287141703,
+          10191096955185724142110473921312275306979975
+        ],
+        "even_reset": 32533545863179570755492129120411963721630316057459884067704058780,
+        "monotone": true,
+        "unique_preds": true,
+        "mod8_ok": true,
+        "pred0": null,
+        "pred0_below_anchor": false,
+        "pred0_is_start": false,
+        "shift_coupled": false,
+        "step_rows": [
+          {
+            "x": 329,
+            "next": 5967,
+            "delta": 6200,
+            "delta_mod8": 0,
+            "mod8_predicted": 0,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 5967,
+            "next": 460929,
+            "delta": 23022,
+            "delta_mod8": 6,
+            "mod8_predicted": 6,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 460929,
+            "next": 312932773,
+            "delta": 580875560,
+            "delta_mod8": 0,
+            "mod8_predicted": 0,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 312932773,
+            "next": 5535751327289,
+            "delta": 7132156884396,
+            "delta_mod8": 4,
+            "mod8_predicted": 4,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 5535751327289,
+            "next": 13024613938403266721,
+            "delta": 18109538823948146728,
+            "delta_mod8": 0,
+            "mod8_predicted": 0,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 13024613938403266721,
+            "next": 47005349798456946840287141703,
+            "delta": 22623558438211464768603183152,
+            "delta_mod8": 0,
+            "mod8_predicted": 0,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          },
+          {
+            "x": 47005349798456946840287141703,
+            "next": 10191096955185724142110473921312275306979975,
+            "delta": 7792660679690181636063369717568404324835302,
+            "delta_mod8": 6,
+            "mod8_predicted": 6,
+            "mod8_match": true,
+            "unique_pred_of_next": true,
+            "grows": true
+          }
+        ]
+      }
+    },
+    "l_lab": {
+      "t": 67709,
+      "n": 33391,
+      "x0": 67709,
+      "length": 5,
+      "steps": 4,
+      "chain": [
+        67709,
+        17618527,
+        73952761277,
+        20110903946502901,
+        2851985988922126936589955
+      ],
+      "even_reset": 4816383738386359112539037957095874424,
+      "monotone": true,
+      "unique_preds": true,
+      "mod8_ok": true,
+      "pred0": null,
+      "pred0_below_anchor": false,
+      "pred0_is_start": false,
+      "shift_coupled": false,
+      "step_rows": [
+        {
+          "x": 67709,
+          "next": 17618527,
+          "delta": 4632100,
+          "delta_mod8": 4,
+          "mod8_predicted": 4,
+          "mod8_match": true,
+          "unique_pred_of_next": true,
+          "grows": true
+        },
+        {
+          "x": 17618527,
+          "next": 73952761277,
+          "delta": 12128258454,
+          "delta_mod8": 6,
+          "mod8_predicted": 6,
+          "mod8_match": true,
+          "unique_pred_of_next": true,
+          "grows": true
+        },
+        {
+          "x": 73952761277,
+          "next": 20110903946502901,
+          "delta": 24246811167145132,
+          "delta_mod8": 4,
+          "mod8_predicted": 4,
+          "mod8_match": true,
+          "unique_pred_of_next": true,
+          "grows": true
+        },
+        {
+          "x": 20110903946502901,
+          "next": 2851985988922126936589955,
+          "delta": 4041070992903946546836676,
+          "delta_mod8": 4,
+          "mod8_predicted": 4,
+          "mod8_match": true,
+          "unique_pred_of_next": true,
+          "grows": true
+        }
+      ]
+    },
+    "run_count": 29,
+    "pred_below_anchor": false,
+    "shift_coupled_any": false,
+    "unique_preds_ok": true,
+    "monotone_ok": true,
+    "mod8_ok": true,
+    "leftover_later_pred_empty_or_start": true,
+    "first_leftover_pred_is_start": true,
+    "long_lengths": {
+      "37": 4,
+      "241": 5,
+      "329": 8
+    },
+    "l_lab_length": 5,
+    "chain_is_unique_inverse": true,
+    "letter_chain": false,
+    "power_cell_chain": false,
+    "cube_crossing_reopen": false,
+    "odd_chain_lean": false,
+    "z5_reopen": false,
+    "paper_a_modified": false,
+    "halt_theorem": false,
+    "universal_odd_run_bound": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "floorPower_odd_gt": true,
+    "odd_cell_unique": true,
+    "odd_run_power_bound": true,
+    "EnvelopeState": true,
+    "AboveAnchor": true,
+    "MinimalNonTerm": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_OddChain": false,
+    "has_api_OddChainLength": false,
+    "has_api_OddChainDefects": false,
+    "has_api_OddChainCompression": false,
+    "has_api_OddChainReturn": false,
+    "has_api_CubeCrossing": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "ODD_CHAIN_MINIMALITY_CLOSED",
+    "reason": "the unique odd inverse of a chain is the chain; pred0 is the start or empty; shift does not couple; mod 8 and growth are floorPower_odd_gt / generic odd-odd; long finite chains exist with the same structure"
+  },
+  "search_method": "odd runs on 37/69/89/365/501/1517/6187; long starts 37/241/329; L-lab 33391; unique pred / shift / mod 8"
+}

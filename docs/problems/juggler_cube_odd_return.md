@@ -126,15 +126,16 @@ that is not the leftover corridor.
 
 ## Formalization
 
-`MinimumRelative.lean` adds `CubeOddLanding`,
+`CubeCorridor.lean` adds `CubeOddLanding`,
 `odd_lt_cube_floor_sq_lt_nine`, `odd_lt_cube_floor_lt_five`,
 `cube_odd_lift`, `cube_lift_even_reset`,
 `cube_lift_even_reset_lt_cube`, `cube_lift_even_reset_fourth`,
-`cube_lift_odd_continues`, `cube_lift_odd_ge_fourth`, and
+`cube_lift_odd_continues`, and `cube_lift_odd_ge_fourth`.
+`Progress.lean` adds
 `finiteProgress_of_cube_odd_even_below_square`.
 `Minimal.lean` adds
-`minimal_cube_odd_even_not_even_below_square`. No new Lean file.
-Paper A is unchanged. No `sorry`. No halt theorem.
+`minimal_cube_odd_even_not_even_below_square`. Paper A is
+unchanged. No `sorry`. No halt theorem.
 
 ## Results
 

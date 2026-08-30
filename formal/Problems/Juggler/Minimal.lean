@@ -1,4 +1,3 @@
-import Problems.Juggler.GlobalDefect
 import Problems.Juggler.Progress
 import Problems.Juggler.MinimumRelative
 
@@ -199,23 +198,6 @@ theorem no_minimal_of_all_coeffStop
   have hn : 2 ≤ n := le_trans (by decide : 2 ≤ 12) (minimal_nonterm_ge_twelve hm)
   exact coeffStop_contradicts_minimal hm (h n hn)
 
-/-- On a minimal non-1 orbit every realized image stays `≥ n`, so the
-accumulated defect cannot exceed the formal exponent surplus.
-Equivalent to `T_w(n) ≥ n`, not a new obstruction for expanding mixed
-prefixes. -/
-theorem minimal_nonterm_global_defect_le_surplus {n : ℕ} {w : List Branch}
-    (h : MinimalNonTerm n) (hw : follows n w) :
-    globalDefect n w + n ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w) := by
-  have hid := global_defect_identity hw
-  have hge := minimal_nonterm_image_ge h hw
-  have hpow :
-      n ^ (2 ^ w.length) ≤ image n w ^ (2 ^ w.length) :=
-    Nat.pow_le_pow_left hge _
-  have : globalDefect n w + n ^ (2 ^ w.length) ≤
-      globalDefect n w + image n w ^ (2 ^ w.length) :=
-    Nat.add_le_add_left hpow _
-  exact le_trans this (add_comm (globalDefect n w) _ ▸ hid.symm.le)
-
 /-- A minimal non-1 orbit stays `≥ n` at every iterate, so every
 realized finite prefix is minimum-relative. Not a cycle hypothesis. -/
 theorem aboveAnchor_of_minimalNonTerm {n : ℕ} {w : List Branch}
@@ -266,5 +248,13 @@ theorem minimal_odd_even_eighth_forces_odd_return
   have he2 : floorPower (floorPower (image n w)) % 2 = 0 := by omega
   exact minimal_nonterm_not_finiteProgress h
     (finiteProgress_of_odd_even_eighth hw hodd he hx he2)
+
+/-- Termination application: a CE-realized isolated prefix with
+`a₀ = 2` forces `r = 0`. -/
+theorem minimal_isolated_two {n r : ℕ} (h : MinimalNonTerm n)
+    (hw : follows n (isolatedPrefix 2 r)) : r = 0 :=
+  aboveAnchor_isolated_two
+    (le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h))
+    (aboveAnchor_of_minimalNonTerm h hw)
 
 end Problems.Juggler

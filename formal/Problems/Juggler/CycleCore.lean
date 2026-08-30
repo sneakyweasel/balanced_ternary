@@ -7,6 +7,11 @@ namespace Problems.Juggler
 /-!
 # Cycle words, cells, and CycleMin filters
 
+Semantic cycle foundations: `CycleWord`, `CycleMin`, closure,
+extrema, and the `AboveAnchor` bridge. Named trajectory exclusions
+live in `CycleObstructions`. Isolated-prefix algebra lives in
+`FirstInternalOO`.
+
 `CycleWord n w` is a realized nonempty return `T_w(n) = n`. Cycle
 return is not envelope equality: the defect stays positive. The
 lower-growth theorem still gives `n^{3^o - 2^k} ≤ lowerDenom w`.

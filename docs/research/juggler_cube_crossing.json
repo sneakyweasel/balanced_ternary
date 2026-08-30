@@ -1,0 +1,820 @@
+{
+  "experiment": "juggler_cube_crossing",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "independent_crossing_defect": false,
+    "stable_crossing_map": false,
+    "cube_crossing_lean": false,
+    "sigma_automaton": false,
+    "z5_reopen": false,
+    "power_cell_chain": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "tables": {
+      "37": {
+        "n": 37,
+        "word": "OOOOEOOOEEOOEEE",
+        "crossing_count": 3,
+        "crossings": [
+          {
+            "i": 2,
+            "x": 3375,
+            "a": 2006,
+            "a_frac": 0.04070286502718935,
+            "y": 196069,
+            "delta": 306614,
+            "delta_span": 392139,
+            "delta_frac": 0.7819013156049258,
+            "y_odd": true,
+            "delta_even": true,
+            "delta_mod8": 6,
+            "delta_mod8_predicted": 6,
+            "mod8_match": true,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 0.002098557748090638,
+            "occupants": [
+              3375
+            ],
+            "cube_occupants": [
+              3375
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": 9317,
+            "F_defined": true,
+            "F_lt_x": false,
+            "F_gt_x": true,
+            "tau": 2,
+            "first_even": 86818724,
+            "return": {
+              "j": 3,
+              "z": 9317,
+              "below_square": false,
+              "in_cube_band": true,
+              "odd": true,
+              "above_n": true
+            },
+            "second": {
+              "z": 86818724,
+              "delta2": 74808333,
+              "z_odd": false,
+              "psi": 1360543914570953125492052399,
+              "expanded": 1360543914570953125492052399,
+              "match": true
+            }
+          },
+          {
+            "i": 5,
+            "x": 9317,
+            "a": 7948,
+            "a_frac": 0.1612693774855937,
+            "y": 899319,
+            "delta": 1394252,
+            "delta_span": 1798639,
+            "delta_frac": 0.7751705595175018,
+            "y_odd": true,
+            "delta_even": true,
+            "delta_mod8": 4,
+            "delta_mod8_predicted": 4,
+            "mod8_match": true,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 0.01224744601585169,
+            "occupants": [
+              9317
+            ],
+            "cube_occupants": [
+              9317
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": 2233,
+            "F_defined": true,
+            "F_lt_x": true,
+            "F_gt_x": false,
+            "tau": 3,
+            "first_even": 24906114455136,
+            "return": {
+              "j": 5,
+              "z": 2233,
+              "below_square": false,
+              "in_cube_band": true,
+              "odd": true,
+              "above_n": true
+            },
+            "second": {
+              "z": 852846071,
+              "delta2": 1018741718,
+              "z_odd": true,
+              "psi": 2737496207048525652710637172516,
+              "expanded": 2737496207048525652710637172516,
+              "match": true
+            }
+          },
+          {
+            "i": 10,
+            "x": 2233,
+            "a": 864,
+            "a_frac": 0.017531044558071585,
+            "y": 105519,
+            "delta": 123976,
+            "delta_span": 211039,
+            "delta_frac": 0.5874553992390033,
+            "y_odd": true,
+            "delta_even": true,
+            "delta_mod8": 0,
+            "delta_mod8_predicted": 0,
+            "mod8_match": true,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 0.0007917936774958804,
+            "occupants": [
+              2233
+            ],
+            "cube_occupants": [
+              2233
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": null,
+            "F_defined": false,
+            "F_lt_x": null,
+            "F_gt_x": null,
+            "tau": 2,
+            "first_even": 34276462,
+            "return": {
+              "j": 3,
+              "z": 5854,
+              "below_square": false,
+              "in_cube_band": true,
+              "odd": false,
+              "above_n": true
+            },
+            "second": {
+              "z": 34276462,
+              "delta2": 66275915,
+              "z_odd": false,
+              "psi": 46264803512226549330400617,
+              "expanded": 46264803512226549330400617,
+              "match": true
+            }
+          }
+        ],
+        "F_defined_count": 2,
+        "F_grows": [
+          3375
+        ],
+        "F_shrinks": [
+          9317
+        ],
+        "F2": [
+          {
+            "x": 3375,
+            "F": 9317,
+            "F2": 2233,
+            "F2_lt_x": true
+          }
+        ],
+        "periodic_F": false,
+        "generic_odd_odd_count": 6,
+        "generic_mod8_ok": true,
+        "cube_mod8_ok": true,
+        "unique_preimage_ok": true,
+        "psi_ok": true,
+        "generic_delta_fracs": [
+          0.06208425720620843,
+          0.0,
+          0.7819013156049258,
+          0.7751705595175018,
+          0.5972600168094929,
+          0.5874553992390033
+        ],
+        "cube_delta_fracs": [
+          0.7819013156049258,
+          0.7751705595175018,
+          0.5874553992390033
+        ],
+        "even_lifts": 0,
+        "odd_lifts": 3
+      },
+      "69": {
+        "n": 69,
+        "word": "OOEOOEE",
+        "crossing_count": 0,
+        "crossings": [],
+        "F_defined_count": 0,
+        "F_grows": [],
+        "F_shrinks": [],
+        "F2": [],
+        "periodic_F": false,
+        "generic_odd_odd_count": 2,
+        "generic_mod8_ok": true,
+        "cube_mod8_ok": true,
+        "unique_preimage_ok": true,
+        "psi_ok": true,
+        "generic_delta_fracs": [
+          0.15693112467306017,
+          0.5483998419596997
+        ],
+        "cube_delta_fracs": [],
+        "even_lifts": 0,
+        "odd_lifts": 0
+      },
+      "89": {
+        "n": 89,
+        "word": "OOEOOEOE",
+        "crossing_count": 0,
+        "crossings": [],
+        "F_defined_count": 0,
+        "F_grows": [],
+        "F_shrinks": [],
+        "F2": [],
+        "periodic_F": false,
+        "generic_odd_odd_count": 2,
+        "generic_mod8_ok": true,
+        "cube_mod8_ok": true,
+        "unique_preimage_ok": true,
+        "psi_ok": true,
+        "generic_delta_fracs": [
+          0.6241810601548541,
+          0.7343871469292563
+        ],
+        "cube_delta_fracs": [],
+        "even_lifts": 0,
+        "odd_lifts": 0
+      },
+      "365": {
+        "n": 365,
+        "word": "OOEOOEOOEOOEOEE",
+        "crossing_count": 1,
+        "crossings": [
+          {
+            "i": 10,
+            "x": 296551,
+            "a": 163326,
+            "a_frac": 0.0033679699921020994,
+            "y": 161491284,
+            "delta": 205003495,
+            "delta_span": 322982569,
+            "delta_frac": 0.6347199962980046,
+            "y_odd": false,
+            "delta_even": false,
+            "delta_mod8": 7,
+            "delta_mod8_predicted": null,
+            "mod8_match": null,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 1.7421878770725382e-05,
+            "occupants": [
+              296551
+            ],
+            "cube_occupants": [
+              296551
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": null,
+            "F_defined": false,
+            "F_lt_x": null,
+            "F_gt_x": null,
+            "tau": 1,
+            "first_even": 161491284,
+            "return": {
+              "j": 2,
+              "z": 12707,
+              "below_square": true,
+              "in_cube_band": false,
+              "odd": true,
+              "above_n": true
+            },
+            "second": null
+          }
+        ],
+        "F_defined_count": 0,
+        "F_grows": [],
+        "F_shrinks": [],
+        "F2": [],
+        "periodic_F": false,
+        "generic_odd_odd_count": 4,
+        "generic_mod8_ok": true,
+        "cube_mod8_ok": true,
+        "unique_preimage_ok": true,
+        "psi_ok": true,
+        "generic_delta_fracs": [
+          0.31519323151932316,
+          0.9328841545870797,
+          0.011784730434544845,
+          0.8885842762555576
+        ],
+        "cube_delta_fracs": [],
+        "even_lifts": 1,
+        "odd_lifts": 0
+      },
+      "501": {
+        "n": 501,
+        "word": "OOEOOOEOOEEOOEOOEOOEOEE",
+        "crossing_count": 3,
+        "crossings": [
+          {
+            "i": 5,
+            "x": 6812597,
+            "a": 6561596,
+            "a_frac": 0.05228342516563679,
+            "y": 17781526790,
+            "delta": 17403396073,
+            "delta_span": 35563053581,
+            "delta_frac": 0.489367315811654,
+            "y_odd": false,
+            "delta_even": false,
+            "delta_mod8": 1,
+            "delta_mod8_predicted": null,
+            "mod8_match": null,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 0.0005593709312394093,
+            "occupants": [
+              6812597
+            ],
+            "cube_occupants": [
+              6812597
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": 48693935,
+            "F_defined": true,
+            "F_lt_x": false,
+            "F_gt_x": true,
+            "tau": 1,
+            "first_even": 17781526790,
+            "return": {
+              "j": 2,
+              "z": 133347,
+              "below_square": true,
+              "in_cube_band": false,
+              "odd": true,
+              "above_n": true
+            },
+            "second": null
+          },
+          {
+            "i": 8,
+            "x": 48693935,
+            "a": 48442934,
+            "a_frac": 0.3859979362632021,
+            "y": 339791341082,
+            "delta": 98115244651,
+            "delta_span": 679582682165,
+            "delta_frac": 0.1443757282608005,
+            "y_odd": false,
+            "delta_even": false,
+            "delta_mod8": 3,
+            "delta_mod8_predicted": null,
+            "mod8_match": null,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 0.010761297878110242,
+            "occupants": [
+              48693935
+            ],
+            "cube_occupants": [
+              48693935
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": 296551,
+            "F_defined": true,
+            "F_lt_x": true,
+            "F_gt_x": false,
+            "tau": 1,
+            "first_even": 339791341082,
+            "return": {
+              "j": 2,
+              "z": 582916,
+              "below_square": false,
+              "in_cube_band": true,
+              "odd": false,
+              "above_n": true
+            },
+            "second": null
+          },
+          {
+            "i": 18,
+            "x": 296551,
+            "a": 45550,
+            "a_frac": 0.0003629467611682822,
+            "y": 161491284,
+            "delta": 205003495,
+            "delta_span": 322982569,
+            "delta_frac": 0.6347199962980046,
+            "y_odd": false,
+            "delta_even": false,
+            "delta_mod8": 7,
+            "delta_mod8_predicted": null,
+            "mod8_match": null,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 1.1323091380450345e-06,
+            "occupants": [
+              296551
+            ],
+            "cube_occupants": [
+              296551
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": null,
+            "F_defined": false,
+            "F_lt_x": null,
+            "F_gt_x": null,
+            "tau": 1,
+            "first_even": 161491284,
+            "return": {
+              "j": 2,
+              "z": 12707,
+              "below_square": true,
+              "in_cube_band": false,
+              "odd": true,
+              "above_n": true
+            },
+            "second": null
+          }
+        ],
+        "F_defined_count": 2,
+        "F_grows": [
+          6812597
+        ],
+        "F_shrinks": [
+          48693935
+        ],
+        "F2": [
+          {
+            "x": 6812597,
+            "F": 48693935,
+            "F2": 296551,
+            "F2_lt_x": true
+          }
+        ],
+        "periodic_F": false,
+        "generic_odd_odd_count": 7,
+        "generic_mod8_ok": true,
+        "cube_mod8_ok": true,
+        "unique_preimage_ok": true,
+        "psi_ok": true,
+        "generic_delta_fracs": [
+          0.8976679894769697,
+          0.0,
+          0.47834500717237444,
+          0.2894477280440806,
+          0.9328841545870797,
+          0.011784730434544845,
+          0.8885842762555576
+        ],
+        "cube_delta_fracs": [],
+        "even_lifts": 3,
+        "odd_lifts": 0
+      },
+      "1517": {
+        "n": 1517,
+        "word": "OOEOOEOOEOEOOOEE",
+        "crossing_count": 1,
+        "crossings": [
+          {
+            "i": 13,
+            "x": 43916043,
+            "a": 41614754,
+            "a_frac": 0.01192825648380373,
+            "y": 291028018566,
+            "delta": 429785435151,
+            "delta_span": 582056037133,
+            "delta_frac": 0.7383918518704307,
+            "y_odd": false,
+            "delta_even": false,
+            "delta_mod8": 7,
+            "delta_mod8_predicted": null,
+            "mod8_match": null,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 3.5790351724061864e-05,
+            "occupants": [
+              43916043
+            ],
+            "cube_occupants": [
+              43916043
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": null,
+            "F_defined": false,
+            "F_lt_x": null,
+            "F_gt_x": null,
+            "tau": 1,
+            "first_even": 291028018566,
+            "return": {
+              "j": 2,
+              "z": 539470,
+              "below_square": true,
+              "in_cube_band": false,
+              "odd": false,
+              "above_n": true
+            },
+            "second": null
+          }
+        ],
+        "F_defined_count": 0,
+        "F_grows": [],
+        "F_shrinks": [],
+        "F2": [],
+        "periodic_F": false,
+        "generic_odd_odd_count": 5,
+        "generic_mod8_ok": true,
+        "cube_mod8_ok": true,
+        "unique_preimage_ok": true,
+        "psi_ok": true,
+        "generic_delta_fracs": [
+          0.15391255045654179,
+          0.3402370606028774,
+          0.05824874204905951,
+          0.36767074645211306,
+          0.07849097335009243
+        ],
+        "cube_delta_fracs": [],
+        "even_lifts": 1,
+        "odd_lifts": 0
+      },
+      "6187": {
+        "n": 6187,
+        "word": "OOEOOOEOOEEOE",
+        "crossing_count": 2,
+        "crossings": [
+          {
+            "i": 5,
+            "x": 3955183437,
+            "a": 3916904468,
+            "a_frac": 0.01654142163007911,
+            "y": 248742471750750,
+            "delta": 248403063871953,
+            "delta_span": 497484943501501,
+            "delta_frac": 0.49931775246018784,
+            "y_odd": false,
+            "delta_even": false,
+            "delta_mod8": 1,
+            "delta_mod8_predicted": null,
+            "mod8_match": null,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 2.7411681725697448e-05,
+            "occupants": [
+              3955183437
+            ],
+            "cube_occupants": [
+              3955183437
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": 62634329559,
+            "F_defined": true,
+            "F_lt_x": false,
+            "F_gt_x": true,
+            "tau": 1,
+            "first_even": 248742471750750,
+            "return": {
+              "j": 2,
+              "z": 15771571,
+              "below_square": true,
+              "in_cube_band": false,
+              "odd": true,
+              "above_n": true
+            },
+            "second": null
+          },
+          {
+            "i": 8,
+            "x": 62634329559,
+            "a": 62596050590,
+            "a_frac": 0.26434846028186365,
+            "y": 15675400641582836,
+            "delta": 7095031162620983,
+            "delta_span": 31350801283165673,
+            "delta_frac": 0.22631099915238137,
+            "y_odd": false,
+            "delta_even": false,
+            "delta_mod8": 7,
+            "delta_mod8_predicted": null,
+            "mod8_match": null,
+            "y_ge_cube": true,
+            "y_lt_five": true,
+            "y_frac_of_lift": 0.0017290657940215743,
+            "occupants": [
+              62634329559
+            ],
+            "cube_occupants": [
+              62634329559
+            ],
+            "unique_cube_preimage": true,
+            "unique_global_preimage": true,
+            "F": null,
+            "F_defined": false,
+            "F_lt_x": null,
+            "F_gt_x": null,
+            "tau": 1,
+            "first_even": 15675400641582836,
+            "return": {
+              "j": 2,
+              "z": 125201440,
+              "below_square": false,
+              "in_cube_band": true,
+              "odd": false,
+              "above_n": true
+            },
+            "second": null
+          }
+        ],
+        "F_defined_count": 1,
+        "F_grows": [
+          3955183437
+        ],
+        "F_shrinks": [],
+        "F2": [],
+        "periodic_F": false,
+        "generic_odd_odd_count": 4,
+        "generic_mod8_ok": true,
+        "cube_mod8_ok": true,
+        "unique_preimage_ok": true,
+        "psi_ok": true,
+        "generic_delta_fracs": [
+          0.8617979733013325,
+          0.9087217818735854,
+          0.9258785049713639,
+          0.7917053525398325
+        ],
+        "cube_delta_fracs": [],
+        "even_lifts": 2,
+        "odd_lifts": 0
+      }
+    },
+    "chain_37": [
+      {
+        "x": 3375,
+        "y": 196069,
+        "delta": 306614,
+        "y_odd": true,
+        "F": 9317,
+        "F_gt_x": true,
+        "a": 2006,
+        "delta_frac": 0.7819013156049258,
+        "return": {
+          "j": 3,
+          "z": 9317,
+          "below_square": false,
+          "in_cube_band": true,
+          "odd": true,
+          "above_n": true
+        },
+        "tau": 2
+      },
+      {
+        "x": 9317,
+        "y": 899319,
+        "delta": 1394252,
+        "y_odd": true,
+        "F": 2233,
+        "F_gt_x": false,
+        "a": 7948,
+        "delta_frac": 0.7751705595175018,
+        "return": {
+          "j": 5,
+          "z": 2233,
+          "below_square": false,
+          "in_cube_band": true,
+          "odd": true,
+          "above_n": true
+        },
+        "tau": 3
+      },
+      {
+        "x": 2233,
+        "y": 105519,
+        "delta": 123976,
+        "y_odd": true,
+        "F": null,
+        "F_gt_x": null,
+        "a": 864,
+        "delta_frac": 0.5874553992390033,
+        "return": {
+          "j": 3,
+          "z": 5854,
+          "below_square": false,
+          "in_cube_band": true,
+          "odd": false,
+          "above_n": true
+        },
+        "tau": 2
+      }
+    ],
+    "contrast_empty": true,
+    "leftover_first_even_lift": true,
+    "leftover_first_F_defined": [
+      false,
+      true,
+      false,
+      true
+    ],
+    "crossing_count": 10,
+    "F_defined_count": 5,
+    "F_undefined_count": 5,
+    "odd_lift_count": 3,
+    "even_lift_count": 7,
+    "F_grows": [
+      3375,
+      6812597,
+      3955183437
+    ],
+    "F_shrinks": [
+      9317,
+      48693935
+    ],
+    "F_both_directions": true,
+    "periodic_F": false,
+    "F2": [
+      {
+        "x": 3375,
+        "F": 9317,
+        "F2": 2233,
+        "F2_lt_x": true
+      },
+      {
+        "x": 6812597,
+        "F": 48693935,
+        "F2": 296551,
+        "F2_lt_x": true
+      }
+    ],
+    "defect_generic": true,
+    "unique_preimage_ok": true,
+    "psi_ok": true,
+    "even_return_image_left_band": true,
+    "even_return_in_cube_band": [
+      {
+        "n": 37,
+        "x": 2233,
+        "z": 5854
+      },
+      {
+        "n": 501,
+        "x": 48693935,
+        "z": 582916
+      },
+      {
+        "n": 6187,
+        "x": 62634329559,
+        "z": 125201440
+      }
+    ],
+    "no_stable_F_class": true,
+    "letter_chain": false,
+    "power_cell_chain": false,
+    "sigma_automaton": false,
+    "cube_crossing_lean": false,
+    "z5_reopen": false,
+    "paper_a_modified": false,
+    "halt_theorem": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "CubeOddLanding": true,
+    "cube_odd_lift": true,
+    "cube_lift_even_reset": true,
+    "cube_lift_odd_ge_fourth": true,
+    "cube_lift_odd_continues": true,
+    "odd_cell_unique": true,
+    "EnvelopeState": true,
+    "envelope_lt_pow": true,
+    "even_below_anchor_pow": true,
+    "AboveAnchor": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_CubeCrossing": false,
+    "has_api_CrossingMap": false,
+    "has_api_OddEscapeCorridor": false,
+    "has_api_CubeCrossingMap": false,
+    "has_api_BoundaryCrossing": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "CUBE_CROSSING_CLOSED",
+    "reason": "delta parity is generic odd-odd; unique preimage is odd_cell_unique; F is not defined on a stable class and moves both ways; even-return cannot apply after an odd lift because y already left the cube band"
+  },
+  "search_method": "cube-odd landings on 37/69/89/365/501/1517/6187; defect, F, return cell; no inverse census"
+}

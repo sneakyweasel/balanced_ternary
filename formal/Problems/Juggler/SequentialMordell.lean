@@ -1,4 +1,5 @@
 import Problems.Juggler.CycleDiophantine
+import Problems.Juggler.GlobalDefect
 
 namespace Problems.Juggler
 

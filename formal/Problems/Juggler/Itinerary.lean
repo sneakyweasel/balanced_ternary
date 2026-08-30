@@ -124,6 +124,10 @@ theorem follows_append {n : ℕ} : ∀ {u v : List Branch},
   | .odd :: u, v, hu, hv =>
       ⟨hu.1, follows_append (u := u) hu.2 (by simpa [image] using hv)⟩
 
+theorem follows_even_letter {m : ℕ} (he : m % 2 = 0) :
+    follows m [Branch.even] :=
+  ⟨he, trivial⟩
+
 theorem follows_of_append_left {n : ℕ} :
     ∀ {u v : List Branch}, follows n (u ++ v) → follows n u
   | [], _, _ => trivial

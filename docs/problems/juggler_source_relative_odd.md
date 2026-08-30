@@ -109,7 +109,7 @@ It is not required.
   [juggler_source_relative_odd.json](../research/juggler_source_relative_odd.json)
 - Tests: `tests/research/juggler_sequence/test_source_relative_odd.py`
 - Lean: none new. Existing `cube_lift_even_reset` and
-  `cube_lift_odd_continues` stay in `MinimumRelative.lean`.
+  `cube_lift_odd_continues` stay in `CubeCorridor.lean`.
   Paper A is unchanged. No `sorry`.
 
 ## Conjectures

@@ -12,6 +12,8 @@ Composition is `EnvelopeState.even` / `.odd` / `.map_word`.
 `PowerBound` is the word-stat specialization `A = 2^k`, `B = 3^o`.
 `power_bound_lt_pow` is `EnvelopeState.of_follows.lt_pow`.
 `power_bound_contracts` is the `k = 1` case.
+`power_bound_word` remains a public alias; new proofs should
+prefer `EnvelopeState.of_follows`.
 -/
 /-- Named expansion of the OOOEE envelope `n5 ^ 32 ≤ n ^ 27`. -/
 theorem floorPower_oooee_pow_chain

@@ -716,4 +716,11 @@ theorem two_consecutive_persistent_expanding_exists :
       PersistentExpandingResidual y z :=
   ⟨365, 763, 1749, two_block_ooe_365⟩
 
+/-- Research wrapper of `global_defect_le_surplus_of_expanding`.
+Reparameterization of `T_w(n) ≥ n`, not a canonical Minimal fact. -/
+theorem minimal_nonterm_global_defect_le_surplus {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w) :
+    globalDefect n w + n ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w) :=
+  global_defect_le_surplus_of_expanding hw (minimal_nonterm_image_ge h hw)
+
 end Problems.Juggler
