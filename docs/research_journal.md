@@ -14981,4 +14981,45 @@ Best next question
 - can the residual floor be raised past 297 so finance kills L=19?
 ```
 
+## Juggler cycle-gap Baker transfer
+
+- **Date:** 2026-08-31
+- **Objective:** Map the unused Simons–de Weger half (Rhin / linear forms on \(\lvert 3^o-2^L\rvert\)) into Juggler cycle finance, and test whether a transcendence lower bound kills leftover near-convergent lengths at once
+- **Hypotheses:** Rhin/SdW Lemma 12 plugged into \(n\log n\le C L\,3^o/(3^o-2^L)\) excludes leftover near-convergents at floors \(53\), \(10^6\), or \(10^9\), or produces a finite period bound as for Collatz \(m\)-cycles
+- **Major results:** Classification **CYCLE_GAP_BAKER_CLOSED**. Dominance is **EXACT — HUMAN PROOF**: any correct gap lower bound is weaker than the exact gap, so it cannot exclude a length exact finance keeps. The exact gap at \(L=19\) is \(7153\), \(n_{\max}=297>53\), so the strongest possible lower bound already fails at the Lean floor. Rhin never beats the finance cap on leftover records \(19,84,569,1054,25781,50508\) at floors \(53\), \(10^6\), \(10^9\); zero leftover exclusions on \(L\le 2000\). The Collatz squeeze needs \(\Lambda<C_m 2^{-c(m)K}\) from \(m\)-cycle geometry, which Juggler finance does not supply. Conjecture `juggler_baker_kills_near_convergents` is **REFUTED**. No new Lean. Paper A unchanged. Not the parked \(x^3-y^2\) campaign
+- **Refuted ideas:** that a Baker/Rhin lower bound on \(\lvert 3^o-2^L\rvert\) kills every Juggler near-convergent at a realistic floor
+- **Literature:** `simons-de-weger-2005-collatz-m-cycles`; `rhin-1987-pade-irrationality`; `laurent-mignotte-nesterenko-1995-two-logarithms`; `juggler_cycle_finance`
+- **Open:** stop on Baker as a wholesale killer; \(L=19\) remains a floor question
+- **Decision:** CLOSE. The unused second half does not transfer
+
+```text
+What was learned
+- any correct lower bound on |3^o-2^L| is weaker than the
+  exact gap, so Baker cannot beat exact finance at the same floor
+- L=19 has exact n_max=297>53; the best possible gap bound
+  already fails at the Lean floor
+- Rhin/SdW Lemma 12 never fires the squeeze on leftover
+  records at floors 53, 10^6, or 10^9
+- Collatz gets Lambda exponentially small in K from m-cycle
+  geometry; Juggler finance only gives Lambda = O(L/(n log n))
+- this is not the parked x^3-y^2 campaign
+Strongest theorem
+- dominance: no correct gap lower bound excludes a length
+  that exact finance keeps (EXACT — HUMAN PROOF)
+Strongest refutation
+- juggler_baker_kills_near_convergents: L=19 exact gap
+  survives floor 53; Rhin kills zero leftovers
+Reusable machinery
+- research.juggler_sequence.cycle_gap_baker: Rhin/SdW
+  versus exact-gap comparison, no Baker solver
+Branch status
+- CLOSE
+Why
+- the slogan is false and the Collatz squeeze ingredient
+  is missing; remaining work would be machinery gravity
+Best next question
+- can the residual floor be raised past 297 so finance
+  kills L=19?
+```
+
 

@@ -1,0 +1,182 @@
+[
+  {
+    "L": 19,
+    "o": 12,
+    "floor": 53,
+    "finance_theta_cap": 0.10835190172714626,
+    "rhin_theta": 2.149171538536439e-20,
+    "exact_theta": 0.01345963145485576,
+    "fires": false,
+    "exact_already_excludes": false
+  },
+  {
+    "L": 84,
+    "o": 53,
+    "floor": 53,
+    "finance_theta_cap": 0.47902946026738347,
+    "rhin_theta": 5.581866798865438e-29,
+    "exact_theta": 0.002085953742688774,
+    "fires": false,
+    "exact_already_excludes": false
+  },
+  {
+    "L": 569,
+    "o": 359,
+    "floor": 53,
+    "finance_theta_cap": 3.2448543201445377,
+    "rhin_theta": 4.973943299212236e-40,
+    "exact_theta": 0.001065325380074111,
+    "fires": false,
+    "exact_already_excludes": false
+  },
+  {
+    "L": 1054,
+    "o": 665,
+    "floor": 53,
+    "finance_theta_cap": 6.010679180021692,
+    "rhin_theta": 1.3674575348375191e-43,
+    "exact_theta": 4.365315776183142e-05,
+    "fires": false,
+    "exact_already_excludes": false
+  },
+  {
+    "L": 25781,
+    "o": 16266,
+    "floor": 53,
+    "finance_theta_cap": 147.02212518039775,
+    "rhin_theta": 4.670971100405897e-62,
+    "exact_theta": 2.5459198127264017e-05,
+    "fires": false,
+    "exact_already_excludes": false
+  },
+  {
+    "L": 50508,
+    "o": 31867,
+    "floor": 53,
+    "finance_theta_cap": 288.03357118077383,
+    "rhin_theta": 6.095420739235153e-66,
+    "exact_theta": 7.264907458078721e-06,
+    "fires": false,
+    "exact_already_excludes": false
+  },
+  {
+    "L": 19,
+    "o": 12,
+    "floor": 1000000,
+    "finance_theta_cap": 1.6503190312323572e-06,
+    "rhin_theta": 2.149171538536439e-20,
+    "exact_theta": 0.01345963145485576,
+    "fires": false,
+    "exact_already_excludes": true
+  },
+  {
+    "L": 84,
+    "o": 53,
+    "floor": 1000000,
+    "finance_theta_cap": 7.296147295974631e-06,
+    "rhin_theta": 5.581866798865438e-29,
+    "exact_theta": 0.002085953742688774,
+    "fires": false,
+    "exact_already_excludes": true
+  },
+  {
+    "L": 569,
+    "o": 359,
+    "floor": 1000000,
+    "finance_theta_cap": 4.942271204059006e-05,
+    "rhin_theta": 4.973943299212236e-40,
+    "exact_theta": 0.001065325380074111,
+    "fires": false,
+    "exact_already_excludes": true
+  },
+  {
+    "L": 1054,
+    "o": 665,
+    "floor": 1000000,
+    "finance_theta_cap": 9.154927678520549e-05,
+    "rhin_theta": 1.3674575348375191e-43,
+    "exact_theta": 4.365315776183142e-05,
+    "fires": false,
+    "exact_already_excludes": false
+  },
+  {
+    "L": 25781,
+    "o": 16266,
+    "floor": 1000000,
+    "finance_theta_cap": 0.002239309207589547,
+    "rhin_theta": 4.670971100405897e-62,
+    "exact_theta": 2.5459198127264017e-05,
+    "fires": false,
+    "exact_already_excludes": false
+  },
+  {
+    "L": 50508,
+    "o": 31867,
+    "floor": 1000000,
+    "finance_theta_cap": 0.004387069138393889,
+    "rhin_theta": 6.095420739235153e-66,
+    "exact_theta": 7.264907458078721e-06,
+    "fires": false,
+    "exact_already_excludes": false
+  },
+  {
+    "L": 19,
+    "o": 12,
+    "floor": 1000000000,
+    "finance_theta_cap": 1.100212687488238e-09,
+    "rhin_theta": 2.149171538536439e-20,
+    "exact_theta": 0.01345963145485576,
+    "fires": false,
+    "exact_already_excludes": true
+  },
+  {
+    "L": 84,
+    "o": 53,
+    "floor": 1000000000,
+    "finance_theta_cap": 4.8640981973164206e-09,
+    "rhin_theta": 5.581866798865438e-29,
+    "exact_theta": 0.002085953742688774,
+    "fires": false,
+    "exact_already_excludes": true
+  },
+  {
+    "L": 569,
+    "o": 359,
+    "floor": 1000000000,
+    "finance_theta_cap": 3.2948474693726704e-08,
+    "rhin_theta": 4.973943299212236e-40,
+    "exact_theta": 0.001065325380074111,
+    "fires": false,
+    "exact_already_excludes": true
+  },
+  {
+    "L": 1054,
+    "o": 665,
+    "floor": 1000000000,
+    "finance_theta_cap": 6.103285119013698e-08,
+    "rhin_theta": 1.3674575348375191e-43,
+    "exact_theta": 4.365315776183142e-05,
+    "fires": false,
+    "exact_already_excludes": true
+  },
+  {
+    "L": 25781,
+    "o": 16266,
+    "floor": 1000000000,
+    "finance_theta_cap": 1.4928728050596979e-06,
+    "rhin_theta": 4.670971100405897e-62,
+    "exact_theta": 2.5459198127264017e-05,
+    "fires": false,
+    "exact_already_excludes": true
+  },
+  {
+    "L": 50508,
+    "o": 31867,
+    "floor": 1000000000,
+    "finance_theta_cap": 2.924712758929259e-06,
+    "rhin_theta": 6.095420739235153e-66,
+    "exact_theta": 7.264907458078721e-06,
+    "fires": false,
+    "exact_already_excludes": true
+  }
+]

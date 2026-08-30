@@ -27,6 +27,10 @@ the near-convergent length `11`. Together with
 `no_cycle_word_length_le_eighteen`, and any remaining cycle has
 period `19` or at least `30`.
 
+Eliahou packaging (`cycle_word_eliahou_leftover`) rewrites that
+leftover plus the computational finance table as: period `19`, or
+a listed near-convergent, or at least `10^5`. Not a new inequality.
+
 Dossier: `docs/problems/juggler_cycle_finance.md`. This is not a
 halt theorem and not a leftover-word census named
 `no_cycle_word_length_eleven`. Length `19` is the next
@@ -747,5 +751,35 @@ theorem cycle_word_length_nineteen_or_ge_twenty {n : ℕ} {w : List Branch}
   rcases cycle_word_length_nineteen_or_ge_thirty hn h with h19 | h30
   · exact Or.inl h19
   · exact Or.inr (le_trans (by decide : (20 : ℕ) ≤ 30) h30)
+
+/-- Finance table cutoff used by the Eliahou leftover. -/
+def eliahouTableCutoff : ℕ := 10 ^ 5
+
+/-- Eliahou leftover: period `19`, a listed near-convergent, or at
+least the finance table cutoff. -/
+def EliahouLeftover (L : ℕ) (exceptions : List ℕ) : Prop :=
+  L = 19 ∨ L ∈ exceptions ∨ eliahouTableCutoff ≤ L
+
+/-- Every length in `[30, cutoff)` outside the named family is
+already excluded. Instantiated by the computational gap table. -/
+def EliahouTable (exceptions : List ℕ) : Prop :=
+  ∀ (n : ℕ) (w : List Branch),
+    2 ≤ n → 30 ≤ w.length → w.length < eliahouTableCutoff →
+      w.length ∉ exceptions → ¬CycleWord n w
+
+/-- Bookkeeping: the Lean leftover `19` or `≥ 30`, plus the finance
+table, is the Eliahou leftover. Not a new inequality. -/
+theorem cycle_word_eliahou_leftover {n : ℕ} {w : List Branch}
+    {exceptions : List ℕ} (hn : 2 ≤ n) (h : CycleWord n w)
+    (hTable : EliahouTable exceptions) :
+    EliahouLeftover w.length exceptions := by
+  rcases cycle_word_length_nineteen_or_ge_thirty hn h with h19 | h30
+  · exact Or.inl h19
+  · rcases Nat.lt_or_ge w.length eliahouTableCutoff with hlt | hge
+    · have hmem : w.length ∈ exceptions := by
+        by_contra hne
+        exact hTable n w hn h30 hlt hne h
+      exact Or.inr (Or.inl hmem)
+    · exact Or.inr (Or.inr hge)
 
 end Problems.Juggler

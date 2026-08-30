@@ -10,13 +10,20 @@ from research.juggler_sequence.cycle_finance import (
     CLASS_GREEN,
     CLASS_INCOMPLETE,
     CLASS_PARK,
+    ELIAHOU_LEAN_PERIOD,
+    ELIAHOU_TABLE_CUTOFF,
     EXISTING_LEAN,
     EXPECTED_LEAN_KILL,
     FORBIDDEN_NEW_API,
     FORBIDDEN_THEOREMS,
     LEAN_FLOOR,
+    TEST_FLOOR,
     census_cross_check,
     classify,
+    eliahou_exceptions,
+    eliahou_leftover,
+    eliahou_packaging,
+    eliahou_table_holds,
     finance_rows,
     lean_api_present,
     n_max_from_bound,
@@ -131,6 +138,45 @@ def test_science_summary_is_green():
     assert summary["contiguous_prefix"] >= 1053
 
 
+def test_eliahou_leftover_covers_survivors():
+    rows = finance_rows(400)
+    floor = TEST_FLOOR
+    exceptions = eliahou_exceptions(rows, floor)
+    leftover = eliahou_packaging(rows, floor, cutoff=400)
+    assert leftover["table_holds"] is True
+    assert leftover["lean_period"] == ELIAHOU_LEAN_PERIOD
+    assert eliahou_table_holds(rows, floor, exceptions, cutoff=400)
+    for row in rows:
+        length = row["L"]
+        survives = row["n_max"] > floor
+        if survives:
+            assert eliahou_leftover(length, exceptions, cutoff=400)
+        if length < 400 and length != ELIAHOU_LEAN_PERIOD and length not in exceptions:
+            assert survives is False
+
+
+def test_eliahou_instance_matches_science_table():
+    exceptions = json.loads(
+        (
+            REPO / "data" / "research" / "juggler" / "cycle_finance" / "exceptions.json"
+        ).read_text(encoding="utf-8")
+    )
+    science = next(item for item in exceptions if item["floor"] == 1_000_000)
+    lengths = science["lengths"]
+    assert science["count"] == 397
+    assert science["first_exception"] == 1054
+    assert science["contiguous_prefix"] == 1053
+    assert science["truncated"] is False
+    assert ELIAHOU_LEAN_PERIOD not in lengths
+    assert 1054 in lengths
+    assert 50508 in lengths
+    assert eliahou_leftover(ELIAHOU_LEAN_PERIOD, lengths)
+    assert eliahou_leftover(1054, lengths)
+    assert eliahou_leftover(ELIAHOU_TABLE_CUTOFF, lengths)
+    assert not eliahou_leftover(30, lengths)
+    assert not eliahou_leftover(1053, lengths)
+
+
 def test_dossier_boundary():
     dossier = (
         REPO / "docs" / "problems" / "juggler_cycle_finance.md"
@@ -144,5 +190,6 @@ def test_dossier_boundary():
     assert "**PROMOTE**" in dossier
     assert "cycle_word_formally_expanding" in dossier
     assert "simons-de-weger-2005-collatz-m-cycles" in dossier
+    assert "cycle_word_eliahou_leftover" in dossier
     assert "theorem no_cycle_word_any_length" not in dossier
     assert "CycleFinance" not in paper

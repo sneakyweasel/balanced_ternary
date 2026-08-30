@@ -1,0 +1,23 @@
+{
+  "id": "juggler_baker_kills_near_convergents",
+  "title": "A Baker lower bound on |3^o - 2^L| kills every Juggler near-convergent cycle length at a realistic floor",
+  "statement": "There is a published effective lower bound on |3^o - 2^L| (Rhin / Laurent-Mignotte-Nesterenko / Simons-de Weger Lemma 12) such that, after substituting into n log n <= C L 3^o / (3^o - 2^L), every near-convergent Juggler cycle length is excluded by the Lean floor 53 or the computational floor 10^6.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "L=19, o=12: exact gap 3^12 - 2^19 = 7153 already gives n_max ≈ 297 > 53, so the strongest possible lower bound fails at the Lean floor",
+    "Rhin/SdW Lemma 12 at L=19: squeeze against finance never fires at floors 53, 10^6, or 10^9",
+    "record lengths 84, 569, 1054, 25781, 50508: exact n_max grows along convergents of ln 2 / ln 3"
+  ],
+  "first_seen": "juggler cycle-gap Baker transfer",
+  "lean_reference": "",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles",
+    "rhin-1987-pade-irrationality",
+    "laurent-mignotte-nesterenko-1995-two-logarithms"
+  ],
+  "mathematical_domain": "Juggler cycle finance / linear forms in two logarithms",
+  "notes": "Any correct gap lower bound is at most the exact gap, so it cannot exclude a length that exact finance keeps. Collatz gets an exponentially small upper bound on Lambda from m-cycle geometry; Juggler finance only gives |Lambda| <= O(L/(n log n)). Not the parked x^3 - y^2 campaign.",
+  "origin": "docs/problems/juggler_cycle_gap_baker.md",
+  "proof_reference": "docs/problems/juggler_cycle_gap_baker.md",
+  "tested_range": "dense L<=2000 plus record lengths 1,3,11,19,84,569,1054,25781,50508; floors 53, 10^6, 10^9"
+}

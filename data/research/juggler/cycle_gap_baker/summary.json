@@ -1,0 +1,15 @@
+{
+  "classification": "CYCLE_GAP_BAKER_CLOSED",
+  "reason": "Rhin/SdW Lemma 12 is strictly weaker than the exact gap on every tested length; the squeeze never fires on leftover record lengths at floors 53, 10^6, or 10^9; even the exact gap leaves L=19 alive at the Lean floor 53, so no correct transcendence lower bound can kill every near-convergent at a realistic floor",
+  "l_max": 2000,
+  "dominance": true,
+  "squeeze_fires_on_leftover_records": false,
+  "perfect_gap_kills_nineteen_at_lean_floor": false,
+  "rhin_floor_for_nineteen": 1000000000000000000,
+  "rhin_killed_dense": {
+    "53": 0,
+    "1000000": 0,
+    "1000000000": 0
+  },
+  "git": "b1816c9d0a72b0a65bccb10fe86ab50038b961a3"
+}

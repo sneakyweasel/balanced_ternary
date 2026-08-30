@@ -1,0 +1,19 @@
+{
+  "id": "rhin-1987-pade-irrationality",
+  "title": "Approximants de Padé et mesures effectives d'irrationalité",
+  "authors": ["Georges Rhin"],
+  "year": 1987,
+  "identifiers": {
+    "isbn": "9780817633653"
+  },
+  "url": {},
+  "problem_area": "transcendence",
+  "relevant_concepts": [
+    "linear forms in two logarithms",
+    "effective irrationality measures",
+    "log 2 and log 3"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "Séminaire de Théorie des Nombres, Paris 1985-86, Progress in Mathematics 75, Birkhäuser, 155-187. Simons-de Weger Lemma 12 applies the Proposition on p. 160 to Lambda = (K+L) log 2 - K log 3, obtaining Lambda > exp(-13.3 (0.46057 + log K)). The Juggler cycle-gap Baker branch maps that lower bound into cycle finance; docs/problems/juggler_cycle_gap_baker.md."
+}

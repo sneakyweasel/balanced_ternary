@@ -1,0 +1,20 @@
+{
+  "id": "laurent-mignotte-nesterenko-1995-two-logarithms",
+  "title": "Formes linéaires en deux logarithmes et déterminants d'interpolation",
+  "authors": ["Michel Laurent", "Maurice Mignotte", "Yuri Nesterenko"],
+  "year": 1995,
+  "identifiers": {
+    "doi": "10.1006/jnth.1995.1060"
+  },
+  "url": {
+    "doi": "https://doi.org/10.1006/jnth.1995.1060"
+  },
+  "problem_area": "transcendence",
+  "relevant_concepts": [
+    "linear forms in two logarithms",
+    "Baker-type lower bounds"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "Journal of Number Theory 55 (1995) 285-321. The general two-log tool cited by Simons-de Weger; they record that Rhin 1987 is sharper for the specific form x log 2 + y log 3. The Juggler cycle-gap Baker branch uses the Rhin/SdW constant, not a generic LMN constant. docs/problems/juggler_cycle_gap_baker.md."
+}

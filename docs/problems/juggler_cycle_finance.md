@@ -70,6 +70,18 @@ reaches \(1\), then no state of a cycle can be \(\le N_0\) (a
 periodic state never reaches 1), so no Juggler cycle of length
 \(L\) exists whenever \(n_{\max}(L)\le N_0\).
 
+**Eliahou leftover (EXACT — LEAN VERIFIED implication
+`cycle_word_eliahou_leftover`; instance COMPUTATIONALLY
+VERIFIED).** If a nontrivial cycle word exists at \(n\ge 2\), and
+every length in \([30,10^5)\) outside a named list of
+near-convergents is already excluded, then the period is \(19\),
+or belongs to that list, or is at least \(10^5\). This is
+bookkeeping on `cycle_word_length_nineteen_or_ge_thirty` plus the
+finance table: not a new inequality. The instance at the Python
+floor \(N_0=10^6\) is the existing family of \(397\)
+near-convergent lengths. Length \(19\) is the Lean-named leftover
+and is computationally already excluded (\(n_{\max}\approx297\)).
+
 ### Proof of the finance inequality
 
 Every state satisfies \(x_{i+1}=\lfloor\sqrt{x_i^{e_i}}\rfloor\)
@@ -144,6 +156,10 @@ reaches \(1\).
   The structural difference: Juggler per-step defects are relatively
   \(O(1/x)\) in logarithms, versus \(O(1)\) for Collatz, so the
   financing constraint is far more lopsided here.
+- Eliahou leftover packaging for Collatz — **known** (period
+  \(\ge X\), or one of a named convergent family). The Juggler
+  analogue is `cycle_word_eliahou_leftover`: period \(19\), or a
+  listed near-convergent, or \(\ge 10^5\).
 - Small-cycle census — **EXACT — LEAN VERIFIED**
   (`no_cycle_word_length_le_eight`,
   [juggler_length_eight_cycles.md](juggler_length_eight_cycles.md))
@@ -217,6 +233,11 @@ It is not required.
   (`cycle_word_length_nineteen_or_ge_thirty`);
   \(20\)–\(29\) die at the floor \(53\); \(L=30\) survives
   \(371/2\)
+- Eliahou leftover: period \(19\), or a listed near-convergent, or
+  \(\ge 10^5\) —
+  **EXACT — LEAN VERIFIED** as the implication
+  `cycle_word_eliahou_leftover`; the \(397\)-family instance is
+  **COMPUTATIONALLY VERIFIED**
 - Period is \(\ge 14\) —
   **EXACT — LEAN VERIFIED** (`cycle_word_length_ge_fourteen`),
   a corollary of the stronger leftover
@@ -240,7 +261,8 @@ for all \(2\le n\le 10^6\); slack stress on named hard seeds
 (including \(30817\)). Tests use \(L\le 400\) and floor \(2000\).
 No CLI. Lean: `CycleFinance.lean` (`cycleMin_finance`,
 `cycle_finance_min_fifty_three`, `no_cycle_word_length_le_eighteen`,
-`cycle_word_length_nineteen_or_ge_thirty`) and `Termination.lean`
+`cycle_word_length_nineteen_or_ge_thirty`,
+`cycle_word_eliahou_leftover`) and `Termination.lean`
 (`reachesOne_of_lt_fifty_three`). Paper A is unchanged.
 
 ## Conjectures
@@ -338,10 +360,13 @@ and `data/research/juggler/cycle_finance/`.
   \(\tfrac{371}{2}\) at the current floor.
 - The exceptional near-convergent lengths need either a larger
   verified floor (each factor of \(10^3\) in floor pushes the
-  frontier roughly one convergent out), a Baker-type lower bound on
-  \(3^o-2^L\), or near-tight rigidity (`NearTightScale.lean`) to
-  cover all \(L\) simultaneously; the finance inequality bounds the
-  minimum per length, not the length itself.
+  frontier roughly one convergent out) or near-tight rigidity
+  (`NearTightScale.lean`) to cover all \(L\) simultaneously; the
+  finance inequality bounds the minimum per length, not the length
+  itself. A Baker / Rhin lower bound on \(\lvert 3^o-2^L\rvert\) does
+  **not** kill leftover near-convergents
+  ([juggler_cycle_gap_baker.md](juggler_cycle_gap_baker.md),
+  **CLOSE**).
 
 ## Decision
 

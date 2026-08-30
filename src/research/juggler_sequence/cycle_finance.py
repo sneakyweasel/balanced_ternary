@@ -20,7 +20,8 @@ descent-induction floor (every n <= N0 reaches 1), and stress-tests
 the per-step bound eps_i <= (6/5)/x_{i+1} on real orbit segments.
 A verified floor N0 excludes every length with n_max(L) <= N0.
 Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_eighteen,
-cycle_word_length_nineteen_or_ge_thirty).
+cycle_word_length_nineteen_or_ge_thirty, cycle_word_eliahou_leftover).
+Eliahou leftover: period 19, or a listed near-convergent, or >= 10^5.
 """
 
 from __future__ import annotations
@@ -67,6 +68,8 @@ GREEN_PREFIX = 100
 STEP_CAP = 100_000
 BIT_CAP = 10_000_000
 EXCEPTION_LIST_CAP = 500
+ELIAHOU_TABLE_CUTOFF = 100_000
+ELIAHOU_LEAN_PERIOD = 19
 
 # L <= 8 with n_max(L) <= 11: finance + the Lean residual floor kill
 # these lengths without the census; {3, 6} stay census-only.
@@ -91,6 +94,10 @@ EXISTING_LEAN = (
     "no_cycle_word_length_le_eighteen",
     "cycle_word_length_nineteen_or_ge_thirty",
     "cycle_word_length_nineteen_or_ge_twenty",
+    "eliahouTableCutoff",
+    "EliahouLeftover",
+    "EliahouTable",
+    "cycle_word_eliahou_leftover",
 )
 
 FORBIDDEN_THEOREMS = (
@@ -173,6 +180,72 @@ def finance_rows(l_max: int) -> list[dict[str, Any]]:
             }
         )
     return rows
+
+
+def eliahou_leftover(
+    length: int,
+    exceptions: list[int] | tuple[int, ...] | set[int],
+    *,
+    cutoff: int = ELIAHOU_TABLE_CUTOFF,
+) -> bool:
+    """Eliahou leftover: period 19, listed near-convergent, or >= cutoff."""
+
+    return (
+        length == ELIAHOU_LEAN_PERIOD
+        or length in exceptions
+        or cutoff <= length
+    )
+
+
+def eliahou_exceptions(
+    rows: list[dict[str, Any]],
+    floor: int,
+) -> list[int]:
+    """Lengths whose finance n_max exceeds the verified floor."""
+
+    return [row["L"] for row in rows if row["n_max"] > floor]
+
+
+def eliahou_table_holds(
+    rows: list[dict[str, Any]],
+    floor: int,
+    exceptions: list[int] | tuple[int, ...] | set[int],
+    *,
+    cutoff: int = ELIAHOU_TABLE_CUTOFF,
+) -> bool:
+    """Every L in [30, cutoff) outside exceptions has n_max <= floor."""
+
+    exception_set = set(exceptions)
+    for row in rows:
+        length = row["L"]
+        if 30 <= length < cutoff and length not in exception_set:
+            if row["n_max"] > floor:
+                return False
+    return True
+
+
+def eliahou_packaging(
+    rows: list[dict[str, Any]],
+    floor: int,
+    *,
+    cutoff: int = ELIAHOU_TABLE_CUTOFF,
+) -> dict[str, Any]:
+    """Theorem-shaped leftover from the existing finance table."""
+
+    exceptions = eliahou_exceptions(rows, floor)
+    nineteen = next((row for row in rows if row["L"] == ELIAHOU_LEAN_PERIOD), None)
+    return {
+        "lean_period": ELIAHOU_LEAN_PERIOD,
+        "cutoff": cutoff,
+        "exceptions": exceptions,
+        "exception_count": len(exceptions),
+        "table_holds": eliahou_table_holds(
+            rows, floor, exceptions, cutoff=cutoff
+        ),
+        "nineteen_computationally_excluded": (
+            nineteen is not None and nineteen["n_max"] <= floor
+        ),
+    }
 
 
 def exception_summary(
@@ -369,12 +442,14 @@ def run_probe(
         if row["record"]
     ]
     achieved = next(item for item in exceptions if item["floor"] == floor)
+    leftover = eliahou_packaging(rows, floor, cutoff=min(l_max, ELIAHOU_TABLE_CUTOFF))
     return {
         "l_max": l_max,
         "floor": floor,
         "floor_check": floor_check,
         "records": records,
         "exceptions": exceptions,
+        "eliahou": leftover,
         "achieved": achieved,
         "census": census,
         "slack": slack,
@@ -505,6 +580,12 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"L <= `{scan['achieved']['contiguous_prefix']}`",
         f"- exceptional lengths at this floor: "
         f"`{scan['achieved']['count']}`",
+        f"- Eliahou leftover: period `{scan['eliahou']['lean_period']}`, or "
+        f"one of `{scan['eliahou']['exception_count']}` listed "
+        f"near-convergents, or `>= {scan['eliahou']['cutoff']}` "
+        f"(table holds `{scan['eliahou']['table_holds']}`; "
+        f"period 19 computationally excluded "
+        f"`{scan['eliahou']['nineteen_computationally_excluded']}`)",
         "",
         decision["reason"] + ".",
         "",

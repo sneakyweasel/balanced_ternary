@@ -18,5 +18,5 @@
   ],
   "project_relationship": "independent",
   "status": "classical-source",
-  "notes": "docs/problems/juggler_cycle_finance.md. Acta Arithmetica 117 (2005) 51-70. Excludes Collatz m-cycles for m <= 68 by combining a cycle financing equation with transcendence bounds on |2^L - 3^o|. The Juggler cycle finance branch adapts the financing-versus-gap template to the floor-power map, where per-step defects are relatively O(1/x) in logs instead of O(1); the two-power/three-power gap input is shared."
+  "notes": "docs/problems/juggler_cycle_finance.md and docs/problems/juggler_cycle_gap_baker.md. Acta Arithmetica 117 (2005) 51-70. Excludes Collatz m-cycles for m <= 68 (later 75) by combining a cycle financing equation with Rhin/LMN lower bounds on |2^L - 3^o|. The Juggler finance branch adapts the first half (financing-versus-gap). The second half does not transfer: Collatz m-cycle geometry makes Lambda exponentially small in K, while Juggler finance only gives |Lambda| <= O(L/(n log n)), so Rhin never contradicts."
 }
