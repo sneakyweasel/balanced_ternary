@@ -1,0 +1,84 @@
+{
+  "experiment": "juggler_cube_not_square",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "cube_even_is_finite_progress": false,
+    "letter_chain": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "witness_1517": {
+      "n": 1517,
+      "word": "OOEOOEOOEOEOO",
+      "u": 43916043,
+      "follows": true,
+      "image": 43916043,
+      "in_cell": true,
+      "u_odd": true,
+      "x": 43916043,
+      "y": 291028018566,
+      "y_ge_cube": true
+    },
+    "witness_even_ee": {
+      "in_cell": true,
+      "n": 3,
+      "x": 16,
+      "y": 4,
+      "y_ge_n": true,
+      "y_lt_sq": true,
+      "y_even": true,
+      "ee_drops": true
+    },
+    "leftover_parities": {
+      "365": {
+        "follows": false
+      },
+      "501": {
+        "follows": false
+      },
+      "1517": {
+        "follows": true,
+        "x": 43916043,
+        "odd": true,
+        "in_cell": true
+      },
+      "6187": {
+        "follows": false
+      }
+    },
+    "even_reset_holds": true,
+    "odd_lift_holds": true,
+    "letter_chain": false,
+    "w5_reopen": false,
+    "paper_a_modified": false,
+    "halt_theorem": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "even_below_cube_cell": true,
+    "even_cube_not_square": true,
+    "odd_ge_sq_floor_ge_cube": true,
+    "finiteProgress_of_cube_even_even": true,
+    "minimal_cube_even_forces_odd_image": true,
+    "envelope_lt_pow": true,
+    "even_below_fourth": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_no_juggler_cycle": false,
+    "in_laboratory_barrel": true,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "CUBE_NOT_SQUARE_GREEN",
+    "reason": "cube-not-square splits by parity: even resets into [n, n^2) and EE is FiniteProgress; odd lifts to n^3; 1517 takes the odd branch"
+  },
+  "search_method": "generic even-reset / odd-lift checks on 16 at n=3 and 1517 on OOEOOEOOEOEOO"
+}

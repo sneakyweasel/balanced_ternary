@@ -125,6 +125,57 @@ theorem finiteProgress_of_even_power_bound_square {n : ℕ} {w : List Branch}
   finiteProgress_of_even_below_square hw he
     (power_bound_lt_pow (k := 2) hn hw hgap)
 
+/-- Cube cell plus even is a square cell for the next state:
+`x < n^3 < n^4` and `even_below_fourth`. -/
+theorem even_below_cube_cell {x n : ℕ} (hn : 2 ≤ n) (he : x % 2 = 0)
+    (hlt : x < n ^ 3) : floorPower x < n ^ 2 :=
+  (even_below_fourth he).mpr
+    (lt_trans hlt (pow_lt_of_two_le hn (by decide : (3 : ℕ) < 4)))
+
+/-- Even cube-not-square landing resets into the square cell. -/
+theorem even_cube_not_square {x n : ℕ} (hn : 2 ≤ n) (he : x % 2 = 0)
+    (hge : n ^ 2 ≤ x) (hlt : x < n ^ 3) :
+    n ≤ floorPower x ∧ floorPower x < n ^ 2 :=
+  ⟨by
+      have hnot : ¬floorPower x < n := by
+        intro hdrop
+        exact (not_le_of_gt ((even_below_square_iff he).mp hdrop)) hge
+      exact Nat.le_of_not_gt hnot,
+    even_below_cube_cell hn he hlt⟩
+
+/-- Odd cube-not-square landing lifts to at least `n^3`.
+Companion of `odd_ge_succ_sq_floorPower_ge_cube`, with floor `n^2`. -/
+theorem odd_ge_sq_floor_ge_cube {x n : ℕ} (hodd : x % 2 = 1)
+    (hge : n ^ 2 ≤ x) : n ^ 3 ≤ floorPower x := by
+  rw [floorPower_odd_eq hodd]
+  refine Nat.le_sqrt.mpr ?_
+  have hpow : (n ^ 2) ^ 3 ≤ x ^ 3 := Nat.pow_le_pow_left hge 3
+  have hexp : (n ^ 3) ^ 2 = (n ^ 2) ^ 3 := by simp [← Nat.pow_mul]
+  have : (n ^ 3) ^ 2 ≤ x ^ 3 := by rwa [hexp]
+  simpa [pow_two] using this
+
+/-- Two evens after a cube-cell even landing drop below `n`. -/
+theorem finiteProgress_of_cube_even_even {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hw : follows n w)
+    (he : image n w % 2 = 0) (hlt : image n w < n ^ 3)
+    (he2 : floorPower (image n w) % 2 = 0) : FiniteProgress n :=
+  finiteProgress_of_even_below_square
+    (follows_append hw (follows_even_letter he))
+    (by simpa [image_append, image] using he2)
+    (by simpa [image_append, image] using even_below_cube_cell hn he hlt)
+
+/-- On a CE, a cube-cell even landing is followed by an odd image. -/
+theorem minimal_cube_even_forces_odd_image {n : ℕ} {w : List Branch}
+    (h : MinimalNonTerm n) (hw : follows n w)
+    (he : image n w % 2 = 0) (hlt : image n w < n ^ 3) :
+    floorPower (image n w) % 2 = 1 := by
+  have hn : 2 ≤ n :=
+    le_trans (by decide : (2 : ℕ) ≤ 12) (minimal_nonterm_ge_twelve h)
+  by_contra heven
+  have he2 : floorPower (image n w) % 2 = 0 := by omega
+  exact minimal_nonterm_not_finiteProgress h
+    (finiteProgress_of_cube_even_even hn hw he hlt he2)
+
 theorem even_ge_sq_of_succ_ge {x n : ℕ} (he : x % 2 = 0)
     (hge : n ≤ floorPower x) : n ^ 2 ≤ x := by
   rw [floorPower_even_eq he] at hge

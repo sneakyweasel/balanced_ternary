@@ -13899,4 +13899,46 @@ Best next question
   certificate, if any?
 ```
 
+## Juggler cube-not-square cell
+
+- **Date:** 2026-08-30
+- **Objective:** Name the certificate of an `AboveAnchor` state in \([n^{2},n^{3})\)
+- **Hypotheses:** even resets to \([n,n^{2})\); odd lifts to \(\ge n^{3}\); EE after even cube is `FiniteProgress`
+- **Major results:** Classification **CUBE_NOT_SQUARE_GREEN**. Even cube cell \(\Rightarrow T<n^{2}\); even cube-not-square \(\Rightarrow n\le T<n^{2}\); odd \(x\ge n^{2}\Rightarrow T\ge n^{3}\); EE after even cube is `FiniteProgress`; a CE forces the next image odd — **EXACT — LEAN VERIFIED** (`J-cube-not-square-split`). Cube-cell even is already descent — **REFUTED** (`J-cube-even-is-progress`, \(n=3\), \(x=16\)). \(1517\) takes the odd lift. No letter chain. No W_5. Paper A unchanged. No halt theorem
+- **Refuted ideas:** cube-cell even landing is `FiniteProgress`
+- **Literature:** `even_below_fourth`; `envelope_lt_pow`; `J-ce-second-o-cube`; `J-second-o-below-square`
+- **Open:** after an odd lift \(T(x)\ge n^{3}\), is there a shared cell other than another one-step envelope?
+- **Decision:** PROMOTE the parity-split certificate. Do not resume the letter chain
+
+```text
+What was learned
+- even x < n^3 resets below n^2
+- even cube-not-square lands in [n, n^2)
+- odd x >= n^2 lifts to T >= n^3
+- EE after even cube is FiniteProgress
+- 1517 occupies the odd lift
+Strongest theorem
+- n^2 <= x < n^3 splits: even resets
+  to [n, n^2); odd lifts to n^3
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- cube-cell even landing is descent
+  (n=3, x=16)
+Reusable machinery
+- even_below_cube_cell;
+  even_cube_not_square;
+  odd_ge_sq_floor_ge_cube;
+  finiteProgress_of_cube_even_even
+Branch status
+- PROMOTE
+Why
+- the envelope leftover is now a
+  named parity-split certificate
+Best next question
+- after an odd lift T(x) >= n^3 from
+  a cube-not-square odd landing, is
+  there a shared cell other than
+  another one-step envelope?
+```
+
 
