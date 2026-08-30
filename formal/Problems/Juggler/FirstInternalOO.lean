@@ -1,4 +1,5 @@
 import Problems.Juggler.CycleCore
+import Problems.Juggler.Minimal
 
 namespace Problems.Juggler
 

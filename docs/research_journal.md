@@ -14235,4 +14235,37 @@ Best next question
 - none from this packaging
 ```
 
+## Juggler Q first-return section
+
+- **Date:** 2026-08-30
+- **Objective:** Find an exact scale section on which leftover \(Q\)-returns are simpler than one-step \(Q\)
+- **Hypotheses:** exit-and-reenter returns are Type I or recurrent; \([n,n^{2})\) is already useful
+- **Major results:** Classification **Q_RETURN_SECTION_PARK**. Preferred return law \(R_S(x)<x\) or \(R_S(x)=x\) — **REFUTED** (`J-q-return-section-descent`). Sections \(\alpha\in\{9/4,8/3,3\}\) have leftover \(\tau_S=1\). \(S(3/2)\) and \(S(2)\) have multi-block Type I returns next to one-step plus-climbs (\(365\to763\to1749\to4447\), then \(4447\to1196\)). Record-lows fail. No Type II. No `ReturnSection.lean`. Paper A unchanged. No halt theorem
+- **Refuted ideas:** leftover Poincaré \(Q\)-returns are well-founded; \([n,n^{2})\) is a useful leftover section
+- **Literature:** `J-block-map-q-orbits`; `J-block-map-q-state`; `oe_block_contracts`; `ReturnBelow`
+- **Open:** none from first-return sections of \(Q\)
+- **Decision:** PARK. Multi-block returns exist but are not a shared order
+
+```text
+What was learned
+- thick leftover sections have tau_S = 1
+- 365 on S(3/2) climbs then one Type I
+- 501 on S(2) has 133347 -> 763 after 582916
+- record-lows stay at the start n
+- the odd window is the same I / plus mix
+Strongest theorem
+- none new
+Strongest refutation
+- R_S < x or R_S = x on leftover Q-orbits
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- PARK
+Why
+- Poincaré Q-returns do not simplify
+  the residual landing
+Best next question
+- none from first-return sections of Q
+```
+
 

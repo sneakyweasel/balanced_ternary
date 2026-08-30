@@ -1,5 +1,6 @@
 import Problems.Juggler.CycleCore
 import Problems.Juggler.CycleObstructions
+import Problems.Juggler.Residuals
 
 namespace Problems.Juggler
 

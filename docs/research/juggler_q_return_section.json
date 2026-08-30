@@ -1,0 +1,2502 @@
+{
+  "experiment": "juggler_q_return_section",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "section_return_descent": false,
+    "q_descriptor_reopen": false,
+    "return_section_lean": false,
+    "letter_chain": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "leftovers": {
+      "3/2": {
+        "365": {
+          "n": 365,
+          "section": "3/2",
+          "A": 2,
+          "B": 3,
+          "orbit": [
+            365,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 5,
+          "n_defined": 4,
+          "n_tau1": 3,
+          "n_multiblock": 1,
+          "kinds": {
+            "plus": 3,
+            "I": 1,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 365,
+              "tau": 1,
+              "R": 763,
+              "kind": "plus",
+              "peak": 763,
+              "band_descends": false
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 2,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 5,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 365,
+            "last_min": 365
+          },
+          "typical_tau_one": false,
+          "rejected": false,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "501": {
+          "n": 501,
+          "section": "3/2",
+          "A": 2,
+          "B": 3,
+          "orbit": [
+            501,
+            1089,
+            133347,
+            582916,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 6,
+          "n_defined": 5,
+          "n_tau1": 3,
+          "n_multiblock": 2,
+          "kinds": {
+            "plus": 3,
+            "I": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 501,
+              "tau": 1,
+              "R": 1089,
+              "kind": "plus",
+              "peak": 1089,
+              "band_descends": false
+            },
+            {
+              "x": 1089,
+              "tau": 3,
+              "R": 763,
+              "kind": "I",
+              "peak": 582916,
+              "band_descends": false
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 2,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 6,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 501,
+            "last_min": 501
+          },
+          "typical_tau_one": false,
+          "rejected": false,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "1517": {
+          "n": 1517,
+          "section": "3/2",
+          "A": 2,
+          "B": 3,
+          "orbit": [
+            1517,
+            3789,
+            10613,
+            33811,
+            2493,
+            539470
+          ],
+          "n_in_s": 5,
+          "n_defined": 4,
+          "n_tau1": 4,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 3,
+            "I": 1,
+            "exit_then_drop": 1
+          },
+          "returns": [
+            {
+              "x": 1517,
+              "tau": 1,
+              "R": 3789,
+              "kind": "plus",
+              "peak": 3789,
+              "band_descends": false
+            },
+            {
+              "x": 3789,
+              "tau": 1,
+              "R": 10613,
+              "kind": "plus",
+              "peak": 10613,
+              "band_descends": false
+            },
+            {
+              "x": 10613,
+              "tau": 1,
+              "R": 33811,
+              "kind": "plus",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 33811,
+              "tau": 1,
+              "R": 2493,
+              "kind": "I",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 2493,
+              "tau": null,
+              "R": null,
+              "kind": "exit_then_drop",
+              "peak": 539470,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 5,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 1517,
+            "last_min": 1517
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "6187": {
+          "n": 6187,
+          "section": "3/2",
+          "A": 2,
+          "B": 3,
+          "orbit": [
+            6187,
+            18425,
+            15771571,
+            125201440,
+            11189,
+            1087
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 1,
+          "n_multiblock": 1,
+          "kinds": {
+            "plus": 1,
+            "I": 1,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 6187,
+              "tau": 1,
+              "R": 18425,
+              "kind": "plus",
+              "peak": 18425,
+              "band_descends": false
+            },
+            {
+              "x": 18425,
+              "tau": 3,
+              "R": 11189,
+              "kind": "I",
+              "peak": 125201440,
+              "band_descends": false
+            },
+            {
+              "x": 11189,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 11189,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 6187,
+            "last_min": 6187
+          },
+          "typical_tau_one": false,
+          "rejected": false,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        }
+      },
+      "2": {
+        "365": {
+          "n": 365,
+          "section": "2",
+          "A": 1,
+          "B": 2,
+          "orbit": [
+            365,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 6,
+          "n_defined": 5,
+          "n_tau1": 5,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 4,
+            "I": 1,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 365,
+              "tau": 1,
+              "R": 763,
+              "kind": "plus",
+              "peak": 763,
+              "band_descends": false
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 1,
+              "R": 12707,
+              "kind": "plus",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 12707,
+              "tau": 1,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": true
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 6,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 365,
+            "last_min": 365
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "501": {
+          "n": 501,
+          "section": "2",
+          "A": 1,
+          "B": 2,
+          "orbit": [
+            501,
+            1089,
+            133347,
+            582916,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 8,
+          "n_defined": 7,
+          "n_tau1": 6,
+          "n_multiblock": 1,
+          "kinds": {
+            "plus": 5,
+            "I": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 501,
+              "tau": 1,
+              "R": 1089,
+              "kind": "plus",
+              "peak": 1089,
+              "band_descends": false
+            },
+            {
+              "x": 1089,
+              "tau": 1,
+              "R": 133347,
+              "kind": "plus",
+              "peak": 133347,
+              "band_descends": false
+            },
+            {
+              "x": 133347,
+              "tau": 2,
+              "R": 763,
+              "kind": "I",
+              "peak": 582916,
+              "band_descends": true
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 1,
+              "R": 12707,
+              "kind": "plus",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 12707,
+              "tau": 1,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": true
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 8,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 501,
+            "last_min": 501
+          },
+          "typical_tau_one": false,
+          "rejected": false,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "1517": {
+          "n": 1517,
+          "section": "2",
+          "A": 1,
+          "B": 2,
+          "orbit": [
+            1517,
+            3789,
+            10613,
+            33811,
+            2493,
+            539470
+          ],
+          "n_in_s": 6,
+          "n_defined": 5,
+          "n_tau1": 5,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 4,
+            "I": 1,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 1517,
+              "tau": 1,
+              "R": 3789,
+              "kind": "plus",
+              "peak": 3789,
+              "band_descends": false
+            },
+            {
+              "x": 3789,
+              "tau": 1,
+              "R": 10613,
+              "kind": "plus",
+              "peak": 10613,
+              "band_descends": false
+            },
+            {
+              "x": 10613,
+              "tau": 1,
+              "R": 33811,
+              "kind": "plus",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 33811,
+              "tau": 1,
+              "R": 2493,
+              "kind": "I",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 2493,
+              "tau": 1,
+              "R": 539470,
+              "kind": "plus",
+              "peak": 539470,
+              "band_descends": false
+            },
+            {
+              "x": 539470,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 539470,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 6,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 1517,
+            "last_min": 1517
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "6187": {
+          "n": 6187,
+          "section": "2",
+          "A": 1,
+          "B": 2,
+          "orbit": [
+            6187,
+            18425,
+            15771571,
+            125201440,
+            11189,
+            1087
+          ],
+          "n_in_s": 4,
+          "n_defined": 3,
+          "n_tau1": 2,
+          "n_multiblock": 1,
+          "kinds": {
+            "plus": 2,
+            "I": 1,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 6187,
+              "tau": 1,
+              "R": 18425,
+              "kind": "plus",
+              "peak": 18425,
+              "band_descends": false
+            },
+            {
+              "x": 18425,
+              "tau": 1,
+              "R": 15771571,
+              "kind": "plus",
+              "peak": 15771571,
+              "band_descends": false
+            },
+            {
+              "x": 15771571,
+              "tau": 2,
+              "R": 11189,
+              "kind": "I",
+              "peak": 125201440,
+              "band_descends": true
+            },
+            {
+              "x": 11189,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 11189,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 4,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 6187,
+            "last_min": 6187
+          },
+          "typical_tau_one": false,
+          "rejected": false,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        }
+      },
+      "9/4": {
+        "365": {
+          "n": 365,
+          "section": "9/4",
+          "A": 4,
+          "B": 9,
+          "orbit": [
+            365,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 6,
+          "n_defined": 5,
+          "n_tau1": 5,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 4,
+            "I": 1,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 365,
+              "tau": 1,
+              "R": 763,
+              "kind": "plus",
+              "peak": 763,
+              "band_descends": false
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 1,
+              "R": 12707,
+              "kind": "plus",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 12707,
+              "tau": 1,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": true
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 6,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 365,
+            "last_min": 365
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "501": {
+          "n": 501,
+          "section": "9/4",
+          "A": 4,
+          "B": 9,
+          "orbit": [
+            501,
+            1089,
+            133347,
+            582916,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 9,
+          "n_defined": 8,
+          "n_tau1": 8,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 6,
+            "I": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 501,
+              "tau": 1,
+              "R": 1089,
+              "kind": "plus",
+              "peak": 1089,
+              "band_descends": false
+            },
+            {
+              "x": 1089,
+              "tau": 1,
+              "R": 133347,
+              "kind": "plus",
+              "peak": 133347,
+              "band_descends": false
+            },
+            {
+              "x": 133347,
+              "tau": 1,
+              "R": 582916,
+              "kind": "plus",
+              "peak": 582916,
+              "band_descends": false
+            },
+            {
+              "x": 582916,
+              "tau": 1,
+              "R": 763,
+              "kind": "I",
+              "peak": 582916,
+              "band_descends": true
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 1,
+              "R": 12707,
+              "kind": "plus",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 12707,
+              "tau": 1,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": true
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 9,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 501,
+            "last_min": 501
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "1517": {
+          "n": 1517,
+          "section": "9/4",
+          "A": 4,
+          "B": 9,
+          "orbit": [
+            1517,
+            3789,
+            10613,
+            33811,
+            2493,
+            539470
+          ],
+          "n_in_s": 6,
+          "n_defined": 5,
+          "n_tau1": 5,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 4,
+            "I": 1,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 1517,
+              "tau": 1,
+              "R": 3789,
+              "kind": "plus",
+              "peak": 3789,
+              "band_descends": false
+            },
+            {
+              "x": 3789,
+              "tau": 1,
+              "R": 10613,
+              "kind": "plus",
+              "peak": 10613,
+              "band_descends": false
+            },
+            {
+              "x": 10613,
+              "tau": 1,
+              "R": 33811,
+              "kind": "plus",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 33811,
+              "tau": 1,
+              "R": 2493,
+              "kind": "I",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 2493,
+              "tau": 1,
+              "R": 539470,
+              "kind": "plus",
+              "peak": 539470,
+              "band_descends": false
+            },
+            {
+              "x": 539470,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 539470,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 6,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 1517,
+            "last_min": 1517
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "6187": {
+          "n": 6187,
+          "section": "9/4",
+          "A": 4,
+          "B": 9,
+          "orbit": [
+            6187,
+            18425,
+            15771571,
+            125201440,
+            11189,
+            1087
+          ],
+          "n_in_s": 5,
+          "n_defined": 4,
+          "n_tau1": 4,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 3,
+            "I": 1,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 6187,
+              "tau": 1,
+              "R": 18425,
+              "kind": "plus",
+              "peak": 18425,
+              "band_descends": false
+            },
+            {
+              "x": 18425,
+              "tau": 1,
+              "R": 15771571,
+              "kind": "plus",
+              "peak": 15771571,
+              "band_descends": false
+            },
+            {
+              "x": 15771571,
+              "tau": 1,
+              "R": 125201440,
+              "kind": "plus",
+              "peak": 125201440,
+              "band_descends": false
+            },
+            {
+              "x": 125201440,
+              "tau": 1,
+              "R": 11189,
+              "kind": "I",
+              "peak": 125201440,
+              "band_descends": true
+            },
+            {
+              "x": 11189,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 11189,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 5,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 6187,
+            "last_min": 6187
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        }
+      },
+      "8/3": {
+        "365": {
+          "n": 365,
+          "section": "8/3",
+          "A": 3,
+          "B": 8,
+          "orbit": [
+            365,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 6,
+          "n_defined": 5,
+          "n_tau1": 5,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 4,
+            "I": 1,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 365,
+              "tau": 1,
+              "R": 763,
+              "kind": "plus",
+              "peak": 763,
+              "band_descends": false
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 1,
+              "R": 12707,
+              "kind": "plus",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 12707,
+              "tau": 1,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": true
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 6,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 365,
+            "last_min": 365
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "501": {
+          "n": 501,
+          "section": "8/3",
+          "A": 3,
+          "B": 8,
+          "orbit": [
+            501,
+            1089,
+            133347,
+            582916,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 9,
+          "n_defined": 8,
+          "n_tau1": 8,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 6,
+            "I": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 501,
+              "tau": 1,
+              "R": 1089,
+              "kind": "plus",
+              "peak": 1089,
+              "band_descends": false
+            },
+            {
+              "x": 1089,
+              "tau": 1,
+              "R": 133347,
+              "kind": "plus",
+              "peak": 133347,
+              "band_descends": false
+            },
+            {
+              "x": 133347,
+              "tau": 1,
+              "R": 582916,
+              "kind": "plus",
+              "peak": 582916,
+              "band_descends": false
+            },
+            {
+              "x": 582916,
+              "tau": 1,
+              "R": 763,
+              "kind": "I",
+              "peak": 582916,
+              "band_descends": true
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 1,
+              "R": 12707,
+              "kind": "plus",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 12707,
+              "tau": 1,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": true
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 9,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 501,
+            "last_min": 501
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "1517": {
+          "n": 1517,
+          "section": "8/3",
+          "A": 3,
+          "B": 8,
+          "orbit": [
+            1517,
+            3789,
+            10613,
+            33811,
+            2493,
+            539470
+          ],
+          "n_in_s": 6,
+          "n_defined": 5,
+          "n_tau1": 5,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 4,
+            "I": 1,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 1517,
+              "tau": 1,
+              "R": 3789,
+              "kind": "plus",
+              "peak": 3789,
+              "band_descends": false
+            },
+            {
+              "x": 3789,
+              "tau": 1,
+              "R": 10613,
+              "kind": "plus",
+              "peak": 10613,
+              "band_descends": false
+            },
+            {
+              "x": 10613,
+              "tau": 1,
+              "R": 33811,
+              "kind": "plus",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 33811,
+              "tau": 1,
+              "R": 2493,
+              "kind": "I",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 2493,
+              "tau": 1,
+              "R": 539470,
+              "kind": "plus",
+              "peak": 539470,
+              "band_descends": false
+            },
+            {
+              "x": 539470,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 539470,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 6,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 1517,
+            "last_min": 1517
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "6187": {
+          "n": 6187,
+          "section": "8/3",
+          "A": 3,
+          "B": 8,
+          "orbit": [
+            6187,
+            18425,
+            15771571,
+            125201440,
+            11189,
+            1087
+          ],
+          "n_in_s": 5,
+          "n_defined": 4,
+          "n_tau1": 4,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 3,
+            "I": 1,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 6187,
+              "tau": 1,
+              "R": 18425,
+              "kind": "plus",
+              "peak": 18425,
+              "band_descends": false
+            },
+            {
+              "x": 18425,
+              "tau": 1,
+              "R": 15771571,
+              "kind": "plus",
+              "peak": 15771571,
+              "band_descends": false
+            },
+            {
+              "x": 15771571,
+              "tau": 1,
+              "R": 125201440,
+              "kind": "plus",
+              "peak": 125201440,
+              "band_descends": false
+            },
+            {
+              "x": 125201440,
+              "tau": 1,
+              "R": 11189,
+              "kind": "I",
+              "peak": 125201440,
+              "band_descends": true
+            },
+            {
+              "x": 11189,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 11189,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 5,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 6187,
+            "last_min": 6187
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        }
+      },
+      "3": {
+        "365": {
+          "n": 365,
+          "section": "3",
+          "A": 1,
+          "B": 3,
+          "orbit": [
+            365,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 6,
+          "n_defined": 5,
+          "n_tau1": 5,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 4,
+            "I": 1,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 365,
+              "tau": 1,
+              "R": 763,
+              "kind": "plus",
+              "peak": 763,
+              "band_descends": false
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 1,
+              "R": 12707,
+              "kind": "plus",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 12707,
+              "tau": 1,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": true
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 6,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 365,
+            "last_min": 365
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "501": {
+          "n": 501,
+          "section": "3",
+          "A": 1,
+          "B": 3,
+          "orbit": [
+            501,
+            1089,
+            133347,
+            582916,
+            763,
+            1749,
+            4447,
+            12707,
+            1196
+          ],
+          "n_in_s": 9,
+          "n_defined": 8,
+          "n_tau1": 8,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 6,
+            "I": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 501,
+              "tau": 1,
+              "R": 1089,
+              "kind": "plus",
+              "peak": 1089,
+              "band_descends": false
+            },
+            {
+              "x": 1089,
+              "tau": 1,
+              "R": 133347,
+              "kind": "plus",
+              "peak": 133347,
+              "band_descends": false
+            },
+            {
+              "x": 133347,
+              "tau": 1,
+              "R": 582916,
+              "kind": "plus",
+              "peak": 582916,
+              "band_descends": false
+            },
+            {
+              "x": 582916,
+              "tau": 1,
+              "R": 763,
+              "kind": "I",
+              "peak": 582916,
+              "band_descends": true
+            },
+            {
+              "x": 763,
+              "tau": 1,
+              "R": 1749,
+              "kind": "plus",
+              "peak": 1749,
+              "band_descends": false
+            },
+            {
+              "x": 1749,
+              "tau": 1,
+              "R": 4447,
+              "kind": "plus",
+              "peak": 4447,
+              "band_descends": false
+            },
+            {
+              "x": 4447,
+              "tau": 1,
+              "R": 12707,
+              "kind": "plus",
+              "peak": 12707,
+              "band_descends": false
+            },
+            {
+              "x": 12707,
+              "tau": 1,
+              "R": 1196,
+              "kind": "I",
+              "peak": 12707,
+              "band_descends": true
+            },
+            {
+              "x": 1196,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 1196,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 9,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 501,
+            "last_min": 501
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "1517": {
+          "n": 1517,
+          "section": "3",
+          "A": 1,
+          "B": 3,
+          "orbit": [
+            1517,
+            3789,
+            10613,
+            33811,
+            2493,
+            539470
+          ],
+          "n_in_s": 6,
+          "n_defined": 5,
+          "n_tau1": 5,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 4,
+            "I": 1,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 1517,
+              "tau": 1,
+              "R": 3789,
+              "kind": "plus",
+              "peak": 3789,
+              "band_descends": false
+            },
+            {
+              "x": 3789,
+              "tau": 1,
+              "R": 10613,
+              "kind": "plus",
+              "peak": 10613,
+              "band_descends": false
+            },
+            {
+              "x": 10613,
+              "tau": 1,
+              "R": 33811,
+              "kind": "plus",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 33811,
+              "tau": 1,
+              "R": 2493,
+              "kind": "I",
+              "peak": 33811,
+              "band_descends": false
+            },
+            {
+              "x": 2493,
+              "tau": 1,
+              "R": 539470,
+              "kind": "plus",
+              "peak": 539470,
+              "band_descends": false
+            },
+            {
+              "x": 539470,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 539470,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 6,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 1517,
+            "last_min": 1517
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        },
+        "6187": {
+          "n": 6187,
+          "section": "3",
+          "A": 1,
+          "B": 3,
+          "orbit": [
+            6187,
+            18425,
+            15771571,
+            125201440,
+            11189,
+            1087
+          ],
+          "n_in_s": 5,
+          "n_defined": 4,
+          "n_tau1": 4,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 3,
+            "I": 1,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 6187,
+              "tau": 1,
+              "R": 18425,
+              "kind": "plus",
+              "peak": 18425,
+              "band_descends": false
+            },
+            {
+              "x": 18425,
+              "tau": 1,
+              "R": 15771571,
+              "kind": "plus",
+              "peak": 15771571,
+              "band_descends": false
+            },
+            {
+              "x": 15771571,
+              "tau": 1,
+              "R": 125201440,
+              "kind": "plus",
+              "peak": 125201440,
+              "band_descends": false
+            },
+            {
+              "x": 125201440,
+              "tau": 1,
+              "R": 11189,
+              "kind": "I",
+              "peak": 125201440,
+              "band_descends": true
+            },
+            {
+              "x": 11189,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 11189,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 5,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 6187,
+            "last_min": 6187
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": true,
+          "has_plus": true
+        }
+      }
+    },
+    "contrast": {
+      "3/2": {
+        "69": {
+          "n": 69,
+          "section": "3/2",
+          "A": 2,
+          "B": 3,
+          "orbit": [
+            69,
+            117,
+            212
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 69,
+              "tau": 1,
+              "R": 117,
+              "kind": "plus",
+              "peak": 117,
+              "band_descends": false
+            },
+            {
+              "x": 117,
+              "tau": 1,
+              "R": 212,
+              "kind": "plus",
+              "peak": 212,
+              "band_descends": false
+            },
+            {
+              "x": 212,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 212,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 69,
+            "last_min": 69
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        },
+        "89": {
+          "n": 89,
+          "section": "3/2",
+          "A": 2,
+          "B": 3,
+          "orbit": [
+            89,
+            155,
+            291,
+            70
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 89,
+              "tau": 1,
+              "R": 155,
+              "kind": "plus",
+              "peak": 155,
+              "band_descends": false
+            },
+            {
+              "x": 155,
+              "tau": 1,
+              "R": 291,
+              "kind": "plus",
+              "peak": 291,
+              "band_descends": false
+            },
+            {
+              "x": 291,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 291,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 89,
+            "last_min": 89
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        }
+      },
+      "2": {
+        "69": {
+          "n": 69,
+          "section": "2",
+          "A": 1,
+          "B": 2,
+          "orbit": [
+            69,
+            117,
+            212
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 69,
+              "tau": 1,
+              "R": 117,
+              "kind": "plus",
+              "peak": 117,
+              "band_descends": false
+            },
+            {
+              "x": 117,
+              "tau": 1,
+              "R": 212,
+              "kind": "plus",
+              "peak": 212,
+              "band_descends": false
+            },
+            {
+              "x": 212,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 212,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 69,
+            "last_min": 69
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        },
+        "89": {
+          "n": 89,
+          "section": "2",
+          "A": 1,
+          "B": 2,
+          "orbit": [
+            89,
+            155,
+            291,
+            70
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 89,
+              "tau": 1,
+              "R": 155,
+              "kind": "plus",
+              "peak": 155,
+              "band_descends": false
+            },
+            {
+              "x": 155,
+              "tau": 1,
+              "R": 291,
+              "kind": "plus",
+              "peak": 291,
+              "band_descends": false
+            },
+            {
+              "x": 291,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 291,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 89,
+            "last_min": 89
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        }
+      },
+      "9/4": {
+        "69": {
+          "n": 69,
+          "section": "9/4",
+          "A": 4,
+          "B": 9,
+          "orbit": [
+            69,
+            117,
+            212
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 69,
+              "tau": 1,
+              "R": 117,
+              "kind": "plus",
+              "peak": 117,
+              "band_descends": false
+            },
+            {
+              "x": 117,
+              "tau": 1,
+              "R": 212,
+              "kind": "plus",
+              "peak": 212,
+              "band_descends": false
+            },
+            {
+              "x": 212,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 212,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 69,
+            "last_min": 69
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        },
+        "89": {
+          "n": 89,
+          "section": "9/4",
+          "A": 4,
+          "B": 9,
+          "orbit": [
+            89,
+            155,
+            291,
+            70
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 89,
+              "tau": 1,
+              "R": 155,
+              "kind": "plus",
+              "peak": 155,
+              "band_descends": false
+            },
+            {
+              "x": 155,
+              "tau": 1,
+              "R": 291,
+              "kind": "plus",
+              "peak": 291,
+              "band_descends": false
+            },
+            {
+              "x": 291,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 291,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 89,
+            "last_min": 89
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        }
+      },
+      "8/3": {
+        "69": {
+          "n": 69,
+          "section": "8/3",
+          "A": 3,
+          "B": 8,
+          "orbit": [
+            69,
+            117,
+            212
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 69,
+              "tau": 1,
+              "R": 117,
+              "kind": "plus",
+              "peak": 117,
+              "band_descends": false
+            },
+            {
+              "x": 117,
+              "tau": 1,
+              "R": 212,
+              "kind": "plus",
+              "peak": 212,
+              "band_descends": false
+            },
+            {
+              "x": 212,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 212,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 69,
+            "last_min": 69
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        },
+        "89": {
+          "n": 89,
+          "section": "8/3",
+          "A": 3,
+          "B": 8,
+          "orbit": [
+            89,
+            155,
+            291,
+            70
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 89,
+              "tau": 1,
+              "R": 155,
+              "kind": "plus",
+              "peak": 155,
+              "band_descends": false
+            },
+            {
+              "x": 155,
+              "tau": 1,
+              "R": 291,
+              "kind": "plus",
+              "peak": 291,
+              "band_descends": false
+            },
+            {
+              "x": 291,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 291,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 89,
+            "last_min": 89
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        }
+      },
+      "3": {
+        "69": {
+          "n": 69,
+          "section": "3",
+          "A": 1,
+          "B": 3,
+          "orbit": [
+            69,
+            117,
+            212
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "end": 1
+          },
+          "returns": [
+            {
+              "x": 69,
+              "tau": 1,
+              "R": 117,
+              "kind": "plus",
+              "peak": 117,
+              "band_descends": false
+            },
+            {
+              "x": 117,
+              "tau": 1,
+              "R": 212,
+              "kind": "plus",
+              "peak": 212,
+              "band_descends": false
+            },
+            {
+              "x": 212,
+              "tau": null,
+              "R": null,
+              "kind": "end",
+              "peak": 212,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 69,
+            "last_min": 69
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        },
+        "89": {
+          "n": 89,
+          "section": "3",
+          "A": 1,
+          "B": 3,
+          "orbit": [
+            89,
+            155,
+            291,
+            70
+          ],
+          "n_in_s": 3,
+          "n_defined": 2,
+          "n_tau1": 2,
+          "n_multiblock": 0,
+          "kinds": {
+            "plus": 2,
+            "drop": 1
+          },
+          "returns": [
+            {
+              "x": 89,
+              "tau": 1,
+              "R": 155,
+              "kind": "plus",
+              "peak": 155,
+              "band_descends": false
+            },
+            {
+              "x": 155,
+              "tau": 1,
+              "R": 291,
+              "kind": "plus",
+              "peak": 291,
+              "band_descends": false
+            },
+            {
+              "x": 291,
+              "tau": null,
+              "R": null,
+              "kind": "drop",
+              "peak": 291,
+              "band_descends": false
+            }
+          ],
+          "record_low": {
+            "visits": 3,
+            "strict_descents": 0,
+            "any_ascent": true,
+            "first": 89,
+            "last_min": 89
+          },
+          "typical_tau_one": true,
+          "rejected": true,
+          "has_type_II": false,
+          "has_type_III": false,
+          "has_type_I": false,
+          "has_plus": true
+        }
+      }
+    },
+    "verdict": {
+      "by_section": {
+        "3/2": {
+          "defined": 15,
+          "tau1": 11,
+          "multiblock": 4,
+          "type_I": 5,
+          "type_II": 0,
+          "type_III": 0,
+          "plus": 10,
+          "rejected": false
+        },
+        "2": {
+          "defined": 20,
+          "tau1": 18,
+          "multiblock": 2,
+          "type_I": 5,
+          "type_II": 0,
+          "type_III": 0,
+          "plus": 15,
+          "rejected": false
+        },
+        "9/4": {
+          "defined": 22,
+          "tau1": 22,
+          "multiblock": 0,
+          "type_I": 5,
+          "type_II": 0,
+          "type_III": 0,
+          "plus": 17,
+          "rejected": true
+        },
+        "8/3": {
+          "defined": 22,
+          "tau1": 22,
+          "multiblock": 0,
+          "type_I": 5,
+          "type_II": 0,
+          "type_III": 0,
+          "plus": 17,
+          "rejected": true
+        },
+        "3": {
+          "defined": 22,
+          "tau1": 22,
+          "multiblock": 0,
+          "type_I": 5,
+          "type_II": 0,
+          "type_III": 0,
+          "plus": 17,
+          "rejected": true
+        }
+      },
+      "surviving": [
+        "3/2",
+        "2"
+      ]
+    },
+    "window": {
+      "3/2": {
+        "defined": 439,
+        "tau1": 319,
+        "multiblock": 120,
+        "type_I": 29,
+        "plus": 410
+      },
+      "2": {
+        "defined": 689,
+        "tau1": 550,
+        "multiblock": 139,
+        "type_I": 110,
+        "plus": 579
+      },
+      "9/4": {
+        "defined": 731,
+        "tau1": 592,
+        "multiblock": 139,
+        "type_I": 122,
+        "plus": 609
+      },
+      "8/3": {
+        "defined": 851,
+        "tau1": 749,
+        "multiblock": 102,
+        "type_I": 194,
+        "plus": 657
+      },
+      "3": {
+        "defined": 904,
+        "tau1": 804,
+        "multiblock": 100,
+        "type_I": 218,
+        "plus": 686
+      }
+    },
+    "all_sections_rejected": false,
+    "surviving": [
+      "3/2",
+      "2"
+    ],
+    "mixed_on_survivor": true,
+    "type_i_only_on_survivor": false,
+    "record_low_fails": true,
+    "has_type_II": false,
+    "letter_chain": false,
+    "q_descriptor_reopen": false,
+    "return_section_lean": false,
+    "paper_a_modified": false,
+    "halt_theorem": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "AboveAnchor": true,
+    "oe_block_contracts": true,
+    "ReturnBelow": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_ReturnSection": false,
+    "has_api_PermanentEscape": false,
+    "has_api_ReturnOrder": false,
+    "has_api_BlockMapQ": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "Q_RETURN_SECTION_PARK",
+    "reason": "some sections have multi-block leftover returns, but the return relation is mixed Type I and ascent and is not a shared well-founded order"
+  },
+  "search_method": "q_blocks landing skeleton; exact x^A < n^B sections 3/2, 2, 9/4, 8/3, 3; leftover Poincar\u00e9 returns; odd n<2001 window"
+}

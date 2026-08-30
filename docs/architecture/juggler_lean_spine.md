@@ -65,6 +65,8 @@ Dynamics → Iteration → Termination → Itinerary → WordStats
   `lake build` is the formal regression.
 - `CycleCore` sees `Progress` only transitively through
   `MinimumRelative`. It does not import `Residuals` or `Minimal`.
+  `FirstInternalOO` imports `Minimal`; `CycleExtrema` imports
+  `Scale`; `Escape` imports `Residuals`.
 
 ## What this note is not
 

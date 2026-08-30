@@ -206,6 +206,9 @@ Compatibility layer:
   Core + Obstructions + Extrema. New corridor / even-run names
   are listed in `minimum_relative.LEAN_THEOREMS`
 - `JugglerPaper.lean` comments do not mention `EnvelopeState`
+- After the Residuals cut, consumers that used the old re-export
+  take one extra import: `FirstInternalOO` imports `Minimal`,
+  `CycleExtrema` imports `Scale`, `Escape` imports `Residuals`
 
 Research exclusions (do not reopen from this dossier):
 

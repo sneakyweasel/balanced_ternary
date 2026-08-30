@@ -202,9 +202,13 @@ a descent-versus-recurrence theorem for \(Q\).
 
 ## Open questions
 
-Stop. Do not build a finite-state machine on block descriptors.
-Do not reopen cells, residues, \(Z_5\), length-11, or four-even
-branches to split \(4447\) from \(33811\).
+The global first-return-section question is answered in
+[juggler_q_return_section.md](juggler_q_return_section.md):
+Poincaré \(Q\)-returns do not supply a well-founded leftover
+order. Do not build a finite-state machine on block
+descriptors. Do not reopen cells, residues, \(Z_5\),
+length-11, or four-even branches to split \(4447\) from
+\(33811\).
 
 ## Decision
 
