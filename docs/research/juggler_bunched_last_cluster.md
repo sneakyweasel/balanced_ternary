@@ -17,8 +17,8 @@ Novelty hypothesis      Fixed mixed tail plus C_{O^a};
                         cutoffs drop as a grows
 Falsifier               A tail whose N0 grows with a
 Existing machinery      prefix-cell Z; denomBits; OOOOOOEEE
-Maximum Phase-1 scope   Lean O^a EEE by cubing;
-                        no other bunched, no census
+Maximum Phase-1 scope   Lean O^a EOEE by the z<(n+1)^6
+                        cell; no other bunched, no census
 ```
 
 ## Metadata
@@ -32,8 +32,9 @@ Maximum Phase-1 scope   Lean O^a EEE by cubing;
 - plateau N0=5: `True`
 - tables empty: `True`
 - EEE cubes from 73: `True`
+- EOEE cubes from 314: `True`
 
-seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE for every a>=6 by cubing the three-even cell from OOOOOOEEE at n>=128; the other six families remain computational; not a length-8/9 census.
+seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE and O^a EOEE; a uniform coarse (n+1)^K cell for all six remaining families is refuted; the other five families remain computational; not a length-8/9 census.
 
 ## Families
 
@@ -57,6 +58,8 @@ seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a
 - `CycleMin`: `True`
 - `no_cycle_word_three_even_eee`: `True`
 - `three_even_eee_tail`: `True`
+- `no_cycle_word_three_even_eoee`: `True`
+- `three_even_eoee_tail_of_five`: `True`
 - no bunched-tail theorem: `True`
 - length eight open in census: `True`
 - no length-nine theorem: `True`
@@ -74,6 +77,8 @@ seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a
 - three_even_cycles_impossible: `False`
 - bunched_lean: `False`
 - eee_lean: `True`
+- eoee_lean: `True`
+- uniform_coarse_K: `False`
 - length_eight_census: `False`
 - length_nine_census: `False`
 - first_e_at_four: `False`
@@ -84,8 +89,8 @@ seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a
 
 **BUNCHED_LAST_CLUSTER_GREEN**
 
-seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE for every a>=6 by cubing the three-even cell from OOOOOOEEE at n>=128; the other six families remain computational; not a length-8/9 census.
+seven bunched last-cluster families fire with N0 bounded in a; Lean excludes O^a EEE and O^a EOEE; a uniform coarse (n+1)^K cell for all six remaining families is refuted; the other five families remain computational; not a length-8/9 census.
 
 This is not a halt result, not a length-8/9 census, and
-not a Lean exclusion of the other six bunched families.
+not a Lean exclusion of the other five bunched families.
 

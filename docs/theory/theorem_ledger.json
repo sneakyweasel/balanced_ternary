@@ -3374,6 +3374,18 @@
     "related_conjectures": []
   },
   {
+    "id": "J-three-even-eoee",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "For every a ≥ 5 and every n ≥ 2, the bunched leftover O^a EOEE is not a Juggler cycle word. For n ≥ 4 the mixed cell is z < (n+1)^6: two trailing evens give p < (n+1)^4, the one-odd envelope gives y^3 ≤ 4p^2, and n ≥ 4 upgrades that to y < (n+1)^3. Large n at a = 5 uses the tail n^{3^a} > 2^{e_a}(n+1)^{6·2^a} at the algebraic cutoff n ≥ 314, obtained by persisting the comparison at 314 and cubing in a; e_a = 2(3^a-2^a). At a = 6 the same cell already fires at n ≥ 16. Below those cutoffs the argument is the a = 5 table, the a = 6 table, and seven consecutive odds. Lean theorem no_cycle_word_three_even_eoee. This excludes that one bunched family only; a uniform coarse (n+1)^K cell for all six remaining bunched families is false; it is not a length-8 or length-9 census and not a halt theorem.",
+    "source": "docs/problems/juggler_bunched_last_cluster.md",
+    "lean": "Problems/Juggler/BunchedEOEE.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_bunched_last_cluster.py",
+      "tests/research/juggler_sequence/test_cycle_leftover_words.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-nested-parity-linearization",
     "tag": "EXACT — HUMAN PROOF",
     "statement": "For odd n ≥ 3 with m = floor(n^{3/2}): m^{3/2} = (3/2) m n^{3/4} - (1/2) n^{9/4} + E(n) with 0 ≤ E(n) ≤ (3/8)(n^{3/2}-1)^{-1/2} ≤ (1/2) n^{-3/4}. Substituting theta = n^{3/2} - m into the linear Taylor term eliminates the nested fractional part exactly; the integer m enters the phase linearly with smooth amplitude. Companion gap lemma: m(n+2h) - m(n) = floor(delta) + [ {n^{3/2}} ≥ 1 - {delta} ] with delta = (n+2h)^{3/2} - n^{3/2}, giving constant-gap cells of length about n^{1/2}/h. Both validated by exact scaled-integer arithmetic through n = 10^{12}.",

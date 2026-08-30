@@ -45,8 +45,9 @@ tail. Phase 0 asks whether each family first fires at some
 no `CycleWord` on \(2\le n<N_0(a)\). The `EEE` family is also
 checked against the coarse cell \(z<(n+1)^8\) and cubing in \(a\).
 
-`O^a`EEE is now Lean-excluded for every expanding \(a\ge 6\).
-The other six bunched families remain computational. This is not
+`O^a`EEE and `O^a`EOEE are now Lean-excluded. A uniform coarse
+\((n+1)^K\) cell for all six remaining families is **REFUTED**.
+The other five bunched families remain computational. This is not
 a halt theorem. There is no `no_cycle_word_length_eight` and no
 `no_cycle_word_length_nine`.
 
@@ -63,6 +64,12 @@ a halt theorem. There is no `no_cycle_word_length_eight` and no
   of the `EEE` family.
 - Uniform bunched `O^a`EEE —
   **EXACT — LEAN VERIFIED** (`no_cycle_word_three_even_eee`).
+- Uniform bunched `O^a`EOEE —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_three_even_eoee`).
+- Uniform coarse \((n+1)^K\) cell for all six remaining
+  bunched families —
+  **REFUTED**. At the first expanding \(a\), \(K\cdot 2^a\ge 3^a\)
+  for `EOOOEE`, `EEOE`, `EOEOE`, and `EOOEOE`.
 - Length-9 three-even leftovers —
   **COMPUTATIONALLY VERIFIED** as prefix-cell tails. Those nine
   words are the first expanding instance of each bunched family
@@ -92,9 +99,11 @@ Stop criterion          A family that never fires; unbounded N0;
                         a census; e≥4 machinery
 ```
 
-Phase 1 (this branch): Lean-exclude \(O^a\texttt{EEE}\) for every
-\(a\ge 6\) by cubing the three-even cell. No other bunched
-family, no length-8/9 census, no halt.
+Phase 1: Lean-exclude \(O^a\texttt{EEE}\) for every \(a\ge 6\).
+
+Phase 1b (this branch): Lean-exclude \(O^a\texttt{EOEE}\) for
+every \(a\ge 5\) by the mixed cell \(z<(n+1)^6\). No other
+bunched family, no length-8/9 census, no halt.
 
 ## Balanced-ternary formulation
 
@@ -123,6 +132,11 @@ It is not required.
   algebraic cutoff \(n\ge 128\)
 - `O^a`EEE is not a `CycleWord` for \(a\ge 6\), \(n\ge 2\) —
   **EXACT — LEAN VERIFIED** (`no_cycle_word_three_even_eee`)
+- `EOEE` coarse cell \(n^{3^a}>2^{e_a}(n+1)^{6\cdot 2^a}\) cubes
+  from \(a=5\) at \(n\ge 314\); \(z<(n+1)^6\) for \(n\ge 4\) —
+  **EXACT — LEAN VERIFIED** (`no_cycle_word_three_even_eoee`)
+- a uniform coarse \((n+1)^K\) cell for all six remaining
+  families — **REFUTED**
 - no bunched family is a `CycleWord` on \(2\le n<N_0(a)\)
   for expanding \(a\le 20\) —
   **COMPUTATIONALLY VERIFIED**
@@ -138,8 +152,9 @@ It is not required.
 - Tests: `tests/research/juggler_sequence/test_bunched_last_cluster.py`
 - The Research Engine control layer is not modified.
 - No cycle-state search. No length-8 or length-9 census.
-- `EEE` Lean is in `BunchedEEE.lean`. No Lean for the other
-  six bunched families. No Paper A edit.
+- `EEE` Lean is in `BunchedEEE.lean`. `EOEE` Lean is in
+  `BunchedEOEE.lean`. No Lean for the other five bunched
+  families. No Paper A edit.
 
 ## Conjectures
 
@@ -156,19 +171,26 @@ claims that remain false or unproved:
 - “first-E transport at \(e\ge 4\) reduces bunched last clusters”
   — not claimed. A bunched last cluster is exactly the remainder
   that last-cluster two-even transport does not take.
+- “a uniform coarse \((n+1)^K\) cell excludes all six remaining
+  bunched families” — **REFUTED**. The first-expanding exponent
+  \(K\cdot 2^a\) meets or beats \(3^a\) on `EOOOEE`, `EEOE`,
+  `EOEOE`, and `EOOEOE`.
 - “every bunched leftover is Lean-excluded” — not claimed.
-  Only `O^a`EEE is Lean; the other six families remain
-  computational.
+  Only `O^a`EEE and `O^a`EOEE are Lean; the other five families
+  remain computational.
 - “every three-even leftover is Lean-excluded” — not claimed.
 - no cycle of length eight or nine — not claimed.
 
 ## Formalization
 
 `formal/Problems/Juggler/BunchedEEE.lean` excludes the `EEE`
-family: `no_cycle_word_three_even_eee`. Large \(n\) cubes the
-three-even cell from `OOOOOOEEE` at \(n\ge 128\). Below \(128\),
-\(a=6\) is the existing table and \(a\ge 7\) is seven-odd. There
-is no `no_cycle_word_bunched` and no `no_cycleMin_bunched`.
+family: `no_cycle_word_three_even_eee`.
+`formal/Problems/Juggler/BunchedEOEE.lean` excludes the `EOEE`
+family: `no_cycle_word_three_even_eoee`. Large \(n\) at \(a=5\)
+is the mixed cell \(z<(n+1)^6\) against \(C_{O^a}\) at
+\(n\ge 314\); \(a=6\) already fires at \(n\ge 16\). Below those
+cutoffs the argument is two tables and seven-odd. There is no
+`no_cycle_word_bunched` and no `no_cycleMin_bunched`.
 `SmallCycleCensus.lean` still assembles only through length
 seven. No `no_cycle_word_length_eight`. No
 `no_cycle_word_length_nine`. No `sorry`. No halt theorem. Paper A
@@ -181,38 +203,39 @@ Classification **BUNCHED_LAST_CLUSTER_GREEN**.
 The seven bunched last-cluster leftovers are one type: a fixed
 short tail against \(C_{O^a}\). All seven fire at the first
 expanding \(a\), with largest cutoff \(N_0=188\) on
-`OOOEOOOEE`. Cutoffs then drop to the same \(n=5\) plateau as the
-two-even families. Lean now excludes `O^a`EEE for every
-\(a\ge 6\) and \(n\ge 2\): the three-even cell cubes from
-`OOOOOOEEE` at \(n\ge 128\); below \(128\) the argument is the
-\(a=6\) table or seven-odd. The other six families remain
-computational. Tables below each cutoff are empty through
+`OOOEOOOEE`. Lean now excludes `O^a`EEE for every \(a\ge 6\) and
+`O^a`EOEE for every \(a\ge 5\). A uniform coarse \((n+1)^K\)
+cell for the remaining six families is **REFUTED**: at the first
+expanding \(a\), \(K\cdot 2^a\ge 3^a\) on four of them. The
+other five families remain computational on the tight
+prefix-cell \(Z\). Tables below each cutoff are empty through
 \(a=20\).
 
-This is a one-family Lean exclusion, not a length-9 census and
+This is a two-family Lean exclusion, not a length-9 census and
 not a no-cycles theorem.
 
 ## Open questions
 
-Lean-exclude the next bunched family (`O^a`EOEE), or a uniform
-mixed-tail cell for the remaining six. Do not assemble
-`no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
-Do not open first-E at \(e\ge 4\) as part of that phase. Do not
-claim halt.
+Lean-exclude `O^a`EOOEE by a \(K=4\) coarse cell, or Lean the
+tight \(Z\) bound for a family whose coarse exponent is
+impossible. Do not assemble `no_cycle_word_length_eight` or
+`no_cycle_word_length_nine`. Do not open first-E at \(e\ge 4\).
+Do not claim halt.
 
 ## Decision
 
-**PROMOTE**. `O^a`EEE is now one Lean type, cubed from the
-existing `OOOOOOEEE` comparison. The other six bunched families
-are still computational.
+**PROMOTE**. `O^a`EOEE is now one Lean type, by the mixed cell
+\(z<(n+1)^6\). A uniform coarse \(K\) for all remaining bunched
+families is closed as **REFUTED**. Five families stay
+computational.
 
-Best next question: Lean-exclude `O^a`EOEE, or find a uniform
-mixed-tail cell for the remaining six families.
+Best next question: Lean-exclude `O^a`EOOEE by the \(K=4\)
+coarse cell that already cubes from \(n\ge 205\).
 
 ## Publication assessment
 
 Status: `EXPLORATORY`.
 
-A one-family Lean exclusion inside the bunched remainder, not a
+A two-family Lean exclusion inside the bunched remainder, not a
 paper candidate and not a Juggler totality result. Paper A is not
 edited.

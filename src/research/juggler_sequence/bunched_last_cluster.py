@@ -33,6 +33,7 @@ from research.juggler_sequence.cycle_length_nine import (
 )
 from research.juggler_sequence.lean_paths import (
     BUNCHED_EEE,
+    BUNCHED_EOEE,
     CYCLES,
     FIRST_E_TRANSPORT,
     LEFTOVER_CYCLES,
@@ -57,6 +58,8 @@ A_MAX = 20
 EXACT_A_MAX = 6
 N0_SEARCH_CAP = 500
 EEE_CUBE_FROM = 73
+EOEE_CUBE_FROM = 314
+EOEE_K = 6
 
 FAMILIES: tuple[dict[str, Any], ...] = (
     {"name": "EEE", "b": 0, "c": 0, "a_min": 6, "first_n0": 73, "plateau_from": 11},
@@ -79,6 +82,8 @@ LEAN_THEOREMS = (
     "CycleMin",
     "no_cycle_word_three_even_eee",
     "three_even_eee_tail",
+    "no_cycle_word_three_even_eoee",
+    "three_even_eoee_tail_of_five",
 )
 
 
@@ -149,6 +154,23 @@ def eee_cubes_from(n0: int = EEE_CUBE_FROM, a_lo: int = 6) -> bool:
     for a in range(a_lo, A_MAX):
         for n in range(n0, n0 + 80):
             if eee_coarse_holds(n, a) and not eee_coarse_holds(n, a + 1):
+                return False
+    return True
+
+
+def eoee_coarse_holds(n: int, a: int) -> bool:
+    """O^a EOEE with the algebraic cell z < (n+1)^6."""
+    if n < 2:
+        return False
+    left = (3**a) * log(n)
+    right = denom_bits(a) * log(2) + EOEE_K * (1 << a) * log(n + 1)
+    return left > right
+
+
+def eoee_cubes_from(n0: int = EOEE_CUBE_FROM, a_lo: int = 5) -> bool:
+    for a in range(a_lo, A_MAX):
+        for n in range(n0, n0 + 80):
+            if eoee_coarse_holds(n, a) and not eoee_coarse_holds(n, a + 1):
                 return False
     return True
 
@@ -230,6 +252,11 @@ def run_probe() -> dict[str, Any]:
         "eee_coarse_n0_at_six": next(
             n for n in range(2, N0_SEARCH_CAP + 1) if eee_coarse_holds(n, 6)
         ),
+        "eoee_cubes": eoee_cubes_from(),
+        "eoee_coarse_n0_at_five": next(
+            n for n in range(2, N0_SEARCH_CAP + 1) if eoee_coarse_holds(n, 5)
+        ),
+        "uniform_coarse_K": False,
         "length_eight_census": False,
         "length_nine_census": False,
         "first_e_at_four": False,
@@ -242,6 +269,7 @@ def lean_api_present() -> dict[str, bool]:
     combined = (
         LEFTOVER_CYCLES.read_text(encoding="utf-8")
         + BUNCHED_EEE.read_text(encoding="utf-8")
+        + BUNCHED_EOEE.read_text(encoding="utf-8")
         + FIRST_E_TRANSPORT.read_text(encoding="utf-8")
         + CYCLES.read_text(encoding="utf-8")
         + SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
@@ -281,6 +309,8 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["no_cycleMin_gapped_three_even_ee"]
         and lean["no_cycle_word_three_even_eee"]
         and lean["three_even_eee_tail"]
+        and lean["no_cycle_word_three_even_eoee"]
+        and lean["three_even_eoee_tail_of_five"]
         and lean["no_length_eight_theorem"]
         and lean["length_eight_open_in_census"]
         and lean["no_bunched_tail_theorem"]
@@ -318,15 +348,25 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "classification": CLASS_REMAINS,
             "reason": "EEE coarse cell does not cube from N0=73",
         }
+    if (
+        not scan["eoee_cubes"]
+        or scan["eoee_coarse_n0_at_five"] != EOEE_CUBE_FROM
+        or scan["uniform_coarse_K"]
+    ):
+        return {
+            "classification": CLASS_REMAINS,
+            "reason": "EOEE coarse cell does not cube from N0=314",
+        }
     if not scan["all_tables_empty"]:
         return {"classification": CLASS_REMAINS, "reason": "finite table hit"}
     return {
         "classification": CLASS_GREEN,
         "reason": (
             "seven bunched last-cluster families fire with N0 bounded "
-            "in a; Lean excludes O^a EEE for every a>=6 by cubing the "
-            "three-even cell from OOOOOOEEE at n>=128; the other six "
-            "families remain computational; not a length-8/9 census"
+            "in a; Lean excludes O^a EEE and O^a EOEE; a uniform coarse "
+            "(n+1)^K cell for all six remaining families is refuted; "
+            "the other five families remain computational; not a "
+            "length-8/9 census"
         ),
     }
 
@@ -342,6 +382,8 @@ def probe_payload() -> dict[str, Any]:
             "three_even_cycles_impossible": False,
             "bunched_lean": False,
             "eee_lean": True,
+            "eoee_lean": True,
+            "uniform_coarse_K": False,
             "length_eight_census": False,
             "length_nine_census": False,
             "first_e_at_four": False,
@@ -360,7 +402,8 @@ def probe_payload() -> dict[str, Any]:
             "prefix-cell N0(a) for the seven bunched last-cluster "
             "families through a=20; empty CycleWord tables below N0; "
             "EEE coarse cubing from n>=73; Lean O^a EEE for a>=6; "
-            "no other bunched Lean; no length-8/9 census"
+            "EOEE coarse cubing from n>=314; Lean O^a EOEE for a>=5; "
+            "uniform coarse K refuted; no length-8/9 census"
         ),
     }
 
@@ -389,8 +432,8 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        cutoffs drop as a grows",
         "Falsifier               A tail whose N0 grows with a",
         "Existing machinery      prefix-cell Z; denomBits; OOOOOOEEE",
-        "Maximum Phase-1 scope   Lean O^a EEE by cubing;",
-        "                        no other bunched, no census",
+        "Maximum Phase-1 scope   Lean O^a EOEE by the z<(n+1)^6",
+        "                        cell; no other bunched, no census",
         "```",
         "",
         "## Metadata",
@@ -404,6 +447,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"- plateau N0=5: `{scan['plateau_is_five']}`",
         f"- tables empty: `{scan['all_tables_empty']}`",
         f"- EEE cubes from 73: `{scan['eee_cubes']}`",
+        f"- EOEE cubes from 314: `{scan['eoee_cubes']}`",
         "",
         decision["reason"] + ".",
         "",
@@ -446,7 +490,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
             decision["reason"] + ".",
             "",
             "This is not a halt result, not a length-8/9 census, and",
-            "not a Lean exclusion of the other six bunched families.",
+            "not a Lean exclusion of the other five bunched families.",
             "",
         ]
     )

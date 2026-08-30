@@ -11252,3 +11252,43 @@ Best next question
   the remaining six families
 ```
 
+## Juggler bunched O^a EOEE in Lean
+
+- **Date:** 2026-08-30
+- **Objective:** Lean-exclude `CycleWord` on \(O^a\texttt{EOEE}\) for every \(a\ge 5\) and \(n\ge 2\), or decide whether a uniform coarse \((n+1)^K\) cell covers all six remaining bunched families
+- **Hypotheses:** \(z<(n+1)^6\) for \(n\ge 4\); the \(a=5\) tail cubes from \(n\ge 314\); a uniform \(K\) for all six remaining families
+- **Major results:** `no_cycle_word_three_even_eoee` (**EXACT — LEAN VERIFIED**, ledger `J-three-even-eoee`). Mixed cell \(z<(n+1)^6\). Tails at \(a=5\), \(n\ge 314\) and \(a=6\), \(n\ge 16\). Small \(n\): `Fin 314` and `Fin 16` tables, seven-odd thereafter. A uniform coarse \((n+1)^K\) cell for all six remaining families is **REFUTED** (`EOOOEE`, `EEOE`, `EOEOE`, `EOOEOE` have \(K\cdot 2^a\ge 3^a\) at first expanding \(a\)). Not a length-8/9 census. Paper A not edited
+- **Refuted ideas:** a uniform coarse \((n+1)^K\) cell for all six remaining bunched families; a length-8 or length-9 Lean census as an automatic corollary
+- **Literature:** `OOOOOEOEE` is the \(a=5\) instance; `denomBits`, trailing-evens, and seven-odd reused
+- **Open:** `O^a`EOOEE by the \(K=4\) coarse cell, or a tight-\(Z\) Lean for a family whose coarse exponent is impossible. Length 8 still open as a census
+- **Decision:** PROMOTE the Lean exclusion of the `EOEE` family. CLOSE the uniform coarse-\(K\) idea as **REFUTED**. Not a bunched-tail census and not a halt theorem
+
+```text
+What was learned
+- z < (n+1)^6 for n>=4: two trailing evens, one-odd
+  envelope y^3 <= 4 p^2, then 4(n+1)^8 < (n+1)^9
+- The a=5 comparison n^243 > 2^422 (n+1)^192 persists by
+  (n+1)^2 > n(n+2) and cubes in a once (n+1)^6 > 4
+- a=6 already fires at n>=16; a>=7 small-n is seven-odd
+- A uniform coarse (n+1)^K cell cannot cover EOOOEE / EEOE /
+  EOEOE / EOOEOE: K*2^a >= 3^a at first expanding a
+- This kills one more bunched family; five remain
+Strongest theorem
+- no_cycle_word_three_even_eoee: O^a EOEE is not a CycleWord
+  at n>=2, a>=5
+Strongest refutation
+- a uniform coarse (n+1)^K cell for all six remaining
+  bunched families
+Reusable machinery
+- BunchedEOEE.lean: threeEvenEOEE_z_lt, persist_succ_pow
+Branch status
+- PROMOTE
+Why
+- EOEE is now one Lean type; the uniform-K shortcut for the
+  rest is closed, so the next family must be chosen on its
+  own exponent
+Best next question
+- Lean-exclude O^a EOOEE by the K=4 coarse cell that cubes
+  from n>=205
+```
+

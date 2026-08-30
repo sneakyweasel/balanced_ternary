@@ -6,6 +6,7 @@ from pathlib import Path
 
 from research.juggler_sequence.lean_paths import (
     BUNCHED_EEE,
+    BUNCHED_EOEE,
     FIRST_E_TRANSPORT,
     LEFTOVER_CYCLES,
     LEFTOVER_EVAL,
@@ -56,6 +57,13 @@ def test_leftover_cycle_theorems_present():
     assert "sorry" not in bunched
     assert "admit" not in bunched
     assert has_named(text, "no_cycle_word_three_even_eee")
+    eoee = BUNCHED_EOEE.read_text(encoding="utf-8")
+    assert "theorem no_cycle_word_three_even_eoee" in eoee
+    assert "theorem no_cycle_word_length_eight" not in eoee
+    assert "theorem no_cycle_word_length_nine" not in eoee
+    assert "sorry" not in eoee
+    assert "admit" not in eoee
+    assert has_named(text, "no_cycle_word_three_even_eoee")
     assert "sorry" not in transport
     assert "admit" not in transport
     assert "sorry" not in leftover
