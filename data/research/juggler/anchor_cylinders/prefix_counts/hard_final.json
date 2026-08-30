@@ -1,0 +1,74 @@
+[
+  {
+    "n": 37,
+    "word": "OOOOEOOOEEOOEE",
+    "a_count": 54,
+    "r_count": 54,
+    "N_min": 37,
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  {
+    "n": 69,
+    "word": "OOEOOE",
+    "a_count": 15768,
+    "r_count": 15768,
+    "N_min": 69,
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  {
+    "n": 89,
+    "word": "OOEOOEO",
+    "a_count": 7881,
+    "r_count": 7881,
+    "N_min": 89,
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  {
+    "n": 365,
+    "word": "OOEOOEOOEOOEOE",
+    "a_count": 53,
+    "r_count": 53,
+    "N_min": 365,
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  {
+    "n": 501,
+    "word": "OOEOOOEOOEEOOEOOEOOE",
+    "a_count": 1,
+    "r_count": 1,
+    "N_min": 501,
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  {
+    "n": 1517,
+    "word": "OOEOOEOOEOEOOOE",
+    "a_count": 45,
+    "r_count": 45,
+    "N_min": 1517,
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  {
+    "n": 6187,
+    "word": "OOEOOOEOOEEO",
+    "a_count": 211,
+    "r_count": 211,
+    "N_min": 501,
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  {
+    "n": 329,
+    "word": "OOOOOOOOEOOEOOEEOEEO",
+    "a_count": 4,
+    "r_count": 4,
+    "N_min": 329,
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+  },
+  {
+    "n": 33391,
+    "word": "OOEOOOEOOEEOOOOOEEOO",
+    "a_count": 1,
+    "r_count": 1,
+    "N_min": 33391,
+    "status": "NOT OBSERVED WITHIN SEARCH BOUND"
+  }
+]

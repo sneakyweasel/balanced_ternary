@@ -1,0 +1,85 @@
+{
+  "classification": "ANCHOR_CYLINDER_CLOSED",
+  "reason": "nested |A_w| follows the generic ~X/2^k occupancy of a length-k word; short leftovers keep a scale-stable positive fraction; late O(1) support is the window scale, not a new law",
+  "k_max": 20,
+  "windows": [
+    100000,
+    1000000
+  ],
+  "hard_thinner_max": false,
+  "isolation": [
+    {
+      "n": 37,
+      "k": 14,
+      "S": 54,
+      "N_min": 37,
+      "frac": 5.4e-05,
+      "isolated": false
+    },
+    {
+      "n": 69,
+      "k": 6,
+      "S": 15768,
+      "N_min": 69,
+      "frac": 0.015768,
+      "isolated": false
+    },
+    {
+      "n": 89,
+      "k": 7,
+      "S": 7881,
+      "N_min": 89,
+      "frac": 0.007881,
+      "isolated": false
+    },
+    {
+      "n": 365,
+      "k": 14,
+      "S": 53,
+      "N_min": 365,
+      "frac": 5.3e-05,
+      "isolated": false
+    },
+    {
+      "n": 501,
+      "k": 20,
+      "S": 1,
+      "N_min": 501,
+      "frac": 1e-06,
+      "isolated": true
+    },
+    {
+      "n": 1517,
+      "k": 15,
+      "S": 45,
+      "N_min": 1517,
+      "frac": 4.5e-05,
+      "isolated": false
+    },
+    {
+      "n": 6187,
+      "k": 12,
+      "S": 211,
+      "N_min": 501,
+      "frac": 0.000211,
+      "isolated": false
+    },
+    {
+      "n": 329,
+      "k": 20,
+      "S": 4,
+      "N_min": 329,
+      "frac": 4e-06,
+      "isolated": true
+    },
+    {
+      "n": 33391,
+      "k": 20,
+      "S": 1,
+      "N_min": 33391,
+      "frac": 1e-06,
+      "isolated": true
+    }
+  ],
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND"
+}

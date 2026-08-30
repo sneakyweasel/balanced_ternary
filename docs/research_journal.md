@@ -14633,4 +14633,37 @@ Best next question
 - none from this word language
 ```
 
+## Juggler nested anchor cylinders
+
+- **Date:** 2026-08-30
+- **Objective:** Measure nested \(A_w(X)\) along hard `AboveAnchor` prefix chains and test whether support decays or \(N_{\min}\) grows in a scale-stable way
+- **Hypotheses:** every finite history occurs somewhere, but nested start-sets shrink or migrate so no fixed integer supports an infinite branch
+- **Major results:** Classification **ANCHOR_CYLINDER_CLOSED**. \(M_k(10^6)\sim X/2^k\) ends at \(7\); \(M_k^{\mathrm{hard}}\) tracks it (`hard_thinner_max` false, tail \(4\)). Short leftovers \(69,89\) keep scale-stable fractions \(\approx 0.016,0.008\). Uniqueness of \(501,33391\) at \(k=20\) is the window scale. `OE` has \(A=0\), \(R>0\). Extra AA not formal is \(0\). No new Lean file. No atlas language tag. Paper A unchanged. No halt theorem. No ledger theorem row
+- **Refuted ideas:** hard cylinders thinner than generic \(M_k\); scale-stable uniqueness as a hard-branch law; vanishing density of every leftover; \(N_{\min}\) as an independent obstruction
+- **Literature:** `aboveAnchor_of_prefix`; `prefixNoncontracting`; `juggler_formal_realized_gap.md`; `juggler_parity_balance.md`
+- **Open:** none from nested start-set occupancy. The leftover hole is still a cube cell without a square cell
+- **Decision:** CLOSE. Occupancy is the generic length-\(k\) count; late \(O(1)\) support is \(k\sim\log_2 X\)
+
+```text
+What was learned
+- R_w and A_w stay distinct (OE has A=0, R>0)
+- M_k is the generic ~X/2^k occupancy
+- hard M_k tracks generic M_k
+- 69 and 89 keep a scale-stable positive fraction
+- uniqueness at k=20 is the window, not a law
+Strongest theorem
+- none new
+Strongest refutation
+- hard nested cylinders are a thinner family than generic max |A_w|
+Reusable machinery
+- none; no new Lean primitive; compact start-set counts only
+Branch status
+- CLOSE
+Why
+- occupancy is the generic length-k count;
+  short leftovers stay dense; late uniqueness is log2(X)
+Best next question
+- none from nested start-set occupancy
+```
+
 

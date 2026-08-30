@@ -1,0 +1,349 @@
+{
+  "n": 1517,
+  "S": 15,
+  "word": "OOEOOEOOEOEOOOE",
+  "formal": true,
+  "by_X": {
+    "100000": {
+      "rows": [
+        {
+          "word": "O",
+          "length": 1,
+          "a_count": 49999,
+          "r_count": 49999,
+          "a_min": 3,
+          "r_min": 3,
+          "a_frac": 0.49999,
+          "C": 1.0
+        },
+        {
+          "word": "OO",
+          "length": 2,
+          "a_count": 24984,
+          "r_count": 24984,
+          "a_min": 3,
+          "r_min": 3,
+          "a_frac": 0.24984,
+          "C": 0.499689993799876
+        },
+        {
+          "word": "OOE",
+          "length": 3,
+          "a_count": 12467,
+          "r_count": 12467,
+          "a_min": 5,
+          "r_min": 5,
+          "a_frac": 0.12467,
+          "C": 0.4989993595901377
+        },
+        {
+          "word": "OOEO",
+          "length": 4,
+          "a_count": 6291,
+          "r_count": 6291,
+          "a_min": 9,
+          "r_min": 9,
+          "a_frac": 0.06291,
+          "C": 0.5046121761450229
+        },
+        {
+          "word": "OOEOO",
+          "length": 5,
+          "a_count": 3138,
+          "r_count": 3138,
+          "a_min": 69,
+          "r_min": 69,
+          "a_frac": 0.03138,
+          "C": 0.4988078206962327
+        },
+        {
+          "word": "OOEOOE",
+          "length": 6,
+          "a_count": 1607,
+          "r_count": 1607,
+          "a_min": 69,
+          "r_min": 69,
+          "a_frac": 0.01607,
+          "C": 0.5121096239643085
+        },
+        {
+          "word": "OOEOOEO",
+          "length": 7,
+          "a_count": 815,
+          "r_count": 815,
+          "a_min": 89,
+          "r_min": 89,
+          "a_frac": 0.00815,
+          "C": 0.5071561916614811
+        },
+        {
+          "word": "OOEOOEOO",
+          "length": 8,
+          "a_count": 401,
+          "r_count": 401,
+          "a_min": 365,
+          "r_min": 365,
+          "a_frac": 0.00401,
+          "C": 0.4920245398773006
+        },
+        {
+          "word": "OOEOOEOOE",
+          "length": 9,
+          "a_count": 208,
+          "r_count": 208,
+          "a_min": 365,
+          "r_min": 365,
+          "a_frac": 0.00208,
+          "C": 0.5187032418952618
+        },
+        {
+          "word": "OOEOOEOOEO",
+          "length": 10,
+          "a_count": 108,
+          "r_count": 108,
+          "a_min": 365,
+          "r_min": 365,
+          "a_frac": 0.00108,
+          "C": 0.5192307692307693
+        },
+        {
+          "word": "OOEOOEOOEOE",
+          "length": 11,
+          "a_count": 51,
+          "r_count": 51,
+          "a_min": 429,
+          "r_min": 429,
+          "a_frac": 0.00051,
+          "C": 0.4722222222222222
+        },
+        {
+          "word": "OOEOOEOOEOEO",
+          "length": 12,
+          "a_count": 19,
+          "r_count": 19,
+          "a_min": 1517,
+          "r_min": 1517,
+          "a_frac": 0.00019,
+          "C": 0.37254901960784315
+        },
+        {
+          "word": "OOEOOEOOEOEOO",
+          "length": 13,
+          "a_count": 7,
+          "r_count": 7,
+          "a_min": 1517,
+          "r_min": 1517,
+          "a_frac": 7e-05,
+          "C": 0.3684210526315789
+        },
+        {
+          "word": "OOEOOEOOEOEOOO",
+          "length": 14,
+          "a_count": 5,
+          "r_count": 5,
+          "a_min": 1517,
+          "r_min": 1517,
+          "a_frac": 5e-05,
+          "C": 0.7142857142857143
+        },
+        {
+          "word": "OOEOOEOOEOEOOOE",
+          "length": 15,
+          "a_count": 3,
+          "r_count": 3,
+          "a_min": 1517,
+          "r_min": 1517,
+          "a_frac": 3e-05,
+          "C": 0.6
+        }
+      ],
+      "bottleneck": null,
+      "final": {
+        "word": "OOEOOEOOEOEOOOE",
+        "length": 15,
+        "a_count": 3,
+        "r_count": 3,
+        "a_min": 1517,
+        "r_min": 1517,
+        "a_frac": 3e-05,
+        "C": 0.6
+      }
+    },
+    "1000000": {
+      "rows": [
+        {
+          "word": "O",
+          "length": 1,
+          "a_count": 499999,
+          "r_count": 499999,
+          "a_min": 3,
+          "r_min": 3,
+          "a_frac": 0.499999,
+          "C": 1.0
+        },
+        {
+          "word": "OO",
+          "length": 2,
+          "a_count": 249926,
+          "r_count": 249926,
+          "a_min": 3,
+          "r_min": 3,
+          "a_frac": 0.249926,
+          "C": 0.4998529997059994
+        },
+        {
+          "word": "OOE",
+          "length": 3,
+          "a_count": 124954,
+          "r_count": 124954,
+          "a_min": 5,
+          "r_min": 5,
+          "a_frac": 0.124954,
+          "C": 0.4999639893408449
+        },
+        {
+          "word": "OOEO",
+          "length": 4,
+          "a_count": 62541,
+          "r_count": 62541,
+          "a_min": 9,
+          "r_min": 9,
+          "a_frac": 0.062541,
+          "C": 0.5005121884853626
+        },
+        {
+          "word": "OOEOO",
+          "length": 5,
+          "a_count": 31416,
+          "r_count": 31416,
+          "a_min": 69,
+          "r_min": 69,
+          "a_frac": 0.031416,
+          "C": 0.5023264738331654
+        },
+        {
+          "word": "OOEOOE",
+          "length": 6,
+          "a_count": 15768,
+          "r_count": 15768,
+          "a_min": 69,
+          "r_min": 69,
+          "a_frac": 0.015768,
+          "C": 0.5019098548510313
+        },
+        {
+          "word": "OOEOOEO",
+          "length": 7,
+          "a_count": 7881,
+          "r_count": 7881,
+          "a_min": 89,
+          "r_min": 89,
+          "a_frac": 0.007881,
+          "C": 0.4998097412480974
+        },
+        {
+          "word": "OOEOOEOO",
+          "length": 8,
+          "a_count": 3917,
+          "r_count": 3917,
+          "a_min": 365,
+          "r_min": 365,
+          "a_frac": 0.003917,
+          "C": 0.49701814490546886
+        },
+        {
+          "word": "OOEOOEOOE",
+          "length": 9,
+          "a_count": 1983,
+          "r_count": 1983,
+          "a_min": 365,
+          "r_min": 365,
+          "a_frac": 0.001983,
+          "C": 0.506254786826653
+        },
+        {
+          "word": "OOEOOEOOEO",
+          "length": 10,
+          "a_count": 973,
+          "r_count": 973,
+          "a_min": 365,
+          "r_min": 365,
+          "a_frac": 0.000973,
+          "C": 0.49067070095814425
+        },
+        {
+          "word": "OOEOOEOOEOE",
+          "length": 11,
+          "a_count": 499,
+          "r_count": 499,
+          "a_min": 429,
+          "r_min": 429,
+          "a_frac": 0.000499,
+          "C": 0.512846865364851
+        },
+        {
+          "word": "OOEOOEOOEOEO",
+          "length": 12,
+          "a_count": 261,
+          "r_count": 261,
+          "a_min": 1517,
+          "r_min": 1517,
+          "a_frac": 0.000261,
+          "C": 0.5230460921843687
+        },
+        {
+          "word": "OOEOOEOOEOEOO",
+          "length": 13,
+          "a_count": 125,
+          "r_count": 125,
+          "a_min": 1517,
+          "r_min": 1517,
+          "a_frac": 0.000125,
+          "C": 0.4789272030651341
+        },
+        {
+          "word": "OOEOOEOOEOEOOO",
+          "length": 14,
+          "a_count": 64,
+          "r_count": 64,
+          "a_min": 1517,
+          "r_min": 1517,
+          "a_frac": 6.4e-05,
+          "C": 0.512
+        },
+        {
+          "word": "OOEOOEOOEOEOOOE",
+          "length": 15,
+          "a_count": 45,
+          "r_count": 45,
+          "a_min": 1517,
+          "r_min": 1517,
+          "a_frac": 4.5e-05,
+          "C": 0.703125
+        }
+      ],
+      "bottleneck": null,
+      "final": {
+        "word": "OOEOOEOOEOEOOOE",
+        "length": 15,
+        "a_count": 45,
+        "r_count": 45,
+        "a_min": 1517,
+        "r_min": 1517,
+        "a_frac": 4.5e-05,
+        "C": 0.703125
+      }
+    }
+  },
+  "scale": {
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 3,
+    "S_large": 45,
+    "frac_small": 3e-05,
+    "frac_large": 4.5e-05,
+    "n_min_small": 1517,
+    "n_min_large": 1517,
+    "n_min_stable": true
+  }
+}

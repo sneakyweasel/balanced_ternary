@@ -1,0 +1,456 @@
+{
+  "n": 501,
+  "S": 20,
+  "word": "OOEOOOEOOEEOOEOOEOOE",
+  "formal": true,
+  "by_X": {
+    "100000": {
+      "rows": [
+        {
+          "word": "O",
+          "length": 1,
+          "a_count": 49999,
+          "r_count": 49999,
+          "a_min": 3,
+          "r_min": 3,
+          "a_frac": 0.49999,
+          "C": 1.0
+        },
+        {
+          "word": "OO",
+          "length": 2,
+          "a_count": 24984,
+          "r_count": 24984,
+          "a_min": 3,
+          "r_min": 3,
+          "a_frac": 0.24984,
+          "C": 0.499689993799876
+        },
+        {
+          "word": "OOE",
+          "length": 3,
+          "a_count": 12467,
+          "r_count": 12467,
+          "a_min": 5,
+          "r_min": 5,
+          "a_frac": 0.12467,
+          "C": 0.4989993595901377
+        },
+        {
+          "word": "OOEO",
+          "length": 4,
+          "a_count": 6291,
+          "r_count": 6291,
+          "a_min": 9,
+          "r_min": 9,
+          "a_frac": 0.06291,
+          "C": 0.5046121761450229
+        },
+        {
+          "word": "OOEOO",
+          "length": 5,
+          "a_count": 3138,
+          "r_count": 3138,
+          "a_min": 69,
+          "r_min": 69,
+          "a_frac": 0.03138,
+          "C": 0.4988078206962327
+        },
+        {
+          "word": "OOEOOO",
+          "length": 6,
+          "a_count": 1531,
+          "r_count": 1531,
+          "a_min": 105,
+          "r_min": 105,
+          "a_frac": 0.01531,
+          "C": 0.4878903760356915
+        },
+        {
+          "word": "OOEOOOE",
+          "length": 7,
+          "a_count": 761,
+          "r_count": 761,
+          "a_min": 105,
+          "r_min": 105,
+          "a_frac": 0.00761,
+          "C": 0.4970607446113651
+        },
+        {
+          "word": "OOEOOOEO",
+          "length": 8,
+          "a_count": 385,
+          "r_count": 385,
+          "a_min": 319,
+          "r_min": 319,
+          "a_frac": 0.00385,
+          "C": 0.5059132720105125
+        },
+        {
+          "word": "OOEOOOEOO",
+          "length": 9,
+          "a_count": 186,
+          "r_count": 186,
+          "a_min": 491,
+          "r_min": 491,
+          "a_frac": 0.00186,
+          "C": 0.4831168831168831
+        },
+        {
+          "word": "OOEOOOEOOE",
+          "length": 10,
+          "a_count": 83,
+          "r_count": 83,
+          "a_min": 491,
+          "r_min": 491,
+          "a_frac": 0.00083,
+          "C": 0.44623655913978494
+        },
+        {
+          "word": "OOEOOOEOOEE",
+          "length": 11,
+          "a_count": 46,
+          "r_count": 46,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 0.00046,
+          "C": 0.5542168674698795
+        },
+        {
+          "word": "OOEOOOEOOEEO",
+          "length": 12,
+          "a_count": 26,
+          "r_count": 26,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 0.00026,
+          "C": 0.5652173913043478
+        },
+        {
+          "word": "OOEOOOEOOEEOO",
+          "length": 13,
+          "a_count": 12,
+          "r_count": 12,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 0.00012,
+          "C": 0.46153846153846156
+        },
+        {
+          "word": "OOEOOOEOOEEOOE",
+          "length": 14,
+          "a_count": 6,
+          "r_count": 6,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 6e-05,
+          "C": 0.5
+        },
+        {
+          "word": "OOEOOOEOOEEOOEO",
+          "length": 15,
+          "a_count": 3,
+          "r_count": 3,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 3e-05,
+          "C": 0.5
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOO",
+          "length": 16,
+          "a_count": 2,
+          "r_count": 2,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 2e-05,
+          "C": 0.6666666666666666
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOOE",
+          "length": 17,
+          "a_count": 2,
+          "r_count": 2,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 2e-05,
+          "C": 1.0
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOOEO",
+          "length": 18,
+          "a_count": 1,
+          "r_count": 1,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 1e-05,
+          "C": 0.5
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOOEOO",
+          "length": 19,
+          "a_count": 1,
+          "r_count": 1,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 1e-05,
+          "C": 1.0
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOOEOOE",
+          "length": 20,
+          "a_count": 1,
+          "r_count": 1,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 1e-05,
+          "C": 1.0
+        }
+      ],
+      "bottleneck": null,
+      "final": {
+        "word": "OOEOOOEOOEEOOEOOEOOE",
+        "length": 20,
+        "a_count": 1,
+        "r_count": 1,
+        "a_min": 501,
+        "r_min": 501,
+        "a_frac": 1e-05,
+        "C": 1.0
+      }
+    },
+    "1000000": {
+      "rows": [
+        {
+          "word": "O",
+          "length": 1,
+          "a_count": 499999,
+          "r_count": 499999,
+          "a_min": 3,
+          "r_min": 3,
+          "a_frac": 0.499999,
+          "C": 1.0
+        },
+        {
+          "word": "OO",
+          "length": 2,
+          "a_count": 249926,
+          "r_count": 249926,
+          "a_min": 3,
+          "r_min": 3,
+          "a_frac": 0.249926,
+          "C": 0.4998529997059994
+        },
+        {
+          "word": "OOE",
+          "length": 3,
+          "a_count": 124954,
+          "r_count": 124954,
+          "a_min": 5,
+          "r_min": 5,
+          "a_frac": 0.124954,
+          "C": 0.4999639893408449
+        },
+        {
+          "word": "OOEO",
+          "length": 4,
+          "a_count": 62541,
+          "r_count": 62541,
+          "a_min": 9,
+          "r_min": 9,
+          "a_frac": 0.062541,
+          "C": 0.5005121884853626
+        },
+        {
+          "word": "OOEOO",
+          "length": 5,
+          "a_count": 31416,
+          "r_count": 31416,
+          "a_min": 69,
+          "r_min": 69,
+          "a_frac": 0.031416,
+          "C": 0.5023264738331654
+        },
+        {
+          "word": "OOEOOO",
+          "length": 6,
+          "a_count": 15648,
+          "r_count": 15648,
+          "a_min": 105,
+          "r_min": 105,
+          "a_frac": 0.015648,
+          "C": 0.49809014514896865
+        },
+        {
+          "word": "OOEOOOE",
+          "length": 7,
+          "a_count": 7768,
+          "r_count": 7768,
+          "a_min": 105,
+          "r_min": 105,
+          "a_frac": 0.007768,
+          "C": 0.49642126789366053
+        },
+        {
+          "word": "OOEOOOEO",
+          "length": 8,
+          "a_count": 3810,
+          "r_count": 3810,
+          "a_min": 319,
+          "r_min": 319,
+          "a_frac": 0.00381,
+          "C": 0.49047373841400616
+        },
+        {
+          "word": "OOEOOOEOO",
+          "length": 9,
+          "a_count": 1909,
+          "r_count": 1909,
+          "a_min": 491,
+          "r_min": 491,
+          "a_frac": 0.001909,
+          "C": 0.5010498687664042
+        },
+        {
+          "word": "OOEOOOEOOE",
+          "length": 10,
+          "a_count": 914,
+          "r_count": 914,
+          "a_min": 491,
+          "r_min": 491,
+          "a_frac": 0.000914,
+          "C": 0.4787847040335254
+        },
+        {
+          "word": "OOEOOOEOOEE",
+          "length": 11,
+          "a_count": 444,
+          "r_count": 444,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 0.000444,
+          "C": 0.48577680525164113
+        },
+        {
+          "word": "OOEOOOEOOEEO",
+          "length": 12,
+          "a_count": 211,
+          "r_count": 211,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 0.000211,
+          "C": 0.4752252252252252
+        },
+        {
+          "word": "OOEOOOEOOEEOO",
+          "length": 13,
+          "a_count": 110,
+          "r_count": 110,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 0.00011,
+          "C": 0.5213270142180095
+        },
+        {
+          "word": "OOEOOOEOOEEOOE",
+          "length": 14,
+          "a_count": 56,
+          "r_count": 56,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 5.6e-05,
+          "C": 0.509090909090909
+        },
+        {
+          "word": "OOEOOOEOOEEOOEO",
+          "length": 15,
+          "a_count": 29,
+          "r_count": 29,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 2.9e-05,
+          "C": 0.5178571428571429
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOO",
+          "length": 16,
+          "a_count": 18,
+          "r_count": 18,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 1.8e-05,
+          "C": 0.6206896551724138
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOOE",
+          "length": 17,
+          "a_count": 9,
+          "r_count": 9,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 9e-06,
+          "C": 0.5
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOOEO",
+          "length": 18,
+          "a_count": 2,
+          "r_count": 2,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 2e-06,
+          "C": 0.2222222222222222
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOOEOO",
+          "length": 19,
+          "a_count": 1,
+          "r_count": 1,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 1e-06,
+          "C": 0.5
+        },
+        {
+          "word": "OOEOOOEOOEEOOEOOEOOE",
+          "length": 20,
+          "a_count": 1,
+          "r_count": 1,
+          "a_min": 501,
+          "r_min": 501,
+          "a_frac": 1e-06,
+          "C": 1.0
+        }
+      ],
+      "bottleneck": {
+        "k": 18,
+        "parent": "OOEOOOEOOEEOOEOOE",
+        "child": "OOEOOOEOOEEOOEOOEO",
+        "S_parent": 9,
+        "S_child": 2,
+        "C": 0.2222222222222222
+      },
+      "final": {
+        "word": "OOEOOOEOOEEOOEOOEOOE",
+        "length": 20,
+        "a_count": 1,
+        "r_count": 1,
+        "a_min": 501,
+        "r_min": 501,
+        "a_frac": 1e-06,
+        "C": 1.0
+      }
+    }
+  },
+  "scale": {
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 1,
+    "S_large": 1,
+    "frac_small": 1e-05,
+    "frac_large": 1e-06,
+    "n_min_small": 501,
+    "n_min_large": 501,
+    "n_min_stable": true
+  }
+}

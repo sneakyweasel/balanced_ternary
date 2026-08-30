@@ -1,0 +1,110 @@
+[
+  {
+    "n": 37,
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 5,
+    "S_large": 54,
+    "frac_small": 5e-05,
+    "frac_large": 5.4e-05,
+    "n_min_small": 37,
+    "n_min_large": 37,
+    "n_min_stable": true
+  },
+  {
+    "n": 69,
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 1607,
+    "S_large": 15768,
+    "frac_small": 0.01607,
+    "frac_large": 0.015768,
+    "n_min_small": 69,
+    "n_min_large": 69,
+    "n_min_stable": true
+  },
+  {
+    "n": 89,
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 815,
+    "S_large": 7881,
+    "frac_small": 0.00815,
+    "frac_large": 0.007881,
+    "n_min_small": 89,
+    "n_min_large": 89,
+    "n_min_stable": true
+  },
+  {
+    "n": 365,
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 10,
+    "S_large": 53,
+    "frac_small": 0.0001,
+    "frac_large": 5.3e-05,
+    "n_min_small": 365,
+    "n_min_large": 365,
+    "n_min_stable": true
+  },
+  {
+    "n": 501,
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 1,
+    "S_large": 1,
+    "frac_small": 1e-05,
+    "frac_large": 1e-06,
+    "n_min_small": 501,
+    "n_min_large": 501,
+    "n_min_stable": true
+  },
+  {
+    "n": 1517,
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 3,
+    "S_large": 45,
+    "frac_small": 3e-05,
+    "frac_large": 4.5e-05,
+    "n_min_small": 1517,
+    "n_min_large": 1517,
+    "n_min_stable": true
+  },
+  {
+    "n": 6187,
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 26,
+    "S_large": 211,
+    "frac_small": 0.00026,
+    "frac_large": 0.000211,
+    "n_min_small": 501,
+    "n_min_large": 501,
+    "n_min_stable": true
+  },
+  {
+    "n": 329,
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 1,
+    "S_large": 4,
+    "frac_small": 1e-05,
+    "frac_large": 4e-06,
+    "n_min_small": 329,
+    "n_min_large": 329,
+    "n_min_stable": true
+  },
+  {
+    "n": 33391,
+    "small_X": 100000,
+    "large_X": 1000000,
+    "S_small": 1,
+    "S_large": 1,
+    "frac_small": 1e-05,
+    "frac_large": 1e-06,
+    "n_min_small": 33391,
+    "n_min_large": 33391,
+    "n_min_stable": true
+  }
+]
