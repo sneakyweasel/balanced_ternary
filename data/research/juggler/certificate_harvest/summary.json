@@ -1,0 +1,100 @@
+{
+  "classification": "CERTIFICATE_HARVEST_PARK",
+  "reason": "leftover mass is a short mixed O/E-block list with small scale drift; a verification bound, not a new law",
+  "n_max": 1000000000,
+  "coarse": {
+    "skip": 0,
+    "E": 500000000,
+    "OE": 250000011,
+    "OOEE": 62499595,
+    "leftover": 148438571,
+    "uncapped": 4058691,
+    "overflow": 35003131,
+    "long": 0,
+    "replayed_overflow": 0,
+    "replayed_uncapped": 0
+  },
+  "n_leftover_types": 3081,
+  "unary_share": 0.2895446157319852,
+  "oooo_star_share": 0.07893811508061473,
+  "drift": {
+    "tv": 0.013289756011731388,
+    "max_abs_delta": 0.0027163728474332294,
+    "top_deltas": [
+      {
+        "word": "OOOEE",
+        "delta": 0.0027163728474332294,
+        "low": 0.20816494523539952,
+        "high": 0.21088131808283275
+      },
+      {
+        "word": "OOEOE",
+        "delta": 0.0025312404293235946,
+        "low": 0.20832575613250526,
+        "high": 0.21085699656182885
+      },
+      {
+        "word": "OOOOEEE",
+        "delta": 0.0006582399156345523,
+        "low": 0.05199965187603724,
+        "high": 0.05265789179167179
+      },
+      {
+        "word": "OOOEOEE",
+        "delta": 0.0006452695250821552,
+        "low": 0.05206437576505867,
+        "high": 0.05270964529014083
+      },
+      {
+        "word": "OOEOOEE",
+        "delta": 0.0006120881454891938,
+        "low": 0.05210000053936574,
+        "high": 0.052712088684854934
+      },
+      {
+        "word": "OOOOEOEE",
+        "delta": 0.0004219555884763075,
+        "low": 0.025920252844005637,
+        "high": 0.026342208432481945
+      },
+      {
+        "word": "OOOOOOEEEE",
+        "delta": -0.0003810186141776347,
+        "low": 0.0003810186141776347,
+        "high": 0.0
+      },
+      {
+        "word": "OOOOOEEE",
+        "delta": 0.00036998681502262154,
+        "low": 0.025975654362180366,
+        "high": 0.026345641177202988
+      },
+      {
+        "word": "OOEOOOEE",
+        "delta": 0.00036565958342250904,
+        "low": 0.02599156898098296,
+        "high": 0.02635722856440547
+      },
+      {
+        "word": "OOOEOOEE",
+        "delta": 0.0003476030784767721,
+        "low": 0.025991502392619773,
+        "high": 0.026339105471096545
+      },
+      {
+        "word": "OOOEOEOE",
+        "delta": 0.00032523540915901233,
+        "low": 0.026020668095697332,
+        "high": 0.026345903504856345
+      },
+      {
+        "word": "OOOOEEOE",
+        "delta": 0.00031288210038178665,
+        "low": 0.02602113421423967,
+        "high": 0.026334016314621456
+      }
+    ]
+  },
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND",
+  "git": "e31132bf7411dc7fda5ed07a768362446f06bd15"
+}

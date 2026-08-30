@@ -14732,4 +14732,37 @@ Best next question
 - none from rounding-phase occupancy
 ```
 
+## Juggler leftover-class certificate harvest
+
+- **Date:** 2026-08-30
+- **Objective:** Adapt the parked Atlas GPU engine into a first-descent leftover-class histogram through \(10^9\)
+- **Hypotheses:** a short leftover dictionary appears, or leftover word shares drift with scale
+- **Major results:** Classification **CERTIFICATE_HARVEST_PARK**. CUDA harvest \(2\le n\le 10^9\), \(k\le 20\): \(E=5.00\cdot 10^8\), \(OE=2.50\cdot 10^8\), \(OOEE=6.25\cdot 10^7\), leftover-with-word \(1.48\cdot 10^8\), uncapped \(4.06\cdot 10^6\), Wide8 overflow \(3.50\cdot 10^7\). Unfinished plus leftover is \(3/16\). Leading words `OOOEE` and `OOEOE` at share \(\approx 0.21\) each; scale-split TV \(0.013\). Unary \(O^+E^+\) share \(0.29\), `OOOO*` share \(0.08\). No Lean. No atlas language tag. Paper A unchanged. No halt theorem. No ledger theorem row. \(10^{10}\) not run
+- **Refuted ideas:** leftover is only `OOOO*` then evens; leftover shares drift with scale; overflow stays rare at \(10^9\)
+- **Literature:** Paper A Theorem 4.1; `juggler_word_atlas.md`; Paper B `OOEE`
+- **Open:** none from this leftover-class histogram
+- **Decision:** PARK. Reusable verification bound; product-like mixed block list; not a density theorem
+
+```text
+What was learned
+- E / OE / OOEE take 13/16 of n <= 10^9
+- leftover mass is 3/16, including overflow and uncapped
+- OOOEE and OOEOE each carry about 21% of k<=20 leftover
+- scale-split TV is 0.013
+- Wide8 overflow is common; CPU merge was skipped
+Strongest theorem
+- none new
+Strongest refutation
+- leftover histogram is only OOOO* until an even letter
+Reusable machinery
+- Atlas --mode harvest; leftover-class histogram
+Branch status
+- PARK
+Why
+- the dictionary is short, mixed, and scale-stable;
+  a verification bound, not a new law
+Best next question
+- none from this leftover-class histogram
+```
+
 

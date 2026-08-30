@@ -137,6 +137,7 @@ def run_harvest(
     n_begin: int = 2,
     backend: str = "cpu",
     output: Path,
+    list_cap: int = 10_000,
     binary: Path | None = None,
 ) -> dict[str, str | int]:
     exe = binary or find_binary()
@@ -155,6 +156,8 @@ def run_harvest(
         str(n_begin),
         "--backend",
         backend,
+        "--list-cap",
+        str(list_cap),
         "--output",
         str(output),
     ]
@@ -234,8 +237,14 @@ def parse_harvest_tsv(path: Path) -> dict[str, object]:
         idx = dense_index(length, packed)
         hist[idx] = count
         min_n_tbl[idx] = min_n
-    overflow_n, overflow_trunc = parse_overflow_file(path.with_name(path.name + ".overflow"))
-    uncapped_n, uncapped_trunc = parse_overflow_file(path.with_name(path.name + ".uncapped"))
+    overflow_n, overflow_trunc = parse_overflow_file(
+        path.with_name(path.name + ".overflow"),
+        load_starts=int(meta["count_overflow"]) <= 10_000,
+    )
+    uncapped_n, uncapped_trunc = parse_overflow_file(
+        path.with_name(path.name + ".uncapped"),
+        load_starts=int(meta["count_uncapped"]) <= 10_000,
+    )
     meta.update(
         {
             "hist": hist,
@@ -250,7 +259,11 @@ def parse_harvest_tsv(path: Path) -> dict[str, object]:
     return meta
 
 
-def parse_overflow_file(path: Path) -> tuple[list[int], bool]:
+def parse_overflow_file(
+    path: Path,
+    *,
+    load_starts: bool = True,
+) -> tuple[list[int], bool]:
     if not path.is_file():
         return [], False
     starts: list[int] = []
@@ -265,5 +278,8 @@ def parse_overflow_file(path: Path) -> tuple[list[int], bool]:
                 if body.startswith("overflow_truncated="):
                     truncated = body.split("=", 1)[1] == "1"
                 continue
-            starts.append(int(line))
+            if load_starts:
+                starts.append(int(line))
+            else:
+                break
     return starts, truncated

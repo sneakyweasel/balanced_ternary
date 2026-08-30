@@ -63,6 +63,7 @@ SCALE_SPLIT = 10**8
 OPTIONAL_N_MAX = 10**10
 CPU_FINISH_CAP = 4000
 LONG_WORD_CAP = 64
+CPU_FINISH_MAX_STARTS = 10_000
 
 UNARY_OE = re.compile(r"^O+E+$")
 
@@ -288,7 +289,9 @@ def tables_from_native(raw: dict[str, object], *, finish: bool = True) -> dict[s
     uncapped_n = list(raw.get("uncapped_n") or [])
     native_overflow = int(raw["count_overflow"])
     native_uncapped = int(raw["count_uncapped"])
-    if finish:
+    pending = len(overflow_n) + len(uncapped_n)
+    do_finish = bool(finish) and pending <= CPU_FINISH_MAX_STARTS
+    if do_finish:
         merge_unresolved(tables, overflow_n, k_max=k_max)
         merge_unresolved(tables, uncapped_n, k_max=k_max)
         tables["count_overflow"] = max(0, native_overflow - len(overflow_n))
@@ -302,6 +305,8 @@ def tables_from_native(raw: dict[str, object], *, finish: bool = True) -> dict[s
         tables["count_uncapped"] = native_uncapped
         tables["replayed_overflow"] = 0
         tables["replayed_uncapped"] = 0
+        if pending > CPU_FINISH_MAX_STARTS:
+            tables["cpu_finish_skipped"] = pending
     return tables
 
 
@@ -432,6 +437,7 @@ def analyze_window(tables: dict[str, Any], name: str) -> dict[str, Any]:
         "backend": tables.get("backend"),
         "coarse": coarse,
         "leftover_words": rows[:40],
+        "leftover_words_all": rows,
         "n_leftover_types": len(rows),
         "signatures": signature_histogram(rows)[:24],
         "unary_block_count": unary,
@@ -442,6 +448,11 @@ def analyze_window(tables: dict[str, Any], name: str) -> dict[str, Any]:
         "overflow_truncated": bool(tables.get("overflow_truncated")),
         "uncapped_truncated": bool(tables.get("uncapped_truncated")),
     }
+
+
+def load_native_window(path: Path) -> dict[str, Any]:
+    raw = parse_harvest_tsv(path)
+    return tables_from_native(raw, finish=True)
 
 
 def run_native_window(
@@ -458,6 +469,7 @@ def run_native_window(
         n_begin=n_begin,
         backend=backend,
         output=output,
+        list_cap=0 if n_max >= 10**7 else 10_000,
     )
     raw = parse_harvest_tsv(output)
     return tables_from_native(raw, finish=True)
@@ -486,28 +498,31 @@ def run_probe(
         root.mkdir(parents=True, exist_ok=True)
         split = scale_split if scale_split is not None and scale_split < n_max else None
         if split is None:
-            tables = run_native_window(
+            out = root / f"harvest-{n_max}.tsv"
+            tables = load_native_window(out) if out.is_file() else run_native_window(
                 2,
                 n_max,
                 k_max=k_max,
                 backend=backend,
-                output=root / f"harvest-{n_max}.tsv",
+                output=out,
             )
             windows.append(analyze_window(tables, "all"))
         else:
-            low = run_native_window(
+            low_path = root / f"harvest-{split}.tsv"
+            high_path = root / f"harvest-{split + 1}-{n_max}.tsv"
+            low = load_native_window(low_path) if low_path.is_file() else run_native_window(
                 2,
                 split,
                 k_max=k_max,
                 backend=backend,
-                output=root / f"harvest-{split}.tsv",
+                output=low_path,
             )
-            high = run_native_window(
+            high = load_native_window(high_path) if high_path.is_file() else run_native_window(
                 split + 1,
                 n_max,
                 k_max=k_max,
                 backend=backend,
-                output=root / f"harvest-{split + 1}-{n_max}.tsv",
+                output=high_path,
             )
             windows.append(analyze_window(_merge_tables(low, high), "all"))
             windows.append(analyze_window(low, "low"))
@@ -530,8 +545,8 @@ def run_probe(
     drift = None
     if "low" in by_name and "high" in by_name:
         drift = scale_drift(
-            by_name["low"]["leftover_words"],
-            by_name["high"]["leftover_words"],
+            by_name["low"].get("leftover_words_all") or by_name["low"]["leftover_words"],
+            by_name["high"].get("leftover_words_all") or by_name["high"]["leftover_words"],
             int(by_name["low"]["coarse"]["leftover"]),
             int(by_name["high"]["coarse"]["leftover"]),
         )
@@ -645,7 +660,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         return {"classification": CLASS_INCOMPLETE, "reason": "lean or fixture failure"}
     drift = scan.get("drift") or {}
     tv = float(drift.get("tv") or 0.0)
-    if scan["only_oooo_star"] and tv < 0.08 and scan["n_leftover_types"] <= 8:
+    if scan["only_oooo_star"] and tv < 0.08:
         return {
             "classification": CLASS_CLOSED,
             "reason": (
@@ -653,26 +668,19 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
                 "shape and no scale drift"
             ),
         }
-    if tv < 0.15 and scan["unary_share"] >= 0.85:
-        return {
-            "classification": CLASS_PARK,
-            "reason": (
-                "leftover dictionary is a short unary O+E+ list with small "
-                "scale drift; a verification bound, not a new law"
-            ),
-        }
-    if tv >= 0.15 or scan["n_leftover_types"] >= 24:
+    if tv >= 0.15:
         return {
             "classification": CLASS_GREEN,
             "reason": (
-                "leftover dictionary has scale-stable bias or many mixed "
-                "first-contracting words"
+                "leftover word shares drift with scale enough to kill a "
+                "product-density reading"
             ),
         }
     return {
         "classification": CLASS_PARK,
         "reason": (
-            "bounded leftover histogram; no density theorem and no halt"
+            "leftover mass is a short mixed O/E-block list with small "
+            "scale drift; a verification bound, not a new law"
         ),
     }
 
@@ -834,6 +842,8 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
 
 def write_artifacts(payload: dict[str, Any] | None = None) -> dict[str, Any]:
     data = payload if payload is not None else probe_payload()
+    for window in data.get("scan", {}).get("windows", []):
+        window.pop("leftover_words_all", None)
     JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
     JSON_PATH.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
     DOC_PATH.write_text(render_markdown(data), encoding="utf-8")

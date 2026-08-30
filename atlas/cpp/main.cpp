@@ -24,6 +24,7 @@ struct Args {
     uint64_t n_begin = 1;
     std::string backend = "cpu";
     std::string output = "census.tsv";
+    uint64_t list_cap = 16000000;
 };
 
 void usage() {
@@ -51,6 +52,8 @@ bool parse_args(int argc, char** argv, Args& args) {
             args.backend = val;
         } else if (key == "--output") {
             args.output = val;
+        } else if (key == "--list-cap") {
+            args.list_cap = static_cast<uint64_t>(std::strtoull(val.c_str(), nullptr, 10));
         } else {
             return false;
         }
@@ -186,6 +189,7 @@ int run_harvest(const Args& args) {
     tables.k_max = args.k_max;
     tables.n_begin = args.n_begin;
     tables.n_max = args.n_max;
+    tables.overflow_cap = args.list_cap;
     std::string used = args.backend;
     if (args.backend == "cuda") {
 #ifdef JUGGLER_ATLAS_CUDA

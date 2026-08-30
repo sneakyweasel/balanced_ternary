@@ -62,7 +62,7 @@ bool gpu_harvest(HarvestTables& tables) {
     const int size = dense_size(tables.k_max);
     const size_t hist_bytes = static_cast<size_t>(size) * sizeof(unsigned long long);
     const unsigned long long cap = tables.overflow_cap;
-    const size_t list_bytes = static_cast<size_t>(cap) * sizeof(unsigned long long);
+    const size_t list_bytes = static_cast<size_t>(cap > 0 ? cap : 1ull) * sizeof(unsigned long long);
 
     unsigned long long* d_coarse = nullptr;
     unsigned long long* d_hist = nullptr;

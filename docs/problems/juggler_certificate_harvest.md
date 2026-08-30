@@ -110,7 +110,16 @@ None opened.
 
 ## Counterexamples
 
-Recorded after the science window.
+- “the leftover histogram is only `OOOO*` until an even letter” —
+  at \(n\le 10^9\) the two leading leftover words are `OOOEE`
+  (unary) and `OOEOE` (mixed), each about \(21\%\) of the
+  \(k\le 20\) leftover mass. Unary \(O^+E^+\) is only \(0.29\) of
+  that mass; `OOOO*` is \(0.08\).
+- “leftover word shares drift with scale” — total variation
+  between \([2,10^8]\) and \((10^8,10^9]\) is \(0.013\).
+- “overflow stays rare out to \(10^9\)” — \(3.50\cdot 10^7\)
+  Wide8 overflows and \(4.06\cdot 10^6\) uncapped starts.
+  The optional \(10^{10}\) slab was not run.
 
 ## Formalization
 
@@ -120,18 +129,39 @@ No `CertificateHarvest.lean`. No `sorry`. Paper A is unchanged.
 
 ## Results
 
-Recorded after the science window. Classification is produced by
-`certificate_harvest.classify`.
+Classification **CERTIFICATE_HARVEST_PARK**.
+
+On \(2\le n\le 10^9\), CUDA, \(k\le 20\), histogram only
+(**COMPUTATIONALLY VERIFIED** as a bounded observation):
+
+- Coarse: \(E=5.00\cdot 10^8\), \(OE=2.50\cdot 10^8\),
+  \(OOEE=6.25\cdot 10^7\), leftover-with-word \(1.48\cdot 10^8\),
+  uncapped \(4.06\cdot 10^6\), overflow \(3.50\cdot 10^7\).
+  The unfinished plus leftover-with-word mass is \(3/16\) of the
+  window, the complement of \(\{E,OE,OOEE\}\).
+- Leading leftover words: `OOOEE` and `OOEOE`, then a
+  length-\(7/8\) octet at about one-quarter of that mass. Shares
+  match a product-density split. Scale-split TV \(0.013\).
+- \(3081\) leftover types at \(k\le 20\); mass is concentrated in
+  the short \(O/E\)-block list. CPU merge of overflow/uncapped
+  was skipped after those lists exploded at \(10^8\).
+- No new atlas language. No Lean. No halt theorem.
 
 ## Open questions
 
-Whether the leftover first-contracting dictionary is a short unary
-\(O^+E^+\) list or a scale-stable mixed family.
+None from this histogram. The leftover first-contracting
+dictionary is a scale-stable mixed \(O/E\)-block list, not a new
+grammar and not an `OOOO*`-only kernel.
 
 ## Decision
 
-Pending the Phase-0 science window. The branch will end in exactly
-one of PROMOTE, PARK, or CLOSE after the leftover-class histogram.
+**PARK**. The sieve is a reusable verification bound: a short
+stable leftover dictionary with product-like frequencies and no
+scale drift. It does not promote a density theorem and does not
+kill a withdrawn Paper B claim. Do not run \(10^{10}\). Do not
+auto-open \(K_3\) sums or inverse-cell search.
+
+Best next question: none from this leftover-class histogram.
 
 ## Publication assessment
 

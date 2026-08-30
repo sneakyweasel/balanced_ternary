@@ -56,3 +56,6 @@ Desktop.ini
 data/research/juggler/certificate_harvest/harvest-100000000.tsv.uncapped
 data/research/juggler/certificate_harvest/harvest-100000000.tsv.overflow
 data/research/juggler/certificate_harvest/harvest-100000000.tsv
+data/research/juggler/certificate_harvest/harvest-100000001-1000000000.tsv
+data/research/juggler/certificate_harvest/harvest-100000001-1000000000.tsv.overflow
+data/research/juggler/certificate_harvest/harvest-100000001-1000000000.tsv.uncapped

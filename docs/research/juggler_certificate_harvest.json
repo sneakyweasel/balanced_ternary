@@ -1,0 +1,1831 @@
+{
+  "experiment": "juggler_certificate_harvest",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "density_theorem": false,
+    "atlas_language_tag": false,
+    "word_atlas_recensus": false,
+    "certificate_harvest_lean": false
+  },
+  "scan": {
+    "n_max": 1000000000,
+    "k_max": 20,
+    "backend": "cuda",
+    "windows": [
+      {
+        "name": "all",
+        "n_begin": 2,
+        "n_max": 1000000000,
+        "backend": "cuda",
+        "coarse": {
+          "skip": 0,
+          "E": 500000000,
+          "OE": 250000011,
+          "OOEE": 62499595,
+          "leftover": 148438571,
+          "uncapped": 4058691,
+          "overflow": 35003131,
+          "long": 0,
+          "replayed_overflow": 0,
+          "replayed_uncapped": 0
+        },
+        "leftover_words": [
+          {
+            "word": "OOOEE",
+            "length": 5,
+            "packed": 7,
+            "count": 31262128,
+            "min_n": 3,
+            "run_signature": "O3,E2",
+            "unary_block": true
+          },
+          {
+            "word": "OOEOE",
+            "length": 5,
+            "packed": 11,
+            "count": 31261298,
+            "min_n": 9,
+            "run_signature": "O2,E1,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOEE",
+            "length": 7,
+            "packed": 27,
+            "count": 7815315,
+            "min_n": 69,
+            "run_signature": "O2,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEE",
+            "length": 7,
+            "packed": 23,
+            "count": 7814454,
+            "min_n": 81,
+            "run_signature": "O3,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEE",
+            "length": 7,
+            "packed": 15,
+            "count": 7806577,
+            "min_n": 271,
+            "run_signature": "O4,E3",
+            "unary_block": true
+          },
+          {
+            "word": "OOEOOEOE",
+            "length": 8,
+            "packed": 91,
+            "count": 3907733,
+            "min_n": 89,
+            "run_signature": "O2,E1,O2,E1,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOEE",
+            "length": 8,
+            "packed": 59,
+            "count": 3906938,
+            "min_n": 105,
+            "run_signature": "O2,E1,O3,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEOE",
+            "length": 8,
+            "packed": 87,
+            "count": 3905864,
+            "min_n": 629,
+            "run_signature": "O3,E1,O1,E1,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEE",
+            "length": 8,
+            "packed": 31,
+            "count": 3905153,
+            "min_n": 129,
+            "run_signature": "O5,E3",
+            "unary_block": true
+          },
+          {
+            "word": "OOOEOOEE",
+            "length": 8,
+            "packed": 55,
+            "count": 3904519,
+            "min_n": 99,
+            "run_signature": "O3,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOE",
+            "length": 8,
+            "packed": 79,
+            "count": 3904285,
+            "min_n": 971,
+            "run_signature": "O4,E2,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOEE",
+            "length": 8,
+            "packed": 47,
+            "count": 3903863,
+            "min_n": 519,
+            "run_signature": "O4,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOEOOEE",
+            "length": 10,
+            "packed": 219,
+            "count": 979330,
+            "min_n": 2185,
+            "run_signature": "O2,E1,O2,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOEEE",
+            "length": 10,
+            "packed": 111,
+            "count": 976834,
+            "min_n": 739,
+            "run_signature": "O4,E1,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEOEE",
+            "length": 10,
+            "packed": 183,
+            "count": 976743,
+            "min_n": 1849,
+            "run_signature": "O3,E1,O2,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEOOEE",
+            "length": 10,
+            "packed": 215,
+            "count": 976688,
+            "min_n": 77,
+            "run_signature": "O3,E1,O1,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOOEEE",
+            "length": 10,
+            "packed": 119,
+            "count": 976579,
+            "min_n": 183,
+            "run_signature": "O3,E1,O3,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEOEEE",
+            "length": 10,
+            "packed": 95,
+            "count": 976444,
+            "min_n": 165,
+            "run_signature": "O5,E1,O1,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOEEE",
+            "length": 10,
+            "packed": 123,
+            "count": 976396,
+            "min_n": 2947,
+            "run_signature": "O2,E1,O4,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEOEE",
+            "length": 10,
+            "packed": 159,
+            "count": 975886,
+            "min_n": 115,
+            "run_signature": "O5,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOEOEE",
+            "length": 10,
+            "packed": 187,
+            "count": 975753,
+            "min_n": 319,
+            "run_signature": "O2,E1,O3,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOOEE",
+            "length": 10,
+            "packed": 207,
+            "count": 975390,
+            "min_n": 1555,
+            "run_signature": "O4,E2,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOEOEE",
+            "length": 10,
+            "packed": 175,
+            "count": 974592,
+            "min_n": 441,
+            "run_signature": "O4,E1,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOOOEEEE",
+            "length": 12,
+            "packed": 247,
+            "count": 244693,
+            "min_n": 3293,
+            "run_signature": "O3,E1,O4,E4",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOOEOEE",
+            "length": 12,
+            "packed": 719,
+            "count": 244631,
+            "min_n": 1361,
+            "run_signature": "O4,E2,O2,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEOEOEEE",
+            "length": 12,
+            "packed": 351,
+            "count": 244606,
+            "min_n": 1007,
+            "run_signature": "O5,E1,O1,E1,O1,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOOEEEE",
+            "length": 12,
+            "packed": 239,
+            "count": 244462,
+            "min_n": 8185,
+            "run_signature": "O4,E1,O3,E4",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOEOOEEE",
+            "length": 12,
+            "packed": 443,
+            "count": 244360,
+            "min_n": 11233,
+            "run_signature": "O2,E1,O3,E1,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEOEEOEE",
+            "length": 12,
+            "packed": 607,
+            "count": 244261,
+            "min_n": 3371,
+            "run_signature": "O5,E1,O1,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOOOEEE",
+            "length": 12,
+            "packed": 463,
+            "count": 244231,
+            "min_n": 26201,
+            "run_signature": "O4,E2,O3,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOEEOEE",
+            "length": 12,
+            "packed": 623,
+            "count": 244229,
+            "min_n": 1125,
+            "run_signature": "O4,E1,O2,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEOEOEE",
+            "length": 12,
+            "packed": 671,
+            "count": 244223,
+            "min_n": 1795,
+            "run_signature": "O5,E2,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOEOEEE",
+            "length": 12,
+            "packed": 379,
+            "count": 244128,
+            "min_n": 6131,
+            "run_signature": "O2,E1,O4,E1,O1,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOEOEOEE",
+            "length": 12,
+            "packed": 687,
+            "count": 244097,
+            "min_n": 5303,
+            "run_signature": "O4,E1,O1,E1,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEOOEEE",
+            "length": 12,
+            "packed": 415,
+            "count": 244018,
+            "min_n": 10677,
+            "run_signature": "O5,E2,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEOOOEEE",
+            "length": 12,
+            "packed": 471,
+            "count": 244015,
+            "min_n": 1045,
+            "run_signature": "O3,E1,O1,E1,O3,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEOOEEE",
+            "length": 12,
+            "packed": 439,
+            "count": 243978,
+            "min_n": 13003,
+            "run_signature": "O3,E1,O2,E1,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEOEOEE",
+            "length": 12,
+            "packed": 695,
+            "count": 243950,
+            "min_n": 6607,
+            "run_signature": "O3,E1,O2,E1,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOEEOEE",
+            "length": 12,
+            "packed": 635,
+            "count": 243934,
+            "min_n": 2063,
+            "run_signature": "O2,E1,O4,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOOEOEEE",
+            "length": 12,
+            "packed": 375,
+            "count": 243862,
+            "min_n": 1203,
+            "run_signature": "O3,E1,O3,E1,O1,E3",
+            "unary_block": false
+          }
+        ],
+        "n_leftover_types": 3081,
+        "signatures": [
+          {
+            "run_signature": "O3,E2",
+            "count": 31262128,
+            "words": 1,
+            "min_n": 3,
+            "unary_block": true
+          },
+          {
+            "run_signature": "O2,E1,O1,E1",
+            "count": 31261298,
+            "words": 1,
+            "min_n": 9,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O2,E2",
+            "count": 7815315,
+            "words": 1,
+            "min_n": 69,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O1,E2",
+            "count": 7814454,
+            "words": 1,
+            "min_n": 81,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E3",
+            "count": 7806577,
+            "words": 1,
+            "min_n": 271,
+            "unary_block": true
+          },
+          {
+            "run_signature": "O2,E1,O2,E1,O1,E1",
+            "count": 3907733,
+            "words": 1,
+            "min_n": 89,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O3,E2",
+            "count": 3906938,
+            "words": 1,
+            "min_n": 105,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O1,E1,O1,E1",
+            "count": 3905864,
+            "words": 1,
+            "min_n": 629,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O5,E3",
+            "count": 3905153,
+            "words": 1,
+            "min_n": 129,
+            "unary_block": true
+          },
+          {
+            "run_signature": "O3,E1,O2,E2",
+            "count": 3904519,
+            "words": 1,
+            "min_n": 99,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E2,O1,E1",
+            "count": 3904285,
+            "words": 1,
+            "min_n": 971,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E1,O1,E2",
+            "count": 3903863,
+            "words": 1,
+            "min_n": 519,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O2,E1,O2,E2",
+            "count": 979330,
+            "words": 1,
+            "min_n": 2185,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E1,O2,E3",
+            "count": 976834,
+            "words": 1,
+            "min_n": 739,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O2,E1,O1,E2",
+            "count": 976743,
+            "words": 1,
+            "min_n": 1849,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O1,E1,O2,E2",
+            "count": 976688,
+            "words": 1,
+            "min_n": 77,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O3,E3",
+            "count": 976579,
+            "words": 1,
+            "min_n": 183,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O5,E1,O1,E3",
+            "count": 976444,
+            "words": 1,
+            "min_n": 165,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O4,E3",
+            "count": 976396,
+            "words": 1,
+            "min_n": 2947,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O5,E2,O1,E2",
+            "count": 975886,
+            "words": 1,
+            "min_n": 115,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O3,E1,O1,E2",
+            "count": 975753,
+            "words": 1,
+            "min_n": 319,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E2,O2,E2",
+            "count": 975390,
+            "words": 1,
+            "min_n": 1555,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E1,O1,E1,O1,E2",
+            "count": 974592,
+            "words": 1,
+            "min_n": 441,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O4,E4",
+            "count": 244693,
+            "words": 1,
+            "min_n": 3293,
+            "unary_block": false
+          }
+        ],
+        "unary_block_count": 42979589,
+        "multi_block_count": 105458982,
+        "oooo_star_count": 11717461,
+        "unary_share": 0.2895446157319852,
+        "oooo_star_share": 0.07893811508061473,
+        "overflow_truncated": true,
+        "uncapped_truncated": true
+      },
+      {
+        "name": "low",
+        "n_begin": 2,
+        "n_max": 100000000,
+        "backend": "cuda",
+        "coarse": {
+          "skip": 0,
+          "E": 50000000,
+          "OE": 25000034,
+          "OOEE": 6249847,
+          "leftover": 15017639,
+          "uncapped": 533070,
+          "overflow": 3199409,
+          "long": 0,
+          "replayed_overflow": 0,
+          "replayed_uncapped": 0
+        },
+        "leftover_words": [
+          {
+            "word": "OOEOE",
+            "length": 5,
+            "packed": 11,
+            "count": 3128561,
+            "min_n": 9,
+            "run_signature": "O2,E1,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEE",
+            "length": 5,
+            "packed": 7,
+            "count": 3126146,
+            "min_n": 3,
+            "run_signature": "O3,E2",
+            "unary_block": true
+          },
+          {
+            "word": "OOEOOEE",
+            "length": 7,
+            "packed": 27,
+            "count": 782419,
+            "min_n": 69,
+            "run_signature": "O2,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEE",
+            "length": 7,
+            "packed": 23,
+            "count": 781884,
+            "min_n": 81,
+            "run_signature": "O3,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEE",
+            "length": 7,
+            "packed": 15,
+            "count": 780912,
+            "min_n": 271,
+            "run_signature": "O4,E3",
+            "unary_block": true
+          },
+          {
+            "word": "OOEOOEOE",
+            "length": 8,
+            "packed": 91,
+            "count": 391671,
+            "min_n": 89,
+            "run_signature": "O2,E1,O2,E1,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOE",
+            "length": 8,
+            "packed": 79,
+            "count": 390776,
+            "min_n": 971,
+            "run_signature": "O4,E2,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEOE",
+            "length": 8,
+            "packed": 87,
+            "count": 390769,
+            "min_n": 629,
+            "run_signature": "O3,E1,O1,E1,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOEE",
+            "length": 8,
+            "packed": 59,
+            "count": 390332,
+            "min_n": 105,
+            "run_signature": "O2,E1,O3,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEE",
+            "length": 8,
+            "packed": 55,
+            "count": 390331,
+            "min_n": 99,
+            "run_signature": "O3,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEE",
+            "length": 8,
+            "packed": 31,
+            "count": 390093,
+            "min_n": 129,
+            "run_signature": "O5,E3",
+            "unary_block": true
+          },
+          {
+            "word": "OOOOEOEE",
+            "length": 8,
+            "packed": 47,
+            "count": 389261,
+            "min_n": 519,
+            "run_signature": "O4,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEOEE",
+            "length": 10,
+            "packed": 183,
+            "count": 97909,
+            "min_n": 1849,
+            "run_signature": "O3,E1,O2,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEOEE",
+            "length": 10,
+            "packed": 159,
+            "count": 97875,
+            "min_n": 115,
+            "run_signature": "O5,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEOEEE",
+            "length": 10,
+            "packed": 95,
+            "count": 97736,
+            "min_n": 165,
+            "run_signature": "O5,E1,O1,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOEEE",
+            "length": 10,
+            "packed": 123,
+            "count": 97655,
+            "min_n": 2947,
+            "run_signature": "O2,E1,O4,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEOOEE",
+            "length": 10,
+            "packed": 215,
+            "count": 97642,
+            "min_n": 77,
+            "run_signature": "O3,E1,O1,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOOEEE",
+            "length": 10,
+            "packed": 119,
+            "count": 97620,
+            "min_n": 183,
+            "run_signature": "O3,E1,O3,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOOEE",
+            "length": 10,
+            "packed": 207,
+            "count": 97540,
+            "min_n": 1555,
+            "run_signature": "O4,E2,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOEOEE",
+            "length": 10,
+            "packed": 187,
+            "count": 97470,
+            "min_n": 319,
+            "run_signature": "O2,E1,O3,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOEOEE",
+            "length": 10,
+            "packed": 175,
+            "count": 97466,
+            "min_n": 441,
+            "run_signature": "O4,E1,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOEEE",
+            "length": 10,
+            "packed": 111,
+            "count": 97179,
+            "min_n": 739,
+            "run_signature": "O4,E1,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOEOOEE",
+            "length": 10,
+            "packed": 219,
+            "count": 97166,
+            "min_n": 2185,
+            "run_signature": "O2,E1,O2,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOOOEEE",
+            "length": 12,
+            "packed": 463,
+            "count": 24708,
+            "min_n": 26201,
+            "run_signature": "O4,E2,O3,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOEOEEE",
+            "length": 12,
+            "packed": 379,
+            "count": 24695,
+            "min_n": 6131,
+            "run_signature": "O2,E1,O4,E1,O1,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOOOEEEE",
+            "length": 12,
+            "packed": 247,
+            "count": 24612,
+            "min_n": 3293,
+            "run_signature": "O3,E1,O4,E4",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOOEOEEE",
+            "length": 12,
+            "packed": 375,
+            "count": 24558,
+            "min_n": 1203,
+            "run_signature": "O3,E1,O3,E1,O1,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOOEOEE",
+            "length": 12,
+            "packed": 719,
+            "count": 24544,
+            "min_n": 1361,
+            "run_signature": "O4,E2,O2,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEOOEEE",
+            "length": 12,
+            "packed": 415,
+            "count": 24532,
+            "min_n": 10677,
+            "run_signature": "O5,E2,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOEOOOEEE",
+            "length": 12,
+            "packed": 475,
+            "count": 24490,
+            "min_n": 8061,
+            "run_signature": "O2,E1,O2,E1,O3,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOEEOEE",
+            "length": 12,
+            "packed": 623,
+            "count": 24483,
+            "min_n": 1125,
+            "run_signature": "O4,E1,O2,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOEEOEE",
+            "length": 12,
+            "packed": 635,
+            "count": 24457,
+            "min_n": 2063,
+            "run_signature": "O2,E1,O4,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEOEOEE",
+            "length": 12,
+            "packed": 671,
+            "count": 24440,
+            "min_n": 1795,
+            "run_signature": "O5,E2,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOEOEEE",
+            "length": 12,
+            "packed": 367,
+            "count": 24432,
+            "min_n": 5091,
+            "run_signature": "O4,E1,O2,E1,O1,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOOEEEE",
+            "length": 12,
+            "packed": 239,
+            "count": 24429,
+            "min_n": 8185,
+            "run_signature": "O4,E1,O3,E4",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOEOOEOEE",
+            "length": 12,
+            "packed": 731,
+            "count": 24399,
+            "min_n": 429,
+            "run_signature": "O2,E1,O2,E1,O2,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEOOEEEE",
+            "length": 12,
+            "packed": 223,
+            "count": 24359,
+            "min_n": 7797,
+            "run_signature": "O5,E1,O2,E4",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOEOEOEE",
+            "length": 12,
+            "packed": 699,
+            "count": 24352,
+            "min_n": 1571,
+            "run_signature": "O2,E1,O3,E1,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOOEEEE",
+            "length": 12,
+            "packed": 251,
+            "count": 24331,
+            "min_n": 1201,
+            "run_signature": "O2,E1,O5,E4",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEOEOEE",
+            "length": 12,
+            "packed": 695,
+            "count": 24324,
+            "min_n": 6607,
+            "run_signature": "O3,E1,O2,E1,O1,E1,O1,E2",
+            "unary_block": false
+          }
+        ],
+        "n_leftover_types": 3081,
+        "signatures": [
+          {
+            "run_signature": "O2,E1,O1,E1",
+            "count": 3128561,
+            "words": 1,
+            "min_n": 9,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E2",
+            "count": 3126146,
+            "words": 1,
+            "min_n": 3,
+            "unary_block": true
+          },
+          {
+            "run_signature": "O2,E1,O2,E2",
+            "count": 782419,
+            "words": 1,
+            "min_n": 69,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O1,E2",
+            "count": 781884,
+            "words": 1,
+            "min_n": 81,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E3",
+            "count": 780912,
+            "words": 1,
+            "min_n": 271,
+            "unary_block": true
+          },
+          {
+            "run_signature": "O2,E1,O2,E1,O1,E1",
+            "count": 391671,
+            "words": 1,
+            "min_n": 89,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E2,O1,E1",
+            "count": 390776,
+            "words": 1,
+            "min_n": 971,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O1,E1,O1,E1",
+            "count": 390769,
+            "words": 1,
+            "min_n": 629,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O3,E2",
+            "count": 390332,
+            "words": 1,
+            "min_n": 105,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O2,E2",
+            "count": 390331,
+            "words": 1,
+            "min_n": 99,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O5,E3",
+            "count": 390093,
+            "words": 1,
+            "min_n": 129,
+            "unary_block": true
+          },
+          {
+            "run_signature": "O4,E1,O1,E2",
+            "count": 389261,
+            "words": 1,
+            "min_n": 519,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O2,E1,O1,E2",
+            "count": 97909,
+            "words": 1,
+            "min_n": 1849,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O5,E2,O1,E2",
+            "count": 97875,
+            "words": 1,
+            "min_n": 115,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O5,E1,O1,E3",
+            "count": 97736,
+            "words": 1,
+            "min_n": 165,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O4,E3",
+            "count": 97655,
+            "words": 1,
+            "min_n": 2947,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O1,E1,O2,E2",
+            "count": 97642,
+            "words": 1,
+            "min_n": 77,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O3,E3",
+            "count": 97620,
+            "words": 1,
+            "min_n": 183,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E2,O2,E2",
+            "count": 97540,
+            "words": 1,
+            "min_n": 1555,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O3,E1,O1,E2",
+            "count": 97470,
+            "words": 1,
+            "min_n": 319,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E1,O1,E1,O1,E2",
+            "count": 97466,
+            "words": 1,
+            "min_n": 441,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E1,O2,E3",
+            "count": 97179,
+            "words": 1,
+            "min_n": 739,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O2,E1,O2,E2",
+            "count": 97166,
+            "words": 1,
+            "min_n": 2185,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E2,O3,E3",
+            "count": 24708,
+            "words": 1,
+            "min_n": 26201,
+            "unary_block": false
+          }
+        ],
+        "unary_block_count": 4302882,
+        "multi_block_count": 10714757,
+        "oooo_star_count": 1176736,
+        "unary_share": 0.28652186938306345,
+        "oooo_star_share": 0.07835692414766396,
+        "overflow_truncated": false,
+        "uncapped_truncated": true
+      },
+      {
+        "name": "high",
+        "n_begin": 100000001,
+        "n_max": 1000000000,
+        "backend": "cuda",
+        "coarse": {
+          "skip": 0,
+          "E": 450000000,
+          "OE": 224999977,
+          "OOEE": 56249748,
+          "leftover": 133420932,
+          "uncapped": 3525621,
+          "overflow": 31803722,
+          "long": 0,
+          "replayed_overflow": 0,
+          "replayed_uncapped": 0
+        },
+        "leftover_words": [
+          {
+            "word": "OOOEE",
+            "length": 5,
+            "packed": 7,
+            "count": 28135982,
+            "min_n": 100000175,
+            "run_signature": "O3,E2",
+            "unary_block": true
+          },
+          {
+            "word": "OOEOE",
+            "length": 5,
+            "packed": 11,
+            "count": 28132737,
+            "min_n": 100000171,
+            "run_signature": "O2,E1,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOEE",
+            "length": 7,
+            "packed": 27,
+            "count": 7032896,
+            "min_n": 100000179,
+            "run_signature": "O2,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEE",
+            "length": 7,
+            "packed": 23,
+            "count": 7032570,
+            "min_n": 100000317,
+            "run_signature": "O3,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEE",
+            "length": 7,
+            "packed": 15,
+            "count": 7025665,
+            "min_n": 100000193,
+            "run_signature": "O4,E3",
+            "unary_block": true
+          },
+          {
+            "word": "OOEOOOEE",
+            "length": 8,
+            "packed": 59,
+            "count": 3516606,
+            "min_n": 100001145,
+            "run_signature": "O2,E1,O3,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOEOE",
+            "length": 8,
+            "packed": 91,
+            "count": 3516062,
+            "min_n": 100000187,
+            "run_signature": "O2,E1,O2,E1,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEOE",
+            "length": 8,
+            "packed": 87,
+            "count": 3515095,
+            "min_n": 100000299,
+            "run_signature": "O3,E1,O1,E1,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEE",
+            "length": 8,
+            "packed": 31,
+            "count": 3515060,
+            "min_n": 100000287,
+            "run_signature": "O5,E3",
+            "unary_block": true
+          },
+          {
+            "word": "OOOOEOEE",
+            "length": 8,
+            "packed": 47,
+            "count": 3514602,
+            "min_n": 100000167,
+            "run_signature": "O4,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEE",
+            "length": 8,
+            "packed": 55,
+            "count": 3514188,
+            "min_n": 100000721,
+            "run_signature": "O3,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOE",
+            "length": 8,
+            "packed": 79,
+            "count": 3513509,
+            "min_n": 100000385,
+            "run_signature": "O4,E2,O1,E1",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOEOOEE",
+            "length": 10,
+            "packed": 219,
+            "count": 882164,
+            "min_n": 100000209,
+            "run_signature": "O2,E1,O2,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOEEE",
+            "length": 10,
+            "packed": 111,
+            "count": 879655,
+            "min_n": 100001285,
+            "run_signature": "O4,E1,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEOOEE",
+            "length": 10,
+            "packed": 215,
+            "count": 879046,
+            "min_n": 100001527,
+            "run_signature": "O3,E1,O1,E1,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOOEEE",
+            "length": 10,
+            "packed": 119,
+            "count": 878959,
+            "min_n": 100000391,
+            "run_signature": "O3,E1,O3,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEOEE",
+            "length": 10,
+            "packed": 183,
+            "count": 878834,
+            "min_n": 100000501,
+            "run_signature": "O3,E1,O2,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOEEE",
+            "length": 10,
+            "packed": 123,
+            "count": 878741,
+            "min_n": 100001123,
+            "run_signature": "O2,E1,O4,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEOEEE",
+            "length": 10,
+            "packed": 95,
+            "count": 878708,
+            "min_n": 100000393,
+            "run_signature": "O5,E1,O1,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOEOEE",
+            "length": 10,
+            "packed": 187,
+            "count": 878283,
+            "min_n": 100000723,
+            "run_signature": "O2,E1,O3,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEOEE",
+            "length": 10,
+            "packed": 159,
+            "count": 878011,
+            "min_n": 100002601,
+            "run_signature": "O5,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOOEE",
+            "length": 10,
+            "packed": 207,
+            "count": 877850,
+            "min_n": 100002947,
+            "run_signature": "O4,E2,O2,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOEOEE",
+            "length": 10,
+            "packed": 175,
+            "count": 877126,
+            "min_n": 100000221,
+            "run_signature": "O4,E1,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOEOOEEE",
+            "length": 12,
+            "packed": 443,
+            "count": 220288,
+            "min_n": 100002011,
+            "run_signature": "O2,E1,O3,E1,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEOEOEEE",
+            "length": 12,
+            "packed": 351,
+            "count": 220285,
+            "min_n": 100002365,
+            "run_signature": "O5,E1,O1,E1,O1,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOOEOEE",
+            "length": 12,
+            "packed": 719,
+            "count": 220087,
+            "min_n": 100001217,
+            "run_signature": "O4,E2,O2,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOOOEEEE",
+            "length": 12,
+            "packed": 247,
+            "count": 220081,
+            "min_n": 100003433,
+            "run_signature": "O3,E1,O4,E4",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEOEEOEE",
+            "length": 12,
+            "packed": 607,
+            "count": 220072,
+            "min_n": 100004743,
+            "run_signature": "O5,E1,O1,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOOEEEE",
+            "length": 12,
+            "packed": 239,
+            "count": 220033,
+            "min_n": 100004257,
+            "run_signature": "O4,E1,O3,E4",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEOOEEE",
+            "length": 12,
+            "packed": 439,
+            "count": 219857,
+            "min_n": 100007479,
+            "run_signature": "O3,E1,O2,E1,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOEOOOEEE",
+            "length": 12,
+            "packed": 471,
+            "count": 219842,
+            "min_n": 100000499,
+            "run_signature": "O3,E1,O1,E1,O3,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOEOEOEE",
+            "length": 12,
+            "packed": 687,
+            "count": 219824,
+            "min_n": 100001055,
+            "run_signature": "O4,E1,O1,E1,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEOEOEE",
+            "length": 12,
+            "packed": 671,
+            "count": 219783,
+            "min_n": 100009951,
+            "run_signature": "O5,E2,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEOOEEOEE",
+            "length": 12,
+            "packed": 623,
+            "count": 219746,
+            "min_n": 100006469,
+            "run_signature": "O4,E1,O2,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOEOOEOEOEE",
+            "length": 12,
+            "packed": 695,
+            "count": 219626,
+            "min_n": 100006677,
+            "run_signature": "O3,E1,O2,E1,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOEEOOOEEE",
+            "length": 12,
+            "packed": 463,
+            "count": 219523,
+            "min_n": 100005919,
+            "run_signature": "O4,E2,O3,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOOOOEEOOEEE",
+            "length": 12,
+            "packed": 415,
+            "count": 219486,
+            "min_n": 100004675,
+            "run_signature": "O5,E2,O2,E3",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOEOEOEE",
+            "length": 12,
+            "packed": 699,
+            "count": 219479,
+            "min_n": 100002771,
+            "run_signature": "O2,E1,O3,E1,O1,E1,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOEEOEE",
+            "length": 12,
+            "packed": 635,
+            "count": 219477,
+            "min_n": 100001659,
+            "run_signature": "O2,E1,O4,E2,O1,E2",
+            "unary_block": false
+          },
+          {
+            "word": "OOEOOOOEOEEE",
+            "length": 12,
+            "packed": 379,
+            "count": 219433,
+            "min_n": 100000225,
+            "run_signature": "O2,E1,O4,E1,O1,E3",
+            "unary_block": false
+          }
+        ],
+        "n_leftover_types": 2158,
+        "signatures": [
+          {
+            "run_signature": "O3,E2",
+            "count": 28135982,
+            "words": 1,
+            "min_n": 100000175,
+            "unary_block": true
+          },
+          {
+            "run_signature": "O2,E1,O1,E1",
+            "count": 28132737,
+            "words": 1,
+            "min_n": 100000171,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O2,E2",
+            "count": 7032896,
+            "words": 1,
+            "min_n": 100000179,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O1,E2",
+            "count": 7032570,
+            "words": 1,
+            "min_n": 100000317,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E3",
+            "count": 7025665,
+            "words": 1,
+            "min_n": 100000193,
+            "unary_block": true
+          },
+          {
+            "run_signature": "O2,E1,O3,E2",
+            "count": 3516606,
+            "words": 1,
+            "min_n": 100001145,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O2,E1,O1,E1",
+            "count": 3516062,
+            "words": 1,
+            "min_n": 100000187,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O1,E1,O1,E1",
+            "count": 3515095,
+            "words": 1,
+            "min_n": 100000299,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O5,E3",
+            "count": 3515060,
+            "words": 1,
+            "min_n": 100000287,
+            "unary_block": true
+          },
+          {
+            "run_signature": "O4,E1,O1,E2",
+            "count": 3514602,
+            "words": 1,
+            "min_n": 100000167,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O2,E2",
+            "count": 3514188,
+            "words": 1,
+            "min_n": 100000721,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E2,O1,E1",
+            "count": 3513509,
+            "words": 1,
+            "min_n": 100000385,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O2,E1,O2,E2",
+            "count": 882164,
+            "words": 1,
+            "min_n": 100000209,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E1,O2,E3",
+            "count": 879655,
+            "words": 1,
+            "min_n": 100001285,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O1,E1,O2,E2",
+            "count": 879046,
+            "words": 1,
+            "min_n": 100001527,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O3,E3",
+            "count": 878959,
+            "words": 1,
+            "min_n": 100000391,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O3,E1,O2,E1,O1,E2",
+            "count": 878834,
+            "words": 1,
+            "min_n": 100000501,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O4,E3",
+            "count": 878741,
+            "words": 1,
+            "min_n": 100001123,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O5,E1,O1,E3",
+            "count": 878708,
+            "words": 1,
+            "min_n": 100000393,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O3,E1,O1,E2",
+            "count": 878283,
+            "words": 1,
+            "min_n": 100000723,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O5,E2,O1,E2",
+            "count": 878011,
+            "words": 1,
+            "min_n": 100002601,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E2,O2,E2",
+            "count": 877850,
+            "words": 1,
+            "min_n": 100002947,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O4,E1,O1,E1,O1,E2",
+            "count": 877126,
+            "words": 1,
+            "min_n": 100000221,
+            "unary_block": false
+          },
+          {
+            "run_signature": "O2,E1,O3,E1,O2,E3",
+            "count": 220288,
+            "words": 1,
+            "min_n": 100002011,
+            "unary_block": false
+          }
+        ],
+        "unary_block_count": 38676707,
+        "multi_block_count": 94744225,
+        "oooo_star_count": 10540725,
+        "unary_share": 0.2898848510517075,
+        "oooo_star_share": 0.07900353296887477,
+        "overflow_truncated": true,
+        "uncapped_truncated": true
+      }
+    ],
+    "drift": {
+      "tv": 0.013289756011731388,
+      "max_abs_delta": 0.0027163728474332294,
+      "top_deltas": [
+        {
+          "word": "OOOEE",
+          "delta": 0.0027163728474332294,
+          "low": 0.20816494523539952,
+          "high": 0.21088131808283275
+        },
+        {
+          "word": "OOEOE",
+          "delta": 0.0025312404293235946,
+          "low": 0.20832575613250526,
+          "high": 0.21085699656182885
+        },
+        {
+          "word": "OOOOEEE",
+          "delta": 0.0006582399156345523,
+          "low": 0.05199965187603724,
+          "high": 0.05265789179167179
+        },
+        {
+          "word": "OOOEOEE",
+          "delta": 0.0006452695250821552,
+          "low": 0.05206437576505867,
+          "high": 0.05270964529014083
+        },
+        {
+          "word": "OOEOOEE",
+          "delta": 0.0006120881454891938,
+          "low": 0.05210000053936574,
+          "high": 0.052712088684854934
+        },
+        {
+          "word": "OOOOEOEE",
+          "delta": 0.0004219555884763075,
+          "low": 0.025920252844005637,
+          "high": 0.026342208432481945
+        },
+        {
+          "word": "OOOOOOEEEE",
+          "delta": -0.0003810186141776347,
+          "low": 0.0003810186141776347,
+          "high": 0.0
+        },
+        {
+          "word": "OOOOOEEE",
+          "delta": 0.00036998681502262154,
+          "low": 0.025975654362180366,
+          "high": 0.026345641177202988
+        },
+        {
+          "word": "OOEOOOEE",
+          "delta": 0.00036565958342250904,
+          "low": 0.02599156898098296,
+          "high": 0.02635722856440547
+        },
+        {
+          "word": "OOOEOOEE",
+          "delta": 0.0003476030784767721,
+          "low": 0.025991502392619773,
+          "high": 0.026339105471096545
+        },
+        {
+          "word": "OOOEOEOE",
+          "delta": 0.00032523540915901233,
+          "low": 0.026020668095697332,
+          "high": 0.026345903504856345
+        },
+        {
+          "word": "OOOOEEOE",
+          "delta": 0.00031288210038178665,
+          "low": 0.02602113421423967,
+          "high": 0.026334016314621456
+        }
+      ]
+    },
+    "fixtures": {
+      "E": true,
+      "OE": true,
+      "OOEE": true,
+      "leftover": true
+    },
+    "fixtures_ok": true,
+    "unary_share": 0.2895446157319852,
+    "oooo_star_share": 0.07893811508061473,
+    "only_oooo_star": false,
+    "n_leftover_types": 3081,
+    "coarse": {
+      "skip": 0,
+      "E": 500000000,
+      "OE": 250000011,
+      "OOEE": 62499595,
+      "leftover": 148438571,
+      "uncapped": 4058691,
+      "overflow": 35003131,
+      "long": 0,
+      "replayed_overflow": 0,
+      "replayed_uncapped": 0
+    },
+    "overflow_truncated": true,
+    "uncapped_truncated": true,
+    "native_available": true,
+    "git": "e31132bf7411dc7fda5ed07a768362446f06bd15",
+    "letter_chain": false,
+    "word_language_reopen": false,
+    "halt_theorem": false,
+    "atlas_language_tag": false,
+    "certificate_harvest_lean": false,
+    "claim": "COMPUTATIONALLY OBSERVED"
+  },
+  "lean": {
+    "sorry_free": true,
+    "even_finiteProgress": true,
+    "odd_even_finiteProgress": true,
+    "FiniteProgress": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_all_finiteProgress": false,
+    "has_api_CertificateHarvest": false,
+    "has_api_LeftoverHistogram": false,
+    "has_api_HarvestClass": false,
+    "new_lean_file": false,
+    "not_in_paper_barrel": true,
+    "no_atlas_lang": true,
+    "FloorPower_not_rewritten": true
+  },
+  "decision": {
+    "classification": "CERTIFICATE_HARVEST_PARK",
+    "reason": "leftover mass is a short mixed O/E-block list with small scale drift; a verification bound, not a new law"
+  },
+  "search_method": "first-descent certificate harvest; leftover-class histogram only; k_max=20, n<=1000000000, backend=cuda",
+  "claim": "NOT OBSERVED WITHIN SEARCH BOUND"
+}
