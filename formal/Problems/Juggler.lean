@@ -4,6 +4,7 @@ import Problems.Juggler.Termination
 import Problems.Juggler.Itinerary
 import Problems.Juggler.WordStats
 import Problems.Juggler.Envelope
+import Problems.Juggler.Corridor
 import Problems.Juggler.Equality
 import Problems.Juggler.Defect
 import Problems.Juggler.GlobalDefect

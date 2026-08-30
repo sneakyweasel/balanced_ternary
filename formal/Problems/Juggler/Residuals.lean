@@ -532,42 +532,6 @@ def ResidualReturn (x y : ℕ) : Prop :=
 def ResidualOvershoot (x y : ℕ) : Prop :=
   ResidualStep x y ∧ x < y
 
-theorem two_pow_ne_three_pow {k o : ℕ} (hk : 1 ≤ k) : 2 ^ k ≠ 3 ^ o := by
-  intro h
-  have heven := two_pow_even_of_pos hk
-  have hodd := three_pow_odd o
-  rw [h] at heven
-  omega
-
-/-- A realized return to `x ≥ 2` forces `2^r ≤ 3^o`. -/
-theorem cycle_envelope {x : ℕ} {w : List Branch}
-    (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x) :
-    2 ^ w.length ≤ 3 ^ oddCount w := by
-  have hpow := power_bound_word hw
-  have himg : floorPower^[w.length] x = x := by
-    rw [← image_eq_iterate, hret]
-  rw [himg] at hpow
-  exact (Nat.pow_le_pow_iff_right (show 1 < x by omega)).mp hpow
-
-/-- Equality `2^r = 3^o` is impossible for a nonempty word, so every
-nontrivial cycle is strictly expanding in the exponent. -/
-theorem cycle_strict_envelope {x : ℕ} {w : List Branch}
-    (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x)
-    (hlen : 1 ≤ w.length) :
-    2 ^ w.length < 3 ^ oddCount w :=
-  lt_of_le_of_ne (cycle_envelope hx hw hret) (two_pow_ne_three_pow hlen)
-
-/-- Contracting words cannot close a cycle. -/
-theorem cycle_not_contracting {x : ℕ} {w : List Branch}
-    (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x) :
-    ¬3 ^ oddCount w < 2 ^ w.length := by
-  intro hgap
-  have hlt := power_bound_contracts hx hw hgap
-  have himg : floorPower^[w.length] x = x := by
-    rw [← image_eq_iterate, hret]
-  rw [himg] at hlt
-  exact (lt_irrefl x) hlt
-
 /-- A repeated iterate is a finite Juggler cycle at that state. -/
 theorem orbit_repeat_cycle {n i j : ℕ} (hij : i ≤ j)
     (h : floorPower^[i] n = floorPower^[j] n) :

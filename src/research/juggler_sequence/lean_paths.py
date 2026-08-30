@@ -41,6 +41,7 @@ LAYERS: dict[str, Path] = {
     "Itinerary": JUGGLER_DIR / "Itinerary.lean",
     "WordStats": JUGGLER_DIR / "WordStats.lean",
     "Envelope": JUGGLER_DIR / "Envelope.lean",
+    "Corridor": JUGGLER_DIR / "Corridor.lean",
     "Equality": JUGGLER_DIR / "Equality.lean",
     "Defect": JUGGLER_DIR / "Defect.lean",
     "GlobalDefect": JUGGLER_DIR / "GlobalDefect.lean",

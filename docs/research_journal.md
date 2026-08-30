@@ -14164,4 +14164,39 @@ Best next question
   even lift forced above n^8?
 ```
 
+## Juggler OOEOOEOO eighth lower cell
+
+- **Date:** 2026-08-30
+- **Objective:** Decide whether a first cube-odd lift of `OOEOOEOO` is forced above \(n^{8}\)
+- **Hypotheses:** a reusable lower envelope from `LowerPowerBound` or two-block composition; later \(n\) might cross
+- **Major results:** Classification **OOEOOEOO_EIGHTH_PARKED**. No first-hit with \(x^{3}<n^{8}\) on odd \(n<200001\) — **COMPUTATIONALLY VERIFIED** (`J-ooeooeoo-eighth-scan`). Images hug \(n^{729/256}\) (\(4309\): \(94024\) vs formal \(94048\) thousandths) and recede from \(n^{8}\). Full-word and composed `LowerPowerBound` need \(\sim 73\)-bit \(n\). No new Lean. Paper A unchanged. No halt theorem
+- **Refuted ideas:** laboratory-scale `LowerPowerBound` eighth lower cell
+- **Literature:** `J-leftover-first-eighth`; `follows_ooeooeoo_image_lt_cube`; `J-mixed-oe-eighth`
+- **Open:** none from the eighth-gap lower bound
+- **Decision:** PARK. The complementary side is the existing cube envelope, not a new shared lower cell
+
+```text
+What was learned
+- no OOEOOEOO first-hit below n^8 for n<200001
+- even and odd T both sit above
+- the ratio tracks n^{139/256}
+- LowerPowerBound needs ~73-bit n
+- 4309 is already a factor-94 example
+Strongest theorem
+- none new; the cube envelope
+  x < n^3 is already Lean
+Strongest refutation
+- LPB is a laboratory eighth lower cell
+Reusable machinery
+- none; no new Lean primitive
+Branch status
+- PARK
+Why
+- the preferred lower cell was not
+  proved; images hug the old upper
+  envelope and recede from n^8
+Best next question
+- none from the eighth-gap lower bound
+```
+
 

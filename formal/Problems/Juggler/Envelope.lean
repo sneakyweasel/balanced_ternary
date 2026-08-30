@@ -7,9 +7,9 @@ namespace Problems.Juggler
 # Finite-word envelope
 
 One-sided floor-power composition on realized finite words.
-The invariant is `PowerBound m n k o`, i.e. `m^{2^k} ≤ n^{3^o}`.
 `EnvelopeState n x` is the free-exponent form `x^A ≤ n^B`.
-Named words are corollaries of `power_bound_contracts`.
+Composition is `EnvelopeState.even` / `.odd` / `.map_word`.
+`PowerBound` is the word-stat specialization `A = 2^k`, `B = 3^o`.
 `power_bound_lt_pow` is `EnvelopeState.of_follows.lt_pow`.
 `power_bound_contracts` is the `k = 1` case.
 -/
@@ -164,25 +164,6 @@ theorem power_bound_from {start current k o : ℕ}
           rw [hk, ho]
           exact hih
 
-/-- Weak composition: every realized finite word obeys the one-sided bound. -/
-theorem power_bound_follows {n : ℕ} {w : List Branch} (hw : follows n w) :
-    PowerBound (floorPower^[w.length] n) n w.length (oddCount w) := by
-  have h := power_bound_from (power_bound_empty n) w hw
-  simpa [image_eq_iterate] using h
-
-/-- Unfolded form of `power_bound_follows`. Naming alias only. -/
-theorem power_bound_word {n : ℕ} {w : List Branch} (hw : follows n w) :
-    (floorPower^[w.length] n) ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w) :=
-  power_bound_follows hw
-
-/-- Repeated realized `OE` blocks: `T^{2r}(x)^{4^r} ≤ x^{3^r}`. -/
-theorem repeated_oe_scale {x r : ℕ} (hw : follows x (repeatedOE r)) :
-    (floorPower^[2 * r] x) ^ (4 ^ r) ≤ x ^ (3 ^ r) := by
-  have h := power_bound_word hw
-  rw [length_repeatedOE, oddCount_repeatedOE] at h
-  rw [← four_pow_eq_two_pow_two_mul] at h
-  exact h
-
 /-- Free-exponent envelope `x^A ≤ n^B`. `PowerBound` is the special
 case `A = 2^k`, `B = 3^o`. Word algebra only. -/
 structure EnvelopeState (n x : ℕ) where
@@ -219,16 +200,91 @@ def EnvelopeState.odd {n x : ℕ} (h : EnvelopeState n x) (hodd : x % 2 = 1) :
       _ = n ^ (h.B * 3) := (Nat.pow_mul n h.B 3).symm
       _ = n ^ (3 * h.B) := by rw [Nat.mul_comm]
 
+/-- Empty-word envelope: `n^1 ≤ n^1`. -/
+def EnvelopeState.refl (n : ℕ) : EnvelopeState n n where
+  A := 1
+  B := 1
+  le := by simp
+
+/-- One realized letter. -/
+def EnvelopeState.map_letter {n x : ℕ} (h : EnvelopeState n x) {b : Branch}
+    (hw : follows x [b]) : EnvelopeState n (floorPower x) :=
+  match b with
+  | .even => h.even hw.1
+  | .odd => h.odd hw.1
+
+/-- Compose an envelope along a realized word. -/
+def EnvelopeState.map_word {n x : ℕ} (h : EnvelopeState n x) :
+    ∀ {w : List Branch}, follows x w → EnvelopeState n (image x w)
+  | [], _ => by simpa [image] using h
+  | .even :: rest, hw => (h.even hw.1).map_word hw.2
+  | .odd :: rest, hw => (h.odd hw.1).map_word hw.2
+
+theorem EnvelopeState.map_word_A {n x : ℕ} (h : EnvelopeState n x) :
+    ∀ {w : List Branch} (hw : follows x w),
+      (h.map_word hw).A = h.A * 2 ^ w.length
+  | [], _ => by simp [EnvelopeState.map_word]
+  | .even :: rest, hw => by
+      have ih := EnvelopeState.map_word_A (h.even hw.1) hw.2
+      simp [EnvelopeState.map_word] at ih ⊢
+      rw [ih, EnvelopeState.even]
+      ring
+  | .odd :: rest, hw => by
+      have ih := EnvelopeState.map_word_A (h.odd hw.1) hw.2
+      simp [EnvelopeState.map_word] at ih ⊢
+      rw [ih, EnvelopeState.odd]
+      ring
+
+theorem EnvelopeState.map_word_B {n x : ℕ} (h : EnvelopeState n x) :
+    ∀ {w : List Branch} (hw : follows x w),
+      (h.map_word hw).B = h.B * 3 ^ oddCount w
+  | [], _ => by simp [EnvelopeState.map_word]
+  | .even :: rest, hw => by
+      have ih := EnvelopeState.map_word_B (h.even hw.1) hw.2
+      simp [EnvelopeState.map_word] at ih ⊢
+      rw [ih, EnvelopeState.even]
+  | .odd :: rest, hw => by
+      have ih := EnvelopeState.map_word_B (h.odd hw.1) hw.2
+      simp [EnvelopeState.map_word] at ih ⊢
+      rw [ih, EnvelopeState.odd]
+      ring
+
 def EnvelopeState.of_powerBound {m n k o : ℕ} (h : PowerBound m n k o) :
     EnvelopeState n m :=
   ⟨2 ^ k, 3 ^ o, h⟩
 
+/-- Word envelope from `map_word` on `refl`. -/
 def EnvelopeState.of_follows {n : ℕ} {w : List Branch} (hw : follows n w) :
-    EnvelopeState n (image n w) where
-  A := 2 ^ w.length
-  B := 3 ^ oddCount w
-  le := by
-    simpa [image_eq_iterate] using power_bound_word hw
+    EnvelopeState n (image n w) :=
+  (EnvelopeState.refl n).map_word hw
+
+theorem EnvelopeState.of_follows_A {n : ℕ} {w : List Branch} (hw : follows n w) :
+    (EnvelopeState.of_follows hw).A = 2 ^ w.length := by
+  simp [EnvelopeState.of_follows, EnvelopeState.map_word_A, EnvelopeState.refl]
+
+theorem EnvelopeState.of_follows_B {n : ℕ} {w : List Branch} (hw : follows n w) :
+    (EnvelopeState.of_follows hw).B = 3 ^ oddCount w := by
+  simp [EnvelopeState.of_follows, EnvelopeState.map_word_B, EnvelopeState.refl]
+
+/-- Weak composition: every realized finite word obeys the one-sided bound. -/
+theorem power_bound_follows {n : ℕ} {w : List Branch} (hw : follows n w) :
+    PowerBound (floorPower^[w.length] n) n w.length (oddCount w) := by
+  have hle := (EnvelopeState.of_follows hw).le
+  rw [EnvelopeState.of_follows_A hw, EnvelopeState.of_follows_B hw] at hle
+  simpa [PowerBound, image_eq_iterate] using hle
+
+/-- Unfolded form of `power_bound_follows`. Naming alias only. -/
+theorem power_bound_word {n : ℕ} {w : List Branch} (hw : follows n w) :
+    (floorPower^[w.length] n) ^ (2 ^ w.length) ≤ n ^ (3 ^ oddCount w) :=
+  power_bound_follows hw
+
+/-- Repeated realized `OE` blocks: `T^{2r}(x)^{4^r} ≤ x^{3^r}`. -/
+theorem repeated_oe_scale {x r : ℕ} (hw : follows x (repeatedOE r)) :
+    (floorPower^[2 * r] x) ^ (4 ^ r) ≤ x ^ (3 ^ r) := by
+  have h := power_bound_word hw
+  rw [length_repeatedOE, oddCount_repeatedOE] at h
+  rw [← four_pow_eq_two_pow_two_mul] at h
+  exact h
 
 /-- Cell comparison: `x^A ≤ n^B` and `B < k·A` force `x < n^k`. -/
 theorem envelope_lt_pow {x n A B k : ℕ}
@@ -256,7 +312,12 @@ theorem power_bound_lt_pow {n : ℕ} {w : List Branch} {k : ℕ}
     (hgap : 3 ^ oddCount w < k * 2 ^ w.length) :
     image n w < n ^ k :=
   (EnvelopeState.of_follows hw).lt_pow hn
-    (Nat.pow_pos (by decide : (0 : ℕ) < 2)) hgap
+    (by
+      rw [EnvelopeState.of_follows_A hw]
+      exact Nat.pow_pos (by decide : (0 : ℕ) < 2))
+    (by
+      rw [EnvelopeState.of_follows_A hw, EnvelopeState.of_follows_B hw]
+      exact hgap)
 
 /-- Strict block contraction from the exponent gap. Domain `n ≥ 2`.
 The `k = 1` case of `power_bound_lt_pow`. Not a claim that every
@@ -421,5 +482,48 @@ theorem odd_word_expands {n k : ℕ} (hn : 3 ≤ n) (hk : 1 ≤ k)
         floorPower_iterate_odd_nondecreasing himgpos hw.2
       rw [iterate_cons]
       exact lt_of_lt_of_le hgt hrest
+
+theorem two_pow_ne_three_pow {k o : ℕ} (hk : 1 ≤ k) : 2 ^ k ≠ 3 ^ o := by
+  intro h
+  have heven : 2 ^ k % 2 = 0 := by
+    cases k with
+    | zero => omega
+    | succ k => simp [pow_succ]
+  have hodd : ∀ t, 3 ^ t % 2 = 1 := by
+    intro t
+    induction t with
+    | zero => simp
+    | succ t ih => simp [pow_succ, Nat.mul_mod, ih]
+  rw [h] at heven
+  exact (by decide : ¬(1 : ℕ) = 0) ((hodd o).symm.trans heven)
+
+/-- A realized return to `x ≥ 2` forces `2^r ≤ 3^o`. -/
+theorem cycle_envelope {x : ℕ} {w : List Branch}
+    (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x) :
+    2 ^ w.length ≤ 3 ^ oddCount w := by
+  have hpow := power_bound_word hw
+  have himg : floorPower^[w.length] x = x := by
+    rw [← image_eq_iterate, hret]
+  rw [himg] at hpow
+  exact (Nat.pow_le_pow_iff_right (show 1 < x by omega)).mp hpow
+
+/-- Equality `2^r = 3^o` is impossible for a nonempty word, so every
+nontrivial cycle is strictly expanding in the exponent. -/
+theorem cycle_strict_envelope {x : ℕ} {w : List Branch}
+    (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x)
+    (hlen : 1 ≤ w.length) :
+    2 ^ w.length < 3 ^ oddCount w :=
+  lt_of_le_of_ne (cycle_envelope hx hw hret) (two_pow_ne_three_pow hlen)
+
+/-- Contracting words cannot close a cycle. -/
+theorem cycle_not_contracting {x : ℕ} {w : List Branch}
+    (hx : 2 ≤ x) (hw : follows x w) (hret : image x w = x) :
+    ¬3 ^ oddCount w < 2 ^ w.length := by
+  intro hgap
+  have hlt := power_bound_contracts hx hw hgap
+  have himg : floorPower^[w.length] x = x := by
+    rw [← image_eq_iterate, hret]
+  rw [himg] at hlt
+  exact (lt_irrefl x) hlt
 
 end Problems.Juggler

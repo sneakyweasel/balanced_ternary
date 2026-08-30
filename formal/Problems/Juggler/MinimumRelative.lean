@@ -1,4 +1,4 @@
-import Problems.Juggler.Envelope
+import Problems.Juggler.Corridor
 import Problems.Juggler.Progress
 import Problems.Juggler.WordStats
 
@@ -62,35 +62,6 @@ theorem follows_even_letter {m : ℕ} (he : m % 2 = 0) :
     follows m [Branch.even] :=
   ⟨he, trivial⟩
 
-/-- Even cell: `T(x) < n ↔ x < n^2`. Shared square-trap primitive. -/
-theorem even_below_square_iff {x n : ℕ} (he : x % 2 = 0) :
-    floorPower x < n ↔ x < n ^ 2 := by
-  rw [floorPower_even_eq he]
-  simpa [pow_two] using (@Nat.sqrt_lt x n)
-
-theorem even_below_square_drop {x n : ℕ} (he : x % 2 = 0)
-    (hlt : x < n ^ 2) : floorPower x < n :=
-  (even_below_square_iff he).mpr hlt
-
-/-- Parameterized square trap: `x < n^{2k}` and `x` even give
-`T(x) < n^k`. The `k = 1` case is `even_below_square_iff`. -/
-theorem even_below_anchor_pow {x n k : ℕ} (he : x % 2 = 0) :
-    floorPower x < n ^ k ↔ x < n ^ (2 * k) := by
-  have h := even_below_square_iff (n := n ^ k) he
-  have hsq : (n ^ k) ^ 2 = n ^ (2 * k) := by
-    rw [pow_two, ← Nat.pow_add, Nat.two_mul]
-  simpa [hsq] using h
-
-/-- `k = 2`: even `x < n^4` gives `T(x) < n^2`. -/
-theorem even_below_fourth {x n : ℕ} (he : x % 2 = 0) :
-    floorPower x < n ^ 2 ↔ x < n ^ 4 :=
-  even_below_anchor_pow (k := 2) he
-
-/-- `k = 3`: even `x < n^6` gives `T(x) < n^3`. -/
-theorem even_below_cube {x n : ℕ} (he : x % 2 = 0) :
-    floorPower x < n ^ 3 ↔ x < n ^ 6 := by
-  simpa [show (2 : ℕ) * 3 = 6 from rfl] using even_below_anchor_pow (k := 3) he
-
 /-- If an even image sits below `n^2`, one more even letter is a
 descent certificate. -/
 theorem finiteProgress_of_even_below_square {n : ℕ} {w : List Branch}
@@ -118,23 +89,16 @@ theorem finiteProgress_of_even_power_bound_square {n : ℕ} {w : List Branch}
   finiteProgress_of_even_below_square hw he
     (power_bound_lt_pow (k := 2) hn hw hgap)
 
-/-- Cube cell plus even is a square cell for the next state:
-`x < n^3 < n^4` and `even_below_fourth`. -/
-theorem even_below_cube_cell {x n : ℕ} (hn : 2 ≤ n) (he : x % 2 = 0)
-    (hlt : x < n ^ 3) : floorPower x < n ^ 2 :=
-  (even_below_fourth he).mpr
-    (lt_trans hlt (pow_lt_of_two_le hn (by decide : (3 : ℕ) < 4)))
-
 /-- Even cube-not-square landing resets into the square cell. -/
 theorem even_cube_not_square {x n : ℕ} (hn : 2 ≤ n) (he : x % 2 = 0)
     (hge : n ^ 2 ≤ x) (hlt : x < n ^ 3) :
-    n ≤ floorPower x ∧ floorPower x < n ^ 2 :=
-  ⟨by
-      have hnot : ¬floorPower x < n := by
-        intro hdrop
-        exact (not_le_of_gt ((even_below_square_iff he).mp hdrop)) hge
-      exact Nat.le_of_not_gt hnot,
-    even_below_cube_cell hn he hlt⟩
+    n ≤ floorPower x ∧ floorPower x < n ^ 2 := by
+  have hc : PowerCorridor n x 2 3 := ⟨hge, hlt⟩
+  refine ⟨?_, even_below_cube_cell hn he hc.upper⟩
+  have hnot : ¬floorPower x < n := by
+    intro hdrop
+    exact (not_le_of_gt ((even_below_square_iff he).mp hdrop)) hc.lower
+  exact Nat.le_of_not_gt hnot
 
 /-- Odd cube-not-square landing lifts to at least `n^3`.
 Companion of `odd_ge_succ_sq_floorPower_ge_cube`, with floor `n^2`. -/
@@ -150,6 +114,10 @@ theorem odd_ge_sq_floor_ge_cube {x n : ℕ} (hodd : x % 2 = 1)
 /-- Odd cube-band state: the leftover of `even_cube_not_square`. -/
 def CubeOddLanding (n x : ℕ) : Prop :=
   n ^ 2 ≤ x ∧ x < n ^ 3 ∧ x % 2 = 1
+
+theorem CubeOddLanding.corridor {n x : ℕ} (h : CubeOddLanding n x) :
+    PowerCorridor n x 2 3 :=
+  ⟨h.1, h.2.1⟩
 
 theorem cube_odd_landing_two_le {x n : ℕ} (hn : 2 ≤ n)
     (h : CubeOddLanding n x) : 2 ≤ x := by
@@ -332,10 +300,11 @@ theorem finiteProgress_of_cube_even_even {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hw : follows n w)
     (he : image n w % 2 = 0) (hlt : image n w < n ^ 3)
     (he2 : floorPower (image n w) % 2 = 0) : FiniteProgress n :=
-  finiteProgress_of_even_below_square
-    (follows_append hw (follows_even_letter he))
-    (by simpa [image_append, image] using he2)
-    (by simpa [image_append, image] using even_below_cube_cell hn he hlt)
+  finiteProgress_of_imageLt
+    (follows_append hw (⟨he, he2, trivial⟩ : follows (image n w) [.even, .even]))
+    (by
+      have hdrop := two_even_below_cube hn he he2 hlt
+      simpa [image_append, image] using hdrop)
 
 theorem even_ge_sq_of_succ_ge {x n : ℕ} (he : x % 2 = 0)
     (hge : n ≤ floorPower x) : n ^ 2 ≤ x := by

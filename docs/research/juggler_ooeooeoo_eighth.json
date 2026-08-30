@@ -1,0 +1,110 @@
+{
+  "experiment": "juggler_ooeooeoo_eighth",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "ooeooeoo_forced_eighth": false,
+    "letter_chain": false,
+    "q_return": false,
+    "defect_census": false
+  },
+  "scan": {
+    "basin": "ordinary_integers",
+    "census": {
+      "limit": 30001,
+      "even_safe": 0,
+      "even_unsafe": 23,
+      "odd_safe": 0,
+      "odd_unsafe": 27,
+      "no_safe": true,
+      "closest": {
+        "n": 565,
+        "x": 68571361,
+        "y": 567824535227,
+        "s6": 3039,
+        "s7": 167531,
+        "y_even": false,
+        "x3_lt_n8": false,
+        "milli": 31048,
+        "formal_milli": 31208,
+        "s7_9_ge_n16": true
+      }
+    },
+    "lower_denom": {
+      "bits": 3395,
+      "expected_bits": 3395,
+      "log2_n_threshold": 73,
+      "laboratory_n_bits": 13,
+      "too_weak": true
+    },
+    "track_4309": {
+      "n": 4309,
+      "x": 22357213525,
+      "actual_milli": 94024,
+      "formal_milli": 94048,
+      "below_formal": true,
+      "far_above_boundary": true,
+      "near_envelope": true
+    },
+    "witness_4309": {
+      "n": 4309,
+      "x": 22357213525,
+      "y": 3342924067107076,
+      "s6": 39787,
+      "s7": 7936185,
+      "y_even": true,
+      "x3_lt_n8": false,
+      "milli": 94024,
+      "formal_milli": 94048,
+      "s7_9_ge_n16": true
+    },
+    "witness_565": {
+      "n": 565,
+      "x": 68571361,
+      "y": 567824535227,
+      "s6": 3039,
+      "s7": 167531,
+      "y_even": false,
+      "x3_lt_n8": false,
+      "milli": 31048,
+      "formal_milli": 31208,
+      "s7_9_ge_n16": true
+    },
+    "first_365_not_ooeooeoo": true,
+    "both_witnesses_unsafe": true,
+    "odd_t_also_above": true,
+    "no_safe_in_window": true,
+    "lpb_too_weak": true,
+    "hugs_upper_envelope": true,
+    "letter_chain": false,
+    "q_return": false,
+    "defect_census": false,
+    "paper_a_modified": false,
+    "halt_theorem": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "wordOOEOOEOO": true,
+    "follows_ooeooeoo_image_lt_cube": true,
+    "odd_even_eighth_lt_sq": true,
+    "power_bound_word": true,
+    "has_juggler_reaches_one": false,
+    "has_no_juggler_escape": false,
+    "has_no_juggler_cycle": false,
+    "in_laboratory_barrel": true,
+    "not_in_paper_barrel": true,
+    "FloorPower_not_rewritten": true,
+    "no_new_ooeooeoo_eighth_lean": true
+  },
+  "decision": {
+    "classification": "OOEOOEOO_EIGHTH_PARKED",
+    "reason": "OOEOOEOO first cube-odd lifts sit next to n^{729/256}, not on a forced n^8 lower cell; LowerPowerBound is too weak at laboratory scale"
+  },
+  "search_method": "eight-step OOEOOEOO first cube-odd census; x^3/n^8 versus n^{139/256}; lowerDenom bit length"
+}

@@ -169,10 +169,10 @@ This is not a halt theorem and not a first-return section.
 
 ## Open questions
 
-Is every first cube-odd even lift of the word \(\mathtt{OOEOOEOO}\)
-forced above \(n^{8}\), or is that only the \(4309\) family? Do
-not resume a first-return \(Q\)-map. Do not reopen W_5. Do not
-force the eighth cell onto later arbitrary landings.
+The \(\mathtt{OOEOOEOO}\) lower-cell question is answered in
+[juggler_ooeooeoo_eighth.md](juggler_ooeooeoo_eighth.md): no
+laboratory-scale lower cell. Do not resume a first-return
+\(Q\)-map. Do not reopen W_5.
 
 ## Decision
 
