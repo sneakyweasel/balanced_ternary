@@ -20,23 +20,24 @@ whole-cycle log unroll gives, for any `CycleMin` start `n`,
 Every cycle state is at least `257`
 (`cycleWord_iterate_not_lt_two_hundred_fifty_seven`) and the
 rotated minimum is odd (`cycleMin_start_odd`), so the minimum is
-at least `257` and `n * log n ≥ 257 * log 257 > 2827/2`.
+at least `257` and `n * log n ≥ 257 * log 257 > 15677/11`.
 This excludes cycle lengths wholesale. The residual floor `257`
 (`reachesOne_of_lt_two_hundred_fifty_seven`) kills the
-near-convergent length `19`. Together with
+near-convergent length `19`. The tighter certificate
+`log 257 > 61/11` also kills length `38`. Together with
 `no_cycle_word_length_le_eighteen` the census extends to
-`no_cycle_word_length_le_nineteen`, lengths `20`–`37` die by the
-same comparison, and any remaining cycle has period `38` or at
-least `39`.
+`no_cycle_word_length_le_nineteen`, lengths `20`–`56` die by the
+same comparison, and any remaining cycle has period `57` or at
+least `58`.
 
 Eliahou packaging (`cycle_word_eliahou_leftover`) rewrites that
-leftover plus the computational finance table as: period `38`, or
+leftover plus the computational finance table as: period `57`, or
 a listed near-convergent, or at least `10^5`. Not a new inequality.
 
 Dossier: `docs/problems/juggler_cycle_finance.md`. This is not a
 halt theorem and not a leftover-word census named
-`no_cycle_word_length_eleven`. Length `38` is the next
-near-convergent leftover at this floor.
+`no_cycle_word_length_eleven`. Length `57` is the next leftover
+at this floor; the next record near-convergent is length `84`.
 -/
 
 /-- The dyadic-cell logarithm bound: if `z < (y+1)^2` then
@@ -774,32 +775,34 @@ theorem cycleWord_iterate_not_lt_two_hundred_fifty_seven
     reachesOne_of_lt_two_hundred_fifty_seven hpos hy
   exact cycleWord_not_reachesOne hn h (reachesOne_of_iterate rfl hR)
 
-/-- Numeric certificate `log 257 > 11/2`, via `e < 2.7182818286`
-and `e^11 < 257^2`. -/
-theorem log_two_hundred_fifty_seven_gt : (11 / 2 : ℝ) < Real.log 257 := by
+/-- Numeric certificate `log 257 > 61/11`, via `e < 2.7182818286`
+and `e^61 < 257^11`. -/
+theorem log_two_hundred_fifty_seven_gt : (61 / 11 : ℝ) < Real.log 257 := by
   rw [Real.lt_log_iff_exp_lt (by norm_num : (0 : ℝ) < 257)]
-  have hsq : Real.exp (11 / 2) ^ 2 = Real.exp 11 := by
-    rw [sq, ← Real.exp_add]
-    norm_num
-  have hpow : Real.exp 1 ^ (11 : ℕ) = Real.exp 11 := by
+  have hpow : Real.exp (61 / 11) ^ (11 : ℕ) = Real.exp 61 := by
     rw [← Real.exp_nat_mul]
     norm_num
-  have hlt : Real.exp 1 ^ (11 : ℕ) < (2.7182818286 : ℝ) ^ (11 : ℕ) := by
+  have he : Real.exp 1 ^ (61 : ℕ) = Real.exp 61 := by
+    rw [← Real.exp_nat_mul]
+    norm_num
+  have hlt : Real.exp 1 ^ (61 : ℕ) < (2.7182818286 : ℝ) ^ (61 : ℕ) := by
     gcongr
     exact Real.exp_one_lt_d9
-  have hnum : (2.7182818286 : ℝ) ^ (11 : ℕ) < 66049 := by norm_num
-  have h66049 : Real.exp (11 / 2) ^ 2 < 66049 := by
-    rw [hsq, ← hpow]
+  have hnum : (2.7182818286 : ℝ) ^ (61 : ℕ) < (257 : ℝ) ^ (11 : ℕ) := by
+    norm_num
+  have h11 : Real.exp (61 / 11) ^ (11 : ℕ) < (257 : ℝ) ^ (11 : ℕ) := by
+    rw [hpow, ← he]
     linarith
-  nlinarith [Real.exp_pos (11 / 2 : ℝ), h66049,
-    sq_nonneg (Real.exp (11 / 2) - 257)]
+  refine (pow_lt_pow_iff_left₀ ?_ ?_ (by norm_num : (11 : ℕ) ≠ 0)).1 h11
+  · exact (Real.exp_pos _).le
+  · norm_num
 
 /-- Finance at the rotated odd minimum after the residual floor `257`:
-`(2827/2)(3^o - 2^L) ≤ L 3^o`, because the minimum is at least `257`
-and `257 log 257 > 2827/2`. -/
+`(15677/11)(3^o - 2^L) ≤ L 3^o`, because the minimum is at least `257`
+and `257 log 257 > 15677/11`. -/
 theorem cycle_finance_min_two_hundred_fifty_seven {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleWord n w) :
-    (2827 / 2 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) ≤
+    (15677 / 11 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) ≤
       (w.length : ℝ) * (3 : ℝ) ^ oddCount w := by
   obtain ⟨k, hkL, hmin⟩ := exists_cycleMin hn h
   have hm257 : 257 ≤ floorPower^[k] n :=
@@ -810,17 +813,17 @@ theorem cycle_finance_min_two_hundred_fifty_seven {n : ℕ} {w : List Branch}
   have hexpand : (2 : ℝ) ^ w.length < (3 : ℝ) ^ oddCount w := by
     exact_mod_cast cycle_word_formally_expanding hn h
   have hm257R : (257 : ℝ) ≤ (floorPower^[k] n : ℝ) := by exact_mod_cast hm257
-  have hlog : (11 / 2 : ℝ) ≤ Real.log (floorPower^[k] n) := by
+  have hlog : (61 / 11 : ℝ) ≤ Real.log (floorPower^[k] n) := by
     have hmono : Real.log (257 : ℝ) ≤ Real.log (floorPower^[k] n) := by
       gcongr
     linarith [log_two_hundred_fifty_seven_gt]
-  have hmlog : (2827 / 2 : ℝ) ≤
+  have hmlog : (15677 / 11 : ℝ) ≤
       (floorPower^[k] n : ℝ) * Real.log (floorPower^[k] n) := by
-    have h1 : (257 : ℝ) * (11 / 2) ≤
+    have h1 : (257 : ℝ) * (61 / 11) ≤
         (floorPower^[k] n : ℝ) * Real.log (floorPower^[k] n) :=
       mul_le_mul hm257R hlog (by norm_num) (by linarith)
     linarith
-  calc (2827 / 2 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length)
+  calc (15677 / 11 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length)
       ≤ (floorPower^[k] n : ℝ) * Real.log (floorPower^[k] n) *
           ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) :=
         mul_le_mul_of_nonneg_right hmlog (by linarith)
@@ -828,13 +831,13 @@ theorem cycle_finance_min_two_hundred_fifty_seven {n : ℕ} {w : List Branch}
 
 /-- If the floor-`257` comparison already fails at the minimal
 admissible `3^{o0}`, it fails for every larger odd count. Requires
-`L < 2827/2` so the comparison is increasing in `3^o`. -/
+`L < 15677/11` so the comparison is increasing in `3^o`. -/
 theorem finance_contradicts_min_two_hundred_fifty_seven
     {n : ℕ} {w : List Branch} {L o0 : ℕ}
     (hn : 2 ≤ n) (h : CycleWord n w)
-    (hlen : w.length = L) (hL : (L : ℝ) < 2827 / 2)
+    (hlen : w.length = L) (hL : (L : ℝ) < 15677 / 11)
     (ho : o0 ≤ oddCount w)
-    (hnum : (2827 / 2 : ℝ) * ((3 : ℝ) ^ o0 - (2 : ℝ) ^ L) >
+    (hnum : (15677 / 11 : ℝ) * ((3 : ℝ) ^ o0 - (2 : ℝ) ^ L) >
       (L : ℝ) * (3 : ℝ) ^ o0) : False := by
   have hfin := cycle_finance_min_two_hundred_fifty_seven hn h
   rw [hlen] at hfin
@@ -842,11 +845,11 @@ theorem finance_contradicts_min_two_hundred_fifty_seven
     have : (3 : ℕ) ^ o0 ≤ 3 ^ oddCount w :=
       Nat.pow_le_pow_right (by norm_num) ho
     exact_mod_cast this
-  have hc : (0 : ℝ) < 2827 / 2 - L := sub_pos.mpr hL
-  have hnum' : (2827 / 2 - (L : ℝ)) * (3 : ℝ) ^ o0 >
-      (2827 / 2) * (2 : ℝ) ^ L := by nlinarith
-  have hfin' : (2827 / 2 - (L : ℝ)) * (3 : ℝ) ^ oddCount w ≤
-      (2827 / 2) * (2 : ℝ) ^ L := by nlinarith
+  have hc : (0 : ℝ) < 15677 / 11 - L := sub_pos.mpr hL
+  have hnum' : (15677 / 11 - (L : ℝ)) * (3 : ℝ) ^ o0 >
+      (15677 / 11) * (2 : ℝ) ^ L := by nlinarith
+  have hfin' : (15677 / 11 - (L : ℝ)) * (3 : ℝ) ^ oddCount w ≤
+      (15677 / 11) * (2 : ℝ) ^ L := by nlinarith
   have hleA : (3 : ℝ) ^ oddCount w ≤ (3 : ℝ) ^ o0 :=
     le_of_mul_le_mul_left (le_trans hfin' hnum'.le) hc
   have heq : (3 : ℝ) ^ oddCount w = (3 : ℝ) ^ o0 := le_antisymm hleA hA
@@ -857,9 +860,9 @@ theorem finance_contradicts_min_two_hundred_fifty_seven
 theorem finance_excludes_at_two_hundred_fifty_seven
     {n : ℕ} {w : List Branch} {L oPred : ℕ}
     (hn : 2 ≤ n) (hlen : w.length = L)
-    (hL : (L : ℝ) < 2827 / 2)
+    (hL : (L : ℝ) < 15677 / 11)
     (hpred : 3 ^ oPred ≤ 2 ^ L)
-    (hnum : (2827 / 2 : ℝ) * ((3 : ℝ) ^ (oPred + 1) - (2 : ℝ) ^ L) >
+    (hnum : (15677 / 11 : ℝ) * ((3 : ℝ) ^ (oPred + 1) - (2 : ℝ) ^ L) >
       (L : ℝ) * (3 : ℝ) ^ (oPred + 1)) :
     ¬CycleWord n w := by
   intro h
@@ -869,7 +872,7 @@ theorem finance_excludes_at_two_hundred_fifty_seven
   exact finance_contradicts_min_two_hundred_fifty_seven hn h hlen hL ho hnum
 
 /-- Finance excludes length `19`: `2^19 < 3^12` and
-`(2827/2)(3^{12} - 2^{19}) > 19 · 3^{12}`. -/
+`(15677/11)(3^{12} - 2^{19}) > 19 · 3^{12}`. -/
 theorem finance_excludes_length_nineteen {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (hlen : w.length = 19) : ¬CycleWord n w :=
   finance_excludes_at_two_hundred_fifty_seven hn hlen (by norm_num)

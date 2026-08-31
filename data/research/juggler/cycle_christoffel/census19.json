@@ -1,0 +1,36 @@
+{
+  "L": 19,
+  "o": 12,
+  "christoffel": "OOEOOEOOEOEOOEOOEOE",
+  "necklace": 7,
+  "count": 12376,
+  "histogram": {
+    "0": 7,
+    "2": 382,
+    "4": 3580,
+    "6": 7766,
+    "8": 641
+  },
+  "radius_0": 7,
+  "radius_le_2": 389,
+  "median": 6,
+  "mean": 5.398190045248869,
+  "max": 8,
+  "isolated_even": {
+    "count": 462,
+    "histogram": {
+      "0": 7,
+      "2": 49,
+      "4": 196,
+      "6": 203,
+      "8": 7
+    },
+    "radius_0": 7,
+    "radius_le_2": 56,
+    "median": 4,
+    "mean": 4.666666666666667,
+    "max": 8
+  },
+  "max_odd_run_two": 27,
+  "one_parameter": false
+}

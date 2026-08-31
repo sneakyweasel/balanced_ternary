@@ -1,0 +1,13 @@
+{
+  "n_max": 2000,
+  "checked": 254,
+  "expands": 254,
+  "returns": 0,
+  "all_expand": true,
+  "any_return": false,
+  "all_open_q_lt_cycle_q": true,
+  "all_R_lt_one": true,
+  "max_R": 0.5025400424808198,
+  "min_R": 5.49069991708016e-05,
+  "max_q_open": 0.8073451736296384
+}

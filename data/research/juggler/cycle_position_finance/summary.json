@@ -1,0 +1,54 @@
+{
+  "classification": "POSITION_FINANCE_GREEN",
+  "reason": "Odd-run height law is strictly stronger than charging every climb at T(n). Joint-minima at floor 257 already excludes every length-38 cycle (any m); global finance does not (n_max=299). Position-dependent packing newly excludes leftover pairs [{'L': 84, 'm': [1, 2]}, {'L': 103, 'm': [17]}, {'L': 168, 'm': [1, 2, 3, 4]}, {'L': 187, 'm': [17, 18, 19]}], in particular L=84 at m=1 and m=2. Circuit-partition without a height law remains a reparameterization of cycleMin_finance",
+  "kills_length_thirty_eight_all_m_joint": true,
+  "kills_length_eighty_four_m1_position": true,
+  "new_pairs_at_257": [
+    {
+      "L": 84,
+      "m": [
+        1,
+        2
+      ]
+    },
+    {
+      "L": 103,
+      "m": [
+        17
+      ]
+    },
+    {
+      "L": 168,
+      "m": [
+        1,
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "L": 187,
+      "m": [
+        17,
+        18,
+        19
+      ]
+    }
+  ],
+  "joint_killed_all_m": [
+    19,
+    38,
+    57,
+    76,
+    95,
+    114,
+    133,
+    152,
+    160,
+    171,
+    179,
+    190,
+    198
+  ],
+  "git": "193b4a16e7e8cef407243ed0039447ee226cf1cc"
+}

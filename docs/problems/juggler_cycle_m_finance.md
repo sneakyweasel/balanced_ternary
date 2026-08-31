@@ -211,11 +211,14 @@ Classification **M_CYCLE_FINANCE_GREEN**. Regenerate with
 
 ## Open questions
 
-The Lean leftover is still `cycle_word_length_nineteen_or_ge_thirty`.
-The human-proof exclusion of length 30, and of length 19 as a
-1-cycle, is not in Lean. Near-convergent leftovers (\(19\) with
-\(m\ge 2\), then \(38\), \(84\), …) still need a larger floor or a
-different argument.
+The Lean leftover is now
+`cycle_word_length_thirty_eight_or_ge_thirty_nine` (floor \(257\)
+kills length \(19\) by global finance). Evaluating the *same*
+joint-minima bound at that floor excludes every length-38 cycle;
+the odd-run height refinement
+([juggler_cycle_position_finance.md](juggler_cycle_position_finance.md))
+then kills length \(84\) as a 1-cycle or 2-cycle. Length \(84\)
+with \(m\ge 3\) still needs a larger floor or a different argument.
 
 ## Decision
 
@@ -228,8 +231,10 @@ reparameterization and is not promoted. No Lean in this phase. Paper
 A is unchanged. Not a halt theorem.
 
 Best next question: can the joint-minima bound be formalized on
-`CycleFinance.lean` so that the Lean leftover becomes period 19 with
-\(m\ge 2\), or a near-convergent at least \(38\)?
+`CycleFinance.lean` so that the Lean leftover becomes period \(84\)
+with \(m\ge 3\), or a later near-convergent? The floor-\(257\)
+evaluation and the odd-run height refinement are recorded in
+[juggler_cycle_position_finance.md](juggler_cycle_position_finance.md).
 
 ## Publication assessment
 

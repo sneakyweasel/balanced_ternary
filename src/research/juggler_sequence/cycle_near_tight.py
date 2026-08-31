@@ -121,21 +121,34 @@ def cycle_one_plus_q(n: int, length: int, odd: int | None = None) -> int:
     return n ** cycle_exponent_gap(length, odd)
 
 
+def _safe_gap_ln(gap: int, n: int) -> float:
+    """Return gap * ln n, or inf when the product overflows float."""
+
+    if gap <= 0:
+        return 0.0
+    ln_n = math.log(n)
+    ln_gap_approx = (gap.bit_length() - 1) * math.log(2)
+    if ln_gap_approx + math.log(ln_n) > 700.0:
+        return float("inf")
+    return float(gap) * ln_n
+
+
 def cycle_ln_one_plus_q(n: int, length: int, odd: int | None = None) -> float:
     """ln(1+q) = G ln n on a realized return. Avoids n^G."""
 
     if n < 2:
         raise ValueError("n must be at least 2")
-    return cycle_exponent_gap(length, odd) * math.log(n)
+    return _safe_gap_ln(cycle_exponent_gap(length, odd), n)
 
 
 def envelope_growth_log(n: int, length: int, odd: int | None = None) -> float:
-    """ln(image/n) for a zero-defect path: (G / 2^L) ln n."""
+    """ln(image/n) for a zero-defect path: (3^o/2^L - 1) ln n."""
 
     if n < 2:
         raise ValueError("n must be at least 2")
-    gap = cycle_exponent_gap(length, odd)
-    return gap * math.log(n) / (1 << length)
+    odd_count = o_min(length) if odd is None else odd
+    ratio = math.exp(odd_count * math.log(3.0) - length * math.log(2.0))
+    return (ratio - 1.0) * math.log(n)
 
 
 def open_q_lt_cycle_q(n: int, image: int) -> bool:
@@ -158,17 +171,21 @@ def record_row(length: int) -> dict[str, Any]:
     theta = exact["theta"]
     bound = EPS_CONST * length / theta
     n_max = n_max_from_bound(bound)
+    ln_q_53 = cycle_ln_one_plus_q(LEAN_FLOOR, length, odd)
+    ln_q_max = cycle_ln_one_plus_q(n_max, length, odd)
+    growth_53 = math.expm1(envelope_growth_log(LEAN_FLOOR, length, odd))
     return {
         "L": length,
         "o": odd,
         "even_count": evens,
-        "gap": gap,
+        "gap": gap if gap.bit_length() <= 256 else None,
+        "gap_bits": gap.bit_length(),
         "theta": theta,
         "hamming_to_monochrome": hamming,
         "n_max": n_max,
-        "ln_one_plus_q_at_53": cycle_ln_one_plus_q(LEAN_FLOOR, length, odd),
-        "ln_one_plus_q_at_n_max": cycle_ln_one_plus_q(n_max, length, odd),
-        "envelope_growth_at_53": math.expm1(envelope_growth_log(LEAN_FLOOR, length, odd)),
+        "ln_one_plus_q_at_53": None if math.isinf(ln_q_53) else ln_q_53,
+        "ln_one_plus_q_at_n_max": None if math.isinf(ln_q_max) else ln_q_max,
+        "envelope_growth_at_53": growth_53,
         "almost_monochrome": hamming <= 1,
     }
 
@@ -377,7 +394,9 @@ def probe_payload(*, n_max: int = TEST_N_MAX) -> dict[str, Any]:
     }
 
 
-def _fmt_float(value: float) -> str:
+def _fmt_float(value: float | None) -> str:
+    if value is None:
+        return "inf"
     if value == 0.0:
         return "0"
     if abs(value) < 1e-4 or abs(value) >= 1e6:

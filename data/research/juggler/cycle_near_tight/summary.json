@@ -1,0 +1,9 @@
+{
+  "classification": "CYCLE_NEAR_TIGHT_CLOSED",
+  "reason": "cycle 1+q = n^{3^o-2^L} is the opposite of open-orbit q->0; leftover Hamming to monochrome grows (7,31,210,389); realized OOE expands and never returns; the 329 successor is mixed with 0<q<10^{-30} against cycle-required q=y-1. R=1 on a return is image_eq_start_defectRatio, already Lean. NearTightScale does not cover leftover convergents",
+  "slogan_fails": true,
+  "leftover_killed_by_near_tight": false,
+  "ooe_returns": 0,
+  "successor_q_open_below_1e_30": true,
+  "git": "193b4a16e7e8cef407243ed0039447ee226cf1cc"
+}

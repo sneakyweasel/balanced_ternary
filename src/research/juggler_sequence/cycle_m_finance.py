@@ -14,6 +14,7 @@ that is strictly stronger than
 and whether it excludes any leftover (L, m) at floor 53.
 
 Dossier: docs/problems/juggler_cycle_m_finance.md.
+The odd-run height refinement is cycle_position_finance.py.
 """
 
 from __future__ import annotations

@@ -175,6 +175,10 @@ the expanding-word grammar is persistence, not an independent
 obstruction. Tiny \(q\) still does not punish expansion. The leftover
 is the odd-to-odd landing, not another slack rewrite.
 
+Cycle leftover convergents are not a NearTightScale job
+([juggler_cycle_near_tight.md](juggler_cycle_near_tight.md),
+**CLOSE**).
+
 ## Decision
 
 **PROMOTE** the scale-decay / large-\(\lambda\) feedback description.

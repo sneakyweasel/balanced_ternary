@@ -1,0 +1,23 @@
+{
+  "id": "juggler_cycle_near_tight_monochrome",
+  "title": "A leftover-convergent Juggler cycle is forced into an almost-monochrome tower by cycle near-tightness",
+  "statement": "A hypothetical Juggler cycle at a record near-convergent length (L=19, 84, 569, 1054, …) is forced into an almost-monochrome tower, because cycle near-tightness (return + tiny relative gap θ = 1 - 2^L/3^o) is a stricter form of open-orbit near-tightness (q_w(n) → 0 at large scale).",
+  "status": "REFUTED",
+  "counterexamples": [
+    "On a realized return, 1+q = n^{3^o-2^L}. At L=19, o=12 this is n^{7153}-1, the opposite of q→0",
+    "Hamming distance to a monochrome word at o_min is 7, 31, 210, 389 along L=19, 84, 569, 1054; even-count ≥ 4 is already Lean",
+    "Realized OOE (first leftover length, G=1) expands and never returns on n≤2000; q_open < n-1 iff image > n",
+    "Mixed OOE at 180370579261640036336071806107777 has 0<q<10^{-30} and expands; a cycle there would need q=y-1"
+  ],
+  "first_seen": "juggler cycle near-tight rigidity",
+  "lean_reference": "",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles",
+    "oeis-A007320"
+  ],
+  "mathematical_domain": "Juggler cycle finance / scale-induced near-tightness",
+  "notes": "R=1 on a return is image_eq_start_defectRatio, already Lean. Tiny θ is not tiny q. NearTightScale explains why large states do not finance the gap; it does not force leftover itineraries to be almost monochrome. Not a leftover-length exclusion and not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_near_tight.md",
+  "proof_reference": "docs/problems/juggler_cycle_near_tight.md",
+  "tested_range": "record lengths 1,3,11,19,84,569,1054; realized OOE on odd-odd n≤2000; 329 successor OOE"
+}

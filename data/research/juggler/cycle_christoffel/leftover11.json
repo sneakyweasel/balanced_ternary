@@ -1,0 +1,32 @@
+{
+  "christoffel": "OOEOOEOOEOE",
+  "family_size": 30,
+  "length_11_count": 30,
+  "contains_christoffel": true,
+  "count": 30,
+  "histogram": {
+    "0": 1,
+    "2": 16,
+    "4": 13
+  },
+  "radius_0": 1,
+  "radius_le_2": 17,
+  "median": 2,
+  "mean": 2.8,
+  "max": 4,
+  "far_words": [
+    "OOOOOOOEEEE",
+    "OOOOOOEOEEE",
+    "OOOOEOOOEEE",
+    "OOOEOOOOEEE",
+    "OOOOOOEEEOE",
+    "OOOEOOOEEOE",
+    "OOOOOOEEOEE",
+    "OOOEOOOEOEE",
+    "OOOOEOEOEOE",
+    "OOOOOEEOOEE",
+    "OOEOOOEOOEE",
+    "OOOOEEOOOEE",
+    "OOOEOEOOOEE"
+  ]
+}

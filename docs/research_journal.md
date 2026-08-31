@@ -15103,4 +15103,154 @@ Best next question
   period 19 with m>=2, or a near-convergent >= 38?
 ```
 
+## Juggler cycle finance residual floor 257
+
+- **Date:** 2026-08-31
+- **Objective:** Raise the Lean residual floor far enough that `cycleMin_finance` excludes the near-convergent length \(19\)
+- **Hypotheses:** the Python \(6/5\) table needs a floor past \(n_{\max}(19)=297\); Lean's constant \(1\) only needs \(n\ln n>19\cdot 3^{12}/(3^{12}-2^{19})=1411.63\), so a floor of \(257\) suffices
+- **Major results:** `reachesOne_of_lt_two_hundred_fifty_seven` is **EXACT — LEAN VERIFIED** (evens \(<2809\) reduce to \(\{1,\dots,52\}\); odd seeds \(53,\dots,255\) are finite certificates; \(193\) takes 73 steps). `cycle_finance_min_two_hundred_fifty_seven` uses \(257\log 257>2827/2\). `finance_excludes_length_nineteen` and `no_cycle_word_length_le_nineteen` are **EXACT — LEAN VERIFIED**. Lengths \(30\)–\(37\) die by the same comparison. Leftover `cycle_word_length_thirty_eight_or_ge_thirty_nine`. Eliahou packaging now names period \(38\), a listed near-convergent, or \(\ge 10^5\). Ledger rows `J-residual-floor-two-hundred-fifty-seven`, `J-small-cycle-census-nineteen`, `J-cycle-word-length-ge-thirty`, `J-cycle-word-length-thirty-eight-or-ge-thirty-nine`. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** that the Lean floor must pass the Python \(6/5\) threshold \(297\) to kill \(L=19\)
+- **Literature:** `juggler_cycle_finance`; `cycle_word_length_nineteen_or_ge_thirty`; `juggler_cycle_gap_baker` (CLOSE)
+- **Open:** \(L=38\) survives \(2827/2\); exact \(\log 257\) would kill it (\(257\ln 257\approx1426>1421.2\)); next substantial convergent is \(L=84\)
+- **Decision:** PROMOTE. Length 19 dies by finance plus a finite residual floor
+
+```text
+What was learned
+- Lean constant 1 needs n ln n > 1411.63 for L=19;
+  smallest such n is 255, not the Python 6/5 n_max 297
+- floor 257 with 257 log 257 > 2827/2 kills 19 and 30-37
+- leftover is 38 or >= 39; Eliahou period moves 19 -> 38
+- exact log 257 would also kill L=38, but 11/2 does not
+- 102 odd-orbit certificates; worst is n=193 (73 steps)
+Strongest theorem
+- no_cycle_word_length_le_nineteen and
+  cycle_word_length_thirty_eight_or_ge_thirty_nine
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- L=38 survives 2827/2 at floor 257
+Reusable machinery
+- TerminationFloor257.lean;
+  cycle_finance_min_two_hundred_fifty_seven
+Branch status
+- PROMOTE
+Why
+- the next near-convergent dies by the same finance
+  comparison, without a leftover-word census
+Best next question
+- can a tighter log 257 certificate, or a few more
+  odd seeds, kill L=38, or is the next real target L=84?
+```
+
+## Juggler cycle near-tight rigidity
+
+- **Date:** 2026-08-31
+- **Objective:** Test whether cycle near-tightness (return + tiny finance gap \(\theta\)) is stricter than open-orbit near-tightness (\(q\to 0\)), and whether that forces leftover convergents \(L=19,84,569,1054,\ldots\) into an almost-monochrome tower
+- **Hypotheses:** NearTightScale covers leftover \(L\) simultaneously because tiny \(\theta\) plus return is a stronger rigidity than scale-induced tiny \(q\)
+- **Major results:** Classification **CYCLE_NEAR_TIGHT_CLOSED**. Cycle \(1+q=n^{3^o-2^L}\) on a return is a **REPARAMETERIZATION** of `image_eq_start_defectRatio` (\(R=1\)). Open \(q<n^G-1\) iff \(T_w(n)>n\). Zero-defect paths expand by \(n^{G/2^L}\). Hamming to monochrome at \(o_{\min}\) is \(7,31,210,389\) along the slogan lengths. Realized `OOE` through \(n=2000\): \(0\) returns, every \(R<1\). The mixed 329 successor has \(0<q<10^{-30}\) against cycle-required \(q=y-1\). Conjecture `juggler_cycle_near_tight_monochrome` is **REFUTED**. Ledger row `J-cycle-near-tight-monochrome`. No new Lean. Paper A unchanged. Not a leftover-length exclusion
+- **Refuted ideas:** that return + tiny \(\theta\) is a stricter form of open-orbit \(q\to 0\); that a leftover-convergent cycle is forced into an almost-monochrome tower; that NearTightScale covers leftover \(L\) simultaneously
+- **Literature:** `simons-de-weger-2005-collatz-m-cycles`; `oeis-A007320`; `juggler_near_tight_scale`; `juggler_cycle_finance`; `J-approx-equality-rigidity`
+- **Open:** stop on NearTightScale as a leftover killer; leftovers remain a floor question
+- **Decision:** CLOSE. Category error: tiny \(\theta\) is not tiny \(q\); \(R=1\) is already Lean
+
+```text
+What was learned
+- on a cycle, 1+q = n^{3^o-2^L}, which is huge at leftover L
+- open-orbit near-tightness is the expanding regime T>n
+- leftover Hamming to monochrome grows, not shrinks
+- R=1 on a return is already image_eq_start_defectRatio
+- NearTightScale does not kill leftover convergents
+Strongest theorem
+- none new; cycle 1+q = n^G restates the return identity
+Strongest refutation
+- juggler_cycle_near_tight_monochrome: L=19 has 1+q=n^{7153}
+  and Hamming 7; mixed OOE at 1.80e32 has q<10^{-30}
+Reusable machinery
+- research.juggler_sequence.cycle_near_tight: record Hamming
+  table and OOE open-vs-cycle check, no new Lean
+Branch status
+- CLOSE
+Why
+- the slogan conflates theta with q; the exact facts are
+  reparameterizations; leftover work is still a floor raise
+Best next question
+- can the residual floor be raised past the next live
+  convergent n_max, so that finance kills that length?
+```
+
+## Juggler cycle Christoffel maximizers
+
+- **Date:** 2026-08-31
+- **Objective:** Transfer Fernández–Ibáñez Christoffel / mechanical words as unique maximizers to Juggler leftover near-convergents, without the affine equation and without Lebel modular sieving
+- **Hypotheses:** a cycle at leftover \(L\) with \(o=o_{\min}(L)\) is combinatorially close to the Christoffel word of slope \(o/L\), so leftover-word cells apply to a one-parameter necklace instead of \(\binom{L}{o}\) words
+- **Major results:** Classification **CYCLE_CHRISTOFFEL_CLOSED**. Leftover lengths are the named Beatty / Farey approximations (**KNOWN**): \(7/11=2/3\oplus 5/8\), \(12/19\), \(24/38=2\cdot(12/19)\), \(53/84\), \(359/569=53/84\oplus 306/485\), \(665/1054\). Ceiling Christoffel \(c_L\) is balanced with \(\max O=2\), \(\max E=1\); \(c_{38}=c_{19}^2\). The one-parameter leftover-cell slogan is **REFUTED**: thirty L=11 leftovers have Hamming histogram \(0:1,2:16,4:13\); L=19 CycleMin weight-12 has \(12376\) words, median Hamming \(6\), radius \(0\) only \(7\); isolated-even worst-\(m\) family has \(462\) words. Finance and CycleMin slack \(139\) are word-order-independent. Conjecture `juggler_christoffel_one_parameter` is **REFUTED**. Ledger row `J-christoffel-one-parameter`. No Lebel. No new Lean. Paper A unchanged. Cycle-only near-Christoffel rigidity is not refuted
+- **Refuted ideas:** that leftover-word cells apply only to the Christoffel necklace; that Fernández–Ibáñez unique maximizers transfer without the affine equation as a one-parameter reduction
+- **Literature:** `fernandez-ibanez-2026`; `lebel-2026`; `juggler_cycle_finance`; `juggler_cycle_near_tight`; `J-approx-equality-rigidity`
+- **Open:** cycle-only near-Christoffel rigidity remains the same open question as cycle-only near-tightness; leftovers remain a floor question
+- **Decision:** CLOSE. The unused combinatorial half does not reduce leftover candidates to a necklace
+
+```text
+What was learned
+- leftover L are Beatty / Farey approximations of log 2 / log 3
+- c_L is the balanced mechanical word; c_38 = c_19 squared
+- leftover-word cells at L=11 hit a 30-word family, not a necklace
+- L=19 CycleMin candidates have median Hamming 6 to Christoffel
+- worst m-finance (isolated evens) is 462 words, not 7
+- finance and L=11 slack are word-order-independent
+Strongest theorem
+- none new; Beatty identification and balance are KNOWN
+Strongest refutation
+- juggler_christoffel_one_parameter: L=11 Hamming 0:1,2:16,4:13;
+  L=19 median Hamming 6 on 12376 CycleMin words
+Reusable machinery
+- research.juggler_sequence.cycle_christoffel: ceiling
+  Christoffel O/E words, Farey checks, Hamming census, no Lean
+Branch status
+- CLOSE
+Why
+- the transferable slogan fails on the candidate set; F-I
+  maximizers need the affine constant Juggler does not have
+Best next question
+- can a tighter log 257 certificate, or a few more odd
+  seeds, kill L=38, or is the next real target L=84?
+```
+
+## Juggler position-dependent cycle finance
+
+- **Date:** 2026-08-31
+- **Objective:** Refine m-finance by the Juggler odd-run height \(\tau_j\asymp n^{(3/2)^j}\) (the floor-power form of Collatz \(\asymp n\,3^k/2^k\)), and test whether packing at most \(m\) climbs per height kills leftover \((L,m)\) at floor \(257\), in particular \(L=38\) at small \(m\)
+- **Hypotheses:** only a stronger height law is new; circuit-partition without it restates `cycleMin_finance`; the height law could kill \(L=38\) at small \(m\)
+- **Major results:** Classification **POSITION_FINANCE_GREEN**. Odd-run height law and greedy \(m\)-packing are **EXACT — HUMAN PROOF**. Joint-minima at floor \(257\) already excludes every length-38 cycle (any \(m\le 14\)); global finance does not (\(n_{\max}\approx 299\)). The height law newly excludes leftover pairs that joint-minima misses: \(L=84\) at \(m=1,2\), also \(L=168\) at \(m\le 4\). The hypothesis that a height law is required for \(L=38\) is **false**. Adversarial circuit-partition remains a **REPARAMETERIZATION**. No new Lean. Not a new paper. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** that \(L=38\) at floor \(257\) needs a stronger height law (joint-minima already kills every \(m\)); that partitioning the existing sum by circuits without a valley-height law beats `cycleMin_finance`
+- **Literature:** `simons-de-weger-2005-collatz-m-cycles`; `juggler_cycle_finance`; `juggler_cycle_m_finance`
+- **Open:** Lean leftover is still \(38\) or \(\ge 39\); length \(84\) with \(m\ge 3\) survives
+- **Decision:** PROMOTE. New height law, new leftover pairs (\(84\) as a 1-cycle or 2-cycle). \(L=38\) is a floor evaluation of the old bound. No Lean in this phase
+
+```text
+What was learned
+- Juggler analog of n 3^k/2^k is the odd iterate τ_j ≍ n^{(3/2)^j}
+- at most m climb interiors can sit at each τ_j
+- joint-minima at floor 257 already kills L=38 for every m
+- the height law is needed for L=84 at m=1,2 (and 168 at m≤4)
+- circuit-partition without a height law still restates
+  cycleMin_finance
+Strongest theorem
+- position-dependent finance with greedy m-packing
+  (EXACT — HUMAN PROOF); no length-84 1-cycle or 2-cycle
+Strongest refutation
+- L=38 at floor 257 requires a height law; adversarial
+  partition = cycleMin_finance
+Reusable machinery
+- research.juggler_sequence.cycle_position_finance: odd-run
+  heights, packed leftover (L, m) table, no new Lean
+Branch status
+- PROMOTE
+Why
+- first height-indexed refinement of joint-minima; L=84
+  dies as a 1-cycle without a floor raise
+Best next question
+- can joint-minima at floor 257 be formalized on
+  CycleFinance.lean so the Lean leftover becomes period 84
+  with m>=3, or a later near-convergent?
+```
+
 

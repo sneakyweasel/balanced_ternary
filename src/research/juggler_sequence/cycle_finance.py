@@ -19,9 +19,9 @@ per-length minimum bound n_max(L) exactly for L <= 10^5, verifies a
 descent-induction floor (every n <= N0 reaches 1), and stress-tests
 the per-step bound eps_i <= (6/5)/x_{i+1} on real orbit segments.
 A verified floor N0 excludes every length with n_max(L) <= N0.
-Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_eighteen,
-cycle_word_length_nineteen_or_ge_thirty, cycle_word_eliahou_leftover).
-Eliahou leftover: period 19, or a listed near-convergent, or >= 10^5.
+Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_nineteen,
+cycle_word_length_thirty_eight_or_ge_thirty_nine, cycle_word_eliahou_leftover).
+Eliahou leftover: period 38, or a listed near-convergent, or >= 10^5.
 """
 
 from __future__ import annotations
@@ -194,7 +194,7 @@ def eliahou_leftover(
     *,
     cutoff: int = ELIAHOU_TABLE_CUTOFF,
 ) -> bool:
-    """Eliahou leftover: period 19, listed near-convergent, or >= cutoff."""
+    """Eliahou leftover: Lean period, listed near-convergent, or >= cutoff."""
 
     return (
         length == ELIAHOU_LEAN_PERIOD
@@ -590,7 +590,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"one of `{scan['eliahou']['exception_count']}` listed "
         f"near-convergents, or `>= {scan['eliahou']['cutoff']}` "
         f"(table holds `{scan['eliahou']['table_holds']}`; "
-        f"period 19 computationally excluded "
+        f"lean period computationally excluded "
         f"`{scan['eliahou']['nineteen_computationally_excluded']}`)",
         "",
         decision["reason"] + ".",

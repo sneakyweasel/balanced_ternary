@@ -1,0 +1,14 @@
+{
+  "classification": "CYCLE_CHRISTOFFEL_CLOSED",
+  "reason": "leftover-word / CycleMin candidates are not a one-parameter Christoffel necklace: the thirty L=11 leftovers include Christoffel and 4 Hamming, family 30 versus necklace 4; L=19 CycleMin weight-12 has 12376 words, median cyclic Hamming 6, radius 0 only 7; the isolated-even worst-m family has 462 words. Finance is word-order-independent. Lebel sieving was not used. Cycle-only near-Christoffel rigidity is not claimed refuted",
+  "identifications_hold": true,
+  "square_of_nineteen": true,
+  "slogan_false": true,
+  "leftover11_family": 30,
+  "leftover11_max_distance": 4,
+  "census19_count": 12376,
+  "census19_median": 6,
+  "census19_radius_0": 7,
+  "isolated_even_19": 462,
+  "git": "193b4a16e7e8cef407243ed0039447ee226cf1cc"
+}
