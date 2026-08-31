@@ -1,0 +1,173 @@
+{
+  "bound": "cycle_lift_ancestry",
+  "published_floor": 1000000,
+  "equation": "c = T^L(t), T(t)=T(c), t!=c",
+  "lift": {
+    "hi": 201,
+    "k_max": 12,
+    "n_images": 200,
+    "n_multi_parent": 200,
+    "n_futures_agree": 200,
+    "n_fail": 0,
+    "first_fail": null,
+    "identity_holds": true
+  },
+  "sink": {
+    "n": 1,
+    "L": 1,
+    "c": 1,
+    "t": 2,
+    "x": 1,
+    "T_t_eq_T_c": true,
+    "T_L_t": 1,
+    "T_L_t_eq_c": true,
+    "drop_below_n": false,
+    "grandparents_of_t": [
+      4,
+      6,
+      8
+    ],
+    "depth2_lands": [
+      1,
+      1,
+      1
+    ],
+    "depth2_all_eq_c": true,
+    "depth2_any_below_n": false
+  },
+  "valleys": [
+    {
+      "n": 13,
+      "square_lo": 169,
+      "square_hi": 196,
+      "first_even": 170,
+      "last_even": 194,
+      "pred_e_count": 13,
+      "first_even_ge_n2": true,
+      "cyclic_parent_ge_n2": true,
+      "drop_impossible_if_cycle": true,
+      "odd_parent": null,
+      "odd_parent_lt_n": false,
+      "sample_evens": [
+        170,
+        174,
+        178,
+        182,
+        186,
+        190,
+        194
+      ],
+      "sample_futures_agree": true
+    },
+    {
+      "n": 25,
+      "square_lo": 625,
+      "square_hi": 676,
+      "first_even": 626,
+      "last_even": 674,
+      "pred_e_count": 25,
+      "first_even_ge_n2": true,
+      "cyclic_parent_ge_n2": true,
+      "drop_impossible_if_cycle": true,
+      "odd_parent": null,
+      "odd_parent_lt_n": false,
+      "sample_evens": [
+        626,
+        634,
+        642,
+        650,
+        658,
+        666,
+        674
+      ],
+      "sample_futures_agree": true
+    },
+    {
+      "n": 1000001,
+      "square_lo": 1000002000001,
+      "square_hi": 1000004000004,
+      "first_even": 1000002000002,
+      "last_even": 1000004000002,
+      "pred_e_count": 1000001,
+      "first_even_ge_n2": true,
+      "cyclic_parent_ge_n2": true,
+      "drop_impossible_if_cycle": true,
+      "odd_parent": null,
+      "odd_parent_lt_n": false,
+      "sample_evens": [
+        1000002000002,
+        1000002400002,
+        1000002800002,
+        1000003200002,
+        1000003600002,
+        1000004000002
+      ],
+      "sample_futures_agree": true
+    }
+  ],
+  "type2": {
+    "t": 25,
+    "x": 125,
+    "T_t": 125,
+    "t_lt_x": true,
+    "T_t_eq_x": true,
+    "drop_at_one_step": false,
+    "last_even_lo": 15625,
+    "first_even": 15626,
+    "last_even": 15874,
+    "circuit_image_ge_n2_if_valley": true,
+    "odd_starts_below_n_lands_at_scale_n2": true
+  },
+  "named_fork": {
+    "c": 100,
+    "t": 102,
+    "x": 10,
+    "same_image": true,
+    "futures_agree": true,
+    "joined_at_step_1": true,
+    "note": "ordinary fork, not a cycle; eventual descent to 1 is termination, not a circuit drop"
+  },
+  "depth2": {
+    "hi": 40,
+    "n_checked": 258,
+    "n_fail": 0,
+    "depth2_matches_parent_future": true
+  },
+  "obstruction": {
+    "lift_identity_holds": true,
+    "sink_lands_on_c": true,
+    "sink_drop_fails": true,
+    "sink_depth2_lands_on_c": true,
+    "sink_depth2_drop_fails": true,
+    "valley_last_even_ge_n2": true,
+    "valley_circuit_cannot_drop": true,
+    "type2_starts_below_x": true,
+    "type2_one_step_is_x": true,
+    "type2_circuit_scale_n2": true,
+    "parent_identity_forgotten": true,
+    "depth2_is_shifted_parent_future": true,
+    "drop_refuted": true
+  },
+  "decision": {
+    "classification": "CYCLE_LIFT_ANCESTRY_CLOSED",
+    "decision": "CLOSE",
+    "reason": "Lift identity: T(t)=T(c) and T^L(c)=c imply T^L(t)=c. CycleMin forces c>=n, so T^L(t)<n is false. The sink 2->1, last-even scale n^2, and every ancestry depth land on c. Parent identity is forgotten after one step.",
+    "drop_below_n": false,
+    "new_obstruction": false,
+    "leftover_killer": false,
+    "reopens_first_collision": false,
+    "reopens_seam_ancestry": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "even_cell_iff",
+      "odd_cell_unique",
+      "oddLanding_preimage_unique",
+      "cycleMin_not_end_odd",
+      "cycle_last_even_interval",
+      "cell_same_next_state",
+      "first_even_freeze"
+    ]
+  }
+}
