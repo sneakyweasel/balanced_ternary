@@ -21,3 +21,5 @@ Modular-closure scan: `mod_closure/summary.json`
 (`write_mod_closure_artifacts`; does not replace the tables).
 Ordered-excursion scan: `ordered_excursion/summary.json`
 (`write_ordered_artifacts`; does not replace the tables).
+Survivor lattice reading of the 99 lengths:
+`docs/theory/juggler_run_survivor_lattice_note.md`.

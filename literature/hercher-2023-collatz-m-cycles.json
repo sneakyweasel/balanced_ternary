@@ -1,0 +1,24 @@
+{
+  "id": "hercher-2023-collatz-m-cycles",
+  "title": "There are no Collatz m-cycles with m ≤ 91",
+  "authors": ["Christian Hercher"],
+  "year": 2023,
+  "identifiers": {
+    "arxiv": "2201.00406"
+  },
+  "url": {
+    "html": "https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.html",
+    "pdf": "https://cs.uwaterloo.ca/journals/JIS/VOL26/Hercher/hercher5.pdf",
+    "arxiv": "https://arxiv.org/abs/2201.00406"
+  },
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "m-cycle local minima",
+    "valley count beyond parity totals",
+    "Simons-de Weger financing",
+    "continued-fraction gap bounds"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "Journal of Integer Sequences 26 (2023) Article 23.3.5. Proves every nontrivial Collatz m-cycle has m≥92, where m is the number of local minima. Valley arrangement carries cycle information beyond (K,L) parity counts; the argument is Diophantine, not spectral. The Juggler run-type count e is the analogous valley count and is already the finance packing parameter. Cited from docs/problems/juggler_cycle_word_functional.md."
+}

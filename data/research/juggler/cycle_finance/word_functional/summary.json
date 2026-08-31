@@ -1,0 +1,765 @@
+{
+  "bound": "word_functional",
+  "identity": {
+    "checked": 92,
+    "fails": 0,
+    "n_max": 24,
+    "k_max": 4
+  },
+  "denom": {
+    "checked": 511,
+    "fails": 0,
+    "k_max": 8,
+    "examples": [
+      {
+        "w": "",
+        "L": 0,
+        "o": 0,
+        "alpha": [],
+        "S": 0,
+        "D": 1,
+        "four_S": 1
+      },
+      {
+        "w": "E",
+        "L": 1,
+        "o": 0,
+        "alpha": [
+          1
+        ],
+        "S": 1,
+        "D": 4,
+        "four_S": 4
+      },
+      {
+        "w": "O",
+        "L": 1,
+        "o": 1,
+        "alpha": [
+          1
+        ],
+        "S": 1,
+        "D": 4,
+        "four_S": 4
+      },
+      {
+        "w": "EE",
+        "L": 2,
+        "o": 0,
+        "alpha": [
+          1,
+          2
+        ],
+        "S": 3,
+        "D": 64,
+        "four_S": 64
+      },
+      {
+        "w": "OE",
+        "L": 2,
+        "o": 1,
+        "alpha": [
+          1,
+          2
+        ],
+        "S": 3,
+        "D": 64,
+        "four_S": 64
+      },
+      {
+        "w": "EO",
+        "L": 2,
+        "o": 1,
+        "alpha": [
+          3,
+          2
+        ],
+        "S": 5,
+        "D": 1024,
+        "four_S": 1024
+      },
+      {
+        "w": "OO",
+        "L": 2,
+        "o": 2,
+        "alpha": [
+          3,
+          2
+        ],
+        "S": 5,
+        "D": 1024,
+        "four_S": 1024
+      },
+      {
+        "w": "EEE",
+        "L": 3,
+        "o": 0,
+        "alpha": [
+          1,
+          2,
+          4
+        ],
+        "S": 7,
+        "D": 16384,
+        "four_S": 16384
+      },
+      {
+        "w": "OEE",
+        "L": 3,
+        "o": 1,
+        "alpha": [
+          1,
+          2,
+          4
+        ],
+        "S": 7,
+        "D": 16384,
+        "four_S": 16384
+      },
+      {
+        "w": "EOE",
+        "L": 3,
+        "o": 1,
+        "alpha": [
+          3,
+          2,
+          4
+        ],
+        "S": 9,
+        "D": 262144,
+        "four_S": 262144
+      },
+      {
+        "w": "OOE",
+        "L": 3,
+        "o": 2,
+        "alpha": [
+          3,
+          2,
+          4
+        ],
+        "S": 9,
+        "D": 262144,
+        "four_S": 262144
+      },
+      {
+        "w": "EEO",
+        "L": 3,
+        "o": 1,
+        "alpha": [
+          3,
+          6,
+          4
+        ],
+        "S": 13,
+        "D": 67108864,
+        "four_S": 67108864
+      },
+      {
+        "w": "OEO",
+        "L": 3,
+        "o": 2,
+        "alpha": [
+          3,
+          6,
+          4
+        ],
+        "S": 13,
+        "D": 67108864,
+        "four_S": 67108864
+      },
+      {
+        "w": "EOO",
+        "L": 3,
+        "o": 2,
+        "alpha": [
+          9,
+          6,
+          4
+        ],
+        "S": 19,
+        "D": 274877906944,
+        "four_S": 274877906944
+      },
+      {
+        "w": "OOO",
+        "L": 3,
+        "o": 3,
+        "alpha": [
+          9,
+          6,
+          4
+        ],
+        "S": 19,
+        "D": 274877906944,
+        "four_S": 274877906944
+      }
+    ]
+  },
+  "oe_vs_eo": {
+    "pair": [
+      2,
+      1
+    ],
+    "OE": {
+      "alpha": [
+        1,
+        2
+      ],
+      "S": 3,
+      "D": 64
+    },
+    "EO": {
+      "alpha": [
+        3,
+        2
+      ],
+      "S": 5,
+      "D": 1024
+    },
+    "same_counts": true,
+    "different_S": true,
+    "different_alpha": true,
+    "min_rot_S_equal": true
+  },
+  "cyclemin_freeze": {
+    "frozen": true,
+    "n_rows": 14,
+    "sample": [
+      {
+        "L": 3,
+        "o": 2,
+        "n_words": 1,
+        "leading": [
+          3,
+          2
+        ],
+        "frozen": true
+      },
+      {
+        "L": 3,
+        "o": 3,
+        "n_words": 1,
+        "leading": [
+          9,
+          6
+        ],
+        "frozen": true
+      },
+      {
+        "L": 4,
+        "o": 2,
+        "n_words": 1,
+        "leading": [
+          3,
+          2
+        ],
+        "frozen": true
+      },
+      {
+        "L": 4,
+        "o": 3,
+        "n_words": 2,
+        "leading": [
+          9,
+          6
+        ],
+        "frozen": true
+      }
+    ]
+  },
+  "necklaces": {
+    "k_max": 8,
+    "n_expanding_pairs": 17,
+    "pairs_with_several_S": 9,
+    "pairs_with_several_min_rot": 3,
+    "new_necklace_kills": 0
+  },
+  "shapes": {
+    "5": {
+      "L": 5,
+      "o": 4,
+      "g_positive": true,
+      "theta": 0.6049382716049383,
+      "words": {
+        "bunched": {
+          "w": "OOOOE",
+          "o": 4,
+          "S": 81,
+          "min_rot_S": 81,
+          "starts_OO": true,
+          "leading": [
+            27,
+            18
+          ]
+        },
+        "extremal": {
+          "w": "OOEOO",
+          "o": 4,
+          "S": 121,
+          "min_rot_S": 81,
+          "starts_OO": true,
+          "leading": [
+            27,
+            18
+          ]
+        }
+      },
+      "order_sensitive": true,
+      "min_rot_varies": false,
+      "cyclemin_orientations_share_leading": true
+    },
+    "8": {
+      "L": 8,
+      "o": 6,
+      "g_positive": true,
+      "theta": 0.6488340192043895,
+      "words": {
+        "bunched": {
+          "w": "OOOOOOEE",
+          "o": 6,
+          "S": 857,
+          "min_rot_S": 857,
+          "starts_OO": true,
+          "leading": [
+            243,
+            162
+          ]
+        },
+        "extremal": {
+          "w": "OOEOOEOO",
+          "o": 6,
+          "S": 1697,
+          "min_rot_S": 1017,
+          "starts_OO": true,
+          "leading": [
+            243,
+            162
+          ]
+        }
+      },
+      "order_sensitive": true,
+      "min_rot_varies": true,
+      "cyclemin_orientations_share_leading": true
+    },
+    "11": {
+      "L": 11,
+      "o": 7,
+      "g_positive": true,
+      "theta": 0.06355738454503887,
+      "words": {
+        "bunched": {
+          "w": "OOOOOOOEEEE",
+          "o": 7,
+          "S": 3979,
+          "min_rot_S": 3979,
+          "starts_OO": true,
+          "leading": [
+            729,
+            486
+          ]
+        },
+        "mechanical": {
+          "w": "OOEOOEOOEOE",
+          "o": 7,
+          "S": 7395,
+          "min_rot_S": 7395,
+          "starts_OO": true,
+          "leading": [
+            729,
+            486
+          ]
+        },
+        "extremal": {
+          "w": "OOEOOEOOEOE",
+          "o": 7,
+          "S": 7395,
+          "min_rot_S": 7395,
+          "starts_OO": true,
+          "leading": [
+            729,
+            486
+          ]
+        }
+      },
+      "order_sensitive": true,
+      "min_rot_varies": true,
+      "cyclemin_orientations_share_leading": true
+    },
+    "19": {
+      "L": 19,
+      "o": 12,
+      "g_positive": true,
+      "theta": 0.01345963145485576,
+      "words": {
+        "bunched": {
+          "w": "OOOOOOOOOOOOEEEEEEE",
+          "o": 12,
+          "S": 1047537,
+          "min_rot_S": 1047537,
+          "starts_OO": true,
+          "leading": [
+            177147,
+            118098
+          ]
+        },
+        "mechanical": {
+          "w": "OOEOOEOOEOOEOOEOEOE",
+          "o": 12,
+          "S": 2816889,
+          "min_rot_S": 2816889,
+          "starts_OO": true,
+          "leading": [
+            177147,
+            118098
+          ]
+        },
+        "extremal": {
+          "w": "OOEOOEOOEOEOOEOOEOE",
+          "o": 12,
+          "S": 3130233,
+          "min_rot_S": 3130233,
+          "starts_OO": true,
+          "leading": [
+            177147,
+            118098
+          ]
+        }
+      },
+      "order_sensitive": true,
+      "min_rot_varies": true,
+      "cyclemin_orientations_share_leading": true
+    }
+  },
+  "L19": {
+    "L": 19,
+    "o": 12,
+    "g_positive": true,
+    "theta": 0.01345963145485576,
+    "words": {
+      "bunched": {
+        "w": "OOOOOOOOOOOOEEEEEEE",
+        "o": 12,
+        "S": 1047537,
+        "min_rot_S": 1047537,
+        "starts_OO": true,
+        "leading": [
+          177147,
+          118098
+        ]
+      },
+      "mechanical": {
+        "w": "OOEOOEOOEOOEOOEOEOE",
+        "o": 12,
+        "S": 2816889,
+        "min_rot_S": 2816889,
+        "starts_OO": true,
+        "leading": [
+          177147,
+          118098
+        ]
+      },
+      "extremal": {
+        "w": "OOEOOEOOEOEOOEOOEOE",
+        "o": 12,
+        "S": 3130233,
+        "min_rot_S": 3130233,
+        "starts_OO": true,
+        "leading": [
+          177147,
+          118098
+        ]
+      }
+    },
+    "order_sensitive": true,
+    "min_rot_varies": true,
+    "cyclemin_orientations_share_leading": true
+  },
+  "identity_holds": true,
+  "denom_is_four_S": true,
+  "order_sensitive": true,
+  "leading_weights_frozen": true,
+  "halbeisen_min_rot_kills_necklace": false,
+  "alpha_is_new_obstruction": false,
+  "reduces_to_lowerDenom": true,
+  "leftover_killer": false,
+  "emptied_count": 0,
+  "emptied_lengths": [],
+  "halt_theorem": false,
+  "no_cycle_all_lengths": false,
+  "sha256_small_L": "636cc0d7519d32f2dddd81ad87dba7673a583ee659a377fa61dbd73e1e375afe",
+  "necklace_pairs": [
+    {
+      "L": 1,
+      "o": 1,
+      "g": 1,
+      "n_words": 1,
+      "n_necklaces": 1,
+      "n_S": 1,
+      "n_min_rot": 1,
+      "S_min": 1,
+      "S_max": 1,
+      "M": 1,
+      "min_rot_min": 1,
+      "order_sensitive": false,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 2,
+      "o": 2,
+      "g": 5,
+      "n_words": 1,
+      "n_necklaces": 1,
+      "n_S": 1,
+      "n_min_rot": 1,
+      "S_min": 5,
+      "S_max": 5,
+      "M": 5,
+      "min_rot_min": 5,
+      "order_sensitive": false,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 3,
+      "o": 2,
+      "g": 1,
+      "n_words": 3,
+      "n_necklaces": 1,
+      "n_S": 3,
+      "n_min_rot": 1,
+      "S_min": 9,
+      "S_max": 19,
+      "M": 9,
+      "min_rot_min": 9,
+      "order_sensitive": true,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 262144
+    },
+    {
+      "L": 3,
+      "o": 3,
+      "g": 19,
+      "n_words": 1,
+      "n_necklaces": 1,
+      "n_S": 1,
+      "n_min_rot": 1,
+      "S_min": 19,
+      "S_max": 19,
+      "M": 19,
+      "min_rot_min": 19,
+      "order_sensitive": false,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 4,
+      "o": 3,
+      "g": 11,
+      "n_words": 4,
+      "n_necklaces": 1,
+      "n_S": 4,
+      "n_min_rot": 1,
+      "S_min": 27,
+      "S_max": 65,
+      "M": 27,
+      "min_rot_min": 27,
+      "order_sensitive": true,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 16
+    },
+    {
+      "L": 4,
+      "o": 4,
+      "g": 65,
+      "n_words": 1,
+      "n_necklaces": 1,
+      "n_S": 1,
+      "n_min_rot": 1,
+      "S_min": 65,
+      "S_max": 65,
+      "M": 65,
+      "min_rot_min": 65,
+      "order_sensitive": false,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 5,
+      "o": 4,
+      "g": 49,
+      "n_words": 5,
+      "n_necklaces": 1,
+      "n_S": 5,
+      "n_min_rot": 1,
+      "S_min": 81,
+      "S_max": 211,
+      "M": 81,
+      "min_rot_min": 81,
+      "order_sensitive": true,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 5,
+      "o": 5,
+      "g": 211,
+      "n_words": 1,
+      "n_necklaces": 1,
+      "n_S": 1,
+      "n_min_rot": 1,
+      "S_min": 211,
+      "S_max": 211,
+      "M": 211,
+      "min_rot_min": 211,
+      "order_sensitive": false,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 6,
+      "o": 4,
+      "g": 17,
+      "n_words": 15,
+      "n_necklaces": 3,
+      "n_S": 15,
+      "n_min_rot": 3,
+      "S_min": 113,
+      "S_max": 503,
+      "M": 153,
+      "min_rot_min": 113,
+      "order_sensitive": true,
+      "rot_sensitive": true,
+      "crude_n_from_min_S": 4096
+    },
+    {
+      "L": 6,
+      "o": 5,
+      "g": 179,
+      "n_words": 6,
+      "n_necklaces": 1,
+      "n_S": 6,
+      "n_min_rot": 1,
+      "S_min": 243,
+      "S_max": 665,
+      "M": 243,
+      "min_rot_min": 243,
+      "order_sensitive": true,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 6,
+      "o": 6,
+      "g": 665,
+      "n_words": 1,
+      "n_necklaces": 1,
+      "n_S": 1,
+      "n_min_rot": 1,
+      "S_min": 665,
+      "S_max": 665,
+      "M": 665,
+      "min_rot_min": 665,
+      "order_sensitive": false,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 7,
+      "o": 5,
+      "g": 115,
+      "n_words": 21,
+      "n_necklaces": 3,
+      "n_S": 21,
+      "n_min_rot": 3,
+      "S_min": 307,
+      "S_max": 1573,
+      "M": 387,
+      "min_rot_min": 307,
+      "order_sensitive": true,
+      "rot_sensitive": true,
+      "crude_n_from_min_S": 16
+    },
+    {
+      "L": 7,
+      "o": 6,
+      "g": 601,
+      "n_words": 7,
+      "n_necklaces": 1,
+      "n_S": 7,
+      "n_min_rot": 1,
+      "S_min": 729,
+      "S_max": 2059,
+      "M": 729,
+      "min_rot_min": 729,
+      "order_sensitive": true,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 7,
+      "o": 7,
+      "g": 2059,
+      "n_words": 1,
+      "n_necklaces": 1,
+      "n_S": 1,
+      "n_min_rot": 1,
+      "S_min": 2059,
+      "S_max": 2059,
+      "M": 2059,
+      "min_rot_min": 2059,
+      "order_sensitive": false,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 8,
+      "o": 6,
+      "g": 473,
+      "n_words": 28,
+      "n_necklaces": 4,
+      "n_S": 28,
+      "n_min_rot": 4,
+      "S_min": 857,
+      "S_max": 4847,
+      "M": 1161,
+      "min_rot_min": 857,
+      "order_sensitive": true,
+      "rot_sensitive": true,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 8,
+      "o": 7,
+      "g": 1931,
+      "n_words": 8,
+      "n_necklaces": 1,
+      "n_S": 8,
+      "n_min_rot": 1,
+      "S_min": 2187,
+      "S_max": 6305,
+      "M": 2187,
+      "min_rot_min": 2187,
+      "order_sensitive": true,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    },
+    {
+      "L": 8,
+      "o": 8,
+      "g": 6305,
+      "n_words": 1,
+      "n_necklaces": 1,
+      "n_S": 1,
+      "n_min_rot": 1,
+      "S_min": 6305,
+      "S_max": 6305,
+      "M": 6305,
+      "min_rot_min": 6305,
+      "order_sensitive": false,
+      "rot_sensitive": false,
+      "crude_n_from_min_S": 4
+    }
+  ]
+}

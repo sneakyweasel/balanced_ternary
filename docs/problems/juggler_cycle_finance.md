@@ -596,7 +596,14 @@ and `data/research/juggler/cycle_finance/`.
   \(L=1,3,11,19,84,569,1054,25781,50508\) with
   \(n_{\max}=3,13,52,297,5599,58398,\approx2.0\cdot10^6,
   \approx6.7\cdot10^7,\approx4.2\cdot10^8\); they track the
-  continued-fraction convergents of \(\ln 2/\ln 3\).
+  continued-fraction convergents of \(\ln 2/\ln 3\). The
+  run-type \(99\)-set at floor \(10^6\) is the surplus
+  intermediate lattice on the unimodular basis
+  \((25781,16266)\), \((1054,665)\), cut by packing on \(F_1\)
+  after \(L=55293\)
+  ([juggler_run_survivor_lattice_note.md](../theory/juggler_run_survivor_lattice_note.md)).
+  That organization explains the list and does not constrain
+  actual cycles.
 - **Floor sensitivity**: a floor of \(10^9\) would leave **zero**
   exceptions below \(L=10^5\) (the worst requirement in range is
   \(n_{\max}(50508)\approx4.2\cdot10^8\)).

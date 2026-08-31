@@ -226,10 +226,14 @@ list. No `CycleBudgetOpt.lean`. Paper A is unchanged.
   namely \(56347+1054k\) for \(k=0,\ldots,41\). First survivor
   remains \(25781\). \(L=55293\) still lives
   (\(\theta\approx 1.247\cdot 10^{-3}\) versus
-  RHS \(\approx 1.262\cdot 10^{-3}\)). \(99\) leftovers remain.
+  RHS \(\approx 1.262\cdot 10^{-3}\)).   \(99\) leftovers remain.
   Every leftover has packed RHS strictly below parity. Climb
   packing at \(\tau_1\) holds for all \(141\). Dropping the max
-  even term does not change the kill list.
+  even term does not change the kill list. The \(99\) are three
+  affine families of difference \(1054\) on the unimodular
+  basis \((25781,16266)\), \((1054,665)\); the \(42\) deaths
+  continue \(F_1\) past \(b=28\). See
+  [juggler_run_survivor_lattice_note.md](../theory/juggler_run_survivor_lattice_note.md).
 
 - **Cyclic run-type extremum** — **COMPUTATIONALLY VERIFIED**
   (`run_extremum.json`): on all \(99\) run-type survivors the

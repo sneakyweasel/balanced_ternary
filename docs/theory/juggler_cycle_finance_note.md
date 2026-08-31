@@ -202,8 +202,13 @@ is strictly stronger than parity: an \(n\)-circuit cannot start
 survivor remains \(25781\). Unique visit and the cycle maximum
 do not bind. Cyclic run-depth / adjacency does not shrink the
 \(99\): two-type is already the relaxed maximum
-(`juggler_cycle_run_extremum_leftover_killer`). Paper A still
-prints the parity table.
+(`juggler_cycle_run_extremum_leftover_killer`). The \(99\) are
+three surplus intermediate families of \(\ln 2/\ln 3\) on the
+unimodular basis \((25781,16266)\), \((1054,665)\); packing
+cuts only \(F_1\) after \(L=55293\). That organization does
+not constrain actual cycles
+([juggler_run_survivor_lattice_note.md](juggler_run_survivor_lattice_note.md)).
+Paper A still prints the parity table.
 
 ## Attacks that stop
 
@@ -267,6 +272,13 @@ These were run. None of them changes the leftover.
   \(L=25781\) and \(L=55293\). The residual lose-class is
   exponentially large. The finance-restricted hull is the
   existing envelope.
+- Single-point lattice coordinates \((a,b)\) and
+  generator-as-word rigidity — **CLOSE**. The \(99\) are a
+  unimodular slice of the \(\ln 2/\ln 3\) intermediate lattice;
+  \((a,b)\leftrightarrow(L,o)\) is a change of basis, and the
+  \(1054\)-block is the already admissible Christoffel /
+  extremal insertion
+  ([juggler_run_survivor_lattice_note.md](juggler_run_survivor_lattice_note.md)).
 - Ordered excursion leftover-killer — **CLOSE**
   (`juggler_cycle_ordered_excursion_leftover_killer`). The
   two-block persistence \((2,2,1)\) at a CycleMin start is the

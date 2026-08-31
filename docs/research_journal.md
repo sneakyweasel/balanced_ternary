@@ -16187,4 +16187,71 @@ Best next question
 - none from ordered excursion closure
 ```
 
+## Juggler run-type survivor lattice
+
+- **Date:** 2026-08-31
+- **Objective:** Record the Diophantine organization of \(\mathcal E_{\mathrm{run}}(10^6)\) and decide whether the \(1054\)-lattice is an obstruction
+- **Hypotheses:** the \(99\) are three residue classes that cycle geometry might see as lattice coordinates \((a,b)\) or as a \(1054\)-block
+- **Major results:** Unimodular basis \((25781,16266)\), \((1054,665)\); \(\Delta o=665\) on all \(99\) and on the \(42\) packing deaths; \(r(L+1054)=\rho r(L)\) with \(\rho=3^{665}/2^{1054}\). \(F_1\) is \(a=1\), \(b=0,\ldots,28\); packing cuts at \(b=29\) (\(L=56347\), \(P/\theta\approx 0.9967\)). \(F_2\) is the principal convergent \(50508\) and its intermediates; \(F_3\) is their Farey sum. Ceiling Christoffel / extremal paths insert the admissible \(1054\)-block. Note `docs/theory/juggler_run_survivor_lattice_note.md`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** single-point lattice leftover-killer; generator-as-word rigidity (reopens prefix feasibility / Christoffel)
+- **Literature:** continued-fraction intermediates of \(\ln 2/\ln 3\); existing finance exceptional-structure paragraph; prefix feasibility and Christoffel leftover-killers
+- **Open:** none from the lattice identification. Cross-period transfer \(\mathrm{Cycle}(L,o)\Rightarrow\Phi(L+1054,o+665)\) is untested and has no \(\Phi\)
+- **Decision:** CLOSE as an obstruction. The run-type theorem stays PROMOTE. The list is understood
+
+```text
+What was learned
+- E_run(10^6) is a finite surplus slice of one unimodular CF lattice
+- packing only truncates F1; F2 and F3 die at the table cap
+- (a,b) is a change of basis for (L,o)
+- the 1054-block is the already admissible Christoffel / extremal insertion
+- 50508 is loose because it is a better approximant
+Strongest theorem
+- (L,o_min)=a(25781,16266)+b(1054,665) on the surplus side
+Strongest refutation
+- a single-point predicate of (a,b) cannot beat a predicate of (L,o)
+Reusable machinery
+- none; reading of o_min_and_theta on the existing 99-list
+Branch status
+- CLOSE as an obstruction
+Why
+- CF structure explains the survivors and does not constrain
+  actual cycles
+Best next question
+- none from the lattice identification itself
+```
+
+## Juggler Halbeisen-style cyclic word functional
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the unfolded slack-weight vector \(\alpha_i(w)=2^i 3^{o_{>i}}\) is a compressed cyclic-word functional that yields a closure inequality beyond \((L,o)\), `lowerDenom`, or run-type finance
+- **Hypotheses:** Collatz \(\varphi(s)\) and Halbeisen \(M_{l,n}=\max_s\min_\sigma\varphi(t)\) are the missing layer after run statistics; the \(1+q\) recursion supplies the Juggler analogue
+- **Major results:** Product identity \(1+q=\prod(1+\eta_i)^{\alpha_i}\) **EXACT — HUMAN PROOF** / **COMPUTATIONALLY VERIFIED** (\(92\) orbits, \(0\) fails). \(\mathrm{lowerDenom}(w)=4^{S(w)}\) **EXACT — HUMAN PROOF** / **COMPUTATIONALLY VERIFIED** (all \(511\) words of length \(\le 8\)). Same \((2,1)\): \(\mathtt{OE}\) has \(S=3\), \(\mathtt{EO}\) has \(S=5\), but \(\min_\sigma S=3\) on both. Every \(\mathtt{OO}\)-prefix with fixed \(o\) shares leading weights \((3^{o-1},2\cdot 3^{o-2})\). Through length \(8\), \(9\) of \(17\) expanding pairs have several \(S\) and \(3\) have several \(\min_\sigma S\); `new_necklace_kills=0`. At \(L=19\) bunched / mechanical / extremal have \(S=1047537,2816889,3130233\); the finance-relevant mechanical word has the weaker bound. Artifact `word_functional/summary.json`. Literature `halbeisen-hungerbuehler-1997-collatz-cycles`, `hercher-2023-collatz-m-cycles`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** Halbeisen-style word-functional closure (`juggler_cycle_word_functional_closure`)
+- **Literature:** Halbeisen–Hungerbühler \(\varphi(s)\) and cyclic-shift \(M_{l,n}\); Hercher \(m\ge 92\) (Juggler analogue is the existing valley count \(e\)); existing `lowerDenom` / `onePlusSlack` / run-type packing
+- **Open:** none from cyclic-word functionals extracted from \(1+q\)
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- the natural φ analogue is α_i(w)=2^i 3^{o_{>i}}, and S=sum α
+- lowerDenom(w)=4^{S(w)} is that n-independent functional
+- same (L,o) can change S; inside one necklace that is only the start
+- CycleMin freezes the leading weights, so min_σ S does not improve n
+- the mechanical leftover-shaped word has larger S than the bunched word
+Strongest theorem
+- lowerDenom(w)=4^{S(w)} and 1+q=∏(1+η_i)^{α_i(w)}
+Strongest refutation
+- Halbeisen M_{L,o} kills no expanding necklace that D_w does not
+Reusable machinery
+- letter_weights / weight_sum / word_functional/summary.json
+Branch status
+- CLOSE
+Why
+- the Collatz methodology was the right import; the affine closed
+  form does not survive floor powers, and the compressed functional
+  is the existing size bound
+Best next question
+- none from a cyclic-word functional extracted from 1+q
+```
+
 

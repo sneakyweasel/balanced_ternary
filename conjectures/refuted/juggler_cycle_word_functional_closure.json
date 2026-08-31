@@ -1,0 +1,25 @@
+{
+  "id": "juggler_cycle_word_functional_closure",
+  "title": "Halbeisen-style min_σ of the slack-weight functional yields a closure inequality beyond lowerDenom and (L,o)",
+  "statement": "The unfolded weights α_i(w)=2^i 3^{#O(w[i+1:])} and S=sum α, or the cyclic-shift optimum M_{L,o}=max_w min_σ S(w), give a closure inequality that excludes a leftover-shaped necklace which (L,o), lowerDenom, and run-type finance do not already exclude.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "lowerDenom(w)=4^{S(w)} on all 511 words of length ≤8, so the n-independent functional is the existing size bound cycle_pow_le_lowerDenom",
+    "OE and EO have S=3 and S=5 but are rotations; min_σ S is a necklace invariant, not a new pair-level obstruction",
+    "Every OO-prefix with fixed (L,o) shares the leading weights (3^{o-1}, 2·3^{o-2}). Cyclic-shift optimization does not apply to the CycleMin start",
+    "17 expanding (L,o) pairs through length 8: 9 have several S values and 3 have several min_σ S values; new_necklace_kills=0",
+    "At L=19 the mechanical OOE/OE word has S=2816889 against bunched S=1047537, so the finance-relevant shape has the weaker 4^{S/g} bound"
+  ],
+  "first_seen": "juggler Halbeisen-style cyclic word functional",
+  "lean_reference": "lower_growth_word",
+  "literature": [
+    "halbeisen-hungerbuehler-1997-collatz-cycles",
+    "hercher-2023-collatz-m-cycles",
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / cyclic word functionals",
+  "notes": "The Collatz methodology was the right import; the affine φ(s) miracle does not survive floor powers. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_word_functional.md",
+  "proof_reference": "docs/problems/juggler_cycle_word_functional.md",
+  "tested_range": "identity n≤24, k≤4 (92 orbits); denom and necklace census k≤8 (511 words, 17 expanding pairs); shaped words at L=5,8,11,19"
+}

@@ -1,0 +1,24 @@
+{
+  "id": "halbeisen-hungerbuehler-1997-collatz-cycles",
+  "title": "Optimal bounds for the length of rational Collatz cycles",
+  "authors": ["Lorenz Halbeisen", "Norbert Hungerbühler"],
+  "year": 1997,
+  "identifiers": {
+    "doi": "10.4064/aa-78-3-227-239"
+  },
+  "url": {
+    "doi": "https://doi.org/10.4064/aa-78-3-227-239",
+    "pdf": "https://people.math.ethz.ch/~halorenz/publications/pdf/collatz.pdf"
+  },
+  "problem_area": "collatz-cycles",
+  "relevant_concepts": [
+    "parity-word functional phi(s)",
+    "cyclic-shift optimization",
+    "M_{l,n} = max_s min_t phi(t)",
+    "rational Collatz cycles in Q_{(2)}",
+    "Eliahou-type length criterion"
+  ],
+  "project_relationship": "independent",
+  "status": "classical-source",
+  "notes": "Acta Arithmetica 78 (1997) 227-239. Defines the word-dependent quantity phi(s) from the affine Collatz iterate, then optimizes it over cyclic shifts. The optimal criterion is costly to check. The Juggler analogue is the slack-weight vector alpha_i(w)=2^i 3^{o_{>i}} and S(w)=sum alpha; there is no affine closed form. Cited from docs/problems/juggler_cycle_word_functional.md."
+}
