@@ -15,6 +15,7 @@ The compiled Lean is `Problems/Juggler/CycleFinance.lean` and
 [juggler_cycle_finance.md](../problems/juggler_cycle_finance.md).
 Ledger: `J-cycle-finance-inequality`,
 `J-residual-floor-two-hundred-sixty-one`,
+`J-residual-floor-two-million`,
 `J-cycle-word-length-eighty-four-or-ge-eighty-five`,
 `J-cycle-word-length-eighty-four-m-ge-three-or-ge-eighty-five`,
 `J-cycle-word-eliahou-leftover`.
@@ -136,14 +137,18 @@ states \(\ge 12\):
 
 The \(6/5\) is \(-\ln(1-\delta)\le(6/5)\delta\) on
 \([0,1/6]\). At the minimal admissible \(o\), this defines
-\(n_{\max}(L)\). With the Python floor \(N_0=10^6\) (every
-\(2\le n\le 10^6\) reaches \(1\), **COMPUTATIONALLY VERIFIED**),
-there is no cycle of length \(L\le 1053\), and none of length
-\(L\le 10^5\) outside an explicit set of \(397\) near-convergent
-lengths. Those exceptions track the continued-fraction
-convergents of \(\ln 2/\ln 3\). Length \(84\) is the first
-record convergent that survives the Lean floor
-(\(n_{\max}(84)=5599\)).
+\(n_{\max}(L)\). With the Python floor \(N_0=2\cdot 10^6\) (every
+\(2\le n\le 2\cdot 10^6\) reaches \(1\), **COMPUTATIONALLY
+VERIFIED**), there is no cycle of length \(L\le 25780\), and none
+of length \(L\le 10^5\) outside an explicit set of \(166\)
+near-convergent lengths. Those exceptions track the
+continued-fraction convergents of \(\ln 2/\ln 3\). Length
+\(1054\) and all its multiples die together
+(\(n_{\max}\approx 1.997\cdot 10^6\)); the next record survivor
+is \(L=25781\). Length \(84\) is the first record convergent that
+survives the Lean floor (\(n_{\max}(84)=5599\)). Paper A
+Theorem 4.6 still prints the weaker published floor \(10^6\)
+(prefix \(1053\), \(397\) exceptions).
 
 **Eliahou leftover (EXACT — LEAN VERIFIED implication
 `cycle_word_eliahou_leftover`; instance COMPUTATIONALLY
@@ -153,7 +158,7 @@ excluded, then the period is \(84\), or belongs to that list, or
 is at least \(10^5\). This is bookkeeping on the length leftover
 plus the finance table, not a new inequality. Eliahou packaging
 does not use the height leftover: it stays length-only. The
-instance at floor \(10^6\) is the existing \(397\)-family.
+laboratory instance at floor \(2\cdot 10^6\) is the \(166\)-family.
 
 ## Human-proof refinements that are not the leftover
 

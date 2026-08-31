@@ -33,9 +33,10 @@ formally expanding. Floor remainders must finance the surplus
 \[
 n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 \]
-Combined with the published verification that every start through
-\(10^6\) reaches \(1\), there is no nontrivial cycle of length at
-most \(1053\). Through length \(10^5\), only an explicit set
+Combined with the computational verification reported by Weisstein
+that every start through \(10^6\) reaches \(1\), there is no
+nontrivial cycle of length at most \(1053\). Through length
+\(10^5\), only an explicit set
 \(\mathcal E\) of \(397\) lengths remains admissible to the bound.
 A separate finite-word analysis shows that every nontrivial cycle
 has at least four even letters and hence period at least eleven.
@@ -74,9 +75,10 @@ formal surplus \(3^o-2^L\) into a bound on the cycle minimum.
 With the known descent floor through \(10^6\), that bound
 excludes every period at most \(1053\).
 
-The \(10^6\) floor is Weisstein's published verification [5],
-recomputed here by exact first-passage. It is not a new
-computational record. The contribution is the implication
+The \(10^6\) floor is the published computational verification
+reported by Weisstein [5], recomputed here by exact first-passage.
+It is not a new computational record. The contribution is the
+implication
 \[
 \text{finance}+\text{floor }10^6
 \quad\Rightarrow\quad
@@ -93,29 +95,29 @@ minimum-based rotation.
 
 ### 1.0 Main results
 
-**Theorem A (period lower bound).**
+**Main theorem.**
 There is no nontrivial Juggler cycle of length at most \(1053\).
-Equivalently, any nontrivial cycle has period at least \(1054\).
+Equivalently, any nontrivial cycle has period at least \(1054\)
+(Theorem A; Theorem 4.6(A)).
 
-**Theorem B (admissible lengths through \(10^5\)).**
+**Secondary theorem.**
 If a nontrivial cycle has period \(L\le 10^5\), then \(L\) belongs
-to an explicit set \(\mathcal E\) of \(397\) lengths. Membership
-in \(\mathcal E\) means only that the finance inequality at the
-floor \(10^6\) does not exclude \(L\). It does not mean that a
-cycle of that length exists, or that the length is dynamically
-plausible.
+to an explicit set \(\mathcal E\) of \(397\) lengths (Theorem B;
+Theorem 4.6(B)). Membership in \(\mathcal E\) means only that the
+finance inequality at the floor \(10^6\) does not exclude \(L\).
+It does not mean that a cycle of that length exists, or that the
+length is dynamically plausible.
 
-**Theorem C (even-count).**
+**Supporting structural theorem.**
 Every nontrivial cycle word has at least four even letters, and
-hence period at least eleven.
+hence period at least eleven (Theorem C; Theorem 3.22 and
+Corollary 3.23). This bound does not use a descent floor.
 
-Theorem C is an exact word-shape bound and does not use a descent
-floor (Theorem 3.22 and Corollary 3.23). Theorems A and B are
-Theorem 4.6: the finance inequality of Theorem 4.4, in the
-conservative \(6/5\) form of Corollary 4.5, at the published
-floor \(N_0=10^6\). These results give no control over the
-remaining lengths in \(\mathcal E\), and they do not imply
-termination.
+Theorems A and B are the finance inequality of Theorem 4.4, in
+the conservative \(6/5\) form of Corollary 4.5, at the
+computational floor \(N_0=10^6\) reported by Weisstein [5].
+These results give no control over the remaining lengths in
+\(\mathcal E\), and they do not imply termination.
 
 ### 1.1 Related work
 
@@ -129,8 +131,9 @@ A094716 [6] records extreme heights, including the start \(48443\)
 whose peak has \(972\,463\) digits. Those height records do not
 bound the period.
 
-We found no published theorem excluding nontrivial cycles for the
-exact floor-power Juggler map. Prasad--Prasad [7] estimate excursion
+We found no published result establishing an explicit lower bound
+on the period of a nontrivial cycle for this exact floor-power
+Juggler map. Prasad--Prasad [7] estimate excursion
 and stopping constants for juggler-like maps by a random-walk
 large-deviation model; those estimates do not apply to exact
 cycles. Small-cycle censuses are a standard first layer for
@@ -141,17 +144,20 @@ no identity of the form \(n(2^K-3^p)=C\).
 
 The financing-versus-gap template of Section 4 follows Simons and
 de Weger [12] on Collatz \(m\)-cycles. That paper uses Diophantine
-approximation and linear forms in logarithms. The argument below is
-elementary and independent of those tools: floor-power defects are
-relatively \(O(1/x)\) in logarithms, so one residual floor excludes
-every length that is not admissible for Theorem 4.4. What is new is
-the Juggler-specific realization — the exact floor-power
-recurrence, the \(n\log n\) inequality, and the resulting
-admissible set \(\mathcal E\) — not the financing method itself.
-The leftover packaging, period at least \(X\) or a named admissible
+approximation and linear forms in logarithms. Financing as an
+idea, logarithmic step inequalities, and the continued-fraction
+phenomenon are not claimed as new. The argument below is
+elementary and independent of those Diophantine tools:
+floor-power defects are relatively \(O(1/x)\) in logarithms, so a
+uniform logarithmic floor-error bound, valid above the verified
+floor, excludes every length that is not admissible for
+Theorem 4.4. The Juggler-specific form of the financing
+inequality, and the explicit period bounds it produces with the
+independently established floor \(10^6\), appear to be new. The
+leftover packaging, period at least \(X\) or a named admissible
 family, follows Eliahou [13]. For this nonlinear floor-power map,
-the elementary log-envelope plus the published floor \(10^6\)
-already forces \(L\ge 1054\).
+the elementary log-envelope plus that floor already forces
+\(L\ge 1054\).
 
 ### 1.2 Verification
 
@@ -163,10 +169,10 @@ named there. They are finite computations, not a termination proof.
 
 Theorem 4.6 uses an exact-integer first-passage run through
 \(10^6\), together with an exact gap table of lengths up to
-\(10^5\). The floor itself is Weisstein's published verification
-[5]; the first-passage run is an independent recomputation of that
-same floor, not a new record. Checksums and regeneration commands
-are in Appendix B.
+\(10^5\). The floor itself is the computational verification
+reported by Weisstein [5]; the first-passage run is an independent
+recomputation of that same floor, not a new record. Checksums and
+regeneration commands are in Appendix B.
 
 ```text
 Repository:  https://github.com/sneakyweasel/balanced_ternary
@@ -247,30 +253,10 @@ x^e=J(x)^2+\rho(x),\qquad
 e=\begin{cases}1,&x\ \text{even},\\3,&x\ \text{odd},\end{cases}
 \]
 with \(0\le\rho(x)<2J(x)+1\). Write
-\[
-\operatorname{gap}(a,\rho,e)=(a+\rho)^e-a^e,
-\]
-so \(a^e+\operatorname{gap}(a,\rho,e)=(a+\rho)^e\). If \(e\ge1\), then
-\(\operatorname{gap}(a,\rho,e)=0\) if and only if \(\rho=0\), and
-\(\rho^e\le\operatorname{gap}(a,\rho,e)\).
-
-Along a realized word \(w\), write \(x_0=n\) and \(x_{j+1}=J(x_j)\),
-and let \(\rho_j=\rho(x_j)\). Define a running slack by \(D_0=0\) and
-\[
-D_{j+1}=
-\begin{cases}
-D_j+\operatorname{gap}((x_{j+1})^2,\rho_j,2^j),
-& \text{next letter even},\\[4pt]
-\operatorname{gap}((x_{j+1})^2,\rho_j,2^j)
-+\operatorname{gap}(x_j^{2^j},D_j,3),
-& \text{next letter odd}.
-\end{cases}
-\]
-The *global defect* is \(\Delta_w(n)=D_{|w|}\). An even letter keeps
-the old slack and lifts the new remainder through \(2^j\). An odd
-letter first cubes the running slack and then lifts the new
-remainder. In particular \(\Delta\) is not the sum of the local
-remainders.
+\(\operatorname{gap}(a,\rho,e)=(a+\rho)^e-a^e\). Along a realized
+word the remainders lift by a power-gap recurrence, not by
+summation; the *global defect* \(\Delta_w(n)\) is the terminal
+value of that recurrence.
 
 **Theorem 2.4 (global defect identity).**
 If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
@@ -279,115 +265,47 @@ n^{3^{\#O(w)}}=m^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
 \]
 Theorem 2.2 is the inequality \(\Delta_w(n)\ge0\).
 
-*Proof.* The empty word is \(n=n+0\). Suppose a realized prefix of
-length \(\ell\) with odd count \(o\) ends at \(x\) and satisfies
-\(n^{3^o}=x^{2^\ell}+D\).
+*Proof.* Induct on \(w\). The empty word is \(n=n+0\). An even
+letter substitutes \(x=J(x)^2+\rho(x)\) into the inductive
+identity and lifts the new remainder through \(2^\ell\). An odd
+letter cubes the identity and then substitutes
+\(x^3=J(x)^2+\rho(x)\). Each step adds a nonnegative power-gap.
+\(\square\)
 
-If the next letter is even, then \(x=J(x)^2+\rho(x)\), so
-\[
-n^{3^o}
-=(J(x)^2+\rho(x))^{2^\ell}+D
-=J(x)^{2^{\ell+1}}+D+\operatorname{gap}(J(x)^2,\rho(x),2^\ell).
-\]
-The odd count is unchanged, and the new slack is the even update.
-
-If the next letter is odd, then \(x^3=J(x)^2+\rho(x)\). Cubing the
-inductive identity gives
-\[
-n^{3^{o+1}}=(x^{2^\ell}+D)^3
-=x^{3\cdot 2^\ell}+\operatorname{gap}(x^{2^\ell},D,3).
-\]
-The leading term is
-\[
-x^{3\cdot 2^\ell}
-=(J(x)^2+\rho(x))^{2^\ell}
-=J(x)^{2^{\ell+1}}+\operatorname{gap}(J(x)^2,\rho(x),2^\ell),
-\]
-which is the odd update. \(\square\)
-
-For a one-letter illustration, take \(n=3\) and \(w=O\). Then
-\(J(3)=5\) and \(3^3=27=5^2+2\), so \(\Delta_O(3)=2\). After a later
-letter the lift is a power-gap, not a sum of remainders.
+For a one-letter illustration, \(n=3\) and \(w=O\) give
+\(J(3)=5\) and \(3^3=27=5^2+2\), so \(\Delta_O(3)=2\).
 
 **Theorem 2.5 (vanishing).**
-If \(w\) is realized at \(n\), the following are equivalent.
+If \(w\) is realized at \(n\), the following are equivalent:
+\(\Delta_w(n)=0\); every local remainder along \(w\) vanishes; and
+\(\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}=n^{3^{\#O(w)}}\). In that case
+\(w\) is monochrome: either \(w=E^k\) and \(n=a^{2^k}\) for an
+even \(a\), or \(w=O^k\) and \(n=a^{2^k}\) for an odd \(a\). A
+realized mixed word therefore has \(\Delta_w(n)>0\).
 
-1. \(\Delta_w(n)=0\).
-2. Every local remainder along \(w\) vanishes.
-3. \(\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}=n^{3^{\#O(w)}}\).
-
-In that case \(w\) is monochrome. More precisely, either \(w=E^k\) and
-\(n=a^{2^k}\) for an even \(a\), or \(w=O^k\) and \(n=a^{2^k}\) for an
-odd \(a\). A realized mixed word therefore has \(\Delta_w(n)>0\).
-
-*Proof.* The identity of Theorem 2.4 gives (1)\(\Leftrightarrow\)(3).
-For (1)\(\Leftrightarrow\)(2), use the recurrence. If \(e\ge1\), a
-power-gap vanishes if and only if its addend vanishes. The even
-update is a sum of two nonnegative terms, and the odd update is a
-sum of two power-gaps; either vanishes only when the incoming slack
-and the new remainder both vanish. Thus \(D_{|w|}=0\) forces
-\(D_0=0\) and every \(\rho_j=0\). The converse is immediate.
-
-If every remainder vanishes, an even step satisfies
-\(x_j=x_{j+1}^2\), while an odd step satisfies
-\(x_j^3=x_{j+1}^2\). In either case \(x_j\) and \(x_{j+1}\) have the
-same parity, so the itinerary is monochrome. If \(w=E^k\), repeated
-substitution gives \(n=x_k^{2^k}\); writing \(a=x_k\), its parity is
-even. If \(w=O^k\), unique factorization applied to
-\(x_j^3=x_{j+1}^2\) shows that every prime valuation of \(x_j\) is
-even. Iterating this valuation relation shows that every prime
-valuation of \(n=x_0\) is divisible by \(2^k\), hence
-\(n=a^{2^k}\) for an odd \(a\). Conversely, these even and odd
-towers make every local remainder zero. \(\square\)
+*Proof.* Theorem 2.4 gives the first and third items. A power-gap
+vanishes if and only if its addend vanishes, so zero defect forces
+every remainder to vanish, and conversely. Vanishing remainders
+preserve parity, hence monochrome itineraries, and unique
+factorization produces the two power towers. \(\square\)
 
 **Theorem 2.6 (composition).**
 If \(u\) is realized at \(n\) and \(v\) is realized at
-\(m=J^{|u|}(n)\), then
-\[
-\Delta_{uv}(n)
-=
-\operatorname{gap}\bigl(m^{2^{|u|}},\,\Delta_u(n),\,3^{\#O(v)}\bigr)
-+
-\operatorname{gap}\bigl(\bigl(J^{|v|}(m)\bigr)^{2^{|v|}},\,\Delta_v(m),\,2^{|u|}\bigr).
-\]
-In particular
-\(\Delta_v(m)^{2^{|u|}}\le\Delta_{uv}(n)\). Every local remainder
-satisfies \(\rho_j^{2^j}\le\Delta_w(n)\).
+\(m=J^{|u|}(n)\), then \(\Delta_{uv}(n)\) is the sum of two
+power-gaps, one lifting \(\Delta_u(n)\) through \(3^{\#O(v)}\)
+and one lifting \(\Delta_v(m)\) through \(2^{|u|}\). In
+particular \(\Delta_v(m)^{2^{|u|}}\le\Delta_{uv}(n)\), and every
+local remainder satisfies \(\rho_j^{2^j}\le\Delta_w(n)\).
 
-*Proof.* Write \(o_u=\#O(u)\) and \(o_v=\#O(v)\). Theorem 2.4 on \(u\)
-and on \(uv\) gives
-\[
-n^{3^{o_u+o_v}}
-=\bigl(m^{2^{|u|}}+\Delta_u(n)\bigr)^{3^{o_v}}
-=\bigl(J^{|uv|}(n)\bigr)^{2^{|uv|}}+\Delta_{uv}(n).
-\]
-The first power expands as
-\[
-m^{2^{|u|}\cdot 3^{o_v}}
-+\operatorname{gap}\bigl(m^{2^{|u|}},\,\Delta_u(n),\,3^{o_v}\bigr).
-\]
-Theorem 2.4 on \(v\) at \(m\) rewrites the leading term as
-\[
-\Bigl(\bigl(J^{|v|}(m)\bigr)^{2^{|v|}}+\Delta_v(m)\Bigr)^{2^{|u|}},
-\]
-which expands as the second gap plus \(\bigl(J^{|uv|}(n)\bigr)^{2^{|uv|}}\).
-Comparing the two expressions for \(n^{3^{o_u+o_v}}\) yields the
-identity. The suffix inequality is
-\(\rho^e\le\operatorname{gap}(a,\rho,e)\) on the second summand. For a
-local remainder at index \(j\), split \(w\) after \(j\) letters: the
-suffix defect is at least \(\rho_j\), and raising through \(2^j\)
-gives the stated bound. \(\square\)
+*Proof.* Apply Theorem 2.4 to \(u\), to \(v\), and to \(uv\), and
+expand the two power-gaps. \(\square\)
 
-Composition is polynomial, not additive: later odd letters raise the
-prefix slack to the third power. The naive recurrence
-\(\Delta\leftarrow\Delta+\rho\) is false.
+Composition is polynomial, not additive. The Lean form is
+`global_defect_append`.
 
 **Corollary 2.7 (cycle surplus).**
 If \(w\) is a cycle word at \(n\), then
-\[
-\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}
-\]
-exactly.
+\(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) exactly.
 
 *Proof.* Theorem 2.4 with \(m=n\). \(\square\)
 
@@ -397,29 +315,22 @@ state-independent \(c>0\) such that every letter pays a relative
 slack at least \(c\). Strict total defect is not a uniform local
 tax. A naive “every step costs something” argument therefore
 cannot bound the period, while an aggregate financing inequality
-can. The exact recurrence of Theorems 2.4--2.6 is not used in
-Section 4; the finance inequality uses only the envelope
-(Theorem 2.2), the one-step cells, and \(\log(1+u)\le u\).
+can. Section 4 uses only the envelope (Theorem 2.2), the one-step
+cells, and \(\log(1+u)\le u\).
 
-The identity does not supply a state-independent positive tax, and
-none exists. For one realized letter at \(x\) with branch exponent
+**Remark (why a uniform per-step defect cannot underpin the
+argument).**
+For one realized letter at \(x\) with branch exponent
 \(e\in\{1,3\}\),
 \[
 x^{e}<(J(x)+1)^2,
 \]
 so the relative slack \(1+\eta=x^{e}/J(x)^2\) satisfies
-\[
-\eta<\frac{2}{J(x)}+\frac{1}{J(x)^2},
-\]
-which tends to \(0\) as the state grows. The recorded extreme is an
-\(OOE\) block at
-\(n=180370579261640036336071806107777\approx 1.80\cdot 10^{32}\)
-whose word-relative slack
-\[
-q_w(n)=\frac{n^{3^{\#O(w)}}}{\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}}-1
-\]
-satisfies \(0<q_{OOE}(n)<10^{-30}\), by the exact integer comparison
-\(0<(n^9-J^3(n)^8)\,10^{30}<J^3(n)^8\).
+\(\eta<2/J(x)+1/J(x)^2\), which tends to \(0\) as the state
+grows. An \(OOE\) block at
+\(n=180370579261640036336071806107777\) has word-relative slack
+below \(10^{-30}\). This example is not used in Theorem 4.4; it
+only shows that no uniform local tax is available.
 
 ## 3. Inverse cells and the census
 
@@ -1132,6 +1043,14 @@ If \(e=3\), it is \(O^aEO^bEO^cE\) with \(a\ge 2\); again
 gapped leftover (Theorem 3.21) or one of the seven bunched
 families (Theorems 3.14--3.20). \(\square\)
 
+| \(e\) | remaining minimum-based forms | elimination |
+|---:|---|---|
+| \(0\) | all-odd | cannot return (Theorem 3.6) |
+| \(1\) | \(O^aE\) | next-square; Lemma 3.4(v) |
+| \(2\) | \(O^aEE\), \(O^aEOE\), last run \(\ge 2\) | Theorem 3.12; Lemma 3.4 |
+| \(3\) | bunched families and gapped leftovers | Theorems 3.14--3.21 |
+| \(\ge 4\) | not excluded by even-count | finance (Section 4) |
+
 **Theorem 3.22 (even-count).**
 No word with fewer than four even letters is a cycle word at any
 \(n\ge 2\). Equivalently, a nontrivial cycle word has at least
@@ -1192,7 +1111,8 @@ returns exactly. The multiplicative surplus \(3^o-2^L\) must be
 financed by the floor remainders, which are relatively \(O(1/x)\)
 in logarithms. The resulting bound on the cycle minimum excludes
 every period that is not admissible for the inequality, once a
-residual floor is known.
+uniform logarithmic floor-error bound is available above a
+verified descent floor.
 
 Throughout this section write \(L=|w|\) and \(o=\#O(w)\) for a
 cycle word \(w\) based at a cycle minimum \(n\ge 2\). Natural
@@ -1291,16 +1211,19 @@ n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 The word is formally expanding, so \(3^o>2^L\). Rearranging and
 multiplying by \(n\) is the claim. \(\square\)
 
-A cycle must expand under the idealized map, but the exact orbit
-returns. The discrepancy between ideal and actual dynamics must
-be paid for by floor errors. At large state size those errors
-are too small to finance a non-negligible exponent surplus
-\(3^o-2^L\). The only analytic input is \(\log(1+u)\le u\). The
-Lean form is exactly Theorem 4.4 (constant \(1\)).
+This is the conceptual centre of the note. The left-hand side is
+the formal exponential surplus \(3^o-2^L\) scaled by
+\(n\log n\); the right-hand side is the floor-error budget
+available from \(L\) steps. A cycle must expand under the
+idealized map, but the exact orbit returns, so the surplus must
+be paid by floor errors. At large state size those errors are
+too small to finance a non-negligible surplus. The only analytic
+input is \(\log(1+u)\le u\). The Lean form is exactly Theorem 4.4
+(constant \(1\)).
 
 This is a floor-power realization of a financing method, not a
-new method. The novelty is the \(n\log n\) inequality for \(J\)
-and the admissible length set it produces.
+new method. The Juggler-specific form of the inequality, and the
+explicit period bounds it produces, appear to be new.
 
 The computational table of Theorem 4.6 uses a weaker per-step
 bound, valid on every cycle because every start below \(12\)
@@ -1333,14 +1256,16 @@ n_{\max}(L)=\max\{n\in\mathbb N:n\log n\le B(L)\}.
 The quantity \(\gamma(L)\) is the one-sided relative gap of
 \(L\log 2\) to the next multiple of \(\log 3\). It is small
 precisely when \(o_{\min}/L\) is a good one-sided approximation
-to \(\log 2/\log 3\). The ordinary continued-fraction
-convergents
+to \(\log 2/\log 3\). The record minima of \(\gamma(L)\) form a
+sequence of one-sided best-approximation lengths related to the
+continued-fraction structure of \(\log 2/\log 3\); they include
 \[
-1,\;3,\;11,\;19,\;84,\;569,\;1054,\;\ldots
+1,\;3,\;11,\;19,\;84,\;569,\;1054,\;\ldots.
 \]
-are the record minima of \(\gamma\), but they are not the whole
-admissible set: multiples and sums of those lengths also make
-\(\gamma\) small.
+They are not, as a list, the ordinary continued-fraction
+convergent denominators of that ratio. They are also not the
+whole admissible set: multiples and sums of those lengths also
+make \(\gamma\) small.
 
 For a descent floor \(N_0\), write
 \[
@@ -1377,16 +1302,17 @@ Every integer \(2\le n\le 10^6\) reaches \(1\). Consequently:
 \(L\in\mathcal E\), where \(\lvert\mathcal E\rvert=397\).
 
 In particular, any nontrivial cycle has period at least \(1054\).
-The first record length with \(n_{\max}>10^6\) is \(1054\). That
-is a property of the bound, not evidence for a \(1054\)-cycle.
+The first length not excluded by the present bound is \(1054\).
+That is a property of the bound, not evidence for a
+\(1054\)-cycle.
 
 *Proof.* The floor is a first-passage descent induction: every
 start \(2\le n\le 10^6\) realizes a finite word with image
 strictly below the start, and strong induction on the image
 reaches \(1\). The longest first passage in the window has
 \(253\) steps (seed \(78901\)); every iterate is an exact
-integer. Weisstein [5] records the same floor; the run here is
-a recomputation of that published verification.
+integer. Weisstein [5] records the same computational
+verification; the run here is a recomputation of that report.
 
 The gap table computes \(o_{\min}(L)\) and \(n_{\max}(L)\) by
 exact integer arithmetic for every \(1\le L\le 10^5\). Corollary
@@ -1401,10 +1327,11 @@ lengths in range are
 with
 \(n_{\max}=3,13,52,297,5599,58398,1997197,67410774,420161535\).
 The first six of those already satisfy \(n_{\max}\le 10^6\) and
-are excluded. The first admissible record length is \(L=1054\).
-The remaining elements of \(\mathcal E\) are multiples of
-\(1054\) and combinations of the convergent lengths; the
-defining algorithm and checksums are Appendix B.
+are excluded. The first length not excluded by the present
+bound is \(L=1054\). The remaining elements of \(\mathcal E\)
+are multiples of \(1054\) and combinations of those
+one-sided best-approximation lengths; the defining algorithm
+and checksums are Appendix B.
 \(\square\)
 
 The former record lengths \(84\) and \(569\) are therefore not
@@ -1449,6 +1376,11 @@ in Section 1.2. Theorem 4.6 is a named computation.
 The proofs in the text are ordinary integer arguments. The following
 names are the corresponding Lean theorems in
 `formal/Problems/Juggler/`, imported by `Problems.JugglerPaper`.
+A Lean proof of an identity is not the same thing as a
+`native_decide` evaluation of a finite table; both are
+machine-assisted, but only the former is a formal deduction.
+The tables of Section 3 are of the second kind. Theorem 4.6 is
+a named computation outside Lean.
 
 | Text | Lean |
 |---|---|

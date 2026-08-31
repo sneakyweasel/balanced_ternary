@@ -83,7 +83,7 @@ near-convergents is already excluded, then the period is \(84\),
 or belongs to that list, or is at least \(10^5\). This is
 bookkeeping on `cycle_word_length_eighty_four_or_ge_eighty_five`
 plus the finance table: not a new inequality. The instance at the
-Python floor \(N_0=10^6\) is the existing family of \(397\)
+Python floor \(N_0=2\cdot 10^6\) is the existing family of \(166\)
 near-convergent lengths. Length \(84\) is the Lean-named leftover
 and is computationally already excluded; height finance further
 requires at least three odd-runs
@@ -260,8 +260,10 @@ It is not required.
 - Eliahou leftover: period \(84\), or a listed near-convergent, or
   \(\ge 10^5\) —
   **EXACT — LEAN VERIFIED** as the implication
-  `cycle_word_eliahou_leftover`; the \(397\)-family instance is
-  **COMPUTATIONALLY VERIFIED**
+  `cycle_word_eliahou_leftover`; the laboratory \(166\)-family
+  instance at floor \(2\cdot 10^6\) is **COMPUTATIONALLY VERIFIED**
+  (Paper A Theorem 4.6 still prints the weaker \(397\)-family at
+  floor \(10^6\))
 - Period is \(\ge 14\) —
   **EXACT — LEAN VERIFIED** (`cycle_word_length_ge_fourteen`),
   a corollary of the stronger leftover
@@ -287,7 +289,7 @@ It is not required.
 
 Science window: gap table \(L\le 10^5\) with exact bignum
 arithmetic; floor verification by first-passage descent induction
-for all \(2\le n\le 10^6\); slack stress on named hard seeds
+for all \(2\le n\le 2\cdot 10^6\); slack stress on named hard seeds
 (including \(30817\)). Tests use \(L\le 400\) and floor \(2000\).
 No CLI. Lean: `CycleFinance.lean` (`cycleMin_finance`,
 `cycle_finance_min_two_hundred_fifty_seven`,
@@ -335,9 +337,10 @@ parked leftover-word probes. No `sorry`. Paper A imports
 `CycleFinance` for Theorem 4.4 and does not import
 `CycleHeightFinance`.
 Not a halt theorem and not `no_cycle_word_any_length`.
-The Python floor \(N_0=10^6\) is still
-**COMPUTATIONALLY VERIFIED**, not Lean. The compiled leftover and
-exclusions are written as
+The Python floor \(N_0=2\cdot 10^6\) is
+**COMPUTATIONALLY VERIFIED**, not Lean. Paper A Theorem 4.6 still
+prints the weaker published floor \(10^6\). The compiled leftover
+and exclusions are written as
 [juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
 
 ## Results
@@ -389,31 +392,37 @@ and `data/research/juggler/cycle_finance/`.
   \(L=84\) open (\(\tfrac{15921}{11}\), need \(\approx 40269\));
   height finance kills \(m\le 2\).
 - **Floor** — **COMPUTATIONALLY VERIFIED**: every
-  \(2\le n\le 10^6\) has a finite first passage below its start,
-  hence by strong induction reaches \(1\). Max first-passage length
-  \(253\) steps (seed \(78901\)); peak intermediate value
-  \(6{,}342{,}922\) bits (\(\approx 1.9\cdot10^6\) digits). Exact
-  integer arithmetic throughout.
+  \(2\le n\le 2\cdot 10^6\) has a finite first passage below its
+  start, hence by strong induction reaches \(1\). Max first-passage
+  length \(257\) steps (seed \(1122603\)); peak intermediate
+  value \(6{,}485{,}496\) bits. Evens drop in one square-root
+  step, so only odds are walked. Exact integer arithmetic
+  throughout. The previous floor \(10^6\) (seed \(78901\),
+  \(253\) steps) remains a valid weaker certificate and is what
+  Paper A Theorem 4.6 prints.
 - **Per-length exclusion** — **COMPUTATIONALLY VERIFIED** (exact
   gap table \(L\le10^5\), conservative rounding): with the floor
-  \(N_0=10^6\), **no Juggler cycle of length \(L\le 1053\)
-  exists**, and no cycle of any length \(L\le 10^5\) outside an
-  explicit set of \(397\) exceptional lengths.   The Lean census now reaches \(L\le 83\) except the leftover
-  \(84\) (finance at \(9\)–\(11\), \(14\)–\(19\), and
-  \(20\)–\(83\)); the computational finance route multiplies the
-  excluded range by \(\approx 130\) with one inequality and one
-  Python floor.
+  \(N_0=2\cdot 10^6\), **no Juggler cycle of length
+  \(L\le 25780\) exists**, and no cycle of any length
+  \(L\le 10^5\) outside an explicit set of \(166\) exceptional
+  lengths. Length \(1054\) and its multiples die together
+  (\(n_{\max}\approx 1.997\cdot 10^6\)). The Lean census reaches
+  \(L\le 83\) except the leftover \(84\); the computational
+  finance route multiplies the excluded range by \(\approx 320\)
+  with one inequality and one Python floor.
 - **Eliahou leftover** — **EXACT — LEAN VERIFIED** implication
   (`cycle_word_eliahou_leftover`): period \(84\), or a listed
-  near-convergent, or \(\ge 10^5\). The instance at floor
-  \(10^6\) is **COMPUTATIONALLY VERIFIED** (the existing \(397\)
-  near-convergents). Length \(84\) is kept as the Lean-named
+  near-convergent, or \(\ge 10^5\). The laboratory instance at
+  floor \(2\cdot 10^6\) is **COMPUTATIONALLY VERIFIED** (the
+  existing \(166\) near-convergents). Paper A Theorem 4.6 still
+  prints the weaker floor-\(10^6\) instance (\(397\) exceptions,
+  prefix \(1053\)). Length \(84\) is kept as the Lean-named
   leftover; the Python floor already excludes it. Lengths
   \(19\), \(38\), \(57\), and \(76\) are no longer Lean leftovers.
   Not a new inequality.
-- **Exceptional structure**: the \(397\) exceptions are exactly the
-  near-convergent lengths — the \(94\) multiples of \(1054\) plus
-  combinations such as \(23757=22\cdot1054+569\). The record
+- **Exceptional structure**: the \(166\) exceptions are exactly the
+  near-convergent lengths — multiples of \(25781\) plus
+  combinations with earlier convergents. The record
   (one-sided best-approximation) lengths in range are
   \(L=1,3,11,19,84,569,1054,25781,50508\) with
   \(n_{\max}=3,13,52,297,5599,58398,\approx2.0\cdot10^6,
@@ -481,10 +490,10 @@ laboratory leftover is period \(84\) with \(m\ge 3\), or
 \(\ge 85\). Eliahou packaging still rewrites the length leftover
 as period \(84\), or a listed near-convergent, or \(\ge 10^5\).
 Exact \(\log 257\) cannot kill \(57\). This is not a leftover-word
-census. The Python floor \(N_0=10^6\) remains
-**COMPUTATIONALLY VERIFIED**. Paper A Section 4 prints the
-inequality and the floor-\(10^6\) leftover; leftover \(84\) is
-an Appendix A companion.
+census. The Python floor \(N_0=2\cdot 10^6\) is
+**COMPUTATIONALLY VERIFIED** (prefix \(25780\)). Paper A
+Section 4 still prints the weaker published floor \(10^6\)
+(prefix \(1053\)); leftover \(84\) is an Appendix A companion.
 
 The residual-floor campaign past \(\approx 4756\) is **PARK**.
 Joint/height kill every \(m\) at \(1981\), still machinery
@@ -508,8 +517,10 @@ Status: absorbed into Paper A as Section 4. Laboratory extract
 not a second manuscript. One exact inequality (`cycleMin_finance`,
 Paper A Theorem 4.4, **EXACT — LEAN VERIFIED**) with a genuinely
 new consequence (wholesale cycle-length exclusion: printed leftover
-Theorem 4.6, no period \(\le 1053\); Lean leftover \(84\) with
-\(m\ge 3\) or \(\ge 85\) is Appendix A companion) and a clear
+Theorem 4.6, no period \(\le 1053\); laboratory floor
+\(2\cdot 10^6\) raises that prefix to \(25780\); Lean leftover
+\(84\) with \(m\ge 3\) or \(\ge 85\) is Appendix A companion) and
+a clear
 literature distinction: the Simons–de Weger financing-versus-gap
 template transferred to a floor-power map where defects are
 relatively \(O(1/x)\) in logarithms. Not a totality result; the

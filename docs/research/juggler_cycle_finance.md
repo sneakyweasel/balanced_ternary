@@ -10,12 +10,12 @@ The floor is COMPUTATIONALLY VERIFIED, not Lean.
 
 - classification: **CYCLE_FINANCE_GREEN**
 - gap table: L <= `100000` exact bignum
-- floor: every 2 <= n <= `1000000` reaches 1: `True` (max first-passage steps `253` at seed `78901`, peak `6342922` bits)
-- contiguous excluded prefix at this floor: L <= `1053`
-- exceptional lengths at this floor: `397`
-- Eliahou leftover: period `84`, or one of `397` listed near-convergents, or `>= 100000`
+- floor: every 2 <= n <= `2000000` reaches 1: `True` (max first-passage steps `257` at seed `1122603`, peak `6485496` bits)
+- contiguous excluded prefix at this floor: L <= `25780`
+- exceptional lengths at this floor: `166`
+- Eliahou leftover: period `84`, or one of `166` listed near-convergents, or `>= 100000` (table holds `True`; lean period computationally excluded `True`)
 
-per-step finance bounds hold on every measured orbit step; descent induction verifies every n <= 1000000 reaches 1; finance excludes every cycle length L <= 1053 at once, far beyond the length-8 census; exceptional lengths are exactly the near-convergent ones.
+per-step finance bounds hold on every measured orbit step; descent induction verifies every n <= 2000000 reaches 1; finance excludes every cycle length L <= 25780 at once, far beyond the length-8 census; exceptional lengths are exactly the near-convergent ones.
 
 ## Census cross-check (L <= 8)
 
@@ -40,6 +40,7 @@ per-step finance bounds hold on every measured orbit step; descent induction ver
 - floor `11`: count `99992`, first `3`, contiguous prefix `2`
 - floor `1000`: count `97734`, first `84`, contiguous prefix `83`
 - floor `1000000`: count `397`, first `1054`, contiguous prefix `1053`
+- floor `2000000`: count `166`, first `25781`, contiguous prefix `25780`
 - floor `1000000000`: count `0`, first `None`, contiguous prefix `100000`
 
 ## Orbit slack
@@ -59,12 +60,12 @@ per-step finance bounds hold on every measured orbit step; descent induction ver
 - escape_claim: `False`
 - corridor_extension: `False`
 - population_census_reopen: `False`
-- lean_finance_added: `False`
+- lean_finance_added: `True`
 - floor_is_lean_verified: `False`
 
 ## Decision
 
 **CYCLE_FINANCE_GREEN**
 
-per-step finance bounds hold on every measured orbit step; descent induction verifies every n <= 1000000 reaches 1; finance excludes every cycle length L <= 1053 at once, far beyond the length-8 census; exceptional lengths are exactly the near-convergent ones.
+per-step finance bounds hold on every measured orbit step; descent induction verifies every n <= 2000000 reaches 1; finance excludes every cycle length L <= 25780 at once, far beyond the length-8 census; exceptional lengths are exactly the near-convergent ones.
 

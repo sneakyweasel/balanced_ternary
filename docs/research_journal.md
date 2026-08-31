@@ -15755,4 +15755,67 @@ Best next question
   the independent-check gate
 ```
 
+## Juggler cycle finance floor \(2\cdot 10^6\)
+
+- **Date:** 2026-08-31
+- **Objective:** Raise the laboratory residual floor from \(10^6\) to \(2\cdot 10^6\) so the computational prefix moves past \(1053\)
+- **Hypotheses:** \(n_{\max}(1054)\approx 1.997\cdot 10^6\), so every \(n\le 2\cdot 10^6\) reaching \(1\) kills \(1054\) and all its multiples
+- **Major results:** `verify_floor` at \(2\cdot 10^6\) is **COMPUTATIONALLY VERIFIED** (max first-passage \(257\) steps at seed \(1122603\); peak \(6{,}485{,}496\) bits). Finance prefix is \(25780\); \(166\) near-convergent exceptions through \(10^5\); first record survivor \(L=25781\). Ledger row `J-residual-floor-two-million`. Paper A Theorem 4.6 still prints the weaker published floor \(10^6\). No Atlas, no GPU. Not a halt theorem
+- **Refuted ideas:** none new
+- **Literature:** Weisstein floor \(10^6\) remains the Paper A input
+- **Open:** leftover refinements stay stopped; next record \(25781\) needs floor \(\approx 6.7\cdot 10^7\)
+- **Decision:** PROMOTE (floor raise). Do not open a \(10^9\) campaign
+
+```text
+What was learned
+- floor 2e6 kills 1054 and every multiple at once
+- the new prefix is 25780, not a GPU number
+- 166 exceptions remain through 10^5
+- hardest seed in the new window is 1122603 (257 steps)
+- Paper A stays at the published 10^6 instance
+Strongest theorem
+- verify_floor through 2e6 plus the 6/5 table:
+  no cycle of length <= 25780
+Strongest refutation
+- none new
+Reusable machinery
+- SCIENCE_FLOOR = 2_000_000; J-residual-floor-two-million
+Branch status
+- PROMOTE
+Why
+- the computational leftover asked for a higher verified
+  floor, not an atlas recensus
+Best next question
+- none from leftover refinements
+```
+
+## Paper A five required referee fixes
+
+- **Date:** 2026-08-31
+- **Objective:** Apply the five required items from the second major-revision report
+- **Hypotheses:** none; editorial
+- **Major results:** One-sided best-approximation language replaces the false ordinary-convergent claim. Section 2 defect material compressed; the \(10^{-30}\) example is a labelled remark. Novelty sentence qualified. Classification table added before Theorem 3.22. The first length not excluded by the bound is \(1054\). Theorem A is the main theorem; C is supporting. Paper B unchanged
+- **Refuted ideas:** none
+- **Literature:** none added
+- **Open:** unchanged
+- **Decision:** PROMOTE the five fixes. No new theorem
+
+```text
+What was learned
+- 11 and 569 are not ordinary CF convergent denominators
+- the defect recurrence was overshadowing Theorem 4.4
+Strongest theorem
+- unchanged
+Strongest refutation
+- none
+Reusable machinery
+- none
+Branch status
+- PROMOTE
+Why
+- the remaining referee list was terminology and focus
+Best next question
+- none from these five fixes
+```
+
 

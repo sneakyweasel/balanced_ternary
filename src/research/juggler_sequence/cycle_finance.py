@@ -62,13 +62,13 @@ MIN_STATE = 12  # Lean reachesOne_of_lt_twelve: every n <= 11 reaches 1
 LEAN_FLOOR = 11
 
 SCIENCE_L_MAX = 100_000
-SCIENCE_FLOOR = 1_000_000
+SCIENCE_FLOOR = 2_000_000
 SCIENCE_SEEDS = (25, 27, 37, 365, 1999, 30817, 1_000_003)
 TEST_L_MAX = 400
 TEST_FLOOR = 2_000
 TEST_SEEDS = (25, 37, 365)
 
-REPORT_FLOORS = (11, 1_000, 1_000_000, 10**9)
+REPORT_FLOORS = (11, 1_000, 1_000_000, 2_000_000, 10**9)
 GREEN_PREFIX = 100
 STEP_CAP = 100_000
 BIT_CAP = 10_000_000
@@ -318,15 +318,17 @@ def verify_floor(
 ) -> dict[str, Any]:
     """Descent induction: every 2 <= n <= n_top has an iterate < n.
 
-    By strong induction (base n=2 -> 1) every such n reaches 1.
-    Exact integer arithmetic; failures list is expected empty.
+    Evens n >= 2 drop in one square-root step, so only odds are
+    walked. By strong induction (base n=2 -> 1) every such n
+    reaches 1. Exact integer arithmetic; failures list is expected
+    empty.
     """
 
     max_steps = 0
     max_bits = 0
     hardest = 0
     failures: list[int] = []
-    for n in range(2, n_top + 1):
+    for n in range(3, n_top + 1, 2):
         x = n
         steps = 0
         ok = True

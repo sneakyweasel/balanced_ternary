@@ -9,14 +9,15 @@ The former single note has been split into two manuscripts:
   [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md):
   *Lower bounds for nontrivial cycles of the Juggler map.*
   Local word obstructions plus a global finance inequality give
-  a cycle-length lower bound. Theorem A: no period \(\le 1053\).
-  Theorem B: periods \(\le 10^5\) lie in an explicit admissible
-  set \(\mathcal E\) of \(397\) lengths. Theorem C: every
-  nontrivial cycle has at least four even letters, hence period
-  at least eleven. The financing inequality is Theorem 4.4; A
-  and B are Theorem 4.6 at the published floor \(10^6\). Lean
-  formalizes the exact claims except Theorem 4.6, which is a
-  named computation. Membership in \(\mathcal E\) means only
+  a cycle-length lower bound. Main theorem A: no period
+  \(\le 1053\). Secondary theorem B: periods \(\le 10^5\) lie in
+  an explicit admissible set \(\mathcal E\) of \(397\) lengths.
+  Supporting structural theorem C: every nontrivial cycle has at
+  least four even letters, hence period at least eleven. The
+  financing inequality is Theorem 4.4; A and B are Theorem 4.6
+  at the computational floor \(10^6\) reported by Weisstein.
+  Lean formalizes the exact claims except Theorem 4.6, which is
+  a named computation. Membership in \(\mathcal E\) means only
   that the bound does not exclude the length. Leftover \(84\)
   is a laboratory companion, not a paper theorem.
 - **Paper B** —

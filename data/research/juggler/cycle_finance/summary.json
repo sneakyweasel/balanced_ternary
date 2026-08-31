@@ -1,10 +1,10 @@
 {
   "classification": "CYCLE_FINANCE_GREEN",
-  "reason": "per-step finance bounds hold on every measured orbit step; descent induction verifies every n <= 1000000 reaches 1; finance excludes every cycle length L <= 1053 at once, far beyond the length-8 census; exceptional lengths are exactly the near-convergent ones",
+  "reason": "per-step finance bounds hold on every measured orbit step; descent induction verifies every n <= 2000000 reaches 1; finance excludes every cycle length L <= 25780 at once, far beyond the length-8 census; exceptional lengths are exactly the near-convergent ones",
   "l_max": 100000,
-  "floor": 1000000,
+  "floor": 2000000,
   "floor_verified": true,
-  "contiguous_prefix": 1053,
-  "exception_count": 397,
-  "git": "e09ecd1254e8da9a3a19902b0cf9e43fce7d8403"
+  "contiguous_prefix": 25780,
+  "exception_count": 166,
+  "git": "7f258989c188030d1160bea26dc682cec3f2b906"
 }

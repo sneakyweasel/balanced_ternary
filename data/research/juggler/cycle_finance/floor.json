@@ -1,8 +1,8 @@
 {
-  "n_top": 1000000,
+  "n_top": 2000000,
   "verified": true,
   "failures": [],
-  "max_first_passage_steps": 253,
-  "hardest_seed": 78901,
-  "max_bits_seen": 6342922
+  "max_first_passage_steps": 257,
+  "hardest_seed": 1122603,
+  "max_bits_seen": 6485496
 }

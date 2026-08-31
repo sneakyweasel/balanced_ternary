@@ -139,7 +139,9 @@ def test_science_summary_is_green():
     )
     assert summary["classification"] == CLASS_GREEN
     assert summary["floor_verified"] is True
-    assert summary["contiguous_prefix"] >= 1053
+    assert summary["floor"] == 2_000_000
+    assert summary["contiguous_prefix"] >= 25780
+    assert summary["exception_count"] == 166
 
 
 def test_eliahou_leftover_covers_survivors():
@@ -165,18 +167,26 @@ def test_eliahou_instance_matches_science_table():
             REPO / "data" / "research" / "juggler" / "cycle_finance" / "exceptions.json"
         ).read_text(encoding="utf-8")
     )
-    science = next(item for item in exceptions if item["floor"] == 1_000_000)
+    published = next(item for item in exceptions if item["floor"] == 1_000_000)
+    science = next(item for item in exceptions if item["floor"] == 2_000_000)
+    published_lengths = published["lengths"]
     lengths = science["lengths"]
-    assert science["count"] == 397
-    assert science["first_exception"] == 1054
-    assert science["contiguous_prefix"] == 1053
+    assert published["count"] == 397
+    assert published["first_exception"] == 1054
+    assert published["contiguous_prefix"] == 1053
+    assert science["count"] == 166
+    assert science["first_exception"] == 25781
+    assert science["contiguous_prefix"] == 25780
     assert science["truncated"] is False
     assert ELIAHOU_LEAN_PERIOD not in lengths
     assert 19 not in lengths
-    assert 1054 in lengths
+    assert 1054 not in lengths
+    assert 25781 in lengths
     assert 50508 in lengths
     assert eliahou_leftover(ELIAHOU_LEAN_PERIOD, lengths)
-    assert eliahou_leftover(1054, lengths)
+    assert eliahou_leftover(1054, published_lengths)
+    assert not eliahou_leftover(1054, lengths)
+    assert eliahou_leftover(25781, lengths)
     assert eliahou_leftover(ELIAHOU_TABLE_CUTOFF, lengths)
     assert not eliahou_leftover(19, lengths)
     assert not eliahou_leftover(30, lengths)
@@ -184,6 +194,7 @@ def test_eliahou_instance_matches_science_table():
     assert not eliahou_leftover(57, lengths)
     assert not eliahou_leftover(76, lengths)
     assert not eliahou_leftover(1053, lengths)
+    assert not eliahou_leftover(25780, lengths)
 
 
 def test_dossier_boundary():
@@ -209,6 +220,7 @@ def test_dossier_boundary():
     assert "import Problems.Juggler.CycleFinance" in paper
     assert "import Problems.Juggler.CycleHeightFinance" not in paper
     assert "cycleMin_finance" in note
+    assert "25780" in note
     assert "cycle_word_length_eighty_four_or_ge_eighty_five" in note
     assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in note
     assert "not a halt theorem" in note.lower()
