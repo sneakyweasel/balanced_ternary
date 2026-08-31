@@ -28,7 +28,7 @@ import Problems.Juggler.RunSurvivorLattice
 
 Review object for the finite-dynamics note
 `docs/theory/juggler_finite_dynamics_note.md`
-(*Lower bounds for nontrivial cycles of the Juggler map*).
+(*Cycle financing and a period lower bound for the Juggler map*).
 
 This file imports only the modules named by that note. It does not
 copy proofs. Laboratory satellites stay in `Problems.Juggler` and are
@@ -96,6 +96,7 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 4.2 `log_step_even`, `log_step_odd`
 * 4.3 `cycleMin_log_envelope`
 * 4.4 `cycleMin_finance`
+* 4.4c `cycleMin_log_envelope_inv`, `cycleMin_finance_inv_sum`
 * 4.7--4.8 run-type packing and the 99-length table
       (human proof and verified computation; not Lean)
 * 4.9 `run_survivor_unimodular`, `run_survivor_seed_F2`,

@@ -16783,4 +16783,36 @@ Best next question
 - none from this editorial pass
 ```
 
+## Paper A finance hierarchy: Theorem 4.4, Corollary 4.5, conservative certification
+
+- **Date:** 2026-08-31
+- **Objective:** Make the constant-\(1\) / statewise / \(6/5\) hierarchy unmissable, and put the strongest proved forms in Paper A Lean
+- **Hypotheses:** none; editorial plus Lean packaging of an existing theorem
+- **Major results:** The note now states the hierarchy after Theorem 4.4: conceptual sharp inequality (`cycleMin_finance`, constant \(1\)); inv-sum Corollary 4.4c (`cycleMin_finance_inv_sum`, moved into `CycleFinance.lean`); convenient statewise Corollary 4.5; conservative \(6/5\) certification in Theorem 4.6. The cutoff \(25781\) is not an artifact of \(6/5\). `Problems.JugglerPaper` lists 4.4c and does not import `CycleHeightFinance`. Published tables and hashes unchanged
+- **Refuted ideas:** none; the \(6/5\) identity is not Theorem 4.4 multiplied by \(6/5\)
+- **Literature:** none added
+- **Open:** none from this editorial pass
+- **Decision:** PROMOTE the rewritten note as the submission candidate
+
+```text
+What was learned
+- Theorem 4.4 is the theorem; 6/5 is a certification majorant
+- Corollary 4.5 is the floor-to-length bound, not a weaker theorem
+- inv-sum is the strongest proved remainder form of the same cells
+- 25781 survives replacing 6/5 by 1 on the same parity charge
+- the published 141-count table stays at the proved coefficient 6/5
+Strongest theorem
+- unchanged (Theorem 4.4); Corollary 4.4c is now in the Paper A barrel
+Strongest refutation
+- none; presentation and Lean packaging
+Reusable machinery
+- cycleMin_log_envelope_inv and cycleMin_finance_inv_sum in CycleFinance
+Branch status
+- PROMOTE
+Why
+- a referee must not suspect that 25781 depends on an avoidable 6/5 loss
+Best next question
+- none from this editorial pass
+```
+
 

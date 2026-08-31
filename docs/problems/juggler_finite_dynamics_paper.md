@@ -144,12 +144,19 @@ added to `bt.*`.
 - gapped leftovers as cycle words —
   **EXACT — LEAN VERIFIED** (Paper A Theorem 3.21);
 - finance inequality at a cycle minimum —
-  **EXACT — LEAN VERIFIED** (Paper A Theorem 4.4; `cycleMin_finance`);
+  **EXACT — LEAN VERIFIED** (Paper A Theorem 4.4; `cycleMin_finance`;
+  constant \(1\));
+- inv-sum form of the same defects —
+  **EXACT — LEAN VERIFIED** (Paper A Corollary 4.4c;
+  `cycleMin_finance_inv_sum`);
 - per-length exclusion given a floor —
-  **EXACT — HUMAN PROOF** (Paper A Corollary 4.5);
+  **EXACT — HUMAN PROOF** (Paper A Corollary 4.5; convenient
+  length-only statewise bound);
 - verified computation at floor \(10^6\) —
-  **COMPUTATIONALLY VERIFIED** (Paper A Theorem 4.6; no period
-  \(\le 25780\); \(141\) exceptions through \(10^5\));
+  **COMPUTATIONALLY VERIFIED** (Paper A Theorem 4.6; conservative
+  \(6/5\) certification; no period
+  \(\le 25780\); \(141\) exceptions through \(10^5\);
+  cutoff not an artifact of \(6/5\));
 - run-type packing and the \(99\)-length leftover —
   **EXACT — HUMAN PROOF** / **COMPUTATIONALLY VERIFIED**
   (Paper A Theorems 4.7--4.8);
@@ -228,7 +235,7 @@ double-gap identity used by the kernel theorem; the analytic estimates
 themselves are human proofs and stay outside Lean. The Paper A review
 object is `formal/Problems/JugglerPaper.lean` and does not import
 `GapCells` or `CycleHeightFinance`. It imports `CycleFinance` for
-Theorem 4.4, `RunSurvivorLattice` for Proposition 4.9, the leftover-family modules
+Theorem 4.4 and Corollary 4.4c, `RunSurvivorLattice` for Proposition 4.9, the leftover-family modules
 `LeftoverTwoEven`, `FirstETransport`, `BunchedEEE`, `BunchedEOEE`,
 and `BunchedEOOEE`, and `EvenCountThree` for Theorem 3.22. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
@@ -289,13 +296,19 @@ the pure amplitude-product model (Conjecture 7.5)?
 ## Decision
 
 **PROMOTE** Paper A as the submission candidate after the
-second referee pass: the abstract and introduction now state
-known floor plus new finance implies \(L\ge 25781\); Section 3
-opens with the canonical run form and headlines Theorem 3.22;
-Lemma 4.4b records odd-count monotonicity; Theorem 4.7 is
-retained as the second supporting result; 141→99 and the
-lattice are further demoted. Peak bounds and the closed
-return-cost branch stay out of the note.
+finance-hierarchy pass: Theorem 4.4 is the conceptual sharp
+inequality (constant \(1\), `cycleMin_finance`); Corollary 4.4c
+is the inv-sum form (`cycleMin_finance_inv_sum`, now in
+`CycleFinance.lean`); Corollary 4.5 is the convenient
+length-only statewise bound; Theorem 4.6 certifies the table
+with the conservative coefficient \(6/5\), and the cutoff
+\(25781\) is not an artifact of that majorant. The abstract
+and introduction state known floor plus new finance implies
+\(L\ge 25781\); Section 3 opens with the canonical run form and
+headlines Theorem 3.22; Lemma 4.4b records odd-count
+monotonicity; Theorem 4.7 is retained as the second supporting
+result; 141→99 and the lattice remain demoted. Peak bounds and
+the closed return-cost branch stay out of the note.
 The unused global defect stays in Appendix C. Option B is not
 reopened. The state-distribution finance program stays **PARK**.
 Return-cost coupling is **CLOSE**.
@@ -323,7 +336,10 @@ Section 5).
 
 Paper A is titled *Cycle financing and a period lower bound for
 the Juggler map*. The three contributions are Theorem 4.4,
-Theorem 3.22, and Theorem 4.6(A). Finance-survivor lengths and
+Theorem 3.22, and Theorem 4.6(A). The finance hierarchy is
+Theorem 4.4 (sharp, constant \(1\)), Corollary 4.5 (statewise
+bound), and Theorem 4.6 (conservative \(6/5\) certification).
+Finance-survivor lengths and
 the lattice are supporting material. The exact global defect
 lives in Appendix C. Family calculations live in Appendix D.
 Short certificates are a remark in Section 5.

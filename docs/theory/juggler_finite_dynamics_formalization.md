@@ -495,7 +495,13 @@ under this barrel:
 cycleMin_finance :
   CycleMin n w ->
   n * log n * (3^oddCount w - 2^w.length) ≤ w.length * 3^oddCount w
-    (CycleFinance.lean)
+    (CycleFinance.lean; Paper A Theorem 4.4; constant 1)
+
+cycleMin_finance_inv_sum :
+  CycleMin n w ->
+  (3^oddCount w - 2^w.length) * log n ≤
+    3^oddCount w * ∑ 1 / floorPower^[i+1] n
+    (CycleFinance.lean; Paper A Corollary 4.4c)
 ```
 
 The run-type packing (Paper A Theorem 4.7) and the \(99\)-length

@@ -130,10 +130,16 @@ there is no nontrivial Juggler cycle of length at most \(25780\).
 Equivalently, any nontrivial cycle has period at least \(25781\)
 (Theorem 4.6(A)).
 
-Theorem 4.6(A) is Theorem 4.4, in the conservative \(6/5\) form
-of Corollary 4.5, at that floor. Theorem 4.7 is a run-type
-refinement of the same defect sum. The leftover lengths through
-\(10^5\) are supporting material, not a second main theorem.
+These three statements are not interchangeable. Theorem 4.4 is
+the conceptual sharp inequality (constant \(1\)). Corollary 4.5
+is the convenient length-only statewise bound that turns a
+descent floor into a per-length exclusion. Theorem 4.6 is the
+numerical certification of that bound, and it uses a conservative
+coefficient \(6/5\) only as a uniform majorant; the headline
+cutoff \(25781\) is not an artifact of that majorant. Theorem 4.7
+is a run-type refinement of the same defect sum. The leftover
+lengths through \(10^5\) are supporting material, not a second
+main theorem.
 
 ### 1.1 Related work
 
@@ -209,8 +215,9 @@ same computational verification; the run here is an independent
 recomputation. The certificate files, SHA-256 hashes, and
 regeneration commands are Appendix B.
 
-Theorem 4.6 applies Corollary 4.5 to this input. Theorem 4.7 is
-a human proof; Theorem 4.8 reuses the gap table under that
+Theorem 4.6 applies Corollary 4.5 to this input and certifies
+the table with the conservative coefficient \(6/5\). Theorem 4.7
+is a human proof; Theorem 4.8 reuses the gap table under that
 packing. Proposition 4.9 is integer arithmetic in Lean. This is
 not a claim that the paper as a whole is formally verified.
 
@@ -974,7 +981,65 @@ be unrolled against the cycle minimum; the formal surplus
 Ideal dynamics expands and exact dynamics returns, so the floor
 errors finance the expansion. The inequality \(\log(1+u)\le u\)
 is the only analytic input; the content is that interaction.
-The Lean form is exactly Theorem 4.4 (constant \(1\)).
+The Lean form is exactly Theorem 4.4 (constant \(1\)):
+`cycleMin_finance`.
+
+**Hierarchy of forms.**
+These three layers must not be conflated.
+
+1. *Theorem 4.4* is the conceptual sharp inequality. Constant
+   \(1\):
+   \[
+   n\log n\cdot(3^o-2^L)\le L\cdot 3^o,
+   \]
+   equivalently \(\theta\le L/(n\log n)\) with
+   \(\theta=1-2^L/3^o\). It charges every cell defect at the
+   cycle minimum. Lean: `cycleMin_finance`.
+
+2. *Corollary 4.4c* (below) is the same cell-log unroll with
+   remainders kept as \(1/x_{i+1}\). It is the strongest proved
+   form of those defects. Lean: `cycleMin_finance_inv_sum`.
+
+3. *Corollary 4.5* is the convenient length-only statewise
+   bound: a verified descent floor \(N_0\) plus a parity charge
+   of the defect sum produces a per-length threshold
+   \(n_{\max}(L)\) and excludes every \(L\) with
+   \(n_{\max}(L)\le N_0\).
+
+4. *Theorem 4.6* is the numerical certification of Corollary 4.5
+   at \(N_0=10^6\). The certified identity is the conservative
+   relative-defect form
+   \[
+   1-\frac{2^L}{3^o}
+   \le
+   \frac65\sum_{i=1}^{L}\frac{1}{x_i\log x_i}.
+   \]
+   The factor \(6/5\) is a convenient uniform majorant of
+   \(-\log(1-\delta)/\delta\) on \([0,1/6]\). It is not
+   Theorem 4.4, and the headline cutoff \(25781\) is not an
+   artifact of that majorant.
+
+The relative-defect unroll is a parallel identity, not
+Theorem 4.4 multiplied by \(6/5\). Charging every state at the
+cycle minimum in that identity recovers the coarser comparison
+\(\theta\le(6/5)L/(n\log n)\), which is Theorem 4.4 with
+coefficient \(6/5\). At this floor that uniform charge excludes
+only through length \(1053\). The computational table uses a
+stricter length-only parity charge of the same identity.
+
+**Corollary 4.4c (inv-sum).**
+Let \(w\) be a cycle word of length \(L\) with \(o\) odd letters,
+based at a cycle minimum \(n\ge 2\). Write \(x_i=J^i(n)\). Then
+\[
+(3^o-2^L)\log n\le 3^o\sum_{i=1}^{L}\frac1{x_i},
+\]
+equivalently \(\theta\le\bigl(\sum_i 1/x_i\bigr)/\log n\).
+
+*Proof.* The same induction as Lemma 4.3, keeping each cell
+defect as \(2^{k+1}/x_{k+1}\) instead of replacing it by
+\(3^{o_{k+1}}/n\). At \(k=L\) one has \(x_L=n\). Lean:
+`cycleMin_log_envelope_inv`, `cycleMin_finance_inv_sum`.
+\(\square\)
 
 The computational table of Theorem 4.6 uses a weaker per-step
 bound, valid on every cycle because every start below \(12\)
@@ -985,18 +1050,7 @@ Writing \(\varepsilon=-\tfrac12\log(1-\delta)\) and using
 \(-\log(1-\delta)\le\tfrac65\delta\) on \([0,1/6]\) gives
 \(\varepsilon\le(6/5)/y\). Unrolling
 \(t_{i+1}=(e_i/2)\,t_i-\varepsilon_i\) around the cycle then yields
-\[
-1-\frac{2^L}{3^o}
-\le
-\frac65\sum_{i=1}^{L}\frac{1}{x_i\log x_i}.
-\]
-This is Theorem 4.4 with an extra factor \(6/5\) on the right, so
-it is conservative relative to constant \(1\). Charging every
-state at the cycle minimum \(x_i\ge n\) recovers the coarser
-comparison \(\sum 1/(x_i\log x_i)\le L/(n\log n)\), which at
-this floor excludes only through length \(1053\). The
-computational table uses a stricter length-only bound from the
-same identity.
+the conservative identity displayed in item 4 of the hierarchy.
 
 On a minimum-based cycle of length \(L\) with \(o\) odd letters
 and \(e=L-o\) even letters, the last letter is even, so \(e\ge 1\)
@@ -1019,8 +1073,13 @@ e+(o-e)\frac{n\log n}{t\log t}+\frac{e}{2n}
 \right).
 \]
 The optimal uniform coefficient on \([0,1/6]\) is
-\(6\log(6/5)\). It does not change the first surviving length
-below, and the table keeps \(6/5\).
+\(6\log(6/5)\approx 1.093\). Replacing \(6/5\) by that constant,
+or even by \(1\), on the same parity charge does not change the
+first surviving length: one still has
+\(n_{\max}(25780)\le 10^6<n_{\max}(25781)\). The published table
+and the count \(141\) keep the proved coefficient \(6/5\). The
+cutoff \(25781\) is therefore not an artifact of an avoidable
+loss in the majorant.
 
 **Lemma 4.4b (odd-count monotonicity).**
 Write \(\theta(o)=1-2^L/3^o\) and
@@ -1031,7 +1090,7 @@ e=L-o,
 \qquad
 \alpha=\frac{n\log n}{t\log t}.
 \]
-The displayed parity comparison is
+The certified parity comparison is
 \(n\log n\cdot\theta(o)\le(6/5)R(o)\). For every \(n\ge 12\)
 one has \(\alpha<1/2\), hence
 \[
@@ -1041,7 +1100,9 @@ Also \(\theta(o+1)>\theta(o)\). Therefore if the comparison
 fails at some admissible \(o\), it fails at every larger odd
 count. Equivalently, the largest \(n\) at which the comparison
 can hold occurs at the least admissible odd count
-\(o_{\min}(L)=\min\{o:3^o>2^L\}\).
+\(o_{\min}(L)=\min\{o:3^o>2^L\}\). The same monotonicity holds
+for any positive coefficient in place of \(6/5\), and for the
+constant-\(1\) comparison of Theorem 4.4.
 
 *Proof.* The difference \(R(o+1)-R(o)\) is the displayed
 coefficient of \(o\). For \(n\ge 12\) one has
@@ -1083,9 +1144,12 @@ nontrivial cycle of length \(L\) exists whenever
 \(n_{\max}(L)\le N_0\).
 
 *Proof.* A periodic state never reaches \(1\), so every cycle
-state is at least \(N_0+1\). Theorem 4.4 in the \(6/5\) parity
-form forces the minimum to satisfy the displayed inequality,
-hence \(n\le n_{\max}(L)\). \(\square\)
+state is at least \(N_0+1\). The length-only parity charge of
+the certified relative-defect identity then forces the minimum
+to satisfy the displayed inequality, hence \(n\le n_{\max}(L)\).
+This is the convenient statewise bound in the hierarchy after
+Theorem 4.4; it is not a replacement for that theorem.
+\(\square\)
 
 Record values of the parity \(n_{\max}\) include
 \(n_{\max}(19)=133\), \(n_{\max}(84)=2323\),
@@ -1103,7 +1167,9 @@ Every integer \(2\le n\le 10^6\) reaches \(1\). Consequently:
 
 The bound closes continuously through \(25780\); \(25781\) is
 the first integer for which this particular inequality does not
-exclude a cycle.
+exclude a cycle. The coefficient \(6/5\) is the certification
+majorant of item 4 in the hierarchy after Theorem 4.4, not the
+source of the cutoff.
 
 *Proof.* The descent floor is Proposition 1.3. The gap table
 computes \(o_{\min}(L)\) and \(n_{\max}(L)\) for every
@@ -1298,6 +1364,7 @@ formally verified.
 | Lemma 4.2 | `log_step_even`, `log_step_odd` |
 | Lemma 4.3 | `cycleMin_log_envelope` |
 | Theorem 4.4 | `cycleMin_finance` |
+| Corollary 4.4c | `cycleMin_log_envelope_inv`, `cycleMin_finance_inv_sum` |
 | Lemma 4.4b | odd-count monotonicity; human proof, not Lean |
 | Theorem 4.7 | run-type packing; human proof, not Lean |
 | Theorem 4.8 | run-type table; verified computation, not Lean |

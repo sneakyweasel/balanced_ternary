@@ -55,6 +55,8 @@ n\log n\cdot(3^o-2^L)\;\le\;L\cdot 3^o.
 The only analytic input is \(\log(1+u)\le u\), via the dyadic
 cell bound \(\log z\le 2\log y+2/y\). The Lean constant is \(1\),
 not \(6/5\). The unrolled envelope is `cycleMin_log_envelope`.
+Paper A Theorem 4.4. The inv-sum form below is Paper A
+Corollary 4.4c and lives in `CycleFinance.lean`.
 
 **Inv-sum form (EXACT — LEAN VERIFIED,
 `cycleMin_finance_inv_sum`).**
@@ -131,7 +133,11 @@ kept as \(1/x_{i+1}\) instead of being charged at \(1/n\)
 ## Computational companion
 
 The Phase-0 table uses the weaker constant \(6/5\), valid on
-states \(\ge 12\):
+states \(\ge 12\). Paper A states the hierarchy explicitly:
+Theorem 4.4 is the conceptual sharp inequality; Corollary 4.5
+is the convenient statewise bound; Theorem 4.6 certifies the
+table with this conservative majorant. The cutoff \(25781\) is
+not an artifact of \(6/5\). The identity is:
 
 \[
 \theta:=1-\frac{2^L}{3^o}

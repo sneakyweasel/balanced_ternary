@@ -44,9 +44,14 @@ n\log n\cdot(3^o-2^L)\;\le\;L\cdot 3^o.
 \]
 
 The Lean form uses the dyadic-cell bound \(\log z\le 2\log y+2/y\)
-(\(\log(1+1/y)\le 1/y\)) and has constant \(1\). The Phase-0
-computational table used the weaker constant \(6/5\) below, which
-remains valid and is the source of the \(L\le 10^5\) exclusions.
+(\(\log(1+1/y)\le 1/y\)) and has constant \(1\). This is Paper A
+Theorem 4.4. The inv-sum form
+`cycleMin_finance_inv_sum` (Paper A Corollary 4.4c) keeps each
+cell defect as \(1/x_{i+1}\). Corollary 4.5 is the convenient
+length-only statewise bound. The Phase-0 computational table
+uses the weaker constant \(6/5\) below as a certification
+majorant, not as a replacement for Theorem 4.4; the cutoff
+\(25781\) is not an artifact of that majorant.
 
 **Weaker computational form (EXACT — HUMAN PROOF, proof below).**
 Let \(x_0\to x_1\to\cdots\to x_L=x_0\) be a cycle of the Juggler map
@@ -467,8 +472,8 @@ the length leftover plus the finance table as period `84`, or
 a listed near-convergent, or at least `10^5`. There is no theorem named
 `no_cycle_word_length_eleven`: that name is reserved by the
 parked leftover-word probes. No `sorry`. Paper A imports
-`CycleFinance` for Theorem 4.4 and does not import
-`CycleHeightFinance`.
+`CycleFinance` for Theorem 4.4 and Corollary 4.4c and does not
+import `CycleHeightFinance`.
 Not a halt theorem and not `no_cycle_word_any_length`.
 The Python floor \(N_0=2\cdot 10^6\) is
 **COMPUTATIONALLY VERIFIED**, not Lean. Paper A Theorem 4.6
@@ -486,7 +491,10 @@ Classification **CYCLE_FINANCE_GREEN**. Regenerate with
 and `data/research/juggler/cycle_finance/`.
 
 - **Finance inequality** — **EXACT — LEAN VERIFIED**
-  (`cycleMin_finance`): \(n\log n\cdot(3^o-2^L)\le L\cdot 3^o\).
+  (`cycleMin_finance`, Paper A Theorem 4.4, constant \(1\)):
+  \(n\log n\cdot(3^o-2^L)\le L\cdot 3^o\).
+  Inv-sum form `cycleMin_finance_inv_sum` is Paper A
+  Corollary 4.4c and now lives in `CycleFinance.lean`.
   The Phase-0 per-step ingredient \(\varepsilon_i\le(6/5)/x_{i+1}\)
   held at every measured orbit step with relative margin
   \(\ge 0.17\); the unrolled log identity reproduced every orbit
@@ -697,13 +705,18 @@ and `data/research/juggler/cycle_finance/`.
 
 ## Decision
 
-**PROMOTE**. The length-only parity bound is not a
+**PROMOTE**. Paper A now states the finance hierarchy:
+Theorem 4.4 is the conceptual sharp inequality (constant \(1\));
+Corollary 4.5 is the convenient statewise bound; Theorem 4.6
+certifies the table with the conservative coefficient \(6/5\).
+The inv-sum form is Corollary 4.4c in `CycleFinance.lean`.
+The length-only parity bound is not a
 reparameterization of \(B(L)=(6/5)L/\theta\): it charges \(e\)
 valleys at \(n\), \(o-e\) internals at \(\lfloor n^{3/2}\rfloor\),
 and \(e\) evens at \(n^2\). The certified scan at \(N_0=10^6\)
 excludes every \(L\le 25780\) with \(141\) survivors and no
-uncertain comparisons. Paper A Theorem 4.6 now prints that
-table. The crude table at floor \(2\cdot 10^6\) remains a
+uncertain comparisons. Paper A Theorem 4.6 prints that
+table. The cutoff \(25781\) is not an artifact of \(6/5\). The crude table at floor \(2\cdot 10^6\) remains a
 separate laboratory certificate (same prefix, weaker
 inequality). Leftover \(84\) with \(m\ge 3\) is unchanged as the
 Lean companion. This is not a leftover-word census and not a

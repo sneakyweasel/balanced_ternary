@@ -376,3 +376,18 @@ def test_dossier_boundary():
     assert "not a halt theorem" in note.lower()
     assert "JugglerPaper" in note or "Paper A" in note
     assert "not a second manuscript" in note or "absorbed into Paper A" in note
+    assert "cycleMin_finance_inv_sum" in paper
+    assert "4.4c" in paper
+
+
+def test_paper_finance_hierarchy():
+    text = (
+        REPO / "docs" / "theory" / "juggler_finite_dynamics_note.md"
+    ).read_text(encoding="utf-8")
+    assert "**Hierarchy of forms.**" in text
+    assert "cycleMin_finance_inv_sum" in text
+    assert "**Corollary 4.4c (inv-sum).**" in text
+    assert "not an artifact of that majorant" in text
+    assert "6/5 parity form" not in text
+    assert "in the conservative $6/5$ form" not in text
+    assert r"in the conservative \(6/5\) form" not in text

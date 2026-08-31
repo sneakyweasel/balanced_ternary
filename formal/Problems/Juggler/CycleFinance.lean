@@ -2,6 +2,7 @@ import Problems.Juggler.CycleCore
 import Problems.Juggler.LengthEightCensus
 import Problems.Juggler.Termination
 import Problems.Juggler.TerminationFloor257
+import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 import Mathlib.Analysis.SpecialFunctions.Log.Basic
 import Mathlib.Analysis.Complex.ExponentialBounds
 
@@ -36,7 +37,9 @@ a listed near-convergent, or at least `10^5`. Not a new inequality.
 Dossier: `docs/problems/juggler_cycle_finance.md`. Writeup:
 `docs/theory/juggler_cycle_finance_note.md`, absorbed into
 Paper A (`docs/theory/juggler_finite_dynamics_note.md`) as
-Section 5. The paper theorem is `cycleMin_finance`. The leftover
+Section 4. The paper theorems are `cycleMin_finance`
+(Theorem 4.4, constant 1) and `cycleMin_finance_inv_sum`
+(Corollary 4.4c). The leftover
 `84` is an Appendix A companion, not the printed leftover.
 The height leftover
 (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
@@ -264,6 +267,163 @@ theorem cycleMin_finance {n : ℕ} {w : List Branch}
     _ ≤ (n : ℝ) * ((w.length : ℝ) * (3 : ℝ) ^ oddCount w / n) := hmul
     _ = (w.length : ℝ) * (3 : ℝ) ^ oddCount w := by
         field_simp
+
+/-- On a `CycleMin`, every iterate through one period is at least
+two (the start is, and later states are at least the start). -/
+theorem cycleMin_iterate_ge_two {n : ℕ} {w : List Branch} {k : ℕ}
+    (hn : 2 ≤ n) (h : CycleMin n w) (hk : k ≤ w.length) :
+    2 ≤ floorPower^[k] n := by
+  rcases lt_or_eq_of_le hk with hlt | rfl
+  · exact cycleWord_iterate_ge_two hn h.1 hlt
+  · rw [cycle_iterate_period h.1]
+    exact hn
+
+/-- Inv-sum envelope: each dyadic-cell defect is kept as `1/x_{i+1}`
+instead of being replaced by `1/n`. At `k = L` this is
+`(3^o - 2^L) log n ≤ 3^o ∑ 1/x_i`. Paper A Corollary 4.4c. -/
+theorem cycleMin_log_envelope_inv {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ∀ k, k ≤ w.length →
+      (3 : ℝ) ^ oddCount (w.take k) * Real.log n ≤
+        (2 : ℝ) ^ k * Real.log (floorPower^[k] n) +
+          (3 : ℝ) ^ oddCount (w.take k) *
+            ∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n) := by
+  intro k
+  induction k with
+  | zero => intro _; simp
+  | succ k ih =>
+    intro hk1
+    have hk : k < w.length := Nat.lt_of_succ_le hk1
+    have ihk := ih (Nat.le_of_lt hk)
+    have htake : w.take (k + 1) = w.take k ++ [w[k]] := by
+      rw [List.take_add_one, List.getElem?_eq_getElem hk]
+      rfl
+    have hx2 : 2 ≤ floorPower^[k] n := cycleMin_iterate_ge_two hn h (Nat.le_of_lt hk)
+    have hx21 : 2 ≤ floorPower^[k + 1] n := cycleMin_iterate_ge_two hn h hk1
+    have hiter : floorPower^[k + 1] n = floorPower (floorPower^[k] n) :=
+      Function.iterate_succ_apply' floorPower k n
+    have hpow : 2 ^ (k + 1) ≤ 3 ^ oddCount (w.take (k + 1)) :=
+      cycleMin_prefix_pow_le hn h (k + 1) hk1
+    have hx1pos : (0 : ℝ) < (floorPower^[k + 1] n : ℝ) := by
+      have : 0 < floorPower^[k + 1] n := by omega
+      exact_mod_cast this
+    have h2le3 : (2 : ℝ) ^ (k + 1) ≤ (3 : ℝ) ^ oddCount (w.take (k + 1)) := by
+      exact_mod_cast hpow
+    have hsum : ∑ i ∈ Finset.range (k + 1), (1 : ℝ) / (floorPower^[i + 1] n) =
+        (∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n)) +
+          1 / (floorPower^[k + 1] n) :=
+      Finset.sum_range_succ (fun i => (1 : ℝ) / (floorPower^[i + 1] n)) k
+    have h2k : (0 : ℝ) ≤ (2 : ℝ) ^ k := by positivity
+    cases hb : w[k] with
+    | even =>
+      have hpar : (floorPower^[k] n) % 2 = 0 :=
+        follows_get_even w h.1.1 k hk hb
+      have hstep := log_step_even hx2 hpar
+      rw [← hiter] at hstep
+      have hodd : oddCount (w.take (k + 1)) = oddCount (w.take k) := by
+        rw [htake, hb, oddCount_append]
+        simp
+      rw [hodd] at h2le3 ⊢
+      have hs2 := mul_le_mul_of_nonneg_left hstep h2k
+      have hexpand : (2 : ℝ) ^ k *
+          (2 * Real.log (floorPower^[k + 1] n) +
+            2 / (floorPower^[k + 1] n : ℝ)) =
+          (2 : ℝ) ^ (k + 1) * Real.log (floorPower^[k + 1] n) +
+            (2 : ℝ) ^ (k + 1) / (floorPower^[k + 1] n : ℝ) := by
+        rw [pow_succ]; ring
+      rw [hexpand] at hs2
+      have hdef :
+          (2 : ℝ) ^ (k + 1) / (floorPower^[k + 1] n : ℝ) ≤
+            (3 : ℝ) ^ oddCount (w.take k) / (floorPower^[k + 1] n : ℝ) := by
+        exact div_le_div_of_nonneg_right h2le3 hx1pos.le
+      rw [hsum]
+      push_cast
+      calc (3 : ℝ) ^ oddCount (List.take k w) * Real.log n
+          ≤ (2 : ℝ) ^ k * Real.log (floorPower^[k] n) +
+              (3 : ℝ) ^ oddCount (List.take k w) *
+                ∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n) := ihk
+        _ ≤ ((2 : ℝ) ^ (k + 1) * Real.log (floorPower^[k + 1] n) +
+              (2 : ℝ) ^ (k + 1) / (floorPower^[k + 1] n : ℝ)) +
+              (3 : ℝ) ^ oddCount (List.take k w) *
+                ∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n) :=
+            add_le_add_left hs2 _
+        _ ≤ ((2 : ℝ) ^ (k + 1) * Real.log (floorPower^[k + 1] n) +
+              (3 : ℝ) ^ oddCount (List.take k w) /
+                (floorPower^[k + 1] n : ℝ)) +
+              (3 : ℝ) ^ oddCount (List.take k w) *
+                ∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n) := by
+            gcongr
+        _ = (2 : ℝ) ^ (k + 1) * Real.log (floorPower^[k + 1] n) +
+              (3 : ℝ) ^ oddCount (List.take k w) *
+                ((∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n)) +
+                  1 / (floorPower^[k + 1] n)) := by
+            ring
+    | odd =>
+      have hpar : (floorPower^[k] n) % 2 = 1 :=
+        follows_get_odd w h.1.1 k hk hb
+      have hstep := log_step_odd hx2 hpar
+      rw [← hiter] at hstep
+      have hodd : oddCount (w.take (k + 1)) = oddCount (w.take k) + 1 := by
+        rw [htake, hb, oddCount_append]
+        simp
+      rw [hodd] at h2le3 ⊢
+      have hs2 := mul_le_mul_of_nonneg_left hstep h2k
+      have hexpand : (2 : ℝ) ^ k *
+          (2 * Real.log (floorPower^[k + 1] n) +
+            2 / (floorPower^[k + 1] n : ℝ)) =
+          (2 : ℝ) ^ (k + 1) * Real.log (floorPower^[k + 1] n) +
+            (2 : ℝ) ^ (k + 1) / (floorPower^[k + 1] n : ℝ) := by
+        rw [pow_succ]; ring
+      rw [hexpand] at hs2
+      have ihk3 := mul_le_mul_of_nonneg_left ihk (by norm_num : (0 : ℝ) ≤ 3)
+      have hpow_succ : (3 : ℝ) ^ (oddCount (w.take k) + 1) =
+          3 * (3 : ℝ) ^ oddCount (w.take k) := by
+        rw [pow_succ]; ring
+      rw [hpow_succ] at h2le3 ⊢
+      have hdef :
+          (2 : ℝ) ^ (k + 1) / (floorPower^[k + 1] n : ℝ) ≤
+            3 * (3 : ℝ) ^ oddCount (w.take k) /
+              (floorPower^[k + 1] n : ℝ) :=
+        div_le_div_of_nonneg_right h2le3 hx1pos.le
+      rw [hsum]
+      push_cast
+      calc (3 : ℝ) * (3 : ℝ) ^ oddCount (List.take k w) * Real.log n
+          = 3 * ((3 : ℝ) ^ oddCount (List.take k w) * Real.log n) := by ring
+        _ ≤ 3 * ((2 : ℝ) ^ k * Real.log (floorPower^[k] n) +
+              (3 : ℝ) ^ oddCount (List.take k w) *
+                ∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n)) := ihk3
+        _ = (2 : ℝ) ^ k * (3 * Real.log (floorPower^[k] n)) +
+              3 * (3 : ℝ) ^ oddCount (List.take k w) *
+                ∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n) := by
+            ring
+        _ ≤ ((2 : ℝ) ^ (k + 1) * Real.log (floorPower^[k + 1] n) +
+              (2 : ℝ) ^ (k + 1) / (floorPower^[k + 1] n : ℝ)) +
+              3 * (3 : ℝ) ^ oddCount (List.take k w) *
+                ∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n) :=
+            add_le_add_left hs2 _
+        _ ≤ ((2 : ℝ) ^ (k + 1) * Real.log (floorPower^[k + 1] n) +
+              3 * (3 : ℝ) ^ oddCount (List.take k w) /
+                (floorPower^[k + 1] n : ℝ)) +
+              3 * (3 : ℝ) ^ oddCount (List.take k w) *
+                ∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n) := by
+            gcongr
+        _ = (2 : ℝ) ^ (k + 1) * Real.log (floorPower^[k + 1] n) +
+              3 * (3 : ℝ) ^ oddCount (List.take k w) *
+                ((∑ i ∈ Finset.range k, (1 : ℝ) / (floorPower^[i + 1] n)) +
+                  1 / (floorPower^[k + 1] n)) := by
+            ring
+
+/-- **Inv-sum finance inequality.** Same cell-log defects as
+`cycleMin_finance`, remainders kept as `1/x_{i+1}`.
+`(3^o - 2^L) log n ≤ 3^o ∑ 1/x_i`. -/
+theorem cycleMin_finance_inv_sum {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleMin n w) :
+    ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) * Real.log n ≤
+      (3 : ℝ) ^ oddCount w *
+        ∑ i ∈ Finset.range w.length, (1 : ℝ) / (floorPower^[i + 1] n) := by
+  have henv := cycleMin_log_envelope_inv hn h w.length le_rfl
+  rw [List.take_length, cycle_iterate_period h.1] at henv
+  linarith
 
 /-- Rotation preserves the odd count. -/
 theorem oddCount_rotateWord : ∀ (k : ℕ) (w : List Branch),

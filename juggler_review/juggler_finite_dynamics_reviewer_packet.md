@@ -80,8 +80,12 @@ Appendix C; Theorem 4.4 uses only the envelope's nonnegativity.
 Inverse-cell geometry classifies minimum-based words with at
 most three evens; the family calculations (Appendix D) assemble
 to \(e\ge 4\), hence period at least eleven (Theorem 3.22). The
-financing inequality at a cycle minimum, with the certified
-descent floor of Proposition 1.3, yields \(L\ge 25781\).
+financing inequality at a cycle minimum (Theorem 4.4,
+constant \(1\)), with the convenient statewise bound of
+Corollary 4.5 and the certified descent floor of
+Proposition 1.3, yields \(L\ge 25781\). Theorem 4.6 certifies
+that bound with a conservative \(6/5\) majorant; the cutoff is
+not an artifact of that majorant.
 Finance-survivor lengths through \(10^5\) and their lattice
 are supporting material. Short certificates are a remark in
 Section 5, which also names the next inequality as a
@@ -121,9 +125,10 @@ says nothing about the deterministic shift).
 | Gapped leftovers as cycle words (Theorem 3.21) | **EXACT — LEAN VERIFIED** | both gapped families; rotation of already-excluded CycleMins; not first-E at a non-minimum start; not a length-8 or length-9 census |
 | Canonical run form (Lemma 3.21b); classification (Lemma 3.21a); even-count assembly (Theorem 3.22); period at least eleven (Corollary 3.23) | **EXACT — LEAN VERIFIED** | minimum-based words are \(O^aEO^bEO^cE\); no cycle word with fewer than four evens; expansion corollary, not a length-9 or length-10 word census |
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7, Appendix C); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists; recorded for future work |
-| Finance inequality (Theorem 4.4) | **EXACT — LEAN VERIFIED** | `cycleMin_finance`; constant \(1\); not a halt theorem |
-| Per-length exclusion given a floor (Corollary 4.5) | **EXACT — HUMAN PROOF** | \(6/5\) table; conservative relative to Theorem 4.4 |
-| Verified computation (Theorem 4.6) | **COMPUTATIONALLY VERIFIED** | verified descent floor \(10^6\); no period \(\le 25780\); \(141\) exceptions through \(10^5\); first length not excluded is \(25781\) |
+| Finance inequality (Theorem 4.4) | **EXACT — LEAN VERIFIED** | `cycleMin_finance`; constant \(1\); conceptual sharp form; not a halt theorem |
+| Inv-sum form (Corollary 4.4c) | **EXACT — LEAN VERIFIED** | `cycleMin_finance_inv_sum`; same defects, remainders kept as \(1/x_{i+1}\) |
+| Per-length exclusion given a floor (Corollary 4.5) | **EXACT — HUMAN PROOF** | convenient length-only statewise bound; \(n_{\max}\) from the parity charge |
+| Verified computation (Theorem 4.6) | **COMPUTATIONALLY VERIFIED** | conservative \(6/5\) certification of Corollary 4.5 at floor \(10^6\); no period \(\le 25780\); \(141\) exceptions through \(10^5\); first length not excluded is \(25781\); the cutoff is not an artifact of \(6/5\) |
 | Run-type packing (Theorem 4.7) | **EXACT — HUMAN PROOF** | \(\mathtt{OE}\)-starts lift to \(n^{4/3}\); not Lean |
 | Run-type table (Theorem 4.8) | **COMPUTATIONALLY VERIFIED** | \(42\) of the \(141\) die; \(99\) remain; first survivor still \(25781\) |
 | Survivor lattice (Proposition 4.9) | **EXACT — LEAN VERIFIED** | unimodular basis and family arithmetic; identification with \(\mathcal E_{\mathrm{run}}\) is Theorem 4.8 |
