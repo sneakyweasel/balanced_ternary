@@ -391,3 +391,7 @@ def test_paper_finance_hierarchy():
     assert "6/5 parity form" not in text
     assert "in the conservative $6/5$ form" not in text
     assert r"in the conservative \(6/5\) form" not in text
+    assert "**Roles.**" in text
+    assert "To the best of our knowledge" in text
+    assert "systematic literature search remains" not in text
+    assert "The computation supplies the endpoint" in text

@@ -296,19 +296,17 @@ the pure amplitude-product model (Conjecture 7.5)?
 ## Decision
 
 **PROMOTE** Paper A as the submission candidate after the
-finance-hierarchy pass: Theorem 4.4 is the conceptual sharp
-inequality (constant \(1\), `cycleMin_finance`); Corollary 4.4c
-is the inv-sum form (`cycleMin_finance_inv_sum`, now in
-`CycleFinance.lean`); Corollary 4.5 is the convenient
-length-only statewise bound; Theorem 4.6 certifies the table
-with the conservative coefficient \(6/5\), and the cutoff
-\(25781\) is not an artifact of that majorant. The abstract
-and introduction state known floor plus new finance implies
-\(L\ge 25781\); Section 3 opens with the canonical run form and
-headlines Theorem 3.22; Lemma 4.4b records odd-count
-monotonicity; Theorem 4.7 is retained as the second supporting
-result; 141→99 and the lattice remain demoted. Peak bounds and
-the closed return-cost branch stay out of the note.
+mechanism-first pass: the abstract and introduction lead with
+the defect-financing mechanism, then the implication
+\(L\ge 25781\); Proposition 1.3 records the floor as
+computational input; the literature claim is now
+to-the-best-of-our-knowledge after a named source check;
+141→99 and the lattice stay one compact supporting subsection;
+peak count is named as future work only. Theorem 4.4 remains
+the conceptual sharp inequality (constant \(1\)); Corollary 4.5
+is the statewise bound; Theorem 4.6 is the conservative
+\(6/5\) certification. The closed return-cost branch and
+peak-count theorems stay out of the note.
 The unused global defect stays in Appendix C. Option B is not
 reopened. The state-distribution finance program stays **PARK**.
 Return-cost coupling is **CLOSE**.

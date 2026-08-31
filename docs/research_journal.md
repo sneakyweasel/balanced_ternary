@@ -16815,4 +16815,71 @@ Best next question
 - none from this editorial pass
 ```
 
+## Paper A mechanism-first pass: literature, floor roles, shorter leftovers
+
+- **Date:** 2026-08-31
+- **Objective:** Apply the remaining referee items on the 31 August 2026 note: mechanism before the number; floor as input; shorter 141/99/lattice; documented literature check; peak count as future work only
+- **Hypotheses:** none; editorial. No new theorem. Return-cost and peak-count theorems stay closed
+- **Major results:** Abstract and introduction now lead with the defect-financing mechanism, then \(L\ge 25781\). Proposition 1.3 has an explicit roles split. Related work replaces the external-review-gate sentence with a named source check and ``to the best of our knowledge''. Run packing and the lattice are one compact supporting stretch. Section 5 names \(p\) as the next direction and notes the floor-power pattern for other maps. No new Lean, no new table
+- **Refuted ideas:** none
+- **Literature:** Pickover, Weisstein, OEIS A094683/A007320/A094716, Prasad--Prasad 2025, Lagarias, Eliahou, Simons--de Weger, Crandall, Matthews--Watts; no published Juggler period bound found
+- **Open:** none from this editorial pass
+- **Decision:** PROMOTE the rewritten note as the submission candidate
+
+```text
+What was learned
+- the theorem is the mechanism; 25781 is the consequence
+- the floor is input; termination is not proved
+- 141/99/lattice organize the leftover table, not a second narrative
+- a named source check supports to-the-best-of-our-knowledge
+- peak count stays future work
+Strongest theorem
+- unchanged (Theorem 4.4 and Theorem 4.6(A))
+Strongest refutation
+- none; presentation only
+Reusable machinery
+- none
+Branch status
+- PROMOTE
+Why
+- the remaining referee items were exposition, not a stronger bound
+Best next question
+- none from this editorial pass
+```
+
+## Juggler twin-flight of nearby same-parity starts
+
+- **Date:** 2026-08-31
+- **Objective:** Test whether nearby same-parity starts merge, shadow, phase-shift, or isolate, especially around named hard trajectories
+- **Hypotheses:** the even square-root cell makes hard flights local families rather than singletons
+- **Major results:** Classification **TWIN_FLIGHT_CLOSED**. Hard-window adjacent \((n,n+2)\) contact \(0.522\) versus control \(0.550\) on odd \(n\le 2000\); long shadows \(0\). First-step \(\delta_1(37)=18/243\approx 0.074\) against \(3/37\); lab-neighbor \(\max\delta=1\). \(37\) is height-isolated and state-disjoint from \(35,39\). Neighbor “contact” is late joining at \(11,27,5,4,3\), not a shared high flight. \(365/501\) share \(763\) remains the known non-adjacent inheritance. No Lean. Paper A unchanged. Coalescence is not termination
+- **Refuted ideas:** hard-specific coalescence or persistent shadow; first-step closeness persists; a record high-water mark is surrounded by similarly high neighbors
+- **Literature:** `oeis-A094683`, `oeis-A007320`, `pickover-1991-computers-imagination`
+- **Open:** none from twin-flight
+- **Decision:** CLOSE
+
+```text
+What was learned
+- (n, n+2) is a real pair object; first-step δ_1 is O(1/n)
+- that closeness amplifies to δ=1; there are no long shadows
+- hard-window contact matches the generic control (~1/2)
+- even-reset merges exist, at the generic rate
+- record heights are isolated; neighbor contact is the small basin
+- 365/501 at 763 is not an n+2 law
+Strongest theorem
+- none; bounded observation only
+Strongest refutation
+- nearby same-parity starts around hard laboratories do not
+  coalesce or shadow more than generic odd pairs
+Reusable machinery
+- pair compare (merge / shift / shadow / separate) in twin_flight.py
+Branch status
+- CLOSE
+Why
+- the family hypothesis is false at the named window; expanding
+  to 10^5 starts would only recount generic basin joining
+Best next question
+- none from twin-flight
+```
+
 

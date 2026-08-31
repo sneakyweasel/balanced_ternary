@@ -165,6 +165,101 @@ def budget_rhs_upper(
     return raw * (1.0 + PARITY_REL_GUARD) + PARITY_ABS_PAD
 
 
+def budget_rhs_lower(
+    n: int,
+    length: int,
+    odd_count: int,
+    *,
+    const: float = EPS_CONST,
+    unique_min: bool = True,
+    drop_max_even: bool = False,
+) -> float:
+    raw = budget_rhs(
+        n,
+        length,
+        odd_count,
+        const=const,
+        unique_min=unique_min,
+        drop_max_even=drop_max_even,
+    )
+    if not math.isfinite(raw):
+        return 0.0
+    return max(0.0, raw * (1.0 - PARITY_REL_GUARD) - PARITY_ABS_PAD)
+
+
+def budget_survives_floor(
+    length: int,
+    odd_count: int,
+    theta: float,
+    n0: int,
+    *,
+    const: float = EPS_CONST,
+    unique_min: bool = True,
+    drop_max_even: bool = False,
+) -> bool:
+    start = max(n0 + 1, MIN_STATE)
+    theta_hi = theta * (1.0 + PARITY_REL_GUARD)
+    return theta_hi < budget_rhs_lower(
+        start,
+        length,
+        odd_count,
+        const=const,
+        unique_min=unique_min,
+        drop_max_even=drop_max_even,
+    )
+
+
+def budget_n_max(
+    length: int,
+    odd_count: int,
+    theta: float,
+    *,
+    const: float = EPS_CONST,
+    unique_min: bool = True,
+    drop_max_even: bool = False,
+) -> int:
+    """Largest n at which the padded packed inequality can still hold."""
+
+    def holds(n: int) -> bool:
+        return theta <= budget_rhs_upper(
+            n,
+            length,
+            odd_count,
+            const=const,
+            unique_min=unique_min,
+            drop_max_even=drop_max_even,
+        )
+
+    if not holds(MIN_STATE):
+        lo = 2
+        hi = MIN_STATE - 1
+        if not holds(lo):
+            return 1
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if holds(mid):
+                lo = mid
+            else:
+                hi = mid - 1
+        return lo
+    hi = MIN_STATE
+    while holds(hi):
+        if hi > 10**18:
+            return hi
+        nxt = hi * 2
+        if nxt <= hi:
+            return hi
+        hi = nxt
+    lo = hi // 2
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if holds(mid):
+            lo = mid
+        else:
+            hi = mid - 1
+    return lo
+
+
 def budget_excludes(
     length: int,
     odd_count: int,

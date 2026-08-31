@@ -88,9 +88,10 @@ that bound with a conservative \(6/5\) majorant; the cutoff is
 not an artifact of that majorant.
 Finance-survivor lengths through \(10^5\) and their lattice
 are supporting material. Short certificates are a remark in
-Section 5, which also names the next inequality as a
-state-distribution bound on \(\sum 1/(x_i\log x_i)\); that
-bound is not proved.
+Section 5. Peak count \(p\) is named there as the next
+direction; no peak-count theorem is claimed. The same
+defect-financing pattern is noted for other piecewise
+floor-power maps and is not taken up.
 
 **Paper B.** An exact-linearization discrepancy calculus with a
 kernel theorem for the level-2 floor defect proves every *O-rooted*

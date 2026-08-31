@@ -85,7 +85,10 @@ TEST_SEEDS = (25, 37, 365)
 REPORT_FLOORS = (11, 1_000, 1_000_000, 2_000_000, 68_000_000, 10**9)
 GREEN_PREFIX = 100
 STEP_CAP = 100_000
-BIT_CAP = 80_000_000
+# Hard seeds at the 26.3M floor: 13782577 peaks at 160M bits,
+# 13184021 at 269M bits. 512M is the working cap.
+# Override with JUGGLER_FLOOR_BIT_CAP.
+BIT_CAP = 512_000_000
 PROGRESS_MIN_N = 100_000
 PROGRESS_CHUNK = 250_000
 PROGRESS_PATH = DATA_DIR / "floor_progress.json"
@@ -853,13 +856,22 @@ def census_cross_check(rows: list[dict[str, Any]]) -> dict[str, Any]:
 
 def _odd_chunk_first_passage(
     start: int, stop: int, step_cap: int, bit_cap: int
-) -> tuple[list[int], int, int, int]:
-    """Walk odds in [start, stop]. Returns failures, max_steps, hardest, max_bits."""
+) -> tuple[list[int], list[int], list[int], int, int, int, int, int]:
+    """Walk odds in [start, stop].
 
-    failures: list[int] = []
+    Returns step-cap failures, bit-cap failures, other failures,
+    max_steps, hardest, max_bits, max_bits_seed, total_steps.
+    Parity and the iterate use exact integer arithmetic only.
+    """
+
+    step_failures: list[int] = []
+    bit_failures: list[int] = []
+    other_failures: list[int] = []
     max_steps = 0
     hardest = 0
     max_bits = 0
+    max_bits_seed = 0
+    total_steps = 0
     if start % 2 == 0:
         start += 1
     for n in range(start, stop + 1, 2):
@@ -877,19 +889,30 @@ def _odd_chunk_first_passage(
             if bits > local_bits:
                 local_bits = bits
             if steps > step_cap:
-                failures.append(n)
+                step_failures.append(n)
                 ok = False
                 break
             if bits > bit_cap:
-                failures.append(n)
+                bit_failures.append(n)
                 ok = False
                 break
+        total_steps += steps
         if local_bits > max_bits:
             max_bits = local_bits
+            max_bits_seed = n
         if ok and steps > max_steps:
             max_steps = steps
             hardest = n
-    return failures, max_steps, hardest, max_bits
+    return (
+        step_failures,
+        bit_failures,
+        other_failures,
+        max_steps,
+        hardest,
+        max_bits,
+        max_bits_seed,
+        total_steps,
+    )
 
 
 def _floor_workers(n_top: int, workers: int | None) -> int:
@@ -946,18 +969,38 @@ def verify_floor(
 
     if progress is None:
         progress = n_top >= PROGRESS_MIN_N
+    env_bits = os.environ.get("JUGGLER_FLOOR_BIT_CAP")
+    if env_bits:
+        bit_cap = max(bit_cap, int(env_bits))
     worker_count = _floor_workers(n_top, workers)
     max_steps = 0
     max_bits = 0
     hardest = 0
-    failures: list[int] = []
+    max_bits_seed = 0
+    total_steps = 0
+    step_failures: list[int] = []
+    bit_failures: list[int] = []
+    other_failures: list[int] = []
     started = time.perf_counter()
 
-    def absorb(chunk_fail: list[int], chunk_steps: int, chunk_hard: int, chunk_bits: int) -> None:
-        nonlocal max_steps, max_bits, hardest
-        failures.extend(chunk_fail)
+    def absorb(
+        chunk_step: list[int],
+        chunk_bit: list[int],
+        chunk_other: list[int],
+        chunk_steps: int,
+        chunk_hard: int,
+        chunk_bits: int,
+        chunk_bits_seed: int,
+        chunk_total: int,
+    ) -> None:
+        nonlocal max_steps, max_bits, hardest, max_bits_seed, total_steps
+        step_failures.extend(chunk_step)
+        bit_failures.extend(chunk_bit)
+        other_failures.extend(chunk_other)
+        total_steps += chunk_total
         if chunk_bits > max_bits:
             max_bits = chunk_bits
+            max_bits_seed = chunk_bits_seed
         if chunk_steps > max_steps:
             max_steps = chunk_steps
             hardest = chunk_hard
@@ -979,7 +1022,13 @@ def verify_floor(
                 "hardest_seed": hardest,
                 "max_steps": max_steps,
                 "max_bits": max_bits,
-                "failure_count": len(failures),
+                "max_bits_seed": max_bits_seed,
+                "total_steps": total_steps,
+                "failure_count": (
+                    len(step_failures) + len(bit_failures) + len(other_failures)
+                ),
+                "bit_failure_count": len(bit_failures),
+                "step_failure_count": len(step_failures),
                 "workers": worker_count,
             }
         )
@@ -1019,13 +1068,20 @@ def verify_floor(
     if progress:
         emit(n_top)
 
+    failures = step_failures + bit_failures + other_failures
     return {
         "n_top": n_top,
         "verified": not failures,
         "failures": failures[:20],
+        "step_failures": step_failures[:20],
+        "bit_failures": bit_failures[:20],
         "max_first_passage_steps": max_steps,
         "hardest_seed": hardest,
         "max_bits_seen": max_bits,
+        "max_bits_seed": max_bits_seed,
+        "total_first_passage_steps": total_steps,
+        "step_cap": step_cap,
+        "bit_cap": bit_cap,
         "workers": worker_count,
         "elapsed_s": time.perf_counter() - started,
     }

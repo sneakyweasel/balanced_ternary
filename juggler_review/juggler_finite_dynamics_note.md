@@ -26,27 +26,22 @@ J(n)=
 \]
 It is conjectured that every positive integer eventually reaches \(1\).
 
-We derive a cycle-minimum financing inequality by combining the
-exact floor-power cells of \(J\) with a logarithmic defect
-estimate. For a hypothetical cycle of length \(L\) with \(o\) odd
-steps and minimum \(n\), the floor errors must satisfy
+We develop a cycle-financing inequality for this floor-power map.
+Exact integer cells give a one-step logarithmic defect; cycle
+minimality lets that defect be unrolled against the cycle
+minimum; the formal surplus \(3^o-2^L\) must then be paid by a
+finite accumulated budget. For a hypothetical cycle of length
+\(L\) with \(o\) odd steps and minimum \(n\),
 \[
 n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 \]
-The novelty is not a new computational record. It is the
-implication
-\[
-\text{known verification through }10^6
-\ +\
-\text{this inequality}
-\quad\Rightarrow\quad
-L\ge 25781.
-\]
-Thus any nontrivial Juggler cycle, if one exists, has period at
-least \(25781\). We also prove that every such cycle contains at
-least four even steps, and hence has period at least eleven. The
-core arguments are formalized in Lean 4; the finite numerical
-tables are independently certified computations.
+As a consequence, combining the inequality with the known
+verification through \(10^6\) yields \(L\ge 25781\). The novelty
+is not a new computational record; it is that implication. We
+also prove that every nontrivial cycle contains at least four
+even steps, and hence has period at least eleven. The core
+arguments are formalized in Lean 4; the finite numerical tables
+are independently certified computations.
 
 **2020 Mathematics Subject Classification.** 11B83, 37P99, 11Y55.
 
@@ -68,22 +63,45 @@ A word of length \(k\) with \(o\) odd letters has ideal exponent
 \(3^o/2^k\). Floors are applied after every letter, and a word is
 available only when the orbit realizes those parities.
 
-Write \(N_0=10^6\) for the *verified descent floor* reported by
-Weisstein [5] and recomputed here by exact first-passage. The
-contribution is the implication
+The mechanism is the interaction of three elementary facts:
+exact integer cells, a logarithmic defect, and cycle
+minimality. Exact cells give a one-step logarithmic defect;
+cycle minimality lets the defect be unrolled against the cycle
+minimum; the formal surplus \(3^o-2^L\) must then be paid by a
+finite accumulated budget. That is Theorem 4.4:
 \[
-\text{existing verification through }10^6
+n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
+\]
+The inequality \(\log(1+u)\le u\) is the only analytic input; it
+is not the content of the theorem.
+
+Write \(N_0=10^6\) for the *verified descent floor* reported by
+Weisstein [5] and recomputed here by exact first-passage. That
+floor is an input, not the result. Combined with Theorem 4.4 it
+gives
+\[
+\text{known verification through }10^6
 \ +\
-\text{new Juggler-specific finance}
+\text{this inequality}
 \quad\Rightarrow\quad
 L\ge 25781.
 \]
-The mechanism is the interaction of three elementary facts:
-exact integer cells, a logarithmic defect, and cycle
-minimality. Together they convert a formal exponential surplus
-into a finite accumulated floor-error budget. The logarithm
-inequality \(\log(1+u)\le u\) is the only analytic input; it
-is not the content of the theorem.
+The architecture is
+\[
+\text{envelope}
+\to
+\text{cycle minimum}
+\to
+\text{finance}
+\to
+n_{\max}(L)
+\to
+N_0=10^6
+\to
+L\ge 25781.
+\]
+The computation supplies the endpoint \(10^6\). The mathematics
+amplifies that floor to the period bound.
 
 Roadmap. Section 2 records the power envelope and the exact
 defect identity that explains it. Section 3 classifies
@@ -152,16 +170,19 @@ OEIS A094716 [6] records extreme heights, including the start
 \(48443\) whose peak has \(972\,463\) digits. Those height
 records do not bound the period.
 
-We found no published result establishing an explicit lower bound
-on the period of a nontrivial cycle for this exact floor-power
-Juggler map. Prasad--Prasad [7] estimate excursion
-and stopping constants for juggler-like maps by a random-walk
-large-deviation model; those estimates do not apply to exact
-cycles. Small-cycle censuses are a standard first layer for
-Collatz-like maps, surveyed by Lagarias [8,9]. Those results do not
-transfer: the branches of \(J\) are floor powers rather than affine
-maps (Crandall [10], Matthews--Watts [11]). In particular there is
-no identity of the form \(n(2^K-3^p)=C\).
+Prasad--Prasad [7] estimate excursion and stopping constants for
+juggler-like maps by a random-walk large-deviation model; those
+estimates do not apply to exact cycles. Small-cycle censuses are
+a standard first layer for Collatz-like maps, surveyed by
+Lagarias [8,9]. Those results do not transfer: the branches of
+\(J\) are floor powers rather than affine maps (Crandall [10],
+Matthews--Watts [11]). In particular there is no identity of the
+form \(n(2^K-3^p)=C\). A check of Pickover [1,2], Weisstein [5],
+the OEIS records [3,4,6], the Prasad--Prasad estimates [7], and
+the standard Collatz cycle-bound sources [8--13] found no
+published explicit lower bound on the period of a nontrivial
+cycle for this exact floor-power Juggler map. Informal near-miss
+notes and later unverified webpage floors are not used.
 
 The layers of the argument are as follows.
 
@@ -184,9 +205,9 @@ argument below is elementary and independent of the Diophantine
 tools of [12]: floor-power defects are relatively \(O(1/x)\) in
 logarithms, so a uniform logarithmic floor-error bound, valid
 above the verified floor, excludes every length that is not a
-finance-survivor for Theorem 4.4. The Juggler-specific inequality
-and the explicit period bound it produces appear to be new. A
-systematic literature search remains an external-review gate.
+finance-survivor for Theorem 4.4. To the best of our knowledge,
+the Juggler-specific inequality and the explicit period bound it
+produces are new.
 
 **Novelty statement.**
 For this nonlinear floor-power map, exact floor defects convert
@@ -214,6 +235,12 @@ has \(253\) steps (seed \(78901\)). Weisstein [5] records the
 same computational verification; the run here is an independent
 recomputation. The certificate files, SHA-256 hashes, and
 regeneration commands are Appendix B.
+
+**Roles.** Independently proved: the finance inequality
+(Theorem 4.4). Computational input: every \(2\le n\le 10^6\)
+reaches \(1\) (this proposition). Independently recomputed: the
+exact first-passage run of Appendix B. Not proved: global
+termination.
 
 Theorem 4.6 applies Corollary 4.5 to this input and certifies
 the table with the conservative coefficient \(6/5\). Theorem 4.7
@@ -1181,21 +1208,14 @@ set in range is \(\mathcal E\); checksums are Appendix B.
 
 ### Run packing
 
-Theorem 4.7 refines the crude charge \(L/(n\log n)\) by
-separating the unique minimum, \(\mathtt{OOE}\)-scale valleys,
+Theorem 4.7 refines the length-only charge by separating the
+unique minimum, \(\mathtt{OOE}\)-scale valleys,
 \(\mathtt{OE}\)-scale valleys, internal odds, and evens. It is
-the second supporting result of the note. The \(141\to 99\)
-count is only the leftover of that comparison.
-
-The length-only bound charges every valley at the cycle minimum.
-A cycle cannot put an \(\mathtt{OE}\)-start at that minimum: the
-next state is even and, by Theorem 3.2, at least \(n^2\). An
-\(n\)-circuit with \(k\) odd letters and \(\ell\) even letters
-lands at most at \(n^{3^k/2^{k+\ell}}\) (floors only make the
-landing smaller), so the landing stays at least \(n\) only if
-\(3^k\ge 2^{k+\ell}\). In particular \(k=1\) is impossible from
-\(n\), and a \(k=2\) circuit from \(n\) can take only
-\(\ell=1\).
+a supporting comparison at the same floor; the leftover count
+\(141\to 99\) does not raise the cutoff. A cycle cannot put an
+\(\mathtt{OE}\)-start at the minimum (Theorem 3.2), and an
+\(n\)-circuit of \(k\) odds and \(\ell\) evens stays at least
+\(n\) only if \(3^k\ge 2^{k+\ell}\).
 
 **Theorem 4.7 (run-type packing).**
 Let \(w\) be a cycle word of length \(L\) with \(o=o_{\min}(L)\)
@@ -1252,11 +1272,14 @@ is certified on each length: no entry is left uncertain. The
 \(42\) excluded lengths are exactly the arithmetic progression
 named in the statement. The complementary set in that range is
 \(\mathcal E_{\mathrm{run}}\). Checksums are Appendix B.
+The period cutoff remains \(25781\).
 \(\square\)
 
-The period cutoff remains \(25781\).
-
 ### Arithmetic structure of the finance survivors
+
+The leftover lengths cluster around the continued-fraction
+approximants of \(\log 2/\log 3\). That organizes the table; it
+does not constrain a hypothetical cycle.
 
 **Proposition 4.9 (finance-survivor lattice).**
 Write \(v_*=(25781,16266)\) and \(v_{1054}=(1054,665)\). Then
@@ -1301,13 +1324,19 @@ consecutive expanding blocks occur already at
 \xrightarrow{OOE}887471.
 \]
 
-Theorem 4.7 is organized around odd-run packing. A nontrivial
-constraint \(p_{\min}(L)\le p\le p_{\max}(L)\) on the number of
-odd runs of a hypothetical cycle would feed the same
-optimization; no such bound is proved here. A state-dependent
-lower bound on \(\Delta_w\), or a sharper upper bound on
-\(\sum 1/(x_i\log x_i)\) than minimum-state charging, could
-raise the cutoff. Neither is claimed.
+The next concrete direction is the number \(p\) of odd runs on a
+minimum-based cycle. The run form already gives \(p\le e\) and,
+because the first odd run has length at least two, \(p\le o-1\),
+hence \(p\le\min(e,o-1)<0.3691\,L\) on an expanding word. That
+is only the trivial ceiling. A genuine lower bound on \(p\), or
+a peak-height / peak-count tradeoff, would feed Theorem 4.7.
+Neither is proved here.
+
+The same pattern --- a piecewise power map, integer rounding,
+and a cycle minimum --- produces a defect-financing obstruction.
+The Juggler-specific content is the interaction of \(x^{3/2}\)
+and \(x^{1/2}\). Analogous questions for other piecewise
+floor-power maps are not taken up here.
 
 Lean names are in Appendix A. The computational certificate is
 Proposition 1.3.

@@ -1,0 +1,40 @@
+{
+  "classification": "TWIN_FLIGHT_CLOSED",
+  "reason": "hard-window adjacent pairs match the control (generic coalescence: contact 0.522 vs 0.550; shadow 0.000 vs 0.000)",
+  "hard_adjacent": {
+    "pairs": 90,
+    "counts": {
+      "exact_merge": 26,
+      "shifted_flight": 21,
+      "long_shadow": 0,
+      "separate": 41,
+      "capped_shadow": 0,
+      "capped_separate": 2
+    },
+    "contact_rate": 0.5222222222222223,
+    "shadow_rate": 0.0,
+    "separate_rate": 0.45555555555555555,
+    "even_reset": 24
+  },
+  "control": {
+    "n_max": 2000,
+    "pairs": 999,
+    "counts": {
+      "exact_merge": 333,
+      "shifted_flight": 216,
+      "long_shadow": 0,
+      "separate": 450,
+      "capped_shadow": 0,
+      "capped_separate": 0
+    },
+    "contact_rate": 0.5495495495495496,
+    "shadow_rate": 0.0,
+    "separate_rate": 0.45045045045045046
+  },
+  "isolated_labs": [
+    37
+  ],
+  "contact_elevated": false,
+  "shadow_elevated": false,
+  "calibration_365_501_at_763": true
+}

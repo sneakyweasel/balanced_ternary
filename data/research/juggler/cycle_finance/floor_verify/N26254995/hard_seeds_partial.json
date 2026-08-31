@@ -1,0 +1,28 @@
+[
+  {
+    "n": 13782577,
+    "ok": true,
+    "reason": "descended",
+    "steps": 229,
+    "max_bits": 160004219,
+    "landing": 15848,
+    "bit_cap": 512000000,
+    "arithmetic": "gmpy2-mpz-isqrt",
+    "exact_integer": true,
+    "floating_point_used": false,
+    "elapsed_s": 1280.324403000006
+  },
+  {
+    "n": 13184021,
+    "ok": true,
+    "reason": "descended",
+    "steps": 262,
+    "max_bits": 269277860,
+    "landing": 126100,
+    "bit_cap": 512000000,
+    "arithmetic": "gmpy2-mpz-isqrt",
+    "exact_integer": true,
+    "floating_point_used": false,
+    "elapsed_s": 2389.4310474999947
+  }
+]
