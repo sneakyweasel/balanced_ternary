@@ -201,8 +201,11 @@ re-proved.
 
 ## Open questions
 
-None from two-/three-step defect correlation. A kill would
-require a complete word or a new global finance identity.
+None from two-/three-step defect correlation. The sharper
+map \(u\ge p\Rightarrow u'\le f(p)\) is also **CLOSE**
+([juggler_cycle_defect_anticluster.md](juggler_cycle_defect_anticluster.md)).
+A kill would require a complete word or a new global finance
+identity.
 
 ## Decision
 

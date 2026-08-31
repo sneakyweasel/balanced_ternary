@@ -25,3 +25,7 @@ Survivor lattice reading of the 99 lengths:
 `docs/theory/juggler_run_survivor_lattice_note.md`.
 Defect-correlation scan: `defect_correlation/summary.json`
 (`write_correlation_artifacts`; does not replace the tables).
+Remainder-finance scan: `remainder_finance/summary.json`
+(`write_remainder_artifacts`; does not replace the tables).
+Cross-excursion loss-persistence scan: `loss_persistence/summary.json`
+(`write_persistence_artifacts`; does not replace the tables).

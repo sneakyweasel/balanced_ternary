@@ -368,6 +368,7 @@ def test_dossier_boundary():
     assert "juggler_cycle_conditioned_closure_leftover_killer" in note
     assert "juggler_cycle_ordered_excursion_leftover_killer" in note
     assert "juggler_cycle_defect_correlation_leftover_killer" in note
+    assert "juggler_cycle_loss_persistence_leftover_killer" in note
     assert "juggler_cycle_budget_opt.md" in note
     assert "25780" in note
     assert "cycle_word_length_eighty_four_or_ge_eighty_five" in note

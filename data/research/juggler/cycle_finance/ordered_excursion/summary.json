@@ -268,6 +268,439 @@
     "forced_large_peak": false
   },
   "prefix_222_split": true,
+  "state_reopen": {
+    "controls": {
+      "365": {
+        "n": 365,
+        "runs": [
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "blocks": [
+          {
+            "v": 365,
+            "a": 2,
+            "peak": 582276,
+            "F": 763,
+            "env": 763,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 2
+          },
+          {
+            "v": 763,
+            "a": 2,
+            "peak": 3059506,
+            "F": 1749,
+            "env": 1749,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 2
+          },
+          {
+            "v": 1749,
+            "a": 2,
+            "peak": 19782308,
+            "F": 4447,
+            "env": 4447,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 2
+          },
+          {
+            "v": 4447,
+            "a": 2,
+            "peak": 161491284,
+            "F": 12707,
+            "env": 12707,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 1
+          },
+          {
+            "v": 12707,
+            "a": 1,
+            "peak": 1432400,
+            "F": 1196,
+            "env": 1196,
+            "deficit": 0,
+            "contracts": true,
+            "next_a": "even"
+          }
+        ],
+        "fourth": {
+          "v": 4447,
+          "a": 2,
+          "env3": 4449,
+          "deficit3": 2,
+          "band": "n43_to_n32",
+          "below_env3": true,
+          "ge_oe": true
+        }
+      },
+      "1517": {
+        "n": 1517,
+        "runs": [
+          2,
+          2,
+          2,
+          1,
+          3
+        ],
+        "blocks": [
+          {
+            "v": 1517,
+            "a": 2,
+            "peak": 14362030,
+            "F": 3789,
+            "env": 3789,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 2
+          },
+          {
+            "v": 3789,
+            "a": 2,
+            "peak": 112636568,
+            "F": 10613,
+            "env": 10613,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 2
+          },
+          {
+            "v": 10613,
+            "a": 2,
+            "peak": 1143235850,
+            "F": 33811,
+            "env": 33811,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 1
+          },
+          {
+            "v": 33811,
+            "a": 1,
+            "peak": 6217088,
+            "F": 2493,
+            "env": 2493,
+            "deficit": 0,
+            "contracts": true,
+            "next_a": 3
+          },
+          {
+            "v": 2493,
+            "a": 3,
+            "peak": 291028018566,
+            "F": 539470,
+            "env": 539471,
+            "deficit": 1,
+            "contracts": false,
+            "next_a": "even"
+          }
+        ],
+        "fourth": {
+          "v": 33811,
+          "a": 1,
+          "env3": 33820,
+          "deficit3": 9,
+          "band": "n43_to_n32",
+          "below_env3": true,
+          "ge_oe": true
+        }
+      },
+      "501": {
+        "n": 501,
+        "runs": [
+          2,
+          3,
+          2,
+          2,
+          2,
+          2,
+          1
+        ],
+        "blocks": [
+          {
+            "v": 501,
+            "a": 2,
+            "peak": 1187360,
+            "F": 1089,
+            "env": 1089,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 3
+          },
+          {
+            "v": 1089,
+            "a": 3,
+            "peak": 17781526790,
+            "F": 133347,
+            "env": 133347,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 2
+          },
+          {
+            "v": 133347,
+            "a": 2,
+            "peak": 339791341082,
+            "F": 582916,
+            "env": 582916,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": "even"
+          },
+          {
+            "v": 763,
+            "a": 2,
+            "peak": 3059506,
+            "F": 1749,
+            "env": 1749,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 2
+          },
+          {
+            "v": 1749,
+            "a": 2,
+            "peak": 19782308,
+            "F": 4447,
+            "env": 4447,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 2
+          },
+          {
+            "v": 4447,
+            "a": 2,
+            "peak": 161491284,
+            "F": 12707,
+            "env": 12707,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 1
+          },
+          {
+            "v": 12707,
+            "a": 1,
+            "peak": 1432400,
+            "F": 1196,
+            "env": 1196,
+            "deficit": 0,
+            "contracts": true,
+            "next_a": "even"
+          }
+        ],
+        "fourth": {
+          "v": 763,
+          "a": 2,
+          "env3": 6984,
+          "deficit3": 6221,
+          "band": "n_to_n98",
+          "below_env3": true,
+          "ge_oe": false
+        }
+      },
+      "6187": {
+        "n": 6187,
+        "runs": [
+          2,
+          3,
+          2,
+          1
+        ],
+        "blocks": [
+          {
+            "v": 6187,
+            "a": 2,
+            "peak": 339491658,
+            "F": 18425,
+            "env": 18425,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": 3
+          },
+          {
+            "v": 18425,
+            "a": 3,
+            "peak": 248742471750750,
+            "F": 15771571,
+            "env": 15771578,
+            "deficit": 7,
+            "contracts": false,
+            "next_a": 2
+          },
+          {
+            "v": 15771571,
+            "a": 2,
+            "peak": 15675400641582836,
+            "F": 125201440,
+            "env": 125201440,
+            "deficit": 0,
+            "contracts": false,
+            "next_a": "even"
+          },
+          {
+            "v": 11189,
+            "a": 1,
+            "peak": 1183550,
+            "F": 1087,
+            "env": 1087,
+            "deficit": 0,
+            "contracts": true,
+            "next_a": 1
+          }
+        ],
+        "fourth": {
+          "v": 11189,
+          "a": 1,
+          "env3": 250274,
+          "deficit3": 239085,
+          "band": "n_to_n98",
+          "below_env3": true,
+          "ge_oe": false
+        }
+      }
+    },
+    "same_justified_band_split": true,
+    "shared_band": "n43_to_n32",
+    "landing_4447": 4447,
+    "landing_33811": 33811,
+    "local_4447": {
+      "center": 4447,
+      "center_a": 2,
+      "radius": 400,
+      "a2_count": 92,
+      "pair_b": {
+        "even": 44,
+        "3": 3,
+        "2": 14,
+        "1": 27,
+        "5": 1,
+        "6": 1,
+        "4": 2
+      },
+      "distinct_odd_next": 6,
+      "overlap": true
+    },
+    "local_33811": {
+      "center": 33811,
+      "center_a": 1,
+      "radius": 400,
+      "a2_count": 90,
+      "pair_b": {
+        "even": 50,
+        "2": 6,
+        "1": 23,
+        "4": 6,
+        "5": 2,
+        "6": 1,
+        "3": 2
+      },
+      "distinct_odd_next": 6,
+      "overlap": true
+    },
+    "local_overlap": true,
+    "two_block_signs_small": {
+      "lo": 3,
+      "hi": 5000,
+      "counts": {
+        "1,1": 296,
+        "1,2": 184,
+        "1,3": 59,
+        "2,1": 157,
+        "2,2": 76,
+        "2,3": 37,
+        "3,1": 60,
+        "3,2": 33,
+        "3,3": 23
+      },
+      "flips": {
+        "1,1": 0,
+        "1,2": 0,
+        "1,3": 0,
+        "2,1": 0,
+        "2,2": 0,
+        "2,3": 0,
+        "3,1": 0,
+        "3,2": 0,
+        "3,3": 0
+      },
+      "flip_total": 0,
+      "reduces_to_mu": true
+    },
+    "two_block_signs_near": {
+      "lo": 1000001,
+      "hi": 1004002,
+      "counts": {
+        "1,1": 183,
+        "1,2": 136,
+        "1,3": 102,
+        "2,1": 123,
+        "2,2": 54,
+        "2,3": 15,
+        "3,1": 62,
+        "3,2": 40,
+        "3,3": 12
+      },
+      "flips": {
+        "1,1": 0,
+        "1,2": 0,
+        "1,3": 0,
+        "2,1": 0,
+        "2,2": 0,
+        "2,3": 0,
+        "3,1": 0,
+        "3,2": 0,
+        "3,3": 0
+      },
+      "flip_total": 0,
+      "reduces_to_mu": true
+    },
+    "compensation": {
+      "lo": 1000001,
+      "hi": 1004002,
+      "after_drop": {
+        "even": 516,
+        "1": 183,
+        "2": 136,
+        "5": 51,
+        "4": 20,
+        "3": 102,
+        "7": 23
+      },
+      "after_up": {
+        "2": 118,
+        "even": 488,
+        "6": 6,
+        "1": 233,
+        "3": 40,
+        "7": 4,
+        "4": 32,
+        "10": 1,
+        "5": 18,
+        "8": 2
+      },
+      "shared_odd_next": [
+        "1",
+        "2",
+        "3",
+        "4",
+        "5",
+        "7"
+      ],
+      "drop_forces_min_run": false
+    },
+    "mu_sign_flips": 0,
+    "reduces_to_mu": true,
+    "three_block_opened": false,
+    "new_leftover_killer": false,
+    "reparameterization_of": "juggler_cycle_ordered_excursion_leftover_killer"
+  },
   "unscaled_pairs_realized": true,
   "triple_222_realized": true,
   "pair_21_legal_near_n": false,

@@ -16320,4 +16320,106 @@ Best next question
 - none from correlated floor-defect finance
 ```
 
+## Juggler state-dependent block reopen
+
+- **Date:** 2026-08-31
+- **Objective:** Re-test whether the exact valley \(v_i\) together with run length \(a_i\) yields a reusable ordered transition law that ordered-excursion closure missed by compressing too early
+- **Hypotheses:** \(v_{i+1}=F_{a_i}(v_i)\) and the pair \((v_i,a_i)\) constrain \(a_{i+1}\) or force a two-block return/compensation inequality invisible to \(\mu(a)=3^a/2^{a+1}\)
+- **Major results:** After three `OOE`, \(4447\) and \(33811\) share the justified band \([n^{4/3},n^{3/2})\) and sit just below \(n^{729/512}\), but the next runs are \(2\) and \(1\). Local \(B_2\) of radius \(400\) around each landing realizes both sequel \(1\) and sequel \(2\). Two-block sign \(F_b(F_a(v))\lessgtr v\) matches \(\mathrm{sign}(\mu(a)\mu(b)-1)\) with \(0\) flips on \([3,5000)\) and \([10^6+1,10^6+4002)\). A drop does not force a large next run. Three-block composition was not opened. Artifact key `state_reopen` in `ordered_excursion/summary.json`. No second leftover-killer, no ledger row, no Paper A, no Lean
+- **Refuted ideas:** exact-\((v,a)\) transition regions \(C_{a,b}\); two-block sign finer than \(\mu(a)\mu(b)\); drop-forces-compensation. Same leftover-killer (`juggler_cycle_ordered_excursion_leftover_killer`)
+- **Literature:** closed ordered excursion / block-map \(Q\)-state / pair-level and finance-conditioned closure; existing `power_bound_word` / `oe_start_min`
+- **Open:** none from retaining the integer valley
+- **Decision:** CLOSE as a REPARAMETERIZATION of ordered excursion. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- 4447 and 33811 are the same relative scale, not two cells
+- local B_2 around each landing is multi-valued
+- every tested two-block return sign is sign(mu(a)mu(b)-1)
+- a contracting block does not force a large sequel
+- three-block composition is the word-level boundary
+Strongest theorem
+- none new; two-block persistence remains 243<256
+Strongest refutation
+- same justified band, different next run, 0 mu-sign flips
+Reusable machinery
+- control_state_row / local_next_runs / mu_product_expands
+Branch status
+- CLOSE
+Why
+- Falsifier A and Falsifier B of the pasted brief: transition
+  regions overlap, and every two-block inequality is the old
+  exponent product. This is the closed ordered-excursion object
+Best next question
+- none from state-dependent block closure
+```
+
+## Juggler cross-excursion usable-loss persistence
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether large usable odd-run floor loss can persist at successive CycleMin-scale valleys, or whether \(\max(R_0+R_1)\) is strictly below the independent pair of maxima
+- **Hypotheses:** near-top remainders occur, but cannot occur repeatedly at finance-critical odd valleys; a two-excursion deficit would cut `budget_rhs` on \(\mathcal E_{\mathrm{run}}(10^6)\)
+- **Major results:** After dropping landings \(v_1<n\), \(2878\) valley pairs and \(2297\) `OE`-scale pairs remain. \(\max\min(U_0,U_1)=0.9767\) at \(n=1018335\); \(\max(U_0+U_1)=1.968\) at `OOE` \(n=1000301\) (\(U_0=0.974\), \(U_1=0.994\)). `OOE` persistence at \(c=0.9\) is positive (\(0.175>0.066\)). Finance-weighted correlation is \(\approx 0\). A uniform factor \(0.977\) would bookkeeping-kill \(55293\) and would not touch \(25781\); that cut is not a theorem. Artifact `loss_persistence/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** two-excursion usable-loss leftover-killer (`juggler_cycle_loss_persistence_leftover_killer`)
+- **Literature:** closed remainder-finance and defect-correlation; existing cell-top logarithm / run-type packing; same Simons–de Weger finance template
+- **Open:** none from cross-excursion usable-loss coupling
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- usable loss is the cell-top log along two Q-blocks
+- consecutive CycleMin-scale excursions can both sit near max
+- OOE near-top events cluster (positive persistence)
+- finance weighting does not create anti-correlation
+- the c=0.99 double-zero is a sample of 25 first hits
+Strongest theorem
+- cheap OE from n never returns v1≥n (existing n^{3/4} landing)
+Strongest refutation
+- OOE n=1000301 has U0+U1=1.968 with U1=0.994 at v1=5625317
+Reusable machinery
+- odd_loss / pair_record / loss_persistence/summary.json
+Branch status
+- CLOSE
+Why
+- Falsifier: pair maxima equal the independent maxima.
+  Near-top OOE events are positively persistent, the opposite
+  of a two-excursion tax
+Best next question
+- none from cross-excursion usable-loss persistence
+```
+
+## Juggler near-top defect anti-clustering
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether \(u(x)\ge p\) forces \(u(T(x))\le f(p)<1\) with a gap strong enough to cut `budget_rhs`, especially at \(p\approx 0.988\)
+- **Hypotheses:** near-top floor defects anti-cluster at two successive odd states; \(\delta\) or \(\lambda\) might expose a stronger exact pair law than \(u\)
+- **Major results:** \(u,\delta,\lambda\) are **REPARAMETERIZATION** of \(\rho=x^3-y^2\). On consecutive odds in \([10^6+1,3\cdot10^6)\): \(2893\) pairs with \(u\ge 0.995\), \(f(0.995)=0.999958\); \(12\) pairs have both coordinates \(\ge 0.995\); \(576\) pairs with \(u\ge 0.999\), \(f(0.999)=0.9936>0.988\). Witness \(x=2745367\): \((u,u')=(0.99759,0.99989)\). At \(10^7\), \(x=10356211\) gives \((0.99889,0.99850)\). Artifact `defect_anticluster/summary.json`. No ledger row, no Paper A, no Lean. Phases 2–13 not opened
+- **Refuted ideas:** near-top anti-clustering leftover-killer (`juggler_cycle_defect_anticluster`)
+- **Literature:** closed defect-correlation and remainder-finance; existing `two_step_mordell_identity` / `global_defect_append`; same Simons–de Weger finance template
+- **Open:** none from two-step defect anti-clustering
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- u, delta, lambda share the same numerator rho
+- f(0.995)=0.99996 on 2893 OO pairs; no finance-useful gap
+- twelve same-pair samples have both u,u' >= 0.995
+- (0.9976, 0.99989) and (0.9989, 0.9985) are realized
+- f(0.999)=0.9936 still exceeds the 0.988 factor at L=55293
+Strongest theorem
+- at fixed x, u, delta, and lambda are strictly monotone in rho
+Strongest refutation
+- x=2745367 is OO-legal with (u,u')=(0.99759,0.99989)
+Reusable machinery
+- odd_observables / defect_anticluster/summary.json
+Branch status
+- CLOSE
+Why
+- Falsifier A: near-top defects occur repeatedly. Falsifier B:
+  even the extreme-tail f(0.999) cannot cut L=55293. This is
+  the closed 0.9-corner result at a sharper threshold
+Best next question
+- none from two-step defect anti-clustering
+```
+
 

@@ -13,8 +13,12 @@ from research.juggler_sequence.cycle_ordered_excursion import (
     SPOTLIGHT,
     START,
     control_row,
+    control_state_row,
     excursion_map,
     first_a2,
+    justified_scale_band,
+    local_next_runs,
+    mu_product_expands,
     ooe_blocks_oe,
     ooe_cell_holds,
     spotlight_row,
@@ -86,6 +90,41 @@ def test_prefix_222_does_not_determine_the_fourth_run():
     assert right["fourth_valley_ge_oe"]
 
 
+def test_mu_product_is_the_old_envelope():
+    assert mu_product_expands(2, 2)
+    assert mu_product_expands(1, 3)
+    assert mu_product_expands(3, 1)
+    assert not mu_product_expands(1, 1)
+    assert not mu_product_expands(1, 2)
+    assert not mu_product_expands(2, 1)
+
+
+def test_4447_and_33811_share_a_justified_band():
+    left = control_state_row(365)["fourth"]
+    right = control_state_row(1517)["fourth"]
+    assert left is not None and right is not None
+    assert left["v"] == 4447
+    assert right["v"] == 33811
+    assert left["a"] == 2
+    assert right["a"] == 1
+    assert left["band"] == "n43_to_n32"
+    assert right["band"] == "n43_to_n32"
+    assert left["below_env3"]
+    assert right["below_env3"]
+    assert justified_scale_band(4447, 365) == justified_scale_band(33811, 1517)
+
+
+def test_local_B2_overlaps_at_both_landings():
+    left = local_next_runs(4447)
+    right = local_next_runs(33811)
+    assert left["center_a"] == 2
+    assert right["center_a"] == 1
+    assert left["overlap"]
+    assert right["overlap"]
+    assert left["distinct_odd_next"] >= 2
+    assert right["distinct_odd_next"] >= 2
+
+
 def test_spotlight_counts():
     row = spotlight_row(25781)
     odd_count, _theta = o_min_and_theta(25781)
@@ -115,6 +154,13 @@ def test_ordered_scan_closes():
     assert payload["triple_221_legal_near_n"] is False
     assert payload["triple_221_legal_mid"] is True
     assert payload["prefix_222_split"] is True
+    assert payload["state_reopen"]["same_justified_band_split"] is True
+    assert payload["state_reopen"]["local_overlap"] is True
+    assert payload["state_reopen"]["mu_sign_flips"] == 0
+    assert payload["state_reopen"]["reduces_to_mu"] is True
+    assert payload["state_reopen"]["three_block_opened"] is False
+    assert payload["state_reopen"]["new_leftover_killer"] is False
+    assert payload["state_reopen"]["compensation"]["drop_forces_min_run"] is False
     assert payload["unscaled_pairs_realized"] is True
     assert payload["requires_word_enumeration"] is True
     assert payload["scanned_other_97"] is False

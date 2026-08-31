@@ -284,7 +284,11 @@ These were run. None of them changes the leftover.
   two-block persistence \((2,2,1)\) at a CycleMin start is the
   composed OOE envelope \(81/64<4/3\). Floor loss is
   \(7\) on \(39244728\). \((2,2,2)\) is realized near \(n\), and
-  \((2,2,1)\) becomes legal at scale \(n^{9/8}\). Neither
+  \((2,2,1)\) becomes legal at scale \(n^{9/8}\). Retaining the
+  exact landings \(4447\) versus \(33811\) does not create a
+  region \(C_{a,b}\): both sit in \([n^{4/3},n^{3/2})\) just
+  below \(n^{729/512}\), with next runs \(2\) and \(1\), and
+  two-block signs match \(\mu(a)\mu(b)\). Neither
   \(L=25781\) nor \(L=55293\) dies as a pair.
 - Correlated floor-defect leftover-killer — **CLOSE**
   (`juggler_cycle_defect_correlation_leftover_killer`).
@@ -292,6 +296,12 @@ These were run. None of them changes the leftover.
   cell corners. Pair-eps ratio \(0.9999\); pair-finance gap
   \(0\). The non-additive recurrence is `global_defect_append`.
   Neither leftover dies.
+- Cross-excursion usable-loss leftover-killer — **CLOSE**
+  (`juggler_cycle_loss_persistence_leftover_killer`).
+  CycleMin-scale pairs reach \(\max\min(U_0,U_1)=0.9767\) and
+  \(\max(U_0+U_1)=1.968\). `OOE` near-top events are positively
+  persistent. Finance weighting does not create an
+  anti-correlation. Neither leftover dies as a theorem.
 - Prefix-weight leftover-killer (\(P\equiv 1\), or optimistic
   later-valley \(P\ge 9/8\)) — **CLOSE**
   (`juggler_cycle_prefix_weight_leftover_killer`). The published

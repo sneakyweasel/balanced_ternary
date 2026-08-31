@@ -6,7 +6,9 @@
   "counterexamples": [
     "Unscaled pairs (1,1), (2,1), (2,2), (2,3), (3,1) are realized below 20000. (2,2,2) occurs 36 times in [10^6+1, 10^6+20001). (2,2,1) is CycleMin-legal 36 times at scale n^{9/8}",
     "The two-block exact landing at v=1000057 is 39244721 against envelope 39244728 (relative deficit 1.8e-7). Floor loss does not constrain the next run beyond w^8 <= v^9 and 81/64 < 4/3",
-    "Prefix (2,2,2) has fourth run 2 at 365 and 1 at 1517. Both fourth valleys sit above oe_start. The scale law does not force a leftover death"
+    "Prefix (2,2,2) has fourth run 2 at 365 and 1 at 1517. Both fourth valleys sit above oe_start. The scale law does not force a leftover death",
+    "Retaining the exact landings 4447 and 33811 does not create a region C_{a,b}. After three OOE both sit in [n^{4/3}, n^{3/2}) just below n^{729/512}, with next runs 2 and 1. In a radius-400 window around each, nearby a=2 starts realize next runs including 1 and 2",
+    "Two-block sign F_b(F_a(v)) ? v matches sign(mu(a)mu(b)-1) with 0 flips on [3, 5000) and [10^6+1, 10^6+4002). No compensation: a drop does not force a large next run"
   ],
   "first_seen": "juggler ordered excursion closure",
   "lean_reference": "power_bound_word",
@@ -14,8 +16,8 @@
     "simons-de-weger-2005-collatz-m-cycles"
   ],
   "mathematical_domain": "Juggler cycle finance / ordered excursion maps",
-  "notes": "The two-block persistence (2,2,1) at v=n is the composed OOE envelope, not a leftover-killer. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "notes": "The two-block persistence (2,2,1) at v=n is the composed OOE envelope, not a leftover-killer. Reopen 2026-08-31: retaining the exact valley (4447 versus 33811) still yields no C_{a,b} and no two-block sign beyond mu(a)mu(b). No second leftover-killer. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
   "origin": "docs/problems/juggler_cycle_ordered_excursion.md",
   "proof_reference": "docs/problems/juggler_cycle_ordered_excursion.md",
-  "tested_range": "L=25781 and L=55293; first a=2 start 1000057; pair census [10^6+1, 10^6+20001) and n^{9/8} window of width 8000; controls 365 and 1517"
+  "tested_range": "L=25781 and L=55293; first a=2 start 1000057; pair census [10^6+1, 10^6+20001) and n^{9/8} window of width 8000; controls 365, 1517, 501, 6187; local B_2 windows of radius 400 around 4447 and 33811; two-block sign census [3, 5000) and [10^6+1, 10^6+4002)"
 }

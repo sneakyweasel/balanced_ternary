@@ -34,10 +34,16 @@ from research.juggler_sequence.power_words import floor_power
 SPOTLIGHT = (25781, 55293)
 START = PUBLISHED_FLOOR + 1
 CONTROLS = (365, 1517)
+STATE_CONTROLS = (365, 1517, 501, 6187)
 ORDERED_DIR = DATA_DIR / "ordered_excursion"
 NEAR_WINDOW = 20_000
 MID_WINDOW = 8_000
 A_CAP = 16
+LOCAL_RADIUS = 400
+SIGN_NEAR_SPAN = 4_001
+SIGN_SMALL_HI = 5_000
+THREE_OOE_NUM = 729
+THREE_OOE_DEN = 512
 
 
 def excursion_map(v: int, a: int) -> tuple[int, int] | None:
@@ -262,6 +268,218 @@ def climb_ratio() -> float:
     return log(4.0 / 3.0) / log(9.0 / 8.0)
 
 
+def mu_product_expands(a: int, b: int) -> bool:
+    """Independent envelope expands iff μ(a)μ(b) > 1.
+
+    That is 3^{a+b} > 2^{a+b+2}. Exact floors are not used.
+    """
+
+    if a < 1 or b < 1:
+        raise ValueError("mu_product_expands requires positive run lengths")
+    return 3 ** (a + b) > 1 << (a + b + 2)
+
+
+def justified_scale_band(v: int, n: int) -> str:
+    """Scale band of v relative to n, using only existing thresholds."""
+
+    if v < n:
+        return "below_n"
+    if v**8 < n**9:
+        return "n_to_n98"
+    if v**3 < n**4:
+        return "n98_to_n43"
+    if v * v < n**3:
+        return "n43_to_n32"
+    return "above_n32"
+
+
+def exact_block_row(v: int, a: int) -> dict[str, Any] | None:
+    rec = excursion_map(v, a)
+    if rec is None:
+        return None
+    env = integer_root(v, 3**a, 2 ** (a + 1))
+    return {
+        "v": v,
+        "a": a,
+        "peak": rec[0],
+        "F": rec[1],
+        "env": env,
+        "deficit": env - rec[1],
+        "contracts": rec[1] < v,
+    }
+
+
+def control_state_row(seed: int) -> dict[str, Any]:
+    """Exact (v, a, F_a(v)) chain, including envelope deficit."""
+
+    rows = q_blocks(seed)
+    blocks: list[dict[str, Any]] = []
+    for row in rows:
+        rec = exact_block_row(row["x"], row["a"])
+        if rec is None:
+            continue
+        rec["next_a"] = next_run(rec["F"])
+        blocks.append(rec)
+    fourth = None
+    if len(rows) >= 4:
+        valley = rows[3]["x"]
+        env3 = integer_root(seed, THREE_OOE_NUM, THREE_OOE_DEN)
+        fourth = {
+            "v": valley,
+            "a": rows[3]["a"],
+            "env3": env3,
+            "deficit3": env3 - valley,
+            "band": justified_scale_band(valley, seed),
+            "below_env3": valley < env3,
+            "ge_oe": valley >= oe_start_min(seed),
+        }
+    return {
+        "n": seed,
+        "runs": [row["a"] for row in rows],
+        "blocks": blocks,
+        "fourth": fourth,
+    }
+
+
+def local_next_runs(center: int, *, radius: int = LOCAL_RADIUS) -> dict[str, Any]:
+    """B_2(v) for a=2 starts in a window around an exact landing."""
+
+    pair_b: Counter[str] = Counter()
+    lo = max(3, center - radius)
+    hi = center + radius
+    current = lo if lo % 2 == 1 else lo + 1
+    n_a2 = 0
+    while current < hi:
+        if next_run(current) == 2:
+            rec = excursion_map(current, 2)
+            if rec is not None:
+                n_a2 += 1
+                pair_b[str(next_run(rec[1]))] += 1
+        current += 2
+    odd_next = [key for key in pair_b if key.isdigit()]
+    return {
+        "center": center,
+        "center_a": next_run(center),
+        "radius": radius,
+        "a2_count": n_a2,
+        "pair_b": dict(pair_b),
+        "distinct_odd_next": len(odd_next),
+        "overlap": "1" in pair_b and "2" in pair_b,
+    }
+
+
+def two_block_sign_census(lo: int, hi: int) -> dict[str, Any]:
+    """Count F_b(F_a(v)) ? v against sign(μ(a)μ(b) − 1)."""
+
+    pairs = (
+        (1, 1),
+        (1, 2),
+        (1, 3),
+        (2, 1),
+        (2, 2),
+        (2, 3),
+        (3, 1),
+        (3, 2),
+        (3, 3),
+    )
+    allowed = set(pairs)
+    tot = {f"{a},{b}": 0 for a, b in pairs}
+    flips = {f"{a},{b}": 0 for a, b in pairs}
+    current = lo if lo % 2 == 1 else lo + 1
+    while current < hi:
+        a = next_run(current)
+        if isinstance(a, int) and a <= 3:
+            rec = excursion_map(current, a)
+            if rec is not None:
+                b = next_run(rec[1])
+                if isinstance(b, int) and (a, b) in allowed:
+                    rec2 = excursion_map(rec[1], b)
+                    if rec2 is not None:
+                        key = f"{a},{b}"
+                        tot[key] += 1
+                        expands = rec2[1] > current
+                        if expands != mu_product_expands(a, b):
+                            flips[key] += 1
+        current += 2
+    return {
+        "lo": lo,
+        "hi": hi,
+        "counts": tot,
+        "flips": flips,
+        "flip_total": sum(flips.values()),
+        "reduces_to_mu": sum(flips.values()) == 0,
+    }
+
+
+def compensation_census(lo: int, hi: int) -> dict[str, Any]:
+    """Whether F_a(v) < v forces a large next run."""
+
+    after_drop: Counter[str] = Counter()
+    after_up: Counter[str] = Counter()
+    current = lo if lo % 2 == 1 else lo + 1
+    while current < hi:
+        a = next_run(current)
+        if isinstance(a, int) and a <= 6:
+            rec = excursion_map(current, a)
+            if rec is not None:
+                bucket = after_drop if rec[1] < current else after_up
+                bucket[str(next_run(rec[1]))] += 1
+        current += 2
+    drop_odd = {key for key in after_drop if key.isdigit()}
+    up_odd = {key for key in after_up if key.isdigit()}
+    return {
+        "lo": lo,
+        "hi": hi,
+        "after_drop": dict(after_drop),
+        "after_up": dict(after_up),
+        "shared_odd_next": sorted(drop_odd & up_odd, key=int),
+        "drop_forces_min_run": "1" not in after_drop,
+    }
+
+
+def state_dependent_reopen_row(*, start: int = START) -> dict[str, Any]:
+    """Reopen check: retain the integer valley, not a coarser descriptor.
+
+    This is the same object as the closed ordered-excursion leftover-killer.
+    Three-block composition is not opened: the 2-block test already fails.
+    """
+
+    controls = {str(seed): control_state_row(seed) for seed in STATE_CONTROLS}
+    left = controls["365"]["fourth"]
+    right = controls["1517"]["fourth"]
+    same_band = (
+        left is not None
+        and right is not None
+        and left["band"] == right["band"]
+        and left["below_env3"]
+        and right["below_env3"]
+        and left["a"] != right["a"]
+    )
+    local_4447 = local_next_runs(4447)
+    local_33811 = local_next_runs(33811)
+    signs_small = two_block_sign_census(3, SIGN_SMALL_HI)
+    signs_near = two_block_sign_census(start, start + SIGN_NEAR_SPAN)
+    compensation = compensation_census(start, start + SIGN_NEAR_SPAN)
+    return {
+        "controls": controls,
+        "same_justified_band_split": same_band,
+        "shared_band": None if left is None else left["band"],
+        "landing_4447": 4447,
+        "landing_33811": 33811,
+        "local_4447": local_4447,
+        "local_33811": local_33811,
+        "local_overlap": local_4447["overlap"] and local_33811["overlap"],
+        "two_block_signs_small": signs_small,
+        "two_block_signs_near": signs_near,
+        "compensation": compensation,
+        "mu_sign_flips": signs_small["flip_total"] + signs_near["flip_total"],
+        "reduces_to_mu": signs_small["reduces_to_mu"] and signs_near["reduces_to_mu"],
+        "three_block_opened": False,
+        "new_leftover_killer": False,
+        "reparameterization_of": "juggler_cycle_ordered_excursion_leftover_killer",
+    }
+
+
 def spotlight_row(length: int) -> dict[str, Any]:
     odd_count, theta = o_min_and_theta(length)
     even_count = length - odd_count
@@ -315,6 +533,7 @@ def ordered_scan(*, start: int = START) -> dict[str, Any]:
                 }
         probe += 2
     descent = descent_compensation_row()
+    state_reopen = state_dependent_reopen_row(start=n)
     unscaled_pairs = near["pair_b"]
     broad_pairs = all(str(key) in unscaled_pairs for key in (1, 2, 3, 4)) or all(
         str(key) in mid["pair_b"] for key in (1, 2, 3)
@@ -339,6 +558,7 @@ def ordered_scan(*, start: int = START) -> dict[str, Any]:
         "spotlights": spots,
         "descent": descent,
         "prefix_222_split": controls["365"]["fourth_run"] != controls["1517"]["fourth_run"],
+        "state_reopen": state_reopen,
         "unscaled_pairs_realized": broad_pairs,
         "triple_222_realized": near["n_222"] > 0,
         "pair_21_legal_near_n": near["n_21_legal"] > 0,
@@ -389,6 +609,9 @@ if __name__ == "__main__":
                 if report["two_block"] is None
                 else report["two_block"]["rel_deficit"],
                 "prefix_split": report["prefix_222_split"],
+                "same_band_split": report["state_reopen"]["same_justified_band_split"],
+                "local_overlap": report["state_reopen"]["local_overlap"],
+                "mu_sign_flips": report["state_reopen"]["mu_sign_flips"],
                 "emptied": report["emptied_count"],
             },
             indent=2,

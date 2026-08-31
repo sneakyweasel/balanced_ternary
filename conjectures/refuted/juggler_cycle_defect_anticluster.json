@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_defect_anticluster",
+  "title": "Near-top odd defects anti-cluster: u(x)>=p implies u(T(x))<=f(p)<0.988",
+  "statement": "On successive dynamically relevant odd Juggler states, u(x)>=p forces u(T(x))<=f(p) with a scale-stable gap f(p)<0.988, so the run-type finance extremum is unattainable on E_run(10^6), in particular at L=55293.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "x=2745367 is OO-legal with (u,u')=(0.99759,0.99989). x=10356211 gives (0.99889,0.99850)",
+    "In [10^6+1, 3e6) there are 2420 OO pairs with u>=0.995 and f(0.995)=0.999958. Twelve pairs have both coordinates >=0.995",
+    "Among 576 pairs with u>=0.999, f(0.999)=0.9936>0.988, so even the extreme tail does not cut L=55293"
+  ],
+  "first_seen": "juggler near-top defect anti-clustering",
+  "lean_reference": "two_step_mordell_identity",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / successive floor defects",
+  "notes": "Sharpening of juggler_cycle_defect_correlation_leftover_killer. u, delta, lambda are the same rho. No phases 2-13. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_defect_anticluster.md",
+  "proof_reference": "docs/problems/juggler_cycle_defect_anticluster.md",
+  "tested_range": "OO/OE f(p) on [10^6+1, 10^6+20001) and oe_start window; high-u followup on [10^6+1, 3e6) and [10^7+1, 10^7+400001)"
+}

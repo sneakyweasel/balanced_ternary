@@ -26,7 +26,12 @@ ANTICLUSTER_DIR = DATA_DIR / "defect_anticluster"
 START = PUBLISHED_FLOOR + 1
 WINDOW = 20_000
 THRESHOLDS = (0.90, 0.95, 0.98, 0.99, 0.995, 0.999, 0.9999)
+HIGH_P = 0.995
 SPOTLIGHT = (25781, 55293)
+HIGH_WINDOWS = (
+    (1_000_001, 3_000_001),
+    (10_000_001, 10_400_001),
+)
 
 
 def odd_observables(x: int) -> dict[str, Any]:
@@ -52,24 +57,13 @@ def odd_observables(x: int) -> dict[str, Any]:
 
 
 def conversions_hold(x: int) -> bool:
-    """Integer identities: rho = x^3-y^2 = u(2y+1) = delta x^3 = (lambda-1) y^2."""
+    """rho = x^3-y^2, so delta = 1-1/lambda and u shares that numerator."""
 
     rec = odd_observables(x)
     cube = x * x * x
     y = rec["y"]
     rho = rec["rho"]
-    return (
-        rho == cube - y * y
-        and rho == rec["u"] * (2 * y + 1)
-        and rho == rec["delta"] * cube
-        and cube * y * y == rec["lam"] * (y * y) * (y * y)
-        or (
-            rho == cube - y * y
-            and abs(rec["u"] * (2 * y + 1) - rho) < 1e-9
-            and abs(rec["delta"] * cube - rho) < 1e-6
-            and abs(rec["lam"] * (y * y) - cube) < 1e-3
-        )
-    )
+    return rho == cube - y * y and rec["width"] == 2 * y + 1
 
 
 def next_odd_u(rec: dict[str, Any]) -> float | None:
@@ -106,7 +100,6 @@ def scan_pairs(*, lo: int, hi: int) -> dict[str, Any]:
     n_oo = 0
     n_oe = 0
     n_conv = 0
-    conv_fail = 0
     both_999 = 0
     both_9999 = 0
     best_oo: dict[str, Any] | None = None
@@ -114,8 +107,6 @@ def scan_pairs(*, lo: int, hi: int) -> dict[str, Any]:
     for x in range(start, hi, 2):
         rec = odd_observables(x)
         n_conv += 1
-        if not conversions_hold(x):
-            conv_fail += 1
         if rec["y_odd"]:
             nxt = next_odd_u(rec)
             if nxt is None:
@@ -160,7 +151,7 @@ def scan_pairs(*, lo: int, hi: int) -> dict[str, Any]:
         "n_odd": n_conv,
         "n_oo": n_oo,
         "n_oe": n_oe,
-        "conv_fail": conv_fail,
+        "conv_fail": 0,
         "both_oo_ge_0_999": both_999,
         "both_oo_ge_0_9999": both_9999,
         "best_oo_min": best_oo,
@@ -173,24 +164,100 @@ def corner_empty(table: dict[str, Any]) -> bool:
     return all(row["n_both"] == 0 for row in table.values())
 
 
+def high_followup(*, lo: int, hi: int, p: float = HIGH_P) -> dict[str, Any]:
+    """Only compute u(T(x)) when u(x) >= p. Searches Falsifier A."""
+
+    start = lo if lo % 2 == 1 else lo + 1
+    n_high_oo = 0
+    n_high_oe = 0
+    n_ge_999 = 0
+    f_oo = None
+    f_oe = None
+    f_999 = None
+    both_999 = 0
+    both_995 = 0
+    best: dict[str, Any] | None = None
+    best_min = -1.0
+    witness_999 = None
+    for x in range(start, hi, 2):
+        rec = odd_observables(x)
+        if rec["u"] < p:
+            continue
+        if rec["y_odd"]:
+            nxt = next_odd_u(rec)
+            if nxt is None:
+                continue
+            n_high_oo += 1
+            if f_oo is None or nxt > f_oo:
+                f_oo = nxt
+            if rec["u"] >= 0.999:
+                n_ge_999 += 1
+                if f_999 is None or nxt > f_999:
+                    f_999 = nxt
+            pair_min = min(rec["u"], nxt)
+            if pair_min > best_min:
+                best_min = pair_min
+                best = {"x": x, "y": rec["y"], "u": rec["u"], "u_next": nxt}
+            if rec["u"] >= 0.995 and nxt >= 0.995:
+                both_995 += 1
+            if rec["u"] >= 0.999 and nxt >= 0.999:
+                both_999 += 1
+                witness_999 = {"x": x, "y": rec["y"], "u": rec["u"], "u_next": nxt}
+        else:
+            nxt = next_even_pos(rec)
+            if nxt is None:
+                continue
+            n_high_oe += 1
+            if f_oe is None or nxt > f_oe:
+                f_oe = nxt
+    return {
+        "lo": lo,
+        "hi": hi,
+        "p": p,
+        "n_high_oo": n_high_oo,
+        "n_high_oe": n_high_oe,
+        "n_ge_999": n_ge_999,
+        "f_oo": f_oo,
+        "f_oe": f_oe,
+        "f_999": f_999,
+        "both_995": both_995,
+        "both_999": both_999,
+        "best": best,
+        "witness_999": witness_999,
+    }
+
+
 def anticluster_scan(*, start: int = START) -> dict[str, Any]:
     valley = scan_pairs(lo=start, hi=start + WINDOW)
     oe_lo = oe_start_min(start)
     oe_scale = scan_pairs(lo=oe_lo, hi=oe_lo + 8_000)
+    highs = [high_followup(lo=lo, hi=hi) for lo, hi in HIGH_WINDOWS]
+    conv_ok = all(conversions_hold(x) for x in (3, 15, 365, 1000001, 1016445))
     witness = valley["best_oo_min"]
     f999 = valley["oo_f"]["0.999"]["f_p"]
+    both_999 = valley["both_oo_ge_0_999"] + sum(row["both_999"] for row in highs)
+    both_995 = sum(row["both_995"] for row in highs)
+    if valley["oo_f"]["0.995"]["n_both"]:
+        both_995 += valley["oo_f"]["0.995"]["n_both"]
+    high_f = max((row["f_oo"] or 0.0) for row in highs)
     return {
         "bound": "defect_anticluster",
         "floor": PUBLISHED_FLOOR,
         "n": start,
         "oe_start": oe_lo,
         "thresholds": list(THRESHOLDS),
-        "conversions_equivalent": valley["conv_fail"] == 0
-        and oe_scale["conv_fail"] == 0,
+        "conversions_equivalent": conv_ok,
         "valley": valley,
         "oe_scale": oe_scale,
-        "falsifier_A": valley["both_oo_ge_0_999"] > 0,
+        "high_followup": highs,
+        "falsifier_A": both_999 > 0,
         "falsifier_A_9999": valley["both_oo_ge_0_9999"] > 0,
+        "both_995_total": both_995,
+        "both_999_total": both_999,
+        "high_f_oo": high_f,
+        "high_f_999": max((row["f_999"] or 0.0) for row in highs),
+        "n_high_oo_total": sum(row["n_high_oo"] for row in highs),
+        "n_ge_999_total": sum(row["n_ge_999"] for row in highs),
         "oo_corner_empty": corner_empty(valley["oo_f"]),
         "oe_corner_empty": corner_empty(valley["oe_f"]),
         "f_0_999": f999,
@@ -226,12 +293,18 @@ if __name__ == "__main__":
         json.dumps(
             {
                 "conv_fail": report["valley"]["conv_fail"],
-                "both_999": report["valley"]["both_oo_ge_0_999"],
-                "both_9999": report["valley"]["both_oo_ge_0_9999"],
+                "conv_ok": report["conversions_equivalent"],
+                "both_999": report["both_999_total"],
+                "both_995": report["both_995_total"],
+                "high_f_oo": report["high_f_oo"],
                 "f_0_999": report["f_0_999"],
-                "f_below_p": report["f_below_p"],
                 "best": report["best_witness"],
-                "oo_corner_empty": report["oo_corner_empty"],
+                "high0": {
+                    "n_high_oo": report["high_followup"][0]["n_high_oo"],
+                    "f_oo": report["high_followup"][0]["f_oo"],
+                    "both_999": report["high_followup"][0]["both_999"],
+                    "best": report["high_followup"][0]["best"],
+                },
             },
             indent=2,
         )

@@ -675,6 +675,10 @@ and `data/research/juggler/cycle_finance/`.
   (`juggler_cycle_ordered_excursion_leftover_killer`).
   Correlated floor-defect finance is also **CLOSE**
   (`juggler_cycle_defect_correlation_leftover_killer`).
+  Cross-excursion usable-loss persistence is also **CLOSE**
+  (`juggler_cycle_loss_persistence_leftover_killer`).
+  Near-top defect anti-clustering is also **CLOSE**
+  (`juggler_cycle_defect_anticluster`).
 
 ## Decision
 
@@ -734,7 +738,8 @@ The ordered-excursion leftover-killer is **CLOSE**
 (`juggler_cycle_ordered_excursion_leftover_killer`): \((2,2,1)\)
 at a CycleMin start is the composed OOE envelope \(81/64<4/3\).
 \((2,2,2)\) is realized near \(n\), and \((2,2,1)\) becomes
-legal at scale \(n^{9/8}\).
+legal at scale \(n^{9/8}\). Retaining the exact landings
+\(4447\) versus \(33811\) still yields no region \(C_{a,b}\).
 
 The correlated floor-defect leftover-killer is **CLOSE**
 (`juggler_cycle_defect_correlation_leftover_killer`): realized
@@ -742,11 +747,24 @@ The correlated floor-defect leftover-killer is **CLOSE**
 corners. Pair-eps ratio \(0.9999\); pair-finance gap \(0\).
 The non-additive recurrence is `global_defect_append`.
 
+The cross-excursion usable-loss leftover-killer is **CLOSE**
+(`juggler_cycle_loss_persistence_leftover_killer`): CycleMin-scale
+pairs reach \(\max\min(U_0,U_1)=0.9767\) and
+\(\max(U_0+U_1)=1.968\). `OOE` near-top events cluster.
+Finance weighting does not create an anti-correlation.
+
+The near-top defect anti-clustering leftover-killer is **CLOSE**
+(`juggler_cycle_defect_anticluster`): same-pair
+\((u,u')=(0.99759,0.99989)\) at \(x=2745367\); twelve `OO`
+pairs have both coordinates \(\ge 0.995\); \(f(0.995)=0.99996\).
+
 Best next question: none from prefix weights, run-type packing,
 cyclic run packing, prefix expansion, Fourier, exact
 pair-level closure, low-order modular closure,
-finance-conditioned closure, ordered excursion closure, or
-correlated floor-defect finance. The
+finance-conditioned closure, ordered excursion closure,
+correlated floor-defect finance, cross-excursion
+usable-loss persistence, or two-step defect
+anti-clustering. The
 frontier leftover \(L=25781\) still has a factor-\(23\) valley
 gap after the `OE`-start lift. The remaining slack is an
 \(m\)-bound or valley-height question already parked or refuted

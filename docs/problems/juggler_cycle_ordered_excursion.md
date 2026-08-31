@@ -57,6 +57,18 @@ spotlight leftovers have \(\mathrm{OOE}/\mathrm{OE}\) equal to
 \(\log(4/3)/\log(9/8)\) at the \(10^{-5}\) level; that is the
 near-convergent identity, not a new obstruction.
 
+**Exact landings do not create \(C_{a,b}\) (COMPUTATIONALLY VERIFIED).**
+After three `OOE`, \(Q^3(365)=4447\) has next run \(2\) and
+\(Q^3(1517)=33811\) has next run \(1\). Both sit in the same
+justified band \([n^{4/3},n^{3/2})\), just below
+\(n^{729/512}\) (deficits \(2\) and \(9\)). In a radius-\(400\)
+window around each landing, nearby \(a=2\) starts realize next
+runs including \(1\) and \(2\). Two-block sign
+\(F_b(F_a(v))\lessgtr v\) matches \(\mathrm{sign}(\mu(a)\mu(b)-1)\)
+with \(0\) flips on \([3,5000)\) and \([10^6+1,10^6+4002)\).
+A contracting block does not force a large next run. Three-block
+composition was not opened.
+
 No cycle of any length — not claimed.
 
 ## Current literature
@@ -179,6 +191,11 @@ It is not required.
   **REPARAMETERIZATION** of \(\mu(3)=27/16>4/3\)
 - Descent requires a large compensation peak —
   **REFUTED** (\(6187\): \(11189\to1087\to189\))
+- Exact \((v,a)\) yields a reusable \(C_{a,b}\) —
+  **REFUTED** (\(4447\) versus \(33811\) in the same
+  \([n^{4/3},n^{3/2})\) band; local \(B_2\) overlaps)
+- Two-block return sign is finer than \(\mu(a)\mu(b)\) —
+  **REFUTED** (\(0\) sign flips in both sampled windows)
 - Ordered leftover-killer —
   **REFUTED** (`juggler_cycle_ordered_excursion_leftover_killer`)
 - No cycle of any length — not claimed
@@ -191,7 +208,10 @@ It is not required.
 - Window: first \(a=2\) start \(1000057\); pair census
   \([10^6+1,10^6+20001)\) and the \(n^{9/8}\) window of width
   \(8000\); controls \(365\) and \(1517\); spotlights
-  \(L=25781\) and \(L=55293\). Fast suite only. No CLI. No Lean.
+  \(L=25781\) and \(L=55293\); reopen landings \(4447\) and
+  \(33811\) with local \(B_2\) radius \(400\) and two-block
+  sign windows \([3,5000)\) and \([10^6+1,10^6+4002)\).
+  Fast suite only. No CLI. No Lean.
 
 ## Conjectures
 
@@ -209,6 +229,13 @@ It is not required.
 - Prefix \((2,2,2)\) has fourth run \(2\) at \(365\) and \(1\) at
   \(1517\). The scale law only says `OE` *may* start after three
   `OOE`, not that it must.
+- The exact landings \(4447\) and \(33811\) share the justified
+  band \([n^{4/3},n^{3/2})\) and sit just below
+  \(n^{729/512}\), yet the next runs are \(2\) and \(1\).
+  Local \(B_2\) around each is multi-valued. Falsifier A of the
+  \((v,a)\) reopen.
+- Two-block signs on \((a,b)\in\{1,2,3\}^2\) match the
+  independent envelope \(\mu(a)\mu(b)\). Falsifier B.
 - Descent \(11189\to1087\to189\) on \(6187\) has no compensating
   large peak.
 
@@ -231,6 +258,11 @@ The OOE cell and `oe_start_min` are not re-proved.
   scanned: both spotlights already kill the slogan.
 - **\(365/1517\) split** — **COMPUTATIONALLY VERIFIED**: the
   theorem lives at scale, not at the symbolic prefix.
+- **Exact \((v,a)\) reopen** — **COMPUTATIONALLY VERIFIED**:
+  retaining the integer valley still does not produce a
+  region \(C_{a,b}\) or a two-block inequality beyond
+  \(\mu(a)\mu(b)\). Artifact key `state_reopen`. No second
+  leftover-killer.
 
 ## Open questions
 
@@ -243,8 +275,12 @@ complete word or a global climb-count that is not local.
 broad product set. The only exact transition lemmas are the
 OOE cell composed once and twice; both reduce to
 \(w^8\le v^9\) and \(81/64<4/3\). That is Falsifier A plus
-Falsifier D. Keep the two-block persistence as negative
-knowledge. No Paper A edit, no ledger row, no Lean.
+Falsifier D. The 2026-08-31 reopen that keeps the exact
+landing \(v\) (the named pair \(4447\) versus \(33811\)) is
+the same object: same justified band, overlapping local
+\(B_2\), and two-block signs identical to \(\mu(a)\mu(b)\).
+Keep the two-block persistence as negative knowledge. No
+second leftover-killer, no Paper A edit, no ledger row, no Lean.
 
 Best next question: none from ordered excursion closure.
 

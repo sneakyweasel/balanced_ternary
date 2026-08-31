@@ -308,10 +308,23 @@ Correlated floor-defect finance is **CLOSE**
 `OE`/`OO` pairs occupy both cheap and finance-maximal cell
 corners. Pair-finance gap \(0\). No leftover \((L,o)\) dies.
 
+Cross-excursion usable-loss persistence is **CLOSE**
+(`juggler_cycle_loss_persistence_leftover_killer`). CycleMin-scale
+pairs reach \(\max\min(U_0,U_1)=0.9767\) and
+\(\max(U_0+U_1)=1.968\). `OOE` near-top events cluster. No
+leftover \((L,o)\) dies as a theorem.
+
+Near-top defect anti-clustering is **CLOSE**
+(`juggler_cycle_defect_anticluster`). Same-pair near-top
+occurs at \((0.9976,0.99989)\); \(f(0.995)=0.99996\). No leftover
+\((L,o)\) dies.
+
 Best next question: none from cyclic run packing, prefix
 expansion, exact pair-level closure, low-order modular
 closure, finance-conditioned closure, ordered excursion
-closure, or correlated floor-defect finance. The frontier
+closure, correlated floor-defect finance, cross-excursion
+usable-loss persistence, or two-step
+defect anti-clustering. The frontier
 leftover \(L=25781\) still has a factor-\(23\) valley gap at
 \(P=1\).
 

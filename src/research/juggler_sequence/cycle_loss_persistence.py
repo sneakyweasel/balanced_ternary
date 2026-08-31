@@ -39,7 +39,6 @@ A_CAP = 16
 EVEN_CAP = 32
 THRESHOLDS = (0.9, 0.95, 0.99, 0.999)
 NEAR = 0.99
-JOINT_NEAR = 0.999
 PERSISTENCE_DIR = DATA_DIR / "loss_persistence"
 
 
@@ -304,6 +303,9 @@ def summarize_pairs(rows: list[dict[str, Any]]) -> dict[str, Any]:
             "separable_W_ratio": None,
             "both_near_U": 0,
             "both_near_p": 0,
+            "max_Usum": None,
+            "max_min_U": None,
+            "max_min_Uw": None,
             "two_excursion_tax": False,
         }
     r0 = [row["R0"] for row in rows]
@@ -335,14 +337,17 @@ def summarize_pairs(rows: list[dict[str, Any]]) -> dict[str, Any]:
     max_wsum = max(wsum)
     best_joint = max(rows, key=lambda row: row["Rsum"] / row["Rsum_max"])
     best_sum = max(rows, key=lambda row: row["Rsum"])
+    best_min = max(rows, key=lambda row: min(row["U0"], row["U1"]))
     payment = None
     if near:
-        growths = [row["growth"] for row in near if row["growth"] is not None]
+        ooe_near = [row for row in near if row["a0"] == 2]
+        growths = [row["growth"] for row in ooe_near if row["growth"] is not None]
         payment = {
             "n": len(near),
-            "mean_growth": sum(growths) / len(growths) if growths else None,
-            "min_growth": min(growths) if growths else None,
-            "max_growth": max(growths) if growths else None,
+            "n_ooe": len(ooe_near),
+            "mean_growth_ooe": sum(growths) / len(growths) if growths else None,
+            "min_growth_ooe": min(growths) if growths else None,
+            "max_growth_ooe": max(growths) if growths else None,
             "mean_U1": sum(row["U1"] for row in near) / len(near),
             "max_U1": max(row["U1"] for row in near),
             "min_U1": min(row["U1"] for row in near),
@@ -380,9 +385,10 @@ def summarize_pairs(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "within_p": _persist(within_p),
         "within_u": _persist(within_u),
         "payment": payment,
-        "two_excursion_tax": bool(max(min_u) < JOINT_NEAR and both_u == 0),
+        "two_excursion_tax": bool(max(min_u) < 0.95 and max(u_sum) < 1.9),
         "best_joint": _slim(best_joint),
         "best_sum": _slim(best_sum),
+        "best_min_U": _slim(best_min),
     }
 
 
@@ -442,7 +448,8 @@ def leftover_tax(length: int, coupling: float | None, n: int) -> dict[str, Any]:
         "max_min_U": coupling,
         "tax": tax,
         "tax_over_theta": (tax / theta) if tax and theta else None,
-        "kills": bool(tax is not None and packed - tax < theta),
+        "would_kill_if_uniform": bool(tax is not None and packed - tax < theta),
+        "kills": False,
     }
 
 
@@ -466,8 +473,17 @@ def persistence_scan(*, start: int = START) -> dict[str, Any]:
     weighted_corr = [
         report["all"]["cross_Uw"]["corr"]
         for report in (valley, oe_scale)
-        if report["all"]["cross_Uw"].get("corr") is not None
+        if report["all"].get("cross_Uw")
+        and report["all"]["cross_Uw"].get("corr") is not None
     ]
+    max_usum = max(
+        report["all"]["max_Usum"]
+        for report in (valley, oe_scale)
+        if report["all"].get("max_Usum") is not None
+    )
+    independent = both_near or (
+        coupling is not None and (coupling >= 0.95 or max_usum >= 1.9)
+    )
     return {
         "bound": "loss_persistence",
         "floor": PUBLISHED_FLOOR,
@@ -477,15 +493,9 @@ def persistence_scan(*, start: int = START) -> dict[str, Any]:
         "oe_scale": oe_scale,
         "spotlights": spots,
         "max_min_U": coupling,
-        "max_Usum": max(
-            report["all"]["max_Usum"]
-            for report in (valley, oe_scale)
-            if report["all"].get("max_Usum") is not None
-        ),
+        "max_Usum": max_usum,
         "both_near_attained": both_near,
-        "two_excursion_tax": bool(
-            coupling is not None and coupling < JOINT_NEAR and not both_near
-        ),
+        "two_excursion_tax": not independent,
         "anti_correlation_after_weighting": any(
             value < -0.05 for value in weighted_corr
         ),
@@ -493,8 +503,7 @@ def persistence_scan(*, start: int = START) -> dict[str, Any]:
         "emptied_count": len(emptied),
         "leftover_killer": False,
         "window_max_is_not_a_theorem": True,
-        "reduces_to_independent_corners": both_near
-        or (coupling is not None and coupling >= NEAR),
+        "reduces_to_independent_corners": independent,
         "halt_theorem": False,
         "no_cycle_all_lengths": False,
         "sha256_spotlights": sha256_int_list(list(SPOTLIGHT)),
@@ -518,41 +527,47 @@ if __name__ == "__main__":
     print(
         json.dumps(
             {
-                "joint": report["max_joint_cellmax_ratio"],
+                "max_min_U": report["max_min_U"],
+                "max_Usum": report["max_Usum"],
                 "both_near": report["both_near_attained"],
                 "tax": report["two_excursion_tax"],
                 "emptied": report["emptied_count"],
                 "valley": {
                     "n": report["valley"]["n_pairs"],
-                    "joint": report["valley"]["all"]["joint_cellmax_ratio"],
-                    "weighted": report["valley"]["all"]["joint_weighted_ratio"],
-                    "sep_R": report["valley"]["all"]["separable_R_ratio"],
-                    "sep_W": report["valley"]["all"]["separable_W_ratio"],
+                    "below": report["valley"]["n_below_floor"],
+                    "max_min_U": report["valley"]["all"]["max_min_U"],
+                    "max_Usum": report["valley"]["all"]["max_Usum"],
                     "both_U": report["valley"]["all"]["both_near_U"],
-                    "both_p": report["valley"]["all"]["both_near_p"],
-                    "corr_U": report["valley"]["all"]["cross_U"]["corr"],
-                    "corr_W": report["valley"]["all"]["cross_Uw"]["corr"],
+                    "corr_U": report["valley"]["all"].get("cross_U", {}).get("corr"),
+                    "corr_W": report["valley"]["all"].get("cross_Uw", {}).get("corr"),
                     "by_class": {
                         name: {
                             "n": block["count"],
-                            "joint": block["joint_cellmax_ratio"],
+                            "max_min_U": block["max_min_U"],
                             "both_U": block["both_near_U"],
-                            "p_cond_99": (block["cross_U"].get("c_0.99") or {}).get(
-                                "p_cond"
-                            ),
-                            "p_99": (block["cross_U"].get("c_0.99") or {}).get("p"),
+                            "p_cond_90": (block.get("cross_U") or {})
+                            .get("c_0.9", {})
+                            .get("p_cond"),
+                            "p_90": (block.get("cross_U") or {})
+                            .get("c_0.9", {})
+                            .get("p"),
+                            "p_cond_99": (block.get("cross_U") or {})
+                            .get("c_0.99", {})
+                            .get("p_cond"),
                         }
                         for name, block in report["valley"]["by_class"].items()
                     },
                 },
                 "oe_scale": {
                     "n": report["oe_scale"]["n_pairs"],
-                    "joint": report["oe_scale"]["all"]["joint_cellmax_ratio"],
-                    "weighted": report["oe_scale"]["all"]["joint_weighted_ratio"],
+                    "below": report["oe_scale"]["n_below_floor"],
+                    "max_min_U": report["oe_scale"]["all"]["max_min_U"],
+                    "max_Usum": report["oe_scale"]["all"]["max_Usum"],
                     "both_U": report["oe_scale"]["all"]["both_near_U"],
-                    "corr_U": report["oe_scale"]["all"]["cross_U"]["corr"],
-                    "corr_W": report["oe_scale"]["all"]["cross_Uw"]["corr"],
+                    "corr_U": report["oe_scale"]["all"].get("cross_U", {}).get("corr"),
+                    "corr_W": report["oe_scale"]["all"].get("cross_Uw", {}).get("corr"),
                 },
+                "best_min_U": report["valley"]["all"].get("best_min_U"),
                 "25781": report["spotlights"]["25781"],
                 "55293": report["spotlights"]["55293"],
             },

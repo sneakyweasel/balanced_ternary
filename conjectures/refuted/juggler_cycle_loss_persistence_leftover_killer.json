@@ -1,0 +1,22 @@
+{
+  "id": "juggler_cycle_loss_persistence_leftover_killer",
+  "title": "Cross-excursion usable-loss coupling cuts the run-type budget below θ on E_run(10^6)",
+  "statement": "Exact Juggler dynamics prevent successive CycleMin-scale odd-run blocks from both realizing near-maximal usable floor loss, and the resulting two-excursion tax empties a leftover in E_run(10^6), in particular L=25781 or L=55293.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "OOE-legal n=1000301 has U0=0.9737 and next-run U1=0.9945 at v1=5625317. max(U0+U1)=1.968, so consecutive excursion maxima equal the independent pair of maxima",
+    "OOOE-legal n=1018335 has min(U0,U1)=0.9767 with next OE at v1=13750405517 and U1=0.9846",
+    "On 1210 CycleMin-scale OOE pairs, P(U1>0.9|U0>0.9)=0.175 exceeds P(U>0.9)=0.066. Near-top losses are positively persistent. Finance-weighted correlation is ~0",
+    "A uniform factor 0.977 would bookkeeping-kill L=55293 and would not touch L=25781. That window maximum is not a CycleMin theorem"
+  ],
+  "first_seen": "juggler cross-excursion usable-loss persistence",
+  "lean_reference": "log_le_two_log_add",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / cross-excursion floor loss",
+  "notes": "One-step remainders and consecutive-letter corners were already unrestricted. The multi-step signature is the same cell-top logarithm along two Q-blocks. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_loss_persistence.md",
+  "proof_reference": "docs/problems/juggler_cycle_loss_persistence.md",
+  "tested_range": "CycleMin-scale pairs from odds in [10^6+1, 10^6+20001) and [oe_start_min(10^6+1), oe_start+8000); 99 run-type survivors; spotlights L=25781 and 55293"
+}
