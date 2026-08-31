@@ -1,0 +1,108 @@
+{
+  "model": "coupled exponent-walk charge; states priced at n^max(2^u - eta, 1); u >= 0 from the defect-free upper envelope; eta is an uncertified sensitivity band",
+  "target": {
+    "length": 50508,
+    "odd_count": 31867,
+    "theta": 7.264907458078721e-06,
+    "floor": 26254995,
+    "const": 1.2,
+    "transport_eta": 4.200440603556577e-05,
+    "parity_rhs": 4.987755161396525e-05,
+    "parity_margin": 0.14565485319541255,
+    "improvement_over_parity": 7.69833659330409,
+    "eta_rows": [
+      {
+        "eta": 0.0,
+        "walk_sum": 5.399169781632927e-06,
+        "walk_rhs": 6.479003744438517e-06,
+        "theta": 7.264907458078721e-06,
+        "kill_margin": 1.1213000863465796,
+        "walk_excludes": true,
+        "elapsed_s": 72.2858586999937
+      },
+      {
+        "eta": 4.200440603556577e-05,
+        "walk_sum": 5.403259189091083e-06,
+        "walk_rhs": 6.483911033393211e-06,
+        "theta": 7.264907458078721e-06,
+        "kill_margin": 1.1204514405986217,
+        "walk_excludes": true,
+        "elapsed_s": 51.405015200027265
+      },
+      {
+        "eta": 0.0004200440603556577,
+        "walk_sum": 5.440057233768689e-06,
+        "walk_rhs": 6.5280686870504965e-06,
+        "theta": 7.264907458078721e-06,
+        "kill_margin": 1.1128723986145959,
+        "walk_excludes": true,
+        "elapsed_s": 42.63742099999217
+      },
+      {
+        "eta": 0.004200440603556577,
+        "walk_sum": 5.807318841820782e-06,
+        "walk_rhs": 6.968782617153721e-06,
+        "theta": 7.264907458078721e-06,
+        "kill_margin": 1.0424930518274578,
+        "walk_excludes": true,
+        "elapsed_s": 49.17913489998318
+      }
+    ]
+  },
+  "calibration": {
+    "length": 25781,
+    "odd_count": 16266,
+    "theta": 2.5459198127264017e-05,
+    "floor": 1000000,
+    "const": 1.2,
+    "transport_eta": 0.0006979833949771558,
+    "parity_rhs": 0.000826852849161228,
+    "parity_margin": 0.030790482433591674,
+    "improvement_over_parity": 6.368461521620328,
+    "eta_rows": [
+      {
+        "eta": 0.0,
+        "walk_sum": 0.0001081963105122652,
+        "walk_rhs": 0.00012983557274455382,
+        "theta": 2.5459198127264017e-05,
+        "kill_margin": 0.19608800261045523,
+        "walk_excludes": false,
+        "elapsed_s": 10.044233400025405
+      },
+      {
+        "eta": 0.0006979833949771558,
+        "walk_sum": 0.00010931025681980617,
+        "walk_rhs": 0.0001311723083149397,
+        "theta": 2.5459198127264017e-05,
+        "kill_margin": 0.19408973169960123,
+        "walk_excludes": false,
+        "elapsed_s": 9.959903400042094
+      },
+      {
+        "eta": 0.006979833949771558,
+        "walk_sum": 0.00011930360328181188,
+        "walk_rhs": 0.0001431643240813386,
+        "theta": 2.5459198127264017e-05,
+        "kill_margin": 0.17783200032991048,
+        "walk_excludes": false,
+        "elapsed_s": 9.95280329999514
+      },
+      {
+        "eta": 0.06979833949771558,
+        "walk_sum": 0.00021612147371310127,
+        "walk_rhs": 0.00025934576871506726,
+        "theta": 2.5459198127264017e-05,
+        "kill_margin": 0.09816700790378043,
+        "walk_excludes": false,
+        "elapsed_s": 10.16253199998755
+      }
+    ]
+  },
+  "classification": {
+    "label": "WALK_CHARGE_GREEN",
+    "reason": "the coupled walk optimum excludes the target at eta = 0, at the worst-case transport bound, and at ten times it; a certified transport lemma would make this a theorem"
+  },
+  "not_a_halt_theorem": true,
+  "no_cycle_all_lengths": false,
+  "git_commit": "fb987dde15d326789d54ea3d53b3c0e0568a60c8"
+}

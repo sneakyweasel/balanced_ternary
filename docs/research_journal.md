@@ -17828,4 +17828,46 @@ Best next question
   kills L=50508 at floor 26254995, without a 1.63e8 campaign?
 ```
 
+## Juggler coupled exponent-walk charge (Phase 0)
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the exact optimum of the coupled exponent-walk charge — every state priced at \(n^{2^{u_k}}\), \(u_k=\log_2(3/2)\#O_k-\#E_k\), one closed nonnegative walk — falls below \(\theta(50508)\) at the certified floor \(26254995\). This is the Section 5 state-distribution program's open coupling ("forbid \(o-e\) independent \(n\)-valleys") executed at the first target where the required improvement is \(6.87\), not \(32.5\)
+- **Hypotheses:** cheap valleys need excursion exponents \((3/2)^a/2^r\approx 1\), forcing \((a,r)\) onto near-convergents of \(\log_2(3/2)\) (cheapest \(O^{12}E^7\), 19 letters); one cheap valley per 19 letters instead of parity's one per \(2.7\) is a factor \(\ge 7\)
+- **Major results:** Classification **WALK_CHARGE_GREEN**. DP over \((k,a)\) with \(u=(1+\mu)a-k\) is exact on the lattice (matches brute force through \(L=14\)); \(u\ge 0\) is forced by the defect-free upper envelope. Target \((50508,31867)\) at floor \(26254995\): walk RHS \(6.479\cdot 10^{-6}<\theta=7.2649\cdot 10^{-6}\) — improvement \(7.70\) over parity vs required \(6.87\); kill margins \(1.121/1.120/1.113/1.042\) at \(\eta\in\{0,\eta^*,10\eta^*,100\eta^*\}\) with transport bound \(\eta^*=4.2\cdot 10^{-5}\) (log-deficit recursion, amplification \(w_k/w_j\), even states \(w\ge2\)). Calibration \((25781,10^6)\): walk RHS \(1.2984\cdot 10^{-4}\) matches the archived necklace height-walk \(1.30\cdot 10^{-4}\) to three digits and correctly does **not** kill (margin \(0.196\)) — the merge-assessment conclusion is reproduced, the target changed, not the mechanism. Artifacts `cycle_walk_charge/summary.json`, `survey.json` (19-leftover kill table). Not a theorem yet: the transport bound is numerical
+- **Refuted ideas:** none new; the calibration confirms the archived non-kill at \(25781/10^6\)
+- **Literature:** Section 5 PARK entry (coupling named open); two-type cheap cap (`juggler_cycle_cyclic_valley`); valley-coupling excursion table (`juggler_cycle_valley_coupling`); `J-cycle-period-fifty-thousand`; `J-residual-floor-twenty-six-million`
+- **Open:** certify the transport lemma — the only gap between GREEN and a laboratory theorem at \(L=50508\); the survey's hypothetical cutoff
+- **Decision:** PROMOTE to a certification phase. Do not claim any period bound \(>50507\) until the transport lemma is exact
+
+```text
+What was learned
+- the coupling named open by the Section-5 PARK is computable exactly:
+  DP over (step, odd-count), no grid, brute-force-verified
+- cheap valleys are near-convergents of log2(3/2); one per 19 letters
+  (O^12 E^7), not one per 2.7 — improvement 7.70 at L=50508
+- the walk kills 50508 at the certified floor with margin 1.12,
+  robust to 100x the worst-case transport bound
+- the same charge does not kill 25781 at 10^6 (margin 0.196) and
+  reproduces the archived necklace value to three digits
+- the merge assessment stands: constants cannot kill seeds at 10^6;
+  the new floor moved the requirement into reach
+Strongest theorem
+- none yet; the DP optimum is exact and the envelope u >= 0 is
+  defect-free, but the charge needs the transport lemma
+Strongest refutation
+- none this phase
+Reusable machinery
+- cycle_walk_charge.py (exact lattice DP, transport bound, survey);
+  summary.json / survey.json
+Branch status
+- PROMOTE
+Why
+- the Phase-0 promotion criterion is met across the principled
+  eta band; certification (transport lemma + outward rounding) is
+  a well-defined next phase with a thin but real 12% margin
+Best next question
+- can the lower-envelope transport lemma be made EXACT — HUMAN PROOF
+  with eta <= 4.2e-4, closing L=50508 at the certified floor?
+```
+
 
