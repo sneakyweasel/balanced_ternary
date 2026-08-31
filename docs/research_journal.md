@@ -17679,4 +17679,74 @@ Best next question
 - none from the seam ancestry graph
 ```
 
+## Juggler CycleMin first exact collision
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether CycleMin imposes a joint restriction on the first-collision pair \((c,t)\) with \(J(c)=J(t)=x\), \(c\) cyclic and \(t\) transient, that is not Pred cells, `odd_cell_unique`, or the cyclic-parent type
+- **Hypotheses:** the inverse fork \(c\to x\leftarrow t\) is jointly constrained (forbidden type, order/gap/residue of \((c,t)\) or \((c,t^3)\) in the square interval) in a way the geometry of \(x\) does not already record
+- **Major results:** Classification **CYCLE_FIRST_COLLISION_CLOSED**. Collision Factorization (**EXACT — HUMAN PROOF** / **REPARAMETERIZATION**): first meeting iff \(t\notin C\); CycleMin constrains only which parent can be cyclic. Valley at \(n=10^6+1\): \(\lvert\mathrm{Pred}_E\rvert=n\), odd-cell Type 0, \((O,\ast)\) empty (`cycleMin_not_end_odd`). Type-2 odd witness \(25\to 125\) occupies \((E,O)\). On odd starts in \([13,2001)\): \(994\) Type-2 images, \(0\) \((O,O)\), mixed offset equals the cube-gap, nearest-even gap \(1\), both parent types always. \((E,E)\) gaps at \(x=10\) are \(2,4,\ldots,20\). Named forks \(100\to 10\leftarrow 102\) and \(365/501\) at \(763\) via \(582276,582916\) are \((E,E)\). Artifact `cycle_first_collision/summary.json`. No reopen of `juggler_first_collision`, no finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** a joint first-collision leftover-killer (`juggler_cycle_first_collision`); an extra ancestor condition beyond \(t\notin C\); a mixed residue lock; a restricted \((E,E)\) gap
+- **Literature:** `odd_cell_unique`; `oddLanding_preimage_unique`; `cycleMin_not_end_odd`; `even_cell_iff`; `odd_cell_iff`; first-intersection CLOSE; general first-collision CLOSE; cyclic-seam CLOSE; entry-corridor CLOSE; seam-sliding CLOSE; empty-odd-cell Type 0/1/2
+- **Open:** none from this pair
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- first meeting at x iff the transient parent is off-cycle
+- CycleMin constrains only which parent can be cyclic
+- valley (O,*) is cycleMin_not_end_odd; (O,O) is odd_cell_unique
+- valley (E,O) is empty-odd-cell Type 2 (empty at 10^6+1; 25->125 occupied)
+- mixed (c, t^3) placement is the archived cube-gap; nearest-even gap is 1
+- (E,E) gaps are the even widths of Pred_E
+- the pair is not information-richer than the arrival letter plus the cells
+Strongest theorem
+- Collision Factorization: first iff t is not on the cycle
+Strongest refutation
+- joint pair leftover-killer; extra ancestor condition; mixed residue lock
+Reusable machinery
+- even_parent_count / named_fork / cycle_first_collision/summary.json
+Branch status
+- CLOSE
+Why
+- every empty type is an archived lemma; mixed placement is the
+  cube-gap; CycleMin adds only the cyclic-parent type
+Best next question
+- none from this pair
+```
+
+## Juggler cycle-lift ancestry drop
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether CycleMin forces \(T^L(t)<n\) for every off-cycle parent \(t\) of a cycle point, using the boxed triple parent identity + ancestry depth + period that the fibre census throws away
+- **Hypotheses:** the cycle-lift \(c=T^L(t)\), \(T(t)=T(c)\), \(t\ne c\) produces a drop below the minimum that contradicts \(c\ge n\) and kills initial-cycle intersection
+- **Major results:** Classification **CYCLE_LIFT_ANCESTRY_CLOSED**. Lift identity (**EXACT — HUMAN PROOF** / **REPARAMETERIZATION**): \(T(t)=T(c)\) and \(T^L(c)=c\) imply \(T^L(t)=c\), so CycleMin forces \(T^L(t)\ge n\). Futures agree on every multi-parent fibre \(x\in[1,200]\) through \(12\) steps. Sink \(2\to 1\): \(T(2)=1\not<1\); depth-\(2\) grandparents \(\{4,6,8\}\) land on \(1\). Valley last-even scale \(\ge n^2\) at \(13\), \(25\), \(10^6+1\). Type-2 \(25\to 125\) starts below the image and would land at scale \(125^2\). Parent identity is `cell_same_next_state`. Ancestry depth only shifts the index. Artifact `cycle_lift_ancestry/summary.json`. No reopen of first-collision or seam ancestry, no finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** CycleMin circuit drop \(T^L(t)<n\) (`juggler_cycle_lift_ancestry`); surviving parent identity after one step; a depth-\(d\) drop that is not the same identity
+- **Literature:** `cell_same_next_state`; `first_even_freeze`; `cycle_last_even_interval`; `odd_cell_unique`; `cycleMin_not_end_odd`; first-collision CLOSE; seam-ancestry CLOSE; entry-corridor CLOSE
+- **Open:** none from this lift drop
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- the boxed equation is a genuine cycle-lift, not a seam cell
+- T(t)=T(c) and T^L(c)=c imply T^L(t)=c, so CycleMin forces >= n
+- the sink 2->1 already fails the drop, at depth 1 and depth 2
+- a valley circuit lands in the last-even cell of scale n^2
+- odd feeders that start below the image are sent up, not down
+- parent identity is forgotten after one step
+- ancestry depth only relabels the same identity
+Strongest theorem
+- lift identity: T^L(t)=c
+Strongest refutation
+- CycleMin circuit drop T^L(t)<n; surviving parent identity
+Reusable machinery
+- iterate_floor / parents_of / cycle_lift_ancestry/summary.json
+Branch status
+- CLOSE
+Why
+- the lift forces the opposite inequality; the fibre future is
+  cell_same_next_state; depth does not add a new comparison
+Best next question
+- none from this lift drop
+```
+
 

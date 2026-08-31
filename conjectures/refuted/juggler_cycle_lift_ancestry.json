@@ -1,0 +1,23 @@
+{
+  "id": "juggler_cycle_lift_ancestry",
+  "title": "CycleMin forces every off-cycle parent t of a cycle point to satisfy T^L(t) < n",
+  "statement": "Let C be a CycleMin cycle of period L and minimum n, c in C, t not in C, T(t)=T(c), t\neq c. Then T^L(t) < n. Combined with the lift identity T^L(t)=c this would contradict c≥n and empty the initial-cycle intersection.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "lift identity: T(t)=T(c) and T^L(c)=c imply T^L(t)=c, so CycleMin forces T^L(t)≥n rather than T^L(t)<n",
+    "sink n=1, L=1, c=1, t=2: T(2)=1 is not < 1; depth-2 grandparents 4,6,8 satisfy T^2(s)=1",
+    "valley last-even cell [n^2,(n+1)^2) at n=13, 25, 10^6+1; a circuit image of any parent of n is ≥ n^2",
+    "Type-2 feeder 25->125 starts below the image and would land at scale 125^2 if 125 were a valley",
+    "parent futures agree on every multi-parent fibre x in [1,200] through 12 steps and on 100,102->10; cell_same_next_state. Eventual descent of 100/102 is termination, not a circuit drop"
+  ],
+  "first_seen": "juggler cycle-lift ancestry drop",
+  "lean_reference": "cell_same_next_state",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler CycleMin cycle-lift ancestry",
+  "notes": "Phase 0 only. Not a halt theorem and not a leftover-killer. Not a reopen of first-collision, seam ancestry, the entry corridor, or finance. The lift equation is a REPARAMETERIZATION of determinism plus periodicity. No K=11, no L=55293, no floor raise. No Paper A edit, no ledger row, no new Lean.",
+  "origin": "docs/problems/juggler_cycle_lift_ancestry.md",
+  "proof_reference": "docs/problems/juggler_cycle_lift_ancestry.md",
+  "tested_range": "lift identity on x in [1,200], horizon 12; sink 1 with t=2 and grandparents {4,6,8}; last-even scale at 13, 25, 10^6+1; Type-2 25->125; fork 100,102->10; depth-2 scan on x<40"
+}

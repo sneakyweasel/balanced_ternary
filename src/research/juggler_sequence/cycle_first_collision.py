@@ -28,12 +28,12 @@ from research.juggler_sequence.empty_odd_cell import cube_gap, odd_cell_kind
 from research.juggler_sequence.floor_cells import even_cell
 from research.juggler_sequence.power_words import floor_power
 
-COLLISION_DIR = DATA_DIR / "first_collision"
+COLLISION_DIR = DATA_DIR / "cycle_first_collision"
 START = PUBLISHED_FLOOR + 1
 
-CLASS_CLOSED = "FIRST_COLLISION_CLOSED"
-CLASS_GREEN = "FIRST_COLLISION_GREEN"
-CLASS_PARK = "FIRST_COLLISION_PARK"
+CLASS_CLOSED = "CYCLE_FIRST_COLLISION_CLOSED"
+CLASS_GREEN = "CYCLE_FIRST_COLLISION_GREEN"
+CLASS_PARK = "CYCLE_FIRST_COLLISION_PARK"
 
 INTERIOR_LO = 13
 INTERIOR_HI = 2001
@@ -465,6 +465,7 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
         "new_joint_law": bool(joint_law) and not all_ok,
         "leftover_killer": False,
         "reopens_taxonomy": False,
+        "reopens_first_collision": False,
         "reopens_corridor": False,
         "reopens_twin_flight": False,
         "halt_theorem": False,
@@ -482,7 +483,7 @@ def probe_payload(*, n: int = START) -> dict[str, Any]:
     calib = calibration()
     checks = factorization_checks(valley, interior, gaps_small, gaps_floor, calib)
     payload = {
-        "bound": "first_collision",
+        "bound": "cycle_first_collision",
         "n": n,
         "published_floor": PUBLISHED_FLOOR,
         "lemma_table": list(LEMMA_TABLE),

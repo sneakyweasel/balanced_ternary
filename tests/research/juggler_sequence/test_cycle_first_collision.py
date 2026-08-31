@@ -27,7 +27,7 @@ SUMMARY = (
     / "research"
     / "juggler"
     / "cycle_finance"
-    / "first_collision"
+    / "cycle_first_collision"
     / "summary.json"
 )
 
@@ -93,7 +93,7 @@ def test_named_forks_are_ee():
 
 def test_science_artifact_closes():
     payload = json.loads(SUMMARY.read_text(encoding="utf-8"))
-    assert payload["bound"] == "first_collision"
+    assert payload["bound"] == "cycle_first_collision"
     assert payload["valley"]["pred_e_count"] == START
     assert payload["valley"]["odd_cell_kind"] == 0
     assert payload["valley"]["odd_return_ge_n"] is None
@@ -108,7 +108,7 @@ def test_science_artifact_closes():
     assert payload["factorization"]["factorization_holds"] is True
     decision = payload["decision"]
     assert decision["decision"] == "CLOSE"
-    assert decision["classification"] == "FIRST_COLLISION_CLOSED"
+    assert decision["classification"] == "CYCLE_FIRST_COLLISION_CLOSED"
     assert decision["new_joint_law"] is False
     assert decision["leftover_killer"] is False
     assert decision["halt_theorem"] is False

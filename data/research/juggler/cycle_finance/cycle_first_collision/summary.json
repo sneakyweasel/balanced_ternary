@@ -1,5 +1,5 @@
 {
-  "bound": "first_collision",
+  "bound": "cycle_first_collision",
   "n": 1000001,
   "published_floor": 1000000,
   "lemma_table": [
@@ -201,13 +201,14 @@
     "factorization_holds": true
   },
   "decision": {
-    "classification": "FIRST_COLLISION_CLOSED",
+    "classification": "CYCLE_FIRST_COLLISION_CLOSED",
     "decision": "CLOSE",
     "reason": "Collision Factorization holds: first iff t is off-cycle; CycleMin constrains only the cyclic-parent type; every empty type is odd_cell_unique or cycleMin_not_end_odd; mixed (c, t^3) placement is the cube-gap; (E,E) gaps are the even widths of Pred_E",
     "factorization_holds": true,
     "new_joint_law": false,
     "leftover_killer": false,
     "reopens_taxonomy": false,
+    "reopens_first_collision": false,
     "reopens_corridor": false,
     "reopens_twin_flight": false,
     "halt_theorem": false,

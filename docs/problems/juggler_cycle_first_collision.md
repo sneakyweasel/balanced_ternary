@@ -99,6 +99,13 @@ No cycle of any length — not claimed.
 - Adjacent-seam propagation —
   **CLOSE**
   ([juggler_cycle_seam_propagate.md](juggler_cycle_seam_propagate.md))
+- General first-collision / ancestry —
+  **CLOSE**
+  ([juggler_first_collision.md](juggler_first_collision.md));
+  distinct last parents, not CycleMin roles
+- Seam ancestry graph —
+  **CLOSE**
+  ([juggler_cycle_seam_ancestry.md](juggler_cycle_seam_ancestry.md))
 - Twin-flight / `high_merge` —
   **CLOSE** / **PARK**; different objects
 - Collatz-style financing —
@@ -149,9 +156,11 @@ Stop criterion          factorization holds; mixed placement is
 
 Do not reopen the entry corridor, the cyclic seam, the
 first-intersection taxonomy, the \(E^r\) block, seam sliding,
-seam propagate, the exponent budget, cyclic block transfer,
-peak–valley composition, finance, twin-flight, high-merge,
-backward-geometry rank, or the empty-odd-cell forward law.
+seam propagate, the general first-collision / ancestry branch,
+the seam ancestry graph, the exponent budget, cyclic block
+transfer, peak–valley composition, finance, twin-flight,
+high-merge, backward-geometry rank, or the empty-odd-cell
+forward law.
 
 - **CLOSE** if factorization holds: first \(\Leftrightarrow t\notin C\);
   CycleMin constrains only the cyclic-parent type.
@@ -206,7 +215,7 @@ It is not required.
 ## Experiments
 
 - Probe: `research.juggler_sequence.cycle_first_collision`
-- Dataset: `data/research/juggler/cycle_finance/first_collision/summary.json`
+- Dataset: `data/research/juggler/cycle_finance/cycle_first_collision/summary.json`
 - Tests: `tests/research/juggler_sequence/test_cycle_first_collision.py`
 - Window: lemma table; valley occupancy at \(n=10^6+1\);
   odd starts in \([13,2001)\); square-interval joint observable
@@ -251,7 +260,7 @@ None added. Uniqueness is already `odd_cell_unique` /
 - **Factorization** — **EXACT — HUMAN PROOF** /
   **REPARAMETERIZATION**: first \(\Leftrightarrow t\notin C\);
   CycleMin constrains only the cyclic-parent type
-  (`first_collision/summary.json`).
+  (`cycle_first_collision/summary.json`).
 - **Valley occupancy** — **COMPUTATIONALLY VERIFIED**:
   \(\lvert\mathrm{Pred}_E\rvert=n=10^6+1\); odd-cell Type 0;
   \((E,E)\) count \(n(n-1)/2\); \((O,\ast)\) empty.
@@ -268,9 +277,10 @@ None added. Uniqueness is already `odd_cell_unique` /
 ## Open questions
 
 None from the first exact collision. Do not reopen the
-first-intersection taxonomy, the entry corridor, the cyclic
-seam, seam sliding, or twin-flight. Do not build a pair-census
-engine. Do not claim termination.
+first-intersection taxonomy, the general first-collision
+branch, the entry corridor, the cyclic seam, seam sliding, or
+twin-flight. Do not build a pair-census engine. Do not claim
+termination.
 
 ## Decision
 
