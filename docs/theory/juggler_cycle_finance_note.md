@@ -14,6 +14,8 @@ The compiled Lean is `Problems/Juggler/CycleFinance.lean` and
 `Problems/Juggler/CycleHeightFinance.lean`. Dossier:
 [juggler_cycle_finance.md](../problems/juggler_cycle_finance.md).
 Ledger: `J-cycle-finance-inequality`,
+`J-cycle-parity-finance`,
+`J-cycle-parity-finance-instance`,
 `J-residual-floor-two-hundred-sixty-one`,
 `J-residual-floor-two-million`,
 `J-cycle-word-length-eighty-four-or-ge-eighty-five`,
@@ -136,19 +138,37 @@ states \(\ge 12\):
 \]
 
 The \(6/5\) is \(-\ln(1-\delta)\le(6/5)\delta\) on
-\([0,1/6]\). At the minimal admissible \(o\), this defines
-\(n_{\max}(L)\). With the Python floor \(N_0=2\cdot 10^6\) (every
-\(2\le n\le 2\cdot 10^6\) reaches \(1\), **COMPUTATIONALLY
-VERIFIED**), there is no cycle of length \(L\le 25780\), and none
-of length \(L\le 10^5\) outside an explicit set of \(166\)
-near-convergent lengths. Those exceptions track the
-continued-fraction convergents of \(\ln 2/\ln 3\). Length
-\(1054\) and all its multiples die together
-(\(n_{\max}\approx 1.997\cdot 10^6\)); the next record survivor
-is \(L=25781\). Length \(84\) is the first record convergent that
-survives the Lean floor (\(n_{\max}(84)=5599\)). Paper A
-Theorem 4.6 still prints the weaker published floor \(10^6\)
-(prefix \(1053\), \(397\) exceptions).
+\([0,1/6]\). At the minimal admissible \(o\), the crude bound
+defines \(n_{\max}(L)\). The length-only parity refinement
+(**EXACT — HUMAN PROOF**) keeps the same unroll and replaces
+the last step \(x_i\ge n\) by the CycleMin classification
+\(m\le e=L-o\), evens \(\ge n^2\), internal odds
+\(\ge t=\lfloor n^{3/2}\rfloor\):
+
+\[
+\sum_i\frac1{x_i\ln x_i}
+\;\le\;
+\frac{e}{n\ln n}
++\frac{o-e}{t\ln t}
++\frac{e}{2n^2\ln n}.
+\]
+
+This is joint-minima finance at the adversarial circuit count
+\(m=e\), not a rewriting of \(B(L)=(6/5)L/\theta\). With the
+published floor \(N_0=10^6\), the certified parity scan excludes
+every \(L\le 25780\) and every \(L\le 10^5\) outside \(141\)
+lengths (`exceptions_parity.json`). First survivor \(L=25781\),
+\(n_{\max}^{\mathrm{par}}(1054)=788014\),
+\(n_{\max}^{\mathrm{par}}(25781)=26254995\). The optimal
+uniform coefficient \(c_*=6\ln(6/5)\) does not change that
+cutoff. Paper A Theorem 4.6 prints this table.
+
+The crude table at the laboratory floor \(N_0=2\cdot 10^6\)
+still excludes every \(L\le 25780\) with \(166\) exceptions:
+length \(1054\) dies there by raising the floor
+(\(n_{\max}\approx 1.997\cdot 10^6\)), not by the parity sum.
+Length \(84\) is the first record convergent that survives the
+Lean floor (\(n_{\max}(84)=5599\)).
 
 **Eliahou leftover (EXACT — LEAN VERIFIED implication
 `cycle_word_eliahou_leftover`; instance COMPUTATIONALLY
@@ -168,7 +188,9 @@ Joint-minima finance and the \(6/5\) greedy height packing are
 [juggler_cycle_position_finance.md](../problems/juggler_cycle_position_finance.md)).
 They exclude further \((L,m)\) pairs (every length-\(38\) cycle
 at floor \(257\); length \(84\) at \(m=1,2\) already in Lean at
-constant \(1\)). They do not change the compiled leftover.
+constant \(1\)). The length-only special case \(m=e\) is the
+parity table of Paper A Theorem 4.6. Finer run-height packing
+does not improve that length-only \(n_{\max}\) at \(o_{\min}\).
 
 ## Attacks that stop
 
@@ -214,7 +236,8 @@ These were run. None of them changes the leftover.
   not `no_cycle_word_length_eleven`.
 - Not a leftover-word census of the length-\(11\) short-gap
   families. Paper A prints Theorem 4.4 and the floor-\(10^6\)
-  leftover; Lean leftover \(84\) is an Appendix A companion.
+  parity leftover (prefix \(25780\)); Lean leftover \(84\) is an
+  Appendix A companion.
 - Not a second manuscript.
 
 ## Literature

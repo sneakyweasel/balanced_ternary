@@ -10,8 +10,8 @@ The former single note has been split into two manuscripts:
   *Lower bounds for nontrivial cycles of the Juggler map.*
   Local word obstructions plus a global finance inequality give
   a cycle-length lower bound. Main theorem A: no period
-  \(\le 1053\). Secondary theorem B: periods \(\le 10^5\) lie in
-  an explicit admissible set \(\mathcal E\) of \(397\) lengths.
+  \(\le 25780\). Secondary theorem B: periods \(\le 10^5\) lie in
+  an explicit admissible set \(\mathcal E\) of \(141\) lengths.
   Supporting structural theorem C: every nontrivial cycle has at
   least four even letters, hence period at least eleven. The
   financing inequality is Theorem 4.4; A and B are Theorem 4.6
@@ -85,7 +85,7 @@ fewer than four even letters, so a nontrivial cycle has period at
 least eleven. A financing inequality at a cycle minimum
 restricts every remaining period to a near-convergent of
 \(\ln 2/\ln 3\), or to a huge length; with a verified floor through
-\(10^6\) there is no period \(\le 1053\). Even and odd-to-even starts
+\(10^6\) there is no period \(\le 25780\). Even and odd-to-even starts
 carry uniform short certificates; the starts not covered by those
 certificates are exactly the odd-to-odd class, not the starts with
 no descent of any length. The small-cycle census is Theorems 3.6
@@ -129,7 +129,7 @@ says nothing about the deterministic shift).
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists |
 | Finance inequality (Theorem 4.4) | **EXACT — LEAN VERIFIED** | `cycleMin_finance`; constant \(1\); not a halt theorem |
 | Per-length exclusion given a floor (Corollary 4.5) | **EXACT — HUMAN PROOF** | \(6/5\) table; conservative relative to Theorem 4.4 |
-| Verified computation (Theorem 4.6) | **COMPUTATIONALLY VERIFIED** | verified descent floor \(10^6\); no period \(\le 1053\); \(397\) exceptions through \(10^5\); first length not excluded is \(1054\) |
+| Verified computation (Theorem 4.6) | **COMPUTATIONALLY VERIFIED** | verified descent floor \(10^6\); parity \(6/5\) table; no period \(\le 25780\); \(141\) exceptions through \(10^5\); first length not excluded is \(25781\) |
 | Lean leftover \(84\) or \(\ge 85\) | **EXACT — LEAN VERIFIED** | Appendix A companion; formalization lag relative to Theorem 4.6 |
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 5) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Section 5) | **EXACT — LEAN VERIFIED** | not all descent certificates |

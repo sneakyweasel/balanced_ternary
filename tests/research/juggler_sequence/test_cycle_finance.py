@@ -17,7 +17,9 @@ from research.juggler_sequence.cycle_finance import (
     FORBIDDEN_NEW_API,
     FORBIDDEN_THEOREMS,
     LEAN_FLOOR,
+    PUBLISHED_FLOOR,
     TEST_FLOOR,
+    adversarial_valley_count,
     census_cross_check,
     classify,
     eliahou_exceptions,
@@ -25,11 +27,16 @@ from research.juggler_sequence.cycle_finance import (
     eliahou_packaging,
     eliahou_table_holds,
     finance_rows,
+    first_odd_image,
     lean_api_present,
     n_max_from_bound,
     orbit_slack,
+    parity_excludes,
+    parity_n_max,
+    parity_survives_floor,
     probe_payload,
     render_markdown,
+    sha256_int_list,
     verify_floor,
 )
 
@@ -198,6 +205,57 @@ def test_eliahou_instance_matches_science_table():
     assert not eliahou_leftover(25780, lengths)
 
 
+def test_parity_length_only_ingredients():
+    assert first_odd_image(12) == 41
+    assert first_odd_image(10**6 + 1) == 1_000_001_500
+    assert adversarial_valley_count(1054, 665) == 389
+    assert adversarial_valley_count(25781, 16266) == 9515
+    row = next(item for item in finance_rows(1054) if item["L"] == 1054)
+    assert row["o"] == 665
+    assert parity_n_max(1054, 665, row["theta"]) == 788014
+    assert parity_excludes(1054, 665, row["theta"], PUBLISHED_FLOOR)
+    assert not parity_survives_floor(1054, 665, row["theta"], PUBLISHED_FLOOR)
+
+
+def test_parity_table_pins_first_survivor():
+    payload = json.loads(
+        (
+            REPO / "data" / "research" / "juggler" / "cycle_finance"
+            / "exceptions_parity.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert payload["floor"] == PUBLISHED_FLOOR
+    assert payload["first_exception"] == 25781
+    assert payload["contiguous_prefix"] == 25780
+    assert payload["count"] == 141
+    assert payload["uncertain_count"] == 0
+    assert payload["uncertain"] == []
+    assert payload["certified_first_survivor_25781"] is True
+    assert payload["lengths"][0] == 25781
+    assert payload["lengths"][-1] == 99561
+    assert 1054 not in payload["lengths"]
+    assert 25780 not in payload["lengths"]
+    assert payload["spotlight"]["1054"]["n_max"] == 788014
+    assert payload["spotlight"]["25781"]["n_max"] == 26254995
+    assert payload["sha256_lengths"] == (
+        "dd71aa1527656ba51cb031bafa5497f7bfdbbc43151ffba2c595793326bf7944"
+    )
+    assert sha256_int_list(payload["lengths"]) == payload["sha256_lengths"]
+
+
+def test_crude_table_unchanged_at_published_floor():
+    exceptions = json.loads(
+        (
+            REPO / "data" / "research" / "juggler" / "cycle_finance"
+            / "exceptions.json"
+        ).read_text(encoding="utf-8")
+    )
+    published = next(item for item in exceptions if item["floor"] == 1_000_000)
+    assert published["count"] == 397
+    assert published["first_exception"] == 1054
+    assert published["contiguous_prefix"] == 1053
+
+
 def test_dossier_boundary():
     dossier = (
         REPO / "docs" / "problems" / "juggler_cycle_finance.md"
@@ -221,6 +279,7 @@ def test_dossier_boundary():
     assert "import Problems.Juggler.CycleFinance" in paper
     assert "import Problems.Juggler.CycleHeightFinance" not in paper
     assert "cycleMin_finance" in note
+    assert "Length-only parity finance" in dossier
     assert "25780" in note
     assert "cycle_word_length_eighty_four_or_ge_eighty_five" in note
     assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in note

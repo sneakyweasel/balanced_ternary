@@ -19,6 +19,10 @@ per-length minimum bound n_max(L) exactly for L <= 10^5, verifies a
 descent-induction floor (every n <= N0 reaches 1), and stress-tests
 the per-step bound eps_i <= (6/5)/x_{i+1} on real orbit segments.
 A verified floor N0 excludes every length with n_max(L) <= N0.
+The length-only parity refinement charges even states at n^2 and
+internal odds at floor(n^{3/2}); write_parity_artifacts records
+that table as exceptions_parity.json without touching the crude
+exceptions.json.
 Lean: CycleFinance.lean (cycleMin_finance, no_cycle_word_length_le_nineteen,
 cycle_word_length_eighty_four_or_ge_eighty_five, cycle_word_eliahou_leftover)
 and CycleHeightFinance.lean
@@ -30,6 +34,7 @@ or length >= 85.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
 import os
@@ -62,8 +67,13 @@ CLASS_CLOSED = "CYCLE_FINANCE_CLOSED"
 CLASS_INCOMPLETE = "CYCLE_FINANCE_INCOMPLETE"
 
 EPS_CONST = 1.2  # -ln(1-d) <= (6/5) d on [0, 1/6]
+C_STAR = 6.0 * math.log(1.2)  # optimal uniform coeff 6 log(6/5) on [0, 1/6]
 MIN_STATE = 12  # Lean reachesOne_of_lt_twelve: every n <= 11 reaches 1
 LEAN_FLOOR = 11
+PUBLISHED_FLOOR = 1_000_000
+PARITY_REL_GUARD = 1e-9
+PARITY_ABS_PAD = 1e-18
+PARITY_SPOTLIGHT = (1053, 1054, 25780, 25781)
 
 SCIENCE_L_MAX = 100_000
 SCIENCE_FLOOR = 68_000_000
@@ -211,6 +221,336 @@ def finance_rows(l_max: int) -> list[dict[str, Any]]:
             }
         )
     return rows
+
+
+def first_odd_image(n: int) -> int:
+    """T(n) for odd n: floor(n^{3/2}) = isqrt(n^3)."""
+
+    return isqrt(n * n * n)
+
+
+def adversarial_valley_count(length: int, odd_count: int) -> int:
+    """Worst-case odd-run count on a CycleMin: m ≤ min(o, e).
+
+    A CycleMin word ends even (`cycleMin_not_end_odd`), so e ≥ 1
+    and each odd-run is preceded by an even letter, hence m ≤ e.
+    If e = 0 the table still evaluates at o_min; charge every odd
+    at n (the conservative all-valley bound).
+    """
+
+    even_count = length - odd_count
+    if even_count <= 0:
+        return odd_count
+    return min(odd_count, even_count)
+
+
+def parity_sum_terms(n: int, length: int, odd_count: int) -> float:
+    """Upper bound on Σ 1/(x_i ln x_i) at a CycleMin start n.
+
+    Valleys (at most e) sit at n; other odds sit at t = ⌊n^{3/2}⌋;
+    evens sit at n² (`cycleMin_even_ge_sq`).
+    """
+
+    if n < 3:
+        return math.inf
+    even_count = length - odd_count
+    valleys = adversarial_valley_count(length, odd_count)
+    climb = max(odd_count - valleys, 0)
+    log_n = math.log(n)
+    valley_term = valleys / (n * log_n)
+    image = first_odd_image(n)
+    if image < 3:
+        climb_term = math.inf
+    else:
+        climb_term = climb / (image * math.log(image))
+    even_term = even_count / (n * n * (2.0 * log_n))
+    return valley_term + climb_term + even_term
+
+
+def parity_rhs(
+    n: int,
+    length: int,
+    odd_count: int,
+    *,
+    const: float = EPS_CONST,
+) -> float:
+    """Length-only joint-minima ceiling for θ at CycleMin n."""
+
+    return const * parity_sum_terms(n, length, odd_count)
+
+
+def parity_rhs_upper(
+    n: int,
+    length: int,
+    odd_count: int,
+    *,
+    const: float = EPS_CONST,
+) -> float:
+    raw = parity_rhs(n, length, odd_count, const=const)
+    if not math.isfinite(raw):
+        return math.inf
+    return raw * (1.0 + PARITY_REL_GUARD) + PARITY_ABS_PAD
+
+
+def parity_rhs_lower(
+    n: int,
+    length: int,
+    odd_count: int,
+    *,
+    const: float = EPS_CONST,
+) -> float:
+    raw = parity_rhs(n, length, odd_count, const=const)
+    if not math.isfinite(raw):
+        return 0.0
+    return max(0.0, raw * (1.0 - PARITY_REL_GUARD) - PARITY_ABS_PAD)
+
+
+def parity_excludes(
+    length: int,
+    odd_count: int,
+    theta: float,
+    n0: int,
+    *,
+    const: float = EPS_CONST,
+) -> bool:
+    """Exclude only when a lower bound on θ exceeds an upper bound on the RHS.
+
+    Cycle minimum is at least n0 + 1 (every n ≤ n0 reaches 1).
+    """
+
+    start = max(n0 + 1, MIN_STATE)
+    theta_lo = theta * (1.0 - PARITY_REL_GUARD)
+    return theta_lo > parity_rhs_upper(
+        start, length, odd_count, const=const
+    )
+
+
+def parity_survives_floor(
+    length: int,
+    odd_count: int,
+    theta: float,
+    n0: int,
+    *,
+    const: float = EPS_CONST,
+) -> bool:
+    """Survive only when an upper bound on θ is below a lower bound on the RHS."""
+
+    start = max(n0 + 1, MIN_STATE)
+    theta_hi = theta * (1.0 + PARITY_REL_GUARD)
+    return theta_hi < parity_rhs_lower(
+        start, length, odd_count, const=const
+    )
+
+
+def parity_n_max(
+    length: int,
+    odd_count: int,
+    theta: float,
+    *,
+    const: float = EPS_CONST,
+) -> int:
+    """Largest n at which the padded inequality can still hold.
+
+    Uses an inflated RHS, so the returned n_max is slightly large
+    (conservative: do not exclude a length whose true n_max is
+    just above the floor).
+    """
+
+    def holds(n: int) -> bool:
+        return theta <= parity_rhs_upper(
+            n, length, odd_count, const=const
+        )
+
+    if not holds(MIN_STATE):
+        lo = 2
+        hi = MIN_STATE - 1
+        if not holds(lo):
+            return 1
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if holds(mid):
+                lo = mid
+            else:
+                hi = mid - 1
+        return lo
+    hi = MIN_STATE
+    while holds(hi):
+        if hi > 10**18:
+            return hi
+        nxt = hi * 2
+        if nxt <= hi:
+            return hi
+        hi = nxt
+    lo = hi // 2
+    while lo < hi:
+        mid = (lo + hi + 1) // 2
+        if holds(mid):
+            lo = mid
+        else:
+            hi = mid - 1
+    return lo
+
+
+def parity_finance_rows(
+    l_max: int,
+    *,
+    const: float = EPS_CONST,
+) -> list[dict[str, Any]]:
+    """Length-only parity table L -> (o_min, theta, n_max).
+
+    o_min is exact integer (3^o > 2^L). n_max uses the padded
+    joint-minima comparison at m = e = L − o.
+    """
+
+    rows: list[dict[str, Any]] = []
+    pow2 = 1
+    pow3 = 1
+    o = 0
+    best_theta = math.inf
+    for length in range(1, l_max + 1):
+        pow2 <<= 1
+        while pow3 <= pow2:
+            pow3 *= 3
+            o += 1
+        theta = (pow3 - pow2) / pow3
+        record = theta < best_theta
+        if record:
+            best_theta = theta
+        even_count = length - o
+        rows.append(
+            {
+                "L": length,
+                "o": o,
+                "e": even_count,
+                "theta": theta,
+                "n_max": parity_n_max(length, o, theta, const=const),
+                "record": record,
+            }
+        )
+    return rows
+
+
+def parity_floor_status(
+    row: dict[str, Any],
+    floor: int,
+    *,
+    const: float = EPS_CONST,
+) -> str:
+    """certified_exclude | certified_survive | uncertain."""
+
+    length = row["L"]
+    odd_count = row["o"]
+    theta = row["theta"]
+    excluded = parity_excludes(
+        length, odd_count, theta, floor, const=const
+    )
+    survives = parity_survives_floor(
+        length, odd_count, theta, floor, const=const
+    )
+    if excluded and not survives:
+        return "certified_exclude"
+    if survives and not excluded:
+        return "certified_survive"
+    return "uncertain"
+
+
+def sha256_int_list(values: list[int]) -> str:
+    payload = json.dumps(values, separators=(",", ":")).encode("ascii")
+    return hashlib.sha256(payload).hexdigest()
+
+
+def parity_scan(
+    *,
+    l_max: int = SCIENCE_L_MAX,
+    floor: int = PUBLISHED_FLOOR,
+    const: float = EPS_CONST,
+) -> dict[str, Any]:
+    """Certified length-only parity table at a published descent floor."""
+
+    rows = parity_finance_rows(l_max, const=const)
+    statuses = [parity_floor_status(row, floor, const=const) for row in rows]
+    excluded = [
+        row["L"]
+        for row, status in zip(rows, statuses)
+        if status == "certified_exclude"
+    ]
+    survivors = [
+        row["L"]
+        for row, status in zip(rows, statuses)
+        if status == "certified_survive"
+    ]
+    uncertain = [
+        row["L"]
+        for row, status in zip(rows, statuses)
+        if status == "uncertain"
+    ]
+    first = survivors[0] if survivors else None
+    prefix = (first - 1) if first else rows[-1]["L"]
+    spotlight = {
+        str(length): next(row for row in rows if row["L"] == length)
+        for length in PARITY_SPOTLIGHT
+        if length <= l_max
+    }
+    records = [
+        {
+            "L": row["L"],
+            "o": row["o"],
+            "e": row["e"],
+            "theta": row["theta"],
+            "n_max": row["n_max"],
+        }
+        for row in rows
+        if row["record"]
+    ]
+    return {
+        "bound": "parity_6/5",
+        "const": const,
+        "c_star": C_STAR,
+        "l_max": l_max,
+        "floor": floor,
+        "first_exception": first,
+        "contiguous_prefix": prefix,
+        "count": len(survivors),
+        "excluded_count": len(excluded),
+        "uncertain": uncertain,
+        "uncertain_count": len(uncertain),
+        "lengths": survivors,
+        "records": records,
+        "spotlight": {
+            key: {
+                "L": row["L"],
+                "o": row["o"],
+                "e": row["e"],
+                "theta": row["theta"],
+                "n_max": row["n_max"],
+                "status": parity_floor_status(row, floor, const=const),
+            }
+            for key, row in spotlight.items()
+        },
+        "sha256_lengths": sha256_int_list(survivors),
+        "certified_first_survivor_25781": first == 25781
+        and prefix == 25780
+        and not uncertain,
+        "halt_theorem": False,
+        "no_cycle_all_lengths": False,
+    }
+
+
+def write_parity_artifacts(
+    payload: dict[str, Any] | None = None,
+    *,
+    l_max: int = SCIENCE_L_MAX,
+    floor: int = PUBLISHED_FLOOR,
+) -> dict[str, Any]:
+    """Write exceptions_parity.json. Does not touch the crude table."""
+
+    data = payload if payload is not None else parity_scan(
+        l_max=l_max, floor=floor
+    )
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    path = DATA_DIR / "exceptions_parity.json"
+    path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    return data
 
 
 def eliahou_leftover(
@@ -847,7 +1187,9 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
         "Finance bound n ln n <= (6/5) L 3^o/(3^o - 2^L) on Juggler cycle\n"
         "minima, exact gap table, descent-induction floor, orbit slack.\n"
         "Not a halt theorem. The floor is COMPUTATIONALLY VERIFIED.\n\n"
-        "Regenerate with `python -m research.juggler_sequence.cycle_finance`.\n",
+        "Regenerate with `python -m research.juggler_sequence.cycle_finance`.\n"
+        "Length-only parity table: `exceptions_parity.json` "
+        "(write_parity_artifacts; does not replace this crude table).\n",
         encoding="utf-8",
     )
 

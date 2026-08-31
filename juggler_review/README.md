@@ -11,7 +11,7 @@ is not the laboratory. No termination theorem is claimed.
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
    — **Paper A**: *Lower bounds for nontrivial cycles of the
    Juggler map*. Local word obstructions plus finance give
-   \(L\ge 1054\) (Theorem A) and an admissible set of \(397\)
+   \(L\ge 25781\) (Theorem A) and an admissible set of \(141\)
    lengths through \(10^5\) (Theorem B). Every nontrivial cycle
    has at least four even letters (Theorem C). Membership in the
    admissible set is not evidence for a cycle.

@@ -5227,7 +5227,7 @@
   {
     "id": "J-cycle-word-eliahou-leftover-instance",
     "tag": "COMPUTATIONALLY VERIFIED",
-    "statement": "If a nontrivial Juggler cycle exists, there is no period ≤ 1053, and no period ≤ 10^5 outside the 397 near-convergent lengths of ln 2 / ln 3 at the Python floor 10^6 (Paper A Theorem 4.6). First record survivor is L = 1054. Instantiation of J-cycle-word-eliahou-leftover by the existing finance gap table L ≤ 10^5 and descent floor 10^6. Length 84 is the Lean-named leftover (Appendix A companion) and is computationally already excluded. Lengths 19, 38, 57, and 76 are excluded in Lean at the residual floor 261. This is not a new inequality, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "statement": "If a nontrivial Juggler cycle exists, there is no period ≤ 25780, and no period ≤ 10^5 outside the 141 near-convergent lengths of ln 2 / ln 3 at the Python floor 10^6 using the length-only parity 6/5 table (Paper A Theorem 4.6). First record survivor is L = 25781. Instantiation of J-cycle-word-eliahou-leftover by the parity finance gap table L ≤ 10^5 and descent floor 10^6. Length 84 is the Lean-named leftover (Appendix A companion) and is computationally already excluded. Lengths 19, 38, 57, and 76 are excluded in Lean at the residual floor 261. This is not a no-cycle-of-any-length theorem and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
@@ -5236,9 +5236,31 @@
     "related_conjectures": []
   },
   {
+    "id": "J-cycle-parity-finance",
+    "tag": "EXACT — HUMAN PROOF",
+    "statement": "On a Juggler CycleMin start n ≥ 12 of length L with o odd letters and e = L − o even letters, the number of odd-run starts is at most e, every even state is at least n² (cycleMin_even_ge_sq), and every odd preceded by an odd is at least t = ⌊n^{3/2}⌋. Hence Σ 1/(x_i ln x_i) ≤ e/(n ln n) + (o−e)/(t ln t) + e/(2 n² ln n). Combined with the existing 6/5 unroll this is strictly stronger than charging all L states at 1/(n ln n). It is the joint-minima bound at the adversarial circuit count m = e, not a reparameterization of B(L) = (6/5) L / θ. Not Lean. Not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-parity-finance-instance",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "The length-only parity 6/5 table at the published floor N_0 = 10^6 excludes every cycle length L ≤ 25780 and every L ≤ 10^5 outside 141 near-convergent lengths. First survivor L = 25781 with n_max^par = 26254995; n_max^par(1054) = 788014. No comparison is uncertain. SHA-256 of the length list is dd71aa1527656ba51cb031bafa5497f7bfdbbc43151ffba2c595793326bf7944. This is not the crude table at floor 2·10^6 (same prefix, weaker inequality). Not a halt theorem and not a no-cycle-of-any-length theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
     "id": "J-residual-floor-two-million",
     "tag": "COMPUTATIONALLY VERIFIED",
-    "statement": "Every integer 2 ≤ n ≤ 2·10^6 reaches 1 under the Juggler map by first-passage descent induction (verify_floor). Combined with the 6/5 finance table this excludes every cycle length ≤ 25780, and every length ≤ 10^5 outside 166 near-convergent lengths of ln 2 / ln 3. First record survivor is L = 25781. Max first-passage in the window is 257 steps at seed 1122603. Paper A Theorem 4.6 remains the weaker published floor 10^6 (prefix 1053, 397 exceptions). This is not a halt theorem and not a no-cycle-of-any-length theorem.",
+    "statement": "Every integer 2 ≤ n ≤ 2·10^6 reaches 1 under the Juggler map by first-passage descent induction (verify_floor). Combined with the crude 6/5 finance table this excludes every cycle length ≤ 25780, and every length ≤ 10^5 outside 166 near-convergent lengths of ln 2 / ln 3. First record survivor is L = 25781. Max first-passage in the window is 257 steps at seed 1122603. Paper A Theorem 4.6 now prints the parity table at floor 10^6 (prefix 25780, 141 exceptions), a stronger inequality at the weaker floor. This is not a halt theorem and not a no-cycle-of-any-length theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "",
     "tests": [

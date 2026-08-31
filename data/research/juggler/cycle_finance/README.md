@@ -5,3 +5,5 @@ minima, exact gap table, descent-induction floor, orbit slack.
 Not a halt theorem. The floor is COMPUTATIONALLY VERIFIED.
 
 Regenerate with `python -m research.juggler_sequence.cycle_finance`.
+Length-only parity table: `exceptions_parity.json`
+(`write_parity_artifacts`; does not replace this crude table).

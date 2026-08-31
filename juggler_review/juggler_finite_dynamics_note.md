@@ -34,10 +34,11 @@ formally expanding. Floor remainders must finance the surplus
 n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 \]
 Combined with the computational verification reported by Weisstein
-that every start through \(10^6\) reaches \(1\), there is no
-nontrivial cycle of length at most \(1053\). Through length
+that every start through \(10^6\) reaches \(1\), and with the
+parity-aware form of the floor-error budget, there is no
+nontrivial cycle of length at most \(25780\). Through length
 \(10^5\), only an explicit set
-\(\mathcal E\) of \(397\) lengths remains admissible to the bound.
+\(\mathcal E\) of \(141\) lengths remains admissible to the bound.
 A separate finite-word analysis shows that every nontrivial cycle
 has at least four even letters and hence period at least eleven.
 
@@ -72,8 +73,9 @@ The note has one architecture:
 Section 3 excludes every cycle word with fewer than four even
 letters, so the period is at least eleven. Section 4 turns the
 formal surplus \(3^o-2^L\) into a bound on the cycle minimum.
-With the verified descent floor through \(10^6\), that bound
-excludes every period at most \(1053\).
+With the verified descent floor through \(10^6\), the
+parity-aware form of that bound excludes every period at most
+\(25780\).
 
 Write \(N_0=10^6\) for the *verified descent floor*: the
 computational verification reported by Weisstein [5], recomputed
@@ -82,7 +84,7 @@ record. The contribution is the implication
 \[
 \text{finance}+\text{verified descent floor }10^6
 \quad\Rightarrow\quad
-L\ge 1054.
+L\ge 25781.
 \]
 
 Throughout, \(\mathbb N=\{1,2,3,\ldots\}\). Write \(J^k\) for the
@@ -96,13 +98,13 @@ minimum-based rotation.
 ### 1.0 Main results
 
 **Main theorem.**
-There is no nontrivial Juggler cycle of length at most \(1053\).
-Equivalently, any nontrivial cycle has period at least \(1054\)
+There is no nontrivial Juggler cycle of length at most \(25780\).
+Equivalently, any nontrivial cycle has period at least \(25781\)
 (Theorem A; Theorem 4.6(A)).
 
 **Secondary theorem.**
 If a nontrivial cycle has period \(L\le 10^5\), then \(L\) belongs
-to an explicit set \(\mathcal E\) of \(397\) lengths (Theorem B;
+to an explicit set \(\mathcal E\) of \(141\) lengths (Theorem B;
 Theorem 4.6(B)). Membership in \(\mathcal E\) means only that the
 finance inequality at the verified descent floor \(10^6\) does
 not exclude \(L\). It does not mean that a cycle of that length
@@ -132,7 +134,7 @@ n_{\max}(L)
 \to
 10^6\text{ verified descent floor}
 \to
-L\ge 1054.
+L\ge 25781.
 \]
 
 ### 1.1 Related work
@@ -173,7 +175,7 @@ verified descent floor \(10^6\), appear to be new. The leftover
 packaging, period at least \(X\) or a named admissible family,
 follows Eliahou [13]. For this nonlinear floor-power map, the
 elementary log-envelope plus that floor already forces
-\(L\ge 1054\).
+\(L\ge 25781\).
 
 **Novelty statement.**
 For the exact Juggler map, the one-step floor cells yield the
@@ -1262,25 +1264,51 @@ Writing \(\varepsilon=-\tfrac12\log(1-\delta)\) and using
 \[
 1-\frac{2^L}{3^o}
 \le
-\frac65\sum_{i=1}^{L}\frac{1}{x_i\log x_i}
-\le
-\frac65\cdot\frac{L}{n\log n}.
+\frac65\sum_{i=1}^{L}\frac{1}{x_i\log x_i}.
 \]
 This is Theorem 4.4 with an extra factor \(6/5\) on the right, so
-it is conservative relative to constant \(1\). We use the weaker
-\(6/5\) bound because it is uniform above the verified descent
-floor and suffices to obtain the stated \(1054\) threshold; no
-optimization of the constant is attempted.
+it is conservative relative to constant \(1\). Charging every
+state at the cycle minimum \(x_i\ge n\) recovers the coarser
+comparison \(\sum 1/(x_i\log x_i)\le L/(n\log n)\), which at
+this floor excludes only through length \(1053\). The
+computational table uses a stricter length-only bound from the
+same identity.
+
+On a minimum-based cycle of length \(L\) with \(o\) odd letters
+and \(e=L-o\) even letters, the last letter is even, so \(e\ge 1\)
+and the number of odd-run starts is at most \(e\). Every even
+state satisfies \(x\ge n^2\). Every odd state preceded by an odd
+state satisfies \(x\ge t=\lfloor n^{3/2}\rfloor\). Therefore
+\[
+\sum_{i=1}^{L}\frac{1}{x_i\log x_i}
+\le
+\frac{e}{n\log n}
++\frac{o-e}{t\log t}
++\frac{e}{2n^2\log n},
+\]
+and
+\[
+n\log n\left(1-\frac{2^L}{3^o}\right)
+\le
+\frac65\left(
+e+(o-e)\frac{n\log n}{t\log t}+\frac{e}{2n}
+\right).
+\]
+The optimal uniform coefficient on \([0,1/6]\) is
+\(6\log(6/5)\). It does not change the first surviving length
+below, and the table keeps \(6/5\).
 
 The right-hand side is largest at the least admissible odd count
 \(o_{\min}(L)=\min\{o:3^o>2^L\}\). Define
 \[
 \gamma(L)=\frac{3^{o_{\min}(L)}}{2^L}-1,
-\qquad
-B(L)=\frac65\cdot\frac{L\cdot 3^{o_{\min}(L)}}{3^{o_{\min}(L)}-2^L},
-\qquad
-n_{\max}(L)=\max\{n\in\mathbb N:n\log n\le B(L)\}.
 \]
+and write \(n_{\max}(L)\) for the largest integer \(n\) at which
+the displayed parity inequality can still hold at
+\(o=o_{\min}(L)\). The coarser comparison
+\(n\log n\le (6/5)L\cdot 3^{o_{\min}}/(3^{o_{\min}}-2^L)\) is
+used only as a check; Theorem 4.6 uses \(n_{\max}(L)\) from the
+parity form.
 The quantity \(\gamma(L)\) is the one-sided relative gap of
 \(L\log 2\) to the next multiple of \(\log 3\). It is small
 precisely when \(o_{\min}/L\) is a good one-sided approximation
@@ -1298,10 +1326,9 @@ make \(\gamma\) small.
 **Proposition 4.4a (exceptional-length algorithm).**
 Fix a verified descent floor \(N_0\). For each integer
 \(1\le L\le 10^5\), compute
-\(o_{\min}(L)=\min\{o:3^o>2^L\}\) and
-\(n_{\max}(L)=\max\{n\in\mathbb N:n\log n\le B(L)\}\) by exact
-integer arithmetic, and retain \(L\) if and only if
-\(n_{\max}(L)>N_0\). The resulting set is
+\(o_{\min}(L)=\min\{o:3^o>2^L\}\) by exact integer arithmetic
+and \(n_{\max}(L)\) from the parity inequality, and retain
+\(L\) if and only if \(n_{\max}(L)>N_0\). The resulting set is
 \[
 \mathcal E(N_0)=\bigl\{L:1\le L\le 10^5,\; n_{\max}(L)>N_0\bigr\}.
 \]
@@ -1310,7 +1337,7 @@ A length lies in \(\mathcal E(N_0)\) if and only if it is
 at that floor. The set is not the set of dynamically plausible
 periods, and membership is not evidence for a cycle. The
 printed instance is \(\mathcal E=\mathcal E(10^6)\), with
-\(\lvert\mathcal E\rvert=397\).
+\(\lvert\mathcal E\rvert=141\).
 
 **Corollary 4.5.**
 If every integer \(2\le n\le N_0\) reaches \(1\), then no
@@ -1318,27 +1345,28 @@ nontrivial cycle of length \(L\) exists whenever
 \(n_{\max}(L)\le N_0\).
 
 *Proof.* A periodic state never reaches \(1\), so every cycle
-state is at least \(N_0+1\). Theorem 4.4 in the \(6/5\) form
-forces the minimum to satisfy \(n\log n\le B(L)\), hence
-\(n\le n_{\max}(L)\). \(\square\)
+state is at least \(N_0+1\). Theorem 4.4 in the \(6/5\) parity
+form forces the minimum to satisfy the displayed inequality,
+hence \(n\le n_{\max}(L)\). \(\square\)
 
-Record values include
-\(n_{\max}(19)=297\), \(n_{\max}(84)=5599\),
-\(n_{\max}(569)=58398\), and \(n_{\max}(1054)=1997197\).
+Record values of the parity \(n_{\max}\) include
+\(n_{\max}(19)=133\), \(n_{\max}(84)=2323\),
+\(n_{\max}(569)=23568\), \(n_{\max}(1054)=788014\), and
+\(n_{\max}(25781)=26254995\).
 
 **Theorem 4.6 (verified computation).**
 Every integer \(2\le n\le 10^6\) reaches \(1\). Consequently:
 
 (A) there is no nontrivial Juggler cycle of length at most
-\(1053\);
+\(25780\);
 
 (B) if a nontrivial cycle has period \(L\le 10^5\), then
-\(L\in\mathcal E\), where \(\lvert\mathcal E\rvert=397\).
+\(L\in\mathcal E\), where \(\lvert\mathcal E\rvert=141\).
 
-In particular, any nontrivial cycle has period at least \(1054\).
-The first length not excluded by the present bound is \(1054\).
+In particular, any nontrivial cycle has period at least \(25781\).
+The first length not excluded by the present bound is \(25781\).
 That is a property of the bound, not evidence for a
-\(1054\)-cycle.
+\(25781\)-cycle.
 
 *Proof.* The verified descent floor is a first-passage descent
 induction: every start \(2\le n\le 10^6\) realizes a finite word
@@ -1348,29 +1376,30 @@ image reaches \(1\). The longest first passage in the window has
 integer. Weisstein [5] records the same computational
 verification; the run here is a recomputation of that report.
 
-The gap table computes \(o_{\min}(L)\) and \(n_{\max}(L)\) by
-exact integer arithmetic for every \(1\le L\le 10^5\). Corollary
-4.5 at \(N_0=10^6\) excludes every \(L\) with
-\(n_{\max}(L)\le 10^6\). The complementary set in that range is
-exactly \(\mathcal E\). The contiguous excluded prefix is
-\(L\le 1053\). The record (one-sided best-approximation)
-lengths in range are
+The gap table computes \(o_{\min}(L)\) by exact integer
+arithmetic and \(n_{\max}(L)\) from the parity inequality for
+every \(1\le L\le 10^5\). Corollary 4.5 at \(N_0=10^6\) excludes
+every \(L\) with \(n_{\max}(L)\le 10^6\). The complementary set
+in that range is exactly \(\mathcal E\). The contiguous excluded
+prefix is \(L\le 25780\). The record (one-sided
+best-approximation) lengths in range are
 \[
 1,\;3,\;11,\;19,\;84,\;569,\;1054,\;25781,\;50508,
 \]
-with
-\(n_{\max}=3,13,52,297,5599,58398,1997197,67410774,420161535\).
-The first six of those already satisfy \(n_{\max}\le 10^6\) and
-are excluded. The first length not excluded by the present
-bound is \(L=1054\). The remaining elements of \(\mathcal E\)
-include multiples of \(1054\) and combinations of those
+with parity
+\(n_{\max}=3,7,25,133,2323,23568,788014,26254995,162848325\).
+The first seven of those already satisfy \(n_{\max}\le 10^6\)
+and are excluded. The first length not excluded by the present
+bound is \(L=25781\). The remaining elements of \(\mathcal E\)
+include multiples of \(25781\) and combinations of those
 one-sided best-approximation lengths; the defining algorithm
 and checksums are Appendix B.
 \(\square\)
 
-The former record lengths \(84\) and \(569\) are therefore not
-admissible at this floor. Membership of \(1054\) in \(\mathcal E\)
-means only that the present method does not exclude it.
+The former record lengths \(84\), \(569\), and \(1054\) are
+therefore not admissible at this floor. Membership of
+\(25781\) in \(\mathcal E\) means only that the present method
+does not exclude it.
 
 ## 5. Remarks
 
@@ -1462,42 +1491,44 @@ computation outside Lean.
 ## Appendix B. Admissible lengths
 
 The record lengths of \(\gamma(L)\) through \(10^5\), with the
-\(6/5\) bound \(n_{\max}\) of Section 4, are
+parity \(6/5\) bound \(n_{\max}\) of Section 4, are
 
 | \(L\) | \(o_{\min}\) | \(n_{\max}\) |
 |---:|---:|---:|
 | \(1\) | \(1\) | \(3\) |
-| \(3\) | \(2\) | \(13\) |
-| \(11\) | \(7\) | \(52\) |
-| \(19\) | \(12\) | \(297\) |
-| \(84\) | \(53\) | \(5599\) |
-| \(569\) | \(359\) | \(58398\) |
-| \(1054\) | \(665\) | \(1997197\) |
-| \(25781\) | \(16266\) | \(67410774\) |
-| \(50508\) | \(31867\) | \(420161535\) |
+| \(3\) | \(2\) | \(7\) |
+| \(11\) | \(7\) | \(25\) |
+| \(19\) | \(12\) | \(133\) |
+| \(84\) | \(53\) | \(2323\) |
+| \(569\) | \(359\) | \(23568\) |
+| \(1054\) | \(665\) | \(788014\) |
+| \(25781\) | \(16266\) | \(26254995\) |
+| \(50508\) | \(31867\) | \(162848325\) |
 
-At the verified descent floor \(N_0=10^6\) the first six rows
+At the verified descent floor \(N_0=10^6\) the first seven rows
 are excluded. The set \(\mathcal E=\mathcal E(10^6)\) is defined
 by Proposition 4.4a: for each \(1\le L\le 10^5\), compute
-\(o_{\min}(L)\) and \(n_{\max}(L)\) by exact integer arithmetic,
-and retain \(L\) if and only if \(n_{\max}(L)>10^6\). This
-produces \(397\) lengths. The first few are
+\(o_{\min}(L)\) by exact integer arithmetic and \(n_{\max}(L)\)
+from the parity inequality, and retain \(L\) if and only if
+\(n_{\max}(L)>10^6\). This produces \(141\) lengths. The first
+few are
 \[
-1054,\;2108,\;3162,\;4216,\;5270,
+25781,\;26835,\;27889,\;28943,\;29997,
 \]
-and a typical combination is \(23757=22\cdot 1054+569\). The
-last is \(99729\). The complete list is the `lengths` array of
-the object with `"floor": 1000000` in
-`data/research/juggler/cycle_finance/exceptions.json`.
+and a typical combination is \(26835=25781+1054\). The last is
+\(99561\). The complete list is the `lengths` array of
+`data/research/juggler/cycle_finance/exceptions_parity.json`.
 The SHA-256 of that array, serialized as a JSON list of integers
 with no spaces, is
-`6d2c75fb6165f41123164122bd799e598c6ce0ba79d79d3af909cf400551f72c`.
-The SHA-256 of the whole file `exceptions.json` is
-`31f589e2353a26b13503d9fba603565fe3e6319030f6e429d8a2fb440e063c0e`.
+`dd71aa1527656ba51cb031bafa5497f7bfdbbc43151ffba2c595793326bf7944`.
+The SHA-256 of the whole file `exceptions_parity.json` is
+`6b4eec79295b70cdeb9f7db677b7fd57bcb9bd1b51177e1e74aad7bd6e2262ff`.
 The SHA-256 of the first-passage file `floor.json` in the same
 directory is
 `5b1ce1eec61301cf5b4f969cd5b58954255194e5c7b21c08a518d71679af87fc`.
-Both files are regenerated by
+The parity table is written by
+`research.juggler_sequence.cycle_finance.write_parity_artifacts`.
+The first-passage file is regenerated by
 `python -m research.juggler_sequence.cycle_finance`.
 The finite leftover tables of Section 3 are the Lean
 `native_decide` evaluations named in Appendix A

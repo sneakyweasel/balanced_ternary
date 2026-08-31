@@ -70,10 +70,30 @@ B(L)=\frac65\cdot\frac{L\cdot 3^{o_{\min}}}{3^{o_{\min}}-2^{L}},
 n_{\max}(L)=\max\{n\in\mathbb N: n\ln n\le B(L)\}.
 \]
 
+**Length-only parity finance (EXACT — HUMAN PROOF).**
+On a `CycleMin` start \(n\ge 12\), write \(e=L-o\) and
+\(t=\lfloor n^{3/2}\rfloor\). Then
+
+\[
+\sum_{i=1}^{L}\frac1{x_i\ln x_i}
+\;\le\;
+\frac{e}{n\ln n}
++\frac{o-e}{t\ln t}
++\frac{e}{2n^2\ln n}.
+\]
+
+Combined with the \(6/5\) unroll this is the computational table
+used by Paper A Theorem 4.6. It is the joint-minima bound at the
+adversarial circuit count \(m=e\), not a reparameterization of
+\(B(L)=(6/5)L/\theta\). Proof below.
+
 **Per-length exclusion corollary.** If every \(2\le n\le N_0\)
 reaches \(1\), then no state of a cycle can be \(\le N_0\) (a
 periodic state never reaches 1), so no Juggler cycle of length
-\(L\) exists whenever \(n_{\max}(L)\le N_0\).
+\(L\) exists whenever \(n_{\max}(L)\le N_0\). The crude
+\(n_{\max}\) uses \(B(L)\). The parity \(n_{\max}^{\mathrm{par}}\)
+uses the length-only sum. At the published floor \(N_0=10^6\),
+every \(L<25781\) is excluded by \(n_{\max}^{\mathrm{par}}\).
 
 **Eliahou leftover (EXACT — LEAN VERIFIED implication
 `cycle_word_eliahou_leftover`; instance COMPUTATIONALLY
@@ -156,6 +176,58 @@ The state floor \(x_i\ge12\) is available: every \(n\le11\) reaches
 \(1\) (Lean `reachesOne_of_lt_twelve`), and a periodic state never
 reaches \(1\).
 
+### Proof of the length-only parity bound
+
+Take a `CycleMin` start \(n\ge 12\). The last letter is even
+(`cycleMin_not_end_odd`), so \(e=L-o\ge 1\). In a circular word
+with at least one even letter, every odd-run is preceded by an
+even letter, hence the number \(m\) of odd-run starts satisfies
+\(m\le e\). The start itself is an odd-run start
+(`cycleMin_start_odd`).
+
+Classify the \(L\) states.
+
+- If \(x_i\) is even, then \(\lfloor\sqrt{x_i}\rfloor\ge n\), so
+  \(x_i\ge n^2\) (`cycleMin_even_ge_sq`). There are exactly \(e\)
+  such states, and
+  \(1/(x_i\ln x_i)\le 1/(n^2\ln(n^2))=1/(2n^2\ln n)\).
+- If \(x_i\) is odd and preceded by an even state, then \(x_i\)
+  is an odd-run start and \(x_i\ge n\). There are \(m\le e\) such
+  states.
+- If \(x_i\) is odd and preceded by an odd state, then
+  \(x_i=\lfloor x_{i-1}^{3/2}\rfloor\) with \(x_{i-1}\ge n\) odd,
+  so \(x_i\ge t=\lfloor n^{3/2}\rfloor\)
+  (`floorPower_odd_mono`). There are \(o-m\ge o-e\) such states.
+
+The worst-case (largest) sum is therefore at \(m=e\):
+
+\[
+\sum_{i=1}^{L}\frac1{x_i\ln x_i}
+\;\le\;
+\frac{e}{n\ln n}
++\frac{o-e}{t\ln t}
++\frac{e}{2n^2\ln n}.
+\]
+
+For \(n\ge 12\) one has \(t=\mathrm{isqrt}(n^3)\ge 41\), so every
+logarithm is positive. Substituting into the \(6/5\) financing
+identity of the previous proof yields
+
+\[
+n\ln n\cdot\theta
+\;\le\;
+\frac65\left(
+e+(o-e)\frac{n\ln n}{t\ln t}+\frac{e}{2n}
+\right).
+\]
+
+The right-hand side decreases in \(n\). At the least admissible
+\(o=o_{\min}(L)\) one has \(o-e<e\), so every internal odd can
+sit at \(t\); a finer run-height packing does not improve this
+length-only bound. The optimal uniform coefficient
+\(-\ln(1-\delta)\le c_*\delta\) on \([0,1/6]\) is
+\(c_*=6\ln(6/5)\). The published table keeps \(6/5\). \(\blacksquare\)
+
 ## Current literature
 
 - Collatz m-cycle exclusion by financing-versus-gap plus bounds on
@@ -234,7 +306,10 @@ It is not required.
 - Finance inequality \(n\log n\cdot(3^o-2^L)\le L\cdot 3^o\) —
   **EXACT — LEAN VERIFIED** (`cycleMin_finance`)
 - Weaker form \(n\ln n\le\frac65 L\,3^o/(3^o-2^L)\) —
-  **EXACT — HUMAN PROOF** (Phase-0 computational table)
+  **EXACT — HUMAN PROOF** (crude Phase-0 computational table)
+- Length-only parity finance
+  \(\sum 1/(x_i\ln x_i)\le e/(n\ln n)+(o-e)/(t\ln t)+e/(2n^2\ln n)\) —
+  **EXACT — HUMAN PROOF** (this dossier; joint-minima at \(m=e\))
 - No cycle word of length \(\le 19\) —
   **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_nineteen`)
 - Period is \(84\) or \(\ge 85\) —
@@ -262,8 +337,8 @@ It is not required.
   **EXACT — LEAN VERIFIED** as the implication
   `cycle_word_eliahou_leftover`; the laboratory \(166\)-family
   instance at floor \(2\cdot 10^6\) is **COMPUTATIONALLY VERIFIED**
-  (Paper A Theorem 4.6 still prints the weaker \(397\)-family at
-  floor \(10^6\))
+  (Paper A Theorem 4.6 prints the parity table at floor \(10^6\):
+  prefix \(25780\), \(141\) exceptions)
 - Period is \(\ge 14\) —
   **EXACT — LEAN VERIFIED** (`cycle_word_length_ge_fourteen`),
   a corollary of the stronger leftover
@@ -285,6 +360,8 @@ It is not required.
 - Records: [juggler_cycle_finance.md](../research/juggler_cycle_finance.md),
   [juggler_cycle_finance.json](../research/juggler_cycle_finance.json)
 - Dataset: `data/research/juggler/cycle_finance/`
+  (`exceptions.json` crude table;
+  `exceptions_parity.json` length-only parity table)
 - Tests: `tests/research/juggler_sequence/test_cycle_finance.py`
 
 Science window: gap table \(L\le 10^5\) with exact bignum
@@ -301,7 +378,8 @@ No CLI. Lean: `CycleFinance.lean` (`cycleMin_finance`,
 (`reachesOne_of_lt_two_hundred_fifty_seven`), and
 `Termination.lean` (`reachesOne_of_lt_fifty_three`). Writeup:
 [juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
-Paper A Section 4 is this inequality and the floor-\(10^6\) leftover.
+Paper A Section 4 is this inequality, the length-only parity
+refinement, and the floor-\(10^6\) leftover (prefix \(25780\)).
 
 ## Conjectures
 
@@ -338,10 +416,12 @@ parked leftover-word probes. No `sorry`. Paper A imports
 `CycleHeightFinance`.
 Not a halt theorem and not `no_cycle_word_any_length`.
 The Python floor \(N_0=2\cdot 10^6\) is
-**COMPUTATIONALLY VERIFIED**, not Lean. Paper A Theorem 4.6 still
-prints the weaker published floor \(10^6\). The compiled leftover
-and exclusions are written as
+**COMPUTATIONALLY VERIFIED**, not Lean. Paper A Theorem 4.6
+prints the length-only parity table at the published floor
+\(10^6\) (prefix \(25780\), \(141\) exceptions). The compiled
+leftover and exclusions are written as
 [juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+The refined lemma is not Lean.
 
 ## Results
 
@@ -400,26 +480,35 @@ and `data/research/juggler/cycle_finance/`.
   throughout. The previous floor \(10^6\) (seed \(78901\),
   \(253\) steps) remains a valid weaker certificate and is what
   Paper A Theorem 4.6 prints.
-- **Per-length exclusion** — **COMPUTATIONALLY VERIFIED** (exact
-  gap table \(L\le10^5\), conservative rounding): with the floor
-  \(N_0=2\cdot 10^6\), **no Juggler cycle of length
-  \(L\le 25780\) exists**, and no cycle of any length
-  \(L\le 10^5\) outside an explicit set of \(166\) exceptional
-  lengths. Length \(1054\) and its multiples die together
-  (\(n_{\max}\approx 1.997\cdot 10^6\)). The Lean census reaches
-  \(L\le 83\) except the leftover \(84\); the computational
-  finance route multiplies the excluded range by \(\approx 320\)
-  with one inequality and one Python floor.
+- **Length-only parity table** — **COMPUTATIONALLY VERIFIED**
+  (`exceptions_parity.json`): at the published floor
+  \(N_0=10^6\), the parity bound excludes every \(L\le 25780\)
+  and every \(L\le 10^5\) outside \(141\) lengths. No comparison
+  is uncertain. First survivor \(L=25781\) with
+  \(n_{\max}^{\mathrm{par}}=26254995\). Length \(1054\) dies at
+  this floor (\(n_{\max}^{\mathrm{par}}=788014\)). This is not
+  the crude table at floor \(2\cdot 10^6\)
+  (`J-residual-floor-two-million`): same prefix, different
+  inequality. SHA-256 of the length list
+  `dd71aa1527656ba51cb031bafa5497f7bfdbbc43151ffba2c595793326bf7944`.
+- **Per-length exclusion (crude table)** — **COMPUTATIONALLY
+  VERIFIED** (exact gap table \(L\le10^5\), conservative
+  rounding): with the floor \(N_0=2\cdot 10^6\), the *crude*
+  \(6/5\) bound also excludes every \(L\le 25780\), with
+  \(166\) exceptions through \(10^5\). Length \(1054\) dies
+  there by raising the floor
+  (\(n_{\max}\approx 1.997\cdot 10^6\)), not by the parity sum.
 - **Eliahou leftover** — **EXACT — LEAN VERIFIED** implication
   (`cycle_word_eliahou_leftover`): period \(84\), or a listed
   near-convergent, or \(\ge 10^5\). The laboratory instance at
-  floor \(2\cdot 10^6\) is **COMPUTATIONALLY VERIFIED** (the
-  existing \(166\) near-convergents). Paper A Theorem 4.6 still
-  prints the weaker floor-\(10^6\) instance (\(397\) exceptions,
-  prefix \(1053\)). Length \(84\) is kept as the Lean-named
-  leftover; the Python floor already excludes it. Lengths
-  \(19\), \(38\), \(57\), and \(76\) are no longer Lean leftovers.
-  Not a new inequality.
+  floor \(2\cdot 10^6\) of the crude table is
+  **COMPUTATIONALLY VERIFIED** (the existing \(166\)
+  near-convergents). Paper A Theorem 4.6 prints the parity
+  instance at floor \(10^6\) (\(141\) exceptions, prefix
+  \(25780\)). Length \(84\) is kept as the Lean-named leftover;
+  both tables already exclude it. Lengths \(19\), \(38\),
+  \(57\), and \(76\) are no longer Lean leftovers. Not a new
+  inequality.
 - **Exceptional structure**: the \(166\) exceptions are exactly the
   near-convergent lengths — multiples of \(25781\) plus
   combinations with earlier convergents. The record
@@ -481,27 +570,26 @@ and `data/research/juggler/cycle_finance/`.
 
 ## Decision
 
-**PROMOTE**. Two extra odd seeds (\(257\), \(259\); five steps
-each) raise the residual floor to \(261\) and exclude the cheap
-leftovers \(57\) and \(76\). The length leftover is the record
-convergent: period \(84\) or \(\ge 85\). Height finance then
-kills every length-\(84\) word with at most two odd-runs, so the
-laboratory leftover is period \(84\) with \(m\ge 3\), or
-\(\ge 85\). Eliahou packaging still rewrites the length leftover
-as period \(84\), or a listed near-convergent, or \(\ge 10^5\).
-Exact \(\log 257\) cannot kill \(57\). This is not a leftover-word
-census. The Python floor \(N_0=2\cdot 10^6\) is
-**COMPUTATIONALLY VERIFIED** (prefix \(25780\)). Paper A
-Section 4 still prints the weaker published floor \(10^6\)
-(prefix \(1053\)); leftover \(84\) is an Appendix A companion.
+**PROMOTE**. The length-only parity bound is not a
+reparameterization of \(B(L)=(6/5)L/\theta\): it charges \(e\)
+valleys at \(n\), \(o-e\) internals at \(\lfloor n^{3/2}\rfloor\),
+and \(e\) evens at \(n^2\). The certified scan at \(N_0=10^6\)
+excludes every \(L\le 25780\) with \(141\) survivors and no
+uncertain comparisons. Paper A Theorem 4.6 now prints that
+table. The crude table at floor \(2\cdot 10^6\) remains a
+separate laboratory certificate (same prefix, weaker
+inequality). Leftover \(84\) with \(m\ge 3\) is unchanged as the
+Lean companion. This is not a leftover-word census and not a
+halt theorem.
 
 The residual-floor campaign past \(\approx 4756\) is **PARK**.
 Joint/height kill every \(m\) at \(1981\), still machinery
 gravity.
 
-Best next question: none from leftover refinements. The theorem
-as it stands is
-[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+Best next question: can the exact unrolling weights \(1/P_i\)
+exclude some leftover in \(\mathcal E_{\mathrm{par}}(10^6)\)
+that the parity bound leaves alive?
+
 Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
 leftover-killer
 ([juggler_cycle_l84_m3.md](juggler_cycle_l84_m3.md)). The
@@ -509,6 +597,8 @@ upper cell \((p+1)^{2^r}\) is also **REFUTED**
 ([juggler_cycle_ceiling_finance.md](juggler_cycle_ceiling_finance.md)).
 A second-valley bound \(\ge 281\) is also **REFUTED**
 ([juggler_cycle_second_valley.md](juggler_cycle_second_valley.md)).
+Run-height packing does not improve the length-only
+\(n_{\max}\) at \(o_{\min}\).
 
 ## Publication assessment
 
@@ -517,9 +607,11 @@ Status: absorbed into Paper A as Section 4. Laboratory extract
 not a second manuscript. One exact inequality (`cycleMin_finance`,
 Paper A Theorem 4.4, **EXACT — LEAN VERIFIED**) with a genuinely
 new consequence (wholesale cycle-length exclusion: printed leftover
-Theorem 4.6, no period \(\le 1053\); laboratory floor
-\(2\cdot 10^6\) raises that prefix to \(25780\); Lean leftover
-\(84\) with \(m\ge 3\) or \(\ge 85\) is Appendix A companion) and
+Theorem 4.6, no period \(\le 25780\) by the length-only parity
+table at floor \(10^6\), \(141\) exceptions; laboratory crude
+table at floor \(2\cdot 10^6\) has the same prefix and \(166\)
+exceptions; Lean leftover \(84\) with \(m\ge 3\) or \(\ge 85\) is
+Appendix A companion) and
 a clear
 literature distinction: the Simons–de Weger financing-versus-gap
 template transferred to a floor-power map where defects are

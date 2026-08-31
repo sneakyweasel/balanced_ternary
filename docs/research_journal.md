@@ -15848,4 +15848,39 @@ Best next question
 - none from this tightening
 ```
 
+## Juggler cycle parity finance (length-only \(n_{\max}\))
+
+- **Date:** 2026-08-31
+- **Objective:** Apply the existing joint-minima finance bound at the length-only worst case \(m=e=L-o\), certify \(n_{\max}^{\mathrm{par}}(L)\) through \(10^5\), and upgrade Paper A Theorem 4.6 only if the first survivor is \(25781\) at the published floor \(10^6\)
+- **Hypotheses:** even states \(\ge n^2\) and internal odds \(\ge\lfloor n^{3/2}\rfloor\) exclude every \(L<25781\) at \(N_0=10^6\) without raising the descent floor
+- **Major results:** Length-only parity sum **EXACT — HUMAN PROOF**. Certified scan: first survivor \(25781\), prefix \(25780\), \(141\) exceptions, zero uncertain comparisons. \(n_{\max}^{\mathrm{par}}(1054)=788014\), \(n_{\max}^{\mathrm{par}}(25781)=26254995\). Paper A Theorem 4.6 updated. Ledger `J-cycle-parity-finance`, `J-cycle-parity-finance-instance`. Crude `exceptions.json` unchanged. No Lean, no Phase 2/3, no CLI
+- **Refuted ideas:** none. The hypothesis that \(1054\) is the strongest cutoff available from the same finance identity is false
+- **Literature:** Simons–de Weger template already transferred; this is a stricter evaluation of the existing \(6/5\) unroll
+- **Open:** prefix weights \(1/P_i\) on leftovers in \(\mathcal E_{\mathrm{par}}(10^6)\)
+- **Decision:** PROMOTE the table into Paper A. Stop
+
+```text
+What was learned
+- the paper's L/(n log n) charge throws away even ≥ n² and OO-internal ≥ n^{3/2}
+- m ≤ e on a CycleMin, so the length-only bound is joint-minima at m = e
+- at o_min one has o−e < e, so run-height packing does not improve n_max
+- 6/5 and c_* = 6 log(6/5) give the same first survivor 25781
+- this is not the crude table at floor 2e6 (same prefix, different inequality)
+Strongest theorem
+- parity 6/5 table at N_0=10^6: no cycle of length ≤ 25780;
+  |E| = 141; first survivor L = 25781
+Strongest refutation
+- the published 1054 cutoff is not optimal for the same finance identity
+Reusable machinery
+- parity_rhs / parity_n_max / exceptions_parity.json
+Branch status
+- PROMOTE
+Why
+- certified exclusion of every L < 25781 at the published floor,
+  by a bound that is not B(L) rewritten
+Best next question
+- can the exact unrolling weights 1/P_i exclude a leftover in
+  E_par(10^6) that the parity bound leaves alive?
+```
+
 
