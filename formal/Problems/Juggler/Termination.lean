@@ -211,4 +211,17 @@ theorem non_reachesOne_ge_fifty_three {n : ℕ} (hn : 1 ≤ n)
   by_contra h
   exact hfail (reachesOne_of_lt_fifty_three hn (Nat.not_le.mp h))
 
+/-- One even step into `{1,…,52}`: every even `n` with `1 ≤ n < 2809`
+is `ReachesOne`. Not a halt theorem. -/
+theorem even_lt_sq_fifty_three_reachesOne {n : ℕ} (heven : n % 2 = 0)
+    (hpos : 1 ≤ n) (hn : n < 2809) : ReachesOne n := by
+  have hsqrt : n.sqrt < 53 := by
+    rw [Nat.sqrt_lt]
+    simpa using hn
+  have himg : floorPower n < 53 := by
+    rw [floorPower_even_eq heven]
+    exact hsqrt
+  exact reachesOne_of_iterate (k := 1) rfl
+    (reachesOne_of_lt_fifty_three (floorPower_pos hpos) himg)
+
 end Problems.Juggler

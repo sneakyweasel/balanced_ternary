@@ -69,7 +69,7 @@ STEP_CAP = 100_000
 BIT_CAP = 10_000_000
 EXCEPTION_LIST_CAP = 500
 ELIAHOU_TABLE_CUTOFF = 100_000
-ELIAHOU_LEAN_PERIOD = 19
+ELIAHOU_LEAN_PERIOD = 38
 
 # L <= 8 with n_max(L) <= 11: finance + the Lean residual floor kill
 # these lengths without the census; {3, 6} stay census-only.
@@ -98,6 +98,12 @@ EXISTING_LEAN = (
     "EliahouLeftover",
     "EliahouTable",
     "cycle_word_eliahou_leftover",
+    "reachesOne_of_lt_two_hundred_fifty_seven",
+    "cycle_finance_min_two_hundred_fifty_seven",
+    "finance_excludes_length_nineteen",
+    "no_cycle_word_length_le_nineteen",
+    "cycle_word_length_ge_thirty",
+    "cycle_word_length_thirty_eight_or_ge_thirty_nine",
 )
 
 FORBIDDEN_THEOREMS = (

@@ -15022,4 +15022,85 @@ Best next question
   kills L=19?
 ```
 
+## Juggler cycle finance Eliahou leftover
+
+- **Date:** 2026-08-31
+- **Objective:** Package the existing finance leftover in Eliahou form: period \(19\), or a listed near-convergent, or \(\ge 10^5\)
+- **Hypotheses:** the Lean leftover \(19\) or \(\ge 30\), plus the computational finance table, is already the Collatz Eliahou leftover; the work is bookkeeping, not a new inequality
+- **Major results:** `cycle_word_eliahou_leftover` is **EXACT — LEAN VERIFIED** (implication: `nineteen_or_ge_thirty` plus `EliahouTable` gives period \(19\), a listed family, or \(\ge 10^5\)). The instance at the Python floor \(10^6\) is **COMPUTATIONALLY VERIFIED**: the existing \(397\) near-convergents. Length \(19\) is kept as the Lean-named leftover and is computationally already excluded (\(n_{\max}\approx297\)). Ledger rows `J-cycle-word-eliahou-leftover`, `J-cycle-word-eliahou-leftover-instance`. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** none; the leftover is a rewrite of recorded exclusions
+- **Literature:** Eliahou leftover packaging for Collatz (period \(\ge X\), or a named convergent family); `cycle_word_length_nineteen_or_ge_thirty`; `simons-de-weger-2005-collatz-m-cycles`
+- **Open:** \(L=19\) still needs a Lean floor past \(\approx297\); the \(397\) family still needs a larger floor or near-tight rigidity
+- **Decision:** PROMOTE. The leftover is now theorem-shaped. No new inequality
+
+```text
+What was learned
+- Eliahou form is bookkeeping: Lean leftover 19 or >= 30
+  plus the finance table is 19, listed, or >= 10^5
+- the 397 exceptions at floor 10^6 are the named family
+  (94 multiples of 1054 plus combinations)
+- length 19 stays as the Lean-named leftover and is
+  computationally already dead (n_max ~ 297)
+- no new comparison and no 397-numeral dump in Lean
+- Baker on |3^o-2^L| remains closed; this is not that branch
+Strongest theorem
+- cycle_word_eliahou_leftover (EXACT — LEAN VERIFIED implication);
+  instance COMPUTATIONALLY VERIFIED
+Strongest refutation
+- none
+Reusable machinery
+- EliahouLeftover / EliahouTable in CycleFinance.lean;
+  eliahou_leftover helper in cycle_finance.py
+Branch status
+- PROMOTE
+Why
+- the computational leftover is now the literature-shaped
+  theorem leftover, without a new inequality
+Best next question
+- can the residual floor be raised past 297 so finance kills L=19?
+```
+
+## Juggler m-cycle finance
+
+- **Date:** 2026-08-31
+- **Objective:** Transfer the Steiner–Simons m-cycle / circuit template to Juggler: log-unroll `CycleFinance` at each local minimum, and test whether \(m\) small minima can jointly pay a large formal surplus
+- **Hypotheses:** the joint bound \(\theta<C\sum_i 1/(n_i\ln n_i)\) is strictly stronger than \(n\ln n\cdot(3^o-2^L)\le L\cdot 3^o\) and excludes leftover \((L,m)\) at floor 53
+- **Major results:** Classification **M_CYCLE_FINANCE_GREEN**. Joint-minima finance with climb/even error terms is **EXACT — HUMAN PROOF**: \(\theta\le\tfrac65(m/(n\ln n)+(o-m)/(t\ln t)+(L-o)/(n^2\cdot 2\ln n))\) on a `CycleMin` with \(t=\lfloor n^{3/2}\rfloor\). At floor 53 this excludes every length-19 1-cycle and every length-30 cycle (any \(m\le 11\)). Lean-surviving lengths \(\le 90\) killed for all \(m\): \(30,41,44,52,55,60,63,66,71,74,77,82,85,88,90\). Cycle-like transients have full/minima \(\le 1.21\); raw ratios \(\approx 12\) on 365 and 1999 are terminal drops below 12, not cycle valleys. Adversarial circuit-partition is a **REPARAMETERIZATION** of `cycleMin_finance`. No new Lean. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** the error-free Steiner copy \(\theta<\tfrac65\sum 1/(n_i\ln n_i)\) as an identity (climb/even remainders are positive); that partitioning the existing sum by circuits without a valley-height law beats `cycleMin_finance`
+- **Literature:** `simons-de-weger-2005-collatz-m-cycles`; `juggler_cycle_finance`; `cycle_peak_finance`; `juggler_cycle_extremal_composition`; `juggler_cycle_gap_baker`
+- **Open:** Lean leftover is still \(19\) or \(\ge 30\); length 19 with \(m\ge 2\) and near-convergents \(38,84,\ldots\) survive
+- **Decision:** PROMOTE. New inequality, new leftover pairs. No Lean in this phase
+
+```text
+What was learned
+- Juggler m-cycles are words with m blocks O^k E^l
+- CycleMin geometry concentrates the finance sum at the
+  m valleys: evens sit at n^2, other odds at T(n)
+- the joint bound with those error terms kills L=30
+  entirely and L=19 as a 1-cycle, which global finance
+  at floor 53 does not
+- error-free Steiner is not an identity; adversarial
+  circuit-partition restates cycleMin_finance
+- terminal transient drops below 12 inflate the raw
+  ratio and are not cycle valleys
+Strongest theorem
+- joint-minima finance with climb/even error terms
+  (EXACT — HUMAN PROOF); no length-30 cycle
+Strongest refutation
+- error-free θ < (6/5) Σ 1/(n_i ln n_i); adversarial
+  partition = cycleMin_finance
+Reusable machinery
+- research.juggler_sequence.cycle_m_finance: Simons
+  circuits, leftover (L, m) table, no new Lean
+Branch status
+- PROMOTE
+Why
+- first extrema-indexed finance constraint; L=30 dies
+  without a floor raise
+Best next question
+- can the joint-minima bound be formalized on
+  CycleFinance.lean so the Lean leftover becomes
+  period 19 with m>=2, or a near-convergent >= 38?
+```
+
 

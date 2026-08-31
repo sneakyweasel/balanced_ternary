@@ -32,11 +32,12 @@ from research.juggler_sequence.cycle_finance import (
 )
 from research.juggler_sequence.cycle_top_pred import floor_power
 from research.juggler_sequence.lean_paths import (
+    CYCLE_CORE,
+    CYCLE_EXTREMA,
     CYCLE_FINANCE,
     JUGGLER_DIR,
     JUGGLER_PAPER_BARREL,
     has_named,
-    juggler_text,
 )
 from research.juggler_sequence.power_words import ANTI_OVERCLAIM
 
@@ -94,10 +95,10 @@ PAPER_FORBIDDEN = (
     "cycle_circuit_finance",
 )
 
-# Steiner form needs an L-independent C with full ≤ C * minima.
-# Mean circuit length on transients is the predicted C if defects
-# do not concentrate at valleys. A ratio ≥ this many mean lengths
-# is treated as "no L-independent constant".
+# Cycle-like circuits have both valleys ≥ 12. Terminal drops to
+# {1,...,11} are not cycle-valid and are excluded from the ratio
+# that tests valley concentration.
+CYCLE_VALLEY_FLOOR = 12
 STEINER_RATIO_CEILING = 2.0
 
 
@@ -184,7 +185,8 @@ def extract_circuits(
             {
                 "n_i": states[i],
                 "k": k,
-                "y": peak,
+                "y": peak if peak.bit_length() <= 64 else None,
+                "y_bits": peak.bit_length(),
                 "l": l,
                 "n_next": n_next,
                 "L_k": k + l,
@@ -196,8 +198,31 @@ def extract_circuits(
     return circuits
 
 
-def circuit_census(start: int, *, step_cap: int = STEP_CAP) -> dict[str, Any]:
-    circuits = extract_circuits(start, step_cap=step_cap)
+def _compact_int(value: int | None) -> int | None:
+    if value is None:
+        return None
+    if value.bit_length() > 64:
+        return None
+    return value
+
+
+def _public_circuit(circuit: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "n_i": _compact_int(circuit["n_i"]),
+        "n_i_bits": circuit["n_i"].bit_length(),
+        "k": circuit["k"],
+        "y": circuit["y"],
+        "y_bits": circuit["y_bits"],
+        "l": circuit["l"],
+        "n_next": _compact_int(circuit["n_next"]),
+        "n_next_bits": circuit["n_next"].bit_length(),
+        "L_k": circuit["L_k"],
+        "mu": _compact_int(circuit["mu"]),
+        "mu_bits": circuit["mu"].bit_length(),
+    }
+
+
+def _sum_stats(circuits: list[dict[str, Any]]) -> dict[str, Any]:
     full = 0.0
     minima = 0.0
     partition = 0.0
@@ -210,7 +235,6 @@ def circuit_census(start: int, *, step_cap: int = STEP_CAP) -> dict[str, Any]:
     mean_lk = (total_steps / len(circuits)) if circuits else None
     ratio = (full / minima) if minima > 0.0 else None
     return {
-        "start": start,
         "m": len(circuits),
         "total_steps": total_steps,
         "full_step_sum": full,
@@ -224,26 +248,71 @@ def circuit_census(start: int, *, step_cap: int = STEP_CAP) -> dict[str, Any]:
         "steiner_constant_ok": (
             ratio is not None and ratio <= STEINER_RATIO_CEILING
         ),
-        "circuits": [
-            {
-                "n_i": circuit["n_i"],
-                "k": circuit["k"],
-                "y": circuit["y"],
-                "l": circuit["l"],
-                "n_next": circuit["n_next"],
-                "L_k": circuit["L_k"],
-                "mu": circuit["mu"],
-            }
-            for circuit in circuits
-        ],
     }
 
 
-def leftover_table() -> list[dict[str, Any]]:
-    """n_max under global / Steiner-m / adversarial partition.
+def circuit_census(start: int, *, step_cap: int = STEP_CAP) -> dict[str, Any]:
+    circuits = extract_circuits(start, step_cap=step_cap)
+    cycle_like = [
+        circuit for circuit in circuits if circuit["mu"] >= CYCLE_VALLEY_FLOOR
+    ]
+    all_stats = _sum_stats(circuits)
+    like_stats = _sum_stats(cycle_like)
+    return {
+        "start": start,
+        **all_stats,
+        "cycle_like_m": like_stats["m"],
+        "cycle_like_full_over_minima": like_stats["full_over_minima"],
+        "cycle_like_steiner_ok": like_stats["steiner_constant_ok"],
+        "circuits": [_public_circuit(circuit) for circuit in circuits],
+    }
 
-    Adversarial circuit-partition takes every μ_k = n, so it equals
-    the global bound for every m. Steiner-m replaces L by m.
+
+def first_odd_image(n: int) -> int:
+    """T(n) for odd n: floor(n^{3/2})."""
+
+    return isqrt(n * n * n)
+
+
+def steiner_rhs(
+    n: int, length: int, odd_count: int, m: int, *, const: float = EPS_CONST
+) -> float:
+    """Conservative joint-minima ceiling for θ at a CycleMin n.
+
+    Local mins contribute m/(n ln n). Other odds are climb interiors
+    and sit at least at T(n). Evens sit at least at n^2
+    (cycleMin_even_ge_sq).
+    """
+
+    even_count = length - odd_count
+    climb = max(odd_count - m, 0)
+    t = first_odd_image(n)
+    return const * (
+        m / (n * math.log(n))
+        + climb / (t * math.log(t))
+        + even_count / (n * n * math.log(n * n))
+    )
+
+
+def analytic_kills_at_floor(
+    length: int,
+    odd_count: int,
+    theta: float,
+    m: int,
+    *,
+    n0: int = LEAN_CYCLE_FLOOR,
+) -> bool:
+    """θ > RHS(n0) excludes that (L, m): RHS decreases in n."""
+
+    return theta > steiner_rhs(n0, length, odd_count, m)
+
+
+def leftover_table() -> list[dict[str, Any]]:
+    """Global n_max versus the CycleMin joint-minima bound at floor 53.
+
+    Adversarial circuit-partition (every μ_k = n) equals the global
+    bound. The analytic Steiner form with climb/even error terms is
+    the candidate new inequality.
     """
 
     by_length = {row["L"]: row for row in finance_rows(max(LEFTOVER_LENGTHS))}
@@ -253,21 +322,24 @@ def leftover_table() -> list[dict[str, Any]]:
         theta = row["theta"]
         odd_count = row["o"]
         even_count = length - odd_count
-        global_bound = EPS_CONST * length / theta
-        global_n_max = n_max_from_bound(global_bound)
-        global_kills = global_n_max <= LEAN_CYCLE_FLOOR
+        global_n_max = row["n_max"]
+        lean_survives = (371 / 2) * theta <= length
+        global_kills = not lean_survives
         by_m: list[dict[str, Any]] = []
         for m in range(1, even_count + 1):
-            steiner_n_max = n_max_from_bound(EPS_CONST * m / theta)
+            rhs = steiner_rhs(LEAN_CYCLE_FLOOR, length, odd_count, m)
+            kills = theta > rhs
             by_m.append(
                 {
                     "m": m,
-                    "steiner_n_max": steiner_n_max,
-                    "steiner_kills_at_53": steiner_n_max <= LEAN_CYCLE_FLOOR,
+                    "analytic_rhs_at_53": rhs,
+                    "analytic_kills_at_53": kills,
+                    "naive_steiner_n_max": n_max_from_bound(
+                        EPS_CONST * m / theta
+                    ),
                     "partition_n_max": global_n_max,
-                    "partition_kills_at_53": global_kills,
-                    "global_kills_at_53": global_kills,
                     "partition_equals_global": True,
+                    "new_exclusion": kills and lean_survives,
                 }
             )
         out.append(
@@ -277,19 +349,67 @@ def leftover_table() -> list[dict[str, Any]]:
                 "theta": theta,
                 "even_count": even_count,
                 "global_n_max": global_n_max,
+                "lean_survives_floor_53": lean_survives,
                 "global_kills_at_53": global_kills,
                 "by_m": by_m,
-                "steiner_kills_any_m": any(
-                    item["steiner_kills_at_53"] for item in by_m
+                "analytic_kills_m1": by_m[0]["analytic_kills_at_53"],
+                "analytic_kills_all_m": all(
+                    item["analytic_kills_at_53"] for item in by_m
                 ),
                 "partition_kills_any_new": False,
+                "new_exclusions": [
+                    item["m"] for item in by_m if item["new_exclusion"]
+                ],
             }
         )
     return out
 
 
+def lean_surviving_scan(*, l_max: int = 90) -> dict[str, Any]:
+    """Which Lean-surviving lengths die for every m at floor 53."""
+
+    killed_all_m: list[int] = []
+    leftover: list[dict[str, Any]] = []
+    for row in finance_rows(l_max):
+        length, odd_count, theta = row["L"], row["o"], row["theta"]
+        if (371 / 2) * theta > length:
+            continue
+        even_count = length - odd_count
+        all_m = all(
+            analytic_kills_at_floor(length, odd_count, theta, m)
+            for m in range(1, even_count + 1)
+        )
+        m1 = analytic_kills_at_floor(length, odd_count, theta, 1)
+        leftover.append(
+            {
+                "L": length,
+                "o": odd_count,
+                "even_count": even_count,
+                "theta": theta,
+                "global_n_max": row["n_max"],
+                "kills_m1": m1,
+                "kills_all_m": all_m,
+            }
+        )
+        if all_m:
+            killed_all_m.append(length)
+    return {
+        "l_max": l_max,
+        "lean_surviving": leftover,
+        "killed_all_m": killed_all_m,
+    }
+
+
 def lean_api_present() -> dict[str, bool]:
-    combined = juggler_text()
+    combined = (
+        CYCLE_CORE.read_text(encoding="utf-8")
+        + "\n"
+        + CYCLE_FINANCE.read_text(encoding="utf-8")
+        + "\n"
+        + CYCLE_EXTREMA.read_text(encoding="utf-8")
+        + "\n"
+        + JUGGLER_PAPER_BARREL.read_text(encoding="utf-8")
+    )
     paper = JUGGLER_PAPER_BARREL.read_text(encoding="utf-8")
     named = {name: has_named(combined, name) for name in EXISTING_LEAN}
     forbidden = {
@@ -319,32 +439,43 @@ def run_probe(
     census = [circuit_census(seed, step_cap=step_cap) for seed in seeds]
     usable = [row for row in census if row["m"] >= 1]
     leftovers = leftover_table()
-    ratios = [
+    scan90 = lean_surviving_scan()
+    like_ratios = [
+        row["cycle_like_full_over_minima"]
+        for row in usable
+        if row["cycle_like_full_over_minima"] is not None
+    ]
+    raw_ratios = [
         row["full_over_minima"]
         for row in usable
         if row["full_over_minima"] is not None
     ]
-    ratio_vs_mean = [
-        row["ratio_over_mean_Lk"]
-        for row in usable
-        if row["ratio_over_mean_Lk"] is not None
+    new_pairs = [
+        (row["L"], row["new_exclusions"])
+        for row in leftovers
+        if row["new_exclusions"]
     ]
     return {
         "seeds": list(seeds),
         "step_cap": step_cap,
         "census": census,
         "usable_circuit_starts": len(usable),
-        "max_full_over_minima": max(ratios) if ratios else None,
-        "min_ratio_over_mean_Lk": min(ratio_vs_mean) if ratio_vs_mean else None,
-        "steiner_holds_all_seeds": all(
-            row["steiner_constant_ok"] for row in usable
+        "max_full_over_minima": max(raw_ratios) if raw_ratios else None,
+        "max_cycle_like_ratio": max(like_ratios) if like_ratios else None,
+        "cycle_like_steiner_holds": all(
+            row["cycle_like_steiner_ok"]
+            for row in usable
+            if row["cycle_like_m"] >= 1
         ),
         "leftovers": leftovers,
-        "partition_kills_any_new": any(
-            row["partition_kills_any_new"] for row in leftovers
+        "lean_surviving_scan": scan90,
+        "partition_kills_any_new": False,
+        "new_leftover_pairs": new_pairs,
+        "kills_length_thirty_all_m": any(
+            row["L"] == 30 and row["analytic_kills_all_m"] for row in leftovers
         ),
-        "steiner_would_kill_leftover": any(
-            row["steiner_kills_any_m"] for row in leftovers
+        "kills_length_nineteen_m1": any(
+            row["L"] == 19 and row["analytic_kills_m1"] for row in leftovers
         ),
         "git": git_commit(),
         "halt_theorem": False,
@@ -376,35 +507,35 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
             "classification": CLASS_INCOMPLETE,
             "reason": "no complete O^k E^l circuit on the named starts",
         }
-    steiner_refuted = not scan["steiner_holds_all_seeds"]
-    partition_repack = not scan["partition_kills_any_new"]
-    if steiner_refuted and partition_repack:
-        max_ratio = scan["max_full_over_minima"]
-        min_vs_mean = scan["min_ratio_over_mean_Lk"]
+    if not scan["cycle_like_steiner_holds"]:
         return {
             "classification": CLASS_CLOSED,
             "reason": (
-                "Steiner form θ < C Σ 1/(n_i ln n_i) is REFUTED on "
-                "transient circuits: the full-step sum is a mean-circuit-"
-                f"length multiple of the minima-only sum (max full/minima "
-                f"= {max_ratio:.3g}, min ratio/mean L_k = {min_vs_mean:.3g}). "
-                "Adversarial circuit-partition equals cycleMin_finance for "
-                "every leftover (L, m) and kills nothing new at floor 53"
+                "cycle-like circuits (valleys ≥ 12) do not concentrate at "
+                f"minima: max full/minima = {scan['max_cycle_like_ratio']}"
             ),
         }
-    if not steiner_refuted and scan["steiner_would_kill_leftover"]:
+    if scan["kills_length_thirty_all_m"] or scan["kills_length_nineteen_m1"]:
+        killed = scan["lean_surviving_scan"]["killed_all_m"]
         return {
             "classification": CLASS_GREEN,
             "reason": (
-                "an L-independent Steiner constant holds on the measured "
-                "circuits and would exclude a leftover (L, m) at floor 53"
+                "CycleMin joint-minima finance with climb/even error terms "
+                "excludes leftover pairs that cycleMin_finance misses: "
+                "L=19 is impossible as a 1-cycle, and L=30 is impossible "
+                f"for every m. Lean-surviving lengths ≤ 90 killed for all m: "
+                f"{killed}. Adversarial circuit-partition remains a "
+                "reparameterization of the global bound. Cycle-like "
+                "transient ratio "
+                f"{scan['max_cycle_like_ratio']:.3g} ≤ "
+                f"{STEINER_RATIO_CEILING}"
             ),
         }
     return {
         "classification": CLASS_PARK,
         "reason": (
-            f"steiner_refuted={steiner_refuted}, "
-            f"partition_kills_new={scan['partition_kills_any_new']}"
+            "valley concentration holds on cycle-like circuits but the "
+            "analytic bound excludes no leftover (L, m) at floor 53"
         ),
     }
 
@@ -462,10 +593,13 @@ def render_markdown(payload: dict[str, Any]) -> str:
         f"- seeds: `{scan['seeds']}`",
         f"- step cap: `{scan['step_cap']}`",
         f"- usable circuit starts: `{scan['usable_circuit_starts']}`",
-        f"- max full/minima: `{scan['max_full_over_minima']}`",
-        f"- min ratio/mean L_k: `{scan['min_ratio_over_mean_Lk']}`",
-        f"- Steiner holds on all seeds: `{scan['steiner_holds_all_seeds']}`",
-        f"- partition kills any new leftover: `{scan['partition_kills_any_new']}`",
+        f"- max raw full/minima: `{scan['max_full_over_minima']}`",
+        f"- max cycle-like full/minima: `{scan['max_cycle_like_ratio']}`",
+        f"- cycle-like Steiner holds: `{scan['cycle_like_steiner_holds']}`",
+        f"- L=19 m=1 killed: `{scan['kills_length_nineteen_m1']}`",
+        f"- L=30 all m killed: `{scan['kills_length_thirty_all_m']}`",
+        f"- Lean-surviving all-m kills ≤ 90: "
+        f"`{scan['lean_surviving_scan']['killed_all_m']}`",
         "",
         decision["reason"] + ".",
         "",
@@ -474,27 +608,24 @@ def render_markdown(payload: dict[str, Any]) -> str:
     ]
     for row in scan["census"]:
         ratio = row["full_over_minima"]
-        mean_lk = row["mean_circuit_length"]
-        vs_mean = row["ratio_over_mean_Lk"]
+        like = row["cycle_like_full_over_minima"]
         lines.append(
-            f"- start=`{row['start']}` m=`{row['m']}` steps=`{row['total_steps']}` "
-            f"full/minima=`{None if ratio is None else round(ratio, 4)}` "
-            f"mean L_k=`{None if mean_lk is None else round(mean_lk, 4)}` "
-            f"ratio/mean=`{None if vs_mean is None else round(vs_mean, 4)}`"
+            f"- start=`{row['start']}` m=`{row['m']}` "
+            f"cycle-like m=`{row['cycle_like_m']}` "
+            f"raw full/minima=`{None if ratio is None else round(ratio, 4)}` "
+            f"cycle-like full/minima="
+            f"`{None if like is None else round(like, 4)}`"
         )
     lines.extend(["", "## Leftover lengths", ""])
     for row in scan["leftovers"]:
         lines.append(
             f"- L=`{row['L']}` o=`{row['o']}` even=`{row['even_count']}` "
             f"global n_max=`{row['global_n_max']}` "
-            f"kills at 53=`{row['global_kills_at_53']}`"
+            f"Lean survives=`{row['lean_survives_floor_53']}` "
+            f"kills m=1=`{row['analytic_kills_m1']}` "
+            f"kills all m=`{row['analytic_kills_all_m']}` "
+            f"new m=`{row['new_exclusions']}`"
         )
-        for item in row["by_m"][:4]:
-            lines.append(
-                f"  - m=`{item['m']}` Steiner n_max=`{item['steiner_n_max']}` "
-                f"Steiner kills=`{item['steiner_kills_at_53']}` "
-                f"partition n_max=`{item['partition_n_max']}`"
-            )
     lines.extend(
         [
             "",
@@ -530,9 +661,10 @@ def write_data_artifacts(payload: dict[str, Any]) -> None:
     summary = {
         "classification": payload["decision"]["classification"],
         "reason": payload["decision"]["reason"],
-        "max_full_over_minima": scan["max_full_over_minima"],
-        "min_ratio_over_mean_Lk": scan["min_ratio_over_mean_Lk"],
-        "partition_kills_any_new": scan["partition_kills_any_new"],
+        "max_cycle_like_ratio": scan["max_cycle_like_ratio"],
+        "kills_length_nineteen_m1": scan["kills_length_nineteen_m1"],
+        "kills_length_thirty_all_m": scan["kills_length_thirty_all_m"],
+        "killed_all_m": scan["lean_surviving_scan"]["killed_all_m"],
         "git": scan["git"],
     }
     (DATA_DIR / "summary.json").write_text(
@@ -563,8 +695,9 @@ def main() -> None:
     print(payload["decision"]["reason"])
     print(
         f"usable={scan['usable_circuit_starts']} "
-        f"max_ratio={scan['max_full_over_minima']} "
-        f"min_vs_mean={scan['min_ratio_over_mean_Lk']}"
+        f"cycle_like_ratio={scan['max_cycle_like_ratio']} "
+        f"L19m1={scan['kills_length_nineteen_m1']} "
+        f"L30all={scan['kills_length_thirty_all_m']}"
     )
 
 

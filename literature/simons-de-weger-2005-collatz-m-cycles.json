@@ -18,5 +18,5 @@
   ],
   "project_relationship": "independent",
   "status": "classical-source",
-  "notes": "docs/problems/juggler_cycle_finance.md and docs/problems/juggler_cycle_gap_baker.md. Acta Arithmetica 117 (2005) 51-70. Excludes Collatz m-cycles for m <= 68 (later 75) by combining a cycle financing equation with Rhin/LMN lower bounds on |2^L - 3^o|. The Juggler finance branch adapts the first half (financing-versus-gap). The second half does not transfer: Collatz m-cycle geometry makes Lambda exponentially small in K, while Juggler finance only gives |Lambda| <= O(L/(n log n)), so Rhin never contradicts."
+  "notes": "docs/problems/juggler_cycle_finance.md, docs/problems/juggler_cycle_gap_baker.md, and docs/problems/juggler_cycle_m_finance.md. Acta Arithmetica 117 (2005) 51-70. Excludes Collatz m-cycles for m <= 68 (later 75) by combining a cycle financing equation with Rhin/LMN lower bounds on |2^L - 3^o|. The Juggler finance branch adapts the first half (financing-versus-gap). The m-cycle / circuit half is the joint-minima log-unroll in juggler_cycle_m_finance.md. The Baker half does not transfer: Collatz m-cycle geometry makes Lambda exponentially small in K, while Juggler finance only gives |Lambda| <= O(L/(n log n)), so Rhin never contradicts."
 }

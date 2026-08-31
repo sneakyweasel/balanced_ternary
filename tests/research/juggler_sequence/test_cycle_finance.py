@@ -105,7 +105,10 @@ def test_probe_and_classify_vocabulary():
     }
     assert payload["anti_overclaim"]["halt_theorem"] is False
     assert payload["anti_overclaim"]["no_cycle_all_lengths"] is False
+    assert payload["scan"]["eliahou"]["table_holds"] is True
+    assert payload["scan"]["eliahou"]["lean_period"] == ELIAHOU_LEAN_PERIOD
     text = render_markdown(payload)
+    assert "Eliahou leftover" in text
     assert "Not a halt theorem" in text
     lean = lean_api_present()
     assert classify(payload["scan"], lean)["classification"] == payload[
@@ -168,11 +171,13 @@ def test_eliahou_instance_matches_science_table():
     assert science["contiguous_prefix"] == 1053
     assert science["truncated"] is False
     assert ELIAHOU_LEAN_PERIOD not in lengths
+    assert 19 not in lengths
     assert 1054 in lengths
     assert 50508 in lengths
     assert eliahou_leftover(ELIAHOU_LEAN_PERIOD, lengths)
     assert eliahou_leftover(1054, lengths)
     assert eliahou_leftover(ELIAHOU_TABLE_CUTOFF, lengths)
+    assert not eliahou_leftover(19, lengths)
     assert not eliahou_leftover(30, lengths)
     assert not eliahou_leftover(1053, lengths)
 

@@ -5205,7 +5205,29 @@
   {
     "id": "J-cycle-word-length-nineteen-or-ge-thirty",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 19 or at least 30. Lengths ≤ 18 are J-small-cycle-census-eighteen; lengths 20–29 are excluded by the same floor-53 finance comparison. Length 19 is the next near-convergent (2^19 < 3^12) and survives 371/2; length 30 also survives 371/2. Lean theorems cycle_word_length_nineteen_or_ge_thirty and the weaker corollary cycle_word_length_nineteen_or_ge_twenty. This is not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 19 or at least 30. Lengths ≤ 18 are J-small-cycle-census-eighteen; lengths 20–29 are excluded by the same floor-53 finance comparison. Length 19 is the next near-convergent (2^19 < 3^12) and survives 371/2; length 30 also survives 371/2. Lean theorems cycle_word_length_nineteen_or_ge_thirty and the weaker corollary cycle_word_length_nineteen_or_ge_twenty. Strengthened by J-cycle-word-eliahou-leftover, which rewrites this leftover plus the finance table as period 19, a listed near-convergent, or at least 10^5. This is not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-word-eliahou-leftover",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, and every length in [30, 10^5) outside a named list of near-convergents is already excluded, then the period is 19, or belongs to that list, or is at least 10^5. Lean theorem cycle_word_eliahou_leftover: bookkeeping on cycle_word_length_nineteen_or_ge_thirty plus EliahouTable, not a new inequality. This is the Collatz Eliahou leftover shape (period ≥ X, or a named convergent family) on the floor-power map. This is not a proof of the finance table, not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-word-eliahou-leftover-instance",
+    "tag": "COMPUTATIONALLY VERIFIED",
+    "statement": "If a nontrivial Juggler cycle exists, its period is 19, or one of the 397 near-convergent lengths at the Python floor 10^6 (94 multiples of 1054 plus combinations of the ln 2 / ln 3 convergents), or at least 10^5. Instantiation of J-cycle-word-eliahou-leftover by the existing finance gap table L ≤ 10^5 and descent floor 10^6. Length 19 is kept as the Lean-named leftover and is computationally already excluded (n_max ≈ 297). This is not a new inequality, not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [

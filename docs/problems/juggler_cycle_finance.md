@@ -286,7 +286,10 @@ envelope is `cycleMin_log_envelope`; the inequality is
 `no_cycle_word_length_le_eighteen` and the leftover
 `cycle_word_length_nineteen_or_ge_thirty`. Lengths `14`–`18` and
 `20`–`29` die by the same comparison (`finance_excludes_at`).
-`L=30` survives `371/2`. There is no theorem named
+`L=30` survives `371/2`. Eliahou packaging
+`cycle_word_eliahou_leftover` rewrites that leftover plus the
+finance table as period `19`, or a listed near-convergent, or at
+least `10^5`. There is no theorem named
 `no_cycle_word_length_eleven`: that name is reserved by the
 parked leftover-word probes. No `sorry`. Paper A is unchanged.
 Not a halt theorem and not `no_cycle_word_any_length`.
@@ -335,6 +338,13 @@ and `data/research/juggler/cycle_finance/`.
   at \(9\)–\(11\), \(14\)–\(18\), and \(20\)–\(29\)); the
   computational finance route multiplies the excluded range by
   \(\approx 130\) with one inequality and one Python floor.
+- **Eliahou leftover** — **EXACT — LEAN VERIFIED** implication
+  (`cycle_word_eliahou_leftover`): period \(19\), or a listed
+  near-convergent, or \(\ge 10^5\). The instance at floor
+  \(10^6\) is **COMPUTATIONALLY VERIFIED** (the existing \(397\)
+  near-convergents). Length \(19\) is kept as the Lean-named
+  leftover; the Python floor already excludes it. Not a new
+  inequality.
 - **Exceptional structure**: the \(397\) exceptions are exactly the
   near-convergent lengths — the \(94\) multiples of \(1054\) plus
   combinations such as \(23757=22\cdot1054+569\). The record
@@ -354,9 +364,10 @@ and `data/research/juggler/cycle_finance/`.
 
 ## Open questions
 
-- The Lean leftover is \(L=19\) or \(L\ge 30\). The next
-  near-convergent is \(L=19\) (\(n_{\max}\approx297\)); a Lean
-  floor past \(297\) would kill it. \(L=30\) survives
+- The Lean leftover is \(L=19\) or \(L\ge 30\); Eliahou packaging
+  names it as \(19\), or a listed near-convergent, or \(\ge 10^5\).
+  The next near-convergent is \(L=19\) (\(n_{\max}\approx297\)); a
+  Lean floor past \(297\) would kill it. \(L=30\) survives
   \(\tfrac{371}{2}\) at the current floor.
 - The exceptional near-convergent lengths need either a larger
   verified floor (each factor of \(10^3\) in floor pushes the
@@ -372,8 +383,10 @@ and `data/research/juggler/cycle_finance/`.
 
 **PROMOTE**. The floor-\(53\) comparison already excluded lengths
 \(14\), \(15\), \(17\), \(18\), and \(20\)–\(29\). The
-Lean-verified leftover is period \(19\) or \(\ge 30\). This is
-not a leftover-word census. The Python floor \(N_0=10^6\) remains
+Lean-verified leftover is period \(19\) or \(\ge 30\); Eliahou
+packaging rewrites it as period \(19\), or a listed
+near-convergent, or \(\ge 10^5\). This is not a leftover-word
+census. The Python floor \(N_0=10^6\) remains
 **COMPUTATIONALLY VERIFIED**. Paper A is unchanged.
 
 Best next question: can the residual floor be raised past \(297\)
@@ -384,7 +397,8 @@ so that finance kills the next convergent \(L=19\)?
 Status: `THEOREM`. One exact inequality (`cycleMin_finance`,
 **EXACT — LEAN VERIFIED**) with a genuinely new consequence
 (wholesale cycle-length exclusion: Lean leftover \(19\) or
-\(\ge 30\), computational prefix \(\le1053\)) and a clear
+\(\ge 30\), Eliahou leftover \(19\) or a listed near-convergent
+or \(\ge 10^5\), computational prefix \(\le1053\)) and a clear
 literature distinction: the Simons–de Weger financing-versus-gap
 template transferred to a floor-power map where defects are
 relatively \(O(1/x)\) in logarithms. Not a totality result; the

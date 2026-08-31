@@ -1,0 +1,502 @@
+[
+  {
+    "L": 19,
+    "o": 12,
+    "theta": 0.01345963145485576,
+    "even_count": 7,
+    "global_n_max": 297,
+    "lean_survives_floor_53": true,
+    "global_kills_at_53": false,
+    "by_m": [
+      {
+        "m": 1,
+        "analytic_rhs_at_53": 0.011838492768644179,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 27,
+        "partition_n_max": 297,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 2,
+        "analytic_rhs_at_53": 0.017017663928388275,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 46,
+        "partition_n_max": 297,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 3,
+        "analytic_rhs_at_53": 0.022196835088132368,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 64,
+        "partition_n_max": 297,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 4,
+        "analytic_rhs_at_53": 0.027376006247876467,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 81,
+        "partition_n_max": 297,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 5,
+        "analytic_rhs_at_53": 0.03255517740762056,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 97,
+        "partition_n_max": 297,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 6,
+        "analytic_rhs_at_53": 0.037734348567364656,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 113,
+        "partition_n_max": 297,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 7,
+        "analytic_rhs_at_53": 0.042913519727108745,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 128,
+        "partition_n_max": 297,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      }
+    ],
+    "analytic_kills_m1": true,
+    "analytic_kills_all_m": false,
+    "partition_kills_any_new": false,
+    "new_exclusions": [
+      1
+    ]
+  },
+  {
+    "L": 30,
+    "o": 19,
+    "theta": 0.07616155702768386,
+    "even_count": 11,
+    "global_n_max": 102,
+    "lean_survives_floor_53": true,
+    "global_kills_at_53": false,
+    "by_m": [
+      {
+        "m": 1,
+        "analytic_rhs_at_53": 0.0157186137608879,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 8,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 2,
+        "analytic_rhs_at_53": 0.020897784920631997,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 12,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 3,
+        "analytic_rhs_at_53": 0.026076956080376093,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 17,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 4,
+        "analytic_rhs_at_53": 0.03125612724012018,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 21,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 5,
+        "analytic_rhs_at_53": 0.03643529839986428,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 24,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 6,
+        "analytic_rhs_at_53": 0.041614469559608375,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 28,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 7,
+        "analytic_rhs_at_53": 0.04679364071935247,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 32,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 8,
+        "analytic_rhs_at_53": 0.05197281187909657,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 35,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 9,
+        "analytic_rhs_at_53": 0.057151983038840656,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 38,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 10,
+        "analytic_rhs_at_53": 0.06233115419858475,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 42,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      },
+      {
+        "m": 11,
+        "analytic_rhs_at_53": 0.06751032535832885,
+        "analytic_kills_at_53": true,
+        "naive_steiner_n_max": 45,
+        "partition_n_max": 102,
+        "partition_equals_global": true,
+        "new_exclusion": true
+      }
+    ],
+    "analytic_kills_m1": true,
+    "analytic_kills_all_m": true,
+    "partition_kills_any_new": false,
+    "new_exclusions": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  {
+    "L": 84,
+    "o": 53,
+    "theta": 0.002085953742688774,
+    "even_count": 31,
+    "global_n_max": 5599,
+    "lean_survives_floor_53": true,
+    "global_kills_at_53": false,
+    "by_m": [
+      {
+        "m": 1,
+        "analytic_rhs_at_53": 0.03459565821200079,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 120,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 2,
+        "analytic_rhs_at_53": 0.03977482937174489,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 214,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 3,
+        "analytic_rhs_at_53": 0.04495400053148898,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 302,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 4,
+        "analytic_rhs_at_53": 0.05013317169123308,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 386,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 5,
+        "analytic_rhs_at_53": 0.055312342850977164,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 467,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 6,
+        "analytic_rhs_at_53": 0.06049151401072127,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 547,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 7,
+        "analytic_rhs_at_53": 0.06567068517046536,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 625,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 8,
+        "analytic_rhs_at_53": 0.07084985633020946,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 702,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 9,
+        "analytic_rhs_at_53": 0.07602902748995354,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 777,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 10,
+        "analytic_rhs_at_53": 0.08120819864969764,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 852,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 11,
+        "analytic_rhs_at_53": 0.08638736980944174,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 926,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 12,
+        "analytic_rhs_at_53": 0.09156654096918583,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 999,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 13,
+        "analytic_rhs_at_53": 0.09674571212892992,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1071,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 14,
+        "analytic_rhs_at_53": 0.10192488328867401,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1143,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 15,
+        "analytic_rhs_at_53": 0.10710405444841811,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1215,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 16,
+        "analytic_rhs_at_53": 0.11228322560816222,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1285,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 17,
+        "analytic_rhs_at_53": 0.1174623967679063,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1356,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 18,
+        "analytic_rhs_at_53": 0.12264156792765041,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1425,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 19,
+        "analytic_rhs_at_53": 0.1278207390873945,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1495,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 20,
+        "analytic_rhs_at_53": 0.1329999102471386,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1564,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 21,
+        "analytic_rhs_at_53": 0.1381790814068827,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1633,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 22,
+        "analytic_rhs_at_53": 0.1433582525666268,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1701,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 23,
+        "analytic_rhs_at_53": 0.14853742372637088,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1769,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 24,
+        "analytic_rhs_at_53": 0.153716594886115,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1837,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 25,
+        "analytic_rhs_at_53": 0.1588957660458591,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1904,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 26,
+        "analytic_rhs_at_53": 0.16407493720560315,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 1971,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 27,
+        "analytic_rhs_at_53": 0.16925410836534727,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 2038,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 28,
+        "analytic_rhs_at_53": 0.17443327952509136,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 2105,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 29,
+        "analytic_rhs_at_53": 0.17961245068483547,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 2171,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 30,
+        "analytic_rhs_at_53": 0.18479162184457956,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 2237,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      },
+      {
+        "m": 31,
+        "analytic_rhs_at_53": 0.18997079300432365,
+        "analytic_kills_at_53": false,
+        "naive_steiner_n_max": 2303,
+        "partition_n_max": 5599,
+        "partition_equals_global": true,
+        "new_exclusion": false
+      }
+    ],
+    "analytic_kills_m1": false,
+    "analytic_kills_all_m": false,
+    "partition_kills_any_new": false,
+    "new_exclusions": []
+  }
+]
