@@ -1,5 +1,5 @@
 TITLE
-Cycles of the Juggler map
+Lower bounds for nontrivial cycles of the Juggler map
 
 CREATOR
 Family name: Cochin
@@ -33,9 +33,8 @@ Scheme: URL
 
 DESCRIPTION (paste as HTML)
 
-<p>The Juggler map is the nonlinear integer map J(n) = floor(sqrt(n)) if n is even, and J(n) = floor(n^{3/2}) if n is odd. It is conjectured that every positive integer eventually reaches 1. This note does not prove that conjecture.</p>
-<p>A realized parity word w obeys the power envelope (J^{|w|}(n))^{2^{|w|}} &le; n^{3^{#O(w)}}, so a cycle word is formally expanding. Inverse cells and two next-square thresholds give an elementary census: there is no nontrivial cycle of length at most seven. Leftover even-count families then assemble: no cycle word has fewer than four even letters, so a nontrivial cycle has period at least eleven.</p>
-<p>The same envelope, with floor remainders kept, is an exact global defect. Around a cycle the remainders must finance the formal surplus 3^o &minus; 2^L. The resulting inequality at a cycle minimum, together with a verified descent floor through 10^6, excludes every period at most 1053, and every period at most 10^5 outside an explicit set of 397 near-convergent lengths of ln 2 / ln 3. The first record survivor is length 1054. No density result is stated or used.</p>
+<p>The Juggler map is the nonlinear integer map J(n) = floor(sqrt(n)) if n is even, and J(n) = floor(n^{3/2}) if n is odd. It is conjectured that every positive integer eventually reaches 1. This note does not prove that conjecture, and it does not exclude every cycle.</p>
+<p>A realized parity word obeys a power envelope, so a cycle word is formally expanding. Floor remainders must finance the surplus 3^o &minus; 2^L. At a cycle minimum this yields n log n &middot; (3^o &minus; 2^L) &le; L &middot; 3^o. Combined with the published verification that every start through 10^6 reaches 1, there is no nontrivial cycle of length at most 1053. Through length 10^5, only an explicit set of 397 lengths remains admissible to the bound. A separate finite-word analysis shows that every nontrivial cycle has at least four even letters and hence period at least eleven.</p>
 <p>2020 Mathematics Subject Classification: 11B83, 37P99, 11Y55.</p>
 
 VERSION NOTES (optional)

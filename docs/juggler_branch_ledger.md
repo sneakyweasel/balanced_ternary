@@ -1,13 +1,13 @@
 # Juggler finite-dynamics branch ledger
 
 This appendix curates the branches behind the two manuscripts:
-[Paper A](theory/juggler_finite_dynamics_note.md) (finite dynamics:
-envelope, defect, cycle census, leftover families, cycle finance as
-§4, short certificates; Lean-backed except Theorem 4.6) and
+[Paper A](theory/juggler_finite_dynamics_note.md) (cycle-length
+lower bounds: local word obstructions plus finance, \(L\ge 1054\);
+Lean-backed except Theorem 4.6) and
 [Paper B](theory/juggler_parity_discrepancy_note.md) (parity
 discrepancy of nested floor powers: exact linearization, the kernel
 theorem, densities). Neither paper recounts every closed compression.
-The finance branch is Paper A §4; leftover \(84\) is an Appendix A
+The finance branch is Paper A §4; leftover \(84\) is a laboratory
 companion. Laboratory extract:
 [juggler_cycle_finance_note.md](theory/juggler_cycle_finance_note.md).
 This ledger remains the laboratory record. `Decision` reproduces the

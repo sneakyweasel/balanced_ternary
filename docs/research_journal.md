@@ -15721,4 +15721,38 @@ Best next question
   the independent-check gate
 ```
 
+## Paper A major-revision rewrite: cycle-length framing
+
+- **Date:** 2026-08-31
+- **Objective:** Rewrite unpublished Paper A around the cycle-length lower bound \(L\ge 1054\), answering the external major-revision report
+- **Hypotheses:** none; editorial rewrite, no new mathematics
+- **Major results:** Retitled *Lower bounds for nontrivial cycles of the Juggler map*. Main results A/B/C printed up front. Exceptional set \(\mathcal E\) defined by \(n_{\max}(L)>10^6\). Classification lemma before Theorem 3.22. Companion manuscript [12], the 397-length listing, and the leftover-\(84\) formalization-lag paragraph removed from the note. Lean wording and the acknowledgment shortened. Reproducibility box pinned. Paper B theorem numbers unchanged
+- **Refuted ideas:** none (editorial)
+- **Literature:** Simons–de Weger positioned as the method, not the novelty
+- **Open:** whether a length in \(\mathcal E\) is realized; Paper B Section 5 still needs an independent check
+- **Decision:** PROMOTE the major-revision rewrite. No new theorem
+
+```text
+What was learned
+- the publishable claim is L ≥ 1054 plus an admissible set,
+  not a catalogue of family exclusions
+- “near-convergent” needed a definition; membership is not
+  evidence for a cycle
+- the 10^6 floor is Weisstein’s, not a new record
+Strongest theorem
+- unchanged: cycleMin_finance and Theorem 4.6
+Strongest refutation
+- none
+Reusable machinery
+- none
+Branch status
+- PROMOTE
+Why
+- the referee’s major-revision list was framing, not a
+  false theorem
+Best next question
+- none from this rewrite; Paper B Section 5 remains
+  the independent-check gate
+```
+
 

@@ -2,14 +2,14 @@
 
 Author: Philippe Cochin. Date: 31 August 2026.
 Status: **PAPER_CANDIDATE**. The publication draft is dated 31 August 2026
-and is not submitted. After the finance merge it is a standalone
-math note titled *Cycles of the Juggler map*: the length-\(\le 7\)
-census and leftover families (Theorems 3.12--3.21) assemble as
-Theorem 3.22: no cycle word has fewer than four even letters,
-so the period is at least eleven. Section 4 is the financing
-inequality and the floor-\(10^6\) leftover. The envelope is the
-tool, the defect is exact bookkeeping, and the short certificates
-are a remark.
+and is not submitted. It is a cycle-length note titled
+*Lower bounds for nontrivial cycles of the Juggler map*:
+finance plus the published floor \(10^6\) give \(L\ge 1054\)
+(Theorem A) and an admissible set of \(397\) lengths through
+\(10^5\) (Theorem B). The even-count assembly is Theorem C
+(period at least eleven). Section 4 is the financing inequality.
+The envelope is the tool; the defect is motivation, not the
+input to finance.
 
 This branch opens no new attack and makes no claim that every positive
 integer reaches \(1\).
@@ -25,19 +25,14 @@ pointwise-progress boundary?
 The paper-level target is not universal termination. It is the qualified
 math note:
 
-> Realized finite words obey a power envelope and an exact compositional
-> defect identity with rigid zero cases. Inverse cells impose cycle
-> restrictions and yield a small-cycle census: no nontrivial cycle has
-> length at most seven. The same cells exclude two leftover two-even
-> families at every expanding length, transport that comparison across
-> a first even letter on a cycle minimum, and exclude the seven bunched
-> three-even families. Even and odd-to-even starts carry uniform short
-> certificates. A financing inequality then restricts every
-> remaining period to a near-convergent of \(\ln 2/\ln 3\), or to
-> a huge length. No density result is stated in Paper A. The
-> leftover families assemble as an even-count exclusion
-> (Theorem 3.22): a nontrivial cycle has period at least eleven.
-> Later periods are Section 4.
+> Realized finite words obey a power envelope. Inverse cells and a
+> classification of even-count \(\le 3\) exclude every such cycle
+> word (Theorem C: period at least eleven). A financing inequality
+> at a cycle minimum, plus the published descent floor \(10^6\),
+> excludes every period at most \(1053\) (Theorem A) and leaves
+> only an explicit admissible set of \(397\) lengths through
+> \(10^5\) (Theorem B). Membership in that set is not evidence
+> for a cycle. The paper does not prove termination.
 
 Every substantive claim must be linked to one of:
 
@@ -300,15 +295,13 @@ Status: Paper A `PAPER_CANDIDATE`; Paper B `WORKING_DRAFT`
 implication, \(\delta=1/96\); pending one independent check of
 Section 5).
 
-Paper A is a standalone Lean-backed math note titled *Cycles of
-the Juggler map*: the length-\(\le7\) census and leftover families
-(Theorems 3.12--3.21) assemble as Theorem 3.22 (even-count at
-most three is impossible, so the period is at least eleven);
-Section 4 is the financing inequality and the floor-\(10^6\)
-leftover; the envelope, cells, and thresholds are the tools; the
-defect identity is exact bookkeeping, not a uniform tax. Short
-certificates are a remark in Section 5. Lean leftover \(84\) is
-Appendix A companion.
+Paper A is a cycle-length note titled *Lower bounds for
+nontrivial cycles of the Juggler map*: finance plus the published
+floor \(10^6\) give Theorems A and B (\(L\ge 1054\); \(397\)
+admissible lengths through \(10^5\)); the even-count assembly is
+Theorem C. Section 4 is the financing inequality. The envelope
+is the tool. Short certificates are a remark in Section 5.
+Leftover \(84\) is a laboratory companion, not a paper theorem.
 Related work now includes Pickover 2002, Weisstein, and OEIS
 A094716. The Smith letter and the 2026 webpage record through
 \(7\,110\,200\) were dropped from the note. Python listings were

@@ -7,27 +7,18 @@ The former single note has been split into two manuscripts:
 
 - **Paper A** —
   [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md):
-  *Cycles of the Juggler map.* Exact word calculus, defect
-  identity, inverse cells, the small-cycle census (no nontrivial
-  cycle of length at most seven), the uniform leftover families
-  (Theorems 3.12--3.21), the even-count assembly (Theorem 3.22:
-  no cycle word has fewer than four even letters, so the period
-  is at least eleven), the financing inequality (Theorem 4.4),
-  and the floor-\(10^6\) leftover (Theorem 4.6: no period
-  \(\le 1053\); remaining periods \(\le 10^5\) lie in \(397\)
-  near-convergents of \(\ln 2/\ln 3\)). The arguments of
-  Sections 2, 3, and 4 are written in the note. Lean is an
-  independent check of the exact claims except Theorem 4.6, which
-  is a named computation. Lemma 3.3 is an elementary envelope
-  used by Lemma 3.5. Lemma 3.4 writes the next-square
-  thresholds, including the odd-run exclusion \(O^aE\) for
-  \(a\ge 3\), that assemble Theorem 3.6. Theorems 3.12--3.21
-  exclude leftover families by even-count and assemble as
-  Theorem 3.22. Section 4 excludes later periods by financing.
-  Lean leftover \(84\) is an Appendix A companion, not a paper
-  theorem. No density result is stated. After the short-certificate
-  remark, the complement of the uniform short certificates is the
-  odd-to-odd class.
+  *Lower bounds for nontrivial cycles of the Juggler map.*
+  Local word obstructions plus a global finance inequality give
+  a cycle-length lower bound. Theorem A: no period \(\le 1053\).
+  Theorem B: periods \(\le 10^5\) lie in an explicit admissible
+  set \(\mathcal E\) of \(397\) lengths. Theorem C: every
+  nontrivial cycle has at least four even letters, hence period
+  at least eleven. The financing inequality is Theorem 4.4; A
+  and B are Theorem 4.6 at the published floor \(10^6\). Lean
+  formalizes the exact claims except Theorem 4.6, which is a
+  named computation. Membership in \(\mathcal E\) means only
+  that the bound does not exclude the length. Leftover \(84\)
+  is a laboratory companion, not a paper theorem.
 - **Paper B** —
   [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md):
   *Parity equidistribution of nested floor powers, with descent
@@ -98,8 +89,9 @@ carry uniform short certificates; the starts not covered by those
 certificates are exactly the odd-to-odd class, not the starts with
 no descent of any length. The small-cycle census is Theorems 3.6
 and 3.8; the family theorems are 3.12--3.21; the even-count
-assembly is Theorem 3.22; finance is Theorems
-4.4--4.6; short certificates are a remark in Section 5.
+assembly is Theorem 3.22 (Theorem C); finance is Theorems
+4.4--4.6 (Theorems A and B); short certificates are a remark
+in Section 5.
 
 **Paper B.** An exact-linearization discrepancy calculus with a
 kernel theorem for the level-2 floor defect proves every *O-rooted*

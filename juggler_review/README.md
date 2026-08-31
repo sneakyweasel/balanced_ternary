@@ -9,14 +9,12 @@ is not the laboratory. No termination theorem is claimed.
 ## Read this first
 
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
-   — **Paper A**: *Cycles of the Juggler map*. Envelope, exact
-   defect, inverse cells, the length-\(\le 7\) census, leftover
-   families (Theorems 3.12--3.21), the even-count assembly
-   (Theorem 3.22: period at least eleven), and finance
-   (Theorems 4.4--4.6: no period \(\le 1053\); remaining periods
-   \(\le 10^5\) lie in \(397\) near-convergents of
-   \(\ln 2/\ln 3\)). Lean leftover \(84\) is an appendix companion.
-   No density claims.
+   — **Paper A**: *Lower bounds for nontrivial cycles of the
+   Juggler map*. Local word obstructions plus finance give
+   \(L\ge 1054\) (Theorem A) and an admissible set of \(397\)
+   lengths through \(10^5\) (Theorem B). Every nontrivial cycle
+   has at least four even letters (Theorem C). Membership in the
+   admissible set is not evidence for a cycle.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
    kernel theorem, depth-4 completeness over odd starts, and the

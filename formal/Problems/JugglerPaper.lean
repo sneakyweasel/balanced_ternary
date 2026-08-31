@@ -27,7 +27,7 @@ import Problems.Juggler.CycleFinance
 
 Review object for the finite-dynamics note
 `docs/theory/juggler_finite_dynamics_note.md`
-(*Cycles of the Juggler map*).
+(*Lower bounds for nontrivial cycles of the Juggler map*).
 
 This file imports only the modules named by that note. It does not
 copy proofs. Laboratory satellites stay in `Problems.Juggler` and are
@@ -99,7 +99,7 @@ The note's Lean-tagged theorems are listed in its Appendix A:
       `no_finiteProgress_implies_odd_odd`
 * §5  `four_block_pe_1999` (certified four-block expanding chain)
 
-Companion names in Appendix A (not paper theorems):
+Laboratory leftover names (not printed in the note):
 `reachesOne_of_lt_two_hundred_sixty_one`,
 `no_cycle_word_length_le_nineteen`,
 `cycle_word_length_eighty_four_or_ge_eighty_five`,

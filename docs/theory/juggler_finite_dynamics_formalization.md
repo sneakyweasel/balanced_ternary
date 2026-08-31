@@ -2,7 +2,7 @@
 
 This page is the Lean companion to the two manuscripts: **Paper A**,
 [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md)
-(finite dynamics; every theorem Lean-backed), and **Paper B**,
+(cycle-length lower bounds; Lean-backed except Theorem 4.6), and **Paper B**,
 [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md)
 (parity discrepancy; human proofs over Lean-verified floor
 identities). Both are written to be readable without this page.
