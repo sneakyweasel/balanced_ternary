@@ -303,11 +303,17 @@ Ordered excursion closure is **CLOSE**
 two-block persistence \((2,2,1)\) at \(v=n\) is the composed
 OOE envelope. No leftover \((L,o)\) dies.
 
+Correlated floor-defect finance is **CLOSE**
+(`juggler_cycle_defect_correlation_leftover_killer`). Realized
+`OE`/`OO` pairs occupy both cheap and finance-maximal cell
+corners. Pair-finance gap \(0\). No leftover \((L,o)\) dies.
+
 Best next question: none from cyclic run packing, prefix
 expansion, exact pair-level closure, low-order modular
-closure, finance-conditioned closure, or ordered excursion
-closure. The frontier leftover \(L=25781\) still has a
-factor-\(23\) valley gap at \(P=1\).
+closure, finance-conditioned closure, ordered excursion
+closure, or correlated floor-defect finance. The frontier
+leftover \(L=25781\) still has a factor-\(23\) valley gap at
+\(P=1\).
 
 ## Publication assessment
 

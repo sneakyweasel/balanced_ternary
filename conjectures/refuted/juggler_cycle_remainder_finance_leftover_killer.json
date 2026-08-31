@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_remainder_finance_leftover_killer",
+  "title": "Normalized floor-cell remainders cut the run-type budget below θ on E_run(10^6)",
+  "statement": "Exact Juggler cell geometry forces finance-relevant odd or even remainders away from the top of their square/cube cells often enough that Σ w_i ε_i ≤ B_strict < budget_rhs, excluding at least one leftover in E_run(10^6), in particular L=25781 or L=55293.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "OOE-legal n=1016445 in [10^6+1, 10^6+20001) has pos=0.9999737 and usable=0.9999737. The cell-top logarithm is attained on an exact cheap-valley start",
+    "62 OOE-legal starts in that window have pos≥0.988, the uniform factor L=55293 would need. 56 have pos≥0.99. OE-scale starts reach pos=0.99996 and even landings reach 0.99989",
+    "The observed maximum as a uniform factor excludes none of the 99 survivors. The window-mean usable 0.492 would exclude 49 lengths, but that average is not a CycleMin theorem"
+  ],
+  "first_seen": "juggler finance-weighted floor-remainder control",
+  "lean_reference": "log_le_two_log_add",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / floor-cell remainders",
+  "notes": "pos and usable are local_defect plus the existing cell-top log bound. Even terms at n^2 do not bind. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_remainder_finance.md",
+  "proof_reference": "docs/problems/juggler_cycle_remainder_finance.md",
+  "tested_range": "odds in [10^6+1, 10^6+20001) and [oe_start_min(10^6+1), oe_start+8000); 99 run-type survivors; spotlights L=25781 and 55293"
+}

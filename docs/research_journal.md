@@ -16254,4 +16254,70 @@ Best next question
 - none from a cyclic-word functional extracted from 1+q
 ```
 
+## Juggler finance-weighted floor-remainder control
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether CycleMin-legal square/cube-cell remainders are forced away from the top often enough to shrink `budget_rhs` on \(\mathcal E_{\mathrm{run}}(10^6)\)
+- **Hypotheses:** finance-relevant even/odd remainders cannot stay near the top of their cells; the usable floor-loss sum is a strict factor below the cell-top bound
+- **Major results:** \(\mathrm{pos}=\rho/(2T+1)\) and the usable logarithm fraction are **REPARAMETERIZATION** of `local_defect` plus `log_le_two_log_add`. Even terms at \(n^2\) do not bind. In \([10^6+1,10^6+20001)\): \(5045\) `OOE`-legal starts, mean usable \(0.492\), max \(0.9999737\) at \(n=1016445\); \(62\) have \(\mathrm{pos}\ge 0.988\). `OE`-scale max \(0.99996\); even landings \(0.99989\). A mean factor would exclude \(49\) of \(99\), including \(55293\); the observed maximum excludes none. \(L=25781\) would need a factor \(0.043\). Artifact `remainder_finance/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** remainder-cut leftover-killer (`juggler_cycle_remainder_finance_leftover_killer`)
+- **Literature:** existing `cycleMin_finance` / run-type packing / floor-boundary \((e,u)\); same Simons–de Weger finance template
+- **Open:** none from remainder geometry
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- usable ≈ pos is the cell-top log bound in other coordinates
+- even remainders are charged at n^2 and do not move E_run(10^6)
+- OOE/OE classes already realize pos > 0.99997 in the finance window
+- a window mean of 1/2 would kill 49 leftovers, but is not a CycleMin theorem
+- 55293 needs a uniform factor 0.988; 25781 needs 0.043
+Strongest theorem
+- even terms in budget_rhs sit at n^2, so remainder control must cut odd valleys
+Strongest refutation
+- OOE-legal n=1016445 has usable=0.9999737; max-as-uniform kills nobody
+Reusable machinery
+- cell_record / remainder_finance/summary.json
+Branch status
+- CLOSE
+Why
+- remainders are unrestricted where finance needs them; the only
+  figure that would move the 99 is an average, not a cell theorem
+Best next question
+- none from finance-weighted remainder control
+```
+
+## Juggler correlated floor-defect finance
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether successive exact floor defects are coupled strongly enough that the run-type finance budget is unattainable at \(L=25781\) or \(L=55293\)
+- **Hypotheses:** the non-additive power-gap recurrence prevents consecutive local defects from occupying their independently finance-maximal cell corners
+- **Major results:** Realized `OE`/`OO` pairs include both \(\eta\le 0.1\) and both \(\eta\ge 0.9\). Pair-eps ratio \(0.9999\); pair-finance gap \(0\). Bookkeeping \(\mathrm{tax}/\theta\approx 0.0019\) at \(L=25781\) does not drop packed below \(\theta\). Identities are the chained OE cell, `two_step_mordell_identity`, and `global_defect_append`. Artifact `defect_correlation/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** correlated floor-defect leftover-killer (`juggler_cycle_defect_correlation_leftover_killer`)
+- **Literature:** existing global defect spine / run-type packing; closed cumulative floor loss, sum-\(\rho\), ordered excursion, remainder-finance; same Simons–de Weger finance template
+- **Open:** none from two-/three-step defect correlation
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- OE and OO can occupy both cheap and max cell corners
+- pair-finance is separable (gap 0)
+- pair-eps tax is 1-0.9999 bookkeeping
+- the non-additive recurrence is global_defect_append
+- no leftover dies
+Strongest theorem
+- x^3 = (z^2+η)^2+ρ on realized OE (existing cells)
+Strongest refutation
+- 23 OE pairs near n have both η≥0.9; 21 have both η≤0.1
+Reusable machinery
+- step_record / summarize_pairs / defect_correlation/summary.json
+Branch status
+- CLOSE
+Why
+- Falsifier A: independently optimal corners are attained.
+  Falsifier B: the only exact pair law is the existing recurrence
+Best next question
+- none from correlated floor-defect finance
+```
+
 

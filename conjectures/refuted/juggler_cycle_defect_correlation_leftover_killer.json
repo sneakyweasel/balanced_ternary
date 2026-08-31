@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_defect_correlation_leftover_killer",
+  "title": "Correlated floor defects make the run-type finance budget unattainable on E_run(10^6)",
+  "statement": "Exact two- and three-step power-gap recurrence prevents consecutive local defects from simultaneously occupying their independently finance-maximal cell corners, and the resulting correlation tax empties a surviving pair (L, o_min(L)) in E_run(10^6), in particular L=25781 or L=55293.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "At n=10^6+1, realized OE blocks include 21 pairs with both cell positions eta<=0.1 and 23 pairs with both eta>=0.9. OO includes 18 cheap pairs and 19 max pairs. Pair-eps ratio reaches 0.9999 and the pair-finance gap is 0",
+    "The bookkeeping gap 1-0.9999 is tax/theta ~ 0.0019 at L=25781 and 8e-5 at L=55293. Packed still exceeds theta. emptied_count=0",
+    "The only exact pair identities are x^3=(z^2+eta)^2+rho (OE cells) and (x^3-rho)^3=(z^2+sigma)^2 (two_step_mordell_identity). Composition is global_defect_append"
+  ],
+  "first_seen": "juggler correlated floor-defect finance",
+  "lean_reference": "global_defect_append",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / exact floor defects",
+  "notes": "Consecutive defects can be optimized independently on the run-type two-step blocks. The non-additive recurrence is the existing global defect identity, not a pair tax. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_defect_correlation.md",
+  "proof_reference": "docs/problems/juggler_cycle_defect_correlation.md",
+  "tested_range": "L=25781 and L=55293 at n=10^6+1; 4000 odds from n and from oe_start_min(n); blocks OE, OO, OOE"
+}

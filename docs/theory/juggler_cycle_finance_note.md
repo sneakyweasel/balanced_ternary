@@ -286,6 +286,12 @@ These were run. None of them changes the leftover.
   \(7\) on \(39244728\). \((2,2,2)\) is realized near \(n\), and
   \((2,2,1)\) becomes legal at scale \(n^{9/8}\). Neither
   \(L=25781\) nor \(L=55293\) dies as a pair.
+- Correlated floor-defect leftover-killer — **CLOSE**
+  (`juggler_cycle_defect_correlation_leftover_killer`).
+  Realized `OE`/`OO` pairs occupy both cheap and finance-maximal
+  cell corners. Pair-eps ratio \(0.9999\); pair-finance gap
+  \(0\). The non-additive recurrence is `global_defect_append`.
+  Neither leftover dies.
 - Prefix-weight leftover-killer (\(P\equiv 1\), or optimistic
   later-valley \(P\ge 9/8\)) — **CLOSE**
   (`juggler_cycle_prefix_weight_leftover_killer`). The published

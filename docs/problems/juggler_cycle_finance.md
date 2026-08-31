@@ -673,6 +673,8 @@ and `data/research/juggler/cycle_finance/`.
   (`juggler_cycle_conditioned_closure_leftover_killer`).
   Ordered excursion closure is also **CLOSE**
   (`juggler_cycle_ordered_excursion_leftover_killer`).
+  Correlated floor-defect finance is also **CLOSE**
+  (`juggler_cycle_defect_correlation_leftover_killer`).
 
 ## Decision
 
@@ -734,10 +736,17 @@ at a CycleMin start is the composed OOE envelope \(81/64<4/3\).
 \((2,2,2)\) is realized near \(n\), and \((2,2,1)\) becomes
 legal at scale \(n^{9/8}\).
 
+The correlated floor-defect leftover-killer is **CLOSE**
+(`juggler_cycle_defect_correlation_leftover_killer`): realized
+`OE`/`OO` pairs occupy both cheap and finance-maximal cell
+corners. Pair-eps ratio \(0.9999\); pair-finance gap \(0\).
+The non-additive recurrence is `global_defect_append`.
+
 Best next question: none from prefix weights, run-type packing,
 cyclic run packing, prefix expansion, Fourier, exact
 pair-level closure, low-order modular closure,
-finance-conditioned closure, or ordered excursion closure. The
+finance-conditioned closure, ordered excursion closure, or
+correlated floor-defect finance. The
 frontier leftover \(L=25781\) still has a factor-\(23\) valley
 gap after the `OE`-start lift. The remaining slack is an
 \(m\)-bound or valley-height question already parked or refuted
