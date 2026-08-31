@@ -40,6 +40,29 @@ sit at \(t=\lfloor n^{3/2}\rfloor\). The largest number of
 `OOE`. The remaining \(2e-o\) circuits are `OE` from
 `oe_start_min(n)`. Unique visit of \(n\) (prefix return) puts the
 other \(o-e-1\) low valleys at \(n+2\). Evens stay at \(n^2\).
+
+**Run-depth exchange (EXACT — HUMAN PROOF).**
+Write \(F(a)\) for the coarse odd-run cost of length \(a\)
+(start at \(n\) if \(a\ge 2\), at `oe_start_min(n)` if \(a=1\);
+internals at \(\tau_j\)). At \(n=10^6+1\) the increments
+\(\Delta_a=F(a+1)-F(a)\) decrease, and
+
+\[
+F(2)+F(2)\ge F(3)+F(1),\qquad F(2)+F(1)\ge F(3).
+\]
+
+The finance maximum among partitions of \(o\) odds into \(e\)
+runs is therefore the two-type packing. The relaxed maximum
+equals `budget_rhs`.
+
+**Cyclic adjacency (REPARAMETERIZATION / does not bind).**
+A cheap `OOE` cannot be followed by `OE`: the one-even landing
+is \(\operatorname{isqrt}(T^2(n))\asymp n^{9/8}\), below
+`oe_start_min(n)\asymp n^{4/3}\). That is the existing
+`power_bound_word` envelope. It does not cap the number of
+*non-adjacent* cheap valleys, so \(N_{\mathrm{cheap}}=o-e\)
+remains attainable under known constraints.
+
 Hence
 
 \[
@@ -145,13 +168,21 @@ It is not required.
 - Maximum \(M\to\infty\) — does not change the extremum
 - Height packing at \(\tau_j\), \(j\ge 2\) — not forced at
   \(o_{\min}\)
+- Run-depth exchange \(F(2)+F(2)\ge F(3)+F(1)\) —
+  **EXACT — HUMAN PROOF** (this dossier)
+- Cheap-`OOE` landing \(\asymp n^{9/8}\) cannot feed `OE` —
+  **REPARAMETERIZATION** of `power_bound_word`;
+  \(N_{\mathrm{cheap}}=o-e\) still attainable
 - No cycle of any length — not claimed
 
 ## Experiments
 
-- Probe: `research.juggler_sequence.cycle_budget_opt`
-- Dataset: `data/research/juggler/cycle_finance/budget_opt.json`
-- Tests: `tests/research/juggler_sequence/test_cycle_budget_opt.py`
+- Probe: `research.juggler_sequence.cycle_budget_opt`,
+  `cycle_run_extremum`
+- Dataset: `data/research/juggler/cycle_finance/budget_opt.json`,
+  `run_extremum.json`
+- Tests: `tests/research/juggler_sequence/test_cycle_budget_opt.py`,
+  `test_cycle_run_extremum.py`
 - Window: the \(141\) parity leftovers at \(n=10^6+1\). Fast suite
   only. No CLI. No Lean.
 
@@ -165,6 +196,11 @@ The hypothesis that uniqueness or a bound on \(M\) is the leftover
 killer is false: dropping the unique-min split or sending
 \(M\to\infty\) does not change which leftovers die. The shrink
 comes from the `OE`-start lift.
+
+The hypothesis that cyclic run-depth / adjacency forces
+\(S_{\mathrm{exact}}<\texttt{budget_rhs}\) and shrinks the
+\(99\) leftovers is **REFUTED**
+(`conjectures/refuted/juggler_cycle_run_extremum_leftover_killer.json`).
 
 ## Formalization
 
@@ -188,11 +224,21 @@ list. No `CycleBudgetOpt.lean`. Paper A is unchanged.
   packing at \(\tau_1\) holds for all \(141\). Dropping the max
   even term does not change the kill list.
 
+- **Cyclic run-type extremum** — **COMPUTATIONALLY VERIFIED**
+  (`run_extremum.json`): on all \(99\) run-type survivors the
+  two-type packing is the relaxed maximum and matches
+  `budget_rhs`. Deepening one `OOE` or merging two `OOE` into
+  `OOO`+`OE` strictly lowers the odd-state sum. Level C does
+  not drop \(N_{\mathrm{cheap}}\) below \(o-e\) and excludes
+  none of the \(99\).
+
 ## Open questions
 
-None from this packing. Necklace consistency of `OOE` landings
-with `OE` starts is a composition question already closed as
-extremal composition / Christoffel, and is out of Phase-0 scope.
+None from cyclic run packing. The necklace
+\((\mathtt{OOE})^{o-e}(\mathtt{OE})^{2e-o}\) is not a feasible
+consecutive word, but that is the existing envelope: other cheap
+valleys may still sit at \(n+2\). Do not reopen extremal
+scale composition.
 
 ## Decision
 
@@ -204,8 +250,16 @@ power cap on \(n\)-circuits. It shrinks
 period cutoff stays \(25780\). Uniqueness and the maximum do not
 bind. Paper A still prints the parity table. Not a halt theorem.
 
-Best next question: none from this packing. The frontier leftover
-\(L=25781\) still has a factor-\(23\) valley gap at \(P=1\).
+The cyclic run-type leftover-killer is **CLOSE**
+(`juggler_cycle_run_extremum_leftover_killer`). Two-type is
+already the relaxed finance maximum. Cheap-`OOE` adjacency is
+`power_bound_word` and does not prove \(N_{\mathrm{cheap}}<o-e\).
+No leftover among the \(99\) dies. Keep the exchange lemma as
+negative knowledge. No Paper A edit.
+
+Best next question: none from cyclic run packing. The frontier
+leftover \(L=25781\) still has a factor-\(23\) valley gap at
+\(P=1\).
 
 ## Publication assessment
 

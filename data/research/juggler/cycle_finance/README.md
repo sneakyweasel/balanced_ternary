@@ -11,3 +11,5 @@ Prefix-weight leftover scan: `prefix_weights.json`
 (`write_prefix_weight_artifacts`; does not replace either table).
 Run-type leftover scan: `budget_opt.json`
 (`write_budget_opt_artifacts`; does not replace the tables).
+Cyclic run-extremum scan: `run_extremum.json`
+(`write_run_extremum_artifacts`; does not replace the tables).

@@ -200,7 +200,10 @@ is strictly stronger than parity: an \(n\)-circuit cannot start
 \(N_0=10^6\) it excludes \(42\) of the \(141\) leftovers
 (\(56347+1054k\), \(k=0,\ldots,41\)) and leaves \(99\). First
 survivor remains \(25781\). Unique visit and the cycle maximum
-do not bind. Paper A still prints the parity table.
+do not bind. Cyclic run-depth / adjacency does not shrink the
+\(99\): two-type is already the relaxed maximum
+(`juggler_cycle_run_extremum_leftover_killer`). Paper A still
+prints the parity table.
 
 ## Attacks that stop
 
@@ -239,6 +242,11 @@ These were run. None of them changes the leftover.
 - Near-tight monochrome rigidity — **REFUTED**.
 - Christoffel / mechanical-word one-parameter reduction —
   **REFUTED**.
+- Cyclic run-type leftover-killer — **CLOSE**
+  (`juggler_cycle_run_extremum_leftover_killer`). The `OOE`/`OE`
+  packing is already the relaxed finance maximum on the \(99\)
+  survivors. Cheap-`OOE` adjacency is `power_bound_word` and does
+  not prove \(N_{\mathrm{cheap}}<o-e\).
 - Prefix-weight leftover-killer (\(P\equiv 1\), or optimistic
   later-valley \(P\ge 9/8\)) — **CLOSE**
   (`juggler_cycle_prefix_weight_leftover_killer`). The published

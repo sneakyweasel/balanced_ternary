@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_run_extremum_leftover_killer",
+  "title": "Cyclic run-depth or adjacency forces a strictly smaller finance RHS than the OOE/OE packing",
+  "statement": "The exact finance maximum over cyclic odd-run decompositions is strictly below the two-type run-type RHS, because either deeper runs raise the budget or cheap OOE adjacency forces N_cheap < o-e, and that shrinks E_run(10^6).",
+  "status": "REFUTED",
+  "counterexamples": [
+    "At n=10^6+1 the increments Δ_a = F(a+1)-F(a) decrease. F(2)+F(2) ≥ F(3)+F(1) and F(2)+F(1) ≥ F(3), so the relaxed maximum is the OOE/OE packing and equals budget_rhs on all 99 survivors",
+    "Deepening one OOE or merging two OOE into OOO+OE strictly lowers the odd-state sum at L=25781 and L=55293",
+    "A cheap OOE cannot feed OE (landing isqrt(T^2(n)) ≍ n^{9/8} < n^{4/3}), which is power_bound_word, not a count theorem. N_cheap = o-e remains attainable by non-adjacent cheap valleys. Level C excludes none of the 99"
+  ],
+  "first_seen": "juggler cycle cyclic run-type extremum",
+  "lean_reference": "power_bound_word",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / run-type packing",
+  "notes": "The exchange lemma is negative knowledge: two-type is already optimal for the present run-type model. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_budget_opt.md",
+  "proof_reference": "docs/problems/juggler_cycle_budget_opt.md",
+  "tested_range": "99 run-type leftovers at n=10^6+1; spotlight L=25781 and L=55293; exchanges through depth 8"
+}

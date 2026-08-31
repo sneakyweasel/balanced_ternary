@@ -408,7 +408,8 @@ It is not required.
   (`exceptions.json` crude table;
   `exceptions_parity.json` length-only parity table;
   `prefix_weights.json` leftover-weight scan;
-  `budget_opt.json` run-type leftover scan)
+  `budget_opt.json` run-type leftover scan;
+  `run_extremum.json` cyclic run-extremum scan)
 - Tests: `tests/research/juggler_sequence/test_cycle_finance.py`
 
 Science window: gap table \(L\le 10^5\) with exact bignum
@@ -682,11 +683,16 @@ members of the \(1054\)-family; it is not a theorem, and
 \(L=25781\) still lives. Keep the comparison lemma as negative
 knowledge. No Paper A edit.
 
-Best next question: none from prefix weights or from run-type
-packing. The frontier leftover \(L=25781\) still has a
-factor-\(23\) valley gap after the `OE`-start lift. The remaining
-slack is an \(m\)-bound or valley-height question already parked
-or refuted at the residual floor.
+The cyclic run-type leftover-killer is **CLOSE**
+(`juggler_cycle_run_extremum_leftover_killer`): two-type is
+already the relaxed maximum; cheap-`OOE` adjacency does not
+prove \(N_{\mathrm{cheap}}<o-e\).
+
+Best next question: none from prefix weights, run-type packing,
+or cyclic run packing. The frontier leftover \(L=25781\) still
+has a factor-\(23\) valley gap after the `OE`-start lift. The
+remaining slack is an \(m\)-bound or valley-height question
+already parked or refuted at the residual floor.
 
 Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
 leftover-killer
@@ -697,6 +703,8 @@ A second-valley bound \(\ge 281\) is also **REFUTED**
 ([juggler_cycle_second_valley.md](juggler_cycle_second_valley.md)).
 Prefix weights \(1/P_i\) are also **REFUTED** as a leftover-killer
 (`juggler_cycle_prefix_weight_leftover_killer`).
+Cyclic run-depth / adjacency is also **REFUTED** as a leftover-killer
+(`juggler_cycle_run_extremum_leftover_killer`).
 Run-height packing does not improve the length-only
 \(n_{\max}\) at \(o_{\min}\).
 

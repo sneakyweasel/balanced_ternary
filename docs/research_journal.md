@@ -15952,4 +15952,38 @@ Best next question
 - none from this packing
 ```
 
+## Juggler cyclic run-type extremum
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the `OOE`/`OE` packing is already \(\max\sum 1/(x\log x)\) over cyclic odd-run decompositions, or whether run-depth / adjacency forces \(S_{\mathrm{exact}}<\texttt{budget_rhs}\) on \(\mathcal E_{\mathrm{run}}(10^6)\)
+- **Hypotheses:** the two-type adversary is unattainable once cheap-`OOE` landings and `OE`-starts must sit on one cycle
+- **Major results:** Exchange **EXACT — HUMAN PROOF**: \(\Delta_a\) decreases; \(F(2)+F(2)\ge F(3)+F(1)\) and \(F(2)+F(1)\ge F(3)\). On all \(99\) survivors the relaxed maximum equals `budget_rhs`. Cheap-`OOE` cannot feed `OE` (`power_bound_word`); \(N_{\mathrm{cheap}}=o-e\) still attainable. No leftover dies. Artifact `run_extremum.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** cyclic run-type leftover-killer (`juggler_cycle_run_extremum_leftover_killer`)
+- **Literature:** same Simons–de Weger template; adjacency is the existing envelope
+- **Open:** none from cyclic run packing
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- two-type is the unique relaxed finance maximum among run partitions
+- deepening an OOE or merging two OOE into OOO+OE lowers the sum
+- cheap OOE cannot be followed by OE, but that is power_bound_word
+- N_cheap = o-e remains attainable by non-adjacent cheap valleys
+- none of the 99 leftovers dies
+Strongest theorem
+- F(2)+F(2) ≥ F(3)+F(1) at n=10^6+1, so the OOE/OE packing
+  maximises the coarse run-cost
+Strongest refutation
+- cyclic run-depth / adjacency does not beat budget_rhs
+Reusable machinery
+- f_coarse / run_extremum.json
+Branch status
+- CLOSE
+Why
+- the two-type packing is already extremal for the present model;
+  Level C adds no N_cheap theorem
+Best next question
+- none from cyclic run packing
+```
+
 
