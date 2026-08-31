@@ -1,0 +1,22 @@
+{
+  "id": "juggler_cycle_entry_excursion",
+  "title": "The CycleMin entry excursion forces a finance tax above the relaxed OE/OOE minimum that kills 25781 at N0=10^6",
+  "statement": "Every CycleMin cycle contains an entry excursion O^a E into the distinguished minimum n whose predecessor valley has finance cost at least a positive delta above the relaxed oe_start_min / n-valley classes, or that entry conflicts with the cyclic closing edge of the finance-optimal necklace at (L,o)=(25781,16266), and that delta charged at the unique entry (and not an archived last-even / F2(v)>v / oe_start / terminal-(2,1) cell) makes parity_excludes or budget_excludes kill 25781 at the published floor N0=10^6.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "100000135 = oe_start_min(1000001) enters n by OE with peak 1000002025000; 33 entry valleys all a=1, tax 0 at the cheap end",
+    "n and n+2 do not enter n under O^a E for a<=4; every-valley entry compatibility is false",
+    "first a=2 start 1000057 peaks at 3.16e13 > (n+1)^2 and lands at 5623773; a>=2 fibre empty",
+    "2764 * 7.4e-16 still inside slack 5.63e-4; packed word already ends OE"
+  ],
+  "first_seen": "juggler CycleMin entry excursion",
+  "lean_reference": "cycle_last_even_ne_odd_sq",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / CycleMin entry excursion",
+  "notes": "Phase 0 only. The entry tube is the archived OE cell at oe_start_min. No K=11, no 1054k, no L=55293, no floor raise. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_entry_excursion.md",
+  "proof_reference": "docs/problems/juggler_cycle_entry_excursion.md",
+  "tested_range": "n=10^6+1; O^a E for a<=4; six odds in [10^6+1, 10^6+2001] stride 400; packed suffix at L=25781; first a=2 start 1000057"
+}

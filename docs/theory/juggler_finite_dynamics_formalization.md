@@ -531,6 +531,60 @@ census through length \(19\) are listed in Appendix A of the note.
 They are not paper theorems. `CycleHeightFinance.lean` is not
 imported.
 
+## 8.5 Excursion necklace
+
+Paper A Section 4 now opens with the excursion necklace of a
+minimum-based cycle word. That subsection is organizing prose:
+it names the circular itinerary already implied by Theorem 3.2,
+Lemma 3.4, Lemma 3.21b, and the last-even cell. It introduces
+no new theorem and no new Lean object. The table below records
+how each stage is represented. Names marked *satellite* are
+not imported by `Problems.JugglerPaper` and are not in
+Appendix A of the note.
+
+The itinerary is
+\[
+n
+\;\xrightarrow{\;OO\;}
+\text{first high region}
+\;\xrightarrow{\;E\;}
+v_1
+\;\xrightarrow{\;O^{a_2}E\;}
+\cdots
+\;\xrightarrow{\;O^{a_e}E\;}
+n,
+\]
+with valleys \(v_i\), peaks \(p_i=J^{a_{i+1}}(v_i)\), and
+\(v_{i+1}=\lfloor\sqrt{p_i}\rfloor\).
+
+| Stage | Lean (barrel unless marked) | Code | Status |
+|---|---|---|---|
+| Cycle minimum \(n=\min C\) | `CycleMin`, `cycleMin_start_odd`, `cycleMin_ge`, `aboveAnchor_of_cycleMin`, `exists_cycleMin` (`CycleCore.lean`) | `cycle_extrema.stay_above_min_excursion`; finance tables at a CycleMin start | **EXACT — LEAN VERIFIED** (Theorem 3.2(ii)) |
+| Forced prefix `OO`; no `OE` start | `cycleMin_not_odd_even`; `cycleMin_oddEvenBlock_starts_two_odds` (`EvenCountThree.lean`) | leftover scanners rotate to a start-`OO` orientation | **EXACT — LEAN VERIFIED** |
+| First lift; \(J^2(n)\ge(n+1)^2\) | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append`; `no_cycle_word_ooe` | `power_words.floor_power` | **EXACT — LEAN VERIFIED** (Lemma 3.4) |
+| First peak overshoots the entry cell | `cycleMin_first_even_overshoots`, `cycleMin_max_ge_succ_sq`, `cycleMin_to_even_superquadratic` | — | **EXACT — LEAN VERIFIED**. Opposite of the last-peak cell |
+| Block \(O^aE\) | `oddEvenBlock a 1` (`WordStats.lean`); `exponentExpanding_oddEvenBlock`. Satellite: `oe_block_contracts` (`Scale.lean`) | `cycle_ordered_excursion.excursion_map` (the laboratory \(F_a\); not a Lean name) | Block language **EXACT — LEAN VERIFIED**. \(\mu(a)=3^a/2^{a+1}\) is a **REPARAMETERIZATION** of the word envelope |
+| `OE` contracts, `OOE` expands | \(\mu(1)=3/4\), \(\mu(2)=9/8\); `no_cycle_odd_run_append_even` forbids \(O^aE\) as a *cycle word* for \(a\ge 3\), not as an internal block | `odd_run_itinerary.block_lambda` | same |
+| Square-cell gap \(243<256\) | Satellite: `follows_ooeooeo_image_lt_sq` (`Escape.lean`) | inherited corridor on `OOEOOEO` | not a CycleMin theorem; not Appendix A |
+| Repeated expanding blocks | Satellite: `two_block_ooe_365`, `expanding_type_ooe_self_loop` (`Residuals.lean` / `ExpandingGrammar.lean`); barrel: `four_block_pe_1999` | `odd_run_itinerary.py` controls; Paper A §5 uses \(1999\) | **OBSERVATION** on residuals. \(1517\) is not in Lean |
+| Valley skeleton \(\sum a_i=o\), \(e=L-o\) | Lemma 3.21b in prose; `oddEvenBlock` concatenation. Satellite: `dropOddRun`, `cycleCircuitCount` (`CycleHeightFinance.lean`) | `cycle_almost_search.circuits`, `packed_block_word`; `cycle_budget_opt.run_type_counts` | **EXACT — HUMAN PROOF**. No Lean `F_a` or `Valley` |
+| Peaks \(p_i\); every even state \(\ge n^2\) | `cycleMin_max_gt_sq`, `cycleMin_to_even_superquadratic` (`CycleExtrema.lean`) | `cycle_peak_descent.py`; evens charged at \(n^2\) in `cycle_budget_opt` | **EXACT — LEAN VERIFIED**. Peak-count theorems stay out of the note |
+| Finance on the wave | `cycleMin_finance`, `cycleMin_finance_inv_sum` (`CycleFinance.lean`) | `cycle_finance.py`; `cycle_budget_opt.py` | Theorem 4.4 **EXACT — LEAN VERIFIED**; 4.7 human; 4.6/4.8 computational |
+| Last peak / entry cell | `cycle_last_even_interval`, `cycle_last_even_ne_odd_sq`, `cycle_trailing_evens_lt`, `cycleMin_not_end_odd` | `cycle_entry_excursion.entry_even_cell` | Cell **EXACT — LEAN VERIFIED**. Enumerated fibres are archived laboratory negative knowledge |
+| Circular closure / necklace | `rotateWord`, `cycleWord_rotateWord`, `cycle_iterate_period` | `cycle_cyclic_valley.py` (archived) | rotation **EXACT — LEAN VERIFIED**. No Lean `Necklace` |
+| \(L_*=25781\) in Lean | `Lstar`, `Ostar`, `runSurvivors_length` (`RunSurvivorLattice.lean`) | `budget_opt.json` leftover \(99\) | Lattice generator, **not** the period bound. The bound is Theorem 4.6 |
+| Later leftover-killers | not in the paper barrel | `cycle_entry_excursion`, `cycle_inverse_width`, `cycle_orbit_budget`, `cycle_cyclic_valley`, `cycle_realizable_finance`, `cycle_extremizer_discrepancy`, … | all **CLOSE** / **REFUTED**. Recovered Theorem 4.7 or closed. Not paper claims |
+
+The first peak and the last peak are different even states. On a
+`CycleMin` the first even residual satisfies \(p_0\ge(n+1)^2\).
+The last even residual occupies \(n^2\le p_{e-1}<(n+1)^2\).
+Do not write “the CycleMin peak lies in the first square cell.”
+
+The remaining gap recorded in the note is the missing implication
+from the forced lift, the complete necklace, and the entry cell
+to a contradiction on leftover lengths. There is no such Lean
+theorem.
+
 ## 9. Exact floor reductions for the discrepancy paper
 
 Source: `formal/Problems/Juggler/GapCells.lean`.

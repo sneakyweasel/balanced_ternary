@@ -15,6 +15,9 @@ return-cost coupling are not paper claims. Return-cost coupling
 ([juggler_cycle_valley_coupling.md](juggler_cycle_valley_coupling.md))
 is **CLOSE**: it does not certify \(N_{\mathrm{cheap}}<o-e\)
 as a leftover-killer.
+Section 4 opens with an editorial excursion-necklace itinerary
+(Theorem 3.2, Lemma 3.4, Lemma 3.21b, last-even cell). It is
+not a new theorem and not a leftover-killer.
 
 This branch opens no new attack and makes no claim that every positive
 integer reaches \(1\).
@@ -256,7 +259,9 @@ standalone checkability. The stack now consists of:
   cycle restrictions, the small-cycle
   census (Theorems 3.6 and 3.8), leftover families
   (Theorems 3.12--3.21), even-count assembly (Theorem 3.22:
-  period at least eleven), finance (Theorems 4.4--4.8,
+  period at least eleven), the excursion necklace as the
+  geometry of a minimum-based word (Section 4 opening; not a
+  new theorem), finance (Theorems 4.4--4.8,
   Proposition 4.9), short
   certificates as a remark. The complement of those
   certificates is the odd-to-odd class. Lean is an independent
@@ -302,7 +307,9 @@ the defect-financing mechanism, then the implication
 computational input; the literature claim is now
 to-the-best-of-our-knowledge after a named source check;
 141→99 and the lattice stay one compact supporting subsection;
-peak count is named as future work only. Theorem 4.4 remains
+peak count is named as future work only. Section 4 opens with
+the excursion necklace (editorial; no new theorem; Theorem 4.4
+numbering unchanged). Theorem 4.4 remains
 the conceptual sharp inequality (constant \(1\)); Corollary 4.5
 is the statewise bound; Theorem 4.6 is the conservative
 \(6/5\) certification. The closed return-cost branch and

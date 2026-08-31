@@ -1,0 +1,150 @@
+{
+  "bound": "orbit_budget",
+  "L": 25781,
+  "o": 16266,
+  "e": 9515,
+  "theta": 2.5459198127264017e-05,
+  "budget_rhs": 0.0005885744398583163,
+  "published_floor": 1000000,
+  "start": 1000001,
+  "oracle": {
+    "brute": {
+      "e_max": 4,
+      "lo": 11,
+      "hi": 79,
+      "starts": 35,
+      "legal": 4,
+      "C_max": 0.008354134382056228,
+      "closed": 0,
+      "max_circuits": 2
+    },
+    "bb": {
+      "e_max": 4,
+      "C_max": 0.008354134382056228,
+      "nodes": 41,
+      "capped": false,
+      "prunes": {
+        "cyclemin": 35
+      }
+    },
+    "match": true
+  },
+  "calibration": [
+    {
+      "n": 365,
+      "cheap_blocks": 4,
+      "C_used": 0.0007877890590240874,
+      "C_used_rhs": 0.0009453468708289048,
+      "end": 12707,
+      "reason": "not_ooe",
+      "L": 25781,
+      "o": 16266,
+      "odd_left": 16258,
+      "even_left": 9511,
+      "C_remain_rhs": 4.03464926010867,
+      "C_used_plus_remain": 4.035594606979498,
+      "theta": 2.5459198127264017e-05,
+      "still_above_theta": true,
+      "packed_rhs": 4.036944165646678
+    },
+    {
+      "n": 1000057,
+      "cheap_blocks": 2,
+      "C_used": 8.387011444100328e-08,
+      "C_used_rhs": 1.0064413732920394e-07,
+      "end": 39244721,
+      "reason": "not_ooe",
+      "L": 25781,
+      "o": 16266,
+      "odd_left": 16262,
+      "even_left": 9513,
+      "C_remain_rhs": 0.0005883652288637897,
+      "C_used_plus_remain": 0.0005884658730011189,
+      "theta": 2.5459198127264017e-05,
+      "still_above_theta": true,
+      "packed_rhs": 0.0005885390515539694
+    }
+  ],
+  "science": {
+    "n": 1000001,
+    "L": 25781,
+    "o": 16266,
+    "e": 9515,
+    "n_ooe": 6751,
+    "n_oe": 2764,
+    "theta": 2.5459198127264017e-05,
+    "budget_rhs": 0.0005885744398583163,
+    "starts": [
+      1000001,
+      1000053,
+      1000055,
+      1000057,
+      1000059,
+      1000061,
+      1000063,
+      1000065,
+      1000067,
+      1000069,
+      1000071,
+      1000073,
+      1000091,
+      1000093,
+      1000095
+    ],
+    "nodes": 24,
+    "node_cap": 20000,
+    "capped": false,
+    "max_circuits": 1,
+    "C_max_partial": 7.242655186923981e-08,
+    "C_max_partial_rhs": 8.691186224308777e-08,
+    "C_max_ub": 0.0005885744398583163,
+    "C_max_complete_rhs": null,
+    "live_above_theta": 15,
+    "archived_deaths": 22,
+    "archived_only_deaths": true,
+    "death_tags": [
+      "cyclemin",
+      "empty_ooe",
+      "shared_ooe_prefix"
+    ],
+    "prunes": {
+      "empty_ooe": 16,
+      "contracting": 9,
+      "cyclemin": 6,
+      "shared_ooe_prefix": 6
+    },
+    "first_last_cells": {
+      "n": 1000053,
+      "first_odd": 1000079501,
+      "first_even_after_oo": 31626547740177,
+      "last_even_lo": 1000106002809,
+      "last_even_hi": 1000108002915,
+      "first_even_above_last_cell": true,
+      "different_indices": true
+    },
+    "complete": false
+  },
+  "charged_excludes": {
+    "parity_excludes": false,
+    "budget_excludes": false
+  },
+  "decision": {
+    "classification": "ORBIT_BUDGET_CLOSED",
+    "decision": "CLOSE",
+    "reason": "the search dies at archived empty-OOE / CycleMin / first-block tags; C_max < theta would be follow-depth rewritten",
+    "gap_kind": "archived_cell",
+    "oracle_match": true,
+    "calibration_above_theta": true,
+    "C_max_ub_lt_theta": false,
+    "C_max_partial_lt_theta": true,
+    "leftover_killer": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "open_55293": false,
+    "lean": false,
+    "paper_a": false,
+    "cuda": false
+  },
+  "C_max": 0.0005885744398583163,
+  "gap_kind": "archived_cell"
+}

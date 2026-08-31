@@ -106,9 +106,11 @@ amplifies that floor to the period bound.
 Roadmap. Section 2 records the power envelope and the exact
 defect identity that explains it. Section 3 classifies
 minimum-based cycle words and proves that every nontrivial
-cycle has at least four even letters. Section 4 unrolls the
-cell logarithm around a cycle minimum, obtains the finance
-inequality, and applies it at the known floor \(10^6\). A
+cycle has at least four even letters. Section 4 records the
+excursion necklace of a minimum-based word, unrolls the cell
+logarithm around that minimum, obtains the finance inequality,
+and applies it at the known floor \(10^6\). The necklace is
+the geometry of the unroll, not a fourth main theorem. A
 run-type packing of the same identity is a supporting
 refinement; the arithmetic of the leftover lengths is
 secondary.
@@ -900,6 +902,156 @@ every period that is not admissible for the inequality, once a
 uniform logarithmic floor-error bound is available above a
 verified descent floor.
 
+The identity is unrolled along a circular word. After rotation
+to a cycle minimum that word is a necklace of odd-run
+excursions. The geometry below records that itinerary. It
+introduces no new theorem: every named constraint is Theorem 3.2,
+Lemma 3.4, Lemma 3.21b, or the last-even cell.
+
+### The excursion necklace
+
+Write \(n\) for a cycle minimum and
+\[
+w=O^{a_1}EO^{a_2}E\cdots O^{a_e}E
+\]
+for a minimum-based orientation (Lemma 3.21b), so \(a_1\ge 2\),
+\(\sum_i a_i=o\), and \(e=L-o\). The odd landings are the
+*valleys* \(v_i\) and the even state just before each final \(E\)
+is the *peak* \(p_i\):
+\[
+v_0=n,\qquad
+p_i=J^{a_{i+1}}(v_i),\qquad
+v_{i+1}=J(p_i)=\lfloor\sqrt{p_i}\rfloor
+\quad(0\le i<e),
+\]
+with \(v_e=n\). The itinerary is
+\[
+n
+\;\xrightarrow{\;OO\;}
+\text{first high region}
+\;\xrightarrow{\;E\;}
+v_1
+\;\xrightarrow{\;O^{a_2}E\;}
+\cdots
+\;\xrightarrow{\;O^{a_{e-1}}E\;}
+v_{e-1}
+\;\xrightarrow{\;O^{a_e}E\;}
+n.
+\]
+
+Two meanings of *entry* must not be conflated. *Cycle entry* is
+the distinguished cut that places the minimum at the start of
+the word. *Dynamical entry* is the last even step into \(n\).
+The second is a genuine boundary condition; the first is a
+choice of origin.
+
+#### Cycle minimum and the forced lift
+
+The minimum is odd, so the word cannot begin with \(E\) or
+\(OE\), and it cannot end with an odd letter (Theorem 3.2).
+The first two letters are therefore \(OO\):
+\[
+n\overset{O}{\longrightarrow}y\overset{O}{\longrightarrow}z.
+\]
+For \(n\ge 5\) one has \(z=J^2(n)\ge(n+1)^2\) (Lemma 3.4(i)).
+In particular \(OOE\) cannot be a cycle word
+(`no_cycle_word_ooe`). On a cycle minimum the first even
+residual overshoots the entry cell: the first peak satisfies
+\(p_0\ge(n+1)^2\). That is the opposite of the last-peak
+condition below. Even \(J^2(n)\) may continue with \(E\); odd
+\(J^2(n)\) continues with \(O\). Either way the minimum-based
+prefix is still \(OO\).
+
+#### Excursions, valleys, and peaks
+
+An ordinary excursion is one block \(O^{a}E\). In the itinerary
+semantics that word is `oddEvenBlock a 1`. Write
+\[
+\mu(a)=\frac{3^a}{2^{a+1}}
+\]
+for the ideal (floor-free) exponent of the block. The block is
+formally expanding if and only if \(\mu(a)>1\), equivalently
+\(2^{a+1}<3^a\). Thus \(OE\) contracts (\(\mu(1)=3/4\)) and
+\(OOE\) expands (\(\mu(2)=9/8\)). This is a reparameterization
+of the word envelope of Theorem 2.2, not a transition law on
+pairs \((a_i,a_{i+1})\). Lemma 3.4(v) forbids \(O^aE\) as a
+*cycle word* for \(a\ge 3\); it does not forbid an internal
+block of that shape.
+
+The orbit is then the wave
+\[
+v_0\to p_0\to v_1\to p_1\to\cdots\to v_{e-1}\to p_{e-1}\to v_0.
+\]
+On a cycle minimum every even state is already at least \(n^2\)
+(Theorem 3.2(iii)). Valleys dominate a logarithmic defect sum
+because \(1/(x\log x)\) is largest there; peaks are huge and
+cheap. That is why the run-type packing of Theorem 4.7 charges
+\(\mathtt{OOE}\)-scale valleys, \(\mathtt{OE}\)-scale valleys,
+and evens separately. The packed comparison is an extremal
+charge of the same sum, not a uniqueness theorem for the
+actual word. Expanding blocks can climb and a later \(OE\) can
+drop without crossing the anchor: four consecutive expanding
+blocks occur already at the certified start \(1999\) recorded
+in Section 5.
+
+#### Closure and the entry cell
+
+The valley sequence is circular. The last letter is \(E\), so
+the last peak occupies the last-even cell of Lemma 3.4(iv):
+\[
+n^2\le p_{e-1}<(n+1)^2.
+\]
+The minimum is odd, so \(p_{e-1}\neq n^2\)
+(`cycle_last_even_ne_odd_sq`) and \(p_{e-1}\) is even. Thus
+\[
+n^2+1\le p_{e-1}<(n+1)^2,\qquad p_{e-1}\text{ even}.
+\]
+An ordinary excursion needs only \(v_i\ge n\). The last
+excursion must hit this cell and land on \(n\):
+\[
+v_{e-1}
+\overset{O^{a_e}}{\longrightarrow}
+p_{e-1}
+\overset{E}{\longrightarrow}
+n.
+\]
+The first peak overshoots the same cell; the last peak lands
+in it. Those are different even states.
+
+Once the orbit returns to \(n\), the prefix \(OO\) is forced
+again. A genuine cycle is a closed necklace of excursions
+whose first block starts \(OO\), whose last peak lies in the
+entry cell, and whose entire orbit stays at least \(n\). The
+global constraints already proved are
+\[
+\sum_i a_i=o,\qquad e=L-o,\qquad 2^L<3^o,
+\]
+together with periodicity \(\prod_{i=0}^{e-1} v_{i+1}/v_i=1\).
+
+#### What remains
+
+Finance (Theorem 4.4) sits around the necklace: the surplus
+\(3^o-2^L\) must be paid by floor losses, and at the verified
+floor \(N_0=10^6\) this forces \(L\ge 25781\). The run-type
+packing of Theorem 4.7 is a refinement of the same defect sum
+along the valleys and peaks just named. Subsequent refinements
+of one component of the necklace recovered Theorem 4.7 or
+closed. They are not claims of this note.
+
+The pieces are understood separately: the forced lift at \(n\),
+the blocks \(O^{a_i}E\), and the last-even landing. What is
+not proved is a link strong enough to exclude the leftover
+lengths,
+\[
+\text{minimum geometry}
++\text{necklace of excursions}
++\text{entry cell}
+\;\Rightarrow\;\bot.
+\]
+That is a formulation of the remaining cycle problem, not a
+theorem. A genuine lower bound on the number of odd runs would
+feed Theorem 4.7; none is proved here.
+
 Throughout this section write \(L=|w|\) and \(o=\#O(w)\) for a
 cycle word \(w\) based at a cycle minimum \(n\ge 2\). Natural
 logarithms are written \(\log\). The unique one-step fibres of
@@ -1325,12 +1477,16 @@ consecutive expanding blocks occur already at
 \]
 
 The next concrete direction is the number \(p\) of odd runs on a
-minimum-based cycle. The run form already gives \(p\le e\) and,
-because the first odd run has length at least two, \(p\le o-1\),
-hence \(p\le\min(e,o-1)<0.3691\,L\) on an expanding word. That
-is only the trivial ceiling. A genuine lower bound on \(p\), or
-a peak-height / peak-count tradeoff, would feed Theorem 4.7.
-Neither is proved here.
+minimum-based cycle --- equivalently, the number of excursions
+on the necklace of Section 4. The run form already gives
+\(p\le e\) and, because the first odd run has length at least
+two, \(p\le o-1\), hence \(p\le\min(e,o-1)<0.3691\,L\) on an
+expanding word. That is only the trivial ceiling. A genuine
+lower bound on \(p\), or a peak-height / peak-count tradeoff,
+would feed Theorem 4.7. Neither is proved here. The remaining
+gap recorded there is the missing link from the forced lift at
+the minimum, through the complete necklace, to the entry cell;
+it is not a halt theorem.
 
 The same pattern --- a piecewise power map, integer rounding,
 and a cycle minimum --- produces a defect-financing obstruction.
@@ -1365,9 +1521,11 @@ formally verified.
 | Corollary 2.7 | `image_eq_start_defectRatio` |
 | per-step slack | `one_plus_eta_lt_succ_sq` |
 | Lemma 3.1 | `odd_cell_unique` |
+| CycleMin | `CycleMin` |
 | Theorem 3.2 | `cycle_word_formally_expanding`, `cycleMin_start_odd`, `cycleMax_start_even`, `cycleMin_not_end_odd`, `square_scale_superquadratic`, `cycleMin_to_even_superquadratic` |
 | Lemma 3.3 | `lower_growth_word` |
-| Lemma 3.4 | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append`, `cycle_last_even_interval`, `no_cycle_odd_run_append_even` |
+| Lemma 3.4 | `oo_suffix_threshold`, `ooo_suffix_threshold`, `threshold_inherits_odd_append`, `cycle_last_even_interval`, `cycle_last_even_ne_odd_sq`, `no_cycle_odd_run_append_even`, `no_cycle_word_ooe` |
+| odd-run block | `oddEvenBlock` |
 | Lemma 3.5 | `no_cycle_word_oooeoe`, `no_cycle_word_ooooee` |
 | Theorem 3.6 | `no_cycle_word_length_le_six` |
 | Lemma 3.7 | `no_cycle_word_ooooeoe`, `no_cycle_word_oooooee` |

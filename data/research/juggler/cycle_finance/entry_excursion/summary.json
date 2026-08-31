@@ -1,0 +1,293 @@
+{
+  "bound": "entry_excursion",
+  "L": 25781,
+  "o": 16266,
+  "theta": 2.5459198127264017e-05,
+  "n": 1000001,
+  "entry_cell": {
+    "n": 1000001,
+    "lo": 1000002000001,
+    "hi": 1000004000004,
+    "first_even": 1000002000002,
+    "count": 1000001,
+    "width": 2000003,
+    "rel_width": 1.999999e-06,
+    "contains_n2": false,
+    "n2_odd": true
+  },
+  "layers": [
+    {
+      "a": 1,
+      "run_type": "OE",
+      "envelope_v": 100000133.33335546,
+      "envelope_below_n": false,
+      "n_total": 33,
+      "n_ge_n": 33,
+      "min_v": 100000135,
+      "max_v": 100000265,
+      "min_v_below_n": 100000135,
+      "any_below_n": false,
+      "witnesses": [
+        {
+          "v": 100000135,
+          "a": 1,
+          "peak": 1000002025000,
+          "tube_min": 1000001,
+          "tube_ge_n": true,
+          "v_over_n": 100.000034999965,
+          "v_over_oe": 1.0,
+          "finance_cost": 5.428673297229195e-10,
+          "tax_vs_oe": 0.0,
+          "run_type": "OE"
+        },
+        {
+          "v": 100000137,
+          "a": 1,
+          "peak": 1000002055000,
+          "tube_min": 1000001,
+          "tube_ge_n": true,
+          "v_over_n": 100.000036999963,
+          "v_over_oe": 1.000000019999973,
+          "finance_cost": 5.428673182761781e-10,
+          "tax_vs_oe": 1.1446741417443826e-17,
+          "run_type": "OE"
+        },
+        {
+          "v": 100000139,
+          "a": 1,
+          "peak": 1000002085000,
+          "tube_min": 1000001,
+          "tube_ge_n": true,
+          "v_over_n": 100.000038999961,
+          "v_over_oe": 1.000000039999946,
+          "finance_cost": 5.428673068294369e-10,
+          "tax_vs_oe": 2.28934826280925e-17,
+          "run_type": "OE"
+        },
+        {
+          "v": 100000141,
+          "a": 1,
+          "peak": 1000002115000,
+          "tube_min": 1000001,
+          "tube_ge_n": true,
+          "v_over_n": 100.000040999959,
+          "v_over_oe": 1.000000059999919,
+          "finance_cost": 5.428672953826963e-10,
+          "tax_vs_oe": 3.4340223218355714e-17,
+          "run_type": "OE"
+        },
+        {
+          "v": 100000143,
+          "a": 1,
+          "peak": 1000002145000,
+          "tube_min": 1000001,
+          "tube_ge_n": true,
+          "v_over_n": 100.000042999957,
+          "v_over_oe": 1.000000079999892,
+          "finance_cost": 5.428672839359561e-10,
+          "tax_vs_oe": 4.578696339502862e-17,
+          "run_type": "OE"
+        },
+        {
+          "v": 100000145,
+          "a": 1,
+          "peak": 1000002175000,
+          "tube_min": 1000001,
+          "tube_ge_n": true,
+          "v_over_n": 100.000044999955,
+          "v_over_oe": 1.000000099999865,
+          "finance_cost": 5.428672724892164e-10,
+          "tax_vs_oe": 5.723370315811122e-17,
+          "run_type": "OE"
+        },
+        {
+          "v": 100000147,
+          "a": 1,
+          "peak": 1000002205000,
+          "tube_min": 1000001,
+          "tube_ge_n": true,
+          "v_over_n": 100.000046999953,
+          "v_over_oe": 1.000000119999838,
+          "finance_cost": 5.428672610424772e-10,
+          "tax_vs_oe": 6.868044230080836e-17,
+          "run_type": "OE"
+        },
+        {
+          "v": 100000149,
+          "a": 1,
+          "peak": 1000002235000,
+          "tube_min": 1000001,
+          "tube_ge_n": true,
+          "v_over_n": 100.000048999951,
+          "v_over_oe": 1.000000139999811,
+          "finance_cost": 5.428672495957385e-10,
+          "tax_vs_oe": 8.01271810299152e-17,
+          "run_type": "OE"
+        }
+      ]
+    },
+    {
+      "a": 2,
+      "run_type": "OOE",
+      "envelope_v": 215443.66050848336,
+      "envelope_below_n": true,
+      "n_total": 0,
+      "n_ge_n": 0,
+      "min_v": null,
+      "max_v": null,
+      "min_v_below_n": null,
+      "any_below_n": false,
+      "witnesses": []
+    },
+    {
+      "a": 3,
+      "run_type": "OOOE",
+      "envelope_v": 3593.815793471548,
+      "envelope_below_n": true,
+      "n_total": 0,
+      "n_ge_n": 0,
+      "min_v": null,
+      "max_v": null,
+      "min_v_below_n": null,
+      "any_below_n": false,
+      "witnesses": []
+    },
+    {
+      "a": 4,
+      "run_type": "OOOOE",
+      "envelope_v": 234.6229775047206,
+      "envelope_below_n": true,
+      "n_total": 0,
+      "n_ge_n": 0,
+      "min_v": null,
+      "max_v": null,
+      "min_v_below_n": null,
+      "any_below_n": false,
+      "witnesses": []
+    }
+  ],
+  "finance": {
+    "oe_start": 100000135,
+    "oe_cost": 5.428673297229195e-10,
+    "n_entry": 33,
+    "min_v": 100000135,
+    "max_v": 100000265,
+    "min_v_over_oe": 1.0,
+    "max_v_over_oe": 1.000001299998245,
+    "min_tax_vs_oe": 0.0,
+    "max_tax_vs_oe": 7.44037222884966e-16,
+    "tax_zero": true,
+    "at_oe_scale": true
+  },
+  "valley_classes": [
+    {
+      "name": "cyclemin",
+      "v": 1000001,
+      "enters_n": false,
+      "hits": []
+    },
+    {
+      "name": "unique_visit_next",
+      "v": 1000003,
+      "enters_n": false,
+      "hits": []
+    },
+    {
+      "name": "oe_start",
+      "v": 100000135,
+      "enters_n": true,
+      "hits": [
+        {
+          "a": 1,
+          "peak": 1000002025000,
+          "tube_ge_n": true
+        }
+      ]
+    }
+  ],
+  "packed_closing": {
+    "L": 25781,
+    "o": 16266,
+    "n_ooe": 6751,
+    "n_oe": 2764,
+    "last_circuit": [
+      1,
+      1
+    ],
+    "prev_circuit": [
+      2,
+      1
+    ],
+    "ends_oe": true,
+    "ends_21": true,
+    "suffix": "OOEOOEOEOOEOOEOE",
+    "prefix": "OOEOOEOOEOEOOEOO"
+  },
+  "ooe_overshoot": {
+    "n": 1000001,
+    "first_a2": 1000057,
+    "F2": {
+      "v": 1000057,
+      "peak": 31626832356906,
+      "landing": 5623773
+    },
+    "return_hi": 1000004000004,
+    "peak_overshoots_return": true,
+    "landing_gt_n": true,
+    "landing_eq_n": false
+  },
+  "window": {
+    "lo": 1000001,
+    "hi": 1002001,
+    "stride": 400,
+    "n_seen": 6,
+    "n_oe_entry": 6,
+    "n_deep_ge_n": 0,
+    "mean_min_v_over_oe": 1.0,
+    "max_min_v_over_oe": 1.0
+  },
+  "slack": {
+    "theta": 2.5459198127264017e-05,
+    "packed": 0.0005885744398583163,
+    "margin": 0.0005631152417310524,
+    "oe_count": 2764,
+    "oo_count": 6751,
+    "one_entry_tax": 7.44037222884966e-16,
+    "one_entry_inside_slack": true,
+    "false_all_oe_tax": 2.056518884054046e-12,
+    "false_all_inside_slack": true,
+    "false_all_would_kill": false
+  },
+  "published_floor": 1000000,
+  "start": 1000001,
+  "charged_excludes": {
+    "parity_excludes": false,
+    "budget_excludes": false
+  },
+  "decision": {
+    "classification": "ENTRY_EXCURSION_CLOSED",
+    "decision": "CLOSE",
+    "reason": "entry into n is the archived OE cell at oe_start_min; a>=2 with v>=n is empty (F2(v)>v); the packed word already ends OE; every-valley compatibility is false; no extra leftover-killing delta",
+    "only_oe_entry": true,
+    "deep_ge_n": 0,
+    "tax_zero": true,
+    "at_oe_scale": true,
+    "all_valleys_compatible": false,
+    "cheap_ooe_enters_n": false,
+    "packed_ends_oe": true,
+    "closing_conflict": false,
+    "one_entry_inside_slack": true,
+    "false_all_would_kill": false,
+    "leftover_killer": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "open_55293": false,
+    "archived_tags": [
+      "last_even_ne_odd_sq",
+      "F2_gt_v",
+      "oe_start_min",
+      "terminal_21_realized",
+      "odd_cell_unique"
+    ]
+  }
+}

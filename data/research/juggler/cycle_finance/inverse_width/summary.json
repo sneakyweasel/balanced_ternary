@@ -1,0 +1,2392 @@
+{
+  "bound": "inverse_width",
+  "L": 25781,
+  "prefix_len": 18,
+  "y_grid": [
+    11,
+    101,
+    1001,
+    10001,
+    100001,
+    1000001
+  ],
+  "forward_scales": [
+    100,
+    1000,
+    10000,
+    100000,
+    1000000
+  ],
+  "words": [
+    {
+      "name": "packed_mechanical",
+      "word": "OOEOOEOOEOEOOEOOE",
+      "family": "near",
+      "source": "25781 Beatty packed prefix"
+    },
+    {
+      "name": "bunched_ooe",
+      "word": "OOEOOEOOEOOEOOEOOE",
+      "family": "near",
+      "source": "bunched (OOE)^6 prefix"
+    },
+    {
+      "name": "oe_then_ooe",
+      "word": "OEOOEOOEOOEOOEOOE",
+      "family": "near",
+      "source": "OE inserted in front of OOE"
+    },
+    {
+      "name": "interleave",
+      "word": "OOEOEOOEOEOOEOEOOE",
+      "family": "near",
+      "source": "alternating OOE/OE"
+    },
+    {
+      "name": "oe_insert",
+      "word": "OOEOOEOEOOEOOEOOE",
+      "family": "near",
+      "source": "packed with one early OE"
+    },
+    {
+      "name": "extra_odd_front",
+      "word": "OOOEOOOEOOOEOOOE",
+      "family": "near",
+      "source": "25781 extra-odd front prefix"
+    },
+    {
+      "name": "extra_even_front",
+      "word": "OEEOEEOEEOEEOEEOEE",
+      "family": "near",
+      "source": "25781 extra-even front prefix"
+    },
+    {
+      "name": "all_oe",
+      "word": "OEOEOEOEOEOEOEOEOE",
+      "family": "contracting",
+      "source": "pure OE control"
+    },
+    {
+      "name": "all_o",
+      "word": "OOOOOOOOOOOO",
+      "family": "expanding",
+      "source": "pure odd control"
+    },
+    {
+      "name": "all_e",
+      "word": "EEEEEE",
+      "family": "contracting",
+      "source": "pure even control"
+    }
+  ],
+  "inverse": [
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "word": "OOEOOEOOEOEOOEOOE",
+      "y": 11,
+      "death_k": 6,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": true,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 6
+    },
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "word": "OOEOOEOOEOEOOEOOE",
+      "y": 101,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "word": "OOEOOEOOEOEOOEOOE",
+      "y": 1001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "word": "OOEOOEOOEOEOOEOOE",
+      "y": 10001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "word": "OOEOOEOOEOEOOEOOE",
+      "y": 100001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "word": "OOEOOEOOEOEOOEOOE",
+      "y": 1000001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "word": "OOEOOEOOEOOEOOEOOE",
+      "y": 11,
+      "death_k": 6,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": true,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 6
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "word": "OOEOOEOOEOOEOOEOOE",
+      "y": 101,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "word": "OOEOOEOOEOOEOOEOOE",
+      "y": 1001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "word": "OOEOOEOOEOOEOOEOOE",
+      "y": 10001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "word": "OOEOOEOOEOOEOOEOOE",
+      "y": 100001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "word": "OOEOOEOOEOOEOOEOOE",
+      "y": 1000001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "word": "OEOOEOOEOOEOOEOOE",
+      "y": 11,
+      "death_k": 6,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": true,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 6
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "word": "OEOOEOOEOOEOOEOOE",
+      "y": 101,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "word": "OEOOEOOEOOEOOEOOE",
+      "y": 1001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "word": "OEOOEOOEOOEOOEOOE",
+      "y": 10001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "word": "OEOOEOOEOOEOOEOOE",
+      "y": 100001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "word": "OEOOEOOEOOEOOEOOE",
+      "y": 1000001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "word": "OOEOEOOEOEOOEOEOOE",
+      "y": 11,
+      "death_k": 8,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": true,
+      "empty_wide_exp": true,
+      "empty_wide_real": true,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 8
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "word": "OOEOEOOEOEOOEOEOOE",
+      "y": 101,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "word": "OOEOEOOEOEOOEOEOOE",
+      "y": 1001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "word": "OOEOEOOEOEOOEOEOOE",
+      "y": 10001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "word": "OOEOEOOEOEOOEOEOOE",
+      "y": 100001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "word": "OOEOEOOEOEOOEOEOOE",
+      "y": 1000001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "word": "OOEOOEOEOOEOOEOOE",
+      "y": 11,
+      "death_k": 6,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": true,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 6
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "word": "OOEOOEOEOOEOOEOOE",
+      "y": 101,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "word": "OOEOOEOEOOEOOEOOE",
+      "y": 1001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "word": "OOEOOEOEOOEOOEOOE",
+      "y": 10001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "word": "OOEOOEOEOOEOOEOOE",
+      "y": 100001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "word": "OOEOOEOEOOEOOEOOE",
+      "y": 1000001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "word": "OOOEOOOEOOOEOOOE",
+      "y": 11,
+      "death_k": 4,
+      "death_tag": "empty_odd_cell",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": true,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 4
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "word": "OOOEOOOEOOOEOOOE",
+      "y": 101,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "word": "OOOEOOOEOOOEOOOE",
+      "y": 1001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "word": "OOOEOOOEOOOEOOOE",
+      "y": 10001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "word": "OOOEOOOEOOOEOOOE",
+      "y": 100001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "word": "OOOEOOOEOOOEOOOE",
+      "y": 1000001,
+      "death_k": 3,
+      "death_tag": "empty_ooe",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "word": "OEEOEEOEEOEEOEEOEE",
+      "y": 11,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "word": "OEEOEEOEEOEEOEEOEE",
+      "y": 101,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "word": "OEEOEEOEEOEEOEEOEE",
+      "y": 1001,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "word": "OEEOEEOEEOEEOEEOEE",
+      "y": 10001,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "word": "OEEOEEOEEOEEOEEOEE",
+      "y": 100001,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "word": "OEEOEEOEEOEEOEEOEE",
+      "y": 1000001,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "word": "OEOEOEOEOEOEOEOEOE",
+      "y": 11,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "word": "OEOEOEOEOEOEOEOEOE",
+      "y": 101,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "word": "OEOEOEOEOEOEOEOEOE",
+      "y": 1001,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "word": "OEOEOEOEOEOEOEOEOE",
+      "y": 10001,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "word": "OEOEOEOEOEOEOEOEOE",
+      "y": 100001,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "word": "OEOEOEOEOEOEOEOEOE",
+      "y": 1000001,
+      "death_k": 18,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 18
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "word": "OOOOOOOOOOOO",
+      "y": 11,
+      "death_k": 3,
+      "death_tag": "empty_odd_cell",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": true,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 3
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "word": "OOOOOOOOOOOO",
+      "y": 101,
+      "death_k": 1,
+      "death_tag": "empty_odd_cell",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 1
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "word": "OOOOOOOOOOOO",
+      "y": 1001,
+      "death_k": 1,
+      "death_tag": "empty_odd_cell",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 1
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "word": "OOOOOOOOOOOO",
+      "y": 10001,
+      "death_k": 1,
+      "death_tag": "empty_odd_cell",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 1
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "word": "OOOOOOOOOOOO",
+      "y": 100001,
+      "death_k": 1,
+      "death_tag": "empty_odd_cell",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 1
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "word": "OOOOOOOOOOOO",
+      "y": 1000001,
+      "death_k": 1,
+      "death_tag": "empty_odd_cell",
+      "survived": false,
+      "hulled": false,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": true,
+      "final_count": 0,
+      "n_steps": 1
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "word": "EEEEEE",
+      "y": 11,
+      "death_k": 6,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 6
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "word": "EEEEEE",
+      "y": 101,
+      "death_k": 6,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 6
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "word": "EEEEEE",
+      "y": 1001,
+      "death_k": 6,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 6
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "word": "EEEEEE",
+      "y": 10001,
+      "death_k": 6,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 6
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "word": "EEEEEE",
+      "y": 100001,
+      "death_k": 6,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 6
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "word": "EEEEEE",
+      "y": 1000001,
+      "death_k": 6,
+      "death_tag": null,
+      "survived": false,
+      "hulled": true,
+      "occupied_thin": false,
+      "empty_wide_exp": false,
+      "empty_wide_real": false,
+      "archived": false,
+      "final_count": null,
+      "n_steps": 6
+    }
+  ],
+  "forward": [
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 2.1,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 1.9375,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 1.7,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 1.9375,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "packed_mechanical",
+      "family": "near",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 1.625,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 2.1,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 1.9375,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 1.7,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 1.9375,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "bunched_ooe",
+      "family": "near",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 1.625,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        6,
+        6,
+        7,
+        7
+      ]
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 1,
+      "max": 5,
+      "mean": 1.8875,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        5,
+        5,
+        8,
+        8,
+        3
+      ]
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 1,
+      "max": 5,
+      "mean": 1.95,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        5,
+        5,
+        8,
+        8,
+        3
+      ]
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 1,
+      "max": 8,
+      "mean": 2.2375,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        5,
+        5,
+        8,
+        8,
+        3
+      ]
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 1,
+      "max": 8,
+      "mean": 2.2875,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        5,
+        5,
+        8,
+        8,
+        3
+      ]
+    },
+    {
+      "name": "oe_then_ooe",
+      "family": "near",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 1,
+      "max": 3,
+      "mean": 2.0125,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        5,
+        5,
+        8,
+        8,
+        3
+      ]
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 2.175,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        7,
+        13,
+        8,
+        8
+      ]
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 2.0875,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        7,
+        13,
+        8,
+        8
+      ]
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 1,
+      "max": 13,
+      "mean": 1.8875,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        7,
+        13,
+        8,
+        8
+      ]
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 1,
+      "max": 8,
+      "mean": 2.05,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        7,
+        13,
+        8,
+        8
+      ]
+    },
+    {
+      "name": "interleave",
+      "family": "near",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 1,
+      "max": 8,
+      "mean": 1.6625,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        7,
+        13,
+        8,
+        8
+      ]
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 1,
+      "max": 8,
+      "mean": 2.1125,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        6,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 1.9375,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        6,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 1.7,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        6,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 1,
+      "max": 9,
+      "mean": 1.9625,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        6,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "name": "oe_insert",
+      "family": "near",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 1,
+      "max": 10,
+      "mean": 1.6625,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        6,
+        6,
+        9,
+        10
+      ]
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 1,
+      "max": 8,
+      "mean": 1.9875,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        10,
+        6,
+        8,
+        6
+      ]
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 1,
+      "max": 10,
+      "mean": 2.25,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        10,
+        6,
+        8,
+        6
+      ]
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 1.85,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        10,
+        6,
+        8,
+        6
+      ]
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 1,
+      "max": 8,
+      "mean": 2.0125,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        10,
+        6,
+        8,
+        6
+      ]
+    },
+    {
+      "name": "extra_odd_front",
+      "family": "near",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 1.9125,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        8,
+        10,
+        6,
+        8,
+        6
+      ]
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 2.1375,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        6,
+        6,
+        5,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 2.075,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        6,
+        6,
+        5,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 1,
+      "max": 5,
+      "mean": 2.525,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        6,
+        6,
+        5,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 1,
+      "max": 4,
+      "mean": 1.9,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        6,
+        6,
+        5,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "extra_even_front",
+      "family": "near",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 2.4625,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        6,
+        6,
+        5,
+        4,
+        6
+      ]
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 1.8625,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        4,
+        6,
+        5,
+        7
+      ]
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 1,
+      "max": 4,
+      "mean": 1.775,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        4,
+        6,
+        5,
+        7
+      ]
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 2.2375,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        4,
+        6,
+        5,
+        7
+      ]
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 1,
+      "max": 5,
+      "mean": 1.9875,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        4,
+        6,
+        5,
+        7
+      ]
+    },
+    {
+      "name": "all_oe",
+      "family": "contracting",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 3.6125,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        7,
+        4,
+        6,
+        5,
+        7
+      ]
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 1.8875,
+      "grows_with_scale": true,
+      "scale_maxima": [
+        6,
+        6,
+        7,
+        12,
+        9
+      ]
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 1,
+      "max": 6,
+      "mean": 2.0625,
+      "grows_with_scale": true,
+      "scale_maxima": [
+        6,
+        6,
+        7,
+        12,
+        9
+      ]
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 1,
+      "max": 7,
+      "mean": 1.8625,
+      "grows_with_scale": true,
+      "scale_maxima": [
+        6,
+        6,
+        7,
+        12,
+        9
+      ]
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 1,
+      "max": 12,
+      "mean": 2.05,
+      "grows_with_scale": true,
+      "scale_maxima": [
+        6,
+        6,
+        7,
+        12,
+        9
+      ]
+    },
+    {
+      "name": "all_o",
+      "family": "expanding",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 1,
+      "max": 9,
+      "mean": 1.925,
+      "grows_with_scale": true,
+      "scale_maxima": [
+        6,
+        6,
+        7,
+        12,
+        9
+      ]
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "scale": 100,
+      "lo": 101,
+      "n": 80,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "scale": 1000,
+      "lo": 1001,
+      "n": 80,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "scale": 10000,
+      "lo": 10001,
+      "n": 80,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "scale": 100000,
+      "lo": 100001,
+      "n": 80,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "all_e",
+      "family": "contracting",
+      "scale": 1000000,
+      "lo": 1000001,
+      "n": 80,
+      "min": 0,
+      "max": 0,
+      "mean": 0.0,
+      "grows_with_scale": false,
+      "scale_maxima": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    }
+  ],
+  "calibration": [
+    {
+      "n": 365,
+      "name": "packed_mechanical",
+      "R": 10,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 365,
+      "name": "bunched_ooe",
+      "R": 13,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 365,
+      "name": "oe_then_ooe",
+      "R": 1,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 365,
+      "name": "interleave",
+      "R": 4,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 365,
+      "name": "oe_insert",
+      "R": 7,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 365,
+      "name": "extra_odd_front",
+      "R": 2,
+      "L": 16,
+      "complete": false
+    },
+    {
+      "n": 365,
+      "name": "extra_even_front",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 365,
+      "name": "all_oe",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 365,
+      "name": "all_o",
+      "R": 2,
+      "L": 12,
+      "complete": false
+    },
+    {
+      "n": 365,
+      "name": "all_e",
+      "R": 0,
+      "L": 6,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "packed_mechanical",
+      "R": 2,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "bunched_ooe",
+      "R": 2,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "oe_then_ooe",
+      "R": 1,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "interleave",
+      "R": 2,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "oe_insert",
+      "R": 2,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "extra_odd_front",
+      "R": 7,
+      "L": 16,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "extra_even_front",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "all_oe",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "all_o",
+      "R": 3,
+      "L": 12,
+      "complete": false
+    },
+    {
+      "n": 11681,
+      "name": "all_e",
+      "R": 0,
+      "L": 6,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "packed_mechanical",
+      "R": 2,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "bunched_ooe",
+      "R": 2,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "oe_then_ooe",
+      "R": 1,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "interleave",
+      "R": 2,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "oe_insert",
+      "R": 2,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "extra_odd_front",
+      "R": 3,
+      "L": 16,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "extra_even_front",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "all_oe",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "all_o",
+      "R": 5,
+      "L": 12,
+      "complete": false
+    },
+    {
+      "n": 14237,
+      "name": "all_e",
+      "R": 0,
+      "L": 6,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "packed_mechanical",
+      "R": 2,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "bunched_ooe",
+      "R": 2,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "oe_then_ooe",
+      "R": 1,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "interleave",
+      "R": 2,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "oe_insert",
+      "R": 2,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "extra_odd_front",
+      "R": 3,
+      "L": 16,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "extra_even_front",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "all_oe",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "all_o",
+      "R": 4,
+      "L": 12,
+      "complete": false
+    },
+    {
+      "n": 15343,
+      "name": "all_e",
+      "R": 0,
+      "L": 6,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "packed_mechanical",
+      "R": 5,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "bunched_ooe",
+      "R": 5,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "oe_then_ooe",
+      "R": 1,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "interleave",
+      "R": 4,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "oe_insert",
+      "R": 5,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "extra_odd_front",
+      "R": 2,
+      "L": 16,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "extra_even_front",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "all_oe",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "all_o",
+      "R": 2,
+      "L": 12,
+      "complete": false
+    },
+    {
+      "n": 27623,
+      "name": "all_e",
+      "R": 0,
+      "L": 6,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "packed_mechanical",
+      "R": 7,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "bunched_ooe",
+      "R": 7,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "oe_then_ooe",
+      "R": 1,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "interleave",
+      "R": 4,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "oe_insert",
+      "R": 10,
+      "L": 17,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "extra_odd_front",
+      "R": 2,
+      "L": 16,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "extra_even_front",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "all_oe",
+      "R": 1,
+      "L": 18,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "all_o",
+      "R": 2,
+      "L": 12,
+      "complete": false
+    },
+    {
+      "n": 1000057,
+      "name": "all_e",
+      "R": 0,
+      "L": 6,
+      "complete": false
+    }
+  ],
+  "published_floor": 1000000,
+  "decision": {
+    "classification": "INVERSE_WIDTH_CLOSED",
+    "decision": "CLOSE",
+    "reason": "near-convergent inverse tubes empty only at archived cells; a real hull thinner than 1 remains occupied, so width is a relaxation of the floor cells",
+    "death_tags": {
+      "empty_ooe": 35,
+      "empty_odd_cell": 7
+    },
+    "occupied_thin": true,
+    "empty_wide_real": false,
+    "empty_wide_exp": false,
+    "unarchived_deaths": 0,
+    "near_survived": 0,
+    "level1_k20_false": false,
+    "all_e_explodes": true,
+    "scale_growth": false,
+    "same_ooe_prefix_death_span": 0,
+    "leftover_killer": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "open_55293": false,
+    "new_mechanism": false
+  }
+}

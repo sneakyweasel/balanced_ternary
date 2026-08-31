@@ -16882,4 +16882,289 @@ Best next question
 - none from twin-flight
 ```
 
+## Juggler 25781 finance-extremizer discrepancy
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the first 1–3 realized excursions of the \(L=25781\) finance-extremal necklace deviate from its defect-free envelope by a floor-independent \(X\) that is not an archived cell and that kills \(25781\) at \(N_0=10^6\)
+- **Hypotheses:** near-extremal finance forces a universal early arithmetic deviation (not an empty terminal cell) that can be charged in the length-only defect sum; \(\Delta_{\mathrm{fin}}\) predicts \(d_{\mathrm{closure}}\)
+- **Major results:** On all \(1001\) odds in \([10^6+1,10^6+2001]\) the first \(X\) is `shared_ooe_prefix` (first `OE` at letter \(9\)). \(197\) starts complete one prescribed `OOE`, \(23\) complete two, \(0\) complete three; on \(243\) realized blocks \(\mathrm{env}-F=0\) and `ooe_cell` holds (witness \(1000057\to 5623773\to 39244721\)). Five same-`OOE`-prefix words with \(\Delta_{\mathrm{fin}}\) spanning \(7.2\cdot10^{-5}\) have identical follow statistics (max \(6\), mean \(2.0169\)). Observed tax \(0\) does not make `parity_excludes` / `budget_excludes` kill \(25781\). Artifact `extremizer_discrepancy/summary.json`. No ledger row, no Paper A, no Lean, no \(N_0\) raise. \(K=11\), \(1054k\), \(L=55293\) not opened
+- **Refuted ideas:** finance-near-extremal prefix forces a new chargeable \(X\) (`juggler_cycle_extremizer_discrepancy`)
+- **Literature:** closed finance-to-cell bridge and almost-cycle search; existing `ooe_cell` / cheap-`OOE` / \(243<256\); run-type packing
+- **Open:** none from the extremizer discrepancy
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- every start dies before the first mechanical OE of the packed word
+- realized OOE landings equal the integer 9/8 envelope
+- Delta_fin does not move d_closure on a shared OOE prefix
+- prefix changes move follow depth by O(1), not finance slack
+- the observed tax is 0 and does not kill 25781 at 10^6
+Strongest theorem
+- none new
+Strongest refutation
+- 1001/1001 first X = shared_ooe_prefix; graded same-prefix
+  histograms identical across a 7.2e-5 Delta_fin span
+Reusable machinery
+- walk_first_blocks / graded_words / extremizer_discrepancy/summary.json
+Branch status
+- CLOSE
+Why
+- Both stop-gates fire: X is the archived shared OOE prefix,
+  and d_closure is independent of Delta_fin. There is nothing
+  to charge in the length-only sum
+Best next question
+- none from the 25781 extremizer discrepancy
+```
+
+## Juggler inverse-tube realizability
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the ordered inverse tube of a near-convergent prescribed word loses integer occupancy for a reason that is not an archived floor cell, uniformly across finance-admissible orderings
+- **Hypotheses:** repeated exact floor inverses make \(|I_k|\) too thin for an integer before \(k=L\), independently of finance / \((L,o,e)\) compressions and of the particular packed necklace
+- **Major results:** Classification **INVERSE_WIDTH_CLOSED**. The real \(OOE\)-hull of \(y=11\) has width \(0.221<1\) and is occupied (\(9\xrightarrow{\mathrm{OOE}}11\)). Beatty packed, bunched \((OOE)^6\), \(OE\)-front, interleave, and extra-odd prefixes all die at `empty_ooe` / \(k=3\) on \(y=10^6+1\); zero unarchived deaths. Forward \(R_W\) is flat on \(10^2\)--\(10^6\) (max \(6\)--\(8\), mean \(\approx 2\)); \(365\) realizes \(13\) letters of \((OOE)^*\). Contracting \(E\)/\(OE\) inverses explode rather than empty. Artifact `inverse_width/summary.json`. No ledger row, no Paper A, no Lean, no \(N_0\) raise. \(K=11\), \(1054k\), \(L=55293\) not opened
+- **Refuted ideas:** inverse-width contraction is a new emptiness mechanism (`juggler_cycle_inverse_width`)
+- **Literature:** closed almost-search backward empty-\(OOE\), finance-to-cell bridge, ordered-excursion \(ooe_cell\) / \(243<256\), backward-geometry hull relaxation, realization-geometry \(R_w\)
+- **Open:** none from inverse-width
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- a real hull thinner than 1 can still hold an integer
+- near-convergent inverse tubes die at the first inverted OOE
+- that tag is the archived cell, not a new width law
+- every tested finance-admissible ordering dies the same way
+- contracting controls explode; R_W is flat in scale
+Strongest theorem
+- none new
+Strongest refutation
+- 9 --OOE--> 11 occupies width 0.221; five near-convergent
+  prefixes die empty_ooe / k=3 at y=10^6+1
+Reusable machinery
+- inverse_walk (points / even_cells) / inverse_width/summary.json
+Branch status
+- CLOSE
+Why
+- Width is a hull relaxation of odd_cell_unique / ooe_cell.
+  Emptiness on balanced words is the terminal OOE fibre already
+  recorded by almost-search and the cell bridge
+Best next question
+- none from inverse-width
+```
+
+## Juggler realizable-prefix finance
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether finance extremality plus finite realizability of a near-extremal prefix produces an extra defect larger than the packed-to-\(\theta\) slack at \(L=25781\)
+- **Hypotheses:** the configuration that maximises finance cannot persist, so a realizable prefix is forced to pay a quantifiable deficit before it can fund \(\theta\); local \(K\) is not to be proved as \(K\le 20\)
+- **Major results:** Classification **REALIZABLE_FINANCE_CLOSED**. Slack unchanged: \(P/\theta\approx 23.12\), \(k_{\mathrm{lose}}=6532\), deepen-all still above \(\theta\). Floor prefix tax \(0\) (witness \(1000057\), two `OOE`, tax \(-2\cdot 10^{-15}\)). Treating local completed `OOE` as a global cap would lose \(6749>6532\) and would kill, but later valleys may restart `OOE`. Forced first-block deviations \(\le 2\ll 6532\). Even a ban on every two-type word stays inside deepen-all. No \(K\le 20\) proof, no branch-and-bound, no inverse-width reopen, no Paper A, no Lean, no \(N_0\) raise
+- **Refuted ideas:** finance extremality + finite realizability \(\Rightarrow\) extra leftover-killing defect (`juggler_cycle_realizable_finance`)
+- **Literature:** conditioned-closure slack; extremizer envelope tax \(0\); inverse-width CLOSE; cheap-`OOE` / \(243<256\); almost-search follow
+- **Open:** none from realizable-prefix finance
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- prefix tax along realized near-extremal heads is 0 at the floor
+- local K is not a global cheap-OOE cap
+- the false reading of that cap would kill; the valid one does not
+- forced first-block deaths are the archived 1-2 OOE events
+- even “no two-type cycle” stays inside deepen-all slack
+Strongest theorem
+- none new
+Strongest refutation
+- 1000057 tax -2e-15; implied global loss 6749>6532 is an
+  invalid reading; deepen-all remains above theta
+Reusable machinery
+- prefix_tax_row / false_implication_row /
+  realizable_finance/summary.json
+Branch status
+- CLOSE
+Why
+- The extra defect is either 0, or the archived first-block
+  cells, or a false identification of follow depth with the
+  run-type packing already allowed to lose 6532 cheap starts
+Best next question
+- none from realizable-prefix finance
+```
+
+## Juggler cyclic valley necklace
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether treating valleys as a closed necklace \(v_1\to p_1\to\cdots\to v_m\to p_m\to v_1\), rather than an independent path, forces a finance deficit versus run-type packing that cannot be rotated away and that kills \(L=25781\) at \(N_0=10^6\)
+- **Hypotheses:** the finance relaxation chooses valleys independently; a real cycle has no privileged first valley, so the wrap-around edge \(v_m\to v_1\) may make the extremal packing unrealizable
+- **Major results:** Classification **CYCLIC_VALLEY_CLOSED**. Two-type cheap cap \(N_{\mathrm{cheap}}\le N_{\mathrm{OE}}=2764<6751\) is **EXACT — HUMAN PROOF** (every cheap valley is an `OE` landing; the CycleMin start is the wrap-around). Charged cyclic RHS \(3.041\cdot 10^{-4}\) versus \(\theta=2.546\cdot 10^{-5}\) (factor \(11.94\)); lost \(3987\le 6532\). Beatty / Christoffel / letter-extremal words are CycleMin-legal two-type necklaces with exactly \(2764\) cheap valleys; height-walk RHS \(1.30\cdot 10^{-4}\). Interleave is illegal (`OE` at \(9/8\)). Exact wrap does not close on \(\{365,1517,1000057\}\). Small-\(m\le 5\): \(170\) legal, \(0\) cyclic beats independent. Artifact `cyclic_valley/summary.json`. No B&B, no ledger row, no Paper A, no Lean, no \(N_0\) raise
+- **Refuted ideas:** cyclic necklace constraint is a leftover-killer (`juggler_cycle_cyclic_valley`); wrap-around is a privileged extra tax that rotation can hide
+- **Literature:** run-type packing; cyclic adjacency leftover-killer REFUTED (free non-adjacent cheap valleys); valley-coupling / realizable-prefix CLOSE; cheap-`OOE` / \(243<256\)
+- **Open:** none from the cyclic valley necklace
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- on a two-type CycleMin necklace the first valley is an OE landing
+- N_cheap ≤ N_OE = 2764 < 6751 = o-e
+- that cap is the cyclic wrap-around, not a free path boundary
+- the charged RHS and the Beatty height walk stay above theta
+- lost 3987 cheap starts sit inside the 6532 slack
+- wrap-around is not a rotation-sensitive extra tax
+Strongest theorem
+- N_cheap(α<9/8) ≤ N_OE on a two-type CycleMin necklace
+Strongest refutation
+- cyclic RHS factor 11.94; Beatty attains the cap; exact wrap
+  does not close; leftover-killer false
+Reusable machinery
+- two_type_cheap_cap / walk_runs / cyclic_valley/summary.json
+Branch status
+- CLOSE
+Why
+- The optimisation-model correction is real and does not move
+  the cutoff. The independent packing overcounts cheap valleys
+  on two-type words, but not by enough to spend P-θ slack
+Best next question
+- none from the cyclic valley necklace
+```
+
+## Juggler CycleMin entry excursion
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the distinguished CycleMin cut — entry into \(n\), excursion, return — forces a finance tax \(\delta\) above the relaxed OE / OOE classes, or a closing-edge conflict at \(L=25781\)
+- **Hypotheses:** the last-even return cell plus the \(\ge n\) tube is a boundary the valley-only model drops; every finance valley might need to be entry-compatible with \(n\)
+- **Major results:** Classification **ENTRY_EXCURSION_CLOSED**. At \(n=10^6+1\) the last-even cell has \(10^6+1\) even predecessors, first even \(n^2+1\). Exactly \(33\) CycleMin-legal \(O^aE\) landings, all \(a=1\); cheapest valley equals `oe_start_min`\(=100000135\) and itself enters \(n\). Runs \(a\ge 2\) have envelope \(v<n\) and empty fibre; first \(a=2\) start \(1000057\) peaks at \(3.16\cdot 10^{13}>(n+1)^2\). Cheap classes \(n,n+2\) do not enter. Packed word already ends `OE`. One-entry tax \(7.4\cdot 10^{-16}\) and even the false all-OE reading \(2.1\cdot 10^{-12}\) sit inside slack \(5.63\cdot 10^{-4}\). Artifact `entry_excursion/summary.json`. No ledger row, no Paper A, no Lean, no \(N_0\) raise
+- **Refuted ideas:** CycleMin entry forces a leftover-killing \(\delta\) (`juggler_cycle_entry_excursion`); every finance valley is entry-compatible with \(n\)
+- **Literature:** last-even-not-square; `oe_start_min`; cell-bridge terminal \((2,1)\) and \(F_2(v)>v\); cyclic-valley wrap-around `OE` cap; realizable-prefix tax \(0\)
+- **Open:** none from the entry excursion
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- the CycleMin cut is real; only one valley must enter n
+- that valley is the archived OE cell at n^{4/3}
+- the O(1/n) return width pulls back to O(1/n) around oe_start
+- a>=2 cannot enter while staying >= n (F2(v)>v)
+- n and n+2 do not enter; “all valleys” is a category error
+- the packed necklace already ends OE; no closing conflict
+- even charging the numerical tax to every OE valley stays inside slack
+Strongest theorem
+- none new
+Strongest refutation
+- 100000135 = oe_start_min enters n; 33/33 legal entries are OE;
+  n and n+2 do not enter; 1000057 --OOE--> 5623773 overshoots
+Reusable machinery
+- entry_even_cell / entries_of_run / entry_excursion/summary.json
+Branch status
+- CLOSE
+Why
+- the narrow return cell is a reparameterization of last-even
+  plus oe_start_min plus F2(v)>v. The distinguished cut does
+  not add a charge the valley-only model missed
+Best next question
+- none from the CycleMin entry excursion
+```
+
+## Juggler global orbit-budget coupling
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether one closed integer orbit forces \(C_{\max}(25781,10^6+1)<\theta\) because the cheap/expensive valley multiset of the \(6/5\) extremizer must be realized together
+- **Hypotheses:** the finance extremizer is an adversarial bag of individually legal valleys; a genuine cycle is one \(T\)-orbit; that domain change produces an integrality/closure gap \(\delta\), not another local cell tax
+- **Major results:** Classification **ORBIT_BUDGET_CLOSED**. Small-e B&B matches brute \(F_a\)-chains on odds \(11\ldots 79\). Calibration heads stay above \(\theta\) (\(365\) four `OOE`, \(1000057\) two `OOE`). Science run at \(n=10^6+1\): fifteen `OO` starts, \(24\) nodes, max one circuit, no return; \(C_{\max}^{\mathrm{ub}}=\texttt{budget_rhs}\approx 5.89\cdot 10^{-4}>\theta\). Deaths are `empty_ooe` / `cyclemin` / `shared_ooe_prefix`. Artifact `orbit_budget/summary.json`. No ledger row, no Paper A, no Lean, no CUDA, no \(N_0\) raise. \(L=55293\) not opened
+- **Refuted ideas:** one closed integer orbit forces \(C_{\max}<\theta\) at the leftover (`juggler_cycle_orbit_budget`)
+- **Literature:** run-type packing Theorem 4.7; realizable-prefix CLOSE; valley-coupling CLOSE; conditioned-closure slack; almost-search empty `OOE`; pair-level hulls
+- **Open:** none from orbit-budget. The Section 5 program stays PARK
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- C_max_ub at the leftover equals the packed RHS
+- integer joining dies at archived first-block cells
+- partial C < theta is follow depth rewritten
+- 365 and 1000057 still have used+remain above theta
+- changing the feasible set did not change the price
+Strongest theorem
+- none new
+Strongest refutation
+- C_max_ub(25781, 10^6+1) = budget_rhs; deaths empty_ooe /
+  cyclemin / shared_ooe_prefix after at most one circuit
+Reusable machinery
+- circuit_finance / remain_rhs / small_e_oracle /
+  orbit_budget/summary.json
+Branch status
+- CLOSE
+Why
+- The admissible upper bound is Theorem 4.7. Every exhausted
+  branch is an archived OOE / CycleMin tag. A CUDA search
+  would recensus the same first-block cells
+Best next question
+- none from orbit-budget
+```
+
+## Paper A excursion necklace (editorial)
+
+- **Date:** 2026-08-31
+- **Objective:** Assemble the existing CycleMin, run-form, peak, valley, and last-even facts of Paper A into one circular itinerary at the opening of Section 4
+- **Hypotheses:** none; editorial packaging of Theorem 3.2, Lemma 3.4, Lemma 3.21b, and the last-even cell
+- **Major results:** Section 4 of `docs/theory/juggler_finite_dynamics_note.md` now opens with the excursion necklace. No new theorem. Theorem 4.4 numbering unchanged. First peak overshoots the entry cell; last peak lands in it. Appendix A gained `CycleMin`, `cycle_last_even_ne_odd_sq`, `oddEvenBlock`, `no_cycle_word_ooe`. Formalization map §8.5 records Lean/code/status. No ledger row, no Lean, no PDF rebuild
+- **Refuted ideas:** none; later leftover-killers stay archived
+- **Literature:** Paper A §§3--4
+- **Open:** the missing link from the forced lift, the complete necklace, and the entry cell to a leftover exclusion --- already the Section 5 question on a lower bound for the odd-run count \(p\)
+- **Decision:** PROMOTE (editorial; Paper A stays `PAPER_CANDIDATE`)
+
+```text
+What was learned
+- the paper already had the pieces; they were not stated as one itinerary
+- first peak and last peak are different even states
+- mu(a) is the word envelope, not a pair transition law
+- 1517 is not in Lean; the note points at the existing 1999 chain
+Strongest theorem
+- none new
+Strongest refutation
+- none
+Reusable machinery
+- none; organizing prose and a formalization-map table
+Branch status
+- PROMOTE
+Why
+- a submission candidate can name the circular geometry of
+  Theorems 3.2 and 4.7 without opening an attack
+Best next question
+- a genuine lower bound on the number of odd runs (already §5)
+```
+
+## Juggler CycleMin backward entry corridor
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the CycleMin last excursion is exactly `OE`, with the entry valley in the two-sided \(n^{4/3}\) cell, and whether the exact 1–2-block backward corridor from that cell empties or collides with the forced forward `OO` lift for a reason that is not last-even / `oe_start_min` / \(F_2(v)>v\) / \(243<256\) / `empty_ooe`
+- **Hypotheses:** the circular seam is a local CycleMin theorem (last run length 1, two-sided corridor, pre-entry \(b\le 2\)) whose backward tree is not the archived prefix/inverse package
+- **Major results:** Classification **ENTRY_CORRIDOR_GREEN**. Lemma A is **EXACT — HUMAN PROOF**: every CycleMin necklace ends `OE` (the `OOEOOE` sandwich of Theorem 3.6 at the last valley). Lemma B is the integer corridor \(n^4<v^3<(n+1)^4\). Lemma C has envelope \(n_0=5\). At \(n=10^6+1\): \(33\) entry valleys, all in-corridor, cheapest `oe_start_min`; \(F_1\) has \(5101\) AboveAnchor predecessors; one \(F_2\) witness \(12915515\to 100000159\); \(F_3\) empty; second block \(5133\) occupied / \(5071\) `empty_ooe`; zero unarchived deaths; zero exact collisions. The floor representative does not realize `OO`; first legal start \(1000057\) overshoots and lands at \(5623773\). Artifact `entry_corridor/summary.json`. No leftover-killer conjecture, no ledger row, no Paper A, no Lean, no \(N_0\) raise
+- **Refuted ideas:** the 2-block backward tree collides with the forward `OO` lift; pre-entry is always `OE` at this \(n\); \(n=10^6+1\) is itself a CycleMin start; \(v^3<(n+1)^{8/3}\)
+- **Literature:** last-even / Lemma 3.4(i)/(iv); `oe_start_min`; entry-excursion CLOSE; cyclic-valley wrap `OE`; \(243<256\); inverse-width / almost-search archived deaths
+- **Open:** Lean `cycleMin_last_odd_run_eq_one`
+- **Decision:** PROMOTE the named last-run lemma. The tree stays a negative-knowledge census
+
+```text
+What was learned
+- every CycleMin necklace ends OE (last odd-run length 1)
+- the last valley sits in n^4 < v^3 < (n+1)^4
+- pre-entry b<=2 already at n=5 by the OOO envelope
+- at 10^6+1 the F1 cell is occupied (5101); one F2 witness exists
+- F3 is empty; the second block dies only on empty_ooe
+- n=10^6+1 does not realize OO; 1000057 does and overshoots
+- no exact collision with either forward seam
+Strongest theorem
+- on a CycleMin start n>=5 the last excursion is OE
+Strongest refutation
+- 5101 OE predecessors and 12915515 --OOE--> 100000159;
+  zero seam collisions; floor n is not OO-legal
+Reusable machinery
+- corridor_bounds / fibre_tag_only / entry_corridor/summary.json
+Branch status
+- PROMOTE
+Why
+- Lemma A is a reusable CycleMin word-shape that Paper A §3
+  does not name. The backward tree is occupied archived cells
+  and is not a leftover-killer. Lean is the follow-up, not a
+  third block
+Best next question
+- Lean cycleMin_last_odd_run_eq_one
+```
+
 

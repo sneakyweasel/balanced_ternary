@@ -1,0 +1,429 @@
+{
+  "bound": "realizable_finance",
+  "L": 25781,
+  "slack": {
+    "L": 25781,
+    "o": 16266,
+    "theta": 2.5459198127264017e-05,
+    "packed": 0.0005885744398583163,
+    "margin": 0.0005631152417310524,
+    "packed_over_theta": 23.118341627107945,
+    "n_ooe": 6751,
+    "n_oe": 2764,
+    "cost_lose_cheap": 8.620717614799472e-08,
+    "k_lose_cheap": 6532,
+    "deepen_all_still_above_theta": true,
+    "packed_after_deepen_all": 0.0005867738608732758
+  },
+  "words": [
+    {
+      "name": "packed_mechanical",
+      "two_type": true
+    },
+    {
+      "name": "bunched_ooe",
+      "two_type": true
+    },
+    {
+      "name": "oe_front",
+      "two_type": true
+    },
+    {
+      "name": "interleave",
+      "two_type": true
+    },
+    {
+      "name": "extra_odd_front",
+      "two_type": false
+    }
+  ],
+  "prefix_tax": [
+    {
+      "name": "packed_mechanical",
+      "two_type": true,
+      "n": 365,
+      "R": 10,
+      "completed_ooe": 3,
+      "fail_letter": "E",
+      "fail_parity": "O",
+      "fail_state": 296551,
+      "prefix_tax": -6.734461593211564e-08,
+      "tax_is_zero": false
+    },
+    {
+      "name": "packed_mechanical",
+      "two_type": true,
+      "n": 1000001,
+      "R": 1,
+      "completed_ooe": 0,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 1000001500,
+      "prefix_tax": 0.0,
+      "tax_is_zero": true
+    },
+    {
+      "name": "packed_mechanical",
+      "two_type": true,
+      "n": 1000057,
+      "R": 7,
+      "completed_ooe": 2,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 245850937598,
+      "prefix_tax": -2.147146663496233e-15,
+      "tax_is_zero": true
+    },
+    {
+      "name": "bunched_ooe",
+      "two_type": true,
+      "n": 365,
+      "R": 13,
+      "completed_ooe": 4,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 1432400,
+      "prefix_tax": -7.294177589690053e-08,
+      "tax_is_zero": false
+    },
+    {
+      "name": "bunched_ooe",
+      "two_type": true,
+      "n": 1000001,
+      "R": 1,
+      "completed_ooe": 0,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 1000001500,
+      "prefix_tax": 0.0,
+      "tax_is_zero": true
+    },
+    {
+      "name": "bunched_ooe",
+      "two_type": true,
+      "n": 1000057,
+      "R": 7,
+      "completed_ooe": 2,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 245850937598,
+      "prefix_tax": -2.147146663496233e-15,
+      "tax_is_zero": true
+    },
+    {
+      "name": "oe_front",
+      "two_type": true,
+      "n": 365,
+      "R": 1,
+      "completed_ooe": 0,
+      "fail_letter": "E",
+      "fail_parity": "O",
+      "fail_state": 6973,
+      "prefix_tax": 0.0,
+      "tax_is_zero": true
+    },
+    {
+      "name": "oe_front",
+      "two_type": true,
+      "n": 1000001,
+      "R": 2,
+      "completed_ooe": 0,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 31622,
+      "prefix_tax": -1.3234889800848443e-23,
+      "tax_is_zero": true
+    },
+    {
+      "name": "oe_front",
+      "two_type": true,
+      "n": 1000057,
+      "R": 1,
+      "completed_ooe": 0,
+      "fail_letter": "E",
+      "fail_parity": "O",
+      "fail_state": 1000085501,
+      "prefix_tax": 0.0,
+      "tax_is_zero": true
+    },
+    {
+      "name": "interleave",
+      "two_type": true,
+      "n": 365,
+      "R": 4,
+      "completed_ooe": 1,
+      "fail_letter": "E",
+      "fail_parity": "O",
+      "fail_state": 21075,
+      "prefix_tax": -2.9563431939365163e-08,
+      "tax_is_zero": false
+    },
+    {
+      "name": "interleave",
+      "two_type": true,
+      "n": 1000001,
+      "R": 1,
+      "completed_ooe": 0,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 1000001500,
+      "prefix_tax": 0.0,
+      "tax_is_zero": true
+    },
+    {
+      "name": "interleave",
+      "two_type": true,
+      "n": 1000057,
+      "R": 4,
+      "completed_ooe": 1,
+      "fail_letter": "E",
+      "fail_parity": "O",
+      "fail_state": 13336493987,
+      "prefix_tax": -1.850333375056101e-15,
+      "tax_is_zero": true
+    },
+    {
+      "name": "extra_odd_front",
+      "two_type": false,
+      "n": 365,
+      "R": 2,
+      "completed_ooe": 0,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 582276,
+      "prefix_tax": -8.15264400747754e-10,
+      "tax_is_zero": false
+    },
+    {
+      "name": "extra_odd_front",
+      "two_type": false,
+      "n": 1000001,
+      "R": 1,
+      "completed_ooe": 0,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 1000001500,
+      "prefix_tax": 0.0,
+      "tax_is_zero": true
+    },
+    {
+      "name": "extra_odd_front",
+      "two_type": false,
+      "n": 1000057,
+      "R": 2,
+      "completed_ooe": 0,
+      "fail_letter": "O",
+      "fail_parity": "E",
+      "fail_state": 31626832356906,
+      "prefix_tax": -1.1037898093907601e-20,
+      "tax_is_zero": true
+    }
+  ],
+  "false_implication": [
+    {
+      "name": "packed_mechanical",
+      "n": 365,
+      "completed_ooe": 3,
+      "implied_loss": 6748,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "packed_mechanical",
+      "n": 1000001,
+      "completed_ooe": 0,
+      "implied_loss": 6751,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "packed_mechanical",
+      "n": 1000057,
+      "completed_ooe": 2,
+      "implied_loss": 6749,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "bunched_ooe",
+      "n": 365,
+      "completed_ooe": 4,
+      "implied_loss": 6747,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "bunched_ooe",
+      "n": 1000001,
+      "completed_ooe": 0,
+      "implied_loss": 6751,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "bunched_ooe",
+      "n": 1000057,
+      "completed_ooe": 2,
+      "implied_loss": 6749,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "oe_front",
+      "n": 365,
+      "completed_ooe": 0,
+      "implied_loss": 6751,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "oe_front",
+      "n": 1000001,
+      "completed_ooe": 0,
+      "implied_loss": 6751,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "oe_front",
+      "n": 1000057,
+      "completed_ooe": 0,
+      "implied_loss": 6751,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "interleave",
+      "n": 365,
+      "completed_ooe": 1,
+      "implied_loss": 6750,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "interleave",
+      "n": 1000001,
+      "completed_ooe": 0,
+      "implied_loss": 6751,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "interleave",
+      "n": 1000057,
+      "completed_ooe": 1,
+      "implied_loss": 6750,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "extra_odd_front",
+      "n": 365,
+      "completed_ooe": 0,
+      "implied_loss": 6751,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "extra_odd_front",
+      "n": 1000001,
+      "completed_ooe": 0,
+      "implied_loss": 6751,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    },
+    {
+      "name": "extra_odd_front",
+      "n": 1000057,
+      "completed_ooe": 0,
+      "implied_loss": 6751,
+      "k_lose_cheap": 6532,
+      "would_kill_if_local_were_global": true,
+      "implication_valid": false
+    }
+  ],
+  "forced_start": [
+    2,
+    1,
+    2,
+    2,
+    1,
+    2,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1,
+    1
+  ],
+  "actual_prefix": [
+    {
+      "n": 365,
+      "k": 15,
+      "odd": 9,
+      "realized_sum": 0.0009141499111370204,
+      "packed_sum": 0.0015854968200792517,
+      "delta": 0.0006713469089422313,
+      "two_type_prefix": false
+    },
+    {
+      "n": 1000001,
+      "k": 2,
+      "odd": 1,
+      "realized_sum": 7.243059089555372e-08,
+      "packed_sum": null,
+      "delta": null,
+      "two_type_prefix": true
+    },
+    {
+      "n": 1000057,
+      "k": 8,
+      "odd": 5,
+      "realized_sum": 8.53275561625455e-08,
+      "packed_sum": 1.4539525798198106e-07,
+      "delta": 6.006770181943556e-08,
+      "two_type_prefix": true
+    }
+  ],
+  "charged_excludes": {
+    "parity_excludes": false,
+    "budget_excludes": false
+  },
+  "published_floor": 1000000,
+  "start": 1000001,
+  "decision": {
+    "classification": "REALIZABLE_FINANCE_CLOSED",
+    "decision": "CLOSE",
+    "reason": "realized-prefix finance tax is 0; the only reading that exceeds slack treats local K as a global OOE cap, which is false; even banning every two-type word stays inside the deepen-all margin",
+    "prefix_tax_zero": true,
+    "false_implication_would_kill": true,
+    "false_implication_valid": false,
+    "max_forced_start_deviations": 2,
+    "forced_start_inside_slack": true,
+    "deepen_all_still_above_theta": true,
+    "no_two_type_cycle_would_kill": false,
+    "leftover_killer": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "open_55293": false,
+    "k20_proof": false,
+    "branch_and_bound": false
+  }
+}

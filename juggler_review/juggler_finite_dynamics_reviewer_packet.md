@@ -13,6 +13,8 @@ The former single note has been split into two manuscripts:
   Juggler-specific finance inequality, hence \(L\ge 25781\).
   Theorem 3.22 (\(e\ge 4\)) is the Section 3 headline.
   Theorem 4.7 is the supporting run-packing refinement.
+  Section 4 opens with the excursion necklace of a
+  minimum-based word: organizing prose, not a new theorem.
   Finance-survivor arithmetic is secondary. Lemma 4.4b is the
   odd-count monotonicity used to evaluate the table at
   \(o_{\min}\). The core lemmas are mechanized in Lean 4;
@@ -126,6 +128,7 @@ says nothing about the deterministic shift).
 | Gapped leftovers as cycle words (Theorem 3.21) | **EXACT — LEAN VERIFIED** | both gapped families; rotation of already-excluded CycleMins; not first-E at a non-minimum start; not a length-8 or length-9 census |
 | Canonical run form (Lemma 3.21b); classification (Lemma 3.21a); even-count assembly (Theorem 3.22); period at least eleven (Corollary 3.23) | **EXACT — LEAN VERIFIED** | minimum-based words are \(O^aEO^bEO^cE\); no cycle word with fewer than four evens; expansion corollary, not a length-9 or length-10 word census |
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7, Appendix C); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists; recorded for future work |
+| Excursion necklace (Section 4 opening) | organizing; no new tag | names the circular itinerary of Theorem 3.2, Lemma 3.4, Lemma 3.21b, and the last-even cell; first peak overshoots, last peak lands in the entry cell; not a contradiction and not a halt theorem |
 | Finance inequality (Theorem 4.4) | **EXACT — LEAN VERIFIED** | `cycleMin_finance`; constant \(1\); conceptual sharp form; not a halt theorem |
 | Inv-sum form (Corollary 4.4c) | **EXACT — LEAN VERIFIED** | `cycleMin_finance_inv_sum`; same defects, remainders kept as \(1/x_{i+1}\) |
 | Per-length exclusion given a floor (Corollary 4.5) | **EXACT — HUMAN PROOF** | convenient length-only statewise bound; \(n_{\max}\) from the parity charge |
@@ -212,6 +215,10 @@ says nothing about the deterministic shift).
   \(\sum 1/(x_i\log x_i)\) over realizable cycle geometry).
   Paper A records that program in Section 5; Theorems 4.4--4.7
   are length-only upper bounds on the same sum.
+- That the excursion necklace of Section 4, or the missing
+  implication from the forced lift plus the necklace plus the
+  entry cell, excludes leftover lengths or proves there is no
+  cycle.
 - The Juggler map is irreducible or has no finite-state model.
 - The \(N^{5/6}\) bound controls orbits or arbitrary image sets.
 
@@ -244,7 +251,10 @@ Reject or revise if:
     \(\sqrt{\log L}\) caveat, or any numerical probe or repository
     validation is treated as a proof step;
 11. a withdrawn claim (Theorems 6.2–6.4, Corollaries 5.4 or 6.5 of
-    the pre-Phase-26 drafts) is cited as a theorem of Paper B.
+    the pre-Phase-26 drafts) is cited as a theorem of Paper B;
+12. the excursion necklace of Paper A Section 4 is quoted as a
+    new theorem, or the first CycleMin peak is identified with
+    the last-even entry cell.
 
 ## Verification
 

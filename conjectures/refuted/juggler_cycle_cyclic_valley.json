@@ -1,0 +1,22 @@
+{
+  "id": "juggler_cycle_cyclic_valley",
+  "title": "Cyclic valley-necklace transitions force a leftover-killing finance deficit at L=25781",
+  "statement": "Requiring every adjacent valley pair, including the wrap-around v_m → p_m → v_1, to be a realizable Juggler transition forces a finance deficit versus the independent run-type packing that cannot be rotated away and that excludes L=25781 at the published floor 10^6 or shrinks E_run(10^6).",
+  "status": "REFUTED",
+  "counterexamples": [
+    "On two-type CycleMin necklaces N_cheap ≤ N_OE = 2764 < 6751, losing 3987 ≤ 6532 cheap starts",
+    "Charged cyclic RHS 3.041e-4 versus theta 2.546e-5 (factor 11.94); Beatty height-walk RHS 1.30e-4 still above theta",
+    "Beatty packed, Christoffel, and letter-extremal words are CycleMin-legal two-type necklaces with exactly 2764 cheap valleys",
+    "Exact wrap F_a(last)=first fails on realized chains from 365, 1517, and 1000057; legal cyclic cuts respect the cheap cap"
+  ],
+  "first_seen": "juggler cyclic valley necklace",
+  "lean_reference": "power_bound_word",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / cyclic valley necklace",
+  "notes": "The two-type cheap cap is EXACT — HUMAN PROOF and is the cyclic correction to independent-valley packing. It is not a leftover-killer. No B&B engine, no floor raise, no L=55293, no Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_cyclic_valley.md",
+  "proof_reference": "docs/problems/juggler_cycle_cyclic_valley.md",
+  "tested_range": "Two-type necklaces at (L,o)=(25781,16266), n=10^6+1; motifs (2,1), (5,3), (12,7), (53,31), (OOE)^3 OE; small-m ≤ 5 depth ≤ 3; exact wrap on {365, 1517, 1000057}"
+}

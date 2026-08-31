@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_realizable_finance",
+  "title": "Finite realizability of a finance-extremal prefix forces a tax larger than packed-to-theta slack at L=25781",
+  "statement": "Finance extremality plus finite realizability of near-extremal O/E prefixes at (L,o)=(25781,16266) produces an extra defect, not coming from another 1/(x log x) estimate, that exceeds the packed-to-theta slack in which one may lose 6532 of 6751 cheap OOE starts or deepen every OE, and that defect is not an archived first-block cell and not the false reading that local K caps the global cheap-OOE count.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "1000057 completes two packed/bunched OOE with prefix tax -2e-15",
+    "Treating local completed OOE as a global cap would lose 6749>6532 cheap starts; later valleys may restart OOE",
+    "deepen_all_still_above_theta is true, so even a ban on every two-type word stays inside slack"
+  ],
+  "first_seen": "juggler realizable-prefix finance",
+  "lean_reference": "odd_cell_unique",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / realizable-prefix tax",
+  "notes": "Phase 0 only. No K<=20 proof, no inverse-width reopen, no branch-and-bound engine, no floor raise, no L=55293. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_realizable_finance.md",
+  "proof_reference": "docs/problems/juggler_cycle_realizable_finance.md",
+  "tested_range": "Witnesses {365, 1000001, 1000057}; five near-extremal words at (25781,16266); slack from deficit_row"
+}

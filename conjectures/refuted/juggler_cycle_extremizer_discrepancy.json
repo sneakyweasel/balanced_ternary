@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_extremizer_discrepancy",
+  "title": "Near-extremal finance at L=25781 forces a new early envelope deviation that kills 25781 at N0=10^6",
+  "statement": "The unique finance-optimal two-type word at (L,o)=(25781,16266) forces an exact discrepancy X, visible in the first 1-3 realized excursions versus the defect-free envelope, that is not ooe_cell / F2(v)>v / 243<256 / cheap-OOE / shared OOE prefix / power_bound_word, and that charged in the length-only defect sum makes parity_excludes or budget_excludes kill 25781 at the published floor N0=10^6.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "All 1001 odds in [10^6+1, 10^6+2001] have first X = shared_ooe_prefix (first OE at letter 9)",
+    "On 243 realized OOE blocks, env-F = 0 and ooe_cell holds; witness 1000057 --OOE--> 5623773 --OOE--> 39244721",
+    "Five same-OOE-prefix words with Delta_fin spanning 7.2e-5 have identical d_closure (max 6, mean 2.0169)"
+  ],
+  "first_seen": "juggler 25781 finance-extremizer discrepancy",
+  "lean_reference": "odd_cell_unique",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / extremizer envelope discrepancy",
+  "notes": "Phase 0 only. Both stop-gates fired: X is archived, and Delta_fin is uncorrelated with d_closure. No K=11, no 1054k, no L=55293, no floor raise. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_extremizer_discrepancy.md",
+  "proof_reference": "docs/problems/juggler_cycle_extremizer_discrepancy.md",
+  "tested_range": "First 3 excursions on odds in [10^6+1, 10^6+2001]; graded-slack follow stride 34 on 8 words at (25781,16266)"
+}

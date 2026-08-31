@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_inverse_width",
+  "title": "Inverse-tube width of a near-convergent word empties for a reason that is not an archived floor cell",
+  "statement": "For every sufficiently balanced finance-admissible O/E word W, the exact inverse tube of W contracts below integer occupancy before |W| for a reason that is not empty_ooe / empty_oe / empty_odd_cell / ooe_cell / 243<256, and that contraction is detected by real or exponent hull width.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "9 --OOE--> 11 occupies a real hull of width 0.221 < 1",
+    "Beatty packed, bunched (OOE)^6, OE-front, interleave, and extra-odd prefixes all die at empty_ooe / k=3 on y=1000001",
+    "Max R_W on packed/bunched prefixes is 7 at both 10^2 and 10^6; no log-scale growth in the window"
+  ],
+  "first_seen": "juggler inverse-tube realizability",
+  "lean_reference": "odd_cell_unique",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / inverse-tube occupancy",
+  "notes": "Phase 0 only. Width is a hull relaxation of the archived OOE cell. No K=11, no 1054k, no L=55293, no floor raise. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_inverse_width.md",
+  "proof_reference": "docs/problems/juggler_cycle_inverse_width.md",
+  "tested_range": "Complete end-E prefixes of length <= 18; inverse y in {11,101,1001,10001,100001,1000001}; forward 80 odds at 10^2..10^6; calibration {365,11681,14237,15343,27623,1000057}"
+}

@@ -1,0 +1,579 @@
+{
+  "bound": "cyclic_valley",
+  "L": 25781,
+  "n": 1000001,
+  "slack": {
+    "L": 25781,
+    "o": 16266,
+    "theta": 2.5459198127264017e-05,
+    "packed": 0.0005885744398583163,
+    "margin": 0.0005631152417310524,
+    "packed_over_theta": 23.118341627107945,
+    "k_lose_cheap": 6532,
+    "deepen_all_still_above_theta": true
+  },
+  "two_type_cyclic": {
+    "n_ooe": 6751,
+    "n_oe": 2764,
+    "cheap_cap": 2764,
+    "lost_vs_packing": 3987,
+    "inside_k_lose": true,
+    "rhs": 0.0003040913132054685,
+    "packed": 0.0005885744398583163,
+    "theta": 2.5459198127264017e-05,
+    "gap_vs_packed": 0.00028448312665284786,
+    "over_theta": 11.9442612326356,
+    "excludes": false
+  },
+  "necklaces": [
+    {
+      "name": "packed_mechanical",
+      "two_type": true,
+      "circuits": 9515,
+      "prefix_admissible": true,
+      "cheap": 2764,
+      "cheap_cap": 2764,
+      "cheap_at_or_below_cap": true,
+      "illegal_below_one": 0,
+      "oe_illegal": 0,
+      "all_cyclemin": true,
+      "wrap_log2": 3.673032915685326e-05,
+      "wrap_legal": true,
+      "rotation_legal_count": 1,
+      "rotation_cheap_span": 0,
+      "rotation_cheap_max": 2764,
+      "rotation_wrap_legal_all": true,
+      "height_rhs": 0.0001297759576640836,
+      "cyclic_bound_rhs": 0.0003040913132054685,
+      "packed_rhs": 0.0005885744398583163,
+      "height_below_packed": true
+    },
+    {
+      "name": "bunched_ooe",
+      "two_type": true,
+      "circuits": 9515,
+      "prefix_admissible": true,
+      "cheap": 1,
+      "cheap_cap": 2764,
+      "cheap_at_or_below_cap": true,
+      "illegal_below_one": 0,
+      "oe_illegal": 0,
+      "all_cyclemin": true,
+      "wrap_log2": 3.673032915685326e-05,
+      "wrap_legal": true,
+      "rotation_legal_count": 1,
+      "rotation_cheap_span": 0,
+      "rotation_cheap_max": 1,
+      "rotation_wrap_legal_all": true,
+      "height_rhs": 1.0359158202307345e-07,
+      "cyclic_bound_rhs": 0.0003040913132054685,
+      "packed_rhs": 0.0005885744398583163,
+      "height_below_packed": true
+    },
+    {
+      "name": "interleave",
+      "two_type": true,
+      "circuits": 9515,
+      "prefix_admissible": false,
+      "cheap": 1,
+      "cheap_cap": 2764,
+      "cheap_at_or_below_cap": true,
+      "illegal_below_one": 9513,
+      "oe_illegal": 2764,
+      "all_cyclemin": false,
+      "wrap_log2": 3.673032915685326e-05,
+      "wrap_legal": true,
+      "rotation_legal_count": 0,
+      "rotation_cheap_span": 0,
+      "rotation_cheap_max": null,
+      "rotation_wrap_legal_all": true,
+      "height_rhs": 2.66271562948605,
+      "cyclic_bound_rhs": 0.0003040913132054685,
+      "packed_rhs": 0.0005885744398583163,
+      "height_below_packed": false
+    },
+    {
+      "name": "extremal_letter",
+      "two_type": true,
+      "circuits": 9515,
+      "prefix_admissible": true,
+      "cheap": 2764,
+      "cheap_cap": 2764,
+      "cheap_at_or_below_cap": true,
+      "illegal_below_one": 0,
+      "oe_illegal": 0,
+      "all_cyclemin": true,
+      "wrap_log2": 3.673032915685326e-05,
+      "wrap_legal": true,
+      "rotation_legal_count": 1,
+      "rotation_cheap_span": 0,
+      "rotation_cheap_max": 2764,
+      "rotation_wrap_legal_all": true,
+      "height_rhs": 0.0001297759576640836,
+      "cyclic_bound_rhs": 0.0003040913132054685,
+      "packed_rhs": 0.0005885744398583163,
+      "height_below_packed": true
+    },
+    {
+      "name": "christoffel",
+      "two_type": true,
+      "circuits": 9515,
+      "prefix_admissible": true,
+      "cheap": 2764,
+      "cheap_cap": 2764,
+      "cheap_at_or_below_cap": true,
+      "illegal_below_one": 0,
+      "oe_illegal": 0,
+      "all_cyclemin": true,
+      "wrap_log2": 3.673032915685326e-05,
+      "wrap_legal": true,
+      "rotation_legal_count": 1,
+      "rotation_cheap_span": 0,
+      "rotation_cheap_max": 2764,
+      "rotation_wrap_legal_all": true,
+      "height_rhs": 0.0001297759576640836,
+      "cyclic_bound_rhs": 0.0003040913132054685,
+      "packed_rhs": 0.0005885744398583163,
+      "height_below_packed": true
+    }
+  ],
+  "motifs": [
+    {
+      "name": "repeated_ooe",
+      "k": 2,
+      "ell": 1,
+      "copies": 8133,
+      "leftover_o": 0,
+      "leftover_e": 1382,
+      "cheap": 1,
+      "oe_illegal": 0,
+      "all_cyclemin": true,
+      "wrap_log2": 1382.0000367303292,
+      "wrap_legal": true,
+      "height_rhs": 1.0287939171723814e-07,
+      "L_used": 24399,
+      "o_used": 16266
+    },
+    {
+      "name": "five_three",
+      "k": 5,
+      "ell": 3,
+      "copies": 3171,
+      "leftover_o": 411,
+      "leftover_e": 2,
+      "cheap": 1,
+      "oe_illegal": 0,
+      "all_cyclemin": false,
+      "wrap_log2": -238.41955106606474,
+      "wrap_legal": false,
+      "height_rhs": 2.6637345011341296,
+      "L_used": 25368,
+      "o_used": 15855
+    },
+    {
+      "name": "twelve_seven",
+      "k": 12,
+      "ell": 7,
+      "copies": 1355,
+      "leftover_o": 6,
+      "leftover_e": 30,
+      "cheap": 9,
+      "oe_illegal": 0,
+      "all_cyclemin": true,
+      "wrap_log2": 26.490261726001336,
+      "wrap_legal": true,
+      "height_rhs": 4.535258653485525e-07,
+      "L_used": 25745,
+      "o_used": 16260
+    },
+    {
+      "name": "fiftythree_thirtyone",
+      "k": 53,
+      "ell": 31,
+      "copies": 306,
+      "leftover_o": 48,
+      "leftover_e": 29,
+      "cheap": 57,
+      "oe_illegal": 0,
+      "all_cyclemin": true,
+      "wrap_log2": 0.9218366957138642,
+      "wrap_legal": true,
+      "height_rhs": 2.6933035686934527e-06,
+      "L_used": 25704,
+      "o_used": 16218
+    },
+    {
+      "name": "climb3_oe",
+      "k": "2+2+2+1",
+      "ell": 4,
+      "copies": 2250,
+      "leftover_o": 516,
+      "leftover_e": 515,
+      "cheap": 2,
+      "all_cyclemin": true,
+      "wrap_log2": 213.15938635821294,
+      "wrap_legal": true,
+      "height_rhs": 1.5774387472620429e-07,
+      "L_used": 22500,
+      "o_used": 15750
+    }
+  ],
+  "small_m": {
+    "m_max": 5,
+    "a_max": 3,
+    "legal_necklaces": 170,
+    "cyclic_beats_independent": 0,
+    "best_cyclic": {
+      "types": [
+        2,
+        2,
+        2,
+        1,
+        2
+      ],
+      "L": 14,
+      "o": 9,
+      "cyclic": 1.343593318471625e-07,
+      "independent": 3.483179348214223e-07,
+      "gap": 2.1395860297425979e-07,
+      "cheap": 2,
+      "wrap_log2": 0.26466250649040646,
+      "wrap_legal": true
+    },
+    "largest_gap": {
+      "types": [
+        3,
+        3,
+        3,
+        3,
+        3
+      ],
+      "L": 20,
+      "o": 15,
+      "cyclic": 8.686288022591213e-08,
+      "independent": 8.691656296343534e-07,
+      "gap": 7.823027494084412e-07,
+      "cheap": 1,
+      "wrap_log2": 3.774437510817343,
+      "wrap_legal": true
+    },
+    "independent_strictly_larger": true
+  },
+  "exact_wraps": [
+    {
+      "n": 365,
+      "valleys": [
+        365,
+        763,
+        1749,
+        4447,
+        12707,
+        1196
+      ],
+      "cyclemin_valleys": [
+        365,
+        763,
+        1749,
+        4447,
+        12707,
+        1196
+      ],
+      "runs": [
+        2,
+        2,
+        2,
+        2,
+        1
+      ],
+      "peaks": [
+        582276,
+        3059506,
+        19782308,
+        161491284,
+        1432400
+      ],
+      "wrap_first": 365,
+      "wrap_last": 1196,
+      "true_wrap_closes": false,
+      "wrap_attempts": [
+        {
+          "a": 1,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 2,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 3,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 5,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 12,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        }
+      ],
+      "existing_edges": [
+        {
+          "from": 365,
+          "a": 2,
+          "to": 763,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 763,
+          "a": 2,
+          "to": 1749,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 1749,
+          "a": 2,
+          "to": 4447,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 4447,
+          "a": 2,
+          "to": 12707,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 12707,
+          "a": 1,
+          "to": 1196,
+          "is_recorded_edge": true
+        }
+      ]
+    },
+    {
+      "n": 1000057,
+      "valleys": [
+        1000057,
+        5623773,
+        39244721,
+        495833
+      ],
+      "cyclemin_valleys": [
+        1000057,
+        5623773,
+        39244721
+      ],
+      "runs": [
+        2,
+        2,
+        1
+      ],
+      "peaks": [
+        31626832356906,
+        1540148191553904,
+        245850937598
+      ],
+      "wrap_first": 1000057,
+      "wrap_last": 39244721,
+      "true_wrap_closes": false,
+      "wrap_attempts": [
+        {
+          "a": 1,
+          "landing": 495833,
+          "hits_first": false,
+          "gap": -504224
+        },
+        {
+          "a": 2,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 3,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 5,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 12,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        }
+      ],
+      "existing_edges": [
+        {
+          "from": 1000057,
+          "a": 2,
+          "to": 5623773,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 5623773,
+          "a": 2,
+          "to": 39244721,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 39244721,
+          "a": 1,
+          "to": 495833,
+          "is_recorded_edge": true
+        }
+      ]
+    },
+    {
+      "n": 1517,
+      "valleys": [
+        1517,
+        3789,
+        10613,
+        33811,
+        2493,
+        539470
+      ],
+      "cyclemin_valleys": [
+        1517,
+        3789,
+        10613,
+        33811,
+        2493,
+        539470
+      ],
+      "runs": [
+        2,
+        2,
+        2,
+        1,
+        3
+      ],
+      "peaks": [
+        14362030,
+        112636568,
+        1143235850,
+        6217088,
+        291028018566
+      ],
+      "wrap_first": 1517,
+      "wrap_last": 539470,
+      "true_wrap_closes": false,
+      "wrap_attempts": [
+        {
+          "a": 1,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 2,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 3,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 5,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        },
+        {
+          "a": 12,
+          "landing": null,
+          "hits_first": false,
+          "gap": null
+        }
+      ],
+      "existing_edges": [
+        {
+          "from": 1517,
+          "a": 2,
+          "to": 3789,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 3789,
+          "a": 2,
+          "to": 10613,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 10613,
+          "a": 2,
+          "to": 33811,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 33811,
+          "a": 1,
+          "to": 2493,
+          "is_recorded_edge": true
+        },
+        {
+          "from": 2493,
+          "a": 3,
+          "to": 539470,
+          "is_recorded_edge": true
+        }
+      ]
+    }
+  ],
+  "almost_closed_2211": {
+    "types": [
+      2,
+      2,
+      2,
+      1
+    ],
+    "scanned": 800,
+    "hits": 0,
+    "best": null,
+    "closed_found": false
+  },
+  "charged_excludes": {
+    "parity_excludes": false,
+    "budget_excludes": false
+  },
+  "published_floor": 1000000,
+  "start": 1000001,
+  "decision": {
+    "classification": "CYCLIC_VALLEY_CLOSED",
+    "decision": "CLOSE",
+    "reason": "on a two-type necklace N_cheap \u2264 N_OE, so the first valley is an OE landing and not a free boundary; the charged cyclic RHS stays above theta; every cyclic cut respects the cap; exact wrap does not close",
+    "cheap_cap_strictly_below_packing": true,
+    "two_type_cyclic_excludes": false,
+    "two_type_cyclic_above_theta": true,
+    "wrap_rotation_cheap_span": 0,
+    "cap_survives_every_cut": true,
+    "wrap_is_privileged": false,
+    "exact_wrap_closes": false,
+    "small_m_independent_larger": true,
+    "leftover_killer": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "open_55293": false,
+    "branch_and_bound": false
+  }
+}

@@ -701,6 +701,8 @@ and `data/research/juggler/cycle_finance/`.
   ([juggler_cycle_descent_next_run.md](juggler_cycle_descent_next_run.md)).
   Cheap-cluster Amplify versus surplus is also **CLOSE**
   ([juggler_cycle_cluster_amplify.md](juggler_cycle_cluster_amplify.md)).
+  Global orbit-budget coupling is also **CLOSE**
+  ([juggler_cycle_orbit_budget.md](juggler_cycle_orbit_budget.md)).
   The program stays **PARK**.
 
 ## Decision
@@ -822,7 +824,11 @@ gap is invariant under appending `OOE`. Optimistic
 Best next question: none from cheap-cluster Amplify. The
 state-distribution program of Paper A Section 5 stays **PARK**.
 Option B is closed as a finance input on cheap `OOE`
-clusters. The factor-\(23\) valley gap at \(L=25781\) is
+clusters. Global orbit-budget coupling is **CLOSE**
+(`juggler_cycle_orbit_budget`): \(C_{\max}^{\mathrm{ub}}\)
+at \(n=10^6+1\) equals `budget_rhs`; the tree dies at
+archived `OOE` / CycleMin tags after at most one circuit.
+The factor-\(23\) valley gap at \(L=25781\) is
 unchanged as a certified charge.
 
 Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
@@ -864,6 +870,11 @@ leftover-killer
 Cheap-cluster Amplify versus surplus is also **REFUTED** as a
 leftover-killer
 (`juggler_cycle_cluster_amplify`).
+The cyclic valley-necklace leftover-killer is also **REFUTED**
+(`juggler_cycle_cyclic_valley`): on a two-type CycleMin
+necklace \(N_{\mathrm{cheap}}\le N_{\mathrm{OE}}=2764<6751\),
+but the charged RHS stays a factor \(11.94\) above \(\theta\)
+and the wrap-around is not a privileged extra tax.
 Run-height packing does not improve the length-only
 \(n_{\max}\) at \(o_{\min}\).
 
