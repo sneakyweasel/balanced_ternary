@@ -1,0 +1,109 @@
+{
+  "bound": "exponent_budget",
+  "published_floor": 1000000,
+  "identities": {
+    "product_is_word_ratio": true,
+    "signed_sum_partition_independent": true,
+    "three_power_never_two_power": true,
+    "demo_blocks": [
+      {
+        "a": 2,
+        "r": 1,
+        "rho": "9/8"
+      },
+      {
+        "a": 3,
+        "r": 2,
+        "rho": "27/32"
+      },
+      {
+        "a": 7,
+        "r": 4,
+        "rho": "2187/2048"
+      }
+    ],
+    "demo_A": 12,
+    "demo_R": 7,
+    "demo_L": 19,
+    "demo_product": "531441/524288",
+    "demo_word_ratio": "531441/524288"
+  },
+  "leftovers": [
+    {
+      "L": 19,
+      "o": 12,
+      "gap": 7153,
+      "theta": 0.01345963145485576,
+      "equality_impossible": true,
+      "formally_expanding": true,
+      "product_split": "531441/524288",
+      "product_one": "531441/524288",
+      "same_product": true,
+      "signed_exponents_equal": true,
+      "ooe_compensation": {
+        "a0": 2,
+        "r0": 1,
+        "L": 19,
+        "o": 12,
+        "first_expands": true,
+        "prefix_allows": true,
+        "rest_contracts": true,
+        "product_is_total": true,
+        "first": "9/8",
+        "rest": "59049/65536",
+        "total": "531441/524288"
+      }
+    },
+    {
+      "L": 84,
+      "o": 53,
+      "gap": 40432553845953101497907,
+      "theta": 0.002085953742688774,
+      "equality_impossible": true,
+      "formally_expanding": true,
+      "product_split": "19383245667680019896796723/19342813113834066795298816",
+      "product_one": "19383245667680019896796723/19342813113834066795298816",
+      "same_product": true,
+      "signed_exponents_equal": true,
+      "ooe_compensation": {
+        "a0": 2,
+        "r0": 1,
+        "L": 84,
+        "o": 53,
+        "first_expands": true,
+        "prefix_allows": true,
+        "rest_contracts": true,
+        "product_is_total": true,
+        "first": "9/8",
+        "rest": "2153693963075557766310747/2417851639229258349412352",
+        "total": "19383245667680019896796723/19342813113834066795298816"
+      }
+    }
+  ],
+  "note": "local CycleMin first-block expansion 2^{a0+r} <= 3^{a0} does not change \u03a3 (a log 3 \u2212 (a+r) log 2) = o log 3 \u2212 L log 2",
+  "decision": {
+    "classification": "EXPONENT_BUDGET_CLOSED",
+    "decision": "CLOSE",
+    "reason": "the block product is identically 3^o/2^L; the signed sum ignores the partition; 3^A = 2^{A+R} is impossible by unique factorization; an expanding first block on a leftover forces later contraction; floors are cycleMin_finance",
+    "product_is_word_ratio": true,
+    "signed_sum_partition_independent": true,
+    "equality_impossible": true,
+    "leftovers_expanding": true,
+    "leftovers_same_product": true,
+    "first_block_forces_later_contraction": true,
+    "new_gap": false,
+    "leftover_killer": false,
+    "reopens_finance": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "cycle_word_formally_expanding",
+      "cycleMin_finance",
+      "image_eq_start_defectRatio",
+      "global_defect_identity",
+      "power_bound_word",
+      "even_run_scale_barrier"
+    ]
+  }
+}

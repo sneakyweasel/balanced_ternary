@@ -1,0 +1,270 @@
+{
+  "bound": "peak_valley_composition",
+  "archived": [
+    "power_bound_word",
+    "power_bound_contracts",
+    "cycle_trailing_evens_lt",
+    "even_run_scale_barrier",
+    "even_tower_bounds",
+    "global_defect_identity",
+    "two_block_ooe_365"
+  ],
+  "words": [
+    "OE",
+    "OOE",
+    "OOOEE",
+    "OOEOOE",
+    "OOEOOEOOEOE"
+  ],
+  "realized": {
+    "OE": 7,
+    "OOE": 5,
+    "OOOEE": 3,
+    "OOEOOE": 69,
+    "OOEOOEOOEOE": 429
+  },
+  "exponents": [
+    {
+      "word": "OE",
+      "length": 2,
+      "odd": 1,
+      "blocks": [
+        [
+          1,
+          1
+        ]
+      ],
+      "mu_num": 3,
+      "mu_den": 4,
+      "mu": 0.75,
+      "blocks_match_word": true,
+      "contracts": true,
+      "expands": false
+    },
+    {
+      "word": "OOE",
+      "length": 3,
+      "odd": 2,
+      "blocks": [
+        [
+          1,
+          2
+        ]
+      ],
+      "mu_num": 9,
+      "mu_den": 8,
+      "mu": 1.125,
+      "blocks_match_word": true,
+      "contracts": false,
+      "expands": true
+    },
+    {
+      "word": "OOOEE",
+      "length": 5,
+      "odd": 3,
+      "blocks": [
+        [
+          2,
+          3
+        ]
+      ],
+      "mu_num": 27,
+      "mu_den": 32,
+      "mu": 0.84375,
+      "blocks_match_word": true,
+      "contracts": true,
+      "expands": false
+    },
+    {
+      "word": "OOEOOE",
+      "length": 6,
+      "odd": 4,
+      "blocks": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "mu_num": 81,
+      "mu_den": 64,
+      "mu": 1.265625,
+      "blocks_match_word": true,
+      "contracts": false,
+      "expands": true
+    },
+    {
+      "word": "OOEOOEOOEOE",
+      "length": 11,
+      "odd": 7,
+      "blocks": [
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          1
+        ],
+        [
+          1,
+          2
+        ]
+      ],
+      "mu_num": 2187,
+      "mu_den": 2048,
+      "mu": 1.06787109375,
+      "blocks_match_word": true,
+      "contracts": false,
+      "expands": true
+    }
+  ],
+  "identities": [
+    {
+      "start": 7,
+      "word": "OE",
+      "follow": 4,
+      "valley_composite": 4,
+      "first_peak": 18,
+      "peak_composite": null,
+      "rotated_follow": null,
+      "valley_is_follow": true,
+      "peak_is_rotated_follow": true
+    },
+    {
+      "start": 365,
+      "word": "OOE",
+      "follow": 763,
+      "valley_composite": 763,
+      "first_peak": 582276,
+      "peak_composite": 3059506,
+      "rotated_follow": 3059506,
+      "valley_is_follow": true,
+      "peak_is_rotated_follow": true
+    },
+    {
+      "start": 25,
+      "word": "OOOEE",
+      "follow": 15,
+      "valley_composite": 15,
+      "first_peak": 52214,
+      "peak_composite": null,
+      "rotated_follow": null,
+      "valley_is_follow": true,
+      "peak_is_rotated_follow": true
+    },
+    {
+      "start": 365,
+      "word": "OOEOOE",
+      "follow": 1749,
+      "valley_composite": 1749,
+      "first_peak": 582276,
+      "peak_composite": 19782308,
+      "rotated_follow": 19782308,
+      "valley_is_follow": true,
+      "peak_is_rotated_follow": true
+    }
+  ],
+  "expanding_witness": {
+    "start": 365,
+    "word": "OOEOOE",
+    "image": 1749,
+    "lean": "two_block_ooe_365",
+    "note": "365 --OOE--> 763 --OOE--> 1749 is expansion, not P<P"
+  },
+  "naive_vs_exact_ooe": {
+    "valley": 365,
+    "exact": 763,
+    "naive_exponent": 582316,
+    "naive_is_envelope": true,
+    "note": "floor(V^{9/8}) is the envelope; the exact climb is T_OOE"
+  },
+  "slack": [
+    {
+      "peak": 1000.0,
+      "word": "OOEOOEOOEOE",
+      "slack_lower": 1277.1986855220173,
+      "envelope_upper": 1598.1343316046357,
+      "contains_peak": false,
+      "upper_gt_peak": true,
+      "lower_lt_peak": false
+    },
+    {
+      "peak": 1000000.0,
+      "word": "OOEOOEOOEOE",
+      "slack_lower": 2537712.914654962,
+      "envelope_upper": 2554033.3418533956,
+      "contains_peak": false,
+      "upper_gt_peak": true,
+      "lower_lt_peak": false
+    },
+    {
+      "peak": 52214.0,
+      "word": "OOOEE",
+      "slack_lower": 7591.235161801033,
+      "envelope_upper": 9563.849902693217,
+      "contains_peak": false,
+      "upper_gt_peak": false,
+      "lower_lt_peak": true
+    },
+    {
+      "peak": 365.0,
+      "word": "OOEOOE",
+      "slack_lower": 1397.9135645196613,
+      "envelope_upper": 1749.4514980943404,
+      "contains_peak": false,
+      "upper_gt_peak": true,
+      "lower_lt_peak": false
+    }
+  ],
+  "mechanical_l25781": {
+    "L": 25781,
+    "interval": [
+      986891,
+      25482877
+    ],
+    "meets_start": true,
+    "source": "cycle_closure leftover-killer CLOSE"
+  },
+  "odd_fixed_point": {
+    "n": 1,
+    "word": "O",
+    "is_peak_valley_necklace": false,
+    "note": "the odd fixed point has no even letter, so it is not a P-V necklace"
+  },
+  "decision": {
+    "classification": "PEAK_VALLEY_COMPOSITION_PARK",
+    "decision": "PARK",
+    "reason": "the necklace census is mixed and does not decide",
+    "exact_cells_are_functional": true,
+    "onesided_is_power_bound": true,
+    "contracting_is_exponent_gap": true,
+    "leftover_expands": true,
+    "expanding_witness_gt": true,
+    "leftover_slack_meets": false,
+    "mechanical_meets": true,
+    "new_inequality": false,
+    "leftover_killer": false,
+    "reopens_cycle_closure": false,
+    "reopens_seam_sliding": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "power_bound_word",
+      "power_bound_contracts",
+      "cycle_trailing_evens_lt",
+      "even_run_scale_barrier",
+      "even_tower_bounds",
+      "global_defect_identity",
+      "two_block_ooe_365"
+    ]
+  }
+}

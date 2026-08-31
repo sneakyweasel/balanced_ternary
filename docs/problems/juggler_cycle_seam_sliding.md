@@ -3,16 +3,16 @@
 Status: **ARCHIVED**
 
 Refinement of
-[juggler_cycle_intersection_taxonomy.md](juggler_cycle_intersection_taxonomy.md)
+[juggler_cycle_e_block.md](juggler_cycle_e_block.md)
 and
-[juggler_cycle_cyclic_seam.md](juggler_cycle_cyclic_seam.md),
-not a reopen of those branches and not a new paper. After the
-first-intersection taxonomy closed, this phase asks whether a
-homogeneous parity run is dynamically so uniform that an interior
-cut may be **slid** to either boundary, collapsing
-\(E\mid EEE\), \(EE\mid EE\), \(EEE\mid E\) to one cyclic geometry
-and leaving only the parity-change seams \(\mathtt{EO}\) and
-\(\mathtt{OE}\) plus the run length.
+[juggler_cycle_intersection_taxonomy.md](juggler_cycle_intersection_taxonomy.md),
+not a reopen of those branches and not a new paper. The \(E^r\)
+block already pushes odd interiors to the peak and even interiors
+*forward* to the next valley. This phase asks the stronger
+claim: that an interior cut may be **slid either way**, so
+\(E\mid EEE\), \(EE\mid EE\), \(EEE\mid E\) are one cyclic
+geometry and one may choose whichever boundary gives the
+stronger inequality.
 
 Not a halt theorem, not a finance leftover-killer, not a corridor
 reopen, and not a claim that a first intersection can be moved
@@ -43,6 +43,8 @@ combinatorial entry location inside \(E^r\).
 
 **A first intersection does not slide backward
 (EXACT — HUMAN PROOF).**
+The \(E^r\) block already allows only the *forward* push to
+the next valley. Bidirectional sliding is stronger, and false.
 If the climb first meets the descent
 \(P\xrightarrow{E}x_1\xrightarrow{E}\cdots\xrightarrow{E}V\)
 at an interior \(x_i\), then \(P\) was not visited. From \(x_i\)
@@ -102,6 +104,9 @@ No cycle of any length — not claimed.
 - First-intersection taxonomy —
   **CLOSE** / **REFUTED**
   ([juggler_cycle_intersection_taxonomy.md](juggler_cycle_intersection_taxonomy.md))
+- First-intersection \(E^r\) block, one-way push —
+  **CLOSE** / **REFUTED**
+  ([juggler_cycle_e_block.md](juggler_cycle_e_block.md))
 - \(r=4\) trailing cell already sharp —
   **CLOSE** / **REFUTED**
   ([juggler_e4_tight_pullback.md](juggler_e4_tight_pullback.md))
@@ -133,7 +138,8 @@ Falsifier               combinatorial sliding is rotateWord; a first
 Existing machinery      cycleWord_rotateWord, rotateWord_even_run,
                         cycle_trailing_evens_lt, even_run_scale_barrier,
                         odd_cell_unique, no_cycle_word_even_count_le_three,
-                        closed cyclic-seam / intersection-taxonomy
+                        closed cyclic-seam / intersection-taxonomy /
+                        E^r block
 Maximum Phase-0 scope   three-way split (word / trajectory / scale);
                         one backward-slide witness; necklace identity
                         for E|EEE / EE|EE / EEE|E; scale check against
@@ -148,8 +154,9 @@ Stop criterion          sliding is cyclic rotation; first intersection
 
 ## Closed-bridge gates
 
-Do not reopen the entry corridor, the cyclic seam, or the
-first-intersection taxonomy. Do not reopen \(r=4\) pullback.
+Do not reopen the entry corridor, the cyclic seam, the
+first-intersection taxonomy, or the \(E^r\) block. Do not
+reopen \(r=4\) pullback.
 
 - **CLOSE** if interior \(E\)-cuts are `rotateWord` of one necklace.
 - **CLOSE** if a first intersection interior to \(E^r\) cannot be
@@ -246,18 +253,19 @@ add `SeamSliding.lean`.
 ## Open questions
 
 None from cyclic seam sliding. Do not reopen the first-intersection
-taxonomy or the entry corridor. Do not open an \(E^r\)-length
-leftover-killer from the boundary choice.
+taxonomy, the \(E^r\) block, or the entry corridor. Do not open an
+\(E^r\)-length leftover-killer from the boundary choice.
 
 ## Decision
 
 **CLOSE**. Homogeneous \(E^r\) is dynamically uniform for the
 *word*: interior cuts slide by `rotateWord`. It is not uniform
-for a *first intersection*: the meeting point is a distinguished
-state, and sliding it backward to the peak is false. The
-numerical transfer \(P\approx V^{2^r}\) is the trailing-evens
-cell. Reducing to \(\mathtt{EO}\) and \(\mathtt{OE}\) plus run
-length is the closed intersection taxonomy under a cleaner name.
+for a *first intersection*: the \(E^r\) block already permits
+only the forward push to the valley, and sliding backward to
+the peak is false. The numerical transfer \(P\approx V^{2^r}\)
+is the trailing-evens cell. Reducing to \(\mathtt{EO}\) and
+\(\mathtt{OE}\) plus run length is the closed taxonomy under a
+cleaner name.
 That is useful compression of the language; it is not a new
 invariant. No Paper A edit, no ledger row, no new Lean, no
 \(N_0\) raise, no finance reopen, no \(E^r\) census.

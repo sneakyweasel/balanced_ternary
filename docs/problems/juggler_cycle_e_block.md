@@ -249,9 +249,12 @@ unchanged. Do not add `EBlock.lean`.
 
 ## Open questions
 
-None from the \(E^r\) block. Do not reopen the entry corridor,
-the cyclic seam, or the first-intersection taxonomy. Do not open
-an even-preimage leftover-killer from this classification.
+None from the \(E^r\) block. Bidirectional sliding of a first
+intersection to either boundary is a separate closed branch
+([juggler_cycle_seam_sliding.md](juggler_cycle_seam_sliding.md)).
+Do not reopen the entry corridor, the cyclic seam, or the
+first-intersection taxonomy. Do not open an even-preimage
+leftover-killer from this classification.
 
 ## Decision
 

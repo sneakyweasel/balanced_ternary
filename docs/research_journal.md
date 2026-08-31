@@ -17266,6 +17266,40 @@ Best next question
 - none from the first-intersection taxonomy
 ```
 
+## Juggler first-intersection \(E^r\) block
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether, after odd interiors push to the peak and \(r=1\) is the archived \(\mathtt{OE}\) seam, an \(E^r\) first intersection for \(r\ge 2\) produces a two-sided envelope that is not trailing-evens / the expanding-prefix test
+- **Hypotheses:** the length \(r\) of the common even suffix is a new invariant; \(r\ge 2\) might empty against the initial-climb envelope, leaving only the archived \(\mathtt{OE}\) geometry
+- **Major results:** Classification **E_BLOCK_CLOSED**. \(r=1\) recovers \(n^4\le u^3<(n+1)^4\) (**REPARAMETERIZATION** of `corridor_bounds`). First-run \(\mathtt{O}^{a_0}E^r\) is CycleMin-possible iff \(2^{a_0+r}\le 3^{a_0}\) (**REPARAMETERIZATION** of `power_bound_word` plus `even_run_scale_barrier`). Last-run \(r\ge 2\) occupied: EE count \(n(n^2+n+1)\), EEE realized. On \([13,2001)\): \(502\) OO-launches, \(252\) with \(r\ge 2\), \(41\) CycleMin-shaped; contracting witness \(25\xrightarrow{\mathtt{OOOEE}}15\); shaped witness \(115\) (\(a_0=5\), valley \(8165\)). Artifact `e_block/summary.json`. No corridor reopen, no eight-case reopen, no finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** an \(E^r\) block produces a new cell (`juggler_cycle_e_block`); \(r\ge 2\) can be eliminated, leaving only \(\mathtt{OE}\)
+- **Literature:** `cycle_trailing_evens_lt`; `even_run_scale_barrier`; `power_bound_word`; `odd_cell_unique`; entry-corridor CLOSE; intersection-taxonomy CLOSE
+- **Open:** none from the \(E^r\) block
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- odd interiors push to the peak; even interiors push to the valley and keep r
+- r=1 is the archived OE corridor; do not reopen it
+- first-run r vs a0 is the expanding-prefix test 2^{a0+r} <= 3^{a0}
+- last-run r>=2 is the occupied EE/EEE family
+- a short OO climb can realize r=2 only by dropping below n (25 -> 15)
+- CycleMin-shaped first-run r=2 occurs (115); r>=2 is not empty
+Strongest theorem
+- 2^{a0+r} <= 3^{a0} for a CycleMin first block O^{a0} E^r
+Strongest refutation
+- E^r leftover-killer; empty r>=2; a new O E^r O cell
+Reusable machinery
+- even_tower_bounds / odd_parent_outer_bounds / e_block/summary.json
+Branch status
+- CLOSE
+Why
+- every comparison is trailing-evens, the expanding-prefix test,
+  or the archived OE corridor; r>=2 stays occupied
+Best next question
+- none from the first-intersection E^r block
+```
+
 ## Juggler cyclic seam sliding
 
 - **Date:** 2026-08-31
@@ -17273,7 +17307,7 @@ Best next question
 - **Hypotheses:** interior \(E\)-cuts collapse to one cyclic geometry, so only \(\mathtt{EO}\) and \(\mathtt{OE}\) plus run length remain, and choosing the peak or valley boundary yields a stronger inequality
 - **Major results:** Classification **SEAM_SLIDING_CLOSED**. Interior cuts \(E\mid EEE\), \(EE\mid EE\), \(EEE\mid E\) are `rotateWord` of \(\mathtt{OOEEEE}\) (**REPARAMETERIZATION** of `cycleWord_rotateWord` / `rotateWord_even_run`). A first intersection interior to \(E^r\) cannot be slid to the peak and is not first at the valley: witness \(100\xrightarrow{E}10\xrightarrow{E}3\) versus \(102\xrightarrow{E}10\xrightarrow{E}3\). Peak / valley transfer \(P<(V+1)^{2^r}\) is `cycle_trailing_evens_lt`. \(O^r\) interiors are not first meetings. Artifact `seam_sliding/summary.json`. No taxonomy reopen, no finance, no Paper A, no new Lean, no \(N_0\) raise
 - **Refuted ideas:** first-intersection sliding to either boundary of a homogeneous run (`juggler_cycle_seam_sliding`); \(P\approx V^{2^r}\) as a new cell
-- **Literature:** `cycleWord_rotateWord`; `rotateWord_even_run`; `cycle_trailing_evens_lt`; `even_run_scale_barrier`; `odd_cell_unique`; intersection-taxonomy CLOSE; cyclic-seam CLOSE
+- **Literature:** `cycleWord_rotateWord`; `rotateWord_even_run`; `cycle_trailing_evens_lt`; `even_run_scale_barrier`; `odd_cell_unique`; intersection-taxonomy CLOSE; \(E^r\)-block CLOSE (one-way push); cyclic-seam CLOSE
 - **Open:** none from cyclic seam sliding
 - **Decision:** CLOSE. The run-type theorem stays PROMOTE
 
@@ -17298,6 +17332,40 @@ Why
   sliding is false backward; the numerical transfer is an archived cell
 Best next question
 - none from cyclic seam sliding
+```
+
+## Juggler cycle-wide block exponent budget
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the cycle-wide product of block exponents \(\rho_i=3^{a_i}/2^{a_i+r_i}\) is a closure obstruction that is not \(3^o>2^L\) / `cycleMin_finance` / the global defect / leftover near-convergents
+- **Hypotheses:** local CycleMin block constraints make the signed exponent sum incompatible with exact integer return; this is stronger than the first-block prefix test
+- **Major results:** Classification **EXPONENT_BUDGET_CLOSED**. \(\prod\rho_i=3^o/2^L\) identically; \(\sum(a_i\log 3-(a_i+r_i)\log 2)=o\log 3-L\log 2\) (**REPARAMETERIZATION**). \(3^A=2^{A+R}\) is unique factorization (`cycle_word_formally_expanding`). Exact return is \(\Delta=n^{3^o}-n^{2^L}\) (`global_defect_identity`). Floors are `cycleMin_finance`. Leftover \(L=19,84\): expanding \(\mathtt{OOE}\) (\(\rho=9/8\)) forces rest \(<1\) (\(59049/65536\) at \(L=19\)). Artifact `exponent_budget/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** a cycle-wide exponent separation the integer map cannot realize (`juggler_cycle_exponent_budget`); the block product is stronger than the prefix test
+- **Literature:** `cycle_word_formally_expanding`; `cycleMin_finance`; `global_defect_identity`; `image_eq_start_defectRatio`; \(E^r\)-block CLOSE; Baker CLOSE; near-tight CLOSE
+- **Open:** none from the exponent budget
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- the block product is identically 3^o/2^L; the split does not appear
+- the signed sum is o log 3 − L log 2, so local first-block constraints cannot change it
+- 3^A = 2^{A+R} is already the expanding-word lemma
+- exact integer return realizes the budget as a positive defect, not as equality
+- leftover near-convergents make later blocks contract after an expanding first block
+- this is finance under a new name, not a termination route
+Strongest theorem
+- cycle_word_formally_expanding: 2^L < 3^o on every nonempty cycle
+Strongest refutation
+- exponent-budget leftover-killer; partition-dependent sign; unrealizable exact balance
+Reusable machinery
+- rho / product_rho / exponent_budget/summary.json
+Branch status
+- CLOSE
+Why
+- every comparison is 3^o/2^L, unique factorization, the global
+  defect, or cycleMin_finance
+Best next question
+- none from the cycle-wide exponent budget
 ```
 
 

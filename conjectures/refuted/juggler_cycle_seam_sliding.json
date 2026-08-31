@@ -15,7 +15,7 @@
     "simons-de-weger-2005-collatz-m-cycles"
   ],
   "mathematical_domain": "Juggler CycleMin homogeneous-run cut sliding",
-  "notes": "Phase 0 only. Not a reopen of the first-intersection taxonomy or OE-corridor leftover-killers. Combinatorial sliding is a REPARAMETERIZATION of rotateWord. No finance, no K=11, no L=55293, no floor raise. No Paper A edit, no ledger row, no new Lean. Not a halt theorem.",
+  "notes": "Phase 0 only. Not a reopen of the E^r-block leftover-killer (that branch already pushes even interiors forward to the valley). This phase refutes the stronger bidirectional slide. Combinatorial sliding is a REPARAMETERIZATION of rotateWord. No finance, no K=11, no L=55293, no floor raise. No Paper A edit, no ledger row, no new Lean. Not a halt theorem.",
   "origin": "docs/problems/juggler_cycle_seam_sliding.md",
   "proof_reference": "docs/problems/juggler_cycle_seam_sliding.md",
   "tested_range": "necklace identity at r=4; backward-slide witnesses 100 --E^2--> 3 and 10000 --E^3--> 3; trailing-cell checks 100 < 4^4 and 10000 < 4^8"
