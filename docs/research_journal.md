@@ -15290,4 +15290,79 @@ Best next question
   odd seeds, or is the next real target L=84?
 ```
 
+## Juggler cycle finance floor 261
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the cheap leftovers \(57\) and \(76\) are worth a few more odd residual seeds, or whether the next real target is the convergent \(L=84\)
+- **Hypotheses:** exact \(\log 257\) cannot kill \(57\); two short odd orbits raise the floor to \(261\) and name leftover as \(84\) or \(\ge 85\)
+- **Major results:** `reachesOne_n257` and `reachesOne_n259` are five-step certificates (peak \(13\) bits). `reachesOne_of_lt_two_hundred_sixty_one` is **EXACT — LEAN VERIFIED**. `cycle_finance_min_two_hundred_sixty_one` uses \(261\log 257>15921/11\). Lengths \(57\)–\(83\) are excluded. Leftover `cycle_word_length_eighty_four_or_ge_eighty_five`. Eliahou period moves \(57\to 84\). \(L=95,114,\ldots\) remain in the \(\ge 85\) bucket. Ledger rows `J-residual-floor-two-hundred-sixty-one`, `J-cycle-word-length-eighty-four-or-ge-eighty-five`. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** that \(57\) and \(76\) can be skipped because they are not record convergents (they blocked naming leftover as \(84\)); that a tighter log at floor \(257\) kills \(57\)
+- **Literature:** `juggler_cycle_finance`; `cycle_word_length_fifty_seven_or_ge_fifty_eight`
+- **Open:** \(L=84\) needs \(n\ln n>40269\) (exact-log floor \(\approx 4756\))
+- **Decision:** PROMOTE. The two seeds were worth it: leftover is now the record convergent
+
+```text
+What was learned
+- exact 257 ln 257 ≈ 1426 < 1430.8, so 57 is impossible
+  at floor 257
+- 257 and 259 reach 1 in 5 steps (13-bit peaks)
+- floor 261 with 261 log 257 > 15921/11 kills 57, 76,
+  and 58–83
+- leftover is now 84 or >= 85, the next record convergent
+- cheap cousins 95, 114, … sit in the >= 85 bucket
+Strongest theorem
+- cycle_word_length_eighty_four_or_ge_eighty_five
+  (EXACT — LEAN VERIFIED)
+Strongest refutation
+- that 57/76 should be skipped; they blocked naming 84
+Reusable machinery
+- reachesOne_of_lt_two_hundred_sixty_one;
+  cycle_finance_min_two_hundred_sixty_one
+Branch status
+- PROMOTE
+Why
+- two trivial seeds turn the leftover into the next
+  real target instead of a 19-gap cousin
+Best next question
+- can the residual floor be raised past ≈4756 so
+  finance kills L=84, or does joint-minima / height
+  law kill it first?
+```
+
+## Juggler cycle finance L=84 floor campaign
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the residual floor can be raised past \(\approx 4756\) so global finance kills leftover \(L=84\), or whether joint-minima / the odd-run height law kill it first
+- **Hypotheses:** the cheapest Lean kill of \(L=84\) is a residual-floor factory to the exact-log threshold \(n\ln n>40269\)
+- **Major results:** Height already excludes \(L=84\) as a 1-cycle or 2-cycle at the live floor \(261\) (**EXACT — HUMAN PROOF**, unchanged). Joint-minima kills no \(m\) there. Lean constant \(1\): height \(m=3\) at \(273\) (5 new odds); joint/height every \(m\) at \(1981\) (859 odds, peak \(900\) bits); global finance at \(4756\) (2247 odds, peak \(19694\) bits at \(n=2183\)). Killing every \(m\) is limited by \(m=31\); the two bounds coincide there. The \(4756\) and \(1981\) campaigns are machinery gravity. Hypothesis **REFUTED** (`juggler_cycle_finance_l84_floor_4756`). No new Lean. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** that raising the residual floor past \(\approx 4756\) is the cheapest way to kill leftover \(L=84\)
+- **Literature:** `juggler_cycle_finance`; `juggler_cycle_position_finance`; `juggler_cycle_m_finance`
+- **Open:** Lean leftover remains \(84\) or \(\ge 85\); height \(m=1,2\) is not in Lean
+- **Decision:** PARK. Do not raise the residual floor to \(1981\) or \(4756\). Formalize the height law at the current floor instead
+
+```text
+What was learned
+- height already kills L=84 at m=1,2 at floor 261
+- joint-minima kills no m for L=84 at 261
+- all-m joint/height fire at 1981 (const 1), 2325 (6/5)
+- global finance fires at 4756 (const 1), 5600 (6/5)
+- all-m is limited by m=31; height equals joint there
+- 4756 is 2247 odds / 19694-bit peak; 1981 is 859 / 900
+Strongest theorem
+- none new; height m=1,2 at 257/261 already HUMAN PROOF
+Strongest refutation
+- 4756 is not the cheapest kill of L=84
+Reusable machinery
+- l84_exclusion_floors; l84_floors.json
+Branch status
+- PARK
+Why
+- height already killed the 1-cycle/2-cycle cases; full
+  L=84 still needs either Lean height or a factory
+  campaign that is machinery gravity
+Best next question
+- formalize the odd-run height law on CycleFinance.lean
+  so the Lean leftover becomes period 84 with m>=3
+```
+
 

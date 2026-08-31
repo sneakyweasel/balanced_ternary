@@ -45,6 +45,7 @@ CLASS_CLOSED = "POSITION_FINANCE_CLOSED"
 CLASS_INCOMPLETE = "POSITION_FINANCE_INCOMPLETE"
 
 LEAN_CYCLE_FLOOR = 257
+CURRENT_LEAN_RESIDUAL_FLOOR = 261
 COMPARE_FLOOR = 53
 HEIGHT_LEVELS = 16
 FOCUS_LENGTHS = (19, 38, 84, 168)
@@ -248,6 +249,125 @@ def leftover_table(
             }
         )
     return out
+
+
+def smallest_n_ln_gt(need: float) -> int:
+    """Smallest integer n ≥ 2 with n ln n > need."""
+
+    n = 2
+    while n * math.log(n) <= need:
+        n += 1
+    return n
+
+
+def first_odd_satisfying(
+    pred,
+    *,
+    lo: int = 3,
+    hi: int = 30_000,
+) -> int | None:
+    """Least odd n in [lo, hi] for which pred(n) holds."""
+
+    n = lo if lo % 2 else lo + 1
+    while n <= hi:
+        if pred(n):
+            return n
+        n += 2
+    return None
+
+
+def l84_exclusion_floors() -> dict[str, Any]:
+    """Smallest floors that kill leftover L=84, by finance method.
+
+    Lean cycleMin_finance uses constant 1. The Python table uses 6/5.
+    Killing every m is limited by the many-valley case (m = L-o), where
+    the height law and joint-minima coincide. Height already kills
+    m=1,2 at the live residual floor 261; joint-minima kills no m there.
+    """
+
+    row = next(item for item in finance_rows(84) if item["L"] == 84)
+    length, odd_count, theta = row["L"], row["o"], row["theta"]
+    need = length * 3**odd_count / (3**odd_count - 2**length)
+    m_max = length - odd_count
+
+    def method_floors(const: float) -> dict[str, int | None]:
+        def joint(n: int, m: int) -> bool:
+            return theta > steiner_rhs(n, length, odd_count, m, const=const)
+
+        def height(n: int, m: int) -> bool:
+            return theta > position_rhs(n, length, odd_count, m, const=const)
+
+        return {
+            "joint_m1": first_odd_satisfying(lambda n: joint(n, 1)),
+            "joint_all_m": first_odd_satisfying(
+                lambda n: all(joint(n, m) for m in range(1, m_max + 1))
+            ),
+            "height_m1": first_odd_satisfying(lambda n: height(n, 1)),
+            "height_m2": first_odd_satisfying(lambda n: height(n, 2)),
+            "height_m3": first_odd_satisfying(lambda n: height(n, 3)),
+            "height_all_m": first_odd_satisfying(
+                lambda n: all(height(n, m) for m in range(1, m_max + 1))
+            ),
+        }
+
+    heights = odd_run_heights(CURRENT_LEAN_RESIDUAL_FLOOR)
+    joint_now = [
+        m
+        for m in range(1, m_max + 1)
+        if theta
+        > steiner_rhs(
+            CURRENT_LEAN_RESIDUAL_FLOOR, length, odd_count, m, const=1.0
+        )
+    ]
+    height_now = [
+        m
+        for m in range(1, m_max + 1)
+        if theta
+        > position_rhs(
+            CURRENT_LEAN_RESIDUAL_FLOOR,
+            length,
+            odd_count,
+            m,
+            const=1.0,
+            heights=heights,
+        )
+    ]
+    height_now_six = [
+        m
+        for m in range(1, m_max + 1)
+        if theta
+        > position_rhs(
+            CURRENT_LEAN_RESIDUAL_FLOOR,
+            length,
+            odd_count,
+            m,
+            heights=heights,
+        )
+    ]
+    return {
+        "L": length,
+        "o": odd_count,
+        "theta": theta,
+        "m_max": m_max,
+        "need_const1": need,
+        "current_lean_floor": CURRENT_LEAN_RESIDUAL_FLOOR,
+        "const_1": {
+            "global": smallest_n_ln_gt(need),
+            **method_floors(1.0),
+        },
+        "six_fifths": {
+            "global_n_max": row["n_max"],
+            "global": smallest_n_ln_gt(EPS_CONST * need),
+            **method_floors(EPS_CONST),
+        },
+        "at_current_floor": {
+            "tau1": heights[1],
+            "tau2": heights[2],
+            "joint_kills_m_const1": joint_now,
+            "height_kills_m_const1": height_now,
+            "height_kills_m_six_fifths": height_now_six,
+        },
+    }
 
 
 def finance_surviving_scan(

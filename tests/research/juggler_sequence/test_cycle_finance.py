@@ -180,6 +180,8 @@ def test_eliahou_instance_matches_science_table():
     assert not eliahou_leftover(19, lengths)
     assert not eliahou_leftover(30, lengths)
     assert not eliahou_leftover(38, lengths)
+    assert not eliahou_leftover(57, lengths)
+    assert not eliahou_leftover(76, lengths)
     assert not eliahou_leftover(1053, lengths)
 
 

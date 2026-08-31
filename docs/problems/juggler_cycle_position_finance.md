@@ -94,13 +94,13 @@ No cycle of any length — not claimed.
 - Whole-cycle finance — **EXACT — LEAN VERIFIED**
   (`cycleMin_finance`,
   [juggler_cycle_finance.md](juggler_cycle_finance.md)); Lean
-  leftover is period \(38\) or \(\ge 39\) at floor \(257\)
+  leftover is period \(84\) or \(\ge 85\) at residual floor \(261\)
 - Joint-minima finance — **EXACT — HUMAN PROOF**
   ([juggler_cycle_m_finance.md](juggler_cycle_m_finance.md));
   tabulated there at floor \(53\), not at \(257\)
 - Peak finance, extremal composition, cycle-gap Baker — not
   reopened
-- Residual floor \(n<257\) reaches 1 — **EXACT — LEAN VERIFIED**
+- Residual floor \(n<261\) reaches 1 — **EXACT — LEAN VERIFIED**
 - Every start reaches 1 — not claimed
 
 Project relationship: **extended** (refinement of m-finance).
@@ -166,7 +166,8 @@ It is not required.
 - Dataset: `data/research/juggler/cycle_position_finance/`
 - Tests: `tests/research/juggler_sequence/test_cycle_position_finance.py`
 - Focus lengths \(19,38,84,168\). Finance-surviving scan \(L\le 200\)
-  at floor \(257\). Comparison table at floor \(53\).
+  at floor \(257\). Comparison table at floor \(53\). Leftover-\(84\)
+  kill floors: `l84_floors.json` (live Lean floor \(261\)).
 - No CLI. No new Lean. Paper A is unchanged.
 
 ## Conjectures
@@ -211,8 +212,23 @@ Classification **POSITION_FINANCE_GREEN**. Regenerate with
 - **Length 84** — **EXACT — HUMAN PROOF**: the height law excludes
   \(m=1\) and \(m=2\); joint-minima excludes none. This is the
   first leftover pair that needs the new law at floor \(257\).
-  Length \(168\) dies for \(m\le 4\) by the same packing;
-  \(103\) and \(187\) lose a few large-\(m\) slots.
+  The same picture holds at the live Lean floor \(261\). Length
+  \(168\) dies for \(m\le 4\) by the same packing; \(103\) and
+  \(187\) lose a few large-\(m\) slots.
+- **Leftover-\(84\) kill floors** — **COMPUTATIONALLY VERIFIED**
+  (existing inequalities evaluated at new \(n\); `l84_floors.json`).
+  Lean constant \(1\): height kills \(m=1\) at \(121\), \(m=2\)
+  at \(199\), \(m=3\) at \(273\); joint and height kill every
+  \(m\) at \(1981\); global finance at \(4756\). Constant \(6/5\):
+  all-\(m\) at \(2325\), global \(n_{\max}=5599\). Killing every
+  \(m\) is limited by \(m=31\) (all valleys at \(n\)); the two
+  bounds coincide there. A \(4756\) residual-floor campaign is
+  \(2247\) new odd certificates (peak \(19694\) bits at
+  \(n=2183\)). The all-\(m\) campaign at \(1981\) is still
+  \(859\) odds (peak \(900\) bits). Both are machinery gravity.
+  Height already killed the 1-cycle and 2-cycle cases at the
+  current floor. The hypothesis that \(4756\) is the cheapest
+  kill is **REFUTED**.
 - **Floor 53 comparison** — the height law also newly kills
   \(L=19\) at \(m=2\) and \(L=38\) at \(m=3,4\), which is
   academic once the residual floor is \(257\).
@@ -220,11 +236,13 @@ Classification **POSITION_FINANCE_GREEN**. Regenerate with
 
 ## Open questions
 
-The Lean leftover is still
-`cycle_word_length_thirty_eight_or_ge_thirty_nine`. The
+The Lean leftover is
+`cycle_word_length_eighty_four_or_ge_eighty_five`. The
 human-proof exclusion of length \(38\), and of length \(84\) as a
 1-cycle or 2-cycle, is not in Lean. Length \(84\) with \(m\ge 3\)
-still needs a larger floor or a different argument.
+still needs a larger floor or a different argument. Raising the
+residual floor to \(1981\) or \(4756\) to kill every \(m\) is
+**PARK**.
 
 ## Decision
 
@@ -238,9 +256,11 @@ consequence. Circuit-partition without a height law remains a
 reparameterization. No Lean in this phase. Not a new paper. Not a
 halt theorem.
 
-Best next question: can joint-minima at floor \(257\) be
-formalized on `CycleFinance.lean` so the Lean leftover becomes
-period \(84\) with \(m\ge 3\), or a later near-convergent?
+The residual-floor campaign to \(1981\) or \(4756\) is **PARK**.
+
+Best next question: formalize the odd-run height law on
+`CycleFinance.lean` so the Lean leftover becomes period \(84\)
+with \(m\ge 3\), or a later near-convergent.
 
 ## Publication assessment
 

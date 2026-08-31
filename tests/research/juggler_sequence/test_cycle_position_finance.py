@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from research.conjectures import get_conjecture
 from research.juggler_sequence.cycle_m_finance import steiner_rhs
 from research.juggler_sequence.cycle_position_finance import (
     CLASS_CLOSED,
@@ -12,6 +13,7 @@ from research.juggler_sequence.cycle_position_finance import (
     CLASS_INCOMPLETE,
     CLASS_PARK,
     COMPARE_FLOOR,
+    CURRENT_LEAN_RESIDUAL_FLOOR,
     EXISTING_LEAN,
     FOCUS_LENGTHS,
     FORBIDDEN_LEAN_FILES,
@@ -20,6 +22,7 @@ from research.juggler_sequence.cycle_position_finance import (
     LEAN_CYCLE_FLOOR,
     classify,
     height_allocation,
+    l84_exclusion_floors,
     lean_api_present,
     leftover_table,
     odd_run_heights,
@@ -73,6 +76,44 @@ def test_leftover_table_kills_thirty_eight_and_eighty_four_small_m():
     assert eighty_four["position_kills_m1"] is True
     assert eighty_four["new_exclusions"] == [1, 2]
     assert eighty_four["position_kills_all_m"] is False
+
+
+def test_l84_exclusion_floors_height_kills_first():
+    """Joint/height kill all of L=84 before a 4756 residual-floor raise."""
+
+    table = l84_exclusion_floors()
+    assert table["current_lean_floor"] == CURRENT_LEAN_RESIDUAL_FLOOR
+    assert table["at_current_floor"]["joint_kills_m_const1"] == []
+    assert table["at_current_floor"]["height_kills_m_const1"] == [1, 2]
+    assert table["at_current_floor"]["height_kills_m_six_fifths"] == [1, 2]
+    const1 = table["const_1"]
+    assert const1["global"] == 4756
+    assert const1["joint_all_m"] == const1["height_all_m"] == 1981
+    assert const1["height_m1"] == 121
+    assert const1["height_m2"] == 199
+    assert const1["height_m3"] == 273
+    assert const1["joint_m1"] == 271
+    assert const1["height_m1"] < CURRENT_LEAN_RESIDUAL_FLOOR < const1["height_m3"]
+    assert const1["joint_all_m"] < const1["global"]
+    six = table["six_fifths"]
+    assert six["global_n_max"] == 5599
+    assert six["global"] == 5600
+    assert six["joint_all_m"] == six["height_all_m"] == 2325
+    artifact = json.loads(
+        (
+            REPO
+            / "data"
+            / "research"
+            / "juggler"
+            / "cycle_position_finance"
+            / "l84_floors.json"
+        ).read_text(encoding="utf-8")
+    )
+    assert artifact["const_1"]["global"] == const1["global"]
+    assert artifact["const_1"]["joint_all_m"] == const1["joint_all_m"]
+    assert artifact["at_floor_261"]["height_kills_m"] == [1, 2]
+    refuted = get_conjecture("juggler_cycle_finance_l84_floor_4756")
+    assert refuted["status"] == "REFUTED"
 
 
 def test_floor_53_kills_thirty_eight_small_m_only_by_height():

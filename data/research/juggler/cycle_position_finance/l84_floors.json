@@ -1,0 +1,55 @@
+{
+  "L": 84,
+  "o": 53,
+  "current_lean_floor": 261,
+  "note": "Killing every m is limited by m=31 (all valleys at n); height and joint coincide there. Height already kills m=1,2 at floor 261. Residual-floor campaigns to 1981 or 4756 are machinery gravity.",
+  "const_1": {
+    "global": 4756,
+    "joint_m1": 271,
+    "joint_all_m": 1981,
+    "height_m1": 121,
+    "height_m2": 199,
+    "height_m3": 273,
+    "height_all_m": 1981
+  },
+  "six_fifths": {
+    "global_n_max": 5599,
+    "global": 5600,
+    "joint_m1": 307,
+    "joint_all_m": 2325,
+    "height_m3": 317,
+    "height_all_m": 2325
+  },
+  "at_floor_261": {
+    "joint_kills_m": [],
+    "height_kills_m": [1, 2],
+    "tau1": 4217,
+    "tau2": 273845
+  },
+  "orbit_cost_new_odds_above_261": {
+    "height_m3_const1": {
+      "floor": 273,
+      "new_odds": 5,
+      "worst_steps": 34,
+      "worst_peak_bits": 104,
+      "worst_seed": 265
+    },
+    "all_m_const1": {
+      "floor": 1981,
+      "new_odds": 859,
+      "worst_steps": 80,
+      "worst_peak_bits": 900,
+      "worst_seed_steps": 1155,
+      "worst_seed_bits": 1119
+    },
+    "global_const1": {
+      "floor": 4756,
+      "new_odds": 2247,
+      "worst_steps": 107,
+      "worst_peak_bits": 19694,
+      "worst_seed_steps": 4649,
+      "worst_seed_bits": 2183,
+      "even_square_note": "4756 > 53^2=2809; Lean would also need even_lt_sq at F>=69"
+    }
+  }
+}

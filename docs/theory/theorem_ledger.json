@@ -5183,7 +5183,7 @@
   {
     "id": "J-cycle-word-length-ge-fourteen",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is at least 14. Strengthened by J-small-cycle-census-eighteen, J-cycle-word-length-nineteen-or-ge-thirty, J-cycle-word-length-thirty-eight-or-ge-thirty-nine, and J-cycle-word-length-fifty-seven-or-ge-fifty-eight: lengths 14–18 and 20–29 are excluded at the residual floor 53, and lengths 19 and 30–56 at the residual floor 257, so the laboratory leftover is period 57 or at least 58. Lean theorem cycle_word_length_ge_fourteen. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is at least 14. Strengthened through J-cycle-word-length-eighty-four-or-ge-eighty-five: lengths 14–83 except the named leftovers along the way are excluded, so the laboratory leftover is period 84 or at least 85. Lean theorem cycle_word_length_ge_fourteen. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
@@ -5216,7 +5216,7 @@
   {
     "id": "J-cycle-word-eliahou-leftover",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, and every length in [30, 10^5) outside a named list of near-convergents is already excluded, then the period is 57, or belongs to that list, or is at least 10^5. Lean theorem cycle_word_eliahou_leftover: bookkeeping on cycle_word_length_fifty_seven_or_ge_fifty_eight plus EliahouTable, not a new inequality. This is the Collatz Eliahou leftover shape (period ≥ X, or a named convergent family) on the floor-power map. This is not a proof of the finance table, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, and every length in [30, 10^5) outside a named list of near-convergents is already excluded, then the period is 84, or belongs to that list, or is at least 10^5. Lean theorem cycle_word_eliahou_leftover: bookkeeping on cycle_word_length_eighty_four_or_ge_eighty_five plus EliahouTable, not a new inequality. This is the Collatz Eliahou leftover shape (period ≥ X, or a named convergent family) on the floor-power map. This is not a proof of the finance table, not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
@@ -5227,7 +5227,7 @@
   {
     "id": "J-cycle-word-eliahou-leftover-instance",
     "tag": "COMPUTATIONALLY VERIFIED",
-    "statement": "If a nontrivial Juggler cycle exists, its period is 57, or one of the 397 near-convergent lengths at the Python floor 10^6 (94 multiples of 1054 plus combinations of the ln 2 / ln 3 convergents), or at least 10^5. Instantiation of J-cycle-word-eliahou-leftover by the existing finance gap table L ≤ 10^5 and descent floor 10^6. Length 57 is kept as the Lean-named leftover and is computationally already excluded. Lengths 19 and 38 are excluded in Lean at the residual floor 257 with log 257 > 61/11. This is not a new inequality, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "statement": "If a nontrivial Juggler cycle exists, its period is 84, or one of the 397 near-convergent lengths at the Python floor 10^6 (94 multiples of 1054 plus combinations of the ln 2 / ln 3 convergents), or at least 10^5. Instantiation of J-cycle-word-eliahou-leftover by the existing finance gap table L ≤ 10^5 and descent floor 10^6. Length 84 is kept as the Lean-named leftover and is computationally already excluded. Lengths 19, 38, 57, and 76 are excluded in Lean at the residual floor 261. This is not a new inequality, not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
@@ -5293,7 +5293,29 @@
   {
     "id": "J-cycle-word-length-fifty-seven-or-ge-fifty-eight",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 57 or at least 58. Lengths ≤ 19 are J-small-cycle-census-nineteen; lengths 20–37 remain excluded at floor 257 with the older 2827/2 comparison; lengths 38–56 are excluded by cycle_finance_min_two_hundred_fifty_seven at 15677/11 (finance_excludes_length_thirtyeight and companions, packaged as no_cycle_word_length_lt_fifty_seven). Length 57 is the next leftover at 15677/11. Length 84 is the next record near-convergent (need ≈ 40269). Lean theorem cycle_word_length_fifty_seven_or_ge_fifty_eight. Strengthened by J-cycle-word-eliahou-leftover, which rewrites this leftover plus the finance table as period 57, a listed near-convergent, or at least 10^5. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 57 or at least 58. Lengths ≤ 19 are J-small-cycle-census-nineteen; lengths 20–56 are excluded at floor 257. This row is the leftover before the two extra odd seeds 257 and 259. Strengthened by J-cycle-word-length-eighty-four-or-ge-eighty-five, which kills the length-57 disjunct at the residual floor 261. Lean theorem cycle_word_length_fifty_seven_or_ge_fifty_eight. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/CycleFinance.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-residual-floor-two-hundred-sixty-one",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "Every positive integer strictly below 261 reaches 1 under the Juggler map (reachesOne_of_lt_two_hundred_sixty_one). The floor-257 class plus the two odd seeds 257 and 259 (five steps each) raise the floor. Exact log 257 cannot kill length 57 (257 ln 257 ≈ 1426 < 1430.8). Combined with cycleMin_finance and 261 log 257 > 15921/11 this excludes the cheap leftovers 57 and 76, so the named leftover is the record near-convergent 84. This is a finite certificate, not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_finance.md",
+    "lean": "Problems/Juggler/TerminationFloor257.lean",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_finance.py"
+    ],
+    "related_conjectures": []
+  },
+  {
+    "id": "J-cycle-word-length-eighty-four-or-ge-eighty-five",
+    "tag": "EXACT — LEAN VERIFIED",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, its period is 84 or at least 85. Lengths ≤ 56 are excluded at floor 257; lengths 57–83 are excluded by cycle_finance_min_two_hundred_sixty_one at 15921/11 (finance_excludes_length_fiftyseven, finance_excludes_length_seventysix, and companions, packaged as no_cycle_word_length_lt_eighty_four). Length 84 is the next record near-convergent (need ≈ 40269). Lean theorem cycle_word_length_eighty_four_or_ge_eighty_five. Strengthened by J-cycle-word-eliahou-leftover, which rewrites this leftover plus the finance table as period 84, a listed near-convergent, or at least 10^5. This is not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [

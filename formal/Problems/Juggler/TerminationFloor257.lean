@@ -3,13 +3,14 @@ import Problems.Juggler.Termination
 namespace Problems.Juggler
 
 /-!
-# Residual floor 257
+# Residual floors 257 and 261
 
-Every positive integer strictly below 257 reaches 1.
+Every positive integer strictly below 257 reaches 1, and the
+two extra odd seeds 257 and 259 raise the floor to 261.
 Evens below 2809 already reduce to {1,…,52}.
-Odd seeds 53,55,…,255 are finite orbit certificates.
 This is a finite certificate, not a halt theorem.
-Combined with cycleMin_finance it excludes cycle length 19.
+Combined with cycleMin_finance the floor 261 excludes the
+cheap leftovers 57 and 76, so the named leftover is 84.
 -/
 
 theorem reachesOne_n53 : ReachesOne 53 :=
@@ -464,5 +465,36 @@ theorem non_reachesOne_ge_two_hundred_fifty_seven {n : ℕ}
     (hn : 1 ≤ n) (hfail : ¬ReachesOne n) : 257 ≤ n := by
   by_contra h
   exact hfail (reachesOne_of_lt_two_hundred_fifty_seven hn (Nat.not_le.mp h))
+
+theorem reachesOne_n257 : ReachesOne 257 :=
+  ⟨5, by native_decide⟩
+
+theorem reachesOne_n259 : ReachesOne 259 :=
+  ⟨5, by native_decide⟩
+
+/-- Every positive residual strictly below 261 is ReachesOne.
+Two extra odd seeds; evens below 261 already reduce via
+`even_lt_sq_fifty_three`. Combined with cycleMin_finance this
+excludes the cheap leftovers 57 and 76, so the named leftover
+is the record near-convergent 84. -/
+theorem reachesOne_of_lt_two_hundred_sixty_one {y : ℕ}
+    (hpos : 1 ≤ y) (hy : y < 261) : ReachesOne y := by
+  rcases Nat.lt_or_ge y 257 with h257 | h257
+  · exact reachesOne_of_lt_two_hundred_fifty_seven hpos h257
+  · cases Nat.mod_two_eq_zero_or_one y with
+    | inl heven =>
+        exact even_lt_sq_fifty_three_reachesOne heven hpos
+          (lt_trans hy (by norm_num : (261 : ℕ) < 2809))
+    | inr hodd =>
+        have hsplit : y = 257 ∨ y = 259 := by omega
+        rcases hsplit with h | h
+        · simpa [h] using reachesOne_n257
+        · simpa [h] using reachesOne_n259
+
+/-- A positive non-ReachesOne value cannot lie in {1,…,260}. -/
+theorem non_reachesOne_ge_two_hundred_sixty_one {n : ℕ}
+    (hn : 1 ≤ n) (hfail : ¬ReachesOne n) : 261 ≤ n := by
+  by_contra h
+  exact hfail (reachesOne_of_lt_two_hundred_sixty_one hn (Nat.not_le.mp h))
 
 end Problems.Juggler

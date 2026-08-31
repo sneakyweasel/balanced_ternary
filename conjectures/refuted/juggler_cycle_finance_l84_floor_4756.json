@@ -1,0 +1,22 @@
+{
+  "id": "juggler_cycle_finance_l84_floor_4756",
+  "title": "Raising the residual floor past ≈4756 is the cheapest way to kill leftover L=84",
+  "statement": "To exclude a Juggler cycle of length 84 it is necessary to raise the Lean residual floor past the global-finance exact-log threshold n ln n > 40269 (n ≈ 4756). Joint-minima and the odd-run height law do not kill L=84 before that floor.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "Height law at floor 257/261 already excludes L=84 as a 1-cycle or 2-cycle (RHS 0.00091 and 0.00177 < θ=0.002086 at n=261, constant 1)",
+    "Joint-minima and height kill every m for L=84 at residual floor 1981 (constant 1) or 2325 (constant 6/5), strictly before global finance at 4756 / 5600",
+    "Killing every m is limited by m=31 (all valleys at n); the two bounds coincide there, so height does not beat joint on the full length, but both still beat a 4756 floor raise",
+    "A 4756 campaign is 2247 new odd certificates; n=2183 peaks at 19694 bits. The 1981 all-m campaign is still 859 odds with a 900-bit peak at n=1119"
+  ],
+  "first_seen": "juggler cycle finance leftover 84",
+  "lean_reference": "cycle_word_length_eighty_four_or_ge_eighty_five",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / residual floor",
+  "notes": "Height already kills m=1,2 at the live Lean floor 261 without any raise. Formalizing that bound changes the Lean leftover to period 84 with m≥3, or ≥85. A residual-floor factory to 1981 or 4756 is machinery gravity. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_finance.md",
+  "proof_reference": "docs/problems/juggler_cycle_position_finance.md",
+  "tested_range": "L=84, o=53, m=1..31; floors 261, 273, 1981, 2325, 4756, 5600; odd orbits 263..4755"
+}

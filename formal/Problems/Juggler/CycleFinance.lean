@@ -17,27 +17,26 @@ whole-cycle log unroll gives, for any `CycleMin` start `n`,
 
 `n * log n * (3^o - 2^L) ≤ L * 3^o`.
 
-Every cycle state is at least `257`
-(`cycleWord_iterate_not_lt_two_hundred_fifty_seven`) and the
+Every cycle state is at least `261`
+(`cycleWord_iterate_not_lt_two_hundred_sixty_one`) and the
 rotated minimum is odd (`cycleMin_start_odd`), so the minimum is
-at least `257` and `n * log n ≥ 257 * log 257 > 15677/11`.
-This excludes cycle lengths wholesale. The residual floor `257`
-(`reachesOne_of_lt_two_hundred_fifty_seven`) kills the
-near-convergent length `19`. The tighter certificate
-`log 257 > 61/11` also kills length `38`. Together with
+at least `261` and `n * log n ≥ 261 * log 257 > 15921/11`.
+This excludes cycle lengths wholesale. The residual floor `261`
+(`reachesOne_of_lt_two_hundred_sixty_one`) kills the cheap
+leftovers `57` and `76`. Together with
 `no_cycle_word_length_le_eighteen` the census extends to
-`no_cycle_word_length_le_nineteen`, lengths `20`–`56` die by the
-same comparison, and any remaining cycle has period `57` or at
-least `58`.
+`no_cycle_word_length_le_nineteen`, lengths `20`–`83` die by the
+same comparison, and any remaining cycle has period `84` or at
+least `85`.
 
 Eliahou packaging (`cycle_word_eliahou_leftover`) rewrites that
-leftover plus the computational finance table as: period `57`, or
+leftover plus the computational finance table as: period `84`, or
 a listed near-convergent, or at least `10^5`. Not a new inequality.
 
 Dossier: `docs/problems/juggler_cycle_finance.md`. This is not a
 halt theorem and not a leftover-word census named
-`no_cycle_word_length_eleven`. Length `57` is the next leftover
-at this floor; the next record near-convergent is length `84`.
+`no_cycle_word_length_eleven`. Length `84` is the next record
+near-convergent leftover at this floor.
 -/
 
 /-- The dyadic-cell logarithm bound: if `z < (y+1)^2` then
@@ -775,6 +774,26 @@ theorem cycleWord_iterate_not_lt_two_hundred_fifty_seven
     reachesOne_of_lt_two_hundred_fifty_seven hpos hy
   exact cycleWord_not_reachesOne hn h (reachesOne_of_iterate rfl hR)
 
+/-- Residual class `{1,…,260}` is disjoint from a nontrivial cycle. -/
+theorem cycleWord_iterate_not_lt_two_hundred_sixty_one
+    {n : ℕ} {w : List Branch} {i : ℕ}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    261 ≤ floorPower^[i] n := by
+  by_contra h261
+  have hmod : floorPower^[i] n = floorPower^[i % w.length] n :=
+    cycle_iterate_mod h
+  have hlenpos : 0 < w.length :=
+    lt_of_lt_of_le (by decide : (0 : ℕ) < 1) h.2.2
+  have hlt : i % w.length < w.length := Nat.mod_lt i hlenpos
+  have hge := cycleWord_iterate_ge_two hn h hlt
+  have hpos : 1 ≤ floorPower^[i] n := by
+    have : 2 ≤ floorPower^[i % w.length] n := hge
+    exact le_trans (by decide : (1 : ℕ) ≤ 2) (by simpa [hmod] using this)
+  have hy : floorPower^[i] n < 261 := Nat.lt_of_not_ge h261
+  have hR : ReachesOne (floorPower^[i] n) :=
+    reachesOne_of_lt_two_hundred_sixty_one hpos hy
+  exact cycleWord_not_reachesOne hn h (reachesOne_of_iterate rfl hR)
+
 /-- Numeric certificate `log 257 > 61/11`, via `e < 2.7182818286`
 and `e^61 < 257^11`. -/
 theorem log_two_hundred_fifty_seven_gt : (61 / 11 : ℝ) < Real.log 257 := by
@@ -1105,9 +1124,7 @@ theorem no_cycle_word_length_lt_fifty_seven {n : ℕ} {w : List Branch}
     · exact finance_excludes_length_fiftysix hn hL h
 
 /-- If a nontrivial cycle exists, its period is `57` or at least `58`.
-Length `38` is killed by `log 257 > 61/11`; `39`–`56` die by the
-same comparison. `L=57` survives `15677/11`. The next record
-near-convergent is `L=84`. -/
+Weaker leftover: the floor `261` also kills `57` and `76`. -/
 theorem cycle_word_length_fifty_seven_or_ge_fifty_eight
     {n : ℕ} {w : List Branch}
     (hn : 2 ≤ n) (h : CycleWord n w) :
@@ -1117,13 +1134,281 @@ theorem cycle_word_length_fifty_seven_or_ge_fifty_eight
   obtain ⟨h57, h58⟩ := hc
   exact no_cycle_word_length_lt_fifty_seven hn (by omega) h
 
+/-- Finance at the rotated odd minimum after the residual floor `261`:
+`(15921/11)(3^o - 2^L) ≤ L 3^o`, because the minimum is at least `261`
+and `261 log 257 > 15921/11`. -/
+theorem cycle_finance_min_two_hundred_sixty_one {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    (15921 / 11 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) ≤
+      (w.length : ℝ) * (3 : ℝ) ^ oddCount w := by
+  obtain ⟨k, hkL, hmin⟩ := exists_cycleMin hn h
+  have hm261 : 261 ≤ floorPower^[k] n :=
+    cycleWord_iterate_not_lt_two_hundred_sixty_one hn h
+  have hm2 : 2 ≤ floorPower^[k] n := by omega
+  have hfin := cycleMin_finance hm2 hmin
+  rw [rotateWord_length, oddCount_rotateWord] at hfin
+  have hexpand : (2 : ℝ) ^ w.length < (3 : ℝ) ^ oddCount w := by
+    exact_mod_cast cycle_word_formally_expanding hn h
+  have hm261R : (261 : ℝ) ≤ (floorPower^[k] n : ℝ) := by exact_mod_cast hm261
+  have hlog : (61 / 11 : ℝ) ≤ Real.log (floorPower^[k] n) := by
+    have hmono : Real.log (257 : ℝ) ≤ Real.log (floorPower^[k] n) := by
+      have : (257 : ℝ) ≤ (floorPower^[k] n : ℝ) := by
+        exact_mod_cast (le_trans (by decide : (257 : ℕ) ≤ 261) hm261)
+      gcongr
+    linarith [log_two_hundred_fifty_seven_gt]
+  have hmlog : (15921 / 11 : ℝ) ≤
+      (floorPower^[k] n : ℝ) * Real.log (floorPower^[k] n) := by
+    have h1 : (261 : ℝ) * (61 / 11) ≤
+        (floorPower^[k] n : ℝ) * Real.log (floorPower^[k] n) :=
+      mul_le_mul hm261R hlog (by norm_num) (by linarith)
+    linarith
+  calc (15921 / 11 : ℝ) * ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length)
+      ≤ (floorPower^[k] n : ℝ) * Real.log (floorPower^[k] n) *
+          ((3 : ℝ) ^ oddCount w - (2 : ℝ) ^ w.length) :=
+        mul_le_mul_of_nonneg_right hmlog (by linarith)
+    _ ≤ (w.length : ℝ) * (3 : ℝ) ^ oddCount w := hfin
+
+theorem finance_contradicts_min_two_hundred_sixty_one
+    {n : ℕ} {w : List Branch} {L o0 : ℕ}
+    (hn : 2 ≤ n) (h : CycleWord n w)
+    (hlen : w.length = L) (hL : (L : ℝ) < 15921 / 11)
+    (ho : o0 ≤ oddCount w)
+    (hnum : (15921 / 11 : ℝ) * ((3 : ℝ) ^ o0 - (2 : ℝ) ^ L) >
+      (L : ℝ) * (3 : ℝ) ^ o0) : False := by
+  have hfin := cycle_finance_min_two_hundred_sixty_one hn h
+  rw [hlen] at hfin
+  have hA : (3 : ℝ) ^ o0 ≤ (3 : ℝ) ^ oddCount w := by
+    have : (3 : ℕ) ^ o0 ≤ 3 ^ oddCount w :=
+      Nat.pow_le_pow_right (by norm_num) ho
+    exact_mod_cast this
+  have hc : (0 : ℝ) < 15921 / 11 - L := sub_pos.mpr hL
+  have hnum' : (15921 / 11 - (L : ℝ)) * (3 : ℝ) ^ o0 >
+      (15921 / 11) * (2 : ℝ) ^ L := by nlinarith
+  have hfin' : (15921 / 11 - (L : ℝ)) * (3 : ℝ) ^ oddCount w ≤
+      (15921 / 11) * (2 : ℝ) ^ L := by nlinarith
+  have hleA : (3 : ℝ) ^ oddCount w ≤ (3 : ℝ) ^ o0 :=
+    le_of_mul_le_mul_left (le_trans hfin' hnum'.le) hc
+  have heq : (3 : ℝ) ^ oddCount w = (3 : ℝ) ^ o0 := le_antisymm hleA hA
+  rw [heq] at hfin'
+  exact not_le_of_gt hnum' hfin'
+
+theorem finance_excludes_at_two_hundred_sixty_one
+    {n : ℕ} {w : List Branch} {L oPred : ℕ}
+    (hn : 2 ≤ n) (hlen : w.length = L)
+    (hL : (L : ℝ) < 15921 / 11)
+    (hpred : 3 ^ oPred ≤ 2 ^ L)
+    (hnum : (15921 / 11 : ℝ) * ((3 : ℝ) ^ (oPred + 1) - (2 : ℝ) ^ L) >
+      (L : ℝ) * (3 : ℝ) ^ (oPred + 1)) :
+    ¬CycleWord n w := by
+  intro h
+  have hpred' : 3 ^ oPred ≤ 2 ^ w.length := by simpa [hlen] using hpred
+  have ho : oPred + 1 ≤ oddCount w :=
+    Nat.succ_le_of_lt (cycle_oddCount_gt_of_three_pow_le hn h hpred')
+  exact finance_contradicts_min_two_hundred_sixty_one hn h hlen hL ho hnum
+
+theorem finance_excludes_length_fiftyseven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 57) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 35 ≤ 2 ^ 57) (by norm_num)
+
+theorem finance_excludes_length_fiftyeight {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 58) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 36 ≤ 2 ^ 58) (by norm_num)
+
+theorem finance_excludes_length_fiftynine {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 59) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 37 ≤ 2 ^ 59) (by norm_num)
+
+theorem finance_excludes_length_sixty {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 60) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 37 ≤ 2 ^ 60) (by norm_num)
+
+theorem finance_excludes_length_sixtyone {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 61) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 38 ≤ 2 ^ 61) (by norm_num)
+
+theorem finance_excludes_length_sixtytwo {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 62) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 39 ≤ 2 ^ 62) (by norm_num)
+
+theorem finance_excludes_length_sixtythree {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 63) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 39 ≤ 2 ^ 63) (by norm_num)
+
+theorem finance_excludes_length_sixtyfour {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 64) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 40 ≤ 2 ^ 64) (by norm_num)
+
+theorem finance_excludes_length_sixtyfive {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 65) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 41 ≤ 2 ^ 65) (by norm_num)
+
+theorem finance_excludes_length_sixtysix {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 66) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 41 ≤ 2 ^ 66) (by norm_num)
+
+theorem finance_excludes_length_sixtyseven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 67) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 42 ≤ 2 ^ 67) (by norm_num)
+
+theorem finance_excludes_length_sixtyeight {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 68) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 42 ≤ 2 ^ 68) (by norm_num)
+
+theorem finance_excludes_length_sixtynine {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 69) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 43 ≤ 2 ^ 69) (by norm_num)
+
+theorem finance_excludes_length_seventy {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 70) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 44 ≤ 2 ^ 70) (by norm_num)
+
+theorem finance_excludes_length_seventyone {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 71) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 44 ≤ 2 ^ 71) (by norm_num)
+
+theorem finance_excludes_length_seventytwo {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 72) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 45 ≤ 2 ^ 72) (by norm_num)
+
+theorem finance_excludes_length_seventythree {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 73) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 46 ≤ 2 ^ 73) (by norm_num)
+
+theorem finance_excludes_length_seventyfour {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 74) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 46 ≤ 2 ^ 74) (by norm_num)
+
+theorem finance_excludes_length_seventyfive {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 75) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 47 ≤ 2 ^ 75) (by norm_num)
+
+theorem finance_excludes_length_seventysix {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 76) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 47 ≤ 2 ^ 76) (by norm_num)
+
+theorem finance_excludes_length_seventyseven {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 77) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 48 ≤ 2 ^ 77) (by norm_num)
+
+theorem finance_excludes_length_seventyeight {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 78) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 49 ≤ 2 ^ 78) (by norm_num)
+
+theorem finance_excludes_length_seventynine {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 79) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 49 ≤ 2 ^ 79) (by norm_num)
+
+theorem finance_excludes_length_eighty {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 80) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 50 ≤ 2 ^ 80) (by norm_num)
+
+theorem finance_excludes_length_eightyone {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 81) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 51 ≤ 2 ^ 81) (by norm_num)
+
+theorem finance_excludes_length_eightytwo {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 82) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 51 ≤ 2 ^ 82) (by norm_num)
+
+theorem finance_excludes_length_eightythree {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hlen : w.length = 83) : ¬CycleWord n w :=
+  finance_excludes_at_two_hundred_sixty_one hn hlen (by norm_num)
+    (by norm_num : (3 : ℕ) ^ 52 ≤ 2 ^ 83) (by norm_num)
+
+/-- No cycle word of length below `84`. -/
+theorem no_cycle_word_length_lt_eighty_four {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (hLt : w.length < 84) : ¬CycleWord n w := by
+  intro h
+  rcases Nat.lt_or_ge w.length 57 with h56 | h57
+  · exact no_cycle_word_length_lt_fifty_seven hn h56 h
+  · have hsplit : w.length = 57 ∨ w.length = 58 ∨ w.length = 59 ∨
+        w.length = 60 ∨ w.length = 61 ∨ w.length = 62 ∨
+        w.length = 63 ∨ w.length = 64 ∨ w.length = 65 ∨
+        w.length = 66 ∨ w.length = 67 ∨ w.length = 68 ∨
+        w.length = 69 ∨ w.length = 70 ∨ w.length = 71 ∨
+        w.length = 72 ∨ w.length = 73 ∨ w.length = 74 ∨
+        w.length = 75 ∨ w.length = 76 ∨ w.length = 77 ∨
+        w.length = 78 ∨ w.length = 79 ∨ w.length = 80 ∨
+        w.length = 81 ∨ w.length = 82 ∨ w.length = 83 := by
+      omega
+    rcases hsplit with
+      hL | hL | hL | hL | hL | hL | hL | hL | hL |
+      hL | hL | hL | hL | hL | hL | hL | hL | hL |
+      hL | hL | hL | hL | hL | hL | hL | hL | hL
+    · exact finance_excludes_length_fiftyseven hn hL h
+    · exact finance_excludes_length_fiftyeight hn hL h
+    · exact finance_excludes_length_fiftynine hn hL h
+    · exact finance_excludes_length_sixty hn hL h
+    · exact finance_excludes_length_sixtyone hn hL h
+    · exact finance_excludes_length_sixtytwo hn hL h
+    · exact finance_excludes_length_sixtythree hn hL h
+    · exact finance_excludes_length_sixtyfour hn hL h
+    · exact finance_excludes_length_sixtyfive hn hL h
+    · exact finance_excludes_length_sixtysix hn hL h
+    · exact finance_excludes_length_sixtyseven hn hL h
+    · exact finance_excludes_length_sixtyeight hn hL h
+    · exact finance_excludes_length_sixtynine hn hL h
+    · exact finance_excludes_length_seventy hn hL h
+    · exact finance_excludes_length_seventyone hn hL h
+    · exact finance_excludes_length_seventytwo hn hL h
+    · exact finance_excludes_length_seventythree hn hL h
+    · exact finance_excludes_length_seventyfour hn hL h
+    · exact finance_excludes_length_seventyfive hn hL h
+    · exact finance_excludes_length_seventysix hn hL h
+    · exact finance_excludes_length_seventyseven hn hL h
+    · exact finance_excludes_length_seventyeight hn hL h
+    · exact finance_excludes_length_seventynine hn hL h
+    · exact finance_excludes_length_eighty hn hL h
+    · exact finance_excludes_length_eightyone hn hL h
+    · exact finance_excludes_length_eightytwo hn hL h
+    · exact finance_excludes_length_eightythree hn hL h
+
+/-- If a nontrivial cycle exists, its period is `84` or at least `85`.
+The cheap leftovers `57` and `76` die at the residual floor `261`;
+`58`–`75` and `77`–`83` die by the same comparison. `L=84` is the
+next record near-convergent. -/
+theorem cycle_word_length_eighty_four_or_ge_eighty_five
+    {n : ℕ} {w : List Branch}
+    (hn : 2 ≤ n) (h : CycleWord n w) :
+    w.length = 84 ∨ 85 ≤ w.length := by
+  by_contra hc
+  push Not at hc
+  obtain ⟨h84, h85⟩ := hc
+  exact no_cycle_word_length_lt_eighty_four hn (by omega) h
+
 /-- Finance table cutoff used by the Eliahou leftover. -/
 def eliahouTableCutoff : ℕ := 10 ^ 5
 
-/-- Eliahou leftover: period `57`, a listed near-convergent, or at
+/-- Eliahou leftover: period `84`, a listed near-convergent, or at
 least the finance table cutoff. -/
 def EliahouLeftover (L : ℕ) (exceptions : List ℕ) : Prop :=
-  L = 57 ∨ L ∈ exceptions ∨ eliahouTableCutoff ≤ L
+  L = 84 ∨ L ∈ exceptions ∨ eliahouTableCutoff ≤ L
 
 /-- Every length in `[30, cutoff)` outside the named family is
 already excluded. Instantiated by the computational gap table. -/
@@ -1132,19 +1417,19 @@ def EliahouTable (exceptions : List ℕ) : Prop :=
     2 ≤ n → 30 ≤ w.length → w.length < eliahouTableCutoff →
       w.length ∉ exceptions → ¬CycleWord n w
 
-/-- Bookkeeping: the Lean leftover `57` or `≥ 58`, plus the finance
+/-- Bookkeeping: the Lean leftover `84` or `≥ 85`, plus the finance
 table, is the Eliahou leftover. Not a new inequality. -/
 theorem cycle_word_eliahou_leftover {n : ℕ} {w : List Branch}
     {exceptions : List ℕ} (hn : 2 ≤ n) (h : CycleWord n w)
     (hTable : EliahouTable exceptions) :
     EliahouLeftover w.length exceptions := by
-  rcases cycle_word_length_fifty_seven_or_ge_fifty_eight hn h with h57 | h58
-  · exact Or.inl h57
+  rcases cycle_word_length_eighty_four_or_ge_eighty_five hn h with h84 | h85
+  · exact Or.inl h84
   · rcases Nat.lt_or_ge w.length eliahouTableCutoff with hlt | hge
     · have hmem : w.length ∈ exceptions := by
         by_contra hne
         have h30 : 30 ≤ w.length :=
-          le_trans (by decide : (30 : ℕ) ≤ 58) h58
+          le_trans (by decide : (30 : ℕ) ≤ 85) h85
         exact hTable n w hn h30 hlt hne h
       exact Or.inr (Or.inl hmem)
     · exact Or.inr (Or.inr hge)
