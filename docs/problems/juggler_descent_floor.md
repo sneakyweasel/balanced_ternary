@@ -58,11 +58,13 @@ cutoff. The cheapest floor that raises the cutoff is exactly
 \(n_{\max}(25781)\). This is numerical evaluation of the existing
 padded comparison, not a new inequality.
 
-**Period bound at the new floor (COMPUTATIONALLY VERIFIED
-instance, after the certified first-passage run).**
-If every \(2\le n\le 26254995\) reaches \(1\), then no
-nontrivial Juggler cycle has length at most \(50507\). First
-survivor \(L=50508\). Not a termination proof.
+**Period bound at the new floor (COMPUTATIONALLY VERIFIED,
+`J-cycle-period-fifty-thousand`).**
+The certified first-passage run is complete
+(`J-residual-floor-twenty-six-million`): every
+\(2\le n\le 26254995\) reaches \(1\). Hence no nontrivial
+Juggler cycle has length at most \(50507\). First survivor
+\(L=50508\). Not a termination proof.
 
 No cycle of any length — not claimed.
 
@@ -140,8 +142,9 @@ It is not required.
 Science window: hypothetical floors
 \(10^6,10^7,26254995,6.8\cdot 10^7,10^8,10^9\) on
 \(L\le 2\cdot 10^5\); one exact first-passage run at
-\(N_0=26254995\) with bit cap \(128\cdot 10^6\). No CLI.
-No new Lean.
+\(N_0=26254995\) with bit cap \(128\cdot 10^6\), plus exact
+resolution of the three bit-cap seeds at \(512\cdot 10^6\)
+(`cycle_floor_hard_seeds`). No CLI. No new Lean.
 
 ## Conjectures
 
@@ -184,6 +187,17 @@ run, then the post-run decision in the writeup.
   parallel; no memoization gain (already stop at \(x<n\));
   bottleneck is rare million-bit intermediates, not the
   per-start step count. Bit cap raised to \(128\cdot 10^6\).
+- **Certified run** — \(N_0=26254995\) complete
+  (`J-residual-floor-twenty-six-million`): \(13127497\) odd
+  starts, \(106\) contiguous chunks, three bit-cap seeds
+  \(7110201,13184021,13782577\) resolved exactly at
+  \(512\cdot 10^6\) bits (largest intermediate \(298912128\)
+  bits at \(7110201\); max first passage \(325\) at
+  \(15909091\)); all three independently re-walked with
+  identical step counts, peaks, and landings. Period bound:
+  **no nontrivial cycle of length \(\le 50507\)**
+  (`J-cycle-period-fifty-thousand`); \(19\) parity leftovers
+  through \(2\cdot 10^5\).
 
 ## Open questions
 

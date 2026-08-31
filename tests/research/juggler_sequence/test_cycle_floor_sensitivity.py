@@ -114,6 +114,47 @@ def test_walk_until_descent_small_odd_is_exact():
     assert row["steps"] >= 1
 
 
+def test_committed_certificate_is_verified_at_26254995():
+    import json
+    from pathlib import Path
+
+    base = Path("data/research/juggler/cycle_finance/floor_verify/N26254995")
+    cert = json.loads((base / "certificate.json").read_text(encoding="utf-8"))
+    assert cert["N0"] == 26_254_995
+    assert cert["verified"] is True
+    assert cert["step_failures"] == []
+    assert cert["bit_failures"] == []
+    assert cert["other_failures"] == []
+    assert cert["unresolved"] == []
+    assert cert["odds_walked"] == 13_127_497
+    assert cert["exact_integer"] is True
+    assert cert["floating_point_used_for_certification"] is False
+    assert cert["halt_theorem"] is False
+    resolved = {row["n"] for row in cert["hard_seed_resolutions"]}
+    assert resolved == {7_110_201, 13_184_021, 13_782_577}
+    assert all(row["ok"] for row in cert["hard_seed_resolutions"])
+    assert cert["max_bits"] == 298_912_128
+    assert cert["max_bits_seed"] == 7_110_201
+
+
+def test_committed_period_bound_is_50507():
+    import json
+    from pathlib import Path
+
+    summary = json.loads(
+        Path(
+            "data/research/juggler/cycle_finance/floor_sensitivity/summary.json"
+        ).read_text(encoding="utf-8")
+    )
+    bound = summary["period_bound"]
+    assert bound["floor"] == 26_254_995
+    assert bound["L_star"] == 50_507
+    assert bound["first_survivor"] == 50_508
+    assert bound["parity_survivors"] == 19
+    assert bound["not_a_termination_proof"] is True
+    assert summary["certificate"]["verified"] is True
+
+
 def test_classify_asks_to_compute_before_a_verified_jump():
     table = {
         "cheapest_floor_with_gain": {

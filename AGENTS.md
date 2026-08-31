@@ -31,12 +31,20 @@ for external review.
 
 ## Juggler state of the problem
 
-- **Cycles:** no nontrivial cycle of period \(\le 25780\) (published floor
-  \(10^6\); laboratory floor \(2\cdot 10^6\)). The survivors are \(99\)
-  lengths in three affine families on the unimodular basis
-  \((25781,16266),(1054,665)\) (`RunSurvivorLattice.lean`). Killing them is
-  Diophantine (\(|3^o-2^L|\) near-convergents); the direct Baker/SdW
-  transfer is **REFUTED** (`juggler_cycle_gap_baker`).
+- **Cycles:** no nontrivial cycle of period \(\le 50507\) (laboratory
+  certified descent floor \(N_0=26254995\),
+  `J-residual-floor-twenty-six-million` /
+  `J-cycle-period-fifty-thousand`; Paper A still prints the \(10^6\)
+  instance, cutoff \(25780\)). First survivor \(L=50508\) with
+  \(n_{\max}^{\mathrm{par}}=1.63\cdot 10^8\); \(19\) parity leftovers
+  through \(2\cdot 10^5\). At the published floor the survivors are the
+  \(99\)-length lattice on the unimodular basis
+  \((25781,16266),(1054,665)\) (`RunSurvivorLattice.lean`). Killing
+  leftovers is Diophantine (\(|3^o-2^L|\) near-convergents); the direct
+  Baker/SdW transfer is **REFUTED** (`juggler_cycle_gap_baker`), the
+  Paper A × Paper B merge is CLOSE (`juggler_cycle_paper_merge`), and
+  further \(N_0\) campaigns are PARK — the \(10^7\)/\(10^8\) decades buy
+  nothing; the next useful floor is \(1.63\cdot 10^8\).
 - **Termination:** certified descent density \(29/32\); the pointwise route
   is parked behind the \(K_3\) obstruction ladder BB/GG/JJ. Not claimed.
 - **Local attacks are closed.** Fibres are parity + interval only

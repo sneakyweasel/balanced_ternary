@@ -17749,4 +17749,83 @@ Best next question
 - none from this lift drop
 ```
 
+## Paper A × Paper B merge assessment (not a numbered milestone)
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether any Paper B mechanism (kernel bounds, equidistribution, exact linearization, weight or spectral refinement) supplies a certified finance improvement of factor \(\mathrm{RHS}/\theta\) on a run-survivor length at floor \(10^6\) — the merged attack on the survivor lattice
+- **Hypotheses:** the tension between the exact finance gap (Paper A) and the analytic floor-defect program (Paper B) yields an \(n\)-dependent gap bound on \(|3^o-2^L|\) that neither paper has alone
+- **Major results:** Consolidation only; zero new experiments. Required-improvement profile from `cycle_finance/prefix_weights.json` (141 parity leftovers, \(n=10^6+1\)): \(\mathrm{RHS}/\theta\) has min \(1.04\) (\(L=99561\)), median \(1.96\), but \(32.5\) at the first survivor \(L=25781\) and \(223\) at the second seed \(L=50508\). A hypothetical uniform improvement \(C=9/8\) kills \(18/141\), \(C=2\) kills \(72\), \(C=30\) kills \(136\) — the affine-family seeds are the last to die, so constant-factor refinements can never close the lattice, and floor raises give linear progress on an infinite convergent family. Every merge formulation maps onto a named kill: exact/bounded suffix weights (`juggler_cycle_prefix_weight_leftover_killer`, max uncertified constant \(9/8\)); spectral constraints (`juggler_cycle_fourier_leftover_killer`, arrangement-independent moment \(1/16\)); reduction to mechanical words (`juggler_christoffel_one_parameter`, candidates far from the necklace); ambient-to-generated equidistribution transfer (`juggler_parity_discrepancy_transfer`); linear-forms transfer (`juggler_cycle_gap_baker`, weaker than the exact gap on every tested length); and Paper B's own kernel route at a specific point (BB/GG/JJ — a single hypothetical cycle is a specific point in metric theory, exactly the `J-derandomization-obstruction`). Reverse direction (survivor-lattice / Ostrowski structure feeding transport Conjecture EE) stays parked behind GG. Conclusion: a successful merge must produce a power-of-\(n\) saving on the closure residual; no archived or Paper-B mechanism supplies one
+- **Refuted ideas:** a Paper A × Paper B merged leftover-killer (`juggler_cycle_paper_merge`); constant-factor finance refinements closing the lattice; Sturmian/Denjoy–Koksma suffix-weight bands as a length-killer (weights are word-specific, the word space is not mechanical)
+- **Literature:** `cycleMin_finance`; `RunSurvivorLattice.lean`; prefix-weight REFUTED; Fourier REFUTED; Christoffel CLOSE; discrepancy-transfer REFUTED; gap-Baker REFUTED; `J-k3-toolkit-obstruction`; `J-intra-block-harmonic-obstruction`; `J-derandomization-obstruction`; `simons-de-weger-2005-collatz-m-cycles`
+- **Open:** the single surviving formulation is an \(n\)-power-saving lower bound on the cycle closure residual — an effective bound on \(|3^o-2^L|\) in terms of the cycle's own floor \(n\), on the three affine families
+- **Decision:** CLOSE (directed consolidation). Paper A and Paper B stay PROMOTE; the merge surface is fully covered by six named obstructions
+
+```text
+What was learned
+- the survivor lattice is hardest at its seeds: RHS/θ is 32.5 at
+  L=25781 and 223 at L=50508, but 1.04 at the family tails
+- constant-factor refinements kill tails, never seeds; C=30 still
+  leaves 5 of 141
+- floor raises scale linearly on an infinite convergent family
+- all six merge flanks carry named refutations; nothing was re-tested
+- a hypothetical cycle is a specific point, so Paper B's metric
+  theorems are blocked by the lab's own JJ obstruction
+Strongest theorem
+- cycleMin_finance plus the unimodular survivor lattice (Prop 4.9)
+Strongest refutation
+- the merged leftover-killer: every mechanism class is archived
+Reusable machinery
+- the required-improvement profile over prefix_weights.json rows
+Branch status
+- CLOSE
+Why
+- the merge needs a power-of-n mechanism; weights, spectra, word
+  reductions, transfers, and kernels are each walled by name
+Best next question
+- is there an effective n-dependent lower bound on |3^o - 2^L|
+  along the three affine families, using the cycle floor n as a
+  parameter rather than a universal linear-forms constant?
+```
+
+## Juggler descent floor 26254995 and period bound 50508
+
+- **Date:** 2026-08-31
+- **Objective:** Answer the merge assessment's best next question in its effective form. The finance inequality already is the \(n\)-dependent bound in contrapositive: a cycle of length \(L\) with minimum \(n\) forces \(3^o-2^L\le L\cdot 3^o/(n\log n)\), so every length carries a finite ceiling \(n_{\max}(L)\). The one lever that moves the record is the certified descent floor, and the cheapest useful floor is exactly \(n_{\max}^{\mathrm{par}}(25781)=26254995\)
+- **Hypotheses:** the chunked first-passage run at \(N_0=26254995\) completes, its three bit-cap failures resolve exactly, and the Theorem 4.6 architecture then excludes every period \(\le 50507\)
+- **Major results:** Certificate complete (**COMPUTATIONALLY VERIFIED**, `J-residual-floor-twenty-six-million`): every \(2\le n\le 26254995\) reaches \(1\) by first-passage descent induction — \(13127497\) odd starts, \(106\) contiguous chunks (coverage and odd-count re-checked), three bit-cap seeds \(7110201, 13184021, 13782577\) resolved exactly at a \(512\)M-bit cap with gmpy2 `mpz` isqrt (largest intermediate \(298912128\) bits at \(7110201\); max first passage \(325\) steps at \(15909091\)); all three hard seeds independently re-walked with identical steps, peaks, and landings. Consequence (**COMPUTATIONALLY VERIFIED**, `J-cycle-period-fifty-thousand`): **no nontrivial Juggler cycle has length \(\le 50507\)** — the record jumps from \(25780\) to \(50507\) (+\(24727\)). First survivor \(L=50508\) with \(n_{\max}^{\mathrm{par}}=162848325\); \(19\) parity leftovers through \(2\cdot 10^5\) (run-packing leaves \(11\)); independent recompute reproduced the committed SHA-256 length lists exactly. Decision layer unchanged: \(10^7\) and \(10^8\) decades buy nothing; the next useful floor is \(1.63\cdot 10^8\)
+- **Refuted ideas:** none new; the phase confirms the sensitivity table's prediction
+- **Literature:** `cycleMin_finance` (Theorem 4.4); Theorem 4.6 architecture (`J-cycle-parity-finance-instance`); `J-residual-floor-two-million`; descent-floor sensitivity dossier and note; `verify_floor_certified` + `cycle_floor_hard_seeds`
+- **Open:** a length-only improvement of the defect sum that kills \(L=50508\) without the \(1.63\cdot 10^8\) floor; whether Paper A should print the new instance (publication decision, not new mathematics)
+- **Decision:** PROMOTE the two ledger rows; PARK further \(N_0\) campaigns (`DESCENT_FLOOR_PARK`) — finance, not the verifier, is now the limiter
+
+```text
+What was learned
+- the merge question's effective answer is the finance contrapositive:
+  each length L dies above its own n_max(L)
+- the cheapest theorem-moving floor is n_max(25781) itself, and the
+  run at exactly that floor is complete and exact
+- the record period bound is now 50508, +24727 over the published
+  25781, with 19 parity leftovers through 2e5
+- the hardest orbit peaks near 3e8 bits at seed 7110201; exact big-int
+  isqrt, not start count, is the verifier wall
+- 10^7 and 10^8 buy nothing; the next jump needs 1.63e8
+Strongest theorem
+- no nontrivial Juggler cycle has length at most 50507
+  (COMPUTATIONALLY VERIFIED instance of Theorem 4.6)
+Strongest refutation
+- none this phase
+Reusable machinery
+- verify_floor_certified + cycle_floor_hard_seeds resolution flow;
+  certificate.json schema; the N0 -> L_max sensitivity table
+Branch status
+- PROMOTE (instance), PARK (further floors)
+Why
+- the certified floor is exactly the first leftover's ceiling, so the
+  cutoff jumps a full convergent; beyond it verification is no longer
+  the limiter and the mathematics (length-only charge at 50508) is
+Best next question
+- is there a length-only improvement of the defect-sum charge that
+  kills L=50508 at floor 26254995, without a 1.63e8 campaign?
+```
+
 

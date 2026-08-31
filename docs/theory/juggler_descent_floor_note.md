@@ -44,17 +44,26 @@ n_{\max}(L)
 
 ## 1. What floor is currently available?
 
-Two certified floors already exist.
+Three certified floors exist.
 
 - Lean residual floor \(261\) (`reachesOne_of_lt_two_hundred_sixty_one`).
 - Python first-passage: every \(2\le n\le 2\cdot 10^6\) reaches
   \(1\) (`J-residual-floor-two-million`). Paper A Theorem 4.6
   prints the weaker published floor \(N_0=10^6\).
+- Python first-passage: every \(2\le n\le 26\,254\,995\) reaches
+  \(1\) (`J-residual-floor-twenty-six-million`), completed
+  31 August 2026. The chunked run at bit cap \(128\)M left three
+  bit-cap seeds \(7110201\), \(13184021\), \(13782577\); all
+  three were resolved exactly at a \(512\)M-bit cap with gmpy2
+  `mpz` isqrt (largest intermediate \(298\,912\,128\) bits at
+  seed \(7110201\); the two orbit sets were also independently
+  re-walked). Maximum first passage \(325\) steps at seed
+  \(15909091\).
 
 A previous unfinished science run at \(N_0=6.8\cdot 10^7\)
 reached \(97\%\) with two failures and a peak of
 \(82\,265\,352\) bits, above the old \(80\)M-bit cap. That run
-is not a certificate. The working bit cap is now \(128\)M.
+is not a certificate.
 
 ## 2. What period bound does it produce?
 
@@ -194,18 +203,21 @@ candidate cycles. Do not claim totality.
 
 ## Recomputed theorem (instance of Theorem 4.6)
 
-Once the first-passage certificate at \(N_0=26254995\)
-verifies:
+The first-passage certificate at \(N_0=26254995\) is complete
+(`J-residual-floor-twenty-six-million`; chunk SHA-256
+`cbcbb540…`, hard seeds resolved exactly). Therefore:
 
 \[
 \boxed{\text{No nontrivial Juggler cycle has length at most }50507.}
 \]
 
 Equivalently, any nontrivial cycle has period at least
-\(50508\). This uses the existing \(6/5\) parity architecture
-and the new verified floor. It is not a termination proof.
-The first finance-survivor is \(L=50508\), with
-\(n_{\max}^{\mathrm{par}}=162848325\).
+\(50508\) (**COMPUTATIONALLY VERIFIED**,
+`J-cycle-period-fifty-thousand`). This uses the existing
+\(6/5\) parity architecture and the new verified floor. It is
+not a termination proof. The first finance-survivor is
+\(L=50508\), with \(n_{\max}^{\mathrm{par}}=162848325\);
+\(19\) parity leftovers remain through \(L\le 2\cdot 10^5\).
 
 ## Verifier bottleneck
 
