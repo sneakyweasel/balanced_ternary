@@ -1,0 +1,19 @@
+{
+  "id": "juggler_cycle_all_valleys_equal",
+  "title": "A leftover-length Juggler m-cycle can have every local minimum equal to the global minimum",
+  "statement": "On a Juggler CycleMin of leftover length L (currently 84 or ≥ 85) with m local minima, every valley can equal the global minimum n.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "If T^k(n)=n for 0<k<L then follows_take and image_take_of_le give CycleWord n (w.take k), a shorter cycle word. Every length < 84 is already excluded, so n occurs once. For m≥2 the other valleys are different odd states and are at least n+2"
+  ],
+  "first_seen": "juggler cycle equal valleys",
+  "lean_reference": "",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / first return",
+  "notes": "Unique visit is a reparameterization of prefix return, not a new valley-height law. For m=1 the single valley is n tautologically; height already kills L=84 as a 1-cycle at floor 261. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_equal_valleys.md",
+  "proof_reference": "docs/problems/juggler_cycle_equal_valleys.md",
+  "tested_range": "leftover L=84 at floor 261; prefix-return argument for every leftover length"
+}

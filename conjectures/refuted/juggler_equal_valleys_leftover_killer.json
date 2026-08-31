@@ -1,0 +1,21 @@
+{
+  "id": "juggler_equal_valleys_leftover_killer",
+  "title": "Forbidding equal valleys (second valley ≥ n+2) excludes leftover L=84 at m≥3",
+  "statement": "On a Juggler CycleMin of length 84 at the residual floor 261, charging one valley at n and the other m−1 valleys at n+2 excludes every m≥3, either under joint-minima or under the odd-run height law.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "L=84, o=53, m=3, n=261, θ≈0.002086, Lean constant 1: split n / n+2 RHS≈0.003515; height plus n+2 RHS≈0.002180; both exceed θ",
+    "Joint-style split never kills m=3 at this floor: fifty climb interiors at T(261)=4216 already exceed the gap even if the extra valleys go to infinity",
+    "Height-split would need the other valleys ≥ 281; n+2=263 does not supply that"
+  ],
+  "first_seen": "juggler cycle equal valleys",
+  "lean_reference": "",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / valley height",
+  "notes": "Unique visit of n is true and already recorded as juggler_cycle_all_valleys_equal. The leftover-killer reading is the only novel half and is false. Not a floor raise and not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_equal_valleys.md",
+  "proof_reference": "docs/problems/juggler_cycle_equal_valleys.md",
+  "tested_range": "L=84, m=3,4,31 at floor 261; constants 1 and 6/5; height-split search to n2=50000"
+}

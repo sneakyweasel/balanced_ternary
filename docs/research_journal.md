@@ -15365,4 +15365,42 @@ Best next question
   so the Lean leftover becomes period 84 with m>=3
 ```
 
+## Juggler cycle equal valleys
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether a cycle can have every local minimum equal to the global minimum \(n\), and whether forbidding that coincidence excludes leftover \((L,m)\)
+- **Hypotheses:** all \(m\) valleys equal \(n\) is a real geometric possibility, or else \(n+2\) is a leftover-killing height
+- **Major results:** Classification **EQUAL_VALLEYS_CLOSED**. Unique visit of \(n\) on a leftover length is **REPARAMETERIZATION** of `follows_take` / `image_take_of_le` (`J-cycle-unique-minimum-visit`): an intermediate return is a shorter `CycleWord`. For \(m\ge 2\) the other valleys are \(\ge n+2\). The leftover-killer slogan is **REFUTED** (`juggler_equal_valleys_leftover_killer`, `J-equal-valleys-leftover-killer`): at \(L=84\), \(m=3\), floor \(261\), Lean constant \(1\), split RHS \(\approx 0.003515\) and height plus \(n+2\) \(\approx 0.002180\), both above \(\theta\approx 0.002086\). Joint-style split never kills (climbs at \(T(261)=4216\) dominate). Height-split would need the other valleys \(\ge 281\). No new Lean. Paper A unchanged. Not a leftover-length exclusion
+- **Refuted ideas:** all leftover \(m\)-valleys can equal \(n\); \(n+2\) excludes \(L=84\) at \(m\ge 3\)
+- **Literature:** `simons-de-weger-2005-collatz-m-cycles`; `juggler_cycle_finance`; `juggler_cycle_m_finance`; `juggler_cycle_position_finance`
+- **Open:** stop on equal valleys; height law at \(m=1,2\) remains the unpaid Lean packaging
+- **Decision:** CLOSE. First-return plus a failed leftover-killer. Not a new height
+
+```text
+What was learned
+- all m valleys equal n is impossible for m>=2 on leftover L
+- that fact is prefix return, not a scale law
+- n+2 moves the m=3 joint RHS by about 0.3 percent
+- climbs at T(n), not repeated valleys, hold L=84 m=3 open
+- height plus n+2 still misses; other valleys would need 281
+Strongest theorem
+- unique visit of the CycleMin start on leftover lengths
+  (REPARAMETERIZATION of follows_take / image_take_of_le)
+Strongest refutation
+- juggler_equal_valleys_leftover_killer: L=84 m=3 split
+  0.003515 and height+n+2 0.002180, both above theta
+Reusable machinery
+- research.juggler_sequence.cycle_equal_valleys: split-valley
+  arithmetic, no new Lean
+Branch status
+- CLOSE
+Why
+- the literal question is first-return; the only novel reading
+  fails at the live leftover pair
+Best next question
+- formalize the odd-run height law at floor 261 so the Lean
+  leftover becomes period 84 with m>=3, or stop and write
+  the finance theorem as it stands
+```
+
 
