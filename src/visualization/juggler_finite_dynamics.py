@@ -1,17 +1,20 @@
 """View-model for the finite-dynamics note companion.
 
 Instantiates existing Juggler maps. Does not prove anything: Lean remains
-the authority. Bit caps keep Streamlit reruns bounded.
+the authority for exact claims; Theorem 4.6 is a verified computation.
+Bit caps keep Streamlit reruns bounded.
 """
 
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
 from functools import lru_cache
 from itertools import product
 from typing import Any
 
+from research.juggler_sequence.cycle_finance import DATA_DIR, finance_rows
 from research.juggler_sequence.bunched_last_cluster import FAMILIES
 from research.juggler_sequence.cycle_length_seven import (
     THRESHOLD_BY_SUFFIX,
@@ -137,8 +140,9 @@ LEFTOVER_CUTOFF: dict[str, int] = {
     "OOOOOEE": 14,
 }
 
-# Note classifications for even-terminating expanding words of length ≤ 7.
-# Length 8 is open and is not listed here.
+# Note classifications for even-terminating expanding words of length ≤ 8.
+# Periods ≤ 1053 are excluded separately by finance at the verified descent
+# floor; these rows name the local obstruction when there is one.
 _WORD_CLASS: dict[str, tuple[str, str]] = {
     "OOE": ("threshold", "Lemma 3.4(i): OO next-square vs last-even cell"),
     "OOOE": ("odd-run", "Lemma 3.4(v)"),
@@ -238,7 +242,22 @@ CLAIM_ROWS: tuple[dict[str, str], ...] = (
         "ledger": "J-gapped-cycle-word-ee",
     },
     {
-        "text": "Theorem 4.1 uniform short certificates",
+        "text": "Theorem 3.22 even-count; Corollary 3.23 period ≥ 11",
+        "lean": "no_cycle_word_even_count_le_three / cycle_word_length_ge_eleven",
+        "ledger": "J-even-count-le-three",
+    },
+    {
+        "text": "Theorem 4.4 cycle-minimum finance",
+        "lean": "cycleMin_finance",
+        "ledger": "J-cycle-finance-inequality",
+    },
+    {
+        "text": "Theorem 4.6 verified computation: L ≥ 1054",
+        "lean": "named computation; not Lean",
+        "ledger": "J-cycle-word-eliahou-leftover-instance",
+    },
+    {
+        "text": "Section 5 uniform short certificates",
         "lean": "even_finiteProgress / odd_even_finiteProgress",
         "ledger": "J-finite-progress-boundary",
     },
@@ -304,6 +323,141 @@ LAB_LEFTOVER_DECISIONS: tuple[dict[str, str], ...] = (
         "note": "no_cycle_word_length_le_eight; implied by Paper A period ≥11; not a halt theorem",
     },
 )
+
+PAPER_FLOOR = 1_000_000
+PAPER_PERIOD = 1054
+PAPER_L_CAP = 100_000
+PAPER_EXCEPTION_COUNT = 397
+FINANCE_UI_L_MAX = 2_000
+FINANCE_CHART_L_MAX = 400
+RECORD_LENGTHS: tuple[int, ...] = (1, 3, 11, 19, 84, 569, 1054, 25781, 50508)
+RECORD_N_MAX: dict[int, int] = {
+    1: 3,
+    3: 13,
+    11: 52,
+    19: 297,
+    84: 5599,
+    569: 58398,
+    1054: 1_997_197,
+    25781: 67_410_774,
+    50508: 420_161_535,
+}
+RECORD_O_MIN: dict[int, int] = {
+    1: 1,
+    3: 2,
+    11: 7,
+    19: 12,
+    84: 53,
+    569: 359,
+    1054: 665,
+    25781: 16266,
+    50508: 31867,
+}
+
+
+@lru_cache(maxsize=1)
+def paper_exception_lengths() -> tuple[int, ...]:
+    """Admissible lengths ℰ at the printed verified descent floor 10^6."""
+
+    payload = json.loads((DATA_DIR / "exceptions.json").read_text(encoding="utf-8"))
+    for item in payload:
+        if int(item["floor"]) == PAPER_FLOOR:
+            lengths = tuple(int(length) for length in item["lengths"])
+            if len(lengths) != int(item["count"]):
+                raise ValueError("exceptions.json floor 10^6 count does not match lengths")
+            return lengths
+    raise ValueError("exceptions.json has no floor-10^6 object")
+
+
+@lru_cache(maxsize=1)
+def paper_exception_set() -> frozenset[int]:
+    return frozenset(paper_exception_lengths())
+
+
+@lru_cache(maxsize=4)
+def _finance_table(l_max: int) -> tuple[dict[str, Any], ...]:
+    return tuple(finance_rows(l_max))
+
+
+def finance_row_of(length: int) -> dict[str, Any] | None:
+    """One finance row, or None when n_max is not computed here."""
+
+    if length < 1:
+        return None
+    if length <= FINANCE_UI_L_MAX:
+        return dict(_finance_table(FINANCE_UI_L_MAX)[length - 1])
+    if length in RECORD_N_MAX:
+        return {
+            "L": length,
+            "o": RECORD_O_MIN[length],
+            "theta": None,
+            "bound": None,
+            "n_max": RECORD_N_MAX[length],
+            "record": True,
+        }
+    return None
+
+
+@dataclass(frozen=True)
+class FinanceView:
+    length: int
+    o_min: int | None
+    n_max: int | None
+    record: bool
+    in_exception_set: bool
+    excluded_by_floor: bool
+    admissible: bool
+    beyond_table: bool
+    status: str
+
+
+def finance_view(length: int) -> FinanceView:
+    """Paper A status of one period at the verified descent floor 10^6."""
+
+    if length < 1:
+        raise ValueError("finance_view requires L ≥ 1")
+    in_set = length in paper_exception_set()
+    beyond = length > PAPER_L_CAP
+    row = finance_row_of(length)
+    o_min = None if row is None else int(row["o"])
+    n_max = None if row is None else int(row["n_max"])
+    record = bool(row["record"]) if row is not None else length in RECORD_LENGTHS
+    if beyond:
+        status = "beyond table"
+        excluded = False
+        admissible = False
+    elif in_set:
+        status = "admissible"
+        excluded = False
+        admissible = True
+    else:
+        status = "excluded"
+        excluded = True
+        admissible = False
+    return FinanceView(
+        length=length,
+        o_min=o_min,
+        n_max=n_max,
+        record=record,
+        in_exception_set=in_set,
+        excluded_by_floor=excluded,
+        admissible=admissible,
+        beyond_table=beyond,
+        status=status,
+    )
+
+
+def finance_chart_rows() -> tuple[dict[str, Any], ...]:
+    """Cached n_max(L) for the finance chart (L ≤ 400)."""
+
+    return tuple(
+        {
+            "L": row["L"],
+            "n_max": row["n_max"],
+            "record": row["record"],
+        }
+        for row in _finance_table(FINANCE_CHART_L_MAX)
+    )
 
 
 def parse_word(raw: str) -> str | None:
@@ -421,8 +575,8 @@ def leftover_family_kind(word: str) -> tuple[str, str] | None:
             )
         return (
             "four-even short-gap",
-            "short first gap: Z4 PARK at first expanding (length 11); "
-            "rotation and internal-E CLOSE; not a Lean exclusion",
+            "short first gap: a laboratory leftover spelling; "
+            "period 11 is excluded by finance at the verified descent floor",
         )
     return None
 
@@ -1275,6 +1429,24 @@ def _class_verdict(
     if open_reps:
         sample, _sample_reason = open_reps[0]
         leftover = leftover_family_kind(sample)
+        evens = word.count("E")
+        if evens < 4:
+            return (
+                "excluded",
+                "Theorem 3.22: a nontrivial cycle word has at least four even letters",
+                "J-even-count-le-three",
+            )
+        if len(word) <= PAPER_PERIOD - 1:
+            extra = ""
+            if leftover is not None and leftover[0] == "four-even short-gap":
+                extra = " The local leftover cells miss this spelling, but "
+            return (
+                "excluded",
+                f"{extra}Theorem 4.6: finance at the verified descent floor "
+                f"10^6 excludes every period at most {PAPER_PERIOD - 1} "
+                f"(this length is {len(word)}).",
+                "J-cycle-word-eliahou-leftover-instance",
+            )
         if leftover is not None and leftover[0] == "four-even short-gap":
             return "open", leftover[1], None
         return (
@@ -1383,6 +1555,37 @@ def cycle_class_view(word: str, shift: int = 0) -> CycleClassView:
             ),
             status="blocks" if word and mixed and is_exp and not legal_reps else "ok",
             ledger="J-cycle-finite-structure",
+        ),
+        ArgumentStep(
+            title="Even-count",
+            body=(
+                f"This word has {evens} even letter(s). Theorem 3.22: a "
+                "nontrivial cycle word has at least four even letters, so "
+                "the period is at least eleven."
+            ),
+            status="blocks" if word and evens < 4 else "ok" if word else "info",
+            ledger="J-even-count-le-three" if word and evens < 4 else None,
+        ),
+        ArgumentStep(
+            title="Finance at the verified descent floor",
+            body=(
+                f"Length {len(word)}. Theorem 4.6: finance plus the floor "
+                f"{PAPER_FLOOR:,} excludes every period at most "
+                f"{PAPER_PERIOD - 1}. The first length not excluded is "
+                f"{PAPER_PERIOD}."
+            ),
+            status=(
+                "blocks"
+                if word and len(word) <= PAPER_PERIOD - 1
+                else "ok"
+                if word
+                else "info"
+            ),
+            ledger=(
+                "J-cycle-word-eliahou-leftover-instance"
+                if word and len(word) <= PAPER_PERIOD - 1
+                else None
+            ),
         ),
         ArgumentStep(
             title="Named obstruction",

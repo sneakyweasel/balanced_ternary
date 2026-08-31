@@ -4,7 +4,7 @@ Author: Philippe Cochin. Date: 31 August 2026.
 Status: **PAPER_CANDIDATE**. The publication draft is dated 31 August 2026
 and is not submitted. It is a cycle-length note titled
 *Lower bounds for nontrivial cycles of the Juggler map*:
-finance plus the published floor \(10^6\) give \(L\ge 1054\)
+finance plus the verified descent floor \(10^6\) give \(L\ge 1054\)
 (Theorem A) and an admissible set of \(397\) lengths through
 \(10^5\) (Theorem B). The even-count assembly is Theorem C
 (period at least eleven). Section 4 is the financing inequality.
@@ -28,7 +28,7 @@ math note:
 > Realized finite words obey a power envelope. Inverse cells and a
 > classification of even-count \(\le 3\) exclude every such cycle
 > word (Theorem C: period at least eleven). A financing inequality
-> at a cycle minimum, plus the published descent floor \(10^6\),
+> at a cycle minimum, plus the verified descent floor \(10^6\),
 > excludes every period at most \(1053\) (Theorem A) and leaves
 > only an explicit admissible set of \(397\) lengths through
 > \(10^5\) (Theorem B). Membership in that set is not evidence
@@ -141,7 +141,7 @@ added to `bt.*`.
   **EXACT — LEAN VERIFIED** (Paper A Theorem 4.4; `cycleMin_finance`);
 - per-length exclusion given a floor —
   **EXACT — HUMAN PROOF** (Paper A Corollary 4.5);
-- computational leftover at floor \(10^6\) —
+- verified computation at floor \(10^6\) —
   **COMPUTATIONALLY VERIFIED** (Paper A Theorem 4.6; no period
   \(\le 1053\); \(397\) exceptions through \(10^5\));
 - cycle surplus \(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) and the

@@ -87,6 +87,8 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 3.20 `no_cycle_word_three_even_eooeoe`
 * 3.21 `no_cycle_word_gapped_three_even_ee`,
       `no_cycle_word_gapped_three_even_eoe`
+* 3.21b canonical run form (Theorem 3.2; no extra Lean name)
+* 3.21a classification case split of Theorem 3.22
 * 3.22 `no_cycle_word_even_count_le_three`
 * 3.23 `cycle_word_length_ge_eleven`
 * 4.1 `log_le_two_log_add`
@@ -113,7 +115,7 @@ that every orbit meets a contracting word, or that all nontrivial
 cycles are impossible. Theorems 3.12--3.21 assemble as Theorem 3.22:
 no cycle word has even-count at most three, so a nontrivial cycle
 has period at least eleven. Section 4 excludes later periods by
-financing. Theorem 4.6 is a named computation, not a Lean
+financing. Theorem 4.6 is a verified computation, not a Lean
 theorem. `FiniteCoeffStopConjecture` is a laboratory target, not a claim
 of the note.
 -/

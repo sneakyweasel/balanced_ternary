@@ -49,8 +49,8 @@ Paper A Zenodo deposit kit (one PDF, paste-ready fields):
 
 Repository: https://github.com/sneakyweasel/balanced_ternary/
 
-Every exact theorem of Paper A is in Lean; Theorem 4.6 is a named
-computation. Every analytic estimate of
+Every exact theorem of Paper A is in Lean; Theorem 4.6 is a
+verified computation. Every analytic estimate of
 Paper B (including the kernel theorem and the shift-average theorem)
 is a human proof and is not in Lean; only the exact floor reductions
 beneath them are (`GapCells.lean`, including the double-gap identity

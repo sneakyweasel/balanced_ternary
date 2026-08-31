@@ -25,6 +25,11 @@ from visualization.juggler_finite_dynamics import (
     NOTE_ORBIT_3,
     NOTE_PEAK_37,
     ORBIT_STEPS_MAX,
+    PAPER_EXCEPTION_COUNT,
+    PAPER_FLOOR,
+    PAPER_L_CAP,
+    PAPER_PERIOD,
+    RECORD_LENGTHS,
     SPOT_WITNESS,
     WORD_MAX,
     WORD_PRESETS,
@@ -36,6 +41,8 @@ from visualization.juggler_finite_dynamics import (
     descent_window,
     envelope_view,
     even_cell_view,
+    finance_chart_rows,
+    finance_view,
     format_int,
     four_block_replay,
     leftover_table,
@@ -44,6 +51,7 @@ from visualization.juggler_finite_dynamics import (
     length_eight_status_rows,
     next_square_view,
     odd_cell_view,
+    paper_exception_lengths,
     parse_cycle_word,
     parse_word,
     try_cycle_word,
@@ -53,6 +61,7 @@ from visualization.theorem_ledger import badge_payload
 
 VIEWS = (
     "Claim map",
+    "Finance",
     "Orbit",
     "Envelope",
     "Cells and census",
@@ -62,6 +71,7 @@ VIEWS = (
 )
 VIEW_LABEL = {
     "Claim map": "Status",
+    "Finance": "Finance",
     "Orbit": "Orbit",
     "Envelope": "Envelope",
     "Cells and census": "Cells",
@@ -74,8 +84,15 @@ VIEWS_WITH_START = frozenset(
 )
 VIEW_BLURB = {
     "Claim map": (
-        "A scoreboard of what is proved. Lean is the authority. "
-        "This page never claims every number reaches 1."
+        "Paper A scoreboard. The main theorem is a period lower bound, "
+        "not a halt proof. Lean is the authority for the exact claims; "
+        "Theorem 4.6 is a verified computation."
+    ),
+    "Finance": (
+        "The engine of the note: at a cycle minimum the surplus "
+        "$3^o-2^L$ must be paid by floor errors. Combined with the "
+        "verified descent floor $10^6$, every period at most $1053$ "
+        "is excluded."
     ),
     "Orbit": (
         "Start at **n** and apply the Juggler map. **O** is an odd step "
@@ -85,7 +102,8 @@ VIEW_BLURB = {
     "Envelope": (
         "Type a short **O/E** recipe. If your start actually follows it, "
         "a proved bound says the result cannot be too large. Slack **Δ** "
-        "is how much room is left."
+        "is how much room is left. Section 4 uses the envelope, not the "
+        "defect composition."
     ),
     "Cells and census": (
         "Work backwards: which numbers land on a given image? Then see "
@@ -97,9 +115,10 @@ VIEW_BLURB = {
         "says whether that loop is already impossible."
     ),
     "Leftover families": (
-        "Leftovers are the shapes the easy filters did not kill. Most "
-        "are now theorems. Thirty long four-even words are still open "
-        "as loops."
+        "Local leftover spellings the easy cells did not kill. Paper A "
+        "already excludes every cycle word with fewer than four evens, "
+        "and finance excludes period 11. These thirty words are a lab "
+        "gate, not open cycles."
     ),
     "Descent": (
         "Even starts drop in one even step. Odd-then-even starts drop "
@@ -122,6 +141,9 @@ CLAIM_PLAIN = {
     "J-first-e-transport-ee": "Gapped three-even CycleMin loops cannot close.",
     "J-three-even-eee": "Bunched last-cluster leftovers cannot close.",
     "J-gapped-cycle-word-ee": "Gapped three-even CycleWord loops cannot close.",
+    "J-even-count-le-three": "Every real loop has at least four even letters, so the period is at least 11.",
+    "J-cycle-finance-inequality": "At a cycle minimum, n log n times the surplus cannot exceed L 3^o.",
+    "J-cycle-word-eliahou-leftover-instance": "With the verified descent floor 10^6, there is no period ≤ 1053.",
     "J-finite-progress-boundary": "Even starts drop in one step; odd-then-even starts drop in two.",
 }
 _BADGE_COLOR = {
@@ -136,7 +158,7 @@ _BADGE_COLOR = {
 
 def _init_state() -> None:
     defaults = {
-        "juggler_view": "Orbit",
+        "juggler_view": "Claim map",
         "juggler_n": 3,
         "juggler_word": "OOE",
         "juggler_cycle_word": "OEO",
@@ -145,6 +167,7 @@ def _init_state() -> None:
         "juggler_steps": 20,
         "juggler_split": 1,
         "juggler_goto_cycle": False,
+        "juggler_finance_L": PAPER_PERIOD,
     }
     for key, value in defaults.items():
         if key not in st.session_state:
@@ -183,6 +206,14 @@ def _glossary() -> None:
 - **N0** — the first start n ≥ 2 where that leftover inequality starts
   holding. Lean often uses a larger algebraic cutoff.
 - **CycleMin** — the rotation that starts at the smallest value on the loop.
+- **Finance** — the cycle-minimum inequality
+  $n\log n\cdot(3^o-2^L)\\le L\\cdot 3^o$.
+- **$n_{\\max}(L)$** — largest minimum the $6/5$ bound still allows.
+- **$\\mathcal E$** — the 397 lengths $\\le 10^5$ still admissible to
+  that bound at the verified descent floor $10^6$. Membership is not
+  evidence for a cycle.
+- **Verified descent floor** — every start through $10^6$ reaches 1
+  (Weisstein, recomputed here). Not a new computational record.
 - **Reached 1** — this walk hit 1. That is not a proof that every start does.
             """
         )
@@ -335,16 +366,43 @@ def _yes_no(flag: bool | None) -> str:
 def _claim_map() -> None:
     _blurb("Claim map")
     _proof_tags(
-        "J-small-cycle-census-seven",
-        "J-small-cycle-census-eight",
-        "J-gapped-cycle-word-ee",
+        "J-even-count-le-three",
+        "J-cycle-finance-inequality",
+        "J-cycle-word-eliahou-leftover-instance",
     )
     cards = st.container(horizontal=True)
     with cards:
-        st.metric("Shortest open period", "≥ 9", border=True)
-        st.metric("Length ≤ 8", "ruled out", border=True)
-        st.metric("Leftovers 3.12–3.21", "ruled out", border=True)
+        st.metric(
+            "Period",
+            f"≥ {PAPER_PERIOD}",
+            border=True,
+            help="Theorem A / Theorem 4.6. Not evidence for a 1054-cycle.",
+        )
+        st.metric(
+            "Admissible lengths",
+            f"{PAPER_EXCEPTION_COUNT} in ℰ",
+            border=True,
+            help="Through 10^5, admissible to this bound only.",
+        )
+        st.metric(
+            "Even letters",
+            "≥ 4",
+            border=True,
+            help="Theorem C / Theorem 3.22. Implies period ≥ 11 with no floor.",
+        )
         st.metric("Arrival at 1", "not claimed", border=True)
+    st.markdown(
+        r"""
+```mermaid
+flowchart LR
+  envelope[Word envelope] --> min[Cycle minimum]
+  min --> finance[Finance]
+  finance --> nmax["n_max(L)"]
+  nmax --> floor["Verified descent floor 10^6"]
+  floor --> bound["L ≥ 1054"]
+```
+        """
+    )
     rows = [
         {
             "in plain English": CLAIM_PLAIN.get(row["ledger"], row["text"]),
@@ -353,15 +411,159 @@ def _claim_map() -> None:
         }
         for row in CLAIM_ROWS
     ]
-    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch", height=280)
+    st.dataframe(pd.DataFrame(rows), hide_index=True, width="stretch", height=320)
     with st.expander("What this does not claim", icon=":material/info:"):
         st.caption(
-            "No density result is used. Finite leftover tables are checks, "
-            "not a halt proof. Paper A Theorem 3.22 excludes every cycle "
-            "word with fewer than four evens, so the period is at least "
-            "eleven. The thirty length-11 short-gap words are a lab gate, "
-            "not a Paper A theorem."
+            "This is not a termination proof and not progress toward the "
+            "Juggler conjecture. Membership in ℰ means only that the "
+            "present bound does not exclude the length. The thirty "
+            "length-11 short-gap words are a laboratory leftover gate, "
+            "not Paper A open cycles: period 11 is already excluded."
         )
+
+
+def _finance() -> None:
+    _blurb("Finance")
+    _proof_tags(
+        "J-cycle-finance-inequality",
+        "J-cycle-word-eliahou-leftover-instance",
+    )
+    st.latex(r"n\log n\cdot(3^o-2^L)\le L\cdot 3^o")
+    st.caption(
+        "Theorem 4.4, constant 1 in Lean. The table uses the weaker "
+        "uniform 6/5 form because it holds above the verified descent "
+        "floor and already produces 1054. No constant optimization is "
+        "attempted."
+    )
+    cards = st.container(horizontal=True)
+    with cards:
+        st.metric("Verified descent floor", f"{PAPER_FLOOR:,}", border=True)
+        st.metric("First unexcluded length", str(PAPER_PERIOD), border=True)
+        st.metric("|ℰ| through 10⁵", str(PAPER_EXCEPTION_COUNT), border=True)
+        st.metric("Arrival at 1", "not claimed", border=True)
+
+    def _apply_record() -> None:
+        name = st.session_state.get("juggler_finance_record")
+        if name is not None:
+            st.session_state.juggler_finance_L = int(name)
+
+    row = st.container(horizontal=True, vertical_alignment="bottom", gap="small")
+    with row:
+        st.selectbox(
+            "Record length",
+            RECORD_LENGTHS,
+            index=None,
+            placeholder="Jump to a record length",
+            key="juggler_finance_record",
+            on_change=_apply_record,
+            width=220,
+            help="One-sided best-approximation lengths, not ordinary CF denominators.",
+        )
+        length = int(
+            st.number_input(
+                "Period L",
+                min_value=1,
+                max_value=PAPER_L_CAP,
+                step=1,
+                key="juggler_finance_L",
+                width=160,
+            )
+        )
+    view = finance_view(length)
+    status_row = st.container(horizontal=True)
+    with status_row:
+        st.metric("This L", view.status, border=True)
+        st.metric(
+            "o_min",
+            view.o_min if view.o_min is not None else "—",
+            border=True,
+            help="Least odd count with 3^o > 2^L.",
+        )
+        st.metric(
+            "n_max",
+            f"{view.n_max:,}" if view.n_max is not None else "—",
+            border=True,
+            help="Largest cycle minimum the 6/5 bound still allows.",
+        )
+        st.metric("In ℰ?", "yes" if view.in_exception_set else "no", border=True)
+    if view.admissible:
+        st.info(
+            f"L = {length} is admissible to this bound at the verified "
+            "descent floor. That is not evidence for a cycle.",
+            icon=":material/info:",
+        )
+    elif view.excluded_by_floor:
+        st.success(
+            f"L = {length} is excluded: n_max is at most the verified "
+            f"descent floor {PAPER_FLOOR:,}, or the length lies below "
+            f"{PAPER_PERIOD}.",
+            icon=":material/check:",
+        )
+    chart_df = pd.DataFrame(finance_chart_rows())
+    chart = (
+        alt.Chart(chart_df)
+        .mark_line(point=True)
+        .encode(
+            x=alt.X("L:Q", title="period L"),
+            y=alt.Y("n_max:Q", title="n_max", scale=alt.Scale(type="log")),
+            color=alt.Color("record:N", title="record length"),
+            tooltip=["L", "n_max", "record"],
+        )
+    )
+    st.altair_chart(chart, width="stretch")
+    st.caption(
+        f"n_max(L) for L ≤ {chart_df['L'].max()}. Spikes are one-sided "
+        "best-approximation lengths. The printed floor line sits at 10^6; "
+        "the first record above it is 1054."
+    )
+
+    records = _lazy_expander(
+        "Printed record lengths",
+        icon=":material/table:",
+        key="juggler_finance_records",
+    )
+    if records.open:
+        with records:
+            st.dataframe(
+                pd.DataFrame(
+                    [
+                        {
+                            "L": length,
+                            "o_min": finance_view(length).o_min,
+                            "n_max": finance_view(length).n_max,
+                            "status": finance_view(length).status,
+                        }
+                        for length in RECORD_LENGTHS
+                    ]
+                ),
+                hide_index=True,
+                width="stretch",
+            )
+            st.caption(
+                "11 and 569 are not ordinary continued-fraction "
+                "denominators of log 2 / log 3."
+            )
+
+    leftovers = _lazy_expander(
+        "First lengths in ℰ",
+        icon=":material/list:",
+        key="juggler_finance_exceptions",
+    )
+    if leftovers.open:
+        with leftovers:
+            shown = paper_exception_lengths()[:20]
+            st.dataframe(
+                pd.DataFrame({"L": list(shown)}),
+                hide_index=True,
+                width="stretch",
+                height=240,
+            )
+            st.caption(
+                f"{PAPER_EXCEPTION_COUNT} lengths through {PAPER_L_CAP:,}. "
+                "The remaining elements include multiples of 1054 and "
+                "combinations of the record lengths. Full list: "
+                "data/research/juggler/cycle_finance/exceptions.json."
+            )
 
 
 def _orbit() -> None:
@@ -625,7 +827,8 @@ def _cells() -> None:
         with census:
             st.caption(
                 "Every even-ending expanding word of length at most 8, and why "
-                "it cannot be a loop. Paper A Theorem 3.22 gives period ≥ 11."
+                "it cannot be a loop. Theorem 3.22 gives four evens, hence "
+                "period ≥ 11; finance then excludes every period ≤ 1053."
             )
             st.dataframe(
                 pd.DataFrame(census_inventory()),
@@ -722,8 +925,8 @@ def _cycle_words() -> None:
     _blurb("Cycle words")
     _proof_tags(
         "J-cycle-finite-structure",
-        "J-small-cycle-census-seven",
-        "J-small-cycle-census-eight",
+        "J-even-count-le-three",
+        "J-cycle-word-eliahou-leftover-instance",
         "J-gapped-cycle-word-ee",
     )
     word = _cycle_word_controls()
@@ -903,15 +1106,17 @@ def _leftover_families() -> None:
     _proof_tags(*LEFTOVER_FAMILY_LEDGER_IDS)
     cards = st.container(horizontal=True)
     with cards:
-        st.metric("Two-even / bunched / gapped", "ruled out", border=True)
-        st.metric("Length-11 short-gap words", "30 still open", border=True)
+        st.metric("Even letters ≤ 3", "ruled out", border=True)
+        st.metric("Period 11", "excluded by finance", border=True)
+        st.metric("Lab leftover spellings", "30", border=True)
         st.metric("Arrival at 1", "not claimed", border=True)
 
     with st.container(border=True, gap="small"):
         st.markdown("**Inspect a length-11 spelling**")
         st.caption(
-            "Each of these is already a surviving CycleMin spelling, so "
-            "rotation cannot kill it. Open one in Cycle words to spin it."
+            "Each of these is a surviving CycleMin spelling for the local "
+            "cells, so rotation cannot kill it. Period 11 is already "
+            "excluded by finance. Open one in Cycle words to spin it."
         )
         inventory = length11_inventory()
         words = [row["word"] for row in inventory]
@@ -944,7 +1149,7 @@ def _leftover_families() -> None:
         )
 
     leftovers = _lazy_expander(
-        "The thirty first-expanding leftovers",
+        "The thirty first-expanding lab leftovers",
         icon=":material/table:",
         key="juggler_length11",
     )
@@ -959,7 +1164,7 @@ def _leftover_families() -> None:
     with st.expander("Lab decisions", icon=":material/gavel:"):
         st.dataframe(pd.DataFrame(LAB_LEFTOVER_DECISIONS), hide_index=True, width="stretch")
 
-    with st.expander("Why these 30 remain", icon=":material/help:"):
+    with st.expander("Why the local cells miss these 30", icon=":material/help:"):
         gate = st.container(horizontal=True)
         with gate:
             with st.container(border=True, gap="small"):
@@ -978,8 +1183,9 @@ def _leftover_families() -> None:
             with st.container(border=True, gap="small"):
                 st.markdown("**Rotation**")
                 st.caption(
-                    "These thirty words are the open CycleMin spellings, "
-                    "in 30 distinct necklaces."
+                    "These thirty words are the CycleMin spellings the "
+                    "local cells miss, in 30 distinct necklaces. They are "
+                    "not Paper A open cycles."
                 )
 
 
@@ -988,9 +1194,10 @@ def juggler_finite_dynamics_page() -> None:
     if st.session_state.pop("juggler_goto_cycle", False):
         st.session_state.juggler_view = "Cycle words"
     st.caption(
-        "Walk the Juggler map, then test whether a loop of odd/even steps "
-        "can close. Lean is the proof authority through Theorem 3.21. "
-        "Arrival at 1 is not claimed."
+        "Companion to Paper A: local word obstructions plus finance give "
+        f"period ≥ {PAPER_PERIOD}. Lean is the authority through "
+        "Theorem 4.4; Theorem 4.6 is a verified computation. Arrival at "
+        "1 is not claimed."
     )
     _glossary()
     view = st.segmented_control(
@@ -1007,6 +1214,8 @@ def juggler_finite_dynamics_page() -> None:
         _n_controls()
     if view == "Claim map":
         _claim_map()
+    elif view == "Finance":
+        _finance()
     elif view == "Orbit":
         _orbit()
     elif view == "Envelope":

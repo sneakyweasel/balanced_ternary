@@ -6,6 +6,8 @@ from visualization.juggler_finite_dynamics import (
     LEFTOVER_CUTOFF,
     NOTE_ORBIT_3,
     NOTE_PEAK_37,
+    PAPER_EXCEPTION_COUNT,
+    PAPER_PERIOD,
     WORD_MAX,
     classify_word,
     compose_view,
@@ -14,6 +16,7 @@ from visualization.juggler_finite_dynamics import (
     descent_window,
     envelope_view,
     even_cell_view,
+    finance_view,
     four_block_replay,
     leftover_table,
     leftover_words,
@@ -22,6 +25,7 @@ from visualization.juggler_finite_dynamics import (
     length_eight_status_rows,
     next_square_view,
     odd_cell_view,
+    paper_exception_lengths,
     parse_cycle_word,
     parse_word,
     rotate_cycle_word,
@@ -98,8 +102,9 @@ def test_classify_leftovers_and_open_length_nine():
         info = classify_word(word)
         assert info.kind != "open", word
         assert "open" not in info.reason
-    open_view = cycle_class_view(EEEE_WORD, 0)
-    assert open_view.verdict == "open"
+    length11 = cycle_class_view(EEEE_WORD, 0)
+    assert length11.verdict == "excluded"
+    assert "1053" in length11.verdict_reason or "4.6" in length11.verdict_reason
 
 
 def test_length_eight_open_list_is_expanding_and_even_terminating():
@@ -231,15 +236,28 @@ def test_gapped_and_bunched_three_even_are_excluded():
     assert bunched.ledger == "J-three-even-eee"
 
 
-def test_length11_short_gap_stays_open_as_cyclemin():
+def test_length11_short_gap_is_excluded_by_finance():
     view = cycle_class_view(EEEE_WORD, 0)
     assert view.current_kind == "four-even short-gap"
-    assert view.verdict == "open"
+    assert view.verdict == "excluded"
     assert view.current_legal
-    assert view.ledger is None
+    assert view.ledger == "J-cycle-word-eliahou-leftover-instance"
     mixed = cycle_class_view("OOEOOOOOEEE", 0)
     assert mixed.current_kind == "four-even short-gap"
-    assert mixed.verdict == "open"
+    assert mixed.verdict == "excluded"
+
+
+def test_paper_finance_table_matches_theorem_4_6():
+    lengths = paper_exception_lengths()
+    assert len(lengths) == PAPER_EXCEPTION_COUNT
+    assert lengths[0] == PAPER_PERIOD
+    eleven = finance_view(11)
+    assert eleven.excluded_by_floor
+    assert eleven.n_max == 52
+    first = finance_view(PAPER_PERIOD)
+    assert first.admissible
+    assert first.n_max == 1_997_197
+    assert not first.excluded_by_floor
 
 
 def test_length11_inventory_is_thirty_first_expanding_words():

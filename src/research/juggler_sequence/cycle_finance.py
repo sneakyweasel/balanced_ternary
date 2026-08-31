@@ -32,7 +32,11 @@ from __future__ import annotations
 
 import json
 import math
+import os
 import subprocess
+import sys
+import time
+from concurrent.futures import ProcessPoolExecutor, as_completed
 from fractions import Fraction
 from math import isqrt
 from pathlib import Path
@@ -62,16 +66,19 @@ MIN_STATE = 12  # Lean reachesOne_of_lt_twelve: every n <= 11 reaches 1
 LEAN_FLOOR = 11
 
 SCIENCE_L_MAX = 100_000
-SCIENCE_FLOOR = 2_000_000
+SCIENCE_FLOOR = 68_000_000
 SCIENCE_SEEDS = (25, 27, 37, 365, 1999, 30817, 1_000_003)
 TEST_L_MAX = 400
 TEST_FLOOR = 2_000
 TEST_SEEDS = (25, 37, 365)
 
-REPORT_FLOORS = (11, 1_000, 1_000_000, 2_000_000, 10**9)
+REPORT_FLOORS = (11, 1_000, 1_000_000, 2_000_000, 68_000_000, 10**9)
 GREEN_PREFIX = 100
 STEP_CAP = 100_000
-BIT_CAP = 10_000_000
+BIT_CAP = 80_000_000
+PROGRESS_MIN_N = 100_000
+PROGRESS_CHUNK = 250_000
+PROGRESS_PATH = DATA_DIR / "floor_progress.json"
 EXCEPTION_LIST_CAP = 500
 ELIAHOU_TABLE_CUTOFF = 100_000
 ELIAHOU_LEAN_PERIOD = 84
@@ -310,28 +317,22 @@ def census_cross_check(rows: list[dict[str, Any]]) -> dict[str, Any]:
     }
 
 
-def verify_floor(
-    n_top: int,
-    *,
-    step_cap: int = STEP_CAP,
-    bit_cap: int = BIT_CAP,
-) -> dict[str, Any]:
-    """Descent induction: every 2 <= n <= n_top has an iterate < n.
+def _odd_chunk_first_passage(
+    start: int, stop: int, step_cap: int, bit_cap: int
+) -> tuple[list[int], int, int, int]:
+    """Walk odds in [start, stop]. Returns failures, max_steps, hardest, max_bits."""
 
-    Evens n >= 2 drop in one square-root step, so only odds are
-    walked. By strong induction (base n=2 -> 1) every such n
-    reaches 1. Exact integer arithmetic; failures list is expected
-    empty.
-    """
-
-    max_steps = 0
-    max_bits = 0
-    hardest = 0
     failures: list[int] = []
-    for n in range(3, n_top + 1, 2):
+    max_steps = 0
+    hardest = 0
+    max_bits = 0
+    if start % 2 == 0:
+        start += 1
+    for n in range(start, stop + 1, 2):
         x = n
         steps = 0
         ok = True
+        local_bits = 0
         while x >= n:
             if x % 2 == 0:
                 x = isqrt(x)
@@ -339,15 +340,151 @@ def verify_floor(
                 x = isqrt(x * x * x)
             steps += 1
             bits = x.bit_length()
-            if bits > max_bits:
-                max_bits = bits
-            if steps > step_cap or bits > bit_cap:
+            if bits > local_bits:
+                local_bits = bits
+            if steps > step_cap:
                 failures.append(n)
                 ok = False
                 break
+            if bits > bit_cap:
+                failures.append(n)
+                ok = False
+                break
+        if local_bits > max_bits:
+            max_bits = local_bits
         if ok and steps > max_steps:
             max_steps = steps
             hardest = n
+    return failures, max_steps, hardest, max_bits
+
+
+def _floor_workers(n_top: int, workers: int | None) -> int:
+    if workers is not None:
+        return max(1, workers)
+    if n_top < PROGRESS_MIN_N:
+        return 1
+    env = os.environ.get("JUGGLER_FLOOR_WORKERS")
+    if env:
+        return max(1, int(env))
+    cpu = os.cpu_count() or 1
+    return max(1, cpu - 1)
+
+
+def _format_hms(seconds: float) -> str:
+    total = max(0, int(seconds))
+    hours, rem = divmod(total, 3600)
+    minutes, secs = divmod(rem, 60)
+    if hours:
+        return f"{hours}:{minutes:02d}:{secs:02d}"
+    return f"{minutes}:{secs:02d}"
+
+
+def _report_floor_progress(payload: dict[str, Any]) -> None:
+    DATA_DIR.mkdir(parents=True, exist_ok=True)
+    PROGRESS_PATH.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+    line = (
+        f"verify_floor {payload['pct']:5.1f}%  "
+        f"n={payload['n']}/{payload['n_top']}  "
+        f"{payload['rate_n_per_s']:.0f} n/s  "
+        f"elapsed={payload['elapsed']}  eta={payload['eta']}  "
+        f"hardest={payload['hardest_seed']} steps={payload['max_steps']}  "
+        f"bits={payload['max_bits']}  fail={payload['failure_count']}"
+    )
+    print(line, file=sys.stderr, flush=True)
+
+
+def verify_floor(
+    n_top: int,
+    *,
+    step_cap: int = STEP_CAP,
+    bit_cap: int = BIT_CAP,
+    progress: bool | None = None,
+    workers: int | None = None,
+) -> dict[str, Any]:
+    """Descent induction: every 2 <= n <= n_top has an iterate < n.
+
+    Evens n >= 2 drop in one square-root step, so only odds are
+    walked. By strong induction (base n=2 -> 1) every such n
+    reaches 1. Exact integer arithmetic; failures list is expected
+    empty. Large windows print progress to stderr and
+    ``data/research/juggler/cycle_finance/floor_progress.json``.
+    """
+
+    if progress is None:
+        progress = n_top >= PROGRESS_MIN_N
+    worker_count = _floor_workers(n_top, workers)
+    max_steps = 0
+    max_bits = 0
+    hardest = 0
+    failures: list[int] = []
+    started = time.perf_counter()
+
+    def absorb(chunk_fail: list[int], chunk_steps: int, chunk_hard: int, chunk_bits: int) -> None:
+        nonlocal max_steps, max_bits, hardest
+        failures.extend(chunk_fail)
+        if chunk_bits > max_bits:
+            max_bits = chunk_bits
+        if chunk_steps > max_steps:
+            max_steps = chunk_steps
+            hardest = chunk_hard
+
+    def emit(n_done: int) -> None:
+        elapsed = time.perf_counter() - started
+        rate = n_done / elapsed if elapsed > 0 else 0.0
+        remain = (n_top - n_done) / rate if rate > 0 else 0.0
+        _report_floor_progress(
+            {
+                "n": n_done,
+                "n_top": n_top,
+                "pct": 100.0 * n_done / n_top if n_top else 100.0,
+                "rate_n_per_s": rate,
+                "elapsed_s": elapsed,
+                "eta_s": remain,
+                "elapsed": _format_hms(elapsed),
+                "eta": _format_hms(remain),
+                "hardest_seed": hardest,
+                "max_steps": max_steps,
+                "max_bits": max_bits,
+                "failure_count": len(failures),
+                "workers": worker_count,
+            }
+        )
+
+    chunks = [
+        (start, min(start + PROGRESS_CHUNK - 1, n_top))
+        for start in range(3, n_top + 1, PROGRESS_CHUNK)
+    ]
+    if worker_count == 1 or len(chunks) <= 1:
+        for start, stop in chunks:
+            absorb(*_odd_chunk_first_passage(start, stop, step_cap, bit_cap))
+            if progress:
+                emit(stop)
+    else:
+        if progress:
+            print(
+                f"verify_floor n_top={n_top} workers={worker_count} "
+                f"chunks={len(chunks)}",
+                file=sys.stderr,
+                flush=True,
+            )
+        done = 0
+        with ProcessPoolExecutor(max_workers=worker_count) as pool:
+            futures = {
+                pool.submit(
+                    _odd_chunk_first_passage, start, stop, step_cap, bit_cap
+                ): stop
+                for start, stop in chunks
+            }
+            for future in as_completed(futures):
+                absorb(*future.result())
+                done += 1
+                if progress:
+                    # Chunk completions, not ordered n.
+                    emit(min(n_top, done * PROGRESS_CHUNK))
+
+    if progress:
+        emit(n_top)
+
     return {
         "n_top": n_top,
         "verified": not failures,
@@ -355,6 +492,8 @@ def verify_floor(
         "max_first_passage_steps": max_steps,
         "hardest_seed": hardest,
         "max_bits_seen": max_bits,
+        "workers": worker_count,
+        "elapsed_s": time.perf_counter() - started,
     }
 
 

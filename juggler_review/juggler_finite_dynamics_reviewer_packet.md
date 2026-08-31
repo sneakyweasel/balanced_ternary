@@ -15,9 +15,9 @@ The former single note has been split into two manuscripts:
   Supporting structural theorem C: every nontrivial cycle has at
   least four even letters, hence period at least eleven. The
   financing inequality is Theorem 4.4; A and B are Theorem 4.6
-  at the computational floor \(10^6\) reported by Weisstein.
+  at the verified descent floor \(10^6\) reported by Weisstein.
   Lean formalizes the exact claims except Theorem 4.6, which is
-  a named computation. Membership in \(\mathcal E\) means only
+  a verified computation. Membership in \(\mathcal E\) means only
   that the bound does not exclude the length. Leftover \(84\)
   is a laboratory companion, not a paper theorem.
 - **Paper B** —
@@ -37,8 +37,8 @@ not required reading for the proofs.
 
 **Primary review questions.** For Paper A: are the power-envelope,
 global-defect, census, and finance arguments correct at their stated
-quantifiers? Is Theorem 4.6 scoped as a computation, not a Lean
-theorem? For Paper B: are the depth-1–4 estimates (exponents
+quantifiers? Is Theorem 4.6 scoped as a verified computation,
+not a Lean theorem? For Paper B: are the depth-1–4 estimates (exponents
 \(5/6\) to \(23/24\)) sound; is the kernel theorem (Theorem 5.3,
 double Weyl differencing over the carry-branch decomposition and
 master identity of Lemma 5.1, with the level-2 wave Lemma 5.2,
@@ -125,11 +125,11 @@ says nothing about the deterministic shift).
 | First-even transport (Theorem 3.13) | **EXACT — LEAN VERIFIED** | minimum-based starts only; not a `CycleWord` theorem at a non-minimum start |
 | Bunched families \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\), \(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\) (Theorems 3.14--3.20) | **EXACT — LEAN VERIFIED** | seven families only; not a length-8 or length-9 census |
 | Gapped leftovers as cycle words (Theorem 3.21) | **EXACT — LEAN VERIFIED** | both gapped families; rotation of already-excluded CycleMins; not first-E at a non-minimum start; not a length-8 or length-9 census |
-| Even-count assembly (Theorem 3.22); period at least eleven (Corollary 3.23) | **EXACT — LEAN VERIFIED** | no cycle word with fewer than four evens; expansion corollary, not a length-9 or length-10 word census |
+| Canonical run form (Lemma 3.21b); classification (Lemma 3.21a); even-count assembly (Theorem 3.22); period at least eleven (Corollary 3.23) | **EXACT — LEAN VERIFIED** | minimum-based words are \(O^aEO^bEO^cE\); no cycle word with fewer than four evens; expansion corollary, not a length-9 or length-10 word census |
 | Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists |
 | Finance inequality (Theorem 4.4) | **EXACT — LEAN VERIFIED** | `cycleMin_finance`; constant \(1\); not a halt theorem |
 | Per-length exclusion given a floor (Corollary 4.5) | **EXACT — HUMAN PROOF** | \(6/5\) table; conservative relative to Theorem 4.4 |
-| Computational leftover (Theorem 4.6) | **COMPUTATIONALLY VERIFIED** | floor \(10^6\); no period \(\le 1053\); \(397\) exceptions through \(10^5\); first record survivor \(1054\) |
+| Verified computation (Theorem 4.6) | **COMPUTATIONALLY VERIFIED** | verified descent floor \(10^6\); no period \(\le 1053\); \(397\) exceptions through \(10^5\); first length not excluded is \(1054\) |
 | Lean leftover \(84\) or \(\ge 85\) | **EXACT — LEAN VERIFIED** | Appendix A companion; formalization lag relative to Theorem 4.6 |
 | Four-block expanding chain \(1999\to\cdots\to887471\) (Section 5) | **EXACT — LEAN VERIFIED** | one certified hard path; not a growth theorem |
 | Even and odd-to-even starts have uniform short certificates (Section 5) | **EXACT — LEAN VERIFIED** | not all descent certificates |

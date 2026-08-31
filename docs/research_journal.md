@@ -15818,4 +15818,34 @@ Best next question
 - none from these five fixes
 ```
 
+## Paper A third-pass referee tightening
+
+- **Date:** 2026-08-31
+- **Objective:** Apply the third-pass referee obligations before submission
+- **Hypotheses:** none; editorial
+- **Major results:** Canonical run-form lemma (3.21b) makes the \(e\le 3\) classification structural. Novelty statement isolates Theorem 4.4 as the new Juggler-specific inequality. Defect composition moved to Appendix C; the \(10^{-30}\) example is one sentence. Exceptional-length algorithm is Proposition 4.4a. The \(6/5\) factor is explained. Theorem 4.6 is titled a verified computation. Remaining elements of \(\mathcal E\) *include* multiples and sums, not *are*. \(N_0=10^6\) is the verified descent floor throughout. Title and abstract unchanged. Paper B unchanged. No new Lean
+- **Refuted ideas:** none
+- **Literature:** none added
+- **Open:** unchanged
+- **Decision:** PROMOTE the tightening. No new theorem
+
+```text
+What was learned
+- the e=3 split is formal once minimum-based words are O^aEO^bEO^cE
+- the 6/5 weakening is a uniformity choice, not a gap
+Strongest theorem
+- unchanged: cycleMin_finance and L >= 1054
+Strongest refutation
+- none
+Reusable machinery
+- none
+Branch status
+- PROMOTE
+Why
+- the remaining referee list was classification, novelty, and
+  unused defect exposition
+Best next question
+- none from this tightening
+```
+
 

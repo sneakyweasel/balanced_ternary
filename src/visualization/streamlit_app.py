@@ -76,7 +76,7 @@ pages = {
     "Juggler research": [
         st.Page(
             str(_PAGES / "juggler_finite_dynamics.py"),
-            title="Finite dynamics",
+            title="Juggler cycles",
             icon=":material/repeat:",
             url_path="juggler-finite-dynamics",
         ),

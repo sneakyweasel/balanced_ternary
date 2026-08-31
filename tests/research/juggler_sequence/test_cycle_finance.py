@@ -72,10 +72,11 @@ def test_census_cross_check_matches_lean_census():
 
 
 def test_verify_floor_descent_induction():
-    result = verify_floor(300)
+    result = verify_floor(300, progress=False, workers=1)
     assert result["verified"] is True
     assert result["failures"] == []
     assert result["max_first_passage_steps"] >= 1
+    assert result["workers"] == 1
 
 
 def test_orbit_slack_bounds_hold():
