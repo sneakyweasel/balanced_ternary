@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_almost_search",
+  "title": "Near-closure of a finance-surviving Juggler word reveals a reusable exact local obstruction",
+  "statement": "A large exact search for E_L(n,w)=|T_w(n)-n|/n on structurally admissible words at L=25781, n>=10^6+1, produces either an exact cycle, an unusually close almost-cycle with a stable signature, or a family of near-returns whose terminal failure is a common exact local configuration that can be converted into a leftover-killing theorem.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "8.5e6 odds in [2e6+1, 19010076]: 0 survive 25781 AboveAnchor steps; max packed-legal first-passage is 257 at n=6127057",
+    "The unique distinguished word (extremal=Christoffel=packed Beatty) has max follow depth 11 and mean depth 2.03; 0 complete followers",
+    "All 96 exact backward beams die at an empty OOE preimage after at most 2 of 9515 blocks; MITM fails the same way"
+  ],
+  "first_seen": "juggler exact almost-cycle search",
+  "lean_reference": "odd_cell_unique",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / exact almost-cycle search",
+  "notes": "Phase 1 only. No 2^L enumeration. No Phase 2/3. Not a floor certificate for the 7481 high-peak seeds. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_almost_search.md",
+  "proof_reference": "docs/problems/juggler_cycle_almost_search.md",
+  "tested_range": "Forward CycleMin scan of 8505038 odds in [2000001, 19010076] with bit_cap=16384; follow on [10^6+1, 10^6+20001]; backward beam on 96 endpoints; 64-sample high-peak rewalk; L=19 calibration"
+}

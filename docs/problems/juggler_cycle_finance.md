@@ -680,6 +680,18 @@ and `data/research/juggler/cycle_finance/`.
   (`juggler_cycle_loss_persistence_leftover_killer`).
   Near-top defect anti-clustering is also **CLOSE**
   (`juggler_cycle_defect_anticluster`).
+  Exact almost-cycle search at \(L=25781\) is also **CLOSE**
+  (`juggler_cycle_almost_search`).
+  The finance-to-cell bridge is also **CLOSE**
+  (`juggler_cycle_finance_cell_bridge`).
+- The named future program is the state-distribution bound of
+  Paper A Section 5:
+  \(\max\sum 1/(x_i\log x_i)\) over realizable cycle geometry.
+  Return-cost coupling is **CLOSE**
+  ([juggler_cycle_valley_coupling.md](juggler_cycle_valley_coupling.md)).
+  Cheap-band descent next-run type is also **CLOSE**
+  ([juggler_cycle_descent_next_run.md](juggler_cycle_descent_next_run.md)).
+  The program stays **PARK**.
 
 ## Decision
 
@@ -759,17 +771,38 @@ The near-top defect anti-clustering leftover-killer is **CLOSE**
 \((u,u')=(0.99759,0.99989)\) at \(x=2745367\); twelve `OO`
 pairs have both coordinates \(\ge 0.995\); \(f(0.995)=0.99996\).
 
-Best next question: none from prefix weights, run-type packing,
-cyclic run packing, prefix expansion, Fourier, exact
-pair-level closure, low-order modular closure,
-finance-conditioned closure, ordered excursion closure,
-correlated floor-defect finance, cross-excursion
-usable-loss persistence, or two-step defect
-anti-clustering. The
-frontier leftover \(L=25781\) still has a factor-\(23\) valley
-gap after the `OE`-start lift. The remaining slack is an
-\(m\)-bound or valley-height question already parked or refuted
-at the residual floor.
+The exact almost-cycle leftover-killer is **CLOSE**
+(`juggler_cycle_almost_search`): no \(E_{25781}\) on the
+run-type window; max packed-legal first-passage \(257\);
+the distinguished word is not followed past depth \(11\);
+exact backward dies at the first `OOE` cell.
+
+The finance-to-cell leftover-killer is **CLOSE**
+(`juggler_cycle_finance_cell_bridge`): terminal \((2,1)\)
+is forced by Sturmian isolation plus expanding last `OOE`,
+and is commonly realized; follow death is the shared `OOE`
+prefix; empty \((2,2,1)\) is \(243<256\).
+
+The return-cost leftover-killer is **CLOSE**
+(`juggler_cycle_valley_coupling_leftover_killer`):
+`OOE` lands at \(n^{9/8}\), not \(n+2\); the shortest
+envelope descent is \(O^5E^3\); \(O^{53}E^{31}\) restores
+\(n^{1.002}\). No certified leftover dies.
+
+The cheap-band descent leftover-killer is **CLOSE**
+(`juggler_cycle_descent_next_run`): a descent onto
+\([n,19n]\) can start \(a=2\). One-even witness
+\(p=1000057\); post-`OOE` witness
+\(1000057\to 5623773\). \(297\) of \(1210\) cheap-band
+`OOE` landings in the \(20\,000\)-window start \(a=2\).
+
+Best next question: none from cheap-band next-run type. The
+state-distribution program of Paper A Section 5 stays **PARK**:
+\(O^5E^3\) is the shortest descent from \(9/8\), exact reset is
+impossible, every-circuit later-valley lower bounds collapse
+to \(n^{1+\varepsilon}\), and a cheap-band descent can start
+\(a=2\). The factor-\(23\) valley gap at \(L=25781\) is
+unchanged as a certified charge.
 
 Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
 leftover-killer
@@ -795,6 +828,18 @@ Finance-conditioned exact closure is also **REFUTED** as a leftover-killer
 (`juggler_cycle_conditioned_closure_leftover_killer`).
 Ordered excursion closure is also **REFUTED** as a leftover-killer
 (`juggler_cycle_ordered_excursion_leftover_killer`).
+Exact almost-cycle search at \(L=25781\) is also **REFUTED**
+as a leftover-killer
+(`juggler_cycle_almost_search`).
+The finance-to-cell bridge is also **REFUTED** as a
+leftover-killer
+(`juggler_cycle_finance_cell_bridge`).
+Return-cost valley coupling is also **REFUTED** as a
+leftover-killer
+(`juggler_cycle_valley_coupling_leftover_killer`).
+Cheap-band descent next-run type is also **REFUTED** as a
+leftover-killer
+(`juggler_cycle_descent_next_run`).
 Run-height packing does not improve the length-only
 \(n_{\max}\) at \(o_{\min}\).
 

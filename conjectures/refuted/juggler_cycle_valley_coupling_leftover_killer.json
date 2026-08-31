@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_valley_coupling_leftover_killer",
+  "title": "Return-cost coupling forces N_cheap < o-e strongly enough to raise the Juggler period cutoff",
+  "statement": "After a cheap OOE the next valley is at n^{9/8}. A CycleMin-legal return to n-scale has a positive letter cost, so N_cheap < o-e on every realized cycle, and the resulting finance bound excludes L=25781 at the published floor 10^6 or shrinks E_run(10^6) by a certified comparison.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "O^{53}E^{31} from exponent 1 lands at 3^{53}/2^{84} ≈ n^{1.002}; floors O(1/x) do not pull that to n+2, so a uniform later-valley lower bound that beats n+2 enough to move the cutoff does not exist",
+    "O^{12}E^7 lands at 3^{12}/2^{19} ≈ n^{1.014} < n^{9/8}, so subsequent valleys need not sit at 9/8",
+    "At L=25781, theta ≈ 2.546e-5 versus diagnostic 9/8-charge 1.07e-4, k<=12 greedy 8.58e-5, and k<=53 walk 2.59e-5; none is a certified exclusion, and the last is still above theta"
+  ],
+  "first_seen": "juggler cheap-valley return coupling",
+  "lean_reference": "power_bound_word",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / valley coupling",
+  "notes": "The (5,3) descent and F_2(v)>v+2 on realized OOE are negative knowledge. N_sep=2324 at L=25781 is a diagnostic, not a restart-at-n theorem. Envelope walks are not leftover-killers: envelope height is an upper bound. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_valley_coupling.md",
+  "proof_reference": "docs/problems/juggler_cycle_valley_coupling.md",
+  "tested_range": "Exponent search k<=53, ell<=32; OOE landings on {37,365,1999} and five starts near 10^6+53; diagnostic scan of the 99 run-type leftovers at n=10^6+1"
+}

@@ -9,14 +9,12 @@ is not the laboratory. No termination theorem is claimed.
 ## Read this first
 
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
-   — **Paper A**: *Lower bounds for nontrivial cycles of the
-   Juggler map*. Local word obstructions plus finance give
-   \(L\ge 25781\) (Theorem A) and an admissible set of \(141\)
-   lengths through \(10^5\) (Theorem B). Run-type packing leaves
-   \(99\) of those lengths, as three affine families
-   (Theorems 4.7--4.8, Proposition 4.9). Every nontrivial cycle
-   has at least four even letters (Theorem C). Membership in the
-   admissible set is not evidence for a cycle.
+   — **Paper A**: *Cycle financing and a period lower bound for
+   the Juggler map*. Finance inequality plus the verified
+   descent floor give \(L\ge 25781\). Every nontrivial cycle
+   has at least four even letters, hence period at least eleven.
+   Finance-survivor lengths through \(10^5\) are supporting
+   material.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
    kernel theorem, depth-4 completeness over odd starts, and the
@@ -51,11 +49,14 @@ Paper A Zenodo deposit kit (one PDF, paste-ready fields):
 
 Repository: https://github.com/sneakyweasel/balanced_ternary/
 
-Every exact theorem of Paper A is in Lean; Theorems 4.6 and 4.8
-are verified computations. Proposition 4.9's arithmetic is Lean. Every analytic estimate of
-Paper B (including the kernel theorem and the shift-average theorem)
-is a human proof and is not in Lean; only the exact floor reductions
-beneath them are (`GapCells.lean`, including the double-gap identity
+The core mathematical lemmas of Paper A are mechanized in Lean 4;
+selected finite classifications and the descent floor are
+independently certified computations. Theorems 4.6 and 4.8 are
+verified computations. Proposition 4.9's arithmetic is Lean.
+Every analytic estimate of Paper B (including the kernel theorem
+and the shift-average theorem) is a human proof and is not in
+Lean; only the exact floor reductions beneath them are
+(`GapCells.lean`, including the double-gap identity
 `seq_floor_gap_second`).
 
 ## What is not here

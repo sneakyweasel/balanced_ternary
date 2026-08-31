@@ -1,14 +1,16 @@
 ---
-title: Lower bounds for nontrivial cycles of the Juggler map
+title: Cycle financing and a period lower bound for the Juggler map
 author: Philippe Cochin
 date: 31 August 2026
 keywords:
   - Juggler map
   - Juggler sequence
   - floor-power maps
+  - cycle financing
   - integer dynamics
   - cycles
 header-includes:
+  - \usepackage{amsmath,amssymb}
   - \AtBeginDocument{\author{Philippe Cochin \\ \texttt{philippe@cochin.fr}}}
 ---
 
@@ -23,28 +25,23 @@ J(n)=
 \end{cases}
 \]
 It is conjectured that every positive integer eventually reaches \(1\).
-This note does not prove that conjecture, and it does not exclude
-every cycle. It restricts the possible periods of a hypothetical
-nontrivial cycle.
 
 A realized parity word obeys a power envelope, so a cycle word is
 formally expanding. Floor remainders must finance the surplus
-\(3^o-2^L\). At a cycle minimum this yields
+\(3^o-2^L\). At a cycle minimum this yields the financing inequality
 \[
 n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
 \]
-Combined with the computational verification reported by Weisstein
-that every start through \(10^6\) reaches \(1\), and with the
-parity-aware form of the floor-error budget, there is no
-nontrivial cycle of length at most \(25780\). Through length
-\(10^5\), only an explicit set
-\(\mathcal E\) of \(141\) lengths remains admissible to that
-length-only bound. A run-type packing of the same identity leaves
-a subset \(\mathcal E_{\mathrm{run}}\) of \(99\) lengths,
-organised as three affine families on the unimodular basis
-\((25781,16266)\), \((1054,665)\). A separate finite-word analysis
-shows that every nontrivial cycle has at least four even letters
-and hence period at least eleven.
+Combined with the independently verified descent that every start
+through \(10^6\) reaches \(1\), there is no nontrivial cycle of
+length at most \(25780\). Equivalently, any nontrivial cycle has
+period at least \(25781\). A separate inverse-cell analysis shows
+that every nontrivial cycle has at least four even letters, and
+hence period at least eleven.
+
+The core mathematical lemmas are mechanized in Lean 4; selected
+finite classifications and the descent floor are independently
+certified computations.
 
 **2020 Mathematics Subject Classification.** 11B83, 37P99, 11Y55.
 
@@ -66,31 +63,45 @@ A word of length \(k\) with \(o\) odd letters has ideal exponent
 \(3^o/2^k\). Floors are applied after every letter, and a word is
 available only when the orbit realizes those parities.
 
-The note has one architecture:
-\[
-\text{local word obstructions}
-\quad+\quad
-\text{global finance}
-\quad\Rightarrow\quad
-\text{a cycle-length lower bound}.
-\]
+The architecture is
+
+```text
+                hypothetical cycle
+                         |
+                         v
+               minimum-based rotation
+                         |
+              +----------+----------+
+              v                     v
+       word restrictions       finance law
+              |                     |
+              v                     v
+           e >= 4             n <= n_max(L)
+              |                     |
+              +----------+----------+
+                         v
+                  n >= 107 if cycle
+                         |
+                         v
+               n_max(L) > 10^6
+                         |
+                         v
+                    L >= 25781
+```
+
 Section 3 excludes every cycle word with fewer than four even
-letters, so the period is at least eleven. Section 4 turns the
-formal surplus \(3^o-2^L\) into a bound on the cycle minimum.
-With the verified descent floor through \(10^6\), the
-parity-aware form of that bound excludes every period at most
-\(25780\). The same identity, packed by odd-run type, leaves
-only \(99\) admissible lengths through \(10^5\).
+letters, so the period is at least eleven. Section 4 converts
+floor defects into a bound on the cycle minimum. With the
+verified descent floor through \(10^6\), that bound excludes
+every period at most \(25780\).
 
 Write \(N_0=10^6\) for the *verified descent floor*: the
 computational verification reported by Weisstein [5], recomputed
-here by exact first-passage. It is not a new computational
-record. The contribution is the implication
-\[
-\text{finance}+\text{verified descent floor }10^6
-\quad\Rightarrow\quad
-L\ge 25781.
-\]
+here by exact first-passage. The contribution is the structural
+implication: exact floor defects finance the formal expansion of
+a cycle word, and therefore force the minimum of a hypothetical
+cycle below the verified descent region unless the period is at
+least \(25781\).
 
 Throughout, \(\mathbb N=\{1,2,3,\ldots\}\). Write \(J^k\) for the
 \(k\)-fold iterate. A nonempty realized word \(w\) with
@@ -100,67 +111,54 @@ word at \(n\) is *minimum-based* when \(n\) is a cycle minimum:
 \(J^j(n)\ge n\) for every \(0\le j<|w|\). Every cycle word has a
 minimum-based rotation.
 
+All exceptional sets below are *finance-survivor* sets: lengths
+that a stated form of the finance inequality does not exclude at
+the verified descent floor. They are not candidate cycle sets.
+
 ### 1.0 Main results
 
-**Main theorem.**
-There is no nontrivial Juggler cycle of length at most \(25780\).
-Equivalently, any nontrivial cycle has period at least \(25781\)
-(Theorem A; Theorem 4.6(A)).
-
-**Secondary theorem.**
-If a nontrivial cycle has period \(L\le 10^5\), then \(L\) belongs
-to an explicit set \(\mathcal E\) of \(141\) lengths (Theorem B;
-Theorem 4.6(B)). The same \(6/5\) identity, packed by odd-run type
-at a cycle minimum, excludes a further \(42\) of those lengths and
-leaves a subset \(\mathcal E_{\mathrm{run}}\) of \(99\) lengths
-(Theorem 4.8), organised as three affine families on the
-unimodular basis \((25781,16266)\), \((1054,665)\)
-(Proposition 4.9). Membership in \(\mathcal E\) or
-\(\mathcal E_{\mathrm{run}}\) means only that the corresponding
-form of the finance inequality at the verified descent floor
-\(10^6\) does not exclude \(L\). It does not mean that a cycle of
-that length exists, or that the length is dynamically plausible.
-
-**Supporting structural theorem.**
-Every nontrivial cycle word has at least four even letters, and
-hence period at least eleven (Theorem C; Theorem 3.22 and
-Corollary 3.23). This bound does not use the verified descent
-floor.
-
-Theorems A and B are the finance inequality of Theorem 4.4, in
-the conservative \(6/5\) form of Corollary 4.5, at the
-verified descent floor \(N_0=10^6\) reported by Weisstein [5].
-These results give no control over the remaining lengths in
-\(\mathcal E_{\mathrm{run}}\), and they do not imply termination.
-The lattice of Proposition 4.9 organises the leftover list; it
-does not constrain an actual cycle.
-
-The logical dependency is
+**Contribution 1 — cycle-financing inequality.**
+For a minimum-based cycle of length \(L\) with \(o\) odd steps,
 \[
-\text{word envelope}
-\to
-\text{cycle minimum}
-\to
-\text{finance}
-\to
-n_{\max}(L)
-\to
-10^6\text{ verified descent floor}
-\to
-L\ge 25781.
+n\log n\cdot(3^o-2^L)\le L\cdot 3^o
 \]
+(Theorem 4.4). Floor defects become a quantitative bound on the
+cycle minimum.
+
+**Contribution 2 — structural word obstruction.**
+Every nontrivial cycle word has at least four even letters, and
+hence period at least eleven (Theorem 3.22 and Corollary 3.23).
+The argument classifies the minimum-based word geometry; it is
+not a raw census of words of length at most ten. This bound does
+not use the verified descent floor.
+
+**Contribution 3 — explicit global consequence.**
+Combined with the independently verified descent floor \(N_0=10^6\),
+there is no nontrivial Juggler cycle of length at most \(25780\).
+Equivalently, any nontrivial cycle has period at least \(25781\)
+(Theorem 4.6(A)).
+
+The supporting material of Section 4 records the finance-survivor
+lengths through \(10^5\): an explicit set \(\mathcal E\) of
+\(141\) lengths (Theorem 4.6(B)), of which run-type packing
+leaves \(99\) (Theorem 4.8), organised as three affine families
+(Proposition 4.9). Membership means only that the corresponding
+form of the inequality does not exclude \(L\).
+
+Theorems 4.6(A) and 4.6(B) are the finance inequality of
+Theorem 4.4, in the conservative \(6/5\) form of Corollary 4.5,
+at the verified descent floor reported by Weisstein [5].
 
 ### 1.1 Related work
 
 Pickover's later exposition is Chapter 45 of [2]. Weisstein [5]
 records the map, the stopping-time sequences A094670, A094679,
 A095908, and a verification of arrival at \(1\) through \(10^6\).
-That verified descent floor is the input to Theorem 4.6; the
-first-passage run of Appendix B recomputes it and is not a new
-record. OEIS
-A094716 [6] records extreme heights, including the start \(48443\)
-whose peak has \(972\,463\) digits. Those height records do not
-bound the period.
+That verified descent floor is the computational input to
+Theorem 4.6; the first-passage run of Appendix B recomputes it.
+OEIS A094716 [6] records extreme heights, including the start
+\(48443\) whose peak has \(972\,463\) digits. Those height
+records do not bound the period.
 
 We found no published result establishing an explicit lower bound
 on the period of a nontrivial cycle for this exact floor-power
@@ -173,55 +171,66 @@ transfer: the branches of \(J\) are floor powers rather than affine
 maps (Crandall [10], Matthews--Watts [11]). In particular there is
 no identity of the form \(n(2^K-3^p)=C\).
 
-The financing-versus-gap template of Section 4 follows Simons and
-de Weger [12] on Collatz \(m\)-cycles. That paper uses Diophantine
-approximation and linear forms in logarithms. Financing as an
-idea, logarithmic step inequalities, and the continued-fraction
-phenomenon are not claimed as new. The argument below is
-elementary and independent of those Diophantine tools:
-floor-power defects are relatively \(O(1/x)\) in logarithms, so a
-uniform logarithmic floor-error bound, valid above the verified
-floor, excludes every length that is not admissible for
-Theorem 4.4. The Juggler-specific form of the financing
-inequality, and the explicit period bounds it produces with the
-verified descent floor \(10^6\), appear to be new. The leftover
-packaging, period at least \(X\) or a named admissible family,
-follows Eliahou [13]. For this nonlinear floor-power map, the
-elementary log-envelope plus that floor already forces
-\(L\ge 25781\). The three families of Proposition 4.9 are the
-surplus intermediate fractions of \(\log 2/\log 3\) that still
-beat run-type finance at this floor; that continued-fraction
-identification is classical.
+The layers of the argument are as follows.
+
+1. *Classical idea:* cycle financing (Simons--de Weger [12]).
+2. *Classical idea:* logarithmic and continued-fraction
+   approximation of \(\log 2/\log 3\).
+3. *Classical idea:* cycle-word restrictions and leftover
+   packaging (Eliahou [13]; Lagarias [8,9]).
+4. *New object:* the exact one-step floor-power cells of \(J\).
+5. *New theorem:* the Juggler-specific cycle-minimum finance
+   inequality of Theorem 4.4.
+6. *New consequence:* \(L\ge 25781\) at the verified descent
+   floor \(10^6\).
+7. *New computational organization:* the run-packing description
+   of the finance-survivor lengths (Theorems 4.7--4.8,
+   Proposition 4.9).
+
+Financing as an idea, logarithmic step inequalities, and the
+continued-fraction phenomenon are not claimed as new. The
+argument below is elementary and independent of the Diophantine
+tools of [12]: floor-power defects are relatively \(O(1/x)\) in
+logarithms, so a uniform logarithmic floor-error bound, valid
+above the verified floor, excludes every length that is not a
+finance-survivor for Theorem 4.4. The Juggler-specific inequality
+and the explicit period bound it produces appear to be new. A
+systematic literature search remains an external-review gate.
 
 **Novelty statement.**
-For the exact Juggler map, the one-step floor cells yield the
-cycle-minimum inequality
-\[
-n\log n\cdot(3^o-2^L)\le L\cdot 3^o,
-\]
-and hence a computable function \(n_{\max}(L)\) giving explicit
-period exclusions (Theorem 4.4 and Corollary 4.5). To our
-knowledge, this explicit cycle-period bound has not previously
-been derived for the exact Juggler map.
+For this nonlinear floor-power map, exact floor defects convert
+into a cycle-financing inequality that forces the minimum of a
+hypothetical cycle below the independently verified descent
+region unless the period is at least \(25781\).
 
 ### 1.2 Verification
 
 The arguments of Sections 2, 3, and 4 may be read without machine
-assistance. A Lean formalization of those arguments is recorded in
-Appendix A. The finite tables used by Lemmas 3.5, 3.7, 3.11 and
+assistance. The core mathematical lemmas are mechanized in Lean 4;
+selected finite classifications and numerical tables are
+independently certified computations. Appendix A records the Lean
+names. The finite tables used by Lemmas 3.5, 3.7, 3.11 and
 Theorems 3.12--3.20 are `native_decide` evaluations in the modules
-named there. They are finite computations, not a termination proof.
+named there.
 
-Theorem 4.6 uses an exact-integer first-passage run through
-\(10^6\), together with an exact gap table of lengths up to
-\(10^5\). Theorems 4.7--4.8 reuse that table under the run-type
-packing. Proposition 4.9 is integer arithmetic, formalized in
-Lean; the identification of the \(99\) lattice points with
-\(\mathcal E_{\mathrm{run}}\) is the table of Theorem 4.8. The
-floor itself is the verified descent floor reported by
-Weisstein [5]; the first-passage run is an independent
-recomputation of that same floor, not a new record. Checksums and
-regeneration commands are in Appendix B.
+**Proposition 1.3 (certified computational input).**
+A machine-verifiable certificate establishes that every integer
+\(2\le n\le 10^6\) reaches \(1\). Precisely: an exact-integer
+first-passage run records, for each such \(n\), a finite realized
+word with image strictly below the start; strong induction on
+that image reaches \(1\). The longest first passage in the window
+has \(253\) steps (seed \(78901\)). Weisstein [5] records the
+same computational verification; the run here is an independent
+recomputation. The certificate files, SHA-256 hashes, and
+regeneration commands are Appendix B.
+
+Theorem 4.6 applies Corollary 4.5 to this input, together with an
+exact gap table of lengths up to \(10^5\). Theorems 4.7--4.8 reuse
+that table under the run-type packing. Proposition 4.9 is integer
+arithmetic, formalized in Lean; the identification of the \(99\)
+lattice points with \(\mathcal E_{\mathrm{run}}\) is the table of
+Theorem 4.8. Theorem 4.7 is a human proof. This is not a claim
+that the paper as a whole is formally verified.
 
 ```text
 Repository:  https://github.com/sneakyweasel/balanced_ternary
@@ -238,7 +247,7 @@ The commit is the repository state that produced the finance
 tables. A later editorial commit of this text does not change
 those hashes.
 
-## 2. Envelope and defect
+## 2. Envelope
 
 Let \(\mathcal B=\{E,O\}\). A finite word \(w\in\mathcal B^*\) is
 *realized* at \(n\in\mathbb N\) when the successive parities of the
@@ -299,64 +308,47 @@ It does not prove that every start realizes some contracting word.
 
 ### 2.4 Exact floor defect
 
-Section 4 uses only the envelope (Theorem 2.2), the one-step
-cells, and \(\log(1+u)\le u\). The following records the exact
-multiplicative identity behind the envelope and its vanishing
-cases. The composition law is Theorem 2.6 in Appendix C
-(`global_defect_append`); it is not an input to Theorem 4.4.
-
-For a single branch,
+Theorem 2.2 is the inequality form of an exact identity
 \[
-x^e=J(x)^2+\rho(x),\qquad
-e=\begin{cases}1,&x\ \text{even},\\3,&x\ \text{odd},\end{cases}
+n^{3^{\#O(w)}}=J^{|w|}(n)^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
 \]
-with \(0\le\rho(x)<2J(x)+1\). Write
-\(\operatorname{gap}(a,\rho,e)=(a+\rho)^e-a^e\). The *global
-defect* \(\Delta_w(n)\) is the terminal value of the resulting
-power-gap recurrence.
+The identity, its vanishing law, and the two-term composition are
+Theorems 2.4--2.6 and Corollary 2.7 in Appendix C. A mixed realized
+word has \(\Delta_w(n)>0\). We record this stronger exact identity
+for future work; the present theorems require only its
+nonnegativity. Theorem 4.4 is a logarithmic envelope argument and
+does not take \(\Delta_w\) as an input.
 
-**Theorem 2.4 (global defect identity).**
-If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
-\[
-n^{3^{\#O(w)}}=m^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
-\]
-Theorem 2.2 is the inequality \(\Delta_w(n)\ge0\).
-
-*Proof.* Induct on \(w\). The empty word is \(n=n+0\). An even
-letter substitutes \(x=J(x)^2+\rho(x)\) into the inductive
-identity and lifts the new remainder through \(2^\ell\). An odd
-letter cubes the identity and then substitutes
-\(x^3=J(x)^2+\rho(x)\). Each step adds a nonnegative power-gap.
-\(\square\)
-
-For a one-letter illustration, \(n=3\) and \(w=O\) give
-\(J(3)=5\) and \(3^3=27=5^2+2\), so \(\Delta_O(3)=2\).
-
-**Theorem 2.5 (vanishing).**
-If \(w\) is realized at \(n\), the following are equivalent:
-\(\Delta_w(n)=0\); every local remainder along \(w\) vanishes; and
-\(\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}=n^{3^{\#O(w)}}\). In that case
-\(w\) is monochrome: either \(w=E^k\) and \(n=a^{2^k}\) for an
-even \(a\), or \(w=O^k\) and \(n=a^{2^k}\) for an odd \(a\). A
-realized mixed word therefore has \(\Delta_w(n)>0\).
-
-*Proof.* Theorem 2.4 gives the first and third items. A power-gap
-vanishes if and only if its addend vanishes, so zero defect forces
-every remainder to vanish, and conversely. Vanishing remainders
-preserve parity, hence monochrome itineraries, and unique
-factorization produces the two power towers. \(\square\)
-
-**Corollary 2.7 (cycle surplus).**
-If \(w\) is a cycle word at \(n\), then
-\(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) exactly.
-
-*Proof.* Theorem 2.4 with \(m=n\). \(\square\)
-
-A mixed word has strict total defect, but the relative slack of a
-single letter tends to \(0\) with the state, so no uniform local
-tax exists.
+A quantitative lower bound stronger than positivity --- a run-level,
+valley-level, or minimum-return tax on \(\Delta_w\) --- would
+improve the finance bound. No such uniform local tax exists: the
+relative slack of a single letter tends to \(0\) with the state.
+A dual refinement is a tighter upper bound on the state sum
+\(\sum 1/(x_i\log x_i)\) itself, using realizable cycle geometry
+rather than a uniform price; that is named in Section 5 and is
+not proved here.
 
 ## 3. Inverse cells and the census
+
+The aim of this section is a structural even-count obstruction,
+not a length-by-length census. After the one-step cells and the
+small-period reductions, the argument has three layers.
+
+**Structural lemma.**
+Any minimum-based cycle with at most three even letters has one
+of finitely many canonical geometries \(O^aEO^bEO^cE\)
+(Lemma 3.21b).
+
+**Elimination lemma.**
+Each geometry falls into one of three mechanisms
+(Lemma 3.21a): a next-square obstruction, long odd-run growth
+against a last-even cell, or a finite exceptional window. The
+family theorems 3.12--3.21 record that exhaustion; their
+proofs are Appendix D.
+
+**Corollary.**
+Every nontrivial cycle has at least four even letters, and hence
+period at least eleven (Theorem 3.22, Corollary 3.23).
 
 The exact one-step fibers are
 \[
@@ -411,8 +403,8 @@ minimum to square scale.
 exponents gives \(2^{|w|}\le 3^{\#O(w)}\); equality is impossible
 because the two sides have different prime divisors and \(|w|\ge 1\).
 Alternatively: a mixed cycle word has \(\Delta_w(n)>0\) by
-Theorem 2.5, so the envelope is strict; a monochrome tower cannot
-return for \(n\ge 2\).
+Theorem 2.5 in Appendix C, so the envelope is strict; a monochrome
+tower cannot return for \(n\ge 2\).
 
 Every state on such a cycle is at least \(2\): once an orbit reaches
 \(1\), it remains there and cannot return to a start \(n\ge 2\). An
@@ -718,45 +710,7 @@ finite check is the Lean `native_decide` evaluation behind
 Let \(k\ge 6\) and \(n\ge 2\). Neither \(O^{k-2}EE\) nor
 \(O^{k-3}EOE\) is a cycle word at \(n\).
 
-*Proof.* First, if \(n\ge 256\), then
-\[
-n^{3^{k-2}}>2^{e_{k-2}}(n+1)^{2^k}.
-\]
-The case \(k=6\) is the tail inequality of Lemma 3.5. If the display
-holds at some \(k\ge 6\), cubing both sides produces
-\[
-n^{3^{k-1}}
->
-2^{3e_{k-2}}(n+1)^{3\cdot 2^k}.
-\]
-The recurrence of Lemma 3.10 gives \(e_{k-1}=3e_{k-2}+2^{k-1}\), so
-the desired comparison at length \(k+1\) reduces to
-\(2^{2^{k-1}}<(n+1)^{2^k}\). Equivalently \(2<(n+1)^2\), which holds
-for every \(n\ge 256\).
-
-Now suppose \(O^{k-2}EE\) is a cycle word at such an \(n\). Write
-\(z=J^{k-2}(n)\). Lemma 3.9 with \(r=2\) gives \(z<(n+1)^4\).
-Lemma 3.10 on the prefix \(O^{k-2}\) gives
-\(n^{3^{k-2}}\le 2^{e_{k-2}}z^{2^{k-2}}\), hence
-\(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\), contradicting the tail.
-
-Finally suppose \(O^{k-3}EOE\) is a cycle word at such an \(n\).
-Write \(z=J^{k-3}(n)\) and \(y=\lfloor\sqrt z\rfloor\), so
-\(z<(y+1)^2\). Lemma 3.10 on \(O^{k-3}\) and cubing produce
-\(n^{3^{k-2}}<2^{3e_{k-3}}(y+1)^{3\cdot 2^{k-2}}\). The last letters
-\(OE\) give the odd-cell bound \(y^3<(n+1)^4\). The comparison
-\((y+1)^3<2(n+1)^4\) of Lemma 3.5 applies at this scale. Raising it
-to the power \(2^{k-2}\) and using \(e_{k-2}=3e_{k-3}+2^{k-2}\)
-recovers again \(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\).
-
-For \(2\le n<256\), the cases \(k=6\) and \(k=7\) are Lemmas 3.5
-and 3.7. The remaining short words \(O^6EE\), \(O^5EOE\), and
-\(O^6EOE\) fail to return on the same \(254\)-start window; this is
-the Lean `native_decide` evaluation behind
-`no_cycle_word_two_even_ee` and `no_cycle_word_two_even_eoe`
-(Appendix A). Any longer leftover of either family begins with
-seven consecutive odd letters, which Lemma 3.11 forbids on this
-window. \(\square\)
+*Proof.* Appendix D.
 
 A cycle word \(w\) at \(n\) is *minimum-based* when \(n\) is a
 cycle minimum: \(J^j(n)\ge n\) for every \(0\le j<|w|\). The
@@ -770,31 +724,7 @@ Let \(n\ge 2\). No minimum-based cycle word at \(n\) has the form
 \(O^aEO^bEE\) with \(a\ge 2\) and \(b\ge 4\), or the form
 \(O^aEO^bEOE\) with \(a\ge 2\) and \(b\ge 3\).
 
-*Proof.* Write \(y=J^{a+1}(n)\) for the state after the first even
-letter. Minimum-basedness gives \(y\ge n\). In the first family the
-remainder after that letter is \(O^bEE\) with \(b+2\ge 6\); in the
-second it is \(O^bEOE\) with \(b+3\ge 6\). The trailing-even and
-last-odd cells of those remainders are measured against the cycle
-start \(n\). Combined with Lemma 3.10 at the remainder start \(y\),
-the same algebra as in Theorem 3.12 produces
-\[
-y^{3^{\ell-2}}
-<
-2^{e_{\ell-2}}(n+1)^{2^\ell}
-\le
-2^{e_{\ell-2}}(y+1)^{2^\ell},
-\]
-where \(\ell\) is the remainder length. If \(y\ge 256\), the first
-paragraph of Theorem 3.12 supplies the opposite inequality at \(y\).
-
-If \(y<256\), then \(n\le y<256\). A gapped leftover of total
-length at least \(17\) has \(a\ge 7\) or \(b\ge 7\), so either the
-prefix or the remainder realizes seven consecutive odd letters,
-contradicting Lemma 3.11. The finitely many short-gap words with
-\(2\le a\le 6\) and \(b\le 6\) fail to be minimum-based cycle words
-on the window \(2\le n<256\); this is the Lean `native_decide`
-evaluation behind `no_cycleMin_gapped_three_even_ee` and
-`no_cycleMin_gapped_three_even_eoe` (Appendix A). \(\square\)
+*Proof.* Appendix D.
 
 The hypothesis that the start is a cycle minimum is essential. If
 \(y<n\), the leftover cell is measured against a larger start and
@@ -806,241 +736,50 @@ non-minimum start. That upgrade is Theorem 3.21.
 Let \(a\ge 6\) and \(n\ge 2\). The word \(O^aEEE\) is not a cycle
 word at \(n\).
 
-*Proof.* Write \(z=J^a(n)\). Lemma 3.9 with \(r=3\) gives
-\(z<(n+1)^8\). Lemma 3.10 then yields
-\(n^{3^a}<2^{e_a}(n+1)^{2^{a+3}}\) on any such cycle word. For
-\(n\ge 128\) the opposite comparison
-\[
-n^{3^a}>2^{e_a}(n+1)^{2^{a+3}}
-\]
-holds. The case \(a=6\) is
-\(n^{729}>2^{1330}(n+1)^{512}\). Indeed, for \(n\ge 128\) one has
-\((n+1)^{512}<(129/128)^{512}n^{512}<e^4 n^{512}<64\,n^{512}\), so
-the claimed bound reduces to \(n^{217}>2^{1336}\). Since
-\(n\ge 128=2^7\), the left side is at least \(2^{1519}\). Cubing
-the \(a=6\) comparison produces the general case: the recurrence of
-Lemma 3.10 reduces the inductive step to \((n+1)^4>2\), which holds
-for every \(n\ge 128\).
-
-For \(2\le n<128\), the case \(a=6\) is a table of evaluations of
-\(OOOOOOEEE\): at every such start the word fails to return. The
-same finite check is the Lean `native_decide` evaluation behind
-`no_cycle_word_ooooooeee` (Appendix A). For \(a\ge 7\) the prefix
-contains seven consecutive odd letters, which Lemma 3.11 forbids
-on this window. \(\square\)
+*Proof.* Appendix D.
 
 **Theorem 3.15 (mixed bunched family \(EOEE\)).**
 Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEOEE\) is not a cycle
 word at \(n\).
 
-*Proof.* First let \(n\ge 4\), and write \(z=J^a(n)\),
-\(y=\lfloor\sqrt z\rfloor\), and \(p=J(y)\). Lemma 3.9 with
-\(r=2\) after the prefix \(O^aEO\) gives \(p<(n+1)^4\). The letter
-after \(y\) is odd, so Lemma 3.10 at length one yields
-\(y^3\le 4p^2<4(n+1)^8\). For \(n\ge 4\) one has
-\(4(n+1)^8<(n+1)^9\), hence \(y<(n+1)^3\). The even cell at \(z\)
-then gives \(z<(y+1)^2\le(n+1)^6\). Combined with Lemma 3.10,
-any such cycle word would satisfy
-\[
-n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
-\]
-
-For \(a=5\) and \(n\ge 314\), the opposite comparison
-\(n^{243}>2^{422}(n+1)^{192}\) holds. The base instance is the
-finite inequality \(2^{422}315^{192}<314^{243}\). If the display
-holds at some \(n\ge 1\), the elementary comparison
-\(n(n+2)<(n+1)^2\) upgrades it to the same display at \(n+1\).
-Cubing then produces the comparison at \(a+1\), once
-\((n+1)^6>4\). In particular the case \(a=6\) already holds for
-every \(n\ge 16\).
-
-For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
-\(a=6\), the word fails to return; these are the Lean
-`native_decide` evaluations behind `no_cycle_word_three_even_eoee`
-(Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies. For
-\(a\ge 6\) and \(n\ge 16\), the tail of the previous paragraph
-applies. \(\square\)
+*Proof.* Appendix D.
 
 **Theorem 3.16 (mixed bunched family \(EOOEE\)).**
 Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOOEE\) is not a
 cycle word at \(n\).
 
-*Proof.* First let \(n\ge 32\), and write \(z=J^a(n)\),
-\(y=\lfloor\sqrt z\rfloor\), and \(p\) for the image after the
-prefix \(O^aEOO\). Lemma 3.9 with \(r=2\) gives \(p<(n+1)^4\).
-The two letters after \(y\) are odd, so Lemma 3.10 at length two
-yields \(y^9\le 2^{10}p^4<2^{10}(n+1)^{16}\). For \(n\ge 32\) one
-has \(2^{10}<(n+1)^2\), hence \(y<(n+1)^2\). The even cell at
-\(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
-Lemma 3.10, any such cycle word would satisfy
-\[
-n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
-\]
-For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
-shared tail of Theorem 3.12 at length \(k=a+2\).
-
-For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
-window; this is the Lean `native_decide` evaluation behind
-`no_cycle_word_three_even_eooee` (Appendix A). For \(a\ge 7\),
-Lemma 3.11 applies. \(\square\)
+*Proof.* Appendix D.
 
 **Theorem 3.17 (mixed bunched family \(EOOOEE\)).**
 Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOOEE\) is not a
 cycle word at \(n\).
 
-*Proof.* First let \(a\ge 4\) and \(n\ge 3\), and write
-\(z=J^a(n)\), \(y=\lfloor\sqrt z\rfloor\), and \(p\) for the image
-after the prefix \(O^aEOOO\). Lemma 3.9 with \(r=2\) gives
-\(p<(n+1)^4\). The three letters after \(y\) are odd, so
-Lemma 3.10 at length three yields
-\(y^{27}\le 2^{38}p^8<2^{38}(n+1)^{32}\). For \(n\ge 3\) one has
-\(2^{38}<(n+1)^{22}\), hence \(y<(n+1)^2\). The even cell at
-\(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
-Lemma 3.10, any such cycle word would satisfy
-\[
-n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
-\]
-For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
-shared tail of Theorem 3.12 at length \(k=a+2\), already used in
-Theorem 3.16.
-
-Now let \(a=3\) and \(n\ge 256\). The same two-even cell gives
-\(z<(y+1)^2\), so Lemma 3.10 at the prefix \(O^3\) yields
-\(n^{27}<2^{38}(y+1)^{16}\). The three-odd envelope on \(y\) still
-gives \(y^{27}<2^{38}(n+1)^{32}\).
-
-If \(y<39\), then \(n^{27}<2^{38}\cdot 39^{16}\). The numerical
-comparison \(2^{38}\cdot 39^{16}<24^{27}\) contradicts
-\(n\ge 24\).
-
-If \(y\ge 39\), the numerical comparison \(40^{27}<2\cdot 39^{27}\)
-upgrades to \((y+1)^{27}<2y^{27}\), hence
-\((y+1)^{27}<2^{39}(n+1)^{32}\). Cubing the prefix bound three
-times produces \(n^{729}<2^{1026}(y+1)^{432}\). Raising the
-successor bound to the sixteenth power produces
-\((y+1)^{432}<2^{624}(n+1)^{512}\). Combining these displays
-yields \(n^{729}<2^{1650}(n+1)^{512}\). The opposite comparison
-holds at \(n=197\) and persists to every larger start by the
-elementary comparison \(n(n+2)<(n+1)^2\) already used in
-Theorem 3.15.
-
-For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
-that window; this is the Lean `native_decide` evaluation behind
-`no_cycle_word_three_even_eoooee` (Appendix A). For \(a\ge 7\),
-Lemma 3.11 applies. \(\square\)
+*Proof.* Appendix D.
 
 **Theorem 3.18 (mixed bunched family \(EEOE\)).**
 Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEEOE\) is not a
 cycle word at \(n\).
 
-*Proof.* First let \(n\ge 4\), and write \(z=J^a(n)\) and \(y\)
-for the last odd letter of \(O^aEEOE\). The suffix \(EOE\) is a
-cycle suffix, so the last-odd cube of Theorem 3.15 gives
-\(y^3<(n+1)^4\). The two letters between \(z\) and \(y\) are
-even, so \(z<(y+1)^4\). For \(n\ge 4\) the successor comparison
-\((y+1)^3<2(n+1)^4\) upgrades this to \(z<(n+1)^6\). Combined
-with Lemma 3.10, any such cycle word would satisfy the same
-display as Theorem 3.15:
-\[
-n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
-\]
-The opposite comparison is therefore the tail of Theorem 3.15:
-it holds for \(a=5\) and \(n\ge 314\), and already for \(a=6\)
-and \(n\ge 16\).
-
-For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
-\(a=6\), the word fails to return; these are the Lean
-`native_decide` evaluations behind `no_cycle_word_three_even_eeoe`
-(Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies.
-For \(a\ge 6\) and \(n\ge 16\), the tail of the previous
-paragraph applies. \(\square\)
+*Proof.* Appendix D.
 
 **Theorem 3.19 (mixed bunched family \(EOEOE\)).**
 Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOEOE\) is not a
 cycle word at \(n\).
 
-*Proof.* First let \(n\ge 32\), and write \(z=J^a(n)\),
-\(w=\lfloor\sqrt z\rfloor\), and \(y\) for the last odd letter.
-The suffix \(EOE\) again gives \(y^3<(n+1)^4\). The one-odd
-envelope on \(w\) yields \(w^3\le 4s^2\), where \(s\) is the
-image after \(O^aEO\). The last-odd cell and \(n\ge 32\) upgrade
-this to \(w<(n+1)^2\), hence \(z<(w+1)^2\le(n+1)^4\). Combined
-with Lemma 3.10, any such cycle word would satisfy
-\[
-n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
-\]
-For \(n\ge 256\) and \(a\ge 4\), this is the shared tail already
-used in Theorem 3.16.
-
-For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
-window; this is the Lean `native_decide` evaluation behind
-`no_cycle_word_three_even_eoeoe` (Appendix A). For \(a\ge 7\),
-Lemma 3.11 applies. \(\square\)
+*Proof.* Appendix D.
 
 **Theorem 3.20 (mixed bunched family \(EOOEOE\)).**
 Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOEOE\) is not a
 cycle word at \(n\).
 
-*Proof.* First let \(a\ge 4\) and \(n\ge 4\), and write
-\(z=J^a(n)\), \(u=\lfloor\sqrt z\rfloor\), and \(y\) for the last
-odd letter. The suffix \(EOE\) gives \(y^3<(n+1)^4\), hence
-\((y+1)^3<2(n+1)^4\). The two letters after \(u\) are odd, so
-Lemma 3.10 at length two yields
-\(u^9\le 2^{10}s^4<2^{10}(y+1)^8\). Cubing that display against
-the last-odd successor bound produces
-\(u^{27}<2^{38}(n+1)^{32}\). The same comparison as in
-Theorem 3.17 then gives \(u<(n+1)^2\), hence
-\(z<(u+1)^2\le(n+1)^4\). Combined with Lemma 3.10, any such
-cycle word would satisfy the shared two-even tail of
-Theorem 3.16.
-
-Now let \(a=3\) and \(n\ge 256\). The prefix \(O^3\) against
-\(z<(u+1)^2\) yields \(n^{27}<2^{38}(u+1)^{16}\), and the
-two-odd plus last-odd geometry of the previous paragraph yields
-\(u^{27}<2^{38}(n+1)^{32}\). These are the same two displays as
-in the \(a=3\) case of Theorem 3.17, with \(u\) in place of
-\(y\), and the same small/large split applies.
-
-For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
-that window; this is the Lean `native_decide` evaluation behind
-`no_cycle_word_three_even_eooeoe` (Appendix A). For \(a\ge 7\),
-Lemma 3.11 applies. \(\square\)
+*Proof.* Appendix D.
 
 **Theorem 3.21 (gapped leftovers as cycle words).**
 Let \(n\ge 2\). No cycle word at \(n\) has the form \(O^aEO^bEE\)
 with \(a\ge 2\) and \(b\ge 4\), or the form \(O^aEO^bEOE\) with
 \(a\ge 2\) and \(b\ge 3\).
 
-*Proof.* Every cycle word has a minimum-based rotation. It is
-therefore enough to check that every cyclic shift of either word
-is an already-excluded cycle-minimum orientation.
-
-Write \(w\) for the gapped word. In the first family,
-\(\lvert w\rvert=a+b+3\). The rotation by \(k=0\) is the original
-word, excluded as a cycle minimum by Theorem 3.13. The rotation
-by \(k=a+1\) is the bootstrap word \(O^bEEO^aE\). That word has
-an internal even letter and last gap at least \(2\). If
-\(a\ge 3\), the last-gap threshold of Lemma 3.4 at \(OOO\) and
-\(N=3\) excludes it. If \(a=2\), the same lemma at \(OO\) and
-\(N=5\) excludes every start \(n\ge 5\); the remaining odd start
-\(n=3\) does not realize four consecutive odd letters, so it
-cannot follow \(O^b\) for \(b\ge 4\). The rotation by
-\(k=a+b+2\) begins with the last even letter of \(w\), which
-Theorem 3.2 forbids at a cycle minimum. Every other rotation
-ends with an odd letter, likewise forbidden at a cycle minimum.
-
-In the second family, \(\lvert w\rvert=a+b+4\). The same four
-classes appear: the original word is Theorem 3.13; the rotation
-by \(k=a+1\) is \(O^bEOEO^aE\), excluded by the same last-gap
-thresholds, with the remaining start \(n=3\) and \(a=2\) either
-failing to realize four odds or, when \(b=3\), reaching \(6\)
-after \(OOOE\) and then meeting an odd letter; the rotation by
-\(k=a+b+2\) begins \(OE\), forbidden by Theorem 3.2; and every
-other rotation ends odd.
-
-The original start need not be a cycle minimum. After rotation
-the start is a minimum, so the hypothesis \(y<n\) that blocked
-Theorem 3.13 does not arise. \(\square\)
+*Proof.* Appendix D.
 
 Theorems 3.12--3.21 assemble into an even-count exclusion: no
 cycle word has fewer than four even letters, so a nontrivial
@@ -1140,11 +879,6 @@ The comparison \(2^L<3^{L-4}\) first holds at \(L=11\).
 \(\square\)
 
 In particular there is no cycle of length eight, nine, or ten.
-A single coarse successor power \((n+1)^K\) cannot exclude the
-four families of Theorems 3.17--3.20 by the same cell used for
-Theorems 3.15 and 3.16: at the first expanding prefix length,
-the exponent \(K\cdot 2^a\) meets or exceeds \(3^a\) for those
-four words, so those arguments use a tight last-odd cell.
 
 ## 4. Cycle finance
 
@@ -1270,8 +1004,7 @@ input is \(\log(1+u)\le u\). The Lean form is exactly Theorem 4.4
 (constant \(1\)).
 
 This is a floor-power realization of a financing method, not a
-new method. The Juggler-specific form of the inequality, and the
-explicit period bounds it produces, appear to be new.
+new method. The Juggler-specific inequality is Contribution 1.
 
 The computational table of Theorem 4.6 uses a weaker per-step
 bound, valid on every cycle because every start below \(12\)
@@ -1332,32 +1065,22 @@ used only as a check; Theorem 4.6 uses \(n_{\max}(L)\) from the
 parity form.
 The quantity \(\gamma(L)\) is the one-sided relative gap of
 \(L\log 2\) to the next multiple of \(\log 3\). It is small
-precisely when \(o_{\min}/L\) is a good one-sided approximation
-to \(\log 2/\log 3\). The record minima of \(\gamma(L)\) form a
-sequence of one-sided best-approximation lengths related to the
-continued-fraction structure of \(\log 2/\log 3\); they include
-\[
-1,\;3,\;11,\;19,\;84,\;569,\;1054,\;\ldots.
-\]
-They are not, as a list, the ordinary continued-fraction
-convergent denominators of that ratio. They are also not the
-whole admissible set: multiples and sums of those lengths also
-make \(\gamma\) small.
+when \(o_{\min}/L\) is a good one-sided approximation to
+\(\log 2/\log 3\). The finance-survivor lengths are those
+approximants, together with their multiples and sums, that
+still beat the bound at the given floor.
 
-**Proposition 4.4a (exceptional-length algorithm).**
+**Proposition 4.4a (finance-survivor algorithm).**
 Fix a verified descent floor \(N_0\). For each integer
 \(1\le L\le 10^5\), compute
 \(o_{\min}(L)=\min\{o:3^o>2^L\}\) by exact integer arithmetic
 and \(n_{\max}(L)\) from the parity inequality, and retain
-\(L\) if and only if \(n_{\max}(L)>N_0\). The resulting set is
+\(L\) if and only if \(n_{\max}(L)>N_0\). The resulting
+finance-survivor set is
 \[
 \mathcal E(N_0)=\bigl\{L:1\le L\le 10^5,\; n_{\max}(L)>N_0\bigr\}.
 \]
-A length lies in \(\mathcal E(N_0)\) if and only if it is
-*admissible to this bound*: Corollary 4.5 does not exclude it
-at that floor. The set is not the set of dynamically plausible
-periods, and membership is not evidence for a cycle. The
-printed instance is \(\mathcal E=\mathcal E(10^6)\), with
+The printed instance is \(\mathcal E=\mathcal E(10^6)\), with
 \(\lvert\mathcal E\rvert=141\).
 
 **Corollary 4.5.**
@@ -1385,17 +1108,10 @@ Every integer \(2\le n\le 10^6\) reaches \(1\). Consequently:
 \(L\in\mathcal E\), where \(\lvert\mathcal E\rvert=141\).
 
 In particular, any nontrivial cycle has period at least \(25781\).
-The first length not excluded by the present bound is \(25781\).
-That is a property of the bound, not evidence for a
-\(25781\)-cycle.
+The first finance-survivor length is \(25781\). That is a
+property of the bound.
 
-*Proof.* The verified descent floor is a first-passage descent
-induction: every start \(2\le n\le 10^6\) realizes a finite word
-with image strictly below the start, and strong induction on the
-image reaches \(1\). The longest first passage in the window has
-\(253\) steps (seed \(78901\)); every iterate is an exact
-integer. Weisstein [5] records the same computational
-verification; the run here is a recomputation of that report.
+*Proof.* The descent floor is Proposition 1.3.
 
 The gap table computes \(o_{\min}(L)\) by exact integer
 arithmetic and \(n_{\max}(L)\) from the parity inequality for
@@ -1417,10 +1133,7 @@ one-sided best-approximation lengths; the defining algorithm
 and checksums are Appendix B.
 \(\square\)
 
-The former record lengths \(84\), \(569\), and \(1054\) are
-therefore not admissible at this floor. Membership of
-\(25781\) in \(\mathcal E\) means only that the present method
-does not exclude it.
+### Finance-survivor lengths
 
 The length-only bound charges every valley at the cycle minimum.
 A cycle cannot put an \(\mathtt{OE}\)-start at that minimum: the
@@ -1486,12 +1199,12 @@ named in the statement. The complementary set in that range is
 \(\mathcal E_{\mathrm{run}}\). Checksums are Appendix B.
 \(\square\)
 
-Membership in \(\mathcal E_{\mathrm{run}}\) is still only
-admissibility to this bound. The period cutoff remains
-\(25781\). Unique visit of \(n\) and a bound on the cycle
-maximum do not change the kill list.
+The period cutoff remains \(25781\). Unique visit of \(n\) and
+a bound on the cycle maximum do not change the kill list.
 
-**Proposition 4.9 (survivor lattice).**
+### Arithmetic structure of the finance-survivor lengths
+
+**Proposition 4.9 (finance-survivor lattice).**
 Write \(v_*=(25781,16266)\) and \(v_{1054}=(1054,665)\). Then
 \[
 25781\cdot 665-1054\cdot 16266=1,
@@ -1534,26 +1247,9 @@ are integer arithmetic. The generator comparison
 the \(42\) packing deaths exactly the \(F_1\) continuation
 \(b\ge 29\). The three family counts sum to \(99\). \(\square\)
 
-Write \(r(L)=3^{o_{\min}(L)}/2^L\) and
-\(\rho=3^{665}/2^{1054}\). Then \(\rho>1\), and within each
-family the step \((L,o)\mapsto(L+1054,o+665)\) is the identity
-\(r(L+1054)=\rho\,r(L)\). In the notation
-\(\theta=1-2^L/3^o\) of Section 4,
-\[
-\theta(L+1054)=\Bigl(1-\frac1\rho\Bigr)+\frac{\theta(L)}{\rho}.
-\]
-That is why \(F_1\) hits the packed wall first: at \(L=55293\)
-the packed right-hand side is about \(1.012\,\theta\), while the
-next lattice point \(L=56347\) has packed right-hand side about
-\(0.9967\,\theta\). The length \(L=50508\) is loose because it
-is a better approximant (\(\theta\approx 7.26\cdot 10^{-6}\)),
-not because finance treats it specially.
-
-The three families are different continued-fraction objects.
-The lattice is a change of coordinates for \((L,o)\). It does
-not supply a relation
-\(\operatorname{Cycle}(L,o)\Rightarrow\Phi(L+1054,o+665)\)
-between hypothetical cycles.
+The lattice classifies the finance-survivor lengths of this
+inequality. It is a change of coordinates for \((L,o)\), not a
+relation between hypothetical cycles.
 
 ## 5. Remarks
 
@@ -1577,29 +1273,49 @@ blocks occur already at
 \xrightarrow{OOE}887471,
 \]
 and the relative slack of a single letter tends to \(0\) with the
-state (Section 2).
+state (Section 2.4).
 
-These results provide no control over the remaining lengths in
-\(\mathcal E_{\mathrm{run}}\), and in particular do not imply
-termination or exclude all cycles. The lattice of
-Proposition 4.9 organises that list; it does not constrain an
-actual cycle. It is open whether every start reaches \(1\), and
-open whether a cycle of an admissible leftover length exists.
+The remaining finance-survivor lengths are uncontrolled. It is
+open whether every start reaches \(1\), and open whether a
+cycle of a finance-survivor length exists.
 
-Lean names for the theorems of Sections 2, 3, and 4 are in
-Appendix A. The formalization and the finance tables are pinned
-in Section 1.2. Theorem 4.6 is a verified computation.
+The identity behind the computational table is state-dependent:
+\[
+1-\frac{2^L}{3^o}
+\le
+\frac65\sum_{i=1}^{L}\frac{1}{x_i\log x_i}.
+\]
+Theorem 4.4, Corollary 4.5, and Theorem 4.7 are successive upper
+bounds on that sum: first the uniform charge \(L/(n\log n)\), then
+the parity split into cycle-minimum valleys, internal odds at
+\(\lfloor n^{3/2}\rfloor\), and evens at \(n^2\), then the run-type
+packing that lifts \(\mathtt{OE}\)-starts to scale \(n^{4/3}\).
+Each step uses only coarse, length-only geometry. The first
+survivor remains \(25781\) because \(o-e\) valleys may still sit
+at the cycle minimum. A dynamically constrained bound
+\[
+\max\sum_{i=1}^{L}\frac{1}{x_i\log x_i},
+\]
+the maximum running over state sequences compatible with the exact
+one-step cells of Section 3 and with a realized cycle word, would
+replace those length-only prices by a state-distribution
+inequality. No such bound is proved here. The present note is the
+first successful coarse version of that comparison.
+
+Lean names are in Appendix A. The computational certificate is
+Proposition 1.3. Theorem 4.6 applies that certificate.
 
 ## Appendix A. Lean names
 
-The proofs in the text are ordinary integer arguments. The names
-below are the corresponding Lean theorems in
+The core mathematical lemmas of Sections 2--4 are mechanized in
+Lean 4. The names below are the corresponding theorems in
 `formal/Problems/Juggler/`, imported by `Problems.JugglerPaper`.
-A Lean identity is not a `native_decide` table; the tables of
-Section 3 are of the second kind. Theorems 4.6 and 4.8 are
-verified computations outside Lean. Proposition 4.9's arithmetic
-is Lean; its identification with \(\mathcal E_{\mathrm{run}}\)
-is Theorem 4.8.
+Selected finite classifications of Section 3 are `native_decide`
+tables (Appendix D). Theorems 4.6 and 4.8 are independently
+certified computations. Proposition 4.9's arithmetic is Lean;
+its identification with \(\mathcal E_{\mathrm{run}}\) is
+Theorem 4.8. This is not a claim that the paper as a whole is
+formally verified.
 
 | Text | Lean |
 |---|---|
@@ -1712,7 +1428,53 @@ Appendix A (`LeftoverEval.lean`, `LeftoverShort.lean`,
 `LeftoverFamilies.lean`). The lattice arithmetic of
 Proposition 4.9 is `RunSurvivorLattice.lean`.
 
-## Appendix C. Composition of the global defect
+## Appendix C. Exact floor defect
+
+This appendix records the exact identity behind Theorem 2.2. The
+present note uses only the nonnegativity \(\Delta_w(n)\ge0\). A
+nontrivial itinerary-dependent lower bound on \(\Delta_w\) is left
+for future work.
+
+For a single branch,
+\[
+x^e=J(x)^2+\rho(x),\qquad
+e=\begin{cases}1,&x\ \text{even},\\3,&x\ \text{odd},\end{cases}
+\]
+with \(0\le\rho(x)<2J(x)+1\). Write
+\(\operatorname{gap}(a,\rho,e)=(a+\rho)^e-a^e\). The *global
+defect* \(\Delta_w(n)\) is the terminal value of the resulting
+power-gap recurrence.
+
+**Theorem 2.4 (global defect identity).**
+If \(w\) is realized at \(n\) and \(m=J^{|w|}(n)\), then
+\[
+n^{3^{\#O(w)}}=m^{2^{|w|}}+\Delta_w(n),\qquad\Delta_w(n)\ge0.
+\]
+Theorem 2.2 is the inequality \(\Delta_w(n)\ge0\).
+
+*Proof.* Induct on \(w\). The empty word is \(n=n+0\). An even
+letter substitutes \(x=J(x)^2+\rho(x)\) into the inductive
+identity and lifts the new remainder through \(2^\ell\). An odd
+letter cubes the identity and then substitutes
+\(x^3=J(x)^2+\rho(x)\). Each step adds a nonnegative power-gap.
+\(\square\)
+
+For a one-letter illustration, \(n=3\) and \(w=O\) give
+\(J(3)=5\) and \(3^3=27=5^2+2\), so \(\Delta_O(3)=2\).
+
+**Theorem 2.5 (vanishing).**
+If \(w\) is realized at \(n\), the following are equivalent:
+\(\Delta_w(n)=0\); every local remainder along \(w\) vanishes; and
+\(\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}=n^{3^{\#O(w)}}\). In that case
+\(w\) is monochrome: either \(w=E^k\) and \(n=a^{2^k}\) for an
+even \(a\), or \(w=O^k\) and \(n=a^{2^k}\) for an odd \(a\). A
+realized mixed word therefore has \(\Delta_w(n)>0\).
+
+*Proof.* Theorem 2.4 gives the first and third items. A power-gap
+vanishes if and only if its addend vanishes, so zero defect forces
+every remainder to vanish, and conversely. Vanishing remainders
+preserve parity, hence monochrome itineraries, and unique
+factorization produces the two power towers. \(\square\)
 
 **Theorem 2.6 (composition).**
 If \(u\) is realized at \(n\) and \(v\) is realized at
@@ -1726,7 +1488,346 @@ local remainder satisfies \(\rho_j^{2^j}\le\Delta_w(n)\).
 expand the two power-gaps. \(\square\)
 
 Composition is polynomial, not additive. The Lean form is
-`global_defect_append`. The identity is not used by Theorem 4.4.
+`global_defect_append`.
+
+**Corollary 2.7 (cycle surplus).**
+If \(w\) is a cycle word at \(n\), then
+\(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) exactly.
+
+*Proof.* Theorem 2.4 with \(m=n\). \(\square\)
+
+A mixed word has strict total defect, but the relative slack of a
+single letter tends to \(0\) with the state, so no uniform local
+tax exists. Theorem 4.4 does not use these identities.
+
+## Appendix D. Family exclusions
+
+This appendix records the family-by-family exhaustion used by Lemma 3.21a and Theorem 3.22. Each geometry is killed by a next-square obstruction, by long odd-run growth against a last-even cell, or by a finite exceptional window.
+
+**Theorem 3.12 (two-even leftover families).**
+Let \(k\ge 6\) and \(n\ge 2\). Neither \(O^{k-2}EE\) nor
+\(O^{k-3}EOE\) is a cycle word at \(n\).
+
+
+*Proof.* * First, if \(n\ge 256\), then
+\[
+n^{3^{k-2}}>2^{e_{k-2}}(n+1)^{2^k}.
+\]
+The case \(k=6\) is the tail inequality of Lemma 3.5. If the display
+holds at some \(k\ge 6\), cubing both sides produces
+\[
+n^{3^{k-1}}
+>
+2^{3e_{k-2}}(n+1)^{3\cdot 2^k}.
+\]
+The recurrence of Lemma 3.10 gives \(e_{k-1}=3e_{k-2}+2^{k-1}\), so
+the desired comparison at length \(k+1\) reduces to
+\(2^{2^{k-1}}<(n+1)^{2^k}\). Equivalently \(2<(n+1)^2\), which holds
+for every \(n\ge 256\).
+
+Now suppose \(O^{k-2}EE\) is a cycle word at such an \(n\). Write
+\(z=J^{k-2}(n)\). Lemma 3.9 with \(r=2\) gives \(z<(n+1)^4\).
+Lemma 3.10 on the prefix \(O^{k-2}\) gives
+\(n^{3^{k-2}}\le 2^{e_{k-2}}z^{2^{k-2}}\), hence
+\(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\), contradicting the tail.
+
+Finally suppose \(O^{k-3}EOE\) is a cycle word at such an \(n\).
+Write \(z=J^{k-3}(n)\) and \(y=\lfloor\sqrt z\rfloor\), so
+\(z<(y+1)^2\). Lemma 3.10 on \(O^{k-3}\) and cubing produce
+\(n^{3^{k-2}}<2^{3e_{k-3}}(y+1)^{3\cdot 2^{k-2}}\). The last letters
+\(OE\) give the odd-cell bound \(y^3<(n+1)^4\). The comparison
+\((y+1)^3<2(n+1)^4\) of Lemma 3.5 applies at this scale. Raising it
+to the power \(2^{k-2}\) and using \(e_{k-2}=3e_{k-3}+2^{k-2}\)
+recovers again \(n^{3^{k-2}}<2^{e_{k-2}}(n+1)^{2^k}\).
+
+For \(2\le n<256\), the cases \(k=6\) and \(k=7\) are Lemmas 3.5
+and 3.7. The remaining short words \(O^6EE\), \(O^5EOE\), and
+\(O^6EOE\) fail to return on the same \(254\)-start window; this is
+the Lean `native_decide` evaluation behind
+`no_cycle_word_two_even_ee` and `no_cycle_word_two_even_eoe`
+(Appendix A). Any longer leftover of either family begins with
+seven consecutive odd letters, which Lemma 3.11 forbids on this
+window. \(\square\)
+
+**Theorem 3.13 (first-even transport).**
+Let \(n\ge 2\). No minimum-based cycle word at \(n\) has the form
+\(O^aEO^bEE\) with \(a\ge 2\) and \(b\ge 4\), or the form
+\(O^aEO^bEOE\) with \(a\ge 2\) and \(b\ge 3\).
+
+
+*Proof.* * Write \(y=J^{a+1}(n)\) for the state after the first even
+letter. Minimum-basedness gives \(y\ge n\). In the first family the
+remainder after that letter is \(O^bEE\) with \(b+2\ge 6\); in the
+second it is \(O^bEOE\) with \(b+3\ge 6\). The trailing-even and
+last-odd cells of those remainders are measured against the cycle
+start \(n\). Combined with Lemma 3.10 at the remainder start \(y\),
+the same algebra as in Theorem 3.12 produces
+\[
+y^{3^{\ell-2}}
+<
+2^{e_{\ell-2}}(n+1)^{2^\ell}
+\le
+2^{e_{\ell-2}}(y+1)^{2^\ell},
+\]
+where \(\ell\) is the remainder length. If \(y\ge 256\), the first
+paragraph of Theorem 3.12 supplies the opposite inequality at \(y\).
+
+If \(y<256\), then \(n\le y<256\). A gapped leftover of total
+length at least \(17\) has \(a\ge 7\) or \(b\ge 7\), so either the
+prefix or the remainder realizes seven consecutive odd letters,
+contradicting Lemma 3.11. The finitely many short-gap words with
+\(2\le a\le 6\) and \(b\le 6\) fail to be minimum-based cycle words
+on the window \(2\le n<256\); this is the Lean `native_decide`
+evaluation behind `no_cycleMin_gapped_three_even_ee` and
+`no_cycleMin_gapped_three_even_eoe` (Appendix A). \(\square\)
+
+**Theorem 3.14 (three trailing evens).**
+Let \(a\ge 6\) and \(n\ge 2\). The word \(O^aEEE\) is not a cycle
+word at \(n\).
+
+
+*Proof.* * Write \(z=J^a(n)\). Lemma 3.9 with \(r=3\) gives
+\(z<(n+1)^8\). Lemma 3.10 then yields
+\(n^{3^a}<2^{e_a}(n+1)^{2^{a+3}}\) on any such cycle word. For
+\(n\ge 128\) the opposite comparison
+\[
+n^{3^a}>2^{e_a}(n+1)^{2^{a+3}}
+\]
+holds. The case \(a=6\) is
+\(n^{729}>2^{1330}(n+1)^{512}\). Indeed, for \(n\ge 128\) one has
+\((n+1)^{512}<(129/128)^{512}n^{512}<e^4 n^{512}<64\,n^{512}\), so
+the claimed bound reduces to \(n^{217}>2^{1336}\). Since
+\(n\ge 128=2^7\), the left side is at least \(2^{1519}\). Cubing
+the \(a=6\) comparison produces the general case: the recurrence of
+Lemma 3.10 reduces the inductive step to \((n+1)^4>2\), which holds
+for every \(n\ge 128\).
+
+For \(2\le n<128\), the case \(a=6\) is a table of evaluations of
+\(OOOOOOEEE\): at every such start the word fails to return. The
+same finite check is the Lean `native_decide` evaluation behind
+`no_cycle_word_ooooooeee` (Appendix A). For \(a\ge 7\) the prefix
+contains seven consecutive odd letters, which Lemma 3.11 forbids
+on this window. \(\square\)
+
+**Theorem 3.15 (mixed bunched family \(EOEE\)).**
+Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEOEE\) is not a cycle
+word at \(n\).
+
+
+*Proof.* * First let \(n\ge 4\), and write \(z=J^a(n)\),
+\(y=\lfloor\sqrt z\rfloor\), and \(p=J(y)\). Lemma 3.9 with
+\(r=2\) after the prefix \(O^aEO\) gives \(p<(n+1)^4\). The letter
+after \(y\) is odd, so Lemma 3.10 at length one yields
+\(y^3\le 4p^2<4(n+1)^8\). For \(n\ge 4\) one has
+\(4(n+1)^8<(n+1)^9\), hence \(y<(n+1)^3\). The even cell at \(z\)
+then gives \(z<(y+1)^2\le(n+1)^6\). Combined with Lemma 3.10,
+any such cycle word would satisfy
+\[
+n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
+\]
+
+For \(a=5\) and \(n\ge 314\), the opposite comparison
+\(n^{243}>2^{422}(n+1)^{192}\) holds. The base instance is the
+finite inequality \(2^{422}315^{192}<314^{243}\). If the display
+holds at some \(n\ge 1\), the elementary comparison
+\(n(n+2)<(n+1)^2\) upgrades it to the same display at \(n+1\).
+Cubing then produces the comparison at \(a+1\), once
+\((n+1)^6>4\). In particular the case \(a=6\) already holds for
+every \(n\ge 16\).
+
+For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
+\(a=6\), the word fails to return; these are the Lean
+`native_decide` evaluations behind `no_cycle_word_three_even_eoee`
+(Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies. For
+\(a\ge 6\) and \(n\ge 16\), the tail of the previous paragraph
+applies. \(\square\)
+
+**Theorem 3.16 (mixed bunched family \(EOOEE\)).**
+Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOOEE\) is not a
+cycle word at \(n\).
+
+
+*Proof.* * First let \(n\ge 32\), and write \(z=J^a(n)\),
+\(y=\lfloor\sqrt z\rfloor\), and \(p\) for the image after the
+prefix \(O^aEOO\). Lemma 3.9 with \(r=2\) gives \(p<(n+1)^4\).
+The two letters after \(y\) are odd, so Lemma 3.10 at length two
+yields \(y^9\le 2^{10}p^4<2^{10}(n+1)^{16}\). For \(n\ge 32\) one
+has \(2^{10}<(n+1)^2\), hence \(y<(n+1)^2\). The even cell at
+\(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
+Lemma 3.10, any such cycle word would satisfy
+\[
+n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
+\]
+For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
+shared tail of Theorem 3.12 at length \(k=a+2\).
+
+For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
+window; this is the Lean `native_decide` evaluation behind
+`no_cycle_word_three_even_eooee` (Appendix A). For \(a\ge 7\),
+Lemma 3.11 applies. \(\square\)
+
+**Theorem 3.17 (mixed bunched family \(EOOOEE\)).**
+Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOOEE\) is not a
+cycle word at \(n\).
+
+
+*Proof.* * First let \(a\ge 4\) and \(n\ge 3\), and write
+\(z=J^a(n)\), \(y=\lfloor\sqrt z\rfloor\), and \(p\) for the image
+after the prefix \(O^aEOOO\). Lemma 3.9 with \(r=2\) gives
+\(p<(n+1)^4\). The three letters after \(y\) are odd, so
+Lemma 3.10 at length three yields
+\(y^{27}\le 2^{38}p^8<2^{38}(n+1)^{32}\). For \(n\ge 3\) one has
+\(2^{38}<(n+1)^{22}\), hence \(y<(n+1)^2\). The even cell at
+\(z\) then gives \(z<(y+1)^2\le(n+1)^4\). Combined with
+Lemma 3.10, any such cycle word would satisfy
+\[
+n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
+\]
+For \(n\ge 256\) and \(a\ge 4\), this is the opposite of the
+shared tail of Theorem 3.12 at length \(k=a+2\), already used in
+Theorem 3.16.
+
+Now let \(a=3\) and \(n\ge 256\). The same two-even cell gives
+\(z<(y+1)^2\), so Lemma 3.10 at the prefix \(O^3\) yields
+\(n^{27}<2^{38}(y+1)^{16}\). The three-odd envelope on \(y\) still
+gives \(y^{27}<2^{38}(n+1)^{32}\).
+
+If \(y<39\), then \(n^{27}<2^{38}\cdot 39^{16}\). The numerical
+comparison \(2^{38}\cdot 39^{16}<24^{27}\) contradicts
+\(n\ge 24\).
+
+If \(y\ge 39\), the numerical comparison \(40^{27}<2\cdot 39^{27}\)
+upgrades to \((y+1)^{27}<2y^{27}\), hence
+\((y+1)^{27}<2^{39}(n+1)^{32}\). Cubing the prefix bound three
+times produces \(n^{729}<2^{1026}(y+1)^{432}\). Raising the
+successor bound to the sixteenth power produces
+\((y+1)^{432}<2^{624}(n+1)^{512}\). Combining these displays
+yields \(n^{729}<2^{1650}(n+1)^{512}\). The opposite comparison
+holds at \(n=197\) and persists to every larger start by the
+elementary comparison \(n(n+2)<(n+1)^2\) already used in
+Theorem 3.15.
+
+For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
+that window; this is the Lean `native_decide` evaluation behind
+`no_cycle_word_three_even_eoooee` (Appendix A). For \(a\ge 7\),
+Lemma 3.11 applies. \(\square\)
+
+**Theorem 3.18 (mixed bunched family \(EEOE\)).**
+Let \(a\ge 5\) and \(n\ge 2\). The word \(O^aEEOE\) is not a
+cycle word at \(n\).
+
+
+*Proof.* * First let \(n\ge 4\), and write \(z=J^a(n)\) and \(y\)
+for the last odd letter of \(O^aEEOE\). The suffix \(EOE\) is a
+cycle suffix, so the last-odd cube of Theorem 3.15 gives
+\(y^3<(n+1)^4\). The two letters between \(z\) and \(y\) are
+even, so \(z<(y+1)^4\). For \(n\ge 4\) the successor comparison
+\((y+1)^3<2(n+1)^4\) upgrades this to \(z<(n+1)^6\). Combined
+with Lemma 3.10, any such cycle word would satisfy the same
+display as Theorem 3.15:
+\[
+n^{3^a}<2^{e_a}(n+1)^{6\cdot 2^a}.
+\]
+The opposite comparison is therefore the tail of Theorem 3.15:
+it holds for \(a=5\) and \(n\ge 314\), and already for \(a=6\)
+and \(n\ge 16\).
+
+For \(2\le n<314\) and \(a=5\), and for \(2\le n<16\) and
+\(a=6\), the word fails to return; these are the Lean
+`native_decide` evaluations behind `no_cycle_word_three_even_eeoe`
+(Appendix A). For \(a\ge 7\) and \(n<256\), Lemma 3.11 applies.
+For \(a\ge 6\) and \(n\ge 16\), the tail of the previous
+paragraph applies. \(\square\)
+
+**Theorem 3.19 (mixed bunched family \(EOEOE\)).**
+Let \(a\ge 4\) and \(n\ge 2\). The word \(O^aEOEOE\) is not a
+cycle word at \(n\).
+
+
+*Proof.* * First let \(n\ge 32\), and write \(z=J^a(n)\),
+\(w=\lfloor\sqrt z\rfloor\), and \(y\) for the last odd letter.
+The suffix \(EOE\) again gives \(y^3<(n+1)^4\). The one-odd
+envelope on \(w\) yields \(w^3\le 4s^2\), where \(s\) is the
+image after \(O^aEO\). The last-odd cell and \(n\ge 32\) upgrade
+this to \(w<(n+1)^2\), hence \(z<(w+1)^2\le(n+1)^4\). Combined
+with Lemma 3.10, any such cycle word would satisfy
+\[
+n^{3^a}<2^{e_a}(n+1)^{2^{a+2}}.
+\]
+For \(n\ge 256\) and \(a\ge 4\), this is the shared tail already
+used in Theorem 3.16.
+
+For \(2\le n<256\), the cases \(a=4,5,6\) fail to return on that
+window; this is the Lean `native_decide` evaluation behind
+`no_cycle_word_three_even_eoeoe` (Appendix A). For \(a\ge 7\),
+Lemma 3.11 applies. \(\square\)
+
+**Theorem 3.20 (mixed bunched family \(EOOEOE\)).**
+Let \(a\ge 3\) and \(n\ge 2\). The word \(O^aEOOEOE\) is not a
+cycle word at \(n\).
+
+
+*Proof.* * First let \(a\ge 4\) and \(n\ge 4\), and write
+\(z=J^a(n)\), \(u=\lfloor\sqrt z\rfloor\), and \(y\) for the last
+odd letter. The suffix \(EOE\) gives \(y^3<(n+1)^4\), hence
+\((y+1)^3<2(n+1)^4\). The two letters after \(u\) are odd, so
+Lemma 3.10 at length two yields
+\(u^9\le 2^{10}s^4<2^{10}(y+1)^8\). Cubing that display against
+the last-odd successor bound produces
+\(u^{27}<2^{38}(n+1)^{32}\). The same comparison as in
+Theorem 3.17 then gives \(u<(n+1)^2\), hence
+\(z<(u+1)^2\le(n+1)^4\). Combined with Lemma 3.10, any such
+cycle word would satisfy the shared two-even tail of
+Theorem 3.16.
+
+Now let \(a=3\) and \(n\ge 256\). The prefix \(O^3\) against
+\(z<(u+1)^2\) yields \(n^{27}<2^{38}(u+1)^{16}\), and the
+two-odd plus last-odd geometry of the previous paragraph yields
+\(u^{27}<2^{38}(n+1)^{32}\). These are the same two displays as
+in the \(a=3\) case of Theorem 3.17, with \(u\) in place of
+\(y\), and the same small/large split applies.
+
+For \(2\le n<256\), the cases \(a=3,4,5,6\) fail to return on
+that window; this is the Lean `native_decide` evaluation behind
+`no_cycle_word_three_even_eooeoe` (Appendix A). For \(a\ge 7\),
+Lemma 3.11 applies. \(\square\)
+
+**Theorem 3.21 (gapped leftovers as cycle words).**
+Let \(n\ge 2\). No cycle word at \(n\) has the form \(O^aEO^bEE\)
+with \(a\ge 2\) and \(b\ge 4\), or the form \(O^aEO^bEOE\) with
+\(a\ge 2\) and \(b\ge 3\).
+
+
+*Proof.* * Every cycle word has a minimum-based rotation. It is
+therefore enough to check that every cyclic shift of either word
+is an already-excluded cycle-minimum orientation.
+
+Write \(w\) for the gapped word. In the first family,
+\(\lvert w\rvert=a+b+3\). The rotation by \(k=0\) is the original
+word, excluded as a cycle minimum by Theorem 3.13. The rotation
+by \(k=a+1\) is the bootstrap word \(O^bEEO^aE\). That word has
+an internal even letter and last gap at least \(2\). If
+\(a\ge 3\), the last-gap threshold of Lemma 3.4 at \(OOO\) and
+\(N=3\) excludes it. If \(a=2\), the same lemma at \(OO\) and
+\(N=5\) excludes every start \(n\ge 5\); the remaining odd start
+\(n=3\) does not realize four consecutive odd letters, so it
+cannot follow \(O^b\) for \(b\ge 4\). The rotation by
+\(k=a+b+2\) begins with the last even letter of \(w\), which
+Theorem 3.2 forbids at a cycle minimum. Every other rotation
+ends with an odd letter, likewise forbidden at a cycle minimum.
+
+In the second family, \(\lvert w\rvert=a+b+4\). The same four
+classes appear: the original word is Theorem 3.13; the rotation
+by \(k=a+1\) is \(O^bEOEO^aE\), excluded by the same last-gap
+thresholds, with the remaining start \(n=3\) and \(a=2\) either
+failing to realize four odds or, when \(b=3\), reaching \(6\)
+after \(OOOE\) and then meeting an odd letter; the rotation by
+\(k=a+b+2\) begins \(OE\), forbidden by Theorem 3.2; and every
+other rotation ends odd.
+
+The original start need not be a cycle minimum. After rotation
+the start is a minimum, so the hypothesis \(y<n\) that blocked
+Theorem 3.13 does not arise. \(\square\)
 
 ## Acknowledgments
 

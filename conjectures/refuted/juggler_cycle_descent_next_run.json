@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_descent_next_run",
+  "title": "A CycleMin descent onto the cheap band [n, 19n] cannot start a=2",
+  "statement": "After a descending even run from a peak at least n^2 onto an odd p in [n, 19n], the next odd-run length a(p) cannot be 2. Hence cheap OOE starts exist only in the initial climb from the cycle minimum, so N_cheap is O(1) rather than o-e, and L=25781 dies at floor 10^6.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "One-even descent: p=1000057 lies in [1000001, 19000019], a(p)=2, and the even-cell peak 1000057^2 is at least n^2",
+    "Post-OOE descent: 1000057 --OOE--> peak 31626832356906 --E--> 5623773; the landing is in the cheap band and a(5623773)=2. In the window [10^6+1, 10^6+20001) there are 297 such a=2 landings out of 1210 cheap-band OOE landings",
+    "The named 6187 descent 11189→1087→189 is not a CycleMin witness and is not a cheap-band a=2 return"
+  ],
+  "first_seen": "juggler cheap-band descent next-run type",
+  "lean_reference": "cycleMin_even_ge_sq",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / descent next-run type",
+  "notes": "Phase 0 only. Not a reopen of valley-coupling return-cost or ordered pairs. No Lean, no Paper A edit, no leftover-killer from this census. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_descent_next_run.md",
+  "proof_reference": "docs/problems/juggler_cycle_descent_next_run.md",
+  "tested_range": "n=10^6+1; cheap band [n, 19n]; OOE starts on [n, n+20000); 6187 Q-path 11189→1087→189"
+}

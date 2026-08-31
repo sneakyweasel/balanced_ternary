@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+from research.conjectures import get_conjecture
 from research.juggler_sequence.cycle_almost_search import (
     PHASE1_L,
     compatible_oe_preimages,
@@ -159,11 +160,38 @@ def test_science_artifact_schema():
     assert payload["phase"] == 1
     assert payload["L"] == PHASE1_L
     assert payload["o"] == 16266
+    assert payload["e"] == 9515
     assert payload["floor"] == PUBLISHED_FLOOR
+    assert payload["n_max_run"] == 19010076
+    assert payload["words"]["extremal_eq_christoffel"] is True
+    assert payload["words"]["christoffel_eq_packed"] is True
+    assert payload["forward"]["n_at_L"] == 0
+    assert payload["forward"]["survived"] == 0
+    assert payload["forward"]["max_steps"] == 257
+    assert payload["forward"]["hardest"] == 6127057
+    assert payload["min_E"] is None
+    assert payload["exact_cycle"] is False
+    assert payload["unusually_close"] is False
+    assert payload["envelope_dominated"] is True
+    assert payload["dominant_fail_block"] == "2,1"
+    assert payload["leftover_killer"] is False
     assert payload["halt_theorem"] is False
     assert payload["no_cycle_all_lengths"] is False
-    assert payload["leftover_killer"] is False
-    assert "forward" in payload
-    assert "backward" in payload
-    assert "follow" in payload
     assert payload["requires_word_enumeration"] is False
+    assert all(row["complete"] == 0 for row in payload["backward"].values())
+    assert all(row["complete"] == 0 for row in payload["follow"].values())
+
+
+def test_dossier_and_conjecture_record_close():
+    dossier = (
+        REPO / "docs" / "problems" / "juggler_cycle_almost_search.md"
+    ).read_text(encoding="utf-8")
+    assert "## Branch budget" in dossier
+    assert "## Decision" in dossier
+    assert "## Publication assessment" in dossier
+    assert "**CLOSE**" in dossier
+    assert "Do not open Phase 2 or" in dossier
+    assert "juggler_cycle_almost_search" in dossier
+    rec = get_conjecture("juggler_cycle_almost_search")
+    assert rec["status"] == "REFUTED"
+    assert rec["counterexamples"]

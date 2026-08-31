@@ -29,3 +29,7 @@ Remainder-finance scan: `remainder_finance/summary.json`
 (`write_remainder_artifacts`; does not replace the tables).
 Cross-excursion loss-persistence scan: `loss_persistence/summary.json`
 (`write_persistence_artifacts`; does not replace the tables).
+Exact almost-cycle search: `almost_search/summary.json`
+(`write_almost_artifacts`; does not replace the tables).
+Finance-to-cell bridge: `finance_cell_bridge/summary.json`
+(`write_bridge_artifacts`; does not replace the tables).

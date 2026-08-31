@@ -2,16 +2,22 @@
 
 Author: Philippe Cochin. Date: 31 August 2026.
 Status: **PAPER_CANDIDATE**. The publication draft is dated 31 August 2026
-and is not submitted. It is a cycle-length note titled
-*Lower bounds for nontrivial cycles of the Juggler map*:
-finance plus the verified descent floor \(10^6\) give \(L\ge 25781\)
-(Theorem A) and an admissible set of \(141\) lengths through
-\(10^5\) (Theorem B). Run-type packing leaves \(99\) of those
-lengths, as three affine families (Theorems 4.7--4.8,
-Proposition 4.9). The even-count assembly is Theorem C
-(period at least eleven). Section 4 is the financing inequality.
-The envelope is the tool; the defect is motivation, not the
-input to finance.
+and is not submitted. It is titled
+*Cycle financing and a period lower bound for the Juggler map*.
+Three contributions: the cycle-minimum finance inequality
+(Theorem 4.4); the even-count obstruction \(e\ge 4\), hence
+period at least eleven (Theorem 3.22); and \(L\ge 25781\) at
+the verified descent floor \(10^6\) (Theorem 4.6(A)).
+Finance-survivor lengths through \(10^5\) (141, then 99 after
+run packing, three affine families) are supporting material.
+Family calculations live in Appendix D. The exact global defect
+is recorded in Appendix C; Theorem 4.4 uses only its
+nonnegativity. Section 5 names the dual program: a
+state-distribution upper bound on \(\sum 1/(x_i\log x_i)\).
+That bound is not proved. Return-cost coupling
+([juggler_cycle_valley_coupling.md](juggler_cycle_valley_coupling.md))
+is **CLOSE**: it does not certify \(N_{\mathrm{cheap}}<o-e\)
+as a leftover-killer.
 
 This branch opens no new attack and makes no claim that every positive
 integer reaches \(1\).
@@ -242,7 +248,8 @@ review's verdict was to ship the former and rewrite the latter to
 standalone checkability. The stack now consists of:
 
 - [Paper A](../theory/juggler_finite_dynamics_note.md) — power
-  envelopes, exact defects, cycle restrictions, the small-cycle
+  envelopes, exact defects (Appendix C; not an input to finance),
+  cycle restrictions, the small-cycle
   census (Theorems 3.6 and 3.8), leftover families
   (Theorems 3.12--3.21), even-count assembly (Theorem 3.22:
   period at least eleven), finance (Theorems 4.4--4.8,
@@ -284,7 +291,16 @@ the pure amplitude-product model (Conjecture 7.5)?
 
 ## Decision
 
-**PROMOTE** Paper A as the submission candidate. Paper B stays a
+**PROMOTE** Paper A as the submission candidate after the
+referee-style presentation rewrite: title and abstract now
+foreground finance and \(25781\); Section 3 has an explicit
+structural / elimination / corollary spine with family proofs
+in Appendix D; finance-survivor lengths and the lattice are
+secondary; the computational trust boundary is Proposition 1.3.
+The unused global defect stays in Appendix C. Option B is not
+reopened. The state-distribution finance program stays **PARK**.
+Return-cost coupling is **CLOSE**.
+Paper B stays a
 **working draft with a frozen claim set**. A later write-up closed
 the publication-readiness gaps that did not change the theorems:
 Step 5b now names the interpolant
@@ -306,14 +322,12 @@ Status: Paper A `PAPER_CANDIDATE`; Paper B `WORKING_DRAFT`
 implication, \(\delta=1/96\); pending one independent check of
 Section 5).
 
-Paper A is a cycle-length note titled *Lower bounds for
-nontrivial cycles of the Juggler map*: finance plus the published
-floor \(10^6\) give Theorems A and B (\(L\ge 25781\); \(141\)
-admissible lengths through \(10^5\)); run-type packing leaves
-\(99\) of those lengths as three affine families (Theorems
-4.7--4.8, Proposition 4.9); the even-count assembly is
-Theorem C. Section 4 is the financing inequality. The envelope
-is the tool. Short certificates are a remark in Section 5.
+Paper A is titled *Cycle financing and a period lower bound for
+the Juggler map*. The three contributions are Theorem 4.4,
+Theorem 3.22, and Theorem 4.6(A). Finance-survivor lengths and
+the lattice are supporting material. The exact global defect
+lives in Appendix C. Family calculations live in Appendix D.
+Short certificates are a remark in Section 5.
 Leftover \(84\) is a laboratory companion, not a paper theorem.
 Related work now includes Pickover 2002, Weisstein, and OEIS
 A094716. The Smith letter and the 2026 webpage record through

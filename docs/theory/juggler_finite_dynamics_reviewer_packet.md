@@ -7,25 +7,18 @@ The former single note has been split into two manuscripts:
 
 - **Paper A** —
   [juggler_finite_dynamics_note.md](juggler_finite_dynamics_note.md):
-  *Lower bounds for nontrivial cycles of the Juggler map.*
-  Local word obstructions plus a global finance inequality give
-  a cycle-length lower bound. Main theorem A: no period
-  \(\le 25780\). Secondary theorem B: periods \(\le 10^5\) lie in
-  an explicit admissible set \(\mathcal E\) of \(141\) lengths.
-  Run-type packing leaves a subset \(\mathcal E_{\mathrm{run}}\)
-  of \(99\) lengths (Theorems 4.7--4.8), organised as three
-  affine families on the unimodular basis
-  \((25781,16266)\), \((1054,665)\) (Proposition 4.9).
-  Supporting structural theorem C: every nontrivial cycle has at
-  least four even letters, hence period at least eleven. The
-  financing inequality is Theorem 4.4; A and B are Theorem 4.6
-  at the verified descent floor \(10^6\) reported by Weisstein.
-  Lean formalizes the exact claims except Theorems 4.6 and 4.8,
-  which are verified computations; Proposition 4.9's arithmetic
-  is Lean. Membership in \(\mathcal E\) or
-  \(\mathcal E_{\mathrm{run}}\) means only that the bound does
-  not exclude the length. Leftover \(84\) is a laboratory
-  companion, not a paper theorem.
+  *Cycle financing and a period lower bound for the Juggler map.*
+  Three contributions: the cycle-minimum finance inequality
+  (Theorem 4.4); the even-count obstruction \(e\ge 4\), hence
+  period at least eleven (Theorem 3.22); and the consequence
+  \(L\ge 25781\) at the verified descent floor \(10^6\)
+  (Theorem 4.6(A)). Finance-survivor lengths through \(10^5\)
+  are supporting material (141 lengths, 99 after run packing,
+  three affine families). The core lemmas are mechanized in
+  Lean 4; selected finite classifications and the descent floor
+  (Proposition 1.3) are independently certified computations.
+  Leftover \(84\) is a laboratory companion, not a paper
+  theorem.
 - **Paper B** —
   [juggler_parity_discrepancy_note.md](juggler_parity_discrepancy_note.md):
   *Parity equidistribution of nested floor powers, with descent
@@ -42,8 +35,9 @@ Each paper is written to be self-contained. This page is a claim map,
 not required reading for the proofs.
 
 **Primary review questions.** For Paper A: are the power-envelope,
-global-defect, census, and finance arguments correct at their stated
-quantifiers? Is Theorem 4.6 scoped as a verified computation,
+census, and finance arguments correct at their stated
+quantifiers? (The global-defect identity is Appendix C and is not
+an input to Theorem 4.4.) Is Theorem 4.6 scoped as a verified computation,
 not a Lean theorem? For Paper B: are the depth-1–4 estimates (exponents
 \(5/6\) to \(23/24\)) sound; is the kernel theorem (Theorem 5.3,
 double Weyl differencing over the carry-branch decomposition and
@@ -79,29 +73,18 @@ Paper B; every analytic estimate of Paper B is a human proof.
 ## Theses
 
 **Paper A.** Every realized finite Juggler word obeys a power
-envelope, and its local floor losses assemble into an exact
-compositional global defect with rigid zero cases. Inverse cells give
-cycle restrictions and a small-cycle census: no nontrivial cycle has
-length at most seven. After the census, two leftover two-even
-families are excluded at every expanding length, gapped three-even
-leftovers are excluded on a cycle minimum, the seven bunched
-three-even families are excluded, and both gapped leftovers are
-excluded as cycle words. Those families assemble: no cycle word has
-fewer than four even letters, so a nontrivial cycle has period at
-least eleven. A financing inequality at a cycle minimum
-restricts every remaining period to a near-convergent of
-\(\ln 2/\ln 3\), or to a huge length; with a verified floor through
-\(10^6\) there is no period \(\le 25780\). Run-type packing
-leaves \(99\) lengths through \(10^5\), as three affine families
-of \(\log 2/\log 3\). Even and odd-to-even starts
-carry uniform short certificates; the starts not covered by those
-certificates are exactly the odd-to-odd class, not the starts with
-no descent of any length. The small-cycle census is Theorems 3.6
-and 3.8; the family theorems are 3.12--3.21; the even-count
-assembly is Theorem 3.22 (Theorem C); finance is Theorems
-4.4--4.8 and Proposition 4.9 (Theorems A and B, then the
-run-type leftover); short certificates are a remark
-in Section 5.
+envelope. An exact compositional global defect is recorded in
+Appendix C; Theorem 4.4 uses only the envelope's nonnegativity.
+Inverse-cell geometry classifies minimum-based words with at
+most three evens; the family calculations (Appendix D) assemble
+to \(e\ge 4\), hence period at least eleven (Theorem 3.22). The
+financing inequality at a cycle minimum, with the certified
+descent floor of Proposition 1.3, yields \(L\ge 25781\).
+Finance-survivor lengths through \(10^5\) and their lattice
+are supporting material. Short certificates are a remark in
+Section 5, which also names the next inequality as a
+state-distribution bound on \(\sum 1/(x_i\log x_i)\); that
+bound is not proved.
 
 **Paper B.** An exact-linearization discrepancy calculus with a
 kernel theorem for the level-2 floor defect proves every *O-rooted*
@@ -120,7 +103,7 @@ says nothing about the deterministic shift).
 | Claim | Evidence | Scope |
 |---|---|---|
 | Power envelope and exponent-gap contraction | **EXACT — LEAN VERIFIED** | conditional on a realized word |
-| Global defect identity, vanishing, and composition | **EXACT — LEAN VERIFIED** | weighted lift, not an additive sum; not a uniform tax |
+| Global defect identity, vanishing, and composition (Appendix C) | **EXACT — LEAN VERIFIED** | weighted lift, not an additive sum; not a uniform tax; not an input to Theorem 4.4 |
 | Odd inverse cells have at most one integer (Lemma 3.1) | **EXACT — LEAN VERIFIED** | one-step fibers |
 | Nontrivial cycle words are formally expanding; min-to-even prefixes are superquadratic (Theorem 3.2) | **EXACT — LEAN VERIFIED** | necessary condition; not an exclusion of all cycles |
 | Coarse lower envelope \(C_v\) (Lemma 3.3) | **EXACT — LEAN VERIFIED** | one-step \(n<4\lfloor\sqrt n\rfloor^2\) and composition; used by Lemma 3.5; Lean `lower_growth_word` |
@@ -135,7 +118,7 @@ says nothing about the deterministic shift).
 | Bunched families \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\), \(O^aEOOOEE\), \(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\) (Theorems 3.14--3.20) | **EXACT — LEAN VERIFIED** | seven families only; not a length-8 or length-9 census |
 | Gapped leftovers as cycle words (Theorem 3.21) | **EXACT — LEAN VERIFIED** | both gapped families; rotation of already-excluded CycleMins; not first-E at a non-minimum start; not a length-8 or length-9 census |
 | Canonical run form (Lemma 3.21b); classification (Lemma 3.21a); even-count assembly (Theorem 3.22); period at least eleven (Corollary 3.23) | **EXACT — LEAN VERIFIED** | minimum-based words are \(O^aEO^bEO^cE\); no cycle word with fewer than four evens; expansion corollary, not a length-9 or length-10 word census |
-| Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists |
+| Cycle surplus \(\Delta_w(n)=n^{3^{\#O}}-n^{2^{\lvert w\rvert}}\) (Corollary 2.7, Appendix C); per-step slack bound \(x^e<(J(x)+1)^2\) | **EXACT — LEAN VERIFIED** | no uniform per-step tax exists; recorded for future work |
 | Finance inequality (Theorem 4.4) | **EXACT — LEAN VERIFIED** | `cycleMin_finance`; constant \(1\); not a halt theorem |
 | Per-length exclusion given a floor (Corollary 4.5) | **EXACT — HUMAN PROOF** | \(6/5\) table; conservative relative to Theorem 4.4 |
 | Verified computation (Theorem 4.6) | **COMPUTATIONALLY VERIFIED** | verified descent floor \(10^6\); no period \(\le 25780\); \(141\) exceptions through \(10^5\); first length not excluded is \(25781\) |
@@ -217,6 +200,10 @@ says nothing about the deterministic shift).
   (Conjecture 7.5 is open; Theorem 7.4 is almost-every-shift only).
 - Every trajectory meets a contracting word.
 - Every nontrivial cycle is impossible.
+- A state-distribution finance inequality (the maximum of
+  \(\sum 1/(x_i\log x_i)\) over realizable cycle geometry).
+  Paper A records that program in Section 5; Theorems 4.4--4.7
+  are length-only upper bounds on the same sum.
 - The Juggler map is irreducible or has no finite-state model.
 - The \(N^{5/6}\) bound controls orbits or arbitrary image sets.
 

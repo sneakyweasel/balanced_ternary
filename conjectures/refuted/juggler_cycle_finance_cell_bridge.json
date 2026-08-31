@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_finance_cell_bridge",
+  "title": "Finance extremality of the L=25781 word forces a word-independent empty OOE cell",
+  "statement": "The unique finance-optimal two-type word at L=25781 fails after O(1) blocks because a sufficiently finance-optimal OOE/OE packing necessarily contains an OOE transition whose exact predecessor cell is empty, and that emptiness is not the existing F_2 envelope or the (2,2,1) comparison 243<256.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "n=1000001 has a (2,1) preimage 12915515 --OOE--> 100000159 --OE--> n; 19/41 OE-realizers near 10^6 also have (2,1)",
+    "Canonical and bunched-OOE follow histograms are identical (max 6, mean 2.02); death is in the shared OOE prefix",
+    "Empty (2,2,1) into n (0/19, 0/16) is the dual of two_ooe_still_blocks_oe (243<256), not a new cell"
+  ],
+  "first_seen": "juggler finance-extremal word versus exact terminal cells",
+  "lean_reference": "odd_cell_unique",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / exact terminal cells",
+  "notes": "Phase 0 only. No Phase 2 at L=55293. No floor raise. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_finance_cell_bridge.md",
+  "proof_reference": "docs/problems/juggler_cycle_finance_cell_bridge.md",
+  "tested_range": "F2 scan [3,20000]; terminal census stride 20 on [10^6+1,10^6+801] and [2e6+1,2e6+801]; follow on [10^6+1,10^6+2001]; coincidence on L=19,84,1054,25781"
+}

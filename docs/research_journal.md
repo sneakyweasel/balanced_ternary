@@ -16453,4 +16453,235 @@ Best next question
 - none from recording the lattice
 ```
 
+## Juggler exact almost-cycle search
+
+- **Date:** 2026-08-31
+- **Objective:** Find \(\min E_L(n,w)=\lvert T_w(n)-n\rvert/n\) at \(L=25781\) over finance-admissible words and \(n\ge 10^6+1\), by exact search without enumerating \(2^L\), and decide whether near-closure reveals a reusable obstruction
+- **Hypotheses:** the 99 finance survivors are not killed by any word-independent statistic; the missing obstruction appears only when an ordered word gets unusually close to integer closure
+- **Major results:** Extremal, Christoffel, and packed Beatty coincide at \((25781,16266)\). Forward scan of \(8505038\) odds in \([2000001,19010076]\): \(0\) survive \(25781\) `AboveAnchor` steps; max packed-legal first-passage \(257\) at \(n=6127057\); \(7481\) high-peak bit-cap hits (a \(64\)-sample: \(60\) drop, \(4\) still grow). Distinguished-word follow depth at most \(11\) (mean \(2.03\)). Exact backward on \(96\) endpoints dies at an empty `OOE` preimage after at most two of \(9515\) blocks. \(\min E\) is undefined. Artifact `almost_search/summary.json`. No ledger row, no Paper A, no Lean. Phases 2--3 not opened
+- **Refuted ideas:** near-closure leftover-killer (`juggler_cycle_almost_search`)
+- **Literature:** closed word-independent leftover-killers; existing cells / `F_a` / first-passage floor; same Simons–de Weger finance template
+- **Open:** none from almost-cycle search; the \(7481\) high peaks belong to the parked floor campaign
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- extremal = Christoffel = packed Beatty at L=25781
+- no packed-legal AboveAnchor orbit reaches 258 steps
+- the distinguished word is not a realized itinerary past depth 11
+- exact backward dies at the first OOE cell
+- no E_L exists to compare with the envelope 3.52e-4
+Strongest theorem
+- none new; OE-compatible preimages sit in an O(y^{1/3}) interval
+Strongest refutation
+- 8.5e6 odds, 0 length-25781 returns; 96/96 backward beams empty at OOE
+Reusable machinery
+- run_preimages / compatible_oe_preimages / almost_search/summary.json
+Branch status
+- CLOSE
+Why
+- Falsifier: no unusually close return occurs. The first failure
+  is the existing F_2 cell and the existing first-passage scale,
+  not a terminal configuration after near-integer closure
+Best next question
+- none from exact almost-cycle search
+```
+
+## Juggler finance-to-cell bridge
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the early empty-`OOE` failure of the \(L=25781\) finance-optimal word is a hybrid theorem (finance extremality \(\Rightarrow\) exact-cell empty) that does not need the \(25781\)-letter string
+- **Hypotheses:** extremal \(=\) Christoffel \(=\) packed plus terminal \((2,1)\) forces an empty \(F_2\) cell that is not the old envelope
+- **Major results:** The three constructions coincide on \(L=19,84,1054,25781\); `OE` is isolated; \(F_2(v)>v\) on \([3,20000]\), so a two-type CycleMin cannot end `OOE` and the terminal pair is forced \((2,1)\). That pair is realized: \(n=1000001\) has \(12915515\to 100000159\to n\); rates \(19/41\) and \(16/41\). Canonical and bunched-`OOE` follow histograms are identical (max \(6\)). No \((2,2,1)\) preimage in the samples (\(0/19\), \(0/16\)): dual of \(243<256\). Artifact `finance_cell_bridge/summary.json`. No ledger row, no Paper A, no Lean. Phase 2 not opened
+- **Refuted ideas:** finance-to-cell leftover-killer (`juggler_cycle_finance_cell_bridge`)
+- **Literature:** closed almost-cycle search and ordered excursion; existing `ooe_cell` / `two_ooe_still_blocks_oe`; Beatty / Sturmian morphisms
+- **Open:** none from the finance-to-cell bridge
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- three-word collapse is Beatty plus the OOE/OE Sturmian morphism
+- last OOE is expanding, so a two-type CycleMin ends OE
+- terminal (2,1) is common, not empty
+- follow death is the shared OOE prefix, not the mechanical OE
+- empty (2,2,1) is 243<256 from the other end
+Strongest theorem
+- none new; F_2(v)>v on the scanned a=2 window
+Strongest refutation
+- n=1000001 is a (2,1) landing; bunched follow equals canonical
+Reusable machinery
+- first_pair / triple221_into / finance_cell_bridge/summary.json
+Branch status
+- CLOSE
+Why
+- Falsifier: (2,1) into n is realized, and the O(1) follow
+  death is not special to the finance-optimal interleaving.
+  The later empty (2,2,1) is the closed two-block envelope
+Best next question
+- none from the finance-to-cell bridge
+```
+
+## Paper A demotes the unused global defect
+
+- **Date:** 2026-08-31
+- **Objective:** Answer the review that Section 2.4 is elegant but unused by Theorem 4.4
+- **Hypotheses:** none; editorial. Option B (a nontrivial itinerary-dependent lower bound on \(\Delta_w\)) is already the closed leftover-killer cemetery
+- **Major results:** Theorems 2.4--2.6 and Corollary 2.7 move into Appendix C. Section 2.4 keeps the identity, the positivity of mixed words, the explicit statement that Theorem 4.4 uses only nonnegativity, and the no-uniform-local-tax obstruction. Reviewer packet theses no longer sell the defect as a main Paper A claim. No new Lean, no new experiment, no new branch
+- **Refuted ideas:** reopening first-defect Amplify, pair-correlation, anti-clustering, or a uniform local tax as a finance input (already CLOSE)
+- **Literature:** none added
+- **Open:** a run-level / valley-level / minimum-return tax on \(\Delta_w\) remains a genuine future-work question; it is not reopened here
+- **Decision:** CLOSE the unused-defect exposition problem by Option A. Paper A stays PROMOTE as a submission candidate. Do not open Option B
+
+```text
+What was learned
+- the reviewer is right: an unused exact identity is a strategic weakness
+- the laboratory already ran Option B as leftover-killers and they died
+- the honest paper move is demotion, not a new attack
+Strongest theorem
+- unchanged (Theorem 4.4 still uses only the envelope)
+Strongest refutation
+- no uniform local tax: relative slack tends to 0 with the state
+Reusable machinery
+- none
+Branch status
+- CLOSE
+Why
+- Theorem 4.4 does not take Delta as an input, and the lab already
+  knows there is no uniform local tax. Recording the identity in
+  Appendix C for future work is the clean statement
+Best next question
+- none from this editorial pass
+```
+
+## Paper A names the state-distribution finance program
+
+- **Date:** 2026-08-31
+- **Objective:** Record the observation that \(L\ge 25781\) is a uniformized floor-error budget, while the identity is \(\sum 1/(x_i\log x_i)\), and name the obvious next inequality without opening another leftover-killer
+- **Hypotheses:** the paper is the first successful coarse version of \(\max\sum 1/(x_i\log x_i)\) over realizable cycle geometry; every proved length-only constraint already attains Theorem 4.7
+- **Major results:** Section 5 now states the program. Section 2.4 points to it as the dual of a \(\Delta_w\) tax. The reviewer packet lists the bound among things the papers do not claim. No new experiment, no new Lean, no leftover-killer. Laboratory fact: `run_extremum` already shows \(N_{\mathrm{cheap}}=o-e\) remains admissible, so the packed RHS at \(L=25781\) stays a factor \(23\) above \(\theta\)
+- **Refuted ideas:** none new; the cemetery of cell / word / defect leftover-killers is unchanged
+- **Literature:** none added
+- **Open:** a coupling that forbids \(o-e\) independent \(n\)-valleys
+- **Decision:** PARK the program. Paper A stays PROMOTE as a submission candidate
+
+```text
+What was learned
+- the identity is already state-dependent; the cutoff is a price
+- uniform → parity → run-type is the successful coarse program
+- known constraints do not cut N_cheap below o-e
+- empty-cell leftover-killers are a different question
+- the missing input is a valley-coupling law, not another generic price
+Strongest theorem
+- unchanged (Theorems 4.4--4.8)
+Strongest refutation
+- none new; run_extremum already showed two-type is the relaxed max
+Reusable machinery
+- none
+Branch status
+- PARK
+Why
+- The next inequality is correctly named and is not in hand. Implementing
+  another max over the present constraint set repeats Theorem 4.7
+Best next question
+- a coupling that forces N_cheap < o-e on a realized cycle
+```
+
+## Juggler cheap-valley return coupling
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether a return-cost coupling forces \(N_{\mathrm{cheap}}<o-e\) on a realized CycleMin strongly enough to raise the cutoff
+- **Hypotheses:** after cheap OOE the next valley is at \(n^{9/8}\); a CycleMin-legal return to \(n\)-scale has a letter cost; that cuts the Theorem 4.7 charge
+- **Major results:** Shortest envelope descent from \(9/8\) is \(O^5E^3\) to \(2187/2048\). Exact reset \(3^a=2^b\) is impossible. Realized `OOE` landings beat \(n+2\) (e.g. \(1000053\to 5623748\)). \(N_{\mathrm{sep}}(5,3)=2324<6751\) at \(L=25781\) is a diagnostic, not a restart-at-\(n\) theorem. Lowest landing from exponent \(1\) is \(O^{53}E^{31}\) at \(3^{53}/2^{84}\approx n^{1.002}\); \(O^{12}E^7\) lands below \(9/8\). Certified leftover kills: none. \(L=25781\) stays live. Artifact `valley_coupling/summary.json`. No Paper A, no Lean, no ledger row
+- **Refuted ideas:** return-cost leftover-killer (`juggler_cycle_valley_coupling_leftover_killer`)
+- **Literature:** run-type packing; cyclic adjacency CLOSE; second-valley CLOSE; `power_bound_word`
+- **Open:** none from this coupling
+- **Decision:** CLOSE
+
+```text
+What was learned
+- OOE next-valley is n^{9/8}, not n+2
+- shortest descent from 9/8 is O^5 E^3
+- exact exponent reset is impossible
+- long first circuits land at n^{1+ε} and restore the packing price
+- envelope walks are not leftover-killers (height is an upper bound)
+Strongest theorem
+- shortest legal descent from 9/8 is O^5 E^3 to 2187/2048
+Strongest refutation
+- O^{53}E^{31} lands at 3^{53}/2^{84}; no certified cutoff raise
+Reusable machinery
+- cycle_valley_coupling.py; valley_coupling/summary.json
+Branch status
+- CLOSE
+Why
+- N_at_n = 1 is unique visit. The n+2 slot after OOE is F_2.
+  Every-circuit later-valley lower bounds collapse to n^{1+ε}.
+Best next question
+- none from return-cost coupling
+```
+
+## Paper A presentation rewrite after referee report
+
+- **Date:** 2026-08-31
+- **Objective:** Apply the referee-style report that the publishable contribution is the finance inequality and \(L\ge 25781\), not the 141→99 lattice
+- **Hypotheses:** none; editorial. No new theorem. Option B and the state-distribution program stay closed / parked
+- **Major results:** Retitled *Cycle financing and a period lower bound for the Juggler map*. Abstract and §1.0 now state three contributions (Theorem 4.4, Theorem 3.22, Theorem 4.6(A)). Related work names the classical/new layers. Proposition 1.3 consolidates the computational trust boundary. Section 3 opens with structural / elimination / corollary; family proofs move to Appendix D. Finance-survivor terminology replaces repeated “not a cycle” warnings. Proposition 4.9 is demoted to arithmetic structure of finance-survivor lengths. No new Lean, no new experiment, no new branch
+- **Refuted ideas:** none; the report does not refute a theorem
+- **Literature:** none added; novelty claim remains provisional pending a systematic search
+- **Open:** none from this editorial pass
+- **Decision:** PROMOTE the rewritten note as the submission candidate. Do not reopen Option B or the state-distribution program
+
+```text
+What was learned
+- the referee is right: finance + 25781 is the paper; 141→99 is method residue
+- Section 3 was an audit trail; the even-count spine was already there
+- one finance-survivor warning is enough
+- Lean should be advertised as core lemmas plus certified tables, not “the paper is verified”
+Strongest theorem
+- unchanged (Theorem 4.4 and Theorem 4.6(A))
+Strongest refutation
+- none; presentation only
+Reusable machinery
+- none
+Branch status
+- PROMOTE
+Why
+- the mathematics was already there; the report asked for architecture
+  and emphasis, which this pass supplies
+Best next question
+- none from this editorial pass
+```
+
+## Juggler cheap-band descent next-run type
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether a CycleMin descent onto the cheap band \([n,19n]\) is forbidden from starting \(a=2\), which would force \(N_{\mathrm{cheap}}=O(1)\) and kill \(L=25781\)
+- **Hypotheses:** near-\(n\) `OOE` starts exist only in the initial climb from the global minimum; descents land as `OE`
+- **Major results:** False. One-even witness \(p=1000057\) in \([10^6+1,19\cdot10^6+19]\) with peak \(p^2\ge n^2\) and \(a(p)=2\). Post-`OOE` witness \(1000057\to 5623773\) with \(a=2\) at scale \(n^{9/8}\). Window \([n,n+20000)\): \(2448\) `OOE` starts, \(1210\) cheap-band landings, \(297\) of them \(a=2\). The \(6187\) path \(11189\to 1087\to 189\) is an open-orbit drop, not a CycleMin falsifier. Artifact `descent_next_run/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** cheap-band descent leftover-killer (`juggler_cycle_descent_next_run`)
+- **Literature:** closed return-cost coupling and ordered excursion; existing even cell / `(2,2)`
+- **Open:** none from next-run type after a cheap-band descent
+- **Decision:** CLOSE. The Section 5 program stays PARK. Do not open a \(\Delta\) tax
+
+```text
+What was learned
+- a cheap-band descent can start a=2
+- the one-even witness is the even cell
+- the post-OOE witness is (2,2) inside the 19n lift
+- 297/1210 cheap-band OOE landings start a=2
+- the 6187 Q-path is not CycleMin
+Strongest theorem
+- none new
+Strongest refutation
+- 1000057 --OOE--> 5623773 with a(5623773)=2
+Reusable machinery
+- cycle_descent_next_run.py; descent_next_run/summary.json
+Branch status
+- CLOSE
+Why
+- the coupling that would force N_cheap = O(1) is false on
+  the same (2,2) geometry already recorded near n
+Best next question
+- none from cheap-band next-run type
+```
+
 

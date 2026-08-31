@@ -1,0 +1,92 @@
+{
+  "band_hi": 19000019,
+  "first_post_ooe_pair": {
+    "a": 2,
+    "p": 5623773,
+    "peak": 31626832356906,
+    "v": 1000057
+  },
+  "lift": 19,
+  "n": 1000001,
+  "one_even": {
+    "a": 2,
+    "in_band": true,
+    "n": 1000001,
+    "p": 1000057,
+    "peak": 1000114003249,
+    "peak_ge_n2": true
+  },
+  "one_even_a2": true,
+  "post_ooe": {
+    "a2_after_descent": 297,
+    "a2_starts": 2448,
+    "a_counts": {
+      "1": 631,
+      "11": 1,
+      "13": 1,
+      "2": 297,
+      "3": 120,
+      "4": 77,
+      "5": 44,
+      "6": 23,
+      "7": 10,
+      "8": 6
+    },
+    "band_hi": 19000019,
+    "even_first_landing": 1238,
+    "hi": 1020001,
+    "landings_in_band": 1210,
+    "lo": 1000001,
+    "n": 1000001,
+    "slogan_false": true,
+    "witnesses": [
+      {
+        "a": 2,
+        "p": 5623773,
+        "peak": 31626832356906,
+        "v": 1000057
+      },
+      {
+        "a": 2,
+        "p": 5624621,
+        "peak": 31636368079990,
+        "v": 1000191
+      },
+      {
+        "a": 2,
+        "p": 5624697,
+        "peak": 31637222115988,
+        "v": 1000203
+      },
+      {
+        "a": 2,
+        "p": 5625659,
+        "peak": 31648040886758,
+        "v": 1000355
+      },
+      {
+        "a": 2,
+        "p": 5626987,
+        "peak": 31662991219764,
+        "v": 1000565
+      }
+    ]
+  },
+  "post_ooe_a2": true,
+  "sha256_a2_starts": "ee48ba61bf5b90b063a5903d3724068e5f8afdda0d848a676932d8442dbb046a",
+  "slogan_false": true,
+  "spotlight_6187": {
+    "a_end": 1,
+    "a_mid": 1,
+    "a_x": 1,
+    "cyclemin_legal": false,
+    "end": 189,
+    "end_in_cheap_band": false,
+    "is_falsifier": false,
+    "matches_named": true,
+    "mid": 1087,
+    "start": 6187,
+    "x": 11189
+  },
+  "window": 20000
+}
