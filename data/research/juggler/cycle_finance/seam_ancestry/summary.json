@@ -1,0 +1,261 @@
+{
+  "bound": "seam_ancestry",
+  "n": 1000001,
+  "published_floor": 1000000,
+  "archived": {
+    "n": 1000001,
+    "legal_22": [
+      "EE|OO",
+      "OE|OO"
+    ],
+    "legal_22_ok": true,
+    "ee_entry_count": 1000004000006000003,
+    "ee_entry_formula": 1000004000006000003,
+    "ee_entry_matches": true,
+    "prefix_2_1": true,
+    "prefix_2_2": false,
+    "nodes_exclude_run_types": true
+  },
+  "scan": {
+    "lo": 13,
+    "hi": 2001,
+    "n_starts": 994,
+    "n_points": 7834,
+    "n_first_oo": 0,
+    "n_multi": 0,
+    "n_occupancy": 2413,
+    "n_archived_ee": 4386,
+    "n_archived_eo": 3140,
+    "n_archived_oo": 308,
+    "n_even_channel": 4206,
+    "phase_edges": [
+      [
+        "E_int",
+        "E_int"
+      ],
+      [
+        "E_int",
+        "V"
+      ],
+      [
+        "O_int",
+        "O_int"
+      ],
+      [
+        "O_int",
+        "P"
+      ],
+      [
+        "P",
+        "E_int"
+      ],
+      [
+        "P",
+        "V"
+      ],
+      [
+        "V",
+        "O_int"
+      ],
+      [
+        "V",
+        "P"
+      ]
+    ]
+  },
+  "graphs": {
+    "n_starts": 994,
+    "n_block_pairs": 1692,
+    "forgetful": {
+      "n_nodes": 48,
+      "n_edges": 214,
+      "n_edge_instances": 698,
+      "has_directed_cycle": true,
+      "self_loop_ooe": true,
+      "multivalued": true
+    },
+    "archived_run": {
+      "n_nodes": 48,
+      "n_edges": 214,
+      "has_directed_cycle": true,
+      "self_loop_ooe": true,
+      "cyclemin_shaped_cyclic": true
+    },
+    "forgetful_matches_g_run": true,
+    "anc": {
+      "n_nodes": 3,
+      "n_edges": 4,
+      "n_edge_instances": 1692,
+      "has_directed_cycle": true,
+      "multivalued": true,
+      "nodes": [
+        "EE|V|ARCHIVED_EE",
+        "EO|V|ARCHIVED_EO",
+        "OE|V|ARCHIVED_EO"
+      ],
+      "nodes_are_not_run_types": true
+    },
+    "cyclemin_shaped_anc": {
+      "n_nodes": 2,
+      "n_edges": 2,
+      "n_edge_instances": 135,
+      "has_directed_cycle": true,
+      "multivalued": true,
+      "nodes": [
+        "EE|V|ARCHIVED_EE",
+        "OE|V|ARCHIVED_EO"
+      ],
+      "nodes_are_not_run_types": true
+    },
+    "idle_valleys": true,
+    "valley_nodes": [
+      "EE|V|ARCHIVED_EE",
+      "EO|V|ARCHIVED_EO",
+      "OE|V|ARCHIVED_EO"
+    ],
+    "phase_is_necklace": true,
+    "phase_edges": [
+      [
+        "E_int",
+        "E_int"
+      ],
+      [
+        "E_int",
+        "V"
+      ],
+      [
+        "O_int",
+        "O_int"
+      ],
+      [
+        "O_int",
+        "P"
+      ],
+      [
+        "P",
+        "E_int"
+      ],
+      [
+        "P",
+        "V"
+      ],
+      [
+        "V",
+        "O_int"
+      ],
+      [
+        "V",
+        "P"
+      ]
+    ],
+    "n_new_empty": 0,
+    "new_empty": [],
+    "n_lifted_run_pairs": 214
+  },
+  "controls": {
+    "controls": [
+      {
+        "n": 365,
+        "blocks": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        "ancestry": [
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE"
+        ]
+      },
+      {
+        "n": 1517,
+        "blocks": [
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            2,
+            1
+          ],
+          [
+            1,
+            1
+          ],
+          [
+            3,
+            3
+          ]
+        ],
+        "ancestry": [
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE",
+          "EE|V|ARCHIVED_EE"
+        ]
+      }
+    ],
+    "shared_run_prefix": 3,
+    "shared_prefix_then_split": true,
+    "same_ancestry_on_prefix": true,
+    "provenance_splits_controls": false,
+    "note": "same ancestry on the shared (2,1)^3 prefix then a run-type split is J-block-map-q-state; not a new state law"
+  },
+  "decision": {
+    "classification": "SEAM_ANCESTRY_CLOSED",
+    "decision": "CLOSE",
+    "reason": "G_anc forgets to the archived cyclic (a,r) graph; every valley is ARCHIVED_EE/EO at phase V; the phase necklace is run form; first OO is empty; MULTI is empty; 365/1517 keep the same ancestry on the shared (2,1)^3 prefix then split",
+    "archived_recovered": true,
+    "oo_first_empty": true,
+    "multi_empty": true,
+    "forgetful_matches_g_run": true,
+    "idle_valleys": true,
+    "phase_is_necklace": true,
+    "anc_cyclic": true,
+    "run_cyclic": true,
+    "anc_dag_while_run_cyclic": false,
+    "new_lifted_emptiness": false,
+    "provenance_splits_controls": false,
+    "leftover_killer": false,
+    "reopens_seam_propagate": false,
+    "reopens_intersection_taxonomy": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "odd_cell_unique",
+      "oddLanding_preimage_unique",
+      "ee_entry_count",
+      "LEGAL_22",
+      "realized_transition_graph",
+      "J-block-map-q-state",
+      "prefix_allows_first_run"
+    ]
+  }
+}

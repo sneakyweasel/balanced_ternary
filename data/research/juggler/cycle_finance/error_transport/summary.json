@@ -1,0 +1,823 @@
+{
+  "bound": "error_transport",
+  "cases": [
+    {
+      "n": 13,
+      "word": "OE",
+      "end": 6,
+      "o": 1,
+      "L": 2,
+      "rows": [
+        {
+          "i": 0,
+          "letter": "O",
+          "x": 13,
+          "rho": 81,
+          "chunk": 81,
+          "e": 81,
+          "W": 1
+        },
+        {
+          "i": 1,
+          "letter": "E",
+          "x": 46,
+          "rho": 10,
+          "chunk": 820,
+          "e": 820,
+          "W": 1
+        }
+      ],
+      "halves": {
+        "E_O": 81,
+        "E_E": 820,
+        "sum": 901
+      },
+      "blocks": [
+        {
+          "a": 1,
+          "r": 1,
+          "E_O": 81,
+          "E_E": 820
+        }
+      ],
+      "delta": 901,
+      "G": -26364,
+      "X": 0,
+      "identity": true,
+      "X_nonneg": true,
+      "shared_later_odd": false,
+      "X_is_cubic_cross": true,
+      "amplify": 81,
+      "first_defect": 0,
+      "first_e": 81,
+      "amp_eq_first_e": true,
+      "max_e": 820,
+      "contracts": true,
+      "expanding": false,
+      "formally_expanding": false,
+      "weights_are_suffix_exponents": true,
+      "half_beats_G": false,
+      "single_beats_G": false,
+      "new_onesided": false,
+      "expanding_halves_below_G": false
+    },
+    {
+      "n": 25,
+      "word": "OOOEE",
+      "end": 15,
+      "o": 3,
+      "L": 5,
+      "rows": [
+        {
+          "i": 0,
+          "letter": "O",
+          "x": 25,
+          "rho": 0,
+          "chunk": 0,
+          "e": 0,
+          "W": 9
+        },
+        {
+          "i": 1,
+          "letter": "O",
+          "x": 125,
+          "rho": 1516,
+          "chunk": 5919576744,
+          "e": 258022727459251148439073850377913784,
+          "W": 3
+        },
+        {
+          "i": 2,
+          "letter": "O",
+          "x": 1397,
+          "rho": 95977,
+          "chunk": 7779861839360135814519174217322385,
+          "e": 7779861839360135814519174217322385,
+          "W": 1
+        },
+        {
+          "i": 3,
+          "letter": "E",
+          "x": 52214,
+          "rho": 230,
+          "chunk": 1917071659872874299595301115008508160,
+          "e": 1917071659872874299595301115008508160,
+          "W": 1
+        },
+        {
+          "i": 4,
+          "letter": "E",
+          "x": 228,
+          "rho": 3,
+          "chunk": 10184288654687421936922132471724380671,
+          "e": 10184288654687421936922132471724380671,
+          "W": 1
+        }
+      ],
+      "halves": {
+        "E_O": 265802589298611284253593024595236169,
+        "E_E": 12101360314560296236517433586732888831,
+        "sum": 12367162903858907520771026611328125000
+      },
+      "blocks": [
+        {
+          "a": 3,
+          "r": 2,
+          "E_O": 265802589298611284253593024595236169,
+          "E_E": 12101360314560296236517433586732888831
+        }
+      ],
+      "delta": 12367162903858907520771026611328125000,
+      "G": -542101030731600985745899379253387451171875000,
+      "X": 0,
+      "identity": true,
+      "X_nonneg": true,
+      "shared_later_odd": true,
+      "X_is_cubic_cross": true,
+      "amplify": 258022727459251148439073850377913784,
+      "first_defect": 1,
+      "first_e": 258022727459251148439073850377913784,
+      "amp_eq_first_e": true,
+      "max_e": 10184288654687421936922132471724380671,
+      "contracts": true,
+      "expanding": false,
+      "formally_expanding": false,
+      "weights_are_suffix_exponents": true,
+      "half_beats_G": false,
+      "single_beats_G": false,
+      "new_onesided": false,
+      "expanding_halves_below_G": false
+    },
+    {
+      "n": 365,
+      "word": "OOE",
+      "end": 763,
+      "o": 2,
+      "L": 3,
+      "rows": [
+        {
+          "i": 0,
+          "letter": "O",
+          "x": 365,
+          "rho": 4396,
+          "chunk": 4396,
+          "e": 31181489958899251636,
+          "W": 3
+        },
+        {
+          "i": 1,
+          "letter": "O",
+          "x": 6973,
+          "rho": 949141,
+          "chunk": 643604567308615513,
+          "e": 643604567308615513,
+          "W": 1
+        },
+        {
+          "i": 2,
+          "letter": "E",
+          "x": 582276,
+          "rho": 107,
+          "chunk": 84471601276948628255,
+          "e": 84471601276948628255,
+          "W": 1
+        }
+      ],
+      "halves": {
+        "E_O": 31825094526207867149,
+        "E_E": 84471601276948628255,
+        "sum": 116296695803156495404
+      },
+      "blocks": [
+        {
+          "a": 2,
+          "r": 1,
+          "E_O": 31825094526207867149,
+          "E_E": 84471601276948628255
+        }
+      ],
+      "delta": 116296695803156495404,
+      "G": 114668544316189642187500,
+      "X": 0,
+      "identity": true,
+      "X_nonneg": true,
+      "shared_later_odd": false,
+      "X_is_cubic_cross": true,
+      "amplify": 31181489958899251636,
+      "first_defect": 0,
+      "first_e": 31181489958899251636,
+      "amp_eq_first_e": true,
+      "max_e": 84471601276948628255,
+      "contracts": false,
+      "expanding": true,
+      "formally_expanding": true,
+      "weights_are_suffix_exponents": true,
+      "half_beats_G": false,
+      "single_beats_G": false,
+      "new_onesided": false,
+      "expanding_halves_below_G": true
+    },
+    {
+      "n": 1517,
+      "word": "OOE",
+      "end": 3789,
+      "o": 2,
+      "L": 3,
+      "rows": [
+        {
+          "i": 0,
+          "letter": "O",
+          "x": 1517,
+          "rho": 18188,
+          "chunk": 18188,
+          "e": 664993533759681995564372,
+          "W": 3
+        },
+        {
+          "i": 1,
+          "letter": "O",
+          "x": 59085,
+          "rho": 28718225,
+          "chunk": 11847297078279633955625,
+          "e": 11847297078279633955625,
+          "W": 1
+        },
+        {
+          "i": 2,
+          "letter": "E",
+          "x": 14362030,
+          "rho": 5509,
+          "chunk": 65242465386353177780929519,
+          "e": 65242465386353177780929519,
+          "W": 1
+        }
+      ],
+      "halves": {
+        "E_O": 676840830837961629519997,
+        "E_E": 65242465386353177780929519,
+        "sum": 65919306217191139410449516
+      },
+      "blocks": [
+        {
+          "a": 2,
+          "r": 1,
+          "E_O": 676840830837961629519997,
+          "E_E": 65242465386353177780929519
+        }
+      ],
+      "delta": 65919306217191139410449516,
+      "G": 42519078885508545964439496556,
+      "X": 0,
+      "identity": true,
+      "X_nonneg": true,
+      "shared_later_odd": false,
+      "X_is_cubic_cross": true,
+      "amplify": 664993533759681995564372,
+      "first_defect": 0,
+      "first_e": 664993533759681995564372,
+      "amp_eq_first_e": true,
+      "max_e": 65242465386353177780929519,
+      "contracts": false,
+      "expanding": true,
+      "formally_expanding": true,
+      "weights_are_suffix_exponents": true,
+      "half_beats_G": false,
+      "single_beats_G": false,
+      "new_onesided": false,
+      "expanding_halves_below_G": true
+    },
+    {
+      "n": 1000057,
+      "word": "OOE",
+      "end": 5623773,
+      "o": 2,
+      "L": 3,
+      "rows": [
+        {
+          "i": 0,
+          "letter": "O",
+          "x": 1000057,
+          "rho": 436764192,
+          "chunk": 436764192,
+          "e": 1310740759350567293963714975909634389310121056,
+          "W": 3
+        },
+        {
+          "i": 1,
+          "letter": "O",
+          "x": 1000085501,
+          "rho": 51720340113665,
+          "chunk": 103467215340777094530152838066350018140105,
+          "e": 103467215340777094530152838066350018140105,
+          "W": 1
+        },
+        {
+          "i": 2,
+          "letter": "E",
+          "x": 31626832356906,
+          "rho": 9601377,
+          "chunk": 1214955596451147749636147377556918158708758357615,
+          "e": 1214955596451147749636147377556918158708758357615,
+          "W": 1
+        }
+      ],
+      "halves": {
+        "E_O": 1310844226565908071058245128747700739328261161,
+        "E_E": 1214955596451147749636147377556918158708758357615,
+        "sum": 1216266440677713657707205622685665859448086618776
+      },
+      "blocks": [
+        {
+          "a": 2,
+          "r": 1,
+          "E_O": 1310844226565908071058245128747700739328261161,
+          "E_E": 1214955596451147749636147377556918158708758357615
+        }
+      ],
+      "delta": 1216266440677713657707205622685665859448086618776,
+      "G": 1000512116523466559760395126388230720461450095263272056,
+      "X": 0,
+      "identity": true,
+      "X_nonneg": true,
+      "shared_later_odd": false,
+      "X_is_cubic_cross": true,
+      "amplify": 1310740759350567293963714975909634389310121056,
+      "first_defect": 0,
+      "first_e": 1310740759350567293963714975909634389310121056,
+      "amp_eq_first_e": true,
+      "max_e": 1214955596451147749636147377556918158708758357615,
+      "contracts": false,
+      "expanding": true,
+      "formally_expanding": true,
+      "weights_are_suffix_exponents": true,
+      "half_beats_G": false,
+      "single_beats_G": false,
+      "new_onesided": false,
+      "expanding_halves_below_G": true
+    },
+    {
+      "n": 365,
+      "word": "OOEOOE",
+      "end": 1749,
+      "o": 4,
+      "L": 6,
+      "rows": [
+        {
+          "i": 0,
+          "letter": "O",
+          "x": 365,
+          "rho": 4396,
+          "chunk": 4396,
+          "e": {
+            "bits": 681,
+            "sign": 1
+          },
+          "W": 27
+        },
+        {
+          "i": 1,
+          "letter": "O",
+          "x": 6973,
+          "rho": 949141,
+          "chunk": 643604567308615513,
+          "e": {
+            "bits": 676,
+            "sign": 1
+          },
+          "W": 9
+        },
+        {
+          "i": 2,
+          "letter": "E",
+          "x": 582276,
+          "rho": 107,
+          "chunk": 84471601276948628255,
+          "e": {
+            "bits": 683,
+            "sign": 1
+          },
+          "W": 9
+        },
+        {
+          "i": 3,
+          "letter": "O",
+          "x": 763,
+          "rho": 39322,
+          "chunk": {
+            "bits": 220,
+            "sign": 1
+          },
+          "e": {
+            "bits": 681,
+            "sign": 1
+          },
+          "W": 3
+        },
+        {
+          "i": 4,
+          "letter": "O",
+          "x": 21075,
+          "rho": 2832839,
+          "chunk": {
+            "bits": 672,
+            "sign": 1
+          },
+          "e": {
+            "bits": 672,
+            "sign": 1
+          },
+          "W": 1
+        },
+        {
+          "i": 5,
+          "letter": "E",
+          "x": 3059506,
+          "rho": 505,
+          "chunk": {
+            "bits": 682,
+            "sign": 1
+          },
+          "e": {
+            "bits": 682,
+            "sign": 1
+          },
+          "W": 1
+        }
+      ],
+      "halves": {
+        "E_O": {
+          "bits": 682,
+          "sign": 1
+        },
+        "E_E": {
+          "bits": 684,
+          "sign": 1
+        },
+        "sum": {
+          "bits": 684,
+          "sign": 1
+        }
+      },
+      "blocks": [
+        {
+          "a": 2,
+          "r": 1,
+          "E_O": {
+            "bits": 681,
+            "sign": 1
+          },
+          "E_E": {
+            "bits": 683,
+            "sign": 1
+          }
+        },
+        {
+          "a": 2,
+          "r": 1,
+          "E_O": {
+            "bits": 681,
+            "sign": 1
+          },
+          "E_E": {
+            "bits": 682,
+            "sign": 1
+          }
+        }
+      ],
+      "delta": {
+        "bits": 684,
+        "sign": 1
+      },
+      "G": {
+        "bits": 690,
+        "sign": 1
+      },
+      "X": {
+        "bits": 675,
+        "sign": 1
+      },
+      "identity": true,
+      "X_nonneg": true,
+      "shared_later_odd": true,
+      "X_is_cubic_cross": true,
+      "amplify": {
+        "bits": 681,
+        "sign": 1
+      },
+      "first_defect": 0,
+      "first_e": {
+        "bits": 681,
+        "sign": 1
+      },
+      "amp_eq_first_e": true,
+      "max_e": {
+        "bits": 683,
+        "sign": 1
+      },
+      "contracts": false,
+      "expanding": true,
+      "formally_expanding": true,
+      "weights_are_suffix_exponents": true,
+      "half_beats_G": false,
+      "single_beats_G": false,
+      "new_onesided": false,
+      "expanding_halves_below_G": true
+    },
+    {
+      "n": 429,
+      "word": "OOEOOEOOEOE",
+      "end": 646,
+      "o": 7,
+      "L": 11,
+      "rows": [
+        {
+          "i": 0,
+          "letter": "O",
+          "x": 429,
+          "rho": 10364,
+          "chunk": 10364,
+          "e": {
+            "bits": 19120,
+            "sign": 1
+          },
+          "W": 729
+        },
+        {
+          "i": 1,
+          "letter": "O",
+          "x": 8885,
+          "rho": 954121,
+          "chunk": 1338460168277715609,
+          "e": {
+            "bits": 19113,
+            "sign": 1
+          },
+          "W": 243
+        },
+        {
+          "i": 2,
+          "letter": "E",
+          "x": 837502,
+          "rho": 277,
+          "chunk": 650551753099151409391,
+          "e": {
+            "bits": 19122,
+            "sign": 1
+          },
+          "W": 243
+        },
+        {
+          "i": 3,
+          "letter": "O",
+          "x": 915,
+          "rho": 44546,
+          "chunk": {
+            "bits": 226,
+            "sign": 1
+          },
+          "e": {
+            "bits": 19119,
+            "sign": 1
+          },
+          "W": 81
+        },
+        {
+          "i": 4,
+          "letter": "O",
+          "x": 27677,
+          "rho": 463969,
+          "chunk": {
+            "bits": 687,
+            "sign": 1
+          },
+          "e": {
+            "bits": 19107,
+            "sign": 1
+          },
+          "W": 27
+        },
+        {
+          "i": 5,
+          "letter": "E",
+          "x": 4604458,
+          "rho": 3433,
+          "chunk": {
+            "bits": 703,
+            "sign": 1
+          },
+          "e": {
+            "bits": 19124,
+            "sign": 1
+          },
+          "W": 27
+        },
+        {
+          "i": 6,
+          "letter": "O",
+          "x": 2145,
+          "rho": 166976,
+          "chunk": {
+            "bits": 2115,
+            "sign": 1
+          },
+          "e": {
+            "bits": 19117,
+            "sign": 1
+          },
+          "W": 9
+        },
+        {
+          "i": 7,
+          "letter": "O",
+          "x": 99343,
+          "rho": 35877291,
+          "chunk": {
+            "bits": 6357,
+            "sign": 1
+          },
+          "e": {
+            "bits": 19108,
+            "sign": 1
+          },
+          "W": 3
+        },
+        {
+          "i": 8,
+          "letter": "E",
+          "x": 31311646,
+          "rho": 7621,
+          "chunk": {
+            "bits": 6371,
+            "sign": 1
+          },
+          "e": {
+            "bits": 19121,
+            "sign": 1
+          },
+          "W": 3
+        },
+        {
+          "i": 9,
+          "letter": "O",
+          "x": 5595,
+          "rho": 421859,
+          "chunk": {
+            "bits": 19114,
+            "sign": 1
+          },
+          "e": {
+            "bits": 19114,
+            "sign": 1
+          },
+          "W": 1
+        },
+        {
+          "i": 10,
+          "letter": "E",
+          "x": 418504,
+          "rho": 1188,
+          "chunk": {
+            "bits": 19123,
+            "sign": 1
+          },
+          "e": {
+            "bits": 19123,
+            "sign": 1
+          },
+          "W": 1
+        }
+      ],
+      "halves": {
+        "E_O": {
+          "bits": 19121,
+          "sign": 1
+        },
+        "E_E": {
+          "bits": 19125,
+          "sign": 1
+        },
+        "sum": {
+          "bits": 19125,
+          "sign": 1
+        }
+      },
+      "blocks": [
+        {
+          "a": 2,
+          "r": 1,
+          "E_O": {
+            "bits": 19120,
+            "sign": 1
+          },
+          "E_E": {
+            "bits": 19122,
+            "sign": 1
+          }
+        },
+        {
+          "a": 2,
+          "r": 1,
+          "E_O": {
+            "bits": 19119,
+            "sign": 1
+          },
+          "E_E": {
+            "bits": 19124,
+            "sign": 1
+          }
+        },
+        {
+          "a": 2,
+          "r": 1,
+          "E_O": {
+            "bits": 19117,
+            "sign": 1
+          },
+          "E_E": {
+            "bits": 19121,
+            "sign": 1
+          }
+        },
+        {
+          "a": 1,
+          "r": 1,
+          "E_O": {
+            "bits": 19114,
+            "sign": 1
+          },
+          "E_E": {
+            "bits": 19123,
+            "sign": 1
+          }
+        }
+      ],
+      "delta": {
+        "bits": 19125,
+        "sign": 1
+      },
+      "G": {
+        "bits": 19125,
+        "sign": 1
+      },
+      "X": {
+        "bits": 19123,
+        "sign": 1
+      },
+      "identity": true,
+      "X_nonneg": true,
+      "shared_later_odd": true,
+      "X_is_cubic_cross": true,
+      "amplify": {
+        "bits": 19120,
+        "sign": 1
+      },
+      "first_defect": 0,
+      "first_e": {
+        "bits": 19120,
+        "sign": 1
+      },
+      "amp_eq_first_e": true,
+      "max_e": {
+        "bits": 19124,
+        "sign": 1
+      },
+      "contracts": false,
+      "expanding": true,
+      "formally_expanding": true,
+      "weights_are_suffix_exponents": true,
+      "half_beats_G": false,
+      "single_beats_G": false,
+      "new_onesided": false,
+      "expanding_halves_below_G": true
+    }
+  ],
+  "l11_first_realized": 429,
+  "note": "ordered transport unrolls accumulatedDefect; seam halves and single positions do not beat G on expanding words; X is the accumulateOdd cubic cross",
+  "decision": {
+    "classification": "ERROR_TRANSPORT_CLOSED",
+    "decision": "CLOSE",
+    "reason": "attributed chunks plus cubic cross terms are Delta; no seam-half or single position beats G except on contracting words where T_w < n; first-order weights are suffix 3^{o'}; first-defect Amplify is e_j",
+    "identity": true,
+    "X_is_cubic_cross": true,
+    "weights_are_suffix_exponents": true,
+    "amp_eq_first_e": true,
+    "expanding_halves_below_G": true,
+    "new_onesided": false,
+    "leftover_killer": false,
+    "reopens_finance": false,
+    "reopens_amplify": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "global_defect_identity",
+      "accumulatedDefect",
+      "amplifyDefect",
+      "firstDefect",
+      "cycleMin_finance",
+      "cycle_word_formally_expanding",
+      "power_bound_word",
+      "power_bound_contracts"
+    ]
+  }
+}

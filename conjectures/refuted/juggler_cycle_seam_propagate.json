@@ -1,0 +1,24 @@
+{
+  "id": "juggler_cycle_seam_propagate",
+  "title": "Adjacent-seam output intervals empty a successor type or make the bounded (a,r) graph a DAG",
+  "statement": "The output interval of a feasible block O^a E^r is an input constraint on the next seam that empties a transition (a',r') both independent prefix tests 2^{a+r}<=3^a and 2^{a'+r'}<=3^{a'} allow, other than the archived cheap-OOE adjacency at v=n, or the finite type graph on bounded CycleMin-legal (a,r) is a directed acyclic graph.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "81 independently allowed pairs on the wide hull [3,10^6+1], the CycleMin tube [10^6+1,10^6+4001], and the middle a>=1 table: n_new_empty=0",
+    "cheap OOE at 1000057 lands at 5623773 < oe_start_min(10^6+1)=100000135; two OOE land at 39244721; both are ooe_blocks_oe / two_ooe_still_blocks_oe",
+    "(2,2) and (3,2) fail 2^{a+r}<=3^a independently",
+    "realized type graph on [13,2001): 48 nodes, 214 edges, OOE self-loop, max out-degree 30; CycleMin-shaped subgraph 17 nodes, 41 edges, also cyclic",
+    "365=(2,1)^4 then (1,3) versus 1517=(2,1)^3 then (1,1) reconfirms J-block-map-q-state",
+    "log-width ratio of block_image equals rho (9/8 and 3/4); block-level C_{k+1}=C_1 is not strictly stronger than propagate_cycle"
+  ],
+  "first_seen": "juggler adjacent-seam incompatibility propagation",
+  "lean_reference": "cycle_trailing_evens_lt",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler CycleMin adjacent-seam constraint propagation",
+  "notes": "Phase 0 only. Not a halt theorem and not a leftover-killer. Composed hulls do not empty independently allowed successors. The type graph is cyclic and multi-valued. Interval shrink is the closed exponent budget. Block-level cyclic closure is a coarsening of propagate_cycle. No finance, no K=11, no L=55293, no floor raise. No Paper A edit, no ledger row, no new Lean.",
+  "origin": "docs/problems/juggler_cycle_seam_propagate.md",
+  "proof_reference": "docs/problems/juggler_cycle_seam_propagate.md",
+  "tested_range": "prefix tables a<=6, r<=4; CycleMin tube at n=10^6+1 with first OOE start 1000057; realized transitions on odds in [13,2001); shrink on [1001,3001] and [10^6+1,10^6+4001]; cyclic closure on OOOOEE, OOOOOOEEE, OOEOOEOOEOE"
+}

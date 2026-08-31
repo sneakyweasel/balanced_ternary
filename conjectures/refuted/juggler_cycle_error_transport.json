@@ -1,0 +1,25 @@
+{
+  "id": "juggler_cycle_error_transport",
+  "title": "Position-weighted seam-split floor-error transport obstructs a cycle without summing to Delta",
+  "statement": "Transporting every local floor remainder by its position in the word and splitting the vector at the O|E seam produces a one-sided or ordered constraint (a climb-half, a descent-half, or a single e_i exceeds G, or an ordered climb/descent law) that is not global_defect_identity / amplifyDefect / firstDefect / cycleMin_finance / the closed defect-congruence residual / the closed peak-valley composite / the closed exponent budget / power_bound_contracts.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "sum e_i + X = Delta on 13 OE (81+820=901), 365 OOE, 25 OOOEE, 365 OOEOOE, and 429 L11; the vector is accumulatedDefect unrolled",
+    "365 OOE expands to 763 with E_O/G ~ 2.8e-4 and Amplify/G ~ 2.7e-4; 1517 and 1000057 OOE likewise miss G",
+    "formal weights are suffix 3^{o'}: L11 at 429 has W = (729,243,243,81,27,27,9,3,3,1,1)",
+    "X = 0 on OE and OOE (no shared later odd) and on 25 OOOEE (first remainder vanishes); X > 0 on 365 OOEOOE and 429 L11, which is accumulateOdd",
+    "first-defect Amplify equals the first positive e_j",
+    "429 leftover shape expands to 646 with E_E/G ~ 0.70 and max e_i/G ~ 0.27; the descent half is larger and still misses G",
+    "25 OOOEE contracts to 15, which is power_bound_contracts, not a new one-sided kill"
+  ],
+  "first_seen": "juggler ordered floor-error transport",
+  "lean_reference": "global_defect_identity",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler CycleMin ordered floor-error transport",
+  "notes": "Phase 0 only. Reviewer item 2 (ordered floor-error transport). The ordered vector is a REPARAMETERIZATION of accumulatedDefect plus the known Amplify gap. No finance leftover-killer, no floor raise, no Paper A edit, no ledger row, no new Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_error_transport.md",
+  "proof_reference": "docs/problems/juggler_cycle_error_transport.md",
+  "tested_range": "OE at 13; OOOEE at 25; OOE at 365, 1517, 1000057; OOEOOE at 365; leftover OOEOOEOOEOE at first realized 429"
+}

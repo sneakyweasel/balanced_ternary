@@ -4,22 +4,15 @@
   "published_floor": 1000000,
   "archived_cyclemin": {
     "n": 1000001,
+    "ooe_start": 1000057,
     "oe_start_min": 100000135,
     "ooe_blocks_oe": true,
     "two_ooe_still_blocks_oe": true,
-    "excursion_peak": null,
-    "excursion_landing": null,
-    "landing_below_oe_min": false,
-    "ooe_image": {
-      "lo": 1000001501,
-      "hi": 1000001499
-    },
-    "ooe_image_below_oe_min": false,
-    "two_ooe_image": {
-      "lo": 1,
-      "hi": 0
-    },
-    "two_ooe_image_below_oe_min": true,
+    "excursion_peak": 31626832356906,
+    "excursion_landing": 5623773,
+    "landing_below_oe_min": true,
+    "two_ooe_landing": 39244721,
+    "two_ooe_landing_below_oe_min": true,
     "prefix_2_1": true,
     "prefix_2_2": false,
     "prefix_3_2": false,
@@ -2824,7 +2817,8 @@
         "expanding": true,
         "letter_empty": true,
         "block_empty": false,
-        "agree": false
+        "block_strictly_stronger": false,
+        "agree": true
       },
       {
         "word": "OOOOOOEEE",
@@ -2836,8 +2830,9 @@
         ],
         "expanding": true,
         "letter_empty": true,
-        "block_empty": false,
-        "agree": false
+        "block_empty": true,
+        "block_strictly_stronger": false,
+        "agree": true
       },
       {
         "word": "OOEOOEOOEOE",
@@ -2862,24 +2857,25 @@
         "expanding": true,
         "letter_empty": true,
         "block_empty": false,
-        "agree": false
+        "block_strictly_stronger": false,
+        "agree": true
       }
     ],
     "all_expanding": true,
-    "all_agree": false,
-    "note": "block-level C_{k+1}=C_1 matches letter-level propagate_cycle"
+    "all_agree": true,
+    "note": "block-level C_{k+1}=C_1 is not strictly stronger than letter-level propagate_cycle; a finite cap may empty both"
   },
   "decision": {
-    "classification": "SEAM_PROPAGATE_PARK",
-    "decision": "PARK",
-    "reason": "the adjacent-seam census is mixed and does not decide",
-    "archived_recovered": false,
+    "classification": "SEAM_PROPAGATE_CLOSED",
+    "decision": "CLOSE",
+    "reason": "every composed emptiness is the archived cheap-OOE adjacency or a prefix-test failure; the realized type graph has a directed cycle (including the CycleMin-shaped subgraph); log-width shrink matches rho; block-level C_{k+1}=C_1 matches propagate_cycle",
+    "archived_recovered": true,
     "new_composed_emptiness": false,
     "realized_graph_cyclic": true,
     "cyclemin_shaped_cyclic": true,
     "realized_graph_multivalued": true,
     "shrink_matches_rho": true,
-    "block_closure_matches_letter": false,
+    "block_closure_matches_letter": true,
     "type_graph_is_dag": false,
     "leftover_killer": false,
     "reopens_ordered_excursion": false,

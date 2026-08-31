@@ -1,0 +1,184 @@
+{
+  "bound": "first_collision",
+  "archived": [
+    "odd_cell_unique",
+    "oddLanding_preimage_unique",
+    "even_cell_iff",
+    "odd_cell_iff"
+  ],
+  "sink": [
+    1,
+    2
+  ],
+  "parent_types": [
+    "EE",
+    "EO",
+    "OE",
+    "OO"
+  ],
+  "one_step": {
+    "x_max": 400,
+    "sink_excluded": [
+      1,
+      2
+    ],
+    "n_images": 398,
+    "counts": {
+      "EE": 21413594,
+      "EO": 4288,
+      "OE": 4288,
+      "OO": 0
+    },
+    "expected": {
+      "EE": 21413594,
+      "EO": 4288,
+      "OE": 4288,
+      "OO": 0
+    },
+    "occupied": {
+      "EE": true,
+      "EO": true,
+      "OE": true,
+      "OO": false
+    },
+    "fibre_matches_cell": true,
+    "counts_match_expected": true,
+    "oo_empty": true
+  },
+  "determinism": {
+    "start_max": 400,
+    "word_len_max": 3,
+    "sink_excluded": [
+      1,
+      2
+    ],
+    "meetings": 9375,
+    "first_collisions": 5642,
+    "same_parent": 3733,
+    "mixed_lengths": 3234,
+    "type_first": {
+      "EE": 4958,
+      "EO": 338,
+      "OE": 346,
+      "OO": 0
+    },
+    "type_same_parent": {
+      "EE": 1750,
+      "EO": 0,
+      "OE": 0,
+      "OO": 1983
+    },
+    "n_mismatch": 0,
+    "mismatches": [],
+    "iff_holds": true
+  },
+  "determinism_including_sink": {
+    "meetings": 105,
+    "first_collisions": 75,
+    "same_parent": 22,
+    "n_mismatch": 8,
+    "iff_holds": false
+  },
+  "witnesses": {
+    "EE": {
+      "n": 100,
+      "u": "E",
+      "m": 102,
+      "v": "E",
+      "x": 10,
+      "image_n": 10,
+      "image_m": 10,
+      "parent_n": 100,
+      "parent_m": 102,
+      "type": "EE",
+      "first": true,
+      "distinct_parents": true,
+      "follows": true,
+      "same_image": true
+    },
+    "OE": {
+      "n": 5,
+      "u": "O",
+      "m": 122,
+      "v": "E",
+      "x": 11,
+      "image_n": 11,
+      "image_m": 11,
+      "parent_n": 5,
+      "parent_m": 122,
+      "type": "OE",
+      "first": true,
+      "distinct_parents": true,
+      "follows": true,
+      "same_image": true
+    },
+    "EO": {
+      "n": 122,
+      "u": "E",
+      "m": 5,
+      "v": "O",
+      "x": 11,
+      "image_n": 11,
+      "image_m": 11,
+      "parent_n": 122,
+      "parent_m": 5,
+      "type": "EO",
+      "first": true,
+      "distinct_parents": true,
+      "follows": true,
+      "same_image": true
+    },
+    "OO": null,
+    "same_parent_EE": {
+      "n": 16,
+      "u": "EE",
+      "m": 18,
+      "v": "EE",
+      "x": 2,
+      "image_n": 2,
+      "image_m": 2,
+      "parent_n": 4,
+      "parent_m": 4,
+      "type": "EE",
+      "first": false,
+      "distinct_parents": false,
+      "follows": true,
+      "same_image": true
+    },
+    "sink_overshoot": {
+      "n": 4,
+      "u": "EEO",
+      "m": 2,
+      "v": "E",
+      "x": 1,
+      "image_n": 1,
+      "image_m": 1,
+      "parent_n": 1,
+      "parent_m": 2,
+      "type": "OE",
+      "first": false,
+      "distinct_parents": true,
+      "follows": true,
+      "same_image": true
+    },
+    "occupied_ok": true
+  },
+  "image_after_check": true,
+  "decision": {
+    "classification": "FIRST_COLLISION_CLOSED",
+    "decision": "CLOSE",
+    "reason": "first collision iff distinct last parents; OO empty by odd_cell_unique; OE/EO and EE are the one-step cells",
+    "new_seam": false,
+    "leftover_killer": false,
+    "reopens_intersection_taxonomy": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "odd_cell_unique",
+      "oddLanding_preimage_unique",
+      "even_cell_iff",
+      "odd_cell_iff"
+    ]
+  }
+}

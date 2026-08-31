@@ -1,0 +1,266 @@
+{
+  "bound": "word_order",
+  "k_max": 8,
+  "window": {
+    "lo": 2,
+    "hi": 2001
+  },
+  "note": "Same (o, L) fixes 3^o/2^L and, on a CycleWord, Delta and T/n^P. Distinct necklaces with that budget have different exact maps; every cycle-usable compression through length 8 is already archived.",
+  "endpoint": {
+    "formula_is_word_free": true,
+    "checks": [
+      {
+        "n": 3,
+        "left": "OOE",
+        "right": "OEO",
+        "holds": true,
+        "defect": 13122,
+        "norm_exp": [
+          -1,
+          8
+        ]
+      },
+      {
+        "n": 5,
+        "left": "OOE",
+        "right": "EOO",
+        "holds": true,
+        "defect": 1562500,
+        "norm_exp": [
+          -1,
+          8
+        ]
+      },
+      {
+        "n": 7,
+        "left": "OOOEE",
+        "right": "OOEOE",
+        "holds": true,
+        "defect": -1104361961881557112025159658,
+        "norm_exp": [
+          5,
+          32
+        ]
+      },
+      {
+        "n": 11,
+        "left": "OOOOE",
+        "right": "OOOEO",
+        "holds": true,
+        "defect": 2253240236044012487937308538033349567966729852481168392437136042090121038574844434890,
+        "norm_exp": [
+          -49,
+          32
+        ]
+      }
+    ],
+    "all_hold": true,
+    "itinerary_unique": true
+  },
+  "expanding": {
+    "n_words": 105,
+    "n_budget_pairs": 17,
+    "n_necklace_pairs": 12,
+    "n_empty_domain": 12,
+    "n_image_differ": 0,
+    "n_same_S_differ_T": 0,
+    "counts": {
+      "rotation": 0,
+      "named_cell": 0,
+      "adjacency": 0,
+      "lowerDenom": 12,
+      "known_map": 0,
+      "unarchived": 0
+    },
+    "examples": {
+      "lowerDenom": [
+        {
+          "left": "EEOOOO",
+          "right": "EOEOOO",
+          "o": 4,
+          "L": 6,
+          "tag": "lowerDenom",
+          "different_S": true,
+          "common_follows": 0,
+          "image_differ": 0,
+          "peak_differ": 0,
+          "samples": []
+        },
+        {
+          "left": "EEOOOO",
+          "right": "EOOEOO",
+          "o": 4,
+          "L": 6,
+          "tag": "lowerDenom",
+          "different_S": true,
+          "common_follows": 0,
+          "image_differ": 0,
+          "peak_differ": 0,
+          "samples": []
+        },
+        {
+          "left": "EOEOOO",
+          "right": "EOOEOO",
+          "o": 4,
+          "L": 6,
+          "tag": "lowerDenom",
+          "different_S": true,
+          "common_follows": 0,
+          "image_differ": 0,
+          "peak_differ": 0,
+          "samples": []
+        }
+      ]
+    },
+    "unarchived": 0
+  },
+  "cyclemin": {
+    "n_words": 18,
+    "n_budget_pairs": 9,
+    "n_necklace_pairs": 12,
+    "n_empty_domain": 12,
+    "n_image_differ": 0,
+    "n_same_S_differ_T": 0,
+    "counts": {
+      "rotation": 0,
+      "named_cell": 0,
+      "adjacency": 0,
+      "lowerDenom": 12,
+      "known_map": 0,
+      "unarchived": 0
+    },
+    "examples": {
+      "lowerDenom": [
+        {
+          "left": "EEOOOO",
+          "right": "EOEOOO",
+          "o": 4,
+          "L": 6,
+          "tag": "lowerDenom",
+          "different_S": true,
+          "common_follows": 0,
+          "image_differ": 0,
+          "peak_differ": 0,
+          "samples": []
+        },
+        {
+          "left": "EEOOOO",
+          "right": "EOOEOO",
+          "o": 4,
+          "L": 6,
+          "tag": "lowerDenom",
+          "different_S": true,
+          "common_follows": 0,
+          "image_differ": 0,
+          "peak_differ": 0,
+          "samples": []
+        },
+        {
+          "left": "EOEOOO",
+          "right": "EOOEOO",
+          "o": 4,
+          "L": 6,
+          "tag": "lowerDenom",
+          "different_S": true,
+          "common_follows": 0,
+          "image_differ": 0,
+          "peak_differ": 0,
+          "samples": []
+        }
+      ]
+    },
+    "unarchived": 0
+  },
+  "canonical": {
+    "triple": {
+      "words": [
+        "OOE",
+        "OEO",
+        "EOO"
+      ],
+      "o": 2,
+      "L": 3,
+      "budget": "9/8",
+      "same_necklace": true,
+      "pairs": [
+        {
+          "left": "OOE",
+          "right": "OEO",
+          "tag": "named_cell",
+          "same_necklace": true,
+          "different_S": true,
+          "common_follows": 0,
+          "image_differ": 0,
+          "samples": []
+        },
+        {
+          "left": "OOE",
+          "right": "EOO",
+          "tag": "named_cell",
+          "same_necklace": true,
+          "different_S": true,
+          "common_follows": 0,
+          "image_differ": 0,
+          "samples": []
+        },
+        {
+          "left": "OEO",
+          "right": "EOO",
+          "tag": "named_cell",
+          "same_necklace": true,
+          "different_S": true,
+          "common_follows": 0,
+          "image_differ": 0,
+          "samples": []
+        }
+      ]
+    },
+    "oooee_vs_ooeoe": {
+      "left": "OOOEE",
+      "right": "OOEOE",
+      "o": 3,
+      "L": 5,
+      "budget": "27/32",
+      "tag": "adjacency",
+      "same_necklace": false,
+      "different_S": true,
+      "common_follows": 0,
+      "image_differ": 0,
+      "peak_differ": 0,
+      "samples": []
+    }
+  },
+  "identities": {
+    "cycle_defect_is_n_pow_gap": true,
+    "normalized_image_is_n_to_one_minus_P": true,
+    "endpoint_quantities_ignore_order": true,
+    "same_length_itinerary_is_unique": true
+  },
+  "decision": {
+    "classification": "WORD_ORDER_CLOSED",
+    "decision": "CLOSE",
+    "reason": "on a CycleWord the endpoint quantities are (o, L)-only; every same-budget necklace distinction through length 8 is a rotation, lowerDenom / S(w), a named cell, cheap-OOE adjacency, or the exact-map slogan itself; OOE/OEO/EOO are one necklace excluded by cells; OOOEE versus OOEOE is adjacency",
+    "unarchived": 0,
+    "endpoint_collapse": true,
+    "triple_named_cell": true,
+    "contracting_archived": true,
+    "new_identity": false,
+    "leftover_killer": false,
+    "reopens_finance": false,
+    "reopens_word_functional": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "lowerDenom",
+      "cycle_word_functional",
+      "no_cycle_word_ooe",
+      "no_cycle_word_oeo",
+      "no_cycle_word_eoo",
+      "ooe_blocks_oe",
+      "global_defect_identity",
+      "image_eq_start_defectRatio",
+      "power_bound_word"
+    ]
+  }
+}

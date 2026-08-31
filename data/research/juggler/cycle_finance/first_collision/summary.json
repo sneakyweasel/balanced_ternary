@@ -1,0 +1,225 @@
+{
+  "bound": "first_collision",
+  "n": 1000001,
+  "published_floor": 1000000,
+  "lemma_table": [
+    {
+      "x": "valley",
+      "c": "O",
+      "t": "O",
+      "status": "KNOWN",
+      "lean": "odd_cell_unique",
+      "empty": true
+    },
+    {
+      "x": "valley",
+      "c": "O",
+      "t": "E",
+      "status": "KNOWN",
+      "lean": "cycleMin_not_end_odd",
+      "empty": true
+    },
+    {
+      "x": "valley",
+      "c": "E",
+      "t": "O",
+      "status": "REPARAMETERIZATION",
+      "lean": "odd_cell_iff",
+      "empty": false,
+      "note": "occupancy is odd-cell Type 2; t < n is automatically off-cycle"
+    },
+    {
+      "x": "valley",
+      "c": "E",
+      "t": "E",
+      "status": "REPARAMETERIZATION",
+      "lean": "even_cell_iff",
+      "empty": false,
+      "note": "any other even parent; first iff t not on the cycle"
+    },
+    {
+      "x": "interior",
+      "c": "O",
+      "t": "O",
+      "status": "KNOWN",
+      "lean": "odd_cell_unique",
+      "empty": true
+    },
+    {
+      "x": "interior",
+      "c": "O",
+      "t": "E",
+      "status": "REPARAMETERIZATION",
+      "lean": "odd_cell_unique",
+      "empty": false,
+      "note": "forced if the cycle arrives by O and the odd parent is >= n"
+    },
+    {
+      "x": "interior",
+      "c": "E",
+      "t": "O",
+      "status": "REPARAMETERIZATION",
+      "lean": "even_cell_iff",
+      "empty": false,
+      "note": "cycle arrives by E; odd parent if Type 2"
+    },
+    {
+      "x": "interior",
+      "c": "E",
+      "t": "E",
+      "status": "REPARAMETERIZATION",
+      "lean": "even_cell_iff",
+      "empty": false,
+      "note": "cycle arrives by E; any other even parent"
+    }
+  ],
+  "valley": {
+    "n": 1000001,
+    "n_even": false,
+    "pred_e_count": 1000001,
+    "pred_e_count_formula": 1000001,
+    "ee_pair_count": 500000500000,
+    "odd_cell_kind": 0,
+    "odd_parent": null,
+    "odd_parent_lt_n": false,
+    "odd_return_ge_n": null,
+    "eo_exists": false,
+    "oo_empty": true,
+    "oe_empty": true,
+    "square_lo": 1000002000001,
+    "square_hi": 1000004000004,
+    "note": "valley (O,*) empty by cycleMin_not_end_odd; (E,O) occupancy is Type 2; (E,E) is C(|Pred_E|, 2)"
+  },
+  "interior": {
+    "lo": 13,
+    "hi": 2001,
+    "dummy_min": 13,
+    "n_odd_starts": 994,
+    "n_distinct_images": 994,
+    "n_type2": 994,
+    "n_odd_type2_images": 502,
+    "first_odd_type2": {
+      "x": 125,
+      "odd_parent": 25,
+      "odd_parent_lt_x": true,
+      "pred_e_count": 125,
+      "eo_exists": true
+    },
+    "n_both_parent_types": 994,
+    "n_odd_parent_ge_dummy": 994,
+    "n_odd_parent_ge_image": 0,
+    "n_odd_parent_lt_image": 994,
+    "n_joint_occupied": 994,
+    "n_joint_gap_one": 994,
+    "n_offset_equals_cube_gap": 994,
+    "n_t3_odd": 994,
+    "oo_collision": 0,
+    "offset_min": 0,
+    "offset_max": 161475,
+    "width_min": 93,
+    "width_max": 178751,
+    "both_types_occur": true,
+    "mixed_offset_is_cube_gap": true,
+    "mixed_nearest_even_gap_is_one": true,
+    "oo_empty_on_window": true
+  },
+  "ee_gaps_x10": {
+    "x": 10,
+    "n_evens": 11,
+    "first_even": 100,
+    "last_even": 120,
+    "last_even_lt_hi": true,
+    "max_gap": 20,
+    "max_gap_formula": 20,
+    "prefix": 11,
+    "observed_eq_expected_prefix": true,
+    "arithmetic_free": true,
+    "prefix_free": true
+  },
+  "ee_gaps_floor": {
+    "x": 1000001,
+    "n_evens": 1000001,
+    "first_even": 1000002000002,
+    "last_even": 1000004000002,
+    "last_even_lt_hi": true,
+    "max_gap": 2000000,
+    "max_gap_formula": 2000000,
+    "prefix": 2,
+    "observed_eq_expected_prefix": true,
+    "arithmetic_free": true,
+    "prefix_free": true
+  },
+  "calibration": {
+    "slide_100_102": {
+      "c": 100,
+      "t": 102,
+      "x": 10,
+      "same_image": true,
+      "c_even": true,
+      "t_even": true,
+      "type": "E,E",
+      "gap": 2
+    },
+    "slide_is_ee": true,
+    "slide_x": 10,
+    "merge_365_501": {
+      "a": 365,
+      "b": 501,
+      "meet": 763,
+      "pred_a": 582276,
+      "pred_b": 582916,
+      "odd_cell_kind": 0,
+      "fork": {
+        "c": 582276,
+        "t": 582916,
+        "x": 763,
+        "same_image": true,
+        "c_even": true,
+        "t_even": true,
+        "type": "E,E",
+        "gap": 640
+      }
+    },
+    "merge_is_ee": true,
+    "merge_meet": 763,
+    "merge_odd_empty": true
+  },
+  "factorization": {
+    "oo_empty_on_window": true,
+    "valley_odd_return_ge_n_empty": true,
+    "valley_oe_empty": true,
+    "valley_eo_is_type2": true,
+    "pred_e_count_matches_formula": true,
+    "ee_gaps_arithmetic_free": true,
+    "mixed_offset_is_cube_gap": true,
+    "mixed_nearest_even_gap_is_one": true,
+    "both_types_occur_interior": true,
+    "type2_odd_valley_eo_occupied": true,
+    "slide_fork_ee": true,
+    "merge_fork_ee": true,
+    "no_new_empty_type": true,
+    "factorization_holds": true
+  },
+  "decision": {
+    "classification": "FIRST_COLLISION_CLOSED",
+    "decision": "CLOSE",
+    "reason": "Collision Factorization holds: first iff t is off-cycle; CycleMin constrains only the cyclic-parent type; every empty type is odd_cell_unique or cycleMin_not_end_odd; mixed (c, t^3) placement is the cube-gap; (E,E) gaps are the even widths of Pred_E",
+    "factorization_holds": true,
+    "new_joint_law": false,
+    "leftover_killer": false,
+    "reopens_taxonomy": false,
+    "reopens_corridor": false,
+    "reopens_twin_flight": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "odd_cell_unique",
+      "oddLanding_preimage_unique",
+      "cycleMin_not_end_odd",
+      "even_cell_iff",
+      "odd_cell_iff",
+      "cycleMin_starts_two_odds"
+    ]
+  }
+}

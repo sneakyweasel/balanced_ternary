@@ -1,6 +1,6 @@
 # Juggler adjacent-seam incompatibility propagation
 
-Status: **EXPLORATORY**
+Status: **ARCHIVED**
 
 Directed follow-up of the closed seam stack
 ([juggler_cycle_e_block.md](juggler_cycle_e_block.md),
@@ -85,13 +85,20 @@ type-graph obstruction, not a totality theorem.
   \(1517\))
 - Cyclic seam / \(E^r\) block / seam sliding —
   **CLOSE**
+- Cyclic block transfer —
+  **CLOSE** / **REPARAMETERIZATION**
+  ([juggler_cycle_block_transfer.md](juggler_cycle_block_transfer.md))
+- Peak–valley interval composition —
+  **CLOSE**
+  ([juggler_cycle_peak_valley_composition.md](juggler_cycle_peak_valley_composition.md))
 - Collatz-style financing —
   **known** (`simons-de-weger-2005-collatz-m-cycles`)
 - Every start reaches 1 — not claimed
 
-Project relationship: **extended** as an adjacent-constraint
-check; **refuted** if the composed cells and the type graph
-collapse to the archived tests.
+Project relationship: **refuted** as an adjacent leftover
+obstruction; composed hulls and the type graph are
+**REPARAMETERIZATION**s of the archived prefix test, cheap
+\(\mathtt{OOE}\) adjacency, \(\rho\), and `propagate_cycle`.
 
 ## Branch budget
 
@@ -137,8 +144,9 @@ Stop criterion          composed emptiness = archived tests;
 
 Do not reopen the entry corridor, the cyclic seam, the
 first-intersection taxonomy, the \(E^r\) block, seam sliding,
-ordered excursion, cyclic feasibility, the exponent budget, or
-the \(Q\)-state law. Do not reopen \(r=4\) pullback.
+ordered excursion, cyclic feasibility, the exponent budget,
+cyclic block transfer, or the \(Q\)-state law. Do not reopen
+\(r=4\) pullback.
 
 - **CLOSE** if every `composed_empty and independent_ok` row
   is the archived cheap-\(\mathtt{OOE}\) adjacency or a
@@ -184,11 +192,11 @@ It is not required.
 - Block-level \(C_{k+1}=C_1\) —
   **REPARAMETERIZATION** of `propagate_cycle` if they agree
 - Type-graph DAG —
-  **CONJECTURE** under test
+  **REFUTED** (OOE self-loop; CycleMin-shaped subgraph cyclic)
 - Deterministic \((a,r)\mapsto(a',r')\) —
   **REFUTED** (`J-block-map-q-state`)
 - Adjacent-seam leftover-killer —
-  not claimed
+  **REFUTED** (`juggler_cycle_seam_propagate`)
 - No cycle of any length — not claimed
 
 ## Experiments
@@ -204,11 +212,32 @@ It is not required.
 
 ## Conjectures
 
-`juggler_cycle_seam_propagate` — under test.
+`juggler_cycle_seam_propagate` — **REFUTED**.
 
 ## Counterexamples
 
-Recorded after Phase 0.
+- Eighty-one independently allowed pairs on the wide hull
+  \([3,10^6+1]\), the CycleMin tube \([10^6+1,10^6+4001]\),
+  and the middle \(a\ge 1\) table: `n_new_empty=0`. Falsifier
+  of a new composed emptiness.
+- First \(\mathtt{OOE}\) start \(1000057\) lands at
+  \(5623773<\mathtt{oe\_start\_min}(10^6+1)=100000135\). Two
+  \(\mathtt{OOE}\) land at \(39244721\). That is
+  `ooe_blocks_oe` / `two_ooe_still_blocks_oe`.
+- \((2,2)\) and \((3,2)\) fail \(2^{a+r}\le 3^{a}\)
+  independently.
+- Realized type graph on \([13,2001)\): \(48\) nodes, \(214\)
+  edges, \(\mathtt{OOE}\) self-loop, max out-degree \(30\).
+  CycleMin-shaped subgraph: \(17\) nodes, \(41\) edges, also
+  cyclic. Falsifier of a DAG.
+- \(365=(2,1)^4\) then \((1,3)\) versus \(1517=(2,1)^3\) then
+  \((1,1)\). Falsifier of a deterministic successor. This is
+  `J-block-map-q-state`.
+- Log-width ratio of `block_image` equals \(\rho\) (\(9/8\),
+  \(3/4\)). Falsifier of a new shrink law.
+- Block-level \(C_{k+1}=C_1\) is not strictly stronger than
+  `propagate_cycle` on \(\mathtt{OOOOEE}\),
+  \(\mathtt{OOOOOOEEE}\), \(\mathtt{OOEOOEOOEOE}\).
 
 ## Formalization
 
@@ -220,19 +249,47 @@ Do not add `SeamPropagate.lean`.
 
 ## Results
 
-Phase 0 pending.
+- **Archived adjacency** — **KNOWN**: first \(\mathtt{OOE}\)
+  at \(1000057\) lands below `oe_start_min`; two \(\mathtt{OOE}\)
+  still do. Prefix pairs \((2,2)\) and \((3,2)\) fail the
+  expanding test (`seam_propagate/summary.json`).
+- **Composed pairs** — **COMPUTATIONALLY VERIFIED**:
+  `n_new_empty=0` on all three tables (\(81\) independently
+  allowed pairs each).
+- **Type graph** — **COMPUTATIONALLY VERIFIED**: cyclic and
+  multi-valued, including the CycleMin-shaped subgraph. DAG
+  implies termination is false as a type-level statement.
+- **Shrink** — **REPARAMETERIZATION** of \(\rho\).
+- **Cyclic closure** — **REPARAMETERIZATION** of
+  `propagate_cycle`: the block coarsening is not strictly
+  stronger.
+- **No new cyclic obstruction.**
 
 ## Open questions
 
-Pending the probe.
+None from adjacent-seam incompatibility propagation. Do not
+reopen ordered excursion, cyclic feasibility, the exponent
+budget, or the \(Q\)-state law. Do not build a transition-graph
+engine. Do not claim termination.
 
 ## Decision
 
-**PARK**. Phase 0 is open; the probe has not yet classified
-the branch. Best next question: run the composed-cell and
-type-graph checks.
+**CLOSE**. Adjacent propagation does not outrun the archived
+tests. Independently allowed successors stay hull-feasible.
+The only emptied cheap adjacency is \(\mathtt{OOE}\to\mathtt{OE}\)
+at a CycleMin start, already `ooe_blocks_oe`. The realized
+type graph has an \(\mathtt{OOE}\) self-loop, so it is not a
+DAG and cannot prove termination. Interval shrink is \(\rho\).
+Block-level \(C_{k+1}=C_1\) is letter-level feasibility
+coarsened to valleys. That is useful negative knowledge; it
+is not a new invariant. No Paper A edit, no ledger row, no
+new Lean, no \(N_0\) raise, no finance reopen.
+
+Best next question: none from adjacent-seam incompatibility
+propagation.
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. A bounded adjacent-constraint check,
-not a second manuscript and not a Paper A edit.
+Status: `ARCHIVED`. Laboratory negative knowledge on
+constraint propagation of adjacent \(O^{a}E^{r}\) seams; not
+a second manuscript and not a Paper A edit.

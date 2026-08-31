@@ -17505,4 +17505,178 @@ Best next question
 - none from the strict block potential
 ```
 
+## Juggler adjacent-seam incompatibility propagation
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the output interval of a feasible block \(O^{a}E^{r}\) restricts the next type \((a',r')\) beyond the independent prefix test \(2^{a'+r'}\le 3^{a'}\) and the archived cheap-\(\mathtt{OOE}\) adjacency
+- **Hypotheses:** \(\mathrm{seam}_i\) implies a genuine constraint on \(\mathrm{seam}_{i+1}\): a composed cell empties a transition both factors allow, or the finite type graph on bounded \((a,r)\) is a DAG
+- **Major results:** Classification **SEAM_PROPAGATE_CLOSED**. Independently allowed pairs stay hull-feasible (`n_new_empty=0` on the wide, tube, and middle tables; \(81\) pairs each). Archived cheap \(\mathtt{OOE}\) at \(1000057\) lands at \(5623773<\mathtt{oe\_start\_min}(10^6+1)\); two \(\mathtt{OOE}\) land at \(39244721\). Prefix \((2,2)\) and \((3,2)\) fail independently. Realized type graph on \([13,2001)\): \(48\) nodes, \(214\) edges, \(\mathtt{OOE}\) self-loop, max out-degree \(30\); CycleMin-shaped subgraph \(17\) nodes, \(41\) edges, also cyclic. \(365=(2,1)^4\) then \((1,3)\) versus \(1517=(2,1)^3\) then \((1,1)\). Log-width shrink matches \(\rho\). Block-level \(C_{k+1}=C_1\) is not strictly stronger than `propagate_cycle`. Artifact `seam_propagate/summary.json`. No finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** adjacent-seam output intervals empty a new successor or make the type graph a DAG (`juggler_cycle_seam_propagate`); DAG-implies-termination as a type-level statement
+- **Literature:** `prefix_allows_first_run`; `ooe_blocks_oe`; `two_ooe_still_blocks_oe`; `propagate_cycle`; `rho`; `J-block-map-q-state`; \(E^r\)-block CLOSE; ordered-excursion CLOSE; cyclic-feasibility CLOSE; exponent-budget CLOSE; block-transfer CLOSE
+- **Open:** none from adjacent-seam incompatibility propagation
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- independently allowed (a,r)->(a',r') hulls stay nonempty
+- the only emptied cheap adjacency is OOE->OE at a CycleMin start
+- (2,2) and (3,2) fail the expanding-prefix test by themselves
+- the realized type graph has an OOE self-loop, so it is not a DAG
+- CycleMin-shaped edges are also cyclic and multi-valued
+- 365/1517 still split after a shared (2,1)^3 prefix
+- log-width shrink is rho; block-level closure is a coarsening of propagate_cycle
+Strongest theorem
+- ooe_blocks_oe: a cheap OOE at v=n lands below oe_start_min
+Strongest refutation
+- adjacent-seam leftover-killer; type-graph DAG; new composed emptiness
+Reusable machinery
+- block_image / walk_blocks / seam_propagate/summary.json
+Branch status
+- CLOSE
+Why
+- every empty edge is the archived cheap-OOE adjacency or a
+  prefix-test failure; the graph is cyclic; shrink and closure
+  are archived cells
+Best next question
+- none from adjacent-seam incompatibility propagation
+```
+
+## Juggler first-collision / ancestry classification
+
+- **Date:** 2026-08-31
+- **Objective:** Characterize \(T_u(n)=T_v(m)=x\) with no earlier shared state, starting from the four last-letter parent types \(\mathtt{EE}\), \(\mathtt{EO}\), \(\mathtt{OE}\), \(\mathtt{OO}\)
+- **Hypotheses:** parent type plus the first-collision cut is a new seam: some type empties or thins in a way that is not the one-step cells
+- **Major results:** Classification **FIRST_COLLISION_CLOSED**. Off the sink \(\{1,2\}\), first collision iff last parents differ (\(9375\) itinerary meetings, \(5642\) first, \(3733\) same-parent, mixed lengths \(3234\), \(0\) mismatches). \(\mathtt{OO}\) empty (`odd_cell_unique`). One-step counts on \(x\in[3,400]\): \(\mathtt{EE}=21413594=P(P-1)\), \(\mathtt{EO}=\mathtt{OE}=4288=|\mathrm{Pred}_O|\cdot|\mathrm{Pred}_E|\), \(\mathtt{OO}=0\); fibres match `even_cell` / `odd_cell_integers`. Witnesses \(100\to 10\leftarrow 102\), \(5\xrightarrow{O}11\leftarrow_{E}122\). Same-parent \(16\xrightarrow{EE}2\leftarrow_{EE}18\) share \(4\). Sink overshoot \(4\xrightarrow{EEO}1\leftarrow_{E}2\) is the known \(2\to 1\to 1\) loop. Artifact `first_collision/summary.json`. No finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** a parent-type first-collision taxonomy produces a new seam (`juggler_first_collision`); \(\mathtt{OO}\) first meetings; a thinner OE/EO or EE fibre
+- **Literature:** `odd_cell_unique`; `oddLanding_preimage_unique`; `even_cell_iff`; first-intersection CLOSE; cyclic-seam CLOSE; entry-corridor CLOSE; seam-sliding CLOSE; twin-flight CLOSE; backward-geometry CLOSE
+- **Open:** none from first-collision / ancestry
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- first collision is distinct last parents, off the sink {1,2}
+- OO is empty by odd_cell_unique
+- OE/EO is the unique odd parent times the even cell
+- EE is distinct even-cell pairs; same last parent is not first
+- the 2->1 loop lets a longer word walk past the first meeting
+- the four-type table is the cell law, not a new seam
+Strongest theorem
+- odd_cell_unique: at most one odd parent
+Strongest refutation
+- first-collision new seam; OO first meetings; thinner mixed/EE fibres
+Reusable machinery
+- is_first_collision / one_step_census / first_collision/summary.json
+Branch status
+- CLOSE
+Why
+- every occupied type is a one-step cell; the iff is shared-tail
+  determinism; the sink exception is the known loop
+Best next question
+- none from first-collision / ancestry
+```
+
+## Juggler word-order exact-map invariant
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the exact ordered map \(T_w\) yields a cycle-usable quantity that depends on \(O/E\) order, not only \((o,L)\), and that is not already \(D_w\) / \(S(w)\), a named cell, cheap-\(\mathtt{OOE}\) adjacency, peak–valley composition, cyclic rounding, or prefix expansion
+- **Hypotheses:** two words with the same exponent budget have different exact compositions, so some intermediate exact \(Q\) could forbid a cycle that finance and the exponent budget cannot see
+- **Major results:** Classification **WORD_ORDER_CLOSED**. CycleWord endpoints \(\Delta=n^{3^o}-n^{2^L}\) and \(T/n^P=n^{1-P}\) are \((n,o,L)\)-only (**REPARAMETERIZATION** of `global_defect_identity` / `image_eq_start_defectRatio`). Each start follows exactly one word of each length (**EXACT — HUMAN PROOF**). Expanding census \(k\le 8\): \(105\) words, \(17\) budgets, \(12\) distinct-necklace pairs, all `lowerDenom`, `unarchived=0`. \(\mathtt{OOE}/\mathtt{OEO}/\mathtt{EOO}\) share budget \(9/8\) and are one necklace of named cells. \(\mathtt{OOOEE}\) versus \(\mathtt{OOEOE}\) is archived adjacency. Artifact `word_order/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** a new cycle-usable word-order invariant (`juggler_cycle_word_order`); a same-\(n\) comparison of two same-length exact maps
+- **Literature:** `global_defect_identity`; `image_eq_start_defectRatio`; `lowerDenom`; `no_cycle_word_ooe` / `oeo` / `eoo`; `ooe_blocks_oe`; word-functional CLOSE; exponent-budget CLOSE
+- **Open:** none from a word-order exact-map invariant
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- same (o, L) does not fix T_w; that slogan is already used
+- on a CycleWord, Delta and T/n^P forget the letter order
+- a start follows exactly one word of each length
+- 12 expanding necklace pairs through length 8 all differ by S(w)
+- OOE / OEO / EOO are one necklace excluded by cells
+- OOOEE versus OOEOE is cheap-OOE then OE
+- no unarchived cycle-usable Q
+Strongest theorem
+- global_defect_identity: a cycle leaves n^{3^o}-n^{2^L}
+Strongest refutation
+- word-order leftover-killer; same-n comparison of same-length maps
+Reusable machinery
+- cycle_endpoint_defect / itinerary_unique / word_order/summary.json
+Branch status
+- CLOSE
+Why
+- every same-budget distinction is D_w, a named cell, adjacency,
+  or the cycle-endpoint collapse to (o, L)
+Best next question
+- none from a word-order exact-map invariant
+```
+
+## Juggler ordered floor-error transport
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether position-weighted, seam-split transport of local floor errors gives a one-sided or ordered constraint that is not scalar \(\Delta\), first-defect Amplify, finance, or the closed congruence / interval attacks
+- **Hypotheses:** an error's suffix lift depends on where it sits in the word; climb-half versus descent-half can obstruct a cycle without summing to \(\Delta\)
+- **Major results:** Classification **ERROR_TRANSPORT_CLOSED**. \(\sum e_i+X=\Delta\) on \(\mathtt{OE}\) at \(13\) (\(81+820=901\)), \(\mathtt{OOE}\) at \(365/1517/1000057\), \(\mathtt{OOOEE}\) at \(25\), \(\mathtt{OOEOOE}\) at \(365\), leftover shape at \(429\). First-defect Amplify is the first positive \(e_j\). Formal weights are suffix \(3^{o'}\) (\(429\) leftover: \(729,243,243,81,27,27,9,3,3,1,1\)). \(X=0\) with no shared later odd; \(X>0\) on \(\mathtt{OOEOOE}\) / leftover, which is `accumulateOdd`. Expanding halves miss \(G\) (\(365\) \(\mathtt{OOE}\): \(E_O/G\approx 2.8\cdot 10^{-4}\); \(429\) leftover: \(E_E/G\approx 0.70\)). Contracting \(\mathtt{OE}\) / \(\mathtt{OOOEE}\) have \(T_w<n\). Artifact `error_transport/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** ordered seam-split transport obstructs a cycle without summing to \(\Delta\) (`juggler_cycle_error_transport`)
+- **Literature:** `global_defect_identity`; `amplifyDefect`; `firstDefect`; `cycleMin_finance`; Amplify leftover-killer CLOSE; defect-congruence CLOSE; peak–valley CLOSE; exponent-budget CLOSE; cumulative floor-loss CLOSE
+- **Open:** none from ordered floor-error transport
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- unrolling accumulatedDefect gives a vector whose sum plus cubic cross is Delta
+- first-defect Amplify is the first positive coordinate
+- formal position weights are suffix 3^{o'}, the closed exponent budget backwards
+- X vanishes unless two positive chunks share a later odd
+- expanding seam halves miss G, including leftover shape at 429 (E_E/G ~ 0.70)
+- contracting words die by T_w < n, not by a new one-sided inequality
+Strongest theorem
+- global_defect_identity: n^{3^o} = T_w(n)^{2^L} + Δ_w(n)
+Strongest refutation
+- ordered leftover-killer; seam-half or single e_i exceeds G on an expanding word
+Reusable machinery
+- letter_transport / seam_halves / error_transport/summary.json
+Branch status
+- CLOSE
+Why
+- the vector is accumulatedDefect; the first coordinate is Amplify;
+  the weights are suffix exponents; expanding halves miss G
+Best next question
+- none from ordered floor-error transport
+```
+
+## Juggler seam ancestry graph
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the directed graph whose nodes are first-collision parent-type/phase states and whose edges are legal \(O^{a}E^{r}\) runs empties a transition or is a DAG for a reason that is not \(G_{\mathrm{run}}\) and not the four-position taxonomy
+- **Hypotheses:** remembering how a seam was first reached splits the \(\mathtt{OOE}\) self-loop or \(365/1517\), or forbids an edge both \((a,r)\) types still allow
+- **Major results:** Classification **SEAM_ANCESTRY_CLOSED**. First-collision \(\mathtt{OO}\) count \(0\); MULTI count \(0\). Forgetful projection matches `realized_transition_graph` (\(48\) nodes, \(214\) edges, \(\mathtt{OOE}\) self-loop). Valley nodes are \(\mathtt{EE}|V|\mathtt{ARCHIVED\_EE}\), \(\mathtt{EO}|V|\mathtt{ARCHIVED\_EO}\), \(\mathtt{OE}|V|\mathtt{ARCHIVED\_EO}\); \(G_{\mathrm{anc}}\) has \(3\) nodes, \(4\) edges, and a directed cycle; `n_new_empty=0`. Phase necklace is run form. \(365/1517\) keep the same ancestry on the shared \((2,1)^{3}\) prefix then split. Artifact `seam_ancestry/summary.json`. No finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** a parent-type/phase lift that is not \(G_{\mathrm{run}}\) or the intersection taxonomy (`juggler_cycle_seam_ancestry`); DAG-implies-termination after the lift
+- **Literature:** `odd_cell_unique`; `oddLanding_preimage_unique`; `ee_entry_count`; `LEGAL_22`; `realized_transition_graph`; `J-block-map-q-state`; seam-propagate CLOSE; intersection-taxonomy CLOSE
+- **Open:** none from the seam ancestry graph
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- (a,r) on the node is G_run; (a,r) belongs on the edge
+- first OO is odd_cell_unique; MULTI reduces to one-step parents
+- forgetful projection recovers the archived cyclic type graph
+- every valley is ARCHIVED_EE or ARCHIVED_EO at phase V
+- G_anc has three idle nodes and is cyclic
+- the phase necklace is O^a E^r run form
+- 365/1517 keep the same ancestry then split
+Strongest theorem
+- odd_cell_unique: a first-collision cannot be OO
+Strongest refutation
+- ancestry leftover-killer; DAG lift; provenance split of 365/1517
+Reusable machinery
+- walk_letter_points / one_step_label / seam_ancestry/summary.json
+Branch status
+- CLOSE
+Why
+- the lift forgets to G_run and to the four-position taxonomy;
+  provenance is idle decoration; the controls still split
+Best next question
+- none from the seam ancestry graph
+```
+
 

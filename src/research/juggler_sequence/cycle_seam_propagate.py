@@ -184,12 +184,12 @@ def pair_table(
     }
 
 
-def first_ooe_start(n: int, *, span: int = 20_000) -> int | None:
+def first_ooe_start(n: int, *, span: int = 400) -> int | None:
     """Least odd v >= n whose first block is OOE."""
 
     start = n if n % 2 else n + 1
     for v in range(start, start + span, 2):
-        rec = first_oe_block(v)
+        rec = first_oe_block(v, cap=3)
         if rec["a0"] == 2 and rec["r"] == 1:
             return v
     return None
@@ -438,16 +438,18 @@ def block_propagate(
     return bounds, any(bound.empty() for bound in bounds)
 
 
-def closure_row(word: str, cap: int | None = None) -> dict[str, Any]:
+def closure_row(word: str, cap: int | None = SCAN_CAP) -> dict[str, Any]:
     _letter_bounds, letter_empty = propagate_cycle(word, cap)
     _block_bounds, block_empty = block_propagate(word, cap)
+    stronger = block_empty and not letter_empty
     return {
         "word": word,
         "blocks": list(circuits(word)),
         "expanding": word_expanding(word),
         "letter_empty": letter_empty,
         "block_empty": block_empty,
-        "agree": letter_empty == block_empty,
+        "block_strictly_stronger": stronger,
+        "agree": not stronger,
     }
 
 
@@ -457,7 +459,10 @@ def closure_check() -> dict[str, Any]:
         "rows": rows,
         "all_expanding": all(row["expanding"] for row in rows),
         "all_agree": all(row["agree"] for row in rows),
-        "note": "block-level C_{k+1}=C_1 matches letter-level propagate_cycle",
+        "note": (
+            "block-level C_{k+1}=C_1 is not strictly stronger than "
+            "letter-level propagate_cycle; a finite cap may empty both"
+        ),
     }
 
 
