@@ -182,8 +182,11 @@ def test_dossier_and_note_boundary():
     assert "PROMOTE" in dossier
     assert "no_cycle_word_length_le_seven" in dossier
     assert "EXACT — LEAN VERIFIED" in dossier
-    assert "No exclusion of cycles of length eight or more is claimed." in " ".join(
-        note.split()
-    )
+    assert (
+        "Theorems 3.12--3.21 assemble into an even-count exclusion: no "
+        "cycle word has fewer than four even letters, so a nontrivial "
+        "cycle has period at least eleven (Theorem 3.22). Section 4 "
+        "excludes later periods by financing."
+    ) in " ".join(note.split())
     assert "no_cycle_word_length_le_seven" in note
     assert "theorem no_cycle_word_length_nine" not in note

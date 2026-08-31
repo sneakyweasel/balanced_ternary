@@ -1,0 +1,22 @@
+{
+  "id": "juggler_l84_m_ge_three_floor_261",
+  "title": "Length 84 with m≥3 is excluded at residual floor 261",
+  "statement": "A cheap refinement of the odd-run height law or the Lean inv-sum cap excludes every Juggler CycleMin of length 84 with at least three odd-runs at the live residual floor 261, so the leftover becomes period ≥85.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "L=84, o=53, m=3, n=261, θ≈0.002086: height constant 1 RHS≈0.002193; constant 6/5 RHS≈0.002631; joint constant 1 RHS≈0.003527",
+    "Lean inv-sum full-height cap S≈0.012672 > θ·61/11≈0.011568",
+    "T(261)=4216 is even, so the CycleMin start odd-run has length 1; packing that singleton plus other valleys at n+2 still has RHS≈0.002179>θ",
+    "Pigeonhole k≥18 does not starve evens: ~11 square-roots return to scale n, and 29 evens can sit on that circuit"
+  ],
+  "first_seen": "juggler cycle height leftover follow-up",
+  "lean_reference": "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / leftover 84",
+  "notes": "Height first kills m=3 at 273 and every m at 1981. Those residual-floor campaigns stay PARK. Equal-valleys n+2 is a separate REFUTED leftover-killer. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_l84_m3.md",
+  "proof_reference": "docs/problems/juggler_cycle_l84_m3.md",
+  "tested_range": "L=84, o=53, m=3..31, n=261; height/joint/Lean inv-sum/singleton-start+n+2; T-parity on odd n in 257..299"
+}

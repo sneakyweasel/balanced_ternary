@@ -28,10 +28,12 @@ PAPER_MODULES: tuple[str, ...] = (
     "LeftoverCell",
     "LeftoverShort",
     "LeftoverFamilies",
+    "EvenCountThree",
     "SmallCycleCensus",
     "NormalizedDefect",
     "ExpansionSlack",
     "NearTightScale",
+    "CycleFinance",
 )
 
 LAYERS: dict[str, Path] = {

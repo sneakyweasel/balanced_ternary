@@ -19,7 +19,7 @@ Existing machinery      leftover families; bootstrap;
                         exists_cycleMin; expansion filter
 Maximum Phase-0 scope   Necklace inventory lengths 9..16;
                         one Lean even-count theorem; no
-                        length census; no Paper A edit
+                        length census; Paper A Theorem 3.22
 ```
 
 ## Metadata
@@ -65,7 +65,7 @@ every even-terminating expanding word with e<=3 at lengths 9..16 hits a named fi
 - `no_cycleMin_internal_even_threshold`: `True`
 - `exists_cycleMin`: `True`
 - laboratory assembler present: `True`
-- Paper A has no even-count theorem: `True`
+- Paper A imports even-count: `True`
 
 ## Anti-overclaim
 

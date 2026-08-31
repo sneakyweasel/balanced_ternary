@@ -1,5 +1,5 @@
 TITLE
-Small cycles of the Juggler map
+Cycles of the Juggler map
 
 CREATOR
 Family name: Cochin
@@ -23,7 +23,7 @@ integer dynamics
 cycles
 
 PUBLICATION DATE
-2026-08-29
+2026-08-31
 
 RELATED IDENTIFIER (optional)
 Identifier: https://github.com/sneakyweasel/balanced_ternary
@@ -34,9 +34,9 @@ Scheme: URL
 DESCRIPTION (paste as HTML)
 
 <p>The Juggler map is the nonlinear integer map J(n) = floor(sqrt(n)) if n is even, and J(n) = floor(n^{3/2}) if n is odd. It is conjectured that every positive integer eventually reaches 1. This note does not prove that conjecture.</p>
-<p>The main theorem is a small-cycle census: the Juggler map has no nontrivial cycle of length at most six. A realized parity word w obeys the power envelope (J^{|w|}(n))^{2^{|w|}} &le; n^{3^{#O(w)}}, so a cycle word is formally expanding. Inverse cells and two next-square thresholds exclude every even-terminating expanding word of length at most six except two leftover shapes, OOOEOE and OOOOEE. Those two are excluded by a tail inequality for n &ge; 256 and a check of the 254 starts 2 &le; n &lt; 256. Length seven is the first combinatorial shape the thresholds do not reach.</p>
-<p>The same envelope gives an exact global defect by keeping the floor remainders. Even starts and odd-to-even starts have a uniform one- or two-step descent. No density result is stated or used.</p>
+<p>A realized parity word w obeys the power envelope (J^{|w|}(n))^{2^{|w|}} &le; n^{3^{#O(w)}}, so a cycle word is formally expanding. Inverse cells and two next-square thresholds give an elementary census: there is no nontrivial cycle of length at most seven. Leftover even-count families then assemble: no cycle word has fewer than four even letters, so a nontrivial cycle has period at least eleven.</p>
+<p>The same envelope, with floor remainders kept, is an exact global defect. Around a cycle the remainders must finance the formal surplus 3^o &minus; 2^L. The resulting inequality at a cycle minimum, together with a verified descent floor through 10^6, excludes every period at most 1053, and every period at most 10^5 outside an explicit set of 397 near-convergent lengths of ln 2 / ln 3. The first record survivor is length 1054. No density result is stated or used.</p>
 <p>2020 Mathematics Subject Classification: 11B83, 37P99, 11Y55.</p>
 
 VERSION NOTES (optional)
-First public preprint. Lean certificates for the exact-arithmetic claims are in the related GitHub repository (lake build Problems.JugglerPaper). The companion analytic manuscript on nested-floor parity is not included.
+First public preprint. Lean certificates for the exact-arithmetic claims are in the related GitHub repository (lake build Problems.JugglerPaper). The computational leftover (Theorem 4.6) is a named computation, not a Lean theorem. The companion analytic manuscript on nested-floor parity is not included.

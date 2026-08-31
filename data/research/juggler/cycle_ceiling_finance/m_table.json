@@ -1,0 +1,234 @@
+[
+  {
+    "m": 3,
+    "k_min": 18,
+    "p_min": 3075,
+    "r_max": 10,
+    "kills_six_fifths": true,
+    "kills_inv_sum": true
+  },
+  {
+    "m": 4,
+    "k_min": 14,
+    "p_min": 569,
+    "r_max": 8,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 5,
+    "k_min": 11,
+    "p_min": 1845,
+    "r_max": 6,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 6,
+    "k_min": 9,
+    "p_min": 800,
+    "r_max": 5,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 7,
+    "k_min": 8,
+    "p_min": 7430,
+    "r_max": 4,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 8,
+    "k_min": 7,
+    "p_min": 380,
+    "r_max": 4,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 9,
+    "k_min": 6,
+    "p_min": 2760,
+    "r_max": 3,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 10,
+    "k_min": 6,
+    "p_min": 2760,
+    "r_max": 3,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 11,
+    "k_min": 5,
+    "p_min": 38716,
+    "r_max": 2,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 12,
+    "k_min": 5,
+    "p_min": 38716,
+    "r_max": 2,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 13,
+    "k_min": 5,
+    "p_min": 38716,
+    "r_max": 2,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 14,
+    "k_min": 4,
+    "p_min": 1144,
+    "r_max": 2,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 15,
+    "k_min": 4,
+    "p_min": 1144,
+    "r_max": 2,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 16,
+    "k_min": 4,
+    "p_min": 1144,
+    "r_max": 2,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 17,
+    "k_min": 4,
+    "p_min": 1144,
+    "r_max": 2,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 18,
+    "k_min": 3,
+    "p_min": 11970,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 19,
+    "k_min": 3,
+    "p_min": 11970,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 20,
+    "k_min": 3,
+    "p_min": 11970,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 21,
+    "k_min": 3,
+    "p_min": 11970,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 22,
+    "k_min": 3,
+    "p_min": 11970,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 23,
+    "k_min": 3,
+    "p_min": 11970,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 24,
+    "k_min": 3,
+    "p_min": 11970,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 25,
+    "k_min": 3,
+    "p_min": 11970,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 26,
+    "k_min": 3,
+    "p_min": 11970,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 27,
+    "k_min": 2,
+    "p_min": 523,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 28,
+    "k_min": 2,
+    "p_min": 523,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 29,
+    "k_min": 2,
+    "p_min": 523,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 30,
+    "k_min": 2,
+    "p_min": 523,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  },
+  {
+    "m": 31,
+    "k_min": 2,
+    "p_min": 523,
+    "r_max": 1,
+    "kills_six_fifths": false,
+    "kills_inv_sum": false
+  }
+]

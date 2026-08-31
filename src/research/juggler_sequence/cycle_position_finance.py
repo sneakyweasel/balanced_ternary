@@ -374,6 +374,79 @@ def l84_exclusion_floors() -> dict[str, Any]:
     }
 
 
+def lean_inv_sum_height_cap(
+    n: int,
+    length: int,
+    odd_count: int,
+    m: int,
+    *,
+    heights: list[int] | None = None,
+) -> float:
+    """Inv-sum ceiling matching CycleHeightFinance: valleys at 1/n,
+    climbs at 1/τ_j, evens at 1/n². Compare to θ log n."""
+
+    levels = heights if heights is not None else odd_run_heights(n)
+    climb = max(odd_count - m, 0)
+    total = m / n
+    for index, count in enumerate(height_allocation(climb, m)):
+        height = levels[index + 1] if index + 1 < len(levels) else levels[-1]
+        total += count / height
+    total += (length - odd_count) / (n * n)
+    return total
+
+
+def l84_m_ge_three_at_floor(
+    *, n0: int = CURRENT_LEAN_RESIDUAL_FLOOR
+) -> dict[str, Any]:
+    """Slack of every cheap L=84, m≥3 refinement at a fixed floor.
+
+    None of these kill m=3 at 261. Height packing first kills m=3
+    at 273; all m at 1981. Not a floor-raise recommendation.
+    """
+
+    row = next(item for item in finance_rows(84) if item["L"] == 84)
+    length, odd_count, theta = row["L"], row["o"], row["theta"]
+    heights = odd_run_heights(n0)
+    log_cert = 61 / 11
+    need = theta * log_cert
+    pos1 = position_rhs(n0, length, odd_count, 3, const=1.0, heights=heights)
+    pos65 = position_rhs(n0, length, odd_count, 3, heights=heights)
+    joint1 = steiner_rhs(n0, length, odd_count, 3, const=1.0)
+    inv = lean_inv_sum_height_cap(n0, length, odd_count, 3, heights=heights)
+    n2 = n0 + 2
+    heights_n2 = odd_run_heights(n2)
+    # Singleton start (T(261) even) plus other valleys at n+2.
+    singleton = inv_log_term(n0) + 2 * inv_log_term(n2)
+    singleton += inv_log_term(first_odd_image(n0))
+    climb = max(odd_count - 3, 0)
+    for index, count in enumerate(height_allocation(climb, 2)):
+        height = (
+            heights_n2[index + 1] if index + 1 < len(heights_n2) else heights_n2[-1]
+        )
+        singleton += count * inv_log_term(height)
+    singleton += (length - odd_count) * inv_log_term(n0 * n0)
+    floors = l84_exclusion_floors()
+    return {
+        "n": n0,
+        "L": length,
+        "o": odd_count,
+        "m": 3,
+        "theta": theta,
+        "position_const1": pos1,
+        "position_six_fifths": pos65,
+        "joint_const1": joint1,
+        "lean_inv_sum": inv,
+        "lean_need_61_11": need,
+        "singleton_start_n2_const1": singleton,
+        "kills_m3_position_const1": theta > pos1,
+        "kills_m3_joint_const1": theta > joint1,
+        "kills_m3_lean_inv_sum": inv < need,
+        "kills_m3_singleton_start_n2": theta > singleton,
+        "height_m3_floor": floors["const_1"]["height_m3"],
+        "height_all_m_floor": floors["const_1"]["height_all_m"],
+    }
+
+
 def finance_surviving_scan(
     *,
     n0: int = LEAN_CYCLE_FLOOR,

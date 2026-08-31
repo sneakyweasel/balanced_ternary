@@ -15441,4 +15441,284 @@ Best next question
   the finance theorem as it stands
 ```
 
+## Juggler L=84 m≥3 at floor 261
+
+- **Date:** 2026-08-31
+- **Objective:** Exclude leftover length \(84\) at \(m\ge 3\) at residual floor \(261\), so the leftover becomes \(\ge 85\)
+- **Hypotheses:** a tighter inv-sum, pigeonhole on \(53\) odds in \(\ge 3\) runs, or a singleton start (\(T(261)\) even) plus \(n+2\) valleys yields a contradiction that height packing misses
+- **Major results:** Classification **CLOSED**. Slogan **REFUTED** (`juggler_l84_m_ge_three_floor_261`, `J-l84-m-ge-three-floor-261`). At \(n=261\), \(m=3\), \(\theta\approx 0.002086\): height constant \(1\) RHS \(\approx 0.002193\); Lean inv-sum \(S\approx 0.012672>0.011568\); singleton-start plus \(n+2\) RHS \(\approx 0.002179\). Larger \(m\) is worse. Height first kills \(m=3\) at \(273\) and every \(m\) at \(1981\); those raises stay **PARK**. Leftover remains \(84\) with \(m\ge 3\), or \(\ge 85\). No new Lean. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** that a cheap refinement excludes \(L=84\) at \(m\ge 3\) at floor \(261\); that \(T(261)\) even plus \(n+2\) closes the \(5\%\) gap; that pigeonhole \(k\ge 18\) starves the even budget
+- **Literature:** `juggler_cycle_finance`; `juggler_cycle_position_finance`; `juggler_cycle_equal_valleys`
+- **Open:** stop; a second-valley bound \(\ge 281\) is a different question
+- **Decision:** CLOSE. The target is false. Do not raise the floor
+
+```text
+What was learned
+- every cheap refinement misses m=3 at n=261
+- height const 1 is 5% above theta (0.002193 vs 0.002086)
+- Lean inv-sum full height is 9% above theta*61/11
+- T(261) even forces a singleton start; n+2 still misses
+- pigeonhole k>=18 still has 29 evens; 11 sqrts return to n
+Strongest theorem
+- none; leftover stays
+  cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five
+Strongest refutation
+- juggler_l84_m_ge_three_floor_261
+Reusable machinery
+- l84_m_ge_three_at_floor in cycle_position_finance
+Branch status
+- CLOSE
+Why
+- the leftover-killer slogan is false at the live floor;
+  273/1981 remain PARK
+Best next question
+- stop and write the finance theorem as it stands
+```
+
+## Juggler cycle finance theorem writeup
+
+- **Date:** 2026-08-31
+- **Objective:** Write the finance theorem as it stands, matching the compiled leftover
+- **Hypotheses:** none; consolidation of already-proved claims
+- **Major results:** Laboratory note `docs/theory/juggler_cycle_finance_note.md`. Inequality `cycleMin_finance` (constant \(1\)), inv-sum form, residual floor \(261\), length leftover \(84\) or \(\ge 85\), height leftover \(84\) with \(m\ge 3\) or \(\ge 85\), Eliahou packaging, and the \(6/5\) computational table. Closed/refuted side branches named. Status remains `THEOREM`, not `PAPER_CANDIDATE`. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** none new
+- **Literature:** Simons–de Weger financing-versus-gap template on the floor-power map
+- **Open:** leftover refinements stop; the live publication task remains the rewrite-calculus note
+- **Decision:** PROMOTE (writeup). Exploration of leftover refinements stops
+
+```text
+What was learned
+- the compiled leftover is period 84 with m>=3, or >=85
+- Eliahou leftover stays length-only (84, listed, or >=10^5)
+- residual-floor campaigns to 1981/4756 remain PARK
+- L=84 at m>=3 at floor 261 remains REFUTED as a leftover-killer
+- the note is not Paper A and not a halt theorem
+Strongest theorem
+- cycleMin_finance together with
+  cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five
+Strongest refutation
+- none new
+Reusable machinery
+- docs/theory/juggler_cycle_finance_note.md
+Branch status
+- PROMOTE
+Why
+- the leftover campaign asked for a writeup, not another
+  attack; the statement now matches Lean
+Best next question
+- none from finance leftover refinements
+```
+
+## Juggler cycle ceiling finance
+
+- **Date:** 2026-08-31
+- **Objective:** Attack the named even-run upper cell \((p+1)^{2^r}\) as leftover finance: does it force enough \(1/(x\ln x)\) mass into the top window that leftover \(L=84\) at \(m\ge 3\) dies at floor \(261\)?
+- **Hypotheses:** \(M<(p+1)^{2^r}\) plus the odd-run height of the peak forces a landing \(p\ge\operatorname{isqrt}^{r}(M_{\min})\) that height packing still charges at \(n\), and that raise excludes every \(m\ge 3\) under a proved constant
+- **Major results:** Classification **CLOSED**. Landing corollary **REPARAMETERIZATION** of `even_iter_lt_succ_pow` (`J-cycle-ceiling-landing`). Leftover-killer **REFUTED** (`juggler_ceiling_finance_leftover_killer`, `J-ceiling-finance-leftover-killer`). At \(n=261\), \(m=3\), pigeonhole \(k=18\) lands at \(p=3075\) and would kill; the adversarial peak run \(k=24\) has \(r=14\), \(p=304\). Constant \(6/5\) RHS \(\approx 0.002495>\theta\approx 0.002086\); Lean inv-sum \(S\approx 0.012130>0.011568\). Those forms first kill at \(p\ge 659\) and \(p\ge 367\). Log-two lower bounds for \(k=25,\ldots,51\) all sit above \(304\). Large \(m\) is worse. No new Lean. Paper A unchanged. Not a leftover-word census and not a floor raise
+- **Refuted ideas:** that the unused upper cell forces enough top-window mass to kill leftover \(84\) at \(m\ge 3\); that pigeonhole \(k=18\) is the worst peak run (the fractional part \(\{k\log_2(3/2)\}\) can sit near \(0\))
+- **Literature:** `juggler_cycle_finance`; `juggler_cycle_top_excursion`; `even_iter_lt_succ_pow`
+- **Open:** stop; leftover remains \(84\) with \(m\ge 3\) or \(\ge 85\)
+- **Decision:** CLOSE. The named ceiling was attacked. The coupling is the existing cell. The leftover-killer slogan is false
+
+```text
+What was learned
+- the upper cell forces p >= isqrt^r(M_min); that is
+  even_iter_lt_succ_pow plus monotone isqrt
+- pigeonhole k=18 lands at 3075 and would kill m=3
+- adversarial k=24 lands at 304, below both proved
+  thresholds (6/5 needs 659; inv-sum needs 367)
+- {k log2(3/2)} near 0 makes p sit just above n
+- large m keeps almost all valleys at n
+Strongest theorem
+- ceiling landing is a REPARAMETERIZATION of
+  even_iter_lt_succ_pow
+Strongest refutation
+- juggler_ceiling_finance_leftover_killer: k=24,
+  p=304, 6/5 RHS 0.002495 and inv-sum 0.012130
+Reusable machinery
+- research.juggler_sequence.cycle_ceiling_finance:
+  peak_even_lower, ceiling_landing, no new Lean
+Branch status
+- CLOSE
+Why
+- the unused named object was attacked; it does not
+  kill the leftover under any proved constant
+Best next question
+- stop and write the finance theorem as it stands
+```
+
+## Juggler cycle finance theorem writeup (post-ceiling)
+
+- **Date:** 2026-08-31
+- **Objective:** Write the finance theorem as it stands after every leftover refinement, including the closed ceiling
+- **Hypotheses:** none; consolidation of already-proved claims
+- **Major results:** Laboratory note `docs/theory/juggler_cycle_finance_note.md` restated as the post-campaign theorem. Lean inequality `cycleMin_finance` (constant \(1\), cell-log proof), inv-sum form, residual floor \(261\), length leftover \(84\) or \(\ge 85\), height leftover \(84\) with \(m\ge 3\) or \(\ge 85\), Eliahou packaging, and the \(6/5\) computational table. Closed attacks named: Baker/Rhin, near-tight, Christoffel, equal valleys, \(L=84\) at \(m\ge 3\) at floor \(261\), and the upper cell \((p+1)^{2^r}\) (\(k=24\), \(p=304\)). Residual-floor campaigns to \(1981\)/\(4756\) remain **PARK**. Status remains `THEOREM`, not `PAPER_CANDIDATE`. Paper A unchanged. Not a halt theorem
+- **Refuted ideas:** none new
+- **Literature:** Simons–de Weger financing-versus-gap template on the floor-power map
+- **Open:** leftover refinements stop; the live publication task remains the rewrite-calculus note
+- **Decision:** PROMOTE (writeup). Exploration of leftover refinements stops
+
+```text
+What was learned
+- the compiled leftover is still period 84 with m>=3, or >=85
+- the unused upper cell is now a named REFUTED leftover-killer
+- Eliahou leftover stays length-only (84, listed, or >=10^5)
+- residual-floor campaigns to 1981/4756 remain PARK
+- the note is not Paper A and not a halt theorem
+Strongest theorem
+- cycleMin_finance together with
+  cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five
+Strongest refutation
+- none new; ceiling leftover-killer already recorded
+Reusable machinery
+- docs/theory/juggler_cycle_finance_note.md
+Branch status
+- PROMOTE
+Why
+- the ceiling CLOSE asked for this writeup, not another
+  attack; the statement now matches Lean after every
+  closed leftover refinement
+Best next question
+- none from finance leftover refinements
+```
+
+## Juggler Paper A finance merge
+
+- **Date:** 2026-08-31
+- **Objective:** Rewrite unpublished Paper A in place so the finance inequality and the floor-\(10^6\) leftover are the printed period theorem; leftover \(84\) stays Appendix A companion
+- **Hypotheses:** none; merge rewrite, no new mathematics
+- **Major results:** Paper A retitled *Cycles of the Juggler map* (31 August 2026). New §5 writes `cycleMin_finance` as Theorem 5.1 and the computational leftover as Theorem 5.3 (no period \(\le 1053\); \(397\) near-convergents through \(10^5\); first record survivor \(1054\)). Word census still stops at seven; Theorems 3.12--3.21 remain family exclusions. `Problems.JugglerPaper` imports `CycleFinance` and not `CycleHeightFinance`. Laboratory finance note retitled as absorbed extract. No height leftover, no Baker, no new Lean
+- **Refuted ideas:** none new
+- **Literature:** Simons–de Weger financing template; Eliahou leftover packaging; Weisstein floor \(10^6\) used for the computational corollary
+- **Open:** whether every start reaches \(1\); whether a leftover-length cycle exists
+- **Decision:** PROMOTE (merge rewrite). No new theorem
+
+```text
+What was learned
+- finance is now Paper A Section 5, not a second manuscript
+- printed leftover is floor 10^6 plus Eliahou form
+- Lean leftover 84 is formalization lag, not the title claim
+- word census vs period exclusion is the surviving scope sentence
+- height leftover stays out of the paper barrel
+Strongest theorem
+- cycleMin_finance (Paper A Theorem 5.1), already proved
+Strongest refutation
+- none new
+Reusable machinery
+- none; existing CycleFinance imported by JugglerPaper
+Branch status
+- PROMOTE
+Why
+- the unpublished cycle paper now states the period theorem
+  the finance campaign already proved
+Best next question
+- none from this merge
+```
+
+## Paper A claim matches Lean even-count
+
+- **Date:** 2026-08-31
+- **Objective:** Print Paper A's cycle leftover as the Lean even-count assembler already proved
+- **Hypotheses:** Theorems 3.12--3.21 plus bootstrap already exclude every cycle word with fewer than four evens
+- **Major results:** Paper A Theorem 3.22 / Corollary 3.23: no cycle word has even-count at most three, so a nontrivial cycle has period at least eleven. `EvenCountThree` is imported by `Problems.JugglerPaper`. Ledger `J-even-count-le-three` is now a Paper A row. Length-8 is an implied corollary, not a second census. Lean leftover \(84\) stays an Appendix A companion. No halt theorem
+- **Refuted ideas:** none (claim-alignment pass)
+- **Literature:** none added
+- **Open:** four-even leftovers; finance leftover after period 11
+- **Decision:** PROMOTE the printed even-count assembly. Do not import leftover \(84\) or a length-9 word census
+
+```text
+What was learned
+- the printed census lagged the Lean assembler by one
+  even-count theorem
+- period ≥ 11 is the expansion corollary of e ≥ 4, not
+  a length-9 or length-10 word census
+Strongest theorem
+- no cycle word has fewer than four even letters; a
+  nontrivial cycle has period at least eleven
+Strongest refutation
+- none
+Reusable machinery
+- EvenCountThree imported by the Paper A barrel
+Branch status
+- PROMOTE
+Why
+- the note now states the Lean theorem the families
+  were written to assemble
+Best next question
+- none from this claim alignment; Paper B Section 5
+  remains the independent-check gate
+```
+
+## Juggler cycle second-valley bound
+
+- **Date:** 2026-08-31
+- **Objective:** Does CycleMin geometry force the other valleys on leftover \(L=84\), \(m\ge 3\) to sit at \(\ge 281\) at floor \(261\)?
+- **Hypotheses:** `cycleMin_not_odd_even`, `cycleMin_even_ge_sq`, and `even_iter_lt_succ_pow` force that height-split threshold and exclude the leftover under a proved constant
+- **Major results:** Classification **CLOSED**. Landing **REPARAMETERIZATION** of `even_iter_lt_succ_pow` (`J-second-valley-landing`). Leftover-killer **REFUTED** (`juggler_second_valley_leftover_killer`, `J-second-valley-leftover-killer`). Height-split constant \(1\) first kills at \(281\), but Lean inv-sum misses even \(261/281/281\) (\(S\approx 0.012126>0.011568\)). First circuit \(k=12\) lands at \(281\); from \(281\), \(k=12\) lands at \(303\). Adversarial triple \(261/281/303\): \(6/5\) RHS \(\approx 0.002429\); inv-sum \(S\approx 0.011868\). Those forms first kill at \(n_2\ge 369\). Later `OE` at \(263\) requires \(v=1687\) and that triple dies. No new Lean. Paper A unchanged. Not a leftover-word census and not a floor raise
+- **Refuted ideas:** that \(281\) is a forced leftover-killing valley height at floor \(261\)
+- **Literature:** `juggler_cycle_equal_valleys`; `juggler_cycle_ceiling_finance`; `even_iter_lt_succ_pow`
+- **Open:** stop; leftover remains \(84\) with \(m\ge 3\) or \(\ge 85\)
+- **Decision:** CLOSE. The named \(281\) bound was attacked. The coupling is the existing cell. The leftover-killer slogan is false
+
+```text
+What was learned
+- const-1 height-split first kills at 281; that form is
+  not proved
+- Lean inv-sum misses even both extras at 281
+- first circuit k=12 lands at exactly 281
+- from 281 the next odd landing can be 303
+- OE at 263 requires a start valley 1687 and dies
+Strongest theorem
+- second-valley landing is a REPARAMETERIZATION of
+  even_iter_lt_succ_pow
+Strongest refutation
+- juggler_second_valley_leftover_killer: 261/281/303,
+  6/5 RHS 0.002429 and inv-sum 0.011868
+Reusable machinery
+- research.juggler_sequence.cycle_second_valley:
+  odd_landing, later_circuit_rows, no new Lean
+Branch status
+- CLOSE
+Why
+- the last named unopened leftover idea was attacked;
+  the adversarial triple survives every proved constant
+Best next question
+- none from finance leftover refinements
+```
+
+## Paper A editorial: section numbering, leftover list, Zenodo title
+
+- **Date:** 2026-08-31
+- **Objective:** Close the remaining Paper A referee-report defects that were not the even-count claim
+- **Hypotheses:** none; editorial pass, no new mathematics
+- **Major results:** Finance is now Section 4 (Lemmas 4.1--4.3, Theorem 4.4, Corollary 4.5, Theorem 4.6). Short certificates are an unnumbered remark in Section 5. Appendix B prints the 397 leftover lengths and SHA-256 checksums of the finance tables. Zenodo kit title matches the note: *Cycles of the Juggler map*. Paper B theorem numbers unchanged. Leftover \(84\) stays Appendix A companion
+- **Refuted ideas:** none (editorial)
+- **Literature:** none added
+- **Open:** whether a leftover-length cycle exists; Paper B Section 5 still needs an independent check
+- **Decision:** PROMOTE the publication-readiness rewrite. No new theorem
+
+```text
+What was learned
+- the note jumped from Section 3 to Section 5; finance is the
+  missing Section 4
+- Theorem 6.1 was a remark, not a period theorem
+- the 397 leftover lengths and table hashes belong in the paper
+- Zenodo still advertised a length-six census under the old title
+Strongest theorem
+- unchanged: cycleMin_finance (Paper A Theorem 4.4) and the
+  computational leftover (Theorem 4.6)
+Strongest refutation
+- none
+Reusable machinery
+- none
+Branch status
+- PROMOTE
+Why
+- the remaining referee defects were numbering, missing data,
+  and a stale deposit title, not a false claim
+Best next question
+- none from this editorial pass; Paper B Section 5 remains
+  the independent-check gate
+```
+
 

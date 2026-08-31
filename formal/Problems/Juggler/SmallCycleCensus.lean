@@ -15,9 +15,12 @@ the named exclusions of the length-six and length-seven leftovers then
 cover every word of length at most seven.
 
 This is a census for lengths `≤ 7` only. Length eight is open
-in this assembly (Paper A Theorem 3.8). The laboratory
-strengthening is `no_cycle_word_length_le_eight`. Not a halt
-theorem and not an exclusion of all cycles.
+in this assembly (Paper A Theorem 3.8). Paper A Theorem 3.22
+assembles the leftover families as
+`no_cycle_word_even_count_le_three`, so a nontrivial cycle has
+period at least eleven. The dedicated length-eight assembler
+remains `no_cycle_word_length_le_eight`. Not a halt theorem and
+not an exclusion of all cycles.
 -/
 
 /-- On an all-odd realized word from an odd start `n ≥ 3`, the image

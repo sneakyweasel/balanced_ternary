@@ -1,0 +1,21 @@
+{
+  "id": "juggler_second_valley_leftover_killer",
+  "title": "Forcing the other valleys to ≥ 281 excludes leftover L=84 at m≥3",
+  "statement": "On a Juggler CycleMin of length 84 at residual floor 261, CycleMin geometry (cycleMin_not_odd_even, cycleMin_even_ge_sq, even_iter_lt_succ_pow) forces every non-start valley to sit at ≥ 281, and that height-split excludes every m≥3 under a proved finance constant.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "L=84, o=53, m=3, valleys 261/281/303, θ≈0.002086: constant 6/5 RHS≈0.002429; Lean inv-sum S≈0.011868 > θ·61/11≈0.011568",
+    "Charging both others at 281 still misses Lean inv-sum (S≈0.012126); 6/5 first kills at n2≥369",
+    "A later OE landing at 263 exists (v=1687, T(v)=69290) but requires that high valley, so the triple is 261/263/1687 and dies; it is not the adversary"
+  ],
+  "first_seen": "juggler cycle second-valley bound",
+  "lean_reference": "even_iter_lt_succ_pow",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / valley height",
+  "notes": "The 281 first-circuit landing is a corollary of even_iter_lt_succ_pow, not a new defect law. Height-split constant 1 first kills at 281 but is not a proved form. Not a leftover-word census, not a floor raise, and not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_second_valley.md",
+  "proof_reference": "docs/problems/juggler_cycle_second_valley.md",
+  "tested_range": "L=84, n=261, first-circuit k=2..24, later landings from 281, k=1 OE window through v=20000; constants 1 and 6/5 and Lean inv-sum"
+}

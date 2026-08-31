@@ -96,4 +96,9 @@ def test_dossier_boundary():
     assert "no_cycle_word_length_le_eight" not in note
     assert "theorem no_cycle_word_length_eight" not in note
     flat = " ".join(note.split())
-    assert "No exclusion of cycles of length eight or more is claimed." in flat
+    assert (
+        "Theorems 3.12--3.21 assemble into an even-count exclusion: no "
+        "cycle word has fewer than four even letters, so a nontrivial "
+        "cycle has period at least eleven (Theorem 3.22). Section 4 "
+        "excludes later periods by financing."
+    ) in flat

@@ -117,7 +117,7 @@ CLAIM_PLAIN = {
     "J-small-cycle-census": "No loop of length 6 or less.",
     "J-leftover-length-seven-orientations": "The two leftover length-7 loops cannot close.",
     "J-small-cycle-census-seven": "No loop of length 7 or less.",
-    "J-small-cycle-census-eight": "No loop of length 8 or less (laboratory; Paper A still stops at 7).",
+    "J-small-cycle-census-eight": "No loop of length 8 or less (implied by Paper A period ≥ 11).",
     "J-two-even-leftover-ee": "The two-even leftover families cannot close.",
     "J-first-e-transport-ee": "Gapped three-even CycleMin loops cannot close.",
     "J-three-even-eee": "Bunched last-cluster leftovers cannot close.",
@@ -357,9 +357,10 @@ def _claim_map() -> None:
     with st.expander("What this does not claim", icon=":material/info:"):
         st.caption(
             "No density result is used. Finite leftover tables are checks, "
-            "not a halt proof. The laboratory census excludes lengths ≤ 8; "
-            "Paper A still states ≤ 7. The thirty length-11 short-gap words "
-            "are a lab gate, not a Paper A theorem."
+            "not a halt proof. Paper A Theorem 3.22 excludes every cycle "
+            "word with fewer than four evens, so the period is at least "
+            "eleven. The thirty length-11 short-gap words are a lab gate, "
+            "not a Paper A theorem."
         )
 
 
@@ -624,7 +625,7 @@ def _cells() -> None:
         with census:
             st.caption(
                 "Every even-ending expanding word of length at most 8, and why "
-                "it cannot be a loop. Paper A still publishes the bound ≤ 7."
+                "it cannot be a loop. Paper A Theorem 3.22 gives period ≥ 11."
             )
             st.dataframe(
                 pd.DataFrame(census_inventory()),

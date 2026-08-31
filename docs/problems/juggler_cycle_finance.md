@@ -1,6 +1,12 @@
 # Juggler cycle finance inequality
 
-Status: **THEOREM**
+Status: **THEOREM** (absorbed into Paper A §4)
+
+Writeup:
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md)
+(laboratory extract). Publication text: Paper A
+[juggler_finite_dynamics_note.md](../theory/juggler_finite_dynamics_note.md)
+Section 4.
 
 Standalone application phase on the Juggler floor-power map, on the
 **cycle half** of the `cycles_or_escapes` split. It is not a halt
@@ -291,8 +297,9 @@ No CLI. Lean: `CycleFinance.lean` (`cycleMin_finance`,
 (`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`),
 `TerminationFloor257.lean`
 (`reachesOne_of_lt_two_hundred_fifty_seven`), and
-`Termination.lean` (`reachesOne_of_lt_fifty_three`). Paper A is
-unchanged.
+`Termination.lean` (`reachesOne_of_lt_fifty_three`). Writeup:
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+Paper A Section 4 is this inequality and the floor-\(10^6\) leftover.
 
 ## Conjectures
 
@@ -324,10 +331,14 @@ Eliahou packaging `cycle_word_eliahou_leftover` still rewrites
 the length leftover plus the finance table as period `84`, or
 a listed near-convergent, or at least `10^5`. There is no theorem named
 `no_cycle_word_length_eleven`: that name is reserved by the
-parked leftover-word probes. No `sorry`. Paper A is unchanged.
+parked leftover-word probes. No `sorry`. Paper A imports
+`CycleFinance` for Theorem 4.4 and does not import
+`CycleHeightFinance`.
 Not a halt theorem and not `no_cycle_word_any_length`.
 The Python floor \(N_0=10^6\) is still
-**COMPUTATIONALLY VERIFIED**, not Lean.
+**COMPUTATIONALLY VERIFIED**, not Lean. The compiled leftover and
+exclusions are written as
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
 
 ## Results
 
@@ -433,7 +444,15 @@ and `data/research/juggler/cycle_finance/`.
   \(261\), now **EXACT — LEAN VERIFIED**. The hypothesis that
   \(4756\) is the cheapest kill is **REFUTED**
   (`conjectures/refuted/juggler_cycle_finance_l84_floor_4756.json`).
-  Length \(84\) with \(m\ge 3\) is the remaining named leftover.
+  Length \(84\) with \(m\ge 3\) is the remaining named leftover;
+  excluding it at floor \(261\) is **REFUTED**
+  (`juggler_l84_m_ge_three_floor_261`). The upper cell
+  \((p+1)^{2^r}\) is also **REFUTED** as a leftover-killer
+  ([juggler_cycle_ceiling_finance.md](juggler_cycle_ceiling_finance.md)):
+  the adversarial peak run \(k=24\) lands at \(304\).
+  A second-valley bound \(\ge 281\) is also **REFUTED**
+  ([juggler_cycle_second_valley.md](juggler_cycle_second_valley.md)):
+  the adversarial triple is \(261,281,303\).
 - The exceptional near-convergent lengths need a larger verified
   floor (each factor of \(10^3\) in floor pushes the frontier
   roughly one convergent out). The finance inequality bounds the
@@ -463,24 +482,35 @@ laboratory leftover is period \(84\) with \(m\ge 3\), or
 as period \(84\), or a listed near-convergent, or \(\ge 10^5\).
 Exact \(\log 257\) cannot kill \(57\). This is not a leftover-word
 census. The Python floor \(N_0=10^6\) remains
-**COMPUTATIONALLY VERIFIED**. Paper A is unchanged.
+**COMPUTATIONALLY VERIFIED**. Paper A Section 4 prints the
+inequality and the floor-\(10^6\) leftover; leftover \(84\) is
+an Appendix A companion.
 
 The residual-floor campaign past \(\approx 4756\) is **PARK**.
 Joint/height kill every \(m\) at \(1981\), still machinery
 gravity.
 
-Best next question: exclude length \(84\) at \(m\ge 3\) by a
-different argument at floor \(261\), or stop and write the
-finance theorem as it stands.
+Best next question: none from leftover refinements. The theorem
+as it stands is
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
+leftover-killer
+([juggler_cycle_l84_m3.md](juggler_cycle_l84_m3.md)). The
+upper cell \((p+1)^{2^r}\) is also **REFUTED**
+([juggler_cycle_ceiling_finance.md](juggler_cycle_ceiling_finance.md)).
+A second-valley bound \(\ge 281\) is also **REFUTED**
+([juggler_cycle_second_valley.md](juggler_cycle_second_valley.md)).
 
 ## Publication assessment
 
-Status: `THEOREM`. One exact inequality (`cycleMin_finance`,
-**EXACT — LEAN VERIFIED**) with a genuinely new consequence
-(wholesale cycle-length exclusion: Lean leftover \(84\) with
-\(m\ge 3\) or \(\ge 85\), Eliahou leftover \(84\) or a listed
-near-convergent or \(\ge 10^5\), computational prefix
-\(\le1053\)) and a clear literature distinction: the Simons–de
-Weger financing-versus-gap template transferred to a floor-power
-map where defects are relatively \(O(1/x)\) in logarithms. Not a
-totality result; the escape half is untouched.
+Status: absorbed into Paper A as Section 4. Laboratory extract
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md);
+not a second manuscript. One exact inequality (`cycleMin_finance`,
+Paper A Theorem 4.4, **EXACT — LEAN VERIFIED**) with a genuinely
+new consequence (wholesale cycle-length exclusion: printed leftover
+Theorem 4.6, no period \(\le 1053\); Lean leftover \(84\) with
+\(m\ge 3\) or \(\ge 85\) is Appendix A companion) and a clear
+literature distinction: the Simons–de Weger financing-versus-gap
+template transferred to a floor-power map where defects are
+relatively \(O(1/x)\) in logarithms. Not a totality result; the
+escape half is untouched.

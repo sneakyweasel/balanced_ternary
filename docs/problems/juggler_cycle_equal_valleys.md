@@ -2,6 +2,9 @@
 
 Status: **ARCHIVED**
 
+Compiled leftover written as
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+
 Standalone application phase on the Juggler floor-power map, on the
 **cycle half** of the `cycles_or_escapes` split. It asks whether a
 cycle can have every local minimum equal to the global minimum, and
@@ -171,10 +174,9 @@ Classification **EQUAL_VALLEYS_CLOSED**. Regenerate with
 ## Open questions
 
 Stop on equal valleys as a leftover killer. Do not raise the
-residual floor. The height law at \(m=1,2\) remains the unpaid Lean
-packaging of an already-promoted inequality. A second-valley bound
-strictly above \(n+2\) is a different question and is not opened
-here.
+residual floor. A second-valley bound \(\ge 281\) was opened and
+**CLOSE** / **REFUTED**
+([juggler_cycle_second_valley.md](juggler_cycle_second_valley.md)).
 
 ## Decision
 
@@ -184,9 +186,11 @@ for \(m\ge 2\) on leftover lengths. The only novel reading — that
 \((84,3)\). This is not a halt theorem and not a reason to raise
 the floor.
 
-Best next question: formalize the odd-run height law at floor
-\(261\) so the Lean leftover becomes period \(84\) with \(m\ge 3\),
-or stop and write the finance theorem as it stands.
+Best next question: answered in
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+The height leftover is Lean; excluding \(m\ge 3\) at floor
+\(261\) is **REFUTED**
+([juggler_cycle_l84_m3.md](juggler_cycle_l84_m3.md)).
 
 ## Publication assessment
 

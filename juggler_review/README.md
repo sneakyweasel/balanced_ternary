@@ -1,6 +1,6 @@
 # Juggler reviewer bundle (two manuscripts)
 
-Author: Philippe Cochin. Date: 30 August 2026.
+Author: Philippe Cochin. Date: 31 August 2026.
 Status: Paper A is a submission candidate; Paper B is a working draft.
 
 This folder is a snapshot of the files to send for external review. It
@@ -9,10 +9,14 @@ is not the laboratory. No termination theorem is claimed.
 ## Read this first
 
 1. [juggler_finite_dynamics_note.pdf](juggler_finite_dynamics_note.pdf)
-   — **Paper A**: *Small cycles of the Juggler map*. Envelope, exact
-   defect, inverse cells, the length-\(\le 7\) census, and leftover
-   families (Theorems 3.12--3.21). Lean-backed throughout; no
-   density claims; no length-8 or length-9 census.
+   — **Paper A**: *Cycles of the Juggler map*. Envelope, exact
+   defect, inverse cells, the length-\(\le 7\) census, leftover
+   families (Theorems 3.12--3.21), the even-count assembly
+   (Theorem 3.22: period at least eleven), and finance
+   (Theorems 4.4--4.6: no period \(\le 1053\); remaining periods
+   \(\le 10^5\) lie in \(397\) near-convergents of
+   \(\ln 2/\ln 3\)). Lean leftover \(84\) is an appendix companion.
+   No density claims.
 2. [juggler_parity_discrepancy_note.pdf](juggler_parity_discrepancy_note.pdf)
    — **Paper B**: parity equidistribution of nested floor powers, the
    kernel theorem, depth-4 completeness over odd starts, and the
@@ -47,7 +51,8 @@ Paper A Zenodo deposit kit (one PDF, paste-ready fields):
 
 Repository: https://github.com/sneakyweasel/balanced_ternary/
 
-Every theorem of Paper A is in Lean. Every analytic estimate of
+Every exact theorem of Paper A is in Lean; Theorem 4.6 is a named
+computation. Every analytic estimate of
 Paper B (including the kernel theorem and the shift-average theorem)
 is a human proof and is not in Lean; only the exact floor reductions
 beneath them are (`GapCells.lean`, including the double-gap identity

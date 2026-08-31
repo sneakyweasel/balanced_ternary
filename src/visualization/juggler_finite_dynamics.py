@@ -301,7 +301,7 @@ LAB_LEFTOVER_DECISIONS: tuple[dict[str, str], ...] = (
         "branch": "Length-8 census",
         "decision": "PROMOTE",
         "tag": "EXACT — LEAN VERIFIED",
-        "note": "no_cycle_word_length_le_eight; Paper A still ≤7; not a halt theorem",
+        "note": "no_cycle_word_length_le_eight; implied by Paper A period ≥11; not a halt theorem",
     },
 )
 

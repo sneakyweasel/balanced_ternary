@@ -143,6 +143,7 @@ def test_dossier_boundary():
     assert "**PROMOTE**" in dossier
     assert "simons-de-weger-2005-collatz-m-cycles" in dossier
     assert "cycleMin_finance" in dossier
+    assert "juggler_cycle_finance_note.md" in dossier
     assert tuple(LEFTOVER_LENGTHS) == (19, 30, 84)
     assert "theorem no_cycle_word_any_length" not in dossier
     assert "CycleMFinance" not in paper

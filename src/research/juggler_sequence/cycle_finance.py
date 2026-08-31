@@ -133,9 +133,9 @@ FORBIDDEN_NEW_API = (
 
 REQUIRED_LEAN_FILES = (CYCLE_FINANCE, CYCLE_HEIGHT_FINANCE)
 FORBIDDEN_LEAN_FILES = (JUGGLER_DIR / "Finance.lean",)
+PAPER_REQUIRED_IMPORT = "import Problems.Juggler.CycleFinance"
 PAPER_FORBIDDEN = (
-    "CycleFinance",
-    "CycleHeightFinance",
+    "import Problems.Juggler.CycleHeightFinance",
     "FinanceInequality",
     "FinanceBound",
 )
@@ -444,6 +444,7 @@ def lean_api_present() -> dict[str, bool]:
         "no_extra_finance_file": not any(
             path.is_file() for path in FORBIDDEN_LEAN_FILES
         ),
+        "cycle_finance_in_paper_barrel": PAPER_REQUIRED_IMPORT in paper,
         "not_in_paper_barrel": all(name not in paper for name in PAPER_FORBIDDEN),
     }
 
@@ -494,6 +495,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and not any(lean[f"has_api_{name}"] for name in FORBIDDEN_NEW_API)
         and lean["cycle_finance_present"]
         and lean["no_extra_finance_file"]
+        and lean["cycle_finance_in_paper_barrel"]
         and lean["not_in_paper_barrel"]
     )
     if not lean_ok:

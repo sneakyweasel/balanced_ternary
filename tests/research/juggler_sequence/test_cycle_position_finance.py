@@ -197,5 +197,6 @@ def test_dossier_boundary():
     assert "theorem no_cycle_word_any_length" not in dossier
     assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in dossier
     assert "CycleHeightFinance.lean" in dossier
+    assert "juggler_cycle_finance_note.md" in dossier
     assert "CyclePositionFinance" not in paper
     assert "cycle_position_finance" not in paper

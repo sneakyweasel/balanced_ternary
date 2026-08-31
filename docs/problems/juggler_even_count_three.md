@@ -1,11 +1,11 @@
 # Juggler even-count ≤ 3 cycle words
 
-Status: **EXPLORATORY**
+Status: **PROMOTE**. Imported into Paper A as Theorem 3.22.
 
 Standalone laboratory assembly on the Juggler floor-power map. It is
 **not** a Research Engine control-layer experiment and not a claim that
 every positive integer reaches 1. It is not a length-9 or length-10
-census, not first-E transport at \(e\ge 4\), and not induction on
+word census, not first-E transport at \(e\ge 4\), and not induction on
 \(n\) or on the period.
 
 ## Problem
@@ -24,8 +24,8 @@ bootstrap, the seven bunched leftovers (Theorems 3.14--3.20), and the
 gapped leftovers (Theorems 3.13 and 3.21), or start-`E`/`OE`
 rotations onto those families.
 
-The laboratory theorem `no_cycle_word_even_count_le_three` excludes
-every such `CycleWord`. The corollary `cycle_word_length_ge_eleven`
+Paper A Theorem 3.22 (`no_cycle_word_even_count_le_three`) excludes
+every such `CycleWord`. Corollary 3.23 (`cycle_word_length_ge_eleven`)
 is the expansion demand after four evens. The laboratory leftover
 is the finance residual (`cycle_word_length_nineteen_or_ge_thirty`
 in `CycleFinance.lean`); this file does not import finance.
@@ -41,8 +41,8 @@ start, and the cycle-extrema corollary is \(M\ge(m+1)^2\)
 maxima are impossible and \(T(M)>m\). It does not exclude a
 four-even word and is not a halt theorem.
 
-This is not a length-9 or length-10 census. Paper A still states
-the length-\(\le 7\) census. There is no
+This is not a length-9 or length-10 word census. Paper A states
+the even-count assembly as Theorem 3.22. There is no
 `no_cycle_word_length_nine` and no halt theorem.
 
 ## Current literature
@@ -50,8 +50,8 @@ the length-\(\le 7\) census. There is no
 - Small-cycle census (Paper A Theorems 3.6 and 3.8) —
   **EXACT — LEAN VERIFIED**. No cycle word of length at most seven.
 - Laboratory length-8 census —
-  **EXACT — LEAN VERIFIED**. Period \(\ge 9\) in the laboratory.
-  Not reopened as a length census.
+  **EXACT — LEAN VERIFIED**. Implied by Paper A Corollary 3.23
+  (period \(\ge 11\)). Not reopened as a length census.
 - Uniform two-even leftover families (Paper A Theorem 3.12) —
   **EXACT — LEAN VERIFIED**.
 - Gapped three-even leftovers (Theorems 3.13 and 3.21) —
@@ -86,8 +86,8 @@ Existing machinery      leftover_prefix_cell; Thms 3.12--3.21;
 Maximum Phase-0 scope   Necklace inventory of even-terminating
                         expanding words with e≤3 for lengths
                         9..16; one Lean even-count theorem.
-                        No length-9 Lean census, no e=4 cells,
-                        no Paper A edit
+                        No length-9 Lean census, no e=4 cells.
+                        Paper A now states Theorem 3.22
 Promotion criterion     Every such necklace hits a named filter;
                         then a single Lean theorem
                         no_cycle_word_even_count_le_three
@@ -140,8 +140,9 @@ It is not required.
 - Records: [juggler_even_count_three.md](../research/juggler_even_count_three.md),
   [juggler_even_count_three.json](../research/juggler_even_count_three.json)
 - Tests: `tests/research/juggler_sequence/test_even_count_three.py`
-- Lean: `formal/Problems/Juggler/EvenCountThree.lean`. Not imported
-  by `Problems.JugglerPaper`. No `sorry`. No halt theorem.
+- Lean: `formal/Problems/Juggler/EvenCountThree.lean`. Imported
+  by `Problems.JugglerPaper` as Paper A Theorem 3.22. No `sorry`.
+  No halt theorem.
 
 ## Conjectures
 
@@ -174,7 +175,7 @@ stronger claims that remain unproved:
 assembles only through length seven. `LengthEightCensus.lean` remains
 the laboratory length-8 assembler. No `no_cycle_word_length_nine`.
 No `no_cycle_word_length_le_nine`. No `sorry`. No halt theorem.
-Paper A is unchanged.
+Paper A states Theorem 3.22 / Corollary 3.23.
 
 ## Results
 
@@ -184,9 +185,9 @@ No \(n\ge 2\) realizes a cycle word with at most three even letters.
 A nontrivial cycle, if one exists, has period at least eleven by
 even-count; the laboratory leftover is the finance residual
 (period \(19\) or \(\ge 30\)). On a leftover start the first even
-residual overshoots; return-to-\(n\) is dead. The extrema corollary is \(M\ge(m+1)^2\). This is an
-even-count theorem, not a four-even exclusion, not a length-9
-census, not a published Paper A theorem, and not a halt theorem.
+residual overshoots; return-to-\(n\) is dead. The extrema corollary is \(M\ge(m+1)^2\). This is Paper A
+Theorem 3.22, not a four-even exclusion, not a length-9
+word census, and not a halt theorem.
 
 ## Open questions
 
@@ -206,7 +207,7 @@ census.
 
 ## Publication assessment
 
-Status: `EXPLORATORY`.
+Status: imported into Paper A as Theorem 3.22 / Corollary 3.23.
 
-A laboratory even-count strengthening. Not imported into Paper A.
-Not a Juggler totality result.
+An even-count strengthening of the leftover families. Not a
+Juggler totality result.

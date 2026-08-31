@@ -1,0 +1,463 @@
+{
+  "experiment": "juggler_cycle_second_valley",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "halt_theorem": false,
+    "no_cycle_all_lengths": false,
+    "new_lean": false,
+    "floor_raise": false,
+    "leftover_word_census": false
+  },
+  "scan": {
+    "floor": 261,
+    "L": 84,
+    "o": 53,
+    "even": 31,
+    "theta": 0.0020859537426888286,
+    "lean_need_61_11": 0.011567561664001687,
+    "killing_n2": 281,
+    "first_circuit_rows": [
+      {
+        "k": 2,
+        "r_max": 1,
+        "p_min": 523,
+        "p_min_even": false,
+        "r_odd": 1,
+        "p_odd": 523,
+        "feasible": true
+      },
+      {
+        "k": 3,
+        "r_max": 1,
+        "p_min": 11970,
+        "p_min_even": true,
+        "r_odd": 0,
+        "p_odd": 261,
+        "feasible": false
+      },
+      {
+        "k": 4,
+        "r_max": 2,
+        "p_min": 1144,
+        "p_min_even": true,
+        "r_odd": 1,
+        "p_odd": 1309763,
+        "feasible": true
+      },
+      {
+        "k": 5,
+        "r_max": 2,
+        "p_min": 38716,
+        "p_min_even": true,
+        "r_odd": 0,
+        "p_odd": 261,
+        "feasible": false
+      },
+      {
+        "k": 6,
+        "r_max": 3,
+        "p_min": 2760,
+        "p_min_even": true,
+        "r_odd": 1,
+        "p_odd": 58034208680743,
+        "feasible": true
+      },
+      {
+        "k": 7,
+        "r_max": 4,
+        "p_min": 380,
+        "p_min_even": true,
+        "r_odd": 0,
+        "p_odd": 261,
+        "feasible": false
+      },
+      {
+        "k": 8,
+        "r_max": 4,
+        "p_min": 7430,
+        "p_min_even": true,
+        "r_odd": 3,
+        "p_odd": 55216933,
+        "feasible": true
+      },
+      {
+        "k": 9,
+        "r_max": 5,
+        "p_min": 800,
+        "p_min_even": true,
+        "r_odd": 4,
+        "p_odd": 640551,
+        "feasible": true
+      },
+      {
+        "k": 10,
+        "r_max": 5,
+        "p_min": 22642,
+        "p_min_even": true,
+        "r_odd": 4,
+        "p_odd": 512662231,
+        "feasible": true
+      },
+      {
+        "k": 11,
+        "r_max": 6,
+        "p_min": 1845,
+        "p_min_even": false,
+        "r_odd": 6,
+        "p_odd": 1845,
+        "feasible": true
+      },
+      {
+        "k": 12,
+        "r_max": 7,
+        "p_min": 281,
+        "p_min_even": false,
+        "r_odd": 7,
+        "p_odd": 281,
+        "feasible": true
+      },
+      {
+        "k": 13,
+        "r_max": 7,
+        "p_min": 4725,
+        "p_min_even": false,
+        "r_odd": 7,
+        "p_odd": 4725,
+        "feasible": true
+      },
+      {
+        "k": 14,
+        "r_max": 8,
+        "p_min": 569,
+        "p_min_even": false,
+        "r_odd": 8,
+        "p_odd": 569,
+        "feasible": true
+      },
+      {
+        "k": 15,
+        "r_max": 8,
+        "p_min": 13607,
+        "p_min_even": false,
+        "r_odd": 8,
+        "p_odd": 13607,
+        "feasible": true
+      },
+      {
+        "k": 16,
+        "r_max": 9,
+        "p_min": 1259,
+        "p_min_even": false,
+        "r_odd": 9,
+        "p_odd": 1259,
+        "feasible": true
+      },
+      {
+        "k": 17,
+        "r_max": 9,
+        "p_min": 44718,
+        "p_min_even": true,
+        "r_odd": 7,
+        "p_odd": 3999025781181682619,
+        "feasible": true
+      },
+      {
+        "k": 18,
+        "r_max": 10,
+        "p_min": 3075,
+        "p_min_even": false,
+        "r_odd": 10,
+        "p_odd": 3075,
+        "feasible": true
+      },
+      {
+        "k": 19,
+        "r_max": 11,
+        "p_min": 412,
+        "p_min_even": true,
+        "r_odd": 10,
+        "p_odd": 170529,
+        "feasible": true
+      },
+      {
+        "k": 20,
+        "r_max": 11,
+        "p_min": 8391,
+        "p_min_even": false,
+        "r_odd": 11,
+        "p_odd": 8391,
+        "feasible": true
+      },
+      {
+        "k": 21,
+        "r_max": 12,
+        "p_min": 876,
+        "p_min_even": true,
+        "r_odd": 11,
+        "p_odd": 768731,
+        "feasible": true
+      },
+      {
+        "k": 22,
+        "r_max": 12,
+        "p_min": 25961,
+        "p_min_even": false,
+        "r_odd": 12,
+        "p_odd": 25961,
+        "feasible": true
+      },
+      {
+        "k": 23,
+        "r_max": 13,
+        "p_min": 2045,
+        "p_min_even": false,
+        "r_odd": 13,
+        "p_odd": 2045,
+        "feasible": true
+      },
+      {
+        "k": 24,
+        "r_max": 14,
+        "p_min": 304,
+        "p_min_even": true,
+        "r_odd": 13,
+        "p_odd": 92495,
+        "feasible": true
+      }
+    ],
+    "worst_first": {
+      "k": 12,
+      "p_odd": 281,
+      "r_odd": 7,
+      "p_min": 281
+    },
+    "k24": {
+      "p_min": 304,
+      "p_min_even": true,
+      "r_odd": 13,
+      "p_odd": 92495
+    },
+    "k1_count": 4,
+    "k1_below_killing": 4,
+    "k1_witness": {
+      "v": 1687,
+      "T_v": 69290,
+      "r_odd": 1,
+      "p_odd": 263,
+      "below_killing": true
+    },
+    "from_281_rows": [
+      {
+        "start": 281,
+        "k": 3,
+        "r_odd": 1,
+        "p_odd": 13559,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 5,
+        "r_odd": 2,
+        "p_odd": 44543,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 7,
+        "r_odd": 3,
+        "p_odd": 169777,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 8,
+        "r_odd": 4,
+        "p_odd": 8363,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 9,
+        "r_odd": 3,
+        "p_odd": 585102794199,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 10,
+        "r_odd": 2,
+        "p_odd": 200307179780793627258298637716796529,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 11,
+        "r_odd": 6,
+        "p_odd": 2039,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 12,
+        "r_odd": 7,
+        "p_odd": 303,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 13,
+        "r_odd": 7,
+        "p_odd": 5287,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 14,
+        "r_odd": 5,
+        "p_odd": 21845139719337821028947,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 15,
+        "r_odd": 8,
+        "p_odd": 15439,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 16,
+        "r_odd": 9,
+        "p_odd": 1385,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 17,
+        "r_odd": 9,
+        "p_odd": 51547,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 18,
+        "r_odd": 10,
+        "p_odd": 3421,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 19,
+        "r_odd": 11,
+        "p_odd": 447,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 20,
+        "r_odd": 8,
+        "p_odd": 64180293186272357718571747746153,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 21,
+        "r_odd": 12,
+        "p_odd": 959,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 22,
+        "r_odd": 10,
+        "p_odd": 779226034836293671,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 23,
+        "r_odd": 13,
+        "p_odd": 2263,
+        "feasible": true
+      },
+      {
+        "start": 281,
+        "k": 24,
+        "r_odd": 12,
+        "p_odd": 11589393077,
+        "feasible": true
+      }
+    ],
+    "from_281_worst": {
+      "start": 281,
+      "k": 12,
+      "r_odd": 7,
+      "p_odd": 303,
+      "feasible": true
+    },
+    "killing_n2_six_fifths": 369,
+    "adversarial_valleys": [
+      261,
+      281,
+      303
+    ],
+    "adversarial_const1": 0.002024317232858755,
+    "adversarial_six_fifths": 0.002429180679430506,
+    "adversarial_inv_sum": 0.011867921361757117,
+    "oe_valleys": [
+      261,
+      263,
+      1687
+    ],
+    "oe_const1": 0.0015776856353067175,
+    "oe_six_fifths": 0.001893222762368061,
+    "oe_inv_sum": 0.009403922063988145,
+    "all_281_const1": 0.002077866235344744,
+    "all_281_inv_sum": 0.01212631018996378,
+    "kills_adversarial_const1": true,
+    "kills_adversarial_six_fifths": false,
+    "kills_adversarial_inv_sum": false,
+    "kills_oe_six_fifths": true,
+    "kills_oe_inv_sum": true,
+    "kills_all_281_const1": true,
+    "kills_all_281_inv_sum": false,
+    "slogan_false": true,
+    "git": "520bd829b7e9e3c002bc6b335326752b26ade878",
+    "halt_theorem": false,
+    "no_cycle_all_lengths": false,
+    "new_lean": false,
+    "floor_raise": false,
+    "leftover_word_census": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "cycleMin_even_ge_sq": true,
+    "cycleMin_not_odd_even": true,
+    "even_iter_lt_succ_pow": true,
+    "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five": true,
+    "has_juggler_reaches_one": false,
+    "has_no_cycle_word_any_length": false,
+    "has_no_cycle_word_length_eighty_four": false,
+    "has_second_valley_ge": false,
+    "has_cycle_second_valley": false,
+    "has_api_SecondValley": false,
+    "has_api_CycleSecondValley": false,
+    "has_api_ValleyFloor": false,
+    "cycle_core_present": true,
+    "cycle_extrema_present": true,
+    "no_second_valley_lean": true,
+    "not_in_paper_barrel": true
+  },
+  "decision": {
+    "classification": "SECOND_VALLEY_CLOSED",
+    "reason": "height-split const 1 first kills at n2=281, but that form is not proved. Lean inv-sum still misses when both others sit at 281 (S=0.012126 > 0.011568). The adversarial Lean-allowed triple is [261, 281, 303] (first circuit k=12 lands at 281; from 281, k=12 lands at 303). Height 6/5 RHS=0.002429 and inv-sum S=0.011868 both miss \u03b8=0.002086 / need=0.011568; 6/5 first kills at 369. A later OE landing at 263 requires a start valley \u2265 1687 and that triple dies. The 281 landing is even_iter_lt_succ_pow. Not a leftover-word census and not a floor raise"
+  },
+  "search_method": "odd ceiling landings for first-circuit k=2..24 at n=261; later-circuit landings from 281 down to floor 261; k=1 OE window; adversarial packing 261/281/303"
+}

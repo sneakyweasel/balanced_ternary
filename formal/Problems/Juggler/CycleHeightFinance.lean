@@ -14,6 +14,7 @@ every length-84 cycle with at most two odd-runs at the residual
 floor 261. The leftover is period 84 with at least three odd-runs
 on a `CycleMin` rotation, or length at least 85.
 
+Writeup: `docs/theory/juggler_cycle_finance_note.md`.
 Not a halt theorem. Paper A is unchanged.
 -/
 

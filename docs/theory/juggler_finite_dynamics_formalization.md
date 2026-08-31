@@ -11,8 +11,10 @@ development is in `formal/Problems/Juggler/`; it contains no `sorry`
 or `admit`. The review object for **Paper A** is the paper barrel
 `formal/Problems/JugglerPaper.lean` (`lake build Problems.JugglerPaper`).
 That file imports only the modules named by Paper A (Appendix A of
-the note). It does not import `GapCells.lean`. Laboratory satellites
-remain in `formal/Problems/Juggler.lean` and are not the review object.
+the note), including `CycleFinance.lean` for Theorem 4.4. It does
+not import `GapCells.lean` or `CycleHeightFinance.lean`. Laboratory
+satellites remain in `formal/Problems/Juggler.lean` and are not the
+review object.
 
 The package formalizes finite trajectories and conditional cycle structure.
 It does not prove that every positive integer reaches \(1\), that every orbit
@@ -431,8 +433,12 @@ no_cycle_word_ooeoooe
 no_cycle_word_oooeooe
 ```
 
-The census stops at length seven. It is not an exclusion of all
-cycles and not a halt theorem. Length eight is open as a census.
+The word census of Theorems 3.6 and 3.8 is the elementary layer
+through length seven. Theorems 3.12--3.21 assemble as Paper A
+Theorem 3.22: no cycle word has even-count at most three, so a
+nontrivial cycle has period at least eleven. Section 4 excludes
+later periods by financing. It is not an exclusion of all leftover
+lengths and not a halt theorem.
 
 The note's family theorems after the census are:
 
@@ -454,12 +460,15 @@ no_cycle_word_three_even_eoeoe   (Theorem 3.19)
 no_cycle_word_three_even_eooeoe  (Theorem 3.20)
 no_cycle_word_gapped_three_even_ee
 no_cycle_word_gapped_three_even_eoe (Theorem 3.21)
+no_cycle_word_even_count_le_three (Theorem 3.22)
+cycle_word_length_ge_eleven      (Corollary 3.23)
 ```
 
 Theorem 3.13 is a minimum-based exclusion. It is not a `CycleWord`
 theorem at a non-minimum start. Theorem 3.21 upgrades those same
-words to `CycleWord`s by rotation. Theorems 3.12--3.21 do not assemble
-`no_cycle_word_length_eight` or `no_cycle_word_length_nine`.
+words to `CycleWord`s by rotation. Theorem 3.22 assembles
+Theorems 3.12--3.21 as an even-count exclusion. It is not a
+length-9 or length-10 word census.
 
 The cycle-surplus identity of the note's Corollary 2.7 and the
 per-step scale bound are:
@@ -475,8 +484,23 @@ one_plus_eta_lt_succ_sq :
     (NearTightScale.lean)
 ```
 
-The certified four-block expanding chain named in Paper A's Section 4
+The certified four-block expanding chain named in Paper A's Section 5
 is `four_block_pe_1999` in `ExpansionSlack.lean`.
+
+The financing inequality of Paper A's Theorem 4.4 is a cycle leaf
+under this barrel:
+
+```text
+cycleMin_finance :
+  CycleMin n w ->
+  n * log n * (3^oddCount w - 2^w.length) ≤ w.length * 3^oddCount w
+    (CycleFinance.lean)
+```
+
+Companion names leftover \(84\), residual floor \(261\), and the
+census through length \(19\) are listed in Appendix A of the note.
+They are not paper theorems. `CycleHeightFinance.lean` is not
+imported.
 
 ## 9. Exact floor reductions for the discrepancy paper
 

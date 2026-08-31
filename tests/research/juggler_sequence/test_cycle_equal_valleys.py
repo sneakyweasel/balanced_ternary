@@ -125,6 +125,7 @@ def test_dossier_and_registry():
     assert "## Decision" in dossier
     assert "## Publication assessment" in dossier
     assert "**CLOSE**" in dossier
+    assert "juggler_cycle_finance_note.md" in dossier
     assert "CycleEqualValleys" not in paper
     assert "UniqueValley" not in paper
     get_reference("simons-de-weger-2005-collatz-m-cycles")

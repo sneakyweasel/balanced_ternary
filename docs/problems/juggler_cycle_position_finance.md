@@ -2,6 +2,9 @@
 
 Status: **EXPLORATORY**
 
+Compiled leftover written as
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+
 Refinement of
 [m-cycle finance](juggler_cycle_m_finance.md), not a new paper.
 Joint-minima already splits valleys / climb interiors / evens. After
@@ -253,11 +256,17 @@ Classification **POSITION_FINANCE_GREEN**. Regenerate with
 
 The Lean leftover is
 `cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`.
-Length \(84\) with \(m\ge 3\) still needs a larger floor or a
-different argument. Raising the residual floor to \(1981\) or
-\(4756\) to kill every \(m\) is **PARK**. The full \(6/5\) greedy
-packing and the length-38 joint-minima evaluation stay human
-proof.
+Excluding length \(84\) at \(m\ge 3\) at floor \(261\) is
+**REFUTED**
+([juggler_cycle_l84_m3.md](juggler_cycle_l84_m3.md)).
+The upper cell \((p+1)^{2^r}\) is also **REFUTED** as a
+leftover-killer
+([juggler_cycle_ceiling_finance.md](juggler_cycle_ceiling_finance.md)).
+A second-valley bound \(\ge 281\) is also **REFUTED**
+([juggler_cycle_second_valley.md](juggler_cycle_second_valley.md)).
+Raising the residual floor to \(1981\) or \(4756\) to kill every
+\(m\) is **PARK**. The full \(6/5\) greedy packing and the
+length-38 joint-minima evaluation stay human proof.
 
 ## Decision
 
@@ -273,9 +282,10 @@ paper. Not a halt theorem.
 
 The residual-floor campaign to \(1981\) or \(4756\) is **PARK**.
 
-Best next question: exclude length \(84\) at \(m\ge 3\) by a
-different argument at floor \(261\), or stop and write the
-finance theorem as it stands.
+Best next question: answered in
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+Length \(84\) at \(m\ge 3\) at floor \(261\) is closed as a
+leftover-killer.
 
 ## Publication assessment
 

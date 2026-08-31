@@ -69,6 +69,7 @@ def test_lean_even_count_assembler_and_paper_a_boundary():
     for name in FORBIDDEN_THEOREMS:
         assert lean[name] is True, name
     assert lean["laboratory_assembler_present"] is True
+    assert lean["paper_a_imports_even_count"] is True
     assert lean["paper_a_has_no_even_count"] is True
     even = EVEN_COUNT_THREE.read_text(encoding="utf-8")
     census7 = SMALL_CYCLE_CENSUS.read_text(encoding="utf-8")
@@ -87,7 +88,8 @@ def test_lean_even_count_assembler_and_paper_a_boundary():
     assert "sorry" not in even
     assert "admit" not in even
     assert "theorem no_cycle_word_even_count_le_three" not in census7
-    assert "theorem no_cycle_word_even_count_le_three" not in paper
+    assert "import Problems.Juggler.EvenCountThree" in paper
+    assert "no_cycle_word_even_count_le_three" in paper
     assert "Length eight is open" in census7
     assert "theorem no_cycle_word_length_nine" not in even
     assert "theorem no_juggler_cycle" not in even
@@ -135,5 +137,6 @@ def test_dossier_boundary():
     assert "cycle_distinguished_order_succ_sq" in dossier
     assert "no_cycle_word_length_nine" in dossier
     assert "not a length-9" in dossier
-    assert "theorem no_cycle_word_even_count_le_three" not in note
+    assert "Theorem 3.22" in note
+    assert "period at least eleven" in note
     assert "theorem no_cycle_word_length_nine" not in note

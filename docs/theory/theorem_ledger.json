@@ -3280,7 +3280,7 @@
   {
     "id": "J-small-cycle-census-seven",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most seven is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eight (Paper A Theorem 3.8). Assembly: the length-≤6 census, the formal-expansion filter on length seven, the odd-run exclusion of O^6E, the internal-E bootstrap exclusions of OOEOOOE and OOOEOOE, rotation of EOOOOOE and OEOOOOE onto the leftovers, and the leftover exclusions of OOOOEOE and OOOOOEE (Lemma 3.7). Lean theorem no_cycle_word_length_le_seven. This row is the Paper A length-≤7 statement; the laboratory strengthening is J-small-cycle-census-eight. This is not an exclusion of all cycles and not a halt theorem.",
+    "statement": "No word of length at most seven is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eight (Paper A Theorem 3.8). Assembly: the length-≤6 census, the formal-expansion filter on length seven, the odd-run exclusion of O^6E, the internal-E bootstrap exclusions of OOEOOOE and OOOEOOE, rotation of EOOOOOE and OEOOOOE onto the leftovers, and the leftover exclusions of OOOOEOE and OOOOOEE (Lemma 3.7). Lean theorem no_cycle_word_length_le_seven. Strengthened by Paper A Theorem 3.22 / Corollary 3.23 (even-count at most three is impossible, so the period is at least eleven). This is not an exclusion of all cycles and not a halt theorem.",
     "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/SmallCycleCensus.lean",
     "tests": [
@@ -3292,7 +3292,7 @@
   {
     "id": "J-small-cycle-census-eight",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most eight is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least nine. Assembly: the length-≤7 census, the formal-expansion filter on length eight, the odd-run exclusion of O^7E, Theorem 3.12 at k=8, rotation of EOOOOOOE and OEOOOOOE onto those leftovers, and the internal-E bootstrap exclusions of OOOOEOOE, OOOEOOOE, and OOEOOOOE. Lean theorem no_cycle_word_length_le_eight in LengthEightCensus.lean. Strengthened by J-small-cycle-census-ten. This is a laboratory strengthening of Paper A Theorem 3.8, not a published Paper A theorem, not a length-9 census, and not a halt theorem.",
+    "statement": "No word of length at most eight is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least nine. Assembly: the length-≤7 census, the formal-expansion filter on length eight, the odd-run exclusion of O^7E, Theorem 3.12 at k=8, rotation of EOOOOOOE and OEOOOOOE onto those leftovers, and the internal-E bootstrap exclusions of OOOOEOOE, OOOEOOOE, and OOEOOOOE. Lean theorem no_cycle_word_length_le_eight in LengthEightCensus.lean. Implied by Paper A Corollary 3.23 (period at least eleven). Strengthened by J-small-cycle-census-ten. This is not a length-9 word census and not a halt theorem.",
     "source": "docs/problems/juggler_length_eight_cycles.md",
     "lean": "Problems/Juggler/LengthEightCensus.lean",
     "tests": [
@@ -3484,8 +3484,8 @@
   {
     "id": "J-even-count-le-three",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No n ≥ 2 realizes a Juggler cycle word with at most three even letters. Every CycleWord has a CycleMin rotation that starts OO, ends E, and is formally expanding; those words are the odd-run family, the two-even leftovers (Theorem 3.12), the internal-E bootstrap, the seven bunched leftovers (Theorems 3.14–3.20), or the gapped leftovers (Theorems 3.13 and 3.21). The laboratory corollary is that a nontrivial cycle word has length at least eleven. Lean theorems no_cycle_word_even_count_le_three and cycle_word_length_ge_eleven in EvenCountThree.lean. This is an even-count assembler, not a length-9 or length-10 census, not a published Paper A theorem, and not a halt theorem.",
-    "source": "docs/problems/juggler_even_count_three.md",
+    "statement": "No n ≥ 2 realizes a Juggler cycle word with at most three even letters (Paper A Theorem 3.22). Every CycleWord has a CycleMin rotation that starts OO, ends E, and is formally expanding; those words are the odd-run family, the two-even leftovers (Theorem 3.12), the internal-E bootstrap, the seven bunched leftovers (Theorems 3.14–3.20), or the gapped leftovers (Theorems 3.13 and 3.21). The corollary is that a nontrivial cycle word has length at least eleven (Paper A Corollary 3.23). Lean theorems no_cycle_word_even_count_le_three and cycle_word_length_ge_eleven in EvenCountThree.lean. This is an even-count assembler, not a length-9 or length-10 word census, and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/EvenCountThree.lean",
     "tests": [
       "tests/research/juggler_sequence/test_even_count_three.py"
@@ -5128,8 +5128,8 @@
   {
     "id": "J-cycle-finance-inequality",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "On a Juggler CycleMin start n ≥ 2 with word w of length L and oddCount o, the dyadic-cell logarithm bound log z ≤ 2 log y + 2/y unrolls to n · log n · (3^o − 2^L) ≤ L · 3^o (Lean cycleMin_finance). Every cycle state is at least 12 and the rotated minimum is odd, so the minimum is at least 13 and 13 log 13 > 65/2, hence (65/2)(3^o − 2^L) ≤ L · 3^o for every CycleWord (cycle_finance_min_thirteen). This is the whole-cycle financing of the formal expansion 2^L < 3^o by relative floor defects. It is not a halt theorem, not an exclusion of every length, and not the computational 6/5 table used for L ≤ 10^5.",
-    "source": "docs/problems/juggler_cycle_finance.md",
+    "statement": "On a Juggler CycleMin start n ≥ 2 with word w of length L and oddCount o, the dyadic-cell logarithm bound log z ≤ 2 log y + 2/y unrolls to n · log n · (3^o − 2^L) ≤ L · 3^o (Paper A Theorem 4.4; Lean cycleMin_finance). Every cycle state is at least 12 and the rotated minimum is odd, so the minimum is at least 13 and 13 log 13 > 65/2, hence (65/2)(3^o − 2^L) ≤ L · 3^o for every CycleWord (cycle_finance_min_thirteen). This is the whole-cycle financing of the formal expansion 2^L < 3^o by relative floor defects. It is not a halt theorem, not an exclusion of every length, and not the computational 6/5 table used for L ≤ 10^5.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
       "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -5139,7 +5139,7 @@
   {
     "id": "J-small-cycle-census-ten",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most ten is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_word_length_nine, no_cycle_word_length_ten, packaged as no_cycle_word_length_le_ten). Strengthened by J-small-cycle-census-eleven. This is not a leftover-word length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem. Paper A is unchanged.",
+    "statement": "No word of length at most ten is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least eleven. Lengths ≤ 8 are the census J-small-cycle-census-eight; lengths 9 and 10 are excluded by the finance inequality at the residual floor 12 (no_cycle_word_length_nine, no_cycle_word_length_ten, packaged as no_cycle_word_length_le_ten). Strengthened by J-small-cycle-census-eleven. This is a Lean companion to Paper A Theorem 4.6, not a leftover-word length-11 census, not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
@@ -5172,7 +5172,7 @@
   {
     "id": "J-small-cycle-census-eleven",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most eleven is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least twelve, and in fact at least fourteen by J-cycle-word-length-ge-fourteen. Strengthened by J-small-cycle-census-eighteen. Length 11 is the first near-convergent (2^11 < 3^7); the residual floor 53 plus cycle_finance_min_fifty_three excludes it (finance_excludes_length_eleven, packaged as no_cycle_word_length_le_eleven). This is not a leftover-word census of the thirty length-11 short-gap families, not a theorem named no_cycle_word_length_eleven, not a no-cycle-of-any-length theorem, and not a halt theorem. Paper A is unchanged.",
+    "statement": "No word of length at most eleven is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least twelve, and in fact at least fourteen by J-cycle-word-length-ge-fourteen. Strengthened by J-small-cycle-census-eighteen. Length 11 is the first near-convergent (2^11 < 3^7); the residual floor 53 plus cycle_finance_min_fifty_three excludes it (finance_excludes_length_eleven, packaged as no_cycle_word_length_le_eleven). This is a Lean companion to Paper A Theorem 4.6, not a leftover-word census of the thirty length-11 short-gap families, not a theorem named no_cycle_word_length_eleven, not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
@@ -5194,7 +5194,7 @@
   {
     "id": "J-small-cycle-census-eighteen",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most 18 is a Juggler cycle word at any n ≥ 2, except that length 19 is not excluded here. Lengths ≤ 11 are J-small-cycle-census-eleven; lengths 12, 13, and 16 remain excluded at the residual floor 12; lengths 14, 15, 17, and 18 are excluded by cycle_finance_min_fifty_three (finance_excludes_length_fourteen and companions, packaged as no_cycle_word_length_le_eighteen). Strengthened by J-small-cycle-census-nineteen. This is not a leftover-word census, not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem. Paper A is unchanged.",
+    "statement": "No word of length at most 18 is a Juggler cycle word at any n ≥ 2, except that length 19 is not excluded here. Lengths ≤ 11 are J-small-cycle-census-eleven; lengths 12, 13, and 16 remain excluded at the residual floor 12; lengths 14, 15, 17, and 18 are excluded by cycle_finance_min_fifty_three (finance_excludes_length_fourteen and companions, packaged as no_cycle_word_length_le_eighteen). Strengthened by J-small-cycle-census-nineteen. This is a Lean companion to Paper A Theorem 4.6, not a leftover-word census, not an exclusion of length 19, not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
@@ -5216,8 +5216,8 @@
   {
     "id": "J-cycle-word-eliahou-leftover",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, and every length in [30, 10^5) outside a named list of near-convergents is already excluded, then the period is 84, or belongs to that list, or is at least 10^5. Lean theorem cycle_word_eliahou_leftover: bookkeeping on cycle_word_length_eighty_four_or_ge_eighty_five plus EliahouTable, not a new inequality. This is the Collatz Eliahou leftover shape (period ≥ X, or a named convergent family) on the floor-power map. This is not a proof of the finance table, not a no-cycle-of-any-length theorem, and not a halt theorem.",
-    "source": "docs/problems/juggler_cycle_finance.md",
+    "statement": "If a nontrivial Juggler cycle word exists at n ≥ 2, and every length in [30, 10^5) outside a named list of near-convergents is already excluded, then the period is 84, or belongs to that list, or is at least 10^5. Lean theorem cycle_word_eliahou_leftover: bookkeeping on cycle_word_length_eighty_four_or_ge_eighty_five plus EliahouTable, not a new inequality. This is the Collatz Eliahou leftover shape (period ≥ X, or a named convergent family) on the floor-power map. Paper A prints the floor-10^6 instance as Theorem 4.6; leftover 84 is Appendix A companion. This is not a proof of the finance table, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
       "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -5227,8 +5227,8 @@
   {
     "id": "J-cycle-word-eliahou-leftover-instance",
     "tag": "COMPUTATIONALLY VERIFIED",
-    "statement": "If a nontrivial Juggler cycle exists, its period is 84, or one of the 397 near-convergent lengths at the Python floor 10^6 (94 multiples of 1054 plus combinations of the ln 2 / ln 3 convergents), or at least 10^5. Instantiation of J-cycle-word-eliahou-leftover by the existing finance gap table L ≤ 10^5 and descent floor 10^6. Length 84 is kept as the Lean-named leftover and is computationally already excluded. Lengths 19, 38, 57, and 76 are excluded in Lean at the residual floor 261. This is not a new inequality, not a no-cycle-of-any-length theorem, and not a halt theorem.",
-    "source": "docs/problems/juggler_cycle_finance.md",
+    "statement": "If a nontrivial Juggler cycle exists, there is no period ≤ 1053, and no period ≤ 10^5 outside the 397 near-convergent lengths of ln 2 / ln 3 at the Python floor 10^6 (Paper A Theorem 4.6). First record survivor is L = 1054. Instantiation of J-cycle-word-eliahou-leftover by the existing finance gap table L ≤ 10^5 and descent floor 10^6. Length 84 is the Lean-named leftover (Appendix A companion) and is computationally already excluded. Lengths 19, 38, 57, and 76 are excluded in Lean at the residual floor 261. This is not a new inequality, not a no-cycle-of-any-length theorem, and not a halt theorem.",
+    "source": "docs/theory/juggler_finite_dynamics_note.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
       "tests/research/juggler_sequence/test_cycle_finance.py"
@@ -5249,7 +5249,7 @@
   {
     "id": "J-small-cycle-census-nineteen",
     "tag": "EXACT — LEAN VERIFIED",
-    "statement": "No word of length at most 19 is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least 20, and in fact 57 or at least 58 by J-cycle-word-length-fifty-seven-or-ge-fifty-eight. Lengths ≤ 18 are J-small-cycle-census-eighteen; length 19 is the near-convergent 2^19 < 3^12 killed by the residual floor 257 plus cycle_finance_min_two_hundred_fifty_seven (finance_excludes_length_nineteen, packaged as no_cycle_word_length_le_nineteen). This is not a leftover-word census, not a no-cycle-of-any-length theorem, and not a halt theorem. Paper A is unchanged.",
+    "statement": "No word of length at most 19 is a Juggler cycle word at any n ≥ 2; equivalently a nontrivial Juggler cycle, if one exists, has period at least 20, and in fact 57 or at least 58 by J-cycle-word-length-fifty-seven-or-ge-fifty-eight. Lengths ≤ 18 are J-small-cycle-census-eighteen; length 19 is the near-convergent 2^19 < 3^12 killed by the residual floor 257 plus cycle_finance_min_two_hundred_fifty_seven (finance_excludes_length_nineteen, packaged as no_cycle_word_length_le_nineteen). This is a Lean companion to Paper A Theorem 4.6, not a leftover-word census, not a no-cycle-of-any-length theorem, and not a halt theorem.",
     "source": "docs/problems/juggler_cycle_finance.md",
     "lean": "Problems/Juggler/CycleFinance.lean",
     "tests": [
@@ -5407,6 +5407,71 @@
     ],
     "related_conjectures": [
       "juggler_equal_valleys_leftover_killer"
+    ]
+  },
+  {
+    "id": "J-l84-m-ge-three-floor-261",
+    "tag": "REFUTED",
+    "statement": "A cheap refinement of the odd-run height law or the Lean inv-sum cap excludes every Juggler CycleMin of length 84 with at least three odd-runs at residual floor 261. False. At n=261, o=53, m=3, θ≈0.002086: height constant 1 RHS≈0.002193; Lean inv-sum S≈0.012672>θ·61/11≈0.011568; singleton start (T(261) even) plus n+2 valleys RHS≈0.002179. Height first kills m=3 at 273 and every m at 1981; those raises stay PARK. Not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_l84_m3.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_l84_m3.py"
+    ],
+    "related_conjectures": [
+      "juggler_l84_m_ge_three_floor_261"
+    ]
+  },
+  {
+    "id": "J-cycle-ceiling-landing",
+    "tag": "REPARAMETERIZATION",
+    "statement": "On a Juggler even-run of length r from a cycle maximum M onto an odd landing p, even_iter_lt_succ_pow gives M < (p+1)^{2^r}. If M ≥ M_min then monotone integer square-root yields p ≥ isqrt^r(M_min). CycleMin forces p ≥ n, so r cannot exceed the last root that stays ≥ n. This is the named upper cell, not a new defect law. Not a leftover-length exclusion and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_ceiling_finance.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_ceiling_finance.py"
+    ],
+    "related_conjectures": [
+      "juggler_ceiling_finance_leftover_killer"
+    ]
+  },
+  {
+    "id": "J-ceiling-finance-leftover-killer",
+    "tag": "REFUTED",
+    "statement": "The even-run upper cell M < (p+1)^{2^r}, coupled to the odd-run height of the peak, forces enough 1/(x ln x) mass out of the valleys that leftover L=84 at m≥3 dies at residual floor 261 under a proved finance constant. False. At n=261, m=3, the adversarial peak run k=24 has r=14 and landing p=304. Constant 6/5 RHS≈0.002495>θ≈0.002086; Lean inv-sum S≈0.012130>θ·61/11≈0.011568. Those forms first kill at p≥659 and p≥367. Pigeonhole k=18 lands at 3075 and would kill; a leftover word may use k=24. Large m is worse. Not a leftover-word census and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_ceiling_finance.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_ceiling_finance.py"
+    ],
+    "related_conjectures": [
+      "juggler_ceiling_finance_leftover_killer"
+    ]
+  },
+  {
+    "id": "J-second-valley-landing",
+    "tag": "REPARAMETERIZATION",
+    "statement": "On a Juggler CycleMin of length 84 at residual floor 261 the first circuit cannot start OE. After k≥2 odds the even-run odd landing is a corollary of even_iter_lt_succ_pow plus odd parity. At n=261 the first circuit can land at 281 (k=12, r=7). From that valley the next circuit can land at 303 (k=12, r=7). A later valley may start OE once T(v) is even and ≥ n² (cycleMin_even_ge_sq); the witness v=1687 lands at 263. This is the named upper cell, not a new valley-height law. Not a leftover-length exclusion and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_second_valley.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_second_valley.py"
+    ],
+    "related_conjectures": [
+      "juggler_second_valley_leftover_killer"
+    ]
+  },
+  {
+    "id": "J-second-valley-leftover-killer",
+    "tag": "REFUTED",
+    "statement": "CycleMin geometry forces every non-start valley on leftover L=84 at m≥3 to sit at ≥ 281, and that height-split excludes the leftover at residual floor 261 under a proved finance constant. False. Height-split constant 1 first kills at 281 but is not a proved form. Lean inv-sum still misses when both others sit at 281 (S≈0.012126>θ·61/11≈0.011568). The adversarial Lean-allowed triple is 261/281/303: constant 6/5 RHS≈0.002429>θ≈0.002086; inv-sum S≈0.011868. Those forms first kill at n2≥369. A later OE landing at 263 requires a start valley ≥1687 and that triple dies. Not a leftover-word census and not a halt theorem.",
+    "source": "docs/problems/juggler_cycle_second_valley.md",
+    "lean": "",
+    "tests": [
+      "tests/research/juggler_sequence/test_cycle_second_valley.py"
+    ],
+    "related_conjectures": [
+      "juggler_second_valley_leftover_killer"
     ]
   }
 ]

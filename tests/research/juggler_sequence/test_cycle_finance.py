@@ -127,6 +127,7 @@ def test_lean_api_finance_layer():
         assert lean[f"has_api_{name}"] is False, name
     assert lean["cycle_finance_present"] is True
     assert lean["no_extra_finance_file"] is True
+    assert lean["cycle_finance_in_paper_barrel"] is True
     assert lean["not_in_paper_barrel"] is True
 
 
@@ -189,6 +190,9 @@ def test_dossier_boundary():
     dossier = (
         REPO / "docs" / "problems" / "juggler_cycle_finance.md"
     ).read_text(encoding="utf-8")
+    note = (
+        REPO / "docs" / "theory" / "juggler_cycle_finance_note.md"
+    ).read_text(encoding="utf-8")
     paper = (REPO / "formal" / "Problems" / "JugglerPaper.lean").read_text(
         encoding="utf-8"
     )
@@ -200,6 +204,13 @@ def test_dossier_boundary():
     assert "simons-de-weger-2005-collatz-m-cycles" in dossier
     assert "cycle_word_eliahou_leftover" in dossier
     assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in dossier
+    assert "juggler_cycle_finance_note.md" in dossier
     assert "theorem no_cycle_word_any_length" not in dossier
-    assert "CycleFinance" not in paper
-    assert "CycleHeightFinance" not in paper
+    assert "import Problems.Juggler.CycleFinance" in paper
+    assert "import Problems.Juggler.CycleHeightFinance" not in paper
+    assert "cycleMin_finance" in note
+    assert "cycle_word_length_eighty_four_or_ge_eighty_five" in note
+    assert "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five" in note
+    assert "not a halt theorem" in note.lower()
+    assert "JugglerPaper" in note or "Paper A" in note
+    assert "not a second manuscript" in note or "absorbed into Paper A" in note

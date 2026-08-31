@@ -23,6 +23,7 @@ from typing import Any
 
 from research.juggler_sequence.lean_paths import (
     EVEN_COUNT_THREE,
+    JUGGLER_PAPER_BARREL,
     LEFTOVER_FAMILIES,
     SMALL_CYCLE_CENSUS,
     engine_floor_text,
@@ -276,6 +277,8 @@ def lean_api_present() -> dict[str, bool]:
         in even_text,
         "paper_a_has_no_even_count": "theorem no_cycle_word_even_count_le_three"
         not in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
+        "paper_a_imports_even_count": "import Problems.Juggler.EvenCountThree"
+        in JUGGLER_PAPER_BARREL.read_text(encoding="utf-8"),
         "length_eight_open_in_census": "Length eight is open"
         in SMALL_CYCLE_CENSUS.read_text(encoding="utf-8"),
         "families_not_rewritten_as_census": "not a length-8 census"
@@ -295,7 +298,7 @@ def classify(scan: dict[str, Any], lean: dict[str, bool]) -> dict[str, Any]:
         and lean["cycleMax_min_succ_sq_le"]
         and lean["cycle_distinguished_order_succ_sq"]
         and lean["laboratory_assembler_present"]
-        and lean["paper_a_has_no_even_count"]
+        and lean["paper_a_imports_even_count"]
         and lean["no_cycle_word_length_nine"]
         and lean["no_juggler_cycle"]
     )
@@ -392,7 +395,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
         "                        exists_cycleMin; expansion filter",
         "Maximum Phase-0 scope   Necklace inventory lengths 9..16;",
         "                        one Lean even-count theorem; no",
-        "                        length census; no Paper A edit",
+        "                        length census; Paper A Theorem 3.22",
         "```",
         "",
         "## Metadata",
@@ -418,7 +421,7 @@ def render_markdown(payload: dict[str, Any]) -> str:
     lines.extend(
         [
             f"- laboratory assembler present: `{lean.get('laboratory_assembler_present')}`",
-            f"- Paper A has no even-count theorem: `{lean.get('paper_a_has_no_even_count')}`",
+            f"- Paper A imports even-count: `{lean.get('paper_a_imports_even_count')}`",
             "",
             "## Anti-overclaim",
             "",

@@ -273,6 +273,7 @@
     "juggler_reaches_one": true,
     "laboratory_assembler_present": true,
     "paper_a_has_no_even_count": true,
+    "paper_a_imports_even_count": true,
     "length_eight_open_in_census": true,
     "families_not_rewritten_as_census": true,
     "FloorPower_not_rewritten": true

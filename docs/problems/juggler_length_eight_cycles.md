@@ -34,8 +34,8 @@ These are already named: odd-run \(O^7E\), Theorem 3.12 at \(k=8\)
 (and the two rotations onto those leftovers), and the internal-E
 bootstrap words \(OOOOEOOE\), \(OOOEOOOE\), \(OOEOOOOE\). The
 laboratory theorem `no_cycle_word_length_le_eight` assembles them
-together with the length-≤7 census. Paper A Theorem 3.8 remains the
-published bound `no_cycle_word_length_le_seven`. This is not a halt
+together with the length-≤7 census. Paper A Corollary 3.23 implies
+the same exclusion (period at least eleven). This is not a halt
 theorem.
 
 ## Current literature
@@ -121,17 +121,18 @@ remain unproved:
 `no_cycle_word_ooeooooe`, and assembles
 `no_cycle_word_length_le_eight`. `SmallCycleCensus.lean` still
 assembles only through length seven and records that length eight is
-open in that Paper A assembly. No `no_cycle_word_length_eight`. No
-`sorry`. No halt theorem. Paper A is unchanged.
+open in that module. No `no_cycle_word_length_eight`. No
+`sorry`. No halt theorem. Paper A Corollary 3.23 implies period
+at least eleven.
 
 ## Results
 
 Classification **LENGTH_EIGHT_CENSUS_GREEN**.
 
 No `n\ge 2` realizes a cycle word of length at most eight. A
-nontrivial cycle, if one exists, has period at least nine. This is a
-laboratory strengthening of Paper A Theorem 3.8, not a published
-Paper A theorem and not a halt theorem.
+nontrivial cycle, if one exists, has period at least nine. Paper A
+Corollary 3.23 is stronger (period at least eleven). This is not a
+halt theorem.
 
 ## Open questions
 

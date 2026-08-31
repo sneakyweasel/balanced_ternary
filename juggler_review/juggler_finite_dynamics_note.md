@@ -1,7 +1,7 @@
 ---
-title: Small cycles of the Juggler map
+title: Cycles of the Juggler map
 author: Philippe Cochin
-date: 30 August 2026
+date: 31 August 2026
 keywords:
   - Juggler map
   - Juggler sequence
@@ -25,41 +25,33 @@ J(n)=
 It is conjectured that every positive integer eventually reaches \(1\).
 We do not prove that conjecture.
 
-The main theorem is a small-cycle census: the Juggler map has no
-nontrivial cycle of length at most seven. The argument is elementary.
 A realized parity word \(w\) obeys the power envelope
-\(\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}\le n^{3^{\#O(w)}}\), so a cycle word is
-formally expanding. Inverse cells and two next-square thresholds
-exclude every even-terminating expanding word of length at most six
-except two leftover shapes, \(OOOEOE\) and \(OOOOEE\). Those two
-are excluded by a tail inequality for \(n\ge 256\) and a check of
-the \(254\) starts \(2\le n<256\). Length seven is the same two-even
-type: the recorded thresholds and one internal-even bootstrap leave
-two leftover shapes, \(OOOOEOE\) and \(OOOOOEE\), excluded by a
-sharper tail for \(n\ge 14\) and a check of the \(12\) starts
-\(2\le n<14\). Length eight is the first even-terminating expanding
-length outside that census.
-
-The leftover even-terminating two-even words form two infinite
-families, \(O^{k-2}EE\) and \(O^{k-3}EOE\). Both are excluded at
+\(\bigl(J^{|w|}(n)\bigr)^{2^{|w|}}\le n^{3^{\#O(w)}}\), so a cycle word
+is formally expanding. Inverse cells and two next-square thresholds
+give an elementary census: there is no nontrivial cycle of length
+at most seven. The leftover even-terminating two-even words form two
+infinite families, \(O^{k-2}EE\) and \(O^{k-3}EOE\), both excluded at
 every length \(k\ge 6\). On a cycle minimum, a three-even leftover
 with a sufficiently long second gap reduces to those families.
-Seven bunched three-even families,
-\(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\), \(O^aEOOOEE\),
-\(O^aEEOE\), \(O^aEOEOE\), and \(O^aEOOEOE\), are likewise
-excluded. These are family exclusions, not a census at length
-eight or nine.
+Seven bunched three-even families are likewise excluded. Those
+families assemble: no cycle word has fewer than four even letters,
+so a nontrivial cycle has period at least eleven.
 
-The same envelope gives an exact global defect by keeping the floor
-remainders. Zero defect characterizes the monochrome power towers;
-concatenation is a two-term power-gap. The defect is not used as a
-uniform tax — none exists — and is recorded because it makes the
-envelope identity exact.
+The same envelope, with the floor remainders kept, is an exact
+global defect. Zero defect characterizes the monochrome power
+towers. The defect is not a uniform per-step tax — none exists —
+but around a cycle it must finance the formal surplus
+\(3^o-2^L\). The resulting inequality,
+\(n\log n\cdot(3^o-2^L)\le L\cdot 3^o\) at a cycle minimum, restricts
+every remaining period to a near-convergent of \(\ln 2/\ln 3\), or
+to a huge length. Combined with a verified descent floor through
+\(10^6\), there is no period at most \(1053\), and no period at most
+\(10^5\) outside an explicit set of \(397\) near-convergent lengths.
+The first record survivor is length \(1054\).
 
 Even starts and odd-to-even starts have a uniform one- or two-step
-descent. The complementary class is the odd-to-odd starts; many of
-those still descend after a longer word. No density result is stated
-or used here.
+descent. The complementary class is the odd-to-odd starts. No
+density result is stated or used here.
 
 **2020 Mathematics Subject Classification.** 11B83, 37P99, 11Y55.
 
@@ -81,9 +73,9 @@ A word of length \(k\) with \(o\) odd letters has ideal exponent
 \(3^o/2^k\). Floors are applied after every letter, and a word is
 available only when the orbit realizes those parities.
 
-The main theorem of the note is the census: there is no
-nontrivial cycle of period at most six (Theorem 3.6), and none of
-period at most seven (Theorem 3.8). The tool is the
+The elementary first half of the note is a small-cycle census:
+there is no nontrivial cycle of period at most six (Theorem 3.6),
+and none of period at most seven (Theorem 3.8). The tool is the
 finite-word envelope (Theorem 2.2), together with the inverse cells
 and two next-square thresholds. After the census, the same cells
 exclude two infinite leftover families at every expanding length
@@ -91,26 +83,43 @@ exclude two infinite leftover families at every expanding length
 on a cycle minimum (Theorem 3.13), exclude the seven bunched
 three-even families (Theorems 3.14--3.20), and upgrade both
 gapped leftovers from cycle minima to cycle words
-(Theorem 3.21). The exact defect
-(Theorems 2.4--2.6) is the same recurrence with remainders kept
-rather than dropped. It classifies the rigid zero cases and shows
-that a uniform per-step slack tax is impossible; it is not needed
-for the length-six exclusion beyond a short alternative to the
-exponent comparison on mixed words.
+(Theorem 3.21). Those families assemble: no cycle word has
+fewer than four even letters, so a nontrivial cycle has period
+at least eleven (Theorem 3.22). Section 4 excludes later
+periods by financing.
+
+The exact defect (Theorems 2.4--2.6) is the same recurrence with
+remainders kept rather than dropped. It classifies the rigid zero
+cases and shows that a uniform per-step slack tax is impossible.
+Around a cycle the surplus \(\Delta_w(n)=n^{3^o}-n^{2^L}\) is
+exact (Corollary 2.7), and the remainders must finance it. The
+resulting inequality (Theorem 4.4) is
+\[
+n\log n\cdot(3^o-2^L)\le L\cdot 3^o
+\]
+at a cycle minimum. Combined with a verified descent floor through
+\(10^6\), every period outside a near-convergent set of
+\(\ln 2/\ln 3\) is excluded through length \(10^5\)
+(Theorem 4.6). The first record survivor is length \(1054\).
 
 Throughout, \(\mathbb N=\{1,2,3,\ldots\}\). Write \(J^k\) for the
 \(k\)-fold iterate. A nonempty realized word \(w\) with
 \(J^{|w|}(n)=n\) is a *cycle word*. The unique fixed point is \(1\);
-a cycle is *nontrivial* when it contains some \(n\ge 2\).
+a cycle is *nontrivial* when it contains some \(n\ge 2\). A cycle
+word at \(n\) is *minimum-based* when \(n\) is a cycle minimum:
+\(J^j(n)\ge n\) for every \(0\le j<|w|\). Every cycle word has a
+minimum-based rotation.
 
 ### 1.1 Related work
 
 Pickover's later exposition is Chapter 45 of [2]. Weisstein [5]
 records the map, the stopping-time sequences A094670, A094679,
 A095908, and a verification of arrival at \(1\) through \(10^6\).
-OEIS A094716 [6] records extreme heights, including the start
-\(48443\) whose peak has \(972\,463\) digits. Those computations do
-not bound the period and are not used in the proofs below.
+That verification is used in Theorem 4.6, together with an
+independent first-passage computation recorded in Appendix B. OEIS
+A094716 [6] records extreme heights, including the start \(48443\)
+whose peak has \(972\,463\) digits. Those height records do not
+bound the period.
 
 We know of no published exclusion of nontrivial cycles for the exact
 floor-power map \(J\). Prasad--Prasad [7] estimate excursion and
@@ -119,16 +128,25 @@ large-deviation model; those estimates do not apply here. Small-cycle
 censuses are a standard first layer for Collatz-like maps, surveyed
 by Lagarias [8,9]. Those results do not transfer: the branches of
 \(J\) are floor powers rather than affine maps (Crandall [10],
-Matthews--Watts [11]).
+Matthews--Watts [11]). In particular there is no identity of the
+form \(n(2^K-3^p)=C\).
+
+The financing-versus-gap template of Section 4 follows Simons and
+de Weger [13] on Collatz \(m\)-cycles. The proof below is
+independent of that paper: floor-power defects are relatively
+\(O(1/x)\) in logarithms, so one residual floor excludes every
+length that is not a near-convergent of \(\ln 2/\ln 3\). The leftover
+shape — period at least \(X\), or one of a named convergent family —
+is the packaging used by Eliahou [14] for Collatz cycles.
 
 Itinerary-class densities are the subject of a companion manuscript
 [12] and are not used here.
 
 ### 1.2 Verification
 
-The arguments of Sections 2--4 may be read without machine
+The arguments of Sections 2, 3, and 4 may be read without machine
 assistance. An independent Lean check of those arguments lives in the
-repository named in Section 4; the corresponding theorem names are
+repository named in Section 5; the corresponding theorem names are
 collected in Appendix A. Lemma 3.5 uses a table of \(254\) six-step
 evaluations for \(2\le n<256\), one table for each of the two leftover
 words. Lemma 3.7 uses a table of \(12\) seven-step evaluations for
@@ -143,6 +161,16 @@ Theorem 3.15; Theorems 3.17, 3.19, and 3.20 reuse the
 \(254\)-start window at the short expanding prefixes of those
 families. Those tables are finite computations, not a
 termination proof.
+
+Theorem 4.6 uses an exact-integer first-passage run through
+\(10^6\), together with an exact gap table of lengths up to
+\(10^5\). Both live in the repository directory named in Appendix B,
+with SHA-256 checksums recorded there. Weisstein's published
+verification through \(10^6\) [5] is an independent check of the
+same floor. A companion Lean development, using a residual floor
+of \(261\) and a census through length \(19\), concludes that the
+period is \(84\) or at least \(85\); that leftover is recorded in
+Appendix A. Length \(84\) is already excluded by Theorem 4.6.
 
 ## 2. Envelope and defect
 
@@ -1059,50 +1087,278 @@ The original start need not be a cycle minimum. After rotation
 the start is a minimum, so the hypothesis \(y<n\) that blocked
 Theorem 3.13 does not arise. \(\square\)
 
-Length eight remains the first even-terminating expanding length
-outside the census. Theorem 3.12 excludes its two leftover
-orientations, but the census assembly of Theorem 3.8 is not
-extended. Length nine is the first even-terminating expanding
-length that admits three even letters; Theorems 3.13--3.21 treat
-infinite families of those leftovers, not every length-nine word.
+Theorems 3.12--3.21 assemble into an even-count exclusion: no
+cycle word has fewer than four even letters, so a nontrivial
+cycle has period at least eleven (Theorem 3.22). Section 4
+excludes later periods by financing.
+
+A cycle minimum starts with two odd letters, ends with an even
+letter, and is formally expanding (Theorem 3.2). Every integer
+\(2\le n<12\) reaches \(1\), so a cycle minimum is at least
+\(12\). Write \(e\) for the number of even letters.
+
+**Theorem 3.22 (even-count).**
+No word with fewer than four even letters is a cycle word at any
+\(n\ge 2\). Equivalently, a nontrivial cycle word has at least
+four even letters.
+
+*Proof.* Every cycle word has a minimum-based rotation, with the
+same even-count. It is therefore enough to exclude
+minimum-based words. Such a word starts \(OO\), ends \(E\), and
+is expanding.
+
+If \(e=0\), the word is all-odd and cannot return, as in
+Theorem 3.6.
+
+If \(e=1\), the word is \(O^aE\) with \(a\ge 2\). The case
+\(a=2\) is \(OOE\), excluded in Theorem 3.6. The cases
+\(a\ge 3\) are Lemma 3.4(v).
+
+If \(e=2\), the word is \(O^aEO^cE\) with \(a\ge 2\). A last
+odd-run \(c\ge 2\) is an internal even letter followed by
+\(OO\) or \(OOO\). Lemma 3.4 at the cycle minimum
+(\(n\ge 12\)) contradicts the last-even cell. The remaining
+shapes are \(O^aEE\) and \(O^aEOE\). Expansion forces
+\(a\ge 4\) and \(a\ge 3\) respectively, so both are
+Theorem 3.12.
+
+If \(e=3\), the word is \(O^aEO^bEO^cE\) with \(a\ge 2\).
+Again \(c\ge 2\) is the internal-even bootstrap. The remaining
+last runs are \(c=0\) and \(c=1\). For \(c=0\) and
+\(b\ge 4\) the word is a gapped leftover \(O^aEO^bEE\),
+excluded by Theorem 3.21. For \(c=0\) and \(b\le 3\) the
+word is one of \(O^aEEE\), \(O^aEOEE\), \(O^aEOOEE\),
+\(O^aEOOOEE\), excluded by Theorems 3.14--3.17 once
+expansion supplies the stated lower bounds on \(a\). For
+\(c=1\) and \(b\ge 3\) the word is a gapped leftover
+\(O^aEO^bEOE\), excluded by Theorem 3.21. For \(c=1\) and
+\(b\le 2\) the word is one of \(O^aEEOE\), \(O^aEOEOE\),
+\(O^aEOOEOE\), excluded by Theorems 3.18--3.20.
+
+Thus \(e\le 3\) is impossible. \(\square\)
+
+**Corollary 3.23.**
+A nontrivial cycle, if one exists, has period at least eleven.
+
+*Proof.* Theorem 3.22 gives four even letters, hence
+\(o\le L-4\). Formal expansion is \(2^L<3^o\le 3^{L-4}\).
+The comparison \(2^L<3^{L-4}\) first holds at \(L=11\).
+\(\square\)
+
+In particular there is no cycle of length eight, nine, or ten.
 A single coarse successor power \((n+1)^K\) cannot exclude the
 four families of Theorems 3.17--3.20 by the same cell used for
-Theorems 3.15 and 3.16: at the first expanding prefix length, the
-exponent \(K\cdot 2^a\) meets or exceeds \(3^a\) for those four
-words, so those arguments use a tight last-odd cell. No exclusion
-of cycles of length eight or more is claimed. The census stops at
-length seven; no exclusion at length eight is claimed.
+Theorems 3.15 and 3.16: at the first expanding prefix length,
+the exponent \(K\cdot 2^a\) meets or exceeds \(3^a\) for those
+four words, so those arguments use a tight last-odd cell.
 
-## 4. Remarks
+## 4. Cycle finance
+
+A cycle word is formally expanding (Theorem 3.2), yet the orbit
+returns exactly. The multiplicative surplus \(3^o-2^L\) must be
+financed by the floor remainders, which are relatively \(O(1/x)\)
+in logarithms. The resulting bound on the cycle minimum excludes
+every period that is not a near-convergent of \(\ln 2/\ln 3\), once
+a residual floor is known.
+
+Throughout this section write \(L=|w|\) and \(o=\#O(w)\) for a
+cycle word \(w\) based at a cycle minimum \(n\ge 2\). Natural
+logarithms are written \(\log\). The unique one-step fibres of
+Section 3 give, for every state \(x\ge 1\) with image
+\(y=J(x)\),
+\[
+y^2\le x^e<(y+1)^2,
+\qquad
+e=\begin{cases}1,&x\text{ even},\\3,&x\text{ odd}.\end{cases}
+\]
+
+**Lemma 4.1 (dyadic-cell logarithm).**
+If \(z,y\ge 1\) and \(z<(y+1)^2\), then
+\(\log z\le 2\log y+2/y\).
+
+*Proof.* The hypothesis gives \(\log z\le 2\log(y+1)\). The
+inequality \(\log(1+u)\le u\) for \(u>0\) yields
+\(\log(y+1)=\log y+\log(1+1/y)\le\log y+1/y\). \(\square\)
+
+**Lemma 4.2 (one-step bounds).**
+Let \(x\ge 2\) and \(y=J(x)\). If \(x\) is even, then
+\(\log x\le 2\log y+2/y\). If \(x\) is odd, then
+\(3\log x\le 2\log y+2/y\).
+
+*Proof.* The even cell is \(y^2\le x<(y+1)^2\). The cell logarithm
+lemma on \(z=x\) is the first claim. The odd cell is
+\(y^2\le x^3<(y+1)^2\). The same lemma on \(z=x^3\) gives
+\(\log(x^3)\le 2\log y+2/y\). \(\square\)
+
+On a cycle minimum every proper prefix is non-contracting: a
+prefix with \(3^{\#O}<2^{k}\) would satisfy
+\(J^k(n)<n\) by Corollary 2.3, contradicting minimality. Thus
+\(2^k\le 3^{o_k}\) for every prefix of length \(k\), where
+\(o_k\) is the odd count of that prefix.
+
+**Lemma 4.3 (unrolled envelope).**
+Write \(x_k=J^k(n)\) and \(o_k\) for the odd count of the length-\(k\)
+prefix. For every \(0\le k\le L\),
+\[
+3^{o_k}\log n
+\le
+2^k\log x_k
++\frac{k\,3^{o_k}}{n}.
+\]
+
+*Proof.* The case \(k=0\) is an equality. Suppose the claim holds
+at \(k<L\), and write \(x=x_k\) and \(y=x_{k+1}\). Minimality gives
+\(n\le y\), and the prefix law gives \(2^{k+1}\le 3^{o_{k+1}}\),
+hence
+\[
+\frac{2^{k+1}}{y}\le\frac{3^{o_{k+1}}}{n}.
+\]
+
+If the next letter is even, then \(o_{k+1}=o_k\) and the one-step
+bound gives \(\log x\le 2\log y+2/y\). Multiply by \(2^k\) and add the
+inductive remainder:
+\[
+3^{o_k}\log n
+\le
+2^{k+1}\log y
++\frac{2^{k+1}}{y}
++\frac{k\,3^{o_k}}{n}
+\le
+2^{k+1}\log y
++\frac{(k+1)\,3^{o_k}}{n}.
+\]
+
+If the next letter is odd, then \(o_{k+1}=o_k+1\). Multiply the
+inductive bound by \(3\) and apply the one-step bound in the form
+\(3\log x\le 2\log y+2/y\):
+\[
+3^{o_k+1}\log n
+\le
+2^{k+1}\log y
++\frac{2^{k+1}}{y}
++\frac{k\,3^{o_k+1}}{n}
+\le
+2^{k+1}\log y
++\frac{(k+1)\,3^{o_k+1}}{n}.
+\]
+This is the claim at \(k+1\). \(\square\)
+
+**Theorem 4.4 (finance).**
+Let \(w\) be a cycle word of length \(L\) with \(o\) odd letters,
+based at a cycle minimum \(n\ge 2\). Then
+\[
+n\log n\cdot(3^o-2^L)\le L\cdot 3^o.
+\]
+
+*Proof.* Apply Lemma 4.3 at \(k=L\). Periodicity gives
+\(x_L=n\) and \(o_L=o\), so
+\[
+3^o\log n\le 2^L\log n+\frac{L\cdot 3^o}{n}.
+\]
+The word is formally expanding, so \(3^o>2^L\). Rearranging and
+multiplying by \(n\) is the claim. \(\square\)
+
+The only analytic input is \(\log(1+u)\le u\). The Lean form is
+exactly Theorem 4.4 (constant \(1\)).
+
+The computational table of Theorem 4.6 uses a weaker per-step
+bound, valid on every cycle because every start below \(12\)
+reaches \(1\) (so every cycle state is at least \(12\)). For a
+state \(x\) with image \(y=J(x)\ge 12\), the relative defect
+\(\delta=(x^e-y^2)/x^e\) satisfies \(\delta\le 2/y\le 1/6\).
+Writing \(\varepsilon=-\tfrac12\log(1-\delta)\) and using
+\(-\log(1-\delta)\le\tfrac65\delta\) on \([0,1/6]\) gives
+\(\varepsilon\le(6/5)/y\). Unrolling
+\(t_{i+1}=(e_i/2)\,t_i-\varepsilon_i\) around the cycle then yields
+\[
+1-\frac{2^L}{3^o}
+\le
+\frac65\sum_{i=1}^{L}\frac{1}{x_i\log x_i}
+\le
+\frac65\cdot\frac{L}{n\log n}.
+\]
+This is Theorem 4.4 with an extra factor \(6/5\) on the right, so
+it is conservative relative to constant \(1\).
+
+The right-hand side is largest at the least admissible odd count
+\(o_{\min}(L)=\min\{o:3^o>2^L\}\). Define
+\[
+B(L)=\frac65\cdot\frac{L\cdot 3^{o_{\min}(L)}}{3^{o_{\min}(L)}-2^L},
+\qquad
+n_{\max}(L)=\max\{n\in\mathbb N:n\log n\le B(L)\}.
+\]
+
+**Corollary 4.5.**
+If every integer \(2\le n\le N_0\) reaches \(1\), then no
+nontrivial cycle of length \(L\) exists whenever
+\(n_{\max}(L)\le N_0\).
+
+*Proof.* A periodic state never reaches \(1\), so every cycle
+state is at least \(N_0+1\). Theorem 4.4 in the \(6/5\) form
+forces the minimum to satisfy \(n\log n\le B(L)\), hence
+\(n\le n_{\max}(L)\). \(\square\)
+
+Record values include
+\(n_{\max}(19)=297\), \(n_{\max}(84)=5599\),
+\(n_{\max}(569)=58398\), and \(n_{\max}(1054)=1997197\). The
+function \(n_{\max}\) is large only when \(3^{o_{\min}}/2^L\) is
+close to \(1\), i.e. when \(o_{\min}/L\) is a one-sided
+approximation to \(\log 2/\log 3\).
+
+**Theorem 4.6 (computational leftover).**
+Every integer \(2\le n\le 10^6\) reaches \(1\). Consequently
+there is no nontrivial Juggler cycle of length at most \(1053\),
+and no cycle of any length \(L\le 10^5\) outside an explicit set
+of \(397\) near-convergent lengths of \(\ln 2/\ln 3\). If a
+nontrivial cycle exists, its period is one of those \(397\)
+lengths, or at least \(10^5\). The first record survivor is
+length \(1054\).
+
+*Proof.* The floor is a first-passage descent induction: every
+start \(2\le n\le 10^6\) realizes a finite word with image
+strictly below the start, and strong induction on the image
+reaches \(1\). The longest first passage in the window has
+\(253\) steps (seed \(78901\)); every iterate is an exact
+integer. Weisstein [5] records the same floor independently.
+
+The gap table computes \(o_{\min}(L)\) and \(n_{\max}(L)\) by
+exact integer arithmetic for every \(1\le L\le 10^5\). Corollary
+4.5 at \(N_0=10^6\) excludes every \(L\) with
+\(n_{\max}(L)\le 10^6\). The surviving lengths in that range are
+exactly \(397\) near-convergents; the contiguous excluded prefix
+is \(L\le 1053\). The record (one-sided best-approximation)
+lengths in range are
+\[
+1,\;3,\;11,\;19,\;84,\;569,\;1054,\;25781,\;50508,
+\]
+with
+\(n_{\max}=3,13,52,297,5599,58398,1997197,67410774,420161535\).
+The first six of those already satisfy \(n_{\max}\le 10^6\) and
+are excluded. The first survivor is \(L=1054\). The remaining
+exceptions are multiples of \(1054\) and combinations of the
+convergent lengths; the full list, with checksums, is Appendix B.
+\(\square\)
+
+The former record lengths \(84\) and \(569\) are therefore not
+live candidates at this floor. An independent Lean development,
+using the residual floor \(261\) and a census through length
+\(19\), concludes that the period is \(84\) or at least \(85\).
+That statement is recorded in Appendix A. Relative to Theorem
+4.6 it is formalization lag.
+
+## 5. Remarks
 
 A start \(n\ge 2\) has a *descent certificate* if there exists a
-realized finite word \(w\) with \(J^{|w|}(n)<n\).
-
-**Theorem 4.1 (uniform short certificates).**
-Let \(n\ge 2\).
-
-1. If \(n\) is even, then the one-letter word \(E\) is a descent
-   certificate: \(J(n)=\lfloor\sqrt n\rfloor<n\).
-2. If \(n\) is odd and \(J(n)\) is even, then the two-letter word
-   \(OE\) is a descent certificate.
-
-*Proof.* For (1), \(\lfloor\sqrt n\rfloor\le\sqrt n<n\) for \(n\ge 2\).
-For (2), the word \(OE\) is realized by hypothesis, and
-\[
-J^2(n)=\bigl\lfloor\sqrt{\lfloor n^{3/2}\rfloor}\bigr\rfloor
-\le n^{3/4}<n
-\]
-for \(n\ge 2\). \(\square\)
-
-The starts not covered by Theorem 4.1 are exactly the odd-to-odd
-starts. In particular, if \(n\ge 2\) has no descent certificate of
-any length, then \(n\) is odd-to-odd. The converse is false: many
-odd-to-odd starts descend after a longer word. If every start above
-\(1\) has some descent certificate, ordinary strong induction yields
-arrival at \(1\). That hypothesis is not proved.
+realized finite word \(w\) with \(J^{|w|}(n)<n\). Even starts
+realize \(E\): \(\lfloor\sqrt n\rfloor<n\). An odd start with even
+image realizes \(OE\), and \(J^2(n)\le n^{3/4}<n\). The starts
+not covered by those two words are exactly the odd-to-odd starts.
+If every start above \(1\) has some descent certificate, ordinary
+strong induction yields arrival at \(1\). That hypothesis is not
+proved.
 
 The first odd-to-odd image expands, so ordinary strong induction
-cannot fire on the complement of Theorem 4.1. A uniform run bound on
+cannot fire on the odd-to-odd class. A uniform run bound on
 expanding blocks is likewise unavailable: four consecutive expanding
 blocks occur already at
 \[
@@ -1114,15 +1370,13 @@ blocks occur already at
 and the relative slack of a single letter tends to \(0\) with the
 state (Section 2).
 
-> No theorem forces every exact integer state into a contracting
-> prefix. In particular, it is open whether every start reaches
-> \(1\), and open whether a nontrivial cycle of length eight or more
-> exists.
+It is open whether every start reaches \(1\), and open whether a
+cycle of leftover length exists.
 
-Lean proofs of the theorems of Sections 2--4 are in the
+Lean proofs of the theorems of Sections 2, 3, and 4 are in the
 [project repository](https://github.com/sneakyweasel/balanced_ternary/).
 From a clone, `lake build Problems.JugglerPaper` builds only the
-modules named in Appendix A.
+modules named in Appendix A. Theorem 4.6 is a named computation.
 
 ## Appendix A. Lean names
 
@@ -1162,10 +1416,109 @@ names are the corresponding Lean theorems in
 | Theorem 3.19 | `no_cycle_word_three_even_eoeoe` |
 | Theorem 3.20 | `no_cycle_word_three_even_eooeoe` |
 | Theorem 3.21 | `no_cycle_word_gapped_three_even_ee`, `no_cycle_word_gapped_three_even_eoe` |
-| Theorem 4.1 | `even_finiteProgress`, `odd_even_finiteProgress` |
+| Theorem 3.22 | `no_cycle_word_even_count_le_three` |
+| Corollary 3.23 | `cycle_word_length_ge_eleven` |
+| Lemma 4.1 | `log_le_two_log_add` |
+| Lemma 4.2 | `log_step_even`, `log_step_odd` |
+| Lemma 4.3 | `cycleMin_log_envelope` |
+| Theorem 4.4 | `cycleMin_finance` |
+| short certificates (Section 5) | `even_finiteProgress`, `odd_even_finiteProgress` |
 | no certificate \(\Rightarrow\) odd-to-odd | `no_finiteProgress_implies_odd_odd` |
 | induction to \(1\) | `reachesOne_of_all_finiteProgress` |
 | four-block chain | `four_block_pe_1999` |
+
+The following names are a Lean companion, not theorems of the
+text. They use a residual floor of \(261\) and a census through
+length \(19\). Relative to Theorem 4.6 they are formalization lag.
+
+| Companion | Lean |
+|---|---|
+| residual floor \(261\) | `reachesOne_of_lt_two_hundred_sixty_one` |
+| census through length \(19\) | `no_cycle_word_length_le_nineteen` |
+| period \(84\) or \(\ge 85\) | `cycle_word_length_eighty_four_or_ge_eighty_five` |
+| Eliahou packaging | `cycle_word_eliahou_leftover` |
+
+## Appendix B. Exceptional lengths
+
+The record near-convergents of \(\ln 2/\ln 3\) through length
+\(10^5\), with the \(6/5\) bound \(n_{\max}\) of Section 4, are
+
+| \(L\) | \(o_{\min}\) | \(n_{\max}\) |
+|---:|---:|---:|
+| \(1\) | \(1\) | \(3\) |
+| \(3\) | \(2\) | \(13\) |
+| \(11\) | \(7\) | \(52\) |
+| \(19\) | \(12\) | \(297\) |
+| \(84\) | \(53\) | \(5599\) |
+| \(569\) | \(359\) | \(58398\) |
+| \(1054\) | \(665\) | \(1997197\) |
+| \(25781\) | \(16266\) | \(67410774\) |
+| \(50508\) | \(31867\) | \(420161535\) |
+
+At the floor \(N_0=10^6\) the first six rows are excluded. The
+surviving exceptional lengths through \(10^5\) number \(397\):
+the \(94\) multiples of \(1054\) in that range, together with
+combinations of the convergent lengths (for instance
+\(23757=22\cdot 1054+569\)). They are, in increasing order,
+
+1054, 2108, 3162, 4216, 5270, 6324, 7378, 8432, 9486, 10540,
+11594, 12648, 13702, 14756, 15810, 16864, 17918, 18972, 20026, 21080,
+22134, 23188, 23757, 24242, 24811, 25296, 25781, 25865, 26350, 26835,
+26919, 27404, 27889, 27973, 28458, 28943, 29027, 29512, 29997, 30081,
+30566, 31051, 31135, 31620, 32105, 32189, 32674, 33159, 33243, 33728,
+34213, 34297, 34782, 35267, 35351, 35836, 36321, 36405, 36890, 37375,
+37459, 37944, 38429, 38513, 38998, 39483, 39567, 40052, 40537, 40621,
+41106, 41591, 41675, 42160, 42645, 42729, 43214, 43699, 43783, 44268,
+44753, 44837, 45322, 45807, 45891, 46376, 46460, 46861, 46945, 47430,
+47514, 47915, 47999, 48484, 48568, 48969, 49053, 49538, 49622, 50023,
+50107, 50508, 50592, 50676, 51077, 51161, 51562, 51646, 51730, 52131,
+52215, 52616, 52700, 52784, 53185, 53269, 53670, 53754, 53838, 54239,
+54323, 54724, 54808, 54892, 55293, 55377, 55778, 55862, 55946, 56347,
+56431, 56832, 56916, 57000, 57401, 57485, 57886, 57970, 58054, 58455,
+58539, 58940, 59024, 59108, 59509, 59593, 59994, 60078, 60162, 60563,
+60647, 61048, 61132, 61216, 61617, 61701, 62102, 62186, 62270, 62671,
+62755, 63156, 63240, 63324, 63725, 63809, 64210, 64294, 64378, 64779,
+64863, 65264, 65348, 65432, 65833, 65917, 66318, 66402, 66486, 66887,
+66971, 67372, 67456, 67540, 67941, 68025, 68426, 68510, 68594, 68995,
+69079, 69163, 69480, 69564, 69648, 70049, 70133, 70217, 70534, 70618,
+70702, 71103, 71187, 71271, 71588, 71672, 71756, 72157, 72241, 72325,
+72642, 72726, 72810, 73211, 73295, 73379, 73696, 73780, 73864, 74265,
+74349, 74433, 74750, 74834, 74918, 75319, 75403, 75487, 75804, 75888,
+75972, 76289, 76373, 76457, 76541, 76858, 76942, 77026, 77343, 77427,
+77511, 77595, 77912, 77996, 78080, 78397, 78481, 78565, 78649, 78966,
+79050, 79134, 79451, 79535, 79619, 79703, 80020, 80104, 80188, 80505,
+80589, 80673, 80757, 81074, 81158, 81242, 81559, 81643, 81727, 81811,
+82128, 82212, 82296, 82613, 82697, 82781, 82865, 83182, 83266, 83350,
+83667, 83751, 83835, 83919, 84236, 84320, 84404, 84721, 84805, 84889,
+84973, 85290, 85374, 85458, 85775, 85859, 85943, 86027, 86344, 86428,
+86512, 86829, 86913, 86997, 87081, 87398, 87482, 87566, 87883, 87967,
+88051, 88135, 88452, 88536, 88620, 88937, 89021, 89105, 89189, 89506,
+89590, 89674, 89991, 90075, 90159, 90243, 90560, 90644, 90728, 91045,
+91129, 91213, 91297, 91614, 91698, 91782, 91866, 92099, 92183, 92267,
+92351, 92668, 92752, 92836, 92920, 93153, 93237, 93321, 93405, 93722,
+93806, 93890, 93974, 94207, 94291, 94375, 94459, 94776, 94860, 94944,
+95028, 95261, 95345, 95429, 95513, 95830, 95914, 95998, 96082, 96315,
+96399, 96483, 96567, 96884, 96968, 97052, 97136, 97369, 97453, 97537,
+97621, 97938, 98022, 98106, 98190, 98423, 98507, 98591, 98675, 98992,
+99076, 99160, 99244, 99477, 99561, 99645, 99729.
+
+The same list is the `lengths` array of the object with
+`"floor": 1000000` in
+`data/research/juggler/cycle_finance/exceptions.json`.
+The SHA-256 of that array, serialized as a JSON list of integers
+with no spaces, is
+`6d2c75fb6165f41123164122bd799e598c6ce0ba79d79d3af909cf400551f72c`.
+The SHA-256 of the whole file `exceptions.json` is
+`31f589e2353a26b13503d9fba603565fe3e6319030f6e429d8a2fb440e063c0e`.
+The SHA-256 of the first-passage file `floor.json` in the same
+directory is
+`5b1ce1eec61301cf5b4f969cd5b58954255194e5c7b21c08a518d71679af87fc`.
+Both files are regenerated by
+`python -m research.juggler_sequence.cycle_finance`.
+The finite leftover tables of Section 3 are the Lean
+`native_decide` evaluations named in Appendix A
+(`LeftoverEval.lean`, `LeftoverShort.lean`,
+`LeftoverFamilies.lean`).
 
 ## Acknowledgments
 
@@ -1173,8 +1526,10 @@ I used large language models extensively while drafting and revising
 the text, organizing companion notes, and as an interactive assistant
 for Lean statements, tests, and literature records. The models are
 not authors. Lean theorems and named computations are the
-certificates for the claims of Sections 2--4, including the family
-theorems 3.12--3.21. I take full
+certificates for the claims of Sections 2, 3, and 4, including
+the family theorems 3.12--3.21, the even-count assembly
+Theorem 3.22, and the finance inequality
+Theorem 4.4. I take full
 responsibility for the contents.
 
 ## References
@@ -1219,3 +1574,11 @@ responsibility for the contents.
 12. P. Cochin, “Parity equidistribution of nested floor powers, with
     descent applications to the Juggler map,” companion manuscript,
     in preparation, 2026.
+13. J. L. Simons and B. M. M. de Weger, “Theoretical and
+    computational bounds for \(m\)-cycles of the \(3n+1\)-problem,”
+    *Acta Arith.* 117 (2005), 51--70.
+    [doi:10.4064/aa117-1-3](https://doi.org/10.4064/aa117-1-3).
+14. S. Eliahou, “The \(3x+1\) problem: new lower bounds on
+    nontrivial cycle lengths,” *Discrete Math.* 118 (1993),
+    45--56.
+    [doi:10.1016/0012-365X(93)90052-U](https://doi.org/10.1016/0012-365X(93)90052-U).

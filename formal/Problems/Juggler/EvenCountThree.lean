@@ -14,9 +14,10 @@ two-even leftovers (Theorem 3.12), the internal-E bootstrap, the
 seven bunched leftovers (Theorems 3.14--3.20), and the gapped
 leftovers (Theorems 3.13 and 3.21).
 
-This is an even-count theorem, not a length-9 or length-10 census.
-It is not imported by `Problems.JugglerPaper`. Not a halt theorem
-and not an exclusion of four-even leftovers. First-even overshoot
+This is Paper A Theorem 3.22 / Corollary 3.23, imported by
+`Problems.JugglerPaper`. It is an even-count theorem, not a
+length-9 or length-10 word census. Not a halt theorem and not
+an exclusion of four-even leftovers. First-even overshoot
 sharpens the extrema package to `M ≥ (m+1)^2`.
 -/
 

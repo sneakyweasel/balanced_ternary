@@ -2758,7 +2758,7 @@ take full responsibility for the contents.
     Beatty sequences,” *Math. Res. Lett.* 13 (2006), 539–547.
 21. D. Glasscock, “Solutions to certain linear equations in
     Piatetski-Shapiro sequences,” *Acta Arith.* 177 (2017), 39–52.
-22. P. Cochin, “Small cycles of the Juggler map,” companion
+22. P. Cochin, “Cycles of the Juggler map,” companion
     manuscript, 2026.
 23. C. Müllner and L. Spiegelhofer, “Normality of the Thue–Morse
     sequence along Piatetski-Shapiro sequences, II,” *Israel J. Math.*

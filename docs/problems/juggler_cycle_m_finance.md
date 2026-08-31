@@ -2,6 +2,9 @@
 
 Status: **EXPLORATORY**
 
+Compiled leftover written as
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+
 Standalone application phase on the Juggler floor-power map, on the
 **cycle half** of the `cycles_or_escapes` split. It transfers the
 Simons–de Weger m-cycle / circuit template — log-unroll of
@@ -220,8 +223,14 @@ refinement
 kills length \(84\) as a 1-cycle or 2-cycle in Lean. Joint-minima
 kills no \(m\) for \(L=84\) at the live floor. Raising the
 residual floor to \(1981\) (all \(m\)) or \(4756\) (global
-finance) is **PARK**. Length \(84\) with \(m\ge 3\) still needs a
-different argument.
+finance) is **PARK**. Excluding length \(84\) at \(m\ge 3\) at
+floor \(261\) is **REFUTED**
+([juggler_cycle_l84_m3.md](juggler_cycle_l84_m3.md)).
+The upper cell \((p+1)^{2^r}\) is also **REFUTED** as a
+leftover-killer
+([juggler_cycle_ceiling_finance.md](juggler_cycle_ceiling_finance.md)).
+A second-valley bound \(\ge 281\) is also **REFUTED**
+([juggler_cycle_second_valley.md](juggler_cycle_second_valley.md)).
 
 ## Decision
 
@@ -233,8 +242,10 @@ every length-19 1-cycle. Adversarial circuit-partition is a
 reparameterization and is not promoted. No Lean in this phase. Paper
 A is unchanged. Not a halt theorem.
 
-Best next question: exclude length \(84\) at \(m\ge 3\) at floor
-\(261\), or stop and write the finance theorem as it stands. The
+Best next question: answered in
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
+Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED**
+([juggler_cycle_l84_m3.md](juggler_cycle_l84_m3.md)). The
 floor-\(257\) evaluation, the height leftover, and the PARK of
 the \(4756\) residual-floor campaign are recorded in
 [juggler_cycle_position_finance.md](juggler_cycle_position_finance.md).

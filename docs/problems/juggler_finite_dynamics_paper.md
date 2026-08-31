@@ -1,13 +1,15 @@
 # Juggler finite-dynamics paper synthesis
 
-Author: Philippe Cochin. Date: 30 August 2026.
-Status: **PAPER_CANDIDATE**. The publication draft is dated 30 August 2026
-and is not submitted. After the publication-readiness rewrite it is a
-standalone math note titled *Small cycles of the Juggler map*, centered
-on the length-\(\le 7\) census; leftover families by even-count
-(Theorems 3.12--3.21) sit after that census and do not extend it.
-The envelope is the tool, the defect is exact bookkeeping, and the
-short certificates are a remark.
+Author: Philippe Cochin. Date: 31 August 2026.
+Status: **PAPER_CANDIDATE**. The publication draft is dated 31 August 2026
+and is not submitted. After the finance merge it is a standalone
+math note titled *Cycles of the Juggler map*: the length-\(\le 7\)
+census and leftover families (Theorems 3.12--3.21) assemble as
+Theorem 3.22: no cycle word has fewer than four even letters,
+so the period is at least eleven. Section 4 is the financing
+inequality and the floor-\(10^6\) leftover. The envelope is the
+tool, the defect is exact bookkeeping, and the short certificates
+are a remark.
 
 This branch opens no new attack and makes no claim that every positive
 integer reaches \(1\).
@@ -30,8 +32,12 @@ math note:
 > families at every expanding length, transport that comparison across
 > a first even letter on a cycle minimum, and exclude the seven bunched
 > three-even families. Even and odd-to-even starts carry uniform short
-> certificates. No density result is stated in Paper A. No length-8
-> or length-9 census is stated.
+> certificates. A financing inequality then restricts every
+> remaining period to a near-convergent of \(\ln 2/\ln 3\), or to
+> a huge length. No density result is stated in Paper A. The
+> leftover families assemble as an even-count exclusion
+> (Theorem 3.22): a nontrivial cycle has period at least eleven.
+> Later periods are Section 4.
 
 Every substantive claim must be linked to one of:
 
@@ -119,7 +125,12 @@ added to `bt.*`.
 - small-cycle census: no cycle word of length at most seven —
   **EXACT — LEAN VERIFIED** (`no_cycle_word_length_le_six`,
   `no_cycle_word_length_le_seven`, ledgers `J-small-cycle-census` and
-  `J-small-cycle-census-seven`; length eight open as a census);
+  `J-small-cycle-census-seven`; strengthened by Theorem 3.22);
+- even-count assembly: no cycle word with fewer than four evens,
+  so the period is at least eleven —
+  **EXACT — LEAN VERIFIED** (Paper A Theorem 3.22 / Corollary 3.23;
+  `no_cycle_word_even_count_le_three`,
+  `cycle_word_length_ge_eleven`; ledger `J-even-count-le-three`);
 - two-even leftover families \(O^{k-2}EE\) and \(O^{k-3}EOE\) —
   **EXACT — LEAN VERIFIED** (Paper A Theorem 3.12; ledgers
   `J-two-even-leftover-ee`, `J-two-even-leftover-eoe`);
@@ -131,6 +142,13 @@ added to `bt.*`.
   **EXACT — LEAN VERIFIED** (Paper A Theorems 3.14--3.20);
 - gapped leftovers as cycle words —
   **EXACT — LEAN VERIFIED** (Paper A Theorem 3.21);
+- finance inequality at a cycle minimum —
+  **EXACT — LEAN VERIFIED** (Paper A Theorem 4.4; `cycleMin_finance`);
+- per-length exclusion given a floor —
+  **EXACT — HUMAN PROOF** (Paper A Corollary 4.5);
+- computational leftover at floor \(10^6\) —
+  **COMPUTATIONALLY VERIFIED** (Paper A Theorem 4.6; no period
+  \(\le 1053\); \(397\) exceptions through \(10^5\));
 - cycle surplus \(\Delta_w(n)=n^{3^{\#O(w)}}-n^{2^{|w|}}\) and the
   per-step slack-scale bound \(x^e<(J(x)+1)^2\) —
   **EXACT — LEAN VERIFIED** (`image_eq_start_defectRatio`,
@@ -201,9 +219,10 @@ floor reductions under Paper B, over the reals, including the
 double-gap identity used by the kernel theorem; the analytic estimates
 themselves are human proofs and stay outside Lean. The Paper A review
 object is `formal/Problems/JugglerPaper.lean` and does not import
-`GapCells`. It now also imports the leftover-family modules
+`GapCells` or `CycleHeightFinance`. It imports `CycleFinance` for
+Theorem 4.4, the leftover-family modules
 `LeftoverTwoEven`, `FirstETransport`, `BunchedEEE`, `BunchedEOEE`,
-and `BunchedEOOEE`. The formal map is
+and `BunchedEOOEE`, and `EvenCountThree` for Theorem 3.22. The formal map is
 [juggler_finite_dynamics_formalization.md](../theory/juggler_finite_dynamics_formalization.md).
 The paper-central theorem metadata is recorded in
 `docs/theory/theorem_ledger.json` and the generated ledger. No `sorry` or
@@ -220,10 +239,12 @@ standalone checkability. The stack now consists of:
 - [Paper A](../theory/juggler_finite_dynamics_note.md) — power
   envelopes, exact defects, cycle restrictions, the small-cycle
   census (Theorems 3.6 and 3.8), leftover families
-  (Theorems 3.12--3.21), short certificates (Theorem 4.1). The
-  complement of those certificates is the odd-to-odd class. Lean
-  is an independent check; no density claims; no length-8 or
-  length-9 census; submission candidate;
+  (Theorems 3.12--3.21), even-count assembly (Theorem 3.22:
+  period at least eleven), finance (Theorems 4.4--4.6), short
+  certificates as a remark. The complement of those
+  certificates is the odd-to-odd class. Lean is an independent
+  check except Theorem 4.6; no density claims; leftover
+  \(84\) is Appendix A companion; submission candidate;
 - [Paper B](../theory/juggler_parity_discrepancy_note.md) — parity
   equidistribution of nested floor powers: exact linearization,
   the kernel theorem (Theorem 5.3, \(\delta=1/96\), at
@@ -279,12 +300,15 @@ Status: Paper A `PAPER_CANDIDATE`; Paper B `WORKING_DRAFT`
 implication, \(\delta=1/96\); pending one independent check of
 Section 5).
 
-Paper A is a standalone Lean-backed math note titled *Small cycles
-of the Juggler map*: the length-\(\le7\) census is the theorem; the
-envelope, cells, and thresholds are the tools; leftover families
-by even-count (Theorems 3.12--3.21) sit after the census and do
-not extend it; the defect identity is exact bookkeeping, not a
-uniform tax. Short certificates and the remaining gap are remarks.
+Paper A is a standalone Lean-backed math note titled *Cycles of
+the Juggler map*: the length-\(\le7\) census and leftover families
+(Theorems 3.12--3.21) assemble as Theorem 3.22 (even-count at
+most three is impossible, so the period is at least eleven);
+Section 4 is the financing inequality and the floor-\(10^6\)
+leftover; the envelope, cells, and thresholds are the tools; the
+defect identity is exact bookkeeping, not a uniform tax. Short
+certificates are a remark in Section 5. Lean leftover \(84\) is
+Appendix A companion.
 Related work now includes Pickover 2002, Weisstein, and OEIS
 A094716. The Smith letter and the 2026 webpage record through
 \(7\,110\,200\) were dropped from the note. Python listings were

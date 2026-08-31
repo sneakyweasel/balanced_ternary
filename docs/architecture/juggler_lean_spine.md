@@ -9,7 +9,7 @@ This note is not a research attack.
 `map_word`. `PowerCorridor` is the two-sided collision.
 `AboveAnchor` is the shared prefix geometry. `CycleMin` and
 `MinimalNonTerm` consume it downward. Paper A
-(`Problems.JugglerPaper`) is unchanged.
+(`Problems.JugglerPaper`) imports `CycleFinance` for Theorem 4.4.
 
 ## Live import graph
 
@@ -40,11 +40,15 @@ Dynamics → Iteration → Termination → Itinerary → WordStats
 ```
 
 `CycleFinance` is a cycle leaf under `CycleCore` / leftover census
-(wholesale length exclusion from the finance inequality).
+(wholesale length exclusion from the finance inequality) and is
+imported by `Problems.JugglerPaper` for Paper A Theorem 4.4.
 `CycleHeightFinance` packages the inv-sum odd-run height cap on
-that leaf. Neither is a corridor primitive, and neither is
-imported by `Corridor`, `EvenCountThree`, or
-`Problems.JugglerPaper`.
+that leaf. It is not a corridor primitive and is not imported by
+`Corridor`, `EvenCountThree`, or `Problems.JugglerPaper`.
+`EvenCountThree` is imported by `Problems.JugglerPaper` as Paper A
+Theorem 3.22. The
+laboratory extract is
+[juggler_cycle_finance_note.md](../theory/juggler_cycle_finance_note.md).
 
 `CycleCore` imports `Envelope` + `Cells` + `MinimumRelative`, not
 `Residuals`. `Cycles.lean` re-exports Core + Obstructions + Extrema.
@@ -66,7 +70,7 @@ imported by `Corridor`, `EvenCountThree`, or
 | Consumer | `CycleMin` + `aboveAnchor_of_cycleMin` | `CycleCore.lean` |
 | Consumer | `MinimalNonTerm` + `aboveAnchor_of_minimalNonTerm` | `Minimal.lean` |
 | Consumer | named `no_cycle_word_*` / isolated CycleMin wrappers | `CycleObstructions.lean` |
-| Consumer | cycle finance leftover (`L=84` or `L≥85`) | `CycleFinance.lean` |
+| Consumer | cycle finance inequality (Paper A Theorem 4.4); leftover \(84\) companion | `CycleFinance.lean` |
 | Consumer | height leftover (`L=84` with \(m\ge 3\), or \(L\ge 85\)) | `CycleHeightFinance.lean` |
 | Consumer | `ReturnBelow` | `Residuals.lean` |
 

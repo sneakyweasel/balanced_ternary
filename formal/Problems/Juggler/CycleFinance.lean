@@ -33,10 +33,18 @@ Eliahou packaging (`cycle_word_eliahou_leftover`) rewrites that
 leftover plus the computational finance table as: period `84`, or
 a listed near-convergent, or at least `10^5`. Not a new inequality.
 
-Dossier: `docs/problems/juggler_cycle_finance.md`. This is not a
-halt theorem and not a leftover-word census named
+Dossier: `docs/problems/juggler_cycle_finance.md`. Writeup:
+`docs/theory/juggler_cycle_finance_note.md`, absorbed into
+Paper A (`docs/theory/juggler_finite_dynamics_note.md`) as
+Section 5. The paper theorem is `cycleMin_finance`. The leftover
+`84` is an Appendix A companion, not the printed leftover.
+The height leftover
+(`cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five`)
+lives in `CycleHeightFinance.lean` and is not imported by
+`Problems.JugglerPaper`. This is not a halt theorem
+and not a leftover-word census named
 `no_cycle_word_length_eleven`. Length `84` is the next record
-near-convergent leftover at this floor.
+near-convergent leftover at the Lean floor.
 -/
 
 /-- The dyadic-cell logarithm bound: if `z < (y+1)^2` then

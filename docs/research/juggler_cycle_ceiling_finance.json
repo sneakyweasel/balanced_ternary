@@ -1,0 +1,669 @@
+{
+  "experiment": "juggler_cycle_ceiling_finance",
+  "engine_control_layer_modified": false,
+  "anti_overclaim": {
+    "global_termination": false,
+    "global_divergence": false,
+    "every_trajectory_contains_word": false,
+    "parity_frequency_theorem": false,
+    "finite_macro_transition_grammar": false,
+    "average_formal_energy_decreases": false,
+    "floating_point_verdict": false,
+    "halt_theorem": false,
+    "no_cycle_all_lengths": false,
+    "new_lean": false,
+    "floor_raise": false,
+    "leftover_word_census": false,
+    "peak_finance_reopened": false
+  },
+  "scan": {
+    "floor": 261,
+    "L": 84,
+    "o": 53,
+    "even": 31,
+    "theta": 0.0020859537426888286,
+    "T_n": 4216,
+    "T_n_even": true,
+    "height_plain_m3": 0.0021926291145267416,
+    "exact_peak_rows": [
+      {
+        "n": 261,
+        "k": 18,
+        "m": 3,
+        "m_min_bits": 11865,
+        "m_min_even": true,
+        "r_max": 10,
+        "p_min": 3075,
+        "even_budget": 29,
+        "theta": 0.0020859537426888286,
+        "lean_need_61_11": 0.011567561664001687,
+        "const1": 0.0015445782181133275,
+        "six_fifths": 0.001853493861735993,
+        "inv_sum": 0.009165493344097445,
+        "kills_const1": true,
+        "kills_six_fifths": true,
+        "kills_inv_sum": true
+      },
+      {
+        "n": 261,
+        "k": 19,
+        "m": 3,
+        "m_min_bits": 17797,
+        "m_min_even": true,
+        "r_max": 11,
+        "p_min": 412,
+        "even_budget": 29,
+        "theta": 0.0020859537426888286,
+        "lean_need_61_11": 0.011567561664001687,
+        "const1": 0.0019072032889973268,
+        "six_fifths": 0.002288643946796792,
+        "inv_sum": 0.011267474558084342,
+        "kills_const1": true,
+        "kills_six_fifths": false,
+        "kills_inv_sum": true
+      },
+      {
+        "n": 261,
+        "k": 20,
+        "m": 3,
+        "m_min_bits": 26696,
+        "m_min_even": true,
+        "r_max": 11,
+        "p_min": 8391,
+        "even_budget": 29,
+        "theta": 0.0020859537426888286,
+        "lean_need_61_11": 0.011567561664001687,
+        "const1": 0.0015172755562014614,
+        "six_fifths": 0.0018207306674417536,
+        "inv_sum": 0.00895946539894134,
+        "kills_const1": true,
+        "kills_six_fifths": true,
+        "kills_inv_sum": true
+      },
+      {
+        "n": 261,
+        "k": 21,
+        "m": 3,
+        "m_min_bits": 40043,
+        "m_min_even": true,
+        "r_max": 12,
+        "p_min": 876,
+        "even_budget": 29,
+        "theta": 0.0020859537426888286,
+        "lean_need_61_11": 0.011567561664001687,
+        "const1": 0.0016725707587467813,
+        "six_fifths": 0.0020070849104961374,
+        "inv_sum": 0.009981842603480449,
+        "kills_const1": true,
+        "kills_six_fifths": true,
+        "kills_inv_sum": true
+      },
+      {
+        "n": 261,
+        "k": 22,
+        "m": 3,
+        "m_min_bits": 60065,
+        "m_min_even": true,
+        "r_max": 12,
+        "p_min": 25961,
+        "even_budget": 29,
+        "theta": 0.0020859537426888286,
+        "lean_need_61_11": 0.011567561664001687,
+        "const1": 0.0015078746759418686,
+        "six_fifths": 0.0018094496111302422,
+        "inv_sum": 0.00887880940950262,
+        "kills_const1": true,
+        "kills_six_fifths": true,
+        "kills_inv_sum": true
+      },
+      {
+        "n": 261,
+        "k": 23,
+        "m": 3,
+        "m_min_bits": 90097,
+        "m_min_even": true,
+        "r_max": 13,
+        "p_min": 2045,
+        "even_budget": 29,
+        "theta": 0.0020859537426888286,
+        "lean_need_61_11": 0.011567561664001687,
+        "const1": 0.0015682313917878667,
+        "six_fifths": 0.00188187767014544,
+        "inv_sum": 0.00932928764707715,
+        "kills_const1": true,
+        "kills_six_fifths": true,
+        "kills_inv_sum": true
+      },
+      {
+        "n": 261,
+        "k": 24,
+        "m": 3,
+        "m_min_bits": 135145,
+        "m_min_even": true,
+        "r_max": 14,
+        "p_min": 304,
+        "even_budget": 29,
+        "theta": 0.0020859537426888286,
+        "lean_need_61_11": 0.011567561664001687,
+        "const1": 0.0020794668264121894,
+        "six_fifths": 0.002495360191694627,
+        "inv_sum": 0.01212976377627545,
+        "kills_const1": true,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      }
+    ],
+    "log_peak_rows": [
+      {
+        "n": 261,
+        "k": 25,
+        "source": "log2_lower",
+        "r_max": 14,
+        "p_lower": 5303.770867326556,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 26,
+        "source": "log2_lower",
+        "r_max": 15,
+        "p_lower": 621.4963252470211,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 27,
+        "source": "log2_lower",
+        "r_max": 15,
+        "p_lower": 15493.796505218348,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 28,
+        "source": "log2_lower",
+        "r_max": 16,
+        "p_lower": 1388.7318172717135,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 29,
+        "source": "log2_lower",
+        "r_max": 16,
+        "p_lower": 51752.05249041841,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 30,
+        "source": "log2_lower",
+        "r_max": 17,
+        "p_lower": 3431.1972405995734,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 31,
+        "source": "log2_lower",
+        "r_max": 18,
+        "p_lower": 448.3160250316921,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 32,
+        "source": "log2_lower",
+        "r_max": 18,
+        "p_lower": 9492.407951788164,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 33,
+        "source": "log2_lower",
+        "r_max": 19,
+        "p_lower": 961.6837903177301,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 34,
+        "source": "log2_lower",
+        "r_max": 19,
+        "p_lower": 29822.80190518289,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 35,
+        "source": "log2_lower",
+        "r_max": 20,
+        "p_lower": 2269.4014751647824,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 36,
+        "source": "log2_lower",
+        "r_max": 21,
+        "p_lower": 328.80128005495146,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 37,
+        "source": "log2_lower",
+        "r_max": 21,
+        "p_lower": 5962.113637938158,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 38,
+        "source": "log2_lower",
+        "r_max": 22,
+        "p_lower": 678.5005234944281,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 39,
+        "source": "log2_lower",
+        "r_max": 22,
+        "p_lower": 17673.61054274921,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 40,
+        "source": "log2_lower",
+        "r_max": 23,
+        "p_lower": 1532.8298898261005,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 41,
+        "source": "log2_lower",
+        "r_max": 23,
+        "p_lower": 60012.39245300174,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 42,
+        "source": "log2_lower",
+        "r_max": 24,
+        "p_lower": 3834.252465576288,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 43,
+        "source": "log2_lower",
+        "r_max": 25,
+        "p_lower": 487.2597400008962,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 44,
+        "source": "log2_lower",
+        "r_max": 25,
+        "p_lower": 10755.752340608873,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 45,
+        "source": "log2_lower",
+        "r_max": 26,
+        "p_lower": 1056.1621397597148,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 46,
+        "source": "log2_lower",
+        "r_max": 26,
+        "p_lower": 34323.841902357584,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 47,
+        "source": "log2_lower",
+        "r_max": 27,
+        "p_lower": 2521.7203298288855,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 48,
+        "source": "log2_lower",
+        "r_max": 28,
+        "p_lower": 355.85468653049435,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 49,
+        "source": "log2_lower",
+        "r_max": 28,
+        "p_lower": 6712.88233214396,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 50,
+        "source": "log2_lower",
+        "r_max": 29,
+        "p_lower": 741.62058511417,
+        "above_exact_k24": true
+      },
+      {
+        "n": 261,
+        "k": 51,
+        "source": "log2_lower",
+        "r_max": 29,
+        "p_lower": 20196.339565848677,
+        "above_exact_k24": true
+      }
+    ],
+    "worst_exact": {
+      "k": 24,
+      "r_max": 14,
+      "p_min": 304,
+      "six_fifths": 0.002495360191694627,
+      "inv_sum": 0.01212976377627545
+    },
+    "k18": {
+      "p_min": 3075,
+      "r_max": 10,
+      "kills_six_fifths": true,
+      "kills_inv_sum": true
+    },
+    "k24": {
+      "p_min": 304,
+      "r_max": 14,
+      "const1": 0.0020794668264121894,
+      "six_fifths": 0.002495360191694627,
+      "inv_sum": 0.01212976377627545,
+      "kills_six_fifths": false,
+      "kills_inv_sum": false
+    },
+    "killing_p": {
+      "six_fifths": 659,
+      "inv_sum": 367
+    },
+    "log_rows_above_k24": true,
+    "m_table": [
+      {
+        "m": 3,
+        "k_min": 18,
+        "p_min": 3075,
+        "r_max": 10,
+        "kills_six_fifths": true,
+        "kills_inv_sum": true
+      },
+      {
+        "m": 4,
+        "k_min": 14,
+        "p_min": 569,
+        "r_max": 8,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 5,
+        "k_min": 11,
+        "p_min": 1845,
+        "r_max": 6,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 6,
+        "k_min": 9,
+        "p_min": 800,
+        "r_max": 5,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 7,
+        "k_min": 8,
+        "p_min": 7430,
+        "r_max": 4,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 8,
+        "k_min": 7,
+        "p_min": 380,
+        "r_max": 4,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 9,
+        "k_min": 6,
+        "p_min": 2760,
+        "r_max": 3,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 10,
+        "k_min": 6,
+        "p_min": 2760,
+        "r_max": 3,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 11,
+        "k_min": 5,
+        "p_min": 38716,
+        "r_max": 2,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 12,
+        "k_min": 5,
+        "p_min": 38716,
+        "r_max": 2,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 13,
+        "k_min": 5,
+        "p_min": 38716,
+        "r_max": 2,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 14,
+        "k_min": 4,
+        "p_min": 1144,
+        "r_max": 2,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 15,
+        "k_min": 4,
+        "p_min": 1144,
+        "r_max": 2,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 16,
+        "k_min": 4,
+        "p_min": 1144,
+        "r_max": 2,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 17,
+        "k_min": 4,
+        "p_min": 1144,
+        "r_max": 2,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 18,
+        "k_min": 3,
+        "p_min": 11970,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 19,
+        "k_min": 3,
+        "p_min": 11970,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 20,
+        "k_min": 3,
+        "p_min": 11970,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 21,
+        "k_min": 3,
+        "p_min": 11970,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 22,
+        "k_min": 3,
+        "p_min": 11970,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 23,
+        "k_min": 3,
+        "p_min": 11970,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 24,
+        "k_min": 3,
+        "p_min": 11970,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 25,
+        "k_min": 3,
+        "p_min": 11970,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 26,
+        "k_min": 3,
+        "p_min": 11970,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 27,
+        "k_min": 2,
+        "p_min": 523,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 28,
+        "k_min": 2,
+        "p_min": 523,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 29,
+        "k_min": 2,
+        "p_min": 523,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 30,
+        "k_min": 2,
+        "p_min": 523,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      },
+      {
+        "m": 31,
+        "k_min": 2,
+        "p_min": 523,
+        "r_max": 1,
+        "kills_six_fifths": false,
+        "kills_inv_sum": false
+      }
+    ],
+    "m3_pigeonhole_only_kills": true,
+    "all_m_killed": false,
+    "slogan_false": true,
+    "git": "520bd829b7e9e3c002bc6b335326752b26ade878",
+    "halt_theorem": false,
+    "no_cycle_all_lengths": false,
+    "new_lean": false,
+    "floor_raise": false,
+    "leftover_word_census": false
+  },
+  "lean": {
+    "sorry_free": true,
+    "even_iter_lt_succ_pow": true,
+    "cycleMin_even_ge_sq": true,
+    "cycleMin_not_odd_even": true,
+    "cycle_word_length_eighty_four_m_ge_three_or_ge_eighty_five": true,
+    "has_juggler_reaches_one": false,
+    "has_no_cycle_word_any_length": false,
+    "has_no_cycle_word_length_eighty_four": false,
+    "has_cycle_ceiling_finance": false,
+    "has_ceiling_finance": false,
+    "has_api_CycleCeilingFinance": false,
+    "has_api_CeilingFinance": false,
+    "has_api_TopWindowFinance": false,
+    "cycle_extrema_present": true,
+    "cycle_finance_present": true,
+    "no_ceiling_lean": true,
+    "not_in_paper_barrel": true
+  },
+  "decision": {
+    "classification": "CEILING_FINANCE_CLOSED",
+    "reason": "the upper cell forces a landing p >= iterated_isqrt(M_min, r), which is a corollary of even_iter_lt_succ_pow, but the adversarial peak run k=24 lands at p=304. Proved 6/5 RHS=0.002495 and Lean inv-sum S=0.012130 both miss \u03b8=0.002086 / need=0.011568. 6/5 needs p>=659; inv-sum needs p>=367. Pigeonhole k=18 lands at 3075 and would kill; the leftover can choose k=24. Large m is worse. Not a leftover-word census and not a floor raise"
+  },
+  "search_method": "even_iter_lt_succ_pow plus odd-run height lower bound on the peak; adversarial r = max even-run with landing >= n; height packing with one valley at p_min; exact k=18..24 and log2 lower bounds through k=51; pigeonhole m-table"
+}

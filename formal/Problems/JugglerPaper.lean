@@ -15,16 +15,19 @@ import Problems.Juggler.LeftoverEval
 import Problems.Juggler.LeftoverCell
 import Problems.Juggler.LeftoverShort
 import Problems.Juggler.LeftoverFamilies
+import Problems.Juggler.EvenCountThree
 import Problems.Juggler.SmallCycleCensus
 import Problems.Juggler.NormalizedDefect
 import Problems.Juggler.ExpansionSlack
 import Problems.Juggler.NearTightScale
+import Problems.Juggler.CycleFinance
 
 /-!
 # Juggler paper barrel (Paper A)
 
 Review object for the finite-dynamics note
-`docs/theory/juggler_finite_dynamics_note.md`.
+`docs/theory/juggler_finite_dynamics_note.md`
+(*Cycles of the Juggler map*).
 
 This file imports only the modules named by that note. It does not
 copy proofs. Laboratory satellites stay in `Problems.Juggler` and are
@@ -34,6 +37,7 @@ files are not imported here as review targets.
 
 The exact floor reductions used by the companion discrepancy
 manuscript (`GapCells.lean`) are not part of this review object.
+`CycleHeightFinance.lean` is not imported.
 
 Build from `formal/`:
 
@@ -83,19 +87,33 @@ The note's Lean-tagged theorems are listed in its Appendix A:
 * 3.20 `no_cycle_word_three_even_eooeoe`
 * 3.21 `no_cycle_word_gapped_three_even_ee`,
       `no_cycle_word_gapped_three_even_eoe`
-* 4.1 `even_finiteProgress`, `odd_even_finiteProgress`
+* 3.22 `no_cycle_word_even_count_le_three`
+* 3.23 `cycle_word_length_ge_eleven`
+* 4.1 `log_le_two_log_add`
+* 4.2 `log_step_even`, `log_step_odd`
+* 4.3 `cycleMin_log_envelope`
+* 4.4 `cycleMin_finance`
+* short certificates (Section 5):
+      `even_finiteProgress`, `odd_even_finiteProgress`
 * no certificate implies odd-to-odd:
       `no_finiteProgress_implies_odd_odd`
-* §4  `four_block_pe_1999` (certified four-block expanding chain)
+* §5  `four_block_pe_1999` (certified four-block expanding chain)
+
+Companion names in Appendix A (not paper theorems):
+`reachesOne_of_lt_two_hundred_sixty_one`,
+`no_cycle_word_length_le_nineteen`,
+`cycle_word_length_eighty_four_or_ge_eighty_five`,
+`cycle_word_eliahou_leftover`.
 
 `FiniteProgress` is a descent certificate: a realized word with image
 strictly below the start. Lean packages this as `DescentCertificate`.
 
 This barrel does not prove that every positive integer reaches `1`,
 that every orbit meets a contracting word, or that all nontrivial
-cycles are impossible. The cycle census stops at length seven;
-length eight and beyond is open as a census. Theorems 3.12--3.21
-exclude leftover families, not every word of those lengths.
-`FiniteCoeffStopConjecture` is a laboratory target, not a claim of
-the note.
+cycles are impossible. Theorems 3.12--3.21 assemble as Theorem 3.22:
+no cycle word has even-count at most three, so a nontrivial cycle
+has period at least eleven. Section 4 excludes later periods by
+financing. Theorem 4.6 is a named computation, not a Lean
+theorem. `FiniteCoeffStopConjecture` is a laboratory target, not a claim
+of the note.
 -/
