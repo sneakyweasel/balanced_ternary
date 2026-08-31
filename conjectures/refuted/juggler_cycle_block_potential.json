@@ -1,0 +1,24 @@
+{
+  "id": "juggler_cycle_block_potential",
+  "title": "A state-only logarithmic potential strictly decreases on every CycleMin-legal O^a E^r block",
+  "statement": "There is a potential Phi in {log n, log log n}, or a floor-corrected variant in that monotone class, such that every CycleMin-legal block O^a E^r satisfies Phi(J^{block}(n)) < Phi(n), or such that a canonical in-block event (the first E) decreasing Phi forbids a cycle, and that obstruction is not T < n / power_bound_contracts / power_bound_word_strict / cycle_word_formally_expanding / the cycle-wide exponent budget / cycleMin_finance.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "log n and log log n decrease iff T < n on integers >= 3; the logarithmic Lyapunov is block contraction",
+    "CycleMin-legal first blocks have valley >= n, so no increasing Phi can drop",
+    "115 --O^5 E^2--> 8165 (rho = 243/128) increases L; first E still drops at the peak",
+    "25 --OOOEE--> 15 (rho = 27/32) is power_bound_contracts; floors help contraction",
+    "T^{2^{a+r}} < n^{3^a} on those mixed blocks is power_bound_word_strict, not L(T) < L(n) when rho > 1",
+    "a state-only Phi cannot telescope around a cycle; the product of rho_i is 3^o/2^L and the floors are finance"
+  ],
+  "first_seen": "juggler strict block potential",
+  "lean_reference": "power_bound_contracts",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler CycleMin block Lyapunov / logarithmic potential",
+  "notes": "Phase 0 only. Attack #1 written as a Lyapunov problem. Not a reopen of the exponent budget, finance, or compensated contraction. The candidates are REPARAMETERIZATIONs of T < n and the mixed envelope. No K=11, no L=55293, no floor raise. No Paper A edit, no ledger row, no new Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_block_potential.md",
+  "proof_reference": "docs/problems/juggler_cycle_block_potential.md",
+  "tested_range": "witnesses 25 and 115; monotone and first-E checks on OO-launches in [13,2001)"
+}

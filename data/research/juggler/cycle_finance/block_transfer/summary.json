@@ -1,0 +1,187 @@
+{
+  "bound": "block_transfer",
+  "published_floor": 1000000,
+  "cells": {
+    "oe": {
+      "a": 1,
+      "r": 1,
+      "next_exp": 4,
+      "start_exp": 3,
+      "is_oe": true,
+      "is_ooe": false,
+      "oe_exponents": [
+        4,
+        3
+      ],
+      "ooe_exponents": null,
+      "source": "power_bound_word plus even_tower",
+      "archived": true
+    },
+    "ooe": {
+      "a": 2,
+      "r": 1,
+      "next_exp": 8,
+      "start_exp": 9,
+      "is_oe": false,
+      "is_ooe": true,
+      "oe_exponents": null,
+      "ooe_exponents": [
+        8,
+        9
+      ],
+      "source": "power_bound_word plus even_tower",
+      "archived": true
+    },
+    "oe_is_corridor": true,
+    "even_tower_r2": {
+      "v": 1000001,
+      "r": 2,
+      "p_lo": 1000004000006000004000001,
+      "p_hi": 1000008000024000032000016
+    },
+    "r1_witnesses": [
+      {
+        "v": 365,
+        "a": 2
+      },
+      {
+        "v": 1000001,
+        "a": 1
+      },
+      {
+        "v": 1000057,
+        "a": 2
+      }
+    ],
+    "r1_agrees": true,
+    "ooe_cell_holds_365": true
+  },
+  "formal": {
+    "demo": {
+      "blocks": [
+        {
+          "a": 2,
+          "r": 1,
+          "mu": "9/8"
+        },
+        {
+          "a": 3,
+          "r": 2,
+          "mu": "27/32"
+        },
+        {
+          "a": 7,
+          "r": 4,
+          "mu": "2187/2048"
+        }
+      ],
+      "ratio": "531441/524288",
+      "word_ratio": "531441/524288",
+      "matches_word_ratio": true,
+      "outcome": "A",
+      "meaning": "formal expansion; required on a cycle, not a contradiction",
+      "contradicts_cycle": false,
+      "floors_are_finance": true
+    },
+    "leftovers": [
+      {
+        "L": 19,
+        "o": 12,
+        "formally_expanding": true,
+        "outcome": "A",
+        "a_does_not_contradict": true,
+        "ratio": "531441/524288"
+      },
+      {
+        "L": 84,
+        "o": 53,
+        "formally_expanding": true,
+        "outcome": "A",
+        "a_does_not_contradict": true,
+        "ratio": "19383245667680019896796723/19342813113834066795298816"
+      }
+    ],
+    "note": "A is 3^o>2^L (cycle_word_formally_expanding); B is a contracting word; floors are cycleMin_finance"
+  },
+  "two_block": [
+    {
+      "first": {
+        "a": 2,
+        "r": 1,
+        "mu": "9/8"
+      },
+      "second": {
+        "a": 2,
+        "r": 1,
+        "mu": "9/8"
+      },
+      "product": "81/64",
+      "is_mu_product": true,
+      "two_ooe": true,
+      "two_two_one_243_lt_256": true,
+      "archived": "ordered-excursion (2,2,1) / 81/64 < 4/3"
+    },
+    {
+      "first": {
+        "a": 2,
+        "r": 1,
+        "mu": "9/8"
+      },
+      "second": {
+        "a": 1,
+        "r": 1,
+        "mu": "3/4"
+      },
+      "product": "27/32",
+      "is_mu_product": true,
+      "two_ooe": false,
+      "two_two_one_243_lt_256": false,
+      "archived": "\u03bc product"
+    }
+  ],
+  "split_c": {
+    "n_365": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "n_1517": [
+      2,
+      2,
+      2,
+      1
+    ],
+    "same_prefix_222": true,
+    "next_differs": true,
+    "source": "odd_run_itinerary / block_map_q; do not build a run automaton"
+  },
+  "note": "do not build a run-type digraph; the next a is the landing arithmetic, not a function of (a,r)",
+  "decision": {
+    "classification": "BLOCK_TRANSFER_CLOSED",
+    "decision": "CLOSE",
+    "reason": "F_{a,r} is the archived exponent cell plus even tower; formal F_cycle is x^{3^o/2^L} so A is required expansion and B is a contracting word; two-block hulls are \u03bc products (243<256); C is the 365/1517 split",
+    "oe_is_archived_corridor": true,
+    "ooe_is_archived_cell": true,
+    "r1_agrees_with_excursion_map": true,
+    "formal_a_not_contradiction": true,
+    "two_block_is_mu_product": true,
+    "two_two_one_is_243_lt_256": true,
+    "c_is_365_1517_split": true,
+    "new_interval": false,
+    "leftover_killer": false,
+    "run_automaton": false,
+    "reopens_finance": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "power_bound_word",
+      "cycle_trailing_evens_lt",
+      "excursion_map",
+      "cycle_word_formally_expanding",
+      "cycleMin_finance",
+      "corridor_bounds"
+    ]
+  }
+}

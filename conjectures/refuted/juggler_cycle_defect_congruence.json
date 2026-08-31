@@ -1,0 +1,25 @@
+{
+  "id": "juggler_cycle_defect_congruence",
+  "title": "Composed seam remainders force an impossible congruence or fractional-part combination after the cycle exponents cancel",
+  "statement": "After multiplying or composing the exact remainder cells p^2 <= v^3 < (p+1)^2 and q^2 <= p < (q+1)^2 around a cycle, the residual inequalities (once the main 3^o versus 2^L powers cancel) require an impossible combination of congruences or fractional parts that is not global_defect_identity / image_eq_start_defectRatio / cycle_remainder_balance / cycle_not_localsTight / peak_diophantine_slack / cycle-scale R_nec first-letter parity / remainder-finance unrestricted cell position / cycleMin_finance / leftover near-convergents of log 2 / log 3.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "composed seams on 365 OOE recover global_defect_identity: Delta = envelope slack, not a new residual",
+    "on a cycle the leftover is n^{3^o}-n^{2^L} (image_eq_start_defectRatio); L=19 has gap 7153 and L=84 has gap 3^{53}-2^{84}; both are finance gaps, not moduli",
+    "cyclic remainder balance is an identity: Sigma rho + even gaps - odd gaps = start^2 - end^2, and vanishes on a return",
+    "peak pair at 13 is envelope slack 13^3 - 6^4 = 2*10*46^2 + 10^2 + 81",
+    "first-step OOE remainders on [13,400) occupy several residues mod 3,8,9,16, not one forbidden class",
+    "at n >= 10^6+1 every listed modulus has 2Y+1 > m, so defects are free residues (cycle_mod_closure)",
+    "OOE-legal n=1016445 has cell position 0.9999737 (remainder_finance)"
+  ],
+  "first_seen": "juggler floor-defect congruence accumulation",
+  "lean_reference": "global_defect_identity",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler CycleMin composed floor-remainder residual",
+  "notes": "Phase 0 only. Reviewer reserve attack 7 (floor-defect / congruence accumulation). The residual after exponent cancellation is a REPARAMETERIZATION of the global defect; its size is finance; congruences and fractional parts were already closed. No finance leftover-killer, no floor raise, no new modulus census, no Paper A edit, no ledger row, no new Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_defect_congruence.md",
+  "proof_reference": "docs/problems/juggler_cycle_defect_congruence.md",
+  "tested_range": "seam cells at 13; composed residual on 365 OOE; peak-pair slack at 13; path balance on 365 OOE; first-step residues on OOE starts in [13,400); defect-width collapse on the archived moduli at n=10^6+1; near-top witness 1016445; leftover gaps at L=19 and L=84"
+}

@@ -267,7 +267,11 @@ The OOE cell and `oe_start_min` are not re-proved.
 ## Open questions
 
 None from ordered pair/triple closure. A kill would require a
-complete word or a global climb-count that is not local.
+complete word or a global climb-count that is not local. The
+cyclic interval-transfer follow-up
+([juggler_cycle_block_transfer.md](juggler_cycle_block_transfer.md))
+is closed: \(F_{a,r}\) is this envelope, and outcome C is the
+\(365/1517\) split. Do not open a run-length automaton.
 
 ## Decision
 

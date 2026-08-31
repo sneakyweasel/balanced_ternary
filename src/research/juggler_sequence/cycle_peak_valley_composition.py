@@ -23,7 +23,6 @@ Dossier: docs/problems/juggler_cycle_peak_valley_composition.md.
 from __future__ import annotations
 
 import json
-import math
 from fractions import Fraction
 from typing import Any
 
@@ -45,6 +44,7 @@ ARCHIVED = (
     "even_run_scale_barrier",
     "even_tower_bounds",
     "global_defect_identity",
+    "cycle_word_formally_expanding",
     "two_block_ooe_365",
 )
 
@@ -164,11 +164,19 @@ def first_peak(start: int, word: str) -> int | None:
 
 
 def naive_odd_image(valley: int, a: int) -> int:
-    """floor(V^{3^a / 2^a}) by an integer power tower. Envelope, not T."""
+    """floor(V^{3^a / 2^a}): valley-to-peak envelope, not the nested climb."""
 
     if valley < 1 or a < 1:
         raise ValueError("naive_odd_image requires valley, a >= 1")
     return isqrt_iter(valley ** (3**a), a)
+
+
+def naive_block_image(valley: int, a: int, r: int) -> int:
+    """floor(V^{3^a / 2^{a+r}}): valley-to-valley envelope of one block."""
+
+    if valley < 1 or a < 1 or r < 1:
+        raise ValueError("naive_block_image requires valley, a, r >= 1")
+    return isqrt_iter(valley ** (3**a), a + r)
 
 
 def envelope_upper(peak: float, word: str) -> float:
@@ -245,6 +253,8 @@ def slack_row(peak: float, word: str) -> dict[str, Any]:
         "contains_peak": lo <= peak <= hi,
         "upper_gt_peak": hi > peak,
         "lower_lt_peak": lo < peak,
+        "entirely_above": lo > peak,
+        "entirely_below": hi < peak,
     }
 
 
@@ -257,7 +267,10 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
     l11 = next(row for row in exponents if row["word"] == WORD_L11)
     expanding = payload["expanding_witness"]
     slack = payload["slack"]
-    leftover_meets = all(row["contains_peak"] for row in slack if row["word"] == WORD_L11)
+    leftover_slack = [row for row in slack if row["word"] == WORD_L11]
+    oooee_slack = next(row for row in slack if row["word"] == WORD_OOOEE)
+    leftover_above = all(row["entirely_above"] for row in leftover_slack)
+    contracting_below = bool(oooee_slack["entirely_below"])
     expanding_gt = expanding["image"] > expanding["start"]
     mechanical = payload["mechanical_l25781"]["meets_start"]
     new_inequality = False
@@ -274,7 +287,8 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
         and oooee["contracts"]
         and l11["expands"]
         and expanding_gt
-        and leftover_meets
+        and leftover_above
+        and contracting_below
         and mechanical
     ):
         classification = CLASS_CLOSED
@@ -282,9 +296,10 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
         reason = (
             "exact peak–valley cells compose to T_w, so a cycle has "
             "P=P; one-sided composition is power_bound_word; leftover "
-            "words expand and their slack interval contains the "
-            "diagonal; the mechanical meeting is the closed "
-            "cycle-closure leftover-killer"
+            "real intervals sit above P because 3^o>2^L, and "
+            "contracting intervals sit below P because 3^o<2^L; that "
+            "sign is the closed exponent budget; the mechanical "
+            "meeting is the closed cycle-closure leftover-killer"
         )
     else:
         classification = CLASS_PARK
@@ -299,12 +314,14 @@ def classify(payload: dict[str, Any]) -> dict[str, Any]:
         "contracting_is_exponent_gap": bool(oooee["contracts"]),
         "leftover_expands": bool(l11["expands"]),
         "expanding_witness_gt": expanding_gt,
-        "leftover_slack_meets": leftover_meets,
+        "leftover_real_interval_above": leftover_above,
+        "contracting_real_interval_below": contracting_below,
         "mechanical_meets": mechanical,
         "new_inequality": new_inequality,
         "leftover_killer": False,
         "reopens_cycle_closure": False,
         "reopens_seam_sliding": False,
+        "reopens_exponent_budget": False,
         "halt_theorem": False,
         "raise_n0": False,
         "paper_a_edit": False,
@@ -327,7 +344,9 @@ def probe_payload() -> dict[str, Any]:
     two = follow_word(365, WORD_TWO_OOE)
     ooe_valley = 365
     ooe_exact = follow_word(ooe_valley, WORD_OOE)
-    ooe_naive = naive_odd_image(ooe_valley, 2) if ooe_exact is not None else None
+    ooe_naive_peak = naive_odd_image(ooe_valley, 2) if ooe_exact is not None else None
+    ooe_naive_valley = naive_block_image(ooe_valley, 2, 1) if ooe_exact is not None else None
+    ooe_peak = first_peak(ooe_valley, WORD_OOE)
     oooee_peak = first_peak(25, WORD_OOOEE)
     slack = [
         slack_row(1_000.0, WORD_L11),
@@ -351,10 +370,22 @@ def probe_payload() -> dict[str, Any]:
         },
         "naive_vs_exact_ooe": {
             "valley": ooe_valley,
-            "exact": ooe_exact,
-            "naive_exponent": ooe_naive,
+            "exact_valley": ooe_exact,
+            "exact_peak": ooe_peak,
+            "naive_peak": ooe_naive_peak,
+            "naive_valley": ooe_naive_valley,
             "naive_is_envelope": True,
-            "note": "floor(V^{9/8}) is the envelope; the exact climb is T_OOE",
+            "note": (
+                "floor(V^{9/4}) and floor(V^{9/8}) are envelopes; "
+                "the exact climb is the nested floor-power"
+            ),
+        },
+        "realized_l11": {
+            "start": realized[WORD_L11],
+            "word": WORD_L11,
+            "image": follow_word(realized[WORD_L11], WORD_L11)
+            if realized[WORD_L11] is not None
+            else None,
         },
         "slack": slack,
         "mechanical_l25781": dict(MECHANICAL_L25781),
@@ -394,7 +425,7 @@ def main() -> None:
                     for row in payload["exponents"]
                 ],
                 "expanding": payload["expanding_witness"]["image"],
-                "slack_l11_1e6": payload["slack"][1]["contains_peak"],
+                "slack_l11_1e6_above": payload["slack"][1]["entirely_above"],
                 "decision": decision["decision"],
             },
             indent=2,

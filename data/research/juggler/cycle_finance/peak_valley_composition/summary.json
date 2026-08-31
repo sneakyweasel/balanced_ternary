@@ -7,6 +7,7 @@
     "even_run_scale_barrier",
     "even_tower_bounds",
     "global_defect_identity",
+    "cycle_word_formally_expanding",
     "two_block_ooe_365"
   ],
   "words": [
@@ -181,10 +182,17 @@
   },
   "naive_vs_exact_ooe": {
     "valley": 365,
-    "exact": 763,
-    "naive_exponent": 582316,
+    "exact_valley": 763,
+    "exact_peak": 582276,
+    "naive_peak": 582316,
+    "naive_valley": 763,
     "naive_is_envelope": true,
-    "note": "floor(V^{9/8}) is the envelope; the exact climb is T_OOE"
+    "note": "floor(V^{9/4}) and floor(V^{9/8}) are envelopes; the exact climb is the nested floor-power"
+  },
+  "realized_l11": {
+    "start": 429,
+    "word": "OOEOOEOOEOE",
+    "image": 646
   },
   "slack": [
     {
@@ -194,7 +202,9 @@
       "envelope_upper": 1598.1343316046357,
       "contains_peak": false,
       "upper_gt_peak": true,
-      "lower_lt_peak": false
+      "lower_lt_peak": false,
+      "entirely_above": true,
+      "entirely_below": false
     },
     {
       "peak": 1000000.0,
@@ -203,7 +213,9 @@
       "envelope_upper": 2554033.3418533956,
       "contains_peak": false,
       "upper_gt_peak": true,
-      "lower_lt_peak": false
+      "lower_lt_peak": false,
+      "entirely_above": true,
+      "entirely_below": false
     },
     {
       "peak": 52214.0,
@@ -212,7 +224,9 @@
       "envelope_upper": 9563.849902693217,
       "contains_peak": false,
       "upper_gt_peak": false,
-      "lower_lt_peak": true
+      "lower_lt_peak": true,
+      "entirely_above": false,
+      "entirely_below": true
     },
     {
       "peak": 365.0,
@@ -221,7 +235,9 @@
       "envelope_upper": 1749.4514980943404,
       "contains_peak": false,
       "upper_gt_peak": true,
-      "lower_lt_peak": false
+      "lower_lt_peak": false,
+      "entirely_above": true,
+      "entirely_below": false
     }
   ],
   "mechanical_l25781": {
@@ -240,20 +256,22 @@
     "note": "the odd fixed point has no even letter, so it is not a P-V necklace"
   },
   "decision": {
-    "classification": "PEAK_VALLEY_COMPOSITION_PARK",
-    "decision": "PARK",
-    "reason": "the necklace census is mixed and does not decide",
+    "classification": "PEAK_VALLEY_COMPOSITION_CLOSED",
+    "decision": "CLOSE",
+    "reason": "exact peak\u2013valley cells compose to T_w, so a cycle has P=P; one-sided composition is power_bound_word; leftover real intervals sit above P because 3^o>2^L, and contracting intervals sit below P because 3^o<2^L; that sign is the closed exponent budget; the mechanical meeting is the closed cycle-closure leftover-killer",
     "exact_cells_are_functional": true,
     "onesided_is_power_bound": true,
     "contracting_is_exponent_gap": true,
     "leftover_expands": true,
     "expanding_witness_gt": true,
-    "leftover_slack_meets": false,
+    "leftover_real_interval_above": true,
+    "contracting_real_interval_below": true,
     "mechanical_meets": true,
     "new_inequality": false,
     "leftover_killer": false,
     "reopens_cycle_closure": false,
     "reopens_seam_sliding": false,
+    "reopens_exponent_budget": false,
     "halt_theorem": false,
     "raise_n0": false,
     "paper_a_edit": false,
@@ -264,6 +282,7 @@
       "even_run_scale_barrier",
       "even_tower_bounds",
       "global_defect_identity",
+      "cycle_word_formally_expanding",
       "two_block_ooe_365"
     ]
   }

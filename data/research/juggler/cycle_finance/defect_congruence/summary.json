@@ -1,0 +1,257 @@
+{
+  "bound": "defect_congruence",
+  "published_floor": 1000000,
+  "seams": {
+    "odd": {
+      "v": 13,
+      "odd": true,
+      "image": 46,
+      "lo": 2116,
+      "hi": 2209,
+      "rho": 81,
+      "holds": true,
+      "rho_eq_local": true
+    },
+    "even": {
+      "v": 46,
+      "odd": false,
+      "image": 6,
+      "lo": 36,
+      "hi": 49,
+      "rho": 10,
+      "holds": true,
+      "rho_eq_local": true
+    }
+  },
+  "composed": {
+    "n": 365,
+    "word": "OOE",
+    "end": 763,
+    "o": 2,
+    "L": 3,
+    "delta": 116296695803156495404,
+    "slack": 116296695803156495404,
+    "identity": true,
+    "cycle_formula_if_return": false,
+    "would_be_cycle_residual": null
+  },
+  "peak_pair": {
+    "x": 13,
+    "peak": 46,
+    "landing": 6,
+    "delta": 81,
+    "eps": 10,
+    "slack": 901,
+    "compose": 901,
+    "is_envelope_slack": true
+  },
+  "balance": {
+    "start": 365,
+    "end": 763,
+    "length": 3,
+    "rho_sum": 953644,
+    "even_gaps": 339044757900,
+    "odd_gaps": 339046160488,
+    "closure_correction": -448944,
+    "balance_off_cycle": -448944,
+    "is_identity": true,
+    "would_vanish_on_a_cycle": false
+  },
+  "residues": {
+    "lo": 13,
+    "hi": 400,
+    "word": "OOE",
+    "checked": 53,
+    "occupied_counts": {
+      "3": 3,
+      "8": 4,
+      "9": 9,
+      "16": 8
+    },
+    "occupied": {
+      "3": [
+        0,
+        1,
+        2
+      ],
+      "8": [
+        0,
+        2,
+        4,
+        6
+      ],
+      "9": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "16": [
+        0,
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14
+      ]
+    },
+    "single_class": false
+  },
+  "cycle_scale": {
+    "y_min": 1000001,
+    "width": 2000003,
+    "moduli": [
+      {
+        "m": 8,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 16,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 32,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 64,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 3,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 9,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 27,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 81,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 72,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 144,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 216,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 288,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 432,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 648,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 864,
+        "collapses": false,
+        "width": 2000003
+      },
+      {
+        "m": 1296,
+        "collapses": false,
+        "width": 2000003
+      }
+    ],
+    "any_collapse": false
+  },
+  "near_top": {
+    "x": 1016445,
+    "odd": true,
+    "image": 1024768637,
+    "rho": 2049483356,
+    "width": 2049537275,
+    "pos": 0.9999736921105765,
+    "top_gap": 53918,
+    "usable": 0.9999736921106022,
+    "image_odd": true
+  },
+  "leftovers": [
+    {
+      "L": 19,
+      "o": 12,
+      "gap": 7153,
+      "theta": 0.01345963145485576,
+      "cycle_residual": "n^{2^L} (n^{3^o - 2^L} - 1)",
+      "is_congruence": false,
+      "is_finance_gap": true,
+      "formally_expanding": true
+    },
+    {
+      "L": 84,
+      "o": 53,
+      "gap": 40432553845953101497907,
+      "theta": 0.002085953742688774,
+      "cycle_residual": "n^{2^L} (n^{3^o - 2^L} - 1)",
+      "is_congruence": false,
+      "is_finance_gap": true,
+      "formally_expanding": true
+    }
+  ],
+  "note": "after the main 3^o / 2^L powers cancel, the residual is Delta = n^{3^o}-n^{2^L} on a cycle; that size is cycleMin_finance, not a new congruence",
+  "decision": {
+    "classification": "DEFECT_CONGRUENCE_CLOSED",
+    "decision": "CLOSE",
+    "reason": "composed seams are global_defect_identity; a return leaves n^{3^o}-n^{2^L}, which is finance; cyclic balance is an identity; cycle-scale defects are free residues; cell positions are unrestricted",
+    "composed_is_global_defect": true,
+    "peak_pair_is_envelope_slack": true,
+    "balance_is_identity": true,
+    "residues_not_a_single_class": true,
+    "cycle_scale_defects_free": true,
+    "leftover_is_finance_gap": true,
+    "cell_positions_unrestricted": true,
+    "new_congruence": false,
+    "leftover_killer": false,
+    "reopens_finance": false,
+    "reopens_mod_closure": false,
+    "halt_theorem": false,
+    "raise_n0": false,
+    "paper_a_edit": false,
+    "archived": [
+      "global_defect_identity",
+      "global_defect_append",
+      "image_eq_start_defectRatio",
+      "cycle_remainder_balance",
+      "cycle_not_localsTight",
+      "peak_diophantine_slack",
+      "cycleMin_finance",
+      "cycle_word_formally_expanding"
+    ]
+  }
+}

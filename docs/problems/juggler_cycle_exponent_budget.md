@@ -256,8 +256,14 @@ None added. Formal expansion is already
 
 ## Open questions
 
-None from the exponent budget. Do not reopen finance, Baker,
-near-tightness, or the \(E^r\) first-block leftover-killer.
+None from the exponent budget. The Lyapunov rewrite \(L\mapsto\rho L\)
+is
+[juggler_cycle_block_potential.md](juggler_cycle_block_potential.md).
+The cyclic interval-transfer follow-up
+([juggler_cycle_block_transfer.md](juggler_cycle_block_transfer.md))
+is closed. Do not reopen finance, Baker, near-tightness, or the
+\(E^r\) first-block leftover-killer. Do not open a run-length
+automaton.
 
 ## Decision
 

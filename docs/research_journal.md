@@ -17368,4 +17368,141 @@ Best next question
 - none from the cycle-wide exponent budget
 ```
 
+## Juggler cyclic block transfer
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether composing exact \(O^a E^r\) interval maps around a CycleMin necklace produces a cyclic obstruction (global expansion, global contraction, or an empty run-type digraph) that is not `power_bound_word` / `excursion_map` / \(3^o/2^L\) / the closed run-length graph
+- **Hypotheses:** interval transfer plus general \(r\) plus cyclic return of \(I_1\) makes A or B fire, or C forbids a directed cycle of run types
+- **Major results:** Classification **BLOCK_TRANSFER_CLOSED**. \(F_{a,r}\) is the archived OE/OOE cell plus even tower; \(r=1\) agrees with `excursion_map`. Formal \(F_{\mathrm{cycle}}\) is \(x^{3^o/2^L}\): leftover \(19\) and \(84\) have outcome A, which is required expansion, not a contradiction. Two-block hulls are \(\mu\) products; \((2,1)^2\) is \(81/64\) and \(243<256\). Outcome C is \(365=(2,2,2,2)\) versus \(1517=(2,2,2,1)\). Artifact `block_transfer/summary.json`. No run automaton, no leftover census, no finance reopen, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** a cyclic interval transfer that is not an archived cell (`juggler_cycle_block_transfer`); A/B as a new kill; an empty run-type digraph
+- **Literature:** `power_bound_word`; `excursion_map`; `cycle_word_formally_expanding`; ordered-excursion CLOSE; pair-closure CLOSE; exponent-budget CLOSE; odd-run itinerary PARK
+- **Open:** none from the cyclic block transfer
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- F_{a,r} is the archived exponent cell plus even tower, not a new solver
+- formal F_cycle is x^{3^o/2^L}; A is required expansion, B is a contracting word
+- leftover 19 and 84 have outcome A and do not contradict a cycle
+- two-block hulls are μ products; (2,1)^2 is the archived 243<256 comparison
+- outcome C is the standing 365/1517 split; do not build a run automaton
+- interval plus general r plus cyclic return does not produce a new map
+Strongest theorem
+- power_bound_word: the O^a E^r hull is V_next^{2^{a+r}} <= V^{3^a}
+Strongest refutation
+- cyclic-transfer leftover-killer; new OE/OOE interval; empty run-type digraph
+Reusable machinery
+- block_outer_cell / formal_ab / block_transfer/summary.json
+Branch status
+- CLOSE
+Why
+- every layer is an archived cell, 3^o/2^L, or the closed
+  365/1517 split
+Best next question
+- none from the cyclic block transfer
+```
+
+## Juggler peak–valley interval composition
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether composing the exact peak–valley cells \(P\xrightarrow{E^r}V\xrightarrow{O^a}P'\) around a necklace forces \(P>P\) or \(P<P\) without identifying a dangerous seam, for a reason that is not `power_bound_word` / the closed exponent budget / cycle closure
+- **Hypotheses:** the unit of proof becoming the whole necklace yields a global inconsistency the local cells do not
+- **Major results:** Classification **PEAK_VALLEY_COMPOSITION_CLOSED**. Exact cells compose to \(T_w\) (**REPARAMETERIZATION**): \(25\xrightarrow{\mathtt{OOOEE}}15\), \(365\xrightarrow{\mathtt{OOEOOE}}1749\). One-sided product is \(3^o/2^L\) (**REPARAMETERIZATION** of `power_bound_word` / the closed exponent budget): \(\mathtt{OOOEE}\) is \(27/32\), leftover \(\mathtt{OOEOOEOOEOE}\) is \(2187/2048\). Real slack sits below \(P\) on contracting words and above \(P\) on leftover shape at \(10^3,10^6\). Naive \(\lfloor 365^{9/4}\rfloor=582316\) versus exact peak \(582276\). Mechanical meeting at \(L=25781\) is the closed cycle-closure record. Artifact `peak_valley_composition/summary.json`. No finance, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** necklace-level \(P>P\) or \(P<P\) from composing exact cells (`juggler_cycle_peak_valley_composition`)
+- **Literature:** `power_bound_word`; `power_bound_contracts`; `cycle_trailing_evens_lt`; `two_block_ooe_365`; exponent budget CLOSE; cycle closure CLOSE; seam sliding CLOSE; \(E^r\)-block CLOSE
+- **Open:** none from peak–valley interval composition
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- exact peak–valley cells fix V = isqrt^r(P) and compose to T_w
+- a cycle would have P=P, so the exact composite cannot be P>P
+- one-sided composition is P' ≤ P^{3^o/2^L}; that product is the closed exponent budget
+- leftover-shaped words expand (2187/2048); contracting words sit below P (27/32)
+- the naive exponent floor is an envelope (365: 582316 versus 582276)
+- leftover hulls already meet; this is not a leftover-killer
+Strongest theorem
+- power_bound_word: T_w(n)^{2^{|w|}} ≤ n^{3^{#O}}
+Strongest refutation
+- necklace P>P / P<P from exact cells; leftover P'<P
+Reusable machinery
+- peak_valley_blocks / exact_peak_composite / peak_valley_composition/summary.json
+Branch status
+- CLOSE
+Why
+- exact composition is T_w; the real sign is 3^o ≶ 2^L; leftover
+  meeting is the closed cycle-closure leftover-killer
+Best next question
+- none from peak–valley interval composition
+```
+
+## Juggler floor-defect / congruence accumulation
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether composing the exact seam remainder cells around a cycle forces an impossible congruence or fractional-part combination after the main \(3^o\) versus \(2^L\) powers cancel, and whether that obstruction is not the global defect / cyclic remainder balance / cycle-scale modular freeness / `cycleMin_finance`
+- **Hypotheses:** floor errors are the only surviving obstruction and they are modularly or fractional-part incompatible
+- **Major results:** Classification **DEFECT_CONGRUENCE_CLOSED**. Composed seams on \(365\) \(\mathtt{OOE}\) recover `global_defect_identity`. A return leaves \(n^{3^o}-n^{2^L}\) (`image_eq_start_defectRatio`); leftover gaps \(7153\) at \(L=19\) and \(3^{53}-2^{84}\) at \(L=84\) are finance, not moduli. Cyclic remainder balance is an identity. Peak pair \(13\to 46\to 6\) is `peak_diophantine_slack`. First-step \(\mathtt{OOE}\) remainders on \([13,400)\) occupy several residues mod \(3,8,9,16\). Cycle-scale defects are free residues (replay of `defect_width_collapses`). Cell positions unrestricted at \(n=1016445\). Artifact `defect_congruence/summary.json`. No finance reopen, no new modulus census, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** composed seam remainders force an impossible congruence or fractional-part combination after exponent cancellation (`juggler_cycle_defect_congruence`)
+- **Literature:** `global_defect_identity`; `image_eq_start_defectRatio`; `cycle_remainder_balance`; `cycle_not_localsTight`; `peak_diophantine_slack`; `cycleMin_finance`; exponent-budget CLOSE; mod-closure CLOSE; remainder-finance CLOSE; Diophantine CLOSE; sum-rho CLOSE
+- **Open:** none from floor-defect / congruence accumulation
+- **Decision:** CLOSE. Finance stays PROMOTE; the global defect stays PROMOTE
+
+```text
+What was learned
+- each seam is the existing square/cube cell; composition is the global defect
+- after the main powers cancel, a return leaves n^{3^o}-n^{2^L}, whose size is finance
+- cyclic remainder balance is an identity and vanishes on a return
+- the peak pair is envelope slack; short OOE remainders occupy several residues
+- at cycle scale the defects are free residues; finance-relevant cell positions sit at the top
+- the reviewer reserve is four closed remainder attacks plus finance under a new name
+Strongest theorem
+- global_defect_identity: n^{3^o} = T_w(n)^{2^L} + Δ_w(n)
+Strongest refutation
+- composed-remainder leftover-killer; one forbidden residue class; forced fractional-part cut
+Reusable machinery
+- seam_cell / composed_residual / peak_pair_slack / defect_congruence/summary.json
+Branch status
+- CLOSE
+Why
+- every comparison is the global defect, cyclic balance, mod-closure
+  freeness, unrestricted cell position, or cycleMin_finance
+Best next question
+- none from floor-defect / congruence accumulation
+```
+
+## Juggler strict block potential
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether a state-only \(\Phi\) (\(\log n\), \(\log\log n\), or a floor-corrected log) strictly decreases on every CycleMin-legal \(O^a E^r\) block, or at one canonical event per block, in a way that is not \(T<n\) / `power_bound_contracts` / `power_bound_word_strict` / the exponent budget
+- **Hypotheses:** floors turn \(L\mapsto\rho L\) into a strict Lyapunov even on expanding first blocks; a first-\(E\) decrease forbids a cycle
+- **Major results:** Classification **BLOCK_POTENTIAL_CLOSED**. \(\log\) and \(\log\log\) are monotone on integers \(\ge 3\), so \(\Phi(T)<\Phi(n)\) iff \(T<n\) (**REPARAMETERIZATION**). CycleMin-legal first blocks have valley \(\ge n\), so \(L\) never drops. Expanding witness \(115\xrightarrow{\mathtt{O}^5E^2}8165\) (\(\rho=243/128\)). Contracting witness \(25\xrightarrow{\mathtt{OOOEE}}15\) is `power_bound_contracts`. \(L(T)<\rho L(n)\) is `power_bound_word_strict`. First \(E\) always decreases and does not kill a cycle. A state-only \(\Phi\) cannot telescope. Artifact `block_potential/summary.json`. No finance reopen, no Paper A, no new Lean, no \(N_0\) raise
+- **Refuted ideas:** a logarithmic block Lyapunov that kills cycles (`juggler_cycle_block_potential`); floors turn expanding blocks into descents; one decreasing event per block forbids return
+- **Literature:** `power_bound_contracts`; `power_bound_word_strict`; `cycle_word_formally_expanding`; `cycleMin_finance`; exponent-budget CLOSE
+- **Open:** none from the block potential
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE; finance stays PROMOTE
+
+```text
+What was learned
+- log n and log log n have the same descent sign as T < n
+- CycleMin-legal first blocks are defined by valley >= n, so L cannot drop
+- 115 --O^5 E^2--> 8165 increases every increasing Φ
+- 25 --OOOEE--> 15 is the existing contraction lemma
+- L(T) < ρ L(n) is the mixed envelope and allows L(T) > L(n) when ρ > 1
+- first E always decreases and does not forbid a cycle
+- a function of n alone cannot strictly decrease around a closed orbit
+Strongest theorem
+- power_bound_contracts: 3^o < 2^k and n ≥ 2 imply T < n
+Strongest refutation
+- logarithmic block Lyapunov; 115 → 8165; first-E leftover-killer
+Reusable machinery
+- log_descent_sign / envelope_strict / block_potential/summary.json
+Branch status
+- CLOSE
+Why
+- every comparison is T<n, the mixed envelope, or the closed
+  exponent budget / finance
+Best next question
+- none from the strict block potential
+```
+
 
