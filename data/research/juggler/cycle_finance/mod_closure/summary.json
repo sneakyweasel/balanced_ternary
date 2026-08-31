@@ -1,0 +1,3708 @@
+{
+  "bound": "cycle_mod_closure",
+  "floor": 1000000,
+  "start": 1000001,
+  "moduli": [
+    8,
+    16,
+    32,
+    64,
+    3,
+    9,
+    27,
+    81,
+    72,
+    144,
+    216,
+    288,
+    432,
+    648,
+    864,
+    1296
+  ],
+  "spotlights": {
+    "25781": {
+      "L": 25781,
+      "o": 16266,
+      "e": 9515,
+      "theta": 2.5459198127264017e-05,
+      "ooe_count": 6751,
+      "oe_count": 2764,
+      "first_last_mod8": {
+        "n": 1000001,
+        "first_odd_res": 4,
+        "last_even_covers_all": true,
+        "same_slot": false,
+        "reduces_to_overshoot": true
+      },
+      "moduli": [
+        {
+          "m": 8,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 32,
+            "nec_even_pairs": 32,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 32,
+            "wit_even_pairs": 32,
+            "wit_odd_fills_nec": true,
+            "wit_even_fills_nec": true
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 31,
+              "self_loops": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 29,
+              "self_loops": [
+                3,
+                5,
+                7
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 31,
+              "self_loops": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4,
+              "self_loops": [
+                1
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 2
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 10,
+              "self_loops": [
+                3
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 29,
+          "oe_wit_pairs": 31,
+          "union_wit_pairs": 32,
+          "ooe_self_loops": 3,
+          "oe_self_loops": 4,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 4,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 16,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 128,
+            "nec_even_pairs": 128,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 97,
+            "wit_even_pairs": 128,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": true
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 101,
+              "self_loops": [
+                1,
+                3,
+                7,
+                9,
+                13,
+                15
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 88,
+              "self_loops": [
+                1,
+                5,
+                11,
+                13,
+                15
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 96,
+              "self_loops": [
+                1,
+                5,
+                7,
+                9,
+                11
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 8,
+              "self_loops": [
+                1
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 2
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 35,
+              "self_loops": [
+                5,
+                7
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 88,
+          "oe_wit_pairs": 101,
+          "union_wit_pairs": 124,
+          "ooe_self_loops": 5,
+          "oe_self_loops": 6,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 8,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 32,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 512,
+            "nec_even_pairs": 512,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 248,
+            "wit_even_pairs": 320,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 277,
+              "self_loops": [
+                7,
+                9,
+                15,
+                17,
+                21,
+                27
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 249,
+              "self_loops": [
+                3,
+                11,
+                13,
+                15,
+                17,
+                27,
+                29,
+                31
+              ],
+              "self_loop_count": 8,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 250,
+              "self_loops": [
+                1,
+                3,
+                7,
+                11,
+                21,
+                25,
+                27
+              ],
+              "self_loop_count": 7,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 23,
+              "self_loops": [
+                17
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 126,
+              "self_loops": [
+                5,
+                7,
+                11,
+                13
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 249,
+          "oe_wit_pairs": 277,
+          "union_wit_pairs": 391,
+          "ooe_self_loops": 8,
+          "oe_self_loops": 6,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 16,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 64,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 2048,
+            "nec_even_pairs": 2048,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 566,
+            "wit_even_pairs": 640,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 634,
+              "self_loops": [
+                3,
+                27,
+                45,
+                55,
+                59,
+                61
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 595,
+              "self_loops": [
+                13,
+                15,
+                23,
+                27,
+                29,
+                35,
+                39,
+                43
+              ],
+              "self_loop_count": 11,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 555,
+              "self_loops": [
+                25,
+                35,
+                39,
+                57,
+                59
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 64,
+              "self_loops": [
+                49
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 372,
+              "self_loops": [
+                7,
+                9,
+                11,
+                13,
+                15,
+                19
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 595,
+          "oe_wit_pairs": 634,
+          "union_wit_pairs": 1030,
+          "ooe_self_loops": 11,
+          "oe_self_loops": 6,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 32,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 3,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 9,
+            "nec_even_pairs": 9,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 9,
+            "wit_even_pairs": 9,
+            "wit_odd_fills_nec": true,
+            "wit_even_fills_nec": true
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 9,
+              "self_loops": [
+                0,
+                1,
+                2
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 9,
+              "self_loops": [
+                0,
+                1,
+                2
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 9,
+              "self_loops": [
+                0,
+                1,
+                2
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3,
+              "self_loops": [
+                0
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 7,
+              "self_loops": [
+                1,
+                2
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 9,
+          "oe_wit_pairs": 9,
+          "union_wit_pairs": 9,
+          "ooe_self_loops": 3,
+          "oe_self_loops": 3,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 3,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 9,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 81,
+            "nec_even_pairs": 81,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 75,
+            "wit_even_pairs": 81,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": true
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 78,
+              "self_loops": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 78,
+              "self_loops": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 76,
+              "self_loops": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 9,
+              "self_loops": [
+                6
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 44,
+              "self_loops": [
+                0,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 78,
+          "oe_wit_pairs": 78,
+          "union_wit_pairs": 81,
+          "ooe_self_loops": 9,
+          "oe_self_loops": 9,
+          "shared_self_loops": 9,
+          "odd_shared_self_loops": 9,
+          "nec_diagonal_count": 9,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 27,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 729,
+            "nec_even_pairs": 729,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 397,
+            "wit_even_pairs": 540,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 433,
+              "self_loops": [
+                0,
+                1,
+                3,
+                5,
+                7,
+                8,
+                11,
+                12
+              ],
+              "self_loop_count": 15,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 416,
+              "self_loops": [
+                1,
+                3,
+                5,
+                6,
+                8,
+                9,
+                10,
+                11
+              ],
+              "self_loop_count": 15,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 381,
+              "self_loops": [
+                0,
+                1,
+                2,
+                4,
+                5,
+                8,
+                15,
+                17
+              ],
+              "self_loop_count": 13,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 54,
+              "self_loops": [
+                15,
+                16
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 287,
+              "self_loops": [
+                0,
+                1,
+                3,
+                4,
+                8,
+                23,
+                24,
+                25
+              ],
+              "self_loop_count": 8,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 416,
+          "oe_wit_pairs": 433,
+          "union_wit_pairs": 598,
+          "ooe_self_loops": 15,
+          "oe_self_loops": 15,
+          "shared_self_loops": 10,
+          "odd_shared_self_loops": 10,
+          "nec_diagonal_count": 27,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 81,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 6561,
+            "nec_even_pairs": 6561,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 1434,
+            "wit_even_pairs": 1620,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1380,
+              "self_loops": [
+                0,
+                4,
+                5,
+                8,
+                16,
+                33,
+                37,
+                44
+              ],
+              "self_loop_count": 14,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1396,
+              "self_loops": [
+                0,
+                1,
+                3,
+                5,
+                10,
+                11,
+                12,
+                15
+              ],
+              "self_loop_count": 20,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1446,
+              "self_loops": [
+                0,
+                17,
+                18,
+                22,
+                24,
+                26,
+                29,
+                30
+              ],
+              "self_loop_count": 16,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 163,
+              "self_loops": [
+                15,
+                16
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1325,
+              "self_loops": [
+                24,
+                25,
+                28,
+                30,
+                31,
+                33,
+                35,
+                39
+              ],
+              "self_loop_count": 16,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 1396,
+          "oe_wit_pairs": 1380,
+          "union_wit_pairs": 2491,
+          "ooe_self_loops": 20,
+          "oe_self_loops": 14,
+          "shared_self_loops": 4,
+          "odd_shared_self_loops": 4,
+          "nec_diagonal_count": 81,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 72,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 2592,
+            "nec_even_pairs": 2592,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 636,
+            "wit_even_pairs": 720,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 715,
+              "self_loops": [
+                1,
+                13,
+                15,
+                27,
+                29,
+                31,
+                43,
+                53
+              ],
+              "self_loop_count": 11,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 670,
+              "self_loops": [
+                5,
+                9,
+                29,
+                43,
+                45,
+                49,
+                55,
+                59
+              ],
+              "self_loop_count": 11,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 646,
+              "self_loops": [
+                5,
+                19,
+                31,
+                33,
+                45
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 72,
+              "self_loops": [
+                33
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 415,
+              "self_loops": [
+                1,
+                9,
+                11,
+                71
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 670,
+          "oe_wit_pairs": 715,
+          "union_wit_pairs": 1202,
+          "ooe_self_loops": 11,
+          "oe_self_loops": 11,
+          "shared_self_loops": 4,
+          "odd_shared_self_loops": 4,
+          "nec_diagonal_count": 36,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 144,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 10368,
+            "nec_even_pairs": 10368,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3799,
+              "self_loops": [
+                1,
+                13,
+                15,
+                19,
+                21,
+                23,
+                33,
+                35
+              ],
+              "self_loop_count": 27,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3266,
+              "self_loops": [
+                3,
+                5,
+                15,
+                37,
+                39,
+                43,
+                49,
+                51
+              ],
+              "self_loop_count": 23,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3352,
+              "self_loops": [
+                13,
+                19,
+                27,
+                35,
+                37,
+                45,
+                49,
+                65
+              ],
+              "self_loop_count": 20,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 216,
+              "self_loops": [
+                33,
+                35
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3029,
+              "self_loops": [
+                1,
+                3,
+                73,
+                83,
+                85,
+                89,
+                93,
+                95
+              ],
+              "self_loop_count": 24,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3266,
+          "oe_wit_pairs": 3799,
+          "union_wit_pairs": 5867,
+          "ooe_self_loops": 23,
+          "oe_self_loops": 27,
+          "shared_self_loops": 10,
+          "odd_shared_self_loops": 10,
+          "nec_diagonal_count": 72,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 216,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 23328,
+            "nec_even_pairs": 23328,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                5,
+                9,
+                11,
+                21,
+                35,
+                47,
+                53,
+                79
+              ],
+              "self_loop_count": 19,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3635,
+              "self_loops": [
+                3,
+                5,
+                19,
+                21,
+                29,
+                55,
+                59,
+                77
+              ],
+              "self_loop_count": 16,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3681,
+              "self_loops": [
+                1,
+                5,
+                15,
+                21,
+                37,
+                45,
+                69,
+                87
+              ],
+              "self_loop_count": 14,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 322,
+              "self_loops": [
+                177,
+                179
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3379,
+              "self_loops": [
+                1,
+                11,
+                13,
+                19,
+                23,
+                25,
+                27,
+                29
+              ],
+              "self_loop_count": 19,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3635,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7006,
+          "ooe_self_loops": 16,
+          "oe_self_loops": 19,
+          "shared_self_loops": 2,
+          "odd_shared_self_loops": 2,
+          "nec_diagonal_count": 108,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 288,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 41472,
+            "nec_even_pairs": 41472,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                1,
+                21,
+                23,
+                35,
+                65,
+                79,
+                93,
+                107
+              ],
+              "self_loop_count": 18,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3773,
+              "self_loops": [
+                3,
+                49,
+                77,
+                131,
+                141,
+                149,
+                183,
+                203
+              ],
+              "self_loop_count": 10,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3823,
+              "self_loops": [
+                37,
+                65,
+                73,
+                89,
+                157,
+                163,
+                171,
+                179
+              ],
+              "self_loop_count": 15,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 426,
+              "self_loops": [
+                177,
+                179
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3578,
+              "self_loops": [
+                73,
+                83,
+                85,
+                89,
+                93,
+                99,
+                101,
+                107
+              ],
+              "self_loop_count": 14,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3773,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7410,
+          "ooe_self_loops": 10,
+          "oe_self_loops": 18,
+          "shared_self_loops": 1,
+          "odd_shared_self_loops": 1,
+          "nec_diagonal_count": 144,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 432,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 93312,
+            "nec_even_pairs": 93312,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                35,
+                101,
+                143,
+                227,
+                237,
+                269,
+                321,
+                331
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3880,
+              "self_loops": [
+                3,
+                59,
+                77,
+                81,
+                87,
+                193,
+                221,
+                271
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3911,
+              "self_loops": [
+                37,
+                69,
+                89,
+                103,
+                217,
+                231,
+                261,
+                357
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 617,
+              "self_loops": [
+                177,
+                179
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3741,
+              "self_loops": [
+                217,
+                229,
+                239,
+                243,
+                245,
+                249,
+                257,
+                263
+              ],
+              "self_loop_count": 15,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3880,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7695,
+          "ooe_self_loops": 9,
+          "oe_self_loops": 9,
+          "shared_self_loops": 0,
+          "odd_shared_self_loops": 0,
+          "nec_diagonal_count": 216,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 648,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 209952,
+            "nec_even_pairs": 209952,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                5,
+                21,
+                53,
+                115,
+                131,
+                225,
+                575
+              ],
+              "self_loop_count": 7,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3935,
+              "self_loops": [
+                309,
+                409,
+                435,
+                437,
+                461,
+                513,
+                559
+              ],
+              "self_loop_count": 7,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3956,
+              "self_loops": [
+                15,
+                21,
+                231,
+                535
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 884,
+              "self_loops": [
+                177,
+                179
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3936,
+              "self_loops": [
+                445,
+                451,
+                479,
+                481,
+                489
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3935,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7866,
+          "ooe_self_loops": 7,
+          "oe_self_loops": 7,
+          "shared_self_loops": 0,
+          "odd_shared_self_loops": 0,
+          "nec_diagonal_count": 324,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 864,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 373248,
+            "nec_even_pairs": 373248,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                35,
+                669,
+                753,
+                837
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3968,
+              "self_loops": [
+                3,
+                271,
+                491,
+                625,
+                653,
+                707
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3977,
+              "self_loops": [
+                37,
+                261,
+                501,
+                521,
+                789
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1138,
+              "self_loops": [
+                179
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                649,
+                661,
+                689,
+                695,
+                705,
+                707,
+                723
+              ],
+              "self_loop_count": 7,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3968,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7927,
+          "ooe_self_loops": 6,
+          "oe_self_loops": 4,
+          "shared_self_loops": 0,
+          "odd_shared_self_loops": 0,
+          "nec_diagonal_count": 432,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 1296,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 839808,
+            "nec_even_pairs": 839808,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                575,
+                669,
+                701,
+                763
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3970,
+              "self_loops": [
+                435,
+                513,
+                1057,
+                1085
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3981,
+              "self_loops": [
+                231,
+                535
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1571,
+              "self_loops": [
+                179
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                1093,
+                1127,
+                1137
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3970,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7943,
+          "ooe_self_loops": 4,
+          "oe_self_loops": 4,
+          "shared_self_loops": 0,
+          "odd_shared_self_loops": 0,
+          "nec_diagonal_count": 648,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        }
+      ],
+      "all_diagonal_nonempty": true,
+      "all_nec_diagonal_nonempty": true,
+      "all_reduces_to_parity": true,
+      "all_counts_return": true,
+      "no_defect_width_collapse": true,
+      "requires_word_enumeration": false,
+      "level_c": false
+    },
+    "55293": {
+      "L": 55293,
+      "o": 34886,
+      "e": 20407,
+      "theta": 0.001246996471635241,
+      "ooe_count": 14479,
+      "oe_count": 5928,
+      "first_last_mod8": {
+        "n": 1000001,
+        "first_odd_res": 4,
+        "last_even_covers_all": true,
+        "same_slot": false,
+        "reduces_to_overshoot": true
+      },
+      "moduli": [
+        {
+          "m": 8,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 32,
+            "nec_even_pairs": 32,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 32,
+            "wit_even_pairs": 32,
+            "wit_odd_fills_nec": true,
+            "wit_even_fills_nec": true
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 31,
+              "self_loops": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 29,
+              "self_loops": [
+                3,
+                5,
+                7
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 31,
+              "self_loops": [
+                1,
+                3,
+                5,
+                7
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4,
+              "self_loops": [
+                1
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 2
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 32,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 10,
+              "self_loops": [
+                3
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 29,
+          "oe_wit_pairs": 31,
+          "union_wit_pairs": 32,
+          "ooe_self_loops": 3,
+          "oe_self_loops": 4,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 4,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 16,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 128,
+            "nec_even_pairs": 128,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 97,
+            "wit_even_pairs": 128,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": true
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 101,
+              "self_loops": [
+                1,
+                3,
+                7,
+                9,
+                13,
+                15
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 88,
+              "self_loops": [
+                1,
+                5,
+                11,
+                13,
+                15
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 96,
+              "self_loops": [
+                1,
+                5,
+                7,
+                9,
+                11
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 8,
+              "self_loops": [
+                1
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 2
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 128,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 35,
+              "self_loops": [
+                5,
+                7
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 88,
+          "oe_wit_pairs": 101,
+          "union_wit_pairs": 124,
+          "ooe_self_loops": 5,
+          "oe_self_loops": 6,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 8,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 32,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 512,
+            "nec_even_pairs": 512,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 248,
+            "wit_even_pairs": 320,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 277,
+              "self_loops": [
+                7,
+                9,
+                15,
+                17,
+                21,
+                27
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 249,
+              "self_loops": [
+                3,
+                11,
+                13,
+                15,
+                17,
+                27,
+                29,
+                31
+              ],
+              "self_loop_count": 8,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 250,
+              "self_loops": [
+                1,
+                3,
+                7,
+                11,
+                21,
+                25,
+                27
+              ],
+              "self_loop_count": 7,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 23,
+              "self_loops": [
+                17
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 512,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 126,
+              "self_loops": [
+                5,
+                7,
+                11,
+                13
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 249,
+          "oe_wit_pairs": 277,
+          "union_wit_pairs": 391,
+          "ooe_self_loops": 8,
+          "oe_self_loops": 6,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 16,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 64,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 2048,
+            "nec_even_pairs": 2048,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 566,
+            "wit_even_pairs": 640,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 634,
+              "self_loops": [
+                3,
+                27,
+                45,
+                55,
+                59,
+                61
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 595,
+              "self_loops": [
+                13,
+                15,
+                23,
+                27,
+                29,
+                35,
+                39,
+                43
+              ],
+              "self_loop_count": 11,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 555,
+              "self_loops": [
+                25,
+                35,
+                39,
+                57,
+                59
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 64,
+              "self_loops": [
+                49
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 2048,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 372,
+              "self_loops": [
+                7,
+                9,
+                11,
+                13,
+                15,
+                19
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 595,
+          "oe_wit_pairs": 634,
+          "union_wit_pairs": 1030,
+          "ooe_self_loops": 11,
+          "oe_self_loops": 6,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 32,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 3,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 9,
+            "nec_even_pairs": 9,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 9,
+            "wit_even_pairs": 9,
+            "wit_odd_fills_nec": true,
+            "wit_even_fills_nec": true
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 9,
+              "self_loops": [
+                0,
+                1,
+                2
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 9,
+              "self_loops": [
+                0,
+                1,
+                2
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 9,
+              "self_loops": [
+                0,
+                1,
+                2
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3,
+              "self_loops": [
+                0
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 9,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 7,
+              "self_loops": [
+                1,
+                2
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 9,
+          "oe_wit_pairs": 9,
+          "union_wit_pairs": 9,
+          "ooe_self_loops": 3,
+          "oe_self_loops": 3,
+          "shared_self_loops": 3,
+          "odd_shared_self_loops": 3,
+          "nec_diagonal_count": 3,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 9,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 81,
+            "nec_even_pairs": 81,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 75,
+            "wit_even_pairs": 81,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": true
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 78,
+              "self_loops": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 78,
+              "self_loops": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 76,
+              "self_loops": [
+                0,
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 9,
+              "self_loops": [
+                6
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 81,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 44,
+              "self_loops": [
+                0,
+                4,
+                5,
+                6,
+                7,
+                8
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 78,
+          "oe_wit_pairs": 78,
+          "union_wit_pairs": 81,
+          "ooe_self_loops": 9,
+          "oe_self_loops": 9,
+          "shared_self_loops": 9,
+          "odd_shared_self_loops": 9,
+          "nec_diagonal_count": 9,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 27,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 729,
+            "nec_even_pairs": 729,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 397,
+            "wit_even_pairs": 540,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 433,
+              "self_loops": [
+                0,
+                1,
+                3,
+                5,
+                7,
+                8,
+                11,
+                12
+              ],
+              "self_loop_count": 15,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 416,
+              "self_loops": [
+                1,
+                3,
+                5,
+                6,
+                8,
+                9,
+                10,
+                11
+              ],
+              "self_loop_count": 15,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 381,
+              "self_loops": [
+                0,
+                1,
+                2,
+                4,
+                5,
+                8,
+                15,
+                17
+              ],
+              "self_loop_count": 13,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 54,
+              "self_loops": [
+                15,
+                16
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 729,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 287,
+              "self_loops": [
+                0,
+                1,
+                3,
+                4,
+                8,
+                23,
+                24,
+                25
+              ],
+              "self_loop_count": 8,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 416,
+          "oe_wit_pairs": 433,
+          "union_wit_pairs": 598,
+          "ooe_self_loops": 15,
+          "oe_self_loops": 15,
+          "shared_self_loops": 10,
+          "odd_shared_self_loops": 10,
+          "nec_diagonal_count": 27,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 81,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 6561,
+            "nec_even_pairs": 6561,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 1434,
+            "wit_even_pairs": 1620,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1380,
+              "self_loops": [
+                0,
+                4,
+                5,
+                8,
+                16,
+                33,
+                37,
+                44
+              ],
+              "self_loop_count": 14,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1396,
+              "self_loops": [
+                0,
+                1,
+                3,
+                5,
+                10,
+                11,
+                12,
+                15
+              ],
+              "self_loop_count": 20,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1446,
+              "self_loops": [
+                0,
+                17,
+                18,
+                22,
+                24,
+                26,
+                29,
+                30
+              ],
+              "self_loop_count": 16,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 163,
+              "self_loops": [
+                15,
+                16
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 6561,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1325,
+              "self_loops": [
+                24,
+                25,
+                28,
+                30,
+                31,
+                33,
+                35,
+                39
+              ],
+              "self_loop_count": 16,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 1396,
+          "oe_wit_pairs": 1380,
+          "union_wit_pairs": 2491,
+          "ooe_self_loops": 20,
+          "oe_self_loops": 14,
+          "shared_self_loops": 4,
+          "odd_shared_self_loops": 4,
+          "nec_diagonal_count": 81,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 72,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 2592,
+            "nec_even_pairs": 2592,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 636,
+            "wit_even_pairs": 720,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 715,
+              "self_loops": [
+                1,
+                13,
+                15,
+                27,
+                29,
+                31,
+                43,
+                53
+              ],
+              "self_loop_count": 11,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 670,
+              "self_loops": [
+                5,
+                9,
+                29,
+                43,
+                45,
+                49,
+                55,
+                59
+              ],
+              "self_loop_count": 11,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 646,
+              "self_loops": [
+                5,
+                19,
+                31,
+                33,
+                45
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 72,
+              "self_loops": [
+                33
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 2592,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 415,
+              "self_loops": [
+                1,
+                9,
+                11,
+                71
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 670,
+          "oe_wit_pairs": 715,
+          "union_wit_pairs": 1202,
+          "ooe_self_loops": 11,
+          "oe_self_loops": 11,
+          "shared_self_loops": 4,
+          "odd_shared_self_loops": 4,
+          "nec_diagonal_count": 36,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 144,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 10368,
+            "nec_even_pairs": 10368,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3799,
+              "self_loops": [
+                1,
+                13,
+                15,
+                19,
+                21,
+                23,
+                33,
+                35
+              ],
+              "self_loop_count": 27,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3266,
+              "self_loops": [
+                3,
+                5,
+                15,
+                37,
+                39,
+                43,
+                49,
+                51
+              ],
+              "self_loop_count": 23,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3352,
+              "self_loops": [
+                13,
+                19,
+                27,
+                35,
+                37,
+                45,
+                49,
+                65
+              ],
+              "self_loop_count": 20,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 216,
+              "self_loops": [
+                33,
+                35
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 10368,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3029,
+              "self_loops": [
+                1,
+                3,
+                73,
+                83,
+                85,
+                89,
+                93,
+                95
+              ],
+              "self_loop_count": 24,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3266,
+          "oe_wit_pairs": 3799,
+          "union_wit_pairs": 5867,
+          "ooe_self_loops": 23,
+          "oe_self_loops": 27,
+          "shared_self_loops": 10,
+          "odd_shared_self_loops": 10,
+          "nec_diagonal_count": 72,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 216,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 23328,
+            "nec_even_pairs": 23328,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                5,
+                9,
+                11,
+                21,
+                35,
+                47,
+                53,
+                79
+              ],
+              "self_loop_count": 19,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3635,
+              "self_loops": [
+                3,
+                5,
+                19,
+                21,
+                29,
+                55,
+                59,
+                77
+              ],
+              "self_loop_count": 16,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3681,
+              "self_loops": [
+                1,
+                5,
+                15,
+                21,
+                37,
+                45,
+                69,
+                87
+              ],
+              "self_loop_count": 14,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 322,
+              "self_loops": [
+                177,
+                179
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 23328,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3379,
+              "self_loops": [
+                1,
+                11,
+                13,
+                19,
+                23,
+                25,
+                27,
+                29
+              ],
+              "self_loop_count": 19,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3635,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7006,
+          "ooe_self_loops": 16,
+          "oe_self_loops": 19,
+          "shared_self_loops": 2,
+          "odd_shared_self_loops": 2,
+          "nec_diagonal_count": 108,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 288,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 41472,
+            "nec_even_pairs": 41472,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                1,
+                21,
+                23,
+                35,
+                65,
+                79,
+                93,
+                107
+              ],
+              "self_loop_count": 18,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3773,
+              "self_loops": [
+                3,
+                49,
+                77,
+                131,
+                141,
+                149,
+                183,
+                203
+              ],
+              "self_loop_count": 10,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3823,
+              "self_loops": [
+                37,
+                65,
+                73,
+                89,
+                157,
+                163,
+                171,
+                179
+              ],
+              "self_loop_count": 15,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 426,
+              "self_loops": [
+                177,
+                179
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 41472,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3578,
+              "self_loops": [
+                73,
+                83,
+                85,
+                89,
+                93,
+                99,
+                101,
+                107
+              ],
+              "self_loop_count": 14,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3773,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7410,
+          "ooe_self_loops": 10,
+          "oe_self_loops": 18,
+          "shared_self_loops": 1,
+          "odd_shared_self_loops": 1,
+          "nec_diagonal_count": 144,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 432,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 93312,
+            "nec_even_pairs": 93312,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                35,
+                101,
+                143,
+                227,
+                237,
+                269,
+                321,
+                331
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3880,
+              "self_loops": [
+                3,
+                59,
+                77,
+                81,
+                87,
+                193,
+                221,
+                271
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3911,
+              "self_loops": [
+                37,
+                69,
+                89,
+                103,
+                217,
+                231,
+                261,
+                357
+              ],
+              "self_loop_count": 9,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 617,
+              "self_loops": [
+                177,
+                179
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 93312,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3741,
+              "self_loops": [
+                217,
+                229,
+                239,
+                243,
+                245,
+                249,
+                257,
+                263
+              ],
+              "self_loop_count": 15,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3880,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7695,
+          "ooe_self_loops": 9,
+          "oe_self_loops": 9,
+          "shared_self_loops": 0,
+          "odd_shared_self_loops": 0,
+          "nec_diagonal_count": 216,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 648,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 209952,
+            "nec_even_pairs": 209952,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                5,
+                21,
+                53,
+                115,
+                131,
+                225,
+                575
+              ],
+              "self_loop_count": 7,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3935,
+              "self_loops": [
+                309,
+                409,
+                435,
+                437,
+                461,
+                513,
+                559
+              ],
+              "self_loop_count": 7,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3956,
+              "self_loops": [
+                15,
+                21,
+                231,
+                535
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 884,
+              "self_loops": [
+                177,
+                179
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 209952,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3936,
+              "self_loops": [
+                445,
+                451,
+                479,
+                481,
+                489
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3935,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7866,
+          "ooe_self_loops": 7,
+          "oe_self_loops": 7,
+          "shared_self_loops": 0,
+          "odd_shared_self_loops": 0,
+          "nec_diagonal_count": 324,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 864,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 373248,
+            "nec_even_pairs": 373248,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                35,
+                669,
+                753,
+                837
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3968,
+              "self_loops": [
+                3,
+                271,
+                491,
+                625,
+                653,
+                707
+              ],
+              "self_loop_count": 6,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3977,
+              "self_loops": [
+                37,
+                261,
+                501,
+                521,
+                789
+              ],
+              "self_loop_count": 5,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1138,
+              "self_loops": [
+                179
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 373248,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                649,
+                661,
+                689,
+                695,
+                705,
+                707,
+                723
+              ],
+              "self_loop_count": 7,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3968,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7927,
+          "ooe_self_loops": 6,
+          "oe_self_loops": 4,
+          "shared_self_loops": 0,
+          "odd_shared_self_loops": 0,
+          "nec_diagonal_count": 432,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        },
+        {
+          "m": 1296,
+          "defect_width_collapses": false,
+          "local": {
+            "nec_odd_pairs": 839808,
+            "nec_even_pairs": 839808,
+            "nec_is_first_letter_parity": true,
+            "even_cell_full_at_scale": true,
+            "wit_odd_pairs": 0,
+            "wit_even_pairs": 0,
+            "wit_odd_fills_nec": false,
+            "wit_even_fills_nec": false
+          },
+          "blocks": {
+            "OE": {
+              "word": "OE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                575,
+                669,
+                701,
+                763
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOE": {
+              "word": "OOE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3970,
+              "self_loops": [
+                435,
+                513,
+                1057,
+                1085
+              ],
+              "self_loop_count": 4,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOOE": {
+              "word": "OOOE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 3981,
+              "self_loops": [
+                231,
+                535
+              ],
+              "self_loop_count": 2,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OEE": {
+              "word": "OEE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 1571,
+              "self_loops": [
+                179
+              ],
+              "self_loop_count": 1,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            },
+            "OOEE": {
+              "word": "OOEE",
+              "nec_pairs": 839808,
+              "nec_is_first_letter_parity": true,
+              "wit_pairs": 4000,
+              "self_loops": [
+                1093,
+                1127,
+                1137
+              ],
+              "self_loop_count": 3,
+              "diagonal_wit": true,
+              "increment_gcd": 1
+            }
+          },
+          "ooe_wit_pairs": 3970,
+          "oe_wit_pairs": 4000,
+          "union_wit_pairs": 7943,
+          "ooe_self_loops": 4,
+          "oe_self_loops": 4,
+          "shared_self_loops": 0,
+          "odd_shared_self_loops": 0,
+          "nec_diagonal_count": 648,
+          "nec_diagonal_nonempty": true,
+          "wit_union_odd_return": true,
+          "increment_gcd_ooe": 1,
+          "increment_gcd_oe": 1,
+          "reduces_to_parity": true,
+          "level": "A",
+          "diagonal_nonempty": true,
+          "counts_return_possible": true
+        }
+      ],
+      "all_diagonal_nonempty": true,
+      "all_nec_diagonal_nonempty": true,
+      "all_reduces_to_parity": true,
+      "all_counts_return": true,
+      "no_defect_width_collapse": true,
+      "requires_word_enumeration": false,
+      "level_c": false
+    }
+  },
+  "oe_is_exponent_cell": true,
+  "emptied_lengths": [],
+  "emptied_count": 0,
+  "all_spotlights_diagonal": true,
+  "all_spotlights_nec_diagonal": true,
+  "all_reduces_to_parity": true,
+  "all_counts_return": true,
+  "no_defect_width_collapse": true,
+  "scanned_other_97": false,
+  "level_c": false,
+  "sha256_spotlights": "a3b1480983e6cfa08f384d826ae8787b533b42d82584578707b122bbb63dad28",
+  "halt_theorem": false,
+  "no_cycle_all_lengths": false
+}

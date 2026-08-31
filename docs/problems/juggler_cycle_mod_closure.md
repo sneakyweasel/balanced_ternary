@@ -1,6 +1,6 @@
 # Juggler exact modular cycle closure
 
-Status: **EXPLORATORY**
+Status: **ARCHIVED**
 
 Refinement of
 [juggler_cycle_budget_opt.md](juggler_cycle_budget_opt.md) and
@@ -37,15 +37,28 @@ treats the defects \(\delta,\eta\) as free residues whenever
 \(2Y+1>m\). Witness form \(R_{\mathrm{wit}}\) records exact
 `floor_power` landings at \(n\ge N_0+1\).
 
-A class is modularly impossible when
+**Cycle-scale \(R_{\mathrm{nec}}\) (EXACT — HUMAN PROOF).**
+On a `CycleMin` with \(n\ge N_0+1\), every listed modulus
+satisfies \(2Y+1>m\). Then \(\delta\) and \(\eta\) are free
+residues, so the odd cell \(x^3=y^2+\delta\) and the even cell
+\(x=y^2+\eta\) impose no restriction beyond the first-letter
+parity of the source. The diagonal \(\Delta_m\) meets
+\(R_{\mathrm{nec}}\) at every odd-compatible residue.
 
-\[
-R_{\mathrm{cycle}}(m)\cap\Delta_m=\varnothing,
-\]
+**Even-cell existence (EXACT — HUMAN PROOF).**
+If \(Y\ge m\) and the source class has an even lift, the interval
+\([Y^2,(Y+1)^2)\) is longer than \(m\), so every target residue
+is realized. This is the existence half of `even_cell_iff`, not a
+new cell.
 
-with \(\Delta_m=\{(r,r)\}\), for every word in the class. Phase 0
-tests Level A (pair \((L,o)\)) and Level B (run-type `OOE`/`OE`
-counts). It does not test Level C (a complete word).
+**No leftover \((L,o)\) dies (COMPUTATIONALLY VERIFIED).**
+For \(L=25781\) and \(L=55293\), every listed \(m\in\{8,16,32,64,
+3,9,27,81\}\) and every product \(2^a3^b\) through \(16\cdot 81\)
+has a nonempty witness diagonal on the run-type class `OOE`/`OE`.
+Shared self-loops exist; the increment gcd is \(1\); the run-type
+counts return. Defect-width collapse does not occur. The other
+\(97\) leftovers were not scanned: both spotlights already kill
+the pair-level slogan.
 
 No cycle of any length — not claimed.
 
@@ -81,8 +94,8 @@ No cycle of any length — not claimed.
   **known** (`simons-de-weger-2005-collatz-m-cycles`)
 - Every start reaches 1 — not claimed
 
-Project relationship: **independent** of the closed interval-closure
-and 2-adic-bridge branches; the object is \(R_W(m)\cap\Delta_m\).
+Project relationship: **refuted** as a leftover-pair killer; the
+cycle-scale necessary relation is **known** first-letter parity.
 
 ## Branch budget
 
@@ -133,9 +146,9 @@ cube, not as a trit encoding.
   **REPARAMETERIZATION** of the existing overshoot
   (different indices)
 - Additive increment of `OOE`/`OE` at the run-type counts —
-  tested; not a leftover-killer
+  **COMPUTATIONALLY VERIFIED**; gcd \(1\), counts return
 - Pair-level modular leftover-killer —
-  tested in Phase 0
+  **REFUTED** (`juggler_cycle_mod_closure_leftover_killer`)
 - No cycle of any length — not claimed
 
 ## Experiments
@@ -149,12 +162,26 @@ cube, not as a trit encoding.
 
 ## Conjectures
 
-`juggler_cycle_mod_closure_leftover_killer` — recorded after
-the scan.
+`juggler_cycle_mod_closure_leftover_killer` — **REFUTED**.
 
 ## Counterexamples
 
-Recorded after the scan.
+- At cycle scale \(2Y+1>m\) for every listed modulus, so
+  \(R_{\mathrm{nec}}\) is first-letter parity and
+  \(\Delta_m\cap R_{\mathrm{nec}}\) contains every odd-compatible
+  residue (Falsifier B).
+- Mod \(8\): odd and even local \(R_{\mathrm{wit}}\) fill all
+  \(32\) necessary pairs. `OE` has self-loops at \(1,3,5,7\);
+  `OOE` at \(3,5,7\); three shared odd self-loops. Union return
+  exists. Increment gcd \(1\).
+- The same diagonal / counts-return pattern holds for every
+  listed \(m\) on both \((25781,16266)\) and \((55293,34886)\).
+- First-odd residue and last-even cell are different indices;
+  the last-even interval of length \(2n+1\) covers \(\mathbb Z/m\mathbb Z\).
+  This is the existing CycleMin overshoot.
+- Defect-width collapse \(\delta<m\Rightarrow\delta=d\) needs
+  \(m>2n\ge 2\cdot 10^6\), which is a large automaton
+  (Falsifier D), not a Phase-0 modulus.
 
 ## Formalization
 
@@ -164,21 +191,40 @@ are not re-proved.
 
 ## Results
 
-Recorded after the scan. Artifact
-`mod_closure/summary.json`.
+- **Cycle-scale \(R_{\mathrm{nec}}\)** — **EXACT — HUMAN PROOF**:
+  first-letter parity. Defects are free residues.
+- **Even-cell existence** — **EXACT — HUMAN PROOF**: full
+  even-source relation once \(Y\ge m\).
+- **No leftover \((L,o)\) dies** — **COMPUTATIONALLY VERIFIED**
+  (`mod_closure/summary.json`): `emptied_count=0`. Both
+  spotlights have a witness diagonal, a nonempty necessary
+  diagonal, increment gcd \(1\), and run-type count return on
+  every listed \(m\). Mod \(8\) local witnesses fill \(R_{\mathrm{nec}}\).
+  `OE`/`OOE`/`OOOE`/`OEE`/`OOEE` each have at least one self-loop
+  mod \(8\). The other \(97\) leftovers were not scanned.
+- **First versus last** — **REPARAMETERIZATION** of CycleMin
+  overshoot.
 
 ## Open questions
 
-Pending the scan.
+None from low-order modular closure at the \((L,o)\) or run-type
+level. A kill would require a complete word or a modulus larger
+than the defect window, both out of Phase 0.
 
 ## Decision
 
-Phase 0 is in progress. The branch will end in exactly one of
-PROMOTE, PARK, or CLOSE after the modular scan.
+**CLOSE**. At CycleMin scale the exact floor-cell shadow is
+first-letter parity: defects are free residues, even cells fill,
+and every listed modulus has a diagonal residue realization for
+the `OOE`/`OE` class on both \(L=25781\) and \(L=55293\). This is
+Falsifier A plus Falsifier B. Composition over `OE`/`OOE`/`OOOE`
+does not go beyond the existing mod-\(8\) landing lemmas. Keep
+the cycle-scale parity lemma as negative knowledge. No Paper A
+edit, no ledger row, no Lean.
 
-Best next question: pending the scan.
+Best next question: none from low-order modular closure.
 
 ## Publication assessment
 
-Status: `EXPLORATORY`. Laboratory probe of a finance refinement;
-not a second manuscript and not a Paper A edit.
+Status: `ARCHIVED`. Laboratory negative knowledge on a finance
+refinement; not a second manuscript and not a Paper A edit.

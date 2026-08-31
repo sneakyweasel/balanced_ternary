@@ -283,9 +283,27 @@ Exact pair-level floor closure is **CLOSE**
 intervals are the exponent envelope. No leftover \((L,o)\)
 dies.
 
+Exact modular floor-cell closure is **CLOSE**
+(`juggler_cycle_mod_closure_leftover_killer`). Cycle-scale
+\(R_{\mathrm{nec}}\) is first-letter parity; every listed
+modulus has a diagonal on \(L=25781\) and \(L=55293\).
+
+Finance-conditioned exact closure is **CLOSE**
+(`juggler_cycle_conditioned_closure_leftover_killer`). Leftover
+\(\theta\) does not force the `OOE`/`OE` packing. Deepening
+every `OE` still leaves packed \(>\theta\). No leftover
+\((L,o)\) dies.
+
+Ordered excursion closure is **CLOSE**
+(`juggler_cycle_ordered_excursion_leftover_killer`). The
+two-block persistence \((2,2,1)\) at \(v=n\) is the composed
+OOE envelope. No leftover \((L,o)\) dies.
+
 Best next question: none from cyclic run packing, prefix
-expansion, or exact pair-level closure. The frontier leftover
-\(L=25781\) still has a factor-\(23\) valley gap at \(P=1\).
+expansion, exact pair-level closure, low-order modular
+closure, finance-conditioned closure, or ordered excursion
+closure. The frontier leftover \(L=25781\) still has a
+factor-\(23\) valley gap at \(P=1\).
 
 ## Publication assessment
 

@@ -16087,4 +16087,104 @@ Best next question
 - none from exact pair-level closure
 ```
 
+## Juggler exact modular cycle closure
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether the modular shadow of the exact square/cube floor cells refuses to close on a leftover \((L,o)\) in \(\mathcal E_{\mathrm{run}}(10^6)\), especially \(L=25781\) and \(L=55293\), without enumerating words
+- **Hypotheses:** integer realizability imposes a cyclic residue obstruction invisible to the exponent envelope and finance inequalities
+- **Major results:** Cycle-scale \(R_{\mathrm{nec}}\) is first-letter parity **EXACT — HUMAN PROOF** (defects free once \(2Y+1>m\)). Even-cell existence is the full even-source relation at \(Y\ge m\). On both spotlights every listed \(m\in\{8,16,32,64,3,9,27,81\}\) and every product through \(16\cdot 81\) has a nonempty witness diagonal, increment gcd \(1\), and run-type count return. Mod \(8\) local witnesses fill all \(32+32\) necessary pairs; `OE`/`OOE` share three odd self-loops. First versus last residues are the existing overshoot. Artifact `mod_closure/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** pair-level modular leftover-killer (`juggler_cycle_mod_closure_leftover_killer`)
+- **Literature:** existing Cells / LandingValuation / DefectLowerBound / PreimageCylinders; closed interval-closure and 2-adic-bridge branches; same Simons–de Weger finance template
+- **Open:** none from low-order modular closure
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- at CycleMin scale the exact cell shadow is first-letter parity
+- even cells fill once the square interval is longer than m
+- every listed modulus has a diagonal for the OOE/OE class
+- OE/OOE self-loops are abundant; increment gcd is 1
+- first-odd and last-even residues are different indices
+Strongest theorem
+- if 2Y+1 > m then R_nec is first-letter parity and
+  Delta_m meets R_nec at every odd-compatible residue
+Strongest refutation
+- modular closure does not empty (25781, 16266) or (55293, 34886)
+Reusable machinery
+- r_nec_pair_count / even_cell_realizable / mod_closure/summary.json
+Branch status
+- CLOSE
+Why
+- Falsifier A plus Falsifier B: every natural modulus admits a
+  diagonal, and the necessary relation is existing parity
+Best next question
+- none from low-order modular closure
+```
+
+## Juggler finance-conditioned exact closure
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether leftover surplus forces near-extremal run structure tightly enough that exact floor cells empty \(L=25781\) or \(L=55293\)
+- **Hypotheses:** \(\theta(L)=3^o/2^L-1\) converts pair-level closure into a small near-extremal structural problem
+- **Major results:** Packed-to-\(\theta\) ratio \(23.12\) at \(L=25781\) and \(1.012\) at \(L=55293\). Deepening every `OE` still leaves packed \(>\theta\). One may lose \(6532\) of \(6751\) cheap `OOE` starts at \(L=25781\) and \(177\) of \(14479\) at \(L=55293\). Residual \(\log_{10}\binom{14479}{177}>200\). Run-type windows \([10^6+1,19010076]\) and \([10^6+1,1011446]\); both finance-restricted hulls meet and reduce to \(T\le n^{P_L}\). Artifact `conditioned_closure/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** finance-conditioned leftover-killer (`juggler_cycle_conditioned_closure_leftover_killer`)
+- **Literature:** existing run-type packing / pair-level closure / `cycleMin_finance`; same Simons–de Weger finance template
+- **Open:** none from finance-conditioned exact closure
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- leftover theta is a period filter, not a run-type concentrator
+- deepen cost is essentially the isolated-OE term and does not bind
+- 177 cheap-valley losses still fit at the tight leftover
+- the residual lose-class is exponentially large
+- the finance-restricted hull is the existing envelope
+Strongest theorem
+- a deviation of cost c stays legal for floor((P-theta)/c) copies
+Strongest refutation
+- deepening every OE still leaves packed > theta at 25781 and 55293
+Reusable machinery
+- run_type_n_max / deficit_row / conditioned_closure/summary.json
+Branch status
+- CLOSE
+Why
+- every tested deviation costs too little; exact closure on the
+  restricted n-window is the pair-level envelope
+Best next question
+- none from finance-conditioned exact closure
+```
+
+## Juggler ordered excursion closure
+
+- **Date:** 2026-08-31
+- **Objective:** Decide whether exact two-/three-block valley-to-valley maps forbid an ordered transition that \((L,o,e)\) cannot see, especially on \(L=25781\) and \(L=55293\)
+- **Hypotheses:** consecutive excursions are coupled by the exact integer landing strongly enough that some local transition is impossible around a finance-surviving cycle
+- **Major results:** OOE cell \(w^8\le v^9\) plus \(v^{27}<n^{32}\) forbids CycleMin-legal \((2,1)\). Composing the cell, \(v^{243}<n^{256}\) forbids \((2,2,1)\) at a CycleMin start (\(243<256\)). Both are the exponent envelope. Exact two-block landing at \(v=1000057\) is \(7\) below the independent envelope (relative deficit \(1.8\cdot10^{-7}\)). Near \(n\), \((2,2,2)\) occurs \(36\) times and legal \((2,1)\) occurs never; at scale \(n^{9/8}\) legal \((2,2,1)\) occurs \(36\) times. Prefix \((2,2,2)\) still splits \(365/1517\). Descent \(11189\to1087\to189\) on \(6187\) has no compensating large peak. Artifact `ordered_excursion/summary.json`. No ledger row, no Paper A, no Lean
+- **Refuted ideas:** ordered-excursion leftover-killer (`juggler_cycle_ordered_excursion_leftover_killer`)
+- **Literature:** existing `power_bound_word` / `oe_start_min` / cheap-`OOE` adjacency / block map \(Q\); closed pair-level and finance-conditioned closure branches; same Simons–de Weger finance template
+- **Open:** none from ordered pair/triple closure
+- **Decision:** CLOSE. The run-type theorem stays PROMOTE
+
+```text
+What was learned
+- (2,1) and (2,2,1) are illegal at a CycleMin start
+- both statements are the OOE cell composed once or twice
+- two-block floor loss is 7 on 39244728
+- (2,2,2) is realized near n; (2,2,1) becomes legal at n^{9/8}
+- the 365/1517 split survives because the law is scale, not prefix
+Strongest theorem
+- if a(v)=a(F_2(v))=2 and v^{243}<n^{256} then F_2(F_2(v)) < oe_start_min(n)
+Strongest refutation
+- ordered pair/triple closure does not empty (25781, 16266) or (55293, 34886)
+Reusable machinery
+- excursion_map / ooe_blocks_oe / two_ooe_still_blocks_oe / ordered_excursion/summary.json
+Branch status
+- CLOSE
+Why
+- Falsifier A plus Falsifier D: the product of local transitions
+  stays broad, and every useful relation is the exponent envelope
+Best next question
+- none from ordered excursion closure
+```
+
 

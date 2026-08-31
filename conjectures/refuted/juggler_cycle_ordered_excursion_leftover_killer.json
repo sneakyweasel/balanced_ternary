@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_ordered_excursion_leftover_killer",
+  "title": "Exact ordered two-/three-block valley maps empty a surviving (L,o) in E_run(10^6)",
+  "statement": "A finance-surviving CycleMin word, in particular L=25781 or L=55293, must contain an ordered excursion transition (v,a) -> (w,b) that the exact floor cells forbid, so the leftover pair dies without enumerating complete words.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "Unscaled pairs (1,1), (2,1), (2,2), (2,3), (3,1) are realized below 20000. (2,2,2) occurs 36 times in [10^6+1, 10^6+20001). (2,2,1) is CycleMin-legal 36 times at scale n^{9/8}",
+    "The two-block exact landing at v=1000057 is 39244721 against envelope 39244728 (relative deficit 1.8e-7). Floor loss does not constrain the next run beyond w^8 <= v^9 and 81/64 < 4/3",
+    "Prefix (2,2,2) has fourth run 2 at 365 and 1 at 1517. Both fourth valleys sit above oe_start. The scale law does not force a leftover death"
+  ],
+  "first_seen": "juggler ordered excursion closure",
+  "lean_reference": "power_bound_word",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / ordered excursion maps",
+  "notes": "The two-block persistence (2,2,1) at v=n is the composed OOE envelope, not a leftover-killer. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_ordered_excursion.md",
+  "proof_reference": "docs/problems/juggler_cycle_ordered_excursion.md",
+  "tested_range": "L=25781 and L=55293; first a=2 start 1000057; pair census [10^6+1, 10^6+20001) and n^{9/8} window of width 8000; controls 365 and 1517"
+}

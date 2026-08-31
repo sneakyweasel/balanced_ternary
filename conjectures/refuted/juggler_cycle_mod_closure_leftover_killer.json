@@ -1,0 +1,21 @@
+{
+  "id": "juggler_cycle_mod_closure_leftover_killer",
+  "title": "Exact floor-cell modular shadows empty a surviving (L,o) in E_run(10^6) without enumerating words",
+  "statement": "For some natural modulus m in {2^a, 3^b, 2^a 3^b}, the exact square/cube floor-cell relation of the run-type class OOE/OE has empty diagonal on a leftover pair (L, o_min(L)) in E_run(10^6), in particular L=25781 or L=55293, without fixing a complete word.",
+  "status": "REFUTED",
+  "counterexamples": [
+    "At CycleMin scale n>=10^6+1 every listed m satisfies 2Y+1>m, so R_nec is first-letter parity and Delta_m meets R_nec at every odd-compatible residue",
+    "Mod 8: local R_wit fills all 32 odd and 32 even necessary pairs. OE has self-loops at 1,3,5,7; OOE at 3,5,7; three shared odd self-loops. Increment gcd 1. Run-type counts return",
+    "The same nonempty witness diagonal and count-return hold for m in {8,16,32,64,3,9,27,81} and products through 16*81 on both (25781, 16266) and (55293, 34886). Defect-width collapse needs m>2n"
+  ],
+  "first_seen": "juggler exact modular cycle closure",
+  "lean_reference": "even_cell_iff",
+  "literature": [
+    "simons-de-weger-2005-collatz-m-cycles"
+  ],
+  "mathematical_domain": "Juggler cycle finance / exact modular closure",
+  "notes": "Cycle-scale modular shadows are first-letter parity plus existing cells. Pair-level and run-type class closure do not beat that bookkeeping. No Paper A edit, no ledger row, no Lean. Not a halt theorem.",
+  "origin": "docs/problems/juggler_cycle_mod_closure.md",
+  "proof_reference": "docs/problems/juggler_cycle_mod_closure.md",
+  "tested_range": "L=25781 and L=55293 at n>=10^6+1; moduli 8,16,32,64,3,9,27,81 and 2^a 3^b through 16*81; blocks OE,OOE,OOOE,OEE,OOEE"
+}

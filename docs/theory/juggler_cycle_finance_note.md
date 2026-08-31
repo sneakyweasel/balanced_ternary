@@ -260,6 +260,20 @@ These were run. None of them changes the leftover.
   \(T\le n^{P_L}\). Local OE is the cell \(z^4\le x^3<(z+1)^4\).
   The cycle remainder is `global_defect_identity`. Neither
   \(L=25781\) nor \(L=55293\) dies as a pair.
+- Finance-conditioned exact-closure leftover-killer — **CLOSE**
+  (`juggler_cycle_conditioned_closure_leftover_killer`). Leftover
+  \(\theta\) does not force near-extremal run structure.
+  Deepening every `OE` still leaves packed \(>\theta\) at
+  \(L=25781\) and \(L=55293\). The residual lose-class is
+  exponentially large. The finance-restricted hull is the
+  existing envelope.
+- Ordered excursion leftover-killer — **CLOSE**
+  (`juggler_cycle_ordered_excursion_leftover_killer`). The
+  two-block persistence \((2,2,1)\) at a CycleMin start is the
+  composed OOE envelope \(81/64<4/3\). Floor loss is
+  \(7\) on \(39244728\). \((2,2,2)\) is realized near \(n\), and
+  \((2,2,1)\) becomes legal at scale \(n^{9/8}\). Neither
+  \(L=25781\) nor \(L=55293\) dies as a pair.
 - Prefix-weight leftover-killer (\(P\equiv 1\), or optimistic
   later-valley \(P\ge 9/8\)) — **CLOSE**
   (`juggler_cycle_prefix_weight_leftover_killer`). The published

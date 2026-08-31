@@ -15,3 +15,9 @@ Cyclic run-extremum scan: `run_extremum.json`
 (`write_run_extremum_artifacts`; does not replace the tables).
 Prefix-feasibility scan: `prefix_feasibility.json`
 (`write_prefix_feasibility_artifacts`; does not replace the tables).
+Finance-conditioned closure scan: `conditioned_closure/summary.json`
+(`write_conditioned_artifacts`; does not replace the tables).
+Modular-closure scan: `mod_closure/summary.json`
+(`write_mod_closure_artifacts`; does not replace the tables).
+Ordered-excursion scan: `ordered_excursion/summary.json`
+(`write_ordered_artifacts`; does not replace the tables).

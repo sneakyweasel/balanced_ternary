@@ -660,6 +660,12 @@ and `data/research/juggler/cycle_finance/`.
   leftover-killers
   (`juggler_cycle_fourier_leftover_killer`,
   `juggler_cycle_closure_leftover_killer`).
+  Exact modular floor-cell closure is also **CLOSE**
+  (`juggler_cycle_mod_closure_leftover_killer`).
+  Finance-conditioned exact closure is also **CLOSE**
+  (`juggler_cycle_conditioned_closure_leftover_killer`).
+  Ordered excursion closure is also **CLOSE**
+  (`juggler_cycle_ordered_excursion_leftover_killer`).
 
 ## Decision
 
@@ -705,13 +711,30 @@ The exact pair-level floor-closure leftover-killer is **CLOSE**
 (`juggler_cycle_closure_leftover_killer`): word-independent
 intervals reduce to the exponent envelope.
 
+The exact modular floor-cell leftover-killer is **CLOSE**
+(`juggler_cycle_mod_closure_leftover_killer`): at CycleMin
+scale \(R_{\mathrm{nec}}\) is first-letter parity and every
+listed modulus has a diagonal on both spotlight leftovers.
+
+The finance-conditioned exact-closure leftover-killer is **CLOSE**
+(`juggler_cycle_conditioned_closure_leftover_killer`): leftover
+\(\theta\) does not force near-extremal run structure. Deepening
+every `OE` still leaves packed \(>\theta\).
+
+The ordered-excursion leftover-killer is **CLOSE**
+(`juggler_cycle_ordered_excursion_leftover_killer`): \((2,2,1)\)
+at a CycleMin start is the composed OOE envelope \(81/64<4/3\).
+\((2,2,2)\) is realized near \(n\), and \((2,2,1)\) becomes
+legal at scale \(n^{9/8}\).
+
 Best next question: none from prefix weights, run-type packing,
-cyclic run packing, prefix expansion, Fourier, or exact
-pair-level closure. The frontier leftover
-\(L=25781\) still has a factor-\(23\) valley gap after the
-`OE`-start lift. The remaining slack is an \(m\)-bound or
-valley-height question already parked or refuted at the
-residual floor.
+cyclic run packing, prefix expansion, Fourier, exact
+pair-level closure, low-order modular closure,
+finance-conditioned closure, or ordered excursion closure. The
+frontier leftover \(L=25781\) still has a factor-\(23\) valley
+gap after the `OE`-start lift. The remaining slack is an
+\(m\)-bound or valley-height question already parked or refuted
+at the residual floor.
 
 Length \(84\) at \(m\ge 3\) at floor \(261\) is **REFUTED** as a
 leftover-killer
@@ -731,6 +754,12 @@ Closed peak–valley Fourier is also **REFUTED** as a leftover-killer
 (`juggler_cycle_fourier_leftover_killer`).
 Exact pair-level floor closure is also **REFUTED** as a leftover-killer
 (`juggler_cycle_closure_leftover_killer`).
+Exact modular floor-cell closure is also **REFUTED** as a leftover-killer
+(`juggler_cycle_mod_closure_leftover_killer`).
+Finance-conditioned exact closure is also **REFUTED** as a leftover-killer
+(`juggler_cycle_conditioned_closure_leftover_killer`).
+Ordered excursion closure is also **REFUTED** as a leftover-killer
+(`juggler_cycle_ordered_excursion_leftover_killer`).
 Run-height packing does not improve the length-only
 \(n_{\max}\) at \(o_{\min}\).
 
